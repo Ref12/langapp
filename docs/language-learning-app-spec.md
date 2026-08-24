@@ -113,10 +113,18 @@ revealing the solution.
 
 ## 3. Free sample content
 
-The app should provide a set of short, freely accessible samples so users can
-try the complete workflow before importing their own content or creating an
-account. Samples should be 100 to 500 words, finishable in one session, and
-available in the most common language pairs.
+The app should provide a set of freely accessible samples so users can try the
+complete workflow before importing their own content or creating an account. The
+library should range from a few sentences to substantial reading, allowing users
+to evaluate both a quick exercise and the long-form book workflow.
+
+Sample length tiers should include:
+
+- **Micro**: one to three sentences for an immediate demonstration
+- **Short**: 100 to 500 words, finishable in one session
+- **Medium**: 500 to 2,000 words, suitable for a focused reading session
+- **Long-form**: multiple sections or chapters for sustained reading and progress
+  tracking
 
 Sample categories should appeal to a broad audience:
 
@@ -127,10 +135,20 @@ Sample categories should appeal to a broad audience:
 - History and biographies
 - Short public-domain fiction and folklore
 - Conversations and common social interactions
+- Religious and spiritual texts, available as an opt-in category
+
+Religious and spiritual samples may include selected Bible passages and other
+widely read texts from multiple traditions. They should be presented neutrally as
+reading material, with tradition, work, edition, translator, and source clearly
+identified. The app should avoid implying that any single tradition is the
+default or representative of all users.
 
 Samples should be either original app content, public-domain content, or content
-used under a clear license. Every sample should display its attribution and
-source license where applicable.
+used under a clear license. Translation rights must be checked independently from
+the rights to the original work; many modern Bible translations and other
+religious-text translations remain copyrighted even when the underlying work is
+public domain. Every sample should display its attribution, edition, translator,
+and source license where applicable.
 
 Each sample should include enough prepared metadata to make the first experience
 fast:
@@ -143,8 +161,9 @@ fast:
 - One-click access to every reading mode
 
 The sample browser should support filtering by language pair, topic, difficulty,
-length, and content type. A user should be able to start a sample immediately
-from the landing page and later save progress or import additional content.
+length, tradition where applicable, and content type. A user should be able to
+start a sample immediately from the landing page and later save progress or
+import additional content.
 
 ## 4. Reading modes
 
