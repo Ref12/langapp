@@ -25,10 +25,23 @@ The user can:
 
 The original source text and its document structure must be preserved.
 
-Content integrations should retrieve the current article or book content
-dynamically rather than limiting the user to a fixed, pre-extracted catalog. Each
-source should retain attribution, title, author, and a link back to the original
-content where applicable.
+Content integrations should support both dynamically retrieved content and curated
+static content. Static collections can provide quality control, reliable
+translation preparation, and a simple first-run experience, but they must not be
+the only way to access content. Each source should retain attribution, title,
+author, and a link back to the original content where applicable.
+
+The app should distinguish between:
+
+- **Dynamic sources**: The user searches for and retrieves a Wikipedia article,
+  Project Gutenberg work, or another supported source at the time of use.
+- **Curated sources**: The app provides a prepared library of texts with reviewed
+  segmentation, translations, audio, or learning metadata.
+- **User content**: The user pastes or imports text and the app analyzes it on
+  demand.
+
+All three source types should use the same reading modes, learning-item states,
+and review system.
 
 ### 2.2 Configure a learning session
 
@@ -223,8 +236,8 @@ The first usable version should support:
 12. Basic spaced-repetition review
 
 The first content integrations should support pasted text plus dynamically selected
-Wikipedia articles. Project Gutenberg and plain-text book import should follow
-closely, with EPUB, PDF, web pages, and OCR added later.
+Wikipedia articles. Project Gutenberg, curated static lessons, and plain-text book
+import should follow closely, with EPUB, PDF, web pages, and OCR added later.
 
 ## 9. Future enhancements
 
@@ -249,3 +262,4 @@ closely, with EPUB, PDF, web pages, and OCR added later.
 - Test active recall, not only recognition.
 - Preserve user control over translations, substitutions, and study scope.
 - Keep learned knowledge available across documents and future reading sessions.
+- Treat curated content as an accelerator, not a restriction on what users can read.
