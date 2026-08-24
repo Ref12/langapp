@@ -18,10 +18,17 @@ The user can:
 
 - Paste text directly
 - Import a book or document
+- Search and select a Wikipedia article
+- Search and select a Project Gutenberg book or chapter
 - Select a chapter, paragraph, passage, or sentence range
 - Resume from a saved reading position
 
 The original source text and its document structure must be preserved.
+
+Content integrations should retrieve the current article or book content
+dynamically rather than limiting the user to a fixed, pre-extracted catalog. Each
+source should retain attribution, title, author, and a link back to the original
+content where applicable.
 
 ### 2.2 Configure a learning session
 
@@ -91,7 +98,41 @@ The app should support both source-to-target and target-to-source recall. Scorin
 should distinguish an unaided answer from an answer submitted after a hint or
 revealing the solution.
 
-## 3. Mixed-language reading
+## 3. Reading modes
+
+The same learned vocabulary and review state should work across multiple reading
+modes. Users can switch modes without losing progress.
+
+### 3.1 Dynamic diglot mode
+
+The app progressively substitutes learned target-language words and phrases into
+the source text. The user controls the substitution density, and the app can
+increase it as learning improves.
+
+### 3.2 Tap-to-translate weave mode
+
+This mode provides a LangSplice-like experience: the passage is displayed in the
+target language, and the user taps a word or phrase to see its source-language
+equivalent, definition, pronunciation, or example.
+
+Unlike a static content catalog, the mode must work on text the user just pasted,
+selected from Wikipedia or Project Gutenberg, or imported from a document. Taps
+should contribute to the item's learning history and optionally add it to a
+future lesson or review queue.
+
+### 3.3 Source-first assisted reading
+
+The source text remains intact. Tapping a word or phrase opens the target-language
+translation and related learning actions without changing the displayed text.
+This is useful for users who want comprehension support before enabling weaving.
+
+### 3.4 Target-first reading
+
+The target translation is shown as the primary text, with source-language
+equivalents available on demand. This mode is intended for review after the user
+has already learned much of the passage.
+
+## 4. Mixed-language reading
 
 The reading view progressively substitutes learned target-language items into the
 source text. Unlearned content remains in the source language.
@@ -116,7 +157,7 @@ Occurrences of a learned word or phrase elsewhere in the imported text should be
 recognized automatically. The user may configure whether those occurrences appear
 in the target language immediately or only after additional practice.
 
-## 4. Learning item states
+## 5. Learning item states
 
 Every vocabulary item, phrase, and sentence has an independent learning state:
 
@@ -129,7 +170,7 @@ Every vocabulary item, phrase, and sentence has an independent learning state:
 An incorrect answer, repeated hint use, or a long period without review may lower
 the state or increase the review priority.
 
-## 5. Spaced repetition
+## 6. Spaced repetition
 
 Learned items are stored independently of the source document so they can be
 reviewed later and reused in other books or passages.
@@ -149,7 +190,7 @@ The review queue should record:
 Reviews should eventually use varied contexts rather than always showing the
 original sentence.
 
-## 6. Book and document model
+## 7. Book and document model
 
 For an imported book, the app should retain:
 
@@ -164,7 +205,7 @@ For an imported book, the app should retain:
 The user should be able to learn sequentially, select specific chapters, or focus
 on sentences chosen by difficulty or vocabulary criteria.
 
-## 7. MVP scope
+## 8. MVP scope
 
 The first usable version should support:
 
@@ -177,13 +218,15 @@ The first usable version should support:
 7. Sentence ordering
 8. Fill-in-the-blank exercises
 9. Mixed-language reading
-10. Persistent learning states
-11. Basic spaced-repetition review
+10. Tap-to-translate weave reading mode
+11. Persistent learning states
+12. Basic spaced-repetition review
 
-Book and document import can initially be limited to plain text, with EPUB, PDF,
-web pages, and OCR added later.
+The first content integrations should support pasted text plus dynamically selected
+Wikipedia articles. Project Gutenberg and plain-text book import should follow
+closely, with EPUB, PDF, web pages, and OCR added later.
 
-## 8. Future enhancements
+## 9. Future enhancements
 
 - EPUB, PDF, web-page, and ebook-reader imports
 - OCR for scanned books
@@ -197,7 +240,7 @@ web pages, and OCR added later.
 - Export to Anki or similar tools
 - Progress and comprehension analytics
 
-## 9. Product principles
+## 10. Product principles
 
 - Use meaningful user-selected content as the primary curriculum.
 - Prefer natural translations while retaining source-to-target traceability.
