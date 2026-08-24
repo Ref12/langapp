@@ -338,7 +338,67 @@ Video practice should support:
 - Separate controls for source and target subtitles
 - Reveal, hint, and continue actions
 
-## 10. MVP scope
+## 10. AI lesson generation (vNext)
+
+The app should support scanning or importing pages from textbooks, workbooks, and
+other lessons, then using AI to turn the material into structured practice.
+
+### 10.1 Scan and extract
+
+The user should be able to:
+
+- Capture one or more pages with a camera
+- Import page images or PDFs
+- Review and correct OCR output
+- Identify headings, dialogues, examples, exercises, and answer keys
+- Select which sections should become lessons
+
+The original page image and extracted text should remain linked so the user can
+verify generated lessons against the source.
+
+### 10.2 Generate structured lessons
+
+From extracted material, the app may generate:
+
+- Word-to-word matching
+- Phrase matching
+- Sentence matching
+- Fill-in-the-blank exercises
+- Sentence ordering
+- Translation recall
+- Listening or pronunciation prompts when audio is available
+- Grammar-focused drills
+
+Generated exercises should identify the source passage and allow the user to edit,
+reject, or regenerate individual questions before they affect learning progress.
+
+### 10.3 Generate stories
+
+The app may generate short stories, dialogues, or scenarios using:
+
+- Vocabulary from the scanned lesson
+- Phrases the user is currently learning
+- A selected difficulty and length
+- A chosen topic or setting
+- Previously mastered items for spaced reinforcement
+
+Generated stories should prioritize natural language and meaningful repetition
+over mechanically inserting every vocabulary item. The app should show which
+learning items were intentionally reinforced and clearly label generated content
+as AI-created.
+
+### 10.4 Reliability, privacy, and rights
+
+OCR and generated lessons require user review because recognition and language
+models may introduce errors. The app should preserve confidence indicators,
+surface uncertain text, and never silently replace the user's source material.
+
+Scanned textbook pages may contain copyrighted content. The feature should make
+clear that the user is responsible for having the right to scan and process the
+material. By default, page images and extracted text should remain local unless
+the user explicitly enables cloud processing or synchronization.
+
+## 11. MVP scope
 
 The first usable version should support:
 
@@ -360,7 +420,7 @@ The first content integrations should support pasted text plus dynamically selec
 Wikipedia articles. Project Gutenberg, curated static lessons, and plain-text book
 import should follow closely, with EPUB, PDF, web pages, and OCR added later.
 
-## 11. Future enhancements
+## 12. Future enhancements
 
 - EPUB, PDF, web-page, and ebook-reader imports
 - OCR for scanned books
@@ -377,8 +437,11 @@ import should follow closely, with EPUB, PDF, web pages, and OCR added later.
 - Listening recognition and partial word-identification exercises
 - Speech recognition for spoken answers
 - Audio-only review sessions
+- Textbook and lesson scanning with OCR
+- AI-generated structured exercises
+- AI-generated stories and dialogues
 
-## 12. Product principles
+## 13. Product principles
 
 - Use meaningful user-selected content as the primary curriculum.
 - Prefer natural translations while retaining source-to-target traceability.
