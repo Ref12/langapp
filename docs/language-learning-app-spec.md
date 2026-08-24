@@ -111,7 +111,42 @@ The app should support both source-to-target and target-to-source recall. Scorin
 should distinguish an unaided answer from an answer submitted after a hint or
 revealing the solution.
 
-## 3. Reading modes
+## 3. Free sample content
+
+The app should provide a set of short, freely accessible samples so users can
+try the complete workflow before importing their own content or creating an
+account. Samples should be 100 to 500 words, finishable in one session, and
+available in the most common language pairs.
+
+Sample categories should appeal to a broad audience:
+
+- Travel and practical everyday situations
+- Food, recipes, and local culture
+- Nature, animals, and space
+- Science and technology explained simply
+- History and biographies
+- Short public-domain fiction and folklore
+- Conversations and common social interactions
+
+Samples should be either original app content, public-domain content, or content
+used under a clear license. Every sample should display its attribution and
+source license where applicable.
+
+Each sample should include enough prepared metadata to make the first experience
+fast:
+
+- Sentence segmentation
+- Target translation
+- Candidate vocabulary and phrases
+- Audio where available
+- Suggested learning percentage
+- One-click access to every reading mode
+
+The sample browser should support filtering by language pair, topic, difficulty,
+length, and content type. A user should be able to start a sample immediately
+from the landing page and later save progress or import additional content.
+
+## 4. Reading modes
 
 The same learned vocabulary and review state should work across multiple reading
 modes. Users can switch modes without losing progress.
@@ -145,7 +180,7 @@ The target translation is shown as the primary text, with source-language
 equivalents available on demand. This mode is intended for review after the user
 has already learned much of the passage.
 
-## 4. Mixed-language reading
+## 5. Mixed-language reading
 
 The reading view progressively substitutes learned target-language items into the
 source text. Unlearned content remains in the source language.
@@ -170,7 +205,7 @@ Occurrences of a learned word or phrase elsewhere in the imported text should be
 recognized automatically. The user may configure whether those occurrences appear
 in the target language immediately or only after additional practice.
 
-## 5. Learning item states
+## 6. Learning item states
 
 Every vocabulary item, phrase, and sentence has an independent learning state:
 
@@ -183,7 +218,7 @@ Every vocabulary item, phrase, and sentence has an independent learning state:
 An incorrect answer, repeated hint use, or a long period without review may lower
 the state or increase the review priority.
 
-## 6. Spaced repetition
+## 7. Spaced repetition
 
 Learned items are stored independently of the source document so they can be
 reviewed later and reused in other books or passages.
@@ -203,7 +238,7 @@ The review queue should record:
 Reviews should eventually use varied contexts rather than always showing the
 original sentence.
 
-## 7. Book and document model
+## 8. Book and document model
 
 For an imported book, the app should retain:
 
@@ -218,28 +253,29 @@ For an imported book, the app should retain:
 The user should be able to learn sequentially, select specific chapters, or focus
 on sentences chosen by difficulty or vocabulary criteria.
 
-## 8. MVP scope
+## 9. MVP scope
 
 The first usable version should support:
 
-1. Pasting text
-2. Selecting source and target languages
-3. Sentence segmentation and translation
-4. Choosing a study percentage
-5. Vocabulary and phrase lessons
-6. Word-pair matching
-7. Sentence ordering
-8. Fill-in-the-blank exercises
-9. Mixed-language reading
-10. Tap-to-translate weave reading mode
-11. Persistent learning states
-12. Basic spaced-repetition review
+1. Free sample browser with several short, rights-safe samples
+2. Pasting text
+3. Selecting source and target languages
+4. Sentence segmentation and translation
+5. Choosing a study percentage
+6. Vocabulary and phrase lessons
+7. Word-pair matching
+8. Sentence ordering
+9. Fill-in-the-blank exercises
+10. Mixed-language reading
+11. Tap-to-translate weave reading mode
+12. Persistent learning states
+13. Basic spaced-repetition review
 
 The first content integrations should support pasted text plus dynamically selected
 Wikipedia articles. Project Gutenberg, curated static lessons, and plain-text book
 import should follow closely, with EPUB, PDF, web pages, and OCR added later.
 
-## 9. Future enhancements
+## 10. Future enhancements
 
 - EPUB, PDF, web-page, and ebook-reader imports
 - OCR for scanned books
@@ -253,7 +289,7 @@ import should follow closely, with EPUB, PDF, web pages, and OCR added later.
 - Export to Anki or similar tools
 - Progress and comprehension analytics
 
-## 10. Product principles
+## 11. Product principles
 
 - Use meaningful user-selected content as the primary curriculum.
 - Prefer natural translations while retaining source-to-target traceability.
