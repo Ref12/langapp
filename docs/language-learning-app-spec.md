@@ -272,7 +272,73 @@ For an imported book, the app should retain:
 The user should be able to learn sequentially, select specific chapters, or focus
 on sentences chosen by difficulty or vocabulary criteria.
 
-## 9. MVP scope
+## 9. Video learning mode (v2)
+
+The app should eventually apply the same progressive learning approach to videos
+with subtitles. A video session should align the audio, subtitle text, source
+translation, and learned items at the sentence level.
+
+### 9.1 Video sources and setup
+
+The user should be able to:
+
+- Import a video with subtitle files
+- Select an available subtitle track
+- Paste or edit subtitle text when alignment needs correction
+- Choose source and target languages
+- Configure whether target-language subtitles, source-language subtitles, or both
+  are initially visible
+
+The app should preserve subtitle timing and support sentence-level playback.
+Content rights and platform terms must be respected for imported and streamed
+video.
+
+### 9.2 Video learning modes
+
+- **Watch normally**: Play the video with optional tap-to-translate subtitles.
+- **Preteach then watch**: Teach selected words, phrases, and sentences before
+  playing the corresponding clip.
+- **Pause-and-test**: Stop after a sentence or short segment and quiz the user
+  before continuing.
+- **Progressive subtitle weave**: Show a mixture of source and target-language
+  subtitles based on learned items and the selected difficulty.
+- **Listening-first**: Hide subtitles initially, then reveal target or source
+  text after the user attempts comprehension.
+
+The preteaching requirement should be configurable. Beginner modes may teach all
+selected vocabulary before playback, while advanced modes may introduce only
+high-priority items and rely more on contextual listening.
+
+### 9.3 Listening exercises
+
+After a sentence or clip, the app should be able to ask:
+
+- What did the speaker say?
+- Which target-language word did you hear?
+- Select the words that appeared, even without translating the full sentence
+- Identify the missing word in the subtitle
+- Arrange heard words into the correct order
+- Choose the meaning of the sentence
+- Type or speak a translation
+
+Word-identification exercises should award partial progress when the user
+recognizes words or phrases but cannot yet produce a complete translation. The
+app should distinguish listening recognition from translation and speaking
+production in the review history.
+
+### 9.4 Playback controls
+
+Video practice should support:
+
+- Replay of the current sentence or clip
+- Slower playback
+- Looping
+- A-B segment replay
+- Optional word-level highlighting synchronized to audio
+- Separate controls for source and target subtitles
+- Reveal, hint, and continue actions
+
+## 10. MVP scope
 
 The first usable version should support:
 
@@ -294,7 +360,7 @@ The first content integrations should support pasted text plus dynamically selec
 Wikipedia articles. Project Gutenberg, curated static lessons, and plain-text book
 import should follow closely, with EPUB, PDF, web pages, and OCR added later.
 
-## 10. Future enhancements
+## 11. Future enhancements
 
 - EPUB, PDF, web-page, and ebook-reader imports
 - OCR for scanned books
@@ -307,8 +373,12 @@ import should follow closely, with EPUB, PDF, web pages, and OCR added later.
 - Offline reading and review
 - Export to Anki or similar tools
 - Progress and comprehension analytics
+- Video import with subtitle alignment and sentence-level playback
+- Listening recognition and partial word-identification exercises
+- Speech recognition for spoken answers
+- Audio-only review sessions
 
-## 11. Product principles
+## 12. Product principles
 
 - Use meaningful user-selected content as the primary curriculum.
 - Prefer natural translations while retaining source-to-target traceability.
