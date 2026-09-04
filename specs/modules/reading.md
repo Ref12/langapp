@@ -123,8 +123,11 @@ two surrounding sentences on each side so the AI translates the word's
 contextual meaning.
 
 Read aloud MUST select an installed voice matching `zh-CN`, `ja-JP`, or `ko-KR`
-and surface an actionable error when no matching voice is available. The popup
-MUST provide playback speed from 0.25× through 1.00× in 0.05 increments.
+when the browser exposes one. Android browsers that return an empty voice list
+MUST still request playback synchronously with the target language tag so the
+system TTS engine can choose a voice. The popup MUST provide playback speed from
+0.25× through 1.00× in 0.05 increments and show actionable Android language-pack
+instructions when playback reports that the language or voice is unavailable.
 
 ### 4.4 Text settings
 

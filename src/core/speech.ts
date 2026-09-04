@@ -1,10 +1,16 @@
 let activeUtterance: SpeechSynthesisUtterance | undefined
 
+export interface SpeechPlaybackHandlers {
+  onStart?: (voiceName: string) => void
+  onEnd?: (voiceName: string) => void
+  onError?: (message: string) => void
+}
+
 export function canReadAloud(): boolean {
   return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window
 }
 
-function matchingVoice(
+export function matchingSpeechVoice(
   voices: SpeechSynthesisVoice[],
   language: string,
 ): SpeechSynthesisVoice | undefined {
@@ -18,79 +24,79 @@ function matchingVoice(
   )
 }
 
-export async function loadSpeechVoice(
+export function availableSpeechVoice(language: string): string {
+  if (!canReadAloud()) return ''
+  return (
+    matchingSpeechVoice(window.speechSynthesis.getVoices(), language)?.name ??
+    ''
+  )
+}
+
+export function watchSpeechVoices(
   language: string,
-  timeoutMs = 2_000,
-): Promise<SpeechSynthesisVoice> {
+  onChange: (voiceName: string) => void,
+): () => void {
+  if (!canReadAloud()) return () => undefined
+  const synthesis = window.speechSynthesis
+  const update = () => onChange(availableSpeechVoice(language))
+  update()
+  synthesis.addEventListener('voiceschanged', update)
+  return () => synthesis.removeEventListener('voiceschanged', update)
+}
+
+function speechErrorMessage(error: string, language: string): string {
+  if (error === 'language-unavailable' || error === 'voice-unavailable') {
+    return `No ${language} voice is available. On Android, install or enable this language under Settings > Text-to-speech output > Speech Services by Google.`
+  }
+  if (error === 'not-allowed') {
+    return 'Speech was blocked by the browser. Tap Read aloud again and check site sound permissions.'
+  }
+  if (error === 'canceled' || error === 'interrupted') {
+    return 'Speech playback was interrupted.'
+  }
+  return error ? `Speech playback failed: ${error}.` : 'Speech playback failed.'
+}
+
+export function readAloud(
+  text: string,
+  language: string,
+  rate: number,
+  handlers: SpeechPlaybackHandlers = {},
+): string {
   if (!canReadAloud()) {
     throw new Error('Read aloud is not supported by this browser.')
   }
 
   const synthesis = window.speechSynthesis
-  const immediate = matchingVoice(synthesis.getVoices(), language)
-  if (immediate) return immediate
-
-  const voices = await new Promise<SpeechSynthesisVoice[]>((resolve) => {
-    let settled = false
-    const finish = () => {
-      if (settled) return
-      settled = true
-      synthesis.removeEventListener('voiceschanged', finish)
-      resolve(synthesis.getVoices())
-    }
-    synthesis.addEventListener('voiceschanged', finish)
-    window.setTimeout(finish, timeoutMs)
-  })
-
-  const voice = matchingVoice(voices, language)
-  if (!voice) {
-    throw new Error(
-      `No ${language} speech voice is installed or available in this browser.`,
-    )
-  }
-  return voice
-}
-
-export async function readAloud(
-  text: string,
-  language: string,
-  rate: number,
-): Promise<string> {
-  const voice = await loadSpeechVoice(language)
-  const synthesis = window.speechSynthesis
+  const voice = matchingSpeechVoice(synthesis.getVoices(), language)
+  const voiceName = voice?.name ?? `Android/system ${language} voice`
 
   if (activeUtterance) {
+    activeUtterance.onstart = null
     activeUtterance.onend = null
     activeUtterance.onerror = null
   }
-  synthesis.cancel()
+  if (synthesis.speaking || synthesis.pending) synthesis.cancel()
   if (synthesis.paused) synthesis.resume()
 
   const utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = language
-  utterance.voice = voice
+  if (voice) utterance.voice = voice
   utterance.rate = Math.max(0.25, Math.min(1, rate))
   utterance.volume = 1
   activeUtterance = utterance
 
-  return new Promise((resolve, reject) => {
-    utterance.onend = () => {
-      activeUtterance = undefined
-      resolve(voice.name)
-    }
-    utterance.onerror = (event) => {
-      activeUtterance = undefined
-      reject(
-        new Error(
-          event.error
-            ? `Speech playback failed: ${event.error}.`
-            : 'Speech playback failed.',
-        ),
-      )
-    }
-    synthesis.speak(utterance)
-    window.setTimeout(() => {
-      if (synthesis.paused) synthesis.resume()
-    }, 100)
-  })
+  utterance.onstart = () => handlers.onStart?.(voiceName)
+  utterance.onend = () => {
+    activeUtterance = undefined
+    handlers.onEnd?.(voiceName)
+  }
+  utterance.onerror = (event) => {
+    activeUtterance = undefined
+    handlers.onError?.(speechErrorMessage(event.error, language))
+  }
+
+  // This must happen synchronously inside the user's tap handler on Android.
+  synthesis.speak(utterance)
+  return voiceName
 }

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { LoaderCircle, Volume2 } from 'lucide-react'
 import {
+  availableSpeechVoice,
   canReadAloud,
-  loadSpeechVoice,
   readAloud,
+  watchSpeechVoices,
 } from '../core/speech'
 
 export function SpeechControls({
@@ -14,45 +15,45 @@ export function SpeechControls({
   language: string
 }) {
   const [rate, setRate] = useState(0.75)
-  const [voiceName, setVoiceName] = useState('')
+  const [voiceName, setVoiceName] = useState(() =>
+    availableSpeechVoice(language),
+  )
   const [status, setStatus] = useState('')
   const [playing, setPlaying] = useState(false)
 
-  useEffect(() => {
-    let active = true
-    if (!canReadAloud()) {
-      setStatus('Read aloud is not supported by this browser.')
-      return
-    }
-    loadSpeechVoice(language)
-      .then((voice) => {
-        if (active) {
-          setVoiceName(voice.name)
-          setStatus('')
-        }
-      })
-      .catch((error) => {
-        if (active) {
-          setStatus(
-            error instanceof Error ? error.message : 'No speech voice found.',
-          )
-        }
-      })
-    return () => {
-      active = false
-    }
-  }, [language])
+  useEffect(
+    () =>
+      watchSpeechVoices(language, (name) => {
+        setVoiceName(name)
+      }),
+    [language],
+  )
 
-  const play = async () => {
+  const play = () => {
     setPlaying(true)
-    setStatus('Speaking…')
+    setStatus('Starting speech…')
     try {
-      const usedVoice = await readAloud(text, language, rate)
-      setVoiceName(usedVoice)
-      setStatus(`Played with ${usedVoice}.`)
+      const selectedVoice = readAloud(text, language, rate, {
+        onStart(name) {
+          setVoiceName(name)
+          setStatus(`Speaking with ${name}.`)
+        },
+        onEnd(name) {
+          setVoiceName(name)
+          setStatus(`Played with ${name}.`)
+          setPlaying(false)
+        },
+        onError(message) {
+          setStatus(message)
+          setPlaying(false)
+        },
+      })
+      setVoiceName(selectedVoice)
+
+      // Some Android engines do not fire end/error for very short utterances.
+      window.setTimeout(() => setPlaying(false), 8_000)
     } catch (error) {
       setStatus(error instanceof Error ? error.message : 'Speech playback failed.')
-    } finally {
       setPlaying(false)
     }
   }
@@ -73,12 +74,19 @@ export function SpeechControls({
       <button
         type="button"
         onClick={play}
-        disabled={!canReadAloud() || playing || !voiceName}
+        disabled={!canReadAloud() || playing}
       >
-        {playing ? <LoaderCircle className="spin" size={16} /> : <Volume2 size={16} />}
+        {playing ? (
+          <LoaderCircle className="spin" size={16} />
+        ) : (
+          <Volume2 size={16} />
+        )}
         Read aloud
       </button>
-      {voiceName && <small>Voice: {voiceName}</small>}
+      <small>
+        Voice:{' '}
+        {voiceName || `system default requested with language ${language}`}
+      </small>
       {status && <small className="speech-status">{status}</small>}
     </div>
   )
