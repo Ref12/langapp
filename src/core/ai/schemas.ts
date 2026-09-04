@@ -67,6 +67,32 @@ export const translateSelectionOutputSchema = z.object({
   gloss: z.string().min(1),
 })
 
+export const suggestFrequentItemsInputSchema = z.object({
+  targetLanguage: z.enum(['zh', 'ja', 'ko']),
+  romanization: z.string().min(1),
+  candidates: z
+    .array(
+      z.object({
+        sourceText: z.string().min(1),
+        occurrenceCount: z.number().int().positive(),
+        context: z.string().min(1).max(4_000),
+      }),
+    )
+    .min(1)
+    .max(25),
+})
+
+export const suggestFrequentItemsOutputSchema = z.object({
+  suggestions: z.array(
+    z.object({
+      sourceText: z.string().min(1),
+      targetText: z.string().min(1),
+      romanization: z.string(),
+      gloss: z.string().min(1),
+    }),
+  ),
+})
+
 export type AnalyzeTextInput = z.infer<typeof analyzeTextInputSchema>
 export type AnalyzeTextOutput = z.infer<typeof analyzeTextOutputSchema>
 export type GenerateTurnInput = z.infer<typeof generateTurnInputSchema>
@@ -76,4 +102,10 @@ export type TranslateSelectionInput = z.infer<
 >
 export type TranslateSelectionOutput = z.infer<
   typeof translateSelectionOutputSchema
+>
+export type SuggestFrequentItemsInput = z.infer<
+  typeof suggestFrequentItemsInputSchema
+>
+export type SuggestFrequentItemsOutput = z.infer<
+  typeof suggestFrequentItemsOutputSchema
 >

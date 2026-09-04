@@ -580,6 +580,63 @@ label {
   background: #fff9e8;
 }
 
+.candidate-panel {
+  margin: 1.2rem 0 1.6rem;
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fbf8ee;
+}
+
+.candidate-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.candidate-header h2,
+.candidate-header p {
+  margin-top: 0;
+}
+
+.candidate-actions {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.candidate-grid {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.candidate-card {
+  grid-template-columns: auto minmax(120px, 0.9fr) minmax(120px, 0.9fr) 1.2fr;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.candidate-card input {
+  width: auto;
+}
+
+.candidate-card span {
+  display: grid;
+}
+
+.candidate-card small,
+.candidate-gloss {
+  color: var(--muted);
+  font-weight: 500;
+}
+
 .reading-text {
   color: #293b35;
   white-space: pre-wrap;
@@ -790,6 +847,18 @@ label {
   gap: 1rem;
   padding: 1rem 1.2rem;
   border-bottom: 1px solid var(--line);
+}
+
+.candidate-header {
+  flex-direction: column;
+}
+
+.candidate-card {
+  grid-template-columns: auto 1fr;
+}
+
+.candidate-card .candidate-gloss {
+  grid-column: 2;
 }
 
 .dictionary-row:last-child {

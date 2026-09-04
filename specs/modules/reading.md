@@ -69,6 +69,20 @@ boundaries while preserving source offsets and prompt headroom. A failed
 analysis message MUST report the full chapter length, chunk number, and
 attempted chunk length.
 
+Analyzing a chapter MUST:
+
+1. Count English word occurrences locally.
+2. Exclude common English stopwords and items already tracked by the profile.
+3. Rank up to 25 content words by descending chapter frequency.
+4. Request context-aware target forms, romanization, and glosses for those
+   candidates.
+5. Show the candidates with their chapter occurrence counts.
+6. Require the learner to select candidates before adding anything to the
+   weave or Dictionary.
+
+Selecting more candidates than the remaining daily introduction budget MUST
+require an explicit one-day override confirmation.
+
 ### 4.3 Reader
 
 The reader MUST:
@@ -192,3 +206,5 @@ The Reading module is acceptable when:
     English equivalent across all replacements.
 15. Reopening a book restores its last chapter and approximate scroll position.
 16. Bookmarks can be added, revisited, and deleted.
+17. Chapter analysis presents at most 25 frequent content words with occurrence
+    counts and does not add them until selected.

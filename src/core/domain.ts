@@ -39,6 +39,16 @@ export interface DocumentChapter {
   annotations: WeaveAnnotation[]
   analysisStatus: 'not-analyzed' | 'analyzing' | 'ready' | 'failed'
   analysisError?: string
+  suggestions?: ChapterWordSuggestion[]
+}
+
+export interface ChapterWordSuggestion {
+  id: string
+  sourceText: string
+  targetText: string
+  romanization: string
+  gloss: string
+  occurrenceCount: number
 }
 
 export interface EnglishWordSelection {

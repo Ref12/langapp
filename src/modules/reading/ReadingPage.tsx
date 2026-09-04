@@ -22,6 +22,7 @@ import { invokeAIOperation } from '../../core/ai/operations'
 import { db } from '../../core/database'
 import {
   speechLanguage,
+  type ChapterWordSuggestion,
   type DocumentChapter,
   type EnglishWordSelection,
   type LanguageProfile,
@@ -30,7 +31,7 @@ import {
   type ReadingProgress,
   type WeaveAnnotation,
 } from '../../core/domain'
-import { createId, nowIso } from '../../core/ids'
+import { createId, localDateKey, nowIso } from '../../core/ids'
 import {
   chaptersFor,
   importFile,
@@ -39,12 +40,11 @@ import {
   type ImportedDocument,
 } from '../../core/importers'
 import { contextAroundSelection } from '../../core/textContext'
-import { splitTextForAnalysis } from '../../core/textChunks'
+import { frequentContentWords } from '../../core/wordFrequency'
 import { SpeechControls } from '../../components/SpeechControls'
 import { ModuleFrame } from '../../components/ModuleFrame'
 import { WovenText } from '../../components/WovenText'
 import {
-  analyzeAndWeaveText,
   propagateLearningItemAcrossLibrary,
   removeOverlaps,
   weaveTrackedItemsIntoChapters,
@@ -324,6 +324,9 @@ function Reader({
   const [chapterId, setChapterId] = useState(firstChapterId)
   const [busy, setBusy] = useState(false)
   const [analysisProgress, setAnalysisProgress] = useState('')
+  const [selectedSuggestions, setSelectedSuggestions] = useState<Set<string>>(
+    new Set(),
+  )
   const [notice, setNotice] = useState('')
   const [selectionShowRomanization, setSelectionShowRomanization] =
     useState(true)
@@ -383,6 +386,7 @@ function Reader({
             }
       setChapterId(restoredChapter)
       setLookup(undefined)
+      setSelectedSuggestions(new Set())
       window.setTimeout(() => {
         if (!active) return
         const maximum =
@@ -480,56 +484,201 @@ function Reader({
 
   const analyze = async () => {
     setBusy(true)
-    setAnalysisProgress('')
+    setAnalysisProgress('Finding frequent words…')
     await updateChapter({
       analysisStatus: 'analyzing',
       analysisError: '',
     })
     try {
-      const chunks = splitTextForAnalysis(chapter.content)
-      const annotations: WeaveAnnotation[] = []
-      for (const [index, chunk] of chunks.entries()) {
-        setAnalysisProgress(
-          chunks.length > 1 ? `Analyzing ${index + 1}/${chunks.length}` : '',
-        )
-        try {
-          const chunkAnnotations = await analyzeAndWeaveText(
-            profile,
-            chunk.text,
-            'reading',
-          )
-          annotations.push(
-            ...chunkAnnotations.map((annotation) => ({
-              ...annotation,
-              start: annotation.start + chunk.start,
-              end: annotation.end + chunk.start,
-            })),
-          )
-        } catch (error) {
-          const detail =
-            error instanceof Error ? error.message : 'Analysis failed.'
-          throw new Error(
-            `Chapter length: ${chapter.content.length.toLocaleString()} characters. Failed chunk ${
-              index + 1
-            }/${chunks.length}: ${chunk.text.length.toLocaleString()} characters. ${detail}`,
-          )
-        }
+      const states = await db.userItemStates
+        .where('profileId')
+        .equals(profile.id)
+        .toArray()
+      const trackedItems = (
+        await db.learningItems.bulkGet(states.map((state) => state.itemId))
+      ).filter((item): item is LearningItem => item !== undefined)
+      const frequentWords = frequentContentWords(
+        chapter.content,
+        25,
+        trackedItems.map((item) => item.sourceText),
+      )
+
+      if (!frequentWords.length) {
+        await updateChapter({
+          suggestions: [],
+          analysisStatus: 'ready',
+          analysisError: '',
+        })
+        setNotice('No untracked content words were found in this chapter.')
+        return
       }
+
+      setAnalysisProgress(`Translating ${frequentWords.length} candidates…`)
+      const translated = await invokeAIOperation(
+        'language.suggestFrequentItems',
+        {
+          targetLanguage: profile.targetLanguage,
+          romanization: profile.romanization,
+          candidates: frequentWords.map((word) => ({
+            sourceText: word.sourceText,
+            occurrenceCount: word.count,
+            context: word.context,
+          })),
+        },
+      )
+      const translationBySource = new Map(
+        translated.suggestions.map((suggestion) => [
+          suggestion.sourceText.toLocaleLowerCase(),
+          suggestion,
+        ]),
+      )
+      const suggestions: ChapterWordSuggestion[] = frequentWords.flatMap(
+        (word) => {
+          const translation = translationBySource.get(
+            word.sourceText.toLocaleLowerCase(),
+          )
+          return translation
+            ? [
+                {
+                  id: `suggestion:${chapter.id}:${word.sourceText.toLocaleLowerCase()}`,
+                  sourceText: word.sourceText,
+                  targetText: translation.targetText,
+                  romanization: translation.romanization,
+                  gloss: translation.gloss,
+                  occurrenceCount: word.count,
+                },
+              ]
+            : []
+        },
+      )
       await updateChapter({
-        annotations: removeOverlaps(annotations),
+        suggestions,
         analysisStatus: 'ready',
         analysisError: '',
       })
+      setSelectedSuggestions(new Set())
+      setNotice(
+        `Found ${suggestions.length} frequent content-word candidates in this ${chapter.content.length.toLocaleString()}-character chapter.`,
+      )
     } catch (error) {
+      const detail = error instanceof Error ? error.message : 'Analysis failed.'
       await updateChapter({
         analysisStatus: 'failed',
-        analysisError:
-          error instanceof Error ? error.message : 'Analysis failed.',
+        analysisError: `Chapter length: ${chapter.content.length.toLocaleString()} characters. ${detail}`,
       })
     } finally {
       setBusy(false)
       setAnalysisProgress('')
     }
+  }
+
+  const addSelectedSuggestions = async () => {
+      const suggestions = (chapter.suggestions ?? []).filter((suggestion) =>
+        selectedSuggestions.has(suggestion.id),
+      )
+      if (!suggestions.length) return
+
+      const today = localDateKey()
+      const introducedToday = (
+        await db.evidenceEvents
+          .where('profileId')
+          .equals(profile.id)
+          .filter(
+            (event) =>
+              event.type === 'introduced' && event.createdAt.startsWith(today),
+          )
+          .toArray()
+      ).length
+      const remaining = Math.max(
+        profile.dailyNewItemLimit - introducedToday,
+        0,
+      )
+      if (
+        suggestions.length > remaining &&
+        !window.confirm(
+          `You have ${remaining} new-item slots left today. Add all ${suggestions.length} selected items anyway?`,
+        )
+      ) {
+        return
+      }
+
+      const timestamp = nowIso()
+      const items: LearningItem[] = []
+      for (const suggestion of suggestions) {
+        const existing = await db.learningItems
+          .where('targetLanguage')
+          .equals(profile.targetLanguage)
+          .filter(
+            (candidate) =>
+              candidate.sourceText.toLocaleLowerCase() ===
+                suggestion.sourceText.toLocaleLowerCase() &&
+              candidate.targetText === suggestion.targetText,
+          )
+          .first()
+        items.push(
+          existing ?? {
+            id: createId('item'),
+            targetLanguage: profile.targetLanguage,
+            sourceText: suggestion.sourceText,
+            targetText: suggestion.targetText,
+            romanization: suggestion.romanization,
+            gloss: suggestion.gloss,
+            itemType: 'word',
+            createdAt: timestamp,
+          },
+        )
+      }
+
+      await db.transaction(
+        'rw',
+        [db.learningItems, db.userItemStates, db.evidenceEvents],
+        async () => {
+          await db.learningItems.bulkPut(items)
+          for (const itemToAdd of items) {
+            const stateId = `${profile.id}:${itemToAdd.id}`
+            if (await db.userItemStates.get(stateId)) continue
+            await db.userItemStates.add({
+              id: stateId,
+              profileId: profile.id,
+              itemId: itemToAdd.id,
+              tier: 'learning',
+              confidence: 0.15,
+              showRomanization: true,
+              showEnglish: false,
+              introducedAt: timestamp,
+              updatedAt: timestamp,
+            })
+            await db.evidenceEvents.add({
+              id: createId('event'),
+              profileId: profile.id,
+              itemId: itemToAdd.id,
+              sourceModuleId: 'reading',
+              type: 'introduced',
+              createdAt: timestamp,
+            })
+          }
+        },
+      )
+
+      let occurrenceCount = 0
+      for (const itemToAdd of items) {
+        occurrenceCount += await propagateLearningItemAcrossLibrary(
+          profile.id,
+          itemToAdd,
+          'learning',
+        )
+      }
+      await updateChapter({
+        suggestions: (chapter.suggestions ?? []).filter(
+          (suggestion) => !selectedSuggestions.has(suggestion.id),
+        ),
+      })
+      setSelectedSuggestions(new Set())
+      setNotice(
+        `Added ${items.length} ${
+          items.length === 1 ? 'item' : 'items'
+        } to the weave across ${occurrenceCount.toLocaleString()} library occurrences.`,
+      )
   }
 
   const selectEnglish = async (selection: EnglishWordSelection) => {
@@ -666,7 +815,9 @@ function Reader({
         <button className="primary-button" disabled={busy} onClick={analyze}>
           {busy ? <LoaderCircle className="spin" /> : <Sparkles />}
           {analysisProgress ||
-            (chapter.annotations.length ? 'Refresh chapter' : 'Analyze chapter')}
+            (chapter.suggestions?.length
+              ? 'Refresh candidates'
+              : 'Analyze chapter')}
         </button>
       </header>
 
@@ -756,6 +907,82 @@ function Reader({
         <div className="error-banner">{chapter.analysisError}</div>
       )}
       {notice && <div className="success-banner">{notice}</div>}
+      {(chapter.suggestions?.length ?? 0) > 0 && (
+        <section className="candidate-panel">
+          <div className="candidate-header">
+            <div>
+              <p className="eyebrow">Chapter candidates</p>
+              <h2>Choose words to weave</h2>
+              <p>
+                Frequent content words are ranked by occurrence count. Nothing
+                is added until you select it.
+              </p>
+            </div>
+            <div className="candidate-actions">
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedSuggestions(
+                    new Set(
+                      (chapter.suggestions ?? []).map(
+                        (suggestion) => suggestion.id,
+                      ),
+                    ),
+                  )
+                }
+              >
+                Select all
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectedSuggestions(new Set())}
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+          <div className="candidate-grid">
+            {(chapter.suggestions ?? []).map((suggestion) => (
+              <label className="candidate-card" key={suggestion.id}>
+                <input
+                  type="checkbox"
+                  checked={selectedSuggestions.has(suggestion.id)}
+                  onChange={(event) =>
+                    setSelectedSuggestions((current) => {
+                      const next = new Set(current)
+                      if (event.target.checked) next.add(suggestion.id)
+                      else next.delete(suggestion.id)
+                      return next
+                    })
+                  }
+                />
+                <span>
+                  <strong>{suggestion.sourceText}</strong>
+                  <small>
+                    {suggestion.occurrenceCount}{' '}
+                    {suggestion.occurrenceCount === 1
+                      ? 'occurrence'
+                      : 'occurrences'}
+                  </small>
+                </span>
+                <span>
+                  <strong>{suggestion.targetText}</strong>
+                  <small>{suggestion.romanization}</small>
+                </span>
+                <span className="candidate-gloss">{suggestion.gloss}</span>
+              </label>
+            ))}
+          </div>
+          <button
+            type="button"
+            className="primary-button"
+            disabled={!selectedSuggestions.size}
+            onClick={addSelectedSuggestions}
+          >
+            Add selected to weave ({selectedSuggestions.size})
+          </button>
+        </section>
+      )}
       <p className="reader-hint">
         Select any English word to translate, hear, replace, or add to your
         ongoing weave.

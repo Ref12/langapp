@@ -7,12 +7,16 @@ import {
   generateTurnOutputSchema,
   translateSelectionInputSchema,
   translateSelectionOutputSchema,
+  suggestFrequentItemsInputSchema,
+  suggestFrequentItemsOutputSchema,
   type AnalyzeTextInput,
   type AnalyzeTextOutput,
   type GenerateTurnInput,
   type GenerateTurnOutput,
   type TranslateSelectionInput,
   type TranslateSelectionOutput,
+  type SuggestFrequentItemsInput,
+  type SuggestFrequentItemsOutput,
 } from './schemas'
 
 function extractJson(content: string): unknown {
@@ -31,7 +35,9 @@ const operations = {
     input: analyzeTextInputSchema,
     output: analyzeTextOutputSchema,
     async execute(input: AnalyzeTextInput, signal?: AbortSignal) {
-      if (input.maximumNewItems === 0) return { candidates: [] }
+      if (input.maximumNewItems === 0 && input.knownItems.length === 0) {
+        return { candidates: [] }
+      }
 
       const language = languageNames[input.targetLanguage]
       const knownItems = input.knownItems
@@ -122,6 +128,39 @@ ${input.context}
       return translateSelectionOutputSchema.parse(extractJson(content))
     },
   },
+  'language.suggestFrequentItems': {
+    input: suggestFrequentItemsInputSchema,
+    output: suggestFrequentItemsOutputSchema,
+    async execute(input: SuggestFrequentItemsInput, signal?: AbortSignal) {
+      const language = languageNames[input.targetLanguage]
+      const candidateList = input.candidates
+        .map(
+          (candidate) =>
+            `WORD: ${candidate.sourceText}\nCOUNT: ${candidate.occurrenceCount}\nCONTEXT: ${candidate.context}`,
+        )
+        .join('\n\n')
+      const content = await requestChatCompletion(
+        [
+          {
+            role: 'system',
+            content:
+              'Translate each supplied English content word using its marked context. Return one result per input word in the same order. Return JSON only.',
+          },
+          {
+            role: 'user',
+            content: `Translate these frequent words into ${language}. Use ${input.romanization} romanization.
+
+Return:
+{"suggestions":[{"sourceText":"exact input word","targetText":"native form","romanization":"romanization","gloss":"contextual English equivalent"}]}
+
+${candidateList}`,
+          },
+        ],
+        signal,
+      )
+      return suggestFrequentItemsOutputSchema.parse(extractJson(content))
+    },
+  },
 }
 
 export type AIOperationId = keyof typeof operations
@@ -142,10 +181,24 @@ export async function invokeAIOperation(
   signal?: AbortSignal,
 ): Promise<TranslateSelectionOutput>
 export async function invokeAIOperation(
-  id: AIOperationId,
-  input: AnalyzeTextInput | GenerateTurnInput | TranslateSelectionInput,
+  id: 'language.suggestFrequentItems',
+  input: SuggestFrequentItemsInput,
   signal?: AbortSignal,
-): Promise<AnalyzeTextOutput | GenerateTurnOutput | TranslateSelectionOutput> {
+): Promise<SuggestFrequentItemsOutput>
+export async function invokeAIOperation(
+  id: AIOperationId,
+  input:
+    | AnalyzeTextInput
+    | GenerateTurnInput
+    | TranslateSelectionInput
+    | SuggestFrequentItemsInput,
+  signal?: AbortSignal,
+): Promise<
+  | AnalyzeTextOutput
+  | GenerateTurnOutput
+  | TranslateSelectionOutput
+  | SuggestFrequentItemsOutput
+> {
   const operation = operations[id] as {
     input: { parse: (value: unknown) => unknown }
     output: { parse: (value: unknown) => unknown }
@@ -157,4 +210,5 @@ export async function invokeAIOperation(
     | AnalyzeTextOutput
     | GenerateTurnOutput
     | TranslateSelectionOutput
+    | SuggestFrequentItemsOutput
 }

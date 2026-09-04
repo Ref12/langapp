@@ -11,6 +11,7 @@ export const readingModule = defineLearningModule({
   icon: BookOpen,
   requiredAIOperations: [
     'language.analyzeText',
+    'language.suggestFrequentItems',
     'language.translateSelection',
   ],
   component: ReadingPage,
