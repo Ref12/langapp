@@ -473,7 +473,7 @@ function Reader({
       analysisStatus: overallStatus(nextChapters),
       analysisError: nextChapters.find(
         (candidate) => candidate.analysisStatus === 'failed',
-      )?.analysisError,
+      )?.analysisError ?? '',
       updatedAt: nowIso(),
     })
   }
@@ -483,7 +483,7 @@ function Reader({
     setAnalysisProgress('')
     await updateChapter({
       analysisStatus: 'analyzing',
-      analysisError: undefined,
+      analysisError: '',
     })
     try {
       const chunks = splitTextForAnalysis(chapter.content)
@@ -518,7 +518,7 @@ function Reader({
       await updateChapter({
         annotations: removeOverlaps(annotations),
         analysisStatus: 'ready',
-        analysisError: undefined,
+        analysisError: '',
       })
     } catch (error) {
       await updateChapter({

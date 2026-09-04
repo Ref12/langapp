@@ -74,6 +74,37 @@ class LangAppDatabase extends Dexie {
       readingBookmarks:
         '&id, profileId, documentId, chapterId, createdAt',
     })
+
+    this.version(5)
+      .stores({})
+      .upgrade((transaction) =>
+        transaction
+          .table<LibraryItem>('libraryItems')
+          .toCollection()
+          .modify((item) => {
+            for (const chapter of item.chapters ?? []) {
+              if (
+                chapter.analysisStatus === 'failed' &&
+                chapter.content.length <= 128_000 &&
+                chapter.analysisError?.includes('"maximum": 20000')
+              ) {
+                chapter.analysisStatus = 'not-analyzed'
+                chapter.analysisError = ''
+              }
+            }
+            const failedChapter = item.chapters?.find(
+              (chapter) => chapter.analysisStatus === 'failed',
+            )
+            item.analysisStatus = failedChapter
+              ? 'failed'
+              : item.chapters?.every(
+                    (chapter) => chapter.analysisStatus === 'ready',
+                  )
+                ? 'ready'
+                : 'not-analyzed'
+            item.analysisError = failedChapter?.analysisError ?? ''
+          }),
+      )
   }
 }
 
