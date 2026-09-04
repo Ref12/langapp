@@ -35,7 +35,9 @@ import { ModuleFrame } from '../../components/ModuleFrame'
 import { WovenText } from '../../components/WovenText'
 import {
   analyzeAndWeaveText,
+  propagateLearningItemAcrossLibrary,
   removeOverlaps,
+  weaveTrackedItemsIntoChapters,
 } from '../../techniques/diglotWeave'
 
 export function ReadingPage() {
@@ -152,6 +154,10 @@ function ImportPanel({
 
   const saveImported = async (imported: ImportedDocument) => {
     const timestamp = nowIso()
+    const chapters = await weaveTrackedItemsIntoChapters(
+      profileId,
+      imported.chapters,
+    )
     const item: LibraryItem = {
       id: createId('document'),
       profileId,
@@ -160,6 +166,7 @@ function ImportPanel({
       createdAt: timestamp,
       updatedAt: timestamp,
       ...imported,
+      chapters,
     }
     await db.libraryItems.add(item)
     onImported(item.id)
@@ -420,6 +427,16 @@ function Reader({
           })
         },
       )
+    }
+
+    if (trackForFuture) {
+      await propagateLearningItemAcrossLibrary(
+        profile.id,
+        learningItem,
+        existingState?.tier ?? 'learning',
+      )
+      setLookup(undefined)
+      return
     }
 
     const annotation: WeaveAnnotation = {

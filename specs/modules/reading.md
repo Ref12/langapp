@@ -86,8 +86,10 @@ popup MUST offer:
 - Add the item to the ongoing weave and shared Dictionary
 
 Replacing one occurrence MUST preserve canonical chapter text. Adding to the
-weave creates a Learning state and makes future contextually valid occurrences
-eligible for substitution.
+weave creates a Learning state and immediately substitutes every whole-word
+occurrence of that English surface form in every chapter of every book in the
+selected language profile. Books imported later MUST apply all tracked weave
+items during import.
 
 Translation requests MUST mark the exact selected occurrence and include up to
 two surrounding sentences on each side so the AI translates the word's
@@ -171,3 +173,5 @@ The Reading module is acceptable when:
 11. Read aloud uses the appropriate Mandarin, Japanese, or Korean speech tag.
 12. “Replace here” affects only the selected occurrence, while “Add to weave”
     creates a shared Learning item.
+13. “Add to weave” updates matching occurrences in the current chapter, other
+    chapters, all existing books, and books imported later.

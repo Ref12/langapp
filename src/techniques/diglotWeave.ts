@@ -1,17 +1,22 @@
 import { db } from '../core/database'
 import type {
+  DocumentChapter,
+  KnowledgeTier,
   LanguageProfile,
   LearningItem,
   WeaveAnnotation,
 } from '../core/domain'
 import { invokeAIOperation } from '../core/ai/operations'
 import { createId, localDateKey, nowIso } from '../core/ids'
+import { chaptersFor } from '../core/importers'
 
 export function removeOverlaps(
   annotations: WeaveAnnotation[],
 ): WeaveAnnotation[] {
   const sorted = [...annotations].sort(
-    (left, right) => left.start - right.start || right.end - right.start - (left.end - left.start),
+    (left, right) =>
+      left.start - right.start ||
+      right.end - right.start - (left.end - left.start),
   )
   const accepted: WeaveAnnotation[] = []
 
@@ -29,6 +34,135 @@ export function removeOverlaps(
   }
 
   return accepted.sort((left, right) => left.start - right.start)
+}
+
+function isEnglishWordCharacter(character: string | undefined): boolean {
+  return character !== undefined && /[A-Za-z0-9_]/.test(character)
+}
+
+export function annotationsForLearningItem(
+  content: string,
+  item: LearningItem,
+  tier: KnowledgeTier,
+): WeaveAnnotation[] {
+  const source = item.sourceText
+  if (!source) return []
+
+  const contentLower = content.toLocaleLowerCase()
+  const sourceLower = source.toLocaleLowerCase()
+  const requiresLeftBoundary = isEnglishWordCharacter(source[0])
+  const requiresRightBoundary = isEnglishWordCharacter(source[source.length - 1])
+  const annotations: WeaveAnnotation[] = []
+  let searchFrom = 0
+
+  while (searchFrom < content.length) {
+    const start = contentLower.indexOf(sourceLower, searchFrom)
+    if (start < 0) break
+    const end = start + source.length
+    const leftIsValid =
+      !requiresLeftBoundary || !isEnglishWordCharacter(content[start - 1])
+    const rightIsValid =
+      !requiresRightBoundary || !isEnglishWordCharacter(content[end])
+
+    if (leftIsValid && rightIsValid) {
+      annotations.push({
+        id: createId('annotation'),
+        itemId: item.id,
+        start,
+        end,
+        sourceText: content.slice(start, end),
+        targetText: item.targetText,
+        romanization: item.romanization,
+        gloss: item.gloss,
+        tier,
+      })
+    }
+    searchFrom = Math.max(end, start + 1)
+  }
+
+  return annotations
+}
+
+function mergeLearningItemIntoChapter(
+  chapter: DocumentChapter,
+  item: LearningItem,
+  tier: KnowledgeTier,
+): DocumentChapter {
+  const existing = chapter.annotations.map((annotation) =>
+    annotation.itemId === item.id ? { ...annotation, tier } : annotation,
+  )
+  const existingKeys = new Set(
+    existing.map(
+      (annotation) =>
+        `${annotation.itemId}:${annotation.start}:${annotation.end}`,
+    ),
+  )
+  const additions = annotationsForLearningItem(chapter.content, item, tier).filter(
+    (annotation) =>
+      !existingKeys.has(
+        `${annotation.itemId}:${annotation.start}:${annotation.end}`,
+      ),
+  )
+  return {
+    ...chapter,
+    annotations: removeOverlaps([...existing, ...additions]),
+  }
+}
+
+export async function weaveTrackedItemsIntoChapters(
+  profileId: string,
+  chapters: DocumentChapter[],
+): Promise<DocumentChapter[]> {
+  const states = await db.userItemStates
+    .where('profileId')
+    .equals(profileId)
+    .toArray()
+  const items = await db.learningItems.bulkGet(
+    states.map((state) => state.itemId),
+  )
+  const tracked = states.flatMap((state, index) =>
+    items[index] ? [{ state, item: items[index] }] : [],
+  ) as Array<{
+    state: (typeof states)[number]
+    item: LearningItem
+  }>
+
+  return chapters.map((chapter) =>
+    tracked.reduce(
+      (current, { item, state }) =>
+        mergeLearningItemIntoChapter(current, item, state.tier),
+      chapter,
+    ),
+  )
+}
+
+export async function propagateLearningItemAcrossLibrary(
+  profileId: string,
+  item: LearningItem,
+  tier: KnowledgeTier,
+): Promise<number> {
+  const libraryItems = await db.libraryItems
+    .where('profileId')
+    .equals(profileId)
+    .toArray()
+  let occurrenceCount = 0
+  const updatedItems = libraryItems.map((libraryItem) => {
+    const chapters = chaptersFor(libraryItem).map((chapter) => {
+      const updated = mergeLearningItemIntoChapter(chapter, item, tier)
+      occurrenceCount += updated.annotations.filter(
+        (annotation) => annotation.itemId === item.id,
+      ).length
+      return updated
+    })
+    return {
+      ...libraryItem,
+      chapters,
+      updatedAt: nowIso(),
+    }
+  })
+
+  if (updatedItems.length) await db.libraryItems.bulkPut(updatedItems)
+  return occurrenceCount
 }
 
 export async function analyzeAndWeaveText(

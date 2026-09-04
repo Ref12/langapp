@@ -85,6 +85,9 @@ Ambiguous candidates MUST remain English until corrected, approved, or reanalyze
 
 - The profile's daily budget limits only learning items introduced for the first time.
 - Familiar and Mastered items MUST continue to be woven and MUST NOT consume the daily budget.
+- Explicitly adding an English item to the weave MUST propagate whole-word
+  occurrences across all chapters and existing library items in the active
+  language profile, and MUST be applied to future imports.
 - The learner MAY grant a one-day budget increase.
 - The learner MAY explicitly request an English span through “learn this.” If the budget is exhausted, the module MUST request a one-day override rather than silently exceeding the limit.
 - Introduction accounting MUST use the learner's configured timezone and be idempotent.
