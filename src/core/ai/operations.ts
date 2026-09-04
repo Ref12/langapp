@@ -5,10 +5,14 @@ import {
   analyzeTextOutputSchema,
   generateTurnInputSchema,
   generateTurnOutputSchema,
+  translateSelectionInputSchema,
+  translateSelectionOutputSchema,
   type AnalyzeTextInput,
   type AnalyzeTextOutput,
   type GenerateTurnInput,
   type GenerateTurnOutput,
+  type TranslateSelectionInput,
+  type TranslateSelectionOutput,
 } from './schemas'
 
 function extractJson(content: string): unknown {
@@ -87,6 +91,34 @@ ${input.text}`,
       return { content }
     },
   },
+  'language.translateSelection': {
+    input: translateSelectionInputSchema,
+    output: translateSelectionOutputSchema,
+    async execute(input: TranslateSelectionInput, signal?: AbortSignal) {
+      const language = languageNames[input.targetLanguage]
+      const content = await requestChatCompletion(
+        [
+          {
+            role: 'system',
+            content:
+              'Translate one selected English word in context for a language learner. Return JSON only and preserve the contextual meaning.',
+          },
+          {
+            role: 'user',
+            content: `Translate the selected word into ${language}. Use ${input.romanization} romanization.
+
+Return:
+{"targetText":"native form","romanization":"romanization","gloss":"English contextual equivalent"}
+
+Selected word: ${input.word}
+Context: ${input.context}`,
+          },
+        ],
+        signal,
+      )
+      return translateSelectionOutputSchema.parse(extractJson(content))
+    },
+  },
 }
 
 export type AIOperationId = keyof typeof operations
@@ -102,10 +134,15 @@ export async function invokeAIOperation(
   signal?: AbortSignal,
 ): Promise<GenerateTurnOutput>
 export async function invokeAIOperation(
-  id: AIOperationId,
-  input: AnalyzeTextInput | GenerateTurnInput,
+  id: 'language.translateSelection',
+  input: TranslateSelectionInput,
   signal?: AbortSignal,
-): Promise<AnalyzeTextOutput | GenerateTurnOutput> {
+): Promise<TranslateSelectionOutput>
+export async function invokeAIOperation(
+  id: AIOperationId,
+  input: AnalyzeTextInput | GenerateTurnInput | TranslateSelectionInput,
+  signal?: AbortSignal,
+): Promise<AnalyzeTextOutput | GenerateTurnOutput | TranslateSelectionOutput> {
   const operation = operations[id] as {
     input: { parse: (value: unknown) => unknown }
     output: { parse: (value: unknown) => unknown }
@@ -113,5 +150,8 @@ export async function invokeAIOperation(
   }
   const validatedInput = operation.input.parse(input)
   const output = await operation.execute(validatedInput as never, signal)
-  return operation.output.parse(output) as AnalyzeTextOutput | GenerateTurnOutput
+  return operation.output.parse(output) as
+    | AnalyzeTextOutput
+    | GenerateTurnOutput
+    | TranslateSelectionOutput
 }

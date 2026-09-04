@@ -55,16 +55,39 @@ The module root MUST show:
 
 The module MUST support paste, plain text, Markdown, EPUB, and web URL sources through core importers. It MUST show queued, extracting, analyzing, ready, and failed states with retryable errors.
 
+Imports MUST preserve chapter boundaries:
+
+- EPUB spine entries become ordered chapters with extracted headings.
+- Markdown level-one and level-two headings become chapter boundaries.
+- Plain text recognizes explicit `Chapter`, `Part`, or `Book` headings.
+- Content with no chapter markers becomes one chapter.
+
+Each chapter keeps independent analysis state and annotations.
+
 ### 4.3 Reader
 
 The reader MUST:
 
 - Preserve document, section, paragraph, and heading structure.
 - Restore the learner's last position.
+- Provide chapter selection plus previous and next chapter navigation.
 - Apply the selected learning technique to stable content spans.
 - Keep canonical source content separate from derived annotations.
 - Support keyboard, touch, pointer, and screen-reader interaction.
 - Record reading progress and technique interactions idempotently.
+- Let the learner activate any unmodified English word.
+
+Activating an English word MUST request a context-aware target translation and
+show native form, romanization, and the English contextual equivalent. The
+popup MUST offer:
+
+- Read aloud using the browser's target-language speech voice
+- Replace this occurrence only
+- Add the item to the ongoing weave and shared Dictionary
+
+Replacing one occurrence MUST preserve canonical chapter text. Adding to the
+weave creates a Learning state and makes future contextually valid occurrences
+eligible for substitution.
 
 ### 4.4 Text settings
 
@@ -135,3 +158,8 @@ The Reading module is acceptable when:
 6. Reading position and settings persist across reloads in the same browser.
 7. Cached texts remain readable offline and interactions persist without duplication.
 8. Technique or AI failures degrade to readable original content.
+9. EPUB and marked-up text imports preserve ordered chapter navigation.
+10. Selecting an English word opens context-aware translation details.
+11. Read aloud uses the appropriate Mandarin, Japanese, or Korean speech tag.
+12. “Replace here” affects only the selected occurrence, while “Add to weave”
+    creates a shared Learning item.

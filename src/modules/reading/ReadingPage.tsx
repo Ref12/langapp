@@ -2,18 +2,40 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import {
   BookOpen,
+  ChevronLeft,
+  ChevronRight,
   FilePlus2,
   Globe2,
   LoaderCircle,
   Sparkles,
+  Volume2,
 } from 'lucide-react'
 import { useActiveProfile } from '../../core/activeProfile'
+import { invokeAIOperation } from '../../core/ai/operations'
 import { db } from '../../core/database'
-import type { LibraryItem } from '../../core/domain'
+import {
+  speechLanguage,
+  type DocumentChapter,
+  type EnglishWordSelection,
+  type LanguageProfile,
+  type LearningItem,
+  type LibraryItem,
+  type WeaveAnnotation,
+} from '../../core/domain'
 import { createId, nowIso } from '../../core/ids'
-import { importFile, importUrl } from '../../core/importers'
+import {
+  chaptersFor,
+  importFile,
+  importUrl,
+  splitIntoChapters,
+  type ImportedDocument,
+} from '../../core/importers'
+import { canReadAloud, readAloud } from '../../core/speech'
 import { WovenText } from '../../components/WovenText'
-import { analyzeAndWeaveText } from '../../techniques/diglotWeave'
+import {
+  analyzeAndWeaveText,
+  removeOverlaps,
+} from '../../techniques/diglotWeave'
 
 export function ReadingPage() {
   const profile = useActiveProfile()
@@ -65,31 +87,44 @@ export function ReadingPage() {
         )}
 
         <div className="document-list">
-          {(library ?? []).map((item) => (
-            <button
-              className={item.id === selectedId ? 'document-item active' : 'document-item'}
-              onClick={() => setSelectedId(item.id)}
-              key={item.id}
-            >
-              <BookOpen size={17} />
-              <span>
-                <strong>{item.title}</strong>
-                <small>{item.analysisStatus.replace('-', ' ')}</small>
-              </span>
-            </button>
-          ))}
+          {(library ?? []).map((item) => {
+            const chapterCount = chaptersFor(item).length
+            return (
+              <button
+                className={
+                  item.id === selectedId
+                    ? 'document-item active'
+                    : 'document-item'
+                }
+                onClick={() => setSelectedId(item.id)}
+                key={item.id}
+              >
+                <BookOpen size={17} />
+                <span>
+                  <strong>{item.title}</strong>
+                  <small>
+                    {chapterCount} {chapterCount === 1 ? 'chapter' : 'chapters'} ·{' '}
+                    {item.analysisStatus.replace('-', ' ')}
+                  </small>
+                </span>
+              </button>
+            )
+          })}
         </div>
       </aside>
 
       <section className="reader-pane">
         {selected && profile ? (
-          <Reader item={selected} profileId={profile.id} />
+          <Reader item={selected} profile={profile} />
         ) : (
           <div className="empty-state large">
             <BookOpen size={38} />
             <h2>Your reading shelf is empty</h2>
             <p>Paste text, upload a file or EPUB, or import a CORS-enabled URL.</p>
-            <button className="primary-button" onClick={() => setShowImport(true)}>
+            <button
+              className="primary-button"
+              onClick={() => setShowImport(true)}
+            >
               Import your first text
             </button>
           </div>
@@ -112,28 +147,7 @@ function ImportPanel({
   const [error, setError] = useState('')
   const [loadingUrl, setLoadingUrl] = useState(false)
 
-  const save = async (event: FormEvent) => {
-    event.preventDefault()
-    if (!title.trim() || !content.trim()) return
-    const timestamp = nowIso()
-    const item: LibraryItem = {
-      id: createId('document'),
-      profileId,
-      title: title.trim(),
-      content: content.trim(),
-      sourceType: 'paste',
-      annotations: [],
-      analysisStatus: 'not-analyzed',
-      createdAt: timestamp,
-      updatedAt: timestamp,
-    }
-    await db.libraryItems.add(item)
-    onImported(item.id)
-  }
-
-  const saveImported = async (
-    imported: Pick<LibraryItem, 'title' | 'content' | 'sourceType'>,
-  ) => {
+  const saveImported = async (imported: ImportedDocument) => {
     const timestamp = nowIso()
     const item: LibraryItem = {
       id: createId('document'),
@@ -148,12 +162,28 @@ function ImportPanel({
     onImported(item.id)
   }
 
+  const save = async (event: FormEvent) => {
+    event.preventDefault()
+    if (!title.trim() || !content.trim()) return
+    const normalizedTitle = title.trim()
+    const chapters = splitIntoChapters(content.trim(), normalizedTitle)
+    await saveImported({
+      title: normalizedTitle,
+      content: chapters.map((chapter) => chapter.content).join('\n\n'),
+      sourceType: 'paste',
+      chapters,
+    })
+  }
+
   return (
     <div className="import-panel">
       <form onSubmit={save} className="form-stack compact">
         <label>
           Title
-          <input value={title} onChange={(event) => setTitle(event.target.value)} />
+          <input
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
         </label>
         <label>
           Text
@@ -161,7 +191,7 @@ function ImportPanel({
             rows={6}
             value={content}
             onChange={(event) => setContent(event.target.value)}
-            placeholder="Paste something you want to read…"
+            placeholder="Paste text. Markdown headings or “Chapter 1” lines create chapters."
           />
         </label>
         <button className="primary-button">Add to library</button>
@@ -179,7 +209,9 @@ function ImportPanel({
               setError('')
               await saveImported(await importFile(file))
             } catch (caught) {
-              setError(caught instanceof Error ? caught.message : 'Import failed.')
+              setError(
+                caught instanceof Error ? caught.message : 'Import failed.',
+              )
             }
           }}
         />
@@ -198,10 +230,11 @@ function ImportPanel({
             setLoadingUrl(true)
             setError('')
             try {
-              const imported = await importUrl(url)
-              await saveImported({ ...imported, sourceType: 'text' })
+              await saveImported(await importUrl(url))
             } catch (caught) {
-              setError(caught instanceof Error ? caught.message : 'Import failed.')
+              setError(
+                caught instanceof Error ? caught.message : 'Import failed.',
+              )
             } finally {
               setLoadingUrl(false)
             }
@@ -215,37 +248,92 @@ function ImportPanel({
   )
 }
 
+function overallStatus(
+  chapters: DocumentChapter[],
+): LibraryItem['analysisStatus'] {
+  if (chapters.some((chapter) => chapter.analysisStatus === 'analyzing')) {
+    return 'analyzing'
+  }
+  if (chapters.some((chapter) => chapter.analysisStatus === 'failed')) {
+    return 'failed'
+  }
+  if (chapters.every((chapter) => chapter.analysisStatus === 'ready')) {
+    return 'ready'
+  }
+  return 'not-analyzed'
+}
+
 function Reader({
   item,
-  profileId,
+  profile,
 }: {
   item: LibraryItem
-  profileId: string
+  profile: LanguageProfile
 }) {
-  const profile = useLiveQuery(() => db.profiles.get(profileId), [profileId])
+  const chapters = chaptersFor(item)
+  const firstChapterId = chapters[0]?.id
+  const [chapterId, setChapterId] = useState(firstChapterId)
   const [busy, setBusy] = useState(false)
+  const [lookup, setLookup] = useState<{
+    selection: EnglishWordSelection
+    loading: boolean
+    result?: {
+      targetText: string
+      romanization: string
+      gloss: string
+    }
+    error?: string
+  }>()
+
+  useEffect(() => {
+    setChapterId(firstChapterId)
+    setLookup(undefined)
+  }, [item.id, firstChapterId])
+
+  const chapterIndex = Math.max(
+    chapters.findIndex((chapter) => chapter.id === chapterId),
+    0,
+  )
+  const chapter = chapters[chapterIndex]
+  if (!chapter) return null
+
+  const updateChapter = async (
+    chapterPatch: Partial<DocumentChapter>,
+  ): Promise<void> => {
+    const nextChapters = chapters.map((candidate) =>
+      candidate.id === chapter.id
+        ? { ...candidate, ...chapterPatch }
+        : candidate,
+    )
+    await db.libraryItems.update(item.id, {
+      chapters: nextChapters,
+      analysisStatus: overallStatus(nextChapters),
+      analysisError: nextChapters.find(
+        (candidate) => candidate.analysisStatus === 'failed',
+      )?.analysisError,
+      updatedAt: nowIso(),
+    })
+  }
 
   const analyze = async () => {
-    if (!profile) return
     setBusy(true)
-    await db.libraryItems.update(item.id, {
+    await updateChapter({
       analysisStatus: 'analyzing',
       analysisError: undefined,
     })
     try {
       const annotations = await analyzeAndWeaveText(
         profile,
-        item.content,
+        chapter.content,
         'reading',
       )
-      await db.libraryItems.update(item.id, {
+      await updateChapter({
         annotations,
         analysisStatus: 'ready',
         analysisError: undefined,
-        updatedAt: nowIso(),
       })
     } catch (error) {
-      await db.libraryItems.update(item.id, {
+      await updateChapter({
         analysisStatus: 'failed',
         analysisError:
           error instanceof Error ? error.message : 'Analysis failed.',
@@ -255,27 +343,219 @@ function Reader({
     }
   }
 
+  const selectEnglish = async (selection: EnglishWordSelection) => {
+    setLookup({ selection, loading: true })
+    const contextStart = Math.max(0, selection.start - 500)
+    const contextEnd = Math.min(chapter.content.length, selection.end + 500)
+    try {
+      const result = await invokeAIOperation('language.translateSelection', {
+        word: selection.text,
+        context: chapter.content.slice(contextStart, contextEnd),
+        targetLanguage: profile.targetLanguage,
+        romanization: profile.romanization,
+      })
+      setLookup({ selection, loading: false, result })
+    } catch (error) {
+      setLookup({
+        selection,
+        loading: false,
+        error: error instanceof Error ? error.message : 'Translation failed.',
+      })
+    }
+  }
+
+  const applySelection = async (trackForFuture: boolean) => {
+    if (!lookup?.result) return
+    const { selection, result } = lookup
+    let learningItem = await db.learningItems
+      .where('targetLanguage')
+      .equals(profile.targetLanguage)
+      .filter(
+        (candidate) =>
+          candidate.sourceText.toLocaleLowerCase() ===
+            selection.text.toLocaleLowerCase() &&
+          candidate.targetText === result.targetText,
+      )
+      .first()
+
+    if (!learningItem) {
+      learningItem = {
+        id: createId('item'),
+        targetLanguage: profile.targetLanguage,
+        sourceText: selection.text,
+        targetText: result.targetText,
+        romanization: result.romanization,
+        gloss: result.gloss,
+        itemType: 'word',
+        createdAt: nowIso(),
+      } satisfies LearningItem
+      await db.learningItems.add(learningItem)
+    }
+
+    const stateId = `${profile.id}:${learningItem.id}`
+    const existingState = await db.userItemStates.get(stateId)
+    if (trackForFuture && !existingState) {
+      const timestamp = nowIso()
+      await db.transaction(
+        'rw',
+        [db.userItemStates, db.evidenceEvents],
+        async () => {
+          await db.userItemStates.add({
+            id: stateId,
+            profileId: profile.id,
+            itemId: learningItem.id,
+            tier: 'learning',
+            confidence: 0.15,
+            introducedAt: timestamp,
+            updatedAt: timestamp,
+          })
+          await db.evidenceEvents.add({
+            id: createId('event'),
+            profileId: profile.id,
+            itemId: learningItem.id,
+            sourceModuleId: 'reading',
+            type: 'introduced',
+            createdAt: timestamp,
+          })
+        },
+      )
+    }
+
+    const annotation: WeaveAnnotation = {
+      id: createId('annotation'),
+      itemId: learningItem.id,
+      start: selection.start,
+      end: selection.end,
+      sourceText: selection.text,
+      targetText: result.targetText,
+      romanization: result.romanization,
+      gloss: result.gloss,
+      tier: existingState?.tier ?? 'learning',
+    }
+    await updateChapter({
+      annotations: removeOverlaps([...chapter.annotations, annotation]),
+      analysisStatus: 'ready',
+    })
+    setLookup(undefined)
+  }
+
   return (
     <article className="reader">
       <header className="reader-header">
         <div>
           <p className="eyebrow">Your library</p>
           <h1>{item.title}</h1>
+          <p className="chapter-title">{chapter.title}</p>
         </div>
-        <button
-          className="primary-button"
-          disabled={busy}
-          onClick={analyze}
-        >
+        <button className="primary-button" disabled={busy} onClick={analyze}>
           {busy ? <LoaderCircle className="spin" /> : <Sparkles />}
-          {item.annotations.length ? 'Refresh weave' : 'Analyze & weave'}
+          {chapter.annotations.length ? 'Refresh chapter' : 'Analyze chapter'}
         </button>
       </header>
-      {item.analysisError && <div className="error-banner">{item.analysisError}</div>}
-      {item.annotations.length ? (
-        <WovenText content={item.content} annotations={item.annotations} />
-      ) : (
-        <div className="reading-text">{item.content}</div>
+
+      <nav className="chapter-navigation" aria-label="Chapter navigation">
+        <button
+          className="icon-button"
+          disabled={chapterIndex === 0}
+          onClick={() => setChapterId(chapters[chapterIndex - 1]?.id)}
+          aria-label="Previous chapter"
+        >
+          <ChevronLeft />
+        </button>
+        <select
+          value={chapter.id}
+          onChange={(event) => {
+            setChapterId(event.target.value)
+            setLookup(undefined)
+          }}
+          aria-label="Select chapter"
+        >
+          {chapters.map((candidate, index) => (
+            <option value={candidate.id} key={candidate.id}>
+              {index + 1}. {candidate.title}
+            </option>
+          ))}
+        </select>
+        <button
+          className="icon-button"
+          disabled={chapterIndex === chapters.length - 1}
+          onClick={() => setChapterId(chapters[chapterIndex + 1]?.id)}
+          aria-label="Next chapter"
+        >
+          <ChevronRight />
+        </button>
+      </nav>
+
+      {chapter.analysisError && (
+        <div className="error-banner">{chapter.analysisError}</div>
+      )}
+      <p className="reader-hint">
+        Select any English word to translate, hear, replace, or add to your
+        ongoing weave.
+      </p>
+      <WovenText
+        content={chapter.content}
+        annotations={chapter.annotations}
+        onSelectEnglish={selectEnglish}
+        speechLang={speechLanguage[profile.targetLanguage]}
+      />
+
+      {lookup && (
+        <div
+          className="word-popover selection-popover"
+          role="dialog"
+          aria-label={`Translation for ${lookup.selection.text}`}
+        >
+          <button
+            className="close-button"
+            onClick={() => setLookup(undefined)}
+            aria-label="Close translation"
+          >
+            ×
+          </button>
+          <div className="selected-english">
+            English: {lookup.selection.text}
+          </div>
+          {lookup.loading && (
+            <div className="typing">
+              <LoaderCircle className="spin" /> Translating…
+            </div>
+          )}
+          {lookup.error && <p className="error-text">{lookup.error}</p>}
+          {lookup.result && (
+            <>
+              <div className="word-native">{lookup.result.targetText}</div>
+              <div className="word-romanization">
+                {lookup.result.romanization}
+              </div>
+              <div className="word-gloss">{lookup.result.gloss}</div>
+              <div className="word-action-grid">
+                <button
+                  type="button"
+                  onClick={() =>
+                    readAloud(
+                      lookup.result!.targetText,
+                      speechLanguage[profile.targetLanguage],
+                    )
+                  }
+                  disabled={!canReadAloud()}
+                >
+                  <Volume2 size={16} /> Read aloud
+                </button>
+                <button type="button" onClick={() => applySelection(false)}>
+                  Replace here
+                </button>
+                <button
+                  type="button"
+                  className="primary-button"
+                  onClick={() => applySelection(true)}
+                >
+                  Add to weave
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       )}
     </article>
   )

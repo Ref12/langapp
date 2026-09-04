@@ -42,6 +42,28 @@ class LangAppDatabase extends Dexie {
     this.version(2).stores({
       reviewAttempts: '&id, profileId, itemId, activity, createdAt',
     })
+
+    this.version(3)
+      .stores({})
+      .upgrade((transaction) =>
+        transaction
+          .table<LibraryItem>('libraryItems')
+          .toCollection()
+          .modify((item) => {
+            if (!item.chapters?.length) {
+              item.chapters = [
+                {
+                  id: `${item.id}_chapter_1`,
+                  title: 'Full text',
+                  content: item.content,
+                  annotations: item.annotations ?? [],
+                  analysisStatus: item.analysisStatus ?? 'not-analyzed',
+                  analysisError: item.analysisError,
+                },
+              ]
+            }
+          }),
+      )
   }
 }
 

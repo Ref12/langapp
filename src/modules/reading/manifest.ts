@@ -9,6 +9,9 @@ export const readingModule = defineLearningModule({
   description: 'Read imported content with deliberate language weaving.',
   path: '/modules/reading',
   icon: BookOpen,
-  requiredAIOperations: ['language.analyzeText'],
+  requiredAIOperations: [
+    'language.analyzeText',
+    'language.translateSelection',
+  ],
   component: ReadingPage,
 })

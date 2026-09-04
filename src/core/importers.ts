@@ -1,15 +1,82 @@
 import JSZip from 'jszip'
+import type { DocumentChapter, LibraryItem } from './domain'
+import { createId } from './ids'
 
-function textFromMarkup(markup: string): string {
+export interface ImportedDocument {
+  title: string
+  content: string
+  sourceType: LibraryItem['sourceType']
+  chapters: DocumentChapter[]
+}
+
+function createChapter(title: string, content: string): DocumentChapter {
+  return {
+    id: createId('chapter'),
+    title: title.trim() || 'Untitled chapter',
+    content: content.trim(),
+    annotations: [],
+    analysisStatus: 'not-analyzed',
+  }
+}
+
+function chapterFromMarkup(
+  markup: string,
+  fallbackTitle: string,
+): DocumentChapter | null {
   const document = new DOMParser().parseFromString(markup, 'text/html')
   document
     .querySelectorAll('script, style, nav, footer, iframe, noscript')
     .forEach((element) => element.remove())
-  return (document.body.textContent ?? '')
-    .replace(/\s+\n/g, '\n')
-    .replace(/\n\s+/g, '\n')
-    .replace(/[ \t]{2,}/g, ' ')
-    .trim()
+
+  const title =
+    document.querySelector('h1, h2, title')?.textContent?.trim() || fallbackTitle
+  const blocks = Array.from(
+    document.querySelectorAll('h1, h2, h3, p, li, blockquote, pre'),
+  )
+    .map((element) => element.textContent?.replace(/\s+/g, ' ').trim())
+    .filter((value): value is string => Boolean(value))
+  const content =
+    blocks.length > 0
+      ? blocks.join('\n\n')
+      : (document.body.textContent ?? '').replace(/\s+/g, ' ').trim()
+
+  return content ? createChapter(title, content) : null
+}
+
+export function splitIntoChapters(
+  content: string,
+  fallbackTitle = 'Full text',
+): DocumentChapter[] {
+  const lines = content.replace(/\r\n/g, '\n').split('\n')
+  const headingPattern =
+    /^(?:#{1,2}\s+(.+)|\s*((?:chapter|part|book)\s+(?:[\divxlcdm]+|[a-z]+)(?:\s*[:.-]\s*.*)?))\s*$/i
+  const chapters: DocumentChapter[] = []
+  let title = fallbackTitle
+  let body: string[] = []
+  let foundHeading = false
+
+  const flush = () => {
+    const chapterContent = body.join('\n').trim()
+    if (chapterContent) chapters.push(createChapter(title, chapterContent))
+    body = []
+  }
+
+  for (const line of lines) {
+    const heading = line.match(headingPattern)
+    if (heading) {
+      flush()
+      title = (heading[1] ?? heading[2] ?? fallbackTitle).trim()
+      foundHeading = true
+    } else {
+      body.push(line)
+    }
+  }
+  flush()
+
+  if (!foundHeading || chapters.length === 0) {
+    return [createChapter(fallbackTitle, content)]
+  }
+  return chapters
 }
 
 function dirname(path: string): string {
@@ -28,7 +95,7 @@ function resolvePath(base: string, relative: string): string {
   return resolved.join('/')
 }
 
-async function extractEpub(file: File): Promise<string> {
+async function extractEpub(file: File): Promise<DocumentChapter[]> {
   const zip = await JSZip.loadAsync(await file.arrayBuffer())
   const container = await zip
     .file('META-INF/container.xml')
@@ -60,49 +127,60 @@ async function extractEpub(file: File): Promise<string> {
       ),
   )
 
-  const chapters: string[] = []
+  const chapters: DocumentChapter[] = []
+  let chapterNumber = 1
   for (const item of packageDocument.querySelectorAll('spine itemref')) {
     const id = item.getAttribute('idref')
     const href = id ? hrefById.get(id) : undefined
     if (!href) continue
-    const chapter = await zip.file(resolvePath(packagePath, href))?.async('string')
-    if (chapter) chapters.push(textFromMarkup(chapter))
+    const markup = await zip.file(resolvePath(packagePath, href))?.async('string')
+    if (!markup) continue
+    const chapter = chapterFromMarkup(markup, `Chapter ${chapterNumber}`)
+    if (chapter) {
+      chapters.push(chapter)
+      chapterNumber += 1
+    }
   }
 
-  const content = chapters.filter(Boolean).join('\n\n')
-  if (!content) throw new Error('The EPUB did not contain readable chapters.')
-  return content
+  if (!chapters.length) {
+    throw new Error('The EPUB did not contain readable chapters.')
+  }
+  return chapters
 }
 
-export async function importFile(file: File): Promise<{
-  title: string
-  content: string
-  sourceType: 'text' | 'markdown'
-}> {
+function importedDocument(
+  title: string,
+  sourceType: LibraryItem['sourceType'],
+  chapters: DocumentChapter[],
+): ImportedDocument {
+  return {
+    title,
+    sourceType,
+    chapters,
+    content: chapters.map((chapter) => chapter.content).join('\n\n'),
+  }
+}
+
+export async function importFile(file: File): Promise<ImportedDocument> {
   const extension = file.name.split('.').pop()?.toLowerCase()
+  const title = file.name.replace(/\.(txt|md|markdown|epub)$/i, '')
   if (extension === 'epub') {
-    return {
-      title: file.name.replace(/\.epub$/i, ''),
-      content: await extractEpub(file),
-      sourceType: 'text',
-    }
+    return importedDocument(title, 'epub', await extractEpub(file))
   }
 
   if (extension !== 'txt' && extension !== 'md' && extension !== 'markdown') {
     throw new Error('Choose a .txt, .md, .markdown, or .epub file.')
   }
 
-  return {
-    title: file.name.replace(/\.(txt|md|markdown)$/i, ''),
-    content: await file.text(),
-    sourceType: extension === 'txt' ? 'text' : 'markdown',
-  }
+  const content = await file.text()
+  return importedDocument(
+    title,
+    extension === 'txt' ? 'text' : 'markdown',
+    splitIntoChapters(content),
+  )
 }
 
-export async function importUrl(url: string): Promise<{
-  title: string
-  content: string
-}> {
+export async function importUrl(url: string): Promise<ImportedDocument> {
   const parsed = new URL(url)
   if (parsed.protocol !== 'https:') {
     throw new Error('Web imports require an HTTPS URL.')
@@ -122,8 +200,24 @@ export async function importUrl(url: string): Promise<{
 
   const markup = await response.text()
   const document = new DOMParser().parseFromString(markup, 'text/html')
-  return {
-    title: document.title || parsed.hostname,
-    content: textFromMarkup(markup),
-  }
+  const chapter = chapterFromMarkup(
+    markup,
+    document.title || parsed.hostname,
+  )
+  if (!chapter) throw new Error('The article did not contain readable text.')
+  return importedDocument(document.title || parsed.hostname, 'url', [chapter])
+}
+
+export function chaptersFor(item: LibraryItem): DocumentChapter[] {
+  if (item.chapters?.length) return item.chapters
+  return [
+    {
+      id: `${item.id}_chapter_1`,
+      title: 'Full text',
+      content: item.content,
+      annotations: item.annotations ?? [],
+      analysisStatus: item.analysisStatus ?? 'not-analyzed',
+      analysisError: item.analysisError,
+    },
+  ]
 }

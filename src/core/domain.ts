@@ -23,12 +23,28 @@ export interface LibraryItem {
   profileId: string
   title: string
   content: string
-  sourceType: 'paste' | 'text' | 'markdown'
+  sourceType: 'paste' | 'text' | 'markdown' | 'epub' | 'url'
   annotations: WeaveAnnotation[]
   analysisStatus: 'not-analyzed' | 'analyzing' | 'ready' | 'failed'
   analysisError?: string
+  chapters: DocumentChapter[]
   createdAt: string
   updatedAt: string
+}
+
+export interface DocumentChapter {
+  id: string
+  title: string
+  content: string
+  annotations: WeaveAnnotation[]
+  analysisStatus: 'not-analyzed' | 'analyzing' | 'ready' | 'failed'
+  analysisError?: string
+}
+
+export interface EnglishWordSelection {
+  text: string
+  start: number
+  end: number
 }
 
 export interface LearningItem {
@@ -141,4 +157,10 @@ export const defaultRomanization: Record<TargetLanguage, string> = {
   zh: 'Pinyin',
   ja: 'Hepburn',
   ko: 'Revised Romanization',
+}
+
+export const speechLanguage: Record<TargetLanguage, string> = {
+  zh: 'zh-CN',
+  ja: 'ja-JP',
+  ko: 'ko-KR',
 }

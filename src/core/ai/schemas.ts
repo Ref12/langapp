@@ -52,7 +52,26 @@ export const generateTurnOutputSchema = z.object({
   content: z.string().min(1),
 })
 
+export const translateSelectionInputSchema = z.object({
+  word: z.string().min(1).max(120),
+  context: z.string().min(1).max(2_000),
+  targetLanguage: z.enum(['zh', 'ja', 'ko']),
+  romanization: z.string().min(1),
+})
+
+export const translateSelectionOutputSchema = z.object({
+  targetText: z.string().min(1),
+  romanization: z.string(),
+  gloss: z.string().min(1),
+})
+
 export type AnalyzeTextInput = z.infer<typeof analyzeTextInputSchema>
 export type AnalyzeTextOutput = z.infer<typeof analyzeTextOutputSchema>
 export type GenerateTurnInput = z.infer<typeof generateTurnInputSchema>
 export type GenerateTurnOutput = z.infer<typeof generateTurnOutputSchema>
+export type TranslateSelectionInput = z.infer<
+  typeof translateSelectionInputSchema
+>
+export type TranslateSelectionOutput = z.infer<
+  typeof translateSelectionOutputSchema
+>

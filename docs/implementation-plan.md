@@ -84,6 +84,8 @@ The MVP is entirely client-side. Repositories, jobs, AI operations, identity, an
 - Register its top-level icon, route tree, settings, background jobs, migrations, and event handlers through its manifest.
 - Consume diglot weave as the module's initial reading technique.
 - Build the library, import, reader, reading-progress, text-settings, and offline-reading surfaces.
+- Preserve chapter structure from EPUB, Markdown, and explicit text headings, with per-chapter analysis and navigation.
+- Support context-aware English word selection with read aloud, one-occurrence replacement, and explicit addition to the ongoing weave.
 - Reuse introduced items in all validated later occurrences, including lazily refreshed existing documents.
 
 ### 8. Conversation module
