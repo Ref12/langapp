@@ -8,6 +8,7 @@ import type {
   LanguageProfile,
   LearningItem,
   LibraryItem,
+  ReviewAttempt,
   UserItemState,
 } from './domain'
 
@@ -21,6 +22,7 @@ class LangAppDatabase extends Dexie {
   aiConnections!: EntityTable<AIConnection, 'id'>
   conversationThreads!: EntityTable<ConversationThread, 'id'>
   conversationMessages!: EntityTable<ConversationMessage, 'id'>
+  reviewAttempts!: EntityTable<ReviewAttempt, 'id'>
 
   constructor() {
     super('linguaweave')
@@ -35,6 +37,10 @@ class LangAppDatabase extends Dexie {
       aiConnections: '&id',
       conversationThreads: '&id, profileId, updatedAt',
       conversationMessages: '&id, threadId, createdAt, status',
+    })
+
+    this.version(2).stores({
+      reviewAttempts: '&id, profileId, itemId, activity, createdAt',
     })
   }
 }
@@ -59,6 +65,7 @@ interface BackupEnvelope {
     evidenceEvents: EvidenceEvent[]
     conversationThreads: ConversationThread[]
     conversationMessages: ConversationMessage[]
+    reviewAttempts: ReviewAttempt[]
   }
 }
 
@@ -72,6 +79,7 @@ export async function exportBackup(): Promise<BackupEnvelope> {
     evidenceEvents,
     conversationThreads,
     conversationMessages,
+    reviewAttempts,
   ] = await Promise.all([
     db.settings.toArray(),
     db.profiles.toArray(),
@@ -81,6 +89,7 @@ export async function exportBackup(): Promise<BackupEnvelope> {
     db.evidenceEvents.toArray(),
     db.conversationThreads.toArray(),
     db.conversationMessages.toArray(),
+    db.reviewAttempts.toArray(),
   ])
 
   return {
@@ -96,6 +105,7 @@ export async function exportBackup(): Promise<BackupEnvelope> {
       evidenceEvents,
       conversationThreads,
       conversationMessages,
+      reviewAttempts,
     },
   }
 }
@@ -116,6 +126,7 @@ export async function importBackup(backup: BackupEnvelope): Promise<void> {
       db.evidenceEvents,
       db.conversationThreads,
       db.conversationMessages,
+      db.reviewAttempts,
     ],
     async () => {
       await Promise.all([
@@ -127,6 +138,7 @@ export async function importBackup(backup: BackupEnvelope): Promise<void> {
         db.evidenceEvents.clear(),
         db.conversationThreads.clear(),
         db.conversationMessages.clear(),
+        db.reviewAttempts.clear(),
       ])
 
       await Promise.all([
@@ -138,6 +150,7 @@ export async function importBackup(backup: BackupEnvelope): Promise<void> {
         db.evidenceEvents.bulkAdd(backup.data.evidenceEvents),
         db.conversationThreads.bulkAdd(backup.data.conversationThreads),
         db.conversationMessages.bulkAdd(backup.data.conversationMessages),
+        db.reviewAttempts.bulkAdd(backup.data.reviewAttempts ?? []),
       ])
     },
   )

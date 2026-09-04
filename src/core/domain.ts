@@ -69,7 +69,25 @@ export interface EvidenceEvent {
   profileId: string
   itemId: string
   sourceModuleId: string
-  type: 'introduced' | 'viewed' | 'romanization-revealed' | 'gloss-revealed'
+  type:
+    | 'introduced'
+    | 'viewed'
+    | 'romanization-revealed'
+    | 'gloss-revealed'
+    | 'review-correct'
+    | 'review-incorrect'
+  createdAt: string
+}
+
+export type ReviewActivity = 'matching' | 'fill-blank' | 'sentence'
+
+export interface ReviewAttempt {
+  id: string
+  profileId: string
+  itemId: string
+  activity: ReviewActivity
+  answer: string
+  correct: boolean
   createdAt: string
 }
 

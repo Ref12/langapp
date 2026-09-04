@@ -5,12 +5,14 @@ import { moduleRegistry } from './modules/registry'
 import { DashboardPage } from './pages/DashboardPage'
 import { DictionaryPage } from './pages/DictionaryPage'
 import { SettingsPage } from './pages/SettingsPage'
+import { ReviewPage } from './pages/ReviewPage'
 import './App.css'
 
 function CurrentPage({ path }: { path: string }) {
   if (path === '/') return <DashboardPage />
   if (path === '/dictionary') return <DictionaryPage />
   if (path === '/settings') return <SettingsPage />
+  if (path === '/review') return <ReviewPage />
 
   const matchedModule = moduleRegistry.find(
     (module) => path === module.path || path.startsWith(`${module.path}/`),

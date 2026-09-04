@@ -1,5 +1,12 @@
 import { useLiveQuery } from 'dexie-react-hooks'
-import { BookOpen, BookText, Home, Languages, Settings } from 'lucide-react'
+import {
+  BookOpen,
+  BookText,
+  Dumbbell,
+  Home,
+  Languages,
+  Settings,
+} from 'lucide-react'
 import { db } from '../core/database'
 import { setActiveProfile } from '../core/profiles'
 import { moduleRegistry } from '../modules/registry'
@@ -59,6 +66,13 @@ export function AppShell({
           >
             <BookText size={19} />
             Dictionary
+          </HashLink>
+          <HashLink
+            className={navClass(currentPath, '/review')}
+            to="/review"
+          >
+            <Dumbbell size={19} />
+            Review
           </HashLink>
           <HashLink
             className={navClass(currentPath, '/settings')}
