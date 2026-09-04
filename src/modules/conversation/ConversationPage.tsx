@@ -7,6 +7,7 @@ import { db } from '../../core/database'
 import type { ConversationMessage, ConversationThread } from '../../core/domain'
 import { createId, nowIso } from '../../core/ids'
 import { WovenText } from '../../components/WovenText'
+import { ModuleFrame } from '../../components/ModuleFrame'
 import { analyzeAndWeaveText } from '../../techniques/diglotWeave'
 
 export function ConversationPage() {
@@ -43,8 +44,11 @@ export function ConversationPage() {
   }
 
   return (
-    <div className="module-layout">
-      <aside className="module-panel">
+    <ModuleFrame
+      storageKey="conversation-side-pane"
+      mainClassName="chat-pane"
+      panel={
+        <>
         <div className="module-panel-header">
           <div>
             <p className="eyebrow">{profile?.name}</p>
@@ -73,8 +77,9 @@ export function ConversationPage() {
             </button>
           ))}
         </div>
-      </aside>
-      <section className="chat-pane">
+        </>
+      }
+    >
         {threadId && profile ? (
           <Conversation threadId={threadId} profileId={profile.id} />
         ) : (
@@ -87,8 +92,7 @@ export function ConversationPage() {
             </button>
           </div>
         )}
-      </section>
-    </div>
+    </ModuleFrame>
   )
 }
 

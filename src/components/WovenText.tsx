@@ -1,7 +1,6 @@
 import { useState, type ReactNode } from 'react'
-import { Volume2 } from 'lucide-react'
 import type { EnglishWordSelection, WeaveAnnotation } from '../core/domain'
-import { canReadAloud, readAloud } from '../core/speech'
+import { SpeechControls } from './SpeechControls'
 
 const englishWordPattern = /[A-Za-z]+(?:['’-][A-Za-z]+)*/g
 
@@ -98,14 +97,8 @@ export function WovenText({
           <div className="word-gloss">{active.gloss}</div>
           <div className="word-actions">
             <span className={`tier-pill ${active.tier}`}>{active.tier}</span>
-            <button
-              type="button"
-              onClick={() => readAloud(active.targetText, speechLang)}
-              disabled={!canReadAloud()}
-            >
-              <Volume2 size={16} /> Read aloud
-            </button>
           </div>
+          <SpeechControls text={active.targetText} language={speechLang} />
         </div>
       )}
     </>

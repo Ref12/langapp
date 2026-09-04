@@ -89,6 +89,14 @@ Replacing one occurrence MUST preserve canonical chapter text. Adding to the
 weave creates a Learning state and makes future contextually valid occurrences
 eligible for substitution.
 
+Translation requests MUST mark the exact selected occurrence and include up to
+two surrounding sentences on each side so the AI translates the word's
+contextual meaning.
+
+Read aloud MUST select an installed voice matching `zh-CN`, `ja-JP`, or `ko-KR`
+and surface an actionable error when no matching voice is available. The popup
+MUST provide playback speed from 0.25× through 1.00× in 0.05 increments.
+
 ### 4.4 Text settings
 
 The learner MUST be able to choose:

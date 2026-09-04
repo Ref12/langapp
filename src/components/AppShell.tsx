@@ -1,10 +1,13 @@
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useState, type ReactNode } from 'react'
 import {
   BookOpen,
   BookText,
   Dumbbell,
   Home,
   Languages,
+  PanelLeftClose,
+  PanelLeftOpen,
   Settings,
 } from 'lucide-react'
 import { db } from '../core/database'
@@ -24,8 +27,11 @@ export function AppShell({
   children,
 }: {
   currentPath: string
-  children: React.ReactNode
+  children: ReactNode
 }) {
+  const [collapsed, setCollapsed] = useState(
+    () => localStorage.getItem('app-sidebar') === 'collapsed',
+  )
   const profiles = useLiveQuery(() => db.profiles.toArray(), []) ?? []
   const activeSetting = useLiveQuery(
     () => db.settings.get('activeProfileId'),
@@ -33,19 +39,40 @@ export function AppShell({
   )
 
   return (
-    <div className="app-shell">
-      <aside className="sidebar">
+    <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''}`}>
+      <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
+        <button
+          className="sidebar-toggle"
+          onClick={() =>
+            setCollapsed((current) => {
+              const next = !current
+              localStorage.setItem(
+                'app-sidebar',
+                next ? 'collapsed' : 'expanded',
+              )
+              return next
+            })
+          }
+          aria-label={collapsed ? 'Expand navigation' : 'Collapse navigation'}
+          title={collapsed ? 'Expand navigation' : 'Collapse navigation'}
+        >
+          {collapsed ? <PanelLeftOpen /> : <PanelLeftClose />}
+        </button>
         <div className="brand">
           <span className="brand-icon" aria-hidden="true">
             <Languages size={22} />
           </span>
-          <span>LinguaWeave</span>
+          <span className="brand-label">LinguaWeave</span>
         </div>
 
         <nav aria-label="Primary navigation">
-          <HashLink className={navClass(currentPath, '/', true)} to="/">
+          <HashLink
+            className={navClass(currentPath, '/', true)}
+            to="/"
+            ariaLabel="Home"
+          >
             <Home size={19} />
-            Home
+            <span className="nav-label">Home</span>
           </HashLink>
           {moduleRegistry.map((module) => {
             const Icon = module.icon
@@ -53,33 +80,37 @@ export function AppShell({
               <HashLink
                 className={navClass(currentPath, module.path)}
                 to={module.path}
+                ariaLabel={module.label}
                 key={module.id}
               >
                 <Icon size={19} />
-                {module.label}
+                <span className="nav-label">{module.label}</span>
               </HashLink>
             )
           })}
           <HashLink
             className={navClass(currentPath, '/dictionary')}
             to="/dictionary"
+            ariaLabel="Dictionary"
           >
             <BookText size={19} />
-            Dictionary
+            <span className="nav-label">Dictionary</span>
           </HashLink>
           <HashLink
             className={navClass(currentPath, '/review')}
             to="/review"
+            ariaLabel="Review"
           >
             <Dumbbell size={19} />
-            Review
+            <span className="nav-label">Review</span>
           </HashLink>
           <HashLink
             className={navClass(currentPath, '/settings')}
             to="/settings"
+            ariaLabel="Settings"
           >
             <Settings size={19} />
-            Settings
+            <span className="nav-label">Settings</span>
           </HashLink>
         </nav>
 

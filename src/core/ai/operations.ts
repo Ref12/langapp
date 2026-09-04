@@ -101,7 +101,7 @@ ${input.text}`,
           {
             role: 'system',
             content:
-              'Translate one selected English word in context for a language learner. Return JSON only and preserve the contextual meaning.',
+              'Translate only the English occurrence marked with <selected-word> inside the supplied context. Use the surrounding sentences to disambiguate its meaning. Return JSON only.',
           },
           {
             role: 'user',
@@ -111,7 +111,10 @@ Return:
 {"targetText":"native form","romanization":"romanization","gloss":"English contextual equivalent"}
 
 Selected word: ${input.word}
-Context: ${input.context}`,
+Context (the exact occurrence is marked):
+<context>
+${input.context}
+</context>`,
           },
         ],
         signal,

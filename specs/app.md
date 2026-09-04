@@ -194,6 +194,7 @@ The client and modules MUST call named, schema-validated AI operations. The MVP 
 - Client routing MUST work beneath a repository base path without server rewrites.
 - Build artifacts MUST contain no API keys or user-specific configuration.
 - The deployment MUST use HTTPS, a restrictive Content Security Policy where GitHub Pages permits it, pinned dependencies, and no third-party scripts that can read application storage.
+- The global navigation sidebar and module-specific side panes MUST be independently collapsible, keyboard accessible, and remember their local state.
 
 ## 5. Modular architecture
 

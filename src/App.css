@@ -80,6 +80,10 @@ label {
   grid-template-columns: 242px minmax(0, 1fr);
 }
 
+.app-shell.sidebar-collapsed {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
 .sidebar {
   position: sticky;
   top: 0;
@@ -89,6 +93,38 @@ label {
   padding: 1.4rem 1rem;
   display: flex;
   flex-direction: column;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 0.82rem;
+  right: 0.7rem;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-color: rgb(255 255 255 / 15%);
+  background: rgb(255 255 255 / 8%);
+  color: white;
+}
+
+.sidebar.collapsed {
+  align-items: center;
+  padding-inline: 0.65rem;
+}
+
+.sidebar.collapsed .brand {
+  padding-top: 2.7rem;
+}
+
+.sidebar.collapsed .brand-label,
+.sidebar.collapsed .nav-label,
+.sidebar.collapsed .sidebar-footer {
+  display: none;
+}
+
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  width: 48px;
 }
 
 .brand {
@@ -361,10 +397,41 @@ label {
   grid-template-columns: 300px minmax(0, 1fr);
 }
 
+.module-layout.module-panel-collapsed {
+  grid-template-columns: 58px minmax(0, 1fr);
+}
+
 .module-panel {
+  position: relative;
   background: var(--surface-alt);
   border-right: 1px solid var(--line);
   padding: 1.4rem 1rem;
+}
+
+.module-panel.collapsed {
+  padding: 0.65rem;
+}
+
+.module-panel.collapsed .module-panel-content {
+  display: none;
+}
+
+.panel-toggle {
+  position: absolute;
+  z-index: 5;
+  top: 0.78rem;
+  right: 0.7rem;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: var(--surface);
+}
+
+.module-panel:not(.collapsed) .panel-toggle {
+  top: auto;
+  right: -18px;
+  bottom: 1rem;
+  box-shadow: 0 4px 16px rgb(31 52 45 / 12%);
 }
 
 .module-panel-header {
@@ -585,6 +652,41 @@ label {
   grid-template-columns: 1fr 1fr;
   gap: 0.55rem;
   margin-top: 1rem;
+}
+
+.speech-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem 0.75rem;
+  align-items: end;
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+
+.speech-controls label {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.speech-controls label input {
+  grid-column: 1 / -1;
+  padding: 0;
+  accent-color: var(--green);
+}
+
+.speech-controls output {
+  justify-self: end;
+  color: var(--orange);
+}
+
+.speech-controls small {
+  grid-column: 1 / -1;
+  color: var(--muted);
+}
+
+.speech-status {
+  color: var(--red) !important;
 }
 
 .word-action-grid .primary-button {
@@ -965,6 +1067,14 @@ label {
     overflow-x: auto;
   }
 
+  .app-shell.sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar.collapsed {
+    width: auto;
+  }
+
   .brand {
     padding: 0 0.5rem 0 0;
   }
@@ -984,6 +1094,14 @@ label {
 
   .module-layout {
     grid-template-columns: 1fr;
+  }
+
+  .module-layout.module-panel-collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .module-panel.collapsed {
+    min-height: 54px;
   }
 
   .module-panel {

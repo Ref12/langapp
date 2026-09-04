@@ -8,7 +8,6 @@ import {
   Globe2,
   LoaderCircle,
   Sparkles,
-  Volume2,
 } from 'lucide-react'
 import { useActiveProfile } from '../../core/activeProfile'
 import { invokeAIOperation } from '../../core/ai/operations'
@@ -30,7 +29,9 @@ import {
   splitIntoChapters,
   type ImportedDocument,
 } from '../../core/importers'
-import { canReadAloud, readAloud } from '../../core/speech'
+import { contextAroundSelection } from '../../core/textContext'
+import { SpeechControls } from '../../components/SpeechControls'
+import { ModuleFrame } from '../../components/ModuleFrame'
 import { WovenText } from '../../components/WovenText'
 import {
   analyzeAndWeaveText,
@@ -60,8 +61,11 @@ export function ReadingPage() {
   const selected = library?.find((item) => item.id === selectedId)
 
   return (
-    <div className="module-layout">
-      <aside className="module-panel">
+    <ModuleFrame
+      storageKey="reading-side-pane"
+      mainClassName="reader-pane"
+      panel={
+        <>
         <div className="module-panel-header">
           <div>
             <p className="eyebrow">{profile?.name}</p>
@@ -111,9 +115,9 @@ export function ReadingPage() {
             )
           })}
         </div>
-      </aside>
-
-      <section className="reader-pane">
+        </>
+      }
+    >
         {selected && profile ? (
           <Reader item={selected} profile={profile} />
         ) : (
@@ -129,8 +133,7 @@ export function ReadingPage() {
             </button>
           </div>
         )}
-      </section>
-    </div>
+    </ModuleFrame>
   )
 }
 
@@ -345,12 +348,10 @@ function Reader({
 
   const selectEnglish = async (selection: EnglishWordSelection) => {
     setLookup({ selection, loading: true })
-    const contextStart = Math.max(0, selection.start - 500)
-    const contextEnd = Math.min(chapter.content.length, selection.end + 500)
     try {
       const result = await invokeAIOperation('language.translateSelection', {
         word: selection.text,
-        context: chapter.content.slice(contextStart, contextEnd),
+        context: contextAroundSelection(chapter.content, selection, 2),
         targetLanguage: profile.targetLanguage,
         romanization: profile.romanization,
       })
@@ -529,19 +530,11 @@ function Reader({
                 {lookup.result.romanization}
               </div>
               <div className="word-gloss">{lookup.result.gloss}</div>
+              <SpeechControls
+                text={lookup.result.targetText}
+                language={speechLanguage[profile.targetLanguage]}
+              />
               <div className="word-action-grid">
-                <button
-                  type="button"
-                  onClick={() =>
-                    readAloud(
-                      lookup.result!.targetText,
-                      speechLanguage[profile.targetLanguage],
-                    )
-                  }
-                  disabled={!canReadAloud()}
-                >
-                  <Volume2 size={16} /> Read aloud
-                </button>
                 <button type="button" onClick={() => applySelection(false)}>
                   Replace here
                 </button>
