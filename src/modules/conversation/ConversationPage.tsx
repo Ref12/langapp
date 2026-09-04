@@ -218,6 +218,7 @@ function Conversation({
               <WovenText
                 content={message.canonicalContent}
                 annotations={message.annotations}
+                profileId={profileId}
               />
             ) : (
               <p>{message.canonicalContent || message.error}</p>

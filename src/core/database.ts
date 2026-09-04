@@ -8,6 +8,8 @@ import type {
   LanguageProfile,
   LearningItem,
   LibraryItem,
+  ReadingBookmark,
+  ReadingProgress,
   ReviewAttempt,
   UserItemState,
 } from './domain'
@@ -23,6 +25,8 @@ class LangAppDatabase extends Dexie {
   conversationThreads!: EntityTable<ConversationThread, 'id'>
   conversationMessages!: EntityTable<ConversationMessage, 'id'>
   reviewAttempts!: EntityTable<ReviewAttempt, 'id'>
+  readingProgress!: EntityTable<ReadingProgress, 'id'>
+  readingBookmarks!: EntityTable<ReadingBookmark, 'id'>
 
   constructor() {
     super('linguaweave')
@@ -64,6 +68,12 @@ class LangAppDatabase extends Dexie {
             }
           }),
       )
+
+    this.version(4).stores({
+      readingProgress: '&id, profileId, documentId, chapterId, updatedAt',
+      readingBookmarks:
+        '&id, profileId, documentId, chapterId, createdAt',
+    })
   }
 }
 
@@ -88,6 +98,8 @@ interface BackupEnvelope {
     conversationThreads: ConversationThread[]
     conversationMessages: ConversationMessage[]
     reviewAttempts: ReviewAttempt[]
+    readingProgress: ReadingProgress[]
+    readingBookmarks: ReadingBookmark[]
   }
 }
 
@@ -102,6 +114,8 @@ export async function exportBackup(): Promise<BackupEnvelope> {
     conversationThreads,
     conversationMessages,
     reviewAttempts,
+    readingProgress,
+    readingBookmarks,
   ] = await Promise.all([
     db.settings.toArray(),
     db.profiles.toArray(),
@@ -112,6 +126,8 @@ export async function exportBackup(): Promise<BackupEnvelope> {
     db.conversationThreads.toArray(),
     db.conversationMessages.toArray(),
     db.reviewAttempts.toArray(),
+    db.readingProgress.toArray(),
+    db.readingBookmarks.toArray(),
   ])
 
   return {
@@ -128,6 +144,8 @@ export async function exportBackup(): Promise<BackupEnvelope> {
       conversationThreads,
       conversationMessages,
       reviewAttempts,
+      readingProgress,
+      readingBookmarks,
     },
   }
 }
@@ -149,6 +167,8 @@ export async function importBackup(backup: BackupEnvelope): Promise<void> {
       db.conversationThreads,
       db.conversationMessages,
       db.reviewAttempts,
+      db.readingProgress,
+      db.readingBookmarks,
     ],
     async () => {
       await Promise.all([
@@ -161,6 +181,8 @@ export async function importBackup(backup: BackupEnvelope): Promise<void> {
         db.conversationThreads.clear(),
         db.conversationMessages.clear(),
         db.reviewAttempts.clear(),
+        db.readingProgress.clear(),
+        db.readingBookmarks.clear(),
       ])
 
       await Promise.all([
@@ -173,6 +195,8 @@ export async function importBackup(backup: BackupEnvelope): Promise<void> {
         db.conversationThreads.bulkAdd(backup.data.conversationThreads),
         db.conversationMessages.bulkAdd(backup.data.conversationMessages),
         db.reviewAttempts.bulkAdd(backup.data.reviewAttempts ?? []),
+        db.readingProgress.bulkAdd(backup.data.readingProgress ?? []),
+        db.readingBookmarks.bulkAdd(backup.data.readingBookmarks ?? []),
       ])
     },
   )

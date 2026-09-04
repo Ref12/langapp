@@ -440,6 +440,7 @@ Browser jobs and mutations MUST carry globally unique idempotency keys. Job payl
 Modules MAY add namespaced entities that reference core IDs. The Reading module is expected to own records such as:
 
 - Reading position and completion per document/profile
+- Bookmarks containing document, chapter, and relative scroll position
 - Offline download state
 - Active reading technique per profile or document
 - Diglot weave planner version and per-document plan

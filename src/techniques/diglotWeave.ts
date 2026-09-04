@@ -87,17 +87,30 @@ function mergeLearningItemIntoChapter(
   chapter: DocumentChapter,
   item: LearningItem,
   tier: KnowledgeTier,
+  force = false,
 ): DocumentChapter {
-  const existing = chapter.annotations.map((annotation) =>
+  let existing = chapter.annotations.map((annotation) =>
     annotation.itemId === item.id ? { ...annotation, tier } : annotation,
   )
+  const generated = annotationsForLearningItem(chapter.content, item, tier)
+  if (force) {
+    existing = existing.filter(
+      (annotation) =>
+        annotation.itemId === item.id ||
+        !generated.some(
+          (candidate) =>
+            candidate.start < annotation.end &&
+            candidate.end > annotation.start,
+        ),
+    )
+  }
   const existingKeys = new Set(
     existing.map(
       (annotation) =>
         `${annotation.itemId}:${annotation.start}:${annotation.end}`,
     ),
   )
-  const additions = annotationsForLearningItem(chapter.content, item, tier).filter(
+  const additions = generated.filter(
     (annotation) =>
       !existingKeys.has(
         `${annotation.itemId}:${annotation.start}:${annotation.end}`,
@@ -148,7 +161,7 @@ export async function propagateLearningItemAcrossLibrary(
   let occurrenceCount = 0
   const updatedItems = libraryItems.map((libraryItem) => {
     const chapters = chaptersFor(libraryItem).map((chapter) => {
-      const updated = mergeLearningItemIntoChapter(chapter, item, tier)
+      const updated = mergeLearningItemIntoChapter(chapter, item, tier, true)
       occurrenceCount += updated.annotations.filter(
         (annotation) => annotation.itemId === item.id,
       ).length
@@ -279,6 +292,8 @@ export async function analyzeAndWeaveText(
             itemId: item.id,
             tier: 'learning' as const,
             confidence: 0.15,
+            showRomanization: true,
+            showEnglish: false,
             introducedAt: timestamp,
             updatedAt: timestamp,
           })),

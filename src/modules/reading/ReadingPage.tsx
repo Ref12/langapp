@@ -1,13 +1,21 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+} from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import {
   BookOpen,
+  BookmarkPlus,
   ChevronLeft,
   ChevronRight,
   FilePlus2,
   Globe2,
   LoaderCircle,
   Sparkles,
+  Trash2,
 } from 'lucide-react'
 import { useActiveProfile } from '../../core/activeProfile'
 import { invokeAIOperation } from '../../core/ai/operations'
@@ -30,6 +38,7 @@ import {
   type ImportedDocument,
 } from '../../core/importers'
 import { contextAroundSelection } from '../../core/textContext'
+import { splitTextForAnalysis } from '../../core/textChunks'
 import { SpeechControls } from '../../components/SpeechControls'
 import { ModuleFrame } from '../../components/ModuleFrame'
 import { WovenText } from '../../components/WovenText'
@@ -273,6 +282,13 @@ function overallStatus(
   return 'not-analyzed'
 }
 
+function currentScrollRatio(): number {
+  const maximum = document.documentElement.scrollHeight - window.innerHeight
+  return maximum > 0
+    ? Math.min(1, Math.max(0, window.scrollY / maximum))
+    : 0
+}
+
 function Reader({
   item,
   profile,
@@ -280,10 +296,26 @@ function Reader({
   item: LibraryItem
   profile: LanguageProfile
 }) {
-  const chapters = chaptersFor(item)
-  const firstChapterId = chapters[0]?.id
+  const chapters = useMemo(() => chaptersFor(item), [item])
+  const firstChapterId = chapters[0]!.id
   const [chapterId, setChapterId] = useState(firstChapterId)
   const [busy, setBusy] = useState(false)
+  const [analysisProgress, setAnalysisProgress] = useState('')
+  const [notice, setNotice] = useState('')
+  const [selectionShowRomanization, setSelectionShowRomanization] =
+    useState(true)
+  const [selectionShowEnglish, setSelectionShowEnglish] = useState(false)
+  const progressId = `${profile.id}:${item.id}`
+  const scrollSaveTimer = useRef<number>()
+  const bookmarks =
+    useLiveQuery(
+      () =>
+        db.readingBookmarks
+          .where('documentId')
+          .equals(item.id)
+          .sortBy('createdAt'),
+      [item.id],
+    ) ?? []
   const [lookup, setLookup] = useState<{
     selection: EnglishWordSelection
     loading: boolean
@@ -296,16 +328,73 @@ function Reader({
   }>()
 
   useEffect(() => {
-    setChapterId(firstChapterId)
-    setLookup(undefined)
-  }, [item.id, firstChapterId])
+    let active = true
+    db.readingProgress.get(progressId).then((progress) => {
+      if (!active) return
+      const restoredChapter =
+        progress &&
+        chapters.some((candidate) => candidate.id === progress.chapterId)
+          ? progress.chapterId
+          : firstChapterId
+      setChapterId(restoredChapter)
+      setLookup(undefined)
+      window.setTimeout(() => {
+        if (!active) return
+        const maximum =
+          document.documentElement.scrollHeight - window.innerHeight
+        window.scrollTo({ top: maximum * (progress?.scrollRatio ?? 0) })
+      }, 50)
+    })
+    return () => {
+      active = false
+    }
+  }, [item.id, progressId, firstChapterId, chapters])
 
   const chapterIndex = Math.max(
     chapters.findIndex((chapter) => chapter.id === chapterId),
     0,
   )
-  const chapter = chapters[chapterIndex]
-  if (!chapter) return null
+  const chapter = chapters[chapterIndex] ?? chapters[0]!
+
+  useEffect(() => {
+    const save = () => {
+      window.clearTimeout(scrollSaveTimer.current)
+      scrollSaveTimer.current = window.setTimeout(() => {
+        db.readingProgress.put({
+          id: progressId,
+          profileId: profile.id,
+          documentId: item.id,
+          chapterId: chapter.id,
+          scrollRatio: currentScrollRatio(),
+          updatedAt: nowIso(),
+        })
+      }, 250)
+    }
+    window.addEventListener('scroll', save, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', save)
+      window.clearTimeout(scrollSaveTimer.current)
+      save()
+    }
+  }, [chapter.id, item.id, profile.id, progressId])
+
+  const openChapter = async (nextChapterId: string, ratio = 0) => {
+    setChapterId(nextChapterId)
+    setLookup(undefined)
+    await db.readingProgress.put({
+      id: progressId,
+      profileId: profile.id,
+      documentId: item.id,
+      chapterId: nextChapterId,
+      scrollRatio: ratio,
+      updatedAt: nowIso(),
+    })
+    window.setTimeout(() => {
+      const maximum =
+        document.documentElement.scrollHeight - window.innerHeight
+      window.scrollTo({ top: maximum * ratio, behavior: 'smooth' })
+    }, 30)
+  }
 
   const updateChapter = async (
     chapterPatch: Partial<DocumentChapter>,
@@ -327,18 +416,43 @@ function Reader({
 
   const analyze = async () => {
     setBusy(true)
+    setAnalysisProgress('')
     await updateChapter({
       analysisStatus: 'analyzing',
       analysisError: undefined,
     })
     try {
-      const annotations = await analyzeAndWeaveText(
-        profile,
-        chapter.content,
-        'reading',
-      )
+      const chunks = splitTextForAnalysis(chapter.content)
+      const annotations: WeaveAnnotation[] = []
+      for (const [index, chunk] of chunks.entries()) {
+        setAnalysisProgress(
+          chunks.length > 1 ? `Analyzing ${index + 1}/${chunks.length}` : '',
+        )
+        try {
+          const chunkAnnotations = await analyzeAndWeaveText(
+            profile,
+            chunk.text,
+            'reading',
+          )
+          annotations.push(
+            ...chunkAnnotations.map((annotation) => ({
+              ...annotation,
+              start: annotation.start + chunk.start,
+              end: annotation.end + chunk.start,
+            })),
+          )
+        } catch (error) {
+          const detail =
+            error instanceof Error ? error.message : 'Analysis failed.'
+          throw new Error(
+            `Chapter length: ${chapter.content.length.toLocaleString()} characters. Failed chunk ${
+              index + 1
+            }/${chunks.length}: ${chunk.text.length.toLocaleString()} characters. ${detail}`,
+          )
+        }
+      }
       await updateChapter({
-        annotations,
+        annotations: removeOverlaps(annotations),
         analysisStatus: 'ready',
         analysisError: undefined,
       })
@@ -350,10 +464,14 @@ function Reader({
       })
     } finally {
       setBusy(false)
+      setAnalysisProgress('')
     }
   }
 
   const selectEnglish = async (selection: EnglishWordSelection) => {
+    setSelectionShowRomanization(true)
+    setSelectionShowEnglish(false)
+    setNotice('')
     setLookup({ selection, loading: true })
     try {
       const result = await invokeAIOperation('language.translateSelection', {
@@ -414,6 +532,8 @@ function Reader({
             itemId: learningItem.id,
             tier: 'learning',
             confidence: 0.15,
+            showRomanization: selectionShowRomanization,
+            showEnglish: selectionShowEnglish,
             introducedAt: timestamp,
             updatedAt: timestamp,
           })
@@ -427,13 +547,24 @@ function Reader({
           })
         },
       )
+    } else if (trackForFuture && existingState) {
+      await db.userItemStates.update(existingState.id, {
+        showRomanization: selectionShowRomanization,
+        showEnglish: selectionShowEnglish,
+        updatedAt: nowIso(),
+      })
     }
 
     if (trackForFuture) {
-      await propagateLearningItemAcrossLibrary(
+      const occurrenceCount = await propagateLearningItemAcrossLibrary(
         profile.id,
         learningItem,
         existingState?.tier ?? 'learning',
+      )
+      setNotice(
+        `Added “${selection.text}” to the weave in ${occurrenceCount} ${
+          occurrenceCount === 1 ? 'occurrence' : 'occurrences'
+        } across your library.`,
       )
       setLookup(undefined)
       return
@@ -449,11 +580,14 @@ function Reader({
       romanization: result.romanization,
       gloss: result.gloss,
       tier: existingState?.tier ?? 'learning',
+      showRomanization: selectionShowRomanization,
+      showEnglish: selectionShowEnglish,
     }
     await updateChapter({
       annotations: removeOverlaps([...chapter.annotations, annotation]),
       analysisStatus: 'ready',
     })
+    setNotice(`Replaced this occurrence of “${selection.text}”.`)
     setLookup(undefined)
   }
 
@@ -467,7 +601,8 @@ function Reader({
         </div>
         <button className="primary-button" disabled={busy} onClick={analyze}>
           {busy ? <LoaderCircle className="spin" /> : <Sparkles />}
-          {chapter.annotations.length ? 'Refresh chapter' : 'Analyze chapter'}
+          {analysisProgress ||
+            (chapter.annotations.length ? 'Refresh chapter' : 'Analyze chapter')}
         </button>
       </header>
 
@@ -475,7 +610,10 @@ function Reader({
         <button
           className="icon-button"
           disabled={chapterIndex === 0}
-          onClick={() => setChapterId(chapters[chapterIndex - 1]?.id)}
+          onClick={() => {
+            const previous = chapters[chapterIndex - 1]
+            if (previous) openChapter(previous.id)
+          }}
           aria-label="Previous chapter"
         >
           <ChevronLeft />
@@ -483,8 +621,7 @@ function Reader({
         <select
           value={chapter.id}
           onChange={(event) => {
-            setChapterId(event.target.value)
-            setLookup(undefined)
+            openChapter(event.target.value)
           }}
           aria-label="Select chapter"
         >
@@ -497,16 +634,64 @@ function Reader({
         <button
           className="icon-button"
           disabled={chapterIndex === chapters.length - 1}
-          onClick={() => setChapterId(chapters[chapterIndex + 1]?.id)}
+          onClick={() => {
+            const next = chapters[chapterIndex + 1]
+            if (next) openChapter(next.id)
+          }}
           aria-label="Next chapter"
         >
           <ChevronRight />
         </button>
       </nav>
 
+      <div className="bookmark-toolbar">
+        <button
+          type="button"
+          onClick={async () => {
+            const ratio = currentScrollRatio()
+            await db.readingBookmarks.add({
+              id: createId('bookmark'),
+              profileId: profile.id,
+              documentId: item.id,
+              chapterId: chapter.id,
+              scrollRatio: ratio,
+              label: `${chapter.title} · ${Math.round(ratio * 100)}%`,
+              createdAt: nowIso(),
+            })
+            setNotice('Bookmark saved.')
+          }}
+        >
+          <BookmarkPlus size={16} /> Add bookmark
+        </button>
+        {bookmarks.length > 0 && (
+          <div className="bookmark-list">
+            {bookmarks.map((bookmark) => (
+              <span className="bookmark-chip" key={bookmark.id}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    openChapter(bookmark.chapterId, bookmark.scrollRatio)
+                  }
+                >
+                  {bookmark.label}
+                </button>
+                <button
+                  type="button"
+                  aria-label={`Delete bookmark ${bookmark.label}`}
+                  onClick={() => db.readingBookmarks.delete(bookmark.id)}
+                >
+                  <Trash2 size={13} />
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
       {chapter.analysisError && (
         <div className="error-banner">{chapter.analysisError}</div>
       )}
+      {notice && <div className="success-banner">{notice}</div>}
       <p className="reader-hint">
         Select any English word to translate, hear, replace, or add to your
         ongoing weave.
@@ -515,6 +700,16 @@ function Reader({
         content={chapter.content}
         annotations={chapter.annotations}
         onSelectEnglish={selectEnglish}
+        profileId={profile.id}
+        onUpdateDisplay={async (annotation, preferences) => {
+          await updateChapter({
+            annotations: chapter.annotations.map((candidate) =>
+              candidate.id === annotation.id
+                ? { ...candidate, ...preferences }
+                : candidate,
+            ),
+          })
+        }}
         speechLang={speechLanguage[profile.targetLanguage]}
       />
 
@@ -551,6 +746,28 @@ function Reader({
                 text={lookup.result.targetText}
                 language={speechLanguage[profile.targetLanguage]}
               />
+              <div className="display-preferences">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={selectionShowRomanization}
+                    onChange={(event) =>
+                      setSelectionShowRomanization(event.target.checked)
+                    }
+                  />
+                  Show romanization in replacements
+                </label>
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={selectionShowEnglish}
+                    onChange={(event) =>
+                      setSelectionShowEnglish(event.target.checked)
+                    }
+                  />
+                  Show English in replacements
+                </label>
+              </div>
               <div className="word-action-grid">
                 <button type="button" onClick={() => applySelection(false)}>
                   Replace here

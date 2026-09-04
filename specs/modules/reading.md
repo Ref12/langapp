@@ -63,6 +63,11 @@ Imports MUST preserve chapter boundaries:
 - Content with no chapter markers becomes one chapter.
 
 Each chapter keeps independent analysis state and annotations.
+AI analysis accepts up to 128,000 chapter characters per operation. Chapters
+over 120,000 characters MUST be split at stable sentence or paragraph
+boundaries while preserving source offsets and prompt headroom. A failed
+analysis message MUST report the full chapter length, chunk number, and
+attempted chunk length.
 
 ### 4.3 Reader
 
@@ -71,6 +76,8 @@ The reader MUST:
 - Preserve document, section, paragraph, and heading structure.
 - Restore the learner's last position.
 - Provide chapter selection plus previous and next chapter navigation.
+- Persist the active chapter and approximate scroll position for each book.
+- Let the learner create, revisit, and delete bookmarks.
 - Apply the selected learning technique to stable content spans.
 - Keep canonical source content separate from derived annotations.
 - Support keyboard, touch, pointer, and screen-reader interaction.
@@ -84,12 +91,18 @@ popup MUST offer:
 - Read aloud using the browser's target-language speech voice
 - Replace this occurrence only
 - Add the item to the ongoing weave and shared Dictionary
+- Independently show or hide romanization and the English equivalent in replacements
 
 Replacing one occurrence MUST preserve canonical chapter text. Adding to the
 weave creates a Learning state and immediately substitutes every whole-word
 occurrence of that English surface form in every chapter of every book in the
 selected language profile. Books imported later MUST apply all tracked weave
 items during import.
+
+Tracked learning state is the rendering source of truth. Every time reading
+content is shown—currently open, revisited, or newly imported—the reader MUST
+overlay all globally tracked weave items even if persisted annotations are
+missing or stale.
 
 Translation requests MUST mark the exact selected occurrence and include up to
 two surrounding sentences on each side so the AI translates the word's
@@ -175,3 +188,7 @@ The Reading module is acceptable when:
     creates a shared Learning item.
 13. “Add to weave” updates matching occurrences in the current chapter, other
     chapters, all existing books, and books imported later.
+14. A tracked item's popup can independently show or hide romanization and the
+    English equivalent across all replacements.
+15. Reopening a book restores its last chapter and approximate scroll position.
+16. Bookmarks can be added, revisited, and deleted.

@@ -64,6 +64,8 @@ export interface UserItemState {
   itemId: string
   tier: KnowledgeTier
   confidence: number
+  showRomanization?: boolean
+  showEnglish?: boolean
   introducedAt: string
   updatedAt: string
 }
@@ -78,6 +80,8 @@ export interface WeaveAnnotation {
   romanization: string
   gloss: string
   tier: KnowledgeTier
+  showRomanization?: boolean
+  showEnglish?: boolean
 }
 
 export interface EvidenceEvent {
@@ -104,6 +108,25 @@ export interface ReviewAttempt {
   activity: ReviewActivity
   answer: string
   correct: boolean
+  createdAt: string
+}
+
+export interface ReadingProgress {
+  id: string
+  profileId: string
+  documentId: string
+  chapterId: string
+  scrollRatio: number
+  updatedAt: string
+}
+
+export interface ReadingBookmark {
+  id: string
+  profileId: string
+  documentId: string
+  chapterId: string
+  scrollRatio: number
+  label: string
   createdAt: string
 }
 

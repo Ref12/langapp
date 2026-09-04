@@ -17,8 +17,10 @@ export const analyzeTextOutputSchema = z.object({
   candidates: z.array(weaveCandidateSchema),
 })
 
+export const maximumAnalysisTextLength = 128_000
+
 export const analyzeTextInputSchema = z.object({
-  text: z.string().min(1).max(20_000),
+  text: z.string().min(1).max(maximumAnalysisTextLength),
   targetLanguage: z.enum(['zh', 'ja', 'ko']),
   romanization: z.string().min(1),
   maximumNewItems: z.number().int().min(0).max(50),

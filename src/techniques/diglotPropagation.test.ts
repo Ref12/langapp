@@ -77,6 +77,32 @@ describe('library-wide weave propagation', () => {
     ).toHaveLength(3)
   })
 
+  it('gives an explicitly added item precedence over an overlapping annotation', async () => {
+    const conflictingChapter = chapter('conflict', 'The door opened.')
+    conflictingChapter.annotations.push({
+      id: 'old',
+      itemId: 'old-item',
+      start: 4,
+      end: 8,
+      sourceText: 'door',
+      targetText: '戸',
+      romanization: 'to',
+      gloss: 'door',
+      tier: 'learning',
+    })
+    await db.libraryItems.add(book('conflicting-book', [conflictingChapter]))
+
+    await propagateLearningItemAcrossLibrary(
+      'profile',
+      learningItem,
+      'learning',
+    )
+    const updated = await db.libraryItems.get('conflicting-book')
+
+    expect(updated?.chapters[0]?.annotations).toHaveLength(1)
+    expect(updated?.chapters[0]?.annotations[0]?.itemId).toBe(learningItem.id)
+  })
+
   it('applies tracked items to a future import', async () => {
     await db.learningItems.add(learningItem)
     await db.userItemStates.add({

@@ -541,6 +541,38 @@ label {
   margin: -0.8rem 0 1.2rem;
 }
 
+.bookmark-toolbar {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.bookmark-list {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.bookmark-chip {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.bookmark-chip button {
+  border: 0;
+  border-radius: 0;
+  padding: 0.48rem 0.62rem;
+}
+
+.bookmark-chip button + button {
+  border-left: 1px solid var(--line);
+}
+
 .reader-hint {
   font-size: 0.84rem;
   padding: 0.65rem 0.8rem;
@@ -601,6 +633,12 @@ label {
   font-size: 0.58em;
 }
 
+.woven-english {
+  color: #6d6046;
+  font-size: 0.78em;
+  font-weight: 600;
+}
+
 .word-popover {
   position: fixed;
   right: 1.5rem;
@@ -645,6 +683,16 @@ label {
   font-size: 0.82rem;
   font-weight: 750;
   margin-bottom: 0.6rem;
+}
+
+.display-preferences {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+
+.display-preferences label {
+  font-size: 0.78rem;
 }
 
 .word-action-grid {
@@ -825,6 +873,14 @@ label {
   padding: 0.9rem 1rem;
   border-radius: 12px;
   margin-bottom: 1rem;
+}
+
+.success-banner {
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  background: #dcece4;
+  color: var(--green-dark);
 }
 
 .warning-box {
