@@ -27,6 +27,7 @@ import {
   type LanguageProfile,
   type LearningItem,
   type LibraryItem,
+  type ReadingProgress,
   type WeaveAnnotation,
 } from '../../core/domain'
 import { createId, nowIso } from '../../core/ids'
@@ -64,10 +65,32 @@ export function ReadingPage() {
   )
   const [selectedId, setSelectedId] = useState<string>()
   const [showImport, setShowImport] = useState(false)
+  const lastDocumentSetting = useLiveQuery(
+    () =>
+      profile
+        ? db.settings.get(`lastReadingDocument:${profile.id}`)
+        : undefined,
+    [profile?.id],
+  )
 
   useEffect(() => {
-    if (!selectedId && library?.[0]) setSelectedId(library[0].id)
-  }, [library, selectedId])
+    if (!library?.length) return
+    if (selectedId && library.some((item) => item.id === selectedId)) return
+    const preferred = library.find(
+      (item) => item.id === lastDocumentSetting?.value,
+    )
+    setSelectedId(preferred?.id ?? library[0].id)
+  }, [lastDocumentSetting?.value, library, selectedId])
+
+  const selectDocument = async (documentId: string) => {
+    setSelectedId(documentId)
+    if (profile) {
+      await db.settings.put({
+        key: `lastReadingDocument:${profile.id}`,
+        value: documentId,
+      })
+    }
+  }
 
   const selected = library?.find((item) => item.id === selectedId)
 
@@ -95,7 +118,7 @@ export function ReadingPage() {
           <ImportPanel
             profileId={profile.id}
             onImported={(id) => {
-              setSelectedId(id)
+              void selectDocument(id)
               setShowImport(false)
             }}
           />
@@ -111,7 +134,7 @@ export function ReadingPage() {
                     ? 'document-item active'
                     : 'document-item'
                 }
-                onClick={() => setSelectedId(item.id)}
+                onClick={() => void selectDocument(item.id)}
                 key={item.id}
               >
                 <BookOpen size={17} />
@@ -307,6 +330,18 @@ function Reader({
   const [selectionShowEnglish, setSelectionShowEnglish] = useState(false)
   const progressId = `${profile.id}:${item.id}`
   const scrollSaveTimer = useRef<number>()
+  const latestProgress = useRef<ReadingProgress>({
+    id: progressId,
+    profileId: profile.id,
+    documentId: item.id,
+    chapterId: firstChapterId,
+    scrollRatio: 0,
+    updatedAt: nowIso(),
+  })
+  const validChapterIds = useMemo(
+    () => new Set(chapters.map((chapter) => chapter.id)),
+    [chapters],
+  )
   const bookmarks =
     useLiveQuery(
       () =>
@@ -332,23 +367,47 @@ function Reader({
     db.readingProgress.get(progressId).then((progress) => {
       if (!active) return
       const restoredChapter =
-        progress &&
-        chapters.some((candidate) => candidate.id === progress.chapterId)
+        progress && validChapterIds.has(progress.chapterId)
           ? progress.chapterId
           : firstChapterId
+      latestProgress.current =
+        progress && progress.chapterId === restoredChapter
+          ? progress
+          : {
+              id: progressId,
+              profileId: profile.id,
+              documentId: item.id,
+              chapterId: restoredChapter,
+              scrollRatio: 0,
+              updatedAt: nowIso(),
+            }
       setChapterId(restoredChapter)
       setLookup(undefined)
       window.setTimeout(() => {
         if (!active) return
         const maximum =
           document.documentElement.scrollHeight - window.innerHeight
-        window.scrollTo({ top: maximum * (progress?.scrollRatio ?? 0) })
+        window.scrollTo({
+          top: maximum * latestProgress.current.scrollRatio,
+        })
       }, 50)
     })
     return () => {
       active = false
+      window.clearTimeout(scrollSaveTimer.current)
+      void db.readingProgress.put({
+        ...latestProgress.current,
+        scrollRatio: currentScrollRatio(),
+        updatedAt: nowIso(),
+      })
     }
-  }, [item.id, progressId, firstChapterId, chapters])
+  }, [
+    firstChapterId,
+    item.id,
+    profile.id,
+    progressId,
+    validChapterIds,
+  ])
 
   const chapterIndex = Math.max(
     chapters.findIndex((chapter) => chapter.id === chapterId),
@@ -357,38 +416,43 @@ function Reader({
   const chapter = chapters[chapterIndex] ?? chapters[0]!
 
   useEffect(() => {
+    const persist = () => db.readingProgress.put(latestProgress.current)
     const save = () => {
+      latestProgress.current = {
+        ...latestProgress.current,
+        scrollRatio: currentScrollRatio(),
+        updatedAt: nowIso(),
+      }
       window.clearTimeout(scrollSaveTimer.current)
       scrollSaveTimer.current = window.setTimeout(() => {
-        db.readingProgress.put({
-          id: progressId,
-          profileId: profile.id,
-          documentId: item.id,
-          chapterId: chapter.id,
-          scrollRatio: currentScrollRatio(),
-          updatedAt: nowIso(),
-        })
+        void persist()
       }, 250)
     }
+    const saveBeforeUnload = () => {
+      void persist()
+    }
     window.addEventListener('scroll', save, { passive: true })
+    window.addEventListener('beforeunload', saveBeforeUnload)
     return () => {
       window.removeEventListener('scroll', save)
+      window.removeEventListener('beforeunload', saveBeforeUnload)
       window.clearTimeout(scrollSaveTimer.current)
-      save()
     }
-  }, [chapter.id, item.id, profile.id, progressId])
+  }, [])
 
   const openChapter = async (nextChapterId: string, ratio = 0) => {
+    window.clearTimeout(scrollSaveTimer.current)
     setChapterId(nextChapterId)
     setLookup(undefined)
-    await db.readingProgress.put({
+    latestProgress.current = {
       id: progressId,
       profileId: profile.id,
       documentId: item.id,
       chapterId: nextChapterId,
       scrollRatio: ratio,
       updatedAt: nowIso(),
-    })
+    }
+    await db.readingProgress.put(latestProgress.current)
     window.setTimeout(() => {
       const maximum =
         document.documentElement.scrollHeight - window.innerHeight

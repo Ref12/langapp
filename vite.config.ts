@@ -14,7 +14,8 @@ export default defineConfig(async () => {
     plugins: [
       react(),
       VitePWA({
-        registerType: 'autoUpdate',
+        registerType: 'prompt',
+        injectRegister: null,
         manifest: {
           name: 'LinguaWeave',
           short_name: 'LinguaWeave',

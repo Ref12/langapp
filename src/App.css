@@ -883,6 +883,25 @@ label {
   color: var(--green-dark);
 }
 
+.update-prompt {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 2rem));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0.9rem 0.8rem 1rem;
+  color: white;
+  background: var(--green-dark);
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
 .warning-box {
   background: #fff1c8;
   color: #684f16;

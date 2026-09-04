@@ -1,5 +1,6 @@
 import { AppShell } from './components/AppShell'
 import { ProfileGate } from './components/ProfileGate'
+import { UpdatePrompt } from './components/UpdatePrompt'
 import { useHashPath } from './core/hashRoute'
 import { moduleRegistry } from './modules/registry'
 import { DashboardPage } from './pages/DashboardPage'
@@ -34,9 +35,12 @@ export default function App() {
   const path = useHashPath()
   return (
     <ProfileGate>
-      <AppShell currentPath={path}>
-        <CurrentPage path={path} />
-      </AppShell>
+      <>
+        <AppShell currentPath={path}>
+          <CurrentPage path={path} />
+        </AppShell>
+        <UpdatePrompt />
+      </>
     </ProfileGate>
   )
 }
