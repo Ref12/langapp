@@ -25,6 +25,7 @@ Initial operations:
 |---|---|
 | `language.analyzeText` | Propose contextual learning-item spans and target variants |
 | `language.suggestFrequentItems` | Translate a ranked set of frequent chapter words |
+| `language.translateImmersion` | Fully translate chapter text into annotated lexical units |
 | `language.validateVariant` | Validate or repair a target form and romanization |
 | `language.translateSelection` | Translate one learner-selected source span in context |
 | `review.evaluateAnswer` | Evaluate an answer when deterministic validation is insufficient |

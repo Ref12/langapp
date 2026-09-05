@@ -140,6 +140,32 @@ The learner MUST be able to choose:
 
 The initial and default technique is `diglot-weave`.
 
+### 4.5 Immersion mode
+
+The reader MUST offer `Weave` and `Immersion` modes per book and remember the
+selected mode.
+
+Entering Immersion mode MUST send the complete chapter text to the curated AI
+operation in bounded chunks and request a structured, fully translated result.
+The result MUST preserve paragraph order and provide target text,
+romanization, contextual English meaning, punctuation, and spacing for every
+lexical unit. Completed translations are cached on the chapter.
+
+Immersion mode MUST initially show both romanization and English meaning for
+each target-language unit. Activating a unit opens the standard word popup with:
+
+- Native target form
+- Romanization
+- Contextual English meaning
+- Exact target-form occurrence count in the translated chapter
+- Read aloud and speed controls
+- Independent romanization and English visibility controls
+- An explicit Add to weave action when the item is not tracked
+
+Hiding either romanization or English for an untracked unit MUST add that item
+to the profile's global weave. Later changes to those display preferences MUST
+apply wherever the tracked item is rendered.
+
 ## 5. Diglot weave integration
 
 The Reading module MUST call the shared diglot weave technique rather than implement its own planner or substitution logic.
@@ -211,3 +237,7 @@ The Reading module is acceptable when:
 16. Bookmarks can be added, revisited, and deleted.
 17. Chapter analysis presents at most 25 frequent content words with occurrence
     counts and does not add them until selected.
+18. Immersion mode fully translates and annotates a chapter through a structured
+    AI operation and caches the result.
+19. Immersion word popups show chapter occurrence counts and add words to the
+    global weave when either learning aid is hidden.

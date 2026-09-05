@@ -93,6 +93,27 @@ export const suggestFrequentItemsOutputSchema = z.object({
   ),
 })
 
+export const translateImmersionInputSchema = z.object({
+  text: z.string().min(1).max(12_000),
+  targetLanguage: z.enum(['zh', 'ja', 'ko']),
+  romanization: z.string().min(1),
+})
+
+export const translateImmersionOutputSchema = z.object({
+  blocks: z.array(
+    z.object({
+      tokens: z.array(
+        z.object({
+          targetText: z.string().min(1),
+          romanization: z.string(),
+          english: z.string().min(1),
+          after: z.string(),
+        }),
+      ),
+    }),
+  ),
+})
+
 export type AnalyzeTextInput = z.infer<typeof analyzeTextInputSchema>
 export type AnalyzeTextOutput = z.infer<typeof analyzeTextOutputSchema>
 export type GenerateTurnInput = z.infer<typeof generateTurnInputSchema>
@@ -108,4 +129,10 @@ export type SuggestFrequentItemsInput = z.infer<
 >
 export type SuggestFrequentItemsOutput = z.infer<
   typeof suggestFrequentItemsOutputSchema
+>
+export type TranslateImmersionInput = z.infer<
+  typeof translateImmersionInputSchema
+>
+export type TranslateImmersionOutput = z.infer<
+  typeof translateImmersionOutputSchema
 >

@@ -9,6 +9,8 @@ import {
   translateSelectionOutputSchema,
   suggestFrequentItemsInputSchema,
   suggestFrequentItemsOutputSchema,
+  translateImmersionInputSchema,
+  translateImmersionOutputSchema,
   type AnalyzeTextInput,
   type AnalyzeTextOutput,
   type GenerateTurnInput,
@@ -17,6 +19,8 @@ import {
   type TranslateSelectionOutput,
   type SuggestFrequentItemsInput,
   type SuggestFrequentItemsOutput,
+  type TranslateImmersionInput,
+  type TranslateImmersionOutput,
 } from './schemas'
 
 function extractJson(content: string): unknown {
@@ -161,6 +165,42 @@ ${candidateList}`,
       return suggestFrequentItemsOutputSchema.parse(extractJson(content))
     },
   },
+  'language.translateImmersion': {
+    input: translateImmersionInputSchema,
+    output: translateImmersionOutputSchema,
+    async execute(input: TranslateImmersionInput, signal?: AbortSignal) {
+      const language = languageNames[input.targetLanguage]
+      const content = await requestChatCompletion(
+        [
+          {
+            role: 'system',
+            content:
+              'Translate all supplied English prose into natural target-language prose. Return JSON only. Preserve every idea and paragraph. Tokenize the translation into meaningful words or short lexical units for a learner.',
+          },
+          {
+            role: 'user',
+            content: `Translate this complete text into ${language}. Use ${input.romanization} romanization.
+
+Return:
+{"blocks":[{"tokens":[{"targetText":"target word or short unit","romanization":"romanization","english":"contextual English meaning","after":"punctuation and spacing after this token"}]}]}
+
+Requirements:
+- Do not omit, summarize, or explain any source content.
+- Create a block for each source paragraph, in order.
+- Put punctuation and spacing in "after".
+- Keep targetText free of surrounding punctuation.
+- Give every lexical token a contextual English meaning.
+
+TEXT:
+${input.text}`,
+          },
+        ],
+        signal,
+        { maximumOutputTokens: 16_000, temperature: 0.2 },
+      )
+      return translateImmersionOutputSchema.parse(extractJson(content))
+    },
+  },
 }
 
 export type AIOperationId = keyof typeof operations
@@ -186,18 +226,25 @@ export async function invokeAIOperation(
   signal?: AbortSignal,
 ): Promise<SuggestFrequentItemsOutput>
 export async function invokeAIOperation(
+  id: 'language.translateImmersion',
+  input: TranslateImmersionInput,
+  signal?: AbortSignal,
+): Promise<TranslateImmersionOutput>
+export async function invokeAIOperation(
   id: AIOperationId,
   input:
     | AnalyzeTextInput
     | GenerateTurnInput
     | TranslateSelectionInput
-    | SuggestFrequentItemsInput,
+    | SuggestFrequentItemsInput
+    | TranslateImmersionInput,
   signal?: AbortSignal,
 ): Promise<
   | AnalyzeTextOutput
   | GenerateTurnOutput
   | TranslateSelectionOutput
   | SuggestFrequentItemsOutput
+  | TranslateImmersionOutput
 > {
   const operation = operations[id] as {
     input: { parse: (value: unknown) => unknown }
@@ -211,4 +258,5 @@ export async function invokeAIOperation(
     | GenerateTurnOutput
     | TranslateSelectionOutput
     | SuggestFrequentItemsOutput
+    | TranslateImmersionOutput
 }

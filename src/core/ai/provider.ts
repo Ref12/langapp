@@ -13,6 +13,11 @@ interface ChatCompletionResponse {
   }>
 }
 
+interface ChatCompletionOptions {
+  maximumOutputTokens?: number
+  temperature?: number
+}
+
 function normalizeBaseUrl(baseUrl: string): string {
   return baseUrl.replace(/\/+$/, '')
 }
@@ -20,6 +25,7 @@ function normalizeBaseUrl(baseUrl: string): string {
 export async function requestChatCompletion(
   messages: ChatMessage[],
   signal?: AbortSignal,
+  options: ChatCompletionOptions = {},
 ): Promise<string> {
   const connection = await db.aiConnections.get('default')
   if (!connection || !connection.baseUrl || !connection.apiKey || !connection.model) {
@@ -37,7 +43,10 @@ export async function requestChatCompletion(
       body: JSON.stringify({
         model: connection.model,
         messages,
-        temperature: 0.3,
+        temperature: options.temperature ?? 0.3,
+        ...(options.maximumOutputTokens
+          ? { max_tokens: options.maximumOutputTokens }
+          : {}),
       }),
       signal,
     })

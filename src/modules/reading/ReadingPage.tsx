@@ -25,6 +25,7 @@ import {
   type ChapterWordSuggestion,
   type DocumentChapter,
   type EnglishWordSelection,
+  type ImmersionBlock,
   type LanguageProfile,
   type LearningItem,
   type LibraryItem,
@@ -40,7 +41,9 @@ import {
   type ImportedDocument,
 } from '../../core/importers'
 import { contextAroundSelection } from '../../core/textContext'
+import { splitTextForAnalysis } from '../../core/textChunks'
 import { frequentContentWords } from '../../core/wordFrequency'
+import { ImmersionText } from '../../components/ImmersionText'
 import { SpeechControls } from '../../components/SpeechControls'
 import { ModuleFrame } from '../../components/ModuleFrame'
 import { WovenText } from '../../components/WovenText'
@@ -312,6 +315,22 @@ function currentScrollRatio(): number {
     : 0
 }
 
+async function patchDocumentChapter(
+  documentId: string,
+  chapterId: string,
+  patch: Partial<DocumentChapter>,
+): Promise<void> {
+  const current = await db.libraryItems.get(documentId)
+  if (!current) return
+  const chapters = chaptersFor(current).map((chapter) =>
+    chapter.id === chapterId ? { ...chapter, ...patch } : chapter,
+  )
+  await db.libraryItems.update(documentId, {
+    chapters,
+    updatedAt: nowIso(),
+  })
+}
+
 function Reader({
   item,
   profile,
@@ -324,6 +343,10 @@ function Reader({
   const [chapterId, setChapterId] = useState(firstChapterId)
   const [busy, setBusy] = useState(false)
   const [analysisProgress, setAnalysisProgress] = useState('')
+  const [readingMode, setReadingMode] = useState<'weave' | 'immersion'>(
+    'weave',
+  )
+  const [immersionProgress, setImmersionProgress] = useState('')
   const [selectedSuggestions, setSelectedSuggestions] = useState<Set<string>>(
     new Set(),
   )
@@ -339,6 +362,7 @@ function Reader({
     documentId: item.id,
     chapterId: firstChapterId,
     scrollRatio: 0,
+    mode: 'weave',
     updatedAt: nowIso(),
   })
   const validChapterIds = useMemo(
@@ -382,8 +406,10 @@ function Reader({
               documentId: item.id,
               chapterId: restoredChapter,
               scrollRatio: 0,
+              mode: 'weave',
               updatedAt: nowIso(),
             }
+      setReadingMode(latestProgress.current.mode ?? 'weave')
       setChapterId(restoredChapter)
       setLookup(undefined)
       setSelectedSuggestions(new Set())
@@ -454,6 +480,7 @@ function Reader({
       documentId: item.id,
       chapterId: nextChapterId,
       scrollRatio: ratio,
+      mode: readingMode,
       updatedAt: nowIso(),
     }
     await db.readingProgress.put(latestProgress.current)
@@ -462,6 +489,17 @@ function Reader({
         document.documentElement.scrollHeight - window.innerHeight
       window.scrollTo({ top: maximum * ratio, behavior: 'smooth' })
     }, 30)
+
+    const nextChapter = chapters.find(
+      (candidate) => candidate.id === nextChapterId,
+    )
+    if (
+      readingMode === 'immersion' &&
+      nextChapter &&
+      !nextChapter.immersion
+    ) {
+      void translateImmersionChapter(nextChapter)
+    }
   }
 
   const updateChapter = async (
@@ -480,6 +518,88 @@ function Reader({
       )?.analysisError ?? '',
       updatedAt: nowIso(),
     })
+  }
+
+  const translateImmersionChapter = async (
+    targetChapter: DocumentChapter,
+  ) => {
+    if (targetChapter.immersion?.status === 'translating') return
+    setImmersionProgress('Preparing immersion translation…')
+    setNotice('')
+    await patchDocumentChapter(item.id, targetChapter.id, {
+      immersion: {
+        status: 'translating',
+        blocks: targetChapter.immersion?.blocks ?? [],
+        error: '',
+      },
+    })
+
+    try {
+      const chunks = splitTextForAnalysis(targetChapter.content, 2_500)
+      const blocks: ImmersionBlock[] = []
+      for (const [chunkIndex, chunk] of chunks.entries()) {
+        setImmersionProgress(
+          `Translating ${chunkIndex + 1}/${chunks.length}…`,
+        )
+        const translated = await invokeAIOperation(
+          'language.translateImmersion',
+          {
+            text: chunk.text,
+            targetLanguage: profile.targetLanguage,
+            romanization: profile.romanization,
+          },
+        )
+        blocks.push(
+          ...translated.blocks.map((block, blockIndex) => ({
+            id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}`,
+            tokens: block.tokens.map((token, tokenIndex) => ({
+              id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}:${tokenIndex}`,
+              ...token,
+            })),
+          })),
+        )
+      }
+
+      await patchDocumentChapter(item.id, targetChapter.id, {
+        immersion: {
+          status: 'ready',
+          blocks,
+          error: '',
+          translatedAt: nowIso(),
+        },
+      })
+      setNotice(
+        `Immersion translation completed with ${blocks
+          .flatMap((block) => block.tokens)
+          .length.toLocaleString()} annotated units.`,
+      )
+    } catch (error) {
+      const detail =
+        error instanceof Error ? error.message : 'Immersion translation failed.'
+      await patchDocumentChapter(item.id, targetChapter.id, {
+        immersion: {
+          status: 'failed',
+          blocks: [],
+          error: `Chapter length: ${targetChapter.content.length.toLocaleString()} characters. ${detail}`,
+        },
+      })
+    } finally {
+      setImmersionProgress('')
+    }
+  }
+
+  const changeReadingMode = async (mode: 'weave' | 'immersion') => {
+    setReadingMode(mode)
+    setLookup(undefined)
+    latestProgress.current = {
+      ...latestProgress.current,
+      mode,
+      updatedAt: nowIso(),
+    }
+    await db.readingProgress.put(latestProgress.current)
+    if (mode === 'immersion' && chapter.immersion?.status !== 'ready') {
+      void translateImmersionChapter(chapter)
+    }
   }
 
   const analyze = async () => {
@@ -812,13 +932,51 @@ function Reader({
           <h1>{item.title}</h1>
           <p className="chapter-title">{chapter.title}</p>
         </div>
-        <button className="primary-button" disabled={busy} onClick={analyze}>
-          {busy ? <LoaderCircle className="spin" /> : <Sparkles />}
-          {analysisProgress ||
-            (chapter.suggestions?.length
-              ? 'Refresh candidates'
-              : 'Analyze chapter')}
-        </button>
+        <div className="reader-header-actions">
+          <div className="mode-toggle" aria-label="Reading mode">
+            <button
+              type="button"
+              className={readingMode === 'weave' ? 'active' : ''}
+              onClick={() => void changeReadingMode('weave')}
+            >
+              Weave
+            </button>
+            <button
+              type="button"
+              className={readingMode === 'immersion' ? 'active' : ''}
+              onClick={() => void changeReadingMode('immersion')}
+            >
+              Immersion
+            </button>
+          </div>
+          {readingMode === 'weave' ? (
+            <button
+              className="primary-button"
+              disabled={busy}
+              onClick={analyze}
+            >
+              {busy ? <LoaderCircle className="spin" /> : <Sparkles />}
+              {analysisProgress ||
+                (chapter.suggestions?.length
+                  ? 'Refresh candidates'
+                  : 'Analyze chapter')}
+            </button>
+          ) : (
+            <button
+              className="primary-button"
+              disabled={
+                Boolean(immersionProgress) ||
+                chapter.immersion?.status === 'translating'
+              }
+              onClick={() => void translateImmersionChapter(chapter)}
+            >
+              {immersionProgress ||
+                (chapter.immersion?.status === 'ready'
+                  ? 'Refresh translation'
+                  : 'Translate chapter')}
+            </button>
+          )}
+        </div>
       </header>
 
       <nav className="chapter-navigation" aria-label="Chapter navigation">
@@ -906,8 +1064,12 @@ function Reader({
       {chapter.analysisError && (
         <div className="error-banner">{chapter.analysisError}</div>
       )}
+      {readingMode === 'immersion' && chapter.immersion?.error && (
+        <div className="error-banner">{chapter.immersion.error}</div>
+      )}
       {notice && <div className="success-banner">{notice}</div>}
-      {(chapter.suggestions?.length ?? 0) > 0 && (
+      {readingMode === 'weave' &&
+        (chapter.suggestions?.length ?? 0) > 0 && (
         <section className="candidate-panel">
           <div className="candidate-header">
             <div>
@@ -983,28 +1145,60 @@ function Reader({
           </button>
         </section>
       )}
-      <p className="reader-hint">
-        Select any English word to translate, hear, replace, or add to your
-        ongoing weave.
-      </p>
-      <WovenText
-        content={chapter.content}
-        annotations={chapter.annotations}
-        onSelectEnglish={selectEnglish}
-        profileId={profile.id}
-        onUpdateDisplay={async (annotation, preferences) => {
-          await updateChapter({
-            annotations: chapter.annotations.map((candidate) =>
-              candidate.id === annotation.id
-                ? { ...candidate, ...preferences }
-                : candidate,
-            ),
-          })
-        }}
-        speechLang={speechLanguage[profile.targetLanguage]}
-      />
+      {readingMode === 'weave' ? (
+        <>
+          <p className="reader-hint">
+            Select any English word to translate, hear, replace, or add to your
+            ongoing weave.
+          </p>
+          <WovenText
+            content={chapter.content}
+            annotations={chapter.annotations}
+            onSelectEnglish={selectEnglish}
+            profileId={profile.id}
+            onUpdateDisplay={async (annotation, preferences) => {
+              await updateChapter({
+                annotations: chapter.annotations.map((candidate) =>
+                  candidate.id === annotation.id
+                    ? { ...candidate, ...preferences }
+                    : candidate,
+                ),
+              })
+            }}
+            speechLang={speechLanguage[profile.targetLanguage]}
+          />
+        </>
+      ) : chapter.immersion?.status === 'ready' ? (
+        <ImmersionText blocks={chapter.immersion.blocks} profile={profile} />
+      ) : (
+        <div className="immersion-empty">
+          {chapter.immersion?.status === 'translating' || immersionProgress ? (
+            <>
+              <LoaderCircle className="spin" />
+              <h2>{immersionProgress || 'Translating chapter…'}</h2>
+              <p>
+                The AI is producing structured target text with romanization
+                and English annotations.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2>Translate this chapter for immersion</h2>
+              <p>
+                The translation is cached locally after it is generated.
+              </p>
+              <button
+                className="primary-button"
+                onClick={() => void translateImmersionChapter(chapter)}
+              >
+                Translate chapter
+              </button>
+            </>
+          )}
+        </div>
+      )}
 
-      {lookup && (
+      {readingMode === 'weave' && lookup && (
         <div
           className="word-popover selection-popover"
           role="dialog"

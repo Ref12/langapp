@@ -443,6 +443,7 @@ Modules MAY add namespaced entities that reference core IDs. The Reading module 
 - Bookmarks containing document, chapter, and relative scroll position
 - Offline download state
 - Active reading technique per profile or document
+- Cached structured immersion translations per chapter
 - Diglot weave planner version and per-document plan
 - Learner-pinned occurrence decisions
 - Reading-specific correction workflow state

@@ -12,6 +12,7 @@ export const readingModule = defineLearningModule({
   requiredAIOperations: [
     'language.analyzeText',
     'language.suggestFrequentItems',
+    'language.translateImmersion',
     'language.translateSelection',
   ],
   component: ReadingPage,

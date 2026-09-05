@@ -40,6 +40,7 @@ export interface DocumentChapter {
   analysisStatus: 'not-analyzed' | 'analyzing' | 'ready' | 'failed'
   analysisError?: string
   suggestions?: ChapterWordSuggestion[]
+  immersion?: ChapterImmersion
 }
 
 export interface ChapterWordSuggestion {
@@ -49,6 +50,26 @@ export interface ChapterWordSuggestion {
   romanization: string
   gloss: string
   occurrenceCount: number
+}
+
+export interface ChapterImmersion {
+  status: 'translating' | 'ready' | 'failed'
+  blocks: ImmersionBlock[]
+  error?: string
+  translatedAt?: string
+}
+
+export interface ImmersionBlock {
+  id: string
+  tokens: ImmersionToken[]
+}
+
+export interface ImmersionToken {
+  id: string
+  targetText: string
+  romanization: string
+  english: string
+  after: string
 }
 
 export interface EnglishWordSelection {
@@ -127,6 +148,7 @@ export interface ReadingProgress {
   documentId: string
   chapterId: string
   scrollRatio: number
+  mode?: 'weave' | 'immersion'
   updatedAt: string
 }
 
