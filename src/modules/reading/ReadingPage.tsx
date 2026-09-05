@@ -43,7 +43,10 @@ import {
 } from '../../core/importers'
 import { contextAroundSelection } from '../../core/textContext'
 import { splitTextForAnalysis } from '../../core/textChunks'
-import { frequentContentWords } from '../../core/wordFrequency'
+import {
+  detectProperNames,
+  frequentContentWords,
+} from '../../core/wordFrequency'
 import { ImmersionText } from '../../components/ImmersionText'
 import { SpeechControls } from '../../components/SpeechControls'
 import { ModuleFrame } from '../../components/ModuleFrame'
@@ -541,6 +544,7 @@ function Reader({
 
     try {
       const chunks = splitTextForAnalysis(targetChapter.content, 1_500)
+      const properNames = new Set(detectProperNames(targetChapter.content))
       const results: Array<ImmersionBlock[] | undefined> = new Array(
         chunks.length,
       )
@@ -561,18 +565,27 @@ function Reader({
               text: chunks[chunkIndex].text,
               targetLanguage: profile.targetLanguage,
               romanization: profile.romanization,
+              properNames: [...properNames].filter((name) =>
+                chunks[chunkIndex].text.includes(name),
+              ),
             },
             controller.signal,
           )
           results[chunkIndex] = translated.blocks.map((tokens, blockIndex) => ({
             id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}`,
-            tokens: tokens.map((token, tokenIndex) => ({
-              id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}:${tokenIndex}`,
-              targetText: token[0],
-              romanization: token[1],
-              english: token[2],
-              after: token[3],
-            })),
+            tokens: tokens.map((token, tokenIndex) => {
+              const properName = [...properNames].find(
+                (name) =>
+                  name.toLocaleLowerCase() === token[2].toLocaleLowerCase(),
+              )
+              return {
+                id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}:${tokenIndex}`,
+                targetText: properName ?? token[0],
+                romanization: properName ? '' : token[1],
+                english: token[2],
+                after: token[3],
+              }
+            }),
           }))
           completed += 1
           const partialBlocks = results.flatMap((result) => result ?? [])

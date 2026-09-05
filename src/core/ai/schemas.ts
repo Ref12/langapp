@@ -97,6 +97,7 @@ export const translateImmersionInputSchema = z.object({
   text: z.string().min(1).max(12_000),
   targetLanguage: z.enum(['zh', 'ja', 'ko']),
   romanization: z.string().min(1),
+  properNames: z.array(z.string().min(1)).max(200),
 })
 
 export const translateImmersionOutputSchema = z.object({

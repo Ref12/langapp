@@ -151,6 +151,10 @@ The result MUST preserve paragraph order and provide target text,
 romanization, contextual English meaning, punctuation, and spacing for every
 lexical unit. Completed translations are cached on the chapter.
 
+Proper names MUST remain in their original Latin spelling. The client supplies
+detected names to the AI and defensively restores the original spelling when a
+returned token's English annotation identifies one of those names.
+
 Long translations MUST use compact tuple-based annotation JSON in bounded
 chunks with at most three provider requests
 in flight. Each request MUST time out, progress MUST report completed chunks,

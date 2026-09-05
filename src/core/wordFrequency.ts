@@ -144,7 +144,12 @@ export function frequentContentWords(
   )
   const counts = new Map<
     string,
-    { sourceText: string; count: number; firstStart: number }
+    {
+      sourceText: string
+      count: number
+      firstStart: number
+      seenLowercase: boolean
+    }
   >()
   const wordPattern = /[A-Za-z]+(?:['’-][A-Za-z]+)*/g
 
@@ -160,17 +165,24 @@ export function frequentContentWords(
     }
 
     const current = counts.get(normalized)
-    if (current) current.count += 1
+    const startsLowercase = sourceText[0] === sourceText[0]?.toLocaleLowerCase()
+    if (current) {
+      current.count += 1
+      current.seenLowercase ||= startsLowercase
+      if (startsLowercase) current.sourceText = sourceText
+    }
     else {
       counts.set(normalized, {
         sourceText,
         count: 1,
         firstStart: match.index,
+        seenLowercase: startsLowercase,
       })
     }
   }
 
   return [...counts.values()]
+    .filter((word) => word.seenLowercase)
     .sort(
       (left, right) =>
         right.count - left.count ||
@@ -191,4 +203,49 @@ export function frequentContentWords(
         1,
       ),
     }))
+}
+
+export function detectProperNames(text: string): string[] {
+  const wordPattern = /[A-Za-z]+(?:['’-][A-Za-z]+)*/g
+  const candidates = new Map<
+    string,
+    { sourceText: string; count: number; seenMidSentence: boolean }
+  >()
+  const ignored = new Set([
+    'chapter',
+    'part',
+    'book',
+    'introduction',
+    'preface',
+    'footnotes',
+  ])
+
+  for (const match of text.matchAll(wordPattern)) {
+    const sourceText = match[0]
+    const normalized = sourceText.toLocaleLowerCase()
+    const isCapitalized =
+      sourceText[0] !== sourceText[0]?.toLocaleLowerCase() &&
+      sourceText.slice(1) === sourceText.slice(1).toLocaleLowerCase()
+    if (!isCapitalized || ignored.has(normalized) || stopWords.has(normalized)) {
+      continue
+    }
+
+    const preceding = text.slice(0, match.index).trimEnd()
+    const sentenceStart = !preceding || /[.!?]["')\]]?$/.test(preceding)
+    const current = candidates.get(normalized)
+    if (current) {
+      current.count += 1
+      current.seenMidSentence ||= !sentenceStart
+    } else {
+      candidates.set(normalized, {
+        sourceText,
+        count: 1,
+        seenMidSentence: !sentenceStart,
+      })
+    }
+  }
+
+  return [...candidates.values()]
+    .filter((candidate) => candidate.seenMidSentence || candidate.count > 1)
+    .map((candidate) => candidate.sourceText)
 }

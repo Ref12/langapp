@@ -27,4 +27,14 @@ describe('frequent content words', () => {
     expect(words).toHaveLength(1)
     expect(words[0]?.sourceText.toLowerCase()).toBe('gate')
   })
+
+  it('excludes title-case-only proper names', () => {
+    const words = frequentContentWords(
+      'Arthur greeted Rose. Arthur asked Rose about the garden. The garden bloomed.',
+    )
+
+    expect(words.some((word) => word.sourceText === 'Arthur')).toBe(false)
+    expect(words.some((word) => word.sourceText === 'Rose')).toBe(false)
+    expect(words.some((word) => word.sourceText === 'garden')).toBe(true)
+  })
 })

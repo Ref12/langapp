@@ -204,6 +204,9 @@ Requirements:
 - Each inner array is [targetText, romanization, English meaning, trailing punctuation/spacing].
 - Keep target text free of surrounding punctuation.
 - Give every lexical token a contextual English meaning.
+- Preserve these proper names exactly in their original Latin spelling; do not translate or transliterate them: ${
+              input.properNames.join(', ') || '(none detected)'
+            }.
 
 TEXT:
 ${input.text}`,
