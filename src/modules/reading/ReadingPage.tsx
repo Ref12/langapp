@@ -34,6 +34,7 @@ import {
   type WeaveAnnotation,
 } from '../../core/domain'
 import { createId, localDateKey, nowIso } from '../../core/ids'
+import { normalizeImmersionToken } from '../../core/immersion'
 import {
   chaptersFor,
   importFile,
@@ -573,18 +574,13 @@ function Reader({
           )
           results[chunkIndex] = translated.blocks.map((tokens, blockIndex) => ({
             id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}`,
-            tokens: tokens.map((token, tokenIndex) => {
-              const properName = [...properNames].find(
-                (name) =>
-                  name.toLocaleLowerCase() === token[2].toLocaleLowerCase(),
+            tokens: tokens.flatMap((token, tokenIndex) => {
+              const normalized = normalizeImmersionToken(
+                token,
+                properNames,
+                `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}:${tokenIndex}`,
               )
-              return {
-                id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}:${tokenIndex}`,
-                targetText: properName ?? token[0],
-                romanization: properName ? '' : token[1],
-                english: token[2],
-                after: token[3],
-              }
+              return normalized ? [normalized] : []
             }),
           }))
           completed += 1

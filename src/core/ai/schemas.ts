@@ -101,16 +101,7 @@ export const translateImmersionInputSchema = z.object({
 })
 
 export const translateImmersionOutputSchema = z.object({
-  blocks: z.array(
-    z.array(
-      z.tuple([
-        z.string().min(1),
-        z.string(),
-        z.string().min(1),
-        z.string(),
-      ]),
-    ),
-  ),
+  blocks: z.array(z.array(z.array(z.string()).min(1))),
 })
 
 export type AnalyzeTextInput = z.infer<typeof analyzeTextInputSchema>

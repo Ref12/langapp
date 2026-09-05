@@ -15,11 +15,11 @@ describe('immersion translation schema', () => {
     expect(parsed.blocks[0]?.[1]?.[0]).toBe('世界')
   })
 
-  it('rejects tokens without an English meaning', () => {
-    expect(() =>
-      translateImmersionOutputSchema.parse({
-        blocks: [[['你好', 'nǐ hǎo', '', '。']]],
-      }),
-    ).toThrow()
+  it('accepts provider tuples with blank or extra fields for normalization', () => {
+    const parsed = translateImmersionOutputSchema.parse({
+      blocks: [[['你好', 'nǐ hǎo', '', '。', ' ']]],
+    })
+
+    expect(parsed.blocks[0]?.[0]).toHaveLength(5)
   })
 })

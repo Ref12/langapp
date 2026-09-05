@@ -162,6 +162,8 @@ partial translated blocks MUST persist as they complete, and the learner MUST
 be able to cancel the remaining work. Common malformed model JSON MUST be
 repaired locally before the chunk is treated as failed; unrecoverable errors
 MUST report the response length and preserve completed chunks.
+Provider tuple variations such as blank punctuation glosses or extra trailing
+separator fields MUST be normalized rather than failing the entire chunk.
 
 Immersion mode MUST initially show both romanization and English meaning for
 each target-language unit. Activating a unit opens the standard word popup with:
