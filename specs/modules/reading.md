@@ -151,6 +151,12 @@ The result MUST preserve paragraph order and provide target text,
 romanization, contextual English meaning, punctuation, and spacing for every
 lexical unit. Completed translations are cached on the chapter.
 
+Long translations MUST use compact tuple-based annotation JSON in bounded
+chunks with at most three provider requests
+in flight. Each request MUST time out, progress MUST report completed chunks,
+partial translated blocks MUST persist as they complete, and the learner MUST
+be able to cancel the remaining work.
+
 Immersion mode MUST initially show both romanization and English meaning for
 each target-language unit. Activating a unit opens the standard word popup with:
 

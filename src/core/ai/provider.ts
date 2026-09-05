@@ -32,6 +32,11 @@ export async function requestChatCompletion(
     throw new Error('Configure an AI connection in Settings first.')
   }
 
+  const requestController = new AbortController()
+  const timeout = window.setTimeout(() => requestController.abort(), 120_000)
+  const cancel = () => requestController.abort()
+  signal?.addEventListener('abort', cancel, { once: true })
+
   let response: Response
   try {
     response = await fetch(`${normalizeBaseUrl(connection.baseUrl)}/chat/completions`, {
@@ -48,15 +53,22 @@ export async function requestChatCompletion(
           ? { max_tokens: options.maximumOutputTokens }
           : {}),
       }),
-      signal,
+      signal: requestController.signal,
     })
   } catch (error) {
     if (error instanceof DOMException && error.name === 'AbortError') {
-      throw new Error('The AI request was cancelled.')
+      throw new Error(
+        signal?.aborted
+          ? 'The AI request was cancelled.'
+          : 'The AI request timed out after 120 seconds.',
+      )
     }
     throw new Error(
       'The AI endpoint could not be reached. Check its URL, network access, and browser CORS policy.',
     )
+  } finally {
+    window.clearTimeout(timeout)
+    signal?.removeEventListener('abort', cancel)
   }
 
   if (!response.ok) {

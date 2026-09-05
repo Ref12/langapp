@@ -15,6 +15,7 @@ import {
   Globe2,
   LoaderCircle,
   Sparkles,
+  StopCircle,
   Trash2,
 } from 'lucide-react'
 import { useActiveProfile } from '../../core/activeProfile'
@@ -347,6 +348,7 @@ function Reader({
     'weave',
   )
   const [immersionProgress, setImmersionProgress] = useState('')
+  const immersionController = useRef<AbortController>()
   const [selectedSuggestions, setSelectedSuggestions] = useState<Set<string>>(
     new Set(),
   )
@@ -526,6 +528,9 @@ function Reader({
     if (targetChapter.immersion?.status === 'translating') return
     setImmersionProgress('Preparing immersion translation…')
     setNotice('')
+    immersionController.current?.abort()
+    const controller = new AbortController()
+    immersionController.current = controller
     await patchDocumentChapter(item.id, targetChapter.id, {
       immersion: {
         status: 'translating',
@@ -535,30 +540,56 @@ function Reader({
     })
 
     try {
-      const chunks = splitTextForAnalysis(targetChapter.content, 2_500)
-      const blocks: ImmersionBlock[] = []
-      for (const [chunkIndex, chunk] of chunks.entries()) {
-        setImmersionProgress(
-          `Translating ${chunkIndex + 1}/${chunks.length}…`,
-        )
-        const translated = await invokeAIOperation(
-          'language.translateImmersion',
-          {
-            text: chunk.text,
-            targetLanguage: profile.targetLanguage,
-            romanization: profile.romanization,
-          },
-        )
-        blocks.push(
-          ...translated.blocks.map((block, blockIndex) => ({
+      const chunks = splitTextForAnalysis(targetChapter.content, 1_500)
+      const results: Array<ImmersionBlock[] | undefined> = new Array(
+        chunks.length,
+      )
+      let nextChunk = 0
+      let completed = 0
+      const worker = async () => {
+        while (nextChunk < chunks.length) {
+          const chunkIndex = nextChunk
+          nextChunk += 1
+          setImmersionProgress(
+            `Translated ${completed}/${chunks.length} · processing chunk ${
+              chunkIndex + 1
+            }`,
+          )
+          const translated = await invokeAIOperation(
+            'language.translateImmersion',
+            {
+              text: chunks[chunkIndex].text,
+              targetLanguage: profile.targetLanguage,
+              romanization: profile.romanization,
+            },
+            controller.signal,
+          )
+          results[chunkIndex] = translated.blocks.map((tokens, blockIndex) => ({
             id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}`,
-            tokens: block.tokens.map((token, tokenIndex) => ({
+            tokens: tokens.map((token, tokenIndex) => ({
               id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}:${tokenIndex}`,
-              ...token,
+              targetText: token[0],
+              romanization: token[1],
+              english: token[2],
+              after: token[3],
             })),
-          })),
-        )
+          }))
+          completed += 1
+          const partialBlocks = results.flatMap((result) => result ?? [])
+          setImmersionProgress(`Translated ${completed}/${chunks.length}`)
+          await patchDocumentChapter(item.id, targetChapter.id, {
+            immersion: {
+              status: 'translating',
+              blocks: partialBlocks,
+              error: '',
+            },
+          })
+        }
       }
+      await Promise.all(
+        Array.from({ length: Math.min(3, chunks.length) }, () => worker()),
+      )
+      const blocks = results.flatMap((result) => result ?? [])
 
       await patchDocumentChapter(item.id, targetChapter.id, {
         immersion: {
@@ -574,6 +605,7 @@ function Reader({
           .length.toLocaleString()} annotated units.`,
       )
     } catch (error) {
+      controller.abort()
       const detail =
         error instanceof Error ? error.message : 'Immersion translation failed.'
       await patchDocumentChapter(item.id, targetChapter.id, {
@@ -584,6 +616,7 @@ function Reader({
         },
       })
     } finally {
+      immersionController.current = undefined
       setImmersionProgress('')
     }
   }
@@ -962,19 +995,26 @@ function Reader({
                   : 'Analyze chapter')}
             </button>
           ) : (
-            <button
-              className="primary-button"
-              disabled={
-                Boolean(immersionProgress) ||
-                chapter.immersion?.status === 'translating'
-              }
-              onClick={() => void translateImmersionChapter(chapter)}
-            >
+            <>
               {immersionProgress ||
-                (chapter.immersion?.status === 'ready'
-                  ? 'Refresh translation'
-                  : 'Translate chapter')}
-            </button>
+              chapter.immersion?.status === 'translating' ? (
+                <button
+                  className="danger-button"
+                  onClick={() => immersionController.current?.abort()}
+                >
+                  <StopCircle size={17} /> Cancel translation
+                </button>
+              ) : (
+                <button
+                  className="primary-button"
+                  onClick={() => void translateImmersionChapter(chapter)}
+                >
+                  {chapter.immersion?.status === 'ready'
+                    ? 'Refresh translation'
+                    : 'Translate chapter'}
+                </button>
+              )}
+            </>
           )}
         </div>
       </header>
@@ -1168,8 +1208,16 @@ function Reader({
             speechLang={speechLanguage[profile.targetLanguage]}
           />
         </>
-      ) : chapter.immersion?.status === 'ready' ? (
-        <ImmersionText blocks={chapter.immersion.blocks} profile={profile} />
+      ) : chapter.immersion?.blocks.length ? (
+        <>
+          {chapter.immersion.status === 'translating' && (
+            <div className="translation-progress">
+              <LoaderCircle className="spin" />
+              {immersionProgress || 'Translating remaining chunks…'}
+            </div>
+          )}
+          <ImmersionText blocks={chapter.immersion.blocks} profile={profile} />
+        </>
       ) : (
         <div className="immersion-empty">
           {chapter.immersion?.status === 'translating' || immersionProgress ? (

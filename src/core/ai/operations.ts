@@ -175,20 +175,20 @@ ${candidateList}`,
           {
             role: 'system',
             content:
-              'Translate all supplied English prose into natural target-language prose. Return JSON only. Preserve every idea and paragraph. Tokenize the translation into meaningful words or short lexical units for a learner.',
+              'Translate all supplied English prose into natural target-language prose. Return compact JSON only. Preserve every idea and paragraph. Tokenize the translation into meaningful words or short lexical units for a learner.',
           },
           {
             role: 'user',
             content: `Translate this complete text into ${language}. Use ${input.romanization} romanization.
 
 Return:
-{"blocks":[{"tokens":[{"targetText":"target word or short unit","romanization":"romanization","english":"contextual English meaning","after":"punctuation and spacing after this token"}]}]}
+{"blocks":[[["target word or short unit","romanization","contextual English meaning","punctuation and spacing after this token"]]]}
 
 Requirements:
 - Do not omit, summarize, or explain any source content.
 - Create a block for each source paragraph, in order.
-- Put punctuation and spacing in "after".
-- Keep targetText free of surrounding punctuation.
+- Each inner array is [targetText, romanization, English meaning, trailing punctuation/spacing].
+- Keep target text free of surrounding punctuation.
 - Give every lexical token a contextual English meaning.
 
 TEXT:
@@ -196,7 +196,7 @@ ${input.text}`,
           },
         ],
         signal,
-        { maximumOutputTokens: 16_000, temperature: 0.2 },
+        { maximumOutputTokens: 10_000, temperature: 0.2 },
       )
       return translateImmersionOutputSchema.parse(extractJson(content))
     },

@@ -101,16 +101,14 @@ export const translateImmersionInputSchema = z.object({
 
 export const translateImmersionOutputSchema = z.object({
   blocks: z.array(
-    z.object({
-      tokens: z.array(
-        z.object({
-          targetText: z.string().min(1),
-          romanization: z.string(),
-          english: z.string().min(1),
-          after: z.string(),
-        }),
-      ),
-    }),
+    z.array(
+      z.tuple([
+        z.string().min(1),
+        z.string(),
+        z.string().min(1),
+        z.string(),
+      ]),
+    ),
   ),
 })
 
