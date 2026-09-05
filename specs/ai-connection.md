@@ -17,6 +17,8 @@ Settings MUST provide:
 - Test connection
 - Replace or clear key
 - Disable connection
+- Export AI settings with the key through an explicit secrets-transfer file
+- Import an AI settings secrets-transfer file
 
 The UI MUST show this warning before persistence:
 
@@ -31,7 +33,12 @@ The learner MUST explicitly acknowledge the warning before saving a key.
 - The key field MUST be masked after save.
 - Clearing application data or selecting “clear key” MUST remove the credential.
 - The application MUST NOT claim that client-side encryption makes the key secure; code able to run the app can also obtain any decryption material.
-- A backup MAY include the key only through a separate explicit secrets-export flow that is deferred from the MVP.
+- Normal backups MUST exclude the key.
+- A separate AI settings transfer MAY include the URL, model, and API key only
+  after an explicit plaintext-secret warning and confirmation.
+- Importing that transfer MUST validate its version, require HTTPS, confirm the
+  destination endpoint and model, replace the saved key, and increment the
+  local configuration version.
 
 The stored connection has a configuration version so in-progress operations can detect changes.
 
@@ -113,3 +120,5 @@ Modules and operation input/output schemas MUST NOT change solely because transp
 6. Clearing the key or all local data removes it.
 7. A provider that does not permit browser CORS fails with an explanatory message.
 8. The browser adapter can later be replaced by a server adapter without changing module contracts.
+9. A learner can explicitly export and import a versioned AI settings transfer
+   containing the API key, while normal backups continue excluding it.

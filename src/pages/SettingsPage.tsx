@@ -1,9 +1,20 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { AlertTriangle, CheckCircle2, Download, Trash2, Upload } from 'lucide-react'
+import {
+  AlertTriangle,
+  CheckCircle2,
+  Download,
+  KeyRound,
+  Trash2,
+  Upload,
+} from 'lucide-react'
 import { db, clearLocalData, exportBackup, importBackup } from '../core/database'
 import { createLanguageProfile } from '../core/profiles'
 import { testAIConnection } from '../core/ai/provider'
+import {
+  createAISettingsExport,
+  parseAISettingsImport,
+} from '../core/aiSettingsTransfer'
 import type { TargetLanguage } from '../core/domain'
 import { nowIso } from '../core/ids'
 
@@ -60,6 +71,7 @@ export function SettingsPage() {
       setStatus('Enter or save an API key first.')
       return
     }
+
     setBusy(true)
     setStatus('Testing connection…')
     try {
@@ -82,6 +94,65 @@ export function SettingsPage() {
       setStatus(message)
     } finally {
       setBusy(false)
+    }
+  }
+
+  const downloadAISettings = () => {
+    if (!stored?.apiKey) {
+      setStatus('Save an AI connection before exporting it.')
+      return
+    }
+    if (
+      !window.confirm(
+        'This file will contain your API key in plaintext. Store it securely and continue only on a trusted device.',
+      )
+    ) {
+      return
+    }
+
+    const transfer = createAISettingsExport(stored)
+    const blob = new Blob([JSON.stringify(transfer, null, 2)], {
+      type: 'application/json',
+    })
+    const url = URL.createObjectURL(blob)
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = `linguaweave-ai-settings-${new Date()
+      .toISOString()
+      .slice(0, 10)}.json`
+    anchor.click()
+    URL.revokeObjectURL(url)
+    setStatus('AI settings exported with the API key.')
+  }
+
+  const restoreAISettings = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file) return
+    try {
+      const transfer = parseAISettingsImport(JSON.parse(await file.text()))
+      if (
+        !window.confirm(
+          `Import AI settings for ${transfer.connection.baseUrl} using model ${transfer.connection.model}? This will replace the saved key.`,
+        )
+      ) {
+        return
+      }
+      await db.aiConnections.put({
+        ...transfer.connection,
+        configurationVersion:
+          Math.max(
+            stored?.configurationVersion ?? 0,
+            transfer.connection.configurationVersion,
+          ) + 1,
+        updatedAt: nowIso(),
+      })
+      setApiKey('')
+      setStatus('AI settings and API key imported.')
+    } catch (error) {
+      setStatus(
+        error instanceof Error ? error.message : 'AI settings import failed.',
+      )
     }
   }
 
@@ -194,6 +265,28 @@ export function SettingsPage() {
             </p>
           )}
         </form>
+        <div className="secret-transfer">
+          <div>
+            <h3>Transfer AI settings</h3>
+            <p>
+              This separate transfer file includes the API URL, model, and API
+              key in plaintext. Normal backups still exclude the key.
+            </p>
+          </div>
+          <div className="button-row">
+            <button type="button" onClick={downloadAISettings}>
+              <KeyRound size={17} /> Export with key
+            </button>
+            <label className="file-button">
+              <Upload size={17} /> Import AI settings
+              <input
+                type="file"
+                accept="application/json,.json"
+                onChange={restoreAISettings}
+              />
+            </label>
+          </div>
+        </div>
       </section>
 
       <section className="settings-section">

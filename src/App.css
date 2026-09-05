@@ -1022,6 +1022,28 @@ label {
   margin-top: 0;
 }
 
+.secret-transfer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.4rem;
+  padding: 1rem;
+  border: 1px dashed #b88928;
+  border-radius: 12px;
+  background: #fff9e8;
+}
+
+.secret-transfer h3,
+.secret-transfer p {
+  margin: 0;
+}
+
+.secret-transfer p {
+  max-width: 520px;
+  font-size: 0.84rem;
+}
+
 .warning-box,
 .error-banner {
   display: flex;
@@ -1389,5 +1411,10 @@ label {
 
   .toolbar select {
     width: 100%;
+  }
+
+  .secret-transfer {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
