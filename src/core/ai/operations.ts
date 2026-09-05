@@ -1,5 +1,6 @@
 import { languageNames } from '../domain'
 import { requestChatCompletion } from './provider'
+import { jsonrepair } from 'jsonrepair'
 import {
   analyzeTextInputSchema,
   analyzeTextOutputSchema,
@@ -23,7 +24,7 @@ import {
   type TranslateImmersionOutput,
 } from './schemas'
 
-function extractJson(content: string): unknown {
+export function parseAIJson(content: string): unknown {
   const fenced = content.match(/```(?:json)?\s*([\s\S]*?)```/i)
   const candidate = fenced?.[1] ?? content
   const objectStart = candidate.indexOf('{')
@@ -31,7 +32,20 @@ function extractJson(content: string): unknown {
   if (objectStart < 0 || objectEnd < objectStart) {
     throw new Error('The AI response did not contain valid JSON.')
   }
-  return JSON.parse(candidate.slice(objectStart, objectEnd + 1))
+  const json = candidate.slice(objectStart, objectEnd + 1)
+  try {
+    return JSON.parse(json)
+  } catch (error) {
+    try {
+      return JSON.parse(jsonrepair(json))
+    } catch {
+      const detail =
+        error instanceof Error ? error.message : 'Unknown JSON parse error.'
+      throw new Error(
+        `AI returned ${content.length.toLocaleString()} characters of invalid JSON. ${detail}`,
+      )
+    }
+  }
 }
 
 const operations = {
@@ -76,7 +90,7 @@ ${input.text}`,
         signal,
       )
 
-      return analyzeTextOutputSchema.parse(extractJson(content))
+      return analyzeTextOutputSchema.parse(parseAIJson(content))
     },
   },
   'conversation.generateTurn': {
@@ -129,7 +143,7 @@ ${input.context}
         ],
         signal,
       )
-      return translateSelectionOutputSchema.parse(extractJson(content))
+      return translateSelectionOutputSchema.parse(parseAIJson(content))
     },
   },
   'language.suggestFrequentItems': {
@@ -162,7 +176,7 @@ ${candidateList}`,
         ],
         signal,
       )
-      return suggestFrequentItemsOutputSchema.parse(extractJson(content))
+      return suggestFrequentItemsOutputSchema.parse(parseAIJson(content))
     },
   },
   'language.translateImmersion': {
@@ -198,7 +212,7 @@ ${input.text}`,
         signal,
         { maximumOutputTokens: 10_000, temperature: 0.2 },
       )
-      return translateImmersionOutputSchema.parse(extractJson(content))
+      return translateImmersionOutputSchema.parse(parseAIJson(content))
     },
   },
 }

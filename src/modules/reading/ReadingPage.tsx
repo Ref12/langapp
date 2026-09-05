@@ -608,10 +608,15 @@ function Reader({
       controller.abort()
       const detail =
         error instanceof Error ? error.message : 'Immersion translation failed.'
+      const current = await db.libraryItems.get(item.id)
+      const partialBlocks =
+        chaptersFor(current ?? item).find(
+          (candidate) => candidate.id === targetChapter.id,
+        )?.immersion?.blocks ?? []
       await patchDocumentChapter(item.id, targetChapter.id, {
         immersion: {
           status: 'failed',
-          blocks: [],
+          blocks: partialBlocks,
           error: `Chapter length: ${targetChapter.content.length.toLocaleString()} characters. ${detail}`,
         },
       })

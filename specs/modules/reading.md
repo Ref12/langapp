@@ -155,7 +155,9 @@ Long translations MUST use compact tuple-based annotation JSON in bounded
 chunks with at most three provider requests
 in flight. Each request MUST time out, progress MUST report completed chunks,
 partial translated blocks MUST persist as they complete, and the learner MUST
-be able to cancel the remaining work.
+be able to cancel the remaining work. Common malformed model JSON MUST be
+repaired locally before the chunk is treated as failed; unrecoverable errors
+MUST report the response length and preserve completed chunks.
 
 Immersion mode MUST initially show both romanization and English meaning for
 each target-language unit. Activating a unit opens the standard word popup with:
