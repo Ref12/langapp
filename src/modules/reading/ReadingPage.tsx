@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import { useActiveProfile } from '../../core/activeProfile'
 import { invokeAIOperation } from '../../core/ai/operations'
+import type { TranslateImmersionOutput } from '../../core/ai/schemas'
 import { db } from '../../core/database'
 import {
   speechLanguage,
@@ -528,6 +529,7 @@ function Reader({
 
   const translateImmersionChapter = async (
     targetChapter: DocumentChapter,
+    force = false,
   ) => {
     if (targetChapter.immersion?.status === 'translating') return
     setImmersionProgress('Preparing immersion translation…')
@@ -538,7 +540,7 @@ function Reader({
     await patchDocumentChapter(item.id, targetChapter.id, {
       immersion: {
         status: 'translating',
-        blocks: targetChapter.immersion?.blocks ?? [],
+        blocks: force ? [] : (targetChapter.immersion?.blocks ?? []),
         error: '',
       },
     })
@@ -549,29 +551,60 @@ function Reader({
       const results: Array<ImmersionBlock[] | undefined> = new Array(
         chunks.length,
       )
-      let nextChunk = 0
-      let completed = 0
+      if (!force) {
+        for (const block of targetChapter.immersion?.blocks ?? []) {
+          const chunkIndex = Number(block.id.split(':')[2])
+          if (!Number.isInteger(chunkIndex) || chunkIndex >= chunks.length) {
+            continue
+          }
+          results[chunkIndex] = [...(results[chunkIndex] ?? []), block]
+        }
+      }
+      const pendingChunks = chunks
+        .map((_, index) => index)
+        .filter((index) => !results[index])
+      let nextPending = 0
+      let completed = results.filter(Boolean).length
       const worker = async () => {
-        while (nextChunk < chunks.length) {
-          const chunkIndex = nextChunk
-          nextChunk += 1
+        while (nextPending < pendingChunks.length) {
+          const chunkIndex = pendingChunks[nextPending]
+          nextPending += 1
           setImmersionProgress(
             `Translated ${completed}/${chunks.length} · processing chunk ${
               chunkIndex + 1
             }`,
           )
-          const translated = await invokeAIOperation(
-            'language.translateImmersion',
-            {
-              text: chunks[chunkIndex].text,
-              targetLanguage: profile.targetLanguage,
-              romanization: profile.romanization,
-              properNames: [...properNames].filter((name) =>
-                chunks[chunkIndex].text.includes(name),
-              ),
-            },
-            controller.signal,
-          )
+          let translated: TranslateImmersionOutput | undefined
+          let lastError: unknown
+          for (let attempt = 1; attempt <= 3; attempt += 1) {
+            try {
+              translated = await invokeAIOperation(
+                'language.translateImmersion',
+                {
+                  text: chunks[chunkIndex].text,
+                  targetLanguage: profile.targetLanguage,
+                  romanization: profile.romanization,
+                  properNames: [...properNames].filter((name) =>
+                    chunks[chunkIndex].text.includes(name),
+                  ),
+                },
+                controller.signal,
+              )
+              break
+            } catch (error) {
+              lastError = error
+              if (controller.signal.aborted || attempt === 3) throw error
+              setImmersionProgress(
+                `Retrying chunk ${chunkIndex + 1}/${chunks.length} · attempt ${
+                  attempt + 1
+                }/3`,
+              )
+              await new Promise((resolve) =>
+                window.setTimeout(resolve, attempt * 1_000),
+              )
+            }
+          }
+          if (!translated) throw lastError
           results[chunkIndex] = translated.blocks.map((tokens, blockIndex) => ({
             id: `immersion:${targetChapter.id}:${chunkIndex}:${blockIndex}`,
             tokens: tokens.flatMap((token, tokenIndex) => {
@@ -1021,7 +1054,12 @@ function Reader({
               ) : (
                 <button
                   className="primary-button"
-                  onClick={() => void translateImmersionChapter(chapter)}
+                  onClick={() =>
+                    void translateImmersionChapter(
+                      chapter,
+                      chapter.immersion?.status === 'ready',
+                    )
+                  }
                 >
                   {chapter.immersion?.status === 'ready'
                     ? 'Refresh translation'

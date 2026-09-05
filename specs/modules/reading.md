@@ -164,6 +164,9 @@ repaired locally before the chunk is treated as failed; unrecoverable errors
 MUST report the response length and preserve completed chunks.
 Provider tuple variations such as blank punctuation glosses or extra trailing
 separator fields MUST be normalized rather than failing the entire chunk.
+Transient, empty, or malformed chunk responses MUST retry up to three times.
+Retrying a failed chapter MUST resume missing chunks from persisted partial
+results; an explicit refresh of a completed translation MAY rebuild all chunks.
 
 Immersion mode MUST initially show both romanization and English meaning for
 each target-language unit. Activating a unit opens the standard word popup with:
