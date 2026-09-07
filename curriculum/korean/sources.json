@@ -1,0 +1,70 @@
+[
+  {
+    "id": "nikl-2024-mirror",
+    "title": "NIKL Korean-English Learners' Dictionary, January 2024 extraction mirrored by binjang",
+    "url": "https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary",
+    "license": "CC-BY-SA-2.0-KR for underlying NIKL dictionary text; do not substitute the mirror's MIT metadata for the dictionary license",
+    "usage": "All 11,028 entries bearing a beginner, intermediate, or advanced source band, with English definitions. No unbanded entries, Korean usage sentences, audio, images, or video redistributed. Fields renamed; topics and part-of-speech labels translated; English glosses whitespace-normalized and combined; sixteen Korean/Hanja metalinguistic glosses replaced by original English equivalents; original band retained in level_basis; six-grade placements are project heuristics.",
+    "attribution": "National Institute of Korean Language and Korean-English Learners' Dictionary contributors, via the unofficial extraction by binjang. Preserve this attribution, the source link, license link, change notice, and share-alike terms with adapted dictionary data. NIKL does not endorse this curriculum.",
+    "retrieved_on": "2026-09-07",
+    "revision": "3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9",
+    "download_url": "https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv",
+    "sha256": "3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0",
+    "upstream_version": "January 2024; 53,172 records; mirror is not a current official export",
+    "official_dictionary_url": "https://krdict.korean.go.kr/eng/mainAction",
+    "official_copyright_url": "https://krdict.korean.go.kr/eng/kboardPolicy/copyRightTermsInfo",
+    "license_version_evidence_url": "https://krdict.korean.go.kr/kor/kboardPolicy/copyRightTermsInfo",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/kr/",
+    "parser_reference_url": "https://github.com/binjang/NIKL-dictionary-parser",
+    "source_entry_convention": "Pinned download URL plus #record=N; N is the one-based data-record ordinal excluding the CSV header, not an official dictionary sense ID or a guaranteed clickable website anchor."
+  },
+  {
+    "id": "nikl-copyright",
+    "title": "Official Korean-English Learners' Dictionary copyright policy",
+    "url": "https://krdict.korean.go.kr/eng/kboardPolicy/copyRightTermsInfo",
+    "license": "Reference-only official policy; establishes CC-BY-SA reuse for dictionary text",
+    "usage": "Directly checked English statement that text may be used commercially with attribution and share-alike. Korean counterpart directly links the jurisdiction-specific CC-BY-SA-2.0-KR license. Multimedia has distinct terms and is excluded.",
+    "attribution": "National Institute of Korean Language, Korean-English Learners' Dictionary",
+    "retrieved_on": "2026-09-07"
+  },
+  {
+    "id": "nikl-standard-2020",
+    "title": "Standard Curriculum for Korean Language, Proclamation 2020-54, English edition",
+    "url": "https://www.korean.go.kr/front/etcData/etcDataView.do?mn_id=208&etc_seq=660",
+    "license": "KOGL Type 1 (attribution), explicitly marked on the official publication page; reference-only use here",
+    "usage": "Overall educational capability summaries paraphrased from Table 2, printed pages 11-12; four-skill achievement framework checked in the appendix. Not an official mapping of every dictionary entry or grammar item to TOPIK. No entire textbook or PDF redistributed.",
+    "attribution": "Ministry of Culture, Sports and Tourism and National Institute of Korean Language, Republic of Korea; proclamation effective 2020-11-27, English publication posted 2021-01-29",
+    "retrieved_on": "2026-09-07",
+    "document_url": "https://www.korean.go.kr/common/download.do?file_path=etcData&c_file_name=6ce7e09f-5056-48c6-a798-a73c5d67ecd0.pdf&o_file_name=Standard_Curriculum.pdf",
+    "document_sha256": "4362704e290c3cd756a649f893e187aa0ed6579f643f69d9f1f16a917a90be88"
+  },
+  {
+    "id": "niied-topik",
+    "title": "NIIED official TOPIK overview: test formats and awarded levels",
+    "url": "https://niied.go.kr/web/NIIED/contents/niiedEng/eng_topikOverview",
+    "license": "Official copyrighted reference; no test items or bulk website content redistributed",
+    "usage": "Confirms TOPIK I awards levels 1-2 and tests listening/reading; TOPIK II awards levels 3-6 and tests listening/reading/writing; separate TOPIK Speaking exists. Paper-based and internet-based versions have different scales and structures; no score thresholds reproduced.",
+    "attribution": "National Institute for International Education, TOPIK Center",
+    "retrieved_on": "2026-09-07"
+  },
+  {
+    "id": "sejong-curriculum",
+    "title": "Online King Sejong Institute curriculum",
+    "url": "https://www.iksi.or.kr/lms/main/curriculum.do",
+    "license": "Official copyrighted reference; curriculum structure only, no textbook or course sentences copied",
+    "usage": "Confirms a separate introductory Hangul course and beginner 1-2, intermediate 3-4, advanced 5-6 educational organization. Used as structural context, not to claim that this material reproduces Sejong courses or lesson allocations.",
+    "attribution": "King Sejong Institute Foundation, Online King Sejong Institute",
+    "retrieved_on": "2026-09-07"
+  },
+  {
+    "id": "original-ko",
+    "title": "Original Korean teaching selection, bilingual examples, syllabi, and classroom rubric",
+    "url": "./grammar-authoring.tsv",
+    "license": "CC0-1.0 for original project-authored teaching content to the extent rights apply; dictionary adaptations remain CC-BY-SA-2.0-KR",
+    "usage": "216 original-selected grammar constructs with 432 newly AI-authored Korean/English examples, six original syllabi, phonology examples, and project assessment criteria. Not official examination questions or a copied institutional course. Requires qualified human Korean-language review before high-stakes or learner-facing publication. URL is a local path relative to sources.json.",
+    "attribution": "Original langapp curriculum contribution, AI-assisted; no official NIKL, Sejong, or TOPIK endorsement",
+    "retrieved_on": "2026-09-07",
+    "local_origin": "curriculum/korean/grammar-authoring.tsv and topik-1 through topik-6 syllabi",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  }
+]

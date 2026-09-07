@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "languages": [
+    {
+      "id": "chinese",
+      "standard": "HSK 3.0, GF0025-2021 educational-standard-derived; not the 2025/2026 exam mapping",
+      "levels": ["hsk-1", "hsk-2", "hsk-3", "hsk-4", "hsk-5", "hsk-6", "hsk-7-9"]
+    },
+    {
+      "id": "korean",
+      "standard": "TOPIK; source placements may be teaching estimates",
+      "levels": ["topik-1", "topik-2", "topik-3", "topik-4", "topik-5", "topik-6"]
+    },
+    {
+      "id": "japanese",
+      "standard": "JLPT; vocabulary and grammar placements are unofficial",
+      "levels": ["jlpt-n5", "jlpt-n4", "jlpt-n3", "jlpt-n2", "jlpt-n1"]
+    }
+  ]
+}
