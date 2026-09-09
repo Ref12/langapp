@@ -5,7 +5,7 @@
 paraphrased: familiar social exchanges, advice, recommendations, explanations
 and information sharing. TOPIK II includes listening, reading and writing;
 speaking remains an additional teaching domain here, not an ordinary TOPIK II
-section. Sources and license distinctions are in `../sources.json`.
+section. Sources and license distinctions are in `../sources.yaml`.
 
 ## Prerequisites
 

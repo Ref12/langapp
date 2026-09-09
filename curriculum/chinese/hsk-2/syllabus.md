@@ -17,7 +17,7 @@ recognition; no exam score is inferred from vocabulary recall.
 
 ## Ordered recurring lesson blocks
 
-Use 8–12 new words per session when due-item recall is stable. Select CSV IDs by
+Use 8–12 new words per session when due-item recall is stable. Select vocabulary IDs by
 the listed topics plus English-gloss keyword searches; retrieve prior-band
 prerequisites first. The blocks recur until the whole new inventory is taught.
 

@@ -86,21 +86,21 @@ discard this large part of the inventory.
 
 ## File contract and stable identity
 
-- `vocabulary.csv`: UTF-8, exact shared nine-column schema. IDs `ko-nikl-NNNNN`
+- `vocabulary.yaml`: UTF-8 YAML list, exact shared nine-field schema. IDs `ko-nikl-NNNNN`
   derive from the pinned source data-record ordinal and do not change merely
   because a teaching grade changes. `source_entry` is the pinned download plus
   `#record=N`: a documented row locator, **not a fabricated official entry ID**.
-- `grammar.json`: JSON array, 36 constructs per stage, at least two newly
+- `grammar.yaml`: YAML list, 36 constructs per stage, at least two newly
   authored bilingual examples each. `N` means noun, `V` action verb, `A`
   descriptive verb/adjective; slashes mark alternative forms, parentheses mark
   conditioned segments, and hyphens indicate affix attachment. English meaning
   and inflection/register notes accompany every pattern.
-- `grammar-authoring.tsv`: maintainable bilingual authoring source for the JSON.
+- `grammar-authoring.tsv`: maintainable bilingual authoring source for the YAML.
   Grammar IDs follow its order; append new rows rather than inserting ahead of
   existing rows unless intentionally revising all syllabus references.
 - `syllabus.md`: ordered lesson blocks, vocabulary retrieval instructions,
   grammar IDs, four-skill practice and observable exit criteria.
-- `sources.json`, `licenses/NOTICE.md`, `import-report.json`: provenance,
+- `sources.yaml`, `licenses/NOTICE.md`, `import-report.yaml`: provenance,
   component-specific obligations, checksum and counts.
 
 ## Hangul, pronunciation and pragmatic prerequisites
@@ -112,7 +112,7 @@ production; explain articulatory differences briefly rather than relying on
 English spelling. Introduce final consonants and their reduced release before
 asking learners to decode full beginner sentences.
 
-The CSV `reading` column is deliberately empty: the pinned mirror does not
+The vocabulary `reading` field is deliberately empty: the pinned mirror does not
 provide pronunciations. Do not mistake unchanged spelling or romanization for
 verified audio. Target orthography is standard Hangul; bracketed Hangul below
 represents a **broad pedagogical pronunciation**, not a replacement spelling.
@@ -192,7 +192,7 @@ decisions; it does not predict an official score or demand zero errors.
 
 ## Licensing, gaps and updates
 
-**Dictionary CSVs are CC BY-SA 2.0 Korea**, not MIT: credit NIKL and contributors,
+**Dictionary data is CC BY-SA 2.0 Korea**, not MIT: credit NIKL and contributors,
 credit binjang's extraction, link the source/license, indicate adaptations,
 and preserve share-alike. The official English and Korean policies were checked
 directly. Original grammar, syllabi and importer are CC0 to the extent rights
@@ -208,9 +208,10 @@ Affixes and bound nouns remain lexical entries and do not substitute for
 explicit grammar instruction. AI-authored examples and heuristic grade
 placement require Korean-teacher review before production use.
 
-From the repository root, Python 3.10+ and the standard library suffice:
+From the repository root, using Python 3.10+ and the pinned YAML dependency:
 
 ```powershell
+python -m pip install -r scripts\requirements.txt
 python scripts\import_korean_curriculum.py
 python scripts\import_korean_curriculum.py --grammar-only
 python scripts\import_korean_curriculum.py --source-file path\to\2024_01.csv

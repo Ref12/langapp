@@ -17,7 +17,7 @@ longer argument for clarity, coherence and appropriate register.
 ## Ordered recurring lesson blocks
 
 Use about 12–18 new entries per session when retrieval remains reliable.
-Select by English definitions and CSV topics, then check actual sense and
+Select by English definitions and vocabulary topics, then check actual sense and
 collocation. Recycle lower-band grammar to avoid formal-language overuse.
 
 | Order | Theme and product | Vocabulary retrieval | Grammar IDs |

@@ -13,12 +13,12 @@ This is a broad, reusable teaching collection, **not an official or exhaustive J
 | `jlpt-n1` | 3,100 | 7,828 | 45 | 90 |
 | **Total** | **7,828** | **7,828** | **225** | **450** |
 
-The verified mapping contains **8,293 rows**, not 8,293 distinct new words. Deduplication removes **443 overlaps** by `(JMdict entry ID, kana reading)`, retaining the earliest N5-to-N1 placement; **22 unverifiable records** are excluded, not guessed. One source spelling is normalized to a verified compatible spelling. `import-report.json` records exact decisions and retained IDs. Orthographic aliases are not counted as extra words. A single entry can retain several numbered English senses. The total is deliberately below an inflated “8,000–12,000 unique words” claim: coverage is the full safely matched source selection, not a round-number target.
+The verified mapping contains **8,293 rows**, not 8,293 distinct new words. Deduplication removes **443 overlaps** by `(JMdict entry ID, kana reading)`, retaining the earliest N5-to-N1 placement; **22 unverifiable records** are excluded, not guessed. One source spelling is normalized to a verified compatible spelling. `import-report.yaml` records exact decisions and retained IDs. Orthographic aliases are not counted as extra words. A single entry can retain several numbered English senses. The total is deliberately below an inflated “8,000–12,000 unique words” claim: coverage is the full safely matched source selection, not a round-number target.
 
 Each level has:
 
-- `vocabulary.csv`: UTF-8, shared nine-column schema, English glosses, kana pronunciation, POS and coarse topics.
-- `grammar.json`: an array of 45 meaningful teaching constructs, English meanings, usage notes, and two original translated examples each.
+- `vocabulary.yaml`: UTF-8 YAML list, shared nine-field schema, English glosses, kana pronunciation, POS and coarse topics.
+- `grammar.yaml`: a list of 45 meaningful teaching constructs, English meanings, usage notes, and two original translated examples each.
 - `syllabus.md`: nine ordered thematic blocks referring to every actual grammar ID, vocabulary allocation instructions, reading/kanji progression, four-skill practice and observable exit rubrics.
 
 ## How a tutor should use the data
@@ -33,7 +33,7 @@ Each level has:
 
 ## Sources and reuse obligations
 
-See the array in `sources.json` for exact URLs, pins, component usage and attribution. Local notices are in `licenses`.
+See the list in `sources.yaml` for exact URLs, pins, component usage and attribution. Local notices are in `licenses`.
 
 **Dictionary component:** English senses, readings and POS derive from **JMdict/EDICT**, copyright James William Breen and the **Electronic Dictionary Research and Development Group (EDRDG)**, used in conformance with [the Group's licence](https://www.edrdg.org/edrdg/licence.html). The underlying license is **CC-BY-SA 4.0**. Credit EDRDG and provide documentation/license access in deployed apps. EDRDG's statement requires a regular updating procedure and gives at least monthly updates for web dictionary servers as an example. A static curriculum snapshot is not a deployment refresh service.
 
@@ -49,17 +49,18 @@ The retained mapping CSVs and selected JMdict JSON under `upstream` are **proven
 
 ## Rebuild and refresh
 
-From the repository root, using Python 3.10+ and the standard library:
+From the repository root, using Python 3.10+ and the pinned YAML dependency:
 
 ```powershell
+python -m pip install -r scripts\requirements.txt
 python scripts\import_japanese_curriculum.py --validate-only
 python scripts\import_japanese_curriculum.py
 python scripts\import_japanese_curriculum.py --download
 ```
 
-The first command checks committed files without writes. The second rebuilds vocabulary and grammar offline from the checked-in mapping, dictionary subset and original `teaching\grammar.tsv`. The third retrieves **the pinned versions**, verifies source checksums, replaces only Japanese inputs/outputs and records a new retrieval timestamp. It does **not** automatically discover or upgrade to today's dictionary.
+After installing dependencies, `--validate-only` checks committed files without writes. Running without options rebuilds vocabulary and grammar offline from the checked-in mapping, dictionary subset and original `teaching\grammar.tsv`. `--download` retrieves **the pinned versions**, verifies source checksums, replaces only Japanese inputs/outputs and records a new retrieval timestamp. It does **not** automatically discover or upgrade to today's dictionary.
 
-For a release refresh, review the latest English-only JMdict release and license, update `DICTIONARY_VERSION`, `DICTIONARY_URL` and `DICTIONARY_SHA256` in the importer, and explicitly review any mapping change before updating `MAPPING_COMMIT` and `MAPPING_HASHES`. Run the download and validation commands; inspect exclusions, altered senses and retained spelling-reading pairs; update counts, pins, retrieval dates and modification notes in this README and `sources.json`. Keep archived release provenance for deployed versions. No automated monthly refresh job is installed by this collection.
+For a release refresh, review the latest English-only JMdict release and license, update `DICTIONARY_VERSION`, `DICTIONARY_URL` and `DICTIONARY_SHA256` in the importer, and explicitly review any mapping change before updating `MAPPING_COMMIT` and `MAPPING_HASHES`. Run the download and validation commands; inspect exclusions, altered senses and retained spelling-reading pairs; update counts, pins, retrieval dates and modification notes in this README and `sources.yaml`. Keep archived release provenance for deployed versions. No automated monthly refresh job is installed by this collection.
 
 `upstream\download-lock.json` records all downloaded hashes and the selected-subset hash. The importer refuses altered inputs rather than silently accepting an unrelated archive. Rows retain upstream line-based IDs with gaps; a new mapping release can change those IDs, so migrate saved learner progress by `(JMdict ID, reading)` rather than by source line alone.
 

@@ -5,7 +5,7 @@
 paraphrased: general social and work/study discourse, some professional texts,
 systematic information delivery, discussion and supported opinions.
 The official educational anchor, official test structure and this original
-classroom assessment are distinct. See `../sources.json`.
+classroom assessment are distinct. See `../sources.yaml`.
 
 ## Prerequisites
 

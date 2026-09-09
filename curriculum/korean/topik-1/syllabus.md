@@ -4,7 +4,7 @@
 **Educational reference:** NIKL Standard Curriculum 2020-54, Table 2 level 1,
 paraphrased: brief basic exchanges, introductions, familiar objects and simple
 messages. This is an original four-skill curriculum, not an official TOPIK
-syllabus or scoring rubric. See `../sources.json`: `nikl-standard-2020`,
+syllabus or scoring rubric. See `../sources.yaml`: `nikl-standard-2020`,
 `niied-topik`, `sejong-curriculum`, `original-ko`.
 
 ## Prerequisites and entry check

@@ -27,7 +27,7 @@ Plan toward roughly **250–350 cumulative high-utility kanji** across N5 and N4
 
 ## Vocabulary coverage and pacing
 
-Suggested first-pass budgets across nine blocks: **70, 70, 70, 70, 70, 70, 70, 70, 75** new rows. Introduce 8–12 rows per short session only while delayed recognition remains at least 80%. Review N5 in every block; N5 entries are not repeated in this level's CSV.
+Suggested first-pass budgets across nine blocks: **70, 70, 70, 70, 70, 70, 70, 70, 75** new rows. Introduce 8–12 rows per short session only while delayed recognition remains at least 80%. Review N5 in every block; N5 entries are not repeated in this level's vocabulary.
 
 For each block, select rows from the named topics after reading the actual English gloss and POS; topic tags are coarse first-sense heuristics. Reserve at least a quarter of new selections for useful rows in `general-language`. A word's primary meaning may fit another topic better than its automatic tag. Move it to the appropriate lesson without changing its source.
 

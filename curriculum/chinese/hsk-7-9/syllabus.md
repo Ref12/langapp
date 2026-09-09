@@ -26,7 +26,7 @@ these capabilities.
 
 Introduce around 12–20 new entries per session only when sustained review
 supports them. At this scale, the inventory requires many cycles and hundreds
-of sessions, not a short course. Use CSV topics, English-gloss searches and
+of sessions, not a short course. Use vocabulary topics, English-gloss searches and
 an explicit remaining-ID queue. Revisit all lower-band prerequisites.
 
 | Order | Theme and performance | Vocabulary retrieval | Grammar IDs |

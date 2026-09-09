@@ -1,12 +1,14 @@
-"""Validate the bilingual curriculum files using only the Python standard library."""
+"""Validate the bilingual YAML curriculum files."""
 
 import argparse
-import csv
 from datetime import date
-import json
 from pathlib import Path
 import re
 import sys
+
+import yaml
+
+from curriculum_yaml import load_yaml
 
 
 LEVELS = {
@@ -54,14 +56,14 @@ class Validator:
         if not re.search(r"[A-Za-z]", value):
             self.error(location, "must include an English gloss")
 
-    def json_file(self, path, expected_type):
+    def yaml_file(self, path, expected_type):
         try:
-            value = json.loads(path.read_text(encoding="utf-8-sig"))
-        except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+            value = load_yaml(path)
+        except (OSError, UnicodeError, yaml.YAMLError) as exc:
             self.error(path, str(exc))
             return None
         if not isinstance(value, expected_type):
-            self.error(path, f"expected a JSON {expected_type.__name__}")
+            self.error(path, f"expected a YAML {expected_type.__name__}")
             return None
         return value
 
@@ -84,18 +86,18 @@ class Validator:
             self.error(location, f"unknown source ID {value!r}")
 
     def catalog(self):
-        catalog = self.json_file(self.root / "catalog.json", dict)
+        catalog = self.yaml_file(self.root / "catalog.yaml", dict)
         if catalog is None:
             return
         if catalog.get("schema_version") != 1:
-            self.error("catalog.json", "schema_version must be 1")
+            self.error("catalog.yaml", "schema_version must be 1")
         languages = catalog.get("languages")
         if not isinstance(languages, list):
-            self.error("catalog.json", "languages must be an array")
+            self.error("catalog.yaml", "languages must be an array")
             return
         seen = set()
         for index, entry in enumerate(languages):
-            location = f"catalog.json languages[{index}]"
+            location = f"catalog.yaml languages[{index}]"
             if not isinstance(entry, dict):
                 self.error(location, "expected an object")
                 continue
@@ -108,11 +110,11 @@ class Validator:
                 self.error(location, "levels must match the standard learning order")
             self.text(entry.get("standard"), f"{location}.standard")
         if seen != set(LEVELS):
-            self.error("catalog.json", "must include all three languages exactly once")
+            self.error("catalog.yaml", "must include all three languages exactly once")
 
     def sources(self, language):
-        path = self.root / language / "sources.json"
-        entries = self.json_file(path, list)
+        path = self.root / language / "sources.yaml"
+        entries = self.yaml_file(path, list)
         seen = set()
         if entries is None:
             return seen
@@ -137,37 +139,35 @@ class Validator:
         return seen
 
     def vocabulary(self, language, level, sources, seen):
-        path = self.root / language / level / "vocabulary.csv"
+        path = self.root / language / level / "vocabulary.yaml"
         count = 0
-        try:
-            with path.open(encoding="utf-8-sig", newline="") as handle:
-                reader = csv.DictReader(handle, strict=True)
-                if reader.fieldnames != VOCABULARY_FIELDS:
-                    self.error(path, f"header must be {','.join(VOCABULARY_FIELDS)}")
-                    return count
-                for row in reader:
-                    count += 1
-                    location = f"{path}:{reader.line_num}"
-                    if None in row or any(value is None for value in row.values()):
-                        self.error(location, "row has the wrong number of CSV fields")
-                        continue
-                    required = {"id", "target", "english", "source_id", "level_basis"}
-                    if language != "korean":
-                        required.add("reading")
-                    for field in VOCABULARY_FIELDS:
-                        self.text(row[field], f"{location}.{field}", field in required)
-                    self.english(row["english"], f"{location}.english")
-                    self.identifier(row["id"], seen, f"{location}.id")
-                    self.source_reference(row["source_id"], sources, location)
-        except (OSError, UnicodeError, csv.Error) as exc:
-            self.error(path, str(exc))
+        entries = self.yaml_file(path, list)
+        if entries is None:
+            return count
+        for index, row in enumerate(entries):
+            count += 1
+            location = f"{path}[{index}]"
+            if not isinstance(row, dict):
+                self.error(location, "expected an object")
+                continue
+            if set(row) != set(VOCABULARY_FIELDS):
+                self.error(location, f"fields must be {', '.join(VOCABULARY_FIELDS)}")
+                continue
+            required = {"id", "target", "english", "source_id", "level_basis"}
+            if language != "korean":
+                required.add("reading")
+            for field in VOCABULARY_FIELDS:
+                self.text(row[field], f"{location}.{field}", field in required)
+            self.english(row["english"], f"{location}.english")
+            self.identifier(row["id"], seen, f"{location}.id")
+            self.source_reference(row["source_id"], sources, location)
         if not count:
             self.error(path, "vocabulary must not be empty")
         return count
 
     def grammar(self, language, level, sources, seen):
-        path = self.root / language / level / "grammar.json"
-        entries = self.json_file(path, list)
+        path = self.root / language / level / "grammar.yaml"
+        entries = self.yaml_file(path, list)
         example_count = 0
         if entries is None:
             return 0, 0

@@ -1,0 +1,275 @@
+- id: zh-hsk1-g001
+  pattern: S + 是 + noun
+  english: S is a person or thing
+  note: Identity uses a noun predicate; do not insert this verb before ordinary adjectives.
+  examples:
+  - target: 我是学生。
+    english: I am a student.
+  - target: 这是我的书。
+    english: This is my book.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g002
+  pattern: S + 很 + adjective
+  english: S is adjective; often neutral rather than very
+  note: A plain adjective predicate commonly takes a degree adverb; stress changes intensity.
+  examples:
+  - target: 今天很冷。
+    english: It is cold today.
+  - target: 这个房间很大。
+    english: This room is big.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g003
+  pattern: S + 不 + predicate
+  english: S does not; S is not
+  note: Use for habitual or intended actions and most adjective negation; not possession.
+  examples:
+  - target: 我不喝茶。
+    english: I do not drink tea.
+  - target: 他不是老师。
+    english: He is not a teacher.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g004
+  pattern: S + 有 + noun
+  english: S has something
+  note: Use for possession; the object need not be definite.
+  examples:
+  - target: 我有一个妹妹。
+    english: I have a younger sister.
+  - target: 她有两本书。
+    english: She has two books.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g005
+  pattern: S + 没有 + noun
+  english: S does not have something
+  note: Possession takes this negative rather than ordinary predicate negation.
+  examples:
+  - target: 我没有车。
+    english: I do not have a car.
+  - target: 这里没有水。
+    english: There is no water here.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g006
+  pattern: statement + 吗
+  english: Is the statement true?
+  note: Append to a statement for a neutral yes-no question; retain statement word order.
+  examples:
+  - target: 你是老师吗？
+    english: Are you a teacher?
+  - target: 你喝水吗？
+    english: Do you drink water?
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g007
+  pattern: 谁 / 什么 / 哪儿 in the answer slot
+  english: who / what / where
+  note: Question words stay where the answer would occur; do not add a yes-no particle.
+  examples:
+  - target: 他是谁？
+    english: Who is he?
+  - target: 你住哪儿？
+    english: Where do you live?
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g008
+  pattern: noun + 呢
+  english: What about this person or thing?
+  note: A short return question relies on the preceding conversational topic.
+  examples:
+  - target: 我很好，你呢？
+    english: I am well. What about you?
+  - target: 我的书在这儿，你的呢？
+    english: My book is here. What about yours?
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g009
+  pattern: possessor + 的 + noun
+  english: someone's thing
+  note: This links an owner or modifier to a noun; it may be omitted in close family relationships.
+  examples:
+  - target: 这是我的杯子。
+    english: This is my cup.
+  - target: 他的老师很好。
+    english: His teacher is very good.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g010
+  pattern: number + classifier + noun
+  english: a specified number of things
+  note: Select a classifier with the noun; learn noun-classifier pairs rather than a universal substitute.
+  examples:
+  - target: 我有三本书。
+    english: I have three books.
+  - target: 请给我一杯水。
+    english: Please give me a glass of water.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g011
+  pattern: 这 / 那 + classifier + noun
+  english: this / that thing
+  note: Demonstratives before a counted noun normally take a classifier.
+  examples:
+  - target: 这本书很好。
+    english: This book is good.
+  - target: 那个人是我哥哥。
+    english: That person is my older brother.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g012
+  pattern: S + 在 + place
+  english: S is at a place
+  note: A location predicate differs from an identity predicate.
+  examples:
+  - target: 老师在学校。
+    english: The teacher is at school.
+  - target: 我的书在桌子上。
+    english: My book is on the table.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g013
+  pattern: place + 有 + noun
+  english: There is something at a place
+  note: Introduce an indefinite entity using a place-first existential construction.
+  examples:
+  - target: 桌子上有一本书。
+    english: There is a book on the table.
+  - target: 学校里有很多学生。
+    english: There are many students in the school.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g014
+  pattern: time + S + verb / S + time + verb
+  english: placing an action in time
+  note: Place time before the verb, often before or after the subject; no tense conjugation.
+  examples:
+  - target: 明天我去学校。
+    english: Tomorrow I am going to school.
+  - target: 我今天在家学习。
+    english: I am studying at home today.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g015
+  pattern: S + 在 + place + verb
+  english: S does something at a place
+  note: Put the location phrase before the main action.
+  examples:
+  - target: 我在家吃饭。
+    english: I eat at home.
+  - target: 她在学校工作。
+    english: She works at the school.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g016
+  pattern: S + 也 + predicate
+  english: S also does or is something
+  note: Place this adverb before the verb or adjective, not after an object.
+  examples:
+  - target: 我也学汉语。
+    english: I also study Chinese.
+  - target: 他也是学生。
+    english: He is also a student.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g017
+  pattern: plural topic + 都 + predicate
+  english: all members do or are something
+  note: The scope normally refers back to people or things already introduced.
+  examples:
+  - target: 我们都喝水。
+    english: We all drink water.
+  - target: 这些书都很好。
+    english: These books are all good.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g018
+  pattern: noun + 和 + noun
+  english: one noun and another noun
+  note: Coordinate noun phrases; do not use this automatically to connect full clauses.
+  examples:
+  - target: 我和姐姐去学校。
+    english: My older sister and I go to school.
+  - target: 桌上有茶和水。
+    english: There is tea and water on the table.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g019
+  pattern: S + 想 + verb
+  english: S would like to do something
+  note: Express desire or intention; a following verb is not inflected.
+  examples:
+  - target: 我想喝水。
+    english: I would like to drink some water.
+  - target: 你想去哪儿？
+    english: Where would you like to go?
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g020
+  pattern: S + 会 + skill verb
+  english: S knows how to do something
+  note: This use marks a learned skill, not permission or every kind of physical ability.
+  examples:
+  - target: 她会游泳。
+    english: She knows how to swim.
+  - target: 我会写这个字。
+    english: I can write this character.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g021
+  pattern: 请 + verb phrase
+  english: Please do something
+  note: A polite request still needs an appropriate tone and context.
+  examples:
+  - target: 请坐。
+    english: Please sit down.
+  - target: 请看这本书。
+    english: Please look at this book.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g022
+  pattern: verb + 不 + verb
+  english: whether someone does or is something
+  note: A-not-A creates a yes-no question; avoid adding another yes-no question particle.
+  examples:
+  - target: 你去不去学校？
+    english: Are you going to school?
+  - target: 这个菜好不好吃？
+    english: Does this dish taste good?
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g023
+  pattern: 几 + classifier / 多少 + noun
+  english: how many / how much
+  note: The first commonly expects a small count; the second allows an open quantity.
+  examples:
+  - target: 你有几本书？
+    english: How many books do you have?
+  - target: 这个多少钱？
+    english: How much does this cost?
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g024
+  pattern: 去 / 来 + place + verb
+  english: go / come somewhere to do something
+  note: A serial-verb sequence expresses movement followed by purpose.
+  examples:
+  - target: 我去商店买水。
+    english: I am going to the shop to buy water.
+  - target: 他来我家吃饭。
+    english: He is coming to my home to eat.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping
+- id: zh-hsk1-g025
+  pattern: 别 + verb
+  english: Do not do something
+  note: Use for a direct prohibition or preventive request; soften with context when needed.
+  examples:
+  - target: 别说话。
+    english: Do not talk.
+  - target: 别喝这个水。
+    english: Do not drink this water.
+  source_id: original-zh
+  level_basis: Original teaching selection for 2021-framework band 1; not official grammar mapping

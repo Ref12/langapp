@@ -1,19 +1,20 @@
-"""Reproduce the Chinese vocabulary and authored grammar, using only the stdlib.
+"""Reproduce the Chinese vocabulary and authored grammar as YAML.
 
 Run from the repository root: python scripts\\import_chinese_curriculum.py
+Install dependencies from scripts/requirements.txt first.
 The pinned upstream download is verified before any outputs are replaced.
 """
 
 from __future__ import annotations
 
 import argparse
-import csv
 import hashlib
-import io
 import json
 from pathlib import Path
 import re
 import urllib.request
+
+from curriculum_yaml import dump_yaml
 
 
 ROOT = Path(__file__).resolve().parents[1] / "curriculum" / "chinese"
@@ -294,14 +295,12 @@ def main() -> None:
     words = vocabulary(data)
     patterns = grammar()
     report = normalization_report(data)
-    outputs = {ROOT / "normalization-report.json": json.dumps(report, ensure_ascii=False, indent=2) + "\n"}
+    outputs = {ROOT / "normalization-report.yaml": dump_yaml(report)}
     for level in EXPECTED:
-        stream = io.StringIO(newline="")
-        writer = csv.DictWriter(stream, fieldnames=HEADER, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(words[level])
-        outputs[ROOT / f"hsk-{level}" / "vocabulary.csv"] = stream.getvalue()
-        outputs[ROOT / f"hsk-{level}" / "grammar.json"] = json.dumps(patterns[level], ensure_ascii=False, indent=2) + "\n"
+        outputs[ROOT / f"hsk-{level}" / "vocabulary.yaml"] = dump_yaml(
+            [{field: row[field] for field in HEADER} for row in words[level]]
+        )
+        outputs[ROOT / f"hsk-{level}" / "grammar.yaml"] = dump_yaml(patterns[level])
     for path, content in outputs.items():
         if args.check:
             if path.read_text(encoding="utf-8") != content:

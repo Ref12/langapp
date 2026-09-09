@@ -37,7 +37,7 @@ Use all 679 rows as the level's coverage queue, but **one appropriate current se
 
 Suggested first-pass row budgets across blocks: **75, 75, 75, 75, 75, 75, 75, 75, 79**. Budgets are pacing guides, not topic quotas. For each block:
 
-1. Filter `vocabulary.csv` by the named topic buckets; inspect the actual English gloss and POS.
+1. Filter `vocabulary.yaml` by the named topic buckets; inspect the actual English gloss and POS.
 2. Choose previously unintroduced rows supporting the task; pair kana-only forms with suitable kanji words.
 3. Include approximately one quarter of the allocation from `general-language`, prioritizing useful verbs, adjectives, question words and connectors.
 4. Carry over unsuitable rows to a later block. Fill short buckets with appropriate unintroduced rows from other topics. At block 9, audit every ID as introduced, previously known, or explicitly deferred with a reason; schedule a catch-up cycle for deferred core senses.
@@ -46,7 +46,7 @@ Review earlier words during later blocks rather than duplicating them as new voc
 
 ## Ordered thematic lesson blocks
 
-Each block comprises several micro-lessons, not one oversized class. Teach roughly two constructions per micro-lesson; recycle all five in the block task. Grammar IDs link to entries in `grammar.json`.
+Each block comprises several micro-lessons, not one oversized class. Teach roughly two constructions per micro-lesson; recycle all five in the block task. Grammar IDs link to entries in `grammar.yaml`.
 
 | Block | Focus and actual grammar IDs | Vocabulary selection | Task and evidence |
 |---|---|---|---|

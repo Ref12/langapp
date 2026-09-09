@@ -1,0 +1,110 @@
+- id: zh-vocab-adapted
+  title: English-glossed 2021-standard-derived Chinese vocabulary adaptation
+  url: https://github.com/drkameleon/complete-hsk-vocabulary/tree/7ac65bf1a6387d35f1ade478906172a19311c7f9
+  license: CC-BY-SA-4.0 for adapted dictionary data; retain upstream MIT notices as well
+  usage: All vocabulary.yaml rows. Imports only new-1 through new-7 labels, simplified headwords, pinyin
+    and meanings. Omits upstream frequency, radicals, classifiers and POS data. Processes all 32,430 imported
+    source senses; removes balanced untranslated reference annotations and reference-dependent clauses,
+    discards reference-only senses and readings without standalone senses, and preserves usable English
+    definitions with applicable region/domain tags. Supplies 17 original headword gloss repairs plus 17
+    explicit sense-rewrite rules recorded in the importer. Adds heuristic English topic labels. Not a
+    certified transcription of either official standard or examination syllabus.
+  attribution: Derived from Complete HSK Vocabulary by Yanis Zafiropulos, its Pleco/elkmovie HSK30 wordlist
+    source, and CC-CEDICT contributors. Transformation, 17 headword repairs and 17 sense-rewrite rules
+    are original AI-assisted work requiring human review. Retain this attribution, source URLs, MIT notices
+    and CC-BY-SA license on redistribution.
+  retrieved_on: '2026-09-07'
+  upstream_source_ids:
+  - complete-hsk-vocabulary
+  - pleco-hsk2021
+  - cc-cedict
+  - original-zh
+  revision: 7ac65bf1a6387d35f1ade478906172a19311c7f9
+  sha256: c869a0ce353279c9333d9b42c31fc3549785e8b40673dab57ee42bc99cd14131
+  source_entry_convention: Pinned complete.json URL plus a zero-based JSON Pointer URI fragment identifying
+    the upstream array record.
+  normalization_report: normalization-report.yaml
+- id: complete-hsk-vocabulary
+  title: Complete HSK Vocabulary
+  url: https://github.com/drkameleon/complete-hsk-vocabulary
+  license: MIT at the pinned revision; dictionary definitions retain underlying CC-CEDICT share-alike
+    obligations
+  usage: Downloaded complete.json; selected 10,969 unique new-series entries. This is an incremental normalized
+    headword inventory, not the 11,092 official slot count. Legacy old-series and newer newest-series
+    assignments are deliberately not imported.
+  attribution: Copyright (c) 2026 Yanis Zafiropulos. MIT license preserved in licenses/complete-hsk-MIT.txt.
+    README directly identifies elkmovie/hsk30 as the new-series list and CC-CEDICT as the dictionary source.
+  retrieved_on: '2026-09-07'
+  revision: 7ac65bf1a6387d35f1ade478906172a19311c7f9
+  download_url: https://raw.githubusercontent.com/drkameleon/complete-hsk-vocabulary/7ac65bf1a6387d35f1ade478906172a19311c7f9/complete.json
+  sha256: c869a0ce353279c9333d9b42c31fc3549785e8b40673dab57ee42bc99cd14131
+- id: pleco-hsk2021
+  title: 'HSK 3.0 Vocabulary Lists: OCR of the 2021 educational standard'
+  url: https://github.com/elkmovie/hsk30
+  license: MIT for the repository's transcription; no blanket license claim over the official source PDF
+  usage: Indirect provenance of the imported new-series assignments. README links the March 2021 Ministry
+    of Education announcement; wordlist header says OCR was not extensively proofread. Used to establish
+    version provenance, not to claim official proofreading or exact slot reconciliation.
+  attribution: Copyright (c) 2021 Pleco Inc. MIT notice preserved in licenses/hsk30-MIT.txt.
+  retrieved_on: '2026-09-07'
+  revision: 7f3d4fdcfcb6e826001df062747c943d1fa8160e
+  download_url: https://raw.githubusercontent.com/elkmovie/hsk30/7f3d4fdcfcb6e826001df062747c943d1fa8160e/wordlist.txt
+- id: cc-cedict
+  title: CC-CEDICT Chinese-English dictionary
+  url: https://www.mdbg.net/chinese/dictionary?page=cedict
+  license: CC-BY-SA-4.0 on the directly checked current download page; historic CC-BY-SA-3.0 text also
+    retained for upstream dictionary provenance
+  usage: English meanings and pinyin inherited through the pinned Complete HSK Vocabulary dataset, not
+    a fresh import of the current dictionary. Current dictionary download was not substituted for the
+    pinned meanings. The composite dataset does not record its exact underlying dictionary revision.
+  attribution: CC-CEDICT contributors; continuation of the CEDICT project initiated by Paul Denisowski
+    in 1997. Attribute CC-CEDICT and MDBG with source and license links, identify adaptations, and share
+    adapted dictionary material alike. The MIT wrapper does not erase these obligations.
+  retrieved_on: '2026-09-07'
+  license_url: https://creativecommons.org/licenses/by-sa/4.0/
+  local_license_files:
+  - licenses/CC-BY-SA-4.0.txt
+  - licenses/CC-BY-SA-3.0.txt
+  license_text_revision: creativecommons/cc-legal-tools-data@6d7046ff3146bbc034e88d9c87854e43d2a28e32
+  license_text_sha256:
+    CC-BY-SA-4.0.txt: 28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5
+    CC-BY-SA-3.0.txt: 3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f
+- id: moe-gf2021
+  title: Chinese Proficiency Grading Standards for International Chinese Language Education, GF0025-2021
+  url: https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202103/t20210329_523304.html
+  license: Official reference only; no open redistribution license asserted
+  usage: Primary reference for the three-stage, nine-band educational framework, four linguistic benchmarks
+    and five skill domains. Announcement explicitly states implementation on 2021-07-01. Official protected
+    tables and examples are not reproduced.
+  attribution: Ministry of Education of the People's Republic of China and State Language Commission.
+  retrieved_on: '2026-09-07'
+  version: GF0025-2021; effective 2021-07-01
+  official_pdf_url: https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202103/W020210329527301787356.pdf
+- id: ct-exam-syllabus
+  title: ChineseTest HSK examination syllabus download page
+  url: https://www.chinesetest.cn/syllabus
+  license: Official reference only; no open redistribution license asserted
+  usage: The live primary page directly links an HSK 3.0 exam syllabus PDF and a separate ability-description
+    PDF. Consult these for the 2025/2026 exam syllabus rather than relabeling 2021 educational-standard
+    assignments. No claim about universal exam rollout dates or local test-center availability is made
+    here. No protected exam questions or PDF content are copied.
+  attribution: ChineseTest / Chinese Testing International, official examination service.
+  retrieved_on: '2026-09-07'
+  official_pdf_url: https://hsk.cn-bj.ufileos.com/3.0/%E6%96%B0%E7%89%88HSK%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B21219.pdf
+  mapping_status: Not implemented. Upstream newest-series labels are separate from the imported new-series
+    labels and do not provide a complete audited new-exam inventory.
+- id: original-zh
+  title: Original Chinese teaching selections, examples, syllabi and assessment rubrics
+  url: local:curriculum/chinese/authoring/grammar.psv
+  license: Original AI-authored material offered under CC-BY-SA-4.0 to the extent copyright or related
+    rights exist; no claim to ownership of ordinary language facts
+  usage: Original authored grammar patterns, English explanations, 370 bilingual examples, level placement,
+    17 headword gloss repairs and 17 explicit sense-rewrite rules, lesson sequencing and tutor rubrics
+    in this collection. The local URI identifies original material in this repository, not an external
+    publication. These are pedagogical selections, not copied official lists or examination material.
+    Original AI-authored examples require human linguistic review.
+  attribution: Original AI-assisted Chinese curriculum contributions for this repository, 2026. No examination-board
+    endorsement. Credit CC-CEDICT separately when using the derived vocabulary.
+  retrieved_on: '2026-09-07'
+  local_material: authoring/grammar.psv, hsk-*/grammar.yaml, hsk-*/syllabus.md, README.md and the importer's
+    headword/sense corrections

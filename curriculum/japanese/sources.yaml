@@ -1,0 +1,102 @@
+- id: jmdict-waller
+  title: JMdict English vocabulary joined to Waller community JLPT estimates through stephenmk's checked
+    entry-ID mapping
+  url: https://github.com/stephenmk/yomitan-jlpt-vocab/tree/b062d4e38c4bdd0950ae1d4ec55f04b176182e03
+  license: CC-BY-SA-4.0 for this derivative dataset; EDRDG attribution and updating statement; Waller's
+    level estimates are CC BY (version unspecified by Waller)
+  usage: All vocabulary.yaml files. English glosses and POS come from current JMdict senses compatible
+    with the mapped reading and selected spelling, not from the older Waller glosses. Level estimates
+    come only from Waller's community mapping. Deduplicate by JMdict entry ID plus reading, keeping the
+    earliest teaching band. Topic tags are approximate importer classifications of the first retained
+    sense. Other dictionary senses are reference information, not a claim that every sense belongs at
+    the assigned level.
+  attribution: Vocabulary uses JMdict/EDICT, copyright James William Breen and the Electronic Dictionary
+    Research and Development Group (EDRDG), in conformance with https://www.edrdg.org/edrdg/licence.html.
+    JSON transformation by scriptin/jmdict-simplified. JLPT classifications adapted from Jonathan Waller's
+    JLPT Resources, https://www.tanos.co.uk/jlpt/, CC BY, through stephenmk/yomitan-jlpt-vocab, CC-BY-SA-4.0.
+    Retain all these credits, license links, and the modification notice.
+  retrieved_on: '2026-09-07'
+  mapping_commit: b062d4e38c4bdd0950ae1d4ec55f04b176182e03
+  dictionary_release: 3.6.2+20260831182826
+  dictionary_archive_sha256: 3c842741e2c4f1b780ad4aff6833df308866a8b7dfb9ee59a085e23dd201a65f
+  local_license: licenses/CC-BY-SA-4.0.txt
+  provenance_lock: upstream/download-lock.json
+- id: edrdg-jmdict
+  title: JMdict/EDICT Japanese-English dictionary and EDRDG General Dictionary Licence Statement
+  url: https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project
+  license: CC-BY-SA-4.0; EDRDG General Dictionary Licence Statement
+  usage: Underlying dictionary entries, compatible kana readings, English senses, part-of-speech labels
+    and usage labels. Retained subset only, not the complete dictionary. No KANJIDIC, proper-name dictionary,
+    stroke diagrams, audio, or example-sentence corpus is imported.
+  attribution: 'This work uses the JMdict/EDICT files. These files are the property of the Electronic
+    Dictionary Research and Development Group and are used in conformance with the Group''s licence: https://www.edrdg.org/edrdg/licence.html.
+    Copyright James William Breen and EDRDG. Applications must acknowledge the source, preserve documentation/license
+    access, and have a regular data-updating procedure; the statement gives at least monthly updating
+    for web dictionary servers as an example.'
+  retrieved_on: '2026-09-07'
+  local_license: licenses/EDRDG-license.html
+- id: scriptin-jmdict
+  title: scriptin/jmdict-simplified English-only JMdict release
+  url: https://github.com/scriptin/jmdict-simplified/releases/tag/3.6.2%2B20260831182826
+  license: 'Underlying JMdict: CC-BY-SA-4.0 and EDRDG statement'
+  usage: Machine-readable transformation of JMdict; 11,510,336-byte compressed archive verified before
+    reading. Extracted in memory and reduced to entries referenced by the chosen JLPT mapping. No examples
+    edition or opaque parallel corpus is downloaded.
+  attribution: JMdict JSON transformation from scriptin/jmdict-simplified, https://github.com/scriptin/jmdict-simplified;
+    retain the EDRDG attribution and license.
+  retrieved_on: '2026-09-07'
+  release: 3.6.2+20260831182826
+  archive_sha256: 3c842741e2c4f1b780ad4aff6833df308866a8b7dfb9ee59a085e23dd201a65f
+- id: waller-jlpt
+  title: 'Jonathan Waller''s JLPT Resources: community vocabulary classifications'
+  url: https://www.tanos.co.uk/jlpt/sharing/
+  license: Creative Commons Attribution (CC BY; version not specified on the permission page)
+  usage: Historical, unofficial level estimates via the pinned stephenmk mapping. The permission page
+    explicitly permits commercial and noncommercial reuse of nonsold material with attribution. No paid
+    material, proprietary textbook examples, or course audio is copied.
+  attribution: JLPT classifications adapted from Jonathan Waller's JLPT Resources at https://www.tanos.co.uk/jlpt/,
+    used under CC BY. Waller's attribution does not replace the separate EDRDG license for dictionary-derived
+    material.
+  retrieved_on: '2026-09-07'
+  local_license: licenses/Waller-sharing.html
+- id: stephenmk-jlpt
+  title: 'stephenmk/yomitan-jlpt-vocab: Waller lists matched to JMdict entry IDs'
+  url: https://github.com/stephenmk/yomitan-jlpt-vocab/tree/b062d4e38c4bdd0950ae1d4ec55f04b176182e03/original_data
+  license: CC-BY-SA-4.0
+  usage: Five small mapping CSVs, 8,293 source rows before overlap removal and verification exclusions.
+    Includes source readings and historical glosses for provenance; teaching output uses current dictionary
+    glosses. The upstream README explicitly says official word lists do not exist and the classifications
+    are educated guesses.
+  attribution: JLPT-to-JMdict entry matching and spelling work by stephenmk, https://github.com/stephenmk/yomitan-jlpt-vocab,
+    CC-BY-SA-4.0; original level classifications by Jonathan Waller.
+  retrieved_on: '2026-09-07'
+  commit: b062d4e38c4bdd0950ae1d4ec55f04b176182e03
+  local_license: licenses/CC-BY-SA-4.0.txt
+  local_attribution: licenses/yomitan-jlpt-vocab-README.md
+- id: jlpt-official-reference
+  title: Official JLPT level summary and FAQ
+  url: https://www.jlpt.jp/e/about/levelsummary.html
+  license: Copyrighted official reference; linked and paraphrased only, no open redistribution license
+    asserted
+  usage: Reference for the five levels and receptive skill progression. The FAQ explains why modern exhaustive
+    vocabulary, kanji and grammar specifications are not published and confirms that speaking and writing
+    are not assessed. Syllabi and local rubrics are our original operational teaching designs, not official
+    JLPT documents, official questions, official scoring scales or guaranteed exam coverage.
+  attribution: 'Japan Foundation and Japan Educational Exchanges and Services, official JLPT website,
+    https://www.jlpt.jp/e/; FAQ: https://www.jlpt.jp/e/faq/index.html.'
+  retrieved_on: '2026-09-07'
+  faq_url: https://www.jlpt.jp/e/faq/index.html
+- id: original-ja
+  title: Original Japanese AI-tutor teaching selection, examples, syllabi and local rubrics
+  url: local:curriculum/japanese/teaching/grammar.tsv
+  license: CC-BY-SA-4.0 for the original curriculum contributions to the extent copyright applies; no
+    ownership claim over upstream dictionary material
+  usage: 225 original teaching entries and 450 original Japanese-English example pairs, five syllabi and
+    local learning rubrics. AI-authored and pending qualified human/native-speaker review. The local URI
+    identifies the editable original source, not an external authority. Estimated teaching bands, not
+    official or exhaustive grammar specifications; some constructs recur across community level conventions.
+  attribution: Original curriculum contributions generated with GitHub Copilot for this project, 2026-09-07;
+    not JLPT exam material and not endorsed by JLPT or upstream dictionary contributors.
+  retrieved_on: '2026-09-07'
+  local_source: teaching/grammar.tsv
+  review_status: AI-authored; human language-pedagogy review pending

@@ -25,7 +25,7 @@ Work toward approximately **900–1,200 cumulative high-utility kanji**, selecte
 
 After initial instruction, omit readings for established words; supply selective support for unfamiliar names or specialist terms. Include headings, tables, notices and kana-heavy conversational transcripts so recognition does not depend on a single layout.
 
-Use two progress measures: **new lexical breadth** in this CSV and **sense/register depth** for existing N5–N3 entries. Every row's dictionary senses are reference information; teach common, relevant senses before rare or technical ones. Identify register labels before allowing a word in an everyday role-play.
+Use two progress measures: **new lexical breadth** in this vocabulary and **sense/register depth** for existing N5–N3 entries. Every row's dictionary senses are reference information; teach common, relevant senses before rare or technical ones. Identify register labels before allowing a word in an everyday role-play.
 
 Suggested first-pass row budgets by block: **194, 194, 194, 194, 194, 194, 194, 194, 195**. A block spans many micro-lessons. Begin around 10–18 new rows per session and adjust to delayed recall and workload. Do not use these numbers as a fixed completion deadline.
 

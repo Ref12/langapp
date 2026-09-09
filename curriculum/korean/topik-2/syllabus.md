@@ -5,7 +5,7 @@
 paraphrased: routine public exchanges, information requests, permission and
 necessary everyday messages. This original teaching rubric is not an official
 TOPIK marking scale. See the reference and original-content records in
-`../sources.json`.
+`../sources.yaml`.
 
 ## Prerequisites and diagnostic
 

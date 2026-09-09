@@ -19,7 +19,7 @@ forms should develop into small substitutions and independent requests.
 
 Each block repeats across multiple sessions. Introduce about 6–10 new entries
 per session after reviewing due material, reducing the load when recall drops.
-Use current-level CSV topics and case-insensitive English-gloss searches, plus
+Use current-level vocabulary topics and case-insensitive English-gloss searches, plus
 all earlier taught items. Record the exact IDs selected.
 
 | Order | Theme and task | Vocabulary retrieval | Grammar IDs |

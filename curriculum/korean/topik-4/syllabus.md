@@ -5,7 +5,7 @@
 paraphrased: familiar social/abstract topics and basic workplace discourse,
 including agreement, disagreement, reporting and interpretation of intentions.
 This original curriculum and local rubric do not reproduce TOPIK's marking
-scheme. Refer to `../sources.json` for official reference links.
+scheme. Refer to `../sources.yaml` for official reference links.
 
 ## Prerequisites and diagnostic
 

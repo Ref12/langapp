@@ -17,7 +17,7 @@ facts and write a coherent practical recommendation.
 ## Ordered recurring lesson blocks
 
 Use roughly 10–16 new entries per session with adaptive reduction after weak
-recall. Search the current CSV by both topics and English glosses; include
+recall. Search the current vocabulary by both topics and English glosses; include
 prior-band prerequisites and preserve the full unseen-ID queue.
 
 | Order | Theme and output | Vocabulary retrieval | Grammar IDs |

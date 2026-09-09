@@ -1,4 +1,7 @@
-"""Rebuild Korean vocabulary from the pinned NIKL dictionary mirror (stdlib only)."""
+"""Rebuild Korean vocabulary from the pinned NIKL dictionary mirror as YAML.
+
+Install dependencies from scripts/requirements.txt first.
+"""
 
 from __future__ import annotations
 
@@ -13,6 +16,8 @@ from pathlib import Path
 import re
 import urllib.parse
 import urllib.request
+
+from curriculum_yaml import write_yaml
 
 
 ROOT = Path(__file__).resolve().parents[1] / "curriculum" / "korean"
@@ -268,10 +273,8 @@ def build_vocabulary(raw: bytes) -> dict:
         directory = ROOT / f"topik-{level}"
         directory.mkdir(parents=True, exist_ok=True)
         rows.sort(key=lambda row: (row["target"], row["part_of_speech"], row["id"]))
-        with (directory / "vocabulary.csv").open("w", encoding="utf-8", newline="") as stream:
-            writer = csv.DictWriter(stream, fieldnames=FIELDS, lineterminator="\n")
-            writer.writeheader()
-            writer.writerows(rows)
+        write_yaml(directory / "vocabulary.yaml",
+                   [{field: row[field] for field in FIELDS} for row in rows])
         counts[f"topik-{level}"] = len(rows)
     all_rows = [row for rows in levels.values() for row in rows]
     return {
@@ -318,9 +321,7 @@ def build_grammar() -> dict:
     for level, content in entries.items():
         if len(content) < 30:
             raise ValueError(f"Insufficient grammar coverage for level {level}")
-        (ROOT / f"topik-{level}" / "grammar.json").write_text(
-            json.dumps(content, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-        )
+        write_yaml(ROOT / f"topik-{level}" / "grammar.yaml", content)
     return {f"topik-{level}": len(content) for level, content in entries.items()}
 
 
@@ -342,9 +343,7 @@ def main() -> None:
             raw = response.read()
     report = build_vocabulary(raw)
     report["grammar_counts"] = build_grammar()
-    (ROOT / "import-report.json").write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    write_yaml(ROOT / "import-report.yaml", report)
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 

@@ -14,7 +14,7 @@ source methodology, and reuse conditions before using the data.
 | Korean | `korean/topik-1` through `korean/topik-6` | TOPIK I: grades 1-2; TOPIK II: grades 3-6 |
 | Japanese | `japanese/jlpt-n5` through `japanese/jlpt-n1` | JLPT, with N5 first and N1 last |
 
-`catalog.json` records the traversal order. Numbers in different schemes are
+`catalog.yaml` records the traversal order. Numbers in different schemes are
 **not** interchangeable proficiency measures or automatic CEFR equivalents.
 In particular, distinguish the Chinese 2021 educational standard from the
 later revised examination syllabus; a shared HSK 3.0 label does not make their
@@ -24,11 +24,11 @@ Every level contains:
 
 | File | Purpose |
 | --- | --- |
-| `vocabulary.csv` | Target forms, pronunciation where provided, English meanings, and provenance |
-| `grammar.json` | Patterns with English meanings, brief notes, and translated examples |
+| `vocabulary.yaml` | Target forms, pronunciation where provided, English meanings, and provenance |
+| `grammar.yaml` | Patterns with English meanings, brief notes, and translated examples |
 | `syllabus.md` | Prerequisites, teaching blocks, communicative outcomes, and level-specific exit tasks |
 
-Each language also has `sources.json`, a coverage README, and any necessary
+Each language also has `sources.yaml`, a coverage README, and any necessary
 license notices. Sources distinguish imported material, reference-only official
 descriptors, and original AI-authored teaching material.
 
@@ -77,13 +77,23 @@ or level appropriateness.
 
 ## Data contract
 
-Files use UTF-8. Read CSV with a CSV parser, not by splitting on commas: meanings
-can contain commas, quotes, and multiple senses. JSON grammar files and source
-files are arrays, not newline-delimited JSON.
+Maintained data files use UTF-8 YAML with `.yaml` extensions. Vocabulary, grammar,
+and sources are lists of mappings; the catalog and reports retain their existing
+mapping/list structures. Preserve entry order and IDs. Use a safe YAML parser;
+the shared Python loader rejects duplicate mapping keys.
+
+Vocabulary fields are strings, including empty optional values (`''`). Keep dates
+and numeric-looking text quoted when they are strings; report counts and catalog
+versions remain numbers. Do not infer types from a field's spelling. The shared
+writer handles quoting and emits Unicode, block-style YAML in stable field order.
+
+Upstream snapshots, download locks, TSV/PSV authoring inputs, and license files
+remain in their original formats. Historical filenames in preserved notices
+refer to the corresponding YAML outputs after this format-only migration.
 
 ### Vocabulary
 
-The CSV header is:
+Each vocabulary mapping contains these nine fields:
 
 ```text
 id,target,reading,english,part_of_speech,topic,source_id,source_entry,level_basis
@@ -97,12 +107,12 @@ id,target,reading,english,part_of_speech,topic,source_id,source_entry,level_basi
 | `english` | English equivalent or sense gloss; multiple senses can be retained |
 | `part_of_speech` | Source label, where available; blank does not mean "noun" |
 | `topic` | Teaching domain, where available; blank means unclassified |
-| `source_id` | Exact ID in that language's `sources.json` |
+| `source_id` | Exact ID in that language's `sources.yaml` |
 | `source_entry` | Upstream entry identifier or URL, where available |
 | `level_basis` | Basis of placement: named source/version or explicit teaching estimate |
 
 An empty optional field means the source did not provide that metadata. Do not
-invent pronunciation, topics, or word classes just to fill a column. English
+invent pronunciation, topics, or word classes just to fill a field. English
 glosses are sense hints, not interchangeable translations in every context.
 Phrases use this same format rather than requiring a separate phrase store.
 
@@ -158,12 +168,15 @@ certify auditory comprehension or pronunciation.
 From the repository root, with Python 3.10 or newer:
 
 ```powershell
+python -m pip install -r scripts\requirements.txt
 python scripts\validate_curriculum.py
 python scripts\validate_curriculum.py --language japanese
+python scripts\test_curriculum_yaml.py
 ```
 
-The dependency-free validator checks required files, directory order metadata,
-CSV structure, nonempty bilingual fields, IDs, source references, source dates,
+The validator uses the pinned PyYAML dependency and checks required files,
+directory order metadata, YAML record structure, nonempty bilingual fields, IDs,
+source references, source dates,
 and grammar examples. It prints counts by level and fails on structural errors.
 It does not make a pedagogical or licensing certification.
 

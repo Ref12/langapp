@@ -1,6 +1,7 @@
 """Rebuild the Japanese teaching collection using pinned, attributed open data.
 
-Only the Python standard library is needed. Network access is opt-in (--download).
+Install dependencies from scripts/requirements.txt first.
+Network access is opt-in (--download).
 The local source subset excludes sentence corpora and unrelated dictionary entries.
 """
 
@@ -16,6 +17,8 @@ import tarfile
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+
+from curriculum_yaml import load_yaml, write_yaml
 
 
 ROOT = Path(__file__).resolve().parents[1] / "curriculum" / "japanese"
@@ -218,12 +221,10 @@ def import_vocabulary() -> dict:
             })
         level_dir = ROOT / f"jlpt-{level}"
         level_dir.mkdir(parents=True, exist_ok=True)
-        with (level_dir / "vocabulary.csv").open("w", encoding="utf-8", newline="") as stream:
-            writer = csv.DictWriter(stream, fieldnames=HEADER)
-            writer.writeheader()
-            writer.writerows(output)
+        write_yaml(level_dir / "vocabulary.yaml",
+                   [{field: row[field] for field in HEADER} for row in output])
         report["levels"][level] = {"source_rows": len(source_rows), "vocabulary_rows": len(output)}
-    write_json(ROOT / "import-report.json", report)
+    write_yaml(ROOT / "import-report.yaml", report)
     return report
 
 
@@ -243,7 +244,7 @@ def import_grammar() -> dict[str, int]:
                 "level_basis": "Original teaching selection; estimated JLPT band, not an official or exhaustive grammar syllabus",
             })
     for level, entries in grouped.items():
-        write_json(ROOT / f"jlpt-{level}" / "grammar.json", entries)
+        write_yaml(ROOT / f"jlpt-{level}" / "grammar.yaml", entries)
         counts[level] = len(entries)
     return counts
 
@@ -263,11 +264,11 @@ def require_text_fields(record: object, fields: tuple[str, ...], context: str) -
 
 def validate() -> None:
     ids = set()
-    source_data = json.loads((ROOT / "sources.json").read_text(encoding="utf-8"))
-    require(isinstance(source_data, list), "sources.json: expected an array")
+    source_data = load_yaml(ROOT / "sources.yaml")
+    require(isinstance(source_data, list), "sources.yaml: expected a list")
     sources = set()
     for index, source in enumerate(source_data, 1):
-        context = f"sources.json entry {index}"
+        context = f"sources.yaml entry {index}"
         require_text_fields(source, ("id", "title", "url", "license", "usage", "attribution", "retrieved_on"), context)
         require(source["id"] not in sources, f"{context}: duplicate source ID '{source['id']}'")
         require(re.fullmatch(r"\d{4}-\d{2}-\d{2}", source["retrieved_on"]),
@@ -280,15 +281,15 @@ def validate() -> None:
     summaries = []
     for level in LEVELS:
         path = ROOT / f"jlpt-{level}"
-        with (path / "vocabulary.csv").open(encoding="utf-8", newline="") as stream:
-            reader = csv.DictReader(stream)
-            require(reader.fieldnames == HEADER,
-                    f"{level}/vocabulary.csv: expected header {HEADER}, got {reader.fieldnames}")
-            vocab = list(reader)
-        require(vocab, f"{level}/vocabulary.csv: no vocabulary rows")
-        for index, row in enumerate(vocab, 2):
-            context = f"{level}/vocabulary.csv line {index}"
-            require(None not in row, f"{context}: unexpected extra CSV columns")
+        vocab = load_yaml(path / "vocabulary.yaml")
+        require(isinstance(vocab, list), f"{level}/vocabulary.yaml: expected a list")
+        require(vocab, f"{level}/vocabulary.yaml: no vocabulary rows")
+        for index, row in enumerate(vocab, 1):
+            context = f"{level}/vocabulary.yaml entry {index}"
+            require(isinstance(row, dict), f"{context}: expected a mapping")
+            require(set(row) == set(HEADER), f"{context}: expected fields {HEADER}")
+            for field in HEADER:
+                require(isinstance(row[field], str), f"{context}: '{field}' must be a string")
             require_text_fields(row, ("id", "target", "reading", "english", "source_id", "level_basis"), context)
             require(row["source_id"] in sources,
                     f"{context} ({row['id']}): unknown source ID '{row['source_id']}'")
@@ -298,14 +299,14 @@ def validate() -> None:
                     f"{context} ({row['id']}): English gloss must contain English letters")
             require(row["id"] not in ids, f"{context}: duplicate ID '{row['id']}'")
             ids.add(row["id"])
-        grammar = json.loads((path / "grammar.json").read_text(encoding="utf-8"))
-        require(isinstance(grammar, list), f"{level}/grammar.json: expected an array")
+        grammar = load_yaml(path / "grammar.yaml")
+        require(isinstance(grammar, list), f"{level}/grammar.yaml: expected a list")
         minimum = 30 if level in ("n5", "n4") else 40
         require(len(grammar) >= minimum,
-                f"{level}/grammar.json: expected at least {minimum} entries, got {len(grammar)}")
+                f"{level}/grammar.yaml: expected at least {minimum} entries, got {len(grammar)}")
         syllabus = (path / "syllabus.md").read_text(encoding="utf-8")
         for index, item in enumerate(grammar, 1):
-            context = f"{level}/grammar.json entry {index}"
+            context = f"{level}/grammar.yaml entry {index}"
             require_text_fields(item, ("id", "pattern", "english", "note", "source_id", "level_basis"), context)
             require(item["source_id"] in sources,
                     f"{context} ({item['id']}): unknown source ID '{item['source_id']}'")
@@ -338,7 +339,7 @@ def main() -> None:
         counts = import_grammar()
         for level in LEVELS:
             report["levels"][level]["grammar_entries"] = counts[level]
-        write_json(ROOT / "import-report.json", report)
+        write_yaml(ROOT / "import-report.yaml", report)
     validate()
 
 

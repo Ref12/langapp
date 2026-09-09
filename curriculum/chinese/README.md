@@ -64,19 +64,19 @@ corpus, not an assertion that those omissions have been solved.
 
 Every level has:
 
-- `vocabulary.csv`: UTF-8, exact shared nine-column schema; stable per-revision
+- `vocabulary.yaml`: UTF-8 YAML list, exact shared nine-field schema; stable per-revision
   IDs, simplified target, tone-marked pinyin, English definitions and provenance.
-- `grammar.json`: an array with `id`, `pattern`, `english`, `note`, `examples`,
+- `grammar.yaml`: a list with `id`, `pattern`, `english`, `note`, `examples`,
   `source_id`, and `level_basis`. Bracketed letters such as S are English
   metalinguistic placeholders, not words to pronounce.
 - `syllabus.md`: prerequisites, ordered recurring thematic blocks, grammar IDs,
   vocabulary retrieval rules, practice/review and observable exit tasks.
 
-`sources.json` supplies attribution and version metadata.
-`normalization-report.json` records corpus-wide sense filtering and repair counts.
+`sources.yaml` supplies attribution and version metadata.
+`normalization-report.yaml` records corpus-wide sense filtering and repair counts.
 `authoring/grammar.psv`
-is the editable original grammar source; the importer regenerates JSON from it.
-Do not edit generated vocabulary or grammar JSON as the sole record of a repair.
+is the editable original grammar source; the importer regenerates YAML from it.
+Do not edit generated vocabulary or grammar YAML as the sole record of a repair.
 Edit the source or importer, regenerate and review the resulting change.
 
 ### Pronunciation, senses and variants
@@ -155,7 +155,7 @@ official status, audio observations or exam outcomes.
   its Pleco/elkmovie source's MIT notice are both preserved in `licenses`.
   They do not relicense the underlying dictionary or official PDFs.
 - **Adapted vocabulary:** CC-CEDICT attribution/share-alike obligations remain.
-  Redistribute these adapted CSVs under **CC-BY-SA-4.0**, retain the source
+  Redistribute these adapted vocabulary files under **CC-BY-SA-4.0**, retain the source
   attribution and license links, and identify changes. The live MDBG download
   page directly links 4.0. Historic 3.0 and current 4.0 legal texts are both
   retained; 3.0 permits an adaptation under a later same-elements license.
@@ -170,16 +170,17 @@ official status, audio observations or exam outcomes.
   collection is bundled. The source repositories' claims do not imply official
   endorsement.
 
-Preserve `sources.json`, this attribution explanation, both MIT notices and the
+Preserve `sources.yaml`, this attribution explanation, both MIT notices and the
 applicable CC license when shipping the data. Share-alike applies to adapted
 licensed material; this does not by itself assert a license for an entire
 application that merely uses the collection.
 
 ## Reproduce and validate
 
-From the repository root, using Python 3.10+ and no third-party packages:
+From the repository root, using Python 3.10+ and the pinned YAML dependency:
 
 ```powershell
+python -m pip install -r scripts\requirements.txt
 python scripts\import_chinese_curriculum.py
 python scripts\import_chinese_curriculum.py --check
 ```
