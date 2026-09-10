@@ -1,38 +1,75 @@
 # Overview
 This document describes ideas for implementing various features of language learning app. Anywhere where specific languages are mentioned (English = source language). Other languages (such as Chinese/Japanese/Korean/Spanish) can mean any target language. When referring to specific romanization forms like pinyin (that should be taken to generally refer to romanization and only where it applies)
 
+
+# Data Representation
+Curriculum in each language consists of vocabulary, grammar, and lessons. Vocabulary is a list of words or terms (can be multiword) which user should know for a given level. It should include meanings in English. Examples may or may not be present. The idea is to have a compact representation of a term. Basically word (+ disambiguator). Grammar includes semantic patterns/grammatical constructs which the user should familiarize themselves with at a certain level. It should also have a compact represent pattern (+ disambiguator/mini description). The full curriculum is passed to AI when attempting to add a new construct. The AI should be able to tell if it is a duplicate of an existing construct and return the existing if so. Lessons organize vocabulary/grammar into discreet units. Perhaps lessons should have dependencies. 
+- ? Should lessons have a predefined order instead of allowing users to choose there path as long as dependencies are satisfied
+- There definitely need to be a free learning mode which is user directed with the assistance of AI.
+
 # Conversation / Voice Mode
 In this mode, you have a conversation with a learning aware listening/speaking AI agent. The whole conversation should be recorded as a transcript. You can ask the agent to test you on things. You can ask it to explain things to you. You can ask the agent to say a phrase in the target language which you can then repeat. It should also allow you to vocally control the speed of agent dialogue by telling it to speed up or slow down.
 
+## Operations
+ - say(statement: string) - used to speak to the user
+ - write(markdown: string) - used to write markdown response into transcript
 
-# Games
+### Visual
+AI operators with visual components (i.e. not compatible with handsfree mode)
+- exercises.match(pairs: Pair[]) - match word pairs
+- exercises.translate(pair: Pair) - ask user to translate a word/phrase/sentence
+- exercises.listen(target_language_message: string) - listen 
 
-## Matching Card Game
-This a game where you start out with cards face down spread out in a grid pattern (might also be diagonal). I would say something like a 4 x 5 grid. The goal is to pair the target language word (as Chinese character(s) / romanization / ?maybe some kind of sound cards as well?) with the meaning (as source language word or picture/icon). 
+### Handsfree
 
-You could also have to grab constituents of a phrase.
+- Have rules controlling AI responses (this should be verified by another agent potentially)
+    - rules.add(prompt: text): id:string
+    - rules.list()
+    - rules.remove(id: string)
 
-# Addictive Game Adaptations
-The core premise is that there are tons of addictive games out there. Some of which are quite simple. If we can create language learning/vocabulary versions of the game. I think it would greatly improve speed and enjoyment of language learning.
+- feedback.increase_score(statement_id: string, kind: KnowledgeKind) - increases score indicating knownledge of statement in given area
+- feedback.decrease_score(statement_id: string, kind: KnowledgeKind) - decreases score indicating knownledge of statement in given area
 
-## Pixel Flow
+- exercises.listen(target_language_message: string) : AnnotatedAudio - reads out the message and asks the user to state which terms they heard
+- exercises.translate(pair: Pair) - asks the user to translate to/from target language
+- exercises.repeat_after_me(target_language_message: string) - generates an exercise to have user repeat the given message.
+- knowledge.get() : Statement[] 
+- lessons.list(start?: string, end?: string) - gets the lessons from the given time range
 
-## NecroMerger
+- exercises.quiz(questions: Question[])
 
-## Magic Sort
-### Word Card Sort
-In this variant, there are cards which are stacked in piles. To start piles have at most 4 cards. Stacks are the equivalent of bottles. When I word is not the top card, only its top is shown. On the top it either has the source or target word. The face has the other variant of the word (or perhaps an image).
+- learning.log(statements: StatementId[]) - adds a list of newly learned statements
+
+- statement.get_or_create(statement: Statement)
+
+- lessons.search(query: string) - search for lessons by query string
+- lessons.get(id: string) - get a lesson by id
+- lessons.create(id: string, title: string, description: string, statements: Statement[], phrases: string[])
+- lessons.update(id: string, add_statements?: Statement[], remove_statements: string[])
+
+### Data Types
+
+enum KnowledgeKind { WordRecognition, Hearing, Speaking, Writing, Reading }
+
+Question = MultipleChoiceQuestion | ShortAnswerQuestion
+
+MultipleChoiceQuestion(question: string, answers: string[])
+
+ShortAnswerQuestion(question: string, string: answer)
+
+Pair(Source: string, Target: string)
+
+Statement(value: string, disambiguators?: string[], description?: string, examples?: string[])
+- Value - the word/character
+- Disambiguators - English synonyms/meanings which clarify the meaning. This is useful when Value can mean different things
 
 
-# Word Reveal
-In this variant, its just like the standard version with colored bottles. However, in order to reveal the colors you have to do translation exercises. This can be one exercise per color, or one exercise per bottle.
+# Exercises
+Transcription - the goal here is that the user must transcribe what the AI is saying. Modes could include a simplified one where you have to transcribe to romanization with/without tonal markers. It could also require you to select the chinese/foreign character. There could even be a mode where you have to draw the character. The goal is ear training combined with writing practice.
 
 
+Translation Transcription - This is similar to transcription except you have to 
 
-# Meowdoku / Zoodoku
-
-## Guitar Hero (Language Hero)
-Words/phrases/sentence/images drop from top of screen. You have to select/type the matching meaning (source <-> target) to destroy it before it reaches the bottom. Maybe you get 3 lives and if it reaches the bottom and you have lives it will pause to give you an explanation.
 
 # Activities
 
