@@ -35,6 +35,7 @@ export default defineConfig(async () => {
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,svg,woff2}'],
+          globIgnores: ['**/microsoft.cognitiveservices.speech.sdk-*.js'],
         },
       }),
     ],

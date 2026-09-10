@@ -1,6 +1,7 @@
 import { languageNames } from '../domain'
 import { requestChatCompletion } from './provider'
 import { jsonrepair } from 'jsonrepair'
+import { targetLocales } from '../voice/contracts'
 import {
   analyzeTextInputSchema,
   analyzeTextOutputSchema,
@@ -22,6 +23,10 @@ import {
   type SuggestFrequentItemsOutput,
   type TranslateImmersionInput,
   type TranslateImmersionOutput,
+  voiceTurnInputSchema,
+  voiceTurnOutputSchema,
+  type VoiceTurnInput,
+  type VoiceTurnOutput,
 } from './schemas'
 
 export function parseAIJson(content: string): unknown {
@@ -49,6 +54,31 @@ export function parseAIJson(content: string): unknown {
 }
 
 const operations = {
+  'conversation.generateVoiceTurn': {
+    input: voiceTurnInputSchema,
+    output: voiceTurnOutputSchema,
+    async execute(input: VoiceTurnInput, signal?: AbortSignal) {
+      const locale = targetLocales[input.targetLanguage]
+      const opening = input.messages.length === 0
+      const content = await requestChatCompletion([
+        {
+          role: 'system',
+          content: `You are a friendly voice tutor helping an English speaker learn ${languageNames[input.targetLanguage]}.
+${opening ? 'Open this new conversation with a brief greeting and question entirely in English (en-US).' : 'Choose English, the target language, or a mixture from the conversation context and explicit learner requests. Do not mechanically match the language of the last message.'}
+Keep replies short, supportive and conversational. Do not apply diglot substitutions.
+Return JSON only: {"segments":[{"text":"spoken text","locale":"en-US"}]}.
+Use ordered single-language segments, with locales only en-US or ${locale}. All visible content must be inside those segments. No markdown. Do not invent pronunciation scores, tone diagnoses or acoustic measurements.`,
+        },
+        ...input.messages,
+      ], signal, { maximumOutputTokens: 1200 })
+      const output = voiceTurnOutputSchema.parse(parseAIJson(content))
+      if (output.segments.some(segment =>
+        segment.locale !== 'en-US' && (opening || segment.locale !== locale))) {
+        throw new Error('The tutor returned an unsupported reply language. Retry the reply.')
+      }
+      return output
+    },
+  },
   'language.analyzeText': {
     input: analyzeTextInputSchema,
     output: analyzeTextOutputSchema,
@@ -223,6 +253,12 @@ ${input.text}`,
 export type AIOperationId = keyof typeof operations
 
 export async function invokeAIOperation(
+  id: 'conversation.generateVoiceTurn',
+  input: VoiceTurnInput,
+  signal?: AbortSignal,
+): Promise<VoiceTurnOutput>
+
+export async function invokeAIOperation(
   id: 'language.analyzeText',
   input: AnalyzeTextInput,
   signal?: AbortSignal,
@@ -252,6 +288,7 @@ export async function invokeAIOperation(
   input:
     | AnalyzeTextInput
     | GenerateTurnInput
+    | VoiceTurnInput
     | TranslateSelectionInput
     | SuggestFrequentItemsInput
     | TranslateImmersionInput,
@@ -259,6 +296,7 @@ export async function invokeAIOperation(
 ): Promise<
   | AnalyzeTextOutput
   | GenerateTurnOutput
+  | VoiceTurnOutput
   | TranslateSelectionOutput
   | SuggestFrequentItemsOutput
   | TranslateImmersionOutput
@@ -273,6 +311,7 @@ export async function invokeAIOperation(
   return operation.output.parse(output) as
     | AnalyzeTextOutput
     | GenerateTurnOutput
+    | VoiceTurnOutput
     | TranslateSelectionOutput
     | SuggestFrequentItemsOutput
     | TranslateImmersionOutput

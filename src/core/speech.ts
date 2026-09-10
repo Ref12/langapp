@@ -1,4 +1,85 @@
+import type { SpeechLocale, SpeechSegment } from './voice/contracts'
+
 let activeUtterance: SpeechSynthesisUtterance | undefined
+let cancelQueue: (() => void) | undefined
+
+export type PlaybackPreferences = Partial<Record<SpeechLocale, { voiceURI?: string; rate: number }>>
+export interface PlaybackService {
+  play(segments: SpeechSegment[], signal: AbortSignal, preferences?: PlaybackPreferences): Promise<void>
+  stop(): void
+}
+
+export function stopSpeech(): void {
+  cancelQueue?.()
+  if (activeUtterance) {
+    activeUtterance.onstart = null
+    activeUtterance.onend = null
+    activeUtterance.onerror = null
+    activeUtterance = undefined
+  }
+  if (canReadAloud()) window.speechSynthesis.cancel()
+}
+
+export function playSpeechSegments(
+  segments: SpeechSegment[],
+  signal: AbortSignal,
+  preferences: PlaybackPreferences = {},
+): Promise<void> {
+  stopSpeech()
+  return new Promise((resolve, reject) => {
+    if (signal.aborted) { reject(new DOMException('Playback stopped.', 'AbortError')); return }
+    if (!canReadAloud()) { reject(new Error('Speech synthesis is unavailable. Your reply is still readable.')); return }
+    const synthesis = window.speechSynthesis
+    let index = 0
+    let done = false
+    let timer: ReturnType<typeof setTimeout>
+    const finish = (error?: Error) => {
+      if (done) return
+      done = true
+      clearTimeout(timer)
+      signal.removeEventListener('abort', abort)
+      if (cancelQueue === abort) cancelQueue = undefined
+      if (activeUtterance) {
+        activeUtterance.onstart = activeUtterance.onend = activeUtterance.onerror = null
+        activeUtterance = undefined
+      }
+      if (error) synthesis.cancel()
+      if (error) reject(error)
+      else resolve()
+    }
+    const abort = () => finish(new DOMException('Playback stopped.', 'AbortError'))
+    cancelQueue = abort
+    signal.addEventListener('abort', abort, { once: true })
+    const next = () => {
+      if (done || signal.aborted) return
+      const segment = segments[index++]
+      if (!segment) { finish(); return }
+      const voices = synthesis.getVoices()
+      const preference = preferences[segment.locale]
+      const matching = voices.filter(voice => voice.lang.toLowerCase().split('-')[0] === segment.locale.split('-')[0])
+      const voice = matching.find(voice => voice.voiceURI === preference?.voiceURI) ??
+        matchingSpeechVoice(matching, segment.locale)
+      if (!voice) { finish(new Error(`No ${segment.locale} voice is available. Install a system voice, then tap Play reply.`)); return }
+      const utterance = new SpeechSynthesisUtterance(segment.text)
+      utterance.lang = segment.locale
+      utterance.voice = voice
+      utterance.rate = Math.max(0.25, Math.min(1.25, preference?.rate ?? 0.9))
+      activeUtterance = utterance
+      timer = setTimeout(() => finish(new Error('Playback did not start. Tap Play reply to try again.')), 5000)
+      utterance.onstart = () => {
+        clearTimeout(timer)
+        timer = setTimeout(() => finish(new Error('Playback stalled. Tap Play reply to try again.')), 120_000)
+      }
+      utterance.onend = () => { clearTimeout(timer); next() }
+      utterance.onerror = event => finish(new Error(speechErrorMessage(event.error, segment.locale)))
+      if (synthesis.paused) synthesis.resume()
+      try { synthesis.speak(utterance) } catch { finish(new Error('Playback was blocked. Tap Play reply to try again.')) }
+    }
+    next()
+  })
+}
+
+export const browserPlayback: PlaybackService = { play: playSpeechSegments, stop: stopSpeech }
 
 export interface SpeechPlaybackHandlers {
   onStart?: (voiceName: string) => void
@@ -71,6 +152,7 @@ export function readAloud(
   const voice = matchingSpeechVoice(synthesis.getVoices(), language)
   const voiceName = voice?.name ?? `Android/system ${language} voice`
 
+  cancelQueue?.()
   if (activeUtterance) {
     activeUtterance.onstart = null
     activeUtterance.onend = null

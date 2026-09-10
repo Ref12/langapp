@@ -4,13 +4,14 @@ import { ConversationPage } from './ConversationPage'
 
 export const conversationModule = defineLearningModule({
   id: 'conversation',
-  version: '0.1.0',
+  version: '0.2.0',
   label: 'Conversation',
-  description: 'Talk with AI while learned items are woven into responses.',
+  description: 'Text chat with weaving, or a bilingual voice tutor with reviewed recordings and pronunciation practice.',
   path: '/modules/conversation',
   icon: MessageCircle,
   requiredAIOperations: [
     'conversation.generateTurn',
+    'conversation.generateVoiceTurn',
     'language.analyzeText',
   ],
   component: ConversationPage,

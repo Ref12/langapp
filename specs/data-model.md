@@ -1,5 +1,17 @@
 # Top-Level Data Model
 
+## Implemented voice storage extension (IndexedDB version 6)
+
+- `speechConnections`: dedicated Azure region/key, browser-storage acknowledgement, incremented configuration version and non-secret status fields. Never included in backups.
+- `voiceRecordings`: stable recording ID, owning profile/thread, optional submitted user-message ID, conversation/practice purpose, locale, original recognized transcript and optional detected-locale segments, submitted/draft edit, provider/configuration identity, duration and creation time. Audio is an IndexedDB Blob with canonical mono 16 kHz signed 16-bit PCM WAV encoding, not embedded in message text.
+- `pronunciationAttempts`: owning profile/thread, recording reference, exact reference text/locale, assessment provider/configuration identity, optional validated acoustic measurements/word errors and explicit assessed/no-speech/incomplete status. Recording and initial practice reference are stored atomically. Practice does not create a conversational user turn.
+- Optional `ConversationThread.mode` defaults to text; voice message additions are `recordingId`, `recognizedTranscript`, `speechSegments`, `playbackStatus` and `cancelled`. Playback status is independent of saved text generation status.
+- Recording ownership/profile/thread/message relationships are checked in transactions. A reviewed recording can attach to a user message only once. Deleting audio cascades to its attempts and clears message audio links. Thread deletion keeps shared Dictionary evidence.
+- JSON backup version 2 represents omitted audio as unavailable. Explicit audio export uses `{version:1,encoding:"base64",byteLength,data}` per Blob, capped at the recording's 120s/30s duration and 128 MiB total. Import validates WAV headers, lengths, ownership, references and duplicate identifiers before atomic replacement. Legacy version-1 imports remain accepted. Speech and AI credential tables are excluded; only known non-secret generic preference keys are transferred.
+- Storage estimation is best effort. Persistence can be requested but is not guaranteed. Quota errors never evict old recordings: review retains the in-memory audio, blocks sending an unsaved attached recording, and offers retry/deletion actions. Browser clearing or navigation can lose unsaved audio.
+
+The broader model below includes future architectural requirements beyond the current browser implementation.
+
 ## 1. Purpose
 
 This specification defines the application-wide data model and ownership boundaries. It is logical and independent of IndexedDB or a future server database. Physical schemas MAY refine names and indexes but MUST preserve these identities, relationships, workspace scope, and versioning guarantees.

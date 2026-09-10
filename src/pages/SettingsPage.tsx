@@ -17,6 +17,7 @@ import {
 } from '../core/aiSettingsTransfer'
 import type { TargetLanguage } from '../core/domain'
 import { nowIso } from '../core/ids'
+import { SpeechSettings } from './SpeechSettings'
 
 export function SettingsPage() {
   const stored = useLiveQuery(() => db.aiConnections.get('default'), [])
@@ -26,6 +27,7 @@ export function SettingsPage() {
   const [acknowledged, setAcknowledged] = useState(false)
   const [status, setStatus] = useState('')
   const [busy, setBusy] = useState(false)
+  const [includeRecordings, setIncludeRecordings] = useState(false)
   const [newProfileLanguage, setNewProfileLanguage] =
     useState<TargetLanguage>('ja')
 
@@ -157,7 +159,8 @@ export function SettingsPage() {
   }
 
   const downloadBackup = async () => {
-    const backup = await exportBackup()
+    try {
+    const backup = await exportBackup(includeRecordings)
     const blob = new Blob([JSON.stringify(backup, null, 2)], {
       type: 'application/json',
     })
@@ -167,6 +170,7 @@ export function SettingsPage() {
     anchor.download = `linguaweave-${new Date().toISOString().slice(0, 10)}.json`
     anchor.click()
     URL.revokeObjectURL(url)
+    } catch (error) { setStatus(error instanceof Error ? error.message : 'Backup export failed.') }
   }
 
   const restoreBackup = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -289,6 +293,7 @@ export function SettingsPage() {
         </div>
       </section>
 
+      <SpeechSettings />
       <section className="settings-section">
         <h2>Language profiles</h2>
         <div className="inline-form">
@@ -312,6 +317,8 @@ export function SettingsPage() {
 
       <section className="settings-section">
         <h2>Local data</h2>
+        <p>Normal backups include transcripts and pronunciation feedback, but no credentials or recording audio. Imported omitted audio is marked unavailable. Audio-inclusive backups may be large and contain your voice.</p>
+        <label className="checkbox-label"><input type="checkbox" checked={includeRecordings} onChange={event => setIncludeRecordings(event.target.checked)} />Include recordings in this backup</label>
         <div className="button-row">
           <button onClick={downloadBackup}>
             <Download size={17} /> Export backup

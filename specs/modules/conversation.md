@@ -4,6 +4,21 @@
 
 The `conversation` module provides familiar AI chat threads while applying shared language-learning techniques to assistant responses. In the MVP, assistant responses are generated from an English base and rendered with the shared [diglot weave technique](../techniques/diglot-weave.md).
 
+**Implemented voice extension:** New voice threads use `conversation.generateVoiceTurn`, not the English/weaving operation. The sections below also describe longer-term text-chat requirements; they are not a claim that every specification item is implemented.
+
+## Voice conversation (browser implementation)
+
+- Thread `mode` is optional; absent means legacy text chat. Voice replies are validated ordered `{text, locale}` segments, English plus the current profile locale. Canonical displayed text is the same content spoken, without diglot post-processing.
+- New voice threads request an English greeting. Later replies use context and learner preferences rather than mechanically matching the last spoken language. Typed turns use the same tutor operation.
+- Recording is explicit: request permission → record → finalize → save/review → Send → generate → optional speak. Partial/final phrase recognition only updates the transcript; silence and the 120-second cap never send. Practice is separately bounded to 30 seconds and requires explicit Assess.
+- Review offers edit, original transcript, detected phrase locales, replay, save edit, re-record (retain saved take), discard and Send. Recordings are persisted at review; unsent takes can be resumed after reload. Quota failures block sending the attached take and retain in-memory replay with a not-saved warning.
+- Stop reply aborts generation and sequential browser playback. Generated text is saved before playback; playback failure or interruption is independent metadata and leaves the reply readable.
+- Capture and async callbacks are cancelled on unmount/profile/thread changes or connection-version changes. SDK finalization is bounded to five seconds; service ending/background interruption produces review and an explanatory message. Late microphone permission grants release their streams.
+- Choose a target-language segment for repeat-after-me practice. Its exact reference/locale is saved atomically with the recording's review attempt. Assess uses the saved WAV, not an editable transcript. Accuracy, fluency, completeness, word errors and phonemes are shown only when returned. No-speech/incomplete outcomes are explicit, and multi-phrase scores are not fabricated by averaging.
+- Saved audio/feedback is available in the thread's recording list. Deleting a recording removes its attempts; deleting a voice thread removes messages/audio/attempts but keeps shared Dictionary evidence.
+- Speech and LLM credentials are independent. Audio goes to Azure during conversation recording; only submitted conversation text goes to the LLM. Practice audio goes to Azure upon Assess. Local audio and all keys are excluded from default backups.
+- Real-device/live-provider acceptance remains a release check; see [README](../../README.md#browser-acceptance-checks).
+
 Conversation shares the learner's core Dictionary, tiers, daily introduction budget, evidence, language packs, and AI connection with other modules.
 
 ## 2. Package contribution

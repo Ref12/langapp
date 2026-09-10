@@ -1,3 +1,5 @@
+import type { SpeechSegment } from './voice/contracts'
+
 export type TargetLanguage = 'zh' | 'ja' | 'ko'
 export type KnowledgeTier = 'learning' | 'familiar' | 'mastered'
 export type LearningItemType =
@@ -165,6 +167,7 @@ export interface ReadingBookmark {
 export interface ConversationThread {
   id: string
   profileId: string
+  mode?: 'text' | 'voice'
   title: string
   createdAt: string
   updatedAt: string
@@ -181,6 +184,11 @@ export interface ConversationMessage {
   annotations: WeaveAnnotation[]
   status: MessageStatus
   error?: string
+  recordingId?: string
+  recognizedTranscript?: string
+  speechSegments?: SpeechSegment[]
+  playbackStatus?: 'playing' | 'completed' | 'interrupted' | 'failed'
+  cancelled?: boolean
   createdAt: string
 }
 

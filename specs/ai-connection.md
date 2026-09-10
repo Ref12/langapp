@@ -6,6 +6,14 @@ The static MVP lets a learner supply an OpenAI-compatible API endpoint, key, and
 
 The application is deployed on GitHub Pages and has no backend. Provider calls therefore originate in the browser for the MVP. A future server adapter will implement the same operation contracts and move credentials and calls off the client.
 
+## Voice connections (implemented extension)
+
+The conversational LLM remains this OpenAI-compatible connection. Azure Speech is a **separate** region/key/acknowledgement/version record in `speechConnections`, never the generic settings table. Its key is masked, explicitly acknowledged, and excluded from normal and audio-inclusive backups. No speech-key transfer is provided; re-enter it on another device. Saving speech settings validates local configuration only, not live connectivity.
+
+Only core speech transports read the speech key. The UI receives a non-secret status projection. Azure's SDK is dynamically imported for recognition/assessment and excluded from service-worker precaching; telemetry is disabled by the adapter. Capture/assessment snapshot provider configuration at start. Voice sessions observe both speech and LLM configuration versions and cancel active work on changes.
+
+Shared LLM request cancellation covers already-aborted signals, network fetch and response-body consumption; the 120-second timeout remains active until the response has been consumed. Provider error bodies are not echoed into messages. Voice replies use cancellable browser synthesis independently of both network providers.
+
 ## 2. Settings
 
 Settings MUST provide:

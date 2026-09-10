@@ -54,6 +54,18 @@ export const generateTurnOutputSchema = z.object({
   content: z.string().min(1),
 })
 
+export const voiceTurnInputSchema = generateTurnInputSchema.extend({
+  messages: generateTurnInputSchema.shape.messages.min(0).max(24),
+})
+export const voiceTurnOutputSchema = z.object({
+  segments: z.array(z.object({
+    text: z.string().trim().min(1).max(2_000),
+    locale: z.enum(['en-US', 'zh-CN', 'ja-JP', 'ko-KR']),
+  })).min(1).max(12),
+})
+export type VoiceTurnInput = z.infer<typeof voiceTurnInputSchema>
+export type VoiceTurnOutput = z.infer<typeof voiceTurnOutputSchema>
+
 export const translateSelectionInputSchema = z.object({
   word: z.string().min(1).max(120),
   context: z.string().min(1).max(2_000),

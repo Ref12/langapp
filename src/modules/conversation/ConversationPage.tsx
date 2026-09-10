@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState, type FormEvent } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { LoaderCircle, MessageCircle, Plus, Send, StopCircle } from 'lucide-react'
 import { useActiveProfile } from '../../core/activeProfile'
@@ -9,6 +9,8 @@ import { createId, nowIso } from '../../core/ids'
 import { WovenText } from '../../components/WovenText'
 import { ModuleFrame } from '../../components/ModuleFrame'
 import { analyzeAndWeaveText } from '../../techniques/diglotWeave'
+
+const VoiceConversation = lazy(() => import('./VoiceConversation').then(module => ({ default: module.VoiceConversation })))
 
 export function ConversationPage() {
   const profile = useActiveProfile()
@@ -25,17 +27,17 @@ export function ConversationPage() {
   )
   const [threadId, setThreadId] = useState<string>()
 
-  useEffect(() => {
-    if (!threadId && threads?.[0]) setThreadId(threads[0].id)
-  }, [threadId, threads])
+  const profileThreads = threads?.filter(thread => thread.profileId === profile?.id) ?? []
+  const selectedThread = profileThreads.find(thread => thread.id === threadId) ?? profileThreads[0]
 
-  const createThread = async () => {
+  const createThread = async (mode: 'text' | 'voice' = 'text') => {
     if (!profile) return
     const timestamp = nowIso()
     const thread: ConversationThread = {
       id: createId('thread'),
       profileId: profile.id,
       title: 'New conversation',
+      mode,
       createdAt: timestamp,
       updatedAt: timestamp,
     }
@@ -56,23 +58,26 @@ export function ConversationPage() {
           </div>
           <button
             className="icon-button"
-            onClick={createThread}
+            onClick={() => void createThread()}
             aria-label="New conversation"
           >
             <Plus />
           </button>
         </div>
+        <div className="button-row">
+          <button onClick={() => void createThread('voice')}>New voice conversation</button>
+        </div>
         <div className="document-list">
-          {(threads ?? []).map((thread) => (
+          {profileThreads.map((thread) => (
             <button
-              className={thread.id === threadId ? 'document-item active' : 'document-item'}
+              className={thread.id === selectedThread?.id ? 'document-item active' : 'document-item'}
               onClick={() => setThreadId(thread.id)}
               key={thread.id}
             >
               <MessageCircle size={17} />
               <span>
                 <strong>{thread.title}</strong>
-                <small>{new Date(thread.updatedAt).toLocaleDateString()}</small>
+                <small>{thread.mode === 'voice' ? 'Voice · ' : ''}{new Date(thread.updatedAt).toLocaleDateString()}</small>
               </span>
             </button>
           ))}
@@ -80,14 +85,18 @@ export function ConversationPage() {
         </>
       }
     >
-        {threadId && profile ? (
-          <Conversation threadId={threadId} profileId={profile.id} />
+        {selectedThread && profile ? (
+          selectedThread.mode === 'voice' ?
+            <Suspense fallback={<p>Loading voice tutor…</p>}>
+              <VoiceConversation key={`${profile.id}:${selectedThread.id}`} threadId={selectedThread.id} profile={profile} />
+            </Suspense> :
+            <Conversation key={`${profile.id}:${selectedThread.id}`} threadId={selectedThread.id} profileId={profile.id} />
         ) : (
           <div className="empty-state large">
             <MessageCircle size={38} />
             <h2>Talk about anything</h2>
             <p>Assistant replies will weave in items from your learning set.</p>
-            <button className="primary-button" onClick={createThread}>
+            <button className="primary-button" onClick={() => void createThread()}>
               Start a conversation
             </button>
           </div>
@@ -116,6 +125,7 @@ function Conversation({
   const [error, setError] = useState('')
   const [sending, setSending] = useState(false)
   const controllerRef = useRef<AbortController>()
+  useEffect(() => () => controllerRef.current?.abort(), [])
 
   const send = async (event: FormEvent) => {
     event.preventDefault()
@@ -168,6 +178,7 @@ function Conversation({
         },
         controller.signal,
       )
+      if (controller.signal.aborted) throw new Error('The reply was stopped.')
 
       await db.conversationMessages.update(assistantMessage.id, {
         canonicalContent: generated.content,
@@ -181,6 +192,7 @@ function Conversation({
           'conversation',
           controller.signal,
         )
+        if (controller.signal.aborted) return
         await db.conversationMessages.update(assistantMessage.id, { annotations })
       } catch (weaveError) {
         setError(

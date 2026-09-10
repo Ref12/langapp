@@ -22,12 +22,18 @@ function normalizeBaseUrl(baseUrl: string): string {
   return baseUrl.replace(/\/+$/, '')
 }
 
+export async function getAIConfigurationVersion(): Promise<number> {
+  return (await db.aiConnections.get('default'))?.configurationVersion ?? 0
+}
+
 export async function requestChatCompletion(
   messages: ChatMessage[],
   signal?: AbortSignal,
   options: ChatCompletionOptions = {},
 ): Promise<string> {
+  if (signal?.aborted) throw new Error('The AI request was cancelled.')
   const connection = await db.aiConnections.get('default')
+  if (signal?.aborted) throw new Error('The AI request was cancelled.')
   if (!connection || !connection.baseUrl || !connection.apiKey || !connection.model) {
     throw new Error('Configure an AI connection in Settings first.')
   }
@@ -37,9 +43,8 @@ export async function requestChatCompletion(
   const cancel = () => requestController.abort()
   signal?.addEventListener('abort', cancel, { once: true })
 
-  let response: Response
   try {
-    response = await fetch(`${normalizeBaseUrl(connection.baseUrl)}/chat/completions`, {
+    const response = await fetch(`${normalizeBaseUrl(connection.baseUrl)}/chat/completions`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${connection.apiKey}`,
@@ -55,14 +60,24 @@ export async function requestChatCompletion(
       }),
       signal: requestController.signal,
     })
+    if (!response.ok) {
+      throw new Error(`AI request failed (${response.status}). Check your connection settings.`)
+    }
+    const payload = (await response.json()) as ChatCompletionResponse
+    if (requestController.signal.aborted) throw new DOMException('Aborted', 'AbortError')
+    const content = payload.choices?.[0]?.message?.content
+    if (!content) throw new Error('The AI endpoint returned an empty or incompatible response.')
+    return content
   } catch (error) {
-    if (error instanceof DOMException && error.name === 'AbortError') {
+    if (requestController.signal.aborted) {
       throw new Error(
         signal?.aborted
           ? 'The AI request was cancelled.'
           : 'The AI request timed out after 120 seconds.',
       )
     }
+    if (error instanceof Error && (error.message.startsWith('AI request failed') ||
+      error.message.startsWith('The AI endpoint returned'))) throw error
     throw new Error(
       'The AI endpoint could not be reached. Check its URL, network access, and browser CORS policy.',
     )
@@ -71,21 +86,6 @@ export async function requestChatCompletion(
     signal?.removeEventListener('abort', cancel)
   }
 
-  if (!response.ok) {
-    const detail = await response.text()
-    const conciseDetail = detail.slice(0, 300)
-    throw new Error(
-      `AI request failed (${response.status}).${conciseDetail ? ` ${conciseDetail}` : ''}`,
-    )
-  }
-
-  const payload = (await response.json()) as ChatCompletionResponse
-  const content = payload.choices?.[0]?.message?.content
-  if (!content) {
-    throw new Error('The AI endpoint returned an empty or incompatible response.')
-  }
-
-  return content
 }
 
 export async function testAIConnection(

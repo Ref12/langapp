@@ -85,6 +85,8 @@ Use the known target locale, not automatic language identification. Preserve the
 
 Display accuracy, fluency, completeness, and word-level errors when returned. Show phoneme detail only for supported locales and actual returned data. Distinguish omitted words, inserted words, and pronunciation measurements.
 
+Continuous assessment retains every phrase of the full 30-second recording, with `EnableMiscue` disabled because Azure does not support it in continuous mode. After EOF, compare recognized words against the reference using ordered text alignment: Unicode words for English/Korean, characters for unspaced Chinese/Japanese. Normalize width, case and punctuation; retain provider word/phoneme measurements only for intact recognized words. Omission/insertion labels are text-derived, can reflect recognition errors, and are not acoustic scores. Missing phrase data or excessive alignment input leaves an incomplete result rather than invented omissions or aggregate scores.
+
 Assessment must evaluate the original audio; edited transcripts must not influence scores. No-speech, unsupported locale, incomplete results, and service failures are explicit outcomes, not zero scores or fabricated success.
 
 Offer replay of the learner recording, replay/slow playback of the reference, and another attempt. Provide concise coaching grounded in returned errors; any LLM-generated explanation is advisory and must not invent acoustic measurements, tone diagnoses, or unsupported phoneme scores. No automatic Dictionary/mastery changes in v1.
@@ -96,10 +98,12 @@ Azure documentation currently limits prosody assessment to `en-US`. Do not promi
 - Add a dedicated speech connection store with Azure region/key, acknowledgement, configuration version, and non-secret connection status.
 - Add typed recording and pronunciation-attempt tables, with profile/thread/message or draft ownership, locale, duration, MIME/encoding, timestamps, and assessment references. Store audio as IndexedDB Blobs, not base64 strings in message content.
 - Store conversation recordings at review so an unsent recording survives reload; allow resume or explicit discard. Retain recordings for failed transcription/generation so the learner can replay or retry without re-recording.
+- Resuming a saved take over a quota-failed in-memory take requires explicit discard confirmation; declining preserves its audio and edited transcript for replay and retry-saving.
 - Add optional backwards-compatible thread/message fields for voice mode, submitted/recognized transcript distinction, speech segments, cancellation, and playback metadata. Old threads default to text mode.
 - Show local recording storage usage and deletion controls for individual recordings/attempts and a thread's voice data. Deletion clears linked blobs and attempts; deleting a thread removes all its voice data without deleting shared Dictionary evidence.
 - Use storage estimates/persistence requests where supported. Surface quota failures before submission; keep the in-memory recording available for replay and explain that it has not been saved. Never silently evict earlier recordings.
 - Normal backups include transcript/feedback metadata but exclude credentials and audio by default, with clear disclosure. Add an explicit include-recordings option using a versioned JSON representation of Blobs, and support existing version-1 imports. An omitted recording is represented as unavailable, not a broken replay button. Validate audio sizes, ownership, and references on import.
+- Restored unsent metadata-only recordings (`audioUnavailable: true`) can be resumed, edited and sent without audio. Submission still requires an existing validated, owned, unsent database record; an unsaved quota-failed capture cannot bypass persistence.
 - Keep LLM credential transfer behavior intact. Speech credentials remain excluded from normal backups and are re-entered on a new device in v1; never put them in generic exported settings.
 - Before first microphone use, disclose that audio goes to Azure, edited/submitted conversation text goes to the configured LLM, and recordings are saved on this device. Separate microphone permission from credential-storage acknowledgement.
 - Azure partial transcription can occur while recording. Transcript review prevents sending the turn to the LLM, not sending audio to Azure.
@@ -153,8 +157,17 @@ Keep backend implementation out of the first release, but preserve a concrete mi
   - Continuous identification supports language changes between phrases, not within a sentence.
 - Azure pronunciation assessment: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-pronunciation-assessment
   - Assessment consumes audio with optional reference text; prosody is currently `en-US` only. Longer-than-30-second recordings require continuous-mode handling.
+  - Rechecked for review fixes: continuous mode does not support `EnableMiscue`; omission/insertion labels require comparing recognized results against the reference text.
 - Azure assessment language list: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=pronunciation-assessment
   - Lists `zh-CN`, `ja-JP`, and `ko-KR`; individual assessment capabilities still vary.
 - Browser speech synthesis: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/speak
 
-No repository code has been changed during planning.
+## Implementation and verification status
+
+The browser implementation now includes the Azure SDK adapter, shared AudioWorklet PCM/WAV capture, bounded explicit-review flows, locale-aware tutor/playback, scripted assessment, dedicated connection storage, recording/attempt ownership, version-2 opt-in audio backups, Settings controls and local replay/deletion.
+
+Review-fix validation: 76 targeted tests across assessment/alignment, recording storage/submission and conversation review pass, including full 30-second multi-phrase PCM, all four alignment locales, quota-failure resume confirmation, and audio-free backup/import/submission. Production build, lint and whitespace checks pass. The existing main-chunk size warning remains; live provider/browser validation still requires configured credentials and devices.
+
+Automated validation: **110 tests passed across 21 Vitest files**, including adapters/PCM/caps/cancellation, persistence/backup/ownership/quota behavior, voice prompts and RTL review/send/practice workflows. `npm run build`, `npm run lint` and `git diff --check` passed. The build reports a non-failing main-chunk size warning; Azure remains a separate dynamic chunk excluded from service-worker precaching. A local production-build smoke check in headless Edge used synthetic microphone audio and verified a saved 16 kHz mono WAV (1,459.9375 ms, 46,762 bytes), reload replay controls, desktop/390px layouts and absence of runtime exceptions. The design detector reported only an unchanged pre-existing accent-border warning.
+
+Live Azure/LLM credentials and real mobile/desktop microphone/voice testing were not available for automated validation. Continuous bilingual recognition, final-result service timing, pronunciation quality and the actual deployed Pages origin remain explicit acceptance gates, not claimed successes. Follow the concrete browser checklist in README before release. Multi-phrase assessment is intentionally reported incomplete rather than inventing a whole-reference score from phrase-level measurements.
