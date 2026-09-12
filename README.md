@@ -60,3 +60,4 @@ Automated Vitest/RTL checks cover capture caps, shared PCM/WAV encoding, SDK cal
 - [`specs/app.md`](specs/app.md)
 - [`specs/data-model.md`](specs/data-model.md)
 - [`docs/implementation-plan.md`](docs/implementation-plan.md)
+- [Dark-theme experience UI mockups](docs/mockups/README.md)
