@@ -17,11 +17,20 @@ const trainPhrase = {
   meaning: 'Where is the station?',
   explanation: '\u8f66\u7ad9 is "station." \u5728\u54ea\u91cc asks where something is located. You can reuse this pattern with other places.',
 }
-const tutorMessage = (text, phrase) => ({ from: 'tutor', text, phrase })
-const userMessage = (text) => ({ from: 'user', text })
+const shadowSamples = [
+  {
+    id: 'tea', input: "I'd like another cup of tea.",
+    phrase: { ...teaPhrase, explanation: '\u6211\u60f3 introduces what you would like to do. \u518d goes before \u559d ("drink") to express doing it again. \u4e00\u676f\u8336 is "a cup of tea"; \u676f is the measure word. Together, you are asking for another cup, not just describing the tea.' },
+    briefExplanation: '\u518d adds "again." Here, \u518d\u559d\u4e00\u676f means to have another cup.',
+  },
+  { id: 'plans', input: weekendPhrase.meaning, phrase: weekendPhrase, briefExplanation: '\u660e\u5929 sets the time: tomorrow. \u60f3\u53bb means "would like to go."' },
+  { id: 'station', input: trainPhrase.meaning, phrase: trainPhrase, briefExplanation: '\u8f66\u7ad9 is the station. \u5728\u54ea\u91cc asks where it is.' },
+]
+const tutorMessage = (text, phrase, details = {}) => ({ from: 'tutor', text, phrase, ...details })
+const userMessage = (text, details = {}) => ({ from: 'user', text, ...details })
 const recapItem = (native, romanization, meaning, activity) => ({ native, romanization, meaning, activity })
 function createConversation(values) {
-  return { draft: '', voiceStage: 'idle', ...values }
+  return { draft: '', voiceStage: 'idle', dictationSample: values.phrase.meaning, mode: 'conversation', shadowIntent: 'shadow', shadowTarget: null, shadowNeedsSample: true, ...values }
 }
 const conversations = [
   {
@@ -74,6 +83,7 @@ let openThreadOnNextRoute = false
 const assistantPreferences = { romanization: true, speechSpeed: '0.75' }
 let voiceModeStep = 'listening'
 let voiceModePaused = false
+let voiceModePreview = null
 const currentConversation = () => conversations.find((thread) => thread.id === selectedConversationId)
 function chatElement(tag, className, text) {
   const element = document.createElement(tag)
@@ -83,6 +93,14 @@ function chatElement(tag, className, text) {
 }
 function conversationScroller() {
   return one(document.body.dataset.compactChat === 'true' ? '#conversation-history' : '#conversation-scroll')
+}
+function nameConversation(thread, text) {
+  if (!thread.needsTitle) return
+  const characters = Array.from(text.trim().replace(/\s+/g, ' '))
+  thread.title = characters.length > 60 ? `${characters.slice(0, 57).join('')}...` : characters.join('')
+  thread.needsTitle = false
+  one('#thread-title').textContent = thread.title
+  one('#thread-title').title = thread.title
 }
 function scrollConversationToEnd() {
   const scroller = conversationScroller()
@@ -98,7 +116,7 @@ function stopSimulatedTurn() {
   const thread = currentConversation()
   if (thread.voiceStage !== 'recording') return
   thread.voiceStage = 'review'
-  thread.draft = thread.phrase.meaning
+  thread.draft = thread.dictationSample
   notify('The demo voice turn was stopped. Its sample transcript stays with this conversation for review.')
 }
 function selectConversation(id) {
@@ -114,12 +132,12 @@ function renderConversationList() {
   list.replaceChildren()
   one('#thread-count').textContent = String(conversations.length)
   conversations.forEach((thread) => {
-    if (!`${thread.title} ${thread.kind} ${thread.preview}`.toLowerCase().includes(query)) return
+    if (!`${thread.title} ${thread.kind} ${thread.preview} ${thread.mode}`.toLowerCase().includes(query)) return
     const button = chatElement('button', 'conversation-list-item')
     button.dataset.conversationId = thread.id
     button.setAttribute('aria-pressed', String(thread.id === selectedConversationId))
     const title = chatElement('strong', '', thread.title)
-    const kind = chatElement('span', 'thread-kind', thread.kind)
+    const kind = chatElement('span', 'thread-kind', thread.mode === 'shadow' ? `${thread.kind} / Shadow` : thread.kind)
     const preview = chatElement('span', 'thread-preview', thread.preview)
     const metadata = chatElement('span', 'thread-metadata')
     const replies = thread.messages.filter((message) => message.from === 'user').length
@@ -135,33 +153,171 @@ function renderTranscript(scrollToEnd = false) {
   const log = one('#chat-messages')
   log.replaceChildren()
   thread.messages.forEach((entry) => {
+    if (entry.from === 'mode') {
+      log.append(chatElement('div', 'mode-change', entry.text))
+      return
+    }
     const message = chatElement('div', `message ${entry.from}-message`)
-    message.append(chatElement('span', 'message-label', entry.from === 'user' ? 'YOU' : 'ASSISTANT / SCRIPTED DEMO'), chatElement('p', '', entry.text))
+    if (entry.intent) message.dataset.intent = entry.intent
+    if (entry.mode) message.dataset.mode = entry.mode
+    const label = entry.from === 'user' ? 'YOU' : 'ASSISTANT / SCRIPTED DEMO'
+    message.append(chatElement('span', 'message-label', entry.mode === 'shadow' ? `${label} / ${entry.intent.toUpperCase()}` : label), chatElement('p', '', entry.text))
     if (entry.phrase) {
-      const phrase = chatElement('div', 'chat-phrase')
-      const native = chatElement('p', '', entry.phrase.native)
-      native.lang = 'zh-Hans'
-      const romanization = chatElement('span', 'phrase-romanization', entry.phrase.romanization)
-      romanization.hidden = !assistantPreferences.romanization
-      phrase.append(native, romanization, chatElement('p', 'small muted', entry.phrase.meaning))
-      message.append(phrase)
-      const explain = chatElement('button', 'text-link explain-phrase', entry.explained ? 'Explanation added below' : 'Explain this pattern')
-      explain.disabled = Boolean(entry.explained)
-      explain.addEventListener('click', () => {
-        entry.explained = true
-        thread.messages.push(tutorMessage(entry.phrase.explanation))
-        thread.updated = 'Just now'
-        renderTranscript(true)
-        renderConversationList()
-        one('#chat-input').focus({ preventScroll: true })
-      })
-      message.append(explain)
+      message.append(renderChatPhrase(entry.phrase))
+      if (entry.briefExplanation) message.append(chatElement('p', 'small muted', entry.briefExplanation))
+      if (entry.mode === 'shadow') {
+        if (entry.intent === 'shadow') message.append(renderShadowActions(entry))
+      } else {
+        const explain = chatElement('button', 'text-link explain-phrase', entry.explained ? 'Explanation added below' : 'Explain this pattern')
+        explain.disabled = Boolean(entry.explained)
+        explain.addEventListener('click', () => {
+          entry.explained = true
+          thread.messages.push(tutorMessage(entry.phrase.explanation))
+          thread.updated = 'Just now'
+          renderTranscript(true)
+          renderConversationList()
+          one('#chat-input').focus({ preventScroll: true })
+        })
+        message.append(explain)
+      }
     }
     log.append(message)
   })
   const scroller = conversationScroller()
   scroller.scrollTop = scrollToEnd ? scroller.scrollHeight : 0
 }
+function renderChatPhrase(phrase) {
+  const block = chatElement('div', 'chat-phrase')
+  const native = chatElement('p', '', phrase.native)
+  native.lang = 'zh-Hans'
+  const romanization = chatElement('span', 'phrase-romanization', phrase.romanization)
+  romanization.hidden = !assistantPreferences.romanization
+  block.append(native, romanization, chatElement('p', 'small muted', phrase.meaning))
+  return block
+}
+function shadowReflection(sample) {
+  return tutorMessage('A natural way to say that in Mandarin:', sample.phrase, {
+    mode: 'shadow', intent: 'shadow', briefExplanation: sample.briefExplanation,
+  })
+}
+function shadowSampleForThread() {
+  return shadowSamples.find((sample) => sample.phrase.native === currentConversation().phrase.native) || shadowSamples[0]
+}
+function matchShadowSample(text) {
+  const normalize = (value) => value.normalize('NFKC').trim().toLowerCase().replace(/\u2019/g, "'").replace(/[.!?\u3002\uff01\uff1f]+$/u, '')
+  return shadowSamples.find((sample) => [sample.input, sample.phrase.meaning, sample.phrase.native].some((value) => normalize(value) === normalize(text)))
+}
+function renderShadowActions(entry) {
+  const thread = currentConversation()
+  const actions = chatElement('div', 'shadow-actions')
+  const addAction = (intent, label, handler) => {
+    const button = chatElement('button', 'button secondary', label)
+    button.type = 'button'
+    button.dataset.shadowAction = intent
+    button.disabled = thread.mode !== 'shadow' || (intent === 'explain' && Boolean(entry.explained))
+    if (thread.mode !== 'shadow') button.title = 'Switch to Shadow mode to use this action.'
+    button.addEventListener('click', handler)
+    actions.append(button)
+  }
+  addAction('repeat', 'Repeat after me', () => {
+    thread.shadowIntent = 'repeat'
+    thread.shadowTarget = entry
+    resetVoicePreviewTurn()
+    renderAssistantMode()
+    scrollConversationToEnd()
+    one('#chat-input').focus({ preventScroll: true })
+  })
+  addAction('explain', entry.explained ? 'Explanation added' : 'Explain more', () => {
+    entry.explained = true
+    thread.shadowIntent = 'shadow'
+    thread.shadowTarget = entry
+    thread.shadowNeedsSample = false
+    const request = `Explain more about "${entry.phrase.meaning}"`
+    nameConversation(thread, request)
+    thread.messages.push(
+      userMessage(request, { mode: 'shadow', intent: 'explain' }),
+      tutorMessage(entry.phrase.explanation, undefined, { mode: 'shadow', intent: 'explain' }),
+    )
+    thread.updated = 'Just now'
+    renderTranscript(true)
+    renderRecap()
+    renderConversationList()
+    renderAssistantMode()
+    if (!one('#voice-mode-panel').hidden) renderVoiceMode()
+    scrollConversationToEnd()
+  })
+  addAction('new', 'Say something else', showShadowSamples)
+  return actions
+}
+function renderAssistantMode() {
+  const thread = currentConversation()
+  const shadow = thread.mode === 'shadow'
+  const repeat = shadow && thread.shadowIntent === 'repeat'
+  one('#assistant-mode').value = thread.mode
+  one('#shadow-intent').hidden = !shadow
+  one('#shadow-intent-label').textContent = repeat ? 'Shadow / Repeating' : 'Shadow / New phrase'
+  one('#shadow-new').textContent = repeat ? 'New phrase' : 'Samples'
+  one('#chat-input').placeholder = repeat ? 'Repeat the phrase, or type it here' : shadow ? 'Say something to shadow' : 'Message the Assistant'
+  const coach = one('#shadow-coach')
+  coach.replaceChildren()
+  coach.hidden = !shadow || !one('#voice-mode-caption').hidden || (!repeat && !thread.shadowNeedsSample)
+  if (coach.hidden) return
+  if (repeat) {
+    coach.append(chatElement('h3', '', 'Repeat after the model / demo'), renderChatPhrase(thread.shadowTarget.phrase),
+      chatElement('p', '', 'Try saying the Mandarin phrase, or type it below. Dictation previews a repetition; no audio plays or pronunciation is assessed.'))
+  } else {
+    coach.append(chatElement('h3', '', 'Your meaning, reflected in Mandarin.'),
+      chatElement('p', '', 'Say something, then explore its meaning or repeat it. This offline demo supports these three sample phrases; choosing one fills your draft without sending it.'))
+    const samples = chatElement('div', 'shadow-samples')
+    shadowSamples.forEach((sample) => {
+      const button = chatElement('button', 'button secondary', sample.input)
+      button.type = 'button'
+      button.dataset.shadowSample = sample.id
+      button.disabled = thread.voiceStage === 'recording'
+      button.addEventListener('click', () => {
+        if (thread.draft.trim()) {
+          notify('Send or clear your current draft before choosing a sample. Your draft has not changed.')
+          return
+        }
+        thread.draft = sample.input
+        thread.voiceStage = 'idle'
+        renderVoiceTurn()
+        renderConversationList()
+        one('#chat-input').focus({ preventScroll: true })
+      })
+      samples.append(button)
+    })
+    coach.append(samples)
+  }
+}
+function resetVoicePreviewTurn() {
+  voiceModeStep = 'listening'
+  voiceModePreview = null
+  if (!one('#voice-mode-panel').hidden) renderVoiceMode()
+}
+function showShadowSamples() {
+  const thread = currentConversation()
+  thread.shadowIntent = 'shadow'
+  thread.shadowTarget = null
+  thread.shadowNeedsSample = true
+  resetVoicePreviewTurn()
+  renderAssistantMode()
+  scrollConversationToEnd()
+  one('#chat-input').focus({ preventScroll: true })
+}
+one('#shadow-new').addEventListener('click', showShadowSamples)
+one('#assistant-mode').addEventListener('change', (event) => {
+  const thread = currentConversation()
+  thread.mode = event.target.value
+  thread.shadowIntent = 'shadow'
+  thread.updated = 'Just now'
+  thread.messages.push({ from: 'mode', mode: thread.mode, text: thread.mode === 'shadow' ? 'Shadow mode on / Applies to your next turn' : 'Conversation mode on / Applies to your next turn' })
+  renderTranscript(true)
+  renderConversationList()
+  renderAssistantMode()
+  if (!one('#voice-mode-panel').hidden) renderVoiceMode()
+  scrollConversationToEnd()
+})
 function renderRecap() {
   const thread = currentConversation()
   const content = one('#conversation-recap-content')
@@ -235,6 +391,7 @@ function renderConversation() {
   renderRecap()
   one('#conversation-recap').open = false
   renderVoiceTurn()
+  renderAssistantMode()
   scrollConversationToEnd()
 }
 one('#conversation-search').addEventListener('input', renderConversationList)
@@ -267,15 +424,17 @@ one('#record-demo').addEventListener('click', () => {
       return
     }
     endVoiceMode()
+    thread.dictationSample = thread.mode === 'shadow' && thread.shadowIntent === 'repeat' ? thread.shadowTarget.phrase.native : thread.phrase.meaning
     thread.voiceStage = 'recording'
   } else if (thread.voiceStage === 'recording') {
     thread.voiceStage = 'review'
-    thread.draft = thread.phrase.meaning
+    thread.draft = thread.dictationSample
   } else {
     thread.voiceStage = 'idle'
     thread.draft = ''
   }
   renderVoiceTurn()
+  renderAssistantMode()
   renderConversationList()
   if (thread.voiceStage === 'review') one('#chat-input').focus()
 })
@@ -288,13 +447,36 @@ one('#chat-form').addEventListener('submit', (event) => {
     one('#chat-input').focus()
     return
   }
-  thread.messages.push(userMessage(text), tutorMessage('In a connected app, I would respond to what you said. For this preview, here is a sample pattern to try.', thread.phrase))
+  const intent = thread.mode === 'shadow' ? thread.shadowIntent : 'conversation'
+  nameConversation(thread, text)
+  thread.messages.push(userMessage(text, { mode: thread.mode, intent }))
+  if (thread.mode !== 'shadow') {
+    thread.messages.push(tutorMessage('In a connected app, I would respond to what you said. For this preview, here is a sample pattern to try.', thread.phrase))
+  } else if (intent === 'repeat') {
+    thread.messages.push(tutorMessage('Your repetition is a practice turn, not a new phrase to shadow. This preview does not capture audio or assess pronunciation.', undefined, { mode: 'shadow', intent: 'repeat' }))
+    thread.shadowIntent = 'shadow'
+    thread.shadowNeedsSample = false
+  } else {
+    const sample = matchShadowSample(text)
+    if (sample) {
+      const reflection = shadowReflection(sample)
+      thread.messages.push(reflection)
+      thread.shadowTarget = reflection
+      thread.shadowNeedsSample = false
+    } else {
+      thread.messages.push(tutorMessage('This offline preview cannot translate arbitrary text or speech. Your message is kept above; choose a sample phrase below to explore Shadow mode.', undefined, { mode: 'shadow', intent: 'shadow' }))
+      thread.shadowTarget = null
+      thread.shadowNeedsSample = true
+    }
+  }
   thread.draft = ''
   thread.voiceStage = 'idle'
   thread.updated = 'Just now'
   renderTranscript(true)
   renderRecap()
   renderVoiceTurn()
+  renderAssistantMode()
+  if (!one('#voice-mode-panel').hidden) renderVoiceMode()
   renderConversationList()
   scrollConversationToEnd()
   one('#chat-input').focus()
@@ -310,25 +492,37 @@ one('#target-speech-speed').addEventListener('change', (event) => {
   else notify(`Mandarin speech: ${event.target.value}x. English stays at 1x. Audio is not connected in this mockup.`)
 })
 function renderVoiceMode() {
-  const phrase = currentConversation().phrase
+  const thread = currentConversation()
+  const phrase = voiceModePreview?.phrase || thread.phrase
   const responding = voiceModeStep === 'responding'
+  const shadowReply = responding && voiceModePreview.mode === 'shadow'
+  const repeating = thread.mode === 'shadow' && thread.shadowIntent === 'repeat'
   one('#voice-mode-panel').dataset.paused = String(voiceModePaused)
-  one('#voice-mode-status').textContent = voiceModePaused ? 'Voice mode paused' : responding ? 'Assistant speaking / demo' : 'Your turn / demo'
+  one('#voice-mode-status').textContent = voiceModePaused ? 'Voice mode paused' : responding ? (shadowReply ? 'Shadow model / demo' : 'Assistant speaking / demo') : repeating ? 'Your repeat / demo' : thread.mode === 'shadow' ? 'Say something to shadow / demo' : 'Your turn / demo'
   one('#voice-mode-state-help').textContent = voiceModePaused ? 'No microphone active.' : responding ? `Mandarin ${assistantPreferences.speechSpeed}x / English 1x. Demo only.` : 'Hands-free preview. No microphone active.'
   one('#voice-mode-caption').hidden = !responding
   one('#voice-mode-native').textContent = phrase.native
   one('#voice-mode-romanization').textContent = phrase.romanization
   one('#voice-mode-romanization').hidden = !assistantPreferences.romanization
   one('#voice-mode-meaning').textContent = phrase.meaning
+  one('#voice-mode-caption-label').textContent = shadowReply ? 'SHADOW / SAMPLE MODEL' : 'VOICE MODE / SAMPLE RESPONSE'
+  one('#voice-mode-explanation').hidden = !shadowReply
+  one('#voice-mode-explanation').textContent = shadowReply ? voiceModePreview.briefExplanation || 'Repeat the model phrase. Audio and pronunciation assessment are not connected.' : ''
+  one('#voice-mode-followups').replaceChildren()
+  if (shadowReply && voiceModePreview.intent === 'shadow') one('#voice-mode-followups').append(renderShadowActions(voiceModePreview))
   one('#voice-mode-next').firstChild.textContent = responding ? 'Next turn ' : 'Preview reply '
   one('#voice-mode-next').disabled = voiceModePaused
   one('#voice-mode-pause').setAttribute('aria-pressed', String(voiceModePaused))
   one('#voice-mode-pause span').textContent = voiceModePaused ? 'Resume' : 'Pause'
+  renderAssistantMode()
 }
 function endVoiceMode(restoreFocus = false) {
   one('#voice-mode-panel').hidden = true
   one('#voice-mode-caption').hidden = true
+  voiceModePreview = null
+  voiceModeStep = 'listening'
   renderComposerAction()
+  renderAssistantMode()
   if (restoreFocus) one('#composer-action').focus({ preventScroll: true })
 }
 one('#composer-action').addEventListener('click', () => {
@@ -343,6 +537,7 @@ one('#composer-action').addEventListener('click', () => {
   stopSimulatedTurn()
   renderVoiceTurn()
   voiceModeStep = 'listening'
+  voiceModePreview = null
   voiceModePaused = false
   renderVoiceMode()
   one('#voice-mode-panel').hidden = false
@@ -351,6 +546,12 @@ one('#composer-action').addEventListener('click', () => {
 })
 one('#voice-mode-end').addEventListener('click', () => endVoiceMode(true))
 one('#voice-mode-next').addEventListener('click', () => {
+  if (voiceModeStep === 'listening') {
+    const thread = currentConversation()
+    voiceModePreview = thread.mode !== 'shadow' ? tutorMessage('', thread.phrase)
+      : thread.shadowIntent === 'repeat' ? tutorMessage('', thread.shadowTarget.phrase, { mode: 'shadow', intent: 'repeat' })
+        : shadowReflection(shadowSampleForThread())
+  } else voiceModePreview = null
   voiceModeStep = voiceModeStep === 'listening' ? 'responding' : 'listening'
   renderVoiceMode()
   scrollConversationToEnd()
@@ -361,30 +562,19 @@ one('#voice-mode-pause').addEventListener('click', () => {
 })
 one('#new-conversation').addEventListener('click', () => {
   endVoiceMode()
-  one('#conversation-dialog').showModal()
-})
-one('#conversation-topic').addEventListener('input', (event) => event.target.setCustomValidity(''))
-one('#conversation-form').addEventListener('submit', (event) => {
-  event.preventDefault()
-  const topic = one('#conversation-topic')
-  topic.setCustomValidity(topic.value.trim() ? '' : 'Please enter a topic or question.')
-  if (!event.currentTarget.reportValidity()) return
-  endVoiceMode()
   stopSimulatedTurn()
   const id = `new-${nextConversationId++}`
   const thread = createConversation({
-    id, title: topic.value.trim(), kind: one('#conversation-kind').value,
+    id, title: 'New conversation', needsTitle: true, kind: 'Free conversation',
     preview: 'A new starting point for your learning.', phrase: teaPhrase, updated: 'Just now',
     messages: [
-      tutorMessage(`Let's explore "${topic.value.trim()}." A connected assistant could help with conversation, explanations, or exercises. Replies here use a fixed tea-ordering example rather than adapting to your topic.`),
+      tutorMessage('Start with a message, a question, or something to practice. You can change Assistant modes at any time. This is a scripted preview; replies use sample phrases.'),
     ],
     recap: { items: [] },
   })
   conversations.unshift(thread)
   selectedConversationId = id
   one('#conversation-search').value = ''
-  one('#conversation-dialog').close()
-  event.currentTarget.reset()
   renderConversation()
   focusThread()
   one('#chat-input').focus({ preventScroll: true })

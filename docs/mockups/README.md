@@ -41,6 +41,8 @@ is the navigation label for conversation, explanation, and practice help.
 | [Conversation practice recap](previews/conversation-recap-desktop.png) | [Device preview](previews/device-preview.png) | [Assistant thread](previews/assistant-mobile.png) / [Conversation list](previews/conversation-list-mobile.png) |
 | [Voice mode](previews/voice-mode-desktop.png) | | [Voice mode](previews/voice-mode-mobile.png) / [Composer controls](previews/assistant-controls-mobile.png) |
 | [Review exercise](previews/review-desktop.png) | [Characters exercise](previews/characters-desktop.png) | [Review](previews/review-mobile.png) / [Characters](previews/characters-mobile.png) |
+| [Shadow mode](previews/shadow-desktop.png) | [Shadow with Voice mode](previews/shadow-voice-desktop.png) | [Shadow](previews/shadow-mobile.png) / [Repeat after me](previews/shadow-repeat-mobile.png) |
+| [New conversation](previews/new-conversation-desktop.png) | | [New conversation](previews/new-conversation-mobile.png) |
 
 These are static captures of the same HTML prototype, not separate designs.
 Phone captures show a single viewport, including the fixed bottom navigation;
@@ -54,7 +56,7 @@ scroll in the interactive prototype to explore the rest of each screen.
 | Library | Browse content and read it in one experience | Search, filter topics, preview or paste a text; open the tea-house story, change reading modes, inspect vocabulary, and return to the collection |
 | Lessons | Guided units introduce vocabulary and grammar together | Choose a sample lesson, explore its words and pattern, open related reading, or discuss it with the matching Assistant conversation |
 | Practice | Exercises and Games share one practice space | Choose Review or Characters under Exercises, or switch to the Games placeholder |
-| Assistant | A learning partner with multiple continuing conversations | Search or create conversations; inspect a practice recap; adjust speech speed and romanization; dictate a reply or explore Voice mode |
+| Assistant | A learning partner with multiple continuing conversations | Switch between Conversation and Shadow; repeat or explain a reflected phrase; adjust speech speed and romanization; dictate a reply or explore Voice mode |
 | Dictionary | Shared vocabulary rather than separate activity-specific collections | Search, filter learning state, and return to a word's reading context |
 
 ## Visual direction
@@ -128,6 +130,13 @@ start, end, or session-management step. Earlier messages remain in the same
 scrollable transcript. The initial examples cover reading assistance,
 free conversation, grammar explanations, and everyday roleplay.
 
+**New conversation** opens a fresh chat immediately and focuses the message
+input. There is no topic or style dialog to complete first. It starts as
+**New conversation**, then takes a short excerpt of the first user turn as its
+title; this is a local text preview, not AI-generated naming. Unsent drafts do
+not set the title, and later messages do not rename the conversation.
+New chats start in Conversation mode; Shadow can be applied at any time.
+
 On desktop, entering Assistant **replaces the workspace sidebar** with a searchable
 list of conversations and a **New conversation** button. It does not add a second sidebar.
 **Back to workspace** restores the standard navigation and returns to the last
@@ -161,7 +170,48 @@ visual viewport when the mobile keyboard changes the available space.
 Visible **icon controls** above the transcript select Mandarin speech speed
 (0.5x, 0.75x, 1x, or 1.25x) and toggle romanization. Speech speed applies only to
 the target language; English stays at normal speed. Romanization changes the
-transcript, practice recap, and Voice mode captions consistently.
+transcript, Shadow practice prompts, practice recap, and Voice mode captions consistently.
+
+### Conversation and Shadow modes
+
+The **Conversation / Shadow** selector changes behavior for the next turn in
+the current conversation. Each thread keeps its own mode. Switching adds a
+small marker to the transcript without rewriting earlier messages, clearing
+the draft, or starting a new conversation. The picker identifies Shadow threads
+and can find them by searching for "shadow."
+
+Shadow reflects a supported sample utterance in Mandarin, with optional
+romanization, its English meaning, and a short explanation. **Repeat after me**
+sets the next input's intent to repetition and shows a model phrase in the
+scrollable history. **Explain more** adds an authored explanation for that
+specific phrase, without sending or replacing an unsent draft. **Say something
+else**, or **New phrase** in the composer, returns to shadowing a new utterance.
+After submitting a repetition, the next input returns to new-phrase shadowing.
+The composer identifies whether the next turn is a new phrase or a repetition.
+
+**Samples** offers three authored utterances about tea, tomorrow's plans, and
+the station. Selecting one fills an empty draft; Send remains explicit.
+Unrecognized text stays in the transcript with an explanation of the demo's
+limits rather than receiving an unrelated "translation." Use the follow-up
+actions for repetition and explanation; this prototype does not interpret
+arbitrary spoken commands or grade pronunciation.
+
+Shadow is independent of **Voice mode**. Switching behavior does not stop an
+active or paused Voice mode preview. A sample response already on screen keeps
+its original behavior; the new mode applies to the next preview turn.
+Shadow voice captions offer the same follow-up actions. Dictation still needs
+review and Send; its sample transcript is chosen when recording starts, so
+changing mode mid-recording cannot rewrite the simulated utterance.
+
+**Implementation direction, not a connected service:** the mockup stores
+`mode` and `shadowIntent` on the conversation and tags new turns with their
+mode and intent. Mode markers are UI events, not historical system messages.
+A future request builder should combine common Assistant instructions with
+the selected mode's instruction template and the explicit turn intent.
+Request-based APIs can receive those instructions on the next request;
+persistent/realtime providers need their supported update mechanism or a
+replacement model session that retains context. No provider-specific system
+instruction updates, AI calls, audio, or microphone access are implemented here.
 
 Two **icon-only controls sit beside the text box**, inside the docked input:
 the microphone for dictation, and a shared Voice mode / Send action. With an
@@ -181,7 +231,8 @@ Toggle Voice mode again or use **End voice mode** to stop. Leaving the
 conversation also ends it; resizing the preview preserves it. The intended connected
 experience would listen and reply without pressing Send each turn; this mockup
 uses explicit preview steps, never accesses a microphone or plays audio, and
-does not add messages or change a typed draft.
+does not add messages or change a typed draft through preview steps. Explicit
+Shadow explanation actions do add the requested explanation to the transcript.
 
 **What you've practiced** is an optional recap for the whole conversation:
 vocabulary encountered, reusable patterns, and something to try next. Sample
@@ -202,6 +253,7 @@ Advanced learning logs and AI request/context history remain out of scope.
 | App specification: learning states and spaced repetition | Show contextual review, distinguish hints from unaided recall, and keep word state visible |
 | Ideas: conversation / voice mode | Visible target-speech and romanization controls; separate dictation and hands-free Voice mode entry points |
 | Conversation design feedback | Continuous transcripts and optional practice recaps; a contextual desktop sidebar, or a mobile main-page picker above the unchanged bottom navigation |
+| Shadow mode feedback | Per-conversation behavior changes with explicit shadow, repeat, and explain intents, separate from voice input/output |
 | Ideas: activities; exercise design feedback | Exercises offers Review and Characters, separating recall from individual character writing |
 | User direction: merge Games into Practice | Exercises and Games share Practice, without importing game details |
 
