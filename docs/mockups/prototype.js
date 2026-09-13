@@ -36,6 +36,11 @@ function notify(message) {
   toastTimer = setTimeout(() => { toast.hidden = true }, 4500)
 }
 
+function scrollWorkspaceToTop() {
+  one('.workspace').scrollTo(0, 0)
+  window.scrollTo(0, 0)
+}
+
 function syncWorkspaceNavigation() {
   const contextualAssistant = document.body.dataset.screen === 'conversation' && !mobileLayout.matches
   one('#assistant-sidebar').hidden = !contextualAssistant
@@ -93,7 +98,7 @@ function route(moveFocus = true) {
   }
   if (moveFocus) {
     one('#main').focus({ preventScroll: true })
-    window.scrollTo(0, 0)
+    scrollWorkspaceToTop()
   }
   if (window.parent !== window) window.parent.postMessage({ type: 'mockup-route', screen: routeId }, '*')
 }
@@ -106,6 +111,15 @@ window.addEventListener('message', (event) => {
   if (!Object.hasOwn(practiceRoutes, screen) && !all('.screen').some((item) => item.id === screen)) return
   if (location.hash !== `#${screen}`) location.hash = screen
   else window.parent.postMessage({ type: 'mockup-route', screen }, '*')
+})
+
+all('[data-catalog-view-controls]').forEach((controls) => {
+  const catalog = one(`#${controls.dataset.catalogViewControls}`)
+  const buttons = [...controls.querySelectorAll('[data-catalog-layout]')]
+  buttons.forEach((button) => button.addEventListener('click', () => {
+    catalog.dataset.catalogView = button.dataset.catalogLayout
+    buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
+  }))
 })
 
 function filterLibrary() {
@@ -124,7 +138,7 @@ function filterLibrary() {
 all('[data-collection]').forEach((button) => button.addEventListener('click', () => {
   state.collection = button.dataset.collection
   all('[data-collection]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
-  one('#library-search').placeholder = state.collection === 'saved' ? 'Search your library' : 'Search sample stories'
+  one('#library-search').placeholder = state.collection === 'discover' ? 'Search sample stories' : 'Search your library'
   filterLibrary()
 }))
 all('[data-filter]').forEach((button) => button.addEventListener('click', () => {
@@ -141,33 +155,7 @@ one('#reset-library').addEventListener('click', () => {
   one('[data-filter="all"]').click()
 })
 
-all('[data-open-import]').forEach((button) => button.addEventListener('click', () => {
-  one('#import-dialog').showModal()
-}))
 all('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()))
-one('#import-form').addEventListener('submit', (event) => {
-  event.preventDefault()
-  const title = one('#import-title-input')
-  const passage = one('#import-text')
-  title.setCustomValidity(title.value.trim() ? '' : 'Please enter a title.')
-  passage.setCustomValidity(passage.value.trim() ? '' : 'Please enter a passage.')
-  if (!event.currentTarget.reportValidity()) return
-  const result = one('#import-result')
-  const heading = document.createElement('h3')
-  heading.textContent = title.value.trim()
-  const note = document.createElement('p')
-  note.className = 'small'
-  note.textContent = 'Source preview only. Not saved, translated, or analyzed.'
-  const text = document.createElement('p')
-  text.textContent = passage.value.trim()
-  result.replaceChildren(heading, note, text)
-  result.hidden = false
-  result.scrollIntoView({ block: 'nearest' })
-})
-all('#import-form input, #import-form textarea').forEach((input) => input.addEventListener('input', () => {
-  input.setCustomValidity('')
-  one('#import-result').hidden = true
-}))
 const samples = {
   rain: { title: 'After the rain', text: 'The park is quiet after the rain. A small bird shakes the water from its wings. I put my phone away and take the longer path home.' },
   city: { title: 'The city before nine', text: 'The bakery opens before the sun reaches our street. A woman unlocks her bicycle. Someone calls a greeting from an upstairs window, and the city begins another day.' },
@@ -252,10 +240,7 @@ one('#study-percent').addEventListener('input', (event) => {
   one('#study-value').textContent = `${event.target.value}%`
 })
 one('#save-word').addEventListener('click', () => {
-  words[state.word].tracked = true
-  renderWord()
-  renderDictionary()
-  notify(`Added "${words[state.word].gloss}" to the sample dictionary. The practice queue stays fixed at three demo items.`)
+  addWordToLearningSet(state.word, 'reading')
 })
 one('#mark-known').addEventListener('click', () => {
   const word = words[state.word]
@@ -272,11 +257,13 @@ function renderDictionary() {
   const rows = one('#dictionary-rows')
   rows.replaceChildren()
   const tracked = Object.values(words).filter((word) => word.tracked)
+  const matches = query ? new Set(findDictionaryWords(query).map((id) => words[id])) : null
   one('#dictionary-count').textContent = String(tracked.length)
+  one('#learning-set-count').textContent = String(tracked.length)
   tracked.forEach((word) => {
     const status = word.learned ? 'Learned' : 'Practicing'
     if (filter !== 'all' && filter !== status) return
-    if (!`${word.native} ${word.gloss} ${word.romanization}`.toLowerCase().includes(query)) return
+    if (matches && !matches.has(word)) return
     const row = document.createElement('tr')
     const term = document.createElement('td')
     const native = document.createElement('span')
@@ -296,14 +283,22 @@ function renderDictionary() {
     tier.append(badge)
     const source = document.createElement('td')
     source.className = 'dictionary-source'
-    source.textContent = 'Tea house / Reading'
+    source.textContent = word.addedFrom === 'assistant' ? 'Assistant / Conversation' : word.addedFrom === 'lookup' ? 'Dictionary / Lookup' : 'Tea house / Reading'
     const action = document.createElement('td')
     const link = document.createElement('a')
     link.className = 'button secondary'
-    link.href = '#reader'
+    link.href = word.addedFrom === 'assistant' ? '#conversation' : word.addedFrom === 'lookup' ? '#dictionary' : '#reader'
     link.textContent = 'See in context'
     link.setAttribute('aria-label', `See ${word.gloss} in context`)
     link.addEventListener('click', () => {
+      if (word.addedFrom === 'assistant') {
+        openCreationConversation(word.sourceConversation)
+        return
+      }
+      if (word.addedFrom === 'lookup') {
+        showDictionaryLookup(word.native)
+        return
+      }
       state.word = Object.keys(words).find((key) => words[key] === word)
       setReaderPanel(true)
       renderPassage()
@@ -406,6 +401,5 @@ one('#restart-quiz').addEventListener('click', () => {
 
 renderPassage()
 renderWord()
-renderDictionary()
 renderQuestion()
 route(false)

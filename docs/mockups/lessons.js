@@ -55,16 +55,42 @@ function showLessonCatalog(moveFocus = false) {
   one('#lesson-detail').hidden = true
   if (moveFocus) {
     one('#lessons-title').focus({ preventScroll: true })
-    window.scrollTo(0, 0)
+    scrollWorkspaceToTop()
   }
 }
-all('[data-open-lesson]').forEach((button) => button.addEventListener('click', () => {
-  const lesson = lessonPreviews[button.dataset.openLesson]
+function addLessonPreview(id, lesson, label, description) {
+  lessonPreviews[id] = lesson
+  const card = importElement('article', '', 'lesson-card imported-lesson-card')
+  card.append(importElement('span', label, 'eyebrow'), importElement('h2', lesson.title), importElement('p', description))
+  const button = importElement('button', 'Open lesson', 'button secondary')
+  button.type = 'button'
+  button.dataset.openLesson = id
+  button.setAttribute('aria-label', `Open lesson: ${lesson.title}`)
+  card.append(button)
+  one('.lesson-grid').append(card)
+}
+function showLesson(id) {
+  if (!Object.hasOwn(lessonPreviews, id)) {
+    notify('That lesson preview is not available.')
+    return
+  }
+  const lesson = lessonPreviews[id]
+  one('#lesson-creation-context').hidden = !lesson.creationId
+  if (lesson.creationId) renderCreationProvenance(one('#lesson-creation-context'), lesson.creationId)
   for (const field of ['title', 'objective', 'native', 'romanization', 'meaning', 'pattern', 'usage']) {
     one(field === 'title' ? '#lesson-detail-title' : `#lesson-${field}`).textContent = lesson[field]
   }
   one('#lesson-assistant').dataset.lessonConversation = lesson.conversation
   one('#lesson-source').hidden = !lesson.source
+  one('#lesson-import-notice').hidden = !lesson.importSource
+  one('#lesson-import-source').hidden = !lesson.importSource
+  one('#lesson-import-source').open = false
+  if (lesson.importSource) {
+    one('#lesson-import-reference').textContent = lesson.importSource.reference || 'Imported source preview'
+    one('#lesson-import-files').textContent = lesson.importSource.files.length ? lesson.importSource.files.join(' / ') : 'Pasted source'
+    one('#lesson-import-conversion').hidden = !lesson.importSource.simulated
+    renderImportedSource(one('#lesson-import-text'), lesson.importSource.text)
+  }
   const list = one('#lesson-word-list')
   list.replaceChildren()
   lesson.words.forEach(([native, romanization, meaning]) => {
@@ -83,7 +109,14 @@ all('[data-open-lesson]').forEach((button) => button.addEventListener('click', (
   one('#lesson-catalog').hidden = true
   one('#lesson-detail').hidden = false
   one('#lesson-detail-title').focus({ preventScroll: true })
-  window.scrollTo(0, 0)
-}))
+  scrollWorkspaceToTop()
+}
+one('#lessons').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-open-lesson]')
+  if (button) showLesson(button.dataset.openLesson)
+})
 one('#back-to-lessons').addEventListener('click', () => showLessonCatalog(true))
-one('[data-nav="lessons"]').addEventListener('click', () => showLessonCatalog(true))
+one('[data-nav="lessons"]').addEventListener('click', (event) => {
+  if (location.hash === '#lessons') event.preventDefault()
+  showLessonCatalog(true)
+})

@@ -30,7 +30,7 @@ const tutorMessage = (text, phrase, details = {}) => ({ from: 'tutor', text, phr
 const userMessage = (text, details = {}) => ({ from: 'user', text, ...details })
 const recapItem = (native, romanization, meaning, activity) => ({ native, romanization, meaning, activity })
 function createConversation(values) {
-  return { draft: '', voiceStage: 'idle', dictationSample: values.phrase.meaning, mode: 'conversation', shadowIntent: 'shadow', shadowTarget: null, shadowNeedsSample: true, ...values }
+  return { draft: '', voiceStage: 'idle', dictationSample: values.phrase.meaning, mode: 'conversation', shadowIntent: 'shadow', shadowTarget: null, shadowNeedsSample: true, creationKind: null, creationContext: '', creationSuppressed: false, ...values }
 }
 const conversations = [
   {
@@ -120,6 +120,7 @@ function stopSimulatedTurn() {
   notify('The demo voice turn was stopped. Its sample transcript stays with this conversation for review.')
 }
 function selectConversation(id) {
+  closeAssistantSettings()
   endVoiceMode()
   stopSimulatedTurn()
   selectedConversationId = id
@@ -149,6 +150,8 @@ function renderConversationList() {
   one('#conversation-empty').hidden = list.children.length !== 0
 }
 function renderTranscript(scrollToEnd = false) {
+  const actions = one('#assistant-message-actions')
+  if (actions.matches(':popover-open')) actions.hidePopover()
   const thread = currentConversation()
   const log = one('#chat-messages')
   log.replaceChildren()
@@ -181,6 +184,9 @@ function renderTranscript(scrollToEnd = false) {
         message.append(explain)
       }
     }
+    if (entry.creationId) message.append(renderCreationCard(entry.creationId))
+    if (entry.lookupWordIds) entry.lookupWordIds.forEach((id) => message.append(renderLookupCard(id, thread.id)))
+    if (entry.from === 'tutor') message.append(renderMessageActions(entry, thread))
     log.append(message)
   })
   const scroller = conversationScroller()
@@ -253,14 +259,17 @@ function renderAssistantMode() {
   const thread = currentConversation()
   const shadow = thread.mode === 'shadow'
   const repeat = shadow && thread.shadowIntent === 'repeat'
+  const task = thread.creationKind && assistantTaskTypes[thread.creationKind]
+  one('#creation-intent').hidden = !task
+  one('#creation-intent-label').textContent = task ? `${task.label} / ${task.destination}` : ''
   one('#assistant-mode').value = thread.mode
-  one('#shadow-intent').hidden = !shadow
+  one('#shadow-intent').hidden = !shadow || Boolean(task)
   one('#shadow-intent-label').textContent = repeat ? 'Shadow / Repeating' : 'Shadow / New phrase'
   one('#shadow-new').textContent = repeat ? 'New phrase' : 'Samples'
-  one('#chat-input').placeholder = repeat ? 'Repeat the phrase, or type it here' : shadow ? 'Say something to shadow' : 'Message the Assistant'
+  one('#chat-input').placeholder = task ? 'Describe your request, then send' : repeat ? 'Repeat the phrase, or type it here' : shadow ? 'Say something to shadow' : 'Message the Assistant'
   const coach = one('#shadow-coach')
   coach.replaceChildren()
-  coach.hidden = !shadow || !one('#voice-mode-caption').hidden || (!repeat && !thread.shadowNeedsSample)
+  coach.hidden = Boolean(task) || !shadow || !one('#voice-mode-caption').hidden || (!repeat && !thread.shadowNeedsSample)
   if (coach.hidden) return
   if (repeat) {
     coach.append(chatElement('h3', '', 'Repeat after the model / demo'), renderChatPhrase(thread.shadowTarget.phrase),
@@ -306,6 +315,15 @@ function showShadowSamples() {
   one('#chat-input').focus({ preventScroll: true })
 }
 one('#shadow-new').addEventListener('click', showShadowSamples)
+one('#cancel-creation-intent').addEventListener('click', () => {
+  const thread = currentConversation()
+  thread.creationKind = null
+  thread.creationContext = ''
+  thread.creationSuppressed = true
+  renderAssistantMode()
+  notify('Task canceled. Your draft is kept as a normal chat turn.')
+  one('#chat-input').focus({ preventScroll: true })
+})
 one('#assistant-mode').addEventListener('change', (event) => {
   const thread = currentConversation()
   thread.mode = event.target.value
@@ -396,6 +414,7 @@ function renderConversation() {
 }
 one('#conversation-search').addEventListener('input', renderConversationList)
 function showConversationList(moveFocus = false) {
+  closeAssistantSettings()
   endVoiceMode()
   stopSimulatedTurn()
   renderConversationList()
@@ -403,7 +422,7 @@ function showConversationList(moveFocus = false) {
   one('#main').scrollTop = 0
   if (moveFocus) {
     one('#conversation-title').focus({ preventScroll: true })
-    window.scrollTo(0, 0)
+    scrollWorkspaceToTop()
   }
 }
 one('#back-to-conversations').addEventListener('click', () => showConversationList(true))
@@ -413,6 +432,7 @@ one('[data-nav="conversation"]').addEventListener('click', () => {
 })
 one('#chat-input').addEventListener('input', (event) => {
   currentConversation().draft = event.target.value
+  currentConversation().creationSuppressed = false
   renderComposerAction()
   renderConversationList()
 })
@@ -424,7 +444,8 @@ one('#record-demo').addEventListener('click', () => {
       return
     }
     endVoiceMode()
-    thread.dictationSample = thread.mode === 'shadow' && thread.shadowIntent === 'repeat' ? thread.shadowTarget.phrase.native : thread.phrase.meaning
+    thread.dictationSample = thread.creationKind ? assistantTaskTypes[thread.creationKind].request
+      : thread.mode === 'shadow' && thread.shadowIntent === 'repeat' ? thread.shadowTarget.phrase.native : thread.phrase.meaning
     thread.voiceStage = 'recording'
   } else if (thread.voiceStage === 'recording') {
     thread.voiceStage = 'review'
@@ -441,16 +462,23 @@ one('#record-demo').addEventListener('click', () => {
 one('#chat-form').addEventListener('submit', (event) => {
   event.preventDefault()
   const thread = currentConversation()
+  if (thread.voiceStage === 'recording') {
+    notify('Stop the dictation demo and review its transcript before sending.')
+    return
+  }
   const text = thread.draft.trim()
   if (!text) {
     notify('Write a reply, or try a demo voice turn first.')
     one('#chat-input').focus()
     return
   }
-  const intent = thread.mode === 'shadow' ? thread.shadowIntent : 'conversation'
+  const task = resolveAssistantTask(thread, text)
+  const intent = task ? 'create' : thread.mode === 'shadow' ? thread.shadowIntent : 'conversation'
   nameConversation(thread, text)
   thread.messages.push(userMessage(text, { mode: thread.mode, intent }))
-  if (thread.mode !== 'shadow') {
+  if (task) {
+    addAssistantTaskReply(thread, task, text)
+  } else if (thread.mode !== 'shadow') {
     thread.messages.push(tutorMessage('In a connected app, I would respond to what you said. For this preview, here is a sample pattern to try.', thread.phrase))
   } else if (intent === 'repeat') {
     thread.messages.push(tutorMessage('Your repetition is a practice turn, not a new phrase to shadow. This preview does not capture audio or assess pronunciation.', undefined, { mode: 'shadow', intent: 'repeat' }))
@@ -470,6 +498,9 @@ one('#chat-form').addEventListener('submit', (event) => {
     }
   }
   thread.draft = ''
+  thread.creationKind = null
+  thread.creationContext = ''
+  thread.creationSuppressed = false
   thread.voiceStage = 'idle'
   thread.updated = 'Just now'
   renderTranscript(true)
@@ -484,6 +515,7 @@ one('#chat-form').addEventListener('submit', (event) => {
 one('#show-romanization').addEventListener('click', () => {
   assistantPreferences.romanization = !assistantPreferences.romanization
   one('#show-romanization').setAttribute('aria-pressed', String(assistantPreferences.romanization))
+  one('#romanization-setting-state').textContent = assistantPreferences.romanization ? 'On' : 'Off'
   all('.phrase-romanization, .recap-romanization').forEach((item) => { item.hidden = !assistantPreferences.romanization })
 })
 one('#target-speech-speed').addEventListener('change', (event) => {
@@ -560,15 +592,16 @@ one('#voice-mode-pause').addEventListener('click', () => {
   voiceModePaused = !voiceModePaused
   renderVoiceMode()
 })
-one('#new-conversation').addEventListener('click', () => {
+function beginConversation(kind = 'Free conversation') {
+  closeAssistantSettings()
   endVoiceMode()
   stopSimulatedTurn()
   const id = `new-${nextConversationId++}`
   const thread = createConversation({
-    id, title: 'New conversation', needsTitle: true, kind: 'Free conversation',
+    id, title: 'New conversation', needsTitle: true, kind,
     preview: 'A new starting point for your learning.', phrase: teaPhrase, updated: 'Just now',
     messages: [
-      tutorMessage('Start with a message, a question, or something to practice. You can change Assistant modes at any time. This is a scripted preview; replies use sample phrases.'),
+      tutorMessage('Ask a question, practice a phrase, or create something for your learning. I can help with Library stories, lessons, exercises, game level briefs, and word lookup. The actions button below can start a task. This is a scripted preview, not a connected AI service.'),
     ],
     recap: { items: [] },
   })
@@ -578,13 +611,16 @@ one('#new-conversation').addEventListener('click', () => {
   renderConversation()
   focusThread()
   one('#chat-input').focus({ preventScroll: true })
-})
+  return thread
+}
+one('#new-conversation').addEventListener('click', () => beginConversation())
 all('[data-reader-conversation], [data-lesson-conversation]').forEach((link) => link.addEventListener('click', () => {
   openThreadOnNextRoute = location.hash !== '#conversation'
   selectConversation(link.dataset.lessonConversation || 'tea')
 }))
 document.addEventListener('mockup-route-changed', (event) => {
   if (event.detail !== 'conversation') {
+    closeAssistantSettings()
     endVoiceMode()
     stopSimulatedTurn()
     return
@@ -604,6 +640,70 @@ function syncConversationPicker() {
     scrollConversationToEnd()
   }
 }
+function closeAssistantSettings() {
+  for (const id of ['assistant-settings', 'assistant-message-actions']) {
+    const panel = one(`#${id}`)
+    if (panel.matches(':popover-open')) panel.hidePopover()
+  }
+}
+function positionAssistantSettings() {
+  positionAssistantPopover(one('#assistant-settings'), one('#assistant-settings-toggle'), one('.composer-input-row'))
+  const panel = one('#assistant-message-actions')
+  if (!panel.matches(':popover-open') || !assistantMessageActionAnchor) return
+  const anchor = assistantMessageActionAnchor.getBoundingClientRect()
+  const history = conversationScroller().getBoundingClientRect()
+  if (!assistantMessageActionAnchor.isConnected || anchor.bottom < history.top || anchor.top > history.bottom) {
+    panel.hidePopover()
+    return
+  }
+  positionAssistantPopover(panel, assistantMessageActionAnchor, assistantMessageActionAnchor)
+}
+function positionAssistantPopover(panel, toggleElement, anchorElement) {
+  if (!panel.matches(':popover-open')) return
+  if (document.body.dataset.screen !== 'conversation' || document.body.dataset.assistantView !== 'thread') {
+    closeAssistantSettings()
+    return
+  }
+  const viewport = window.visualViewport
+  const gap = 12
+  const leftEdge = (viewport?.offsetLeft || 0) + gap
+  const topEdge = (viewport?.offsetTop || 0) + gap
+  const rightEdge = leftEdge + (viewport?.width || window.innerWidth) - gap * 2
+  const bottomEdge = Math.min(
+    (viewport?.offsetTop || 0) + (viewport?.height || window.innerHeight),
+    mobileLayout.matches ? one('.sidebar').getBoundingClientRect().top : Infinity,
+  ) - gap
+  const anchor = anchorElement.getBoundingClientRect()
+  const toggle = toggleElement.getBoundingClientRect()
+  panel.style.maxWidth = `${Math.max(1, rightEdge - leftEdge)}px`
+  panel.style.maxHeight = 'none'
+  const naturalHeight = panel.getBoundingClientRect().height
+  const above = Math.max(0, anchor.top - gap - topEdge)
+  const below = Math.max(0, bottomEdge - anchor.bottom - gap)
+  const useAbove = above >= naturalHeight || above >= below
+  panel.style.maxHeight = `${Math.max(1, useAbove ? above : below)}px`
+  const bounds = panel.getBoundingClientRect()
+  panel.style.left = `${Math.max(leftEdge, Math.min(toggle.right - bounds.width, rightEdge - bounds.width))}px`
+  panel.style.top = `${useAbove ? anchor.top - gap - bounds.height : anchor.bottom + gap}px`
+  if (panel.contains(document.activeElement)) {
+    const focused = document.activeElement.getBoundingClientRect()
+    const visible = panel.getBoundingClientRect()
+    if (focused.top < visible.top + 2) panel.scrollTop -= visible.top + 2 - focused.top
+    else if (focused.bottom > visible.bottom - 2) panel.scrollTop += focused.bottom - visible.bottom + 2
+  }
+}
+one('#assistant-settings').addEventListener('beforetoggle', (event) => {
+  if (event.newState === 'open') requestAnimationFrame(positionAssistantSettings)
+})
+one('#assistant-settings').addEventListener('toggle', (event) => {
+  const open = event.newState === 'open'
+  one('#assistant-settings-toggle').setAttribute('aria-expanded', String(open))
+  if (open) {
+    event.currentTarget.scrollTop = 0
+    one('#assistant-mode').focus({ preventScroll: true })
+    positionAssistantSettings()
+  }
+})
 function syncAssistantViewport() {
   const viewport = window.visualViewport
   if (viewport && viewport.scale !== 1) return
@@ -626,8 +726,14 @@ function syncAssistantViewport() {
 window.addEventListener('resize', syncAssistantViewport)
 window.visualViewport?.addEventListener('resize', syncAssistantViewport)
 window.visualViewport?.addEventListener('scroll', syncAssistantViewport)
+window.addEventListener('resize', positionAssistantSettings)
+window.visualViewport?.addEventListener('resize', positionAssistantSettings)
+window.visualViewport?.addEventListener('scroll', positionAssistantSettings)
+one('#conversation-scroll').addEventListener('scroll', positionAssistantSettings)
+one('#conversation-history').addEventListener('scroll', positionAssistantSettings)
 new ResizeObserver(([entry]) => {
   document.documentElement.style.setProperty('--assistant-composer-height', `${entry.target.getBoundingClientRect().height}px`)
+  positionAssistantSettings()
 }).observe(one('#chat-form'))
 mobileLayout.addEventListener('change', syncConversationPicker)
 document.body.dataset.assistantView = mobileLayout.matches ? 'list' : 'thread'
