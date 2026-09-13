@@ -7,6 +7,7 @@
     <meta name="description" content="An interactive, dark-theme UI concept for LinguaWeave. Sample data only.">
     <title>LinguaWeave / UI concept</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="./snippets.js" defer></script>
     <script src="./prototype.js" defer></script>
     <script src="./dictionary.js" defer></script>
     <script src="./reader-vocabulary.js" defer></script>
@@ -18,6 +19,7 @@
     <script src="./assistant-tasks.js" defer></script>
     <script src="./teach-reading.js" defer></script>
     <script src="./conversations.js" defer></script>
+    <script src="./tooltips.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -40,6 +42,7 @@
         <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></symbol>
         <symbol id="i-settings" viewBox="0 0 24 24"><path d="m10 2-.8 3-2 .9L4.5 5l-2 3.5 2.1 2.1v2.8l-2.1 2.1 2 3.5 2.7-.9 2 .9.8 3h4l.8-3 2-.9 2.7.9 2-3.5-2.1-2.1v-2.8l2.1-2.1-2-3.5-2.7.9-2-.9-.8-3Z"/><circle cx="12" cy="12" r="3"/></symbol>
         <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 10v4M7 6v12M12 3v18M17 7v10M21 10v4"/></symbol>
+        <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M11 4 6 8H3v8h3l5 4ZM15 8a6 6 0 0 1 0 8M18 4a11 11 0 0 1 0 16"/></symbol>
         <symbol id="i-speed" viewBox="0 0 24 24"><path d="M4 19a10 10 0 1 1 16 0M12 3v3M4 10l3 1M20 10l-3 1M12 14l4-6"/><circle cx="12" cy="16" r="2"/></symbol>
         <symbol id="i-romanization" viewBox="0 0 24 24"><path d="m4 20 7-14 7 14M7 15h8M9 3h5M19 7h3M19 11h3"/></symbol>
         <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
@@ -169,7 +172,7 @@
                 <div class="word-detail">
                   <div class="word-identity"><div class="word-heading"><h3 id="word-native" lang="zh-Hans">&#x8336;</h3><span id="word-romanization">ch&aacute;</span></div><p class="word-gloss" id="word-gloss">tea</p></div>
                   <button class="button primary" id="save-word">Add to learning set</button>
-                  <details class="reader-word-details" id="reader-word-details"><summary>Example &amp; more</summary><span class="eyebrow" id="word-kind">WORD / NOUN</span><p class="small muted" id="word-lookup-note" hidden></p><div class="word-example"><span class="eyebrow">EXAMPLE</span><p id="word-example-native" lang="zh-Hans"></p><span class="small muted" id="word-example-source"></span></div><button class="button secondary" id="mark-known">I already know this</button><a class="text-link" href="#conversation" data-reader-conversation>Ask Assistant <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><p class="small muted">A preview lookup, not a mastery assessment. Changes last until reload.</p></details>
+                  <details class="reader-word-details" id="reader-word-details"><summary>Example &amp; more</summary><span class="eyebrow" id="word-kind">WORD / NOUN</span><p class="small muted" id="word-lookup-note" hidden></p><div class="word-example"><span class="eyebrow">EXAMPLE</span><p id="word-example-native" lang="zh-Hans"></p><span class="small muted" id="word-example-source"></span></div><button class="button secondary" id="mark-known">I already know this</button><p class="small muted">A preview lookup, not a mastery assessment. Changes last until reload.</p></details>
                 </div>
               </aside>
             </div>
@@ -269,7 +272,7 @@
                     <div class="voice-mode-heading"><span class="voice-mode-mark" aria-hidden="true"><svg><use href="#i-wave"/></svg></span><div class="voice-mode-status" role="status"><h3 id="voice-mode-status">Your turn / demo</h3><p id="voice-mode-state-help"></p></div></div>
                     <div class="voice-mode-actions"><button type="button" class="button secondary" id="voice-mode-pause" aria-pressed="false"><svg aria-hidden="true"><use href="#i-mic"/></svg><span>Pause</span></button><button type="button" class="text-link voice-mode-next" id="voice-mode-next" title="Preview a sample reply without sending a message">Preview reply <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button type="button" class="button quiet" id="voice-mode-end" aria-label="End voice mode"><svg aria-hidden="true"><use href="#i-close"/></svg> End</button></div>
                   </section>
-                  <p class="small muted">Scripted preview. No AI, audio, or microphone.</p>
+                  <p class="small muted">Scripted chat. Optional local speech; no AI or microphone.</p>
                 </form>
               </article>
             </div>

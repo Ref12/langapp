@@ -34,7 +34,7 @@ function updateReadingSelection() {
     } else if (document.body.dataset.screen === 'library' && !one('#library-document').hidden) {
       const sources = all('#imported-document-parts .imported-source')
       if (sources.some((source) => source.contains(range.startContainer)) && sources.some((source) => source.contains(range.endContainer))) {
-        const blocks = sources.flatMap((source) => [...source.children]).filter((block) => range.intersectsNode(block))
+        const blocks = sources.flatMap((source) => [...source.children]).filter((block) => !block.matches('.snippet-actions') && range.intersectsNode(block))
         const text = blocks.map((block) => {
           const selected = range.cloneRange()
           if (!block.contains(range.startContainer)) selected.setStart(block, 0)
@@ -141,6 +141,7 @@ function renderReadingPreparationPreview(container, request) {
     chatElement('p', 'import-notice', 'Reading preparation request preview. Source and scope are retained, but no personalized lesson or vocabulary assessment has been generated.'))
   const source = chatElement('details', 'creation-content-preview')
   source.append(chatElement('summary', '', 'Selected reading material'), chatElement('p', 'creation-request-text', request.text))
+  if (request.language === 'Mandarin') setSnippetActions(source.lastElementChild, { source: `${request.title} / ${request.scopeLabel}` })
   container.append(source)
 }
 function readingPreparationLesson(request) {

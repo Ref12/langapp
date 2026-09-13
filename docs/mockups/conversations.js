@@ -165,12 +165,16 @@ function renderTranscript(scrollToEnd = false) {
     if (entry.mode) message.dataset.mode = entry.mode
     const label = entry.from === 'user' ? 'YOU' : 'ASSISTANT / SCRIPTED DEMO'
     message.append(chatElement('span', 'message-label', entry.mode === 'shadow' ? `${label} / ${entry.intent.toUpperCase()}` : label), chatElement('p', '', entry.text))
+    setTargetSnippetActions(message.lastElementChild, { source: `${thread.title} / ${entry.from === 'user' ? 'Your message' : 'Assistant reply'}` })
     if (entry.phrase) {
       message.append(renderChatPhrase(entry.phrase))
-      if (entry.briefExplanation) message.append(chatElement('p', 'small muted', entry.briefExplanation))
+      if (entry.briefExplanation) {
+        message.append(chatElement('p', 'small muted', entry.briefExplanation))
+        setTargetSnippetActions(message.lastElementChild, { source: `${thread.title} / Shadow explanation` })
+      }
       if (entry.mode === 'shadow') {
         if (entry.intent === 'shadow') message.append(renderShadowActions(entry))
-      } else {
+      } else if (entry.phrase.explanation) {
         const explain = chatElement('button', 'text-link explain-phrase', entry.explained ? 'Explanation added below' : 'Explain this pattern')
         explain.disabled = Boolean(entry.explained)
         explain.addEventListener('click', () => {
@@ -195,10 +199,11 @@ function renderTranscript(scrollToEnd = false) {
 function renderChatPhrase(phrase) {
   const block = chatElement('div', 'chat-phrase')
   const native = chatElement('p', '', phrase.native)
-  native.lang = 'zh-Hans'
+  native.lang = phrase.nativeLanguage || 'zh-Hans'
   const romanization = chatElement('span', 'phrase-romanization', phrase.romanization)
   romanization.hidden = !assistantPreferences.romanization
   block.append(native, romanization, chatElement('p', 'small muted', phrase.meaning))
+  setSnippetActions(native, { meaning: phrase.meaning, romanization: phrase.romanization, source: `${currentConversation().title} / Assistant phrase` })
   return block
 }
 function shadowReflection(sample) {
@@ -260,20 +265,22 @@ function renderAssistantMode() {
   const shadow = thread.mode === 'shadow'
   const repeat = shadow && thread.shadowIntent === 'repeat'
   const task = thread.creationKind && assistantTaskTypes[thread.creationKind]
-  one('#creation-intent').hidden = !task
-  one('#creation-intent-label').textContent = task ? `${task.label} / ${task.destination}` : ''
+  const snippet = thread.snippetRequest
+  one('#creation-intent').hidden = !task && !snippet
+  one('#creation-intent-label').textContent = snippet ? `Text context / ${snippet.text.slice(0, 70)}` : task ? `${task.label} / ${task.destination}` : ''
+  one('#cancel-creation-intent').textContent = snippet ? 'Remove context' : 'Cancel task'
   one('#assistant-mode').value = thread.mode
-  one('#shadow-intent').hidden = !shadow || Boolean(task)
+  one('#shadow-intent').hidden = !shadow || Boolean(task || snippet)
   one('#shadow-intent-label').textContent = repeat ? 'Shadow / Repeating' : 'Shadow / New phrase'
   one('#shadow-new').textContent = repeat ? 'New phrase' : 'Samples'
   one('#chat-input').placeholder = task ? 'Describe your request, then send' : repeat ? 'Repeat the phrase, or type it here' : shadow ? 'Say something to shadow' : 'Message the Assistant'
   const coach = one('#shadow-coach')
   coach.replaceChildren()
-  coach.hidden = Boolean(task) || !shadow || !one('#voice-mode-caption').hidden || (!repeat && !thread.shadowNeedsSample)
+  coach.hidden = Boolean(task || snippet) || !shadow || !one('#voice-mode-caption').hidden || (!repeat && !thread.shadowNeedsSample)
   if (coach.hidden) return
   if (repeat) {
     coach.append(chatElement('h3', '', 'Repeat after the model / demo'), renderChatPhrase(thread.shadowTarget.phrase),
-      chatElement('p', '', 'Try saying the Mandarin phrase, or type it below. Dictation previews a repetition; no audio plays or pronunciation is assessed.'))
+      chatElement('p', '', 'Use Hear to listen locally, then say the Mandarin phrase or type it below. Dictation previews a repetition; pronunciation is not assessed.'))
   } else {
     coach.append(chatElement('h3', '', 'Your meaning, reflected in Mandarin.'),
       chatElement('p', '', 'Say something, then explore its meaning or repeat it. This offline demo supports these three sample phrases; choosing one fills your draft without sending it.'))
@@ -320,6 +327,7 @@ one('#cancel-creation-intent').addEventListener('click', () => {
   thread.creationKind = null
   thread.creationContext = ''
   thread.readingRequest = null
+  thread.snippetRequest = null
   thread.creationSuppressed = true
   renderAssistantMode()
   notify('Task canceled. Your draft is kept as a normal chat turn.')
@@ -352,11 +360,13 @@ function renderRecap() {
       const romanization = chatElement('span', 'recap-romanization', item.romanization)
       romanization.hidden = !assistantPreferences.romanization
       card.append(chatElement('span', 'tag green', item.activity), native, romanization, chatElement('span', 'recap-meaning', item.meaning))
+      setSnippetActions(native, { meaning: item.meaning, romanization: item.romanization, source: `${thread.title} / Practice recap` })
       items.append(card)
     })
     content.append(items)
     const pattern = chatElement('div', 'recap-pattern')
     pattern.append(chatElement('span', 'eyebrow', 'A PATTERN TO TAKE WITH YOU'), chatElement('p', '', thread.recap.pattern))
+    setTargetSnippetActions(pattern.lastElementChild, { source: `${thread.title} / Recap pattern` })
     const next = chatElement('p', 'recap-next', `Try next: ${thread.recap.next}`)
     content.append(pattern, next, chatElement('p', 'small muted', 'Illustrative recap from the sample transcript, not a mastery assessment.'))
   } else {
@@ -473,11 +483,17 @@ one('#chat-form').addEventListener('submit', (event) => {
     one('#chat-input').focus()
     return
   }
-  const task = resolveAssistantTask(thread, text)
-  const intent = task ? 'create' : thread.mode === 'shadow' ? thread.shadowIntent : 'conversation'
+  const snippet = thread.snippetRequest
+  const task = snippet ? null : resolveAssistantTask(thread, text)
+  const intent = snippet ? 'explain' : task ? 'create' : thread.mode === 'shadow' ? thread.shadowIntent : 'conversation'
   nameConversation(thread, text)
   thread.messages.push(userMessage(text, { mode: thread.mode, intent }))
-  if (task) {
+  if (snippet) {
+    thread.messages.push(tutorMessage(snippet.meaning
+      ? 'Here is the sample meaning supplied with your snippet. Further explanation and pronunciation feedback need a connected assistant.'
+      : 'Your selected text and source are kept with this request. This scripted preview cannot generate a new explanation.',
+    { native: snippet.text, nativeLanguage: snippet.lang, romanization: snippet.romanization, meaning: snippet.meaning }))
+  } else if (task) {
     addAssistantTaskReply(thread, task, text)
   } else if (thread.mode !== 'shadow') {
     thread.messages.push(tutorMessage('In a connected app, I would respond to what you said. For this preview, here is a sample pattern to try.', thread.phrase))
@@ -502,6 +518,7 @@ one('#chat-form').addEventListener('submit', (event) => {
   thread.creationKind = null
   thread.creationContext = ''
   thread.readingRequest = null
+  thread.snippetRequest = null
   thread.creationSuppressed = false
   thread.voiceStage = 'idle'
   thread.updated = 'Just now'
@@ -523,7 +540,7 @@ one('#show-romanization').addEventListener('click', () => {
 one('#target-speech-speed').addEventListener('change', (event) => {
   assistantPreferences.speechSpeed = event.target.value
   if (!one('#voice-mode-panel').hidden) renderVoiceMode()
-  else notify(`Mandarin speech: ${event.target.value}x. English stays at 1x. Audio is not connected in this mockup.`)
+  else notify(`Hear uses ${event.target.value}x for Mandarin. English stays at 1x. An installed local voice is required.`)
 })
 function renderVoiceMode() {
   const thread = currentConversation()
@@ -536,12 +553,14 @@ function renderVoiceMode() {
   one('#voice-mode-state-help').textContent = voiceModePaused ? 'No microphone active.' : responding ? `Mandarin ${assistantPreferences.speechSpeed}x / English 1x. Demo only.` : 'Hands-free preview. No microphone active.'
   one('#voice-mode-caption').hidden = !responding
   one('#voice-mode-native').textContent = phrase.native
+  setSnippetActions(one('#voice-mode-native'), { meaning: phrase.meaning, romanization: phrase.romanization, source: 'Assistant / Voice mode sample caption' })
   one('#voice-mode-romanization').textContent = phrase.romanization
   one('#voice-mode-romanization').hidden = !assistantPreferences.romanization
   one('#voice-mode-meaning').textContent = phrase.meaning
   one('#voice-mode-caption-label').textContent = shadowReply ? 'SHADOW / SAMPLE MODEL' : 'VOICE MODE / SAMPLE RESPONSE'
   one('#voice-mode-explanation').hidden = !shadowReply
-  one('#voice-mode-explanation').textContent = shadowReply ? voiceModePreview.briefExplanation || 'Repeat the model phrase. Audio and pronunciation assessment are not connected.' : ''
+  one('#voice-mode-explanation').textContent = shadowReply ? voiceModePreview.briefExplanation || 'Use Hear to listen locally, then repeat. Pronunciation assessment is not connected.' : ''
+  setTargetSnippetActions(one('#voice-mode-explanation'), { source: 'Assistant / Voice mode explanation' })
   one('#voice-mode-followups').replaceChildren()
   if (shadowReply && voiceModePreview.intent === 'shadow') one('#voice-mode-followups').append(renderShadowActions(voiceModePreview))
   one('#voice-mode-next').firstChild.textContent = responding ? 'Next turn ' : 'Preview reply '

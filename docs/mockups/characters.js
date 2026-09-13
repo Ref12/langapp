@@ -94,6 +94,7 @@ all('[data-character]').forEach((button) => button.addEventListener('click', () 
   characterId = button.dataset.character
   const word = words[characterId]
   one('#character-native').textContent = word.native
+  setSnippetActions(one('#character-native'), wordSnippetOptions(word, 'Practice / Characters'))
   one('#character-meaning').textContent = `${word.romanization} / ${word.gloss}`
   one('#character-guide-glyph').textContent = word.native
   characterCanvas.setAttribute('aria-label', `Handwriting area for ${word.gloss}`)
@@ -102,6 +103,7 @@ all('[data-character]').forEach((button) => button.addEventListener('click', () 
   updateCharacterControls()
   paintCharacter()
 }))
+setSnippetActions(one('#character-native'), wordSnippetOptions(words[characterId], 'Practice / Characters'))
 one('#character-guide').addEventListener('click', () => {
   characterGuideVisible = !characterGuideVisible
   one('#character-guide').setAttribute('aria-pressed', String(characterGuideVisible))

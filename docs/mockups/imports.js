@@ -45,6 +45,7 @@ function renderImportedSource(container, text) {
     else paragraph.push(line)
   }
   flush()
+  for (const block of [...container.children]) setTargetSnippetActions(block, { source: 'Library or lesson source preview / Mandarin fragments in this text' })
 }
 function showLibraryCatalog(moveFocus = false) {
   one('#library-catalog').hidden = false
@@ -367,11 +368,18 @@ function previewImportedLesson() {
   one('#import-lesson-title').textContent = importSession.pending.title
   one('#import-lesson-objective').textContent = lesson.objective
   one('#import-lesson-pattern').textContent = lesson.pattern
+  setTargetSnippetActions(one('#import-lesson-pattern'), { source: 'Lesson import / Authored pattern preview' })
   one('#import-lesson-example').textContent = lesson.native
   one('#import-lesson-meaning').textContent = lesson.meaning
+  setSnippetActions(one('#import-lesson-example'), { meaning: lesson.meaning, romanization: lesson.romanization, source: 'Lesson import / Authored example preview' })
   const words = one('#import-lesson-words')
   words.replaceChildren()
-  lesson.words.forEach(([native, , meaning]) => words.append(importElement('span', `${native} / ${meaning}`, 'tag')))
+  lesson.words.forEach(([native, romanization, meaning]) => {
+    const item = importElement('div', '', 'import-preview-word')
+    item.append(importElement('span', `${native} / ${meaning}`, 'tag'),
+      createSnippetActions(native, { romanization, meaning, source: 'Lesson import / Authored vocabulary preview' }))
+    words.append(item)
+  })
   setImportStage('lesson')
   one('#import-lesson-title').focus({ preventScroll: true })
 }

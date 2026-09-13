@@ -179,6 +179,7 @@ function renderDictionary() {
     romanization.className = 'dictionary-reading'
     romanization.textContent = word.romanization
     term.append(native, romanization)
+    setSnippetActions(native, wordSnippetOptions(word, 'Dictionary / My learning set'))
     const meaning = document.createElement('td')
     meaning.textContent = word.gloss
     const tier = document.createElement('td')
@@ -240,6 +241,7 @@ function renderQuestion() {
   one('#quiz-progress').value = questionIndex
   one('#quiz-source').textContent = question.source
   one('#quiz-sentence').textContent = question.sentence
+  setSnippetActions(one('#quiz-sentence'), { meaning: question.source, source: 'Review / Visible prompt; blank is not filled' })
   one('#quiz-feedback').textContent = ''
   one('#quiz-feedback').classList.remove('incorrect')
   one('#quiz-hint').disabled = false
@@ -261,7 +263,10 @@ function renderQuestion() {
       all('.quiz-option').forEach((item) => item.setAttribute('aria-pressed', String(item === option)))
       one('#quiz-check').disabled = false
     })
-    one('#quiz-options').append(option)
+    const choice = document.createElement('div')
+    choice.className = 'quiz-choice'
+    choice.append(option, createSnippetActions(words[id].native, { romanization: words[id].romanization, source: 'Review / Answer option, not an answer key' }))
+    one('#quiz-options').append(choice)
   })
 }
 one('#quiz-hint').addEventListener('click', () => {

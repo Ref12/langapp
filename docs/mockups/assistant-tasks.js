@@ -20,6 +20,7 @@ function prepareAssistantTask(thread, kind, query = '', context = '') {
   thread.creationSuppressed = false
   thread.creationContext = context
   thread.readingRequest = null
+  thread.snippetRequest = null
   thread.draft = query ? kind === 'dictionary' ? `Look up ${query}` : query : assistantTaskTypes[kind].request
   thread.voiceStage = 'idle'
   closeAssistantSettings()
@@ -150,6 +151,7 @@ function renderCreationMaterial(container, creation, practice = false) {
   }
   const plan = chatElement('div', 'creation-plan')
   plan.append(chatElement('p', '', `Familiar vocabulary / sample plan: ${creation.familiar}`), chatElement('p', '', `Learning targets / sample plan: ${creation.targets}`))
+  for (const line of [...plan.children]) setTargetSnippetActions(line, { source: `${creation.title} / Sample content plan` })
   container.append(plan)
   if (creation.kind === 'story') {
     const preview = chatElement('details', 'creation-content-preview')
@@ -162,11 +164,13 @@ function renderCreationMaterial(container, creation, practice = false) {
     const lesson = lessonPreviews.request
     container.append(chatElement('p', '', lesson.objective), renderChatPhrase(lesson), chatElement('p', '', lesson.pattern),
       chatElement('p', 'small muted', `${lesson.words.length} vocabulary items / 1 useful pattern`))
+    setTargetSnippetActions(container.lastElementChild.previousElementSibling, { source: `${creation.title} / Lesson pattern` })
   } else if (creation.kind === 'exercise') {
     container.append(chatElement('p', '', 'Complete the request: I would like another cup of tea.'))
     const sentence = chatElement('p', 'creation-sentence', '\u6211\u60f3 ____ \u559d\u4e00\u676f\u8336\u3002')
     sentence.lang = 'zh-Hans'
     container.append(sentence)
+    setSnippetActions(sentence, { source: `${creation.title} / Visible exercise prompt; blank is not filled` })
     if (practice) {
       const answer = chatElement('p', 'import-notice', '\u518d / again. Put \u518d before \u559d to ask for another cup. This is an answer reveal, not a scored assessment.')
       answer.hidden = !creation.answerShown
@@ -180,6 +184,9 @@ function renderCreationMaterial(container, creation, practice = false) {
         reveal.setAttribute('aria-expanded', String(creation.answerShown))
       })
       container.append(reveal, answer)
+      const answerActions = setTargetSnippetActions(answer, { source: `${creation.title} / Revealed sample answer` })
+      answerActions.hidden = answer.hidden
+      reveal.addEventListener('click', () => { answerActions.hidden = answer.hidden })
     } else container.append(chatElement('p', 'small muted', 'One authored practice prompt. Save it to Exercises to try the answer reveal.'))
   } else {
     container.append(chatElement('p', '', 'Content brief: use tea-house words and short requests to practice asking for something again.'),

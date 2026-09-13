@@ -107,6 +107,16 @@ function renderWord() {
   one('#mark-known').textContent = word.learned ? 'Mark as not yet learned' : 'I already know this'
   one('#word-lookup-note').hidden = word.weave !== false
   one('#word-lookup-note').textContent = word.weave === false ? 'This English word has no isolated Mandarin equivalent, so Source weaving leaves it in place.' : ''
+  setSnippetActions(one('#word-native'), wordSnippetOptions(word, 'Library / A morning at the tea house'))
+  setSnippetActions(one('#word-example-native'), { meaning: word.source, source: `Library word-help example: ${word.gloss}` })
+  positionReaderSnippetActions()
+}
+function positionReaderSnippetActions() {
+  const actions = snippetAttachments.get(one('#word-native'))
+  if (actions) {
+    if (mobileLayout.matches) one('#reader-panel .panel-heading').insertBefore(actions, one('#close-reader-panel'))
+    else one('#word-native').after(actions)
+  }
 }
 function setReaderPanel(visible) {
   state.readerPanel = visible
@@ -148,6 +158,7 @@ document.addEventListener('mockup-words-changed', () => {
 })
 function syncReaderDetails() {
   one('#reader-word-details').open = !mobileLayout.matches
+  positionReaderSnippetActions()
 }
 mobileLayout.addEventListener('change', syncReaderDetails)
 syncReaderDetails()

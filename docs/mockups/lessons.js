@@ -83,6 +83,9 @@ function showLesson(id) {
     one(field === 'title' ? '#lesson-detail-title' : `#lesson-${field}`).textContent = lesson[field]
   }
   one('#lesson-native').lang = lesson.nativeLanguage ?? 'zh-Hans'
+  setSnippetActions(one('#lesson-native'), { lang: lesson.nativeLanguage ?? 'zh-Hans', meaning: lesson.meaning, romanization: lesson.romanization, source: `Lesson: ${lesson.title}` })
+  setTargetSnippetActions(one('#lesson-pattern'), { source: `Lesson pattern: ${lesson.title}` })
+  setTargetSnippetActions(one('#lesson-usage'), { source: `Lesson usage: ${lesson.title}` })
   one('#lesson-romanization').hidden = !lesson.romanization
   one('.lesson-vocabulary').hidden = Boolean(lesson.readingRequest)
   one('.lesson-study').classList.toggle('reading-preparation-lesson', Boolean(lesson.readingRequest))
@@ -113,6 +116,7 @@ function showLesson(id) {
     const gloss = document.createElement('p')
     gloss.textContent = meaning
     item.append(term, reading, gloss)
+    setSnippetActions(term, { meaning, romanization, source: `Lesson vocabulary: ${lesson.title}` })
     list.append(item)
   })
   one('#lesson-catalog').hidden = true

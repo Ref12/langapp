@@ -37,6 +37,14 @@ Find a conversation; Find expands the pane and focuses the existing search.
 Collapsing does not change the active conversation, drafts, or voice controls.
 Mobile keeps its labeled bottom navigation, without a collapse button.
 
+Icon controls have shared **hover and keyboard-focus tooltips**, including text
+actions, reader controls, Assistant settings/dictation/Voice/Send, response menus,
+and collapsed navigation. Labels follow the current action (for example,
+Hear becomes Stop during playback). Tooltips stay within the viewport and appear
+above scrolling panes and dialogs rather than being clipped. Move onto the tooltip
+to keep reading it, or dismiss it with Escape. Touch taps still perform the normal
+action without an extra tooltip-only tap.
+
 ## At a glance
 
 ![Desktop overview: a dark workspace with a tea-house reading card and contextual practice](previews/overview-desktop.png)
@@ -63,6 +71,9 @@ Mobile keeps its labeled bottom navigation, without a collapse button.
 | [Collapsed workspace sidebar](previews/sidebar-collapsed-desktop.png) | [Collapsed Assistant sidebar](previews/assistant-sidebar-collapsed-desktop.png) | |
 | [Target reading with annotations](previews/reader-target-desktop.png) | [Discover](previews/discover-desktop.png) | [Target reading](previews/reader-target-mobile.png) / [Reading without word help](previews/reader-plain-mobile.png) |
 | [Custom Library labels](previews/library-labels-desktop.png) | [Reading preparation request](previews/reading-preparation-desktop.png) | [Labels](previews/library-labels-mobile.png) / [Teach a selection](previews/reading-preparation-mobile.png) |
+| [Lesson text actions](previews/snippet-lesson-desktop.png) | | [Word help actions](previews/snippet-reader-mobile.png) / [Dictionary actions](previews/snippet-dictionary-mobile.png) |
+| | | [Selected text actions](previews/snippet-selection-mobile.png) / [Assistant text actions](previews/snippet-assistant-mobile.png) |
+| [Assistant tooltips](previews/tooltip-assistant-desktop.png) | | [Reader tooltip in the compact layout](previews/tooltip-reader-mobile.png) |
 
 These are static captures of the same HTML prototype, not separate designs.
 Phone captures show a single viewport, including the fixed bottom navigation;
@@ -78,6 +89,45 @@ scroll in the interactive prototype to explore the rest of each screen.
 | Practice | Exercises and Games share one practice space | Choose Review or Characters, create a custom exercise, or save a non-playable game level brief |
 | Assistant | A learning partner and app-wide creation workspace | Use a reply's actions menu, review and save content, or look up words; continue Conversation, Shadow, dictation, and Voice mode |
 | Dictionary | Shared lookup and a personal learning set | Look up characters, meaning, or pinyin; inspect a definition, add it to your learning set, and return to its source |
+
+## Hear and Ask Assistant
+
+Speaker and chat buttons accompany dictionary words and examples, learning-set
+rows, reader word help, lesson vocabulary and examples, Review prompts/options,
+the active character, Assistant phrases/messages/recaps, Voice-mode captions,
+and imported or Assistant-created preview text. Decorative covers and navigation
+glyphs are not pronunciation controls. Character pickers open the character's
+controls; reader words open word help when that panel is enabled.
+
+**Select target-language text** for a compact Hear / Ask toolbar anywhere in
+readable content, including the reader with word help off. **Alt+Enter** moves
+keyboard focus to those selection actions; Escape closes them. Reading annotations
+and action controls are excluded from selected snippet text and teaching requests.
+
+**Hear uses the browser's installed local voices**, not a recording or a speech
+service. Only voices reported as local and matching the snippet's language are
+eligible. Missing voices and playback errors produce visible, announced feedback;
+there is no remote-voice or wrong-language fallback. Install an offline voice in
+your device's speech settings if needed. Browser/platform voice availability varies.
+Mandarin uses the speed in Assistant's settings gear; English stays at 1x.
+Mixed-language preview text reads only its Mandarin fragments, not its English
+explanation. This remains a fixed Mandarin profile, not automatic language detection
+for arbitrary imports. Unclassified reading-preparation lesson excerpts do not
+assume a pronunciation language.
+
+Press the speaker again, use the playback strip's Stop button, or press Escape to
+stop. A new playback replaces the previous one. Navigation, hiding the page, or
+removing the playing snippet stops playback. Quiz blanks are spoken as "blank";
+Hear never fills them or speaks a hidden answer. Voice-mode turns and dictation
+remain simulations: only an explicit Hear action starts local speech.
+
+**Ask Assistant prepares a fresh, editable draft** containing the exact snippet,
+its source, and any supplied meaning. It does not submit, overwrite another draft,
+change a learning state, choose a quiz option, or clear a character drawing.
+Inside an unfinished dialog, it prepares the draft without closing the dialog or
+discarding edits; finish or cancel, then open Assistant. **Remove context** in the
+composer keeps the draft but returns it to a normal chat turn. Sending a snippet request
+shows the supplied sample information, not an invented AI explanation.
 
 ## Visual direction
 
@@ -435,7 +485,8 @@ the selected mode's instruction template and the explicit turn intent.
 Request-based APIs can receive those instructions on the next request;
 persistent/realtime providers need their supported update mechanism or a
 replacement model session that retains context. No provider-specific system
-instruction updates, AI calls, audio, or microphone access are implemented here.
+instruction updates, AI calls, or microphone access are implemented here.
+Explicit Hear actions can use an installed local speech voice.
 
 Three **icon-only controls sit beside the text box**, inside the docked input:
 the microphone for dictation, the settings gear, and a shared Voice mode / Send action. With an
@@ -454,7 +505,7 @@ navigation, and settings gear remain available in place.
 Toggle Voice mode again or use **End voice mode** to stop. Leaving the
 conversation also ends it; resizing the preview preserves it. The intended connected
 experience would listen and reply without pressing Send each turn; this mockup
-uses explicit preview steps, never accesses a microphone or plays audio, and
+uses explicit preview steps, never accesses a microphone or automatically plays audio, and
 does not add messages or change a typed draft through preview steps. Explicit
 Shadow explanation actions do add the requested explanation to the transcript.
 
@@ -498,10 +549,11 @@ Navigation, search, filters, reading modes, word inspection, dictionary changes,
 review feedback, import/review/append flows, character drawing, conversations, contextual navigation, dialogs, device preview,
 and dictation / Voice mode **simulations** are interactive. Changes
 exist in memory and disappear on reload. The mockup does not read or write
-application storage, make network requests, access a microphone, play audio,
+application storage, make network requests, access a microphone,
 translate pasted content, or run an AI service. Selected text/Markdown files are
 read locally; imported preview content is not saved across reloads. Avoid
-entering sensitive text.
+entering sensitive text. Explicit Hear actions are the exception to simulated
+audio: they use only matching, installed local browser voices.
 
 The three-question practice queue and Overview metrics stay fixed. Adding a word
 updates the sample Dictionary and applicable weaving, not that demonstration

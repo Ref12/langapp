@@ -41,6 +41,7 @@ function renderLookupCard(id, conversationId = null) {
   const status = dictionaryElement('span', 'tag green', wordLearningStatus(word))
   status.dataset.wordStatus = id
   heading.append(native, reading, dictionaryElement('span', 'tag', word.kind), status)
+  setSnippetActions(native, wordSnippetOptions(word, 'Dictionary word'))
   const example = dictionaryElement('p', 'lookup-example', word.example)
   example.lang = word.nativeLanguage || 'zh-Hans'
   const actions = dictionaryElement('div', 'button-row', '')
@@ -50,14 +51,9 @@ function renderLookupCard(id, conversationId = null) {
   if (conversationId) add.dataset.sourceConversation = conversationId
   add.disabled = word.tracked
   actions.append(add)
-  if (!conversationId) {
-    const ask = dictionaryElement('button', 'button secondary', 'Ask Assistant')
-    ask.type = 'button'
-    ask.addEventListener('click', () => startAssistantTask('dictionary', word.native))
-    actions.append(ask)
-  }
   card.append(heading, dictionaryElement('p', 'lookup-meaning', word.gloss), example,
     dictionaryElement('p', 'small muted', word.source), actions)
+  setSnippetActions(example, { lang: example.lang, meaning: word.source, source: `Dictionary example: ${word.gloss}` })
   return card
 }
 function addWordToLearningSet(id, source = 'lookup', conversationId = null) {
