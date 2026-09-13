@@ -60,7 +60,7 @@ action without an extra tooltip-only tap.
 | [Review exercise](previews/review-desktop.png) | [Characters exercise](previews/characters-desktop.png) | [Review](previews/review-mobile.png) / [Characters](previews/characters-mobile.png) |
 | [Shadow mode](previews/shadow-desktop.png) | [Shadow with Voice mode](previews/shadow-voice-desktop.png) | [Shadow](previews/shadow-mobile.png) / [Repeat after me](previews/shadow-repeat-mobile.png) |
 | [New conversation](previews/new-conversation-desktop.png) | | [New conversation](previews/new-conversation-mobile.png) |
-| [Assistant settings](previews/assistant-settings-desktop.png) | | [Assistant settings](previews/assistant-settings-mobile.png) |
+| [Assistant settings](previews/assistant-settings-desktop.png) | [Open mode dropdown](previews/assistant-mode-menu-desktop.png) | [Assistant settings](previews/assistant-settings-mobile.png) |
 | [Library import](previews/library-import-desktop.png) | [Append to a document](previews/library-append-desktop.png) | [Library import](previews/library-import-mobile.png) |
 | [Imported document](previews/imported-document-desktop.png) | [Lesson import](previews/lesson-import-desktop.png) | [Lesson import](previews/lesson-import-mobile.png) |
 | [Generated lesson preview](previews/lesson-generation-desktop.png) | [Imported lesson](previews/imported-lesson-desktop.png) | [Generated lesson preview](previews/lesson-generation-mobile.png) |
@@ -77,8 +77,8 @@ action without an extra tooltip-only tap.
 
 These are static captures of the same HTML prototype, not separate designs.
 The overview, core screen, and Assistant-settings captures show the current
-neutral palette. Some older interaction-detail captures retain the previous
-palette; the live prototype uses the neutral theme throughout.
+blue/slate palette. Some older interaction-detail captures retain previous
+palettes; the live prototype uses the current theme throughout.
 Phone captures show a single viewport, including the fixed bottom navigation;
 scroll in the interactive prototype to explore the rest of each screen.
 
@@ -134,11 +134,13 @@ shows the supplied sample information, not an invented AI explanation.
 
 ## Visual direction
 
-- Neutral charcoal surfaces, gray borders and text, and restrained lavender
-  accents replace the green-tinted palette. Sand remains a secondary accent.
-  The device-preview frame, artwork, controls, and tooltips follow the same
-  direction. Assistant dropdowns and their options explicitly use the dark
-  surface and text tokens so open menus remain readable.
+- A blue-black canvas (`#0d1117`), slate panels (`#151b23`), selected rows
+  (`#242b34`), crisp pale text, and bright blue accents follow the supplied
+  reference. Lavender and sand remain secondary accents. Blue landscape and
+  warm ceramic artwork add color without a green wash.
+  The device-preview frame, controls, and dark tooltips follow the same direction.
+  Assistant dropdowns and their options explicitly use the dark surface and text
+  tokens so open menus remain readable.
 - A compact workspace shell with a stable navigation hierarchy. Desktop has an
   expandable icon rail; narrower desktop windows default to icons outside
   Assistant unless a choice has been made. Phones use a horizontally scrollable,
