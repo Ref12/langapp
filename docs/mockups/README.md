@@ -76,6 +76,9 @@ action without an extra tooltip-only tap.
 | [Assistant tooltips](previews/tooltip-assistant-desktop.png) | | [Reader tooltip in the compact layout](previews/tooltip-reader-mobile.png) |
 
 These are static captures of the same HTML prototype, not separate designs.
+The overview, core screen, and Assistant-settings captures show the current
+neutral palette. Some older interaction-detail captures retain the previous
+palette; the live prototype uses the neutral theme throughout.
 Phone captures show a single viewport, including the fixed bottom navigation;
 scroll in the interactive prototype to explore the rest of each screen.
 
@@ -131,8 +134,11 @@ shows the supplied sample information, not an invented AI explanation.
 
 ## Visual direction
 
-- Graphite and deep green surfaces, quiet borders, warm off-white text, and
-  restrained citron accents. Lavender and sand distinguish secondary experiences.
+- Neutral charcoal surfaces, gray borders and text, and restrained lavender
+  accents replace the green-tinted palette. Sand remains a secondary accent.
+  The device-preview frame, artwork, controls, and tooltips follow the same
+  direction. Assistant dropdowns and their options explicitly use the dark
+  surface and text tokens so open menus remain readable.
 - A compact workspace shell with a stable navigation hierarchy. Desktop has an
   expandable icon rail; narrower desktop windows default to icons outside
   Assistant unless a choice has been made. Phones use a horizontally scrollable,
