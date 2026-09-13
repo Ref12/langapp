@@ -1,6 +1,6 @@
 const frame = document.querySelector('#prototype-frame')
 const stage = document.querySelector('#preview-stage')
-const screens = { overview: 'Overview', library: 'Library', reader: 'Library / Reading', lessons: 'Lessons', practice: 'Practice / Exercises', review: 'Practice / Exercises / Review', characters: 'Practice / Exercises / Characters', conversation: 'Assistant', dictionary: 'Dictionary', games: 'Practice / Games' }
+const screens = { overview: 'Overview', library: 'Library', discover: 'Library / Discover', reader: 'Library / Reading', lessons: 'Lessons', practice: 'Practice / Exercises', review: 'Practice / Exercises / Review', characters: 'Practice / Exercises / Characters', conversation: 'Assistant', dictionary: 'Dictionary', games: 'Practice / Games' }
 let frameReady = false
 let requestedScreen = null
 function currentScreen() {

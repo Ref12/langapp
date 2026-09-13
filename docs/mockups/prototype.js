@@ -2,7 +2,9 @@
 const one = (selector) => document.querySelector(selector)
 const all = (selector) => [...document.querySelectorAll(selector)]
 const mobileLayout = window.matchMedia('(max-width: 760px)')
-const state = { mode: 'mixed', density: 50, word: 'tea', collection: 'saved', topic: 'all' }
+const compactSidebarLayout = window.matchMedia('(max-width: 960px)')
+let sidebarCollapsedPreference = null
+const state = { mode: 'source', weaving: true, word: 'tea', readerPanel: true }
 const words = {
   tea: { native: '\u8336', romanization: 'ch\u00e1', gloss: 'tea', kind: 'WORD / NOUN', example: '\u6211\u60f3\u559d\u4e00\u676f\u8336\u3002', source: 'I would like a cup of tea.', tracked: true, learned: false },
   rain: { native: '\u96e8', romanization: 'y\u01d4', gloss: 'rain', kind: 'WORD / NOUN', example: '\u96e8\u505c\u4e86\u3002', source: 'The rain has stopped.', tracked: true, learned: false },
@@ -21,12 +23,6 @@ const targetPassage = [
   ['\u8001\u677f\u7aef\u6765\u4e00\u58f6', { id: 'tea' }, '\u548c\u4e24\u4e2a\u5c0f\u676f\u5b50\u3002\u5916\u9762\uff0c\u4eba\u4eec\u62ff\u7740\u96e8\u4f1e\u5306\u5306\u8d70\u8fc7\u3002\u5728\u8fd9\u91cc\uff0c\u4e0d\u7528\u7740\u6025\u3002\u5c0f\u6797\u53cc\u624b\u6367\u7740\u4e00\u4e2a\u6e29\u70ed\u7684', { id: 'cup', text: '\u676f\u5b50' }, '\u3002'],
   ['\u5979\u4eec\u804a\u7684\u90fd\u662f\u5c0f\u4e8b\uff1a\u5929\u6c14\u3001\u4e00\u672c\u4e66\u3001\u665a\u996d\u5403\u4ec0\u4e48\u3002\u5c0f\u6797', { id: 'slowly' }, '\u559d\u7740\u8336\u3002\u8fd9\u4e00\u523b\uff0c\u6574\u4e2a\u65e9\u6668\u4eff\u4f5b\u90fd\u5728\u8fd9\u95f4\u5c0f\u5c4b\u91cc\u3002'],
 ]
-const modeHelp = {
-  source: 'Keep the original text intact. Select an underlined word for Mandarin support.',
-  mixed: 'Familiar words weave into the story. Select an underlined word to explore it.',
-  tap: 'Read in Mandarin. Select an underlined word for its meaning and pronunciation.',
-  target: 'Read with fewer visual hints. Any sample vocabulary word is still selectable for help.',
-}
 let toastTimer
 function notify(message) {
   const toast = one('#toast')
@@ -41,6 +37,31 @@ function scrollWorkspaceToTop() {
   window.scrollTo(0, 0)
 }
 
+function syncSidebar() {
+  const defaultCollapsed = compactSidebarLayout.matches && document.body.dataset.screen !== 'conversation'
+  const collapsed = !mobileLayout.matches && (sidebarCollapsedPreference ?? defaultCollapsed)
+  document.body.dataset.sidebarCollapsed = String(collapsed)
+  const toggle = one('#sidebar-toggle')
+  const label = collapsed ? 'Expand sidebar' : 'Collapse sidebar'
+  toggle.setAttribute('aria-expanded', String(!collapsed))
+  toggle.setAttribute('aria-label', label)
+  toggle.title = label
+  toggle.querySelector('use').setAttribute('href', collapsed ? '#i-sidebar-expand' : '#i-sidebar-collapse')
+  one('#sidebar-conversation-search').setAttribute('aria-expanded', String(!collapsed))
+}
+function setSidebarCollapsed(collapsed) {
+  sidebarCollapsedPreference = collapsed
+  syncSidebar()
+}
+one('#sidebar-toggle').addEventListener('click', () => {
+  setSidebarCollapsed(document.body.dataset.sidebarCollapsed !== 'true')
+})
+one('#sidebar-conversation-search').addEventListener('click', () => {
+  setSidebarCollapsed(false)
+  one('#conversation-search').focus({ preventScroll: true })
+})
+compactSidebarLayout.addEventListener('change', syncSidebar)
+
 function syncWorkspaceNavigation() {
   const contextualAssistant = document.body.dataset.screen === 'conversation' && !mobileLayout.matches
   one('#assistant-sidebar').hidden = !contextualAssistant
@@ -48,6 +69,7 @@ function syncWorkspaceNavigation() {
   for (const selector of ['#workspace-label', '#workspace-navigation', '#workspace-profile']) {
     one(selector).hidden = contextualAssistant
   }
+  syncSidebar()
 }
 mobileLayout.addEventListener('change', syncWorkspaceNavigation)
 
@@ -68,7 +90,7 @@ function route(moveFocus = true) {
   const requestedScreen = practiceRoute ? 'practice' : hash
   const id = all('.screen').some((screen) => screen.id === requestedScreen) ? requestedScreen : 'overview'
   const routeId = practiceRoute ? hash : id
-  const navigationId = id === 'reader' ? 'library' : id
+  const navigationId = id === 'reader' || id === 'discover' ? 'library' : id
   const assistant = id === 'conversation'
   document.body.dataset.screen = id
   syncWorkspaceNavigation()
@@ -89,7 +111,7 @@ function route(moveFocus = true) {
   })
   const label = one(`[data-nav="${navigationId}"] span`).textContent
   one('#page-label').textContent = label
-  const detail = id === 'reader' ? 'Reading' : practiceRoute?.label || ''
+  const detail = id === 'reader' ? 'Reading' : id === 'discover' ? 'Discover' : practiceRoute?.label || ''
   one('#page-detail').hidden = !detail
   one('#page-detail').textContent = detail ? `/ ${detail}` : ''
   document.title = `${label}${detail ? ` / ${detail}` : ''} / LinguaWeave UI concept`
@@ -122,39 +144,6 @@ all('[data-catalog-view-controls]').forEach((controls) => {
   }))
 })
 
-function filterLibrary() {
-  const query = one('#library-search').value.trim().toLowerCase()
-  let count = 0
-  all('[data-collection-item]').forEach((card) => {
-    const visible = card.dataset.collectionItem.split(' ').includes(state.collection)
-      && (state.topic === 'all' || state.topic === card.dataset.topic)
-      && card.dataset.title.toLowerCase().includes(query)
-    card.hidden = !visible
-    if (visible) count += 1
-  })
-  one('#library-empty').hidden = count !== 0
-  one('#book-grid').hidden = count === 0
-}
-all('[data-collection]').forEach((button) => button.addEventListener('click', () => {
-  state.collection = button.dataset.collection
-  all('[data-collection]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
-  one('#library-search').placeholder = state.collection === 'discover' ? 'Search sample stories' : 'Search your library'
-  filterLibrary()
-}))
-all('[data-filter]').forEach((button) => button.addEventListener('click', () => {
-  state.topic = button.dataset.filter
-  all('[data-filter]').forEach((item) => {
-    item.classList.toggle('active', item === button)
-    item.setAttribute('aria-pressed', String(item === button))
-  })
-  filterLibrary()
-}))
-one('#library-search').addEventListener('input', filterLibrary)
-one('#reset-library').addEventListener('click', () => {
-  one('#library-search').value = ''
-  one('[data-filter="all"]').click()
-})
-
 all('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()))
 const samples = {
   rain: { title: 'After the rain', text: 'The park is quiet after the rain. A small bird shakes the water from its wings. I put my phone away and take the longer path home.' },
@@ -166,90 +155,6 @@ all('[data-preview]').forEach((button) => button.addEventListener('click', () =>
   one('#sample-passage').textContent = sample.text
   one('#sample-dialog').showModal()
 }))
-
-function renderPassage() {
-  const isTarget = state.mode === 'tap' || state.mode === 'target'
-  const paragraphs = isTarget ? targetPassage : sourcePassage
-  const container = one('#reading-passage')
-  container.dataset.mode = state.mode
-  container.lang = isTarget ? 'zh-Hans' : 'en'
-  container.replaceChildren()
-  const wovenIds = ['tea', 'rain', 'cup', 'friend', 'window', 'slowly'].slice(0, Math.round(state.density * 6 / 100))
-  paragraphs.forEach((parts) => {
-    const paragraph = document.createElement('p')
-    parts.forEach((part) => {
-      if (typeof part === 'string') paragraph.append(document.createTextNode(part))
-      else {
-        const word = words[part.id]
-        const targetForm = isTarget || (state.mode === 'mixed' && wovenIds.includes(part.id))
-        const button = document.createElement('button')
-        button.className = 'reading-word'
-        button.classList.toggle('selected', part.id === state.word)
-        button.textContent = targetForm ? (part.text || word.native) : word.gloss
-        button.lang = targetForm ? 'zh-Hans' : 'en'
-        button.setAttribute('aria-label', `Explore ${word.gloss}`)
-        button.addEventListener('click', () => {
-          state.word = part.id
-          setReaderPanel(true)
-          renderWord()
-          all('.reading-word').forEach((item) => item.classList.toggle('selected', item.getAttribute('aria-label') === `Explore ${word.gloss}`))
-          if (window.matchMedia('(max-width: 760px)').matches) {
-            one('#word-native').tabIndex = -1
-            one('#word-native').focus()
-            one('#reader-panel').scrollIntoView({ block: 'start' })
-          }
-        })
-        paragraph.append(button)
-      }
-    })
-    container.append(paragraph)
-  })
-  one('#reader-instruction').textContent = modeHelp[state.mode]
-  one('#density-control').hidden = state.mode !== 'mixed'
-}
-function renderWord() {
-  const word = words[state.word]
-  one('#word-native').textContent = word.native
-  one('#word-romanization').textContent = word.romanization
-  one('#word-gloss').textContent = word.gloss
-  one('#word-kind').textContent = word.kind
-  one('#word-example-native').textContent = word.example
-  one('#word-example-source').textContent = word.source
-  one('#word-state').textContent = word.learned ? 'Learned' : word.tracked ? 'Practicing' : 'Unseen'
-  one('#save-word').textContent = word.tracked ? 'In your review collection' : 'Add to review'
-  one('#save-word').disabled = word.tracked
-  one('#mark-known').textContent = word.learned ? 'Reset to practicing' : 'I already know this'
-}
-function setReaderPanel(visible) {
-  one('#reader-panel').hidden = !visible
-  one('.reader-layout').classList.toggle('panel-hidden', !visible)
-  one('#toggle-reader-panel').setAttribute('aria-expanded', String(visible))
-}
-one('#toggle-reader-panel').addEventListener('click', () => setReaderPanel(one('#reader-panel').hidden))
-all('[data-mode]').forEach((button) => button.addEventListener('click', () => {
-  state.mode = button.dataset.mode
-  all('[data-mode]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)))
-  renderPassage()
-}))
-one('#density').addEventListener('input', (event) => {
-  state.density = Number(event.target.value)
-  one('#density-value').textContent = `${state.density}%`
-  renderPassage()
-})
-one('#study-percent').addEventListener('input', (event) => {
-  one('#study-value').textContent = `${event.target.value}%`
-})
-one('#save-word').addEventListener('click', () => {
-  addWordToLearningSet(state.word, 'reading')
-})
-one('#mark-known').addEventListener('click', () => {
-  const word = words[state.word]
-  word.learned = !word.learned
-  word.tracked = true
-  renderWord()
-  renderDictionary()
-  notify(`"${word.gloss}" marked ${word.learned ? 'learned' : 'practicing'} in this preview only.`)
-})
 
 function renderDictionary() {
   const query = one('#dictionary-search').value.trim().toLowerCase()
@@ -268,7 +173,7 @@ function renderDictionary() {
     const term = document.createElement('td')
     const native = document.createElement('span')
     native.className = 'dictionary-native'
-    native.lang = 'zh-Hans'
+    native.lang = word.nativeLanguage || 'zh-Hans'
     native.textContent = word.native
     const romanization = document.createElement('span')
     romanization.className = 'dictionary-reading'
@@ -399,7 +304,5 @@ one('#restart-quiz').addEventListener('click', () => {
   one('#quiz-options button').focus()
 })
 
-renderPassage()
-renderWord()
 renderQuestion()
 route(false)

@@ -319,6 +319,7 @@ one('#cancel-creation-intent').addEventListener('click', () => {
   const thread = currentConversation()
   thread.creationKind = null
   thread.creationContext = ''
+  thread.readingRequest = null
   thread.creationSuppressed = true
   renderAssistantMode()
   notify('Task canceled. Your draft is kept as a normal chat turn.')
@@ -500,6 +501,7 @@ one('#chat-form').addEventListener('submit', (event) => {
   thread.draft = ''
   thread.creationKind = null
   thread.creationContext = ''
+  thread.readingRequest = null
   thread.creationSuppressed = false
   thread.voiceStage = 'idle'
   thread.updated = 'Just now'
@@ -731,6 +733,7 @@ window.visualViewport?.addEventListener('resize', positionAssistantSettings)
 window.visualViewport?.addEventListener('scroll', positionAssistantSettings)
 one('#conversation-scroll').addEventListener('scroll', positionAssistantSettings)
 one('#conversation-history').addEventListener('scroll', positionAssistantSettings)
+new ResizeObserver(positionAssistantSettings).observe(one('.workspace'))
 new ResizeObserver(([entry]) => {
   document.documentElement.style.setProperty('--assistant-composer-height', `${entry.target.getBoundingClientRect().height}px`)
   positionAssistantSettings()

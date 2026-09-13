@@ -77,6 +77,11 @@ function showImportedDocument(id) {
     const article = importElement('article', '', 'imported-part')
     article.append(importElement('span', `SECTION ${index + 1} / ${importFormats[part.format].name}`, 'eyebrow'))
     article.append(importElement('h2', part.reference || `Import ${index + 1}`))
+    const teach = importElement('button', 'Teach this section', 'button secondary')
+    teach.type = 'button'
+    teach.dataset.teachLibraryItem = document.id
+    teach.dataset.teachChapter = String(index)
+    article.append(teach)
     article.append(importElement('p', generated ? 'Assistant / Authored sample' : part.files.length ? part.files.join(' / ') : 'Pasted source', 'small muted'))
     if (part.simulated) article.append(importElement('p', 'Conversion was simulated using original sample content. This section contains the text you reviewed, including any edits.', 'import-notice'))
     const content = importElement('div', '', 'imported-source')
@@ -96,10 +101,10 @@ function renderImportedLibrary() {
     const generated = document.origin === 'assistant'
     const card = importElement('article', '', 'book-card imported-book')
     card.dataset.libraryDocument = document.id
+    card.dataset.libraryItem = document.id
     if (!generated) card.dataset.importedDocument = document.id
-    card.dataset.collectionItem = generated ? 'saved' : 'saved imported'
-    card.dataset.topic = generated ? 'everyday' : 'imported'
     card.dataset.title = document.title
+    registerLibraryItem(document.id, document.title, generated ? ['assistant', 'everyday'] : ['imported'])
     const cover = importElement('button', '', 'book-cover cover-imported')
     cover.type = 'button'
     cover.setAttribute('aria-label', `Open ${document.title}`)
@@ -127,8 +132,8 @@ function renderImportedLibrary() {
     card.append(cover, details)
     one('#book-grid').append(card)
   })
-  one('#library-count').textContent = String(3 + libraryDocuments.size)
-  one('#imported-count').textContent = String([...libraryDocuments.values()].filter((document) => document.origin === 'import').length)
+  renderLibraryItemTools()
+  renderLibraryLabelFilters()
   filterLibrary()
 }
 function importError(message) {

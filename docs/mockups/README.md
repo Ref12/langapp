@@ -17,6 +17,7 @@ The prototype uses relative assets and hash navigation. For example,
 `index.html#lessons` opens the lesson collection. `index.html#games` opens
 the Games section within Practice. `index.html#practice` opens the Exercises
 chooser; `index.html#review` and `index.html#characters` open individual exercises.
+`index.html#discover` opens the separate sample discovery shelf from Library.
 
 Use the **Desktop / Mobile** controls above the app to switch between a fluid
 desktop viewport and a phone viewport up to 390 by 844 pixels. The controls
@@ -28,6 +29,14 @@ the preview toolbar; it is also responsive on an actual phone.
 LinguaWeave remains a **working name** while naming is explored. **Assistant**
 is the navigation label for conversation, explanation, and practice help.
 
+Use the button beside the desktop wordmark to **collapse the sidebar to icons**
+or expand it again. Icon labels appear on hover or keyboard focus. The choice
+stays in place across screens and Desktop / Mobile preview switches until reload.
+In Assistant, the compact rail keeps Back to workspace, New conversation, and
+Find a conversation; Find expands the pane and focuses the existing search.
+Collapsing does not change the active conversation, drafts, or voice controls.
+Mobile keeps its labeled bottom navigation, without a collapse button.
+
 ## At a glance
 
 ![Desktop overview: a dark workspace with a tea-house reading card and contextual practice](previews/overview-desktop.png)
@@ -35,7 +44,7 @@ is the navigation label for conversation, explanation, and practice help.
 | Desktop mockup | Desktop mockup | Phone mockup |
 | --- | --- | --- |
 | [Library](previews/library-desktop.png) | [Library: reading](previews/reader-desktop.png) | [Overview](previews/overview-mobile.png) |
-| [Lessons](previews/lessons-desktop.png) | [Lesson preview](previews/lesson-detail-desktop.png) | [Lessons](previews/lessons-mobile.png) |
+| [Lessons](previews/lessons-desktop.png) | [Lesson preview](previews/lesson-detail-desktop.png) | [Lessons](previews/lessons-mobile.png) / [Lesson restart](previews/lesson-detail-mobile.png) |
 | [Practice](previews/practice-desktop.png) | [Assistant](previews/conversation-desktop.png) | [Library: reading](previews/reader-mobile.png) |
 | [Dictionary](previews/dictionary-desktop.png) | [Practice: games](previews/games-desktop.png) | [Practice](previews/practice-mobile.png) / [Games](previews/games-mobile.png) |
 | [Conversation practice recap](previews/conversation-recap-desktop.png) | [Device preview](previews/device-preview.png) | [Assistant thread](previews/assistant-mobile.png) / [Conversation list](previews/conversation-list-mobile.png) |
@@ -51,6 +60,9 @@ is the navigation label for conversation, explanation, and practice help.
 | [Assistant response actions](previews/assistant-actions-desktop.png) | [Story creation preview](previews/assistant-creation-desktop.png) | [Response actions](previews/assistant-actions-mobile.png) / [Story preview](previews/assistant-creation-mobile.png) |
 | [Assistant-created story](previews/assistant-story-library.png) | [Custom exercise](previews/assistant-exercise.png) | [Dictionary lookup](previews/dictionary-lookup-mobile.png) |
 | [Dictionary learning set](previews/dictionary-learning-set.png) | [Assistant word lookup](previews/assistant-word-lookup.png) | [Learning set](previews/dictionary-learning-set-mobile.png) / [Scrolled learning set](previews/dictionary-learning-set-mobile-scrolled.png) |
+| [Collapsed workspace sidebar](previews/sidebar-collapsed-desktop.png) | [Collapsed Assistant sidebar](previews/assistant-sidebar-collapsed-desktop.png) | |
+| [Target reading with annotations](previews/reader-target-desktop.png) | [Discover](previews/discover-desktop.png) | [Target reading](previews/reader-target-mobile.png) / [Reading without word help](previews/reader-plain-mobile.png) |
+| [Custom Library labels](previews/library-labels-desktop.png) | [Reading preparation request](previews/reading-preparation-desktop.png) | [Labels](previews/library-labels-mobile.png) / [Teach a selection](previews/reading-preparation-mobile.png) |
 
 These are static captures of the same HTML prototype, not separate designs.
 Phone captures show a single viewport, including the fixed bottom navigation;
@@ -71,8 +83,9 @@ scroll in the interactive prototype to explore the rest of each screen.
 
 - Graphite and deep green surfaces, quiet borders, warm off-white text, and
   restrained citron accents. Lavender and sand distinguish secondary experiences.
-- A compact workspace shell with a stable navigation hierarchy. On narrower
-  screens the sidebar becomes an icon rail, then a horizontally scrollable,
+- A compact workspace shell with a stable navigation hierarchy. Desktop has an
+  expandable icon rail; narrower desktop windows default to icons outside
+  Assistant unless a choice has been made. Phones use a horizontally scrollable,
   labeled bottom navigation bar. The mobile workspace scrolls within the area
   above that bar, so its scrollbar never runs beside or behind the toolbar.
   Safe-area space remains reserved for the home indicator. Desktop pages keep
@@ -80,9 +93,10 @@ scroll in the interactive prototype to explore the rest of each screen.
 - System sans-serif typography for controls; editorial serif typography for
   reading and featured content. Native script stays prominent, with romanization
   available where it helps.
-- A spacious reader with a contextual learning panel rather than a dashboard
-  competing with the text. On phones, the panel follows the passage; selecting a
-  word moves focus to its details.
+- A viewport-sized e-reader with a quiet page, a comfortable text measure, and
+  adjustable text size. The page scrolls independently of its controls. On phones,
+  compact word help docks immediately above navigation, without moving the page
+  when a word is selected. Extra details scroll within the bounded panel.
 - Original vector illustration and CSS cover artwork, with no remote fonts,
   images, scripts, or media dependencies.
 - Visible keyboard focus, a skip link, native dialogs, labeled controls,
@@ -100,10 +114,23 @@ Each catalog remembers its own layout until reload. Switching views or device
 sizes preserves filters, imports, and navigation state. Newly imported documents
 and lessons use the selected layout automatically.
 
+Library is **one list**, with no Imported or topic category tabs. Items can carry
+multiple labels, including topics, origins, and custom names. An item's **Labels**
+button opens a multi-select editor where new labels can be created. Save applies
+the changes; Cancel leaves both the item and label collection unchanged. Label
+names are deduplicated without regard to case. Filters match **all** selected
+labels together with the title search.
+
+Imported and Assistant-created documents receive useful initial labels, but
+labels do not determine provenance or whether a document supports appending.
+Appending or re-rendering the catalog keeps custom labels. **Discover** opens a
+separate browsing screen from Library and keeps Library selected in navigation.
+The original sample shelf is not mixed into label filtering.
+
 **Library owns reading.** There is no separate Reader navigation item. Opening
 a story keeps Library selected in desktop and mobile navigation, with a
-Library / Reading breadcrumb and a **Back to Library** link. Returning preserves
-the collection, search, and topic filters. Existing `#reader` links remain valid
+reading header and a **Back to Library** link. Returning preserves
+search and label filters. Existing `#reader` links remain valid
 for resume links and reading context from Dictionary, Practice, and Lessons.
 
 **Lessons** is a separate top-level destination for guided vocabulary and grammar
@@ -116,6 +143,58 @@ its companion Library story.
 Lessons are freely selectable. This design does not decide prerequisites or a
 fixed course sequence, run live lesson generation, or record completion/mastery. **Practice**
 remains the separate place to revisit material through exercises and future games.
+Every opened lesson has a sticky **Start from beginning** action, including
+imported and Assistant-created lessons. It returns to the opening material and
+closes source details, without resetting learning-set membership or learned words.
+These are currently single-page previews, not scored multi-step lesson runs.
+
+### Reading and word help
+
+The reading language is either **Source** (English) or **Target** (Mandarin).
+**Weaving** is an independent on/off switch, not a density slider:
+
+| View | Weaving off | Weaving on |
+| --- | --- | --- |
+| Source | Original English text | Learning-set words use their authored Mandarin counterparts |
+| Target | Mandarin text without annotations | Words not yet learned get small pronunciation and English-meaning annotations below them; learned words stay unannotated |
+
+Target annotations are not limited to learning-set membership. The sample
+lexicon covers passage words beyond the original learning set. English function
+words with no isolated Mandarin equivalent stay unchanged in Source weaving,
+with an explanation available in word help.
+
+**Learning panel** is independent of language and weaving. When active, any
+passage word can be selected for meaning, pronunciation, status, and **Add to
+learning set**. When off, the text remains readable and selectable without opening
+word help. The prototype uses **Not studied / Practicing / Learned** as visible
+statuses. Marking a word learned does not automatically add it to the learning set.
+Dictionary lookup and Assistant share these statuses and membership changes.
+
+The phone panel shows the selected term, meaning, status, and Add action in a
+compact dock. **Example & more** expands within that dock rather than pushing
+the reading page away. The pinned header contains the panel toggle and reading
+preparation icon; **Aa / Aa+ / Aa++** changes text size.
+
+### Teach me to read this
+
+Library items have a **Teach me to read** action. Opened documents also offer
+**Teach this section**, and the reading header's practice icon can prepare the
+whole material or a text selection. Select words in the reader, then use that
+icon; annotations are excluded from the captured source. In Source weaving,
+the request retains the original English words rather than the inserted forms.
+
+Choose **Whole text**, **Chapter / section**, or **Selected text**. The dialog
+shows the exact material and its language. Known sample languages are prefilled;
+an import whose language is unspecified asks for it. This requests vocabulary
+and grammar teaching so the user can read the material in that language, not a
+translation of it.
+
+Confirming opens a fresh Assistant thread with an editable request and a snapshot
+of the source and scope. Other conversations' drafts are preserved. Sending the
+request produces a clearly labeled preparation preview, which can be saved in
+Lessons with its source context. It is **not** a generated curriculum or a claim
+to have assessed the user's knowledge. No generic Mandarin lesson is substituted
+for a request to learn to read English or another language.
 
 ### Import your own material
 
@@ -124,7 +203,7 @@ remains the separate place to revisit material through exercises and future game
 | Library | Pasted text, UTF-8 `.txt`, Markdown (`.md` / `.markdown`), EPUB, or one or more images | Choose material, review and edit the source, then add a document or append to an existing import |
 | Lessons | Pasted text, UTF-8 `.txt`, or one or more images | Choose textbook material, review the extracted source, preview a generated lesson, then add it to Lessons |
 
-Library imports appear in **My library** and **Imported**. Each document retains
+Library imports appear in the unified catalog with an initial **Imported** label. Each document retains
 its ordered import sections, format, file names, and optional source/page
 reference. **Append material** is available on its list row, card, and detail view;
 the main Import dialog also offers an existing-document destination. New
@@ -391,13 +470,15 @@ Advanced learning logs and AI request/context history remain out of scope.
 | Source | Mockup decision |
 | --- | --- |
 | App specification: core workflow and sample content | Resume meaningful reading; support pasted text alongside sample discovery; retain source attribution |
-| App specification: reading modes and mixed-language reading | Separate Source first, Mixed language, Tap to translate, and Target first modes on the same passage |
+| Reading feedback, refining the experience specification | Source or Target, independent binary weaving, and independent word help; Target annotations only for words not yet learned |
 | Ideas: curriculum organized into lessons; app specification: vocabulary and phrase teaching | A Lessons destination with authored units combining vocabulary, grammar, examples, and related conversation or reading |
 | Navigation feedback | Reading is a detail view within Library, not a separate top-level destination |
 | Import feedback | Library imports support incremental document sections; textbook text/images can become lesson previews after source review |
 | App-wide Assistant feedback | Contextual creation buttons and reply actions prepare explicit tasks; approved samples enter the normal collections with conversation provenance |
 | Dictionary feedback | Lookup and learning-set membership are separate; direct lookup and Assistant share definitions, search normalization, and duplicate-safe Add actions |
-| App specification: session configuration | Separate weave density from the percentage of sentences actively taught; show a vocabulary-priority selector |
+| Reading preparation feedback | Request vocabulary and grammar teaching for a whole text, chapter/section, or selection, retaining original material and its language |
+| Library organization feedback | Multi-label items and custom labels replace exclusive categories; Discover remains a separate browsing screen |
+| Lesson restart feedback | Start from beginning remains available without clearing learned vocabulary |
 | App specification: learning states and spaced repetition | Show contextual review, distinguish hints from unaided recall, and keep word state visible |
 | Ideas: conversation / voice mode | Composer settings for mode, target-speech speed, and romanization; separate dictation and hands-free Voice mode entry points |
 | Conversation design feedback | Continuous transcripts and optional practice recaps; a contextual desktop sidebar, or a mobile main-page picker above the unchanged bottom navigation |
@@ -423,16 +504,15 @@ read locally; imported preview content is not saved across reloads. Avoid
 entering sensitive text.
 
 The three-question practice queue and Overview metrics stay fixed. Adding a word
-updates the sample Dictionary, not that demonstration queue. Study percentage,
-study priorities, and tutor preferences explore control placement; they do not
-generate lessons or run speech services. Weave density swaps a fixed sample
-sequence, not a production familiarity or alignment algorithm. Target-first
-reading removes visual word hints while keeping the same sample words selectable.
+updates the sample Dictionary and applicable weaving, not that demonstration
+queue. Reading uses an authored bilingual lexicon and local membership/learned
+flags, not production alignment or knowledge inference. Reading preparation
+retains source context but does not generate vocabulary or grammar teaching.
 
 The experience specification uses **Unseen / Introduced / Practicing / Learned /
 Mastered**; the existing normative `specs/app.md` uses **Learning / Familiar /
-Mastered** for tracked items. This concept uses the former terminology without
-changing production contracts. Harmonizing that vocabulary is a follow-up design
+Mastered** for tracked items. This iteration uses **Not studied / Practicing /
+Learned** in word help without changing production contracts. Harmonizing that vocabulary is a follow-up design
 decision, not a migration implied by these mockups.
 
 Wikipedia, Gutenberg, live extraction/generation, recording playback,

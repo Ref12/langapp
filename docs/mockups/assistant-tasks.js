@@ -19,7 +19,8 @@ function prepareAssistantTask(thread, kind, query = '', context = '') {
   thread.creationKind = kind
   thread.creationSuppressed = false
   thread.creationContext = context
-  thread.draft = kind === 'dictionary' && query ? `Look up ${query}` : assistantTaskTypes[kind].request
+  thread.readingRequest = null
+  thread.draft = query ? kind === 'dictionary' ? `Look up ${query}` : query : assistantTaskTypes[kind].request
   thread.voiceStage = 'idle'
   closeAssistantSettings()
   renderVoiceTurn()
@@ -28,9 +29,10 @@ function prepareAssistantTask(thread, kind, query = '', context = '') {
   scrollConversationToEnd()
   one('#chat-input').focus({ preventScroll: true })
 }
-function startAssistantTask(kind, query = '') {
+function startAssistantTask(kind, query = '', context = '', readingRequest = null) {
   const thread = beginConversation(kind === 'dictionary' ? 'Dictionary lookup' : `${assistantTaskTypes[kind].destination} creation`)
-  prepareAssistantTask(thread, kind, query)
+  prepareAssistantTask(thread, kind, query, context)
+  thread.readingRequest = readingRequest
   openThreadOnNextRoute = location.hash !== '#conversation'
   location.hash = '#conversation'
 }
@@ -87,7 +89,7 @@ all('[data-message-task]').forEach((button) => button.addEventListener('click', 
     return
   }
   const kind = button.dataset.messageTask
-  const word = Object.values(words).find((item) => context.text.includes(item.native))
+  const word = Object.values(words).find((item) => item.nativeLanguage !== 'en' && context.text.includes(item.native))
   prepareAssistantTask(currentConversation(), kind, kind === 'dictionary' ? word?.native || 'park' : '', context.text)
 }))
 function resolveAssistantTask(thread, text) {
@@ -120,9 +122,12 @@ function addAssistantTaskReply(thread, task, request) {
     familiar: '\u8336 / tea, \u676f / cup, \u670b\u53cb / friend',
     targets: '\u518d / again; \u6211\u60f3 + action / I would like to...',
     answerShown: false, detailOpen: false,
+    readingRequest: task.kind === 'lesson' ? thread.readingRequest : null,
   }
+  if (creation.readingRequest) creation.title = `Prepare to read: ${creation.readingRequest.title}`
   assistantCreations.set(creation.id, creation)
-  thread.messages.push(tutorMessage('Here is an authored sample showing the creation flow, not content generated from your request or learning profile. Review it before adding it to the app.', undefined, { creationId: creation.id }))
+  thread.messages.push(tutorMessage(creation.readingRequest ? 'I have kept the reading material, language, and scope with this preparation request. This preview does not run live teaching or infer what you know. Review the request before saving it to Lessons.'
+    : 'Here is an authored sample showing the creation flow, not content generated from your request or learning profile. Review it before adding it to the app.', undefined, { creationId: creation.id }))
 }
 function renderCreationProvenance(container, id) {
   const creation = assistantCreations.get(id)
@@ -131,7 +136,7 @@ function renderCreationProvenance(container, id) {
   details.append(chatElement('summary', '', 'Created with Assistant / Sample'))
   details.append(chatElement('p', 'small muted', 'Illustrative generation only. The request and context are retained, but this content is an authored fixture, not personalized AI output.'),
     chatElement('strong', '', 'Your request'), chatElement('p', 'creation-request-text', creation.request))
-  if (creation.context) details.append(chatElement('strong', '', 'Response used as context'), chatElement('p', 'creation-request-text', creation.context))
+  if (creation.context) details.append(chatElement('strong', '', creation.readingRequest ? 'Reading material used as context' : 'Response used as context'), chatElement('p', 'creation-request-text', creation.context))
   const link = chatElement('a', 'text-link', 'Back to source conversation')
   link.href = '#conversation'
   link.addEventListener('click', () => openCreationConversation(creation.threadId))
@@ -139,6 +144,10 @@ function renderCreationProvenance(container, id) {
   container.append(details)
 }
 function renderCreationMaterial(container, creation, practice = false) {
+  if (creation.readingRequest) {
+    renderReadingPreparationPreview(container, creation.readingRequest)
+    return
+  }
   const plan = chatElement('div', 'creation-plan')
   plan.append(chatElement('p', '', `Familiar vocabulary / sample plan: ${creation.familiar}`), chatElement('p', '', `Learning targets / sample plan: ${creation.targets}`))
   container.append(plan)
@@ -232,8 +241,10 @@ function saveAssistantCreation(creation) {
     renderImportedLibrary()
   } else if (creation.kind === 'lesson') {
     creation.savedId = `lesson-${creation.id}`
-    addLessonPreview(creation.savedId, { ...lessonPreviews.request, title: creation.title, source: false, conversation: creation.threadId, creationId: creation.id },
-      'CREATED WITH ASSISTANT / SAMPLE', 'Familiar vocabulary with a new request pattern.')
+    const lesson = creation.readingRequest ? readingPreparationLesson(creation.readingRequest) : lessonPreviews.request
+    addLessonPreview(creation.savedId, { ...lesson, title: creation.title, source: false, conversation: creation.threadId, creationId: creation.id },
+      creation.readingRequest ? 'READING PREPARATION / REQUEST' : 'CREATED WITH ASSISTANT / SAMPLE',
+      creation.readingRequest ? `${creation.readingRequest.language} / ${creation.readingRequest.scopeLabel}` : 'Familiar vocabulary with a new request pattern.')
   }
   creation.status = 'saved'
   if (creation.kind === 'exercise' || creation.kind === 'game') renderCreatedPractice()

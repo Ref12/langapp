@@ -6,6 +6,9 @@ Object.assign(words, {
   tomorrow: { native: '\u660e\u5929', romanization: 'm\u00edngti\u0101n', gloss: 'tomorrow', kind: 'TIME EXPRESSION', example: '\u6211\u660e\u5929\u53bb\u516c\u56ed\u3002', source: 'I am going to the park tomorrow.', tracked: false, learned: false },
   station: { native: '\u8f66\u7ad9', romanization: 'ch\u0113zh\u00e0n', gloss: 'station', kind: 'WORD / NOUN', example: '\u8f66\u7ad9\u5728\u54ea\u91cc\uff1f', source: 'Where is the station?', tracked: false, learned: false },
 })
+function wordLearningStatus(word) {
+  return word.learned ? 'Learned' : word.tracked ? 'Practicing' : 'Not studied'
+}
 function normalizePinyin(text) {
   return text.toLowerCase().normalize('NFD').replace(/u:|u\u0308/g, 'v')
     .replace(/\p{M}/gu, '').replace(/([a-z])[1-5]/g, '$1').replace(/[\s'-]+/g, '')
@@ -32,12 +35,14 @@ function renderLookupCard(id, conversationId = null) {
   card.dataset.lookupWord = id
   const heading = dictionaryElement('div', 'lookup-word-heading', '')
   const native = dictionaryElement('h3', '', word.native)
-  native.lang = 'zh-Hans'
+  native.lang = word.nativeLanguage || 'zh-Hans'
   const reading = dictionaryElement('span', conversationId ? 'phrase-romanization' : 'dictionary-reading', word.romanization)
   if (conversationId) reading.hidden = !assistantPreferences.romanization
-  heading.append(native, reading, dictionaryElement('span', 'tag', word.kind))
+  const status = dictionaryElement('span', 'tag green', wordLearningStatus(word))
+  status.dataset.wordStatus = id
+  heading.append(native, reading, dictionaryElement('span', 'tag', word.kind), status)
   const example = dictionaryElement('p', 'lookup-example', word.example)
-  example.lang = 'zh-Hans'
+  example.lang = word.nativeLanguage || 'zh-Hans'
   const actions = dictionaryElement('div', 'button-row', '')
   const add = dictionaryElement('button', 'button primary', word.tracked ? 'In learning set' : 'Add to learning set')
   add.type = 'button'
@@ -68,14 +73,18 @@ function addWordToLearningSet(id, source = 'lookup', conversationId = null) {
   word.tracked = true
   word.addedFrom = source
   if (conversationId) word.sourceConversation = conversationId
+  refreshWordState()
+  notify(`Added "${word.gloss}" to your learning set. This does not mark it learned or change the demo review queue.`)
+  return true
+}
+function refreshWordState() {
   renderDictionary()
-  if (state.word === id) renderWord()
   all('[data-add-word]').forEach((button) => {
     button.disabled = words[button.dataset.addWord].tracked
     button.textContent = button.disabled ? 'In learning set' : 'Add to learning set'
   })
-  notify(`Added "${word.gloss}" to your learning set. This does not mark it learned or change the demo review queue.`)
-  return true
+  all('[data-word-status]').forEach((label) => { label.textContent = wordLearningStatus(words[label.dataset.wordStatus]) })
+  document.dispatchEvent(new Event('mockup-words-changed'))
 }
 document.addEventListener('click', (event) => {
   const button = event.target.closest('[data-add-word]')

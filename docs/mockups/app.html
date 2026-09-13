@@ -9,10 +9,14 @@
     <link rel="stylesheet" href="./styles.css">
     <script src="./prototype.js" defer></script>
     <script src="./dictionary.js" defer></script>
+    <script src="./reader-vocabulary.js" defer></script>
+    <script src="./reader.js" defer></script>
+    <script src="./library.js" defer></script>
     <script src="./characters.js" defer></script>
     <script src="./lessons.js" defer></script>
     <script src="./imports.js" defer></script>
     <script src="./assistant-tasks.js" defer></script>
+    <script src="./teach-reading.js" defer></script>
     <script src="./conversations.js" defer></script>
   </head>
   <body>
@@ -42,6 +46,8 @@
         <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
         <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 3C7 1 1 10 7 17S23 16 20 3ZM4 22 16 9"/></symbol>
         <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+        <symbol id="i-sidebar-collapse" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16m7-12-3 4 3 4"/></symbol>
+        <symbol id="i-sidebar-expand" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16m4-12 3 4-3 4"/></symbol>
         <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M3 6h1M3 12h1M3 18h1"/></symbol>
         <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
         <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
@@ -50,8 +56,11 @@
     </svg>
 
     <div class="app-shell">
-      <aside class="sidebar" aria-label="Workspace navigation">
-        <a class="brand" href="#overview" aria-label="LinguaWeave home"><span class="brand-mark">lw<span>.</span></span>linguaweave</a>
+      <aside class="sidebar" id="workspace-sidebar" aria-label="Workspace navigation">
+        <div class="sidebar-header">
+          <a class="brand" href="#overview" aria-label="LinguaWeave home"><span class="brand-mark">lw<span>.</span></span><span class="brand-name">linguaweave</span></a>
+          <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" aria-expanded="true" aria-controls="workspace-sidebar"><svg aria-hidden="true"><use href="#i-sidebar-collapse"/></svg></button>
+        </div>
         <div class="workspace-label" id="workspace-label">YOUR WORKSPACE</div>
         <nav class="primary-nav" id="workspace-navigation" aria-label="Main navigation">
           <a href="#overview" data-nav="overview"><svg><use href="#i-home"/></svg><span>Overview</span></a>
@@ -63,9 +72,10 @@
           <a href="#dictionary" data-nav="dictionary"><svg><use href="#i-dictionary"/></svg><span>Dictionary</span></a>
         </nav>
         <div class="assistant-sidebar" id="assistant-sidebar" hidden>
-          <div class="assistant-sidebar-heading"><a class="back-to-workspace" id="back-to-workspace" href="#overview"><svg><use href="#i-arrow"/></svg> Back to workspace</a></div>
+          <div class="assistant-sidebar-heading"><a class="back-to-workspace sidebar-icon-link" id="back-to-workspace" href="#overview"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span>Back to workspace</span></a></div>
           <div class="thread-list-pane" id="conversation-picker">
-            <button class="button primary full-width" id="new-conversation"><svg><use href="#i-plus"/></svg> New conversation</button>
+            <button class="button primary full-width sidebar-icon-link" id="new-conversation"><svg aria-hidden="true"><use href="#i-plus"/></svg><span>New conversation</span></button>
+            <button class="button secondary full-width sidebar-icon-link sidebar-search-toggle" id="sidebar-conversation-search" type="button" aria-expanded="false" aria-controls="conversation-list"><svg aria-hidden="true"><use href="#i-search"/></svg><span>Find a conversation</span></button>
             <div class="thread-list-heading"><h2>Your conversations</h2><span class="tag" id="thread-count">4</span></div>
             <label class="search-field"><svg><use href="#i-search"/></svg><input id="conversation-search" type="search" placeholder="Find a conversation" aria-label="Search conversations"></label>
             <div id="conversation-list" class="conversation-list"></div>
@@ -114,21 +124,22 @@
 
           <section class="screen" id="library" aria-labelledby="library-title" hidden>
             <div id="library-catalog">
-            <div class="page-heading"><div><p class="eyebrow">MEANING BEFORE MEMORIZATION</p><h1 id="library-title" tabindex="-1">Your next good read.</h1><p>Bring your own words, or start with a little inspiration.</p></div><div class="page-heading-actions"><button class="button secondary" data-assistant-task="story"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create story</button><button class="button primary" data-open-import="library"><svg><use href="#i-plus"/></svg> Import</button></div></div>
-            <div class="library-toolbar"><div class="segmented" aria-label="Library collection"><button data-collection="saved" aria-pressed="true">My library <span id="library-count">3</span></button><button data-collection="imported" aria-pressed="false">Imported <span id="imported-count">0</span></button><button data-collection="discover" aria-pressed="false">Discover samples</button></div><div class="catalog-tools"><label class="search-field"><svg><use href="#i-search"/></svg><input id="library-search" type="search" placeholder="Search your library" aria-label="Search library"></label><div class="segmented catalog-view-switch" role="group" aria-label="Library view" data-catalog-view-controls="book-grid"><button type="button" data-catalog-layout="list" aria-pressed="true" aria-controls="book-grid"><svg aria-hidden="true"><use href="#i-list"/></svg> List</button><button type="button" data-catalog-layout="cards" aria-pressed="false" aria-controls="book-grid"><svg aria-hidden="true"><use href="#i-grid"/></svg> Cards</button></div></div></div>
-            <div class="filter-row" aria-label="Filter by topic"><button class="chip active" data-filter="all" aria-pressed="true">All topics</button><button class="chip" data-filter="everyday" aria-pressed="false">Everyday life</button><button class="chip" data-filter="nature" aria-pressed="false">Nature</button><button class="chip" data-filter="culture" aria-pressed="false">Culture</button><span class="small muted push-right">English to Mandarin &middot; Beginner</span></div>
+            <div class="page-heading"><div><p class="eyebrow">MEANING BEFORE MEMORIZATION</p><h1 id="library-title" tabindex="-1">Your next good read.</h1><p>One library. Organize it your way with labels.</p></div><div class="page-heading-actions"><a class="button secondary" href="#discover"><svg aria-hidden="true"><use href="#i-search"/></svg> Discover</a><button class="button secondary" data-assistant-task="story"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create story</button><button class="button primary" data-open-import="library"><svg><use href="#i-plus"/></svg> Import</button></div></div>
+            <div class="library-toolbar"><span class="small muted" id="library-count" role="status">3 items</span><div class="catalog-tools"><label class="search-field"><svg><use href="#i-search"/></svg><input id="library-search" type="search" placeholder="Search your library" aria-label="Search library"></label><div class="segmented catalog-view-switch" role="group" aria-label="Library view" data-catalog-view-controls="book-grid"><button type="button" data-catalog-layout="list" aria-pressed="true" aria-controls="book-grid"><svg aria-hidden="true"><use href="#i-list"/></svg> List</button><button type="button" data-catalog-layout="cards" aria-pressed="false" aria-controls="book-grid"><svg aria-hidden="true"><use href="#i-grid"/></svg> Cards</button></div></div></div>
+            <div class="filter-row" id="library-label-filters" role="group" aria-label="Filter by labels"></div>
+            <p class="small muted library-label-help">Items can have several labels. Select labels to match all of them, or use an item's Labels button to add your own.</p>
             <div class="book-grid" id="book-grid" data-catalog-view="list">
-              <article class="book-card" data-topic="everyday" data-collection-item="saved discover" data-title="A morning at the tea house"><a href="#reader" class="book-cover cover-tea" aria-label="Read A morning at the tea house"><span class="cover-kicker">EVERYDAY STORIES / 001</span><span class="cover-title">The quiet<br>in a cup.</span><span class="cover-glyph" lang="zh-Hans">&#x8336;</span><span class="cover-bottom">A MORNING AT THE TEA HOUSE</span></a><div class="book-details"><div class="card-topline"><span class="tag green">In progress</span><span class="small muted">4 min</span></div><h3><a href="#reader">A morning at the tea house</a></h3><p>Everyday life &middot; Original sample</p><progress value="40" max="100" aria-label="Tea house reading progress">40%</progress><span class="small muted">Passage 2 of 5 &middot; 8 learning items</span></div></article>
-              <article class="book-card" data-topic="nature" data-collection-item="saved discover" data-title="After the rain"><button class="book-cover cover-rain" data-preview="rain"><span class="cover-kicker">SMALL OBSERVATIONS / 002</span><span class="cover-title">After<br>the rain.</span><span class="rain-lines" aria-hidden="true"></span><span class="cover-bottom">A WALK WITH NOWHERE TO BE</span></button><div class="book-details"><div class="card-topline"><span class="tag">Ready to read</span><span class="small muted">2 min</span></div><h3><button class="title-button" data-preview="rain">After the rain</button></h3><p>Nature &middot; Original sample</p><div class="book-footer"><span class="small muted">Micro read &middot; Beginner</span><svg><use href="#i-arrow"/></svg></div></div></article>
-              <article class="book-card" data-topic="culture" data-collection-item="saved discover" data-title="The city before nine"><button class="book-cover cover-city" data-preview="city"><span class="cover-kicker">PLACES &amp; PEOPLE / 003</span><span class="cover-title">The city<br>before nine.</span><span class="city-shapes" aria-hidden="true"></span><span class="cover-bottom">FINDING A DAILY RHYTHM</span></button><div class="book-details"><div class="card-topline"><span class="tag">Ready to read</span><span class="small muted">3 min</span></div><h3><button class="title-button" data-preview="city">The city before nine</button></h3><p>Culture &middot; Original sample</p><div class="book-footer"><span class="small muted">Micro read &middot; Beginner</span><svg><use href="#i-arrow"/></svg></div></div></article>
+              <article class="book-card" data-library-item="story-tea" data-labels="everyday sample" data-title="A morning at the tea house"><a href="#reader" class="book-cover cover-tea" aria-label="Read A morning at the tea house"><span class="cover-kicker">EVERYDAY STORIES / 001</span><span class="cover-title">The quiet<br>in a cup.</span><span class="cover-glyph" lang="zh-Hans">&#x8336;</span><span class="cover-bottom">A MORNING AT THE TEA HOUSE</span></a><div class="book-details"><div class="card-topline"><span class="tag green">In progress</span><span class="small muted">4 min</span></div><h3><a href="#reader">A morning at the tea house</a></h3><p>Original sample</p><progress value="40" max="100" aria-label="Tea house reading progress">40%</progress><span class="small muted">Sample reading progress</span></div></article>
+              <article class="book-card" data-library-item="story-rain" data-labels="nature sample" data-title="After the rain"><button class="book-cover cover-rain" data-preview="rain"><span class="cover-kicker">SMALL OBSERVATIONS / 002</span><span class="cover-title">After<br>the rain.</span><span class="rain-lines" aria-hidden="true"></span><span class="cover-bottom">A WALK WITH NOWHERE TO BE</span></button><div class="book-details"><div class="card-topline"><span class="tag">Ready to read</span><span class="small muted">2 min</span></div><h3><button class="title-button" data-preview="rain">After the rain</button></h3><p>Original sample</p><div class="book-footer"><span class="small muted">Micro read &middot; Beginner</span><svg><use href="#i-arrow"/></svg></div></div></article>
+              <article class="book-card" data-library-item="story-city" data-labels="culture sample" data-title="The city before nine"><button class="book-cover cover-city" data-preview="city"><span class="cover-kicker">PLACES &amp; PEOPLE / 003</span><span class="cover-title">The city<br>before nine.</span><span class="city-shapes" aria-hidden="true"></span><span class="cover-bottom">FINDING A DAILY RHYTHM</span></button><div class="book-details"><div class="card-topline"><span class="tag">Ready to read</span><span class="small muted">3 min</span></div><h3><button class="title-button" data-preview="city">The city before nine</button></h3><p>Original sample</p><div class="book-footer"><span class="small muted">Micro read &middot; Beginner</span><svg><use href="#i-arrow"/></svg></div></div></article>
             </div>
-            <div class="empty-state" id="library-empty" hidden><svg><use href="#i-search"/></svg><h2>No items found</h2><p>Try a different title or choose another topic.</p><button class="button secondary" id="reset-library">Clear filters</button></div>
+            <div class="empty-state" id="library-empty" hidden><svg><use href="#i-search"/></svg><h2>No items found</h2><p>Try a different title or change the selected labels.</p><button class="button secondary" id="reset-library">Clear filters</button></div>
             <div class="source-banner"><span class="tile-icon"><svg><use href="#i-plus"/></svg></span><div><h3>Bring a whole book, or just the next few pages.</h3><p>Text, Markdown, EPUB, or images. Review the extracted content, then create a document or append to an existing import.</p></div><button class="button secondary" data-open-import="library">Import material</button></div>
-            <p class="page-footnote">All sample copy and cover art are original to this mockup. Discover reuses the three samples; external catalogs are not connected.</p>
+            <p class="page-footnote">All sample copy and cover art are original to this mockup. Labels, imports, and created content stay in this preview until reload.</p>
             </div>
             <section id="library-document" aria-labelledby="imported-document-title" hidden>
               <a class="back-link" id="back-to-library-catalog" href="#library"><svg aria-hidden="true"><use href="#i-arrow"/></svg> Back to Library</a>
-              <div class="page-heading"><div><p class="eyebrow" id="library-document-origin">YOUR MATERIAL, A LITTLE AT A TIME</p><h1 id="imported-document-title" tabindex="-1"></h1><p id="imported-document-meta"></p></div><button class="button primary" id="append-document"><svg aria-hidden="true"><use href="#i-plus"/></svg> Append material</button></div>
+              <div class="page-heading"><div><p class="eyebrow" id="library-document-origin">YOUR MATERIAL, A LITTLE AT A TIME</p><h1 id="imported-document-title" tabindex="-1"></h1><p id="imported-document-meta"></p></div><div class="page-heading-actions"><button class="button secondary" data-teach-current-document>Teach me to read</button><button class="button secondary" id="teach-document-selection" data-teach-selection disabled>Teach selection</button><button class="button primary" id="append-document"><svg aria-hidden="true"><use href="#i-plus"/></svg> Append material</button></div></div>
               <div id="library-creation-context" hidden></div>
               <p class="import-notice" id="library-append-note">New imports are added after the existing sections. You do not need to import the whole book at once.</p>
               <div id="imported-document-parts"></div>
@@ -136,17 +147,33 @@
             </section>
           </section>
 
+          <section class="screen" id="discover" aria-labelledby="discover-title" hidden>
+            <a class="back-link" href="#library"><svg aria-hidden="true"><use href="#i-arrow"/></svg> Back to your Library</a>
+            <div class="page-heading"><div><p class="eyebrow">A LITTLE INSPIRATION</p><h1 id="discover-title">Discover something to read.</h1><p>A separate shelf to explore, not a category in your Library.</p></div></div>
+            <div class="experience-grid">
+              <article class="experience-card"><span class="tile-icon green"><svg aria-hidden="true"><use href="#i-book"/></svg></span><h2>A morning at the tea house</h2><p>A quiet street, a warm cup, and a few useful words.</p><span class="tag">In your Library</span><a class="button secondary" href="#reader">Read story</a></article>
+              <article class="experience-card"><span class="tile-icon lavender"><svg aria-hidden="true"><use href="#i-leaf"/></svg></span><h2>After the rain</h2><p>Take the longer path home and notice the small things.</p><span class="tag">In your Library</span><button class="button secondary" data-preview="rain">Preview story</button></article>
+              <article class="experience-card"><span class="tile-icon sand"><svg aria-hidden="true"><use href="#i-home"/></svg></span><h2>The city before nine</h2><p>Find a daily rhythm in a neighborhood waking up.</p><span class="tag">In your Library</span><button class="button secondary" data-preview="city">Preview story</button></article>
+            </div>
+            <p class="page-footnote">An original sample shelf. These three stories already belong to the sample Library; an external discovery catalog is not connected.</p>
+          </section>
+
           <section class="screen reader-screen" id="reader" aria-labelledby="reader-title" hidden>
-            <div class="reader-heading"><div><a class="back-link" href="#library"><svg aria-hidden="true"><use href="#i-arrow"/></svg> Back to Library</a><h1 id="reader-title">A morning at the tea house</h1><p class="small muted">Original demo story &middot; English to Mandarin &middot; Beginner</p></div><button class="button secondary" id="toggle-reader-panel" aria-expanded="true" aria-controls="reader-panel"><svg><use href="#i-menu"/></svg> Learning panel</button></div>
-            <div class="reader-toolbar"><div class="segmented reading-modes" aria-label="Reading mode"><button data-mode="source" aria-pressed="false">Source first</button><button data-mode="mixed" aria-pressed="true">Mixed language</button><button data-mode="tap" aria-pressed="false">Tap to translate</button><button data-mode="target" aria-pressed="false">Target first</button></div><label class="density-control" id="density-control">Weave <input id="density" type="range" min="0" max="100" value="50" step="25"><output for="density" id="density-value">50%</output></label></div>
+            <div class="reader-heading"><a class="back-link reader-back" href="#library" aria-label="Back to Library"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span>Library</span></a><h1 id="reader-title">A morning at the tea house</h1><button class="reader-teach-button" id="teach-reader-action" data-teach-library-item="story-tea" aria-label="Teach me to read this" title="Teach me to read this"><svg aria-hidden="true"><use href="#i-practice"/></svg></button><button class="button secondary" id="toggle-reader-panel" aria-label="Learning panel" aria-expanded="true" aria-controls="reader-panel"><svg aria-hidden="true"><use href="#i-dictionary"/></svg><span>Learning panel</span></button></div>
+            <div class="reader-toolbar"><div class="segmented reading-modes" role="group" aria-label="Reading language"><button data-mode="source" aria-pressed="true">Source</button><button data-mode="target" aria-pressed="false">Target</button></div><button class="reader-weaving button secondary" id="reader-weaving" aria-pressed="true"><span class="weaving-indicator" aria-hidden="true"></span>Weaving</button><label class="reader-text-size"><span class="visually-hidden">Reading text size</span><select id="reader-text-size" aria-label="Reading text size"><option value="1">Aa</option><option value="1.15">Aa+</option><option value="1.3">Aa++</option></select></label><span class="small muted reader-language-label">English / Mandarin</span></div>
+            <p class="visually-hidden" id="reader-instruction"></p>
             <div class="reader-layout">
-              <article class="reading-paper"><div class="paper-topline"><span class="eyebrow">PASSAGE 02 / 05</span><span class="small muted"><svg><use href="#i-clock"/></svg> 4 min</span></div><p class="chapter-kicker">A place to pause</p><h2>Just one cup of tea.</h2><p class="reader-instruction" id="reader-instruction">Familiar words weave into the story. Select an underlined word to explore it.</p><div id="reading-passage" class="reading-passage"></div><div class="passage-note"><svg><use href="#i-leaf"/></svg><p>Words you learn here can follow you into your next story and conversation.</p></div><div class="paper-footer"><span class="small muted">Original illustration of a reading experience</span><a href="#practice" class="text-link">Practice this passage <svg><use href="#i-arrow"/></svg></a></div></article>
+              <article class="reading-paper" id="reading-scroll" tabindex="0" aria-label="Reading passage" aria-describedby="reader-instruction"><div class="reading-page"><p class="chapter-kicker">A place to pause</p><h2>Just one cup of tea.</h2><div id="reading-passage" class="reading-passage"></div><div class="paper-footer"><span class="small muted">End of the sample passage</span><a href="#practice" class="text-link">Practice this passage <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div></article>
               <aside class="learning-panel" id="reader-panel" aria-label="Reading learning panel">
-                <div class="panel-heading"><h2>A closer look</h2><span class="tag green" id="word-state">Practicing</span></div>
-                <div class="word-detail" aria-live="polite"><span class="eyebrow" id="word-kind">WORD / NOUN</span><h3 id="word-native" lang="zh-Hans">&#x8336;</h3><p id="word-romanization">ch&aacute;</p><p class="word-gloss" id="word-gloss">tea</p><div class="word-example"><span class="eyebrow">IN THIS PASSAGE</span><p id="word-example-native" lang="zh-Hans">&#x6211;&#x60F3;&#x559D;&#x4E00;&#x676F;&#x8336;&#x3002;</p><span class="small muted" id="word-example-source">I would like a cup of tea.</span></div><button class="button primary full-width" id="save-word"><svg><use href="#i-plus"/></svg> Add to review</button><button class="button quiet full-width" id="mark-known">I already know this</button><span class="small muted">Demo changes last until you reload.</span></div>
-                <div class="session-settings"><h3>Make it your session</h3><label for="study-percent">Sentences to actively study <output id="study-value" for="study-percent">25%</output></label><input id="study-percent" type="range" min="0" max="100" step="25" value="25"><p class="small muted">Lesson coverage, not weave density. The rest stays as reading context.</p><label for="study-focus">Prioritize</label><select id="study-focus"><option>New vocabulary</option><option>Difficult items</option><option>Frequent words</option><option>Selected items</option></select><a class="text-link" href="#conversation" data-reader-conversation>Ask your tutor about this <svg><use href="#i-arrow"/></svg></a></div>
+                <div class="panel-heading"><h2>Word help</h2><span class="tag green" id="word-state">Practicing</span><button class="reader-panel-close" id="close-reader-panel" aria-label="Turn off learning panel"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+                <div class="word-detail">
+                  <div class="word-identity"><div class="word-heading"><h3 id="word-native" lang="zh-Hans">&#x8336;</h3><span id="word-romanization">ch&aacute;</span></div><p class="word-gloss" id="word-gloss">tea</p></div>
+                  <button class="button primary" id="save-word">Add to learning set</button>
+                  <details class="reader-word-details" id="reader-word-details"><summary>Example &amp; more</summary><span class="eyebrow" id="word-kind">WORD / NOUN</span><p class="small muted" id="word-lookup-note" hidden></p><div class="word-example"><span class="eyebrow">EXAMPLE</span><p id="word-example-native" lang="zh-Hans"></p><span class="small muted" id="word-example-source"></span></div><button class="button secondary" id="mark-known">I already know this</button><a class="text-link" href="#conversation" data-reader-conversation>Ask Assistant <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><p class="small muted">A preview lookup, not a mastery assessment. Changes last until reload.</p></details>
+                </div>
               </aside>
             </div>
+            <p class="visually-hidden" id="reader-selection-status" role="status"></p>
           </section>
 
           <section class="screen" id="lessons" aria-labelledby="lessons-title" hidden>
@@ -162,7 +189,7 @@
               <div class="source-banner"><span class="tile-icon lavender"><svg aria-hidden="true"><use href="#i-book"/></svg></span><div><h3>Turn your textbook pages into a lesson.</h3><p>Bring text or images from material you own. Review the extracted source, then preview a lesson with vocabulary, grammar, and examples.</p></div><button class="button secondary" data-open-import="lessons">Bring your material</button></div>
             </div>
             <div id="lesson-detail" hidden>
-              <button class="back-link" id="back-to-lessons"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All lessons</button>
+              <div class="lesson-detail-toolbar"><button class="back-link" id="back-to-lessons"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All lessons</button><button class="button secondary" id="restart-lesson">Start from beginning</button></div>
               <div id="lesson-creation-context" hidden></div>
               <p class="import-notice" id="lesson-import-notice" hidden>Lesson generation is simulated. The vocabulary and example below are authored samples, not generated from your material.</p>
               <details class="lesson-import-source" id="lesson-import-source" hidden><summary>Imported source</summary><p id="lesson-import-reference" class="small muted"></p><p id="lesson-import-files" class="small muted"></p><p id="lesson-import-conversion" class="import-notice" hidden>Image extraction was simulated using original sample content. The source below includes your review edits.</p><div id="lesson-import-text" class="imported-source"></div></details>
@@ -316,6 +343,29 @@
         <p class="import-boundary">Local UI preview only. Text/Markdown files stay in this browser. EPUB conversion, image extraction, and lesson generation use original sample content; no files are uploaded or sent to AI.</p>
         </div>
         <div class="dialog-actions"><button type="button" class="button quiet" id="import-back" hidden>Back</button><button type="button" class="button secondary" data-close-dialog>Cancel</button><button class="button primary" id="import-primary" type="submit">Review import</button></div>
+      </form>
+    </dialog>
+    <dialog class="collection-dialog" id="library-label-dialog" aria-labelledby="library-label-title">
+      <div class="dialog-heading"><span class="eyebrow">ORGANIZE YOUR WAY</span><button type="button" class="icon-button" data-close-dialog aria-label="Close labels"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <h2 id="library-label-title"></h2>
+      <form id="library-label-form">
+        <div class="dialog-scroll"><p class="small muted">Choose any number of labels. Removing a label does not change where the item came from.</p><div id="library-label-options" class="label-options"></div><label for="library-new-label">Create a custom label</label><div class="new-label-row"><input id="library-new-label" type="text" maxlength="48" autocomplete="off" placeholder="e.g. Weekend reading"><button class="button secondary" id="create-library-label" type="button">Add label</button></div></div>
+        <div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save labels</button></div>
+      </form>
+    </dialog>
+    <dialog class="collection-dialog" id="teach-reading-dialog" aria-labelledby="teach-reading-title">
+      <div class="dialog-heading"><span class="eyebrow">LEARN TO READ YOUR MATERIAL</span><button class="icon-button" type="button" data-close-dialog aria-label="Close reading preparation"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <h2 id="teach-reading-title">Teach me to read this</h2>
+      <form id="teach-reading-form">
+        <div class="dialog-scroll"><p id="teach-material-title" class="small muted"></p><fieldset class="teaching-scopes"><legend>What would you like to read?</legend><label><input type="radio" name="reading-scope" value="whole" checked> Whole text</label><label><input type="radio" name="reading-scope" value="chapter"> Chapter / section</label><label><input type="radio" name="reading-scope" value="selection" id="teach-selection-option"> Selected text</label></fieldset>
+          <label id="teach-chapter-field" for="teach-chapter" hidden>Choose a chapter or section<select id="teach-chapter"></select></label>
+          <p class="small muted" id="teach-selection-help">Select text in the reader or an opened document to use a selection.</p>
+          <label for="teach-language">Language of this material<input id="teach-language" type="text" list="teaching-languages" placeholder="e.g. Mandarin" required maxlength="60"><datalist id="teaching-languages"><option value="English"></option><option value="Mandarin"></option></datalist></label>
+          <p class="small muted">Learn the vocabulary and grammar needed to read it in this language, rather than translating it for you.</p>
+          <label for="teach-source-preview">Material sent with the request<textarea id="teach-source-preview" rows="5" readonly></textarea></label><p id="teach-source-size" class="small muted"></p>
+          <p class="import-notice">This opens an editable request in Assistant. The prototype retains the material and scope; it does not analyze a textbook or generate a personalized curriculum.</p>
+        </div>
+        <div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Ask Assistant</button></div>
       </form>
     </dialog>
     <dialog id="sample-dialog" aria-labelledby="sample-title"><div class="dialog-heading"><span class="eyebrow">ORIGINAL MICRO SAMPLE</span><button type="button" class="icon-button" data-close-dialog aria-label="Close sample"><svg><use href="#i-close"/></svg></button></div><h2 id="sample-title"></h2><p class="sample-passage" id="sample-passage"></p><p class="small muted">Preview only. The complete reader interaction is demonstrated with the tea house story.</p><div class="dialog-actions"><button class="button secondary" data-close-dialog>Close</button><a href="#reader" class="button primary" data-close-dialog>Try the sample reader <svg><use href="#i-arrow"/></svg></a></div></dialog>

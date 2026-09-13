@@ -50,6 +50,7 @@ const lessonPreviews = {
     ],
   },
 }
+let selectedLessonId = null
 function showLessonCatalog(moveFocus = false) {
   one('#lesson-catalog').hidden = false
   one('#lesson-detail').hidden = true
@@ -75,11 +76,19 @@ function showLesson(id) {
     return
   }
   const lesson = lessonPreviews[id]
+  selectedLessonId = id
   one('#lesson-creation-context').hidden = !lesson.creationId
   if (lesson.creationId) renderCreationProvenance(one('#lesson-creation-context'), lesson.creationId)
   for (const field of ['title', 'objective', 'native', 'romanization', 'meaning', 'pattern', 'usage']) {
     one(field === 'title' ? '#lesson-detail-title' : `#lesson-${field}`).textContent = lesson[field]
   }
+  one('#lesson-native').lang = lesson.nativeLanguage ?? 'zh-Hans'
+  one('#lesson-romanization').hidden = !lesson.romanization
+  one('.lesson-vocabulary').hidden = Boolean(lesson.readingRequest)
+  one('.lesson-study').classList.toggle('reading-preparation-lesson', Boolean(lesson.readingRequest))
+  one('.lesson-explanation > .tag').textContent = lesson.readingRequest ? 'Reading preparation / Request preview' : 'Guided lesson preview'
+  one('.lesson-example > .eyebrow').textContent = lesson.readingRequest ? 'ORIGINAL MATERIAL EXCERPT' : 'WORDS WORKING TOGETHER'
+  one('.lesson-explanation > h3').textContent = lesson.readingRequest ? 'Teaching plan' : 'A pattern to keep'
   one('#lesson-assistant').dataset.lessonConversation = lesson.conversation
   one('#lesson-source').hidden = !lesson.source
   one('#lesson-import-notice').hidden = !lesson.importSource
@@ -116,6 +125,10 @@ one('#lessons').addEventListener('click', (event) => {
   if (button) showLesson(button.dataset.openLesson)
 })
 one('#back-to-lessons').addEventListener('click', () => showLessonCatalog(true))
+one('#restart-lesson').addEventListener('click', () => {
+  showLesson(selectedLessonId)
+  notify('Back at the beginning of this lesson. Your learning set and learned words are unchanged.')
+})
 one('[data-nav="lessons"]').addEventListener('click', (event) => {
   if (location.hash === '#lessons') event.preventDefault()
   showLessonCatalog(true)
