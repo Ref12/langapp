@@ -14,14 +14,14 @@ from pathlib import Path
 import re
 import urllib.request
 
-from curriculum_yaml import dump_yaml
+from curriculum_yaml import dump_yaml, load_yaml
+from generate_curriculum_tokens import compact_outputs
 
 
 ROOT = Path(__file__).resolve().parents[1] / "curriculum" / "chinese"
 REVISION = "7ac65bf1a6387d35f1ade478906172a19311c7f9"
 URL = f"https://raw.githubusercontent.com/drkameleon/complete-hsk-vocabulary/{REVISION}/complete.json"
 SHA256 = "c869a0ce353279c9333d9b42c31fc3549785e8b40673dab57ee42bc99cd14131"
-HEADER = "id,target,reading,english,part_of_speech,topic,source_id,source_entry,level_basis".split(",")
 EXPECTED = {"1": 506, "2": 750, "3": 953, "4": 972, "5": 1059, "6": 1123, "7-9": 5606}
 CJK = re.compile(r"[\u3400-\u9fff]+")
 REFERENCE = re.compile(r"^(?:(?:[\w-]+\s+)*variant of|see\b|abbr\.?\s+for)", re.I)
@@ -205,6 +205,39 @@ def normalization_report(data: list[dict]) -> dict:
     }
 
 
+def pronunciation_note(english: str) -> bool:
+    return bool(re.fullmatch(
+        r"(?:(?:also|Taiwan) pr\.[^;()]*|\(Taiwan pr\.[^()]*\))",
+        english,
+    ))
+
+
+def vocabulary_senses(entry: dict, headword_id: str) -> list[dict]:
+    """Keep upstream meaning boundaries, not the semicolons joining synonyms."""
+    senses = []
+    seen = set()
+    for form in entry["forms"]:
+        reading = form["transcriptions"]["pinyin"].strip()
+        meanings = (
+            [GLOSS_CORRECTIONS[entry["simplified"]]]
+            if entry["simplified"] in GLOSS_CORRECTIONS
+            else form["meanings"]
+        )
+        for meaning in meanings:
+            english = clean_gloss(meaning)
+            key = (reading, english)
+            if not reading or not english or key in seen:
+                continue
+            seen.add(key)
+            senses.append({
+                "id": f"{headword_id}-s{len(senses) + 1:03d}",
+                "reading": reading,
+                "english": english,
+            })
+    # Keep source-derived ID slots; pronunciation annotations are not meanings.
+    return [sense for sense in senses if not pronunciation_note(sense["english"])]
+
+
 def vocabulary(data: list[dict]) -> dict[str, list[dict]]:
     rows = {level: [] for level in EXPECTED}
     seen = set()
@@ -246,6 +279,9 @@ def vocabulary(data: list[dict]) -> dict[str, list[dict]]:
             "source_entry": f"{URL}#/{entry_index}",
             "level_basis": f"2021-standard-derived upstream {levels[0]}; not 2025 exam",
         })
+        if level == "1":
+            row = rows[level][-1]
+            row["senses"] = vocabulary_senses(entry, row["id"])
     if {level: len(entries) for level, entries in rows.items()} != EXPECTED:
         raise ValueError("Pinned vocabulary counts changed")
     return rows
@@ -278,6 +314,62 @@ def grammar() -> dict[str, list[dict]]:
     return result
 
 
+def group_vocabulary_senses(words: list[dict], aliases: dict) -> None:
+    if not isinstance(aliases, dict) or not all(
+        isinstance(alias, str) and isinstance(canonical, str)
+        for alias, canonical in aliases.items()
+    ):
+        raise ValueError("HSK-1 sense groups must map source IDs to canonical IDs")
+    source = {
+        sense["id"]: (row["id"], sense)
+        for row in words for sense in row["senses"]
+    }
+    positions = {identifier: index for index, identifier in enumerate(source)}
+    for alias, canonical in aliases.items():
+        if alias not in source or canonical not in source:
+            raise ValueError(f"Unknown source sense in group: {alias} -> {canonical}")
+        if canonical in aliases or positions[canonical] >= positions[alias]:
+            raise ValueError(f"{alias}: canonical sense must be earlier and not an alias")
+        parent, sense = source[alias]
+        canonical_parent, canonical_sense = source[canonical]
+        if parent != canonical_parent or sense["reading"] != canonical_sense["reading"]:
+            raise ValueError(f"{alias}: groups must share a headword and reading")
+    for row in words:
+        groups = {}
+        for sense in row["senses"]:
+            identifier = sense["id"]
+            canonical = aliases.get(identifier, identifier)
+            if canonical == identifier:
+                groups[canonical] = {**sense, "source_sense_ids": [identifier]}
+            else:
+                groups[canonical]["english"] += "; " + sense["english"]
+                groups[canonical]["source_sense_ids"].append(identifier)
+        row["senses"] = list(groups.values())
+
+
+def add_hsk1_token_metadata(words: list[dict], patterns: list[dict],
+                            authoring: Path) -> None:
+    group_vocabulary_senses(words, load_yaml(authoring / "vocabulary-groups.yaml"))
+    labels = load_yaml(authoring / "vocabulary.yaml")
+    senses = [sense for row in words for sense in row["senses"]]
+    expected_ids = {sense["id"] for sense in senses}
+    if not isinstance(labels, dict) or set(labels) != expected_ids:
+        raise ValueError("HSK-1 vocabulary labels must cover every canonical sense ID exactly")
+    for sense in senses:
+        sense["disambiguator"] = labels[sense["id"]]
+
+    grammar_labels = load_yaml(authoring / "grammar.yaml")
+    if not isinstance(grammar_labels, dict) or set(grammar_labels) != {
+        row["id"] for row in patterns
+    }:
+        raise ValueError("HSK-1 grammar labels must cover every grammar ID exactly")
+    for row in patterns:
+        fields = grammar_labels[row["id"]]
+        if not isinstance(fields, dict) or set(fields) != {"token_form", "disambiguator"}:
+            raise ValueError(f"{row['id']}: expected token_form and disambiguator")
+        row.update(fields)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, help="Use an existing pinned complete.json for offline reproduction")
@@ -294,13 +386,13 @@ def main() -> None:
     data = json.loads(raw)
     words = vocabulary(data)
     patterns = grammar()
+    add_hsk1_token_metadata(words["1"], patterns["1"], ROOT / "authoring" / "hsk-1")
     report = normalization_report(data)
     outputs = {ROOT / "normalization-report.yaml": dump_yaml(report)}
     for level in EXPECTED:
-        outputs[ROOT / f"hsk-{level}" / "vocabulary.yaml"] = dump_yaml(
-            [{field: row[field] for field in HEADER} for row in words[level]]
-        )
+        outputs[ROOT / f"hsk-{level}" / "vocabulary.yaml"] = dump_yaml(words[level])
         outputs[ROOT / f"hsk-{level}" / "grammar.yaml"] = dump_yaml(patterns[level])
+    outputs.update(compact_outputs(ROOT / "hsk-1", words["1"], patterns["1"]))
     for path, content in outputs.items():
         if args.check:
             if path.read_text(encoding="utf-8") != content:

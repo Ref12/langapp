@@ -9,6 +9,7 @@ import sys
 import yaml
 
 from curriculum_yaml import load_yaml
+from generate_curriculum_tokens import PILOT_LEVEL, compact_outputs, vocabulary_pairs
 
 
 LEVELS = {
@@ -150,8 +151,9 @@ class Validator:
             if not isinstance(row, dict):
                 self.error(location, "expected an object")
                 continue
-            if set(row) != set(VOCABULARY_FIELDS):
-                self.error(location, f"fields must be {', '.join(VOCABULARY_FIELDS)}")
+            fields = VOCABULARY_FIELDS + (["senses"] if (language, level) == PILOT_LEVEL else [])
+            if set(row) != set(fields):
+                self.error(location, f"fields must be {', '.join(fields)}")
                 continue
             required = {"id", "target", "english", "source_id", "level_basis"}
             if language != "korean":
@@ -163,6 +165,14 @@ class Validator:
             self.source_reference(row["source_id"], sources, location)
         if not count:
             self.error(path, "vocabulary must not be empty")
+        if (language, level) == PILOT_LEVEL:
+            try:
+                pairs = vocabulary_pairs(entries)
+            except ValueError as exc:
+                self.error(path, str(exc))
+            else:
+                for identifier, _ in pairs:
+                    self.identifier(identifier, seen, f"{path}.senses")
         return count
 
     def grammar(self, language, level, sources, seen):
@@ -201,6 +211,26 @@ class Validator:
                     self.text(example["reading"], f"{example_location}.reading")
         return len(entries), example_count
 
+    def compact(self, language, level):
+        directory = self.root / language / level
+        words = self.yaml_file(directory / "vocabulary.yaml", list)
+        patterns = self.yaml_file(directory / "grammar.yaml", list)
+        if words is None or patterns is None:
+            return
+        try:
+            outputs = compact_outputs(directory, words, patterns)
+        except ValueError as exc:
+            self.error(directory, str(exc))
+            return
+        for path, expected in outputs.items():
+            try:
+                actual = path.read_text(encoding="utf-8")
+            except (OSError, UnicodeError) as exc:
+                self.error(path, str(exc))
+                continue
+            if actual != expected:
+                self.error(path, "stale compact file; regenerate from expanded YAML")
+
     def language(self, language):
         directory = self.root / language
         self.document(directory / "README.md")
@@ -210,6 +240,8 @@ class Validator:
             self.document(directory / level / "syllabus.md")
             vocabulary_count = self.vocabulary(language, level, sources, seen)
             grammar_count, example_count = self.grammar(language, level, sources, seen)
+            if (language, level) == PILOT_LEVEL:
+                self.compact(language, level)
             self.counts.append((language, level, vocabulary_count, grammar_count, example_count))
 
     def run(self, languages):

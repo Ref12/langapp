@@ -64,8 +64,9 @@ corpus, not an assertion that those omissions have been solved.
 
 Every level has:
 
-- `vocabulary.yaml`: UTF-8 YAML list, exact shared nine-field schema; stable per-revision
+- `vocabulary.yaml`: UTF-8 YAML list, shared nine-field base schema; stable per-revision
   IDs, simplified target, tone-marked pinyin, English definitions and provenance.
+  HSK-1 additionally has explicit sense records, described below.
 - `grammar.yaml`: a list with `id`, `pattern`, `english`, `note`, `examples`,
   `source_id`, and `level_basis`. Bracketed letters such as S are English
   metalinguistic placeholders, not words to pronounce.
@@ -78,6 +79,121 @@ Every level has:
 is the editable original grammar source; the importer regenerates YAML from it.
 Do not edit generated vocabulary or grammar YAML as the sole record of a repair.
 Edit the source or importer, regenerate and review the resulting change.
+
+### Compact HSK-1 pilot
+
+`hsk-1/vocabulary.min.yaml` contains **1,644 `[sense_id, token]` pairs** for
+canonical senses derived from all normalized dictionary meanings of the 506 headwords.
+`hsk-1/grammar.min.yaml` contains **25 `[grammar_id, token]` pairs**.
+Each pair occupies one line, with no repeated field names:
+
+```yaml
+- [zh-hsk1-00001-s001, 爱(ài)/to love]
+- [zh-hsk1-00001-s002, 爱(ài)/affection]
+- [zh-hsk1-g020, S+会+V/learned ability]
+```
+
+The first two examples belong to the vocabulary file; the last to grammar.
+The source headword ID remains unchanged as the parent `id` in expanded YAML.
+Its `senses` records each contain:
+
+```yaml
+id: zh-hsk1-00001-s001
+reading: ài
+english: to love; to be fond of; to like
+source_sense_ids: [zh-hsk1-00001-s001]
+disambiguator: to love
+```
+
+Vocabulary tokens are exactly `headword.target(sense.reading)/sense.disambiguator`.
+The parentheses contain the individual sense's tone-marked pinyin, preserving
+syllable spacing and neutral tones rather than using the headword's combined
+reading list.
+Grammar retains its existing teaching fields and adds `token_form` and
+`disambiguator`; its tokens are exactly `token_form/disambiguator`.
+No gloss truncation, dictionary lookup, or AI inference happens when generating
+the compact files. Disambiguators are explicitly authored, at most 64 characters,
+and retain distinctions needed to identify the intended sense. A slash is the
+single separator, never part of either component.
+
+Grammar notation: `S` = subject (or statement in `S+吗`), `N` = noun phrase,
+`V` = verb, `VP` = verb phrase, `Adj` = adjective, `P` = predicate,
+`Num` = number, `Cl` = classifier, `Place` = location, `Time` = time expression.
+`+` joins slots, `|` marks alternatives, and parentheses group alternatives.
+For the A-not-A construction, predicate morphology follows the expanded
+examples; slots are not a requirement to repeat an entire long phrase.
+
+**Sense scope:** this pilot intentionally retains all usable dictionary senses,
+including surnames, uncommon readings, archaic uses, and specialized meanings.
+It is not a claim that every sense belongs in a beginner course or an official
+HSK inventory. Source reference-only fragments still follow the existing
+normalization policy. Upstream `meanings` entries first become source definitions;
+synonyms inside one entry stay together. Explicit authored groups also combine
+synonyms stored in separate entries, such as "father", "dad", "pa", and "papa"
+for 爸. Do not mistake the source's array boundaries for linguistic sense
+boundaries. Grouping is restricted to the same headword and reading; different
+meanings and functions remain separate. All merged glosses and their
+`source_sense_ids` are retained. Identical `(reading, normalized meaning)` pairs
+across script variants are deduplicated. Existing headword-level gloss
+corrections remain authoritative replacement meanings.
+For this pinned HSK-1 input, 2,130 raw meaning occurrences yield 2,046 usable
+occurrences after those existing normalization/correction rules, then 2,025
+unique reading/gloss pairs after deduplication. Thirteen of those glosses are
+pronunciation-only annotations (such as "also pr."), not dictionary meanings.
+Excluding those leaves **2,012 source definitions**, all represented in the
+canonical learning senses after synonym grouping. The original headword-level
+reference gloss remains unchanged; meaning-bearing entries with pronunciation
+notes are still retained.
+The 368 explicit synonym aliases yield **1,644 canonical learning senses**.
+Grouping is conservative where the source does not establish equivalence;
+related but potentially distinct meanings remain separate.
+
+One token explicitly repairs a misleading source hint: `zh-hsk1-00045-s001`
+uses `车上(chē shàng)/in or on a vehicle`; its source gloss "Car" is preserved in the
+expanded `english` field for provenance, not endorsed as an accurate translation.
+
+Source-definition IDs append `-sNNN` in first-source-occurrence order to the
+original headword ID, keeping gaps for excluded pronunciation-annotation slots.
+A canonical sense keeps its group's earliest source-definition ID; each
+`source_sense_ids` list starts with that canonical ID. These IDs are stable for
+the pinned revision and current normalization/grouping,
+not a promise across source changes. Never renumber to alphabetize labels.
+The nested parent record provides the complete old-ID-to-new-IDs mapping;
+prior progress on a headword does **not** imply mastery of all child senses.
+Track new learning evidence by sense ID and retain old evidence at the parent
+unless its practiced sense is known.
+
+**Authoring and regeneration:** `authoring/hsk-1/vocabulary.yaml` maps each
+canonical sense ID to its curated disambiguator.
+`authoring/hsk-1/vocabulary-groups.yaml` explicitly maps synonymous source IDs
+to their earlier canonical ID. Self-aliases, alias chains, and cross-headword
+or cross-reading merges are rejected. Label edits never implicitly regroup
+senses or change IDs.
+`authoring/hsk-1/grammar.yaml` maps existing grammar IDs to their two token fields.
+The importer requires exact canonical-label coverage and valid source references,
+so missing or stale IDs cannot silently
+fall back to guessed labels. Edit these files for permanent token changes;
+grammar teaching content still comes from `authoring/grammar.psv`.
+The importer produces both expanded and compact files together.
+
+To regenerate only the compact views from checked-in expanded YAML, offline:
+
+```powershell
+python scripts\generate_curriculum_tokens.py
+python scripts\generate_curriculum_tokens.py --check
+```
+
+An optional level-directory argument is supported, but other levels must first
+be authored with this explicit token schema. `--check` never writes and fails
+if either compact file is absent or differs. The shared curriculum validator
+also detects stale compact outputs, duplicate IDs/tokens, malformed senses,
+and ambiguous separators. Structural checks do not certify linguistic quality;
+the new AI-authored disambiguators require human linguistic review.
+
+These compact views share the expanded vocabulary's attribution and
+CC-BY-SA-4.0 redistribution requirements. Ship them with this README,
+`sources.yaml`, and the applicable license notices, even though each pair omits
+provenance to save space.
 
 ### Pronunciation, senses and variants
 
@@ -192,7 +308,8 @@ The importer downloads the pinned source and refuses a SHA-256 mismatch:
 Revision: `7ac65bf1a6387d35f1ade478906172a19311c7f9`.
 For offline reproduction, supply `--source` with a local copy of that exact
 `complete.json`. It is not necessary to retain the entire upstream file in the
-application. `--check` compares all 15 generated files without modifying them
-(14 level assets plus the normalization report) and runs normalizer regressions;
+application. `--check` compares all 17 generated files without modifying them
+(14 expanded level assets, two HSK-1 compact views, and the normalization report)
+and runs normalizer regressions;
 syllabi and metadata are authored separately. Changing the revision requires a
 fresh license/provenance check, count reconciliation and ID migration review.

@@ -28,6 +28,10 @@ Every level contains:
 | `grammar.yaml` | Patterns with English meanings, brief notes, and translated examples |
 | `syllabus.md` | Prerequisites, teaching blocks, communicative outcomes, and level-specific exit tasks |
 
+The Chinese HSK-1 pilot also has `vocabulary.min.yaml` and `grammar.min.yaml`:
+derived lists of `[id, token]` pairs for compact presentation and AI selection.
+They do not replace the expanded teaching data or its attribution.
+
 Each language also has `sources.yaml`, a coverage README, and any necessary
 license notices. Sources distinguish imported material, reference-only official
 descriptors, and original AI-authored teaching material.
@@ -93,7 +97,7 @@ refer to the corresponding YAML outputs after this format-only migration.
 
 ### Vocabulary
 
-Each vocabulary mapping contains these nine fields:
+Each vocabulary mapping contains these nine base fields:
 
 ```text
 id,target,reading,english,part_of_speech,topic,source_id,source_entry,level_basis
@@ -116,6 +120,47 @@ invent pronunciation, topics, or word classes just to fill a field. English
 glosses are sense hints, not interchangeable translations in every context.
 Phrases use this same format rather than requiring a separate phrase store.
 
+#### HSK-1 sense-level pilot
+
+Chinese `hsk-1/vocabulary.yaml` retains its 506 headword records and their original
+IDs and adds a `senses` list to each. Each sense has `id`, `reading`, `english`,
+`source_sense_ids`, and a curated `disambiguator`. Its **1,644 canonical senses**
+represent all **2,012 usable source definitions**, including proper names, rare
+uses, and specialized meanings, not just beginner-relevant uses. Explicit groups combine synonymous
+English renderings of the same word and reading into one learning sense: for
+example, the source's "father", "dad", "pa", and "papa" for 爸 are one sense, not
+four. Grouped glosses and their source-derived IDs are preserved in expanded YAML.
+Exact duplicate reading/meaning pairs from script variants are emitted only once.
+Pronunciation annotations such as "also pr." are not separate learning items.
+
+Tokens are derived without inference:
+`target + "(" + sense.reading + ")/" + sense.disambiguator`.
+Pronunciation is the individual sense's pinyin, not the headword's combined
+list of readings.
+For example, the headword ID `zh-hsk1-00001` groups these distinct learning items:
+
+```yaml
+- [zh-hsk1-00001-s001, 爱(ài)/to love]
+- [zh-hsk1-00001-s002, 爱(ài)/affection]
+```
+
+Each compact file is a YAML sequence of two-string arrays, one pair per line:
+`[id, token]`. There are no headers, examples, or provenance fields in these
+derived views. Resolve a selected ID against the expanded file for its full
+meaning, examples where available, and source. A token is an identifier
+with an English sense hint, not necessarily a complete translation.
+
+The explicit disambiguator is trimmed, single-line English of at most 64
+characters; `/` is reserved for the sole form/meaning separator. Tokens must be
+unique within the level, including distinctions between otherwise identical
+meanings with different readings. Labels can change without changing IDs.
+Existing headword IDs remain grouping/reference IDs; do not transfer old
+headword mastery to every child sense. Record new evidence by sense ID.
+
+Only HSK-1 uses this extension; other levels retain the nine-field schema.
+See the [Chinese README](chinese/README.md#compact-hsk-1-pilot) for authoring,
+generation, and source-revision constraints.
+
 ### Grammar
 
 Every entry has `id`, `pattern`, `english`, `note`, `examples`, `source_id`,
@@ -127,6 +172,11 @@ Notation such as `N`, `V`, `A`, `S`, parentheses, slashes, and ellipses describe
 slots or alternatives, not necessarily literal words to say. Use the entry's
 note and instantiated examples to interpret it. Do not teach a grammar heading
 as though it were a complete natural sentence.
+
+The HSK-1 pilot also adds `token_form` (concise construction notation) and
+`disambiguator`. Its token is `token_form + "/" + disambiguator`; its existing
+grammar IDs are unchanged. The expanded `pattern`, notes, and examples remain
+the teaching reference.
 
 ### Sources
 
@@ -144,6 +194,8 @@ source of each imported row; authored examples have their own source identity.
    lesson of about 8-15 new words and 1-3 constructions rather than dumping an
    entire level into a prompt. For a reading-first lesson, prioritize items
    present in the learner's passage.
+   For HSK-1, the compact files can be used for selection first; resolve selected
+   sense/grammar IDs in the expanded files before teaching.
 3. Teach the example's intended sense and register. Show the target and English
    together initially, then conceal the English during recall. When generating
    extra phrases, sentences, explanations with target-language fragments, or
@@ -172,12 +224,15 @@ python -m pip install -r scripts\requirements.txt
 python scripts\validate_curriculum.py
 python scripts\validate_curriculum.py --language japanese
 python scripts\test_curriculum_yaml.py
+python scripts\generate_curriculum_tokens.py --check
 ```
 
 The validator uses the pinned PyYAML dependency and checks required files,
 directory order metadata, YAML record structure, nonempty bilingual fields, IDs,
 source references, source dates,
 and grammar examples. It prints counts by level and fails on structural errors.
+For HSK-1 it also checks sense identities, token ambiguity, and exact agreement
+between expanded and compact files.
 It does not make a pedagogical or licensing certification.
 
 Language-specific READMEs document any reproducible import command and its

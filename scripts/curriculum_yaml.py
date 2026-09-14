@@ -45,3 +45,17 @@ def dump_yaml(value) -> str:
 
 def write_yaml(path: Path, value) -> None:
     path.write_text(dump_yaml(value), encoding="utf-8", newline="\n")
+
+
+def dump_pairs(pairs: list[list[str]]) -> str:
+    """Write a YAML sequence with one compact [id, token] pair per line."""
+    return "".join(
+        "- " + yaml.dump(
+            pair,
+            Dumper=getattr(yaml, "CSafeDumper", yaml.SafeDumper),
+            allow_unicode=True,
+            default_flow_style=True,
+            width=100_000,
+        )
+        for pair in pairs
+    )

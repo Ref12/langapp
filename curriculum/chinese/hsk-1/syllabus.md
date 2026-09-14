@@ -4,6 +4,17 @@
 headwords, 25 original teaching constructs. Not the 2025/2026 exam syllabus.
 Grammar IDs below use `zh-hsk1-gNNN`. No official grammar mapping is asserted.
 
+The compact pilot exposes **1,644 canonical senses** of these 506 headwords in
+`vocabulary.min.yaml`, plus the 25 constructs in `grammar.min.yaml`. All 2,012
+usable source definitions are represented; synonymous English renderings of
+one Chinese meaning share a canonical sense ID.
+Use those `[id, token]` lists for concise selection, then retrieve the nested
+sense record or grammar entry in the expanded YAML for instruction. Record the
+specific `zh-hsk1-NNNNN-sNNN` sense ID practiced, not just its parent headword.
+Rare, proper-name, archaic, and specialized senses remain identifiable but are
+not automatically beginner lesson requirements. The headword coverage and exit
+tasks below do not require mastery of every dictionary sense.
+
 ## Prerequisites and outcomes
 
 No prior Mandarin is required. Begin with syllable initials/finals, four lexical
