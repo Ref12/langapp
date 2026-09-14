@@ -53,6 +53,7 @@ const lessonPreviews = {
 let selectedLessonId = null
 let lessonPages = []
 let lessonPageIndex = 0
+const lessonPagePositions = new Map()
 function getLesson(id) {
   if (Object.hasOwn(lessonPreviews, id)) return lessonPreviews[id]
   notify('That lesson preview is not available.')
@@ -103,15 +104,7 @@ function addLessonActions(card, id) {
 }
 function addLessonPreview(id, lesson, label, description) {
   lessonPreviews[id] = lesson
-  const card = importElement('article', '', 'lesson-card imported-lesson-card')
-  card.append(importElement('span', label, 'eyebrow'), importElement('h2', lesson.title), importElement('p', description))
-  const button = importElement('button', 'Open lesson', 'button secondary')
-  button.type = 'button'
-  button.dataset.openLesson = id
-  button.setAttribute('aria-label', `Open lesson: ${lesson.title}`)
-  card.append(button)
-  addLessonActions(card, id)
-  one('.lesson-grid').append(card)
+  document.dispatchEvent(new CustomEvent('mockup-lesson-added', { detail: { id, label, description } }))
 }
 function splitLessonText(text, limit = /\p{Script=Han}/u.test(text) ? 70 : 180) {
   const characters = Array.from(text)
@@ -172,8 +165,9 @@ function renderLessonPage(moveFocus = true) {
     example.append(importElement('p', meaning))
     setSnippetActions(term, { lang: term.lang, romanization, meaning, source: `Lesson: ${lesson.title}` })
     container.append(example)
+    if (page.kind === 'word') container.append(createKnowledgeProfile(vocabularyKnowledgeOwner(native, term.lang)))
   } else if (page.kind === 'finish') {
-    container.append(importElement('p', 'Revisit this lesson in Practice, or talk it through with the Assistant. There is no completion score or prerequisite.', 'lesson-page-copy'))
+    renderLessonLearningSummary(container, selectedLessonId)
     const actions = importElement('div', '', 'lesson-links')
     for (const [action, label] of [['practiceLesson', 'Practice'], ['assistantLesson', 'Assistant']]) {
       const button = importElement('button', label, `button ${action === 'practiceLesson' ? 'primary' : 'secondary'}`)
@@ -206,18 +200,21 @@ function renderLessonPage(moveFocus = true) {
     setTargetSnippetActions(text, { source: `Lesson: ${lesson.title} / ${page.title}` })
   }
   one('#lesson-previous').disabled = lessonPageIndex === 0
-  one('#lesson-next').textContent = lessonPageIndex === lessonPages.length - 1 ? 'Practice' : 'Next'
+  one('#lesson-next').textContent = lessonPageIndex === lessonPages.length - 1
+    ? lesson.readingRequest ? 'Ask Assistant' : 'Finish lesson' : 'Next'
+  lessonPagePositions.set(selectedLessonId, lessonPageIndex)
   one('#lesson-page-select').value = String(lessonPageIndex)
   one('#lesson-page-count').textContent = `${lessonPageIndex + 1} of ${lessonPages.length}`
   container.scrollTop = 0
   if (moveFocus) heading.focus({ preventScroll: true })
 }
-function showLesson(id) {
+function showLesson(id, context = {}) {
   const lesson = getLesson(id)
   if (!lesson) return
   selectedLessonId = id
   lessonPages = buildLessonPages(lesson)
-  lessonPageIndex = 0
+  lessonPageIndex = context.restart ? 0 : Math.min(lessonPagePositions.get(id) ?? 0, lessonPages.length - 1)
+  noteLessonOpened(id, context)
   document.body.dataset.lessonView = 'detail'
   one('#lessons').setAttribute('aria-labelledby', 'lesson-detail-title')
   one('#lesson-detail-title').textContent = lesson.title
@@ -243,9 +240,14 @@ all('#lesson-grid [data-open-lesson]').forEach((button) => addLessonActions(butt
 one('#lessons').addEventListener('click', (event) => {
   const button = event.target.closest('[data-open-lesson], [data-practice-lesson], [data-assistant-lesson]')
   if (!button) return
-  if (button.dataset.openLesson) showLesson(button.dataset.openLesson)
-  else if (button.dataset.practiceLesson) openLessonPractice(button.dataset.practiceLesson)
-  else openLessonAssistant(button.dataset.assistantLesson, button)
+  const context = button.closest('[data-learning-origin]')
+  const learningContext = context ? { origin: context.dataset.learningOrigin, goalId: context.dataset.learningGoal || null } : {}
+  if (button.dataset.openLesson) showLesson(button.dataset.openLesson, learningContext)
+  else {
+    noteLessonOpened(button.dataset.practiceLesson || button.dataset.assistantLesson, learningContext)
+    if (button.dataset.practiceLesson) openLessonPractice(button.dataset.practiceLesson)
+    else openLessonAssistant(button.dataset.assistantLesson, button)
+  }
 })
 one('#lesson-previous').addEventListener('click', () => {
   if (lessonPageIndex > 0) {
@@ -254,7 +256,10 @@ one('#lesson-previous').addEventListener('click', () => {
   }
 })
 one('#lesson-next').addEventListener('click', () => {
-  if (lessonPageIndex === lessonPages.length - 1) openLessonPractice(selectedLessonId)
+  if (lessonPageIndex === lessonPages.length - 1) {
+    if (lessonPreviews[selectedLessonId].readingRequest) openLessonAssistant(selectedLessonId, one('#lesson-next'))
+    else finishLearningLesson(selectedLessonId)
+  }
   else {
     lessonPageIndex++
     renderLessonPage()
@@ -266,8 +271,8 @@ one('#lesson-page-select').addEventListener('change', (event) => {
 })
 one('#back-to-lessons').addEventListener('click', () => showLessonCatalog(true))
 one('#restart-lesson').addEventListener('click', () => {
-  showLesson(selectedLessonId)
-  notify('Back at the beginning of this lesson. Your learning set and learned words are unchanged.')
+  showLesson(selectedLessonId, { restart: true })
+  notify('Back at the beginning. Completed coverage and your learning set are unchanged.')
 })
 one('[data-nav="lessons"]').addEventListener('click', (event) => {
   if (location.hash === '#lessons') event.preventDefault()

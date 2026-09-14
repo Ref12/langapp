@@ -8,7 +8,11 @@
     <title>LinguaWeave / UI concept</title>
     <link rel="stylesheet" href="./theme.css">
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./knowledge.css">
+    <link rel="stylesheet" href="./learning.css">
+    <link rel="stylesheet" href="./learning-overview.css">
     <script src="./snippets.js" defer></script>
+    <script src="./knowledge.js" defer></script>
     <script src="./prototype.js" defer></script>
     <script src="./dictionary.js" defer></script>
     <script src="./reader-vocabulary.js" defer></script>
@@ -23,6 +27,9 @@
     <script src="./assistant-tasks.js" defer></script>
     <script src="./teach-reading.js" defer></script>
     <script src="./conversations.js" defer></script>
+    <script src="./learning-data.js" defer></script>
+    <script src="./learning-overview.js" defer></script>
+    <script src="./learning.js" defer></script>
     <script src="./theme.js" defer></script>
     <script src="./tooltips.js" defer></script>
   </head>
@@ -181,7 +188,7 @@
                 <div class="word-detail">
                   <div class="word-identity"><div class="word-heading"><h3 id="word-native" lang="zh-Hans">&#x8336;</h3><span id="word-romanization">ch&aacute;</span></div><p class="word-gloss" id="word-gloss">tea</p></div>
                   <button class="button primary" id="save-word">Add to learning set</button>
-                  <details class="reader-word-details" id="reader-word-details"><summary>Example &amp; more</summary><span class="eyebrow" id="word-kind">WORD / NOUN</span><p class="small muted" id="word-lookup-note" hidden></p><div class="word-example"><span class="eyebrow">EXAMPLE</span><p id="word-example-native" lang="zh-Hans"></p><span class="small muted" id="word-example-source"></span></div><button class="button secondary" id="mark-known">I already know this</button><p class="small muted">A preview lookup, not a mastery assessment. Changes last until reload.</p></details>
+                  <details class="reader-word-details" id="reader-word-details"><summary>Skills, example &amp; more</summary><dl id="word-skill-profile"></dl><span class="eyebrow" id="word-kind">WORD / NOUN</span><p class="small muted" id="word-lookup-note" hidden></p><div class="word-example"><span class="eyebrow">EXAMPLE</span><p id="word-example-native" lang="zh-Hans"></p><span class="small muted" id="word-example-source"></span></div><button class="button secondary" id="mark-known">I can read this</button><p class="small muted">Self-reported reading state only. Hearing, speaking, and writing stay independent. Changes last until reload.</p></details>
                 </div>
               </aside>
             </div>
@@ -190,23 +197,35 @@
 
           <section class="screen" id="lessons" aria-labelledby="lessons-title" hidden>
             <div id="lesson-catalog">
-              <div class="page-heading"><div><p class="eyebrow">A LITTLE STRUCTURE. A LOT TO EXPLORE.</p><h1 id="lessons-title" tabindex="-1">Learn something you can use.</h1><p>Small lessons connect useful words, patterns, and real situations.</p></div><div class="page-heading-actions"><button class="button secondary" data-assistant-task="lesson"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create lesson</button><button class="button primary" data-open-import="lessons"><svg aria-hidden="true"><use href="#i-plus"/></svg> Import lesson</button></div></div>
-              <div class="lesson-intro"><span class="tile-icon lavender"><svg><use href="#i-book"/></svg></span><div><h2>One useful idea at a time.</h2><p>Meet the words. Notice the pattern. See how they work together.</p></div><div class="segmented catalog-view-switch" role="group" aria-label="Lessons view" data-catalog-view-controls="lesson-grid"><button type="button" data-catalog-layout="list" aria-pressed="true" aria-controls="lesson-grid"><svg aria-hidden="true"><use href="#i-list"/></svg> List</button><button type="button" data-catalog-layout="cards" aria-pressed="false" aria-controls="lesson-grid"><svg aria-hidden="true"><use href="#i-grid"/></svg> Cards</button></div></div>
-              <div class="lesson-grid" id="lesson-grid" data-catalog-view="list">
-                <article class="lesson-card"><span class="eyebrow">READING COMPANION</span><span class="lesson-glyph" lang="zh-Hans">&#x60F3;</span><h2>Build a simple request</h2><p>Put familiar words together to say what you would like.</p><div class="lesson-meta"><span>4 vocabulary items</span><span>1 useful pattern</span></div><button class="button primary" data-open-lesson="request" aria-label="Open lesson: Build a simple request">Open lesson <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></article>
-                <article class="lesson-card"><span class="eyebrow">EVERYDAY CONVERSATION</span><span class="lesson-glyph" lang="zh-Hans">&#x660E;&#x5929;</span><h2>Talk about tomorrow</h2><p>Place a plan in time, from a walk in the park to your next outing.</p><div class="lesson-meta"><span>3 vocabulary items</span><span>1 useful pattern</span></div><button class="button secondary" data-open-lesson="plans" aria-label="Open lesson: Talk about tomorrow">Open lesson <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></article>
-                <article class="lesson-card"><span class="eyebrow">FINDING YOUR WAY</span><span class="lesson-glyph" lang="zh-Hans">&#x54EA;&#x91CC;</span><h2>Ask where something is</h2><p>Learn a question you can reuse with places around you.</p><div class="lesson-meta"><span>3 vocabulary items</span><span>1 useful pattern</span></div><button class="button secondary" data-open-lesson="directions" aria-label="Open lesson: Ask where something is">Open lesson <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></article>
-              </div>
-              <div class="lesson-practice-note"><svg><use href="#i-practice"/></svg><p><strong>Lessons introduce. Practice helps you remember.</strong><br>Explore new vocabulary and grammar here. Revisit familiar material in <a href="#practice">Practice</a>.</p></div>
-              <div class="source-banner"><span class="tile-icon lavender"><svg aria-hidden="true"><use href="#i-book"/></svg></span><div><h3>Turn your textbook pages into a lesson.</h3><p>Bring text or images from material you own. Review the extracted source, then preview a lesson with vocabulary, grammar, and examples.</p></div><button class="button secondary" data-open-import="lessons">Bring your material</button></div>
+              <div class="page-heading"><div><p class="eyebrow">YOUR PATH. YOUR REASONS TO LEARN.</p><h1 id="lessons-title" tabindex="-1">Make it useful. Make it yours.</h1><p>Follow a path, work toward a goal, or mix both. Your progress comes with you.</p></div><div class="page-heading-actions"><button class="button secondary" data-assistant-task="lesson"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create lesson</button><button class="button secondary" data-open-import="lessons"><svg aria-hidden="true"><use href="#i-plus"/></svg> Import lesson</button></div></div>
+              <nav class="segmented learning-views" aria-label="Ways to find lessons">
+                <button type="button" data-learning-view="path" aria-pressed="true" aria-controls="learning-path">Path</button>
+                <button type="button" data-learning-view="goals" aria-pressed="false" aria-controls="learning-goals">Goals</button>
+                <button type="button" data-learning-view="all" aria-pressed="false" aria-controls="learning-all">All lessons</button>
+              </nav>
+              <section id="learning-path" aria-label="Curriculum path"></section>
+              <section id="learning-goals" aria-label="Learning goals" hidden></section>
+              <section id="learning-all" aria-label="All lessons" hidden>
+                <div class="learning-catalog-tools">
+                  <label for="lesson-search">Find a lesson<input type="search" id="lesson-search" placeholder="Title, vocabulary, or topic" autocomplete="off"></label>
+                  <label for="lesson-source-filter">Source<select id="lesson-source-filter"><option value="all">All sources</option><option value="path">Curriculum</option><option value="goal">Goal lessons</option><option value="assistant">Assistant</option><option value="import">Imported</option><option value="preparation">Reading requests</option></select></label>
+                  <label for="lesson-status-filter">Progress<select id="lesson-status-filter"><option value="all">Any progress</option><option value="new">Not completed</option><option value="done">Completed</option><option value="covered">Targets covered</option></select></label>
+                  <div class="segmented catalog-view-switch" role="group" aria-label="All lessons layout" data-catalog-view-controls="lesson-grid"><button type="button" data-catalog-layout="list" aria-pressed="true" aria-controls="lesson-grid"><svg aria-hidden="true"><use href="#i-list"/></svg> List</button><button type="button" data-catalog-layout="cards" aria-pressed="false" aria-controls="lesson-grid"><svg aria-hidden="true"><use href="#i-grid"/></svg> Cards</button></div>
+                </div>
+                <p id="lesson-catalog-count" class="small muted" role="status"></p>
+                <div class="lesson-grid" id="lesson-grid" data-catalog-view="list"></div>
+                <nav class="learning-catalog-pager" aria-label="Lesson results"><button type="button" class="button secondary" id="lesson-results-previous">Previous</button><span id="lesson-results-page" class="small muted"></span><button type="button" class="button secondary" id="lesson-results-next">Next</button></nav>
+                <p class="small muted">Use + to add any lesson to a goal, including imported textbook chapters. Adding lessons does not change the tier's objective count.</p>
+              </section>
             </div>
             <div id="lesson-detail" hidden>
-              <div class="lesson-detail-toolbar"><button class="back-link" id="back-to-lessons"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All lessons</button><button class="button secondary" id="restart-lesson">Start from beginning</button><button type="button" class="icon-button theme-toggle" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></div>
+              <div class="lesson-detail-toolbar"><button class="back-link" id="back-to-lessons"><svg aria-hidden="true"><use href="#i-arrow"/></svg> <span id="lesson-back-label">Back to Path</span></button><button class="button secondary" id="restart-lesson">Start from beginning</button><button type="button" class="icon-button theme-toggle" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></div>
+              <p id="lesson-learning-context" class="small muted"></p>
               <h2 id="lesson-detail-title"></h2>
               <article id="lesson-page" class="lesson-page" aria-labelledby="lesson-page-title"></article>
               <nav class="lesson-pagination" aria-label="Lesson pages"><button class="button secondary" id="lesson-previous">Back</button><div><label class="visually-hidden" for="lesson-page-select">Go to lesson page</label><select id="lesson-page-select"></select><output id="lesson-page-count" class="small muted" aria-live="polite"></output></div><button class="button primary" id="lesson-next">Next</button></nav>
             </div>
-            <p class="page-footnote">Sample lessons, freely selectable. Import previews are memory-only; AI extraction and generation are simulated. No course prerequisites or saved completion state is implied.</p>
+            <p class="page-footnote">Authored sample curriculum, not the full HSK syllabus. All lessons are open; progress lasts until reload. AI extraction and generation are simulated.</p>
           </section>
 
           <section class="screen" id="practice" aria-labelledby="practice-title" hidden>
@@ -306,9 +325,9 @@
             </section>
             <section id="dictionary-learning-panel" aria-label="My learning set" hidden>
             <div class="dictionary-summary"><span class="tile-icon green"><svg><use href="#i-dictionary"/></svg></span><div><h2>Your learning set</h2><p><span id="dictionary-count">3</span> tracked items &middot; From reading, lookup, and Assistant</p></div><a href="#review" class="button secondary">Review in context</a></div>
-            <div class="library-toolbar"><label class="search-field dictionary-search"><svg><use href="#i-search"/></svg><input id="dictionary-search" type="search" placeholder="Find a word, meaning, or romanization" aria-label="Search dictionary"></label><label class="small muted">Learning state <select id="dictionary-filter"><option value="all">All states</option><option>Practicing</option><option>Learned</option></select></label></div>
-            <div class="dictionary-table-wrap"><table class="dictionary-table"><thead><tr><th scope="col">WORD</th><th scope="col">MEANING</th><th scope="col">STATE</th><th scope="col">ENCOUNTERED IN</th><th scope="col">NEXT STEP</th></tr></thead><tbody id="dictionary-rows"></tbody></table></div><div class="empty-state" id="dictionary-empty" hidden><h2>No matching words yet</h2><p>Change your search or add a word from the reader.</p></div>
-            <div class="dictionary-note"><svg><use href="#i-leaf"/></svg><div><h3>More than a vocabulary count.</h3><p>Reading exposure, hints, active recall, and delayed reviews tell different parts of the story. Revealing a word isn't the same as mastering it.</p></div></div>
+            <div class="library-toolbar"><label class="search-field dictionary-search"><svg><use href="#i-search"/></svg><input id="dictionary-search" type="search" placeholder="Find a word, meaning, or romanization" aria-label="Search dictionary"></label></div>
+            <div class="dictionary-table-wrap"><table class="dictionary-table"><thead><tr><th scope="col">WORD</th><th scope="col">MEANING</th><th scope="col">SKILL STATES</th><th scope="col">ENCOUNTERED IN</th><th scope="col">NEXT STEP</th></tr></thead><tbody id="dictionary-rows"></tbody></table></div><div class="empty-state" id="dictionary-empty" hidden><h2>No matching words yet</h2><p>Change your search or add a word from the reader.</p></div>
+            <div class="dictionary-note"><svg><use href="#i-leaf"/></svg><div><h3>More than a vocabulary count.</h3><p>Hearing, speaking, reading, and writing have independent states for every word and construct. Revealing a word is not mastery in any of them.</p></div></div>
             </section>
             <p class="page-footnote">This concept follows the experience document's learning-state language. Production tier naming remains a design decision; see the mockup README.</p>
           </section>
@@ -403,6 +422,23 @@
       </form>
     </dialog>
     <dialog id="sample-dialog" aria-labelledby="sample-title"><div class="dialog-heading"><span class="eyebrow">ORIGINAL MICRO SAMPLE</span><button type="button" class="icon-button" data-close-dialog aria-label="Close sample"><svg><use href="#i-close"/></svg></button></div><h2 id="sample-title"></h2><p class="sample-passage" id="sample-passage"></p><p class="small muted">Preview only. The complete reader interaction is demonstrated with the tea house story.</p><div class="dialog-actions"><button class="button secondary" data-close-dialog>Close</button><a href="#reader" class="button primary" data-close-dialog>Try the sample reader <svg><use href="#i-arrow"/></svg></a></div></dialog>
+    <dialog class="collection-dialog learning-dialog" id="learning-progress-dialog" aria-labelledby="learning-progress-title">
+      <div class="dialog-heading"><span class="eyebrow">ONE SHARED PICTURE</span><button type="button" class="icon-button" data-close-dialog aria-label="Close progress"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <h2 id="learning-progress-title">Mandarin / HSK 2 progress</h2>
+      <div class="dialog-scroll" id="learning-progress-content"></div>
+      <div class="dialog-actions"><button type="button" class="button secondary" data-close-dialog>Close</button></div>
+    </dialog>
+    <dialog class="collection-dialog learning-dialog" id="learning-checkpoint-dialog" aria-labelledby="learning-checkpoint-title">
+      <div class="dialog-heading"><span class="eyebrow">OPTIONAL CHECKPOINT / SAMPLE</span><button type="button" class="icon-button" data-close-dialog aria-label="Close checkpoint without saving"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <h2 id="learning-checkpoint-title"></h2>
+      <div class="dialog-scroll" id="learning-checkpoint-content"></div>
+      <div class="dialog-actions"><button type="button" class="button secondary" data-close-dialog>Leave without saving</button><button type="button" class="button primary" id="checkpoint-next">Next</button></div>
+    </dialog>
+    <dialog class="collection-dialog learning-dialog" id="lesson-goal-dialog" aria-labelledby="lesson-goal-title">
+      <div class="dialog-heading"><span class="eyebrow">BUILD YOUR OWN SEQUENCE</span><button type="button" class="icon-button" data-close-dialog aria-label="Close add to goal"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <h2 id="lesson-goal-title">Add lesson to a goal</h2>
+      <form id="lesson-goal-form"><div class="dialog-scroll"><p id="lesson-goal-name"></p><label for="lesson-goal-select">Choose a goal<select id="lesson-goal-select" required></select></label><p class="small muted">This links the existing lesson. Its content, source, and completed progress stay intact. Reorder it in the goal's plan.</p></div><div class="dialog-actions"><button type="button" class="button secondary" data-close-dialog>Cancel</button><button type="submit" class="button primary">Add lesson</button></div></form>
+    </dialog>
     <div class="toast" id="toast" role="status" hidden></div>
   </body>
 </html>

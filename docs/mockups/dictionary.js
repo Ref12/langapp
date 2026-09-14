@@ -7,7 +7,7 @@ Object.assign(words, {
   station: { native: '\u8f66\u7ad9', romanization: 'ch\u0113zh\u00e0n', gloss: 'station', kind: 'WORD / NOUN', example: '\u8f66\u7ad9\u5728\u54ea\u91cc\uff1f', source: 'Where is the station?', tracked: false, learned: false },
 })
 function wordLearningStatus(word) {
-  return word.learned ? 'Learned' : word.tracked ? 'Practicing' : 'Not studied'
+  return `Reading / ${knowledgeFor(word).reading.state}`
 }
 function normalizePinyin(text) {
   return text.toLowerCase().normalize('NFD').replace(/u:|u\u0308/g, 'v')
@@ -92,7 +92,7 @@ function renderLookupCard(id, conversationId = null) {
   add.disabled = word.tracked
   actions.append(add)
   card.append(heading, dictionaryElement('p', 'lookup-meaning', word.gloss), example,
-    dictionaryElement('p', 'small muted', word.source), actions)
+    dictionaryElement('p', 'small muted', word.source), createKnowledgeProfile(word), actions)
   setSnippetActions(example, { lang: example.lang, meaning: word.source, source: `Dictionary example: ${word.gloss}` })
   return card
 }
@@ -120,6 +120,7 @@ function refreshWordState() {
     button.textContent = button.disabled ? 'In learning set' : 'Add to learning set'
   })
   all('[data-word-status]').forEach((label) => { label.textContent = wordLearningStatus(words[label.dataset.wordStatus]) })
+  refreshKnowledgeProfiles()
   document.dispatchEvent(new Event('mockup-words-changed'))
 }
 document.addEventListener('click', (event) => {
@@ -151,5 +152,7 @@ one('#dictionary-lookup').addEventListener('input', renderLookupResults)
 document.addEventListener('mockup-route-changed', (event) => {
   if (event.detail === 'dictionary') renderLookupResults()
 })
+knowledgeFor(words.tea).hearing = { state: 'Learned', evidence: 'Seeded sample listening history, not measured browser playback.' }
+knowledgeFor(words.tea).speaking = { state: 'Introduced', evidence: 'Seeded sample speaking exposure.' }
 renderDictionary()
 renderLookupResults()

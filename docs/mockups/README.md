@@ -76,12 +76,15 @@ AnimCJK's nine tea outlines are preserved in `animcjk-tea.js` from revision
 [Arphic license](character-data-LICENSE.txt). The current-renderer comparison
 and writing exercise share `character-geometry.js` so their curves stay identical.
 
-![Desktop overview: a dark workspace with a tea-house reading card and contextual practice](previews/overview-desktop.png)
+![Desktop overview: shared tier coverage, a contextual next lesson, and learning goals](previews/overview-desktop.png)
 
 | Desktop mockup | Desktop mockup | Phone mockup |
 | --- | --- | --- |
 | [Library](previews/library-desktop.png) | [Library: reading](previews/reader-desktop.png) | [Overview](previews/overview-mobile.png) |
 | [Lessons](previews/lessons-desktop.png) | [Lesson preview](previews/lesson-detail-desktop.png) | [Lessons](previews/lessons-mobile.png) / [Lesson restart](previews/lesson-detail-mobile.png) |
+| [Goal plans](previews/learning-goals-desktop.png) | [Searchable lesson catalog](previews/learning-all-desktop.png) | [Goals](previews/learning-goals-mobile.png) / [All lessons](previews/learning-all-mobile.png) |
+| [Inline word skill states](previews/dictionary-skills-desktop.png) | [Grammar skill states](previews/construct-skills-desktop.png) | [Inline word skill states](previews/dictionary-skills-mobile.png) / [Reader skills](previews/reader-skills-mobile.png) |
+| [Optional checkpoint](previews/learning-checkpoint-desktop.png) | | [Optional checkpoint](previews/learning-checkpoint-mobile.png) |
 | [Practice](previews/practice-desktop.png) | [Assistant](previews/conversation-desktop.png) | [Library: reading](previews/reader-mobile.png) |
 | [Dictionary](previews/dictionary-desktop.png) | [Practice: games](previews/games-desktop.png) | [Practice](previews/practice-mobile.png) / [Games](previews/games-mobile.png) |
 | [Conversation practice recap](previews/conversation-recap-desktop.png) | [Device preview](previews/device-preview.png) | [Assistant thread](previews/assistant-mobile.png) / [Conversation list](previews/conversation-list-mobile.png) |
@@ -113,7 +116,7 @@ scroll in the interactive prototype to explore the rest of each screen.
 
 ### Light theme
 
-![Light overview: pale surfaces, blue accents, and the same colorful reading artwork](previews/overview-light-desktop.png)
+![Light overview: tier coverage and next steps on pale surfaces with blue accents](previews/overview-light-desktop.png)
 
 | Screen | Desktop | Phone |
 | --- | --- | --- |
@@ -121,6 +124,8 @@ scroll in the interactive prototype to explore the rest of each screen.
 | Library | [Library](previews/library-light-desktop.png) / [Import](previews/library-import-light-desktop.png) | [Library](previews/library-light-mobile.png) |
 | Reader | [Reader](previews/reader-light-desktop.png) | [Reader and word help](previews/reader-light-mobile.png) |
 | Lessons | [Lessons](previews/lessons-light-desktop.png) / [Lesson detail](previews/lesson-detail-light-desktop.png) | [Lessons](previews/lessons-light-mobile.png) / [Lesson detail](previews/lesson-detail-light-mobile.png) |
+| Goals and checkpoints | [Goals](previews/learning-goals-light-desktop.png) / [Checkpoint](previews/learning-checkpoint-light-desktop.png) | [Goals](previews/learning-goals-light-mobile.png) / [Checkpoint](previews/learning-checkpoint-light-mobile.png) |
+| Skill-specific knowledge | [Word states](previews/dictionary-skills-light-desktop.png) / [Grammar states](previews/construct-skills-light-desktop.png) | [Word states](previews/dictionary-skills-light-mobile.png) / [Grammar states](previews/construct-skills-light-mobile.png) |
 | Practice | [Exercises](previews/practice-light-desktop.png) / [Games](previews/games-light-desktop.png) | [Exercises](previews/practice-light-mobile.png) / [Games](previews/games-light-mobile.png) |
 | Review and Characters | [Review](previews/review-light-desktop.png) / [Characters](previews/characters-light-desktop.png) | [Review](previews/review-light-mobile.png) / [Characters](previews/characters-light-mobile.png) |
 | Assistant | [Conversation](previews/conversation-light-desktop.png) / [Settings](previews/assistant-settings-light-desktop.png) / [Open mode dropdown](previews/assistant-mode-menu-light-desktop.png) | [Conversation](previews/conversation-light-mobile.png) / [Settings](previews/assistant-settings-light-mobile.png) |
@@ -131,9 +136,9 @@ scroll in the interactive prototype to explore the rest of each screen.
 
 | Screen | Experience | Try it |
 | --- | --- | --- |
-| Overview | A reading-first home with a resume point, review queue, and alternate experiences | Continue the story, start practice, or choose an experience |
+| Overview | Progress-first home with shared tier coverage, a contextual next lesson, goals, and optional checkpoints | Resume your last learning approach, inspect coverage and review needs, or continue reading |
 | Library | Browse, import, create, and read in one experience | Create a story with Assistant, import your material, or append sections; explore the sample reader and vocabulary |
-| Lessons | Guided units introduce vocabulary and grammar together | Create a lesson with Assistant or import textbook text/images; review its vocabulary, grammar, and source |
+| Lessons | Path, Goals, and All lessons offer complementary ways into shared learning | Follow ordered units, create a goal with Assistant, search/import lessons, finish a lesson, or try a checkpoint |
 | Practice | Exercises and Games share one practice space | Open Review, create a custom exercise, or save a non-playable game level brief |
 | Assistant | A learning partner and app-wide creation workspace | Use a reply's actions menu, review and save content, or look up words; continue Conversation, Shadow, dictation, and Voice mode |
 | Dictionary | Shared lookup, a personal learning set, and character writing | Inspect a definition, add a word to your learning set, or open full-screen writing with its pencil action |
@@ -210,11 +215,11 @@ shows the supplied sample information, not an invented AI explanation.
 
 ## Library and Lessons
 
-Both catalogs default to a **compact list** instead of large covers or thumbnail
+Library and **All lessons** default to a **compact list** instead of large covers or thumbnail
 cards. **List / Cards** controls switch the layout without replacing the items.
 Library rows retain reading status, progress, and import/append actions;
-lesson rows show their topic, title, vocabulary/pattern counts, and an Open action.
-On phones, lesson descriptions give way to the essential details.
+lesson rows show their source, title, objective, progress, and contextual actions.
+Path and Goals use compact ordered lesson rows on desktop and mobile.
 
 Each catalog remembers its own layout until reload. Switching views or device
 sizes preserves filters, imports, and navigation state. Newly imported documents
@@ -239,19 +244,90 @@ reading header and a **Back to Library** link. Returning preserves
 search and label filters. Existing `#reader` links remain valid
 for resume links and reading context from Dictionary, Practice, and Lessons.
 
-**Lessons** is a separate top-level destination for guided vocabulary and grammar
-units, rather than recall practice. Three authored previews cover simple requests,
-tomorrow's plans, and asking for locations. Each provides a learning objective,
-an example with romanization and meaning, vocabulary, a reusable pattern, and a
-link to the matching Assistant conversation. The request lesson also links to
-its companion Library story.
+**Lessons** has three complementary entry points, not exclusive learning modes:
 
-Lessons are freely selectable. This design does not decide prerequisites or a
-fixed course sequence, run live lesson generation, or record completion/mastery. **Practice**
-remains the separate place to revisit material through exercises and future games.
-Every opened lesson has a sticky **Start from beginning** action, including
-imported and Assistant-created lessons. It returns to page one without resetting
-learning-set membership or learned words.
+| View | Organization |
+| --- | --- |
+| **Path** | Mandarin / HSK 2 sample tier, six ordered units, two lessons per unit, and an optional checkpoint per unit. Collapse units to avoid a wall of lesson cards. The order is recommended; nothing is locked. |
+| **Goals** | Communication scenarios with short, ordered lesson plans. The cafe example overlaps the request unit and adds a personal preference lesson outside this sample tier. A day-out plan reuses curriculum lessons. |
+| **All lessons** | Search title, vocabulary, and topic; filter by source and progress; browse eight results per page in List or Cards. Imported and Assistant-created lessons join the same catalog. |
+
+Book / Practice / Assistant actions work in every view. In All lessons, **+**
+links an existing lesson to a goal without copying it or losing its source.
+Duplicate links are rejected. **Arrange lesson order** moves steps earlier or
+later, including imported textbook chapters.
+
+**New goal with Assistant** prepares an editable request in a fresh thread,
+preserving other drafts. Cafe and day-out requests can preview authored sample
+sequences. **Add to Goals** explicitly saves the plan and links existing lessons;
+opening a preview does not create a goal or award progress. Other scenarios
+retain the exact request as an empty goal, rather than substituting unrelated
+teaching. Add existing lessons or import material to build that plan. The source
+conversation remains available. Personalized planning and generation are not
+connected.
+
+### Shared tier progress
+
+Overview leads with **curriculum coverage**, initially **38% / 9 of 24 sample
+objectives**. This is a deliberately small illustrative map, **not the full HSK
+syllabus or official tier assignments**. Its objective identities and denominator
+are fixed independently of the lesson count. The first two units, one checkpoint,
+and a familiar drink target have seeded study history.
+
+**Finish lesson** records exposure to its mapped objectives. Merely opening or
+paging through it does not. Different lessons covering the same target count
+once: finishing the cafe request advances the same targets as the Path request.
+Imported/generated copies do not inherit mapping from their preview fixture.
+Unmapped lessons can complete a goal-plan step without changing tier coverage.
+Goal percentages describe finished lessons in the plan, not real-world competence.
+
+**Optional checkpoints** have four authored recognition questions. Try one
+before its lessons to demonstrate existing knowledge. Responses are locked
+after answering, with feedback and Hear / Assistant actions for visible target
+text. Results take effect only on **Save result**; closing discards the attempt.
+Correct answers can add objective coverage, while incorrect answers add review
+needs. Retaking a checkpoint updates its latest result; earlier coverage and
+recognition history remain intact. It does not assess speaking, writing,
+delayed retention, proficiency, or vocabulary mastery.
+
+**Progress details** distinguishes coverage, checkpoint recognition, and
+objectives to revisit. A later mistake does not reduce the completion percentage.
+No lesson or checkpoint changes Dictionary membership or learned flags.
+Continue learning follows the latest Path, Goal, or catalog lesson context and
+resumes its page; after finishing it, Path or Goal recommends the next lesson.
+Reading and the independent three-word review queue remain smaller shortcuts.
+All learning state lasts until reload, including completed lessons and results.
+
+### Four independent skill states
+
+Every word and grammar construct has separate **Hearing, Speaking, Reading,
+and Writing** states. A learner can recognize a word on the page without being
+able to understand it by ear, say it, or write it. There is no averaged
+"mastered word" flag. Each skill can independently be Not studied, Introduced,
+Practicing, Learned, or Mastered; the prototype does not infer delayed mastery.
+
+Dictionary lookup cards, lesson vocabulary pages, and the reader's **Skills,
+example & more** show the four-part profile. Every word in the learning-set
+list shows all four values together, including on mobile, without a skill
+dropdown. **Progress details** also exposes the four states for
+each curriculum word or grammar target. Tea has deliberately uneven sample
+history: Hearing is Learned, Speaking is Introduced, Reading is Practicing,
+and Writing is Not studied.
+
+The reader's **I can read this / Reading needs practice** changes only
+self-reported reading state. Target-reading annotations use that reading
+state, never hearing or speaking ability. Adding a word to the learning set
+is study intent, not a promotion in any skill. Written lesson completion
+records reading exposure; the sample checkpoints provide reading-recognition
+evidence only. Neither upgrades the other skills or automatically marks any
+skill Learned or Mastered. Hear playback and tracing previews likewise do not
+claim listening comprehension or writing mastery.
+
+Every opened lesson retains **Start from beginning**, including imported and
+Assistant-created lessons. Restart returns to page one without erasing coverage,
+completion history, learning-set membership, or learned words. Reopening normally
+resumes the saved page. **Practice** remains the separate place to revisit
+material through exercises and future games.
 
 Lessons use short **pages**, with **Back / Next**, a page count, and a page
 selector for jumping directly to vocabulary, patterns, retained source, or the
@@ -260,7 +336,9 @@ navigation. Resizing or switching themes preserves the current page; unusually
 long metadata, enlarged text, and very short viewports can scroll within a page
 without moving those controls. These are learning previews, not scored lesson runs.
 The catalog's introductory banner and Create / Import controls are hidden while
-a lesson is open, and return with **All lessons**.
+a lesson is open. Its back action returns to the originating Path, Goals, or
+All lessons view. Reading-preparation requests remain requests, with **Ask
+Assistant** rather than a completion action; they never earn coverage.
 
 Each catalog item has **book / practice / chat icons** for Open lesson, Practice,
 and Assistant, in both List and Cards views. Hover or keyboard focus shows the
@@ -493,6 +571,7 @@ New chats start in Conversation mode; Shadow can be applied at any time.
 | --- | --- |
 | Library: **Create story**, beside Import | A story in the normal Library list |
 | Lessons: **Create lesson**, beside Import lesson | A lesson in the normal Lessons list |
+| Overview or Lessons / Goals: **New goal with Assistant** | A goal with an explicitly saved sample lesson sequence, or an empty plan for an unsupported scenario |
 | Practice / Exercises: **Create exercise** | A custom exercise above the built-in exercises |
 | Practice / Games: **Create level** | A custom level content brief, not a playable game |
 | Dictionary: **Ask Assistant**, or a lookup result's Ask action | Shared word lookup and explicit Add to learning set |
@@ -692,7 +771,9 @@ read locally; imported preview content is not saved across reloads. Avoid
 entering sensitive text. Explicit Hear actions are the exception to simulated
 audio: they use only matching, installed local browser voices.
 
-The three-question practice queue and Overview metrics stay fixed. Adding a word
+The three-question practice queue stays fixed. Overview's tier coverage, goal
+completion, and checkpoint/review summaries update through the learning flows
+described above. Adding a word
 updates the sample Dictionary and applicable weaving, not that demonstration
 queue. Reading uses an authored bilingual lexicon and local membership/learned
 flags, not production alignment or knowledge inference. Reading preparation

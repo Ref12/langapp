@@ -28,6 +28,7 @@ h2 { font-weight: 550; font-size: 20px; letter-spacing: -.4px; }
 h3 { font-weight: 550; font-size: 16px; }
 p { line-height: 1.65; }
 .muted, .small.muted { color: var(--muted); }
+.toast { pointer-events: none; }
 .small { font-size: 12px; line-height: 1.6; }
 .accent { color: var(--accent); }
 .eyebrow { font-size: 10px; font-weight: 650; letter-spacing: 1.7px; line-height: 1.5; margin-bottom: 12px; }

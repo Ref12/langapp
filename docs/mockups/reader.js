@@ -49,7 +49,7 @@ function renderPassage() {
       }
       const word = words[token.id]
       const woven = !target && state.weaving && word.tracked && word.weave !== false
-      const annotated = target && state.weaving && !word.learned
+      const annotated = target && state.weaving && !wordReadingLearned(word)
       const element = document.createElement(state.readerPanel ? 'button' : 'span')
       element.className = 'reading-word'
       if (state.readerPanel) {
@@ -86,7 +86,7 @@ function renderPassage() {
     })
     container.append(paragraph)
   })
-  one('#reader-instruction').textContent = `${target ? 'Mandarin text. Weaving adds English meaning and pronunciation below words not yet learned.' : 'English text. Weaving uses words in your learning set where a target-language counterpart is available.'} ${state.readerPanel ? 'Select any word for help in the learning panel.' : 'Learning panel is off. Read or select text without opening word help.'}`
+  one('#reader-instruction').textContent = `${target ? 'Mandarin text. Weaving adds English meaning and pronunciation below words not yet learned for reading.' : 'English text. Weaving uses words in your learning set where a target-language counterpart is available.'} ${state.readerPanel ? 'Select any word for help in the learning panel.' : 'Learning panel is off. Read or select text without opening word help.'}`
   if (focused) all('.reading-word').find((element) => element.dataset.tokenKey === focused)?.focus({ preventScroll: true })
   scroller.scrollTop = scrollTop
 }
@@ -104,7 +104,8 @@ function renderWord() {
   one('#word-state').textContent = wordLearningStatus(word)
   one('#save-word').textContent = word.tracked ? 'In learning set' : 'Add to learning set'
   one('#save-word').disabled = word.tracked
-  one('#mark-known').textContent = word.learned ? 'Mark as not yet learned' : 'I already know this'
+  renderKnowledgeProfile(one('#word-skill-profile'), word)
+  one('#mark-known').textContent = wordReadingLearned(word) ? 'Reading needs practice' : 'I can read this'
   one('#word-lookup-note').hidden = word.weave !== false
   one('#word-lookup-note').textContent = word.weave === false ? 'This English word has no isolated Mandarin equivalent, so Source weaving leaves it in place.' : ''
   setSnippetActions(one('#word-native'), wordSnippetOptions(word, 'Library / A morning at the tea house'))
@@ -148,9 +149,11 @@ one('#reader-text-size').addEventListener('change', (event) => {
 one('#save-word').addEventListener('click', () => addWordToLearningSet(state.word, 'reading'))
 one('#mark-known').addEventListener('click', () => {
   const word = words[state.word]
-  word.learned = !word.learned
+  const reading = knowledgeFor(word).reading
+  reading.state = wordReadingLearned(word) ? 'Practicing' : 'Learned'
+  reading.evidence = 'Self-reported reading state; not an assessment of other skills.'
   refreshWordState()
-  notify(`"${word.gloss}" marked ${word.learned ? 'learned' : 'not yet learned'}. Learning-set membership is unchanged.`)
+  notify(`Reading "${word.gloss}": ${reading.state}. Hearing, speaking, writing, and learning-set membership are unchanged.`)
 })
 document.addEventListener('mockup-words-changed', () => {
   renderWord()

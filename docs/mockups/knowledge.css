@@ -1,0 +1,32 @@
+.knowledge-profile { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 16px 0; width: 100%; }
+.knowledge-profile > div { padding: 10px; background: var(--surface-inset); border: 1px solid var(--line); border-radius: 6px; min-width: 0; }
+.knowledge-profile dt { font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+.knowledge-profile dd { font-size: 12px; margin: 0; overflow-wrap: anywhere; }
+#reader-panel .knowledge-profile { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.knowledge-objective { margin: 10px 0; }
+.knowledge-objective summary { cursor: pointer; min-height: 44px; padding: 10px 0; }
+.knowledge-objective > p[lang] { font-size: 20px; margin-bottom: 8px; }
+.dictionary-skill-states .knowledge-profile { grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 204px; margin: 0; white-space: normal; }
+.dictionary-skill-states .knowledge-profile > div { border: 0; padding: 6px 8px; }
+.dictionary-table .button { min-height: 44px; }
+#mark-known { min-height: 44px; }
+@media (max-width: 760px) {
+  .knowledge-profile { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #reader-panel .knowledge-profile { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+  #reader-panel .knowledge-profile > div { padding: 8px 5px; }
+  #reader-panel .knowledge-profile dd { font-size: 10px; }
+  #reader-panel .panel-heading > #word-state { font-size: 9px; }
+  .dictionary-table { display: block; white-space: normal; }
+  .dictionary-table thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; clip-path: inset(50%); overflow: hidden; }
+  .dictionary-table tbody { display: block; }
+  .dictionary-table tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; padding: 16px; border-top: 1px solid var(--line); }
+  .dictionary-table tr:first-child { border-top: 0; }
+  .dictionary-table td { display: block; padding: 0; border: 0; min-width: 0; overflow-wrap: anywhere; }
+  .dictionary-table td:nth-child(2) { align-self: center; text-align: right; }
+  .dictionary-table td.dictionary-skill-states { grid-column: 1 / -1; }
+  .dictionary-skill-states .knowledge-profile { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; min-width: 0; }
+  .dictionary-skill-states .knowledge-profile > div { padding: 8px 5px; }
+  .dictionary-skill-states .knowledge-profile dd { font-size: 10px; }
+  .dictionary-table .dictionary-source { align-self: center; }
+  .dictionary-table td:last-child { text-align: right; }
+}

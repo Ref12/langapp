@@ -163,7 +163,6 @@ all('[data-preview]').forEach((button) => button.addEventListener('click', () =>
 
 function renderDictionary() {
   const query = one('#dictionary-search').value.trim().toLowerCase()
-  const filter = one('#dictionary-filter').value
   const rows = one('#dictionary-rows')
   rows.replaceChildren()
   const tracked = Object.values(words).filter((word) => word.tracked)
@@ -171,8 +170,6 @@ function renderDictionary() {
   one('#dictionary-count').textContent = String(tracked.length)
   one('#learning-set-count').textContent = String(tracked.length)
   tracked.forEach((word) => {
-    const status = word.learned ? 'Learned' : 'Practicing'
-    if (filter !== 'all' && filter !== status) return
     if (matches && !matches.has(word)) return
     const row = document.createElement('tr')
     const term = document.createElement('td')
@@ -189,10 +186,8 @@ function renderDictionary() {
     const meaning = document.createElement('td')
     meaning.textContent = word.gloss
     const tier = document.createElement('td')
-    const badge = document.createElement('span')
-    badge.className = 'tag green'
-    badge.textContent = status
-    tier.append(badge)
+    tier.className = 'dictionary-skill-states'
+    tier.append(createKnowledgeProfile(word))
     const source = document.createElement('td')
     source.className = 'dictionary-source'
     source.textContent = word.addedFrom === 'assistant' ? 'Assistant / Conversation' : word.addedFrom === 'lookup' ? 'Dictionary / Lookup' : 'Tea house / Reading'
@@ -224,7 +219,6 @@ function renderDictionary() {
   one('.dictionary-table-wrap').hidden = rows.children.length === 0
 }
 one('#dictionary-search').addEventListener('input', renderDictionary)
-one('#dictionary-filter').addEventListener('change', renderDictionary)
 
 const questions = [
   { source: 'I would like a cup of tea.', sentence: '\u6211\u60f3\u559d\u4e00\u676f ____\u3002', options: ['rain', 'tea', 'friend'], answer: 'tea', hint: 'A drink made by steeping leaves. Its pronunciation is ch\u00e1.' },

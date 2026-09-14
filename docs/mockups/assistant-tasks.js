@@ -2,6 +2,7 @@
 const assistantTaskTypes = {
   story: { label: 'Story', destination: 'Library', request: 'Create a short story using tea, cup, and friend as familiar vocabulary. Help me learn "again" and the pattern "would like + action".' },
   lesson: { label: 'Lesson', destination: 'Lessons', request: 'Create a lesson on asking for another cup of tea, using familiar vocabulary and introducing "again".' },
+  goal: { label: 'Learning plan', destination: 'Lessons / Goals', request: 'Help me learn to order at a cafe. Build a short lesson plan I can combine with my curriculum path.' },
   exercise: { label: 'Exercise', destination: 'Practice / Exercises', request: 'Create a custom exercise to practice adding "again" to a request for tea.' },
   game: { label: 'Level brief', destination: 'Practice / Games', request: 'Create a custom game level using tea-house vocabulary and the pattern for asking for something again.' },
   dictionary: { label: 'Word lookup', destination: 'Dictionary', request: 'Look up gong1yuan2' },
@@ -99,9 +100,10 @@ function resolveAssistantTask(thread, text) {
   if (/^(look\s*up|(?:add|save)\s.+\s(?:to|in)\s)/i.test(text)) {
     if (/^look\s*up\s/i.test(text) || /\b(?:dictionary|learning set)\b/i.test(text)) return { kind: 'dictionary', query: lookupQuery(text) }
   }
-  const match = text.match(/^(?:please\s+)?(?:create|write|make|build|generate)\s+(?:me\s+)?(?:a[n]?\s+)?(?:short\s+|custom\s+)?(story|lesson|exercise|game(?:\s+level)?|level)\b/i)
+  if (/^(?:i want to |i(?:'d| would) like to )(?:be able to|learn to)\b|^help me (?:learn to|communicate|talk about)\b/i.test(text)) return { kind: 'goal' }
+  const match = text.match(/^(?:please\s+)?(?:create|write|make|build|generate)\s+(?:me\s+)?(?:a[n]?\s+)?(?:short\s+|custom\s+)?(learning plan|lesson plan|goal|story|lesson|exercise|game(?:\s+level)?|level)\b/i)
   if (!match) return null
-  return { kind: /^game|level/i.test(match[1]) ? 'game' : match[1].toLowerCase() }
+  return { kind: /learning plan|lesson plan|goal/i.test(match[1]) ? 'goal' : /^game|level/i.test(match[1]) ? 'game' : match[1].toLowerCase() }
 }
 function lookupQuery(text) {
   return text.replace(/^look\s*up\s+/i, '').replace(/^(?:add|save)\s+/i, '')
@@ -126,6 +128,10 @@ function addAssistantTaskReply(thread, task, request) {
     readingRequest: task.kind === 'lesson' ? thread.readingRequest : null,
   }
   if (creation.readingRequest) creation.title = `Prepare to read: ${creation.readingRequest.title}`
+  if (creation.kind === 'goal') {
+    creation.goalPlan = buildLearningGoalPlan(request)
+    creation.title = creation.goalPlan.title
+  }
   assistantCreations.set(creation.id, creation)
   thread.messages.push(tutorMessage(creation.readingRequest ? 'I have kept the reading material, language, and scope with this preparation request. This preview does not run live teaching or infer what you know. Review the request before saving it to Lessons.'
     : 'Here is an authored sample showing the creation flow, not content generated from your request or learning profile. Review it before adding it to the app.', undefined, { creationId: creation.id }))
@@ -145,6 +151,10 @@ function renderCreationProvenance(container, id) {
   container.append(details)
 }
 function renderCreationMaterial(container, creation, practice = false) {
+  if (creation.kind === 'goal') {
+    renderLearningGoalPreview(container, creation.goalPlan)
+    return
+  }
   if (creation.readingRequest) {
     renderReadingPreparationPreview(container, creation.readingRequest)
     return
@@ -241,7 +251,9 @@ function saveAssistantCreation(creation) {
     notify('This preview has already been added or discarded.')
     return
   }
-  if (creation.kind === 'story') {
+  if (creation.kind === 'goal') {
+    creation.savedId = saveLearningGoal(creation)
+  } else if (creation.kind === 'story') {
     const document = addLibraryDocument({ title: creation.title, origin: 'assistant', creationId: creation.id,
       parts: [{ reference: 'Authored story preview', format: 'text', files: [], simulated: false, text: creationStory }] })
     creation.savedId = document.id
@@ -280,6 +292,10 @@ function renderCreatedPractice() {
   }
 }
 function openAssistantCreation(creation) {
+  if (creation.kind === 'goal') {
+    openLearningView('goals', creation.savedId)
+    return
+  }
   const target = { story: 'library', lesson: 'lessons', exercise: 'practice', game: 'games' }[creation.kind]
   const open = () => {
     if (creation.kind === 'story') showImportedDocument(creation.savedId)
