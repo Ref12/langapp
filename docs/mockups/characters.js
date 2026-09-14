@@ -9,13 +9,13 @@ function makeCharacterGuides(native) {
       const point = path.getPointAtLength(length * index / steps)
       return [point.x, point.y]
     })
-    return { name: 'Follow the arrow from the start marker', points, path: d }
+    return { points, path: d }
   })
 }
 const characterPhaseNames = ['Full guide', 'One stroke at a time', 'From memory']
 const characterRepetitions = 3
-const characterEntries = new Map(['tea', 'rain', 'cup'].map((id) => [id, words[id]]))
-const characterStrokeGuides = Object.fromEntries([...characterEntries].map(([id, word]) => [id, makeCharacterGuides(word.native)]))
+const characterEntries = new Map()
+const characterStrokeGuides = {}
 const characterCanvas = one('#character-canvas')
 const characterContext = characterCanvas.getContext('2d')
 if (!characterContext) throw new Error('The Characters preview requires a browser with a 2D canvas.')
@@ -23,11 +23,13 @@ if (!characterContext) throw new Error('The Characters preview requires a browse
 function createCharacterDraft() {
   return { phase: 0, attempt: 0, strokes: [[], [], []], finished: false }
 }
-const characterDrafts = new Map(Object.keys(characterStrokeGuides).map((id) => [id, createCharacterDraft()]))
-let characterId = 'tea'
+const characterDrafts = new Map()
+let characterId = null
 let characterPointer = null
 let characterStroke = null
 let characterFeedback = ''
+let characterReturnControl = null
+let characterWasActive = false
 
 function activeCharacterStrokes() {
   const draft = characterDrafts.get(characterId)
@@ -38,20 +40,6 @@ function characterSvg(tag, attributes) {
   for (const [name, value] of Object.entries(attributes)) element.setAttribute(name, value)
   return element
 }
-function characterPath(points) {
-  let d = `M${points[0][0]} ${points[0][1]}`
-  if (points.length === 2) return `${d} L${points[1][0]} ${points[1][1]}`
-  const clamp = (value) => Math.max(0, Math.min(100, value))
-  // Catmull-Rom tangents keep the path continuous through each stroke's centerline.
-  for (let index = 0; index < points.length - 1; index++) {
-    const before = points[Math.max(0, index - 1)], start = points[index]
-    const end = points[index + 1], after = points[Math.min(points.length - 1, index + 2)]
-    const c1 = start.map((value, axis) => clamp(value + (end[axis] - before[axis]) / 6))
-    const c2 = end.map((value, axis) => clamp(value - (after[axis] - start[axis]) / 6))
-    d += ` C${c1[0]} ${c1[1]} ${c2[0]} ${c2[1]} ${end[0]} ${end[1]}`
-  }
-  return d
-}
 function renderCharacterPrompt() {
   const memory = characterDrafts.get(characterId).phase === 2
   const word = characterEntries.get(characterId)
@@ -60,7 +48,7 @@ function renderCharacterPrompt() {
   native.lang = memory ? 'en' : 'zh-Hans'
   one('#character-meaning').textContent = memory ? word.memoryContext || 'Write the character from memory' : [word.romanization, word.gloss].filter(Boolean).join(' / ')
   snippetAttachments.get(native)?.remove()
-  const actions = createSnippetActions(word.native, wordSnippetOptions(word, word.writingSource || 'Practice / Characters'))
+  const actions = createSnippetActions(word.native, wordSnippetOptions(word, word.writingSource || 'Dictionary / Writing'))
   if (memory) {
     actions.setAttribute('aria-label', 'Character pronunciation and help')
     for (const [action, label] of [['hear', 'Hear the character pronunciation'], ['ask', 'Ask Assistant for help with this character']]) {
@@ -69,7 +57,7 @@ function renderCharacterPrompt() {
       button.dataset.tooltip = label
     }
   }
-  native.after(actions)
+  one('.character-prompt').append(actions)
   snippetAttachments.set(native, actions)
   characterCanvas.setAttribute('aria-label', `Handwriting area for ${word.gloss}`)
 }
@@ -78,7 +66,7 @@ function renderCharacterGuide() {
   const guides = characterStrokeGuides[characterId]
   const count = activeCharacterStrokes().length
   const memory = draft.phase === 2
-  one('#practice-characters').dataset.characterPhase = String(draft.phase)
+  one('#characters').dataset.characterPhase = String(draft.phase)
   const outlines = one('#character-stroke-outlines')
   const direction = one('#character-stroke-direction')
   outlines.replaceChildren()
@@ -108,42 +96,42 @@ function renderCharacterGuide() {
   one('#character-progress').max = guides.length
   one('#character-progress').value = count
   one('#character-attempt').textContent = `Repetition ${draft.attempt + 1} of ${characterRepetitions}`
+  one('#character-phase-label').textContent = `${draft.phase + 1}/3 ${characterPhaseNames[draft.phase]}`
   one('#character-step').textContent = memory ? 'No visual guide'
     : count === guides.length ? 'All strokes traced' : `Stroke ${count + 1} of ${guides.length}`
-  one('#character-direction').textContent = count === guides.length
-    ? draft.attempt < characterRepetitions - 1 ? 'Ready for the next repetition.' : memory ? 'Character written. Ready to finish.' : 'Ready for the next phase.'
-    : memory ? 'Completed strokes snap into place. The next stroke stays hidden.' : guides[count].name
   one('#character-help').textContent = [
     'Trace the full outline. Start at the blue dot and follow the arrow.',
     'Only the current stroke is shown. Complete it to reveal the next guide.',
     'Write without a character model or stroke hints. Use a finger, pen, or mouse.',
   ][draft.phase]
-  all('[data-character-phase-step]').forEach((step, index) => {
-    if (index === draft.phase) step.setAttribute('aria-current', 'step')
-    else step.removeAttribute('aria-current')
-    step.classList.toggle('completed', index < draft.phase || draft.finished)
-  })
+}
+function characterViewport(bounds) {
+  const size = Math.min(bounds.width, bounds.height)
+  return { size, left: (bounds.width - size) / 2, top: (bounds.height - size) / 2 }
 }
 function paintCharacter() {
   const bounds = characterCanvas.getBoundingClientRect()
   if (!bounds.width || !bounds.height) return
   const ratio = window.devicePixelRatio || 1
+  const viewport = characterViewport(bounds)
+  const scale = ratio * viewport.size / 100
   characterCanvas.width = Math.round(bounds.width * ratio)
   characterCanvas.height = Math.round(bounds.height * ratio)
-  characterContext.setTransform(ratio, 0, 0, ratio, 0, 0)
+  // Match the SVG's centered square without stretching strokes on tall or wide screens.
+  characterContext.setTransform(scale, 0, 0, scale, viewport.left * ratio, viewport.top * ratio)
   characterContext.strokeStyle = getComputedStyle(characterCanvas).color
   characterContext.fillStyle = characterContext.strokeStyle
-  characterContext.lineWidth = bounds.width * 0.018
+  characterContext.lineWidth = 1.8
   characterContext.lineCap = 'round'
   characterContext.lineJoin = 'round'
   for (const stroke of characterStroke ? [characterStroke] : []) {
     characterContext.beginPath()
     if (stroke.length === 1) {
-      characterContext.arc(stroke[0][0] * bounds.width / 100, stroke[0][1] * bounds.height / 100, characterContext.lineWidth / 2, 0, Math.PI * 2)
+      characterContext.arc(stroke[0][0], stroke[0][1], characterContext.lineWidth / 2, 0, Math.PI * 2)
       characterContext.fill()
     } else {
-      characterContext.moveTo(stroke[0][0] * bounds.width / 100, stroke[0][1] * bounds.height / 100)
-      for (const [x, y] of stroke.slice(1)) characterContext.lineTo(x * bounds.width / 100, y * bounds.height / 100)
+      characterContext.moveTo(...stroke[0])
+      for (const [x, y] of stroke.slice(1)) characterContext.lineTo(x, y)
       characterContext.stroke()
     }
   }
@@ -158,7 +146,8 @@ function updateCharacterControls() {
   one('#character-next-phase').textContent = draft.finished ? 'Practice again'
     : draft.attempt < characterRepetitions - 1 ? 'Repeat' : draft.phase === 2 ? 'Finish writing' : 'Next phase'
   const message = characterFeedback || (draft.finished ? 'Three repetitions in each phase finished. No mastery score is assigned.'
-    : `${count} of ${total} strokes ${draft.phase === 2 ? 'written from memory' : 'traced'}. Phase ${draft.phase + 1} of 3: ${characterPhaseNames[draft.phase]}.`)
+    : count === total ? `Character complete. Choose ${one('#character-next-phase').textContent} to continue.`
+    : `${count} of ${total} strokes. ${draft.phase === 2 ? 'Write from memory.' : 'Follow the blue dot and arrow.'}`)
   if (one('#character-status').textContent !== message) one('#character-status').textContent = message
   renderCharacterGuide()
 }
@@ -231,9 +220,10 @@ function finishCharacterStroke(commit = false) {
 }
 function characterPoint(event) {
   const bounds = characterCanvas.getBoundingClientRect()
+  const viewport = characterViewport(bounds)
   return [
-    Math.max(0, Math.min(100, (event.clientX - bounds.left) / bounds.width * 100)),
-    Math.max(0, Math.min(100, (event.clientY - bounds.top) / bounds.height * 100)),
+    (event.clientX - bounds.left - viewport.left) / viewport.size * 100,
+    (event.clientY - bounds.top - viewport.top) / viewport.size * 100,
   ]
 }
 characterCanvas.addEventListener('pointerdown', (event) => {
@@ -270,8 +260,22 @@ for (const type of ['pointercancel', 'lostpointercapture']) {
 }
 window.addEventListener('blur', () => finishCharacterStroke())
 document.addEventListener('mockup-theme-changed', paintCharacter)
-document.addEventListener('mockup-route-changed', () => {
-  if (one('#practice-characters').hidden) finishCharacterStroke()
+document.addEventListener('mockup-route-changed', (event) => {
+  if (event.detail !== 'characters') {
+    finishCharacterStroke()
+    one('#character-info-dialog').close()
+  }
+  if (characterWasActive && event.detail === 'dictionary') requestAnimationFrame(() => {
+    if (document.body.dataset.screen !== 'dictionary') return
+    const fallback = one('#dictionary-lookup-panel').hidden ? one('#dictionary-search') : one('#dictionary-lookup')
+    const replacement = all('#dictionary [data-write-word]').find((button) =>
+      button.dataset.writeWord === characterReturnControl?.dataset.writeWord && button.getClientRects().length)
+    const target = characterReturnControl?.isConnected && characterReturnControl.getClientRects().length
+      ? characterReturnControl : replacement || fallback
+    target.focus({ preventScroll: true })
+    target.scrollIntoView({ block: 'nearest' })
+  })
+  characterWasActive = event.detail === 'characters'
 })
 function selectPracticeCharacter(id) {
   if (!Object.hasOwn(characterStrokeGuides, id)) {
@@ -280,13 +284,13 @@ function selectPracticeCharacter(id) {
   }
   finishCharacterStroke()
   characterId = id
+  one('#characters').dataset.character = id
   characterFeedback = ''
-  all('[data-character]').forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.character === id)))
   renderCharacterPrompt()
   updateCharacterControls()
   paintCharacter()
 }
-function openCharacterPractice(word, index = 0) {
+function openCharacterPractice(word, index = 0, returnControl = null) {
   const characters = Array.from(word.native).filter((character) => /\p{Script=Han}/u.test(character))
   const native = characters[index]
   if (!Object.hasOwn(characterStrokeData, native)) {
@@ -305,20 +309,9 @@ function openCharacterPractice(word, index = 0) {
     characterEntries.set(id, definition)
     characterStrokeGuides[id] = makeCharacterGuides(native)
     characterDrafts.set(id, createCharacterDraft())
-    const button = document.createElement('button')
-    button.type = 'button'
-    button.dataset.character = id
-    button.setAttribute('aria-label', `Practice writing ${native}`)
-    const glyph = document.createElement('span')
-    glyph.lang = 'zh-Hans'
-    glyph.textContent = native
-    const label = document.createElement('small')
-    label.textContent = definition.memoryPrompt || definition.gloss.split(' / ')[0]
-    button.append(glyph, label)
-    one('.character-picker').append(button)
     entry = [id, definition]
   }
-  one('#character-dictionary-back').hidden = location.hash !== '#dictionary'
+  characterReturnControl = returnControl
   selectPracticeCharacter(entry[0])
   location.hash = '#characters'
   requestAnimationFrame(() => {
@@ -328,9 +321,9 @@ function openCharacterPractice(word, index = 0) {
     scrollWorkspaceToTop()
   })
 }
-one('.character-picker').addEventListener('click', (event) => {
-  const button = event.target.closest('[data-character]')
-  if (button) selectPracticeCharacter(button.dataset.character)
+one('#character-info').addEventListener('click', () => {
+  finishCharacterStroke()
+  one('#character-info-dialog').showModal()
 })
 one('#character-undo').addEventListener('click', () => {
   finishCharacterStroke()
@@ -368,7 +361,7 @@ one('#character-next-phase').addEventListener('click', () => {
   updateCharacterControls()
   paintCharacter()
 })
-new ResizeObserver(paintCharacter).observe(characterCanvas)
-renderCharacterPrompt()
-updateCharacterControls()
-paintCharacter()
+new ResizeObserver(() => {
+  finishCharacterStroke()
+  paintCharacter()
+}).observe(characterCanvas)

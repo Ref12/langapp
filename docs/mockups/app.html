@@ -15,6 +15,7 @@
     <script src="./reader.js" defer></script>
     <script src="./library.js" defer></script>
     <script src="./character-data.js" defer></script>
+    <script src="./character-geometry.js" defer></script>
     <script src="./characters.js" defer></script>
     <script src="./lessons.js" defer></script>
     <script src="./lesson-practice.js" defer></script>
@@ -34,6 +35,7 @@
         <symbol id="i-stack" viewBox="0 0 24 24"><path d="M5 4h5v16H5zM14 5l5-1 3 15-5 1ZM2 20h20"/></symbol>
         <symbol id="i-practice" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/></symbol>
         <symbol id="i-write" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14Zm0 0 5-1-5-5M12 21h9"/></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
         <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11a9 9 0 0 1-9 9H4l-2 2V11a9 9 0 0 1 19 0Z"/><path d="M7 9h9M7 13h6"/></symbol>
         <symbol id="i-dictionary" viewBox="0 0 24 24"><path d="M5 3h15v18H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM5 17h15M8 12l3-6 3 6M9 10h4"/></symbol>
         <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 7h10c3 0 6 10 3 12-2 1-4-3-5-3H9c-1 0-3 4-5 3C1 17 4 7 7 7Z"/><path d="M7 10v5M4.5 12.5h5M16 11h.01M19 14h.01"/></symbol>
@@ -221,11 +223,10 @@
                 <p id="lesson-practice-boundary" class="import-notice" hidden>This preparation request has no authored vocabulary yet. Ask the Assistant to create an exercise from its retained material.</p>
               </section>
               <div id="general-exercises">
-              <div class="exercise-intro creation-heading"><div><h2 id="exercises-title">Choose an exercise.</h2><p class="small muted">Recall a word, or learn its shape. Pick what you want to work on.</p></div><button class="button secondary" data-assistant-task="exercise"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create exercise</button></div>
+              <div class="exercise-intro creation-heading"><div><h2 id="exercises-title">Choose an exercise.</h2><p class="small muted">Recall words in context, or create an exercise for what you want to learn.</p></div><button class="button secondary" data-assistant-task="exercise"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create exercise</button></div>
               <section class="created-practice" id="created-exercises" aria-labelledby="created-exercises-title" hidden><h3 id="created-exercises-title">Your custom exercises</h3><div id="created-exercise-list"></div></section>
               <div class="exercise-grid">
                 <article class="exercise-card"><div class="exercise-card-heading"><span class="tile-icon green"><svg aria-hidden="true"><use href="#i-practice"/></svg></span><div><h3>Review</h3><span class="small muted">Contextual recall</span></div></div><p>Revisit words from your reading with a short, focused review.</p><a class="button primary" href="#review">Open Review <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
-                <article class="exercise-card"><div class="exercise-card-heading"><span class="tile-icon lavender exercise-glyph" aria-hidden="true">&#x5B57;</span><div><h3>Characters</h3><span class="small muted">Individual character writing</span></div></div><p>Practice writing a character by hand, with a guide when you need it.</p><a class="button secondary" href="#characters">Open Characters <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
               </div>
               </div>
             </section>
@@ -234,29 +235,28 @@
             <div class="exercise-heading"><h2 id="review-title">Review</h2><span class="small muted">Recall words in context.</span></div>
             <div class="practice-layout"><div><div class="practice-progress"><span id="question-count">01 / 03</span><progress id="quiz-progress" value="0" max="3" aria-label="Practice session progress">0 of 3</progress><span class="small muted">Contextual recall</span></div><article class="practice-card" id="quiz-card"><div class="card-topline"><span class="eyebrow">COMPLETE THE THOUGHT</span><span class="tag green">English to Mandarin</span></div><p class="practice-source">FROM: A MORNING AT THE TEA HOUSE</p><h2 id="quiz-source">I would like a cup of tea.</h2><p class="quiz-sentence" id="quiz-sentence" lang="zh-Hans"></p><p class="muted">Choose the word that completes the sentence.</p><div id="quiz-options" class="quiz-options"></div><div id="quiz-feedback" class="quiz-feedback" role="status"></div><div class="practice-controls"><button class="button quiet" id="quiz-hint">Give me a hint</button><button class="button primary" id="quiz-check" disabled>Check answer <svg><use href="#i-arrow"/></svg></button></div></article><article class="practice-card practice-complete" id="quiz-complete" hidden><span class="completion-icon"><svg><use href="#i-check"/></svg></span><p class="eyebrow accent">A LITTLE MORE FAMILIAR</p><h2>Time well spent.</h2><p id="quiz-summary"></p><p class="muted">One session is evidence, not mastery. These are illustrative results only.</p><div class="button-row"><a href="#reader" class="button primary">Back to the story <svg><use href="#i-arrow"/></svg></a><button class="button secondary" id="restart-quiz">Try again</button></div></article></div><aside class="practice-aside"><span class="tile-icon lavender"><svg><use href="#i-practice"/></svg></span><h2>Learning that travels.</h2><p>Today's practice comes from your tea house story. These same words belong in your reading, your dictionary, and your conversations.</p><div class="mini-rule"></div><h3>Support is part of learning.</h3><p>A hint helps you move forward. It also tells the app what needs another look.</p><span class="tag">Hints are recorded separately</span><p class="small muted">Matching, sentence-building, listening, and reverse recall would use this same focused workspace.</p></aside></div>
             </section>
-            <section id="practice-characters" data-practice-panel="characters" aria-labelledby="characters-title" hidden>
-              <a class="back-link" href="#practice"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All exercises</a>
-              <a class="back-link character-dictionary-back" id="character-dictionary-back" href="#dictionary" hidden>Back to Dictionary</a>
-              <div class="exercise-heading"><h2 id="characters-title">Characters</h2><span class="small muted">Write one character at a time.</span><button type="button" class="icon-button theme-toggle character-theme" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></div>
-              <div class="practice-layout">
-                <article class="practice-card character-workspace">
-                  <ol class="character-phases" aria-label="Writing practice phases"><li data-character-phase-step aria-current="step"><span>1</span> Full guide</li><li data-character-phase-step><span>2</span> One stroke at a time</li><li data-character-phase-step><span>3</span> From memory</li></ol>
-                  <div class="character-topline"><div><span id="character-native" class="character-native" lang="zh-Hans">&#x8336;</span><span id="character-meaning" class="small muted">ch&aacute; / tea</span></div></div>
-                  <p class="small muted" id="character-help">Trace the full outline. Start at the blue dot and follow the arrow.</p>
-                  <div class="character-guidance"><strong id="character-step">Stroke 1 of 9</strong><span class="tag" id="character-attempt">Repetition 1 of 3</span><span class="small muted" id="character-direction"></span><progress id="character-progress" value="0" max="9" aria-label="Strokes traced in this repetition"></progress></div>
-                  <div class="character-pad"><svg class="character-guide" id="character-guide-layer" viewBox="0 0 100 100" aria-hidden="true"><defs><marker id="character-direction-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 9 5 1 9Z" class="character-arrow-head"/></marker></defs><g id="character-stroke-outlines"></g><g id="character-stroke-direction"></g></svg><canvas id="character-canvas" width="400" height="400" tabindex="0" aria-label="Handwriting area for tea" aria-describedby="character-help character-boundary">Writing practice requires a finger, pen, or mouse and browser canvas support.</canvas></div>
-                  <div class="character-actions"><button class="button secondary" id="character-undo" disabled>Undo stroke</button><button class="button quiet" id="character-clear" disabled>Clear attempt</button><button class="button primary" id="character-next-phase" disabled>Repeat</button></div>
-                  <p class="small muted" id="character-status" role="status">0 of 9 strokes traced.</p>
-                </article>
-                <aside class="practice-aside character-aside"><h3>Choose a character</h3><div class="character-picker" role="group" aria-label="Sample characters"><button data-character="tea" aria-pressed="true" aria-label="Practice tea"><span lang="zh-Hans">&#x8336;</span><small>tea</small></button><button data-character="rain" aria-pressed="false" aria-label="Practice rain"><span lang="zh-Hans">&#x96E8;</span><small>rain</small></button><button data-character="cup" aria-pressed="false" aria-label="Practice cup"><span lang="zh-Hans">&#x676F;</span><small>cup</small></button></div><div class="mini-rule"></div><h3>Less support, one phase at a time.</h3><p>Repeat each phase three times: full outline, one stroke at a time, then from memory without a visual model.</p><p>Approximate strokes are welcome. Correct strokes snap into place in every phase. Undo or clear the current attempt to try again.</p><p>Each character keeps its own phase, repetition, and writing until reload. Open more characters from Dictionary.</p><p id="character-boundary">Forgiving direction and shape checking, not handwriting recognition or a mastery score. The next stroke stays hidden in the memory phase.</p><p class="character-data-license">Stroke data: &copy; 1999 Arphic Technology Co., Ltd., adapted via Hanzi Writer Data. No warranty. Redistributable under the <a href="./character-data-LICENSE.txt" target="_blank" rel="noopener">ARPHIC PUBLIC LICENSE</a>.</p></aside>
-              </div>
-            </section>
             <section id="practice-games" data-practice-panel="games" aria-labelledby="games-title" hidden>
               <div class="creation-heading"><h2 id="games-title">Games</h2><button class="button secondary" data-assistant-task="game"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create level</button></div>
               <section class="created-practice" id="created-games" aria-labelledby="created-games-title" hidden><h3 id="created-games-title">Your custom level briefs</h3><div id="created-game-list"></div></section>
               <article class="games-concept"><div><span class="tile-icon sand"><svg><use href="#i-game"/></svg></span><h2>Practice can<br>have a lighter side.</h2><p>Games live here alongside exercises: another way to practice without leaving your learning journey behind.</p><div class="game-boundary"><span class="eyebrow">INTENTIONALLY OPEN</span><p>This is a placeholder for playful practice. Game types, rules, scoring, and progression are not part of this design pass.</p></div><a href="#practice" class="button secondary">Explore exercises <svg><use href="#i-arrow"/></svg></a></div><div class="play-art" aria-hidden="true"><div class="play-orbit orbit-one"></div><div class="play-orbit orbit-two"></div><div class="play-tile tile-one"><svg><use href="#i-practice"/></svg></div><div class="play-tile tile-two"><svg><use href="#i-leaf"/></svg></div><div class="play-tile tile-three"><svg><use href="#i-game"/></svg></div><span class="art-caption">CURIOSITY, IN A DIFFERENT FORM.</span></div></article>
               <p class="page-footnote">Games are a future practice format. This mockup does not use the mechanics described in games.md.</p>
             </section>
+          </section>
+
+          <section class="screen character-workspace" id="characters" aria-labelledby="characters-title" hidden>
+            <header class="character-topline">
+              <h1 id="characters-title" class="visually-hidden" tabindex="-1">Character writing</h1>
+              <a class="icon-button character-back" id="character-dictionary-back" href="#dictionary" aria-label="Back to Dictionary"><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <div class="character-prompt"><div class="character-labels"><span id="character-native" class="character-native" lang="zh-Hans"></span><span id="character-meaning" class="small muted"></span></div></div>
+            </header>
+            <div class="character-stage">
+              <div class="character-guidance"><span id="character-phase-label"></span><span id="character-attempt"></span><strong id="character-step"></strong><progress id="character-progress" value="0" max="1" aria-label="Strokes traced in this repetition"></progress></div>
+              <div class="character-pad"><svg class="character-guide" id="character-guide-layer" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><defs><marker id="character-direction-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 9 5 1 9Z" class="character-arrow-head"/></marker></defs><g id="character-stroke-outlines"></g><g id="character-stroke-direction"></g></svg><canvas id="character-canvas" width="400" height="400" tabindex="0" aria-label="Handwriting area" aria-describedby="character-help character-boundary">Writing practice requires a finger, pen, or mouse and browser canvas support.</canvas></div>
+            </div>
+            <footer class="character-footer">
+              <p class="small muted" id="character-status" role="status"></p>
+              <div class="character-actions"><button class="button secondary" id="character-undo" aria-label="Undo stroke" disabled>Undo</button><button class="button quiet" id="character-clear" aria-label="Clear this attempt" disabled>Clear</button><button class="icon-button" id="character-info" aria-label="Writing help and appearance" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#i-info"/></svg></button><button class="button primary" id="character-next-phase" disabled>Repeat</button></div>
+            </footer>
           </section>
 
           <section class="screen" id="conversation" aria-labelledby="conversation-title" hidden>
@@ -332,6 +332,15 @@
       </div>
       <p id="assistant-settings-help">Mode applies to this conversation. Speed applies to Mandarin; English stays at 1x. Appearance applies throughout the app.</p>
     </section>
+    <dialog id="character-info-dialog" aria-labelledby="character-info-title">
+      <div class="dialog-heading"><h2 id="character-info-title">Writing practice</h2><button type="button" class="icon-button" data-close-dialog aria-label="Close writing help"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <p id="character-help">Start at the blue dot and follow the arrow.</p>
+      <ol class="character-phase-help"><li>Full guide: trace the character with every stroke visible.</li><li>One stroke at a time: finish each stroke to reveal the next.</li><li>From memory: write without a model or upcoming stroke hints.</li></ol>
+      <p>Repeat each phase three times. Correct strokes snap into place in every phase; approximate strokes are welcome. Undo and Clear affect only the current repetition. Return to Dictionary to choose another character; your progress is kept until reload.</p>
+      <p id="character-boundary">Forgiving direction and shape checking, not handwriting recognition or a mastery score.</p>
+      <p class="character-data-license">Stroke data: &copy; 1999 Arphic Technology Co., Ltd., adapted via Hanzi Writer Data. No warranty. Redistributable under the <a href="./character-data-LICENSE.txt" target="_blank" rel="noopener">ARPHIC PUBLIC LICENSE</a>.</p>
+      <button type="button" class="button secondary" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg><span>Appearance</span><span data-theme-label>Dark</span></button>
+    </dialog>
     <dialog id="writing-character-dialog" class="collection-dialog" aria-labelledby="writing-character-title">
       <div class="dialog-heading"><h2 id="writing-character-title">Choose a character to write</h2><button type="button" class="icon-button" data-close-dialog aria-label="Close character chooser"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
       <p id="writing-source-word"></p><p class="small muted">Three repetitions in each phase: full guide, one stroke at a time, then from memory.</p>

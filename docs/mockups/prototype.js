@@ -76,21 +76,26 @@ mobileLayout.addEventListener('change', syncWorkspaceNavigation)
 const practiceRoutes = {
   practice: { panel: 'exercises', label: 'Exercises', badge: 'Choose an exercise' },
   review: { panel: 'review', label: 'Exercises / Review', badge: 'Sample review session' },
-  characters: { panel: 'characters', label: 'Exercises / Characters', badge: 'Handwriting preview' },
   games: { panel: 'games', label: 'Games', badge: 'Games / Concept' },
 }
 
-function route(moveFocus = true) {
+function route(moveFocus = true, redirectedFrom = null) {
   const hash = location.hash.slice(1)
   if (hash === 'main') {
     one('#main').focus()
+    return
+  }
+  if (hash === 'characters' && !one('#characters').dataset.character) {
+    history.replaceState(null, '', '#dictionary')
+    notify('Choose a word in Dictionary, then use its writing button.')
+    route(moveFocus, 'characters')
     return
   }
   const practiceRoute = Object.hasOwn(practiceRoutes, hash) ? practiceRoutes[hash] : null
   const requestedScreen = practiceRoute ? 'practice' : hash
   const id = all('.screen').some((screen) => screen.id === requestedScreen) ? requestedScreen : 'overview'
   const routeId = practiceRoute ? hash : id
-  const navigationId = id === 'reader' || id === 'discover' ? 'library' : id
+  const navigationId = id === 'characters' ? 'dictionary' : id === 'reader' || id === 'discover' ? 'library' : id
   const assistant = id === 'conversation'
   document.body.dataset.screen = id
   syncWorkspaceNavigation()
@@ -111,18 +116,18 @@ function route(moveFocus = true) {
   })
   const label = one(`[data-nav="${navigationId}"] span`).textContent
   one('#page-label').textContent = label
-  const detail = id === 'reader' ? 'Reading' : id === 'discover' ? 'Discover' : practiceRoute?.label || ''
+  const detail = id === 'characters' ? 'Writing' : id === 'reader' ? 'Reading' : id === 'discover' ? 'Discover' : practiceRoute?.label || ''
   one('#page-detail').hidden = !detail
   one('#page-detail').textContent = detail ? `/ ${detail}` : ''
   document.title = `${label}${detail ? ` / ${detail}` : ''} / LinguaWeave UI concept`
-  if (mobileLayout.matches) {
+  if (mobileLayout.matches && id !== 'characters') {
     one(`[data-nav="${navigationId}"]`).scrollIntoView({ block: 'nearest', inline: 'nearest' })
   }
   if (moveFocus) {
-    one('#main').focus({ preventScroll: true })
+    one(id === 'characters' ? '#characters-title' : '#main').focus({ preventScroll: true })
     scrollWorkspaceToTop()
   }
-  if (window.parent !== window) window.parent.postMessage({ type: 'mockup-route', screen: routeId }, '*')
+  if (window.parent !== window) window.parent.postMessage({ type: 'mockup-route', screen: routeId, redirectedFrom }, '*')
 }
 window.addEventListener('hashchange', () => route())
 window.addEventListener('message', (event) => {

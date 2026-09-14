@@ -1,0 +1,60 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 "Segoe UI", sans-serif; }
+main { max-width: 1440px; margin: 0 auto; padding: 32px; }
+button, input { font: inherit; accent-color: var(--accent); }
+button { min-height: 44px; padding: 10px 15px; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+button:hover { background: var(--surface-hover); }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, p { margin: 0; }
+.comparison-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.eyebrow, .card-label { font-size: 10px; letter-spacing: 1.1px; color: var(--muted); font-weight: 600; }
+h1 { margin-top: 6px; font-size: clamp(25px, 4vw, 38px); font-weight: 600; letter-spacing: -.8px; }
+.subtitle { margin-top: 2px; color: var(--muted); }
+.intro { margin: 20px 0; max-width: 760px; color: var(--text-secondary); }
+.comparison-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.stroke-control { display: flex; align-items: center; flex: 1 1 300px; gap: 12px; }
+.stroke-control label { white-space: nowrap; }
+.stroke-control input { width: 100%; min-width: 60px; height: 44px; }
+.stroke-control output { min-width: 40px; font-variant-numeric: tabular-nums; color: var(--accent); }
+.ghost-control { display: flex; align-items: center; min-height: 44px; gap: 8px; cursor: pointer; }
+.ghost-control input { width: 18px; height: 18px; }
+.comparison-status { min-height: 36px; padding: 8px 2px; font-size: 12px; color: var(--muted); }
+.comparison-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.glyph-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.glyph-card > header { padding: 18px 18px 12px; }
+.glyph-card h2 { margin-top: 6px; font-size: 19px; line-height: 1.25; font-weight: 600; }
+.glyph { display: block; width: 100%; aspect-ratio: 1; color: var(--text); background-color: var(--surface-inset); background-image: linear-gradient(to right, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)), linear-gradient(to bottom, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)); }
+.glyph-stroke { fill: currentColor; stroke: none; }
+.glyph.monoline .glyph-stroke { fill: none; stroke: currentColor; stroke-width: 5.5; stroke-linecap: round; stroke-linejoin: round; }
+.glyph-stroke.future { opacity: 0; }
+body[data-show-remaining="true"] .glyph-stroke.future { opacity: .13; }
+.card-copy { display: flex; flex: 1; flex-direction: column; gap: 12px; padding: 18px; font-size: 13px; }
+.card-detail { color: var(--muted); font-size: 12px; }
+.card-copy a, .study-label { display: flex; align-items: center; min-height: 44px; margin-top: auto; font-size: 12px; }
+.study-label { color: var(--muted); }
+.recognition-note { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 12px 24px; margin: 24px 0; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.recognition-note h2 { margin-top: 5px; font-size: 20px; }
+.recognition-note p { color: var(--text-secondary); font-size: 13px; }
+.recognition-note a { grid-column: 2; width: fit-content; }
+.comparison-notes { display: grid; gap: 10px; color: var(--muted); font-size: 12px; }
+@media (max-width: 1050px) {
+  .comparison-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .glyph { max-height: 360px; }
+}
+@media (max-width: 540px) {
+  main { padding: 20px 12px; }
+  .comparison-heading { align-items: flex-start; gap: 10px; }
+  .comparison-heading button { max-width: 115px; font-size: 12px; }
+  .intro { font-size: 13px; }
+  .comparison-controls { gap: 8px; padding: 10px; font-size: 12px; }
+  .stroke-control { flex-basis: 100%; gap: 8px; }
+  .comparison-grid { gap: 10px; }
+  .glyph-card > header { padding: 12px 10px; min-height: 88px; }
+  .card-label { font-size: 9px; letter-spacing: .5px; }
+  .glyph-card h2 { font-size: 16px; }
+  .card-copy { padding: 12px 10px; font-size: 12px; }
+  .card-detail { font-size: 11px; }
+  .recognition-note { grid-template-columns: minmax(0, 1fr); padding: 16px; }
+  .recognition-note a { grid-column: 1; min-height: 44px; display: flex; align-items: center; }
+}

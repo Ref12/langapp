@@ -16,7 +16,9 @@ The prototype uses relative assets and hash navigation. For example,
 `index.html#reader` opens Library's reading view directly, and
 `index.html#lessons` opens the lesson collection. `index.html#games` opens
 the Games section within Practice. `index.html#practice` opens the Exercises
-chooser; `index.html#review` and `index.html#characters` open individual exercises.
+chooser; `index.html#review` opens the review exercise. Character writing opens
+from a Dictionary entry's pencil action. A fresh `index.html#characters` link
+returns to Dictionary to choose a character rather than opening an arbitrary sample.
 `index.html#discover` opens the separate sample discovery shelf from Library.
 
 Use the **Desktop / Mobile** controls above the app to switch between a fluid
@@ -55,6 +57,24 @@ to keep reading it, or dismiss it with Escape. Touch taps still perform the norm
 action without an extra tooltip-only tap.
 
 ## At a glance
+
+**Writing-style comparison:** open [`writing-comparison.html`](writing-comparison.html)
+to compare tea (&#x8336;) using Hanzi Writer's stock outlines, AnimCJK's actual
+simplified-Chinese outlines, the current prototype renderer, and an original
+clean custom SVG study. All four share a viewing box and color, with synchronized
+stroke reveal and light/dark backgrounds. This is an artwork comparison, not
+four installed practice engines or a recognition benchmark. MyScript is
+documented separately because it has no fixed reference glyph to display.
+The proposed custom artwork is not applied to the app.
+
+[Desktop comparison](previews/writing-comparison-desktop.png) /
+[Dark background](previews/writing-comparison-dark-desktop.png) /
+[Mobile comparison](previews/writing-comparison-mobile.png).
+
+AnimCJK's nine tea outlines are preserved in `animcjk-tea.js` from revision
+`ec5e17cca76c87587790bcbce5ea0b4d4fb753d6`, with attribution and the bundled
+[Arphic license](character-data-LICENSE.txt). The current-renderer comparison
+and writing exercise share `character-geometry.js` so their curves stay identical.
 
 ![Desktop overview: a dark workspace with a tea-house reading card and contextual practice](previews/overview-desktop.png)
 
@@ -114,9 +134,9 @@ scroll in the interactive prototype to explore the rest of each screen.
 | Overview | A reading-first home with a resume point, review queue, and alternate experiences | Continue the story, start practice, or choose an experience |
 | Library | Browse, import, create, and read in one experience | Create a story with Assistant, import your material, or append sections; explore the sample reader and vocabulary |
 | Lessons | Guided units introduce vocabulary and grammar together | Create a lesson with Assistant or import textbook text/images; review its vocabulary, grammar, and source |
-| Practice | Exercises and Games share one practice space | Choose Review or Characters, create a custom exercise, or save a non-playable game level brief |
+| Practice | Exercises and Games share one practice space | Open Review, create a custom exercise, or save a non-playable game level brief |
 | Assistant | A learning partner and app-wide creation workspace | Use a reply's actions menu, review and save content, or look up words; continue Conversation, Shadow, dictation, and Voice mode |
-| Dictionary | Shared lookup and a personal learning set | Look up characters, meaning, or pinyin; inspect a definition, add it to your learning set, and return to its source |
+| Dictionary | Shared lookup, a personal learning set, and character writing | Inspect a definition, add a word to your learning set, or open full-screen writing with its pencil action |
 
 ## Hear and Ask Assistant
 
@@ -124,8 +144,8 @@ Speaker and chat buttons accompany dictionary words and examples, learning-set
 rows, reader word help, lesson vocabulary and examples, Review prompts/options,
 the active character, Assistant phrases/messages/recaps, Voice-mode captions,
 and imported or Assistant-created preview text. Decorative covers and navigation
-glyphs are not pronunciation controls. Character pickers open the character's
-controls; reader words open word help when that panel is enabled.
+glyphs are not pronunciation controls. Dictionary's character chooser opens a
+writing surface with these controls; reader words open word help when enabled.
 
 **Select target-language text** for a compact Hear / Ask toolbar anywhere in
 readable content, including the reader with word help off. **Alt+Enter** moves
@@ -349,8 +369,7 @@ preview content and source metadata are kept in memory until reload.
 ## Practice and Games
 
 **Practice contains Exercises and Games.** Exercises opens a chooser, not a
-review session. **Review** and **Characters** are individual exercise types;
-both offer an **All exercises** link. An open exercise hides the catalog header
+review session. **Review** offers an **All exercises** link. An open exercise hides the catalog header
 and Exercises / Games switch, restoring them when returning to the chooser.
 This also applies to lesson Review and expanded custom exercises.
 
@@ -368,8 +387,27 @@ The Overview quick-review and Dictionary review links open it directly.
 Switching exercises or visiting Games preserves the question, answer, hints,
 and results without restarting the review.
 
-**Characters is writing-only**, using a finger, pen, or mouse. There is no
-typing alternative. Each sample character (tea, rain, or cup) has three phases:
+The existing `#games` link and Overview's play shortcut open the Games section.
+**Explore exercises** returns to the exercise chooser.
+
+Games remain a non-playable concept. Assistant can create and save a custom
+level's content brief, but this does not introduce game types, mechanics,
+scoring, or progression from `games.md`. Custom exercise previews offer an
+unscored answer reveal, separate from the fixed Review queue.
+
+## Dictionary: full-screen writing
+
+**Writing starts only from Dictionary**, not from the Practice menu or an
+in-exercise character picker. It fills the app viewport on desktop and mobile,
+hiding the sidebar, topbar, and mobile navigation. The compact header keeps
+the character, pronunciation/meaning, Hear, Ask Assistant, and Back to Dictionary.
+Small phase/repetition indicators and Undo / Clear / Repeat controls surround
+an edge-to-edge drawing surface; no page scrolling is needed. The centered
+character retains its proportions in portrait and landscape layouts.
+
+Writing help, appearance, and stroke-data attribution live behind the information
+button. The surface is **writing-only**, using a finger, pen, or mouse, with no
+typing alternative. Every selected character has three phases:
 
 1. **Full guide:** see the entire muted outline, with a numbered start marker
    and direction arrow for the current stroke. Completed strokes turn solid.
@@ -384,16 +422,19 @@ while still checking the stroke's general shape and direction. Incorrect attempt
 can be retried without advancing. **Each phase repeats three times.** After the
 first two completed characters, **Repeat** starts the next repetition. After the
 third, **Next phase** moves on; **Finish writing** ends the third memory repetition,
-and **Practice again** begins a fresh round. **Undo stroke** and **Clear attempt**
+and **Practice again** begins a fresh round. **Undo** and **Clear**
 affect only the current repetition, not earlier completed repetitions.
 Each character's phase and strokes survive navigation, theme changes, and device
-resizing until reload. Interrupted pointer gestures do not advance progress.
+resizing until reload. Resizing or leaving mid-stroke cancels the unfinished
+gesture without advancing progress.
 
 Both Dictionary **Look up** and **My learning set** have a pencil action beside
 Hear and Assistant. A single character opens writing practice directly;
 multi-character words open a character chooser. The selected character resumes
 its own phase and repetition without changing learning-set status. **Back to
-Dictionary** preserves the prior lookup or learning-set view.
+Dictionary** preserves the prior lookup or learning-set view and restores focus
+to the originating writing button when it is still available. Assistant lookup
+cards do not offer a separate writing entry point.
 
 The offline bundle covers all **110 Han characters** in the sample dictionary.
 Its stroke geometry comes from
@@ -412,14 +453,6 @@ when using the prototype.
 | Full guide | [Preview](previews/characters-phase-1-desktop.png) | [Preview](previews/characters-phase-1-mobile.png) |
 | One stroke at a time | [Preview](previews/characters-phase-2-desktop.png) | [Preview](previews/characters-phase-2-mobile.png) |
 | From memory | [Preview](previews/characters-phase-3-desktop.png) | [Preview](previews/characters-phase-3-mobile.png) |
-
-The existing `#games` link and Overview's play shortcut open the Games section.
-**Explore exercises** returns to the exercise chooser.
-
-Games remain a non-playable concept. Assistant can create and save a custom
-level's content brief, but this does not introduce game types, mechanics,
-scoring, or progression from `games.md`. Custom exercise previews offer an
-unscored answer reveal, separate from the fixed Review queue.
 
 ## Dictionary: lookup and learning set
 
@@ -638,7 +671,7 @@ Advanced learning logs and AI request/context history remain out of scope.
 | Ideas: conversation / voice mode | Composer settings for mode, target-speech speed, and romanization; separate dictation and hands-free Voice mode entry points |
 | Conversation design feedback | Continuous transcripts and optional practice recaps; a contextual desktop sidebar, or a mobile main-page picker above the unchanged bottom navigation |
 | Shadow mode feedback | Per-conversation behavior changes with explicit shadow, repeat, and explain intents, separate from voice input/output |
-| Ideas: activities; exercise design feedback | Exercises offers Review and Characters, separating recall from individual character writing |
+| Ideas: activities; exercise design feedback | Practice offers recall exercises; Dictionary opens immersive individual character writing |
 | User direction: merge Games into Practice | Exercises and Games share Practice, without importing game details |
 
 ## Deliberate boundaries and open decisions

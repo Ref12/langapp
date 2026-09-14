@@ -43,7 +43,7 @@ function addCharacterPracticeAction(actions, word) {
   if (characters.length > 1) button.setAttribute('aria-haspopup', 'dialog')
   button.addEventListener('click', () => {
     if (characters.length === 1) {
-      openCharacterPractice(word, 0)
+      openCharacterPractice(word, 0, button)
       return
     }
     const dialog = one('#writing-character-dialog')
@@ -60,7 +60,7 @@ function addCharacterPracticeAction(actions, word) {
       choice.append(glyph, dictionaryElement('small', '', `${index + 1} of ${characters.length}`))
       choice.addEventListener('click', () => {
         dialog.close()
-        openCharacterPractice(word, index)
+        openCharacterPractice(word, index, button)
       })
       choices.append(choice)
     })
@@ -81,7 +81,7 @@ function renderLookupCard(id, conversationId = null) {
   status.dataset.wordStatus = id
   heading.append(native, reading, dictionaryElement('span', 'tag', word.kind), status)
   const textActions = setSnippetActions(native, wordSnippetOptions(word, 'Dictionary word'))
-  addCharacterPracticeAction(textActions, word)
+  if (!conversationId) addCharacterPracticeAction(textActions, word)
   const example = dictionaryElement('p', 'lookup-example', word.example)
   example.lang = word.nativeLanguage || 'zh-Hans'
   const actions = dictionaryElement('div', 'button-row', '')

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Tea / Writing style comparison</title>
+    <link rel="stylesheet" href="./theme.css">
+    <link rel="stylesheet" href="./writing-comparison.css">
+    <script src="./character-data.js" defer></script>
+    <script src="./character-geometry.js" defer></script>
+    <script src="./animcjk-tea.js" defer></script>
+    <script src="./writing-comparison.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="comparison-heading">
+        <div><p class="eyebrow">WRITING / VISUAL COMPARISON</p><h1><span lang="zh-Hans">&#x8336;</span>, side by side</h1><p class="subtitle">ch&aacute; / tea / nine strokes</p></div>
+        <button type="button" id="comparison-theme" aria-pressed="false">Dark background</button>
+      </header>
+      <p class="intro">Two source datasets, our current rendering, and one clean custom direction. Same character box and ink color; each design keeps its own proportions.</p>
+      <div class="comparison-controls" aria-label="Comparison controls">
+        <div class="stroke-control"><label for="comparison-strokes">Strokes shown</label><input type="range" id="comparison-strokes" min="0" max="9" step="1" value="9"><output id="comparison-count" for="comparison-strokes">9 / 9</output></div>
+        <button type="button" id="comparison-replay">Replay strokes</button>
+        <button type="button" id="comparison-full">Show full</button>
+        <label class="ghost-control"><input type="checkbox" id="comparison-ghost">Show remaining strokes</label>
+      </div>
+      <p class="comparison-status" id="comparison-status" role="status">All nine strokes shown. This is an artwork comparison, not a handwriting quiz.</p>
+      <section class="comparison-grid" aria-label="Four renderings of tea">
+        <article class="glyph-card">
+          <header><span class="card-label">A / STOCK ARTWORK</span><h2 id="hanzi-title">Hanzi Writer</h2></header>
+          <svg id="glyph-hanzi" class="glyph" viewBox="0 0 100 100" role="img" aria-labelledby="hanzi-title hanzi-description"></svg>
+          <div class="card-copy"><p id="hanzi-description">Original filled stroke outlines. Tapered ends, variable weight, and a brush-like character shape.</p><p class="card-detail">Hanzi Writer Data 2.0.1. Geometry unchanged; shown in our shared color and size.</p><a href="https://hanziwriter.org/demo.html" target="_blank" rel="noopener noreferrer">Library demo &#x2197;</a></div>
+        </article>
+        <article class="glyph-card">
+          <header><span class="card-label">B / ALTERNATIVE ARTWORK</span><h2 id="animcjk-title">AnimCJK</h2></header>
+          <svg id="glyph-animcjk" class="glyph" viewBox="0 0 100 100" role="img" aria-labelledby="animcjk-title animcjk-description"></svg>
+          <div class="card-copy"><p id="animcjk-description">Actual simplified-Chinese stroke outlines. Revised geometry, but still from the same Kaiti-font family.</p><p class="card-detail">Source paths and order preserved. This is not automatically a sans-serif replacement.</p><a href="https://github.com/parsimonhi/animCJK/blob/ec5e17cca76c87587790bcbce5ea0b4d4fb753d6/svgsZhHans/33590.svg" target="_blank" rel="noopener noreferrer">Exact source glyph &#x2197;</a></div>
+        </article>
+        <article class="glyph-card">
+          <header><span class="card-label">C / CURRENT PROTOTYPE</span><h2 id="current-title">Our renderer</h2></header>
+          <svg id="glyph-current" class="glyph monoline" viewBox="0 0 100 100" role="img" aria-labelledby="current-title current-description"></svg>
+          <div class="card-copy"><p id="current-description">Smoothed brush-font centerlines with round caps. Even weight, but the original hooks and bends remain.</p><p class="card-detail">Uses the exact geometry helper and stroke width of the current writing screen.</p><a href="./index.html#dictionary">Open prototype &#x2197;</a></div>
+        </article>
+        <article class="glyph-card">
+          <header><span class="card-label">D / ORIGINAL STYLE STUDY</span><h2 id="custom-title">Clean custom SVG</h2></header>
+          <svg id="glyph-custom" class="glyph monoline" viewBox="0 0 100 100" role="img" aria-labelledby="custom-title custom-description"></svg>
+          <div class="card-copy"><p id="custom-description">Purpose-drawn strokes: level bars, upright stems, gentle diagonal curves, and a restrained hook.</p><p class="card-detail">An original nine-stroke design study, not a production font, library default, or Duolingo asset.</p><span class="study-label">Not applied to the app</span></div>
+        </article>
+      </section>
+      <section class="recognition-note" aria-labelledby="myscript-title">
+        <div><span class="card-label">DIFFERENT CATEGORY</span><h2 id="myscript-title">MyScript iink</h2></div>
+        <p><strong>No fixed tea glyph to compare.</strong> MyScript renders the learner's ink and recognizes handwriting; it does not provide the reference stroke artwork for this exercise. Its appearance would depend on what you draw and how the integration styles it. No MyScript SDK or recognition service is running here.</p>
+        <a href="https://myscript.github.io/iinkJS/docs/" target="_blank" rel="noopener noreferrer">SDK documentation &#x2197;</a>
+      </section>
+      <footer class="comparison-notes">
+        <p><strong>What this shows:</strong> real source artwork for A and B, the current app geometry for C, and original proposed geometry for D. Replay reveals whole strokes in sequence; it does not demonstrate any library's native animation, recognition, or grading.</p>
+        <p>Hanzi Writer data: &copy; 1999 Arphic Technology Co., Ltd., via Make Me a Hanzi and Hanzi Writer. AnimCJK: &copy; 2016&ndash;2026 FM-SH, derived from Make Me a Hanzi and Arphic fonts. No warranty. The source data and adaptations are redistributable under the bundled <a href="./character-data-LICENSE.txt">ARPHIC PUBLIC LICENSE</a>. Provenance and modification notices are in <a href="./character-data.js">character-data.js</a> and <a href="./animcjk-tea.js">animcjk-tea.js</a>.</p>
+      </footer>
+      <noscript>Enable JavaScript to render and compare the stroke artwork.</noscript>
+    </main>
+  </body>
+</html>

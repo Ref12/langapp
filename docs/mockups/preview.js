@@ -1,6 +1,6 @@
 const frame = document.querySelector('#prototype-frame')
 const stage = document.querySelector('#preview-stage')
-const screens = { overview: 'Overview', library: 'Library', discover: 'Library / Discover', reader: 'Library / Reading', lessons: 'Lessons', practice: 'Practice / Exercises', review: 'Practice / Exercises / Review', characters: 'Practice / Exercises / Characters', conversation: 'Assistant', dictionary: 'Dictionary', games: 'Practice / Games' }
+const screens = { overview: 'Overview', library: 'Library', discover: 'Library / Discover', reader: 'Library / Reading', lessons: 'Lessons', practice: 'Practice / Exercises', review: 'Practice / Exercises / Review', characters: 'Dictionary / Writing', conversation: 'Assistant', dictionary: 'Dictionary', games: 'Practice / Games' }
 let frameReady = false
 let requestedScreen = null
 function currentScreen() {
@@ -30,7 +30,7 @@ window.addEventListener('message', (event) => {
     return
   }
   if (event.data?.type !== 'mockup-route' || !Object.hasOwn(screens, event.data.screen)) return
-  if (requestedScreen && requestedScreen !== event.data.screen) return
+  if (requestedScreen && requestedScreen !== event.data.screen && requestedScreen !== event.data.redirectedFrom) return
   requestedScreen = null
   if (location.hash !== `#${event.data.screen}`) {
     history.replaceState(null, '', `#${event.data.screen}`)
