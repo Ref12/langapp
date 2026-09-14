@@ -19,6 +19,8 @@ AI operators with visual components (i.e. not compatible with handsfree mode)
 - exercises.match(pairs: Pair[]) - match word pairs
 - exercises.translate(pair: Pair) - ask user to translate a word/phrase/sentence
 - exercises.listen(target_language_message: string) - listen 
+- exercises.sentence_builder(source: string, answer_parts: string[], extra_parts?: string[]) - run duo lingo style sentence builder exercise
+- exercises.roleplay(message: string, expected_response: string, speech: bool, unexpected_responses: string[] /* wrong responses that show up in multiple choice */)
 
 ### Handsfree
 
@@ -36,7 +38,7 @@ AI operators with visual components (i.e. not compatible with handsfree mode)
 - knowledge.get() : Statement[] 
 - lessons.list(start?: string, end?: string) - gets the lessons from the given time range
 
-- exercises.quiz(questions: Question[])
+- exercises.quiz(questions: Question[]) : Quiz
 
 - learning.log(statements: StatementId[]) - adds a list of newly learned statements
 
@@ -49,7 +51,7 @@ AI operators with visual components (i.e. not compatible with handsfree mode)
 
 ### Data Types
 
-enum KnowledgeKind { WordRecognition, Hearing, Speaking, Writing, Reading }
+enum KnowledgeKind { Hearing, Speaking, Writing, Reading }
 
 Question = MultipleChoiceQuestion | ShortAnswerQuestion
 
