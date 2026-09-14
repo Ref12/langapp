@@ -137,7 +137,7 @@ function renderCreationProvenance(container, id) {
   details.append(chatElement('summary', '', 'Created with Assistant / Sample'))
   details.append(chatElement('p', 'small muted', 'Illustrative generation only. The request and context are retained, but this content is an authored fixture, not personalized AI output.'),
     chatElement('strong', '', 'Your request'), chatElement('p', 'creation-request-text', creation.request))
-  if (creation.context) details.append(chatElement('strong', '', creation.readingRequest ? 'Reading material used as context' : 'Response used as context'), chatElement('p', 'creation-request-text', creation.context))
+  if (creation.context) details.append(chatElement('strong', '', creation.readingRequest ? 'Reading material used as context' : 'Source used as context'), chatElement('p', 'creation-request-text', creation.context))
   const link = chatElement('a', 'text-link', 'Back to source conversation')
   link.href = '#conversation'
   link.addEventListener('click', () => openCreationConversation(creation.threadId))

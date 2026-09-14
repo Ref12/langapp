@@ -25,6 +25,10 @@ window.addEventListener('message', (event) => {
   if (event.source !== frame.contentWindow) return
   if (!frameReady) return
   if (location.protocol !== 'file:' && event.origin !== location.origin) return
+  if (event.data?.type === 'mockup-theme') {
+    if (event.data.theme === 'dark' || event.data.theme === 'light') document.documentElement.dataset.theme = event.data.theme
+    return
+  }
   if (event.data?.type !== 'mockup-route' || !Object.hasOwn(screens, event.data.screen)) return
   if (requestedScreen && requestedScreen !== event.data.screen) return
   requestedScreen = null

@@ -1,6 +1,6 @@
 # Experience UI mockups
 
-A professional, dark-theme direction for **LinguaWeave**, based on
+A professional UI direction with dark and light themes for **LinguaWeave**, based on
 [`ideas.md`](../ideas.md) and
 [`language-learning-app-spec.md`](../language-learning-app-spec.md).
 This is a design artifact, not a replacement for the current application.
@@ -25,6 +25,15 @@ resize the same iframe rather than reloading it, preserving the selected screen,
 conversation and unsent drafts. On a smaller window, the phone preview
 fits the available space. **Open app only** opens [`app.html`](app.html) without
 the preview toolbar; it is also responsive on an actual phone.
+
+Use the **sun / moon button** in the app header or reader to switch between
+dark and light themes. Open lessons also keep this button in their mobile
+toolbar. **Assistant settings > Appearance** offers the same
+control, including when compact chat hides the header. All controls stay in sync,
+and the device-preview frame follows the app's theme.
+Dark is the default. The choice lasts for this page visit, including navigation
+and Desktop / Mobile switches, without resetting drafts, reading position,
+filters, or character strokes. Reloading returns to dark; no preference is stored.
 
 LinguaWeave remains a **working name** while naming is explored. **Assistant**
 is the navigation label for conversation, explanation, and practice help.
@@ -77,10 +86,26 @@ action without an extra tooltip-only tap.
 
 These are static captures of the same HTML prototype, not separate designs.
 The overview, core screen, and Assistant-settings captures show the current
-blue/slate palette. Some older interaction-detail captures retain previous
-palettes; the live prototype uses the current theme throughout.
+blue/slate dark palette. Some older interaction-detail captures retain previous
+palettes; the live prototype supports both current themes throughout.
 Phone captures show a single viewport, including the fixed bottom navigation;
 scroll in the interactive prototype to explore the rest of each screen.
+
+### Light theme
+
+![Light overview: pale surfaces, blue accents, and the same colorful reading artwork](previews/overview-light-desktop.png)
+
+| Screen | Desktop | Phone |
+| --- | --- | --- |
+| Overview | [Overview](previews/overview-light-desktop.png) | [Overview](previews/overview-light-mobile.png) |
+| Library | [Library](previews/library-light-desktop.png) / [Import](previews/library-import-light-desktop.png) | [Library](previews/library-light-mobile.png) |
+| Reader | [Reader](previews/reader-light-desktop.png) | [Reader and word help](previews/reader-light-mobile.png) |
+| Lessons | [Lessons](previews/lessons-light-desktop.png) / [Lesson detail](previews/lesson-detail-light-desktop.png) | [Lessons](previews/lessons-light-mobile.png) / [Lesson detail](previews/lesson-detail-light-mobile.png) |
+| Practice | [Exercises](previews/practice-light-desktop.png) / [Games](previews/games-light-desktop.png) | [Exercises](previews/practice-light-mobile.png) / [Games](previews/games-light-mobile.png) |
+| Review and Characters | [Review](previews/review-light-desktop.png) / [Characters](previews/characters-light-desktop.png) | [Review](previews/review-light-mobile.png) / [Characters](previews/characters-light-mobile.png) |
+| Assistant | [Conversation](previews/conversation-light-desktop.png) / [Settings](previews/assistant-settings-light-desktop.png) / [Open mode dropdown](previews/assistant-mode-menu-light-desktop.png) | [Conversation](previews/conversation-light-mobile.png) / [Settings](previews/assistant-settings-light-mobile.png) |
+| Dictionary | [Dictionary](previews/dictionary-light-desktop.png) | [Dictionary](previews/dictionary-light-mobile.png) |
+| Device preview | [Light preview frame](previews/device-preview-light.png) | |
 
 ## Screens and interactions
 
@@ -138,9 +163,12 @@ shows the supplied sample information, not an invented AI explanation.
   (`#242b34`), crisp pale text, and bright blue accents follow the supplied
   reference. Lavender and sand remain secondary accents. Blue landscape and
   warm ceramic artwork add color without a green wash.
-  The device-preview frame, controls, and dark tooltips follow the same direction.
-  Assistant dropdowns and their options explicitly use the dark surface and text
-  tokens so open menus remain readable.
+  Light theme uses pale gray canvas, white cards, dark text, and a deeper blue
+  accent while retaining the same artwork and layout. Shared semantic tokens in
+  `theme.css` cover surfaces, text, states, and shadows for both palettes.
+  The device-preview frame, controls, tooltips, and dialogs follow the active
+  theme. Assistant dropdowns and their options explicitly use its surface and
+  text tokens so open menus remain readable.
 - A compact workspace shell with a stable navigation hierarchy. Desktop has an
   expandable icon rail; narrower desktop windows default to icons outside
   Assistant unless a choice has been made. Phones use a horizontally scrollable,
@@ -202,9 +230,29 @@ Lessons are freely selectable. This design does not decide prerequisites or a
 fixed course sequence, run live lesson generation, or record completion/mastery. **Practice**
 remains the separate place to revisit material through exercises and future games.
 Every opened lesson has a sticky **Start from beginning** action, including
-imported and Assistant-created lessons. It returns to the opening material and
-closes source details, without resetting learning-set membership or learned words.
-These are currently single-page previews, not scored multi-step lesson runs.
+imported and Assistant-created lessons. It returns to page one without resetting
+learning-set membership or learned words.
+
+Lessons use short **pages**, with **Back / Next**, a page count, and a page
+selector for jumping directly to vocabulary, patterns, retained source, or the
+closing actions. Paging controls stay outside the content pane and above mobile
+navigation. Resizing or switching themes preserves the current page; unusually
+long metadata, enlarged text, and very short viewports can scroll within a page
+without moving those controls. These are learning previews, not scored lesson runs.
+The catalog's introductory banner and Create / Import controls are hidden while
+a lesson is open, and return with **All lessons**.
+
+Each catalog item has **book / practice / chat icons** for Open lesson, Practice,
+and Assistant, in both List and Cards views. Hover or keyboard focus shows the
+action and lesson title. This also applies to imported and Assistant-created
+lessons. Practice opens a chooser scoped to that lesson; Assistant prepares a
+fresh editable draft with its example, vocabulary, pattern, and retained source,
+without overwriting another conversation's draft.
+
+[Desktop lesson pages](previews/lesson-pages-dark-desktop.png) /
+[Mobile lesson pages](previews/lesson-pages-dark-mobile.png) /
+[Light desktop pages](previews/lesson-pages-light-desktop.png) /
+[Light mobile pages](previews/lesson-pages-light-mobile.png).
 
 ### Reading and word help
 
@@ -286,7 +334,7 @@ or Lessons; changing a source invalidates its earlier conversion preview.
 
 Lesson import is intended for pages from a textbook or other material the
 learner owns. The source reference travels with the lesson, and its reviewed
-text remains available under **Imported source**. The generation step previews
+text remains available on the **Original source** pages. The generation step previews
 an objective, vocabulary, a grammar pattern, and an example. In this mockup,
 those fields use the authored request lesson and are explicitly **not generated
 from the uploaded material**. Imported lessons are selectable alongside the
@@ -302,20 +350,68 @@ preview content and source metadata are kept in memory until reload.
 
 **Practice contains Exercises and Games.** Exercises opens a chooser, not a
 review session. **Review** and **Characters** are individual exercise types;
-both keep Exercises selected and offer an **All exercises** link.
+both offer an **All exercises** link. An open exercise hides the catalog header
+and Exercises / Games switch, restoring them when returning to the chooser.
+This also applies to lesson Review and expanded custom exercises.
+
+**Practice from a lesson** keeps its title and objective as context. Its Review
+reveals that lesson's vocabulary answers without a score; Custom exercise
+prepares an Assistant request using the same lesson and source. It does not
+silently open the unrelated tea-house quiz. Preparation-only requests without
+authored vocabulary offer custom exercise creation rather than invented review
+questions. **All practice** returns to the general exercise chooser.
+[Desktop lesson practice](previews/lesson-practice-desktop.png) /
+[Mobile lesson practice](previews/lesson-practice-mobile.png).
 
 **Review** retains contextual recall, hints, and the three-question summary.
 The Overview quick-review and Dictionary review links open it directly.
 Switching exercises or visiting Games preserves the question, answer, hints,
 and results without restarting the review.
 
-**Characters** is for writing individual characters, not composing sentences.
-Choose a sample character (tea, rain, or cup), draw with a finger, pen, or mouse,
-toggle the visual guide, undo a stroke, or clear the drawing. A keyboard
-alternative lets users type the character. Each character's drawing and typed
-response survive navigation and device resizing in this page, but reset on
-reload. The guide is a reference glyph, not stroke-order instruction; there is
-no handwriting recognition, evaluation, or mastery score.
+**Characters is writing-only**, using a finger, pen, or mouse. There is no
+typing alternative. Each sample character (tea, rain, or cup) has three phases:
+
+1. **Full guide:** see the entire muted outline, with a numbered start marker
+   and direction arrow for the current stroke. Completed strokes turn solid.
+2. **One stroke at a time:** future strokes are hidden. Completing the current
+   stroke reveals the next guide, while keeping the strokes already written.
+3. **From memory:** no character model, upcoming stroke, or direction hint is
+   shown. A correctly drawn stroke snaps into place after it is finished, so
+   the character builds from the learner's writing without revealing what comes next.
+
+All phases allow approximate placement, natural wobble, and some overshoot,
+while still checking the stroke's general shape and direction. Incorrect attempts
+can be retried without advancing. **Each phase repeats three times.** After the
+first two completed characters, **Repeat** starts the next repetition. After the
+third, **Next phase** moves on; **Finish writing** ends the third memory repetition,
+and **Practice again** begins a fresh round. **Undo stroke** and **Clear attempt**
+affect only the current repetition, not earlier completed repetitions.
+Each character's phase and strokes survive navigation, theme changes, and device
+resizing until reload. Interrupted pointer gestures do not advance progress.
+
+Both Dictionary **Look up** and **My learning set** have a pencil action beside
+Hear and Assistant. A single character opens writing practice directly;
+multi-character words open a character chooser. The selected character resumes
+its own phase and repetition without changing learning-set status. **Back to
+Dictionary** preserves the prior lookup or learning-set view.
+
+The offline bundle covers all **110 Han characters** in the sample dictionary.
+Its stroke geometry comes from
+[Hanzi Writer Data 2.0.1](https://github.com/chanind/hanzi-writer-data/tree/68d10a4b21150cae5e1ebbd223eed289cf32d90c),
+rendered as **smooth, rounded, even-width curves**, not brush-style outlines.
+The guide, direction arrow, snapped stroke, and forgiving matcher use the same
+smoothed curve. This is not handwriting recognition, a calligraphy assessment,
+or a mastery score.
+The separately licensed data, attribution, and modification notice are in
+`character-data.js`; its complete [ARPHIC PUBLIC LICENSE](character-data-LICENSE.txt)
+is bundled alongside it. No network request or external dependency is needed
+when using the prototype.
+
+| Writing phase | Desktop | Mobile |
+| --- | --- | --- |
+| Full guide | [Preview](previews/characters-phase-1-desktop.png) | [Preview](previews/characters-phase-1-mobile.png) |
+| One stroke at a time | [Preview](previews/characters-phase-2-desktop.png) | [Preview](previews/characters-phase-2-mobile.png) |
+| From memory | [Preview](previews/characters-phase-3-desktop.png) | [Preview](previews/characters-phase-3-mobile.png) |
 
 The existing `#games` link and Overview's play shortcut open the Games section.
 **Explore exercises** returns to the exercise chooser.

@@ -179,7 +179,8 @@ function renderDictionary() {
     romanization.className = 'dictionary-reading'
     romanization.textContent = word.romanization
     term.append(native, romanization)
-    setSnippetActions(native, wordSnippetOptions(word, 'Dictionary / My learning set'))
+    const textActions = setSnippetActions(native, wordSnippetOptions(word, 'Dictionary / My learning set'))
+    addCharacterPracticeAction(textActions, word)
     const meaning = document.createElement('td')
     meaning.textContent = word.gloss
     const tier = document.createElement('td')

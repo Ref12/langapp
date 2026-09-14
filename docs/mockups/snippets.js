@@ -191,13 +191,13 @@ async function playSnippet(snippet, button) {
   }
 }
 
-function askAboutSnippet(snippet, owner) {
+function askAboutSnippet(snippet, owner, draft) {
   stopSnippetSpeech(false)
   snippetPlayer.hidden = true
   const dialog = owner.closest('dialog[open]')
   const thread = beginConversation('Text companion')
   thread.snippetRequest = snippet
-  thread.draft = `Help me understand and practice this ${snippetLanguage(snippet.lang)} text:\n\n"${snippet.text}"\n\nFrom: ${snippet.source}${snippet.meaning ? `\nSupplied meaning: ${snippet.meaning}` : ''}`
+  thread.draft = draft ?? `Help me understand and practice this ${snippetLanguage(snippet.lang)} text:\n\n"${snippet.text}"\n\nFrom: ${snippet.source}${snippet.meaning ? `\nSupplied meaning: ${snippet.meaning}` : ''}`
   thread.creationSuppressed = true
   renderVoiceTurn()
   renderAssistantMode()

@@ -1,0 +1,77 @@
+/* Shared by the app and its device-preview frame. */
+:root {
+  color-scheme: dark;
+  --bg: #0d1117;
+  --sidebar: #151b23;
+  --surface: #151b23;
+  --surface-raised: #20262f;
+  --surface-inset: #0e131a;
+  --surface-hover: #1e232a;
+  --surface-selected: #242b34;
+  --surface-feature: #172332;
+  --user-bubble: #1b2736;
+  --line: #30363d;
+  --line-strong: #4c5869;
+  --text: #f0f6fc;
+  --text-secondary: #bdc6d2;
+  --muted: #9198a1;
+  --accent: #58a6ff;
+  --on-accent: #0d1117;
+  --on-art: #f0f6fc;
+  --accent-soft: #1b2c42;
+  --accent-line: #375a7f;
+  --accent-wash: #58a6ff24;
+  --accent-guide: #58a6ff30;
+  --lavender: #cbc5e8;
+  --lavender-soft: #302e3b;
+  --lavender-line: #675778;
+  --sand: #dcc4a0;
+  --sand-soft: #383128;
+  --sand-line: #796246;
+  --danger: #f0bdac;
+  --danger-soft: #38271f;
+  --danger-line: #92584c;
+  --scrollbar: #6b727c;
+  --backdrop: #03080fbf;
+  --shadow-soft: #0002;
+  --shadow-medium: #0005;
+  --shadow-strong: #0008;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f8fa;
+  --sidebar: #f0f3f6;
+  --surface: #ffffff;
+  --surface-raised: #f0f3f6;
+  --surface-inset: #f6f8fa;
+  --surface-hover: #eaeef2;
+  --surface-selected: #e1e8f0;
+  --surface-feature: #eaf3ff;
+  --user-bubble: #e7f1ff;
+  --line: #d0d7de;
+  --line-strong: #8c959f;
+  --text: #1f2328;
+  --text-secondary: #39434f;
+  --muted: #59636e;
+  --accent: #075bbb;
+  --on-accent: #ffffff;
+  --accent-soft: #ddedff;
+  --accent-line: #80b6ef;
+  --accent-wash: #075bbb1f;
+  --accent-guide: #075bbb30;
+  --lavender: #6e40aa;
+  --lavender-soft: #f0e9fb;
+  --lavender-line: #c5addf;
+  --sand: #7d4e22;
+  --sand-soft: #fbf1e2;
+  --sand-line: #d7ba8f;
+  --danger: #b42318;
+  --danger-soft: #fff1ef;
+  --danger-line: #e6aaa2;
+  --scrollbar: #7d8793;
+  --backdrop: #14203470;
+  --shadow-soft: #1f232810;
+  --shadow-medium: #1f23281c;
+  --shadow-strong: #1f232830;
+}

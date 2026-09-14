@@ -29,6 +29,45 @@ function dictionaryElement(tag, className, text) {
   element.textContent = text
   return element
 }
+function addCharacterPracticeAction(actions, word) {
+  const characters = Array.from(word.native).filter((character) => /\p{Script=Han}/u.test(character))
+  if (!characters.length) return
+  const button = dictionaryElement('button', 'snippet-action', '')
+  button.type = 'button'
+  button.dataset.writeWord = word.native
+  button.setAttribute('aria-label', `Practice writing: ${word.native}`)
+  const icon = one('[data-nav="dictionary"] svg').cloneNode(true)
+  icon.setAttribute('aria-hidden', 'true')
+  icon.querySelector('use').setAttribute('href', '#i-write')
+  button.append(icon)
+  if (characters.length > 1) button.setAttribute('aria-haspopup', 'dialog')
+  button.addEventListener('click', () => {
+    if (characters.length === 1) {
+      openCharacterPractice(word, 0)
+      return
+    }
+    const dialog = one('#writing-character-dialog')
+    one('#writing-source-word').textContent = `${word.native} / ${word.gloss}`
+    const choices = one('#writing-character-choices')
+    choices.replaceChildren()
+    characters.forEach((character, index) => {
+      const choice = dictionaryElement('button', 'writing-character-choice', '')
+      choice.type = 'button'
+      choice.dataset.writeCharacter = character
+      choice.setAttribute('aria-label', `Write ${character}, character ${index + 1} of ${characters.length}`)
+      const glyph = dictionaryElement('span', '', character)
+      glyph.lang = 'zh-Hans'
+      choice.append(glyph, dictionaryElement('small', '', `${index + 1} of ${characters.length}`))
+      choice.addEventListener('click', () => {
+        dialog.close()
+        openCharacterPractice(word, index)
+      })
+      choices.append(choice)
+    })
+    dialog.showModal()
+  })
+  actions.append(button)
+}
 function renderLookupCard(id, conversationId = null) {
   const word = words[id]
   const card = dictionaryElement('article', 'lookup-result', '')
@@ -41,7 +80,8 @@ function renderLookupCard(id, conversationId = null) {
   const status = dictionaryElement('span', 'tag green', wordLearningStatus(word))
   status.dataset.wordStatus = id
   heading.append(native, reading, dictionaryElement('span', 'tag', word.kind), status)
-  setSnippetActions(native, wordSnippetOptions(word, 'Dictionary word'))
+  const textActions = setSnippetActions(native, wordSnippetOptions(word, 'Dictionary word'))
+  addCharacterPracticeAction(textActions, word)
   const example = dictionaryElement('p', 'lookup-example', word.example)
   example.lang = word.nativeLanguage || 'zh-Hans'
   const actions = dictionaryElement('div', 'button-row', '')

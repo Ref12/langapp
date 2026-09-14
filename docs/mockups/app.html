@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
-    <meta name="color-scheme" content="dark">
-    <meta name="description" content="An interactive, dark-theme UI concept for LinguaWeave. Sample data only.">
+    <meta name="color-scheme" content="dark light">
+    <meta name="description" content="An interactive UI concept for LinguaWeave with dark and light themes. Sample data only.">
     <title>LinguaWeave / UI concept</title>
+    <link rel="stylesheet" href="./theme.css">
     <link rel="stylesheet" href="./styles.css">
     <script src="./snippets.js" defer></script>
     <script src="./prototype.js" defer></script>
@@ -13,12 +14,15 @@
     <script src="./reader-vocabulary.js" defer></script>
     <script src="./reader.js" defer></script>
     <script src="./library.js" defer></script>
+    <script src="./character-data.js" defer></script>
     <script src="./characters.js" defer></script>
     <script src="./lessons.js" defer></script>
+    <script src="./lesson-practice.js" defer></script>
     <script src="./imports.js" defer></script>
     <script src="./assistant-tasks.js" defer></script>
     <script src="./teach-reading.js" defer></script>
     <script src="./conversations.js" defer></script>
+    <script src="./theme.js" defer></script>
     <script src="./tooltips.js" defer></script>
   </head>
   <body>
@@ -29,6 +33,7 @@
         <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6C8 3 4 4 2 5v14c3-1 6-1 10 1 4-2 7-2 10-1V5c-2-1-6-2-10 1Zm0 0v14"/></symbol>
         <symbol id="i-stack" viewBox="0 0 24 24"><path d="M5 4h5v16H5zM14 5l5-1 3 15-5 1ZM2 20h20"/></symbol>
         <symbol id="i-practice" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/></symbol>
+        <symbol id="i-write" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14Zm0 0 5-1-5-5M12 21h9"/></symbol>
         <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11a9 9 0 0 1-9 9H4l-2 2V11a9 9 0 0 1 19 0Z"/><path d="M7 9h9M7 13h6"/></symbol>
         <symbol id="i-dictionary" viewBox="0 0 24 24"><path d="M5 3h15v18H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM5 17h15M8 12l3-6 3 6M9 10h4"/></symbol>
         <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 7h10c3 0 6 10 3 12-2 1-4-3-5-3H9c-1 0-3 4-5 3C1 17 4 7 7 7Z"/><path d="M7 10v5M4.5 12.5h5M16 11h.01M19 14h.01"/></symbol>
@@ -41,6 +46,8 @@
         <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
         <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></symbol>
         <symbol id="i-settings" viewBox="0 0 24 24"><path d="m10 2-.8 3-2 .9L4.5 5l-2 3.5 2.1 2.1v2.8l-2.1 2.1 2 3.5 2.7-.9 2 .9.8 3h4l.8-3 2-.9 2.7.9 2-3.5-2.1-2.1v-2.8l2.1-2.1-2-3.5-2.7.9-2-.9-.8-3Z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/></symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13a9 9 0 1 1-10-10 7 7 0 0 0 10 10Z"/></symbol>
         <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 10v4M7 6v12M12 3v18M17 7v10M21 10v4"/></symbol>
         <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M11 4 6 8H3v8h3l5 4ZM15 8a6 6 0 0 1 0 8M18 4a11 11 0 0 1 0 16"/></symbol>
         <symbol id="i-speed" viewBox="0 0 24 24"><path d="M4 19a10 10 0 1 1 16 0M12 3v3M4 10l3 1M20 10l-3 1M12 14l4-6"/><circle cx="12" cy="16" r="2"/></symbol>
@@ -96,7 +103,7 @@
       <div class="workspace">
         <header class="topbar">
           <div class="breadcrumb"><span>Workspace</span><svg><use href="#i-chevron"/></svg><strong id="page-label">Overview</strong><span class="breadcrumb-detail" id="page-detail" hidden></span></div>
-          <div class="topbar-actions"><span class="demo-badge">Interactive mockup</span><span class="language-pill"><span class="language-symbol" lang="zh-Hans">&#x4E2D;</span> Mandarin <span class="muted">HSK 2</span></span></div>
+          <div class="topbar-actions"><span class="demo-badge">Interactive mockup</span><span class="language-pill"><span class="language-symbol" lang="zh-Hans">&#x4E2D;</span> Mandarin <span class="muted">HSK 2</span></span><button type="button" class="icon-button theme-toggle" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></div>
         </header>
         <main id="main" tabindex="-1">
           <section class="screen" id="overview" aria-labelledby="overview-title">
@@ -162,7 +169,7 @@
           </section>
 
           <section class="screen reader-screen" id="reader" aria-labelledby="reader-title" hidden>
-            <div class="reader-heading"><a class="back-link reader-back" href="#library" aria-label="Back to Library"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span>Library</span></a><h1 id="reader-title">A morning at the tea house</h1><button class="reader-teach-button" id="teach-reader-action" data-teach-library-item="story-tea" aria-label="Teach me to read this" title="Teach me to read this"><svg aria-hidden="true"><use href="#i-practice"/></svg></button><button class="button secondary" id="toggle-reader-panel" aria-label="Learning panel" aria-expanded="true" aria-controls="reader-panel"><svg aria-hidden="true"><use href="#i-dictionary"/></svg><span>Learning panel</span></button></div>
+            <div class="reader-heading"><a class="back-link reader-back" href="#library" aria-label="Back to Library"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span>Library</span></a><h1 id="reader-title">A morning at the tea house</h1><button class="reader-teach-button" id="teach-reader-action" data-teach-library-item="story-tea" aria-label="Teach me to read this" title="Teach me to read this"><svg aria-hidden="true"><use href="#i-practice"/></svg></button><button class="button secondary" id="toggle-reader-panel" aria-label="Learning panel" aria-expanded="true" aria-controls="reader-panel"><svg aria-hidden="true"><use href="#i-dictionary"/></svg><span>Learning panel</span></button><button type="button" class="icon-button theme-toggle" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></div>
             <div class="reader-toolbar"><div class="segmented reading-modes" role="group" aria-label="Reading language"><button data-mode="source" aria-pressed="true">Source</button><button data-mode="target" aria-pressed="false">Target</button></div><button class="reader-weaving button secondary" id="reader-weaving" aria-pressed="true"><span class="weaving-indicator" aria-hidden="true"></span>Weaving</button><label class="reader-text-size"><span class="visually-hidden">Reading text size</span><select id="reader-text-size" aria-label="Reading text size"><option value="1">Aa</option><option value="1.15">Aa+</option><option value="1.3">Aa++</option></select></label><span class="small muted reader-language-label">English / Mandarin</span></div>
             <p class="visually-hidden" id="reader-instruction"></p>
             <div class="reader-layout">
@@ -180,8 +187,8 @@
           </section>
 
           <section class="screen" id="lessons" aria-labelledby="lessons-title" hidden>
-            <div class="page-heading"><div><p class="eyebrow">A LITTLE STRUCTURE. A LOT TO EXPLORE.</p><h1 id="lessons-title" tabindex="-1">Learn something you can use.</h1><p>Small lessons connect useful words, patterns, and real situations.</p></div><div class="page-heading-actions"><button class="button secondary" data-assistant-task="lesson"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create lesson</button><button class="button primary" data-open-import="lessons"><svg aria-hidden="true"><use href="#i-plus"/></svg> Import lesson</button></div></div>
             <div id="lesson-catalog">
+              <div class="page-heading"><div><p class="eyebrow">A LITTLE STRUCTURE. A LOT TO EXPLORE.</p><h1 id="lessons-title" tabindex="-1">Learn something you can use.</h1><p>Small lessons connect useful words, patterns, and real situations.</p></div><div class="page-heading-actions"><button class="button secondary" data-assistant-task="lesson"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create lesson</button><button class="button primary" data-open-import="lessons"><svg aria-hidden="true"><use href="#i-plus"/></svg> Import lesson</button></div></div>
               <div class="lesson-intro"><span class="tile-icon lavender"><svg><use href="#i-book"/></svg></span><div><h2>One useful idea at a time.</h2><p>Meet the words. Notice the pattern. See how they work together.</p></div><div class="segmented catalog-view-switch" role="group" aria-label="Lessons view" data-catalog-view-controls="lesson-grid"><button type="button" data-catalog-layout="list" aria-pressed="true" aria-controls="lesson-grid"><svg aria-hidden="true"><use href="#i-list"/></svg> List</button><button type="button" data-catalog-layout="cards" aria-pressed="false" aria-controls="lesson-grid"><svg aria-hidden="true"><use href="#i-grid"/></svg> Cards</button></div></div>
               <div class="lesson-grid" id="lesson-grid" data-catalog-view="list">
                 <article class="lesson-card"><span class="eyebrow">READING COMPANION</span><span class="lesson-glyph" lang="zh-Hans">&#x60F3;</span><h2>Build a simple request</h2><p>Put familiar words together to say what you would like.</p><div class="lesson-meta"><span>4 vocabulary items</span><span>1 useful pattern</span></div><button class="button primary" data-open-lesson="request" aria-label="Open lesson: Build a simple request">Open lesson <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></article>
@@ -192,14 +199,10 @@
               <div class="source-banner"><span class="tile-icon lavender"><svg aria-hidden="true"><use href="#i-book"/></svg></span><div><h3>Turn your textbook pages into a lesson.</h3><p>Bring text or images from material you own. Review the extracted source, then preview a lesson with vocabulary, grammar, and examples.</p></div><button class="button secondary" data-open-import="lessons">Bring your material</button></div>
             </div>
             <div id="lesson-detail" hidden>
-              <div class="lesson-detail-toolbar"><button class="back-link" id="back-to-lessons"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All lessons</button><button class="button secondary" id="restart-lesson">Start from beginning</button></div>
-              <div id="lesson-creation-context" hidden></div>
-              <p class="import-notice" id="lesson-import-notice" hidden>Lesson generation is simulated. The vocabulary and example below are authored samples, not generated from your material.</p>
-              <details class="lesson-import-source" id="lesson-import-source" hidden><summary>Imported source</summary><p id="lesson-import-reference" class="small muted"></p><p id="lesson-import-files" class="small muted"></p><p id="lesson-import-conversion" class="import-notice" hidden>Image extraction was simulated using original sample content. The source below includes your review edits.</p><div id="lesson-import-text" class="imported-source"></div></details>
-              <div class="lesson-study">
-                <article class="lesson-explanation"><span class="tag lavender">Guided lesson preview</span><h2 id="lesson-detail-title" tabindex="-1"></h2><p id="lesson-objective" class="muted"></p><div class="lesson-example"><span class="eyebrow">WORDS WORKING TOGETHER</span><p id="lesson-native" lang="zh-Hans"></p><p id="lesson-romanization"></p><p id="lesson-meaning"></p></div><h3>A pattern to keep</h3><p id="lesson-pattern"></p><p id="lesson-usage" class="small muted"></p><div class="lesson-links"><a class="button primary" id="lesson-assistant" href="#conversation" data-lesson-conversation="tea">Discuss with Assistant <svg><use href="#i-chat"/></svg></a><a class="button secondary" id="lesson-source" href="#reader">Read the related story <svg><use href="#i-arrow"/></svg></a></div></article>
-                <aside class="lesson-vocabulary"><h2>Meet the words</h2><div id="lesson-word-list"></div><p class="small muted">An authored learning preview, not a test or a mastery score.</p></aside>
-              </div>
+              <div class="lesson-detail-toolbar"><button class="back-link" id="back-to-lessons"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All lessons</button><button class="button secondary" id="restart-lesson">Start from beginning</button><button type="button" class="icon-button theme-toggle" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></div>
+              <h2 id="lesson-detail-title"></h2>
+              <article id="lesson-page" class="lesson-page" aria-labelledby="lesson-page-title"></article>
+              <nav class="lesson-pagination" aria-label="Lesson pages"><button class="button secondary" id="lesson-previous">Back</button><div><label class="visually-hidden" for="lesson-page-select">Go to lesson page</label><select id="lesson-page-select"></select><output id="lesson-page-count" class="small muted" aria-live="polite"></output></div><button class="button primary" id="lesson-next">Next</button></nav>
             </div>
             <p class="page-footnote">Sample lessons, freely selectable. Import previews are memory-only; AI extraction and generation are simulated. No course prerequisites or saved completion state is implied.</p>
           </section>
@@ -208,11 +211,22 @@
             <div class="page-heading"><div><p class="eyebrow">TURN ENCOUNTERS INTO KNOWLEDGE</p><h1 id="practice-title">A little practice. A little closer.</h1><p>Build familiarity through exercises, or make room for play.</p></div><span class="tag" id="practice-view-label">Choose an exercise</span></div>
             <nav class="segmented practice-views" aria-label="Practice sections"><a href="#practice" data-practice-view="exercises" aria-current="page"><svg aria-hidden="true"><use href="#i-practice"/></svg> Exercises</a><a href="#games" data-practice-view="games"><svg aria-hidden="true"><use href="#i-game"/></svg> Games</a></nav>
             <section id="practice-exercises" data-practice-panel="exercises" aria-labelledby="exercises-title">
+              <section id="lesson-practice" aria-labelledby="lesson-practice-title" hidden>
+                <div class="lesson-practice-context"><div><span class="eyebrow">PRACTICING THIS LESSON</span><h2 id="lesson-practice-title" tabindex="-1"></h2><p id="lesson-practice-objective" class="small muted"></p></div><div class="lesson-actions"><button class="button secondary" id="practice-back-to-lesson">Open lesson</button><button class="button quiet" id="practice-all-lessons">All practice</button></div></div>
+                <div class="exercise-grid" id="lesson-exercise-chooser">
+                  <article class="exercise-card"><span class="tile-icon green"><svg aria-hidden="true"><use href="#i-practice"/></svg></span><h3>Review</h3><p>Recall this lesson's words, then reveal each answer at your own pace.</p><button class="button primary" id="open-lesson-review">Open Review</button></article>
+                  <article class="exercise-card"><span class="tile-icon lavender"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><h3>Custom exercise</h3><p>Ask the Assistant for a different exercise using this lesson as context.</p><button class="button secondary" id="create-lesson-exercise">Create exercise</button></article>
+                </div>
+                <section id="lesson-review" aria-labelledby="lesson-review-title" hidden><button class="back-link" id="back-to-lesson-exercises">All lesson exercises</button><h3 id="lesson-review-title" tabindex="-1">Review</h3><p class="small muted">Recall the word before revealing it. This is an unscored preview; your learning set is unchanged.</p><div id="lesson-review-items"></div></section>
+                <p id="lesson-practice-boundary" class="import-notice" hidden>This preparation request has no authored vocabulary yet. Ask the Assistant to create an exercise from its retained material.</p>
+              </section>
+              <div id="general-exercises">
               <div class="exercise-intro creation-heading"><div><h2 id="exercises-title">Choose an exercise.</h2><p class="small muted">Recall a word, or learn its shape. Pick what you want to work on.</p></div><button class="button secondary" data-assistant-task="exercise"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create exercise</button></div>
               <section class="created-practice" id="created-exercises" aria-labelledby="created-exercises-title" hidden><h3 id="created-exercises-title">Your custom exercises</h3><div id="created-exercise-list"></div></section>
               <div class="exercise-grid">
                 <article class="exercise-card"><div class="exercise-card-heading"><span class="tile-icon green"><svg aria-hidden="true"><use href="#i-practice"/></svg></span><div><h3>Review</h3><span class="small muted">Contextual recall</span></div></div><p>Revisit words from your reading with a short, focused review.</p><a class="button primary" href="#review">Open Review <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
                 <article class="exercise-card"><div class="exercise-card-heading"><span class="tile-icon lavender exercise-glyph" aria-hidden="true">&#x5B57;</span><div><h3>Characters</h3><span class="small muted">Individual character writing</span></div></div><p>Practice writing a character by hand, with a guide when you need it.</p><a class="button secondary" href="#characters">Open Characters <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
+              </div>
               </div>
             </section>
             <section id="practice-review" data-practice-panel="review" aria-labelledby="review-title" hidden>
@@ -222,17 +236,19 @@
             </section>
             <section id="practice-characters" data-practice-panel="characters" aria-labelledby="characters-title" hidden>
               <a class="back-link" href="#practice"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All exercises</a>
-              <div class="exercise-heading"><h2 id="characters-title">Characters</h2><span class="small muted">Write one character at a time.</span></div>
+              <a class="back-link character-dictionary-back" id="character-dictionary-back" href="#dictionary" hidden>Back to Dictionary</a>
+              <div class="exercise-heading"><h2 id="characters-title">Characters</h2><span class="small muted">Write one character at a time.</span><button type="button" class="icon-button theme-toggle character-theme" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg></button></div>
               <div class="practice-layout">
                 <article class="practice-card character-workspace">
-                  <div class="character-topline"><div><span id="character-native" class="character-native" lang="zh-Hans">&#x8336;</span><span id="character-meaning" class="small muted">ch&aacute; / tea</span></div><button class="button secondary" id="character-guide" aria-pressed="true" aria-controls="character-guide-layer">Show guide</button></div>
-                  <p class="small muted" id="character-help">Write with a finger, pen, or mouse. Hide the guide to try from memory.</p>
-                  <div class="character-pad"><svg class="character-guide" id="character-guide-layer" viewBox="0 0 100 100" aria-hidden="true"><text id="character-guide-glyph" x="50" y="52" text-anchor="middle" dominant-baseline="central">&#x8336;</text></svg><canvas id="character-canvas" width="400" height="400" tabindex="0" aria-label="Handwriting area for tea" aria-describedby="character-help character-boundary">Use the keyboard alternative below if you cannot draw on the canvas.</canvas></div>
-                  <div class="character-actions"><button class="button secondary" id="character-undo" disabled>Undo stroke</button><button class="button quiet" id="character-clear" disabled>Clear drawing</button></div>
-                  <p class="small muted" id="character-status" role="status">No strokes yet.</p>
-                  <details class="character-keyboard"><summary>Using a keyboard?</summary><label for="character-typed">Type this character instead</label><input id="character-typed" type="text" lang="zh-Hans" maxlength="1" autocomplete="off" spellcheck="false" aria-describedby="character-boundary"></details>
+                  <ol class="character-phases" aria-label="Writing practice phases"><li data-character-phase-step aria-current="step"><span>1</span> Full guide</li><li data-character-phase-step><span>2</span> One stroke at a time</li><li data-character-phase-step><span>3</span> From memory</li></ol>
+                  <div class="character-topline"><div><span id="character-native" class="character-native" lang="zh-Hans">&#x8336;</span><span id="character-meaning" class="small muted">ch&aacute; / tea</span></div></div>
+                  <p class="small muted" id="character-help">Trace the full outline. Start at the blue dot and follow the arrow.</p>
+                  <div class="character-guidance"><strong id="character-step">Stroke 1 of 9</strong><span class="tag" id="character-attempt">Repetition 1 of 3</span><span class="small muted" id="character-direction"></span><progress id="character-progress" value="0" max="9" aria-label="Strokes traced in this repetition"></progress></div>
+                  <div class="character-pad"><svg class="character-guide" id="character-guide-layer" viewBox="0 0 100 100" aria-hidden="true"><defs><marker id="character-direction-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 9 5 1 9Z" class="character-arrow-head"/></marker></defs><g id="character-stroke-outlines"></g><g id="character-stroke-direction"></g></svg><canvas id="character-canvas" width="400" height="400" tabindex="0" aria-label="Handwriting area for tea" aria-describedby="character-help character-boundary">Writing practice requires a finger, pen, or mouse and browser canvas support.</canvas></div>
+                  <div class="character-actions"><button class="button secondary" id="character-undo" disabled>Undo stroke</button><button class="button quiet" id="character-clear" disabled>Clear attempt</button><button class="button primary" id="character-next-phase" disabled>Repeat</button></div>
+                  <p class="small muted" id="character-status" role="status">0 of 9 strokes traced.</p>
                 </article>
-                <aside class="practice-aside character-aside"><h3>Choose a character</h3><div class="character-picker" role="group" aria-label="Sample characters"><button data-character="tea" aria-pressed="true" aria-label="Practice tea"><span lang="zh-Hans">&#x8336;</span><small>tea</small></button><button data-character="rain" aria-pressed="false" aria-label="Practice rain"><span lang="zh-Hans">&#x96E8;</span><small>rain</small></button><button data-character="cup" aria-pressed="false" aria-label="Practice cup"><span lang="zh-Hans">&#x676F;</span><small>cup</small></button></div><div class="mini-rule"></div><h3>Get familiar with the shape.</h3><p>Trace with the guide, or draw from memory. Undo a stroke and try again at your own pace.</p><p>Your drawing for each character stays here while you explore. Reloading clears it.</p><p id="character-boundary">Interaction preview only. No handwriting recognition, stroke-order evaluation, or mastery score.</p></aside>
+                <aside class="practice-aside character-aside"><h3>Choose a character</h3><div class="character-picker" role="group" aria-label="Sample characters"><button data-character="tea" aria-pressed="true" aria-label="Practice tea"><span lang="zh-Hans">&#x8336;</span><small>tea</small></button><button data-character="rain" aria-pressed="false" aria-label="Practice rain"><span lang="zh-Hans">&#x96E8;</span><small>rain</small></button><button data-character="cup" aria-pressed="false" aria-label="Practice cup"><span lang="zh-Hans">&#x676F;</span><small>cup</small></button></div><div class="mini-rule"></div><h3>Less support, one phase at a time.</h3><p>Repeat each phase three times: full outline, one stroke at a time, then from memory without a visual model.</p><p>Approximate strokes are welcome. Correct strokes snap into place in every phase. Undo or clear the current attempt to try again.</p><p>Each character keeps its own phase, repetition, and writing until reload. Open more characters from Dictionary.</p><p id="character-boundary">Forgiving direction and shape checking, not handwriting recognition or a mastery score. The next stroke stays hidden in the memory phase.</p><p class="character-data-license">Stroke data: &copy; 1999 Arphic Technology Co., Ltd., adapted via Hanzi Writer Data. No warranty. Redistributable under the <a href="./character-data-LICENSE.txt" target="_blank" rel="noopener">ARPHIC PUBLIC LICENSE</a>.</p></aside>
               </div>
             </section>
             <section id="practice-games" data-practice-panel="games" aria-labelledby="games-title" hidden>
@@ -308,13 +324,19 @@
     </section>
     <section class="assistant-settings" id="assistant-settings" popover="auto" role="dialog" aria-labelledby="assistant-settings-title">
       <div class="assistant-settings-heading"><h3 id="assistant-settings-title">Assistant settings</h3><button type="button" class="icon-button" popovertarget="assistant-settings" popovertargetaction="hide" aria-label="Close Assistant settings"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
-      <div class="assistant-controls" id="assistant-controls" role="group" aria-label="Assistant mode, speech, and reading controls">
+      <div class="assistant-controls" id="assistant-controls" role="group" aria-label="Assistant mode, speech, reading, and appearance controls">
         <label class="assistant-mode-control"><span>Mode</span><select id="assistant-mode" aria-label="Assistant mode"><option value="conversation">Conversation</option><option value="shadow">Shadow</option></select></label>
         <label class="speech-speed-control"><svg aria-hidden="true"><use href="#i-speed"/></svg><span>Mandarin</span><select id="target-speech-speed" aria-label="Mandarin speech speed (target language only)" aria-describedby="assistant-settings-help"><option value="0.5">0.5x</option><option value="0.75" selected>0.75x</option><option value="1">1x</option><option value="1.25">1.25x</option></select></label>
         <button type="button" class="assistant-option" id="show-romanization" aria-pressed="true" title="Show romanization alongside the target-language text"><svg aria-hidden="true"><use href="#i-romanization"/></svg><span>Romanization</span><span class="setting-status" id="romanization-setting-state" aria-hidden="true">On</span></button>
+        <button type="button" class="assistant-option" data-theme-toggle aria-label="Appearance: Dark. Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg><span>Appearance</span><span class="setting-status" data-theme-label aria-hidden="true">Dark</span></button>
       </div>
-      <p id="assistant-settings-help">Mode applies to this conversation. Speed applies to Mandarin; English stays at 1x.</p>
+      <p id="assistant-settings-help">Mode applies to this conversation. Speed applies to Mandarin; English stays at 1x. Appearance applies throughout the app.</p>
     </section>
+    <dialog id="writing-character-dialog" class="collection-dialog" aria-labelledby="writing-character-title">
+      <div class="dialog-heading"><h2 id="writing-character-title">Choose a character to write</h2><button type="button" class="icon-button" data-close-dialog aria-label="Close character chooser"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <p id="writing-source-word"></p><p class="small muted">Three repetitions in each phase: full guide, one stroke at a time, then from memory.</p>
+      <div id="writing-character-choices" class="writing-character-choices"></div>
+    </dialog>
     <dialog id="import-dialog" class="import-dialog" aria-labelledby="import-title">
       <form id="import-form">
         <div class="dialog-heading"><div><p class="eyebrow">YOUR MATERIAL, YOUR LEARNING</p><h2 id="import-title">Import to Library</h2></div><button type="button" class="icon-button" data-close-dialog aria-label="Cancel import"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
