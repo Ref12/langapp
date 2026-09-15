@@ -354,6 +354,26 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("grateful", words["ko-nikl-26499-s001"]["ds"])
         self.assertNotIn("ko-nikl-26498-s001", words)
 
+    def test_essential_predicates_and_ordinal_cha_use_real_unbanded_sources(self):
+        for parent, spelling in (
+            ("02914", "시작하다"), ("06699", "부탁하다"), ("08289", "사랑하다"),
+            ("11654", "일하다"), ("16978", "대답하다"), ("23542", "피곤하다"),
+            ("23722", "필요하다"), ("24830", "행복하다"), ("29792", "공부하다"),
+            ("38953", "미안하다"), ("41722", "주문하다"), ("43838", "차"),
+        ):
+            identifier = f"ko-nikl-{parent}-s001"
+            with self.subTest(sense=identifier):
+                self.assertEqual(self.references.vocabulary[identifier]["ch"], spelling)
+                source = self.references.provenance[identifier]
+                self.assertEqual(source["source_band"], "unbanded")
+                self.assertIsNone(source["reference_level"])
+                self.assertEqual(source["reading"]["method"], "official-text")
+                self.assertEqual(source["reading"]["match_method"], "exact-ordered-korean-definitions")
+        ordinal = self.references.lexical_identity["ko-nikl-43838-s001"]
+        self.assertEqual(self.references.provenance["ko-nikl-43838-s001"]["lexical_category"], "bound-form")
+        for parent in ("43833", "43835", "43837"):
+            self.assertNotEqual(ordinal, self.references.lexical_identity[f"ko-nikl-{parent}-s001"])
+
     def test_actual_reading_exceptions_keep_their_evidence_boundaries(self):
         words, provenance = self.references.vocabulary, self.references.provenance
         self.assertEqual(words["ko-nikl-04942-s001"]["pr"], "야ː구")

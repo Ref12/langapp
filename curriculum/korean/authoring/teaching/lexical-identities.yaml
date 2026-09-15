@@ -2,6 +2,78 @@
 # AI-authored provisional analyses; source-parent groups are not proven distinct lemmas.
 # See selection-notes.yaml for category decisions, grouping policy, and review gaps.
 # Each value has exactly the five adapter fields; the adapter report computes coverage.
+ko-lex-02914:
+  lemma: 시작하다
+  category: free-lemma
+  members: [ko-nikl-02914-s001, ko-nikl-02914-s002]
+  source_parents: [ko-nikl-02914]
+  rationale: A directly retained source verb for beginning and originating, not a generated noun-plus-hada form. The two source meanings add depth within one provisional lexical identity.
+ko-lex-06699:
+  lemma: 부탁하다
+  category: free-lemma
+  members: [ko-nikl-06699-s001]
+  source_parents: [ko-nikl-06699]
+  rationale: The original unbanded source supplies this request-or-entrust verb directly; its dictionary identity is not inferred merely from the noun 부탁.
+ko-lex-08289:
+  lemma: 사랑하다
+  category: free-lemma
+  members: [ko-nikl-08289-s001, ko-nikl-08289-s002, ko-nikl-08289-s003, ko-nikl-08289-s004]
+  source_parents: [ko-nikl-08289]
+  rationale: Preserve romantic attraction, affectionate care, concern for others, and enthusiastic enjoyment as distinct source positions in one provisional love-verb identity, not four new lemmas.
+ko-lex-11654:
+  lemma: 일하다
+  category: free-lemma
+  members: [ko-nikl-11654-s001, ko-nikl-11654-s002]
+  source_parents: [ko-nikl-11654]
+  rationale: General purposeful effort and work in an occupation or capacity are separately retained meanings of the source work verb; this is not an invented derived headword.
+ko-lex-16978:
+  lemma: 대답하다
+  category: free-lemma
+  members: [ko-nikl-16978-s001, ko-nikl-16978-s002]
+  source_parents: [ko-nikl-16978]
+  rationale: Answering a call and responding to a question or request share one provisional answer-verb identity while retaining their original distinct source senses.
+ko-lex-23542:
+  lemma: 피곤하다
+  category: free-lemma
+  members: [ko-nikl-23542-s001]
+  source_parents: [ko-nikl-23542]
+  rationale: The original descriptive predicate explicitly covers physical or mental exhaustion. Retain the source headword instead of licensing an unrestricted noun-to-predicate derivation.
+ko-lex-23722:
+  lemma: 필요하다
+  category: free-lemma
+  members: [ko-nikl-23722-s001]
+  source_parents: [ko-nikl-23722]
+  rationale: Independently sourced descriptive necessity predicate, distinct from a general grammatical obligation construction and from the noun 필요.
+ko-lex-24830:
+  lemma: 행복하다
+  category: free-lemma
+  members: [ko-nikl-24830-s001]
+  source_parents: [ko-nikl-24830]
+  rationale: Direct source evidence supports the descriptive predicate for satisfaction and joy in life; its inflected forms do not add lexical identities.
+ko-lex-29792:
+  lemma: 공부하다
+  category: free-lemma
+  members: [ko-nikl-29792-s001]
+  source_parents: [ko-nikl-29792]
+  rationale: Retain the actual unbanded dictionary study verb and its original sense locator, not a guessed sense ID derived from the noun 공부.
+ko-lex-38953:
+  lemma: 미안하다
+  category: free-lemma
+  members: [ko-nikl-38953-s001, ko-nikl-38953-s002]
+  source_parents: [ko-nikl-38953]
+  rationale: The source distinguishes remorse after wronging someone from a modest pardon-seeking use. Keep both in one provisional predicate identity, separate from the more deferential 죄송하다.
+ko-lex-41722:
+  lemma: 주문하다
+  category: free-lemma
+  members: [ko-nikl-41722-s001, ko-nikl-41722-s002]
+  source_parents: [ko-nikl-41722]
+  rationale: Commercial ordering and requiring an action are distinct meanings of the original source verb, not interchangeable with every request or a fabricated nominal derivation.
+ko-lex-43838:
+  lemma: 차
+  category: bound-form
+  members: [ko-nikl-43838-s001, ko-nikl-43838-s002, ko-nikl-43838-s003]
+  source_parents: [ko-nikl-43838]
+  rationale: This independently sourced bound noun expresses order, occasion, or elapsed-period stage. It is neither tea, a vehicle, nor difference, and is excluded from free-lemma breadth.
 ko-lex-04432:
   lemma: 안녕하다
   category: free-lemma

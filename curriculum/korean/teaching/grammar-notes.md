@@ -174,6 +174,12 @@ derivation. In particular, do not assume that 미안하다, 피곤하다, and
 Use an available source-backed expression, an explicitly glossed example,
 or a separately reviewed support entry instead of inventing a sense ID.
 
+The current support registry now directly retains the original unbanded
+공부하다, 일하다, 시작하다, 주문하다, 필요하다, 부탁하다, 대답하다,
+사랑하다, 행복하다, 미안하다, and 피곤하다 entries. They have their own
+source sense IDs and exact official citation matches; this does not make an
+arbitrary new noun-plus-하다 combination a sourced lexical entry.
+
 Present action modifiers use -는, descriptive modifiers -(으)ㄴ, and
 completed action modifiers -(으)ㄴ. The matching surface ending does not mean
 the same predicate type or time. Existential families use 있는/없는 and

@@ -52,7 +52,10 @@ vocabulary files is performed. Learners must retain earlier knowledge.
 
 All **11,028 banded records** in the pinned January 2024 NIKL dictionary mirror
 are present: **1,942 beginner, 3,981 intermediate, 5,105 advanced**. The mirror's
-**42,144 unbanded records are excluded**, not silently marked advanced.
+**42,144 unbanded records are excluded from those TOPIK reference folders**,
+not silently marked advanced. The independent practical program narrowly
+retains selected essential unbanded parents in `source-senses.yaml`, under
+`authoring/teaching/support-parents.yaml`; it does not change the reference totals.
 The mirror is an unofficial historical extraction of 53,172 records; it is not
 the latest official export and lacks official sense IDs and pronunciation fields.
 
@@ -209,7 +212,8 @@ publication is marked KOGL Type 1. See `licenses/NOTICE.md` before distribution.
 
 This collection covers every banded source entry and a broad major-construct
 selection, **not every Korean word, suffix, idiom or grammar pattern**. Gaps:
-42,144 unbanded source records; post-January-2024 lexical updates; complete
+the unbanded source pool beyond narrowly selected practical support;
+post-January-2024 lexical updates; complete
 pronunciation/audio; detailed dialect, historical language and specialist
 terminology; official exam items; professionally moderated learner assessments.
 Affixes and bound nouns remain lexical entries and do not substitute for

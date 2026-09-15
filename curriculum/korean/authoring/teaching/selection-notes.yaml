@@ -92,6 +92,7 @@ category_adjudication:
     ko-lex-35824: 마리; counter for animals
     ko-lex-37199: 명; counter for people
     ko-lex-40947: 번; number, order, or occurrence counter
+    ko-lex-43838: 차; bound order, occasion, or elapsed-period stage marker
     ko-lex-45013: 초; second unit
     ko-lex-49668: 원; Korean currency unit
     ko-lex-49842: 월; calendar-month unit
@@ -275,17 +276,21 @@ remaining_domain_review:
 
 source_support_review:
   - >
-    The order or numbered-occurrence meaning of 차 was not in the inspected
-    registry. Recheck current approved support before adding it; do not
-    repurpose the tea, vehicle, or difference parents.
+    The original unbanded parent ko-nikl-43838 now supplies all three
+    order, occasion, and elapsed-period senses of bound 차. Its exact
+    official citation match is independent of the tea, vehicle, and difference
+    homographs. It does not add a free lemma.
   - >
-    미안하다 and 피곤하다 were absent during initial inspection. Recheck
-    current approved support rather than fabricating IDs or deriving them
-    from an unrestricted noun-plus-하다 rule.
+    The narrowly retained original support now includes 미안하다 38953 and
+    피곤하다 23542, plus 필요하다 23722 and 행복하다 24830. All have exact
+    spelling/POS/ordered-definition matches to official pronunciation text.
+    Their actual dictionary records, not an unrestricted derivation, support them.
   - >
-    필요하다 and other missing X하다 predicates need their own source or
-    reviewed construction evidence. Productive action-noun constructions do
-    not establish arbitrary lexical senses.
+    시작하다 02914, 부탁하다 06699, 사랑하다 08289, 일하다 11654,
+    대답하다 16978, 공부하다 29792, and 주문하다 41722 are independently
+    retained unbanded verbs with original sense ordinals and exact official
+    citation matches. Productive action-noun constructions still do not
+    establish arbitrary additional lexical senses.
 
 reading_handoff_policy: >
   Resolve only selected-parent reading requirements during integration.
@@ -373,6 +378,7 @@ source_parent_homograph_rationales:
   ko-nikl-43833: Tea or infusion, not vehicle or difference.
   ko-nikl-43835: Wheeled vehicle, not tea or difference.
   ko-nikl-43837: Difference and subtraction result, not tea or vehicle.
+  ko-nikl-43838: Bound order, occasion, or elapsed-period marker, not tea, vehicle, or difference.
   ko-nikl-21049: Burning, charring, and tanning; not riding or mixing.
   ko-nikl-21050: Riding or boarding transport, not burning or liquid mixing.
   ko-nikl-21051: Mixing a smaller quantity into liquid, not transport or combustion.
