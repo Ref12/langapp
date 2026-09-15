@@ -13,12 +13,26 @@ import unicodedata
 import yaml
 
 from curriculum_yaml import dump_yaml, load_yaml
-from generate_teaching_track import load_reference_index, resolve_sequence
+from generate_practical_program import program_outputs, validate_references
+from generate_teaching_track import load_reference_index, resolve_sequence, teaching_outputs
+from practical_program_registry import REGISTRATIONS, get_adapter
+from practical_program_types import ProgramData
 
 
-POLICY_VERSION = "curriculum-writing-inventory-v1"
+POLICY_VERSION = "curriculum-writing-inventory-v2"
 LANGUAGES = ("chinese", "japanese", "korean")
 KINDS = ("required", "component", "notation", "literal_sign", "literal_cross_script", "whitespace")
+TEACHING_INPUT_FILES = (
+    "teaching/program.yaml", "teaching/mastery.yaml",
+    "authoring/teaching/vocabulary.yaml", "authoring/teaching/grammar.yaml",
+    "authoring/teaching/support.yaml", "teaching/tourist/plan.yaml",
+)
+SHARED_TOOL_FILES = (
+    "curriculum_yaml.py", "generate_curriculum_tokens.py", "generate_teaching_track.py",
+    "generate_practical_program.py", "practical_program_registry.py", "practical_program_types.py",
+)
+ADAPTER_EXTRA_TOOL_FILES = {"japanese": ("import_japanese_curriculum.py",)}
+KANA_READING = re.compile(r"[\u3041-\u3096\u3099\u309a\u30a1-\u30fa\u30fc\u30fb\uff65\u301c\uff5e\s]+")
 HAN_RANGES = (
     (0x3400, 0x4DBF), (0x4E00, 0x9FFF), (0xF900, 0xFAFF),
     (0x20000, 0x2A6DF), (0x2A700, 0x2B73F), (0x2B740, 0x2B81F),
@@ -103,11 +117,13 @@ def extract_inventory(curriculum_root: Path, language: str) -> dict:
     language_root = root / language
     inputs, evidence, scopes = {}, {}, {}
 
-    def read(path: Path, *, document: bool = False):
+    def read(path: Path, *, document: bool = False, expected: str | None = None):
         resolved = path.resolve()
         if not resolved.is_relative_to(root):
             raise ValueError(f"inventory input escapes curriculum root: {path}")
         raw = path.read_bytes()
+        if expected is not None and raw.decode("utf-8").replace("\r\n", "\n") != expected:
+            raise ValueError(f"Missing or stale teaching view: {path}")
         inputs[path.relative_to(root).as_posix()] = hashlib.sha256(raw).hexdigest()
         return raw.decode("utf-8-sig") if document else load_yaml(path)
 
@@ -151,6 +167,35 @@ def extract_inventory(curriculum_root: Path, language: str) -> dict:
                 add(_text(example["reading"], f"{identifier}.examples.reading", empty=True),
                     scope, file, "examples.reading", f"{identifier}[{index}]")
 
+    def canonical_reading(value, scope, file, field, identifier):
+        if language == "japanese":
+            reading = _text(value, f"{identifier}.{field}")
+            if not KANA_READING.fullmatch(reading):
+                raise ValueError(f"{identifier}: Japanese canonical reading must be kana")
+            add(reading, scope, file, field, identifier)
+
+    def canonical_units(units, scope, file):
+        for unit in _records(units, f"{file}.units"):
+            for field in ("vocabulary", "review_vocabulary", "grammar", "review_grammar", "phrases"):
+                for entry in _records(unit.get(field, []), f"{file}.{field}"):
+                    identifier = _text(entry.get("id"), f"{file}.{field}.id")
+                    target = _text(entry.get("ch"), f"{identifier}.ch")
+                    is_grammar = field in ("grammar", "review_grammar")
+                    affix = language == "korean" and (target.startswith("-") or target.endswith("-"))
+                    add(target, scope, file, f"{field}.ch", identifier, notation=is_grammar,
+                        notation_chars="-" if affix and field != "phrases" else "")
+                    if language == "japanese" and not is_grammar:
+                        # Canonical Japanese pr is documented kana, not generic pronunciation metadata.
+                        canonical_reading(entry.get("pr"), scope, file, f"{field}.pr", identifier)
+                    if field == "phrases":
+                        components = unit["phrase_components"][identifier]
+                        if isinstance(components, dict):
+                            for index, segment in enumerate(components["realizations"]):
+                                # Preserve exact written realizations even when the engine accepts NFC equivalence.
+                                locator = f"{identifier}.realizations[{index}]"
+                                add(segment["ch"], scope, file, "phrase_components.realizations.ch", locator)
+                                canonical_reading(segment["pr"], scope, file, "phrase_components.realizations.pr", locator)
+
     catalog = read(root / "catalog.yaml")
     if not isinstance(catalog, dict) or catalog.get("schema_version") != 1:
         raise ValueError("invalid catalog schema")
@@ -185,30 +230,73 @@ def extract_inventory(curriculum_root: Path, language: str) -> dict:
                     locations[sense_id] = file
     tracks = declaration.get("teaching_tracks", [])
     if not isinstance(tracks, list) or not all(isinstance(track, str) and re.fullmatch(
-            r"[a-z0-9]+(?:-[a-z0-9]+)*", track) for track in tracks):
+            r"[a-z0-9]+(?:-[a-z0-9]+)*", track) for track in tracks) or len(tracks) != len(set(tracks)):
         raise ValueError("invalid teaching track list")
+    registration = REGISTRATIONS[language]
+    if "teaching_program" in declaration and declaration["teaching_program"] != registration.program_id:
+        raise ValueError(f"unsupported teaching_program; expected {registration.program_id}")
+    program_enabled = "teaching_program" in declaration
+    adapter = data = None
+    if program_enabled or (tracks and language != "chinese"):
+        adapter = get_adapter(language)
+        data = adapter.load(language_root)
+        if not isinstance(data, ProgramData):
+            raise ValueError("Active teaching adapter must return ProgramData")
+        validate_references(data.references, adapter.profile)
+        read(language_root / "sources.yaml", document=True)
+        for name in TEACHING_INPUT_FILES:
+            read(language_root / name, document=True)
+    if program_enabled:
+        outputs = program_outputs(language_root, data, adapter)
+        for path, expected in outputs.items():
+            read(path, document=True, expected=expected)
+        core_path = language_root / "teaching" / "core" / "sequence.yaml"
+        core = read(core_path)
+        for phase in core["phases"]:
+            for level in phase["levels"]:
+                canonical_units(
+                    level["units"], f"teaching:program:{registration.program_id}:level-{level['number']:02d}",
+                    core_path.relative_to(root).as_posix(),
+                )
+        for extension in data.inputs["program"]["extensions"]:
+            path = language_root / "teaching" / "extensions" / extension["id"] / "sequence.yaml"
+            canonical_units(read(path)["units"], f"teaching:program:{registration.program_id}:extension:{extension['id']}",
+                            path.relative_to(root).as_posix())
+        path = language_root / "teaching" / "tourist" / "sequence.yaml"
+        canonical_units(read(path)["units"], f"teaching:program:{registration.program_id}:tourist",
+                        path.relative_to(root).as_posix())
     if tracks:
-        if language != "chinese":
-            raise ValueError("explicit expanded teaching resolver currently supports Chinese only")
-        additional_path = language_root / "reference-senses.yaml"
-        for row in _records(read(additional_path), "reference-senses"):
-            for sense in _records(row.get("senses"), "additional.senses"):
-                identifier = _text(sense.get("id"), "additional.sense.id")
-                if identifier in words:
-                    raise ValueError(f"duplicate additional sense: {identifier}")
-                words[identifier] = row
-                locations[identifier] = additional_path.relative_to(root).as_posix()
-        word_index, pattern_index = load_reference_index(language_root)
+        if language == "chinese":
+            additional_path = language_root / "reference-senses.yaml"
+            for row in _records(read(additional_path), "reference-senses"):
+                for sense in _records(row.get("senses"), "additional.senses"):
+                    identifier = _text(sense.get("id"), "additional.sense.id")
+                    if identifier in words:
+                        raise ValueError(f"duplicate additional sense: {identifier}")
+                    words[identifier] = row
+                    locations[identifier] = additional_path.relative_to(root).as_posix()
+            word_index, pattern_index = load_reference_index(language_root)
+        else:
+            word_index, pattern_index = data.references.vocabulary, data.references.grammar
         for track in tracks:
             sequence_path = language_root / "teaching" / track / "sequence.yaml"
-            sequence = resolve_sequence(read(sequence_path), word_index, pattern_index)
-            for unit in sequence["units"]:
-                for field, lookup, consumer in (
-                    ("vocabulary", words, word), ("review_vocabulary", words, word),
-                    ("grammar", patterns, grammar), ("review_grammar", patterns, grammar),
-                ):
-                    for entry in unit[field]:
-                        consumer(lookup[entry["id"]], f"teaching:{track}", locations[entry["id"]])
+            raw_sequence = read(sequence_path)
+            sequence = resolve_sequence(raw_sequence, word_index, pattern_index,
+                                        language=language, prefix=registration.prefix)
+            for path, expected in teaching_outputs(
+                    sequence_path.parent, raw_sequence, word_index, pattern_index,
+                    language=language, prefix=registration.prefix).items():
+                read(path, document=True, expected=expected)
+            canonical_units(sequence["units"], f"teaching:{track}", sequence_path.relative_to(root).as_posix())
+            # Legacy Chinese tracks also retain their selected expanded examples and reference scope evidence.
+            if language == "chinese":
+                for unit in sequence["units"]:
+                    for field, lookup, consumer in (
+                        ("vocabulary", words, word), ("review_vocabulary", words, word),
+                        ("grammar", patterns, grammar), ("review_grammar", patterns, grammar),
+                    ):
+                        for entry in unit[field]:
+                            consumer(lookup[entry["id"]], f"teaching:{track}", locations[entry["id"]])
     for character, role in foundation_characters(language).items():
         add(character, "foundation:modern-script", "shared-policy", "foundation", POLICY_VERSION,
             forced="component" if role == "component" else "required",
@@ -261,10 +349,19 @@ def extract_inventory(curriculum_root: Path, language: str) -> dict:
     teaching = set().union(*(scope["required"] | scope["component"]
                             for name, scope in scopes.items() if name.startswith("teaching:")))
     writing = sets["required"] | sets["component"]
+    tool_files = set(SHARED_TOOL_FILES)
+    if adapter is not None:
+        tool_files.add(registration.module + ".py")
+        tool_files.update(ADAPTER_EXTRA_TOOL_FILES.get(language, ()))
     return {
         "schema_version": 1, "language": language, "policy_version": POLICY_VERSION,
         "unicode_version": unicodedata.unidata_version,
         "inputs": [{"path": path, "sha256": inputs[path]} for path in sorted(inputs)],
+        "tool_inputs": [
+            {"file": name, "sha256": hashlib.sha256(
+                Path(__file__).with_name(name).read_bytes().replace(b"\r\n", b"\n"),
+            ).hexdigest()} for name in sorted(tool_files)
+        ],
         "required": sorted(sets["required"]), "components": sorted(sets["component"]),
         "literal_cross_script": sorted(sets["literal_cross_script"] - writing),
         "literal_signs": sorted(sets["literal_sign"] - writing),

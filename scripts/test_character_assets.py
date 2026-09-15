@@ -469,14 +469,14 @@ class InventoryTests(unittest.TestCase):
 
     def test_real_curriculum_snapshot_counts(self):
         root = Path(__file__).resolve().parents[1] / "curriculum"
-        expected = {"chinese": (2971, 0, 0), "japanese": (2213, 2, 4), "korean": (1276, 67, 0)}
-        for language, (writing, components, cross_script) in expected.items():
+        expected = {"chinese": (2971, 0, 0, 0), "japanese": (2235, 2, 4, 22), "korean": (1276, 67, 0, 0)}
+        for language, (writing, components, cross_script, teaching_only) in expected.items():
             with self.subTest(language=language):
                 inventory = extract_inventory(root, language)
                 self.assertEqual(inventory["counts"]["writing"], writing)
                 self.assertEqual(len(inventory["components"]), components)
                 self.assertEqual(len(inventory["literal_cross_script"]), cross_script)
-                self.assertEqual(inventory["counts"]["teaching_only"], 0)
+                self.assertEqual(inventory["counts"]["teaching_only"], teaching_only)
 
     def test_no_write_cli_accepts_honest_missing_bundle_but_not_release(self):
         root = self.root / "japanese"

@@ -402,6 +402,16 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
         raise ValueError("inventory.language must be chinese, japanese, or korean")
     _text(adapter, "adapter")
     _text(adapter_version, "adapter_version")
+    tool_files = {"character_assets.py", "character_geometry.py", "character_inventory.py", "curriculum_yaml.py"}
+    for tool in _list(inventory.get("tool_inputs", []), "inventory.tool_inputs"):
+        _fields(tool, {"file", "sha256"}, set(), "inventory tool")
+        name = tool["file"]
+        if not isinstance(name, str) or re.fullmatch(r"[a-z][a-z0-9_]*\.py", name) is None:
+            raise ValueError("inventory tool must be a local Python module filename")
+        _hash(tool["sha256"], "inventory tool.sha256")
+        if sha256(Path(__file__).with_name(name).read_bytes().replace(b"\r\n", b"\n")) != tool["sha256"]:
+            raise ValueError(f"stale inventory tool checksum: {name}")
+        tool_files.add(name)
     sources = _sources(language_root)
     pins = _input_index(inputs, sources)
     for name, pin in pins.items():
@@ -529,7 +539,7 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
             {"file": name, "sha256": sha256(
                 Path(__file__).with_name(name).read_bytes().replace(b"\r\n", b"\n"),
             )}
-            for name in ("character_assets.py", "character_geometry.py", "character_inventory.py", "curriculum_yaml.py")
+            for name in sorted(tool_files)
         ],
         "release_ready": coverage["release_ready"],
     }

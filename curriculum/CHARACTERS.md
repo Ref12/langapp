@@ -211,25 +211,49 @@ extract_inventory(curriculum_root: Path, language: str) -> dict
 script_of(character: str) -> str
 ```
 
-Only catalog-declared **expanded** level files are read: vocabulary `target`,
+Catalog-declared **expanded** reference level files contribute vocabulary `target`,
 Japanese vocabulary `reading`, grammar `pattern`/`token_form`, example `target`,
 and Japanese example `reading` when supplied. English, translation notes,
 upstream dictionaries and compact token strings are never mined for characters.
-Chinese teaching sequences are checked with the existing resolver, then selected
-IDs resolve back to expanded words/patterns/examples. Reference levels and
-pedagogical order remain independent scopes, not competing character identities.
+Policy `curriculum-writing-inventory-v2` also resolves active `teaching_tracks`
+and `teaching_program` through the registered neutral engine and canonical
+adapter references. Missing adapters, invalid active configuration/references,
+or stale/missing generated views fail instead of silently removing requirements.
+Inactive views do not contribute writing requirements.
+
+Active tracks and the program's core levels, declared extensions and full
+tourist sequence contribute `vocabulary.ch`, `review_vocabulary.ch`,
+`grammar.ch`, `review_grammar.ch` and `phrases.ch`. Exact tourist
+`phrase_components.realizations[].ch` contributes separately: engine
+reconstruction validation does not authorize Unicode folding in the inventory.
+Japanese lexical/phrase entries and realizations also contribute validated kana
+`pr`; Chinese/Korean pronunciation metadata does not. Mirrored compact, phase
+and quick-start views are validated but not mined again. Legacy Chinese tracks
+retain selected expanded words/patterns/examples through their existing resolver.
+Reference levels and teaching routes retain independent scopes and evidence,
+not competing character identities.
+
 Grammar-slot Latin and syntax punctuation are notation; literal fullwidth Latin
 in actual Japanese target forms is a distinct cross-script gap. Korean
 vocabulary boundary hyphens are affix notation, not literal sentence punctuation.
+Literal target text is not blanket-stripped of punctuation. `literal_signs`
+also includes unsupported literal digits, not just punctuation.
 
 Every observed scalar retains classifications and evidence grouped by
 file/field/scope, with occurrence count and the first matching entry ID. This is
 compact reproducible evidence, not an exhaustive list of every lexeme ID.
 Inventories include exact input byte hashes, policy version, Unicode database
-version, sorted scalar sets, scope membership, and derived counts. Foundation
-membership never mutates reference-level assignments.
+version, sorted scalar sets, scope membership, and derived counts. Active
+teaching pins include `sources.yaml`, the engine's six named authoring inputs
+and every validated generated view, even views not separately extracted.
+Adapter-specific source-lock checks remain the adapter's responsibility.
+Explicit `tool_inputs` pins cover the invoked engine, resolver and adapter
+modules with LF-normalized source hashes; the shared builder verifies and merges
+them into manifest `shared_tools`. New adapter code dependencies must be added
+explicitly, not discovered by recursively scanning arbitrary files.
+Foundation membership never mutates reference-level assignments.
 
-Approved snapshot on this branch:
+Original foundation snapshot, before active teaching-program forms:
 
 | Language | Reference writing scalars | Foundation keys | Required | Component-only | Total writing keys | Other literal targets |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
@@ -238,7 +262,7 @@ Approved snapshot on this branch:
 | Korean | 1,160 | 118 | 1,209 | 67 | **1,276** | 2 punctuation signs |
 
 Foundations overlap reference scalars; do not add those columns. Chinese
-teaching scope uses 227 characters and adds none outside its reference union.
+beginner teaching scope used 227 characters and added none outside its reference union.
 The reference union is 2,970 vocabulary Han plus grammar-only U+6BCB. Japanese's
 initial Han count 2,036 includes U+3005 (iteration mark); adding the explicitly
 approved U+3007 number/date prerequisite yields 2,037 Han-script keys, not 2,037
@@ -306,6 +330,28 @@ specific cautions; `coverage.yaml` is the authoritative machine-readable state.
 These commits provide offline assets, recipes, provenance and review tooling.
 They do not connect the new bundles to a production writing activity or replace
 the mockup's existing bundled character data.
+
+### Active teaching inventory update
+
+With the active canonical views on curriculum baseline `f5fa0f6`, policy v2
+produces the following requirements without changing prepared artwork:
+
+| Language | Required | Component-only | Total writing keys | Teaching-only additions |
+| --- | ---: | ---: | ---: | ---: |
+| Chinese | 2,971 | 0 | 2,971 | 0 |
+| Japanese | 2,233 | 2 | 2,235 | 22 Han |
+| Korean | 1,209 | 67 | 1,276 | 0 |
+
+Japanese also adds ten exact literal fullwidth digits U+FF10..FF19: ten total,
+ten newly observed and all ten absent from the prepared drawable set. These
+come from canonical vocabulary/review spellings, not grammar slots; for example,
+U+FF10 occurs in core level-06 `vocabulary.ch` for `ja-n5-00330-s001`.
+Together with the 22 new Han, existing U+9C5D gap and four unchanged fullwidth
+Latin gaps, this yields 37 missing text scalars across distinct categories.
+Chinese/Korean writing unions and literal-target sets are unchanged. Bundles
+must be centrally regenerated after integration to record the new requirements,
+input/dependency hashes and explicit gaps; this compatibility update supplies
+no new glyphs and grants no source or review approval.
 
 ## Commands and limits
 
