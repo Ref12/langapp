@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import yaml
 
@@ -73,6 +74,15 @@ class FrenchSourceTests(unittest.TestCase):
         self.assertEqual(counts, sorted(counts))
         for branch in ("professional", "technical", "scientific", "literary"):
             self.assertGreaterEqual(len({row["id"] for row in self.placements if row["level"] == branch}), 30)
+
+    def test_opening_order_follows_authored_communicative_progression(self):
+        first = next(row for row in self.placements if row["level"] == 1)
+        self.assertEqual(self.by_id[first["id"]]["target"], "bonjour")
+        services = [self.by_id[row["id"]]["target"] for row in self.placements
+                    if row["level"] == 3 and row["topic"] == "services"]
+        self.assertEqual(services[:3], ["zéro", "deux", "trois"])
+        self.assertLess(services.index("douze"), services.index("treize"))
+        self.assertLess(services.index("dix-neuf"), services.index("vingt"))
 
     def test_later_meanings_are_not_early_mastery(self):
         selections = {row["source_sense_id"]: row["id"] for row in self.expanded}
@@ -323,6 +333,10 @@ class FrenchProgramTests(unittest.TestCase):
         components = [value for unit in self.tourist["units"] for value in unit["phrase_components"].values()]
         self.assertTrue(any(not value["items"] and value["grammar"] for value in components))
         self.assertTrue(any(segment.get("form_id") for value in components for segment in value["realizations"]))
+        for value in components:
+            for segment in value["realizations"]:
+                self.assertEqual(segment["ch"], segment["ch"].strip())
+                self.assertEqual(segment["pr"], segment["pr"].strip())
 
     def test_unlicensed_surface_reading_and_prerequisites_fail(self):
         from practical_program_types import PhraseContext
@@ -432,6 +446,36 @@ class FrenchProgramTests(unittest.TestCase):
         actual = generate(ROOT, FrenchAdapter(), check=True)
         self.assertEqual(actual, self.outputs)
         self.assertEqual(before, {path: path.stat().st_mtime_ns for path in self.outputs})
+
+    def test_independent_reference_registration_without_catalog_edit(self):
+        from validate_curriculum import Validator
+        root = ROOT.parent
+        path = root / "catalog.yaml"
+        before = path.read_bytes()
+        catalog = load_yaml(path)
+        catalog["languages"] = [row for row in catalog["languages"] if row["id"] != "french"]
+        catalog["languages"].append({
+            "id": "french",
+            "standard": "Independent practical French reference inventory; no official proficiency bands",
+            "reference_inventory": "reference",
+            "teaching_program": "fr-practical",
+        })
+        validator = Validator(root)
+        original_loader = validator.yaml_file
+
+        def read_catalog(candidate, expected_type):
+            return catalog if candidate == path else original_loader(candidate, expected_type)
+
+        with patch.object(validator, "yaml_file", side_effect=read_catalog):
+            validator.catalog()
+        validator.language("french")
+        self.assertFalse(validator.errors, validator.errors)
+        self.assertEqual(validator.counts, [(
+            "french", "reference", len(self.data.references.vocabulary), len(self.data.references.grammar),
+            sum(len(self.data.references.provenance[identifier]["examples"])
+                for identifier in self.data.references.grammar),
+        )])
+        self.assertEqual(path.read_bytes(), before)
 
     def test_bad_authored_phrase_fails_before_any_output_write(self):
         from french_program_adapter import FrenchAdapter

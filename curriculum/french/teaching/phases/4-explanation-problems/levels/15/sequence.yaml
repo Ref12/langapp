@@ -1,0 +1,448 @@
+schema_version: 3
+id: fr-level-15
+title: Cooperation and responsibility
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 15
+phase: explanation-problems
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+goals: &id001
+- Explain responsibilities and a task's current state.
+- Describe a future arrangement with suitable certainty.
+- Renegotiate a shared task without blaming or overstating commitments.
+checkpoint:
+  task: Give a task update and redistribute responsibilities after a change in resources or availability.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-15-description-01
+  title: Description and comparison - 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-b3b3b81f99e2fd63, ch: professionnel, pr: /pʁɔ.fɛ.sjɔ.nɛl/, ds: professional}
+  - {id: fr-v-8d2c5c50de09b1a4, ch: organisationnel, pr: /ɔʁ.ɡa.ni.za.sjɔ.nɛl/, ds: organizational}
+  - {id: fr-v-e43523a42ecd9340, ch: individuel, pr: /ɛ̃.di.vi.dɥɛl/, ds: individual}
+  - {id: fr-v-f16373acb1b8660f, ch: commun, pr: /kɔ.mœ̃/, ds: common (shared)}
+  - {id: fr-v-f92b4a647a8cf7aa, ch: partagé, pr: /paʁ.ta.ʒe/, ds: 'conflicted, undecided, unsure'}
+  - {id: fr-v-1bd9cbc4d687a960, ch: complémentaire, pr: /kɔ̃.ple.mɑ̃.tɛʁ/, ds: complementary}
+  - {id: fr-v-17b9dbc8cbb37cf8, ch: polyvalent, pr: /pɔ.li.va.lɑ̃/, ds: 'versatile, multipurpose'}
+  - {id: fr-v-ff908869dba19e59, ch: spécialisé, pr: /spe.sja.li.ze/, ds: specialized}
+  - {id: fr-v-90782fc6b262ecd7, ch: compétent, pr: /kɔ̃.pe.tɑ̃/, ds: competent (able)}
+  - {id: fr-v-4388c18a65c4619f, ch: expérimenté, pr: /ɛk.spe.ʁi.mɑ̃.te/, ds: 'experienced, having experience'}
+  - {id: fr-v-9acebc60253ddf93, ch: autonome, pr: /o.tɔ.nɔm/, ds: autonomous}
+  - {id: fr-v-eb931bbd1a03b60e, ch: indépendant, pr: /ɛ̃.de.pɑ̃.dɑ̃/, ds: independent}
+  - {id: fr-v-c8e8e47d517e3b93, ch: dépendant, pr: /de.pɑ̃.dɑ̃/, ds: dependent}
+  - {id: fr-v-ea55ee78e9cda1e2, ch: motivé, pr: /mɔ.ti.ve/, ds: 'motivated, enthusiastic'}
+  - {id: fr-v-1574890c9ac76974, ch: dynamique, pr: /di.na.mik/, ds: 'in motion, dynamic'}
+  - {id: fr-v-ae6f1eed1e51afb9, ch: sérieux, pr: /se.ʁjø/, ds: serious}
+  - {id: fr-v-d7718ec6861937d9, ch: ponctuel, pr: /pɔ̃k.tɥɛl/, ds: 'punctual, on time'}
+  - {id: fr-v-f8f8fce035ef0145, ch: rigoureux, pr: /ʁi.ɡu.ʁø/, ds: rigorous}
+  - {id: fr-v-c74ca8e224715c89, ch: consciencieux, pr: /kɔ̃.sjɑ̃.sjø/, ds: 'conscientious, thorough'}
+  - {id: fr-v-26dfdb5547c4d201, ch: appliqué, pr: /a.pli.ke/, ds: 'diligent, industrious, hardworking, careful'}
+  - {id: fr-v-351eb805d1d7a6c2, ch: méthodique, pr: /me.tɔ.dik/, ds: methodical}
+  - {id: fr-v-c7222971ad297d7c, ch: désorganisé, pr: /de.zɔʁ.ɡa.ni.ze/, ds: disorganized}
+  - {id: fr-v-72a9e6f445827603, ch: flexible, pr: /flɛk.sibl/, ds: flexible}
+  - {id: fr-v-799044381711b0eb, ch: adaptable, pr: /a.dap.tabl/, ds: adaptable (capable of adapting or being adapted)}
+  - {id: fr-v-3cfeb83296e2063e, ch: réactif, pr: /ʁe.ak.tif/, ds: reactive}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-539c0121dd650af7, ch: rentable, pr: /ʁɑ̃.tabl/, ds: profitable; cost-effective}
+  - {id: fr-v-b58425ff2f498590, ch: avantageux, pr: /a.vɑ̃.ta.ʒø/, ds: advantageous}
+  - {id: fr-v-3ee704768eb811c7, ch: durable, pr: /dy.ʁabl/, ds: durable}
+  - {id: fr-v-fff38c33b3457a92, ch: fiable, pr: /fjabl/, ds: 'reliable, dependable'}
+  - {id: fr-v-d9e0d8ac905201ac, ch: incertain, pr: /ɛ̃.sɛʁ.tɛ̃/, ds: uncertain; unsure}
+  - {id: fr-v-f365d6dd82ee7c5a, ch: douteux, pr: /du.tø/, ds: 'doubtful, uncertain, questionable (issue, outcome, date etc.)'}
+  - {id: fr-v-13acde7a9032ee19, ch: convaincant, pr: /kɔ̃.vɛ̃.kɑ̃/, ds: convincing}
+  - {id: fr-v-baf6f3dd0eb9a20e, ch: évident, pr: /e.vi.dɑ̃/, ds: 'evident, obvious'}
+  review_grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  - {id: fr-g-comparative-degree, ch: plus / moins / aussi + adjectif + que, ds: Compare the degree of a quality between alternatives}
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+- id: level-15-description-02
+  title: Description and comparison - 2
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-855c9db282ae4867, ch: proactif, pr: /pʁɔ.ak.tif/, ds: proactive; acting ahead of an expected difficulty}
+  - {id: fr-v-5ba0d2e0cbc8ec1f, ch: créatif, pr: /kʁe.a.tif/, ds: creative}
+  - {id: fr-v-75960a0bb1aaf5ed, ch: inventif, pr: /ɛ̃.vɑ̃.tif/, ds: inventive}
+  - {id: fr-v-e312f1face8dcbf0, ch: coopératif, pr: /kɔ.ɔ.pe.ʁa.tif/, ds: 'joint, united, together'}
+  - {id: fr-v-d210808032fe7d40, ch: solidaire, pr: /sɔ.li.dɛʁ/, ds: 'solidary, showing solidarity (with)'}
+  - {id: fr-v-b72a035a74c062d3, ch: irresponsable, pr: /i.ʁɛs.pɔ̃.sabl/, ds: 'exempt from legal responsibility, from being held accountable'}
+  - {id: fr-v-281649758dcb46ef, ch: productif, pr: /pʁɔ.dyk.tif/, ds: productive}
+  - {id: fr-v-ae1902d7bb9e1df1, ch: improductif, pr: /ɛ̃.pʁɔ.dyk.tif/, ds: unproductive}
+  - {id: fr-v-a41f348009aaa2cf, ch: performant, pr: /pɛʁ.fɔʁ.mɑ̃/, ds: 'efficient, effective, performant'}
+  - {id: fr-v-884fdb71ee54d409, ch: stratégique, pr: /stʁa.te.ʒik/, ds: 'strategic, strategical'}
+  - {id: fr-v-7944fecd49b018eb, ch: opérationnel, pr: /ɔ.pe.ʁa.sjɔ.nɛl/, ds: operational (all meanings)}
+  - {id: fr-v-b1f644c3567c45af, ch: administratif, pr: /ad.mi.nis.tʁa.tif/, ds: administrative}
+  - {id: fr-v-5ea9debeac575088, ch: hiérarchique, pr: /je.ʁaʁ.ʃik/, ds: hierarchical}
+  - {id: fr-v-c4b2aed68f213cb0, ch: provisoire, pr: /pʁɔ.vi.zwaʁ/, ds: 'temporary (for a limited time, ephemeral, not constant)'}
+  - {id: fr-v-868ee615455721fb, ch: partiel, pr: /paʁ.sjɛl/, ds: 'partial (part, no full)'}
+  - {id: fr-v-3c63bd52bdfea5da, ch: total, pr: /tɔ.tal/, ds: total}
+  - {id: fr-v-a4fd710c9280914a, ch: global, pr: /ɡlɔ.bal/, ds: 'global, spherical; (hence) concerning the whole world'}
+  - {id: fr-v-917b75fff8bc6d14, ch: local, pr: /lɔ.kal/, ds: local}
+  - {id: fr-v-f5b1f9b07c80a862, ch: régional, pr: /ʁe.ʒjɔ.nal/, ds: regional}
+  - {id: fr-v-f41b12f7a822ee00, ch: national, pr: /na.sjɔ.nal/, ds: national}
+  - {id: fr-v-543ec1730dc89aa4, ch: international, pr: /ɛ̃.tɛʁ.na.sjɔ.nal/, ds: international}
+  - {id: fr-v-630ce67010fbfd68, ch: interne, pr: /ɛ̃.tɛʁn/, ds: internal}
+  - {id: fr-v-5e49b3e55c4a50c6, ch: externe, pr: /ɛk.stɛʁn/, ds: external}
+  - {id: fr-v-a6634be325f50736, ch: initialement, pr: /i.ni.sjal.mɑ̃/, ds: initially}
+  - {id: fr-v-116591753d471aae, ch: ultérieurement, pr: /yl.te.ʁjœʁ.mɑ̃/, ds: eventually; later on}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-f8f8fce035ef0145, ch: rigoureux, pr: /ʁi.ɡu.ʁø/, ds: rigorous}
+  - {id: fr-v-c74ca8e224715c89, ch: consciencieux, pr: /kɔ̃.sjɑ̃.sjø/, ds: 'conscientious, thorough'}
+  - {id: fr-v-26dfdb5547c4d201, ch: appliqué, pr: /a.pli.ke/, ds: 'diligent, industrious, hardworking, careful'}
+  - {id: fr-v-351eb805d1d7a6c2, ch: méthodique, pr: /me.tɔ.dik/, ds: methodical}
+  - {id: fr-v-c7222971ad297d7c, ch: désorganisé, pr: /de.zɔʁ.ɡa.ni.ze/, ds: disorganized}
+  - {id: fr-v-72a9e6f445827603, ch: flexible, pr: /flɛk.sibl/, ds: flexible}
+  - {id: fr-v-799044381711b0eb, ch: adaptable, pr: /a.dap.tabl/, ds: adaptable (capable of adapting or being adapted)}
+  - {id: fr-v-3cfeb83296e2063e, ch: réactif, pr: /ʁe.ak.tif/, ds: reactive}
+  review_grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  - {id: fr-g-comparative-degree, ch: plus / moins / aussi + adjectif + que, ds: Compare the degree of a quality between alternatives}
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+- id: level-15-description-03
+  title: Description and comparison - 3
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-868ec67a3376c0ca, ch: préalablement, pr: /pʁe.a.la.blə.mɑ̃/, ds: 'beforehand, first'}
+  - {id: fr-v-47355ddfd26d5171, ch: parallèlement, pr: /pa.ʁa.lɛl.mɑ̃/, ds: parallelly}
+  - {id: fr-v-abbbd76f136b2b6d, ch: conjointement, pr: /kɔ̃.ʒwɛ̃t.mɑ̃/, ds: 'jointly, together'}
+  - {id: fr-v-47f0e14fa1fff938, ch: collectivement, pr: /kɔ.lɛk.tiv.mɑ̃/, ds: collectively}
+  - {id: fr-v-f4c2275a01510933, ch: individuellement, pr: /ɛ̃.di.vi.dɥɛl.mɑ̃/, ds: individually}
+  - {id: fr-v-f9360ecaa0fdf6e0, ch: séparément, pr: /sepaʁemɑ̃/, ds: separately}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-917b75fff8bc6d14, ch: local, pr: /lɔ.kal/, ds: local}
+  - {id: fr-v-f5b1f9b07c80a862, ch: régional, pr: /ʁe.ʒjɔ.nal/, ds: regional}
+  - {id: fr-v-f41b12f7a822ee00, ch: national, pr: /na.sjɔ.nal/, ds: national}
+  - {id: fr-v-543ec1730dc89aa4, ch: international, pr: /ɛ̃.tɛʁ.na.sjɔ.nal/, ds: international}
+  - {id: fr-v-630ce67010fbfd68, ch: interne, pr: /ɛ̃.tɛʁn/, ds: internal}
+  - {id: fr-v-5e49b3e55c4a50c6, ch: externe, pr: /ɛk.stɛʁn/, ds: external}
+  - {id: fr-v-a6634be325f50736, ch: initialement, pr: /i.ni.sjal.mɑ̃/, ds: initially}
+  - {id: fr-v-116591753d471aae, ch: ultérieurement, pr: /yl.te.ʁjœʁ.mɑ̃/, ds: eventually; later on}
+  review_grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  - {id: fr-g-comparative-degree, ch: plus / moins / aussi + adjectif + que, ds: Compare the degree of a quality between alternatives}
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+- id: level-15-work-01
+  title: Work and cooperation - 1
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary:
+  - {id: fr-v-bf459519f3bde720, ch: organisation, pr: /ɔʁ.ɡa.ni.za.sjɔ̃/, ds: organization}
+  - {id: fr-v-7bd51377046bb37e, ch: structure, pr: /stʁyk.tyʁ/, ds: structure}
+  - {id: fr-v-956b6f1635c361a8, ch: département, pr: /de.paʁ.tə.mɑ̃/, ds: department}
+  - {id: fr-v-2a654bd69a9e209e, ch: division, pr: /di.vi.zjɔ̃/, ds: division (act or process of dividing)}
+  - {id: fr-v-dd07c44d69a00de6, ch: administration, pr: /ad.mi.nis.tʁa.sjɔ̃/, ds: management (administration; the process or practice of managing)}
+  - {id: fr-v-eb5f67da0ece6981, ch: personnel, pr: /pɛʁ.sɔ.nɛl/, ds: personal}
+  - {id: fr-v-db11bd651f2fbbac, ch: effectif, pr: /e.fɛk.tif/, ds: number of members of a group}
+  - {id: fr-v-5c8bc0b1ce87f6d0, ch: groupe, pr: /ɡʁup/, ds: group}
+  - {id: fr-v-d7d663cb698e1cb3, ch: collectif, pr: /kɔ.lɛk.tif/, ds: collective}
+  - {id: fr-v-69ba1ec82a62c960, ch: collaborateur, pr: /kɔ.la.bɔ.ʁa.tœʁ/, ds: collaborator}
+  - {id: fr-v-de9ec3dd4fb43968, ch: collaboration, pr: /kɔ.la.bɔ.ʁa.sjɔ̃/, ds: collaboration}
+  - {id: fr-v-715658f8aa759827, ch: coopération, pr: /kɔ.ɔ.pe.ʁa.sjɔ̃/, ds: cooperation}
+  - {id: fr-v-6773d679b159eba0, ch: coordination, pr: /kɔ.ɔʁ.di.na.sjɔ̃/, ds: coordination}
+  - {id: fr-v-2cd19c77ba6a11e8, ch: partenariat, pr: /paʁ.tə.na.ʁja/, ds: partnership}
+  - {id: fr-v-4d9cbd2e15b53749, ch: associé, pr: /a.sɔ.sje/, ds: associate}
+  - {id: fr-v-b37afbf9da7dc548, ch: dirigeant, pr: /di.ʁi.ʒɑ̃/, ds: 'ruler, leader'}
+  - {id: fr-v-ba478215c852cfab, ch: directeur, pr: /di.ʁɛk.tœʁ/, ds: director}
+  - {id: fr-v-e74c0c9edc84b050, ch: cadre, pr: /kadʁ/, ds: frame (of a door or picture)}
+  - {id: fr-v-ea9ea1606fd5d403, ch: salarié, pr: /sa.la.ʁje/, ds: employee}
+  - {id: fr-v-fb863ef49e559244, ch: employé, pr: /ɑ̃.plwa.je/, ds: employee}
+  - {id: fr-v-5fdcac601ae67129, ch: employeur, pr: /ɑ̃.plwa.jœʁ/, ds: employer}
+  - {id: fr-v-616d70975d66c0f9, ch: entrepreneur, pr: /ɑ̃.tʁə.pʁə.nœʁ/, ds: entrepreneur; business organizer}
+  - {id: fr-v-cce5f0ce650a1512, ch: consultant, pr: /kɔ̃.syl.tɑ̃/, ds: consultant (person who offers advice in a professional capacity)}
+  - {id: fr-v-f3edeceba606db0c, ch: stagiaire, pr: /sta.ʒjɛʁ/, ds: trainee}
+  - {id: fr-v-f53f6643749e1da2, ch: apprenti, pr: /a.pʁɑ̃.ti/, ds: 'apprentice, trainee'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-0000b59663f07a54, ch: refuser, pr: /ʁə.fy.ze/, ds: to refuse}
+  - {id: fr-v-009c389b7c973916, ch: envoyer, pr: /ɑ̃.vwa.je/, ds: to send}
+  - {id: fr-v-3b6520b3ca90d3c0, ch: signer, pr: /si.ɲe/, ds: to sign (put a signature on)}
+  - {id: fr-v-17646b0b66772308, ch: contacter, pr: /kɔ̃.tak.te/, ds: to contact (all senses)}
+  - {id: fr-v-dd8b321d26fc3b37, ch: remercier, pr: /ʁə.mɛʁ.sje/, ds: to thank (someone)}
+  - {id: fr-v-e9ece3ca4fc84fb6, ch: gagner, pr: /ɡa.ɲe/, ds: to win}
+  - {id: fr-v-c68bb07d29dbc737, ch: terminer, pr: /tɛʁ.mi.ne/, ds: to end; to finish; to terminate}
+  - {id: fr-v-c4d2fd64dfd14c21, ch: vérifier, pr: /ve.ʁi.fje/, ds: to confirm}
+  review_grammar:
+  - {id: fr-g-recent-past, ch: venir de + infinitif, ds: Relate a just-completed event to the current moment}
+  - {id: fr-g-modal-infinitives, ch: devoir / pouvoir / savoir + infinitif, ds: 'Distinguish obligation, available ability, and learned skill'}
+- id: level-15-work-02
+  title: Work and cooperation - 2
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary:
+  - {id: fr-v-5ee8b00107238138, ch: recruteur, pr: /ʁə.kʁy.tœʁ/, ds: 'recruiter, talent scout'}
+  - {id: fr-v-d08d717e4f5df6de, ch: candidat, pr: /kɑ̃.di.da/, ds: candidate}
+  - {id: fr-v-7966f41d144aa1b3, ch: recrutement, pr: /ʁə.kʁyt.mɑ̃/, ds: recruitment}
+  - {id: fr-v-ca6903f1ee83789c, ch: embauche, pr: /ɑ̃.boʃ/, ds: 'hiring, employment, taking-on'}
+  - {id: fr-v-2c1aaaed1b21dac0, ch: licenciement, pr: /li.sɑ̃.si.mɑ̃/, ds: sacking (termination of work)}
+  - {id: fr-v-dd636014e449d86f, ch: démission, pr: /de.mi.sjɔ̃/, ds: resignation}
+  - {id: fr-v-e87ba21bde45a2f9, ch: mutation, pr: /my.ta.sjɔ̃/, ds: substitution}
+  - {id: fr-v-194583add04d7627, ch: carrière, pr: /ka.ʁjɛʁ/, ds: racecourse}
+  - {id: fr-v-d00a0955363094cd, ch: ancienneté, pr: /ɑ̃.sjɛn.te/, ds: oldness (state of being old)}
+  - {id: fr-v-605c2013aea34f9c, ch: qualification, pr: /ka.li.fi.ka.sjɔ̃/, ds: qualification (all senses)}
+  - {id: fr-v-c701dc583223b9a2, ch: responsabilité, pr: /ʁɛs.pɔ̃.sa.bi.li.te/, ds: responsibility}
+  - {id: fr-v-2950aad44d8180f3, ch: fonction, pr: /fɔ̃k.sjɔ̃/, ds: function (what something does or is used for)}
+  - {id: fr-v-c3d56e54c80dcb6a, ch: rôle, pr: /ʁol/, ds: role}
+  - {id: fr-v-b15d45e969807884, ch: mission, pr: /mi.sjɔ̃/, ds: mission (duty that involves fulfilling a request)}
+  - {id: fr-v-06d622719884b58b, ch: attribution, pr: /a.tʁi.by.sjɔ̃/, ds: 'allocation, allotment'}
+  - {id: fr-v-b9624b5ca318db65, ch: délégation, pr: /de.le.ɡa.sjɔ̃/, ds: delegation}
+  - {id: fr-v-134683a370681bc5, ch: supervision, pr: /sy.pɛʁ.vi.zjɔ̃/, ds: supervision}
+  - {id: fr-v-ed435747c56e708a, ch: encadrement, pr: /ɑ̃.ka.dʁə.mɑ̃/, ds: framing (of a picture)}
+  - {id: fr-v-f74a8004f0d6c617, ch: management, pr: /ma.na(d)ʒ.mɑ̃/, ds: management}
+  - {id: fr-v-3d1ded5724afce96, ch: gestion, pr: /ʒɛs.tjɔ̃/, ds: administration}
+  - {id: fr-v-c0c88554e501b21f, ch: planification, pr: /pla.ni.fi.ka.sjɔ̃/, ds: planning (act of making a plan)}
+  - {id: fr-v-44ffa5025dd6dbea, ch: stratégie, pr: /stʁa.te.ʒi/, ds: strategy}
+  - {id: fr-v-32e2cf10eb016ec2, ch: tactique, pr: /tak.tik/, ds: tactic}
+  - {id: fr-v-97feba7301c410b2, ch: cible, pr: /sibl/, ds: target}
+  - {id: fr-v-82ff578683bce689, ch: rendement, pr: /ʁɑ̃d.mɑ̃/, ds: 'production, output, yield'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-e74c0c9edc84b050, ch: cadre, pr: /kadʁ/, ds: frame (of a door or picture)}
+  - {id: fr-v-ea9ea1606fd5d403, ch: salarié, pr: /sa.la.ʁje/, ds: employee}
+  - {id: fr-v-fb863ef49e559244, ch: employé, pr: /ɑ̃.plwa.je/, ds: employee}
+  - {id: fr-v-5fdcac601ae67129, ch: employeur, pr: /ɑ̃.plwa.jœʁ/, ds: employer}
+  - {id: fr-v-616d70975d66c0f9, ch: entrepreneur, pr: /ɑ̃.tʁə.pʁə.nœʁ/, ds: entrepreneur; business organizer}
+  - {id: fr-v-cce5f0ce650a1512, ch: consultant, pr: /kɔ̃.syl.tɑ̃/, ds: consultant (person who offers advice in a professional capacity)}
+  - {id: fr-v-f3edeceba606db0c, ch: stagiaire, pr: /sta.ʒjɛʁ/, ds: trainee}
+  - {id: fr-v-f53f6643749e1da2, ch: apprenti, pr: /a.pʁɑ̃.ti/, ds: 'apprentice, trainee'}
+  review_grammar:
+  - {id: fr-g-recent-past, ch: venir de + infinitif, ds: Relate a just-completed event to the current moment}
+  - {id: fr-g-modal-infinitives, ch: devoir / pouvoir / savoir + infinitif, ds: 'Distinguish obligation, available ability, and learned skill'}
+- id: level-15-work-03
+  title: Work and cooperation - 3
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary:
+  - {id: fr-v-3cb79f6ea0df509b, ch: productivité, pr: /pʁɔ.dyk.ti.vi.te/, ds: productivity}
+  - {id: fr-v-ff4902fa5ef700b5, ch: efficacité, pr: /e.fi.ka.si.te/, ds: 'efficiency, effectiveness'}
+  - {id: fr-v-e4e8019dbd3f4c51, ch: efficience, pr: /efisjɑ̃s/, ds: 'effectiveness, efficiency'}
+  - {id: fr-v-54fc652f571a433b, ch: performance, pr: /pɛʁ.fɔʁ.mɑ̃s/, ds: performance}
+  - {id: fr-v-9d9ee89d2aeb0224, ch: qualité, pr: /ka.li.te/, ds: quality}
+  - {id: fr-v-e81a03a6718300e5, ch: charge, pr: /ʃaʁʒ/, ds: 'load, burden'}
+  - {id: fr-v-0b1b811c72da3a55, ch: ressource, pr: /ʁə.suʁs/, ds: resource}
+  - {id: fr-v-8c81844585feb6bc, ch: financement, pr: /fi.nɑ̃s.mɑ̃/, ds: 'funding, financing'}
+  - {id: fr-v-a6b6ca71303f29f4, ch: investissement, pr: /ɛ̃.vɛs.tis.mɑ̃/, ds: investment}
+  - {id: fr-v-c0e03a89685fb829, ch: rentabilité, pr: /ʁɑ̃tabilite/, ds: profitability}
+  - {id: fr-v-e57753eb069657d9, ch: coût, pr: /ku/, ds: 'cost, price'}
+  - {id: fr-v-0c55d6f09784a9fe, ch: séance, pr: /se.ɑ̃s/, ds: session}
+  - {id: fr-v-bf5ce7a860adcbf0, ch: conférence, pr: /kɔ̃.fe.ʁɑ̃s/, ds: conference}
+  - {id: fr-v-2d7dd2efba680be0, ch: atelier, pr: /a.tə.lje/, ds: workshop}
+  - {id: fr-v-2d5e384c55f91fc3, ch: séminaire, pr: /se.mi.nɛʁ/, ds: seminary}
+  - {id: fr-v-673e6e1673b381a1, ch: ordre du jour, pr: /ɔʁ.dʁə dy ʒuʁ/, ds: 'order of the day, agenda (list of matters to be taken up)'}
+  - {id: fr-v-709ba8e9c7088321, ch: procès-verbal, pr: /pʁɔ.sɛ.vɛʁ.bal/, ds: 'minutes (of a meeting, etc.)'}
+  - {id: fr-v-879beb75f7a617cb, ch: bilan, pr: /bi.lɑ̃/, ds: balance sheet}
+  - {id: fr-v-c6499bed2183bfa5, ch: planning, pr: /pla.niŋ/, ds: 'schedule, work plan'}
+  - {id: fr-v-175249b08ac5de3a, ch: urgence, pr: /yʁ.ʒɑ̃s/, ds: 'emergency, urgency'}
+  - {id: fr-v-958c85e021eacbc7, ch: disponibilité, pr: /dis.pɔ.ni.bi.li.te/, ds: availability}
+  - {id: fr-v-2db6c71201a2788a, ch: contrainte, pr: /kɔ̃.tʁɛ̃t/, ds: constraint}
+  - {id: fr-v-89920cb296bfe7c0, ch: obstacle, pr: /ɔp.stakl/, ds: obstacle}
+  - {id: fr-v-6a4d4ff963103d3b, ch: avancement, pr: /a.vɑ̃s.mɑ̃/, ds: 'the state of advancing, progress'}
+  - {id: fr-v-e555768ee848e354, ch: progression, pr: /pʁɔ.ɡʁɛ.sjɔ̃/, ds: progression}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-ed435747c56e708a, ch: encadrement, pr: /ɑ̃.ka.dʁə.mɑ̃/, ds: framing (of a picture)}
+  - {id: fr-v-f74a8004f0d6c617, ch: management, pr: /ma.na(d)ʒ.mɑ̃/, ds: management}
+  - {id: fr-v-3d1ded5724afce96, ch: gestion, pr: /ʒɛs.tjɔ̃/, ds: administration}
+  - {id: fr-v-c0c88554e501b21f, ch: planification, pr: /pla.ni.fi.ka.sjɔ̃/, ds: planning (act of making a plan)}
+  - {id: fr-v-44ffa5025dd6dbea, ch: stratégie, pr: /stʁa.te.ʒi/, ds: strategy}
+  - {id: fr-v-32e2cf10eb016ec2, ch: tactique, pr: /tak.tik/, ds: tactic}
+  - {id: fr-v-97feba7301c410b2, ch: cible, pr: /sibl/, ds: target}
+  - {id: fr-v-82ff578683bce689, ch: rendement, pr: /ʁɑ̃d.mɑ̃/, ds: 'production, output, yield'}
+  review_grammar:
+  - {id: fr-g-recent-past, ch: venir de + infinitif, ds: Relate a just-completed event to the current moment}
+  - {id: fr-g-modal-infinitives, ch: devoir / pouvoir / savoir + infinitif, ds: 'Distinguish obligation, available ability, and learned skill'}
+- id: level-15-work-04
+  title: Work and cooperation - 4
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary:
+  - {id: fr-v-2037cf79ac0828a1, ch: accomplissement, pr: /a.kɔ̃.plis.mɑ̃/, ds: 'accomplishment, achievement, fulfillment'}
+  - {id: fr-v-eb1e6fdee6b37e87, ch: réalisation, pr: /ʁe.a.li.za.sjɔ̃/, ds: 'realization, fulfilment'}
+  - {id: fr-v-14ea8b6b2df89c1f, ch: livraison, pr: /li.vʁɛ.zɔ̃/, ds: delivery}
+  - {id: fr-v-07bde498070c511c, ch: validation, pr: /va.li.da.sjɔ̃/, ds: validation}
+  - {id: fr-v-7d8b802e495088d2, ch: approbation, pr: /a.pʁɔ.ba.sjɔ̃/, ds: approval (permission)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-879beb75f7a617cb, ch: bilan, pr: /bi.lɑ̃/, ds: balance sheet}
+  - {id: fr-v-c6499bed2183bfa5, ch: planning, pr: /pla.niŋ/, ds: 'schedule, work plan'}
+  - {id: fr-v-175249b08ac5de3a, ch: urgence, pr: /yʁ.ʒɑ̃s/, ds: 'emergency, urgency'}
+  - {id: fr-v-958c85e021eacbc7, ch: disponibilité, pr: /dis.pɔ.ni.bi.li.te/, ds: availability}
+  - {id: fr-v-2db6c71201a2788a, ch: contrainte, pr: /kɔ̃.tʁɛ̃t/, ds: constraint}
+  - {id: fr-v-89920cb296bfe7c0, ch: obstacle, pr: /ɔp.stakl/, ds: obstacle}
+  - {id: fr-v-6a4d4ff963103d3b, ch: avancement, pr: /a.vɑ̃s.mɑ̃/, ds: 'the state of advancing, progress'}
+  - {id: fr-v-e555768ee848e354, ch: progression, pr: /pʁɔ.ɡʁɛ.sjɔ̃/, ds: progression}
+  review_grammar:
+  - {id: fr-g-recent-past, ch: venir de + infinitif, ds: Relate a just-completed event to the current moment}
+  - {id: fr-g-modal-infinitives, ch: devoir / pouvoir / savoir + infinitif, ds: 'Distinguish obligation, available ability, and learned skill'}
+- id: level-15-actions-01
+  title: Actions and processes - 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-b4c4d8f91101ee31, ch: collaborer, pr: /kɔ.la.bɔ.ʁe/, ds: to collaborate}
+  - {id: fr-v-b5996503f94afc87, ch: coopérer, pr: /kɔ.ɔ.pe.ʁe/, ds: to cooperate}
+  - {id: fr-v-57fd50c7db2a0bfb, ch: coordonner, pr: /kɔ.ɔʁ.dɔ.ne/, ds: 'to coordinate, to organise thoroughly'}
+  - {id: fr-v-e980d2c123660319, ch: planifier, pr: /pla.ni.fje/, ds: 'to plan ahead, to prepare oneself'}
+  - {id: fr-v-5fd58ef181f446fc, ch: programmer, pr: /pʁɔ.ɡʁa.me/, ds: to program}
+  - {id: fr-v-09457e66af63b1f5, ch: anticiper, pr: /ɑ̃.ti.si.pe/, ds: to anticipate}
+  - {id: fr-v-fbb71d47c581da21, ch: évaluer, pr: /e.va.lɥe/, ds: to assess}
+  - {id: fr-v-134da06c4e40b9df, ch: déléguer, pr: /de.le.ɡe/, ds: 'to delegate (to commit a task to someone), depute'}
+  - {id: fr-v-575552715f337eda, ch: attribuer, pr: /a.tʁi.bɥe/, ds: 'to grant, to award'}
+  - {id: fr-v-ea17f757a7bc3a75, ch: répartir, pr: /ʁe.paʁ.tiʁ/, ds: 'to distribute, to apportion'}
+  - {id: fr-v-33bcc2ead6858405, ch: affecter, pr: /a.fɛk.te/, ds: 'to feign, affect (an emotion, etc.)'}
+  - {id: fr-v-402c6d465e8c3067, ch: mobiliser, pr: /mɔ.bi.li.ze/, ds: to mobilize}
+  - {id: fr-v-1fbace25c3f4bafc, ch: réunir, pr: /ʁe.y.niʁ/, ds: 'to gather, collect'}
+  - {id: fr-v-4c7b4cbd2386c61c, ch: rassembler, pr: /ʁa.sɑ̃.ble/, ds: to assemble}
+  - {id: fr-v-bdb03e870365d5d9, ch: consulter, pr: /kɔ̃.syl.te/, ds: to consult}
+  - {id: fr-v-a637115d70d79ef8, ch: concerter, pr: /kɔ̃.sɛʁ.te/, ds: to concert; plan}
+  - {id: fr-v-3724034cc0e7e5d8, ch: associer, pr: /a.sɔ.sje/, ds: to associate}
+  - {id: fr-v-edef1d60ca2f585c, ch: contribuer, pr: /kɔ̃.tʁi.bɥe/, ds: to contribute}
+  - {id: fr-v-a97682bf0015d45a, ch: encadrer, pr: /ɑ̃.ka.dʁe/, ds: to frame}
+  - {id: fr-v-a97d60e69bb54e61, ch: superviser, pr: /sy.pɛʁ.vi.ze/, ds: to supervise}
+  - {id: fr-v-99a6c3e63b043d23, ch: diriger, pr: /di.ʁi.ʒe/, ds: to run; to direct (be the director of)}
+  - {id: fr-v-d42ef1a3def7d7c5, ch: gérer, pr: /ʒe.ʁe/, ds: to manage}
+  - {id: fr-v-d8c70cb7e7bc50bd, ch: administrer, pr: /ad.mi.nis.tʁe/, ds: to administer}
+  - {id: fr-v-2bfc2e622b081a07, ch: piloter, pr: /pi.lɔ.te/, ds: to pilot (control an aircraft)}
+  - {id: fr-v-bda5949c28f95cbd, ch: embaucher, pr: /ɑ̃.bo.ʃe/, ds: 'to hire, to employ'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-1b55a3ccc5bd88d4, ch: périmé, pr: /pe.ʁi.me/, ds: expired; past its expiration date}
+  - {id: fr-v-97729b5c55cddd68, ch: invalide, pr: /ɛ̃.va.lid/, ds: disabled person}
+  - {id: fr-v-dd247b7a54e84f6f, ch: valable, pr: /va.labl/, ds: 'valid, acceptable'}
+  - {id: fr-v-82d5345528d2caed, ch: conforme, pr: /kɔ̃.fɔʁm/, ds: 'consistent with, in keeping with (construed with à)'}
+  - {id: fr-v-60e29a9e7f943106, ch: réglementaire, pr: /ʁɛ.ɡlə.mɑ̃.tɛʁ/, ds: regulatory; related to regulations}
+  - {id: fr-v-b0e58aa80dd5e11a, ch: contractuel, pr: /kɔ̃.tʁak.tɥɛl/, ds: contractual}
+  - {id: fr-v-61c08b3fd76943d2, ch: remboursable, pr: /ʁɑ̃.buʁ.sabl/, ds: reimbursable}
+  - {id: fr-v-f02664c081e5400f, ch: renouvelable, pr: /ʁə.nu.vlabl/, ds: renewable (able to be renewed)}
+  review_grammar:
+  - {id: fr-g-infinitive-clitic-placement, ch: verbe conjugué + pronom objet + infinitif, ds: Place an object clitic with the infinitive that governs it}
+  - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+- id: level-15-actions-02
+  title: Actions and processes - 2
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-0943efc25e511cbc, ch: recruter, pr: /ʁə.kʁy.te/, ds: to recruit}
+  - {id: fr-v-16003a349b8def23, ch: former, pr: /fɔʁ.me/, ds: to form (generic sense)}
+  - {id: fr-v-5aa28a28ad5672ec, ch: qualifier, pr: /ka.li.fje/, ds: to characterize; consider}
+  - {id: fr-v-38139e0d79df812e, ch: promouvoir, pr: /pʁɔ.mu.vwaʁ/, ds: to promote (advertise a product)}
+  - {id: fr-v-3fab9aa5adcc993e, ch: licencier, pr: /li.sɑ̃.sje/, ds: 'to fire, to sack (to terminate the employment of)'}
+  - {id: fr-v-faeb668074c1a65b, ch: démissionner, pr: /de.mi.sjɔ.ne/, ds: to resign}
+  - {id: fr-v-7b8e1558ec72fca8, ch: muter, pr: /my.te/, ds: to transfer}
+  - {id: fr-v-45e2955b045a823c, ch: conclure, pr: /kɔ̃.klyʁ/, ds: to conclude}
+  - {id: fr-v-8e696f0e18f40523, ch: engager, pr: /ɑ̃.ɡa.ʒe/, ds: 'to pledge, commit'}
+  - {id: fr-v-760f371ab7a8bd92, ch: réaliser, pr: /ʁe.a.li.ze/, ds: to direct (a movie)}
+  - {id: fr-v-937e25b153869585, ch: exécuter, pr: /ɛɡ.ze.ky.te/, ds: to execute; to carry out}
+  - {id: fr-v-4e5b38a354aadaf6, ch: finaliser, pr: /fi.na.li.ze/, ds: to finalize}
+  - {id: fr-v-56fc99180c094bf4, ch: valider, pr: /va.li.de/, ds: to validate}
+  - {id: fr-v-67579477fec87ea9, ch: approuver, pr: /a.pʁu.ve/, ds: to approve of}
+  - {id: fr-v-6ddb30fa580fc7b1, ch: autoriser, pr: /o.tɔ.ʁi.ze/, ds: to authorise}
+  - {id: fr-v-96104fed76251cc4, ch: certifier, pr: /sɛʁ.ti.fje/, ds: to certify (to attest as to)}
+  - {id: fr-v-d160b86121b97b0a, ch: documenter, pr: /dɔ.ky.mɑ̃.te/, ds: to document (to record in documents)}
+  - {id: fr-v-1d1a18d486967711, ch: optimiser, pr: /ɔp.ti.mi.ze/, ds: to optimize}
+  - {id: fr-v-4f574e1f9367af14, ch: développer, pr: /de.vlɔ.pe/, ds: to develop}
+  - {id: fr-v-641a8aa1d4d4051f, ch: progresser, pr: /pʁɔ.ɡʁɛ.se/, ds: to progress (to show a progression)}
+  - {id: fr-v-66c352b141e05cb0, ch: simplifier, pr: /sɛ̃.pli.fje/, ds: to simplify}
+  - {id: fr-v-721120b9559690e7, ch: faciliter, pr: /fa.si.li.te/, ds: to facilitate}
+  - {id: fr-v-9ab61318c0c13338, ch: réorganiser, pr: /ʁe.ɔʁ.ɡa.ni.ze/, ds: to reorganise}
+  - {id: fr-v-06ea62a79bcafda6, ch: actualiser, pr: /ak.tɥa.li.ze/, ds: to update (to make something up to date); to refresh}
+  - {id: fr-v-c7d1d3f95a0b9d58, ch: mettre à jour, pr: /mɛ.tʁ‿a ʒuʁ/, ds: to update}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-edef1d60ca2f585c, ch: contribuer, pr: /kɔ̃.tʁi.bɥe/, ds: to contribute}
+  - {id: fr-v-a97682bf0015d45a, ch: encadrer, pr: /ɑ̃.ka.dʁe/, ds: to frame}
+  - {id: fr-v-a97d60e69bb54e61, ch: superviser, pr: /sy.pɛʁ.vi.ze/, ds: to supervise}
+  - {id: fr-v-99a6c3e63b043d23, ch: diriger, pr: /di.ʁi.ʒe/, ds: to run; to direct (be the director of)}
+  - {id: fr-v-d42ef1a3def7d7c5, ch: gérer, pr: /ʒe.ʁe/, ds: to manage}
+  - {id: fr-v-d8c70cb7e7bc50bd, ch: administrer, pr: /ad.mi.nis.tʁe/, ds: to administer}
+  - {id: fr-v-2bfc2e622b081a07, ch: piloter, pr: /pi.lɔ.te/, ds: to pilot (control an aircraft)}
+  - {id: fr-v-bda5949c28f95cbd, ch: embaucher, pr: /ɑ̃.bo.ʃe/, ds: 'to hire, to employ'}
+  review_grammar:
+  - {id: fr-g-infinitive-clitic-placement, ch: verbe conjugué + pronom objet + infinitif, ds: Place an object clitic with the infinitive that governs it}
+  - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+- id: level-15-actions-03
+  title: Actions and processes - 3
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-6db6273e65a5b30a, ch: responsabiliser, pr: /ʁɛs.pɔ̃.sa.bi.li.ze/, ds: to responsibilize}
+  - {id: fr-v-b9bfddd8f5e83bb9, ch: centraliser, pr: /sɑ̃.tʁa.li.ze/, ds: to centralise}
+  - {id: fr-v-9c24c4bf874f8fe8, ch: décentraliser, pr: /de.sɑ̃.tʁa.li.ze/, ds: 'to decentralise, to decentralize'}
+  - {id: fr-v-a3ea007631a571f1, ch: externaliser, pr: /ɛk.stɛʁ.na.li.ze/, ds: to outsource}
+  - {id: fr-v-180c08817dff17fb, ch: sous-traiter, pr: /su.tʁɛ.te/, ds: to subcontract}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-1d1a18d486967711, ch: optimiser, pr: /ɔp.ti.mi.ze/, ds: to optimize}
+  - {id: fr-v-4f574e1f9367af14, ch: développer, pr: /de.vlɔ.pe/, ds: to develop}
+  - {id: fr-v-641a8aa1d4d4051f, ch: progresser, pr: /pʁɔ.ɡʁɛ.se/, ds: to progress (to show a progression)}
+  - {id: fr-v-66c352b141e05cb0, ch: simplifier, pr: /sɛ̃.pli.fje/, ds: to simplify}
+  - {id: fr-v-721120b9559690e7, ch: faciliter, pr: /fa.si.li.te/, ds: to facilitate}
+  - {id: fr-v-9ab61318c0c13338, ch: réorganiser, pr: /ʁe.ɔʁ.ɡa.ni.ze/, ds: to reorganise}
+  - {id: fr-v-06ea62a79bcafda6, ch: actualiser, pr: /ak.tɥa.li.ze/, ds: to update (to make something up to date); to refresh}
+  - {id: fr-v-c7d1d3f95a0b9d58, ch: mettre à jour, pr: /mɛ.tʁ‿a ʒuʁ/, ds: to update}
+  review_grammar:
+  - {id: fr-g-infinitive-clitic-placement, ch: verbe conjugué + pronom objet + infinitif, ds: Place an object clitic with the infinitive that governs it}
+  - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+- id: level-15-work-practice-01
+  title: Work and cooperation - sentence practice 1
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-future-simple, ch: radical du futur + -ai / -as / -a / -ons / -ez / -ont, ds: 'State a future arrangement, expectation, or commitment'}
+  - {id: fr-g-open-si-condition, ch: 'si + présent, présent / futur / impératif', ds: Set an open practical condition without future in its si clause}
+  - {id: fr-g-passive-voice, ch: patient + être au temps voulu + participe + par agent, ds: Make the affected participant the grammatical subject}
+  review_vocabulary:
+  - {id: fr-v-c68bb07d29dbc737, ch: terminer, pr: /tɛʁ.mi.ne/, ds: to end; to finish; to terminate}
+  - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
+  - {id: fr-v-dcc8d571a6138b00, ch: commencer, pr: /kɔ.mɑ̃.se/, ds: 'to begin, commence'}
+  - {id: fr-v-da5f3df909a3be91, ch: message, pr: /mɛ.saʒ/, ds: message}
+  - {id: fr-v-2a7e384a758123bc, ch: réponse, pr: /ʁe.pɔ̃s/, ds: 'response, answer, reply (a communication)'}
+  - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
+  - {id: fr-v-89920cb296bfe7c0, ch: obstacle, pr: /ɔp.stakl/, ds: obstacle}
+  - {id: fr-v-6a4d4ff963103d3b, ch: avancement, pr: /a.vɑ̃s.mɑ̃/, ds: 'the state of advancing, progress'}
+  - {id: fr-v-e555768ee848e354, ch: progression, pr: /pʁɔ.ɡʁɛ.sjɔ̃/, ds: progression}
+  - {id: fr-v-2037cf79ac0828a1, ch: accomplissement, pr: /a.kɔ̃.plis.mɑ̃/, ds: 'accomplishment, achievement, fulfillment'}
+  - {id: fr-v-eb1e6fdee6b37e87, ch: réalisation, pr: /ʁe.a.li.za.sjɔ̃/, ds: 'realization, fulfilment'}
+  - {id: fr-v-14ea8b6b2df89c1f, ch: livraison, pr: /li.vʁɛ.zɔ̃/, ds: delivery}
+  - {id: fr-v-07bde498070c511c, ch: validation, pr: /va.li.da.sjɔ̃/, ds: validation}
+  - {id: fr-v-7d8b802e495088d2, ch: approbation, pr: /a.pʁɔ.ba.sjɔ̃/, ds: approval (permission)}
+  review_grammar:
+  - {id: fr-g-recent-past, ch: venir de + infinitif, ds: Relate a just-completed event to the current moment}
+  - {id: fr-g-modal-infinitives, ch: devoir / pouvoir / savoir + infinitif, ds: 'Distinguish obligation, available ability, and learned skill'}
+- id: level-15-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  review_vocabulary:
+  - {id: fr-v-0ea02357c8787aed, ch: réparer, pr: /ʁe.pa.ʁe/, ds: 'to repair, fix, mend'}
+  - {id: fr-v-4d009d2ce7ceda36, ch: lire, pr: /liʁ/, ds: to read}
+  - {id: fr-v-9ab61318c0c13338, ch: réorganiser, pr: /ʁe.ɔʁ.ɡa.ni.ze/, ds: to reorganise}
+  - {id: fr-v-06ea62a79bcafda6, ch: actualiser, pr: /ak.tɥa.li.ze/, ds: to update (to make something up to date); to refresh}
+  - {id: fr-v-c7d1d3f95a0b9d58, ch: mettre à jour, pr: /mɛ.tʁ‿a ʒuʁ/, ds: to update}
+  - {id: fr-v-6db6273e65a5b30a, ch: responsabiliser, pr: /ʁɛs.pɔ̃.sa.bi.li.ze/, ds: to responsibilize}
+  - {id: fr-v-b9bfddd8f5e83bb9, ch: centraliser, pr: /sɑ̃.tʁa.li.ze/, ds: to centralise}
+  - {id: fr-v-9c24c4bf874f8fe8, ch: décentraliser, pr: /de.sɑ̃.tʁa.li.ze/, ds: 'to decentralise, to decentralize'}
+  - {id: fr-v-a3ea007631a571f1, ch: externaliser, pr: /ɛk.stɛʁ.na.li.ze/, ds: to outsource}
+  - {id: fr-v-180c08817dff17fb, ch: sous-traiter, pr: /su.tʁɛ.te/, ds: to subcontract}
+  review_grammar:
+  - {id: fr-g-infinitive-clitic-placement, ch: verbe conjugué + pronom objet + infinitif, ds: Place an object clitic with the infinitive that governs it}
+  - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}

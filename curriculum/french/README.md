@@ -51,6 +51,8 @@ scope, contextual realizations, regional limits and absence of audio evidence.
 ## Maintenance
 
 Edit maintained `authoring/teaching/` selections rather than generated views.
+Full generation uses the shared practical-program runtime, including its
+route-scoped branch placements; French supplies only the source adapter.
 From the repository root, using the existing Python/PyYAML environment:
 
 ```powershell

@@ -1,0 +1,197 @@
+schema_version: 3
+id: fr-tourist-quick-start
+title: French for a short visit - quick start
+language: french
+level_basis: An independent original practical tourist route, not a CEFR inventory, a core-level prerequisite, an examination syllabus, or a claim of demonstrated ability. The first three units form an ordered quick start from empty vocabulary and grammar context; later units extend that same route without relying on the core program.
+review_policy: All phrase combinations, English labels, teaching choices and contextual pronunciation guides are original, AI-assisted and not human-reviewed. A whole phrase guide is never source-verified. Its slash-delimited chunks form a SEGMENTED pronunciation guide, not a continuous narrow utterance, required pauses, audio evidence or a spoken assessment. Lexical readings retain their source status; construction readings are explicitly original. Targets omit terminal punctuation. Use small lessons, retrieve earlier items in changed situations, revisit them on later days and record modality, assistance and delayed performance under the program mastery policy. Formula recall does not establish independent component vocabulary or conjugation mastery. Listening and spoken judgments require actual audio and suitable evaluation. Requests here do not promise availability, safety, service or a particular response; health examples communicate needs, not clinical advice.
+units:
+- id: contact-politeness
+  title: Open an exchange politely
+  outcome: Greet someone, make a polite appeal and acknowledge a response.
+  grammar:
+  - {id: fr-g-travel-polite-request, ch: S'il vous plaît, ds: Make a polite request}
+  review_grammar: []
+  vocabulary:
+  - {id: fr-v-10ad6bebc867671d, ch: bonjour, pr: /bɔ̃.ʒuʁ/, ds: hello; good day}
+  - {id: fr-v-c3a6c08e3b04aad2, ch: merci, pr: /mɛʁ.si/, ds: thank you}
+  review_vocabulary: []
+  phrases:
+  - {id: fr-tourist-p001, ch: Bonjour, pr: /bɔ̃.ʒuʁ/, ds: Hello}
+  - {id: fr-tourist-p002, ch: S'il vous plaît, pr: /sil vu plɛ/, ds: Please}
+  - {id: fr-tourist-p003, ch: Merci, pr: /mɛʁ.si/, ds: Thank you}
+  phrase_components:
+    fr-tourist-p001:
+      items:
+      - fr-v-10ad6bebc867671d
+      grammar: []
+      realizations:
+      - ch: Bonjour
+        pr: /bɔ̃.ʒuʁ/
+        items:
+        - fr-v-10ad6bebc867671d
+        grammar: []
+        form_id: fr-f-travel-bonjour-capital
+    fr-tourist-p002:
+      items: []
+      grammar:
+      - fr-g-travel-polite-request
+      realizations:
+      - ch: S'il vous plaît
+        pr: /sil vu plɛ/
+        items: []
+        grammar:
+        - fr-g-travel-polite-request
+        form_id: fr-f-travel-please
+    fr-tourist-p003:
+      items:
+      - fr-v-c3a6c08e3b04aad2
+      grammar: []
+      realizations:
+      - ch: Merci
+        pr: /mɛʁ.si/
+        items:
+        - fr-v-c3a6c08e3b04aad2
+        grammar: []
+        form_id: fr-f-travel-merci-capital
+- id: communication-repair
+  title: Repair a misunderstanding
+  outcome: Ask for slower speech or repetition and say when you do not understand.
+  grammar:
+  - {id: fr-g-travel-communication-repair, ch: Parlez plus lentement / Je ne comprends pas, ds: Ask for slower speech and signal misunderstanding}
+  - {id: fr-g-travel-polite-assistance, ch: Pouvez-vous répéter / m'aider / écrire l'adresse, ds: 'Ask someone to repeat, help or write an address'}
+  review_grammar:
+  - {id: fr-g-travel-polite-request, ch: S'il vous plaît, ds: Make a polite request}
+  vocabulary: []
+  review_vocabulary:
+  - {id: fr-v-10ad6bebc867671d, ch: bonjour, pr: /bɔ̃.ʒuʁ/, ds: hello; good day}
+  - {id: fr-v-c3a6c08e3b04aad2, ch: merci, pr: /mɛʁ.si/, ds: thank you}
+  phrases:
+  - {id: fr-tourist-p004, ch: 'Parlez plus lentement, s''il vous plaît', pr: /paʁ.le ply lɑ̃.tə.mɑ̃ sil vu plɛ/, ds: Please speak more slowly}
+  - {id: fr-tourist-p005, ch: Pouvez-vous répéter, pr: /pu.ve vu ʁe.pe.te/, ds: Could you repeat that}
+  - {id: fr-tourist-p006, ch: Je ne comprends pas, pr: /ʒə nə kɔ̃.pʁɑ̃ pa/, ds: I do not understand}
+  phrase_components:
+    fr-tourist-p004:
+      items: []
+      grammar:
+      - fr-g-travel-communication-repair
+      realizations:
+      - ch: Parlez plus lentement, s'il vous plaît
+        pr: /paʁ.le ply lɑ̃.tə.mɑ̃ sil vu plɛ/
+        items: []
+        grammar:
+        - fr-g-travel-communication-repair
+        form_id: fr-f-travel-speak-slowly
+    fr-tourist-p005:
+      items: []
+      grammar:
+      - fr-g-travel-polite-assistance
+      realizations:
+      - ch: Pouvez-vous répéter
+        pr: /pu.ve vu ʁe.pe.te/
+        items: []
+        grammar:
+        - fr-g-travel-polite-assistance
+        form_id: fr-f-travel-repeat
+    fr-tourist-p006:
+      items: []
+      grammar:
+      - fr-g-travel-communication-repair
+      realizations:
+      - ch: Je ne comprends pas
+        pr: /ʒə nə kɔ̃.pʁɑ̃ pa/
+        items: []
+        grammar:
+        - fr-g-travel-communication-repair
+        form_id: fr-f-travel-not-understand
+- id: essential-needs
+  title: Ask for water, help and a location
+  outcome: Request water or help and find out where the railway station is.
+  grammar:
+  - {id: fr-g-travel-would-like, ch: Je voudrais de l'eau / un billet / une chambre / payer, ds: Make a limited polite request}
+  - {id: fr-g-travel-location-question, ch: Où est la gare / l'hôtel / Où sont les toilettes, ds: Ask where a taught place or the toilets are}
+  - {id: fr-g-travel-need, ch: J'ai besoin d'aide / d'un médecin, ds: State a need for help or a doctor}
+  review_grammar:
+  - {id: fr-g-travel-polite-request, ch: S'il vous plaît, ds: Make a polite request}
+  - {id: fr-g-travel-polite-assistance, ch: Pouvez-vous répéter / m'aider / écrire l'adresse, ds: 'Ask someone to repeat, help or write an address'}
+  - {id: fr-g-travel-communication-repair, ch: Parlez plus lentement / Je ne comprends pas, ds: Ask for slower speech and signal misunderstanding}
+  vocabulary:
+  - {id: fr-v-dffaea6b9559b478, ch: eau, pr: /o/, ds: water}
+  - {id: fr-v-eac03ce764e06171, ch: gare, pr: /ɡaʁ/, ds: railway station}
+  - {id: fr-v-57ea8e93200fea91, ch: aide, pr: /ɛd/, ds: 'help, support'}
+  review_vocabulary:
+  - {id: fr-v-c3a6c08e3b04aad2, ch: merci, pr: /mɛʁ.si/, ds: thank you}
+  phrases:
+  - {id: fr-tourist-p007, ch: Je voudrais de l'eau, pr: /ʒə vu.dʁɛ də l/ /o/, ds: I would like some water}
+  - {id: fr-tourist-p008, ch: Où est la gare, pr: /u ɛ la/ /ɡaʁ/, ds: Where is the railway station}
+  - {id: fr-tourist-p009, ch: J'ai besoin d'aide, pr: /ʒe bə.zwɛ̃ d/ /ɛd/, ds: I need help}
+  - {id: fr-tourist-p010, ch: Pouvez-vous m'aider, pr: /pu.ve vu mɛ.de/, ds: Could you help me}
+  phrase_components:
+    fr-tourist-p007:
+      items:
+      - fr-v-dffaea6b9559b478
+      grammar:
+      - fr-g-travel-would-like
+      realizations:
+      - ch: Je voudrais de l'
+        pr: /ʒə vu.dʁɛ də l/
+        items: []
+        grammar:
+        - fr-g-travel-would-like
+        form_id: fr-f-travel-would-like-water
+      - ch: eau
+        pr: /o/
+        items:
+        - fr-v-dffaea6b9559b478
+        grammar: []
+    fr-tourist-p008:
+      items:
+      - fr-v-eac03ce764e06171
+      grammar:
+      - fr-g-travel-location-question
+      realizations:
+      - ch: Où est la
+        pr: /u ɛ la/
+        items: []
+        grammar:
+        - fr-g-travel-location-question
+        form_id: fr-f-travel-where-feminine
+      - ch: gare
+        pr: /ɡaʁ/
+        items:
+        - fr-v-eac03ce764e06171
+        grammar: []
+    fr-tourist-p009:
+      items:
+      - fr-v-57ea8e93200fea91
+      grammar:
+      - fr-g-travel-need
+      realizations:
+      - ch: J'ai besoin d'
+        pr: /ʒe bə.zwɛ̃ d/
+        items: []
+        grammar:
+        - fr-g-travel-need
+        form_id: fr-f-travel-need-help
+      - ch: aide
+        pr: /ɛd/
+        items:
+        - fr-v-57ea8e93200fea91
+        grammar: []
+    fr-tourist-p010:
+      items: []
+      grammar:
+      - fr-g-travel-polite-assistance
+      realizations:
+      - ch: Pouvez-vous m'aider
+        pr: /pu.ve vu mɛ.de/
+        items: []
+        grammar:
+        - fr-g-travel-polite-assistance
+        form_id: fr-f-travel-help-me
+kind: route
+quick_start:
+- contact-politeness
+- communication-repair
+- essential-needs
+mastery_profile: fr-item-mastery
+mastery_target: supported-use

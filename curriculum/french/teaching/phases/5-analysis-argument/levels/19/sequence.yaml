@@ -1,0 +1,443 @@
+schema_version: 3
+id: fr-level-19
+title: Evidence and uncertainty
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 19
+phase: analysis-argument
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+- fr-level-15
+- fr-level-16
+- fr-level-17
+- fr-level-18
+goals: &id001
+- Distinguish an observation from an inference.
+- Explain what supports a claim.
+- Express uncertainty without erasing a meaningful conclusion.
+checkpoint:
+  task: Evaluate a short argument and explain which conclusion the available evidence supports and which remains uncertain.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-19-description-01
+  title: Description and comparison - 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-a07e550cc57907ee, ch: probant, pr: /pʁɔ.bɑ̃/, ds: 'compelling, convincing'}
+  - {id: fr-v-77ba0fbae8954352, ch: concluant, pr: /kɔ̃.kly.ɑ̃/, ds: concluding}
+  - {id: fr-v-07a4560fcb02ae2b, ch: démontrable, pr: /de.mɔ̃.tʁabl/, ds: 'demonstrable, provable'}
+  - {id: fr-v-48af001a396c1a64, ch: vérifiable, pr: /ve.ʁi.fjabl/, ds: verifiable (able to be verified or confirmed)}
+  - {id: fr-v-fc9bf3b94b31edda, ch: réfutable, pr: /ʁefytabl/, ds: refutable}
+  - {id: fr-v-881ef53d01e44f2d, ch: irréfutable, pr: /i.ʁe.fy.tabl/, ds: incontrovertible}
+  - {id: fr-v-42a4924c455d13ce, ch: incontestable, pr: /ɛ̃.kɔ̃.tɛs.tabl/, ds: incontestable}
+  - {id: fr-v-c602f9318210dc79, ch: contestable, pr: /kɔ̃.tɛs.tabl/, ds: contestable}
+  - {id: fr-v-e5d0230e16e6b825, ch: avéré, pr: /a.ve.ʁe/, ds: 'recognized, known'}
+  - {id: fr-v-533acdac2b28401d, ch: attesté, pr: /a.tɛs.te/, ds: attested}
+  - {id: fr-v-8abb1a20b05814da, ch: présumé, pr: /pʁezyme/, ds: presumed}
+  - {id: fr-v-4c8d8bb4d0b9c5d3, ch: hypothétique, pr: /i.pɔ.te.tik/, ds: hypothetical (based upon a hypothesis)}
+  - {id: fr-v-6b2f26c0ebbb5d49, ch: conjectural, pr: /kɔ̃.ʒɛk.ty.ʁal/, ds: conjectural}
+  - {id: fr-v-dd27c487840cc9a3, ch: plausible, pr: /plo.zibl/, ds: plausible}
+  - {id: fr-v-fc65a89fda173ba5, ch: vraisemblable, pr: /vʁɛ.sɑ̃.blabl/, ds: 'plausible, likely'}
+  - {id: fr-v-864b59767810f0ab, ch: invraisemblable, pr: /ɛ̃.vʁɛ.sɑ̃.blabl/, ds: 'unbelievable, improbable, implausible'}
+  - {id: fr-v-d121d2ab59fa2cad, ch: probable, pr: /pʁɔ.babl/, ds: 'likely, probable'}
+  - {id: fr-v-2aaddd8be14a4bce, ch: improbable, pr: /ɛ̃.pʁɔ.babl/, ds: 'unlikely, improbable (not likely)'}
+  - {id: fr-v-a373ef738d8c49be, ch: certain, pr: /sɛʁ.tɛ̃/, ds: 'certain, guaranteed (sure, positive)'}
+  - {id: fr-v-a10998d825aebca3, ch: indubitable, pr: /ɛ̃.dy.bi.tabl/, ds: indubitable}
+  - {id: fr-v-ab357867512f844c, ch: crédible, pr: /kʁe.dibl/, ds: credible}
+  - {id: fr-v-10fc2d1ca47c7496, ch: sceptique, pr: /sɛp.tik/, ds: 'sceptical (British), skeptical (American)'}
+  - {id: fr-v-8dbbb36d6c52088e, ch: convaincu, pr: /kɔ̃.vɛ̃.ky/, ds: 'convinced, sure'}
+  - {id: fr-v-20642492d9051a42, ch: fondé, pr: /fɔ̃.de/, ds: founded}
+  - {id: fr-v-bd131397001c0f66, ch: infondé, pr: /ɛ̃.fɔ̃.de/, ds: 'unfounded, baseless, groundless'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-a6634be325f50736, ch: initialement, pr: /i.ni.sjal.mɑ̃/, ds: initially}
+  - {id: fr-v-116591753d471aae, ch: ultérieurement, pr: /yl.te.ʁjœʁ.mɑ̃/, ds: eventually; later on}
+  - {id: fr-v-868ec67a3376c0ca, ch: préalablement, pr: /pʁe.a.la.blə.mɑ̃/, ds: 'beforehand, first'}
+  - {id: fr-v-47355ddfd26d5171, ch: parallèlement, pr: /pa.ʁa.lɛl.mɑ̃/, ds: parallelly}
+  - {id: fr-v-abbbd76f136b2b6d, ch: conjointement, pr: /kɔ̃.ʒwɛ̃t.mɑ̃/, ds: 'jointly, together'}
+  - {id: fr-v-47f0e14fa1fff938, ch: collectivement, pr: /kɔ.lɛk.tiv.mɑ̃/, ds: collectively}
+  - {id: fr-v-f4c2275a01510933, ch: individuellement, pr: /ɛ̃.di.vi.dɥɛl.mɑ̃/, ds: individually}
+  - {id: fr-v-f9360ecaa0fdf6e0, ch: séparément, pr: /sepaʁemɑ̃/, ds: separately}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-19-description-02
+  title: Description and comparison - 2
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-58538e26e864dc55, ch: injustifié, pr: /ɛ̃.ʒys.ti.fje/, ds: 'unjustified, unwarranted'}
+  - {id: fr-v-449ad0e6c4d235a4, ch: arbitraire, pr: /aʁ.bi.tʁɛʁ/, ds: arbitrary (determined by impulse)}
+  - {id: fr-v-84e757bbb2c9a644, ch: aléatoire, pr: /a.le.a.twaʁ/, ds: 'doubtful, dubious, uncertain, unpredictable'}
+  - {id: fr-v-f748af0ad90a0cdb, ch: fortuit, pr: /fɔʁtɥi/, ds: 'fortuitous (happening by chance, by fortune)'}
+  - {id: fr-v-ed2ba5ac46fc577b, ch: causal, pr: /ko.zal/, ds: causal}
+  - {id: fr-v-78a6cd463290b664, ch: corrélé, pr: /kɔ.ʁe.le/, ds: correlated}
+  - {id: fr-v-45dabd8dd7ef51cb, ch: cohérent, pr: /kɔ.e.ʁɑ̃/, ds: coherent}
+  - {id: fr-v-f8407b2c9b7e88da, ch: incohérent, pr: /ɛ̃.kɔ.e.ʁɑ̃/, ds: incoherent (lacking coherence)}
+  - {id: fr-v-b616786f5e9d64ba, ch: contradictoire, pr: /kɔ̃.tʁa.dik.twaʁ/, ds: contradictory}
+  - {id: fr-v-2af47d55afcba294, ch: paradoxal, pr: /pa.ʁa.dɔk.sal/, ds: paradoxical}
+  - {id: fr-v-825b150c2a951873, ch: concordant, pr: /kɔ̃.kɔʁ.dɑ̃/, ds: concordant}
+  - {id: fr-v-9097cd3b930bafe2, ch: discordant, pr: /diskɔʁdɑ̃/, ds: 'discordant, dissonant'}
+  - {id: fr-v-33bc2972cda7104e, ch: divergent, pr: /di.vɛʁ.ʒɑ̃/, ds: divergent}
+  - {id: fr-v-22c547dca97b30f6, ch: logique, pr: /lɔ.ʒik/, ds: logical}
+  - {id: fr-v-f497b2b41ac3395d, ch: rationnel, pr: /ʁa.sjɔ.nɛl/, ds: rational; reasonable}
+  - {id: fr-v-ab2c8618bc4bf258, ch: irrationnel, pr: /i.ʁa.sjɔ.nɛl/, ds: irrational}
+  - {id: fr-v-377d20faacb718f0, ch: intuitif, pr: /ɛ̃.tɥi.tif/, ds: intuitive (all meanings)}
+  - {id: fr-v-dd60d888b1202c9b, ch: empirique, pr: /ɑ̃.pi.ʁik/, ds: empirical}
+  - {id: fr-v-5edf703ec4f529b1, ch: théorique, pr: /te.ɔ.ʁik/, ds: theoretical (relative to theory or its elaboration)}
+  - {id: fr-v-96eecd3fe75eb3a1, ch: expérimental, pr: /ɛk.spe.ʁi.mɑ̃.tal/, ds: experimental}
+  - {id: fr-v-f9e8214603ccf215, ch: observable, pr: /ɔp.sɛʁ.vabl/, ds: observable}
+  - {id: fr-v-973c09ad52bd35bd, ch: mesurable, pr: /məzyʁabl/, ds: measurable}
+  - {id: fr-v-747d47c2df5e2da3, ch: quantifiable, pr: /kɑ̃tifjabl/, ds: quantifiable}
+  - {id: fr-v-3efaed5ef0cb9b37, ch: qualitatif, pr: /ka.li.ta.tif/, ds: qualitative; concerning qualities}
+  - {id: fr-v-229a334346b1e0e0, ch: quantitatif, pr: /kɑ̃.ti.ta.tif/, ds: quantitative; concerning measurable quantities}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-2aaddd8be14a4bce, ch: improbable, pr: /ɛ̃.pʁɔ.babl/, ds: 'unlikely, improbable (not likely)'}
+  - {id: fr-v-a373ef738d8c49be, ch: certain, pr: /sɛʁ.tɛ̃/, ds: 'certain, guaranteed (sure, positive)'}
+  - {id: fr-v-a10998d825aebca3, ch: indubitable, pr: /ɛ̃.dy.bi.tabl/, ds: indubitable}
+  - {id: fr-v-ab357867512f844c, ch: crédible, pr: /kʁe.dibl/, ds: credible}
+  - {id: fr-v-10fc2d1ca47c7496, ch: sceptique, pr: /sɛp.tik/, ds: 'sceptical (British), skeptical (American)'}
+  - {id: fr-v-8dbbb36d6c52088e, ch: convaincu, pr: /kɔ̃.vɛ̃.ky/, ds: 'convinced, sure'}
+  - {id: fr-v-20642492d9051a42, ch: fondé, pr: /fɔ̃.de/, ds: founded}
+  - {id: fr-v-bd131397001c0f66, ch: infondé, pr: /ɛ̃.fɔ̃.de/, ds: 'unfounded, baseless, groundless'}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-19-description-03
+  title: Description and comparison - 3
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-bad92660ef7af63b, ch: significatif, pr: /si.ɲi.fi.ka.tif/, ds: 'significant, important'}
+  - {id: fr-v-5937aa40d49481c6, ch: négligeable, pr: /ne.ɡli.ʒabl/, ds: negligible (able to be ignored or excluded)}
+  - {id: fr-v-5935bde90d94d9be, ch: représentatif, pr: /ʁə.pʁe.zɑ̃.ta.tif/, ds: representative}
+  - {id: fr-v-31c84fbc45b6b811, ch: atypique, pr: /a.ti.pik/, ds: atypical}
+  - {id: fr-v-fe0f1217cca1838e, ch: systématique, pr: /sis.te.ma.tik/, ds: systematic (following or conforming to a system)}
+  - {id: fr-v-517c5cd729b45c1e, ch: biaisé, pr: /bjɛ.ze/, ds: 'biased, partisan'}
+  - {id: fr-v-b2df458990831fdb, ch: subjectif, pr: /syb.ʒɛk.tif/, ds: subjective; personal}
+  - {id: fr-v-75c457d9e554f5c6, ch: impartial, pr: /ɛ̃.paʁ.sjal/, ds: impartial}
+  - {id: fr-v-3b1347409a91e9fd, ch: partial, pr: /paʁ.sjal/, ds: 'partial, biased'}
+  - {id: fr-v-de89eee2e5718581, ch: trompeur, pr: /tʁɔ̃.pœʁ/, ds: deceitful}
+  - {id: fr-v-004bfe56ef3f66f2, ch: erroné, pr: /e.ʁɔ.ne/, ds: wrong; erroneous}
+  - {id: fr-v-867e4ae1e9fcc039, ch: faux, pr: /fo/, ds: false; untrue}
+  - {id: fr-v-8ea28785ec0e78a6, ch: vrai, pr: /vʁɛ/, ds: 'true'}
+  - {id: fr-v-9fb9e09631b64739, ch: inexact, pr: /i.nɛɡ.zakt/, ds: inexact (not exact)}
+  - {id: fr-v-356571f53f1629f4, ch: robuste, pr: /ʁɔ.byst/, ds: 'robust, hardy'}
+  - {id: fr-v-353136cb49a45792, ch: reproductible, pr: /ʁə.pʁɔ.dyk.tibl/, ds: reproducible by different people or in another setting}
+  - {id: fr-v-5e4cc0910b406b11, ch: authentique, pr: /ɔ.tɑ̃.tik/, ds: 'authentic, real, genuine'}
+  - {id: fr-v-5d1ddc3b0da7f9ac, ch: fictif, pr: /fik.tif/, ds: fictional}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-dd60d888b1202c9b, ch: empirique, pr: /ɑ̃.pi.ʁik/, ds: empirical}
+  - {id: fr-v-5edf703ec4f529b1, ch: théorique, pr: /te.ɔ.ʁik/, ds: theoretical (relative to theory or its elaboration)}
+  - {id: fr-v-96eecd3fe75eb3a1, ch: expérimental, pr: /ɛk.spe.ʁi.mɑ̃.tal/, ds: experimental}
+  - {id: fr-v-f9e8214603ccf215, ch: observable, pr: /ɔp.sɛʁ.vabl/, ds: observable}
+  - {id: fr-v-973c09ad52bd35bd, ch: mesurable, pr: /məzyʁabl/, ds: measurable}
+  - {id: fr-v-747d47c2df5e2da3, ch: quantifiable, pr: /kɑ̃tifjabl/, ds: quantifiable}
+  - {id: fr-v-3efaed5ef0cb9b37, ch: qualitatif, pr: /ka.li.ta.tif/, ds: qualitative; concerning qualities}
+  - {id: fr-v-229a334346b1e0e0, ch: quantitatif, pr: /kɑ̃.ti.ta.tif/, ds: quantitative; concerning measurable quantities}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-19-actions-01
+  title: Actions and processes - 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-97638c0fabc7e566, ch: déduire, pr: /de.dɥiʁ/, ds: to deduce; to work out}
+  - {id: fr-v-479fbbcd90608c2f, ch: induire, pr: /ɛ̃.dɥiʁ/, ds: 'to induce, to cause'}
+  - {id: fr-v-b6f715bee4fe29dd, ch: inférer, pr: /ɛ̃.fe.ʁe/, ds: to infer (make an inference)}
+  - {id: fr-v-7df7626c19fc1dd7, ch: présumer, pr: /pʁe.zy.me/, ds: 'to presume, assume'}
+  - {id: fr-v-1ebc6685edc0e079, ch: conjecturer, pr: /kɔ̃.ʒɛk.ty.ʁe/, ds: 'to conjecture, surmise, speculate, wonder'}
+  - {id: fr-v-4967060650b539d3, ch: postuler, pr: /pɔs.ty.le/, ds: to apply for}
+  - {id: fr-v-d0829919e4fb0cd0, ch: envisager, pr: /ɑ̃.vi.za.ʒe/, ds: to envisage; to contemplate}
+  - {id: fr-v-ef0dcf5d928dc3cf, ch: concevoir, pr: /kɔ̃.sə.vwaʁ/, ds: to conceive (an idea)}
+  - {id: fr-v-deacddb1b7afe24f, ch: raisonner, pr: /ʁɛ.zɔ.ne/, ds: to reason}
+  - {id: fr-v-d2e284f2dad9a160, ch: établir, pr: /e.ta.bliʁ/, ds: 'to make out (a bill), to draw up (a document etc.)'}
+  - {id: fr-v-27bd35a1b59028f6, ch: attester, pr: /a.tɛs.te/, ds: to attest; to support with evidence}
+  - {id: fr-v-01ac29b7c828f206, ch: corroborer, pr: /kɔ.ʁɔ.bɔ.ʁe/, ds: to corroborate}
+  - {id: fr-v-ffa92f0c4d33c3bf, ch: réfuter, pr: /ʁe.fy.te/, ds: 'to refute, to disprove'}
+  - {id: fr-v-82a6b72dd539b872, ch: contredire, pr: /kɔ̃.tʁə.diʁ/, ds: to contradict}
+  - {id: fr-v-ec3a8ed3bfaaa8d1, ch: questionner, pr: /kɛs.tjɔ.ne/, ds: 'to question, interrogate'}
+  - {id: fr-v-4dbaf0c70e47595a, ch: remettre en question, pr: /ʁə.mɛ.tʁ‿ɑ̃ kɛs.tjɔ̃/, ds: to question}
+  - {id: fr-v-ed8faef802facc17, ch: soupçonner, pr: /sup.sɔ.ne/, ds: to suspect (have a suspicion)}
+  - {id: fr-v-073643256992b021, ch: suspecter, pr: /sys.pɛk.te/, ds: to suspect}
+  - {id: fr-v-e910f60c94692e17, ch: quantifier, pr: /kɑ̃.ti.fje/, ds: to quantify}
+  - {id: fr-v-4004b360228f8704, ch: chiffrer, pr: /ʃi.fʁe/, ds: to number (to add a number to)}
+  - {id: fr-v-12bcff7cccc464be, ch: pondérer, pr: /pɔ̃.de.ʁe/, ds: to weight (applying a weighting to)}
+  - {id: fr-v-6849093dcac358f7, ch: dénombrer, pr: /de.nɔ̃.bʁe/, ds: 'to count, enumerate'}
+  - {id: fr-v-477c0fd812082d4a, ch: recenser, pr: /ʁəsɑ̃se/, ds: to count}
+  - {id: fr-v-4bf2565bbe88f8c1, ch: comptabiliser, pr: /kɔ̃.ta.bi.li.ze/, ds: 'to enter into the accounts, to post'}
+  - {id: fr-v-caebaca420f8a466, ch: extrapoler, pr: /ɛk.stʁa.pɔ.le/, ds: to extrapolate}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-9ab61318c0c13338, ch: réorganiser, pr: /ʁe.ɔʁ.ɡa.ni.ze/, ds: to reorganise}
+  - {id: fr-v-06ea62a79bcafda6, ch: actualiser, pr: /ak.tɥa.li.ze/, ds: to update (to make something up to date); to refresh}
+  - {id: fr-v-c7d1d3f95a0b9d58, ch: mettre à jour, pr: /mɛ.tʁ‿a ʒuʁ/, ds: to update}
+  - {id: fr-v-6db6273e65a5b30a, ch: responsabiliser, pr: /ʁɛs.pɔ̃.sa.bi.li.ze/, ds: to responsibilize}
+  - {id: fr-v-b9bfddd8f5e83bb9, ch: centraliser, pr: /sɑ̃.tʁa.li.ze/, ds: to centralise}
+  - {id: fr-v-9c24c4bf874f8fe8, ch: décentraliser, pr: /de.sɑ̃.tʁa.li.ze/, ds: 'to decentralise, to decentralize'}
+  - {id: fr-v-a3ea007631a571f1, ch: externaliser, pr: /ɛk.stɛʁ.na.li.ze/, ds: to outsource}
+  - {id: fr-v-180c08817dff17fb, ch: sous-traiter, pr: /su.tʁɛ.te/, ds: to subcontract}
+  review_grammar:
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+- id: level-19-actions-02
+  title: Actions and processes - 2
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-a65ec44ccbf3abfb, ch: généraliser, pr: /ʒe.ne.ʁa.li.ze/, ds: to generalise (all senses)}
+  - {id: fr-v-8b7d49a4556b7d4a, ch: interpréter, pr: /ɛ̃.tɛʁ.pʁe.te/, ds: to translate}
+  - {id: fr-v-5cb610c7b7d294e9, ch: expliciter, pr: /ɛk.spli.si.te/, ds: to clarify}
+  - {id: fr-v-1e3774320d0d7932, ch: élucider, pr: /e.ly.si.de/, ds: 'clarify, elucidate'}
+  - {id: fr-v-538c87591a86712c, ch: discerner, pr: /di.sɛʁ.ne/, ds: to discern}
+  - {id: fr-v-88ed93f30e1dcf1c, ch: dissocier, pr: /di.sɔ.sje/, ds: to dissociate}
+  - {id: fr-v-1f00381e086b8bc1, ch: séparer, pr: /se.pa.ʁe/, ds: to separate}
+  - {id: fr-v-9aa157f390273a61, ch: confondre, pr: /kɔ̃.fɔ̃dʁ/, ds: 'to confuse, to confound'}
+  - {id: fr-v-81cdf08935033863, ch: assimiler, pr: /a.si.mi.le/, ds: 'to assimilate (all meanings), to absorb'}
+  - {id: fr-v-7d8b49988a75f49e, ch: rapprocher, pr: /ʁa.pʁɔ.ʃe/, ds: 'to reapproach, to approach again'}
+  - {id: fr-v-34782e0e51ca1fdd, ch: confronter, pr: /kɔ̃.fʁɔ̃.te/, ds: to confront}
+  - {id: fr-v-b0c501fe99bb2c73, ch: éprouver, pr: /e.pʁu.ve/, ds: 'to put to the test, test, try'}
+  - {id: fr-v-d2c2f2095ff00a05, ch: expérimenter, pr: /ɛk.spe.ʁi.mɑ̃.te/, ds: to experiment}
+  - {id: fr-v-c5791efb0cd3d3fd, ch: répliquer, pr: /ʁe.pli.ke/, ds: 'to reply, to retort'}
+  - {id: fr-v-23901f3630514311, ch: réexaminer, pr: /ʁe.ɛɡ.za.mi.ne/, ds: to reexamine}
+  - {id: fr-v-50421e042358671c, ch: réévaluer, pr: /ʁe.e.va.lɥe/, ds: to reassess; to reevaluate}
+  - {id: fr-v-fd3bd3514f3bd2f1, ch: réinterpréter, pr: /ʁeɛ̃tɛʁpʁete/, ds: to reinterpret}
+  - {id: fr-v-148885b78ea9fb34, ch: appuyer, pr: /a.pɥi.je/, ds: 'to press, push'}
+  - {id: fr-v-4527e266740dfa4e, ch: fonder, pr: /fɔ̃.de/, ds: to found}
+  - {id: fr-v-aaf8a028e7e3496a, ch: relativiser, pr: /ʁə.la.ti.vi.ze/, ds: to relativize}
+  - {id: fr-v-ea7e07c59b12bee7, ch: tempérer, pr: /tɑ̃peʁe/, ds: 'to temper, to soothe, to assuage'}
+  - {id: fr-v-b512e2e974c6c634, ch: modérer, pr: /mɔ.de.ʁe/, ds: 'to moderate, temper, lessen, weaken etc.'}
+  - {id: fr-v-1820e0eb2ae6bc82, ch: borner, pr: /bɔʁ.ne/, ds: 'to limit, confine'}
+  - {id: fr-v-5ff8079ed3de472a, ch: circonscrire, pr: /siʁ.kɔ̃s.kʁiʁ/, ds: to circumscribe}
+  - {id: fr-v-7c325f6ee4e22d02, ch: restreindre, pr: /ʁɛs.tʁɛ̃dʁ/, ds: 'to restrict, to limit'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-073643256992b021, ch: suspecter, pr: /sys.pɛk.te/, ds: to suspect}
+  - {id: fr-v-e910f60c94692e17, ch: quantifier, pr: /kɑ̃.ti.fje/, ds: to quantify}
+  - {id: fr-v-4004b360228f8704, ch: chiffrer, pr: /ʃi.fʁe/, ds: to number (to add a number to)}
+  - {id: fr-v-12bcff7cccc464be, ch: pondérer, pr: /pɔ̃.de.ʁe/, ds: to weight (applying a weighting to)}
+  - {id: fr-v-6849093dcac358f7, ch: dénombrer, pr: /de.nɔ̃.bʁe/, ds: 'to count, enumerate'}
+  - {id: fr-v-477c0fd812082d4a, ch: recenser, pr: /ʁəsɑ̃se/, ds: to count}
+  - {id: fr-v-4bf2565bbe88f8c1, ch: comptabiliser, pr: /kɔ̃.ta.bi.li.ze/, ds: 'to enter into the accounts, to post'}
+  - {id: fr-v-caebaca420f8a466, ch: extrapoler, pr: /ɛk.stʁa.pɔ.le/, ds: to extrapolate}
+  review_grammar:
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+- id: level-19-actions-03
+  title: Actions and processes - 3
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-4840a65e6e5647ee, ch: délimiter, pr: /de.li.mi.te/, ds: to delimit (make or form the limits or boundaries of)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-148885b78ea9fb34, ch: appuyer, pr: /a.pɥi.je/, ds: 'to press, push'}
+  - {id: fr-v-4527e266740dfa4e, ch: fonder, pr: /fɔ̃.de/, ds: to found}
+  - {id: fr-v-aaf8a028e7e3496a, ch: relativiser, pr: /ʁə.la.ti.vi.ze/, ds: to relativize}
+  - {id: fr-v-ea7e07c59b12bee7, ch: tempérer, pr: /tɑ̃peʁe/, ds: 'to temper, to soothe, to assuage'}
+  - {id: fr-v-b512e2e974c6c634, ch: modérer, pr: /mɔ.de.ʁe/, ds: 'to moderate, temper, lessen, weaken etc.'}
+  - {id: fr-v-1820e0eb2ae6bc82, ch: borner, pr: /bɔʁ.ne/, ds: 'to limit, confine'}
+  - {id: fr-v-5ff8079ed3de472a, ch: circonscrire, pr: /siʁ.kɔ̃s.kʁiʁ/, ds: to circumscribe}
+  - {id: fr-v-7c325f6ee4e22d02, ch: restreindre, pr: /ʁɛs.tʁɛ̃dʁ/, ds: 'to restrict, to limit'}
+  review_grammar:
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+- id: level-19-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary:
+  - {id: fr-v-18940501527d2e27, ch: évidence, pr: /e.vi.dɑ̃s/, ds: 'obviousness, clearness'}
+  - {id: fr-v-53e5a8a0f057bd4a, ch: démonstration, pr: /de.mɔ̃s.tʁa.sjɔ̃/, ds: demonstration (act of showing and explaining)}
+  - {id: fr-v-ad9ababb478870e8, ch: argumentation, pr: /aʁ.ɡy.mɑ̃.ta.sjɔ̃/, ds: argument (process of reasoning)}
+  - {id: fr-v-7d3da871c0848bba, ch: raisonnement, pr: /ʁɛ.zɔn.mɑ̃/, ds: reasoning (act of reasoning)}
+  - {id: fr-v-0f1257ffb0679812, ch: inférence, pr: /ɛ̃.fe.ʁɑ̃s/, ds: inference}
+  - {id: fr-v-d3b8a2df6d0c8852, ch: déduction, pr: /de.dyk.sjɔ̃/, ds: deduction}
+  - {id: fr-v-dc44903413e2d578, ch: induction, pr: /ɛ̃.dyk.sjɔ̃/, ds: induction; generalizing from particular cases}
+  - {id: fr-v-a7d703c44d33cc6c, ch: intuition, pr: /ɛ̃.tɥi.sjɔ̃/, ds: intuition (cognitive faculty)}
+  - {id: fr-v-f18b9df26864d796, ch: présomption, pr: /pʁe.zɔ̃p.sjɔ̃/, ds: 'presumption, supposition'}
+  - {id: fr-v-f96669d32589ad0b, ch: conjecture, pr: /kɔ̃.ʒɛk.tyʁ/, ds: conjecture}
+  - {id: fr-v-09cdef37e873bc80, ch: postulat, pr: /pɔs.ty.la/, ds: postulate}
+  - {id: fr-v-c1ef2a156d805818, ch: prémisse, pr: /pʁe.mis/, ds: premise}
+  - {id: fr-v-bf10a64559a0fd11, ch: thèse, pr: /tɛz/, ds: 'thesis, supposition, theory'}
+  - {id: fr-v-b55d3fd3706e4182, ch: antithèse, pr: /ɑ̃.ti.tɛz/, ds: antithesis; juxtaposition of contrasting ideas}
+  - {id: fr-v-03689621f6761d74, ch: réfutation, pr: /ʁefytasjɔ̃/, ds: 'refutation, rebuttal'}
+  - {id: fr-v-26481940e18a32a1, ch: corroboration, pr: /kɔ.ʁɔ.bɔ.ʁa.sjɔ̃/, ds: 'corroboration, verification, confirmation'}
+  - {id: fr-v-d8a95ccf83317573, ch: invalidation, pr: /ɛ̃.va.li.da.sjɔ̃/, ds: invalidation}
+  - {id: fr-v-129a61c3057d23e4, ch: véracité, pr: /veʁasite/, ds: veracity}
+  - {id: fr-v-ed99869de9c4bf1d, ch: vraisemblance, pr: /vʁɛ.sɑ̃.blɑ̃s/, ds: verisimilitude}
+  - {id: fr-v-c645d1be0772f053, ch: plausibilité, pr: /plo.zi.bi.li.te/, ds: plausibility}
+  - {id: fr-v-4fb30f22218178a0, ch: probabilité, pr: /pʁobabilite/, ds: probability}
+  - {id: fr-v-761d8f8f4e6c7e4f, ch: incertitude, pr: /ɛ̃.sɛʁ.ti.tyd/, ds: uncertainty}
+  - {id: fr-v-8612afa3cee903ec, ch: ignorance, pr: /i.ɲɔ.ʁɑ̃s/, ds: ignorance}
+  - {id: fr-v-8220efae1b677feb, ch: croyance, pr: /kʁwa.jɑ̃s/, ds: belief}
+  - {id: fr-v-dd40e50b65d2ca3c, ch: scepticisme, pr: /sɛp.ti.sism/, ds: scepticism}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-28e59b124c80c704, ch: émettre, pr: /e.mɛtʁ/, ds: to emit}
+  - {id: fr-v-7ccf6b3903a109eb, ch: polluer, pr: /pɔ.lɥe/, ds: to pollute (create pollution)}
+  - {id: fr-v-5650bc94ec00a76d, ch: contaminer, pr: /kɔ̃.ta.mi.ne/, ds: to contaminate}
+  - {id: fr-v-ce41e34843042b66, ch: détruire, pr: /de.tʁɥiʁ/, ds: to destroy}
+  - {id: fr-v-c41740657c0ec9fc, ch: menacer, pr: /mə.na.se/, ds: to threaten}
+  - {id: fr-v-78f53e5d69ad8189, ch: survivre, pr: /syʁ.vivʁ/, ds: to survive}
+  - {id: fr-v-372d1f7c4a17f74e, ch: atténuer, pr: /a.te.nɥe/, ds: to attenuate; to mitigate}
+  - {id: fr-v-fd120a190653ff9f, ch: sensibiliser, pr: /sɑ̃.si.bi.li.ze/, ds: to make sensitive}
+  review_grammar:
+  - {id: fr-g-restrictive-ne-que, ch: ne + verbe + que + élément restreint, ds: Restrict a statement to only the focused element}
+  - {id: fr-g-degree-consequence, ch: si + adjectif / tellement + verbe ou adjectif + que, ds: Link an asserted result to the degree of a cause}
+  - {id: fr-g-subjunctive-assertion-contrast, ch: penser que + indicatif ; ne pas penser que + subjonctif, ds: Contrast asserted belief with a nonasserted complement}
+- id: level-19-reasoning-02
+  title: Reasons and connections - 2
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary:
+  - {id: fr-v-6319931a9739345f, ch: crédulité, pr: /kʁe.dy.li.te/, ds: 'credulity, gullibility'}
+  - {id: fr-v-0274b60fc4be350a, ch: soupçon, pr: /sup.sɔ̃/, ds: suspicion; mistrust}
+  - {id: fr-v-0aff89ed3daf5c22, ch: suspicion, pr: /sys.pi.sjɔ̃/, ds: suspicion}
+  - {id: fr-v-5eff75a992dfdb1b, ch: fait, pr: /fɛ/, ds: fact}
+  - {id: fr-v-cd6a6fa8996bcf8e, ch: observation, pr: /ɔp.sɛʁ.va.sjɔ̃/, ds: observation (careful or controlled attention or consideration)}
+  - {id: fr-v-89662161b9886861, ch: constat, pr: /kɔ̃s.ta/, ds: constat}
+  - {id: fr-v-0abe99c0a470a12d, ch: constatation, pr: /kɔ̃s.ta.ta.sjɔ̃/, ds: remark}
+  - {id: fr-v-c65e5330d6b4eb65, ch: indice, pr: /ɛ̃.dis/, ds: 'clue, hint, indication'}
+  - {id: fr-v-1c42744a1e937538, ch: signe, pr: /siɲ/, ds: sign (indicator; indication; mathematical polarity)}
+  - {id: fr-v-08b3a0cb7a043743, ch: symptôme, pr: /sɛ̃p.tom/, ds: symptom}
+  - {id: fr-v-e12ded0434a865f5, ch: exception, pr: /ɛk.sɛp.sjɔ̃/, ds: exception}
+  - {id: fr-v-f98c6edc54be1bbf, ch: contre-exemple, pr: /kɔ̃.tʁ‿ɛɡ.zɑ̃pl/, ds: counterexample}
+  - {id: fr-v-8715648860e31cdc, ch: contradiction, pr: /kɔ̃.tʁa.dik.sjɔ̃/, ds: contradiction}
+  - {id: fr-v-917d20c817996843, ch: paradoxe, pr: /pa.ʁa.dɔks/, ds: paradox}
+  - {id: fr-v-b2f06c1fbe54138e, ch: incohérence, pr: /ɛ̃.kɔ.e.ʁɑ̃s/, ds: incoherence}
+  - {id: fr-v-5e8cf91cffb9aa32, ch: cohérence, pr: /kɔ.e.ʁɑ̃s/, ds: 'coherence, consistence, consistency'}
+  - {id: fr-v-a84d924081a329e0, ch: consistance, pr: /kɔ̃.sis.tɑ̃s/, ds: consistence (physical quality)}
+  - {id: fr-v-b9277f7fd0aa3021, ch: concordance, pr: /kɔ̃.kɔʁ.dɑ̃s/, ds: 'accord, agreement, accordance, concurrence, consonance, concord'}
+  - {id: fr-v-c022ac2dee5ec699, ch: discordance, pr: /dis.kɔʁ.dɑ̃s/, ds: discordance}
+  - {id: fr-v-dd0fa83c35748717, ch: corrélation, pr: /kɔ.ʁe.la.sjɔ̃/, ds: correlation; relationship between comparable things}
+  - {id: fr-v-48c5f0cb78de5c5d, ch: causalité, pr: /ko.za.li.te/, ds: causality (agency of cause)}
+  - {id: fr-v-3fc6bcf7da874a42, ch: interférence, pr: /ɛ̃.tɛʁ.fe.ʁɑ̃s/, ds: interference}
+  - {id: fr-v-4d7f4de2d05afcad, ch: confusion, pr: /kɔ̃.fy.zjɔ̃/, ds: confusion}
+  - {id: fr-v-f3ee1339b0285ed9, ch: distorsion, pr: /dis.tɔʁ.sjɔ̃/, ds: distortion}
+  - {id: fr-v-b52d6a9aaac0d96e, ch: artefact, pr: /aʁ.tə.fakt/, ds: Pre-1990 spelling of artéfact.}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-129a61c3057d23e4, ch: véracité, pr: /veʁasite/, ds: veracity}
+  - {id: fr-v-ed99869de9c4bf1d, ch: vraisemblance, pr: /vʁɛ.sɑ̃.blɑ̃s/, ds: verisimilitude}
+  - {id: fr-v-c645d1be0772f053, ch: plausibilité, pr: /plo.zi.bi.li.te/, ds: plausibility}
+  - {id: fr-v-4fb30f22218178a0, ch: probabilité, pr: /pʁobabilite/, ds: probability}
+  - {id: fr-v-761d8f8f4e6c7e4f, ch: incertitude, pr: /ɛ̃.sɛʁ.ti.tyd/, ds: uncertainty}
+  - {id: fr-v-8612afa3cee903ec, ch: ignorance, pr: /i.ɲɔ.ʁɑ̃s/, ds: ignorance}
+  - {id: fr-v-8220efae1b677feb, ch: croyance, pr: /kʁwa.jɑ̃s/, ds: belief}
+  - {id: fr-v-dd40e50b65d2ca3c, ch: scepticisme, pr: /sɛp.ti.sism/, ds: scepticism}
+  review_grammar:
+  - {id: fr-g-restrictive-ne-que, ch: ne + verbe + que + élément restreint, ds: Restrict a statement to only the focused element}
+  - {id: fr-g-degree-consequence, ch: si + adjectif / tellement + verbe ou adjectif + que, ds: Link an asserted result to the degree of a cause}
+  - {id: fr-g-subjunctive-assertion-contrast, ch: penser que + indicatif ; ne pas penser que + subjonctif, ds: Contrast asserted belief with a nonasserted complement}
+- id: level-19-reasoning-03
+  title: Reasons and connections - 3
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary:
+  - {id: fr-v-88e9793c2035890d, ch: marge, pr: /maʁʒ/, ds: 'margin (of paper, etc)'}
+  - {id: fr-v-376af7e6ab4c76f6, ch: approximation, pr: /a.pʁɔk.si.ma.sjɔ̃/, ds: approximation; an imprecise solution}
+  - {id: fr-v-2ba667a44b9432e5, ch: robustesse, pr: /ʁɔ.bys.tɛs/, ds: robustness}
+  - {id: fr-v-29fb47d8a0ae5977, ch: signification, pr: /si.ɲi.fi.ka.sjɔ̃/, ds: signification}
+  - {id: fr-v-37ed43b346a25e52, ch: portée, pr: /pɔʁ.te/, ds: 'reach, range, scope'}
+  - {id: fr-v-39fb5a40e9176a96, ch: restriction, pr: /ʁɛs.tʁik.sjɔ̃/, ds: restriction (limitation; constraint)}
+  - {id: fr-v-fc70e00686086826, ch: généralisation, pr: /ʒe.ne.ʁa.li.za.sjɔ̃/, ds: generalisation}
+  - {id: fr-v-463f7fbb79fa54db, ch: extrapolation, pr: /ɛk.stʁa.pɔ.la.sjɔ̃/, ds: extrapolation}
+  - {id: fr-v-a6f89cade94b9373, ch: interprétation, pr: /ɛ̃.tɛʁ.pʁe.ta.sjɔ̃/, ds: 'interpretation, rendition'}
+  - {id: fr-v-f8582ca641199460, ch: prédiction, pr: /pʁe.dik.sjɔ̃/, ds: prediction (act of predicting; statement about the future)}
+  - {id: fr-v-8457243dfc486763, ch: prévision, pr: /pʁe.vi.zjɔ̃/, ds: forecast}
+  - {id: fr-v-05670f33939183f9, ch: savoir, pr: /sa.vwaʁ/, ds: knowledge}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-b9277f7fd0aa3021, ch: concordance, pr: /kɔ̃.kɔʁ.dɑ̃s/, ds: 'accord, agreement, accordance, concurrence, consonance, concord'}
+  - {id: fr-v-c022ac2dee5ec699, ch: discordance, pr: /dis.kɔʁ.dɑ̃s/, ds: discordance}
+  - {id: fr-v-dd0fa83c35748717, ch: corrélation, pr: /kɔ.ʁe.la.sjɔ̃/, ds: correlation; relationship between comparable things}
+  - {id: fr-v-48c5f0cb78de5c5d, ch: causalité, pr: /ko.za.li.te/, ds: causality (agency of cause)}
+  - {id: fr-v-3fc6bcf7da874a42, ch: interférence, pr: /ɛ̃.tɛʁ.fe.ʁɑ̃s/, ds: interference}
+  - {id: fr-v-4d7f4de2d05afcad, ch: confusion, pr: /kɔ̃.fy.zjɔ̃/, ds: confusion}
+  - {id: fr-v-f3ee1339b0285ed9, ch: distorsion, pr: /dis.tɔʁ.sjɔ̃/, ds: distortion}
+  - {id: fr-v-b52d6a9aaac0d96e, ch: artefact, pr: /aʁ.tə.fakt/, ds: Pre-1990 spelling of artéfact.}
+  review_grammar:
+  - {id: fr-g-restrictive-ne-que, ch: ne + verbe + que + élément restreint, ds: Restrict a statement to only the focused element}
+  - {id: fr-g-degree-consequence, ch: si + adjectif / tellement + verbe ou adjectif + que, ds: Link an asserted result to the degree of a cause}
+  - {id: fr-g-subjunctive-assertion-contrast, ch: penser que + indicatif ; ne pas penser que + subjonctif, ds: Contrast asserted belief with a nonasserted complement}
+- id: level-19-feelings-practice-01
+  title: Feelings and attitudes - sentence practice 1
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-past-subjunctive, ch: avoir / être au subjonctif présent + participe passé, ds: Place an evaluated or nonasserted event before its reference}
+  review_vocabulary:
+  - {id: fr-v-4d009d2ce7ceda36, ch: lire, pr: /liʁ/, ds: to read}
+  - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
+  - {id: fr-v-fc290efccf6faea2, ch: reconnaissant, pr: /ʁə.kɔ.nɛ.sɑ̃/, ds: 'grateful, thankful'}
+  - {id: fr-v-8bf01ef442a837d2, ch: déprimé, pr: /de.pʁi.me/, ds: 'depressed, dejected'}
+  - {id: fr-v-a012a8c08e4191a0, ch: optimiste, pr: /ɔp.ti.mist/, ds: optimistic}
+  - {id: fr-v-e4f7e9ea74be3f7e, ch: pessimiste, pr: /pe.si.mist/, ds: pessimistic}
+  - {id: fr-v-4d6dc1d63fd414ee, ch: serein, pr: /sə.ʁɛ̃/, ds: 'unclouded, clear'}
+  - {id: fr-v-4dcd0faf12fad6e0, ch: nostalgique, pr: /nɔs.tal.ʒik/, ds: nostalgic}
+  - {id: fr-v-326083256c1f891f, ch: indifférent, pr: /ɛ̃.di.fe.ʁɑ̃/, ds: indifferent}
+  - {id: fr-v-97063143c05dc15e, ch: tenir, pr: /tə.niʁ/, ds: to be attached to; hold dear}
+  review_grammar: []
+- id: level-19-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-epistemic-modals, ch: devoir / pouvoir + infinitif de situation, ds: Mark an inference or possibility rather than an obligation}
+  - {id: fr-g-evidential-seeming, ch: il semble que / il me semble que + proposition, ds: Qualify a judgment and identify its perspective}
+  review_vocabulary:
+  - {id: fr-v-23e5dda7dc9a9361, ch: maison, pr: /mɛ.zɔ̃/, ds: house}
+  - {id: fr-v-356bea12e0492392, ch: comprendre, pr: /kɔ̃.pʁɑ̃dʁ/, ds: 'to understand, comprehend'}
+  - {id: fr-v-405e7736ab8e3c19, ch: porte, pr: /pɔʁt/, ds: door}
+  - {id: fr-v-37ed43b346a25e52, ch: portée, pr: /pɔʁ.te/, ds: 'reach, range, scope'}
+  - {id: fr-v-39fb5a40e9176a96, ch: restriction, pr: /ʁɛs.tʁik.sjɔ̃/, ds: restriction (limitation; constraint)}
+  - {id: fr-v-fc70e00686086826, ch: généralisation, pr: /ʒe.ne.ʁa.li.za.sjɔ̃/, ds: generalisation}
+  - {id: fr-v-463f7fbb79fa54db, ch: extrapolation, pr: /ɛk.stʁa.pɔ.la.sjɔ̃/, ds: extrapolation}
+  - {id: fr-v-a6f89cade94b9373, ch: interprétation, pr: /ɛ̃.tɛʁ.pʁe.ta.sjɔ̃/, ds: 'interpretation, rendition'}
+  - {id: fr-v-f8582ca641199460, ch: prédiction, pr: /pʁe.dik.sjɔ̃/, ds: prediction (act of predicting; statement about the future)}
+  - {id: fr-v-8457243dfc486763, ch: prévision, pr: /pʁe.vi.zjɔ̃/, ds: forecast}
+  - {id: fr-v-05670f33939183f9, ch: savoir, pr: /sa.vwaʁ/, ds: knowledge}
+  review_grammar:
+  - {id: fr-g-restrictive-ne-que, ch: ne + verbe + que + élément restreint, ds: Restrict a statement to only the focused element}
+  - {id: fr-g-degree-consequence, ch: si + adjectif / tellement + verbe ou adjectif + que, ds: Link an asserted result to the degree of a cause}
+  - {id: fr-g-subjunctive-assertion-contrast, ch: penser que + indicatif ; ne pas penser que + subjonctif, ds: Contrast asserted belief with a nonasserted complement}
+- id: level-19-argument-practice-01
+  title: Argument and decisions - sentence practice 1
+  outcome: Defend a recommendation while addressing relevant qualifications and objections.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-purpose-finite-subject, ch: pour que / afin que + subjonctif, ds: Give an intended purpose with a separately expressed actor}
+  review_vocabulary:
+  - {id: fr-v-cecc5bedb850a554, ch: parler, pr: /paʁ.le/, ds: 'to speak, talk'}
+  - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
+  - {id: fr-v-9f69d3289a082fce, ch: marchander, pr: /maʁ.ʃɑ̃.de/, ds: 'to bargain over, to haggle over'}
+  - {id: fr-v-afed280e940a5df6, ch: concilier, pr: /kɔ̃.si.lje/, ds: to reconcile}
+  - {id: fr-v-4edbd2c7eeda8646, ch: arbitrer, pr: /aʁ.bi.tʁe/, ds: to arbitrate}
+  - {id: fr-v-648316bab3e622ee, ch: trancher, pr: /tʁɑ̃.ʃe/, ds: 'to slice, cut into slices'}
+  - {id: fr-v-26748de6a4d39cc2, ch: consentir, pr: /kɔ̃.sɑ̃.tiʁ/, ds: to consent}
+  - {id: fr-v-1d725ca98d1ac779, ch: céder, pr: /se.de/, ds: to yield}
+  - {id: fr-v-682bc57e2ea95a83, ch: rejeter, pr: /ʁə.ʒ(ə).te/, ds: 'to throw back (a fish, etc.)'}
+  - {id: fr-v-09c171c39ab1d911, ch: résister, pr: /ʁe.zis.te/, ds: to resist}
+  review_grammar:
+  - {id: fr-g-nominal-concession, ch: 'malgré + nom ; proposition, pourtant proposition', ds: Acknowledge an obstacle without denying the outcome}
+  - {id: fr-g-subjunctive-concession, ch: 'bien que + subjonctif, proposition', ds: Acknowledge a circumstance despite an unexpected outcome}
+  - {id: fr-g-hypothetical-present, ch: 'si + imparfait, conditionnel présent', ds: Imagine a present or future alternative with distance}

@@ -105,8 +105,9 @@ def compile_realizations(specs: list[dict], words: dict, patterns: dict,
                 }
         else:
             raise ValueError(f"{identifier}: unknown realization kind {kind!r}")
+        # Authored boundary spaces guide joining; engine segments are trimmed.
         registry[identifier] = {
-            "segment": SurfaceSegment(spec["ch"], spec["pr"], lexical, tuple(spec["grammar"]), identifier),
+            "segment": SurfaceSegment(spec["ch"].strip(), spec["pr"].strip(), lexical, tuple(spec["grammar"]), identifier),
             **constraints, "evidence": evidence, "kind": kind,
         }
     for identifier, licensed in registry.items():

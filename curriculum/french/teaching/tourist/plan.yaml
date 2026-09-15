@@ -1,0 +1,1020 @@
+schema_version: 1
+id: fr-tourist
+title: French for a short visit
+language: french
+level_basis: An independent original practical tourist route, not a CEFR inventory, a core-level prerequisite,
+  an examination syllabus, or a claim of demonstrated ability. The first three units form an ordered quick
+  start from empty vocabulary and grammar context; later units extend that same route without relying
+  on the core program.
+review_policy: All phrase combinations, English labels, teaching choices and contextual pronunciation
+  guides are original, AI-assisted and not human-reviewed. A whole phrase guide is never source-verified.
+  Its slash-delimited chunks form a SEGMENTED pronunciation guide, not a continuous narrow utterance,
+  required pauses, audio evidence or a spoken assessment. Lexical readings retain their source status;
+  construction readings are explicitly original. Targets omit terminal punctuation. Use small lessons,
+  retrieve earlier items in changed situations, revisit them on later days and record modality, assistance
+  and delayed performance under the program mastery policy. Formula recall does not establish independent
+  component vocabulary or conjugation mastery. Listening and spoken judgments require actual audio and
+  suitable evaluation. Requests here do not promise availability, safety, service or a particular response;
+  health examples communicate needs, not clinical advice.
+quick_start:
+- contact-politeness
+- communication-repair
+- essential-needs
+units:
+- id: contact-politeness
+  title: Open an exchange politely
+  outcome: Greet someone, make a polite appeal and acknowledge a response.
+  grammar:
+  - fr-g-travel-polite-request
+  review_grammar: []
+  vocabulary:
+  - fr-v-10ad6bebc867671d
+  - fr-v-c3a6c08e3b04aad2
+  review_vocabulary: []
+  phrases:
+  - id: fr-tourist-p001
+    ch: Bonjour
+    pr: /bɔ̃.ʒuʁ/
+    ds: Hello
+    items:
+    - fr-v-10ad6bebc867671d
+    grammar: []
+    realizations:
+    - ch: Bonjour
+      pr: /bɔ̃.ʒuʁ/
+      items:
+      - fr-v-10ad6bebc867671d
+      grammar: []
+      form_id: fr-f-travel-bonjour-capital
+  - id: fr-tourist-p002
+    ch: S'il vous plaît
+    pr: /sil vu plɛ/
+    ds: Please
+    items: []
+    grammar:
+    - fr-g-travel-polite-request
+    realizations:
+    - ch: S'il vous plaît
+      pr: /sil vu plɛ/
+      items: []
+      grammar:
+      - fr-g-travel-polite-request
+      form_id: fr-f-travel-please
+  - id: fr-tourist-p003
+    ch: Merci
+    pr: /mɛʁ.si/
+    ds: Thank you
+    items:
+    - fr-v-c3a6c08e3b04aad2
+    grammar: []
+    realizations:
+    - ch: Merci
+      pr: /mɛʁ.si/
+      items:
+      - fr-v-c3a6c08e3b04aad2
+      grammar: []
+      form_id: fr-f-travel-merci-capital
+- id: communication-repair
+  title: Repair a misunderstanding
+  outcome: Ask for slower speech or repetition and say when you do not understand.
+  grammar:
+  - fr-g-travel-communication-repair
+  - fr-g-travel-polite-assistance
+  review_grammar:
+  - fr-g-travel-polite-request
+  vocabulary: []
+  review_vocabulary:
+  - fr-v-10ad6bebc867671d
+  - fr-v-c3a6c08e3b04aad2
+  phrases:
+  - id: fr-tourist-p004
+    ch: Parlez plus lentement, s'il vous plaît
+    pr: /paʁ.le ply lɑ̃.tə.mɑ̃ sil vu plɛ/
+    ds: Please speak more slowly
+    items: []
+    grammar:
+    - fr-g-travel-communication-repair
+    realizations:
+    - ch: Parlez plus lentement, s'il vous plaît
+      pr: /paʁ.le ply lɑ̃.tə.mɑ̃ sil vu plɛ/
+      items: []
+      grammar:
+      - fr-g-travel-communication-repair
+      form_id: fr-f-travel-speak-slowly
+  - id: fr-tourist-p005
+    ch: Pouvez-vous répéter
+    pr: /pu.ve vu ʁe.pe.te/
+    ds: Could you repeat that
+    items: []
+    grammar:
+    - fr-g-travel-polite-assistance
+    realizations:
+    - ch: Pouvez-vous répéter
+      pr: /pu.ve vu ʁe.pe.te/
+      items: []
+      grammar:
+      - fr-g-travel-polite-assistance
+      form_id: fr-f-travel-repeat
+  - id: fr-tourist-p006
+    ch: Je ne comprends pas
+    pr: /ʒə nə kɔ̃.pʁɑ̃ pa/
+    ds: I do not understand
+    items: []
+    grammar:
+    - fr-g-travel-communication-repair
+    realizations:
+    - ch: Je ne comprends pas
+      pr: /ʒə nə kɔ̃.pʁɑ̃ pa/
+      items: []
+      grammar:
+      - fr-g-travel-communication-repair
+      form_id: fr-f-travel-not-understand
+- id: essential-needs
+  title: Ask for water, help and a location
+  outcome: Request water or help and find out where the railway station is.
+  grammar:
+  - fr-g-travel-would-like
+  - fr-g-travel-location-question
+  - fr-g-travel-need
+  review_grammar:
+  - fr-g-travel-polite-request
+  - fr-g-travel-polite-assistance
+  - fr-g-travel-communication-repair
+  vocabulary:
+  - fr-v-dffaea6b9559b478
+  - fr-v-eac03ce764e06171
+  - fr-v-57ea8e93200fea91
+  review_vocabulary:
+  - fr-v-c3a6c08e3b04aad2
+  phrases:
+  - id: fr-tourist-p007
+    ch: Je voudrais de l'eau
+    pr: /ʒə vu.dʁɛ də l/ /o/
+    ds: I would like some water
+    items:
+    - fr-v-dffaea6b9559b478
+    grammar:
+    - fr-g-travel-would-like
+    realizations:
+    - ch: Je voudrais de l'
+      pr: /ʒə vu.dʁɛ də l/
+      items: []
+      grammar:
+      - fr-g-travel-would-like
+      form_id: fr-f-travel-would-like-water
+    - ch: eau
+      pr: /o/
+      items:
+      - fr-v-dffaea6b9559b478
+      grammar: []
+  - id: fr-tourist-p008
+    ch: Où est la gare
+    pr: /u ɛ la/ /ɡaʁ/
+    ds: Where is the railway station
+    items:
+    - fr-v-eac03ce764e06171
+    grammar:
+    - fr-g-travel-location-question
+    realizations:
+    - ch: Où est la
+      pr: /u ɛ la/
+      items: []
+      grammar:
+      - fr-g-travel-location-question
+      form_id: fr-f-travel-where-feminine
+    - ch: gare
+      pr: /ɡaʁ/
+      items:
+      - fr-v-eac03ce764e06171
+      grammar: []
+  - id: fr-tourist-p009
+    ch: J'ai besoin d'aide
+    pr: /ʒe bə.zwɛ̃ d/ /ɛd/
+    ds: I need help
+    items:
+    - fr-v-57ea8e93200fea91
+    grammar:
+    - fr-g-travel-need
+    realizations:
+    - ch: J'ai besoin d'
+      pr: /ʒe bə.zwɛ̃ d/
+      items: []
+      grammar:
+      - fr-g-travel-need
+      form_id: fr-f-travel-need-help
+    - ch: aide
+      pr: /ɛd/
+      items:
+      - fr-v-57ea8e93200fea91
+      grammar: []
+  - id: fr-tourist-p010
+    ch: Pouvez-vous m'aider
+    pr: /pu.ve vu mɛ.de/
+    ds: Could you help me
+    items: []
+    grammar:
+    - fr-g-travel-polite-assistance
+    realizations:
+    - ch: Pouvez-vous m'aider
+      pr: /pu.ve vu mɛ.de/
+      items: []
+      grammar:
+      - fr-g-travel-polite-assistance
+      form_id: fr-f-travel-help-me
+- id: directions-toilets
+  title: Toilets and simple directions
+  outcome: Ask for the toilets and distinguish left from right in a short reply.
+  grammar:
+  - fr-g-travel-direction
+  review_grammar:
+  - fr-g-travel-location-question
+  - fr-g-travel-polite-assistance
+  vocabulary:
+  - fr-v-9bb102ee78354498
+  - fr-v-f65b1c1fbb3f942a
+  - fr-v-fd0ac678bbeb492d
+  review_vocabulary:
+  - fr-v-eac03ce764e06171
+  - fr-v-57ea8e93200fea91
+  phrases:
+  - id: fr-tourist-p011
+    ch: Où sont les toilettes
+    pr: /u sɔ̃ le/ /twa.lɛt/
+    ds: Where are the toilets
+    items:
+    - fr-v-9bb102ee78354498
+    grammar:
+    - fr-g-travel-location-question
+    realizations:
+    - ch: Où sont les
+      pr: /u sɔ̃ le/
+      items: []
+      grammar:
+      - fr-g-travel-location-question
+      form_id: fr-f-travel-where-toilets
+    - ch: toilettes
+      pr: /twa.lɛt/
+      items:
+      - fr-v-9bb102ee78354498
+      grammar:
+      - fr-g-travel-location-question
+      form_id: fr-f-travel-toilettes-plural
+  - id: fr-tourist-p012
+    ch: À gauche
+    pr: /a/ /ɡoʃ/
+    ds: To the left
+    items:
+    - fr-v-f65b1c1fbb3f942a
+    grammar:
+    - fr-g-travel-direction
+    realizations:
+    - ch: À
+      pr: /a/
+      items: []
+      grammar:
+      - fr-g-travel-direction
+      form_id: fr-f-travel-direction-prefix
+    - ch: gauche
+      pr: /ɡoʃ/
+      items:
+      - fr-v-f65b1c1fbb3f942a
+      grammar: []
+  - id: fr-tourist-p013
+    ch: À droite
+    pr: /a/ /dʁwat/
+    ds: To the right
+    items:
+    - fr-v-fd0ac678bbeb492d
+    grammar:
+    - fr-g-travel-direction
+    realizations:
+    - ch: À
+      pr: /a/
+      items: []
+      grammar:
+      - fr-g-travel-direction
+      form_id: fr-f-travel-direction-prefix
+    - ch: droite
+      pr: /dʁwat/
+      items:
+      - fr-v-fd0ac678bbeb492d
+      grammar: []
+- id: transport-times
+  title: A ticket and a time
+  outcome: Request a ticket and ask the time of a journey already under discussion.
+  grammar:
+  - fr-g-travel-time-question
+  review_grammar:
+  - fr-g-travel-would-like
+  - fr-g-travel-communication-repair
+  vocabulary:
+  - fr-v-bcd3a43850411ae2
+  - fr-v-dbe191f8ffd62105
+  review_vocabulary:
+  - fr-v-eac03ce764e06171
+  - fr-v-f65b1c1fbb3f942a
+  - fr-v-fd0ac678bbeb492d
+  phrases:
+  - id: fr-tourist-p014
+    ch: Je voudrais un billet
+    pr: /ʒə vu.dʁɛ œ̃/ /bi.jɛ/
+    ds: I would like a ticket
+    items:
+    - fr-v-bcd3a43850411ae2
+    grammar:
+    - fr-g-travel-would-like
+    realizations:
+    - ch: Je voudrais un
+      pr: /ʒə vu.dʁɛ œ̃/
+      items: []
+      grammar:
+      - fr-g-travel-would-like
+      form_id: fr-f-travel-would-like-masculine
+    - ch: billet
+      pr: /bi.jɛ/
+      items:
+      - fr-v-bcd3a43850411ae2
+      grammar: []
+  - id: fr-tourist-p015
+    ch: À quelle heure
+    pr: /a kɛl/ /œʁ/
+    ds: At what time
+    items:
+    - fr-v-dbe191f8ffd62105
+    grammar:
+    - fr-g-travel-time-question
+    realizations:
+    - ch: À quelle
+      pr: /a kɛl/
+      items: []
+      grammar:
+      - fr-g-travel-time-question
+      form_id: fr-f-travel-what-time
+    - ch: heure
+      pr: /œʁ/
+      items:
+      - fr-v-dbe191f8ffd62105
+      grammar: []
+- id: accommodation
+  title: Find the hotel and explain a room need
+  outcome: Find a hotel, mention a reservation, request a room and report a key problem.
+  grammar:
+  - fr-g-travel-have
+  - fr-g-travel-not-working
+  review_grammar:
+  - fr-g-travel-would-like
+  - fr-g-travel-location-question
+  - fr-g-travel-time-question
+  vocabulary:
+  - fr-v-b0a0d4d66fb6616a
+  - fr-v-d6b7a3b6f9402564
+  - fr-v-5f205da766a8e659
+  - fr-v-7d4b1a3ec129806b
+  review_vocabulary:
+  - fr-v-dffaea6b9559b478
+  - fr-v-dbe191f8ffd62105
+  phrases:
+  - id: fr-tourist-p016
+    ch: J'ai une réservation
+    pr: /ʒe yn/ /ʁe.zɛʁ.va.sjɔ̃/
+    ds: I have a reservation
+    items:
+    - fr-v-b0a0d4d66fb6616a
+    grammar:
+    - fr-g-travel-have
+    realizations:
+    - ch: J'ai une
+      pr: /ʒe yn/
+      items: []
+      grammar:
+      - fr-g-travel-have
+      form_id: fr-f-travel-have-feminine
+    - ch: réservation
+      pr: /ʁe.zɛʁ.va.sjɔ̃/
+      items:
+      - fr-v-b0a0d4d66fb6616a
+      grammar: []
+  - id: fr-tourist-p017
+    ch: Je voudrais une chambre
+    pr: /ʒə vu.dʁɛ yn/ /ʃɑ̃bʁ/
+    ds: I would like a room
+    items:
+    - fr-v-d6b7a3b6f9402564
+    grammar:
+    - fr-g-travel-would-like
+    realizations:
+    - ch: Je voudrais une
+      pr: /ʒə vu.dʁɛ yn/
+      items: []
+      grammar:
+      - fr-g-travel-would-like
+      form_id: fr-f-travel-would-like-feminine
+    - ch: chambre
+      pr: /ʃɑ̃bʁ/
+      items:
+      - fr-v-d6b7a3b6f9402564
+      grammar: []
+  - id: fr-tourist-p018
+    ch: La clé ne fonctionne pas
+    pr: /la/ /kle/ /nə fɔ̃k.sjɔn pa/
+    ds: The key does not work
+    items:
+    - fr-v-5f205da766a8e659
+    grammar:
+    - fr-g-travel-not-working
+    realizations:
+    - ch: La
+      pr: /la/
+      items: []
+      grammar:
+      - fr-g-travel-not-working
+      form_id: fr-f-travel-key-subject
+    - ch: clé
+      pr: /kle/
+      items:
+      - fr-v-5f205da766a8e659
+      grammar: []
+    - ch: ne fonctionne pas
+      pr: /nə fɔ̃k.sjɔn pa/
+      items: []
+      grammar:
+      - fr-g-travel-not-working
+      form_id: fr-f-travel-not-working
+  - id: fr-tourist-p019
+    ch: Où est l'hôtel
+    pr: /u ɛ l/ /o.tɛl/
+    ds: Where is the hotel
+    items:
+    - fr-v-7d4b1a3ec129806b
+    grammar:
+    - fr-g-travel-location-question
+    realizations:
+    - ch: Où est l'
+      pr: /u ɛ l/
+      items: []
+      grammar:
+      - fr-g-travel-location-question
+      form_id: fr-f-travel-where-hotel
+    - ch: hôtel
+      pr: /o.tɛl/
+      items:
+      - fr-v-7d4b1a3ec129806b
+      grammar: []
+- id: meals-allergens
+  title: Order and clarify milk ingredients
+  outcome: Request coffee or the bill and ask about milk rather than assume its absence.
+  grammar:
+  - fr-g-travel-milk-check
+  review_grammar:
+  - fr-g-travel-would-like
+  - fr-g-travel-polite-request
+  vocabulary:
+  - fr-v-cc5b9e82c78eacc1
+  - fr-v-cf885c120677b5e5
+  - fr-v-bae1a6711c01eb14
+  review_vocabulary:
+  - fr-v-dffaea6b9559b478
+  - fr-v-c3a6c08e3b04aad2
+  phrases:
+  - id: fr-tourist-p020
+    ch: L'addition, s'il vous plaît
+    pr: /l/ /a.di.sjɔ̃/ /sil vu plɛ/
+    ds: The bill, please
+    items:
+    - fr-v-cc5b9e82c78eacc1
+    grammar:
+    - fr-g-travel-polite-request
+    realizations:
+    - ch: L'
+      pr: /l/
+      items: []
+      grammar:
+      - fr-g-travel-polite-request
+      form_id: fr-f-travel-bill-article
+    - ch: addition
+      pr: /a.di.sjɔ̃/
+      items:
+      - fr-v-cc5b9e82c78eacc1
+      grammar: []
+    - ch: ', s''il vous plaît'
+      pr: /sil vu plɛ/
+      items: []
+      grammar:
+      - fr-g-travel-polite-request
+      form_id: fr-f-travel-bill-please
+  - id: fr-tourist-p021
+    ch: Je voudrais un café
+    pr: /ʒə vu.dʁɛ œ̃/ /ka.fe/
+    ds: I would like a coffee
+    items:
+    - fr-v-cf885c120677b5e5
+    grammar:
+    - fr-g-travel-would-like
+    realizations:
+    - ch: Je voudrais un
+      pr: /ʒə vu.dʁɛ œ̃/
+      items: []
+      grammar:
+      - fr-g-travel-would-like
+      form_id: fr-f-travel-would-like-masculine
+    - ch: café
+      pr: /ka.fe/
+      items:
+      - fr-v-cf885c120677b5e5
+      grammar: []
+  - id: fr-tourist-p022
+    ch: Sans lait
+    pr: /sɑ̃/ /lɛ/
+    ds: Without milk
+    items:
+    - fr-v-bae1a6711c01eb14
+    grammar:
+    - fr-g-travel-milk-check
+    realizations:
+    - ch: Sans
+      pr: /sɑ̃/
+      items: []
+      grammar:
+      - fr-g-travel-milk-check
+      form_id: fr-f-travel-without-milk
+    - ch: lait
+      pr: /lɛ/
+      items:
+      - fr-v-bae1a6711c01eb14
+      grammar: []
+  - id: fr-tourist-p023
+    ch: Est-ce qu'il y a du lait
+    pr: /ɛs kil i a dy/ /lɛ/
+    ds: Is there any milk in it
+    items:
+    - fr-v-bae1a6711c01eb14
+    grammar:
+    - fr-g-travel-milk-check
+    realizations:
+    - ch: Est-ce qu'il y a du
+      pr: /ɛs kil i a dy/
+      items: []
+      grammar:
+      - fr-g-travel-milk-check
+      form_id: fr-f-travel-milk-question
+    - ch: lait
+      pr: /lɛ/
+      items:
+      - fr-v-bae1a6711c01eb14
+      grammar: []
+- id: pharmacy-health
+  title: State a health need
+  outcome: Mention an allergy, ask for a doctor and locate a pharmacy without assuming treatment.
+  grammar: []
+  review_grammar:
+  - fr-g-travel-have
+  - fr-g-travel-need
+  - fr-g-travel-location-question
+  - fr-g-travel-milk-check
+  vocabulary:
+  - fr-v-37b2c6a82f8ca9ce
+  - fr-v-8881f8fb0e7e7879
+  - fr-v-42aa0b38bfb05999
+  review_vocabulary:
+  - fr-v-57ea8e93200fea91
+  - fr-v-bae1a6711c01eb14
+  phrases:
+  - id: fr-tourist-p024
+    ch: J'ai une allergie
+    pr: /ʒe yn/ /a.lɛʁ.ʒi/
+    ds: I have an allergy
+    items:
+    - fr-v-37b2c6a82f8ca9ce
+    grammar:
+    - fr-g-travel-have
+    realizations:
+    - ch: J'ai une
+      pr: /ʒe yn/
+      items: []
+      grammar:
+      - fr-g-travel-have
+      form_id: fr-f-travel-have-feminine
+    - ch: allergie
+      pr: /a.lɛʁ.ʒi/
+      items:
+      - fr-v-37b2c6a82f8ca9ce
+      grammar: []
+  - id: fr-tourist-p025
+    ch: J'ai besoin d'un médecin
+    pr: /ʒe bə.zwɛ̃ dœ̃/ /med.sɛ̃/
+    ds: I need a doctor
+    items:
+    - fr-v-8881f8fb0e7e7879
+    grammar:
+    - fr-g-travel-need
+    realizations:
+    - ch: J'ai besoin d'un
+      pr: /ʒe bə.zwɛ̃ dœ̃/
+      items: []
+      grammar:
+      - fr-g-travel-need
+      form_id: fr-f-travel-need-doctor
+    - ch: médecin
+      pr: /med.sɛ̃/
+      items:
+      - fr-v-8881f8fb0e7e7879
+      grammar: []
+  - id: fr-tourist-p026
+    ch: Où est la pharmacie
+    pr: /u ɛ la/ /faʁ.ma.si/
+    ds: Where is the pharmacy
+    items:
+    - fr-v-42aa0b38bfb05999
+    grammar:
+    - fr-g-travel-location-question
+    realizations:
+    - ch: Où est la
+      pr: /u ɛ la/
+      items: []
+      grammar:
+      - fr-g-travel-location-question
+      form_id: fr-f-travel-where-feminine
+    - ch: pharmacie
+      pr: /faʁ.ma.si/
+      items:
+      - fr-v-42aa0b38bfb05999
+      grammar: []
+- id: shopping-payment
+  title: Check the price and arrange payment
+  outcome: Ask a price, check whether card payment is possible and request an invoice.
+  grammar:
+  - fr-g-travel-price-question
+  - fr-g-travel-card-payment
+  review_grammar:
+  - fr-g-travel-would-like
+  - fr-g-travel-polite-request
+  vocabulary:
+  - fr-v-b73cbb16bfc51474
+  - fr-v-2acd436a33e93a82
+  - fr-v-87f49d1132e9bfcb
+  review_vocabulary:
+  - fr-v-cc5b9e82c78eacc1
+  - fr-v-c3a6c08e3b04aad2
+  phrases:
+  - id: fr-tourist-p027
+    ch: Combien ça coûte
+    pr: /kɔ̃.bjɛ̃ sa kut/
+    ds: How much does it cost
+    items: []
+    grammar:
+    - fr-g-travel-price-question
+    realizations:
+    - ch: Combien ça coûte
+      pr: /kɔ̃.bjɛ̃ sa kut/
+      items: []
+      grammar:
+      - fr-g-travel-price-question
+      form_id: fr-f-travel-price-question
+  - id: fr-tourist-p028
+    ch: Est-ce que je peux payer par carte
+    pr: /ɛs kə ʒə pø pɛ.je paʁ/ /kaʁt/
+    ds: Can I pay by card
+    items:
+    - fr-v-b73cbb16bfc51474
+    grammar:
+    - fr-g-travel-card-payment
+    realizations:
+    - ch: Est-ce que je peux payer par
+      pr: /ɛs kə ʒə pø pɛ.je paʁ/
+      items: []
+      grammar:
+      - fr-g-travel-card-payment
+      form_id: fr-f-travel-pay-by-card
+    - ch: carte
+      pr: /kaʁt/
+      items:
+      - fr-v-b73cbb16bfc51474
+      grammar: []
+  - id: fr-tourist-p029
+    ch: Je voudrais une facture
+    pr: /ʒə vu.dʁɛ yn/ /fak.tyʁ/
+    ds: I would like an invoice
+    items:
+    - fr-v-2acd436a33e93a82
+    grammar:
+    - fr-g-travel-would-like
+    realizations:
+    - ch: Je voudrais une
+      pr: /ʒə vu.dʁɛ yn/
+      items: []
+      grammar:
+      - fr-g-travel-would-like
+      form_id: fr-f-travel-would-like-feminine
+    - ch: facture
+      pr: /fak.tyʁ/
+      items:
+      - fr-v-2acd436a33e93a82
+      grammar: []
+  - id: fr-tourist-p030
+    ch: Je voudrais payer
+    pr: /ʒə vu.dʁɛ/ /pɛ.je/
+    ds: I would like to pay
+    items:
+    - fr-v-87f49d1132e9bfcb
+    grammar:
+    - fr-g-travel-would-like
+    realizations:
+    - ch: Je voudrais
+      pr: /ʒə vu.dʁɛ/
+      items: []
+      grammar:
+      - fr-g-travel-would-like
+      form_id: fr-f-travel-would-like-pay
+    - ch: payer
+      pr: /pɛ.je/
+      items:
+      - fr-v-87f49d1132e9bfcb
+      grammar: []
+- id: belongings-disruptions
+  title: Missing luggage and a delayed train
+  outcome: Describe missing luggage, seek it, request a written address and report a delay.
+  grammar:
+  - fr-g-travel-lost-description
+  - fr-g-travel-search-belonging
+  - fr-g-travel-delay
+  review_grammar:
+  - fr-g-travel-polite-assistance
+  - fr-g-travel-communication-repair
+  - fr-g-travel-need
+  vocabulary:
+  - fr-v-dec241166f52ccc7
+  - fr-v-4114e2f226cbbf44
+  - fr-v-3b7e67dcc8c2a731
+  - fr-v-88f6d7cc694e32a8
+  - fr-v-ff2f50c27c3c9f55
+  review_vocabulary:
+  - fr-v-bcd3a43850411ae2
+  - fr-v-7d4b1a3ec129806b
+  - fr-v-57ea8e93200fea91
+  phrases:
+  - id: fr-tourist-p031
+    ch: Mon bagage est perdu
+    pr: /mɔ̃/ /ba.ɡaʒ/ /ɛ/ /pɛʁ.dy/
+    ds: My luggage is lost
+    items:
+    - fr-v-dec241166f52ccc7
+    - fr-v-4114e2f226cbbf44
+    grammar:
+    - fr-g-travel-lost-description
+    realizations:
+    - ch: Mon
+      pr: /mɔ̃/
+      items: []
+      grammar:
+      - fr-g-travel-lost-description
+      form_id: fr-f-travel-my-bagage
+    - ch: bagage
+      pr: /ba.ɡaʒ/
+      items:
+      - fr-v-dec241166f52ccc7
+      grammar: []
+    - ch: est
+      pr: /ɛ/
+      items: []
+      grammar:
+      - fr-g-travel-lost-description
+      form_id: fr-f-travel-bagage-is
+    - ch: perdu
+      pr: /pɛʁ.dy/
+      items:
+      - fr-v-4114e2f226cbbf44
+      grammar: []
+  - id: fr-tourist-p032
+    ch: Je cherche mon bagage
+    pr: /ʒə ʃɛʁʃ mɔ̃/ /ba.ɡaʒ/
+    ds: I am looking for my luggage
+    items:
+    - fr-v-dec241166f52ccc7
+    grammar:
+    - fr-g-travel-search-belonging
+    realizations:
+    - ch: Je cherche mon
+      pr: /ʒə ʃɛʁʃ mɔ̃/
+      items: []
+      grammar:
+      - fr-g-travel-search-belonging
+      form_id: fr-f-travel-search-bagage
+    - ch: bagage
+      pr: /ba.ɡaʒ/
+      items:
+      - fr-v-dec241166f52ccc7
+      grammar: []
+  - id: fr-tourist-p033
+    ch: Pouvez-vous écrire l'adresse
+    pr: /pu.ve vu.ze.kʁiʁ l/ /a.dʁɛs/
+    ds: Could you write down the address
+    items:
+    - fr-v-3b7e67dcc8c2a731
+    grammar:
+    - fr-g-travel-polite-assistance
+    realizations:
+    - ch: Pouvez-vous écrire l'
+      pr: /pu.ve vu.ze.kʁiʁ l/
+      items: []
+      grammar:
+      - fr-g-travel-polite-assistance
+      form_id: fr-f-travel-write-address
+    - ch: adresse
+      pr: /a.dʁɛs/
+      items:
+      - fr-v-3b7e67dcc8c2a731
+      grammar: []
+  - id: fr-tourist-p034
+    ch: Le train est en retard
+    pr: /lə/ /tʁɛ̃/ /ɛ.tɑ̃/ /ʁə.taʁ/
+    ds: The train is delayed
+    items:
+    - fr-v-88f6d7cc694e32a8
+    - fr-v-ff2f50c27c3c9f55
+    grammar:
+    - fr-g-travel-delay
+    realizations:
+    - ch: Le
+      pr: /lə/
+      items: []
+      grammar:
+      - fr-g-travel-delay
+      form_id: fr-f-travel-train-subject
+    - ch: train
+      pr: /tʁɛ̃/
+      items:
+      - fr-v-88f6d7cc694e32a8
+      grammar: []
+    - ch: est en
+      pr: /ɛ.tɑ̃/
+      items: []
+      grammar:
+      - fr-g-travel-delay
+      form_id: fr-f-travel-is-delayed
+    - ch: retard
+      pr: /ʁə.taʁ/
+      items:
+      - fr-v-ff2f50c27c3c9f55
+      grammar: []
+- id: urgent-help-orientation
+  title: Signal urgency and being lost
+  outcome: State that help is urgent, ask someone to call a doctor and say you are lost.
+  grammar:
+  - fr-g-travel-urgent-help
+  review_grammar:
+  - fr-g-travel-lost-description
+  - fr-g-travel-need
+  - fr-g-travel-polite-assistance
+  vocabulary:
+  - fr-v-175249b08ac5de3a
+  review_vocabulary:
+  - fr-v-8881f8fb0e7e7879
+  - fr-v-4114e2f226cbbf44
+  - fr-v-57ea8e93200fea91
+  phrases:
+  - id: fr-tourist-p035
+    ch: C'est une urgence
+    pr: /sɛ.tyn/ /yʁ.ʒɑ̃s/
+    ds: This is an emergency
+    items:
+    - fr-v-175249b08ac5de3a
+    grammar:
+    - fr-g-travel-urgent-help
+    realizations:
+    - ch: C'est une
+      pr: /sɛ.tyn/
+      items: []
+      grammar:
+      - fr-g-travel-urgent-help
+      form_id: fr-f-travel-emergency
+    - ch: urgence
+      pr: /yʁ.ʒɑ̃s/
+      items:
+      - fr-v-175249b08ac5de3a
+      grammar: []
+  - id: fr-tourist-p036
+    ch: Appelez un médecin
+    pr: /a.pə.le œ̃/ /med.sɛ̃/
+    ds: Call a doctor
+    items:
+    - fr-v-8881f8fb0e7e7879
+    grammar:
+    - fr-g-travel-urgent-help
+    realizations:
+    - ch: Appelez un
+      pr: /a.pə.le œ̃/
+      items: []
+      grammar:
+      - fr-g-travel-urgent-help
+      form_id: fr-f-travel-call-doctor
+    - ch: médecin
+      pr: /med.sɛ̃/
+      items:
+      - fr-v-8881f8fb0e7e7879
+      grammar: []
+  - id: fr-tourist-p037
+    ch: Je suis perdue
+    pr: /ʒə sɥi/ /pɛʁ.dy/
+    ds: I am lost (speaker using feminine agreement)
+    items:
+    - fr-v-4114e2f226cbbf44
+    grammar:
+    - fr-g-travel-lost-description
+    realizations:
+    - ch: Je suis
+      pr: /ʒə sɥi/
+      items: []
+      grammar:
+      - fr-g-travel-lost-description
+      form_id: fr-f-travel-i-am-lost
+    - ch: perdue
+      pr: /pɛʁ.dy/
+      items:
+      - fr-v-4114e2f226cbbf44
+      grammar:
+      - fr-g-travel-lost-description
+      form_id: fr-f-travel-perdue-feminine
+- id: departure
+  title: Check departure and say goodbye
+  outcome: Ask the departure time, explain that you are going to the airport and close the exchange.
+  grammar:
+  - fr-g-travel-destination
+  review_grammar:
+  - fr-g-travel-time-question
+  - fr-g-travel-communication-repair
+  - fr-g-travel-polite-request
+  vocabulary:
+  - fr-v-a8acf51df67e6d44
+  - fr-v-13a5672c70a750ba
+  - fr-v-bd5fce6e0788c23a
+  review_vocabulary:
+  - fr-v-dbe191f8ffd62105
+  - fr-v-eac03ce764e06171
+  - fr-v-c3a6c08e3b04aad2
+  phrases:
+  - id: fr-tourist-p038
+    ch: À quelle heure est le départ
+    pr: /a kɛl/ /œʁ/ /ɛ lə/ /de.paʁ/
+    ds: At what time is the departure
+    items:
+    - fr-v-dbe191f8ffd62105
+    - fr-v-a8acf51df67e6d44
+    grammar:
+    - fr-g-travel-time-question
+    realizations:
+    - ch: À quelle
+      pr: /a kɛl/
+      items: []
+      grammar:
+      - fr-g-travel-time-question
+      form_id: fr-f-travel-what-time
+    - ch: heure
+      pr: /œʁ/
+      items:
+      - fr-v-dbe191f8ffd62105
+      grammar: []
+    - ch: est le
+      pr: /ɛ lə/
+      items: []
+      grammar:
+      - fr-g-travel-time-question
+      form_id: fr-f-travel-departure-time
+    - ch: départ
+      pr: /de.paʁ/
+      items:
+      - fr-v-a8acf51df67e6d44
+      grammar: []
+  - id: fr-tourist-p039
+    ch: Je vais à l'aéroport
+    pr: /ʒə vɛ a l/ /a.e.ʁɔ.pɔʁ/
+    ds: I am going to the airport
+    items:
+    - fr-v-13a5672c70a750ba
+    grammar:
+    - fr-g-travel-destination
+    realizations:
+    - ch: Je vais à l'
+      pr: /ʒə vɛ a l/
+      items: []
+      grammar:
+      - fr-g-travel-destination
+      form_id: fr-f-travel-to-airport
+    - ch: aéroport
+      pr: /a.e.ʁɔ.pɔʁ/
+      items:
+      - fr-v-13a5672c70a750ba
+      grammar: []
+  - id: fr-tourist-p040
+    ch: Au revoir
+    pr: /o ʁə.vwaʁ/
+    ds: Goodbye
+    items:
+    - fr-v-bd5fce6e0788c23a
+    grammar: []
+    realizations:
+    - ch: Au revoir
+      pr: /o ʁə.vwaʁ/
+      items:
+      - fr-v-bd5fce6e0788c23a
+      grammar: []
+      form_id: fr-f-travel-au-revoir-capital

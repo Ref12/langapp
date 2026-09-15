@@ -1,0 +1,478 @@
+schema_version: 3
+id: fr-level-11
+title: Instructions and processes
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 11
+phase: stories-conversations
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+goals: &id001
+- Explain an ordinary multi-step process.
+- Give a clear instruction and clarify its object.
+- Adapt instructions when an unexpected problem occurs.
+checkpoint:
+  task: Guide someone through a familiar procedure after an unfamiliar difficulty interrupts it.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-11-home-01
+  title: Home and routines - 1
+  outcome: Explain needs and negotiate arrangements in a familiar everyday setting.
+  vocabulary:
+  - {id: fr-v-aed6f18e62a9de8e, ch: marteau, pr: /maʁ.to/, ds: a hammer used for pounding}
+  - {id: fr-v-cae7b9c66cfa9a0c, ch: tournevis, pr: /tuʁ.nə.vis/, ds: screwdriver}
+  - {id: fr-v-610bb63c96f93f43, ch: vis, pr: /vis/, ds: screw (metal fastener)}
+  - {id: fr-v-9ad69ce11ba6bf12, ch: clou, pr: /klu/, ds: nail (metal pin)}
+  - {id: fr-v-069f4714d0f26bc9, ch: perceuse, pr: /pɛʁ.søz/, ds: drill (tool)}
+  - {id: fr-v-2f45a12ab1fb8a54, ch: pince, pr: /pɛ̃s/, ds: 'pincer, claw'}
+  - {id: fr-v-0f0920a338ecaaff, ch: scie, pr: /si/, ds: saw tool}
+  - {id: fr-v-3ab7c3b13b8aee96, ch: ciseaux, pr: /si.zo/, ds: scissors}
+  - {id: fr-v-5db3bc06bac6d0d1, ch: couteau, pr: /ku.to/, ds: knife}
+  - {id: fr-v-a6ff6fa341521117, ch: fourchette, pr: /fuʁ.ʃɛt/, ds: fork (for eating)}
+  - {id: fr-v-2591b47528f45df4, ch: cuillère, pr: /kɥi.jɛʁ/, ds: spoon}
+  - {id: fr-v-20df8a7280bc8a55, ch: casserole, pr: /ka.sʁɔl/, ds: saucepan (utensil)}
+  - {id: fr-v-09b8d49b9d02e77b, ch: poêle, pr: /pwal/, ds: stove}
+  - {id: fr-v-c654ae5379ad750c, ch: couvercle, pr: /ku.vɛʁkl/, ds: 'lid, cap, cover'}
+  - {id: fr-v-1388b78e8c0ecbfa, ch: passoire, pr: /paswaʁ/, ds: sieve}
+  - {id: fr-v-23adf99fc4b7bfeb, ch: saladier, pr: /saladje/, ds: 'a salad bowl, a mixing bowl'}
+  - {id: fr-v-13104b519b0a2fa2, ch: bol, pr: /bɔl/, ds: bowl}
+  - {id: fr-v-84e481ee30ef1ba1, ch: plat, pr: /pla/, ds: a flat area of ground; a flat thing; a flat dish or receptacle}
+  - {id: fr-v-795441e4668cb3cf, ch: récipient, pr: /ʁe.si.pjɑ̃/, ds: 'container, vessel, recipient'}
+  - {id: fr-v-9196bc534936748f, ch: planche, pr: /plɑ̃ʃ/, ds: board}
+  - {id: fr-v-ecf66be241b78731, ch: plateau, pr: /pla.to/, ds: flat area}
+  - {id: fr-v-703946b6f14ce45f, ch: moule, pr: /mul/, ds: 'mould (UK), mold (US)'}
+  - {id: fr-v-6efe7e9ee826ac08, ch: balance, pr: /ba.lɑ̃s/, ds: scales}
+  - {id: fr-v-3cb70df5cef01225, ch: thermomètre, pr: /tɛʁ.mɔ.mɛtʁ/, ds: thermometer}
+  - {id: fr-v-c162a16626d019c7, ch: minuteur, pr: /mi.ny.tœʁ/, ds: timer (device that times backwards)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-6beeee02c66ff68a, ch: chauffage, pr: /ʃo.faʒ/, ds: heating}
+  - {id: fr-v-f347292b6a320773, ch: électricité, pr: /e.lɛk.tʁi.si.te/, ds: electricity}
+  - {id: fr-v-23ef40dcd8c33339, ch: gaz, pr: /ɡaz/, ds: gas}
+  - {id: fr-v-5b0502cfbd13a2c6, ch: loyer, pr: /lwa.je/, ds: rent (amount of money due for renting property)}
+  - {id: fr-v-ea08365a23508445, ch: propriétaire, pr: /pʁɔ.pʁi.je.tɛʁ/, ds: owner (one who owns something)}
+  - {id: fr-v-ddd0bc80115f91d2, ch: locataire, pr: /lɔ.ka.tɛʁ/, ds: 'renter, tenant, lessee'}
+  - {id: fr-v-2e4bac504e41a3f6, ch: location, pr: /lɔ.ka.sjɔ̃/, ds: 'renting, rental'}
+  - {id: fr-v-001eff691c71177a, ch: voisinage, pr: /vwa.zi.naʒ/, ds: 'proximity, vicinity'}
+  review_grammar:
+  - {id: fr-g-demonstrative-determiners, ch: ce / cet / cette / ces + nom ; nom-ci / nom-là, ds: Point out a noun and distinguish contextual alternatives}
+  - {id: fr-g-reflexive-routines, ch: sujet + me / te / se / nous / vous + verbe, ds: A pronominal routine refers back to its own subject}
+  - {id: fr-g-frequency-adverbs, ch: verbe + souvent / toujours ; ne + verbe + jamais, ds: State a routine's frequency without treating it as a rule}
+- id: level-11-home-02
+  title: Home and routines - 2
+  outcome: Explain needs and negotiate arrangements in a familiar everyday setting.
+  vocabulary:
+  - {id: fr-v-de6975b59adcf9da, ch: prise, pr: /pʁiz/, ds: 'socket, wall socket (also prise électrique)'}
+  - {id: fr-v-14020ed37a8557f3, ch: fiche, pr: /fiʃ/, ds: record}
+  - {id: fr-v-d4339e789b08df5c, ch: câble, pr: /kabl/, ds: cable}
+  - {id: fr-v-3e6fdbe93a10d45f, ch: fil, pr: /fil/, ds: 'yarn, thread, wire'}
+  - {id: fr-v-db191207fe0d3e06, ch: rallonge, pr: /ʁa.lɔ̃ʒ/, ds: extension (something used to make something else longer)}
+  - {id: fr-v-010221499a6c65f6, ch: interrupteur, pr: /ɛ̃.tɛ.ʁyp.tœʁ/, ds: switch}
+  - {id: fr-v-660a25cdc2727ee5, ch: ampoule, pr: /ɑ̃.pul/, ds: light bulb}
+  - {id: fr-v-00c61929c37f6af0, ch: pile, pr: /pil/, ds: 'heap, stack'}
+  - {id: fr-v-fc84dfec725e68dd, ch: batterie, pr: /ba.tʁi/, ds: battery}
+  - {id: fr-v-d4b18c3835bc7c7a, ch: moteur, pr: /mɔ.tœʁ/, ds: 'motor, engine'}
+  - {id: fr-v-012bee8dc12a4e93, ch: poignée, pr: /pwa.ɲe/, ds: handful (amount held in hand)}
+  - {id: fr-v-52d46c687250d8c5, ch: serrure, pr: /sɛ.ʁyʁ/, ds: lock}
+  - {id: fr-v-aa73f3c5983c2fa5, ch: charnière, pr: /ʃaʁ.njɛʁ/, ds: hinge}
+  - {id: fr-v-f1668b926524c698, ch: tuyau, pr: /tɥi.jo/, ds: pipe}
+  - {id: fr-v-5ea1aba33370a2d1, ch: tube, pr: /tyb/, ds: pipe}
+  - {id: fr-v-fab71d237cb7e477, ch: joint, pr: /ʒwɛ̃/, ds: seal}
+  - {id: fr-v-3f6d18b49507c9a1, ch: pompe, pr: /pɔ̃p/, ds: pump}
+  - {id: fr-v-9e9c7a4067d166ad, ch: bouchon, pr: /bu.ʃɔ̃/, ds: 'cork, bung, stopper, plug'}
+  - {id: fr-v-4774729ae4949488, ch: trou, pr: /tʁu/, ds: hole}
+  - {id: fr-v-b9a031b0301f3d6d, ch: fente, pr: /fɑ̃t/, ds: 'cleft, fissure, crack (in rock)'}
+  - {id: fr-v-ef5d7b81d5078bbd, ch: fissure, pr: /fi.syʁ/, ds: fissure}
+  - {id: fr-v-065a538ccaaaaf77, ch: fuite, pr: /fɥit/, ds: escape; getaway; flight (e.g. from prison)}
+  - {id: fr-v-5770610be6dea541, ch: rouille, pr: /ʁuj/, ds: 'rust (oxidation of iron or, by extension, other metals)'}
+  - {id: fr-v-0fe266d48c75ce7a, ch: tache, pr: /taʃ/, ds: 'blot, stain or smear'}
+  - {id: fr-v-e8abfb9c758af667, ch: trace, pr: /tʁas/, ds: trace}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-84e481ee30ef1ba1, ch: plat, pr: /pla/, ds: a flat area of ground; a flat thing; a flat dish or receptacle}
+  - {id: fr-v-795441e4668cb3cf, ch: récipient, pr: /ʁe.si.pjɑ̃/, ds: 'container, vessel, recipient'}
+  - {id: fr-v-9196bc534936748f, ch: planche, pr: /plɑ̃ʃ/, ds: board}
+  - {id: fr-v-ecf66be241b78731, ch: plateau, pr: /pla.to/, ds: flat area}
+  - {id: fr-v-703946b6f14ce45f, ch: moule, pr: /mul/, ds: 'mould (UK), mold (US)'}
+  - {id: fr-v-6efe7e9ee826ac08, ch: balance, pr: /ba.lɑ̃s/, ds: scales}
+  - {id: fr-v-3cb70df5cef01225, ch: thermomètre, pr: /tɛʁ.mɔ.mɛtʁ/, ds: thermometer}
+  - {id: fr-v-c162a16626d019c7, ch: minuteur, pr: /mi.ny.tœʁ/, ds: timer (device that times backwards)}
+  review_grammar:
+  - {id: fr-g-demonstrative-determiners, ch: ce / cet / cette / ces + nom ; nom-ci / nom-là, ds: Point out a noun and distinguish contextual alternatives}
+  - {id: fr-g-reflexive-routines, ch: sujet + me / te / se / nous / vous + verbe, ds: A pronominal routine refers back to its own subject}
+  - {id: fr-g-frequency-adverbs, ch: verbe + souvent / toujours ; ne + verbe + jamais, ds: State a routine's frequency without treating it as a rule}
+- id: level-11-home-03
+  title: Home and routines - 3
+  outcome: Explain needs and negotiate arrangements in a familiar everyday setting.
+  vocabulary:
+  - {id: fr-v-e15b2d531b1bd10a, ch: marque, pr: /maʁk/, ds: mark (spot)}
+  - {id: fr-v-dce4e3e1f6010c9e, ch: peinture, pr: /pɛ̃.tyʁ/, ds: painting}
+  - {id: fr-v-40a1382a4eb0d464, ch: colle, pr: /kɔl/, ds: glue}
+  - {id: fr-v-357cf3648add801e, ch: ruban, pr: /ʁy.bɑ̃/, ds: 'band, stripe'}
+  - {id: fr-v-733ad39f3a30e95c, ch: ficelle, pr: /fi.sɛl/, ds: twine}
+  - {id: fr-v-60e5c7cdf0695697, ch: corde, pr: /kɔʁd/, ds: rope (general)}
+  - {id: fr-v-b5e81a38cf016fdc, ch: chaîne, pr: /ʃɛn/, ds: chain}
+  - {id: fr-v-45b6481750d0c505, ch: crochet, pr: /kʁɔ.ʃɛ/, ds: hook (rod bent into a curved shape)}
+  - {id: fr-v-929510443e9fc472, ch: carton, pr: /kaʁ.tɔ̃/, ds: cardboard}
+  - {id: fr-v-27dd3550c09b0555, ch: boîte, pr: /bwat/, ds: box (a container)}
+  - {id: fr-v-0e18e54574f25c1d, ch: paquet, pr: /pa.kɛ/, ds: packet}
+  - {id: fr-v-9e6f0cdb4aafc5dd, ch: sachet, pr: /sa.ʃɛ/, ds: bag}
+  - {id: fr-v-0b50ed99b8a3b890, ch: enveloppe, pr: /ɑ̃.vlɔp/, ds: envelope (wrapper for mailing)}
+  - {id: fr-v-ac2f2eaaf10b8c16, ch: étiquette, pr: /e.ti.kɛt/, ds: 'tag, label'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-9e9c7a4067d166ad, ch: bouchon, pr: /bu.ʃɔ̃/, ds: 'cork, bung, stopper, plug'}
+  - {id: fr-v-4774729ae4949488, ch: trou, pr: /tʁu/, ds: hole}
+  - {id: fr-v-b9a031b0301f3d6d, ch: fente, pr: /fɑ̃t/, ds: 'cleft, fissure, crack (in rock)'}
+  - {id: fr-v-ef5d7b81d5078bbd, ch: fissure, pr: /fi.syʁ/, ds: fissure}
+  - {id: fr-v-065a538ccaaaaf77, ch: fuite, pr: /fɥit/, ds: escape; getaway; flight (e.g. from prison)}
+  - {id: fr-v-5770610be6dea541, ch: rouille, pr: /ʁuj/, ds: 'rust (oxidation of iron or, by extension, other metals)'}
+  - {id: fr-v-0fe266d48c75ce7a, ch: tache, pr: /taʃ/, ds: 'blot, stain or smear'}
+  - {id: fr-v-e8abfb9c758af667, ch: trace, pr: /tʁas/, ds: trace}
+  review_grammar:
+  - {id: fr-g-demonstrative-determiners, ch: ce / cet / cette / ces + nom ; nom-ci / nom-là, ds: Point out a noun and distinguish contextual alternatives}
+  - {id: fr-g-reflexive-routines, ch: sujet + me / te / se / nous / vous + verbe, ds: A pronominal routine refers back to its own subject}
+  - {id: fr-g-frequency-adverbs, ch: verbe + souvent / toujours ; ne + verbe + jamais, ds: State a routine's frequency without treating it as a rule}
+- id: level-11-description-01
+  title: Description and comparison - 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-fef0137782cba371, ch: rond, pr: /ʁɔ̃/, ds: circle}
+  - {id: fr-v-13030c5f82d6f568, ch: carré, pr: /ka.ʁe/, ds: square}
+  - {id: fr-v-69d231ae40d27527, ch: rectangulaire, pr: /ʁɛk.tɑ̃.ɡy.lɛʁ/, ds: rectangular}
+  - {id: fr-v-397b1ad1fb64cd91, ch: triangulaire, pr: /tʁi.jɑ̃.ɡy.lɛʁ/, ds: triangular}
+  - {id: fr-v-92abb2015cbc5ccf, ch: courbe, pr: /kuʁb/, ds: curve}
+  - {id: fr-v-385d4d2fb5d5949d, ch: droit, pr: /dʁwa/, ds: straight; not bent}
+  - {id: fr-v-cd87f12eaa271034, ch: horizontal, pr: /ɔ.ʁi.zɔ̃.tal/, ds: horizontal}
+  - {id: fr-v-b990d3287d5d8fab, ch: vertical, pr: /vɛʁ.ti.kal/, ds: vertical}
+  - {id: fr-v-53c18465f038e245, ch: parallèle, pr: /pa.ʁa.lɛl/, ds: parallel}
+  - {id: fr-v-ec1b7af06dbb4dbc, ch: étroit, pr: /e.tʁwa/, ds: narrow}
+  - {id: fr-v-5cdfc54d871cbecf, ch: épais, pr: /e.pɛ/, ds: thick}
+  - {id: fr-v-7e34dbca66bf791d, ch: mince, pr: /mɛ̃s/, ds: 'thin, slim, slender'}
+  - {id: fr-v-46dcfcb784849dff, ch: lisse, pr: /lis/, ds: smooth}
+  - {id: fr-v-e380e48d0b188bd2, ch: rugueux, pr: /ʁy.ɡø/, ds: rough}
+  - {id: fr-v-bfadab4733758af8, ch: souple, pr: /supl/, ds: supple}
+  - {id: fr-v-7ce7b9b69f3b0f55, ch: rigide, pr: /ʁi.ʒid/, ds: rigid}
+  - {id: fr-v-f02888f7549d7734, ch: dur, pr: /dyʁ/, ds: 'hard, tough (difficult to penetrate)'}
+  - {id: fr-v-3ead42b3d361a916, ch: mou, pr: /mu/, ds: 'soft, pliable, flabby, mushy, squishy'}
+  - {id: fr-v-dc9083ddd12d2599, ch: sec, pr: /sɛk/, ds: dry}
+  - {id: fr-v-2084c505fe5e50a7, ch: humide, pr: /y.mid/, ds: 'moist, humid'}
+  - {id: fr-v-ec4236f74b3f8d9e, ch: mouillé, pr: /mu.je/, ds: 'wet, moist (covered with liquid)'}
+  - {id: fr-v-cde599fe6d9467a6, ch: liquide, pr: /li.kid/, ds: liquid (substance not of solid or gas state)}
+  - {id: fr-v-0c3f1e572b3ac4f6, ch: gazeux, pr: /ɡa.zø/, ds: 'fizzy, gassy'}
+  - {id: fr-v-2128ce57bfbf9b93, ch: transparent, pr: /tʁɑ̃s.pa.ʁɑ̃/, ds: transparent; see-through}
+  - {id: fr-v-142216e3b4d122b8, ch: opaque, pr: /ɔ.pak/, ds: opaque}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-109b28459802fbcb, ch: heureusement, pr: /œ.ʁøz.mɑ̃/, ds: 'luckily, fortunately'}
+  - {id: fr-v-0e14ad29fd600535, ch: malheureusement, pr: /ma.lø.ʁøz.mɑ̃/, ds: unfortunately}
+  - {id: fr-v-c2269740529e63b7, ch: apparemment, pr: /a.pa.ʁa.mɑ̃/, ds: apparently (seemingly)}
+  - {id: fr-v-edc28e7c42bf28d4, ch: probablement, pr: /pʁɔ.ba.blə.mɑ̃/, ds: probably}
+  - {id: fr-v-e09a67265998866b, ch: certainement, pr: /sɛʁ.tɛn.mɑ̃/, ds: 'certainly (with certainty, without doubt)'}
+  - {id: fr-v-a4039d586c5e05f6, ch: vraiment, pr: /vʁɛ.mɑ̃/, ds: 'truly, really, genuinely'}
+  - {id: fr-v-e423a97f173324ba, ch: effectivement, pr: /e.fɛk.tiv.mɑ̃/, ds: indeed}
+  - {id: fr-v-158c8c5d4894b4ea, ch: pourtant, pr: /puʁ.tɑ̃/, ds: 'however, yet'}
+  review_grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  - {id: fr-g-comparative-degree, ch: plus / moins / aussi + adjectif + que, ds: Compare the degree of a quality between alternatives}
+- id: level-11-description-02
+  title: Description and comparison - 2
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-2b4613a46c7846fd, ch: brillant, pr: /bʁi.jɑ̃/, ds: shining; shiny}
+  - {id: fr-v-c3497c0f0c96ec7d, ch: mat, pr: /mat/, ds: checkmate}
+  - {id: fr-v-04de402783ad6ce9, ch: pointu, pr: /pwɛ̃.ty/, ds: 'sharp, pointed'}
+  - {id: fr-v-4b33c10c1a6e7fcc, ch: coupant, pr: /ku.pɑ̃/, ds: cutting}
+  - {id: fr-v-982158974214a579, ch: tranchant, pr: /tʁɑ̃.ʃɑ̃/, ds: sharp}
+  - {id: fr-v-c6fc15732a84fa97, ch: métallique, pr: /me.ta.lik/, ds: metallic}
+  - {id: fr-v-df98f855c3810bdd, ch: électrique, pr: /e.lɛk.tʁik/, ds: 'electric, electrical'}
+  - {id: fr-v-9b02881688bad869, ch: mécanique, pr: /me.ka.nik/, ds: mechanics}
+  - {id: fr-v-46e026efe729ca58, ch: manuel, pr: /ma.nɥɛl/, ds: 'manual, handbook'}
+  - {id: fr-v-1583dcba8c6cf221, ch: automatique, pr: /o.tɔ.ma.tik/, ds: automatic}
+  - {id: fr-v-1817fdb8e3337fec, ch: numérique, pr: /ny.me.ʁik/, ds: 'number, numeric, numerical'}
+  - {id: fr-v-5e50f97d04387645, ch: tiède, pr: /tjɛd/, ds: 'tepid, lukewarm'}
+  - {id: fr-v-5798827ef596bae3, ch: frais, pr: /fʁɛ/, ds: 'fresh (recently produced, unspoiled)'}
+  - {id: fr-v-3b47e1a8a75be61f, ch: brûlant, pr: /bʁy.lɑ̃/, ds: burning}
+  - {id: fr-v-21f1cec0d3a6e457, ch: glacé, pr: /ɡla.se/, ds: 'icy, frozen'}
+  - {id: fr-v-78e7c58bedb47448, ch: brûlé, pr: /bʁy.le/, ds: 'burnt, burned'}
+  - {id: fr-v-1bbb628add334230, ch: cru, pr: /kʁy/, ds: 'raw (uncooked, unprocessed)'}
+  - {id: fr-v-b1600a645def2b06, ch: cuit, pr: /kɥi/, ds: cooked}
+  - {id: fr-v-d92eb0311b559250, ch: cassé, pr: /ka.se/, ds: broken}
+  - {id: fr-v-78c600da1f1e47de, ch: usé, pr: /y.ze/, ds: 'worn-out, deteriorated'}
+  - {id: fr-v-254d7d314b99a3cf, ch: défectueux, pr: /de.fɛk.tɥø/, ds: 'faulty, defective'}
+  - {id: fr-v-56197fcc59b6efd9, ch: fonctionnel, pr: /fɔ̃k.sjɔ.nɛl/, ds: functional (related to functions)}
+  - {id: fr-v-16304fd4a3eed708, ch: efficace, pr: /e.fi.kas/, ds: effective}
+  - {id: fr-v-7396681b9558b408, ch: inefficace, pr: /i.ne.fi.kas/, ds: 'ineffectual, ineffective, inefficacious'}
+  - {id: fr-v-77711bba72ee15e3, ch: correct, pr: /kɔ.ʁɛkt/, ds: 'correct, right'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-3ead42b3d361a916, ch: mou, pr: /mu/, ds: 'soft, pliable, flabby, mushy, squishy'}
+  - {id: fr-v-dc9083ddd12d2599, ch: sec, pr: /sɛk/, ds: dry}
+  - {id: fr-v-2084c505fe5e50a7, ch: humide, pr: /y.mid/, ds: 'moist, humid'}
+  - {id: fr-v-ec4236f74b3f8d9e, ch: mouillé, pr: /mu.je/, ds: 'wet, moist (covered with liquid)'}
+  - {id: fr-v-cde599fe6d9467a6, ch: liquide, pr: /li.kid/, ds: liquid (substance not of solid or gas state)}
+  - {id: fr-v-0c3f1e572b3ac4f6, ch: gazeux, pr: /ɡa.zø/, ds: 'fizzy, gassy'}
+  - {id: fr-v-2128ce57bfbf9b93, ch: transparent, pr: /tʁɑ̃s.pa.ʁɑ̃/, ds: transparent; see-through}
+  - {id: fr-v-142216e3b4d122b8, ch: opaque, pr: /ɔ.pak/, ds: opaque}
+  review_grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  - {id: fr-g-comparative-degree, ch: plus / moins / aussi + adjectif + que, ds: Compare the degree of a quality between alternatives}
+- id: level-11-description-03
+  title: Description and comparison - 3
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-65fb46444df6a48d, ch: incorrect, pr: /ɛ̃.kɔ.ʁɛkt/, ds: incorrect (not correct)}
+  - {id: fr-v-fcdfa62cf6c6e1c6, ch: précis, pr: /pʁe.si/, ds: 'which does not leave doubt; specific, explicit'}
+  - {id: fr-v-5836be2b4b90f70d, ch: approximatif, pr: /a.pʁɔk.si.ma.tif/, ds: approximate (not perfectly accurate)}
+  - {id: fr-v-d38c1bbcd3037574, ch: exact, pr: /ɛɡ.zakt/, ds: exact; precise}
+  - {id: fr-v-e2484be0f5df5167, ch: suffisant, pr: /sy.fi.zɑ̃/, ds: sufficient; enough}
+  - {id: fr-v-d1cc208b203d1855, ch: insuffisant, pr: /ɛ̃.sy.fi.zɑ̃/, ds: 'insufficient, not enough'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-b1600a645def2b06, ch: cuit, pr: /kɥi/, ds: cooked}
+  - {id: fr-v-d92eb0311b559250, ch: cassé, pr: /ka.se/, ds: broken}
+  - {id: fr-v-78c600da1f1e47de, ch: usé, pr: /y.ze/, ds: 'worn-out, deteriorated'}
+  - {id: fr-v-254d7d314b99a3cf, ch: défectueux, pr: /de.fɛk.tɥø/, ds: 'faulty, defective'}
+  - {id: fr-v-56197fcc59b6efd9, ch: fonctionnel, pr: /fɔ̃k.sjɔ.nɛl/, ds: functional (related to functions)}
+  - {id: fr-v-16304fd4a3eed708, ch: efficace, pr: /e.fi.kas/, ds: effective}
+  - {id: fr-v-7396681b9558b408, ch: inefficace, pr: /i.ne.fi.kas/, ds: 'ineffectual, ineffective, inefficacious'}
+  - {id: fr-v-77711bba72ee15e3, ch: correct, pr: /kɔ.ʁɛkt/, ds: 'correct, right'}
+  review_grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  - {id: fr-g-comparative-degree, ch: plus / moins / aussi + adjectif + que, ds: Compare the degree of a quality between alternatives}
+- id: level-11-actions-01
+  title: Actions and processes - 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-8f005513205ad100, ch: procédure, pr: /pʁɔ.se.dyʁ/, ds: procedure}
+  - {id: fr-v-f7ea687dbf176b08, ch: processus, pr: /pʁɔ.sɛ.sys/, ds: process}
+  - {id: fr-v-e3577cc862fabf4d, ch: opération, pr: /ɔ.pe.ʁa.sjɔ̃/, ds: operation (method by which a device performs its function)}
+  - {id: fr-v-890759b1b5368b06, ch: manipulation, pr: /ma.ni.py.la.sjɔ̃/, ds: manipulation}
+  - {id: fr-v-a8bfed19cee61f23, ch: préparation, pr: /pʁe.pa.ʁa.sjɔ̃/, ds: preparation}
+  - {id: fr-v-d161c0b0ced519f9, ch: fabrication, pr: /fa.bʁi.ka.sjɔ̃/, ds: 'manufacture, manufacturing'}
+  - {id: fr-v-ba8f4c25f36b4f5d, ch: construction, pr: /kɔ̃s.tʁyk.sjɔ̃/, ds: construction}
+  - {id: fr-v-7e3df4e92eabbaec, ch: assemblage, pr: /a.sɑ̃.blaʒ/, ds: assemblage}
+  - {id: fr-v-1896eb3fd04b06ee, ch: montage, pr: /mɔ̃.taʒ/, ds: 'assembly, set-up'}
+  - {id: fr-v-10ff5f07b5a0b17b, ch: démontage, pr: /de.mɔ̃.taʒ/, ds: taking down; removal}
+  - {id: fr-v-4be0674d8f25679e, ch: réparation, pr: /ʁe.pa.ʁa.sjɔ̃/, ds: 'fix, repair'}
+  - {id: fr-v-fcf2c0050cf95637, ch: nettoyage, pr: /nɛ.twa.jaʒ/, ds: cleaning}
+  - {id: fr-v-0bf3ca35d1871828, ch: rangement, pr: /ʁɑ̃ʒəmɑ̃/, ds: place where things are tidied away}
+  - {id: fr-v-97e2c83d07de23a3, ch: utilisation, pr: /y.ti.li.za.sjɔ̃/, ds: 'purpose, use, utilisation'}
+  - {id: fr-v-1bf84fb9e878736d, ch: fonctionnement, pr: /fɔ̃k.sjɔn.mɑ̃/, ds: working}
+  - {id: fr-v-6d2b8bf2bd6373f1, ch: instruction, pr: /ɛ̃s.tʁyk.sjɔ̃/, ds: 'instruction, direction'}
+  - {id: fr-v-649bfad7073c375d, ch: consigne, pr: /kɔ̃.siɲ/, ds: 'orders, instructions'}
+  - {id: fr-v-60e95862e742bb21, ch: méthode, pr: /me.tɔd/, ds: method}
+  - {id: fr-v-1090ede1decdc755, ch: manière, pr: /ma.njɛʁ/, ds: 'manner, way'}
+  - {id: fr-v-f0bf6980087e1c04, ch: façon, pr: /fa.sɔ̃/, ds: way; manner; fashion}
+  - {id: fr-v-96ffb24bece25931, ch: moyen, pr: /mwa.jɛ̃/, ds: 'method, way of doing'}
+  - {id: fr-v-521d87d5b2477b8b, ch: outil, pr: /u.ti/, ds: tool (something designed to aid in a task)}
+  - {id: fr-v-292ac09b2b1dfbbc, ch: instrument, pr: /ɛ̃s.tʁy.mɑ̃/, ds: instrument (means or agency for achieving an effect)}
+  - {id: fr-v-916cd6d9c510488c, ch: appareil, pr: /a.pa.ʁɛj/, ds: 'apparatus, device'}
+  - {id: fr-v-f6dec3a078a95521, ch: machine, pr: /ma.ʃin/, ds: 'machine, device'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-8043d80233e64425, ch: saisir, pr: /sɛ.ziʁ/, ds: to take hold of; to grab}
+  - {id: fr-v-c6d2c490ac418ded, ch: attraper, pr: /a.tʁa.pe/, ds: to trap (to capture in a trap)}
+  - {id: fr-v-79e3e31ae6e5fb89, ch: tirer, pr: /ti.ʁe/, ds: 'to draw, drag, pull'}
+  - {id: fr-v-874c771be05ba987, ch: pousser, pr: /pu.se/, ds: to push}
+  - {id: fr-v-b64d7493838368b1, ch: frapper, pr: /fʁa.pe/, ds: 'to hit, to strike, to bash'}
+  - {id: fr-v-02ac36b86f5438f5, ch: toucher, pr: /tu.ʃe/, ds: to touch (physically)}
+  - {id: fr-v-1c8f82b7b2930b16, ch: frotter, pr: /fʁɔ.te/, ds: 'to rub, chafe'}
+  - {id: fr-v-af56a4fcce163236, ch: secouer, pr: /sə.kwe/, ds: to shake}
+  review_grammar:
+  - {id: fr-g-prendre-faire-present, ch: je prends / nous prenons ; je fais / vous faites, ds: High-use irregular present forms for meals and actions}
+- id: level-11-actions-02
+  title: Actions and processes - 2
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-f1b6f9075173b2fc, ch: équipement, pr: /e.kip.mɑ̃/, ds: 'equipment, kit, provision'}
+  - {id: fr-v-ea7fdcf136767620, ch: matériel, pr: /ma.te.ʁjɛl/, ds: 'equipment, supplies'}
+  - {id: fr-v-9e23eb0e98e0627b, ch: pièce, pr: /pjɛs/, ds: 'room in a house, etc.'}
+  - {id: fr-v-e9d20abc8a97b70b, ch: composant, pr: /kɔ̃.po.zɑ̃/, ds: 'component (smaller, self-contained part of larger entity)'}
+  - {id: fr-v-57166fcf86292faf, ch: élément, pr: /e.le.mɑ̃/, ds: element (part of a whole)}
+  - {id: fr-v-50e36a21da549e39, ch: partie, pr: /paʁ.ti/, ds: 'part (portion, amount)'}
+  - {id: fr-v-f11d3fde0b98b813, ch: détail, pr: /de.taj/, ds: detail; small particular}
+  - {id: fr-v-2ccd75a3ad6a1a66, ch: précaution, pr: /pʁe.ko.sjɔ̃/, ds: precaution}
+  - {id: fr-v-9b2fcaa070014f8e, ch: contrôle, pr: /kɔ̃.tʁol/, ds: control (all senses)}
+  - {id: fr-v-9df07660d311dc8b, ch: essai, pr: /e.sɛ/, ds: 'try, trial'}
+  - {id: fr-v-83bde85a997fdd9e, ch: tentative, pr: /tɑ̃.ta.tiv/, ds: general senses}
+  - {id: fr-v-0177311dcd8c8b34, ch: échec, pr: /e.ʃɛk/, ds: failure}
+  - {id: fr-v-6ad439e470b78172, ch: réussite, pr: /ʁe.y.sit/, ds: success}
+  - {id: fr-v-37bc662e31223dd3, ch: effet, pr: /ɛ.fɛ/, ds: effect}
+  - {id: fr-v-df2df3578c7a58a0, ch: cause, pr: /koz/, ds: cause}
+  - {id: fr-v-ee8aa87d91a99a3c, ch: conséquence, pr: /kɔ̃.se.kɑ̃s/, ds: general senses}
+  - {id: fr-v-f6e2c66708d801e7, ch: fabriquer, pr: /fa.bʁi.ke/, ds: to make; to build; to manufacture}
+  - {id: fr-v-01114586be1b0d48, ch: construire, pr: /kɔ̃s.tʁɥiʁ/, ds: to build}
+  - {id: fr-v-7edaa84c710856b5, ch: assembler, pr: /a.sɑ̃.ble/, ds: to assemble}
+  - {id: fr-v-3d1ca84a4ab68a3f, ch: démonter, pr: /de.mɔ̃.te/, ds: 'to dismantle, to take down'}
+  - {id: fr-v-3ee33739ba758312, ch: fixer, pr: /fik.se/, ds: 'to fix, fasten'}
+  - {id: fr-v-7433ab6af44c21e8, ch: attacher, pr: /a.ta.ʃe/, ds: to affix}
+  - {id: fr-v-703221385a8ff4a7, ch: détacher, pr: /de.ta.ʃe/, ds: 'to remove spots, stains'}
+  - {id: fr-v-f1fcfe23a45508f4, ch: coller, pr: /kɔ.le/, ds: 'to stick (together), to glue'}
+  - {id: fr-v-c466c79726969e1c, ch: décoller, pr: /de.kɔ.le/, ds: to take off (i.e. a plane)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-60e95862e742bb21, ch: méthode, pr: /me.tɔd/, ds: method}
+  - {id: fr-v-1090ede1decdc755, ch: manière, pr: /ma.njɛʁ/, ds: 'manner, way'}
+  - {id: fr-v-f0bf6980087e1c04, ch: façon, pr: /fa.sɔ̃/, ds: way; manner; fashion}
+  - {id: fr-v-96ffb24bece25931, ch: moyen, pr: /mwa.jɛ̃/, ds: 'method, way of doing'}
+  - {id: fr-v-521d87d5b2477b8b, ch: outil, pr: /u.ti/, ds: tool (something designed to aid in a task)}
+  - {id: fr-v-292ac09b2b1dfbbc, ch: instrument, pr: /ɛ̃s.tʁy.mɑ̃/, ds: instrument (means or agency for achieving an effect)}
+  - {id: fr-v-916cd6d9c510488c, ch: appareil, pr: /a.pa.ʁɛj/, ds: 'apparatus, device'}
+  - {id: fr-v-f6dec3a078a95521, ch: machine, pr: /ma.ʃin/, ds: 'machine, device'}
+  review_grammar:
+  - {id: fr-g-prendre-faire-present, ch: je prends / nous prenons ; je fais / vous faites, ds: High-use irregular present forms for meals and actions}
+- id: level-11-actions-03
+  title: Actions and processes - 3
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-d34a052223ffc652, ch: visser, pr: /vi.se/, ds: to screw in; to screw on}
+  - {id: fr-v-8a5a52fdb7477c29, ch: dévisser, pr: /de.vi.se/, ds: 'to unscrew, undo'}
+  - {id: fr-v-e2bdafe9a8c5f270, ch: clouer, pr: /klu.e/, ds: to nail (to attach using a nail)}
+  - {id: fr-v-3c0708b6bc5e1a76, ch: découper, pr: /de.ku.pe/, ds: 'to cut up, to chop up'}
+  - {id: fr-v-62c68095c15dd5e3, ch: couper, pr: /ku.pe/, ds: 'to cut, cut up; to chop, to sever'}
+  - {id: fr-v-419deeec3d093b1f, ch: tailler, pr: /ta.je/, ds: to cut}
+  - {id: fr-v-e981c84f88bea50d, ch: percer, pr: /pɛʁ.se/, ds: to pierce}
+  - {id: fr-v-417b9ec32e9557bb, ch: creuser, pr: /kʁø.ze/, ds: to dig}
+  - {id: fr-v-601d78e0bf60bc95, ch: tracer, pr: /tʁa.se/, ds: 'to draw or plot (a diagram), to trace out'}
+  - {id: fr-v-b5059370af493205, ch: mesurer, pr: /mə.zy.ʁe/, ds: to measure}
+  - {id: fr-v-5a1c8b0cb5655479, ch: calculer, pr: /kal.ky.le/, ds: to calculate (all meanings)}
+  - {id: fr-v-4f09bfb7e5a59530, ch: compter, pr: /kɔ̃.te/, ds: to count}
+  - {id: fr-v-371392c089d3ded5, ch: comparer, pr: /kɔ̃.pa.ʁe/, ds: to compare}
+  - {id: fr-v-a16c51627042e8e6, ch: contrôler, pr: /kɔ̃.tʁo.le/, ds: to check or examine}
+  - {id: fr-v-7e0f81f186098458, ch: tester, pr: /tɛs.te/, ds: to test}
+  - {id: fr-v-70fd60db85ba9f1f, ch: régler, pr: /ʁe.ɡle/, ds: 'to sort out, to settle (a problem, a bill)'}
+  - {id: fr-v-044532f4b0e0344c, ch: ajuster, pr: /a.ʒys.te/, ds: to adjust; tweak}
+  - {id: fr-v-eb2347776c0c659b, ch: adapter, pr: /a.dap.te/, ds: to adapt}
+  - {id: fr-v-e10a169e7c579181, ch: connecter, pr: /kɔ(n).nɛk.te/, ds: to connect}
+  - {id: fr-v-ce741596393cc28c, ch: brancher, pr: /bʁɑ̃.ʃe/, ds: 'to connect, plug in (appliance)'}
+  - {id: fr-v-73ee078a3bebb448, ch: débrancher, pr: /de.bʁɑ̃.ʃe/, ds: to unplug}
+  - {id: fr-v-4ad34fd6209c1c5e, ch: charger, pr: /ʃaʁ.ʒe/, ds: 'to load (up) (vehicle, animal etc.)'}
+  - {id: fr-v-2762e4ead69c0136, ch: décharger, pr: /de.ʃaʁ.ʒe/, ds: to unload; offload}
+  - {id: fr-v-2c8860eb4419c00e, ch: activer, pr: /ak.ti.ve/, ds: to activate; stimulate activity}
+  - {id: fr-v-775e94d3371ab3a5, ch: désactiver, pr: /de.zak.ti.ve/, ds: to disable}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-01114586be1b0d48, ch: construire, pr: /kɔ̃s.tʁɥiʁ/, ds: to build}
+  - {id: fr-v-7edaa84c710856b5, ch: assembler, pr: /a.sɑ̃.ble/, ds: to assemble}
+  - {id: fr-v-3d1ca84a4ab68a3f, ch: démonter, pr: /de.mɔ̃.te/, ds: 'to dismantle, to take down'}
+  - {id: fr-v-3ee33739ba758312, ch: fixer, pr: /fik.se/, ds: 'to fix, fasten'}
+  - {id: fr-v-7433ab6af44c21e8, ch: attacher, pr: /a.ta.ʃe/, ds: to affix}
+  - {id: fr-v-703221385a8ff4a7, ch: détacher, pr: /de.ta.ʃe/, ds: 'to remove spots, stains'}
+  - {id: fr-v-f1fcfe23a45508f4, ch: coller, pr: /kɔ.le/, ds: 'to stick (together), to glue'}
+  - {id: fr-v-c466c79726969e1c, ch: décoller, pr: /de.kɔ.le/, ds: to take off (i.e. a plane)}
+  review_grammar:
+  - {id: fr-g-prendre-faire-present, ch: je prends / nous prenons ; je fais / vous faites, ds: High-use irregular present forms for meals and actions}
+- id: level-11-actions-04
+  title: Actions and processes - 4
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-d1fca2373e489ced, ch: démarrer, pr: /de.ma.ʁe/, ds: 'to start, to get started, to start up (especially a vehicle)'}
+  - {id: fr-v-aba56ef42a489d2c, ch: ralentir, pr: /ʁa.lɑ̃.tiʁ/, ds: to slow down}
+  - {id: fr-v-b60a4f98ebd05db5, ch: stopper, pr: /stɔ.pe/, ds: 'to stop, in regard to motors and machines'}
+  - {id: fr-v-3280c2cf4e4f426e, ch: bloquer, pr: /blɔ.ke/, ds: 'to block (physically), to barricade, to obstruct'}
+  - {id: fr-v-eb73d78368c08e07, ch: débloquer, pr: /de.blɔ.ke/, ds: to unblock}
+  - {id: fr-v-508fe65d5c81672e, ch: déboucher, pr: /de.bu.ʃe/, ds: to unblock; to clear}
+  - {id: fr-v-fb48b7a0676b9314, ch: mélanger, pr: /me.lɑ̃.ʒe/, ds: 'to mix, to mix up'}
+  - {id: fr-v-1abbdc0439571667, ch: ajouter, pr: /a.ʒu.te/, ds: 'to add, append'}
+  - {id: fr-v-2f11a0eacd1b46a1, ch: retirer, pr: /ʁə.ti.ʁe/, ds: to take off; to remove (e.g. clothes); to pull out}
+  - {id: fr-v-a9fbc435ca385169, ch: verser, pr: /vɛʁ.se/, ds: to pour}
+  - {id: fr-v-ed6dd487cfdd0edc, ch: remuer, pr: /ʁə.mɥe/, ds: to move or shake something repeatedly}
+  - {id: fr-v-96dba9b7fc748d00, ch: battre, pr: /batʁ/, ds: to beat; to defeat}
+  - {id: fr-v-c896577f66a10085, ch: pétrir, pr: /pe.tʁiʁ/, ds: to knead}
+  - {id: fr-v-09ff7d0cffc6a250, ch: cuire, pr: /kɥiʁ/, ds: to cook}
+  - {id: fr-v-15fcec6526051322, ch: bouillir, pr: /bu.jiʁ/, ds: to boil (becoming boiling; reach boiling point)}
+  - {id: fr-v-20b8b4ee6bf92974, ch: frire, pr: /fʁiʁ/, ds: to fry (to cook in hot fat)}
+  - {id: fr-v-20ea4212bc32cd08, ch: griller, pr: /ɡʁi.je/, ds: to toast (cook with a toaster)}
+  - {id: fr-v-f741d343cfbc0c5c, ch: fondre, pr: /fɔ̃dʁ/, ds: 'to melt, melt down, smelt'}
+  - {id: fr-v-b293f33e2844559a, ch: congeler, pr: /kɔ̃ʒ.le/, ds: freeze (to lower something's temperature to freezing point)}
+  - {id: fr-v-376eeab82879e081, ch: décongeler, pr: /de.kɔ̃ʒ.le/, ds: 'to thaw, unfreeze, defrost'}
+  - {id: fr-v-f0d81e6fd35a13ca, ch: conserver, pr: /kɔ̃.sɛʁ.ve/, ds: to keep (in a particular place)}
+  - {id: fr-v-9dffc82b634eaae2, ch: emballer, pr: /ɑ̃.ba.le/, ds: to pack up; to wrap up; to parcel}
+  - {id: fr-v-80d05d8bda7eed17, ch: déballer, pr: /de.ba.le/, ds: 'to unpack, unwrap'}
+  - {id: fr-v-fe0b093f86411cb7, ch: couvrir, pr: /ku.vʁiʁ/, ds: 'to cover up, to cover (put a cover over)'}
+  - {id: fr-v-6d8b79d33b32da96, ch: isoler, pr: /i.zɔ.le/, ds: to isolate}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-eb2347776c0c659b, ch: adapter, pr: /a.dap.te/, ds: to adapt}
+  - {id: fr-v-e10a169e7c579181, ch: connecter, pr: /kɔ(n).nɛk.te/, ds: to connect}
+  - {id: fr-v-ce741596393cc28c, ch: brancher, pr: /bʁɑ̃.ʃe/, ds: 'to connect, plug in (appliance)'}
+  - {id: fr-v-73ee078a3bebb448, ch: débrancher, pr: /de.bʁɑ̃.ʃe/, ds: to unplug}
+  - {id: fr-v-4ad34fd6209c1c5e, ch: charger, pr: /ʃaʁ.ʒe/, ds: 'to load (up) (vehicle, animal etc.)'}
+  - {id: fr-v-2762e4ead69c0136, ch: décharger, pr: /de.ʃaʁ.ʒe/, ds: to unload; offload}
+  - {id: fr-v-2c8860eb4419c00e, ch: activer, pr: /ak.ti.ve/, ds: to activate; stimulate activity}
+  - {id: fr-v-775e94d3371ab3a5, ch: désactiver, pr: /de.zak.ti.ve/, ds: to disable}
+  review_grammar:
+  - {id: fr-g-prendre-faire-present, ch: je prends / nous prenons ; je fais / vous faites, ds: High-use irregular present forms for meals and actions}
+- id: level-11-actions-05
+  title: Actions and processes - 5
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-a33130585e0527fa, ch: renforcer, pr: /ʁɑ̃.fɔʁ.se/, ds: 'to reinforce, strengthen'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-f741d343cfbc0c5c, ch: fondre, pr: /fɔ̃dʁ/, ds: 'to melt, melt down, smelt'}
+  - {id: fr-v-b293f33e2844559a, ch: congeler, pr: /kɔ̃ʒ.le/, ds: freeze (to lower something's temperature to freezing point)}
+  - {id: fr-v-376eeab82879e081, ch: décongeler, pr: /de.kɔ̃ʒ.le/, ds: 'to thaw, unfreeze, defrost'}
+  - {id: fr-v-f0d81e6fd35a13ca, ch: conserver, pr: /kɔ̃.sɛʁ.ve/, ds: to keep (in a particular place)}
+  - {id: fr-v-9dffc82b634eaae2, ch: emballer, pr: /ɑ̃.ba.le/, ds: to pack up; to wrap up; to parcel}
+  - {id: fr-v-80d05d8bda7eed17, ch: déballer, pr: /de.ba.le/, ds: 'to unpack, unwrap'}
+  - {id: fr-v-fe0b093f86411cb7, ch: couvrir, pr: /ku.vʁiʁ/, ds: 'to cover up, to cover (put a cover over)'}
+  - {id: fr-v-6d8b79d33b32da96, ch: isoler, pr: /i.zɔ.le/, ds: to isolate}
+  review_grammar:
+  - {id: fr-g-prendre-faire-present, ch: je prends / nous prenons ; je fais / vous faites, ds: High-use irregular present forms for meals and actions}
+- id: level-11-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-infinitive-clitic-placement, ch: verbe conjugué + pronom objet + infinitif, ds: Place an object clitic with the infinitive that governs it}
+  - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+  review_vocabulary:
+  - {id: fr-v-0ea02357c8787aed, ch: réparer, pr: /ʁe.pa.ʁe/, ds: 'to repair, fix, mend'}
+  - {id: fr-v-82d372a542f98615, ch: expliquer, pr: /ɛks.pli.ke/, ds: to explain}
+  - {id: fr-v-90e551d22bb952c9, ch: donner, pr: /dɔ.ne/, ds: to give}
+  - {id: fr-v-cd70435b8e7ed4af, ch: marcher, pr: /maʁ.ʃe/, ds: to walk}
+  - {id: fr-v-10fbe9adea0d986e, ch: écouter, pr: /e.ku.te/, ds: to listen}
+  - {id: fr-v-b293f33e2844559a, ch: congeler, pr: /kɔ̃ʒ.le/, ds: freeze (to lower something's temperature to freezing point)}
+  - {id: fr-v-376eeab82879e081, ch: décongeler, pr: /de.kɔ̃ʒ.le/, ds: 'to thaw, unfreeze, defrost'}
+  - {id: fr-v-f0d81e6fd35a13ca, ch: conserver, pr: /kɔ̃.sɛʁ.ve/, ds: to keep (in a particular place)}
+  - {id: fr-v-9dffc82b634eaae2, ch: emballer, pr: /ɑ̃.ba.le/, ds: to pack up; to wrap up; to parcel}
+  - {id: fr-v-80d05d8bda7eed17, ch: déballer, pr: /de.ba.le/, ds: 'to unpack, unwrap'}
+  - {id: fr-v-fe0b093f86411cb7, ch: couvrir, pr: /ku.vʁiʁ/, ds: 'to cover up, to cover (put a cover over)'}
+  - {id: fr-v-6d8b79d33b32da96, ch: isoler, pr: /i.zɔ.le/, ds: to isolate}
+  - {id: fr-v-a33130585e0527fa, ch: renforcer, pr: /ʁɑ̃.fɔʁ.se/, ds: 'to reinforce, strengthen'}
+  review_grammar:
+  - {id: fr-g-prendre-faire-present, ch: je prends / nous prenons ; je fais / vous faites, ds: High-use irregular present forms for meals and actions}
+- id: level-11-grammar-practice-01
+  title: Sentence construction - sentence practice 1
+  outcome: Use a selected construction to communicate a new meaning and distinguish a relevant contrast.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-avoir-preceding-object-agreement, ch: objet direct antéposé + avoir + participe accordé, ds: Agree an avoir participle with an earlier direct object}
+  review_vocabulary:
+  - {id: fr-v-2dba9f88fd442914, ch: écrire, pr: /e.kʁiʁ/, ds: to write}
+  - {id: fr-v-bc5110cf1dfcb1f0, ch: devant, pr: /də.vɑ̃/, ds: 'confronted with, faced with'}
+  - {id: fr-v-df1df27984b04cc8, ch: derrière, pr: /dɛ.ʁjɛʁ/, ds: behind}
+  - {id: fr-v-c1a655ae9925085a, ch: chez, pr: /ʃe/, ds: 'to, at, in or into the place of'}
+  - {id: fr-v-eab0c80edc723bb2, ch: se, pr: /sə/, ds: himself}
+  - {id: fr-v-4f53448b7fe6a72d, ch: me, pr: /mə/, ds: me (direct object)}
+  - {id: fr-v-0f43d5639e8a89a8, ch: te, pr: /tə/, ds: you}
+  - {id: fr-v-325147ea043e2d09, ch: que, pr: /kə/, ds: that; introduces a subordinate noun clause}
+  - {id: fr-v-f76c90b02db72913, ch: le, pr: /lə/, ds: him or it; masculine direct-object clitic}
+  review_grammar:
+  - {id: fr-g-elision-h-boundaries, ch: l' / j' / n' devant voyelle ou h muet ; le h aspiré, ds: Elision and liaison have lexical boundary restrictions}
