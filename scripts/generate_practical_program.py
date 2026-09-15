@@ -188,17 +188,18 @@ def validate_mastery(mastery: dict, profile: ProgramProfile) -> None:
 def placement_rows(value, program: dict, *, grammar: bool = False, first_level: int = 1) -> list[dict]:
     rows = [] if value == [] else records(value, "grammar placements" if grammar else "vocabulary placements")
     extensions = {row["id"] for row in program["extensions"]}
-    seen = set()
+    seen, canonical = set(), {}
     for row in rows:
         fields(row, GRAMMAR_FIELDS if grammar else ENTRY_FIELDS, "placement")
         identifier = text(row["id"], "placement.id")
-        if identifier in seen:
-            raise ValueError(f"Duplicate placement ID: {identifier}")
-        seen.add(identifier)
         level = row["level"]
         if not ((type(level) is int and first_level <= level <= 30)
                 or (isinstance(level, str) and level in extensions)):
             raise ValueError(f"{identifier}: invalid level or extension {level!r}")
+        scope = "core" if type(level) is int else level
+        if (identifier, scope) in seen:
+            raise ValueError(f"Duplicate placement ID in {scope}: {identifier}")
+        seen.add((identifier, scope))
         if not isinstance(row["topic"], str) or row["topic"] not in program["topics"]:
             raise ValueError(f"{identifier}: unknown topic {row['topic']!r}")
         label(row["ds"], identifier)
@@ -206,6 +207,10 @@ def placement_rows(value, program: dict, *, grammar: bool = False, first_level: 
             text(row["ch"], f"{identifier}.ch")
             if not isinstance(row["anchors"], list):
                 raise ValueError(f"{identifier}: anchors must be a list of sense IDs")
+        annotation = {key: row[key] for key in (("ch", "ds", "anchors") if grammar else ("ds",))}
+        if identifier in canonical and annotation != canonical[identifier]:
+            raise ValueError(f"{identifier}: conflicting canonical placement annotations")
+        canonical[identifier] = annotation
     return rows
 
 
@@ -255,16 +260,16 @@ def schedule_vocabulary(inputs: dict, words: dict, patterns: dict, beginner: dic
         identifier = row["id"]
         if identifier not in words:
             raise ValueError(f"Unknown vocabulary placement: {identifier}")
-        if identifier in taught_words:
+        if identifier in taught_words and type(row["level"]) is int:
             raise ValueError(f"{identifier}: already introduced in the preserved beginner sequence")
         if row["ds"] != words[identifier]["ds"]:
             raise ValueError(f"{identifier}: placement label differs from the canonical reference")
-        scheduled[identifier] = dict(row)
+        scheduled[(identifier, "core" if type(row["level"]) is int else row["level"])] = dict(row)
     adjustments, branch_support = [], {}
     extensions = {row["id"]: row for row in program["extensions"]}
     for grammar in sorted(grammars, key=lambda row: row["level"] if type(row["level"]) is int else 31):
         identifier, destination = grammar["id"], grammar["level"]
-        if identifier not in patterns or identifier in taught_grammar:
+        if identifier not in patterns or (identifier in taught_grammar and type(destination) is int):
             raise ValueError(f"Unknown or already introduced grammar placement: {identifier}")
         if (grammar["ch"], grammar["ds"]) != (patterns[identifier]["ch"], patterns[identifier]["ds"]):
             raise ValueError(f"{identifier}: grammar annotation differs from the reference index")
@@ -273,12 +278,16 @@ def schedule_vocabulary(inputs: dict, words: dict, patterns: dict, beginner: dic
                 type(destination) is int or seed_levels.get(anchor, 0) <= extensions[destination]["after_level"]
             ):
                 continue
-            existing = scheduled.get(anchor)
+            core = scheduled.get((anchor, "core"))
+            local = scheduled.get((anchor, destination)) if type(destination) is str else None
+            existing = core or local or next(
+                (row for (item, _), row in scheduled.items() if item == anchor), None,
+            )
             old_level = existing["level"] if existing else seed_levels.get(anchor)
             if type(destination) is int:
-                if existing and type(old_level) is int and old_level <= destination:
+                if core and core["level"] <= destination:
                     continue
-                scheduled[anchor] = {
+                scheduled[(anchor, "core")] = {
                     "id": anchor, "level": destination,
                     "topic": existing["topic"] if existing else grammar["topic"],
                     "ds": words[anchor]["ds"],
@@ -286,10 +295,7 @@ def schedule_vocabulary(inputs: dict, words: dict, patterns: dict, beginner: dic
                 adjustments.append({
                     "id": anchor, "from": old_level, "to": destination, "required_by": identifier,
                 })
-            elif not (
-                existing and (old_level == destination or
-                              (type(old_level) is int and old_level <= extensions[destination]["after_level"]))
-            ):
+            elif not (local or (core and core["level"] <= extensions[destination]["after_level"])):
                 branch_support[(destination, anchor)] = {
                     "id": anchor, "level": destination, "topic": grammar["topic"],
                     "ds": words[anchor]["ds"],
@@ -305,7 +311,8 @@ def schedule_vocabulary(inputs: dict, words: dict, patterns: dict, beginner: dic
 
 
 def make_units(destination, placements: list[dict], grammars: list[dict], program: dict,
-               words: dict, patterns: dict, context: list[tuple[dict, str]]
+               words: dict, patterns: dict, context: list[tuple[dict, str]], *,
+               construction_dependencies: dict | None = None,
                ) -> list[tuple[dict, str]]:
     prefix = f"level-{destination:02d}" if type(destination) is int else f"extension-{destination}"
     seen_words = introduction_index([unit for unit, _ in context], "vocabulary")
@@ -315,29 +322,38 @@ def make_units(destination, placements: list[dict], grammars: list[dict], progra
         previous_words[topic].extend(entry["id"] for entry in unit["vocabulary"])
         previous_grammar[topic].extend(entry["id"] for entry in unit["grammar"])
     grouped_words, grouped_grammar = defaultdict(list), defaultdict(list)
+    selected_review_words, selected_review_grammar = defaultdict(list), defaultdict(list)
     for row in placements:
-        if row["level"] == destination and row["id"] not in seen_words:
-            grouped_words[row["topic"]].append(row["id"])
+        if row["level"] == destination:
+            groups = selected_review_words if row["id"] in seen_words else grouped_words
+            groups[row["topic"]].append(row["id"])
     for row in grammars:
-        if row["level"] == destination and row["id"] not in seen_grammar:
-            grouped_grammar[row["topic"]].append(row)
+        if row["level"] == destination:
+            if row["id"] in seen_grammar:
+                selected_review_grammar[row["topic"]].append(row["id"])
+            else:
+                grouped_grammar[row["topic"]].append(row)
     result = []
 
-    def add_unit(topic: str, identifier: str, title: str, word_ids: list, grammar_rows: list):
+    def add_unit(topic: str, identifier: str, title: str, word_ids: list, grammar_rows: list,
+                 review_word_ids=(), review_grammar_ids=()):
         grammar_ids = [row["id"] for row in grammar_rows]
         anchors = list(dict.fromkeys(anchor for row in grammar_rows for anchor in row["anchors"]))
         missing = set(anchors) - set(seen_words) - set(word_ids)
         if missing:
             raise ValueError(f"{identifier}: grammar anchors are not yet introduced: {sorted(missing)}")
         review_words = list(dict.fromkeys(
-            [anchor for anchor in anchors if anchor not in word_ids] + previous_words[topic][-8:],
+            [anchor for anchor in anchors if anchor not in word_ids]
+            + list(review_word_ids) + previous_words[topic][-8:],
         ))
         unit = {
             "id": identifier, "title": title, "outcome": program["topics"][topic]["task"],
             "vocabulary": [dict(words[item]) for item in word_ids],
             "grammar": [dict(patterns[item]) for item in grammar_ids],
             "review_vocabulary": [dict(words[item]) for item in review_words],
-            "review_grammar": [dict(patterns[item]) for item in previous_grammar[topic][-3:]],
+            "review_grammar": [dict(patterns[item]) for item in dict.fromkeys(
+                [*review_grammar_ids, *previous_grammar[topic][-3:]],
+            )],
         }
         result.append((unit, topic))
         seen_words.update((item, words[item]) for item in word_ids)
@@ -349,9 +365,42 @@ def make_units(destination, placements: list[dict], grammars: list[dict], progra
         for number, group in enumerate(chunks(grouped_words[topic], program["module_size"]), 1):
             add_unit(topic, f"{prefix}-{topic}-{number:02d}", f"{metadata['title']} - {number}", group, [])
     for topic, metadata in program["topics"].items():
-        for number, group in enumerate(chunks(grouped_grammar[topic], 3), 1):
-            add_unit(topic, f"{prefix}-{topic}-practice-{number:02d}",
-                     f"{metadata['title']} - sentence practice {number}", [], group)
+        for number, group in enumerate(chunks(selected_review_words[topic], program["module_size"]), 1):
+            add_unit(topic, f"{prefix}-{topic}-review-{number:02d}",
+                     f"{metadata['title']} - vocabulary retrieval {number}", [], [], group)
+        for number, group in enumerate(chunks(selected_review_grammar[topic], 3), 1):
+            add_unit(topic, f"{prefix}-{topic}-review-practice-{number:02d}",
+                     f"{metadata['title']} - construction retrieval {number}", [], [], (), group)
+    if construction_dependencies:
+        pending = {topic: list(rows) for topic, rows in grouped_grammar.items()}
+        numbers = defaultdict(int)
+        while any(pending.values()):
+            for topic, metadata in program["topics"].items():
+                group, ready = [], set(seen_grammar)
+                remaining = pending.get(topic, [])
+                while len(group) < 3:
+                    row = next((row for row in remaining
+                                if set(construction_dependencies.get(row["id"], ())) <= ready), None)
+                    if row is None:
+                        break
+                    remaining.remove(row)
+                    group.append(row)
+                    ready.add(row["id"])
+                if group:
+                    numbers[topic] += 1
+                    number = numbers[topic]
+                    add_unit(topic, f"{prefix}-{topic}-practice-{number:02d}",
+                             f"{metadata['title']} - sentence practice {number}", [], group)
+                    break
+            else:
+                missing = {row["id"]: sorted(set(construction_dependencies.get(row["id"], ())) - set(seen_grammar))
+                           for rows in pending.values() for row in rows}
+                raise ValueError(f"{prefix}: construction prerequisites not introduced: {missing}")
+    else:
+        for topic, metadata in program["topics"].items():
+            for number, group in enumerate(chunks(grouped_grammar[topic], 3), 1):
+                add_unit(topic, f"{prefix}-{topic}-practice-{number:02d}",
+                         f"{metadata['title']} - sentence practice {number}", [], group)
     if not result:
         raise ValueError(f"{prefix}: no curriculum material was selected")
     return result
@@ -673,7 +722,10 @@ def program_outputs(root: Path, data: ProgramData, adapter: ProgramAdapter) -> d
                 for seed, unit in zip(data.seeds, beginner["units"]) if seed.level == number
             ]
         else:
-            selected = make_units(number, placements, grammars, program, words, patterns, context)
+            selected = make_units(
+                number, placements, grammars, program, words, patterns, context,
+                construction_dependencies=data.construction_dependencies,
+            )
             if not any(unit["vocabulary"] for unit, _ in selected):
                 raise ValueError(f"Level {number}: vocabulary coverage is missing")
         context.extend(selected)
@@ -732,7 +784,10 @@ def program_outputs(root: Path, data: ProgramData, adapter: ProgramAdapter) -> d
                               for unit in level["units"]]
         allowed_ids = {unit["id"] for unit in prerequisite_units}
         prior_context = [(unit, topic) for unit, topic in context if unit["id"] in allowed_ids]
-        selected = make_units(definition["id"], placements, grammars, program, words, patterns, prior_context)
+        selected = make_units(
+            definition["id"], placements, grammars, program, words, patterns, prior_context,
+            construction_dependencies=data.construction_dependencies,
+        )
         units = [unit for unit, _ in selected]
         resolve_sequence({
             **sequence_header(f"{profile.prefix}-extension-{definition['id']}", definition["title"], program),
