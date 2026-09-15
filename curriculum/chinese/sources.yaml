@@ -3,7 +3,8 @@
   url: https://github.com/drkameleon/complete-hsk-vocabulary/tree/7ac65bf1a6387d35f1ade478906172a19311c7f9
   license: CC-BY-SA-4.0 for adapted dictionary data; retain upstream MIT notices as well
   usage: All vocabulary.yaml rows, selected additional reference-senses.yaml records, and derived teaching
-    vocabulary views. Imports only new-1 through new-7 labels, simplified headwords, pinyin
+    vocabulary views, including the independent core, specialist branches, and tourist route.
+    Teaching placements are curated separately from reference bands. Imports only new-1 through new-7 labels, simplified headwords, pinyin
     and meanings. Omits upstream frequency, radicals, classifiers and POS data. Processes all 32,430 imported
     source senses; removes balanced untranslated reference annotations and reference-dependent clauses,
     discards reference-only senses and readings without standalone senses, and preserves usable English
@@ -100,13 +101,17 @@
   license: Original AI-authored material offered under CC-BY-SA-4.0 to the extent copyright or related
     rights exist; no claim to ownership of ordinary language facts
   usage: Original authored grammar patterns, English explanations, 370 bilingual examples, level placement,
-    17 headword gloss repairs and 17 explicit sense-rewrite rules, lesson sequencing and tutor rubrics
+    17 headword gloss repairs and 17 explicit sense-rewrite rules, lesson sequencing and tutor rubrics,
+    thirty-level program goals, sense-level teaching placements, grammar annotations, mastery guidance,
+    and original tourist phrases
     in this collection. The local URI identifies original material in this repository, not an external
     publication. These are pedagogical selections, not copied official lists or examination material.
     Original AI-authored examples require human linguistic review.
   attribution: Original AI-assisted Chinese curriculum contributions for this repository, 2026. No examination-board
     endorsement. Credit CC-CEDICT separately when using the derived vocabulary.
   retrieved_on: '2026-09-07'
-  local_material: authoring/grammar.psv, authoring/reference-senses.yaml, hsk-*/grammar.yaml,
+  local_material: authoring/grammar.psv, authoring/reference-senses.yaml, authoring/teaching/,
+    teaching/program.yaml, teaching/mastery.yaml, teaching/tourist/plan.yaml, teaching/README.md,
+    hsk-*/grammar.yaml,
     hsk-*/syllabus.md, teaching/beginner/sequence.yaml, teaching/beginner/README.md, README.md and
     the importer's headword/sense corrections

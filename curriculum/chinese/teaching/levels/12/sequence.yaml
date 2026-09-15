@@ -1,0 +1,526 @@
+schema_version: 3
+id: zh-level-12
+title: Sharing connected information
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 12
+phase: stories-conversations
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+- zh-level-06
+- zh-level-07
+- zh-level-08
+- zh-level-09
+- zh-level-10
+- zh-level-11
+goals: &id001
+- Summarize a familiar source.
+- Exchange information about learning and community life.
+- Clarify a message or practical procedure.
+checkpoint:
+  task: Relay the useful information from a short notice or account and resolve follow-up questions.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: level-12-leisure-01
+  title: Leisure and sport - 1
+  outcome: Discuss an activity and explain participation or preferences.
+  vocabulary:
+  - {id: zh-hsk3-00695-s001, ch: 跳舞, pr: tiào wǔ, ds: to dance}
+  - {id: zh-hsk3-00729-s002, ch: 玩具, pr: wán jù, ds: toy}
+  - {id: zh-hsk3-00830-s002, ch: 赢, pr: yíng, ds: to win}
+  - {id: zh-hsk3-00138-s001, ch: 得分, pr: dé fēn, ds: to score}
+  - {id: zh-hsk3-00221-s001, ch: 歌迷, pr: gē mí, ds: fan of a singer}
+  - {id: zh-hsk3-00222-s001, ch: 歌声, pr: gē shēng, ds: singing voice}
+  - {id: zh-hsk3-00257-s001, ch: 观看, pr: guān kàn, ds: to watch; to view}
+  - {id: zh-hsk3-00361-s001, ch: 金牌, pr: jīn pái, ds: gold medal}
+  - {id: zh-hsk3-00393-s001, ch: 决赛, pr: jué sài, ds: finals (of a competition)}
+  - {id: zh-hsk2-00428-s002, ch: 球场, pr: qiú chǎng, ds: sports ground}
+  - {id: zh-hsk3-00158-s001, ch: 队员, pr: duì yuán, ds: team member}
+  - {id: zh-hsk3-00350-s002, ch: 教练, pr: jiào liàn, ds: sports coach}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00509-s001, ch: 体育, pr: tǐ yù, ds: sports}
+  - {id: zh-hsk2-00541-s001, ch: 晚会, pr: wǎn huì, ds: evening party}
+  - {id: zh-hsk3-00516-s001, ch: 跑步, pr: pǎo bù, ds: to run}
+  - {id: zh-hsk2-00324-s001, ch: 篮球, pr: lán qiú, ds: basketball}
+  - {id: zh-hsk2-00545-s001, ch: 网球, pr: wǎng qiú, ds: tennis}
+  - {id: zh-hsk3-00035-s001, ch: 比赛, pr: bǐ sài, ds: competition (sports etc)}
+  - {id: zh-hsk2-00131-s001, ch: 动物园, pr: dòng wù yuán, ds: zoo}
+  - {id: zh-hsk2-00242-s007, ch: 加油, pr: jiā yóu, ds: to cheer sb on}
+  review_grammar:
+  - {id: zh-hsk1-g016, ch: S+也+P, ds: also}
+  - {id: zh-hsk1-g020, ch: S+会+V, ds: learned ability}
+- id: level-12-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning experience or approach and respond to questions.
+  vocabulary:
+  - {id: zh-hsk1-00488-s001, ch: 中学生, pr: zhōng xué shēng, ds: secondary-school student}
+  - {id: zh-hsk2-00007-s001, ch: 班长, pr: bān zhǎng, ds: class monitor}
+  - {id: zh-hsk2-00080-s001, ch: 词语, pr: cí yǔ, ds: word or expression}
+  - {id: zh-hsk2-00265-s002, ch: 教学, pr: jiào xué, ds: teaching}
+  - {id: zh-hsk2-00743-s002, ch: 作文, pr: zuò wén, ds: composition (student essay)}
+  - {id: zh-hsk3-00498-s002, ch: 能力, pr: néng lì, ds: ability}
+  - {id: zh-hsk3-00646-s001, ch: 试题, pr: shì tí, ds: exam question}
+  - {id: zh-hsk3-00778-s003, ch: 写作, pr: xiě zuò, ds: writing}
+  - {id: zh-hsk2-00129-s001, ch: 懂得, pr: dǒng de, ds: to understand; to know; to comprehend}
+  - {id: zh-hsk2-00515-s001, ch: 听讲, pr: tīng jiǎng, ds: to attend a lecture}
+  - {id: zh-hsk2-00585-s002, ch: 校长, pr: xiào zhǎng, ds: headmaster}
+  - {id: zh-hsk3-00098-s001, ch: 初中, pr: chū zhōng, ds: junior high school}
+  - {id: zh-hsk3-00375-s001, ch: 经验, pr: jīng yàn, ds: experience}
+  - {id: zh-hsk3-00493-s001, ch: 难度, pr: nán dù, ds: degree of difficulty}
+  - {id: zh-hsk3-00687-s003, ch: 题目, pr: tí mù, ds: topic}
+  - {id: zh-hsk3-00699-s002, ch: 听力, pr: tīng lì, ds: listening ability}
+  - {id: zh-hsk3-00799-s001, ch: 学费, pr: xué fèi, ds: tuition fee}
+  - {id: zh-hsk4-00036-s002, ch: 毕业, pr: bì yè, ds: to graduate}
+  - {id: zh-hsk4-00115-s001, ch: 词汇, pr: cí huì, ds: vocabulary}
+  - {id: zh-hsk4-00339-s001, ch: 及格, pr: jí gé, ds: to pass an exam or a test}
+  - {id: zh-hsk4-00382-s001, ch: 教授, pr: jiào shòu, ds: professor}
+  - {id: zh-hsk4-00583-s001, ch: 日记, pr: rì jì, ds: diary}
+  - {id: zh-hsk4-00630-s001, ch: 试卷, pr: shì juàn, ds: examination paper}
+  - {id: zh-hsk4-00891-s001, ch: 阅读, pr: yuè dú, ds: to read}
+  - {id: zh-hsk2-00063-s003, ch: 成绩, pr: chéng jì, ds: grades}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00264-s001, ch: 教室, pr: jiào shì, ds: classroom}
+  - {id: zh-hsk2-00337-s001, ch: 练习, pr: liàn xí, ds: to practice}
+  - {id: zh-hsk2-00406-s001, ch: 普通话, pr: pǔ tōng huà, ds: Mandarin (common language)}
+  - {id: zh-hsk2-00651-s001, ch: 英文, pr: Yīng wén, ds: English (language)}
+  - {id: zh-hsk2-00053-s007, ch: 查, pr: chá, ds: to look up (e.g. a word in a dictionary)}
+  - {id: zh-hsk2-00017-s006, ch: 背, pr: bèi, ds: to learn by heart}
+  - {id: zh-hsk2-00645-s001, ch: 音节, pr: yīn jié, ds: syllable}
+  - {id: zh-hsk4-00425-s002, ch: 口语, pr: kǒu yǔ, ds: spoken language}
+  review_grammar: []
+- id: level-12-learning-02
+  title: Learning and education - 2
+  outcome: Explain a learning experience or approach and respond to questions.
+  vocabulary:
+  - {id: zh-hsk2-00157-s001, ch: 分数, pr: fēn shù, ds: (exam) grade}
+  - {id: zh-hsk2-00266-s003, ch: 教育, pr: jiào yù, ds: education}
+  - {id: zh-hsk2-00344-s001, ch: 流利, pr: liú lì, ds: fluent}
+  - {id: zh-hsk2-00508-s004, ch: 题, pr: tí, ds: exam question}
+  - {id: zh-hsk3-00031-s001, ch: 本领, pr: běn lǐng, ds: skill}
+  - {id: zh-hsk3-00349-s001, ch: 教材, pr: jiào cái, ds: teaching material}
+  - {id: zh-hsk3-00369-s001, ch: 进步, pr: jìn bù, ds: progress; improvement}
+  - {id: zh-hsk3-00725-s001, ch: 外文, pr: wài wén, ds: foreign language (written)}
+  - {id: zh-hsk3-00801-s001, ch: 训练, pr: xùn liàn, ds: to train}
+  - {id: zh-hsk2-00176-s001, ch: 高中, pr: gāo zhōng, ds: senior high school}
+  - {id: zh-hsk2-00293-s001, ch: 句子, pr: jù zi, ds: sentence}
+  - {id: zh-hsk2-00299-s001, ch: 考生, pr: kǎo shēng, ds: exam candidate}
+  - {id: zh-hsk2-00482-s001, ch: 水平, pr: shuǐ píng, ds: level (of achievement etc)}
+  - {id: zh-hsk2-00713-s001, ch: 中小学, pr: zhōng xiǎo xué, ds: middle and elementary school}
+  - {id: zh-hsk3-00410-s001, ch: 课程, pr: kè chéng, ds: course}
+  - {id: zh-hsk3-00452-s001, ch: 留学, pr: liú xué, ds: to study abroad}
+  - {id: zh-hsk4-00548-s001, ch: 期末, pr: qī mò, ds: end of term}
+  - {id: zh-hsk5-00291-s001, ch: 鼓励, pr: gǔ lì, ds: to encourage}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00036-s002, ch: 毕业, pr: bì yè, ds: to graduate}
+  - {id: zh-hsk4-00115-s001, ch: 词汇, pr: cí huì, ds: vocabulary}
+  - {id: zh-hsk4-00339-s001, ch: 及格, pr: jí gé, ds: to pass an exam or a test}
+  - {id: zh-hsk4-00382-s001, ch: 教授, pr: jiào shòu, ds: professor}
+  - {id: zh-hsk4-00583-s001, ch: 日记, pr: rì jì, ds: diary}
+  - {id: zh-hsk4-00630-s001, ch: 试卷, pr: shì juàn, ds: examination paper}
+  - {id: zh-hsk4-00891-s001, ch: 阅读, pr: yuè dú, ds: to read}
+  - {id: zh-hsk2-00063-s003, ch: 成绩, pr: chéng jì, ds: grades}
+  review_grammar: []
+- id: level-12-work-01
+  title: Work and cooperation - 1
+  outcome: Explain responsibilities and coordinate a shared task.
+  vocabulary:
+  - {id: zh-hsk2-00583-s001, ch: 小组, pr: xiǎo zǔ, ds: group}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00421-s002, ch: 老板, pr: lǎo bǎn, ds: boss}
+  - {id: zh-hsk1-00125-s001, ch: 工人, pr: gōng rén, ds: worker}
+  - {id: zh-hsk2-00010-s001, ch: 办公室, pr: bàn gōng shì, ds: office}
+  - {id: zh-hsk2-00083-s001, ch: 打工, pr: dǎ gōng, ds: to work a temporary or casual job}
+  - {id: zh-hsk2-00185-s001, ch: 公司, pr: gōng sī, ds: company; firm; corporation}
+  - {id: zh-hsk2-00285-s001, ch: 经理, pr: jīng lǐ, ds: manager}
+  - {id: zh-hsk2-00526-s001, ch: 同事, pr: tóng shì, ds: colleague; co-worker}
+  - {id: zh-hsk2-00737-s004, ch: 组, pr: zǔ, ds: group}
+  review_grammar: []
+- id: level-12-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk1-00057-s006, ch: 打, pr: dǎ, ds: to type}
+  - {id: zh-hsk1-00136-s001, ch: 还有, pr: hái yǒu, ds: furthermore}
+  - {id: zh-hsk1-00338-s001, ch: 事, pr: shì, ds: matter or affair}
+  - {id: zh-hsk2-00262-s002, ch: 叫作, pr: jiào zuò, ds: to be called}
+  - {id: zh-hsk2-00363-s001, ch: 名称, pr: míng chēng, ds: name (of a thing)}
+  - {id: zh-hsk2-00364-s001, ch: 名单, pr: míng dān, ds: list of names}
+  - {id: zh-hsk2-00461-s001, ch: 声音, pr: shēng yīn, ds: voice}
+  - {id: zh-hsk2-00506-s001, ch: 提到, pr: tí dào, ds: to mention}
+  - {id: zh-hsk2-00516-s001, ch: 听说, pr: tīng shuō, ds: to hear (sth said)}
+  - {id: zh-hsk3-00170-s001, ch: 发送, pr: fā sòng, ds: to transmit}
+  - {id: zh-hsk3-00445-s004, ch: 联系, pr: lián xì, ds: to get in touch with}
+  - {id: zh-hsk3-00654-s001, ch: 收听, pr: shōu tīng, ds: to listen to (a radio broadcast)}
+  - {id: zh-hsk3-00776-s001, ch: 消息, pr: xiāo xi, ds: news}
+  - {id: zh-hsk3-00828-s001, ch: 迎接, pr: yíng jiē, ds: to welcome; to greet}
+  - {id: zh-hsk2-00019-s001, ch: 比如说, pr: bǐ rú shuō, ds: for example}
+  - {id: zh-hsk2-00160-s006, ch: 封, pr: fēng, ds: 'classifier for sealed objects, esp. letters'}
+  - {id: zh-hsk2-00333-s001, ch: 例如, pr: lì rú, ds: for example; for instance; such as}
+  - {id: zh-hsk2-00524-s003, ch: 通知, pr: tōng zhī, ds: notice}
+  - {id: zh-hsk2-00593-s001, ch: 信, pr: xìn, ds: letter}
+  - {id: zh-hsk2-00595-s001, ch: 信息, pr: xìn xī, ds: information}
+  - {id: zh-hsk4-00949-s001, ch: 转告, pr: zhuǎn gào, ds: to pass on}
+  - {id: zh-hsk2-00395-s004, ch: 篇, pr: piān, ds: 'classifier for written items: chapter, article'}
+  - {id: zh-hsk2-00445-s001, ch: 人数, pr: rén shù, ds: number of people}
+  - {id: zh-hsk2-00666-s001, ch: 语言, pr: yǔ yán, ds: language}
+  - {id: zh-hsk3-00042-s001, ch: 表达, pr: biǎo dá, ds: to express; to convey}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00217-s001, ch: 干吗, pr: gàn má, ds: why; what for; what are you doing}
+  - {id: zh-hsk4-00723-s002, ch: 微笑, pr: wēi xiào, ds: to smile}
+  - {id: zh-hsk4-00746-s001, ch: 误会, pr: wù huì, ds: to misunderstand}
+  - {id: zh-hsk4-00909-s002, ch: 招呼, pr: zhāo hu, ds: to greet}
+  - {id: zh-hsk2-00029-s006, ch: 表, pr: biǎo, ds: a form}
+  - {id: zh-hsk2-00573-s006, ch: 响, pr: xiǎng, ds: to ring}
+  - {id: zh-hsk2-00484-s001, ch: 说明, pr: shuō míng, ds: to explain}
+  - {id: zh-hsk2-00717-s001, ch: 重复, pr: chóng fù, ds: to repeat}
+  review_grammar:
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
+  - {id: zh-hsk4-g012, ch: V+出来, ds: discern or identify something through an action}
+- id: level-12-communication-02
+  title: Communication and information - 2
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk3-00081-s001, ch: 称为, pr: chēng wéi, ds: to be called; to be known as; to call it "..."}
+  - {id: zh-hsk3-00295-s002, ch: 话题, pr: huà tí, ds: topic}
+  - {id: zh-hsk3-00345-s003, ch: 交流, pr: jiāo liú, ds: communication}
+  - {id: zh-hsk3-00495-s001, ch: 内容, pr: nèi róng, ds: content}
+  - {id: zh-hsk4-00217-s001, ch: 翻译, pr: fān yì, ds: to translate}
+  - {id: zh-hsk1-00310-s002, ch: 认识, pr: rèn shi, ds: to recognize}
+  - {id: zh-hsk2-00252-s002, ch: 讲, pr: jiǎng, ds: to explain}
+  - {id: zh-hsk2-00641-s003, ch: 意思, pr: yì si, ds: meaning}
+  - {id: zh-hsk4-00279-s004, ch: 关于, pr: guān yú, ds: about}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00524-s003, ch: 通知, pr: tōng zhī, ds: notice}
+  - {id: zh-hsk2-00593-s001, ch: 信, pr: xìn, ds: letter}
+  - {id: zh-hsk2-00595-s001, ch: 信息, pr: xìn xī, ds: information}
+  - {id: zh-hsk4-00949-s001, ch: 转告, pr: zhuǎn gào, ds: to pass on}
+  - {id: zh-hsk2-00395-s004, ch: 篇, pr: piān, ds: 'classifier for written items: chapter, article'}
+  - {id: zh-hsk2-00445-s001, ch: 人数, pr: rén shù, ds: number of people}
+  - {id: zh-hsk2-00666-s001, ch: 语言, pr: yǔ yán, ds: language}
+  - {id: zh-hsk3-00042-s001, ch: 表达, pr: biǎo dá, ds: to express; to convey}
+  review_grammar:
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
+  - {id: zh-hsk4-g012, ch: V+出来, ds: discern or identify something through an action}
+- id: level-12-time-01
+  title: Time and events - 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary:
+  - {id: zh-hsk3-00501-s001, ch: 年底, pr: nián dǐ, ds: the end of the year}
+  - {id: zh-hsk3-00531-s006, ch: 期, pr: qī, ds: 'classifier for issues of a periodical, courses of study'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00684-s001, ch: 早就, pr: zǎo jiù, ds: already at an earlier time}
+  - {id: zh-hsk3-00342-s001, ch: 将来, pr: jiāng lái, ds: in the future}
+  - {id: zh-hsk3-00382-s001, ch: 久, pr: jiǔ, ds: (long) time}
+  - {id: zh-hsk3-00818-s001, ch: 以来, pr: yǐ lái, ds: since (a previous event)}
+  - {id: zh-hsk4-00200-s002, ch: 多年, pr: duō nián, ds: for many years}
+  - {id: zh-hsk1-00431-s004, ch: 一, pr: yī, ds: as soon as}
+  - {id: zh-hsk1-00340-s004, ch: 是, pr: shì, ds: emphatic assertion (adverb)}
+  - {id: zh-hsk1-00207-s005, ch: 来, pr: lái, ds: for the past (time period)}
+  review_grammar:
+  - {id: zh-hsk5-g007, ch: 趁+Opportunity+VP, ds: act while a favorable opportunity lasts}
+  - {id: zh-hsk5-g008, ch: 自从+StartingPoint+以来+P, ds: continuing situation since a past starting point}
+  - {id: zh-hsk5-g009, ch: 直到+Endpoint+才+VP, ds: an event occurs only upon reaching an endpoint}
+- id: level-12-description-01
+  title: Description and comparison - 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk1-00134-s004, ch: 还, pr: hái, ds: still more}
+  - {id: zh-hsk2-00086-s003, ch: 大部分, pr: dà bù fen, ds: the majority}
+  - {id: zh-hsk2-00091-s002, ch: 大量, pr: dà liàng, ds: large quantity}
+  - {id: zh-hsk2-00056-s001, ch: 常用, pr: cháng yòng, ds: in common usage}
+  - {id: zh-hsk2-00055-s002, ch: 常见, pr: cháng jiàn, ds: common}
+  - {id: zh-hsk2-00237-s001, ch: 级, pr: jí, ds: level}
+  - {id: zh-hsk1-00331-s002, ch: 什么, pr: shén me, ds: something or anything}
+  - {id: zh-hsk1-00255-s002, ch: 哪儿, pr: nǎ r, ds: 'somewhere, anywhere or wherever'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00009-s001, ch: 暗, pr: àn, ds: dark}
+  - {id: zh-hsk1-00154-s004, ch: 坏, pr: huài, ds: to break down}
+  - {id: zh-hsk2-00481-s003, ch: 数字, pr: shù zì, ds: number}
+  - {id: zh-hsk2-00701-s002, ch: 正常, pr: zhèng cháng, ds: normal}
+  - {id: zh-hsk2-00714-s001, ch: 中心, pr: zhōng xīn, ds: center}
+  - {id: zh-hsk3-00334-s001, ch: 简单, pr: jiǎn dān, ds: simple}
+  - {id: zh-hsk3-00411-s001, ch: 空, pr: kōng, ds: empty}
+  - {id: zh-hsk3-00601-s001, ch: 上面, pr: shàng miàn, ds: on top of}
+  review_grammar:
+  - {id: zh-hsk3-g016, ch: 一点儿+也+(不|没)+P, ds: emphatic absence of even the slightest amount}
+  - {id: zh-hsk4-g018, ch: 就+V+Quantity, ds: only this much; limited quantity}
+  - {id: zh-hsk6-g014, ch: 不是+A+就是+B, ds: either one alternative or the other}
+- id: level-12-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk7-9-05553-s002, ch: 总的来说, pr: zǒng de lái shuō, ds: to sum up}
+  - {id: zh-hsk2-00031-s001, ch: 不但, pr: bù dàn, ds: not only (... but also ...)}
+  - {id: zh-hsk6-00467-s001, ch: 据, pr: jù, ds: according to}
+  - {id: zh-hsk2-00145-s001, ch: 而且, pr: ér qiě, ds: (not only ...) but also}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00636-s001, ch: 以为, pr: yǐ wéi, ds: to think or assume (often mistakenly)}
+  - {id: zh-hsk2-00209-s002, ch: 好像, pr: hǎo xiàng, ds: to seem like}
+  - {id: zh-hsk4-00627-s001, ch: 似乎, pr: sì hū, ds: it seems; seemingly; as if}
+  - {id: zh-hsk3-00005-s001, ch: 按照, pr: àn zhào, ds: according to}
+  - {id: zh-hsk2-00151-s001, ch: 方法, pr: fāng fǎ, ds: method}
+  - {id: zh-hsk2-00276-s002, ch: 结果, pr: jié guǒ, ds: outcome}
+  - {id: zh-hsk2-00708-s002, ch: 只要, pr: zhǐ yào, ds: so long as}
+  - {id: zh-hsk4-00551-s001, ch: 其余, pr: qí yú, ds: the rest}
+  review_grammar:
+  - {id: zh-hsk2-g012, ch: 如果+P+就+Q, ds: hypothetical condition and consequence}
+  - {id: zh-hsk2-g011, ch: 虽然+P+但是+Q, ds: acknowledged fact with a contrasting outcome}
+  - {id: zh-hsk3-g012, ch: 只要+P+就+Q, ds: P is sufficient for Q in the stated context}
+- id: level-12-grammar-01
+  title: Sentence construction - 1
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk1-00010-s005, ch: 班, pr: bān, ds: classifier for groups and scheduled transport}
+  - {id: zh-hsk1-00188-s003, ch: 就, pr: jiù, ds: just or precisely}
+  - {id: zh-hsk2-00273-s007, ch: 节, pr: jié, ds: classifier for lessons and segments}
+  - {id: zh-hsk3-00063-s008, ch: 部, pr: bù, ds: 'classifier for works of literature, films, machines etc'}
+  - {id: zh-hsk3-00226-s001, ch: 各, pr: gè, ds: each}
+  - {id: zh-hsk3-00229-s001, ch: 各种, pr: gè zhǒng, ds: every kind of; all kinds of; various}
+  - {id: zh-hsk3-00230-s001, ch: 各自, pr: gè zì, ds: each}
+  - {id: zh-hsk1-00071-s003, ch: 的, pr: de, ds: nominalizing particle}
+  - {id: zh-hsk1-00242-s019, ch: 门, pr: mén, ds: 'lesson, subject, technical-field classifier'}
+  - {id: zh-hsk3-00895-s003, ch: 只有, pr: zhǐ yǒu, ds: it is only if one ... (that one can ...)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00050-s004, ch: 出来, pr: chu lai, ds: 'verb complement: emergence, completion, or detection'}
+  - {id: zh-hsk1-00495-s012, ch: 子, pr: zi, ds: noun suffix}
+  - {id: zh-hsk2-00023-s002, ch: 必须, pr: bì xū, ds: must}
+  - {id: zh-hsk2-00687-s001, ch: 怎样, pr: zěn yàng, ds: how}
+  - {id: zh-hsk2-00696-s005, ch: 这么, pr: zhè me, ds: like this}
+  - {id: zh-hsk3-00290-s001, ch: 互相, pr: hù xiāng, ds: each other}
+  - {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: to continue}
+  - {id: zh-hsk3-00678-s012, ch: 台, pr: tái, ds: classifier for vehicles or machines}
+  review_grammar: []
+- id: level-12-society-01
+  title: Society and community - 1
+  outcome: Explain a social issue and compare different people's experiences.
+  vocabulary:
+  - {id: zh-hsk2-00419-s001, ch: 青少年, pr: qīng shào nián, ds: adolescent}
+  - {id: zh-hsk2-00435-s002, ch: 全国, pr: quán guó, ds: nationwide}
+  - {id: zh-hsk2-00444-s001, ch: 人们, pr: rén men, ds: people}
+  - {id: zh-hsk3-00130-s001, ch: 当地, pr: dāng dì, ds: local}
+  - {id: zh-hsk3-00137-s004, ch: 地区, pr: dì qū, ds: region}
+  - {id: zh-hsk3-00227-s001, ch: 各地, pr: gè dì, ds: in all parts of (a country)}
+  - {id: zh-hsk3-00240-s001, ch: 公共, pr: gōng gòng, ds: public; common; communal}
+  - {id: zh-hsk2-00197-s001, ch: 国际, pr: guó jì, ds: international}
+  - {id: zh-hsk2-00443-s001, ch: 人口, pr: rén kǒu, ds: population}
+  - {id: zh-hsk2-00195-s001, ch: 广场, pr: guǎng chǎng, ds: public square; plaza}
+  - {id: zh-hsk2-00291-s001, ch: 举行, pr: jǔ xíng, ds: 'to hold (a meeting, ceremony etc)'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00131-s001, ch: 国家, pr: guó jiā, ds: country}
+  review_grammar: []
+- id: level-12-media-01
+  title: Media and sources - 1
+  outcome: Summarize a source while distinguishing events, claims, and interpretation.
+  vocabulary:
+  - {id: zh-hsk2-00274-s001, ch: 节目, pr: jié mù, ds: program}
+  - {id: zh-hsk2-00447-s001, ch: 日报, pr: rì bào, ds: daily newspaper}
+  - {id: zh-hsk3-00040-s003, ch: 标题, pr: biāo tí, ds: headline}
+  - {id: zh-hsk3-00142-s001, ch: 电视台, pr: diàn shì tái, ds: television station}
+  - {id: zh-hsk2-00530-s001, ch: 图片, pr: tú piàn, ds: picture; photograph}
+  - {id: zh-hsk2-00694-s001, ch: 照片, pr: zhào piàn, ds: photograph}
+  - {id: zh-hsk3-00025-s004, ch: 报告, pr: bào gào, ds: report}
+  - {id: zh-hsk3-00743-s001, ch: 文章, pr: wén zhāng, ds: article}
+  - {id: zh-hsk3-00744-s004, ch: 文字, pr: wén zì, ds: written language}
+  - {id: zh-hsk3-00838-s004, ch: 邮箱, pr: yóu xiāng, ds: email inbox}
+  - {id: zh-hsk3-00854-s001, ch: 杂志, pr: zá zhì, ds: magazine}
+  - {id: zh-hsk6-01023-s002, ch: 章, pr: zhāng, ds: chapter}
+  - {id: zh-hsk1-00082-s001, ch: 电视, pr: diàn shì, ds: television}
+  - {id: zh-hsk2-00015-s001, ch: 报纸, pr: bào zhǐ, ds: newspaper}
+  - {id: zh-hsk2-00592-s001, ch: 新闻, pr: xīn wén, ds: news}
+  - {id: zh-hsk2-00716-s003, ch: 重点, pr: zhòng diǎn, ds: important point; main point; focus}
+  - {id: zh-hsk3-00655-s001, ch: 收音机, pr: shōu yīn jī, ds: radio}
+  - {id: zh-hsk3-00391-s001, ch: 据说, pr: jù shuō, ds: it is said that; reportedly}
+  - {id: zh-hsk2-00196-s003, ch: 广告, pr: guǎng gào, ds: advertisement}
+  - {id: zh-hsk2-00581-s001, ch: 小说, pr: xiǎo shuō, ds: novel}
+  - {id: zh-hsk2-00653-s002, ch: 影片, pr: yǐng piàn, ds: film; motion picture; movie}
+  - {id: zh-hsk3-00050-s001, ch: 播出, pr: bō chū, ds: to broadcast}
+  - {id: zh-hsk3-00141-s001, ch: 电视剧, pr: diàn shì jù, ds: TV series}
+  - {id: zh-hsk3-00143-s003, ch: 电台, pr: diàn tái, ds: radio station}
+  - {id: zh-hsk3-00153-s001, ch: 读者, pr: dú zhě, ds: reader}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-12-media-02
+  title: Media and sources - 2
+  outcome: Summarize a source while distinguishing events, claims, and interpretation.
+  vocabulary:
+  - {id: zh-hsk3-00653-s001, ch: 收看, pr: shōu kàn, ds: to watch (a TV program)}
+  - {id: zh-hsk3-00700-s001, ch: 听众, pr: tīng zhòng, ds: audience}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00391-s001, ch: 据说, pr: jù shuō, ds: it is said that; reportedly}
+  - {id: zh-hsk2-00196-s003, ch: 广告, pr: guǎng gào, ds: advertisement}
+  - {id: zh-hsk2-00581-s001, ch: 小说, pr: xiǎo shuō, ds: novel}
+  - {id: zh-hsk2-00653-s002, ch: 影片, pr: yǐng piàn, ds: film; motion picture; movie}
+  - {id: zh-hsk3-00050-s001, ch: 播出, pr: bō chū, ds: to broadcast}
+  - {id: zh-hsk3-00141-s001, ch: 电视剧, pr: diàn shì jù, ds: TV series}
+  - {id: zh-hsk3-00143-s003, ch: 电台, pr: diàn tái, ds: radio station}
+  - {id: zh-hsk3-00153-s001, ch: 读者, pr: dú zhě, ds: reader}
+  review_grammar: []
+- id: level-12-technology-01
+  title: Technology and systems - 1
+  outcome: Explain a system or technical issue with explicit scope and limitations.
+  vocabulary:
+  - {id: zh-hsk3-00455-s001, ch: 录音, pr: lù yīn, ds: to record (sound)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00325-s001, ch: 上网, pr: shàng wǎng, ds: to go online}
+  - {id: zh-hsk2-00192-s001, ch: 关机, pr: guān jī, ds: to turn off (a machine or device)}
+  - {id: zh-hsk2-00295-s002, ch: 开机, pr: kāi jī, ds: to boot up (a computer)}
+  - {id: zh-hsk2-00546-s001, ch: 网站, pr: wǎng zhàn, ds: website}
+  - {id: zh-hsk3-00017-s004, ch: 保存, pr: bǎo cún, ds: to save (a file etc) (computing)}
+  - {id: zh-hsk3-00236-s001, ch: 工具, pr: gōng jù, ds: tool}
+  - {id: zh-hsk1-00079-s002, ch: 电, pr: diàn, ds: electricity}
+  - {id: zh-hsk2-00085-s003, ch: 打印, pr: dǎ yìn, ds: to print out (with a printer)}
+  review_grammar: []
+- id: level-12-nature-01
+  title: Nature and environment - 1
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: zh-hsk2-00130-s001, ch: 动物, pr: dòng wù, ds: animal}
+  - {id: zh-hsk2-00643-s002, ch: 阴, pr: yīn, ds: overcast (weather)}
+  - {id: zh-hsk2-00674-s001, ch: 月亮, pr: yuè liang, ds: the moon}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00144-s001, ch: 多云, pr: duō yún, ds: cloudy (meteorology)}
+  - {id: zh-hsk2-00567-s001, ch: 下雪, pr: xià xuě, ds: to snow}
+  - {id: zh-hsk1-00363-s002, ch: 天, pr: tiān, ds: sky}
+  - {id: zh-hsk1-00364-s001, ch: 天气, pr: tiān qì, ds: weather}
+  - {id: zh-hsk1-00455-s001, ch: 雨, pr: yǔ, ds: rain}
+  - {id: zh-hsk2-00423-s002, ch: 晴天, pr: qíng tiān, ds: sunny day}
+  - {id: zh-hsk2-00497-s001, ch: 太阳, pr: tài yang, ds: sun}
+  - {id: zh-hsk2-00677-s003, ch: 云, pr: yún, ds: cloud}
+  review_grammar: []
+- id: level-12-culture-01
+  title: Culture and customs - 1
+  outcome: Explain a cultural practice without turning a local example into a universal claim.
+  vocabulary:
+  - {id: zh-hsk2-00076-s001, ch: 春节, pr: Chūn jié, ds: Spring Festival (Chinese New Year)}
+  - {id: zh-hsk1-00447-s001, ch: 有名, pr: yǒu míng, ds: famous}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00133-s005, ch: 过, pr: guò, ds: to celebrate (a holiday)}
+  - {id: zh-hsk1-00416-s001, ch: 新年, pr: xīn nián, ds: New Year}
+  - {id: zh-hsk2-00170-s002, ch: 干杯, pr: gān bēi, ds: Cheers! (proposing a toast)}
+  - {id: zh-hsk2-00199-s001, ch: 过年, pr: guò nián, ds: to celebrate the Chinese New Year}
+  review_grammar: []
+- id: level-12-arts-01
+  title: Arts and creative works - 1
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk3-00425-s001, ch: 乐队, pr: yuè duì, ds: band}
+  - {id: zh-hsk3-00808-s001, ch: 演唱会, pr: yǎn chàng huì, ds: vocal recital or concert}
+  - {id: zh-hsk3-00259-s002, ch: 观众, pr: guān zhòng, ds: audience}
+  - {id: zh-hsk3-00294-s001, ch: 话剧, pr: huà jù, ds: stage play}
+  - {id: zh-hsk3-00377-s003, ch: 精彩, pr: jīng cǎi, ds: brilliant}
+  - {id: zh-hsk3-00390-s001, ch: 剧场, pr: jù chǎng, ds: theater}
+  - {id: zh-hsk3-00474-s002, ch: 美术, pr: měi shù, ds: fine arts}
+  - {id: zh-hsk3-00810-s001, ch: 演员, pr: yǎn yuán, ds: actor or actress}
+  - {id: zh-hsk3-00819-s001, ch: 艺术, pr: yì shù, ds: art}
+  - {id: zh-hsk3-00223-s001, ch: 歌手, pr: gē shǒu, ds: singer}
+  - {id: zh-hsk3-00809-s004, ch: 演出, pr: yǎn chū, ds: performance}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-12-communication-practice-01
+  title: Communication and information - sentence practice 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk4-g022, ch: 关于+Topic, ds: introduce the subject of a discussion or text}
+  - {id: zh-hsk5-g025, ch: 总的来说+P, ds: summarize while leaving room for local exceptions}
+  review_vocabulary:
+  - {id: zh-hsk4-00279-s004, ch: 关于, pr: guān yú, ds: about}
+  - {id: zh-hsk7-9-05553-s002, ch: 总的来说, pr: zǒng de lái shuō, ds: to sum up}
+  - {id: zh-hsk3-00295-s002, ch: 话题, pr: huà tí, ds: topic}
+  - {id: zh-hsk3-00345-s003, ch: 交流, pr: jiāo liú, ds: communication}
+  - {id: zh-hsk3-00495-s001, ch: 内容, pr: nèi róng, ds: content}
+  - {id: zh-hsk4-00217-s001, ch: 翻译, pr: fān yì, ds: to translate}
+  - {id: zh-hsk1-00310-s002, ch: 认识, pr: rèn shi, ds: to recognize}
+  - {id: zh-hsk2-00252-s002, ch: 讲, pr: jiǎng, ds: to explain}
+  - {id: zh-hsk2-00641-s003, ch: 意思, pr: yì si, ds: meaning}
+  review_grammar:
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
+  - {id: zh-hsk4-g012, ch: V+出来, ds: discern or identify something through an action}
+- id: level-12-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk3-g025, ch: (什么|哪儿)+都+P, ds: a question word takes universal rather than question force}
+  review_vocabulary:
+  - {id: zh-hsk1-00331-s002, ch: 什么, pr: shén me, ds: something or anything}
+  - {id: zh-hsk1-00255-s002, ch: 哪儿, pr: nǎ r, ds: 'somewhere, anywhere or wherever'}
+  - {id: zh-hsk1-00091-s002, ch: 都, pr: dōu, ds: all or both}
+  - {id: zh-hsk1-00134-s004, ch: 还, pr: hái, ds: still more}
+  - {id: zh-hsk2-00086-s003, ch: 大部分, pr: dà bù fen, ds: the majority}
+  - {id: zh-hsk2-00091-s002, ch: 大量, pr: dà liàng, ds: large quantity}
+  - {id: zh-hsk2-00056-s001, ch: 常用, pr: cháng yòng, ds: in common usage}
+  - {id: zh-hsk2-00055-s002, ch: 常见, pr: cháng jiàn, ds: common}
+  - {id: zh-hsk2-00237-s001, ch: 级, pr: jí, ds: level}
+  review_grammar:
+  - {id: zh-hsk3-g016, ch: 一点儿+也+(不|没)+P, ds: emphatic absence of even the slightest amount}
+  - {id: zh-hsk4-g018, ch: 就+V+Quantity, ds: only this much; limited quantity}
+  - {id: zh-hsk6-g014, ch: 不是+A+就是+B, ds: either one alternative or the other}
+- id: level-12-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk3-g011, ch: 只有+P+才+Q, ds: P is necessary for Q}
+  - {id: zh-hsk4-g001, ch: 不但+P+而且+Q, ds: add a stronger point to the first statement}
+  review_vocabulary:
+  - {id: zh-hsk3-00895-s003, ch: 只有, pr: zhǐ yǒu, ds: it is only if one ... (that one can ...)}
+  - {id: zh-hsk2-00046-s004, ch: 才, pr: cái, ds: then and only then}
+  - {id: zh-hsk2-00031-s001, ch: 不但, pr: bù dàn, ds: not only (... but also ...)}
+  - {id: zh-hsk2-00145-s001, ch: 而且, pr: ér qiě, ds: (not only ...) but also}
+  - {id: zh-hsk2-00151-s001, ch: 方法, pr: fāng fǎ, ds: method}
+  - {id: zh-hsk2-00276-s002, ch: 结果, pr: jié guǒ, ds: outcome}
+  - {id: zh-hsk2-00708-s002, ch: 只要, pr: zhǐ yào, ds: so long as}
+  - {id: zh-hsk4-00551-s001, ch: 其余, pr: qí yú, ds: the rest}
+  - {id: zh-hsk7-9-05553-s002, ch: 总的来说, pr: zǒng de lái shuō, ds: to sum up}
+  - {id: zh-hsk6-00467-s001, ch: 据, pr: jù, ds: according to}
+  review_grammar:
+  - {id: zh-hsk2-g012, ch: 如果+P+就+Q, ds: hypothetical condition and consequence}
+  - {id: zh-hsk2-g011, ch: 虽然+P+但是+Q, ds: acknowledged fact with a contrasting outcome}
+  - {id: zh-hsk3-g012, ch: 只要+P+就+Q, ds: P is sufficient for Q in the stated context}
+- id: level-12-media-practice-01
+  title: Media and sources - sentence practice 1
+  outcome: Summarize a source while distinguishing events, claims, and interpretation.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk6-g025, ch: 据+Source+P|据说+P, ds: attributed information versus unspecified hearsay}
+  review_vocabulary:
+  - {id: zh-hsk6-00467-s001, ch: 据, pr: jù, ds: according to}
+  - {id: zh-hsk3-00391-s001, ch: 据说, pr: jù shuō, ds: it is said that; reportedly}
+  - {id: zh-hsk2-00581-s001, ch: 小说, pr: xiǎo shuō, ds: novel}
+  - {id: zh-hsk2-00653-s002, ch: 影片, pr: yǐng piàn, ds: film; motion picture; movie}
+  - {id: zh-hsk3-00050-s001, ch: 播出, pr: bō chū, ds: to broadcast}
+  - {id: zh-hsk3-00141-s001, ch: 电视剧, pr: diàn shì jù, ds: TV series}
+  - {id: zh-hsk3-00143-s003, ch: 电台, pr: diàn tái, ds: radio station}
+  - {id: zh-hsk3-00153-s001, ch: 读者, pr: dú zhě, ds: reader}
+  - {id: zh-hsk3-00653-s001, ch: 收看, pr: shōu kàn, ds: to watch (a TV program)}
+  - {id: zh-hsk3-00700-s001, ch: 听众, pr: tīng zhòng, ds: audience}
+  review_grammar: []

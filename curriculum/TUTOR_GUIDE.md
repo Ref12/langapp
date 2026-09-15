@@ -5,6 +5,15 @@ marking scheme. Combine it with the selected level's syllabus and source notes.
 Grammar entries and example translations are prompts for teaching, not substitutes
 for checking meaning and natural usage.
 
+For the independent Mandarin program, use
+`chinese/teaching/program.yaml` for the numbered teaching levels and
+`chinese/teaching/mastery.yaml` for per-item stages. Source HSK bands are
+provenance, not a competence crosswalk. Keep that item's modality-specific
+evidence separate from curriculum position, inventory coverage, and the
+numeric analytic rubric below. Its stages are not numeric conversions of
+these scores. The standalone tourist route shares sense IDs but has its own
+practical goals and prerequisites.
+
 Some level syllabi provide their own task-specific scales and thresholds. Use
 those scales for those exit tasks, and this shared scale for cross-lesson
 tracking. Record the rubric name and maximum with every score; never mix a

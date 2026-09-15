@@ -1,0 +1,994 @@
+schema_version: 1
+id: zh-tourist
+title: Mandarin for a short visit
+language: chinese
+level_basis: Independent situation-based travel route with no prerequisite course. Reference IDs indicate
+  provenance, not HSK competence or examination levels. The first five units form a self-contained quick
+  start; later units extend it in order.
+review_policy: Work in small sessions of about 5-8 new senses, not an entire unit at once. First recognize
+  a sign or request, then use a phrase with a changed situation and less help. Retrieve the listed earlier
+  items and anything fragile after the session and roughly 1, 3, 7, and 14 days later. Phrase pinyin retains
+  dictionary tones for 一 and 不 rather than transcribing contextual tone sandhi; 儿 is attached as r. Text
+  and pinyin are not audio practice or evidence of pronunciation. These phrases are learning aids, not
+  assurances of safety, accessible facilities, accepted payment methods, dietary safety, or medical or
+  legal accuracy. Confirm arrangements locally and seek appropriate human help for health or safety concerns.
+quick_start:
+- polite-repair
+- food-basics
+- finding-your-way
+- paying
+- asking-for-help
+units:
+- id: polite-repair
+  title: Be polite and repair a misunderstanding
+  outcome: Greet someone, signal that you do not understand, and ask for slower speech, repetition, or
+    a written version. Start with recognition and pointing if speaking is difficult.
+  vocabulary:
+  - zh-hsk1-00384-s001
+  - zh-hsk1-00275-s001
+  - zh-hsk1-00278-s001
+  - zh-hsk1-00140-s009
+  - zh-hsk1-00414-s002
+  - zh-hsk1-00095-s001
+  - zh-hsk1-00031-s002
+  - zh-hsk2-00128-s001
+  - zh-hsk1-00138-s001
+  - zh-hsk1-00300-s003
+  - zh-hsk1-00353-s002
+  - zh-hsk1-00232-s001
+  - zh-hsk1-00434-s003
+  - zh-hsk1-00459-s001
+  - zh-hsk1-00431-s001
+  - zh-hsk1-00054-s013
+  - zh-hsk1-00413-s001
+  - zh-hsk3-00753-s002
+  - zh-hsk1-00365-s002
+  - zh-hsk2-00652-s001
+  - zh-hsk1-00236-s001
+  - zh-hsk1-00460-s001
+  - zh-hsk1-00140-s003
+  - zh-hsk1-00014-s001
+  grammar:
+  - zh-hsk1-g003
+  - zh-hsk1-g021
+  - zh-hsk2-g017
+  - zh-hsk4-g013
+  review_vocabulary: []
+  review_grammar: []
+  phrases:
+  - id: zh-tourist-p001
+    ch: 您好。
+    pr: nín hǎo
+    ds: Hello. (polite)
+    items:
+    - zh-hsk1-00278-s001
+    - zh-hsk1-00140-s009
+  - id: zh-tourist-p002
+    ch: 对不起，我不懂汉语。
+    pr: duì bu qǐ, wǒ bù dǒng Hàn yǔ
+    ds: Sorry, I do not understand Chinese.
+    items:
+    - zh-hsk1-00095-s001
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00031-s002
+    - zh-hsk2-00128-s001
+    - zh-hsk1-00138-s001
+  - id: zh-tourist-p003
+    ch: 请说慢一点儿。
+    pr: qǐng shuō màn yī diǎnr
+    ds: Please speak a little more slowly.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00353-s002
+    - zh-hsk1-00232-s001
+    - zh-hsk1-00434-s003
+  - id: zh-tourist-p004
+    ch: 请再说一次。
+    pr: qǐng zài shuō yī cì
+    ds: Please say it once more.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00459-s001
+    - zh-hsk1-00353-s002
+    - zh-hsk1-00431-s001
+    - zh-hsk1-00054-s013
+  - id: zh-tourist-p005
+    ch: 请写下来。
+    pr: qǐng xiě xià lai
+    ds: Please write it down.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00413-s001
+    - zh-hsk3-00753-s002
+- id: food-basics
+  title: Get water and a simple meal
+  outcome: Request water, a menu, and familiar foods; ask for no spice. Recognize a few common drink and
+    food words before attempting longer orders.
+  vocabulary:
+  - zh-hsk1-00404-s004
+  - zh-hsk1-00146-s001
+  - zh-hsk1-00349-s002
+  - zh-hsk1-00123-s004
+  - zh-hsk1-00018-s003
+  - zh-hsk1-00037-s001
+  - zh-hsk2-00047-s001
+  - zh-hsk1-00427-s002
+  - zh-hsk1-00246-s001
+  - zh-hsk1-00147-s002
+  - zh-hsk1-00165-s001
+  - zh-hsk4-00436-s001
+  - zh-hsk3-00396-s001
+  - zh-hsk1-00279-s001
+  - zh-hsk1-00247-s001
+  - zh-hsk1-00047-s001
+  - zh-hsk1-00214-s002
+  - zh-hsk1-00102-s001
+  grammar:
+  - zh-hsk1-g019
+  - zh-hsk1-g010
+  - zh-hsk1-g018
+  review_vocabulary:
+  - zh-hsk1-00300-s003
+  - zh-hsk1-00384-s001
+  - zh-hsk1-00031-s002
+  - zh-hsk1-00414-s002
+  - zh-hsk1-00431-s001
+  review_grammar:
+  - zh-hsk1-g021
+  - zh-hsk1-g003
+  phrases:
+  - id: zh-tourist-p006
+    ch: 我想喝水。
+    pr: wǒ xiǎng hē shuǐ
+    ds: I would like some water.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk1-00146-s001
+    - zh-hsk1-00349-s002
+  - id: zh-tourist-p007
+    ch: 请给我一杯茶。
+    pr: qǐng gěi wǒ yī bēi chá
+    ds: Please give me a cup of tea.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00431-s001
+    - zh-hsk1-00018-s003
+    - zh-hsk1-00037-s001
+  - id: zh-tourist-p008
+    ch: 请给我菜单。
+    pr: qǐng gěi wǒ cài dān
+    ds: Please give me the menu.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk2-00047-s001
+  - id: zh-tourist-p009
+    ch: 我要米饭和鸡蛋。
+    pr: wǒ yào mǐ fàn hé jī dàn
+    ds: I would like rice and eggs.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00427-s002
+    - zh-hsk1-00246-s001
+    - zh-hsk1-00147-s002
+    - zh-hsk1-00165-s001
+  - id: zh-tourist-p010
+    ch: 不要辣。
+    pr: bù yào là
+    ds: No spice, please.
+    items:
+    - zh-hsk1-00031-s002
+    - zh-hsk1-00427-s002
+    - zh-hsk4-00436-s001
+- id: finding-your-way
+  title: Find a toilet and get around
+  outcome: Locate a toilet or station, name a destination, request a taxi, and recognize left and right.
+    Ask rather than assume that a place or seat is available.
+  vocabulary:
+  - zh-hsk1-00303-s001
+  - zh-hsk6-00088-s001
+  - zh-hsk1-00461-s002
+  - zh-hsk1-00255-s001
+  - zh-hsk1-00306-s001
+  - zh-hsk2-00112-s001
+  - zh-hsk1-00467-s001
+  - zh-hsk1-00473-s001
+  - zh-hsk2-00308-s002
+  - zh-hsk1-00504-s002
+  - zh-hsk1-00230-s002
+  - zh-hsk1-00176-s002
+  - zh-hsk2-00073-s001
+  - zh-hsk1-00503-s001
+  - zh-hsk1-00454-s001
+  - zh-hsk1-00135-s004
+  - zh-hsk2-00287-s003
+  - zh-hsk1-00070-s001
+  - zh-hsk4-00165-s001
+  - zh-hsk4-00244-s001
+  - zh-hsk1-00457-s001
+  - zh-hsk2-00280-s001
+  - zh-hsk1-00274-s002
+  - zh-hsk2-00234-s001
+  - zh-hsk1-00046-s001
+  - zh-hsk1-00331-s001
+  - zh-hsk1-00348-s001
+  grammar:
+  - zh-hsk1-g007
+  - zh-hsk1-g012
+  - zh-hsk1-g006
+  - zh-hsk2-g025
+  - zh-hsk3-g017
+  review_vocabulary:
+  - zh-hsk1-00014-s001
+  - zh-hsk1-00404-s004
+  - zh-hsk1-00300-s003
+  - zh-hsk1-00413-s001
+  - zh-hsk3-00753-s002
+  review_grammar:
+  - zh-hsk1-g019
+  - zh-hsk4-g013
+  phrases:
+  - id: zh-tourist-p011
+    ch: 请问，厕所在哪儿？
+    pr: qǐng wèn, cè suǒ zài nǎr
+    ds: Excuse me, where is the toilet?
+    items:
+    - zh-hsk1-00303-s001
+    - zh-hsk6-00088-s001
+    - zh-hsk1-00461-s002
+    - zh-hsk1-00255-s001
+  - id: zh-tourist-p012
+    ch: 我想去地铁站。
+    pr: wǒ xiǎng qù dì tiě zhàn
+    ds: I would like to go to the subway station.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk1-00306-s001
+    - zh-hsk2-00112-s001
+    - zh-hsk1-00467-s001
+  - id: zh-tourist-p013
+    ch: 这里可以坐吗？
+    pr: zhè lǐ kě yǐ zuò ma
+    ds: May I sit here?
+    items:
+    - zh-hsk1-00473-s001
+    - zh-hsk2-00308-s002
+    - zh-hsk1-00504-s002
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p014
+    ch: 请帮我叫出租车。
+    pr: qǐng bāng wǒ jiào chū zū chē
+    ds: Please help me call a taxi.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00014-s001
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00176-s002
+    - zh-hsk2-00073-s001
+  - id: zh-tourist-p015
+    ch: 左边还是右边？
+    pr: zuǒ bian hái shi yòu bian
+    ds: Left or right?
+    items:
+    - zh-hsk1-00503-s001
+    - zh-hsk1-00135-s004
+    - zh-hsk1-00454-s001
+- id: paying
+  title: Ask the price and how to pay
+  outcome: Ask a price and whether cash or a credit card is accepted, request a receipt, and recognize
+    common price numerals. Payment questions do not imply that a method will be available.
+  vocabulary:
+  - zh-hsk1-00444-s001
+  - zh-hsk3-00763-s001
+  - zh-hsk2-00597-s001
+  - zh-hsk1-00097-s004
+  - zh-hsk1-00298-s003
+  - zh-hsk4-00210-s002
+  - zh-hsk1-00129-s001
+  - zh-hsk1-00231-s001
+  - zh-hsk1-00470-s003
+  - zh-hsk1-00122-s001
+  - zh-hsk1-00218-s001
+  - zh-hsk1-00100-s001
+  - zh-hsk1-00315-s002
+  - zh-hsk1-00355-s001
+  - zh-hsk1-00386-s001
+  - zh-hsk1-00219-s001
+  - zh-hsk1-00290-s001
+  - zh-hsk1-00003-s001
+  - zh-hsk1-00187-s001
+  - zh-hsk1-00335-s001
+  - zh-hsk1-00009-s002
+  - zh-hsk1-00217-s001
+  - zh-hsk2-00414-s001
+  - zh-hsk1-00205-s003
+  - zh-hsk1-00456-s003
+  - zh-hsk2-00648-s001
+  - zh-hsk3-00885-s001
+  - zh-hsk6-00658-s001
+  - zh-hsk1-00166-s003
+  grammar:
+  - zh-hsk1-g023
+  - zh-hsk1-g011
+  review_vocabulary:
+  - zh-hsk2-00308-s002
+  - zh-hsk1-00230-s002
+  - zh-hsk1-00431-s001
+  - zh-hsk1-00123-s004
+  - zh-hsk1-00414-s002
+  review_grammar:
+  - zh-hsk1-g006
+  - zh-hsk1-g010
+  phrases:
+  - id: zh-tourist-p016
+    ch: 可以用现金吗？
+    pr: kě yǐ yòng xiàn jīn ma
+    ds: May I pay in cash?
+    items:
+    - zh-hsk2-00308-s002
+    - zh-hsk1-00444-s001
+    - zh-hsk3-00763-s001
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p017
+    ch: 可以用信用卡吗？
+    pr: kě yǐ yòng xìn yòng kǎ ma
+    ds: May I use a credit card?
+    items:
+    - zh-hsk2-00308-s002
+    - zh-hsk1-00444-s001
+    - zh-hsk2-00597-s001
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p018
+    ch: 这个多少钱？
+    pr: zhè gè duō shao qián
+    ds: How much is this?
+    items:
+    - zh-hsk1-00470-s003
+    - zh-hsk1-00122-s001
+    - zh-hsk1-00097-s004
+    - zh-hsk1-00298-s003
+  - id: zh-tourist-p019
+    ch: 请给我发票。
+    pr: qǐng gěi wǒ fā piào
+    ds: Please give me a receipt.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk4-00210-s002
+  - id: zh-tourist-p020
+    ch: 我想买这个。
+    pr: wǒ xiǎng mǎi zhè gè
+    ds: I would like to buy this.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk1-00231-s001
+    - zh-hsk1-00470-s003
+    - zh-hsk1-00122-s001
+- id: asking-for-help
+  title: Get human help with a problem
+  outcome: Request help, say you feel unwell or have lost a phone, and ask someone to contact the police.
+    Recognize doctor, hospital, medicine, ambulance, and passport without attempting diagnosis or treatment.
+  vocabulary:
+  - zh-hsk3-00795-s001
+  - zh-hsk1-00442-s001
+  - zh-hsk2-00478-s002
+  - zh-hsk1-00071-s001
+  - zh-hsk1-00071-s002
+  - zh-hsk1-00343-s001
+  - zh-hsk5-00205-s001
+  - zh-hsk1-00212-s002
+  - zh-hsk5-00017-s002
+  - zh-hsk3-00380-s001
+  - zh-hsk2-00614-s002
+  - zh-hsk1-00443-s001
+  - zh-hsk2-00503-s001
+  - zh-hsk6-00461-s002
+  - zh-hsk7-9-02232-s001
+  - zh-hsk2-00220-s001
+  - zh-hsk1-00468-s001
+  - zh-hsk1-00080-s001
+  grammar:
+  - zh-hsk1-g009
+  - zh-hsk2-g002
+  review_vocabulary:
+  - zh-hsk1-00014-s001
+  - zh-hsk1-00095-s001
+  - zh-hsk2-00128-s001
+  - zh-hsk1-00300-s003
+  - zh-hsk1-00031-s002
+  review_grammar:
+  - zh-hsk1-g021
+  - zh-hsk1-g003
+  phrases:
+  - id: zh-tourist-p021
+    ch: 请帮我。
+    pr: qǐng bāng wǒ
+    ds: Please help me.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00014-s001
+    - zh-hsk1-00384-s001
+  - id: zh-tourist-p022
+    ch: 我需要医生。
+    pr: wǒ xū yào yī shēng
+    ds: I need a doctor.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk3-00795-s001
+    - zh-hsk1-00442-s001
+  - id: zh-tourist-p023
+    ch: 我不舒服。
+    pr: wǒ bù shū fu
+    ds: I do not feel well.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00031-s002
+    - zh-hsk2-00478-s002
+  - id: zh-tourist-p024
+    ch: 我的手机丢了。
+    pr: wǒ de shǒu jī diū le
+    ds: My phone is missing.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00071-s001
+    - zh-hsk1-00343-s001
+    - zh-hsk5-00205-s001
+    - zh-hsk1-00212-s002
+  - id: zh-tourist-p025
+    ch: 请帮我报警。
+    pr: qǐng bāng wǒ bào jǐng
+    ds: Please help me contact the police.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00014-s001
+    - zh-hsk1-00384-s001
+    - zh-hsk5-00017-s002
+- id: hotel-stay
+  title: Arrive at your accommodation
+  outcome: Explain that you booked a room, locate it, request its key or a different room, and ask about
+    hot water. Recognize useful accommodation terms rather than memorize a long service script.
+  vocabulary:
+  - zh-hsk1-00445-s001
+  - zh-hsk4-00881-s002
+  - zh-hsk1-00103-s001
+  - zh-hsk7-9-04814-s001
+  - zh-hsk6-00669-s001
+  - zh-hsk2-00227-s004
+  - zh-hsk1-00491-s003
+  - zh-hsk1-00378-s001
+  - zh-hsk1-00183-s001
+  - zh-hsk2-00682-s001
+  - zh-hsk3-00412-s002
+  - zh-hsk4-00721-s002
+  - zh-hsk4-00497-s002
+  - zh-hsk2-00561-s002
+  - zh-hsk7-9-05076-s001
+  - zh-hsk1-00212-s001
+  grammar:
+  - zh-hsk1-g004
+  - zh-hsk1-g013
+  - zh-hsk2-g001
+  review_vocabulary:
+  - zh-hsk2-00287-s003
+  - zh-hsk1-00071-s001
+  - zh-hsk1-00461-s002
+  - zh-hsk1-00255-s001
+  - zh-hsk1-00123-s004
+  - zh-hsk2-00220-s001
+  review_grammar:
+  - zh-hsk1-g009
+  - zh-hsk1-g012
+  - zh-hsk1-g006
+  phrases:
+  - id: zh-tourist-p026
+    ch: 我预订了房间。
+    pr: wǒ yù dìng le fáng jiān
+    ds: I booked a room.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk4-00881-s002
+    - zh-hsk1-00212-s001
+    - zh-hsk1-00103-s001
+  - id: zh-tourist-p027
+    ch: 我的房间在哪儿？
+    pr: wǒ de fáng jiān zài nǎr
+    ds: Where is my room?
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00071-s001
+    - zh-hsk1-00103-s001
+    - zh-hsk1-00461-s002
+    - zh-hsk1-00255-s001
+  - id: zh-tourist-p028
+    ch: 请给我房间钥匙。
+    pr: qǐng gěi wǒ fáng jiān yào shi
+    ds: Please give me the room key.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00103-s001
+    - zh-hsk7-9-04814-s001
+  - id: zh-tourist-p029
+    ch: 这里有热水吗？
+    pr: zhè lǐ yǒu rè shuǐ ma
+    ds: Is there hot water here?
+    items:
+    - zh-hsk1-00473-s001
+    - zh-hsk1-00445-s001
+    - zh-hsk6-00669-s001
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p030
+    ch: 我想换房间。
+    pr: wǒ xiǎng huàn fáng jiān
+    ds: I would like to change rooms.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk2-00227-s004
+    - zh-hsk1-00103-s001
+- id: dietary-needs
+  title: Clarify ingredients and dietary needs
+  outcome: State a peanut allergy or a meat-free preference and ask about milk or added sugar. Ingredient
+    words and these phrases do not establish allergen absence or dietary safety; ask staff to clarify
+    and seek suitable help when needed.
+  vocabulary:
+  - zh-hsk1-00094-s002
+  - zh-hsk6-00379-s001
+  - zh-hsk5-00309-s002
+  - zh-hsk1-00314-s001
+  - zh-hsk1-00036-s001
+  - zh-hsk1-00105-s001
+  - zh-hsk3-00683-s001
+  - zh-hsk7-9-03917-s001
+  - zh-hsk5-00700-s001
+  - zh-hsk2-00665-s002
+  - zh-hsk4-00292-s001
+  - zh-hsk2-00042-s001
+  - zh-hsk2-00360-s008
+  grammar:
+  - zh-hsk3-g021
+  review_vocabulary:
+  - zh-hsk1-00047-s001
+  - zh-hsk1-00279-s001
+  - zh-hsk1-00445-s001
+  - zh-hsk1-00031-s002
+  - zh-hsk1-00470-s003
+  - zh-hsk1-00122-s001
+  review_grammar:
+  - zh-hsk1-g004
+  - zh-hsk1-g003
+  - zh-hsk1-g006
+  phrases:
+  - id: zh-tourist-p031
+    ch: 我对花生过敏。
+    pr: wǒ duì huā shēng guò mǐn
+    ds: I am allergic to peanuts.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00094-s002
+    - zh-hsk6-00379-s001
+    - zh-hsk5-00309-s002
+  - id: zh-tourist-p032
+    ch: 我不吃肉。
+    pr: wǒ bù chī ròu
+    ds: I do not eat meat.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00031-s002
+    - zh-hsk1-00047-s001
+    - zh-hsk1-00314-s001
+  - id: zh-tourist-p033
+    ch: 这个菜有牛奶吗？
+    pr: zhè gè cài yǒu niú nǎi ma
+    ds: Does this dish contain milk?
+    items:
+    - zh-hsk1-00470-s003
+    - zh-hsk1-00122-s001
+    - zh-hsk1-00036-s001
+    - zh-hsk1-00445-s001
+    - zh-hsk1-00279-s001
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p034
+    ch: 请不要放糖。
+    pr: qǐng bù yào fàng táng
+    ds: Please do not add sugar.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk2-00042-s001
+    - zh-hsk1-00105-s001
+    - zh-hsk3-00683-s001
+  - id: zh-tourist-p035
+    ch: 我吃素食。
+    pr: wǒ chī sù shí
+    ds: I eat vegetarian food.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00047-s001
+    - zh-hsk7-9-03917-s001
+- id: transport-details
+  title: Tickets, stops, and travel time
+  outcome: Ask how long a journey takes or when a train leaves, request a ticket, and clarify where to
+    get off or stop. Check the actual destination and service details with staff.
+  vocabulary:
+  - zh-hsk1-00163-s001
+  - zh-hsk1-00096-s004
+  - zh-hsk2-00690-s002
+  - zh-hsk1-00337-s001
+  - zh-hsk3-00862-s005
+  - zh-hsk1-00044-s001
+  - zh-hsk1-00162-s001
+  - zh-hsk1-00078-s005
+  - zh-hsk1-00190-s002
+  - zh-hsk1-00385-s001
+  - zh-hsk1-00396-s001
+  - zh-hsk2-00518-s001
+  - zh-hsk2-00179-s001
+  - zh-hsk2-00065-s001
+  - zh-hsk1-00065-s001
+  grammar:
+  - zh-hsk1-g014
+  - zh-hsk1-g015
+  review_vocabulary:
+  - zh-hsk1-00306-s001
+  - zh-hsk1-00166-s003
+  - zh-hsk1-00231-s001
+  - zh-hsk1-00431-s001
+  - zh-hsk1-00461-s002
+  - zh-hsk1-00255-s001
+  review_grammar:
+  - zh-hsk1-g010
+  - zh-hsk1-g007
+  - zh-hsk1-g019
+  phrases:
+  - id: zh-tourist-p036
+    ch: 去机场要多长时间？
+    pr: qù jī chǎng yào duō cháng shí jiān
+    ds: How long does it take to get to the airport?
+    items:
+    - zh-hsk1-00306-s001
+    - zh-hsk1-00163-s001
+    - zh-hsk1-00427-s002
+    - zh-hsk1-00096-s004
+    - zh-hsk2-00690-s002
+    - zh-hsk1-00337-s001
+  - id: zh-tourist-p037
+    ch: 我想买一张车票。
+    pr: wǒ xiǎng mǎi yī zhāng chē piào
+    ds: I would like to buy a bus or train ticket.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk1-00231-s001
+    - zh-hsk1-00431-s001
+    - zh-hsk3-00862-s005
+    - zh-hsk1-00044-s001
+  - id: zh-tourist-p038
+    ch: 火车几点开？
+    pr: huǒ chē jǐ diǎn kāi
+    ds: What time does the train leave?
+    items:
+    - zh-hsk1-00162-s001
+    - zh-hsk1-00166-s003
+    - zh-hsk1-00078-s005
+    - zh-hsk1-00190-s002
+  - id: zh-tourist-p039
+    ch: 我们在哪儿下车？
+    pr: wǒ men zài nǎr xià chē
+    ds: Where do we get off?
+    items:
+    - zh-hsk1-00385-s001
+    - zh-hsk1-00461-s002
+    - zh-hsk1-00255-s001
+    - zh-hsk1-00396-s001
+  - id: zh-tourist-p040
+    ch: 请在这里停车。
+    pr: qǐng zài zhè lǐ tíng chē
+    ds: Please stop here.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00461-s002
+    - zh-hsk1-00473-s001
+    - zh-hsk2-00518-s001
+- id: sightseeing
+  title: Visit a place and read key signs
+  outcome: Ask about a museum, admission, photos, the entrance, and closing time. Recognize exit, free
+    admission, opening, and prohibition words; verify local rules rather than infer permission.
+  vocabulary:
+  - zh-hsk2-00048-s003
+  - zh-hsk5-00049-s001
+  - zh-hsk1-00244-s001
+  - zh-hsk4-00526-s001
+  - zh-hsk2-00450-s001
+  - zh-hsk1-00127-s003
+  - zh-hsk1-00242-s002
+  - zh-hsk2-00067-s001
+  - zh-hsk2-00186-s001
+  - zh-hsk4-00499-s001
+  - zh-hsk4-00158-s001
+  - zh-hsk3-00398-s003
+  - zh-hsk4-00397-s001
+  - zh-hsk1-00190-s001
+  grammar: []
+  review_vocabulary:
+  - zh-hsk1-00097-s004
+  - zh-hsk1-00298-s003
+  - zh-hsk2-00308-s002
+  - zh-hsk1-00166-s003
+  - zh-hsk1-00078-s005
+  - zh-hsk1-00255-s001
+  review_grammar:
+  - zh-hsk1-g023
+  - zh-hsk1-g006
+  - zh-hsk1-g014
+  phrases:
+  - id: zh-tourist-p041
+    ch: 我想参观博物馆。
+    pr: wǒ xiǎng cān guān bó wù guǎn
+    ds: I would like to visit the museum.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk2-00048-s003
+    - zh-hsk5-00049-s001
+  - id: zh-tourist-p042
+    ch: 门票多少钱？
+    pr: mén piào duō shao qián
+    ds: How much is admission?
+    items:
+    - zh-hsk1-00244-s001
+    - zh-hsk1-00097-s004
+    - zh-hsk1-00298-s003
+  - id: zh-tourist-p043
+    ch: 这里可以拍照吗？
+    pr: zhè lǐ kě yǐ pāi zhào ma
+    ds: May I take photos here?
+    items:
+    - zh-hsk1-00473-s001
+    - zh-hsk2-00308-s002
+    - zh-hsk4-00526-s001
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p044
+    ch: 入口在哪儿？
+    pr: rù kǒu zài nǎr
+    ds: Where is the entrance?
+    items:
+    - zh-hsk2-00450-s001
+    - zh-hsk1-00461-s002
+    - zh-hsk1-00255-s001
+  - id: zh-tourist-p045
+    ch: 几点关门？
+    pr: jǐ diǎn guān mén
+    ds: What time do you close?
+    items:
+    - zh-hsk1-00166-s003
+    - zh-hsk1-00078-s005
+    - zh-hsk1-00127-s003
+    - zh-hsk1-00242-s002
+- id: shopping-choices
+  title: Try, compare, and ask about an exchange
+  outcome: Ask to try an item, request a larger one, and ask about returning or exchanging a purchase.
+    Asking does not imply a right to a return or an agreed shop policy.
+  vocabulary:
+  - zh-hsk1-00339-s002
+  - zh-hsk1-00393-s011
+  - zh-hsk1-00062-s001
+  - zh-hsk1-00071-s003
+  - zh-hsk2-00609-s001
+  - zh-hsk2-00027-s002
+  - zh-hsk1-00405-s001
+  - zh-hsk1-00390-s001
+  - zh-hsk3-00720-s002
+  - zh-hsk1-00441-s001
+  - zh-hsk2-00250-s003
+  - zh-hsk2-00227-s001
+  grammar: []
+  review_vocabulary:
+  - zh-hsk1-00434-s003
+  - zh-hsk1-00129-s001
+  - zh-hsk1-00445-s001
+  - zh-hsk1-00470-s003
+  - zh-hsk1-00122-s001
+  - zh-hsk2-00308-s002
+  review_grammar:
+  - zh-hsk2-g017
+  - zh-hsk1-g011
+  - zh-hsk1-g006
+  phrases:
+  - id: zh-tourist-p046
+    ch: 可以试一下吗？
+    pr: kě yǐ shì yī xià ma
+    ds: May I try it?
+    items:
+    - zh-hsk2-00308-s002
+    - zh-hsk1-00339-s002
+    - zh-hsk1-00431-s001
+    - zh-hsk1-00393-s011
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p047
+    ch: 有大一点儿的吗？
+    pr: yǒu dà yī diǎnr de ma
+    ds: Do you have a slightly larger one?
+    items:
+    - zh-hsk1-00445-s001
+    - zh-hsk1-00062-s001
+    - zh-hsk1-00434-s003
+    - zh-hsk1-00071-s003
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p048
+    ch: 我想退这个。
+    pr: wǒ xiǎng tuì zhè gè
+    ds: I would like to return this.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk3-00720-s002
+    - zh-hsk1-00470-s003
+    - zh-hsk1-00122-s001
+  - id: zh-tourist-p049
+    ch: 可以换吗？
+    pr: kě yǐ huàn ma
+    ds: May I exchange it?
+    items:
+    - zh-hsk2-00308-s002
+    - zh-hsk2-00227-s001
+    - zh-hsk1-00230-s002
+  - id: zh-tourist-p050
+    ch: 我不要这个颜色。
+    pr: wǒ bù yào zhè gè yán sè
+    ds: I do not want this color.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00031-s002
+    - zh-hsk1-00427-s002
+    - zh-hsk1-00470-s003
+    - zh-hsk1-00122-s001
+    - zh-hsk2-00609-s001
+- id: simple-arrangements
+  title: Coordinate a time and a short outing
+  outcome: Propose tomorrow's outing, ask the time, discuss a journey's duration, and ask someone to wait.
+    Recognize a few weather words without treating them as a forecast.
+  vocabulary:
+  - zh-hsk1-00252-s001
+  - zh-hsk1-00400-s001
+  - zh-hsk1-00403-s001
+  - zh-hsk1-00006-s004
+  - zh-hsk1-00055-s002
+  - zh-hsk1-00065-s003
+  - zh-hsk2-00158-s001
+  - zh-hsk1-00409-s001
+  - zh-hsk1-00073-s006
+  - zh-hsk1-00206-s001
+  - zh-hsk1-00364-s001
+  - zh-hsk2-00422-s002
+  grammar:
+  - zh-hsk2-g023
+  review_vocabulary:
+  - zh-hsk1-00385-s001
+  - zh-hsk2-00186-s001
+  - zh-hsk1-00166-s003
+  - zh-hsk1-00078-s005
+  - zh-hsk1-00046-s001
+  - zh-hsk1-00335-s001
+  - zh-hsk1-00393-s011
+  review_grammar:
+  - zh-hsk1-g014
+  - zh-hsk1-g019
+  phrases:
+  - id: zh-tourist-p051
+    ch: 我们明天去公园吧。
+    pr: wǒ men míng tiān qù gōng yuán ba
+    ds: Let us go to the park tomorrow.
+    items:
+    - zh-hsk1-00385-s001
+    - zh-hsk1-00252-s001
+    - zh-hsk1-00306-s001
+    - zh-hsk2-00186-s001
+    - zh-hsk1-00006-s004
+  - id: zh-tourist-p052
+    ch: 现在几点？
+    pr: xiàn zài jǐ diǎn
+    ds: What time is it now?
+    items:
+    - zh-hsk1-00403-s001
+    - zh-hsk1-00166-s003
+    - zh-hsk1-00078-s005
+  - id: zh-tourist-p053
+    ch: 从这里到车站要十分钟。
+    pr: cóng zhè lǐ dào chē zhàn yào shí fēn zhōng
+    ds: It takes ten minutes from here to the train station.
+    items:
+    - zh-hsk1-00055-s002
+    - zh-hsk1-00473-s001
+    - zh-hsk1-00065-s003
+    - zh-hsk1-00046-s001
+    - zh-hsk1-00427-s002
+    - zh-hsk1-00335-s001
+    - zh-hsk2-00158-s001
+  - id: zh-tourist-p054
+    ch: 请等一下。
+    pr: qǐng děng yī xià
+    ds: Please wait a moment.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00073-s006
+    - zh-hsk1-00431-s001
+    - zh-hsk1-00393-s011
+- id: departure
+  title: Leave your accommodation and head onward
+  outcome: Explain that you are leaving today, identify your luggage, request a receipt, and name your
+    onward destination. Recognize boarding, flight, delay, and security-check terms; confirm actual travel
+    requirements with the relevant provider.
+  vocabulary:
+  - zh-hsk3-00782-s001
+  - zh-hsk7-9-03733-s001
+  - zh-hsk7-9-00802-s001
+  - zh-hsk4-00299-s001
+  - zh-hsk7-9-04734-s004
+  - zh-hsk6-00004-s001
+  - zh-hsk2-00329-s001
+  grammar: []
+  review_vocabulary:
+  - zh-hsk1-00183-s001
+  - zh-hsk2-00287-s003
+  - zh-hsk1-00071-s001
+  - zh-hsk1-00163-s001
+  - zh-hsk1-00403-s001
+  - zh-hsk1-00414-s002
+  - zh-hsk1-00460-s001
+  review_grammar:
+  - zh-hsk1-g009
+  - zh-hsk1-g012
+  - zh-hsk1-g014
+  phrases:
+  - id: zh-tourist-p055
+    ch: 我今天离开酒店。
+    pr: wǒ jīn tiān lí kāi jiǔ diàn
+    ds: I am leaving the hotel today.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00183-s001
+    - zh-hsk2-00329-s001
+    - zh-hsk2-00287-s003
+  - id: zh-tourist-p056
+    ch: 我的行李在这里。
+    pr: wǒ de xíng li zài zhè lǐ
+    ds: My luggage is here.
+    items:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00071-s001
+    - zh-hsk3-00782-s001
+    - zh-hsk1-00461-s002
+    - zh-hsk1-00473-s001
+  - id: zh-tourist-p057
+    ch: 请给我收据。
+    pr: qǐng gěi wǒ shōu jù
+    ds: Please give me a receipt.
+    items:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk7-9-03733-s001
+  - id: zh-tourist-p058
+    ch: 我们现在去机场。
+    pr: wǒ men xiàn zài qù jī chǎng
+    ds: We are going to the airport now.
+    items:
+    - zh-hsk1-00385-s001
+    - zh-hsk1-00403-s001
+    - zh-hsk1-00306-s001
+    - zh-hsk1-00163-s001
+  - id: zh-tourist-p059
+    ch: 谢谢，再见。
+    pr: xiè xie, zài jiàn
+    ds: Thank you. Goodbye.
+    items:
+    - zh-hsk1-00414-s002
+    - zh-hsk1-00460-s001

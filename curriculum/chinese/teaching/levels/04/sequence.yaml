@@ -1,0 +1,120 @@
+schema_version: 3
+id: zh-level-04
+title: Getting help and making plans
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 4
+phase: first-exchanges
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+goals: &id001
+- Ask for directions and explain a destination.
+- Request help or permission.
+- Agree on a simple meeting plan.
+checkpoint:
+  task: Resolve a short travel or scheduling problem without an item-specific answer model.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: directions-and-travel
+  title: Directions and getting around
+  outcome: Ask where a destination is, identify its position relative to a landmark, and say where you are going and what you intend to do there.
+  vocabulary:
+  - {id: zh-hsk1-00306-s001, ch: 去, pr: qù, ds: to go}
+  - {id: zh-hsk1-00207-s001, ch: 来, pr: lái, ds: to come}
+  - {id: zh-hsk1-00496-s001, ch: 走, pr: zǒu, ds: to walk}
+  - {id: zh-hsk1-00223-s002, ch: 路, pr: lù, ds: road}
+  - {id: zh-hsk1-00070-s001, ch: 地图, pr: dì tú, ds: map}
+  - {id: zh-hsk1-00503-s003, ch: 左边, pr: zuǒ bian, ds: to the left of}
+  - {id: zh-hsk1-00454-s001, ch: 右边, pr: yòu bian, ds: right side}
+  - {id: zh-hsk1-00296-s003, ch: 前边, pr: qián bian, ds: in front of}
+  - {id: zh-hsk1-00150-s002, ch: 后边, pr: hòu bian, ds: behind}
+  - {id: zh-hsk1-00286-s001, ch: 旁边, pr: páng biān, ds: side; adjacent place}
+  - {id: zh-hsk1-00216-s001, ch: 里边, pr: lǐ bian, ds: inside}
+  - {id: zh-hsk1-00372-s001, ch: 外边, pr: wài bian, ds: outside}
+  - {id: zh-hsk1-00046-s001, ch: 车站, pr: chē zhàn, ds: rail station}
+  - {id: zh-hsk1-00162-s001, ch: 火车, pr: huǒ chē, ds: train}
+  - {id: zh-hsk1-00044-s001, ch: 车票, pr: chē piào, ds: bus or train ticket}
+  - {id: zh-hsk1-00058-s001, ch: 打车, pr: dǎ chē, ds: to take a taxi}
+  grammar:
+  - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}
+  review_vocabulary:
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00461-s002, ch: 在, pr: zài, ds: to be located at}
+  - {id: zh-hsk1-00318-s001, ch: 商店, pr: shāng diàn, ds: store}
+  - {id: zh-hsk1-00370-s001, ch: 图书馆, pr: tú shū guǎn, ds: library}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  review_grammar:
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+- id: help-and-permission
+  title: Asking for help and permission
+  outcome: Ask for help finding an item, request repetition, ask permission to use something, and tell someone not to take an item or open a door.
+  vocabulary:
+  - {id: zh-hsk1-00026-s005, ch: 别, pr: bié, ds: don't ...!}
+  - {id: zh-hsk3-00795-s001, ch: 需要, pr: xū yào, ds: to need}
+  - {id: zh-hsk2-00308-s002, ch: 可以, pr: kě yǐ, ds: may (permission)}
+  - {id: zh-hsk1-00015-s001, ch: 帮忙, pr: bāng máng, ds: to help}
+  - {id: zh-hsk1-00232-s001, ch: 慢, pr: màn, ds: slow}
+  - {id: zh-hsk1-00206-s001, ch: 快, pr: kuài, ds: rapid or quick}
+  - {id: zh-hsk1-00459-s001, ch: 再, pr: zài, ds: again}
+  - {id: zh-hsk1-00073-s006, ch: 等, pr: děng, ds: to wait for}
+  - {id: zh-hsk1-00444-s001, ch: 用, pr: yòng, ds: to use}
+  - {id: zh-hsk1-00253-s005, ch: 拿, pr: ná, ds: to take}
+  - {id: zh-hsk1-00468-s001, ch: 找, pr: zhǎo, ds: to search for}
+  - {id: zh-hsk1-00383-s001, ch: 问, pr: wèn, ds: to ask}
+  - {id: zh-hsk1-00274-s002, ch: 能, pr: néng, ds: can; be able to}
+  - {id: zh-hsk1-00190-s001, ch: 开, pr: kāi, ds: to open}
+  - {id: zh-hsk1-00127-s003, ch: 关, pr: guān, ds: to close or turn off}
+  - {id: zh-hsk1-00242-s002, ch: 门, pr: mén, ds: door or gate}
+  grammar:
+  - {id: zh-hsk1-g025, ch: 别+V, ds: prohibition}
+  review_vocabulary:
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk1-00343-s001, ch: 手机, pr: shǒu jī, ds: cell phone}
+  - {id: zh-hsk1-00095-s001, ch: 对不起, pr: duì bu qǐ, ds: I'm sorry}
+  review_grammar:
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+- id: making-plans-independently
+  title: Making plans and independent exchanges
+  outcome: Exchange phone numbers, agree on a date and time to meet, check availability with an A-not-A question, and complete a short plan without switching languages.
+  vocabulary:
+  - {id: zh-hsk1-00080-s003, ch: 电话, pr: diàn huà, ds: phone number}
+  - {id: zh-hsk1-00097-s006, ch: 多少, pr: duō shao, ds: 'what number? (phone, ID, etc.)'}
+  - {id: zh-hsk1-00059-s001, ch: 打电话, pr: dǎ diàn huà, ds: to make a telephone call}
+  - {id: zh-hsk1-00437-s002, ch: 一起, pr: yī qǐ, ds: together}
+  - {id: zh-hsk1-00175-s001, ch: 见面, pr: jiàn miàn, ds: to meet}
+  - {id: zh-hsk1-00155-s002, ch: 回, pr: huí, ds: to go back}
+  - {id: zh-hsk1-00480-s001, ch: 知道, pr: zhī dào, ds: to know}
+  - {id: zh-hsk1-00310-s001, ch: 认识, pr: rèn shi, ds: to know}
+  - {id: zh-hsk1-00492-s002, ch: 准备, pr: zhǔn bèi, ds: to prepare}
+  - {id: zh-hsk1-00233-s001, ch: 忙, pr: máng, ds: busy}
+  - {id: zh-hsk1-00421-s002, ch: 休息, pr: xiū xi, ds: to rest}
+  - {id: zh-hsk1-00334-s001, ch: 生日, pr: shēng rì, ds: birthday}
+  - {id: zh-hsk1-00277-s002, ch: 年, pr: nián, ds: year}
+  - {id: zh-hsk1-00458-s002, ch: 月, pr: yuè, ds: month}
+  - {id: zh-hsk1-00145-s004, ch: 号, pr: hào, ds: day of a month}
+  - {id: zh-hsk1-00419-s001, ch: 星期天, pr: Xīng qī tiān, ds: Sunday}
+  grammar:
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+  review_vocabulary:
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00252-s001, ch: 明天, pr: míng tiān, ds: tomorrow}
+  - {id: zh-hsk1-00078-s005, ch: 点, pr: diǎn, ds: o'clock}
+  - {id: zh-hsk1-00306-s001, ch: 去, pr: qù, ds: to go}
+  - {id: zh-hsk2-00308-s002, ch: 可以, pr: kě yǐ, ds: may (permission)}
+  - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
+  review_grammar:
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}

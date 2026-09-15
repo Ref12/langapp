@@ -1,0 +1,737 @@
+schema_version: 3
+id: zh-level-25
+title: Stance and implication
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 25
+phase: nuance-interpretation
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+- zh-level-06
+- zh-level-07
+- zh-level-08
+- zh-level-09
+- zh-level-10
+- zh-level-11
+- zh-level-12
+- zh-level-13
+- zh-level-14
+- zh-level-15
+- zh-level-16
+- zh-level-17
+- zh-level-18
+- zh-level-19
+- zh-level-20
+- zh-level-21
+- zh-level-22
+- zh-level-23
+- zh-level-24
+goals: &id001
+- Distinguish literal content from implied stance.
+- Express different degrees of commitment.
+- Explain how context changes an interpretation.
+checkpoint:
+  task: Compare plausible interpretations of an indirect message and justify the most suitable reading.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: level-25-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk7-9-00211-s001, ch: 表态, pr: biǎo tài, ds: to declare one's position}
+  - {id: zh-hsk7-9-00594-s001, ch: 吹捧, pr: chuī pěng, ds: to flatter}
+  - {id: zh-hsk7-9-00746-s001, ch: 当面, pr: dāng miàn, ds: to sb's face}
+  - {id: zh-hsk7-9-01021-s001, ch: 发誓, pr: fā shì, ds: to vow}
+  - {id: zh-hsk7-9-02555-s002, ch: 理会, pr: lǐ huì, ds: to pay attention to}
+  - {id: zh-hsk7-9-02665-s001, ch: 流露, pr: liú lù, ds: 'to reveal (indirectly, implicitly)'}
+  - {id: zh-hsk7-9-04940-s001, ch: 意图, pr: yì tú, ds: intent}
+  - {id: zh-hsk7-9-03718-s001, ch: 试探, pr: shì tàn, ds: to sound out}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk6-00439-s001, ch: 解说, pr: jiě shuō, ds: to explain (verbally); to give a running commentary}
+  - {id: zh-hsk6-00787-s001, ch: 听取, pr: tīng qǔ, ds: to hear (news); to listen to}
+  - {id: zh-hsk7-9-00178-s001, ch: 编写, pr: biān xiě, ds: to compile}
+  - {id: zh-hsk7-9-00384-s002, ch: 阐述, pr: chǎn shù, ds: to elaborate (on a topic)}
+  - {id: zh-hsk7-9-00945-s003, ch: 段落, pr: duàn luò, ds: paragraph}
+  - {id: zh-hsk7-9-01986-s001, ch: 简化, pr: jiǎn huà, ds: to simplify}
+  - {id: zh-hsk7-9-01987-s001, ch: 简洁, pr: jiǎn jié, ds: concise}
+  - {id: zh-hsk7-9-04748-s001, ch: 研讨, pr: yán tǎo, ds: discussion}
+  review_grammar:
+  - {id: zh-hsk4-g022, ch: 关于+Topic, ds: introduce the subject of a discussion or text}
+  - {id: zh-hsk5-g025, ch: 总的来说+P, ds: summarize while leaving room for local exceptions}
+  - {id: zh-hsk7-9-g034, ch: P+换言之+Paraphrase, ds: restate a claim without changing its force}
+- id: level-25-time-01
+  title: Time and events - 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary:
+  - {id: zh-hsk5-00925-s001, ch: 原先, pr: yuán xiān, ds: originally}
+  - {id: zh-hsk5-00941-s001, ch: 再也, pr: zài yě, ds: (not) any more}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00441-s001, ch: 连续, pr: lián xù, ds: continuous}
+  - {id: zh-hsk4-00941-s002, ch: 逐步, pr: zhú bù, ds: step by step}
+  - {id: zh-hsk7-9-02033-s002, ch: 交替, pr: jiāo tì, ds: alternately; in turn}
+  - {id: zh-hsk5-00777-s002, ch: 为期, pr: wéi qī, ds: lasting (a certain time)}
+  - {id: zh-hsk6-00437-s002, ch: 截至, pr: jié zhì, ds: by (a time)}
+  - {id: zh-hsk6-00796-s001, ch: 同期, pr: tóng qī, ds: the corresponding time period (in a different year etc)}
+  - {id: zh-hsk6-01069-s002, ch: 中期, pr: zhōng qī, ds: 'medium-term (plan, forecast etc)'}
+  - {id: zh-hsk7-9-05357-s001, ch: 至此, pr: zhì cǐ, ds: up until now}
+  review_grammar:
+  - {id: zh-hsk5-g007, ch: 趁+Opportunity+VP, ds: act while a favorable opportunity lasts}
+  - {id: zh-hsk5-g008, ch: 自从+StartingPoint+以来+P, ds: continuing situation since a past starting point}
+  - {id: zh-hsk5-g009, ch: 直到+Endpoint+才+VP, ds: an event occurs only upon reaching an endpoint}
+- id: level-25-actions-01
+  title: Actions and processes - 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk7-9-01935-s002, ch: 假装, pr: jiǎ zhuāng, ds: to pretend}
+  - {id: zh-hsk6-00131-s002, ch: 出面, pr: chū miàn, ds: to step in}
+  - {id: zh-hsk6-00955-s002, ch: 隐藏, pr: yǐn cáng, ds: to conceal}
+  - {id: zh-hsk7-9-04753-s004, ch: 掩饰, pr: yǎn shì, ds: to gloss over}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-01003-s003, ch: 指示, pr: zhǐ shì, ds: to instruct}
+  - {id: zh-hsk5-01036-s003, ch: 转换, pr: zhuǎn huàn, ds: to convert}
+  - {id: zh-hsk6-00242-s002, ch: 发起, pr: fā qǐ, ds: to initiate}
+  - {id: zh-hsk7-9-00854-s001, ch: 奠定, pr: diàn dìng, ds: to establish}
+  - {id: zh-hsk7-9-01390-s001, ch: 构想, pr: gòu xiǎng, ds: to conceive}
+  - {id: zh-hsk7-9-01789-s002, ch: 汇集, pr: huì jí, ds: to compile}
+  - {id: zh-hsk7-9-03508-s001, ch: 筛选, pr: shāi xuǎn, ds: to filter}
+  - {id: zh-hsk7-9-03986-s003, ch: 探求, pr: tàn qiú, ds: to investigate}
+  review_grammar:
+  - {id: zh-hsk6-g006, ch: (尽可能|尽量)+VP, ds: aim for as much as constraints permit}
+  - {id: zh-hsk5-g017, ch: 为了+Purpose+而+VP, ds: name an intended purpose rather than a proven result}
+  - {id: zh-hsk7-9-g030, ch: Step1+进而+Step2, ds: advance to a further logical or procedural step}
+- id: level-25-description-01
+  title: Description and comparison - 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk6-00605-s008, ch: 偏, pr: piān, ds: contrary to expectations}
+  - {id: zh-hsk6-00624-s001, ch: 气氛, pr: qì fēn, ds: atmosphere; mood}
+  - {id: zh-hsk6-00626-s001, ch: 恰好, pr: qià hǎo, ds: as it turns out}
+  - {id: zh-hsk7-9-00265-s003, ch: 不经意, pr: bù jīng yì, ds: by accident}
+  - {id: zh-hsk7-9-02338-s002, ch: 看得出, pr: kàn de chū, ds: can tell}
+  - {id: zh-hsk7-9-03257-s003, ch: 强硬, pr: qiáng yìng, ds: hard-line}
+  - {id: zh-hsk7-9-04254-s001, ch: 微妙, pr: wēi miào, ds: subtle}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00832-s003, ch: 斜, pr: xié, ds: oblique}
+  - {id: zh-hsk6-00099-s003, ch: 常规, pr: cháng guī, ds: common practice}
+  - {id: zh-hsk7-9-00689-s002, ch: 大幅度, pr: dà fú dù, ds: substantial}
+  - {id: zh-hsk7-9-00696-s002, ch: 大面积, pr: dà miàn jī, ds: (fig.) (of a problem) (occurring) on a massive scale}
+  - {id: zh-hsk7-9-04500-s001, ch: 详尽, pr: xiáng jìn, ds: thorough and detailed}
+  - {id: zh-hsk7-9-04597-s004, ch: 信誉, pr: xìn yù, ds: trust}
+  - {id: zh-hsk7-9-04737-s001, ch: 严峻, pr: yán jùn, ds: grim}
+  - {id: zh-hsk7-9-05421-s003, ch: 周密, pr: zhōu mì, ds: meticulous}
+  review_grammar:
+  - {id: zh-hsk3-g025, ch: (什么|哪儿)+都+P, ds: a question word takes universal rather than question force}
+  - {id: zh-hsk5-g024, ch: P+甚至+Q, ds: add a stronger or less expected point on a scale}
+  - {id: zh-hsk7-9-g006, ch: A+P+相比之下+B+Q, ds: contrast cases against a stated comparison baseline}
+- id: level-25-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain an attitude or emotional response with appropriate context.
+  vocabulary:
+  - {id: zh-hsk5-00334-s001, ch: 慌, pr: huāng, ds: to get panicky}
+  - {id: zh-hsk5-00723-s001, ch: 随意, pr: suí yì, ds: as one wishes}
+  - {id: zh-hsk5-00782-s002, ch: 温和, pr: wēn hé, ds: gentle}
+  - {id: zh-hsk7-9-00077-s003, ch: 半信半疑, pr: bàn xìn bàn yí, ds: skeptical}
+  - {id: zh-hsk7-9-00078-s001, ch: 半真半假, pr: bàn zhēn bàn jiǎ, ds: (idiom) half true and half false}
+  - {id: zh-hsk7-9-00207-s003, ch: 表白, pr: biǎo bái, ds: to reveal one's thoughts or feelings}
+  - {id: zh-hsk7-9-00287-s001, ch: 不屑, pr: bù xiè, ds: to disdain to do sth}
+  - {id: zh-hsk7-9-00560-s003, ch: 触动, pr: chù dòng, ds: to move (sb's emotions or worry)}
+  - {id: zh-hsk7-9-01581-s002, ch: 好感, pr: hǎo gǎn, ds: favorable impression}
+  - {id: zh-hsk7-9-02046-s001, ch: 焦虑, pr: jiāo lǜ, ds: anxious}
+  - {id: zh-hsk7-9-02255-s002, ch: 沮丧, pr: jǔ sàng, ds: dejected}
+  - {id: zh-hsk7-9-02349-s001, ch: 抗拒, pr: kàng jù, ds: to resist}
+  - {id: zh-hsk7-9-02540-s003, ch: 冷落, pr: lěng luò, ds: to treat sb coldly}
+  - {id: zh-hsk7-9-02844-s001, ch: 免不了, pr: miǎn bù liǎo, ds: unavoidable}
+  - {id: zh-hsk7-9-02929-s001, ch: 纳闷儿, pr: nà mèn r, ds: puzzled}
+  - {id: zh-hsk7-9-03331-s001, ch: 庆幸, pr: qìng xìng, ds: to rejoice; to be glad}
+  - {id: zh-hsk7-9-03424-s001, ch: 忍心, pr: rěn xīn, ds: to have the heart to do sth}
+  - {id: zh-hsk7-9-03620-s004, ch: 生怕, pr: shēng pà, ds: for fear that}
+  - {id: zh-hsk7-9-03890-s005, ch: 死心, pr: sǐ xīn, ds: to have no more illusions about}
+  - {id: zh-hsk7-9-03971-s001, ch: 谈不上, pr: tán bu shàng, ds: to be out of the question}
+  - {id: zh-hsk7-9-04009-s003, ch: 讨好, pr: tǎo hǎo, ds: to curry favor with}
+  - {id: zh-hsk7-9-04268-s001, ch: 委屈, pr: wěi qu, ds: to feel wronged}
+  - {id: zh-hsk7-9-04356-s001, ch: 无缘, pr: wú yuán, ds: to have no opportunity}
+  - {id: zh-hsk7-9-04571-s002, ch: 心事, pr: xīn shì, ds: worry}
+  - {id: zh-hsk7-9-04721-s001, ch: 压抑, pr: yā yì, ds: to constrain or repress emotions}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00423-s004, ch: 绝望, pr: jué wàng, ds: desperation}
+  - {id: zh-hsk5-00837-s003, ch: 信念, pr: xìn niàn, ds: conviction}
+  - {id: zh-hsk7-9-00938-s001, ch: 妒忌, pr: dù jì, ds: to be jealous of (sb's achievements etc)}
+  - {id: zh-hsk7-9-01048-s004, ch: 反感, pr: fǎn gǎn, ds: antipathy}
+  - {id: zh-hsk7-9-02536-s002, ch: 冷淡, pr: lěng dàn, ds: indifferent}
+  - {id: zh-hsk7-9-04943-s002, ch: 毅力, pr: yì lì, ds: willpower}
+  - {id: zh-hsk7-9-05089-s001, ch: 欲望, pr: yù wàng, ds: desire; longing; appetite; craving}
+  - {id: zh-hsk7-9-00261-s001, ch: 不服气, pr: bù fú qì, ds: unwilling to concede}
+  review_grammar:
+  - {id: zh-hsk4-g020, ch: (好像|似乎)+P, ds: hedge an impression rather than confirm a fact}
+  - {id: zh-hsk4-g021, ch: 以为+P, ds: hold a belief; often one later shown mistaken}
+  - {id: zh-hsk6-g007, ch: 不免+Reaction|难免+Event, ds: understandable reaction versus hard-to-avoid event}
+- id: level-25-feelings-02
+  title: Feelings and attitudes - 2
+  outcome: Explain an attitude or emotional response with appropriate context.
+  vocabulary:
+  - {id: zh-hsk7-9-04797-s003, ch: 摇摆, pr: yáo bǎi, ds: to waver}
+  - {id: zh-hsk3-00545-s001, ch: 强烈, pr: qiáng liè, ds: strong; intense}
+  - {id: zh-hsk4-00383-s005, ch: 教训, pr: jiào xun, ds: a bitter lesson}
+  - {id: zh-hsk5-00114-s003, ch: 冲动, pr: chōng dòng, ds: impulse}
+  - {id: zh-hsk5-00322-s001, ch: 恨, pr: hèn, ds: to hate}
+  - {id: zh-hsk5-00436-s001, ch: 可怜, pr: kě lián, ds: pitiful}
+  - {id: zh-hsk5-00452-s001, ch: 困扰, pr: kùn rǎo, ds: to perplex}
+  - {id: zh-hsk5-00620-s002, ch: 忍受, pr: rěn shòu, ds: to endure}
+  - {id: zh-hsk5-00827-s002, ch: 消极, pr: xiāo jí, ds: passive}
+  - {id: zh-hsk6-00381-s002, ch: 幻想, pr: huàn xiǎng, ds: fantasy}
+  - {id: zh-hsk7-9-00017-s001, ch: 安抚, pr: ān fǔ, ds: to placate}
+  - {id: zh-hsk7-9-00035-s001, ch: 傲慢, pr: ào màn, ds: arrogant}
+  - {id: zh-hsk7-9-01415-s002, ch: 固执, pr: gù zhí, ds: stubborn}
+  - {id: zh-hsk7-9-02377-s004, ch: 克制, pr: kè zhì, ds: self-control}
+  - {id: zh-hsk7-9-03568-s002, ch: 奢望, pr: shē wàng, ds: to have excessive expectations}
+  - {id: zh-hsk7-9-04064-s001, ch: 挑剔, pr: tiāo ti, ds: picky}
+  - {id: zh-hsk7-9-04413-s003, ch: 狭隘, pr: xiá ài, ds: narrow minded}
+  - {id: zh-hsk3-00007-s004, ch: 把握, pr: bǎ wò, ds: assurance}
+  - {id: zh-hsk4-00052-s001, ch: 不在乎, pr: bù zài hu, ds: not to care}
+  - {id: zh-hsk4-00119-s001, ch: 刺激, pr: cì jī, ds: to provoke; to irritate; to upset; to stimulate; to excite}
+  - {id: zh-hsk4-00186-s002, ch: 动摇, pr: dòng yáo, ds: to waver}
+  - {id: zh-hsk4-00277-s008, ch: 怪, pr: guài, ds: to blame}
+  - {id: zh-hsk5-00018-s001, ch: 抱怨, pr: bào yuàn, ds: to complain}
+  - {id: zh-hsk5-00059-s001, ch: 不耐烦, pr: bù nài fán, ds: impatient}
+  - {id: zh-hsk4-00961-s001, ch: 自信, pr: zì xìn, ds: to have confidence in oneself}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-03620-s004, ch: 生怕, pr: shēng pà, ds: for fear that}
+  - {id: zh-hsk7-9-03890-s005, ch: 死心, pr: sǐ xīn, ds: to have no more illusions about}
+  - {id: zh-hsk7-9-03971-s001, ch: 谈不上, pr: tán bu shàng, ds: to be out of the question}
+  - {id: zh-hsk7-9-04009-s003, ch: 讨好, pr: tǎo hǎo, ds: to curry favor with}
+  - {id: zh-hsk7-9-04268-s001, ch: 委屈, pr: wěi qu, ds: to feel wronged}
+  - {id: zh-hsk7-9-04356-s001, ch: 无缘, pr: wú yuán, ds: to have no opportunity}
+  - {id: zh-hsk7-9-04571-s002, ch: 心事, pr: xīn shì, ds: worry}
+  - {id: zh-hsk7-9-04721-s001, ch: 压抑, pr: yā yì, ds: to constrain or repress emotions}
+  review_grammar:
+  - {id: zh-hsk4-g020, ch: (好像|似乎)+P, ds: hedge an impression rather than confirm a fact}
+  - {id: zh-hsk4-g021, ch: 以为+P, ds: hold a belief; often one later shown mistaken}
+  - {id: zh-hsk6-g007, ch: 不免+Reaction|难免+Event, ds: understandable reaction versus hard-to-avoid event}
+- id: level-25-feelings-03
+  title: Feelings and attitudes - 3
+  outcome: Explain an attitude or emotional response with appropriate context.
+  vocabulary:
+  - {id: zh-hsk5-00256-s002, ch: 感想, pr: gǎn xiǎng, ds: reflections}
+  - {id: zh-hsk5-00503-s001, ch: 敏感, pr: mǐn gǎn, ds: sensitive}
+  - {id: zh-hsk5-00564-s003, ch: 期望, pr: qī wàng, ds: expectation}
+  - {id: zh-hsk5-00618-s004, ch: 忍, pr: rěn, ds: to restrain oneself}
+  - {id: zh-hsk5-00776-s002, ch: 为难, pr: wéi nán, ds: to make things difficult (for someone)}
+  - {id: zh-hsk6-00025-s002, ch: 悲惨, pr: bēi cǎn, ds: tragic}
+  - {id: zh-hsk6-00943-s001, ch: 遗憾, pr: yí hàn, ds: regret}
+  - {id: zh-hsk7-9-00012-s001, ch: 爱理不理, pr: ài lǐ bù lǐ, ds: (idiom) standoffish; indifferent}
+  - {id: zh-hsk7-9-00477-s001, ch: 迟疑, pr: chí yí, ds: to hesitate}
+  - {id: zh-hsk7-9-00515-s002, ch: 丑恶, pr: chǒu è, ds: repulsive}
+  - {id: zh-hsk7-9-00852-s003, ch: 惦记, pr: diàn jì, ds: to be concerned about}
+  - {id: zh-hsk7-9-01009-s001, ch: 发愁, pr: fā chóu, ds: to worry}
+  - {id: zh-hsk7-9-01017-s001, ch: 发愣, pr: fā lèng, ds: to stare blankly; to be in a daze}
+  - {id: zh-hsk7-9-01022-s001, ch: 发泄, pr: fā xiè, ds: to give vent to (one's feelings)}
+  - {id: zh-hsk7-9-01153-s005, ch: 风趣, pr: fēng qù, ds: witty}
+  - {id: zh-hsk7-9-01242-s001, ch: 尴尬, pr: gān gà, ds: awkward}
+  - {id: zh-hsk7-9-01249-s001, ch: 感激, pr: gǎn jī, ds: to be grateful}
+  - {id: zh-hsk7-9-01513-s002, ch: 果断, pr: guǒ duàn, ds: decisive}
+  - {id: zh-hsk7-9-01785-s001, ch: 悔恨, pr: huǐ hèn, ds: remorse}
+  - {id: zh-hsk7-9-01887-s001, ch: 嫉妒, pr: jí dù, ds: to be jealous of; to envy}
+  - {id: zh-hsk7-9-02208-s001, ch: 竟敢, pr: jìng gǎn, ds: to have the impertinence}
+  - {id: zh-hsk7-9-02345-s001, ch: 看重, pr: kàn zhòng, ds: to regard as important; to value}
+  - {id: zh-hsk7-9-02542-s003, ch: 冷漠, pr: lěng mò, ds: indifference}
+  - {id: zh-hsk7-9-02695-s001, ch: 鲁莽, pr: lǔ mǎng, ds: hot-headed; impulsive; reckless}
+  - {id: zh-hsk7-9-02848-s003, ch: 勉强, pr: miǎn qiǎng, ds: reluctant}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00007-s004, ch: 把握, pr: bǎ wò, ds: assurance}
+  - {id: zh-hsk4-00052-s001, ch: 不在乎, pr: bù zài hu, ds: not to care}
+  - {id: zh-hsk4-00119-s001, ch: 刺激, pr: cì jī, ds: to provoke; to irritate; to upset; to stimulate; to excite}
+  - {id: zh-hsk4-00186-s002, ch: 动摇, pr: dòng yáo, ds: to waver}
+  - {id: zh-hsk4-00277-s008, ch: 怪, pr: guài, ds: to blame}
+  - {id: zh-hsk5-00018-s001, ch: 抱怨, pr: bào yuàn, ds: to complain}
+  - {id: zh-hsk5-00059-s001, ch: 不耐烦, pr: bù nài fán, ds: impatient}
+  - {id: zh-hsk4-00961-s001, ch: 自信, pr: zì xìn, ds: to have confidence in oneself}
+  review_grammar:
+  - {id: zh-hsk4-g020, ch: (好像|似乎)+P, ds: hedge an impression rather than confirm a fact}
+  - {id: zh-hsk4-g021, ch: 以为+P, ds: hold a belief; often one later shown mistaken}
+  - {id: zh-hsk6-g007, ch: 不免+Reaction|难免+Event, ds: understandable reaction versus hard-to-avoid event}
+- id: level-25-feelings-04
+  title: Feelings and attitudes - 4
+  outcome: Explain an attitude or emotional response with appropriate context.
+  vocabulary:
+  - {id: zh-hsk7-9-02902-s001, ch: 默契, pr: mò qì, ds: tacit understanding}
+  - {id: zh-hsk7-9-02984-s001, ch: 念头, pr: niàn tou, ds: thought; idea; intention}
+  - {id: zh-hsk7-9-03453-s003, ch: 融洽, pr: róng qià, ds: on good terms with one another}
+  - {id: zh-hsk7-9-04451-s001, ch: 嫌弃, pr: xián qì, ds: to regard with disdain}
+  - {id: zh-hsk7-9-04470-s002, ch: 羡慕, pr: xiàn mù, ds: to admire}
+  - {id: zh-hsk3-00496-s001, ch: 内心, pr: nèi xīn, ds: heart; innermost being}
+  - {id: zh-hsk4-00900-s003, ch: 赞赏, pr: zàn shǎng, ds: to appreciate}
+  - {id: zh-hsk5-00020-s001, ch: 悲伤, pr: bēi shāng, ds: sad; sorrowful}
+  - {id: zh-hsk5-00063-s005, ch: 不幸, pr: bù xìng, ds: unfortunately}
+  - {id: zh-hsk5-00647-s002, ch: 舍不得, pr: shě bu de, ds: to hate to part with}
+  - {id: zh-hsk6-00424-s001, ch: 骄傲, pr: jiāo ào, ds: pride}
+  - {id: zh-hsk6-00424-s002, ch: 骄傲, pr: jiāo ào, ds: arrogance}
+  - {id: zh-hsk6-00450-s001, ch: 惊喜, pr: jīng xǐ, ds: nice surprise}
+  - {id: zh-hsk7-9-00021-s001, ch: 安心, pr: ān xīn, ds: at ease}
+  - {id: zh-hsk7-9-00126-s001, ch: 悲观, pr: bēi guān, ds: pessimistic}
+  - {id: zh-hsk7-9-00551-s001, ch: 初衷, pr: chū zhōng, ds: original intention}
+  - {id: zh-hsk7-9-01399-s001, ch: 辜负, pr: gū fù, ds: to fail to live up (to expectations)}
+  - {id: zh-hsk7-9-01690-s002, ch: 胡思乱想, pr: hú sī luàn xiǎng, ds: to let one's imagination run wild}
+  - {id: zh-hsk7-9-02774-s003, ch: 茫然, pr: máng rán, ds: at a loss}
+  - {id: zh-hsk7-9-03521-s001, ch: 善意, pr: shàn yì, ds: goodwill}
+  - {id: zh-hsk7-9-03652-s003, ch: 失落, pr: shī luò, ds: to feel a sense of loss}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-01513-s002, ch: 果断, pr: guǒ duàn, ds: decisive}
+  - {id: zh-hsk7-9-01785-s001, ch: 悔恨, pr: huǐ hèn, ds: remorse}
+  - {id: zh-hsk7-9-01887-s001, ch: 嫉妒, pr: jí dù, ds: to be jealous of; to envy}
+  - {id: zh-hsk7-9-02208-s001, ch: 竟敢, pr: jìng gǎn, ds: to have the impertinence}
+  - {id: zh-hsk7-9-02345-s001, ch: 看重, pr: kàn zhòng, ds: to regard as important; to value}
+  - {id: zh-hsk7-9-02542-s003, ch: 冷漠, pr: lěng mò, ds: indifference}
+  - {id: zh-hsk7-9-02695-s001, ch: 鲁莽, pr: lǔ mǎng, ds: hot-headed; impulsive; reckless}
+  - {id: zh-hsk7-9-02848-s003, ch: 勉强, pr: miǎn qiǎng, ds: reluctant}
+  review_grammar:
+  - {id: zh-hsk4-g020, ch: (好像|似乎)+P, ds: hedge an impression rather than confirm a fact}
+  - {id: zh-hsk4-g021, ch: 以为+P, ds: hold a belief; often one later shown mistaken}
+  - {id: zh-hsk6-g007, ch: 不免+Reaction|难免+Event, ds: understandable reaction versus hard-to-avoid event}
+- id: level-25-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk5-00790-s001, ch: 无疑, pr: wú yí, ds: undoubtedly; without doubt; for sure}
+  - {id: zh-hsk7-9-01047-s001, ch: 反倒, pr: fǎn dào, ds: but on the contrary}
+  - {id: zh-hsk7-9-01582-s003, ch: 好坏, pr: hǎo huài, ds: standard; quality}
+  - {id: zh-hsk7-9-00567-s003, ch: 揣摩, pr: chuǎi mó, ds: to try to fathom}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-03241-s002, ch: 潜能, pr: qián néng, ds: hidden capability}
+  - {id: zh-hsk7-9-03599-s001, ch: 深远, pr: shēn yuǎn, ds: far-reaching}
+  - {id: zh-hsk7-9-03782-s002, ch: 梳理, pr: shū lǐ, ds: fig. to sort out}
+  - {id: zh-hsk7-9-04894-s003, ch: 依托, pr: yī tuō, ds: support}
+  - {id: zh-hsk7-9-04957-s003, ch: 引入, pr: yǐn rù, ds: to introduce}
+  - {id: zh-hsk7-9-05355-s001, ch: 指向, pr: zhǐ xiàng, ds: to point towards}
+  - {id: zh-hsk7-9-05416-s002, ch: 重心, pr: zhòng xīn, ds: central core}
+  - {id: zh-hsk7-9-05555-s001, ch: 总而言之, pr: zǒng ér yán zhī, ds: in short}
+  review_grammar:
+  - {id: zh-hsk6-g018, ch: 从+Evidence+来看+Conclusion, ds: bound an inference by its stated evidence}
+  - {id: zh-hsk7-9-g002, ch: 基于+Basis+P, ds: name the evidence or concepts underlying a judgment}
+  - {id: zh-hsk7-9-g020, ch: Evidence+尚不足以+VP, ds: current evidence is still insufficient for a conclusion}
+- id: level-25-grammar-01
+  title: Sentence construction - 1
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk1-00001-s003, ch: 爱, pr: ài, ds: to be inclined or tend to}
+  - {id: zh-hsk2-00142-s001, ch: 多么, pr: duō me, ds: how (wonderful etc)}
+  - {id: zh-hsk3-00842-s001, ch: 有的是, pr: yǒu de shì, ds: have plenty of}
+  - {id: zh-hsk4-00400-s001, ch: 竟然, pr: jìng rán, ds: unexpectedly}
+  - {id: zh-hsk5-00066-s003, ch: 不止, pr: bù zhǐ, ds: more than}
+  - {id: zh-hsk5-00505-s001, ch: 明明, pr: míng míng, ds: obviously}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk6-00249-s001, ch: 凡是, pr: fán shì, ds: each and every}
+  - {id: zh-hsk3-00060-s002, ch: 不论, pr: bù lùn, ds: 'no matter what (who, how etc)'}
+  - {id: zh-hsk4-00778-s007, ch: 项, pr: xiàng, ds: 'classifier for items, tasks, and projects'}
+  - {id: zh-hsk5-00566-s007, ch: 其, pr: qí, ds: it (refers to sth preceding it)}
+  - {id: zh-hsk7-9-04912-s004, ch: 以, pr: yǐ, ds: in order to}
+  - {id: zh-hsk7-9-05068-s001, ch: 与否, pr: yǔ fǒu, ds: whether or not (at the end of a phrase)}
+  - {id: zh-hsk3-00867-s001, ch: 者, pr: zhě, ds: (after a verb or adjective) one who (is) ...}
+  - {id: zh-hsk4-00927-s001, ch: 之一, pr: zhī yī, ds: one of (sth)}
+  review_grammar: []
+- id: level-25-argument-01
+  title: Argument and decisions - 1
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary:
+  - {id: zh-hsk7-9-00741-s002, ch: 淡化, pr: dàn huà, ds: to play down}
+  - {id: zh-hsk7-9-02124-s002, ch: 借口, pr: jiè kǒu, ds: excuse; pretext}
+  - {id: zh-hsk7-9-02379-s001, ch: 刻意, pr: kè yì, ds: intentionally; deliberately; purposely}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-04376-s001, ch: 务实, pr: wù shí, ds: pragmatic}
+  - {id: zh-hsk7-9-04481-s001, ch: 相当于, pr: xiāng dāng yú, ds: equivalent to}
+  - {id: zh-hsk7-9-04484-s001, ch: 相辅相成, pr: xiāng fǔ xiāng chéng, ds: to complement one another (idiom)}
+  - {id: zh-hsk5-00808-s001, ch: 现状, pr: xiàn zhuàng, ds: current situation}
+  - {id: zh-hsk7-9-05182-s001, ch: 则, pr: zé, ds: (literary conjunction) but; then}
+  - {id: zh-hsk2-00178-s006, ch: 更, pr: gèng, ds: even more}
+  - {id: zh-hsk5-00581-s003, ch: 前提, pr: qián tí, ds: prerequisite}
+  - {id: zh-hsk7-9-05552-s001, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to summarize}
+  review_grammar:
+  - {id: zh-hsk7-9-g005, ch: A+以+B+为前提, ds: predicate a prerequisite rather than assert it is met}
+  - {id: zh-hsk7-9-g015, ch: 不仅在于+A+更在于+B, ds: locate a deeper or stronger basis beyond the first}
+  - {id: zh-hsk7-9-g033, ch: 综上所述+Conclusion, ds: synthesize the reasoning already presented}
+- id: level-25-register-01
+  title: Register and nuance - 1
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk1-00013-s002, ch: 半天, pr: bàn tiān, ds: a long time}
+  - {id: zh-hsk1-00129-s004, ch: 贵, pr: guì, ds: (honorific) your}
+  - {id: zh-hsk1-00256-s006, ch: 哪里, pr: nǎ lǐ, ds: modest denial of a compliment}
+  - {id: zh-hsk2-00163-s005, ch: 该, pr: gāi, ds: to deserve}
+  - {id: zh-hsk2-00488-s001, ch: 算, pr: suàn, ds: to regard as}
+  - {id: zh-hsk3-00030-s002, ch: 本来, pr: běn lái, ds: originally}
+  - {id: zh-hsk3-00303-s007, ch: 火, pr: huǒ, ds: hot (popular)}
+  - {id: zh-hsk3-00503-s006, ch: 念, pr: niàn, ds: to miss (sb)}
+  - {id: zh-hsk4-00010-s001, ch: 暗示, pr: àn shì, ds: to hint; to suggest}
+  - {id: zh-hsk3-00886-s006, ch: 直, pr: zhí, ds: frank}
+  - {id: zh-hsk5-00030-s004, ch: 必, pr: bì, ds: necessarily}
+  - {id: zh-hsk5-00053-s003, ch: 不得了, pr: bù dé liǎo, ds: extremely}
+  - {id: zh-hsk5-00185-s001, ch: 倒是, pr: dào shi, ds: contrary to what one might expect}
+  - {id: zh-hsk5-00519-s003, ch: 难得, pr: nán dé, ds: hard to come by}
+  - {id: zh-hsk5-00589-s002, ch: 悄悄, pr: qiāo qiāo, ds: surreptitious; stealthy}
+  - {id: zh-hsk6-00037-s001, ch: 必将, pr: bì jiāng, ds: inevitably}
+  - {id: zh-hsk6-00071-s001, ch: 不值, pr: bù zhí, ds: not worth}
+  - {id: zh-hsk6-00307-s001, ch: 更是, pr: gèng shì, ds: even more (so)}
+  - {id: zh-hsk6-00357-s001, ch: 好不容易, pr: hǎo bù róng yì, ds: with great difficulty}
+  - {id: zh-hsk6-00473-s006, ch: 绝, pr: jué, ds: by no means}
+  - {id: zh-hsk6-00550-s002, ch: 嘛, pr: ma, ds: modal particle indicating that sth is obvious}
+  - {id: zh-hsk6-00773-s001, ch: 特地, pr: tè dì, ds: specially}
+  - {id: zh-hsk6-00966-s002, ch: 用得着, pr: yòng de zháo, ds: (in a question) to be necessary to}
+  - {id: zh-hsk6-01004-s003, ch: 再说, pr: zài shuō, ds: moreover}
+  - {id: zh-hsk6-01035-s005, ch: 照样, pr: zhào yàng, ds: nevertheless}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00071-s004, ch: 的, pr: de, ds: sentence-final emphasis particle}
+  - {id: zh-hsk5-00085-s001, ch: 差点儿, pr: chà diǎn r, ds: almost}
+  - {id: zh-hsk2-00520-s008, ch: 挺, pr: tǐng, ds: (coll.) quite}
+  - {id: zh-hsk2-00679-s002, ch: 咱, pr: zán, ds: we (including both the speaker and the person spoken to)}
+  - {id: zh-hsk3-00048-s005, ch: 并, pr: bìng, ds: (not) at all}
+  - {id: zh-hsk5-00058-s001, ch: 不免, pr: bù miǎn, ds: inevitably}
+  - {id: zh-hsk7-9-01866-s001, ch: 即便, pr: jí biàn, ds: even if}
+  review_grammar: []
+- id: level-25-register-02
+  title: Register and nuance - 2
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk6-01057-s001, ch: 只得, pr: zhǐ dé, ds: to have no alternative but to; to be obliged to}
+  - {id: zh-hsk6-01058-s004, ch: 只顾, pr: zhǐ gù, ds: to look after only one aspect}
+  - {id: zh-hsk7-9-00015-s002, ch: 碍事, pr: ài shì, ds: (usu. in the negative) to be of consequence; to matter}
+  - {id: zh-hsk7-9-00449-s003, ch: 成问题, pr: chéng wèn tí, ds: questionable}
+  - {id: zh-hsk7-9-00704-s001, ch: 大肆, pr: dà sì, ds: wantonly}
+  - {id: zh-hsk7-9-00725-s001, ch: 怠慢, pr: dài màn, ds: to slight}
+  - {id: zh-hsk7-9-00807-s004, ch: 低调, pr: dī diào, ds: low-key}
+  - {id: zh-hsk7-9-00878-s001, ch: 顶多, pr: dǐng duō, ds: at most}
+  - {id: zh-hsk7-9-00971-s001, ch: 多心, pr: duō xīn, ds: oversensitive}
+  - {id: zh-hsk7-9-01268-s001, ch: 高傲, pr: gāo ào, ds: arrogant}
+  - {id: zh-hsk7-9-01271-s003, ch: 高调, pr: gāo diào, ds: high-profile}
+  - {id: zh-hsk7-9-01286-s002, ch: 搞鬼, pr: gǎo guǐ, ds: to play tricks}
+  - {id: zh-hsk7-9-01293-s001, ch: 告状, pr: gào zhuàng, ds: to tell on sb}
+  - {id: zh-hsk7-9-01560-s006, ch: 含蓄, pr: hán xù, ds: implicit}
+  - {id: zh-hsk7-9-01575-s003, ch: 毫不, pr: háo bù, ds: not at all}
+  - {id: zh-hsk7-9-01591-s001, ch: 好意, pr: hǎo yì, ds: good intention}
+  - {id: zh-hsk7-9-01687-s005, ch: 忽悠, pr: hū you, ds: to trick sb into doing sth}
+  - {id: zh-hsk7-9-01892-s001, ch: 计较, pr: jì jiào, ds: to bother about}
+  - {id: zh-hsk7-9-01942-s005, ch: 架子, pr: jià zi, ds: airs}
+  - {id: zh-hsk7-9-02341-s002, ch: 看似, pr: kàn sì, ds: to seem}
+  - {id: zh-hsk7-9-02372-s002, ch: 可笑, pr: kě xiào, ds: ridiculous}
+  - {id: zh-hsk7-9-02438-s002, ch: 夸耀, pr: kuā yào, ds: to flaunt}
+  - {id: zh-hsk7-9-02498-s001, ch: 懒得, pr: lǎn dé, ds: not to feel like (doing sth); disinclined to}
+  - {id: zh-hsk7-9-02786-s001, ch: 没说的, pr: méi shuō de, ds: nothing to pick on}
+  - {id: zh-hsk7-9-03266-s001, ch: 瞧不起, pr: qiáo bù qǐ, ds: to look down upon; to hold in contempt}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk6-00307-s001, ch: 更是, pr: gèng shì, ds: even more (so)}
+  - {id: zh-hsk6-00357-s001, ch: 好不容易, pr: hǎo bù róng yì, ds: with great difficulty}
+  - {id: zh-hsk6-00473-s006, ch: 绝, pr: jué, ds: by no means}
+  - {id: zh-hsk6-00550-s002, ch: 嘛, pr: ma, ds: modal particle indicating that sth is obvious}
+  - {id: zh-hsk6-00773-s001, ch: 特地, pr: tè dì, ds: specially}
+  - {id: zh-hsk6-00966-s002, ch: 用得着, pr: yòng de zháo, ds: (in a question) to be necessary to}
+  - {id: zh-hsk6-01004-s003, ch: 再说, pr: zài shuō, ds: moreover}
+  - {id: zh-hsk6-01035-s005, ch: 照样, pr: zhào yàng, ds: nevertheless}
+  review_grammar: []
+- id: level-25-register-03
+  title: Register and nuance - 3
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk7-9-03701-s001, ch: 似是而非, pr: sì shì ér fēi, ds: apparently right but actually wrong; specious (idiom)}
+  - {id: zh-hsk7-9-04191-s002, ch: 挖苦, pr: wā kǔ, ds: to make cutting remarks}
+  - {id: zh-hsk7-9-04225-s001, ch: 万万, pr: wàn wàn, ds: absolutely}
+  - {id: zh-hsk7-9-04262-s001, ch: 唯独, pr: wéi dú, ds: only}
+  - {id: zh-hsk7-9-04410-s002, ch: 瞎, pr: xiā, ds: groundlessly}
+  - {id: zh-hsk7-9-04525-s002, ch: 小看, pr: xiǎo kàn, ds: to underestimate}
+  - {id: zh-hsk7-9-04875-s001, ch: 一味, pr: yī wèi, ds: blindly}
+  - {id: zh-hsk7-9-04964-s003, ch: 隐瞒, pr: yǐn mán, ds: to cover up the truth}
+  - {id: zh-hsk7-9-05524-s002, ch: 自称, pr: zì chēng, ds: to claim to be}
+  - {id: zh-hsk7-9-00905-s002, ch: 动不动, pr: dòng bu dòng, ds: at the drop of a hat}
+  - {id: zh-hsk2-00467-s001, ch: 实在, pr: shí zài, ds: really}
+  - {id: zh-hsk2-00667-s006, ch: 原来, pr: yuán lái, ds: 'so, actually, as it turns out'}
+  - {id: zh-hsk3-00335-s001, ch: 简直, pr: jiǎn zhí, ds: simply; really}
+  - {id: zh-hsk4-00024-s003, ch: 宝贝, pr: bǎo bèi, ds: darling}
+  - {id: zh-hsk4-00079-s003, ch: 沉默, pr: chén mò, ds: silent}
+  - {id: zh-hsk4-00295-s005, ch: 含义, pr: hán yì, ds: connotation}
+  - {id: zh-hsk4-00743-s001, ch: 无所谓, pr: wú suǒ wèi, ds: to be indifferent}
+  - {id: zh-hsk5-00032-s001, ch: 毕竟, pr: bì jìng, ds: after all}
+  - {id: zh-hsk5-00257-s005, ch: 干脆, pr: gān cuì, ds: might as well}
+  - {id: zh-hsk5-00415-s002, ch: 居然, pr: jū rán, ds: to one's surprise}
+  - {id: zh-hsk5-00435-s004, ch: 可, pr: kě, ds: (particle used for emphasis) certainly; very}
+  - {id: zh-hsk5-00648-s001, ch: 舍得, pr: shě de, ds: to be willing to part with sth}
+  - {id: zh-hsk5-00789-s005, ch: 无奈, pr: wú nài, ds: (conjunction) but unfortunately}
+  - {id: zh-hsk5-00889-s003, ch: 意味着, pr: yì wèi zhe, ds: to imply}
+  - {id: zh-hsk6-00062-s003, ch: 不成, pr: bù chéng, ds: '(at the end of a rhetorical question) can that be?'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-01892-s001, ch: 计较, pr: jì jiào, ds: to bother about}
+  - {id: zh-hsk7-9-01942-s005, ch: 架子, pr: jià zi, ds: airs}
+  - {id: zh-hsk7-9-02341-s002, ch: 看似, pr: kàn sì, ds: to seem}
+  - {id: zh-hsk7-9-02372-s002, ch: 可笑, pr: kě xiào, ds: ridiculous}
+  - {id: zh-hsk7-9-02438-s002, ch: 夸耀, pr: kuā yào, ds: to flaunt}
+  - {id: zh-hsk7-9-02498-s001, ch: 懒得, pr: lǎn dé, ds: not to feel like (doing sth); disinclined to}
+  - {id: zh-hsk7-9-02786-s001, ch: 没说的, pr: méi shuō de, ds: nothing to pick on}
+  - {id: zh-hsk7-9-03266-s001, ch: 瞧不起, pr: qiáo bù qǐ, ds: to look down upon; to hold in contempt}
+  review_grammar: []
+- id: level-25-register-04
+  title: Register and nuance - 4
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk6-00070-s003, ch: 不怎么样, pr: bù zěn me yàng, ds: nothing great about it}
+  - {id: zh-hsk6-00366-s001, ch: 很难说, pr: hěn nánshuō, ds: Hard to say}
+  - {id: zh-hsk6-00574-s005, ch: 名义, pr: míng yì, ds: ostensible purpose}
+  - {id: zh-hsk6-00749-s003, ch: 说实话, pr: shuō shí huà, ds: frankly}
+  - {id: zh-hsk6-00757-s003, ch: 算了, pr: suàn le, ds: forget about it}
+  - {id: zh-hsk6-00758-s001, ch: 算是, pr: suàn shì, ds: considered to be}
+  - {id: zh-hsk6-00859-s001, ch: 嫌, pr: xián, ds: to dislike}
+  - {id: zh-hsk7-9-00200-s001, ch: 标榜, pr: biāo bǎng, ds: to flaunt}
+  - {id: zh-hsk7-9-00215-s001, ch: 别看, pr: bié kàn, ds: don't be fooled by the fact that}
+  - {id: zh-hsk7-9-00281-s003, ch: 不算, pr: bù suàn, ds: to not be considered (as)}
+  - {id: zh-hsk7-9-00291-s001, ch: 不以为然, pr: bù yǐ wéi rán, ds: not to accept as correct (idiom); to object}
+  - {id: zh-hsk7-9-00295-s001, ch: 不用说, pr: bù yòng shuō, ds: needless to say; it goes without saying}
+  - {id: zh-hsk7-9-00656-s001, ch: 存心, pr: cún xīn, ds: deliberately}
+  - {id: zh-hsk7-9-00766-s001, ch: 到头来, pr: dào tóu lái, ds: in the end}
+  - {id: zh-hsk7-9-00864-s002, ch: 调侃, pr: tiáo kǎn, ds: to tease}
+  - {id: zh-hsk7-9-00968-s001, ch: 多亏, pr: duō kuī, ds: thanks to}
+  - {id: zh-hsk7-9-01000-s001, ch: 而已, pr: ér yǐ, ds: that's all}
+  - {id: zh-hsk7-9-01205-s003, ch: 附和, pr: fù hè, ds: to echo (what sb says)}
+  - {id: zh-hsk7-9-01608-s002, ch: 何必, pr: hé bì, ds: why should}
+  - {id: zh-hsk7-9-01794-s004, ch: 会意, pr: huì yì, ds: to comprehend without being told explicitly}
+  - {id: zh-hsk7-9-01952-s002, ch: 坚信, pr: jiān xìn, ds: without any doubt}
+  - {id: zh-hsk7-9-02343-s001, ch: 看样子, pr: kàn yàng zi, ds: it seems}
+  - {id: zh-hsk7-9-02370-s001, ch: 可谓, pr: kě wèi, ds: it could even be said}
+  - {id: zh-hsk7-9-02518-s001, ch: 老实说, pr: lǎo shí shuō, ds: 'honestly speaking; to be frank, ...'}
+  - {id: zh-hsk7-9-02945-s001, ch: 难说, pr: nán shuō, ds: hard to tell (i.e. hard to judge or hard to predict)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00032-s001, ch: 毕竟, pr: bì jìng, ds: after all}
+  - {id: zh-hsk5-00257-s005, ch: 干脆, pr: gān cuì, ds: might as well}
+  - {id: zh-hsk5-00415-s002, ch: 居然, pr: jū rán, ds: to one's surprise}
+  - {id: zh-hsk5-00435-s004, ch: 可, pr: kě, ds: (particle used for emphasis) certainly; very}
+  - {id: zh-hsk5-00648-s001, ch: 舍得, pr: shě de, ds: to be willing to part with sth}
+  - {id: zh-hsk5-00789-s005, ch: 无奈, pr: wú nài, ds: (conjunction) but unfortunately}
+  - {id: zh-hsk5-00889-s003, ch: 意味着, pr: yì wèi zhe, ds: to imply}
+  - {id: zh-hsk6-00062-s003, ch: 不成, pr: bù chéng, ds: '(at the end of a rhetorical question) can that be?'}
+  review_grammar: []
+- id: level-25-register-05
+  title: Register and nuance - 5
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk7-9-03088-s001, ch: 偏向, pr: piān xiàng, ds: partial towards sth}
+  - {id: zh-hsk7-9-03860-s001, ch: 说不上, pr: shuō bu shàng, ds: to be unable to say or tell}
+  - {id: zh-hsk7-9-03087-s001, ch: 偏偏, pr: piān piān, ds: unfortunately (contrary to what one would wish)}
+  - {id: zh-hsk7-9-03945-s001, ch: 所谓, pr: suǒ wèi, ds: so-called}
+  - {id: zh-hsk7-9-03949-s001, ch: 索性, pr: suǒ xìng, ds: you might as well (do it)}
+  - {id: zh-hsk7-9-04277-s004, ch: 未免, pr: wèi miǎn, ds: rather}
+  - {id: zh-hsk7-9-04510-s003, ch: 向着, pr: xiàng zhe, ds: (coll.) to side with}
+  - {id: zh-hsk7-9-04843-s002, ch: 一概, pr: yī gài, ds: without any exceptions}
+  - {id: zh-hsk7-9-04965-s002, ch: 隐情, pr: yǐn qíng, ds: ulterior motive}
+  - {id: zh-hsk7-9-05011-s001, ch: 用意, pr: yòng yì, ds: intention}
+  - {id: zh-hsk2-00379-s004, ch: 难听, pr: nán tīng, ds: offensive}
+  - {id: zh-hsk3-00398-s005, ch: 开放, pr: kāi fàng, ds: to be open-minded}
+  - {id: zh-hsk4-00582-s007, ch: 人家, pr: rén jia, ds: other people}
+  - {id: zh-hsk5-00999-s005, ch: 只不过, pr: zhǐ bu guò, ds: it's just that ...}
+  - {id: zh-hsk6-00006-s001, ch: 罢了, pr: bà le, ds: 'a modal particle indicating (that''s all, only, nothing much)'}
+  - {id: zh-hsk6-00027-s003, ch: 背着, pr: bèi zhe, ds: keeping sth secret from (sb)}
+  - {id: zh-hsk7-9-01349-s001, ch: 公然, pr: gōng rán, ds: openly}
+  - {id: zh-hsk7-9-01593-s004, ch: 号称, pr: hào chēng, ds: to claim (often exaggeratedly or falsely)}
+  - {id: zh-hsk7-9-01688-s001, ch: 胡闹, pr: hú nào, ds: to act willfully and make a scene}
+  - {id: zh-hsk7-9-01689-s001, ch: 胡说, pr: hú shuō, ds: to talk nonsense}
+  - {id: zh-hsk7-9-03630-s001, ch: 声称, pr: shēng chēng, ds: to claim}
+  - {id: zh-hsk7-9-03699-s001, ch: 示意, pr: shì yì, ds: to hint}
+  - {id: zh-hsk2-00107-s012, ch: 倒, pr: dào, ds: contrary to what one might expect; but; yet}
+  - {id: zh-hsk3-00176-s001, ch: 反正, pr: fǎn zhèng, ds: anyway}
+  - {id: zh-hsk3-00414-s003, ch: 恐怕, pr: kǒng pà, ds: I'm afraid that...}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-01205-s003, ch: 附和, pr: fù hè, ds: to echo (what sb says)}
+  - {id: zh-hsk7-9-01608-s002, ch: 何必, pr: hé bì, ds: why should}
+  - {id: zh-hsk7-9-01794-s004, ch: 会意, pr: huì yì, ds: to comprehend without being told explicitly}
+  - {id: zh-hsk7-9-01952-s002, ch: 坚信, pr: jiān xìn, ds: without any doubt}
+  - {id: zh-hsk7-9-02343-s001, ch: 看样子, pr: kàn yàng zi, ds: it seems}
+  - {id: zh-hsk7-9-02370-s001, ch: 可谓, pr: kě wèi, ds: it could even be said}
+  - {id: zh-hsk7-9-02518-s001, ch: 老实说, pr: lǎo shí shuō, ds: 'honestly speaking; to be frank, ...'}
+  - {id: zh-hsk7-9-02945-s001, ch: 难说, pr: nán shuō, ds: hard to tell (i.e. hard to judge or hard to predict)}
+  review_grammar: []
+- id: level-25-register-06
+  title: Register and nuance - 6
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk3-00492-s002, ch: 难道, pr: nán dào, ds: 'could it be that...?'}
+  - {id: zh-hsk4-00226-s006, ch: 非, pr: fēi, ds: (coll.) to insist on; simply must}
+  - {id: zh-hsk4-00258-s001, ch: 格外, pr: gé wài, ds: especially}
+  - {id: zh-hsk4-00658-s001, ch: 说不定, pr: shuō bu dìng, ds: can't say for sure}
+  - {id: zh-hsk4-00626-s001, ch: 似的, pr: shì de, ds: seems as if}
+  - {id: zh-hsk5-00060-s002, ch: 不能不, pr: bù néng bù, ds: cannot but}
+  - {id: zh-hsk5-00190-s002, ch: 得了, pr: dé le, ds: that's enough!}
+  - {id: zh-hsk5-00422-s002, ch: 决不, pr: jué bù, ds: simply (can) not}
+  - {id: zh-hsk5-00613-s001, ch: 热门, pr: rè mén, ds: popular; hot; in vogue}
+  - {id: zh-hsk5-00674-s003, ch: 十足, pr: shí zú, ds: hundred percent}
+  - {id: zh-hsk5-00868-s002, ch: 也好, pr: yě hǎo, ds: may as well}
+  - {id: zh-hsk5-01052-s001, ch: 总算, pr: zǒng suàn, ds: at long last}
+  - {id: zh-hsk6-00066-s002, ch: 不料, pr: bù liào, ds: to one's surprise}
+  - {id: zh-hsk6-00072-s001, ch: 不至于, pr: bù zhì yú, ds: unlikely to go so far as to; not as bad as}
+  - {id: zh-hsk6-00445-s001, ch: 尽, pr: jǐn, ds: to the greatest extent}
+  - {id: zh-hsk6-00489-s002, ch: 看好, pr: kàn hǎo, ds: to regard as having good prospects}
+  - {id: zh-hsk6-00509-s011, ch: 赖, pr: lài, ds: to put the blame on}
+  - {id: zh-hsk6-00627-s003, ch: 恰恰, pr: qià qià, ds: precisely}
+  - {id: zh-hsk6-00666-s001, ch: 却是, pr: què shì, ds: nevertheless}
+  - {id: zh-hsk7-9-00027-s001, ch: 暗地里, pr: àn dì li, ds: secretly; inwardly; on the sly}
+  - {id: zh-hsk7-9-00047-s001, ch: 巴不得, pr: bā bu de, ds: (coll.) to be eager for}
+  - {id: zh-hsk7-9-00049-s005, ch: 罢休, pr: bà xiū, ds: let the matter drop}
+  - {id: zh-hsk7-9-00132-s001, ch: 备受, pr: bèi shòu, ds: to fully experience (good or bad)}
+  - {id: zh-hsk7-9-00146-s002, ch: 本意, pr: běn yì, ds: real intention}
+  - {id: zh-hsk7-9-00218-s001, ch: 别说, pr: bié shuō, ds: to say nothing of; not to mention; let alone}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-01593-s004, ch: 号称, pr: hào chēng, ds: to claim (often exaggeratedly or falsely)}
+  - {id: zh-hsk7-9-01688-s001, ch: 胡闹, pr: hú nào, ds: to act willfully and make a scene}
+  - {id: zh-hsk7-9-01689-s001, ch: 胡说, pr: hú shuō, ds: to talk nonsense}
+  - {id: zh-hsk7-9-03630-s001, ch: 声称, pr: shēng chēng, ds: to claim}
+  - {id: zh-hsk7-9-03699-s001, ch: 示意, pr: shì yì, ds: to hint}
+  - {id: zh-hsk2-00107-s012, ch: 倒, pr: dào, ds: contrary to what one might expect; but; yet}
+  - {id: zh-hsk3-00176-s001, ch: 反正, pr: fǎn zhèng, ds: anyway}
+  - {id: zh-hsk3-00414-s003, ch: 恐怕, pr: kǒng pà, ds: I'm afraid that...}
+  review_grammar: []
+- id: level-25-register-07
+  title: Register and nuance - 7
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk7-9-00259-s002, ch: 不妨, pr: bù fáng, ds: might as well}
+  - {id: zh-hsk7-9-00260-s005, ch: 不服, pr: bù fú, ds: to remain unconvinced by}
+  - {id: zh-hsk7-9-00264-s002, ch: 不解, pr: bù jiě, ds: to be puzzled by}
+  - {id: zh-hsk7-9-00278-s001, ch: 不如说, pr: bùrú shuō, ds: rather say}
+  - {id: zh-hsk7-9-00296-s001, ch: 不由得, pr: bù yóu de, ds: can't help}
+  - {id: zh-hsk7-9-00738-s002, ch: 但愿, pr: dàn yuàn, ds: I wish (that)}
+  - {id: zh-hsk7-9-00754-s001, ch: 当真, pr: dàng zhēn, ds: to take seriously}
+  - {id: zh-hsk7-9-01117-s003, ch: 分明, pr: fēn míng, ds: evidently}
+  - {id: zh-hsk7-9-01240-s002, ch: 甘心, pr: gān xīn, ds: to resign oneself to}
+  - {id: zh-hsk7-9-01438-s001, ch: 怪不得, pr: guài bu de, ds: no wonder!}
+  - {id: zh-hsk7-9-01515-s003, ch: 果真, pr: guǒ zhēn, ds: sure enough}
+  - {id: zh-hsk7-9-01577-s001, ch: 毫无, pr: háo wú, ds: not in the least}
+  - {id: zh-hsk7-9-01592-s002, ch: 好在, pr: hǎo zài, ds: fortunately}
+  - {id: zh-hsk7-9-01810-s001, ch: 活该, pr: huó gāi, ds: (coll.) serve sb right}
+  - {id: zh-hsk7-9-02115-s003, ch: 介意, pr: jiè yì, ds: to mind}
+  - {id: zh-hsk7-9-02156-s001, ch: 禁不住, pr: jīn bu zhù, ds: can't help it}
+  - {id: zh-hsk7-9-02335-s002, ch: 堪称, pr: kān chēng, ds: can be said to be}
+  - {id: zh-hsk7-9-02371-s002, ch: 可想而知, pr: kě xiǎng ér zhī, ds: as one can well imagine...}
+  - {id: zh-hsk7-9-02895-s002, ch: 莫非, pr: mò fēi, ds: could it be}
+  - {id: zh-hsk7-9-02896-s001, ch: 莫过于, pr: mò guò yú, ds: nothing can surpass}
+  - {id: zh-hsk7-9-03326-s002, ch: 情愿, pr: qíng yuàn, ds: would rather (agree to X than Y)}
+  - {id: zh-hsk7-9-04325-s002, ch: 无非, pr: wú fēi, ds: nothing else}
+  - {id: zh-hsk7-9-04335-s001, ch: 无可奈何, pr: wú kě nài hé, ds: have no way out}
+  - {id: zh-hsk7-9-04823-s001, ch: 野心, pr: yě xīn, ds: ambition}
+  - {id: zh-hsk7-9-04984-s002, ch: 迎合, pr: yíng hé, ds: to pander to}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk6-00627-s003, ch: 恰恰, pr: qià qià, ds: precisely}
+  - {id: zh-hsk6-00666-s001, ch: 却是, pr: què shì, ds: nevertheless}
+  - {id: zh-hsk7-9-00027-s001, ch: 暗地里, pr: àn dì li, ds: secretly; inwardly; on the sly}
+  - {id: zh-hsk7-9-00047-s001, ch: 巴不得, pr: bā bu de, ds: (coll.) to be eager for}
+  - {id: zh-hsk7-9-00049-s005, ch: 罢休, pr: bà xiū, ds: let the matter drop}
+  - {id: zh-hsk7-9-00132-s001, ch: 备受, pr: bèi shòu, ds: to fully experience (good or bad)}
+  - {id: zh-hsk7-9-00146-s002, ch: 本意, pr: běn yì, ds: real intention}
+  - {id: zh-hsk7-9-00218-s001, ch: 别说, pr: bié shuō, ds: to say nothing of; not to mention; let alone}
+  review_grammar: []
+- id: level-25-register-08
+  title: Register and nuance - 8
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk7-9-05069-s001, ch: 与其, pr: yǔ qí, ds: rather than...}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02371-s002, ch: 可想而知, pr: kě xiǎng ér zhī, ds: as one can well imagine...}
+  - {id: zh-hsk7-9-02895-s002, ch: 莫非, pr: mò fēi, ds: could it be}
+  - {id: zh-hsk7-9-02896-s001, ch: 莫过于, pr: mò guò yú, ds: nothing can surpass}
+  - {id: zh-hsk7-9-03326-s002, ch: 情愿, pr: qíng yuàn, ds: would rather (agree to X than Y)}
+  - {id: zh-hsk7-9-04325-s002, ch: 无非, pr: wú fēi, ds: nothing else}
+  - {id: zh-hsk7-9-04335-s001, ch: 无可奈何, pr: wú kě nài hé, ds: have no way out}
+  - {id: zh-hsk7-9-04823-s001, ch: 野心, pr: yě xīn, ds: ambition}
+  - {id: zh-hsk7-9-04984-s002, ch: 迎合, pr: yíng hé, ds: to pander to}
+  review_grammar: []
+- id: level-25-register-practice-01
+  title: Register and nuance - sentence practice 1
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk6-g011, ch: 未尝不+P, ds: cautious possibility through double negation}
+  - {id: zh-hsk7-9-g026, ch: 毋庸置疑的是+P, ds: present a claim as beyond doubt; requires justification}
+  - {id: zh-hsk7-9-g027, ch: P+不言而喻, ds: rhetorically present something as self-evident}
+  review_vocabulary:
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00071-s003, ch: 的, pr: de, ds: nominalizing particle}
+  - {id: zh-hsk1-00340-s001, ch: 是, pr: shì, ds: to be (before noun phrases)}
+  - {id: zh-hsk7-9-02895-s002, ch: 莫非, pr: mò fēi, ds: could it be}
+  - {id: zh-hsk7-9-02896-s001, ch: 莫过于, pr: mò guò yú, ds: nothing can surpass}
+  - {id: zh-hsk7-9-03326-s002, ch: 情愿, pr: qíng yuàn, ds: would rather (agree to X than Y)}
+  - {id: zh-hsk7-9-04325-s002, ch: 无非, pr: wú fēi, ds: nothing else}
+  - {id: zh-hsk7-9-04335-s001, ch: 无可奈何, pr: wú kě nài hé, ds: have no way out}
+  - {id: zh-hsk7-9-04823-s001, ch: 野心, pr: yě xīn, ds: ambition}
+  - {id: zh-hsk7-9-04984-s002, ch: 迎合, pr: yíng hé, ds: to pander to}
+  - {id: zh-hsk7-9-05069-s001, ch: 与其, pr: yǔ qí, ds: rather than...}
+  review_grammar: []
+- id: level-25-register-practice-02
+  title: Register and nuance - sentence practice 2
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk5-g020, ch: 难道+P+吗, ds: rhetorical challenge rather than a neutral question}
+  - {id: zh-hsk5-g021, ch: 何必+VP, ds: rhetorically question the necessity of an action}
+  - {id: zh-hsk6-g002, ch: 与其说+P+不如说+Q, ds: prefer a better-fitting interpretation or description}
+  review_vocabulary:
+  - {id: zh-hsk3-00492-s002, ch: 难道, pr: nán dào, ds: 'could it be that...?'}
+  - {id: zh-hsk1-00230-s002, ch: 吗, pr: ma, ds: yes-no question particle}
+  - {id: zh-hsk7-9-01608-s002, ch: 何必, pr: hé bì, ds: why should}
+  - {id: zh-hsk7-9-05069-s001, ch: 与其, pr: yǔ qí, ds: rather than...}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk2-00037-s004, ch: 不如, pr: bù rú, ds: it would be better to}
+  - {id: zh-hsk7-9-02895-s002, ch: 莫非, pr: mò fēi, ds: could it be}
+  - {id: zh-hsk7-9-02896-s001, ch: 莫过于, pr: mò guò yú, ds: nothing can surpass}
+  - {id: zh-hsk7-9-03326-s002, ch: 情愿, pr: qíng yuàn, ds: would rather (agree to X than Y)}
+  - {id: zh-hsk7-9-04325-s002, ch: 无非, pr: wú fēi, ds: nothing else}
+  - {id: zh-hsk7-9-04335-s001, ch: 无可奈何, pr: wú kě nài hé, ds: have no way out}
+  - {id: zh-hsk7-9-04823-s001, ch: 野心, pr: yě xīn, ds: ambition}
+  - {id: zh-hsk7-9-04984-s002, ch: 迎合, pr: yíng hé, ds: to pander to}
+  review_grammar:
+  - {id: zh-hsk6-g011, ch: 未尝不+P, ds: cautious possibility through double negation}
+  - {id: zh-hsk7-9-g026, ch: 毋庸置疑的是+P, ds: present a claim as beyond doubt; requires justification}
+  - {id: zh-hsk7-9-g027, ch: P+不言而喻, ds: rhetorically present something as self-evident}
+- id: level-25-register-practice-03
+  title: Register and nuance - sentence practice 3
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk6-g010, ch: 无非是+Explanation, ds: restrict or downplay the explanation as nothing more}
+  - {id: zh-hsk6-g015, ch: 动不动就+VP, ds: frequent action criticized as too easily triggered}
+  - {id: zh-hsk6-g016, ch: 一味地+VP, ds: criticize blind or one-sided persistence}
+  review_vocabulary:
+  - {id: zh-hsk7-9-04325-s002, ch: 无非, pr: wú fēi, ds: nothing else}
+  - {id: zh-hsk1-00340-s001, ch: 是, pr: shì, ds: to be (before noun phrases)}
+  - {id: zh-hsk7-9-00905-s002, ch: 动不动, pr: dòng bu dòng, ds: at the drop of a hat}
+  - {id: zh-hsk1-00188-s002, ch: 就, pr: jiù, ds: as soon as}
+  - {id: zh-hsk7-9-04875-s001, ch: 一味, pr: yī wèi, ds: blindly}
+  - {id: zh-hsk1-00066-s001, ch: 地, pr: de, ds: adverbial marker (-ly)}
+  - {id: zh-hsk7-9-02895-s002, ch: 莫非, pr: mò fēi, ds: could it be}
+  - {id: zh-hsk7-9-02896-s001, ch: 莫过于, pr: mò guò yú, ds: nothing can surpass}
+  - {id: zh-hsk7-9-03326-s002, ch: 情愿, pr: qíng yuàn, ds: would rather (agree to X than Y)}
+  - {id: zh-hsk7-9-04335-s001, ch: 无可奈何, pr: wú kě nài hé, ds: have no way out}
+  - {id: zh-hsk7-9-04823-s001, ch: 野心, pr: yě xīn, ds: ambition}
+  - {id: zh-hsk7-9-04984-s002, ch: 迎合, pr: yíng hé, ds: to pander to}
+  - {id: zh-hsk7-9-05069-s001, ch: 与其, pr: yǔ qí, ds: rather than...}
+  review_grammar:
+  - {id: zh-hsk5-g020, ch: 难道+P+吗, ds: rhetorical challenge rather than a neutral question}
+  - {id: zh-hsk5-g021, ch: 何必+VP, ds: rhetorically question the necessity of an action}
+  - {id: zh-hsk6-g002, ch: 与其说+P+不如说+Q, ds: prefer a better-fitting interpretation or description}

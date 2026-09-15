@@ -1,0 +1,372 @@
+schema_version: 3
+id: zh-tourist-quick-start
+title: Mandarin for a short visit - quick start
+language: chinese
+level_basis: Independent situation-based travel route with no prerequisite course. Reference IDs indicate provenance, not HSK competence or examination levels. The first five units form a self-contained quick start; later units extend it in order.
+review_policy: Work in small sessions of about 5-8 new senses, not an entire unit at once. First recognize a sign or request, then use a phrase with a changed situation and less help. Retrieve the listed earlier items and anything fragile after the session and roughly 1, 3, 7, and 14 days later. Phrase pinyin retains dictionary tones for 一 and 不 rather than transcribing contextual tone sandhi; 儿 is attached as r. Text and pinyin are not audio practice or evidence of pronunciation. These phrases are learning aids, not assurances of safety, accessible facilities, accepted payment methods, dietary safety, or medical or legal accuracy. Confirm arrangements locally and seek appropriate human help for health or safety concerns.
+units:
+- id: polite-repair
+  title: Be polite and repair a misunderstanding
+  outcome: Greet someone, signal that you do not understand, and ask for slower speech, repetition, or a written version. Start with recognition and pointing if speaking is difficult.
+  vocabulary:
+  - {id: zh-hsk1-00384-s001, ch: 我, pr: wǒ, ds: 'I, me, my'}
+  - {id: zh-hsk1-00275-s001, ch: 你, pr: nǐ, ds: you}
+  - {id: zh-hsk1-00278-s001, ch: 您, pr: nín, ds: you (polite)}
+  - {id: zh-hsk1-00140-s009, ch: 好, pr: hǎo, ds: hello (after a pronoun)}
+  - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
+  - {id: zh-hsk1-00095-s001, ch: 对不起, pr: duì bu qǐ, ds: I'm sorry}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
+  - {id: zh-hsk1-00138-s001, ch: 汉语, pr: Hàn yǔ, ds: Chinese language}
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk1-00232-s001, ch: 慢, pr: màn, ds: slow}
+  - {id: zh-hsk1-00434-s003, ch: 一点儿, pr: yī diǎn r, ds: a bit more (comparative)}
+  - {id: zh-hsk1-00459-s001, ch: 再, pr: zài, ds: again}
+  - {id: zh-hsk1-00431-s001, ch: 一, pr: yī, ds: one}
+  - {id: zh-hsk1-00054-s013, ch: 次, pr: cì, ds: classifier for occurrences}
+  - {id: zh-hsk1-00413-s001, ch: 写, pr: xiě, ds: to write}
+  - {id: zh-hsk3-00753-s002, ch: 下来, pr: xià lai, ds: (completed action marker)}
+  - {id: zh-hsk1-00365-s002, ch: 听, pr: tīng, ds: to listen or hear}
+  - {id: zh-hsk2-00652-s001, ch: 英语, pr: Yīng yǔ, ds: English (language)}
+  - {id: zh-hsk1-00236-s001, ch: 没关系, pr: méi guān xi, ds: it doesn't matter}
+  - {id: zh-hsk1-00460-s001, ch: 再见, pr: zài jiàn, ds: goodbye}
+  - {id: zh-hsk1-00140-s003, ch: 好, pr: hǎo, ds: all right!}
+  - {id: zh-hsk1-00014-s001, ch: 帮, pr: bāng, ds: to help}
+  grammar:
+  - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk2-g017, ch: Adj+一点儿, ds: a little more adjective in requests or comparisons}
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  review_vocabulary: []
+  review_grammar: []
+  phrases:
+  - {id: zh-tourist-p001, ch: 您好。, pr: nín hǎo, ds: Hello. (polite)}
+  - {id: zh-tourist-p002, ch: 对不起，我不懂汉语。, pr: 'duì bu qǐ, wǒ bù dǒng Hàn yǔ', ds: 'Sorry, I do not understand Chinese.'}
+  - {id: zh-tourist-p003, ch: 请说慢一点儿。, pr: qǐng shuō màn yī diǎnr, ds: Please speak a little more slowly.}
+  - {id: zh-tourist-p004, ch: 请再说一次。, pr: qǐng zài shuō yī cì, ds: Please say it once more.}
+  - {id: zh-tourist-p005, ch: 请写下来。, pr: qǐng xiě xià lai, ds: Please write it down.}
+  phrase_components:
+    zh-tourist-p001:
+    - zh-hsk1-00278-s001
+    - zh-hsk1-00140-s009
+    zh-tourist-p002:
+    - zh-hsk1-00095-s001
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00031-s002
+    - zh-hsk2-00128-s001
+    - zh-hsk1-00138-s001
+    zh-tourist-p003:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00353-s002
+    - zh-hsk1-00232-s001
+    - zh-hsk1-00434-s003
+    zh-tourist-p004:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00459-s001
+    - zh-hsk1-00353-s002
+    - zh-hsk1-00431-s001
+    - zh-hsk1-00054-s013
+    zh-tourist-p005:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00413-s001
+    - zh-hsk3-00753-s002
+- id: food-basics
+  title: Get water and a simple meal
+  outcome: Request water, a menu, and familiar foods; ask for no spice. Recognize a few common drink and food words before attempting longer orders.
+  vocabulary:
+  - {id: zh-hsk1-00404-s004, ch: 想, pr: xiǎng, ds: to want or desire}
+  - {id: zh-hsk1-00146-s001, ch: 喝, pr: hē, ds: to drink}
+  - {id: zh-hsk1-00349-s002, ch: 水, pr: shuǐ, ds: water}
+  - {id: zh-hsk1-00123-s004, ch: 给, pr: gěi, ds: to give}
+  - {id: zh-hsk1-00018-s003, ch: 杯, pr: bēi, ds: classifier for cupfuls and glassfuls}
+  - {id: zh-hsk1-00037-s001, ch: 茶, pr: chá, ds: tea}
+  - {id: zh-hsk2-00047-s001, ch: 菜单, pr: cài dān, ds: menu}
+  - {id: zh-hsk1-00427-s002, ch: 要, pr: yào, ds: to want or need}
+  - {id: zh-hsk1-00246-s001, ch: 米饭, pr: mǐ fàn, ds: cooked rice}
+  - {id: zh-hsk1-00147-s002, ch: 和, pr: hé, ds: and or with (joining nouns)}
+  - {id: zh-hsk1-00165-s001, ch: 鸡蛋, pr: jī dàn, ds: chicken egg}
+  - {id: zh-hsk4-00436-s001, ch: 辣, pr: là, ds: hot (spicy)}
+  - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
+  - {id: zh-hsk1-00279-s001, ch: 牛奶, pr: niú nǎi, ds: cow's milk}
+  - {id: zh-hsk1-00247-s001, ch: 面包, pr: miàn bāo, ds: bread}
+  - {id: zh-hsk1-00047-s001, ch: 吃, pr: chī, ds: to eat or consume}
+  - {id: zh-hsk1-00214-s002, ch: 冷, pr: lěng, ds: cold}
+  - {id: zh-hsk1-00102-s001, ch: 饭店, pr: fàn diàn, ds: restaurant}
+  grammar:
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+  review_vocabulary:
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00384-s001, ch: 我, pr: wǒ, ds: 'I, me, my'}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
+  - {id: zh-hsk1-00431-s001, ch: 一, pr: yī, ds: one}
+  review_grammar:
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
+  phrases:
+  - {id: zh-tourist-p006, ch: 我想喝水。, pr: wǒ xiǎng hē shuǐ, ds: I would like some water.}
+  - {id: zh-tourist-p007, ch: 请给我一杯茶。, pr: qǐng gěi wǒ yī bēi chá, ds: Please give me a cup of tea.}
+  - {id: zh-tourist-p008, ch: 请给我菜单。, pr: qǐng gěi wǒ cài dān, ds: Please give me the menu.}
+  - {id: zh-tourist-p009, ch: 我要米饭和鸡蛋。, pr: wǒ yào mǐ fàn hé jī dàn, ds: I would like rice and eggs.}
+  - {id: zh-tourist-p010, ch: 不要辣。, pr: bù yào là, ds: 'No spice, please.'}
+  phrase_components:
+    zh-tourist-p006:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk1-00146-s001
+    - zh-hsk1-00349-s002
+    zh-tourist-p007:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00431-s001
+    - zh-hsk1-00018-s003
+    - zh-hsk1-00037-s001
+    zh-tourist-p008:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk2-00047-s001
+    zh-tourist-p009:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00427-s002
+    - zh-hsk1-00246-s001
+    - zh-hsk1-00147-s002
+    - zh-hsk1-00165-s001
+    zh-tourist-p010:
+    - zh-hsk1-00031-s002
+    - zh-hsk1-00427-s002
+    - zh-hsk4-00436-s001
+- id: finding-your-way
+  title: Find a toilet and get around
+  outcome: Locate a toilet or station, name a destination, request a taxi, and recognize left and right. Ask rather than assume that a place or seat is available.
+  vocabulary:
+  - {id: zh-hsk1-00303-s001, ch: 请问, pr: qǐng wèn, ds: 'excuse me, may I ask?'}
+  - {id: zh-hsk6-00088-s001, ch: 厕所, pr: cè suǒ, ds: toilet}
+  - {id: zh-hsk1-00461-s002, ch: 在, pr: zài, ds: to be located at}
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00306-s001, ch: 去, pr: qù, ds: to go}
+  - {id: zh-hsk2-00112-s001, ch: 地铁, pr: dì tiě, ds: underground railway; subway}
+  - {id: zh-hsk1-00467-s001, ch: 站, pr: zhàn, ds: station}
+  - {id: zh-hsk1-00473-s001, ch: 这里, pr: zhè lǐ, ds: here}
+  - {id: zh-hsk2-00308-s002, ch: 可以, pr: kě yǐ, ds: may (permission)}
+  - {id: zh-hsk1-00504-s002, ch: 坐, pr: zuò, ds: to sit}
+  - {id: zh-hsk1-00230-s002, ch: 吗, pr: ma, ds: yes-no question particle}
+  - {id: zh-hsk1-00176-s002, ch: 叫, pr: jiào, ds: to call}
+  - {id: zh-hsk2-00073-s001, ch: 出租车, pr: chū zū chē, ds: taxi}
+  - {id: zh-hsk1-00503-s001, ch: 左边, pr: zuǒ bian, ds: left side}
+  - {id: zh-hsk1-00454-s001, ch: 右边, pr: yòu bian, ds: right side}
+  - {id: zh-hsk1-00135-s004, ch: 还是, pr: hái shi, ds: or}
+  - {id: zh-hsk2-00287-s003, ch: 酒店, pr: jiǔ diàn, ds: hotel}
+  - {id: zh-hsk1-00070-s001, ch: 地图, pr: dì tú, ds: map}
+  - {id: zh-hsk4-00165-s001, ch: 地址, pr: dì zhǐ, ds: address}
+  - {id: zh-hsk4-00244-s001, ch: 附近, pr: fù jìn, ds: nearby; neighboring}
+  - {id: zh-hsk1-00457-s001, ch: 远, pr: yuǎn, ds: far}
+  - {id: zh-hsk2-00280-s001, ch: 近, pr: jìn, ds: near}
+  - {id: zh-hsk1-00274-s002, ch: 能, pr: néng, ds: can; be able to}
+  - {id: zh-hsk2-00234-s001, ch: 或者, pr: huò zhě, ds: or}
+  - {id: zh-hsk1-00046-s001, ch: 车站, pr: chē zhàn, ds: rail station}
+  - {id: zh-hsk1-00331-s001, ch: 什么, pr: shén me, ds: 'what?'}
+  - {id: zh-hsk1-00348-s001, ch: 谁, pr: shéi, ds: who}
+  grammar:
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk2-g025, ch: (可以|能)+V, ds: permission versus ability allowed by circumstances}
+  - {id: zh-hsk3-g017, ch: Question+A还是B|Statement+A或者B, ds: question alternatives versus statement alternatives}
+  review_vocabulary:
+  - {id: zh-hsk1-00014-s001, ch: 帮, pr: bāng, ds: to help}
+  - {id: zh-hsk1-00404-s004, ch: 想, pr: xiǎng, ds: to want or desire}
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00413-s001, ch: 写, pr: xiě, ds: to write}
+  - {id: zh-hsk3-00753-s002, ch: 下来, pr: xià lai, ds: (completed action marker)}
+  review_grammar:
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  phrases:
+  - {id: zh-tourist-p011, ch: 请问，厕所在哪儿？, pr: 'qǐng wèn, cè suǒ zài nǎr', ds: 'Excuse me, where is the toilet?'}
+  - {id: zh-tourist-p012, ch: 我想去地铁站。, pr: wǒ xiǎng qù dì tiě zhàn, ds: I would like to go to the subway station.}
+  - {id: zh-tourist-p013, ch: 这里可以坐吗？, pr: zhè lǐ kě yǐ zuò ma, ds: 'May I sit here?'}
+  - {id: zh-tourist-p014, ch: 请帮我叫出租车。, pr: qǐng bāng wǒ jiào chū zū chē, ds: Please help me call a taxi.}
+  - {id: zh-tourist-p015, ch: 左边还是右边？, pr: zuǒ bian hái shi yòu bian, ds: 'Left or right?'}
+  phrase_components:
+    zh-tourist-p011:
+    - zh-hsk1-00303-s001
+    - zh-hsk6-00088-s001
+    - zh-hsk1-00461-s002
+    - zh-hsk1-00255-s001
+    zh-tourist-p012:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk1-00306-s001
+    - zh-hsk2-00112-s001
+    - zh-hsk1-00467-s001
+    zh-tourist-p013:
+    - zh-hsk1-00473-s001
+    - zh-hsk2-00308-s002
+    - zh-hsk1-00504-s002
+    - zh-hsk1-00230-s002
+    zh-tourist-p014:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00014-s001
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00176-s002
+    - zh-hsk2-00073-s001
+    zh-tourist-p015:
+    - zh-hsk1-00503-s001
+    - zh-hsk1-00135-s004
+    - zh-hsk1-00454-s001
+- id: paying
+  title: Ask the price and how to pay
+  outcome: Ask a price and whether cash or a credit card is accepted, request a receipt, and recognize common price numerals. Payment questions do not imply that a method will be available.
+  vocabulary:
+  - {id: zh-hsk1-00444-s001, ch: 用, pr: yòng, ds: to use}
+  - {id: zh-hsk3-00763-s001, ch: 现金, pr: xiàn jīn, ds: cash}
+  - {id: zh-hsk2-00597-s001, ch: 信用卡, pr: xìn yòng kǎ, ds: credit card}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  - {id: zh-hsk1-00298-s003, ch: 钱, pr: qián, ds: money}
+  - {id: zh-hsk4-00210-s002, ch: 发票, pr: fā piào, ds: receipt or bill for purchase}
+  - {id: zh-hsk1-00129-s001, ch: 贵, pr: guì, ds: expensive}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00470-s003, ch: 这, pr: zhè, ds: this or these before a classifier}
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00218-s001, ch: 零, pr: líng, ds: zero}
+  - {id: zh-hsk1-00100-s001, ch: 二, pr: èr, ds: two}
+  - {id: zh-hsk1-00315-s002, ch: 三, pr: sān, ds: three}
+  - {id: zh-hsk1-00355-s001, ch: 四, pr: sì, ds: four}
+  - {id: zh-hsk1-00386-s001, ch: 五, pr: wǔ, ds: five}
+  - {id: zh-hsk1-00219-s001, ch: 六, pr: liù, ds: six}
+  - {id: zh-hsk1-00290-s001, ch: 七, pr: qī, ds: seven}
+  - {id: zh-hsk1-00003-s001, ch: 八, pr: bā, ds: eight}
+  - {id: zh-hsk1-00187-s001, ch: 九, pr: jiǔ, ds: nine}
+  - {id: zh-hsk1-00335-s001, ch: 十, pr: shí, ds: ten}
+  - {id: zh-hsk1-00009-s002, ch: 百, pr: bǎi, ds: hundred}
+  - {id: zh-hsk1-00217-s001, ch: 两, pr: liǎng, ds: two}
+  - {id: zh-hsk2-00414-s001, ch: 千, pr: qiān, ds: thousand}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00456-s003, ch: 元, pr: yuán, ds: 'currency unit, especially yuan'}
+  - {id: zh-hsk2-00648-s001, ch: 银行, pr: yín háng, ds: bank}
+  - {id: zh-hsk3-00885-s001, ch: 支付, pr: zhī fù, ds: to pay (money)}
+  - {id: zh-hsk6-00658-s001, ch: 取款机, pr: qǔ kuǎn jī, ds: ATM}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  grammar:
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+  review_vocabulary:
+  - {id: zh-hsk2-00308-s002, ch: 可以, pr: kě yǐ, ds: may (permission)}
+  - {id: zh-hsk1-00230-s002, ch: 吗, pr: ma, ds: yes-no question particle}
+  - {id: zh-hsk1-00431-s001, ch: 一, pr: yī, ds: one}
+  - {id: zh-hsk1-00123-s004, ch: 给, pr: gěi, ds: to give}
+  - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
+  review_grammar:
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  phrases:
+  - {id: zh-tourist-p016, ch: 可以用现金吗？, pr: kě yǐ yòng xiàn jīn ma, ds: 'May I pay in cash?'}
+  - {id: zh-tourist-p017, ch: 可以用信用卡吗？, pr: kě yǐ yòng xìn yòng kǎ ma, ds: 'May I use a credit card?'}
+  - {id: zh-tourist-p018, ch: 这个多少钱？, pr: zhè gè duō shao qián, ds: 'How much is this?'}
+  - {id: zh-tourist-p019, ch: 请给我发票。, pr: qǐng gěi wǒ fā piào, ds: Please give me a receipt.}
+  - {id: zh-tourist-p020, ch: 我想买这个。, pr: wǒ xiǎng mǎi zhè gè, ds: I would like to buy this.}
+  phrase_components:
+    zh-tourist-p016:
+    - zh-hsk2-00308-s002
+    - zh-hsk1-00444-s001
+    - zh-hsk3-00763-s001
+    - zh-hsk1-00230-s002
+    zh-tourist-p017:
+    - zh-hsk2-00308-s002
+    - zh-hsk1-00444-s001
+    - zh-hsk2-00597-s001
+    - zh-hsk1-00230-s002
+    zh-tourist-p018:
+    - zh-hsk1-00470-s003
+    - zh-hsk1-00122-s001
+    - zh-hsk1-00097-s004
+    - zh-hsk1-00298-s003
+    zh-tourist-p019:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00123-s004
+    - zh-hsk1-00384-s001
+    - zh-hsk4-00210-s002
+    zh-tourist-p020:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00404-s004
+    - zh-hsk1-00231-s001
+    - zh-hsk1-00470-s003
+    - zh-hsk1-00122-s001
+- id: asking-for-help
+  title: Get human help with a problem
+  outcome: Request help, say you feel unwell or have lost a phone, and ask someone to contact the police. Recognize doctor, hospital, medicine, ambulance, and passport without attempting diagnosis or treatment.
+  vocabulary:
+  - {id: zh-hsk3-00795-s001, ch: 需要, pr: xū yào, ds: to need}
+  - {id: zh-hsk1-00442-s001, ch: 医生, pr: yī shēng, ds: doctor}
+  - {id: zh-hsk2-00478-s002, ch: 舒服, pr: shū fu, ds: feeling well}
+  - {id: zh-hsk1-00071-s001, ch: 的, pr: de, ds: of (possessive particle)}
+  - {id: zh-hsk1-00071-s002, ch: 的, pr: de, ds: attributive particle}
+  - {id: zh-hsk1-00343-s001, ch: 手机, pr: shǒu jī, ds: cell phone}
+  - {id: zh-hsk5-00205-s001, ch: 丢, pr: diū, ds: to lose}
+  - {id: zh-hsk1-00212-s002, ch: 了, pr: le, ds: change-of-state modal particle}
+  - {id: zh-hsk5-00017-s002, ch: 报警, pr: bào jǐng, ds: to report sth to the police}
+  - {id: zh-hsk3-00380-s001, ch: 警察, pr: jǐng chá, ds: police; police officer}
+  - {id: zh-hsk2-00614-s002, ch: 药, pr: yào, ds: medicine}
+  - {id: zh-hsk1-00443-s001, ch: 医院, pr: yī yuàn, ds: hospital}
+  - {id: zh-hsk2-00503-s001, ch: 疼, pr: téng, ds: (it) hurts; sore}
+  - {id: zh-hsk6-00461-s002, ch: 救命, pr: jiù mìng, ds: (interj.) Help!}
+  - {id: zh-hsk7-9-02232-s001, ch: 救护车, pr: jiù hù chē, ds: ambulance}
+  - {id: zh-hsk2-00220-s001, ch: 护照, pr: hù zhào, ds: passport}
+  - {id: zh-hsk1-00468-s001, ch: 找, pr: zhǎo, ds: to search for}
+  - {id: zh-hsk1-00080-s001, ch: 电话, pr: diàn huà, ds: telephone}
+  grammar:
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+  - {id: zh-hsk2-g002, ch: NewSituation+了, ds: current change of situation}
+  review_vocabulary:
+  - {id: zh-hsk1-00014-s001, ch: 帮, pr: bāng, ds: to help}
+  - {id: zh-hsk1-00095-s001, ch: 对不起, pr: duì bu qǐ, ds: I'm sorry}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  review_grammar:
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
+  phrases:
+  - {id: zh-tourist-p021, ch: 请帮我。, pr: qǐng bāng wǒ, ds: Please help me.}
+  - {id: zh-tourist-p022, ch: 我需要医生。, pr: wǒ xū yào yī shēng, ds: I need a doctor.}
+  - {id: zh-tourist-p023, ch: 我不舒服。, pr: wǒ bù shū fu, ds: I do not feel well.}
+  - {id: zh-tourist-p024, ch: 我的手机丢了。, pr: wǒ de shǒu jī diū le, ds: My phone is missing.}
+  - {id: zh-tourist-p025, ch: 请帮我报警。, pr: qǐng bāng wǒ bào jǐng, ds: Please help me contact the police.}
+  phrase_components:
+    zh-tourist-p021:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00014-s001
+    - zh-hsk1-00384-s001
+    zh-tourist-p022:
+    - zh-hsk1-00384-s001
+    - zh-hsk3-00795-s001
+    - zh-hsk1-00442-s001
+    zh-tourist-p023:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00031-s002
+    - zh-hsk2-00478-s002
+    zh-tourist-p024:
+    - zh-hsk1-00384-s001
+    - zh-hsk1-00071-s001
+    - zh-hsk1-00343-s001
+    - zh-hsk5-00205-s001
+    - zh-hsk1-00212-s002
+    zh-tourist-p025:
+    - zh-hsk1-00300-s003
+    - zh-hsk1-00014-s001
+    - zh-hsk1-00384-s001
+    - zh-hsk5-00017-s002
+kind: route
+quick_start:
+- polite-repair
+- food-basics
+- finding-your-way
+- paying
+- asking-for-help
+mastery_profile: zh-item-mastery
+mastery_target: supported-use

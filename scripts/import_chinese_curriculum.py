@@ -17,6 +17,9 @@ import urllib.request
 from curriculum_yaml import dump_yaml, load_yaml
 from generate_curriculum_tokens import compact_outputs, vocabulary_entries
 from generate_teaching_track import reference_index, teaching_outputs
+from generate_chinese_program import (
+    annotated_grammar, configured, load_inputs, program_outputs, vocabulary_labels,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1] / "curriculum" / "chinese"
@@ -425,9 +428,11 @@ def main() -> None:
     words = vocabulary(data)
     patterns = grammar()
     add_hsk1_token_metadata(words["1"], patterns["1"], ROOT / "authoring" / "hsk-1")
-    additional = additional_reference_senses(
-        data, words, load_yaml(ROOT / "authoring" / "reference-senses.yaml"),
-    )
+    program = load_inputs(ROOT) if configured(ROOT) else None
+    labels = load_yaml(ROOT / "authoring" / "reference-senses.yaml")
+    if program is not None:
+        labels = vocabulary_labels(program, words, labels)
+    additional = additional_reference_senses(data, words, labels)
     report = normalization_report(data)
     outputs = {
         ROOT / "normalization-report.yaml": dump_yaml(report),
@@ -442,6 +447,14 @@ def main() -> None:
     outputs.update(teaching_outputs(
         track_directory, load_yaml(track_directory / "sequence.yaml"), word_entries, grammar_entries,
     ))
+    if program is not None:
+        program_words, program_grammar = reference_index(
+            words, annotated_grammar(patterns, program["grammar"]), additional,
+        )
+        outputs.update(program_outputs(
+            ROOT, program, program_words, program_grammar,
+            load_yaml(track_directory / "sequence.yaml"),
+        ))
     for path, content in outputs.items():
         if args.check:
             if path.read_text(encoding="utf-8") != content:

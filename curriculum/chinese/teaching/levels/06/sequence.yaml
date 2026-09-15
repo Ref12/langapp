@@ -1,0 +1,475 @@
+schema_version: 3
+id: zh-level-06
+title: Everyday transactions and care
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 6
+phase: everyday-life
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+goals: &id001
+- Handle ordinary shopping and services.
+- Discuss meals and ingredients.
+- Describe a common symptom or care need.
+checkpoint:
+  task: Explain a service or purchase problem and answer clarification questions.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: level-06-food-01
+  title: Food and meals - 1
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: zh-hsk2-00236-s002, ch: 鸡, pr: jī, ds: chicken}
+  - {id: zh-hsk2-00315-s001, ch: 快餐, pr: kuài cān, ds: fast food}
+  - {id: zh-hsk2-00338-s002, ch: 凉, pr: liáng, ds: cool}
+  - {id: zh-hsk2-00403-s004, ch: 瓶, pr: píng, ds: classifier for wine and liquids}
+  - {id: zh-hsk2-00404-s001, ch: 瓶子, pr: píng zi, ds: bottle}
+  - {id: zh-hsk2-00750-s001, ch: 做饭, pr: zuò fàn, ds: to prepare a meal}
+  - {id: zh-hsk3-00133-s002, ch: 刀, pr: dāo, ds: knife}
+  - {id: zh-hsk3-00271-s001, ch: 果汁, pr: guǒ zhī, ds: fruit juice}
+  - {id: zh-hsk3-00523-s001, ch: 啤酒, pr: pí jiǔ, ds: beer (loanword)}
+  - {id: zh-hsk4-00318-s001, ch: 黄瓜, pr: huáng guā, ds: cucumber}
+  - {id: zh-hsk4-00415-s001, ch: 开水, pr: kāi shuǐ, ds: boiled water}
+  - {id: zh-hsk4-00436-s001, ch: 辣, pr: là, ds: hot (spicy)}
+  - {id: zh-hsk4-00665-s001, ch: 酸, pr: suān, ds: sour}
+  - {id: zh-hsk4-00825-s001, ch: 盐, pr: yán, ds: salt}
+  - {id: zh-hsk5-00799-s001, ch: 西红柿, pr: xī hóng shì, ds: tomato}
+  - {id: zh-hsk6-00108-s002, ch: 炒, pr: chǎo, ds: to stir-fry}
+  - {id: zh-hsk6-00163-s001, ch: 醋, pr: cù, ds: vinegar}
+  - {id: zh-hsk2-00319-s001, ch: 筷子, pr: kuài zi, ds: chopsticks}
+  - {id: zh-hsk2-00479-s002, ch: 熟, pr: shú, ds: thoroughly cooked; done}
+  - {id: zh-hsk2-00540-s002, ch: 晚餐, pr: wǎn cān, ds: dinner}
+  - {id: zh-hsk2-00557-s001, ch: 午餐, pr: wǔ cān, ds: lunch}
+  - {id: zh-hsk2-00665-s002, ch: 鱼, pr: yú, ds: fish}
+  - {id: zh-hsk3-00008-s001, ch: 白菜, pr: bái cài, ds: Chinese cabbage}
+  - {id: zh-hsk3-00682-s003, ch: 汤, pr: tāng, ds: soup}
+  - {id: zh-hsk3-00683-s001, ch: 糖, pr: táng, ds: sugar}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00247-s001, ch: 面包, pr: miàn bāo, ds: bread}
+  - {id: zh-hsk1-00098-s001, ch: 饿, pr: è, ds: to be hungry}
+  - {id: zh-hsk1-00200-s001, ch: 渴, pr: kě, ds: thirsty}
+  - {id: zh-hsk1-00254-s004, ch: 哪, pr: něi, ds: 'which? (before a classifier)'}
+  - {id: zh-hsk1-00377-s001, ch: 晚饭, pr: wǎn fàn, ds: evening meal}
+  - {id: zh-hsk1-00464-s001, ch: 早饭, pr: zǎo fàn, ds: breakfast}
+  - {id: zh-hsk1-00101-s002, ch: 饭, pr: fàn, ds: meal}
+  - {id: zh-hsk1-00263-s002, ch: 奶, pr: nǎi, ds: milk}
+  review_grammar:
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk1-g017, ch: S+都+P, ds: all members of a group}
+- id: level-06-food-02
+  title: Food and meals - 2
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: zh-hsk3-00692-s001, ch: 甜, pr: tián, ds: sweet}
+  - {id: zh-hsk5-00074-s001, ch: 餐馆, pr: cān guǎn, ds: restaurant}
+  - {id: zh-hsk5-00092-s001, ch: 尝, pr: cháng, ds: to taste; to try (food)}
+  - {id: zh-hsk5-00700-s001, ch: 蔬菜, pr: shū cài, ds: vegetables}
+  - {id: zh-hsk2-00103-s001, ch: 蛋, pr: dàn, ds: egg}
+  - {id: zh-hsk2-00150-s001, ch: 方便面, pr: fāng biàn miàn, ds: instant noodles}
+  - {id: zh-hsk2-00286-s004, ch: 酒, pr: jiǔ, ds: alcoholic beverage}
+  - {id: zh-hsk2-00359-s002, ch: 米, pr: mǐ, ds: rice}
+  - {id: zh-hsk2-00468-s001, ch: 食物, pr: shí wù, ds: food}
+  - {id: zh-hsk2-00534-s003, ch: 外卖, pr: wài mài, ds: takeout (meal)}
+  - {id: zh-hsk2-00551-s001, ch: 味道, pr: wèi dao, ds: flavor; taste}
+  - {id: zh-hsk2-00656-s001, ch: 油, pr: yóu, ds: oil}
+  - {id: zh-hsk4-00068-s001, ch: 茶叶, pr: chá yè, ds: tea}
+  - {id: zh-hsk6-00423-s001, ch: 酱油, pr: jiàng yóu, ds: soy sauce}
+  - {id: zh-hsk1-00387-s001, ch: 午饭, pr: wǔ fàn, ds: lunch}
+  - {id: zh-hsk2-00013-s001, ch: 饱, pr: bǎo, ds: to eat till full}
+  - {id: zh-hsk2-00047-s001, ch: 菜单, pr: cài dān, ds: menu}
+  - {id: zh-hsk2-00148-s001, ch: 饭馆, pr: fàn guǎn, ds: restaurant}
+  - {id: zh-hsk2-00260-s001, ch: 饺子, pr: jiǎo zi, ds: dumpling}
+  - {id: zh-hsk2-00279-s002, ch: 斤, pr: jīn, ds: (PRC) weight equal to 500 g}
+  - {id: zh-hsk2-00542-s001, ch: 碗, pr: wǎn, ds: bowl}
+  - {id: zh-hsk2-00710-s003, ch: 中餐, pr: zhōng cān, ds: Chinese food}
+  - {id: zh-hsk3-00284-s001, ch: 红茶, pr: hóng chá, ds: black tea}
+  - {id: zh-hsk4-00187-s001, ch: 豆腐, pr: dòu fu, ds: tofu}
+  - {id: zh-hsk4-00561-s001, ch: 切, pr: qiē, ds: to cut; to slice; to carve}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00319-s001, ch: 筷子, pr: kuài zi, ds: chopsticks}
+  - {id: zh-hsk2-00479-s002, ch: 熟, pr: shú, ds: thoroughly cooked; done}
+  - {id: zh-hsk2-00540-s002, ch: 晚餐, pr: wǎn cān, ds: dinner}
+  - {id: zh-hsk2-00557-s001, ch: 午餐, pr: wǔ cān, ds: lunch}
+  - {id: zh-hsk2-00665-s002, ch: 鱼, pr: yú, ds: fish}
+  - {id: zh-hsk3-00008-s001, ch: 白菜, pr: bái cài, ds: Chinese cabbage}
+  - {id: zh-hsk3-00682-s003, ch: 汤, pr: tāng, ds: soup}
+  - {id: zh-hsk3-00683-s001, ch: 糖, pr: táng, ds: sugar}
+  review_grammar:
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk1-g017, ch: S+都+P, ds: all members of a group}
+- id: level-06-food-03
+  title: Food and meals - 3
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: zh-hsk4-00767-s008, ch: 咸, pr: xián, ds: salty}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00148-s001, ch: 饭馆, pr: fàn guǎn, ds: restaurant}
+  - {id: zh-hsk2-00260-s001, ch: 饺子, pr: jiǎo zi, ds: dumpling}
+  - {id: zh-hsk2-00279-s002, ch: 斤, pr: jīn, ds: (PRC) weight equal to 500 g}
+  - {id: zh-hsk2-00542-s001, ch: 碗, pr: wǎn, ds: bowl}
+  - {id: zh-hsk2-00710-s003, ch: 中餐, pr: zhōng cān, ds: Chinese food}
+  - {id: zh-hsk3-00284-s001, ch: 红茶, pr: hóng chá, ds: black tea}
+  - {id: zh-hsk4-00187-s001, ch: 豆腐, pr: dòu fu, ds: tofu}
+  - {id: zh-hsk4-00561-s001, ch: 切, pr: qiē, ds: to cut; to slice; to carve}
+  review_grammar:
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk1-g017, ch: S+都+P, ds: all members of a group}
+- id: level-06-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain a health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: zh-hsk1-00204-s001, ch: 口, pr: kǒu, ds: mouth}
+  - {id: zh-hsk2-00438-s001, ch: 全身, pr: quán shēn, ds: the whole body}
+  - {id: zh-hsk2-00528-s001, ch: 头, pr: tóu, ds: head}
+  - {id: zh-hsk2-00611-s001, ch: 眼睛, pr: yǎn jing, ds: eye}
+  - {id: zh-hsk2-00740-s001, ch: 嘴, pr: zuǐ, ds: mouth}
+  - {id: zh-hsk3-00214-s002, ch: 感冒, pr: gǎn mào, ds: (common) cold}
+  - {id: zh-hsk3-00705-s002, ch: 痛, pr: tòng, ds: pain}
+  - {id: zh-hsk4-00313-s001, ch: 护士, pr: hù shi, ds: nurse}
+  - {id: zh-hsk1-00030-s001, ch: 病人, pr: bìng rén, ds: sick person}
+  - {id: zh-hsk1-00195-s001, ch: 看病, pr: kàn bìng, ds: to visit a doctor}
+  - {id: zh-hsk1-00213-s005, ch: 累, pr: lèi, ds: tired}
+  - {id: zh-hsk1-00214-s002, ch: 冷, pr: lěng, ds: cold}
+  - {id: zh-hsk1-00332-s001, ch: 生病, pr: shēng bìng, ds: to fall ill}
+  - {id: zh-hsk1-00389-s001, ch: 洗手间, pr: xǐ shǒu jiān, ds: restroom}
+  - {id: zh-hsk2-00251-s001, ch: 健康, pr: jiàn kāng, ds: health}
+  - {id: zh-hsk2-00335-s001, ch: 脸, pr: liǎn, ds: face}
+  - {id: zh-hsk2-00693-s001, ch: 照顾, pr: zhào gu, ds: to take care of}
+  - {id: zh-hsk3-00417-s006, ch: 困, pr: kùn, ds: sleepy}
+  - {id: zh-hsk1-00029-s001, ch: 病, pr: bìng, ds: illness}
+  - {id: zh-hsk1-00330-s002, ch: 身体, pr: shēn tǐ, ds: one's health}
+  - {id: zh-hsk1-00308-s001, ch: 热, pr: rè, ds: to warm or heat up}
+  - {id: zh-hsk2-00261-s001, ch: 脚, pr: jiǎo, ds: foot}
+  - {id: zh-hsk2-00377-s001, ch: 难受, pr: nán shòu, ds: to feel unwell}
+  - {id: zh-hsk2-00478-s001, ch: 舒服, pr: shū fu, ds: comfortable}
+  - {id: zh-hsk2-00503-s001, ch: 疼, pr: téng, ds: (it) hurts; sore}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-06-health-02
+  title: Body and wellbeing - 2
+  outcome: Explain a health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: zh-hsk2-00532-s001, ch: 腿, pr: tuǐ, ds: leg}
+  - {id: zh-hsk2-00616-s001, ch: 药片, pr: yào piàn, ds: a (medicine) pill or tablet}
+  - {id: zh-hsk4-00652-s001, ch: 刷牙, pr: shuā yá, ds: to brush one's teeth}
+  - {id: zh-hsk5-00026-s001, ch: 鼻子, pr: bí zi, ds: nose}
+  - {id: zh-hsk5-00221-s001, ch: 耳朵, pr: ěr duo, ds: ear}
+  - {id: zh-hsk1-00342-s001, ch: 手, pr: shǒu, ds: hand}
+  - {id: zh-hsk2-00614-s002, ch: 药, pr: yào, ds: medicine}
+  - {id: zh-hsk4-00193-s003, ch: 肚子, pr: dù zi, ds: stomach}
+  - {id: zh-hsk4-00211-s002, ch: 发烧, pr: fā shāo, ds: to have a fever}
+  - {id: zh-hsk5-00309-s003, ch: 过敏, pr: guò mǐn, ds: allergy}
+  - {id: zh-hsk2-00650-s002, ch: 应该, pr: yīng gāi, ds: should}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00417-s006, ch: 困, pr: kùn, ds: sleepy}
+  - {id: zh-hsk1-00029-s001, ch: 病, pr: bìng, ds: illness}
+  - {id: zh-hsk1-00330-s002, ch: 身体, pr: shēn tǐ, ds: one's health}
+  - {id: zh-hsk1-00308-s001, ch: 热, pr: rè, ds: to warm or heat up}
+  - {id: zh-hsk2-00261-s001, ch: 脚, pr: jiǎo, ds: foot}
+  - {id: zh-hsk2-00377-s001, ch: 难受, pr: nán shòu, ds: to feel unwell}
+  - {id: zh-hsk2-00478-s001, ch: 舒服, pr: shū fu, ds: comfortable}
+  - {id: zh-hsk2-00503-s001, ch: 疼, pr: téng, ds: (it) hurts; sore}
+  review_grammar: []
+- id: level-06-services-01
+  title: Services and transactions - 1
+  outcome: Clarify requirements and resolve an ordinary transaction or service problem.
+  vocabulary:
+  - {id: zh-hsk1-00134-s015, ch: 还, pr: huán, ds: to return}
+  - {id: zh-hsk1-00038-s007, ch: 差, pr: chà, ds: not up to standard}
+  - {id: zh-hsk1-00056-s002, ch: 错, pr: cuò, ds: mistake}
+  - {id: zh-hsk1-00094-s001, ch: 对, pr: duì, ds: correct}
+  - {id: zh-hsk1-00102-s001, ch: 饭店, pr: fàn diàn, ds: restaurant}
+  - {id: zh-hsk1-00303-s001, ch: 请问, pr: qǐng wèn, ds: 'excuse me, may I ask?'}
+  - {id: zh-hsk2-00059-s001, ch: 超市, pr: chāo shì, ds: supermarket}
+  - {id: zh-hsk2-00254-s003, ch: 交, pr: jiāo, ds: to pay (money)}
+  - {id: zh-hsk2-00277-s002, ch: 借, pr: jiè, ds: to borrow}
+  - {id: zh-hsk2-00431-s004, ch: 取, pr: qǔ, ds: to fetch}
+  - {id: zh-hsk2-00615-s001, ch: 药店, pr: yào diàn, ds: pharmacy}
+  - {id: zh-hsk6-00088-s001, ch: 厕所, pr: cè suǒ, ds: toilet}
+  - {id: zh-hsk1-00033-s001, ch: 不对, pr: bù duì, ds: incorrect}
+  - {id: zh-hsk1-00035-s001, ch: 不用, pr: bù yòng, ds: need not}
+  - {id: zh-hsk1-00238-s003, ch: 没事儿, pr: méi shì r, ds: it's not important}
+  - {id: zh-hsk1-00317-s001, ch: 商场, pr: shāng chǎng, ds: shopping mall}
+  - {id: zh-hsk1-00456-s003, ch: 元, pr: yuán, ds: 'currency unit, especially yuan'}
+  - {id: zh-hsk2-00008-s003, ch: 办, pr: bàn, ds: to handle}
+  - {id: zh-hsk2-00041-s001, ch: 不行, pr: bù xíng, ds: won't do}
+  - {id: zh-hsk2-00188-s001, ch: 够, pr: gòu, ds: enough (sufficient)}
+  - {id: zh-hsk2-00191-s001, ch: 顾客, pr: gù kè, ds: customer; client}
+  - {id: zh-hsk2-00390-s001, ch: 排队, pr: pái duì, ds: to line up}
+  - {id: zh-hsk2-00626-s001, ch: 一共, pr: yī gòng, ds: altogether}
+  - {id: zh-hsk4-00354-s002, ch: 寄, pr: jì, ds: to mail}
+  - {id: zh-hsk2-00027-s002, ch: 便宜, pr: pián yi, ds: cheap}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00018-s003, ch: 杯, pr: bēi, ds: classifier for cupfuls and glassfuls}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00298-s003, ch: 钱, pr: qián, ds: money}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  - {id: zh-hsk1-00434-s003, ch: 一点儿, pr: yī diǎn r, ds: a bit more (comparative)}
+  review_grammar:
+  - {id: zh-hsk2-g017, ch: Adj+一点儿, ds: a little more adjective in requests or comparisons}
+  - {id: zh-hsk2-g025, ch: (可以|能)+V, ds: permission versus ability allowed by circumstances}
+  - {id: zh-hsk3-g017, ch: Question+A还是B|Statement+A或者B, ds: question alternatives versus statement alternatives}
+- id: level-06-services-02
+  title: Services and transactions - 2
+  outcome: Clarify requirements and resolve an ordinary transaction or service problem.
+  vocabulary:
+  - {id: zh-hsk1-00304-s001, ch: 请坐, pr: qǐng zuò, ds: 'please, have a seat'}
+  - {id: zh-hsk2-00181-s001, ch: 公斤, pr: gōng jīn, ds: kilogram (kg)}
+  - {id: zh-hsk2-00309-s007, ch: 克, pr: kè, ds: gram}
+  - {id: zh-hsk2-00649-s001, ch: 银行卡, pr: yín háng kǎ, ds: bank card}
+  - {id: zh-hsk4-00131-s001, ch: 打折, pr: dǎ zhé, ds: to give a discount}
+  - {id: zh-hsk1-00299-s001, ch: 钱包, pr: qián bāo, ds: money purse or wallet}
+  - {id: zh-hsk1-00339-s002, ch: 试, pr: shì, ds: to try}
+  - {id: zh-hsk1-00078-s010, ch: 点, pr: diǎn, ds: to order food}
+  - {id: zh-hsk2-00161-s002, ch: 服务, pr: fú wù, ds: service}
+  - {id: zh-hsk2-00355-s001, ch: 卖, pr: mài, ds: to sell}
+  - {id: zh-hsk2-00294-s004, ch: 卡, pr: kǎ, ds: (loanword) card}
+  - {id: zh-hsk3-00196-s001, ch: 服务员, pr: fú wù yuán, ds: waiter}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00008-s003, ch: 办, pr: bàn, ds: to handle}
+  - {id: zh-hsk2-00041-s001, ch: 不行, pr: bù xíng, ds: won't do}
+  - {id: zh-hsk2-00188-s001, ch: 够, pr: gòu, ds: enough (sufficient)}
+  - {id: zh-hsk2-00191-s001, ch: 顾客, pr: gù kè, ds: customer; client}
+  - {id: zh-hsk2-00390-s001, ch: 排队, pr: pái duì, ds: to line up}
+  - {id: zh-hsk2-00626-s001, ch: 一共, pr: yī gòng, ds: altogether}
+  - {id: zh-hsk4-00354-s002, ch: 寄, pr: jì, ds: to mail}
+  - {id: zh-hsk2-00027-s002, ch: 便宜, pr: pián yi, ds: cheap}
+  review_grammar:
+  - {id: zh-hsk2-g017, ch: Adj+一点儿, ds: a little more adjective in requests or comparisons}
+  - {id: zh-hsk2-g025, ch: (可以|能)+V, ds: permission versus ability allowed by circumstances}
+  - {id: zh-hsk3-g017, ch: Question+A还是B|Statement+A或者B, ds: question alternatives versus statement alternatives}
+- id: level-06-money-01
+  title: Money and commerce - 1
+  outcome: Explain a commercial choice or process and its practical implications.
+  vocabulary:
+  - {id: zh-hsk2-00597-s001, ch: 信用卡, pr: xìn yòng kǎ, ds: credit card}
+  - {id: zh-hsk2-00648-s001, ch: 银行, pr: yín háng, ds: bank}
+  - {id: zh-hsk3-00327-s001, ch: 价格, pr: jià gé, ds: price}
+  - {id: zh-hsk3-00763-s001, ch: 现金, pr: xiàn jīn, ds: cash}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-06-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk1-00156-s001, ch: 回答, pr: huí dá, ds: to reply}
+  - {id: zh-hsk1-00250-s004, ch: 明白, pr: míng bai, ds: to understand or realize}
+  - {id: zh-hsk2-00603-s002, ch: 姓名, pr: xìng míng, ds: full name}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00233-s001, ch: 忙, pr: máng, ds: busy}
+  - {id: zh-hsk1-00421-s002, ch: 休息, pr: xiū xi, ds: to rest}
+  - {id: zh-hsk1-00334-s001, ch: 生日, pr: shēng rì, ds: birthday}
+  - {id: zh-hsk1-00277-s002, ch: 年, pr: nián, ds: year}
+  - {id: zh-hsk1-00458-s002, ch: 月, pr: yuè, ds: month}
+  - {id: zh-hsk1-00145-s004, ch: 号, pr: hào, ds: day of a month}
+  - {id: zh-hsk1-00419-s001, ch: 星期天, pr: Xīng qī tiān, ds: Sunday}
+  - {id: zh-hsk3-00753-s002, ch: 下来, pr: xià lai, ds: (completed action marker)}
+  review_grammar:
+  - {id: zh-hsk1-g025, ch: 别+V, ds: prohibition}
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+- id: level-06-actions-01
+  title: Actions and processes - 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk1-00057-s002, ch: 打, pr: dǎ, ds: to beat or strike}
+  - {id: zh-hsk2-00535-s001, ch: 完, pr: wán, ds: to finish}
+  - {id: zh-hsk1-00089-s001, ch: 动, pr: dòng, ds: to move (intransitive)}
+  - {id: zh-hsk1-00328-s003, ch: 少, pr: shǎo, ds: to lack or be missing}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00113-s015, ch: 干, pr: gàn, ds: to work or do}
+  - {id: zh-hsk1-00060-s001, ch: 打开, pr: dǎ kāi, ds: to open}
+  - {id: zh-hsk1-00469-s001, ch: 找到, pr: zhǎo dào, ds: to find}
+  - {id: zh-hsk1-00505-s001, ch: 坐下, pr: zuò xia, ds: to sit down}
+  - {id: zh-hsk1-00459-s003, ch: 再, pr: zài, ds: only then}
+  - {id: zh-hsk1-00207-s003, ch: 来, pr: lái, ds: hither}
+  review_grammar:
+  - {id: zh-hsk2-g008, ch: 先+VP1+再+VP2, ds: first do one thing and then another}
+  - {id: zh-hsk2-g021, ch: V+(来|去), ds: motion toward or away from the viewpoint}
+- id: level-06-description-01
+  title: Description and comparison - 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk1-00440-s001, ch: 一样, pr: yī yàng, ds: same}
+  - {id: zh-hsk1-00498-s001, ch: 最, pr: zuì, ds: most (superlative)}
+  - {id: zh-hsk2-00040-s001, ch: 不同, pr: bù tóng, ds: different}
+  - {id: zh-hsk1-00239-s005, ch: 没有, pr: méi yǒu, ds: to not be}
+  - {id: zh-hsk2-00663-s003, ch: 又, pr: yòu, ds: both... and...}
+  - {id: zh-hsk1-00124-s006, ch: 跟, pr: gēn, ds: compared with}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00340-s001, ch: 亮, pr: liàng, ds: bright}
+  - {id: zh-hsk2-00356-s003, ch: 满, pr: mǎn, ds: full}
+  - {id: zh-hsk1-00116-s002, ch: 高, pr: gāo, ds: high or tall}
+  - {id: zh-hsk1-00489-s006, ch: 重, pr: zhòng, ds: heavy}
+  - {id: zh-hsk1-00113-s002, ch: 干, pr: gān, ds: dry}
+  - {id: zh-hsk1-00154-s003, ch: 坏, pr: huài, ds: broken}
+  - {id: zh-hsk2-00095-s003, ch: 大小, pr: dà xiǎo, ds: size}
+  - {id: zh-hsk2-00658-s001, ch: 有点儿, pr: yǒu diǎn r, ds: slightly}
+  review_grammar:
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk2-g013, ch: A+比+B+Adj, ds: one thing exceeds another in a quality}
+- id: level-06-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk2-00642-s001, ch: 因为, pr: yīn wèi, ds: because}
+  - {id: zh-hsk2-00492-s001, ch: 所以, pr: suǒ yǐ, ds: therefore}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-06-grammar-01
+  title: Sentence construction - 1
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk1-00393-s011, ch: 下, pr: xià, ds: action-frequency measure word}
+  - {id: zh-hsk1-00427-s004, ch: 要, pr: yào, ds: need to or should}
+  - {id: zh-hsk1-00341-s001, ch: 是不是, pr: shì bù shì, ds: is or isn't}
+  - {id: zh-hsk1-00466-s001, ch: 怎么, pr: zěn me, ds: 'how?'}
+  - {id: zh-hsk1-00506-s003, ch: 做, pr: zuò, ds: to do or engage in}
+  - {id: zh-hsk2-00115-s013, ch: 得, pr: de, ds: complement-linking structural particle}
+  - {id: zh-hsk1-00235-s001, ch: 没, pr: méi, ds: not (verb-negating prefix)}
+  - {id: zh-hsk1-00212-s001, ch: 了, pr: le, ds: completed-action marker}
+  - {id: zh-hsk1-00096-s004, ch: 多, pr: duō, ds: how (to what extent)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00306-s013, ch: 去, pr: qù, ds: away from speaker (motion complement)}
+  - {id: zh-hsk3-00469-s001, ch: 每, pr: měi, ds: each}
+  - {id: zh-hsk1-00173-s006, ch: 间, pr: jiān, ds: classifier for rooms}
+  - {id: zh-hsk1-00446-s001, ch: 有的, pr: yǒu de, ds: some (of a group)}
+  - {id: zh-hsk2-00234-s001, ch: 或者, pr: huò zhě, ds: or}
+  - {id: zh-hsk1-00135-s004, ch: 还是, pr: hái shi, ds: or}
+  - {id: zh-hsk1-00025-s004, ch: 比, pr: bǐ, ds: than (comparison)}
+  - {id: zh-hsk1-00273-s004, ch: 呢, pr: ne, ds: continuing-state or action particle}
+  review_grammar: []
+- id: level-06-health-practice-01
+  title: Body and wellbeing - sentence practice 1
+  outcome: Explain a health-related experience or need without claiming clinical expertise.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk3-g018, ch: 应该+VP, ds: advice or expectation rather than guaranteed fact}
+  review_vocabulary:
+  - {id: zh-hsk2-00650-s002, ch: 应该, pr: yīng gāi, ds: should}
+  - {id: zh-hsk5-00026-s001, ch: 鼻子, pr: bí zi, ds: nose}
+  - {id: zh-hsk5-00221-s001, ch: 耳朵, pr: ěr duo, ds: ear}
+  - {id: zh-hsk1-00342-s001, ch: 手, pr: shǒu, ds: hand}
+  - {id: zh-hsk2-00614-s002, ch: 药, pr: yào, ds: medicine}
+  - {id: zh-hsk4-00193-s003, ch: 肚子, pr: dù zi, ds: stomach}
+  - {id: zh-hsk4-00211-s002, ch: 发烧, pr: fā shāo, ds: to have a fever}
+  - {id: zh-hsk5-00309-s003, ch: 过敏, pr: guò mǐn, ds: allergy}
+  review_grammar: []
+- id: level-06-communication-practice-01
+  title: Communication and information - sentence practice 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
+  review_vocabulary:
+  - {id: zh-hsk2-00115-s013, ch: 得, pr: de, ds: complement-linking structural particle}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00277-s002, ch: 年, pr: nián, ds: year}
+  - {id: zh-hsk1-00458-s002, ch: 月, pr: yuè, ds: month}
+  - {id: zh-hsk1-00145-s004, ch: 号, pr: hào, ds: day of a month}
+  - {id: zh-hsk1-00419-s001, ch: 星期天, pr: Xīng qī tiān, ds: Sunday}
+  - {id: zh-hsk3-00753-s002, ch: 下来, pr: xià lai, ds: (completed action marker)}
+  - {id: zh-hsk1-00156-s001, ch: 回答, pr: huí dá, ds: to reply}
+  - {id: zh-hsk1-00250-s004, ch: 明白, pr: míng bai, ds: to understand or realize}
+  - {id: zh-hsk2-00603-s002, ch: 姓名, pr: xìng míng, ds: full name}
+  review_grammar:
+  - {id: zh-hsk1-g025, ch: 别+V, ds: prohibition}
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+- id: level-06-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g019, ch: V+完, ds: an action reaches completion}
+  review_vocabulary:
+  - {id: zh-hsk2-00535-s001, ch: 完, pr: wán, ds: to finish}
+  - {id: zh-hsk1-00469-s001, ch: 找到, pr: zhǎo dào, ds: to find}
+  - {id: zh-hsk1-00505-s001, ch: 坐下, pr: zuò xia, ds: to sit down}
+  - {id: zh-hsk1-00459-s003, ch: 再, pr: zài, ds: only then}
+  - {id: zh-hsk1-00207-s003, ch: 来, pr: lái, ds: hither}
+  - {id: zh-hsk1-00057-s002, ch: 打, pr: dǎ, ds: to beat or strike}
+  - {id: zh-hsk1-00089-s001, ch: 动, pr: dòng, ds: to move (intransitive)}
+  - {id: zh-hsk1-00328-s003, ch: 少, pr: shǎo, ds: to lack or be missing}
+  review_grammar:
+  - {id: zh-hsk2-g008, ch: 先+VP1+再+VP2, ds: first do one thing and then another}
+  - {id: zh-hsk2-g021, ch: V+(来|去), ds: motion toward or away from the viewpoint}
+- id: level-06-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g014, ch: A+没有+B+Adj, ds: A is not as adjective as B}
+  - {id: zh-hsk2-g015, ch: 最+Adj, ds: highest degree within a comparison set}
+  - {id: zh-hsk3-g009, ch: 又+P+又+Q, ds: two compatible qualities or abilities}
+  review_vocabulary:
+  - {id: zh-hsk1-00239-s005, ch: 没有, pr: méi yǒu, ds: to not be}
+  - {id: zh-hsk1-00498-s001, ch: 最, pr: zuì, ds: most (superlative)}
+  - {id: zh-hsk2-00663-s003, ch: 又, pr: yòu, ds: both... and...}
+  - {id: zh-hsk2-00095-s003, ch: 大小, pr: dà xiǎo, ds: size}
+  - {id: zh-hsk2-00658-s001, ch: 有点儿, pr: yǒu diǎn r, ds: slightly}
+  - {id: zh-hsk1-00440-s001, ch: 一样, pr: yī yàng, ds: same}
+  - {id: zh-hsk2-00040-s001, ch: 不同, pr: bù tóng, ds: different}
+  - {id: zh-hsk1-00124-s006, ch: 跟, pr: gēn, ds: compared with}
+  review_grammar:
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk2-g013, ch: A+比+B+Adj, ds: one thing exceeds another in a quality}
+- id: level-06-description-practice-02
+  title: Description and comparison - sentence practice 2
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk3-g022, ch: A+跟+B+(不)+一样, ds: similarity or difference relative to a target}
+  review_vocabulary:
+  - {id: zh-hsk1-00124-s006, ch: 跟, pr: gēn, ds: compared with}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00440-s001, ch: 一样, pr: yī yàng, ds: same}
+  - {id: zh-hsk2-00095-s003, ch: 大小, pr: dà xiǎo, ds: size}
+  - {id: zh-hsk2-00658-s001, ch: 有点儿, pr: yǒu diǎn r, ds: slightly}
+  - {id: zh-hsk1-00498-s001, ch: 最, pr: zuì, ds: most (superlative)}
+  - {id: zh-hsk2-00040-s001, ch: 不同, pr: bù tóng, ds: different}
+  - {id: zh-hsk1-00239-s005, ch: 没有, pr: méi yǒu, ds: to not be}
+  - {id: zh-hsk2-00663-s003, ch: 又, pr: yòu, ds: both... and...}
+  review_grammar:
+  - {id: zh-hsk2-g014, ch: A+没有+B+Adj, ds: A is not as adjective as B}
+  - {id: zh-hsk2-g015, ch: 最+Adj, ds: highest degree within a comparison set}
+  - {id: zh-hsk3-g009, ch: 又+P+又+Q, ds: two compatible qualities or abilities}
+- id: level-06-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g010, ch: 因为+Cause+所以+Result, ds: cause followed by its consequence}
+  review_vocabulary:
+  - {id: zh-hsk2-00642-s001, ch: 因为, pr: yīn wèi, ds: because}
+  - {id: zh-hsk2-00492-s001, ch: 所以, pr: suǒ yǐ, ds: therefore}
+  review_grammar: []

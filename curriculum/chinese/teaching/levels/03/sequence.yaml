@@ -1,0 +1,124 @@
+schema_version: 3
+id: zh-level-03
+title: Daily activities
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 3
+phase: first-exchanges
+prerequisites:
+- zh-level-01
+- zh-level-02
+goals: &id001
+- Describe a daily schedule.
+- Discuss interests and learned abilities.
+- Choose food and clarify a purchase.
+checkpoint:
+  task: Arrange an activity and a meal using a new combination of times and preferences.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: time-and-routines
+  title: Time and daily routines
+  outcome: Ask and answer when someone gets up, eats, works, or sleeps, and say where an everyday activity happens.
+  vocabulary:
+  - {id: zh-hsk1-00183-s001, ch: 今天, pr: jīn tiān, ds: today}
+  - {id: zh-hsk1-00252-s001, ch: 明天, pr: míng tiān, ds: tomorrow}
+  - {id: zh-hsk1-00501-s001, ch: 昨天, pr: zuó tiān, ds: yesterday}
+  - {id: zh-hsk1-00403-s001, ch: 现在, pr: xiàn zài, ds: now}
+  - {id: zh-hsk1-00326-s001, ch: 上午, pr: shàng wǔ, ds: morning}
+  - {id: zh-hsk1-00486-s001, ch: 中午, pr: zhōng wǔ, ds: noon}
+  - {id: zh-hsk1-00399-s001, ch: 下午, pr: xià wǔ, ds: afternoon}
+  - {id: zh-hsk1-00378-s001, ch: 晚上, pr: wǎn shang, ds: evening or night}
+  - {id: zh-hsk1-00078-s005, ch: 点, pr: diǎn, ds: o'clock}
+  - {id: zh-hsk1-00111-s008, ch: 分, pr: fēn, ds: minute (time)}
+  - {id: zh-hsk1-00011-s001, ch: 半, pr: bàn, ds: half}
+  - {id: zh-hsk1-00417-s002, ch: 星期, pr: xīng qī, ds: day of the week}
+  - {id: zh-hsk1-00336-s001, ch: 时候, pr: shí hou, ds: time or moment}
+  - {id: zh-hsk1-00292-s001, ch: 起床, pr: qǐ chuáng, ds: to get out of bed}
+  - {id: zh-hsk1-00352-s002, ch: 睡觉, pr: shuì jiào, ds: to sleep}
+  - {id: zh-hsk1-00048-s001, ch: 吃饭, pr: chī fàn, ds: to have a meal}
+  - {id: zh-hsk1-00320-s001, ch: 上班, pr: shàng bān, ds: to go to work}
+  - {id: zh-hsk1-00394-s001, ch: 下班, pr: xià bān, ds: to finish work}
+  - {id: zh-hsk1-00337-s001, ch: 时间, pr: shí jiān, ds: time or period}
+  grammar:
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g015, ch: S+在+Place+V, ds: preverbal location phrase}
+  review_vocabulary:
+  - {id: zh-hsk1-00461-s002, ch: 在, pr: zài, ds: to be located at}
+  - {id: zh-hsk1-00170-s001, ch: 家, pr: jiā, ds: home}
+  - {id: zh-hsk1-00126-s001, ch: 工作, pr: gōng zuò, ds: to work}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  - {id: zh-hsk1-00331-s001, ch: 什么, pr: shén me, ds: 'what?'}
+  review_grammar:
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
+- id: interests-and-abilities
+  title: Interests and learned abilities
+  outcome: Say what you like doing, describe what you can read, write, or perform, and identify an interest you share with someone.
+  vocabulary:
+  - {id: zh-hsk1-00428-s002, ch: 也, pr: yě, ds: also (adverb)}
+  - {id: zh-hsk1-00161-s001, ch: 会, pr: huì, ds: can (know how to)}
+  - {id: zh-hsk1-00390-s001, ch: 喜欢, pr: xǐ huan, ds: to like}
+  - {id: zh-hsk1-00424-s001, ch: 学习, pr: xué xí, ds: to learn or study}
+  - {id: zh-hsk1-00194-s005, ch: 看, pr: kàn, ds: 'to see, watch or look at'}
+  - {id: zh-hsk1-00092-s004, ch: 读, pr: dú, ds: to read}
+  - {id: zh-hsk1-00413-s001, ch: 写, pr: xiě, ds: to write}
+  - {id: zh-hsk1-00042-s001, ch: 唱歌, pr: chàng gē, ds: to sing a song}
+  - {id: zh-hsk1-00084-s001, ch: 电影, pr: diàn yǐng, ds: movie}
+  - {id: zh-hsk1-00139-s001, ch: 汉字, pr: hàn zì, ds: Chinese character}
+  - {id: zh-hsk1-00061-s001, ch: 打球, pr: dǎ qiú, ds: to play ball}
+  - {id: zh-hsk1-00287-s002, ch: 跑, pr: pǎo, ds: to run}
+  - {id: zh-hsk1-00001-s001, ch: 爱, pr: ài, ds: to love}
+  - {id: zh-hsk1-00117-s001, ch: 高兴, pr: gāo xìng, ds: happy}
+  - {id: zh-hsk1-00144-s001, ch: 好玩儿, pr: hǎo wán r, ds: amusing or fun}
+  grammar:
+  - {id: zh-hsk1-g016, ch: S+也+P, ds: also}
+  - {id: zh-hsk1-g020, ch: S+会+V, ds: learned ability}
+  review_vocabulary:
+  - {id: zh-hsk1-00138-s001, ch: 汉语, pr: Hàn yǔ, ds: Chinese language}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk1-00365-s002, ch: 听, pr: tīng, ds: to listen or hear}
+  - {id: zh-hsk1-00344-s001, ch: 书, pr: shū, ds: book}
+  - {id: zh-hsk1-00404-s004, ch: 想, pr: xiǎng, ds: to want or desire}
+  review_grammar:
+  - {id: zh-hsk1-g002, ch: S+很+Adj, ds: adjective predicate}
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+- id: food-and-shopping
+  title: Food and everyday shopping
+  outcome: Buy familiar foods including apples, ask about prices, describe what tastes good, and say what everyone in a group wants to eat.
+  vocabulary:
+  - {id: zh-hsk1-00091-s002, ch: 都, pr: dōu, ds: all or both}
+  - {id: zh-hsk1-00047-s001, ch: 吃, pr: chī, ds: to eat or consume}
+  - {id: zh-hsk1-00246-s001, ch: 米饭, pr: mǐ fàn, ds: cooked rice}
+  - {id: zh-hsk1-00248-s001, ch: 面条儿, pr: miàn tiáo r, ds: noodles}
+  - {id: zh-hsk1-00036-s001, ch: 菜, pr: cài, ds: dish (food)}
+  - {id: zh-hsk1-00036-s002, ch: 菜, pr: cài, ds: vegetable}
+  - {id: zh-hsk1-00165-s001, ch: 鸡蛋, pr: jī dàn, ds: chicken egg}
+  - {id: zh-hsk1-00314-s001, ch: 肉, pr: ròu, ds: meat}
+  - {id: zh-hsk1-00350-s001, ch: 水果, pr: shuǐ guǒ, ds: fruit}
+  - {id: zh-hsk3-00526-s001, ch: 苹果, pr: píng guǒ, ds: apple}
+  - {id: zh-hsk1-00141-s001, ch: 好吃, pr: hǎo chī, ds: tasty}
+  - {id: zh-hsk1-00129-s001, ch: 贵, pr: guì, ds: expensive}
+  - {id: zh-hsk1-00017-s001, ch: 包子, pr: bāo zi, ds: steamed stuffed bun}
+  - {id: zh-hsk1-00247-s001, ch: 面包, pr: miàn bāo, ds: bread}
+  - {id: zh-hsk1-00098-s001, ch: 饿, pr: è, ds: to be hungry}
+  - {id: zh-hsk1-00200-s001, ch: 渴, pr: kě, ds: thirsty}
+  - {id: zh-hsk1-00254-s004, ch: 哪, pr: něi, ds: 'which? (before a classifier)'}
+  grammar:
+  - {id: zh-hsk1-g017, ch: S+都+P, ds: all members of a group}
+  review_vocabulary:
+  - {id: zh-hsk1-00385-s001, ch: 我们, pr: wǒ men, ds: we or us}
+  - {id: zh-hsk1-00147-s002, ch: 和, pr: hé, ds: and or with (joining nouns)}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00390-s001, ch: 喜欢, pr: xǐ huan, ds: to like}
+  review_grammar:
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}

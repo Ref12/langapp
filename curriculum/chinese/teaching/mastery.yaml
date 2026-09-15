@@ -1,0 +1,56 @@
+schema_version: 1
+id: zh-item-mastery
+applies_to: [vocabulary-sense, grammar-construct, phrase]
+scope: Observed performance for one item in one modality; not overall language proficiency.
+unassessed: No suitable evidence has been recorded. Exposure and curriculum position do not establish understanding.
+modalities: [reading, listening, typed-production, spoken-production, handwriting]
+stages:
+- id: recognize
+  title: Recognition
+  modalities: [reading, listening]
+  outcome: Distinguish the intended form and meaning from plausible alternatives.
+  evidence:
+  - Identify the intended sense or function without being shown its translation first.
+  - Distinguish a relevant confusable form or meaning in more than one example.
+  limitation: Recognition does not establish contextual understanding or production.
+- id: understand
+  title: Contextual understanding
+  modalities: [reading, listening]
+  outcome: Interpret the intended meaning or function in an unfamiliar context.
+  evidence:
+  - Explain or respond appropriately to the item's contribution in two different contexts.
+  - Distinguish a relevant alternate sense or construction.
+  - Demonstrate retrieval in a later session without an answer-revealing hint.
+  limitation: Comprehension does not establish productive control.
+- id: supported-use
+  title: Supported use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Produce an original and appropriate response when a task or scaffold makes the item relevant.
+  evidence:
+  - Produce an original response rather than repeat a supplied answer.
+  - Use the intended item appropriately in two different task contexts.
+  - Record vocabulary cues, structural scaffolds, corrections, and other assistance.
+  limitation: Success with assistance does not establish independent use.
+- id: independent-use
+  title: Independent use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Select and use the item appropriately without an item-specific cue or answer model.
+  evidence:
+  - Use the item in a fresh communicative task where it is relevant but not explicitly requested.
+  - Adapt its use to a different context or contrast.
+  - Demonstrate delayed retrieval in a later session and record any required repair.
+  limitation: Evidence remains specific to the item, task conditions, and modality observed.
+evidence_fields: [item_id, stage, modality, task_id, session_id, observed_at, context, response, outcome, assistance]
+evidence_outcomes: [successful, partial, unsuccessful]
+policy:
+- This is an authored assessment rubric, not a calibrated psychometric scale.
+- Record evidence before assigning a stage; do not award mastery from exposure counts, reference bands, or completed modules.
+- Keep modality judgments separate; typed responses cannot demonstrate listening, spoken pronunciation, or handwriting.
+- Recognition and contextual understanding describe receptive evidence; supported and independent use describe productive evidence.
+- Listening and spoken-production judgments require actual audio and suitable evaluation.
+- Do not infer all earlier stages from one successful task; retain the evidence and its conditions.
+- Revisit a judgment when later evidence contradicts it without erasing the earlier observations.
+- Evidence applies to the precise sense or construction, not to every meaning of a headword.
+- Level checkpoints assess the named goals using fresh material; advancement need not wait for perfect mastery of every introduced item.
+- Carry fragile items into later review rather than treating level advancement as permanent mastery.
+- Count distinct headwords separately from senses, and distinguish introduced, understood, and independently usable items.

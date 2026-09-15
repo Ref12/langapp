@@ -1,0 +1,116 @@
+schema_version: 3
+id: zh-level-01
+title: First contact
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 1
+phase: first-exchanges
+prerequisites: []
+goals: &id001
+- Introduce yourself and repair a misunderstanding.
+- Request a familiar drink politely.
+- Ask about a small quantity or price.
+checkpoint:
+  task: Complete a short introduction and purchase with an unfamiliar partner and a changed quantity.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: first-exchanges
+  title: First exchanges and communication repair
+  outcome: Greet someone politely, introduce yourself by name and as a student, return a question, and say that you do not understand.
+  vocabulary:
+  - {id: zh-hsk1-00384-s001, ch: 我, pr: wǒ, ds: 'I, me, my'}
+  - {id: zh-hsk1-00275-s001, ch: 你, pr: nǐ, ds: you}
+  - {id: zh-hsk1-00278-s001, ch: 您, pr: nín, ds: you (polite)}
+  - {id: zh-hsk1-00140-s009, ch: 好, pr: hǎo, ds: hello (after a pronoun)}
+  - {id: zh-hsk1-00176-s005, ch: 叫, pr: jiào, ds: to be called}
+  - {id: zh-hsk1-00249-s001, ch: 名字, pr: míng zi, ds: name}
+  - {id: zh-hsk1-00340-s001, ch: 是, pr: shì, ds: to be (before noun phrases)}
+  - {id: zh-hsk1-00423-s001, ch: 学生, pr: xué sheng, ds: student}
+  - {id: zh-hsk1-00138-s001, ch: 汉语, pr: Hàn yǔ, ds: Chinese language}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
+  - {id: zh-hsk1-00365-s002, ch: 听, pr: tīng, ds: to listen or hear}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk1-00095-s001, ch: 对不起, pr: duì bu qǐ, ds: I'm sorry}
+  - {id: zh-hsk1-00236-s001, ch: 没关系, pr: méi guān xi, ds: it doesn't matter}
+  - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
+  - {id: zh-hsk1-00460-s001, ch: 再见, pr: zài jiàn, ds: goodbye}
+  - {id: zh-hsk1-00273-s001, ch: 呢, pr: ne, ds: what-about question particle}
+  grammar:
+  - {id: zh-hsk1-g001, ch: S+是+N, ds: noun-predicate identity}
+  - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
+  - {id: zh-hsk1-g008, ch: N+呢, ds: what about}
+  review_vocabulary: []
+  review_grammar: []
+- id: drinks-and-requests
+  title: Drinks and polite requests
+  outcome: Ask politely for coffee, tea, water, or milk, offer someone a drink or a seat, and accept or decline an offer.
+  vocabulary:
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00404-s004, ch: 想, pr: xiǎng, ds: to want or desire}
+  - {id: zh-hsk1-00230-s002, ch: 吗, pr: ma, ds: yes-no question particle}
+  - {id: zh-hsk1-00146-s001, ch: 喝, pr: hē, ds: to drink}
+  - {id: zh-hsk1-00349-s002, ch: 水, pr: shuǐ, ds: water}
+  - {id: zh-hsk1-00037-s001, ch: 茶, pr: chá, ds: tea}
+  - {id: zh-hsk1-00279-s001, ch: 牛奶, pr: niú nǎi, ds: cow's milk}
+  - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
+  - {id: zh-hsk1-00019-s001, ch: 杯子, pr: bēi zi, ds: cup or glass}
+  - {id: zh-hsk1-00034-s001, ch: 不客气, pr: bù kè qi, ds: you're welcome}
+  - {id: zh-hsk1-00140-s003, ch: 好, pr: hǎo, ds: all right!}
+  - {id: zh-hsk1-00504-s002, ch: 坐, pr: zuò, ds: to sit}
+  - {id: zh-hsk1-00427-s002, ch: 要, pr: yào, ds: to want or need}
+  - {id: zh-hsk1-00434-s001, ch: 一点儿, pr: yī diǎn r, ds: a bit}
+  - {id: zh-hsk1-00123-s004, ch: 给, pr: gěi, ds: to give}
+  grammar:
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  review_vocabulary:
+  - {id: zh-hsk1-00278-s001, ch: 您, pr: nín, ds: you (polite)}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
+  review_grammar:
+  - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
+  - {id: zh-hsk1-g008, ch: N+呢, ds: what about}
+- id: numbers-and-buying
+  title: Numbers, quantities, and prices
+  outcome: Order a specified number of drinks or objects, ask how many or how much, and understand prices up to one hundred yuan.
+  vocabulary:
+  - {id: zh-hsk1-00218-s001, ch: 零, pr: líng, ds: zero}
+  - {id: zh-hsk1-00431-s001, ch: 一, pr: yī, ds: one}
+  - {id: zh-hsk1-00100-s001, ch: 二, pr: èr, ds: two}
+  - {id: zh-hsk1-00315-s002, ch: 三, pr: sān, ds: three}
+  - {id: zh-hsk1-00355-s001, ch: 四, pr: sì, ds: four}
+  - {id: zh-hsk1-00386-s001, ch: 五, pr: wǔ, ds: five}
+  - {id: zh-hsk1-00219-s001, ch: 六, pr: liù, ds: six}
+  - {id: zh-hsk1-00290-s001, ch: 七, pr: qī, ds: seven}
+  - {id: zh-hsk1-00003-s001, ch: 八, pr: bā, ds: eight}
+  - {id: zh-hsk1-00187-s001, ch: 九, pr: jiǔ, ds: nine}
+  - {id: zh-hsk1-00335-s001, ch: 十, pr: shí, ds: ten}
+  - {id: zh-hsk1-00009-s002, ch: 百, pr: bǎi, ds: hundred}
+  - {id: zh-hsk1-00217-s001, ch: 两, pr: liǎng, ds: two}
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00018-s003, ch: 杯, pr: bēi, ds: classifier for cupfuls and glassfuls}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00298-s003, ch: 钱, pr: qián, ds: money}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  grammar:
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
+  review_vocabulary:
+  - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
+  - {id: zh-hsk1-00349-s002, ch: 水, pr: shuǐ, ds: water}
+  - {id: zh-hsk1-00019-s001, ch: 杯子, pr: bēi zi, ds: cup or glass}
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00123-s004, ch: 给, pr: gěi, ds: to give}
+  review_grammar:
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}

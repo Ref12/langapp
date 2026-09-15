@@ -1,0 +1,574 @@
+schema_version: 3
+id: zh-level-05
+title: Home and personal life
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 5
+phase: everyday-life
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+goals: &id001
+- Describe a home and its contents.
+- Explain clothing and personal needs.
+- Coordinate familiar household activities.
+checkpoint:
+  task: Explain a household need and negotiate a practical arrangement with a housemate.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: level-05-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships and respond to another person's perspective.
+  vocabulary:
+  - {id: zh-hsk1-00004-s001, ch: 爸, pr: bà, ds: father}
+  - {id: zh-hsk1-00074-s001, ch: 弟, pr: dì, ds: younger brother}
+  - {id: zh-hsk1-00119-s001, ch: 哥, pr: gē, ds: elder brother}
+  - {id: zh-hsk1-00137-s001, ch: 孩子, pr: hái zi, ds: child}
+  - {id: zh-hsk1-00172-s001, ch: 家人, pr: jiā rén, ds: family member}
+  - {id: zh-hsk1-00210-s001, ch: 老人, pr: lǎo rén, ds: elderly person}
+  - {id: zh-hsk1-00281-s001, ch: 女儿, pr: nǚ ér, ds: daughter}
+  - {id: zh-hsk1-00408-s001, ch: 小朋友, pr: xiǎo péng yǒu, ds: child}
+  - {id: zh-hsk1-00028-s001, ch: 别人, pr: bié ren, ds: other people}
+  - {id: zh-hsk1-00245-s001, ch: 们, pr: men, ds: 'plural marker (pronouns, personal nouns)'}
+  - {id: zh-hsk1-00266-s001, ch: 男孩儿, pr: nán hái r, ds: boy}
+  - {id: zh-hsk1-00267-s001, ch: 男朋友, pr: nán péng you, ds: boyfriend}
+  - {id: zh-hsk1-00276-s001, ch: 你们, pr: nǐ men, ds: you (plural)}
+  - {id: zh-hsk1-00283-s001, ch: 女朋友, pr: nǚ péng you, ds: girlfriend}
+  - {id: zh-hsk1-00361-s001, ch: 她们, pr: tā men, ds: they or them (females)}
+  - {id: zh-hsk1-00430-s001, ch: 爷爷, pr: yé ye, ds: paternal grandfather (colloquial)}
+  - {id: zh-hsk2-00730-s001, ch: 自己, pr: zì jǐ, ds: oneself}
+  - {id: zh-hsk4-00908-s001, ch: 丈夫, pr: zhàng fu, ds: husband}
+  - {id: zh-hsk5-00474-s001, ch: 邻居, pr: lín jū, ds: neighbor}
+  - {id: zh-hsk1-00180-s001, ch: 姐, pr: jiě, ds: older sister}
+  - {id: zh-hsk1-00226-s001, ch: 妈, pr: mā, ds: mother (familiar)}
+  - {id: zh-hsk1-00264-s001, ch: 奶奶, pr: nǎi nai, ds: paternal grandma (informal)}
+  - {id: zh-hsk1-00268-s001, ch: 男人, pr: nán rén, ds: man (adult male)}
+  - {id: zh-hsk1-00406-s001, ch: 小孩儿, pr: xiǎo hái r, ds: child}
+  - {id: zh-hsk2-00436-s001, ch: 全家, pr: quán jiā, ds: whole family}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00075-s001, ch: 弟弟, pr: dì di, ds: younger brother}
+  - {id: zh-hsk1-00241-s001, ch: 妹妹, pr: mèi mei, ds: younger sister}
+  - {id: zh-hsk1-00358-s001, ch: 他, pr: tā, ds: he or him}
+  - {id: zh-hsk1-00360-s001, ch: 她, pr: tā, ds: she}
+  - {id: zh-hsk1-00309-s001, ch: 人, pr: rén, ds: person or people}
+  - {id: zh-hsk1-00385-s001, ch: 我们, pr: wǒ men, ds: we or us}
+  - {id: zh-hsk1-00343-s001, ch: 手机, pr: shǒu jī, ds: cell phone}
+  - {id: zh-hsk1-00288-s001, ch: 朋友, pr: péng you, ds: friend}
+  review_grammar:
+  - {id: zh-hsk1-g004, ch: S+有+N, ds: possession}
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+- id: level-05-people-02
+  title: People and relationships - 2
+  outcome: Describe people and relationships and respond to another person's perspective.
+  vocabulary:
+  - {id: zh-hsk1-00099-s001, ch: 儿子, pr: ér zi, ds: son}
+  - {id: zh-hsk1-00209-s002, ch: 老, pr: lǎo, ds: old (of people)}
+  - {id: zh-hsk1-00280-s001, ch: 女, pr: nǚ, ds: female}
+  - {id: zh-hsk1-00282-s001, ch: 女孩儿, pr: nǚ hái r, ds: girl}
+  - {id: zh-hsk1-00284-s001, ch: 女人, pr: nǚ rén, ds: woman}
+  - {id: zh-hsk1-00123-s001, ch: 给, pr: gěi, ds: to}
+  - {id: zh-hsk1-00123-s002, ch: 给, pr: gěi, ds: for}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00908-s001, ch: 丈夫, pr: zhàng fu, ds: husband}
+  - {id: zh-hsk5-00474-s001, ch: 邻居, pr: lín jū, ds: neighbor}
+  - {id: zh-hsk1-00180-s001, ch: 姐, pr: jiě, ds: older sister}
+  - {id: zh-hsk1-00226-s001, ch: 妈, pr: mā, ds: mother (familiar)}
+  - {id: zh-hsk1-00264-s001, ch: 奶奶, pr: nǎi nai, ds: paternal grandma (informal)}
+  - {id: zh-hsk1-00268-s001, ch: 男人, pr: nán rén, ds: man (adult male)}
+  - {id: zh-hsk1-00406-s001, ch: 小孩儿, pr: xiǎo hái r, ds: child}
+  - {id: zh-hsk2-00436-s001, ch: 全家, pr: quán jiā, ds: whole family}
+  review_grammar:
+  - {id: zh-hsk1-g004, ch: S+有+N, ds: possession}
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+- id: level-05-home-01
+  title: Home and daily life - 1
+  outcome: Explain needs and arrangements in a home or familiar daily setting.
+  vocabulary:
+  - {id: zh-hsk1-00319-s006, ch: 上, pr: shàng, ds: on or above (noun suffix)}
+  - {id: zh-hsk1-00393-s003, ch: 下, pr: xià, ds: below}
+  - {id: zh-hsk1-00190-s003, ch: 开, pr: kāi, ds: to turn on or operate}
+  - {id: zh-hsk1-00104-s001, ch: 房子, pr: fáng zi, ds: house or low-rise building}
+  - {id: zh-hsk1-00105-s001, ch: 放, pr: fàng, ds: to put}
+  - {id: zh-hsk1-00114-s001, ch: 干净, pr: gān jìng, ds: clean or neat}
+  - {id: zh-hsk1-00158-s001, ch: 回家, pr: huí jiā, ds: to return home}
+  - {id: zh-hsk1-00215-s002, ch: 里, pr: lǐ, ds: interior or inside}
+  - {id: zh-hsk1-00220-s002, ch: 楼, pr: lóu, ds: multistory building}
+  - {id: zh-hsk1-00243-s001, ch: 门口, pr: mén kǒu, ds: entrance or doorway}
+  - {id: zh-hsk1-00302-s001, ch: 请进, pr: qǐng jìn, ds: please come in}
+  - {id: zh-hsk1-00351-s001, ch: 睡, pr: shuì, ds: to sleep}
+  - {id: zh-hsk1-00388-s001, ch: 洗, pr: xǐ, ds: to wash or bathe}
+  - {id: zh-hsk2-00117-s001, ch: 灯, pr: dēng, ds: lamp}
+  - {id: zh-hsk2-00221-s001, ch: 花园, pr: huā yuán, ds: garden}
+  - {id: zh-hsk2-00681-s003, ch: 脏, pr: zāng, ds: dirty}
+  - {id: zh-hsk3-00253-s001, ch: 挂, pr: guà, ds: to hang or suspend (from a hook etc)}
+  - {id: zh-hsk3-00324-s001, ch: 家具, pr: jiā jù, ds: furniture}
+  - {id: zh-hsk3-00383-s003, ch: 旧, pr: jiù, ds: worn (with age)}
+  - {id: zh-hsk3-00412-s001, ch: 空调, pr: kōng tiáo, ds: air conditioning}
+  - {id: zh-hsk3-00460-s001, ch: 乱, pr: luàn, ds: in confusion or disorder}
+  - {id: zh-hsk3-00874-s004, ch: 整齐, pr: zhěng qí, ds: tidy}
+  - {id: zh-hsk4-00046-s003, ch: 冰箱, pr: bīng xiāng, ds: refrigerator}
+  - {id: zh-hsk4-00109-s001, ch: 窗户, pr: chuāng hu, ds: window}
+  - {id: zh-hsk4-00358-s002, ch: 家务, pr: jiā wù, ds: housework}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00483-s001, ch: 中国, pr: Zhōng guó, ds: China}
+  - {id: zh-hsk1-00473-s001, ch: 这里, pr: zhè lǐ, ds: here}
+  - {id: zh-hsk1-00261-s001, ch: 那里, pr: nà li, ds: there}
+  - {id: zh-hsk1-00491-s001, ch: 住, pr: zhù, ds: to live (reside)}
+  - {id: zh-hsk1-00103-s001, ch: 房间, pr: fáng jiān, ds: room}
+  - {id: zh-hsk1-00493-s001, ch: 桌子, pr: zhuō zi, ds: table or desk}
+  - {id: zh-hsk1-00081-s001, ch: 电脑, pr: diàn nǎo, ds: computer}
+  - {id: zh-hsk1-00370-s001, ch: 图书馆, pr: tú shū guǎn, ds: library}
+  review_grammar:
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g013, ch: Place+有+N, ds: existence at a location}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+- id: level-05-home-02
+  title: Home and daily life - 2
+  outcome: Explain needs and arrangements in a home or familiar daily setting.
+  vocabulary:
+  - {id: zh-hsk4-00471-s002, ch: 楼梯, pr: lóu tī, ds: staircase}
+  - {id: zh-hsk4-00589-s001, ch: 扫, pr: sǎo, ds: to sweep}
+  - {id: zh-hsk5-00126-s001, ch: 厨房, pr: chú fáng, ds: kitchen}
+  - {id: zh-hsk5-00271-s001, ch: 隔壁, pr: gé bì, ds: next door}
+  - {id: zh-hsk1-00128-s001, ch: 关上, pr: guān shàng, ds: to close (a door)}
+  - {id: zh-hsk1-00221-s001, ch: 楼上, pr: lóu shàng, ds: upstairs}
+  - {id: zh-hsk1-00222-s001, ch: 楼下, pr: lóu xià, ds: downstairs}
+  - {id: zh-hsk1-00321-s002, ch: 上边, pr: shàng bian, ds: above}
+  - {id: zh-hsk1-00395-s001, ch: 下边, pr: xià bian, ds: under}
+  - {id: zh-hsk2-00052-s003, ch: 层, pr: céng, ds: floor (of a building); story}
+  - {id: zh-hsk2-00092-s002, ch: 大门, pr: dà mén, ds: entrance}
+  - {id: zh-hsk2-00187-s001, ch: 狗, pr: gǒu, ds: dog}
+  - {id: zh-hsk2-00358-s001, ch: 猫, pr: māo, ds: cat}
+  - {id: zh-hsk2-00560-s001, ch: 洗衣机, pr: xǐ yī jī, ds: washing machine; washer}
+  - {id: zh-hsk2-00561-s001, ch: 洗澡, pr: xǐ zǎo, ds: to bathe}
+  - {id: zh-hsk2-00671-s001, ch: 院子, pr: yuàn zi, ds: courtyard}
+  - {id: zh-hsk2-00709-s001, ch: 纸, pr: zhǐ, ds: paper}
+  - {id: zh-hsk3-00029-s001, ch: 被子, pr: bèi zi, ds: quilt}
+  - {id: zh-hsk3-00594-s001, ch: 沙发, pr: shā fā, ds: sofa (loanword)}
+  - {id: zh-hsk4-00130-s001, ch: 打扫, pr: dǎ sǎo, ds: to clean}
+  - {id: zh-hsk4-00813-s001, ch: 牙刷, pr: yá shuā, ds: toothbrush}
+  - {id: zh-hsk4-00830-s001, ch: 阳台, pr: yáng tái, ds: balcony}
+  - {id: zh-hsk7-9-04814-s001, ch: 钥匙, pr: yào shi, ds: key}
+  - {id: zh-hsk1-00053-s001, ch: 床, pr: chuáng, ds: bed}
+  - {id: zh-hsk1-00171-s001, ch: 家里, pr: jiā lǐ, ds: home}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00324-s001, ch: 家具, pr: jiā jù, ds: furniture}
+  - {id: zh-hsk3-00383-s003, ch: 旧, pr: jiù, ds: worn (with age)}
+  - {id: zh-hsk3-00412-s001, ch: 空调, pr: kōng tiáo, ds: air conditioning}
+  - {id: zh-hsk3-00460-s001, ch: 乱, pr: luàn, ds: in confusion or disorder}
+  - {id: zh-hsk3-00874-s004, ch: 整齐, pr: zhěng qí, ds: tidy}
+  - {id: zh-hsk4-00046-s003, ch: 冰箱, pr: bīng xiāng, ds: refrigerator}
+  - {id: zh-hsk4-00109-s001, ch: 窗户, pr: chuāng hu, ds: window}
+  - {id: zh-hsk4-00358-s002, ch: 家务, pr: jiā wù, ds: housework}
+  review_grammar:
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g013, ch: Place+有+N, ds: existence at a location}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+- id: level-05-home-03
+  title: Home and daily life - 3
+  outcome: Explain needs and arrangements in a home or familiar daily setting.
+  vocabulary:
+  - {id: zh-hsk2-00417-s001, ch: 墙, pr: qiáng, ds: wall}
+  - {id: zh-hsk2-00638-s001, ch: 椅子, pr: yǐ zi, ds: chair}
+  - {id: zh-hsk2-00558-s001, ch: 午睡, pr: wǔ shuì, ds: to take a nap}
+  - {id: zh-hsk2-00669-s001, ch: 院, pr: yuàn, ds: courtyard}
+  - {id: zh-hsk4-00111-s001, ch: 窗子, pr: chuāng zi, ds: window}
+  - {id: zh-hsk4-00402-s001, ch: 镜子, pr: jìng zi, ds: mirror}
+  - {id: zh-hsk4-00518-s001, ch: 闹钟, pr: nào zhōng, ds: alarm clock}
+  - {id: zh-hsk5-00133-s001, ch: 窗帘, pr: chuāng lián, ds: window curtains}
+  - {id: zh-hsk5-00305-s001, ch: 锅, pr: guō, ds: pot; pan; wok; cauldron}
+  - {id: zh-hsk5-00441-s002, ch: 客厅, pr: kè tīng, ds: living room}
+  - {id: zh-hsk5-00784-s001, ch: 卧室, pr: wò shì, ds: bedroom}
+  - {id: zh-hsk1-00069-s001, ch: 地上, pr: dì shang, ds: on the ground or floor}
+  - {id: zh-hsk1-00083-s001, ch: 电视机, pr: diàn shì jī, ds: television set}
+  - {id: zh-hsk1-00185-s001, ch: 进来, pr: jìn lái, ds: to come in}
+  - {id: zh-hsk1-00462-s001, ch: 在家, pr: zài jiā, ds: to be at home}
+  - {id: zh-hsk2-00725-s001, ch: 住房, pr: zhù fáng, ds: housing}
+  - {id: zh-hsk3-00662-s001, ch: 书架, pr: shū jià, ds: bookshelf}
+  - {id: zh-hsk3-00816-s001, ch: 衣架, pr: yī jià, ds: clothes hanger}
+  - {id: zh-hsk4-00177-s001, ch: 电灯, pr: diàn dēng, ds: electric light}
+  - {id: zh-hsk4-00483-s001, ch: 毛巾, pr: máo jīn, ds: towel}
+  - {id: zh-hsk4-00651-s001, ch: 刷, pr: shuā, ds: to brush}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00029-s001, ch: 被子, pr: bèi zi, ds: quilt}
+  - {id: zh-hsk3-00594-s001, ch: 沙发, pr: shā fā, ds: sofa (loanword)}
+  - {id: zh-hsk4-00130-s001, ch: 打扫, pr: dǎ sǎo, ds: to clean}
+  - {id: zh-hsk4-00813-s001, ch: 牙刷, pr: yá shuā, ds: toothbrush}
+  - {id: zh-hsk4-00830-s001, ch: 阳台, pr: yáng tái, ds: balcony}
+  - {id: zh-hsk7-9-04814-s001, ch: 钥匙, pr: yào shi, ds: key}
+  - {id: zh-hsk1-00053-s001, ch: 床, pr: chuáng, ds: bed}
+  - {id: zh-hsk1-00171-s001, ch: 家里, pr: jiā lǐ, ds: home}
+  review_grammar:
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g013, ch: Place+有+N, ds: existence at a location}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+- id: level-05-clothing-01
+  title: Clothing and appearance - 1
+  outcome: Describe appearance and compare suitable choices for a context.
+  vocabulary:
+  - {id: zh-hsk2-00134-s001, ch: 短, pr: duǎn, ds: short}
+  - {id: zh-hsk2-00177-s001, ch: 个子, pr: gè zi, ds: height}
+  - {id: zh-hsk2-00529-s001, ch: 头发, pr: tóu fa, ds: hair (on the head)}
+  - {id: zh-hsk3-00570-s001, ch: 裙子, pr: qún zi, ds: skirt}
+  - {id: zh-hsk3-00751-s009, ch: 系, pr: jì, ds: to tie}
+  - {id: zh-hsk4-00021-s002, ch: 薄, pr: báo, ds: thin}
+  - {id: zh-hsk4-00149-s002, ch: 戴, pr: dài, ds: 'to put on or wear (glasses, hat, gloves etc)'}
+  - {id: zh-hsk4-00716-s002, ch: 外套, pr: wài tào, ds: jacket}
+  - {id: zh-hsk4-00826-s002, ch: 眼镜, pr: yǎn jìng, ds: eyeglasses}
+  - {id: zh-hsk6-00592-s002, ch: 内衣, pr: nèi yī, ds: underwear}
+  - {id: zh-hsk2-00096-s001, ch: 大衣, pr: dà yī, ds: overcoat}
+  - {id: zh-hsk2-00250-s003, ch: 件, pr: jiàn, ds: 'classifier for events, things, clothes etc'}
+  - {id: zh-hsk2-00476-s001, ch: 手表, pr: shǒu biǎo, ds: wristwatch}
+  - {id: zh-hsk2-00588-s001, ch: 鞋, pr: xié, ds: shoe}
+  - {id: zh-hsk3-00415-s001, ch: 裤子, pr: kù zi, ds: trousers}
+  - {id: zh-hsk4-00484-s001, ch: 毛衣, pr: máo yī, ds: (wool) sweater}
+  - {id: zh-hsk4-00713-s001, ch: 袜子, pr: wà zi, ds: socks}
+  - {id: zh-hsk1-00052-s001, ch: 穿, pr: chuān, ds: to wear or put on}
+  - {id: zh-hsk1-00441-s001, ch: 衣服, pr: yī fu, ds: clothes}
+  - {id: zh-hsk2-00230-s001, ch: 黄色, pr: huáng sè, ds: yellow (color)}
+  - {id: zh-hsk2-00345-s003, ch: 流行, pr: liú xíng, ds: '(of a style of clothing, song etc) popular'}
+  - {id: zh-hsk4-00485-s001, ch: 帽子, pr: mào zi, ds: hat}
+  - {id: zh-hsk4-00725-s001, ch: 围巾, pr: wéi jīn, ds: scarf}
+  - {id: zh-hsk2-00006-s001, ch: 白色, pr: bái sè, ds: white}
+  - {id: zh-hsk2-00214-s001, ch: 黑色, pr: hēi sè, ds: black}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-05-clothing-02
+  title: Clothing and appearance - 2
+  outcome: Describe appearance and compare suitable choices for a context.
+  vocabulary:
+  - {id: zh-hsk2-00354-s001, ch: 绿色, pr: lǜ sè, ds: green}
+  - {id: zh-hsk2-00227-s002, ch: 换, pr: huàn, ds: to change (clothes etc)}
+  - {id: zh-hsk2-00430-s001, ch: 球鞋, pr: qiú xié, ds: athletic shoes}
+  - {id: zh-hsk3-00079-s001, ch: 衬衫, pr: chèn shān, ds: shirt}
+  - {id: zh-hsk3-00604-s002, ch: 上衣, pr: shàng yī, ds: upper outer garment}
+  - {id: zh-hsk4-00424-s001, ch: 口袋, pr: kǒu dài, ds: pocket}
+  - {id: zh-hsk4-00712-s002, ch: 脱, pr: tuō, ds: to take off}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00052-s001, ch: 穿, pr: chuān, ds: to wear or put on}
+  - {id: zh-hsk1-00441-s001, ch: 衣服, pr: yī fu, ds: clothes}
+  - {id: zh-hsk2-00230-s001, ch: 黄色, pr: huáng sè, ds: yellow (color)}
+  - {id: zh-hsk2-00345-s003, ch: 流行, pr: liú xíng, ds: '(of a style of clothing, song etc) popular'}
+  - {id: zh-hsk4-00485-s001, ch: 帽子, pr: mào zi, ds: hat}
+  - {id: zh-hsk4-00725-s001, ch: 围巾, pr: wéi jīn, ds: scarf}
+  - {id: zh-hsk2-00006-s001, ch: 白色, pr: bái sè, ds: white}
+  - {id: zh-hsk2-00214-s001, ch: 黑色, pr: hēi sè, ds: black}
+  review_grammar: []
+- id: level-05-food-01
+  title: Food and meals - 1
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: zh-hsk1-00377-s001, ch: 晚饭, pr: wǎn fàn, ds: evening meal}
+  - {id: zh-hsk1-00464-s001, ch: 早饭, pr: zǎo fàn, ds: breakfast}
+  - {id: zh-hsk1-00101-s002, ch: 饭, pr: fàn, ds: meal}
+  - {id: zh-hsk1-00263-s002, ch: 奶, pr: nǎi, ds: milk}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00526-s001, ch: 苹果, pr: píng guǒ, ds: apple}
+  - {id: zh-hsk1-00141-s001, ch: 好吃, pr: hǎo chī, ds: tasty}
+  - {id: zh-hsk1-00129-s001, ch: 贵, pr: guì, ds: expensive}
+  - {id: zh-hsk1-00017-s001, ch: 包子, pr: bāo zi, ds: steamed stuffed bun}
+  - {id: zh-hsk1-00247-s001, ch: 面包, pr: miàn bāo, ds: bread}
+  - {id: zh-hsk1-00098-s001, ch: 饿, pr: è, ds: to be hungry}
+  - {id: zh-hsk1-00200-s001, ch: 渴, pr: kě, ds: thirsty}
+  - {id: zh-hsk1-00254-s004, ch: 哪, pr: něi, ds: 'which? (before a classifier)'}
+  review_grammar:
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk1-g017, ch: S+都+P, ds: all members of a group}
+- id: level-05-services-01
+  title: Services and transactions - 1
+  outcome: Clarify requirements and resolve an ordinary transaction or service problem.
+  vocabulary:
+  - {id: zh-hsk1-00434-s003, ch: 一点儿, pr: yī diǎn r, ds: a bit more (comparative)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00217-s001, ch: 两, pr: liǎng, ds: two}
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00018-s003, ch: 杯, pr: bēi, ds: classifier for cupfuls and glassfuls}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00298-s003, ch: 钱, pr: qián, ds: money}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  review_grammar:
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
+- id: level-05-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk3-00753-s002, ch: 下来, pr: xià lai, ds: (completed action marker)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00492-s002, ch: 准备, pr: zhǔn bèi, ds: to prepare}
+  - {id: zh-hsk1-00233-s001, ch: 忙, pr: máng, ds: busy}
+  - {id: zh-hsk1-00421-s002, ch: 休息, pr: xiū xi, ds: to rest}
+  - {id: zh-hsk1-00334-s001, ch: 生日, pr: shēng rì, ds: birthday}
+  - {id: zh-hsk1-00277-s002, ch: 年, pr: nián, ds: year}
+  - {id: zh-hsk1-00458-s002, ch: 月, pr: yuè, ds: month}
+  - {id: zh-hsk1-00145-s004, ch: 号, pr: hào, ds: day of a month}
+  - {id: zh-hsk1-00419-s001, ch: 星期天, pr: Xīng qī tiān, ds: Sunday}
+  review_grammar:
+  - {id: zh-hsk1-g008, ch: N+呢, ds: what about}
+  - {id: zh-hsk1-g025, ch: 别+V, ds: prohibition}
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+- id: level-05-time-01
+  title: Time and events - 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary:
+  - {id: zh-hsk1-00012-s001, ch: 半年, pr: bàn nián, ds: half a year}
+  - {id: zh-hsk1-00013-s001, ch: 半天, pr: bàn tiān, ds: half a day}
+  - {id: zh-hsk1-00182-s001, ch: 今年, pr: jīn nián, ds: this year}
+  - {id: zh-hsk1-00251-s001, ch: 明年, pr: míng nián, ds: next year}
+  - {id: zh-hsk1-00449-s001, ch: 有时候, pr: yǒu shí hou, ds: sometimes}
+  - {id: zh-hsk1-00465-s001, ch: 早上, pr: zǎo shang, ds: early morning}
+  - {id: zh-hsk1-00401-s005, ch: 先, pr: xiān, ds: first}
+  - {id: zh-hsk1-00008-s001, ch: 白天, pr: bái tiān, ds: daytime}
+  - {id: zh-hsk1-00448-s001, ch: 有时, pr: yǒu shí, ds: sometimes}
+  - {id: zh-hsk1-00463-s001, ch: 早, pr: zǎo, ds: early}
+  - {id: zh-hsk1-00212-s002, ch: 了, pr: le, ds: change-of-state modal particle}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00417-s002, ch: 星期, pr: xīng qī, ds: day of the week}
+  - {id: zh-hsk1-00336-s001, ch: 时候, pr: shí hou, ds: time or moment}
+  - {id: zh-hsk1-00292-s001, ch: 起床, pr: qǐ chuáng, ds: to get out of bed}
+  - {id: zh-hsk1-00352-s002, ch: 睡觉, pr: shuì jiào, ds: to sleep}
+  - {id: zh-hsk1-00048-s001, ch: 吃饭, pr: chī fàn, ds: to have a meal}
+  - {id: zh-hsk1-00320-s001, ch: 上班, pr: shàng bān, ds: to go to work}
+  - {id: zh-hsk1-00394-s001, ch: 下班, pr: xià bān, ds: to finish work}
+  - {id: zh-hsk1-00337-s001, ch: 时间, pr: shí jiān, ds: time or period}
+  review_grammar:
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g015, ch: S+在+Place+V, ds: preverbal location phrase}
+- id: level-05-actions-01
+  title: Actions and processes - 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk1-00113-s015, ch: 干, pr: gàn, ds: to work or do}
+  - {id: zh-hsk1-00060-s001, ch: 打开, pr: dǎ kāi, ds: to open}
+  - {id: zh-hsk1-00469-s001, ch: 找到, pr: zhǎo dào, ds: to find}
+  - {id: zh-hsk1-00505-s001, ch: 坐下, pr: zuò xia, ds: to sit down}
+  - {id: zh-hsk1-00459-s003, ch: 再, pr: zài, ds: only then}
+  - {id: zh-hsk1-00207-s003, ch: 来, pr: lái, ds: hither}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-05-description-01
+  title: Description and comparison - 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk1-00393-s001, ch: 下, pr: xià, ds: down}
+  - {id: zh-hsk2-00690-s002, ch: 长, pr: cháng, ds: long}
+  - {id: zh-hsk1-00439-s001, ch: 一些, pr: yī xiē, ds: some}
+  - {id: zh-hsk1-00450-s001, ch: 有些, pr: yǒu xiē, ds: some}
+  - {id: zh-hsk1-00027-s001, ch: 别的, pr: bié de, ds: other or else}
+  - {id: zh-hsk1-00142-s001, ch: 好看, pr: hǎo kàn, ds: good-looking}
+  - {id: zh-hsk1-00415-s002, ch: 新, pr: xīn, ds: new}
+  - {id: zh-hsk1-00476-s001, ch: 真, pr: zhēn, ds: really}
+  - {id: zh-hsk2-00004-s001, ch: 安静, pr: ān jìng, ds: quiet}
+  - {id: zh-hsk2-00120-s001, ch: 低, pr: dī, ds: low}
+  - {id: zh-hsk2-00340-s001, ch: 亮, pr: liàng, ds: bright}
+  - {id: zh-hsk2-00356-s003, ch: 满, pr: mǎn, ds: full}
+  - {id: zh-hsk1-00116-s002, ch: 高, pr: gāo, ds: high or tall}
+  - {id: zh-hsk1-00489-s006, ch: 重, pr: zhòng, ds: heavy}
+  - {id: zh-hsk1-00113-s002, ch: 干, pr: gān, ds: dry}
+  - {id: zh-hsk1-00154-s003, ch: 坏, pr: huài, ds: broken}
+  - {id: zh-hsk2-00095-s003, ch: 大小, pr: dà xiǎo, ds: size}
+  - {id: zh-hsk2-00658-s001, ch: 有点儿, pr: yǒu diǎn r, ds: slightly}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00258-s003, ch: 那, pr: nà, ds: 'that, the or those (specifier)'}
+  - {id: zh-hsk1-00331-s001, ch: 什么, pr: shén me, ds: 'what?'}
+  - {id: zh-hsk1-00348-s001, ch: 谁, pr: shéi, ds: who}
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00016-s011, ch: 包, pr: bāo, ds: bag}
+  - {id: zh-hsk1-00088-s002, ch: 东西, pr: dōng xi, ds: thing}
+  - {id: zh-hsk1-00344-s001, ch: 书, pr: shū, ds: book}
+  - {id: zh-hsk1-00023-s010, ch: 本, pr: běn, ds: 'classifier for books, periodicals, and files'}
+  review_grammar:
+  - {id: zh-hsk1-g002, ch: S+很+Adj, ds: adjective predicate}
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+- id: level-05-grammar-01
+  title: Sentence construction - 1
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk2-00706-s006, ch: 只, pr: zhī, ds: 'classifier for certain animals, objects, or one of a pair'}
+  - {id: zh-hsk1-00475-s014, ch: 着, pr: zhe, ds: ongoing action or state particle}
+  - {id: zh-hsk1-00479-s003, ch: 正在, pr: zhèng zài, ds: in the middle of doing}
+  - {id: zh-hsk1-00306-s013, ch: 去, pr: qù, ds: away from speaker (motion complement)}
+  - {id: zh-hsk3-00469-s001, ch: 每, pr: měi, ds: each}
+  - {id: zh-hsk1-00173-s006, ch: 间, pr: jiān, ds: classifier for rooms}
+  - {id: zh-hsk1-00446-s001, ch: 有的, pr: yǒu de, ds: some (of a group)}
+  - {id: zh-hsk2-00234-s001, ch: 或者, pr: huò zhě, ds: or}
+  - {id: zh-hsk1-00135-s004, ch: 还是, pr: hái shi, ds: or}
+  - {id: zh-hsk1-00025-s004, ch: 比, pr: bǐ, ds: than (comparison)}
+  - {id: zh-hsk1-00273-s004, ch: 呢, pr: ne, ds: continuing-state or action particle}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-05-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe people and relationships and respond to another person's perspective.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g024, ch: 给+Person+VP, ds: action directed to or done for someone}
+  review_vocabulary:
+  - {id: zh-hsk1-00123-s001, ch: 给, pr: gěi, ds: to}
+  - {id: zh-hsk1-00123-s002, ch: 给, pr: gěi, ds: for}
+  - {id: zh-hsk2-00436-s001, ch: 全家, pr: quán jiā, ds: whole family}
+  - {id: zh-hsk1-00099-s001, ch: 儿子, pr: ér zi, ds: son}
+  - {id: zh-hsk1-00209-s002, ch: 老, pr: lǎo, ds: old (of people)}
+  - {id: zh-hsk1-00280-s001, ch: 女, pr: nǚ, ds: female}
+  - {id: zh-hsk1-00282-s001, ch: 女孩儿, pr: nǚ hái r, ds: girl}
+  - {id: zh-hsk1-00284-s001, ch: 女人, pr: nǚ rén, ds: woman}
+  review_grammar:
+  - {id: zh-hsk1-g004, ch: S+有+N, ds: possession}
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+- id: level-05-home-practice-01
+  title: Home and daily life - sentence practice 1
+  outcome: Explain needs and arrangements in a home or familiar daily setting.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g004, ch: 正在+V+(呢), ds: activity in progress}
+  - {id: zh-hsk3-g003, ch: V+着, ds: maintained state rather than a new event}
+  review_vocabulary:
+  - {id: zh-hsk1-00479-s003, ch: 正在, pr: zhèng zài, ds: in the middle of doing}
+  - {id: zh-hsk1-00273-s004, ch: 呢, pr: ne, ds: continuing-state or action particle}
+  - {id: zh-hsk1-00475-s014, ch: 着, pr: zhe, ds: ongoing action or state particle}
+  - {id: zh-hsk1-00185-s001, ch: 进来, pr: jìn lái, ds: to come in}
+  - {id: zh-hsk1-00462-s001, ch: 在家, pr: zài jiā, ds: to be at home}
+  - {id: zh-hsk2-00725-s001, ch: 住房, pr: zhù fáng, ds: housing}
+  - {id: zh-hsk3-00662-s001, ch: 书架, pr: shū jià, ds: bookshelf}
+  - {id: zh-hsk3-00816-s001, ch: 衣架, pr: yī jià, ds: clothes hanger}
+  - {id: zh-hsk4-00177-s001, ch: 电灯, pr: diàn dēng, ds: electric light}
+  - {id: zh-hsk4-00483-s001, ch: 毛巾, pr: máo jīn, ds: towel}
+  - {id: zh-hsk4-00651-s001, ch: 刷, pr: shuā, ds: to brush}
+  review_grammar:
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g013, ch: Place+有+N, ds: existence at a location}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+- id: level-05-services-practice-01
+  title: Services and transactions - sentence practice 1
+  outcome: Clarify requirements and resolve an ordinary transaction or service problem.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g017, ch: Adj+一点儿, ds: a little more adjective in requests or comparisons}
+  - {id: zh-hsk2-g025, ch: (可以|能)+V, ds: permission versus ability allowed by circumstances}
+  - {id: zh-hsk3-g017, ch: Question+A还是B|Statement+A或者B, ds: question alternatives versus statement alternatives}
+  review_vocabulary:
+  - {id: zh-hsk1-00434-s003, ch: 一点儿, pr: yī diǎn r, ds: a bit more (comparative)}
+  - {id: zh-hsk2-00308-s002, ch: 可以, pr: kě yǐ, ds: may (permission)}
+  - {id: zh-hsk1-00274-s002, ch: 能, pr: néng, ds: can; be able to}
+  - {id: zh-hsk1-00135-s004, ch: 还是, pr: hái shi, ds: or}
+  - {id: zh-hsk2-00234-s001, ch: 或者, pr: huò zhě, ds: or}
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00018-s003, ch: 杯, pr: bēi, ds: classifier for cupfuls and glassfuls}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00298-s003, ch: 钱, pr: qián, ds: money}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  review_grammar:
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
+- id: level-05-communication-practice-01
+  title: Communication and information - sentence practice 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  review_vocabulary:
+  - {id: zh-hsk3-00753-s002, ch: 下来, pr: xià lai, ds: (completed action marker)}
+  - {id: zh-hsk1-00233-s001, ch: 忙, pr: máng, ds: busy}
+  - {id: zh-hsk1-00421-s002, ch: 休息, pr: xiū xi, ds: to rest}
+  - {id: zh-hsk1-00334-s001, ch: 生日, pr: shēng rì, ds: birthday}
+  - {id: zh-hsk1-00277-s002, ch: 年, pr: nián, ds: year}
+  - {id: zh-hsk1-00458-s002, ch: 月, pr: yuè, ds: month}
+  - {id: zh-hsk1-00145-s004, ch: 号, pr: hào, ds: day of a month}
+  - {id: zh-hsk1-00419-s001, ch: 星期天, pr: Xīng qī tiān, ds: Sunday}
+  review_grammar:
+  - {id: zh-hsk1-g008, ch: N+呢, ds: what about}
+  - {id: zh-hsk1-g025, ch: 别+V, ds: prohibition}
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+- id: level-05-time-practice-01
+  title: Time and events - sentence practice 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g002, ch: NewSituation+了, ds: current change of situation}
+  review_vocabulary:
+  - {id: zh-hsk1-00212-s002, ch: 了, pr: le, ds: change-of-state modal particle}
+  - {id: zh-hsk1-00251-s001, ch: 明年, pr: míng nián, ds: next year}
+  - {id: zh-hsk1-00449-s001, ch: 有时候, pr: yǒu shí hou, ds: sometimes}
+  - {id: zh-hsk1-00465-s001, ch: 早上, pr: zǎo shang, ds: early morning}
+  - {id: zh-hsk1-00401-s005, ch: 先, pr: xiān, ds: first}
+  - {id: zh-hsk1-00008-s001, ch: 白天, pr: bái tiān, ds: daytime}
+  - {id: zh-hsk1-00448-s001, ch: 有时, pr: yǒu shí, ds: sometimes}
+  - {id: zh-hsk1-00463-s001, ch: 早, pr: zǎo, ds: early}
+  review_grammar:
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g015, ch: S+在+Place+V, ds: preverbal location phrase}
+- id: level-05-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g008, ch: 先+VP1+再+VP2, ds: first do one thing and then another}
+  - {id: zh-hsk2-g021, ch: V+(来|去), ds: motion toward or away from the viewpoint}
+  review_vocabulary:
+  - {id: zh-hsk1-00401-s005, ch: 先, pr: xiān, ds: first}
+  - {id: zh-hsk1-00459-s003, ch: 再, pr: zài, ds: only then}
+  - {id: zh-hsk1-00207-s003, ch: 来, pr: lái, ds: hither}
+  - {id: zh-hsk1-00306-s013, ch: 去, pr: qù, ds: away from speaker (motion complement)}
+  - {id: zh-hsk1-00113-s015, ch: 干, pr: gàn, ds: to work or do}
+  - {id: zh-hsk1-00060-s001, ch: 打开, pr: dǎ kāi, ds: to open}
+  - {id: zh-hsk1-00469-s001, ch: 找到, pr: zhǎo dào, ds: to find}
+  - {id: zh-hsk1-00505-s001, ch: 坐下, pr: zuò xia, ds: to sit down}
+  review_grammar: []
+- id: level-05-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g013, ch: A+比+B+Adj, ds: one thing exceeds another in a quality}
+  review_vocabulary:
+  - {id: zh-hsk1-00025-s004, ch: 比, pr: bǐ, ds: than (comparison)}
+  - {id: zh-hsk2-00340-s001, ch: 亮, pr: liàng, ds: bright}
+  - {id: zh-hsk2-00356-s003, ch: 满, pr: mǎn, ds: full}
+  - {id: zh-hsk1-00116-s002, ch: 高, pr: gāo, ds: high or tall}
+  - {id: zh-hsk1-00489-s006, ch: 重, pr: zhòng, ds: heavy}
+  - {id: zh-hsk1-00113-s002, ch: 干, pr: gān, ds: dry}
+  - {id: zh-hsk1-00154-s003, ch: 坏, pr: huài, ds: broken}
+  - {id: zh-hsk2-00095-s003, ch: 大小, pr: dà xiǎo, ds: size}
+  - {id: zh-hsk2-00658-s001, ch: 有点儿, pr: yǒu diǎn r, ds: slightly}
+  review_grammar:
+  - {id: zh-hsk1-g002, ch: S+很+Adj, ds: adjective predicate}
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+- id: level-05-feelings-practice-01
+  title: Feelings and attitudes - sentence practice 1
+  outcome: Explain an attitude or emotional response with appropriate context.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk2-g016, ch: 有点儿+Adj, ds: slightly adjective; often a mild complaint}
+  review_vocabulary:
+  - {id: zh-hsk2-00658-s001, ch: 有点儿, pr: yǒu diǎn r, ds: slightly}
+  review_grammar: []

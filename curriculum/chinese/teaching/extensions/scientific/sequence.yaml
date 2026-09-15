@@ -1,0 +1,273 @@
+schema_version: 3
+id: zh-extension-scientific
+title: Scientific terminology
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: extension
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+- zh-level-06
+- zh-level-07
+- zh-level-08
+- zh-level-09
+- zh-level-10
+- zh-level-11
+- zh-level-12
+- zh-level-13
+- zh-level-14
+- zh-level-15
+- zh-level-16
+- zh-level-17
+- zh-level-18
+- zh-level-19
+- zh-level-20
+- zh-level-21
+- zh-level-22
+- zh-level-23
+- zh-level-24
+description: Optional scientific and natural-world terminology, not scientific or clinical qualification.
+mastery_profile: zh-item-mastery
+mastery_target: understand
+units:
+- id: extension-scientific-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain a health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: zh-hsk7-9-00018-s001, ch: 安眠药, pr: ān mián yào, ds: sleeping pill}
+  - {id: zh-hsk7-9-00471-s002, ch: 痴呆, pr: chī dāi, ds: dementia}
+  - {id: zh-hsk7-9-00651-s001, ch: 催眠, pr: cuī mián, ds: hypnosis}
+  - {id: zh-hsk7-9-01832-s001, ch: 霍乱, pr: huò luàn, ds: cholera}
+  - {id: zh-hsk7-9-02410-s001, ch: 口腔, pr: kǒu qiāng, ds: oral cavity}
+  - {id: zh-hsk7-9-02630-s001, ch: 临床, pr: lín chuáng, ds: clinical}
+  - {id: zh-hsk7-9-02745-s001, ch: 麻醉, pr: má zuì, ds: anesthesia}
+  - {id: zh-hsk7-9-03810-s001, ch: 衰竭, pr: shuāi jié, ds: organ failure}
+  - {id: zh-hsk5-00355-s001, ch: 肌肉, pr: jī ròu, ds: muscle}
+  - {id: zh-hsk5-00975-s001, ch: 诊断, pr: zhěn duàn, ds: to diagnose}
+  - {id: zh-hsk6-00284-s001, ch: 肝, pr: gān, ds: liver}
+  - {id: zh-hsk6-00820-s001, ch: 外科, pr: wài kē, ds: surgery (branch of medicine)}
+  - {id: zh-hsk6-00839-s001, ch: 维生素, pr: wéi shēng sù, ds: vitamin}
+  - {id: zh-hsk7-9-00010-s001, ch: 艾滋病, pr: ài zī bìng, ds: AIDS (loanword)}
+  - {id: zh-hsk7-9-00093-s003, ch: 包扎, pr: bāo zā, ds: to bind up (a wound)}
+  - {id: zh-hsk7-9-01172-s002, ch: 缝合, pr: féng hé, ds: suture (in surgery)}
+  - {id: zh-hsk7-9-01282-s002, ch: 高血压, pr: gāo xuè yā, ds: hypertension}
+  - {id: zh-hsk7-9-02350-s001, ch: 抗生素, pr: kàng shēng sù, ds: antibiotic}
+  - {id: zh-hsk5-01029-s001, ch: 注射, pr: zhù shè, ds: injection}
+  - {id: zh-hsk7-9-01223-s001, ch: 腹部, pr: fù bù, ds: abdomen}
+  - {id: zh-hsk7-9-01442-s001, ch: 关节, pr: guān jié, ds: joint (physiology)}
+  - {id: zh-hsk7-9-01857-s001, ch: 激素, pr: jī sù, ds: hormone}
+  - {id: zh-hsk7-9-03993-s001, ch: 糖尿病, pr: táng niào bìng, ds: diabetes}
+  - {id: zh-hsk7-9-04189-s001, ch: 唾液, pr: tuò yè, ds: saliva}
+  - {id: zh-hsk4-00520-s001, ch: 内科, pr: nèi kē, ds: internal medicine; general medicine}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-00577-s001, ch: 传染, pr: chuán rǎn, ds: to infect}
+  - {id: zh-hsk7-9-02846-s001, ch: 免疫, pr: miǎn yì, ds: immunity (to disease)}
+  - {id: zh-hsk4-00750-s001, ch: 吸烟, pr: xī yān, ds: to smoke}
+  - {id: zh-hsk4-00787-s002, ch: 心理, pr: xīn lǐ, ds: mentality}
+  - {id: zh-hsk7-9-00590-s003, ch: 创伤, pr: chuāng shāng, ds: trauma}
+  - {id: zh-hsk4-00274-s001, ch: 骨头, pr: gǔ tou, ds: bone}
+  - {id: zh-hsk4-00463-s004, ch: 疗养, pr: liáo yǎng, ds: to convalesce}
+  - {id: zh-hsk4-00683-s001, ch: 体重, pr: tǐ zhòng, ds: body weight}
+  review_grammar:
+  - {id: zh-hsk3-g018, ch: 应该+VP, ds: advice or expectation rather than guaranteed fact}
+- id: extension-scientific-health-02
+  title: Body and wellbeing - 2
+  outcome: Explain a health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: zh-hsk5-00213-s003, ch: 毒, pr: dú, ds: poisonous}
+  - {id: zh-hsk5-00662-s001, ch: 神经, pr: shén jīng, ds: nerve}
+  - {id: zh-hsk6-00237-s001, ch: 儿科, pr: ér kē, ds: pediatrics}
+  - {id: zh-hsk6-00238-s003, ch: 发病, pr: fā bìng, ds: onset (of a medical condition)}
+  - {id: zh-hsk6-00904-s001, ch: 血液, pr: xuè yè, ds: blood}
+  - {id: zh-hsk6-00938-s004, ch: 医药, pr: yī yào, ds: pharmaceutical}
+  - {id: zh-hsk7-9-01241-s001, ch: 肝脏, pr: gān zàng, ds: liver}
+  - {id: zh-hsk7-9-01795-s001, ch: 会诊, pr: huì zhěn, ds: consultation (medical)}
+  - {id: zh-hsk7-9-01875-s001, ch: 急性, pr: jí xìng, ds: acute}
+  - {id: zh-hsk7-9-02157-s002, ch: 禁忌, pr: jìn jì, ds: contraindication (medicine)}
+  - {id: zh-hsk7-9-02188-s001, ch: 精神病, pr: jīng shén bìng, ds: mental disorder}
+  - {id: zh-hsk7-9-02766-s002, ch: 慢性, pr: màn xìng, ds: chronic (disease)}
+  - {id: zh-hsk7-9-03077-s001, ch: 脾, pr: pí, ds: spleen}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02350-s001, ch: 抗生素, pr: kàng shēng sù, ds: antibiotic}
+  - {id: zh-hsk5-01029-s001, ch: 注射, pr: zhù shè, ds: injection}
+  - {id: zh-hsk7-9-01223-s001, ch: 腹部, pr: fù bù, ds: abdomen}
+  - {id: zh-hsk7-9-01442-s001, ch: 关节, pr: guān jié, ds: joint (physiology)}
+  - {id: zh-hsk7-9-01857-s001, ch: 激素, pr: jī sù, ds: hormone}
+  - {id: zh-hsk7-9-03993-s001, ch: 糖尿病, pr: táng niào bìng, ds: diabetes}
+  - {id: zh-hsk7-9-04189-s001, ch: 唾液, pr: tuò yè, ds: saliva}
+  - {id: zh-hsk4-00520-s001, ch: 内科, pr: nèi kē, ds: internal medicine; general medicine}
+  review_grammar:
+  - {id: zh-hsk3-g018, ch: 应该+VP, ds: advice or expectation rather than guaranteed fact}
+- id: extension-scientific-nature-01
+  title: Nature and environment - 1
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: zh-hsk4-00026-s001, ch: 宝石, pr: bǎo shí, ds: precious stone; gem}
+  - {id: zh-hsk5-00188-s002, ch: 地形, pr: dì xíng, ds: terrain}
+  - {id: zh-hsk5-00646-s001, ch: 蛇, pr: shé, ds: snake}
+  - {id: zh-hsk5-00702-s001, ch: 鼠, pr: shǔ, ds: (bound form) rat; mouse}
+  - {id: zh-hsk5-00971-s001, ch: 珍珠, pr: zhēn zhū, ds: pearl}
+  - {id: zh-hsk6-00351-s001, ch: 海底, pr: hǎi dǐ, ds: seabed}
+  - {id: zh-hsk6-00454-s003, ch: 井, pr: jǐng, ds: a well}
+  - {id: zh-hsk6-00869-s001, ch: 小麦, pr: xiǎo mài, ds: wheat}
+  - {id: zh-hsk7-9-00055-s001, ch: 柏树, pr: bǎi shù, ds: cypress tree}
+  - {id: zh-hsk7-9-00130-s001, ch: 贝壳, pr: bèi ké, ds: shell}
+  - {id: zh-hsk7-9-00201-s001, ch: 标本, pr: biāo běn, ds: specimen; sample}
+  - {id: zh-hsk7-9-01096-s001, ch: 肥沃, pr: féi wò, ds: fertile}
+  - {id: zh-hsk7-9-01470-s001, ch: 灌溉, pr: guàn gài, ds: to irrigate}
+  - {id: zh-hsk7-9-01549-s001, ch: 海啸, pr: hǎi xiào, ds: tsunami}
+  - {id: zh-hsk7-9-01554-s002, ch: 害虫, pr: hài chóng, ds: pest}
+  - {id: zh-hsk7-9-01566-s001, ch: 旱, pr: hàn, ds: drought}
+  - {id: zh-hsk7-9-01712-s001, ch: 化肥, pr: huà féi, ds: fertilizer}
+  - {id: zh-hsk7-9-02160-s001, ch: 经度, pr: jīng dù, ds: longitude}
+  - {id: zh-hsk7-9-02165-s002, ch: 茎, pr: jīng, ds: stem}
+  - {id: zh-hsk7-9-00788-s001, ch: 地质, pr: dì zhì, ds: geology}
+  - {id: zh-hsk7-9-01069-s001, ch: 防汛, pr: fáng xùn, ds: flood control}
+  - {id: zh-hsk7-9-02673-s001, ch: 流域, pr: liú yù, ds: river basin}
+  - {id: zh-hsk7-9-03332-s001, ch: 丘陵, pr: qiū líng, ds: hills}
+  - {id: zh-hsk7-9-05135-s001, ch: 陨石, pr: yǔn shí, ds: meteorite}
+  - {id: zh-hsk7-9-00069-s002, ch: 板块, pr: bǎn kuài, ds: (geology) tectonic plate}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-03624-s001, ch: 生态, pr: shēng tài, ds: ecology}
+  - {id: zh-hsk6-00054-s001, ch: 波浪, pr: bō làng, ds: wave}
+  - {id: zh-hsk6-00505-s003, ch: 矿, pr: kuàng, ds: a mine}
+  - {id: zh-hsk7-9-00785-s001, ch: 地下水, pr: dì xià shuǐ, ds: groundwater}
+  - {id: zh-hsk7-9-02310-s001, ch: 开采, pr: kāi cǎi, ds: to extract (ore or other resource from a mine)}
+  - {id: zh-hsk7-9-03386-s001, ch: 燃气, pr: rán qì, ds: 'fuel gas (coal gas, natural gas, methane etc)'}
+  - {id: zh-hsk7-9-03840-s001, ch: 水源, pr: shuǐ yuán, ds: water source}
+  - {id: zh-hsk7-9-04265-s001, ch: 尾气, pr: wěi qì, ds: exhaust; emissions}
+  review_grammar:
+  - {id: zh-hsk5-g006, ch: 随着+Process+P, ds: a development accompanies another changing process}
+- id: extension-scientific-nature-02
+  title: Nature and environment - 2
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: zh-hsk7-9-00073-s001, ch: 半岛, pr: bàn dǎo, ds: peninsula}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02160-s001, ch: 经度, pr: jīng dù, ds: longitude}
+  - {id: zh-hsk7-9-02165-s002, ch: 茎, pr: jīng, ds: stem}
+  - {id: zh-hsk7-9-00788-s001, ch: 地质, pr: dì zhì, ds: geology}
+  - {id: zh-hsk7-9-01069-s001, ch: 防汛, pr: fáng xùn, ds: flood control}
+  - {id: zh-hsk7-9-02673-s001, ch: 流域, pr: liú yù, ds: river basin}
+  - {id: zh-hsk7-9-03332-s001, ch: 丘陵, pr: qiū líng, ds: hills}
+  - {id: zh-hsk7-9-05135-s001, ch: 陨石, pr: yǔn shí, ds: meteorite}
+  - {id: zh-hsk7-9-00069-s002, ch: 板块, pr: bǎn kuài, ds: (geology) tectonic plate}
+  review_grammar:
+  - {id: zh-hsk5-g006, ch: 随着+Process+P, ds: a development accompanies another changing process}
+- id: extension-scientific-science-01
+  title: Science and investigation - 1
+  outcome: Interpret an explanatory account and distinguish observation from conclusion.
+  vocabulary:
+  - {id: zh-hsk6-00447-s003, ch: 近视, pr: jìn shì, ds: myopia}
+  - {id: zh-hsk7-9-00097-s001, ch: 饱和, pr: bǎo hé, ds: saturated; filled to capacity}
+  - {id: zh-hsk7-9-00426-s002, ch: 沉淀, pr: chén diàn, ds: sedimentation}
+  - {id: zh-hsk7-9-00562-s001, ch: 触觉, pr: chù jué, ds: sense of touch; tactile sensation}
+  - {id: zh-hsk7-9-00911-s001, ch: 动脉, pr: dòng mài, ds: artery}
+  - {id: zh-hsk7-9-01015-s001, ch: 发酵, pr: fā jiào, ds: to ferment}
+  - {id: zh-hsk7-9-01116-s002, ch: 分泌, pr: fēn mì, ds: secretion}
+  - {id: zh-hsk7-9-01134-s001, ch: 粪, pr: fèn, ds: manure}
+  - {id: zh-hsk7-9-01716-s002, ch: 化验, pr: huà yàn, ds: to do a lab test}
+  - {id: zh-hsk7-9-02096-s002, ch: 结晶, pr: jié jīng, ds: crystallization}
+  - {id: zh-hsk7-9-02048-s001, ch: 礁石, pr: jiāo shí, ds: reef}
+  - {id: zh-hsk7-9-02607-s001, ch: 两栖, pr: liǎng qī, ds: amphibious}
+  - {id: zh-hsk7-9-02993-s002, ch: 凝固, pr: níng gù, ds: to solidify}
+  - {id: zh-hsk7-9-03047-s001, ch: 胚胎, pr: pēi tāi, ds: embryo}
+  - {id: zh-hsk7-9-03102-s001, ch: 频率, pr: pín lǜ, ds: frequency}
+  - {id: zh-hsk7-9-03188-s002, ch: 气管, pr: qì guǎn, ds: trachea}
+  - {id: zh-hsk7-9-03618-s001, ch: 生理, pr: shēng lǐ, ds: physiology}
+  - {id: zh-hsk7-9-03827-s002, ch: 水稻, pr: shuǐ dào, ds: paddy}
+  - {id: zh-hsk7-9-04267-s001, ch: 纬度, pr: wěi dù, ds: latitude}
+  - {id: zh-hsk7-9-04443-s001, ch: 纤维, pr: xiān wéi, ds: fiber}
+  - {id: zh-hsk7-9-04472-s001, ch: 腺, pr: xiàn, ds: gland}
+  - {id: zh-hsk7-9-04586-s001, ch: 新陈代谢, pr: xīn chén dài xiè, ds: metabolism (biology)}
+  - {id: zh-hsk7-9-04986-s001, ch: 荧光, pr: yíng guāng, ds: fluorescence}
+  - {id: zh-hsk7-9-05274-s001, ch: 真空, pr: zhēn kōng, ds: vacuum}
+  - {id: zh-hsk5-00573-s002, ch: 气象, pr: qì xiàng, ds: meteorology}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02203-s001, ch: 净化, pr: jìng huà, ds: to purify}
+  - {id: zh-hsk7-9-03186-s001, ch: 起源, pr: qǐ yuán, ds: origin}
+  - {id: zh-hsk7-9-03413-s003, ch: 人为, pr: rén wéi, ds: having human cause or origin}
+  - {id: zh-hsk7-9-03760-s002, ch: 寿命, pr: shòu mìng, ds: life expectancy}
+  - {id: zh-hsk7-9-04933-s001, ch: 抑制, pr: yì zhì, ds: to inhibit}
+  - {id: zh-hsk7-9-05323-s001, ch: 知觉, pr: zhī jué, ds: perception}
+  - {id: zh-hsk7-9-05381-s001, ch: 滞后, pr: zhì hòu, ds: to lag behind}
+  - {id: zh-hsk7-9-04696-s001, ch: 学说, pr: xué shuō, ds: theory}
+  review_grammar:
+  - {id: zh-hsk7-9-g019, ch: Subject+有待+V, ds: work remains unresolved rather than certain to finish}
+- id: extension-scientific-science-02
+  title: Science and investigation - 2
+  outcome: Interpret an explanatory account and distinguish observation from conclusion.
+  vocabulary:
+  - {id: zh-hsk5-00753-s001, ch: 天文, pr: tiān wén, ds: astronomy}
+  - {id: zh-hsk5-00863-s001, ch: 研究所, pr: yán jiū suǒ, ds: research institute}
+  - {id: zh-hsk7-9-00743-s001, ch: 蛋白质, pr: dàn bái zhì, ds: protein}
+  - {id: zh-hsk7-9-01380-s001, ch: 共鸣, pr: gòng míng, ds: (physics) to resonate; resonance}
+  - {id: zh-hsk7-9-02376-s001, ch: 克隆, pr: kè lóng, ds: clone (loanword)}
+  - {id: zh-hsk5-00225-s004, ch: 发射, pr: fā shè, ds: to emit (a particle)}
+  - {id: zh-hsk5-00386-s003, ch: 键, pr: jiàn, ds: chemical bond}
+  - {id: zh-hsk5-00840-s004, ch: 形态, pr: xíng tài, ds: morphology}
+  - {id: zh-hsk7-9-00357-s001, ch: 测算, pr: cè suàn, ds: to take measurements and calculate}
+  - {id: zh-hsk7-9-00853-s001, ch: 淀粉, pr: diàn fěn, ds: starch; amylum (C6H10O5)n}
+  - {id: zh-hsk7-9-01092-s001, ch: 非金属, pr: fēi jīn shǔ, ds: nonmetal (chemistry)}
+  - {id: zh-hsk7-9-01180-s002, ch: 俘获, pr: fú huò, ds: 'capture (physics: particle absorption by an atom or nucleus)'}
+  - {id: zh-hsk7-9-01621-s003, ch: 核, pr: hé, ds: nucleus}
+  - {id: zh-hsk7-9-01776-s003, ch: 回归, pr: huí guī, ds: regression (statistics)}
+  - {id: zh-hsk7-9-01852-s001, ch: 激光, pr: jī guāng, ds: laser}
+  - {id: zh-hsk7-9-02710-s001, ch: 铝, pr: lǚ, ds: aluminum (chemistry)}
+  - {id: zh-hsk7-9-02968-s001, ch: 尼龙, pr: ní lóng, ds: nylon (loanword)}
+  - {id: zh-hsk7-9-02985-s002, ch: 酿造, pr: niàng zào, ds: 'to make (wine, vinegar, soybean paste etc) by fermentation'}
+  - {id: zh-hsk7-9-03989-s001, ch: 碳, pr: tàn, ds: carbon (chemistry)}
+  - {id: zh-hsk7-9-04106-s001, ch: 铜, pr: tóng, ds: copper (chemistry)}
+  - {id: zh-hsk7-9-04134-s003, ch: 凸, pr: tū, ds: convex}
+  - {id: zh-hsk4-00535-s002, ch: 培育, pr: péi yù, ds: to breed}
+  - {id: zh-hsk6-00089-s001, ch: 测定, pr: cè dìng, ds: to determine (by measuring or surveying)}
+  - {id: zh-hsk6-00338-s002, ch: 轨道, pr: guǐ dào, ds: orbit (of a satellite)}
+  - {id: zh-hsk6-00495-s001, ch: 科研, pr: kē yán, ds: (scientific) research}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-03827-s002, ch: 水稻, pr: shuǐ dào, ds: paddy}
+  - {id: zh-hsk7-9-04267-s001, ch: 纬度, pr: wěi dù, ds: latitude}
+  - {id: zh-hsk7-9-04443-s001, ch: 纤维, pr: xiān wéi, ds: fiber}
+  - {id: zh-hsk7-9-04472-s001, ch: 腺, pr: xiàn, ds: gland}
+  - {id: zh-hsk7-9-04586-s001, ch: 新陈代谢, pr: xīn chén dài xiè, ds: metabolism (biology)}
+  - {id: zh-hsk7-9-04986-s001, ch: 荧光, pr: yíng guāng, ds: fluorescence}
+  - {id: zh-hsk7-9-05274-s001, ch: 真空, pr: zhēn kōng, ds: vacuum}
+  - {id: zh-hsk5-00573-s002, ch: 气象, pr: qì xiàng, ds: meteorology}
+  review_grammar:
+  - {id: zh-hsk7-9-g019, ch: Subject+有待+V, ds: work remains unresolved rather than certain to finish}
+- id: extension-scientific-science-03
+  title: Science and investigation - 3
+  outcome: Interpret an explanatory account and distinguish observation from conclusion.
+  vocabulary:
+  - {id: zh-hsk7-9-01020-s004, ch: 发热, pr: fā rè, ds: to emit heat}
+  - {id: zh-hsk7-9-01174-s002, ch: 孵化, pr: fū huà, ds: to incubate}
+  - {id: zh-hsk7-9-01182-s001, ch: 浮力, pr: fú lì, ds: buoyancy}
+  - {id: zh-hsk7-9-01197-s001, ch: 腐蚀, pr: fǔ shí, ds: corrosion}
+  - {id: zh-hsk7-9-01235-s001, ch: 钙, pr: gài, ds: calcium (chemistry)}
+  - {id: zh-hsk7-9-01348-s001, ch: 公顷, pr: gōng qǐng, ds: hectare}
+  - {id: zh-hsk7-9-01496-s001, ch: 轨迹, pr: guǐ jì, ds: locus}
+  - {id: zh-hsk7-9-01571-s001, ch: 航天, pr: háng tiān, ds: space flight}
+  - {id: zh-hsk7-9-02045-s001, ch: 焦距, pr: jiāo jù, ds: focal length}
+  - {id: zh-hsk7-9-03569-s002, ch: 设, pr: shè, ds: (math.) given; suppose; if}
+  - {id: zh-hsk7-9-03577-s001, ch: 摄氏度, pr: Shè shì dù, ds: °C (degrees Celsius)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02985-s002, ch: 酿造, pr: niàng zào, ds: 'to make (wine, vinegar, soybean paste etc) by fermentation'}
+  - {id: zh-hsk7-9-03989-s001, ch: 碳, pr: tàn, ds: carbon (chemistry)}
+  - {id: zh-hsk7-9-04106-s001, ch: 铜, pr: tóng, ds: copper (chemistry)}
+  - {id: zh-hsk7-9-04134-s003, ch: 凸, pr: tū, ds: convex}
+  - {id: zh-hsk4-00535-s002, ch: 培育, pr: péi yù, ds: to breed}
+  - {id: zh-hsk6-00089-s001, ch: 测定, pr: cè dìng, ds: to determine (by measuring or surveying)}
+  - {id: zh-hsk6-00338-s002, ch: 轨道, pr: guǐ dào, ds: orbit (of a satellite)}
+  - {id: zh-hsk6-00495-s001, ch: 科研, pr: kē yán, ds: (scientific) research}
+  review_grammar:
+  - {id: zh-hsk7-9-g019, ch: Subject+有待+V, ds: work remains unresolved rather than certain to finish}

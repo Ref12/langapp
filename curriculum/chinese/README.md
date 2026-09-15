@@ -1,7 +1,9 @@
 # Chinese reference inventory and teaching tracks
 
-For everyday beginner learning, use the separate
-[Practical Mandarin beginner track](teaching/beginner/README.md).
+For practical learning, use the independent
+[six-phase, thirty-level Mandarin program](teaching/README.md), or its
+[standalone tourist route](teaching/tourist/README.md) for vacation preparation.
+The [beginner track](teaching/beginner/README.md) is preserved as levels 1-4.
 The HSK folders below are reference assignments, **not a mandatory teaching
 order or a requirement to learn every dictionary sense**. The beginner track
 introduces practical senses such as coffee and basic colors early without
@@ -90,6 +92,20 @@ Edit the source or importer, regenerate and review the resulting change.
 
 ### Independent teaching tracks
 
+`teaching/program.yaml` defines six phases and thirty numbered levels, with
+larger later phases, named goals, and checkpoint tasks. Its curated selections
+are in `authoring/teaching/`; generated core, level, phase, and optional branch
+views are under `teaching/`. `teaching/mastery.yaml` keeps item-level evidence
+separate from curriculum position and distinguishes reading, listening, typed
+production, spoken production, and handwriting. There is no HSK competence
+crosswalk or predicted examination score.
+
+`teaching/tourist/` is a separate, short practical route with original phrases
+and a self-contained quick-start prefix. It shares vocabulary and grammar IDs
+with the core but does not require completion of the whole program.
+`teaching/inventory.yaml` reports actual coverage and prerequisite adjustments;
+headwords, senses, constructs, and learner mastery are not interchangeable counts.
+
 `teaching/beginner/sequence.yaml` assigns introductions and reviews to twelve
 practical modules using 205 selected vocabulary senses and 25 grammar constructs.
 It does not select an
@@ -113,13 +129,17 @@ preserving the authored teaching order and metadata.
 This change is scoped to the beginner teaching files. The HSK-1 reference
 compact views described below still use `[id, token]` pairs.
 
-The original HSK files remain unchanged. `reference-senses.yaml` adds eleven
-selected sense records for useful vocabulary in other bands: understanding,
-permission, basic colors, coffee, apple, and needing something. These records
-are generated from `authoring/reference-senses.yaml` and the same pinned
-dictionary source. Their parent metadata is identical to the original HSK
-record. This is a small extension of addressable senses, not a claim that all
-higher-level entries have been sense-normalized.
+The original HSK files remain unchanged. `reference-senses.yaml` supplies
+selected addressable meanings from other bands. Its initial eleven beginner
+additions are authored in `authoring/reference-senses.yaml`; the complete
+program adds explicit selections and support labels from `authoring/teaching/`.
+These records use the same pinned dictionary source and preserve each parent's
+original HSK metadata exactly. Unselected meanings remain in the reference
+inventory rather than becoming automatic learning requirements.
+
+Program grammar annotations are applied to an in-memory copy of the source
+grammar for selection and display. They do not change the original HSK grammar
+files or imply that the source band is a verified teaching level.
 
 For example, `zh-hsk3-00396-s001` still identifies the reference HSK-3 coffee
 entry even when introduced in the beginner drinks module. Do not migrate an
@@ -133,6 +153,8 @@ advanced, or required.
 ```powershell
 python scripts\generate_teaching_track.py
 python scripts\generate_teaching_track.py --check
+python scripts\generate_chinese_program.py
+python scripts\generate_chinese_program.py --check
 ```
 
 ### Compact HSK-1 pilot
@@ -304,6 +326,9 @@ senses can be broad.
 
 ### Full-inventory scheduling
 
+This section concerns exhaustive reference-inventory study, not the scheduling
+rule for the curated practical program or the tourist route.
+
 The five thematic blocks in each syllabus are recurring modules, **not a claim
 that five lessons teach thousands of words**. Search both the named topics and
 the suggested English gloss terms; then select useful unlearned entries.
@@ -363,9 +388,9 @@ The importer downloads the pinned source and refuses a SHA-256 mismatch:
 Revision: `7ac65bf1a6387d35f1ade478906172a19311c7f9`.
 For offline reproduction, supply `--source` with a local copy of that exact
 `complete.json`. It is not necessary to retain the entire upstream file in the
-application. `--check` compares all 21 generated or synchronized files without modifying them
-(14 expanded level assets, two HSK-1 compact views, the additional reference
-senses, the beginner sequence and its two compact views, and the normalization report)
-and runs normalizer regressions;
-syllabi and metadata are authored separately. Changing the revision requires a
+application. `--check` compares the generated or synchronized reference assets,
+beginner files, and all configured practical-program views without modifying
+them, and runs normalizer regressions. Program definitions, authored selections,
+mastery guidance, tourist phrase plans, and reference syllabi remain separate
+authoring inputs. Changing the revision requires a
 fresh license/provenance check, count reconciliation and ID migration review.

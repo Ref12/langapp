@@ -1,0 +1,483 @@
+schema_version: 3
+id: zh-level-11
+title: Processes and instructions
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 11
+phase: stories-conversations
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+- zh-level-06
+- zh-level-07
+- zh-level-08
+- zh-level-09
+- zh-level-10
+goals: &id001
+- Explain a multi-step process.
+- Describe how a result was achieved.
+- Clarify a failed attempt or unexpected outcome.
+checkpoint:
+  task: Explain an ordinary procedure to someone who encounters a new problem halfway through.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: level-11-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain a health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: zh-hsk2-00610-s001, ch: 眼, pr: yǎn, ds: eye}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00221-s001, ch: 耳朵, pr: ěr duo, ds: ear}
+  - {id: zh-hsk1-00342-s001, ch: 手, pr: shǒu, ds: hand}
+  - {id: zh-hsk2-00614-s002, ch: 药, pr: yào, ds: medicine}
+  - {id: zh-hsk4-00193-s003, ch: 肚子, pr: dù zi, ds: stomach}
+  - {id: zh-hsk4-00211-s002, ch: 发烧, pr: fā shāo, ds: to have a fever}
+  - {id: zh-hsk5-00309-s003, ch: 过敏, pr: guò mǐn, ds: allergy}
+  - {id: zh-hsk2-00650-s002, ch: 应该, pr: yīng gāi, ds: should}
+  - {id: zh-hsk7-9-00033-s001, ch: 熬夜, pr: áo yè, ds: to stay up late or all night}
+  review_grammar:
+  - {id: zh-hsk3-g018, ch: 应该+VP, ds: advice or expectation rather than guaranteed fact}
+- id: level-11-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning experience or approach and respond to questions.
+  vocabulary:
+  - {id: zh-hsk2-00053-s007, ch: 查, pr: chá, ds: to look up (e.g. a word in a dictionary)}
+  - {id: zh-hsk2-00017-s006, ch: 背, pr: bèi, ds: to learn by heart}
+  - {id: zh-hsk2-00645-s001, ch: 音节, pr: yīn jié, ds: syllable}
+  - {id: zh-hsk4-00425-s002, ch: 口语, pr: kǒu yǔ, ds: spoken language}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00410-s001, ch: 小学, pr: xiǎo xué, ds: elementary school}
+  - {id: zh-hsk1-00426-s001, ch: 学院, pr: xué yuàn, ds: college or institute}
+  - {id: zh-hsk1-00494-s001, ch: 字, pr: zì, ds: written character}
+  - {id: zh-hsk2-00079-s001, ch: 词典, pr: cí diǎn, ds: dictionary}
+  - {id: zh-hsk2-00264-s001, ch: 教室, pr: jiào shì, ds: classroom}
+  - {id: zh-hsk2-00337-s001, ch: 练习, pr: liàn xí, ds: to practice}
+  - {id: zh-hsk2-00406-s001, ch: 普通话, pr: pǔ tōng huà, ds: Mandarin (common language)}
+  - {id: zh-hsk2-00651-s001, ch: 英文, pr: Yīng wén, ds: English (language)}
+  review_grammar: []
+- id: level-11-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk2-00029-s006, ch: 表, pr: biǎo, ds: a form}
+  - {id: zh-hsk2-00573-s006, ch: 响, pr: xiǎng, ds: to ring}
+  - {id: zh-hsk2-00484-s001, ch: 说明, pr: shuō míng, ds: to explain}
+  - {id: zh-hsk2-00717-s001, ch: 重复, pr: chóng fù, ds: to repeat}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00477-s001, ch: 真的, pr: zhēn de, ds: really}
+  - {id: zh-hsk2-00082-s002, ch: 答应, pr: dā ying, ds: to answer positively; to agree; to accept; to promise}
+  - {id: zh-hsk2-00586-s001, ch: 笑话, pr: xiào hua, ds: joke; jest}
+  - {id: zh-hsk3-00077-s001, ch: 吵, pr: chǎo, ds: to quarrel}
+  - {id: zh-hsk3-00217-s001, ch: 干吗, pr: gàn má, ds: why; what for; what are you doing}
+  - {id: zh-hsk4-00723-s002, ch: 微笑, pr: wēi xiào, ds: to smile}
+  - {id: zh-hsk4-00746-s001, ch: 误会, pr: wù huì, ds: to misunderstand}
+  - {id: zh-hsk4-00909-s002, ch: 招呼, pr: zhāo hu, ds: to greet}
+  review_grammar:
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
+- id: level-11-time-01
+  title: Time and events - 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary:
+  - {id: zh-hsk1-00207-s005, ch: 来, pr: lái, ds: for the past (time period)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00683-s001, ch: 早晨, pr: zǎo chén, ds: early morning}
+  - {id: zh-hsk2-00684-s001, ch: 早就, pr: zǎo jiù, ds: already at an earlier time}
+  - {id: zh-hsk3-00342-s001, ch: 将来, pr: jiāng lái, ds: in the future}
+  - {id: zh-hsk3-00382-s001, ch: 久, pr: jiǔ, ds: (long) time}
+  - {id: zh-hsk3-00818-s001, ch: 以来, pr: yǐ lái, ds: since (a previous event)}
+  - {id: zh-hsk4-00200-s002, ch: 多年, pr: duō nián, ds: for many years}
+  - {id: zh-hsk1-00431-s004, ch: 一, pr: yī, ds: as soon as}
+  - {id: zh-hsk1-00340-s004, ch: 是, pr: shì, ds: emphatic assertion (adverb)}
+  review_grammar:
+  - {id: zh-hsk5-g007, ch: 趁+Opportunity+VP, ds: act while a favorable opportunity lasts}
+  - {id: zh-hsk5-g008, ch: 自从+StartingPoint+以来+P, ds: continuing situation since a past starting point}
+  - {id: zh-hsk5-g009, ch: 直到+Endpoint+才+VP, ds: an event occurs only upon reaching an endpoint}
+- id: level-11-actions-01
+  title: Actions and processes - 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk1-00489-s003, ch: 重, pr: chóng, ds: again}
+  - {id: zh-hsk1-00056-s011, ch: 错, pr: cuò, ds: to miss}
+  - {id: zh-hsk1-00094-s011, ch: 对, pr: duì, ds: to check or compare}
+  - {id: zh-hsk1-00155-s004, ch: 回, pr: huí, ds: to answer}
+  - {id: zh-hsk1-00506-s001, ch: 做, pr: zuò, ds: to make or produce}
+  - {id: zh-hsk2-00075-s001, ch: 吹, pr: chuī, ds: to blow}
+  - {id: zh-hsk2-00469-s001, ch: 使用, pr: shǐ yòng, ds: to use}
+  - {id: zh-hsk2-00473-s004, ch: 收, pr: shōu, ds: to put away}
+  - {id: zh-hsk2-00488-s003, ch: 算, pr: suàn, ds: to calculate}
+  - {id: zh-hsk2-00582-s001, ch: 小心, pr: xiǎo xīn, ds: to be careful}
+  - {id: zh-hsk3-00016-s002, ch: 保持, pr: bǎo chí, ds: to maintain}
+  - {id: zh-hsk3-00017-s002, ch: 保存, pr: bǎo cún, ds: to preserve}
+  - {id: zh-hsk3-00314-s002, ch: 计算, pr: jì suàn, ds: to calculate}
+  - {id: zh-hsk3-00315-s001, ch: 记录, pr: jì lù, ds: to record}
+  - {id: zh-hsk3-00567-s001, ch: 确保, pr: què bǎo, ds: to ensure; to guarantee}
+  - {id: zh-hsk3-00568-s012, ch: 确定, pr: què dìng, ds: to confirm}
+  - {id: zh-hsk3-00606-s001, ch: 设计, pr: shè jì, ds: to design; to plan}
+  - {id: zh-hsk4-00216-s001, ch: 翻, pr: fān, ds: to turn over}
+  - {id: zh-hsk4-00435-s001, ch: 拉开, pr: lā kāi, ds: to pull open}
+  - {id: zh-hsk4-00657-s001, ch: 顺序, pr: shùn xù, ds: sequence}
+  - {id: zh-hsk4-00692-s001, ch: 贴, pr: tiē, ds: to stick}
+  - {id: zh-hsk6-00600-s006, ch: 泡, pr: pào, ds: to soak; to steep; to infuse}
+  - {id: zh-hsk2-00247-s002, ch: 检查, pr: jiǎn chá, ds: to examine}
+  - {id: zh-hsk2-00282-s006, ch: 进行, pr: jìn xíng, ds: to carry out}
+  - {id: zh-hsk2-00480-s001, ch: 数, pr: shǔ, ds: to count}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00284-s001, ch: 逛, pr: guàng, ds: to stroll}
+  - {id: zh-hsk4-00477-s003, ch: 轮, pr: lún, ds: to take turns; to rotate}
+  - {id: zh-hsk4-00810-s001, ch: 寻找, pr: xún zhǎo, ds: to seek; to look for}
+  - {id: zh-hsk4-00833-s002, ch: 摇, pr: yáo, ds: to shake}
+  - {id: zh-hsk5-00205-s001, ch: 丢, pr: diū, ds: to lose}
+  - {id: zh-hsk1-00293-s005, ch: 起来, pr: qi lai, ds: upward-movement complement}
+  - {id: zh-hsk1-00293-s004, ch: 起来, pr: qi lai, ds: onset-and-continuation verb complement}
+  - {id: zh-hsk5-00897-s002, ch: 拥抱, pr: yōng bào, ds: to hug}
+  review_grammar:
+  - {id: zh-hsk4-g009, ch: 把+O+V+(在|到)+Place, ds: resulting location of an affected object}
+  - {id: zh-hsk3-g002, ch: Patient+被+(Agent)+V+Result, ds: affected participant in an event with a result}
+  - {id: zh-hsk3-g005, ch: V+起来, ds: upward motion or the onset of continuing activity}
+- id: level-11-actions-02
+  title: Actions and processes - 2
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk2-00523-s004, ch: 通过, pr: tōng guò, ds: by means of; through; via}
+  - {id: zh-hsk3-00115-s002, ch: 错误, pr: cuò wù, ds: error; mistake}
+  - {id: zh-hsk3-00873-s003, ch: 整理, pr: zhěng lǐ, ds: to sort out}
+  - {id: zh-hsk4-00053-s002, ch: 布置, pr: bù zhì, ds: to arrange}
+  - {id: zh-hsk4-00251-s006, ch: 盖, pr: gài, ds: to cover}
+  - {id: zh-hsk4-00260-s001, ch: 隔开, pr: gé kāi, ds: to separate}
+  - {id: zh-hsk4-00687-s002, ch: 填, pr: tián, ds: (of a form etc) to fill in}
+  - {id: zh-hsk4-00911-s021, ch: 折, pr: zhé, ds: to fold}
+  - {id: zh-hsk5-00088-s001, ch: 拆, pr: chāi, ds: to tear open}
+  - {id: zh-hsk5-00364-s001, ch: 加热, pr: jiā rè, ds: to heat}
+  - {id: zh-hsk5-00623-s002, ch: 扔, pr: rēng, ds: to throw away}
+  - {id: zh-hsk5-00670-s001, ch: 剩下, pr: shèng xià, ds: to remain; to be left over}
+  - {id: zh-hsk5-00901-s001, ch: 用来, pr: yòng lái, ds: to be used for}
+  - {id: zh-hsk1-00169-s001, ch: 记住, pr: jì zhu, ds: to remember}
+  - {id: zh-hsk2-00289-s002, ch: 举, pr: jǔ, ds: to hold up}
+  - {id: zh-hsk2-00384-s003, ch: 弄, pr: nòng, ds: to do}
+  - {id: zh-hsk2-00389-s005, ch: 排, pr: pái, ds: to line up}
+  - {id: zh-hsk2-00486-s001, ch: 送到, pr: sòng dào, ds: Deliver}
+  - {id: zh-hsk2-00507-s003, ch: 提高, pr: tí gāo, ds: to improve}
+  - {id: zh-hsk2-00522-s001, ch: 通, pr: tōng, ds: to go through}
+  - {id: zh-hsk3-00010-s002, ch: 搬, pr: bān, ds: to move (sth relatively heavy or bulky)}
+  - {id: zh-hsk3-00019-s001, ch: 保留, pr: bǎo liú, ds: to keep}
+  - {id: zh-hsk3-00145-s017, ch: 调, pr: tiáo, ds: to adjust}
+  - {id: zh-hsk3-00802-s001, ch: 压, pr: yā, ds: to press}
+  - {id: zh-hsk3-00856-s001, ch: 造, pr: zào, ds: to make}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00216-s001, ch: 翻, pr: fān, ds: to turn over}
+  - {id: zh-hsk4-00435-s001, ch: 拉开, pr: lā kāi, ds: to pull open}
+  - {id: zh-hsk4-00657-s001, ch: 顺序, pr: shùn xù, ds: sequence}
+  - {id: zh-hsk4-00692-s001, ch: 贴, pr: tiē, ds: to stick}
+  - {id: zh-hsk6-00600-s006, ch: 泡, pr: pào, ds: to soak; to steep; to infuse}
+  - {id: zh-hsk2-00247-s002, ch: 检查, pr: jiǎn chá, ds: to examine}
+  - {id: zh-hsk2-00282-s006, ch: 进行, pr: jìn xíng, ds: to carry out}
+  - {id: zh-hsk2-00480-s001, ch: 数, pr: shǔ, ds: to count}
+  review_grammar:
+  - {id: zh-hsk4-g009, ch: 把+O+V+(在|到)+Place, ds: resulting location of an affected object}
+  - {id: zh-hsk3-g002, ch: Patient+被+(Agent)+V+Result, ds: affected participant in an event with a result}
+  - {id: zh-hsk3-g005, ch: V+起来, ds: upward motion or the onset of continuing activity}
+- id: level-11-actions-03
+  title: Actions and processes - 3
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk3-00929-s001, ch: 转, pr: zhuǎn, ds: to turn}
+  - {id: zh-hsk4-00013-s001, ch: 摆, pr: bǎi, ds: to arrange}
+  - {id: zh-hsk4-00014-s001, ch: 摆动, pr: bǎi dòng, ds: to sway}
+  - {id: zh-hsk4-00078-s003, ch: 沉, pr: chén, ds: to sink}
+  - {id: zh-hsk4-00250-s001, ch: 改正, pr: gǎi zhèng, ds: to correct}
+  - {id: zh-hsk1-00167-s001, ch: 记, pr: jì, ds: to record}
+  - {id: zh-hsk1-00168-s001, ch: 记得, pr: jì de, ds: to remember}
+  - {id: zh-hsk1-00176-s004, ch: 叫, pr: jiào, ds: to ask}
+  - {id: zh-hsk2-00061-s004, ch: 称, pr: chēng, ds: to weigh}
+  - {id: zh-hsk2-00107-s008, ch: 倒, pr: dào, ds: to pour out}
+  - {id: zh-hsk2-00241-s003, ch: 加, pr: jiā, ds: to add}
+  - {id: zh-hsk2-00320-s001, ch: 拉, pr: lā, ds: to pull}
+  - {id: zh-hsk2-00343-s001, ch: 流, pr: liú, ds: to flow}
+  - {id: zh-hsk3-00004-s001, ch: 按, pr: àn, ds: to press}
+  - {id: zh-hsk2-00727-s012, ch: 装, pr: zhuāng, ds: to pack}
+  - {id: zh-hsk3-00174-s001, ch: 反复, pr: fǎn fù, ds: repeatedly}
+  - {id: zh-hsk3-00551-s001, ch: 亲自, pr: qīn zì, ds: personally}
+  - {id: zh-hsk4-00055-s002, ch: 擦, pr: cā, ds: to towel; to wipe with a towel}
+  - {id: zh-hsk4-00099-s001, ch: 抽, pr: chōu, ds: to draw out}
+  - {id: zh-hsk4-00527-s001, ch: 排列, pr: pái liè, ds: to arrange in order}
+  - {id: zh-hsk5-00196-s001, ch: 递给, pr: dì gěi, ds: to hand it (i.e. the aforementioned item) to (sb)}
+  - {id: zh-hsk2-00062-s007, ch: 成, pr: chéng, ds: to turn into}
+  - {id: zh-hsk1-00212-s004, ch: 了, pr: liǎo, ds: to finish or accomplish}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00486-s001, ch: 送到, pr: sòng dào, ds: Deliver}
+  - {id: zh-hsk2-00507-s003, ch: 提高, pr: tí gāo, ds: to improve}
+  - {id: zh-hsk2-00522-s001, ch: 通, pr: tōng, ds: to go through}
+  - {id: zh-hsk3-00010-s002, ch: 搬, pr: bān, ds: to move (sth relatively heavy or bulky)}
+  - {id: zh-hsk3-00019-s001, ch: 保留, pr: bǎo liú, ds: to keep}
+  - {id: zh-hsk3-00145-s017, ch: 调, pr: tiáo, ds: to adjust}
+  - {id: zh-hsk3-00802-s001, ch: 压, pr: yā, ds: to press}
+  - {id: zh-hsk3-00856-s001, ch: 造, pr: zào, ds: to make}
+  review_grammar:
+  - {id: zh-hsk4-g009, ch: 把+O+V+(在|到)+Place, ds: resulting location of an affected object}
+  - {id: zh-hsk3-g002, ch: Patient+被+(Agent)+V+Result, ds: affected participant in an event with a result}
+  - {id: zh-hsk3-g005, ch: V+起来, ds: upward motion or the onset of continuing activity}
+- id: level-11-description-01
+  title: Description and comparison - 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk1-00038-s001, ch: 差, pr: chā, ds: difference}
+  - {id: zh-hsk2-00045-s001, ch: 部分, pr: bù fen, ds: part}
+  - {id: zh-hsk2-00054-s004, ch: 差不多, pr: chà bu duō, ds: about the same}
+  - {id: zh-hsk3-00204-s001, ch: 复杂, pr: fù zá, ds: complicated; complex}
+  - {id: zh-hsk3-00365-s001, ch: 紧, pr: jǐn, ds: tight}
+  - {id: zh-hsk3-00674-s001, ch: 速度, pr: sù dù, ds: speed}
+  - {id: zh-hsk2-00421-s001, ch: 清楚, pr: qīng chu, ds: clear}
+  - {id: zh-hsk2-00433-s006, ch: 全, pr: quán, ds: complete}
+  - {id: zh-hsk2-00705-s001, ch: 直接, pr: zhí jiē, ds: direct}
+  - {id: zh-hsk2-00728-s001, ch: 准确, pr: zhǔn què, ds: accurate; exact; precise}
+  - {id: zh-hsk3-00091-s001, ch: 程度, pr: chéng dù, ds: degree; level; extent}
+  - {id: zh-hsk3-00610-s001, ch: 深, pr: shēn, ds: deep (lit. and fig.)}
+  - {id: zh-hsk4-00451-s001, ch: 厘米, pr: lí mǐ, ds: centimeter}
+  - {id: zh-hsk4-00453-s001, ch: 力气, pr: lì qi, ds: strength}
+  - {id: zh-hsk4-00586-s001, ch: 弱, pr: ruò, ds: weak; feeble}
+  - {id: zh-hsk4-00619-s002, ch: 湿, pr: shī, ds: wet}
+  - {id: zh-hsk4-00940-s001, ch: 重量, pr: zhòng liàng, ds: weight}
+  - {id: zh-hsk5-00895-s001, ch: 硬, pr: yìng, ds: hard; stiff; solid}
+  - {id: zh-hsk2-00398-s002, ch: 平, pr: píng, ds: flat}
+  - {id: zh-hsk2-00420-s001, ch: 轻, pr: qīng, ds: light}
+  - {id: zh-hsk2-00434-s001, ch: 全部, pr: quán bù, ds: whole; all}
+  - {id: zh-hsk3-00185-s001, ch: 放到, pr: fàng dào, ds: Put in}
+  - {id: zh-hsk3-00140-s001, ch: 底下, pr: dǐ xia, ds: the location below sth}
+  - {id: zh-hsk4-00009-s001, ch: 暗, pr: àn, ds: dark}
+  - {id: zh-hsk1-00154-s004, ch: 坏, pr: huài, ds: to break down}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00381-s003, ch: 静, pr: jìng, ds: quiet}
+  - {id: zh-hsk3-00472-s001, ch: 美丽, pr: měi lì, ds: beautiful}
+  - {id: zh-hsk3-00515-s003, ch: 胖, pr: pàng, ds: fat}
+  - {id: zh-hsk4-00003-s001, ch: 矮小, pr: ǎi xiǎo, ds: short and small}
+  - {id: zh-hsk2-00376-s001, ch: 难看, pr: nán kàn, ds: ugly}
+  - {id: zh-hsk4-00135-s005, ch: 大方, pr: dà fang, ds: generous}
+  - {id: zh-hsk1-00434-s002, ch: 一点儿, pr: yī diǎn r, ds: the least bit (in negatives)}
+  - {id: zh-hsk1-00188-s012, ch: 就, pr: jiù, ds: if not ... then necessarily ...}
+  review_grammar:
+  - {id: zh-hsk3-g016, ch: 一点儿+也+(不|没)+P, ds: emphatic absence of even the slightest amount}
+  - {id: zh-hsk4-g018, ch: 就+V+Quantity, ds: only this much; limited quantity}
+  - {id: zh-hsk6-g014, ch: 不是+A+就是+B, ds: either one alternative or the other}
+- id: level-11-description-02
+  title: Description and comparison - 2
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk2-00481-s003, ch: 数字, pr: shù zì, ds: number}
+  - {id: zh-hsk2-00701-s002, ch: 正常, pr: zhèng cháng, ds: normal}
+  - {id: zh-hsk2-00714-s001, ch: 中心, pr: zhōng xīn, ds: center}
+  - {id: zh-hsk3-00334-s001, ch: 简单, pr: jiǎn dān, ds: simple}
+  - {id: zh-hsk3-00411-s001, ch: 空, pr: kōng, ds: empty}
+  - {id: zh-hsk3-00601-s001, ch: 上面, pr: shàng miàn, ds: on top of}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00895-s001, ch: 硬, pr: yìng, ds: hard; stiff; solid}
+  - {id: zh-hsk2-00398-s002, ch: 平, pr: píng, ds: flat}
+  - {id: zh-hsk2-00420-s001, ch: 轻, pr: qīng, ds: light}
+  - {id: zh-hsk2-00434-s001, ch: 全部, pr: quán bù, ds: whole; all}
+  - {id: zh-hsk3-00185-s001, ch: 放到, pr: fàng dào, ds: Put in}
+  - {id: zh-hsk3-00140-s001, ch: 底下, pr: dǐ xia, ds: the location below sth}
+  - {id: zh-hsk4-00009-s001, ch: 暗, pr: àn, ds: dark}
+  - {id: zh-hsk1-00154-s004, ch: 坏, pr: huài, ds: to break down}
+  review_grammar:
+  - {id: zh-hsk3-g016, ch: 一点儿+也+(不|没)+P, ds: emphatic absence of even the slightest amount}
+  - {id: zh-hsk4-g018, ch: 就+V+Quantity, ds: only this much; limited quantity}
+  - {id: zh-hsk6-g014, ch: 不是+A+就是+B, ds: either one alternative or the other}
+- id: level-11-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk3-00005-s001, ch: 按照, pr: àn zhào, ds: according to}
+  - {id: zh-hsk2-00151-s001, ch: 方法, pr: fāng fǎ, ds: method}
+  - {id: zh-hsk2-00276-s002, ch: 结果, pr: jié guǒ, ds: outcome}
+  - {id: zh-hsk2-00708-s002, ch: 只要, pr: zhǐ yào, ds: so long as}
+  - {id: zh-hsk4-00551-s001, ch: 其余, pr: qí yú, ds: the rest}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00404-s001, ch: 想, pr: xiǎng, ds: to think about}
+  - {id: zh-hsk7-9-04620-s001, ch: 幸好, pr: xìng hǎo, ds: fortunately}
+  - {id: zh-hsk3-00270-s003, ch: 果然, pr: guǒ rán, ds: as expected}
+  - {id: zh-hsk3-00286-s001, ch: 后果, pr: hòu guǒ, ds: consequences}
+  - {id: zh-hsk3-00635-s002, ch: 使, pr: shǐ, ds: to cause}
+  - {id: zh-hsk2-00636-s001, ch: 以为, pr: yǐ wéi, ds: to think or assume (often mistakenly)}
+  - {id: zh-hsk2-00209-s002, ch: 好像, pr: hǎo xiàng, ds: to seem like}
+  - {id: zh-hsk4-00627-s001, ch: 似乎, pr: sì hū, ds: it seems; seemingly; as if}
+  review_grammar:
+  - {id: zh-hsk2-g010, ch: 因为+Cause+所以+Result, ds: cause followed by its consequence}
+  - {id: zh-hsk2-g012, ch: 如果+P+就+Q, ds: hypothetical condition and consequence}
+  - {id: zh-hsk2-g011, ch: 虽然+P+但是+Q, ds: acknowledged fact with a contrasting outcome}
+- id: level-11-grammar-01
+  title: Sentence construction - 1
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk1-00011-s004, ch: 半, pr: bàn, ds: and a half}
+  - {id: zh-hsk1-00205-s002, ch: 块, pr: kuài, ds: 'classifier for pieces (cloth, cake etc)'}
+  - {id: zh-hsk1-00475-s012, ch: 着, pr: zháo, ds: successful result (verb complement)}
+  - {id: zh-hsk2-00159-s001, ch: 份, pr: fèn, ds: 'classifier for copies, portions, and documents'}
+  - {id: zh-hsk2-00500-s014, ch: 套, pr: tào, ds: 'classifier for sets, collections'}
+  - {id: zh-hsk2-00675-s005, ch: 越, pr: yuè, ds: the more... the more}
+  - {id: zh-hsk2-00699-s004, ch: 这样, pr: zhè yàng, ds: like this}
+  - {id: zh-hsk3-00006-s005, ch: 把, pr: bǎ, ds: classifier for things with handles}
+  - {id: zh-hsk3-00163-s008, ch: 顿, pr: dùn, ds: classifier for meals and bouts of activity}
+  - {id: zh-hsk3-00586-s001, ch: 任何, pr: rèn hé, ds: any}
+  - {id: zh-hsk4-00345-s001, ch: 几乎, pr: jī hū, ds: almost; nearly; practically}
+  - {id: zh-hsk4-00458-s001, ch: 俩, pr: liǎ, ds: two}
+  - {id: zh-hsk2-00495-s001, ch: 它们, pr: tā men, ds: they (for inanimate objects)}
+  - {id: zh-hsk2-00513-s005, ch: 条, pr: tiáo, ds: 'classifier for long thin things (rivers, roads, trousers etc)'}
+  - {id: zh-hsk3-00049-s001, ch: 并且, pr: bìng qiě, ds: and}
+  - {id: zh-hsk3-00737-s001, ch: 为了, pr: wèi le, ds: for; for the purpose of; in order to}
+  - {id: zh-hsk4-00352-s003, ch: 既, pr: jì, ds: both... (and...)}
+  - {id: zh-hsk2-00414-s001, ch: 千, pr: qiān, ds: thousand}
+  - {id: zh-hsk2-00543-s002, ch: 万, pr: wàn, ds: ten thousand}
+  - {id: zh-hsk3-00062-s006, ch: 步, pr: bù, ds: stages in a process}
+  - {id: zh-hsk3-00754-s004, ch: 下面, pr: xià miàn, ds: the following}
+  - {id: zh-hsk1-00050-s004, ch: 出来, pr: chu lai, ds: 'verb complement: emergence, completion, or detection'}
+  - {id: zh-hsk1-00495-s012, ch: 子, pr: zi, ds: noun suffix}
+  - {id: zh-hsk2-00023-s002, ch: 必须, pr: bì xū, ds: must}
+  - {id: zh-hsk2-00687-s001, ch: 怎样, pr: zěn yàng, ds: how}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00028-s004, ch: 被, pr: bèi, ds: passive marker before the agent or verb}
+  - {id: zh-hsk3-00950-s003, ch: 左右, pr: zuǒ yòu, ds: approximately}
+  - {id: zh-hsk1-00435-s003, ch: 一会儿, pr: yī huì r, ds: in a moment}
+  - {id: zh-hsk1-00258-s005, ch: 那, pr: nà, ds: then (in that case)}
+  - {id: zh-hsk2-00706-s001, ch: 只, pr: zhǐ, ds: only}
+  - {id: zh-hsk1-00094-s002, ch: 对, pr: duì, ds: 'towards, at, or for'}
+  - {id: zh-hsk3-00439-s008, ch: 连, pr: lián, ds: even}
+  - {id: zh-hsk2-00327-s001, ch: 老是, pr: lǎo shi, ds: always}
+  review_grammar: []
+- id: level-11-grammar-02
+  title: Sentence construction - 2
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk2-00696-s005, ch: 这么, pr: zhè me, ds: like this}
+  - {id: zh-hsk3-00290-s001, ch: 互相, pr: hù xiāng, ds: each other}
+  - {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: to continue}
+  - {id: zh-hsk3-00678-s012, ch: 台, pr: tái, ds: classifier for vehicles or machines}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00414-s001, ch: 千, pr: qiān, ds: thousand}
+  - {id: zh-hsk2-00543-s002, ch: 万, pr: wàn, ds: ten thousand}
+  - {id: zh-hsk3-00062-s006, ch: 步, pr: bù, ds: stages in a process}
+  - {id: zh-hsk3-00754-s004, ch: 下面, pr: xià miàn, ds: the following}
+  - {id: zh-hsk1-00050-s004, ch: 出来, pr: chu lai, ds: 'verb complement: emergence, completion, or detection'}
+  - {id: zh-hsk1-00495-s012, ch: 子, pr: zi, ds: noun suffix}
+  - {id: zh-hsk2-00023-s002, ch: 必须, pr: bì xū, ds: must}
+  - {id: zh-hsk2-00687-s001, ch: 怎样, pr: zěn yàng, ds: how}
+  review_grammar: []
+- id: level-11-technology-01
+  title: Technology and systems - 1
+  outcome: Explain a system or technical issue with explicit scope and limitations.
+  vocabulary:
+  - {id: zh-hsk2-00192-s001, ch: 关机, pr: guān jī, ds: to turn off (a machine or device)}
+  - {id: zh-hsk2-00295-s002, ch: 开机, pr: kāi jī, ds: to boot up (a computer)}
+  - {id: zh-hsk2-00546-s001, ch: 网站, pr: wǎng zhàn, ds: website}
+  - {id: zh-hsk3-00017-s004, ch: 保存, pr: bǎo cún, ds: to save (a file etc) (computing)}
+  - {id: zh-hsk3-00236-s001, ch: 工具, pr: gōng jù, ds: tool}
+  - {id: zh-hsk1-00079-s002, ch: 电, pr: diàn, ds: electricity}
+  - {id: zh-hsk2-00085-s003, ch: 打印, pr: dǎ yìn, ds: to print out (with a printer)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00325-s001, ch: 上网, pr: shàng wǎng, ds: to go online}
+  review_grammar: []
+- id: level-11-communication-practice-01
+  title: Communication and information - sentence practice 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk4-g012, ch: V+出来, ds: discern or identify something through an action}
+  review_vocabulary:
+  - {id: zh-hsk1-00050-s004, ch: 出来, pr: chu lai, ds: 'verb complement: emergence, completion, or detection'}
+  - {id: zh-hsk3-00217-s001, ch: 干吗, pr: gàn má, ds: why; what for; what are you doing}
+  - {id: zh-hsk4-00723-s002, ch: 微笑, pr: wēi xiào, ds: to smile}
+  - {id: zh-hsk4-00746-s001, ch: 误会, pr: wù huì, ds: to misunderstand}
+  - {id: zh-hsk4-00909-s002, ch: 招呼, pr: zhāo hu, ds: to greet}
+  - {id: zh-hsk2-00029-s006, ch: 表, pr: biǎo, ds: a form}
+  - {id: zh-hsk2-00573-s006, ch: 响, pr: xiǎng, ds: to ring}
+  - {id: zh-hsk2-00484-s001, ch: 说明, pr: shuō míng, ds: to explain}
+  - {id: zh-hsk2-00717-s001, ch: 重复, pr: chóng fù, ds: to repeat}
+  review_grammar:
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
+- id: level-11-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk3-g006, ch: V+下去, ds: continue an action onward}
+  - {id: zh-hsk4-g010, ch: Patient+被+(Agent)+V+成+Result, ds: passive event transforms something into a new form}
+  - {id: zh-hsk4-g014, ch: V+(得|不)+了, ds: feasibility of completion; final character means finish}
+  review_vocabulary:
+  - {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: to continue}
+  - {id: zh-hsk3-00028-s004, ch: 被, pr: bèi, ds: passive marker before the agent or verb}
+  - {id: zh-hsk2-00062-s007, ch: 成, pr: chéng, ds: to turn into}
+  - {id: zh-hsk2-00115-s013, ch: 得, pr: de, ds: complement-linking structural particle}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00212-s004, ch: 了, pr: liǎo, ds: to finish or accomplish}
+  - {id: zh-hsk3-00174-s001, ch: 反复, pr: fǎn fù, ds: repeatedly}
+  - {id: zh-hsk3-00551-s001, ch: 亲自, pr: qīn zì, ds: personally}
+  - {id: zh-hsk4-00055-s002, ch: 擦, pr: cā, ds: to towel; to wipe with a towel}
+  - {id: zh-hsk4-00099-s001, ch: 抽, pr: chōu, ds: to draw out}
+  - {id: zh-hsk4-00527-s001, ch: 排列, pr: pái liè, ds: to arrange in order}
+  - {id: zh-hsk5-00196-s001, ch: 递给, pr: dì gěi, ds: to hand it (i.e. the aforementioned item) to (sb)}
+  review_grammar:
+  - {id: zh-hsk4-g009, ch: 把+O+V+(在|到)+Place, ds: resulting location of an affected object}
+  - {id: zh-hsk3-g002, ch: Patient+被+(Agent)+V+Result, ds: affected participant in an event with a result}
+  - {id: zh-hsk3-g005, ch: V+起来, ds: upward motion or the onset of continuing activity}
+- id: level-11-actions-practice-02
+  title: Actions and processes - sentence practice 2
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk4-g023, ch: 通过+Means+Result, ds: name the means through which a result is reached}
+  review_vocabulary:
+  - {id: zh-hsk2-00523-s004, ch: 通过, pr: tōng guò, ds: by means of; through; via}
+  - {id: zh-hsk3-00174-s001, ch: 反复, pr: fǎn fù, ds: repeatedly}
+  - {id: zh-hsk3-00551-s001, ch: 亲自, pr: qīn zì, ds: personally}
+  - {id: zh-hsk4-00055-s002, ch: 擦, pr: cā, ds: to towel; to wipe with a towel}
+  - {id: zh-hsk4-00099-s001, ch: 抽, pr: chōu, ds: to draw out}
+  - {id: zh-hsk4-00527-s001, ch: 排列, pr: pái liè, ds: to arrange in order}
+  - {id: zh-hsk5-00196-s001, ch: 递给, pr: dì gěi, ds: to hand it (i.e. the aforementioned item) to (sb)}
+  - {id: zh-hsk2-00062-s007, ch: 成, pr: chéng, ds: to turn into}
+  - {id: zh-hsk1-00212-s004, ch: 了, pr: liǎo, ds: to finish or accomplish}
+  review_grammar:
+  - {id: zh-hsk3-g006, ch: V+下去, ds: continue an action onward}
+  - {id: zh-hsk4-g010, ch: Patient+被+(Agent)+V+成+Result, ds: passive event transforms something into a new form}
+  - {id: zh-hsk4-g014, ch: V+(得|不)+了, ds: feasibility of completion; final character means finish}
+- id: level-11-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk3-g012, ch: 只要+P+就+Q, ds: P is sufficient for Q in the stated context}
+  review_vocabulary:
+  - {id: zh-hsk2-00708-s002, ch: 只要, pr: zhǐ yào, ds: so long as}
+  - {id: zh-hsk1-00188-s001, ch: 就, pr: jiù, ds: in that case}
+  - {id: zh-hsk2-00636-s001, ch: 以为, pr: yǐ wéi, ds: to think or assume (often mistakenly)}
+  - {id: zh-hsk2-00209-s002, ch: 好像, pr: hǎo xiàng, ds: to seem like}
+  - {id: zh-hsk4-00627-s001, ch: 似乎, pr: sì hū, ds: it seems; seemingly; as if}
+  - {id: zh-hsk3-00005-s001, ch: 按照, pr: àn zhào, ds: according to}
+  - {id: zh-hsk2-00151-s001, ch: 方法, pr: fāng fǎ, ds: method}
+  - {id: zh-hsk2-00276-s002, ch: 结果, pr: jié guǒ, ds: outcome}
+  - {id: zh-hsk4-00551-s001, ch: 其余, pr: qí yú, ds: the rest}
+  review_grammar:
+  - {id: zh-hsk2-g010, ch: 因为+Cause+所以+Result, ds: cause followed by its consequence}
+  - {id: zh-hsk2-g012, ch: 如果+P+就+Q, ds: hypothetical condition and consequence}
+  - {id: zh-hsk2-g011, ch: 虽然+P+但是+Q, ds: acknowledged fact with a contrasting outcome}

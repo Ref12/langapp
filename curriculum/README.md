@@ -14,10 +14,12 @@ source methodology, and reuse conditions before using the data.
 | Korean | `korean/topik-1` through `korean/topik-6` | TOPIK I: grades 1-2; TOPIK II: grades 3-6 |
 | Japanese | `japanese/jlpt-n5` through `japanese/jlpt-n1` | JLPT, with N5 first and N1 last |
 
-`catalog.yaml` records the reference-level order and any separate `teaching_tracks`.
-For practical Mandarin, start with the
-[beginner teaching track](chinese/teaching/beginner/README.md), which selects
+`catalog.yaml` records reference-level order, separate `teaching_tracks`, and
+the Chinese `teaching_program`. For practical Mandarin, use the
+[six-phase, thirty-level program](chinese/teaching/README.md) or the
+[standalone tourist route](chinese/teaching/tourist/README.md). These select
 senses across reference levels rather than treating HSK folders as lesson order.
+The original beginner track is preserved as the program's first four levels.
 Numbers in different schemes are
 **not** interchangeable proficiency measures or automatic CEFR equivalents.
 In particular, distinguish the Chinese 2021 educational standard from the
@@ -186,6 +188,14 @@ introductions and reviews. Its IDs, order, and instructional metadata are
 authored; the other entry fields are synchronized from expanded references.
 `generate_teaching_track.py` updates the sequence and compact files together,
 and `--check` detects stale entries without modifying any files.
+
+The complete practical Mandarin program uses those same entry mappings in
+version-3 program, level, extension, and tourist-route containers. Each
+numbered level has observable goals and a checkpoint; per-item recognition,
+understanding, supported use, and independent use are specified separately in
+`chinese/teaching/mastery.yaml`. Coverage counts are not learner mastery or
+competency scores. Use `generate_chinese_program.py` for the complete program
+and its generated inventories, including the tourist quick-start subset.
 
 ### Grammar
 

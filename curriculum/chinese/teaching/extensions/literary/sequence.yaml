@@ -1,0 +1,321 @@
+schema_version: 3
+id: zh-extension-literary
+title: Literary and historical language
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: extension
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+- zh-level-06
+- zh-level-07
+- zh-level-08
+- zh-level-09
+- zh-level-10
+- zh-level-11
+- zh-level-12
+- zh-level-13
+- zh-level-14
+- zh-level-15
+- zh-level-16
+- zh-level-17
+- zh-level-18
+- zh-level-19
+- zh-level-20
+- zh-level-21
+- zh-level-22
+- zh-level-23
+- zh-level-24
+description: Optional contextual reading of literary and older usages, not ordinary modern speech requirements.
+mastery_profile: zh-item-mastery
+mastery_target: understand
+units:
+- id: extension-literary-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships and respond to another person's perspective.
+  vocabulary:
+  - {id: zh-hsk6-00236-s001, ch: 恩人, pr: ēn rén, ds: a benefactor}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-00080-s003, ch: 伴侣, pr: bàn lǚ, ds: partner}
+  - {id: zh-hsk7-9-00088-s002, ch: 榜样, pr: bǎng yàng, ds: model}
+  - {id: zh-hsk7-9-00155-s003, ch: 逼迫, pr: bī pò, ds: to coerce}
+  - {id: zh-hsk7-9-02687-s001, ch: 聋人, pr: lóng rén, ds: deaf person}
+  - {id: zh-hsk7-9-03403-s003, ch: 人格, pr: rén gé, ds: dignity}
+  - {id: zh-hsk7-9-05263-s002, ch: 着想, pr: zhuó xiǎng, ds: to consider (other people's needs)}
+  - {id: zh-hsk7-9-05394-s001, ch: 忠于, pr: zhōng yú, ds: to be loyal to}
+  - {id: zh-hsk7-9-05536-s002, ch: 自私, pr: zì sī, ds: selfishness}
+  review_grammar:
+  - {id: zh-hsk2-g024, ch: 给+Person+VP, ds: action directed to or done for someone}
+  - {id: zh-hsk3-g020, ch: 让+Person+VP, ds: let or have someone do something}
+  - {id: zh-hsk4-g011, ch: 把+A+当作+B, ds: treat or regard one thing as another}
+- id: extension-literary-history-01
+  title: History and change - 1
+  outcome: Relate a development and explain its significance in context.
+  vocabulary:
+  - {id: zh-hsk4-00395-s002, ch: 近代, pr: jìn dài, ds: 'modern times, excluding recent decades'}
+  - {id: zh-hsk4-00720-s002, ch: 王, pr: wáng, ds: king or monarch}
+  - {id: zh-hsk4-00903-s004, ch: 战斗, pr: zhàn dòu, ds: battle}
+  - {id: zh-hsk4-00920-s001, ch: 征服, pr: zhēng fú, ds: to conquer}
+  - {id: zh-hsk6-00383-s001, ch: 皇帝, pr: huáng dì, ds: emperor}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02148-s001, ch: 进程, pr: jìn chéng, ds: course of events; process}
+  - {id: zh-hsk7-9-05496-s002, ch: 追溯, pr: zhuī sù, ds: to trace sth back to}
+  - {id: zh-hsk7-9-00404-s001, ch: 朝代, pr: cháo dài, ds: dynasty}
+  - {id: zh-hsk7-9-01305-s002, ch: 革命, pr: gé mìng, ds: revolution}
+  - {id: zh-hsk7-9-04759-s002, ch: 演变, pr: yǎn biàn, ds: to evolve}
+  - {id: zh-hsk6-00928-s001, ch: 一代, pr: yī dài, ds: generation}
+  - {id: zh-hsk7-9-04165-s002, ch: 推移, pr: tuī yí, ds: (of a situation) to develop or evolve}
+  - {id: zh-hsk7-9-05582-s001, ch: 祖先, pr: zǔ xiān, ds: ancestors; forebears}
+  review_grammar: []
+- id: extension-literary-culture-01
+  title: Culture and customs - 1
+  outcome: Explain a cultural practice without turning a local example into a universal claim.
+  vocabulary:
+  - {id: zh-hsk7-9-01915-s001, ch: 祭祀, pr: jì sì, ds: to offer sacrifices to the gods or ancestors}
+  - {id: zh-hsk7-9-02089-s001, ch: 节气, pr: jié qi, ds: solar term}
+  - {id: zh-hsk7-9-03001-s001, ch: 农历, pr: nóng lì, ds: the traditional Chinese calendar}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-04890-s001, ch: 伊斯兰教, pr: Yī sī lán jiào, ds: Islam}
+  - {id: zh-hsk3-00198-s002, ch: 福, pr: fú, ds: good fortune}
+  - {id: zh-hsk3-00453-s002, ch: 龙, pr: lóng, ds: dragon}
+  - {id: zh-hsk3-00479-s003, ch: 民间, pr: mín jiān, ds: folk}
+  - {id: zh-hsk5-00533-s001, ch: 偶像, pr: ǒu xiàng, ds: idol}
+  - {id: zh-hsk6-00401-s002, ch: 吉祥, pr: jí xiáng, ds: auspicious}
+  - {id: zh-hsk7-9-01902-s001, ch: 忌讳, pr: jì huì, ds: taboo}
+  - {id: zh-hsk7-9-04538-s003, ch: 孝顺, pr: xiào shùn, ds: devoted to one's parents (and grandparents etc)}
+  review_grammar: []
+- id: extension-literary-literature-01
+  title: Literary and historical expression - 1
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary:
+  - {id: zh-hsk6-00155-s002, ch: 此处, pr: cǐ chù, ds: here (literary)}
+  - {id: zh-hsk6-00309-s008, ch: 公, pr: gōng, ds: 'Duke, highest of five orders of nobility'}
+  - {id: zh-hsk6-00858-s001, ch: 先锋, pr: xiān fēng, ds: vanguard}
+  - {id: zh-hsk6-00881-s006, ch: 心灵, pr: xīn líng, ds: spirit}
+  - {id: zh-hsk6-01068-s001, ch: 中华, pr: Zhōng huá, ds: China (alternate formal name)}
+  - {id: zh-hsk7-9-00041-s002, ch: 把柄, pr: bǎ bǐng, ds: (fig.) information that can be used against sb}
+  - {id: zh-hsk7-9-00104-s001, ch: 保佑, pr: bǎo yòu, ds: to bless and protect}
+  - {id: zh-hsk7-9-00392-s001, ch: 嫦娥, pr: Cháng é, ds: 'Chang''e, the lady in the moon (Chinese mythology)'}
+  - {id: zh-hsk7-9-00502-s004, ch: 仇, pr: chóu, ds: enmity}
+  - {id: zh-hsk7-9-00855-s003, ch: 殿堂, pr: diàn táng, ds: temple buildings}
+  - {id: zh-hsk7-9-00918-s004, ch: 栋梁, pr: dòng liáng, ds: mainstay (of organization)}
+  - {id: zh-hsk7-9-00998-s001, ch: 恩情, pr: ēn qíng, ds: kindness}
+  - {id: zh-hsk7-9-01030-s001, ch: 帆, pr: fān, ds: sail}
+  - {id: zh-hsk7-9-01159-s002, ch: 风云, pr: fēng yún, ds: unstable situation}
+  - {id: zh-hsk7-9-01170-s002, ch: 凤凰, pr: fèng huáng, ds: phoenix}
+  - {id: zh-hsk7-9-01256-s001, ch: 干戈, pr: gān gē, ds: weapons of war}
+  - {id: zh-hsk7-9-01376-s001, ch: 宫廷, pr: gōng tíng, ds: court (of king or emperor)}
+  - {id: zh-hsk7-9-01398-s001, ch: 沽名钓誉, pr: gū míng diào yù, ds: to angle for fame (idiom)}
+  - {id: zh-hsk7-9-01500-s006, ch: 贵族, pr: guì zú, ds: aristocracy}
+  - {id: zh-hsk7-9-01618-s001, ch: 和尚, pr: hé shang, ds: Buddhist monk}
+  - {id: zh-hsk7-9-01741-s002, ch: 幻影, pr: huàn yǐng, ds: mirage}
+  - {id: zh-hsk7-9-01762-s001, ch: 皇后, pr: huáng hòu, ds: empress}
+  - {id: zh-hsk7-9-01913-s002, ch: 祭, pr: jì, ds: to offer a sacrifice to (gods or ancestors)}
+  - {id: zh-hsk7-9-02035-s001, ch: 交响乐, pr: jiāo xiǎng yuè, ds: symphony}
+  - {id: zh-hsk7-9-02159-s004, ch: 经, pr: jīng, ds: scripture}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: extension-literary-literature-02
+  title: Literary and historical expression - 2
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary:
+  - {id: zh-hsk7-9-02286-s002, ch: 诀别, pr: jué bié, ds: to part (usually with little hope of meeting again)}
+  - {id: zh-hsk7-9-02529-s002, ch: 了却, pr: liǎo què, ds: to settle}
+  - {id: zh-hsk7-9-02785-s001, ch: 没落, pr: mò luò, ds: to decline}
+  - {id: zh-hsk7-9-02818-s002, ch: 朦胧, pr: méng lóng, ds: (literary) murky; indistinct}
+  - {id: zh-hsk7-9-03009-s001, ch: 奴隶, pr: nú lì, ds: slave}
+  - {id: zh-hsk7-9-03045-s001, ch: 跑龙套, pr: pǎo lóng tào, ds: to play a small role}
+  - {id: zh-hsk7-9-03149-s005, ch: 谱, pr: pǔ, ds: score (music)}
+  - {id: zh-hsk7-9-03177-s007, ch: 启蒙, pr: qǐ méng, ds: the Enlightenment}
+  - {id: zh-hsk7-9-03604-s001, ch: 神仙, pr: shén xiān, ds: Daoist immortal}
+  - {id: zh-hsk7-9-04003-s002, ch: 陶冶, pr: táo yě, ds: fig. to educate}
+  - {id: zh-hsk7-9-04223-s003, ch: 万古长青, pr: wàn gǔ cháng qīng, ds: eternal}
+  - {id: zh-hsk7-9-04411-s003, ch: 侠义, pr: xiá yì, ds: knight-errantry}
+  - {id: zh-hsk7-9-04663-s003, ch: 序, pr: xù, ds: preface}
+  - {id: zh-hsk7-9-04662-s001, ch: 旭日, pr: xù rì, ds: the rising sun}
+  - {id: zh-hsk7-9-05124-s002, ch: 曰, pr: yuē, ds: to say}
+  - {id: zh-hsk7-9-05492-s001, ch: 状元, pr: zhuàng yuán, ds: top scorer in the imperial palace examination}
+  - {id: zh-hsk5-00171-s006, ch: 待, pr: dài, ds: going to (do sth)}
+  - {id: zh-hsk5-00448-s002, ch: 快活, pr: kuài huo, ds: cheerful}
+  - {id: zh-hsk5-00687-s002, ch: 拾, pr: shí, ds: to pick up}
+  - {id: zh-hsk5-00754-s001, ch: 厅, pr: tīng, ds: (reception) hall}
+  - {id: zh-hsk5-00954-s001, ch: 赠, pr: zèng, ds: to give as a present}
+  - {id: zh-hsk6-00270-s001, ch: 佛, pr: Fó, ds: Buddha; Buddhism}
+  - {id: zh-hsk6-00313-s001, ch: 公主, pr: gōng zhǔ, ds: princess}
+  - {id: zh-hsk6-00316-s002, ch: 宫, pr: gōng, ds: palace}
+  - {id: zh-hsk6-00336-s001, ch: 光辉, pr: guāng huī, ds: radiance}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-01398-s001, ch: 沽名钓誉, pr: gū míng diào yù, ds: to angle for fame (idiom)}
+  - {id: zh-hsk7-9-01500-s006, ch: 贵族, pr: guì zú, ds: aristocracy}
+  - {id: zh-hsk7-9-01618-s001, ch: 和尚, pr: hé shang, ds: Buddhist monk}
+  - {id: zh-hsk7-9-01741-s002, ch: 幻影, pr: huàn yǐng, ds: mirage}
+  - {id: zh-hsk7-9-01762-s001, ch: 皇后, pr: huáng hòu, ds: empress}
+  - {id: zh-hsk7-9-01913-s002, ch: 祭, pr: jì, ds: to offer a sacrifice to (gods or ancestors)}
+  - {id: zh-hsk7-9-02035-s001, ch: 交响乐, pr: jiāo xiǎng yuè, ds: symphony}
+  - {id: zh-hsk7-9-02159-s004, ch: 经, pr: jīng, ds: scripture}
+  review_grammar: []
+- id: extension-literary-literature-03
+  title: Literary and historical expression - 3
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary:
+  - {id: zh-hsk6-00577-s002, ch: 命, pr: mìng, ds: fate}
+  - {id: zh-hsk6-00585-s002, ch: 墓, pr: mù, ds: tomb}
+  - {id: zh-hsk6-00730-s004, ch: 识, pr: zhì, ds: to record}
+  - {id: zh-hsk6-01107-s001, ch: 奏, pr: zòu, ds: to play music}
+  - {id: zh-hsk7-9-00005-s003, ch: 哀求, pr: āi qiú, ds: to plead}
+  - {id: zh-hsk7-9-00060-s002, ch: 拜见, pr: bài jiàn, ds: to call to pay respects}
+  - {id: zh-hsk7-9-00108-s001, ch: 堡垒, pr: bǎo lěi, ds: fort}
+  - {id: zh-hsk7-9-00343-s003, ch: 沧桑, pr: cāng sāng, ds: vicissitudes}
+  - {id: zh-hsk7-9-00495-s002, ch: 崇高, pr: chóng gāo, ds: sublime}
+  - {id: zh-hsk7-9-00539-s003, ch: 出土, pr: chū tǔ, ds: unearthed}
+  - {id: zh-hsk7-9-00684-s001, ch: 大臣, pr: dà chén, ds: chancellor (of a monarchy)}
+  - {id: zh-hsk7-9-00774-s001, ch: 悼念, pr: dào niàn, ds: to grieve}
+  - {id: zh-hsk7-9-00912-s001, ch: 动身, pr: dòng shēn, ds: to go on a journey}
+  - {id: zh-hsk7-9-01149-s003, ch: 风流, pr: fēng liú, ds: talented in letters and unconventional in lifestyle}
+  - {id: zh-hsk7-9-01416-s009, ch: 故, pr: gù, ds: therefore}
+  - {id: zh-hsk5-00544-s001, ch: 披, pr: pī, ds: to drape over one's shoulders}
+  - {id: zh-hsk5-00595-s003, ch: 青, pr: qīng, ds: blue}
+  - {id: zh-hsk5-00791-s003, ch: 舞, pr: wǔ, ds: to brandish}
+  - {id: zh-hsk5-01000-s002, ch: 只见, pr: zhǐ jiàn, ds: 'to see, to one''s surprise, (sth happen suddenly)'}
+  - {id: zh-hsk6-00211-s005, ch: 吊, pr: diào, ds: to lament}
+  - {id: zh-hsk6-00223-s001, ch: 渡, pr: dù, ds: to cross}
+  - {id: zh-hsk6-00417-s001, ch: 剑, pr: jiàn, ds: double-edged sword}
+  - {id: zh-hsk6-00419-s001, ch: 箭, pr: jiàn, ds: arrow}
+  - {id: zh-hsk6-00549-s003, ch: 马车, pr: mǎ chē, ds: carriage}
+  - {id: zh-hsk6-00674-s001, ch: 日夜, pr: rì yè, ds: day and night}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00448-s002, ch: 快活, pr: kuài huo, ds: cheerful}
+  - {id: zh-hsk5-00687-s002, ch: 拾, pr: shí, ds: to pick up}
+  - {id: zh-hsk5-00754-s001, ch: 厅, pr: tīng, ds: (reception) hall}
+  - {id: zh-hsk5-00954-s001, ch: 赠, pr: zèng, ds: to give as a present}
+  - {id: zh-hsk6-00270-s001, ch: 佛, pr: Fó, ds: Buddha; Buddhism}
+  - {id: zh-hsk6-00313-s001, ch: 公主, pr: gōng zhǔ, ds: princess}
+  - {id: zh-hsk6-00316-s002, ch: 宫, pr: gōng, ds: palace}
+  - {id: zh-hsk6-00336-s001, ch: 光辉, pr: guāng huī, ds: radiance}
+  review_grammar: []
+- id: extension-literary-literature-04
+  title: Literary and historical expression - 4
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary:
+  - {id: zh-hsk6-00717-s001, ch: 师父, pr: shī fu, ds: master}
+  - {id: zh-hsk6-00720-s001, ch: 时节, pr: shí jié, ds: season; time}
+  - {id: zh-hsk6-00828-s001, ch: 王后, pr: wáng hòu, ds: queen}
+  - {id: zh-hsk6-00829-s001, ch: 王子, pr: wáng zǐ, ds: prince}
+  - {id: zh-hsk6-00915-s004, ch: 洋, pr: yáng, ds: silver dollar or coin}
+  - {id: zh-hsk6-00916-s002, ch: 仰, pr: yǎng, ds: to face upward}
+  - {id: zh-hsk6-01020-s001, ch: 战术, pr: zhàn shù, ds: tactics}
+  - {id: zh-hsk6-01122-s001, ch: 作战, pr: zuò zhàn, ds: combat}
+  - {id: zh-hsk7-9-00118-s003, ch: 暴风骤雨, pr: bào fēng zhòu yǔ, ds: tempest}
+  - {id: zh-hsk7-9-00140-s001, ch: 奔赴, pr: bēn fù, ds: to rush to}
+  - {id: zh-hsk7-9-00168-s001, ch: 碧绿, pr: bì lǜ, ds: dark green}
+  - {id: zh-hsk7-9-00238-s002, ch: 波澜, pr: bō lán, ds: great waves (fig. of a story with great momentum)}
+  - {id: zh-hsk7-9-00239-s001, ch: 波涛, pr: bō tāo, ds: great waves}
+  - {id: zh-hsk7-9-00252-s002, ch: 哺育, pr: bǔ yù, ds: (fig.) to nurture; to foster}
+  - {id: zh-hsk7-9-00326-s001, ch: 彩霞, pr: cǎi xiá, ds: clouds tinged with sunset hues}
+  - {id: zh-hsk7-9-00333-s013, ch: 残, pr: cán, ds: remnant}
+  - {id: zh-hsk7-9-00406-s003, ch: 朝三暮四, pr: zhāo sān mù sì, ds: to blow hot and cold}
+  - {id: zh-hsk5-00024-s006, ch: 辈, pr: bèi, ds: (literary) classifier for people}
+  - {id: zh-hsk5-00614-s001, ch: 人间, pr: rén jiān, ds: the human world}
+  - {id: zh-hsk5-00676-s002, ch: 时光, pr: shí guāng, ds: era}
+  - {id: zh-hsk6-00359-s002, ch: 好似, pr: hǎo sì, ds: to be like}
+  - {id: zh-hsk6-00455-s006, ch: 景, pr: jǐng, ds: (literary) sunlight}
+  - {id: zh-hsk6-00576-s001, ch: 明日, pr: míng rì, ds: tomorrow}
+  - {id: zh-hsk6-00782-s004, ch: 天下, pr: tiān xià, ds: realm}
+  - {id: zh-hsk7-9-00127-s003, ch: 悲欢离合, pr: bēi huān lí hé, ds: the vicissitudes of life}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00791-s003, ch: 舞, pr: wǔ, ds: to brandish}
+  - {id: zh-hsk5-01000-s002, ch: 只见, pr: zhǐ jiàn, ds: 'to see, to one''s surprise, (sth happen suddenly)'}
+  - {id: zh-hsk6-00211-s005, ch: 吊, pr: diào, ds: to lament}
+  - {id: zh-hsk6-00223-s001, ch: 渡, pr: dù, ds: to cross}
+  - {id: zh-hsk6-00417-s001, ch: 剑, pr: jiàn, ds: double-edged sword}
+  - {id: zh-hsk6-00419-s001, ch: 箭, pr: jiàn, ds: arrow}
+  - {id: zh-hsk6-00549-s003, ch: 马车, pr: mǎ chē, ds: carriage}
+  - {id: zh-hsk6-00674-s001, ch: 日夜, pr: rì yè, ds: day and night}
+  review_grammar: []
+- id: extension-literary-literature-05
+  title: Literary and historical expression - 5
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary:
+  - {id: zh-hsk7-9-00129-s003, ch: 碑, pr: bēi, ds: stele}
+  - {id: zh-hsk7-9-00338-s001, ch: 惨白, pr: cǎn bái, ds: deathly pale}
+  - {id: zh-hsk7-9-00576-s004, ch: 传奇, pr: chuán qí, ds: short stories of the Tang and Song Dynasty}
+  - {id: zh-hsk7-9-00624-s002, ch: 赐, pr: cì, ds: to bestow}
+  - {id: zh-hsk7-9-00757-s001, ch: 荡漾, pr: dàng yàng, ds: to ripple}
+  - {id: zh-hsk7-9-00997-s002, ch: 恩惠, pr: ēn huì, ds: grace}
+  - {id: zh-hsk7-9-01123-s002, ch: 芬芳, pr: fēn fāng, ds: fragrant}
+  - {id: zh-hsk7-9-01192-s001, ch: 俯首, pr: fǔ shǒu, ds: to bend one's head}
+  - {id: zh-hsk7-9-01372-s002, ch: 供奉, pr: gòng fèng, ds: to enshrine and worship}
+  - {id: zh-hsk7-9-01480-s001, ch: 光芒, pr: guāng máng, ds: rays of light}
+  - {id: zh-hsk7-9-01495-s003, ch: 瑰宝, pr: guī bǎo, ds: treasure}
+  - {id: zh-hsk7-9-01675-s001, ch: 后裔, pr: hòu yì, ds: descendant}
+  - {id: zh-hsk7-9-01781-s002, ch: 回首, pr: huí shǒu, ds: (fig.) to recall the past}
+  - {id: zh-hsk7-9-02022-s001, ch: 降临, pr: jiàng lín, ds: to descend}
+  - {id: zh-hsk7-9-02260-s001, ch: 举世无双, pr: jǔ shì wú shuāng, ds: unrivaled (idiom); world number one}
+  - {id: zh-hsk7-9-02366-s003, ch: 可歌可泣, pr: kě gē kě qì, ds: inspiring and tragic}
+  - {id: zh-hsk7-9-02636-s001, ch: 灵魂, pr: líng hún, ds: soul}
+  - {id: zh-hsk7-9-02849-s002, ch: 缅怀, pr: miǎn huái, ds: to recall fondly}
+  - {id: zh-hsk7-9-04897-s001, ch: 怡然自得, pr: yí rán zì dé, ds: happy and content (idiom)}
+  - {id: zh-hsk7-9-04924-s001, ch: 亦, pr: yì, ds: also}
+  - {id: zh-hsk3-00676-s004, ch: 所, pr: suǒ, ds: that which}
+  - {id: zh-hsk3-00867-s005, ch: 者, pr: zhě, ds: '(used after a term, to mark a pause before defining the term)'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00024-s006, ch: 辈, pr: bèi, ds: (literary) classifier for people}
+  - {id: zh-hsk5-00614-s001, ch: 人间, pr: rén jiān, ds: the human world}
+  - {id: zh-hsk5-00676-s002, ch: 时光, pr: shí guāng, ds: era}
+  - {id: zh-hsk6-00359-s002, ch: 好似, pr: hǎo sì, ds: to be like}
+  - {id: zh-hsk6-00455-s006, ch: 景, pr: jǐng, ds: (literary) sunlight}
+  - {id: zh-hsk6-00576-s001, ch: 明日, pr: míng rì, ds: tomorrow}
+  - {id: zh-hsk6-00782-s004, ch: 天下, pr: tiān xià, ds: realm}
+  - {id: zh-hsk7-9-00127-s003, ch: 悲欢离合, pr: bēi huān lí hé, ds: the vicissitudes of life}
+  review_grammar: []
+- id: extension-literary-literature-practice-01
+  title: Literary and historical expression - sentence practice 1
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk7-9-g012, ch: 若非+P+岂能+Q, ds: literary counterfactual rhetorical question}
+  - {id: zh-hsk7-9-g024, ch: Group+莫不+P, ds: literary universal affirmation through double negation}
+  - {id: zh-hsk7-9-g010, ch: 纵然+P+亦+Q, ds: literary concession; even so the consequence holds}
+  review_vocabulary:
+  - {id: zh-hsk7-9-05559-s001, ch: 纵然, pr: zòng rán, ds: even if}
+  - {id: zh-hsk7-9-04924-s001, ch: 亦, pr: yì, ds: also}
+  - {id: zh-hsk7-9-02260-s001, ch: 举世无双, pr: jǔ shì wú shuāng, ds: unrivaled (idiom); world number one}
+  - {id: zh-hsk7-9-02366-s003, ch: 可歌可泣, pr: kě gē kě qì, ds: inspiring and tragic}
+  - {id: zh-hsk7-9-02636-s001, ch: 灵魂, pr: líng hún, ds: soul}
+  - {id: zh-hsk7-9-02849-s002, ch: 缅怀, pr: miǎn huái, ds: to recall fondly}
+  - {id: zh-hsk7-9-04897-s001, ch: 怡然自得, pr: yí rán zì dé, ds: happy and content (idiom)}
+  - {id: zh-hsk3-00676-s004, ch: 所, pr: suǒ, ds: that which}
+  - {id: zh-hsk3-00867-s005, ch: 者, pr: zhě, ds: '(used after a term, to mark a pause before defining the term)'}
+  review_grammar: []
+- id: extension-literary-literature-practice-02
+  title: Literary and historical expression - sentence practice 2
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk7-9-g017, ch: 所+V+者+是+N, ds: literary topic nominalization before an identification}
+  review_vocabulary:
+  - {id: zh-hsk3-00676-s004, ch: 所, pr: suǒ, ds: that which}
+  - {id: zh-hsk3-00867-s005, ch: 者, pr: zhě, ds: '(used after a term, to mark a pause before defining the term)'}
+  - {id: zh-hsk1-00340-s001, ch: 是, pr: shì, ds: to be (before noun phrases)}
+  - {id: zh-hsk7-9-02260-s001, ch: 举世无双, pr: jǔ shì wú shuāng, ds: unrivaled (idiom); world number one}
+  - {id: zh-hsk7-9-02366-s003, ch: 可歌可泣, pr: kě gē kě qì, ds: inspiring and tragic}
+  - {id: zh-hsk7-9-02636-s001, ch: 灵魂, pr: líng hún, ds: soul}
+  - {id: zh-hsk7-9-02849-s002, ch: 缅怀, pr: miǎn huái, ds: to recall fondly}
+  - {id: zh-hsk7-9-04897-s001, ch: 怡然自得, pr: yí rán zì dé, ds: happy and content (idiom)}
+  - {id: zh-hsk7-9-04924-s001, ch: 亦, pr: yì, ds: also}
+  review_grammar:
+  - {id: zh-hsk7-9-g012, ch: 若非+P+岂能+Q, ds: literary counterfactual rhetorical question}
+  - {id: zh-hsk7-9-g024, ch: Group+莫不+P, ds: literary universal affirmation through double negation}
+  - {id: zh-hsk7-9-g010, ch: 纵然+P+亦+Q, ds: literary concession; even so the consequence holds}

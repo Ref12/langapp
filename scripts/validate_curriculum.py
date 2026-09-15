@@ -11,6 +11,7 @@ import yaml
 from curriculum_yaml import load_yaml
 from generate_curriculum_tokens import PILOT_LEVEL, compact_outputs, vocabulary_pairs
 from generate_teaching_track import load_reference_index, teaching_outputs
+from generate_chinese_program import generate as generate_program
 
 
 LEVELS = {
@@ -35,6 +36,7 @@ class Validator:
         self.errors = []
         self.counts = []
         self.teaching_tracks = {}
+        self.teaching_programs = set()
 
     def error(self, location, message):
         self.errors.append(f"{location}: {message}")
@@ -124,6 +126,11 @@ class Validator:
                 self.error(location, "teaching tracks are currently supported only for Chinese")
             else:
                 self.teaching_tracks[language] = tracks
+            if "teaching_program" in entry:
+                if language != "chinese" or entry["teaching_program"] != "zh-practical":
+                    self.error(location, "unsupported teaching_program; expected Chinese zh-practical")
+                else:
+                    self.teaching_programs.add(language)
         if seen != set(LEVELS):
             self.error("catalog.yaml", "must include all three languages exactly once")
 
@@ -265,6 +272,14 @@ class Validator:
                 return
             for track in self.teaching_tracks[language]:
                 self.teaching_track(directory / "teaching" / track, words, patterns)
+        if language in self.teaching_programs:
+            self.document(directory / "teaching" / "README.md")
+            self.document(directory / "teaching" / "grammar-notes.md")
+            self.document(directory / "teaching" / "tourist" / "README.md")
+            try:
+                generate_program(directory, check=True)
+            except (OSError, UnicodeError, ValueError, KeyError, yaml.YAMLError) as exc:
+                self.error(directory / "teaching", str(exc))
 
     def teaching_track(self, directory, vocabulary, grammar):
         self.document(directory / "README.md")

@@ -1,0 +1,128 @@
+schema_version: 3
+id: zh-level-02
+title: People, belongings, and places
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 2
+phase: first-exchanges
+prerequisites:
+- zh-level-01
+goals: &id001
+- Identify objects by color and size.
+- Describe people and their belongings.
+- Ask where a person or place is.
+checkpoint:
+  task: Identify a missing object and explain whose it is and where it might be.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: colors-and-objects
+  title: Colors and describing objects
+  outcome: Identify a cup, bag, or book by pointing, name six basic colors, describe an object's size, and ask what something is.
+  vocabulary:
+  - {id: zh-hsk1-00007-s002, ch: 白, pr: bái, ds: white}
+  - {id: zh-hsk2-00212-s001, ch: 黑, pr: hēi, ds: black}
+  - {id: zh-hsk2-00215-s002, ch: 红, pr: hóng, ds: red}
+  - {id: zh-hsk2-00229-s002, ch: 黄, pr: huáng, ds: yellow}
+  - {id: zh-hsk2-00322-s002, ch: 蓝, pr: lán, ds: blue}
+  - {id: zh-hsk2-00353-s001, ch: 绿, pr: lǜ, ds: green}
+  - {id: zh-hsk2-00609-s001, ch: 颜色, pr: yán sè, ds: color}
+  - {id: zh-hsk1-00148-s001, ch: 很, pr: hěn, ds: very (degree adverb)}
+  - {id: zh-hsk1-00062-s001, ch: 大, pr: dà, ds: big or great}
+  - {id: zh-hsk1-00405-s001, ch: 小, pr: xiǎo, ds: small}
+  - {id: zh-hsk1-00140-s001, ch: 好, pr: hǎo, ds: good}
+  - {id: zh-hsk1-00470-s003, ch: 这, pr: zhè, ds: this or these before a classifier}
+  - {id: zh-hsk1-00258-s003, ch: 那, pr: nà, ds: 'that, the or those (specifier)'}
+  - {id: zh-hsk1-00331-s001, ch: 什么, pr: shén me, ds: 'what?'}
+  - {id: zh-hsk1-00348-s001, ch: 谁, pr: shéi, ds: who}
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00016-s011, ch: 包, pr: bāo, ds: bag}
+  - {id: zh-hsk1-00088-s002, ch: 东西, pr: dōng xi, ds: thing}
+  - {id: zh-hsk1-00344-s001, ch: 书, pr: shū, ds: book}
+  - {id: zh-hsk1-00023-s010, ch: 本, pr: běn, ds: 'classifier for books, periodicals, and files'}
+  grammar:
+  - {id: zh-hsk1-g002, ch: S+很+Adj, ds: adjective predicate}
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  review_vocabulary:
+  - {id: zh-hsk1-00019-s001, ch: 杯子, pr: bēi zi, ds: cup or glass}
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00217-s001, ch: 两, pr: liǎng, ds: two}
+  - {id: zh-hsk1-00340-s001, ch: 是, pr: shì, ds: to be (before noun phrases)}
+  - {id: zh-hsk1-00423-s001, ch: 学生, pr: xué sheng, ds: student}
+  review_grammar:
+  - {id: zh-hsk1-g001, ch: S+是+N, ds: noun-predicate identity}
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
+- id: family-and-belongings
+  title: Family, friends, and belongings
+  outcome: Introduce family members and friends, say what you have or do not have, and identify whose book, bag, or phone it is.
+  vocabulary:
+  - {id: zh-hsk1-00071-s001, ch: 的, pr: de, ds: of (possessive particle)}
+  - {id: zh-hsk1-00071-s002, ch: 的, pr: de, ds: attributive particle}
+  - {id: zh-hsk1-00445-s001, ch: 有, pr: yǒu, ds: to have; there is}
+  - {id: zh-hsk1-00239-s004, ch: 没有, pr: méi yǒu, ds: to not have}
+  - {id: zh-hsk1-00170-s001, ch: 家, pr: jiā, ds: home}
+  - {id: zh-hsk1-00005-s001, ch: 爸爸, pr: bà ba, ds: (coll.) father}
+  - {id: zh-hsk1-00227-s001, ch: 妈妈, pr: mā ma, ds: mother (familiar)}
+  - {id: zh-hsk1-00120-s001, ch: 哥哥, pr: gē ge, ds: older brother}
+  - {id: zh-hsk1-00181-s001, ch: 姐姐, pr: jiě jie, ds: older sister}
+  - {id: zh-hsk1-00075-s001, ch: 弟弟, pr: dì di, ds: younger brother}
+  - {id: zh-hsk1-00241-s001, ch: 妹妹, pr: mèi mei, ds: younger sister}
+  - {id: zh-hsk1-00358-s001, ch: 他, pr: tā, ds: he or him}
+  - {id: zh-hsk1-00360-s001, ch: 她, pr: tā, ds: she}
+  - {id: zh-hsk1-00309-s001, ch: 人, pr: rén, ds: person or people}
+  - {id: zh-hsk1-00385-s001, ch: 我们, pr: wǒ men, ds: we or us}
+  - {id: zh-hsk1-00343-s001, ch: 手机, pr: shǒu jī, ds: cell phone}
+  - {id: zh-hsk1-00288-s001, ch: 朋友, pr: péng you, ds: friend}
+  grammar:
+  - {id: zh-hsk1-g004, ch: S+有+N, ds: possession}
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+  review_vocabulary:
+  - {id: zh-hsk1-00344-s001, ch: 书, pr: shū, ds: book}
+  - {id: zh-hsk1-00016-s011, ch: 包, pr: bāo, ds: bag}
+  - {id: zh-hsk1-00023-s010, ch: 本, pr: běn, ds: 'classifier for books, periodicals, and files'}
+  - {id: zh-hsk1-00348-s001, ch: 谁, pr: shéi, ds: who}
+  - {id: zh-hsk1-00470-s003, ch: 这, pr: zhè, ds: this or these before a classifier}
+  review_grammar:
+  - {id: zh-hsk1-g001, ch: S+是+N, ds: noun-predicate identity}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+- id: people-and-places
+  title: People and everyday places
+  outcome: Identify teachers and doctors, ask where everyday places are, and say who or what is at a location.
+  vocabulary:
+  - {id: zh-hsk1-00461-s002, ch: 在, pr: zài, ds: to be located at}
+  - {id: zh-hsk1-00147-s002, ch: 和, pr: hé, ds: and or with (joining nouns)}
+  - {id: zh-hsk1-00211-s001, ch: 老师, pr: lǎo shī, ds: teacher}
+  - {id: zh-hsk1-00425-s001, ch: 学校, pr: xué xiào, ds: school}
+  - {id: zh-hsk1-00318-s001, ch: 商店, pr: shāng diàn, ds: store}
+  - {id: zh-hsk1-00443-s001, ch: 医院, pr: yī yuàn, ds: hospital}
+  - {id: zh-hsk1-00442-s001, ch: 医生, pr: yī shēng, ds: doctor}
+  - {id: zh-hsk1-00126-s001, ch: 工作, pr: gōng zuò, ds: to work}
+  - {id: zh-hsk1-00483-s001, ch: 中国, pr: Zhōng guó, ds: China}
+  - {id: zh-hsk1-00473-s001, ch: 这里, pr: zhè lǐ, ds: here}
+  - {id: zh-hsk1-00261-s001, ch: 那里, pr: nà li, ds: there}
+  - {id: zh-hsk1-00491-s001, ch: 住, pr: zhù, ds: to live (reside)}
+  - {id: zh-hsk1-00103-s001, ch: 房间, pr: fáng jiān, ds: room}
+  - {id: zh-hsk1-00493-s001, ch: 桌子, pr: zhuō zi, ds: table or desk}
+  - {id: zh-hsk1-00081-s001, ch: 电脑, pr: diàn nǎo, ds: computer}
+  - {id: zh-hsk1-00370-s001, ch: 图书馆, pr: tú shū guǎn, ds: library}
+  grammar:
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g013, ch: Place+有+N, ds: existence at a location}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+  review_vocabulary:
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00445-s001, ch: 有, pr: yǒu, ds: to have; there is}
+  - {id: zh-hsk1-00170-s001, ch: 家, pr: jiā, ds: home}
+  - {id: zh-hsk1-00288-s001, ch: 朋友, pr: péng you, ds: friend}
+  - {id: zh-hsk1-00071-s001, ch: 的, pr: de, ds: of (possessive particle)}
+  review_grammar:
+  - {id: zh-hsk1-g004, ch: S+有+N, ds: possession}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}

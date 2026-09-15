@@ -1,0 +1,765 @@
+schema_version: 3
+id: zh-level-29
+title: Critical interpretation
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 29
+phase: nuance-interpretation
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+- zh-level-06
+- zh-level-07
+- zh-level-08
+- zh-level-09
+- zh-level-10
+- zh-level-11
+- zh-level-12
+- zh-level-13
+- zh-level-14
+- zh-level-15
+- zh-level-16
+- zh-level-17
+- zh-level-18
+- zh-level-19
+- zh-level-20
+- zh-level-21
+- zh-level-22
+- zh-level-23
+- zh-level-24
+- zh-level-25
+- zh-level-26
+- zh-level-27
+- zh-level-28
+goals: &id001
+- Support an interpretation with textual evidence.
+- Compare alternative readings and assumptions.
+- Evaluate a work or argument using explicit criteria.
+checkpoint:
+  task: Present and defend an interpretation while acknowledging a credible alternative.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: level-29-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships and respond to another person's perspective.
+  vocabulary:
+  - {id: zh-hsk7-9-01310-s002, ch: 隔阂, pr: gé hé, ds: estrangement}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00402-s003, ch: 先生, pr: xiān sheng, ds: husband}
+  - {id: zh-hsk1-00407-s002, ch: 小姐, pr: xiǎo jie, ds: Miss (title)}
+  - {id: zh-hsk6-00599-s001, ch: 盼望, pr: pàn wàng, ds: to hope for; to look forward to}
+  - {id: zh-hsk7-9-00673-s002, ch: 打交道, pr: dǎ jiāo dào, ds: to have dealings}
+  - {id: zh-hsk7-9-00899-s002, ch: 东道主, pr: dōng dào zhǔ, ds: official host (e.g. venue for games or a conference)}
+  - {id: zh-hsk4-00524-s001, ch: 女士, pr: nǚ shì, ds: lady}
+  - {id: zh-hsk6-01112-s002, ch: 祖父, pr: zǔ fù, ds: paternal grandfather}
+  - {id: zh-hsk7-9-01677-s001, ch: 厚道, pr: hòu dao, ds: kind and honest}
+  review_grammar:
+  - {id: zh-hsk2-g024, ch: 给+Person+VP, ds: action directed to or done for someone}
+  - {id: zh-hsk3-g020, ch: 让+Person+VP, ds: let or have someone do something}
+  - {id: zh-hsk4-g011, ch: 把+A+当作+B, ds: treat or regard one thing as another}
+- id: level-29-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning experience or approach and respond to questions.
+  vocabulary:
+  - {id: zh-hsk5-00568-s003, ch: 启发, pr: qǐ fā, ds: to stimulate (a mental attitude)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk6-00459-s001, ch: 纠正, pr: jiū zhèng, ds: to correct}
+  - {id: zh-hsk5-00681-s002, ch: 示范, pr: shì fàn, ds: to show how to do sth}
+  - {id: zh-hsk5-00852-s001, ch: 学位, pr: xué wèi, ds: academic degree}
+  - {id: zh-hsk5-00967-s001, ch: 招生, pr: zhāo shēng, ds: to enroll new students}
+  - {id: zh-hsk6-00298-s001, ch: 高考, pr: gāo kǎo, ds: college entrance exam}
+  - {id: zh-hsk5-00851-s004, ch: 学科, pr: xué kē, ds: academic discipline}
+  - {id: zh-hsk5-00853-s001, ch: 学者, pr: xué zhě, ds: scholar}
+  - {id: zh-hsk5-00103-s002, ch: 成语, pr: chéng yǔ, ds: idiom}
+  review_grammar: []
+- id: level-29-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk7-9-01726-s004, ch: 话语, pr: huà yǔ, ds: discourse}
+  - {id: zh-hsk7-9-05522-s001, ch: 字眼, pr: zì yǎn, ds: wording}
+  - {id: zh-hsk6-00967-s001, ch: 用法, pr: yòng fǎ, ds: usage}
+  - {id: zh-hsk7-9-04668-s003, ch: 絮叨, pr: xù dao, ds: to talk endlessly without getting to the point}
+  - {id: zh-hsk7-9-04757-s002, ch: 眼神, pr: yǎn shén, ds: meaningful glance}
+  - {id: zh-hsk4-00793-s001, ch: 形容, pr: xíng róng, ds: to describe}
+  - {id: zh-hsk5-00036-s001, ch: 编辑, pr: biān jí, ds: to edit}
+  - {id: zh-hsk7-9-02761-s005, ch: 脉络, pr: mài luò, ds: overall context}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-00363-s001, ch: 插嘴, pr: chā zuǐ, ds: to interrupt (sb talking)}
+  - {id: zh-hsk7-9-00874-s001, ch: 叮嘱, pr: dīng zhǔ, ds: to warn repeatedly}
+  - {id: zh-hsk7-9-01445-s003, ch: 关照, pr: guān zhào, ds: to look after}
+  - {id: zh-hsk7-9-02413-s001, ch: 口头, pr: kǒu tóu, ds: oral}
+  - {id: zh-hsk7-9-02416-s003, ch: 口音, pr: kǒu yin, ds: accent}
+  - {id: zh-hsk7-9-04080-s003, ch: 停顿, pr: tíng dùn, ds: pause (in speech)}
+  - {id: zh-hsk7-9-00038-s002, ch: 八卦, pr: bā guà, ds: gossip}
+  - {id: zh-hsk7-9-05075-s002, ch: 语气, pr: yǔ qì, ds: manner of speaking}
+  review_grammar:
+  - {id: zh-hsk4-g022, ch: 关于+Topic, ds: introduce the subject of a discussion or text}
+  - {id: zh-hsk5-g025, ch: 总的来说+P, ds: summarize while leaving room for local exceptions}
+  - {id: zh-hsk7-9-g034, ch: P+换言之+Paraphrase, ds: restate a claim without changing its force}
+- id: level-29-time-01
+  title: Time and events - 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary:
+  - {id: zh-hsk5-00052-s001, ch: 不曾, pr: bù céng, ds: hasn't yet}
+  - {id: zh-hsk5-00179-s002, ch: 当代, pr: dāng dài, ds: the contemporary era}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00880-s001, ch: 一向, pr: yī xiàng, ds: always (previously)}
+  - {id: zh-hsk4-00839-s001, ch: 一再, pr: yī zài, ds: repeatedly}
+  - {id: zh-hsk5-00397-s003, ch: 接连, pr: jiē lián, ds: in succession}
+  - {id: zh-hsk5-00879-s002, ch: 一下子, pr: yī xià zi, ds: all at once}
+  - {id: zh-hsk5-00882-s001, ch: 依旧, pr: yī jiù, ds: as before}
+  - {id: zh-hsk7-9-03858-s001, ch: 瞬间, pr: shùn jiān, ds: in an instant}
+  - {id: zh-hsk7-9-04859-s002, ch: 一连串, pr: yī lián chuàn, ds: a series of}
+  - {id: zh-hsk7-9-05132-s004, ch: 越发, pr: yuè fā, ds: all the more}
+  review_grammar:
+  - {id: zh-hsk5-g007, ch: 趁+Opportunity+VP, ds: act while a favorable opportunity lasts}
+  - {id: zh-hsk5-g008, ch: 自从+StartingPoint+以来+P, ds: continuing situation since a past starting point}
+  - {id: zh-hsk5-g009, ch: 直到+Endpoint+才+VP, ds: an event occurs only upon reaching an endpoint}
+- id: level-29-actions-01
+  title: Actions and processes - 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk5-01030-s001, ch: 注视, pr: zhù shì, ds: to look attentively at; to closely watch; to gaze at}
+  - {id: zh-hsk7-9-00806-s003, ch: 瞪, pr: dèng, ds: to glare at}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-00961-s002, ch: 兑现, pr: duì xiàn, ds: to honor a commitment}
+  - {id: zh-hsk7-9-01596-s003, ch: 耗费, pr: hào fèi, ds: to consume}
+  - {id: zh-hsk7-9-01940-s004, ch: 驾驭, pr: jià yù, ds: to handle}
+  - {id: zh-hsk7-9-02668-s004, ch: 流失, pr: liú shī, ds: to fail to be retained}
+  - {id: zh-hsk7-9-02997-s002, ch: 扭转, pr: niǔ zhuǎn, ds: to turn around (an undesirable situation)}
+  - {id: zh-hsk7-9-03347-s002, ch: 取代, pr: qǔ dài, ds: to supersede}
+  - {id: zh-hsk7-9-03785-s002, ch: 疏忽, pr: shū hu, ds: to overlook}
+  - {id: zh-hsk7-9-03734-s004, ch: 收敛, pr: shōu liǎn, ds: to exercise restraint}
+  review_grammar:
+  - {id: zh-hsk6-g006, ch: (尽可能|尽量)+VP, ds: aim for as much as constraints permit}
+  - {id: zh-hsk5-g017, ch: 为了+Purpose+而+VP, ds: name an intended purpose rather than a proven result}
+  - {id: zh-hsk7-9-g030, ch: Step1+进而+Step2, ds: advance to a further logical or procedural step}
+- id: level-29-description-01
+  title: Description and comparison - 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk6-00188-s001, ch: 当成, pr: dàng chéng, ds: to consider as; to take to be}
+  - {id: zh-hsk7-9-03454-s005, ch: 冗长, pr: rǒng cháng, ds: verbose (of writing)}
+  - {id: zh-hsk7-9-03603-s006, ch: 神态, pr: shén tài, ds: expression}
+  - {id: zh-hsk5-00409-s002, ch: 景象, pr: jǐng xiàng, ds: sight (to behold)}
+  - {id: zh-hsk7-9-01183-s004, ch: 浮现, pr: fú xiàn, ds: to come back (of images from the past)}
+  - {id: zh-hsk7-9-01212-s003, ch: 复兴, pr: fù xīng, ds: to revive}
+  - {id: zh-hsk7-9-01639-s003, ch: 痕迹, pr: hén jì, ds: trace}
+  - {id: zh-hsk7-9-03147-s001, ch: 朴素, pr: pǔ sù, ds: plain and simple}
+  - {id: zh-hsk7-9-04783-s001, ch: 洋溢, pr: yáng yì, ds: brimming with}
+  - {id: zh-hsk7-9-04815-s002, ch: 耀眼, pr: yào yǎn, ds: dazzling}
+  - {id: zh-hsk7-9-04997-s002, ch: 庸俗, pr: yōng sú, ds: tacky}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-04308-s001, ch: 稳固, pr: wěn gù, ds: stable}
+  - {id: zh-hsk7-9-04682-s002, ch: 悬殊, pr: xuán shū, ds: large disparity}
+  - {id: zh-hsk7-9-04886-s001, ch: 一应俱全, pr: yī yīng jù quán, ds: with everything needed available}
+  - {id: zh-hsk7-9-05117-s001, ch: 远程, pr: yuǎn chéng, ds: remote}
+  - {id: zh-hsk7-9-05158-s003, ch: 载体, pr: zài tǐ, ds: vehicle or medium}
+  - {id: zh-hsk7-9-05367-s001, ch: 质地, pr: zhì dì, ds: texture}
+  - {id: zh-hsk7-9-05368-s004, ch: 质朴, pr: zhì pǔ, ds: unaffected}
+  - {id: zh-hsk7-9-05534-s004, ch: 自如, pr: zì rú, ds: with ease}
+  review_grammar:
+  - {id: zh-hsk3-g025, ch: (什么|哪儿)+都+P, ds: a question word takes universal rather than question force}
+  - {id: zh-hsk5-g024, ch: P+甚至+Q, ds: add a stronger or less expected point on a scale}
+  - {id: zh-hsk7-9-g006, ch: A+P+相比之下+B+Q, ds: contrast cases against a stated comparison baseline}
+- id: level-29-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain an attitude or emotional response with appropriate context.
+  vocabulary:
+  - {id: zh-hsk7-9-01254-s006, ch: 感性, pr: gǎn xìng, ds: sentimental}
+  - {id: zh-hsk7-9-00029-s002, ch: 暗中, pr: àn zhōng, ds: in secret}
+  - {id: zh-hsk7-9-00371-s002, ch: 诧异, pr: chà yì, ds: astonished}
+  - {id: zh-hsk7-9-01250-s003, ch: 感慨, pr: gǎn kǎi, ds: deeply moved}
+  - {id: zh-hsk7-9-01912-s002, ch: 寄托, pr: jì tuō, ds: 'to place (one''s hope, energy etc) in'}
+  - {id: zh-hsk7-9-03299-s001, ch: 轻蔑, pr: qīng miè, ds: scornful; disdainful; contemptuous; pejorative}
+  - {id: zh-hsk7-9-00120-s002, ch: 暴躁, pr: bào zào, ds: irritable}
+  - {id: zh-hsk7-9-00125-s002, ch: 悲哀, pr: bēi āi, ds: sorrowful}
+  - {id: zh-hsk7-9-04770-s001, ch: 厌倦, pr: yàn juàn, ds: to be weary of; to be fed up with; to be bored with}
+  - {id: zh-hsk7-9-05289-s003, ch: 震撼, pr: zhèn hàn, ds: to stun}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-04657-s002, ch: 虚伪, pr: xū wěi, ds: hypocritical}
+  - {id: zh-hsk7-9-05019-s001, ch: 忧郁, pr: yōu yù, ds: sullen; depressed; melancholy; dejected}
+  - {id: zh-hsk7-9-00034-s002, ch: 傲, pr: ào, ds: arrogant}
+  - {id: zh-hsk7-9-00145-s003, ch: 本性, pr: běn xìng, ds: inherent quality}
+  - {id: zh-hsk7-9-00472-s002, ch: 痴迷, pr: chī mí, ds: obsessed}
+  - {id: zh-hsk7-9-00429-s004, ch: 沉迷, pr: chén mí, ds: to be addicted to}
+  - {id: zh-hsk7-9-01184-s002, ch: 浮躁, pr: fú zào, ds: restless}
+  - {id: zh-hsk7-9-03112-s001, ch: 平常心, pr: píng cháng xīn, ds: levelheadedness}
+  review_grammar:
+  - {id: zh-hsk4-g020, ch: (好像|似乎)+P, ds: hedge an impression rather than confirm a fact}
+  - {id: zh-hsk4-g021, ch: 以为+P, ds: hold a belief; often one later shown mistaken}
+  - {id: zh-hsk6-g007, ch: 不免+Reaction|难免+Event, ds: understandable reaction versus hard-to-avoid event}
+- id: level-29-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk4-00780-s002, ch: 消化, pr: xiāo huà, ds: (fig.) to absorb (information etc); to assimilate; to process}
+  - {id: zh-hsk7-9-03122-s002, ch: 评判, pr: píng pàn, ds: to appraise}
+  - {id: zh-hsk3-00611-s001, ch: 深刻, pr: shēn kè, ds: profound}
+  - {id: zh-hsk7-9-02181-s004, ch: 精华, pr: jīng huá, ds: essence}
+  - {id: zh-hsk7-9-02936-s001, ch: 耐人寻味, pr: nài rén xún wèi, ds: thought-provoking}
+  - {id: zh-hsk7-9-05145-s005, ch: 蕴涵, pr: yùn hán, ds: implication}
+  - {id: zh-hsk7-9-03178-s006, ch: 启示, pr: qǐ shì, ds: moral (of a story etc)}
+  - {id: zh-hsk7-9-03713-s002, ch: 视角, pr: shì jiǎo, ds: (fig.) perspective; viewpoint; frame of reference}
+  - {id: zh-hsk7-9-03717-s003, ch: 视野, pr: shì yě, ds: perspective}
+  - {id: zh-hsk7-9-05083-s001, ch: 预示, pr: yù shì, ds: to indicate}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-03217-s003, ch: 牵扯, pr: qiān chě, ds: to be interrelated}
+  - {id: zh-hsk7-9-01483-s001, ch: 广义, pr: guǎng yì, ds: broad sense}
+  - {id: zh-hsk7-9-02683-s005, ch: 笼统, pr: lǒng tǒng, ds: vague}
+  - {id: zh-hsk7-9-02958-s003, ch: 内涵, pr: nèi hán, ds: connotation (semantics)}
+  - {id: zh-hsk7-9-03683-s001, ch: 实体, pr: shí tǐ, ds: entity}
+  - {id: zh-hsk7-9-03684-s002, ch: 实物, pr: shí wù, ds: concrete object}
+  - {id: zh-hsk7-9-04352-s001, ch: 无形中, pr: wú xíng zhōng, ds: imperceptibly}
+  - {id: zh-hsk7-9-05318-s001, ch: 支柱, pr: zhī zhù, ds: mainstay}
+  review_grammar:
+  - {id: zh-hsk6-g018, ch: 从+Evidence+来看+Conclusion, ds: bound an inference by its stated evidence}
+  - {id: zh-hsk7-9-g002, ch: 基于+Basis+P, ds: name the evidence or concepts underlying a judgment}
+  - {id: zh-hsk7-9-g020, ch: Evidence+尚不足以+VP, ds: current evidence is still insufficient for a conclusion}
+- id: level-29-grammar-01
+  title: Sentence construction - 1
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk5-00626-s001, ch: 如同, pr: rú tóng, ds: like}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00838-s004, ch: 一律, pr: yī lǜ, ds: without exception}
+  - {id: zh-hsk6-00247-s004, ch: 番, pr: fān, ds: 'classifier for occurrences of an event, action, or speech'}
+  - {id: zh-hsk6-00678-s003, ch: 如, pr: rú, ds: such as}
+  - {id: zh-hsk6-00935-s005, ch: 一时, pr: yī shí, ds: momentary}
+  - {id: zh-hsk7-9-00992-s004, ch: 略, pr: 'lu:è', ds: (bound form before a single-character verb) somewhat; slightly}
+  - {id: zh-hsk3-00660-s008, ch: 受, pr: shòu, ds: (passive marker)}
+  - {id: zh-hsk6-00683-s004, ch: 若, pr: ruò, ds: if}
+  - {id: zh-hsk7-9-03458-s002, ch: 如果说, pr: rú guǒ shuō, ds: if one were to say}
+  review_grammar: []
+- id: level-29-society-01
+  title: Society and community - 1
+  outcome: Explain a social issue and compare different people's experiences.
+  vocabulary:
+  - {id: zh-hsk6-01082-s004, ch: 主流, pr: zhǔ liú, ds: mainstream (culture etc)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02067-s001, ch: 阶层, pr: jiē céng, ds: social class}
+  - {id: zh-hsk7-9-03253-s002, ch: 强加, pr: qiáng jiā, ds: to force upon}
+  - {id: zh-hsk7-9-03491-s003, ch: 骚扰, pr: sāo rǎo, ds: to harass}
+  - {id: zh-hsk7-9-03966-s002, ch: 贪污, pr: tān wū, ds: corruption}
+  - {id: zh-hsk7-9-04331-s001, ch: 无家可归, pr: wú jiā kě guī, ds: homeless}
+  - {id: zh-hsk7-9-04363-s002, ch: 侮辱, pr: wǔ rǔ, ds: to humiliate}
+  - {id: zh-hsk7-9-05066-s001, ch: 舆论, pr: yú lùn, ds: public opinion}
+  - {id: zh-hsk7-9-05401-s002, ch: 种族, pr: zhǒng zú, ds: ethnicity}
+  review_grammar: []
+- id: level-29-media-01
+  title: Media and sources - 1
+  outcome: Summarize a source while distinguishing events, claims, and interpretation.
+  vocabulary:
+  - {id: zh-hsk6-00253-s002, ch: 反响, pr: fǎn xiǎng, ds: reaction}
+  - {id: zh-hsk5-00046-s001, ch: 博客, pr: bó kè, ds: blog (loanword)}
+  - {id: zh-hsk5-00201-s002, ch: 电子版, pr: diàn zǐ bǎn, ds: digital version}
+  - {id: zh-hsk5-00559-s004, ch: 评论, pr: píng lùn, ds: commentary}
+  - {id: zh-hsk6-00252-s003, ch: 反问, pr: fǎn wèn, ds: rhetorical question}
+  - {id: zh-hsk7-9-02959-s002, ch: 内幕, pr: nèi mù, ds: non-public information}
+  - {id: zh-hsk7-9-02995-s003, ch: 扭曲, pr: niǔ qū, ds: to distort}
+  - {id: zh-hsk7-9-03057-s001, ch: 抨击, pr: pēng jī, ds: to attack (verbally or in writing)}
+  - {id: zh-hsk7-9-03518-s002, ch: 煽动, pr: shān dòng, ds: to instigate}
+  - {id: zh-hsk7-9-03576-s002, ch: 涉嫌, pr: shè xián, ds: to be suspected of}
+  - {id: zh-hsk7-9-04611-s001, ch: 醒目, pr: xǐng mù, ds: eye-grabbing (headline)}
+  - {id: zh-hsk6-00110-s001, ch: 炒作, pr: chǎo zuò, ds: to hype}
+  - {id: zh-hsk6-00543-s003, ch: 录像, pr: lù xiàng, ds: video recording}
+  - {id: zh-hsk6-00668-s002, ch: 热点, pr: rè diǎn, ds: point of special interest}
+  - {id: zh-hsk7-9-01784-s001, ch: 回忆录, pr: huí yì lù, ds: memoir}
+  - {id: zh-hsk7-9-01896-s002, ch: 纪录片, pr: jì lù piàn, ds: documentary (film or TV program)}
+  - {id: zh-hsk7-9-02105-s003, ch: 解读, pr: jiě dú, ds: to interpret}
+  - {id: zh-hsk7-9-02403-s002, ch: 口碑, pr: kǒu bēi, ds: public reputation}
+  - {id: zh-hsk7-9-02407-s002, ch: 口径, pr: kǒu jìng, ds: (fig.) stance on an issue; version of events; narrative}
+  - {id: zh-hsk7-9-03070-s003, ch: 披露, pr: pī lù, ds: to make public}
+  - {id: zh-hsk7-9-03737-s001, ch: 收视率, pr: shōu shì lǜ, ds: ratings (of a TV show)}
+  - {id: zh-hsk7-9-04796-s001, ch: 谣言, pr: yáo yán, ds: rumor}
+  - {id: zh-hsk7-9-00517-s001, ch: 丑闻, pr: chǒu wén, ds: scandal}
+  - {id: zh-hsk7-9-00839-s002, ch: 点评, pr: diǎn píng, ds: a point by point commentary}
+  - {id: zh-hsk7-9-01645-s001, ch: 轰动, pr: hōng dòng, ds: to cause a sensation}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00927-s001, ch: 专题, pr: zhuān tí, ds: 'specific topic (addressed by a book, lecture, TV program etc)'}
+  - {id: zh-hsk4-00060-s002, ch: 参考, pr: cān kǎo, ds: reference}
+  - {id: zh-hsk7-9-02658-s001, ch: 浏览, pr: liú lǎn, ds: to skim over}
+  - {id: zh-hsk7-9-04141-s001, ch: 图表, pr: tú biǎo, ds: chart}
+  - {id: zh-hsk4-00346-s003, ch: 记载, pr: jì zǎi, ds: written account}
+  - {id: zh-hsk7-9-02333-s001, ch: 刊物, pr: kān wù, ds: publication}
+  - {id: zh-hsk7-9-03091-s002, ch: 片段, pr: piàn duàn, ds: extract (from book etc)}
+  - {id: zh-hsk7-9-03574-s001, ch: 社论, pr: shè lùn, ds: editorial (in a newspaper)}
+  review_grammar:
+  - {id: zh-hsk4-g024, ch: 由于+Cause+因此+Result, ds: formal presentation of cause and consequence}
+  - {id: zh-hsk5-g012, ch: Agent+所+V+的+N, ds: formal relative clause identifying an affected noun}
+  - {id: zh-hsk6-g024, ch: 被认为+P|被视为+N, ds: attribute a judgment rather than declare objective fact}
+- id: level-29-media-02
+  title: Media and sources - 2
+  outcome: Summarize a source while distinguishing events, claims, and interpretation.
+  vocabulary:
+  - {id: zh-hsk7-9-01704-s003, ch: 哗然, pr: huá rán, ds: causing a storm of protest}
+  - {id: zh-hsk7-9-02608-s001, ch: 亮点, pr: liàng diǎn, ds: highlight}
+  - {id: zh-hsk7-9-02610-s002, ch: 亮相, pr: liàng xiàng, ds: (fig.) to make a public appearance}
+  - {id: zh-hsk7-9-02925-s001, ch: 幕后, pr: mù hòu, ds: behind the scenes}
+  - {id: zh-hsk7-9-03152-s002, ch: 曝光, pr: bào guāng, ds: (fig.) to expose (a scandal)}
+  - {id: zh-hsk7-9-04120-s002, ch: 头条, pr: tóu tiáo, ds: lead story (on the news)}
+  - {id: zh-hsk7-9-04372-s001, ch: 误导, pr: wù dǎo, ds: to mislead}
+  - {id: zh-hsk7-9-04669-s002, ch: 宣称, pr: xuān chēng, ds: to claim}
+  - {id: zh-hsk7-9-05461-s001, ch: 专栏, pr: zhuān lán, ds: special column}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02403-s002, ch: 口碑, pr: kǒu bēi, ds: public reputation}
+  - {id: zh-hsk7-9-02407-s002, ch: 口径, pr: kǒu jìng, ds: (fig.) stance on an issue; version of events; narrative}
+  - {id: zh-hsk7-9-03070-s003, ch: 披露, pr: pī lù, ds: to make public}
+  - {id: zh-hsk7-9-03737-s001, ch: 收视率, pr: shōu shì lǜ, ds: ratings (of a TV show)}
+  - {id: zh-hsk7-9-04796-s001, ch: 谣言, pr: yáo yán, ds: rumor}
+  - {id: zh-hsk7-9-00517-s001, ch: 丑闻, pr: chǒu wén, ds: scandal}
+  - {id: zh-hsk7-9-00839-s002, ch: 点评, pr: diǎn píng, ds: a point by point commentary}
+  - {id: zh-hsk7-9-01645-s001, ch: 轰动, pr: hōng dòng, ds: to cause a sensation}
+  review_grammar:
+  - {id: zh-hsk4-g024, ch: 由于+Cause+因此+Result, ds: formal presentation of cause and consequence}
+  - {id: zh-hsk5-g012, ch: Agent+所+V+的+N, ds: formal relative clause identifying an affected noun}
+  - {id: zh-hsk6-g024, ch: 被认为+P|被视为+N, ds: attribute a judgment rather than declare objective fact}
+- id: level-29-history-01
+  title: History and change - 1
+  outcome: Relate a development and explain its significance in context.
+  vocabulary:
+  - {id: zh-hsk7-9-01016-s003, ch: 发掘, pr: fā jué, ds: (fig.) to unearth}
+  - {id: zh-hsk7-9-02487-s003, ch: 来历, pr: lái lì, ds: origin}
+  - {id: zh-hsk7-9-02553-s001, ch: 里程碑, pr: lǐ chéng bēi, ds: milestone}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02148-s001, ch: 进程, pr: jìn chéng, ds: course of events; process}
+  - {id: zh-hsk7-9-05496-s002, ch: 追溯, pr: zhuī sù, ds: to trace sth back to}
+  - {id: zh-hsk7-9-00404-s001, ch: 朝代, pr: cháo dài, ds: dynasty}
+  - {id: zh-hsk7-9-01305-s002, ch: 革命, pr: gé mìng, ds: revolution}
+  - {id: zh-hsk7-9-04759-s002, ch: 演变, pr: yǎn biàn, ds: to evolve}
+  - {id: zh-hsk6-00928-s001, ch: 一代, pr: yī dài, ds: generation}
+  - {id: zh-hsk7-9-04165-s002, ch: 推移, pr: tuī yí, ds: (of a situation) to develop or evolve}
+  - {id: zh-hsk7-9-05582-s001, ch: 祖先, pr: zǔ xiān, ds: ancestors; forebears}
+  review_grammar: []
+- id: level-29-culture-01
+  title: Culture and customs - 1
+  outcome: Explain a cultural practice without turning a local example into a universal claim.
+  vocabulary:
+  - {id: zh-hsk4-00470-s003, ch: 流传, pr: liú chuán, ds: to hand down}
+  - {id: zh-hsk6-00400-s002, ch: 吉利, pr: jí lì, ds: auspicious}
+  - {id: zh-hsk6-00427-s001, ch: 教堂, pr: jiào táng, ds: church}
+  - {id: zh-hsk7-9-01150-s003, ch: 风貌, pr: fēng mào, ds: ethos}
+  - {id: zh-hsk7-9-01155-s001, ch: 风尚, pr: fēng shàng, ds: current custom}
+  - {id: zh-hsk7-9-04299-s001, ch: 文物, pr: wén wù, ds: cultural relic}
+  - {id: zh-hsk4-00075-s003, ch: 潮流, pr: cháo liú, ds: trend}
+  - {id: zh-hsk6-00716-s001, ch: 盛行, pr: shèng xíng, ds: to be in vogue; to be popular; to be prevalent}
+  - {id: zh-hsk7-9-00109-s001, ch: 报仇, pr: bào chóu, ds: to take revenge}
+  - {id: zh-hsk7-9-00123-s001, ch: 爆竹, pr: bào zhú, ds: firecracker}
+  - {id: zh-hsk7-9-02809-s004, ch: 魅力, pr: mèi lì, ds: charisma}
+  - {id: zh-hsk7-9-02873-s001, ch: 名利, pr: míng lì, ds: fame and profit}
+  - {id: zh-hsk7-9-02875-s001, ch: 名声, pr: míng shēng, ds: reputation}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-00061-s002, ch: 拜年, pr: bài nián, ds: to wish sb a Happy New Year}
+  - {id: zh-hsk5-00814-s003, ch: 相声, pr: xiàng sheng, ds: crosstalk}
+  - {id: zh-hsk5-00302-s001, ch: 鬼, pr: guǐ, ds: disembodied spirit; ghost; devil}
+  - {id: zh-hsk3-00483-s001, ch: 命运, pr: mìng yùn, ds: fate; destiny}
+  - {id: zh-hsk4-00612-s003, ch: 神话, pr: shén huà, ds: myth}
+  - {id: zh-hsk4-00777-s002, ch: 想象, pr: xiǎng xiàng, ds: imagination}
+  - {id: zh-hsk4-00945-s001, ch: 祝福, pr: zhù fú, ds: blessings}
+  - {id: zh-hsk5-00501-s002, ch: 面子, pr: miàn zi, ds: social prestige; face}
+  review_grammar: []
+- id: level-29-arts-01
+  title: Arts and creative works - 1
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk2-00742-s001, ch: 作家, pr: zuò jiā, ds: author}
+  - {id: zh-hsk3-00047-s005, ch: 表演, pr: biǎo yǎn, ds: to perform}
+  - {id: zh-hsk3-00134-s002, ch: 导演, pr: dǎo yǎn, ds: director (film etc)}
+  - {id: zh-hsk3-00785-s001, ch: 形象, pr: xíng xiàng, ds: image}
+  - {id: zh-hsk3-00831-s001, ch: 影视, pr: yǐng shì, ds: movies and television}
+  - {id: zh-hsk4-00071-s004, ch: 唱片, pr: chàng piàn, ds: musical album}
+  - {id: zh-hsk4-00185-s001, ch: 动画片, pr: dòng huà piàn, ds: animated film}
+  - {id: zh-hsk4-00235-s001, ch: 风格, pr: fēng gé, ds: style}
+  - {id: zh-hsk4-00254-s003, ch: 高潮, pr: gāo cháo, ds: 'climax (of a story, a competition etc)'}
+  - {id: zh-hsk4-00568-s001, ch: 情景, pr: qíng jǐng, ds: scene}
+  - {id: zh-hsk4-00707-s001, ch: 图案, pr: tú àn, ds: design; pattern}
+  - {id: zh-hsk5-00095-s001, ch: 场面, pr: chǎng miàn, ds: scene}
+  - {id: zh-hsk5-00489-s002, ch: 漫画, pr: màn huà, ds: cartoon}
+  - {id: zh-hsk5-00617-s002, ch: 人物, pr: rén wù, ds: 'character (in a play, novel etc)'}
+  - {id: zh-hsk5-00673-s001, ch: 诗歌, pr: shī gē, ds: poem}
+  - {id: zh-hsk5-00836-s001, ch: 欣赏, pr: xīn shǎng, ds: to appreciate; to enjoy; to admire}
+  - {id: zh-hsk5-00905-s001, ch: 幽默, pr: yōu mò, ds: (loanword) humor}
+  - {id: zh-hsk5-01033-s001, ch: 专辑, pr: zhuān jí, ds: album}
+  - {id: zh-hsk6-00913-s001, ch: 演奏, pr: yǎn zòu, ds: to perform on a musical instrument}
+  - {id: zh-hsk6-00960-s001, ch: 英雄, pr: yīng xióng, ds: hero}
+  - {id: zh-hsk6-01081-s002, ch: 主角, pr: zhǔ jué, ds: protagonist}
+  - {id: zh-hsk7-9-00082-s001, ch: 伴奏, pr: bàn zòu, ds: to accompany (musically)}
+  - {id: zh-hsk7-9-00220-s001, ch: 别致, pr: bié zhì, ds: unusual; unique}
+  - {id: zh-hsk7-9-00312-s001, ch: 才华, pr: cái huá, ds: talent}
+  - {id: zh-hsk7-9-00362-s001, ch: 插图, pr: chā tú, ds: illustration}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00809-s004, ch: 演出, pr: yǎn chū, ds: performance}
+  - {id: zh-hsk4-00640-s004, ch: 首, pr: shǒu, ds: 'classifier for poems, songs etc'}
+  - {id: zh-hsk4-00863-s001, ch: 影子, pr: yǐng zi, ds: shadow}
+  - {id: zh-hsk3-00807-s001, ch: 演唱, pr: yǎn chàng, ds: sung performance}
+  - {id: zh-hsk4-00617-s002, ch: 诗, pr: shī, ds: poem}
+  - {id: zh-hsk4-00696-s001, ch: 童话, pr: tóng huà, ds: children's fairy tales}
+  - {id: zh-hsk5-00822-s005, ch: 象征, pr: xiàng zhēng, ds: to symbolize}
+  - {id: zh-hsk6-00260-s002, ch: 仿佛, pr: fǎng fú, ds: as if}
+  review_grammar: []
+- id: level-29-arts-02
+  title: Arts and creative works - 2
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk7-9-00434-s001, ch: 陈列, pr: chén liè, ds: to display; to exhibit}
+  - {id: zh-hsk7-9-00436-s001, ch: 衬托, pr: chèn tuō, ds: to set off}
+  - {id: zh-hsk7-9-00526-s003, ch: 出局, pr: chū jú, ds: to be eliminated in a competitive setting}
+  - {id: zh-hsk7-9-00859-s001, ch: 雕刻, pr: diāo kè, ds: to carve}
+  - {id: zh-hsk7-9-01082-s002, ch: 放映, pr: fàng yìng, ds: to screen}
+  - {id: zh-hsk7-9-01163-s001, ch: 封面, pr: fēng miàn, ds: cover (of a publication)}
+  - {id: zh-hsk7-9-01169-s003, ch: 讽刺, pr: fěng cì, ds: irony}
+  - {id: zh-hsk7-9-01169-s004, ch: 讽刺, pr: fěng cì, ds: satire}
+  - {id: zh-hsk7-9-01227-s001, ch: 改编, pr: gǎi biān, ds: to adapt}
+  - {id: zh-hsk7-9-01252-s002, ch: 感染力, pr: gǎn rǎn lì, ds: evocative power or impact (of a work or message)}
+  - {id: zh-hsk7-9-01713-s004, ch: 化身, pr: huà shēn, ds: personification}
+  - {id: zh-hsk7-9-02009-s001, ch: 鉴赏, pr: jiàn shǎng, ds: to appreciate (as a connoisseur)}
+  - {id: zh-hsk7-9-02097-s002, ch: 结局, pr: jié jú, ds: ending}
+  - {id: zh-hsk7-9-02138-s002, ch: 紧凑, pr: jǐn còu, ds: terse}
+  - {id: zh-hsk7-9-02174-s001, ch: 惊险, pr: jīng xiǎn, ds: perilous; touch-and-go; nerve-racking; suspenseful}
+  - {id: zh-hsk7-9-02356-s001, ch: 科幻, pr: kē huàn, ds: science fiction}
+  - {id: zh-hsk7-9-02423-s001, ch: 枯燥, pr: kū zào, ds: dry and dull}
+  - {id: zh-hsk7-9-02660-s001, ch: 流畅, pr: liú chàng, ds: 'flowing (of speech, writing)'}
+  - {id: zh-hsk7-9-02858-s002, ch: 描绘, pr: miáo huì, ds: to portray}
+  - {id: zh-hsk7-9-03106-s004, ch: 品位, pr: pǐn wèi, ds: (aesthetic) taste}
+  - {id: zh-hsk7-9-03320-s002, ch: 情调, pr: qíng diào, ds: tone and mood}
+  - {id: zh-hsk7-9-03779-s002, ch: 抒情, pr: shū qíng, ds: lyric}
+  - {id: zh-hsk7-9-03915-s001, ch: 素材, pr: sù cái, ds: source material (in literature and art)}
+  - {id: zh-hsk7-9-03919-s004, ch: 塑造, pr: sù zào, ds: (literature) to portray (in words)}
+  - {id: zh-hsk7-9-03943-s002, ch: 缩影, pr: suō yǐng, ds: microcosm}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-01033-s001, ch: 专辑, pr: zhuān jí, ds: album}
+  - {id: zh-hsk6-00913-s001, ch: 演奏, pr: yǎn zòu, ds: to perform on a musical instrument}
+  - {id: zh-hsk6-00960-s001, ch: 英雄, pr: yīng xióng, ds: hero}
+  - {id: zh-hsk6-01081-s002, ch: 主角, pr: zhǔ jué, ds: protagonist}
+  - {id: zh-hsk7-9-00082-s001, ch: 伴奏, pr: bàn zòu, ds: to accompany (musically)}
+  - {id: zh-hsk7-9-00220-s001, ch: 别致, pr: bié zhì, ds: unusual; unique}
+  - {id: zh-hsk7-9-00312-s001, ch: 才华, pr: cái huá, ds: talent}
+  - {id: zh-hsk7-9-00362-s001, ch: 插图, pr: chā tú, ds: illustration}
+  review_grammar: []
+- id: level-29-arts-03
+  title: Arts and creative works - 3
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk7-9-04236-s001, ch: 往事, pr: wǎng shì, ds: past events}
+  - {id: zh-hsk7-9-04266-s002, ch: 尾声, pr: wěi shēng, ds: epilogue}
+  - {id: zh-hsk7-9-04955-s002, ch: 引人入胜, pr: yǐn rén rù shèng, ds: fascinating}
+  - {id: zh-hsk7-9-05479-s003, ch: 转折, pr: zhuǎn zhé, ds: plot shift in a book}
+  - {id: zh-hsk3-00749-s001, ch: 舞台, pr: wǔ tái, ds: (lit. and fig.) stage; arena}
+  - {id: zh-hsk3-00806-s004, ch: 演, pr: yǎn, ds: to perform}
+  - {id: zh-hsk4-00332-s001, ch: 获奖, pr: huò jiǎng, ds: to win an award}
+  - {id: zh-hsk4-00398-s004, ch: 经典, pr: jīng diǎn, ds: 'classic (example, case etc)'}
+  - {id: zh-hsk4-00401-s002, ch: 镜头, pr: jìng tóu, ds: camera shot (in a movie etc)}
+  - {id: zh-hsk4-00618-s002, ch: 诗人, pr: shī rén, ds: poet}
+  - {id: zh-hsk4-00868-s003, ch: 优美, pr: yōu měi, ds: elegant}
+  - {id: zh-hsk5-00421-s002, ch: 剧本, pr: jù běn, ds: screenplay}
+  - {id: zh-hsk5-00508-s004, ch: 模仿, pr: mó fǎng, ds: to mimic}
+  - {id: zh-hsk5-00534-s001, ch: 拍摄, pr: pāi shè, ds: to take (a picture); to shoot (a film)}
+  - {id: zh-hsk5-00692-s001, ch: 手法, pr: shǒu fǎ, ds: technique}
+  - {id: zh-hsk5-00783-s001, ch: 文艺, pr: wén yì, ds: literature and art}
+  - {id: zh-hsk5-00796-s001, ch: 喜剧, pr: xǐ jù, ds: comedy}
+  - {id: zh-hsk5-00959-s001, ch: 展现, pr: zhǎn xiàn, ds: to unfold before one's eyes; to emerge; to reveal; to display}
+  - {id: zh-hsk6-00217-s001, ch: 动画, pr: dòng huà, ds: animation}
+  - {id: zh-hsk6-00323-s001, ch: 古典, pr: gǔ diǎn, ds: classical}
+  - {id: zh-hsk6-00405-s004, ch: 集, pr: jí, ds: 'classifier for sections of a TV series etc: episode'}
+  - {id: zh-hsk6-00516-s001, ch: 乐曲, pr: yuè qǔ, ds: musical composition}
+  - {id: zh-hsk6-00854-s001, ch: 戏曲, pr: xì qǔ, ds: Chinese opera}
+  - {id: zh-hsk7-9-00040-s001, ch: 芭蕾, pr: bā lěi, ds: ballet (loanword)}
+  - {id: zh-hsk7-9-00156-s001, ch: 逼真, pr: bī zhēn, ds: lifelike}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02660-s001, ch: 流畅, pr: liú chàng, ds: 'flowing (of speech, writing)'}
+  - {id: zh-hsk7-9-02858-s002, ch: 描绘, pr: miáo huì, ds: to portray}
+  - {id: zh-hsk7-9-03106-s004, ch: 品位, pr: pǐn wèi, ds: (aesthetic) taste}
+  - {id: zh-hsk7-9-03320-s002, ch: 情调, pr: qíng diào, ds: tone and mood}
+  - {id: zh-hsk7-9-03779-s002, ch: 抒情, pr: shū qíng, ds: lyric}
+  - {id: zh-hsk7-9-03915-s001, ch: 素材, pr: sù cái, ds: source material (in literature and art)}
+  - {id: zh-hsk7-9-03919-s004, ch: 塑造, pr: sù zào, ds: (literature) to portray (in words)}
+  - {id: zh-hsk7-9-03943-s002, ch: 缩影, pr: suō yǐng, ds: microcosm}
+  review_grammar: []
+- id: level-29-arts-04
+  title: Arts and creative works - 4
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk7-9-00395-s002, ch: 畅销, pr: chàng xiāo, ds: bestselling; chart-topping}
+  - {id: zh-hsk7-9-00522-s002, ch: 出道, pr: chū dào, ds: (of an entertainer) to make one's debut}
+  - {id: zh-hsk7-9-00605-s001, ch: 绰号, pr: chuò hào, ds: nickname}
+  - {id: zh-hsk7-9-00700-s005, ch: 大片, pr: dà piàn, ds: blockbuster movie}
+  - {id: zh-hsk7-9-00949-s003, ch: 堆砌, pr: duī qì, ds: fig. to pad out (writing with fancy phrases)}
+  - {id: zh-hsk7-9-01124-s002, ch: 氛围, pr: fēn wéi, ds: atmosphere}
+  - {id: zh-hsk7-9-01284-s003, ch: 高雅, pr: gāo yǎ, ds: elegant}
+  - {id: zh-hsk7-9-01380-s002, ch: 共鸣, pr: gòng míng, ds: sympathetic response}
+  - {id: zh-hsk7-9-01585-s002, ch: 好评, pr: hǎo píng, ds: positive evaluation}
+  - {id: zh-hsk7-9-01728-s002, ch: 怀旧, pr: huái jiù, ds: nostalgia}
+  - {id: zh-hsk7-9-01756-s003, ch: 荒诞, pr: huāng dàn, ds: preposterous}
+  - {id: zh-hsk7-9-01782-s001, ch: 回味, pr: huí wèi, ds: to call to mind and ponder over}
+  - {id: zh-hsk7-9-01900-s002, ch: 纪实, pr: jì shí, ds: documentary (factual rather than fictional)}
+  - {id: zh-hsk7-9-02272-s002, ch: 剧情, pr: jù qíng, ds: plot}
+  - {id: zh-hsk7-9-02543-s001, ch: 冷笑, pr: lěng xiào, ds: to sneer}
+  - {id: zh-hsk7-9-02547-s001, ch: 离奇, pr: lí qí, ds: odd; bizarre}
+  - {id: zh-hsk7-9-02801-s003, ch: 美化, pr: měi huà, ds: embellishment}
+  - {id: zh-hsk7-9-02876-s002, ch: 名言, pr: míng yán, ds: famous remark}
+  - {id: zh-hsk7-9-03090-s001, ch: 篇幅, pr: piān fu, ds: length (of a piece of writing)}
+  - {id: zh-hsk7-9-03359-s002, ch: 趣味, pr: qù wèi, ds: taste; liking; preference}
+  - {id: zh-hsk7-9-03608-s003, ch: 审美, pr: shěn měi, ds: taste}
+  - {id: zh-hsk7-9-04528-s003, ch: 小品, pr: xiǎo pǐn, ds: skit}
+  - {id: zh-hsk7-9-04552-s001, ch: 写照, pr: xiě zhào, ds: portrayal}
+  - {id: zh-hsk7-9-04652-s003, ch: 虚构, pr: xū gòu, ds: fictional}
+  - {id: zh-hsk7-9-04653-s002, ch: 虚幻, pr: xū huàn, ds: illusory}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00959-s001, ch: 展现, pr: zhǎn xiàn, ds: to unfold before one's eyes; to emerge; to reveal; to display}
+  - {id: zh-hsk6-00217-s001, ch: 动画, pr: dòng huà, ds: animation}
+  - {id: zh-hsk6-00323-s001, ch: 古典, pr: gǔ diǎn, ds: classical}
+  - {id: zh-hsk6-00405-s004, ch: 集, pr: jí, ds: 'classifier for sections of a TV series etc: episode'}
+  - {id: zh-hsk6-00516-s001, ch: 乐曲, pr: yuè qǔ, ds: musical composition}
+  - {id: zh-hsk6-00854-s001, ch: 戏曲, pr: xì qǔ, ds: Chinese opera}
+  - {id: zh-hsk7-9-00040-s001, ch: 芭蕾, pr: bā lěi, ds: ballet (loanword)}
+  - {id: zh-hsk7-9-00156-s001, ch: 逼真, pr: bī zhēn, ds: lifelike}
+  review_grammar: []
+- id: level-29-arts-05
+  title: Arts and creative works - 5
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk7-9-04665-s006, ch: 叙述, pr: xù shù, ds: narrative}
+  - {id: zh-hsk7-9-05091-s006, ch: 寓意, pr: yù yì, ds: metaphorical meaning}
+  - {id: zh-hsk7-9-05143-s001, ch: 韵味, pr: yùn wèi, ds: implicit charm in rhyme or sound}
+  - {id: zh-hsk7-9-05254-s003, ch: 折射, pr: zhé shè, ds: 'to reflect (in the figurative sense: to show the nature of)'}
+  - {id: zh-hsk7-9-05520-s002, ch: 字幕, pr: zì mù, ds: subtitle}
+  - {id: zh-hsk3-00108-s004, ch: 创作, pr: chuàng zuò, ds: creative work}
+  - {id: zh-hsk3-00442-s001, ch: 连续剧, pr: lián xù jù, ds: serialized drama}
+  - {id: zh-hsk3-00951-s001, ch: 作品, pr: zuò pǐn, ds: work (of art)}
+  - {id: zh-hsk3-00952-s001, ch: 作者, pr: zuò zhě, ds: author; writer}
+  - {id: zh-hsk4-00040-s010, ch: 编, pr: biān, ds: to fabricate}
+  - {id: zh-hsk4-00381-s002, ch: 角色, pr: jué sè, ds: character in a novel}
+  - {id: zh-hsk4-00503-s003, ch: 描写, pr: miáo xiě, ds: to portray}
+  - {id: zh-hsk4-00591-s002, ch: 色彩, pr: sè cǎi, ds: (fig.) flavor; character}
+  - {id: zh-hsk5-00009-s001, ch: 扮演, pr: bàn yǎn, ds: to play the role of}
+  - {id: zh-hsk5-00598-s002, ch: 情节, pr: qíng jié, ds: plot; storyline}
+  - {id: zh-hsk5-00696-s001, ch: 书法, pr: shū fǎ, ds: calligraphy}
+  - {id: zh-hsk5-00798-s001, ch: 戏剧, pr: xì jù, ds: a drama; a play; theater}
+  - {id: zh-hsk6-00104-s001, ch: 场景, pr: chǎng jǐng, ds: scene; scenario; situation; setting}
+  - {id: zh-hsk6-00182-s001, ch: 大师, pr: dà shī, ds: great master}
+  - {id: zh-hsk6-00388-s002, ch: 绘画, pr: huì huà, ds: painting}
+  - {id: zh-hsk6-00510-s001, ch: 栏目, pr: lán mù, ds: regular column or segment (in a publication or broadcast)}
+  - {id: zh-hsk6-00567-s001, ch: 民歌, pr: mín gē, ds: folk song}
+  - {id: zh-hsk6-00701-s002, ch: 上演, pr: shàng yǎn, ds: to stage (a play)}
+  - {id: zh-hsk6-00944-s001, ch: 艺人, pr: yì rén, ds: performing artist}
+  - {id: zh-hsk7-9-00096-s003, ch: 宝库, pr: bǎo kù, ds: 'treasure-trove (often fig., book of treasured wisdom)'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02876-s002, ch: 名言, pr: míng yán, ds: famous remark}
+  - {id: zh-hsk7-9-03090-s001, ch: 篇幅, pr: piān fu, ds: length (of a piece of writing)}
+  - {id: zh-hsk7-9-03359-s002, ch: 趣味, pr: qù wèi, ds: taste; liking; preference}
+  - {id: zh-hsk7-9-03608-s003, ch: 审美, pr: shěn měi, ds: taste}
+  - {id: zh-hsk7-9-04528-s003, ch: 小品, pr: xiǎo pǐn, ds: skit}
+  - {id: zh-hsk7-9-04552-s001, ch: 写照, pr: xiě zhào, ds: portrayal}
+  - {id: zh-hsk7-9-04652-s003, ch: 虚构, pr: xū gòu, ds: fictional}
+  - {id: zh-hsk7-9-04653-s002, ch: 虚幻, pr: xū huàn, ds: illusory}
+  review_grammar: []
+- id: level-29-arts-06
+  title: Arts and creative works - 6
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk7-9-00169-s001, ch: 壁画, pr: bì huà, ds: mural (painting)}
+  - {id: zh-hsk7-9-00214-s003, ch: 别具匠心, pr: bié jù jiàng xīn, ds: brilliantly conceived}
+  - {id: zh-hsk7-9-00223-s002, ch: 缤纷, pr: bīn fēn, ds: rich and diverse}
+  - {id: zh-hsk7-9-00427-s003, ch: 沉浸, pr: chén jìn, ds: to immerse}
+  - {id: zh-hsk7-9-00519-s001, ch: 出版社, pr: chū bǎn shè, ds: publishing house}
+  - {id: zh-hsk7-9-00858-s002, ch: 雕, pr: diāo, ds: to carve}
+  - {id: zh-hsk7-9-00932-s001, ch: 独唱, pr: dú chàng, ds: (in singing) solo}
+  - {id: zh-hsk7-9-01302-s001, ch: 歌颂, pr: gē sòng, ds: to sing the praises of}
+  - {id: zh-hsk7-9-01447-s001, ch: 观感, pr: guān gǎn, ds: one's impressions}
+  - {id: zh-hsk7-9-01449-s001, ch: 观赏, pr: guān shǎng, ds: to look at sth with pleasure; to watch (sth marvelous)}
+  - {id: zh-hsk7-9-01507-s001, ch: 国画, pr: guó huà, ds: traditional Chinese painting}
+  - {id: zh-hsk7-9-01600-s001, ch: 合唱, pr: hé chàng, ds: chorus}
+  - {id: zh-hsk7-9-01650-s003, ch: 烘托, pr: hōng tuō, ds: a foil (to set off something to advantage)}
+  - {id: zh-hsk7-9-02503-s001, ch: 朗诵, pr: lǎng sòng, ds: to read aloud with expression}
+  - {id: zh-hsk7-9-02724-s002, ch: 轮廓, pr: lún kuò, ds: silhouette}
+  - {id: zh-hsk7-9-02877-s001, ch: 名著, pr: míng zhù, ds: masterpiece}
+  - {id: zh-hsk7-9-03025-s001, ch: 排练, pr: pái liàn, ds: to rehearse}
+  - {id: zh-hsk7-9-03055-s001, ch: 配音, pr: pèi yīn, ds: dubbing (filmmaking)}
+  - {id: zh-hsk7-9-03113-s002, ch: 平淡, pr: píng dàn, ds: dull}
+  - {id: zh-hsk7-9-03342-s002, ch: 曲折, pr: qū zhé, ds: (fig.) complicated}
+  - {id: zh-hsk7-9-03714-s003, ch: 视觉, pr: shì jué, ds: visual}
+  - {id: zh-hsk7-9-03916-s001, ch: 素描, pr: sù miáo, ds: sketch}
+  - {id: zh-hsk7-9-04142-s001, ch: 图像, pr: tú xiàng, ds: image; picture; graphic}
+  - {id: zh-hsk7-9-04539-s001, ch: 肖像, pr: xiào xiàng, ds: 'portrait (painting, photo etc)'}
+  - {id: zh-hsk7-9-04664-s001, ch: 序幕, pr: xù mù, ds: prologue}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk6-00104-s001, ch: 场景, pr: chǎng jǐng, ds: scene; scenario; situation; setting}
+  - {id: zh-hsk6-00182-s001, ch: 大师, pr: dà shī, ds: great master}
+  - {id: zh-hsk6-00388-s002, ch: 绘画, pr: huì huà, ds: painting}
+  - {id: zh-hsk6-00510-s001, ch: 栏目, pr: lán mù, ds: regular column or segment (in a publication or broadcast)}
+  - {id: zh-hsk6-00567-s001, ch: 民歌, pr: mín gē, ds: folk song}
+  - {id: zh-hsk6-00701-s002, ch: 上演, pr: shàng yǎn, ds: to stage (a play)}
+  - {id: zh-hsk6-00944-s001, ch: 艺人, pr: yì rén, ds: performing artist}
+  - {id: zh-hsk7-9-00096-s003, ch: 宝库, pr: bǎo kù, ds: 'treasure-trove (often fig., book of treasured wisdom)'}
+  review_grammar: []
+- id: level-29-arts-07
+  title: Arts and creative works - 7
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk7-9-04684-s001, ch: 旋律, pr: xuán lǜ, ds: melody}
+  - {id: zh-hsk7-9-04761-s001, ch: 演技, pr: yǎn jì, ds: acting}
+  - {id: zh-hsk7-9-05090-s001, ch: 寓言, pr: yù yán, ds: fable}
+  - {id: zh-hsk7-9-05106-s003, ch: 原创, pr: yuán chuàng, ds: originality}
+  - {id: zh-hsk3-00742-s001, ch: 文学, pr: wén xué, ds: literature}
+  - {id: zh-hsk4-00915-s002, ch: 著作, pr: zhù zuò, ds: literary work}
+  - {id: zh-hsk4-00943-s001, ch: 主题, pr: zhǔ tí, ds: theme}
+  - {id: zh-hsk5-00019-s001, ch: 悲剧, pr: bēi jù, ds: tragedy}
+  - {id: zh-hsk5-00332-s006, ch: 画面, pr: huà miàn, ds: (motion picture) frame}
+  - {id: zh-hsk5-00632-s001, ch: 散文, pr: sǎn wén, ds: prose}
+  - {id: zh-hsk5-00748-s001, ch: 题材, pr: tí cái, ds: subject matter}
+  - {id: zh-hsk5-00797-s003, ch: 戏, pr: xì, ds: play}
+  - {id: zh-hsk5-00957-s003, ch: 展览, pr: zhǎn lǎn, ds: exhibition}
+  - {id: zh-hsk6-00154-s002, ch: 创意, pr: chuàng yì, ds: creativity}
+  - {id: zh-hsk6-00226-s001, ch: 短片, pr: duǎn piàn, ds: short film}
+  - {id: zh-hsk6-00303-s002, ch: 歌词, pr: gē cí, ds: lyrics}
+  - {id: zh-hsk6-00434-s001, ch: 节奏, pr: jié zòu, ds: rhythm}
+  - {id: zh-hsk6-00452-s003, ch: 精美, pr: jīng měi, ds: refinement}
+  - {id: zh-hsk6-00848-s001, ch: 舞蹈, pr: wǔ dǎo, ds: dance (performance art)}
+  - {id: zh-hsk7-9-00095-s003, ch: 宝藏, pr: bǎo zàng, ds: (fig.) treasure}
+  - {id: zh-hsk7-9-00575-s001, ch: 传记, pr: zhuàn jì, ds: biography}
+  - {id: zh-hsk7-9-00841-s001, ch: 点缀, pr: diǎn zhuì, ds: to decorate}
+  - {id: zh-hsk7-9-00860-s003, ch: 雕塑, pr: diāo sù, ds: sculpture}
+  - {id: zh-hsk7-9-00951-s001, ch: 对白, pr: duì bái, ds: dialogue (in a movie or a play)}
+  - {id: zh-hsk7-9-01404-s001, ch: 古朴, pr: gǔ pǔ, ds: 'simple and unadorned (of art, architecture etc)'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-03055-s001, ch: 配音, pr: pèi yīn, ds: dubbing (filmmaking)}
+  - {id: zh-hsk7-9-03113-s002, ch: 平淡, pr: píng dàn, ds: dull}
+  - {id: zh-hsk7-9-03342-s002, ch: 曲折, pr: qū zhé, ds: (fig.) complicated}
+  - {id: zh-hsk7-9-03714-s003, ch: 视觉, pr: shì jué, ds: visual}
+  - {id: zh-hsk7-9-03916-s001, ch: 素描, pr: sù miáo, ds: sketch}
+  - {id: zh-hsk7-9-04142-s001, ch: 图像, pr: tú xiàng, ds: image; picture; graphic}
+  - {id: zh-hsk7-9-04539-s001, ch: 肖像, pr: xiào xiàng, ds: 'portrait (painting, photo etc)'}
+  - {id: zh-hsk7-9-04664-s001, ch: 序幕, pr: xù mù, ds: prologue}
+  review_grammar: []
+- id: level-29-arts-08
+  title: Arts and creative works - 8
+  outcome: Discuss a work and support an interpretation with specific details.
+  vocabulary:
+  - {id: zh-hsk7-9-01464-s002, ch: 贯穿, pr: guàn chuān, ds: a connecting thread from beginning to end}
+  - {id: zh-hsk7-9-01685-s002, ch: 呼应, pr: hū yìng, ds: to echo}
+  - {id: zh-hsk7-9-02184-s002, ch: 精妙, pr: jīng miào, ds: fine and delicate (usu. of works of art)}
+  - {id: zh-hsk7-9-02439-s004, ch: 夸张, pr: kuā zhāng, ds: hyperbole}
+  - {id: zh-hsk7-9-04301-s002, ch: 文雅, pr: wén yǎ, ds: refined}
+  - {id: zh-hsk7-9-04681-s001, ch: 悬念, pr: xuán niàn, ds: 'suspense in a movie, play etc'}
+  - {id: zh-hsk7-9-05270-s001, ch: 珍藏, pr: zhēn cáng, ds: a collection of rare and valuable items}
+  - {id: zh-hsk7-9-05437-s001, ch: 主人公, pr: zhǔ rén gōng, ds: hero (of a novel or film); main protagonist}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk6-00452-s003, ch: 精美, pr: jīng měi, ds: refinement}
+  - {id: zh-hsk6-00848-s001, ch: 舞蹈, pr: wǔ dǎo, ds: dance (performance art)}
+  - {id: zh-hsk7-9-00095-s003, ch: 宝藏, pr: bǎo zàng, ds: (fig.) treasure}
+  - {id: zh-hsk7-9-00575-s001, ch: 传记, pr: zhuàn jì, ds: biography}
+  - {id: zh-hsk7-9-00841-s001, ch: 点缀, pr: diǎn zhuì, ds: to decorate}
+  - {id: zh-hsk7-9-00860-s003, ch: 雕塑, pr: diāo sù, ds: sculpture}
+  - {id: zh-hsk7-9-00951-s001, ch: 对白, pr: duì bái, ds: dialogue (in a movie or a play)}
+  - {id: zh-hsk7-9-01404-s001, ch: 古朴, pr: gǔ pǔ, ds: 'simple and unadorned (of art, architecture etc)'}
+  review_grammar: []
+- id: level-29-argument-01
+  title: Argument and decisions - 1
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary:
+  - {id: zh-hsk7-9-03069-s002, ch: 批判, pr: pī pàn, ds: critique}
+  - {id: zh-hsk7-9-04194-s002, ch: 歪曲, pr: wāi qū, ds: to misrepresent}
+  - {id: zh-hsk5-00096-s001, ch: 倡导, pr: chàng dǎo, ds: to advocate}
+  - {id: zh-hsk5-00566-s003, ch: 其, pr: qí, ds: its}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-05182-s001, ch: 则, pr: zé, ds: (literary conjunction) but; then}
+  - {id: zh-hsk2-00178-s006, ch: 更, pr: gèng, ds: even more}
+  - {id: zh-hsk5-00581-s003, ch: 前提, pr: qián tí, ds: prerequisite}
+  - {id: zh-hsk7-9-05552-s001, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to summarize}
+  - {id: zh-hsk7-9-00741-s002, ch: 淡化, pr: dàn huà, ds: to play down}
+  - {id: zh-hsk7-9-02124-s002, ch: 借口, pr: jiè kǒu, ds: excuse; pretext}
+  - {id: zh-hsk7-9-02379-s001, ch: 刻意, pr: kè yì, ds: intentionally; deliberately; purposely}
+  - {id: zh-hsk7-9-04274-s004, ch: 未, pr: wèi, ds: not}
+  review_grammar:
+  - {id: zh-hsk7-9-g015, ch: 不仅在于+A+更在于+B, ds: locate a deeper or stronger basis beyond the first}
+  - {id: zh-hsk7-9-g033, ch: 综上所述+Conclusion, ds: synthesize the reasoning already presented}
+  - {id: zh-hsk7-9-g021, ch: Topic+未可一概而论, ds: resist treating unlike cases as one undifferentiated whole}
+- id: level-29-register-01
+  title: Register and nuance - 1
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: zh-hsk7-9-00144-s004, ch: 本色, pr: běn sè, ds: true qualities}
+  - {id: zh-hsk4-00511-s001, ch: 默默, pr: mò mò, ds: in silence; not speaking}
+  - {id: zh-hsk7-9-00361-s002, ch: 插手, pr: chā shǒu, ds: to meddle}
+  - {id: zh-hsk7-9-00409-s003, ch: 嘲弄, pr: cháo nòng, ds: to make fun of}
+  - {id: zh-hsk7-9-00465-s002, ch: 逞强, pr: chěng qiáng, ds: to try to be brave}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-04228-s003, ch: 亡羊补牢, pr: wáng yáng bǔ láo, ds: better late than never}
+  - {id: zh-hsk7-9-04396-s002, ch: 喜出望外, pr: xǐ chū wàng wài, ds: overjoyed at the turn of events}
+  - {id: zh-hsk7-9-04488-s002, ch: 相提并论, pr: xiāng tí bìng lùn, ds: to place on a par with}
+  - {id: zh-hsk7-9-04702-s001, ch: 雪上加霜, pr: xuě shàng jiā shuāng, ds: (idiom) to make matters even worse}
+  - {id: zh-hsk7-9-04715-s001, ch: 循序渐进, pr: xún xù jiàn jìn, ds: 'in sequence, step by step; to make steady progress (idiom)'}
+  - {id: zh-hsk7-9-04842-s002, ch: 一帆风顺, pr: yī fān fēng shùn, ds: plain sailing}
+  - {id: zh-hsk7-9-04871-s003, ch: 一塌糊涂, pr: yī tā hú tu, ds: a total mess}
+  - {id: zh-hsk4-00738-s001, ch: 无, pr: wú, ds: not to have}
+  review_grammar:
+  - {id: zh-hsk7-9-g025, ch: 难能可贵的是+P, ds: highlight an especially commendable quality}
+  - {id: zh-hsk7-9-g016, ch: A+之于+B, ds: concise formal relation between two concepts}
+  - {id: zh-hsk7-9-g022, ch: 不无+AbstractNoun, ds: restrained affirmation through not being without}
+- id: level-29-literature-01
+  title: Literary and historical expression - 1
+  outcome: Interpret the selected expressions in source context and paraphrase them in ordinary language.
+  vocabulary:
+  - {id: zh-hsk5-00659-s002, ch: 深处, pr: shēn chù, ds: depths}
+  - {id: zh-hsk5-00725-s002, ch: 岁月, pr: suì yuè, ds: time}
+  - {id: zh-hsk7-9-00422-s001, ch: 彻夜, pr: chè yè, ds: the whole night}
+  - {id: zh-hsk7-9-00430-s001, ch: 沉思, pr: chén sī, ds: to contemplate}
+  - {id: zh-hsk7-9-00548-s001, ch: 出自, pr: chū zì, ds: to come from}
+  - {id: zh-hsk7-9-00910-s002, ch: 动静, pr: dòng jìng, ds: (sign of) activity}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-29-argument-practice-01
+  title: Argument and decisions - sentence practice 1
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk7-9-g035, ch: 其+N+P+并不意味着+Q, ds: track a formal antecedent and reject a false implication}
+  review_vocabulary:
+  - {id: zh-hsk5-00566-s003, ch: 其, pr: qí, ds: its}
+  - {id: zh-hsk3-00048-s005, ch: 并, pr: bìng, ds: (not) at all}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk5-00889-s003, ch: 意味着, pr: yì wèi zhe, ds: to imply}
+  - {id: zh-hsk7-9-00741-s002, ch: 淡化, pr: dàn huà, ds: to play down}
+  - {id: zh-hsk7-9-02124-s002, ch: 借口, pr: jiè kǒu, ds: excuse; pretext}
+  - {id: zh-hsk7-9-02379-s001, ch: 刻意, pr: kè yì, ds: intentionally; deliberately; purposely}
+  - {id: zh-hsk7-9-04274-s004, ch: 未, pr: wèi, ds: not}
+  - {id: zh-hsk7-9-03069-s002, ch: 批判, pr: pī pàn, ds: critique}
+  - {id: zh-hsk7-9-04194-s002, ch: 歪曲, pr: wāi qū, ds: to misrepresent}
+  - {id: zh-hsk5-00096-s001, ch: 倡导, pr: chàng dǎo, ds: to advocate}
+  review_grammar:
+  - {id: zh-hsk7-9-g015, ch: 不仅在于+A+更在于+B, ds: locate a deeper or stronger basis beyond the first}
+  - {id: zh-hsk7-9-g033, ch: 综上所述+Conclusion, ds: synthesize the reasoning already presented}
+  - {id: zh-hsk7-9-g021, ch: Topic+未可一概而论, ds: resist treating unlike cases as one undifferentiated whole}

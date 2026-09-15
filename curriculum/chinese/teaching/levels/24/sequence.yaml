@@ -1,0 +1,610 @@
+schema_version: 3
+id: zh-level-24
+title: Formal synthesis
+language: chinese
+level_basis: Independent communicative teaching progression. Reference bands are provenance only, not competence or examination claims.
+review_policy: Modules span several lessons of about 5-8 new senses. Select relevant earlier and fragile items for retrieval, revisit them on later days, and record the modality and assistance. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 24
+phase: analysis-argument
+prerequisites:
+- zh-level-01
+- zh-level-02
+- zh-level-03
+- zh-level-04
+- zh-level-05
+- zh-level-06
+- zh-level-07
+- zh-level-08
+- zh-level-09
+- zh-level-10
+- zh-level-11
+- zh-level-12
+- zh-level-13
+- zh-level-14
+- zh-level-15
+- zh-level-16
+- zh-level-17
+- zh-level-18
+- zh-level-19
+- zh-level-20
+- zh-level-21
+- zh-level-22
+- zh-level-23
+goals: &id001
+- Organize a sustained explanation or proposal.
+- Synthesize information from multiple sources.
+- Use explicit criteria to compare approaches.
+checkpoint:
+  task: Produce a structured proposal or presentation that reconciles two partially conflicting sources.
+  criteria: *id001
+mastery_profile: zh-item-mastery
+mastery_target: independent-use
+units:
+- id: level-24-work-01
+  title: Work and cooperation - 1
+  outcome: Explain responsibilities and coordinate a shared task.
+  vocabulary:
+  - {id: zh-hsk7-9-00510-s001, ch: 筹备, pr: chóu bèi, ds: preparations}
+  - {id: zh-hsk4-00702-s005, ch: 投入, pr: tóu rù, ds: to invest in}
+  - {id: zh-hsk7-9-00731-s001, ch: 担当, pr: dān dāng, ds: to take upon oneself}
+  - {id: zh-hsk7-9-01051-s002, ch: 反馈, pr: fǎn kuì, ds: feedback}
+  - {id: zh-hsk7-9-05241-s004, ch: 照办, pr: zhào bàn, ds: to comply with a request}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00207-s007, ch: 来, pr: lái, ds: in order to (between verbs)}
+  - {id: zh-hsk5-00886-s002, ch: 以便, pr: yǐ biàn, ds: so as to}
+  - {id: zh-hsk5-00204-s001, ch: 调解, pr: tiáo jiě, ds: to mediate}
+  - {id: zh-hsk6-00167-s002, ch: 搭档, pr: dā dàng, ds: partner}
+  - {id: zh-hsk6-00806-s001, ch: 团队, pr: tuán duì, ds: team}
+  - {id: zh-hsk1-00420-s004, ch: 行, pr: háng, ds: line of business}
+  - {id: zh-hsk3-00233-s001, ch: 工厂, pr: gōng chǎng, ds: factory}
+  - {id: zh-hsk7-9-02506-s001, ch: 劳动力, pr: láo dòng lì, ds: labor force}
+  review_grammar:
+  - {id: zh-hsk5-g013, ch: Task+由+Person+来+V, ds: assign responsibility for performing a task}
+  - {id: zh-hsk5-g016, ch: 在+Domain+方面+P, ds: restrict an evaluation to a named domain}
+  - {id: zh-hsk6-g020, ch: VP+以便+Purpose, ds: an action facilitates an intended later purpose}
+- id: level-24-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk7-9-05552-s002, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to sum up}
+  - {id: zh-hsk5-00157-s002, ch: 大纲, pr: dà gāng, ds: outline}
+  - {id: zh-hsk6-00656-s002, ch: 渠道, pr: qú dào, ds: (fig.) channel}
+  - {id: zh-hsk7-9-00210-s003, ch: 表述, pr: biǎo shù, ds: to explain sth precisely}
+  - {id: zh-hsk7-9-01990-s001, ch: 简要, pr: jiǎn yào, ds: concise}
+  - {id: zh-hsk4-00240-s001, ch: 符号, pr: fú hào, ds: symbol; mark; sign}
+  - {id: zh-hsk6-00416-s002, ch: 简介, pr: jiǎn jiè, ds: brief introduction}
+  - {id: zh-hsk6-00778-s001, ch: 提交, pr: tí jiāo, ds: to submit (a report etc)}
+  - {id: zh-hsk6-00788-s005, ch: 通报, pr: tōng bào, ds: bulletin}
+  - {id: zh-hsk7-9-03459-s001, ch: 如实, pr: rú shí, ds: as things really are}
+  - {id: zh-hsk7-9-03544-s001, ch: 上述, pr: shàng shù, ds: aforementioned}
+  - {id: zh-hsk7-9-04450-s001, ch: 衔接, pr: xián jiē, ds: to link up; to connect; to join}
+  - {id: zh-hsk7-9-04921-s001, ch: 议程, pr: yì chéng, ds: agenda}
+  - {id: zh-hsk7-9-04958-s002, ch: 引用, pr: yǐn yòng, ds: to cite}
+  - {id: zh-hsk7-9-05414-s002, ch: 重申, pr: chóng shēn, ds: to reiterate}
+  - {id: zh-hsk3-00945-s001, ch: 总结, pr: zǒng jié, ds: to sum up}
+  - {id: zh-hsk5-00340-s002, ch: 回顾, pr: huí gù, ds: to review}
+  - {id: zh-hsk5-00627-s001, ch: 如下, pr: rú xià, ds: as follows}
+  - {id: zh-hsk6-00439-s001, ch: 解说, pr: jiě shuō, ds: to explain (verbally); to give a running commentary}
+  - {id: zh-hsk6-00787-s001, ch: 听取, pr: tīng qǔ, ds: to hear (news); to listen to}
+  - {id: zh-hsk7-9-00178-s001, ch: 编写, pr: biān xiě, ds: to compile}
+  - {id: zh-hsk7-9-00384-s002, ch: 阐述, pr: chǎn shù, ds: to elaborate (on a topic)}
+  - {id: zh-hsk7-9-00945-s003, ch: 段落, pr: duàn luò, ds: paragraph}
+  - {id: zh-hsk7-9-01986-s001, ch: 简化, pr: jiǎn huà, ds: to simplify}
+  - {id: zh-hsk7-9-01987-s001, ch: 简洁, pr: jiǎn jié, ds: concise}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00425-s001, ch: 请求, pr: qǐng qiú, ds: to request; to ask}
+  - {id: zh-hsk4-00829-s002, ch: 演讲, pr: yǎn jiǎng, ds: to make a speech}
+  - {id: zh-hsk4-00919-s002, ch: 争论, pr: zhēng lùn, ds: to debate}
+  - {id: zh-hsk7-9-00462-s003, ch: 澄清, pr: chéng qīng, ds: to clarify}
+  - {id: zh-hsk7-9-01623-s002, ch: 核对, pr: hé duì, ds: to verify}
+  - {id: zh-hsk7-9-02104-s003, ch: 解答, pr: jiě dá, ds: to provide an answer}
+  - {id: zh-hsk3-00896-s003, ch: 指, pr: zhǐ, ds: to indicate or refer to}
+  - {id: zh-hsk5-00241-s001, ch: 分享, pr: fēn xiǎng, ds: to share (let others have some of sth good)}
+  review_grammar:
+  - {id: zh-hsk4-g022, ch: 关于+Topic, ds: introduce the subject of a discussion or text}
+  - {id: zh-hsk5-g025, ch: 总的来说+P, ds: summarize while leaving room for local exceptions}
+  - {id: zh-hsk7-9-g034, ch: P+换言之+Paraphrase, ds: restate a claim without changing its force}
+- id: level-24-communication-02
+  title: Communication and information - 2
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk7-9-04748-s001, ch: 研讨, pr: yán tǎo, ds: discussion}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00627-s001, ch: 如下, pr: rú xià, ds: as follows}
+  - {id: zh-hsk6-00439-s001, ch: 解说, pr: jiě shuō, ds: to explain (verbally); to give a running commentary}
+  - {id: zh-hsk6-00787-s001, ch: 听取, pr: tīng qǔ, ds: to hear (news); to listen to}
+  - {id: zh-hsk7-9-00178-s001, ch: 编写, pr: biān xiě, ds: to compile}
+  - {id: zh-hsk7-9-00384-s002, ch: 阐述, pr: chǎn shù, ds: to elaborate (on a topic)}
+  - {id: zh-hsk7-9-00945-s003, ch: 段落, pr: duàn luò, ds: paragraph}
+  - {id: zh-hsk7-9-01986-s001, ch: 简化, pr: jiǎn huà, ds: to simplify}
+  - {id: zh-hsk7-9-01987-s001, ch: 简洁, pr: jiǎn jié, ds: concise}
+  review_grammar:
+  - {id: zh-hsk4-g022, ch: 关于+Topic, ds: introduce the subject of a discussion or text}
+  - {id: zh-hsk5-g025, ch: 总的来说+P, ds: summarize while leaving room for local exceptions}
+  - {id: zh-hsk7-9-g034, ch: P+换言之+Paraphrase, ds: restate a claim without changing its force}
+- id: level-24-time-01
+  title: Time and events - 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary:
+  - {id: zh-hsk5-00777-s002, ch: 为期, pr: wéi qī, ds: lasting (a certain time)}
+  - {id: zh-hsk6-00437-s002, ch: 截至, pr: jié zhì, ds: by (a time)}
+  - {id: zh-hsk6-00796-s001, ch: 同期, pr: tóng qī, ds: the corresponding time period (in a different year etc)}
+  - {id: zh-hsk6-01069-s002, ch: 中期, pr: zhōng qī, ds: 'medium-term (plan, forecast etc)'}
+  - {id: zh-hsk7-9-05357-s001, ch: 至此, pr: zhì cǐ, ds: up until now}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00384-s003, ch: 阶段, pr: jiē duàn, ds: phase}
+  - {id: zh-hsk6-01028-s001, ch: 长远, pr: cháng yuǎn, ds: long-term}
+  - {id: zh-hsk3-00092-s001, ch: 持续, pr: chí xù, ds: to continue}
+  - {id: zh-hsk4-00942-s001, ch: 逐渐, pr: zhú jiàn, ds: gradually}
+  - {id: zh-hsk5-00123-s001, ch: 初期, pr: chū qī, ds: initial stage}
+  - {id: zh-hsk3-00441-s001, ch: 连续, pr: lián xù, ds: continuous}
+  - {id: zh-hsk4-00941-s002, ch: 逐步, pr: zhú bù, ds: step by step}
+  - {id: zh-hsk7-9-02033-s002, ch: 交替, pr: jiāo tì, ds: alternately; in turn}
+  review_grammar:
+  - {id: zh-hsk5-g007, ch: 趁+Opportunity+VP, ds: act while a favorable opportunity lasts}
+  - {id: zh-hsk5-g008, ch: 自从+StartingPoint+以来+P, ds: continuing situation since a past starting point}
+  - {id: zh-hsk5-g009, ch: 直到+Endpoint+才+VP, ds: an event occurs only upon reaching an endpoint}
+- id: level-24-actions-01
+  title: Actions and processes - 1
+  outcome: Explain an action or process and distinguish intention from result.
+  vocabulary:
+  - {id: zh-hsk4-00432-s002, ch: 扩展, pr: kuò zhǎn, ds: to expand}
+  - {id: zh-hsk5-00765-s002, ch: 脱离, pr: tuō lí, ds: to break away from}
+  - {id: zh-hsk6-00175-s001, ch: 打造, pr: dǎ zào, ds: to create}
+  - {id: zh-hsk6-00707-s001, ch: 深化, pr: shēn huà, ds: to deepen}
+  - {id: zh-hsk6-01017-s001, ch: 占据, pr: zhàn jù, ds: to occupy}
+  - {id: zh-hsk7-9-01225-s001, ch: 覆盖, pr: fù gài, ds: to cover}
+  - {id: zh-hsk7-9-01228-s003, ch: 改动, pr: gǎi dòng, ds: to revise}
+  - {id: zh-hsk4-00895-s002, ch: 运用, pr: yùn yòng, ds: to put to use}
+  - {id: zh-hsk4-00336-s001, ch: 积累, pr: jī lěi, ds: to accumulate}
+  - {id: zh-hsk5-00284-s002, ch: 共计, pr: gòng jì, ds: to total}
+  - {id: zh-hsk5-00301-s001, ch: 规划, pr: guī huà, ds: to draw up a plan; to map out a program}
+  - {id: zh-hsk5-01003-s003, ch: 指示, pr: zhǐ shì, ds: to instruct}
+  - {id: zh-hsk5-01036-s003, ch: 转换, pr: zhuǎn huàn, ds: to convert}
+  - {id: zh-hsk6-00242-s002, ch: 发起, pr: fā qǐ, ds: to initiate}
+  - {id: zh-hsk7-9-00854-s001, ch: 奠定, pr: diàn dìng, ds: to establish}
+  - {id: zh-hsk7-9-01390-s001, ch: 构想, pr: gòu xiǎng, ds: to conceive}
+  - {id: zh-hsk7-9-01789-s002, ch: 汇集, pr: huì jí, ds: to compile}
+  - {id: zh-hsk7-9-03508-s001, ch: 筛选, pr: shāi xuǎn, ds: to filter}
+  - {id: zh-hsk7-9-03986-s003, ch: 探求, pr: tàn qiú, ds: to investigate}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-02086-s002, ch: 揭示, pr: jiē shì, ds: to make known}
+  - {id: zh-hsk7-9-02671-s002, ch: 流向, pr: liú xiàng, ds: direction of flow}
+  - {id: zh-hsk7-9-03067-s002, ch: 碰撞, pr: pèng zhuàng, ds: collision}
+  - {id: zh-hsk6-00254-s001, ch: 犯, pr: fàn, ds: to violate}
+  - {id: zh-hsk5-00745-s002, ch: 提倡, pr: tí chàng, ds: to advocate}
+  - {id: zh-hsk4-00015-s006, ch: 摆脱, pr: bǎi tuō, ds: to free oneself from}
+  - {id: zh-hsk4-00085-s001, ch: 承受, pr: chéng shòu, ds: to bear}
+  - {id: zh-hsk7-9-00396-s004, ch: 倡议, pr: chàng yì, ds: initiative}
+  review_grammar:
+  - {id: zh-hsk6-g006, ch: (尽可能|尽量)+VP, ds: aim for as much as constraints permit}
+  - {id: zh-hsk5-g017, ch: 为了+Purpose+而+VP, ds: name an intended purpose rather than a proven result}
+  - {id: zh-hsk7-9-g030, ch: Step1+进而+Step2, ds: advance to a further logical or procedural step}
+- id: level-24-description-01
+  title: Description and comparison - 1
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk3-00530-s001, ch: 普及, pr: pǔ jí, ds: to spread extensively}
+  - {id: zh-hsk3-00689-s002, ch: 体现, pr: tǐ xiàn, ds: to reflect}
+  - {id: zh-hsk3-00875-s004, ch: 整体, pr: zhěng tǐ, ds: 'as a whole (situation, construction, team etc)'}
+  - {id: zh-hsk4-00137-s001, ch: 大规模, pr: dà guī mó, ds: large scale}
+  - {id: zh-hsk4-00201-s001, ch: 多样, pr: duō yàng, ds: diverse}
+  - {id: zh-hsk4-00287-s001, ch: 规模, pr: guī mó, ds: scale}
+  - {id: zh-hsk4-00726-s002, ch: 维持, pr: wéi chí, ds: to maintain}
+  - {id: zh-hsk4-00735-s003, ch: 稳, pr: wěn, ds: stable}
+  - {id: zh-hsk4-00938-s004, ch: 种类, pr: zhǒng lèi, ds: category}
+  - {id: zh-hsk5-00416-s003, ch: 局面, pr: jú miàn, ds: situation}
+  - {id: zh-hsk5-00742-s002, ch: 特定, pr: tè dìng, ds: specific}
+  - {id: zh-hsk5-01025-s001, ch: 主体, pr: zhǔ tǐ, ds: main part}
+  - {id: zh-hsk7-9-00192-s002, ch: 遍布, pr: biàn bù, ds: to be found throughout}
+  - {id: zh-hsk7-9-02446-s001, ch: 宽泛, pr: kuān fàn, ds: wide-ranging}
+  - {id: zh-hsk7-9-02604-s001, ch: 良性, pr: liáng xìng, ds: positive (in its effect)}
+  - {id: zh-hsk2-00634-s003, ch: 以上, pr: yǐ shàng, ds: the above-mentioned}
+  - {id: zh-hsk3-00189-s005, ch: 分别, pr: fēn bié, ds: separately; individually}
+  - {id: zh-hsk3-00248-s002, ch: 共有, pr: gòng yǒu, ds: in all}
+  - {id: zh-hsk3-00348-s004, ch: 较, pr: jiào, ds: (before adj.) relatively}
+  - {id: zh-hsk5-00250-s002, ch: 幅度, pr: fú dù, ds: extent}
+  - {id: zh-hsk5-00943-s002, ch: 在内, pr: zài nèi, ds: among them}
+  - {id: zh-hsk5-01018-s001, ch: 众多, pr: zhòng duō, ds: numerous}
+  - {id: zh-hsk5-01051-s001, ch: 总数, pr: zǒng shù, ds: total}
+  - {id: zh-hsk6-00368-s001, ch: 横, pr: héng, ds: horizontal}
+  - {id: zh-hsk6-00688-s002, ch: 丧失, pr: sàng shī, ds: to forfeit}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-01045-s002, ch: 反常, pr: fǎn cháng, ds: abnormal}
+  - {id: zh-hsk3-00636-s002, ch: 始终, pr: shǐ zhōng, ds: all along}
+  - {id: zh-hsk4-00290-s001, ch: 过分, pr: guò fèn, ds: excessive}
+  - {id: zh-hsk4-00566-s003, ch: 轻易, pr: qīng yì, ds: rashly}
+  - {id: zh-hsk5-01016-s001, ch: 终身, pr: zhōng shēn, ds: lifelong}
+  - {id: zh-hsk7-9-00694-s002, ch: 大局, pr: dà jú, ds: the big picture}
+  - {id: zh-hsk7-9-02467-s001, ch: 困境, pr: kùn jìng, ds: predicament; plight}
+  - {id: zh-hsk5-00023-s001, ch: 被动, pr: bèi dòng, ds: passive}
+  review_grammar:
+  - {id: zh-hsk3-g025, ch: (什么|哪儿)+都+P, ds: a question word takes universal rather than question force}
+  - {id: zh-hsk5-g024, ch: P+甚至+Q, ds: add a stronger or less expected point on a scale}
+  - {id: zh-hsk7-9-g006, ch: A+P+相比之下+B+Q, ds: contrast cases against a stated comparison baseline}
+- id: level-24-description-02
+  title: Description and comparison - 2
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk6-00996-s002, ch: 远远, pr: yuǎn yuǎn, ds: by far}
+  - {id: zh-hsk7-9-00763-s002, ch: 导向, pr: dǎo xiàng, ds: orientation}
+  - {id: zh-hsk7-9-00972-s001, ch: 多余, pr: duō yú, ds: superfluous}
+  - {id: zh-hsk7-9-01206-s001, ch: 附加, pr: fù jiā, ds: additional}
+  - {id: zh-hsk7-9-01308-s002, ch: 格局, pr: gé jú, ds: pattern}
+  - {id: zh-hsk7-9-02715-s001, ch: 率, pr: lǜ, ds: rate}
+  - {id: zh-hsk7-9-03078-s004, ch: 匹配, pr: pǐ pèi, ds: compatible}
+  - {id: zh-hsk7-9-03378-s004, ch: 缺口, pr: quē kǒu, ds: shortfall}
+  - {id: zh-hsk7-9-03379-s001, ch: 缺失, pr: quē shī, ds: lack; deficiency}
+  - {id: zh-hsk3-00562-s002, ch: 全面, pr: quán miàn, ds: comprehensive}
+  - {id: zh-hsk3-00913-s003, ch: 重大, pr: zhòng dà, ds: major}
+  - {id: zh-hsk3-00932-s001, ch: 状态, pr: zhuàng tài, ds: condition; state; state of affairs}
+  - {id: zh-hsk5-00807-s002, ch: 现有, pr: xiàn yǒu, ds: currently available}
+  - {id: zh-hsk5-00902-s001, ch: 用于, pr: yòng yú, ds: to use in; to use on; to use for}
+  - {id: zh-hsk6-00817-s001, ch: 外部, pr: wài bù, ds: the outside; (attributive) external}
+  - {id: zh-hsk6-01116-s002, ch: 最佳, pr: zuì jiā, ds: optimal}
+  - {id: zh-hsk7-9-00016-s002, ch: 安定, pr: ān dìng, ds: stable; calm; settled}
+  - {id: zh-hsk7-9-00258-s002, ch: 不定, pr: bù dìng, ds: indeterminate}
+  - {id: zh-hsk7-9-02534-s002, ch: 累计, pr: lěi jì, ds: cumulative}
+  - {id: zh-hsk3-00362-s002, ch: 仅, pr: jǐn, ds: only}
+  - {id: zh-hsk3-00941-s003, ch: 自身, pr: zì shēn, ds: one's own}
+  - {id: zh-hsk3-00949-s004, ch: 组合, pr: zǔ hé, ds: combination}
+  - {id: zh-hsk4-00467-s001, ch: 列为, pr: liè wéi, ds: to be classified as}
+  - {id: zh-hsk4-00677-s001, ch: 特殊, pr: tè shū, ds: special}
+  - {id: zh-hsk5-00037-s004, ch: 变动, pr: biàn dòng, ds: fluctuation}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00248-s002, ch: 共有, pr: gòng yǒu, ds: in all}
+  - {id: zh-hsk3-00348-s004, ch: 较, pr: jiào, ds: (before adj.) relatively}
+  - {id: zh-hsk5-00250-s002, ch: 幅度, pr: fú dù, ds: extent}
+  - {id: zh-hsk5-00943-s002, ch: 在内, pr: zài nèi, ds: among them}
+  - {id: zh-hsk5-01018-s001, ch: 众多, pr: zhòng duō, ds: numerous}
+  - {id: zh-hsk5-01051-s001, ch: 总数, pr: zǒng shù, ds: total}
+  - {id: zh-hsk6-00368-s001, ch: 横, pr: héng, ds: horizontal}
+  - {id: zh-hsk6-00688-s002, ch: 丧失, pr: sàng shī, ds: to forfeit}
+  review_grammar:
+  - {id: zh-hsk3-g025, ch: (什么|哪儿)+都+P, ds: a question word takes universal rather than question force}
+  - {id: zh-hsk5-g024, ch: P+甚至+Q, ds: add a stronger or less expected point on a scale}
+  - {id: zh-hsk7-9-g006, ch: A+P+相比之下+B+Q, ds: contrast cases against a stated comparison baseline}
+- id: level-24-description-03
+  title: Description and comparison - 3
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk5-00173-s001, ch: 单一, pr: dān yī, ds: single}
+  - {id: zh-hsk5-00252-s002, ch: 辅助, pr: fǔ zhù, ds: supplementary; auxiliary}
+  - {id: zh-hsk5-00832-s003, ch: 斜, pr: xié, ds: oblique}
+  - {id: zh-hsk6-00099-s003, ch: 常规, pr: cháng guī, ds: common practice}
+  - {id: zh-hsk7-9-00689-s002, ch: 大幅度, pr: dà fú dù, ds: substantial}
+  - {id: zh-hsk7-9-00696-s002, ch: 大面积, pr: dà miàn jī, ds: (fig.) (of a problem) (occurring) on a massive scale}
+  - {id: zh-hsk7-9-04500-s001, ch: 详尽, pr: xiáng jìn, ds: thorough and detailed}
+  - {id: zh-hsk7-9-04597-s004, ch: 信誉, pr: xìn yù, ds: trust}
+  - {id: zh-hsk7-9-04737-s001, ch: 严峻, pr: yán jùn, ds: grim}
+  - {id: zh-hsk7-9-05421-s003, ch: 周密, pr: zhōu mì, ds: meticulous}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-00258-s002, ch: 不定, pr: bù dìng, ds: indeterminate}
+  - {id: zh-hsk7-9-02534-s002, ch: 累计, pr: lěi jì, ds: cumulative}
+  - {id: zh-hsk3-00362-s002, ch: 仅, pr: jǐn, ds: only}
+  - {id: zh-hsk3-00941-s003, ch: 自身, pr: zì shēn, ds: one's own}
+  - {id: zh-hsk3-00949-s004, ch: 组合, pr: zǔ hé, ds: combination}
+  - {id: zh-hsk4-00467-s001, ch: 列为, pr: liè wéi, ds: to be classified as}
+  - {id: zh-hsk4-00677-s001, ch: 特殊, pr: tè shū, ds: special}
+  - {id: zh-hsk5-00037-s004, ch: 变动, pr: biàn dòng, ds: fluctuation}
+  review_grammar:
+  - {id: zh-hsk3-g025, ch: (什么|哪儿)+都+P, ds: a question word takes universal rather than question force}
+  - {id: zh-hsk5-g024, ch: P+甚至+Q, ds: add a stronger or less expected point on a scale}
+  - {id: zh-hsk7-9-g006, ch: A+P+相比之下+B+Q, ds: contrast cases against a stated comparison baseline}
+- id: level-24-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk3-00427-s004, ch: 类, pr: lèi, ds: category}
+  - {id: zh-hsk3-00675-s004, ch: 随, pr: suí, ds: varying according to...}
+  - {id: zh-hsk4-00628-s001, ch: 事物, pr: shì wù, ds: thing; object}
+  - {id: zh-hsk5-00079-s004, ch: 层次, pr: céng cì, ds: arrangement of ideas}
+  - {id: zh-hsk6-00319-s001, ch: 构建, pr: gòu jiàn, ds: to construct (sth abstract)}
+  - {id: zh-hsk6-00564-s004, ch: 面向, pr: miàn xiàng, ds: geared towards}
+  - {id: zh-hsk6-00945-s004, ch: 议题, pr: yì tí, ds: issue (under discussion)}
+  - {id: zh-hsk6-01049-s002, ch: 支撑, pr: zhī chēng, ds: to support}
+  - {id: zh-hsk7-9-00356-s001, ch: 侧重, pr: cè zhòng, ds: to place particular emphasis on}
+  - {id: zh-hsk7-9-00482-s002, ch: 尺度, pr: chǐ dù, ds: yardstick}
+  - {id: zh-hsk7-9-00490-s006, ch: 充实, pr: chōng shí, ds: to substantiate (an argument)}
+  - {id: zh-hsk7-9-01237-s002, ch: 概况, pr: gài kuàng, ds: summary}
+  - {id: zh-hsk7-9-01484-s002, ch: 归根到底, pr: guī gēn dào dǐ, ds: in the final analysis}
+  - {id: zh-hsk7-9-01486-s001, ch: 归结, pr: guī jié, ds: to sum up; to conclude; to put in a nutshell}
+  - {id: zh-hsk7-9-01562-s001, ch: 涵盖, pr: hán gài, ds: to cover}
+  - {id: zh-hsk7-9-01849-s002, ch: 基准, pr: jī zhǔn, ds: standard; criterion; benchmark}
+  - {id: zh-hsk7-9-02454-s002, ch: 框架, pr: kuàng jià, ds: (fig.) framework}
+  - {id: zh-hsk7-9-03685-s002, ch: 实质, pr: shí zhì, ds: essence}
+  - {id: zh-hsk7-9-03820-s002, ch: 双向, pr: shuāng xiàng, ds: two-way}
+  - {id: zh-hsk7-9-03822-s001, ch: 双重, pr: shuāng chóng, ds: double}
+  - {id: zh-hsk4-00962-s007, ch: 综合, pr: zōng hé, ds: to synthesize}
+  - {id: zh-hsk5-00607-s001, ch: 确立, pr: què lì, ds: to establish}
+  - {id: zh-hsk5-00907-s002, ch: 由此, pr: yóu cǐ, ds: from this}
+  - {id: zh-hsk5-01053-s005, ch: 总体, pr: zǒng tǐ, ds: overall}
+  - {id: zh-hsk5-00570-s001, ch: 起到, pr: qǐ dào, ds: to have an effect; to play a role}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-04373-s002, ch: 误区, pr: wù qū, ds: misconceptions}
+  - {id: zh-hsk7-9-04911-s002, ch: 疑虑, pr: yí lǜ, ds: misgivings}
+  - {id: zh-hsk7-9-04945-s001, ch: 因人而异, pr: yīn rén ér yì, ds: varying from person to person (idiom)}
+  - {id: zh-hsk7-9-05023-s002, ch: 由此看来, pr: yóu cǐ kàn lái, ds: judging from this}
+  - {id: zh-hsk3-00764-s001, ch: 现实, pr: xiàn shí, ds: reality}
+  - {id: zh-hsk5-00122-s002, ch: 出于, pr: chū yú, ds: to stem from}
+  - {id: zh-hsk6-00593-s003, ch: 能否, pr: néng fǒu, ds: 'is it possible?'}
+  - {id: zh-hsk6-00897-s004, ch: 悬, pr: xuán, ds: unresolved}
+  review_grammar:
+  - {id: zh-hsk6-g018, ch: 从+Evidence+来看+Conclusion, ds: bound an inference by its stated evidence}
+  - {id: zh-hsk7-9-g002, ch: 基于+Basis+P, ds: name the evidence or concepts underlying a judgment}
+  - {id: zh-hsk7-9-g020, ch: Evidence+尚不足以+VP, ds: current evidence is still insufficient for a conclusion}
+- id: level-24-reasoning-02
+  title: Reasons and connections - 2
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk7-9-00331-s002, ch: 参照, pr: cān zhào, ds: to refer to (another document)}
+  - {id: zh-hsk7-9-00488-s003, ch: 充当, pr: chōng dāng, ds: to play the role of}
+  - {id: zh-hsk7-9-00552-s002, ch: 除此之外, pr: chú cǐ zhī wài, ds: in addition to this}
+  - {id: zh-hsk7-9-00836-s001, ch: 典范, pr: diǎn fàn, ds: model}
+  - {id: zh-hsk7-9-01676-s001, ch: 后者, pr: hòu zhě, ds: the latter}
+  - {id: zh-hsk7-9-02127-s002, ch: 借助, pr: jiè zhù, ds: with the help of}
+  - {id: zh-hsk7-9-02648-s003, ch: 领会, pr: lǐng huì, ds: to grasp}
+  - {id: zh-hsk7-9-03237-s001, ch: 前者, pr: qián zhě, ds: the former}
+  - {id: zh-hsk7-9-04489-s001, ch: 相通, pr: xiāng tōng, ds: interlinked}
+  - {id: zh-hsk7-9-05067-s001, ch: 与此同时, pr: yǔ cǐ tóng shí, ds: at the same time; meanwhile}
+  - {id: zh-hsk7-9-05257-s002, ch: 这样一来, pr: zhè yàng yī lái, ds: if this happens then}
+  - {id: zh-hsk7-9-05504-s003, ch: 准则, pr: zhǔn zé, ds: criterion}
+  - {id: zh-hsk4-00851-s001, ch: 以及, pr: yǐ jí, ds: as well as}
+  - {id: zh-hsk4-00925-s001, ch: 之间, pr: zhī jiān, ds: (after a noun) between; among; amid}
+  - {id: zh-hsk5-00143-s001, ch: 从中, pr: cóng zhōng, ds: from within}
+  - {id: zh-hsk5-00216-s001, ch: 对应, pr: duì yìng, ds: to correspond (to); to be equivalent to; to be a counterpart to}
+  - {id: zh-hsk5-00769-s002, ch: 围绕, pr: wéi rào, ds: to center on (an issue)}
+  - {id: zh-hsk5-00779-s002, ch: 为主, pr: wéi zhǔ, ds: to attach most importance to}
+  - {id: zh-hsk5-00983-s001, ch: 正如, pr: zhèng rú, ds: just as}
+  - {id: zh-hsk5-00987-s002, ch: 之内, pr: zhī nèi, ds: within}
+  - {id: zh-hsk6-00232-s002, ch: 多方面, pr: duō fāng miàn, ds: in many aspects}
+  - {id: zh-hsk6-00441-s001, ch: 借鉴, pr: jiè jiàn, ds: to draw on (others' experience)}
+  - {id: zh-hsk6-00768-s001, ch: 探讨, pr: tàn tǎo, ds: to investigate}
+  - {id: zh-hsk6-00805-s001, ch: 途径, pr: tú jìng, ds: way; means; channel}
+  - {id: zh-hsk6-01064-s001, ch: 至于, pr: zhì yú, ds: as for}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-03685-s002, ch: 实质, pr: shí zhì, ds: essence}
+  - {id: zh-hsk7-9-03820-s002, ch: 双向, pr: shuāng xiàng, ds: two-way}
+  - {id: zh-hsk7-9-03822-s001, ch: 双重, pr: shuāng chóng, ds: double}
+  - {id: zh-hsk4-00962-s007, ch: 综合, pr: zōng hé, ds: to synthesize}
+  - {id: zh-hsk5-00607-s001, ch: 确立, pr: què lì, ds: to establish}
+  - {id: zh-hsk5-00907-s002, ch: 由此, pr: yóu cǐ, ds: from this}
+  - {id: zh-hsk5-01053-s005, ch: 总体, pr: zǒng tǐ, ds: overall}
+  - {id: zh-hsk5-00570-s001, ch: 起到, pr: qǐ dào, ds: to have an effect; to play a role}
+  review_grammar:
+  - {id: zh-hsk6-g018, ch: 从+Evidence+来看+Conclusion, ds: bound an inference by its stated evidence}
+  - {id: zh-hsk7-9-g002, ch: 基于+Basis+P, ds: name the evidence or concepts underlying a judgment}
+  - {id: zh-hsk7-9-g020, ch: Evidence+尚不足以+VP, ds: current evidence is still insufficient for a conclusion}
+- id: level-24-reasoning-03
+  title: Reasons and connections - 3
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk7-9-00160-s001, ch: 比起, pr: bǐ qǐ, ds: compared with}
+  - {id: zh-hsk7-9-00706-s002, ch: 大体上, pr: dà tǐ shàng, ds: in general terms}
+  - {id: zh-hsk7-9-01204-s001, ch: 附带, pr: fù dài, ds: supplementary}
+  - {id: zh-hsk7-9-01467-s002, ch: 惯例, pr: guàn lì, ds: usual practice}
+  - {id: zh-hsk7-9-01601-s001, ch: 合乎, pr: hé hū, ds: to accord with; to conform to}
+  - {id: zh-hsk7-9-02618-s003, ch: 列举, pr: liè jǔ, ds: to enumerate}
+  - {id: zh-hsk7-9-02930-s004, ch: 纳入, pr: nà rù, ds: to incorporate}
+  - {id: zh-hsk7-9-03885-s001, ch: 思路, pr: sī lù, ds: line of thought; way of thinking}
+  - {id: zh-hsk7-9-04817-s001, ch: 也就是说, pr: yě jiù shì shuō, ds: in other words}
+  - {id: zh-hsk7-9-05041-s002, ch: 有所, pr: yǒu suǒ, ds: to some extent}
+  - {id: zh-hsk7-9-00705-s002, ch: 大体, pr: dà tǐ, ds: overall situation; the big picture}
+  - {id: zh-hsk7-9-01061-s001, ch: 方方面面, pr: fāng fāng miàn miàn, ds: all sides; all aspects}
+  - {id: zh-hsk7-9-01393-s001, ch: 估算, pr: gū suàn, ds: assessment}
+  - {id: zh-hsk7-9-01658-s003, ch: 宏观, pr: hóng guān, ds: holistic}
+  - {id: zh-hsk7-9-02491-s001, ch: 来源于, pr: lái yuán yú, ds: to originate in}
+  - {id: zh-hsk7-9-02727-s003, ch: 论述, pr: lùn shù, ds: exposition}
+  - {id: zh-hsk7-9-03120-s001, ch: 评定, pr: píng dìng, ds: to evaluate}
+  - {id: zh-hsk7-9-03241-s002, ch: 潜能, pr: qián néng, ds: hidden capability}
+  - {id: zh-hsk7-9-03599-s001, ch: 深远, pr: shēn yuǎn, ds: far-reaching}
+  - {id: zh-hsk7-9-03782-s002, ch: 梳理, pr: shū lǐ, ds: fig. to sort out}
+  - {id: zh-hsk7-9-04894-s003, ch: 依托, pr: yī tuō, ds: support}
+  - {id: zh-hsk7-9-04957-s003, ch: 引入, pr: yǐn rù, ds: to introduce}
+  - {id: zh-hsk7-9-05355-s001, ch: 指向, pr: zhǐ xiàng, ds: to point towards}
+  - {id: zh-hsk7-9-05416-s002, ch: 重心, pr: zhòng xīn, ds: central core}
+  - {id: zh-hsk7-9-05555-s001, ch: 总而言之, pr: zǒng ér yán zhī, ds: in short}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk5-00779-s002, ch: 为主, pr: wéi zhǔ, ds: to attach most importance to}
+  - {id: zh-hsk5-00983-s001, ch: 正如, pr: zhèng rú, ds: just as}
+  - {id: zh-hsk5-00987-s002, ch: 之内, pr: zhī nèi, ds: within}
+  - {id: zh-hsk6-00232-s002, ch: 多方面, pr: duō fāng miàn, ds: in many aspects}
+  - {id: zh-hsk6-00441-s001, ch: 借鉴, pr: jiè jiàn, ds: to draw on (others' experience)}
+  - {id: zh-hsk6-00768-s001, ch: 探讨, pr: tàn tǎo, ds: to investigate}
+  - {id: zh-hsk6-00805-s001, ch: 途径, pr: tú jìng, ds: way; means; channel}
+  - {id: zh-hsk6-01064-s001, ch: 至于, pr: zhì yú, ds: as for}
+  review_grammar:
+  - {id: zh-hsk6-g018, ch: 从+Evidence+来看+Conclusion, ds: bound an inference by its stated evidence}
+  - {id: zh-hsk7-9-g002, ch: 基于+Basis+P, ds: name the evidence or concepts underlying a judgment}
+  - {id: zh-hsk7-9-g020, ch: Evidence+尚不足以+VP, ds: current evidence is still insufficient for a conclusion}
+- id: level-24-grammar-01
+  title: Sentence construction - 1
+  outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: zh-hsk4-00778-s007, ch: 项, pr: xiàng, ds: 'classifier for items, tasks, and projects'}
+  - {id: zh-hsk5-00566-s007, ch: 其, pr: qí, ds: it (refers to sth preceding it)}
+  - {id: zh-hsk7-9-04912-s004, ch: 以, pr: yǐ, ds: in order to}
+  - {id: zh-hsk7-9-05068-s001, ch: 与否, pr: yǔ fǒu, ds: whether or not (at the end of a phrase)}
+  - {id: zh-hsk3-00867-s001, ch: 者, pr: zhě, ds: (after a verb or adjective) one who (is) ...}
+  - {id: zh-hsk4-00927-s001, ch: 之一, pr: zhī yī, ds: one of (sth)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00676-s005, ch: 所, pr: suǒ, ds: particle introducing a relative clause or passive}
+  - {id: zh-hsk4-00198-s001, ch: 对于, pr: duì yú, ds: regarding; as far as (sth) is concerned; with regard to}
+  - {id: zh-hsk5-00403-s001, ch: 尽管, pr: jǐn guǎn, ds: despite}
+  - {id: zh-hsk5-00886-s001, ch: 以便, pr: yǐ biàn, ds: so that}
+  - {id: zh-hsk6-00921-s001, ch: 要不然, pr: yào bù rán, ds: otherwise}
+  - {id: zh-hsk6-00923-s002, ch: 要么, pr: yào me, ds: either one or the other}
+  - {id: zh-hsk6-00249-s001, ch: 凡是, pr: fán shì, ds: each and every}
+  - {id: zh-hsk3-00060-s002, ch: 不论, pr: bù lùn, ds: 'no matter what (who, how etc)'}
+  review_grammar: []
+- id: level-24-institutions-01
+  title: Institutions and public life - 1
+  outcome: Explain an institutional process and distinguish its purpose from its effects.
+  vocabulary:
+  - {id: zh-hsk7-9-03703-s002, ch: 事态, pr: shì tài, ds: existing state of affairs}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-04922-s002, ch: 议会, pr: yì huì, ds: legislative assembly}
+  - {id: zh-hsk7-9-05299-s001, ch: 征收, pr: zhēng shōu, ds: to levy (a tax)}
+  - {id: zh-hsk7-9-05329-s002, ch: 执法, pr: zhí fǎ, ds: law enforcement}
+  - {id: zh-hsk7-9-05436-s001, ch: 主权, pr: zhǔ quán, ds: sovereignty}
+  - {id: zh-hsk7-9-04912-s001, ch: 以, pr: yǐ, ds: to use}
+  - {id: zh-hsk2-00548-s001, ch: 为, pr: wéi, ds: as (in the capacity of)}
+  - {id: zh-hsk4-00574-s001, ch: 权利, pr: quán lì, ds: right (i.e. an entitlement to sth)}
+  - {id: zh-hsk7-9-03259-s002, ch: 强制, pr: qiáng zhì, ds: forced; compulsory}
+  review_grammar:
+  - {id: zh-hsk5-g014, ch: 以+A+为+B, ds: take A as a role or basis B in formal language}
+  - {id: zh-hsk7-9-g001, ch: 鉴于+Circumstance+P, ds: introduce a formal rationale based on circumstances}
+  - {id: zh-hsk7-9-g003, ch: 本着+Principle+的原则+VP, ds: declare the principle intended to guide an action}
+- id: level-24-media-01
+  title: Media and sources - 1
+  outcome: Summarize a source while distinguishing events, claims, and interpretation.
+  vocabulary:
+  - {id: zh-hsk3-00927-s001, ch: 专题, pr: zhuān tí, ds: 'specific topic (addressed by a book, lecture, TV program etc)'}
+  - {id: zh-hsk4-00060-s002, ch: 参考, pr: cān kǎo, ds: reference}
+  - {id: zh-hsk7-9-02658-s001, ch: 浏览, pr: liú lǎn, ds: to skim over}
+  - {id: zh-hsk7-9-04141-s001, ch: 图表, pr: tú biǎo, ds: chart}
+  - {id: zh-hsk4-00346-s003, ch: 记载, pr: jì zǎi, ds: written account}
+  - {id: zh-hsk7-9-02333-s001, ch: 刊物, pr: kān wù, ds: publication}
+  - {id: zh-hsk7-9-03091-s002, ch: 片段, pr: piàn duàn, ds: extract (from book etc)}
+  - {id: zh-hsk7-9-03574-s001, ch: 社论, pr: shè lùn, ds: editorial (in a newspaper)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00255-s001, ch: 关注, pr: guān zhù, ds: to pay attention to}
+  - {id: zh-hsk4-00059-s001, ch: 采访, pr: cǎi fǎng, ds: to interview}
+  - {id: zh-hsk5-00008-s004, ch: 版, pr: bǎn, ds: version}
+  - {id: zh-hsk5-00569-s003, ch: 启事, pr: qǐ shì, ds: a notice}
+  - {id: zh-hsk6-00015-s001, ch: 报刊, pr: bào kān, ds: newspapers and periodicals}
+  - {id: zh-hsk6-00146-s001, ch: 传言, pr: chuán yán, ds: rumor}
+  - {id: zh-hsk5-00685-s001, ch: 视为, pr: shì wéi, ds: to view as}
+  - {id: zh-hsk7-9-00581-s001, ch: 传闻, pr: chuán wén, ds: rumor}
+  review_grammar:
+  - {id: zh-hsk4-g024, ch: 由于+Cause+因此+Result, ds: formal presentation of cause and consequence}
+  - {id: zh-hsk5-g012, ch: Agent+所+V+的+N, ds: formal relative clause identifying an affected noun}
+  - {id: zh-hsk6-g024, ch: 被认为+P|被视为+N, ds: attribute a judgment rather than declare objective fact}
+- id: level-24-science-01
+  title: Science and investigation - 1
+  outcome: Interpret an explanatory account and distinguish observation from conclusion.
+  vocabulary:
+  - {id: zh-hsk7-9-04696-s001, ch: 学说, pr: xué shuō, ds: theory}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-01979-s001, ch: 减弱, pr: jiǎn ruò, ds: to weaken; to diminish}
+  - {id: zh-hsk7-9-02203-s001, ch: 净化, pr: jìng huà, ds: to purify}
+  - {id: zh-hsk7-9-03186-s001, ch: 起源, pr: qǐ yuán, ds: origin}
+  - {id: zh-hsk7-9-03413-s003, ch: 人为, pr: rén wéi, ds: having human cause or origin}
+  - {id: zh-hsk7-9-03760-s002, ch: 寿命, pr: shòu mìng, ds: life expectancy}
+  - {id: zh-hsk7-9-04933-s001, ch: 抑制, pr: yì zhì, ds: to inhibit}
+  - {id: zh-hsk7-9-05323-s001, ch: 知觉, pr: zhī jué, ds: perception}
+  - {id: zh-hsk7-9-05381-s001, ch: 滞后, pr: zhì hòu, ds: to lag behind}
+  review_grammar:
+  - {id: zh-hsk7-9-g019, ch: Subject+有待+V, ds: work remains unresolved rather than certain to finish}
+- id: level-24-argument-01
+  title: Argument and decisions - 1
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary:
+  - {id: zh-hsk7-9-04376-s001, ch: 务实, pr: wù shí, ds: pragmatic}
+  - {id: zh-hsk7-9-04481-s001, ch: 相当于, pr: xiāng dāng yú, ds: equivalent to}
+  - {id: zh-hsk7-9-04484-s001, ch: 相辅相成, pr: xiāng fǔ xiāng chéng, ds: to complement one another (idiom)}
+  - {id: zh-hsk5-00808-s001, ch: 现状, pr: xiàn zhuàng, ds: current situation}
+  - {id: zh-hsk7-9-05182-s001, ch: 则, pr: zé, ds: (literary conjunction) but; then}
+  - {id: zh-hsk2-00178-s006, ch: 更, pr: gèng, ds: even more}
+  - {id: zh-hsk5-00581-s003, ch: 前提, pr: qián tí, ds: prerequisite}
+  - {id: zh-hsk7-9-05552-s001, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to summarize}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk7-9-05385-s002, ch: 中立, pr: zhōng lì, ds: neutrality}
+  - {id: zh-hsk7-9-05569-s001, ch: 奏效, pr: zòu xiào, ds: to show results; to be effective}
+  - {id: zh-hsk7-9-05574-s003, ch: 阻挡, pr: zǔ dǎng, ds: to obstruct}
+  - {id: zh-hsk7-9-05598-s002, ch: 作对, pr: zuò duì, ds: to oppose}
+  - {id: zh-hsk2-00101-s001, ch: 但, pr: dàn, ds: but; yet; however; still}
+  - {id: zh-hsk5-00581-s002, ch: 前提, pr: qián tí, ds: precondition}
+  - {id: zh-hsk4-00219-s004, ch: 反, pr: fǎn, ds: to reverse}
+  - {id: zh-hsk7-9-05315-s003, ch: 之, pr: zhī, ds: it}
+  review_grammar:
+  - {id: zh-hsk6-g009, ch: Topic+固然+P+但+Q, ds: formally acknowledge a point before limiting it}
+  - {id: zh-hsk7-9-g004, ch: 在+Condition+的前提下+P, ds: state an explicit precondition limiting a claim}
+  - {id: zh-hsk7-9-g032, ch: P+反之+Q, ds: consider the reversed condition without assuming a converse}
+- id: level-24-argument-practice-01
+  title: Argument and decisions - sentence practice 1
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk7-9-g013, ch: 无论+A+抑或+B+均+P, ds: formal universal statement covering both alternatives}
+  - {id: zh-hsk7-9-g029, ch: 暂且不论+A+单就+B+而言+P, ds: bracket one issue and consider a restricted dimension}
+  - {id: zh-hsk6-g004, ch: 不+VP+则+Consequence, ds: compact formal negative condition and consequence}
+  review_vocabulary:
+  - {id: zh-hsk4-00741-s002, ch: 无论, pr: wú lùn, ds: regardless of whether...}
+  - {id: zh-hsk1-00188-s010, ch: 就, pr: jiù, ds: with regard to}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk7-9-05182-s001, ch: 则, pr: zé, ds: (literary conjunction) but; then}
+  - {id: zh-hsk7-9-04376-s001, ch: 务实, pr: wù shí, ds: pragmatic}
+  - {id: zh-hsk7-9-04481-s001, ch: 相当于, pr: xiāng dāng yú, ds: equivalent to}
+  - {id: zh-hsk7-9-04484-s001, ch: 相辅相成, pr: xiāng fǔ xiāng chéng, ds: to complement one another (idiom)}
+  - {id: zh-hsk5-00808-s001, ch: 现状, pr: xiàn zhuàng, ds: current situation}
+  - {id: zh-hsk2-00178-s006, ch: 更, pr: gèng, ds: even more}
+  - {id: zh-hsk5-00581-s003, ch: 前提, pr: qián tí, ds: prerequisite}
+  - {id: zh-hsk7-9-05552-s001, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to summarize}
+  review_grammar:
+  - {id: zh-hsk6-g009, ch: Topic+固然+P+但+Q, ds: formally acknowledge a point before limiting it}
+  - {id: zh-hsk7-9-g004, ch: 在+Condition+的前提下+P, ds: state an explicit precondition limiting a claim}
+  - {id: zh-hsk7-9-g032, ch: P+反之+Q, ds: consider the reversed condition without assuming a converse}
+- id: level-24-argument-practice-02
+  title: Argument and decisions - sentence practice 2
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk6-g013, ch: 既+P+也+Q+更+R, ds: build a three-part ascending series of compatible points}
+  - {id: zh-hsk7-9-g005, ch: A+以+B+为前提, ds: predicate a prerequisite rather than assert it is met}
+  - {id: zh-hsk7-9-g015, ch: 不仅在于+A+更在于+B, ds: locate a deeper or stronger basis beyond the first}
+  review_vocabulary:
+  - {id: zh-hsk4-00352-s003, ch: 既, pr: jì, ds: both... (and...)}
+  - {id: zh-hsk1-00428-s002, ch: 也, pr: yě, ds: also (adverb)}
+  - {id: zh-hsk2-00178-s006, ch: 更, pr: gèng, ds: even more}
+  - {id: zh-hsk7-9-04912-s001, ch: 以, pr: yǐ, ds: to use}
+  - {id: zh-hsk2-00548-s001, ch: 为, pr: wéi, ds: as (in the capacity of)}
+  - {id: zh-hsk5-00581-s003, ch: 前提, pr: qián tí, ds: prerequisite}
+  - {id: zh-hsk3-00059-s002, ch: 不仅, pr: bù jǐn, ds: '(as a correlative conjunction) not only (..., but also ...)'}
+  - {id: zh-hsk4-00898-s002, ch: 在于, pr: zài yú, ds: to lie in}
+  - {id: zh-hsk7-9-04376-s001, ch: 务实, pr: wù shí, ds: pragmatic}
+  - {id: zh-hsk7-9-04481-s001, ch: 相当于, pr: xiāng dāng yú, ds: equivalent to}
+  - {id: zh-hsk7-9-04484-s001, ch: 相辅相成, pr: xiāng fǔ xiāng chéng, ds: to complement one another (idiom)}
+  - {id: zh-hsk5-00808-s001, ch: 现状, pr: xiàn zhuàng, ds: current situation}
+  - {id: zh-hsk7-9-05182-s001, ch: 则, pr: zé, ds: (literary conjunction) but; then}
+  - {id: zh-hsk7-9-05552-s001, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to summarize}
+  review_grammar:
+  - {id: zh-hsk7-9-g013, ch: 无论+A+抑或+B+均+P, ds: formal universal statement covering both alternatives}
+  - {id: zh-hsk7-9-g029, ch: 暂且不论+A+单就+B+而言+P, ds: bracket one issue and consider a restricted dimension}
+  - {id: zh-hsk6-g004, ch: 不+VP+则+Consequence, ds: compact formal negative condition and consequence}
+- id: level-24-argument-practice-03
+  title: Argument and decisions - sentence practice 3
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary: []
+  grammar:
+  - {id: zh-hsk7-9-g033, ch: 综上所述+Conclusion, ds: synthesize the reasoning already presented}
+  review_vocabulary:
+  - {id: zh-hsk7-9-05552-s001, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to summarize}
+  - {id: zh-hsk7-9-04376-s001, ch: 务实, pr: wù shí, ds: pragmatic}
+  - {id: zh-hsk7-9-04481-s001, ch: 相当于, pr: xiāng dāng yú, ds: equivalent to}
+  - {id: zh-hsk7-9-04484-s001, ch: 相辅相成, pr: xiāng fǔ xiāng chéng, ds: to complement one another (idiom)}
+  - {id: zh-hsk5-00808-s001, ch: 现状, pr: xiàn zhuàng, ds: current situation}
+  - {id: zh-hsk7-9-05182-s001, ch: 则, pr: zé, ds: (literary conjunction) but; then}
+  - {id: zh-hsk2-00178-s006, ch: 更, pr: gèng, ds: even more}
+  - {id: zh-hsk5-00581-s003, ch: 前提, pr: qián tí, ds: prerequisite}
+  review_grammar:
+  - {id: zh-hsk6-g013, ch: 既+P+也+Q+更+R, ds: build a three-part ascending series of compatible points}
+  - {id: zh-hsk7-9-g005, ch: A+以+B+为前提, ds: predicate a prerequisite rather than assert it is met}
+  - {id: zh-hsk7-9-g015, ch: 不仅在于+A+更在于+B, ds: locate a deeper or stronger basis beyond the first}
