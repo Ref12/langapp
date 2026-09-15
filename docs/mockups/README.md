@@ -60,13 +60,56 @@ action without an extra tooltip-only tap.
 ## At a glance
 
 **Writing-style comparison:** open [`writing-comparison.html`](writing-comparison.html)
-to compare tea (&#x8336;) using Hanzi Writer's stock outlines, AnimCJK's actual
-simplified-Chinese outlines, the current prototype renderer, and an original
-clean custom SVG study. All four share a viewing box and color, with synchronized
-stroke reveal and light/dark backgrounds. This is an artwork comparison, not
-four installed practice engines or a recognition benchmark. MyScript is
-documented separately because it has no fixed reference glyph to display.
-The proposed custom artwork is not applied to the app.
+to compare **A: Hanzi Writer's stock outlines**, **E: transformed-A monoline**, and
+**D: the clean custom tea study**. E aims for D's uniform pen weight while retaining
+A's handwritten slant and proportions. The character selector covers tea
+(&#x8336;), rain (&#x96e8;), cup (&#x676f;), person (&#x4eba;), and one (&#x4e00;).
+The same source coordinate system is used without character-wide rescaling,
+rotation, or recentering.
+
+`character-monoline.js` derives paths from the bundled ordered centerlines.
+Reviewed per-stroke recipes select source-point ranges rather than substitute
+new coordinates. Straight bodies use orthogonal line fits, broad curves use
+bounded-error quadratic fits, and complex turns/hooks use local rounded bends
+that cannot overshoot their control polygon. Brush endpoints are projected onto
+the retained stroke direction. Unreviewed complete glyph conversions are
+explicitly unsupported by this study. Source data is
+unchanged; the generated adaptation retains its Arphic license and attribution.
+
+**Refine terminals** defaults on; turn it off to recover the previous E.
+`correctMonolineTerminals` takes normalized stroke points and pen width, without
+character IDs or per-character terminal coordinates. It recognizes a narrow,
+descending vertical shaft with a short up-left return and limits that return
+relative to shaft height, retaining the hook. Short, monotone down-right strokes
+are fitted along their first 65% of travel, excluding the brush-heavy tail.
+Bounded endpoint insets compensate for round caps; even a small dot retains at
+least 35% of its fitted centerline. Long falls, steep stems, reversals, large
+deviations, and compound enclosures do not qualify.
+
+The comparison reports which rules changed the selected character. It also
+scans all 798 raw medians in the 110-character bundle at reference width 5.5.
+These are **bulk candidates**, before reviewed entry cleanup, not certified
+stroke classifications or a full converted font. Entry-cleanup recipes remain
+reviewed per stroke; the two terminal rules are shared and programmatic.
+
+**Pen width** changes E and D's uniform weight, not A or the current exercise.
+For E's corrected terminals it also adjusts the cap allowance; with refinement
+off it changes weight alone. D's centerline geometry stays fixed.
+**Overlay A's centerlines on E** shows the original paths as blue dashed lines.
+Stroke reveal, remaining-stroke ghosts, and light/dark backgrounds remain
+available. Changing characters stops replay and resets to that character's full
+stroke count while preserving width, terminal refinement, overlay, and theme
+settings. Changing width or refinement preserves the current stroke reveal and
+does not interrupt replay.
+
+**Other references** contains B (AnimCJK's simplified-Chinese outlines) and
+C (the previous source-median renderer). B and D are only available for tea and are
+hidden for other selections, rather than displaying mismatched characters.
+This is an artwork comparison, not installed practice engines or a recognition
+benchmark. MyScript is documented separately because it has no fixed reference
+glyph to display. **E is integrated into writing for the five reviewed characters**
+at width 5.5 with terminal refinement enabled. D remains a comparison-only study;
+changing comparison controls does not change writing settings.
 
 [Desktop comparison](previews/writing-comparison-desktop.png) /
 [Dark background](previews/writing-comparison-dark-desktop.png) /
@@ -74,8 +117,10 @@ The proposed custom artwork is not applied to the app.
 
 AnimCJK's nine tea outlines are preserved in `animcjk-tea.js` from revision
 `ec5e17cca76c87587790bcbce5ea0b4d4fb753d6`, with attribution and the bundled
-[Arphic license](character-data-LICENSE.txt). The current-renderer comparison
-and writing exercise share `character-geometry.js` so their curves stay identical.
+[Arphic license](character-data-LICENSE.txt). C retains `character-geometry.js`.
+Writing uses `characterWritingPaths` from `character-monoline.js`: approved E
+paths for the five reviewed characters, otherwise the original source-median
+paths. The original data, stroke order, and coverage remain unchanged.
 
 ![Desktop overview: shared tier coverage, a contextual next lesson, and learning goals](previews/overview-desktop.png)
 
@@ -517,13 +562,24 @@ Writing help, appearance, and stroke-data attribution live behind the informatio
 button. The surface is **writing-only**, using a finger, pen, or mouse, with no
 typing alternative. Every selected character has three phases:
 
-1. **Full guide:** see the entire muted outline, with a numbered start marker
-   and direction arrow for the current stroke. Completed strokes turn solid.
+1. **Full guide:** see the entire muted outline, with a start marker and direction
+   arrow for the current stroke. Markers shrink on short strokes so they do not
+   cover corrected dots; numbers appear inside markers only when there is room,
+   while the stroke count remains above the pad. Completed strokes turn solid.
 2. **One stroke at a time:** future strokes are hidden. Completing the current
    stroke reveals the next guide, while keeping the strokes already written.
-3. **From memory:** no character model, upcoming stroke, or direction hint is
-   shown. A correctly drawn stroke snaps into place after it is finished, so
-   the character builds from the learner's writing without revealing what comes next.
+3. **From memory:** begin without a character model or stroke hints. Two rejected
+   attempts on the same stroke reveal **only that stroke's guide**, start dot,
+   and direction arrow. The hint stays until the stroke is completed, then the
+   next stroke starts hidden. A correctly drawn stroke snaps into place without
+   revealing future strokes. The header and help explicitly identify an active hint.
+
+Memory misses are tracked per stroke within the current repetition. Interrupted
+or cancelled gestures do not count. Navigation, resizing, and appearance changes
+preserve miss counts and hints. Undo restores the revisited stroke's hint state;
+Clear starts the current repetition fresh, including its miss counts, and is
+available after a miss even if no stroke has been accepted. A new repetition or
+Practice again also resets hints. Revealed assistance does not award mastery.
 
 All phases allow approximate placement, natural wobble, and some overshoot,
 while still checking the stroke's general shape and direction. Incorrect attempts
@@ -537,7 +593,12 @@ resizing until reload. Resizing or leaving mid-stroke cancels the unfinished
 gesture without advancing progress.
 
 Both Dictionary **Look up** and **My learning set** have a pencil action beside
-Hear and Assistant. A single character opens writing practice directly;
+Hear and Assistant. Learning-set rows keep the character and pronunciation
+together, with just the three buttons grouped in the **Actions** column.
+On mobile they share a full-width toolbar row below the entry.
+The icons use the shared secondary-button surface color, with compact 36px
+buttons for a mouse and 44px touch targets on coarse-pointer devices.
+A single character opens writing practice directly;
 multi-character words open a character chooser. The selected character resumes
 its own phase and repetition without changing learning-set status. **Back to
 Dictionary** preserves the prior lookup or learning-set view and restores focus
@@ -548,19 +609,32 @@ The offline bundle covers all **110 Han characters** in the sample dictionary.
 Its stroke geometry comes from
 [Hanzi Writer Data 2.0.1](https://github.com/chanind/hanzi-writer-data/tree/68d10a4b21150cae5e1ebbd223eed289cf32d90c),
 rendered as **smooth, rounded, even-width curves**, not brush-style outlines.
+Tea (&#x8336;), rain (&#x96e8;), cup (&#x676f;), person (&#x4eba;), and one
+(&#x4e00;) use the approved monoline transformation with terminal corrections
+at width 5.5, matching E's defaults in the comparison. The remaining **105**
+characters retain the previous source-median rendering; no unreviewed bulk
+conversion is substituted. Writing help identifies the active artwork style.
 The guide, direction arrow, snapped stroke, and forgiving matcher use the same
-smoothed curve. This is not handwriting recognition, a calligraphy assessment,
+selected path. Match samples are taken from that rendered SVG path, not the
+uncorrected source median, so shortened hooks and dots remain traceable.
+This is not handwriting recognition, a calligraphy assessment,
 or a mastery score.
 The separately licensed data, attribution, and modification notice are in
 `character-data.js`; its complete [ARPHIC PUBLIC LICENSE](character-data-LICENSE.txt)
 is bundled alongside it. No network request or external dependency is needed
 when using the prototype.
 
+The [production implementation handoff](../implementation-plan.md#character-writing-handoff-future-activity)
+records the asset pipeline, review gate, shared geometry, offline packaging,
+versioning, and licensing requirements for the real app. This mockup does not
+implement that production pipeline.
+
 | Writing phase | Desktop | Mobile |
 | --- | --- | --- |
 | Full guide | [Preview](previews/characters-phase-1-desktop.png) | [Preview](previews/characters-phase-1-mobile.png) |
 | One stroke at a time | [Preview](previews/characters-phase-2-desktop.png) | [Preview](previews/characters-phase-2-mobile.png) |
 | From memory | [Preview](previews/characters-phase-3-desktop.png) | [Preview](previews/characters-phase-3-mobile.png) |
+| Memory hint after two misses | [Preview](previews/characters-memory-hint-desktop.png) | [Preview](previews/characters-memory-hint-mobile.png) |
 
 ## Dictionary: lookup and learning set
 

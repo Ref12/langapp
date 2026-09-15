@@ -4,49 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <title>Tea / Writing style comparison</title>
+    <title>Tea / Monoline writing study</title>
     <link rel="stylesheet" href="./theme.css">
     <link rel="stylesheet" href="./writing-comparison.css">
     <script src="./character-data.js" defer></script>
     <script src="./character-geometry.js" defer></script>
+    <script src="./character-monoline.js" defer></script>
     <script src="./animcjk-tea.js" defer></script>
     <script src="./writing-comparison.js" defer></script>
   </head>
   <body>
     <main>
       <header class="comparison-heading">
-        <div><p class="eyebrow">WRITING / VISUAL COMPARISON</p><h1><span lang="zh-Hans">&#x8336;</span>, side by side</h1><p class="subtitle">ch&aacute; / tea / nine strokes</p></div>
+        <div><p class="eyebrow">WRITING / MONOLINE STUDY</p><h1><span id="comparison-native" lang="zh-Hans">&#x8336;</span>, without the brush</h1><p class="subtitle" id="comparison-subtitle">ch&aacute; / tea / 9 strokes</p></div>
         <button type="button" id="comparison-theme" aria-pressed="false">Dark background</button>
       </header>
-      <p class="intro">Two source datasets, our current rendering, and one clean custom direction. Same character box and ink color; each design keeps its own proportions.</p>
+      <p class="intro">A's handwritten slant and proportions, with D's even pen width. E's default settings now drive the writing exercise for these five reviewed characters.</p>
+      <div class="comparison-settings" aria-label="Artwork settings">
+        <div class="character-control"><label for="comparison-character">Character</label><select id="comparison-character">
+          <option value="&#x8336;">&#x8336; / ch&aacute; / tea</option>
+          <option value="&#x96e8;">&#x96e8; / y&#x01d4; / rain</option>
+          <option value="&#x676f;">&#x676f; / b&#x0113;i / cup</option>
+          <option value="&#x4eba;">&#x4eba; / r&eacute;n / person</option>
+          <option value="&#x4e00;">&#x4e00; / y&#x012b; / one</option>
+        </select></div>
+        <div class="stroke-control width-control"><label for="comparison-width">Pen width</label><input type="range" id="comparison-width" min="3" max="7" step="0.25" value="5.5" aria-description="Uniform stroke width for E and D. Enabled terminal corrections also adjust E's round-cap allowance."><output id="comparison-width-value" for="comparison-width">5.5</output></div>
+        <label class="ghost-control terminal-control"><input type="checkbox" id="comparison-corrections" checked>Refine terminals <span class="setting-help">E only</span></label>
+      </div>
       <div class="comparison-controls" aria-label="Comparison controls">
         <div class="stroke-control"><label for="comparison-strokes">Strokes shown</label><input type="range" id="comparison-strokes" min="0" max="9" step="1" value="9"><output id="comparison-count" for="comparison-strokes">9 / 9</output></div>
         <button type="button" id="comparison-replay">Replay strokes</button>
         <button type="button" id="comparison-full">Show full</button>
         <label class="ghost-control"><input type="checkbox" id="comparison-ghost">Show remaining strokes</label>
+        <label class="ghost-control"><input type="checkbox" id="comparison-source">Overlay A's centerlines on E</label>
       </div>
       <p class="comparison-status" id="comparison-status" role="status">All nine strokes shown. This is an artwork comparison, not a handwriting quiz.</p>
-      <section class="comparison-grid" aria-label="Four renderings of tea">
+      <section class="comparison-grid" id="comparison-primary" aria-label="Source, transformed artwork, and clean reference">
         <article class="glyph-card">
           <header><span class="card-label">A / STOCK ARTWORK</span><h2 id="hanzi-title">Hanzi Writer</h2></header>
           <svg id="glyph-hanzi" class="glyph" viewBox="0 0 100 100" role="img" aria-labelledby="hanzi-title hanzi-description"></svg>
           <div class="card-copy"><p id="hanzi-description">Original filled stroke outlines. Tapered ends, variable weight, and a brush-like character shape.</p><p class="card-detail">Hanzi Writer Data 2.0.1. Geometry unchanged; shown in our shared color and size.</p><a href="https://hanziwriter.org/demo.html" target="_blank" rel="noopener noreferrer">Library demo &#x2197;</a></div>
         </article>
-        <article class="glyph-card">
+        <article class="glyph-card transformed-card">
+          <header><span class="card-label">E / TRANSFORMED A</span><h2 id="transformed-title">Handwritten monoline</h2></header>
+          <svg id="glyph-transformed" class="glyph monoline proposed" viewBox="0 0 100 100" role="img" aria-labelledby="transformed-title transformed-description"></svg>
+          <div class="card-copy"><p id="transformed-description">Fitted stroke bodies, even weight, and rounded ends. Keeps the source's rising bars, leaning stems, and unequal diagonals.</p><p class="card-detail" id="comparison-correction-summary" role="status"></p><a href="./index.html#dictionary">Practice from Dictionary &#x2197;</a></div>
+        </article>
+        <article class="glyph-card" id="custom-card">
+          <header><span class="card-label">D / CLEANNESS REFERENCE</span><h2 id="custom-title">Clean custom SVG</h2></header>
+          <svg id="glyph-custom" class="glyph monoline proposed" viewBox="0 0 100 100" role="img" aria-labelledby="custom-title custom-description"></svg>
+          <div class="card-copy"><p id="custom-description">Purpose-drawn strokes: level bars, upright stems, gentle diagonal curves, and a restrained hook.</p><p class="card-detail">The original tea study. E borrows its pen treatment, not its geometric proportions. D is available for tea only.</p><span class="study-label">Not applied to the app</span></div>
+        </article>
+      </section>
+      <details class="other-references">
+        <summary id="comparison-reference-label">Other references / B: AnimCJK and C: previous renderer</summary>
+        <div class="comparison-grid reference-grid">
+        <article class="glyph-card" id="animcjk-card">
           <header><span class="card-label">B / ALTERNATIVE ARTWORK</span><h2 id="animcjk-title">AnimCJK</h2></header>
           <svg id="glyph-animcjk" class="glyph" viewBox="0 0 100 100" role="img" aria-labelledby="animcjk-title animcjk-description"></svg>
           <div class="card-copy"><p id="animcjk-description">Actual simplified-Chinese stroke outlines. Revised geometry, but still from the same Kaiti-font family.</p><p class="card-detail">Source paths and order preserved. This is not automatically a sans-serif replacement.</p><a href="https://github.com/parsimonhi/animCJK/blob/ec5e17cca76c87587790bcbce5ea0b4d4fb753d6/svgsZhHans/33590.svg" target="_blank" rel="noopener noreferrer">Exact source glyph &#x2197;</a></div>
         </article>
         <article class="glyph-card">
-          <header><span class="card-label">C / CURRENT PROTOTYPE</span><h2 id="current-title">Our renderer</h2></header>
+          <header><span class="card-label">C / PREVIOUS RENDERER</span><h2 id="current-title">Source medians</h2></header>
           <svg id="glyph-current" class="glyph monoline" viewBox="0 0 100 100" role="img" aria-labelledby="current-title current-description"></svg>
-          <div class="card-copy"><p id="current-description">Smoothed brush-font centerlines with round caps. Even weight, but the original hooks and bends remain.</p><p class="card-detail">Uses the exact geometry helper and stroke width of the current writing screen.</p><a href="./index.html#dictionary">Open prototype &#x2197;</a></div>
+          <div class="card-copy"><p id="current-description">Smoothed brush-font centerlines with round caps. Even weight, but the original hooks and bends remain.</p><p class="card-detail">Previous geometry for the five reviewed characters. Still used in writing for the other 105 bundled characters pending review.</p><a href="./index.html#dictionary">Open prototype &#x2197;</a></div>
         </article>
-        <article class="glyph-card">
-          <header><span class="card-label">D / ORIGINAL STYLE STUDY</span><h2 id="custom-title">Clean custom SVG</h2></header>
-          <svg id="glyph-custom" class="glyph monoline" viewBox="0 0 100 100" role="img" aria-labelledby="custom-title custom-description"></svg>
-          <div class="card-copy"><p id="custom-description">Purpose-drawn strokes: level bars, upright stems, gentle diagonal curves, and a restrained hook.</p><p class="card-detail">An original nine-stroke design study, not a production font, library default, or Duolingo asset.</p><span class="study-label">Not applied to the app</span></div>
-        </article>
+        </div>
+      </details>
+      <section class="method-note" aria-labelledby="method-title">
+        <h2 id="method-title">What changes, and what stays</h2>
+        <p>E fits stroke bodies along their original slant. Reviewed source-point ranges remove brush entries. With <strong>Refine terminals</strong> on, a shared geometry pass shortens clear vertical-hook returns relative to their shafts and straightens short down-right strokes along their main bodies. Bounded endpoint insets account for round caps. No character-specific terminal coordinates are used. Turn it off to compare the previous E.</p>
+        <p>The rules leave long diagonals, steep stems, reversals, and compound enclosures alone. Hooks retain a return; dots retain a drawable centerline. Pen width changes the cap allowance, not the source artwork or stroke order. The blue overlay always shows A's untouched median guides.</p>
+        <p class="card-detail" id="comparison-bulk-summary"></p>
+        <p class="card-detail">Only the five displayed characters have reviewed entry-cleanup recipes. Writing uses their E paths at width 5.5 with terminal refinement enabled; the remaining 105 characters keep their source-median guides. Comparison controls do not change exercise settings. Bulk matches are review candidates, not a completed font conversion or proof of handwriting correctness. B and D appear only for tea.</p>
       </section>
       <section class="recognition-note" aria-labelledby="myscript-title">
         <div><span class="card-label">DIFFERENT CATEGORY</span><h2 id="myscript-title">MyScript iink</h2></div>
@@ -54,8 +84,8 @@
         <a href="https://myscript.github.io/iinkJS/docs/" target="_blank" rel="noopener noreferrer">SDK documentation &#x2197;</a>
       </section>
       <footer class="comparison-notes">
-        <p><strong>What this shows:</strong> real source artwork for A and B, the current app geometry for C, and original proposed geometry for D. Replay reveals whole strokes in sequence; it does not demonstrate any library's native animation, recognition, or grading.</p>
-        <p>Hanzi Writer data: &copy; 1999 Arphic Technology Co., Ltd., via Make Me a Hanzi and Hanzi Writer. AnimCJK: &copy; 2016&ndash;2026 FM-SH, derived from Make Me a Hanzi and Arphic fonts. No warranty. The source data and adaptations are redistributable under the bundled <a href="./character-data-LICENSE.txt">ARPHIC PUBLIC LICENSE</a>. Provenance and modification notices are in <a href="./character-data.js">character-data.js</a> and <a href="./animcjk-tea.js">animcjk-tea.js</a>.</p>
+        <p><strong>What this shows:</strong> source artwork for A and B, previous geometry for C, original proposed geometry for D, and the integrated monoline adaptation for E. Replay reveals whole strokes in sequence; it does not demonstrate any library's native animation, recognition, or grading. Comparison pen-width changes do not affect the source artwork or the exercise.</p>
+        <p>Hanzi Writer data: &copy; 1999 Arphic Technology Co., Ltd., via Make Me a Hanzi and Hanzi Writer. AnimCJK: &copy; 2016&ndash;2026 FM-SH, derived from Make Me a Hanzi and Arphic fonts. No warranty. The source data and adaptations are redistributable under the bundled <a href="./character-data-LICENSE.txt">ARPHIC PUBLIC LICENSE</a>. Provenance and modification notices are in <a href="./character-data.js">character-data.js</a>, <a href="./character-monoline.js">character-monoline.js</a>, and <a href="./animcjk-tea.js">animcjk-tea.js</a>.</p>
       </footer>
       <noscript>Enable JavaScript to render and compare the stroke artwork.</noscript>
     </main>

@@ -183,6 +183,84 @@ Deferred:
 - Full free-form essay grading
 - Redistribution of imported copyrighted texts
 
+## Character writing handoff (future activity)
+
+The [writing mockup](mockups/README.md#dictionary-full-screen-writing) now uses the
+approved monoline direction for five characters. This records the implementation
+handoff; it does not add a production activity or expand the MVP scope above.
+
+### Asset ownership and preparation
+
+- Treat external stroke data as versioned language-pack assets, not a live service
+  or a dependency on a particular practice engine. Pin the upstream release/commit
+  and retain original outlines, ordered medians, source hashes, attribution, and
+  license. The prototype uses Hanzi Writer Data 2.0.1; its source and derived
+  artwork retain the bundled ARPHIC PUBLIC LICENSE.
+- Key artwork by character and language/script/locale variant. The same Unicode
+  character does not guarantee the same regional form or stroke order.
+- Separate the source snapshot, declarative reviewed stroke recipes, generic
+  transformation logic, and generated output. Recipes select stroke bodies;
+  shared rules handle line/curve fitting and conservative terminal correction.
+  Do not embed per-character drawing coordinates in the exercise UI.
+- Prefer a reproducible asset-preparation/build step that produces approved,
+  normalized stroke paths and matching samples. Record source, recipe, transform,
+  and style versions, coordinate bounds, reference width, stroke order, and review
+  status in the generated artifact. The prototype's style uses a 100-unit box,
+  width 5.5, and rounded caps/joins.
+- Bulk transformation produces candidates, not automatic approval. Validate
+  numeric geometry, bounds, stroke counts/order, turns, hooks, and sampling, then
+  review representative glyphs and flagged exceptions. Publish only approved
+  refined assets. Keep a clearly identified, supported original style or show
+  an explicit unavailable state for missing artwork; never silently invent it.
+  An invalid approved artifact is an error, not permission to substitute a
+  different glyph. The prototype has five reviewed recipes, not a full font.
+
+### Runtime integration
+
+- Expose artwork through a typed, versioned language-pack asset contract consumed
+  by the writing activity. Keep the renderer and tracing engine replaceable.
+  If Hanzi Writer's engine is selected later, adapt the approved geometry to its
+  data contract; using its engine must not silently restore its stock brush
+  artwork or its original matching medians.
+- Use the same approved paths for reference artwork, next-stroke guidance,
+  demonstrations, completed strokes, and the geometry used for matching.
+  Derive matching samples from those paths; never display corrected geometry
+  while grading against uncorrected medians. Scale drawing input and SVG with the
+  same aspect-preserving transform. Size guidance markers for short dots.
+- Bundle or explicitly download and cache approved packs for offline use.
+  Drawing/tracing must not require remote assets, an LLM, or a recognition
+  service. Keep source-data licenses and modification notices accessible with
+  the distributed assets; independently authored application code remains
+  separate from the licensed artwork.
+- Treat reference width as part of the artwork style because round-cap
+  compensation changes endpoints. Display-size changes only scale the artifact.
+  If configurable reference widths are supported, regenerate or select both
+  artwork and matching geometry together under the same versioned style.
+- Persist ordered learner strokes, character/locale and artwork version,
+  phase/assistance, repetition, and attempt state through the normal local
+  activity repositories. Resume against the same artifact; do not switch
+  geometry halfway through an attempt after a pack update.
+- In memory practice, reveal only the current stroke after two rejected attempts
+  on that stroke. Keep later strokes hidden and return to unassisted input for
+  the next stroke. Persist per-stroke misses and revealed assistance within the
+  repetition; interruptions do not count. Undo restores the revisited hint state,
+  while Clear and a fresh repetition reset it. Assisted strokes must remain
+  distinguishable from unaided recall in recorded results.
+- Keep tracing feedback distinct from handwriting recognition and writing-skill
+  mastery. Record assistance and what was actually assessed; completing guided
+  repetitions must not imply unsupported recognition or an all-skill mastery score.
+
+### Acceptance coverage
+
+Use shared geometry tests and visual golden cases for the approved glyphs,
+including straight/slanted strokes, small dots, vertical hooks, and compound
+turns. Cover correct/reversed/off-path input, pointer cancellation, undo/clear,
+all guidance phases and repetitions, navigation/resume, small screens and
+stylus/touch input, offline asset availability, missing/corrupt/version-changed
+packs, and provenance/license packaging. The browser-script prototype is a
+reference for the intended appearance and behavior, not the production asset
+pipeline or persistence layer.
+
 ## Principal risks
 
 | Risk | Mitigation |

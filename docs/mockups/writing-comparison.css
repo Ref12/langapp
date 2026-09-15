@@ -1,8 +1,11 @@
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 "Segoe UI", sans-serif; }
 main { max-width: 1440px; margin: 0 auto; padding: 32px; }
-button, input { font: inherit; accent-color: var(--accent); }
-button { min-height: 44px; padding: 10px 15px; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+button, input, select { font: inherit; accent-color: var(--accent); }
+button, select { min-height: 44px; padding: 10px 15px; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+select { color-scheme: light; }
+html[data-theme="dark"] select { color-scheme: dark; }
 button:hover { background: var(--surface-hover); }
 a { color: var(--accent); text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -12,6 +15,12 @@ h1, h2, p { margin: 0; }
 h1 { margin-top: 6px; font-size: clamp(25px, 4vw, 38px); font-weight: 600; letter-spacing: -.8px; }
 .subtitle { margin-top: 2px; color: var(--muted); }
 .intro { margin: 20px 0; max-width: 760px; color: var(--text-secondary); }
+.comparison-settings { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-bottom: 12px; }
+.character-control { display: flex; align-items: center; gap: 12px; }
+.character-control select { min-width: 180px; }
+.setting-help { color: var(--muted); font-size: 12px; }
+.terminal-control { flex-wrap: wrap; }
+.width-control { max-width: 300px; }
 .comparison-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
 .stroke-control { display: flex; align-items: center; flex: 1 1 300px; gap: 12px; }
 .stroke-control label { white-space: nowrap; }
@@ -20,36 +29,54 @@ h1 { margin-top: 6px; font-size: clamp(25px, 4vw, 38px); font-weight: 600; lette
 .ghost-control { display: flex; align-items: center; min-height: 44px; gap: 8px; cursor: pointer; }
 .ghost-control input { width: 18px; height: 18px; }
 .comparison-status { min-height: 36px; padding: 8px 2px; font-size: 12px; color: var(--muted); }
-.comparison-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.comparison-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.comparison-grid.without-custom, .reference-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .glyph-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.transformed-card { border-color: var(--accent); }
+.transformed-card .card-label { color: var(--accent); }
 .glyph-card > header { padding: 18px 18px 12px; }
 .glyph-card h2 { margin-top: 6px; font-size: 19px; line-height: 1.25; font-weight: 600; }
 .glyph { display: block; width: 100%; aspect-ratio: 1; color: var(--text); background-color: var(--surface-inset); background-image: linear-gradient(to right, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)), linear-gradient(to bottom, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)); }
 .glyph-stroke { fill: currentColor; stroke: none; }
 .glyph.monoline .glyph-stroke { fill: none; stroke: currentColor; stroke-width: 5.5; stroke-linecap: round; stroke-linejoin: round; }
-.glyph-stroke.future { opacity: 0; }
-body[data-show-remaining="true"] .glyph-stroke.future { opacity: .13; }
+.glyph.proposed .glyph-stroke { stroke-width: var(--study-pen-width, 5.5); }
+.source-centerline { fill: none; stroke: var(--accent); stroke-width: .6; stroke-dasharray: 1.2 1; stroke-linecap: round; }
+.source-overlay { display: none; }
+body[data-show-source="true"] .source-overlay { display: inline; }
+[data-stroke].future { opacity: 0; }
+body[data-show-remaining="true"] [data-stroke].future { opacity: .13; }
 .card-copy { display: flex; flex: 1; flex-direction: column; gap: 12px; padding: 18px; font-size: 13px; }
 .card-detail { color: var(--muted); font-size: 12px; }
 .card-copy a, .study-label { display: flex; align-items: center; min-height: 44px; margin-top: auto; font-size: 12px; }
 .study-label { color: var(--muted); }
+.other-references { margin: 24px 0; }
+.other-references summary { width: fit-content; min-height: 44px; padding: 10px 0; cursor: pointer; color: var(--text-secondary); }
+.reference-grid { margin-top: 12px; }
+.reference-grid .glyph { max-height: 320px; }
+.method-note { display: grid; gap: 12px; margin: 24px 0; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.method-note h2 { font-size: 20px; }
+.method-note p { color: var(--text-secondary); font-size: 13px; }
 .recognition-note { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 12px 24px; margin: 24px 0; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
 .recognition-note h2 { margin-top: 5px; font-size: 20px; }
 .recognition-note p { color: var(--text-secondary); font-size: 13px; }
 .recognition-note a { grid-column: 2; width: fit-content; }
 .comparison-notes { display: grid; gap: 10px; color: var(--muted); font-size: 12px; }
 @media (max-width: 1050px) {
-  .comparison-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .glyph { max-height: 360px; }
 }
 @media (max-width: 540px) {
-  main { padding: 20px 12px; }
+  main { padding: 16px 12px; }
   .comparison-heading { align-items: flex-start; gap: 10px; }
   .comparison-heading button { max-width: 115px; font-size: 12px; }
-  .intro { font-size: 13px; }
+  .intro { margin: 12px 0; font-size: 13px; }
+  .comparison-settings { gap: 8px; font-size: 12px; }
+  .character-control { width: 100%; justify-content: space-between; }
+  .width-control { max-width: none; }
   .comparison-controls { gap: 8px; padding: 10px; font-size: 12px; }
   .stroke-control { flex-basis: 100%; gap: 8px; }
-  .comparison-grid { gap: 10px; }
+  .stroke-control input { height: 32px; }
+  .ghost-control { min-height: 36px; }
+  .comparison-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .glyph-card > header { padding: 12px 10px; min-height: 88px; }
   .card-label { font-size: 9px; letter-spacing: .5px; }
   .glyph-card h2 { font-size: 16px; }

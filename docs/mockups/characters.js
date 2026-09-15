@@ -1,7 +1,6 @@
 // Render smooth, even-width strokes and match the same curves the learner sees.
 function makeCharacterGuides(native) {
-  return characterStrokeData[native].map((median) => {
-    const d = characterPath(median)
+  return characterWritingPaths(native).map((d) => {
     const path = characterSvg('path', { d })
     const length = path.getTotalLength()
     const steps = Math.max(1, Math.ceil(length / 2))
@@ -9,11 +8,12 @@ function makeCharacterGuides(native) {
       const point = path.getPointAtLength(length * index / steps)
       return [point.x, point.y]
     })
-    return { points, path: d }
+    return { points, path: d, length }
   })
 }
 const characterPhaseNames = ['Full guide', 'One stroke at a time', 'From memory']
 const characterRepetitions = 3
+const characterMemoryHintAfterMisses = 2
 const characterEntries = new Map()
 const characterStrokeGuides = {}
 const characterCanvas = one('#character-canvas')
@@ -21,7 +21,7 @@ const characterContext = characterCanvas.getContext('2d')
 if (!characterContext) throw new Error('The Characters preview requires a browser with a 2D canvas.')
 
 function createCharacterDraft() {
-  return { phase: 0, attempt: 0, strokes: [[], [], []], finished: false }
+  return { phase: 0, attempt: 0, strokes: [[], [], []], memoryMisses: [], finished: false }
 }
 const characterDrafts = new Map()
 let characterId = null
@@ -35,6 +35,12 @@ function activeCharacterStrokes() {
   const draft = characterDrafts.get(characterId)
   return draft.strokes[draft.phase]
 }
+function hasCharacterMemoryHint() {
+  const draft = characterDrafts.get(characterId)
+  const index = activeCharacterStrokes().length
+  return draft.phase === 2 && index < characterStrokeGuides[characterId].length
+    && (draft.memoryMisses[index] || 0) >= characterMemoryHintAfterMisses
+}
 function characterSvg(tag, attributes) {
   const element = document.createElementNS('http://www.w3.org/2000/svg', tag)
   for (const [name, value] of Object.entries(attributes)) element.setAttribute(name, value)
@@ -43,6 +49,11 @@ function characterSvg(tag, attributes) {
 function renderCharacterPrompt() {
   const memory = characterDrafts.get(characterId).phase === 2
   const word = characterEntries.get(characterId)
+  const refined = Object.hasOwn(characterMonolineRecipes, word.native)
+  one('#characters').dataset.guideStyle = refined ? 'refined' : 'source-median'
+  one('#character-artwork-note').textContent = refined
+    ? 'Reviewed monoline artwork with compact hooks and short-stroke corrections. Guides, completed strokes, and tracing checks share the same paths.'
+    : 'Source-median artwork. Refined artwork for this character has not been reviewed; its existing guides are retained.'
   const native = one('#character-native')
   native.textContent = memory ? word.memoryPrompt || word.gloss.split(' / ')[0] : word.native
   native.lang = memory ? 'en' : 'zh-Hans'
@@ -66,43 +77,56 @@ function renderCharacterGuide() {
   const guides = characterStrokeGuides[characterId]
   const count = activeCharacterStrokes().length
   const memory = draft.phase === 2
+  const memoryHint = hasCharacterMemoryHint()
   one('#characters').dataset.characterPhase = String(draft.phase)
+  one('#characters').dataset.memoryHint = String(memoryHint)
   const outlines = one('#character-stroke-outlines')
   const direction = one('#character-stroke-direction')
   outlines.replaceChildren()
   direction.replaceChildren()
   guides.forEach((guide, index) => {
-    if (memory && index >= count || draft.phase === 1 && index > count) return
+    if (memory && index >= count && !(memoryHint && index === count)) return
+    if (draft.phase === 1 && index > count) return
     outlines.append(characterSvg('path', {
       d: guide.path,
       class: `character-stroke${index < count ? ' completed' : ''}`,
     }))
   })
-  if (!memory) {
+  if (!memory || memoryHint) {
     if (count < guides.length) {
       const guide = guides[count]
       const [x, y] = guide.points[0]
-      const number = characterSvg('text', { x, y, class: 'character-start-number' })
-      number.textContent = String(count + 1)
+      // A full-size numbered marker would cover a corrected dot entirely.
+      // Short strokes keep a smaller start cue and the count in the status line.
+      const radius = Math.min(5.2, Math.max(1, guide.length * 0.2))
+      const arrowSize = Math.min(6, Math.max(1.5, guide.length * 0.3))
+      one('#character-direction-arrow').setAttribute('markerWidth', String(arrowSize))
+      one('#character-direction-arrow').setAttribute('markerHeight', String(arrowSize))
       direction.append(
         characterSvg('path', { d: guide.path, class: 'character-direction-path', 'marker-end': 'url(#character-direction-arrow)' }),
-        characterSvg('circle', { cx: x, cy: y, r: '5.2', class: 'character-start-dot' }),
-        number,
+        characterSvg('circle', { cx: x, cy: y, r: String(radius), class: 'character-start-dot' }),
       )
+      if (guide.length >= 20) {
+        const number = characterSvg('text', { x, y, class: 'character-start-number' })
+        number.textContent = String(count + 1)
+        direction.append(number)
+      }
     }
   }
-  one('#character-guide-layer').toggleAttribute('hidden', memory && count === 0)
+  one('#character-guide-layer').toggleAttribute('hidden', memory && count === 0 && !memoryHint)
   one('#character-progress').hidden = memory
   one('#character-progress').max = guides.length
   one('#character-progress').value = count
   one('#character-attempt').textContent = `Repetition ${draft.attempt + 1} of ${characterRepetitions}`
   one('#character-phase-label').textContent = `${draft.phase + 1}/3 ${characterPhaseNames[draft.phase]}`
-  one('#character-step').textContent = memory ? 'No visual guide'
+  one('#character-step').textContent = memoryHint ? 'Hint after two misses' : memory ? 'No visual guide'
     : count === guides.length ? 'All strokes traced' : `Stroke ${count + 1} of ${guides.length}`
   one('#character-help').textContent = [
     'Trace the full outline. Start at the blue dot and follow the arrow.',
     'Only the current stroke is shown. Complete it to reveal the next guide.',
-    'Write without a character model or stroke hints. Use a finger, pen, or mouse.',
+    memoryHint
+      ? 'Trace the revealed stroke from the blue dot. The following stroke returns to memory practice.'
+      : 'Write from memory. Two misses on the same stroke reveal its guide; later strokes stay hidden.',
   ][draft.phase]
 }
 function characterViewport(bounds) {
@@ -141,13 +165,13 @@ function updateCharacterControls() {
   const count = activeCharacterStrokes().length
   const total = characterStrokeGuides[characterId].length
   one('#character-undo').disabled = count === 0
-  one('#character-clear').disabled = count === 0
+  one('#character-clear').disabled = count === 0 && !draft.memoryMisses.some((misses) => misses > 0)
   one('#character-next-phase').disabled = count !== total
   one('#character-next-phase').textContent = draft.finished ? 'Practice again'
     : draft.attempt < characterRepetitions - 1 ? 'Repeat' : draft.phase === 2 ? 'Finish writing' : 'Next phase'
   const message = characterFeedback || (draft.finished ? 'Three repetitions in each phase finished. No mastery score is assigned.'
     : count === total ? `Character complete. Choose ${one('#character-next-phase').textContent} to continue.`
-    : `${count} of ${total} strokes. ${draft.phase === 2 ? 'Write from memory.' : 'Follow the blue dot and arrow.'}`)
+    : `${count} of ${total} strokes. ${hasCharacterMemoryHint() ? 'Trace the revealed stroke.' : draft.phase === 2 ? 'Write from memory.' : 'Follow the blue dot and arrow.'}`)
   if (one('#character-status').textContent !== message) one('#character-status').textContent = message
   renderCharacterGuide()
 }
@@ -211,9 +235,15 @@ function finishCharacterStroke(commit = false) {
     if (matchesCharacterStroke(stroke, guide.points)) {
       activeCharacterStrokes().push(stroke)
       characterFeedback = ''
-    } else characterFeedback = draft.phase === 2
-      ? 'Try that stroke again. Keep its direction and general shape; the next stroke is still hidden.'
-      : 'Try this stroke again: start near the blue dot and follow the arrow. It does not need to be exact.'
+    } else if (draft.phase === 2) {
+      const index = activeCharacterStrokes().length
+      draft.memoryMisses[index] = (draft.memoryMisses[index] || 0) + 1
+      characterFeedback = draft.memoryMisses[index] === characterMemoryHintAfterMisses
+        ? 'Guide added after two misses. Start at the blue dot and follow the arrow.'
+        : hasCharacterMemoryHint()
+          ? 'Try this stroke again using its guide. Later strokes remain hidden.'
+          : 'Try that stroke again from memory. Two misses on this stroke will reveal its guide.'
+    } else characterFeedback = 'Try this stroke again: start near the blue dot and follow the arrow. It does not need to be exact.'
   }
   updateCharacterControls()
   paintCharacter()
@@ -336,7 +366,9 @@ one('#character-undo').addEventListener('click', () => {
 one('#character-clear').addEventListener('click', () => {
   finishCharacterStroke()
   activeCharacterStrokes().length = 0
-  characterDrafts.get(characterId).finished = false
+  const draft = characterDrafts.get(characterId)
+  draft.finished = false
+  draft.memoryMisses = []
   characterFeedback = ''
   updateCharacterControls()
   paintCharacter()
@@ -348,13 +380,16 @@ one('#character-next-phase').addEventListener('click', () => {
     draft.phase = 0
     draft.attempt = 0
     draft.strokes = [[], [], []]
+    draft.memoryMisses = []
     draft.finished = false
   } else if (draft.attempt < characterRepetitions - 1) {
     draft.attempt++
     activeCharacterStrokes().length = 0
+    draft.memoryMisses = []
   } else if (draft.phase < 2) {
     draft.phase++
     draft.attempt = 0
+    draft.memoryMisses = []
   } else draft.finished = true
   characterFeedback = ''
   renderCharacterPrompt()

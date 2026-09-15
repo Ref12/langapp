@@ -193,26 +193,10 @@ function renderDictionary() {
     source.className = 'dictionary-source'
     source.textContent = word.addedFrom === 'assistant' ? 'Assistant / Conversation' : word.addedFrom === 'lookup' ? 'Dictionary / Lookup' : 'Tea house / Reading'
     const action = document.createElement('td')
-    const link = document.createElement('a')
-    link.className = 'button secondary'
-    link.href = word.addedFrom === 'assistant' ? '#conversation' : word.addedFrom === 'lookup' ? '#dictionary' : '#reader'
-    link.textContent = 'See in context'
-    link.setAttribute('aria-label', `See ${word.gloss} in context`)
-    link.addEventListener('click', () => {
-      if (word.addedFrom === 'assistant') {
-        openCreationConversation(word.sourceConversation)
-        return
-      }
-      if (word.addedFrom === 'lookup') {
-        showDictionaryLookup(word.native)
-        return
-      }
-      state.word = Object.keys(words).find((key) => words[key] === word)
-      setReaderPanel(true)
-      renderPassage()
-      renderWord()
-    })
-    action.append(link)
+    const rowActions = document.createElement('div')
+    rowActions.className = 'dictionary-row-actions'
+    rowActions.append(textActions)
+    action.append(rowActions)
     row.append(term, meaning, tier, source, action)
     rows.append(row)
   })
