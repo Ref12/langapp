@@ -1,0 +1,57 @@
+# MODIFIED 2026-09-15: Japanese source-em-box monoline candidates; no visual approval.
+# KanjiVG: Copyright 2009/2010/2011 Ulrich Apel, https://kanjivg.tagaini.net/; CC BY-SA 3.0.
+# AnimCJK: Copyright 2016-2026 FM-SH, https://github.com/parsimonhi/animCJK.
+# U+79ED: Make Me a Hanzi / Arphic fonts, Copyright 1999 Arphic Technology Co., Ltd.; ARPHIC PUBLIC LICENSE.
+# U+3007: LGPL-3.0-or-later, as stated in the individual SVG; not ARPHIC.
+# Changes: select ordered centerlines, preserve original em-box proportions, normalize paths;
+# contextual combining marks use explicit source path-selection recipes.
+# This page is a collection of separately licensed artwork, not a blanket relicensing.
+# Retain original notices, licenses/writing-* and upstream/writing source bytes; no warranty.
+辻:
+  default_variant: japanese-source
+  kind: character
+  script: Han
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/08fbb.svg
+      sha256: cbf4cbcd00bf49c7c719e3895e4ba2df2ab853a14f1d0e493d3aa5fef398c65a
+      source_entry: kanji/08fbb.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M38.825688 39.761468 C39.880734 40.137615 41.816514 40.256881 42.862385 40.137615 C53.211009
+        38.990826 72.321101 36.412844 81.568807 36.266055 C83.321101 36.238532 84.376147 36.449541 85.256881
+        36.633028
+    - path: M60.348624 12.733945 C60.87156 13.155963 61.990826 15.87156 62.091743 16.706422 C62.201835
+        17.541284 62.027523 67.357798 61.917431 72.59633
+    - path: M20.834862 15.137615 C24.165138 16.733945 29.440367 21.715596 30.275229 24.201835
+    - path: M14.642202 35.779817 C18.623853 36.688073 24.926606 39.53211 25.917431 40.944954
+    - path: M13.302752 55.908257 C15.366972 56.688073 16.743119 56.302752 17.66055 56.100917 C18.577982
+        55.908257 25 53.357798 26.376147 52.963303 C27.752294 52.568807 29.816514 53.944954 28.899083
+        55.119266 C27.981651 56.293578 25.229358 60.798165 24.541284 61.779817 C23.853211 62.761468 24.082569
+        64.522936 25.458716 65.889908 C26.834862 67.256881 27.981651 68.825688 28.669725 70 C29.357798
+        71.183486 29.357798 72.165138 27.981651 73.146789 C26.605505 74.12844 19.724771 79.605505 18.348624
+        80
+    - path: M14.449541 80.798165 C17.165138 80.577982 22.59633 80.018349 26.678899 80.458716 C30.752294
+        80.908257 53.917431 83.908257 57.926606 84.486239 C68.788991 86.055046 77.174312 86.504587 85.321101
+        85.715596
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'

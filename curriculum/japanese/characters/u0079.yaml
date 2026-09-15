@@ -1,0 +1,52 @@
+# MODIFIED 2026-09-15: Japanese source-em-box monoline candidates; no visual approval.
+# KanjiVG: Copyright 2009/2010/2011 Ulrich Apel, https://kanjivg.tagaini.net/; CC BY-SA 3.0.
+# AnimCJK: Copyright 2016-2026 FM-SH, https://github.com/parsimonhi/animCJK.
+# U+79ED: Make Me a Hanzi / Arphic fonts, Copyright 1999 Arphic Technology Co., Ltd.; ARPHIC PUBLIC LICENSE.
+# U+3007: LGPL-3.0-or-later, as stated in the individual SVG; not ARPHIC.
+# Changes: select ordered centerlines, preserve original em-box proportions, normalize paths;
+# contextual combining marks use explicit source path-selection recipes.
+# This page is a collection of separately licensed artwork, not a blanket relicensing.
+# Retain original notices, licenses/writing-* and upstream/writing source bytes; no warranty.
+秭:
+  default_variant: japanese-source
+  kind: character
+  script: Han
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/animcjk/svgsJa/31213.svg
+      sha256: 8676f1f0e2b379fec1418d12b27657d41494f5df708803e40fb7423ce87f175c
+      source_entry: svgsJa/31213.svg
+      source_id: animcjk-writing-arphic
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M33.496094 11.621094 L37.988281 17.578125 L12.988281 25.878906
+    - path: M7.714844 40.332031 L13.769531 41.015625 L40.625 35.449219
+    - path: M25.585938 23.535156 L29.101562 27.148438 L27.050781 78.808594 L28.320312 87.695312
+    - path: M26.660156 38.183594 L20.410156 54.589844 L6.445312 73.046875
+    - path: M30.859375 45.898438 L38.964844 54.6875
+    - path: M72.949219 17.675781 L74.414062 23.4375 L50.195312 34.765625
+    - path: M44.335938 30.761719 L47.949219 35.058594 L45.703125 47.460938 L47.167969 49.804688 L76.5625
+        42.089844 L80.664062 41.894531 L83.691406 44.433594 L77.148438 65.136719 L74.316406 65.234375
+        L67.675781 60.15625
+    - path: M56.347656 7.910156 L62.988281 13.671875 L61.230469 92.578125
+    - path: M60.058594 46.191406 L53.710938 60.742188 L35.546875 79.101562
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.09765625
+      - 0
+      - 0
+      - 0.09765625
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 1024
+      - 1024
+      version: '1'

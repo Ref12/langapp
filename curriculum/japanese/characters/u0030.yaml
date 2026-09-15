@@ -1,0 +1,1134 @@
+# MODIFIED 2026-09-15: Japanese source-em-box monoline candidates; no visual approval.
+# KanjiVG: Copyright 2009/2010/2011 Ulrich Apel, https://kanjivg.tagaini.net/; CC BY-SA 3.0.
+# AnimCJK: Copyright 2016-2026 FM-SH, https://github.com/parsimonhi/animCJK.
+# U+79ED: Make Me a Hanzi / Arphic fonts, Copyright 1999 Arphic Technology Co., Ltd.; ARPHIC PUBLIC LICENSE.
+# U+3007: LGPL-3.0-or-later, as stated in the individual SVG; not ARPHIC.
+# Changes: select ordered centerlines, preserve original em-box proportions, normalize paths;
+# contextual combining marks use explicit source path-selection recipes.
+# This page is a collection of separately licensed artwork, not a blanket relicensing.
+# Retain original notices, licenses/writing-* and upstream/writing source bytes; no warranty.
+、:
+  default_variant: japanese-source
+  kind: sign
+  script: Common
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03001.svg
+      sha256: 63aa0d85e0e38a330917dc71ec1ee4fe8d12593bff935c504ba65fbf863d5252
+      source_entry: kanji/03001.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M12.192661 74.669725 C17.889908 78.513761 22 81.825688 24.752294 87.091743
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+。:
+  default_variant: japanese-source
+  kind: sign
+  script: Common
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03002.svg
+      sha256: 166234bb1f57520a277cb2c7861ebe8bd745de5219ddd08f6795468a453dd172
+      source_entry: kanji/03002.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M20.944954 87.568807 C14.981651 87.568807 11 82.100917 11 76.66055 C11 71.220183 15.238532
+        66.183486 21.477064 66.183486 C27.715596 66.183486 32.376147 70.458716 32.376147 76.623853 C32.376147
+        82.788991 28.669725 87.651376 21.577982 87.651376
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+〇:
+  default_variant: japanese-source
+  kind: sign
+  script: Han
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/animcjk/svgsJa/12295.svg
+      sha256: ce980789814d0b756cbc6d843e5cd151c90f6135d07014d9b0816abf8caade49
+      source_entry: svgsJa/12295.svg
+      source_id: animcjk-writing-lgpl
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M68.75 15.625 L65.039062 19.433594 L54.199219 16.601562 L41.601562 17.382812 L27.050781 25.488281
+        L20.605469 34.277344 L16.992188 44.824219 L16.699219 55.664062 L19.53125 65.820312 L27.148438
+        75.976562 L41.210938 82.617188 L57.421875 82.714844 L71.09375 76.367188 L79.785156 65.527344 L83.691406
+        49.316406 L81.054688 34.765625 L72.949219 24.414062
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.09765625
+      - 0
+      - 0
+      - 0.09765625
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 1024
+      - 1024
+      version: '1'
+ぁ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03041.svg
+      sha256: 55f7192abd91da67146cb6acdc41c6410218f78f44c9b07cdafc39bf23010837
+      source_entry: kanji/03041.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M32.770642 42.889908 C33.412844 43.53211 34.798165 44.238532 36.642202 44.174312 C44.495413
+        43.917431 51.376147 42.614679 58.376147 41.045872 C59.486239 40.798165 61.788991 40.40367 63.256881
+        40.678899
+    - path: M46.816514 31.587156 C47.458716 32.321101 47.926606 34.220183 47.59633 35.678899 C44.834862
+        48 42.990826 63.486239 43.816514 74.880734 C44.119266 79.073394 45.201835 82.880734 46.302752
+        84.899083
+    - path: M58.284404 51.073394 C58.834862 51.899083 59.137615 54.302752 58.651376 55.577982 C55.247706
+        64.587156 50.357798 73.045872 39.954128 81.87156 C34.899083 86.155963 28.256881 84.623853 27.981651
+        75.715596 C27.733945 67.715596 37.834862 58.706422 51.834862 56.045872 C60.981651 54.302752 71.788991
+        57.577982 74.311927 65.422018 C77.422018 75.082569 71.550459 84.816514 58.926606 87.853211
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+あ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03042.svg
+      sha256: 3553cd24cba506dffe12e1214f231fc129c2535f719c1bdc86a9fb651aa9ec9b
+      source_entry: kanji/03042.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M28.449541 30.275229 C29.256881 31.082569 30.972477 31.944954 33.266055 31.880734 C41.174312
+        31.651376 51.614679 29.93578 60.330275 27.981651 C61.715596 27.669725 64.568807 27.174312 66.40367
+        27.522936
+    - path: M45.651376 16.165138 C46.458716 17.082569 47.321101 19.155963 46.917431 20.981651 C43.477064
+        36.348624 41.183486 55.963303 42.211009 70.183486 C42.587156 75.412844 43.93578 80.165138 45.311927
+        82.678899
+    - path: M60.211009 40.477064 C60.899083 41.504587 61.275229 44.504587 60.669725 46.091743 C56.431193
+        57.33945 50.357798 67.889908 37.394495 78.899083 C31.100917 84.247706 22.825688 82.33945 22.486239
+        71.211009 C22.174312 61.238532 34.761468 50 52.192661 46.678899 C63.587156 44.504587 76.963303
+        47.944954 80.174312 58.376147 C83.889908 70.46789 76.724771 82.568807 61.018349 86.348624
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+き:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0304d.svg
+      sha256: 8f4376853a758ce9710d8b312d93deef512a36a9626bad2f180b46655d23e76a
+      source_entry: kanji/0304d.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M27.981651 27.752294 C29.706422 28.440367 32.238532 28.724771 33.376147 28.559633 C39.568807
+        27.642202 53.788991 24.431193 57.688073 23.055046 C59.678899 22.357798 60.899083 21.908257 62.165138
+        21.110092
+    - path: M33.256881 44.678899 C35.100917 45.458716 37.816514 45.779817 39.027523 45.587156 C45.66055
+        44.550459 60.880734 40.917431 65.055046 39.357798 C67.183486 38.568807 68.495413 38.06422 69.844037
+        37.155963
+    - path: M38.53211 12.954128 C39.908257 13.761468 41.40367 15.651376 42.201835 17.651376 C47.247706
+        30.275229 56.880734 44.495413 66.394495 55.045872 C73.40367 62.816514 74.761468 63.651376 60.889908
+        58.605505
+    - path: M30.963303 76.376147 C40.706422 85.321101 55.963303 84.284404 65.93578 80.963303
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ぎ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0304e.svg
+      sha256: d61feabb3f7bbae307153b7db7fe5e07389a3f98b8be1c9f126d628de72a3222
+      source_entry: kanji/0304e.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M27.981651 27.981651 C29.706422 28.669725 32.238532 28.954128 33.376147 28.788991 C39.568807
+        27.87156 53.788991 24.66055 57.688073 23.284404 C59.678899 22.587156 60.899083 22.137615 62.165138
+        21.33945
+    - path: M33.256881 44.908257 C35.100917 45.688073 37.816514 46.009174 39.027523 45.816514 C45.66055
+        44.779817 60.880734 41.146789 65.055046 39.587156 C67.183486 38.798165 68.495413 38.293578 69.844037
+        37.385321
+    - path: M38.53211 13.192661 C39.908257 14 41.40367 15.889908 42.201835 17.889908 C47.247706 30.504587
+        56.880734 44.724771 66.40367 55.275229 C73.412844 63.045872 74.770642 63.880734 60.899083 58.834862
+    - path: M30.963303 76.605505 C40.706422 85.550459 55.963303 84.513761 65.93578 81.192661
+    - path: M70.981651 17.431193 C73.504587 19.036697 76.486239 22.366972 78.091743 25.229358
+    - path: M76.834862 12.954128 C79.642202 14.394495 82.963303 17.376147 84.743119 19.944954
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+さ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03055.svg
+      sha256: bf9a7786a305903c11bd0e30848a093f614d9653ba498093a3472e78211ea5db
+      source_entry: kanji/03055.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M24.770642 35.688073 C26.990826 36.908257 29.706422 37.036697 32.40367 36.66055 C40.46789
+        35.522936 58.706422 29.541284 63.733945 27.091743 C66.293578 25.844037 67.201835 25.33945 69.495413
+        23.853211
+    - path: M38.073394 12.733945 C39.449541 13.541284 41.40367 15.431193 42.201835 17.431193 C47.247706
+        30.045872 56.192661 42.770642 66.853211 53.669725 C74.174312 61.146789 72.706422 62.844037 61.348624
+        56.53211
+    - path: M32.33945 73.853211 C36.46789 84.633028 51.495413 85.321101 67.550459 80.733945
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ざ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03056.svg
+      sha256: 23b26a2f4185d85e36d124e4760db24671d57c57984f2db7d15caf21fcc28a58
+      source_entry: kanji/03056.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M24.770642 35.917431 C26.990826 37.137615 29.706422 37.266055 32.40367 36.889908 C40.46789
+        35.752294 58.706422 29.541284 63.733945 27.091743 C66.293578 25.844037 67.201835 25.33945 69.495413
+        23.853211
+    - path: M38.073394 12.954128 C39.449541 13.761468 41.40367 15.66055 42.201835 17.66055 C47.247706
+        30.275229 56.192661 43.009174 66.862385 53.899083 C74.183486 61.376147 72.715596 63.073394 61.357798
+        56.761468
+    - path: M32.33945 74.082569 C36.46789 84.862385 51.495413 85.550459 67.550459 80.963303
+    - path: M73.284404 13.073394 C75.807339 14.678899 78.788991 18.009174 80.394495 20.87156
+    - path: M79.12844 8.605505 C81.93578 10.045872 85.256881 13.027523 87.036697 15.59633
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+っ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03063.svg
+      sha256: 1a860ac5d1035cc40464f169383ef0f3b23d029749065772245d0cc3832234c2
+      source_entry: kanji/03063.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M21.100917 56.100917 C22.46789 57.284404 24.513761 57.633028 27.027523 56.559633 C40.06422
+        50.990826 48.908257 48.440367 59.761468 48.623853 C68.926606 48.779817 76.53211 53.853211 76.440367
+        62.605505 C76.302752 76.302752 59.504587 84.06422 43.605505 86.009174
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+つ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03064.svg
+      sha256: 5df14db33d17141d8a0bed6711ae2172fefeea5cf59d19815bbee3c7c640147d
+      source_entry: kanji/03064.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M12.844037 41.055046 C14.568807 42.541284 17.137615 42.972477 20.293578 41.623853 C36.697248
+        34.633028 47.816514 31.422018 61.46789 31.642202 C72.990826 31.834862 82.550459 38.220183 82.449541
+        49.229358 C82.284404 66.449541 59.743119 75.568807 41.155963 78.66055
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ぬ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0306c.svg
+      sha256: 6156f4b03d21fd26ba1d9b5c07135b5e5c1badb0f58714054e3e5928997b780e
+      source_entry: kanji/0306c.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M23.284404 26.146789 C25.119266 27.412844 26.009174 29.110092 26.385321 31.541284 C28.100917
+        42.715596 30.165138 53.486239 34.220183 63.348624 C35.862385 67.348624 37.853211 70.990826 40.495413
+        74.779817
+    - path: M52.40367 17.66055 C53.211009 19.605505 53.376147 21.137615 52.972477 23.055046 C50.110092
+        36.816514 40.917431 59.577982 36.348624 67.66055 C25.458716 86.926606 17.431193 68.807339 17.431193
+        63.53211 C17.431193 42.770642 57.568807 22.93578 74.642202 36.385321 C81.669725 41.917431 83.633028
+        49.761468 83.027523 57.798165 C81.192661 82.33945 52.862385 83.834862 52.862385 73.284404 C52.862385
+        64.678899 68.807339 66.752294 77.743119 72.256881 C80.587156 74.009174 84.394495 77.073394 86.458716
+        79.137615
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ね:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0306d.svg
+      sha256: 9e02a0fe50febb753c7e9c0880f07c9f61384c0057fb2dc814c96cb760379a6a
+      source_entry: kanji/0306d.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M30.541284 13.302752 C32.027523 14.788991 32.46789 16.247706 32.266055 18.697248 C31.321101
+        29.642202 30.376147 47.743119 29.944954 67.431193 C29.853211 71.669725 29.779817 75.972477 29.743119
+        80.275229
+    - path: M15.743119 34.752294 C17.229358 35.559633 18.724771 36.018349 20.899083 35.440367 C22.862385
+        34.926606 28.055046 33.321101 32.247706 31.743119 C37.990826 29.587156 38.559633 30.394495 35.110092
+        35.073394 C30.009174 41.981651 23.165138 51.018349 18.155963 59.633028 C13.018349 68.458716 14.990826
+        67.247706 19.990826 62.385321 C37.53211 45.302752 55.311927 26.495413 69.642202 26.495413 C80.082569
+        26.495413 81.458716 36.816514 81.458716 56.311927 C81.458716 82.568807 53.770642 79.137615 53.770642
+        71.229358 C53.770642 62.394495 70.954128 64.055046 79.513761 69.504587 C82.036697 71.110092 84.908257
+        73.981651 86.394495 75.697248
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+の:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0306e.svg
+      sha256: 85a190a35b6b8e4f79de6b313b468de8cdb8d1e3e13d404838f462f7888ad2c0
+      source_entry: kanji/0306e.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M49.376147 26.256881 C50.293578 27.633028 50.605505 30.036697 50.183486 32.330275 C48.577982
+        41.045872 43.862385 55.266055 40.321101 62.715596 C31.486239 81.302752 25.137615 76.238532 17.954128
+        60.899083 C9.577982 43.009174 39.513761 16.055046 64.40367 23.853211 C94.110092 33.165138 90.091743
+        73.963303 60.045872 79.706422
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ぱ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03071.svg
+      sha256: c20e2bc1ccc6dc80398e50f7561966851f69ac85156c9061292d273cf2f25791
+      source_entry: kanji/03071.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M22.486239 16.513761 C23.633028 17.889908 24.458716 20.183486 23.972477 22.587156 C20.761468
+        38.752294 17.568807 55.981651 20.302752 72.93578 C22.59633 87.155963 21.330275 74.770642 25.458716
+        67.201835
+    - path: M45.541284 34.761468 C47.752294 36.201835 49.990826 36.743119 52.697248 36.330275 C61.284404
+        35.018349 68.715596 33.633028 74.165138 32.137615 C77.027523 31.348624 79.633028 30.954128 81.321101
+        30.954128
+    - path: M64.009174 15.137615 C66.073394 17.082569 66.651376 18.917431 66.651376 21.100917 C66.651376
+        23.284404 68.027523 56.53211 68.027523 65.137615 C68.027523 85.779817 39.93578 83.137615 39.93578
+        74.770642 C39.93578 65.825688 61.844037 69.614679 67 72.12844 C72.155963 74.642202 77.990826 79.706422
+        79.256881 80.733945
+    - path: M83.495413 22.366972 C74.669725 22.366972 75.009174 9.293578 83.495413 9.293578 C92.449541
+        9.284404 92.211009 22.366972 83.495413 22.366972
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ぷ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03077.svg
+      sha256: bcbb4d19c2a3c3f1dc47fc10ad72ec69e56d5d55dfc36845bc1af25ae1a6791f
+      source_entry: kanji/03077.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M38.651376 14.330275 C41.972477 17.431193 45.53211 19.266055 50.33945 19.954128 C59.137615
+        21.211009 53.550459 23.055046 48.614679 25.568807
+    - path: M39.568807 43.009174 C41.293578 47.247706 46.449541 51.642202 52.642202 59.06422 C62.385321
+        70.752294 53.091743 86.587156 35.091743 78.899083
+    - path: M15.137615 67.779817 C15.825688 71.449541 16.862385 75.229358 19.724771 77.06422 C20.788991
+        77.743119 19.834862 73.963303 31.880734 68.697248
+    - path: M73.055046 56.770642 C78.100917 59.87156 82.486239 63.642202 83.495413 64.917431 C89.688073
+        72.715596 83.266055 69.155963 79.256881 71.449541
+    - path: M74.192661 24.422018 C65.366972 24.422018 65.706422 11.348624 74.192661 11.348624 C83.146789
+        11.357798 82.908257 24.422018 74.192661 24.422018
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ゔ:
+  default_variant: japanese-source
+  kind: character
+  script: Hiragana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03094.svg
+      sha256: ed766d7472f63aeec6b82d11e6526ea27b5f1281506a0f838b4f052005a70124
+      source_entry: kanji/03094.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M38.53211 14.908257 C43.688073 16.853211 47.357798 17.66055 50.348624 17.66055 C57.93578 17.66055
+        57.688073 18.688073 50 22.706422
+    - path: M30.275229 39.559633 C32.220183 40.587156 34.055046 42.201835 38.073394 40.825688 C42.091743
+        39.449541 49.770642 34.293578 55.045872 34.40367 C60.321101 34.513761 64.449541 38.990826 64.449541
+        50.917431 C64.449541 65.137615 56.880734 78.669725 42.082569 88.761468
+    - path: M63.981651 16.284404 C66.504587 17.889908 69.486239 21.220183 71.091743 24.082569
+    - path: M69.834862 11.816514 C72.642202 13.256881 75.963303 16.238532 77.743119 18.807339
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+゙:
+  default_variant: japanese-source
+  kind: component
+  script: Inherited
+  variants:
+  - components:
+    - character: が
+      role: Contextual dakuten sample at the source kana's upper right; not a universal attachment rule
+      source_id: kanjivg-writing
+    id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0304c.svg
+      sha256: 5f3515b087ff7a410b71c17de893299a8bafa3a51e8ad9e68283c69a7060bbb5
+      source_entry: kanji/0304c.svg:kvg:0304c-s4,kvg:0304c-s5
+      source_id: kanjivg-writing
+    - input: characters/recipes.yaml
+      sha256: 1f4cce91839a756f85be91066410b5806f7235aeb38effc3e858c5d02f40036d
+      source_entry: combining_marks.U+3099
+      source_id: japanese-writing-recipes
+    recipe:
+      id: contextual-mark-3099
+      input: characters/recipes.yaml
+      sha256: 1f4cce91839a756f85be91066410b5806f7235aeb38effc3e858c5d02f40036d
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M73.853211 16.743119 C76.376147 18.348624 79.357798 21.678899 80.963303 24.541284
+    - path: M79.697248 12.275229 C82.504587 13.715596 85.825688 16.697248 87.605505 19.266055
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+゚:
+  default_variant: japanese-source
+  kind: component
+  script: Inherited
+  variants:
+  - components:
+    - character: ぱ
+      role: Contextual handakuten sample at the source kana's upper right; not a universal attachment
+        rule
+      source_id: kanjivg-writing
+    id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/03071.svg
+      sha256: c20e2bc1ccc6dc80398e50f7561966851f69ac85156c9061292d273cf2f25791
+      source_entry: kanji/03071.svg:kvg:03071-s4
+      source_id: kanjivg-writing
+    - input: characters/recipes.yaml
+      sha256: 1f4cce91839a756f85be91066410b5806f7235aeb38effc3e858c5d02f40036d
+      source_entry: combining_marks.U+309A
+      source_id: japanese-writing-recipes
+    recipe:
+      id: contextual-mark-309a
+      input: characters/recipes.yaml
+      sha256: 1f4cce91839a756f85be91066410b5806f7235aeb38effc3e858c5d02f40036d
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M83.495413 22.366972 C74.669725 22.366972 75.009174 9.293578 83.495413 9.293578 C92.449541
+        9.284404 92.211009 22.366972 83.495413 22.366972
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+゛:
+  default_variant: japanese-source
+  kind: sign
+  script: Common
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0309b.svg
+      sha256: a179df840f8dc0805fa9e4d1acaef4a92cd3cc54ea609934e20bed71435cbcf7
+      source_entry: kanji/0309b.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M3.211009 11.697248 C5.926606 13.53211 9.137615 17.321101 10.87156 20.587156
+    - path: M13.110092 6.174312 C15.853211 7.981651 19.082569 11.724771 20.825688 14.954128
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+゜:
+  default_variant: japanese-source
+  kind: sign
+  script: Common
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/0309c.svg
+      sha256: 6e210ccd07da69ed4cece8e16ac6177bf4dd7d19d0f2a2fa07d0c872425a2e5c
+      source_entry: kanji/0309c.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M9.706422 20.174312 C0.880734 20.174312 1.220183 7.100917 9.706422 7.100917 C18.651376 7.100917
+        18.422018 20.174312 9.706422 20.174312
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+シ:
+  default_variant: japanese-source
+  kind: character
+  script: Katakana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030b7.svg
+      sha256: 777a0eef4d858337a43e30a78ee09f265080cb3f33975b6e23148849027b1769
+      source_entry: kanji/030b7.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M36.577982 18.119266 C41.293578 19.559633 45.559633 23.633028 47.12844 26.027523
+    - path: M23.853211 39.100917 C26.834862 39.908257 33.256881 44.146789 35.091743 46.559633
+    - path: M30.275229 77.981651 C33.715596 78.788991 36.807339 78.431193 39.798165 76.715596 C56.192661
+        67.321101 69.495413 54.816514 82.110092 37.385321
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ソ:
+  default_variant: japanese-source
+  kind: character
+  script: Katakana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030bd.svg
+      sha256: f225b489929dc7483b07b7cc8f6138c02d41afda88f693ece9119b8ccb84c13e
+      source_entry: kanji/030bd.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M21.559633 23.394495 C25.155963 27.155963 28.633028 32.504587 31.422018 39.798165
+    - path: M76.605505 19.266055 C77.752294 21.559633 77.798165 23.33945 76.715596 27.06422 C71.330275
+        45.761468 52.642202 72.477064 34.862385 83.256881
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ツ:
+  default_variant: japanese-source
+  kind: character
+  script: Katakana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030c4.svg
+      sha256: 161c7a7be52dc62a9db1d99002a827e4c71a2ff9272c969ecb60995c1044a9fc
+      source_entry: kanji/030c4.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M19.724771 28.788991 C21.908257 31.541284 23.853211 37.394495 24.201835 41.522936
+    - path: M41.853211 21.788991 C44.954128 25 47.926606 30.504587 48.275229 35.440367
+    - path: M77.633028 25.577982 C78.321101 27.642202 77.990826 30.40367 76.944954 32.917431 C69.944954
+        49.770642 57.449541 70.642202 34.743119 81.082569
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ン:
+  default_variant: japanese-source
+  kind: character
+  script: Katakana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030f3.svg
+      sha256: 0e6ea9722247514cc5068ac2b409882c6e47ccc12530e69da680246f72884229
+      source_entry: kanji/030f3.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M24.311927 22.825688 C29.59633 24.798165 35.944954 30.59633 38.761468 35.899083
+    - path: M26.256881 76.834862 C28.550459 78.321101 30.954128 77.715596 33.366972 76.266055 C51.834862
+        65.137615 65.477064 53.669725 78.899083 38.53211
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ヴ:
+  default_variant: japanese-source
+  kind: character
+  script: Katakana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030f4.svg
+      sha256: 3ef9c381634e6a39193bae7d5332d76024188da2b15c08dc8d2fcfe1b04b0fca
+      source_entry: kanji/030f4.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M48.853211 13.412844 C49.770642 14.440367 50 16.165138 50 17.651376 C50 19.137615 50 27.522936
+        50 29.247706
+    - path: M24.311927 28.669725 C25.229358 29.697248 25.431193 31.422018 25.458716 32.908257 C25.541284
+        36.990826 25.724771 42.954128 25.87156 47.926606 C25.93578 50.220183 26 52.302752 26.036697 53.889908
+    - path: M26.715596 32.917431 C44.495413 30.853211 63.642202 29.018349 71.669725 27.87156 C79.697248
+        26.724771 79.266055 28.642202 77.40367 34.183486 C72.816514 47.834862 58.944954 74.091743 39.788991
+        86.12844
+    - path: M78.091743 15.137615 C80.614679 16.743119 83.59633 20.073394 85.201835 22.93578
+    - path: M83.944954 10.66055 C86.752294 12.100917 90.073394 15.082569 91.853211 17.651376
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ヵ:
+  default_variant: japanese-source
+  kind: character
+  script: Katakana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030f5.svg
+      sha256: 7c8c8722955fffa2c265bf808d9dd429944b8d28ddb38e1eaadead0c00fd3d7e
+      source_entry: kanji/030f5.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M30.522936 49.302752 C31.93578 50.247706 33.93578 50.715596 35.908257 50.431193 C49.422018
+        48.541284 59.311927 47.477064 66.651376 46.449541 C72.036697 45.697248 74.66055 46.862385 73.174312
+        52.633028 C71.568807 58.87156 69.788991 66.091743 66.183486 74.651376 C58.247706 93.449541 55.963303
+        84.238532 52.091743 82.247706
+    - path: M52.440367 32.220183 C53.110092 33.449541 53.431193 35.110092 53.018349 37.321101 C49.761468
+        54.614679 40.844037 71.522936 29.816514 81.816514
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ヶ:
+  default_variant: japanese-source
+  kind: character
+  script: Katakana
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030f6.svg
+      sha256: 984da2149a49debd7357e087218d087845a175a68bd1a3a60734f5c36ed991da
+      source_entry: kanji/030f6.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M40.027523 33.908257 C40.348624 35.311927 40.321101 37.165138 39.59633 38.697248 C36.036697
+        46.293578 32.807339 53.192661 25.688073 61.256881
+    - path: M37.752294 48.458716 C39.321101 49.100917 40.816514 49.220183 42.633028 48.825688 C51.93578
+        46.798165 61.422018 45.229358 68.972477 44.036697 C71.633028 43.614679 73.577982 43.486239 75.788991
+        43.669725
+    - path: M57.33945 49.385321 C57.66055 50.788991 57.706422 52.53211 57.275229 54.174312 C54.605505
+        64.302752 50.458716 77.201835 39.12844 86.504587
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
+ー:
+  default_variant: japanese-source
+  kind: sign
+  script: Common
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/030fc.svg
+      sha256: c5386cd85cbf7190e98970dae4f2db955b1c245644d758c8df3b88cd756cf861
+      source_entry: kanji/030fc.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M13.302752 48.623853 C18.577982 47.93578 23.963303 47.752294 26.605505 47.706422 C46.440367
+        47.357798 63.990826 46.220183 68.238532 46.220183 C72.486239 46.220183 83.605505 45.651376 86.697248
+        45.651376
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'

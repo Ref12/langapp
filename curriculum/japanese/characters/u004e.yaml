@@ -1,0 +1,44 @@
+# MODIFIED 2026-09-15: Japanese source-em-box monoline candidates; no visual approval.
+# KanjiVG: Copyright 2009/2010/2011 Ulrich Apel, https://kanjivg.tagaini.net/; CC BY-SA 3.0.
+# AnimCJK: Copyright 2016-2026 FM-SH, https://github.com/parsimonhi/animCJK.
+# U+79ED: Make Me a Hanzi / Arphic fonts, Copyright 1999 Arphic Technology Co., Ltd.; ARPHIC PUBLIC LICENSE.
+# U+3007: LGPL-3.0-or-later, as stated in the individual SVG; not ARPHIC.
+# Changes: select ordered centerlines, preserve original em-box proportions, normalize paths;
+# contextual combining marks use explicit source path-selection recipes.
+# This page is a collection of separately licensed artwork, not a blanket relicensing.
+# Retain original notices, licenses/writing-* and upstream/writing source bytes; no warranty.
+一:
+  default_variant: japanese-source
+  kind: character
+  script: Han
+  variants:
+  - id: japanese-source
+    locale: ja-JP
+    provenance:
+    - input: upstream/writing/kanjivg/kanji/04e00.svg
+      sha256: 3dd10544e685a2e06184ca52ac2df5d881d4b92b566b94ada976f48d9e3625e4
+      source_entry: kanji/04e00.svg
+      source_id: kanjivg-writing
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M10.091743 49.770642 C13.018349 50.33945 15.825688 50.458716 19.018349 50.229358 C37.954128
+        48.853211 65.247706 45.53211 81.93578 45.422018 C85.238532 45.40367 87.229358 45.642202 88.880734
+        45.87156
+    transform:
+      id: original-source-em-box
+      matrix:
+      - 0.9174311926605505
+      - 0
+      - 0
+      - 0.9174311926605505
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 109
+      - 109
+      version: '1'
