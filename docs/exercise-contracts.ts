@@ -103,8 +103,8 @@ export interface FillBlankExercise extends ExerciseBase {
   )[]
 }
 
-export interface SentenceBuilderResponse {
-  mode: 'sentence-builder'
+export interface OrderedTileResponse {
+  mode: 'ordered-tiles'
   locale: string
   /** Shuffled by the player. Equal tiles are interchangeable, but counts matter. */
   tiles: string[]
@@ -115,19 +115,21 @@ export interface SentenceBuilderResponse {
 export interface TranslationExercise extends ExerciseBase {
   type: 'translation'
   source: TextMaterial | AudioMaterial
-  response: LanguageResponse | SentenceBuilderResponse
+  response: LanguageResponse | OrderedTileResponse
 }
 
 export interface DictationExercise extends ExerciseBase {
   type: 'dictation'
   audio: AudioMaterial
-  response: {
-    mode: 'text'
-    notation:
-      | { type: 'native-script' }
-      | { type: 'romanization'; system: string; tones: 'required' | 'ignored' }
-    evaluation: AcceptedAnswers
-  }
+  response:
+    | OrderedTileResponse
+    | {
+        mode: 'text'
+        notation:
+          | { type: 'native-script' }
+          | { type: 'romanization'; system: string; tones: 'required' | 'ignored' }
+        evaluation: AcceptedAnswers
+      }
 }
 
 export interface SpeechImitationExercise extends ExerciseBase {

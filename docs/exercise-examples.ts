@@ -86,7 +86,7 @@ export const exerciseSamples = [
     instruction: 'Arrange the tiles to translate the sentence.',
     source: { type: 'text', text: 'I want tea.', locale: 'en-US' },
     response: {
-      mode: 'sentence-builder',
+      mode: 'ordered-tiles',
       locale: 'zh-CN',
       tiles: ['我', '要', '茶', '水'],
       acceptedAnswers: [['我', '要', '茶']],
@@ -98,7 +98,7 @@ export const exerciseSamples = [
     instruction: 'Arrange the tiles to translate both sentences.',
     source: { type: 'text', text: 'I want tea. I want water.', locale: 'en-US' },
     response: {
-      mode: 'sentence-builder',
+      mode: 'ordered-tiles',
       locale: 'zh-CN',
       tiles: ['我', '要', '茶', '。', '我', '要', '水', '。', '咖啡'],
       acceptedAnswers: [['我', '要', '茶', '。', '我', '要', '水', '。']],
@@ -134,6 +134,18 @@ export const exerciseSamples = [
         caseSensitive: false,
         punctuation: 'significant',
       },
+    },
+  },
+  {
+    id: 'dictate-milk-tea-with-tiles',
+    type: 'dictation',
+    instruction: 'Arrange the tiles to write the word you hear.',
+    audio: { type: 'audio', text: '奶茶', locale: 'zh-CN' },
+    response: {
+      mode: 'ordered-tiles',
+      locale: 'zh-CN',
+      tiles: ['茶', '水', '奶'],
+      acceptedAnswers: [['奶', '茶']],
     },
   },
   {

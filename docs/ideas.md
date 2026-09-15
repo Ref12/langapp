@@ -14,10 +14,11 @@ samples, lesson, quiz, and app-recorded Check result, with literal Chinese text.
 The top-level object groups examples for reference; it is not an assistant
 response envelope. The Check result is app-owned, not assistant-authored.
 
-Sentence building is a translation response mode, not a separate exercise type.
-It uses a single source and string tiles with accepted text sequences. Repeated
-tiles with the same text are interchangeable, but each occurrence is consumed
-separately; unused tiles are distractors.
+`OrderedTileResponse` (`mode: "ordered-tiles"`) is shared by translation and
+dictation. It supports words, phrases, or full sentences using string tiles and
+accepted text sequences. Translation changes language; dictation reproduces
+what was heard. Repeated tiles with the same text are interchangeable, but each
+occurrence is consumed separately; unused tiles are distractors.
 
 Lessons contain ordered teaching steps and exercises. Quizzes reuse the exercise
 types for unaided knowledge checks, with feedback afterward. Character writing
