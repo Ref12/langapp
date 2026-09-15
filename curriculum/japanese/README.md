@@ -76,14 +76,15 @@ For a release refresh, review the latest English-only JMdict release and license
 ## Character-writing candidates
 
 `characters` implements the [shared character contract](../CHARACTERS.md), not
-a handwriting recognizer or production exercise. It contains an intentionally
-small **34-key, six-page first batch**, all **unreviewed**. The full native scope
-is **2,211 required characters/signs plus two component-only combining marks**
-across 82 nonempty 256-codepoint ranges. `coverage.yaml` retains that complete
-scope even while most artwork has not been imported. A successful mechanical
-check is not a complete or approved release.
+a handwriting recognizer or production exercise. It contains a
+source-backed **2,212-key prepared candidate set**, all **unreviewed**. The full
+native scope is **2,211 required characters/signs plus two component-only
+combining marks** across 82 nonempty 256-codepoint ranges. `coverage.yaml`
+retains that complete scope: only `鱝` has no native drawable record, and four
+literal fullwidth Latin targets remain separate cross-script gaps. A successful
+mechanical check is not a complete or approved release.
 
-The first batch is:
+The representative 34-key first batch used for the bulk-preparation gate was:
 
 ```text
 あ ぁ き ぎ さ ざ ぬ ね の ぱ ぷ つ っ シ ツ ソ ン
@@ -134,9 +135,10 @@ Do not claim all target text is covered while these exceptions remain.
 KanjiVG is primary, pinned to
 `422b5538595676da918c288a4230cb5e22a1ee7e`. Its pinned inventory has 6,704 default
 SVGs and 4,957 variants; it directly covers 2,208 of the 2,213 expected native
-keys, including all 168 modern kana. The first batch retains 30 direct KVG
-glyphs, two KVG-derived contextual marks, and two selective animCJK glyphs.
-These are source-available/candidate counts, not visual approvals.
+keys, including all 168 modern kana. The first batch retained 30 direct KVG
+glyphs. The full prepared set retains all 2,208 direct KVG glyphs, two KVG-derived
+contextual marks, and two selective animCJK glyphs. These are 2,210 direct-source
+and two recipe-derived candidates, not visual approvals.
 
 animCJK is pinned to `ec5e17cca76c87587790bcbce5ea0b4d4fb753d6`, with 7,007
 `svgsJa` and 177 `svgsJaKana` files. Only exact Japanese `秭` and `〇` supplement
@@ -177,7 +179,7 @@ or silently substituted for combining marks. Donor glyphs belong in extraction
 provenance and recipes: the whole `が` glyph is not a structural component of
 dakuten, and is not recorded as one.
 
-### Remaining exact-glyph blocker
+### Remaining glyph and style decisions
 
 **`鱝` U+9C5D** (ja-n1-00294, `えい`, JMdict:1001130) is absent from both
 pinned sources. Its usual-kana label does not authorize changing its target to
@@ -189,7 +191,23 @@ fish-left paths s1..s11 from KVG `鱗` (`09c57.svg`) followed by right-hand `賁
 paths s4..s15 from `噴` (`05674.svg`), in the original shared em box. Both
 donors and the recipe are pinned and attributed. This is newly composed
 CC-BY-SA-3.0 artwork, not an upstream `鱝` asset; generating its review fixture
-does not close the blocker or set review flags.
+does not close the blocker or set review flags. The creator found the
+composition visually plausible but did not grant qualified Japanese form or
+stroke-order approval. A deliberate recipe-acceptance decision is still needed.
+
+The creator's 2026-09-15 contact-sheet inspection authorized **bulk preparation
+only**, without promoting any review flags. Two visible style cautions remain:
+
+* **`〇` is open and visibly angular/polygonal.** The exact source median is the
+  baseline. Smoothing or closure requires a separate explicit decision and a
+  reproducible, licensed modification recipe; it is not silently applied.
+* **`鬱` has tight or merged counters at the shared width 5.5.** Dense-glyph
+  legibility needs a separate style decision. The importer neither changes
+  widths per glyph nor treats the current rendering as release-approved.
+
+These cautions are not missing source assets: both baseline candidates remain
+drawable and unreviewed. The exact `ＧＫＯｘ` targets also still need properly
+sourced writing assets; ASCII folding does not resolve their coverage.
 
 ### Offline generation and review
 
@@ -204,28 +222,29 @@ py -3.12 -B scripts\validate_characters.py --language japanese --check
 ```
 
 Running the importer without options rebuilds **the batch recorded in the
-source lock**, currently `first`, offline. `--check` regenerates expected
+source lock**, currently `full`, offline. `--check` regenerates expected
 outputs in memory and reports stale files without writes or network access.
 `--validate-only` uses the shared committed-bundle checker, including inventory,
 source/recipe/license hashes and cross-script accounting.
 
-`--download --batch first` explicitly refreshes the fixed source subset from
+`--download --batch full` explicitly refreshes the fixed source subset from
 SHA-256-pinned archives, never from a changing branch HEAD. Only selected
 original members/notices are retained, not whole archives or extra databases.
 `--archive-directory <path>` may supply the two checksum-verified cached
 `kanjivg-pinned.tar.gz` and `animcjk-pinned.tar.gz` files. Downloads are assembled
 and verified before any source output is replaced.
 
-`--review-directory <path>` writes a separate first-batch HTML comparison with
+`--review-directory <path>` writes a separate selected-batch HTML comparison with
 original-source thumbnails, numbered normalized paths, same-path animation,
 candidate JSON, and copied original sources/recipes/licenses. It includes the
 blocked fish fixture with independent recipe/provenance. Every new asset is
 unreviewed; neither agent inspection nor a numerical pass is professional
 Japanese approval.
 
-Bulk generation requires explicit first-batch direction; the importer will not
-fetch missing full-batch inputs silently. After that approval,
-`--download --batch full` selects the complete required native inventory.
-Unresolved `鱝`, cross-script targets, component gaps and unreviewed states still
-prevent a release-ready claim. Preserve exact review evidence and regenerate
-after changing sources, recipes, adapter version or shared geometry utilities.
+The initial visual batch gate has authorized the committed bulk preparation;
+the importer still never fetches inputs silently. An explicit `--batch first`
+rebuilds only the initial subset, not the complete prepared set; restore `full`
+before comparing with the committed full-batch outputs. Unresolved `鱝`,
+cross-script targets and unreviewed states prevent a release-ready claim.
+Preserve exact review evidence and regenerate after changing sources, recipes,
+adapter version or shared geometry utilities.

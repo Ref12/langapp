@@ -406,7 +406,7 @@ def write_review(root: Path, directory: Path, records: dict, pins: list[dict], f
     evidence = {"notice": NOTICE, "candidates": records, "review_only": fish}
     (directory / "candidates.json").write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n",
                                               encoding="utf-8")
-    parts = ["<!doctype html><html lang='en'><meta charset='utf-8'><title>Japanese writing first batch</title>",
+    parts = ["<!doctype html><html lang='en'><meta charset='utf-8'><title>Japanese writing candidates</title>",
              "<style>body{font:16px system-ui;margin:20px;background:#eef1f4;color:#14283a}"
              "main{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}"
              "article{background:white;padding:12px;border-radius:8px}svg{width:100%;max-width:240px}"

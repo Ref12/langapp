@@ -1,4 +1,4 @@
-"""Targeted tests for the Japanese source adapter and committed first-batch data."""
+"""Targeted tests for the Japanese source adapter and complete prepared candidate set."""
 
 from copy import deepcopy
 from pathlib import Path
@@ -38,6 +38,8 @@ class JapaneseWritingTests(unittest.TestCase):
         self.assertEqual(self.inventory["literal_cross_script"], list("\uff27\uff2b\uff2f\uff58"))
         self.assertEqual(len(self.inventory["required"]) + len(self.inventory["components"]), 2213)
         self.assertEqual(set(chosen_characters(self.inventory, "first")), set(FIRST_BATCH))
+        self.assertEqual(set(chosen_characters(self.inventory, "full")),
+                         set(self.inventory["required"]) | set(self.inventory["components"]))
         self.assertEqual(len(self.records), 34)
         self.assertNotIn("\u9c5d", self.records)
         self.assertEqual(set(BLOCKED), {"\u9c5d"})
@@ -146,8 +148,11 @@ class JapaneseWritingTests(unittest.TestCase):
 
     def test_bundle_is_structurally_valid_but_not_complete_or_reviewed(self):
         coverage = validate_bundle(ROOT)
-        self.assertEqual(coverage["drawable"], sorted(FIRST_BATCH))
-        self.assertEqual(len(coverage["missing"]), 2179)
+        expected = (set(self.inventory["required"]) | set(self.inventory["components"])) - set(BLOCKED)
+        self.assertEqual(coverage["drawable"], sorted(expected))
+        self.assertEqual(len(coverage["drawable"]), 2212)
+        self.assertEqual(coverage["validated"], coverage["drawable"])
+        self.assertEqual(coverage["missing"], ["\u9c5d"])
         self.assertEqual(coverage["reviewed"], [])
         self.assertEqual(coverage["default_reviewed"], [])
         self.assertEqual(coverage["cross_script_missing"], list("\uff27\uff2b\uff2f\uff58"))
