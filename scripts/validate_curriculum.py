@@ -187,8 +187,6 @@ class Validator:
                 self.error(location, "expected an object")
                 continue
             fields = VOCABULARY_FIELDS + (["senses"] if (language, level) == PILOT_LEVEL else [])
-            if language not in LEVELS and "senses" in row:
-                fields = VOCABULARY_FIELDS + ["senses"]
             if set(row) != set(fields):
                 self.error(location, f"fields must be {', '.join(fields)}")
                 continue
