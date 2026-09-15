@@ -1,0 +1,221 @@
+schema_version: 1
+program: ko-practical
+interpretation: Curated inventory, not learner mastery. Shared inventory headwords are lexical identities;
+  free_lemmas excludes bound forms and separately categorized function items. Source entries, senses,
+  spelling/POS pairs, and lexical breadth are distinct counts.
+original_banded_dictionary_entries: 11028
+original_banded_source_sense_positions: 19661
+selected_reference_pool:
+  dictionary_entries: 1215
+  selected_senses: 1513
+  distinct_spellings: 1159
+  spelling_pos_pairs: 1183
+  lexical_identities: 1208
+  free_lemmas: 1137
+  bound_forms: 16
+  function_items: 55
+  unbanded_support_entries: 17
+  reading_methods_by_sense:
+    official-text: 1453
+    authored-broad-hangul: 60
+core:
+  dictionary_entries: 1154
+  selected_senses: 1419
+  distinct_spellings: 1100
+  spelling_pos_pairs: 1124
+  lexical_identities: 1147
+  free_lemmas: 1076
+  bound_forms: 16
+  function_items: 55
+  unbanded_support_entries: 17
+  reading_methods_by_sense:
+    official-text: 1362
+    authored-broad-hangul: 57
+core_free_lemma_planning_range:
+- 5800
+- 6000
+core_free_lemma_gap_to_lower_guide: 4724
+planning_limit: The range is a planning guide, never a quota or mastery threshold. Report a shortfall
+  rather than fill it with uncurated entries or extra senses.
+lexical_identity_review_status: unreviewed
+phases:
+- id: first-exchanges
+  levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  dictionary_entries: 240
+  selected_senses: 256
+  distinct_spellings: 232
+  spelling_pos_pairs: 238
+  lexical_identities: 235
+  free_lemmas: 179
+  bound_forms: 11
+  function_items: 45
+  unbanded_support_entries: 11
+  reading_methods_by_sense:
+    official-text: 249
+    authored-broad-hangul: 7
+  new_lexical_identities: 235
+  new_free_lemmas: 179
+- id: everyday-life
+  levels:
+  - 5
+  - 6
+  - 7
+  - 8
+  dictionary_entries: 364
+  selected_senses: 385
+  distinct_spellings: 353
+  spelling_pos_pairs: 354
+  lexical_identities: 363
+  free_lemmas: 354
+  bound_forms: 3
+  function_items: 6
+  unbanded_support_entries: 5
+  reading_methods_by_sense:
+    official-text: 366
+    authored-broad-hangul: 19
+  new_lexical_identities: 339
+  new_free_lemmas: 332
+- id: stories-conversations
+  levels:
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  dictionary_entries: 174
+  selected_senses: 186
+  distinct_spellings: 172
+  spelling_pos_pairs: 173
+  lexical_identities: 173
+  free_lemmas: 168
+  bound_forms: 2
+  function_items: 3
+  unbanded_support_entries: 2
+  reading_methods_by_sense:
+    official-text: 177
+    authored-broad-hangul: 9
+  new_lexical_identities: 141
+  new_free_lemmas: 139
+- id: explanation-problems
+  levels:
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  dictionary_entries: 202
+  selected_senses: 208
+  distinct_spellings: 199
+  spelling_pos_pairs: 199
+  lexical_identities: 202
+  free_lemmas: 201
+  bound_forms: 1
+  function_items: 0
+  unbanded_support_entries: 4
+  reading_methods_by_sense:
+    official-text: 192
+    authored-broad-hangul: 16
+  new_lexical_identities: 163
+  new_free_lemmas: 162
+- id: analysis-argument
+  levels:
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  dictionary_entries: 234
+  selected_senses: 240
+  distinct_spellings: 231
+  spelling_pos_pairs: 232
+  lexical_identities: 234
+  free_lemmas: 230
+  bound_forms: 1
+  function_items: 3
+  unbanded_support_entries: 3
+  reading_methods_by_sense:
+    official-text: 235
+    authored-broad-hangul: 5
+  new_lexical_identities: 195
+  new_free_lemmas: 193
+- id: nuance-interpretation
+  levels:
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  dictionary_entries: 135
+  selected_senses: 144
+  distinct_spellings: 134
+  spelling_pos_pairs: 135
+  lexical_identities: 135
+  free_lemmas: 131
+  bound_forms: 1
+  function_items: 3
+  unbanded_support_entries: 2
+  reading_methods_by_sense:
+    official-text: 143
+    authored-broad-hangul: 1
+  new_lexical_identities: 74
+  new_free_lemmas: 71
+phase_count_limit: Phase inventories count senses selected in that phase. The same lexeme may occur in
+  later phases through another sense; only new_free_lemmas counts its first introduction.
+reading_limit: Authored readings and original phrase realizations are unverified. Even official citation
+  text does not assess actual audio or verify a whole phrase.
+professional:
+  dictionary_entries: 28
+  selected_senses: 28
+  distinct_spellings: 28
+  spelling_pos_pairs: 28
+  lexical_identities: 28
+  free_lemmas: 28
+  bound_forms: 0
+  function_items: 0
+  unbanded_support_entries: 0
+  reading_methods_by_sense:
+    official-text: 28
+technical:
+  dictionary_entries: 19
+  selected_senses: 20
+  distinct_spellings: 19
+  spelling_pos_pairs: 19
+  lexical_identities: 19
+  free_lemmas: 19
+  bound_forms: 0
+  function_items: 0
+  unbanded_support_entries: 0
+  reading_methods_by_sense:
+    official-text: 18
+    authored-broad-hangul: 2
+scientific:
+  dictionary_entries: 23
+  selected_senses: 24
+  distinct_spellings: 23
+  spelling_pos_pairs: 23
+  lexical_identities: 23
+  free_lemmas: 23
+  bound_forms: 0
+  function_items: 0
+  unbanded_support_entries: 0
+  reading_methods_by_sense:
+    official-text: 24
+literary:
+  dictionary_entries: 19
+  selected_senses: 22
+  distinct_spellings: 19
+  spelling_pos_pairs: 19
+  lexical_identities: 19
+  free_lemmas: 19
+  bound_forms: 0
+  function_items: 0
+  unbanded_support_entries: 0
+  reading_methods_by_sense:
+    official-text: 21
+    authored-broad-hangul: 1

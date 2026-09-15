@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1] / "curriculum" / "korean"
 CATEGORIES = {"free-lemma", "bound-form", "function-item"}
 FORM_FIELDS = {"ch", "pr", "items", "grammar", "rationale", "review_status"}
 CORRECTION_REVIEW_STATUS = "AI-authored interpretation; requires qualified Korean-teacher review"
+IDENTITY_FIELDS = {"lemma", "category", "members", "source_parents", "rationale"}
 
 
 def prose(value: str, location: str) -> None:
@@ -84,21 +85,78 @@ def sense_index(registry: dict) -> tuple[dict, dict]:
     return parents, senses
 
 
+def validate_lexical_group(identity: str, group: dict) -> None:
+    text(identity, "lexical identity")
+    if not isinstance(group, dict) or set(group) != IDENTITY_FIELDS:
+        raise ValueError(f"{identity}: invalid lexical-identity fields")
+    text(group["lemma"], f"{identity}.lemma")
+    prose(group["rationale"], f"{identity}.rationale")
+    if not isinstance(group["category"], str) or group["category"] not in CATEGORIES:
+        raise ValueError(f"{identity}: invalid lexical count category")
+    for field in ("members", "source_parents"):
+        values = group[field]
+        if (not isinstance(values, list) or not values
+                or any(not isinstance(value, str) or not value.strip() for value in values)
+                or len(set(values)) != len(values)):
+            raise ValueError(f"{identity}: expected distinct {field}")
+
+
+def load_selections(authoring: Path, base_vocabulary: list) -> tuple[list, dict]:
+    manifest = load_yaml(authoring / "selection-files.yaml")
+    if (not isinstance(manifest, dict)
+            or set(manifest) != {"schema_version", "vocabulary", "lexical_identities"}
+            or type(manifest["schema_version"]) is not int or manifest["schema_version"] != 1):
+        raise ValueError("Invalid Korean selection-file manifest")
+    for field, base in (
+        ("vocabulary", "vocabulary.yaml"), ("lexical_identities", "lexical-identities.yaml"),
+    ):
+        names = manifest[field]
+        if (not isinstance(names, list) or not names
+                or any(not isinstance(name, str) or not re.fullmatch(r"[a-z][a-z0-9-]*\.yaml", name)
+                       for name in names)
+                or len(set(names)) != len(names) or names[0] != base):
+            raise ValueError(f"{field}: expected distinct local selection files with {base} first")
+        for name in names:
+            if (authoring / name).resolve().parent != authoring.resolve():
+                raise ValueError(f"{name}: selection file escapes its authoring directory")
+    placements = []
+    for name in manifest["vocabulary"]:
+        rows = base_vocabulary if name == "vocabulary.yaml" else load_yaml(authoring / name)
+        if not isinstance(rows, list):
+            raise ValueError(f"{name}: expected explicit vocabulary placements")
+        placements.extend(rows)
+    groups = {}
+    for name in manifest["lexical_identities"]:
+        additions = load_yaml(authoring / name)
+        if not isinstance(additions, dict):
+            raise ValueError(f"{name}: expected an explicit lexical-identity mapping")
+        for identity, fragment in additions.items():
+            validate_lexical_group(identity, fragment)
+            if identity not in groups:
+                groups[identity] = {
+                    **fragment, "members": list(fragment["members"]),
+                    "source_parents": list(fragment["source_parents"]),
+                }
+                continue
+            group = groups[identity]
+            if any(group[field] != fragment[field] for field in ("lemma", "category")):
+                raise ValueError(f"{name}: conflicting lexical identity {identity}")
+            if set(group["members"]) & set(fragment["members"]):
+                raise ValueError(f"{name}: duplicate sense members in {identity}")
+            group["members"].extend(fragment["members"])
+            group["source_parents"].extend(
+                parent for parent in fragment["source_parents"] if parent not in group["source_parents"]
+            )
+            group["rationale"] += f"\n\nAdditional selection ({name}): {fragment['rationale']}"
+    return placements, groups
+
+
 def lexical_members(groups: dict, selected: dict, senses: dict) -> tuple[dict, dict]:
     if not isinstance(groups, dict):
         raise ValueError("Lexical identities must be an explicit mapping")
     identities, categories = {}, {}
     for identity, group in groups.items():
-        text(identity, "lexical identity")
-        if set(group) != {"lemma", "category", "members", "source_parents", "rationale"}:
-            raise ValueError(f"{identity}: invalid lexical-identity fields")
-        text(group["lemma"], f"{identity}.lemma")
-        prose(group["rationale"], f"{identity}.rationale")
-        if group["category"] not in CATEGORIES:
-            raise ValueError(f"{identity}: invalid lexical count category")
-        if (not isinstance(group["members"], list) or not group["members"]
-                or len(set(group["members"])) != len(group["members"])):
-            raise ValueError(f"{identity}: expected distinct sense members")
+        validate_lexical_group(identity, group)
         actual_parents = set()
         for member in group["members"]:
             if member not in senses or member in identities:
@@ -196,6 +254,7 @@ class KoreanAdapter:
     def load(self, root: Path) -> ProgramData:
         inputs = load_inputs(root)
         authoring = root / "authoring" / "teaching"
+        inputs["vocabulary"], groups = load_selections(authoring, inputs["vocabulary"])
         registry = load_yaml(root / "source-senses.yaml")
         parents, senses = sense_index(registry)
         readings = load_yaml(root / "reading-overlay.yaml")
@@ -274,7 +333,6 @@ class KoreanAdapter:
                 "source_pattern": original["pattern"], "source_english": original["english"],
                 "source_note": original["note"], "reference_level_basis": original["level_basis"],
             }
-        groups = load_yaml(authoring / "lexical-identities.yaml")
         identities, categories = lexical_members(groups, words, senses)
         for identifier, identity in identities.items():
             provenance[identifier]["lexical_identity"] = identity

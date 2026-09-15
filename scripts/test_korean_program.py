@@ -4,6 +4,7 @@ from copy import deepcopy
 from pathlib import Path
 import re
 import unittest
+from unittest.mock import patch
 
 from curriculum_yaml import load_yaml
 from generate_practical_program import (
@@ -11,9 +12,110 @@ from generate_practical_program import (
 )
 from korean_program_adapter import (
     CORRECTION_REVIEW_STATUS, KoreanAdapter, citation_reading, inventory_counts,
-    lexical_members, phase_inventory, sense_index, source_corrections,
+    lexical_members, load_selections, phase_inventory, sense_index, source_corrections,
 )
 from practical_program_types import PhraseContext, ReferenceBundle
+
+
+class KoreanSelectionFilesTests(unittest.TestCase):
+    def setUp(self):
+        self.authoring = Path("korean-selection-fixture")
+        self.base = [{"id": "s1", "level": 2, "topic": "actions", "ds": "write"}]
+        self.extra = [{"id": "s2", "level": 9, "topic": "communication", "ds": "compose"}]
+        self.files = {
+            "selection-files.yaml": {
+                "schema_version": 1,
+                "vocabulary": ["vocabulary.yaml", "extra-vocabulary.yaml"],
+                "lexical_identities": ["lexical-identities.yaml", "extra-identities.yaml"],
+            },
+            "extra-vocabulary.yaml": self.extra,
+            "lexical-identities.yaml": {"write": {
+                "lemma": "쓰다", "category": "free-lemma", "members": ["s1"],
+                "source_parents": ["p1"], "rationale": "Initial written-production sense.",
+            }},
+            "extra-identities.yaml": {"write": {
+                "lemma": "쓰다", "category": "free-lemma", "members": ["s2"],
+                "source_parents": ["p1"], "rationale": "Composition sense of the same predicate.",
+            }},
+        }
+
+    def load(self):
+        def read(path):
+            if path.name not in self.files:
+                raise FileNotFoundError(path)
+            return self.files[path.name]
+        with patch("korean_program_adapter.load_yaml", side_effect=read):
+            return load_selections(self.authoring, self.base)
+
+    def test_ordered_fragments_preserve_one_identity_and_do_not_mutate_sources(self):
+        original = deepcopy(self.files)
+        self.files["unregistered-vocabulary.yaml"] = [{"id": "must-not-load"}]
+        placements, groups = self.load()
+        self.assertEqual(placements, self.base + self.extra)
+        self.assertEqual(groups["write"]["members"], ["s1", "s2"])
+        self.assertEqual(groups["write"]["source_parents"], ["p1"])
+        self.assertIn("Initial written-production", groups["write"]["rationale"])
+        self.assertIn("Composition sense", groups["write"]["rationale"])
+        for name, content in original.items():
+            self.assertEqual(self.files[name], content)
+        senses = {item: ({"id": "p1"}, {}) for item in ("s1", "s2")}
+        identities, categories = lexical_members(groups, {row["id"]: row for row in placements}, senses)
+        self.assertEqual(identities, {"s1": "write", "s2": "write"})
+        self.assertEqual(categories, {"write": "free-lemma"})
+
+    def test_fragment_cannot_reclassify_or_repeat_an_existing_identity_member(self):
+        for field, value, message in (
+            ("lemma", "쓰이다", "conflicting lexical identity"),
+            ("category", "function-item", "conflicting lexical identity"),
+            ("members", ["s1"], "duplicate sense members"),
+            ("source_parents", "p1", "expected distinct source_parents"),
+            ("category", [], "invalid lexical count category"),
+        ):
+            with self.subTest(field=field):
+                fragment = self.files["extra-identities.yaml"]["write"]
+                original = fragment[field]
+                fragment[field] = value
+                with self.assertRaisesRegex(ValueError, message):
+                    self.load()
+                fragment[field] = original
+
+    def test_manifest_rejects_implicit_replacement_escaping_paths_and_repeated_files(self):
+        manifest = self.files["selection-files.yaml"]
+        for names in (
+            [], ["extra-vocabulary.yaml"], ["vocabulary.yaml", "vocabulary.yaml"],
+            ["vocabulary.yaml", "../outside.yaml"], ["vocabulary.yaml", r"C:\outside.yaml"],
+            ["vocabulary.yaml", "nested/extra.yaml"], ["vocabulary.yaml", None],
+        ):
+            with self.subTest(names=names):
+                manifest["vocabulary"] = names
+                with self.assertRaisesRegex(ValueError, "distinct local selection files"):
+                    self.load()
+
+    def test_declared_missing_files_fail_instead_of_becoming_an_empty_selection(self):
+        del self.files["extra-vocabulary.yaml"]
+        with self.assertRaises(FileNotFoundError):
+            self.load()
+
+    def test_route_placements_are_not_deduplicated_by_the_korean_loader(self):
+        self.extra[:] = [{**self.base[0], "level": "literary"}]
+        self.files["extra-identities.yaml"] = {}
+        placements, groups = self.load()
+        self.assertEqual([row["level"] for row in placements], [2, "literary"])
+        self.assertEqual(groups["write"]["members"], ["s1"])
+
+    def test_manifest_schema_and_collection_types_are_explicit(self):
+        original = deepcopy(self.files)
+        for filename, content in (
+            ("selection-files.yaml", {**original["selection-files.yaml"], "schema_version": True}),
+            ("selection-files.yaml", {**original["selection-files.yaml"], "unexpected": []}),
+            ("extra-vocabulary.yaml", {}),
+            ("extra-identities.yaml", []),
+        ):
+            with self.subTest(filename=filename, content=content):
+                self.files = deepcopy(original)
+                self.files[filename] = content
+                with self.assertRaises(ValueError):
+                    self.load()
 
 
 class KoreanAdapterTests(unittest.TestCase):
@@ -416,6 +518,11 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             self.assertEqual(source["source_id"], "original-ko")
             self.assertEqual(source["reading_method"], "authored-broad-hangul")
             self.assertEqual(source["review_status"], "unreviewed")
+
+    def test_checked_in_source_reports_match_actual_selections(self):
+        for path, expected in self.data.source_outputs.items():
+            with self.subTest(path=path):
+                self.assertEqual(path.read_text(encoding="utf-8"), expected)
 
     def test_bound_and_function_categories_match_the_explicit_selection_audit(self):
         notes = load_yaml(self.root / "authoring" / "teaching" / "selection-notes.yaml")

@@ -5,6 +5,11 @@ a CEFR mapping, or a guarantee of general proficiency. Reference bands describe
 source provenance, not teaching placement. Phase, level, module, and item
 mastery are different things.
 
+**Implementation status:** the independent tourist views and current
+coverage/provenance reports are available. Generated core, phase, level, and
+branch views await the coordinated shared-scheduler integration; their paths
+below describe the intended layout. Vocabulary expansion remains in progress.
+
 ## Choose a route
 
 Start with the [Hangul preparation guidance](preparation.md) as needed, then
@@ -133,6 +138,14 @@ python -B -m unittest discover -s scripts -p "test_korean*.py"
 incorrect lexical identities, unresolved prerequisites, unlicensed phrase
 forms, and stale views are errors, not silent success-shaped fallbacks.
 Edit the authored sources rather than generated views alone.
+
+`../authoring/teaching/selection-files.yaml` declares ordered vocabulary and
+lexical-identity files; undeclared files are not discovered automatically.
+The base files come first. Additional identity fragments contain only new
+sense members, retain the same lemma and category, and state their own
+grouping rationale. Composition merges their source-parent evidence without
+counting an existing identity again. Missing files, repeated members, and
+conflicting identity decisions fail rather than silently replacing a selection.
 
 The separate `scripts\korean_sources.py` import command verifies both pinned
 sources before deriving registry/reading overlays. It takes an explicit
