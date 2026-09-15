@@ -41,14 +41,14 @@ units:
   - {id: ko-nikl-24551-s001, ch: 항생제, pr: 항ː생제, ds: an antibiotic}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-16279-s001, ch: 다치다, pr: 다치다, ds: to get hurt; to injure}
-  - {id: ko-nikl-04502-s001, ch: 안전, pr: 안전, ds: safety}
-  - {id: ko-nikl-50057-s001, ch: 위험, pr: 위험, ds: danger; risk of harm}
-  - {id: ko-nikl-22160-s002, ch: 튼튼하다, pr: 튼튼하다, ds: to be physically strong or healthy}
-  - {id: ko-nikl-47669-s001, ch: 열량, pr: 열량, ds: calories; energy obtained from food or fuel}
-  - {id: ko-nikl-39459-s001, ch: 바이러스, pr: 바이러스, ds: a virus (infectious agent)}
   - {id: ko-nikl-00379-s001, ch: 세균, pr: 세ː균, ds: bacteria; germs causing illness or spoilage}
   - {id: ko-nikl-26558-s002, ch: 감염, pr: 가ː몀, ds: infection by pathogens}
+  - {id: ko-nikl-02684-s001, ch: 시각, pr: 시ː각, ds: 'sight; the sense of seeing shapes, movement, and colors'}
+  - {id: ko-nikl-45145-s003, ch: 초점, pr: 초쩜, ds: the point of focus for seeing an object clearly}
+  - {id: ko-nikl-42673-s001, ch: 지방, pr: 지방, ds: fat; an energy-storing substance in the body}
+  - {id: ko-nikl-45729-s001, ch: 출산, pr: 출싼, ds: childbirth; giving birth to a baby}
+  - {id: ko-nikl-32690-s001, ch: 기관, pr: 기관, ds: an organ with a particular bodily form and function}
+  - {id: ko-nikl-41184-s003, ch: 조직, pr: 조직, ds: tissue; a group of cells with similar form and function}
   review_grammar:
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
   - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
@@ -80,15 +80,39 @@ units:
   - {id: ko-nikl-37151-s001, ch: 면역, pr: 며ː녁, ds: immunity acquired against a pathogen}
   - {id: ko-nikl-40358-s001, ch: 방사능, pr: 방ː사능, ds: radioactivity}
   - {id: ko-nikl-36498-s001, ch: 망원경, pr: 망ː원경, ds: a telescope}
+  - {id: ko-nikl-42419-s003, ch: 증명, pr: 증명, ds: a mathematical or logical proof from basic principles}
+  - {id: ko-nikl-43908-s002, ch: 차원, pr: 차원, ds: dimension; a mathematical measure of spatial extent}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-42159-s001, ch: 중력, pr: 중ː녁, ds: gravity; Earth's attraction of objects}
-  - {id: ko-nikl-07836-s001, ch: 빛, pr: 빋, ds: light (physical illumination)}
-  - {id: ko-nikl-00697-s001, ch: 소리, pr: 소리, ds: sound; audible vibrations}
-  - {id: ko-nikl-08727-s001, ch: 산소, pr: 산소, ds: oxygen}
-  - {id: ko-nikl-32446-s001, ch: 금속, pr: 금속, ds: metal}
-  - {id: ko-nikl-04924-s001, ch: 액체, pr: 액체, ds: a liquid}
-  - {id: ko-nikl-33103-s001, ch: 기체, pr: 기체, ds: gas; a freely spreading state of matter}
-  - {id: ko-nikl-29349-s001, ch: 고체, pr: 고체, ds: a solid (state of matter)}
+  - {id: ko-nikl-26421-s001, ch: 감각, pr: 감ː각, ds: sensory perception through the bodily senses}
+  - {id: ko-nikl-23329-s010, ch: 풀리다, pr: 풀리다, ds: to dissolve or mix evenly into a liquid}
+  - {id: ko-nikl-21164-s003, ch: 탄력, pr: 탈ː력, ds: elastic force returning an object to its original shape}
+  - {id: ko-nikl-23204-s001, ch: 표면, pr: 표면, ds: the outermost or upper surface of an object}
+  - {id: ko-nikl-21157-s001, ch: 탁하다, pr: 타카다, ds: for liquid or air to be cloudy with other substances}
+  - {id: ko-nikl-43223-s001, ch: 진하다, pr: 진하다, ds: for a liquid to be concentrated rather than dilute}
+  - {id: ko-nikl-19503-s009, ch: 따르다, pr: 따르다, ds: to be proportional to something}
+  - {id: ko-nikl-27390-s001, ch: 거르다, pr: 거르다, ds: to filter liquid with a sieve or filter paper}
+  review_grammar:
+  - {id: ko-topik5-g002, ch: V/A-기 마련이다, ds: present an expected tendency rather than a law}
+- id: extension-scientific-science-02
+  title: Science and investigation - 2
+  outcome: Explain a general scientific account without overstating method or conclusion.
+  vocabulary:
+  - {id: ko-nikl-45145-s002, ch: 초점, pr: 초쩜, ds: the focal point where rays of light meet}
+  - {id: ko-nikl-41623-s002, ch: 주기, pr: 주기, ds: the time required for one complete rotation}
+  - {id: ko-nikl-42732-s001, ch: 지수, pr: 지수, ds: an exponent indicating a power}
+  - {id: ko-nikl-13490-s002, ch: 저항, pr: 저ː항, ds: a force opposing an object's motion}
+  - {id: ko-nikl-36715-s002, ch: 매체, pr: 매체, ds: a medium transmitting an action or effect elsewhere}
+  - {id: ko-nikl-51755-s002, ch: 확산, pr: 확싼, ds: diffusion that equalizes concentrations in mixed substances}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-23221-s002, ch: 표본, pr: 표본, ds: a preserved biological specimen}
+  - {id: ko-nikl-05436-s002, ch: 변수, pr: 변ː수, ds: a variable (a quantity taking different values)}
+  - {id: ko-nikl-50380-s002, ch: 유전, pr: 유전, ds: heredity; biological inheritance}
+  - {id: ko-nikl-37151-s001, ch: 면역, pr: 며ː녁, ds: immunity acquired against a pathogen}
+  - {id: ko-nikl-40358-s001, ch: 방사능, pr: 방ː사능, ds: radioactivity}
+  - {id: ko-nikl-36498-s001, ch: 망원경, pr: 망ː원경, ds: a telescope}
+  - {id: ko-nikl-42419-s003, ch: 증명, pr: 증명, ds: a mathematical or logical proof from basic principles}
+  - {id: ko-nikl-43908-s002, ch: 차원, pr: 차원, ds: dimension; a mathematical measure of spatial extent}
   review_grammar:
   - {id: ko-topik5-g002, ch: V/A-기 마련이다, ds: present an expected tendency rather than a law}

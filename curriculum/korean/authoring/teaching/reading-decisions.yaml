@@ -256,7 +256,43 @@ ko-nikl-52469:
   method: authored-broad-hangul
   reason: "Individually authored for the mobile phone crosswalked to official 88425. Preserve the 휴 glide, aspirated ㅍ, and final ㄴ; no consonant boundary requires assimilation. Vowel length is not inferred for this broad, unverified reading; official text is absent."
   review_status: unreviewed
-# Intentionally unresolved: selected ko-nikl-12867-s001 (장르), exact official
-# identity 24809, has no pronunciation text. The loanword's nasal-plus-liquid
-# boundary needs qualified review; no unverified choice between retaining ㄹ
-# and applying nasal assimilation is asserted here.
+# Expansion selected readings: individually authored citation proposals only,
+# not dictionary-verified pronunciations, recordings, or sentence readings.
+ko-nikl-07608:
+  pronunciations: [비전]
+  method: authored-broad-hangul
+  reason: "Individually authored for the future prospect/plan noun whose complete definition exactly matches official 60719. Preserve the open 비 syllable, plain ㅈ onset, and final nasal ㄴ; no stop coda, consonant cluster, or liaison environment requires a rewrite. Official pronunciation text is absent."
+  review_status: unreviewed
+ko-nikl-19454:
+  pronunciations: [디지털]
+  method: authored-broad-hangul
+  reason: "Individually authored for representing phenomena numerically, exactly identified with official 54451. Preserve the three syllables 디-지-털, including aspirated ㅌ and final lateral ㄹ. The preceding open syllables supply no stop-triggered tensification or nasal-liquid assimilation; no vowel length is inferred from absent official text."
+  review_status: unreviewed
+ko-nikl-20220:
+  pronunciations: [로그인]
+  method: authored-broad-hangul
+  reason: "Individually authored for entering a registered user name and password, crosswalked to official 52528 after comparing the whole definition. Preserve initial ㄹ, the separate open 그 and vowel-initial 인 syllables, and citation-final ㄴ. Because ㄱ is the onset of 그 rather than a coda, no liaison or stop neutralization is introduced. Official pronunciation text is absent."
+  review_status: unreviewed
+ko-nikl-20591:
+  pronunciations: [칼럼]
+  method: authored-broad-hangul
+  reason: "Individually authored for the newspaper/magazine commentary column crosswalked to official 81715. Preserve aspirated initial ㅋ, the ㄹ-ㄹ lateral sequence across 칼-럼, and final nasal ㅁ. This explicitly retains the already lateral boundary rather than guessing a nasal-liquid change; the official entry has no pronunciation text."
+  review_status: unreviewed
+ko-nikl-35367:
+  pronunciations: [네트워크]
+  method: authored-broad-hangul
+  reason: "Individually authored after all three computer, broadcasting, and institutional-network definitions exactly match official 41570. Preserve 네-트-워-크 as four open Korean syllables, the 워 glide, and aspirated ㅌ and ㅋ. No coda exists to neutralize or nasalize, and no English consonant cluster is reintroduced. Official pronunciation text is absent."
+  review_status: unreviewed
+ko-nikl-16230:
+  pronunciations: [다운로드]
+  method: authored-broad-hangul
+  reason: >
+    Explicit provisional consonant-preserving loanword reading, not a fallback
+    from spelling. Heo Cheol-gu's 2016-06-09 Hankook Ilbo linguistic commentary
+    reports this retained ㄴ+ㄹ variant of 다운로드 while discussing competing
+    assimilated forms: https://www.hankookilbo.com/news/article/201606091433486974 .
+    Retain the 다운-로드 boundary without forcing ㄹㄹ or ㄴㄴ assimilation.
+    Official entry 40562 supplies no pronunciation text. This authored choice
+    does not establish a unique standard, current usage frequency, or verified
+    learner audio; qualified review and contextual listening remain necessary.
+  review_status: unreviewed

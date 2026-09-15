@@ -101,6 +101,7 @@ category_adjudication:
     ko-lex-40947: 번; number, order, or occurrence counter
     ko-lex-43838: 차; bound order, occasion, or elapsed-period stage marker
     ko-lex-45013: 초; second unit
+    ko-lex-47192: 여지; dependent noun for room or possibility
     ko-lex-49668: 원; Korean currency unit
     ko-lex-49842: 월; calendar-month unit
   function-item: >
@@ -130,6 +131,8 @@ category_adjudication:
       - ko-lex-48724
       - ko-lex-12261
       - ko-lex-37110
+      - ko-lex-09304
+      - ko-lex-13978
     cardinals_and_multiples:
       - ko-lex-40533
       - ko-lex-23787
@@ -167,6 +170,55 @@ category_adjudication:
       - ko-lex-44782
       - ko-lex-18843
       - ko-lex-00567
+    quantity_and_degree_operators:
+      - ko-lex-00807
+      - ko-lex-16180
+      - ko-lex-16195
+      - ko-lex-16200
+    discourse_linking_and_examples:
+      - ko-lex-10646
+      - ko-lex-17434
+      - ko-lex-17516
+      - ko-lex-17835
+      - ko-lex-19776
+      - ko-lex-23887
+      - ko-lex-24313
+      - ko-lex-25670
+      - ko-lex-27899
+      - ko-lex-35042
+      - ko-lex-39247
+      - ko-lex-39637
+      - ko-lex-42362
+      - ko-lex-48078
+      - ko-lex-49076
+      - ko-lex-51413
+    focus_stance_and_uncertainty:
+      - ko-lex-00866
+      - ko-lex-03447
+      - ko-lex-10645
+      - ko-lex-14643
+      - ko-lex-16493
+      - ko-lex-18650
+      - ko-lex-22170
+      - ko-lex-25568
+      - ko-lex-46566
+      - ko-lex-51408
+      - ko-lex-04162
+      - ko-lex-04175
+      - ko-lex-07502
+      - ko-lex-10866
+      - ko-lex-17769
+      - ko-lex-23965
+      - ko-lex-46553
+      - ko-lex-46569
+      - ko-lex-46579
+      - ko-lex-48738
+    negative_polarity_and_absence:
+      - ko-lex-17865
+      - ko-lex-28235
+      - ko-lex-41337
+      - ko-lex-43882
+      - ko-lex-46850
     negation_and_pro_predicates:
       - ko-lex-04059
       - ko-lex-04399
@@ -256,6 +308,13 @@ multi_parent_decisions:
       temporal lexeme, not separately counted homographs.
 
 additional_grouping_evidence:
+  narration-argument-and-interpretation: >
+    expansion-identities.yaml and expansion-notes.yaml document literal and
+    figurative source senses, discourse operators, the bound 여지 identity,
+    and explicit source-category or emphatic-form groupings. These analyses
+    retain source meanings and count additional senses as depth rather than
+    extra headwords. The source-correction ledger separately preserves
+    original bilingual text and unreviewed authored interpretations.
   early-counting-calendar: >
     early-identities.yaml and early-notes.yaml document the native-number
     numeral/determiner pairs, ordinal pairs, and explicit noun/adverb
@@ -304,13 +363,19 @@ homograph_and_source_position_notes:
 
 remaining_domain_review:
   - Broader useful general-interest vocabulary is still needed in later levels.
-  - Complete the uncategorized-source review without assigning a default advanced level.
+  - Continue targeted useful-domain curation without assigning unselected words a default advanced level.
   - Deepen everyday action verbs, discourse expressions, and contextual calendar practice.
   - Review further ingredients, personal care, services, and unfamiliar everyday problems.
   - Technology, environment, institutions, arts, and critical argument need more breadth.
   - Optional branches are introductions, not professional or disciplinary certification.
 
 source_support_review:
+  - >
+    Targeted project and literary gaps now have original unbanded parents:
+    재검토13016, 누락15352, 문체38489, explanatory 주석41767, 초안45112,
+    and 은유50947. Every complete ordered definition list matches its official
+    reading entry exactly. The long-vowel annotation 주ː석 is not the
+    chairman or metal homograph. The two rough-draft senses share one identity.
   - >
     The original unbanded parent ko-nikl-43838 now supplies all three
     order, occasion, and elapsed-period senses of bound 차. Its exact

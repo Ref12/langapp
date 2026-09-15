@@ -80,5 +80,11 @@ as a textbook. Attribute the Ministry of Culture, Sports and Tourism and NIKL.
 The TOPIK/NIIED and Sejong pages are reference-only copyrighted sources. Their
 logos, exam questions, course text, audio, and videos are not included.
 
+Heo Cheol-gu's 2016 Hankook Ilbo pronunciation commentary is a separate
+copyrighted, reference-only source. Its bibliographic link is in `sources.yaml`;
+no article sentences or media are redistributed. The associated download
+reading is an explicitly provisional authored teaching choice, not an imported
+official pronunciation or a claim that the article carries an open-content license.
+
 No warranty of linguistic accuracy, exam completeness, fitness for a particular
 purpose, or availability of third-party services is provided.

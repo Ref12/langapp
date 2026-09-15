@@ -30,6 +30,64 @@ checkpoint:
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: level-13-people-01
+  title: People and relationships - 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary:
+  - {id: ko-nikl-01308-s001, ch: 솔직하다, pr: 솔찌카다, ds: to be candid; free from lies or pretense}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-08289-s001, ch: 사랑하다, pr: 사랑하다, ds: love romantically; be attracted to someone}
+  - {id: ko-nikl-08280-s001, ch: 사랑, pr: 사랑, ds: romantic love}
+  - {id: ko-nikl-41493-s004, ch: 좋아하다, pr: 조ː아하다, ds: to like or be fond of a person}
+  - {id: ko-nikl-49390-s001, ch: 우정, pr: 우ː정, ds: friendship}
+  - {id: ko-nikl-47507-s001, ch: 연애, pr: 여ː내, ds: dating; a romantic relationship}
+  - {id: ko-nikl-20399-s001, ch: 친절, pr: 친절, ds: kindness; friendly treatment}
+  - {id: ko-nikl-00143-s001, ch: 성격, pr: 성ː껵, ds: personality; character}
+  - {id: ko-nikl-02844-s001, ch: 시선, pr: 시선, ds: a gaze directed toward something}
+  review_grammar:
+  - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
+  - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
+  - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
+- id: level-13-time-01
+  title: Time and events - 1
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary:
+  - {id: ko-nikl-49699-s001, ch: 원래, pr: 월래, ds: originally; from the beginning or by nature}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-10550-s001, ch: 이따금, pr: 이따금, ds: occasionally; once in a while}
+  - {id: ko-nikl-41463-s001, ch: 종종, pr: 종ː종, ds: occasionally; from time to time}
+  - {id: ko-nikl-45013-s001, ch: 초, pr: 초, ds: second (time unit)}
+  - {id: ko-nikl-10854-s002, ch: 이어지다, pr: 이어지다, ds: for an event or activity to continue}
+  - {id: ko-nikl-17977-s002, ch: 도중, pr: 도ː중, ds: in the middle of an ongoing activity}
+  - {id: ko-nikl-04796-s002, ch: 앞서, pr: 압써, ds: earlier; at a previous time}
+  - {id: ko-nikl-31973-s001, ch: 그동안, pr: 그동안, ds: the intervening period; the time since last contact}
+  - {id: ko-nikl-02682-s001, ch: 시각, pr: 시각, ds: a particular point in time}
+  review_grammar:
+  - {id: ko-topik4-g002, ch: V/A-던 N, ds: recall a habitual or unfinished past modifier}
+  - {id: ko-topik4-g003, ch: V/A-았/었던 N, ds: recall a bounded or completed past situation}
+  - {id: ko-topik3-g011, ch: V-는 동안, ds: locate an event during another activity}
+- id: level-13-actions-01
+  title: Actions and processes - 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary:
+  - {id: ko-nikl-10633-s002, ch: 이루다, pr: 이루다, ds: to achieve a desired result}
+  - {id: ko-nikl-10634-s002, ch: 이루어지다, pr: 이루어지다, ds: to come true; to turn out as desired}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-43227-s002, ch: 진행, pr: 진ː행, ds: the continued progress of an activity}
+  - {id: ko-nikl-48601-s001, ch: 완료, pr: 왈료, ds: completion; finishing something entirely}
+  - {id: ko-nikl-15907-s001, ch: 늘어놓다, pr: 느러노타, ds: to lay objects out in a row}
+  - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
+  - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
+  - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
+  - {id: ko-nikl-25705-s001, ch: 가리다, pr: 가리다, ds: to hide or block something from view or passage}
+  - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
+  review_grammar:
+  - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
+  - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
+  - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
 - id: level-13-description-01
   title: Description and comparison - 1
   outcome: Use descriptive predicates and precise comparison standards.
@@ -37,16 +95,19 @@ units:
   - {id: ko-nikl-34749-s001, ch: 낫다, pr: 낟ː따, ds: to be better than something else}
   - {id: ko-nikl-39593-s001, ch: 반대, pr: 반ː대, ds: the opposite; a complete contrast}
   - {id: ko-nikl-42241-s001, ch: 중요, pr: 중ː요, ds: importance; being valuable and necessary}
+  - {id: ko-nikl-22850-s001, ch: 평범하다, pr: 평범하다, ds: to be ordinary; neither outstanding nor special}
+  - {id: ko-nikl-32291-s002, ch: 근사하다, pr: 근ː사하다, ds: to be stylish and pleasing to look at}
+  - {id: ko-nikl-52363-s001, ch: 훌륭하다, pr: 훌륭하다, ds: to be excellent and worthy of praise}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-14944-s001, ch: 제일, pr: 제ː일, ds: most; best among several}
-  - {id: ko-nikl-25600-s001, ch: 가능, pr: 가ː능, ds: possibility; being able to do something}
-  - {id: ko-nikl-04143-s001, ch: 아름답다, pr: 아름답따, ds: to be beautiful to see or hear}
-  - {id: ko-nikl-37029-s001, ch: 멋있다, pr: 머딛따 / 머싣따, ds: to be stylish; to be impressive}
-  - {id: ko-nikl-40533-s001, ch: 배, pr: 배ː, ds: double; twice as much}
   - {id: ko-nikl-05491-s001, ch: 변화, pr: 변ː화, ds: change; a change of state or nature}
   - {id: ko-nikl-09352-s001, ch: 새롭다, pr: 새롭따, ds: to be new; to be unlike what came before}
   - {id: ko-nikl-26197-s001, ch: 간단하다, pr: 간단하다, ds: to be short or uncomplicated}
+  - {id: ko-nikl-09791-s001, ch: 서서히, pr: 서ː서히, ds: slowly and gradually}
+  - {id: ko-nikl-19099-s001, ch: 드러나다, pr: 드러나다, ds: for something hidden to become visible}
+  - {id: ko-nikl-15044-s001, ch: 조각, pr: 조각, ds: a fragment or piece separated from a whole}
+  - {id: ko-nikl-25703-s001, ch: 가리다, pr: 가리다, ds: to be hidden or blocked from view or passage}
+  - {id: ko-nikl-47182-s001, ch: 여전히, pr: 여전히, ds: still; in the same state as before}
   review_grammar:
   - {id: ko-topik2-g019, ch: N 중에서 가장/제일, ds: identify the highest degree within a set}
   - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
@@ -60,16 +121,17 @@ units:
   - {id: ko-nikl-30354-s001, ch: 관심, pr: 관심, ds: interest; attention}
   - {id: ko-nikl-52718-s001, ch: 흥미, pr: 흥ː미, ds: interest; fascination}
   - {id: ko-nikl-45968-s001, ch: 취향, pr: 취ː향, ds: taste; personal preference}
+  - {id: ko-nikl-42627-s001, ch: 지루하다, pr: 지루하다, ds: to be boring or tiresome through repetition}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-51604-s001, ch: 화나다, pr: 화ː나다, ds: to become angry}
-  - {id: ko-nikl-38084-s001, ch: 무섭다, pr: 무섭따, ds: to be afraid of; to be frightening}
-  - {id: ko-nikl-48809-s001, ch: 외롭다, pr: 외롭따 / 웨롭따, ds: to be lonely}
-  - {id: ko-nikl-06329-s001, ch: 부끄럽다, pr: 부끄럽따, ds: to be shy; to feel bashful}
-  - {id: ko-nikl-03589-s001, ch: 싫다, pr: 실타, ds: to be disliked; not to appeal}
-  - {id: ko-nikl-03591-s001, ch: 싫어하다, pr: 시러하다, ds: to dislike; not to want}
-  - {id: ko-nikl-49627-s001, ch: 웃음, pr: 우슴, ds: a smile; laughter}
   - {id: ko-nikl-15553-s001, ch: 눈물, pr: 눈물, ds: tears}
+  - {id: ko-nikl-08255-s002, ch: 사라지다, pr: 사라지다, ds: for a thought or feeling to fade away}
+  - {id: ko-nikl-38384-s001, ch: 문득, pr: 문득, ds: 'suddenly, as a thought or feeling comes to mind'}
+  - {id: ko-nikl-06935-s001, ch: 분위기, pr: 부뉘기, ds: the mood or atmosphere of an occasion}
+  - {id: ko-nikl-26465-s001, ch: 감동, pr: 감ː동, ds: being deeply moved or emotionally touched}
+  - {id: ko-nikl-43314-s001, ch: 질투, pr: 질투, ds: romantic jealousy toward a partner}
+  - {id: ko-nikl-23329-s002, ch: 풀리다, pr: 풀리다, ds: for an unpleasant feeling to subside}
+  - {id: ko-nikl-40170-s007, ch: 밝다, pr: 박따, ds: to be cheerful and lively in expression or character}
   review_grammar:
   - {id: ko-topik4-g001, ch: V/A-더라고요, ds: report a personal observation or discovery}
   - {id: ko-topik5-g032, ch: V/A-(으)ㄹ 줄 알았다 / 몰랐다, ds: recall an expectation rather than a learned skill}
@@ -96,11 +158,15 @@ units:
   - {id: ko-nikl-26896-s008, ch: 같다, pr: 갇따, ds: to seem; to appear likely}
   - {id: ko-nikl-16126-s001, ch: 다르다, pr: 다르다, ds: to be different}
   - {id: ko-nikl-07559-s001, ch: 비슷하다, pr: 비스타다, ds: to be similar; to resemble}
+  - {id: ko-nikl-48007-s001, ch: 예상, pr: 예ː상, ds: an expectation about a future event or situation}
+  - {id: ko-nikl-19776-s001, ch: 또는, pr: 또는, ds: or; alternatively}
+  - {id: ko-nikl-51408-s003, ch: 혹시, pr: 혹씨, ds: perhaps; as one tentatively guesses}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-48724-s001, ch: 왜, pr: 왜ː, ds: 'why?'}
   - {id: ko-nikl-31989-s001, ch: 그래서, pr: 그래서, ds: so; therefore}
   - {id: ko-nikl-09482-s002, ch: 생각, pr: 생각, ds: a memory; recollection}
+  - {id: ko-nikl-32959-s001, ch: 기억, pr: 기억, ds: memory; remembering past facts or experiences}
   - {id: ko-nikl-40348-s001, ch: 방법, pr: 방법, ds: a method; a way of doing something}
   - {id: ko-nikl-28117-s001, ch: 결과, pr: 결과, ds: a result; an outcome}
   - {id: ko-nikl-30206-s001, ch: 과정, pr: 과ː정, ds: a process; the course of an event}
@@ -125,14 +191,14 @@ units:
   grammar:
   - {id: ko-topik5-g029, ch: V/A-(으)ㄹ까 하다, ds: express a tentative intention}
   review_vocabulary:
-  - {id: ko-nikl-20919-s002, ch: 크다, pr: 크다, ds: to grow up; to become an adult}
-  - {id: ko-nikl-08289-s001, ch: 사랑하다, pr: 사랑하다, ds: love romantically; be attracted to someone}
   - {id: ko-nikl-08280-s001, ch: 사랑, pr: 사랑, ds: romantic love}
   - {id: ko-nikl-41493-s004, ch: 좋아하다, pr: 조ː아하다, ds: to like or be fond of a person}
   - {id: ko-nikl-49390-s001, ch: 우정, pr: 우ː정, ds: friendship}
   - {id: ko-nikl-47507-s001, ch: 연애, pr: 여ː내, ds: dating; a romantic relationship}
   - {id: ko-nikl-20399-s001, ch: 친절, pr: 친절, ds: kindness; friendly treatment}
   - {id: ko-nikl-00143-s001, ch: 성격, pr: 성ː껵, ds: personality; character}
+  - {id: ko-nikl-02844-s001, ch: 시선, pr: 시선, ds: a gaze directed toward something}
+  - {id: ko-nikl-01308-s001, ch: 솔직하다, pr: 솔찌카다, ds: to be candid; free from lies or pretense}
   review_grammar:
   - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
@@ -144,14 +210,14 @@ units:
   grammar:
   - {id: ko-topik5-g005, ch: V/A-(으)ㄹ 만하다, ds: evaluate worth or tolerability rather than ability}
   review_vocabulary:
-  - {id: ko-nikl-37029-s001, ch: 멋있다, pr: 머딛따 / 머싣따, ds: to be stylish; to be impressive}
-  - {id: ko-nikl-40533-s001, ch: 배, pr: 배ː, ds: double; twice as much}
-  - {id: ko-nikl-05491-s001, ch: 변화, pr: 변ː화, ds: change; a change of state or nature}
-  - {id: ko-nikl-09352-s001, ch: 새롭다, pr: 새롭따, ds: to be new; to be unlike what came before}
-  - {id: ko-nikl-26197-s001, ch: 간단하다, pr: 간단하다, ds: to be short or uncomplicated}
+  - {id: ko-nikl-25703-s001, ch: 가리다, pr: 가리다, ds: to be hidden or blocked from view or passage}
+  - {id: ko-nikl-47182-s001, ch: 여전히, pr: 여전히, ds: still; in the same state as before}
   - {id: ko-nikl-34749-s001, ch: 낫다, pr: 낟ː따, ds: to be better than something else}
   - {id: ko-nikl-39593-s001, ch: 반대, pr: 반ː대, ds: the opposite; a complete contrast}
   - {id: ko-nikl-42241-s001, ch: 중요, pr: 중ː요, ds: importance; being valuable and necessary}
+  - {id: ko-nikl-22850-s001, ch: 평범하다, pr: 평범하다, ds: to be ordinary; neither outstanding nor special}
+  - {id: ko-nikl-32291-s002, ch: 근사하다, pr: 근ː사하다, ds: to be stylish and pleasing to look at}
+  - {id: ko-nikl-52363-s001, ch: 훌륭하다, pr: 훌륭하다, ds: to be excellent and worthy of praise}
   review_grammar:
   - {id: ko-topik2-g019, ch: N 중에서 가장/제일, ds: identify the highest degree within a set}
   - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
@@ -165,14 +231,14 @@ units:
   - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
   - {id: ko-topik3-g020, ch: V/A-(으)ㄴ/는 탓에, ds: attribute an unfavorable result to a cause}
   review_vocabulary:
-  - {id: ko-nikl-07452-s001, ch: 비교, pr: 비ː교, ds: comparison; examining similarities and differences}
-  - {id: ko-nikl-12957-s001, ch: 장점, pr: 장쩜, ds: an advantage; a strength}
-  - {id: ko-nikl-16478-s001, ch: 단점, pr: 단ː쩜, ds: a drawback; a weakness}
   - {id: ko-nikl-04150-s001, ch: 아마, pr: 아마, ds: probably; presumably}
   - {id: ko-nikl-26896-s001, ch: 같다, pr: 갇따, ds: to be the same}
   - {id: ko-nikl-26896-s008, ch: 같다, pr: 갇따, ds: to seem; to appear likely}
   - {id: ko-nikl-16126-s001, ch: 다르다, pr: 다르다, ds: to be different}
   - {id: ko-nikl-07559-s001, ch: 비슷하다, pr: 비스타다, ds: to be similar; to resemble}
+  - {id: ko-nikl-48007-s001, ch: 예상, pr: 예ː상, ds: an expectation about a future event or situation}
+  - {id: ko-nikl-19776-s001, ch: 또는, pr: 또는, ds: or; alternatively}
+  - {id: ko-nikl-51408-s003, ch: 혹시, pr: 혹씨, ds: perhaps; as one tentatively guesses}
   review_grammar:
   - {id: ko-topik2-g012, ch: N 때문에 / V/A-기 때문에, ds: state an explicit noun or clause cause}
   - {id: ko-topik2-g034, ch: V/A-(으)ㄴ/는 것 같다, ds: mark an impression or tentative inference}
@@ -186,14 +252,14 @@ units:
   - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   review_vocabulary:
-  - {id: ko-nikl-07452-s001, ch: 비교, pr: 비ː교, ds: comparison; examining similarities and differences}
-  - {id: ko-nikl-12957-s001, ch: 장점, pr: 장쩜, ds: an advantage; a strength}
-  - {id: ko-nikl-16478-s001, ch: 단점, pr: 단ː쩜, ds: a drawback; a weakness}
   - {id: ko-nikl-04150-s001, ch: 아마, pr: 아마, ds: probably; presumably}
   - {id: ko-nikl-26896-s001, ch: 같다, pr: 갇따, ds: to be the same}
   - {id: ko-nikl-26896-s008, ch: 같다, pr: 갇따, ds: to seem; to appear likely}
   - {id: ko-nikl-16126-s001, ch: 다르다, pr: 다르다, ds: to be different}
   - {id: ko-nikl-07559-s001, ch: 비슷하다, pr: 비스타다, ds: to be similar; to resemble}
+  - {id: ko-nikl-48007-s001, ch: 예상, pr: 예ː상, ds: an expectation about a future event or situation}
+  - {id: ko-nikl-19776-s001, ch: 또는, pr: 또는, ds: or; alternatively}
+  - {id: ko-nikl-51408-s003, ch: 혹시, pr: 혹씨, ds: perhaps; as one tentatively guesses}
   review_grammar:
   - {id: ko-topik3-g015, ch: V/A-아/어도, ds: keep a conclusion despite a circumstance}
   - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
@@ -206,14 +272,14 @@ units:
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
   review_vocabulary:
-  - {id: ko-nikl-07452-s001, ch: 비교, pr: 비ː교, ds: comparison; examining similarities and differences}
-  - {id: ko-nikl-12957-s001, ch: 장점, pr: 장쩜, ds: an advantage; a strength}
-  - {id: ko-nikl-16478-s001, ch: 단점, pr: 단ː쩜, ds: a drawback; a weakness}
   - {id: ko-nikl-04150-s001, ch: 아마, pr: 아마, ds: probably; presumably}
   - {id: ko-nikl-26896-s001, ch: 같다, pr: 갇따, ds: to be the same}
   - {id: ko-nikl-26896-s008, ch: 같다, pr: 갇따, ds: to seem; to appear likely}
   - {id: ko-nikl-16126-s001, ch: 다르다, pr: 다르다, ds: to be different}
   - {id: ko-nikl-07559-s001, ch: 비슷하다, pr: 비스타다, ds: to be similar; to resemble}
+  - {id: ko-nikl-48007-s001, ch: 예상, pr: 예ː상, ds: an expectation about a future event or situation}
+  - {id: ko-nikl-19776-s001, ch: 또는, pr: 또는, ds: or; alternatively}
+  - {id: ko-nikl-51408-s003, ch: 혹시, pr: 혹씨, ds: perhaps; as one tentatively guesses}
   review_grammar:
   - {id: ko-topik3-g022, ch: V/A-(으)ㄹ지도 모르다, ds: acknowledge an uncertain possibility}
   - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}

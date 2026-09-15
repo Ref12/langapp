@@ -1,0 +1,809 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: substantial curated expansion; not complete-scale coverage
+
+scope:
+  - Only the three expansion files are authored here.
+  - Base vocabulary, identities, corrections, grammar, sources, and readings are unchanged.
+  - Placements and compact labels were authored after reading original bilingual senses.
+  - Topic searches discovered candidates; they did not assign teaching levels or select senses.
+  - Source bands, alphabetic order, source ordinals, and quotas never determine placement.
+  - Every unselected source position remains available in the unchanged source registry.
+  - Newly parent-selected essential-verb and bound 차 senses are not duplicated here.
+
+integration:
+  selection_manifest: >
+    selection-files.yaml registers expansion-vocabulary.yaml and
+    expansion-identities.yaml after the base and early files. The parent
+    performs the actual strict composition; source IDs and existing identity
+    memberships are preserved rather than overwritten.
+  vocabulary: >
+    Append expansion-vocabulary.yaml to the base explicit vocabulary list.
+    Reject duplicate sense IDs rather than overwriting an existing placement.
+  identities: >
+    expansion-identities.yaml has the same exact five-field root mapping as
+    the base manifest. New identity keys can be added directly. For an existing
+    key, retain the same lemma and category, union members and source_parents,
+    and retain both base and expansion rationales. Expansion records contain
+    only expansion members, not duplicate copies of base memberships.
+  existing_identity_extensions:
+    ko-lex-04150: Adds the explicitly emphatic 아마도 source form, not a new free lemma.
+    ko-lex-08065: Adds the embedded-object-base sense of 뿌리.
+    ko-lex-11667: Adds reading signs, situations, and computer data to 읽다.
+    ko-lex-32079: Adds the beautiful-scene metaphor of 그림.
+    ko-lex-33312: Adds intensity and dense-darkness senses of 깊다.
+  corrections: >
+    The documented source-correction requests below are incorporated into the
+    parent-owned correction ledger under its existing unreviewed interpretation
+    contract. Their quoted original bilingual text remains unchanged.
+  readings: >
+    original_reading_gaps records the historical handoff, not current missing
+    readings. All listed parents were subsequently resolved individually
+    through official text or explicitly unreviewed authored readings.
+    source-provenance.yaml and coverage.yaml report the current methods;
+    unselected source gaps are not blockers.
+
+curation_rationales:
+  narration_and_process: >
+    Distinguish the course, cause, occasion, beginning, and ending of an event.
+    Select relevant senses of change verbs rather than their first position
+    automatically: 진행 is ongoing activity, 틈틈이 is use of spare time,
+    and 밝혀지다 concerns facts becoming known rather than lamps becoming bright.
+  evidence_and_argument: >
+    Differentiate an actual case, a clue, a guess, substantiation, a forecast,
+    and a stated justification. Qualifying connectors and precise comparisons
+    support extended argument without pretending that every added sense is
+    additional lexical breadth.
+  institutions_and_science: >
+    General civic, economic, health, and scientific literacy remains core.
+    Mathematical proof, optical focal points, exponents, rotational periods,
+    machine engines, and specialist word formation are optional senses.
+    Narrow source definitions of 연금 and 판사 are not broadened into universal
+    claims about pensions or every category of judge.
+  values_and_register: >
+    Contrast conviction with distrust, confidence with arrogance, concession
+    with coercion, and explanation with an evasive excuse. The actual sense
+    of 황당하다 describes absurd words or actions; it is not relabeled as a
+    person's surprise. Honorific meanings are selected as their own source
+    senses, without adding conjugated surface forms as new lemmas.
+  arts_and_interpretation: >
+    Add plot construction, creative originality, performance, material and
+    style, cultural inheritance, criticism, and narrative perspective.
+    Interpretive meanings of 시선, 색채, 줄기, 무게, 이면, and 주류 are tied to
+    their exact source positions, not invented figurative extensions.
+  independent_projects: >
+    Survey questions, records, charts, main text, referencing, planning,
+    implementation, review of shortcomings, and application of knowledge
+    form a usable independent-project vocabulary. These placements are
+    authored project-context decisions, not source difficulty claims.
+  everyday_tone_and_sensory_description: >
+    Extend later reading and interpersonal language with awkwardness, familiarity,
+    restraint, understatement, facial expression, sound, texture, and atmosphere.
+    Physical senses are not automatically placed late: their later figurative
+    uses are selected separately. 냉정하다 is the source's unaffectionate attitude,
+    not an invented calm-and-rational sense. Smooth writing, dry prose, coarse
+    speech, a bright outlook, and a dark mood retain their own source positions.
+    Negative-polarity labels describe interpretation with a following predicate;
+    they do not license inserting a negation into the original source record.
+  public_information_and_privacy: >
+    Add distinctions between editorials and reports, public announcements and
+    personal notification, statements and allegations, leakage and forgery,
+    and publicity and critical commentary. A general rumor is not automatically
+    misinformation. The illegal-outflow meaning of 유출 is supported by the
+    Korean definition and requires its own correction request. 설치 retains
+    the source's equipment/facility sense rather than inventing a software-only
+    definition; 가상 is a hypothetical situation, not a fabricated VR headword.
+  native_verbs_for_extended_discourse: >
+    Explicitly select revising text, handling a topic, giving reasons, adopting
+    criticism, handing over duties, diverting a conversation, reviving memories,
+    and describing complex relationships. 내다 is represented by particular
+    publishing, submission, payment, time-making, and result senses, not by a
+    blanket first-sense row or a generic English do. Unselected literal and
+    specialized positions remain available in the raw registry.
+  agency_care_and_judgment: >
+    Add noticing versus discovering, mastering through practice versus becoming
+    familiar, entrusting versus taking responsibility, conserving versus
+    cherishing, and leading versus following. Figurative grasping, stretching,
+    filtering, and reversal retain exact original positions. The source gives
+    깨우치다 a causative explanation, so its label does not simply duplicate
+    깨닫다. 뻗다's die/collapse position is explicitly marked slang.
+  selection_restraint: >
+    Unavailable requested concepts were left out. For example, the inspected
+    개관 source referred to opening a venue, not a general overview; 대입
+    referred to college entrance, not mathematical substitution; and 사유 was
+    a reason, not philosophical contemplation. 소수 and 다수 mean few and many,
+    not necessarily a statistical minority and majority. 유연하다 was not
+    broadened from physical pliability into organizational adaptability.
+
+identity_policy:
+  naming: >
+    ko-lex names are stable local identifiers anchored to retained CSV-record
+    names. Neither these names nor ko-nikl source IDs are official NIKL IDs.
+  default_authored_decision: >
+    For each source parent independently inspected and explicitly selected,
+    retain its selected semantic boundary as one provisional source-anchored
+    teaching identity, except for the documented group decisions below.
+    The full manifest mechanically enumerates these authored memberships,
+    labels, source POS evidence, and homograph rationales. It does not make
+    new curriculum selections or claim every source parent is a true lexeme.
+  counting: >
+    Report dictionary parents, selected senses, spellings, and provisional
+    free-lemma identities separately. Polysemy, source category alternation,
+    counters attached to a free noun, and emphatic or case-marked variants
+    do not automatically add free-headword breadth.
+  free_lemma: >
+    Independently selected content nouns, predicates, lexical adverbs, and
+    lexical -적 modifiers are provisional free-lemma candidates. The -적
+    entries are actual selected source headwords, not generated suffix forms.
+    Unselected nominal counterparts were not added merely to double counts.
+    Related derivational families such as 비관/비관적 still need lexical-family
+    review; their source entries alone do not prove exact true-lexeme breadth.
+  bound_form: >
+    여지 is the selected dependent noun for room or possibility. The source's
+    explicit dependent-noun analysis supports its bound-form category.
+    The selected counting uses of 조각 and 차례 remain members of their free
+    lexical noun identities and do not create additional headwords.
+  function_item: >
+    The explicit roster below separates discourse connectives, focus and
+    uncertainty operators, reciprocal/former reference, and quantity operators
+    from free-lemma counting. This is a documented teaching-accounting decision,
+    not a claim that source POS alone proves a universal closed-class taxonomy.
+    Existing identity categories, including the base 아마 group, are preserved.
+  bound_form_identity_ids:
+    - ko-lex-47192
+  function_identity_ids:
+    - ko-lex-00807
+    - ko-lex-00866
+    - ko-lex-03447
+    - ko-lex-09304
+    - ko-lex-10645
+    - ko-lex-10646
+    - ko-lex-13978
+    - ko-lex-14643
+    - ko-lex-16180
+    - ko-lex-16195
+    - ko-lex-16200
+    - ko-lex-16493
+    - ko-lex-17434
+    - ko-lex-17516
+    - ko-lex-17835
+    - ko-lex-18650
+    - ko-lex-19776
+    - ko-lex-22170
+    - ko-lex-23887
+    - ko-lex-24313
+    - ko-lex-25568
+    - ko-lex-25670
+    - ko-lex-27899
+    - ko-lex-35042
+    - ko-lex-39247
+    - ko-lex-39637
+    - ko-lex-42362
+    - ko-lex-46566
+    - ko-lex-48078
+    - ko-lex-49076
+    - ko-lex-51408
+    - ko-lex-51413
+    - ko-lex-04162
+    - ko-lex-04175
+    - ko-lex-07502
+    - ko-lex-10866
+    - ko-lex-17769
+    - ko-lex-17865
+    - ko-lex-23965
+    - ko-lex-28235
+    - ko-lex-41337
+    - ko-lex-43882
+    - ko-lex-46553
+    - ko-lex-46569
+    - ko-lex-46579
+    - ko-lex-46850
+    - ko-lex-48738
+
+documented_group_decisions:
+  ko-lex-43169:
+    lemma: 진정
+    category: free-lemma
+    source_parents: [ko-nikl-43169, ko-nikl-43171]
+    rationale: >
+      The selected noun describes a sincere heart without falsehood, and the
+      adverb describes acting sincerely without falsehood. Retain these
+      nominal and adverbial sincerity uses in one conservative lexical base.
+      The calming or soothing parent ko-nikl-43170 is semantically distinct.
+      This is an authored category-alternation analysis requiring review,
+      not proof of identity from matching spelling alone.
+  ko-lex-43191:
+    lemma: 진짜
+    category: free-lemma
+    source_parents: [ko-nikl-43191, ko-nikl-43192]
+    rationale: >
+      The genuine-article noun and the truly/without-pretense adverb share a
+      genuineness lexical base. Preserve both source categories and selected
+      meanings without counting the category alternation as another free lemma.
+      This conservative teaching analysis is not an official variant crosswalk.
+  ko-lex-52556:
+    lemma: 흐리다
+    category: free-lemma
+    source_parents: [ko-nikl-52555, ko-nikl-52556]
+    rationale: >
+      The verb causes words, thought, atmosphere, or reputation to become
+      obscured or impaired; the descriptive predicate denotes obscurity or
+      cloudiness. Conservatively retain these related causative and stative
+      uses in one clouding/obscuring lexical base. Preserve the source POS
+      and grammatical distributions rather than claiming interchangeability
+      or independently verified lexical unity.
+  ko-lex-03509:
+    lemma: 실제
+    category: free-lemma
+    source_parents: [ko-nikl-03509, ko-nikl-03510, ko-nikl-03511]
+    rationale: >
+      The noun 실제 denotes actual circumstances or facts; adverb 실제 and
+      explicitly adverbial 실제로 retain that actual-versus-imagined meaning.
+      Treat these selected nominal, adverbial, and case-marked uses as one
+      conservative lexical base, not three free headwords. This is an authored
+      grammatical-form analysis, not an official variant crosswalk.
+  ko-lex-25705:
+    lemma: 가리다
+    category: free-lemma
+    source_parents: [ko-nikl-25703, ko-nikl-25705]
+    rationale: >
+      The source distinguishes being hidden or blocked from causing something
+      to be hidden or blocked. Preserve the intransitive/result and transitive
+      roles while conservatively grouping this hiding/blocking lexical base.
+      The selecting/discriminating 가리다 parent ko-nikl-25704 is distinct.
+      Teacher review should confirm the lexical analysis; equal English is
+      not the reason for merging the original positions.
+  ko-lex-40170:
+    lemma: 밝다
+    category: free-lemma
+    source_parents: [ko-nikl-40169, ko-nikl-40170]
+    rationale: >
+      Actional daybreak and descriptive brightness share a conservative
+      brightness lexical base. Preserve verb versus descriptive-predicate
+      categories and their different conjugational distributions. Cheerfulness,
+      a positive outlook, and knowledge are separately selected source meanings,
+      not newly invented metaphors or separately counted headwords.
+  ko-lex-04150:
+    lemma: 아마
+    category: free-lemma
+    source_parents: [ko-nikl-04151]
+    rationale: >
+      The original definition explicitly identifies 아마도 as an emphatic form
+      of 아마. Add the selected emphatic source sense to the existing ko-lex-04150
+      identity, preserving its base category and canonical lemma. The source
+      parent ko-nikl-04150 and its original member remain in the base manifest.
+
+homograph_rationales:
+  ko-nikl-11047: Cooking or developing food's flavor, not mastering or becoming familiar through practice.
+  ko-nikl-11048: Learning or familiarization through experience, not cooking food.
+  ko-nikl-19503: Following, complying, accompaniment, and conditional dependence, not pouring liquid.
+  ko-nikl-19504: Pouring liquid from a tilted vessel, not following a person or condition.
+  ko-nikl-27345: Putting away what was laid out or ending an expression, not harvesting or collecting.
+  ko-nikl-27346: Harvesting, collecting, and obtaining good results, not putting things away or stopping an expression.
+  ko-nikl-27390: Filtering liquid or selecting core content, not skipping a sequential step.
+  ko-nikl-27391: Omitting a step or turn in a sequence, not filtering liquid or content.
+  ko-nikl-32869: A professional driver or certified technician, not the existing news-article noun.
+  ko-nikl-43169: Sincere feeling, not the calming or soothing noun.
+  ko-nikl-43170: Calming a situation, feelings, or pain, not sincerity.
+  ko-nikl-43171: Sincerely, as the adverbial sincerity use, not calming someone.
+  ko-nikl-01871: Accommodation in a place or facility, not acceptance of a proposal.
+  ko-nikl-01872: Acceptance of something, not physical accommodation.
+  ko-nikl-02018: Shame or disgrace, not a numerical result.
+  ko-nikl-02019: A calculated numerical figure, not shame.
+  ko-nikl-02682: A time point, not eyesight or the existing perspective noun.
+  ko-nikl-02684: The visual sense, not a time point or perspective.
+  ko-nikl-02729: A period during an event, not an opportune moment.
+  ko-nikl-02730: The suitable time or opportunity, not simply a period.
+  ko-nikl-02906: Admitting a statement as correct, not the existing poet noun.
+  ko-nikl-05761: Reward for effort or a favor, not compensation for a loss.
+  ko-nikl-05762: Compensation for damage or loss, not reward for effort.
+  ko-nikl-05778: Conservatism, not remuneration or building repair.
+  ko-nikl-05779: Payment for work, not conservatism or repair.
+  ko-nikl-05780: Repair of buildings or facilities, not payment or conservatism.
+  ko-nikl-06563: A respectful reference to another person's wife, not denial.
+  ko-nikl-06564: Denial of a claim or fact, not a wife or married woman.
+  ko-nikl-06603: An improper or dishonest act, not the act of negating a claim.
+  ko-nikl-06610: Negation or rejection as wrong, not misconduct as an act.
+  ko-nikl-08176: Deep thought, not the existing accident noun.
+  ko-nikl-10398: Dependence on support, not determination or will.
+  ko-nikl-10399: Determination to accomplish something, not reliance on another.
+  ko-nikl-10641: Reaching a place, state, amount, or range, not saying or being early.
+  ko-nikl-10642: Telling, naming, or saying, not reaching or being early.
+  ko-nikl-10644: An early descriptive state, not either 이르다 verb.
+  ko-nikl-10923: Time before a reference point, not relocation or transfer.
+  ko-nikl-10924: Moving a location or transferring rights, not earlier time.
+  ko-nikl-11255: Human warmth or feeling, not accepting a claim as certain.
+  ko-nikl-11256: Acknowledgment or acceptance, not human warmth.
+  ko-nikl-11893: Entry to an event, not the existing standpoint noun.
+  ko-nikl-13693: The early part of a period, not biography, electricity, or a turning point.
+  ko-nikl-13694: Biography, not electricity or either temporal 전기 noun.
+  ko-nikl-13696: A turning point, not an early period, biography, or electricity.
+  ko-nikl-13760: All one's strength, not the existing electric-power noun.
+  ko-nikl-13817: The whole of a field, not its first half.
+  ko-nikl-13818: The first half, not an entire matter or field.
+  ko-nikl-13978: The former of two mentioned things, not the existing electron noun.
+  ko-nikl-14633: Justice and right conduct, not defining a meaning.
+  ko-nikl-14634: A definition, not moral justice.
+  ko-nikl-14923: A conditional restriction, not making medicines.
+  ko-nikl-14924: Pharmaceutical manufacture, not a restriction.
+  ko-nikl-15044: A physical fragment with its counting use, not sculpture.
+  ko-nikl-15045: Sculptural art, not a fragment or counting unit.
+  ko-nikl-16492: A building or facility complex, not the limiting connective.
+  ko-nikl-16493: A focus or exception operator, not a building complex.
+  ko-nikl-17098: An ambassador, not the existing dramatic-dialogue noun.
+  ko-nikl-18607: Assimilation of qualities or forms, not the existing fairy-tale noun.
+  ko-nikl-25704: Selecting or discriminating, including picky eating, not hiding.
+  ko-nikl-25975: A family household, not the existing assumption noun.
+  ko-nikl-26503: A sad or lonely mood, not the existing appreciation-of-art noun.
+  ko-nikl-27774: The prosecutor occupation, not examination or inspection.
+  ko-nikl-28328: A boundary, not vigilance or precaution.
+  ko-nikl-28329: Vigilance or precaution against harm or wrong, not a boundary.
+  ko-nikl-28344: Business and economic conditions, not a sporting contest.
+  ko-nikl-28941: Careful consideration, not the historical kingdom.
+  ko-nikl-28942: Goryeo as a historical kingdom, not consideration.
+  ko-nikl-31135: Rescue from danger, not structural arrangement.
+  ko-nikl-31136: Structure or a building framework, not rescue.
+  ko-nikl-31203: A slogan, not emergency relief.
+  ko-nikl-31204: Disaster relief, not a slogan.
+  ko-nikl-32690: A biological organ, not an engine or social institution.
+  ko-nikl-32691: The source groups a mechanical engine and an institution; retain provisionally, separate from bodily organs.
+  ko-nikl-38573: A waterside, not the existing market-price noun.
+  ko-nikl-40693: Discharge from inside to outside, not producing talented people.
+  ko-nikl-40694: Producing successive talented people, not physical discharge.
+  ko-nikl-41100: A gap opening or widening, including relational distance, not an event taking place.
+  ko-nikl-41101: An event taking place, not the source group for widening gaps.
+  ko-nikl-41144: Fabrication presented as true, not operating a device.
+  ko-nikl-41145: Operating a machine, not falsification.
+  ko-nikl-41162: Mediation between disputing parties, not general adjustment.
+  ko-nikl-41163: Adjustment to circumstances or a standard, not mediation.
+  ko-nikl-41606: Responsibility for managing, not a subjective viewpoint.
+  ko-nikl-41607: A subjective personal view, not managing an undertaking.
+  ko-nikl-42673: Bodily fat, not the existing locality or province noun.
+  ko-nikl-42795: Pointing out a fault, not the intellectual modifier.
+  ko-nikl-42796: The lexical modifier intellectual, not pointing something out.
+  ko-nikl-43874: Sequence, turn, contents, and occurrence counting, not ancestral rites.
+  ko-nikl-43875: Ancestral holiday rites, not a turn or sequence.
+  ko-nikl-46193: Sound judgment, not food or a required format.
+  ko-nikl-46195: Western-style food, not judgment, a template, or sustenance.
+  ko-nikl-46196: Format and established or artistic style, not food or judgment.
+  ko-nikl-46198: Food for subsistence and figurative nourishment, not Western cuisine or a template.
+  ko-nikl-47386: An era or span of years, not solidarity.
+  ko-nikl-47387: Joint responsibility or solidarity, not a span of years.
+  ko-nikl-49125: A container, not the existing courage noun.
+  ko-nikl-00902: The location of a building, not the existing material or subject-matter noun.
+
+review_flags:
+  - >
+    Related native-verb families, including 되살리다/되살아나다,
+    떠올리다/떠오르다, 깨닫다/깨우치다, and 맡다/맡기다, need
+    lexical-family review. These independently sourced predicates are not
+    generated conjugations. Their selected agentive, causative, or result
+    meanings are retained, but separate source candidates are not proof of
+    independently verified true-lexeme breadth. English synonymy alone does
+    not merge 보살피다 with 돌보다 or 붙들다 with 붙잡다.
+  - >
+    The tidy/withdraw and harvest/collect 거두다 source boundaries remain
+    provisional. Review their lexical relationship and any contracted 걷다
+    variants against dictionary evidence before asserting an exact lexeme count.
+  - >
+    Source semantic boundaries remain provisional, particularly the separate
+    벌어지다 groups and the engine/institution senses within ko-nikl-32691.
+    Their grouping is not presented as independently verified etymology.
+  - >
+    The 가리다, 밝다, and 흐리다 source-category groupings are explicit conservative
+    analyses. Retain original source roles even if future lexical review
+    revises which group names should be merged or split.
+  - >
+    Goryeo is selected for Korean cultural and historical interpretation, not
+    as part of a proper-name quota. Its dates do not imply an exam requirement.
+  - >
+    Broader useful-domain coverage is still needed before describing the
+    combined course as complete. These targeted batches do not claim or
+    require exhaustive review of all unselected entries.
+
+source_correction_requests:
+  ko-nikl-22715-s002:
+    source_korean: 구김이나 주름 등을 없애서 반듯하게 하다.
+    source_english: For something folded or overlapped to be spread widely.
+    authored_interpretation: to smooth out creases or wrinkles
+    rationale: >
+      The Korean identifies removing creases or wrinkles and making something
+      smooth or straight. The English instead describes a folded object being
+      spread, obscuring the distinction from this parent's unfolding position.
+      Preserve the separate second position and its transitive smoothing sense.
+  ko-nikl-34029-s002:
+    source_korean: 관심이 쏠리다.
+    source_english: To gather attention.
+    authored_interpretation: for one's interest to be drawn toward something
+    rationale: >
+      The Korean describes interest being drawn or directed. The English can
+      misleadingly suggest attracting other people's attention rather than
+      experiencing attraction. The authored label makes the direction of
+      interest explicit without changing the original source. The lexical
+      argument-structure interpretation still requires Korean-teacher review.
+  ko-nikl-46331-s001:
+    source_korean: 모르고 있는 동안에 벌써.
+    source_english: Very early while one does not notice.
+    authored_interpretation: before one knows it; already without noticing
+    rationale: >
+      The Korean describes something already having happened while one did
+      not notice. The original English misleadingly introduces being very
+      early; the authored label retains unnoticed passage or occurrence.
+  ko-nikl-08902-s003:
+    source_korean: 자세히 따져서 생각하다.
+    source_english: To calculate something thoroughly.
+    authored_interpretation: to consider something carefully and in detail
+    rationale: >
+      The Korean describes careful evaluation and thought, not specifically
+      arithmetic. The label avoids the numerical restriction suggested by
+      the original English calculate.
+  ko-nikl-50267-s002:
+    source_korean: 이전 세대가 물려준 것.
+    source_english: Something inherited by former generations.
+    authored_interpretation: a heritage inherited from previous generations
+    rationale: >
+      The Korean describes what earlier generations handed down. The English
+      reverses that direction by describing what those generations inherited.
+      The authored label identifies inheritance from them instead.
+  ko-nikl-43882-s001:
+    source_korean: 부끄럽거나 안타까워서 도저히.
+    source_english: In a state in which one feels compelled to do something out of shame or sympathy.
+    authored_interpretation: out of shame or sympathy (with a negative predicate)
+    rationale: >
+      The Korean uses 도저히 in a shame-or-sympathy context. In its ordinary
+      negative-polarity use, 차마 qualifies an inability to bring oneself to
+      act; it does not mean that embarrassment or sympathy compels the action.
+      The original English points in that misleading positive direction.
+      The label leaves the negation to the following predicate and explicitly
+      identifies that context. The polarity explanation is authored and
+      requires Korean-teacher review, not a claim of verified grammar annotation.
+  ko-nikl-50419-s002:
+    source_korean: 귀한 물건이나 정보 등이 불법적으로 외부로 나가 버림. 또는 그것을 내보냄.
+    source_english: For something contained or stored in one place to flow out.
+    authored_interpretation: illegal release of valuables or information
+    rationale: >
+      The Korean specifically identifies valuable objects or information and
+      explicitly qualifies their outward movement as illegal. The English
+      gives only a generic flowing-out description and omits both distinctions.
+      Preserve this original second position separately from the general
+      outflow sense; the authored label does not declare all information
+      leakage illegal or change the source definition.
+
+remaining_gaps:
+  - The original broad core-lemma planning aspiration remains substantially unmet.
+  - Further targeted useful-domain curation is needed; an exhaustive unselected-source audit is not required.
+  - Unbanded essential-verb research and additional source support remain parent-owned.
+  - Advanced arts and scholarly terminology has many registry gaps; no terms were invented.
+  - 참고문헌 is absent from the pinned CSV; no dictionary sense identifier is invented for it.
+  - The source 피드백 has circuit-feedback and broad stimulus-response senses; it is not silently relabeled as work critique.
+  - Narrow literal source definitions must not silently supply broader modern technical meanings.
+  - Lexicographic and teacher review and further useful vocabulary curation remain necessary.
+
+project_support_resolution:
+  policy: >
+    Targeted inspection recovered original unbanded parents for the following
+    specific project and literary gaps. Each has a unique exact ordered-
+    definition official reading match; the original source positions and
+    unbanded status remain independent of placement. They are selected in
+    the parent-owned base files, not duplicated in this shard.
+  parents:
+    ko-nikl-13016: 재검토; reviewing again
+    ko-nikl-15352: 누락; omission from a list or record
+    ko-nikl-38489: 문체; writing style
+    ko-nikl-41767: 주석; explanatory annotation, not chairman or metal
+    ko-nikl-45112: 초안; rough document and rough agenda/plan senses
+    ko-nikl-50947: 은유; literary metaphor
+
+reading_resolution:
+  status: All parents in the historical list below have a documented reading.
+  limitation: >
+    Official citation text does not verify phrases or learner audio.
+    Six parents in this original cohort use individually authored, unreviewed
+    readings. 다운로드 deliberately retains the consonant-preserving loanword
+    boundary discussed in a cited linguistic commentary; it is not a spelling
+    fallback or a claim that a unique standard pronunciation has been established.
+
+original_reading_gaps:
+- source_parent: ko-nikl-01276
+  lemma: 손짓
+  reason: 'ko-nikl-01276: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-01276-s001
+  - ko-nikl-01276-s002
+- source_parent: ko-nikl-01823
+  lemma: 수신자
+  reason: 'ko-nikl-01823: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-01823-s001
+- source_parent: ko-nikl-05400
+  lemma: 변동
+  reason: 'ko-nikl-05400: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-05400-s001
+- source_parent: ko-nikl-05484
+  lemma: 변형
+  reason: 'ko-nikl-05484: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-05484-s001
+- source_parent: ko-nikl-06109
+  lemma: 본문
+  reason: 'ko-nikl-06109: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-06109-s001
+  - ko-nikl-06109-s003
+- source_parent: ko-nikl-07471
+  lemma: 비난
+  reason: 'ko-nikl-07471: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-07471-s001
+- source_parent: ko-nikl-07608
+  lemma: 비전
+  reason: 'ko-nikl-07608: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-07608-s001
+- source_parent: ko-nikl-08403
+  lemma: 사생활
+  reason: 'ko-nikl-08403: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-08403-s001
+- source_parent: ko-nikl-11074
+  lemma: 인격
+  reason: 'ko-nikl-11074: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-11074-s001
+  - ko-nikl-11074-s002
+- source_parent: ko-nikl-11255
+  lemma: 인정
+  reason: 'ko-nikl-11255: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-11255-s002
+- source_parent: ko-nikl-12324
+  lemma: 자율
+  reason: 'ko-nikl-12324: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-12324-s001
+- source_parent: ko-nikl-13236
+  lemma: 재판
+  reason: 'ko-nikl-13236: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-13236-s001
+- source_parent: ko-nikl-13477
+  lemma: 저출산
+  reason: 'ko-nikl-13477: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-13477-s001
+- source_parent: ko-nikl-13512
+  lemma: 적극적
+  reason: 'ko-nikl-13512: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-13512-s001
+- source_parent: ko-nikl-13881
+  lemma: 전송
+  reason: 'ko-nikl-13881: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-13881-s001
+- source_parent: ko-nikl-15045
+  lemma: 조각
+  reason: 'ko-nikl-15045: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-15045-s002
+- source_parent: ko-nikl-15410
+  lemma: 누출
+  reason: 'ko-nikl-15410: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-15410-s001
+  - ko-nikl-15410-s002
+- source_parent: ko-nikl-16230
+  lemma: 다운로드
+  reason: 'ko-nikl-16230: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-16230-s001
+- source_parent: ko-nikl-17769
+  lemma: 도대체
+  reason: 'ko-nikl-17769: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-17769-s003
+- source_parent: ko-nikl-18665
+  lemma: 되새기다
+  reason: 'ko-nikl-18665: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-18665-s003
+- source_parent: ko-nikl-19454
+  lemma: 디지털
+  reason: 'ko-nikl-19454: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-19454-s001
+- source_parent: ko-nikl-20220
+  lemma: 로그인
+  reason: 'ko-nikl-20220: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-20220-s001
+- source_parent: ko-nikl-20591
+  lemma: 칼럼
+  reason: 'ko-nikl-20591: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-20591-s001
+- source_parent: ko-nikl-21450
+  lemma: 터무니없다
+  reason: 'ko-nikl-21450: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-21450-s001
+- source_parent: ko-nikl-25670
+  lemma: 가령
+  reason: 'ko-nikl-25670: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-25670-s001
+  - ko-nikl-25670-s002
+- source_parent: ko-nikl-25704
+  lemma: 가리다
+  reason: 'ko-nikl-25704: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-25704-s003
+  - ko-nikl-25704-s005
+- source_parent: ko-nikl-26183
+  lemma: 간결하다
+  reason: 'ko-nikl-26183: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-26183-s002
+- source_parent: ko-nikl-26532
+  lemma: 감시
+  reason: 'ko-nikl-26532: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-26532-s001
+- source_parent: ko-nikl-26797
+  lemma: 강압
+  reason: 'ko-nikl-26797: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-26797-s001
+- source_parent: ko-nikl-26824
+  lemma: 강자
+  reason: 'ko-nikl-26824: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-26824-s001
+- source_parent: ko-nikl-27774
+  lemma: 검사
+  reason: 'ko-nikl-27774: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-27774-s001
+- source_parent: ko-nikl-27899
+  lemma: 게다가
+  reason: 'ko-nikl-27899: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-27899-s001
+- source_parent: ko-nikl-28108
+  lemma: 견해
+  reason: 'ko-nikl-28108: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-28108-s001
+- source_parent: ko-nikl-28485
+  lemma: 경쟁력
+  reason: 'ko-nikl-28485: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-28485-s001
+- source_parent: ko-nikl-30305
+  lemma: 관례
+  reason: 'ko-nikl-30305: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-30305-s001
+- source_parent: ko-nikl-31029
+  lemma: 구성
+  reason: 'ko-nikl-31029: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-31029-s001
+  - ko-nikl-31029-s002
+- source_parent: ko-nikl-31135
+  lemma: 구조
+  reason: 'ko-nikl-31135: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-31135-s001
+- source_parent: ko-nikl-32626
+  lemma: 긍정적
+  reason: 'ko-nikl-32626: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-32626-s001
+  - ko-nikl-32626-s002
+- source_parent: ko-nikl-32678
+  lemma: 기고
+  reason: 'ko-nikl-32678: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-32678-s001
+- source_parent: ko-nikl-32838
+  lemma: 기반
+  reason: 'ko-nikl-32838: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-32838-s001
+- source_parent: ko-nikl-33152
+  lemma: 기행문
+  reason: 'ko-nikl-33152: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-33152-s001
+- source_parent: ko-nikl-34935
+  lemma: 내뱉다
+  reason: 'ko-nikl-34935: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-34935-s002
+- source_parent: ko-nikl-35367
+  lemma: 네트워크
+  reason: 'ko-nikl-35367: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-35367-s001
+  - ko-nikl-35367-s003
+- source_parent: ko-nikl-35665
+  lemma: 논평
+  reason: 'ko-nikl-35665: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-35665-s001
+- source_parent: ko-nikl-38538
+  lemma: 문화재
+  reason: 'ko-nikl-38538: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-38538-s001
+- source_parent: ko-nikl-38907
+  lemma: 미소
+  reason: 'ko-nikl-38907: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-38907-s001
+- source_parent: ko-nikl-39102
+  lemma: 민요
+  reason: 'ko-nikl-39102: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-39102-s001
+- source_parent: ko-nikl-39568
+  lemma: 반감
+  reason: 'ko-nikl-39568: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-39568-s001
+- source_parent: ko-nikl-40037
+  lemma: 발신자
+  reason: 'ko-nikl-40037: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-40037-s001
+- source_parent: ko-nikl-42362
+  lemma: 즉
+  reason: 'ko-nikl-42362: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-42362-s001
+  - ko-nikl-42362-s002
+- source_parent: ko-nikl-43127
+  lemma: 진술
+  reason: 'ko-nikl-43127: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-43127-s001
+  - ko-nikl-43127-s002
+- source_parent: ko-nikl-43314
+  lemma: 질투
+  reason: 'ko-nikl-43314: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-43314-s001
+  - ko-nikl-43314-s002
+- source_parent: ko-nikl-44885
+  lemma: 청중
+  reason: 'ko-nikl-44885: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-44885-s001
+- source_parent: ko-nikl-46200
+  lemma: 양심
+  reason: 'ko-nikl-46200: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-46200-s001
+- source_parent: ko-nikl-46630
+  lemma: 억제
+  reason: 'ko-nikl-46630: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-46630-s001
+  - ko-nikl-46630-s002
+- source_parent: ko-nikl-48061
+  lemma: 예절
+  reason: 'ko-nikl-48061: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-48061-s001
+- source_parent: ko-nikl-49359
+  lemma: 우연
+  reason: 'ko-nikl-49359: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-49359-s001
+- source_parent: ko-nikl-49365
+  lemma: 우연히
+  reason: 'ko-nikl-49365: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-49365-s001

@@ -4,7 +4,8 @@
   license: CC-BY-SA-2.0-KR for underlying NIKL dictionary text; do not substitute the mirror's MIT metadata
     for the dictionary license
   usage: All 11,028 entries bearing a beginner, intermediate, or advanced source band, with English definitions.
-    No unbanded entries, Korean usage sentences, audio, images, or video redistributed. Fields renamed;
+    Original TOPIK folders contain no unbanded entries. No Korean usage sentences, audio, images, or video
+    redistributed. Fields renamed;
     topics and part-of-speech labels translated; English glosses whitespace-normalized and combined; sixteen
     Korean/Hanja metalinguistic glosses replaced by original English equivalents; original band retained
     in level_basis; six-grade placements are project heuristics.
@@ -90,6 +91,16 @@
     courses or lesson allocations.
   attribution: King Sejong Institute Foundation, Online King Sejong Institute
   retrieved_on: '2026-09-07'
+- id: heo-2016-loanword-pronunciation
+  title: Heo Cheol-gu on the pronunciation of download
+  url: https://www.hankookilbo.com/news/article/201606091433486974
+  license: Copyrighted reference-only linguistic commentary; no article text or multimedia redistributed
+  usage: Reference for the explicitly authored consonant-preserving download reading. The 2016 commentary
+    reports that variant and discusses assimilation and loanword variation. It is not official dictionary
+    pronunciation text, proof of current usage frequency, or audio assessment. No article sentences are copied.
+  attribution: Heo Cheol-gu, professor of Korean language and literature at Changwon National University;
+    Hankook Ilbo, 2016-06-09
+  retrieved_on: '2026-09-15'
 - id: original-ko
   title: Original Korean teaching selection, bilingual examples, syllabi, and classroom rubric
   url: ./grammar-authoring.tsv

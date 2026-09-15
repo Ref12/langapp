@@ -6,35 +6,35 @@ interpretation: Curated inventory, not learner mastery. Shared inventory headwor
 original_banded_dictionary_entries: 11028
 original_banded_source_sense_positions: 19661
 selected_reference_pool:
-  dictionary_entries: 1264
-  selected_senses: 1564
-  distinct_spellings: 1188
-  spelling_pos_pairs: 1232
-  lexical_identities: 1235
-  free_lemmas: 1145
-  bound_forms: 20
-  function_items: 70
-  unbanded_support_entries: 17
+  dictionary_entries: 2230
+  selected_senses: 2939
+  distinct_spellings: 2087
+  spelling_pos_pairs: 2139
+  lexical_identities: 2193
+  free_lemmas: 2055
+  bound_forms: 21
+  function_items: 117
+  unbanded_support_entries: 23
   reading_methods_by_sense:
-    official-text: 1504
-    authored-broad-hangul: 60
+    official-text: 2872
+    authored-broad-hangul: 67
 core:
-  dictionary_entries: 1203
-  selected_senses: 1470
-  distinct_spellings: 1129
-  spelling_pos_pairs: 1173
-  lexical_identities: 1174
-  free_lemmas: 1084
-  bound_forms: 20
-  function_items: 70
-  unbanded_support_entries: 17
+  dictionary_entries: 2167
+  selected_senses: 2826
+  distinct_spellings: 2031
+  spelling_pos_pairs: 2083
+  lexical_identities: 2130
+  free_lemmas: 1992
+  bound_forms: 21
+  function_items: 117
+  unbanded_support_entries: 23
   reading_methods_by_sense:
-    official-text: 1413
-    authored-broad-hangul: 57
+    official-text: 2762
+    authored-broad-hangul: 64
 core_free_lemma_planning_range:
 - 5800
 - 6000
-core_free_lemma_gap_to_lower_guide: 4716
+core_free_lemma_gap_to_lower_guide: 3808
 planning_limit: The range is a planning guide, never a quota or mastery threshold. Report a shortfall
   rather than fill it with uncurated entries or extra senses.
 lexical_identity_review_status: unreviewed
@@ -86,20 +86,20 @@ phases:
   - 11
   - 12
   - 13
-  dictionary_entries: 174
-  selected_senses: 186
-  distinct_spellings: 172
-  spelling_pos_pairs: 173
-  lexical_identities: 173
-  free_lemmas: 168
+  dictionary_entries: 246
+  selected_senses: 266
+  distinct_spellings: 240
+  spelling_pos_pairs: 243
+  lexical_identities: 243
+  free_lemmas: 236
   bound_forms: 2
-  function_items: 3
+  function_items: 5
   unbanded_support_entries: 2
   reading_methods_by_sense:
-    official-text: 177
+    official-text: 257
     authored-broad-hangul: 9
-  new_lexical_identities: 141
-  new_free_lemmas: 139
+  new_lexical_identities: 211
+  new_free_lemmas: 207
 - id: explanation-problems
   levels:
   - 14
@@ -107,20 +107,20 @@ phases:
   - 16
   - 17
   - 18
-  dictionary_entries: 202
-  selected_senses: 208
-  distinct_spellings: 199
-  spelling_pos_pairs: 199
-  lexical_identities: 202
-  free_lemmas: 201
+  dictionary_entries: 384
+  selected_senses: 404
+  distinct_spellings: 375
+  spelling_pos_pairs: 375
+  lexical_identities: 384
+  free_lemmas: 380
   bound_forms: 1
-  function_items: 0
-  unbanded_support_entries: 4
+  function_items: 3
+  unbanded_support_entries: 5
   reading_methods_by_sense:
-    official-text: 192
-    authored-broad-hangul: 16
-  new_lexical_identities: 163
-  new_free_lemmas: 162
+    official-text: 385
+    authored-broad-hangul: 19
+  new_lexical_identities: 337
+  new_free_lemmas: 333
 - id: analysis-argument
   levels:
   - 19
@@ -129,20 +129,20 @@ phases:
   - 22
   - 23
   - 24
-  dictionary_entries: 234
-  selected_senses: 240
-  distinct_spellings: 231
-  spelling_pos_pairs: 232
-  lexical_identities: 234
-  free_lemmas: 230
-  bound_forms: 1
-  function_items: 3
-  unbanded_support_entries: 3
+  dictionary_entries: 589
+  selected_senses: 632
+  distinct_spellings: 576
+  spelling_pos_pairs: 578
+  lexical_identities: 587
+  free_lemmas: 562
+  bound_forms: 2
+  function_items: 23
+  unbanded_support_entries: 6
   reading_methods_by_sense:
-    official-text: 235
-    authored-broad-hangul: 5
-  new_lexical_identities: 195
-  new_free_lemmas: 193
+    official-text: 626
+    authored-broad-hangul: 6
+  new_lexical_identities: 493
+  new_free_lemmas: 471
 - id: nuance-interpretation
   levels:
   - 25
@@ -151,71 +151,71 @@ phases:
   - 28
   - 29
   - 30
-  dictionary_entries: 135
-  selected_senses: 144
-  distinct_spellings: 134
-  spelling_pos_pairs: 135
-  lexical_identities: 135
-  free_lemmas: 131
+  dictionary_entries: 723
+  selected_senses: 832
+  distinct_spellings: 706
+  spelling_pos_pairs: 711
+  lexical_identities: 720
+  free_lemmas: 688
   bound_forms: 1
-  function_items: 3
-  unbanded_support_entries: 2
+  function_items: 31
+  unbanded_support_entries: 5
   reading_methods_by_sense:
-    official-text: 143
-    authored-broad-hangul: 1
-  new_lexical_identities: 74
-  new_free_lemmas: 71
+    official-text: 828
+    authored-broad-hangul: 4
+  new_lexical_identities: 488
+  new_free_lemmas: 462
 phase_count_limit: Phase inventories count senses selected in that phase. The same lexeme may occur in
   later phases through another sense; only new_free_lemmas counts its first introduction.
 reading_limit: Authored readings and original phrase realizations are unverified. Even official citation
   text does not assess actual audio or verify a whole phrase.
 professional:
-  dictionary_entries: 28
-  selected_senses: 28
-  distinct_spellings: 28
-  spelling_pos_pairs: 28
-  lexical_identities: 28
-  free_lemmas: 28
+  dictionary_entries: 29
+  selected_senses: 29
+  distinct_spellings: 29
+  spelling_pos_pairs: 29
+  lexical_identities: 29
+  free_lemmas: 29
   bound_forms: 0
   function_items: 0
   unbanded_support_entries: 0
   reading_methods_by_sense:
-    official-text: 28
+    official-text: 29
 technical:
-  dictionary_entries: 19
-  selected_senses: 20
-  distinct_spellings: 19
-  spelling_pos_pairs: 19
-  lexical_identities: 19
-  free_lemmas: 19
+  dictionary_entries: 27
+  selected_senses: 28
+  distinct_spellings: 27
+  spelling_pos_pairs: 27
+  lexical_identities: 27
+  free_lemmas: 27
   bound_forms: 0
   function_items: 0
   unbanded_support_entries: 0
   reading_methods_by_sense:
-    official-text: 18
+    official-text: 26
     authored-broad-hangul: 2
 scientific:
-  dictionary_entries: 23
-  selected_senses: 24
-  distinct_spellings: 23
-  spelling_pos_pairs: 23
-  lexical_identities: 23
-  free_lemmas: 23
+  dictionary_entries: 31
+  selected_senses: 32
+  distinct_spellings: 31
+  spelling_pos_pairs: 31
+  lexical_identities: 31
+  free_lemmas: 31
   bound_forms: 0
   function_items: 0
   unbanded_support_entries: 0
   reading_methods_by_sense:
-    official-text: 24
+    official-text: 32
 literary:
-  dictionary_entries: 19
-  selected_senses: 22
-  distinct_spellings: 19
-  spelling_pos_pairs: 19
-  lexical_identities: 19
-  free_lemmas: 19
+  dictionary_entries: 21
+  selected_senses: 24
+  distinct_spellings: 21
+  spelling_pos_pairs: 21
+  lexical_identities: 21
+  free_lemmas: 21
   bound_forms: 0
   function_items: 0
   unbanded_support_entries: 0
   reading_methods_by_sense:
-    official-text: 21
+    official-text: 23
     authored-broad-hangul: 1

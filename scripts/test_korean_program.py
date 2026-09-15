@@ -635,6 +635,28 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         for parent in ("43833", "43835", "43837"):
             self.assertNotEqual(ordinal, self.references.lexical_identity[f"ko-nikl-{parent}-s001"])
 
+    def test_project_and_literary_support_has_exact_original_and_official_evidence(self):
+        for parent, spelling, official_id, reading in (
+            ("13016", "재검토", "76430", "재ː검토"),
+            ("15352", "누락", "24480", "누ː락"),
+            ("38489", "문체", "56941", "문체"),
+            ("41767", "주석", "76957", "주ː석"),
+            ("45112", "초안", "79619", "초안"),
+            ("50947", "은유", "71180", "으뉴"),
+        ):
+            identifier = f"ko-nikl-{parent}-s001"
+            with self.subTest(sense=identifier):
+                self.assertEqual(self.references.vocabulary[identifier]["ch"], spelling)
+                self.assertEqual(self.references.vocabulary[identifier]["pr"], reading)
+                source = self.references.provenance[identifier]
+                self.assertEqual(source["source_band"], "unbanded")
+                self.assertIsNone(source["reference_level"])
+                self.assertEqual(source["reading"]["match_method"], "exact-ordered-korean-definitions")
+                self.assertEqual(source["reading"]["official_entry_id"], official_id)
+        self.assertNotIn("ko-nikl-41766-s001", self.references.vocabulary)
+        self.assertEqual(self.references.lexical_identity["ko-nikl-45112-s001"],
+                         self.references.lexical_identity["ko-nikl-45112-s002"])
+
     def test_actual_reading_exceptions_keep_their_evidence_boundaries(self):
         words, provenance = self.references.vocabulary, self.references.provenance
         self.assertEqual(words["ko-nikl-04942-s001"]["pr"], "야ː구")
@@ -648,6 +670,12 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("spring water", corrected["source_english"])
         self.assertIn("strength", corrected["source_correction"]["authored_interpretation"])
         self.assertEqual(corrected["source_correction"]["review_status"], "unreviewed")
+        download = self.references.provenance["ko-nikl-16230-s001"]["reading"]
+        self.assertEqual(self.references.vocabulary["ko-nikl-16230-s001"]["pr"], "다운로드")
+        self.assertEqual(download["method"], "authored-broad-hangul")
+        self.assertEqual(download["review_status"], "unreviewed")
+        self.assertIn("hankookilbo.com/news/article/201606091433486974", download["reason"])
+        self.assertIn("not a fallback", download["reason"])
 
     def test_early_number_forms_and_counters_do_not_inflate_lexical_breadth(self):
         identities = self.references.lexical_identity
@@ -699,6 +727,45 @@ class KoreanCourseArtifactTests(unittest.TestCase):
                 self.references.lexical_identity[f"ko-nikl-{noun}-s001"],
                 self.references.lexical_identity[f"ko-nikl-{adverb}-s001"],
             )
+
+    def test_expanded_common_polysemy_retains_selected_source_positions_and_route_scope(self):
+        placements = {row["id"]: row for row in self.data.inputs["vocabulary"]}
+        for identifier, english, korean in (
+            ("ko-nikl-11667-s004", "sign", "기호"),
+            ("ko-nikl-11667-s005", "situation", "상황"),
+            ("ko-nikl-34855-s014", "documents", "서류"),
+            ("ko-nikl-34855-s017", "money", "돈"),
+            ("ko-nikl-34855-s021", "time", "시간"),
+            ("ko-nikl-34855-s025", "leave", "휴가"),
+            ("ko-nikl-02844-s002", "attention", "주의"),
+        ):
+            with self.subTest(sense=identifier):
+                self.assertIn(english, self.references.vocabulary[identifier]["ds"])
+                self.assertIn(korean, self.references.provenance[identifier]["source_korean"])
+        identities = self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-11667-s001"], identities["ko-nikl-11667-s005"])
+        self.assertEqual(identities["ko-nikl-11667-s005"], identities["ko-nikl-11667-s008"])
+        self.assertEqual(placements["ko-nikl-11667-s008"]["level"], "technical")
+        self.assertEqual(identities["ko-nikl-02844-s001"], identities["ko-nikl-02844-s002"])
+        self.assertEqual(identities["ko-nikl-04150-s001"], identities["ko-nikl-04151-s001"])
+        actual = {identities[f"ko-nikl-{parent}-s001"] for parent in ("03509", "03510", "03511")}
+        self.assertEqual(len(actual), 1)
+
+    def test_expansion_corrections_are_explicit_unreviewed_overrides_not_source_replacements(self):
+        notes = load_yaml(self.root / "authoring" / "teaching" / "expansion-notes.yaml")
+        for identifier, request in notes["source_correction_requests"].items():
+            with self.subTest(sense=identifier):
+                source = self.references.provenance[identifier]
+                correction = source["source_correction"]
+                self.assertEqual(self.references.vocabulary[identifier]["ds"], request["authored_interpretation"])
+                for language in ("korean", "english"):
+                    self.assertEqual(source[f"source_{language}"], request[f"source_{language}"])
+                    self.assertEqual(correction[f"source_{language}"], source[f"source_{language}"])
+                self.assertEqual(correction["method"], "authored-interpretation")
+                self.assertEqual(correction["review_status"], "unreviewed")
+        polarity = self.references.vocabulary["ko-nikl-43882-s001"]
+        self.assertIn("negative predicate", polarity["ds"])
+        self.assertIn("compelled", self.references.provenance[polarity["id"]]["source_english"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

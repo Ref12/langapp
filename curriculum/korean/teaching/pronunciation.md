@@ -67,6 +67,15 @@ It remains an authored rule application, not a dictionary-imported reading.
 The general [NIKL language-regulations site](https://korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0002)
 distinguishes pronunciation rules from word spelling.
 
+The authored download reading 다운로드 [다운로드] deliberately retains the
+loanword's ㄴ+ㄹ boundary; it is **not** an automatic copy of spelling.
+[Heo Cheol-gu's 2016 linguistic commentary](https://www.hankookilbo.com/news/article/201606091433486974)
+reports that consonant-preserving variant and discusses competing assimilated
+forms. The selected reading remains provisional: the pinned official entry
+has no pronunciation text, and the commentary does not establish a unique
+current standard. Do not reject a learner's different realization solely
+because it differs from this unreviewed teaching aid.
+
 These decisions require qualified Korean-language review. They are not
 dictionary-verified pronunciations, native-speaker recordings, or evidence of
 learner ability. A changed source or new approved reading must update the

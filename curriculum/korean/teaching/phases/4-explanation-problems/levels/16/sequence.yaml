@@ -40,14 +40,14 @@ units:
   - {id: ko-nikl-11025-s001, ch: 이혼, pr: 이ː혼, ds: divorce}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-20399-s001, ch: 친절, pr: 친절, ds: kindness; friendly treatment}
-  - {id: ko-nikl-00143-s001, ch: 성격, pr: 성ː껵, ds: personality; character}
-  - {id: ko-nikl-11018-s002, ch: 이해하다, pr: 이ː해하다, ds: to understand someone's circumstances}
-  - {id: ko-nikl-30809-s002, ch: 교환, pr: 교환, ds: a mutual exchange; giving and receiving}
-  - {id: ko-nikl-39144-s002, ch: 믿다, pr: 믿따, ds: to trust; to rely on}
-  - {id: ko-nikl-40596-s001, ch: 배려, pr: 배ː려, ds: consideration for others; thoughtful care}
   - {id: ko-nikl-11010-s003, ch: 이해, pr: 이ː해, ds: understanding another person's circumstances}
   - {id: ko-nikl-21369-s001, ch: 태도, pr: 태ː도, ds: attitude expressed through posture or behavior}
+  - {id: ko-nikl-39723-s001, ch: 반응, pr: 바ː능, ds: a response or reaction to a stimulus}
+  - {id: ko-nikl-46161-s001, ch: 양보, pr: 양ː보, ds: giving up a seat or possession for someone else}
+  - {id: ko-nikl-42858-s004, ch: 지키다, pr: 지키다, ds: to keep a promise or follow rules and etiquette}
+  - {id: ko-nikl-46288-s001, ch: 어기다, pr: 어기다, ds: 'to break a rule, promise, or order'}
+  - {id: ko-nikl-43874-s002, ch: 차례, pr: 차례, ds: a turn; an opportunity given in sequence}
+  - {id: ko-nikl-39820-s003, ch: 받아들이다, pr: 바다드리다, ds: to grant a request or demand}
   review_grammar:
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -59,18 +59,76 @@ units:
   - {id: ko-nikl-41923-s001, ch: 주택, pr: 주ː택, ds: housing; a residential building}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-07002-s001, ch: 불, pr: 불, ds: fire; a flame}
-  - {id: ko-nikl-01586-s001, ch: 수도, pr: 수도, ds: a water-supply system}
-  - {id: ko-nikl-49879-s001, ch: 월세, pr: 월쎄, ds: monthly rent; renting by monthly payment}
-  - {id: ko-nikl-34449-s001, ch: 난방, pr: 난방, ds: indoor heating}
-  - {id: ko-nikl-20700-s001, ch: 켜다, pr: 켜다, ds: 'to light a candle, lamp, or flame'}
-  - {id: ko-nikl-33982-s001, ch: 끄다, pr: 끄다, ds: to put out a fire}
   - {id: ko-nikl-18719-s015, ch: 두다, pr: 두다, ds: to keep; to store without using}
   - {id: ko-nikl-34144-s019, ch: 나가다, pr: 나가다, ds: to go out (electricity or an electric light)}
+  - {id: ko-nikl-10924-s001, ch: 이전, pr: 이전, ds: relocation; moving to another place or address}
+  - {id: ko-nikl-23001-s001, ch: 포근하다, pr: 포근하다, ds: for a thick item or resting place to be soft and warm}
+  - {id: ko-nikl-34854-s003, ch: 내놓다, pr: 내ː노타, ds: to put a house on the market for sale or rent}
+  - {id: ko-nikl-27345-s001, ch: 거두다, pr: 거두다, ds: to put away things that have been laid out}
+  - {id: ko-nikl-18963-s001, ch: 뒤집다, pr: 뒤집따, ds: to turn something inside out}
+  - {id: ko-nikl-18963-s002, ch: 뒤집다, pr: 뒤집따, ds: to turn something upside down}
   review_grammar:
   - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
   - {id: ko-topik3-g027, ch: V-아/어 있다, ds: describe a resulting state rather than activity}
   - {id: ko-topik3-g009, ch: V-아/어 놓다, ds: do an action and leave its result in place}
+- id: level-16-services-01
+  title: Services and transactions - 1
+  outcome: Clarify requirements and resolve a service problem politely.
+  vocabulary:
+  - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-11671-s001, ch: 잃다, pr: 일타, ds: to lose a possession}
+  - {id: ko-nikl-31135-s001, ch: 구조, pr: 구ː조, ds: rescue; bringing someone out of danger}
+  - {id: ko-nikl-05919-s001, ch: 보호, pr: 보ː호, ds: protection and care against danger or difficulty}
+  - {id: ko-nikl-17359-s001, ch: 대피, pr: 대ː피, ds: evacuation; moving temporarily to safety}
+  - {id: ko-nikl-42858-s001, ch: 지키다, pr: 지키다, ds: 'to protect possessions, interests, or safety'}
+  - {id: ko-nikl-32869-s001, ch: 기사, pr: 기사, ds: a professional driver or machine operator}
+  - {id: ko-nikl-36569-s003, ch: 맡기다, pr: 맏끼다, ds: to leave something somewhere or with someone for safekeeping}
+  - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
+  review_grammar:
+  - {id: ko-topik4-g023, ch: V-(으)려면, ds: state a prerequisite for an intended outcome}
+  - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
+  - {id: ko-topik6-g022, ch: V/A-다가는, ds: warn of an unwanted result if a course continues}
+- id: level-16-work-01
+  title: Work and cooperation - 1
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary:
+  - {id: ko-nikl-35417-s001, ch: 노동자, pr: 노동자, ds: a worker who earns a living through paid work}
+  - {id: ko-nikl-46842-s001, ch: 업체, pr: 업체, ds: a business enterprise operating for profit}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-47651-s002, ch: 열다, pr: 열ː다, ds: to open or start a meeting}
+  - {id: ko-nikl-02649-s001, ch: 승진, pr: 승진, ds: promotion to a higher position at work}
+  - {id: ko-nikl-25377-s001, ch: 협동, pr: 협똥, ds: cooperation; joining efforts with a shared purpose}
+  - {id: ko-nikl-34855-s021, ch: 내다, pr: 내ː다, ds: to make time or create an opportunity}
+  - {id: ko-nikl-35308-s009, ch: 넘기다, pr: 넘기다, ds: to hand a task or duty over to someone else}
+  - {id: ko-nikl-19503-s004, ch: 따르다, pr: 따르다, ds: 'to follow rules, procedures, practices, or someone''s opinion'}
+  - {id: ko-nikl-27359-s001, ch: 거들다, pr: 거ː들다, ds: to help someone by sharing in their work}
+  - {id: ko-nikl-36569-s001, ch: 맡기다, pr: 맏끼다, ds: to entrust a task to someone to handle responsibly}
+  review_grammar:
+  - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
+  - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
+  - {id: ko-topik5-g026, ch: V-는 대로, ds: act as soon as something happens or as instructed}
+- id: level-16-actions-01
+  title: Actions and processes - 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary:
+  - {id: ko-nikl-04806-s001, ch: 앞장서다, pr: 압짱서다, ds: to stand at the very front of a group}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-16110-s001, ch: 다듬다, pr: 다듬따, ds: to prepare something by removing unnecessary parts}
+  - {id: ko-nikl-34929-s001, ch: 내밀다, pr: 내ː밀다, ds: to extend a body part or part of an object outward}
+  - {id: ko-nikl-44379-s001, ch: 챙기다, pr: 챙기다, ds: to gather needed items or check that they are ready}
+  - {id: ko-nikl-07412-s001, ch: 붙들다, pr: 붇뜰다, ds: to hold something so as not to drop or lose it}
+  - {id: ko-nikl-27391-s001, ch: 거르다, pr: 거르다, ds: 'to skip a step, turn, or position in a sequence'}
+  - {id: ko-nikl-03920-s006, ch: 쓰다, pr: 쓰다, ds: to put in effort or energy}
+  - {id: ko-nikl-28080-s001, ch: 견디다, pr: 견디다, ds: to endure hardship; to withstand difficulty}
+  - {id: ko-nikl-27063-s001, ch: 개선, pr: 개ː선, ds: improvement by correcting faults or shortcomings}
+  review_grammar:
+  - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
+  - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
+  - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
 - id: level-16-feelings-01
   title: Feelings and attitudes - 1
   outcome: Explain feelings without treating another person's inner state as directly known.
@@ -79,14 +137,14 @@ units:
   - {id: ko-nikl-06826-s001, ch: 분노, pr: 분ː노, ds: anger; rage}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-03589-s002, ch: 싫다, pr: 실타, ds: not to want to do something}
-  - {id: ko-nikl-30354-s001, ch: 관심, pr: 관심, ds: interest; attention}
-  - {id: ko-nikl-52718-s001, ch: 흥미, pr: 흥ː미, ds: interest; fascination}
-  - {id: ko-nikl-45968-s001, ch: 취향, pr: 취ː향, ds: taste; personal preference}
   - {id: ko-nikl-07157-s001, ch: 불만, pr: 불만, ds: dissatisfaction; discontent}
+  - {id: ko-nikl-36013-s001, ch: 막연하다, pr: 마견하다, ds: to feel at a loss about what to do}
+  - {id: ko-nikl-46510-s001, ch: 어이없다, pr: 어이업따, ds: to be dumbfounded by something wholly unexpected}
+  - {id: ko-nikl-04207-s001, ch: 아쉽다, pr: 아쉽따, ds: to be dissatisfied because something needed is lacking}
   - {id: ko-nikl-12263-s001, ch: 자신감, pr: 자신감, ds: self-confidence}
   - {id: ko-nikl-49124-s001, ch: 용기, pr: 용ː기, ds: courage}
   - {id: ko-nikl-44101-s002, ch: 참다, pr: 참ː따, ds: to restrain emotions; to hold one's temper}
+  - {id: ko-nikl-10365-s001, ch: 의욕, pr: 의ː욕, ds: motivation; an active desire to do something}
   review_grammar:
   - {id: ko-topik4-g024, ch: V/A-(으)ㄹ까 봐, ds: explain a precaution against a feared possibility}
   - {id: ko-topik5-g009, ch: V-고 말다, ds: reach an eventual and often unwanted outcome}
@@ -111,10 +169,18 @@ units:
   - {id: ko-nikl-35773-s001, ch: 농촌, pr: 농촌, ds: a farming village; the countryside}
   - {id: ko-nikl-26367-s001, ch: 갈등, pr: 갈뜽, ds: conflict; clashing opinions}
   - {id: ko-nikl-23110-s001, ch: 폭력, pr: 퐁녁, ds: violence}
+  - {id: ko-nikl-41101-s002, ch: 벌어지다, pr: 버ː러지다, ds: for a fight or other bad incident to occur}
+  - {id: ko-nikl-17258-s002, ch: 대중, pr: 대ː중, ds: the general public; most members of society}
+  - {id: ko-nikl-29659-s001, ch: 공공, pr: 공공, ds: the public sphere; what concerns everyone in a society}
+  - {id: ko-nikl-13043-s001, ch: 재난, pr: 재난, ds: an unexpected disaster or serious misfortune}
+  - {id: ko-nikl-23649-s001, ch: 피해, pr: 피ː해, ds: 'harm or loss to life, health, property, or reputation'}
+  - {id: ko-nikl-52801-s002, ch: 희생, pr: 히생, ds: loss of life in an accident or natural disaster}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-19195-s014, ch: 들다, pr: 들다, ds: to join a group or organization}
   - {id: ko-nikl-24831-s001, ch: 행사, pr: 행사, ds: an organized event or function}
+  - {id: ko-nikl-12305-s001, ch: 자원봉사, pr: 자원봉사, ds: volunteering; freely helping without payment}
+  - {id: ko-nikl-32860-s001, ch: 기부, pr: 기부, ds: a donation of money or property without repayment}
   review_grammar: []
 - id: level-16-institutions-01
   title: Institutions and public life - 1
@@ -130,6 +196,11 @@ units:
   - {id: ko-nikl-21988-s001, ch: 투표, pr: 투표, ds: voting; casting a ballot}
   - {id: ko-nikl-05196-s001, ch: 법, pr: 법, ds: law; legally binding rules}
   - {id: ko-nikl-05181-s001, ch: 범죄, pr: 범ː죄 / 범ː줴, ds: crime; committing an offense}
+  - {id: ko-nikl-04958-s001, ch: 야당, pr: 야ː당, ds: an opposition party; a party not in power}
+  - {id: ko-nikl-10370-s001, ch: 의원, pr: 의원, ds: a member of the national or a local assembly}
+  - {id: ko-nikl-14433-s001, ch: 정당, pr: 정당, ds: a political party seeking power to realize shared ideas}
+  - {id: ko-nikl-47038-s001, ch: 여당, pr: 여ː당, ds: the ruling party holding the presidency or most seats}
+  - {id: ko-nikl-52260-s001, ch: 후보, pr: 후보, ds: a candidate standing for election}
   grammar: []
   review_vocabulary: []
   review_grammar: []
@@ -150,6 +221,11 @@ units:
   - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
   - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
   - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
+  - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
+  - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
+  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
+  - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   grammar: []
   review_vocabulary: []
   review_grammar: []
@@ -175,6 +251,7 @@ units:
   - {id: ko-nikl-37316-s001, ch: 명절, pr: 명절, ds: a traditional holiday}
   - {id: ko-nikl-00015-s001, ch: 설날, pr: 설ː랄, ds: Seollal; Korean Lunar New Year}
   - {id: ko-nikl-45509-s001, ch: 추석, pr: 추석, ds: Chuseok; Korean harvest holiday}
+  - {id: ko-nikl-41101-s001, ch: 벌어지다, pr: 버ː러지다, ds: for a party or event to take place}
   review_grammar: []
 - id: level-16-arts-01
   title: Arts and creative works - 1
@@ -183,14 +260,14 @@ units:
   - {id: ko-nikl-26461-s003, ch: 감독, pr: 감독, ds: a director of a production; a sports coach}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-25820-s001, ch: 가수, pr: 가수, ds: a singer}
-  - {id: ko-nikl-29894-s001, ch: 공연, pr: 공연, ds: a performance}
-  - {id: ko-nikl-38925-s001, ch: 미술관, pr: 미ː술관, ds: an art museum; an art gallery}
   - {id: ko-nikl-51128-s001, ch: 음악회, pr: 으마쾨 / 으마퀘, ds: a concert; a music performance}
   - {id: ko-nikl-20780-s001, ch: 콘서트, pr: 콘서트, ds: a concert}
   - {id: ko-nikl-04336-s001, ch: 악기, pr: 악끼, ds: a musical instrument}
   - {id: ko-nikl-23616-s001, ch: 피아노, pr: 피아노, ds: a piano}
   - {id: ko-nikl-33118-s001, ch: 기타, pr: 기타, ds: a guitar}
+  - {id: ko-nikl-11893-s001, ch: 입장, pr: 입짱, ds: admission; entering an event or performance venue}
+  - {id: ko-nikl-24497-s001, ch: 합창, pr: 합창, ds: singing together in harmony; a group song}
+  - {id: ko-nikl-47555-s001, ch: 연주, pr: 연ː주, ds: an instrumental musical performance}
   review_grammar: []
 - id: level-16-media-practice-01
   title: Media and sources - sentence practice 1
@@ -201,14 +278,14 @@ units:
   - {id: ko-topik4-g009, ch: V/A-(으)ㄴ/는 반면에, ds: contrast properties or situations analytically}
   - {id: ko-topik4-g015, ch: V-(으)ㄹ 뿐만 아니라, ds: add a further clause beyond the first claim}
   review_vocabulary:
-  - {id: ko-nikl-32870-s001, ch: 기사, pr: 기사, ds: a news article}
-  - {id: ko-nikl-05713-s001, ch: 보도, pr: 보ː도, ds: news reporting; a news report}
-  - {id: ko-nikl-30447-s002, ch: 광고, pr: 광ː고, ds: advertising through the media}
-  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
-  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
   - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
   - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
   - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
+  - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
+  - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
+  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
+  - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   review_grammar: []
 - id: level-16-media-practice-02
   title: Media and sources - sentence practice 2
@@ -219,14 +296,14 @@ units:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
   - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
   review_vocabulary:
-  - {id: ko-nikl-32870-s001, ch: 기사, pr: 기사, ds: a news article}
-  - {id: ko-nikl-05713-s001, ch: 보도, pr: 보ː도, ds: news reporting; a news report}
-  - {id: ko-nikl-30447-s002, ch: 광고, pr: 광ː고, ds: advertising through the media}
-  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
-  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
   - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
   - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
   - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
+  - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
+  - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
+  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
+  - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   review_grammar:
   - {id: ko-topik4-g004, ch: V/A-더니, ds: connect a remembered observation to a later change}
   - {id: ko-topik4-g009, ch: V/A-(으)ㄴ/는 반면에, ds: contrast properties or situations analytically}
@@ -238,14 +315,14 @@ units:
   grammar:
   - {id: ko-topik6-g021, ch: 'V/A-다면서요?', ds: check remembered or reported information}
   review_vocabulary:
-  - {id: ko-nikl-32870-s001, ch: 기사, pr: 기사, ds: a news article}
-  - {id: ko-nikl-05713-s001, ch: 보도, pr: 보ː도, ds: news reporting; a news report}
-  - {id: ko-nikl-30447-s002, ch: 광고, pr: 광ː고, ds: advertising through the media}
-  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
-  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
   - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
   - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
   - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
+  - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
+  - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
+  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
+  - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   review_grammar:
   - {id: ko-topik4-g030, ch: V/A-다고 하던데, ds: introduce remembered hearsay as background}
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}

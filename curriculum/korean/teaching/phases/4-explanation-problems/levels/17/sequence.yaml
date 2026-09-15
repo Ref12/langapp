@@ -34,6 +34,70 @@ checkpoint:
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: level-17-home-01
+  title: Home and daily life - 1
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary:
+  - {id: ko-nikl-31136-s002, ch: 구조, pr: 구조, ds: the framework of a building}
+  - {id: ko-nikl-05780-s001, ch: 보수, pr: 보ː수, ds: repair of old or damaged buildings or facilities}
+  - {id: ko-nikl-49125-s001, ch: 용기, pr: 용기, ds: a container for holding things}
+  - {id: ko-nikl-21572-s001, ch: 토대, pr: 토대, ds: the foundation supporting a building}
+  - {id: ko-nikl-00077-s001, ch: 설치, pr: 설치, ds: installation of equipment or establishment of facilities}
+  - {id: ko-nikl-15410-s001, ch: 누출, pr: 누ː출, ds: leakage of a liquid or gas}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-34144-s019, ch: 나가다, pr: 나가다, ds: to go out (electricity or an electric light)}
+  - {id: ko-nikl-10924-s001, ch: 이전, pr: 이전, ds: relocation; moving to another place or address}
+  - {id: ko-nikl-23001-s001, ch: 포근하다, pr: 포근하다, ds: for a thick item or resting place to be soft and warm}
+  - {id: ko-nikl-34854-s003, ch: 내놓다, pr: 내ː노타, ds: to put a house on the market for sale or rent}
+  - {id: ko-nikl-27345-s001, ch: 거두다, pr: 거두다, ds: to put away things that have been laid out}
+  - {id: ko-nikl-18963-s001, ch: 뒤집다, pr: 뒤집따, ds: to turn something inside out}
+  - {id: ko-nikl-18963-s002, ch: 뒤집다, pr: 뒤집따, ds: to turn something upside down}
+  - {id: ko-nikl-41923-s001, ch: 주택, pr: 주ː택, ds: housing; a residential building}
+  review_grammar:
+  - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
+  - {id: ko-topik3-g027, ch: V-아/어 있다, ds: describe a resulting state rather than activity}
+  - {id: ko-topik3-g009, ch: V-아/어 놓다, ds: do an action and leave its result in place}
+- id: level-17-services-01
+  title: Services and transactions - 1
+  outcome: Clarify requirements and resolve a service problem politely.
+  vocabulary:
+  - {id: ko-nikl-29633-s002, ch: 공개, pr: 공개, ds: opening a place for public access}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-31135-s001, ch: 구조, pr: 구ː조, ds: rescue; bringing someone out of danger}
+  - {id: ko-nikl-05919-s001, ch: 보호, pr: 보ː호, ds: protection and care against danger or difficulty}
+  - {id: ko-nikl-17359-s001, ch: 대피, pr: 대ː피, ds: evacuation; moving temporarily to safety}
+  - {id: ko-nikl-42858-s001, ch: 지키다, pr: 지키다, ds: 'to protect possessions, interests, or safety'}
+  - {id: ko-nikl-32869-s001, ch: 기사, pr: 기사, ds: a professional driver or machine operator}
+  - {id: ko-nikl-36569-s003, ch: 맡기다, pr: 맏끼다, ds: to leave something somewhere or with someone for safekeeping}
+  - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
+  - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
+  review_grammar:
+  - {id: ko-topik4-g023, ch: V-(으)려면, ds: state a prerequisite for an intended outcome}
+  - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
+  - {id: ko-topik6-g022, ch: V/A-다가는, ds: warn of an unwanted result if a course continues}
+- id: level-17-actions-01
+  title: Actions and processes - 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary:
+  - {id: ko-nikl-33014-s001, ch: 기울이다, pr: 기우리다, ds: to tilt something to one side}
+  - {id: ko-nikl-31512-s001, ch: 굳다, pr: 굳따, ds: to harden; for something soft to become rigid}
+  - {id: ko-nikl-02452-s001, ch: 스치다, pr: 스치다, ds: to brush against or pass very close to something}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-34929-s001, ch: 내밀다, pr: 내ː밀다, ds: to extend a body part or part of an object outward}
+  - {id: ko-nikl-44379-s001, ch: 챙기다, pr: 챙기다, ds: to gather needed items or check that they are ready}
+  - {id: ko-nikl-07412-s001, ch: 붙들다, pr: 붇뜰다, ds: to hold something so as not to drop or lose it}
+  - {id: ko-nikl-27391-s001, ch: 거르다, pr: 거르다, ds: 'to skip a step, turn, or position in a sequence'}
+  - {id: ko-nikl-03920-s006, ch: 쓰다, pr: 쓰다, ds: to put in effort or energy}
+  - {id: ko-nikl-28080-s001, ch: 견디다, pr: 견디다, ds: to endure hardship; to withstand difficulty}
+  - {id: ko-nikl-27063-s001, ch: 개선, pr: 개ː선, ds: improvement by correcting faults or shortcomings}
+  - {id: ko-nikl-04806-s001, ch: 앞장서다, pr: 압짱서다, ds: to stand at the very front of a group}
+  review_grammar:
+  - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
+  - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
+  - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
 - id: level-17-description-01
   title: Description and comparison - 1
   outcome: Use descriptive predicates and precise comparison standards.
@@ -42,20 +106,77 @@ units:
   - {id: ko-nikl-33312-s001, ch: 깊다, pr: 깁따, ds: to be deep}
   - {id: ko-nikl-46263-s001, ch: 얕다, pr: 얃따, ds: to be shallow}
   - {id: ko-nikl-16351-s001, ch: 단단하다, pr: 단단하다, ds: to be hard; to resist deformation}
+  - {id: ko-nikl-45977-s001, ch: 측면, pr: 층면, ds: the left or right side of an object}
+  - {id: ko-nikl-13211-s001, ch: 재질, pr: 재질, ds: the properties of a material}
+  - {id: ko-nikl-37960-s001, ch: 무늬, pr: 무니, ds: a pattern on the surface of an object}
+  - {id: ko-nikl-06859-s001, ch: 분명하다, pr: 분명하다, ds: for a shape or sound to be clear and distinct}
+  - {id: ko-nikl-07650-s005, ch: 비치다, pr: 비치다, ds: to show through something thin or transparent}
+  - {id: ko-nikl-33012-s001, ch: 기울다, pr: 기울다, ds: to tilt or slope to one side}
+  - {id: ko-nikl-21536-s002, ch: 테두리, pr: 테두리, ds: the rim or edge around an object}
+  - {id: ko-nikl-50328-s001, ch: 유연성, pr: 유연썽, ds: softness and pliability}
+  - {id: ko-nikl-50330-s001, ch: 유연하다, pr: 유연하다, ds: to be soft and pliable}
+  - {id: ko-nikl-08065-s002, ch: 뿌리, pr: 뿌리, ds: the base of an object embedded deeply in something else}
+  - {id: ko-nikl-22162-s002, ch: 틀, pr: 틀, ds: a frame forming the structure of something}
+  - {id: ko-nikl-03757-s001, ch: 싸늘하다, pr: 싸늘하다, ds: to be slightly cold or chilly}
+  - {id: ko-nikl-07843-s002, ch: 빛나다, pr: 빈나다, ds: to gleam or shine by reflecting light}
+  - {id: ko-nikl-15573-s001, ch: 눈부시다, pr: 눈부시다, ds: to be dazzlingly bright}
+  - {id: ko-nikl-19533-s001, ch: 딱딱하다, pr: 딱따카다, ds: to be very hard and rigid}
+  - {id: ko-nikl-21196-s001, ch: 탄탄하다, pr: 탄탄하다, ds: to be sturdy and strong}
+  - {id: ko-nikl-27536-s001, ch: 거칠다, pr: 거칠다, ds: for a surface to be rough rather than smooth}
+  - {id: ko-nikl-36416-s001, ch: 맑다, pr: 막따, ds: to be clear and free of dirt or impurities}
+  - {id: ko-nikl-36596-s001, ch: 매끄럽다, pr: 매끄럽따, ds: to be smooth enough for things to glide over}
+  - {id: ko-nikl-46349-s001, ch: 어둡다, pr: 어둡따, ds: to be dark through lack of light}
+  - {id: ko-nikl-51878-s001, ch: 환하다, pr: 환ː하다, ds: to be brightly illuminated}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-26197-s001, ch: 간단하다, pr: 간단하다, ds: to be short or uncomplicated}
-  - {id: ko-nikl-34749-s001, ch: 낫다, pr: 낟ː따, ds: to be better than something else}
-  - {id: ko-nikl-39593-s001, ch: 반대, pr: 반ː대, ds: the opposite; a complete contrast}
-  - {id: ko-nikl-42241-s001, ch: 중요, pr: 중ː요, ds: importance; being valuable and necessary}
+  - {id: ko-nikl-22850-s001, ch: 평범하다, pr: 평범하다, ds: to be ordinary; neither outstanding nor special}
+  - {id: ko-nikl-32291-s002, ch: 근사하다, pr: 근ː사하다, ds: to be stylish and pleasing to look at}
+  - {id: ko-nikl-52363-s001, ch: 훌륭하다, pr: 훌륭하다, ds: to be excellent and worthy of praise}
   - {id: ko-nikl-07025-s001, ch: 불가능, pr: 불가능, ds: impossibility}
   - {id: ko-nikl-06635-s001, ch: 부족, pr: 부족, ds: a shortage; insufficiency}
   - {id: ko-nikl-06024-s001, ch: 복잡하다, pr: 복짜파다, ds: to be complicated; to be tangled}
   - {id: ko-nikl-22792-s002, ch: 편하다, pr: 편하다, ds: to be convenient; to be easy to use}
+  - {id: ko-nikl-26654-s001, ch: 갑작스럽다, pr: 갑짝쓰럽따, ds: to be sudden and unexpected}
   review_grammar:
   - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
   - {id: ko-topik3-g029, ch: V/A-(으)ㄴ/는 편이다, ds: offer a relative characterization or tendency}
   - {id: ko-topik5-g005, ch: V/A-(으)ㄹ 만하다, ds: evaluate worth or tolerability rather than ability}
+- id: level-17-description-02
+  title: Description and comparison - 2
+  outcome: Use descriptive predicates and precise comparison standards.
+  vocabulary:
+  - {id: ko-nikl-35327-s001, ch: 넘치다, pr: 넘ː치다, ds: to overflow from being full}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-15573-s001, ch: 눈부시다, pr: 눈부시다, ds: to be dazzlingly bright}
+  - {id: ko-nikl-19533-s001, ch: 딱딱하다, pr: 딱따카다, ds: to be very hard and rigid}
+  - {id: ko-nikl-21196-s001, ch: 탄탄하다, pr: 탄탄하다, ds: to be sturdy and strong}
+  - {id: ko-nikl-27536-s001, ch: 거칠다, pr: 거칠다, ds: for a surface to be rough rather than smooth}
+  - {id: ko-nikl-36416-s001, ch: 맑다, pr: 막따, ds: to be clear and free of dirt or impurities}
+  - {id: ko-nikl-36596-s001, ch: 매끄럽다, pr: 매끄럽따, ds: to be smooth enough for things to glide over}
+  - {id: ko-nikl-46349-s001, ch: 어둡다, pr: 어둡따, ds: to be dark through lack of light}
+  - {id: ko-nikl-51878-s001, ch: 환하다, pr: 환ː하다, ds: to be brightly illuminated}
+  review_grammar:
+  - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
+  - {id: ko-topik3-g029, ch: V/A-(으)ㄴ/는 편이다, ds: offer a relative characterization or tendency}
+  - {id: ko-topik5-g005, ch: V/A-(으)ㄹ 만하다, ds: evaluate worth or tolerability rather than ability}
+- id: level-17-society-01
+  title: Society and community - 1
+  outcome: Explain an issue without generalizing all Korean speakers from one example.
+  vocabulary:
+  - {id: ko-nikl-16492-s001, ch: 단지, pr: 단지, ds: a complex of buildings or facilities with a shared purpose}
+  - {id: ko-nikl-04038-s001, ch: 아끼다, pr: 아끼다, ds: to use something valued carefully rather than wastefully}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-26367-s001, ch: 갈등, pr: 갈뜽, ds: conflict; clashing opinions}
+  - {id: ko-nikl-23110-s001, ch: 폭력, pr: 퐁녁, ds: violence}
+  - {id: ko-nikl-41101-s002, ch: 벌어지다, pr: 버ː러지다, ds: for a fight or other bad incident to occur}
+  - {id: ko-nikl-17258-s002, ch: 대중, pr: 대ː중, ds: the general public; most members of society}
+  - {id: ko-nikl-29659-s001, ch: 공공, pr: 공공, ds: the public sphere; what concerns everyone in a society}
+  - {id: ko-nikl-13043-s001, ch: 재난, pr: 재난, ds: an unexpected disaster or serious misfortune}
+  - {id: ko-nikl-23649-s001, ch: 피해, pr: 피ː해, ds: 'harm or loss to life, health, property, or reputation'}
+  - {id: ko-nikl-52801-s002, ch: 희생, pr: 히생, ds: loss of life in an accident or natural disaster}
+  review_grammar: []
 - id: level-17-media-01
   title: Media and sources - 1
   outcome: Separate reported claims from observation and interpretation.
@@ -63,14 +184,14 @@ units:
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-32870-s001, ch: 기사, pr: 기사, ds: a news article}
-  - {id: ko-nikl-05713-s001, ch: 보도, pr: 보ː도, ds: news reporting; a news report}
-  - {id: ko-nikl-30447-s002, ch: 광고, pr: 광ː고, ds: advertising through the media}
-  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
-  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
   - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
   - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
   - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
+  - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
+  - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
+  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
+  - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   review_grammar:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
   - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
@@ -100,10 +221,37 @@ units:
   - {id: ko-nikl-40718-s001, ch: 배터리, pr: 배터리, ds: a battery}
   - {id: ko-nikl-18250-s005, ch: 돌아가다, pr: 도라가다, ds: to run; to function properly}
   - {id: ko-nikl-32668-s001, ch: 기계, pr: 기계 / 기게, ds: a machine}
+  - {id: ko-nikl-05944-s001, ch: 복구, pr: 복꾸, ds: restoration of something damaged to its former state}
+  - {id: ko-nikl-25707-s002, ch: 가리키다, pr: 가리키다, ds: for an instrument to indicate a time or temperature}
+  - {id: ko-nikl-03567-s002, ch: 실행, pr: 실행, ds: running a computer program}
+  - {id: ko-nikl-41145-s001, ch: 조작, pr: 조작, ds: operation of a machine or device}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-20679-s001, ch: 컴퓨터, pr: 컴퓨터, ds: a computer}
   - {id: ko-nikl-13695-s001, ch: 전기, pr: 전ː기, ds: electricity}
+  review_grammar: []
+- id: level-17-technology-02
+  title: Technology and systems - 2
+  outcome: Explain a system's use and limits for a general audience.
+  vocabulary:
+  - {id: ko-nikl-01600-s001, ch: 수동, pr: 수동, ds: manual operation by hand rather than machine power}
+  - {id: ko-nikl-12096-s001, ch: 자동, pr: 자동, ds: automatic operation of a machine or device}
+  - {id: ko-nikl-13881-s001, ch: 전송, pr: 전ː송, ds: electronic transmission of text or pictures}
+  - {id: ko-nikl-16230-s001, ch: 다운로드, pr: 다운로드, ds: downloading internet data or files to one's computer}
+  - {id: ko-nikl-20220-s001, ch: 로그인, pr: 로그인, ds: logging in with a registered username and password}
+  - {id: ko-nikl-35367-s001, ch: 네트워크, pr: 네트워크, ds: a computer network connecting devices through communications}
+  - {id: ko-nikl-43859-s001, ch: 차단, pr: 차ː단, ds: blocking or cutting off a flow of liquid or gas}
+  - {id: ko-nikl-16125-s003, ch: 다루다, pr: 다루다, ds: to use a musical instrument or machine}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-45877-s001, ch: 충전, pr: 충전, ds: charging a battery}
+  - {id: ko-nikl-40718-s001, ch: 배터리, pr: 배터리, ds: a battery}
+  - {id: ko-nikl-18250-s005, ch: 돌아가다, pr: 도라가다, ds: to run; to function properly}
+  - {id: ko-nikl-32668-s001, ch: 기계, pr: 기계 / 기게, ds: a machine}
+  - {id: ko-nikl-05944-s001, ch: 복구, pr: 복꾸, ds: restoration of something damaged to its former state}
+  - {id: ko-nikl-25707-s002, ch: 가리키다, pr: 가리키다, ds: for an instrument to indicate a time or temperature}
+  - {id: ko-nikl-03567-s002, ch: 실행, pr: 실행, ds: running a computer program}
+  - {id: ko-nikl-41145-s001, ch: 조작, pr: 조작, ds: operation of a machine or device}
   review_grammar: []
 - id: level-17-nature-01
   title: Nature and environment - 1
@@ -130,16 +278,40 @@ units:
   - {id: ko-nikl-48281-s001, ch: 오염, pr: 오ː염, ds: pollution; contamination}
   - {id: ko-nikl-13263-s001, ch: 재활용, pr: 재ː화룡, ds: recycling; reuse}
   - {id: ko-nikl-23498-s001, ch: 플라스틱, pr: 플라스틱, ds: plastic}
+  - {id: ko-nikl-02572-s001, ch: 습도, pr: 습또, ds: humidity; the amount of water vapor in the air}
+  - {id: ko-nikl-40693-s001, ch: 배출, pr: 배출, ds: discharge; sending something from inside to outside}
+  - {id: ko-nikl-07643-s001, ch: 비추다, pr: 비추다, ds: for a light source to illuminate something}
+  - {id: ko-nikl-23329-s012, ch: 풀리다, pr: 풀리다, ds: for ice to thaw or cold weather to become warmer}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-27962-s001, ch: 겨울, pr: 겨울, ds: winter}
   - {id: ko-nikl-07431-s001, ch: 비, pr: 비, ds: rain}
   - {id: ko-nikl-39374-s001, ch: 바람, pr: 바람, ds: wind; moving air}
   - {id: ko-nikl-30934-s001, ch: 구름, pr: 구름, ds: a cloud}
   - {id: ko-nikl-17633-s001, ch: 덥다, pr: 덥ː따, ds: to be hot (weather or how it feels)}
   - {id: ko-nikl-45832-s002, ch: 춥다, pr: 춥따, ds: to feel cold}
   - {id: ko-nikl-02897-s001, ch: 시원하다, pr: 시원하다, ds: to be pleasantly cool}
+  - {id: ko-nikl-38573-s001, ch: 물가, pr: 물까, ds: the waterside; the edge of a sea or river}
   - {id: ko-nikl-05501-s001, ch: 별, pr: 별ː, ds: a star; a bright heavenly body other than the moon}
+  review_grammar: []
+- id: level-17-nature-02
+  title: Nature and environment - 2
+  outcome: Explain an environmental change and distinguish evidence from prediction.
+  vocabulary:
+  - {id: ko-nikl-52357-s001, ch: 훈훈하다, pr: 훈훈하다, ds: to be pleasantly warm in weather or temperature}
+  - {id: ko-nikl-09719-s001, ch: 서늘하다, pr: 서늘하다, ds: to be cool or slightly cold}
+  - {id: ko-nikl-10052-s001, ch: 선선하다, pr: 선선하다, ds: to be pleasantly cool}
+  - {id: ko-nikl-52556-s005, ch: 흐리다, pr: 흐리다, ds: for the weather to be cloudy or foggy}
+  - {id: ko-nikl-43726-s002, ch: 쫓다, pr: 쫃따, ds: to drive someone or something away}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-25750-s001, ch: 가뭄, pr: 가뭄, ds: drought}
+  - {id: ko-nikl-48281-s001, ch: 오염, pr: 오ː염, ds: pollution; contamination}
+  - {id: ko-nikl-13263-s001, ch: 재활용, pr: 재ː화룡, ds: recycling; reuse}
+  - {id: ko-nikl-23498-s001, ch: 플라스틱, pr: 플라스틱, ds: plastic}
+  - {id: ko-nikl-02572-s001, ch: 습도, pr: 습또, ds: humidity; the amount of water vapor in the air}
+  - {id: ko-nikl-40693-s001, ch: 배출, pr: 배출, ds: discharge; sending something from inside to outside}
+  - {id: ko-nikl-07643-s001, ch: 비추다, pr: 비추다, ds: for a light source to illuminate something}
+  - {id: ko-nikl-23329-s012, ch: 풀리다, pr: 풀리다, ds: for ice to thaw or cold weather to become warmer}
   review_grammar: []
 - id: level-17-science-01
   title: Science and investigation - 1
@@ -147,9 +319,28 @@ units:
   vocabulary:
   - {id: ko-nikl-48406-s001, ch: 온도, pr: 온도, ds: temperature}
   - {id: ko-nikl-46917-s002, ch: 에너지, pr: 에너지, ds: energy; the capacity to do work}
+  - {id: ko-nikl-15289-s003, ch: 높이다, pr: 노피다, ds: 'to raise temperature, humidity, or pressure'}
   grammar: []
   review_vocabulary: []
   review_grammar: []
+- id: level-17-quantities-01
+  title: Numbers and counters - 1
+  outcome: Choose native or Sino-Korean number forms for quantities, clock time, and payment.
+  vocabulary:
+  - {id: ko-nikl-15044-s003, ch: 조각, pr: 조각, ds: a piece as a unit for counting fragments}
+  - {id: ko-nikl-37903-s001, ch: 무게, pr: 무게, ds: weight; how heavy an object is}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
+  - {id: ko-nikl-11661-s001, ch: 일흔, pr: 일흔, ds: seventy (native Korean numeral)}
+  - {id: ko-nikl-11662-s001, ch: 일흔, pr: 일흔, ds: seventy; before a noun or counter}
+  - {id: ko-nikl-47057-s001, ch: 여든, pr: 여든, ds: eighty (native Korean numeral)}
+  - {id: ko-nikl-47058-s001, ch: 여든, pr: 여든, ds: eighty; before a noun or counter}
+  - {id: ko-nikl-04329-s001, ch: 아흔, pr: 아흔, ds: ninety (native Korean numeral)}
+  - {id: ko-nikl-04330-s001, ch: 아흔, pr: 아흔, ds: ninety; before a noun or counter}
+  - {id: ko-nikl-43874-s004, ch: 차례, pr: 차례, ds: a time or occasion as a unit for counting occurrences}
+  review_grammar:
+  - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-17-actions-practice-01
   title: Actions and processes - sentence practice 1
   outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
@@ -157,14 +348,14 @@ units:
   grammar:
   - {id: ko-topik5-g010, ch: V-아/어 내다, ds: achieve completion despite difficulty}
   review_vocabulary:
-  - {id: ko-nikl-00145-s001, ch: 성공, pr: 성공, ds: success; achieving an intended result}
-  - {id: ko-nikl-03560-s001, ch: 실패, pr: 실패, ds: failure to achieve a goal}
-  - {id: ko-nikl-35438-s001, ch: 노력, pr: 노력, ds: effort; trying hard}
-  - {id: ko-nikl-02561-s001, ch: 습관, pr: 습꽌, ds: a habit}
-  - {id: ko-nikl-40908-s001, ch: 버릇, pr: 버륻, ds: an ingrained habit}
-  - {id: ko-nikl-39307-s004, ch: 바꾸다, pr: 바꾸다, ds: change existing content or state}
+  - {id: ko-nikl-27391-s001, ch: 거르다, pr: 거르다, ds: 'to skip a step, turn, or position in a sequence'}
   - {id: ko-nikl-03920-s006, ch: 쓰다, pr: 쓰다, ds: to put in effort or energy}
   - {id: ko-nikl-28080-s001, ch: 견디다, pr: 견디다, ds: to endure hardship; to withstand difficulty}
+  - {id: ko-nikl-27063-s001, ch: 개선, pr: 개ː선, ds: improvement by correcting faults or shortcomings}
+  - {id: ko-nikl-04806-s001, ch: 앞장서다, pr: 압짱서다, ds: to stand at the very front of a group}
+  - {id: ko-nikl-33014-s001, ch: 기울이다, pr: 기우리다, ds: to tilt something to one side}
+  - {id: ko-nikl-31512-s001, ch: 굳다, pr: 굳따, ds: to harden; for something soft to become rigid}
+  - {id: ko-nikl-02452-s001, ch: 스치다, pr: 스치다, ds: to brush against or pass very close to something}
   review_grammar:
   - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
   - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
@@ -176,14 +367,14 @@ units:
   grammar:
   - {id: ko-topik5-g006, ch: V/A-(으)ㄹ 정도로, ds: indicate degree through a result or benchmark}
   review_vocabulary:
-  - {id: ko-nikl-07025-s001, ch: 불가능, pr: 불가능, ds: impossibility}
-  - {id: ko-nikl-06635-s001, ch: 부족, pr: 부족, ds: a shortage; insufficiency}
-  - {id: ko-nikl-06024-s001, ch: 복잡하다, pr: 복짜파다, ds: to be complicated; to be tangled}
-  - {id: ko-nikl-22792-s002, ch: 편하다, pr: 편하다, ds: to be convenient; to be easy to use}
-  - {id: ko-nikl-01050-s001, ch: 속도, pr: 속또, ds: speed; the rate of movement or progress}
-  - {id: ko-nikl-33312-s001, ch: 깊다, pr: 깁따, ds: to be deep}
-  - {id: ko-nikl-46263-s001, ch: 얕다, pr: 얃따, ds: to be shallow}
-  - {id: ko-nikl-16351-s001, ch: 단단하다, pr: 단단하다, ds: to be hard; to resist deformation}
+  - {id: ko-nikl-19533-s001, ch: 딱딱하다, pr: 딱따카다, ds: to be very hard and rigid}
+  - {id: ko-nikl-21196-s001, ch: 탄탄하다, pr: 탄탄하다, ds: to be sturdy and strong}
+  - {id: ko-nikl-27536-s001, ch: 거칠다, pr: 거칠다, ds: for a surface to be rough rather than smooth}
+  - {id: ko-nikl-36416-s001, ch: 맑다, pr: 막따, ds: to be clear and free of dirt or impurities}
+  - {id: ko-nikl-36596-s001, ch: 매끄럽다, pr: 매끄럽따, ds: to be smooth enough for things to glide over}
+  - {id: ko-nikl-46349-s001, ch: 어둡다, pr: 어둡따, ds: to be dark through lack of light}
+  - {id: ko-nikl-51878-s001, ch: 환하다, pr: 환ː하다, ds: to be brightly illuminated}
+  - {id: ko-nikl-35327-s001, ch: 넘치다, pr: 넘ː치다, ds: to overflow from being full}
   review_grammar:
   - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
   - {id: ko-topik3-g029, ch: V/A-(으)ㄴ/는 편이다, ds: offer a relative characterization or tendency}
@@ -197,14 +388,14 @@ units:
   - {id: ko-topik4-g033, ch: V-느냐에 따라, ds: relate variation to an embedded question}
   - {id: ko-topik5-g003, ch: V/A-기 나름이다, ds: make an outcome depend on how something is done}
   review_vocabulary:
-  - {id: ko-nikl-22359-s002, ch: 파일, pr: 파일, ds: a computer file}
-  - {id: ko-nikl-51625-s002, ch: 화면, pr: 화ː면, ds: a screen; the image displayed on it}
-  - {id: ko-nikl-40939-s001, ch: 버튼, pr: 버튼, ds: a button controlling an electrical device}
-  - {id: ko-nikl-35861-s001, ch: 마우스, pr: 마우스, ds: a computer mouse}
-  - {id: ko-nikl-45877-s001, ch: 충전, pr: 충전, ds: charging a battery}
-  - {id: ko-nikl-40718-s001, ch: 배터리, pr: 배터리, ds: a battery}
-  - {id: ko-nikl-18250-s005, ch: 돌아가다, pr: 도라가다, ds: to run; to function properly}
-  - {id: ko-nikl-32668-s001, ch: 기계, pr: 기계 / 기게, ds: a machine}
+  - {id: ko-nikl-01600-s001, ch: 수동, pr: 수동, ds: manual operation by hand rather than machine power}
+  - {id: ko-nikl-12096-s001, ch: 자동, pr: 자동, ds: automatic operation of a machine or device}
+  - {id: ko-nikl-13881-s001, ch: 전송, pr: 전ː송, ds: electronic transmission of text or pictures}
+  - {id: ko-nikl-16230-s001, ch: 다운로드, pr: 다운로드, ds: downloading internet data or files to one's computer}
+  - {id: ko-nikl-20220-s001, ch: 로그인, pr: 로그인, ds: logging in with a registered username and password}
+  - {id: ko-nikl-35367-s001, ch: 네트워크, pr: 네트워크, ds: a computer network connecting devices through communications}
+  - {id: ko-nikl-43859-s001, ch: 차단, pr: 차ː단, ds: blocking or cutting off a flow of liquid or gas}
+  - {id: ko-nikl-16125-s003, ch: 다루다, pr: 다루다, ds: to use a musical instrument or machine}
   review_grammar: []
 - id: level-17-nature-practice-01
   title: Nature and environment - sentence practice 1
@@ -213,12 +404,12 @@ units:
   grammar:
   - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
   review_vocabulary:
-  - {id: ko-nikl-33178-s002, ch: 기후, pr: 기후, ds: climate; long-term average weather}
-  - {id: ko-nikl-21418-s001, ch: 태풍, pr: 태풍, ds: a typhoon}
-  - {id: ko-nikl-51555-s001, ch: 홍수, pr: 홍수, ds: a flood; a river swollen by heavy rain}
-  - {id: ko-nikl-42827-s001, ch: 지진, pr: 지진, ds: an earthquake}
-  - {id: ko-nikl-25750-s001, ch: 가뭄, pr: 가뭄, ds: drought}
-  - {id: ko-nikl-48281-s001, ch: 오염, pr: 오ː염, ds: pollution; contamination}
-  - {id: ko-nikl-13263-s001, ch: 재활용, pr: 재ː화룡, ds: recycling; reuse}
-  - {id: ko-nikl-23498-s001, ch: 플라스틱, pr: 플라스틱, ds: plastic}
+  - {id: ko-nikl-40693-s001, ch: 배출, pr: 배출, ds: discharge; sending something from inside to outside}
+  - {id: ko-nikl-07643-s001, ch: 비추다, pr: 비추다, ds: for a light source to illuminate something}
+  - {id: ko-nikl-23329-s012, ch: 풀리다, pr: 풀리다, ds: for ice to thaw or cold weather to become warmer}
+  - {id: ko-nikl-52357-s001, ch: 훈훈하다, pr: 훈훈하다, ds: to be pleasantly warm in weather or temperature}
+  - {id: ko-nikl-09719-s001, ch: 서늘하다, pr: 서늘하다, ds: to be cool or slightly cold}
+  - {id: ko-nikl-10052-s001, ch: 선선하다, pr: 선선하다, ds: to be pleasantly cool}
+  - {id: ko-nikl-52556-s005, ch: 흐리다, pr: 흐리다, ds: for the weather to be cloudy or foggy}
+  - {id: ko-nikl-43726-s002, ch: 쫓다, pr: 쫃따, ds: to drive someone or something away}
   review_grammar: []

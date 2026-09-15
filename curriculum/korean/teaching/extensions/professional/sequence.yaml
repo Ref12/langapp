@@ -28,6 +28,25 @@ description: Optional productive workplace language with role-sensitive practice
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: extension-professional-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain an ordinary symptom or care need without clinical claims.
+  vocabulary:
+  - {id: ko-nikl-14924-s001, ch: 제약, pr: 제ː약, ds: the manufacture of medicines}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-46850-s001, ch: 없이, pr: 업ː씨, ds: without an incident or symptom occurring}
+  - {id: ko-nikl-27536-s009, ch: 거칠다, pr: 거칠다, ds: for breathing or coughing to be harsh and irregular}
+  - {id: ko-nikl-06583-s002, ch: 부작용, pr: 부ː자굥, ds: an unwanted side effect of a medicine}
+  - {id: ko-nikl-52290-s001, ch: 후유증, pr: 후ː유쯩, ds: a symptom remaining after an illness}
+  - {id: ko-nikl-43170-s002, ch: 진정, pr: 진ː정, ds: calming intense feelings or easing pain}
+  - {id: ko-nikl-44379-s002, ch: 챙기다, pr: 챙기다, ds: to make sure not to miss or skip something}
+  - {id: ko-nikl-07419-s005, ch: 붙잡다, pr: 붇짭따, ds: to steady someone or something to prevent a fall}
+  - {id: ko-nikl-07998-s004, ch: 뻗다, pr: 뻗따, ds: to straighten or stretch a bent part of the body}
+  review_grammar:
+  - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
+  - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
+  - {id: ko-topik3-g006, ch: V-아/어야겠다, ds: state a newly formed resolve or need}
 - id: extension-professional-work-01
   title: Work and cooperation - 1
   outcome: Coordinate responsibilities and report progress for a specified relationship.
@@ -45,14 +64,14 @@ units:
   - {id: ko-nikl-09279-s001, ch: 상표, pr: 상표, ds: a trademark; a brand mark}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-04400-s002, ch: 안, pr: 안ː, ds: a considered idea or proposal}
-  - {id: ko-nikl-26461-s001, ch: 감독, pr: 감독, ds: supervision; overseeing work or conduct}
-  - {id: ko-nikl-28688-s001, ch: 계약, pr: 계ː약 / 게ː약, ds: a contract; a written business agreement}
-  - {id: ko-nikl-38424-s001, ch: 문서, pr: 문서, ds: a document serving as evidence or reference}
-  - {id: ko-nikl-05672-s001, ch: 보고서, pr: 보ː고서, ds: a written report}
-  - {id: ko-nikl-28483-s001, ch: 경쟁, pr: 경ː쟁, ds: competition}
-  - {id: ko-nikl-32917-s002, ch: 기술, pr: 기술, ds: a skill; a technique}
-  - {id: ko-nikl-15074-s002, ch: 조건, pr: 조껀, ds: terms; conditions demanded in advance}
+  - {id: ko-nikl-30208-s002, ch: 과제, pr: 과제, ds: an assigned task or problem at work or school}
+  - {id: ko-nikl-11043-s001, ch: 익숙하다, pr: 익쑤카다, ds: to be practiced at something through repeated experience}
+  - {id: ko-nikl-15945-s001, ch: 능숙하다, pr: 능수카다, ds: to be skilled and experienced}
+  - {id: ko-nikl-34855-s014, ch: 내다, pr: 내ː다, ds: to submit or send documents or a letter}
+  - {id: ko-nikl-34855-s025, ch: 내다, pr: 내ː다, ds: to take leave or a vacation}
+  - {id: ko-nikl-35306-s001, ch: 넘겨주다, pr: 넘겨주다, ds: 'to hand over property, rights, responsibility, or work'}
+  - {id: ko-nikl-10490-s003, ch: 이끌다, pr: 이끌다, ds: to guide and lead a person or group}
+  - {id: ko-nikl-36569-s002, ch: 맡기다, pr: 맏끼다, ds: to assign someone responsibility for a role or position}
   review_grammar:
   - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
   - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
@@ -95,13 +114,13 @@ units:
   - {id: ko-nikl-22152-s002, ch: 특허, pr: 트커, ds: a patent; exclusive rights to an invention}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-01587-s001, ch: 수도, pr: 수도, ds: a capital city}
-  - {id: ko-nikl-14523-s002, ch: 정부, pr: 정부, ds: the government; the executive administration}
-  - {id: ko-nikl-17324-s001, ch: 대통령, pr: 대ː통녕, ds: a president of a republic}
-  - {id: ko-nikl-09942-s001, ch: 선거, pr: 선ː거, ds: an election}
-  - {id: ko-nikl-21988-s001, ch: 투표, pr: 투표, ds: voting; casting a ballot}
   - {id: ko-nikl-05196-s001, ch: 법, pr: 법, ds: law; legally binding rules}
   - {id: ko-nikl-05181-s001, ch: 범죄, pr: 범ː죄 / 범ː줴, ds: crime; committing an offense}
+  - {id: ko-nikl-04958-s001, ch: 야당, pr: 야ː당, ds: an opposition party; a party not in power}
+  - {id: ko-nikl-10370-s001, ch: 의원, pr: 의원, ds: a member of the national or a local assembly}
+  - {id: ko-nikl-14433-s001, ch: 정당, pr: 정당, ds: a political party seeking power to realize shared ideas}
+  - {id: ko-nikl-47038-s001, ch: 여당, pr: 여ː당, ds: the ruling party holding the presidency or most seats}
+  - {id: ko-nikl-52260-s001, ch: 후보, pr: 후보, ds: a candidate standing for election}
   - {id: ko-nikl-18509-s003, ch: 동의, pr: 동의 / 동이, ds: consent; approval of another person's action}
   review_grammar: []
 - id: extension-professional-media-01
@@ -111,14 +130,14 @@ units:
   - {id: ko-nikl-45801-s001, ch: 출판, pr: 출판, ds: publication; producing and releasing a book}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-30447-s002, ch: 광고, pr: 광ː고, ds: advertising through the media}
-  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
-  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
-  - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
-  - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
-  - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
+  - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
+  - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
+  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
+  - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   - {id: ko-nikl-11303-s001, ch: 인터뷰, pr: 인터뷰, ds: an interview to gather information}
+  - {id: ko-nikl-43229-s001, ch: 진행자, pr: 진ː행자, ds: a presenter who hosts an event or broadcast}
   review_grammar:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
   - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
@@ -152,8 +171,8 @@ units:
   - {id: ko-topik6-g030, ch: N(으)로 말미암아, ds: attribute a consequence with a formal causal chunk}
   - {id: ko-topik6-g032, ch: N에 입각하여, ds: ground a formal judgment in evidence or principles}
   review_vocabulary:
-  - {id: ko-nikl-05196-s001, ch: 법, pr: 법, ds: law; legally binding rules}
-  - {id: ko-nikl-05181-s001, ch: 범죄, pr: 범ː죄 / 범ː줴, ds: crime; committing an offense}
+  - {id: ko-nikl-47038-s001, ch: 여당, pr: 여ː당, ds: the ruling party holding the presidency or most seats}
+  - {id: ko-nikl-52260-s001, ch: 후보, pr: 후보, ds: a candidate standing for election}
   - {id: ko-nikl-18509-s003, ch: 동의, pr: 동의 / 동이, ds: consent; approval of another person's action}
   - {id: ko-nikl-07948-s003, ch: 빼앗기다, pr: 빼앋끼다, ds: to lose a right or qualification by law}
   - {id: ko-nikl-42404-s002, ch: 증거, pr: 증거, ds: evidence establishing facts in a trial}

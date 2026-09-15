@@ -2,6 +2,42 @@
 # AI-authored provisional analyses; source-parent groups are not proven distinct lemmas.
 # See selection-notes.yaml for category decisions, grouping policy, and review gaps.
 # Each value has exactly the five adapter fields; the adapter report computes coverage.
+ko-lex-13016:
+  lemma: 재검토
+  category: free-lemma
+  members: [ko-nikl-13016-s001]
+  source_parents: [ko-nikl-13016]
+  rationale: The original unbanded noun explicitly denotes reviewing something already reviewed. It supplies a source-backed project-revision concept, not an invented prefix derivation or another source sense of the base verb.
+ko-lex-15352:
+  lemma: 누락
+  category: free-lemma
+  members: [ko-nikl-15352-s001]
+  source_parents: [ko-nikl-15352]
+  rationale: Preserve the independently sourced omission-from-a-list-or-record noun. It is not a fabricated modern data-processing sense and is counted once as a provisional content lexeme.
+ko-lex-38489:
+  lemma: 문체
+  category: free-lemma
+  members: [ko-nikl-38489-s001]
+  source_parents: [ko-nikl-38489]
+  rationale: The source names the overall characteristics of writing reflecting its author or text type. Retain this useful interpretation noun rather than infer a dictionary identity from its component spellings.
+ko-lex-41767:
+  lemma: 주석
+  category: free-lemma
+  members: [ko-nikl-41767-s001]
+  source_parents: [ko-nikl-41767]
+  rationale: This source noun explains a word or sentence or names the explanatory text. It is not the central-seat or chairman parent 41766, nor the official archive's metal homograph; ordered meanings and the official long-vowel citation distinguish it.
+ko-lex-45112:
+  lemma: 초안
+  category: free-lemma
+  members: [ko-nikl-45112-s001, ko-nikl-45112-s002]
+  source_parents: [ko-nikl-45112]
+  rationale: Retain rough-document and preliminary-agenda/plan senses at their original positions within one provisional draft identity. Their different project contexts add depth, not two headwords.
+ko-lex-50947:
+  lemma: 은유
+  category: free-lemma
+  members: [ko-nikl-50947-s001]
+  source_parents: [ko-nikl-50947]
+  rationale: The original unbanded source explicitly names a literary method of indirect expression through another term. No new official sense ID or generic figurative meaning is inferred from a related word.
 ko-lex-02914:
   lemma: 시작하다
   category: free-lemma

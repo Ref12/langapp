@@ -35,6 +35,48 @@ checkpoint:
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: level-18-people-01
+  title: People and relationships - 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary:
+  - {id: ko-nikl-19894-s001, ch: 뛰어나다, pr: 뛰어나다 / 뛰여나다, ds: to be outstanding in ability}
+  - {id: ko-nikl-33742-s001, ch: 꼼꼼하다, pr: 꼼꼼하다, ds: to be meticulous and attentive to detail}
+  - {id: ko-nikl-13512-s001, ch: 적극적, pr: 적끅쩍, ds: proactive and positive in attitude}
+  - {id: ko-nikl-09866-s001, ch: 서투르다, pr: 서ː투르다, ds: to be inexperienced or unskilled at something}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-21369-s001, ch: 태도, pr: 태ː도, ds: attitude expressed through posture or behavior}
+  - {id: ko-nikl-39723-s001, ch: 반응, pr: 바ː능, ds: a response or reaction to a stimulus}
+  - {id: ko-nikl-46161-s001, ch: 양보, pr: 양ː보, ds: giving up a seat or possession for someone else}
+  - {id: ko-nikl-42858-s004, ch: 지키다, pr: 지키다, ds: to keep a promise or follow rules and etiquette}
+  - {id: ko-nikl-46288-s001, ch: 어기다, pr: 어기다, ds: 'to break a rule, promise, or order'}
+  - {id: ko-nikl-43874-s002, ch: 차례, pr: 차례, ds: a turn; an opportunity given in sequence}
+  - {id: ko-nikl-39820-s003, ch: 받아들이다, pr: 바다드리다, ds: to grant a request or demand}
+  - {id: ko-nikl-11025-s001, ch: 이혼, pr: 이ː혼, ds: divorce}
+  review_grammar:
+  - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
+  - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
+  - {id: ko-topik5-g029, ch: V/A-(으)ㄹ까 하다, ds: express a tentative intention}
+- id: level-18-services-01
+  title: Services and transactions - 1
+  outcome: Clarify requirements and resolve a service problem politely.
+  vocabulary:
+  - {id: ko-nikl-13715-s001, ch: 전달, pr: 전달, ds: delivery of an item to its recipient}
+  - {id: ko-nikl-34929-s003, ch: 내밀다, pr: 내ː밀다, ds: to hold out money or an item for someone to take}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-05919-s001, ch: 보호, pr: 보ː호, ds: protection and care against danger or difficulty}
+  - {id: ko-nikl-17359-s001, ch: 대피, pr: 대ː피, ds: evacuation; moving temporarily to safety}
+  - {id: ko-nikl-42858-s001, ch: 지키다, pr: 지키다, ds: 'to protect possessions, interests, or safety'}
+  - {id: ko-nikl-32869-s001, ch: 기사, pr: 기사, ds: a professional driver or machine operator}
+  - {id: ko-nikl-36569-s003, ch: 맡기다, pr: 맏끼다, ds: to leave something somewhere or with someone for safekeeping}
+  - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
+  - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
+  - {id: ko-nikl-29633-s002, ch: 공개, pr: 공개, ds: opening a place for public access}
+  review_grammar:
+  - {id: ko-topik4-g023, ch: V-(으)려면, ds: state a prerequisite for an intended outcome}
+  - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
+  - {id: ko-topik6-g022, ch: V/A-다가는, ds: warn of an unwanted result if a course continues}
 - id: level-18-work-01
   title: Work and cooperation - 1
   outcome: Coordinate responsibilities and report progress for a specified relationship.
@@ -48,16 +90,53 @@ units:
   - {id: ko-nikl-28483-s001, ch: 경쟁, pr: 경ː쟁, ds: competition}
   - {id: ko-nikl-32917-s002, ch: 기술, pr: 기술, ds: a skill; a technique}
   - {id: ko-nikl-15074-s002, ch: 조건, pr: 조껀, ds: terms; conditions demanded in advance}
+  - {id: ko-nikl-41103-s001, ch: 벌이다, pr: 버ː리다, ds: to plan and launch an undertaking}
+  - {id: ko-nikl-43164-s001, ch: 진전, pr: 진ː전, ds: progress; movement toward a better state}
+  - {id: ko-nikl-40381-s001, ch: 방식, pr: 방식, ds: a particular method or format}
+  - {id: ko-nikl-41606-s001, ch: 주관, pr: 주관, ds: taking responsibility for organizing and managing}
+  - {id: ko-nikl-40468-s001, ch: 방침, pr: 방침, ds: a policy or planned direction for future action}
+  - {id: ko-nikl-11998-s002, ch: 자격, pr: 자격, ds: qualifications or abilities required for a position}
+  - {id: ko-nikl-27672-s001, ch: 건축가, pr: 건ː축까, ds: an architect with professional knowledge and skills}
+  - {id: ko-nikl-42901-s001, ch: 지휘, pr: 지휘, ds: directing a group toward a goal}
+  - {id: ko-nikl-46196-s001, ch: 양식, pr: 양식, ds: a required form or format for a task}
+  - {id: ko-nikl-15289-s004, ch: 높이다, pr: 노피다, ds: 'to improve quality, ability, or value'}
+  - {id: ko-nikl-34970-s002, ch: 내세우다, pr: 내ː세우다, ds: to put someone forward to play a role}
+  - {id: ko-nikl-30208-s002, ch: 과제, pr: 과제, ds: an assigned task or problem at work or school}
+  - {id: ko-nikl-11043-s001, ch: 익숙하다, pr: 익쑤카다, ds: to be practiced at something through repeated experience}
+  - {id: ko-nikl-15945-s001, ch: 능숙하다, pr: 능수카다, ds: to be skilled and experienced}
+  - {id: ko-nikl-34855-s014, ch: 내다, pr: 내ː다, ds: to submit or send documents or a letter}
+  - {id: ko-nikl-34855-s025, ch: 내다, pr: 내ː다, ds: to take leave or a vacation}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-42777-s001, ch: 지원, pr: 지원, ds: applying to join an organization or take a role}
-  - {id: ko-nikl-47303-s001, ch: 역할, pr: 여칼, ds: a role; an assigned task}
-  - {id: ko-nikl-44365-s001, ch: 책임, pr: 채김, ds: responsibility; an assigned duty}
-  - {id: ko-nikl-25383-s001, ch: 협력, pr: 혐녁, ds: cooperation; working together}
-  - {id: ko-nikl-25410-s001, ch: 협조, pr: 협쪼, ds: assistance; helping with effort}
-  - {id: ko-nikl-22206-s001, ch: 팀, pr: 팀, ds: a team; a group working together}
-  - {id: ko-nikl-47651-s002, ch: 열다, pr: 열ː다, ds: to open or start a meeting}
-  - {id: ko-nikl-02649-s001, ch: 승진, pr: 승진, ds: promotion to a higher position at work}
+  - {id: ko-nikl-25377-s001, ch: 협동, pr: 협똥, ds: cooperation; joining efforts with a shared purpose}
+  - {id: ko-nikl-34855-s021, ch: 내다, pr: 내ː다, ds: to make time or create an opportunity}
+  - {id: ko-nikl-35308-s009, ch: 넘기다, pr: 넘기다, ds: to hand a task or duty over to someone else}
+  - {id: ko-nikl-19503-s004, ch: 따르다, pr: 따르다, ds: 'to follow rules, procedures, practices, or someone''s opinion'}
+  - {id: ko-nikl-27359-s001, ch: 거들다, pr: 거ː들다, ds: to help someone by sharing in their work}
+  - {id: ko-nikl-36569-s001, ch: 맡기다, pr: 맏끼다, ds: to entrust a task to someone to handle responsibly}
+  - {id: ko-nikl-35417-s001, ch: 노동자, pr: 노동자, ds: a worker who earns a living through paid work}
+  - {id: ko-nikl-46842-s001, ch: 업체, pr: 업체, ds: a business enterprise operating for profit}
+  review_grammar:
+  - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
+  - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
+  - {id: ko-topik5-g026, ch: V-는 대로, ds: act as soon as something happens or as instructed}
+- id: level-18-work-02
+  title: Work and cooperation - 2
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary:
+  - {id: ko-nikl-35306-s001, ch: 넘겨주다, pr: 넘겨주다, ds: 'to hand over property, rights, responsibility, or work'}
+  - {id: ko-nikl-10490-s003, ch: 이끌다, pr: 이끌다, ds: to guide and lead a person or group}
+  - {id: ko-nikl-36569-s002, ch: 맡기다, pr: 맏끼다, ds: to assign someone responsibility for a role or position}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-46196-s001, ch: 양식, pr: 양식, ds: a required form or format for a task}
+  - {id: ko-nikl-15289-s004, ch: 높이다, pr: 노피다, ds: 'to improve quality, ability, or value'}
+  - {id: ko-nikl-34970-s002, ch: 내세우다, pr: 내ː세우다, ds: to put someone forward to play a role}
+  - {id: ko-nikl-30208-s002, ch: 과제, pr: 과제, ds: an assigned task or problem at work or school}
+  - {id: ko-nikl-11043-s001, ch: 익숙하다, pr: 익쑤카다, ds: to be practiced at something through repeated experience}
+  - {id: ko-nikl-15945-s001, ch: 능숙하다, pr: 능수카다, ds: to be skilled and experienced}
+  - {id: ko-nikl-34855-s014, ch: 내다, pr: 내ː다, ds: to submit or send documents or a letter}
+  - {id: ko-nikl-34855-s025, ch: 내다, pr: 내ː다, ds: to take leave or a vacation}
   review_grammar:
   - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
   - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
@@ -83,6 +162,7 @@ units:
   title: Communication and information - 1
   outcome: Repair ambiguity and relay information with clear attribution.
   vocabulary:
+  - {id: ko-nikl-45112-s001, ch: 초안, pr: 초안, ds: a first rough draft of a document}
   - {id: ko-nikl-10317-s001, ch: 의사, pr: 의사, ds: an intention; what one wishes to do}
   - {id: ko-nikl-24475-s001, ch: 합의, pr: 하븨 / 하비, ds: agreement; a consensus of views}
   - {id: ko-nikl-40128-s001, ch: 발표, pr: 발표, ds: a presentation; publicly announcing results or work}
@@ -93,16 +173,25 @@ units:
   - {id: ko-nikl-49318-s001, ch: 우선, pr: 우선, ds: first; before other things}
   - {id: ko-nikl-39608-s001, ch: 반드시, pr: 반드시, ds: certainly; without fail}
   - {id: ko-nikl-41869-s001, ch: 주제, pr: 주제, ds: a topic; the central issue in discussion or research}
+  - {id: ko-nikl-44885-s001, ch: 청중, pr: 청중, ds: an audience gathered to listen to a lecture or music}
+  - {id: ko-nikl-27899-s001, ch: 게다가, pr: 게다가, ds: besides; in addition to that}
+  - {id: ko-nikl-44729-s001, ch: 첨부, pr: 첨부, ds: attachment of a related document to a letter or file}
+  - {id: ko-nikl-48927-s001, ch: 요구, pr: 요구, ds: a demand for something needed or due}
+  - {id: ko-nikl-49069-s001, ch: 요청, pr: 요청, ds: a request for someone to do something necessary}
+  - {id: ko-nikl-01823-s001, ch: 수신자, pr: 수신자, ds: the recipient of a message or signal}
+  - {id: ko-nikl-08637-s001, ch: 사회자, pr: 사회자 / 사훼자, ds: a moderator or host presiding over a meeting or ceremony}
+  - {id: ko-nikl-29992-s001, ch: 공지, pr: 공지, ds: a notice informing many people}
+  - {id: ko-nikl-40037-s001, ch: 발신자, pr: 발씬자, ds: the sender of a message or signal}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-00697-s002, ch: 소리, pr: 소리, ds: something said; spoken words}
-  - {id: ko-nikl-48347-s001, ch: 오해, pr: 오ː해, ds: a misunderstanding}
-  - {id: ko-nikl-20920-s006, ch: 크다, pr: 크다, ds: to be loud (a sound)}
-  - {id: ko-nikl-12453-s005, ch: 작다, pr: 작ː따, ds: to be quiet or low (a sound)}
-  - {id: ko-nikl-46370-s003, ch: 어렵다, pr: 어렵따, ds: to be hard to understand (words or writing)}
-  - {id: ko-nikl-39307-s005, ch: 바꾸다, pr: 바꾸다, ds: to put another person on the telephone}
-  - {id: ko-nikl-05696-s010, ch: 보내다, pr: 보내다, ds: to send or convey information}
-  - {id: ko-nikl-19263-s009, ch: 들어오다, pr: 드러오다, ds: 'to come in (news, a rumor, or a request)'}
+  - {id: ko-nikl-37626-s001, ch: 목소리, pr: 목쏘리, ds: a person's voice}
+  - {id: ko-nikl-18658-s001, ch: 되묻다, pr: 되묻따 / 뒈묻따, ds: to ask the same question again after not hearing the answer}
+  - {id: ko-nikl-15289-s012, ch: 높이다, pr: 노피다, ds: to increase the volume of a sound}
+  - {id: ko-nikl-19518-s001, ch: 따지다, pr: 따지다, ds: to challenge a fault or problem and demand an answer}
+  - {id: ko-nikl-00952-s002, ch: 소통, pr: 소통, ds: mutual communication without misunderstanding}
+  - {id: ko-nikl-23337-s003, ch: 풀어내다, pr: 푸러내다, ds: to clear up a misunderstanding}
+  - {id: ko-nikl-18650-s001, ch: 되도록, pr: 되도록 / 뒈도록, ds: as much as possible}
+  - {id: ko-nikl-37120-s001, ch: 면담, pr: 면ː담, ds: a private meeting to discuss a concern or problem}
   review_grammar:
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
   - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
@@ -113,16 +202,18 @@ units:
   vocabulary:
   - {id: ko-nikl-15074-s001, ch: 조건, pr: 조껀, ds: a condition; a prerequisite}
   - {id: ko-nikl-12840-s001, ch: 장단점, pr: 장단쩜, ds: advantages and disadvantages; pros and cons}
+  - {id: ko-nikl-01580-s001, ch: 수단, pr: 수단, ds: a means or tool for achieving a purpose}
+  - {id: ko-nikl-08934-s002, ch: 삼다, pr: 삼ː따, ds: to use something as a means or tool}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-12957-s001, ch: 장점, pr: 장쩜, ds: an advantage; a strength}
-  - {id: ko-nikl-16478-s001, ch: 단점, pr: 단ː쩜, ds: a drawback; a weakness}
-  - {id: ko-nikl-04150-s001, ch: 아마, pr: 아마, ds: probably; presumably}
-  - {id: ko-nikl-26896-s001, ch: 같다, pr: 갇따, ds: to be the same}
   - {id: ko-nikl-26896-s008, ch: 같다, pr: 갇따, ds: to seem; to appear likely}
   - {id: ko-nikl-16126-s001, ch: 다르다, pr: 다르다, ds: to be different}
   - {id: ko-nikl-07559-s001, ch: 비슷하다, pr: 비스타다, ds: to be similar; to resemble}
+  - {id: ko-nikl-48007-s001, ch: 예상, pr: 예ː상, ds: an expectation about a future event or situation}
+  - {id: ko-nikl-19776-s001, ch: 또는, pr: 또는, ds: or; alternatively}
+  - {id: ko-nikl-51408-s003, ch: 혹시, pr: 혹씨, ds: perhaps; as one tentatively guesses}
   - {id: ko-nikl-24589-s001, ch: 해결, pr: 해ː결, ds: a solution; resolving a problem}
+  - {id: ko-nikl-17285-s001, ch: 대책, pr: 대ː책, ds: a plan for dealing with a difficult situation}
   review_grammar:
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
@@ -134,29 +225,30 @@ units:
   - {id: ko-nikl-18509-s003, ch: 동의, pr: 동의 / 동이, ds: consent; approval of another person's action}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-28539-s001, ch: 경찰, pr: 경ː찰, ds: policing; the police as an institution}
-  - {id: ko-nikl-01587-s001, ch: 수도, pr: 수도, ds: a capital city}
-  - {id: ko-nikl-14523-s002, ch: 정부, pr: 정부, ds: the government; the executive administration}
-  - {id: ko-nikl-17324-s001, ch: 대통령, pr: 대ː통녕, ds: a president of a republic}
-  - {id: ko-nikl-09942-s001, ch: 선거, pr: 선ː거, ds: an election}
   - {id: ko-nikl-21988-s001, ch: 투표, pr: 투표, ds: voting; casting a ballot}
   - {id: ko-nikl-05196-s001, ch: 법, pr: 법, ds: law; legally binding rules}
   - {id: ko-nikl-05181-s001, ch: 범죄, pr: 범ː죄 / 범ː줴, ds: crime; committing an offense}
+  - {id: ko-nikl-04958-s001, ch: 야당, pr: 야ː당, ds: an opposition party; a party not in power}
+  - {id: ko-nikl-10370-s001, ch: 의원, pr: 의원, ds: a member of the national or a local assembly}
+  - {id: ko-nikl-14433-s001, ch: 정당, pr: 정당, ds: a political party seeking power to realize shared ideas}
+  - {id: ko-nikl-47038-s001, ch: 여당, pr: 여ː당, ds: the ruling party holding the presidency or most seats}
+  - {id: ko-nikl-52260-s001, ch: 후보, pr: 후보, ds: a candidate standing for election}
   review_grammar: []
 - id: level-18-media-01
   title: Media and sources - 1
   outcome: Separate reported claims from observation and interpretation.
   vocabulary:
   - {id: ko-nikl-11303-s001, ch: 인터뷰, pr: 인터뷰, ds: an interview to gather information}
+  - {id: ko-nikl-43229-s001, ch: 진행자, pr: 진ː행자, ds: a presenter who hosts an event or broadcast}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-05713-s001, ch: 보도, pr: 보ː도, ds: news reporting; a news report}
-  - {id: ko-nikl-30447-s002, ch: 광고, pr: 광ː고, ds: advertising through the media}
-  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
-  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
-  - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
   - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
   - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
+  - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
+  - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
+  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
+  - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   review_grammar:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}

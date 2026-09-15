@@ -53,16 +53,25 @@ units:
   vocabulary:
   - {id: ko-nikl-25601-s002, ch: 가능성, pr: 가ː능썽, ds: potential for future growth}
   - {id: ko-nikl-00903-s003, ch: 소재, pr: 소재, ds: material forming the content of a text}
+  - {id: ko-nikl-21288-s001, ch: 탐구, pr: 탐구, ds: inquiry; investigating a field of study in depth}
+  - {id: ko-nikl-21311-s001, ch: 탐색, pr: 탐색, ds: exploration to discover or explain something unknown}
+  - {id: ko-nikl-00844-s001, ch: 소양, pr: 소양, ds: background knowledge or learning built up over time}
+  - {id: ko-nikl-12681-s001, ch: 잠재력, pr: 잠재력, ds: potential; latent ability not yet evident}
+  - {id: ko-nikl-00043-s001, ch: 설문, pr: 설문, ds: a survey; questions asked to investigate a fact}
+  - {id: ko-nikl-00044-s001, ch: 설문지, pr: 설문지, ds: a questionnaire used in a survey or investigation}
+  - {id: ko-nikl-43874-s003, ch: 차례, pr: 차례, ds: a table of contents listing sections in order}
+  - {id: ko-nikl-44088-s001, ch: 참고, pr: 참고, ds: consulting something as a source of useful information}
+  - {id: ko-nikl-44145-s001, ch: 참조, pr: 참조, ds: cross-reference; comparison with related information}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-47348-s001, ch: 연구, pr: 연ː구, ds: research; detailed investigation and analysis}
-  - {id: ko-nikl-45791-s001, ch: 출처, pr: 출처, ds: a source; where words or things originate}
-  - {id: ko-nikl-44265-s003, ch: 찾다, pr: 찯따, ds: to look something up in a book or computer}
-  - {id: ko-nikl-38451-s001, ch: 문자, pr: 문짜, ds: writing; a system of written characters}
-  - {id: ko-nikl-51222-s001, ch: 호기심, pr: 호ː기심, ds: curiosity}
-  - {id: ko-nikl-02051-s001, ch: 수학, pr: 수ː학, ds: mathematics}
-  - {id: ko-nikl-35833-s002, ch: 마무리, pr: 마무리, ds: the conclusion of an argumentative essay}
-  - {id: ko-nikl-16300-s007, ch: 닦다, pr: 닥따, ds: to lay a foundation for something}
+  - {id: ko-nikl-00214-s003, ch: 성분, pr: 성분, ds: a constituent of a sentence}
+  - {id: ko-nikl-23193-s002, ch: 표기, pr: 표기, ds: notation; representing speech in writing or phonetic symbols}
+  - {id: ko-nikl-40325-s002, ch: 방면, pr: 방면, ds: a field or area of activity}
+  - {id: ko-nikl-40170-s010, ch: 밝다, pr: 박따, ds: to be well informed about a subject}
+  - {id: ko-nikl-46349-s008, ch: 어둡다, pr: 어둡따, ds: to know little about a thing or field}
+  - {id: ko-nikl-51878-s007, ch: 환하다, pr: 환ː하다, ds: to be thoroughly familiar with a matter}
+  - {id: ko-nikl-51636-s002, ch: 화법, pr: 화뻡, ds: a way of reporting or quoting another person's words}
+  - {id: ko-nikl-42796-s001, ch: 지적, pr: 지쩍, ds: intellectual; relating to knowledge or intelligence}
   review_grammar:
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
   - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
@@ -73,16 +82,65 @@ units:
   vocabulary:
   - {id: ko-nikl-17145-s001, ch: 대안, pr: 대ː안, ds: a plan or proposal for solving a matter}
   - {id: ko-nikl-49320-s001, ch: 우선순위, pr: 우선수뉘, ds: priority; order of precedence}
+  - {id: ko-nikl-31007-s001, ch: 구상, pr: 구상, ds: 'planning the content, scale, and implementation of a project'}
+  - {id: ko-nikl-12381-s002, ch: 자질, pr: 자질, ds: ability or competence for a particular task}
+  - {id: ko-nikl-47240-s001, ch: 역량, pr: 영냥, ds: capability; the capacity to accomplish a task}
+  - {id: ko-nikl-46065-s001, ch: 치밀하다, pr: 치밀하다, ds: to be meticulous and carefully detailed}
+  - {id: ko-nikl-22803-s005, ch: 펼쳐지다, pr: 펼처지다, ds: 'for a dream, plan, or policy to be put into action'}
+  - {id: ko-nikl-22804-s004, ch: 펼치다, pr: 펼치다, ds: to put a dream or plan into practice}
+  - {id: ko-nikl-33014-s002, ch: 기울이다, pr: 기우리다, ds: to devote one's attention or effort to something}
+  - {id: ko-nikl-02061-s001, ch: 수행, pr: 수행, ds: carrying out a task as intended or planned}
+  - {id: ko-nikl-03567-s001, ch: 실행, pr: 실행, ds: execution; actually carrying something out}
+  - {id: ko-nikl-03577-s001, ch: 실현, pr: 실현, ds: realization; making a dream or plan come true}
+  - {id: ko-nikl-05814-s001, ch: 보완, pr: 보ː완, ds: supplementing something to make up for its deficiencies}
+  - {id: ko-nikl-07608-s001, ch: 비전, pr: 비전, ds: a vision; a prospect or plan for the future}
+  - {id: ko-nikl-25318-s003, ch: 현지, pr: 현ː지, ds: the site where work is actually carried out}
+  - {id: ko-nikl-33175-s001, ch: 기획, pr: 기획 / 기훽, ds: detailed advance planning of an event or project}
+  - {id: ko-nikl-40394-s001, ch: 방안, pr: 방안, ds: a proposed method or plan for handling a matter}
+  - {id: ko-nikl-45549-s002, ch: 추진, pr: 추진, ds: pushing a project forward toward a goal}
+  - {id: ko-nikl-51923-s001, ch: 활용, pr: 화룡, ds: making full use of something's function or ability}
+  - {id: ko-nikl-33125-s001, ch: 기틀, pr: 기틀, ds: the groundwork or basic conditions for a task}
+  - {id: ko-nikl-03951-s002, ch: 쓸모, pr: 쓸모, ds: an intended use or field of application}
+  - {id: ko-nikl-36596-s003, ch: 매끄럽다, pr: 매끄럽따, ds: for work or relationships to progress without obstacles}
+  - {id: ko-nikl-25227-s001, ch: 혁신, pr: 혁씬, ds: innovation through complete renewal of established practices}
+  - {id: ko-nikl-28485-s001, ch: 경쟁력, pr: 경ː쟁녁, ds: competitiveness; the capacity to compete}
+  - {id: ko-nikl-44400-s001, ch: 처리, pr: 처ː리, ds: handling a task or matter through an established procedure}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-32917-s002, ch: 기술, pr: 기술, ds: a skill; a technique}
-  - {id: ko-nikl-15074-s002, ch: 조건, pr: 조껀, ds: terms; conditions demanded in advance}
-  - {id: ko-nikl-35410-s001, ch: 노동, pr: 노동, ds: labor; work producing necessities}
-  - {id: ko-nikl-21880-s001, ch: 퇴직, pr: 퇴ː직 / 퉤ː직, ds: retirement; leaving a job or post}
-  - {id: ko-nikl-14467-s003, ch: 정리, pr: 정ː니, ds: clearing up problems or unnecessary elements}
-  - {id: ko-nikl-37902-s002, ch: 무겁다, pr: 무겁따, ds: to be weighty; to carry serious responsibility}
+  - {id: ko-nikl-32272-s001, ch: 근로, pr: 글ː로, ds: work; diligent labor}
+  - {id: ko-nikl-32274-s001, ch: 근로자, pr: 글ː로자, ds: a worker paid for physical or mental work}
+  - {id: ko-nikl-00977-s004, ch: 소화, pr: 소화, ds: handling or getting through work (figurative)}
   - {id: ko-nikl-01127-s004, ch: 손, pr: 손, ds: 'a person''s labor, effort, or skill'}
   - {id: ko-nikl-43335-s002, ch: 짐, pr: 짐, ds: a burden; an assigned responsibility}
+  - {id: ko-nikl-51387-s002, ch: 호흡, pr: 호흡, ds: coordination or harmony with people one works with}
+  - {id: ko-nikl-07412-s004, ch: 붙들다, pr: 붇뜰다, ds: to cling to or stay absorbed in a task}
+  - {id: ko-nikl-00229-s003, ch: 성숙, pr: 성숙, ds: maturity gained through experience and practice}
+  review_grammar:
+  - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
+  - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
+  - {id: ko-topik5-g026, ch: V-는 대로, ds: act as soon as something happens or as instructed}
+- id: level-30-work-02
+  title: Work and cooperation - 2
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary:
+  - {id: ko-nikl-51777-s001, ch: 확장, pr: 확짱, ds: 'expansion of facilities, business, or influence'}
+  - {id: ko-nikl-16125-s006, ch: 다루다, pr: 다루다, ds: to handle an object or task in a particular way}
+  - {id: ko-nikl-34855-s023, ch: 내다, pr: 내ː다, ds: to produce an effect or result}
+  - {id: ko-nikl-33849-s001, ch: 꾀하다, pr: 꾀하다 / 꿰하다, ds: to strive to find a way to accomplish or resolve something}
+  - {id: ko-nikl-05759-s002, ch: 보살피다, pr: 보살피다, ds: to attend to and oversee a task or situation}
+  - {id: ko-nikl-18242-s002, ch: 돌보다, pr: 돌ː보다, ds: to manage an activity with care and attention}
+  - {id: ko-nikl-25575-s003, ch: 가꾸다, pr: 가꾸다, ds: to develop or improve something}
+  - {id: ko-nikl-27346-s003, ch: 거두다, pr: 거두다, ds: to achieve a good result}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-45549-s002, ch: 추진, pr: 추진, ds: pushing a project forward toward a goal}
+  - {id: ko-nikl-51923-s001, ch: 활용, pr: 화룡, ds: making full use of something's function or ability}
+  - {id: ko-nikl-33125-s001, ch: 기틀, pr: 기틀, ds: the groundwork or basic conditions for a task}
+  - {id: ko-nikl-03951-s002, ch: 쓸모, pr: 쓸모, ds: an intended use or field of application}
+  - {id: ko-nikl-36596-s003, ch: 매끄럽다, pr: 매끄럽따, ds: for work or relationships to progress without obstacles}
+  - {id: ko-nikl-25227-s001, ch: 혁신, pr: 혁씬, ds: innovation through complete renewal of established practices}
+  - {id: ko-nikl-28485-s001, ch: 경쟁력, pr: 경ː쟁녁, ds: competitiveness; the capacity to compete}
+  - {id: ko-nikl-44400-s001, ch: 처리, pr: 처ː리, ds: handling a task or matter through an established procedure}
   review_grammar:
   - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
   - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
@@ -92,20 +150,94 @@ units:
   outcome: Repair ambiguity and relay information with clear attribution.
   vocabulary:
   - {id: ko-nikl-40995-s001, ch: 번역, pr: 버녁, ds: translation}
+  - {id: ko-nikl-06109-s001, ch: 본문, pr: 본문, ds: the main body of a document or long text}
+  - {id: ko-nikl-18015-s001, ch: 도표, pr: 도표, ds: a chart showing relationships in analyzed information}
+  - {id: ko-nikl-14909-s001, ch: 제시, pr: 제시, ds: presentation of a proposed intention in speech or writing}
+  - {id: ko-nikl-42795-s002, ch: 지적, pr: 지적, ds: pointing out a fault or something needing correction}
+  - {id: ko-nikl-47466-s001, ch: 연설, pr: 연ː설, ds: a public speech presenting one's ideas or claims}
+  - {id: ko-nikl-16110-s003, ch: 다듬다, pr: 다듬따, ds: to polish writing for correctness and structure}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-48353-s001, ch: 오히려, pr: 오히려, ds: rather; contrary to expectation}
-  - {id: ko-nikl-30168-s001, ch: 과연, pr: 과연, ds: indeed; just as expected}
-  - {id: ko-nikl-00034-s001, ch: 설마, pr: 설마, ds: 'surely not; could it really be?'}
-  - {id: ko-nikl-33554-s002, ch: 꺼내다, pr: 꺼ː내다, ds: to bring up a thought or topic}
-  - {id: ko-nikl-36950-s009, ch: 먹다, pr: 먹따, ds: to receive a scolding or abuse}
-  - {id: ko-nikl-07592-s001, ch: 비유, pr: 비ː유, ds: figurative comparison; explaining by analogy}
-  - {id: ko-nikl-30369-s001, ch: 관용어, pr: 과뇽어, ds: an idiom; an established expression with a special meaning}
-  - {id: ko-nikl-39159-s002, ch: 밀도, pr: 밀또, ds: density; richness and detail of content}
+  - {id: ko-nikl-42102-s001, ch: 중계, pr: 중계 / 중게, ds: intermediation connecting different parties or things}
+  - {id: ko-nikl-11639-s001, ch: 일컫다, pr: 일컫따, ds: to name or call something}
+  - {id: ko-nikl-51674-s001, ch: 화자, pr: 화자, ds: the speaker; the person telling a story}
+  - {id: ko-nikl-07689-s002, ch: 비하, pr: 비ː하, ds: disparagement; treating someone as insignificant}
+  - {id: ko-nikl-16675-s002, ch: 담담하다, pr: 담ː담하다, ds: 'for writing or speech to be plain, objective, and calm'}
+  - {id: ko-nikl-46453-s003, ch: 어색하다, pr: 어ː새카다, ds: to be unnatural because it does not fit accepted conventions}
+  - {id: ko-nikl-36596-s002, ch: 매끄럽다, pr: 매끄럽따, ds: for speech or writing to flow logically without awkwardness}
+  - {id: ko-nikl-52555-s002, ch: 흐리다, pr: 흐리다, ds: to make words or thoughts unclear}
   review_grammar:
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
   - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
   - {id: ko-topik5-g021, ch: V/A-길래, ds: explain your reaction to an observed circumstance}
+- id: level-30-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain feelings without treating another person's inner state as directly known.
+  vocabulary:
+  - {id: ko-nikl-47703-s001, ch: 열의, pr: 여릐 / 여리, ds: zeal; a strong will to achieve something}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-02452-s003, ch: 스치다, pr: 스치다, ds: for a thought or expression to appear and quickly vanish}
+  - {id: ko-nikl-18664-s003, ch: 되살아나다, pr: 되사라나다 / 뒈사라나다, ds: for a forgotten feeling or memory to resurface}
+  - {id: ko-nikl-35327-s003, ch: 넘치다, pr: 넘ː치다, ds: for feelings or energy to overflow}
+  - {id: ko-nikl-40579-s003, ch: 배다, pr: 배ː다, ds: for a thought or feeling to sink in or linger}
+  - {id: ko-nikl-23361-s004, ch: 품다, pr: 품ː따, ds: to harbor a thought or feeling in one's heart}
+  - {id: ko-nikl-43726-s003, ch: 쫓다, pr: 쫃따, ds: to dispel drowsiness or distracting thoughts}
+  - {id: ko-nikl-26530-s001, ch: 감수성, pr: 감ː수썽, ds: sensitivity; the capacity to feel external impressions}
+  - {id: ko-nikl-28379-s001, ch: 경멸, pr: 경멸, ds: contempt; looking down on someone with strong dislike}
+  review_grammar:
+  - {id: ko-topik4-g024, ch: V/A-(으)ㄹ까 봐, ds: explain a precaution against a feared possibility}
+  - {id: ko-topik5-g009, ch: V-고 말다, ds: reach an eventual and often unwanted outcome}
+  - {id: ko-topik5-g031, ch: V-았/었어야 했는데, ds: regret a past obligation that was not fulfilled}
+- id: level-30-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain causal and conditional relations with appropriate scope.
+  vocabulary:
+  - {id: ko-nikl-23337-s002, ch: 풀어내다, pr: 푸러내다, ds: to work through a difficult problem to find a solution}
+  - {id: ko-nikl-41482-s001, ch: 종합적, pr: 종합쩍, ds: comprehensive; combining various things into a whole}
+  - {id: ko-nikl-44920-s001, ch: 체계적, pr: 체계적 / 체게적, ds: systematic; organized in stages by consistent principles}
+  - {id: ko-nikl-03002-s001, ch: 시행착오, pr: 시ː행차고, ds: trial and error; finding a method through repeated attempts}
+  - {id: ko-nikl-10205-s001, ch: 응용, pr: 응ː용, ds: application of theory or knowledge to another field or task}
+  - {id: ko-nikl-24592-s001, ch: 해결책, pr: 해ː결책, ds: a solution; a way to resolve a problem successfully}
+  - {id: ko-nikl-38473-s001, ch: 문제점, pr: 문ː제쩜, ds: a problematic aspect or element}
+  - {id: ko-nikl-42182-s001, ch: 중복, pr: 중ː복, ds: duplication or overlap}
+  - {id: ko-nikl-29343-s001, ch: 고찰, pr: 고찰, ds: close examination through deep thought and study}
+  - {id: ko-nikl-42871-s001, ch: 지표, pr: 지표, ds: 'an indicator showing direction, purpose, or a standard'}
+  - {id: ko-nikl-07766-s002, ch: 빈틈없다, pr: 빈ː트멉따, ds: to be thorough; without gaps or weak points}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-11986-s001, ch: 자각, pr: 자각, ds: self-awareness; realizing one's own position or abilities}
+  - {id: ko-nikl-11667-s005, ch: 읽다, pr: 익따, ds: to read the nature or characteristics of a situation}
+  - {id: ko-nikl-22162-s003, ch: 틀, pr: 틀, ds: a set form or convention}
+  - {id: ko-nikl-46462-s002, ch: 어설프다, pr: 어ː설프다, ds: for knowledge or conduct to have gaps or lack precision}
+  - {id: ko-nikl-24992-s002, ch: 허술하다, pr: 허술하다, ds: to be inadequate or have gaps through lack of care}
+  - {id: ko-nikl-43526-s007, ch: 짙다, pr: 짇따, ds: for a feeling or tendency to be pronounced}
+  - {id: ko-nikl-10418-s001, ch: 의혹, pr: 의혹, ds: suspicion; considering something doubtful or strange}
+  - {id: ko-nikl-18665-s003, ch: 되새기다, pr: 되새기다 / 뒈새기다, ds: to recall a past event and reflect on it carefully}
+  review_grammar:
+  - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
+  - {id: ko-topik5-g030, ch: V/A-았/었더라면, ds: imagine a different past condition and consequence}
+  - {id: ko-topik6-g017, ch: V/A-(으)ㄴ/는 셈 치다, ds: adopt an as-if framing rather than assert a fact}
+- id: level-30-society-01
+  title: Society and community - 1
+  outcome: Explain an issue without generalizing all Korean speakers from one example.
+  vocabulary:
+  - {id: ko-nikl-25300-s001, ch: 현안, pr: 혀ː난, ds: an outstanding issue not yet resolved}
+  - {id: ko-nikl-30208-s001, ch: 과제, pr: 과제, ds: a task or problem that society needs to address}
+  - {id: ko-nikl-47332-s002, ch: 연계, pr: 연계 / 연게, ds: a close link or relationship}
+  - {id: ko-nikl-35367-s003, ch: 네트워크, pr: 네트워크, ds: a network linking institutions for coordinated work}
+  - {id: ko-nikl-18663-s002, ch: 되살리다, pr: 되살리다 / 뒈살리다, ds: to revive something that is in decline}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-51755-s001, ch: 확산, pr: 확싼, ds: diffusion; scattering and spreading widely}
+  - {id: ko-nikl-23455-s002, ch: 풍토, pr: 풍토, ds: the institutional climate or conditions underlying an activity}
+  - {id: ko-nikl-30420-s001, ch: 관행, pr: 관행, ds: a long-established customary way of doing things}
+  - {id: ko-nikl-41668-s002, ch: 주류, pr: 주류, ds: the mainstream tendency or current in a field}
+  - {id: ko-nikl-06603-s001, ch: 부정, pr: 부정, ds: wrongdoing; an improper or dishonest act}
+  - {id: ko-nikl-26797-s001, ch: 강압, pr: 강ː압, ds: coercive suppression through force or authority}
+  - {id: ko-nikl-26833-s001, ch: 강제, pr: 강ː제, ds: compulsion; forcing someone to act against their will}
+  - {id: ko-nikl-37254-s001, ch: 명분, pr: 명분, ds: a duty associated with one's status or position}
+  review_grammar: []
 - id: level-30-institutions-01
   title: Institutions and public life - 1
   outcome: Explain a public process and distinguish a rule from its practical effects.
@@ -113,14 +245,14 @@ units:
   - {id: ko-nikl-13442-s001, ch: 저작권, pr: 저ː작꿘, ds: copyright}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-31398-s001, ch: 국회, pr: 구쾨 / 구퀘, ds: the National Assembly; a legislature}
-  - {id: ko-nikl-39127-s001, ch: 민주주의, pr: 민주주의 / 민주주이, ds: democracy}
-  - {id: ko-nikl-05205-s001, ch: 법률, pr: 범뉼, ds: law; legislation}
-  - {id: ko-nikl-14842-s001, ch: 제도, pr: 제ː도, ds: a system; an institutional framework}
-  - {id: ko-nikl-14696-s001, ch: 정책, pr: 정책, ds: a policy; a means of achieving a political goal}
-  - {id: ko-nikl-31659-s001, ch: 권리, pr: 궐리, ds: a right; a legitimate entitlement}
-  - {id: ko-nikl-10283-s002, ch: 의무, pr: 의ː무, ds: a legal obligation}
-  - {id: ko-nikl-27223-s001, ch: 개혁, pr: 개ː혁, ds: reform of an unreasonable system or organization}
+  - {id: ko-nikl-26532-s001, ch: 감시, pr: 감시, ds: surveillance; close observation to control people or events}
+  - {id: ko-nikl-20489-s001, ch: 침입, pr: 치ː밉, ds: 'intrusion into another''s territory, rights, or property'}
+  - {id: ko-nikl-46630-s002, ch: 억제, pr: 억쩨, ds: restraint to keep something from exceeding a limit}
+  - {id: ko-nikl-21196-s002, ch: 탄탄하다, pr: 탄탄하다, ds: for an organization to be stable and resilient}
+  - {id: ko-nikl-12096-s002, ch: 자동, pr: 자동, ds: automatic occurrence without a separate procedure}
+  - {id: ko-nikl-21820-s001, ch: 통합, pr: 통ː합, ds: integration of several organizations into one}
+  - {id: ko-nikl-20517-s001, ch: 침해, pr: 침ː해, ds: infringement that harms another's rights or property}
+  - {id: ko-nikl-50017-s001, ch: 위조, pr: 위조, ds: forgery intended to pass an item or document off as genuine}
   review_grammar:
   - {id: ko-topik5-g012, ch: V/A-(으)므로, ds: give a reason in formal written language}
   - {id: ko-topik5-g013, ch: V-(으)ㅁ으로써, ds: name an action as the means of an outcome}
@@ -130,16 +262,22 @@ units:
   outcome: Separate reported claims from observation and interpretation.
   vocabulary:
   - {id: ko-nikl-22779-s001, ch: 편집, pr: 편집, ds: editing; assembling materials into a finished work}
+  - {id: ko-nikl-40136-s001, ch: 발행, pr: 발행, ds: publication of a printed book or newspaper}
+  - {id: ko-nikl-32678-s001, ch: 기고, pr: 기고, ds: contributing an article to a newspaper or magazine}
+  - {id: ko-nikl-45938-s001, ch: 취재, pr: 취ː재, ds: gathering material for a news story or written work}
+  - {id: ko-nikl-51549-s001, ch: 홍보, pr: 홍보, ds: publicity; making information widely known}
+  - {id: ko-nikl-40723-s001, ch: 배포, pr: 배ː포, ds: distribution of printed material such as books or newspapers}
+  - {id: ko-nikl-34855-s003, ch: 내다, pr: 내ː다, ds: to have material published in a newspaper or magazine}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
-  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
-  - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
-  - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
-  - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
-  - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
-  - {id: ko-nikl-11303-s001, ch: 인터뷰, pr: 인터뷰, ds: an interview to gather information}
-  - {id: ko-nikl-48728-s001, ch: 왜곡, pr: 왜곡, ds: distortion; misrepresentation of facts}
+  - {id: ko-nikl-36715-s001, ch: 매체, pr: 매체, ds: a medium for conveying information widely}
+  - {id: ko-nikl-42655-s002, ch: 지면, pr: 지면, ds: a printed page carrying text or pictures}
+  - {id: ko-nikl-15410-s002, ch: 누출, pr: 누ː출, ds: leakage of confidential information}
+  - {id: ko-nikl-25021-s001, ch: 허위, pr: 허위, ds: falsehood presented as truth}
+  - {id: ko-nikl-26035-s001, ch: 가짜, pr: 가ː짜, ds: a fake; something made to look genuine}
+  - {id: ko-nikl-50320-s001, ch: 유언비어, pr: 유언비어, ds: a widely circulating rumor without firm grounds}
+  - {id: ko-nikl-50443-s001, ch: 유포, pr: 유포, ds: circulation or spread among the public}
+  - {id: ko-nikl-19707-s004, ch: 떠오르다, pr: 떠오르다, ds: to emerge as a focus of attention}
   review_grammar:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
   - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
@@ -153,14 +291,59 @@ units:
   - {id: ko-nikl-44233-s002, ch: 창작, pr: 창ː작, ds: original artistic creation; an original work}
   - {id: ko-nikl-44227-s001, ch: 창의성, pr: 창ː의썽 / 창ː이썽, ds: creativity}
   - {id: ko-nikl-36068-s004, ch: 만들다, pr: 만들다, ds: to compose writing or a song}
+  - {id: ko-nikl-44226-s001, ch: 창의력, pr: 창ː의력 / 창ː이력, ds: creativity; the ability to devise something new}
+  - {id: ko-nikl-44244-s001, ch: 창조, pr: 창ː조, ds: creation; bringing something new into existence}
+  - {id: ko-nikl-31007-s002, ch: 구상, pr: 구상, ds: conceiving the content and form of an artwork}
+  - {id: ko-nikl-32841-s001, ch: 기법, pr: 기뻡, ds: a technique; a skill or method}
+  - {id: ko-nikl-14954-s001, ch: 제작, pr: 제ː작, ds: production of a new object or artwork from materials}
+  - {id: ko-nikl-34854-s006, ch: 내놓다, pr: 내ː노타, ds: to publish or release a creative work}
+  - {id: ko-nikl-34855-s008, ch: 내다, pr: 내ː다, ds: to submit an artwork to a competition}
+  - {id: ko-nikl-36569-s005, ch: 맡기다, pr: 맏끼다, ds: to cast someone in a play or film role}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-13910-s001, ch: 전시회, pr: 전ː시회 / 전ː시훼, ds: an exhibition event}
-  - {id: ko-nikl-25785-s001, ch: 가사, pr: 가사, ds: lyrics; words sung to music}
-  - {id: ko-nikl-39463-s001, ch: 바이올린, pr: 바이올린, ds: a violin}
-  - {id: ko-nikl-20279-s001, ch: 리듬, pr: 리듬, ds: rhythm in sound or music}
-  - {id: ko-nikl-37081-s002, ch: 메시지, pr: 메시지, ds: the message or lesson of an artistic work}
-  - {id: ko-nikl-09240-s001, ch: 상징, pr: 상징, ds: a symbol; representing an abstract idea concretely}
-  - {id: ko-nikl-12875-s002, ch: 장면, pr: 장면, ds: a scene in a film or play}
-  - {id: ko-nikl-26505-s001, ch: 감상, pr: 감상, ds: appreciation of art or scenery}
+  - {id: ko-nikl-21157-s004, ch: 탁하다, pr: 타카다, ds: for a voice to be rough and deep}
+  - {id: ko-nikl-36416-s003, ch: 맑다, pr: 막따, ds: for a sound to be bright and clear}
+  - {id: ko-nikl-43526-s001, ch: 짙다, pr: 짇따, ds: for a color to be deep and strong}
+  - {id: ko-nikl-37448-s001, ch: 모방, pr: 모방, ds: imitation of another thing or person's behavior}
+  - {id: ko-nikl-43191-s001, ch: 진짜, pr: 진짜, ds: the genuine article; something neither imitation nor fake}
+  - {id: ko-nikl-34855-s027, ch: 내다, pr: 내ː다, ds: to imitate someone's appearance or behavior}
+  - {id: ko-nikl-46501-s002, ch: 어우러지다, pr: 어우러지다, ds: for several things to blend in harmony}
+  - {id: ko-nikl-46502-s004, ch: 어울리다, pr: 어울리다, ds: to go well together naturally}
+  review_grammar: []
+- id: level-30-argument-01
+  title: Argument and decisions - 1
+  outcome: Defend a qualified position and respond to a credible objection.
+  vocabulary:
+  - {id: ko-nikl-22838-s001, ch: 평론, pr: 평ː논, ds: 'criticism evaluating merits, faults, and value'}
+  - {id: ko-nikl-35665-s001, ch: 논평, pr: 논평, ds: 'critical commentary on a statement, text, or event'}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-25024-s001, ch: 허점, pr: 허쩜, ds: a flaw or gap where something is incomplete}
+  - {id: ko-nikl-49366-s001, ch: 우열, pr: 우열, ds: relative superiority and inferiority}
+  - {id: ko-nikl-23213-s001, ch: 표방, pr: 표방, ds: professing a cause to justify one's claim or position}
+  - {id: ko-nikl-37238-s001, ch: 명목, pr: 명목, ds: a nominal title different from the actual reality}
+  - {id: ko-nikl-41155-s001, ch: 조장, pr: 조ː장, ds: encouragement that aggravates something harmful}
+  - {id: ko-nikl-29963-s001, ch: 공정성, pr: 공정썽, ds: fairness; impartial and objective treatment}
+  - {id: ko-nikl-39820-s006, ch: 받아들이다, pr: 바다드리다, ds: to accept and follow an opinion or criticism}
+  - {id: ko-nikl-18963-s005, ch: 뒤집다, pr: 뒤집따, ds: to overturn an established system or theory}
+  review_grammar:
+  - {id: ko-topik6-g027, ch: V/A-(으)ㄴ/는 바, ds: refer to an established matter in formal prose}
+  - {id: ko-topik6-g034, ch: V/A-느냐 / -(으)냐에 달려 있다, ds: identify a determining factor as an embedded question}
+  - {id: ko-topik6-g036, ch: V/A-(으)ㄴ/는 것은 … 때문이다, ds: focus an explicit explanation for an asserted fact}
+- id: level-30-literature-01
+  title: Literary and historical expression - 1
+  outcome: Interpret marked expressions in source context and paraphrase them in ordinary Korean.
+  vocabulary:
+  - {id: ko-nikl-41767-s001, ch: 주석, pr: 주ː석, ds: annotation explaining a word or sentence}
+  - {id: ko-nikl-09869-s001, ch: 서평, pr: 서평, ds: a book review evaluating a book's merits and faults}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-31029-s002, ch: 구성, pr: 구성, ds: plot construction; arranging a story into a unified whole}
+  - {id: ko-nikl-13694-s001, ch: 전기, pr: 전기, ds: a biography; an account of someone's life}
+  - {id: ko-nikl-33152-s001, ch: 기행문, pr: 기행문, ds: a travel account describing sights and experiences}
+  - {id: ko-nikl-49785-s001, ch: 원작, pr: 원작, ds: the original work before adaptation or translation}
+  - {id: ko-nikl-06109-s003, ch: 본문, pr: 본문, ds: an original text before editing or translation}
+  - {id: ko-nikl-42045-s007, ch: 줄기, pr: 줄기, ds: the main thread of an event or story}
+  - {id: ko-nikl-19533-s003, ch: 딱딱하다, pr: 딱따카다, ds: 'for writing to be dry, dull, or lacking in emotion'}
+  - {id: ko-nikl-16125-s007, ch: 다루다, pr: 다루다, ds: to treat something as a subject or topic}
   review_grammar: []
