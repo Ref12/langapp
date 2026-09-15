@@ -281,6 +281,32 @@ pins; missing/changed quoted text fails rather than silently retaining a stale
 requirement. Use this only for explicit scope decisions, not to turn every
 readme example or English gloss into an asset requirement.
 
+## Prepared-asset checkpoint (2026-09-15)
+
+The committed language bundles cover the inventory snapshot above, subject to
+the explicit gaps below. Prepared geometry is not approved teaching artwork.
+The shared pipeline and Chinese/Japanese source preparation are complete for
+this snapshot; Korean remains deliberately limited to the authorized pilot.
+
+| Bundle | Prepared records | YAML shards | Remaining coverage work |
+| --- | ---: | ---: | --- |
+| [Chinese](chinese/characters/README.md) | 2,971 Han | 80 | Four literal signs: U+3002, U+FF0C, U+FF1B, U+FF1F |
+| [Japanese](japanese/README.md#character-writing-candidates) | 2,212 native keys | 82 | U+9C5D and the exact fullwidth Latin targets U+FF27, U+FF2B, U+FF2F, U+FF58 |
+| [Korean](korean/README.md#original-character-writing-pilot) | 172 Hangul keys plus two signs | 29 | 1,104 syllables remain missing; review the corrected pilot and address 94 unexercised contextual assignments before expanding |
+
+Only five Chinese defaults retain their earlier user approval. All other
+artwork remains unreviewed, and every bundle has `release_ready: false`.
+Japanese U+9C5D has a separate donor-composition review fixture, not an accepted
+replacement for its missing source. Japanese U+3007 smoothing/closure and dense
+glyph legibility at the fixed pen width remain explicit style decisions.
+Korean requires qualified review of logical pen-downs, proportions and context
+forms before bulk generation. Language READMEs and review artifacts retain the
+specific cautions; `coverage.yaml` is the authoritative machine-readable state.
+
+These commits provide offline assets, recipes, provenance and review tooling.
+They do not connect the new bundles to a production writing activity or replace
+the mockup's existing bundled character data.
+
 ## Commands and limits
 
 ```powershell
