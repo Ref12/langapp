@@ -15,7 +15,8 @@ import re
 import urllib.request
 
 from curriculum_yaml import dump_yaml, load_yaml
-from generate_curriculum_tokens import compact_outputs
+from generate_curriculum_tokens import compact_outputs, vocabulary_pairs
+from generate_teaching_track import reference_index, teaching_outputs
 
 
 ROOT = Path(__file__).resolve().parents[1] / "curriculum" / "chinese"
@@ -370,6 +371,43 @@ def add_hsk1_token_metadata(words: list[dict], patterns: list[dict],
         row.update(fields)
 
 
+def additional_reference_senses(data: list[dict], words: dict[str, list[dict]],
+                                labels: dict) -> list[dict]:
+    """Address selected meanings from other reference bands without moving headwords."""
+    if not isinstance(labels, dict) or not labels:
+        raise ValueError("Additional reference senses must map sense IDs to disambiguators")
+    requested = set()
+    for identifier in labels:
+        if not isinstance(identifier, str) or not re.fullmatch(
+            r"zh-hsk(?:[1-6]|7-9)-[0-9]{5}-s[0-9]{3}", identifier
+        ):
+            raise ValueError(f"Invalid reference sense ID: {identifier!r}")
+        requested.add(identifier.rsplit("-s", 1)[0])
+    result, found = [], set()
+    for rows in words.values():
+        for row in rows:
+            if row["id"] not in requested:
+                continue
+            if "senses" in row:
+                raise ValueError(f"{row['id']}: use the existing sense inventory")
+            upstream = data[int(row["source_entry"].rsplit("/", 1)[1])]
+            senses = []
+            for sense in vocabulary_senses(upstream, row["id"]):
+                identifier = sense["id"]
+                if identifier in labels:
+                    senses.append({
+                        **sense, "source_sense_ids": [identifier],
+                        "disambiguator": labels[identifier],
+                    })
+                    found.add(identifier)
+            if senses:
+                result.append({**row, "senses": senses})
+    if found != set(labels):
+        raise ValueError(f"Unknown additional reference sense IDs: {sorted(set(labels) - found)}")
+    vocabulary_pairs(result)
+    return result
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, help="Use an existing pinned complete.json for offline reproduction")
@@ -387,12 +425,23 @@ def main() -> None:
     words = vocabulary(data)
     patterns = grammar()
     add_hsk1_token_metadata(words["1"], patterns["1"], ROOT / "authoring" / "hsk-1")
+    additional = additional_reference_senses(
+        data, words, load_yaml(ROOT / "authoring" / "reference-senses.yaml"),
+    )
     report = normalization_report(data)
-    outputs = {ROOT / "normalization-report.yaml": dump_yaml(report)}
+    outputs = {
+        ROOT / "normalization-report.yaml": dump_yaml(report),
+        ROOT / "reference-senses.yaml": dump_yaml(additional),
+    }
     for level in EXPECTED:
         outputs[ROOT / f"hsk-{level}" / "vocabulary.yaml"] = dump_yaml(words[level])
         outputs[ROOT / f"hsk-{level}" / "grammar.yaml"] = dump_yaml(patterns[level])
     outputs.update(compact_outputs(ROOT / "hsk-1", words["1"], patterns["1"]))
+    word_tokens, grammar_tokens = reference_index(words, patterns, additional)
+    track_directory = ROOT / "teaching" / "beginner"
+    outputs.update(teaching_outputs(
+        track_directory, load_yaml(track_directory / "sequence.yaml"), word_tokens, grammar_tokens,
+    ))
     for path, content in outputs.items():
         if args.check:
             if path.read_text(encoding="utf-8") != content:

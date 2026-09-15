@@ -8,13 +8,17 @@ source methodology, and reuse conditions before using the data.
 
 ## Organization
 
-| Language | Directories, in learning order | Level scheme |
+| Language | Reference directories, in level order | Level scheme |
 | --- | --- | --- |
 | Chinese | `chinese/hsk-1` through `chinese/hsk-6`, then `chinese/hsk-7-9` | HSK 3.0, 2021 educational-standard-derived; advanced 7-9 material is pooled |
 | Korean | `korean/topik-1` through `korean/topik-6` | TOPIK I: grades 1-2; TOPIK II: grades 3-6 |
 | Japanese | `japanese/jlpt-n5` through `japanese/jlpt-n1` | JLPT, with N5 first and N1 last |
 
-`catalog.yaml` records the traversal order. Numbers in different schemes are
+`catalog.yaml` records the reference-level order and any separate `teaching_tracks`.
+For practical Mandarin, start with the
+[beginner teaching track](chinese/teaching/beginner/README.md), which selects
+senses across reference levels rather than treating HSK folders as lesson order.
+Numbers in different schemes are
 **not** interchangeable proficiency measures or automatic CEFR equivalents.
 In particular, distinguish the Chinese 2021 educational standard from the
 later revised examination syllabus; a shared HSK 3.0 label does not make their
@@ -68,11 +72,17 @@ Likewise, TOPIK grade descriptors do not establish an official grade-by-grade
 lexical inventory; any estimated placement must remain visible to the tutor.
 Do not convert source difficulty bands into purported official test levels.
 
-Files normally introduce a level's new entries. To teach a higher level, load
-the prerequisite levels as well; inspect the language notes for any source
+Files normally introduce a level's new entries. To assemble a higher level's
+cumulative reference inventory, load earlier levels as well; inspect the language notes for any source
 overlap. Homographs and distinct readings/senses need not be the same learning
 item. Row counts are inventory counts, not a learner's demonstrated vocabulary
 size. Grammar selections and examples are teaching aids, not official lists.
+
+Reference-level membership is not a recommendation to teach every sense of a
+headword at that stage. The Mandarin beginner track separately specifies
+introduction order and review by sense ID. Coffee and basic colors can appear
+early without rewriting their original reference assignments; unselected rare
+meanings remain reference data, not course requirements.
 
 All authored examples and level estimates require language-expert review before
 being presented as professionally reviewed material. Structural validation
@@ -158,6 +168,10 @@ Existing headword IDs remain grouping/reference IDs; do not transfer old
 headword mastery to every child sense. Record new evidence by sense ID.
 
 Only HSK-1 uses this extension; other levels retain the nine-field schema.
+Chinese `reference-senses.yaml` incrementally adds selected sense-addressable
+records from other bands without modifying their original HSK files. These
+records use the same expanded schema and must exactly preserve their source
+headword metadata. Teaching tracks resolve both sources of sense IDs.
 See the [Chinese README](chinese/README.md#compact-hsk-1-pilot) for authoring,
 generation, and source-revision constraints.
 
@@ -190,6 +204,8 @@ source of each imported row; authored examples have their own source identity.
 1. Load the language README, sources, and the selected level's syllabus. Establish
    script/reading prerequisites and diagnose the learner's actual abilities
    instead of inferring them solely from a test grade.
+   For a declared teaching track, use its README and `sequence.yaml` instead of
+   interpreting a reference-level syllabus as the teaching order.
 2. Load that level and prerequisite vocabulary/grammar. Select a coherent
    lesson of about 8-15 new words and 1-3 constructions rather than dumping an
    entire level into a prompt. For a reading-first lesson, prioritize items
@@ -225,6 +241,7 @@ python scripts\validate_curriculum.py
 python scripts\validate_curriculum.py --language japanese
 python scripts\test_curriculum_yaml.py
 python scripts\generate_curriculum_tokens.py --check
+python scripts\generate_teaching_track.py --check
 ```
 
 The validator uses the pinned PyYAML dependency and checks required files,
@@ -233,6 +250,8 @@ source references, source dates,
 and grammar examples. It prints counts by level and fails on structural errors.
 For HSK-1 it also checks sense identities, token ambiguity, and exact agreement
 between expanded and compact files.
+Declared teaching tracks are also checked for valid sense references,
+introduction/review ordering, unchanged source metadata, and current compact views.
 It does not make a pedagogical or licensing certification.
 
 Language-specific READMEs document any reproducible import command and its

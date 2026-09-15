@@ -1,4 +1,11 @@
-# Chinese: nine-band teaching collection
+# Chinese reference inventory and teaching tracks
+
+For everyday beginner learning, use the separate
+[Practical Mandarin beginner track](teaching/beginner/README.md).
+The HSK folders below are reference assignments, **not a mandatory teaching
+order or a requirement to learn every dictionary sense**. The beginner track
+introduces practical senses such as coffee and basic colors early without
+changing their source levels or IDs.
 
 ## Version boundary: read this first
 
@@ -38,7 +45,8 @@ specific examination. We assert no worldwide rollout date or score equivalence.
 
 Vocabulary is the **entire normalized `new-*` headword subset of the pinned
 source**, not a representative sample. Each headword occurs in only one folder;
-learning a higher band requires all earlier folders. The source merges readings
+cumulative reference coverage of a band includes the earlier folders too.
+This is not a requirement to teach all their dictionary senses. The source merges readings
 and some variants, removes duplicates, and has OCR/editorial limitations.
 Consequently these counts differ from the 2021 standard's cumulative vocabulary
 slot benchmarks: 500, 1,272, 2,245, 3,245, 4,315, 5,456 and 11,092.
@@ -79,6 +87,37 @@ Every level has:
 is the editable original grammar source; the importer regenerates YAML from it.
 Do not edit generated vocabulary or grammar YAML as the sole record of a repair.
 Edit the source or importer, regenerate and review the resulting change.
+
+### Independent teaching tracks
+
+`teaching/beginner/sequence.yaml` assigns introductions and reviews to twelve
+practical modules using 205 selected vocabulary senses and 25 grammar constructs.
+It does not select an
+entire headword merely because one meaning is useful. Its generated
+`vocabulary.min.yaml` and `grammar.min.yaml` retain the compact format and
+follow teaching order rather than source order.
+
+The original HSK files remain unchanged. `reference-senses.yaml` adds eleven
+selected sense records for useful vocabulary in other bands: understanding,
+permission, basic colors, coffee, apple, and needing something. These records
+are generated from `authoring/reference-senses.yaml` and the same pinned
+dictionary source. Their parent metadata is identical to the original HSK
+record. This is a small extension of addressable senses, not a claim that all
+higher-level entries have been sense-normalized.
+
+For example, `zh-hsk3-00396-s001` still identifies the reference HSK-3 coffee
+entry even when introduced in the beginner drinks module. Do not migrate an
+ID to `hsk1` to express teaching priority. Unselected meanings remain available
+for later or personalized teaching; they are not silently marked mastered,
+advanced, or required.
+
+`catalog.yaml` declares the beginner track separately from the reference
+`levels`. Regenerate its ordered compact views offline with:
+
+```powershell
+python scripts\generate_teaching_track.py
+python scripts\generate_teaching_track.py --check
+```
 
 ### Compact HSK-1 pilot
 
@@ -308,8 +347,9 @@ The importer downloads the pinned source and refuses a SHA-256 mismatch:
 Revision: `7ac65bf1a6387d35f1ade478906172a19311c7f9`.
 For offline reproduction, supply `--source` with a local copy of that exact
 `complete.json`. It is not necessary to retain the entire upstream file in the
-application. `--check` compares all 17 generated files without modifying them
-(14 expanded level assets, two HSK-1 compact views, and the normalization report)
+application. `--check` compares all 20 generated files without modifying them
+(14 expanded level assets, two HSK-1 compact views, the additional reference
+senses, two beginner teaching views, and the normalization report)
 and runs normalizer regressions;
 syllabi and metadata are authored separately. Changing the revision requires a
 fresh license/provenance check, count reconciliation and ID migration review.

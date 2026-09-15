@@ -11,9 +11,13 @@ from generate_curriculum_tokens import (
     compact_outputs, generate, grammar_pairs, token, vocabulary_pairs,
 )
 from import_chinese_curriculum import (
-    add_hsk1_token_metadata, group_vocabulary_senses, pronunciation_note, vocabulary_senses,
+    add_hsk1_token_metadata, additional_reference_senses, group_vocabulary_senses,
+    pronunciation_note, vocabulary_senses,
 )
-from validate_curriculum import Validator, VOCABULARY_FIELDS
+from generate_teaching_track import (
+    generate as generate_track, load_reference_index, reference_index, sequence_pairs, teaching_outputs,
+)
+from validate_curriculum import LEVELS, Validator, VOCABULARY_FIELDS
 
 
 class CurriculumYamlTests(unittest.TestCase):
@@ -397,6 +401,334 @@ class CurriculumTokenTests(unittest.TestCase):
         self.assertEqual(len(grammar_pairs(grammar)), 25)
         for path, expected in compact_outputs(directory, words, grammar).items():
             self.assertEqual(path.read_text(encoding="utf-8"), expected)
+
+
+class TeachingTrackTests(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root = Path(self.directory.name)
+        self.track = self.root / "teaching" / "beginner"
+        self.word_id = "zh-hsk1-00001-s001"
+        self.coffee_id = "zh-hsk3-00396-s001"
+        self.grammar_id = "zh-hsk1-g001"
+        self.vocabulary = {
+            "hsk-1": [{
+                "id": "zh-hsk1-00001", "target": "\u7231", "reading": "ai4",
+                "english": "to love", "senses": [{
+                    "id": self.word_id, "reading": "ai4", "english": "to love",
+                    "source_sense_ids": [self.word_id], "disambiguator": "to love",
+                }],
+            }],
+            "hsk-3": [{
+                "id": "zh-hsk3-00396", "target": "\u5496\u5561",
+                "reading": "ka1 fei1", "english": "coffee",
+                "source_entry": "pinned-source#/0",
+                "level_basis": "2021-standard-derived upstream new-3; not 2025 exam",
+            }],
+        }
+        self.grammar = {
+            "hsk-1": [{
+                "id": self.grammar_id, "token_form": "S+\u662f+N",
+                "disambiguator": "identity",
+            }],
+            "hsk-3": [{"id": "zh-hsk3-g001", "pattern": "legacy pattern"}],
+        }
+        self.additional = [{
+            **self.vocabulary["hsk-3"][0], "senses": [{
+                "id": self.coffee_id, "reading": "ka1 fei1", "english": "coffee",
+                "source_sense_ids": [self.coffee_id], "disambiguator": "coffee",
+            }],
+        }]
+        self.sequence = {
+            "schema_version": 1, "id": "zh-beginner", "title": "Beginner",
+            "language": "chinese", "level_basis": "Independent teaching selection",
+            "review_policy": "Review earlier material before introducing new items.",
+            "units": [
+                {"id": "first", "title": "First", "outcome": "Identify people.",
+                 "vocabulary": [self.word_id], "grammar": [self.grammar_id],
+                 "review_vocabulary": [], "review_grammar": []},
+                {"id": "drinks", "title": "Drinks", "outcome": "Order a drink.",
+                 "vocabulary": [self.coffee_id], "grammar": [],
+                 "review_vocabulary": [self.word_id], "review_grammar": [self.grammar_id]},
+            ],
+        }
+
+    def index(self):
+        return reference_index(self.vocabulary, self.grammar, self.additional)
+
+    def write_inputs(self):
+        for level, rows in self.vocabulary.items():
+            directory = self.root / level
+            directory.mkdir(exist_ok=True)
+            write_yaml(directory / "vocabulary.yaml", rows)
+            write_yaml(directory / "grammar.yaml", self.grammar[level])
+        write_yaml(self.root / "reference-senses.yaml", self.additional)
+        self.track.mkdir(parents=True, exist_ok=True)
+        write_yaml(self.track / "sequence.yaml", self.sequence)
+
+    def test_cross_level_sense_keeps_source_identity_and_metadata(self):
+        words, grammar = self.index()
+        pairs, patterns = sequence_pairs(self.sequence, words, grammar)
+        self.assertEqual(pairs, [
+            [self.word_id, "\u7231(ai4)/to love"],
+            [self.coffee_id, "\u5496\u5561(ka1 fei1)/coffee"],
+        ])
+        self.assertEqual(patterns, [[self.grammar_id, "S+\u662f+N/identity"]])
+        self.assertEqual(self.vocabulary["hsk-3"][0]["level_basis"],
+                         self.additional[0]["level_basis"])
+        self.assertNotIn("senses", self.vocabulary["hsk-3"][0])
+
+    def test_extra_reference_metadata_cannot_relabel_source_level(self):
+        self.additional[0]["level_basis"] = "HSK 1"
+        with self.assertRaisesRegex(ValueError, "metadata differs"):
+            self.index()
+
+    def test_additional_reference_rejects_unknown_and_existing_parents(self):
+        self.additional[0]["id"] = "unknown"
+        with self.assertRaisesRegex(ValueError, "Unknown additional reference headword"):
+            self.index()
+        self.additional[0]["id"] = "zh-hsk1-00001"
+        with self.assertRaisesRegex(ValueError, "existing reference sense inventory"):
+            self.index()
+
+    def test_no_additional_references_is_valid_but_wrong_shapes_are_not(self):
+        self.additional = []
+        words, _ = self.index()
+        self.assertEqual(set(words), {self.word_id})
+        for invalid in ({}, None, "not records"):
+            with self.subTest(value=invalid):
+                self.additional = invalid
+                with self.assertRaises(ValueError):
+                    self.index()
+
+    def test_reference_index_rejects_duplicate_heads_and_grammar(self):
+        self.vocabulary["hsk-3"].append(self.vocabulary["hsk-1"][0])
+        with self.assertRaisesRegex(ValueError, "Duplicate reference headword"):
+            self.index()
+        self.vocabulary["hsk-3"].pop()
+        self.grammar["hsk-3"].append(self.grammar["hsk-1"][0])
+        with self.assertRaisesRegex(ValueError, "Duplicate reference grammar"):
+            self.index()
+
+    def test_introductions_cannot_repeat_across_units(self):
+        self.sequence["units"][1]["vocabulary"].append(self.word_id)
+        with self.assertRaisesRegex(ValueError, "already introduced"):
+            sequence_pairs(self.sequence, *self.index())
+
+    def test_ids_cannot_repeat_inside_an_introduction_or_review_list(self):
+        for field, identifier in (("vocabulary", self.coffee_id),
+                                  ("review_vocabulary", self.word_id)):
+            with self.subTest(field=field):
+                values = self.sequence["units"][1][field]
+                values.append(identifier)
+                with self.assertRaisesRegex(ValueError, "duplicate ID"):
+                    sequence_pairs(self.sequence, *self.index())
+                values.pop()
+
+    def test_review_cannot_reference_current_or_future_introductions(self):
+        for unit in self.sequence["units"]:
+            with self.subTest(unit=unit["id"]):
+                unit["review_vocabulary"] = [self.coffee_id]
+                with self.assertRaisesRegex(ValueError, "review requires earlier"):
+                    sequence_pairs(self.sequence, *self.index())
+                unit["review_vocabulary"] = []
+
+    def test_headword_ids_unknown_ids_and_wrong_categories_are_rejected(self):
+        for identifier in ("zh-hsk1-00001", "unknown", self.grammar_id):
+            with self.subTest(identifier=identifier):
+                self.sequence["units"][0]["vocabulary"] = [identifier]
+                with self.assertRaisesRegex(ValueError, "unknown ID"):
+                    sequence_pairs(self.sequence, *self.index())
+
+    def test_units_require_unique_safe_ids_and_complete_metadata(self):
+        self.sequence["units"][1]["id"] = "first"
+        with self.assertRaisesRegex(ValueError, "duplicate unit ID"):
+            sequence_pairs(self.sequence, *self.index())
+        self.sequence["units"][1]["id"] = "../outside"
+        with self.assertRaisesRegex(ValueError, "Invalid"):
+            sequence_pairs(self.sequence, *self.index())
+        self.sequence["units"][1]["id"] = "drinks"
+        del self.sequence["units"][1]["outcome"]
+        with self.assertRaisesRegex(ValueError, "Unit fields"):
+            sequence_pairs(self.sequence, *self.index())
+
+    def test_schema_version_must_be_an_integer_not_a_boolean(self):
+        self.sequence["schema_version"] = True
+        with self.assertRaisesRegex(ValueError, "schema_version"):
+            sequence_pairs(self.sequence, *self.index())
+
+    def test_empty_pair_lists_are_valid_yaml(self):
+        self.assertEqual(dump_pairs([]), "[]\n")
+        self.sequence["units"][0]["grammar"] = []
+        self.sequence["units"][1]["review_grammar"] = []
+        outputs = teaching_outputs(self.track, self.sequence, *self.index())
+        self.assertEqual(outputs[self.track / "grammar.min.yaml"], "[]\n")
+
+    def test_generate_is_deterministic_and_check_does_not_repair_stale_views(self):
+        self.write_inputs()
+        generate_track(self.track)
+        originals = {path: path.read_bytes() for path in self.track.glob("*.min.yaml")}
+        generate_track(self.track)
+        generate_track(self.track, check=True)
+        self.assertEqual(originals, {path: path.read_bytes() for path in originals})
+        path = self.track / "vocabulary.min.yaml"
+        path.write_text("[]\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "Missing or stale teaching view"):
+            generate_track(self.track, check=True)
+        self.assertEqual(path.read_text(encoding="utf-8"), "[]\n")
+
+    def test_missing_view_or_invalid_sequence_does_not_write_partial_outputs(self):
+        self.write_inputs()
+        with self.assertRaisesRegex(ValueError, "Missing or stale teaching view"):
+            generate_track(self.track, check=True)
+        self.assertFalse((self.track / "vocabulary.min.yaml").exists())
+        self.sequence["units"][1]["vocabulary"] = ["unknown"]
+        write_yaml(self.track / "sequence.yaml", self.sequence)
+        with self.assertRaisesRegex(ValueError, "unknown ID"):
+            generate_track(self.track)
+        self.assertFalse((self.track / "vocabulary.min.yaml").exists())
+
+    def test_validator_reports_stale_teaching_views(self):
+        self.write_inputs()
+        generate_track(self.track)
+        (self.track / "README.md").write_text("Teaching guide.\n", encoding="utf-8")
+        (self.track / "grammar.min.yaml").write_text("[]\n", encoding="utf-8")
+        validator = Validator(self.root)
+        validator.teaching_track(self.track, *self.index())
+        self.assertEqual(len(validator.errors), 1)
+        self.assertIn("stale teaching view", validator.errors[0])
+
+    def test_additional_senses_are_derived_from_exact_pinned_source_entries(self):
+        source = [{
+            "simplified": "\u5496\u5561",
+            "forms": [{"transcriptions": {"pinyin": "ka1 fei1"}, "meanings": ["coffee"]}],
+        }]
+        result = additional_reference_senses(
+            source, self.vocabulary, {self.coffee_id: "coffee"},
+        )
+        self.assertEqual(result, self.additional)
+        with self.assertRaisesRegex(ValueError, "Unknown additional reference sense IDs"):
+            additional_reference_senses(source, self.vocabulary,
+                                        {"zh-hsk3-00396-s999": "invented"})
+        with self.assertRaisesRegex(ValueError, "existing sense inventory"):
+            additional_reference_senses(source, self.vocabulary, {self.word_id: "to love"})
+
+    def test_catalog_declares_teaching_tracks_separately_from_reference_levels(self):
+        catalog = {
+            "schema_version": 1,
+            "languages": [{"id": language, "standard": "Reference standard", "levels": levels}
+                          for language, levels in LEVELS.items()],
+        }
+        catalog["languages"][0]["teaching_tracks"] = ["beginner"]
+        write_yaml(self.root / "catalog.yaml", catalog)
+        validator = Validator(self.root)
+        validator.catalog()
+        self.assertEqual(validator.errors, [])
+        self.assertEqual(validator.teaching_tracks["chinese"], ["beginner"])
+        for invalid in (["../outside"], ["beginner", "beginner"], "beginner", [None]):
+            with self.subTest(value=invalid):
+                catalog["languages"][0]["teaching_tracks"] = invalid
+                write_yaml(self.root / "catalog.yaml", catalog)
+                validator = Validator(self.root)
+                validator.catalog()
+                self.assertTrue(any("teaching_tracks" in error for error in validator.errors))
+
+
+class PracticalBeginnerTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.root = Path(__file__).resolve().parents[1] / "curriculum" / "chinese"
+        cls.track = cls.root / "teaching" / "beginner"
+        cls.sequence = load_yaml(cls.track / "sequence.yaml")
+        cls.words, cls.patterns = load_reference_index(cls.root)
+        cls.word_pairs, cls.grammar_pairs = sequence_pairs(
+            cls.sequence, cls.words, cls.patterns,
+        )
+        cls.introductions = {
+            identifier: number
+            for number, unit in enumerate(cls.sequence["units"], 1)
+            for identifier in unit["vocabulary"]
+        }
+
+    def test_twelve_modules_keep_new_material_manageable(self):
+        self.assertEqual(len(self.sequence["units"]), 12)
+        self.assertGreaterEqual(len(self.word_pairs), 170)
+        self.assertLessEqual(len(self.word_pairs), 210)
+        for unit in self.sequence["units"]:
+            with self.subTest(unit=unit["id"]):
+                self.assertGreaterEqual(len(unit["vocabulary"]), 12)
+                self.assertLessEqual(len(unit["vocabulary"]), 20)
+                self.assertLessEqual(len(unit["grammar"]), 3)
+
+    def test_coffee_and_basic_colors_are_early_without_sibling_senses(self):
+        self.assertEqual(self.introductions["zh-hsk3-00396-s001"], 2)
+        for identifier in (
+            "zh-hsk1-00007-s002", "zh-hsk2-00212-s001", "zh-hsk2-00215-s002",
+            "zh-hsk2-00229-s002", "zh-hsk2-00322-s002", "zh-hsk2-00353-s001",
+            "zh-hsk2-00609-s001",
+        ):
+            with self.subTest(identifier=identifier):
+                self.assertLessEqual(self.introductions[identifier], 4)
+        white_senses = {identifier for identifier in self.introductions
+                        if identifier.startswith("zh-hsk1-00007-s")}
+        self.assertEqual(white_senses, {"zh-hsk1-00007-s002"})
+
+    def test_all_twenty_five_grammar_constructs_are_introduced_once(self):
+        self.assertEqual(len(self.grammar_pairs), 25)
+        self.assertEqual({identifier for identifier, _ in self.grammar_pairs}, set(self.patterns))
+
+    def test_additional_senses_are_selected_without_changing_reference_metadata(self):
+        labels = load_yaml(self.root / "authoring" / "reference-senses.yaml")
+        self.assertEqual(len(labels), 11)
+        self.assertTrue(set(labels) <= set(self.introductions))
+        parents = {
+            row["id"]: row
+            for path in self.root.glob("hsk-*/vocabulary.yaml")
+            for row in load_yaml(path)
+        }
+        for row in load_yaml(self.root / "reference-senses.yaml"):
+            with self.subTest(headword=row["id"]):
+                self.assertEqual({key: value for key, value in row.items() if key != "senses"},
+                                 parents[row["id"]])
+                self.assertNotIn("senses", parents[row["id"]])
+
+    def test_compact_views_follow_introductions_not_review_or_reference_order(self):
+        expected = teaching_outputs(self.track, self.sequence, self.words, self.patterns)
+        for path, content in expected.items():
+            with self.subTest(path=path.name):
+                self.assertEqual(path.read_text(encoding="utf-8"), content)
+        self.assertEqual(load_yaml(self.track / "vocabulary.min.yaml"), self.word_pairs)
+        self.assertEqual(load_yaml(self.track / "grammar.min.yaml"), self.grammar_pairs)
+
+    def test_grammar_introductions_have_their_core_lexical_senses(self):
+        anchors = {
+            "g001": ["00340-s001"], "g002": ["00148-s001"], "g003": ["00031-s002"],
+            "g004": ["00445-s001"], "g005": ["00239-s004"], "g006": ["00230-s002"],
+            "g008": ["00273-s001"], "g009": ["00071-s001", "00071-s002"],
+            "g010": ["00431-s001", "00122-s001"], "g014": ["00183-s001"],
+            "g012": ["00461-s002"], "g013": ["00445-s001"],
+            "g015": ["00461-s002"], "g016": ["00428-s002"], "g017": ["00091-s002"],
+            "g018": ["00147-s002"], "g019": ["00404-s004"], "g020": ["00161-s001"],
+            "g021": ["00300-s003"], "g022": ["00031-s002"], "g025": ["00026-s005"],
+        }
+        alternatives = {
+            "g007": ["00348-s001", "00331-s001", "00255-s001"],
+            "g011": ["00470-s003", "00258-s003"],
+            "g023": ["00166-s003", "00097-s004"],
+            "g024": ["00306-s001", "00207-s001"],
+        }
+        known = set()
+        for unit in self.sequence["units"]:
+            known.update(unit["vocabulary"])
+            for identifier in unit["grammar"]:
+                suffix = identifier.rsplit("-", 1)[1]
+                with self.subTest(unit=unit["id"], grammar=identifier):
+                    self.assertTrue({f"zh-hsk1-{item}" for item in anchors.get(suffix, [])}
+                                    <= known)
+                    if suffix in alternatives:
+                        self.assertTrue({f"zh-hsk1-{item}" for item in alternatives[suffix]}
+                                        & known)
 
 
 if __name__ == "__main__":

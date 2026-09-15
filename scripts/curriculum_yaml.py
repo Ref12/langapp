@@ -49,6 +49,8 @@ def write_yaml(path: Path, value) -> None:
 
 def dump_pairs(pairs: list[list[str]]) -> str:
     """Write a YAML sequence with one compact [id, token] pair per line."""
+    if not pairs:
+        return "[]\n"
     return "".join(
         "- " + yaml.dump(
             pair,

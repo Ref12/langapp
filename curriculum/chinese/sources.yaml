@@ -2,7 +2,8 @@
   title: English-glossed 2021-standard-derived Chinese vocabulary adaptation
   url: https://github.com/drkameleon/complete-hsk-vocabulary/tree/7ac65bf1a6387d35f1ade478906172a19311c7f9
   license: CC-BY-SA-4.0 for adapted dictionary data; retain upstream MIT notices as well
-  usage: All vocabulary.yaml rows. Imports only new-1 through new-7 labels, simplified headwords, pinyin
+  usage: All vocabulary.yaml rows, selected additional reference-senses.yaml records, and derived teaching
+    vocabulary views. Imports only new-1 through new-7 labels, simplified headwords, pinyin
     and meanings. Omits upstream frequency, radicals, classifiers and POS data. Processes all 32,430 imported
     source senses; removes balanced untranslated reference annotations and reference-dependent clauses,
     discards reference-only senses and readings without standalone senses, and preserves usable English
@@ -106,5 +107,6 @@
   attribution: Original AI-assisted Chinese curriculum contributions for this repository, 2026. No examination-board
     endorsement. Credit CC-CEDICT separately when using the derived vocabulary.
   retrieved_on: '2026-09-07'
-  local_material: authoring/grammar.psv, hsk-*/grammar.yaml, hsk-*/syllabus.md, README.md and the importer's
-    headword/sense corrections
+  local_material: authoring/grammar.psv, authoring/reference-senses.yaml, hsk-*/grammar.yaml,
+    hsk-*/syllabus.md, teaching/beginner/sequence.yaml, teaching/beginner/README.md, README.md and
+    the importer's headword/sense corrections

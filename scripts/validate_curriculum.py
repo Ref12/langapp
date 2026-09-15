@@ -10,6 +10,7 @@ import yaml
 
 from curriculum_yaml import load_yaml
 from generate_curriculum_tokens import PILOT_LEVEL, compact_outputs, vocabulary_pairs
+from generate_teaching_track import load_reference_index, teaching_outputs
 
 
 LEVELS = {
@@ -33,6 +34,7 @@ class Validator:
         self.root = root
         self.errors = []
         self.counts = []
+        self.teaching_tracks = {}
 
     def error(self, location, message):
         self.errors.append(f"{location}: {message}")
@@ -108,8 +110,20 @@ class Validator:
                 self.error(location, f"unrecognized language {language!r}")
                 continue
             if entry.get("levels") != LEVELS[language]:
-                self.error(location, "levels must match the standard learning order")
+                self.error(location, "levels must match the reference level order")
             self.text(entry.get("standard"), f"{location}.standard")
+            tracks = entry.get("teaching_tracks", [])
+            if (not isinstance(tracks, list)
+                    or not all(isinstance(track, str) and re.fullmatch(
+                        r"[a-z0-9]+(?:-[a-z0-9]+)*", track,
+                    ) for track in tracks)):
+                self.error(location, "teaching_tracks must contain kebab-case directory names")
+            elif len(tracks) != len(set(tracks)):
+                self.error(location, "teaching_tracks must not repeat directory names")
+            elif tracks and language != "chinese":
+                self.error(location, "teaching tracks are currently supported only for Chinese")
+            else:
+                self.teaching_tracks[language] = tracks
         if seen != set(LEVELS):
             self.error("catalog.yaml", "must include all three languages exactly once")
 
@@ -243,6 +257,27 @@ class Validator:
             if (language, level) == PILOT_LEVEL:
                 self.compact(language, level)
             self.counts.append((language, level, vocabulary_count, grammar_count, example_count))
+        if self.teaching_tracks.get(language):
+            try:
+                words, patterns = load_reference_index(directory)
+            except (OSError, UnicodeError, ValueError, yaml.YAMLError) as exc:
+                self.error(directory, str(exc))
+                return
+            for track in self.teaching_tracks[language]:
+                self.teaching_track(directory / "teaching" / track, words, patterns)
+
+    def teaching_track(self, directory, vocabulary, grammar):
+        self.document(directory / "README.md")
+        sequence = self.yaml_file(directory / "sequence.yaml", dict)
+        if sequence is None:
+            return
+        try:
+            outputs = teaching_outputs(directory, sequence, vocabulary, grammar)
+            for path, expected in outputs.items():
+                if path.read_text(encoding="utf-8") != expected:
+                    self.error(path, "stale teaching view; regenerate from sequence.yaml")
+        except (OSError, UnicodeError, ValueError) as exc:
+            self.error(directory, str(exc))
 
     def run(self, languages):
         self.document(self.root / "README.md")
