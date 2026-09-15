@@ -2,6 +2,38 @@
 This document describes ideas for implementing various features of language learning app. Anywhere where specific languages are mentioned (English = source language). Other languages (such as Chinese/Japanese/Korean/Spanish) can mean any target language. When referring to specific romanization forms like pinyin (that should be taken to generally refer to romanization and only where it applies)
 
 
+## Declarative exercise contract draft
+
+The discussion-derived [TypeScript contracts](exercise-contracts.ts) and
+[authored examples](exercise-examples.ts) explore a declarative alternative to
+the exercise operation sketches below. TypeScript is the intended source of
+truth for generated Zod validators; assistant output remains JSON.
+
+The equivalent [JSON examples](exercise-examples.json) contain the exercise
+samples, lesson, quiz, and app-recorded Check result, with literal Chinese text.
+The top-level object groups examples for reference; it is not an assistant
+response envelope. The Check result is app-owned, not assistant-authored.
+
+`OrderedTileResponse` (`mode: "ordered-tiles"`) is shared by translation and
+dictation. It supports words, phrases, or full sentences using string tiles and
+accepted text sequences. Translation changes language; dictation reproduces
+what was heard. Repeated tiles with the same text are interchangeable, but each
+occurrence is consumed separately; unused tiles are distractors.
+
+Lessons contain ordered teaching steps and exercises. Quizzes reuse the exercise
+types for unaided knowledge checks, with feedback afterward. Character writing
+supports tracing -> guided writing -> recall, or a recall-first Check with
+optional teaching fallback. Needing help fails the Check permanently for that
+attempt; successful post-teaching recall is a separate practice result.
+
+Handwriting targets specify the character and locale. The app looks up the
+character's associated stroke data in the system; no stroke paths or reference
+IDs are supplied in the exercise. Raw learner stroke capture is also internal
+to the handwriting implementation, outside these sample contracts.
+
+These are standalone design samples, not implemented APIs. Schema generation,
+renderers, assessment adapters, and persistence integration are not wired up.
+
 # Data Representation
 Curriculum in each language consists of vocabulary, grammar, and lessons. Vocabulary is a list of words or terms (can be multiword) which user should know for a given level. It should include meanings in English. Examples may or may not be present. The idea is to have a compact representation of a term. Basically word (+ disambiguator). Grammar includes semantic patterns/grammatical constructs which the user should familiarize themselves with at a certain level. It should also have a compact represent pattern (+ disambiguator/mini description). The full curriculum is passed to AI when attempting to add a new construct. The AI should be able to tell if it is a duplicate of an existing construct and return the existing if so. Lessons organize vocabulary/grammar into discreet units. Perhaps lessons should have dependencies. 
 - ? Should lessons have a predefined order instead of allowing users to choose there path as long as dependencies are satisfied
