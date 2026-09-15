@@ -61,3 +61,23 @@ def dump_pairs(pairs: list[list[str]]) -> str:
         )
         for pair in pairs
     )
+
+
+class EntryDumper(getattr(yaml, "CSafeDumper", yaml.SafeDumper)):
+    pass
+
+
+def _represent_entry_mapping(dumper, value):
+    compact = set(value) in ({"id", "ch", "pr", "ds"}, {"id", "ch", "ds"})
+    return dumper.represent_mapping("tag:yaml.org,2002:map", value, flow_style=compact)
+
+
+EntryDumper.add_representer(dict, _represent_entry_mapping)
+
+
+def dump_entries(value) -> str:
+    """Keep teaching entries on one line, including inside expanded sequences."""
+    return yaml.dump(
+        value, Dumper=EntryDumper, allow_unicode=True, default_flow_style=False,
+        sort_keys=False, width=100_000,
+    )

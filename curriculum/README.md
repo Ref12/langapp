@@ -154,7 +154,7 @@ For example, the headword ID `zh-hsk1-00001` groups these distinct learning item
 - [zh-hsk1-00001-s002, 爱(ài)/affection]
 ```
 
-Each compact file is a YAML sequence of two-string arrays, one pair per line:
+Each HSK-1 reference compact file is a YAML sequence of two-string arrays, one pair per line:
 `[id, token]`. There are no headers, examples, or provenance fields in these
 derived views. Resolve a selected ID against the expanded file for its full
 meaning, examples where available, and source. A token is an identifier
@@ -174,6 +174,18 @@ records use the same expanded schema and must exactly preserve their source
 headword metadata. Teaching tracks resolve both sources of sense IDs.
 See the [Chinese README](chinese/README.md#compact-hsk-1-pilot) for authoring,
 generation, and source-revision constraints.
+
+#### Beginner teaching entries
+
+The separate Mandarin beginner track uses one-line mappings instead of combined
+tokens: vocabulary has `{id, ch, pr, ds}` and grammar has `{id, ch, ds}`.
+`ch` contains the Chinese form or construction, `pr` contains sense-specific
+pinyin, and `ds` contains the English disambiguator. Abstract grammar templates
+omit pronunciation. The version-2 sequence embeds identical mappings for both
+introductions and reviews. Its IDs, order, and instructional metadata are
+authored; the other entry fields are synchronized from expanded references.
+`generate_teaching_track.py` updates the sequence and compact files together,
+and `--check` detects stale entries without modifying any files.
 
 ### Grammar
 

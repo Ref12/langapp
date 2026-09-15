@@ -6,16 +6,18 @@ import unittest
 
 import yaml
 
-from curriculum_yaml import dump_pairs, dump_yaml, load_yaml, write_yaml
+from curriculum_yaml import dump_entries, dump_pairs, dump_yaml, load_yaml, write_yaml
 from generate_curriculum_tokens import (
-    compact_outputs, generate, grammar_pairs, token, vocabulary_pairs,
+    compact_outputs, generate, grammar_entries, grammar_pairs, token, vocabulary_entries,
+    vocabulary_pairs,
 )
 from import_chinese_curriculum import (
     add_hsk1_token_metadata, additional_reference_senses, group_vocabulary_senses,
     pronunciation_note, vocabulary_senses,
 )
 from generate_teaching_track import (
-    generate as generate_track, load_reference_index, reference_index, sequence_pairs, teaching_outputs,
+    generate as generate_track, load_reference_index, reference_index, resolve_sequence,
+    sequence_entries, teaching_outputs,
 )
 from validate_curriculum import LEVELS, Validator, VOCABULARY_FIELDS
 
@@ -165,8 +167,46 @@ class CurriculumTokenTests(unittest.TestCase):
 
     def test_rejects_ambiguous_tokens_with_the_same_reading(self):
         self.words[0]["senses"][1]["disambiguator"] = "to love"
-        with self.assertRaisesRegex(ValueError, "Ambiguous duplicate token"):
+        with self.assertRaisesRegex(ValueError, "Ambiguous duplicate"):
             vocabulary_pairs(self.words)
+
+    def test_structured_entries_keep_form_pronunciation_and_meaning_separate(self):
+        self.words[0].update(target="\u884c", reading="hang2 / xing2")
+        self.words[0]["senses"][0].update(reading="xing2", disambiguator="to go")
+        self.words[0]["senses"][1].update(reading="hang2", disambiguator="row")
+        entries = vocabulary_entries(self.words)
+        self.assertEqual(entries, [
+            {"id": "zh-hsk1-00001-s001", "ch": "\u884c", "pr": "xing2", "ds": "to go"},
+            {"id": "zh-hsk1-00001-s002", "ch": "\u884c", "pr": "hang2", "ds": "row"},
+        ])
+        self.assertEqual(list(entries[0]), ["id", "ch", "pr", "ds"])
+        patterns = grammar_entries(self.grammar)
+        self.assertEqual(patterns, [{
+            "id": "zh-hsk1-g001", "ch": "S+\u662f+N", "ds": "noun-predicate identity",
+        }])
+        self.assertEqual(list(patterns[0]), ["id", "ch", "ds"])
+
+    def test_structured_disambiguators_allow_slashes_without_token_parsing(self):
+        self.words[0]["senses"][0]["disambiguator"] = "love/cherish"
+        self.assertEqual(vocabulary_entries(self.words)[0]["ds"], "love/cherish")
+        with self.assertRaisesRegex(ValueError, "reserved"):
+            vocabulary_pairs(self.words)
+
+    def test_flow_entry_yaml_preserves_field_order_and_special_characters(self):
+        entries = [
+            {"id": "001", "ch": "\u6211", "pr": "w\u01d2", "ds": "I/me/my"},
+            {"id": "null", "ch": "S+V", "ds": 'a: b # c [d], "e" {f}'},
+        ]
+        for value in (entries, {"units": [{"id": "unit", "vocabulary": entries}]}):
+            with self.subTest(nested=isinstance(value, dict)):
+                content = dump_entries(value)
+                self.assertEqual(sum(line.lstrip().startswith("- {") for line in content.splitlines()), 2)
+                self.assertIn("- {id:", content)
+                path = self.root / "entries.yaml"
+                path.write_text(content, encoding="utf-8")
+                self.assertEqual(load_yaml(path), value)
+                self.assertEqual(dump_entries(load_yaml(path)), content)
+        self.assertEqual(dump_entries([]), "[]\n")
 
     def test_rejects_duplicate_ids_and_duplicate_source_senses(self):
         self.words[0]["senses"][1]["id"] = "zh-hsk1-00001-s001"
@@ -469,12 +509,12 @@ class TeachingTrackTests(unittest.TestCase):
 
     def test_cross_level_sense_keeps_source_identity_and_metadata(self):
         words, grammar = self.index()
-        pairs, patterns = sequence_pairs(self.sequence, words, grammar)
-        self.assertEqual(pairs, [
-            [self.word_id, "\u7231(ai4)/to love"],
-            [self.coffee_id, "\u5496\u5561(ka1 fei1)/coffee"],
+        entries, patterns = sequence_entries(self.sequence, words, grammar)
+        self.assertEqual(entries, [
+            {"id": self.word_id, "ch": "\u7231", "pr": "ai4", "ds": "to love"},
+            {"id": self.coffee_id, "ch": "\u5496\u5561", "pr": "ka1 fei1", "ds": "coffee"},
         ])
-        self.assertEqual(patterns, [[self.grammar_id, "S+\u662f+N/identity"]])
+        self.assertEqual(patterns, [{"id": self.grammar_id, "ch": "S+\u662f+N", "ds": "identity"}])
         self.assertEqual(self.vocabulary["hsk-3"][0]["level_basis"],
                          self.additional[0]["level_basis"])
         self.assertNotIn("senses", self.vocabulary["hsk-3"][0])
@@ -514,7 +554,7 @@ class TeachingTrackTests(unittest.TestCase):
     def test_introductions_cannot_repeat_across_units(self):
         self.sequence["units"][1]["vocabulary"].append(self.word_id)
         with self.assertRaisesRegex(ValueError, "already introduced"):
-            sequence_pairs(self.sequence, *self.index())
+            sequence_entries(self.sequence, *self.index())
 
     def test_ids_cannot_repeat_inside_an_introduction_or_review_list(self):
         for field, identifier in (("vocabulary", self.coffee_id),
@@ -523,7 +563,7 @@ class TeachingTrackTests(unittest.TestCase):
                 values = self.sequence["units"][1][field]
                 values.append(identifier)
                 with self.assertRaisesRegex(ValueError, "duplicate ID"):
-                    sequence_pairs(self.sequence, *self.index())
+                    sequence_entries(self.sequence, *self.index())
                 values.pop()
 
     def test_review_cannot_reference_current_or_future_introductions(self):
@@ -531,7 +571,7 @@ class TeachingTrackTests(unittest.TestCase):
             with self.subTest(unit=unit["id"]):
                 unit["review_vocabulary"] = [self.coffee_id]
                 with self.assertRaisesRegex(ValueError, "review requires earlier"):
-                    sequence_pairs(self.sequence, *self.index())
+                    sequence_entries(self.sequence, *self.index())
                 unit["review_vocabulary"] = []
 
     def test_headword_ids_unknown_ids_and_wrong_categories_are_rejected(self):
@@ -539,24 +579,24 @@ class TeachingTrackTests(unittest.TestCase):
             with self.subTest(identifier=identifier):
                 self.sequence["units"][0]["vocabulary"] = [identifier]
                 with self.assertRaisesRegex(ValueError, "unknown ID"):
-                    sequence_pairs(self.sequence, *self.index())
+                    sequence_entries(self.sequence, *self.index())
 
     def test_units_require_unique_safe_ids_and_complete_metadata(self):
         self.sequence["units"][1]["id"] = "first"
         with self.assertRaisesRegex(ValueError, "duplicate unit ID"):
-            sequence_pairs(self.sequence, *self.index())
+            sequence_entries(self.sequence, *self.index())
         self.sequence["units"][1]["id"] = "../outside"
         with self.assertRaisesRegex(ValueError, "Invalid"):
-            sequence_pairs(self.sequence, *self.index())
+            sequence_entries(self.sequence, *self.index())
         self.sequence["units"][1]["id"] = "drinks"
         del self.sequence["units"][1]["outcome"]
         with self.assertRaisesRegex(ValueError, "Unit fields"):
-            sequence_pairs(self.sequence, *self.index())
+            sequence_entries(self.sequence, *self.index())
 
     def test_schema_version_must_be_an_integer_not_a_boolean(self):
         self.sequence["schema_version"] = True
         with self.assertRaisesRegex(ValueError, "schema_version"):
-            sequence_pairs(self.sequence, *self.index())
+            sequence_entries(self.sequence, *self.index())
 
     def test_empty_pair_lists_are_valid_yaml(self):
         self.assertEqual(dump_pairs([]), "[]\n")
@@ -568,7 +608,7 @@ class TeachingTrackTests(unittest.TestCase):
     def test_generate_is_deterministic_and_check_does_not_repair_stale_views(self):
         self.write_inputs()
         generate_track(self.track)
-        originals = {path: path.read_bytes() for path in self.track.glob("*.min.yaml")}
+        originals = {path: path.read_bytes() for path in self.track.glob("*.yaml")}
         generate_track(self.track)
         generate_track(self.track, check=True)
         self.assertEqual(originals, {path: path.read_bytes() for path in originals})
@@ -598,6 +638,103 @@ class TeachingTrackTests(unittest.TestCase):
         validator.teaching_track(self.track, *self.index())
         self.assertEqual(len(validator.errors), 1)
         self.assertIn("stale teaching view", validator.errors[0])
+
+    def test_legacy_sequence_migration_preserves_authored_structure_and_ids(self):
+        resolved = resolve_sequence(self.sequence, *self.index())
+        self.assertEqual(resolved["schema_version"], 2)
+        self.assertEqual(self.sequence["schema_version"], 1)
+        for old, new in zip(self.sequence["units"], resolved["units"]):
+            for field in ("id", "title", "outcome"):
+                self.assertEqual(old[field], new[field])
+            for field in ("vocabulary", "grammar", "review_vocabulary", "review_grammar"):
+                self.assertEqual(old[field], [entry["id"] for entry in new[field]])
+        self.assertEqual(resolved["units"][0]["vocabulary"],
+                         resolved["units"][1]["review_vocabulary"])
+        self.assertIsNot(resolved["units"][0]["vocabulary"][0],
+                         resolved["units"][1]["review_vocabulary"][0])
+        self.assertEqual(sequence_entries(resolved, *self.index()),
+                         sequence_entries(self.sequence, *self.index()))
+
+    def test_version_two_requires_exact_entry_fields_and_string_values(self):
+        for kind, field, value in (
+            ("vocabulary", "pr", None),
+            ("vocabulary", "pr", ""),
+            ("vocabulary", "id", False),
+            ("vocabulary", "extra", "unexpected"),
+            ("grammar", "pr", "invented"),
+        ):
+            with self.subTest(kind=kind, field=field, value=value):
+                sequence = resolve_sequence(self.sequence, *self.index())
+                sequence["units"][0][kind][0][field] = value
+                with self.assertRaises(ValueError):
+                    teaching_outputs(self.track, sequence, *self.index())
+        sequence = resolve_sequence(self.sequence, *self.index())
+        del sequence["units"][0]["vocabulary"][0]["pr"]
+        with self.assertRaisesRegex(ValueError, "entry fields"):
+            sequence_entries(sequence, *self.index())
+        sequence["units"][0]["vocabulary"] = [self.word_id]
+        with self.assertRaisesRegex(ValueError, "entry fields"):
+            teaching_outputs(self.track, sequence, *self.index())
+
+    def test_version_two_still_rejects_unknown_duplicate_and_forward_review_ids(self):
+        for mode in ("unknown", "duplicate", "forward"):
+            with self.subTest(mode=mode):
+                sequence = resolve_sequence(self.sequence, *self.index())
+                if mode == "unknown":
+                    sequence["units"][0]["vocabulary"][0]["id"] = "unknown"
+                elif mode == "duplicate":
+                    sequence["units"][1]["vocabulary"].append(
+                        dict(sequence["units"][0]["vocabulary"][0]),
+                    )
+                else:
+                    sequence["units"][0]["review_vocabulary"] = [
+                        dict(sequence["units"][1]["vocabulary"][0]),
+                    ]
+                with self.assertRaises(ValueError):
+                    teaching_outputs(self.track, sequence, *self.index())
+
+    def test_check_rejects_stale_embedded_entries_without_writing(self):
+        self.write_inputs()
+        generate_track(self.track)
+        for field, kind in (("pr", "vocabulary"), ("ds", "review_vocabulary"),
+                            ("ch", "grammar"), ("ds", "review_grammar")):
+            with self.subTest(field=field, kind=kind):
+                sequence = resolve_sequence(self.sequence, *self.index())
+                unit = sequence["units"][1 if kind.startswith("review_") else 0]
+                unit[kind][0][field] = "stale value"
+                self.track.joinpath("sequence.yaml").write_text(
+                    dump_entries(sequence), encoding="utf-8",
+                )
+                originals = {path: path.read_bytes() for path in self.track.glob("*.yaml")}
+                with self.assertRaisesRegex(ValueError, "stale entry"):
+                    sequence_entries(sequence, *self.index())
+                with self.assertRaisesRegex(ValueError, "stale teaching view"):
+                    generate_track(self.track, check=True)
+                self.assertEqual(originals, {path: path.read_bytes() for path in originals})
+                validator = Validator(self.root)
+                self.track.joinpath("README.md").write_text("Teaching guide.\n", encoding="utf-8")
+                validator.teaching_track(self.track, *self.index())
+                self.assertTrue(any("sequence.yaml: stale" in error for error in validator.errors))
+
+    def test_generation_refreshes_reference_fields_in_introductions_reviews_and_views(self):
+        self.write_inputs()
+        generate_track(self.track)
+        self.vocabulary["hsk-1"][0]["senses"][0].update(reading="ai3", disambiguator="to cherish")
+        self.grammar["hsk-1"][0]["token_form"] = "Subject+\u662f+N"
+        write_yaml(self.root / "hsk-1" / "vocabulary.yaml", self.vocabulary["hsk-1"])
+        write_yaml(self.root / "hsk-1" / "grammar.yaml", self.grammar["hsk-1"])
+        with self.assertRaisesRegex(ValueError, "stale teaching view"):
+            generate_track(self.track, check=True)
+        generate_track(self.track)
+        generate_track(self.track, check=True)
+        sequence = load_yaml(self.track / "sequence.yaml")
+        words, grammar = self.index()
+        self.assertEqual(sequence["units"][0]["vocabulary"][0], words[self.word_id])
+        self.assertEqual(sequence["units"][1]["review_vocabulary"][0], words[self.word_id])
+        self.assertEqual(sequence["units"][0]["grammar"][0], grammar[self.grammar_id])
+        self.assertEqual(sequence["units"][1]["review_grammar"][0], grammar[self.grammar_id])
+        self.assertEqual(load_yaml(self.track / "vocabulary.min.yaml")[0], words[self.word_id])
+        self.assertEqual(load_yaml(self.track / "grammar.min.yaml")[0], grammar[self.grammar_id])
 
     def test_additional_senses_are_derived_from_exact_pinned_source_entries(self):
         source = [{
@@ -642,19 +779,19 @@ class PracticalBeginnerTests(unittest.TestCase):
         cls.track = cls.root / "teaching" / "beginner"
         cls.sequence = load_yaml(cls.track / "sequence.yaml")
         cls.words, cls.patterns = load_reference_index(cls.root)
-        cls.word_pairs, cls.grammar_pairs = sequence_pairs(
+        cls.word_entries, cls.grammar_entries = sequence_entries(
             cls.sequence, cls.words, cls.patterns,
         )
         cls.introductions = {
-            identifier: number
+            entry["id"]: number
             for number, unit in enumerate(cls.sequence["units"], 1)
-            for identifier in unit["vocabulary"]
+            for entry in unit["vocabulary"]
         }
 
     def test_twelve_modules_keep_new_material_manageable(self):
         self.assertEqual(len(self.sequence["units"]), 12)
-        self.assertGreaterEqual(len(self.word_pairs), 170)
-        self.assertLessEqual(len(self.word_pairs), 210)
+        self.assertGreaterEqual(len(self.word_entries), 170)
+        self.assertLessEqual(len(self.word_entries), 210)
         for unit in self.sequence["units"]:
             with self.subTest(unit=unit["id"]):
                 self.assertGreaterEqual(len(unit["vocabulary"]), 12)
@@ -675,8 +812,8 @@ class PracticalBeginnerTests(unittest.TestCase):
         self.assertEqual(white_senses, {"zh-hsk1-00007-s002"})
 
     def test_all_twenty_five_grammar_constructs_are_introduced_once(self):
-        self.assertEqual(len(self.grammar_pairs), 25)
-        self.assertEqual({identifier for identifier, _ in self.grammar_pairs}, set(self.patterns))
+        self.assertEqual(len(self.grammar_entries), 25)
+        self.assertEqual({entry["id"] for entry in self.grammar_entries}, set(self.patterns))
 
     def test_additional_senses_are_selected_without_changing_reference_metadata(self):
         labels = load_yaml(self.root / "authoring" / "reference-senses.yaml")
@@ -698,8 +835,27 @@ class PracticalBeginnerTests(unittest.TestCase):
         for path, content in expected.items():
             with self.subTest(path=path.name):
                 self.assertEqual(path.read_text(encoding="utf-8"), content)
-        self.assertEqual(load_yaml(self.track / "vocabulary.min.yaml"), self.word_pairs)
-        self.assertEqual(load_yaml(self.track / "grammar.min.yaml"), self.grammar_pairs)
+        self.assertEqual(load_yaml(self.track / "vocabulary.min.yaml"), self.word_entries)
+        self.assertEqual(load_yaml(self.track / "grammar.min.yaml"), self.grammar_entries)
+
+    def test_all_sequence_entries_duplicate_their_compact_entry(self):
+        self.assertEqual(self.sequence["schema_version"], 2)
+        indexes = {
+            kind: {entry["id"]: entry for entry in load_yaml(self.track / f"{kind}.min.yaml")}
+            for kind in ("vocabulary", "grammar")
+        }
+        for unit in self.sequence["units"]:
+            for kind, fields in (("vocabulary", {"id", "ch", "pr", "ds"}),
+                                 ("grammar", {"id", "ch", "ds"})):
+                for field in (kind, f"review_{kind}"):
+                    for entry in unit[field]:
+                        with self.subTest(unit=unit["id"], field=field, entry=entry["id"]):
+                            self.assertEqual(set(entry), fields)
+                            self.assertEqual(entry, indexes[kind][entry["id"]])
+        for kind in indexes:
+            lines = self.track.joinpath(f"{kind}.min.yaml").read_text(encoding="utf-8").splitlines()
+            self.assertEqual(len(lines), len(indexes[kind]))
+            self.assertTrue(all(line.startswith("- {id:") for line in lines))
 
     def test_grammar_introductions_have_their_core_lexical_senses(self):
         anchors = {
@@ -720,8 +876,9 @@ class PracticalBeginnerTests(unittest.TestCase):
         }
         known = set()
         for unit in self.sequence["units"]:
-            known.update(unit["vocabulary"])
-            for identifier in unit["grammar"]:
+            known.update(entry["id"] for entry in unit["vocabulary"])
+            for entry in unit["grammar"]:
+                identifier = entry["id"]
                 suffix = identifier.rsplit("-", 1)[1]
                 with self.subTest(unit=unit["id"], grammar=identifier):
                     self.assertTrue({f"zh-hsk1-{item}" for item in anchors.get(suffix, [])}

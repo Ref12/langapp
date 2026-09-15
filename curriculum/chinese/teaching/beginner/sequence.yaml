@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 id: zh-beginner
 title: Practical Mandarin beginner
 language: chinese
@@ -9,401 +9,401 @@ units:
   title: First exchanges and communication repair
   outcome: Greet someone politely, introduce yourself by name and as a student, return a question, and say that you do not understand.
   vocabulary:
-  - zh-hsk1-00384-s001 # 我
-  - zh-hsk1-00275-s001 # 你
-  - zh-hsk1-00278-s001 # 您, polite you
-  - zh-hsk1-00140-s009 # 好, greeting after a pronoun
-  - zh-hsk1-00176-s005 # 叫, to be called
-  - zh-hsk1-00249-s001 # 名字
-  - zh-hsk1-00340-s001 # 是, identity before a noun
-  - zh-hsk1-00423-s001 # 学生
-  - zh-hsk1-00138-s001 # 汉语
-  - zh-hsk1-00031-s002 # 不, predicate negation
-  - zh-hsk2-00128-s001 # 懂, to understand
-  - zh-hsk1-00365-s002 # 听, to listen or hear
-  - zh-hsk1-00353-s002 # 说, to speak or say
-  - zh-hsk1-00095-s001 # 对不起, apology
-  - zh-hsk1-00236-s001 # 没关系
-  - zh-hsk1-00414-s002 # 谢谢, thanks
-  - zh-hsk1-00460-s001 # 再见
-  - zh-hsk1-00273-s001 # 呢, what about?
+  - {id: zh-hsk1-00384-s001, ch: 我, pr: wǒ, ds: 'I, me, my'}
+  - {id: zh-hsk1-00275-s001, ch: 你, pr: nǐ, ds: you}
+  - {id: zh-hsk1-00278-s001, ch: 您, pr: nín, ds: you (polite)}
+  - {id: zh-hsk1-00140-s009, ch: 好, pr: hǎo, ds: hello (after a pronoun)}
+  - {id: zh-hsk1-00176-s005, ch: 叫, pr: jiào, ds: to be called}
+  - {id: zh-hsk1-00249-s001, ch: 名字, pr: míng zi, ds: name}
+  - {id: zh-hsk1-00340-s001, ch: 是, pr: shì, ds: to be (before noun phrases)}
+  - {id: zh-hsk1-00423-s001, ch: 学生, pr: xué sheng, ds: student}
+  - {id: zh-hsk1-00138-s001, ch: 汉语, pr: Hàn yǔ, ds: Chinese language}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
+  - {id: zh-hsk1-00365-s002, ch: 听, pr: tīng, ds: to listen or hear}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk1-00095-s001, ch: 对不起, pr: duì bu qǐ, ds: I'm sorry}
+  - {id: zh-hsk1-00236-s001, ch: 没关系, pr: méi guān xi, ds: it doesn't matter}
+  - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
+  - {id: zh-hsk1-00460-s001, ch: 再见, pr: zài jiàn, ds: goodbye}
+  - {id: zh-hsk1-00273-s001, ch: 呢, pr: ne, ds: what-about question particle}
   grammar:
-  - zh-hsk1-g001 # Noun-predicate identity
-  - zh-hsk1-g003 # Predicate negation
-  - zh-hsk1-g008 # Returning a question with 呢
+  - {id: zh-hsk1-g001, ch: S+是+N, ds: noun-predicate identity}
+  - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
+  - {id: zh-hsk1-g008, ch: N+呢, ds: what about}
   review_vocabulary: []
   review_grammar: []
 - id: drinks-and-requests
   title: Drinks and polite requests
   outcome: Ask politely for coffee, tea, water, or milk, offer someone a drink or a seat, and accept or decline an offer.
   vocabulary:
-  - zh-hsk1-00300-s003 # 请, please
-  - zh-hsk1-00404-s004 # 想, to want or desire
-  - zh-hsk1-00230-s002 # 吗, yes-no question particle
-  - zh-hsk1-00146-s001 # 喝
-  - zh-hsk1-00349-s002 # 水, water
-  - zh-hsk1-00037-s001 # 茶, tea
-  - zh-hsk1-00279-s001 # 牛奶
-  - zh-hsk3-00396-s001 # 咖啡, coffee
-  - zh-hsk1-00019-s001 # 杯子, cup or glass
-  - zh-hsk1-00034-s001 # 不客气, you're welcome
-  - zh-hsk1-00140-s003 # 好, all right!
-  - zh-hsk1-00504-s002 # 坐, to sit
-  - zh-hsk1-00427-s002 # 要, to want or need
-  - zh-hsk1-00434-s001 # 一点儿, a bit
-  - zh-hsk1-00123-s004 # 给, to give
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00404-s004, ch: 想, pr: xiǎng, ds: to want or desire}
+  - {id: zh-hsk1-00230-s002, ch: 吗, pr: ma, ds: yes-no question particle}
+  - {id: zh-hsk1-00146-s001, ch: 喝, pr: hē, ds: to drink}
+  - {id: zh-hsk1-00349-s002, ch: 水, pr: shuǐ, ds: water}
+  - {id: zh-hsk1-00037-s001, ch: 茶, pr: chá, ds: tea}
+  - {id: zh-hsk1-00279-s001, ch: 牛奶, pr: niú nǎi, ds: cow's milk}
+  - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
+  - {id: zh-hsk1-00019-s001, ch: 杯子, pr: bēi zi, ds: cup or glass}
+  - {id: zh-hsk1-00034-s001, ch: 不客气, pr: bù kè qi, ds: you're welcome}
+  - {id: zh-hsk1-00140-s003, ch: 好, pr: hǎo, ds: all right!}
+  - {id: zh-hsk1-00504-s002, ch: 坐, pr: zuò, ds: to sit}
+  - {id: zh-hsk1-00427-s002, ch: 要, pr: yào, ds: to want or need}
+  - {id: zh-hsk1-00434-s001, ch: 一点儿, pr: yī diǎn r, ds: a bit}
+  - {id: zh-hsk1-00123-s004, ch: 给, pr: gěi, ds: to give}
   grammar:
-  - zh-hsk1-g006 # Yes-no questions with 吗
-  - zh-hsk1-g019 # 想 + verb
-  - zh-hsk1-g021 # 请 + verb phrase
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
   review_vocabulary:
-  - zh-hsk1-00278-s001
-  - zh-hsk1-00031-s002
-  - zh-hsk1-00414-s002
-  - zh-hsk2-00128-s001
+  - {id: zh-hsk1-00278-s001, ch: 您, pr: nín, ds: you (polite)}
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
   review_grammar:
-  - zh-hsk1-g003
-  - zh-hsk1-g008
+  - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
+  - {id: zh-hsk1-g008, ch: N+呢, ds: what about}
 - id: numbers-and-buying
   title: Numbers, quantities, and prices
   outcome: Order a specified number of drinks or objects, ask how many or how much, and understand prices up to one hundred yuan.
   vocabulary:
-  - zh-hsk1-00218-s001 # 零, zero
-  - zh-hsk1-00431-s001 # 一, one
-  - zh-hsk1-00100-s001 # 二, two in counting
-  - zh-hsk1-00315-s002 # 三, three
-  - zh-hsk1-00355-s001 # 四
-  - zh-hsk1-00386-s001 # 五
-  - zh-hsk1-00219-s001 # 六
-  - zh-hsk1-00290-s001 # 七
-  - zh-hsk1-00003-s001 # 八
-  - zh-hsk1-00187-s001 # 九
-  - zh-hsk1-00335-s001 # 十
-  - zh-hsk1-00009-s002 # 百, hundred
-  - zh-hsk1-00217-s001 # 两, two before a classifier
-  - zh-hsk1-00122-s001 # 个, general classifier
-  - zh-hsk1-00018-s003 # 杯, classifier for cupfuls
-  - zh-hsk1-00205-s003 # 块, colloquial currency unit
-  - zh-hsk1-00298-s003 # 钱, money
-  - zh-hsk1-00231-s001 # 买
-  - zh-hsk1-00166-s003 # 几, how many?
-  - zh-hsk1-00097-s004 # 多少, how much or how many?
+  - {id: zh-hsk1-00218-s001, ch: 零, pr: líng, ds: zero}
+  - {id: zh-hsk1-00431-s001, ch: 一, pr: yī, ds: one}
+  - {id: zh-hsk1-00100-s001, ch: 二, pr: èr, ds: two}
+  - {id: zh-hsk1-00315-s002, ch: 三, pr: sān, ds: three}
+  - {id: zh-hsk1-00355-s001, ch: 四, pr: sì, ds: four}
+  - {id: zh-hsk1-00386-s001, ch: 五, pr: wǔ, ds: five}
+  - {id: zh-hsk1-00219-s001, ch: 六, pr: liù, ds: six}
+  - {id: zh-hsk1-00290-s001, ch: 七, pr: qī, ds: seven}
+  - {id: zh-hsk1-00003-s001, ch: 八, pr: bā, ds: eight}
+  - {id: zh-hsk1-00187-s001, ch: 九, pr: jiǔ, ds: nine}
+  - {id: zh-hsk1-00335-s001, ch: 十, pr: shí, ds: ten}
+  - {id: zh-hsk1-00009-s002, ch: 百, pr: bǎi, ds: hundred}
+  - {id: zh-hsk1-00217-s001, ch: 两, pr: liǎng, ds: two}
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00018-s003, ch: 杯, pr: bēi, ds: classifier for cupfuls and glassfuls}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00298-s003, ch: 钱, pr: qián, ds: money}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
   grammar:
-  - zh-hsk1-g010 # Counting with classifiers
-  - zh-hsk1-g023 # Asking quantities
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
   review_vocabulary:
-  - zh-hsk3-00396-s001
-  - zh-hsk1-00349-s002
-  - zh-hsk1-00019-s001
-  - zh-hsk1-00300-s003
-  - zh-hsk1-00123-s004
+  - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
+  - {id: zh-hsk1-00349-s002, ch: 水, pr: shuǐ, ds: water}
+  - {id: zh-hsk1-00019-s001, ch: 杯子, pr: bēi zi, ds: cup or glass}
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk1-00123-s004, ch: 给, pr: gěi, ds: to give}
   review_grammar:
-  - zh-hsk1-g006
-  - zh-hsk1-g019
-  - zh-hsk1-g021
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
 - id: colors-and-objects
   title: Colors and describing objects
   outcome: Identify a cup, bag, or book by pointing, name six basic colors, describe an object's size, and ask what something is.
   vocabulary:
-  - zh-hsk1-00007-s002 # 白, white
-  - zh-hsk2-00212-s001 # 黑, black
-  - zh-hsk2-00215-s002 # 红, red
-  - zh-hsk2-00229-s002 # 黄, yellow
-  - zh-hsk2-00322-s002 # 蓝, blue
-  - zh-hsk2-00353-s001 # 绿, green
-  - zh-hsk2-00609-s001 # 颜色, color
-  - zh-hsk1-00148-s001 # 很, degree adverb
-  - zh-hsk1-00062-s001 # 大, big
-  - zh-hsk1-00405-s001 # 小, small
-  - zh-hsk1-00140-s001 # 好, good
-  - zh-hsk1-00470-s003 # 这, this before a classifier
-  - zh-hsk1-00258-s003 # 那, that as a specifier
-  - zh-hsk1-00331-s001 # 什么, what?
-  - zh-hsk1-00348-s001 # 谁, who?
-  - zh-hsk1-00255-s001 # 哪儿, where?
-  - zh-hsk1-00016-s011 # 包, bag
-  - zh-hsk1-00088-s002 # 东西, thing
-  - zh-hsk1-00344-s001 # 书, book
-  - zh-hsk1-00023-s010 # 本, classifier for books
+  - {id: zh-hsk1-00007-s002, ch: 白, pr: bái, ds: white}
+  - {id: zh-hsk2-00212-s001, ch: 黑, pr: hēi, ds: black}
+  - {id: zh-hsk2-00215-s002, ch: 红, pr: hóng, ds: red}
+  - {id: zh-hsk2-00229-s002, ch: 黄, pr: huáng, ds: yellow}
+  - {id: zh-hsk2-00322-s002, ch: 蓝, pr: lán, ds: blue}
+  - {id: zh-hsk2-00353-s001, ch: 绿, pr: lǜ, ds: green}
+  - {id: zh-hsk2-00609-s001, ch: 颜色, pr: yán sè, ds: color}
+  - {id: zh-hsk1-00148-s001, ch: 很, pr: hěn, ds: very (degree adverb)}
+  - {id: zh-hsk1-00062-s001, ch: 大, pr: dà, ds: big or great}
+  - {id: zh-hsk1-00405-s001, ch: 小, pr: xiǎo, ds: small}
+  - {id: zh-hsk1-00140-s001, ch: 好, pr: hǎo, ds: good}
+  - {id: zh-hsk1-00470-s003, ch: 这, pr: zhè, ds: this or these before a classifier}
+  - {id: zh-hsk1-00258-s003, ch: 那, pr: nà, ds: 'that, the or those (specifier)'}
+  - {id: zh-hsk1-00331-s001, ch: 什么, pr: shén me, ds: 'what?'}
+  - {id: zh-hsk1-00348-s001, ch: 谁, pr: shéi, ds: who}
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00016-s011, ch: 包, pr: bāo, ds: bag}
+  - {id: zh-hsk1-00088-s002, ch: 东西, pr: dōng xi, ds: thing}
+  - {id: zh-hsk1-00344-s001, ch: 书, pr: shū, ds: book}
+  - {id: zh-hsk1-00023-s010, ch: 本, pr: běn, ds: 'classifier for books, periodicals, and files'}
   grammar:
-  - zh-hsk1-g002 # Adjective predicates
-  - zh-hsk1-g011 # Demonstrative + classifier + noun
-  - zh-hsk1-g007 # Question words stay in the answer slot
+  - {id: zh-hsk1-g002, ch: S+很+Adj, ds: adjective predicate}
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
   review_vocabulary:
-  - zh-hsk1-00019-s001
-  - zh-hsk1-00122-s001
-  - zh-hsk1-00217-s001
-  - zh-hsk1-00340-s001
-  - zh-hsk1-00423-s001
+  - {id: zh-hsk1-00019-s001, ch: 杯子, pr: bēi zi, ds: cup or glass}
+  - {id: zh-hsk1-00122-s001, ch: 个, pr: gè, ds: general classifier}
+  - {id: zh-hsk1-00217-s001, ch: 两, pr: liǎng, ds: two}
+  - {id: zh-hsk1-00340-s001, ch: 是, pr: shì, ds: to be (before noun phrases)}
+  - {id: zh-hsk1-00423-s001, ch: 学生, pr: xué sheng, ds: student}
   review_grammar:
-  - zh-hsk1-g001
-  - zh-hsk1-g010
-  - zh-hsk1-g023
+  - {id: zh-hsk1-g001, ch: S+是+N, ds: noun-predicate identity}
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
 - id: family-and-belongings
   title: Family, friends, and belongings
   outcome: Introduce family members and friends, say what you have or do not have, and identify whose book, bag, or phone it is.
   vocabulary:
-  - zh-hsk1-00071-s001 # 的, possession
-  - zh-hsk1-00071-s002 # 的, noun modification
-  - zh-hsk1-00445-s001 # 有, to have
-  - zh-hsk1-00239-s004 # 没有, to not have
-  - zh-hsk1-00170-s001 # 家, home
-  - zh-hsk1-00005-s001 # 爸爸
-  - zh-hsk1-00227-s001 # 妈妈
-  - zh-hsk1-00120-s001 # 哥哥
-  - zh-hsk1-00181-s001 # 姐姐
-  - zh-hsk1-00075-s001 # 弟弟
-  - zh-hsk1-00241-s001 # 妹妹, younger sister
-  - zh-hsk1-00358-s001 # 他, he
-  - zh-hsk1-00360-s001 # 她, she
-  - zh-hsk1-00309-s001 # 人
-  - zh-hsk1-00385-s001 # 我们, we
-  - zh-hsk1-00343-s001 # 手机
-  - zh-hsk1-00288-s001 # 朋友
+  - {id: zh-hsk1-00071-s001, ch: 的, pr: de, ds: of (possessive particle)}
+  - {id: zh-hsk1-00071-s002, ch: 的, pr: de, ds: attributive particle}
+  - {id: zh-hsk1-00445-s001, ch: 有, pr: yǒu, ds: to have; there is}
+  - {id: zh-hsk1-00239-s004, ch: 没有, pr: méi yǒu, ds: to not have}
+  - {id: zh-hsk1-00170-s001, ch: 家, pr: jiā, ds: home}
+  - {id: zh-hsk1-00005-s001, ch: 爸爸, pr: bà ba, ds: (coll.) father}
+  - {id: zh-hsk1-00227-s001, ch: 妈妈, pr: mā ma, ds: mother (familiar)}
+  - {id: zh-hsk1-00120-s001, ch: 哥哥, pr: gē ge, ds: older brother}
+  - {id: zh-hsk1-00181-s001, ch: 姐姐, pr: jiě jie, ds: older sister}
+  - {id: zh-hsk1-00075-s001, ch: 弟弟, pr: dì di, ds: younger brother}
+  - {id: zh-hsk1-00241-s001, ch: 妹妹, pr: mèi mei, ds: younger sister}
+  - {id: zh-hsk1-00358-s001, ch: 他, pr: tā, ds: he or him}
+  - {id: zh-hsk1-00360-s001, ch: 她, pr: tā, ds: she}
+  - {id: zh-hsk1-00309-s001, ch: 人, pr: rén, ds: person or people}
+  - {id: zh-hsk1-00385-s001, ch: 我们, pr: wǒ men, ds: we or us}
+  - {id: zh-hsk1-00343-s001, ch: 手机, pr: shǒu jī, ds: cell phone}
+  - {id: zh-hsk1-00288-s001, ch: 朋友, pr: péng you, ds: friend}
   grammar:
-  - zh-hsk1-g004 # Possession
-  - zh-hsk1-g005 # Lack of possession
-  - zh-hsk1-g009 # Possession and noun modification with 的
+  - {id: zh-hsk1-g004, ch: S+有+N, ds: possession}
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
   review_vocabulary:
-  - zh-hsk1-00344-s001
-  - zh-hsk1-00016-s011
-  - zh-hsk1-00023-s010
-  - zh-hsk1-00348-s001
-  - zh-hsk1-00470-s003
+  - {id: zh-hsk1-00344-s001, ch: 书, pr: shū, ds: book}
+  - {id: zh-hsk1-00016-s011, ch: 包, pr: bāo, ds: bag}
+  - {id: zh-hsk1-00023-s010, ch: 本, pr: běn, ds: 'classifier for books, periodicals, and files'}
+  - {id: zh-hsk1-00348-s001, ch: 谁, pr: shéi, ds: who}
+  - {id: zh-hsk1-00470-s003, ch: 这, pr: zhè, ds: this or these before a classifier}
   review_grammar:
-  - zh-hsk1-g001
-  - zh-hsk1-g007
-  - zh-hsk1-g011
+  - {id: zh-hsk1-g001, ch: S+是+N, ds: noun-predicate identity}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g011, ch: (这|那)+Cl+N, ds: demonstrative noun phrase}
 - id: people-and-places
   title: People and everyday places
   outcome: Identify teachers and doctors, ask where everyday places are, and say who or what is at a location.
   vocabulary:
-  - zh-hsk1-00461-s002 # 在, to be located at
-  - zh-hsk1-00147-s002 # 和, joining nouns
-  - zh-hsk1-00211-s001 # 老师
-  - zh-hsk1-00425-s001 # 学校
-  - zh-hsk1-00318-s001 # 商店
-  - zh-hsk1-00443-s001 # 医院
-  - zh-hsk1-00442-s001 # 医生
-  - zh-hsk1-00126-s001 # 工作, to work
-  - zh-hsk1-00483-s001 # 中国
-  - zh-hsk1-00473-s001 # 这里
-  - zh-hsk1-00261-s001 # 那里
-  - zh-hsk1-00491-s001 # 住, to reside
-  - zh-hsk1-00103-s001 # 房间
-  - zh-hsk1-00493-s001 # 桌子
-  - zh-hsk1-00081-s001 # 电脑
-  - zh-hsk1-00370-s001 # 图书馆
+  - {id: zh-hsk1-00461-s002, ch: 在, pr: zài, ds: to be located at}
+  - {id: zh-hsk1-00147-s002, ch: 和, pr: hé, ds: and or with (joining nouns)}
+  - {id: zh-hsk1-00211-s001, ch: 老师, pr: lǎo shī, ds: teacher}
+  - {id: zh-hsk1-00425-s001, ch: 学校, pr: xué xiào, ds: school}
+  - {id: zh-hsk1-00318-s001, ch: 商店, pr: shāng diàn, ds: store}
+  - {id: zh-hsk1-00443-s001, ch: 医院, pr: yī yuàn, ds: hospital}
+  - {id: zh-hsk1-00442-s001, ch: 医生, pr: yī shēng, ds: doctor}
+  - {id: zh-hsk1-00126-s001, ch: 工作, pr: gōng zuò, ds: to work}
+  - {id: zh-hsk1-00483-s001, ch: 中国, pr: Zhōng guó, ds: China}
+  - {id: zh-hsk1-00473-s001, ch: 这里, pr: zhè lǐ, ds: here}
+  - {id: zh-hsk1-00261-s001, ch: 那里, pr: nà li, ds: there}
+  - {id: zh-hsk1-00491-s001, ch: 住, pr: zhù, ds: to live (reside)}
+  - {id: zh-hsk1-00103-s001, ch: 房间, pr: fáng jiān, ds: room}
+  - {id: zh-hsk1-00493-s001, ch: 桌子, pr: zhuō zi, ds: table or desk}
+  - {id: zh-hsk1-00081-s001, ch: 电脑, pr: diàn nǎo, ds: computer}
+  - {id: zh-hsk1-00370-s001, ch: 图书馆, pr: tú shū guǎn, ds: library}
   grammar:
-  - zh-hsk1-g012 # Location predicates
-  - zh-hsk1-g013 # Existence at a location
-  - zh-hsk1-g018 # Joining noun phrases with 和
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g013, ch: Place+有+N, ds: existence at a location}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
   review_vocabulary:
-  - zh-hsk1-00255-s001
-  - zh-hsk1-00445-s001
-  - zh-hsk1-00170-s001
-  - zh-hsk1-00288-s001
-  - zh-hsk1-00071-s001
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00445-s001, ch: 有, pr: yǒu, ds: to have; there is}
+  - {id: zh-hsk1-00170-s001, ch: 家, pr: jiā, ds: home}
+  - {id: zh-hsk1-00288-s001, ch: 朋友, pr: péng you, ds: friend}
+  - {id: zh-hsk1-00071-s001, ch: 的, pr: de, ds: of (possessive particle)}
   review_grammar:
-  - zh-hsk1-g004
-  - zh-hsk1-g007
-  - zh-hsk1-g009
+  - {id: zh-hsk1-g004, ch: S+有+N, ds: possession}
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
 - id: time-and-routines
   title: Time and daily routines
   outcome: Ask and answer when someone gets up, eats, works, or sleeps, and say where an everyday activity happens.
   vocabulary:
-  - zh-hsk1-00183-s001 # 今天, today
-  - zh-hsk1-00252-s001 # 明天
-  - zh-hsk1-00501-s001 # 昨天
-  - zh-hsk1-00403-s001 # 现在, now
-  - zh-hsk1-00326-s001 # 上午
-  - zh-hsk1-00486-s001 # 中午
-  - zh-hsk1-00399-s001 # 下午
-  - zh-hsk1-00378-s001 # 晚上
-  - zh-hsk1-00078-s005 # 点, o'clock
-  - zh-hsk1-00111-s008 # 分, minute
-  - zh-hsk1-00011-s001 # 半, half
-  - zh-hsk1-00417-s002 # 星期, day of the week
-  - zh-hsk1-00336-s001 # 时候, time or moment
-  - zh-hsk1-00292-s001 # 起床
-  - zh-hsk1-00352-s002 # 睡觉, to sleep
-  - zh-hsk1-00048-s001 # 吃饭, to have a meal
-  - zh-hsk1-00320-s001 # 上班, to go to work
-  - zh-hsk1-00394-s001 # 下班
-  - zh-hsk1-00337-s001 # 时间
+  - {id: zh-hsk1-00183-s001, ch: 今天, pr: jīn tiān, ds: today}
+  - {id: zh-hsk1-00252-s001, ch: 明天, pr: míng tiān, ds: tomorrow}
+  - {id: zh-hsk1-00501-s001, ch: 昨天, pr: zuó tiān, ds: yesterday}
+  - {id: zh-hsk1-00403-s001, ch: 现在, pr: xiàn zài, ds: now}
+  - {id: zh-hsk1-00326-s001, ch: 上午, pr: shàng wǔ, ds: morning}
+  - {id: zh-hsk1-00486-s001, ch: 中午, pr: zhōng wǔ, ds: noon}
+  - {id: zh-hsk1-00399-s001, ch: 下午, pr: xià wǔ, ds: afternoon}
+  - {id: zh-hsk1-00378-s001, ch: 晚上, pr: wǎn shang, ds: evening or night}
+  - {id: zh-hsk1-00078-s005, ch: 点, pr: diǎn, ds: o'clock}
+  - {id: zh-hsk1-00111-s008, ch: 分, pr: fēn, ds: minute (time)}
+  - {id: zh-hsk1-00011-s001, ch: 半, pr: bàn, ds: half}
+  - {id: zh-hsk1-00417-s002, ch: 星期, pr: xīng qī, ds: day of the week}
+  - {id: zh-hsk1-00336-s001, ch: 时候, pr: shí hou, ds: time or moment}
+  - {id: zh-hsk1-00292-s001, ch: 起床, pr: qǐ chuáng, ds: to get out of bed}
+  - {id: zh-hsk1-00352-s002, ch: 睡觉, pr: shuì jiào, ds: to sleep}
+  - {id: zh-hsk1-00048-s001, ch: 吃饭, pr: chī fàn, ds: to have a meal}
+  - {id: zh-hsk1-00320-s001, ch: 上班, pr: shàng bān, ds: to go to work}
+  - {id: zh-hsk1-00394-s001, ch: 下班, pr: xià bān, ds: to finish work}
+  - {id: zh-hsk1-00337-s001, ch: 时间, pr: shí jiān, ds: time or period}
   grammar:
-  - zh-hsk1-g014 # Time before the verb
-  - zh-hsk1-g015 # Location before the verb
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g015, ch: S+在+Place+V, ds: preverbal location phrase}
   review_vocabulary:
-  - zh-hsk1-00461-s002
-  - zh-hsk1-00170-s001
-  - zh-hsk1-00126-s001
-  - zh-hsk1-00166-s003
-  - zh-hsk1-00331-s001
+  - {id: zh-hsk1-00461-s002, ch: 在, pr: zài, ds: to be located at}
+  - {id: zh-hsk1-00170-s001, ch: 家, pr: jiā, ds: home}
+  - {id: zh-hsk1-00126-s001, ch: 工作, pr: gōng zuò, ds: to work}
+  - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
+  - {id: zh-hsk1-00331-s001, ch: 什么, pr: shén me, ds: 'what?'}
   review_grammar:
-  - zh-hsk1-g007
-  - zh-hsk1-g012
-  - zh-hsk1-g023
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
 - id: interests-and-abilities
   title: Interests and learned abilities
   outcome: Say what you like doing, describe what you can read, write, or perform, and identify an interest you share with someone.
   vocabulary:
-  - zh-hsk1-00428-s002 # 也, also
-  - zh-hsk1-00161-s001 # 会, learned ability
-  - zh-hsk1-00390-s001 # 喜欢
-  - zh-hsk1-00424-s001 # 学习
-  - zh-hsk1-00194-s005 # 看, to see or watch
-  - zh-hsk1-00092-s004 # 读, to read
-  - zh-hsk1-00413-s001 # 写
-  - zh-hsk1-00042-s001 # 唱歌
-  - zh-hsk1-00084-s001 # 电影
-  - zh-hsk1-00139-s001 # 汉字, Chinese character
-  - zh-hsk1-00061-s001 # 打球
-  - zh-hsk1-00287-s002 # 跑, to run
-  - zh-hsk1-00001-s001 # 爱, to love
-  - zh-hsk1-00117-s001 # 高兴, happy
-  - zh-hsk1-00144-s001 # 好玩儿, fun
+  - {id: zh-hsk1-00428-s002, ch: 也, pr: yě, ds: also (adverb)}
+  - {id: zh-hsk1-00161-s001, ch: 会, pr: huì, ds: can (know how to)}
+  - {id: zh-hsk1-00390-s001, ch: 喜欢, pr: xǐ huan, ds: to like}
+  - {id: zh-hsk1-00424-s001, ch: 学习, pr: xué xí, ds: to learn or study}
+  - {id: zh-hsk1-00194-s005, ch: 看, pr: kàn, ds: 'to see, watch or look at'}
+  - {id: zh-hsk1-00092-s004, ch: 读, pr: dú, ds: to read}
+  - {id: zh-hsk1-00413-s001, ch: 写, pr: xiě, ds: to write}
+  - {id: zh-hsk1-00042-s001, ch: 唱歌, pr: chàng gē, ds: to sing a song}
+  - {id: zh-hsk1-00084-s001, ch: 电影, pr: diàn yǐng, ds: movie}
+  - {id: zh-hsk1-00139-s001, ch: 汉字, pr: hàn zì, ds: Chinese character}
+  - {id: zh-hsk1-00061-s001, ch: 打球, pr: dǎ qiú, ds: to play ball}
+  - {id: zh-hsk1-00287-s002, ch: 跑, pr: pǎo, ds: to run}
+  - {id: zh-hsk1-00001-s001, ch: 爱, pr: ài, ds: to love}
+  - {id: zh-hsk1-00117-s001, ch: 高兴, pr: gāo xìng, ds: happy}
+  - {id: zh-hsk1-00144-s001, ch: 好玩儿, pr: hǎo wán r, ds: amusing or fun}
   grammar:
-  - zh-hsk1-g016 # Also with 也
-  - zh-hsk1-g020 # Learned ability with 会
+  - {id: zh-hsk1-g016, ch: S+也+P, ds: also}
+  - {id: zh-hsk1-g020, ch: S+会+V, ds: learned ability}
   review_vocabulary:
-  - zh-hsk1-00138-s001
-  - zh-hsk1-00353-s002
-  - zh-hsk1-00365-s002
-  - zh-hsk1-00344-s001
-  - zh-hsk1-00404-s004
+  - {id: zh-hsk1-00138-s001, ch: 汉语, pr: Hàn yǔ, ds: Chinese language}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk1-00365-s002, ch: 听, pr: tīng, ds: to listen or hear}
+  - {id: zh-hsk1-00344-s001, ch: 书, pr: shū, ds: book}
+  - {id: zh-hsk1-00404-s004, ch: 想, pr: xiǎng, ds: to want or desire}
   review_grammar:
-  - zh-hsk1-g002
-  - zh-hsk1-g014
-  - zh-hsk1-g019
+  - {id: zh-hsk1-g002, ch: S+很+Adj, ds: adjective predicate}
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
 - id: food-and-shopping
   title: Food and everyday shopping
   outcome: Buy familiar foods including apples, ask about prices, describe what tastes good, and say what everyone in a group wants to eat.
   vocabulary:
-  - zh-hsk1-00091-s002 # 都, all or both
-  - zh-hsk1-00047-s001 # 吃, to eat
-  - zh-hsk1-00246-s001 # 米饭
-  - zh-hsk1-00248-s001 # 面条儿
-  - zh-hsk1-00036-s001 # 菜, prepared dish
-  - zh-hsk1-00036-s002 # 菜, vegetable
-  - zh-hsk1-00165-s001 # 鸡蛋
-  - zh-hsk1-00314-s001 # 肉, meat
-  - zh-hsk1-00350-s001 # 水果
-  - zh-hsk3-00526-s001 # 苹果, apple
-  - zh-hsk1-00141-s001 # 好吃, tasty
-  - zh-hsk1-00129-s001 # 贵, expensive
-  - zh-hsk1-00017-s001 # 包子
-  - zh-hsk1-00247-s001 # 面包
-  - zh-hsk1-00098-s001 # 饿
-  - zh-hsk1-00200-s001 # 渴
-  - zh-hsk1-00254-s004 # 哪, which before a classifier
+  - {id: zh-hsk1-00091-s002, ch: 都, pr: dōu, ds: all or both}
+  - {id: zh-hsk1-00047-s001, ch: 吃, pr: chī, ds: to eat or consume}
+  - {id: zh-hsk1-00246-s001, ch: 米饭, pr: mǐ fàn, ds: cooked rice}
+  - {id: zh-hsk1-00248-s001, ch: 面条儿, pr: miàn tiáo r, ds: noodles}
+  - {id: zh-hsk1-00036-s001, ch: 菜, pr: cài, ds: dish (food)}
+  - {id: zh-hsk1-00036-s002, ch: 菜, pr: cài, ds: vegetable}
+  - {id: zh-hsk1-00165-s001, ch: 鸡蛋, pr: jī dàn, ds: chicken egg}
+  - {id: zh-hsk1-00314-s001, ch: 肉, pr: ròu, ds: meat}
+  - {id: zh-hsk1-00350-s001, ch: 水果, pr: shuǐ guǒ, ds: fruit}
+  - {id: zh-hsk3-00526-s001, ch: 苹果, pr: píng guǒ, ds: apple}
+  - {id: zh-hsk1-00141-s001, ch: 好吃, pr: hǎo chī, ds: tasty}
+  - {id: zh-hsk1-00129-s001, ch: 贵, pr: guì, ds: expensive}
+  - {id: zh-hsk1-00017-s001, ch: 包子, pr: bāo zi, ds: steamed stuffed bun}
+  - {id: zh-hsk1-00247-s001, ch: 面包, pr: miàn bāo, ds: bread}
+  - {id: zh-hsk1-00098-s001, ch: 饿, pr: è, ds: to be hungry}
+  - {id: zh-hsk1-00200-s001, ch: 渴, pr: kě, ds: thirsty}
+  - {id: zh-hsk1-00254-s004, ch: 哪, pr: něi, ds: 'which? (before a classifier)'}
   grammar:
-  - zh-hsk1-g017 # All members of a group with 都
+  - {id: zh-hsk1-g017, ch: S+都+P, ds: all members of a group}
   review_vocabulary:
-  - zh-hsk1-00385-s001
-  - zh-hsk1-00147-s002
-  - zh-hsk1-00231-s001
-  - zh-hsk1-00097-s004
-  - zh-hsk1-00205-s003
-  - zh-hsk1-00390-s001
+  - {id: zh-hsk1-00385-s001, ch: 我们, pr: wǒ men, ds: we or us}
+  - {id: zh-hsk1-00147-s002, ch: 和, pr: hé, ds: and or with (joining nouns)}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
+  - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: currency-unit classifier (colloquial)}
+  - {id: zh-hsk1-00390-s001, ch: 喜欢, pr: xǐ huan, ds: to like}
   review_grammar:
-  - zh-hsk1-g010
-  - zh-hsk1-g018
-  - zh-hsk1-g023
+  - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+  - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}
 - id: directions-and-travel
   title: Directions and getting around
   outcome: Ask where a destination is, identify its position relative to a landmark, and say where you are going and what you intend to do there.
   vocabulary:
-  - zh-hsk1-00306-s001 # 去, to go
-  - zh-hsk1-00207-s001 # 来, to come
-  - zh-hsk1-00496-s001 # 走, to walk
-  - zh-hsk1-00223-s002 # 路, road
-  - zh-hsk1-00070-s001 # 地图
-  - zh-hsk1-00503-s003 # 左边, to the left of
-  - zh-hsk1-00454-s001 # 右边, right side
-  - zh-hsk1-00296-s003 # 前边, in front of
-  - zh-hsk1-00150-s002 # 后边, behind
-  - zh-hsk1-00286-s001 # 旁边, adjacent place
-  - zh-hsk1-00216-s001 # 里边, inside
-  - zh-hsk1-00372-s001 # 外边, outside
-  - zh-hsk1-00046-s001 # 车站, rail station
-  - zh-hsk1-00162-s001 # 火车
-  - zh-hsk1-00044-s001 # 车票
-  - zh-hsk1-00058-s001 # 打车, to take a taxi
+  - {id: zh-hsk1-00306-s001, ch: 去, pr: qù, ds: to go}
+  - {id: zh-hsk1-00207-s001, ch: 来, pr: lái, ds: to come}
+  - {id: zh-hsk1-00496-s001, ch: 走, pr: zǒu, ds: to walk}
+  - {id: zh-hsk1-00223-s002, ch: 路, pr: lù, ds: road}
+  - {id: zh-hsk1-00070-s001, ch: 地图, pr: dì tú, ds: map}
+  - {id: zh-hsk1-00503-s003, ch: 左边, pr: zuǒ bian, ds: to the left of}
+  - {id: zh-hsk1-00454-s001, ch: 右边, pr: yòu bian, ds: right side}
+  - {id: zh-hsk1-00296-s003, ch: 前边, pr: qián bian, ds: in front of}
+  - {id: zh-hsk1-00150-s002, ch: 后边, pr: hòu bian, ds: behind}
+  - {id: zh-hsk1-00286-s001, ch: 旁边, pr: páng biān, ds: side; adjacent place}
+  - {id: zh-hsk1-00216-s001, ch: 里边, pr: lǐ bian, ds: inside}
+  - {id: zh-hsk1-00372-s001, ch: 外边, pr: wài bian, ds: outside}
+  - {id: zh-hsk1-00046-s001, ch: 车站, pr: chē zhàn, ds: rail station}
+  - {id: zh-hsk1-00162-s001, ch: 火车, pr: huǒ chē, ds: train}
+  - {id: zh-hsk1-00044-s001, ch: 车票, pr: chē piào, ds: bus or train ticket}
+  - {id: zh-hsk1-00058-s001, ch: 打车, pr: dǎ chē, ds: to take a taxi}
   grammar:
-  - zh-hsk1-g024 # Going or coming somewhere for a purpose
+  - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}
   review_vocabulary:
-  - zh-hsk1-00255-s001
-  - zh-hsk1-00461-s002
-  - zh-hsk1-00318-s001
-  - zh-hsk1-00370-s001
-  - zh-hsk1-00231-s001
+  - {id: zh-hsk1-00255-s001, ch: 哪儿, pr: nǎ r, ds: 'where?'}
+  - {id: zh-hsk1-00461-s002, ch: 在, pr: zài, ds: to be located at}
+  - {id: zh-hsk1-00318-s001, ch: 商店, pr: shāng diàn, ds: store}
+  - {id: zh-hsk1-00370-s001, ch: 图书馆, pr: tú shū guǎn, ds: library}
+  - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
   review_grammar:
-  - zh-hsk1-g007
-  - zh-hsk1-g009
-  - zh-hsk1-g012
+  - {id: zh-hsk1-g007, ch: 谁|什么|哪儿, ds: wh-question in situ}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+  - {id: zh-hsk1-g012, ch: S+在+Place, ds: location predicate}
 - id: help-and-permission
   title: Asking for help and permission
   outcome: Ask for help finding an item, request repetition, ask permission to use something, and tell someone not to take an item or open a door.
   vocabulary:
-  - zh-hsk1-00026-s005 # 别, don't
-  - zh-hsk3-00795-s001 # 需要, to need
-  - zh-hsk2-00308-s002 # 可以, permission
-  - zh-hsk1-00015-s001 # 帮忙
-  - zh-hsk1-00232-s001 # 慢, slow
-  - zh-hsk1-00206-s001 # 快, quick
-  - zh-hsk1-00459-s001 # 再, again
-  - zh-hsk1-00073-s006 # 等, to wait for
-  - zh-hsk1-00444-s001 # 用, to use
-  - zh-hsk1-00253-s005 # 拿, to take
-  - zh-hsk1-00468-s001 # 找, to search for
-  - zh-hsk1-00383-s001 # 问
-  - zh-hsk1-00274-s002 # 能, be able to
-  - zh-hsk1-00190-s001 # 开, to open
-  - zh-hsk1-00127-s003 # 关, to close or turn off
-  - zh-hsk1-00242-s002 # 门, door or gate
+  - {id: zh-hsk1-00026-s005, ch: 别, pr: bié, ds: don't ...!}
+  - {id: zh-hsk3-00795-s001, ch: 需要, pr: xū yào, ds: to need}
+  - {id: zh-hsk2-00308-s002, ch: 可以, pr: kě yǐ, ds: may (permission)}
+  - {id: zh-hsk1-00015-s001, ch: 帮忙, pr: bāng máng, ds: to help}
+  - {id: zh-hsk1-00232-s001, ch: 慢, pr: màn, ds: slow}
+  - {id: zh-hsk1-00206-s001, ch: 快, pr: kuài, ds: rapid or quick}
+  - {id: zh-hsk1-00459-s001, ch: 再, pr: zài, ds: again}
+  - {id: zh-hsk1-00073-s006, ch: 等, pr: děng, ds: to wait for}
+  - {id: zh-hsk1-00444-s001, ch: 用, pr: yòng, ds: to use}
+  - {id: zh-hsk1-00253-s005, ch: 拿, pr: ná, ds: to take}
+  - {id: zh-hsk1-00468-s001, ch: 找, pr: zhǎo, ds: to search for}
+  - {id: zh-hsk1-00383-s001, ch: 问, pr: wèn, ds: to ask}
+  - {id: zh-hsk1-00274-s002, ch: 能, pr: néng, ds: can; be able to}
+  - {id: zh-hsk1-00190-s001, ch: 开, pr: kāi, ds: to open}
+  - {id: zh-hsk1-00127-s003, ch: 关, pr: guān, ds: to close or turn off}
+  - {id: zh-hsk1-00242-s002, ch: 门, pr: mén, ds: door or gate}
   grammar:
-  - zh-hsk1-g025 # Prohibitions with 别
+  - {id: zh-hsk1-g025, ch: 别+V, ds: prohibition}
   review_vocabulary:
-  - zh-hsk1-00300-s003
-  - zh-hsk2-00128-s001
-  - zh-hsk1-00353-s002
-  - zh-hsk1-00343-s001
-  - zh-hsk1-00095-s001
+  - {id: zh-hsk1-00300-s003, ch: 请, pr: qǐng, ds: please (polite request)}
+  - {id: zh-hsk2-00128-s001, ch: 懂, pr: dǒng, ds: to understand}
+  - {id: zh-hsk1-00353-s002, ch: 说, pr: shuō, ds: to speak or say}
+  - {id: zh-hsk1-00343-s001, ch: 手机, pr: shǒu jī, ds: cell phone}
+  - {id: zh-hsk1-00095-s001, ch: 对不起, pr: duì bu qǐ, ds: I'm sorry}
   review_grammar:
-  - zh-hsk1-g005
-  - zh-hsk1-g006
-  - zh-hsk1-g021
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
 - id: making-plans-independently
   title: Making plans and independent exchanges
   outcome: Exchange phone numbers, agree on a date and time to meet, check availability with an A-not-A question, and complete a short plan without switching languages.
   vocabulary:
-  - zh-hsk1-00080-s003 # 电话, phone number
-  - zh-hsk1-00097-s006 # 多少, what number? (phone or ID)
-  - zh-hsk1-00059-s001 # 打电话
-  - zh-hsk1-00437-s002 # 一起, together
-  - zh-hsk1-00175-s001 # 见面
-  - zh-hsk1-00155-s002 # 回, to go back
-  - zh-hsk1-00480-s001 # 知道
-  - zh-hsk1-00310-s001 # 认识, to know someone
-  - zh-hsk1-00492-s002 # 准备, to prepare
-  - zh-hsk1-00233-s001 # 忙, busy
-  - zh-hsk1-00421-s002 # 休息, to rest
-  - zh-hsk1-00334-s001 # 生日
-  - zh-hsk1-00277-s002 # 年, year
-  - zh-hsk1-00458-s002 # 月, month
-  - zh-hsk1-00145-s004 # 号, day of the month
-  - zh-hsk1-00419-s001 # 星期天
+  - {id: zh-hsk1-00080-s003, ch: 电话, pr: diàn huà, ds: phone number}
+  - {id: zh-hsk1-00097-s006, ch: 多少, pr: duō shao, ds: 'what number? (phone, ID, etc.)'}
+  - {id: zh-hsk1-00059-s001, ch: 打电话, pr: dǎ diàn huà, ds: to make a telephone call}
+  - {id: zh-hsk1-00437-s002, ch: 一起, pr: yī qǐ, ds: together}
+  - {id: zh-hsk1-00175-s001, ch: 见面, pr: jiàn miàn, ds: to meet}
+  - {id: zh-hsk1-00155-s002, ch: 回, pr: huí, ds: to go back}
+  - {id: zh-hsk1-00480-s001, ch: 知道, pr: zhī dào, ds: to know}
+  - {id: zh-hsk1-00310-s001, ch: 认识, pr: rèn shi, ds: to know}
+  - {id: zh-hsk1-00492-s002, ch: 准备, pr: zhǔn bèi, ds: to prepare}
+  - {id: zh-hsk1-00233-s001, ch: 忙, pr: máng, ds: busy}
+  - {id: zh-hsk1-00421-s002, ch: 休息, pr: xiū xi, ds: to rest}
+  - {id: zh-hsk1-00334-s001, ch: 生日, pr: shēng rì, ds: birthday}
+  - {id: zh-hsk1-00277-s002, ch: 年, pr: nián, ds: year}
+  - {id: zh-hsk1-00458-s002, ch: 月, pr: yuè, ds: month}
+  - {id: zh-hsk1-00145-s004, ch: 号, pr: hào, ds: day of a month}
+  - {id: zh-hsk1-00419-s001, ch: 星期天, pr: Xīng qī tiān, ds: Sunday}
   grammar:
-  - zh-hsk1-g022 # A-not-A questions
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
   review_vocabulary:
-  - zh-hsk1-00031-s002
-  - zh-hsk1-00252-s001
-  - zh-hsk1-00078-s005
-  - zh-hsk1-00306-s001
-  - zh-hsk2-00308-s002
-  - zh-hsk3-00396-s001
+  - {id: zh-hsk1-00031-s002, ch: 不, pr: bù, ds: (bound form) not}
+  - {id: zh-hsk1-00252-s001, ch: 明天, pr: míng tiān, ds: tomorrow}
+  - {id: zh-hsk1-00078-s005, ch: 点, pr: diǎn, ds: o'clock}
+  - {id: zh-hsk1-00306-s001, ch: 去, pr: qù, ds: to go}
+  - {id: zh-hsk2-00308-s002, ch: 可以, pr: kě yǐ, ds: may (permission)}
+  - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee}
   review_grammar:
-  - zh-hsk1-g014
-  - zh-hsk1-g019
-  - zh-hsk1-g024
+  - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}

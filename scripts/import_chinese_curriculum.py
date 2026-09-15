@@ -15,7 +15,7 @@ import re
 import urllib.request
 
 from curriculum_yaml import dump_yaml, load_yaml
-from generate_curriculum_tokens import compact_outputs, vocabulary_pairs
+from generate_curriculum_tokens import compact_outputs, vocabulary_entries
 from generate_teaching_track import reference_index, teaching_outputs
 
 
@@ -404,7 +404,7 @@ def additional_reference_senses(data: list[dict], words: dict[str, list[dict]],
                 result.append({**row, "senses": senses})
     if found != set(labels):
         raise ValueError(f"Unknown additional reference sense IDs: {sorted(set(labels) - found)}")
-    vocabulary_pairs(result)
+    vocabulary_entries(result)
     return result
 
 
@@ -437,10 +437,10 @@ def main() -> None:
         outputs[ROOT / f"hsk-{level}" / "vocabulary.yaml"] = dump_yaml(words[level])
         outputs[ROOT / f"hsk-{level}" / "grammar.yaml"] = dump_yaml(patterns[level])
     outputs.update(compact_outputs(ROOT / "hsk-1", words["1"], patterns["1"]))
-    word_tokens, grammar_tokens = reference_index(words, patterns, additional)
+    word_entries, grammar_entries = reference_index(words, patterns, additional)
     track_directory = ROOT / "teaching" / "beginner"
     outputs.update(teaching_outputs(
-        track_directory, load_yaml(track_directory / "sequence.yaml"), word_tokens, grammar_tokens,
+        track_directory, load_yaml(track_directory / "sequence.yaml"), word_entries, grammar_entries,
     ))
     for path, content in outputs.items():
         if args.check:

@@ -31,17 +31,22 @@ def text(value, location: str) -> str:
     return value
 
 
-def token(form, disambiguator, location: str) -> str:
-    form = text(form, f"{location}.form")
-    disambiguator = text(disambiguator, f"{location}.disambiguator")
-    if "/" in form or "/" in disambiguator:
-        raise ValueError(f"{location}: '/' is reserved for the token separator")
-    if not re.search(r"[A-Za-z]", disambiguator):
+def label(value, location: str) -> str:
+    value = text(value, f"{location}.disambiguator")
+    if not re.search(r"[A-Za-z]", value):
         raise ValueError(f"{location}.disambiguator: must include English")
-    if len(disambiguator) > MAX_DISAMBIGUATOR_LENGTH:
+    if len(value) > MAX_DISAMBIGUATOR_LENGTH:
         raise ValueError(
             f"{location}.disambiguator: exceeds {MAX_DISAMBIGUATOR_LENGTH} characters"
         )
+    return value
+
+
+def token(form, disambiguator, location: str) -> str:
+    form = text(form, f"{location}.form")
+    disambiguator = label(disambiguator, location)
+    if "/" in form or "/" in disambiguator:
+        raise ValueError(f"{location}: '/' is reserved for the token separator")
     return f"{form}/{disambiguator}"
 
 
@@ -66,8 +71,22 @@ def unique_pairs(pairs: list[list[str]]) -> list[list[str]]:
     return pairs
 
 
-def vocabulary_pairs(entries) -> list[list[str]]:
-    pairs = []
+def unique_entries(entries: list[dict[str, str]]) -> list[dict[str, str]]:
+    ids, meanings = set(), set()
+    for entry in entries:
+        identifier = text(entry.get("id"), "id")
+        meaning = (entry["ch"], entry.get("pr"), entry["ds"])
+        if identifier in ids:
+            raise ValueError(f"Duplicate compact ID: {identifier}")
+        if meaning in meanings:
+            raise ValueError(f"Ambiguous duplicate entry: {meaning}")
+        ids.add(identifier)
+        meanings.add(meaning)
+    return entries
+
+
+def vocabulary_entries(entries) -> list[dict[str, str]]:
+    result = []
     headword_ids = set()
     source_ids = set()
     for entry in records(entries, "vocabulary"):
@@ -99,18 +118,35 @@ def vocabulary_pairs(entries) -> list[list[str]]:
             if (reading, english) in seen_senses:
                 raise ValueError(f"{identifier}: duplicate reading and dictionary sense")
             seen_senses.add((reading, english))
-            pairs.append([
-                identifier,
-                token(f"{target}({reading})", sense.get("disambiguator"), identifier),
-            ])
-    return unique_pairs(pairs)
+            result.append({
+                "id": identifier, "ch": target, "pr": reading,
+                "ds": label(sense.get("disambiguator"), identifier),
+            })
+    return unique_entries(result)
+
+
+def grammar_entries(entries) -> list[dict[str, str]]:
+    return unique_entries([
+        {
+            "id": text(entry.get("id"), "grammar.id"),
+            "ch": text(entry.get("token_form"), f"{entry.get('id')}.token_form"),
+            "ds": label(entry.get("disambiguator"), entry.get("id")),
+        }
+        for entry in records(entries, "grammar")
+    ])
+
+
+def vocabulary_pairs(entries) -> list[list[str]]:
+    return unique_pairs([
+        [entry["id"], token(f"{entry['ch']}({entry['pr']})", entry["ds"], entry["id"])]
+        for entry in vocabulary_entries(entries)
+    ])
 
 
 def grammar_pairs(entries) -> list[list[str]]:
     return unique_pairs([
-        [text(entry.get("id"), "grammar.id"),
-         token(entry.get("token_form"), entry.get("disambiguator"), entry.get("id"))]
-        for entry in records(entries, "grammar")
+        [entry["id"], token(entry["ch"], entry["ds"], entry["id"])]
+        for entry in grammar_entries(entries)
     ])
 
 

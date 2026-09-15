@@ -30,9 +30,22 @@ meaning of the headword.
 
 | File | Role |
 | --- | --- |
-| `sequence.yaml` | Authored order, communicative outcomes, new vocabulary/grammar IDs, and review selections |
-| `vocabulary.min.yaml` | Generated `[sense_id, word(pinyin)/disambiguator]` pairs, in introduction order |
-| `grammar.min.yaml` | Generated `[grammar_id, construct/disambiguator]` pairs, in introduction order |
+| `sequence.yaml` | Authored order, outcomes, and selections, with synchronized vocabulary/grammar entries in introductions and reviews |
+| `vocabulary.min.yaml` | Generated `{id, ch, pr, ds}` mappings, in introduction order |
+| `grammar.min.yaml` | Generated `{id, ch, ds}` mappings, in introduction order |
+
+Each entry is a one-line YAML mapping. `id` is the stable sense or construction
+ID, `ch` is the Chinese word or construction template, `pr` is the individual
+sense's pinyin, and `ds` is its English disambiguator. Grammar templates omit
+`pr`; placeholders are not words to pronounce. Existing disambiguator wording
+is preserved rather than inferred or abbreviated during generation.
+
+The sequence uses `schema_version: 2`. Its `vocabulary`, `grammar`,
+`review_vocabulary`, and `review_grammar` lists contain the same complete
+mappings as the corresponding compact file, not bare IDs. This makes a module
+readable without looking up every ID. The older HSK reference compact files
+retain their `[id, token]` format; this format change is scoped to the beginner
+teaching track.
 
 An ID is introduced once. Review lists refer only to introductions in earlier
 modules and do not duplicate entries in the compact inventory. The sequence,
@@ -83,7 +96,12 @@ sibling senses or report an official HSK result.
 Edit `sequence.yaml` to change teaching priorities. Keep its stable unit IDs.
 Each unit has `id`, `title`, `outcome`, `vocabulary`, `grammar`,
 `review_vocabulary`, and `review_grammar`. Introductions use existing canonical
-sense IDs and grammar IDs; a bare vocabulary headword ID is not sufficient.
+sense IDs and grammar IDs in their entry mappings; a bare vocabulary headword
+ID is not sufficient. The selections and order are authored, while `ch`, `pr`,
+and `ds` are derived from the expanded references. To replace an item, change
+the mapping's `id` and regenerate; all derived fields are refreshed, including
+every review occurrence. Do not edit those duplicated fields as the sole record
+of a translation or pronunciation change.
 
 To address a meaning from a reference band that has not yet been split into
 sense records, add its source-derived ID and disambiguator to
@@ -101,9 +119,14 @@ python scripts\validate_curriculum.py --language chinese
 ```
 
 The track generator works offline from checked-in expanded references and the
-sequence. The Chinese importer also regenerates these views from its pinned
-source. Unknown IDs, mismatched source metadata, duplicate introductions,
-forward review references, and stale generated views are errors.
+sequence. It synchronizes the embedded entries and both compact views, preserving
+authored order, outcomes, and review selections. Legacy version-1 ID lists are
+upgraded to version 2 during generation. YAML formatting is regenerated, so keep
+instructional guidance in the named metadata fields rather than YAML comments.
+The Chinese importer performs the same synchronization from its pinned source.
+`--check` writes nothing and rejects stale embedded fields as well as stale
+compact files. Unknown IDs, invalid entry fields, mismatched source metadata,
+duplicate introductions, and forward review references are errors.
 
 This is an AI-authored starting track, requiring human linguistic and teaching
 review rather than claiming professional certification. The existing Chinese

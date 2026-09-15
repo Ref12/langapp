@@ -94,8 +94,24 @@ Edit the source or importer, regenerate and review the resulting change.
 practical modules using 205 selected vocabulary senses and 25 grammar constructs.
 It does not select an
 entire headword merely because one meaning is useful. Its generated
-`vocabulary.min.yaml` and `grammar.min.yaml` retain the compact format and
-follow teaching order rather than source order.
+`vocabulary.min.yaml` and `grammar.min.yaml` use one-line entry mappings and
+follow teaching order rather than source order:
+
+```yaml
+- {id: zh-hsk1-00384-s001, ch: 我, pr: wǒ, ds: 'I, me, my'}
+- {id: zh-hsk1-g020, ch: S+会+V, ds: learned ability}
+```
+
+The first example is vocabulary; the second is grammar. `ch` is the word or
+construction, `pr` is sense-specific pinyin, and `ds` is the existing English
+disambiguator. Grammar templates omit `pr`. Version 2 of the beginner sequence
+duplicates these full mappings in both introduction and review lists. Their
+fields come directly from expanded references, without parsing a combined
+token string. The generator refreshes the duplicated fields by ID while
+preserving the authored teaching order and metadata.
+
+This change is scoped to the beginner teaching files. The HSK-1 reference
+compact views described below still use `[id, token]` pairs.
 
 The original HSK files remain unchanged. `reference-senses.yaml` adds eleven
 selected sense records for useful vocabulary in other bands: understanding,
@@ -347,9 +363,9 @@ The importer downloads the pinned source and refuses a SHA-256 mismatch:
 Revision: `7ac65bf1a6387d35f1ade478906172a19311c7f9`.
 For offline reproduction, supply `--source` with a local copy of that exact
 `complete.json`. It is not necessary to retain the entire upstream file in the
-application. `--check` compares all 20 generated files without modifying them
+application. `--check` compares all 21 generated or synchronized files without modifying them
 (14 expanded level assets, two HSK-1 compact views, the additional reference
-senses, two beginner teaching views, and the normalization report)
+senses, the beginner sequence and its two compact views, and the normalization report)
 and runs normalizer regressions;
 syllabi and metadata are authored separately. Changing the revision requires a
 fresh license/provenance check, count reconciliation and ID migration review.

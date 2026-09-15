@@ -275,7 +275,7 @@ class Validator:
             outputs = teaching_outputs(directory, sequence, vocabulary, grammar)
             for path, expected in outputs.items():
                 if path.read_text(encoding="utf-8") != expected:
-                    self.error(path, "stale teaching view; regenerate from sequence.yaml")
+                    self.error(path, "stale teaching view; regenerate from references and sequence.yaml")
         except (OSError, UnicodeError, ValueError) as exc:
             self.error(directory, str(exc))
 
