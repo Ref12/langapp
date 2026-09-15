@@ -473,7 +473,7 @@ def dependency_closure(units: list[dict], dependencies: dict, anchors: dict) -> 
 def normalized_surface(value: str) -> str:
     # Preserve apostrophes, hyphens, accents, and other meaningful spelling distinctions.
     return "".join(character for character in unicodedata.normalize("NFC", value)
-                   if not character.isspace() and character not in ".,!?;:\u3001\u3002\uff01\uff1f\uff1b\uff1a")
+                   if not character.isspace() and character not in ".,!?;:\u00bf\u00a1\u3001\u3002\uff01\uff1f\uff1b\uff1a")
 
 
 def normalized_reading(value: str) -> str:

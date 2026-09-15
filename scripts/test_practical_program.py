@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from curriculum_yaml import load_yaml, write_yaml
-from generate_practical_program import generate, program_outputs, validate_references
+from generate_practical_program import generate, normalized_surface, program_outputs, validate_references
 from practical_program_registry import get_adapter
 from practical_program_types import (
     PhraseAnalysis, ProgramData, ProgramProfile, ReferenceBundle, SeedUnit, SurfaceSegment,
@@ -226,6 +226,13 @@ class NeutralProgramTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "uncovered or mismatched"):
                     self.outputs()
                 self.phrase[key] = previous
+
+    def test_inverted_sentence_punctuation_does_not_erase_lexical_marks(self):
+        for surface in ("\u00bfchanged?", "\u00a1changed!"):
+            self.phrase["ch"] = surface
+            self.outputs()
+        for left, right in (("l'ami", "lami"), ("porta-voz", "portavoz"), ("s\u00ed", "si")):
+            self.assertNotEqual(normalized_surface(left), normalized_surface(right))
 
     def test_inflected_and_fixed_grammar_surfaces_require_licensed_form_annotations(self):
         segment = self.phrase["realizations"][0]
