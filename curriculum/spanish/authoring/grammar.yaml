@@ -1,0 +1,1899 @@
+- id: es-g0001
+  level: 1
+  topic: communication
+  ch: 'Hola; por favor; gracias; de nada; disculpe'
+  ds: Open an exchange and acknowledge help
+  note: Use these short exchange frames to greet, soften a request, thank, or respond to thanks. Disculpe is an usted attention or apology formula taught here as a chunk, not mastery of the command paradigm. A polite formula alone does not make a request appropriate. Example content is English-supported.
+  examples:
+  - {target: 'Hola, soy Ana.', english: 'Hello, I am Ana.'}
+  - {target: 'Disculpe, un café, por favor. Gracias.', english: 'Excuse me, a coffee, please. Thank you.'}
+  fixed_forms: [hola, por favor, gracias, de nada, disculpe, perdón]
+  anchors: []
+  prerequisites: []
+- id: es-g0002
+  level: 1
+  topic: people
+  ch: '(yo) soy; (tú) eres; es'
+  ds: Identify someone with an optional subject pronoun
+  note: Ser identifies or classifies here. Verb endings and context often make a subject pronoun unnecessary; an explicit pronoun can contrast participants. Él and ella identify singular third persons; ellos and ellas identify plural groups, with plural agreement developed later. These forms do not imply that ser always describes permanent properties.
+  examples:
+  - {target: 'Soy estudiante.', english: 'I am a student.'}
+  - {target: 'Yo soy Ana y tú eres Luis.', english: 'I am Ana and you are Luis.'}
+  fixed_forms: [yo, tú, él, ella, ellos, ellas, soy, eres, es]
+  anchors: [ser-identity]
+  prerequisites: []
+- id: es-g0003
+  level: 1
+  topic: register
+  ch: 'tú hablas; usted habla'
+  ds: Match singular address to the verb
+  note: Tú takes its own verb ending; usted addresses the listener with third-person grammar. The first-person necesito frame is also available with an explicit lexical gloss, not an invented need sense. Early exchanges model address without assuming age alone determines it. Clear subjects can be omitted.
+  examples:
+  - {target: '¿Hablas español?', english: 'Do you speak Spanish? (tú)'}
+  - {target: 'Necesito ayuda. ¿Usted vive aquí?', english: 'I need help. Do you live here? (usted)'}
+  fixed_forms: [tú, usted, hablas, habla, vives, vive, necesito]
+  anchors: [hablar-speak, vivir-live]
+  prerequisites: [es-g0002]
+- id: es-g0004
+  level: 1
+  topic: communication
+  ch: '¿Qué ...? ¿Dónde ...? ¿Cuánto ...? ¿Cuándo ...?'
+  ds: Ask for a missing identity or detail
+  note: Accented question words identify missing information. Dónde asks location, adónde destination, cómo manner or description, cuánto amount, and cuándo time. Full direct questions use opening and closing question marks without an English-style auxiliary. Example predicates remain supported until their constructions are introduced.
+  examples:
+  - {target: '¿Quién es ella?', english: 'Who is she?'}
+  - {target: '¿Dónde está la estación? ¿Cuánto cuesta el boleto? ¿Cuándo sale el tren?', english: 'Where is the station? How much does the ticket cost? When does the train leave?'}
+  fixed_forms: [qué, quién, cómo, dónde, adónde, cuánto, cuándo]
+  anchors: []
+  prerequisites: [es-g0002, es-g0003]
+- id: es-g0005
+  level: 1
+  topic: communication
+  ch: 'sí; no + verb'
+  ds: Confirm or negate a statement and correct a detail
+  note: Accented sí gives an affirmative reply; unaccented conditional si has a different function taught later. No can answer separately or precede the conjugated verb to negate a clause. Spanish does not add an equivalent of English do to negate the present.
+  examples:
+  - {target: 'Sí, hablo español. No hablo inglés.', english: 'Yes, I speak Spanish. I do not speak English.'}
+  - {target: 'No, no soy Luis. Soy Leo.', english: 'No, I am not Luis. I am Leo.'}
+  fixed_forms: [sí, 'no']
+  anchors: [hablar-speak, ser-identity]
+  prerequisites: [es-g0002, es-g0003]
+- id: es-g0006
+  level: 1
+  topic: communication
+  ch: '¿Puede + infinitive ...? Más despacio, por favor.'
+  ds: Request assistance or conversational repair
+  note: Puede plus infinitive makes an usted request for an action, including repetition, writing, or other assistance. No entiendo and más despacio are usable repair chunks; escribirlo in this frame means writing the message down, with lo referring to that message. Teach these supported realizations before the complete present or clitic paradigms. They do not establish comprehension of unheard audio or productive command of every object-pronoun pattern.
+  examples:
+  - {target: '¿Puede repetir el nombre, por favor?', english: 'Could you repeat the name, please?'}
+  - {target: 'Más despacio, por favor. No entiendo.', english: 'More slowly, please. I do not understand.'}
+  fixed_forms: [puede, puede repetir, más, más despacio, por favor, no entiendo, escribirlo]
+  anchors: [poder-ability]
+  prerequisites: [es-g0001, es-g0003, es-g0005]
+- id: es-g0007
+  level: 2
+  topic: description
+  ch: 'el / la; un / una + noun'
+  ds: Introduce or identify a noun with its gender
+  note: Learn noun gender rather than guessing every ending. Un or una can introduce an instance; el or la identifies one in context. Occupations after ser often omit the article unless characterized. Profesora, maestra, tía, chica, and novia are gender forms of profesor, maestro, tío, chico, and novio here, not extra lemmas or automatic mastery of every sense.
+  examples:
+  - {target: 'Es una mesa. La mesa es pequeña.', english: 'It is a table. The table is small.'}
+  - {target: 'Es un mapa. El mapa es útil.', english: 'It is a map. The map is useful.'}
+  - {target: 'Mi tía es profesora; Ana es maestra.', english: 'My aunt is a teacher; Ana is a teacher.'}
+  - {target: 'La chica de la foto es mi novia.', english: 'The girl in the photo is my girlfriend.'}
+  fixed_forms: [el, la, un, una, profesora, maestra, tía, chica, novia]
+  anchors: []
+  prerequisites: [es-g0002]
+- id: es-g0008
+  level: 2
+  topic: description
+  ch: 'los / las; unos / unas + plural noun'
+  ds: Coordinate plural noun and determiner forms
+  note: Many vowel-final nouns add s and many consonant-final nouns add es; spelling changes such as luz to luces preserve the sound pattern. This is not a universal algorithm for every loanword. Number agreement extends to determiners and descriptions.
+  examples:
+  - {target: 'Hay una silla y dos mesas.', english: 'There is one chair and there are two tables.'}
+  - {target: 'Las luces están encendidas.', english: 'The lights are on.'}
+  fixed_forms: [los, las, unos, unas]
+  anchors: []
+  prerequisites: [es-g0007]
+- id: es-g0009
+  level: 2
+  topic: clothing
+  ch: 'la camisa blanca; los zapatos blancos; está abierto'
+  ds: Match an adjective to the described noun
+  note: Descriptive adjectives often follow the noun and agree in number and, where the adjective varies, gender. Not every adjective has separate masculine and feminine forms. Agreement also applies after a linking verb. Ser can present a property; estar can describe a condition, as in está abierto. This is not a permanent-versus-temporary rule, and recognizing this state frame does not establish the later passive-event contrast.
+  examples:
+  - {target: 'La camisa blanca es pequeña.', english: 'The white shirt is small.'}
+  - {target: 'Los zapatos azules son grandes.', english: 'The blue shoes are big.'}
+  - {target: 'El museo es grande y está abierto.', english: 'The museum is large and is open.'}
+  fixed_forms: [es, está, abierto, abierta, abiertos, abiertas]
+  anchors: [estar-state]
+  prerequisites: [es-g0007, es-g0008]
+- id: es-g0010
+  level: 2
+  topic: description
+  ch: 'el agua fría; esta agua; las aguas frías'
+  ds: Keep feminine agreement with stressed initial a
+  note: Immediately before a feminine singular noun beginning with stressed a, including silent h, el normally replaces la. The noun remains feminine; demonstratives and adjectives do not become masculine. An intervening adjective restores la, as in la misma agua.
+  examples:
+  - {target: 'El agua está fría.', english: 'The water is cold.'}
+  - {target: 'Esta agua está limpia y las aguas del río están claras.', english: 'This water is clean and the river waters are clear.'}
+  fixed_forms: [el, la, las, esta, mucha, un, una]
+  anchors: []
+  prerequisites: [es-g0007, es-g0008, es-g0009]
+- id: es-g0011
+  level: 2
+  topic: people
+  ch: 'mi / tu / su; de + possessor'
+  ds: Show possession and clarify an ambiguous su
+  note: Mi, tu, and su agree in number with what is possessed, not with the owner. Su can refer to several possible people; a de phrase makes the intended owner explicit. Distinguish possessive tu from subject tú.
+  examples:
+  - {target: 'Estos son mis libros y esa es tu bolsa.', english: 'These are my books and that is your bag.'}
+  - {target: '¿Es su llave? Es la llave de Ana.', english: 'Is it his, her, or your key? It is Ana’s key.'}
+  fixed_forms: [mi, mis, tu, tus, su, sus, de]
+  anchors: []
+  prerequisites: [es-g0007, es-g0008]
+- id: es-g0012
+  level: 2
+  topic: description
+  ch: 'este / ese / aquel; esto / eso / aquello; otro / otra'
+  ds: Identify an entity or select a different one
+  note: Demonstratives identify a noun or stand for one understood; gendered forms agree with that noun. Neuter esto, eso, and aquello refer to unspecified content and do not modify nouns. Otro and otra mean another or different, without an added un in ordinary otra talla. They are indefinite determiners, not demonstratives.
+  examples:
+  - {target: 'Esta mochila es mía; esa es de Pablo.', english: 'This backpack is mine; that one is Pablo’s.'}
+  - {target: '¿Qué es eso? Esta bolsa es pequeña; necesito otra.', english: 'What is that? This bag is small; I need another one.'}
+  fixed_forms: [este, esta, estos, estas, ese, esa, esos, esas, aquel, aquella, aquellos, aquellas, esto, eso, aquello, otro, otra, otros, otras]
+  anchors: []
+  prerequisites: [es-g0007, es-g0008, es-g0011]
+- id: es-g0013
+  level: 3
+  topic: food
+  ch: 'quiero / quisiera + noun or infinitive'
+  ds: State a want or soften an immediate request
+  note: Quiero states a want directly; quisiera is introduced here as a softened request frame, not evidence of productive imperfect-subjunctive control. Sin plus a noun requests an absence, as in sin leche; this expresses a preference but does not establish dietary safety. Querer with a person can express affection, so context and later sense-specific teaching matter.
+  examples:
+  - {target: 'Quiero comer algo sin queso.', english: 'I want to eat something without cheese.'}
+  - {target: 'Quisiera una mesa para dos, por favor.', english: 'I would like a table for two, please.'}
+  fixed_forms: [quiero, quisiera, sin]
+  anchors: [querer-want]
+  prerequisites: [es-g0001, es-g0007]
+- id: es-g0014
+  level: 3
+  topic: health
+  ch: 'tener + possession; tener hambre / sed / años / alergia a'
+  ds: Separate possession from conventional tener expressions
+  note: Tener expresses possession but also frames hunger, thirst, age, and health conditions such as tener alergia a. Teach these expressions without treating the possession anchor as mastery of every tener sense. The condition noun remains separate lexical content; a links an allergy to its trigger, not a personal direct object.
+  examples:
+  - {target: 'Tengo una botella, pero tengo sed.', english: 'I have a bottle, but I am thirsty.'}
+  - {target: 'Mi hija tiene ocho años y tiene alergia a la leche.', english: 'My daughter is eight years old and is allergic to milk.'}
+  fixed_forms: [tengo, tienes, tiene, tener hambre, tener sed, tener años]
+  anchors: [tener-possession]
+  prerequisites: [es-g0007, es-g0011]
+- id: es-g0015
+  level: 3
+  topic: food
+  ch: 'un poco de / algo de / nada de + noun'
+  ds: Specify an indefinite amount or an exclusion
+  note: These quantity frames do not require counting separate units. Nada de can exclude an ingredient in an elliptical order; in a full negative clause, keep the appropriate no. A phrase alone is not confirmation that a dietary requirement has been met.
+  examples:
+  - {target: 'Un poco de agua y nada de hielo, por favor.', english: 'A little water and no ice, please.'}
+  - {target: 'No quiero nada de azúcar; quiero algo de leche.', english: 'I do not want any sugar; I want some milk.'}
+  fixed_forms: [un poco de, algo de, nada de]
+  anchors: []
+  prerequisites: [es-g0005, es-g0010, es-g0013]
+- id: es-g0016
+  level: 3
+  topic: money
+  ch: '¿Cuánto ...? ¿Cuántos / cuántas ...? dos más'
+  ds: Ask an amount or count and request an increment
+  note: Cuánto asks an amount; before a noun it agrees in gender and number. Uno becomes un before a masculine noun. Más requests an additional quantity, as in dos más, or greater degree, as in más despacio. Number and degree are grammatical uses, not permission to count all example nouns as learned.
+  examples:
+  - {target: '¿Cuánto cuesta un café?', english: 'How much does a coffee cost?'}
+  - {target: '¿Cuántas botellas quiere? Quiero dos más.', english: 'How many bottles would you like? I want two more.'}
+  fixed_forms: [cuánto, cuánta, cuántos, cuántas, un, una, dos, más]
+  anchors: [querer-want]
+  prerequisites: [es-g0004, es-g0008, es-g0013]
+- id: es-g0017
+  level: 3
+  topic: services
+  ch: 'hay + entity; entity + está / están'
+  ds: Introduce availability versus locate an identified entity
+  note: Hay presents existence or availability without agreeing with a following plural. Está or están can locate an identified entity. The contrast is about how information is presented, not a claim that indefinite nouns can never occur with estar in any context.
+  examples:
+  - {target: 'Hay dos mesas libres.', english: 'There are two free tables.'}
+  - {target: 'La mesa de Ana está junto a la ventana.', english: 'Ana’s table is next to the window.'}
+  fixed_forms: [hay, no hay, está, están]
+  anchors: [haber-existential, estar-location]
+  prerequisites: [es-g0007, es-g0008]
+- id: es-g0018
+  level: 3
+  topic: food
+  ch: '(a mí) me gusta / gustan'
+  ds: Make the liked thing the grammatical subject
+  note: The liked thing controls gusta or gustan; the clitic marks the experiencer. An infinitive activity normally takes singular gusta. An explicit a phrase can contrast or clarify the experiencer but does not replace the required clitic in this model.
+  examples:
+  - {target: 'Me gusta cocinar, pero no me gustan las aceitunas.', english: 'I like cooking, but I do not like olives.'}
+  - {target: 'A Ana le gusta el café; a mí me gusta el té.', english: 'Ana likes coffee; I like tea.'}
+  fixed_forms: [me, te, le, nos, les, gusta, gustan, a mí]
+  anchors: [gustar-please]
+  prerequisites: [es-g0005, es-g0007, es-g0008]
+- id: es-g0019
+  level: 4
+  topic: travel
+  ch: 'estar en + location; event + ser en'
+  ds: Locate an entity or say where an event takes place
+  note: Use estar for the location of an entity, including a lasting geographical location. Ser locates an event such as a meeting. This contrast directly contradicts the unreliable rule that ser means permanent and estar temporary.
+  examples:
+  - {target: 'La biblioteca está en esta calle.', english: 'The library is on this street.'}
+  - {target: 'La reunión es en la biblioteca.', english: 'The meeting is at the library.'}
+  fixed_forms: [en, está, están, es, son]
+  anchors: [estar-location, ser-occurrence]
+  prerequisites: [es-g0017]
+- id: es-g0020
+  level: 4
+  topic: travel
+  ch: 'ir a; a + el → al; de + el → del'
+  ds: Express a destination and recognize contractions
+  note: Ir a names a destination. Ordinary a plus el and de plus el contract to al and del; do not contract with the personal pronoun él. A following feminine article remains separate. These contractions are grammatical forms, not additional headwords.
+  examples:
+  - {target: 'Voy al mercado y después a la estación.', english: 'I am going to the market and then to the station.'}
+  - {target: 'La salida del museo está aquí.', english: 'The museum exit is here.'}
+  fixed_forms: [voy, vas, va, vamos, van, a, al, de, del]
+  anchors: [ir-movement]
+  prerequisites: [es-g0007, es-g0019]
+- id: es-g0021
+  level: 4
+  topic: time
+  ch: 'ir a + infinitive'
+  ds: State a plan or anticipated event
+  note: Conjugated ir plus a and an infinitive expresses a plan or prospective event, not necessarily immediate physical movement. Contrast a destination after a with an activity expressed by an infinitive. Context establishes how near or settled the plan is.
+  examples:
+  - {target: 'Voy a llamar mañana.', english: 'I am going to call tomorrow.'}
+  - {target: 'Vamos a comer aquí.', english: 'We are going to eat here.'}
+  fixed_forms: [voy a, vas a, va a, vamos a, van a]
+  anchors: []
+  prerequisites: [es-g0020]
+- id: es-g0022
+  level: 4
+  topic: time
+  ch: 'es la una; son las ...; a la / a las ...'
+  ds: Tell the clock time and schedule an event
+  note: Use singular es with la una and plural son with other clock hours. A la or a las introduces a scheduled time. A numeral alone may be ambiguous, so add morning, afternoon, or another contextual clarification when useful.
+  examples:
+  - {target: 'Es la una. La visita es a las dos.', english: 'It is one o’clock. The visit is at two.'}
+  - {target: 'Son las ocho y media; vamos a salir a las nueve.', english: 'It is half past eight; we are going to leave at nine.'}
+  fixed_forms: [es la una, son las, a la, a las, y media, y cuarto, menos cuarto]
+  anchors: []
+  prerequisites: [es-g0007, es-g0021]
+- id: es-g0023
+  level: 4
+  topic: leisure
+  ch: 'poder / saber + infinitive'
+  ds: Distinguish situational ability from a learned skill
+  note: Poder often concerns capacity, permission, or current circumstances; saber plus infinitive describes knowing how to do something. A person may know how yet be unable to act now. The saber-how anchor covers the skill; fact-oriented saber-know is not a substitute and receives no automatic mastery.
+  examples:
+  - {target: 'Sé nadar, pero hoy no puedo nadar.', english: 'I know how to swim, but I cannot swim today.'}
+  - {target: '¿Puedes venir? Sé llegar al museo.', english: 'Can you come? I know how to get to the museum.'}
+  fixed_forms: [puedo, puedes, puede, sé, sabes, sabe]
+  anchors: [poder-ability, saber-how]
+  prerequisites: [es-g0005, es-g0006, es-g0020]
+- id: es-g0024
+  level: 4
+  topic: communication
+  ch: 'y / e; o / u; pero'
+  ds: Join additions, alternatives, and a contrast
+  note: Y becomes e before an initial i sound and o becomes u before an initial o sound; sound, not the first written letter alone, motivates the change. Pero adds a contrasting point rather than replacing a negated description.
+  examples:
+  - {target: 'Habla español e italiano.', english: 'She speaks Spanish and Italian.'}
+  - {target: '¿Siete u ocho personas? Quiero ir, pero no puedo.', english: 'Seven or eight people? I want to go, but I cannot.'}
+  fixed_forms: [y, e, o, u, pero]
+  anchors: []
+  prerequisites: [es-g0003, es-g0013, es-g0023]
+- id: es-g0025
+  level: 5
+  topic: home
+  ch: 'hablo / hablamos / hablan; tengo / tienen'
+  ds: Match present forms to their subjects in everyday exchanges
+  note: Present forms agree with an explicit or understood subject. Regular ar, er, and ir verbs share person patterns but not all endings; ustedes takes third-person plural grammar. Necesito follows ar. Known irregular forms retain person agreement but need their own supported realizations, not a guessed regular stem. Inflections add no headwords.
+  examples:
+  - {target: 'Vivimos aquí y comemos juntos los domingos.', english: 'We live here and eat together on Sundays.'}
+  - {target: 'Necesito ayuda. ¿Ustedes hablan español?', english: 'I need help. Do you all speak Spanish?'}
+  fixed_forms: [nosotros, nosotras, ustedes, hablamos, comemos, vivimos, hablan, comen, viven, necesito]
+  anchors: [hablar-speak, comer-eat, vivir-live]
+  prerequisites: [es-g0003]
+- id: es-g0026
+  level: 5
+  topic: actions
+  ch: 'tengo; hago; digo; doy; veo; sé'
+  ds: Retrieve frequent irregular present yo forms
+  note: These common first-person forms do not follow one universal replacement rule. Practise each with its actual function and contrast it with a familiar other-person form. Their endings are inflections of existing lexemes, not additional headword breadth.
+  examples:
+  - {target: 'Hago la cena y doy agua al perro.', english: 'I make dinner and give the dog water.'}
+  - {target: 'Veo la nota, pero no sé la respuesta.', english: 'I see the note, but I do not know the answer.'}
+  fixed_forms: [tengo, hago, digo, doy, veo, sé]
+  anchors: [tener-possession, hacer-do, decir-say, dar-give, ver-see, saber-know]
+  prerequisites: [es-g0014, es-g0023, es-g0025]
+- id: es-g0027
+  level: 5
+  topic: work
+  ch: 'quiero / queremos; puedo / podemos; pido / pedimos'
+  ds: Recognize common present stem alternations
+  note: In these present paradigms, stressed stems alternate while nosotros forms keep the infinitive vowel. The examples illustrate e to ie, o to ue, and e to i, not a rule that every verb with those vowels changes. Learn the verb's own pattern.
+  examples:
+  - {target: 'Yo pido ayuda y nosotros pedimos más tiempo.', english: 'I ask for help and we ask for more time.'}
+  - {target: 'Quiero salir, pero no podemos salir todavía.', english: 'I want to leave, but we cannot leave yet.'}
+  fixed_forms: [quiero, quieres, quiere, queremos, quieren, puedo, puedes, puede, podemos, pueden, pido, pides, pide, pedimos, piden]
+  anchors: [querer-want, poder-ability, pedir-request]
+  prerequisites: [es-g0013, es-g0023, es-g0025]
+- id: es-g0028
+  level: 5
+  topic: home
+  ch: 'me / te / se / nos + routine verb'
+  ds: Relate a routine action to its subject
+  note: In these reflexive uses, the clitic refers to the subject rather than a separate object. Contrast washing oneself or one's own hands with washing something else. Spanish normally uses the article with one's body part in this frame, not an obligatory possessive.
+  examples:
+  - {target: 'Me lavo las manos antes de comer.', english: 'I wash my hands before eating.'}
+  - {target: 'Ella se levanta temprano y lava la ropa.', english: 'She gets up early and washes the clothes.'}
+  fixed_forms: [me, te, se, nos]
+  anchors: []
+  prerequisites: [es-g0007, es-g0025]
+- id: es-g0029
+  level: 5
+  topic: time
+  ch: 'present routine; estar + gerund'
+  ds: Contrast a routine with an activity in progress
+  note: The simple present can describe a habit or a contextually current event. Estar plus gerund presents an activity as in progress; do not mechanically translate every English ing form with it. Gerund forms include hablando, comiendo, viviendo, and irregular leyendo.
+  examples:
+  - {target: 'Trabajo en casa, pero ahora estoy comiendo.', english: 'I work at home, but right now I am eating.'}
+  - {target: 'Estamos leyendo; hablamos después.', english: 'We are reading; we will talk later.'}
+  fixed_forms: [estoy, estás, está, estamos, están, hablando, comiendo, viviendo, leyendo]
+  anchors: []
+  prerequisites: [es-g0025]
+- id: es-g0030
+  level: 5
+  topic: work
+  ch: 'tener que / hay que / deber + infinitive'
+  ds: Express a personal or general requirement
+  note: Tener que assigns necessity to a subject; hay que presents a general requirement without a personal subject. Deber can frame a duty or recommendation. These modal constructions do not assert possession or award mastery of the existential anchor's every grammatical use.
+  examples:
+  - {target: 'Tengo que salir a las seis.', english: 'I have to leave at six.'}
+  - {target: 'Hay que limpiar la mesa; debemos hacerlo juntos.', english: 'The table needs cleaning; we should do it together.'}
+  fixed_forms: [tengo que, tienes que, tiene que, tenemos que, tienen que, hay que, debo, debes, debe, debemos, deben]
+  anchors: []
+  prerequisites: [es-g0014, es-g0017, es-g0025]
+- id: es-g0031
+  level: 6
+  topic: clothing
+  ch: 'más / menos ... que; tan ... como; demasiado + adjective'
+  ds: Compare degree, equality, and excessive extent
+  note: Más and menos compare unequal degree; tan before an adjective compares equal degree. Tanto before a noun agrees with that noun. Demasiado before an adjective or adverb is invariable and marks excess, not simply greater degree or very. Its degree anchor does not grant every noun-quantifying use.
+  examples:
+  - {target: 'Esta chaqueta es menos cara que aquella.', english: 'This jacket is less expensive than that one.'}
+  - {target: 'Estos zapatos son tan cómodos como los tuyos, pero demasiado grandes para mí.', english: 'These shoes are as comfortable as yours, but too large for me.'}
+  fixed_forms: [más, menos, que, tan, como, tanto, tanta, tantos, tantas]
+  anchors: [demasiado-degree]
+  prerequisites: [es-g0009, es-g0012]
+- id: es-g0032
+  level: 6
+  topic: services
+  ch: 'el / la más ...; mejor / peor; buen / mal'
+  ds: Rank an option and recognize adjective shortening
+  note: A relative superlative identifies an extreme within a group rather than an absolute truth. Mejor and peor supply common irregular comparisons. Bueno and malo shorten before a masculine singular noun; retain ordinary agreement elsewhere instead of using buen with every noun.
+  examples:
+  - {target: 'Es la opción más barata del barrio.', english: 'It is the cheapest option in the neighborhood.'}
+  - {target: 'Es un buen servicio, pero el otro es mejor.', english: 'It is a good service, but the other one is better.'}
+  fixed_forms: [el más, la más, los más, las más, mejor, peor, buen, mal]
+  anchors: []
+  prerequisites: [es-g0009, es-g0020, es-g0031]
+- id: es-g0033
+  level: 6
+  topic: services
+  ch: 'me / te / nos; lo / la / los / las; infinitive + clitic'
+  ds: Refer to an object with an unstressed pronoun
+  note: Lo and la forms mark an identified direct object's gender and number; me, te, and nos identify participants and can serve different object roles. Put a clitic before a finite verb or attach it to a supported infinitive, as in escribirlo or ayudarme. Attachment needs explicit morphology, not substring coverage. Later constructions distinguish roles and clusters.
+  examples:
+  - {target: '¿La factura? La tengo aquí.', english: 'The invoice? I have it here.'}
+  - {target: 'No los quiero; ¿puede ayudarme a elegir otros?', english: 'I do not want them; can you help me choose others?'}
+  fixed_forms: [me, te, nos, lo, la, los, las]
+  anchors: [tener-possession, querer-want]
+  prerequisites: [es-g0008, es-g0013, es-g0014]
+- id: es-g0034
+  level: 6
+  topic: health
+  ch: 'le / les ... a + recipient or experiencer'
+  ds: Identify a recipient or affected experiencer
+  note: An indirect clitic can be clarified by an a phrase; the phrase does not turn le into a direct-object pronoun. With doler, the painful body part controls singular or plural agreement, much like the liked thing with gustar. Body-part content is English-supported.
+  examples:
+  - {target: 'Le doy el formulario a Ana.', english: 'I give Ana the form.'}
+  - {target: 'A mi padre le duelen las piernas.', english: 'My father’s legs hurt.'}
+  fixed_forms: [me, te, le, nos, les, duele, duelen]
+  anchors: [dar-give]
+  prerequisites: [es-g0018, es-g0026, es-g0033]
+- id: es-g0035
+  level: 6
+  topic: people
+  ch: 'verb + a + identified person'
+  ds: Mark a personal direct object without changing its role
+  note: A commonly marks a specific human direct object. It does not make that participant an indirect object; in the productive model Ana becomes la after ver. Specificity, verb meaning, and context matter, so do not teach a with every possible reference to people.
+  examples:
+  - {target: 'Veo a Ana y la saludo.', english: 'I see Ana and greet her.'}
+  - {target: 'Busco una profesora de italiano; no conozco a ninguna.', english: 'I am looking for an Italian teacher; I do not know any.'}
+  fixed_forms: [a]
+  anchors: [ver-see, conocer-acquaintance]
+  prerequisites: [es-g0033, es-g0034]
+- id: es-g0114
+  level: 6
+  topic: grammar
+  ch: 'nadie / nada / nunca; no ... nadie / nada / nunca'
+  ds: Track negative concord without reversing meaning
+  note: A negative expression before the verb ordinarily excludes preverbal no; after the verb it typically combines with no or another preceding negative. Multiple negative forms can reinforce one negative meaning rather than cancel each other. Tampoco adds a corresponding negative statement.
+  examples:
+  - {target: 'Nadie quiere nada; tampoco Ana quiere un café.', english: 'Nobody wants anything; Ana does not want a coffee either.'}
+  - {target: 'No veo a nadie y nunca recibo una respuesta.', english: 'I do not see anyone and I never receive a reply.'}
+  fixed_forms: [nadie, nada, nunca, ninguno, ninguna, tampoco, 'no']
+  anchors: []
+  prerequisites: [es-g0005, es-g0035]
+- id: es-g0036
+  level: 6
+  topic: reasoning
+  ch: 'a / en / con / sin / de; al / del; por / para'
+  ds: Choose a relation of place, means, absence, reason, or goal
+  note: Review a for direction or selected complements, en for location or medium, con for accompaniment or means, sin for absence, and de for origin or relation. Al and del contract a or de with el. Contrast por for a cause, route, or exchange with para for purpose or an intended recipient. These contextual uses are not an exhaustive translation rule.
+  examples:
+  - {target: 'Paso por el centro para comprar pan.', english: 'I go through the center to buy bread.'}
+  - {target: 'Una habitación sin ruido, con baño, en el centro y para dos, por favor.', english: 'A quiet room with a bathroom, in the center and for two, please.'}
+  fixed_forms: [a, en, con, sin, de, al, del, por, para]
+  anchors: []
+  prerequisites: [es-g0020]
+- id: es-g0037
+  level: 7
+  topic: travel
+  ch: 'usted: llame; ustedes: llamen'
+  ds: Give an instruction with third-person address
+  note: Affirmative usted and ustedes commands use forms shared with the present subjunctive. Introduce them as instructions before requiring all subjunctive contexts. Politeness also depends on wording and situation; a formal address ending alone does not guarantee a considerate request.
+  examples:
+  - {target: 'Llame al hotel y espere un momento, por favor.', english: 'Call the hotel and wait a moment, please. (usted)'}
+  - {target: 'Vayan a la salida y hablen con Ana.', english: 'Go to the exit and speak with Ana. (ustedes)'}
+  fixed_forms: [pase, pasen, espere, esperen, vaya, vayan, haga, hagan, diga, digan, hable, hablen, llame, llamen]
+  anchors: []
+  prerequisites: [es-g0003, es-g0025]
+- id: es-g0038
+  level: 7
+  topic: actions
+  ch: 'tú commands: habla; come; vive; ven; di; haz'
+  ds: Give a familiar affirmative instruction
+  note: Many affirmative tú commands resemble third-person singular present forms, but common verbs have short irregular commands. Do not form a negative by merely adding no to these forms. A command can direct a joint activity without being an order from authority.
+  examples:
+  - {target: 'Ven aquí y di tu nombre.', english: 'Come here and say your name. (tú)'}
+  - {target: 'Haz una pausa y come algo.', english: 'Take a break and eat something. (tú)'}
+  fixed_forms: [habla, come, vive, ven, di, haz, ve, pon, sal, sé, ten]
+  anchors: []
+  prerequisites: [es-g0003, es-g0025, es-g0037]
+- id: es-g0039
+  level: 7
+  topic: travel
+  ch: 'no salgas; no haga; no pasen'
+  ds: Prohibit an action with the right address form
+  note: Negative tú commands use subjunctive forms rather than the affirmative command. Negative usted and ustedes commands retain their subjunctive forms. This early prohibition frame teaches a function, not the whole mood. Keep the negative and any clitics before the verb.
+  examples:
+  - {target: 'No salgas todavía; espera aquí.', english: 'Do not leave yet; wait here. (tú)'}
+  - {target: 'No pasen por esa puerta.', english: 'Do not go through that door. (ustedes)'}
+  fixed_forms: [no hables, no comas, no salgas, no vayas, no haga, no hagan, no pase, no pasen]
+  anchors: []
+  prerequisites: [es-g0005, es-g0037, es-g0038]
+- id: es-g0040
+  level: 7
+  topic: communication
+  ch: 'dímelo / dígamelo; no me lo digas / diga'
+  ds: Place command clitics and preserve written stress
+  note: Affirmative commands attach clitics; negative commands place them before the verb. An indirect or reflexive clitic precedes a direct one. Apply ordinary accent rules to the resulting written word; do not remove accents merely because the base command lacked one.
+  examples:
+  - {target: 'Dímelo otra vez, por favor.', english: 'Tell it to me again, please. (tú)'}
+  - {target: 'No me lo diga ahora; escríbalo aquí.', english: 'Do not tell it to me now; write it here. (usted)'}
+  fixed_forms: [dímelo, dígamelo, no me lo digas, no me lo diga, escríbalo]
+  anchors: [decir-say]
+  prerequisites: [es-g0033, es-g0034, es-g0037, es-g0038, es-g0039]
+- id: es-g0041
+  level: 7
+  topic: services
+  ch: '¿Podría ...? ¿Le importaría + infinitive?'
+  ds: Make a request less direct with a conditional frame
+  note: A conditional form can soften a request rather than describe a hypothetical event. Introduce podría and le importaría as bounded frames before the full conditional paradigm. A literal answer about ability or inconvenience may not fulfil the practical request.
+  examples:
+  - {target: '¿Podría abrir la ventana?', english: 'Could you open the window?'}
+  - {target: '¿Le importaría esperar aquí?', english: 'Would you mind waiting here?'}
+  fixed_forms: [podría, le importaría]
+  anchors: [poder-ability]
+  prerequisites: [es-g0003, es-g0023, es-g0034]
+- id: es-g0042
+  level: 7
+  topic: people
+  ch: 'para mí / ti; conmigo / contigo; con usted'
+  ds: Use stressed pronouns after a preposition
+  note: After most prepositions, first- and second-person singular pronouns are mí and ti, not yo and tú. Con combines as conmigo and contigo. Contrast accented mí with possessive mi; ti has no accent. Exceptions such as entre tú y yo need explicit support when encountered.
+  examples:
+  - {target: 'Este asiento es para ti; aquel es para mí.', english: 'This seat is for you; that one is for me.'}
+  - {target: '¿Vienes conmigo o voy contigo?', english: 'Are you coming with me, or am I going with you?'}
+  fixed_forms: [mí, ti, él, ella, usted, nosotros, nosotras, ustedes, ellos, ellas, conmigo, contigo, con usted]
+  anchors: []
+  prerequisites: [es-g0011, es-g0012, es-g0036]
+- id: es-g0043
+  level: 8
+  topic: time
+  ch: 'he / has / ha / hemos / han + participle'
+  ds: Relate a prior event through the present perfect
+  note: Auxiliary haber combines with a participle to relate a prior event to a present frame. The participle does not agree with the object. Perdido illustrates a regular ido participle; hecho, dicho, and visto are irregular. He perdido is reusable for a loss, not proof of mastery of every perder sense.
+  examples:
+  - {target: 'He perdido la llave y he escrito dos mensajes.', english: 'I have lost the key and written two messages.'}
+  - {target: 'Ana y Luis han visto la exposición.', english: 'Ana and Luis have seen the exhibition.'}
+  fixed_forms: [he, has, ha, hemos, han, hablado, comido, vivido, hecho, dicho, visto, escrito, perdido, he perdido]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0025, es-g0026]
+- id: es-g0044
+  level: 8
+  topic: learning
+  ch: 'ya / todavía no / alguna vez + perfect'
+  ds: Relate experience and completion to a current frame
+  note: Ya can mark completion relative to an expectation; todavía no says it has not happened up to the relevant point. Alguna vez asks about experience. Present-perfect and preterite choices vary by speaker and setting; these adverbs do not impose a universal tense.
+  examples:
+  - {target: 'Ya he enviado la tarea, pero todavía no he recibido respuesta.', english: 'I have already sent the assignment, but I have not received a reply yet.'}
+  - {target: '¿Has trabajado aquí alguna vez?', english: 'Have you ever worked here?'}
+  fixed_forms: [ya, todavía no, alguna vez, nunca]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0043]
+- id: es-g0045
+  level: 8
+  topic: time
+  ch: 'hace ... que; desde; desde hace'
+  ds: Distinguish a starting point from an elapsed duration
+  note: Desde introduces a starting point; desde hace introduces a duration up to the reference time. Hace plus duration plus que and a present verb can describe an ongoing situation. Do not translate English have lived by a perfect tense automatically.
+  examples:
+  - {target: 'Vivo aquí desde enero.', english: 'I have lived here since January.'}
+  - {target: 'Hace dos años que estudio español; trabajo aquí desde hace un mes.', english: 'I have studied Spanish for two years; I have worked here for a month.'}
+  fixed_forms: [hace, que, desde, desde hace]
+  anchors: [vivir-live]
+  prerequisites: [es-g0025, es-g0043]
+- id: es-g0046
+  level: 8
+  topic: communication
+  ch: 'acabar de + infinitive'
+  ds: Present an event as just completed
+  note: In this frame acabar de places completion just before the reference time. It is distinct from acabar an activity in the general sense of finishing it. Teach the construction without assigning a fabricated completion sense to an unrelated anchor.
+  examples:
+  - {target: 'Acabo de hablar con Ana.', english: 'I have just spoken with Ana.'}
+  - {target: 'Acabamos de llegar; necesitamos un momento.', english: 'We have just arrived; we need a moment.'}
+  fixed_forms: [acabo de, acabas de, acaba de, acabamos de, acaban de]
+  anchors: []
+  prerequisites: [es-g0025, es-g0043]
+- id: es-g0047
+  level: 8
+  topic: people
+  ch: 'saber + fact or infinitive; conocer + person or place'
+  ds: Distinguish factual knowledge, skill, and acquaintance
+  note: Saber introduces known information or knowing how; these use distinct saber-know and saber-how anchors. Conocer expresses acquaintance or familiarity with a person or place. English know does not identify the sense. Conozco has an irregular yo form, and a known person normally takes personal a.
+  examples:
+  - {target: 'Conozco a Marta, pero no sé su apellido.', english: 'I know Marta, but I do not know her surname.'}
+  - {target: 'Sé cocinar, pero no conozco este restaurante.', english: 'I know how to cook, but I am not familiar with this restaurant.'}
+  fixed_forms: [sé, sabes, sabe, sabemos, saben, conozco, conoces, conoce, conocemos, conocen]
+  anchors: [saber-know, saber-how, conocer-acquaintance]
+  prerequisites: [es-g0023, es-g0035]
+- id: es-g0048
+  level: 8
+  topic: leisure
+  ch: 'quedar con / en; quedarse en'
+  ds: Distinguish an arrangement from remaining somewhere
+  note: Quedar con someone can arrange or describe meeting; quedar en an action expresses an agreement. Quedarse en a place presents staying there. The meeting anchor does not automatically cover agreement. The pronominal staying sense shares its lexical group rather than adding a headword just for se.
+  examples:
+  - {target: 'Quedamos con Ana a las seis.', english: 'We are meeting Ana at six.'}
+  - {target: 'Hoy me quedo en casa; quedamos en hablar mañana.', english: 'Today I am staying home; we agree to talk tomorrow.'}
+  fixed_forms: [quedar con, quedar en, quedarse en, me quedo, nos quedamos]
+  anchors: [quedar-meeting, quedarse-stay]
+  prerequisites: [es-g0022, es-g0028, es-g0042]
+- id: es-g0049
+  level: 9
+  topic: time
+  ch: 'hablé / habló; comí / comió; viví / vivió'
+  ds: Narrate bounded events with the regular preterite
+  note: The preterite presents an event as bounded in the narrative. Written stress distinguishes habló from hablo. Some nosotros forms match the present, so context matters. A past-time word alone does not prove that the preterite is the only possible viewpoint.
+  examples:
+  - {target: 'Ayer hablé con Ana y compré los billetes.', english: 'Yesterday I spoke with Ana and bought the tickets.'}
+  - {target: 'Vivimos allí tres años y después volvimos.', english: 'We lived there for three years and then returned.'}
+  fixed_forms: [hablé, hablaste, habló, hablamos, hablaron, comí, comiste, comió, comimos, comieron, viví, viviste, vivió, vivimos, vivieron]
+  anchors: [hablar-speak, comer-eat, vivir-live]
+  prerequisites: [es-g0025, es-g0044]
+- id: es-g0050
+  level: 9
+  topic: time
+  ch: 'fui; tuve; hice; dije; pude; quise'
+  ds: Interpret frequent irregular preterites in context
+  note: Ser and ir share fui forms; their complements disambiguate identity and movement. Tuve, hice, and dije have irregular stems. Preterite pude or quise can favor achieved, attempted, or refused-event readings in context, but those are not automatic English word replacements.
+  examples:
+  - {target: 'Fui al museo y fui la primera visitante.', english: 'I went to the museum and was the first visitor.'}
+  - {target: 'No quise salir, pero pude terminar el trabajo.', english: 'I did not want to go out, but I managed to finish the work.'}
+  fixed_forms: [fui, fuiste, fue, fuimos, fueron, tuve, tuvo, tuve que, hice, hizo, dije, dijo, dijeron, pude, pudo, quise, quiso]
+  anchors: [ser-identity, ir-movement, hacer-do, decir-say, poder-ability, querer-want]
+  prerequisites: [es-g0026, es-g0027, es-g0049]
+- id: es-g0051
+  level: 9
+  topic: history
+  ch: 'hablaba; comía; vivía; era; iba; veía'
+  ds: Supply past background, habits, and internal viewpoints
+  note: The imperfect views a situation from within or presents recurring background without asserting its boundaries. It does not claim the event remains unfinished today. Era, iba, and veía are important irregular patterns; subject reference may need context because several person forms coincide.
+  examples:
+  - {target: 'Cuando era niña, vivía cerca del mar.', english: 'When I was a child, I lived near the sea.'}
+  - {target: 'Íbamos al mercado los sábados y veíamos a la misma vendedora.', english: 'We used to go to the market on Saturdays and see the same seller.'}
+  fixed_forms: [hablaba, hablabas, hablábamos, hablaban, comía, comías, comíamos, comían, vivía, vivías, vivíamos, vivían, era, éramos, eran, iba, íbamos, iban, veía, veíamos, veían]
+  anchors: [ser-identity, ir-movement, ver-see, vivir-live]
+  prerequisites: [es-g0025, es-g0050]
+- id: es-g0052
+  level: 9
+  topic: time
+  ch: 'llovía cuando salimos; llovió, pero todavía llovía'
+  ds: Choose narrative aspect rather than a time-word rule
+  note: Combine a background view with a bounded event, or deliberately change viewpoint on the same situation. Words such as ayer and siempre can occur with different aspects. Explain what the speaker foregrounds rather than equating imperfect with incomplete real-world events.
+  examples:
+  - {target: 'Llovía cuando salimos de casa.', english: 'It was raining when we left home.'}
+  - {target: 'Ayer llovió toda la tarde; a las cinco todavía llovía.', english: 'Yesterday it rained all afternoon; at five it was still raining.'}
+  fixed_forms: [cuando, mientras]
+  anchors: []
+  prerequisites: [es-g0049, es-g0050, es-g0051]
+- id: es-g0053
+  level: 9
+  topic: time
+  ch: 'había / habías / habíamos / habían + participle'
+  ds: Place an event before a past reference point
+  note: The past perfect locates a completed event before another past reference, not merely far back in time. Auxiliary haber agrees with its subject, while the participle stays invariant. Contrast these auxiliary forms with singular existential había later in reported accounts.
+  examples:
+  - {target: 'Cuando llegué, Ana ya había salido.', english: 'When I arrived, Ana had already left.'}
+  - {target: 'No teníamos hambre porque habíamos comido.', english: 'We were not hungry because we had eaten.'}
+  fixed_forms: [había, habías, habíamos, habían]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0043, es-g0051, es-g0052]
+- id: es-g0054
+  level: 10
+  topic: people
+  ch: 'nos / se; a sí mismo; el uno al otro'
+  ds: Disambiguate reflexive and reciprocal participants
+  note: A plural reflexive-form clitic can describe people acting on themselves or on one another. Add a clarifying phrase when context does not resolve the relation. Grammatical se does not by itself tell how many participants act or whether the action is mutual.
+  examples:
+  - {target: 'Los niños se miraron en el espejo, cada uno a sí mismo.', english: 'The children looked in the mirror, each at themselves.'}
+  - {target: 'Ana y Luis se miraron el uno al otro.', english: 'Ana and Luis looked at each other.'}
+  fixed_forms: [nos, se, a sí mismo, a sí misma, a sí mismos, a sí mismas, el uno al otro, la una a la otra]
+  anchors: []
+  prerequisites: [es-g0028, es-g0035, es-g0049]
+- id: es-g0055
+  level: 10
+  topic: actions
+  ch: 'ir / irse; comer / comerse'
+  ds: Interpret pronominal meaning without literal oneself
+  note: Irse foregrounds leaving, not moving oneself. Comerse with a delimited object can emphasize consuming it fully or personal involvement. These constructions do not make every verb plus se a predictable reflexive or a separate breadth-counted headword.
+  examples:
+  - {target: 'Voy al trabajo a las ocho, pero hoy me voy de casa antes.', english: 'I go to work at eight, but today I am leaving home earlier.'}
+  - {target: 'Comió arroz y se comió todo el postre.', english: 'He ate rice and ate up the whole dessert.'}
+  fixed_forms: [irme, irte, irse, irnos, me voy, se fue, comerse, se comió]
+  anchors: []
+  prerequisites: [es-g0020, es-g0028, es-g0050, es-g0054]
+- id: es-g0056
+  level: 10
+  topic: feelings
+  ch: 'ser listo / aburrido; estar listo / aburrido'
+  ds: Interpret an adjective through its linking verb
+  note: Some adjectives change their likely interpretation with ser or estar. Listo can describe cleverness or readiness; aburrido can describe a boring entity or a bored experiencer. Context matters, and permanent versus temporary does not explain these lexicalized contrasts.
+  examples:
+  - {target: 'Ana es lista y ya está lista para salir.', english: 'Ana is clever and is already ready to leave.'}
+  - {target: 'La charla es aburrida y los niños están aburridos.', english: 'The talk is boring and the children are bored.'}
+  fixed_forms: [ser listo, estar listo, ser aburrido, estar aburrido, es, está, están]
+  anchors: [estar-state]
+  prerequisites: [es-g0009, es-g0019, es-g0029]
+- id: es-g0057
+  level: 10
+  topic: people
+  ch: 'ponerse / volverse / hacerse / quedarse + description'
+  ds: Describe a change with a fitting change-of-state verb
+  note: Ponerse can highlight a resulting state, hacerse a developed role or affiliation, volverse a changed characteristic, and quedarse a resulting condition. These are tendencies constrained by each complement, not a single duration or intention test that predicts all combinations.
+  examples:
+  - {target: 'Al oír la noticia, se puso nerviosa y se quedó callada.', english: 'On hearing the news, she became nervous and fell silent.'}
+  - {target: 'Se hizo médica y con los años se volvió más paciente.', english: 'She became a doctor and over the years became more patient.'}
+  fixed_forms: [ponerse, volverse, hacerse, quedarse, se puso, se volvió, se hizo, se quedó]
+  anchors: []
+  prerequisites: [es-g0048, es-g0050, es-g0055, es-g0056]
+- id: es-g0058
+  level: 10
+  topic: feelings
+  ch: 'me alegra que / siento que + subjunctive'
+  ds: React emotionally without asserting the event anew
+  note: Emotional reactions commonly take subjunctive even when the event is known to be real. Siento que can express regret with subjunctive but also a perception or opinion with indicative. Teach the reaction frame first; mood is not simply a truth detector.
+  examples:
+  - {target: 'Me alegra que estés aquí.', english: 'I am glad you are here.'}
+  - {target: 'Siento que tengas que irte; siento que hoy todo va demasiado rápido.', english: 'I am sorry you have to leave; I feel that everything is going too fast today.'}
+  fixed_forms: [me alegra que, siento que, estés, tengas]
+  anchors: []
+  prerequisites: [es-g0030, es-g0039, es-g0055]
+- id: es-g0059
+  level: 11
+  topic: communication
+  ch: 'le / les + lo / la / los / las → se lo / la / los / las'
+  ds: Order two object clitics and clarify the recipient
+  note: Before a third-person direct clitic, le or les becomes se. This se is not reflexive and does not encode the recipient's number. Add an a phrase if needed; do not pluralize lo merely because there are several recipients of one object.
+  examples:
+  - {target: 'El informe se lo doy a Ana.', english: 'I give the report to Ana.'}
+  - {target: 'La llave se la entrego a los vecinos.', english: 'I hand the key to the neighbors.'}
+  fixed_forms: [se lo, se la, se los, se las]
+  anchors: [dar-give]
+  prerequisites: [es-g0033, es-g0034, es-g0040]
+- id: es-g0060
+  level: 11
+  topic: actions
+  ch: 'lo quiero ver / quiero verlo; lo estoy haciendo'
+  ds: Place clitics around compatible verb sequences
+  note: With many modal and progressive sequences, clitics can precede the conjugated verb or attach to the infinitive or gerund. Keep a clitic cluster together. Not every adjacent pair of verbs permits this movement, so teach the compatible sequences rather than a universal rule.
+  examples:
+  - {target: 'Quiero verlo; lo quiero ver hoy.', english: 'I want to see it; I want to see it today.'}
+  - {target: 'Se lo estoy explicando; estoy explicándoselo otra vez.', english: 'I am explaining it to her; I am explaining it to her again.'}
+  fixed_forms: [verlo, haciéndolo, explicándoselo, se lo]
+  anchors: [querer-want, ver-see]
+  prerequisites: [es-g0029, es-g0040, es-g0059]
+- id: es-g0061
+  level: 11
+  topic: society
+  ch: 'se + singular verb, with no grammatical subject'
+  ds: Describe an activity without identifying its agent
+  note: Impersonal se can describe what people do without naming a subject. In this construction the verb is third-person singular. It is not the same as a plural passive se clause whose noun phrase controls agreement, nor a reflexive action performed on oneself.
+  examples:
+  - {target: 'Aquí se vive bien.', english: 'People live well here.'}
+  - {target: 'En este edificio no se fuma.', english: 'There is no smoking in this building.'}
+  fixed_forms: [se, no se]
+  anchors: [vivir-live]
+  prerequisites: [es-g0005, es-g0025, es-g0054]
+- id: es-g0062
+  level: 11
+  topic: services
+  ch: 'se vende / se venden + thing'
+  ds: Describe things in an agentless passive pattern
+  note: With a passive se construction, the affected noun phrase is the grammatical subject and controls number agreement. Contrast se venden entradas with an impersonal activity such as se trabaja. Avoid assigning the subject the role of seller merely because it is next to the verb.
+  examples:
+  - {target: 'Se venden entradas en la recepción.', english: 'Tickets are sold at reception.'}
+  - {target: 'La puerta se abre a las nueve.', english: 'The door is opened at nine.'}
+  fixed_forms: [se vende, se venden, se abre, se abren]
+  anchors: []
+  prerequisites: [es-g0008, es-g0061]
+- id: es-g0063
+  level: 11
+  topic: actions
+  ch: 'primero; luego; antes de / después de + infinitive'
+  ds: Sequence a procedure and distinguish its dependencies
+  note: Sequence markers order steps, while antes de and después de relate an action to another event expressed as an infinitive. They do not require copying English gerund syntax. Keep the actor clear when different people perform different steps.
+  examples:
+  - {target: 'Primero lee el mensaje; luego confirma la hora.', english: 'First read the message; then confirm the time.'}
+  - {target: 'Después de pagar, guarda el recibo antes de salir.', english: 'After paying, keep the receipt before leaving.'}
+  fixed_forms: [primero, luego, después, antes de, después de, por último]
+  anchors: []
+  prerequisites: [es-g0038, es-g0060]
+- id: es-g0064
+  level: 12
+  topic: people
+  ch: 'noun + que + finite clause'
+  ds: Identify an antecedent with a relative clause
+  note: Relative que links a clause to an antecedent and has no written accent. It can stand for the clause's subject or object. In the object pattern, avoid adding a redundant direct-object clitic just because English allows a relative pronoun to be omitted.
+  examples:
+  - {target: 'La mujer que vive arriba es Ana.', english: 'The woman who lives upstairs is Ana.'}
+  - {target: 'El mensaje que escribiste está aquí.', english: 'The message that you wrote is here.'}
+  fixed_forms: [que]
+  anchors: []
+  prerequisites: [es-g0019, es-g0033, es-g0049]
+- id: es-g0065
+  level: 12
+  topic: communication
+  ch: 'no sé si / qué / dónde / cuándo ...'
+  ds: Embed a question without presenting a direct quotation
+  note: Indirect information questions retain accents on words such as qué and dónde. Si introduces an embedded yes-or-no question without an accent. The containing sentence may be a statement and therefore need no question marks; Spanish does not use English-style do support.
+  examples:
+  - {target: 'No sé dónde está la oficina.', english: 'I do not know where the office is.'}
+  - {target: 'Ana pregunta si podemos ir y cuándo empieza la visita.', english: 'Ana asks whether we can go and when the visit starts.'}
+  fixed_forms: [si, qué, quién, dónde, cuándo, cómo, cuánto]
+  anchors: [saber-know]
+  prerequisites: [es-g0004, es-g0019, es-g0023]
+- id: es-g0066
+  level: 12
+  topic: communication
+  ch: 'dice que / explica que + statement'
+  ds: Attribute a message without confusing its speaker
+  note: Que introduces reported content, not a question. Adjust person and place references to the reporting context instead of simply deleting quotation marks. A present reporting verb often permits the original time perspective; the report itself does not verify the claim.
+  examples:
+  - {target: 'Ana dice que vive cerca de aquí.', english: 'Ana says that she lives near here.'}
+  - {target: 'Luis explica que su tren llega a las nueve.', english: 'Luis explains that his train arrives at nine.'}
+  fixed_forms: [dice que, dicen que, explica que]
+  anchors: [decir-say]
+  prerequisites: [es-g0011, es-g0022, es-g0065]
+- id: es-g0067
+  level: 12
+  topic: feelings
+  ch: 'quiero + infinitive; quiero que + subjunctive'
+  ds: Distinguish one's own wish from a desired other action
+  note: Quiero with an infinitive normally keeps the understood actor with the subject of querer. Quiero que allows an explicitly different actor and takes subjunctive for the desired event. This is a useful subject contrast, not a rule that all que clauses express desire.
+  examples:
+  - {target: 'Quiero descansar.', english: 'I want to rest.'}
+  - {target: 'Quiero que descanses antes del viaje.', english: 'I want you to rest before the journey.'}
+  fixed_forms: [quiero que, quieres que, quiere que, descanse, descanses, descansemos, descansen]
+  anchors: [querer-want]
+  prerequisites: [es-g0013, es-g0039, es-g0058]
+- id: es-g0068
+  level: 12
+  topic: reasoning
+  ch: 'creo que + indicative; no creo que + subjunctive'
+  ds: Contrast an asserted belief with non-assertion
+  note: A positive belief commonly presents its content with indicative; a negated belief commonly takes subjunctive because the speaker does not assert that content. This is a default discourse pattern, not a ban on indicative in every negated or echoing context.
+  examples:
+  - {target: 'Creo que Ana tiene tiempo.', english: 'I think Ana has time.'}
+  - {target: 'No creo que Ana tenga tiempo.', english: 'I do not think Ana has time.'}
+  fixed_forms: [creo que, no creo que, tiene, tenga]
+  anchors: []
+  prerequisites: [es-g0058, es-g0066, es-g0067]
+- id: es-g0069
+  level: 13
+  topic: grammar
+  ch: 'hable / coma / viva; sea / esté / haya / vaya'
+  ds: Build present-subjunctive forms across known functions
+  note: Ar verbs typically use e endings and er or ir verbs a endings in this mood. Extend already useful requests and reactions to a productive set, including irregular sea, esté, haya, vaya, tenga, and sepa. Form knowledge alone does not select the appropriate mood.
+  examples:
+  - {target: 'Espero que hables con Ana y que tengas tiempo.', english: 'I hope you speak with Ana and have time.'}
+  - {target: 'Es importante que haya agua y que todos sepan dónde está.', english: 'It is important that there be water and that everyone know where it is.'}
+  fixed_forms: [hable, hables, hablemos, hablen, coma, comas, comamos, coman, viva, vivas, vivamos, vivan, sea, esté, haya, vaya, tenga, sepa]
+  anchors: []
+  prerequisites: [es-g0037, es-g0039, es-g0067, es-g0068]
+- id: es-g0070
+  level: 13
+  topic: services
+  ch: 'conozco uno que tiene; busco uno que tenga'
+  ds: Distinguish an identified referent from one sought
+  note: Indicative can characterize an identified referent; subjunctive can describe a desired or unestablished one. An indefinite article alone does not force subjunctive. Interpret the speaker's commitment to a referent in context rather than treating the noun as a mechanical trigger.
+  examples:
+  - {target: 'Conozco un hotel que tiene ascensor.', english: 'I know a hotel that has an elevator.'}
+  - {target: 'Busco un hotel que tenga ascensor.', english: 'I am looking for a hotel that has an elevator.'}
+  fixed_forms: [que, tiene, tenga]
+  anchors: [conocer-acquaintance]
+  prerequisites: [es-g0047, es-g0064, es-g0069]
+- id: es-g0071
+  level: 13
+  topic: argument
+  ch: 'aunque + indicative / subjunctive'
+  ds: Concede a fact or set aside a hypothetical obstacle
+  note: Indicative commonly asserts a conceded fact. Subjunctive can introduce a hypothetical obstacle or background a fact treated as already granted. Thus aunque with subjunctive is not proof that the speaker doubts the clause, and mood can change the discourse emphasis.
+  examples:
+  - {target: 'Aunque llueve, vamos a salir.', english: 'Although it is raining, we are going out.'}
+  - {target: 'Aunque llueva mañana, vamos a salir.', english: 'Even if it rains tomorrow, we are going out.'}
+  fixed_forms: [aunque]
+  anchors: []
+  prerequisites: [es-g0021, es-g0068, es-g0069]
+- id: es-g0072
+  level: 13
+  topic: reasoning
+  ch: 'porque / como + cause; para que + subjunctive'
+  ds: Give a cause without confusing it with a purpose
+  note: Porque answers a causal why; sentence-initial como can frame an explanatory cause. Para que introduces an intended outcome rather than an established reason and normally takes subjunctive. Distinguish porque from interrogative por qué, including in indirect questions.
+  examples:
+  - {target: 'Como no tengo coche, voy en autobús.', english: 'Since I do not have a car, I go by bus.'}
+  - {target: 'Te escribo porque hay un cambio y para que tengas la nueva dirección.', english: 'I am writing because there is a change and so that you have the new address.'}
+  fixed_forms: [porque, como, por qué, para que]
+  anchors: []
+  prerequisites: [es-g0036, es-g0065, es-g0069]
+- id: es-g0073
+  level: 13
+  topic: leisure
+  ch: 'infinitive + conditional; haría / podría / tendría'
+  ds: Recommend or imagine an alternative with conditional forms
+  note: Expand early polite podría into regular conditional forms and frequent irregular stems. The conditional can present advice or an imagined choice, not only politeness. Identify the assumed circumstances; an isolated conditional does not itself establish whether they are real.
+  examples:
+  - {target: 'Yo elegiría la visita corta; tendríamos más tiempo.', english: 'I would choose the short visit; we would have more time.'}
+  - {target: 'En tu lugar, haría una pausa.', english: 'In your place, I would take a break.'}
+  fixed_forms: [hablaría, hablarías, hablaríamos, hablarían, comería, viviría, haría, podría, tendría, diría]
+  anchors: []
+  prerequisites: [es-g0041, es-g0025, es-g0071]
+- id: es-g0074
+  level: 14
+  topic: time
+  ch: 'hablaré / comeré / viviré; tendré / podré / haré'
+  ds: Announce a future event or commitment
+  note: The simple future uses a shared ending set with infinitives and some irregular stems. It can state a prediction or commitment; ir a plus infinitive remains available with its own contextual emphasis. The future form does not guarantee that a promised event will occur.
+  examples:
+  - {target: 'Mañana hablaré con la encargada.', english: 'Tomorrow I will speak with the person in charge.'}
+  - {target: 'Tendremos una respuesta el viernes y podremos decidir entonces.', english: 'We will have an answer on Friday and will be able to decide then.'}
+  fixed_forms: [hablaré, hablarás, hablará, hablaremos, hablarán, comeré, viviré, tendré, tendremos, podré, podremos, haré, diré, saldré, vendré]
+  anchors: []
+  prerequisites: [es-g0021, es-g0073]
+- id: es-g0075
+  level: 14
+  topic: time
+  ch: 'cuando / en cuanto / hasta que + future-oriented subjunctive'
+  ds: Refer to a pending event in a time clause
+  note: A time clause about a pending event commonly uses present subjunctive while the main clause can use future, present, or a command. Habitual or asserted past time clauses use indicative. Do not put a future indicative everywhere English says will.
+  examples:
+  - {target: 'Te llamaré cuando llegue.', english: 'I will call you when I arrive.'}
+  - {target: 'Espera aquí hasta que vuelva; en cuanto vuelva, salimos.', english: 'Wait here until I return; as soon as I return, we will leave.'}
+  fixed_forms: [cuando, en cuanto, hasta que]
+  anchors: []
+  prerequisites: [es-g0038, es-g0069, es-g0074]
+- id: es-g0076
+  level: 14
+  topic: time
+  ch: 'antes de que; después de que + indicative / subjunctive'
+  ds: Locate one event before or after another actor's event
+  note: Antes de que normally takes subjunctive, including before a later event in a past narrative. Después de que can assert a completed event with indicative or anticipate one with subjunctive; some past subjunctive uses also occur. Contrast these clauses with infinitive frames sharing an actor.
+  examples:
+  - {target: 'Sal antes de que cierre la oficina.', english: 'Leave before the office closes.'}
+  - {target: 'Después de que llegó Ana, cenamos; hoy cenaremos después de que llegue.', english: 'After Ana arrived, we had dinner; today we will have dinner after she arrives.'}
+  fixed_forms: [antes de que, después de que]
+  anchors: []
+  prerequisites: [es-g0052, es-g0063, es-g0075]
+- id: es-g0077
+  level: 14
+  topic: work
+  ch: 'para + infinitive; para que + subjunctive'
+  ds: Keep the intended actor clear in a purpose clause
+  note: Para plus infinitive normally leaves the actor understood from the main situation; para que allows an explicit actor in a finite clause. A different actor makes the finite construction especially useful. The aim is intended, not necessarily achieved.
+  examples:
+  - {target: 'Salgo temprano para llegar a tiempo.', english: 'I leave early to arrive on time.'}
+  - {target: 'Te envío el plano para que encuentres la entrada.', english: 'I am sending you the map so that you can find the entrance.'}
+  fixed_forms: [para, para que]
+  anchors: []
+  prerequisites: [es-g0067, es-g0072, es-g0075]
+- id: es-g0078
+  level: 14
+  topic: services
+  ch: 'se + affected-person clitic + event'
+  ds: Describe an unintended event and who is affected
+  note: Se me cayó presents an event affecting me without describing a deliberate act. The affected thing controls number agreement; the clitic identifies the affected person. This framing can reduce emphasis on agency, but it does not prove absence of responsibility.
+  examples:
+  - {target: 'Se me cayó el teléfono.', english: 'I accidentally dropped the phone.'}
+  - {target: 'Se nos perdieron las llaves.', english: 'We lost the keys unintentionally.'}
+  fixed_forms: [se me, se te, se le, se nos, se les, cayó, cayeron, perdió, perdieron]
+  anchors: []
+  prerequisites: [es-g0034, es-g0049, es-g0059]
+- id: es-g0079
+  level: 15
+  topic: work
+  ch: 'haya / hayas / hayamos / hayan + participle'
+  ds: Evaluate or anticipate a completed event with subjunctive
+  note: The perfect subjunctive combines mood choice with anteriority. It can react to something already done or refer to completion before a future action. A known completed event may still take subjunctive after an evaluation; the participle remains invariant.
+  examples:
+  - {target: 'Me alegra que hayas terminado el informe.', english: 'I am glad you have finished the report.'}
+  - {target: 'Cuando hayamos revisado los datos, enviaremos la respuesta.', english: 'When we have checked the data, we will send the reply.'}
+  fixed_forms: [haya, hayas, hayamos, hayan]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0043, es-g0058, es-g0069, es-g0075]
+- id: es-g0080
+  level: 15
+  topic: time
+  ch: 'seguir / llevar + duration + gerund'
+  ds: Report continuation and accumulated activity time
+  note: Seguir plus gerund says an activity continues; llevar plus a duration and gerund measures how long it has been under way at the reference point. The construction meaning is not the literal carrying sense of llevar. Do not add an invented carrying anchor.
+  examples:
+  - {target: 'Seguimos esperando la respuesta.', english: 'We are still waiting for the reply.'}
+  - {target: 'Llevo dos horas revisando el informe.', english: 'I have been reviewing the report for two hours.'}
+  fixed_forms: [sigo, sigues, sigue, seguimos, siguen, llevo, llevas, lleva, llevamos, llevan]
+  anchors: [llevar-duration]
+  prerequisites: [es-g0029, es-g0045]
+- id: es-g0081
+  level: 15
+  topic: work
+  ch: 'estar a punto de / estar por / estar para + infinitive'
+  ds: Distinguish imminent, pending, and readiness readings
+  note: Estar a punto de marks imminence. Estar por can mark an unfinished task or an inclination, depending on context and variety. Estar para can express readiness or suitability, especially in a negative frame. Do not assign these all the same future meaning.
+  examples:
+  - {target: 'El informe está por revisar, pero la carta está a punto de salir.', english: 'The report is still to be reviewed, but the letter is about to go out.'}
+  - {target: 'Después de ese viaje, no estoy para discutir.', english: 'After that trip, I am in no state to argue.'}
+  fixed_forms: [estar a punto de, estar por, estar para, está a punto de, está por, no estoy para]
+  anchors: []
+  prerequisites: [es-g0021, es-g0029, es-g0074]
+- id: es-g0082
+  level: 15
+  topic: actions
+  ch: 'ser + participle + por; estar + result participle'
+  ds: Distinguish a passive event from a resulting state
+  note: Ser plus an agreeing participle can present an event and its agent; estar plus an agreeing participle often describes the resulting condition. Unlike haber perfects, these participles agree with the subject. Not every participle naturally supports both constructions.
+  examples:
+  - {target: 'Las puertas fueron abiertas por la encargada.', english: 'The doors were opened by the person in charge.'}
+  - {target: 'Ahora las puertas están abiertas.', english: 'The doors are open now.'}
+  fixed_forms: [fue, fueron, está, están, por, abierto, abierta, abiertos, abiertas]
+  anchors: [ser-passive, estar-state]
+  prerequisites: [es-g0009, es-g0043, es-g0050, es-g0062]
+- id: es-g0083
+  level: 15
+  topic: actions
+  ch: 'dejar de / volver a / soler + infinitive'
+  ds: Report stopping, resuming, and customary behavior
+  note: Dejar de marks cessation, volver a repetition or resumption, and soler customary behavior. These combinations do not retain only literal leaving or returning meanings. Contrast a resumed action with one that merely continues; soler is commonly encountered in present and imperfect.
+  examples:
+  - {target: 'Dejamos de imprimir copias y volvimos a usar el archivo digital.', english: 'We stopped printing copies and went back to using the digital file.'}
+  - {target: 'Suelo llegar temprano; antes solía quedarme hasta tarde.', english: 'I usually arrive early; I used to stay late.'}
+  fixed_forms: [dejar de, volver a, suelo, sueles, suele, solemos, suelen, solía, solíamos]
+  anchors: []
+  prerequisites: [es-g0048, es-g0051, es-g0080]
+- id: es-g0084
+  level: 16
+  topic: media
+  ch: 'dijo que + imperfect / past perfect / conditional'
+  ds: Rebuild time and reference in a past report
+  note: Reporting from a later viewpoint can shift a present to imperfect, a prior event to past perfect, or a future to conditional. The shift is contextual, not compulsory backshifting of every clause; a still-current assertion can preserve its original time perspective.
+  examples:
+  - {target: 'Ana dijo que vivía allí y que había perdido la llave.', english: 'Ana said she lived there and had lost the key.'}
+  - {target: 'Luis dijo que volvería al día siguiente.', english: 'Luis said he would return the following day.'}
+  fixed_forms: [dijo que, dijeron que, al día siguiente, el día anterior]
+  anchors: [decir-say]
+  prerequisites: [es-g0051, es-g0053, es-g0066, es-g0073]
+- id: es-g0086
+  level: 16
+  topic: grammar
+  ch: 'hablara / hablase; tuviera / tuviese; fuera / fuese'
+  ds: Form the imperfect subjunctive with two accepted series
+  note: The ra and se series are often interchangeable in ordinary subjunctive environments, though not in every independent or historical use. Build from the third-person plural preterite stem without ron, then add the chosen series. Preserve the nosotros written accent.
+  examples:
+  - {target: 'Quería que habláramos con Ana.', english: 'I wanted us to speak with Ana.'}
+  - {target: 'Esperaba que tuvieses tiempo y que todo fuese bien.', english: 'I hoped you had time and that everything went well.'}
+  fixed_forms: [hablara, hablaras, habláramos, hablaran, hablase, hablases, hablásemos, hablasen, tuviera, tuviese, fuera, fuese, hiciera, hiciese]
+  anchors: []
+  prerequisites: [es-g0050, es-g0067, es-g0069, es-g0084]
+- id: es-g0085
+  level: 16
+  topic: communication
+  ch: 'pidió / recomendó que + imperfect subjunctive'
+  ds: Report a past request without claiming it was fulfilled
+  note: Reported requests commonly use que and subjunctive, not the indicative used for reporting an assertion. A past reporting frame commonly calls for imperfect subjunctive. Dijo que can report either words or an instruction, so mood and context help distinguish the act.
+  examples:
+  - {target: 'Ana pidió que cerráramos la puerta.', english: 'Ana asked us to close the door.'}
+  - {target: 'El guía nos dijo que esperáramos fuera.', english: 'The guide told us to wait outside.'}
+  fixed_forms: [pidió que, recomendó que, dijo que, cerráramos, esperáramos]
+  anchors: [pedir-request, decir-say]
+  prerequisites: [es-g0067, es-g0084, es-g0086]
+- id: es-g0087
+  level: 16
+  topic: society
+  ch: 'había / hubo / habrá + entities; habían + participle'
+  ds: Keep existential haber singular but agree its auxiliary
+  note: In the standard existential construction, haber stays singular even before a plural phrase. As an auxiliary, it agrees with its subject. Pluralized existential forms occur in speech; recognize them without importing them into this productive standard model or treating speakers disrespectfully.
+  examples:
+  - {target: 'Había tres personas; luego hubo una reunión.', english: 'There were three people; later there was a meeting.'}
+  - {target: 'Las tres personas habían llegado temprano.', english: 'The three people had arrived early.'}
+  fixed_forms: [había, hubo, habrá, habían]
+  anchors: [haber-existential, haber-auxiliary]
+  prerequisites: [es-g0017, es-g0053, es-g0074]
+- id: es-g0088
+  level: 16
+  topic: media
+  ch: 'según; al parecer; por lo visto'
+  ds: Mark a source or distance from a reported inference
+  note: Según identifies a perspective or source. Al parecer and por lo visto signal information presented as apparent or inferred rather than direct proof; por lo visto can also carry conversational attitude. None certifies the claim, and the source must not be invented.
+  examples:
+  - {target: 'Según el aviso, la biblioteca abre mañana.', english: 'According to the notice, the library opens tomorrow.'}
+  - {target: 'Al parecer, hubo un cambio; por lo visto, nadie recibió el mensaje.', english: 'Apparently there was a change; it seems nobody received the message.'}
+  fixed_forms: [según, al parecer, por lo visto]
+  anchors: []
+  prerequisites: [es-g0066, es-g0084, es-g0087]
+- id: es-g0089
+  level: 17
+  topic: reasoning
+  ch: 'si + present indicative, present / future / command'
+  ds: State an open practical condition and response
+  note: An open condition can take present indicative even when it concerns the future; the response can be a fact, prediction, or instruction. Conditional si has no accent. Do not use future indicative in this ordinary si condition by directly copying English time reference.
+  examples:
+  - {target: 'Si no hay conexión, guarda el documento.', english: 'If there is no connection, save the document.'}
+  - {target: 'Si llueve mañana, cambiaremos la ruta.', english: 'If it rains tomorrow, we will change the route.'}
+  fixed_forms: [si]
+  anchors: []
+  prerequisites: [es-g0038, es-g0074, es-g0075]
+- id: es-g0090
+  level: 17
+  topic: reasoning
+  ch: 'si + imperfect subjunctive, conditional'
+  ds: Imagine a remote or contrary-to-present alternative
+  note: This pairing presents an imagined situation as remote or contrary to a relevant assumption. The imperfect-subjunctive form need not locate the condition in past time. In this model, use tuviera rather than tendría inside the ordinary si condition.
+  examples:
+  - {target: 'Si tuviera más tiempo, revisaría el sistema.', english: 'If I had more time, I would check the system.'}
+  - {target: 'Si el transporte fuera gratuito, más personas lo usarían.', english: 'If transport were free, more people would use it.'}
+  fixed_forms: [si, tuviera, fuera, haría, sería]
+  anchors: []
+  prerequisites: [es-g0073, es-g0086, es-g0089]
+- id: es-g0091
+  level: 17
+  topic: reasoning
+  ch: 'es posible que / es evidente que'
+  ds: Distinguish possibility from an asserted evaluation
+  note: Es posible que normally takes subjunctive; affirmative es evidente que commonly asserts its content with indicative. Evaluation does not universally force one mood. A speaker can call something evident without having adequate evidence, so evaluate the claim separately from the grammar.
+  examples:
+  - {target: 'Es posible que el sensor falle.', english: 'The sensor may fail.'}
+  - {target: 'Es evidente que falta una pieza, pero no es evidente que esa sea la causa.', english: 'It is clear that a part is missing, but it is not clear that that is the cause.'}
+  fixed_forms: [es posible que, es evidente que, no es evidente que]
+  anchors: []
+  prerequisites: [es-g0068, es-g0069, es-g0088]
+- id: es-g0092
+  level: 17
+  topic: nature
+  ch: 'tan + adjective / tanto + noun + que'
+  ds: Relate a degree or amount to a consequence
+  note: Tan modifies an adjective or adverb; tanto agrees with a noun or stands adverbially with a verb. Que introduces the result in this frame, not the comparison partner of tan como. The claim still needs contextual support; strong wording is not causal evidence.
+  examples:
+  - {target: 'El ruido era tan fuerte que no oíamos la alarma.', english: 'The noise was so loud that we could not hear the alarm.'}
+  - {target: 'Había tanta agua que cerraron el camino.', english: 'There was so much water that they closed the path.'}
+  fixed_forms: [tan, tanto, tanta, tantos, tantas, que]
+  anchors: []
+  prerequisites: [es-g0031, es-g0052, es-g0087]
+- id: es-g0093
+  level: 17
+  topic: technology
+  ch: 'mientras; mientras que'
+  ds: Distinguish overlapping time from an explicit contrast
+  note: Mientras can relate simultaneous activities and can use subjunctive for a pending or conditional interval. Mientras que often contrasts facts, though temporal uses also occur. Determine whether the writer compares alternatives or places events in time rather than relying only on the connector.
+  examples:
+  - {target: 'Mientras se carga el archivo, reviso las notas.', english: 'While the file is loading, I check the notes.'}
+  - {target: 'Este modelo usa pilas, mientras que el otro necesita un cable.', english: 'This model uses batteries, whereas the other needs a cable.'}
+  fixed_forms: [mientras, mientras que]
+  anchors: []
+  prerequisites: [es-g0052, es-g0075, es-g0092]
+- id: es-g0094
+  level: 18
+  topic: work
+  ch: 'propongo que + subjunctive; ¿qué tal si + indicative?'
+  ds: Propose an action through two different frames
+  note: Propongo que takes subjunctive for a proposed action. Conversational qué tal si commonly uses indicative to invite consideration. A suggestion is not proof of agreement; invite a response and avoid replacing every proposal with the same mood rule.
+  examples:
+  - {target: 'Propongo que revisemos el presupuesto juntos.', english: 'I propose that we review the budget together.'}
+  - {target: '¿Qué tal si empezamos por la opción más sencilla?', english: 'How about starting with the simplest option?'}
+  fixed_forms: [propongo que, proponemos que, qué tal si]
+  anchors: []
+  prerequisites: [es-g0069, es-g0089]
+- id: es-g0095
+  level: 18
+  topic: feelings
+  ch: 'ojalá + present / imperfect subjunctive'
+  ds: Express a wish with different degrees of remoteness
+  note: Ojalá introduces a wish and may appear with or without que. Present subjunctive often presents a live hope; imperfect subjunctive can make the wish more remote or contrary to circumstances. The mood choice conveys stance rather than a measured probability.
+  examples:
+  - {target: 'Ojalá podamos terminar hoy.', english: 'I hope we can finish today.'}
+  - {target: 'Ojalá tuviéramos más tiempo.', english: 'If only we had more time.'}
+  fixed_forms: [ojalá, ojalá que]
+  anchors: []
+  prerequisites: [es-g0069, es-g0086, es-g0090]
+- id: es-g0096
+  level: 18
+  topic: reasoning
+  ch: 'a menos que / con tal de que / siempre que + subjunctive'
+  ds: State an exception or negotiated condition
+  note: A menos que introduces an exception; con tal de que and conditional siempre que set a condition. Temporal habitual siempre que can instead mean whenever and take indicative. Treat the condition as part of the proposal, not a promise that it will be met.
+  examples:
+  - {target: 'Podemos salir a menos que cambie el horario.', english: 'We can leave unless the schedule changes.'}
+  - {target: 'Acepto el plan con tal de que podamos revisarlo; funciona siempre que haya tiempo.', english: 'I accept the plan provided we can review it; it works provided there is time.'}
+  fixed_forms: [a menos que, con tal de que, siempre que]
+  anchors: []
+  prerequisites: [es-g0069, es-g0075, es-g0089]
+- id: es-g0097
+  level: 18
+  topic: argument
+  ch: 'a pesar de / pese a; a pesar de que / pese a que'
+  ds: Acknowledge an obstacle without confusing complement types
+  note: A pesar de and pese a can precede a noun or infinitive; finite clauses require the corresponding que frame. Indicative can assert the conceded event, while subjunctive can background or hypothesize it. The concession does not automatically overturn the main conclusion.
+  examples:
+  - {target: 'Seguimos adelante a pesar de las dificultades.', english: 'We keep going despite the difficulties.'}
+  - {target: 'Pese a que cuesta más, esta opción responde mejor a la necesidad.', english: 'Although it costs more, this option meets the need better.'}
+  fixed_forms: [a pesar de, pese a, a pesar de que, pese a que]
+  anchors: []
+  prerequisites: [es-g0063, es-g0071, es-g0080]
+- id: es-g0098
+  level: 18
+  topic: argument
+  ch: 'no ... sino (que); no solo ... sino también'
+  ds: Replace an incorrect claim or add a stronger point
+  note: Sino replaces something negated; a full replacement clause commonly uses sino que. Pero merely contrasts and need not cancel the first clause. No solo introduces an additive frame with sino también, not a rejection of the first element.
+  examples:
+  - {target: 'No falta dinero, sino tiempo.', english: 'It is not money that is lacking, but time.'}
+  - {target: 'No solo reduce el coste, sino que también ahorra trabajo.', english: 'It not only reduces the cost but also saves work.'}
+  fixed_forms: ['no', sino, sino que, no solo, sino también, sino que también]
+  anchors: []
+  prerequisites: [es-g0005, es-g0024, es-g0097]
+- id: es-g0099
+  level: 19
+  topic: reasoning
+  ch: 'será / estará / tendrá + present-time conjecture'
+  ds: Interpret future forms as a present conjecture
+  note: A future form can conjecture about the present rather than place an event after now. Time reference and context disambiguate the reading. The form signals a speaker's estimate, not verified knowledge; contrast it with a direct assertion or an explicitly attributed report.
+  examples:
+  - {target: 'No contesta; estará en una reunión.', english: 'She is not answering; she is probably in a meeting.'}
+  - {target: '¿Qué hora es? Serán las ocho.', english: 'What time is it? It must be about eight.'}
+  fixed_forms: [será, serán, estará, estarán, tendrá, tendrán]
+  anchors: []
+  prerequisites: [es-g0074, es-g0088, es-g0091]
+- id: es-g0100
+  level: 19
+  topic: media
+  ch: 'según una fuente no confirmada, incluiría ...'
+  ds: Recognize reported uncertainty without endorsing a claim
+  note: Journalistic conditional can present unconfirmed information attributed to a source. It is not necessarily future-in-the-past or a stated if condition. Prefer explicit attribution and explain that some editors discourage unsupported conditional rumors; grammar alone does not supply evidence.
+  examples:
+  - {target: 'Según una fuente no confirmada, el acuerdo incluiría nuevas ayudas.', english: 'According to an unconfirmed source, the agreement would reportedly include new support.'}
+  - {target: 'El servicio volvería mañana, según ese informe; aún no hay confirmación.', english: 'The service would reportedly resume tomorrow, according to that report; there is no confirmation yet.'}
+  fixed_forms: [según, según una fuente no confirmada, aún no hay confirmación]
+  anchors: []
+  prerequisites: [es-g0073, es-g0084, es-g0088, es-g0099]
+- id: es-g0101
+  level: 19
+  topic: reasoning
+  ch: 'quizá / tal vez + indicative or subjunctive; a lo mejor'
+  ds: Qualify probability without a single mood trigger
+  note: Quizá and tal vez can occur with either mood depending on commitment and discourse context. A lo mejor ordinarily takes indicative despite expressing uncertainty. Mood is not a numerical confidence scale, and placement and register also affect a natural choice.
+  examples:
+  - {target: 'Tal vez Ana tenga la respuesta.', english: 'Perhaps Ana has the answer.'}
+  - {target: 'A lo mejor Ana tiene la respuesta; quizá llega más tarde.', english: 'Maybe Ana has the answer; perhaps she is arriving later.'}
+  fixed_forms: [quizá, quizás, tal vez, a lo mejor]
+  anchors: []
+  prerequisites: [es-g0068, es-g0069, es-g0091, es-g0099]
+- id: es-g0102
+  level: 19
+  topic: reasoning
+  ch: 'deber (de) + infinitive'
+  ds: Distinguish obligation from inferential necessity
+  note: For a clear teaching contrast, use deber without de for obligation and deber de for conjecture. Actual accepted usage is not that rigid, especially omission of de in conjectures. Context decides whether the speaker gives a duty or infers a likely explanation.
+  examples:
+  - {target: 'Debemos entregar el informe hoy.', english: 'We must hand in the report today.'}
+  - {target: 'Las luces están encendidas; debe de haber alguien dentro.', english: 'The lights are on; there must be someone inside.'}
+  fixed_forms: [debo, debe, debemos, deben, debo de, debe de, debemos de, deben de]
+  anchors: []
+  prerequisites: [es-g0030, es-g0087, es-g0099, es-g0101]
+- id: es-g0103
+  level: 20
+  topic: institutions
+  ch: 'lo que; clause + lo cual / lo que'
+  ds: Refer to unspecified content or an entire proposition
+  note: Lo que can mean the thing or content that without a named noun. After a clause, lo cual or lo que can refer to the entire proposition, not just its nearest noun. Make that scope explicit when several possible antecedents could mislead a reader.
+  examples:
+  - {target: 'No entiendo lo que propone el ayuntamiento.', english: 'I do not understand what the local council proposes.'}
+  - {target: 'El plazo cambió, lo cual afectó a todos los solicitantes.', english: 'The deadline changed, which affected all the applicants.'}
+  fixed_forms: [lo que, lo cual]
+  anchors: []
+  prerequisites: [es-g0064, es-g0065, es-g0092]
+- id: es-g0104
+  level: 20
+  topic: institutions
+  ch: 'cuyo / cuya / cuyos / cuyas + possessed noun'
+  ds: Express relative possession with agreement
+  note: Cuyo links a possessor antecedent to a following possessed noun and agrees with that following noun. It is not interchangeable with que su in careful formal writing. Identify both sides of the relation instead of agreeing with the possessor or treating cuyo as a question word.
+  examples:
+  - {target: 'La asociación, cuyo local está cerrado, busca otra sede.', english: 'The association, whose premises are closed, is seeking another location.'}
+  - {target: 'Son familias cuyas solicitudes siguen pendientes.', english: 'They are families whose applications are still pending.'}
+  fixed_forms: [cuyo, cuya, cuyos, cuyas]
+  anchors: []
+  prerequisites: [es-g0009, es-g0011, es-g0064]
+- id: es-g0105
+  level: 20
+  topic: society
+  ch: 'cada; cada uno; ambos; sendos / sendas'
+  ds: Distinguish individual distribution from a combined pair
+  note: Cada focuses on members individually; cada uno stands without a following counted noun. Ambos means both. Formal sendos or sendas distributes one corresponding thing to each participant and agrees with that thing; it does not mean merely large or exactly two things in all contexts.
+  examples:
+  - {target: 'Los dos solicitantes reciben una copia cada uno; ambos firman el original.', english: 'The two applicants each receive a copy; both sign the original.'}
+  - {target: 'Las tres oficinas recibieron sendos avisos.', english: 'The three offices each received one notice.'}
+  fixed_forms: [cada, cada uno, cada una, ambos, ambas, sendos, sendas]
+  anchors: []
+  prerequisites: [es-g0008, es-g0031, es-g0104]
+- id: es-g0106
+  level: 20
+  topic: institutions
+  ch: 'al + infinitive; el + infinitive as subject'
+  ds: Relate an event or treat an activity as a topic
+  note: Al plus infinitive commonly frames a time relationship and may support a causal reading in context. An infinitive can function as the subject of a statement, with or without el depending on style. Make the understood actor clear rather than hiding responsibility in abstract wording.
+  examples:
+  - {target: 'Al cambiar el plazo, la oficina avisó a los solicitantes.', english: 'When changing the deadline, the office notified the applicants.'}
+  - {target: 'El compartir recursos reduce algunos costes.', english: 'Sharing resources reduces some costs.'}
+  fixed_forms: [al, el]
+  anchors: []
+  prerequisites: [es-g0020, es-g0063, es-g0072]
+- id: es-g0107
+  level: 21
+  topic: time
+  ch: 'habré / habrá / habremos / habrán + participle'
+  ds: Describe future completion or infer an earlier event
+  note: Future perfect can locate completion before a future reference point or conjecture about a past event. Context distinguishes those readings. Auxiliary haber agrees with the subject, and the participle does not. Neither interpretation is proof that the event has actually occurred.
+  examples:
+  - {target: 'Para el viernes habremos revisado las muestras.', english: 'By Friday we will have reviewed the samples.'}
+  - {target: 'No aparece el archivo; alguien lo habrá movido.', english: 'The file is missing; someone has probably moved it.'}
+  fixed_forms: [habré, habrás, habrá, habremos, habrán]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0043, es-g0074, es-g0099]
+- id: es-g0108
+  level: 21
+  topic: science
+  ch: 'habría / habríamos / habrían + participle'
+  ds: Present hypothetical or projected prior completion
+  note: Conditional perfect can present completion relative to an imagined circumstance or a future point viewed from the past. Reported conjectural uses also occur but need clear attribution. First identify the reference time and assumption; do not interpret every habría as a counterfactual fact.
+  examples:
+  - {target: 'Con otra medición, habríamos detectado la diferencia.', english: 'With another measurement, we would have detected the difference.'}
+  - {target: 'Pensábamos que para el viernes habríamos terminado.', english: 'We thought that by Friday we would have finished.'}
+  fixed_forms: [habría, habrías, habríamos, habrían]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0043, es-g0073, es-g0084, es-g0107]
+- id: es-g0109
+  level: 21
+  topic: science
+  ch: 'se examinaron las muestras; se entrevistó a las personas'
+  ds: Distinguish passive agreement from personal-object se
+  note: With a passive se, a thing-subject controls plural agreement. With an impersonal se and a personal direct object marked by a, the standard verb stays singular. Avoid treating every nearby plural as the subject or assuming an agentless sentence means no one performed the action.
+  examples:
+  - {target: 'Se examinaron veinte muestras.', english: 'Twenty samples were examined.'}
+  - {target: 'Se entrevistó a veinte participantes.', english: 'Twenty participants were interviewed.'}
+  fixed_forms: [se, a]
+  anchors: []
+  prerequisites: [es-g0035, es-g0061, es-g0062, es-g0082]
+- id: es-g0110
+  level: 21
+  topic: science
+  ch: 'cuanto más ... más; a medida que'
+  ds: Express covariation without overstating causation
+  note: Cuanto más pairs a changing degree with another degree; cuanto agrees when it directly determines a noun. A medida que tracks development over time. These frames can describe a trend but do not themselves show causation or guarantee the pattern holds outside the stated scope.
+  examples:
+  - {target: 'Cuantas más muestras revisamos, más diferencias encontramos.', english: 'The more samples we review, the more differences we find.'}
+  - {target: 'A medida que aumenta la temperatura, cambia la lectura del sensor.', english: 'As the temperature increases, the sensor reading changes.'}
+  fixed_forms: [cuanto más, cuanta más, cuantos más, cuantas más, cuanto menos, a medida que]
+  anchors: []
+  prerequisites: [es-g0031, es-g0092, es-g0093]
+- id: es-g0111
+  level: 22
+  topic: argument
+  ch: 'todo / todos; cualquier / cualquiera; no todos'
+  ds: Control universal and free-choice scope
+  note: Todo agrees when it modifies a noun; todos can stand for a recoverable group. Cualquier precedes a singular noun, while cualquiera can stand alone. No todos negates universality rather than asserting that nobody qualifies, so preserve the scope in a paraphrase.
+  examples:
+  - {target: 'No todos los vecinos están de acuerdo.', english: 'Not all the neighbors agree.'}
+  - {target: 'Cualquier persona puede participar; cualquiera puede hacer una pregunta.', english: 'Any person may take part; anyone may ask a question.'}
+  fixed_forms: [todo, toda, todos, todas, cualquier, cualquiera, no todos, no todas]
+  anchors: []
+  prerequisites: [es-g0005, es-g0009, es-g0105]
+- id: es-g0112
+  level: 22
+  topic: feelings
+  ch: 'como si + imperfect / past-perfect subjunctive'
+  ds: Frame a comparison as imagined rather than asserted
+  note: Como si normally takes a past subjunctive form even when the comparison concerns the present. The form presents a way of viewing the situation rather than asserting the comparison as fact. Introduce the imperfect pattern here; the compound form is expanded with past counterfactuals.
+  examples:
+  - {target: 'Habla como si conociera a todo el mundo.', english: 'She speaks as if she knew everyone.'}
+  - {target: 'Nos trata como si fuéramos sus alumnos.', english: 'He treats us as if we were his students.'}
+  fixed_forms: [como si, conociera, fuéramos]
+  anchors: [conocer-acquaintance]
+  prerequisites: [es-g0047, es-g0086, es-g0090]
+- id: es-g0113
+  level: 22
+  topic: argument
+  ch: 'por mucho que / por más que + clause'
+  ds: Concede persistence or degree without changing the outcome
+  note: These frames say that an amount or effort does not overturn the main point. Indicative can describe repeated experience, while subjunctive can concede a possible or backgrounded degree. They do not license a universal conclusion beyond the context being discussed.
+  examples:
+  - {target: 'Por más que lo intento, no entiendo esa decisión.', english: 'However much I try, I do not understand that decision.'}
+  - {target: 'Por mucho que cambie el horario, la necesidad seguirá allí.', english: 'However much the schedule changes, the need will remain.'}
+  fixed_forms: [por mucho que, por más que]
+  anchors: []
+  prerequisites: [es-g0071, es-g0097, es-g0110]
+- id: es-g0115
+  level: 23
+  topic: time
+  ch: 'hubiera / hubiese + participle'
+  ds: Combine subjunctive with an earlier completed event
+  note: The past-perfect subjunctive locates an event before the relevant past or hypothetical reference point. Hubiera and hubiese series are alternatives in many subordinate contexts. The participle stays invariant. Learn the tense relation separately from whether the event is known, desired, or counterfactual.
+  examples:
+  - {target: 'Me alegró que hubieras encontrado la carta.', english: 'I was glad you had found the letter.'}
+  - {target: 'Hablaba como si hubiese visto el informe.', english: 'She spoke as if she had seen the report.'}
+  fixed_forms: [hubiera, hubieras, hubiéramos, hubieran, hubiese, hubieses, hubiésemos, hubiesen]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0043, es-g0058, es-g0086, es-g0112]
+- id: es-g0116
+  level: 23
+  topic: argument
+  ch: 'si + hubiera / hubiese + participle, habría + participle'
+  ds: Explain an unrealized past alternative and consequence
+  note: Pair a past-perfect subjunctive condition with conditional perfect to describe an alternative past. Hubiera plus participle is also common in the result clause; the model need not brand it incorrect. Explain the implied assumption rather than claiming the sentence proves what actually happened.
+  examples:
+  - {target: 'Si hubiéramos salido antes, habríamos llegado a tiempo.', english: 'If we had left earlier, we would have arrived on time.'}
+  - {target: 'Si me lo hubieses dicho, te habría ayudado.', english: 'If you had told me, I would have helped you.'}
+  fixed_forms: [si, hubiera, hubiese, habría]
+  anchors: [haber-auxiliary]
+  prerequisites: [es-g0090, es-g0108, es-g0115]
+- id: es-g0117
+  level: 23
+  topic: argument
+  ch: 'si hubiera ..., ahora viviría ...; si fuera ..., habría ...'
+  ds: Keep different counterfactual time frames distinct
+  note: A past alternative can have a present consequence, and an enduring imagined trait can explain a past alternative. Choose each clause's time relation separately rather than forcing both into the same tense pair. Context must establish the assumption and when its effect would hold.
+  examples:
+  - {target: 'Si hubiera aceptado aquel trabajo, ahora viviría en otra ciudad.', english: 'If I had accepted that job, I would now live in another city.'}
+  - {target: 'Si fuera más paciente, ayer habría escuchado toda la explicación.', english: 'If I were more patient, yesterday I would have listened to the whole explanation.'}
+  fixed_forms: [si, ahora, ayer]
+  anchors: []
+  prerequisites: [es-g0090, es-g0108, es-g0116]
+- id: es-g0118
+  level: 23
+  topic: argument
+  ch: 'incluso si / aun si; ni siquiera'
+  ds: Test an extreme condition and mark a denied minimum
+  note: Incluso si and aun si concede a condition without automatically asserting it. Ni siquiera rejects even a low expected threshold. Unaccented aun often means even; accented aún commonly means still or yet. The writing distinction supports meaning rather than a new dictionary-sense invention.
+  examples:
+  - {target: 'Incluso si bajara el precio, no resolvería el problema.', english: 'Even if the price fell, it would not solve the problem.'}
+  - {target: 'Aún no hay respuesta; ni siquiera han confirmado la recepción.', english: 'There is still no reply; they have not even confirmed receipt.'}
+  fixed_forms: [incluso si, aun si, ni siquiera, aún]
+  anchors: []
+  prerequisites: [es-g0090, es-g0097, es-g0114, es-g0116]
+- id: es-g0119
+  level: 24
+  topic: communication
+  ch: 'preposition + el que / quien / el cual'
+  ds: Preserve a relative clause's required preposition
+  note: Carry the preposition required by the embedded relation into the relative phrase. Quien refers to people; el cual is often useful in formal or potentially ambiguous contexts and agrees with its antecedent. Do not drop de, con, or another required preposition merely because English permits stranding.
+  examples:
+  - {target: 'La persona con quien hablé envió el documento.', english: 'The person I spoke with sent the document.'}
+  - {target: 'Este es el criterio del que depende la decisión.', english: 'This is the criterion on which the decision depends.'}
+  fixed_forms: [el que, la que, los que, las que, quien, quienes, el cual, la cual, los cuales, las cuales, con quien, del que]
+  anchors: [hablar-speak]
+  prerequisites: [es-g0020, es-g0064, es-g0103, es-g0104]
+- id: es-g0120
+  level: 24
+  topic: grammar
+  ch: 'pienso que; me acuerdo de que; estoy seguro de que'
+  ds: Distinguish required de que from intrusive de
+  note: Some predicates require de before a clause and others take que directly. Compare the predicate with a noun complement as a useful diagnostic, not an exception-free algorithm. Explain queísmo and dequeísmo without attaching them as blanket judgments to a speaker's region or intelligence.
+  examples:
+  - {target: 'Pienso que es útil y estoy segura de que podemos hacerlo.', english: 'I think it is useful and I am sure we can do it.'}
+  - {target: 'Me acuerdo de que cambiaron la fecha.', english: 'I remember that they changed the date.'}
+  fixed_forms: [pienso que, creo que, me acuerdo de que, estoy seguro de que, estoy segura de que]
+  anchors: []
+  prerequisites: [es-g0066, es-g0068, es-g0119]
+- id: es-g0121
+  level: 24
+  topic: argument
+  ch: 'tanto ... como; ni ... ni; bien ... bien'
+  ds: Keep paired arguments parallel and their scope clear
+  note: Paired connectors coordinate comparable constituents. Tanto como can add both items without comparing degree; ni ni excludes both within the stated scope; bien bien offers alternatives in a more formal frame. Preserve parallel structure and avoid accidentally implying that the list is exhaustive.
+  examples:
+  - {target: 'Tanto el coste como el tiempo importan.', english: 'Both cost and time matter.'}
+  - {target: 'Ni la demora ni el precio nos convencen; podemos responder bien por escrito, bien en persona.', english: 'Neither the delay nor the price convinces us; we can reply either in writing or in person.'}
+  fixed_forms: [tanto, como, ni, bien]
+  anchors: []
+  prerequisites: [es-g0024, es-g0098, es-g0111, es-g0114]
+- id: es-g0122
+  level: 24
+  topic: communication
+  ch: 'este último; el primero; dicho / citado + noun'
+  ds: Maintain reference across an extended explanation
+  note: Este último and el primero can identify positions in a recently stated set; dicho or citado points back to mentioned content. Agreement follows the referenced noun. If several candidates fit, repeat the noun instead of assuming a demonstrative guarantees clear reference.
+  examples:
+  - {target: 'Comparamos el tren y el autobús; este último tarda más.', english: 'We compared the train and the bus; the latter takes longer.'}
+  - {target: 'El informe presenta dos criterios. El primero es el coste; dicho criterio no basta por sí solo.', english: 'The report presents two criteria. The first is cost; that criterion is not enough on its own.'}
+  fixed_forms: [este último, esta última, estos últimos, estas últimas, el primero, la primera, dicho, dicha, dichos, dichas, citado, citada]
+  anchors: []
+  prerequisites: [es-g0012, es-g0103, es-g0119, es-g0121]
+- id: es-g0123
+  level: 25
+  topic: register
+  ch: 'no es que + subjunctive, es que / sino que + explanation'
+  ds: Reject a proposed explanation rather than just a fact
+  note: No es que commonly takes subjunctive to reject a characterization or explanation. The following es que or sino que supplies the speaker's preferred explanation, usually as an assertion. This structure may soften disagreement but can also sound defensive depending on context.
+  examples:
+  - {target: 'No es que no quiera ir; es que no tengo tiempo.', english: 'It is not that I do not want to go; it is that I do not have time.'}
+  - {target: 'No es que el plan sea imposible, sino que exige otra preparación.', english: 'It is not that the plan is impossible, but that it requires different preparation.'}
+  fixed_forms: [no es que, es que, sino que]
+  anchors: [querer-want]
+  prerequisites: [es-g0068, es-g0069, es-g0098]
+- id: es-g0124
+  level: 25
+  topic: register
+  ch: 'incluso / hasta / aun + focused constituent'
+  ds: Locate an unexpected inclusion and preserve focus
+  note: These focus uses include an element presented as unexpected or extreme. Moving the focus word can change which alternative is contrasted. Hasta can also be a temporal or spatial limit, and aun has other contextual readings, so do not substitute them mechanically in every sentence.
+  examples:
+  - {target: 'Hasta Ana aceptó el cambio.', english: 'Even Ana accepted the change.'}
+  - {target: 'Ana aceptó incluso el cambio de fecha.', english: 'Ana accepted even the change of date.'}
+  fixed_forms: [incluso, hasta, aun]
+  anchors: []
+  prerequisites: [es-g0075, es-g0098, es-g0118]
+- id: es-g0125
+  level: 25
+  topic: reasoning
+  ch: 'no creo que venga; creo que no viene'
+  ds: Interpret negation over belief versus believed content
+  note: Negating creer can function conversationally like believing the negative, but the two structures need not express identical commitment. The first commonly uses subjunctive; the second can assert a negative belief with indicative. Context and intonation can strengthen or soften either reading.
+  examples:
+  - {target: 'No creo que venga, pero no tengo información reciente.', english: 'I do not think she is coming, but I have no recent information.'}
+  - {target: 'Creo que no viene: me ha dicho que está fuera.', english: 'I think she is not coming: she has told me she is away.'}
+  fixed_forms: [no creo que, creo que no]
+  anchors: []
+  prerequisites: [es-g0068, es-g0101, es-g0123]
+- id: es-g0126
+  level: 25
+  topic: register
+  ch: '¿Acaso ...? ¿Cómo no voy a ...?'
+  ds: Infer a rhetorical stance without assuming certainty
+  note: A question can challenge an assumption or imply an answer rather than request missing information. Acaso may signal a challenge; cómo no voy a can present an action as expected. These readings need context and, in speech, actual intonation; punctuation alone does not establish intent.
+  examples:
+  - {target: '¿Acaso no importa el tiempo de los demás?', english: 'Does other people’s time not matter?'}
+  - {target: '¿Cómo no voy a ayudarte después de todo lo que hiciste?', english: 'How could I not help you after everything you did?'}
+  fixed_forms: [acaso, cómo no voy a]
+  anchors: []
+  prerequisites: [es-g0004, es-g0021, es-g0114, es-g0125]
+- id: es-g0127
+  level: 26
+  topic: register
+  ch: 'tú / usted; te / le; tu / su'
+  ds: Recast address while keeping reference and relationship clear
+  note: Changing address affects verbs and some clitic and possessive choices, not just the visible subject pronoun. Tú and usted carry different meanings across relationships and communities; neither universally measures respect. Ask or follow a locally established preference rather than imposing one rule.
+  examples:
+  - {target: '¿Te parece bien si uso tu nombre?', english: 'Is it all right with you if I use your name? (tú)'}
+  - {target: '¿Le parece bien si uso su nombre?', english: 'Is it all right with you if I use your name? (usted)'}
+  fixed_forms: [tú, usted, te, le, tu, su, contigo, con usted]
+  anchors: []
+  prerequisites: [es-g0003, es-g0011, es-g0034, es-g0042, es-g0041]
+- id: es-g0128
+  level: 26
+  topic: register
+  ch: 'vosotros / vosotras; habláis; hablad; no habléis'
+  ds: Recognize and use a labelled vosotros model
+  note: This familiar plural model is used in many settings in Spain, not every Spanish-speaking community or every setting there. It has its own verb endings, os, and vuestro forms. Ustedes remains a plural-address alternative with context-dependent distribution; neither is inherently defective.
+  examples:
+  - {target: '¿Vosotras vivís aquí? Os llamo mañana.', english: 'Do you all live here? I will call you tomorrow. (vosotras model)'}
+  - {target: 'Hablad con Ana, pero no habléis todos a la vez.', english: 'Speak with Ana, but do not all speak at once. (vosotros model)'}
+  fixed_forms: [vosotros, vosotras, os, vuestro, vuestra, vuestros, vuestras, habláis, coméis, vivís, sois, estáis, hablad, comed, vivid, no habléis, no comáis, no viváis]
+  anchors: [hablar-speak, comer-eat, vivir-live]
+  prerequisites: [es-g0025, es-g0038, es-g0039, es-g0127]
+- id: es-g0129
+  level: 26
+  topic: register
+  ch: 'vos tenés / podés / querés; sos; vení; hablá'
+  ds: Recognize one explicitly bounded voseo paradigm
+  note: This model illustrates forms common in Rioplatense voseo and some other voseo settings; it is not a universal table for every vos user. Te, tu, and tuyo can accompany vos. Negative-command and other paradigms vary, so recognition should use labelled local material.
+  examples:
+  - {target: 'Vos tenés mi número; te llamo mañana.', english: 'You have my number; I will call you tomorrow. (modelled voseo)'}
+  - {target: 'Si querés, vení y hablá con Ana.', english: 'If you want, come and speak with Ana. (modelled voseo)'}
+  fixed_forms: [vos, tenés, podés, querés, sos, vení, hablá, te, tu, tuyo, tuya]
+  anchors: [tener-possession, poder-ability, querer-want, hablar-speak]
+  prerequisites: [es-g0011, es-g0027, es-g0038, es-g0089, es-g0127]
+- id: es-g0130
+  level: 26
+  topic: services
+  ch: 'quería / venía a preguntar / podía'
+  ds: Use an imperfect to soften a present approach
+  note: An imperfect can distance a request made now rather than report only a past intention. Context separates a polite approach from a literal past account. Compare with a conditional request without assuming one form is invariably more polite in every relationship.
+  examples:
+  - {target: 'Quería preguntarle si hay otra fecha disponible.', english: 'I wanted to ask you whether another date is available.'}
+  - {target: 'Venía a consultar una duda sobre el recibo.', english: 'I was coming to ask about a question concerning the receipt.'}
+  fixed_forms: [quería, venía a preguntar, venía a consultar, podía]
+  anchors: [querer-want]
+  prerequisites: [es-g0041, es-g0051, es-g0065, es-g0127]
+- id: es-g0131
+  level: 27
+  topic: feelings
+  ch: 'echar de menos; hacer falta'
+  ds: Distinguish missing someone from a needed thing
+  note: Echar de menos expresses missing a person or thing; hacer falta presents something as needed, with that thing controlling number. Their component verbs do not retain only their literal meanings. Practise reference and agreement rather than adding a dictionary sense for every word of the idiom.
+  examples:
+  - {target: 'Echo de menos a mis amigos.', english: 'I miss my friends.'}
+  - {target: 'Nos hacen falta dos sillas, pero no hace falta comprar una mesa.', english: 'We need two chairs, but there is no need to buy a table.'}
+  fixed_forms: [echar de menos, echo de menos, hace falta, hacen falta, no hace falta]
+  anchors: []
+  prerequisites: [es-g0018, es-g0034, es-g0035, es-g0114]
+- id: es-g0132
+  level: 27
+  topic: register
+  ch: 'dar por + participle; tener por + description'
+  ds: Present an assumed result or an attributed judgment
+  note: Dar por can treat a result as established, while tener por can characterize someone or something from a viewpoint. Neither phrase proves the assumed state is true. Preserve agreement and identify whose judgment is being expressed rather than anchoring the idiom to literal giving or possession.
+  examples:
+  - {target: 'Dimos por terminada la reunión.', english: 'We regarded the meeting as finished.'}
+  - {target: 'Lo tenían por un experto, aunque él nunca lo afirmó.', english: 'They considered him an expert, although he never claimed that.'}
+  fixed_forms: [dar por, tener por, dimos por, tenían por]
+  anchors: []
+  prerequisites: [es-g0033, es-g0050, es-g0051, es-g0071, es-g0082]
+- id: es-g0133
+  level: 27
+  topic: communication
+  ch: 'ir al grano; andarse por las ramas'
+  ds: Interpret idioms about conversational relevance
+  note: Ir al grano asks for the main point; andarse por las ramas characterizes digression or evasion. Neither is necessarily about movement or plants. These conversational idioms can sound impatient or critical; paraphrase them when a gentler or more formal approach is appropriate.
+  examples:
+  - {target: 'Voy al grano: necesitamos otra fecha.', english: 'I will get to the point: we need another date.'}
+  - {target: 'No te andes por las ramas; explica qué ocurrió.', english: 'Do not beat around the bush; explain what happened.'}
+  fixed_forms: [ir al grano, voy al grano, andarse por las ramas, no te andes por las ramas]
+  anchors: []
+  prerequisites: [es-g0020, es-g0039, es-g0055, es-g0127]
+- id: es-g0134
+  level: 27
+  topic: people
+  ch: 'tomarle el pelo a alguien'
+  ds: Interpret teasing rather than a literal body-part action
+  note: Tomar el pelo commonly means teasing or making fun of someone rather than physically taking their hair. The affected person can be represented by an indirect clitic. Relationship and tone determine whether the act is playful or unwelcome; do not require learners to direct it at others.
+  examples:
+  - {target: '¿Me estás tomando el pelo o lo dices en serio?', english: 'Are you teasing me, or do you mean it?'}
+  - {target: 'A Luis no le gusta que le tomen el pelo.', english: 'Luis does not like being made fun of.'}
+  fixed_forms: [tomar el pelo, tomarle el pelo, tomando el pelo]
+  anchors: []
+  prerequisites: [es-g0018, es-g0034, es-g0058, es-g0060]
+- id: es-g0135
+  level: 28
+  topic: argument
+  ch: 'solo / solamente; no ... más que'
+  ds: Preserve restrictive scope in a revision
+  note: Solo or solamente restricts the relevant alternatives; its placement and context determine what is excluded. No más que can mean only, whereas más que can be an ordinary comparison. Do not paraphrase a restriction as a quantity comparison or turn only one reason into the only possible reason.
+  examples:
+  - {target: 'Solo Ana revisó el informe; Ana revisó solamente la primera parte.', english: 'Only Ana reviewed the report; Ana reviewed only the first part.'}
+  - {target: 'No tenemos más que dos días.', english: 'We have only two days.'}
+  fixed_forms: [solo, solamente, 'no', más que]
+  anchors: []
+  prerequisites: [es-g0031, es-g0098, es-g0111, es-g0124]
+- id: es-g0136
+  level: 28
+  topic: description
+  ch: 'lo + adjective; el / la + adjective'
+  ds: Distinguish an abstract quality from an identified entity
+  note: Neuter lo can frame a quality or aspect as abstract content; el or la plus an adjective can identify an omitted noun recoverable from context. Lo is not a masculine article here. A following de or que phrase can specify which aspect matters.
+  examples:
+  - {target: 'Lo importante es llegar a un acuerdo.', english: 'The important thing is to reach an agreement.'}
+  - {target: 'Entre los dos informes, el breve es más claro; lo breve no siempre es superficial.', english: 'Of the two reports, the short one is clearer; brevity is not always superficial.'}
+  fixed_forms: [lo, el, la, los, las, lo importante, lo bueno]
+  anchors: []
+  prerequisites: [es-g0007, es-g0009, es-g0103, es-g0135]
+- id: es-g0137
+  level: 28
+  topic: description
+  ch: 'un gran ... / ... grande; antiguo ... / ... antiguo'
+  ds: Preserve adjective-position meanings rather than word order
+  note: Some adjectives favor different readings before and after the noun. Gran often evaluates importance while grande can describe size; antiguo before a role can mean former and after a thing can mean old. These tendencies are contextual, not a universal meaning switch for every adjective.
+  examples:
+  - {target: 'Es un gran edificio, pero no es un edificio grande.', english: 'It is a remarkable building, but it is not a large building.'}
+  - {target: 'Mi antiguo profesor estudia manuscritos antiguos.', english: 'My former teacher studies old manuscripts.'}
+  fixed_forms: [gran, grande, antiguo, antigua, antiguos, antiguas]
+  anchors: []
+  prerequisites: [es-g0009, es-g0032, es-g0056, es-g0136]
+- id: es-g0138
+  level: 28
+  topic: grammar
+  ch: 'sino; si no'
+  ds: Separate a corrective conjunction from a negative condition
+  note: Sino replaces a negated option, while si no begins a negative condition and may introduce an elliptical otherwise. Pronunciation can be similar in connected speech, so context and written segmentation matter. Do not correct one to the other without checking the intended relation.
+  examples:
+  - {target: 'No necesitamos más datos, sino una explicación.', english: 'We do not need more data, but an explanation.'}
+  - {target: 'Si no llegan los datos, cambiaremos el plan.', english: 'If the data do not arrive, we will change the plan.'}
+  fixed_forms: [sino, si no]
+  anchors: []
+  prerequisites: [es-g0089, es-g0098, es-g0135]
+- id: es-g0139
+  level: 29
+  topic: literature
+  ch: 'ayer esperaba y, de pronto, aparece ...'
+  ds: Interpret a deliberate shift in narrative viewpoint
+  note: A narrative can use present forms for past events to make them immediate or foreground a turning point. The surrounding frame supplies past time. Distinguish this effect from an accidental tense inconsistency and do not infer that the narrator personally witnessed the event.
+  examples:
+  - {target: 'Era 1998. Ana abre la puerta y encuentra la carta.', english: 'It was 1998. Ana opens the door and finds the letter.'}
+  - {target: 'Ayer esperaba el tren y, de pronto, aparece Luis.', english: 'Yesterday I was waiting for the train and, suddenly, Luis appears.'}
+  fixed_forms: [de pronto]
+  anchors: []
+  prerequisites: [es-g0051, es-g0052, es-g0084]
+- id: es-g0140
+  level: 29
+  topic: literature
+  ch: 'miró el reloj. ¿Llegaría él a tiempo?'
+  ds: Recognize a possible free-indirect viewpoint
+  note: A narrator can retain third person and past forms while a question or time word reflects a character's viewpoint, without an explicit pensó que. This is an interpretation supported by textual cues, not guaranteed by one tense. Keep narrator and character claims distinct.
+  examples:
+  - {target: 'Ana miró el reloj. ¿Llegaría él a tiempo?', english: 'Ana looked at the clock. Would he arrive in time?'}
+  - {target: 'Luis guardó la carta. Mañana sería otro día.', english: 'Luis put the letter away. Tomorrow would be another day.'}
+  fixed_forms: [mañana, sería, llegaría]
+  anchors: []
+  prerequisites: [es-g0065, es-g0073, es-g0084, es-g0139]
+- id: es-g0141
+  level: 29
+  topic: literature
+  ch: 'terminada la reunión, ...; leídas las cartas, ...'
+  ds: Read an absolute participial frame with its own subject
+  note: A detached participial clause can frame a completed event with a noun that controls the participle's agreement. That noun need not be the main clause's subject. This compressed written style requires clear reference; expand it into a finite clause when helpful.
+  examples:
+  - {target: 'Terminada la reunión, los vecinos salieron al patio.', english: 'Once the meeting was over, the neighbors went out to the courtyard.'}
+  - {target: 'Leídas las cartas, Ana cambió de opinión.', english: 'After the letters had been read, Ana changed her mind.'}
+  fixed_forms: [terminada, terminados, leída, leídas]
+  anchors: []
+  prerequisites: [es-g0009, es-g0063, es-g0076, es-g0082]
+- id: es-g0142
+  level: 29
+  topic: reasoning
+  ch: 'el hecho de que + indicative / subjunctive'
+  ds: Distinguish asserted information from a backgrounded fact
+  note: El hecho de que can take subjunctive when a fact is backgrounded or evaluated, even if its truth is accepted. Indicative is possible when the content is presented assertively. The noun hecho alone does not force indicative or certify the factual accuracy of the speaker's claim.
+  examples:
+  - {target: 'El hecho de que haya vuelto no explica su silencio.', english: 'The fact that she has returned does not explain her silence.'}
+  - {target: 'Insisto en el hecho de que la puerta estaba abierta.', english: 'I insist on the fact that the door was open.'}
+  fixed_forms: [el hecho de que]
+  anchors: []
+  prerequisites: [es-g0058, es-g0079, es-g0120, es-g0125]
+- id: es-g0143
+  level: 30
+  topic: argument
+  ch: 'en la medida en que; en cuanto a'
+  ds: Scope a claim without confusing condition and topic
+  note: En la medida en que restricts a claim by degree or a relevant condition; en cuanto a announces a topic. Neither phrase supplies evidence on its own. Replace vague qualification with a clear criterion when possible and avoid presenting a topic shift as a logical inference.
+  examples:
+  - {target: 'La comparación es útil en la medida en que las condiciones coinciden.', english: 'The comparison is useful insofar as the conditions match.'}
+  - {target: 'En cuanto al coste, todavía faltan datos.', english: 'As for the cost, data are still missing.'}
+  fixed_forms: [en la medida en que, en cuanto a, en cuanto al]
+  anchors: []
+  prerequisites: [es-g0020, es-g0096, es-g0110, es-g0122, es-g0142]
+- id: es-g0144
+  level: 30
+  topic: argument
+  ch: 'de ahí que + subjunctive; así que + indicative'
+  ds: Mark an inferred consequence and its discourse status
+  note: De ahí que typically takes subjunctive for a consequence presented as following from prior content. Así que commonly introduces an asserted result with indicative, though it can also introduce an instruction. The connector expresses the writer's reasoning; assess its validity separately.
+  examples:
+  - {target: 'Faltan dos respuestas; de ahí que el resultado sea provisional.', english: 'Two replies are missing; hence the result is provisional.'}
+  - {target: 'Faltan dos respuestas, así que el resultado es provisional.', english: 'Two replies are missing, so the result is provisional.'}
+  fixed_forms: [de ahí que, así que]
+  anchors: []
+  prerequisites: [es-g0069, es-g0092, es-g0103, es-g0143]
+- id: es-g0145
+  level: 30
+  topic: communication
+  ch: 'lo que ... es ...; fue ... quien ...'
+  ds: Focus a correction while preserving the underlying claim
+  note: A cleft or pseudocleft highlights one element as the relevant answer or correction. Keep tense and reference coherent, and do not let emphasis turn a qualified claim into an absolute one. These are discourse choices rather than extra events.
+  examples:
+  - {target: 'Lo que necesitamos es una comparación más clara.', english: 'What we need is a clearer comparison.'}
+  - {target: 'Fue Ana quien propuso revisar el criterio.', english: 'It was Ana who proposed revising the criterion.'}
+  fixed_forms: [lo que, es, fue, quien]
+  anchors: []
+  prerequisites: [es-g0050, es-g0064, es-g0103, es-g0124, es-g0136]
+- id: es-g0146
+  level: 30
+  topic: communication
+  ch: 'es decir; mejor dicho; en otras palabras'
+  ds: Explain, correct, or paraphrase without hiding a revision
+  note: Es decir explicates; mejor dicho openly corrects a prior formulation; en otras palabras proposes a paraphrase. The relationship is not identical in every use. If the second statement changes the claim rather than restating it, acknowledge that correction instead of presenting it as equivalent.
+  examples:
+  - {target: 'La medida es provisional; es decir, habrá que revisarla.', english: 'The measure is provisional; that is, it will need reviewing.'}
+  - {target: 'Todos aceptaron, mejor dicho, nadie se opuso en la reunión.', english: 'Everyone accepted, or rather, nobody objected at the meeting.'}
+  fixed_forms: [es decir, mejor dicho, en otras palabras]
+  anchors: []
+  prerequisites: [es-g0098, es-g0111, es-g0114, es-g0144, es-g0145]
+- id: es-g0147
+  level: professional
+  topic: work
+  ch: 'se ruega / se solicita + infinitive or que clause'
+  ds: Interpret an institutional request and its expected actor
+  note: Agentless request frames can sound institutional and may leave the requester unstated. An infinitive presents the requested action; que plus subjunctive can identify the actor more explicitly. This construction is not proof of legal authority or of a request's mandatory status.
+  examples:
+  - {target: 'Se ruega confirmar la asistencia antes del martes.', english: 'Please confirm attendance before Tuesday.'}
+  - {target: 'Se solicita que Ana envíe el resumen.', english: 'Ana is requested to send the summary.'}
+  fixed_forms: [se ruega, se solicita, se ruega que, se solicita que]
+  anchors: []
+  prerequisites: [es-g0061, es-g0062, es-g0067, es-g0069]
+- id: es-g0148
+  level: professional
+  topic: work
+  ch: 'quedar en + infinitive; quedar en que + agreement'
+  ds: Record an agreement rather than merely propose it
+  note: Quedar en presents an agreed action, not just an invitation or unilateral wish. A que clause allows explicit participants and timing; a past agreement can use the reporting perspective already learned. Confirm the actual agreement instead of inventing consent from a polite response.
+  examples:
+  - {target: 'Quedamos en revisar la propuesta el jueves.', english: 'We agree to review the proposal on Thursday.'}
+  - {target: 'Quedamos en que Ana enviaría el resumen.', english: 'We agreed that Ana would send the summary.'}
+  fixed_forms: [quedar en, quedar en que, quedamos en, quedamos en que]
+  anchors: []
+  prerequisites: [es-g0048, es-g0066, es-g0084, es-g0094]
+- id: es-g0149
+  level: professional
+  topic: institutions
+  ch: 'conviene + infinitive; conviene que + subjunctive'
+  ds: Recommend a procedure without claiming binding obligation
+  note: Conviene can recommend an advantageous or appropriate action; it is not equivalent to a binding requirement. Use an infinitive for a general procedure and a finite clause to specify an actor. Compare with hay que or se deberá only when the source actually establishes that force.
+  examples:
+  - {target: 'Conviene guardar una copia del acuerdo.', english: 'It is advisable to keep a copy of the agreement.'}
+  - {target: 'Conviene que los equipos confirmen sus plazos.', english: 'It is advisable for the teams to confirm their deadlines.'}
+  fixed_forms: [conviene, conviene que, se deberá]
+  anchors: []
+  prerequisites: [es-g0030, es-g0067, es-g0069, es-g0074, es-g0094]
+- id: es-g0150
+  level: technical
+  topic: technology
+  ch: 'si; solo si; siempre que'
+  ds: Distinguish sufficient and necessary operating conditions
+  note: Si can introduce a sufficient condition for the stated response; solo si makes the following condition necessary. Neither automatically states both directions. Siempre que can express a condition in operational prose. Interpret exactly what the instruction commits to rather than infer an undocumented system guarantee.
+  examples:
+  - {target: 'Si hay un error, aparece un aviso.', english: 'If there is an error, a notice appears.'}
+  - {target: 'El sistema guarda el cambio solo si pulsas Confirmar.', english: 'The system saves the change only if you press Confirm.'}
+  fixed_forms: [si, solo si, siempre que]
+  anchors: []
+  prerequisites: [es-g0089, es-g0096]
+- id: es-g0151
+  level: technical
+  topic: technology
+  ch: 'en caso de + noun or infinitive; en caso de que + subjunctive'
+  ds: Read a contingency and its recovery instruction
+  note: En caso de introduces a named contingency; a finite clause uses en caso de que with subjunctive. This is an instructional possibility, not an assertion that failure occurred. Identify the actor and distinguish the documented response from a new technical recommendation.
+  examples:
+  - {target: 'En caso de error, conserva una copia del mensaje.', english: 'In case of an error, keep a copy of the message.'}
+  - {target: 'En caso de que falte un archivo, consulta el registro.', english: 'If a file is missing, consult the log.'}
+  fixed_forms: [en caso de, en caso de que]
+  anchors: []
+  prerequisites: [es-g0038, es-g0069, es-g0089, es-g0096]
+- id: es-g0152
+  level: technical
+  topic: technology
+  ch: 'consistir en + noun or infinitive; servir para + infinitive'
+  ds: Distinguish a system's composition from its purpose
+  note: Consistir en identifies what an operation consists of; servir para explains its function. The prepositions belong to the constructions rather than a general translation of English for. Scope the explanation to the supplied system and do not infer undocumented capability or expertise.
+  examples:
+  - {target: 'La comprobación consiste en comparar dos versiones.', english: 'The check consists of comparing two versions.'}
+  - {target: 'Este registro sirve para localizar errores.', english: 'This log serves to locate errors.'}
+  fixed_forms: [consiste en, consisten en, sirve para, sirven para]
+  anchors: []
+  prerequisites: [es-g0036, es-g0063, es-g0077]
+- id: es-g0153
+  level: scientific
+  topic: science
+  ch: 'se observó que; no se pudo determinar si'
+  ds: Separate a reported observation from an unresolved question
+  note: An observation report can assert its content with indicative; an unresolved indirect question remains open after si. These examples are fictional language tasks, not real experimental observations. Preserve the source's stated limits and do not upgrade absence of a conclusion into proof of absence.
+  examples:
+  - {target: 'Se observó que la lectura cambiaba con la temperatura.', english: 'It was observed that the reading changed with the temperature.'}
+  - {target: 'No se pudo determinar si el cambio era permanente.', english: 'It was not possible to determine whether the change was permanent.'}
+  fixed_forms: [se observó que, no se pudo determinar si]
+  anchors: []
+  prerequisites: [es-g0051, es-g0065, es-g0066, es-g0109]
+- id: es-g0154
+  level: scientific
+  topic: science
+  ch: 'ser compatible con; no implicar que + subjunctive'
+  ds: Distinguish compatibility from a warranted conclusion
+  note: Compatibility says two claims can coexist, not that one proves the other. Negated implication commonly takes subjunctive because the conclusion is not asserted as following. Evaluate the actual source and method; these language frames do not establish scientific validity by themselves.
+  examples:
+  - {target: 'El resultado es compatible con ambas explicaciones.', english: 'The result is compatible with both explanations.'}
+  - {target: 'La coincidencia no implica que exista una relación causal.', english: 'The coincidence does not imply that a causal relationship exists.'}
+  fixed_forms: [es compatible con, son compatibles con, no implica que]
+  anchors: []
+  prerequisites: [es-g0068, es-g0069, es-g0091, es-g0110, es-g0121]
+- id: es-g0155
+  level: scientific
+  topic: science
+  ch: 'entre ... y ...; de ... a ...; al menos; como máximo'
+  ds: Read a range, lower bound, or upper bound precisely
+  note: A range and a one-sided bound make different quantitative claims. Preserve units and distinguish at least from at most; do not assume endpoint inclusion or measurement precision beyond what the source states. Numbers in examples are fictional language support, not recorded data.
+  examples:
+  - {target: 'La temperatura varió entre veinte y veintidós grados.', english: 'The temperature varied between twenty and twenty-two degrees.'}
+  - {target: 'Se necesitan al menos tres lecturas y como máximo cinco minutos.', english: 'At least three readings and at most five minutes are needed.'}
+  fixed_forms: [entre, y, de, a, al menos, como mínimo, como máximo, hasta]
+  anchors: []
+  prerequisites: [es-g0016, es-g0031, es-g0109, es-g0110]
+- id: es-g0156
+  level: literary
+  topic: literature
+  ch: 'fuere / tuviere; hubiere + participle'
+  ds: Recognize future-subjunctive forms in marked texts
+  note: Future subjunctive survives in some fixed, legal, and older literary expressions but is not an ordinary conversational requirement. Interpret it using its historical or conditional context and supply a contemporary paraphrase. Its presence in a document does not establish legal force or literary quality.
+  examples:
+  - {target: 'Quien tuviere la llave podrá entrar.', english: 'Whoever has the key may enter. (marked older-style wording)'}
+  - {target: 'Si hubiere terminado la obra, podrá partir.', english: 'If he or she has finished the work, he or she may leave. (marked older-style wording)'}
+  fixed_forms: [fuere, fueren, tuviere, tuvieren, hubiere, hubieren]
+  anchors: []
+  prerequisites: [es-g0064, es-g0074, es-g0086, es-g0089, es-g0115]
+- id: es-g0157
+  level: literary
+  topic: literature
+  ch: 'díjome; hallábase'
+  ds: Unpack older finite-verb enclisis for recognition
+  note: Some older or deliberately archaizing prose attaches an unstressed pronoun to a finite verb where modern ordinary prose would place it before the verb. Segment the form and paraphrase it; do not extend this historical pattern to every modern finite verb.
+  examples:
+  - {target: 'Díjome que la carta estaba en la mesa.', english: 'He told me that the letter was on the table. (older-style enclisis)'}
+  - {target: 'Hallábase sola junto a la ventana.', english: 'She was alone by the window. (older-style enclisis)'}
+  fixed_forms: [díjome, hallábase, me dijo, se hallaba]
+  anchors: [decir-say]
+  prerequisites: [es-g0040, es-g0050, es-g0051, es-g0055, es-g0066]
+- id: es-g0158
+  level: literary
+  topic: literature
+  ch: 'quienquiera que; dondequiera que + subjunctive'
+  ds: Interpret an unrestricted referent in marked prose
+  note: These forms extend reference to an unspecified person or place and commonly take subjunctive. They can sound elevated or emphatic but are not automatically obsolete. Paraphrase the intended scope without claiming that the narrator knows which person or place satisfies it.
+  examples:
+  - {target: 'Quienquiera que lea esta carta conocerá mi decisión.', english: 'Whoever reads this letter will know my decision.'}
+  - {target: 'Dondequiera que estuviera, recordaba aquella casa.', english: 'Wherever she was, she remembered that house.'}
+  fixed_forms: [quienquiera que, dondequiera que]
+  anchors: []
+  prerequisites: [es-g0064, es-g0069, es-g0070, es-g0086, es-g0111]

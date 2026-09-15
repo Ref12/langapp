@@ -1,0 +1,1387 @@
+# Original AI-authored teaching overlay; requires human review.
+# Source senses remain the pinned CC BY-SA Kaikki English-Wiktionary import.
+# Topic groups classify the selected core sense, not every meaning of a lemma.
+# In particular, do not propagate a core topic to a different branch sense.
+# Sense overrides are keyed by source_sense_id (the source-local sense ID).
+# An optional sense-level level takes precedence over a lemma-level placement.
+# Unlisted items retain their authored topic and level; this is not a quota.
+# Level overrides apply to the core teaching placement, not every branch sense.
+# Exclusions use exact authoring row IDs; do not remove every sense of that lemma.
+#
+# SOURCE-SELECTION FOLLOW-UP FOR THE IMPORTER (not replacement provenance):
+# The initial audit found gaps in affirmative, personal, and possessive support.
+# The importer is supplying common replacement senses and fixed grammar;
+# this overlay neither creates nor substitutes source entries.
+# The original mi is the musical note, su is approximative, les is an article.
+# The original tienda is a tent, carne is flesh, perro is a clothespin, novia is
+# a sweet roll, chica is a spice, maestra is a queen bee, carta is a map,
+# gasolinera is a petrol can, reparar means notice, horario means hourly,
+# tamaño is an adjective, batido describes iridescent silk, difícil means
+# unlikely, and tía is colloquial girl/woman, not the selected aunt sense.
+# Do not silently relabel any of those as the common beginner sense.
+# café/efectivo/billete already have distinct drink/cash/ticket senses.
+# Gender breadth groups intentionally do NOT pair gato/gata, novio/novia,
+# chico/chica, primo/prima, maestro/maestra, or médico/doctora: their selected
+# senses are not gender counterparts. New valid senses can be reviewed later.
+# Numerous region-specific, sexual, military, and literary terms remain in the
+# source inventory. A coherent topic is not an endorsement of core frequency.
+# Core-suitability follow-up: exclusions take precedence over thematic groups.
+# Rare homographs, narrow named varieties, orthographic variants, and transparent
+# productive participles are not retained merely to reach a breadth target.
+# Common lexicalized states (cansado, casado, cerrado, mojado, etc.) remain.
+# Excluding a participial row does not prohibit teaching that form in grammar.
+# Exclusions are sense-specific: replacement common senses and their aliases
+# must remain even when an older homograph row with the same spelling is removed.
+topic_groups:
+  people: >-
+    hombre amigo mujer nombre persona gente padre madre hijo familia hermano
+    hija esposa niño hermana bebé marido niña abuela abuelo pareja
+    estudiante vecino compañero niñez enano homosexual intimidad huérfano
+    inquilino amo nena sirviente raza adolescente pastor amiguito
+    regazo sexualidad querida dama soltero padrino crío padrastro casado
+    querido sobrino novato guardaespaldas esposo compadre ma man maternidad nuera
+    novio primo socio amado lola bebe adulto lesbiana hembra masculino nana
+    heterosexual ama marqués familiar camarada viuda linaje adoptado
+    niñera infancia huésped mai dueño nieto chaval anfitrión pariente
+    edad gay mami multitud macho juvenil divorciado cuñado santa tutor madrastra
+    madrina varón personaje apellido prometida desconocida doncella casamiento poli
+    clan hermandad comunidad señor muchacho humano papi menor generación nieta
+    fraternidad gemelo yerno mayor tribu femenino matrimonial baby suegra mamá
+    bastardo lady identidad juventud infantil criado dueña comprometida jinete bro
+    nene casar señorita matrimonio criada mozo paternidad nacimiento
+    bebo suegro señora tío amistad anciano adopción nodriza caballero
+    heredero asistente chica novia tía
+  home: >-
+    casa puerta mesa papel llave silla habitación cama basura piso cocina ventana
+    hogar pared jardín techo salón armario espejo sofá ducha escalera dormitorio
+    ascensor limpieza horno comedor toalla almohada manta lámpara jabón nevera
+    lavabo lavadora sábana baño antorcha despensa costura terraza canasta cancela
+    limpiar lavar alquilar baúl hacienda domicilio suciedad tubería pañal ladrillo
+    residencia bañera bóveda taco calefacción osito peluche bolsa pasillo escritorio
+    escala escondite ventilador telón copa alquiler cemento escoba leña arquitectura
+    saco porquería timbre ataúd tapa césped morada farol fregadero restaurar garaje
+    cementerio soga paraguas jarrón tornillo cómoda pozo cajón hall martillo
+    hilo pala vivienda alcantarilla sala sótano marco construcción tubo balcón
+    chatarra jarra encendedor plancha cámara moisés molino herramienta solar
+    barra corredor verga cortina sillón comporta casillero balde muro limpia
+    campana chimenea ventilación esponja yeso mármol tumba granja patio mansión
+    granero arca cuna cera cesta manguera carpeta estaca coser palacio cuerda
+    lata mancha hoyo cuba colchón iluminación muda congelador conducto cofre
+    cuchilla quinta edificio saca gafas frasco cobertizo decoración mudanza
+    servilleta duela toco alojamiento dedo cadena bolsillo plástico vidrio
+    mantenimiento navaja soporte palanca hoguera vara sujetador fogata
+    carmen gancho vela hacha vestíbulo ático olla parrilla fachada tejado
+    alfombra rollo pegamento poste finca banca marquesa estufa umbral casero
+    cabaña lavado sierra cerradura portada nudo retrete cartón champú pocilga mudar
+    caja apartamento madera cubierta columna aguja portal basada rincón cepillo
+    barril clavo valla tazón mango trapo recipiente choza aspiradora lecho
+    reconstruir tina tabla linterna bandeja tablero mayordomo porche grifo cúpula
+    colada caldera azotea casita cloaca alcantarillado
+    ramo corral desperdicio torre rancho pete pabellón haz lío palo barrera
+    reconstrucción fosa alarma mula ruina construir
+  clothing: >-
+    ropa zapato bolso cartera mochila lana vestir sombrero camisa camiseta falda
+    pantalón vestido abrigo talla guante suéter blusa calcetín vestuario algodón
+    bufanda chupa pantalones atuendo correa esmoquin pajarito moda cazadora
+    billetera americana banda manga joya chaleco velo pijama tira collar tatuaje
+    gorra capa pulsera encaje traje toca lona terciopelo indiana anillo cinturón
+    bata anteojos peinado broche joyas look casco bota máscara seda sastre jeans
+    elegancia brazalete capucha corbata disfraz tela cuero peluca esclava delantal
+    plumas bob maquillaje maletín pañuelo tejido gorro cordón jersey perfume lentes lazo
+    cristina cinta bragas bikini medallón pamela dije botón desnudo raso satén trama
+  food: >-
+    agua cena hambre cuchillo botella pollo almuerzo desayuno taza vaso azúcar huevo
+    aceite manzana sed arroz ensalada menú tomate zumo cuchara tenedor patata plátano
+    comida comer vino beber cerveza té leche pan queso bebida plato pescado sopa
+    fruta verdura sal gelatina bourbon cocinar cocinero bodega alimento sorbo
+    ginebra limonada bistec grano brindis sándwich tocino harina ternera postre
+    maíz apetito tortilla vegetariano limón brandy banquete refresco langosta
+    mostaza ponche bocadillo soja crema hamburguesa martini conserva
+    jamón pimienta caviar tostada jarabe tequila ajo casera estofado brindar
+    hambriento caramelo gin sartén acompañado alimentar galleta frito soda chile
+    expreso curry zanahoria magdalena caldo chocolate claudia judía maní consumo
+    vainilla albóndigas licor relleno avena ingrediente salvado sushi
+    mermelada lima nuez cenar picante coñac maduro amargo restaurante desayunar
+    pasa jugo grasa calabaza cereal cocinado fría fruto pasta panadería pizza
+    clara salsa cordero salchicha aroma salmón trago barbacoa chef barato
+    asado trigo puré uva sabor miel delicioso borracha dieta congelado podrido
+    crudo aperitivo lechuga masa menta mascar pastel tarta torta filete bocado
+    porción almorzar pienso tragar whisky mantequilla vodka coco atún alimentación
+    col manteca fresa mayonesa rob muera fresco champán cóctel banana bacon cherry
+    vinagre gusto granada chicle suprema cebolla sabroso canela sake cantina
+    bar cafetería culinaria cacao ron puto revolver calentar batido
+  health: >-
+    médico carne hospital dormir descansar despertar escupir sangrado barbilla feto
+    pulso respirar doler curar enfermo palma latido trasplante cabeza corazón mano
+    cuerpo oído boca dolor pie salud espalda ojo piel brazo pierna nariz medicina
+    fiebre hueso diente tos alergia reflejo útero agonía cara hígado consultorio
+    doctor trauma higiénico dormido droga rodilla tobillo orgasmo medicación síntoma
+    cuidar envejecer baba rasguño envenenamiento gripe neumonía pendejo sano remedio
+    psicólogo drogadicto amnesia herir tibia sueño saludable inyección mandíbula
+    psiquiátrico mareado maníaco síndrome bisturí morir nacido debilidad receta
+    consulta codo ano infarto sufrir cura despierto cocaína psiquiatra parto sordo
+    aborto mudo cuido psicológico oreja nuca nervioso cáncer ocupada mental marihuana
+    orina cretino peste cápsula opio corea médula operar rescate dormida cráneo
+    morgue venda urgencia evacuación nervio sedante succión mordisco iris erección
+    cuello cadáver estómago cerebral cirujano dentista crack suero abdomen saliva
+    tic parásito cansancio dolido vagina esqueleto digital vomitar partes sexual
+    inmunidad coca enfermería camilla pastilla antídoto derrame mordida pipí
+    hemorragia órgano morder loco condición mona respiro pis esperma patricia
+    adicción alcohólico virginidad sanguíneo psíquico tóxico psiquiatría paciente
+    lesión impotente sanar pecho tenia bebido embarazo caca colocado manicomio
+    píldora pedo infectado operación corporal matriz célula orinar evacuar abortar
+    herido ambulancia veneno bigote cardíaco paranoico alérgico enfermedad pulmón
+    seno clínica muerte pelo cigarrillo autopsia infección audición ciega ebrio
+    sobredosis fractura pulgar arterial reproducción herida cintura costilla urgencias
+    adrenalina sexo suicidio rehabilitación depresión vientre desmayado diarrea porro
+    mama cuarentena enfermero periodo sobrevivir borracho cirugía virgen doloroso
+    tumor lastimado diagnóstico difunto curado labial previa portador rostro medicamento
+    muslo quirófano salvar lastimar terapia mortal aliento auxilio estrés cojo
+    cicatriz drogado sobrio envenenado veterinario vómito paranoia uña demencia
+    exhausto cadera pellejo fumar rescatar empeorar temblar revivir muerto cabello
+    sensación olor virus barba siesta tabaco riñón demente fuma sexualmente letal
+    pipa resaca yoga tac tacto pene mejilla trastorno ciego sangrar alcohol puño
+    bastón calvo salvavidas aspirina vena inmune abdominales cordura sangre muñeca
+    dental epidemia tratar afeitar trato accidente forense instinto masaje suicida
+    aislamiento cosquillas condón facial semen olfato dosis frente garganta arteria
+    labio faz respiración adicto resfriado barriga chequeo suspiro cerebro vacuna
+    sangriento mamada sudar vida vista emergencia lengua tratamiento shock psicópata
+    terapeuta cigarro sudor fallecido alucinante pálido panza reposo anestesia diabetes
+    alta hombro músculo asma morfina asfixia valgo quimioterapia biopsia torso
+    botiquín vello sanidad talón viruela bazo aneurisma traumatismo leucemia tórax
+    lomo hepatitis pezón transfusión vertebral esquizofrenia próstata face taquicardia
+    artritis hematoma renal prótesis aorta fastidiado metanfetamina concepción
+    insulina colesterol veterinaria proteína ahogado colapso visión socorro psicología
+    cuelgue soplo auxiliar nacer oler aliviar dactilar
+  travel: >-
+    lugar ciudad pueblo izquierda derecha norte salida sur entrada taxi parque oeste esquina
+    mapa plaza camino coche calle hotel dirección tren estación autobús aeropuerto
+    ir salir volver venir llegar subir caminar bajar llevar recorrer descargar
+    trayectoria parabrisas avión curso regresar conducir visitar cruzar viaje asiento
+    parada maleta reserva llegada equipaje pasaporte retraso ida pasaje jet viajero
+    brújula andén carretera viajar boleto aparcamiento gasolinera cumbre monumento
+    ventanilla bordo distrito villa directa limusina kilómetro visa proa descarga
+    simón bitácora pasear girar puente motocicleta caminata escotilla transbordador
+    porta distancia conductor trineo estacionado ancla auto turismo gira flota
+    aldea aterrizaje milla babor volar cima caravana catalina turista marchar ticket
+    partida bahía acera barca tarifa convoy andar playa paradero buque carpa aventón
+    costera recorrido pasada motel localización continente cuesta plazo bus montar
+    guiar carro puerto gasolina helicóptero levante grúa rampa carril paquete
+    freno paseo bote barrio tripulación moto escape estancia yate taxista atajo
+    descenso carroza vagón carajo pista adonde choque maletero deriva desvío
+    albergue pensión posada van frenar rueda tránsito circulación regional
+    atravesar navegar circular nave visita guía refugio marinero suite abismo
+    sendero acudir vía envío autopista afueras micro explorador escolar estacionar
+    barco ruta alejado aéreo tour expedición paracaídas lancha conducción vehículo
+    borda aterrizar escalar primera adónde camión rumbo huella crucero cruce excursión
+    despegue faro occidente aviación colisión transporte volando planeo acompañar
+    acelerar chocar través zona estacionamiento cabina ubicación cuadra automóvil
+    carruaje demora navegación orientación remolque rodeo popa camarote empacar
+    piloto abra vecindario túnel región marea rastreo bocina aduana tranvía segunda
+    bicicleta sitio regreso tráfico canal avenida chofer retorno traslado rubia
+    estribor costa camioneta frontera privada territorio oriente ferrocarril
+    cargamento jeep timón noroeste carreta balsa hangar mar terreno callejón transportar
+    cabalgar atlas centro vuelta exploración recinto vueltas mala alrededor
+    panorama provincia marcha ascender entrar explorar
+  services: >-
+    tarjeta farmacia establecimiento peluquería recepcionista devolución venta compra
+    transacción solicitar cancelar reservar funeraria spa mostrador supermercado
+    mandado recepción tintorería reparto distribución bombero sauna agencia entrego
+    joyería documentación ingreso inscripción póliza portero cartero encargo correos
+    carrito entrega servir basurero carné librería solicitud servicio promoción
+    matrícula conserje hospitalidad lavandería carnicería camarero regalo acogida
+    cliente taquilla cajero suministro pedido regalar expendedora documento despacho
+    papeleo botones buzón entregar repartir ofrecer reparar
+  leisure: >-
+    tienda esquí bingo natación laberinto fiesta invitación juego jugar bailar nadar
+    deporte club damas line jaque diversión center bolos movida casino gimnasia
+    disco rompecabezas bridge juerga ejercicio aventura green barbie gimnasio
+    esquiar distracción señuelo dan dado tirada liga entrenamiento campeón jugador
+    golf entretenimiento póquer árbitro ring baloncesto entrenar go cacería
+    discoteca orgía competición campamento cancha aro circo diana cuartos lotería
+    monta maratón snow karate acampar pesa trofeo coach entrenador tenis ajedrez
+    escondida boxeador pasatiempo roja right patinar pesca boxeo hockey fútbol papá
+    invitar divertir as surf ace pegada torneo estadio bate pub scout nadando round
+    béisbol strike tantos escondidas deportivo aficionado cross atleta anzuelo zoo
+    encantados apostar pasarlo bola piscina balón muñeco empate pony carnada
+    jugada corazones globo competir pelota fan campeonato récord billar ficha
+    recreo carrera atrapada caza ganador colección juguete justa gol taberna
+    entretenido acertijo baile hobby esgrima dojo pescar silbato tiro medalla mira
+    puntería diamantes delantera gane feria correr espada corro
+  learning: >-
+    libro aprender clase mentor dilema diploma introducción veces escuela universidad
+    universitario internado repasar guardería ejemplo experiencia dato borrador estudiar
+    enseñar matemáticas culto estudiantil anotar experto entendido facultad test
+    cuaderno ignorancia corregir asistencia campus revisión practicar instituto
+    lección práctica diccionario preparatoria clases mates corrección seminario libreta
+    secundaria manual educado semestre admisión educación traga leído instructor
+    consultar monitor corregido copiar sabio estudiado ingenio graduado listo
+    atento instrucción primaria traducción sabiduría disciplina investigador
+    estudio alumno ignorar enterar evaluar teoría letra definición comprensión
+    índice recordatorio citación colegio examinar retener reflexionar maestro
+    conferencia especialidad doctorado examen lectura resumen nerd conocimiento
+    matemática decano laboratorio investigar atender competencia enterado graduación
+    bolígrafo aprendizaje miss significar biblioteca lápiz beca evaluación
+    enseñanza habilidad análisis averiguar descifrar ignorante referencia
+    especialista cole resolver revisar interpretar academia deberes consejero
+    aprendiz tesis aula lenguaje conservatorio empresariales conocer contar cuenta
+    descubrir observar maestra profesor
+  work: >-
+    trabajo oficina tarea funcionar jefe incumbencia fabricante empresario empleada
+    proveedor profesional ejecutivo supervisor supervisión analista despido incompetente
+    contratar salario montaje capataz trabajar empresa proyecto empleo empleado sede
+    carnicero puesto cometido ingeniero laboral asignación control director corporación
+    inventario marca organización ayudante dedicación negocio despedido vendedor
+    trabajador torno carpintero contratista compañía dirigir fabricar retirado
+    rinde eléctrica producción mercancía seguimiento diseñador retiro productor
+    jubilación catálogo labor rol comerciante oficio encargado secretario funcionamiento
+    marketing despedir asociación directora comprador nómina equipo encargar
+    cargo asesor arquitecto liderazgo superintendente diligencia maquinaria directiva
+    currículum fábrica comercial técnica vaquero renuncia granjero administrador
+    agricultura obra misión industrial jardinero inspección obrero patrón
+    ocupación ascenso operador vocación planificación repartidor ejercer comercio
+    taller industria rendimiento comodidad suplente colega gerente bienes
+    coordinación ejecutiva sindicato arreglar profesión corporativo incentivo
+    plantilla contratación productividad directivo asesoría mercantil emprendimiento
+    notario farmacéutica energética cuadrilla franquicia gerencia empresarial
+    aseguradora petrolera faena comerciar notaría oficinista cazatalentos deal
+    ajetreado ajetreo gestión almacén formación kit producir agenda sustituto sesión
+    logística
+  money: >-
+    comprar euro dinero pagar precio costar banco mercado costo cambio oferta
+    recibo producto factura descuento cantidad devolver contabilidad bono billete
+    financiero pagaré estafa ganga vender fiscal renta propina provecho patrimonio
+    millonario gratis sueldo subasta botín impuesto perras gasto ingresos
+    intercambio cora dólar guardado san económico cheque crisis paga cobro
+    cobrar prestar valer recompensa bancarrota penique pago coste vuelto prima
+    préstamo montado ganancia arrancado crédito financiar fiar pagado prestado
+    tasa deuda vale tesoro troy valía quita gastar ganado beneficio transferencia
+    importe garantía compensación hipoteca quebrado recaudación invertir
+    depósito capital riqueza luca prosperidad economía tara banquero deber ahorrar
+    dote puja inversión adquirir debido valor luis franco contador monetario mesada
+    guita reembolso subsidio subvención accionista facturación tesorería licitación
+    amortización cerdito recaudador rentabilidad bajista trust dobla moneda
+    fortuna futura cash cuota lujo
+  communication: >-
+    gracias hola hablar adiós pregunta palabra llamar perdón respuesta escuchar entender
+    leer escribir repetir conversar saludo disculpar favor ver teléfono mirar informar
+    explicar mencionar confirmar señalar pedir preguntar anunciar prometer comentar
+    mensaje decir responder contestar llamada información noticia correo reunión
+    voz tono callado secreto broma mentira página mensajero negativa rogar conversación
+    bromear entrevistar son hablado ruego cortesía llanto grito correspondencia
+    charlar consejo copia diálogo expresar escucha anuncio altavoz agradecer frase
+    emitir texto sonido presentación oración aplauso insulto demandar habla
+    comentario sugerir entrevista gesto llamado descripción telegrama sugerencia
+    comunicado interrupción folleto describir despedida chiste advertencia signo
+    alias revelación autógrafo rumor eco lema explicación promesa post lloro
+    declarar petición saludar discurso malentendido letrero gritar contacto directo
+    símbolo cartel apodo recomendación oral fax reportar diga adios salve aló
+    telefónico contesta disculpa comunicación contactar enviar etiqueta
+    bocas expresión aclarar pronunciar avisar recado lista silencio señal nota dejo
+    bienvenida ruido aviso sonar acento contenido informante subtítulo novedad
+    énfasis mueca eslogan pitido vistazo confirmación zumbido pito grita
+    mirada carta
+  time: >-
+    ahora noche mañana hoy tarde ayer viernes domingo sábado lunes jueves martes miércoles
+    tiempo día hora semana año minuto mes nunca siempre temprano antes después mientras
+    pausa ocasionalmente trimestre cita segundo cumpleaños eternamente verano habitual
+    permanentemente enero víspera mediados era invierno evento originalmente regularmente
+    temporada aún temporalmente aniversario frecuencia nocturno ciclo siglo reloj diario
+    alba anterior atardecer marzo inicial décimo amanecer empiezo abril actual
+    cuándo últimamente am instante anoche ocasión septiembre inicio atrasado
+    enseguida mayo generalmente quinto permanente hace período todavía prisa
+    inmediatamente comienzo anteriormente primavera julio raramente vez actualmente
+    periódico nuevamente febrero usual entonces avanzar durar rato mediodía
+    octubre reciente sexto momento constantemente década eterno previsto pasado cuando
+    seguido rutina paro pronto tardar espera descanso agosto previamente siguiente
+    ex oportunidad data noviembre eternidad otoño término inminente octavo futuro
+    actualidad turno medianoche junio calendario madrugada posterior continuamente
+    jornada ya finalmente recientemente etapa anual séptimo puntual anochecer luego
+    jamás usualmente previo receso época recién diciembre velada terminal acontecimiento
+    presente fase empiece ronda
+  actions: >-
+    ayuda apoyo agarre captura alcance impacto flujo empuje eliminación transformación
+    empeño búsqueda rastro aparición fragmento movimiento progreso imitación estabilidad
+    fuga cesar éxito acabo saque manejo triunfo reducción huida paso acto corte
+    agujero sección pieza actividad selección acceso procedimiento disposición
+    abandono parche reemplazar brillar golpe busca arreglo desarrollo
+    estructura recuperación puñado cuelga intervención puñetazo transición
+    actualización resultado suelta puesta lance golpeo caída patada esfuerzo
+    suspensión apertura destrucción avance aplicación cortada corta pare
+    empujón contención llenado ausencia mejora reacción toque combinación
+    aumento adelanto expansión arranque reemplazo maniobra encuentro intento fracaso
+    acción creación conexión carga proceso mezcla quite ruptura lote preparación
+    bulto uso cierre continuación obstrucción situación abierta salto
+    lanzamiento giro desaparición extracción rotación sobresalir obstáculo pérdida
+    tomada sostén respaldo cobertura explosión cierro pisa llegue logro
+    separación bofetada resistencia vencida allanamiento brecha alboroto
+    restos sector apretón sentada repente deja raja
+  description: >-
+    bien claro mal despacio nuevo viejo grande pequeño lejos negro bonito blanco color
+    azul rojo verde tamaño feo amarillo más menos café dulce frío caliente efectivo
+    naranja recto resistente desconectado ajuste flexible origen brillo rosado castaño
+    cereza límite punta pinta completo delgado espuma vertical serio suficiente
+    imposible enorme grandioso típico estable gota artificial defecto eficiente casual
+    severo chin cierto punto fuerte resto encima doble absoluto máximo global
+    ausente pizca adecuadamente cuadrante relativamente lento borde ordenado cálido
+    amplio grueso equivalente mínimo revés costado constante intenso estándar género
+    elevado acertado pulgada mismo medio modo necesario precioso aparte gris margen
+    profundidad concreto remoto precisión potente estrecho celeste delantero
+    paré gráfico final debajo maravilloso fantástico técnicamente extremadamente
+    inusual portátil marcado acondicionado libra hábil innecesario presto
+    infame belleza parecido roto altura magnífico físico semejante ligero hueco
+    colorado hondo confiable formidable secundario cualidad posible alto real
+    abierto entero original material móvil quedo blando mojado dorado específico
+    promedio paralelo bueno forma especial posición potencial bello apariencia
+    exceso insignificante fenomenal pentágono rapidez fluido múltiple caluroso
+    lado duro trasero nivel firme capacidad volumen líquido rubio fino plana
+    leve reducido intacto metálico abundancia non transparente sexta malo verdadero
+    difícil fondo total central exterior apropiado inferior moderno básico suavemente
+    universal distante tope violado veloz sofisticado altitud tinto centímetro excesivo
+    manera raro montón área oscuridad gordo útil objeto placa trozo incapaz activo
+    raya normalidad frontal pureza exclusivo filo acogedor flanco superior
+    mejor rápido general acá suficientemente limpio corto marrón claridad burbuja
+    lateral agudo morado totalidad chico fácil luz allá junto base interior común
+    sucio fila superficie puro docena preciso suelto valioso separado interno
+    individuo reservado práctico variedad moreno inmenso longitud masivo gama
+    cuadro casi arriba perfecto simple particular mate pesado lentamente breve
+    delicado top altamente sólido facilidad aceptable contable individual peculiar
+    impecable etcétera potencialmente correcto igual derecho largo capaz exacto
+    estupendo solamente principal uniforme cómodo despejado ideal extremo vago
+    lejano ancho inodoro cuadrado sumo tercio pinto plateado calidad basa parte
+    presupuesto sable sesgo desorden
+    detalle presencia excelencia pedazo perfección quiebra actitud gravedad sobra
+    elegido cosa tipo falta mayoría vera cabo poca
+  feelings: >-
+    sentir placer reír gustar desear preferir cansado preocupado contento arrepentimiento
+    arrepentido feliz sorpresa amar enloquecer alterado insensible simpatía ganas
+    desesperación embarazoso consciencia gruñón esperanza locamente inseguro enamorado
+    vergonzoso desesperadamente cabreado agrado aguafiestas preocupar molesto olvido
+    rencor revancha enfadar beso lástima encanto sufrimiento furioso horror amabilidad
+    vanidad cólera sospechar aburrido simpático agradecimiento conmovedor lujuria
+    amoroso sorprender ofender alejar reverencia aburrimiento enfado soñar apreciar
+    celos entusiasmo decepción down frustrante excitado estresante reconfortante impactante
+    besar ido emocionante fascinante patético obsesionado sospecho animado codicia
+    poseído vengar desgraciado risa arrogante tímido tranquilidad optimista angustia
+    humillación resentimiento odiar vergüenza adorable incómodo desesperado excitante
+    furia inspiración impaciente sensibilidad felizmente decepcionante enojo llorar
+    disfrutar perdonar calma sonrisa gracia sospecha confuso aterrador ofendido
+    sensual amistoso perseguido corazonada impresionar suerte gracioso valiente
+    cobarde orgullo compasión sensible impulso envidia sentimental satisfacción
+    espeluznante deseado desprecio tenso irresistible entusiasta voluntad extrañar
+    sentido humor enfadado asco romántico personalidad fantasía soñado admirador
+    calmado crueldad remordimiento agitado indiferente alegría sonreír cariño
+    agradable peligroso agradecido malvado consuelo ambición ingenuo éxtasis
+    modesto motivación cariñoso humillado inquieto capricho aliviado escalofriante
+    temple comprensivo ira pesadilla tontería terror leal ilusión decepcionado
+    bondad agallas prudente tranquilamente ternura subconsciente sentimiento
+    abrazo alegre emocional satisfecho confiado lamentable infiel emoción molestar
+    encantar lamento felicidad harto sorprendido estupidez convencido susto nostalgia
+    arrogancia autoestima admiración relajante coraje dispuesto satisfacer horrible
+    encantado quieto amante sorprendente molestia alivio soledad creído impresionado
+    espantoso dulzura valentía emocionalmente dicha tentación amablemente agotador
+    estresado mentalidad amor tristeza seducir animar bienvenido confianza enojado
+    pasión aprecio egoísta avergonzado ardiente obsesión hostil sinceridad
+    conmoción devoción irritante fastidio humildad rabia confiar orgulloso bravo
+    desgracia encantador afortunado sincero considerado presentimiento ansioso
+    disfrute atrevido generosidad distraído trance perezoso meditación miedo temor
+    asustado maravilla ánimo deprimido humillante hot amigable intuición necesitado
+    apasionado entusiasmado inspirado disgustado implacable odio duelo interés carácter
+    calmar complacer lamentar gana venganza celoso tensión solitario preocupación
+    emocionado infeliz ego pacífico agresivo fanático burla lunático relajado
+    chistoso estima inquietante deseo temer asustar maldito locura magia paciencia
+    interesado asombroso generoso humilde maldad cuidadoso gratitud deprimente
+    desafortunado chulo luto glorioso temperamento travieso frustración ansiedad
+    apuro aguante merced perdición culpa aprieto miseria abrazar callar triste
+  reasoning: >-
+    pensar recordar olvidar probar elegir descartar imaginar decidir comprender
+    idea problema plan solución razón porqué cuestión desafío consciente impresión
+    descubrimiento consideración posesión núcleo categoría dominio ética
+    concepto filosofía demostración anomalía razonar verificar estrategia enfoque contexto
+    hipótesis creer analizar medir objetivo reconocimiento evidente chance causa
+    investigación obvio juicio distinguir predecir coincidencia muestra circunstancia
+    motivo reconocer pretender detectar presumir atención diferencia aspecto azar
+    función fenómeno crecimiento propósito memoria curiosidad versión noción
+    entendimiento posibilidad intención meta pensamiento falla evidentemente suposición
+    observador indicio imaginario evidencia experimentar escoger principio necesidad
+    prioridad concentración comprensible adivinar conciencia racional solucionar
+    discreción comparar realidad duda efecto modelo importancia
+    alternativa certeza lógico crítico utilidad percepción sensato cifra importar
+    dividir escenario fallo iniciativa vínculo intriga lógica comprobar caso talento
+    ventaja perfil influencia esencia enlace resolución improbable precaución
+    conclusión opción aparentemente método secuencia elemento relevante eficaz
+    manipulación suponer casualidad existencia absurdo mérito evolución
+    cálculo tolerancia irracional equivocación inteligencia mente error excusa
+    división perspectiva sustancia experimento calcular recuento simulación probabilidad
+    parecer considerar decisión genio misterio ambiente confusión factor dificultad
+    comparación consecuencia determinar dudar medida observación imaginación reto
+    excepción criterio enigma invento incertidumbre estimación síntesis causalidad
+    determinación pro riesgo atracción espacio caos recuerdo unidad datos balance
+  grammar: >-
+    inglés español aquí fuera allí dentro cerca número hasta primero último tercero
+    tanto que yo usted ustedes ello y en un les ellas suyas quinientos noveno
+    conmigo contigo consigo como ni cual por otro cualquiera montones diecisiete
+    qué nuestro ninguno chi la vos me según sesenta el una mío ante trece las
+    los e alguno tal siquiera demás ambos se sobre cuanto nosotras dieciséis
+    cuánto mitad delante te sin éste varios noventa con alguien mil u veinticinco
+    aun miles para nosotros tuyo ciento dieciocho donde cuán do pero nadie
+    tras doce dónde si nada pues excepto suyos aquél su o contra ése catorce
+    cuan le ella cuál aquel cuyo ochenta también todo quién os suyo cuarenta
+    doscientos condicional algo sus aunque vuestro quienquiera setenta coma
+    tú mí mas cuántas mediante vosotras puntuación media millón regla
+  society: >-
+    inmigración voluntario dignidad prestigio reputación unión decencia vicio honestidad
+    responsabilidad miembro estatus grupo integridad boda social sociedad
+    público donación virtud fidelidad moralidad humanidad privacidad acoso
+    libertad inocencia respetar respeto comunitario colectivo compromiso
+    confidencialidad cooperar colaborar cooperación tendencia responsable élite
+    públicamente relación lealtad fama prostitución divorcio caridad herencia
+    privilegio colaboración población costumbre decente orfanato legado honra
+    contribución bienestar comportamiento racista pobreza participación honor paz
+    igualdad tribal mendigo santidad propiedad conducta popularidad burdel
+  institutions: >-
+    milicia masacre fugitivo tregua aliado diplomático electoral artillería
+    pelear culpar dominar espiar expulsar luchar escudo chantaje munición motín revuelta
+    batalla disputa crimen bala espía autorización fortaleza tirador secuestrado
+    escritura recurso reino ministerio interrogatorio agresión persecución escopeta
+    reina arresto castigo detenido custodia rifle conflicto bloque federación ofensiva
+    expulsión civil prisión líder combate conspiración rebelión canciller falsificación
+    mexicana prohibición fusil ataque príncipe sheriff registro licencia guarda junta
+    sacerdote traición embajador comando delincuente misil calabozo redada municipal
+    presidencia revolucionario parroquia armamento infiltrado institución político
+    matar perseguir interrogar abogado permiso inocente jurado disparo marina gobernador
+    senador pirata soborno legítimo consulado ley avanzada bufete culpable inspector
+    amenaza enviado demanda testimonio congreso escuadrón acusación mafia multa
+    detención castigado terrorismo oposición estafador acta magistrado gobierno
+    considerando obedecer ejército peligro trampa ilegal patrulla dispositivo terrorista
+    pandilla ciudadano ejecución cómplice bloqueo consentimiento corrupción matón
+    protesto amenazado corrupto votar asamblea engañar confesar testificar acordar
+    comandante internacional escándalo gatillo nazi negociación bombardeo convicto
+    impostor mandato extorsión reformatorio juez fianza acceder capturar castigar
+    coronel princesa ladrón criminal identificación testamento sello embajada derrota
+    norma convención congresista eminencia marine apelación defensiva votación rendir
+    victoria robo acusado condado confesión rango certificado obispo independencia
+    régimen espionaje veto voto denuncia disparar mentir presionar justificar anular
+    arma asesino testigo vigilancia arrestado secuestro juramento legalmente revólver
+    imperial arsenal tributo confidencial senado alférez brigada detener negociar
+    arrestar armar estado embargo teniente departamento traidor fraude almirante pacto
+    emboscada pleno bandido secuestrador atentado reparación peón marcial demócrata
+    sabotaje colt naval asesinar acusar protestar seguridad oficial bomba mando ministro
+    federal emperador prisionero condenado propietario contrabando penal encuesta
+    horca expediente constitución búnker fiscalía sacrificar secuestrar queda detective
+    guardia mundial tratado comité alianza democracia rehén vicepresidente comisionado
+    autorizado culpabilidad matanza exilio realeza acosador clasificado guerra coartada
+    parlamento vigilar combatir gobernar agente daño asesinato país pase pistola
+    contrato castillo nación alteza delito moral bandera protocolo ayuntamiento
+    injusto armadura gabinete atraco jura ejecutado tropa implicado intestino
+    clemencia justicia juzgado policía robar identificar vencer negar violar jurar
+    cárcel capitán rey víctima sargento majestad soldado mentiroso autoridad paliza
+    comisaría asalto prohibido comisión cuartel guardián judicial invasión fundación
+    regimiento pólvora bando negligencia elección juzgar orden defender rastrear
+    invadir amenazar toma protección patria candidato condena representante escolta
+    insignia manifestación diputado mara reglamento política administración complot
+    conquistar denunciar insultar desafiar defensa enemigo papa homicidio policial
+    tiroteo tortura alguacil preso aprobación protesta homicida francotirador
+    infantería veterano tribunal estatal justo celda ametralladora asegurar
+    registrar proponer declaración firma campaña violencia esposas violación
+    sentencia lanza enseña abuso retirada rebelde declarado concejal jurisdicción
+    duquesa presidencial verdugo agresor ofensa enfrentamiento delegación legal
+    salva ingresar funcionario atacar regular traicionar recurrir pelea lucha alcalde
+    conde armada armado obligado huelga república liberación obligación asilo
+    mariscal batallón injusticia moción pistolero reforma comisario pena veredicto
+    legítima cumplimiento auditoría demandante defendido venia destacamento designado
+    banquillo afirmar demandado burocracia desacato fideicomiso cartucho comodoro
+    indulto destacar primarias pleito inadmisible mortero abogacía progresista
+    retracto comparecer entablar escuadrilla comparecencia acusador incidente flecha
+    daga lord huido juro corona baja látigo arco pica rastreador
+    salvador concurso señoría trono firmar abusar barón baronesa condesa duque cuarta
+  media: >-
+    película publicidad porno nueva informe prensa televisión tv foto edición estreno
+    grabar grabado animación emisión imagen televisor artículo exclusiva boletín
+    reportaje transmitir publicar grabación reporte cine subtitulado transmisión
+    serie archivo propaganda inauguración reportero radio filmación medios episodio
+    web editorial fotografía documental pornografía audio audiencia programa editor
+    revista locutor tele video flash blog off serial periodista filmar pantalla teme
+    rodaje discográfica disquera
+  technology: >-
+    email grabadora satélite código plataforma interruptor detector transmisor instalación
+    batería servidor apagón ping conectar mecánico hierro plomo online programación
+    foco instrumento eléctrico electrónico micrófono pila cohete chispa interferencia
+    motor cable sonda mecánica imprimir presión petróleo electrónica acelerador contraseña
+    máquina instalar tanque prototipo repuesto automáticamente internet chip cobre
+    computadora activar rayo válvula neumático ordenador refrigerador filtro
+    cargador electricidad detonador antena imprenta aparato clave software tractor
+    virtual artefacto reactor ejecutar circuito escáner cascos robot ingeniería
+    automático mecanismo sincronización aluminio láser alambre proyección acero
+    radar técnico autenticar almacenamiento algoritmo componente infraestructura
+    configuración voltaje interfaz variable cifrado procesador encriptación
+    compatibilidad latencia redundancia automatización parámetro sirena sensor
+    conectividad depurador informática informático disparador contestadora
+    dinamita gata escoria panel inventar
+  nature: >-
+    suelo montaña orilla tormenta ardilla cebo terremoto perpetua extensión perla concha
+    charco lluvia raíz lago contaminación jamaica mono nido carbón canguro lagarto
+    clima piña zorro roble chivo colina jungla acantilado cañón hoja pavo pato
+    pagué brasil halcón mata vapor oveja cruza ramón corteza haya monte cueva
+    rica cosecha pantano cultivar naturaleza manada rebaño gato mato tigre capullo
+    araña perrito gatito jorge arroyo vega catástrofe murciélago viento cometa caballo
+    especie presa caí ballena semilla volcán trueno semental arcilla animal llover
+    oso humo león cría paisaje redonda tornado laguna castor soleado entorno
+    piedra bestia mina buscarla cabra tortuga paja pingüino carolina rara hielo
+    serpiente plaga lodo atlántico mustang luna golfo fuego salvaje ratón tiburón
+    helada reno aurora pulpo tropical buey maura río ave jade polvo gallina nube
+    cobra gallo cachorro huracán nevada cocodrilo relámpago cultivo goma cazar
+    estrella maría desierto flor vaca pico jaula águila pega submarino escrita
+    tronco martín topo organismo pino pasto búfalo mineral cucaracha puerco bosque
+    barro plantar conservar aire rosa cristal temperatura conejo pluma estanque
+    esmeralda red burro morena extraña guapo pongo criatura can diamante cuervo
+    terrestre viviente árbol quemada toro selva plena elefante mosca lava paloma
+    margarita flora espina loro cola tierra nieve dinosaurio llama
+    atmósfera estelar rana lunar zoológico cangrejo ciervo lila humedad erupción
+    heno meteorito planta brote planeta isla cabrón lobo roca valle quema gusano
+    mascota establo horizonte pizarra len escorpión borra yegua arena noto coral
+    verme china lisa ala ola bicho rama marino mariposa laurel cuerno abeja mutante
+    sol pájaro racha campo desastre fuente polla marica niebla barata brisa
+    dorada gorila caña grieta zanja tuya océano insecto vegetal polo hierba pata
+    nasa camello panda víbora alce caribe inundación guarida cayo ecosistema eclipse
+    mapache asteroide invernadero petra cáscara protectora cachondo fiera escapo
+    hábitat puma perrera polen tempestad arrecife ría potro sembrar biodiversidad
+    tala injerto cielo sombra incendio bozal pez perro
+  science: >-
+    peso balística compuesto módulo triángulo kilo calibre fórmula astronauta telescopio
+    operando litro nova gas círculo potencia dimensión tonelada ángulo materia newton
+    espectro cubo sistema mediana universo suma mercurio carbono hidrógeno et esfera
+    eje velocidad onda fuerza genética perímetro metro biológico línea calor químico
+    celular gen intensidad equilibrio recta ecuación biología energía radiación galaxia
+    órbita fibra pirámide plasma científico ciencia oxígeno imán fusión metal
+    química porcentaje experimental espacial curva resonancia cosmos genético física
+    magnitud microscopio proporción estadística intervalo metabolismo cal
+    desviación dispersión correlación metodología gravitación fotosíntesis
+    replicación termodinámica reproducibilidad cianuro bacteria densidad dina
+    enana metano nebulosa dióxido átomo partícula problemática molécula enzima
+    medición frita oro bronce calentamiento romana pesar
+  history: >-
+    faraón imperio antiguo primitivo esclavo villano vendo legión winchester
+    colonia caballería escriba cruzada civilización romano zar alcaide sultán castro
+    esclavitud nobleza soviético reinado historia conquista histórico momia
+    césar antigüedad dinastía polis napoleón
+  culture: >-
+    turco profecía amuleto catedral mesías hada judas holandés alien italiano milagro
+    mito africano ruso rosario mártir americano estadounidense sagrado diosa himno
+    asiático diablo judío sueco espíritu manda piedad entierro ritual desfile
+    adivino fe santo bendito convento avatar vudú islam tradición sacramento cultura
+    altar norteamericano gitano buda celestial resurrección creyente religión monstruo
+    chino biblia indio mágico pascua carnaval hindú pánico rabino secta poción
+    renacimiento ídolo divino salvación héroe bruja noble heroína reverendo inmortal
+    hostia escocés monasterio legendario romero fantasma oriental brujo sobrenatural
+    cristo pecado católico homenaje vaticano monseñor británico maya
+    santuario todopoderoso capilla profeta infernal iglesia dragón cristiano griego
+    hechicero inmortalidad zen alma ángel francés paraíso misa sermón satanás dea
+    seo coreano comunión detente alemán templo museo mago latín
+    karma maldición patas espiritual monje apocalipsis canadiense brujería europeo
+    religioso dios demonio cruz bendición japonés irlandés polaco musulmán adán
+    redención cultural oculto pope hippie vampiro sepultura infierno destino
+    misericordia sacrificio monja sino zombi celebrar honrar orar
+  arts: >-
+    música cantar pintar country alemana alabado pintado charles piano guitarra
+    artístico estatua melodía cante escultura exponer estrado jazz marioneta danza
+    plástica ritmo coro representación fotógrafo trompeta premio set tango orquesta
+    arte show exhibición blanca blues rock house negra armonía teatro actor
+    ballet comediante comedia artista actuación rap aria pintura vito canta pintor
+    gala composición dibujar improvisar interpretación diseño tony karaoke
+    musical concierto revelado dibujo actriz canto exposición álbum galería
+    compositor pianista vals drag flauta camerino escena cómico protagonista viola
+    mi re ensayar pop espectáculo retrato bailarín tambor canción músico cantante
+    violín ópera soul fa pintada caricatura mosaico performance diseñar trío figura
+    celebridad
+  argument: >-
+    negación garantizar prohibir reclamar aprobar enfrentar rechazar
+    insistir demostrar prueba cuestionar creencia táctica renunciar discusión
+    objeción rechazo enmienda afirmativo debate discutir acuerdo crítica queja
+    creíble grandeza desacuerdo proposición conque formal neutral tolerar postura
+    irrelevante credibilidad conforme convencer rival crucial fundamental pretexto
+    significado ironía además contrario mentido convincente esquema argumento
+    abordar oponente estrictamente admitir fingir quejarse propuesta máxima
+    razonable sinvergüenza abiertamente hipócrita opinión engaño truco
+  register: >-
+    oh viste oye sale po eh yes ah cielos ostras queriendo mutuamente punk vamos
+    digo bum francamente vulgar cursi farsante sé buenas copiado he menudo
+    grosero renuncio obstante bi sabes hey oiga chao royal pálida stripper
+    puede cuidado oigan piérdete mae cool inclusive va basta siga stop like
+    tarado rayos guay idiota sumamente regalado chiflado mio aguas hala vieja
+    patán jaleo descuida wow arre loca doña irónico dese caramba uf dale
+    efectivamente ca so acaso canalla co felicidades sip ojalá we manzanas nomás
+    narices ey hurra coño jodidamente boy gil maricón f sinceramente payaso bobo
+    ja bay súper bajado cortés informal di jo fu pilas bledo sabelotodo aguanta
+    aleluya guau che literalmente honestamente nelson notas contestador
+    pos vaya demonios venga diablos bo pum mateo uh ji bah joda okey insolente ay
+    enhorabuena perra rudo disculpe caray ajá nop don vientos milord vip anda
+    cumplido enseñado huy venceremos touché olé figurado facha tacaño boom tarzán rusa
+  literature: >-
+    duende ingenua gloria poeta redacción título romance tragedia tell autor poema
+    ficción literatura tinta trágico tomo narrador tema metáfora capítulo
+    letras cuento relato leyenda poesía escritor manuscrito farsa dramática
+    rima novela ensayo drama superhéroe épica cinema crónica retórica monólogo
+    parodia fábula desenlace simbolismo sátira estrofa soneto ambigüedad alusión
+    aliteración lirismo dramaturgia símil alegoría antagonista literario versículo
+    cyborg narrativa caracter pitufo fáser ardid novedoso thriller métrica prosodia
+    cenicienta autora
+sense_overrides:
+  # Restore meaning hidden by the source's hierarchical gloss headings.
+  en-venir-es-verb-L5dksWqy: {topic: travel, ds: "to come toward a place or the speaker"}
+  en-triste-es-adj-gfLyxi3J: {topic: feelings, ds: "sad, unhappy (temporary feeling)"}
+  en-derecha-es-noun-gyl48rGM: {topic: travel, ds: "right (direction)"}
+  en-clara-es-noun-pyhjwi7k: {topic: food, ds: "egg white"}
+  en-tamaño-es-adj-8oxx26hJ: {topic: description, ds: "so big or small; equivalent in size (adjective)", level: literary}
+  en-evitar-es-verb-lEJO0~~c: {topic: actions, ds: "to help doing (in negatives: cannot help doing)"}
+  en-dactilar-es-adj-Ws0B0nsJ: {topic: health, ds: "relating to, or performed with, a finger"}
+  en-digital-es-adj-yRRpxCLc: {topic: health, ds: "relating to the fingers or toes"}
+  en-horario-es-adj-KypR33Ch: {topic: time, ds: "hourly", level: 15}
+  en-reparar-es-verb-gUV2X7ww: {topic: reasoning, ds: "to notice; to realize; to become aware", level: 12}
+  en-carne-es-noun-inG5F08t: {topic: health, ds: "flesh, the soft part of a body covering the bones", level: 6}
+  en-tienda-es-noun-KpgQy3Ex: {topic: leisure, ds: "tent", level: 7}
+  en-ribera-es-noun-kPhXAjpI: {topic: nature, ds: "riverbank"}
+  en-boom-es-noun-lu03NeAM: {topic: register, ds: "boom (sound)"}
+  en-cal-es-noun-W5PyvKk5: {topic: science, ds: "lime (calcium oxide)"}
+  en-sirena-es-noun-0xRY8Dnz: {topic: technology, ds: "siren (device)"}
+  en-tarzán-es-noun-TGn7JA5e: {topic: register, ds: "a strong, wild, attractive man (figurative Tarzan)"}
+  en-corro-es-noun-MJYcGfVB: {topic: leisure, ds: "circle of people holding hands"}
+  # Explicit exceptions prevent a core lemma's topic leaking into another sense.
+  en-banco-es-noun-~nA5QUWk: {topic: money, ds: "bank (financial institution)"}
+  en-banco-es-noun-GzLCjLOM: {topic: home, ds: "bench (seat)"}
+  en-café-es-adj-XrZ~n4QJ: {topic: description, ds: "brown (color)", level: 9}
+  en-café-es-noun-NykNdKxN: {topic: food, ds: "coffee (drink)"}
+  en-cuenta-es-noun-EP~D4KOj: {topic: learning, ds: "count, tally"}
+  en-cuenta-es-noun-YjIQFnVT: {topic: money, ds: "bill or check to pay"}
+  en-efectivo-es-adj-hCKQ58w5: {topic: description, ds: "real, true", level: 14}
+  en-efectivo-es-noun-PZrYXSa~: {topic: money, ds: "cash (money)"}
+  en-baño-es-noun-O9oEd7E7: {topic: home, ds: "bath", level: 5}
+  en-baño-es-noun-NIZXfNkF: {topic: travel, ds: "bathroom or restroom"}
+  en-billete-es-noun-czlc1GGn: {topic: money, ds: "banknote, bill", level: 6}
+  en-billete-es-noun-FAaUKRUK: {topic: travel, ds: "ticket (transport or admission)"}
+  en-talla-es-noun-zNy-hG89: {topic: description, ds: "size"}
+  en-talla-es-noun-HoBN9BQ4: {topic: clothing, ds: "clothing size"}
+  en-querer-es-verb-zg9jBf7V: {topic: feelings, ds: "to love or be fond of a person"}
+  en-saber-es-verb-InShI8zR: {topic: learning, ds: "to know or understand a fact"}
+  en-saber-es-verb-SSQqdaOw: {topic: learning, ds: "to know how to do something"}
+  en-saber-es-verb-NXUpMkBR: {topic: food, ds: "to taste or have a flavor"}
+  en-estar-es-verb-Z8zglYsY: {topic: grammar, ds: "to be in a state or condition"}
+  en-tiempo-es-noun-M2B0gF~I: {topic: time, ds: "time"}
+  en-tiempo-es-noun-IxJsmxBM: {topic: nature, ds: "weather"}
+  en-llevar-es-verb-kwlGAh5k: {topic: travel, ds: "to take somewhere"}
+  en-llevar-es-verb-kt44dpFC: {topic: actions, ds: "to carry"}
+  en-llevar-es-verb-voMHoymm: {topic: clothing, ds: "to wear clothing"}
+  en-llevar-es-verb-fyLN0Rff: {topic: time, ds: "to have spent time doing something"}
+  en-quedar-es-verb-V60wf7vC: {topic: communication, ds: "to arrange to meet someone"}
+  en-quedar-es-verb-qLOSjM7o: {topic: actions, ds: "to be left or remain"}
+  en-quedar-es-verb-~yNlWRah: {topic: travel, ds: "to stay (pronominal quedarse)"}
+  en-pasar-es-verb-5u2vbnWW: {topic: time, ds: "to happen"}
+  en-pasar-es-verb-4093WM7t: {topic: time, ds: "to spend time"}
+  en-tomar-es-verb-l6rv7XrU: {topic: food, ds: "to drink or take food or medicine"}
+  en-devolver-es-verb-zyy20ZGO: {topic: money, ds: "to pay back, repay"}
+  en-devolver-es-verb-6ocPpgZe: {topic: services, ds: "to return or give back something"}
+  en-probar-es-verb-4KqD8dzT: {topic: reasoning, ds: "to prove"}
+  en-probar-es-verb-hMK3odFk: {topic: actions, ds: "to try out or sample something"}
+  en-trama-es-noun-F0JieO32: {topic: clothing, ds: "weave, weft"}
+  en-trama-es-noun-52Haaarh: {topic: literature, ds: "plot"}
+  en-organismo-es-noun-M91KXl1v: {topic: nature, ds: "organism, creature"}
+  en-organismo-es-noun-2XB4q4zo: {topic: health, ds: "human body"}
+  en-dispositivo-es-adj-gfuJcMof: {topic: institutions, ds: "dispositive, regulatory"}
+  en-dispositivo-es-noun-4bwREa-K: {topic: technology, ds: "appliance, device, equipment"}
+  en-presupuesto-es-adj-00Ltgi5V: {topic: description, ds: "estimated"}
+  en-presupuesto-es-noun-CvlqjtYi: {topic: money, ds: "budget"}
+  en-balance-es-noun-fEXFkR~s: {topic: reasoning, ds: "balance; weighing up"}
+  en-balance-es-noun-V1HgSOtv: {topic: work, ds: "balance"}
+  en-rima-es-noun-HHnOf~2S: {topic: literature, ds: "rhyme"}
+  en-rima-es-noun-uMnnYIeW: {topic: literature, ds: "poems, poetry"}
+  en-verso-es-adj-tkRkWCCz: {topic: learning, ds: "versed"}
+  en-verso-es-noun-wRLm1cnt: {topic: literature, ds: "verse, poem"}
+  en-orden-es-noun-UpnvVVk8: {topic: institutions, ds: "order or command (feminine)"}
+  en-orden-es-noun-ToBJo6Ze: {topic: reasoning, ds: "order or sequence (masculine)"}
+  # Useful specialist clusters, not a holding area for rejected homographs.
+  # Clinical language, quantitative reasoning, and physical measurement.
+  en-corea-es-noun-Q4sou8eF: {topic: health, ds: "chorea", level: scientific}
+  en-balística-es-noun-c7mEQHps: {topic: science, ds: "ballistics", level: scientific}
+  en-mediana-es-noun-eJamF6eF: {topic: science, ds: "median", level: scientific}
+  en-operando-es-noun-CwgdJPf1: {topic: science, ds: "operand", level: scientific}
+  en-newton-es-noun-~SFoGM7L: {topic: science, ds: "newton (unit of force)", level: scientific}
+  en-tac-es-noun-FbiaVpR0: {topic: health, ds: "CAT scan", level: scientific}
+  en-tibia-es-noun-RZHezx-D: {topic: health, ds: "tibia, shinbone", level: scientific}
+  en-envenenamiento-es-noun-4B~IaHeT: {topic: health, ds: "envenomation", level: scientific}
+  # Reading navigation and equipment instructions; common road travel stays core.
+  en-carta-es-noun-YL6YYXUP: {topic: travel, ds: "map (cartographic sense)", level: technical}
+  en-bitácora-es-noun-KrhSdrL6: {topic: travel, ds: "binnacle (housing for a ship's compass)", level: technical}
+  en-babor-es-noun-BJYqgijc: {topic: travel, ds: "port (left side of a vessel)", level: technical}
+  en-estribor-es-noun-AB3VI675: {topic: travel, ds: "starboard", level: technical}
+  en-proa-es-noun-SlVdx2k7: {topic: travel, ds: "bow, prow", level: technical}
+  en-popa-es-noun-yVZB9Rzb: {topic: travel, ds: "stern of a vessel", level: technical}
+  en-borda-es-noun--c53IU64: {topic: travel, ds: "gunwale; rail of a boat", level: technical}
+  en-porta-es-noun-TKBnv5uO: {topic: travel, ds: "porthole", level: technical}
+  en-timón-es-noun-N9gPQ~Q8: {topic: travel, ds: "rudder", level: technical}
+  en-directa-es-noun-OwEkW~Vf: {topic: technology, ds: "high gear", level: technical}
+  en-catalina-es-noun-jdNsD36j: {topic: technology, ds: "crankset; chainset", level: technical}
+  en-gata-es-noun-Q0h9TVls: {topic: technology, ds: "carjack, jack", level: technical}
+  # Contracts, legal documents, and governance of an organization.
+  en-escritura-es-noun-xHLH9rQT: {topic: institutions, ds: "document, deed", level: professional}
+  en-recurso-es-noun-vZmK39Ru: {topic: institutions, ds: "writ", level: professional}
+  en-pagaré-es-noun-UG1rU1Gb: {topic: money, ds: "promissory note, IOU", level: professional}
+  en-fianza-es-noun-ZEDhlIRX: {topic: institutions, ds: "suretyship", level: professional}
+  en-legítima-es-noun-DsfBKP2D: {topic: institutions, ds: "legitime; forced heirship", level: professional}
+  en-ejecutiva-es-noun-UUsB~j3B: {topic: work, ds: "board of executives", level: professional}
+  # The existing literary branch also covers arts and music. These form a
+  # notation cluster alongside its already selected fa and conservatorio.
+  en-do-es-noun-TfQ0ecVq: {topic: arts, ds: "do (musical note)", level: literary}
+  en-mi-es-noun-7uHBreZS: {topic: arts, ds: "mi (musical note)", level: literary}
+  en-re-es-noun-OsHsvSIg: {topic: arts, ds: "re (musical note)", level: literary}
+  en-blanca-es-noun-x5RzLebZ: {topic: arts, ds: "minim, half note", level: literary}
+  en-negra-es-noun-J9AFBp~o: {topic: arts, ds: "crotchet, quarter note", level: literary}
+  en-tercera-es-noun-HxrHdQJZ: {topic: arts, ds: "a third (musical interval)", level: literary}
+  # Keep useful, non-rare secondary meanings at explicit later core placements.
+  en-tía-es-noun-vHyIFFbF: {topic: register, ds: "girl, woman, chick (colloquial)", level: 18}
+  en-profesor-es-noun-Jlm5tBkZ: {topic: learning, ds: "professor (faculty member)", level: 12}
+  # Protect newly sourced everyday meanings from the old homograph topic.
+  en-perro-es-noun-JG1v3E-S: {topic: nature, ds: "dog", level: 2}
+  en-carta-es-noun-0h1A9sGW: {topic: communication, ds: "letter (written message)", level: 8}
+  en-gasolinera-es-noun-6WkIYYdi: {topic: travel, ds: "petrol or gas station", level: 7}
+  en-reparar-es-verb-Huu4nZ6Z: {topic: services, ds: "to repair, mend or fix something", level: 6}
+  en-horario-es-noun-CB0Av8ce: {topic: time, ds: "timetable or schedule", level: 4}
+  en-tamaño-es-noun-zNy-hG89: {topic: description, ds: "size (noun)", level: 6}
+  en-batido-es-noun-jUvB2mK8: {topic: food, ds: "smoothie or milkshake", level: 6}
+  en-difícil-es-adj-untQKfPk: {topic: description, ds: "difficult, hard or challenging", level: 2}
+  en-profesor-es-noun-EFepYE4E: {topic: learning, ds: "teacher (especially Spain)", level: 2}
+level_overrides:
+  # Introductions, identity, and asking for clarification.
+  yo: 1
+  tú: 1
+  usted: 1
+  señor: 1
+  señora: 1
+  cómo: 1
+  qué: 1
+  # Describing people, possession, and immediate surroundings.
+  mí: 2
+  nosotros: 2
+  nosotras: 2
+  ella: 2
+  ellas: 2
+  me: 2
+  te: 2
+  quién: 2
+  cuál: 2
+  joven: 2
+  bajo: 2
+  hermoso: 2
+  bueno: 2
+  malo: 2
+  gato: 2
+  esposo: 2
+  nieto: 2
+  nieta: 2
+  tío: 2
+  primo: 2
+  señorita: 2
+  # Eating out, prices, and choosing food.
+  cuántas: 3
+  restaurante: 3
+  bar: 3
+  cafetería: 3
+  postre: 3
+  chocolate: 3
+  cebolla: 3
+  fresa: 3
+  mantequilla: 3
+  limón: 3
+  jamón: 3
+  pollo: 3
+  # Asking directions and managing an arrival.
+  cuándo: 4
+  entrar: 4
+  rápido: 4
+  lento: 4
+  prisa: 4
+  todavía: 4
+  enseguida: 4
+  # Home life and the daily routine.
+  apartamento: 5
+  vivienda: 5
+  sueño: 5
+  desayunar: 5
+  almorzar: 5
+  cenar: 5
+  sol: 5
+  viento: 5
+  # Health, clothing, and resolving a purchase or repair.
+  pelo: 6
+  cabello: 6
+  oreja: 6
+  cuello: 6
+  hombro: 6
+  estómago: 6
+  garganta: 6
+  enfermero: 6
+  sangrar: 6
+  emergencia: 6
+  arreglar: 6
+  devolver: 6
+  traje: 6
+  mejor: 6
+  # Journeys, invitations, and destinations beyond the immediate street.
+  bicicleta: 7
+  mar: 7
+  costa: 7
+  callejón: 7
+  nieve: 7
+  adónde: 7
+  traer: 7
+  andar: 7
+  invitar: 7
+  equipamiento: 7
+  # Sharing plans, describing experiences, and discussing preferences.
+  alguien: 8
+  nadie: 8
+  algo: 8
+  nada: 8
+  todo: 8
+  fácil: 8
+  amor: 8
+  miedo: 8
+  triste: 5
+  alegría: 8
+  ojalá: 8
+  primavera: 8
+  verano: 8
+  otoño: 8
+  invierno: 8
+  aprender: 1
+  # These selected senses are not plausible beginner shopping/routine items.
+  profecía: 22
+  amuleto: 19
+  mesías: 24
+  milicia: 21
+  feto: 17
+  masacre: 22
+  tregua: 21
+  balística: 26
+  duende: 21
+  artillería: 21
+  incumbencia: 25
+  faraón: 23
+breadth_groups:
+  # Only separately selected, sense-compatible variants belong in this map.
+  # Source forms are evidence, not instructions to add more lemma records.
+  hermano: hermana
+  hijo: hija
+  niño: niña
+  abuelo: abuela
+  esposo: esposa
+  nieto: nieta
+  suegro: suegra
+  criado: criada
+  autor: autora
+  barón: baronesa
+  duque: duquesa
+  conde: condesa
+  actor: actriz
+  príncipe: princesa
+  nosotros: nosotras
+  suyo: suyos suyas
+  # en-él-es-pron-M764W8Bs explicitly lists these feminine/plural/neuter
+  # forms. All selected senses are third-person subject/disjunctive pronouns.
+  # The selected le and los are other grammatical cases and are not merged.
+  él: ella ellas ello
+  # en-el-es-article-DbcjDOWO lists la and las as gender/number forms.
+  # Do not include los: its selected sense is a pronoun, not an article.
+  el: la las
+  # en-usted-es-pron-zYiDjXaH lists plural ustedes; the selected ustedes
+  # record reciprocally lists singular usted. Labels retain register contrasts.
+  usted: ustedes
+  # Audited but not added: nuestra/nuestros/nuestras, otra/otros/otras,
+  # toda/todos/todas, tuyos/tuyas, mía/míos/mías, vuestra/vuestros/vuestras,
+  # and ellos are source-attested forms, not separately selected headwords.
+  # The selected tuya is a thuja plant, NOT the feminine possessive.
+  # Likewise, poca is a noun meaning a bit, una is an indefinite pronoun,
+  # unos is approximative, and cuánto is an adverb: do not merge them with
+  # determiner poco, numeral uno, article un, or pronoun cuántas by spelling.
+exclude:
+  - es-v-1e9d9e6d3edd2604
+  - es-v-dcaa76b071f7d964
+  - es-v-afa64bde2427c255
+  - es-v-626fae6586ef9b06
+  - es-v-b5276c1a26a416e4
+  - es-v-69aa3b3a9c916f01
+  - es-v-548427006d16f51b
+  - es-v-5ed45907c5dbd893
+  - es-v-01729c7134e095a9
+  - es-v-d24723d7f8e1da84
+  # Narrow homographs and unsuitable source selections.
+  - es-v-bbe15bc98900d792 # perro: clothespin
+  - es-v-f85a07c2832e9f1c # chica: orchid spice
+  - es-v-1b4f6002ed1cf50e # novia: sweet roll
+  - es-v-ad9c9b893fdf2abe # maestra: queen bee
+  - es-v-e7c90b0322a51b88 # batido: variegated silk
+  - es-v-b90665bdeca4f559 # gasolinera: petrol can
+  - es-v-2f70cef6684ca57c # ma
+  - es-v-c178c488f60b1f8c # man
+  - es-v-625b3acf0dd91f33 # mai
+  - es-v-71cc71a062004966 # lola
+  - es-v-f2a1426e497d6162 # cristina
+  - es-v-644c9252e777a391 # perpetua
+  - es-v-a273a4bc3a45120a # pagué
+  - es-v-1917c74a74505336 # brasil
+  - es-v-7a04d2de03b645ad # carolina
+  - es-v-1fd359b39a004a9b # ramón
+  - es-v-27a9cab7d58376f1 # jorge
+  - es-v-f0c72330425068c4 # maría
+  - es-v-1f23e065e327f3ef # martín
+  - es-v-722236bcf23103e3 # rara
+  - es-v-4b5093ad347fc145 # rica
+  - es-v-122a9fbf306db73a # maura
+  - es-v-efecef88dd94b518 # claudia
+  - es-v-7711163435b63b61 # guapo
+  - es-v-b51bdecb87b1a0ed # pajarito
+  - es-v-89fdd0f5ab0999ef # simón
+  - es-v-4671f7f0ef892a34 # pálida
+  - es-v-9ec9ead7d554e468 # royal
+  - es-v-d607bee80429075e # futura
+  - es-v-dfbd11a95ad770b5 # pendejo
+  - es-v-99d473a841c09159 # line
+  - es-v-f48a89adca4a2363 # center
+  - es-v-823e7fbe6a39999c # right
+  - es-v-4e5eb8c3774771e3 # green
+  - es-v-c62cc28b5f4498b9 # alemana
+  - es-v-f3748c39056fd5a3 # alabado
+  - es-v-a15db80796a83cd0 # charles
+  - es-v-6262a0ec5f0d59b8 # mexicana
+  - es-v-150583b18a19cf3f # rusa
+  - es-v-0a801680dc211129 # puto
+  - es-v-69332b4443106274 # luis
+  - es-v-d8dabea6516ec00f # troy
+  - es-v-3df93159b14897ca # juro
+  - es-v-23310dfcf6a9c03a # dobla
+  - es-v-4ba6c73028565286 # romana
+  - es-v-f5e60db9e559a0e9 # quemada
+  - es-v-bb3ad0469d0cc502 # patricia
+  - es-v-2b4caac514ea246a # china
+  - es-v-6e33d133de03eea0 # cabrón
+  - es-v-8d1d89a9a4f6e3dc # polla
+  - es-v-569e691bdb41bfa2 # perra
+  - es-v-55f47bdd19c3cc8c # mona
+  - es-v-d44c2543ddfcf749 # basa
+  - es-v-2bb933c31186c977 # teme
+  - es-v-ffe3a22bb8a08712 # cuarta
+  - es-v-03b440050bfefea0 # okey
+  - es-v-3afce9de243a6fa8 # casera
+  - es-v-951a8616961fe435 # barbie
+  - es-v-94d296ab34e55753 # winchester
+  - es-v-a486d08d91989193 # colt
+  - es-v-b242e4b003c04052 # klingon
+  - es-v-7eafbc8dc2a32cdf # solar
+  - es-v-a038a617a8f2b678 # nuclear
+  - es-v-c697b5acd630b28c # follar
+  - es-v-aa3fb1d4eac0c287 # placer
+  - es-v-ec14b0f136fb1e3a # pilar
+  - es-v-5d2c232d1a3c7245 # escolar
+  - es-v-9f9c70b5c0583e92 # estante
+  - es-v-9e75f62f5d32254a # interruptor
+  - es-v-cc04cbfcdbe78385 # elegido
+  - es-v-46818603255f0465 # ofrecido
+  - es-v-720e0a278a855f7e # nombrado
+  - es-v-58c9d84d5c268c57 # ocurrido
+  - es-v-aa6b697502ebf5fc # traído
+  - es-v-a0f401dd418e98b8 # saltado
+  - es-v-359bb3d525b5d7e0 # tocado
+  - es-v-e7464eb7f69cd6ab # ocupada
+  - es-v-8e99c1e6061de2cb # alcanzado
+  - es-v-7c2f683425f24a6b # matado
+  - es-v-68ee7780d6cc933d # derrotado
+  - es-v-c8f41d33488743f9 # perseguido
+  - es-v-7ac8ec50afc997e6 # bajado
+  - es-v-4f54f5506571f669 # violado
+  - es-v-8b4e0f1cb4cde15f # significado
+  - es-v-98c6d5b1c3b5dacc # rendido
+  - es-v-eecb6cdc49db8adc # vivido
+  - es-v-05ca417d5bafd820 # enseñado
+  - es-v-6aed31f914861598 # tomada
+  - es-v-58e873ca38113a49 # llegue
+  - es-v-5d6044d50df13dec # pisa
+  - es-v-327c09c2ec958246 # cierro
+  - es-v-e99b744e7d18bf1f # acabo
+  - es-v-011ac14564209e27 # empiezo
+  - es-v-ea7aa9db75cc785c # empiece
+  - es-v-27e14cdbcf1a4373 # deja
+  - es-v-663734c9e783739e # fuma
+  - es-v-a609b25abc7d9ed3 # cuido
+  - es-v-3a578f1ab7f35acc # misericordia
+  - es-v-fe9b04b2bd5d5c8f # napoleón
+  - es-v-3ccc561ec2cd7439 # milord
+  - es-v-3a787b11f64d2f93 # rinde
+  - es-v-60d16b8a975dd0ab # sacrificado
+  - es-v-5c402df1adef01d2 # indiana
+  - es-v-662e3f843892a8f2 # irlanda
+  - es-v-aef217c41a7e236b # carajo
+  # Spellings, clippings, opaque fixed-expression fragments, and form artifacts.
+  - es-v-20d91871b5db01a9 # ud
+  - es-v-20569fbeeab9f528 # yes
+  - es-v-899320e2cb54d0ad # sé: affirmative, not saber
+  - es-v-f4475c46aafe1690 # chi
+  - es-v-6b3a0047fce43728 # sip
+  - es-v-a33ce28adc824e7f # nop
+  - es-v-daad56902ee0df7c # bebe
+  - es-v-745657d8a21b341c # bebo
+  - es-v-b27593aed9fddea7 # baby
+  - es-v-2c478c704791ae2d # mio
+  - es-v-d168ae16dab9e6bf # adios
+  - es-v-7ad4a2a2190afd04 # ey
+  - es-v-8e1d7d6aadc35282 # bay
+  - es-v-6db0eef7b244b35c # f
+  - es-v-750716357590006e # naranjas
+  - es-v-340c6078a7457444 # vientos
+  - es-v-245fbe7c5196942e # nelson
+  - es-v-c375c04cfb80f41a # co
+  - es-v-5a3c28f4b8ef9f49 # we
+  - es-v-43eab3b4d0c33877 # bro
+  - es-v-26ff89954973d2b4 # mae
+  - es-v-a5963b8156f0c151 # bo
+  - es-v-db8dca9952345d6a # po
+  - es-v-8f44ef9097ce9651 # aguanta
+  - es-v-5d2b812edd42bb84 # puede
+  - es-v-a53d5eefa14ebbc9 # siga
+  - es-v-d0c5b22d7fe8c049 # tv
+  - es-v-160427b3eef0ae91 # tele
+  - es-v-18ea35cfc30229be # x
+  - es-v-a559c9f8c104e0e9 # et
+  - es-v-1da79e7b17067a41 # he: here is, not haber
+  - es-v-7a3159ecc68dddbc # obstante
+  - es-v-7bf8addb9dc41742 # pos
+  - es-v-d845d7932035761b # regalado
+  - es-v-50a5fe0462607d4b # queriendo
+  - es-v-01fa4a3be43a7311 # les: article, not dative pronoun
+  - es-v-37e87264362b50b8 # su: approximation, not ordinary possession
+  # Transparent participial selections: teach morphology, not extra headwords.
+  - es-v-f0f6280fbcde6a63 # mordido
+  - es-v-0f7234060951ea26 # producido
+  - es-v-ef5b99caad0e91c4 # asegurado
+  - es-v-51ab29cd05ba14a3 # asignado
+  - es-v-400896dda5b36856 # completado
+  - es-v-6c0356c52e1b769d # incluido
+  - es-v-2bb895fd59886d4c # abandonado
+  - es-v-d4cb8723f3667a7a # grabado
+  - es-v-61f9406956dd5766 # entregado
+  - es-v-a05955bc94383ca0 # establecido
+  - es-v-7ff2f1995593b964 # escogido
+  - es-v-a9750041b94b613e # firmado
+  - es-v-2cd268e2b0672a52 # estacionado
+  - es-v-f48026ee2cdd4ec8 # creado
+  - es-v-a8a248c1a1cfb2b8 # tendido
+  - es-v-f22e14996804ef59 # protegido
+  - es-v-56c6c1ccc75c54a9 # jurado
+  - es-v-880d084daa0b6f7d # colgado
+  - es-v-a74b43110e285876 # diseñado
+  - es-v-9f4d17cc98c04f77 # contado
+  - es-v-a95bb0247bbfc25e # convertido
+  - es-v-63e26b120649a861 # castigado
+  - es-v-480a7862f7d37b24 # compartido
+  - es-v-ee617f018e4d2af8 # identificado
+  - es-v-ae3d03ba23500cd6 # avisado
+  - es-v-78503ccdbcb8c495 # amenazado
+  - es-v-a5c7fb6fc88588c2 # construido
+  - es-v-8c3958798682ea40 # liberado
+  - es-v-a8ef625a1f46b137 # reunido
+  - es-v-8317b4f6b4d759ed # aprobado
+  - es-v-58517fa24e6cf088 # mejorado
+  - es-v-8ee126c3b3b8a812 # cogido
+  - es-v-05b014649f1c0e2f # corregido
+  - es-v-138ad8c088d4eab9 # aparecido
+  - es-v-dcd399045610f14f # acondicionado
+  - es-v-f4c6fd698ddb0ed7 # borrado
+  - es-v-1627ded98f2f0a6d # aumentado
+  - es-v-5e1f0228e7e2752c # arrestado
+  - es-v-cb7cadf906410830 # cargado
+  - es-v-30dc5eda963ad561 # encontrado
+  - es-v-36d6cfdd7a28a31b # conseguido
+  - es-v-a35747bfb2204bad # pagado
+  - es-v-1a1f9b6259446e13 # prestado
+  - es-v-4e43ab3449e14632 # clavado
+  - es-v-f834bf7dabb9f8a6 # garantizado
+  - es-v-26ce30df4898e093 # asesinado
+  - es-v-0bddaea822e7fa2c # condenado
+  - es-v-1a5072f1115766d3 # destruido
+  - es-v-3f633bed0b664236 # presentado
+  - es-v-bb2474da64ebf389 # entrenado
+  - es-v-6849c1ce66c7d017 # indicado
+  - es-v-302558da8595d0ac # ganado
+  - es-v-f919700bd046fd37 # golpeado
+  - es-v-715ee7224c2c01b0 # autorizado
+  - es-v-5754422fa42f9665 # acordado
+  - es-v-12f0795202bf0a4c # dirigido
+  - es-v-1f636937906feda8 # investigado
+  - es-v-c485ec0eeb9b848d # ejecutado
+  - es-v-d6211ed6d23c90c0 # activado
+  - es-v-3faf3df7d91dbec3 # llegado
+  - es-v-eff187d2964c7f0c # inventado
+  - es-v-bb7aaef555f55a83 # invitado
+  - es-v-e919b057e9bc5284 # arrastrado
+  - es-v-e72c768577a67925 # asociado
+  - es-v-69023d8ca7928b9a # aplastado
+  - es-v-7e841252acbfc782 # enterrado
+  - es-v-1f8ef2ce126ba429 # expulsado
+  - es-v-776890cc8d681c0f # cancelado
+  - es-v-435ee351d5036618 # advertido
+  - es-v-eb52fdfdc7cc8fc1 # mezclado
+  - es-v-c56910d129270909 # ajustado
+  - es-v-6151415f4c477e95 # cambiado
+  - es-v-51476f48e38b514f # cruzado
+  - es-v-6fbaa33e43edf68b # comprobado
+  - es-v-8350d8aa3c3a41f0 # eliminado
+  - es-v-18cc949a753347de # localizado
+  - es-v-d29f2f235dc0ad06 # suspendido
+  - es-v-8e8aa7af16d8ff9d # provocado
+  - es-v-11f14234b8fba217 # reconocido
+  - es-v-bc20ac08a56630ac # olvidado
+  - es-v-a9344dbb228dd03c # robado
+  - es-v-ab6f2e395f247f7d # reducido
+  - es-v-d92a48e06e3aa361 # planeado
+  - es-v-175dd12bb0b484ac # traducido
+  - es-v-ef19b8b36f370c4e # conectado
+  - es-v-9d025eeb5dbcf9a3 # desconectado
+  - es-v-00bc2e1f4063030f # secuestrado
+exclusion_notes:
+  es-v-1e9d9e6d3edd2604: "The selected socia sense is an insult, not the female partner sense. Re-select a sourced partner sense before teaching this as a gender counterpart."
+  es-v-dcaa76b071f7d964: "The selected jueza sense means a judge's wife, not a female judge. Unsuitable for modern occupational or gender teaching."
+  es-v-afa64bde2427c255: "The selected doctora sense means a doctor's wife, not a female doctor. Do not use it as a professional gender counterpart."
+  es-v-626fae6586ef9b06: "The selected presidenta sense means a president's wife, not a woman holding the office. A modern occupational sense must be sourced separately."
+  es-v-b5276c1a26a416e4: "The selected capitana sense means a captain's wife, not a female captain. Do not teach it as the feminine occupational title."
+  es-v-69aa3b3a9c916f01: "The imported noun is glossed only as bought. This participial-looking form is not a usable independent noun sense and must not inflate lexical breadth."
+  es-v-548427006d16f51b: "The opaque gloss Ava does not establish a useful general Spanish lexical sense. Reconsider only with a verified, teachable sense."
+  es-v-5ed45907c5dbd893: "The selected sense is the winner of one named Bolivian beauty contest, not the ordinary adjective magnificent. It is too source-specific for core breadth."
+  es-v-01729c7134e095a9: "The selected entry is English when presented as a Spanish conjunction. This borrowing is unsuitable as a substitute for the ordinary Spanish conjunction."
+  es-v-d24723d7f8e1da84: "Había is an inflected form of haber, not an additional lexical headword. Teach the form in grammar without counting it as separate lemma breadth."
+  es-v-bbe15bc98900d792: "Rare clothespin homograph, not the ordinary dog sense. The separately sourced perro-dog alias is retained."
+  es-v-f85a07c2832e9f1c: "An obscure orchid-spice sense, not girl. Its spelling frequency does not justify this as core culinary vocabulary."
+  es-v-1b4f6002ed1cf50e: "A narrowly named sweet roll, not girlfriend or bride. Exclude this sense rather than confusing relationship vocabulary."
+  es-v-ad9c9b893fdf2abe: "The queen-bee sense is too narrow for core and does not support the ordinary female-teacher meaning."
+  es-v-e7c90b0322a51b88: "Specialized variegated-silk adjective, not a drink. The separately sourced smoothie or milkshake sense is retained."
+  es-v-b90665bdeca4f559: "Narrow petrol-can sense, not the filling station learners need. The gasolinera-station alias is retained."
+  es-v-2f70cef6684ca57c: "Regional clipping of mother; madre and mamá already provide the general family targets without another clipped headword."
+  es-v-c178c488f60b1f8c: "English-derived colloquial man or guy is not a needed additional general-core headword alongside hombre and persona."
+  es-v-625b3acf0dd91f33: "Regional mother variant duplicates the family target rather than establishing additional core breadth."
+  es-v-71cc71a062004966: "Narrow colloquial girl sense sharing a frequent personal-name spelling; not an appropriate default general-core target."
+  es-v-f2a1426e497d6162: "A specific military hat, not a general clothing target. Personal-name frequency must not promote this sense into core."
+  es-v-644c9252e777a391: "A particular globe-amaranth plant name; not the ordinary perpetual adjective or a broadly useful core nature word."
+  es-v-a273a4bc3a45120a: "Cinchweed is an obscure plant sense masked by a common conjugated spelling; it does not belong in general core."
+  es-v-1917c74a74505336: "The specific brazilwood sense does not inherit the frequency or usefulness of the country name."
+  es-v-7a04d2de03b645ad: "A particular Sideroxylon tree name, not a broad nature concept; personal-name frequency is not a selection basis."
+  es-v-1fd359b39a004a9b: "The breadnut-tree sense is too specialized for this general curriculum and must not inherit personal-name frequency."
+  es-v-27a9cab7d58376f1: "A narrow cockchafer name sharing a common personal-name spelling, not a general-core insect target."
+  es-v-f0c72330425068c4: "This magpie name is not supported as a broad core target merely by the frequency of María."
+  es-v-1f23e065e327f3ef: "A particular heron name, not a general bird concept; exclude this personal-name homograph from core."
+  es-v-722236bcf23103e3: "A particular plantcutter bird species, not the common feminine adjective rare or strange."
+  es-v-4b5093ad347fc145: "The fenugreek sense is not the frequent adjective rich or tasty and is too narrow for this core selection."
+  es-v-122a9fbf306db73a: "A particular turkey-vulture name with a personal-name homograph; not useful enough for general core."
+  es-v-efecef88dd94b518: "A named plum variety, not a general fruit target; retain broader fruit vocabulary instead."
+  es-v-7711163435b63b61: "Arrowroot is not the ordinary handsome adjective. This selected plant sense is unsuitable for the apparent everyday word."
+  es-v-b51bdecb87b1a0ed: "Narrow bowtie homograph rather than the transparent small-bird form; not a needed core clothing target."
+  es-v-89fdd0f5ab0999ef: "Historical hackney-cab sense, not useful contemporary transport vocabulary."
+  es-v-4671f7f0ef892a34: "Narrow colloquial depressing-subject noun, not the ordinary feminine pale adjective."
+  es-v-9ec9ead7d554e468: "English-derived British-royal noun is not a necessary Spanish core headword."
+  es-v-d607bee80429075e: "Uncommon inheritance noun, not the frequent feminine future adjective."
+  es-v-dfbd11a95ad770b5: "The selected single-pubic-hair sense is not the common colloquial insult and adds no useful general anatomy target."
+  es-v-99d473a841c09159: "Specialized lineout jargon, not broad Spanish core vocabulary."
+  es-v-f48a89adca4a2363: "An English-derived center label with an underspecified sense, not a needed general Spanish headword."
+  es-v-823e7fbe6a39999c: "Narrow right-fielder jargon, not a general direction or core sports target."
+  es-v-4e5eb8c3774771e3: "English-derived green noun with insufficient general-core value; it must not stand in for verde."
+  es-v-c62cc28b5f4498b9: "A particular historical dance, not the ordinary feminine German adjective or person."
+  es-v-f3748c39056fd5a3: "A specifically named devotional hymn, not a general music target or merely the participle praised."
+  es-v-a15db80796a83cd0: "Narrow hi-hat terminology sharing a frequent personal-name spelling; not a general core instrument target."
+  es-v-6262a0ec5f0d59b8: "Regional drug-robbery slang, not the ordinary feminine Mexican adjective or person."
+  es-v-150583b18a19cf3f: "Narrow sexual slang, not the common feminine Russian adjective or person; do not count it as that gender counterpart."
+  es-v-0a801680dc211129: "The selected steamed-rice-cake name is not the frequent colloquial homograph and is too narrow for core."
+  es-v-69332b4443106274: "Historical louis coin, not a broad money target; personal-name frequency does not justify it."
+  es-v-d8dabea6516ec00f: "Specialist troy-weight adjective is not a general measurement target and must not inherit proper-name frequency."
+  es-v-3df93159b14897ca: "Uncommon ownership noun, not the ordinary conjugated form of jurar."
+  es-v-23310dfcf6a9c03a: "A historical coin name, not a useful default payment word."
+  es-v-4ba6c73028565286: "A specifically named kind of scales, not the ordinary feminine Roman adjective."
+  es-v-f5e60db9e559a0e9: "Narrow burnt-mountainside noun, not an independent core target derived from the frequent burnt form."
+  es-v-bb3ad0469d0cc502: "Regional foot or leg slang sharing a personal-name spelling; standard pie and pierna cover the core body task."
+  es-v-2b4caac514ea246a: "Narrow pebble sense, not the frequent country or feminine Chinese homograph; retain broader stone vocabulary."
+  es-v-6e33d133de03eea0: "The selected male-goat sense is not the common colloquial homograph; cabra and chivo already cover general goat vocabulary."
+  es-v-8d1d89a9a4f6e3dc: "Specific young-hen terminology does not inherit the frequency of the unrelated colloquial homograph."
+  es-v-569e691bdb41bfa2: "The selected derogatory noun is not the female dog sense and must not inflate gender breadth."
+  es-v-55f47bdd19c3cc8c: "Narrow drunkenness sense, not a female-monkey counterpart; general alcohol and intoxication vocabulary is already present."
+  es-v-d44c2543ddfcf749: "Uncommon base noun duplicates the general base target and is easily mistaken for the frequent verb form."
+  es-v-2bb933c31186c977: "Specialist technological-meme coinage is not established as useful general core vocabulary."
+  es-v-ffe3a22bb8a08712: "A specifically named hemp whip, not the ordinary feminine fourth form; unsuitable as a core ordinal entry."
+  es-v-03b440050bfefea0: "The selected sense is the okey game, not an affirmative response; too narrow for core leisure vocabulary."
+  es-v-3afce9de243a6fa8: "Narrow soda sense, not the ordinary homemade adjective or landlady noun."
+  es-v-951a8616961fe435: "A branded doll or character name, not independent general Spanish lexical breadth."
+  es-v-94d296ab34e55753: "A rifle brand or model name, not a general Spanish core headword."
+  es-v-a486d08d91989193: "A revolver brand or model name, not a general Spanish core headword."
+  es-v-b242e4b003c04052: "A franchise-specific fictional ethnonym; not general Spanish lexical breadth."
+  es-v-7eafbc8dc2a32cdf: "Uncommon paving verb, not the frequent solar adjective or building-plot noun."
+  es-v-a038a617a8f2b678: "Uncommon unite verb, not the frequent nuclear adjective. Do not preserve it simply because the spelling is frequent."
+  es-v-c697b5acd630b28c: "Rare noiseless-flatulation sense, not the common sexual verb; unsuitable as its default core representation."
+  es-v-aa3fb1d4eac0c287: "Marked like verb rather than the ordinary pleasure noun; gustar already supplies the general beginner predicate."
+  es-v-ec14b0f136fb1e3a: "Uncommon pound verb, not the frequent pillar noun or personal name."
+  es-v-5d2c232d1a3c7245: "Rare pass-through-a-narrow-place verb, not the ordinary school-related adjective."
+  es-v-9f9c70b5c0583e92: "Marked existing or being adjective, not the ordinary shelf noun."
+  es-v-9e75f62f5d32254a: "The interrupting adjective does not provide the ordinary switch noun needed for device instructions."
+  es-v-cc04cbfcdbe78385: "Opaque chosenness noun derived from a participial-looking form; not a useful independent core target."
+  es-v-46818603255f0465: "Narrow sexual-availability adjective, not simply offered or generally easy; unsuitable for the apparent beginner word."
+  es-v-720e0a278a855f7e: "Marked well-known sense attached to a productive participial form; not additional core breadth."
+  es-v-58c9d84d5c268c57: "Uncommon unexpected adjective, not the normal occurred form; inesperado already supplies the general adjective."
+  es-v-aa6b697502ebf5fc: "Narrow worn-clothing sense, not the normal brought form; not a needed independent core adjective."
+  es-v-a0f401dd418e98b8: "Marked prominent or protruding sense, not the normal jumped form."
+  es-v-359bb3d525b5d7e0: "Narrow damaged-fruit sense, not the ordinary touched form; general food-quality vocabulary is retained."
+  es-v-e7464eb7f69cd6ab: "Regional pregnant sense, not the ordinary feminine occupied or busy adjective."
+  es-v-8e99c1e6061de2cb: "Narrow in-debt adjective, not the normal reached form; do not infer financial usefulness from the spelling."
+  es-v-7c2f683425f24a6b: "Regional ugly-person slang, not the normal killed form; broad appearance vocabulary is already retained."
+  es-v-68ee7780d6cc933d: "Marked ragged adjective, not the ordinary defeated form."
+  es-v-c8f41d33488743f9: "Narrow obsessed sense, not simply pursued; obsesionado already supplies the general emotional adjective."
+  es-v-7ac8ec50afc997e6: "Highly specific and socially marked rural-newcomer adjective, not an appropriate general core target."
+  es-v-4f54f5506571f669: "Rare violet-color adjective, not the normal violated form; ordinary color vocabulary is already available."
+  es-v-8b4e0f1cb4cde15f: "Uncommon significant adjective, not the ordinary meaning noun; this selected sense is misleading as the default."
+  es-v-98c6d5b1c3b5dacc: "Marked gallant or obsequious sense, not the common exhausted or surrendered readings."
+  es-v-eecb6cdc49db8adc: "Marked living or existing adjective adds little beyond vivo and vivir; do not count a participial-looking form independently."
+  es-v-05ca417d5bafd820: "Marked polite sense, not the normal taught form; ordinary courtesy adjectives remain."
+  es-v-6aed31f914861598: "Marginal taking nominalization; not an independent core target justified by the common participial spelling."
+  es-v-58e873ca38113a49: "Narrow stab or stabbing noun, not the ordinary form of llegar."
+  es-v-5d6044d50df13dec: "Marginal tread or step noun, not the ordinary form of pisar."
+  es-v-327c09c2ec958246: "Uncommon closing noun duplicates cierre and should not inherit the frequency of the verb form."
+  es-v-e99b744e7d18bf1f: "Marked nominal synonym of acabamiento, not the common first-person verb form."
+  es-v-011ac14564209e27: "Marginal start noun; teach empezar inflection in grammar and use inicio or comienzo as the noun."
+  es-v-ea7aa9db75cc785c: "Marginal start noun; the conjugated spelling must not become an additional core headword."
+  es-v-27e14cdbcf1a4373: "Uncommon rest noun, not the ordinary form of dejar; broader remainder vocabulary is retained."
+  es-v-663734c9e783739e: "Marked smoking nominalization, not a distinct core target inferred from the common fumar form."
+  es-v-a609b25abc7d9ed3: "Regional care nominalization is not needed as another general core target alongside cuidar."
+  es-v-3a578f1ab7f35acc: "Selected specialist misericord gloss, not mercy; not sufficiently useful or specific for core."
+  es-v-fe9b04b2bd5d5c8f: "A historical coin, not the historical person; proper-name frequency does not support a general money target."
+  es-v-3ccc561ec2cd7439: "Marked foreign form of aristocratic address; not useful enough as another general core headword."
+  es-v-3a787b11f64d2f93: "Regional output noun, not the ordinary form of rendir; rendimiento covers the general concept."
+  es-v-60d16b8a975dd0ab: "The source row is typed as a verb but glossed as self-sacrificing; require a coherent adjectival sense before teaching it."
+  es-v-5c402df1adef01d2: "A narrowly named calico fabric, not general core clothing vocabulary."
+  es-v-662e3f843892a8f2: "A specific Irish-wool fabric name; geographic-name frequency is not evidence for a core fabric target."
+  es-v-aef217c41a7e236b: "Rare nautical crow's-nest sense, not the frequent expletive; ordinary navigation terms are handled separately."
+  es-v-20d91871b5db01a9: "Abbreviation of usted; recognize it as a spelling convention, not another core lemma."
+  es-v-20569fbeeab9f528: "English affirmative borrowing is not a substitute for the independently sourced Spanish sí."
+  es-v-899320e2cb54d0ad: "This unusual affirmative spelling is not the common conjugated saber form; sí already covers the response."
+  es-v-f4475c46aafe1690: "Nonstandard affirmative variant; do not inflate breadth beyond the canonical sí target."
+  es-v-6b3a0047fce43728: "Informal affirmative respelling; recognize it in register work rather than count a separate core lemma."
+  es-v-a33ce28adc824e7f: "Informal negative respelling; no is the core negative target."
+  es-v-daad56902ee0df7c: "Regional baby spelling duplicates bebé and must not be counted as independent lexical breadth."
+  es-v-745657d8a21b341c: "Narrow baby variant, not the common beber conjugation; bebé is the core family target."
+  es-v-b27593aed9fddea7: "English baby borrowing duplicates an already covered basic family concept."
+  es-v-2c478c704791ae2d: "Unusual cat-sound spelling, not the possessive mío; unsuitable for general core breadth."
+  es-v-d168ae16dab9e6bf: "The source explicitly calls this an Anglicization of adiós; retain the standard accented form."
+  es-v-7ad4a2a2190afd04: "Orthographic attention-call variant, not another independent target in addition to the retained greeting and attention markers."
+  es-v-8e1d7d6aadc35282: "Respelling of English bye; standard Spanish farewell targets are already retained."
+  es-v-6db0eef7b244b35c: "Single-letter internet reaction is a register convention, not general Spanish lemma breadth."
+  es-v-750716357590006e: "Regional negative expression, not the ordinary plural fruit form; do not treat surface plural frequency as pronoun frequency."
+  es-v-340c6078a7457444: "Colloquial affirmative homograph, not the ordinary plural of viento; bien already supplies the general target."
+  es-v-245fbe7c5196942e: "Marked negative wordplay sharing a personal-name spelling; not a necessary general-core headword."
+  es-v-c375c04cfb80f41a: "Highly regional clipped vocative; not another general person or friendship target."
+  es-v-5a3c28f4b8ef9f49: "Highly colloquial clipped vocative, not a stable general-core Spanish headword."
+  es-v-43eab3b4d0c33877: "English-derived clipped friendship address; not additional general-core breadth."
+  es-v-26ff89954973d2b4: "Regional guy or dude target is deferred to a dialect-specific curriculum rather than justified by surface frequency."
+  es-v-a5963b8156f0c151: "Regional vocative particle is deferred to dialect-specific teaching, not treated as general-core breadth."
+  es-v-db8dca9952345d6a: "Regional emphatic particle is deferred to a dialect-specific module rather than a broad beginner target."
+  es-v-8f44ef9097ce9651: "Narrow that's-crazy exclamation, not merely the ordinary aguantar command."
+  es-v-5d2b812edd42bb84: "Epistemic use of a conjugated poder form belongs in modal grammar, not as a second independent lemma."
+  es-v-a53d5eefa14ebbc9: "A command form with a forward exclamation reading; teach the morphology rather than count a separate headword."
+  es-v-d0c5b22d7fe8c049: "Abbreviation of televisión; retain recognition without inflating lemma breadth."
+  es-v-160427b3eef0ae91: "Clipping of televisión, not an additional general-core lexical concept."
+  es-v-18ea35cfc30229be: "Letter used as a person placeholder; a notation convention rather than a general pronoun target."
+  es-v-a559c9f8c104e0e9: "Narrow ampersand-name entry is not a useful independent core lexical target."
+  es-v-1da79e7b17067a41: "Marked deictic here-is use, not the haber auxiliary form; teach fixed expressions without counting this bare fragment."
+  es-v-7a3159ecc68dddbc: "The selected hindering adjective is not a standalone representation of the connector no obstante."
+  es-v-7bf8addb9dc41742: "Bound fragment of en pos de; teach the complete expression rather than an independent noun target."
+  es-v-d845d7932035761b: "The selected sense is confined to dársele la regalada gana, not the general gifted or given participle."
+  es-v-50a5fe0462607d4b: "Gerund-shaped willingly entry adds no independent core breadth beyond querer and its grammar."
+  es-v-01fa4a3be43a7311: "Selected plural article, not the ordinary indirect-object pronoun. Keep separately authored dative grammar support intact."
+  es-v-37e87264362b50b8: "Selected approximative sense, not ordinary possession. Do not remove separately sourced possessive senses or fixed grammar support."
+  es-v-f0f6280fbcde6a63: "Transparent bitten participial form; teach morphology rather than count an independent core headword."
+  es-v-0f7234060951ea26: "Transparent produced participial form; not an additional core lemma."
+  es-v-ef5b99caad0e91c4: "Made-certain participial reading is compositional, not a separate core breadth target."
+  es-v-51ab29cd05ba14a3: "Transparent assigned participial form; not an independent general-core headword."
+  es-v-400896dda5b36856: "Transparent completed participial form; teach through morphology."
+  es-v-6c0356c52e1b769d: "Included or supplied participial reading should not inflate independent lemma breadth."
+  es-v-2bb895fd59886d4c: "The selected abandoned reading is a productive participial form, not another core headword."
+  es-v-d4cb8723f3667a7a: "Selected recorded participle, not an independently sourced engraving noun; teach the form in grammar."
+  es-v-61f9406956dd5766: "Delivered or submitted participial form; not an independent core lexical target."
+  es-v-a05955bc94383ca0: "Transparent established participial reading; teach morphology rather than a separate lemma."
+  es-v-7ff2f1995593b964: "Transparent chosen participle; not additional core breadth."
+  es-v-a9750041b94b613e: "Signed participial form; signing and passive constructions cover this without another headword."
+  es-v-2cd268e2b0672a52: "Parked is a productive participial reading; keep parking language without counting this as another lemma."
+  es-v-f48026ee2cdd4ec8: "Transparent created participle; not independent lexical breadth."
+  es-v-a8a248c1a1cfb2b8: "Selected hanging participial reading is not a distinct nominal target."
+  es-v-f22e14996804ef59: "Transparent protected participial reading; not a separate core headword."
+  es-v-56c6c1ccc75c54a9: "Selected sworn-in adjective, not the jury noun; productive morphology does not establish that missing noun sense."
+  es-v-880d084daa0b6f7d: "Selected hanging participial reading; not another independent lemma."
+  es-v-a74b43110e285876: "Transparent designed participial form; teach through morphology."
+  es-v-9f4d17cc98c04f77: "Selected counted participle, not a separately sourced cash-payment expression."
+  es-v-a95bb0247bbfc25e: "Transparent converted participial reading; not independent core breadth."
+  es-v-63e26b120649a861: "Transparent punished participial reading; teach the construction rather than a separate lemma."
+  es-v-480a7862f7d37b24: "Transparent shared participial form; not an independent core headword."
+  es-v-ee617f018e4d2af8: "Transparent identified participial reading; not another core lemma."
+  es-v-ae3d03ba23500cd6: "Warned or informed participial reading is compositional and should not inflate breadth."
+  es-v-78503ccdbcb8c495: "Transparent threatened participial reading; retain the grammar, not another headword."
+  es-v-a5c7fb6fc88588c2: "Transparent constructed participial reading; not independent core breadth."
+  es-v-8c3958798682ea40: "Selected liberated participial form; not a distinct general-core headword."
+  es-v-a8ef625a1f46b137: "Transparent gathered participial reading; teach morphology."
+  es-v-8317b4f6b4d759ed: "Approved or confirmed participial form; not an additional independent lemma."
+  es-v-58517fa24e6cf088: "Transparent improved participial reading; not another core headword."
+  es-v-8ee126c3b3b8a812: "Selected taken participle, not an independent lexical target."
+  es-v-05b014649f1c0e2f: "Transparent corrected participial form; teach through grammar."
+  es-v-138ad8c088d4eab9: "Selected appeared participle, not an independently sourced apparition noun."
+  es-v-dcd399045610f14f: "Compositional conditioned participial reading; not a separate general-core target."
+  es-v-f4c6fd698ddb0ed7: "Transparent deleted participial reading; not independent lexical breadth."
+  es-v-1627ded98f2f0a6d: "Augmented or increased participial form; not another core lemma."
+  es-v-5e1f0228e7e2752c: "Transparent arrested participial reading; common detention vocabulary and grammar are retained."
+  es-v-cb7cadf906410830: "Selected loaded participial form; do not infer other charged or figurative senses."
+  es-v-30dc5eda963ad561: "Transparent found participial reading; finding aliases and verb senses remain intact."
+  es-v-36d6cfdd7a28a31b: "Transparent achieved participial reading; not an independent core headword."
+  es-v-a35747bfb2204bad: "Transparent paid participle; payment aliases and their grammar are retained."
+  es-v-1a1f9b6259446e13: "Lent or loaned participial form; not another core lemma."
+  es-v-4e43ab3449e14632: "Selected nailed participial reading; not an independent general-core target."
+  es-v-f834bf7dabb9f8a6: "Guaranteed or secured participial reading is compositional rather than separate breadth."
+  es-v-26ce30df4898e093: "Murdered or slain participial form; not an additional independent lemma."
+  es-v-0bddaea822e7fa2c: "Selected convicted participial reading, not an independently sourced convict noun."
+  es-v-1a5072f1115766d3: "Transparent destroyed participial reading; teach morphology."
+  es-v-3f633bed0b664236: "Transparent presented participial reading; not another core headword."
+  es-v-bb2474da64ebf389: "Transparent trained participial form; not independent core breadth."
+  es-v-6849c1ce66c7d017: "Transparent indicated participial reading; not another core lexical target."
+  es-v-302558da8595d0ac: "Selected gained or earned participle, not a livestock noun; the senses must not be conflated."
+  es-v-f919700bd046fd37: "Beaten or hit participial reading; not an additional independent lemma."
+  es-v-715ee7224c2c01b0: "Transparent authorized participial form; teach permission constructions rather than inflate breadth."
+  es-v-5754422fa42f9665: "Agreed-upon participial form; not another core headword."
+  es-v-12f0795202bf0a4c: "Transparent directed participial reading; not independent lexical breadth."
+  es-v-1f636937906feda8: "Transparent investigated participial form; teach through morphology."
+  es-v-c485ec0eeb9b848d: "Transparent executed participial reading; not another core lemma."
+  es-v-d6211ed6d23c90c0: "Activated or enabled participial reading; not independent core breadth."
+  es-v-3faf3df7d91dbec3: "Arrived, received, or delivered participial form; the arrival alias remains intact."
+  es-v-eff187d2964c7f0c: "Transparent invented participial reading; not another core headword."
+  es-v-bb7aaef555f55a83: "Selected invited participle, not an independently sourced guest noun."
+  es-v-e919b057e9bc5284: "Transparent dragged participial reading; not another core lemma."
+  es-v-e72c768577a67925: "Transparent associated participial reading; not independent core breadth."
+  es-v-69023d8ca7928b9a: "Crushed or squashed participial form; teach the construction rather than another headword."
+  es-v-7e841252acbfc782: "Transparent buried participial reading; not independent lexical breadth."
+  es-v-1f8ef2ce126ba429: "Transparent expelled participial form; not another core lemma."
+  es-v-776890cc8d681c0f: "Transparent canceled participial reading; retain cancellation grammar without an additional headword."
+  es-v-435ee351d5036618: "Warned or informed participial reading; not independent core breadth."
+  es-v-eb52fdfdc7cc8fc1: "Transparent mixed participial form; not an additional general-core headword."
+  es-v-c56910d129270909: "Transparent adjusted participial reading; teach through morphology."
+  es-v-6151415f4c477e95: "Transparent changed participial reading; not another core lemma."
+  es-v-51476f48e38b514f: "Selected crossed participle, not an independently sourced crusader noun."
+  es-v-6fbaa33e43edf68b: "Transparent verified participial reading; not independent lexical breadth."
+  es-v-8350d8aa3c3a41f0: "Transparent eliminated participial form; not another core headword."
+  es-v-18cc949a753347de: "Transparent located participial reading; not an additional core lemma."
+  es-v-d29f2f235dc0ad06: "Transparent suspended participial reading; teach through grammar."
+  es-v-8e8aa7af16d8ff9d: "Caused or brought-about participial form; not independent core breadth."
+  es-v-11f14234b8fba217: "Selected recognized or acknowledged participle; not another core headword."
+  es-v-bc20ac08a56630ac: "Transparent forgotten participial reading; teach through morphology."
+  es-v-a9344dbb228dd03c: "Transparent stolen participial form; not an independent core lemma."
+  es-v-ab6f2e395f247f7d: "Transparent reduced participial reading; not another core breadth target."
+  es-v-d92a48e06e3aa361: "Transparent planned participial form; not an independent core headword."
+  es-v-175dd12bb0b484ac: "Transparent translated participial reading; teach the grammatical construction."
+  es-v-ef19b8b36f370c4e: "Selected connected participial form; not an additional independent lemma."
+  es-v-9d025eeb5dbcf9a3: "Selected disconnected participial reading; not an additional independent lemma."
+  es-v-00bc2e1f4063030f: "Selected kidnapped participial reading; retain the verb and its grammar rather than another headword."

@@ -1,0 +1,1042 @@
+- id: es-g0001
+  level: 1
+  topic: communication
+  ch: Hola; por favor; gracias; de nada; disculpe
+  ds: Open an exchange and acknowledge help
+  anchors: []
+- id: es-g0002
+  level: 1
+  topic: people
+  ch: (yo) soy; (tú) eres; es
+  ds: Identify someone with an optional subject pronoun
+  anchors:
+  - es-v-b21938b76cebc46a
+- id: es-g0003
+  level: 1
+  topic: register
+  ch: tú hablas; usted habla
+  ds: Match singular address to the verb
+  anchors:
+  - es-v-2f93489230e86c79
+  - es-v-2a137c49489515e2
+- id: es-g0004
+  level: 1
+  topic: communication
+  ch: ¿Qué ...? ¿Dónde ...? ¿Cuánto ...? ¿Cuándo ...?
+  ds: Ask for a missing identity or detail
+  anchors: []
+- id: es-g0005
+  level: 1
+  topic: communication
+  ch: sí; no + verb
+  ds: Confirm or negate a statement and correct a detail
+  anchors:
+  - es-v-2f93489230e86c79
+  - es-v-b21938b76cebc46a
+- id: es-g0006
+  level: 1
+  topic: communication
+  ch: ¿Puede + infinitive ...? Más despacio, por favor.
+  ds: Request assistance or conversational repair
+  anchors:
+  - es-v-72d079444a304715
+- id: es-g0007
+  level: 2
+  topic: description
+  ch: el / la; un / una + noun
+  ds: Introduce or identify a noun with its gender
+  anchors: []
+- id: es-g0008
+  level: 2
+  topic: description
+  ch: los / las; unos / unas + plural noun
+  ds: Coordinate plural noun and determiner forms
+  anchors: []
+- id: es-g0009
+  level: 2
+  topic: clothing
+  ch: la camisa blanca; los zapatos blancos; está abierto
+  ds: Match an adjective to the described noun
+  anchors:
+  - es-v-96ac6a676a74dbe6
+- id: es-g0010
+  level: 2
+  topic: description
+  ch: el agua fría; esta agua; las aguas frías
+  ds: Keep feminine agreement with stressed initial a
+  anchors: []
+- id: es-g0011
+  level: 2
+  topic: people
+  ch: mi / tu / su; de + possessor
+  ds: Show possession and clarify an ambiguous su
+  anchors: []
+- id: es-g0012
+  level: 2
+  topic: description
+  ch: este / ese / aquel; esto / eso / aquello; otro / otra
+  ds: Identify an entity or select a different one
+  anchors: []
+- id: es-g0013
+  level: 3
+  topic: food
+  ch: quiero / quisiera + noun or infinitive
+  ds: State a want or soften an immediate request
+  anchors:
+  - es-v-f15553f7e9619f0f
+- id: es-g0014
+  level: 3
+  topic: health
+  ch: tener + possession; tener hambre / sed / años / alergia a
+  ds: Separate possession from conventional tener expressions
+  anchors:
+  - es-v-2b25f1c5976c1b7c
+- id: es-g0015
+  level: 3
+  topic: food
+  ch: un poco de / algo de / nada de + noun
+  ds: Specify an indefinite amount or an exclusion
+  anchors: []
+- id: es-g0016
+  level: 3
+  topic: money
+  ch: ¿Cuánto ...? ¿Cuántos / cuántas ...? dos más
+  ds: Ask an amount or count and request an increment
+  anchors:
+  - es-v-f15553f7e9619f0f
+- id: es-g0017
+  level: 3
+  topic: services
+  ch: hay + entity; entity + está / están
+  ds: Introduce availability versus locate an identified entity
+  anchors:
+  - es-v-fc19e262e04a811b
+  - es-v-4db357136fd3e505
+- id: es-g0018
+  level: 3
+  topic: food
+  ch: (a mí) me gusta / gustan
+  ds: Make the liked thing the grammatical subject
+  anchors:
+  - es-v-2954e55198b9c290
+- id: es-g0019
+  level: 4
+  topic: travel
+  ch: estar en + location; event + ser en
+  ds: Locate an entity or say where an event takes place
+  anchors:
+  - es-v-4db357136fd3e505
+  - es-v-8c763e33b1663927
+- id: es-g0020
+  level: 4
+  topic: travel
+  ch: ir a; a + el → al; de + el → del
+  ds: Express a destination and recognize contractions
+  anchors:
+  - es-v-1af06152f027f898
+- id: es-g0021
+  level: 4
+  topic: time
+  ch: ir a + infinitive
+  ds: State a plan or anticipated event
+  anchors: []
+- id: es-g0022
+  level: 4
+  topic: time
+  ch: es la una; son las ...; a la / a las ...
+  ds: Tell the clock time and schedule an event
+  anchors: []
+- id: es-g0023
+  level: 4
+  topic: leisure
+  ch: poder / saber + infinitive
+  ds: Distinguish situational ability from a learned skill
+  anchors:
+  - es-v-72d079444a304715
+  - es-v-631074d2f839388d
+- id: es-g0024
+  level: 4
+  topic: communication
+  ch: y / e; o / u; pero
+  ds: Join additions, alternatives, and a contrast
+  anchors: []
+- id: es-g0025
+  level: 5
+  topic: home
+  ch: hablo / hablamos / hablan; tengo / tienen
+  ds: Match present forms to their subjects in everyday exchanges
+  anchors:
+  - es-v-2f93489230e86c79
+  - es-v-28b9d4688d995c6a
+  - es-v-2a137c49489515e2
+- id: es-g0026
+  level: 5
+  topic: actions
+  ch: tengo; hago; digo; doy; veo; sé
+  ds: Retrieve frequent irregular present yo forms
+  anchors:
+  - es-v-2b25f1c5976c1b7c
+  - es-v-f7eb3d67d9d0092b
+  - es-v-c44b026864b40f4e
+  - es-v-7cff0b6418bf32d0
+  - es-v-e8fd517657532033
+  - es-v-5c93982422a400d6
+- id: es-g0027
+  level: 5
+  topic: work
+  ch: quiero / queremos; puedo / podemos; pido / pedimos
+  ds: Recognize common present stem alternations
+  anchors:
+  - es-v-f15553f7e9619f0f
+  - es-v-72d079444a304715
+  - es-v-7d518f76c3fb498d
+- id: es-g0028
+  level: 5
+  topic: home
+  ch: me / te / se / nos + routine verb
+  ds: Relate a routine action to its subject
+  anchors: []
+- id: es-g0029
+  level: 5
+  topic: time
+  ch: present routine; estar + gerund
+  ds: Contrast a routine with an activity in progress
+  anchors: []
+- id: es-g0030
+  level: 5
+  topic: work
+  ch: tener que / hay que / deber + infinitive
+  ds: Express a personal or general requirement
+  anchors: []
+- id: es-g0031
+  level: 6
+  topic: clothing
+  ch: más / menos ... que; tan ... como; demasiado + adjective
+  ds: Compare degree, equality, and excessive extent
+  anchors:
+  - es-v-f09c18695a9bc93e
+- id: es-g0032
+  level: 6
+  topic: services
+  ch: el / la más ...; mejor / peor; buen / mal
+  ds: Rank an option and recognize adjective shortening
+  anchors: []
+- id: es-g0033
+  level: 6
+  topic: services
+  ch: me / te / nos; lo / la / los / las; infinitive + clitic
+  ds: Refer to an object with an unstressed pronoun
+  anchors:
+  - es-v-2b25f1c5976c1b7c
+  - es-v-f15553f7e9619f0f
+- id: es-g0034
+  level: 6
+  topic: health
+  ch: le / les ... a + recipient or experiencer
+  ds: Identify a recipient or affected experiencer
+  anchors:
+  - es-v-7cff0b6418bf32d0
+- id: es-g0035
+  level: 6
+  topic: people
+  ch: verb + a + identified person
+  ds: Mark a personal direct object without changing its role
+  anchors:
+  - es-v-e8fd517657532033
+  - es-v-13f56db54694bdee
+- id: es-g0114
+  level: 6
+  topic: grammar
+  ch: nadie / nada / nunca; no ... nadie / nada / nunca
+  ds: Track negative concord without reversing meaning
+  anchors: []
+- id: es-g0036
+  level: 6
+  topic: reasoning
+  ch: a / en / con / sin / de; al / del; por / para
+  ds: Choose a relation of place, means, absence, reason, or goal
+  anchors: []
+- id: es-g0037
+  level: 7
+  topic: travel
+  ch: 'usted: llame; ustedes: llamen'
+  ds: Give an instruction with third-person address
+  anchors: []
+- id: es-g0038
+  level: 7
+  topic: actions
+  ch: 'tú commands: habla; come; vive; ven; di; haz'
+  ds: Give a familiar affirmative instruction
+  anchors: []
+- id: es-g0039
+  level: 7
+  topic: travel
+  ch: no salgas; no haga; no pasen
+  ds: Prohibit an action with the right address form
+  anchors: []
+- id: es-g0040
+  level: 7
+  topic: communication
+  ch: dímelo / dígamelo; no me lo digas / diga
+  ds: Place command clitics and preserve written stress
+  anchors:
+  - es-v-c44b026864b40f4e
+- id: es-g0041
+  level: 7
+  topic: services
+  ch: ¿Podría ...? ¿Le importaría + infinitive?
+  ds: Make a request less direct with a conditional frame
+  anchors:
+  - es-v-72d079444a304715
+- id: es-g0042
+  level: 7
+  topic: people
+  ch: para mí / ti; conmigo / contigo; con usted
+  ds: Use stressed pronouns after a preposition
+  anchors: []
+- id: es-g0043
+  level: 8
+  topic: time
+  ch: he / has / ha / hemos / han + participle
+  ds: Relate a prior event through the present perfect
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0044
+  level: 8
+  topic: learning
+  ch: ya / todavía no / alguna vez + perfect
+  ds: Relate experience and completion to a current frame
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0045
+  level: 8
+  topic: time
+  ch: hace ... que; desde; desde hace
+  ds: Distinguish a starting point from an elapsed duration
+  anchors:
+  - es-v-2a137c49489515e2
+- id: es-g0046
+  level: 8
+  topic: communication
+  ch: acabar de + infinitive
+  ds: Present an event as just completed
+  anchors: []
+- id: es-g0047
+  level: 8
+  topic: people
+  ch: saber + fact or infinitive; conocer + person or place
+  ds: Distinguish factual knowledge, skill, and acquaintance
+  anchors:
+  - es-v-5c93982422a400d6
+  - es-v-631074d2f839388d
+  - es-v-13f56db54694bdee
+- id: es-g0048
+  level: 8
+  topic: leisure
+  ch: quedar con / en; quedarse en
+  ds: Distinguish an arrangement from remaining somewhere
+  anchors:
+  - es-v-b4e7b2ee8f3648dc
+  - es-v-96f8e134f5242c4f
+- id: es-g0049
+  level: 9
+  topic: time
+  ch: hablé / habló; comí / comió; viví / vivió
+  ds: Narrate bounded events with the regular preterite
+  anchors:
+  - es-v-2f93489230e86c79
+  - es-v-28b9d4688d995c6a
+  - es-v-2a137c49489515e2
+- id: es-g0050
+  level: 9
+  topic: time
+  ch: fui; tuve; hice; dije; pude; quise
+  ds: Interpret frequent irregular preterites in context
+  anchors:
+  - es-v-b21938b76cebc46a
+  - es-v-1af06152f027f898
+  - es-v-f7eb3d67d9d0092b
+  - es-v-c44b026864b40f4e
+  - es-v-72d079444a304715
+  - es-v-f15553f7e9619f0f
+- id: es-g0051
+  level: 9
+  topic: history
+  ch: hablaba; comía; vivía; era; iba; veía
+  ds: Supply past background, habits, and internal viewpoints
+  anchors:
+  - es-v-b21938b76cebc46a
+  - es-v-1af06152f027f898
+  - es-v-e8fd517657532033
+  - es-v-2a137c49489515e2
+- id: es-g0052
+  level: 9
+  topic: time
+  ch: llovía cuando salimos; llovió, pero todavía llovía
+  ds: Choose narrative aspect rather than a time-word rule
+  anchors: []
+- id: es-g0053
+  level: 9
+  topic: time
+  ch: había / habías / habíamos / habían + participle
+  ds: Place an event before a past reference point
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0054
+  level: 10
+  topic: people
+  ch: nos / se; a sí mismo; el uno al otro
+  ds: Disambiguate reflexive and reciprocal participants
+  anchors: []
+- id: es-g0055
+  level: 10
+  topic: actions
+  ch: ir / irse; comer / comerse
+  ds: Interpret pronominal meaning without literal oneself
+  anchors: []
+- id: es-g0056
+  level: 10
+  topic: feelings
+  ch: ser listo / aburrido; estar listo / aburrido
+  ds: Interpret an adjective through its linking verb
+  anchors:
+  - es-v-96ac6a676a74dbe6
+- id: es-g0057
+  level: 10
+  topic: people
+  ch: ponerse / volverse / hacerse / quedarse + description
+  ds: Describe a change with a fitting change-of-state verb
+  anchors: []
+- id: es-g0058
+  level: 10
+  topic: feelings
+  ch: me alegra que / siento que + subjunctive
+  ds: React emotionally without asserting the event anew
+  anchors: []
+- id: es-g0059
+  level: 11
+  topic: communication
+  ch: le / les + lo / la / los / las → se lo / la / los / las
+  ds: Order two object clitics and clarify the recipient
+  anchors:
+  - es-v-7cff0b6418bf32d0
+- id: es-g0060
+  level: 11
+  topic: actions
+  ch: lo quiero ver / quiero verlo; lo estoy haciendo
+  ds: Place clitics around compatible verb sequences
+  anchors:
+  - es-v-f15553f7e9619f0f
+  - es-v-e8fd517657532033
+- id: es-g0061
+  level: 11
+  topic: society
+  ch: se + singular verb, with no grammatical subject
+  ds: Describe an activity without identifying its agent
+  anchors:
+  - es-v-2a137c49489515e2
+- id: es-g0062
+  level: 11
+  topic: services
+  ch: se vende / se venden + thing
+  ds: Describe things in an agentless passive pattern
+  anchors: []
+- id: es-g0063
+  level: 11
+  topic: actions
+  ch: primero; luego; antes de / después de + infinitive
+  ds: Sequence a procedure and distinguish its dependencies
+  anchors: []
+- id: es-g0064
+  level: 12
+  topic: people
+  ch: noun + que + finite clause
+  ds: Identify an antecedent with a relative clause
+  anchors: []
+- id: es-g0065
+  level: 12
+  topic: communication
+  ch: no sé si / qué / dónde / cuándo ...
+  ds: Embed a question without presenting a direct quotation
+  anchors:
+  - es-v-5c93982422a400d6
+- id: es-g0066
+  level: 12
+  topic: communication
+  ch: dice que / explica que + statement
+  ds: Attribute a message without confusing its speaker
+  anchors:
+  - es-v-c44b026864b40f4e
+- id: es-g0067
+  level: 12
+  topic: feelings
+  ch: quiero + infinitive; quiero que + subjunctive
+  ds: Distinguish one's own wish from a desired other action
+  anchors:
+  - es-v-f15553f7e9619f0f
+- id: es-g0068
+  level: 12
+  topic: reasoning
+  ch: creo que + indicative; no creo que + subjunctive
+  ds: Contrast an asserted belief with non-assertion
+  anchors: []
+- id: es-g0069
+  level: 13
+  topic: grammar
+  ch: hable / coma / viva; sea / esté / haya / vaya
+  ds: Build present-subjunctive forms across known functions
+  anchors: []
+- id: es-g0070
+  level: 13
+  topic: services
+  ch: conozco uno que tiene; busco uno que tenga
+  ds: Distinguish an identified referent from one sought
+  anchors:
+  - es-v-13f56db54694bdee
+- id: es-g0071
+  level: 13
+  topic: argument
+  ch: aunque + indicative / subjunctive
+  ds: Concede a fact or set aside a hypothetical obstacle
+  anchors: []
+- id: es-g0072
+  level: 13
+  topic: reasoning
+  ch: porque / como + cause; para que + subjunctive
+  ds: Give a cause without confusing it with a purpose
+  anchors: []
+- id: es-g0073
+  level: 13
+  topic: leisure
+  ch: infinitive + conditional; haría / podría / tendría
+  ds: Recommend or imagine an alternative with conditional forms
+  anchors: []
+- id: es-g0074
+  level: 14
+  topic: time
+  ch: hablaré / comeré / viviré; tendré / podré / haré
+  ds: Announce a future event or commitment
+  anchors: []
+- id: es-g0075
+  level: 14
+  topic: time
+  ch: cuando / en cuanto / hasta que + future-oriented subjunctive
+  ds: Refer to a pending event in a time clause
+  anchors: []
+- id: es-g0076
+  level: 14
+  topic: time
+  ch: antes de que; después de que + indicative / subjunctive
+  ds: Locate one event before or after another actor's event
+  anchors: []
+- id: es-g0077
+  level: 14
+  topic: work
+  ch: para + infinitive; para que + subjunctive
+  ds: Keep the intended actor clear in a purpose clause
+  anchors: []
+- id: es-g0078
+  level: 14
+  topic: services
+  ch: se + affected-person clitic + event
+  ds: Describe an unintended event and who is affected
+  anchors: []
+- id: es-g0079
+  level: 15
+  topic: work
+  ch: haya / hayas / hayamos / hayan + participle
+  ds: Evaluate or anticipate a completed event with subjunctive
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0080
+  level: 15
+  topic: time
+  ch: seguir / llevar + duration + gerund
+  ds: Report continuation and accumulated activity time
+  anchors:
+  - es-v-38530c935cd9d9d7
+- id: es-g0081
+  level: 15
+  topic: work
+  ch: estar a punto de / estar por / estar para + infinitive
+  ds: Distinguish imminent, pending, and readiness readings
+  anchors: []
+- id: es-g0082
+  level: 15
+  topic: actions
+  ch: ser + participle + por; estar + result participle
+  ds: Distinguish a passive event from a resulting state
+  anchors:
+  - es-v-11069f3dd308a0ee
+  - es-v-96ac6a676a74dbe6
+- id: es-g0083
+  level: 15
+  topic: actions
+  ch: dejar de / volver a / soler + infinitive
+  ds: Report stopping, resuming, and customary behavior
+  anchors: []
+- id: es-g0084
+  level: 16
+  topic: media
+  ch: dijo que + imperfect / past perfect / conditional
+  ds: Rebuild time and reference in a past report
+  anchors:
+  - es-v-c44b026864b40f4e
+- id: es-g0086
+  level: 16
+  topic: grammar
+  ch: hablara / hablase; tuviera / tuviese; fuera / fuese
+  ds: Form the imperfect subjunctive with two accepted series
+  anchors: []
+- id: es-g0085
+  level: 16
+  topic: communication
+  ch: pidió / recomendó que + imperfect subjunctive
+  ds: Report a past request without claiming it was fulfilled
+  anchors:
+  - es-v-7d518f76c3fb498d
+  - es-v-c44b026864b40f4e
+- id: es-g0087
+  level: 16
+  topic: society
+  ch: había / hubo / habrá + entities; habían + participle
+  ds: Keep existential haber singular but agree its auxiliary
+  anchors:
+  - es-v-fc19e262e04a811b
+  - es-v-a0ce343bac892ea7
+- id: es-g0088
+  level: 16
+  topic: media
+  ch: según; al parecer; por lo visto
+  ds: Mark a source or distance from a reported inference
+  anchors: []
+- id: es-g0089
+  level: 17
+  topic: reasoning
+  ch: si + present indicative, present / future / command
+  ds: State an open practical condition and response
+  anchors: []
+- id: es-g0090
+  level: 17
+  topic: reasoning
+  ch: si + imperfect subjunctive, conditional
+  ds: Imagine a remote or contrary-to-present alternative
+  anchors: []
+- id: es-g0091
+  level: 17
+  topic: reasoning
+  ch: es posible que / es evidente que
+  ds: Distinguish possibility from an asserted evaluation
+  anchors: []
+- id: es-g0092
+  level: 17
+  topic: nature
+  ch: tan + adjective / tanto + noun + que
+  ds: Relate a degree or amount to a consequence
+  anchors: []
+- id: es-g0093
+  level: 17
+  topic: technology
+  ch: mientras; mientras que
+  ds: Distinguish overlapping time from an explicit contrast
+  anchors: []
+- id: es-g0094
+  level: 18
+  topic: work
+  ch: propongo que + subjunctive; ¿qué tal si + indicative?
+  ds: Propose an action through two different frames
+  anchors: []
+- id: es-g0095
+  level: 18
+  topic: feelings
+  ch: ojalá + present / imperfect subjunctive
+  ds: Express a wish with different degrees of remoteness
+  anchors: []
+- id: es-g0096
+  level: 18
+  topic: reasoning
+  ch: a menos que / con tal de que / siempre que + subjunctive
+  ds: State an exception or negotiated condition
+  anchors: []
+- id: es-g0097
+  level: 18
+  topic: argument
+  ch: a pesar de / pese a; a pesar de que / pese a que
+  ds: Acknowledge an obstacle without confusing complement types
+  anchors: []
+- id: es-g0098
+  level: 18
+  topic: argument
+  ch: no ... sino (que); no solo ... sino también
+  ds: Replace an incorrect claim or add a stronger point
+  anchors: []
+- id: es-g0099
+  level: 19
+  topic: reasoning
+  ch: será / estará / tendrá + present-time conjecture
+  ds: Interpret future forms as a present conjecture
+  anchors: []
+- id: es-g0100
+  level: 19
+  topic: media
+  ch: según una fuente no confirmada, incluiría ...
+  ds: Recognize reported uncertainty without endorsing a claim
+  anchors: []
+- id: es-g0101
+  level: 19
+  topic: reasoning
+  ch: quizá / tal vez + indicative or subjunctive; a lo mejor
+  ds: Qualify probability without a single mood trigger
+  anchors: []
+- id: es-g0102
+  level: 19
+  topic: reasoning
+  ch: deber (de) + infinitive
+  ds: Distinguish obligation from inferential necessity
+  anchors: []
+- id: es-g0103
+  level: 20
+  topic: institutions
+  ch: lo que; clause + lo cual / lo que
+  ds: Refer to unspecified content or an entire proposition
+  anchors: []
+- id: es-g0104
+  level: 20
+  topic: institutions
+  ch: cuyo / cuya / cuyos / cuyas + possessed noun
+  ds: Express relative possession with agreement
+  anchors: []
+- id: es-g0105
+  level: 20
+  topic: society
+  ch: cada; cada uno; ambos; sendos / sendas
+  ds: Distinguish individual distribution from a combined pair
+  anchors: []
+- id: es-g0106
+  level: 20
+  topic: institutions
+  ch: al + infinitive; el + infinitive as subject
+  ds: Relate an event or treat an activity as a topic
+  anchors: []
+- id: es-g0107
+  level: 21
+  topic: time
+  ch: habré / habrá / habremos / habrán + participle
+  ds: Describe future completion or infer an earlier event
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0108
+  level: 21
+  topic: science
+  ch: habría / habríamos / habrían + participle
+  ds: Present hypothetical or projected prior completion
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0109
+  level: 21
+  topic: science
+  ch: se examinaron las muestras; se entrevistó a las personas
+  ds: Distinguish passive agreement from personal-object se
+  anchors: []
+- id: es-g0110
+  level: 21
+  topic: science
+  ch: cuanto más ... más; a medida que
+  ds: Express covariation without overstating causation
+  anchors: []
+- id: es-g0111
+  level: 22
+  topic: argument
+  ch: todo / todos; cualquier / cualquiera; no todos
+  ds: Control universal and free-choice scope
+  anchors: []
+- id: es-g0112
+  level: 22
+  topic: feelings
+  ch: como si + imperfect / past-perfect subjunctive
+  ds: Frame a comparison as imagined rather than asserted
+  anchors:
+  - es-v-13f56db54694bdee
+- id: es-g0113
+  level: 22
+  topic: argument
+  ch: por mucho que / por más que + clause
+  ds: Concede persistence or degree without changing the outcome
+  anchors: []
+- id: es-g0115
+  level: 23
+  topic: time
+  ch: hubiera / hubiese + participle
+  ds: Combine subjunctive with an earlier completed event
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0116
+  level: 23
+  topic: argument
+  ch: si + hubiera / hubiese + participle, habría + participle
+  ds: Explain an unrealized past alternative and consequence
+  anchors:
+  - es-v-a0ce343bac892ea7
+- id: es-g0117
+  level: 23
+  topic: argument
+  ch: si hubiera ..., ahora viviría ...; si fuera ..., habría ...
+  ds: Keep different counterfactual time frames distinct
+  anchors: []
+- id: es-g0118
+  level: 23
+  topic: argument
+  ch: incluso si / aun si; ni siquiera
+  ds: Test an extreme condition and mark a denied minimum
+  anchors: []
+- id: es-g0119
+  level: 24
+  topic: communication
+  ch: preposition + el que / quien / el cual
+  ds: Preserve a relative clause's required preposition
+  anchors:
+  - es-v-2f93489230e86c79
+- id: es-g0120
+  level: 24
+  topic: grammar
+  ch: pienso que; me acuerdo de que; estoy seguro de que
+  ds: Distinguish required de que from intrusive de
+  anchors: []
+- id: es-g0121
+  level: 24
+  topic: argument
+  ch: tanto ... como; ni ... ni; bien ... bien
+  ds: Keep paired arguments parallel and their scope clear
+  anchors: []
+- id: es-g0122
+  level: 24
+  topic: communication
+  ch: este último; el primero; dicho / citado + noun
+  ds: Maintain reference across an extended explanation
+  anchors: []
+- id: es-g0123
+  level: 25
+  topic: register
+  ch: no es que + subjunctive, es que / sino que + explanation
+  ds: Reject a proposed explanation rather than just a fact
+  anchors:
+  - es-v-f15553f7e9619f0f
+- id: es-g0124
+  level: 25
+  topic: register
+  ch: incluso / hasta / aun + focused constituent
+  ds: Locate an unexpected inclusion and preserve focus
+  anchors: []
+- id: es-g0125
+  level: 25
+  topic: reasoning
+  ch: no creo que venga; creo que no viene
+  ds: Interpret negation over belief versus believed content
+  anchors: []
+- id: es-g0126
+  level: 25
+  topic: register
+  ch: ¿Acaso ...? ¿Cómo no voy a ...?
+  ds: Infer a rhetorical stance without assuming certainty
+  anchors: []
+- id: es-g0127
+  level: 26
+  topic: register
+  ch: tú / usted; te / le; tu / su
+  ds: Recast address while keeping reference and relationship clear
+  anchors: []
+- id: es-g0128
+  level: 26
+  topic: register
+  ch: vosotros / vosotras; habláis; hablad; no habléis
+  ds: Recognize and use a labelled vosotros model
+  anchors:
+  - es-v-2f93489230e86c79
+  - es-v-28b9d4688d995c6a
+  - es-v-2a137c49489515e2
+- id: es-g0129
+  level: 26
+  topic: register
+  ch: vos tenés / podés / querés; sos; vení; hablá
+  ds: Recognize one explicitly bounded voseo paradigm
+  anchors:
+  - es-v-2b25f1c5976c1b7c
+  - es-v-72d079444a304715
+  - es-v-f15553f7e9619f0f
+  - es-v-2f93489230e86c79
+- id: es-g0130
+  level: 26
+  topic: services
+  ch: quería / venía a preguntar / podía
+  ds: Use an imperfect to soften a present approach
+  anchors:
+  - es-v-f15553f7e9619f0f
+- id: es-g0131
+  level: 27
+  topic: feelings
+  ch: echar de menos; hacer falta
+  ds: Distinguish missing someone from a needed thing
+  anchors: []
+- id: es-g0132
+  level: 27
+  topic: register
+  ch: dar por + participle; tener por + description
+  ds: Present an assumed result or an attributed judgment
+  anchors: []
+- id: es-g0133
+  level: 27
+  topic: communication
+  ch: ir al grano; andarse por las ramas
+  ds: Interpret idioms about conversational relevance
+  anchors: []
+- id: es-g0134
+  level: 27
+  topic: people
+  ch: tomarle el pelo a alguien
+  ds: Interpret teasing rather than a literal body-part action
+  anchors: []
+- id: es-g0135
+  level: 28
+  topic: argument
+  ch: solo / solamente; no ... más que
+  ds: Preserve restrictive scope in a revision
+  anchors: []
+- id: es-g0136
+  level: 28
+  topic: description
+  ch: lo + adjective; el / la + adjective
+  ds: Distinguish an abstract quality from an identified entity
+  anchors: []
+- id: es-g0137
+  level: 28
+  topic: description
+  ch: un gran ... / ... grande; antiguo ... / ... antiguo
+  ds: Preserve adjective-position meanings rather than word order
+  anchors: []
+- id: es-g0138
+  level: 28
+  topic: grammar
+  ch: sino; si no
+  ds: Separate a corrective conjunction from a negative condition
+  anchors: []
+- id: es-g0139
+  level: 29
+  topic: literature
+  ch: ayer esperaba y, de pronto, aparece ...
+  ds: Interpret a deliberate shift in narrative viewpoint
+  anchors: []
+- id: es-g0140
+  level: 29
+  topic: literature
+  ch: miró el reloj. ¿Llegaría él a tiempo?
+  ds: Recognize a possible free-indirect viewpoint
+  anchors: []
+- id: es-g0141
+  level: 29
+  topic: literature
+  ch: terminada la reunión, ...; leídas las cartas, ...
+  ds: Read an absolute participial frame with its own subject
+  anchors: []
+- id: es-g0142
+  level: 29
+  topic: reasoning
+  ch: el hecho de que + indicative / subjunctive
+  ds: Distinguish asserted information from a backgrounded fact
+  anchors: []
+- id: es-g0143
+  level: 30
+  topic: argument
+  ch: en la medida en que; en cuanto a
+  ds: Scope a claim without confusing condition and topic
+  anchors: []
+- id: es-g0144
+  level: 30
+  topic: argument
+  ch: de ahí que + subjunctive; así que + indicative
+  ds: Mark an inferred consequence and its discourse status
+  anchors: []
+- id: es-g0145
+  level: 30
+  topic: communication
+  ch: lo que ... es ...; fue ... quien ...
+  ds: Focus a correction while preserving the underlying claim
+  anchors: []
+- id: es-g0146
+  level: 30
+  topic: communication
+  ch: es decir; mejor dicho; en otras palabras
+  ds: Explain, correct, or paraphrase without hiding a revision
+  anchors: []
+- id: es-g0147
+  level: professional
+  topic: work
+  ch: se ruega / se solicita + infinitive or que clause
+  ds: Interpret an institutional request and its expected actor
+  anchors: []
+- id: es-g0148
+  level: professional
+  topic: work
+  ch: quedar en + infinitive; quedar en que + agreement
+  ds: Record an agreement rather than merely propose it
+  anchors: []
+- id: es-g0149
+  level: professional
+  topic: institutions
+  ch: conviene + infinitive; conviene que + subjunctive
+  ds: Recommend a procedure without claiming binding obligation
+  anchors: []
+- id: es-g0150
+  level: technical
+  topic: technology
+  ch: si; solo si; siempre que
+  ds: Distinguish sufficient and necessary operating conditions
+  anchors: []
+- id: es-g0151
+  level: technical
+  topic: technology
+  ch: en caso de + noun or infinitive; en caso de que + subjunctive
+  ds: Read a contingency and its recovery instruction
+  anchors: []
+- id: es-g0152
+  level: technical
+  topic: technology
+  ch: consistir en + noun or infinitive; servir para + infinitive
+  ds: Distinguish a system's composition from its purpose
+  anchors: []
+- id: es-g0153
+  level: scientific
+  topic: science
+  ch: se observó que; no se pudo determinar si
+  ds: Separate a reported observation from an unresolved question
+  anchors: []
+- id: es-g0154
+  level: scientific
+  topic: science
+  ch: ser compatible con; no implicar que + subjunctive
+  ds: Distinguish compatibility from a warranted conclusion
+  anchors: []
+- id: es-g0155
+  level: scientific
+  topic: science
+  ch: entre ... y ...; de ... a ...; al menos; como máximo
+  ds: Read a range, lower bound, or upper bound precisely
+  anchors: []
+- id: es-g0156
+  level: literary
+  topic: literature
+  ch: fuere / tuviere; hubiere + participle
+  ds: Recognize future-subjunctive forms in marked texts
+  anchors: []
+- id: es-g0157
+  level: literary
+  topic: literature
+  ch: díjome; hallábase
+  ds: Unpack older finite-verb enclisis for recognition
+  anchors:
+  - es-v-c44b026864b40f4e
+- id: es-g0158
+  level: literary
+  topic: literature
+  ch: quienquiera que; dondequiera que + subjunctive
+  ds: Interpret an unrestricted referent in marked prose
+  anchors: []

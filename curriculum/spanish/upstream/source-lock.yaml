@@ -1,0 +1,41 @@
+schema_version: 1
+source:
+  id: es-kaikki-20260909
+  url: https://kaikki.org/dictionary/Spanish/kaikki.org-dictionary-Spanish.jsonl.gz
+  dump: '2026-09-02'
+  extracted_on: '2026-09-09'
+  bytes: 92091654
+  sha256: ae1615d6cde1ef09725d3fabca5fb2851b0f845e22ef4d45911b1ff6560e76a1
+frequency:
+  revision: 525f9b560de45753a5ea01069454e72e9aa541c6
+  sha256: dcff3ad4316192f4dc4ff7d26e637c6ff314ef1ca0f3f720c5649018a71056c0
+projection:
+  file: selected-records.jsonl.gz
+  sha256: 9aaa329af1eab63cfbc6fed23ecdb3ee21042393cea3f1797133539febb7b4fd
+  policy: Selected lexical glosses, tags, IPA and inflection facts only; no quotations, audio, etymology,
+    categories or merged semantic links.
+authoring:
+  method: Explicit early task words and semantic aliases; source-assisted topic and frequency candidate
+    ordering, then editable teaching placements. AI-assisted, not human-reviewed.
+  unavailable_early_candidates:
+  - amiga
+  - sí
+  - juntos
+  - chaqueta
+  - enfermera
+  - jefa
+  unavailable_branch_candidates:
+    professional:
+    - consultoría
+    - financiación
+    - solvencia
+    technical:
+    - navegador
+    - compilador
+    - repositorio
+    scientific:
+    - muestreo
+    literary:
+    - hipérbole
+    - intertextualidad
+    - poética
