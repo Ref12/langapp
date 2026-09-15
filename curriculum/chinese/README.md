@@ -64,8 +64,15 @@ Chinese/English examples. Examples may include necessary supporting vocabulary
 from another band; gloss it before practice and do not silently alter the word
 inventory. Human review by an experienced Mandarin teacher remains necessary.
 
-Not supplied: audio recordings, licensed exam questions, a complete character/
-stroke-order or syllable inventory, full official grammar-table mapping,
+The separate [Chinese writing assets](characters/README.md) cover the 2,971
+literal Han required by this current curriculum with pinned source artwork,
+source-median baselines and separately identified refinement candidates.
+Only five exact inherited prototype shapes carry visual-review evidence;
+complete source coverage is not complete reviewed artwork or recognition.
+Four literal punctuation signs remain explicit unsupported targets.
+
+Not supplied: audio recordings, licensed exam questions, a complete professionally
+reviewed character/stroke-order or syllable inventory, full official grammar-table mapping,
 individually verified translations of every dictionary sense, and a complete
 2025/2026 examination-wordlist migration. This is a substantial teachable text
 corpus, not an assertion that those omissions have been solved.

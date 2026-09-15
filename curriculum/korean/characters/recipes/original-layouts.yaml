@@ -1,0 +1,97 @@
+version: '2'
+source_id: korean-writing-original-pilot
+authorship: Original AI-assisted placements of named canonical forms; no font-derived coordinates.
+reviewed: false
+placement_convention: [uniform_scale, translate_x, translate_y]
+layouts:
+  vertical-open:
+    initial_form: side
+    initial: [0.56, 1, 14]
+    medial: [0.82, 34, 9]
+  vertical-final:
+    initial_form: side
+    initial: [0.52, 4, 2]
+    medial: [0.64, 37, 1]
+  horizontal-open:
+    initial_form: wide
+    initial: [0.8, 10, 4]
+    medial: [0.86, 7, 22]
+  horizontal-final:
+    initial_form: wide
+    initial: [0.66, 17, 3]
+    medial: [0.56, 22, 22]
+  mixed-open:
+    initial_form: isolated
+    initial: [0.34, 15, 4]
+    medial: [0.9, 5, 6]
+  mixed-final:
+    initial_form: isolated
+    initial_form_overrides: {ㅎ: hieuh-mixed}
+    initial: [0.24, 19, 2]
+    medial: [0.68, 15, 5]
+single_final: [0.62, 19, 67]
+paired_final: [[0.66, 10, 66], [0.66, 56, 66]]
+paired_final_overrides:
+  ㅎ: {form: paired-hieuh-final, translate_y: 56}
+standalone:
+  isolated: [0.9, 5, 5]
+pilot_syllables:
+- 가
+- 꺾
+- 낼
+- 독
+- 뚫
+- 봤
+- 쉰
+- 얇
+- 렴
+- 멩
+- 뾰
+- 쐬
+- 즙
+- 찢
+- 옛
+- 윷
+- 찮
+- 쾌
+- 훤
+- 걔
+- 궤
+- 늬
+- 태
+- 팥
+- 갇
+- 값
+- 갚
+- 갛
+- 거
+- 게
+- 겨
+- 계
+- 고
+- 곪
+- 과
+- 괜
+- 굉
+- 구
+- 굵
+- 귀
+- 규
+- 그
+- 기
+- 냐
+- 넋
+- 룡
+- 묶
+- 뭐
+- 앉
+- 엌
+- 웬
+- 읊
+- 핥
+- 흰
+review_gate:
+  bulk_generation: prohibited
+  qualified_review: pending
+  target_observed_context_assignments: 196
+  note: The 54-syllable set covers component and broad layout families, not all contextual assignments. Missing contextual cases must remain explicit.

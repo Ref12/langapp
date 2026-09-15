@@ -107,6 +107,17 @@ Upstream snapshots, download locks, TSV/PSV authoring inputs, and license files
 remain in their original formats. Historical filenames in preserved notices
 refer to the corresponding YAML outputs after this format-only migration.
 
+#### Character-writing assets
+
+The shared [character asset contract](CHARACTERS.md) defines exact Unicode keys,
+256-codepoint YAML chunks, locale/style variants, ordered logical stroke paths,
+same-path sampling, pinned sources/recipes, and separate drawable and visual
+review coverage. Language-local assets live under `characters`; they do not
+change word/sense identities or reference-level assignments. This milestone is
+offline assets, tooling and preview support, not a production writing activity.
+The contract also documents authoritative inventory extraction, modern kana and
+Hangul foundations, explicit gaps, and no-write generation/validation commands.
+
 ### Vocabulary
 
 Each vocabulary mapping contains these nine base fields:
@@ -403,6 +414,11 @@ The validator uses the pinned PyYAML dependency and checks required files,
 directory order metadata, YAML record structure, nonempty bilingual fields, IDs,
 source references, source dates,
 and grammar examples. It prints counts by level and fails on structural errors.
+If a language has a `characters` directory, its complete manifest, chunk and
+coverage set is also checked against the current expanded inventory and local
+source pins. Candidate assets may be mechanically valid without being visually
+approved; use `scripts\validate_characters.py --require-release` for the stricter
+release gate.
 For HSK-1 it also checks sense identities, token ambiguity, and exact agreement
 between expanded and compact files.
 Declared teaching tracks are also checked for valid sense references,

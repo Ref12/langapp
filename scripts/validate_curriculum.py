@@ -5,10 +5,13 @@ from datetime import date
 from pathlib import Path
 import re
 import sys
+import tarfile
+import zipfile
 
 import yaml
 
 from curriculum_yaml import load_yaml
+from character_assets import validate_bundle
 from generate_curriculum_tokens import PILOT_LEVEL, compact_outputs, vocabulary_pairs
 from generate_teaching_track import load_reference_index, teaching_outputs
 from generate_practical_program import generate as generate_program
@@ -284,6 +287,13 @@ class Validator:
             if (language, level) == PILOT_LEVEL:
                 self.compact(language, level)
             self.counts.append((language, level, vocabulary_count, grammar_count, example_count))
+        characters = directory / "characters"
+        if characters.exists():
+            try:
+                validate_bundle(directory)
+            except (OSError, UnicodeError, ValueError, yaml.YAMLError,
+                    tarfile.TarError, zipfile.BadZipFile) as exc:
+                self.error(characters, str(exc))
         if self.teaching_tracks.get(language):
             try:
                 if language == "chinese":
