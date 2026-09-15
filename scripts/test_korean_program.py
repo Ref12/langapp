@@ -1,0 +1,523 @@
+"""Strict Korean adapter and checked-in curriculum regressions."""
+
+from copy import deepcopy
+from pathlib import Path
+import re
+import unittest
+
+from curriculum_yaml import load_yaml
+from generate_practical_program import (
+    analyze_phrase, tourist_outputs, validate_dependencies, validate_model, validate_references,
+)
+from korean_program_adapter import (
+    CORRECTION_REVIEW_STATUS, KoreanAdapter, citation_reading, inventory_counts,
+    lexical_members, phase_inventory, sense_index, source_corrections,
+)
+from practical_program_types import PhraseContext, ReferenceBundle
+
+
+class KoreanAdapterTests(unittest.TestCase):
+    def setUp(self):
+        self.identifier = "ko-nikl-11667-s001"
+        self.grammar = "ko-topik1-g016"
+        self.word = {"id": self.identifier, "ch": "읽다", "pr": "익따", "ds": "read aloud"}
+        self.pattern = {"id": self.grammar, "ch": "V-어요", "ds": "polite predicate"}
+        self.references = ReferenceBundle(
+            {self.identifier: self.word}, {self.grammar: self.pattern},
+            {self.identifier: "ko-lex-read"},
+        )
+        self.adapter = KoreanAdapter()
+        self.form = {
+            "ch": "읽어요", "pr": "일거요",
+            "items": [self.identifier], "grammar": [self.grammar],
+            "rationale": "The vowel ending follows the stem; the final cluster splits across the syllables.",
+            "review_status": "unreviewed",
+        }
+        self.adapter.forms = {"read-polite": self.form}
+        self.phrase = {
+            "id": "ko-tourist-p001", "ch": "읽어요.", "pr": "일거요", "ds": "Read it.",
+            "items": [self.identifier], "grammar": [self.grammar],
+            "realizations": [{key: value for key, value in self.form.items()
+                              if key in {"ch", "pr", "items", "grammar"}} | {"form_id": "read-polite"}],
+        }
+        self.context = PhraseContext(
+            self.adapter.profile, self.references, frozenset({self.identifier}),
+            frozenset({self.grammar}),
+        )
+
+    def test_reading_never_defaults_to_spelling(self):
+        with self.assertRaisesRegex(ValueError, "no supported"):
+            citation_reading("missing", {"entries": {}}, {})
+
+    def test_official_alternatives_and_length_are_preserved(self):
+        overlay = {"source_id": "official", "entries": {
+            "parent": {"pronunciations": ["눈ː", "눈"], "method": "official-text"},
+        }}
+        reading, evidence = citation_reading("parent", overlay, {})
+        self.assertEqual(reading, "눈ː / 눈")
+        self.assertEqual(evidence["method"], "official-text")
+        with self.assertRaisesRegex(ValueError, "conflicts"):
+            citation_reading("parent", overlay, {"parent": {}})
+
+    def test_official_display_whitespace_is_normalized_without_losing_raw_evidence(self):
+        overlay = {"source_id": "official", "entries": {
+            "baseball": {"pronunciations": ["야ː구 "], "method": "official-text"},
+        }}
+        reading, evidence = citation_reading("baseball", overlay, {})
+        self.assertEqual(reading, "야ː구")
+        self.assertEqual(evidence["pronunciations"], ["야ː구 "])
+        self.assertEqual(evidence["display_pronunciations"], ["야ː구"])
+        self.assertEqual(evidence["display_normalization"], "trim-surrounding-whitespace-only")
+        self.assertEqual(overlay["entries"]["baseball"]["pronunciations"], ["야ː구 "])
+
+    def test_authored_reading_needs_explicit_method_rationale_and_status(self):
+        decision = {
+            "pronunciations": ["택씨"], "method": "authored-broad-hangul",
+            "reason": "Final stop followed by tensed sibilant.", "review_status": "unreviewed",
+        }
+        reading, evidence = citation_reading("taxi", {"entries": {}}, {"taxi": decision})
+        self.assertEqual(reading, "택씨")
+        self.assertEqual(evidence["review_status"], "unreviewed")
+        for field, value in (
+            ("method", "dictionary-verified"), ("reason", ""),
+            ("review_status", "verified"), ("pronunciations", ["taeksi"]),
+        ):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                citation_reading("taxi", {"entries": {}}, {"taxi": {**decision, field: value}})
+
+    def test_inflected_realization_has_precise_form_and_construction_evidence(self):
+        analysis = self.adapter.validate_phrase(self.phrase, self.context)
+        self.assertEqual(analysis.items, (self.identifier,))
+        self.assertEqual(analysis.grammar, (self.grammar,))
+        self.assertEqual(analysis.realizations[0].pr, "일거요")
+        self.assertEqual(analysis.realizations[0].form_id, "read-polite")
+
+    def test_wrong_surface_reading_or_links_cannot_reuse_form_license(self):
+        for key, value in (
+            ("ch", "먹어요"), ("pr", "익따"), ("items", []), ("grammar", []),
+            ("form_id", "unknown"),
+        ):
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                phrase = deepcopy(self.phrase)
+                phrase["realizations"][0][key] = value
+                self.adapter.validate_phrase(phrase, self.context)
+
+    def test_sentence_wide_form_cannot_hide_unknown_vocabulary(self):
+        self.form["ch"] = "모르는 문장을 읽어요"
+        self.phrase["ch"] = self.form["ch"]
+        self.phrase["realizations"][0]["ch"] = self.form["ch"]
+        with self.assertRaisesRegex(ValueError, "one orthographic word"):
+            self.adapter.validate_phrase(self.phrase, self.context)
+
+    def test_korean_spacing_is_not_erased_by_generic_surface_normalization(self):
+        self.phrase["ch"] = "읽어 요."
+        with self.assertRaisesRegex(ValueError, "spacing"):
+            self.adapter.validate_phrase(self.phrase, self.context)
+
+    def test_unannotated_spelling_change_is_not_a_canonical_segment(self):
+        self.phrase["realizations"][0].pop("form_id")
+        with self.assertRaisesRegex(ValueError, "noncanonical"):
+            self.adapter.validate_phrase(self.phrase, self.context)
+
+    def test_polysemy_counts_once_and_bound_forms_are_separate(self):
+        first, second, bound = "s1", "s2", "s3"
+        parent = {"id": "p1", "target": "쓰다", "part_of_speech": "verb", "source_band": "beginner"}
+        parent2 = {"id": "p2", "target": "것", "part_of_speech": "bound noun", "source_band": "beginner"}
+        senses = {first: (parent, {}), second: (parent, {}), bound: (parent2, {})}
+        words = {
+            first: {"ch": "쓰다"}, second: {"ch": "쓰다"}, bound: {"ch": "것"},
+        }
+        groups = {
+            "write": {"lemma": "쓰다", "category": "free-lemma", "members": [first, second],
+                      "source_parents": ["p1"], "rationale": "Two senses of the same writing lexeme."},
+            "thing": {"lemma": "것", "category": "bound-form", "members": [bound],
+                      "source_parents": ["p2"], "rationale": "Dependent noun, counted separately."},
+        }
+        identities, categories = lexical_members(groups, words, senses)
+        provenance = {item: {"reading": {"method": "official-text"}} for item in words}
+        references = ReferenceBundle(words, {}, identities, provenance)
+        counts = inventory_counts(set(words), references, categories, senses)
+        self.assertEqual(counts["selected_senses"], 3)
+        self.assertEqual(counts["dictionary_entries"], 2)
+        self.assertEqual(counts["free_lemmas"], 1)
+        self.assertEqual(counts["bound_forms"], 1)
+        self.assertEqual(counts["distinct_spellings"], 2)
+        phases = phase_inventory(
+            [{"id": "first", "levels": [1]}, {"id": "second", "levels": [2]}],
+            [{"id": first, "level": 1}, {"id": second, "level": 2}, {"id": bound, "level": 2}],
+            references, categories, senses,
+        )
+        self.assertEqual([phase["new_free_lemmas"] for phase in phases], [1, 0])
+        self.assertEqual([phase["free_lemmas"] for phase in phases], [1, 1])
+        self.assertEqual(phases[1]["bound_forms"], 1)
+        groups["write"]["members"].remove(second)
+        with self.assertRaisesRegex(ValueError, "Missing lexical identities"):
+            lexical_members(groups, words, senses)
+
+    def test_authored_corrections_preserve_bilingual_source_and_selected_label(self):
+        source = {"english": "a physical spring", "korean": "힘이나 기운이 솟아나게 하는 원천"}
+        correction = {
+            "source_english": source["english"], "source_korean": source["korean"],
+            "authored_interpretation": "a source of strength",
+            "rationale": "The Korean definition is figurative, unlike the repeated English wording.",
+        }
+        ledger = {
+            "schema_version": 1, "review_status": CORRECTION_REVIEW_STATUS,
+            "policy": "Preserve source text and document authored interpretations separately.",
+            "corrections": {"s1": correction},
+        }
+        senses, labels = {"s1": ({}, source)}, {"s1": correction["authored_interpretation"]}
+        resolved = source_corrections(ledger, senses, labels)
+        self.assertEqual(resolved["s1"]["review_status"], "unreviewed")
+        self.assertEqual(source["english"], "a physical spring")
+        with self.assertRaisesRegex(ValueError, "selected label"):
+            source_corrections(ledger, senses, {"s1": "a physical spring"})
+        invalid = deepcopy(ledger)
+        invalid["corrections"]["s1"]["source_korean"] = "a different source meaning"
+        with self.assertRaisesRegex(ValueError, "preserved source korean"):
+            source_corrections(invalid, senses, labels)
+        invalid = deepcopy(ledger)
+        invalid["review_status"] = "dictionary-verified"
+        with self.assertRaisesRegex(ValueError, "falsely verified"):
+            source_corrections(invalid, senses, labels)
+
+
+class KoreanSourceArtifactTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.root = Path(__file__).resolve().parents[1] / "curriculum" / "korean"
+        cls.registry = load_yaml(cls.root / "source-senses.yaml")
+        cls.parents, cls.senses = sense_index(cls.registry)
+        cls.readings = load_yaml(cls.root / "reading-overlay.yaml")
+
+    def test_all_banded_positions_preserve_original_parent_metadata(self):
+        banded = [row for row in self.parents.values() if row["source_band"] != "unbanded"]
+        self.assertEqual(len(banded), 11028)
+        self.assertEqual(sum(len(parent["senses"]) for parent in banded), 19661)
+        for number in range(1, 7):
+            for reference in load_yaml(self.root / f"topik-{number}" / "vocabulary.yaml"):
+                parent = self.parents[reference["id"]]
+                self.assertEqual(reference["target"], parent["target"])
+                self.assertEqual(reference["part_of_speech"], parent["part_of_speech"])
+                self.assertEqual(reference["source_entry"], parent["source_entry"])
+                self.assertEqual(reference["reading"], "")
+                self.assertEqual(parent["reference_level"], f"topik-{number}")
+
+    def test_duplicate_english_source_positions_are_not_merged(self):
+        for parent_id, positions in (
+            ("ko-nikl-07948", (1, 2)), ("ko-nikl-09462", (1, 2)),
+            ("ko-nikl-26461", (1, 2)), ("ko-nikl-34299", (2, 5)),
+        ):
+            with self.subTest(parent=parent_id):
+                entries = [self.senses[f"{parent_id}-s{number:03d}"][1] for number in positions]
+                self.assertEqual(entries[0]["english"], entries[1]["english"])
+                self.assertNotEqual(entries[0]["korean"], entries[1]["korean"])
+
+    def test_figurative_spring_correction_matches_the_actual_pinned_definition(self):
+        ledger = load_yaml(self.root / "authoring" / "teaching" / "source-corrections.yaml")
+        labels = {"ko-nikl-09462-s003": "a source of strength or vitality (figurative)"}
+        result = source_corrections(ledger, self.senses, labels)
+        self.assertEqual(result["ko-nikl-09462-s003"]["authored_interpretation"], labels["ko-nikl-09462-s003"])
+        self.assertEqual(result["ko-nikl-09462-s003"]["method"], "authored-interpretation")
+
+    def test_essential_support_is_explicitly_unbanded(self):
+        for identifier in load_yaml(self.root / "authoring" / "teaching" / "support-parents.yaml"):
+            self.assertEqual(self.parents[identifier]["source_band"], "unbanded")
+            self.assertIsNone(self.parents[identifier]["reference_level"])
+        self.assertNotIn("ko-nikl-26498", self.parents)
+
+    def test_actual_official_sound_changes_and_homographs_survive(self):
+        for parent, reading in (
+            ("ko-nikl-11667", "익따"), ("ko-nikl-46845", "업ː따"),
+            ("ko-nikl-15420", "눈"), ("ko-nikl-15508", "눈ː"),
+            ("ko-nikl-36444", "마싣따"), ("ko-nikl-39509", "방물관"),
+        ):
+            with self.subTest(parent=parent):
+                self.assertIn(reading, self.readings["entries"][parent]["pronunciations"])
+        self.assertEqual(self.readings["entries"]["ko-nikl-20539"]["pronunciations"], [])
+        self.assertEqual(self.readings["entries"]["ko-nikl-41632"]["match_method"], "explicit-crosswalk")
+
+
+class KoreanGrammarArtifactTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.root = Path(__file__).resolve().parents[1] / "curriculum" / "korean"
+        authoring = cls.root / "authoring" / "teaching"
+        cls.program = load_yaml(cls.root / "teaching" / "program.yaml")
+        cls.mastery = load_yaml(cls.root / "teaching" / "mastery.yaml")
+        cls.grammar = {row["id"]: row for row in load_yaml(authoring / "grammar.yaml")}
+        cls.dependencies = load_yaml(authoring / "construction-dependencies.yaml")
+        cls.extra = load_yaml(authoring / "grammar-extra.yaml")
+
+    def test_thirty_goal_driven_levels_have_exact_six_phase_partition(self):
+        validate_model(self.program, self.mastery, KoreanAdapter.profile)
+        self.assertEqual(
+            [phase["levels"] for phase in self.program["phases"]],
+            [list(range(start, end + 1)) for start, end in
+             ((1, 4), (5, 8), (9, 13), (14, 18), (19, 24), (25, 30))],
+        )
+        self.assertEqual([level["number"] for level in self.program["levels"]], list(range(1, 31)))
+        self.assertTrue(all(2 <= len(level["goals"]) <= 4 for level in self.program["levels"]))
+        self.assertEqual(
+            {branch["id"]: branch["after_level"] for branch in self.program["extensions"]},
+            {"professional": 18, "technical": 18, "scientific": 24, "literary": 24},
+        )
+
+    def test_receptive_and_productive_evidence_remain_distinct(self):
+        stages = {stage["id"]: set(stage["modalities"]) for stage in self.mastery["stages"]}
+        self.assertEqual(stages["recognize"], {"reading", "listening"})
+        self.assertEqual(stages["understand"], {"reading", "listening"})
+        productive = {"typed-production", "spoken-production", "handwriting"}
+        self.assertEqual(stages["supported-use"], productive)
+        self.assertEqual(stages["independent-use"], productive)
+        self.assertTrue(
+            {"item_id", "modality", "assistance", "observed_at", "context", "outcome"}
+            <= set(self.mastery["evidence_fields"])
+        )
+        self.assertNotIn("learner_progress", self.mastery)
+
+    def test_every_original_construction_has_an_explicit_non_exam_classification(self):
+        originals = {
+            row["id"]
+            for number in range(1, 7)
+            for row in load_yaml(self.root / f"topik-{number}" / "grammar.yaml")
+        }
+        notes = (self.root / "teaching" / "grammar-notes.md").read_text(encoding="utf-8")
+        rows = re.findall(
+            r"\| (ko-topik[1-6]-g\d{3}) \| (selected core|optional|reference variant) \| ([^|]+) \|",
+            notes,
+        )
+        self.assertEqual(len(rows), len(originals))
+        self.assertEqual({row[0] for row in rows}, originals)
+        for identifier, classification, placement in rows:
+            with self.subTest(construction=identifier):
+                if classification == "reference variant":
+                    self.assertNotIn(identifier, self.grammar)
+                else:
+                    self.assertEqual(str(self.grammar[identifier]["level"]), placement.strip())
+                    self.assertEqual(type(self.grammar[identifier]["level"]) is int,
+                                     classification == "selected core")
+        self.assertEqual({row["id"] for row in self.extra},
+                         {f"ko-teaching-g{number:03d}" for number in range(1, 10)})
+        for row in self.extra:
+            self.assertEqual(row["source_id"], "original-ko")
+            self.assertGreaterEqual(len(row["examples"]), 2)
+            self.assertTrue(all(set(example) == {"target", "english"} for example in row["examples"]))
+        validate_dependencies(self.dependencies, self.grammar)
+        self.assertEqual(set(self.dependencies), set(self.grammar))
+        for identifier, required in self.dependencies.items():
+            destination = self.grammar[identifier]["level"]
+            if type(destination) is int:
+                for dependency in required:
+                    self.assertIs(type(self.grammar[dependency]["level"]), int)
+                    self.assertLessEqual(self.grammar[dependency]["level"], destination)
+
+
+class KoreanCourseArtifactTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.root = Path(__file__).resolve().parents[1] / "curriculum" / "korean"
+        cls.adapter = KoreanAdapter()
+        cls.data = cls.adapter.load(cls.root)
+        cls.references = cls.data.references
+
+    def test_all_selected_canonical_records_have_explicit_source_and_reading_evidence(self):
+        validate_references(self.references, self.adapter.profile)
+        selected = {row["id"] for row in self.data.inputs["vocabulary"]} | set(self.data.inputs["support"])
+        self.assertEqual(set(self.references.vocabulary), selected)
+        for identifier, record in self.references.vocabulary.items():
+            with self.subTest(sense=identifier):
+                self.assertEqual(set(record), {"id", "ch", "pr", "ds"})
+                evidence = self.references.provenance[identifier]
+                self.assertEqual(identifier, f"{evidence['source_parent']}-s{evidence['source_position']:03d}")
+                self.assertTrue(evidence["source_english"] and evidence["source_korean"])
+                self.assertIn(evidence["reading"]["method"], {"official-text", "authored-broad-hangul"})
+                if evidence["reading"]["method"] == "authored-broad-hangul":
+                    self.assertEqual(evidence["reading"]["review_status"], "unreviewed")
+                self.assertLessEqual(len(record["ds"]), 64)
+        for record in self.references.grammar.values():
+            self.assertEqual(set(record), {"id", "ch", "ds"})
+
+    def test_selected_homographs_and_practical_senses_remain_distinct(self):
+        identities = self.references.lexical_identity
+        words = self.references.vocabulary
+        write, wear, use, bitter = (
+            "ko-nikl-03918-s001", "ko-nikl-03919-s001",
+            "ko-nikl-03920-s001", "ko-nikl-03921-s001",
+        )
+        self.assertEqual({words[item]["ch"] for item in (write, wear, use, bitter)}, {"쓰다"})
+        self.assertEqual(len({identities[item] for item in (write, wear, use, bitter)}), 4)
+        self.assertEqual(identities[write], identities["ko-nikl-03918-s003"])
+        self.assertNotEqual(identities["ko-nikl-15420-s001"], identities["ko-nikl-15508-s001"])
+        self.assertIn("payment", words["ko-nikl-20539-s006"]["ds"])
+        self.assertIn("yes", words["ko-nikl-35345-s002"]["ds"])
+        self.assertIn("grateful", words["ko-nikl-26499-s001"]["ds"])
+        self.assertNotIn("ko-nikl-26498-s001", words)
+
+    def test_actual_reading_exceptions_keep_their_evidence_boundaries(self):
+        words, provenance = self.references.vocabulary, self.references.provenance
+        self.assertEqual(words["ko-nikl-04942-s001"]["pr"], "야ː구")
+        baseball = provenance["ko-nikl-04942-s001"]["reading"]
+        self.assertEqual(baseball["pronunciations"], ["야ː구 "])
+        self.assertEqual(baseball["display_normalization"], "trim-surrounding-whitespace-only")
+        self.assertEqual(words["ko-nikl-12867-s001"]["pr"], "장느")
+        self.assertEqual(provenance["ko-nikl-12867-s001"]["reading"]["method"], "authored-broad-hangul")
+        self.assertEqual(provenance["ko-nikl-12867-s001"]["reading"]["review_status"], "unreviewed")
+        corrected = provenance["ko-nikl-09462-s003"]
+        self.assertIn("spring water", corrected["source_english"])
+        self.assertIn("strength", corrected["source_correction"]["authored_interpretation"])
+        self.assertEqual(corrected["source_correction"]["review_status"], "unreviewed")
+
+    def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
+        import yaml
+        report = yaml.safe_load(self.data.source_outputs[self.root / "teaching" / "coverage.yaml"])
+        pool = report["selected_reference_pool"]
+        self.assertEqual(pool["selected_senses"], len(self.references.vocabulary))
+        self.assertEqual(pool["dictionary_entries"], len({
+            self.references.provenance[item]["source_parent"] for item in self.references.vocabulary
+        }))
+        self.assertEqual(pool["distinct_spellings"], len({
+            row["ch"] for row in self.references.vocabulary.values()
+        }))
+        self.assertEqual(pool["lexical_identities"],
+                         pool["free_lemmas"] + pool["bound_forms"] + pool["function_items"])
+        self.assertEqual(sum(row["new_free_lemmas"] for row in report["phases"]),
+                         report["core"]["free_lemmas"])
+        self.assertEqual(report["core_free_lemma_gap_to_lower_guide"],
+                         max(0, 5800 - report["core"]["free_lemmas"]))
+        self.assertEqual(report["lexical_identity_review_status"], "unreviewed")
+
+    def test_generated_source_evidence_preserves_corrections_and_reading_methods(self):
+        import yaml
+        report = yaml.safe_load(self.data.source_outputs[self.root / "teaching" / "source-provenance.yaml"])
+        self.assertEqual(report["items"], self.references.provenance)
+        self.assertEqual(len(report["phrases"]), 47)
+        for source in report["phrases"].values():
+            self.assertEqual(source["source_id"], "original-ko")
+            self.assertEqual(source["reading_method"], "authored-broad-hangul")
+            self.assertEqual(source["review_status"], "unreviewed")
+
+    def test_checked_in_tourist_views_match_actual_canonical_course_records(self):
+        anchors = {row["id"]: row["anchors"] for row in self.data.inputs["grammar"]}
+        outputs, _ = tourist_outputs(
+            self.root, self.data.inputs["tourist"], self.references, self.data.inputs["mastery"],
+            self.adapter, self.data.construction_dependencies, anchors,
+        )
+        for path, expected in outputs.items():
+            with self.subTest(path=path):
+                self.assertEqual(path.read_text(encoding="utf-8"), expected)
+
+
+class KoreanTouristArtifactTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.root = Path(__file__).resolve().parents[1] / "curriculum" / "korean"
+        authoring = cls.root / "authoring" / "teaching"
+        _, senses = sense_index(load_yaml(cls.root / "source-senses.yaml"))
+        readings = load_yaml(cls.root / "reading-overlay.yaml")
+        decisions = load_yaml(authoring / "reading-decisions.yaml")
+        labels = load_yaml(authoring / "support.yaml")
+        cls.plan = load_yaml(cls.root / "teaching" / "tourist" / "plan.yaml")
+        words = {}
+        for identifier, disambiguator in labels.items():
+            parent, _ = senses[identifier]
+            words[identifier] = {
+                "id": identifier, "ch": parent["target"],
+                "pr": citation_reading(parent["id"], readings, decisions)[0], "ds": disambiguator,
+            }
+        originals = {
+            entry["id"]: entry
+            for number in range(1, 7)
+            for entry in load_yaml(cls.root / f"topik-{number}" / "grammar.yaml")
+        }
+        selected_grammar = {identifier for unit in cls.plan["units"] for identifier in unit["grammar"]}
+        patterns = {
+            identifier: {"id": identifier, "ch": originals[identifier]["pattern"],
+                         "ds": originals[identifier]["english"]}
+            for identifier in selected_grammar
+        }
+        cls.references = ReferenceBundle(
+            words, patterns, {identifier: senses[identifier][0]["id"] for identifier in words},
+            source_sense_identity={identifier: identifier for identifier in words},
+            reading_identity={identifier: word["pr"] for identifier, word in words.items()},
+            spelling_identity={identifier: word["ch"] for identifier, word in words.items()},
+        )
+        cls.adapter = KoreanAdapter()
+        cls.adapter.forms = load_yaml(authoring / "phrase-forms.yaml")
+
+    def test_every_real_tourist_phrase_has_known_precise_components(self):
+        words, grammar = set(), set()
+        phrases = 0
+        for unit in self.plan["units"]:
+            self.assertLessEqual(len(unit["vocabulary"]), 25)
+            self.assertLessEqual(len(unit["grammar"]), 3)
+            self.assertTrue(set(unit["review_vocabulary"]) <= words)
+            self.assertTrue(set(unit["review_grammar"]) <= grammar)
+            self.assertFalse(set(unit["vocabulary"]) & words)
+            self.assertFalse(set(unit["grammar"]) & grammar)
+            words.update(unit["vocabulary"])
+            grammar.update(unit["grammar"])
+            context = PhraseContext(
+                self.adapter.profile, self.references, frozenset(words), frozenset(grammar),
+            )
+            for phrase in unit["phrases"]:
+                with self.subTest(phrase=phrase["id"]):
+                    self.assertLessEqual(len(phrase["ds"]), 64)
+                    analysis = analyze_phrase(phrase, context, self.adapter)
+                    self.assertEqual(analysis.items, tuple(phrase["items"]))
+                    self.assertEqual(analysis.grammar, tuple(phrase["grammar"]))
+                    self.assertTrue(all(part.items or part.grammar for part in analysis.realizations))
+                    phrases += 1
+        self.assertEqual(phrases, 47)
+        self.assertEqual(len(words), 66)
+        self.assertEqual(len(grammar), 20)
+        self.assertIn("ko-nikl-20539-s006", words)  # Payment card, not an arbitrary rectangular card.
+        self.assertIn("ko-nikl-35345-s002", words)  # Affirmative response, not the four-counter form.
+        self.assertIn("ko-nikl-43778-s008", words)  # Photograph, not stabbing or stamping.
+        self.assertIn("ko-nikl-28668-s003", words)  # Paying, not doing arithmetic.
+
+    def test_quick_start_is_independent_and_compact_entries_are_full_records(self):
+        outputs, report = tourist_outputs(
+            self.root, self.plan, self.references, {"id": "ko-item-mastery"}, self.adapter,
+        )
+        self.assertEqual(len(outputs), 8)
+        self.assertEqual(report["quick_start"]["phrases"], 24)
+        import yaml
+        directory = self.root / "teaching" / "tourist"
+        full = yaml.safe_load(outputs[directory / "sequence.yaml"])
+        quick = yaml.safe_load(outputs[directory / "quick-start" / "sequence.yaml"])
+        self.assertEqual(quick["units"], full["units"][:5])
+        for route, location in ((full, directory), (quick, directory / "quick-start")):
+            for kind, fields in (
+                ("vocabulary", {"id", "ch", "pr", "ds"}),
+                ("grammar", {"id", "ch", "ds"}),
+                ("phrases", {"id", "ch", "pr", "ds"}),
+            ):
+                compact = yaml.safe_load(outputs[location / f"{kind}.min.yaml"])
+                self.assertEqual(compact, [entry for unit in route["units"] for entry in unit[kind]])
+                self.assertTrue(all(set(entry) == fields for entry in compact))
+
+    def test_real_route_rejects_forward_review_and_uncovered_phrase_material(self):
+        plan = deepcopy(self.plan)
+        plan["units"][0]["review_vocabulary"].append("ko-nikl-38551-s001")
+        with self.assertRaisesRegex(ValueError, "earlier introductions"):
+            tourist_outputs(self.root, plan, self.references, {"id": "ko-item-mastery"}, self.adapter)
+        plan = deepcopy(self.plan)
+        plan["units"][0]["phrases"][0]["ch"] += " 추가"
+        with self.assertRaisesRegex(ValueError, "spacing"):
+            tourist_outputs(self.root, plan, self.references, {"id": "ko-item-mastery"}, self.adapter)
+
+    def test_route_satisfies_real_construction_dependencies_and_lexical_anchors(self):
+        authoring = self.root / "authoring" / "teaching"
+        dependencies = load_yaml(authoring / "construction-dependencies.yaml")
+        anchors = {row["id"]: row["anchors"] for row in load_yaml(authoring / "grammar.yaml")}
+        outputs, report = tourist_outputs(
+            self.root, self.plan, self.references, {"id": "ko-item-mastery"}, self.adapter,
+            dependencies, anchors,
+        )
+        self.assertEqual(len(outputs), 8)
+        self.assertEqual(report["quick_start"]["phrases"], 24)
+
+
+if __name__ == "__main__":
+    unittest.main()

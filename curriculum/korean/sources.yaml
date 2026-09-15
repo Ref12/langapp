@@ -8,6 +8,10 @@
     topics and part-of-speech labels translated; English glosses whitespace-normalized and combined; sixteen
     Korean/Hanja metalinguistic glosses replaced by original English equivalents; original band retained
     in level_basis; six-grade placements are project heuristics.
+  practical_teaching_use: Original TOPIK references remain unchanged. A separate source-position registry
+    retains raw Korean and English definitions without deduplicating identical English. Narrowly curated
+    essential unbanded support retains its original record/definition ordinals and explicit unbanded status,
+    outside TOPIK folders. Curated compact labels and placements are separate authored decisions.
   attribution: National Institute of Korean Language and Korean-English Learners' Dictionary contributors,
     via the unofficial extraction by binjang. Preserve this attribution, the source link, license link,
     change notice, and share-alike terms with adapted dictionary data. NIKL does not endorse this curriculum.
@@ -23,6 +27,28 @@
   parser_reference_url: https://github.com/binjang/NIKL-dictionary-parser
   source_entry_convention: 'Pinned download URL plus #record=N; N is the one-based data-record ordinal
     excluding the CSV header, not an official dictionary sense ID or a guaranteed clickable website anchor.'
+- id: nikl-official-20260819
+  title: Official NIKL Korean Learners' Dictionary JSON archive dated 2026-08-19
+  url: https://krdict.korean.go.kr/download/downloadPopup
+  license: CC-BY-SA-2.0-KR for dictionary text; multimedia excluded
+  usage: Citation-pronunciation text and necessary Korean-definition identity evidence only. Matched
+    independently to original January 2024 project parent IDs by written form, POS, and ordered Korean
+    definitions, with explicitly documented manual crosswalks for selected updated definitions. Preserve
+    all pronunciation alternatives and length marks. No audio, usage examples, inflected-form inventories,
+    images, or video redistributed. Missing text is not replaced automatically with spelling.
+  attribution: National Institute of Korean Language and dictionary contributors. Retain attribution,
+    source and license links, modification notice, and share-alike terms with derived dictionary text.
+    NIKL does not endorse this curriculum or its authored pronunciation decisions.
+  retrieved_on: '2026-09-15'
+  download_url: https://krdict.korean.go.kr/dicBatchDownload?seq=214
+  archive_date: '2026-08-19'
+  sha256: 7cf41e62a2a36158a8be2b6d2f84c086221e9b29d4345c44e5497eebf21c8c40
+  compressed_bytes: 84455509
+  license_url: https://creativecommons.org/licenses/by-sa/2.0/kr/
+  official_copyright_url: https://krdict.korean.go.kr/kor/kboardPolicy/copyRightTermsInfo
+  identity_policy: Official archive entry/sense IDs are additional source evidence, not replacements
+    for project IDs derived from the pinned January 2024 CSV. Text pronunciation does not establish audio
+    assessment or verify a full original phrase.
 - id: nikl-copyright
   title: Official Korean-English Learners' Dictionary copyright policy
   url: https://krdict.korean.go.kr/eng/kboardPolicy/copyRightTermsInfo
@@ -77,4 +103,7 @@
     endorsement
   retrieved_on: '2026-09-07'
   local_origin: curriculum/korean/grammar-authoring.tsv and topik-1 through topik-6 syllabi
+  practical_teaching_origin: curriculum/korean/authoring/teaching and curriculum/korean/teaching contain
+    original practical selections, goals, mastery guidance, phrases, supplementary constructions, and
+    individual unverified broad-Hangul reading decisions. These do not relicense adapted NIKL dictionary text.
   license_url: https://creativecommons.org/publicdomain/zero/1.0/

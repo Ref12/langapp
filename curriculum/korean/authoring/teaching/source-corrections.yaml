@@ -1,0 +1,17 @@
+schema_version: 1
+review_status: AI-authored interpretation; requires qualified Korean-teacher review
+policy: >
+  Original bilingual source records remain unchanged. These overrides document
+  semantic interpretation only, not verified teacher review or a new official
+  dictionary definition.
+corrections:
+  ko-nikl-09462-s003:
+    source_korean: '(비유적으로) 힘이나 기운이 솟아나게 하는 원천.'
+    source_english: '(figurative) A place from which spring water gushes out, or its surroundings.'
+    authored_interpretation: 'a source of strength or vitality (figurative)'
+    rationale: >
+      Korean explicitly names the figurative origin (원천) from which strength
+      or energy (힘이나 기운) arises. The original English repeats the physical
+      spring-site meaning of s002 and therefore does not distinguish s003.
+      Retain s001 water/source, s002 physical site, and s003 figurative source
+      as distinct source positions; equal English does not imply equal meaning.

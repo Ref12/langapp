@@ -1,0 +1,59 @@
+schema_version: 1
+id: ko-item-mastery
+applies_to: [vocabulary-sense, grammar-construct, phrase]
+scope: Observed performance for one precise item in one modality and task context, not overall proficiency or TOPIK readiness. Original AI-authored rubric requires qualified Korean linguistic review.
+unassessed: No suitable evidence has been recorded. Exposure, a reference band, or curriculum position does not establish understanding.
+modalities: [reading, listening, typed-production, spoken-production, handwriting]
+stages:
+- id: recognize
+  title: Recognition
+  modalities: [reading, listening]
+  outcome: Distinguish the intended Korean form and meaning from plausible alternatives.
+  evidence:
+  - Identify the intended sense or construction without first seeing its translation.
+  - Distinguish a relevant confusable particle, ending, inflected form, or lexical sense in more than one example.
+  limitation: Recognition does not establish contextual understanding or production.
+- id: understand
+  title: Contextual understanding
+  modalities: [reading, listening]
+  outcome: Interpret the item's contribution in an unfamiliar context, including relevant reference and register.
+  evidence:
+  - Explain or respond appropriately to the item in two different contexts.
+  - Distinguish a relevant alternate sense or construction, including who acts or is honored when applicable.
+  - Demonstrate retrieval in a later session without an answer-revealing hint.
+  limitation: Comprehension does not establish productive control or pronunciation.
+- id: supported-use
+  title: Supported use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Produce an original appropriate response when a task or scaffold makes the item relevant.
+  evidence:
+  - Produce an original response rather than repeat a supplied answer.
+  - Use the item appropriately in two task contexts, changing a relevant participant, inflection, or relationship.
+  - Record lexical cues, conjugation tables, structural scaffolds, corrections, and other assistance.
+  limitation: Success with assistance does not establish independent use.
+- id: independent-use
+  title: Independent use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Select and use the item appropriately without an item-specific cue or answer model.
+  evidence:
+  - Use the item in a fresh communicative task where it is relevant but not explicitly requested.
+  - Adapt its use to another context or contrast, preserving appropriate reference, ending, and register.
+  - Demonstrate delayed retrieval in a later session and record any required repair.
+  limitation: Evidence remains specific to the item, task conditions, and observed modality; it is not global mastery.
+evidence_fields: [item_id, stage, modality, task_id, session_id, observed_at, context, response, outcome, assistance]
+evidence_outcomes: [successful, partial, unsuccessful]
+policy:
+- This original AI-authored rubric is not a calibrated psychometric scale; qualified Korean linguistic review is required.
+- Record evidence before assigning a stage; never award mastery from exposure counts, completed modules, phase headword targets, or reference bands.
+- Keep modality judgments separate; typed Korean cannot establish listening, spoken pronunciation, or handwriting.
+- Recognition and contextual understanding are receptive; supported and independent use are productive.
+- Listening and spoken-production judgments require actual audio and suitable evaluation; written pronunciation guidance is not audio evidence.
+- Handwriting requires an observed handwritten response; font display or typing is not handwriting evidence.
+- Do not infer all earlier stages from one successful task; retain the observations and their conditions.
+- Revisit a judgment when later evidence contradicts it without deleting the earlier evidence.
+- Evidence applies to the precise sense or construction; correct inflection does not prove every meaning of the stem.
+- Distinguish listener politeness, subject honorification, and humble reference; a polite ending alone does not establish all three.
+- Assess fixed grammatical forms under their grammar IDs rather than awarding unrelated lexical senses.
+- Checkpoints use fresh material for the named goals; advancement need not wait for perfect mastery of every introduced item.
+- Carry fragile senses, particle contrasts, and conjugation families into later retrieval rather than treating advancement as permanent mastery.
+- Count headwords separately from senses and separate introduced, understood, and independently usable items; no count certifies examination readiness.

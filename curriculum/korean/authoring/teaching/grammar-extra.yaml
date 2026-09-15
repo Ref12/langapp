@@ -1,0 +1,101 @@
+# Original AI-authored additions, not official TOPIK constructs.
+# Qualified Korean linguistic review of all explanations and examples is required.
+- id: ko-teaching-g001
+  pattern: V/A-아/어 / N(이)야
+  english: familiar conversational endings for a suitable relationship
+  note: Familiar 해체 is not merely an abbreviated polite form to use with anyone. Establish an appropriate mutual relationship before productive use; age alone does not authorize it. Questions can share the same ending with different context or intonation. Noun predicates use consonant-final 이야 or vowel-final 야. Subject honorification is a separate choice, not automatically removed with listener 요.
+  examples:
+  - target: 나는 지금 집에 있어.
+    english: I am at home now. (To a close friend.)
+  - target: 이건 내 가방이야.
+    english: This is my bag. (In an appropriate familiar exchange.)
+  source_id: original-ko
+  level_basis: Independent Korean teaching addition for explicit familiar speech; original AI-authored material requiring qualified linguistic review, not examination readiness.
+- id: ko-teaching-g002
+  pattern: V-ㄴ/는다 / A-다 / N(이)다
+  english: plain declarative forms distinguished by predicate type
+  note: Present action predicates use vowel-stem ㄴ다 or consonant-stem 는다, with the established ㄹ-stem behavior. Descriptive predicates take 다, and nouns use 이다 or contextually appropriate vowel-noun 다. Distinguish dictionary citation 읽다 from present action narration 읽는다. Plain narration is common in impersonal writing but may be socially unsuitable when directed at a listener. Past 았/었다 and future or modal forms require their own contextual interpretation. Revisit this contrast for indirect quotation and later written register.
+  examples:
+  - target: 기차가 천천히 출발한다.
+    english: The train departs slowly. (Plain narration.)
+  - target: 이 방은 작다. 여기는 내 방이다.
+    english: This room is small. This is my room. (Plain description.)
+  source_id: original-ko
+  level_basis: Independent Korean teaching addition for plain narration and quotation prerequisites; original AI-authored material requiring qualified linguistic review, not an exam qualification.
+- id: ko-teaching-g003
+  pattern: 듣다 → 들어요 / 듣고
+  english: lexical ㄷ alternation before vowel-initial endings
+  note: Learn the lexical family rather than change every final ㄷ. 듣다 and 걷다 meaning walk alternate to 들어요 and 걸어요; 묻다 meaning ask gives 물어요. Regular 닫다 gives 닫아요, and 묻다 meaning bury gives 묻어요. The alternating family keeps ㄷ before 고 and 지. See grammar-notes.md for ending-specific practice and homograph contrasts.
+  examples:
+  - target: 저는 매일 음악을 들어요.
+    english: I listen to music every day.
+  - target: 음악을 듣고 집에 가요.
+    english: I listen to music and then go home.
+  source_id: original-ko
+  level_basis: Independent Korean inflection instruction with lexical counterexamples; original AI-authored material requiring qualified linguistic review, not an official proficiency descriptor.
+- id: ko-teaching-g004
+  pattern: 돕다 → 도와요 / 입다 → 입어요
+  english: lexical ㅂ alternation contrasted with regular stems
+  note: Many alternating descriptive stems use 우 before a vowel ending, as in 춥다 to 추워요 and 추운. 돕다 and 곱다 have 도와요 and 고와요, while their noun modifiers are 돕는 for the action verb and 고운 for the descriptive predicate. Retain ㅂ before 고, as in 돕고. Regular 입다, 잡다, and 좁다 retain ㅂ before 아/어. This is a lexical distinction, not a final-letter prediction.
+  examples:
+  - target: 저는 친구를 도와요.
+    english: I help a friend.
+  - target: 오늘도 이 옷을 입어요.
+    english: I am wearing these clothes today too.
+  source_id: original-ko
+  level_basis: Independent Korean inflection instruction with regular contrasts; original AI-authored examples and notes require qualified linguistic review, not examination validation.
+- id: ko-teaching-g005
+  pattern: 낫다 → 나아요 / 씻다 → 씻어요
+  english: lexical ㅅ deletion contrasted with regular stems
+  note: 낫다 meaning recover, 짓다, and 붓다 exemplify loss of ㅅ before a vowel-initial ending; retain it before 고. Compare 나아요 and 낫고, 지어요 and 짓고, 부어요 and 붓고. Regular 씻다, 웃다, and 벗다 keep ㅅ in 씻어요, 웃어요, and 벗어요. Do not collapse 나아요 into 나요 or claim all final ㅅ stems alternate.
+  examples:
+  - target: 상처가 잘 나아요.
+    english: The wound is healing well.
+  - target: 손을 자주 씻어요.
+    english: I wash my hands often.
+  source_id: original-ko
+  level_basis: Independent Korean inflection instruction, not a TOPIK mapping; original AI-authored content requires qualified linguistic review.
+- id: ko-teaching-g006
+  pattern: 그렇다 → 그래요 / 좋다 → 좋아요
+  english: lexical ㅎ alternation in descriptive predicates
+  note: Contrast 그렇다 to 그래요 and 그런, and 파랗다 to 파래요 and 파란. These lexical descriptive families lose ㅎ in relevant vowel or modifier environments and have specific vowel changes. Regular 좋다 gives 좋아요 and 좋은; 많다 gives 많아요 and 많은. They do not follow the same deletion-and-contraction pattern. Retain written ㅎ in 그렇고 even when pronunciation needs a separate contextual explanation.
+  examples:
+  - target: 지금도 그래요.
+    english: It is still like that now.
+  - target: 이 방은 좋아요.
+    english: This room is nice.
+  source_id: original-ko
+  level_basis: Independent Korean descriptive-predicate inflection instruction; original AI-authored material requires qualified linguistic review and makes no exam-readiness claim.
+- id: ko-teaching-g007
+  pattern: 모르다 → 몰라요 / 빠르다 → 빨라요
+  english: lexical 르 alternation before 아/어
+  note: 모르다 and 빠르다 form 몰라요 and 빨라요, while 부르다 forms 불러요. In this family the preceding syllable gains ㄹ and 르 changes before 아/어; before 고 use 모르고, 빠르고, 부르고. Do not extend this to every 르 stem. 따르다 gives 따라요 without extra ㄹ; 이르다 meaning reach gives 이르러요, unlike 이르다 meaning early, which gives 일러요.
+  examples:
+  - target: 저는 그 사람을 몰라요.
+    english: I do not know that person.
+  - target: 이 기차는 빨라요.
+    english: This train is fast.
+  source_id: original-ko
+  level_basis: Independent Korean inflection instruction with lexical exceptions; original AI-authored content requires qualified linguistic review, not an official level claim.
+- id: ko-teaching-g008
+  pattern: 바쁘다 → 바빠요 / 쓰다 → 써요
+  english: stem-final ㅡ before an 아/어 ending
+  note: For the illustrated non-르 family, remove stem-final ㅡ before 아/어 and use the preceding relevant vowel to choose the resulting form, as in 바쁘다 to 바빠요 and 예쁘다 to 예뻐요. With no preceding syllable, 쓰다 gives 써요 and 크다 gives 커요. Retain ㅡ before 고 and 지. Do not use this explanation to override the separately learned 르, 러, or 푸다 to 퍼요 patterns.
+  examples:
+  - target: 오늘은 조금 바빠요.
+    english: I am a little busy today.
+  - target: 여기에 이름을 써요.
+    english: I write my name here.
+  source_id: original-ko
+  level_basis: Independent Korean stem-and-ending instruction; original AI-authored examples and explanation require qualified linguistic review, not examination certification.
+- id: ko-teaching-g009
+  pattern: 살다 → 살아요 / 사는 / 삽니다
+  english: ending-conditioned retention or deletion of stem ㄹ
+  note: Keep ㄹ in 살아요, 살고, and 살지; remove it in 사는, 사세요, and 삽니다. Likewise 열다 gives 열어요 but 여세요. Teach these ending-specific outcomes rather than deleting ㄹ before every consonant. Prospective 살 and instrumental particle 로 after a ㄹ-final noun are different constructions; do not add another ㄹ or confuse the noun particle with stem conjugation. Preview unfamiliar endings only with glosses and return when their functions are taught.
+  examples:
+  - target: 저는 부산에 살아요.
+    english: I live in Busan.
+  - target: 문을 여세요.
+    english: Please open the door.
+  source_id: original-ko
+  level_basis: Independent Korean inflection instruction revisited with later endings; original AI-authored content requires qualified linguistic review, not an official examination requirement.

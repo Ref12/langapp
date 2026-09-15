@@ -1,0 +1,555 @@
+schema_version: 1
+id: ko-tourist
+title: Korean for small travel tasks
+language: korean
+level_basis: >-
+  Independent travel route with English support; no prior core lessons assumed.
+  Original situation-based selection, not a TOPIK level or examination-readiness claim.
+  All phrase readings are individually authored broad Hangul, unreviewed and not audio-verified;
+  citation vowel length is omitted and one documented variant is chosen where necessary.
+review_policy: >-
+  Work through each situation in three short lessons: understand the task and components,
+  retrieve a useful phrase with English support, then vary or review it in a role-play.
+  Revisit explicitly listed earlier senses and constructions without importing core-course
+  prerequisites. Phrase exposure is component practice, not automatic mastery, exam readiness,
+  pronunciation scoring, or audio assessment. Confirm important details with local staff;
+  allergy, payment, and emergency outcomes are not guaranteed.
+quick_start: [polite-repair, food-basics, finding-your-way, paying, asking-for-help]
+units:
+- id: polite-repair
+  title: Begin politely and repair a conversation
+  outcome: Greet someone, thank or apologize, and request slower or written information.
+  vocabulary: [ko-nikl-04432-s002, ko-nikl-26499-s001, ko-nikl-41556-s001, ko-nikl-16209-s001, ko-nikl-36412-s001, ko-nikl-44574-s001, ko-nikl-03918-s001]
+  grammar: [ko-topik1-g016, ko-topik1-g036, ko-topik1-g024]
+  review_vocabulary: []
+  review_grammar: []
+  phrases:
+  - id: ko-tourist-p001
+    ch: 안녕하세요.
+    pr: 안녕하세요
+    ds: Hello.
+    items: [ko-nikl-04432-s002]
+    grammar: [ko-topik1-g036, ko-topik1-g016]
+    realizations:
+    - {ch: 안녕하세요, pr: 안녕하세요, items: [ko-nikl-04432-s002], grammar: [ko-topik1-g036, ko-topik1-g016], form_id: greeting-polite}
+  - id: ko-tourist-p002
+    ch: 감사해요.
+    pr: 감사해요
+    ds: Thank you.
+    items: [ko-nikl-26499-s001]
+    grammar: [ko-topik1-g016]
+    realizations:
+    - {ch: 감사해요, pr: 감사해요, items: [ko-nikl-26499-s001], grammar: [ko-topik1-g016], form_id: thanks-polite}
+  - id: ko-tourist-p003
+    ch: 죄송해요.
+    pr: 죄송해요
+    ds: I am sorry.
+    items: [ko-nikl-41556-s001]
+    grammar: [ko-topik1-g016]
+    realizations:
+    - {ch: 죄송해요, pr: 죄송해요, items: [ko-nikl-41556-s001], grammar: [ko-topik1-g016], form_id: sorry-polite}
+  - id: ko-tourist-p004
+    ch: 다시 말해 주세요.
+    pr: 다시 말해 주세요
+    ds: Please say it again.
+    items: [ko-nikl-16209-s001, ko-nikl-36412-s001]
+    grammar: [ko-topik1-g024]
+    realizations:
+    - {ch: 다시, pr: 다시, items: [ko-nikl-16209-s001], grammar: []}
+    - &say-request {ch: 말해, pr: 말해, items: [ko-nikl-36412-s001], grammar: [ko-topik1-g024], form_id: say-request}
+    - &request-auxiliary {ch: 주세요, pr: 주세요, items: [], grammar: [ko-topik1-g024], form_id: request-auxiliary}
+  - id: ko-tourist-p005
+    ch: 천천히 말해 주세요.
+    pr: 천천히 말해 주세요
+    ds: Please speak slowly.
+    items: [ko-nikl-44574-s001, ko-nikl-36412-s001]
+    grammar: [ko-topik1-g024]
+    realizations:
+    - {ch: 천천히, pr: 천천히, items: [ko-nikl-44574-s001], grammar: [], form_id: slow-broad}
+    - *say-request
+    - *request-auxiliary
+  - id: ko-tourist-p006
+    ch: 써 주세요.
+    pr: 써 주세요
+    ds: Please write it down.
+    items: [ko-nikl-03918-s001]
+    grammar: [ko-topik1-g024]
+    realizations:
+    - {ch: 써, pr: 써, items: [ko-nikl-03918-s001], grammar: [ko-topik1-g024], form_id: write-request}
+    - *request-auxiliary
+- id: food-basics
+  title: Make a small food or drink request
+  outcome: Ask for water, a menu, or one coffee, and give a simple affirmative or negative answer.
+  vocabulary: [ko-nikl-38551-s001, ko-nikl-37056-s001, ko-nikl-20657-s002, ko-nikl-24067-s001, ko-nikl-12539-s003, ko-nikl-41632-s001, ko-nikl-35345-s002, ko-nikl-04067-s001, ko-nikl-11948-s001]
+  grammar: [ko-topik1-g023, ko-topik1-g035, ko-topik1-g004]
+  review_vocabulary: [ko-nikl-26499-s001, ko-nikl-03918-s001]
+  review_grammar: [ko-topik1-g016, ko-topik1-g024]
+  phrases:
+  - id: ko-tourist-p007
+    ch: 물 주세요.
+    pr: 물 주세요
+    ds: Water, please.
+    items: [ko-nikl-38551-s001, ko-nikl-41632-s001]
+    grammar: [ko-topik1-g023]
+    realizations:
+    - {ch: 물, pr: 물, items: [ko-nikl-38551-s001], grammar: []}
+    - &give-directive {ch: 주세요, pr: 주세요, items: [ko-nikl-41632-s001], grammar: [ko-topik1-g023], form_id: give-directive}
+  - id: ko-tourist-p008
+    ch: 메뉴 주세요.
+    pr: 메뉴 주세요
+    ds: A menu, please.
+    items: [ko-nikl-37056-s001, ko-nikl-41632-s001]
+    grammar: [ko-topik1-g023]
+    realizations:
+    - {ch: 메뉴, pr: 메뉴, items: [ko-nikl-37056-s001], grammar: []}
+    - *give-directive
+  - id: ko-tourist-p009
+    ch: 커피 한 잔 주세요.
+    pr: 커피 한 잔 주세요
+    ds: One cup of coffee, please.
+    items: [ko-nikl-20657-s002, ko-nikl-24067-s001, ko-nikl-12539-s003, ko-nikl-41632-s001]
+    grammar: [ko-topik1-g035, ko-topik1-g023]
+    realizations:
+    - {ch: 커피, pr: 커피, items: [ko-nikl-20657-s002], grammar: []}
+    - {ch: 한, pr: 한, items: [ko-nikl-24067-s001], grammar: []}
+    - {ch: 잔, pr: 잔, items: [ko-nikl-12539-s003], grammar: [ko-topik1-g035], form_id: cup-counter}
+    - *give-directive
+  - id: ko-tourist-p010
+    ch: 네.
+    pr: 네
+    ds: Yes.
+    items: [ko-nikl-35345-s002]
+    grammar: []
+    realizations:
+    - {ch: 네, pr: 네, items: [ko-nikl-35345-s002], grammar: []}
+  - id: ko-tourist-p011
+    ch: 아니요.
+    pr: 아니요
+    ds: No.
+    items: [ko-nikl-04067-s001]
+    grammar: []
+    realizations:
+    - {ch: 아니요, pr: 아니요, items: [ko-nikl-04067-s001], grammar: []}
+  - id: ko-tourist-p012
+    ch: 물이 있어요?
+    pr: 무리 이써요
+    ds: Is there water?
+    items: [ko-nikl-38551-s001, ko-nikl-11948-s001]
+    grammar: [ko-topik1-g004, ko-topik1-g016]
+    realizations:
+    - {ch: 물이, pr: 무리, items: [ko-nikl-38551-s001], grammar: [ko-topik1-g004], form_id: water-subject}
+    - &exist-polite {ch: 있어요, pr: 이써요, items: [ko-nikl-11948-s001], grammar: [ko-topik1-g016], form_id: exist-polite}
+- id: finding-your-way
+  title: Locate a restroom or railway station
+  outcome: Ask where a place is and recognize a short left-or-right answer.
+  vocabulary: [ko-nikl-51680-s001, ko-nikl-46352-s001, ko-nikl-11948-s008, ko-nikl-47229-s001, ko-nikl-48910-s001, ko-nikl-48201-s001]
+  grammar: [ko-topik1-g006, ko-topik1-g003, ko-topik1-g001]
+  review_vocabulary: [ko-nikl-16209-s001, ko-nikl-36412-s001]
+  review_grammar: [ko-topik1-g004, ko-topik1-g016, ko-topik1-g024]
+  phrases:
+  - id: ko-tourist-p013
+    ch: 화장실이 어디에 있어요?
+    pr: 화장시리 어디에 이써요
+    ds: Where is the restroom?
+    items: [ko-nikl-51680-s001, ko-nikl-46352-s001, ko-nikl-11948-s008]
+    grammar: [ko-topik1-g004, ko-topik1-g006, ko-topik1-g016]
+    realizations:
+    - {ch: 화장실이, pr: 화장시리, items: [ko-nikl-51680-s001], grammar: [ko-topik1-g004], form_id: restroom-subject}
+    - &where-location {ch: 어디에, pr: 어디에, items: [ko-nikl-46352-s001], grammar: [ko-topik1-g006], form_id: where-location}
+    - &located-polite {ch: 있어요, pr: 이써요, items: [ko-nikl-11948-s008], grammar: [ko-topik1-g016], form_id: located-polite}
+  - id: ko-tourist-p014
+    ch: 역은 어디예요?
+    pr: 여근 어디예요
+    ds: Where is the railway station?
+    items: [ko-nikl-47229-s001, ko-nikl-46352-s001]
+    grammar: [ko-topik1-g003, ko-topik1-g001]
+    realizations:
+    - {ch: 역은, pr: 여근, items: [ko-nikl-47229-s001], grammar: [ko-topik1-g003], form_id: station-topic}
+    - {ch: 어디예요, pr: 어디예요, items: [ko-nikl-46352-s001], grammar: [ko-topik1-g001], form_id: where-copula}
+  - id: ko-tourist-p015
+    ch: 왼쪽이에요.
+    pr: 왼쪼기에요
+    ds: It is on the left.
+    items: [ko-nikl-48910-s001]
+    grammar: [ko-topik1-g001]
+    realizations:
+    - {ch: 왼쪽이에요, pr: 왼쪼기에요, items: [ko-nikl-48910-s001], grammar: [ko-topik1-g001], form_id: left-copula}
+  - id: ko-tourist-p016
+    ch: 오른쪽이에요.
+    pr: 오른쪼기에요
+    ds: It is on the right.
+    items: [ko-nikl-48201-s001]
+    grammar: [ko-topik1-g001]
+    realizations:
+    - {ch: 오른쪽이에요, pr: 오른쪼기에요, items: [ko-nikl-48201-s001], grammar: [ko-topik1-g001], form_id: right-copula}
+- id: paying
+  title: Check the price and payment method
+  outcome: Ask a price, check card payment, request a cash transaction, and thank staff formally.
+  vocabulary: [ko-nikl-46742-s001, ko-nikl-20539-s006, ko-nikl-28668-s003, ko-nikl-25242-s001]
+  grammar: [ko-topik1-g017, ko-topik2-g020, ko-topik1-g032]
+  review_vocabulary: [ko-nikl-26499-s001, ko-nikl-35345-s002, ko-nikl-04067-s001]
+  review_grammar: [ko-topik1-g001, ko-topik1-g016, ko-topik1-g024]
+  phrases:
+  - id: ko-tourist-p017
+    ch: 얼마예요?
+    pr: 얼마예요
+    ds: How much is it?
+    items: [ko-nikl-46742-s001]
+    grammar: [ko-topik1-g001]
+    realizations:
+    - {ch: 얼마예요, pr: 얼마예요, items: [ko-nikl-46742-s001], grammar: [ko-topik1-g001], form_id: price-copula}
+  - id: ko-tourist-p018
+    ch: 카드로 계산할 수 있어요?
+    pr: 카드로 계산할 쑤 이써요
+    ds: Can I pay by card?
+    items: [ko-nikl-20539-s006, ko-nikl-28668-s003]
+    grammar: [ko-topik2-g020, ko-topik1-g032, ko-topik1-g016]
+    realizations:
+    - {ch: 카드로, pr: 카드로, items: [ko-nikl-20539-s006], grammar: [ko-topik2-g020], form_id: card-means}
+    - {ch: 계산할, pr: 계산할, items: [ko-nikl-28668-s003], grammar: [ko-topik1-g032], form_id: pay-ability}
+    - &ability-bound-noun {ch: 수, pr: 쑤, items: [], grammar: [ko-topik1-g032], form_id: ability-bound-noun}
+    - &ability-polite {ch: 있어요, pr: 이써요, items: [], grammar: [ko-topik1-g032, ko-topik1-g016], form_id: ability-polite}
+  - id: ko-tourist-p019
+    ch: 현금으로 계산해 주세요.
+    pr: 현그므로 계산해 주세요
+    ds: Please process my payment in cash.
+    items: [ko-nikl-25242-s001, ko-nikl-28668-s003]
+    grammar: [ko-topik2-g020, ko-topik1-g024]
+    realizations:
+    - {ch: 현금으로, pr: 현그므로, items: [ko-nikl-25242-s001], grammar: [ko-topik2-g020], form_id: cash-means}
+    - {ch: 계산해, pr: 계산해, items: [ko-nikl-28668-s003], grammar: [ko-topik1-g024], form_id: pay-request}
+    - *request-auxiliary
+  - id: ko-tourist-p020
+    ch: 감사합니다.
+    pr: 감사함니다
+    ds: Thank you. (formal)
+    items: [ko-nikl-26499-s001]
+    grammar: [ko-topik1-g017]
+    realizations:
+    - {ch: 감사합니다, pr: 감사함니다, items: [ko-nikl-26499-s001], grammar: [ko-topik1-g017], form_id: thanks-formal}
+- id: asking-for-help
+  title: Ask people for practical or urgent help
+  outcome: Ask for help, a hospital location, or police assistance, and report not having a passport.
+  vocabulary: [ko-nikl-17939-s001, ko-nikl-05623-s001, ko-nikl-28539-s002, ko-nikl-06413-s009, ko-nikl-47022-s001, ko-nikl-46845-s011]
+  grammar: [ko-topik1-g005]
+  review_vocabulary: [ko-nikl-46352-s001, ko-nikl-11948-s008, ko-nikl-41556-s001]
+  review_grammar: [ko-topik1-g023, ko-topik1-g024, ko-topik1-g004, ko-topik1-g006, ko-topik1-g016]
+  phrases:
+  - id: ko-tourist-p021
+    ch: 도와주세요.
+    pr: 도와주세요
+    ds: Please help me.
+    items: [ko-nikl-17939-s001]
+    grammar: [ko-topik1-g023]
+    realizations:
+    - {ch: 도와주세요, pr: 도와주세요, items: [ko-nikl-17939-s001], grammar: [ko-topik1-g023], form_id: help-directive}
+  - id: ko-tourist-p022
+    ch: 병원이 어디에 있어요?
+    pr: 병워니 어디에 이써요
+    ds: Where is a hospital?
+    items: [ko-nikl-05623-s001, ko-nikl-46352-s001, ko-nikl-11948-s008]
+    grammar: [ko-topik1-g004, ko-topik1-g006, ko-topik1-g016]
+    realizations:
+    - {ch: 병원이, pr: 병워니, items: [ko-nikl-05623-s001], grammar: [ko-topik1-g004], form_id: hospital-subject}
+    - *where-location
+    - *located-polite
+  - id: ko-tourist-p023
+    ch: 경찰을 불러 주세요.
+    pr: 경차를 불러 주세요
+    ds: Please call a police officer.
+    items: [ko-nikl-28539-s002, ko-nikl-06413-s009]
+    grammar: [ko-topik1-g005, ko-topik1-g024]
+    realizations:
+    - {ch: 경찰을, pr: 경차를, items: [ko-nikl-28539-s002], grammar: [ko-topik1-g005], form_id: police-object}
+    - {ch: 불러, pr: 불러, items: [ko-nikl-06413-s009], grammar: [ko-topik1-g024], form_id: summon-request}
+    - *request-auxiliary
+  - id: ko-tourist-p024
+    ch: 여권이 없어요.
+    pr: 여꿔니 업써요
+    ds: I do not have my passport.
+    items: [ko-nikl-47022-s001, ko-nikl-46845-s011]
+    grammar: [ko-topik1-g004, ko-topik1-g016]
+    realizations:
+    - &passport-subject {ch: 여권이, pr: 여꿔니, items: [ko-nikl-47022-s001], grammar: [ko-topik1-g004], form_id: passport-subject}
+    - {ch: 없어요, pr: 업써요, items: [ko-nikl-46845-s011], grammar: [ko-topik1-g016], form_id: lack-possession-polite}
+- id: arrival-transport
+  title: Reach a destination and leave a vehicle
+  outcome: Give an airport destination, request a bus ticket, find a taxi, and state where to get off.
+  vocabulary: [ko-nikl-30047-s001, ko-nikl-25603-s001, ko-nikl-47023-s001, ko-nikl-34899-s006, ko-nikl-40930-s001, ko-nikl-23187-s001, ko-nikl-21421-s001]
+  grammar: [ko-topik1-g008, ko-topik1-g007, ko-topik1-g020]
+  review_vocabulary: [ko-nikl-41632-s001, ko-nikl-46352-s001, ko-nikl-11948-s008]
+  review_grammar: [ko-topik1-g024, ko-topik1-g023, ko-topik1-g004, ko-topik1-g006, ko-topik1-g016]
+  phrases:
+  - id: ko-tourist-p025
+    ch: 공항에 가 주세요.
+    pr: 공항에 가 주세요
+    ds: Please go to the airport.
+    items: [ko-nikl-30047-s001, ko-nikl-25603-s001]
+    grammar: [ko-topik1-g008, ko-topik1-g024]
+    realizations:
+    - {ch: 공항에, pr: 공항에, items: [ko-nikl-30047-s001], grammar: [ko-topik1-g008], form_id: airport-destination}
+    - {ch: 가, pr: 가, items: [ko-nikl-25603-s001], grammar: [ko-topik1-g024], form_id: go-request}
+    - *request-auxiliary
+  - id: ko-tourist-p026
+    ch: 여기에서 내리고 싶어요.
+    pr: 여기에서 내리고 시퍼요
+    ds: I would like to get off here.
+    items: [ko-nikl-47023-s001, ko-nikl-34899-s006]
+    grammar: [ko-topik1-g007, ko-topik1-g020, ko-topik1-g016]
+    realizations:
+    - {ch: 여기에서, pr: 여기에서, items: [ko-nikl-47023-s001], grammar: [ko-topik1-g007], form_id: here-action}
+    - {ch: 내리고, pr: 내리고, items: [ko-nikl-34899-s006], grammar: [ko-topik1-g020], form_id: alight-desire}
+    - &desire-polite {ch: 싶어요, pr: 시퍼요, items: [], grammar: [ko-topik1-g020, ko-topik1-g016], form_id: desire-polite}
+  - id: ko-tourist-p027
+    ch: 버스 표 주세요.
+    pr: 버스 표 주세요
+    ds: A bus ticket, please.
+    items: [ko-nikl-40930-s001, ko-nikl-23187-s001, ko-nikl-41632-s001]
+    grammar: [ko-topik1-g023]
+    realizations:
+    - {ch: 버스, pr: 버스, items: [ko-nikl-40930-s001], grammar: []}
+    - {ch: 표, pr: 표, items: [ko-nikl-23187-s001], grammar: []}
+    - *give-directive
+  - id: ko-tourist-p028
+    ch: 택시가 어디에 있어요?
+    pr: 택씨가 어디에 이써요
+    ds: Where is a taxi?
+    items: [ko-nikl-21421-s001, ko-nikl-46352-s001, ko-nikl-11948-s008]
+    grammar: [ko-topik1-g004, ko-topik1-g006, ko-topik1-g016]
+    realizations:
+    - {ch: 택시가, pr: 택씨가, items: [ko-nikl-21421-s001], grammar: [ko-topik1-g004], form_id: taxi-subject}
+    - *where-location
+    - *located-polite
+- id: lodging
+  title: Handle a simple check-in
+  outcome: State an existing reservation, request a key, and locate a passport for staff.
+  vocabulary: [ko-nikl-48041-s001, ko-nikl-11948-s002, ko-nikl-47692-s001]
+  grammar: []
+  review_vocabulary: [ko-nikl-41632-s001, ko-nikl-47022-s001, ko-nikl-47023-s001, ko-nikl-11948-s008]
+  review_grammar: [ko-topik1-g004, ko-topik1-g016, ko-topik1-g023, ko-topik1-g006]
+  phrases:
+  - id: ko-tourist-p029
+    ch: 예약이 있어요.
+    pr: 예야기 이써요
+    ds: I have a reservation.
+    items: [ko-nikl-48041-s001, ko-nikl-11948-s002]
+    grammar: [ko-topik1-g004, ko-topik1-g016]
+    realizations:
+    - {ch: 예약이, pr: 예야기, items: [ko-nikl-48041-s001], grammar: [ko-topik1-g004], form_id: reservation-subject}
+    - &fact-exists-polite {ch: 있어요, pr: 이써요, items: [ko-nikl-11948-s002], grammar: [ko-topik1-g016], form_id: fact-exists-polite}
+  - id: ko-tourist-p030
+    ch: 열쇠 주세요.
+    pr: 열쐬 주세요
+    ds: The key, please.
+    items: [ko-nikl-47692-s001, ko-nikl-41632-s001]
+    grammar: [ko-topik1-g023]
+    realizations:
+    - {ch: 열쇠, pr: 열쐬, items: [ko-nikl-47692-s001], grammar: [], form_id: key-broad}
+    - *give-directive
+  - id: ko-tourist-p031
+    ch: 여권이 여기에 있어요.
+    pr: 여꿔니 여기에 이써요
+    ds: My passport is here.
+    items: [ko-nikl-47022-s001, ko-nikl-47023-s001, ko-nikl-11948-s008]
+    grammar: [ko-topik1-g004, ko-topik1-g006, ko-topik1-g016]
+    realizations:
+    - *passport-subject
+    - {ch: 여기에, pr: 여기에, items: [ko-nikl-47023-s001], grammar: [ko-topik1-g006], form_id: here-location}
+    - *located-polite
+- id: shopping
+  title: Choose a size and keep a receipt
+  outcome: Say an object is too big, ask for a small one, choose a purchase, and request a receipt.
+  vocabulary: [ko-nikl-35224-s001, ko-nikl-20920-s001, ko-nikl-12453-s001, ko-nikl-27852-s001, ko-nikl-10453-s001, ko-nikl-08234-s001, ko-nikl-47846-s001]
+  grammar: [ko-topik1-g034]
+  review_vocabulary: [ko-nikl-11948-s001, ko-nikl-41632-s001, ko-nikl-46742-s001]
+  review_grammar: [ko-topik1-g016, ko-topik1-g004, ko-topik1-g005, ko-topik1-g020, ko-topik1-g023]
+  phrases:
+  - id: ko-tourist-p032
+    ch: 너무 커요.
+    pr: 너무 커요
+    ds: It is too big.
+    items: [ko-nikl-35224-s001, ko-nikl-20920-s001]
+    grammar: [ko-topik1-g016]
+    realizations:
+    - {ch: 너무, pr: 너무, items: [ko-nikl-35224-s001], grammar: []}
+    - {ch: 커요, pr: 커요, items: [ko-nikl-20920-s001], grammar: [ko-topik1-g016], form_id: big-polite}
+  - id: ko-tourist-p033
+    ch: 작은 것이 있어요?
+    pr: 자근 거시 이써요
+    ds: Do you have a small one?
+    items: [ko-nikl-12453-s001, ko-nikl-27852-s001, ko-nikl-11948-s001]
+    grammar: [ko-topik1-g034, ko-topik1-g004, ko-topik1-g016]
+    realizations:
+    - {ch: 작은, pr: 자근, items: [ko-nikl-12453-s001], grammar: [ko-topik1-g034], form_id: small-modifier}
+    - {ch: 것이, pr: 거시, items: [ko-nikl-27852-s001], grammar: [ko-topik1-g004], form_id: thing-subject}
+    - *exist-polite
+  - id: ko-tourist-p034
+    ch: 이것을 사고 싶어요.
+    pr: 이거슬 사고 시퍼요
+    ds: I would like to buy this.
+    items: [ko-nikl-10453-s001, ko-nikl-08234-s001]
+    grammar: [ko-topik1-g005, ko-topik1-g020, ko-topik1-g016]
+    realizations:
+    - {ch: 이것을, pr: 이거슬, items: [ko-nikl-10453-s001], grammar: [ko-topik1-g005], form_id: this-object}
+    - {ch: 사고, pr: 사고, items: [ko-nikl-08234-s001], grammar: [ko-topik1-g020], form_id: buy-desire}
+    - *desire-polite
+  - id: ko-tourist-p035
+    ch: 영수증 주세요.
+    pr: 영수증 주세요
+    ds: A receipt, please.
+    items: [ko-nikl-47846-s001, ko-nikl-41632-s001]
+    grammar: [ko-topik1-g023]
+    realizations:
+    - {ch: 영수증, pr: 영수증, items: [ko-nikl-47846-s001], grammar: []}
+    - *give-directive
+- id: food-needs
+  title: Communicate a food restriction
+  outcome: State a no-meat preference, disclose an allergy, and explain inability to eat spicy food.
+  vocabulary: [ko-nikl-28821-s001, ko-nikl-36950-s001, ko-nikl-04593-s001, ko-nikl-36786-s001, ko-nikl-51116-s002]
+  grammar: [ko-topik2-g036, ko-topik1-g022]
+  review_vocabulary: [ko-nikl-11948-s002, ko-nikl-17939-s001]
+  review_grammar: [ko-topik1-g005, ko-topik1-g016, ko-topik1-g004, ko-topik1-g034]
+  phrases:
+  - id: ko-tourist-p036
+    ch: 고기를 먹지 않아요.
+    pr: 고기를 먹찌 아나요
+    ds: I do not eat meat.
+    items: [ko-nikl-28821-s001, ko-nikl-36950-s001]
+    grammar: [ko-topik1-g005, ko-topik2-g036, ko-topik1-g016]
+    realizations:
+    - {ch: 고기를, pr: 고기를, items: [ko-nikl-28821-s001], grammar: [ko-topik1-g005], form_id: meat-object}
+    - {ch: 먹지, pr: 먹찌, items: [ko-nikl-36950-s001], grammar: [ko-topik2-g036], form_id: eat-negative}
+    - {ch: 않아요, pr: 아나요, items: [], grammar: [ko-topik2-g036, ko-topik1-g016], form_id: negative-polite}
+  - id: ko-tourist-p037
+    ch: 알레르기가 있어요.
+    pr: 알레르기가 이써요
+    ds: I have an allergy.
+    items: [ko-nikl-04593-s001, ko-nikl-11948-s002]
+    grammar: [ko-topik1-g004, ko-topik1-g016]
+    realizations:
+    - {ch: 알레르기가, pr: 알레르기가, items: [ko-nikl-04593-s001], grammar: [ko-topik1-g004], form_id: allergy-subject}
+    - *fact-exists-polite
+  - id: ko-tourist-p038
+    ch: 매운 음식을 못 먹어요.
+    pr: 매운 음시글 몬 머거요
+    ds: I cannot eat spicy food.
+    items: [ko-nikl-36786-s001, ko-nikl-51116-s002, ko-nikl-36950-s001]
+    grammar: [ko-topik1-g034, ko-topik1-g005, ko-topik1-g022, ko-topik1-g016]
+    realizations:
+    - {ch: 매운, pr: 매운, items: [ko-nikl-36786-s001], grammar: [ko-topik1-g034], form_id: spicy-modifier}
+    - {ch: 음식을, pr: 음시글, items: [ko-nikl-51116-s002], grammar: [ko-topik1-g005], form_id: food-object}
+    - {ch: 못, pr: 몬, items: [], grammar: [ko-topik1-g022], form_id: cannot-before-eat}
+    - {ch: 먹어요, pr: 머거요, items: [ko-nikl-36950-s001], grammar: [ko-topik1-g016], form_id: eat-polite}
+- id: connection
+  title: Ask about internet access or a telephone
+  outcome: Check internet use, request an access password, and locate a telephone.
+  vocabulary: [ko-nikl-11302-s001, ko-nikl-03920-s001, ko-nikl-07522-s001, ko-nikl-38146-s001, ko-nikl-14080-s002]
+  grammar: []
+  review_vocabulary: [ko-nikl-46352-s001, ko-nikl-11948-s008, ko-nikl-03918-s001]
+  review_grammar: [ko-topik1-g005, ko-topik1-g032, ko-topik1-g016, ko-topik1-g004, ko-topik1-g001, ko-topik1-g003, ko-topik1-g006]
+  phrases:
+  - id: ko-tourist-p039
+    ch: 인터넷을 쓸 수 있어요?
+    pr: 인터네슬 쓸 쑤 이써요
+    ds: Can I use the internet?
+    items: [ko-nikl-11302-s001, ko-nikl-03920-s001]
+    grammar: [ko-topik1-g005, ko-topik1-g032, ko-topik1-g016]
+    realizations:
+    - {ch: 인터넷을, pr: 인터네슬, items: [ko-nikl-11302-s001], grammar: [ko-topik1-g005], form_id: internet-object}
+    - {ch: 쓸, pr: 쓸, items: [ko-nikl-03920-s001], grammar: [ko-topik1-g032], form_id: use-ability}
+    - *ability-bound-noun
+    - *ability-polite
+  - id: ko-tourist-p040
+    ch: 비밀번호가 무엇이에요?
+    pr: 비밀번호가 무어시에요
+    ds: What is the password?
+    items: [ko-nikl-07522-s001, ko-nikl-38146-s001]
+    grammar: [ko-topik1-g004, ko-topik1-g001]
+    realizations:
+    - {ch: 비밀번호가, pr: 비밀번호가, items: [ko-nikl-07522-s001], grammar: [ko-topik1-g004], form_id: password-subject}
+    - {ch: 무엇이에요, pr: 무어시에요, items: [ko-nikl-38146-s001], grammar: [ko-topik1-g001], form_id: what-copula}
+  - id: ko-tourist-p041
+    ch: 전화는 어디에 있어요?
+    pr: 전화는 어디에 이써요
+    ds: Where is a telephone?
+    items: [ko-nikl-14080-s002, ko-nikl-46352-s001, ko-nikl-11948-s008]
+    grammar: [ko-topik1-g003, ko-topik1-g006, ko-topik1-g016]
+    realizations:
+    - {ch: 전화는, pr: 전화는, items: [ko-nikl-14080-s002], grammar: [ko-topik1-g003], form_id: telephone-topic}
+    - *where-location
+    - *located-polite
+- id: leisure
+  title: Plan a visit and ask before taking photos
+  outcome: Ask photo permission, locate a museum, and check whether a visit is possible today.
+  vocabulary: [ko-nikl-08557-s001, ko-nikl-43778-s008, ko-nikl-39509-s001, ko-nikl-48124-s001]
+  grammar: [ko-topik2-g001]
+  review_vocabulary: [ko-nikl-46352-s001, ko-nikl-11948-s008, ko-nikl-25603-s001]
+  review_grammar: [ko-topik1-g005, ko-topik1-g016, ko-topik1-g004, ko-topik1-g006, ko-topik1-g032]
+  phrases:
+  - id: ko-tourist-p042
+    ch: 사진을 찍어도 돼요?
+    pr: 사지늘 찌거도 돼요
+    ds: May I take a photo?
+    items: [ko-nikl-08557-s001, ko-nikl-43778-s008]
+    grammar: [ko-topik1-g005, ko-topik2-g001, ko-topik1-g016]
+    realizations:
+    - {ch: 사진을, pr: 사지늘, items: [ko-nikl-08557-s001], grammar: [ko-topik1-g005], form_id: photo-object}
+    - {ch: 찍어도, pr: 찌거도, items: [ko-nikl-43778-s008], grammar: [ko-topik2-g001], form_id: photograph-permission}
+    - &permission-polite {ch: 돼요, pr: 돼요, items: [], grammar: [ko-topik2-g001, ko-topik1-g016], form_id: permission-polite}
+  - id: ko-tourist-p043
+    ch: 박물관이 어디에 있어요?
+    pr: 방물과니 어디에 이써요
+    ds: Where is the museum?
+    items: [ko-nikl-39509-s001, ko-nikl-46352-s001, ko-nikl-11948-s008]
+    grammar: [ko-topik1-g004, ko-topik1-g006, ko-topik1-g016]
+    realizations:
+    - {ch: 박물관이, pr: 방물과니, items: [ko-nikl-39509-s001], grammar: [ko-topik1-g004], form_id: museum-subject}
+    - *where-location
+    - *located-polite
+  - id: ko-tourist-p044
+    ch: 오늘 갈 수 있어요?
+    pr: 오늘 갈 쑤 이써요
+    ds: Can I go today?
+    items: [ko-nikl-48124-s001, ko-nikl-25603-s001]
+    grammar: [ko-topik1-g032, ko-topik1-g016]
+    realizations:
+    - {ch: 오늘, pr: 오늘, items: [ko-nikl-48124-s001], grammar: []}
+    - {ch: 갈, pr: 갈, items: [ko-nikl-25603-s001], grammar: [ko-topik1-g032], form_id: go-ability}
+    - *ability-bound-noun
+    - *ability-polite
+- id: changed-plans
+  title: Ask to adjust an arrangement
+  outcome: Ask whether tomorrow is allowed, request a time change, and apologize formally.
+  vocabulary: [ko-nikl-35011-s001, ko-nikl-02694-s002, ko-nikl-39307-s004]
+  grammar: []
+  review_vocabulary: [ko-nikl-25603-s001, ko-nikl-41556-s001, ko-nikl-48041-s001]
+  review_grammar: [ko-topik2-g001, ko-topik1-g016, ko-topik1-g005, ko-topik1-g020, ko-topik1-g017]
+  phrases:
+  - id: ko-tourist-p045
+    ch: 내일 가도 돼요?
+    pr: 내일 가도 돼요
+    ds: May I go tomorrow?
+    items: [ko-nikl-35011-s001, ko-nikl-25603-s001]
+    grammar: [ko-topik2-g001, ko-topik1-g016]
+    realizations:
+    - {ch: 내일, pr: 내일, items: [ko-nikl-35011-s001], grammar: []}
+    - {ch: 가도, pr: 가도, items: [ko-nikl-25603-s001], grammar: [ko-topik2-g001], form_id: go-permission}
+    - *permission-polite
+  - id: ko-tourist-p046
+    ch: 시간을 바꾸고 싶어요.
+    pr: 시가늘 바꾸고 시퍼요
+    ds: I would like to change the time.
+    items: [ko-nikl-02694-s002, ko-nikl-39307-s004]
+    grammar: [ko-topik1-g005, ko-topik1-g020, ko-topik1-g016]
+    realizations:
+    - {ch: 시간을, pr: 시가늘, items: [ko-nikl-02694-s002], grammar: [ko-topik1-g005], form_id: time-object}
+    - {ch: 바꾸고, pr: 바꾸고, items: [ko-nikl-39307-s004], grammar: [ko-topik1-g020], form_id: change-desire}
+    - *desire-polite
+  - id: ko-tourist-p047
+    ch: 죄송합니다.
+    pr: 죄송함니다
+    ds: I am sorry. (formal)
+    items: [ko-nikl-41556-s001]
+    grammar: [ko-topik1-g017]
+    realizations:
+    - {ch: 죄송합니다, pr: 죄송함니다, items: [ko-nikl-41556-s001], grammar: [ko-topik1-g017], form_id: sorry-formal}

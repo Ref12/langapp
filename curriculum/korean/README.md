@@ -4,6 +4,14 @@ Version: **2026-09-07**, placement method `semantic-band-heuristic-v1`.
 This is a substantial **teaching inventory**, not an official exhaustive TOPIK
 word list, an official grammar syllabus, or a guarantee of an exam result.
 
+The separate [practical Korean program](teaching/README.md) curates precise
+meanings into thirty levels nested under six numbered phases, with a standalone
+tourist route and optional branches. The reference inventory below is preserved;
+its heuristic TOPIK folders are not the new course's teaching order. New
+per-item, per-modality evidence policies are in `teaching/mastery.yaml`, and
+the official-text/authored-reading distinction is in
+`teaching/pronunciation.md`. The original source's empty readings remain empty.
+
 ## Standards and what the labels mean
 
 - **TOPIK I awards levels 1–2**; **TOPIK II awards levels 3–6**.

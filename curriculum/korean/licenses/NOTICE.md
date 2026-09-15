@@ -31,7 +31,7 @@ glosses with self-contained English equivalents; assigned original heuristic
 teaching grades; added stable IDs and provenance. No source examples, recordings,
 images, or video are included.
 
-When redistributing or adapting `topik-*/vocabulary.csv`, retain appropriate
+When redistributing or adapting `topik-*/vocabulary.yaml`, retain appropriate
 attribution, source and license links, and a notice of modifications. Distribute
 adapted dictionary material under the same license; do not impose restrictions
 or technical measures that deny the license's permissions. Do not imply
@@ -41,12 +41,36 @@ with proprietary products; this notice is not legal advice.
 
 ## Original instructional content
 
-`grammar-authoring.tsv`, generated `grammar.json`, syllabi, the original README
+`grammar-authoring.tsv`, generated `grammar.yaml`, syllabi, the original README
 teaching guidance, and the importer are offered under **CC0 1.0**, to the extent
 rights exist: <https://creativecommons.org/publicdomain/zero/1.0/>.
 Grammar examples are newly AI-authored, not copied dictionary usages or exam
 questions, and require qualified human review. Any adapted NIKL dictionary
 material remains subject to its separate share-alike license.
+
+The practical teaching selections, original phrases, supplementary constructions,
+and individually authored reading decisions follow the same distinction.
+Compact entries derived from NIKL definitions and pronunciation text retain
+CC BY-SA 2.0 Korea obligations; shortening a definition does not remove them.
+Keep the accompanying sources and this notice with redistributed compact views.
+
+## Separately sourced pronunciation text
+
+The official NIKL whole-dictionary JSON archive dated 2026-08-19 is a separate
+pronunciation reference. Its public download, hash, retrieval date, and scope
+are recorded in `../sources.yaml`. Only citation-pronunciation text and necessary
+identity/matching evidence are retained. Original 2024 source-row IDs, bands,
+and definitions remain independent of the official archive's identifiers.
+No audio is downloaded or redistributed by the curriculum importer; multimedia
+licenses must be assessed separately.
+
+`source-senses.yaml` preserves original bilingual definition positions, including
+narrowly selected unbanded support, without redistributing source usages.
+`reading-overlay.yaml` and authored matching/correction ledgers are intermediate
+reference evidence, not additional learner-facing required vocabulary.
+Individually authored broad-Hangul readings and phrase realizations are explicitly
+unverified and require qualified linguistic review; they are not represented as
+official pronunciations.
 
 ## Official references
 

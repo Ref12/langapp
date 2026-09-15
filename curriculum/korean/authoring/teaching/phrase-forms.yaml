@@ -1,0 +1,483 @@
+greeting-polite:
+  ch: 안녕하세요
+  pr: 안녕하세요
+  items: [ko-nikl-04432-s002]
+  grammar: [ko-topik1-g036, ko-topik1-g016]
+  rationale: "안녕하- takes honorific -시- and polite -어요, conventionally realized as -세요 in this greeting. No additional consonant change is represented; original broad reading, not audio-verified."
+  review_status: unreviewed
+thanks-polite:
+  ch: 감사해요
+  pr: 감사해요
+  items: [ko-nikl-26499-s001]
+  grammar: [ko-topik1-g016]
+  rationale: "Grateful adjective 감사하- takes polite -여요, contracted to -해요. Citation vowel length is omitted in this authored broad phrase reading."
+  review_status: unreviewed
+sorry-polite:
+  ch: 죄송해요
+  pr: 죄송해요
+  items: [ko-nikl-41556-s001]
+  grammar: [ko-topik1-g016]
+  rationale: "죄송하- plus polite -여요 contracts to 죄송해요. Select the 죄 citation variant rather than 줴 and omit citation vowel length; authored and unverified."
+  review_status: unreviewed
+say-request:
+  ch: 말해
+  pr: 말해
+  items: [ko-nikl-36412-s001]
+  grammar: [ko-topik1-g024]
+  rationale: "말하- plus connective -여 contracts to 말해 before benefactive 주세요. This is not an independent polite ending; citation vowel length is omitted."
+  review_status: unreviewed
+request-auxiliary:
+  ch: 주세요
+  pr: 주세요
+  items: []
+  grammar: [ko-topik1-g024]
+  rationale: "The benefactive request construction supplies auxiliary 주- plus polite honorific -세요. This is grammatical assistance, not the lexical sense of giving an object; no additional consonant change."
+  review_status: unreviewed
+slow-broad:
+  ch: 천천히
+  pr: 천천히
+  items: [ko-nikl-44574-s001]
+  grammar: []
+  rationale: "Uninflected adverb; omit the dictionary's vowel-length mark in the authored broad phrase reading. No contraction or consonant change is claimed."
+  review_status: unreviewed
+write-request:
+  ch: 써
+  pr: 써
+  items: [ko-nikl-03918-s001]
+  grammar: [ko-topik1-g024]
+  rationale: "Writing verb 쓰- loses stem ㅡ before connective -어, producing 써 before benefactive 주세요. Preserve tense initial ㅆ."
+  review_status: unreviewed
+give-directive:
+  ch: 주세요
+  pr: 주세요
+  items: [ko-nikl-41632-s001]
+  grammar: [ko-topik1-g023]
+  rationale: "Lexical give 주- takes polite directive -세요. Unlike the benefactive auxiliary, this token requests a physical item; no additional consonant change."
+  review_status: unreviewed
+cup-counter:
+  ch: 잔
+  pr: 잔
+  items: [ko-nikl-12539-s003]
+  grammar: [ko-topik1-g035]
+  rationale: "Uninflected bound counter 잔 follows attributive numeral 한 in the number-plus-counter construction. No contraction or sound change is required."
+  review_status: unreviewed
+water-subject:
+  ch: 물이
+  pr: 무리
+  items: [ko-nikl-38551-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "물 plus consonant-final subject particle 이; final ㄹ resyllabifies into the following vowel, giving 무리."
+  review_status: unreviewed
+exist-polite:
+  ch: 있어요
+  pr: 이써요
+  items: [ko-nikl-11948-s001]
+  grammar: [ko-topik1-g016]
+  rationale: "Existential 있- plus polite -어요; final ㅆ resyllabifies as tense onset ㅆ. Citation 읻따 is not the inflected reading."
+  review_status: unreviewed
+restroom-subject:
+  ch: 화장실이
+  pr: 화장시리
+  items: [ko-nikl-51680-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "화장실 plus subject 이; final ㄹ resyllabifies before the particle vowel, giving 화장시리."
+  review_status: unreviewed
+where-location:
+  ch: 어디에
+  pr: 어디에
+  items: [ko-nikl-46352-s001]
+  grammar: [ko-topik1-g006]
+  rationale: "Interrogative place 어디 takes location particle 에 before an existential predicate. Retain the uncontracted vowel sequence; no additional sound change."
+  review_status: unreviewed
+located-polite:
+  ch: 있어요
+  pr: 이써요
+  items: [ko-nikl-11948-s008]
+  grammar: [ko-topik1-g016]
+  rationale: "Locational 있- takes polite -어요; final ㅆ resyllabifies as tense ㅆ. This links the source location sense, not possession or bare existence."
+  review_status: unreviewed
+station-topic:
+  ch: 역은
+  pr: 여근
+  items: [ko-nikl-47229-s001]
+  grammar: [ko-topik1-g003]
+  rationale: "Railway-station 역 plus consonant-final topic 은; ㄱ resyllabifies into the particle vowel, yielding 여근."
+  review_status: unreviewed
+where-copula:
+  ch: 어디예요
+  pr: 어디예요
+  items: [ko-nikl-46352-s001]
+  grammar: [ko-topik1-g001]
+  rationale: "Vowel-final 어디 takes the polite copula 예요. No extra 이 or consonant change is introduced."
+  review_status: unreviewed
+left-copula:
+  ch: 왼쪽이에요
+  pr: 왼쪼기에요
+  items: [ko-nikl-48910-s001]
+  grammar: [ko-topik1-g001]
+  rationale: "왼쪽 takes consonant-final copula 이에요; final ㄱ resyllabifies. Choose the 왼 rather than 웬 variant and omit citation vowel length."
+  review_status: unreviewed
+right-copula:
+  ch: 오른쪽이에요
+  pr: 오른쪼기에요
+  items: [ko-nikl-48201-s001]
+  grammar: [ko-topik1-g001]
+  rationale: "오른쪽 plus consonant-final copula 이에요; final ㄱ resyllabifies into 이, while the lexical tense ㅉ remains."
+  review_status: unreviewed
+price-copula:
+  ch: 얼마예요
+  pr: 얼마예요
+  items: [ko-nikl-46742-s001]
+  grammar: [ko-topik1-g001]
+  rationale: "Vowel-final amount interrogative 얼마 takes polite copula 예요. No additional consonant change is required."
+  review_status: unreviewed
+card-means:
+  ch: 카드로
+  pr: 카드로
+  items: [ko-nikl-20539-s006]
+  grammar: [ko-topik2-g020]
+  rationale: "Payment-card 카드 takes means particle 로 after its final vowel; do not insert 으 or change ㄹ to ㄴ. Original broad reading, not source-verified inflection."
+  review_status: unreviewed
+pay-ability:
+  ch: 계산할
+  pr: 계산할
+  items: [ko-nikl-28668-s003]
+  grammar: [ko-topik1-g032]
+  rationale: "Payment verb 계산하- takes prospective -(으)ㄹ in the ability construction. Select the 계 rather than 게 variant and omit citation length; following 수 is separately realized as 쑤."
+  review_status: unreviewed
+ability-bound-noun:
+  ch: 수
+  pr: 쑤
+  items: []
+  grammar: [ko-topik1-g032]
+  rationale: "The ability construction supplies bound noun 수 after adnominal -(으)ㄹ. Following that modifier, initial ㅅ is tensified to ㅆ across the written space."
+  review_status: unreviewed
+ability-polite:
+  ch: 있어요
+  pr: 이써요
+  items: []
+  grammar: [ko-topik1-g032, ko-topik1-g016]
+  rationale: "Grammatical 있다 completes -(으)ㄹ 수 있다 and takes polite -어요; ㅆ resyllabifies as tense onset. No independent lexical-existence sense is asserted."
+  review_status: unreviewed
+cash-means:
+  ch: 현금으로
+  pr: 현그므로
+  items: [ko-nikl-25242-s001]
+  grammar: [ko-topik2-g020]
+  rationale: "현금 takes consonant-final means particle 으로; final ㅁ resyllabifies before 으, giving 현그므로. Citation vowel length is omitted."
+  review_status: unreviewed
+pay-request:
+  ch: 계산해
+  pr: 계산해
+  items: [ko-nikl-28668-s003]
+  grammar: [ko-topik1-g024]
+  rationale: "Payment 계산하- plus connective -여 contracts to 계산해 before benefactive 주세요. Select 계, not the alternative 게, and omit citation length."
+  review_status: unreviewed
+thanks-formal:
+  ch: 감사합니다
+  pr: 감사함니다
+  items: [ko-nikl-26499-s001]
+  grammar: [ko-topik1-g017]
+  rationale: "Grateful 감사하- takes formal -ㅂ니다; coda ㅂ assimilates to ㅁ before ㄴ. Omit citation vowel length; the resulting 감사함니다 is authored, not audio-verified."
+  review_status: unreviewed
+help-directive:
+  ch: 도와주세요
+  pr: 도와주세요
+  items: [ko-nikl-17939-s001]
+  grammar: [ko-topik1-g023]
+  rationale: "The lexical compound 도와주- takes directive -세요 as one word. Its established 도와- shape is preserved; no extra auxiliary or sound change is inserted."
+  review_status: unreviewed
+hospital-subject:
+  ch: 병원이
+  pr: 병워니
+  items: [ko-nikl-05623-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "병원 takes subject 이; final ㄴ resyllabifies into 이, giving 병워니. The citation's long first vowel is omitted in broad phrase notation."
+  review_status: unreviewed
+police-object:
+  ch: 경찰을
+  pr: 경차를
+  items: [ko-nikl-28539-s002]
+  grammar: [ko-topik1-g005]
+  rationale: "Police-officer 경찰 takes object 을; final ㄹ resyllabifies, giving 경차를. Citation vowel length is omitted."
+  review_status: unreviewed
+summon-request:
+  ch: 불러
+  pr: 불러
+  items: [ko-nikl-06413-s009]
+  grammar: [ko-topik1-g024]
+  rationale: "Summon 부르- takes connective -어 with 르 irregular conjugation: ㅡ drops and an additional ㄹ yields 불러 before 주세요."
+  review_status: unreviewed
+passport-subject:
+  ch: 여권이
+  pr: 여꿔니
+  items: [ko-nikl-47022-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "여권 takes subject 이; retain lexical ㄲ from citation 여꿘 and resyllabify final ㄴ, giving 여꿔니."
+  review_status: unreviewed
+lack-possession-polite:
+  ch: 없어요
+  pr: 업써요
+  items: [ko-nikl-46845-s011]
+  grammar: [ko-topik1-g016]
+  rationale: "Possessive-negative 없- takes polite -어요; ㅄ separates as coda ㅂ plus resyllabified tense ㅆ, yielding 업써요. Omit citation length."
+  review_status: unreviewed
+airport-destination:
+  ch: 공항에
+  pr: 공항에
+  items: [ko-nikl-30047-s001]
+  grammar: [ko-topik1-g008]
+  rationale: "공항 takes destination 에 with a motion predicate. Final ㅇ stays a nasal coda; no liaison onset or extra sound change is written."
+  review_status: unreviewed
+go-request:
+  ch: 가
+  pr: 가
+  items: [ko-nikl-25603-s001]
+  grammar: [ko-topik1-g024]
+  rationale: "Motion 가- plus connective -아 contracts to 가 before benefactive 주세요. No consonant change is required."
+  review_status: unreviewed
+here-action:
+  ch: 여기에서
+  pr: 여기에서
+  items: [ko-nikl-47023-s001]
+  grammar: [ko-topik1-g007]
+  rationale: "여기 takes action-location 에서 for getting off a vehicle. Keep the uncontracted vowel sequence; no additional sound change."
+  review_status: unreviewed
+alight-desire:
+  ch: 내리고
+  pr: 내리고
+  items: [ko-nikl-34899-s006]
+  grammar: [ko-topik1-g020]
+  rationale: "Vehicle-exit 내리- takes the -고 component of the desire construction. The stem remains regular with no additional sound change."
+  review_status: unreviewed
+desire-polite:
+  ch: 싶어요
+  pr: 시퍼요
+  items: []
+  grammar: [ko-topik1-g020, ko-topik1-g016]
+  rationale: "The desire construction supplies 싶- plus polite -어요; final aspirated ㅍ resyllabifies as onset ㅍ, yielding 시퍼요."
+  review_status: unreviewed
+taxi-subject:
+  ch: 택시가
+  pr: 택씨가
+  items: [ko-nikl-21421-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "택시 takes vowel-final subject 가. Preserve the authored broad 택씨 reading, where ㅅ is tense after final ㄱ; the particle adds no further change."
+  review_status: unreviewed
+reservation-subject:
+  ch: 예약이
+  pr: 예야기
+  items: [ko-nikl-48041-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "예약 plus subject 이 resyllabifies final ㄱ into 이, giving 예야기. Omit citation vowel length."
+  review_status: unreviewed
+fact-exists-polite:
+  ch: 있어요
+  pr: 이써요
+  items: [ko-nikl-11948-s002]
+  grammar: [ko-topik1-g016]
+  rationale: "Fact-or-phenomenon 있- takes polite -어요; final ㅆ resyllabifies as tense onset. Used for an existing reservation or allergy, not a physical object's location."
+  review_status: unreviewed
+key-broad:
+  ch: 열쇠
+  pr: 열쐬
+  items: [ko-nikl-47692-s001]
+  grammar: []
+  rationale: "Uninflected noun; choose citation variant 열쐬 rather than 열쒜, preserving its tense ㅆ, and omit citation vowel length in this authored phrase reading."
+  review_status: unreviewed
+here-location:
+  ch: 여기에
+  pr: 여기에
+  items: [ko-nikl-47023-s001]
+  grammar: [ko-topik1-g006]
+  rationale: "여기 takes location 에 with an existential predicate. Keep the uncontracted vowels; no additional consonant change."
+  review_status: unreviewed
+big-polite:
+  ch: 커요
+  pr: 커요
+  items: [ko-nikl-20920-s001]
+  grammar: [ko-topik1-g016]
+  rationale: "Size adjective 크- loses stem ㅡ before polite -어요, giving 커요. This is the general size sense, not the clothing-fit sense."
+  review_status: unreviewed
+small-modifier:
+  ch: 작은
+  pr: 자근
+  items: [ko-nikl-12453-s001]
+  grammar: [ko-topik1-g034]
+  rationale: "작- plus descriptive noun modifier -은; final ㄱ resyllabifies into 으, giving 자근. Omit citation vowel length."
+  review_status: unreviewed
+thing-subject:
+  ch: 것이
+  pr: 거시
+  items: [ko-nikl-27852-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "Bound noun 것 plus subject 이 resyllabifies underlying ㅅ as onset ㅅ, giving 거시 rather than carrying citation 걷 into the inflection."
+  review_status: unreviewed
+this-object:
+  ch: 이것을
+  pr: 이거슬
+  items: [ko-nikl-10453-s001]
+  grammar: [ko-topik1-g005]
+  rationale: "이것 plus object 을; underlying ㅅ resyllabifies into 으, yielding 이거슬, unlike citation-final neutralized 이걷."
+  review_status: unreviewed
+buy-desire:
+  ch: 사고
+  pr: 사고
+  items: [ko-nikl-08234-s001]
+  grammar: [ko-topik1-g020]
+  rationale: "Buying 사- takes the -고 component of the desire construction. No contraction or sound change is required."
+  review_status: unreviewed
+meat-object:
+  ch: 고기를
+  pr: 고기를
+  items: [ko-nikl-28821-s001]
+  grammar: [ko-topik1-g005]
+  rationale: "고기 takes vowel-final object particle 를. No additional sound change is required."
+  review_status: unreviewed
+eat-negative:
+  ch: 먹지
+  pr: 먹찌
+  items: [ko-nikl-36950-s001]
+  grammar: [ko-topik2-g036]
+  rationale: "먹- takes the -지 component of long negation; initial ㅈ of the ending becomes tense ㅉ after coda ㄱ."
+  review_status: unreviewed
+negative-polite:
+  ch: 않아요
+  pr: 아나요
+  items: []
+  grammar: [ko-topik2-g036, ko-topik1-g016]
+  rationale: "Long negation supplies 않- plus polite -아요; ㅎ deletes before the vowel and ㄴ resyllabifies, producing 아나요."
+  review_status: unreviewed
+allergy-subject:
+  ch: 알레르기가
+  pr: 알레르기가
+  items: [ko-nikl-04593-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "Physical-allergy 알레르기 takes vowel-final subject 가. No extra consonant change; the whole inflected reading is individually authored and unverified."
+  review_status: unreviewed
+spicy-modifier:
+  ch: 매운
+  pr: 매운
+  items: [ko-nikl-36786-s001]
+  grammar: [ko-topik1-g034]
+  rationale: "Taste adjective 맵- undergoes ㅂ irregular conjugation before modifier -(으)ㄴ: ㅂ changes to 우, producing 매운."
+  review_status: unreviewed
+food-object:
+  ch: 음식을
+  pr: 음시글
+  items: [ko-nikl-51116-s002]
+  grammar: [ko-topik1-g005]
+  rationale: "음식 takes object 을; final ㄱ resyllabifies, yielding 음시글. Omit citation vowel length."
+  review_status: unreviewed
+cannot-before-eat:
+  ch: 못
+  pr: 몬
+  items: []
+  grammar: [ko-topik1-g022]
+  rationale: "The short-inability construction supplies 못. Before following 먹어요, coda ㅅ neutralizes to ㄷ and nasalizes to ㄴ before ㅁ across the space, yielding 몬."
+  review_status: unreviewed
+eat-polite:
+  ch: 먹어요
+  pr: 머거요
+  items: [ko-nikl-36950-s001]
+  grammar: [ko-topik1-g016]
+  rationale: "먹- plus polite -어요; final ㄱ resyllabifies into 어, giving 머거요 rather than citation 먹따."
+  review_status: unreviewed
+internet-object:
+  ch: 인터넷을
+  pr: 인터네슬
+  items: [ko-nikl-11302-s001]
+  grammar: [ko-topik1-g005]
+  rationale: "인터넷 plus object 을 resyllabifies underlying final ㅅ as onset ㅅ, giving 인터네슬. Standalone citation 인터넷 instead has final neutralization to 인터넫."
+  review_status: unreviewed
+use-ability:
+  ch: 쓸
+  pr: 쓸
+  items: [ko-nikl-03920-s001]
+  grammar: [ko-topik1-g032]
+  rationale: "Use 쓰- takes prospective -ㄹ in the ability construction, forming 쓸. Preserve tense initial ㅆ; following 수 is separately registered as 쑤."
+  review_status: unreviewed
+password-subject:
+  ch: 비밀번호가
+  pr: 비밀번호가
+  items: [ko-nikl-07522-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "비밀번호 takes vowel-final subject 가; omit citation vowel length. No contraction or additional consonant change."
+  review_status: unreviewed
+what-copula:
+  ch: 무엇이에요
+  pr: 무어시에요
+  items: [ko-nikl-38146-s001]
+  grammar: [ko-topik1-g001]
+  rationale: "무엇 takes consonant-final copula 이에요. Underlying final ㅅ resyllabifies as onset ㅅ, giving 무어시에요 rather than retaining citation-final ㄷ."
+  review_status: unreviewed
+telephone-topic:
+  ch: 전화는
+  pr: 전화는
+  items: [ko-nikl-14080-s002]
+  grammar: [ko-topik1-g003]
+  rationale: "Telephone-device 전화 takes vowel-final topic 는. Omit citation vowel length; no other sound change is represented."
+  review_status: unreviewed
+photo-object:
+  ch: 사진을
+  pr: 사지늘
+  items: [ko-nikl-08557-s001]
+  grammar: [ko-topik1-g005]
+  rationale: "사진 takes object 을; final ㄴ resyllabifies into 으, giving 사지늘."
+  review_status: unreviewed
+photograph-permission:
+  ch: 찍어도
+  pr: 찌거도
+  items: [ko-nikl-43778-s008]
+  grammar: [ko-topik2-g001]
+  rationale: "Photograph 찍- takes the permission construction's -어도; final ㄱ resyllabifies, giving 찌거도, while initial tense ㅉ remains."
+  review_status: unreviewed
+permission-polite:
+  ch: 돼요
+  pr: 돼요
+  items: []
+  grammar: [ko-topik2-g001, ko-topik1-g016]
+  rationale: "The permission construction supplies 되- plus polite -어요; 되어 contracts to 돼, giving 돼요. This is a grammatical permission auxiliary, not an independent lexical event."
+  review_status: unreviewed
+museum-subject:
+  ch: 박물관이
+  pr: 방물과니
+  items: [ko-nikl-39509-s001]
+  grammar: [ko-topik1-g004]
+  rationale: "박물관 takes subject 이; lexical ㄱ nasalizes before ㅁ as in citation 방물관, and final ㄴ resyllabifies before 이, yielding 방물과니."
+  review_status: unreviewed
+go-ability:
+  ch: 갈
+  pr: 갈
+  items: [ko-nikl-25603-s001]
+  grammar: [ko-topik1-g032]
+  rationale: "Motion 가- takes prospective -ㄹ in the ability construction. No stem sound change; the following 수 is separately realized with tense ㅆ."
+  review_status: unreviewed
+go-permission:
+  ch: 가도
+  pr: 가도
+  items: [ko-nikl-25603-s001]
+  grammar: [ko-topik2-g001]
+  rationale: "Motion 가- plus permission connective -아도 contracts the repeated vowel to 가도. No additional consonant change."
+  review_status: unreviewed
+time-object:
+  ch: 시간을
+  pr: 시가늘
+  items: [ko-nikl-02694-s002]
+  grammar: [ko-topik1-g005]
+  rationale: "Appointed-time 시간 takes object 을; final ㄴ resyllabifies into 으, giving 시가늘."
+  review_status: unreviewed
+change-desire:
+  ch: 바꾸고
+  pr: 바꾸고
+  items: [ko-nikl-39307-s004]
+  grammar: [ko-topik1-g020]
+  rationale: "Change-content/state 바꾸- takes the -고 component of the desire construction. The lexical tense ㄲ is retained; no additional sound change."
+  review_status: unreviewed
+sorry-formal:
+  ch: 죄송합니다
+  pr: 죄송함니다
+  items: [ko-nikl-41556-s001]
+  grammar: [ko-topik1-g017]
+  rationale: "죄송하- takes formal -ㅂ니다; ㅂ nasalizes to ㅁ before ㄴ. Choose the 죄 citation variant and omit citation vowel length."
+  review_status: unreviewed

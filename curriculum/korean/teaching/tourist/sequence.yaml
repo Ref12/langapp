@@ -1,0 +1,1453 @@
+schema_version: 3
+id: ko-tourist
+title: Korean for small travel tasks
+language: korean
+level_basis: Independent travel route with English support; no prior core lessons assumed. Original situation-based selection, not a TOPIK level or examination-readiness claim. All phrase readings are individually authored broad Hangul, unreviewed and not audio-verified; citation vowel length is omitted and one documented variant is chosen where necessary.
+review_policy: 'Work through each situation in three short lessons: understand the task and components, retrieve a useful phrase with English support, then vary or review it in a role-play. Revisit explicitly listed earlier senses and constructions without importing core-course prerequisites. Phrase exposure is component practice, not automatic mastery, exam readiness, pronunciation scoring, or audio assessment. Confirm important details with local staff; allergy, payment, and emergency outcomes are not guaranteed.'
+units:
+- id: polite-repair
+  title: Begin politely and repair a conversation
+  outcome: Greet someone, thank or apologize, and request slower or written information.
+  vocabulary:
+  - {id: ko-nikl-04432-s002, ch: 안녕하다, pr: 안녕하다, ds: be healthy and at ease}
+  - {id: ko-nikl-26499-s001, ch: 감사하다, pr: 감ː사하다, ds: grateful; feeling gratitude}
+  - {id: ko-nikl-41556-s001, ch: 죄송하다, pr: 죄ː송하다 / 줴ː송하다, ds: very sorry; apologetic}
+  - {id: ko-nikl-16209-s001, ch: 다시, pr: 다시, ds: again; repeat the same words or action}
+  - {id: ko-nikl-36412-s001, ch: 말하다, pr: 말ː하다, ds: 'say; express facts, thoughts, or feelings in words'}
+  - {id: ko-nikl-44574-s001, ch: 천천히, pr: 천ː천히, ds: slowly; with slow movement or action}
+  - {id: ko-nikl-03918-s001, ch: 쓰다, pr: 쓰다, ds: write letters with a writing instrument}
+  grammar:
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g036, ch: V/A-(으)시-, ds: honor the subject rather than the listener}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+  review_vocabulary: []
+  review_grammar: []
+  phrases:
+  - {id: ko-tourist-p001, ch: 안녕하세요., pr: 안녕하세요, ds: Hello.}
+  - {id: ko-tourist-p002, ch: 감사해요., pr: 감사해요, ds: Thank you.}
+  - {id: ko-tourist-p003, ch: 죄송해요., pr: 죄송해요, ds: I am sorry.}
+  - {id: ko-tourist-p004, ch: 다시 말해 주세요., pr: 다시 말해 주세요, ds: Please say it again.}
+  - {id: ko-tourist-p005, ch: 천천히 말해 주세요., pr: 천천히 말해 주세요, ds: Please speak slowly.}
+  - {id: ko-tourist-p006, ch: 써 주세요., pr: 써 주세요, ds: Please write it down.}
+  phrase_components:
+    ko-tourist-p001:
+      items:
+      - ko-nikl-04432-s002
+      grammar:
+      - ko-topik1-g036
+      - ko-topik1-g016
+      realizations:
+      - ch: 안녕하세요
+        pr: 안녕하세요
+        items:
+        - ko-nikl-04432-s002
+        grammar:
+        - ko-topik1-g036
+        - ko-topik1-g016
+        form_id: greeting-polite
+    ko-tourist-p002:
+      items:
+      - ko-nikl-26499-s001
+      grammar:
+      - ko-topik1-g016
+      realizations:
+      - ch: 감사해요
+        pr: 감사해요
+        items:
+        - ko-nikl-26499-s001
+        grammar:
+        - ko-topik1-g016
+        form_id: thanks-polite
+    ko-tourist-p003:
+      items:
+      - ko-nikl-41556-s001
+      grammar:
+      - ko-topik1-g016
+      realizations:
+      - ch: 죄송해요
+        pr: 죄송해요
+        items:
+        - ko-nikl-41556-s001
+        grammar:
+        - ko-topik1-g016
+        form_id: sorry-polite
+    ko-tourist-p004:
+      items:
+      - ko-nikl-16209-s001
+      - ko-nikl-36412-s001
+      grammar:
+      - ko-topik1-g024
+      realizations:
+      - ch: 다시
+        pr: 다시
+        items:
+        - ko-nikl-16209-s001
+        grammar: []
+      - ch: 말해
+        pr: 말해
+        items:
+        - ko-nikl-36412-s001
+        grammar:
+        - ko-topik1-g024
+        form_id: say-request
+      - ch: 주세요
+        pr: 주세요
+        items: []
+        grammar:
+        - ko-topik1-g024
+        form_id: request-auxiliary
+    ko-tourist-p005:
+      items:
+      - ko-nikl-44574-s001
+      - ko-nikl-36412-s001
+      grammar:
+      - ko-topik1-g024
+      realizations:
+      - ch: 천천히
+        pr: 천천히
+        items:
+        - ko-nikl-44574-s001
+        grammar: []
+        form_id: slow-broad
+      - ch: 말해
+        pr: 말해
+        items:
+        - ko-nikl-36412-s001
+        grammar:
+        - ko-topik1-g024
+        form_id: say-request
+      - ch: 주세요
+        pr: 주세요
+        items: []
+        grammar:
+        - ko-topik1-g024
+        form_id: request-auxiliary
+    ko-tourist-p006:
+      items:
+      - ko-nikl-03918-s001
+      grammar:
+      - ko-topik1-g024
+      realizations:
+      - ch: 써
+        pr: 써
+        items:
+        - ko-nikl-03918-s001
+        grammar:
+        - ko-topik1-g024
+        form_id: write-request
+      - ch: 주세요
+        pr: 주세요
+        items: []
+        grammar:
+        - ko-topik1-g024
+        form_id: request-auxiliary
+- id: food-basics
+  title: Make a small food or drink request
+  outcome: Ask for water, a menu, or one coffee, and give a simple affirmative or negative answer.
+  vocabulary:
+  - {id: ko-nikl-38551-s001, ch: 물, pr: 물, ds: water}
+  - {id: ko-nikl-37056-s001, ch: 메뉴, pr: 메뉴, ds: menu; list of food and prices}
+  - {id: ko-nikl-20657-s002, ch: 커피, pr: 커피, ds: coffee; brewed drink}
+  - {id: ko-nikl-24067-s001, ch: 한, pr: 한, ds: one; before a noun or counter}
+  - {id: ko-nikl-12539-s003, ch: 잔, pr: 잔, ds: cupful; counter for drinks}
+  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
+  - {id: ko-nikl-35345-s002, ch: 네, pr: 네, ds: yes; polite affirmative answer}
+  - {id: ko-nikl-04067-s001, ch: 아니요, pr: 아니요, ds: no; polite negative answer}
+  - {id: ko-nikl-11948-s001, ch: 있다, pr: 읻따, ds: exist; be present in reality}
+  grammar:
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+  - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  review_vocabulary:
+  - {id: ko-nikl-26499-s001, ch: 감사하다, pr: 감ː사하다, ds: grateful; feeling gratitude}
+  - {id: ko-nikl-03918-s001, ch: 쓰다, pr: 쓰다, ds: write letters with a writing instrument}
+  review_grammar:
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+  phrases:
+  - {id: ko-tourist-p007, ch: 물 주세요., pr: 물 주세요, ds: 'Water, please.'}
+  - {id: ko-tourist-p008, ch: 메뉴 주세요., pr: 메뉴 주세요, ds: 'A menu, please.'}
+  - {id: ko-tourist-p009, ch: 커피 한 잔 주세요., pr: 커피 한 잔 주세요, ds: 'One cup of coffee, please.'}
+  - {id: ko-tourist-p010, ch: 네., pr: 네, ds: Yes.}
+  - {id: ko-tourist-p011, ch: 아니요., pr: 아니요, ds: No.}
+  - {id: ko-tourist-p012, ch: '물이 있어요?', pr: 무리 이써요, ds: 'Is there water?'}
+  phrase_components:
+    ko-tourist-p007:
+      items:
+      - ko-nikl-38551-s001
+      - ko-nikl-41632-s001
+      grammar:
+      - ko-topik1-g023
+      realizations:
+      - ch: 물
+        pr: 물
+        items:
+        - ko-nikl-38551-s001
+        grammar: []
+      - ch: 주세요
+        pr: 주세요
+        items:
+        - ko-nikl-41632-s001
+        grammar:
+        - ko-topik1-g023
+        form_id: give-directive
+    ko-tourist-p008:
+      items:
+      - ko-nikl-37056-s001
+      - ko-nikl-41632-s001
+      grammar:
+      - ko-topik1-g023
+      realizations:
+      - ch: 메뉴
+        pr: 메뉴
+        items:
+        - ko-nikl-37056-s001
+        grammar: []
+      - ch: 주세요
+        pr: 주세요
+        items:
+        - ko-nikl-41632-s001
+        grammar:
+        - ko-topik1-g023
+        form_id: give-directive
+    ko-tourist-p009:
+      items:
+      - ko-nikl-20657-s002
+      - ko-nikl-24067-s001
+      - ko-nikl-12539-s003
+      - ko-nikl-41632-s001
+      grammar:
+      - ko-topik1-g035
+      - ko-topik1-g023
+      realizations:
+      - ch: 커피
+        pr: 커피
+        items:
+        - ko-nikl-20657-s002
+        grammar: []
+      - ch: 한
+        pr: 한
+        items:
+        - ko-nikl-24067-s001
+        grammar: []
+      - ch: 잔
+        pr: 잔
+        items:
+        - ko-nikl-12539-s003
+        grammar:
+        - ko-topik1-g035
+        form_id: cup-counter
+      - ch: 주세요
+        pr: 주세요
+        items:
+        - ko-nikl-41632-s001
+        grammar:
+        - ko-topik1-g023
+        form_id: give-directive
+    ko-tourist-p010:
+      items:
+      - ko-nikl-35345-s002
+      grammar: []
+      realizations:
+      - ch: 네
+        pr: 네
+        items:
+        - ko-nikl-35345-s002
+        grammar: []
+    ko-tourist-p011:
+      items:
+      - ko-nikl-04067-s001
+      grammar: []
+      realizations:
+      - ch: 아니요
+        pr: 아니요
+        items:
+        - ko-nikl-04067-s001
+        grammar: []
+    ko-tourist-p012:
+      items:
+      - ko-nikl-38551-s001
+      - ko-nikl-11948-s001
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g016
+      realizations:
+      - ch: 물이
+        pr: 무리
+        items:
+        - ko-nikl-38551-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: water-subject
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s001
+        grammar:
+        - ko-topik1-g016
+        form_id: exist-polite
+- id: finding-your-way
+  title: Locate a restroom or railway station
+  outcome: Ask where a place is and recognize a short left-or-right answer.
+  vocabulary:
+  - {id: ko-nikl-51680-s001, ch: 화장실, pr: 화장실, ds: toilet; restroom}
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-47229-s001, ch: 역, pr: 역, ds: railway station}
+  - {id: ko-nikl-48910-s001, ch: 왼쪽, pr: 왼ː쪽 / 웬ː쪽, ds: left-hand side}
+  - {id: ko-nikl-48201-s001, ch: 오른쪽, pr: 오른쪽, ds: right-hand side}
+  grammar:
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  - {id: ko-topik1-g003, ch: N은/는, ds: introduce or contrast a topic}
+  - {id: ko-topik1-g001, ch: N이에요 / N예요, ds: polite identification with a noun predicate}
+  review_vocabulary:
+  - {id: ko-nikl-16209-s001, ch: 다시, pr: 다시, ds: again; repeat the same words or action}
+  - {id: ko-nikl-36412-s001, ch: 말하다, pr: 말ː하다, ds: 'say; express facts, thoughts, or feelings in words'}
+  review_grammar:
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+  phrases:
+  - {id: ko-tourist-p013, ch: '화장실이 어디에 있어요?', pr: 화장시리 어디에 이써요, ds: 'Where is the restroom?'}
+  - {id: ko-tourist-p014, ch: '역은 어디예요?', pr: 여근 어디예요, ds: 'Where is the railway station?'}
+  - {id: ko-tourist-p015, ch: 왼쪽이에요., pr: 왼쪼기에요, ds: It is on the left.}
+  - {id: ko-tourist-p016, ch: 오른쪽이에요., pr: 오른쪼기에요, ds: It is on the right.}
+  phrase_components:
+    ko-tourist-p013:
+      items:
+      - ko-nikl-51680-s001
+      - ko-nikl-46352-s001
+      - ko-nikl-11948-s008
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g006
+      - ko-topik1-g016
+      realizations:
+      - ch: 화장실이
+        pr: 화장시리
+        items:
+        - ko-nikl-51680-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: restroom-subject
+      - ch: 어디에
+        pr: 어디에
+        items:
+        - ko-nikl-46352-s001
+        grammar:
+        - ko-topik1-g006
+        form_id: where-location
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s008
+        grammar:
+        - ko-topik1-g016
+        form_id: located-polite
+    ko-tourist-p014:
+      items:
+      - ko-nikl-47229-s001
+      - ko-nikl-46352-s001
+      grammar:
+      - ko-topik1-g003
+      - ko-topik1-g001
+      realizations:
+      - ch: 역은
+        pr: 여근
+        items:
+        - ko-nikl-47229-s001
+        grammar:
+        - ko-topik1-g003
+        form_id: station-topic
+      - ch: 어디예요
+        pr: 어디예요
+        items:
+        - ko-nikl-46352-s001
+        grammar:
+        - ko-topik1-g001
+        form_id: where-copula
+    ko-tourist-p015:
+      items:
+      - ko-nikl-48910-s001
+      grammar:
+      - ko-topik1-g001
+      realizations:
+      - ch: 왼쪽이에요
+        pr: 왼쪼기에요
+        items:
+        - ko-nikl-48910-s001
+        grammar:
+        - ko-topik1-g001
+        form_id: left-copula
+    ko-tourist-p016:
+      items:
+      - ko-nikl-48201-s001
+      grammar:
+      - ko-topik1-g001
+      realizations:
+      - ch: 오른쪽이에요
+        pr: 오른쪼기에요
+        items:
+        - ko-nikl-48201-s001
+        grammar:
+        - ko-topik1-g001
+        form_id: right-copula
+- id: paying
+  title: Check the price and payment method
+  outcome: Ask a price, check card payment, request a cash transaction, and thank staff formally.
+  vocabulary:
+  - {id: ko-nikl-46742-s001, ch: 얼마, pr: 얼마, ds: 'how much; an unknown amount, price, or degree'}
+  - {id: ko-nikl-20539-s006, ch: 카드, pr: 카드, ds: payment card}
+  - {id: ko-nikl-28668-s003, ch: 계산하다, pr: 계ː산하다 / 게ː산하다, ds: pay for a purchase or expense}
+  - {id: ko-nikl-25242-s001, ch: 현금, pr: 현ː금, ds: cash; issued currency}
+  grammar:
+  - {id: ko-topik1-g017, ch: V/A-ㅂ니다 / -습니다, ds: formal polite statement to a listener}
+  - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
+  - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
+  review_vocabulary:
+  - {id: ko-nikl-26499-s001, ch: 감사하다, pr: 감ː사하다, ds: grateful; feeling gratitude}
+  - {id: ko-nikl-35345-s002, ch: 네, pr: 네, ds: yes; polite affirmative answer}
+  - {id: ko-nikl-04067-s001, ch: 아니요, pr: 아니요, ds: no; polite negative answer}
+  review_grammar:
+  - {id: ko-topik1-g001, ch: N이에요 / N예요, ds: polite identification with a noun predicate}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+  phrases:
+  - {id: ko-tourist-p017, ch: '얼마예요?', pr: 얼마예요, ds: 'How much is it?'}
+  - {id: ko-tourist-p018, ch: '카드로 계산할 수 있어요?', pr: 카드로 계산할 쑤 이써요, ds: 'Can I pay by card?'}
+  - {id: ko-tourist-p019, ch: 현금으로 계산해 주세요., pr: 현그므로 계산해 주세요, ds: Please process my payment in cash.}
+  - {id: ko-tourist-p020, ch: 감사합니다., pr: 감사함니다, ds: Thank you. (formal)}
+  phrase_components:
+    ko-tourist-p017:
+      items:
+      - ko-nikl-46742-s001
+      grammar:
+      - ko-topik1-g001
+      realizations:
+      - ch: 얼마예요
+        pr: 얼마예요
+        items:
+        - ko-nikl-46742-s001
+        grammar:
+        - ko-topik1-g001
+        form_id: price-copula
+    ko-tourist-p018:
+      items:
+      - ko-nikl-20539-s006
+      - ko-nikl-28668-s003
+      grammar:
+      - ko-topik2-g020
+      - ko-topik1-g032
+      - ko-topik1-g016
+      realizations:
+      - ch: 카드로
+        pr: 카드로
+        items:
+        - ko-nikl-20539-s006
+        grammar:
+        - ko-topik2-g020
+        form_id: card-means
+      - ch: 계산할
+        pr: 계산할
+        items:
+        - ko-nikl-28668-s003
+        grammar:
+        - ko-topik1-g032
+        form_id: pay-ability
+      - ch: 수
+        pr: 쑤
+        items: []
+        grammar:
+        - ko-topik1-g032
+        form_id: ability-bound-noun
+      - ch: 있어요
+        pr: 이써요
+        items: []
+        grammar:
+        - ko-topik1-g032
+        - ko-topik1-g016
+        form_id: ability-polite
+    ko-tourist-p019:
+      items:
+      - ko-nikl-25242-s001
+      - ko-nikl-28668-s003
+      grammar:
+      - ko-topik2-g020
+      - ko-topik1-g024
+      realizations:
+      - ch: 현금으로
+        pr: 현그므로
+        items:
+        - ko-nikl-25242-s001
+        grammar:
+        - ko-topik2-g020
+        form_id: cash-means
+      - ch: 계산해
+        pr: 계산해
+        items:
+        - ko-nikl-28668-s003
+        grammar:
+        - ko-topik1-g024
+        form_id: pay-request
+      - ch: 주세요
+        pr: 주세요
+        items: []
+        grammar:
+        - ko-topik1-g024
+        form_id: request-auxiliary
+    ko-tourist-p020:
+      items:
+      - ko-nikl-26499-s001
+      grammar:
+      - ko-topik1-g017
+      realizations:
+      - ch: 감사합니다
+        pr: 감사함니다
+        items:
+        - ko-nikl-26499-s001
+        grammar:
+        - ko-topik1-g017
+        form_id: thanks-formal
+- id: asking-for-help
+  title: Ask people for practical or urgent help
+  outcome: Ask for help, a hospital location, or police assistance, and report not having a passport.
+  vocabulary:
+  - {id: ko-nikl-17939-s001, ch: 도와주다, pr: 도와주다, ds: help; lend support}
+  - {id: ko-nikl-05623-s001, ch: 병원, pr: 병ː원, ds: hospital; medical treatment facility}
+  - {id: ko-nikl-28539-s002, ch: 경찰, pr: 경ː찰, ds: police officer}
+  - {id: ko-nikl-06413-s009, ch: 부르다, pr: 부르다, ds: summon; ask someone to come}
+  - {id: ko-nikl-47022-s001, ch: 여권, pr: 여꿘, ds: passport}
+  - {id: ko-nikl-46845-s011, ch: 없다, pr: 업ː따, ds: not have; lack a possession or qualification}
+  grammar:
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+  review_vocabulary:
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-41556-s001, ch: 죄송하다, pr: 죄ː송하다 / 줴ː송하다, ds: very sorry; apologetic}
+  review_grammar:
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  phrases:
+  - {id: ko-tourist-p021, ch: 도와주세요., pr: 도와주세요, ds: Please help me.}
+  - {id: ko-tourist-p022, ch: '병원이 어디에 있어요?', pr: 병워니 어디에 이써요, ds: 'Where is a hospital?'}
+  - {id: ko-tourist-p023, ch: 경찰을 불러 주세요., pr: 경차를 불러 주세요, ds: Please call a police officer.}
+  - {id: ko-tourist-p024, ch: 여권이 없어요., pr: 여꿔니 업써요, ds: I do not have my passport.}
+  phrase_components:
+    ko-tourist-p021:
+      items:
+      - ko-nikl-17939-s001
+      grammar:
+      - ko-topik1-g023
+      realizations:
+      - ch: 도와주세요
+        pr: 도와주세요
+        items:
+        - ko-nikl-17939-s001
+        grammar:
+        - ko-topik1-g023
+        form_id: help-directive
+    ko-tourist-p022:
+      items:
+      - ko-nikl-05623-s001
+      - ko-nikl-46352-s001
+      - ko-nikl-11948-s008
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g006
+      - ko-topik1-g016
+      realizations:
+      - ch: 병원이
+        pr: 병워니
+        items:
+        - ko-nikl-05623-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: hospital-subject
+      - ch: 어디에
+        pr: 어디에
+        items:
+        - ko-nikl-46352-s001
+        grammar:
+        - ko-topik1-g006
+        form_id: where-location
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s008
+        grammar:
+        - ko-topik1-g016
+        form_id: located-polite
+    ko-tourist-p023:
+      items:
+      - ko-nikl-28539-s002
+      - ko-nikl-06413-s009
+      grammar:
+      - ko-topik1-g005
+      - ko-topik1-g024
+      realizations:
+      - ch: 경찰을
+        pr: 경차를
+        items:
+        - ko-nikl-28539-s002
+        grammar:
+        - ko-topik1-g005
+        form_id: police-object
+      - ch: 불러
+        pr: 불러
+        items:
+        - ko-nikl-06413-s009
+        grammar:
+        - ko-topik1-g024
+        form_id: summon-request
+      - ch: 주세요
+        pr: 주세요
+        items: []
+        grammar:
+        - ko-topik1-g024
+        form_id: request-auxiliary
+    ko-tourist-p024:
+      items:
+      - ko-nikl-47022-s001
+      - ko-nikl-46845-s011
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g016
+      realizations:
+      - ch: 여권이
+        pr: 여꿔니
+        items:
+        - ko-nikl-47022-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: passport-subject
+      - ch: 없어요
+        pr: 업써요
+        items:
+        - ko-nikl-46845-s011
+        grammar:
+        - ko-topik1-g016
+        form_id: lack-possession-polite
+- id: arrival-transport
+  title: Reach a destination and leave a vehicle
+  outcome: Give an airport destination, request a bus ticket, find a taxi, and state where to get off.
+  vocabulary:
+  - {id: ko-nikl-30047-s001, ch: 공항, pr: 공항, ds: airport}
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  - {id: ko-nikl-47023-s001, ch: 여기, pr: 여기, ds: here; a place near the speaker}
+  - {id: ko-nikl-34899-s006, ch: 내리다, pr: 내리다, ds: get off or out of a vehicle}
+  - {id: ko-nikl-40930-s001, ch: 버스, pr: 버스, ds: bus}
+  - {id: ko-nikl-23187-s001, ch: 표, pr: 표, ds: ticket; note certifying a right}
+  - {id: ko-nikl-21421-s001, ch: 택시, pr: 택씨, ds: taxi; hired passenger car}
+  grammar:
+  - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
+  - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
+  - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+  review_vocabulary:
+  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  review_grammar:
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  phrases:
+  - {id: ko-tourist-p025, ch: 공항에 가 주세요., pr: 공항에 가 주세요, ds: Please go to the airport.}
+  - {id: ko-tourist-p026, ch: 여기에서 내리고 싶어요., pr: 여기에서 내리고 시퍼요, ds: I would like to get off here.}
+  - {id: ko-tourist-p027, ch: 버스 표 주세요., pr: 버스 표 주세요, ds: 'A bus ticket, please.'}
+  - {id: ko-tourist-p028, ch: '택시가 어디에 있어요?', pr: 택씨가 어디에 이써요, ds: 'Where is a taxi?'}
+  phrase_components:
+    ko-tourist-p025:
+      items:
+      - ko-nikl-30047-s001
+      - ko-nikl-25603-s001
+      grammar:
+      - ko-topik1-g008
+      - ko-topik1-g024
+      realizations:
+      - ch: 공항에
+        pr: 공항에
+        items:
+        - ko-nikl-30047-s001
+        grammar:
+        - ko-topik1-g008
+        form_id: airport-destination
+      - ch: 가
+        pr: 가
+        items:
+        - ko-nikl-25603-s001
+        grammar:
+        - ko-topik1-g024
+        form_id: go-request
+      - ch: 주세요
+        pr: 주세요
+        items: []
+        grammar:
+        - ko-topik1-g024
+        form_id: request-auxiliary
+    ko-tourist-p026:
+      items:
+      - ko-nikl-47023-s001
+      - ko-nikl-34899-s006
+      grammar:
+      - ko-topik1-g007
+      - ko-topik1-g020
+      - ko-topik1-g016
+      realizations:
+      - ch: 여기에서
+        pr: 여기에서
+        items:
+        - ko-nikl-47023-s001
+        grammar:
+        - ko-topik1-g007
+        form_id: here-action
+      - ch: 내리고
+        pr: 내리고
+        items:
+        - ko-nikl-34899-s006
+        grammar:
+        - ko-topik1-g020
+        form_id: alight-desire
+      - ch: 싶어요
+        pr: 시퍼요
+        items: []
+        grammar:
+        - ko-topik1-g020
+        - ko-topik1-g016
+        form_id: desire-polite
+    ko-tourist-p027:
+      items:
+      - ko-nikl-40930-s001
+      - ko-nikl-23187-s001
+      - ko-nikl-41632-s001
+      grammar:
+      - ko-topik1-g023
+      realizations:
+      - ch: 버스
+        pr: 버스
+        items:
+        - ko-nikl-40930-s001
+        grammar: []
+      - ch: 표
+        pr: 표
+        items:
+        - ko-nikl-23187-s001
+        grammar: []
+      - ch: 주세요
+        pr: 주세요
+        items:
+        - ko-nikl-41632-s001
+        grammar:
+        - ko-topik1-g023
+        form_id: give-directive
+    ko-tourist-p028:
+      items:
+      - ko-nikl-21421-s001
+      - ko-nikl-46352-s001
+      - ko-nikl-11948-s008
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g006
+      - ko-topik1-g016
+      realizations:
+      - ch: 택시가
+        pr: 택씨가
+        items:
+        - ko-nikl-21421-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: taxi-subject
+      - ch: 어디에
+        pr: 어디에
+        items:
+        - ko-nikl-46352-s001
+        grammar:
+        - ko-topik1-g006
+        form_id: where-location
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s008
+        grammar:
+        - ko-topik1-g016
+        form_id: located-polite
+- id: lodging
+  title: Handle a simple check-in
+  outcome: State an existing reservation, request a key, and locate a passport for staff.
+  vocabulary:
+  - {id: ko-nikl-48041-s001, ch: 예약, pr: 예ː약, ds: reservation; advance arrangement}
+  - {id: ko-nikl-11948-s002, ch: 있다, pr: 읻따, ds: exist as a fact or phenomenon}
+  - {id: ko-nikl-47692-s001, ch: 열쇠, pr: 열ː쐬 / 열ː쒜, ds: key; tool for a lock}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
+  - {id: ko-nikl-47022-s001, ch: 여권, pr: 여꿘, ds: passport}
+  - {id: ko-nikl-47023-s001, ch: 여기, pr: 여기, ds: here; a place near the speaker}
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  review_grammar:
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  phrases:
+  - {id: ko-tourist-p029, ch: 예약이 있어요., pr: 예야기 이써요, ds: I have a reservation.}
+  - {id: ko-tourist-p030, ch: 열쇠 주세요., pr: 열쐬 주세요, ds: 'The key, please.'}
+  - {id: ko-tourist-p031, ch: 여권이 여기에 있어요., pr: 여꿔니 여기에 이써요, ds: My passport is here.}
+  phrase_components:
+    ko-tourist-p029:
+      items:
+      - ko-nikl-48041-s001
+      - ko-nikl-11948-s002
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g016
+      realizations:
+      - ch: 예약이
+        pr: 예야기
+        items:
+        - ko-nikl-48041-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: reservation-subject
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s002
+        grammar:
+        - ko-topik1-g016
+        form_id: fact-exists-polite
+    ko-tourist-p030:
+      items:
+      - ko-nikl-47692-s001
+      - ko-nikl-41632-s001
+      grammar:
+      - ko-topik1-g023
+      realizations:
+      - ch: 열쇠
+        pr: 열쐬
+        items:
+        - ko-nikl-47692-s001
+        grammar: []
+        form_id: key-broad
+      - ch: 주세요
+        pr: 주세요
+        items:
+        - ko-nikl-41632-s001
+        grammar:
+        - ko-topik1-g023
+        form_id: give-directive
+    ko-tourist-p031:
+      items:
+      - ko-nikl-47022-s001
+      - ko-nikl-47023-s001
+      - ko-nikl-11948-s008
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g006
+      - ko-topik1-g016
+      realizations:
+      - ch: 여권이
+        pr: 여꿔니
+        items:
+        - ko-nikl-47022-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: passport-subject
+      - ch: 여기에
+        pr: 여기에
+        items:
+        - ko-nikl-47023-s001
+        grammar:
+        - ko-topik1-g006
+        form_id: here-location
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s008
+        grammar:
+        - ko-topik1-g016
+        form_id: located-polite
+- id: shopping
+  title: Choose a size and keep a receipt
+  outcome: Say an object is too big, ask for a small one, choose a purchase, and request a receipt.
+  vocabulary:
+  - {id: ko-nikl-35224-s001, ch: 너무, pr: 너무, ds: too; to an excessive degree}
+  - {id: ko-nikl-20920-s001, ch: 크다, pr: 크다, ds: 'big in length, area, height, or volume'}
+  - {id: ko-nikl-12453-s001, ch: 작다, pr: 작ː따, ds: 'small in length, area, or volume'}
+  - {id: ko-nikl-27852-s001, ch: 것, pr: 걷, ds: thing or fact not specified; bound noun}
+  - {id: ko-nikl-10453-s001, ch: 이것, pr: 이걷, ds: this thing near or in mind of the speaker}
+  - {id: ko-nikl-08234-s001, ch: 사다, pr: 사다, ds: buy; acquire by paying}
+  - {id: ko-nikl-47846-s001, ch: 영수증, pr: 영수증, ds: receipt; written record of a transaction}
+  grammar:
+  - {id: ko-topik1-g034, ch: A-(으)ㄴ N, ds: modify a noun with a descriptive predicate}
+  review_vocabulary:
+  - {id: ko-nikl-11948-s001, ch: 있다, pr: 읻따, ds: exist; be present in reality}
+  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
+  - {id: ko-nikl-46742-s001, ch: 얼마, pr: 얼마, ds: 'how much; an unknown amount, price, or degree'}
+  review_grammar:
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+  - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+  phrases:
+  - {id: ko-tourist-p032, ch: 너무 커요., pr: 너무 커요, ds: It is too big.}
+  - {id: ko-tourist-p033, ch: '작은 것이 있어요?', pr: 자근 거시 이써요, ds: 'Do you have a small one?'}
+  - {id: ko-tourist-p034, ch: 이것을 사고 싶어요., pr: 이거슬 사고 시퍼요, ds: I would like to buy this.}
+  - {id: ko-tourist-p035, ch: 영수증 주세요., pr: 영수증 주세요, ds: 'A receipt, please.'}
+  phrase_components:
+    ko-tourist-p032:
+      items:
+      - ko-nikl-35224-s001
+      - ko-nikl-20920-s001
+      grammar:
+      - ko-topik1-g016
+      realizations:
+      - ch: 너무
+        pr: 너무
+        items:
+        - ko-nikl-35224-s001
+        grammar: []
+      - ch: 커요
+        pr: 커요
+        items:
+        - ko-nikl-20920-s001
+        grammar:
+        - ko-topik1-g016
+        form_id: big-polite
+    ko-tourist-p033:
+      items:
+      - ko-nikl-12453-s001
+      - ko-nikl-27852-s001
+      - ko-nikl-11948-s001
+      grammar:
+      - ko-topik1-g034
+      - ko-topik1-g004
+      - ko-topik1-g016
+      realizations:
+      - ch: 작은
+        pr: 자근
+        items:
+        - ko-nikl-12453-s001
+        grammar:
+        - ko-topik1-g034
+        form_id: small-modifier
+      - ch: 것이
+        pr: 거시
+        items:
+        - ko-nikl-27852-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: thing-subject
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s001
+        grammar:
+        - ko-topik1-g016
+        form_id: exist-polite
+    ko-tourist-p034:
+      items:
+      - ko-nikl-10453-s001
+      - ko-nikl-08234-s001
+      grammar:
+      - ko-topik1-g005
+      - ko-topik1-g020
+      - ko-topik1-g016
+      realizations:
+      - ch: 이것을
+        pr: 이거슬
+        items:
+        - ko-nikl-10453-s001
+        grammar:
+        - ko-topik1-g005
+        form_id: this-object
+      - ch: 사고
+        pr: 사고
+        items:
+        - ko-nikl-08234-s001
+        grammar:
+        - ko-topik1-g020
+        form_id: buy-desire
+      - ch: 싶어요
+        pr: 시퍼요
+        items: []
+        grammar:
+        - ko-topik1-g020
+        - ko-topik1-g016
+        form_id: desire-polite
+    ko-tourist-p035:
+      items:
+      - ko-nikl-47846-s001
+      - ko-nikl-41632-s001
+      grammar:
+      - ko-topik1-g023
+      realizations:
+      - ch: 영수증
+        pr: 영수증
+        items:
+        - ko-nikl-47846-s001
+        grammar: []
+      - ch: 주세요
+        pr: 주세요
+        items:
+        - ko-nikl-41632-s001
+        grammar:
+        - ko-topik1-g023
+        form_id: give-directive
+- id: food-needs
+  title: Communicate a food restriction
+  outcome: State a no-meat preference, disclose an allergy, and explain inability to eat spicy food.
+  vocabulary:
+  - {id: ko-nikl-28821-s001, ch: 고기, pr: 고기, ds: meat; animal flesh eaten as food}
+  - {id: ko-nikl-36950-s001, ch: 먹다, pr: 먹따, ds: eat; take food into the body}
+  - {id: ko-nikl-04593-s001, ch: 알레르기, pr: 알레르기, ds: allergy; physical reaction to a substance}
+  - {id: ko-nikl-36786-s001, ch: 맵다, pr: 맵따, ds: spicy; hot-tasting}
+  - {id: ko-nikl-51116-s002, ch: 음식, pr: 음ː식, ds: food and drink; anything people eat or drink}
+  grammar:
+  - {id: ko-topik2-g036, ch: V/A-지 않다, ds: negate a predicate with a final auxiliary}
+  - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
+  review_vocabulary:
+  - {id: ko-nikl-11948-s002, ch: 있다, pr: 읻따, ds: exist as a fact or phenomenon}
+  - {id: ko-nikl-17939-s001, ch: 도와주다, pr: 도와주다, ds: help; lend support}
+  review_grammar:
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g034, ch: A-(으)ㄴ N, ds: modify a noun with a descriptive predicate}
+  phrases:
+  - {id: ko-tourist-p036, ch: 고기를 먹지 않아요., pr: 고기를 먹찌 아나요, ds: I do not eat meat.}
+  - {id: ko-tourist-p037, ch: 알레르기가 있어요., pr: 알레르기가 이써요, ds: I have an allergy.}
+  - {id: ko-tourist-p038, ch: 매운 음식을 못 먹어요., pr: 매운 음시글 몬 머거요, ds: I cannot eat spicy food.}
+  phrase_components:
+    ko-tourist-p036:
+      items:
+      - ko-nikl-28821-s001
+      - ko-nikl-36950-s001
+      grammar:
+      - ko-topik1-g005
+      - ko-topik2-g036
+      - ko-topik1-g016
+      realizations:
+      - ch: 고기를
+        pr: 고기를
+        items:
+        - ko-nikl-28821-s001
+        grammar:
+        - ko-topik1-g005
+        form_id: meat-object
+      - ch: 먹지
+        pr: 먹찌
+        items:
+        - ko-nikl-36950-s001
+        grammar:
+        - ko-topik2-g036
+        form_id: eat-negative
+      - ch: 않아요
+        pr: 아나요
+        items: []
+        grammar:
+        - ko-topik2-g036
+        - ko-topik1-g016
+        form_id: negative-polite
+    ko-tourist-p037:
+      items:
+      - ko-nikl-04593-s001
+      - ko-nikl-11948-s002
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g016
+      realizations:
+      - ch: 알레르기가
+        pr: 알레르기가
+        items:
+        - ko-nikl-04593-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: allergy-subject
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s002
+        grammar:
+        - ko-topik1-g016
+        form_id: fact-exists-polite
+    ko-tourist-p038:
+      items:
+      - ko-nikl-36786-s001
+      - ko-nikl-51116-s002
+      - ko-nikl-36950-s001
+      grammar:
+      - ko-topik1-g034
+      - ko-topik1-g005
+      - ko-topik1-g022
+      - ko-topik1-g016
+      realizations:
+      - ch: 매운
+        pr: 매운
+        items:
+        - ko-nikl-36786-s001
+        grammar:
+        - ko-topik1-g034
+        form_id: spicy-modifier
+      - ch: 음식을
+        pr: 음시글
+        items:
+        - ko-nikl-51116-s002
+        grammar:
+        - ko-topik1-g005
+        form_id: food-object
+      - ch: 못
+        pr: 몬
+        items: []
+        grammar:
+        - ko-topik1-g022
+        form_id: cannot-before-eat
+      - ch: 먹어요
+        pr: 머거요
+        items:
+        - ko-nikl-36950-s001
+        grammar:
+        - ko-topik1-g016
+        form_id: eat-polite
+- id: connection
+  title: Ask about internet access or a telephone
+  outcome: Check internet use, request an access password, and locate a telephone.
+  vocabulary:
+  - {id: ko-nikl-11302-s001, ch: 인터넷, pr: 인터넫, ds: internet; worldwide computer network}
+  - {id: ko-nikl-03920-s001, ch: 쓰다, pr: 쓰다, ds: 'use a material, tool, or means'}
+  - {id: ko-nikl-07522-s001, ch: 비밀번호, pr: 비ː밀번호, ds: password; secret access code}
+  - {id: ko-nikl-38146-s001, ch: 무엇, pr: 무얻, ds: what; an unknown fact or thing}
+  - {id: ko-nikl-14080-s002, ch: 전화, pr: 전ː화, ds: telephone; communication device}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-03918-s001, ch: 쓰다, pr: 쓰다, ds: write letters with a writing instrument}
+  review_grammar:
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+  - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g001, ch: N이에요 / N예요, ds: polite identification with a noun predicate}
+  - {id: ko-topik1-g003, ch: N은/는, ds: introduce or contrast a topic}
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  phrases:
+  - {id: ko-tourist-p039, ch: '인터넷을 쓸 수 있어요?', pr: 인터네슬 쓸 쑤 이써요, ds: 'Can I use the internet?'}
+  - {id: ko-tourist-p040, ch: '비밀번호가 무엇이에요?', pr: 비밀번호가 무어시에요, ds: 'What is the password?'}
+  - {id: ko-tourist-p041, ch: '전화는 어디에 있어요?', pr: 전화는 어디에 이써요, ds: 'Where is a telephone?'}
+  phrase_components:
+    ko-tourist-p039:
+      items:
+      - ko-nikl-11302-s001
+      - ko-nikl-03920-s001
+      grammar:
+      - ko-topik1-g005
+      - ko-topik1-g032
+      - ko-topik1-g016
+      realizations:
+      - ch: 인터넷을
+        pr: 인터네슬
+        items:
+        - ko-nikl-11302-s001
+        grammar:
+        - ko-topik1-g005
+        form_id: internet-object
+      - ch: 쓸
+        pr: 쓸
+        items:
+        - ko-nikl-03920-s001
+        grammar:
+        - ko-topik1-g032
+        form_id: use-ability
+      - ch: 수
+        pr: 쑤
+        items: []
+        grammar:
+        - ko-topik1-g032
+        form_id: ability-bound-noun
+      - ch: 있어요
+        pr: 이써요
+        items: []
+        grammar:
+        - ko-topik1-g032
+        - ko-topik1-g016
+        form_id: ability-polite
+    ko-tourist-p040:
+      items:
+      - ko-nikl-07522-s001
+      - ko-nikl-38146-s001
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g001
+      realizations:
+      - ch: 비밀번호가
+        pr: 비밀번호가
+        items:
+        - ko-nikl-07522-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: password-subject
+      - ch: 무엇이에요
+        pr: 무어시에요
+        items:
+        - ko-nikl-38146-s001
+        grammar:
+        - ko-topik1-g001
+        form_id: what-copula
+    ko-tourist-p041:
+      items:
+      - ko-nikl-14080-s002
+      - ko-nikl-46352-s001
+      - ko-nikl-11948-s008
+      grammar:
+      - ko-topik1-g003
+      - ko-topik1-g006
+      - ko-topik1-g016
+      realizations:
+      - ch: 전화는
+        pr: 전화는
+        items:
+        - ko-nikl-14080-s002
+        grammar:
+        - ko-topik1-g003
+        form_id: telephone-topic
+      - ch: 어디에
+        pr: 어디에
+        items:
+        - ko-nikl-46352-s001
+        grammar:
+        - ko-topik1-g006
+        form_id: where-location
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s008
+        grammar:
+        - ko-topik1-g016
+        form_id: located-polite
+- id: leisure
+  title: Plan a visit and ask before taking photos
+  outcome: Ask photo permission, locate a museum, and check whether a visit is possible today.
+  vocabulary:
+  - {id: ko-nikl-08557-s001, ch: 사진, pr: 사진, ds: photograph; recorded camera image}
+  - {id: ko-nikl-43778-s008, ch: 찍다, pr: 찍따, ds: photograph; capture an image with a camera}
+  - {id: ko-nikl-39509-s001, ch: 박물관, pr: 방물관, ds: museum}
+  - {id: ko-nikl-48124-s001, ch: 오늘, pr: 오늘, ds: today; on the present day}
+  grammar:
+  - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
+  review_vocabulary:
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  review_grammar:
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
+  phrases:
+  - {id: ko-tourist-p042, ch: '사진을 찍어도 돼요?', pr: 사지늘 찌거도 돼요, ds: 'May I take a photo?'}
+  - {id: ko-tourist-p043, ch: '박물관이 어디에 있어요?', pr: 방물과니 어디에 이써요, ds: 'Where is the museum?'}
+  - {id: ko-tourist-p044, ch: '오늘 갈 수 있어요?', pr: 오늘 갈 쑤 이써요, ds: 'Can I go today?'}
+  phrase_components:
+    ko-tourist-p042:
+      items:
+      - ko-nikl-08557-s001
+      - ko-nikl-43778-s008
+      grammar:
+      - ko-topik1-g005
+      - ko-topik2-g001
+      - ko-topik1-g016
+      realizations:
+      - ch: 사진을
+        pr: 사지늘
+        items:
+        - ko-nikl-08557-s001
+        grammar:
+        - ko-topik1-g005
+        form_id: photo-object
+      - ch: 찍어도
+        pr: 찌거도
+        items:
+        - ko-nikl-43778-s008
+        grammar:
+        - ko-topik2-g001
+        form_id: photograph-permission
+      - ch: 돼요
+        pr: 돼요
+        items: []
+        grammar:
+        - ko-topik2-g001
+        - ko-topik1-g016
+        form_id: permission-polite
+    ko-tourist-p043:
+      items:
+      - ko-nikl-39509-s001
+      - ko-nikl-46352-s001
+      - ko-nikl-11948-s008
+      grammar:
+      - ko-topik1-g004
+      - ko-topik1-g006
+      - ko-topik1-g016
+      realizations:
+      - ch: 박물관이
+        pr: 방물과니
+        items:
+        - ko-nikl-39509-s001
+        grammar:
+        - ko-topik1-g004
+        form_id: museum-subject
+      - ch: 어디에
+        pr: 어디에
+        items:
+        - ko-nikl-46352-s001
+        grammar:
+        - ko-topik1-g006
+        form_id: where-location
+      - ch: 있어요
+        pr: 이써요
+        items:
+        - ko-nikl-11948-s008
+        grammar:
+        - ko-topik1-g016
+        form_id: located-polite
+    ko-tourist-p044:
+      items:
+      - ko-nikl-48124-s001
+      - ko-nikl-25603-s001
+      grammar:
+      - ko-topik1-g032
+      - ko-topik1-g016
+      realizations:
+      - ch: 오늘
+        pr: 오늘
+        items:
+        - ko-nikl-48124-s001
+        grammar: []
+      - ch: 갈
+        pr: 갈
+        items:
+        - ko-nikl-25603-s001
+        grammar:
+        - ko-topik1-g032
+        form_id: go-ability
+      - ch: 수
+        pr: 쑤
+        items: []
+        grammar:
+        - ko-topik1-g032
+        form_id: ability-bound-noun
+      - ch: 있어요
+        pr: 이써요
+        items: []
+        grammar:
+        - ko-topik1-g032
+        - ko-topik1-g016
+        form_id: ability-polite
+- id: changed-plans
+  title: Ask to adjust an arrangement
+  outcome: Ask whether tomorrow is allowed, request a time change, and apologize formally.
+  vocabulary:
+  - {id: ko-nikl-35011-s001, ch: 내일, pr: 내일, ds: tomorrow; on the next day}
+  - {id: ko-nikl-02694-s002, ch: 시간, pr: 시간, ds: appointed time; particular time of day}
+  - {id: ko-nikl-39307-s004, ch: 바꾸다, pr: 바꾸다, ds: change existing content or state}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  - {id: ko-nikl-41556-s001, ch: 죄송하다, pr: 죄ː송하다 / 줴ː송하다, ds: very sorry; apologetic}
+  - {id: ko-nikl-48041-s001, ch: 예약, pr: 예ː약, ds: reservation; advance arrangement}
+  review_grammar:
+  - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+  - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+  - {id: ko-topik1-g017, ch: V/A-ㅂ니다 / -습니다, ds: formal polite statement to a listener}
+  phrases:
+  - {id: ko-tourist-p045, ch: '내일 가도 돼요?', pr: 내일 가도 돼요, ds: 'May I go tomorrow?'}
+  - {id: ko-tourist-p046, ch: 시간을 바꾸고 싶어요., pr: 시가늘 바꾸고 시퍼요, ds: I would like to change the time.}
+  - {id: ko-tourist-p047, ch: 죄송합니다., pr: 죄송함니다, ds: I am sorry. (formal)}
+  phrase_components:
+    ko-tourist-p045:
+      items:
+      - ko-nikl-35011-s001
+      - ko-nikl-25603-s001
+      grammar:
+      - ko-topik2-g001
+      - ko-topik1-g016
+      realizations:
+      - ch: 내일
+        pr: 내일
+        items:
+        - ko-nikl-35011-s001
+        grammar: []
+      - ch: 가도
+        pr: 가도
+        items:
+        - ko-nikl-25603-s001
+        grammar:
+        - ko-topik2-g001
+        form_id: go-permission
+      - ch: 돼요
+        pr: 돼요
+        items: []
+        grammar:
+        - ko-topik2-g001
+        - ko-topik1-g016
+        form_id: permission-polite
+    ko-tourist-p046:
+      items:
+      - ko-nikl-02694-s002
+      - ko-nikl-39307-s004
+      grammar:
+      - ko-topik1-g005
+      - ko-topik1-g020
+      - ko-topik1-g016
+      realizations:
+      - ch: 시간을
+        pr: 시가늘
+        items:
+        - ko-nikl-02694-s002
+        grammar:
+        - ko-topik1-g005
+        form_id: time-object
+      - ch: 바꾸고
+        pr: 바꾸고
+        items:
+        - ko-nikl-39307-s004
+        grammar:
+        - ko-topik1-g020
+        form_id: change-desire
+      - ch: 싶어요
+        pr: 시퍼요
+        items: []
+        grammar:
+        - ko-topik1-g020
+        - ko-topik1-g016
+        form_id: desire-polite
+    ko-tourist-p047:
+      items:
+      - ko-nikl-41556-s001
+      grammar:
+      - ko-topik1-g017
+      realizations:
+      - ch: 죄송합니다
+        pr: 죄송함니다
+        items:
+        - ko-nikl-41556-s001
+        grammar:
+        - ko-topik1-g017
+        form_id: sorry-formal
+kind: route
+quick_start:
+- polite-repair
+- food-basics
+- finding-your-way
+- paying
+- asking-for-help
+mastery_profile: ko-item-mastery
+mastery_target: supported-use
