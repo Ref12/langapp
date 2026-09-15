@@ -397,6 +397,20 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             self.assertEqual(source["reading_method"], "authored-broad-hangul")
             self.assertEqual(source["review_status"], "unreviewed")
 
+    def test_bound_and_function_categories_match_the_explicit_selection_audit(self):
+        notes = load_yaml(self.root / "authoring" / "teaching" / "selection-notes.yaml")
+        audit = notes["category_adjudication"]
+        functions = [identity for group in audit["function_identities_by_role"].values() for identity in group]
+        self.assertEqual(len(functions), len(set(functions)))
+        categories = {
+            self.references.lexical_identity[identifier]: self.references.provenance[identifier]["lexical_category"]
+            for identifier in self.references.vocabulary
+        }
+        self.assertEqual(set(functions), {identity for identity, category in categories.items()
+                                          if category == "function-item"})
+        self.assertEqual(set(audit["bound_form_identities"]),
+                         {identity for identity, category in categories.items() if category == "bound-form"})
+
     def test_checked_in_tourist_views_match_actual_canonical_course_records(self):
         anchors = {row["id"]: row["anchors"] for row in self.data.inputs["grammar"]}
         outputs, _ = tourist_outputs(

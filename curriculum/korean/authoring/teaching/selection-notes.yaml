@@ -1,0 +1,384 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: partial curation; not complete-scale coverage
+coverage_reporting: >
+  The adapter-generated coverage report is authoritative for current counts.
+  This file intentionally contains no computed coverage statistics or reading-gap
+  snapshot. Report source parents, source senses, spellings, readings, and
+  provisional lexical identities separately; none is interchangeable with a
+  verified count of true Korean lexemes.
+
+authoring_principles:
+  - Select actual original source senses after inspecting their Korean meanings.
+  - Keep source bands independent of teaching placements.
+  - Do not assign curriculum from alphabetical order, record ordinals, or quotas.
+  - Do not select every first sense or merge positions merely because English matches.
+  - Use concise, natural, meaning-disambiguating labels rather than truncated definitions.
+  - Treat additional meanings of common words as depth, not new headword breadth.
+  - Keep specialist meanings optional rather than padding later general-interest levels.
+  - Unselected uncategorized entries are not rejections and are not automatically advanced.
+  - Keep essential vocabulary despite reading gaps; the source owner adjudicates readings.
+
+file_contracts:
+  vocabulary: >
+    vocabulary.yaml is the explicit list of id, level, topic, and ds rows.
+    It is not generated from source-band rules. No shards need composition.
+  identities: >
+    lexical-identities.yaml maps each stable lexical ID directly to exactly
+    lemma, category, members, source_parents, and rationale. Each selected
+    source sense belongs to exactly one group. It has no live policy wrapper,
+    POS field, or computed-statistics fields.
+  tourist_labels: >
+    support.yaml is owned by the tourist author. Its exact canonical labels
+    govern overlapping source senses, without suppressing additional core senses.
+  corrections: >
+    source-corrections.yaml retains its original bilingual correction ledger.
+    Raw source definitions are never changed by compact teaching labels.
+
+identity_policy:
+  stable_names: >
+    ko-lex identifiers retain source-parent anchors only as stable local names.
+    They are not official NIKL identities, and a parent-shaped name is not
+    evidence that a dictionary parent is a distinct true lexeme.
+  source_anchor_candidates: >
+    A source-parent grouping is explicitly provisional. Its rationale records
+    source POS, selected meanings, and any relevant homograph contrast.
+    Retaining a reviewed source boundary is not proof of etymology or lexeme
+    granularity. Except for the explicit multi-parent decisions, retain one
+    conservative candidate for selected meanings of an inspected source parent.
+    The manifest mechanically serializes these grouping decisions and the
+    authored memberships; it does not generate new curriculum assignments.
+    Do not market these candidates as verified lemma breadth.
+  polysemy: >
+    Keep selected literal and figurative meanings together when the authored
+    identity analysis supports doing so. Preserve their individual source IDs,
+    labels, and teaching placements. Additional meanings are not separate lemmas.
+  variants: >
+    Merge only with an explicit variant or category-alternation analysis.
+    Similar English meanings alone do not establish identity. Synonyms such as
+    계란/달걀, 부엌/주방, 네/예, and 높임말/존댓말 remain separate candidates.
+  inflection: >
+    Inflected greetings and commands are not new vocabulary lemmas.
+    Source-backed action nouns and independent 하다 can support productive
+    constructions such as 공부를 해요 or 주문을 해요. Joined forms still require
+    an explicit reviewed realization; this does not fabricate dictionary
+    senses for 공부하다 or authorize arbitrary X하다 verbs.
+  evidence_limits: >
+    Source Korean definitions and POS supply semantic evidence, not proof of
+    frequency, Hanja identity, etymology, teacher approval, or exam alignment.
+    Pronunciation evidence does not establish lexical identity.
+
+category_adjudication:
+  free-lemma: >
+    Independently usable lexical content, including ordinary nouns, predicates,
+    lexical adverbs, and lexical -적 modifiers, is retained as free-lemma.
+    Source-anchored candidates remain provisional even when classified here.
+    A lexical container noun with an additional counter use counts once, as
+    does the explicit 시간 time/hour group; its counter use adds no lemma.
+  bound-form: >
+    The listed identities are dependent nouns, counters, units, or a bound
+    personal title. They are not counted as free lexical headwords. This is an
+    explicit decision for these selected identities, not an automatic spelling rule.
+  bound_form_identities:
+    ko-lex-02671: 시; hour-of-day unit
+    ko-lex-03975: 씨; respectful title attached to a personal name
+    ko-lex-06802: 분; respectful person reference or counter
+    ko-lex-06807: 분; minute unit, distinct from respectful person counting
+    ko-lex-11338: 일; day or date counter
+    ko-lex-12779: 장; counter for thin flat objects
+    ko-lex-26923: 개; counter for individual objects, not the dog noun
+    ko-lex-27852: 것; bound noun for an unspecified thing or fact
+    ko-lex-35380: 년; year unit
+    ko-lex-35824: 마리; counter for animals
+    ko-lex-37199: 명; counter for people
+    ko-lex-40947: 번; number, order, or occurrence counter
+    ko-lex-45013: 초; second unit
+    ko-lex-49668: 원; Korean currency unit
+    ko-lex-49842: 월; calendar-month unit
+  function-item: >
+    The following explicitly listed reference words, interrogatives, numerals,
+    discourse operators, pro-predicates, and grammatical degree modifiers are
+    function-item rather than silently being counted as free-lemma. They remain
+    teachable items with their original source senses. The role lists document
+    count classification only; they never generate teaching placements.
+  function_identities_by_role:
+    reference_and_questions:
+      - ko-lex-13297
+      - ko-lex-47023
+      - ko-lex-46352
+      - ko-lex-34135
+      - ko-lex-35196
+      - ko-lex-49275
+      - ko-lex-47062
+      - ko-lex-10453
+      - ko-lex-31940
+      - ko-lex-13312
+      - ko-lex-27326
+      - ko-lex-13326
+      - ko-lex-15334
+      - ko-lex-38146
+      - ko-lex-46682
+      - ko-lex-46742
+      - ko-lex-48724
+      - ko-lex-12261
+    cardinals_and_multiples:
+      - ko-lex-40533
+      - ko-lex-23787
+      - ko-lex-18823
+      - ko-lex-00561
+      - ko-lex-35372
+      - ko-lex-16185
+      - ko-lex-47109
+      - ko-lex-11339
+      - ko-lex-10443
+      - ko-lex-08917
+      - ko-lex-08149
+      - ko-lex-48097
+      - ko-lex-50498
+      - ko-lex-20420
+      - ko-lex-22482
+      - ko-lex-30831
+      - ko-lex-03699
+      - ko-lex-40737
+      - ko-lex-44467
+      - ko-lex-36031
+      - ko-lex-47617
+    negation_and_pro_predicates:
+      - ko-lex-04059
+      - ko-lex-04399
+      - ko-lex-37811
+      - ko-lex-32042
+    discourse_replies_openers_and_connectives:
+      - ko-lex-35345
+      - ko-lex-04067
+      - ko-lex-47938
+      - ko-lex-13305
+      - ko-lex-13327
+      - ko-lex-32064
+      - ko-lex-31989
+      - ko-lex-23948
+    degree_and_approximation:
+      - ko-lex-05024
+      - ko-lex-25966
+      - ko-lex-14944
+      - ko-lex-17430
+  explicit_function_clarifications:
+    ko-lex-46742: >
+      얼마 asks about an unknown amount, price, or degree. Its source noun
+      label does not make it an ordinary lexical quantity noun for counting.
+    ko-lex-48724: >
+      왜 is an interrogative asking a reason. Count it with the other
+      interrogatives rather than treating its source adverb label as proof of
+      an open-class lexical identity.
+    ko-lex-12261: >
+      자신 supplies reflexive or emphatic personal reference. This selected
+      source parent is not the confidence homograph or the noun 자존심.
+    ko-lex-17430: >
+      더 has selected additive and comparative degree uses. Both remain in
+      one functional modifier identity; the comparative sense is not replaced
+      by the additive sense.
+
+multi_parent_decisions:
+  - id: ko-lex-38146
+    lemma: 무엇
+    source_parents: [ko-nikl-38146, ko-nikl-38773]
+    rationale: >
+      뭐 is the conversational contracted interrogative form. Preserve both
+      written forms and source senses in one function identity. This is an
+      authored contraction analysis, not an official variant crosswalk.
+  - id: ko-lex-02694
+    lemma: 시간
+    source_parents: [ko-nikl-02694, ko-nikl-02696]
+    rationale: >
+      Independent time reference and hour-duration counting share one
+      time-measure identity. Preserve noun/bound-noun distinctions in the
+      member evidence without adding headword breadth for the counting use.
+  - id: ko-lex-11948
+    lemma: 있다
+    source_parents: [ko-nikl-11948, ko-nikl-11947]
+    rationale: >
+      Existential, location, and possession uses and actional remaining in a
+      place share one conservative teaching identity. Source descriptive-verb
+      and verb analyses remain distinct; staying and possessing are not
+      interchangeable meanings or grammatical distributions.
+  - id: ko-lex-20920
+    lemma: 크다
+    source_parents: [ko-nikl-20920, ko-nikl-20919]
+    rationale: >
+      Stative big and dynamic grow share the same size/growth lexical base.
+      Preserve their source categories and meanings instead of using POS
+      alternation alone to claim unrelated homographs.
+  - id: ko-lex-23787
+    lemma: 하나
+    source_parents: [ko-nikl-23787, ko-nikl-24067]
+    rationale: >
+      The native numeral and its adnominal form 한 express one. Their
+      numeral/determiner distinction is not additional lemma breadth.
+  - id: ko-lex-35010
+    lemma: 내일
+    source_parents: [ko-nikl-35010, ko-nikl-35011]
+    rationale: >
+      Noun tomorrow and adverb on the next day share the same deictic day
+      reference; preserve both grammatical uses in one temporal identity.
+  - id: ko-lex-48123
+    lemma: 오늘
+    source_parents: [ko-nikl-48123, ko-nikl-48124]
+    rationale: >
+      Noun today and adverb on the present day are category uses of one
+      temporal lexeme, not separately counted homographs.
+
+lexicographic_review_flags:
+  - source_parents: [ko-nikl-17144, ko-nikl-17145]
+    issue: >
+      대안 has separate source parents for a replacement proposal and a
+      proposal to resolve a matter. Retain both provisional source boundaries
+      pending Hanja/etymological review; similar English proves neither
+      identity nor distinctness.
+  - source_parents: [ko-nikl-17367, ko-nikl-17369]
+    issue: >
+      대학 and 대학교 overlap in the selected university meaning. Retain
+      separate candidates pending a documented shortened-form decision;
+      semantic overlap alone is not a variant crosswalk.
+  - source_parents: [ko-nikl-19198]
+    issue: >
+      The source groups hold, raise, cite, and honorific eating together.
+      Preserve the grouping provisionally, but obtain specific lexical review
+      of the honorific use before making stronger identity claims.
+
+homograph_and_source_position_notes:
+  - >
+    쓰다 write/use/wear/bitter, 눈 eye/snow, 배 belly/boat/pear/multiple,
+    차 tea/vehicle/difference, and the selected 타다 predicates have separate
+    semantic rationales in the live identity mapping. Same spelling and POS
+    do not establish identity.
+  - >
+    들다 has distinct source groups for entering or coming into a state and
+    holding/raising. Preserve individual common meanings within each group.
+  - >
+    Positive 네 uses ko-nikl-35345, not the four-counter or pronoun homographs.
+    Grateful 감사하다 uses ko-nikl-26499, not the audit verb.
+  - >
+    Equal English in parents ko-nikl-07948, ko-nikl-09462, ko-nikl-26461,
+    and ko-nikl-34299 does not merge their original Korean source positions.
+  - >
+    The figurative spring interpretation ko-nikl-09462-s003 is documented
+    in the unchanged source-correction ledger, separately from the physical
+    spring and spring-site meanings.
+
+remaining_domain_review:
+  - Broader useful general-interest vocabulary is still needed in later levels.
+  - Complete the uncategorized-source review without assigning a default advanced level.
+  - Expand everyday action verbs, native counting forms, calendar and discourse expressions.
+  - Review further ingredients, personal care, services, and unfamiliar everyday problems.
+  - Technology, environment, institutions, arts, and critical argument need more breadth.
+  - Optional branches are introductions, not professional or disciplinary certification.
+
+source_support_review:
+  - >
+    The order or numbered-occurrence meaning of 차 was not in the inspected
+    registry. Recheck current approved support before adding it; do not
+    repurpose the tea, vehicle, or difference parents.
+  - >
+    미안하다 and 피곤하다 were absent during initial inspection. Recheck
+    current approved support rather than fabricating IDs or deriving them
+    from an unrestricted noun-plus-하다 rule.
+  - >
+    필요하다 and other missing X하다 predicates need their own source or
+    reviewed construction evidence. Productive action-noun constructions do
+    not establish arbitrary lexical senses.
+
+reading_handoff_policy: >
+  Resolve only selected-parent reading requirements during integration.
+  Official gaps on unselected words do not block a course. The source owner
+  may add narrowly documented official matches or individually authored,
+  explicitly unverified essential-gap readings. This file neither supplies
+  readings nor retains a computed missing-reading snapshot.
+
+source_parent_homograph_rationales:
+  ko-nikl-26905: Animal noun dog, distinct from the object counter 개.
+  ko-nikl-26923: Object-counting unit, not the animal noun 개.
+  ko-nikl-27395: Street as a traversable place, not measurable distance.
+  ko-nikl-27398: Distance between locations or entities, not the street noun.
+  ko-nikl-30196: Exaggeration of a fact, not the workplace title 과장.
+  ko-nikl-30197: Section-manager title, not exaggeration.
+  ko-nikl-30901: Dress footwear, distinct from oral communication 구두.
+  ko-nikl-30902: Spoken or oral communication, not footwear.
+  ko-nikl-34748: Dynamic recovery from illness, distinct from comparative better.
+  ko-nikl-34749: Comparative descriptive predicate better, not medical recovery.
+  ko-nikl-15420: Eye and its discernment extension, not precipitation.
+  ko-nikl-15508: Frozen precipitation snow, not the visual organ.
+  ko-nikl-16133: Anatomical leg, not a bridge crossing a gap.
+  ko-nikl-16135: Physical bridge and relational bridge extension, not a leg.
+  ko-nikl-19195: Entering or coming into a state; includes cost, sleep, and thoughts.
+  ko-nikl-19198: Holding or raising and citing; honorific eating retained in its source parent.
+  ko-nikl-36518: Being correct or fitting, not greeting or receiving a blow.
+  ko-nikl-36519: Meeting or greeting an arriving occasion, not correctness or being hit.
+  ko-nikl-36520: Receiving a blow or injection, not the fit/correct predicate.
+  ko-nikl-37808: A metal nail, not the negative inability adverb.
+  ko-nikl-37811: Negative inability adverb, not a metal fastener.
+  ko-nikl-40520: Anatomical belly, not a vessel, fruit, or multiple.
+  ko-nikl-40531: Waterborne transport vessel, not the belly, fruit, or multiple.
+  ko-nikl-40532: Pear fruit, not the belly, vessel, or multiple.
+  ko-nikl-40533: Doubling and multiplicative unit, not the three concrete 배 nouns.
+  ko-nikl-05566: Illness or disease, not a bottle or its counter use.
+  ko-nikl-05569: Bottle container and bottleful unit; disease belongs to a different parent.
+  ko-nikl-06802: Respectful human reference/counting, not the minute unit.
+  ko-nikl-06807: Minute time unit, not respectful reference to people.
+  ko-nikl-08183: Apple fruit, distinct from apology.
+  ko-nikl-08184: Apology and asking forgiveness, distinct from the fruit.
+  ko-nikl-01586: Water supply or tap, distinct from a national capital.
+  ko-nikl-01587: Capital city, distinct from water-supply facilities.
+  ko-nikl-01910: Income earned, not goods or technology brought from abroad.
+  ko-nikl-01911: Importing from abroad, not income.
+  ko-nikl-02389: Resting or pausing activity, not inhaling and exhaling.
+  ko-nikl-02390: Breathing, not resting.
+  ko-nikl-02669: Poem or poetry, not an hour-of-day counter.
+  ko-nikl-02671: Hour-of-day unit, not a literary poem.
+  ko-nikl-03403: A breach of courtesy, not a concrete real-life example.
+  ko-nikl-03404: A real-life example, not discourtesy.
+  ko-nikl-03758: Wrapping or packing, distinct from low price.
+  ko-nikl-03760: Inexpensive descriptive predicate, distinct from wrapping.
+  ko-nikl-03918: Writing or composing marks and text; not using, wearing, or bitterness.
+  ko-nikl-03919: Wearing/covering the head or face; blame is a figurative extension.
+  ko-nikl-03920: Using resources, language, or labor; not writing or wearing.
+  ko-nikl-03921: Bitter taste and distress; descriptive predicate, not the three 쓰다 verbs.
+  ko-nikl-03967: Seed and figurative origin, not a respectful personal title.
+  ko-nikl-03975: Respectful title after a name, not the seed noun.
+  ko-nikl-04398: Interior spatial noun, not negation or a proposed plan.
+  ko-nikl-04399: Predicate-negating adverb, not a spatial interior or proposal.
+  ko-nikl-04400: An idea or proposal under consideration, not interior or negation.
+  ko-nikl-05020: Medicinal substance, not approximation before a quantity.
+  ko-nikl-05024: Approximation modifier, not medicine.
+  ko-nikl-47617: Native numeral ten, not fever or heat.
+  ko-nikl-47631: Fever and thermal energy, not the numeral ten.
+  ko-nikl-47938: Polite affirmative interjection, not an illustrative example.
+  ko-nikl-47939: Illustrative example, not a polite reply.
+  ko-nikl-10317: A person's intention, not a physician.
+  ko-nikl-10319: Medical doctor occupation, not an intention.
+  ko-nikl-10426: Tooth, not the Sino-Korean numeral two.
+  ko-nikl-10443: Sino-Korean numeral two, not an anatomical tooth.
+  ko-nikl-11153: Greeting/introduction speech acts, not staffing appointments.
+  ko-nikl-11155: Personnel placement within an organization, not greetings.
+  ko-nikl-11334: Work, tasks, and events, not a day counter or numeral one.
+  ko-nikl-11338: Counting days or dates, not work or numeral one.
+  ko-nikl-11339: Sino-Korean numeral one, not work or day counting.
+  ko-nikl-13297: Humble first-person pronoun, distinct from a hesitant opening interjection.
+  ko-nikl-13305: Hesitant discourse opening, not the humble first-person pronoun.
+  ko-nikl-13326: Distant-place demonstrative, distinct from the conversational opener.
+  ko-nikl-13327: Hesitant conversational opener, not a referential location.
+  ko-nikl-13519: Writing down a note, distinct from being few or little.
+  ko-nikl-13520: Small number or amount, not writing.
+  ko-nikl-42776: Material or practical support, not applying for a position.
+  ko-nikl-42777: Applying for membership or a role, not assistance.
+  ko-nikl-43833: Tea or infusion, not vehicle or difference.
+  ko-nikl-43835: Wheeled vehicle, not tea or difference.
+  ko-nikl-43837: Difference and subtraction result, not tea or vehicle.
+  ko-nikl-21049: Burning, charring, and tanning; not riding or mixing.
+  ko-nikl-21050: Riding or boarding transport, not burning or liquid mixing.
+  ko-nikl-21051: Mixing a smaller quantity into liquid, not transport or combustion.
+  ko-nikl-21052: Receiving an allotted payment or prize, not the other 타다 predicates.
+  ko-nikl-21054: Susceptibility to seasonal conditions, not riding or receiving a prize.
+  ko-nikl-22478: Anatomical arm, not numeral eight.
+  ko-nikl-22482: Sino-Korean numeral eight, not an arm.
+  ko-nikl-52077: A meeting or conference, not skeptical doubt.
+  ko-nikl-52078: Doubt or skepticism, not a meeting.

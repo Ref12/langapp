@@ -105,6 +105,9 @@ function items and reports reading methods. The shared inventory's `headwords`
 measure refers to lexical identities, not solely free content-word lemmas.
 Phrases and inflections do not manufacture extra lexical breadth. Routes
 overlap; do not sum their totals as a unique learner vocabulary.
+The explicit category decisions, homograph comparisons, provisional grouping
+limits, and unfilled domains are documented in
+`../authoring/teaching/selection-notes.yaml`, without stale count snapshots.
 Phase `new_free_lemmas` counts a lexical identity only at its first core
 introduction; another sense in a later phase does not count as a new lemma.
 The coverage report exposes the gap to the lower planning guide and marks
