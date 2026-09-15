@@ -490,6 +490,57 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("strength", corrected["source_correction"]["authored_interpretation"])
         self.assertEqual(corrected["source_correction"]["review_status"], "unreviewed")
 
+    def test_early_number_forms_and_counters_do_not_inflate_lexical_breadth(self):
+        identities = self.references.lexical_identity
+        for independent, attributive in (
+            ("18823", "18696"), ("00561", "00354"), ("35372", "35343"),
+            ("16185", "16186"), ("47109", "47110"), ("11372", "11373"),
+            ("47042", "47043"), ("04320", "04322"), ("02436", "02434"),
+            ("09742", "09743"), ("35960", "35961"), ("02397", "02398"),
+            ("48017", "48018"), ("11661", "11662"), ("47057", "47058"),
+            ("04329", "04330"), ("44782", "44783"), ("18843", "18846"),
+            ("00567", "00568"),
+        ):
+            first, second = f"ko-nikl-{independent}-s001", f"ko-nikl-{attributive}-s001"
+            with self.subTest(pair=(first, second)):
+                self.assertEqual(identities[first], identities[second])
+                self.assertEqual(self.references.provenance[second]["lexical_category"], "function-item")
+        for parent in ("08818", "00360", "11151", "16872"):
+            self.assertEqual(
+                self.references.provenance[f"ko-nikl-{parent}-s001"]["lexical_category"], "bound-form",
+            )
+        self.assertNotEqual(identities["ko-nikl-35343-s001"], identities["ko-nikl-35345-s002"])
+        self.assertNotEqual(identities["ko-nikl-00354-s001"], identities["ko-nikl-00360-s001"])
+        self.assertNotEqual(identities["ko-nikl-08818-s001"], identities["ko-nikl-00360-s001"])
+        self.assertEqual(identities["ko-nikl-37110-s001"], identities["ko-nikl-37110-s002"])
+        self.assertEqual(self.references.provenance["ko-nikl-37110-s001"]["lexical_category"], "function-item")
+
+    def test_early_selection_meanings_and_calendar_readings_have_independent_evidence(self):
+        authoring = self.root / "authoring" / "teaching"
+        rows = load_yaml(authoring / "early-vocabulary.yaml")
+        notes = load_yaml(authoring / "early-notes.yaml")
+        self.assertEqual({row["id"] for row in rows}, set(notes["source_evidence"]))
+        for row in rows:
+            source = self.references.provenance[row["id"]]
+            with self.subTest(sense=row["id"]):
+                for language in ("korean", "english"):
+                    self.assertEqual(
+                        notes["source_evidence"][row["id"]][language].strip(),
+                        source[f"source_{language}"].strip(),
+                    )
+                self.assertEqual(source["reading"]["method"], "official-text")
+        for decision in notes["reading_evidence"]["entries"]:
+            identifier = f"{decision['parent_id']}-s001"
+            source = self.references.provenance[identifier]["reading"]
+            self.assertEqual(source["official_entry_id"], decision["official_entry_id"])
+            self.assertEqual(source["match_method"], "explicit-crosswalk")
+            self.assertEqual(self.references.vocabulary[identifier]["pr"], decision["citation"])
+        for noun, adverb in (("32142", "32143"), ("37428", "37429"), ("04034", "04035")):
+            self.assertEqual(
+                self.references.lexical_identity[f"ko-nikl-{noun}-s001"],
+                self.references.lexical_identity[f"ko-nikl-{adverb}-s001"],
+            )
+
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
         report = yaml.safe_load(self.data.source_outputs[self.root / "teaching" / "coverage.yaml"])

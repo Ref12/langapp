@@ -21,13 +21,16 @@ authoring_principles:
 
 file_contracts:
   vocabulary: >
-    vocabulary.yaml is the explicit list of id, level, topic, and ds rows.
-    It is not generated from source-band rules. No shards need composition.
+    selection-files.yaml declares ordered explicit id, level, topic, and ds
+    lists, beginning with vocabulary.yaml. Additional selections are not
+    generated from source-band rules or discovered by a filesystem glob.
   identities: >
-    lexical-identities.yaml maps each stable lexical ID directly to exactly
-    lemma, category, members, source_parents, and rationale. Each selected
-    source sense belongs to exactly one group. It has no live policy wrapper,
-    POS field, or computed-statistics fields.
+    lexical-identities.yaml and the declared additional identity fragments
+    map each stable lexical ID directly to exactly lemma, category, members,
+    source_parents, and rationale. Composition preserves the same lemma and
+    category and appends only new sense members and source-parent evidence.
+    Each selected source sense belongs to exactly one group. No live policy
+    wrapper, POS field, or computed-statistics field belongs in an identity.
   tourist_labels: >
     support.yaml is owned by the tourist author. Its exact canonical labels
     govern overlapping source senses, without suppressing additional core senses.
@@ -80,12 +83,16 @@ category_adjudication:
     personal title. They are not counted as free lexical headwords. This is an
     explicit decision for these selected identities, not an automatic spelling rule.
   bound_form_identities:
+    ko-lex-00360: 세; Sino-Korean-number age counter, not determiner three
     ko-lex-02671: 시; hour-of-day unit
     ko-lex-03975: 씨; respectful title attached to a personal name
     ko-lex-06802: 분; respectful person reference or counter
     ko-lex-06807: 분; minute unit, distinct from respectful person counting
+    ko-lex-08818: 살; native-number age counter, not the flesh noun
+    ko-lex-11151: 인분; person-portion unit, not the person noun
     ko-lex-11338: 일; day or date counter
     ko-lex-12779: 장; counter for thin flat objects
+    ko-lex-16872: 대; vehicle, machine, or instrument counter
     ko-lex-26923: 개; counter for individual objects, not the dog noun
     ko-lex-27852: 것; bound noun for an unspecified thing or fact
     ko-lex-35380: 년; year unit
@@ -122,6 +129,7 @@ category_adjudication:
       - ko-lex-46742
       - ko-lex-48724
       - ko-lex-12261
+      - ko-lex-37110
     cardinals_and_multiples:
       - ko-lex-40533
       - ko-lex-23787
@@ -130,6 +138,17 @@ category_adjudication:
       - ko-lex-35372
       - ko-lex-16185
       - ko-lex-47109
+      - ko-lex-11372
+      - ko-lex-47042
+      - ko-lex-04320
+      - ko-lex-02436
+      - ko-lex-09742
+      - ko-lex-35960
+      - ko-lex-02397
+      - ko-lex-48017
+      - ko-lex-11661
+      - ko-lex-47057
+      - ko-lex-04329
       - ko-lex-11339
       - ko-lex-10443
       - ko-lex-08917
@@ -144,6 +163,10 @@ category_adjudication:
       - ko-lex-44467
       - ko-lex-36031
       - ko-lex-47617
+    ordinals:
+      - ko-lex-44782
+      - ko-lex-18843
+      - ko-lex-00567
     negation_and_pro_predicates:
       - ko-lex-04059
       - ko-lex-04399
@@ -164,6 +187,10 @@ category_adjudication:
       - ko-lex-14944
       - ko-lex-17430
   explicit_function_clarifications:
+    ko-lex-37110: >
+      며칠 supplies a queried or indefinite date or day quantity. Keep its
+      date and duration senses distinct within one functional identity,
+      consistently with 얼마 rather than treating noun POS as content breadth.
     ko-lex-46742: >
       얼마 asks about an unknown amount, price, or degree. Its source noun
       label does not make it an ordinary lexical quantity noun for counting.
@@ -228,6 +255,15 @@ multi_parent_decisions:
       Noun today and adverb on the present day are category uses of one
       temporal lexeme, not separately counted homographs.
 
+additional_grouping_evidence:
+  early-counting-calendar: >
+    early-identities.yaml and early-notes.yaml document the native-number
+    numeral/determiner pairs, ordinal pairs, and explicit noun/adverb
+    alternations for 그제, 모레, and 아까. Their new sense members extend
+    existing identities where appropriate; counter and numeral forms do not
+    inflate free-lemma breadth. Distinct date and duration senses of 며칠 and
+    contextual uses of 나중 remain separate source positions.
+
 lexicographic_review_flags:
   - source_parents: [ko-nikl-17144, ko-nikl-17145]
     issue: >
@@ -269,7 +305,7 @@ homograph_and_source_position_notes:
 remaining_domain_review:
   - Broader useful general-interest vocabulary is still needed in later levels.
   - Complete the uncategorized-source review without assigning a default advanced level.
-  - Expand everyday action verbs, native counting forms, calendar and discourse expressions.
+  - Deepen everyday action verbs, discourse expressions, and contextual calendar practice.
   - Review further ingredients, personal care, services, and unfamiliar everyday problems.
   - Technology, environment, institutions, arts, and critical argument need more breadth.
   - Optional branches are introductions, not professional or disciplinary certification.

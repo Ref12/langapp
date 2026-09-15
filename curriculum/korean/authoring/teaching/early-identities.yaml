@@ -1,0 +1,195 @@
+# Original AI-authored grouping analyses; qualified lexicographic review required.
+# Existing-group fragments contain NEW members/parents only; compose by explicit union.
+# Matching base lemma/category must be retained. Do not replace base group membership.
+ko-lex-18823:
+  lemma: 둘
+  category: function-item
+  members: [ko-nikl-18696-s001]
+  source_parents: [ko-nikl-18696]
+  rationale: Extend the existing native-number two identity with the source determiner 두, defined as 둘의. Its before-noun form is a category/shape alternation of the same number, not another free lemma; retain the base numeral member when composing.
+ko-lex-00561:
+  lemma: 셋
+  category: function-item
+  members: [ko-nikl-00354-s001]
+  source_parents: [ko-nikl-00354]
+  rationale: Extend the existing native-number three identity with determiner 세, defined as 셋의. Do not create another lexical identity for the adnominal form or merge it with the unrelated age counter 세.
+ko-lex-35372:
+  lemma: 넷
+  category: function-item
+  members: [ko-nikl-35343-s001]
+  source_parents: [ko-nikl-35343]
+  rationale: Extend native-number four with determiner 네, whose Korean definition is 넷의. This is neither the affirmative interjection nor the subject form of the familiar pronoun 너 with the same spelling.
+ko-lex-16185:
+  lemma: 다섯
+  category: function-item
+  members: [ko-nikl-16186-s001]
+  source_parents: [ko-nikl-16186]
+  rationale: The source determiner means of the number four plus one and joins the existing numeral 다섯. Preserve the source POS distinction without counting the same five value twice or treating identical spelling as an automatic merge rule.
+ko-lex-47109:
+  lemma: 여섯
+  category: function-item
+  members: [ko-nikl-47110-s001]
+  source_parents: [ko-nikl-47110]
+  rationale: The source determiner describes the number five plus one and joins the existing numeral 여섯. This explicit same-number category alternation adds a before-counter use, not a new free lemma.
+ko-lex-11372:
+  lemma: 일곱
+  category: function-item
+  members: [ko-nikl-11372-s001, ko-nikl-11373-s001]
+  source_parents: [ko-nikl-11372, ko-nikl-11373]
+  rationale: The numeral is six plus one and the determiner attributes that same number to a noun. Retain both source locators as standalone-number and before-counter uses of one native-seven function identity.
+ko-lex-47042:
+  lemma: 여덟
+  category: function-item
+  members: [ko-nikl-47042-s001, ko-nikl-47043-s001]
+  source_parents: [ko-nikl-47042, ko-nikl-47043]
+  rationale: Both Korean definitions specify seven plus one, with numeral versus determiner syntax. The two source parents preserve that role distinction within one native-eight identity rather than adding lemma breadth.
+ko-lex-04320:
+  lemma: 아홉
+  category: function-item
+  members: [ko-nikl-04320-s001, ko-nikl-04322-s001]
+  source_parents: [ko-nikl-04320, ko-nikl-04322]
+  rationale: The independent numeral and adnominal determiner express eight plus one. Keep the two grammatical uses and source IDs under one native-nine function identity, not two free lemmas.
+ko-lex-02436:
+  lemma: 스물
+  category: function-item
+  members: [ko-nikl-02436-s001, ko-nikl-02434-s001]
+  source_parents: [ko-nikl-02436, ko-nikl-02434]
+  rationale: Numeral 스물 denotes two times ten and determiner 스무 is explicitly defined as 스물의. Treat the changed before-counter form as the same native-twenty identity; it is not a new headword for coverage counting.
+ko-lex-09742:
+  lemma: 서른
+  category: function-item
+  members: [ko-nikl-09742-s001, ko-nikl-09743-s001]
+  source_parents: [ko-nikl-09742, ko-nikl-09743]
+  rationale: The source numeral and determiner both denote three times ten. Their standalone and attributive uses remain two source senses in one native-thirty function identity.
+ko-lex-35960:
+  lemma: 마흔
+  category: function-item
+  members: [ko-nikl-35960-s001, ko-nikl-35961-s001]
+  source_parents: [ko-nikl-35960, ko-nikl-35961]
+  rationale: The two source records specify four times ten with numeral and determiner roles. Group these explicitly related uses as native forty, without counting the same value as two free lemmas.
+ko-lex-02397:
+  lemma: 쉰
+  category: function-item
+  members: [ko-nikl-02397-s001, ko-nikl-02398-s001]
+  source_parents: [ko-nikl-02397, ko-nikl-02398]
+  rationale: The source number is five times ten and its determiner attributes the same value. This grouping is the number fifty, not an unrelated inflected predicate that may share its surface spelling.
+ko-lex-48017:
+  lemma: 예순
+  category: function-item
+  members: [ko-nikl-48017-s001, ko-nikl-48018-s001]
+  source_parents: [ko-nikl-48017, ko-nikl-48018]
+  rationale: The Korean numeral and determiner definitions specify six times ten. Both uses belong to one native-sixty function identity, with preserved source positions rather than duplicated lemma counting.
+ko-lex-11661:
+  lemma: 일흔
+  category: function-item
+  members: [ko-nikl-11661-s001, ko-nikl-11662-s001]
+  source_parents: [ko-nikl-11661, ko-nikl-11662]
+  rationale: The records express seven times ten as a standalone numeral and as a determiner. Their deliberately paired uses form one native-seventy function identity.
+ko-lex-47057:
+  lemma: 여든
+  category: function-item
+  members: [ko-nikl-47057-s001, ko-nikl-47058-s001]
+  source_parents: [ko-nikl-47057, ko-nikl-47058]
+  rationale: Both source records denote eight times ten, with independent versus adnominal number syntax. Preserve both source senses in one native-eighty function identity.
+ko-lex-04329:
+  lemma: 아흔
+  category: function-item
+  members: [ko-nikl-04329-s001, ko-nikl-04330-s001]
+  source_parents: [ko-nikl-04329, ko-nikl-04330]
+  rationale: Both definitions denote nine times ten. Numeral and determiner uses are one native-ninety function identity and do not contribute two new free lemmas.
+ko-lex-08818:
+  lemma: 살
+  category: bound-form
+  members: [ko-nikl-08818-s001]
+  source_parents: [ko-nikl-08818]
+  rationale: The source explicitly defines a unit for counting age. This native-number age counter is not the flesh noun or another homograph, and is kept separate from the distinct Sino-Korean age unit 세.
+ko-lex-00360:
+  lemma: 세
+  category: bound-form
+  members: [ko-nikl-00360-s001]
+  source_parents: [ko-nikl-00360]
+  rationale: The source bound noun counts years of age. It is distinct from the determiner 세 meaning three and from native age counter 살; a similar English gloss does not justify merging these lexical units.
+ko-lex-11151:
+  lemma: 인분
+  category: bound-form
+  members: [ko-nikl-11151-s001]
+  source_parents: [ko-nikl-11151]
+  rationale: The Korean definition measures a portion by the number of persons. Treat this as a serving unit, not a person noun, an assurance of actual portion size, or a new free lemma.
+ko-lex-16872:
+  lemma: 대
+  category: bound-form
+  members: [ko-nikl-16872-s001]
+  source_parents: [ko-nikl-16872]
+  rationale: This source parent counts cars, planes, instruments, and machines. It is not bamboo, a rod, lineage, a ratio, an age-decade unit, or the separate counter for long objects.
+ko-lex-12452:
+  lemma: 작년
+  category: free-lemma
+  members: [ko-nikl-12452-s001]
+  source_parents: [ko-nikl-12452]
+  rationale: The source names the year immediately preceding the current year. Retain this provisional time-word identity rather than infer its meaning from source order or split it into unsupported components.
+ko-lex-48477:
+  lemma: 올해
+  category: free-lemma
+  members: [ko-nikl-48477-s001]
+  source_parents: [ko-nikl-48477]
+  rationale: The source noun identifies the current year. This is one provisional temporal lexeme, not another sense of the separately sourced sun noun 해.
+ko-lex-34852:
+  lemma: 내년
+  category: free-lemma
+  members: [ko-nikl-34852-s001]
+  source_parents: [ko-nikl-34852]
+  rationale: The source specifies the year immediately after this year. Treat it as a source-backed time noun, not a generated combination of an unrelated spelling 내 with a counting unit.
+ko-lex-42566:
+  lemma: 지난주
+  category: free-lemma
+  members: [ko-nikl-42566-s001]
+  source_parents: [ko-nikl-42566]
+  rationale: The source names the week immediately before this one. Preserve the attested whole-word temporal identity without inventing a separate derived-word source sense.
+ko-lex-32142:
+  lemma: 그제
+  category: free-lemma
+  members: [ko-nikl-32142-s001, ko-nikl-32143-s001]
+  source_parents: [ko-nikl-32142, ko-nikl-32143]
+  rationale: The noun names yesterday's preceding day and the adverb locates an event on that same day. As with the existing today/tomorrow groups, this explicitly evidenced noun/adverb alternation adds no second free lemma.
+ko-lex-37428:
+  lemma: 모레
+  category: free-lemma
+  members: [ko-nikl-37428-s001, ko-nikl-37429-s001]
+  source_parents: [ko-nikl-37428, ko-nikl-37429]
+  rationale: Both source parents refer to tomorrow's following day, with noun and adverb syntax. Preserve the source roles under one temporal identity rather than count two headwords for the same deictic day.
+ko-lex-04034:
+  lemma: 아까
+  category: free-lemma
+  members: [ko-nikl-04034-s001, ko-nikl-04035-s001]
+  source_parents: [ko-nikl-04034, ko-nikl-04035]
+  rationale: The Korean definitions 조금 전 and 조금 전에 establish the same recent-past reference as noun and adverb. The English minute wording in the adverb gloss does not impose a literal sixty-second interval or a different lexeme.
+ko-lex-37110:
+  lemma: 며칠
+  category: function-item
+  members: [ko-nikl-37110-s001, ko-nikl-37110-s002]
+  source_parents: [ko-nikl-37110]
+  rationale: Preserve the date-of-month sense and the number-of-days sense as distinct source positions in one interrogative or indefinite time-quantity identity. Like 얼마, its noun POS does not establish an open-class content noun. Asking a date differs from asking duration; neither sense adds free-lemma breadth.
+ko-lex-34291:
+  lemma: 나중
+  category: free-lemma
+  members: [ko-nikl-34291-s001, ko-nikl-34291-s002]
+  source_parents: [ko-nikl-34291]
+  rationale: The selected senses distinguish a later time from the time after another task is done first. Keep this contextual polysemy in one provisional identity; do not automatically include the separate terminal-rank sense.
+ko-lex-44782:
+  lemma: 첫째
+  category: function-item
+  members: [ko-nikl-44782-s001, ko-nikl-44783-s001]
+  source_parents: [ko-nikl-44782, ko-nikl-44783]
+  rationale: The source numeral and determiner mark the first position in a sequence. They form one ordinal function identity, not the separate noun for an eldest child or something taking precedence.
+ko-lex-18843:
+  lemma: 둘째
+  category: function-item
+  members: [ko-nikl-18843-s001, ko-nikl-18846-s001]
+  source_parents: [ko-nikl-18843, ko-nikl-18846]
+  rationale: Both selected sources identify second position, independently or before a noun. Keep one ordinal identity and exclude the different noun senses for a total of two or a second child.
+ko-lex-00567:
+  lemma: 셋째
+  category: function-item
+  members: [ko-nikl-00567-s001, ko-nikl-00568-s001]
+  source_parents: [ko-nikl-00567, ko-nikl-00568]
+  rationale: Both records identify third position in order, with numeral and determiner roles. They do not select the homographic noun for a total of three or a third child and do not add two free lemmas.

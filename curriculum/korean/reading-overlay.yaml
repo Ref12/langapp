@@ -18952,6 +18952,16 @@ entries:
     - 작꼭
     match_reason: 'Compared the single composition definition: making a musical tune is rephrased as creating
       a musical work. Both describe composing music, with identical spelling and noun POS.'
+  ko-nikl-12452:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '30184'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30184
+    pronunciations:
+    - 장년
+    match_reason: 'Compared the single definition: the year immediately before the current year is rephrased
+      from 지금 지나가고 있는 해의 바로 전 해 to 이번 해의 바로 전의 해. The sole same-spelling noun candidate retains the same
+      temporal referent and supplies 장년.'
   ko-nikl-12453:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -45027,6 +45037,26 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37076
     pronunciations:
     - 그저
+  ko-nikl-32142:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '30858'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30858
+    pronunciations:
+    - 그제
+    match_reason: 'Compared the sole same-spelling noun candidate: 어제의 전날 is retained and the synonymous
+      clarification 이틀 전 is added. This preserves the day-before-yesterday noun and supplies its own official
+      그제 reading.'
+  ko-nikl-32143:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '30859'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30859
+    pronunciations:
+    - 그제
+    match_reason: 'Compared the sole same-spelling adverb candidate: 어제의 전날에 is retained and the synonymous
+      clarification 이틀 전에 is added. The adverb is matched independently of the noun parent and supplies
+      its own official 그제 reading.'
   ko-nikl-32144:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -67085,6 +67115,16 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22143
     pronunciations:
     - 올려름
+  ko-nikl-48477:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '67842'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67842
+    pronunciations:
+    - 올해
+    match_reason: 'Compared the single definition: 지금 지나가고 있는 이 해 is shortened to 이번 해, retaining the
+      current-year referent. Exact spelling and noun POS agree; the sole candidate supplies 올해 without
+      authoring a phonetic guess.'
   ko-nikl-48481:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -74072,11 +74112,6 @@ unresolved:
   status: no-exact-match
   candidate_ids:
   - '73699'
-- id: ko-nikl-12452
-  target: 작년
-  status: no-exact-match
-  candidate_ids:
-  - '30184'
 - id: ko-nikl-12480
   target: 작성
   status: no-exact-match
@@ -76576,16 +76611,6 @@ unresolved:
   status: no-exact-match
   candidate_ids:
   - '65920'
-- id: ko-nikl-32142
-  target: 그제
-  status: no-exact-match
-  candidate_ids:
-  - '30858'
-- id: ko-nikl-32143
-  target: 그제
-  status: no-exact-match
-  candidate_ids:
-  - '30859'
 - id: ko-nikl-32156
   target: 극-
   status: official-text-missing
@@ -78223,11 +78248,6 @@ unresolved:
   status: official-text-missing
   candidate_ids:
   - '66577'
-- id: ko-nikl-48477
-  target: 올해
-  status: no-exact-match
-  candidate_ids:
-  - '67842'
 - id: ko-nikl-48564
   target: 와이셔츠
   status: official-text-missing
@@ -81959,15 +81979,6 @@ candidates:
     senses:
     - id: '1'
       korean: 음악 작품을 창작하는 것을 전문으로 하는 사람.
-  ko-nikl-12452:
-  - official_entry_id: '30184'
-    target: 작년
-    source_part_of_speech: 명사
-    pronunciations:
-    - 장년
-    senses:
-    - id: '1'
-      korean: 이번 해의 바로 전의 해.
   ko-nikl-12480:
   - official_entry_id: '24803'
     target: 작성
@@ -87325,24 +87336,6 @@ candidates:
     senses:
     - id: '1'
       korean: 어제의 전날에. 이틀 전에.
-  ko-nikl-32142:
-  - official_entry_id: '30858'
-    target: 그제
-    source_part_of_speech: 명사
-    pronunciations:
-    - 그제
-    senses:
-    - id: '1'
-      korean: 어제의 전날. 이틀 전.
-  ko-nikl-32143:
-  - official_entry_id: '30859'
-    target: 그제
-    source_part_of_speech: 부사
-    pronunciations:
-    - 그제
-    senses:
-    - id: '1'
-      korean: 어제의 전날에. 이틀 전에.
   ko-nikl-32156:
   - official_entry_id: '91777'
     target: 극-
@@ -90739,15 +90732,6 @@ candidates:
     senses:
     - id: '1'
       korean: 4년에 한 번씩 열리는 국제적인 운동 경기 대회.
-  ko-nikl-48477:
-  - official_entry_id: '67842'
-    target: 올해
-    source_part_of_speech: 명사
-    pronunciations:
-    - 올해
-    senses:
-    - id: '1'
-      korean: 이번 해.
   ko-nikl-48564:
   - official_entry_id: '22146'
     target: 와이셔츠

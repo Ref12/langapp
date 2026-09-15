@@ -1,0 +1,236 @@
+schema_version: 1
+id: ko-early-counting-calendar
+review_status: Original AI-authored selection, labels, and identity analyses; qualified Korean-teacher and lexicographic review required.
+source_basis: >
+  Inspected the Korean and English definitions and source POS in the current
+  source-senses.yaml for every selected sense. IDs retain original CSV-record
+  and definition-list positions; they are not official NIKL sense identifiers.
+  Base vocabulary and lexical identities were checked before adding these rows.
+  Evidence excerpts below trim surrounding whitespace for display; the source
+  registry retains the original text.
+scope: >
+  Bounded early counting, counter, calendar, and ordering additions. These are
+  explicit communicative selections, not an automatic first-sense import,
+  frequency ranking, source-band conversion, or quota-completion claim.
+owned_files:
+  - early-vocabulary.yaml
+  - early-identities.yaml
+  - early-notes.yaml
+composition:
+  vocabulary: Append the new rows only after checking for duplicate sense IDs across the parent's selected shards.
+  identities: >
+    Values have exactly lemma, category, members, source_parents, and rationale.
+    Five existing-group fragments contain only NEW members and NEW parents.
+    Match the existing lemma/category and union their membership with the base;
+    do not replace the base members or create another group for an adnominal form.
+    New groups are complete provisional analyses for their selected members.
+  unchanged: >
+    No base selection, base identity, source registry, reading overlay, script,
+    grammar, support label, or other worker file is changed by this shard.
+    selection-files.yaml now registers these shards; the parent supplies
+    independently documented official citation crosswalks where needed.
+  counting: >
+    There are 51 added sense selections from 49 previously unselected parents,
+    represented by five existing-group fragments and 27 new groups.
+    The new groups comprise 15 function-item identities, four bound-form
+    identities, and eight provisional free-lemma identities. Neither source
+    parents nor senses may be reported as 51 new free lemmas.
+
+category_roles:
+  function-item: >
+    Numerals and their determiners express the same numerical value in
+    different grammatical roles. Ordinal pairs express the same ordered
+    position. Preserve separate source senses but count each paired value
+    or position as one function identity, never as duplicated free-lemma breadth.
+    며칠 supplies interrogative or indefinite date/day-quantity reference;
+    like the base 얼마 analysis, its noun POS does not make it an ordinary
+    open-class content noun for coverage counting.
+  bound-form: >
+    살 and 세 count age, 인분 measures person-portions, and the selected 대
+    counts vehicles or equipment. These units do not contribute free-lemma
+    breadth. Similar English meanings do not merge 살 with 세, and identical
+    spelling does not merge counter 세 with the determiner for three.
+  free-lemma: >
+    Calendar and relative-time words follow the base's provisional time-word
+    treatment. The noun/adverb pairs for 그제, 모레, and 아까 are explicitly
+    grouped by shared temporal reference, like the existing 오늘/내일 groups.
+    Extra senses of the functional 며칠 and lexical 나중 add contextual depth,
+    not additional lemmas.
+
+existing_identity_extensions:
+  ko-lex-18823: {lemma: 둘, base_member: ko-nikl-18823-s001, new_member: ko-nikl-18696-s001, contrast: independent 둘 versus before-noun 두}
+  ko-lex-00561: {lemma: 셋, base_member: ko-nikl-00561-s001, new_member: ko-nikl-00354-s001, contrast: independent 셋 versus before-noun 세}
+  ko-lex-35372: {lemma: 넷, base_member: ko-nikl-35372-s001, new_member: ko-nikl-35343-s001, contrast: independent 넷 versus before-noun 네}
+  ko-lex-16185: {lemma: 다섯, base_member: ko-nikl-16185-s001, new_member: ko-nikl-16186-s001, contrast: standalone numeral versus same-spelling determiner}
+  ko-lex-47109: {lemma: 여섯, base_member: ko-nikl-47109-s001, new_member: ko-nikl-47110-s001, contrast: standalone numeral versus same-spelling determiner}
+
+teaching_decisions:
+  - level: 3
+    purpose: >
+      Correct an order or small quantity; distinguish a standalone number
+      answer from a number before a noun/counter. Complete the missing
+      native two-through-nine roles without counting their variants as new
+      free lemmas. The source-backed 하나/한 and native 열 already in the base
+      remain review material, not duplicate additions.
+    usage: >
+      두, 세, and 네 supply the actual adnominal forms, not the unmodified
+      standalone 둘, 셋, and 넷 before ordinary counters. Same-spelling
+      다섯 through 아홉 still have distinct source numeral/determiner roles.
+      Pair their uses within a lesson rather than presenting each as unrelated
+      new vocabulary. 인분 supplies a person-portion request; it normally
+      uses Sino-Korean numbers, unlike the native-number person counter 명.
+      A portion unit does not guarantee how much food a restaurant serves.
+  - level: 4
+    purpose: >
+      Anchor routines and plans to last/this/next year, last week, the day
+      before yesterday, the day after tomorrow, and the recent past.
+      Distinguish asking a date of the month from asking a duration.
+    usage: >
+      Noun/adverb source roles support a named time with a particle versus
+      direct adverbial event placement; they do not introduce another day
+      or another free lemma. 아까 means a short time ago, not necessarily
+      exactly one minute despite the narrower English wording of its adverb
+      gloss. 며칠-s001 concerns a date; 며칠-s002 concerns a number of days,
+      with interrogative or indefinite force supplied by context.
+  - level: 5
+    purpose: >
+      Discuss a familiar person's age when relevant and coordinate household
+      tasks postponed until later. Introduce twenty, thirty, and forty with
+      both standalone and before-counter roles, including 스물/스무.
+    usage: >
+      살 takes native-number age expressions in the ordinary practice here.
+      The age counter does not itself determine an age-calculation convention.
+      Exact twenty before a counter uses 스무; do not extend that change
+      indiscriminately to every compound beginning with 스물. Compound
+      numbers are compositional practice, not additional source-sense rows.
+      나중-s002 marks doing something after another task first, rather than
+      merely waiting for time to pass as in the earlier s001 use.
+  - level: 6
+    purpose: >
+      Interpret an age field or a relevant care/service question, and review
+      fifty and sixty in everyday number use without professional claims.
+    usage: >
+      세 is the age unit ordinarily combined with Sino-Korean numbers in this
+      formal-field practice; it is not determiner 세 meaning three. Keep 살
+      and 세 separate lexical units while practicing a suitable register.
+      Do not solicit personal age information merely to satisfy a vocabulary
+      checklist or imply medical or official age-calculation advice.
+  - level: 7
+    purpose: >
+      Specify a vehicle count and order the first, second, and third parts or
+      days of a short itinerary. Apply earlier native-number forms with 대.
+    usage: >
+      The selected 대 counts vehicles, machines, and instruments, not a
+      generational or ratio unit. 첫째/둘째/셋째 here mark positions in
+      a sequence. Their separate source nouns for children or count totals
+      are not selected by using an ordinal. A before-noun ordinal and an
+      independently named position remain one function identity.
+  - level: 8
+    purpose: >
+      Extend native counting to seventy, eighty, and ninety for relevant
+      quantities or biographical information in relationship-sensitive contexts.
+    usage: >
+      Reuse the earlier counter and number-role contrasts. The larger tens
+      are functional extensions of practical counting, not advanced-language
+      competence claims or a reason to manufacture all possible number rows.
+      Each paired numeral/determiner value is one function identity.
+
+source_evidence:
+  ko-nikl-18696-s001: {korean: "둘의.", english: "Two"}
+  ko-nikl-00354-s001: {korean: "셋의.", english: "Amounting to three in number."}
+  ko-nikl-35343-s001: {korean: "넷의.", english: "Being the number four."}
+  ko-nikl-16186-s001: {korean: "넷에 하나를 더한 수의.", english: "Of the number that is the sum of four and one."}
+  ko-nikl-47110-s001: {korean: "다섯에 하나를 더한 수의.", english: "The number that is the sum of five and one."}
+  ko-nikl-11372-s001: {korean: "여섯에 하나를 더한 수.", english: "The number that is the sum of six and one."}
+  ko-nikl-11373-s001: {korean: "여섯에 하나를 더한 수의.", english: "Being the number that is the sum of six and one."}
+  ko-nikl-47042-s001: {korean: "일곱에 하나를 더한 수.", english: "The number that is the sum of seven and one."}
+  ko-nikl-47043-s001: {korean: "일곱에 하나를 더한 수의.", english: "The number that is the sum of seven and one."}
+  ko-nikl-04320-s001: {korean: "여덟에 하나를 더한 수.", english: "The cardinal number equal to 8 + 1."}
+  ko-nikl-04322-s001: {korean: "여덟에 하나를 더한 수의.", english: "Related to the number equal to eight plus one."}
+  ko-nikl-02436-s001: {korean: "열의 두 배가 되는 수.", english: "The number that is the product of two times ten."}
+  ko-nikl-02434-s001: {korean: "스물의.", english: "Being the number twenty."}
+  ko-nikl-09742-s001: {korean: "열의 세 배가 되는 수.", english: "The number that is the product of three times ten."}
+  ko-nikl-09743-s001: {korean: "열의 세 배가 되는 수의.", english: "Being a number equaling ten times three."}
+  ko-nikl-35960-s001: {korean: "열의 네 배가 되는 수.", english: "The number that is the product of four times ten."}
+  ko-nikl-35961-s001: {korean: "열의 네 배가 되는 수의.", english: "Being a number equaling ten times four."}
+  ko-nikl-02397-s001: {korean: "열의 다섯 배가 되는 수.", english: "The number that is the product of five times ten."}
+  ko-nikl-02398-s001: {korean: "열의 다섯 배가 되는 수의.", english: "The number that is the product of five times ten."}
+  ko-nikl-48017-s001: {korean: "열의 여섯 배가 되는 수.", english: "The number that is the product of six times ten."}
+  ko-nikl-48018-s001: {korean: "열의 여섯 배가 되는 수의.", english: "The number that is the product of six times ten."}
+  ko-nikl-11661-s001: {korean: "열의 일곱 배가 되는 수.", english: "The number that is the product of seven times ten."}
+  ko-nikl-11662-s001: {korean: "열의 일곱 배가 되는 수의.", english: "Being a number equaling ten times seven."}
+  ko-nikl-47057-s001: {korean: "열의 여덟 배가 되는 수.", english: "The number that is the product of eight times ten."}
+  ko-nikl-47058-s001: {korean: "열의 여덟 배가 되는 수의.", english: "The number that is the product of eight times ten."}
+  ko-nikl-04329-s001: {korean: "열의 아홉 배가 되는 수.", english: "The number that is the product of nine times ten."}
+  ko-nikl-04330-s001: {korean: "열의 아홉 배가 되는 수의.", english: "Being the number that is the product of nine times ten."}
+  ko-nikl-08818-s001: {korean: "나이를 세는 단위.", english: "A bound noun that serves as a unit for counting years of age."}
+  ko-nikl-00360-s001: {korean: "나이를 세는 단위.", english: "A bound noun that serves as a unit for counting years of age."}
+  ko-nikl-11151-s001: {korean: "사람 수를 기준으로 분량을 세는 단위.", english: "A bound noun that serves as a unit for measuring a quantity as a portion per person."}
+  ko-nikl-16872-s001: {korean: "차, 비행기, 악기, 기계 등을 세는 단위.", english: "A bound noun that serves as a unit for counting the number of cars, planes, musical instruments, machines, etc."}
+  ko-nikl-12452-s001: {korean: "지금 지나가고 있는 해의 바로 전 해.", english: "The previous year of the current year."}
+  ko-nikl-48477-s001: {korean: "지금 지나가고 있는 이 해.", english: "The current year."}
+  ko-nikl-34852-s001: {korean: "올해의 바로 다음 해.", english: "The year coming after this year."}
+  ko-nikl-42566-s001: {korean: "이번 주의 바로 전의 주.", english: "The prior week."}
+  ko-nikl-32142-s001: {korean: "어제의 전날.", english: "Two days before today."}
+  ko-nikl-32143-s001: {korean: "어제의 전날에.", english: "On the day before yesterday."}
+  ko-nikl-37428-s001: {korean: "내일의 다음 날.", english: "The day following tomorrow."}
+  ko-nikl-37429-s001: {korean: "내일의 다음 날에.", english: "On the next day of tomorrow."}
+  ko-nikl-04034-s001: {korean: "조금 전.", english: "A little while ago."}
+  ko-nikl-04035-s001: {korean: "조금 전에.", english: "A minute ago."}
+  ko-nikl-37110-s001: {korean: "그달의 몇째 날.", english: "A certain date of the month."}
+  ko-nikl-37110-s002: {korean: "몇 날.", english: "Some days."}
+  ko-nikl-34291-s001: {korean: "일정한 시간이 지난 뒤.", english: "The moment after a certain time passes."}
+  ko-nikl-34291-s002: {korean: "다른 일을 먼저 하고 난 다음.", english: "The moment after a thing is done before another."}
+  ko-nikl-44782-s001: {korean: "순서가 가장 먼저인 차례.", english: "The first number in a sequence."}
+  ko-nikl-44783-s001: {korean: "맨 처음 차례의.", english: "The first in a series of things; something that comes before all others."}
+  ko-nikl-18843-s001: {korean: "순서가 두 번째인 차례.", english: "One that is next in order after the first."}
+  ko-nikl-18846-s001: {korean: "두 번째 차례의.", english: "Being the second number in a sequence."}
+  ko-nikl-00567-s001: {korean: "세 번째 차례.", english: "The third number in a sequence."}
+  ko-nikl-00568-s001: {korean: "세 번째 차례의.", english: "Of the third order."}
+
+excluded_or_deferred:
+  - source_senses: [ko-nikl-34291-s003]
+    korean: 순서나 시간의 맨 끝.
+    english: The very last of a certain order or time.
+    reason: >
+      Terminal-rank or final-endpoint meaning is distinct from the selected
+      later-time and after-another-task senses. It is deferred rather than
+      automatically selected with every sense of this parent or deemed advanced.
+  - source_parents: [ko-nikl-44781, ko-nikl-18842, ko-nikl-00566]
+    reason: >
+      These noun parents include an eldest/second/third child, precedence,
+      or totals of two/three. They are not selected by adding the ordinal
+      numeral/determiner parents and must not enter the ordinal identities.
+  - source_parents: [ko-nikl-35345, ko-nikl-35341]
+    reason: >
+      These are not the determiner 네 defined as 넷의. Preserve any existing
+      affirmative/pronominal selections in their own identities; do not merge
+      them into native-number four because their spelling matches.
+  - source_parents: [ko-nikl-16856, ko-nikl-16860, ko-nikl-16865, ko-nikl-16869, ko-nikl-16871]
+    reason: >
+      Rod/stem, long-object counting, lineage/generations, ratio/opposition,
+      and age-decade uses of 대 are not the selected vehicle/equipment unit.
+  - decision: >
+      Do not create separate source selections or identities for every compound
+      native number, digit spelling, counter combination, age expression, or
+      inflected calendar phrase. Practice compositional combinations using
+      their actually introduced components and documented grammar.
+
+reading_evidence:
+  policy: >
+    Four initially unresolved parents now have individual official citation
+    crosswalks in reading-matches.yaml. The sole same-spelling/POS candidate's
+    complete Korean definition was compared separately for each parent.
+    Wording updates preserve the original referents; the original source
+    senses and reference bands do not change. Other selected parents already
+    had nonempty official overlay readings. This is citation text, not audio
+    evidence or verification of inflected phrases.
+  entries:
+    - {parent_id: ko-nikl-12452, lemma: 작년, official_entry_id: '30184', citation: 장년}
+    - {parent_id: ko-nikl-32142, lemma: 그제, official_entry_id: '30858', citation: 그제}
+    - {parent_id: ko-nikl-32143, lemma: 그제, official_entry_id: '30859', citation: 그제}
+    - {parent_id: ko-nikl-48477, lemma: 올해, official_entry_id: '67842', citation: 올해}
+remaining_limits:
+  - These additions do not complete the overall vocabulary-scale target or certify language proficiency.
+  - Number systems and age or serving conventions require contextual instruction and qualified review.
+  - No learner stage, pronunciation accuracy, or audio performance follows from source selection.
