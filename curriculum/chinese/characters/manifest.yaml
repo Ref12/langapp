@@ -1,0 +1,314 @@
+schema_version: 1
+language: chinese
+adapter:
+  id: chinese-writing
+  version: '1'
+style:
+  id: source-em-box-monoline
+  version: 1
+  view_box:
+  - 0
+  - 0
+  - 100
+  - 100
+  width: 5.5
+  linecap: round
+  linejoin: round
+  axis: y-down
+sampling:
+  id: explicit-bezier-polyline-arclength
+  version: 1
+  curve_subdivisions: 32
+  spacing: 2.0
+  precision: 6
+identity: exact-unicode-scalar-no-normalization
+inputs:
+- path: characters/recipes/reviewed-prototype.yaml
+  sha256: 671084b11c8aea99c3d9d0e935731c8a3bc5fa046868eb42504a7706072ee2fa
+  source_id: zh-writing-hanzi-writer
+  source_version: reviewed-prototype:1
+- path: licenses/hanzi-writer-ARPHICPL.TXT
+  sha256: 5590533436c70f10f2f524ee61456238c290175c6662fbe1c700b5f038a6d328
+  source_id: zh-writing-hanzi-writer
+  source_version: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
+- path: upstream/writing/hanzi-writer-selected.zip
+  sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+  source_id: zh-writing-hanzi-writer
+  source_version: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
+- path: upstream/writing/source-lock.yaml
+  sha256: 1d4d3956aa671a06a5babe44d12047c61906216e33f08c80aaa4ab6d0af89baf
+  source_id: zh-writing-hanzi-writer
+  source_version: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
+sources_sha256: cda2375e380e6bf5d5b5e045ee4868532c96e525f3600dbfc5d679e81b67d928
+inventory_sha256: c82f816b5b7ad7bcc7633c2aefeec499602edf95450536e2f760e32941396419
+chunks:
+- file: u004e.yaml
+  sha256: a5c4b2f61c3c55230f1d05107bc7c19cfc507a8364db33a55b823d9e5f11cfb9
+  characters: 113
+- file: u004f.yaml
+  sha256: 74414610fbf0f370e373135ce079494e21193902293437d8afd9e199f695333b
+  characters: 65
+- file: u0050.yaml
+  sha256: dd0525fc6131a28041cc95642e6fb152fc12aed5a9a4a19a038d098878cecc3a
+  characters: 31
+- file: u0051.yaml
+  sha256: f17fdb1004111686ad832095afe4a27db25c3fa9562d9d01b346dbc18791fb4b
+  characters: 74
+- file: u0052.yaml
+  sha256: dd586a2b50f52fa9f402c7a0127d288fe7dcdf003d54ffba024fc36df66c2116
+  characters: 65
+- file: u0053.yaml
+  sha256: bf7cc3a9912a9a918de9ddb2884afe6c30252130c9857d077cbbc9f9266d0a75
+  characters: 91
+- file: u0054.yaml
+  sha256: ae41d35a0ea748101a89af952709a61d90c150df66d677ce328668ec3354033b
+  characters: 74
+- file: u0055.yaml
+  sha256: ce04e140a9d66cf9923a375f76ed5375066557fe8d2f0994c113157ec5a48913
+  characters: 32
+- file: u0056.yaml
+  sha256: 2b99da999248b3a2dc5c57d3612cfa1667143e4cf131c9b83ec3876fe840d66d
+  characters: 23
+- file: u0057.yaml
+  sha256: 6a5ea463bcdacad498a465e3405852d5cbd88f937e1e0688b32d0efea278c8b0
+  characters: 35
+- file: u0058.yaml
+  sha256: f90fdeccae2547481dce8cbb458ac6476d9eeb6d3780816de3394d0b83c19930
+  characters: 27
+- file: u0059.yaml
+  sha256: a568d0aef20a24562955076602e773dcf3b43cd255e1191798f579578877ac27
+  characters: 61
+- file: u005a.yaml
+  sha256: edc8d06e89addcd0ef8e2b52f3d2a7fa4ba9359714c761cae68225efc38d675b
+  characters: 23
+- file: u005b.yaml
+  sha256: d7098ad6a3018cb4146053a22344d82e4f4513d8ce7b02d4fe3c25045b51ed92
+  characters: 62
+- file: u005c.yaml
+  sha256: 27b56e6edf7d6da9ff56c26565b1f71010735e4633fd22da2d4dbac3e0909542
+  characters: 52
+- file: u005d.yaml
+  sha256: be8175d73ba40948323fb94188e13baf88b966c7cf297c74c233f3b53bde58ad
+  characters: 22
+- file: u005e.yaml
+  sha256: 3ad955141d5d1850d1175551bae513a3ff553dc322a600a66c320f6caafdd430
+  characters: 53
+- file: u005f.yaml
+  sha256: bccceafc4f10d7ee7d5f81b9a49435fcdd0e5090cd8907b4122e246d6e5934e4
+  characters: 60
+- file: u0060.yaml
+  sha256: 5365e54041b35f7460ec65515ffd3a5fc3a7cf3562d8df1d1ba3d645abaaf4a1
+  characters: 59
+- file: u0061.yaml
+  sha256: 5fffcebdef6e09e5ead8b5160a87f58a2bf17b45e7d8cf70e4ab389284be5941
+  characters: 25
+- file: u0062.yaml
+  sha256: 1b184a8585c75bc0bc1162bef9c6c5c0f5a5462d22ac3230c8d278937df2d5ed
+  characters: 97
+- file: u0063.yaml
+  sha256: cfb8a0a90a99145766036b739515d560c1a715d6fa493bf0dcb4b087e25c8cd6
+  characters: 66
+- file: u0064.yaml
+  sha256: 4cca0297a5ad96d2d47efac860b29905a162c9334d0d73998108e85bc9de7461
+  characters: 34
+- file: u0065.yaml
+  sha256: 1374441084a747d420efcf3eadd58f52aea5d41e727691b69739e45c565461a6
+  characters: 57
+- file: u0066.yaml
+  sha256: c60ae7b0e302c024818dc96a588ba5c306dc3245d080fd4248c623cff2d91bae
+  characters: 42
+- file: u0067.yaml
+  sha256: 9f5c68394e9f521cf05e1d28c0ccf774e1667cc749bf8e90df13ebf8968fb909
+  characters: 64
+- file: u0068.yaml
+  sha256: 24441bbc2b534be2ad42168cdbdc1b01515032e082e1d3a9070065b050a2f920
+  characters: 42
+- file: u0069.yaml
+  sha256: 685f5b70bda13e1d30888c8aa78d4e3d51a74d0a325a0151e73d4ada5425e8de
+  characters: 13
+- file: u006a.yaml
+  sha256: db83c898077b7bec1dc64c569dc256a272444f7a43760921f14c49bfce1a7ac7
+  characters: 6
+- file: u006b.yaml
+  sha256: d306ec81b9a1e2ccda7cf86b8e5c19d92f9b34fe77245bcf2de2e1d50d96b697
+  characters: 40
+- file: u006c.yaml
+  sha256: ec3b456778485f6e499496724ba5f49a07b107a0a9553ddf6794fa74be5fe514
+  characters: 58
+- file: u006d.yaml
+  sha256: 249baf1d390e6cc476f3582e0b647c3e8af10d363594171ad7179af56fd3ff0b
+  characters: 51
+- file: u006e.yaml
+  sha256: 8712524fe4392825454646fa85dea7d57f406fec0f515fd30e3af81ccd1682dd
+  characters: 36
+- file: u006f.yaml
+  sha256: fba7fc01db7505023d0271cb5685988c76cfaafa8fb7a2a8d5a6a07d08bba458
+  characters: 16
+- file: u0070.yaml
+  sha256: 22d7f01da6b05e52ed5b0418cc47ce290099cf78d2e6a15a4b7843e4f3e5688f
+  characters: 36
+- file: u0071.yaml
+  sha256: 8546496e836ae3be428b986ac5ad0bd25730019f40ad086a31dd3ecb25a4fb49
+  characters: 22
+- file: u0072.yaml
+  sha256: 4a5ca735e3f56fceb64e0c689ed0fb47d5cfc11c7c60fadf3372b272ddbabf4c
+  characters: 37
+- file: u0073.yaml
+  sha256: 0c334a2ee03eeca7b3c434e14c3711a93962ee430f5934a025ff242fdd6562b6
+  characters: 22
+- file: u0074.yaml
+  sha256: d995e2f0c2068009f01f3c9699ee533f65f7eeb4dc2c397b11c88dd2e64581d2
+  characters: 12
+- file: u0075.yaml
+  sha256: 8d95c0e1b4ee18a6ca296ea3a87980daeca1161719d06b9f1513da92623a08fa
+  characters: 42
+- file: u0076.yaml
+  sha256: 8281f32d152ca94874224a87ee31fc390316ebc0267d726c8744d22566c2f075
+  characters: 35
+- file: u0077.yaml
+  sha256: 5e4a5b274e8c21cae038e7233c9222b81fbff92e7ff994d714fb1698bdef3586
+  characters: 34
+- file: u0078.yaml
+  sha256: e0f1c679d8b6d1dacae61bd5aa16ffba6bfe75765d998cd1906c1e46d078ec7d
+  characters: 27
+- file: u0079.yaml
+  sha256: 6c6591e22075db30bf82988462586d9a8aaf6783128632c9967066904aee438f
+  characters: 37
+- file: u007a.yaml
+  sha256: e8d13cc1a6d420689c75bc16b71effcc5177f74c85b7e1295865e6310a2abc13
+  characters: 42
+- file: u007b.yaml
+  sha256: 017febb83f7429c017264f8646f60f9cea6f11ffca9a16d37ee553c6ab073709
+  characters: 27
+- file: u007c.yaml
+  sha256: a44473133fe2a2a06b549f2ee0b4177938c9b05ce1150ae465b3b4311271a93f
+  characters: 20
+- file: u007d.yaml
+  sha256: f33645b475026bff3496ba652c26c2cd63a478155bc8c2f85cac419eb01f8af6
+  characters: 7
+- file: u007e.yaml
+  sha256: 0ce438ba3650dd54876bf1c19c1934187afe39c69e2c103ebd1915346250bcfb
+  characters: 53
+- file: u007f.yaml
+  sha256: 3d7f47a3a52c9c205b6ff9bb830d3d57812b3544af49fb1e4ec686f37aa1b046
+  characters: 40
+- file: u0080.yaml
+  sha256: 0658969ddeeae1245dbccf5ac8269dc8ccb929ba842fa664e8cca2bd509d26b0
+  characters: 57
+- file: u0081.yaml
+  sha256: ba04db76ee08f791447b099275bda831f3251f83bf75ac6febdbf16c052b6eb9
+  characters: 37
+- file: u0082.yaml
+  sha256: 756b8bf48df222d8519934357d37ed10da5bad5470e7cb701640d7b6cf5939c9
+  characters: 41
+- file: u0083.yaml
+  sha256: c331ed65be66fab19679891176e0daa11c534371aee61d263258ecdfdfd68fb0
+  characters: 27
+- file: u0084.yaml
+  sha256: 25a7bd3900d8fefd3285028bc8ed0a97435215025dc662aa2bc41861ba1aa05b
+  characters: 21
+- file: u0085.yaml
+  sha256: d3c305474b27f1a8c63a90512accda4ece472606ec6479a7624f9e9d2d915853
+  characters: 14
+- file: u0086.yaml
+  sha256: 6b458b8ee83d43def7046853cbdf92b3a641d4b63def65bb3b4037b6d4dc801e
+  characters: 18
+- file: u0087.yaml
+  sha256: 8f60b402e6259aa86c619af7b65ecadcfded6aea0b0ec77f91de6e8385e2c735
+  characters: 6
+- file: u0088.yaml
+  sha256: 3b580149bfe19f4c0b1cd4eee3933208f00ce849f1dde8353a6ade21f4aada87
+  characters: 31
+- file: u0089.yaml
+  sha256: dd0d40768cc731260bd2a27c01a7d4a35004db32765b3186e031f49ad37c59a1
+  characters: 13
+- file: u008a.yaml
+  sha256: 64ff20c360ed269d2dae8c3dc737af8ccb2ac4b463a27c9c225bfd16ae1f4cb3
+  characters: 3
+- file: u008b.yaml
+  sha256: ac2b885e3bb7684ba13310b3ab6b49b893fa8b6d4b4f3132dc2b5ddfa79bffe8
+  characters: 52
+- file: u008c.yaml
+  sha256: 2096e78273f931acd8d9fb61e0caa1d5f343282001c97d828a6063ed732814a3
+  characters: 27
+- file: u008d.yaml
+  sha256: 7733ab53ff7ca6fdd95a0fefde23dbe0bda809bb4571e7f27ee3ab5e298b957f
+  characters: 70
+- file: u008e.yaml
+  sha256: 9c3cabb76e14c0256688f951be7df5ab06e9d7e5cc6c6c09fd7f1c221ce135c5
+  characters: 17
+- file: u008f.yaml
+  sha256: b1d35329060bc35eef42c7a290ca5fdc94b2d80c887c428be1ab7984e505bd5e
+  characters: 56
+- file: u0090.yaml
+  sha256: 01800d1b3dddec39082b008183c301df86c688997c97638756ff17121db2b0d6
+  characters: 49
+- file: u0091.yaml
+  sha256: 1f314c1d536cd2d9b4830a5215e3f693926924351cea4b5d2c22057568e3edbe
+  characters: 25
+- file: u0092.yaml
+  sha256: ae974ef530c25544f1f4709541618c2c04c0c209046c99e6e03703704fe25a16
+  characters: 1
+- file: u0094.yaml
+  sha256: d042f3d1d801aa70e413133780588655b5083a824c952e74155b90ea5622287c
+  characters: 25
+- file: u0095.yaml
+  sha256: 2c31c089d1d06cd6a187d0298b37f87cec740fe5283212ce924f33b265921314
+  characters: 30
+- file: u0096.yaml
+  sha256: b5e766ac77132dede4ddd03cef57549429ae21c58996c9c4321c6f5081519e3a
+  characters: 55
+- file: u0097.yaml
+  sha256: 4c9c26ae9eead1e5552eff94874c6cb38ba4bacae7e37b1e24dd1d7aec0430e2
+  characters: 22
+- file: u0098.yaml
+  sha256: 1abc7ae4d082b68e3a127d4047ad5428e9d0a3f1c0043b59872cad3e69751995
+  characters: 30
+- file: u0099.yaml
+  sha256: 6d2a1eff9c3e2ba04dd50fbed2c04bc7e07ec30a16140bafb65f75fb7ee4fadc
+  characters: 21
+- file: u009a.yaml
+  sha256: 06073a08c489706a624460eaea2ba40cba06e5ab33241fdffd8147aa7ba8b5ea
+  characters: 23
+- file: u009b.yaml
+  sha256: 755ffea3d0065ad110ae6d9e4e350bc31f63f7f750bc6460b85617fa5bbce61e
+  characters: 6
+- file: u009c.yaml
+  sha256: 71b2640cb07cbf65420e64e5807efa7c33d848e1c7e71c09bc1b546501e2b952
+  characters: 5
+- file: u009e.yaml
+  sha256: ba50c3be164f11c909fb66ba04a630fadc6da9994588f4ad274477e8baefbf67
+  characters: 18
+- file: u009f.yaml
+  sha256: 8b60a20460e5dcd37b7136251580997c8f2466337ae8cf7bbb8f964de0428014
+  characters: 9
+coverage_sha256: 6c96de9e5eeaff3fea664383b41216d5401c7e84e69e3b43675f0d3fd936bfd3
+shared_tools:
+- file: character_assets.py
+  sha256: b4fe490b8d0adb384b88b7cb7758b649b7c1d05d54ff0e8e7ac76b2e3e86b781
+- file: character_geometry.py
+  sha256: 6d1a2ebedce419454b69acac1f0dbf6fef4ad6ef0faae6a5683914f0d4e50669
+- file: character_inventory.py
+  sha256: 245b86aee9efab9c91356abefcb7164d968104da935d37092c1e065124b396fe
+- file: curriculum_yaml.py
+  sha256: 000ad9af5564135da9ad5bb21908065d59aee9cb402b2c30711aa87fcad9bd73
+release_ready: false
+notice: 'MODIFIED 2026-09-15: Selected current Chinese curriculum characters from pinned
+
+  Hanzi Writer Data; retained original source bytes in the selected archive.
+
+  Derived 100-unit padded source-median paths, conservative terminal candidates,
+
+  and exact paths for five previously reviewed prototype recipes. No new visual
+
+  approval is implied. Stroke order and original em-box proportions are retained.
+
+  Copyright (C) 1999 Arphic Technology Co., Ltd.; via Make Me a Hanzi by Shaunak
+
+  Kishore and contributors and Hanzi Writer Data by David Chanin.
+
+  Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS,
+
+  without warranty. Retain licenses/hanzi-writer-ARPHICPL.TXT and modification
+
+  notices with redistributed source and derived artwork. Independent code is separate.'

@@ -110,3 +110,31 @@
   local_material: authoring/grammar.psv, authoring/reference-senses.yaml, hsk-*/grammar.yaml,
     hsk-*/syllabus.md, teaching/beginner/sequence.yaml, teaching/beginner/README.md, README.md and
     the importer's headword/sense corrections
+- id: zh-writing-hanzi-writer
+  title: Chinese writing artwork derived from pinned Hanzi Writer Data
+  url: https://github.com/chanind/hanzi-writer-data/tree/68d10a4b21150cae5e1ebbd223eed289cf32d90c
+  license: ARPHIC PUBLIC LICENSE for source and derived artwork; independent implementation
+    code and existing CC-CEDICT-derived vocabulary have separate licensing
+  usage: Original per-character JSON outlines and ordered medians for the 2971 literal
+    Han characters required by current expanded reference and beginner curriculum data.
+    A selected-source archive preserves original member bytes. Derived assets keep
+    the original em-box with five-unit padding, source-median baselines, separately
+    identified conservative refinement candidates, and five exactly preserved
+    previously user-approved monoline recipes. No new professional language review,
+    broad traditional expansion, source dictionary import or recognition claim.
+  attribution: Copyright (C) 1999 Arphic Technology Co., Ltd. Hanzi Writer Data by David
+    Chanin, via Make Me a Hanzi by Shaunak Kishore and contributors. Retain the original
+    ARPHIC PUBLIC LICENSE and dated modification notices; make derived modifications
+    freely available under that license. Artwork is provided AS IS, without warranty.
+  retrieved_on: '2026-09-15'
+  revision: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
+  version_note: The prototype commit follows tag v2.0.1 at ad1a9905cada18d07630acc27d438b070d753ec0
+    and remains the upstream master head at audit time. All 2971 selected JSON files
+    are byte-identical between those two commits; the tag and commit are not identical.
+  download_url: https://codeload.github.com/chanind/hanzi-writer-data/tar.gz/68d10a4b21150cae5e1ebbd223eed289cf32d90c
+  sha256: 6596f675e58dafb5b6bd58d003e0f407d88e4bbccf8477c1ee2039a6faefab55
+  local_license_files:
+  - licenses/hanzi-writer-ARPHICPL.TXT
+  local_source_lock: upstream/writing/source-lock.yaml
+  local_source_archive: upstream/writing/hanzi-writer-selected.zip
+  local_recipes: characters/recipes/reviewed-prototype.yaml

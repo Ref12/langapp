@@ -1,0 +1,203 @@
+# MODIFIED 2026-09-15: Selected current Chinese curriculum characters from pinned
+# Hanzi Writer Data; retained original source bytes in the selected archive.
+# Derived 100-unit padded source-median paths, conservative terminal candidates,
+# and exact paths for five previously reviewed prototype recipes. No new visual
+# approval is implied. Stroke order and original em-box proportions are retained.
+# Copyright (C) 1999 Arphic Technology Co., Ltd.; via Make Me a Hanzi by Shaunak
+# Kishore and contributors and Hanzi Writer Data by David Chanin.
+# Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS,
+# without warranty. Retain licenses/hanzi-writer-ARPHICPL.TXT and modification
+# notices with redistributed source and derived artwork. Independent code is separate.
+schema_version: 1
+notice: 'MODIFIED 2026-09-15: Selected current Chinese curriculum characters from pinned
+
+  Hanzi Writer Data; retained original source bytes in the selected archive.
+
+  Derived 100-unit padded source-median paths, conservative terminal candidates,
+
+  and exact paths for five previously reviewed prototype recipes. No new visual
+
+  approval is implied. Stroke order and original em-box proportions are retained.
+
+  Copyright (C) 1999 Arphic Technology Co., Ltd.; via Make Me a Hanzi by Shaunak
+
+  Kishore and contributors and Hanzi Writer Data by David Chanin.
+
+  Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS,
+
+  without warranty. Retain licenses/hanzi-writer-ARPHICPL.TXT and modification
+
+  notices with redistributed source and derived artwork. Independent code is separate.'
+source_revision: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
+scope: Detector candidates, not visual approvals or automatic release permission
+scope_characters:
+- 一
+- 丁
+- 三
+- 之
+- 九
+- 了
+- 人
+- 十
+- 口
+- 可
+- 器
+- 囊
+- 回
+- 国
+- 小
+- 心
+- 我
+- 文
+- 日
+- 木
+- 杯
+- 毋
+- 水
+- 永
+- 茶
+- 藏
+- 警
+- 赢
+- 雨
+- 风
+detector_flagged_glyphs: 18
+stroke_rule_counts:
+  compact-hook: 6
+  short-fall: 19
+variant_counts:
+  refined-candidate: 15
+  reviewed-monoline: 5
+  source-median: 30
+style_cautions:
+  器: Coordinator batch review noted heavy strokes/tight counters at width 5.5. Retain as a style/legibility
+    review caution; no thinner pen or new visual approval.
+  囊: Coordinator batch review noted heavy strokes/tight counters at width 5.5. Retain as a style/legibility
+    review caution; no thinner pen or new visual approval.
+  警: Coordinator batch review noted heavy strokes/tight counters at width 5.5. Retain as a style/legibility
+    review caution; no thinner pen or new visual approval.
+  赢: Coordinator batch review noted heavy strokes/tight counters at width 5.5. Retain as a style/legibility
+    review caution; no thinner pen or new visual approval.
+characters:
+  丁:
+    source_member_sha256: b48d142a9b4e59aaf2d82354ebc153569de3862ba6d217077a970ea9b1e9b8e3
+    rules:
+    - stroke: 2
+      rule: compact-hook
+    reviewed_prototype: false
+  之:
+    source_member_sha256: f64f7268ff0d81d5e9c5f9301e628a7e427a9e0e44e3d6291fc0f15874f2be98
+    rules:
+    - stroke: 1
+      rule: short-fall
+    reviewed_prototype: false
+  了:
+    source_member_sha256: 63e33d9aece5d5a55d890793025d4964342f80ae92dee94232687deee76538be
+    rules:
+    - stroke: 2
+      rule: compact-hook
+    reviewed_prototype: false
+  可:
+    source_member_sha256: 70e04def3d8d3048392138b4c38132f9307eee194cfa2779b446baebf8163f12
+    rules:
+    - stroke: 5
+      rule: compact-hook
+    reviewed_prototype: false
+  器:
+    source_member_sha256: 3c81dbac3ee1a36c539aa7d3139b0d2c1431829cfd303457931f9bbf9cd1b4a2
+    rules:
+    - stroke: 10
+      rule: short-fall
+    reviewed_prototype: false
+  囊:
+    source_member_sha256: 703c9fcdde88d6e6b6b0b35bd76cd50d3555a821b0cab81da911c26c70e9683b
+    rules:
+    - stroke: 2
+      rule: short-fall
+    reviewed_prototype: false
+  国:
+    source_member_sha256: 40b46b7cbe5c292abcf79507dc544c5424c9cfa4df0376aa3b8fa42e535c2f7f
+    rules:
+    - stroke: 7
+      rule: short-fall
+    reviewed_prototype: false
+  小:
+    source_member_sha256: 72bf769c8c3426bffa578502eb8b1532fb1e622ddb6f40ded04e484290c0fe8c
+    rules:
+    - stroke: 1
+      rule: compact-hook
+    reviewed_prototype: false
+  心:
+    source_member_sha256: 24b00ca173bbf7403181af1a4f9414f3b9175ed04b17108055c7d9e3fe6d6215
+    rules:
+    - stroke: 3
+      rule: short-fall
+    reviewed_prototype: false
+  我:
+    source_member_sha256: 08616462fc64b4c18c76a3f68a992305e98946f468bf42ec76ca9be1cd6c5ac8
+    rules:
+    - stroke: 3
+      rule: compact-hook
+    - stroke: 7
+      rule: short-fall
+    reviewed_prototype: false
+  文:
+    source_member_sha256: da58df874e176b10cbda075bb800aaa486fc716476a563fcc83f8f06b2169dbe
+    rules:
+    - stroke: 1
+      rule: short-fall
+    reviewed_prototype: false
+  杯:
+    source_member_sha256: 6bb07f43f8043a1b36e7e292651e6348092e0777d44815831e01a9d5694da491
+    rules:
+    - stroke: 4
+      rule: short-fall
+    - stroke: 8
+      rule: short-fall
+    reviewed_prototype: true
+  永:
+    source_member_sha256: 009b7fd5b2fc186a0cdaa314fb4f88fe768c3c3ee4e98681ff8ff109c8c160cd
+    rules:
+    - stroke: 1
+      rule: short-fall
+    reviewed_prototype: false
+  茶:
+    source_member_sha256: a9bf01e1c90c9a153d7200beb3530730fe1af14266f709d32460f1a171be004e
+    rules:
+    - stroke: 7
+      rule: compact-hook
+    - stroke: 9
+      rule: short-fall
+    reviewed_prototype: true
+  藏:
+    source_member_sha256: 46b0d6807916f0151338416afa80f24ddff44c11135b8ce7a162cb4805e0c2fd
+    rules:
+    - stroke: 17
+      rule: short-fall
+    reviewed_prototype: false
+  警:
+    source_member_sha256: e3c8ecc8c4e4b7b9e77465ef7bc6d4204058859d4e2153de8c23c7c0331d4ab3
+    rules:
+    - stroke: 13
+      rule: short-fall
+    reviewed_prototype: false
+  赢:
+    source_member_sha256: 8cce51fb5c9155700f1115081d991afb2d14980a69cd892403ba8b8023c9f8ff
+    rules:
+    - stroke: 1
+      rule: short-fall
+    - stroke: 17
+      rule: short-fall
+    reviewed_prototype: false
+  雨:
+    source_member_sha256: 0e249bab348c40874b194b2ba75aa185961bd190ca2e09c9a4c303aa34f62e2c
+    rules:
+    - stroke: 5
+      rule: short-fall
+    - stroke: 6
+      rule: short-fall
+    - stroke: 7
+      rule: short-fall
+    - stroke: 8
+      rule: short-fall
+    reviewed_prototype: true
