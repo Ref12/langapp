@@ -1,0 +1,596 @@
+schema_version: 3
+id: ru-level-27
+title: Ordinary imagery and conversational shortcuts
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 27
+phase: nuance-interpretation
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+- ru-level-19
+- ru-level-20
+- ru-level-21
+- ru-level-22
+- ru-level-23
+- ru-level-24
+- ru-level-25
+- ru-level-26
+goals: &id001
+- Interpret a familiar figurative expression without translating each word literally.
+- Recover omitted material from a conversational context.
+- Distinguish an expressive construction from a neutral paraphrase.
+checkpoint:
+  task: Explain an original figurative exchange, supply a literal paraphrase, and identify a context in which the expression would not fit.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-27-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v01280-s001, ch: переносить, pr: переноси́ть, ds: endure}
+  - {id: ru-or-v03972-s001, ch: разжечь, pr: разже́чь, ds: kindle}
+  - {id: ru-or-v04000-s001, ch: разжигать, pr: разжига́ть, ds: kindle}
+  - {id: ru-or-v00772-s001, ch: вспыхнуть, pr: вспы́хнуть, ds: flare up}
+  - {id: ru-or-v01227-s001, ch: вспыхивать, pr: вспы́хивать, ds: flare up}
+  - {id: ru-or-v03891-s001, ch: угаснуть, pr: уга́снуть, ds: die away}
+  - {id: ru-or-v03109-s001, ch: угасать, pr: угаса́ть, ds: die away}
+  - {id: ru-or-v01590-s001, ch: погасить, pr: погаси́ть, ds: extinguish}
+  - {id: ru-or-v02420-s001, ch: гасить, pr: гаси́ть, ds: extinguish}
+  - {id: ru-or-v00999-s001, ch: погаснуть, pr: пога́снуть, ds: go out (a light or flame)}
+  - {id: ru-or-v01513-s001, ch: пылать, pr: пыла́ть, ds: blaze}
+  - {id: ru-or-v00202-s001, ch: гореть, pr: горе́ть, ds: burn}
+  - {id: ru-or-v01003-s001, ch: сгореть, pr: сгоре́ть, ds: be burnt down}
+  - {id: ru-or-v03308-s001, ch: разгореться, pr: разгоре́ться, ds: flare up}
+  - {id: ru-or-v02658-s001, ch: тлеть, pr: тлеть, ds: smoulder}
+  - {id: ru-or-v00771-s001, ch: охватить, pr: охвати́ть, ds: embrace}
+  - {id: ru-or-v01594-s001, ch: охватывать, pr: охва́тывать, ds: embrace}
+  - {id: ru-or-v06013-s001, ch: погрязнуть, pr: погря́знуть, ds: be bogged down}
+  - {id: ru-or-v05706-s001, ch: увязнуть, pr: увя́знуть, ds: get bogged down}
+  - {id: ru-or-v01261-s001, ch: застрять, pr: застря́ть, ds: be held up}
+  - {id: ru-or-v05357-s001, ch: застревать, pr: застрева́ть, ds: Get caught}
+  - {id: ru-or-v00569-s001, ch: вырваться, pr: вы́рваться, ds: break loose}
+  - {id: ru-or-v01780-s001, ch: вырываться, pr: вырыва́ться, ds: break loose}
+  - {id: ru-or-v01643-s001, ch: пробиться, pr: проби́ться, ds: force a way through}
+  - {id: ru-or-v01654-s001, ch: пробиваться, pr: пробива́ться, ds: push up}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00654-s001, ch: защищать, pr: защища́ть, ds: protect}
+  - {id: ru-or-v00927-s001, ch: защитить, pr: защити́ть, ds: defend}
+  - {id: ru-or-v01340-s001, ch: пострадать, pr: пострада́ть, ds: be injured}
+  - {id: ru-or-v00482-s001, ch: страдать, pr: страда́ть, ds: suffer}
+  - {id: ru-or-v00274-s001, ch: обращаться, pr: обраща́ться, ds: turn to}
+  - {id: ru-or-v00255-s001, ch: обратиться, pr: обрати́ться, ds: apply}
+  - {id: ru-or-v00125-s901, ch: удаться, pr: уда́ться, ds: succeed}
+  - {id: ru-or-v00180-s901, ch: перестать, pr: переста́ть, ds: stop doing}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-27-actions-02
+  title: Actions and results - 2
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v04735-s001, ch: пробудить, pr: пробуди́ть, ds: rouse}
+  - {id: ru-or-v05924-s001, ch: пробуждать, pr: пробужда́ть, ds: rouse}
+  - {id: ru-or-v04942-s001, ch: пробуждаться, pr: пробужда́ться, ds: awake}
+  - {id: ru-or-v04442-s001, ch: расцветать, pr: расцвета́ть, ds: bloom}
+  - {id: ru-or-v03624-s001, ch: расцвести, pr: расцвести́, ds: bloom}
+  - {id: ru-or-v07216-s001, ch: увядать, pr: увяда́ть, ds: fade}
+  - {id: ru-or-v06702-s001, ch: увянуть, pr: увя́нуть, ds: fade}
+  - {id: ru-or-v01342-s001, ch: рассыпаться, pr: рассы́паться, ds: crumble}
+  - {id: ru-or-v00717-s001, ch: рухнуть, pr: ру́хнуть, ds: collapse}
+  - {id: ru-or-v02816-s001, ch: рушиться, pr: ру́шиться, ds: collapse}
+  - {id: ru-or-v00881-s001, ch: разрушить, pr: разру́шить, ds: destroy}
+  - {id: ru-or-v01883-s001, ch: разрушать, pr: разруша́ть, ds: destroy}
+  - {id: ru-or-v04819-s001, ch: разрушаться, pr: разруша́ться, ds: go to ruin}
+  - {id: ru-or-v09275-s001, ch: заронить, pr: зарони́ть, ds: drop}
+  - {id: ru-or-v05177-s001, ch: зарождаться, pr: зарожда́ться, ds: arise}
+  - {id: ru-or-v04623-s001, ch: зародиться, pr: зароди́ться, ds: to be conceived}
+  - {id: ru-or-v01501-s001, ch: ожить, pr: ожи́ть, ds: revive}
+  - {id: ru-or-v02963-s001, ch: оживать, pr: ожива́ть, ds: revive}
+  - {id: ru-or-v03400-s001, ch: оживить, pr: оживи́ть, ds: revive}
+  - {id: ru-or-v05408-s001, ch: оживлять, pr: оживля́ть, ds: revive}
+  - {id: ru-or-v01039-s001, ch: сжать, pr: сжать, ds: squeeze}
+  - {id: ru-or-v01095-s001, ch: сжимать, pr: сжима́ть, ds: squeeze}
+  - {id: ru-or-v01679-s001, ch: сжаться, pr: сжа́ться, ds: shrink}
+  - {id: ru-or-v02785-s001, ch: сжиматься, pr: сжима́ться, ds: shrink}
+  - {id: ru-or-v03836-s001, ch: сдавить, pr: сдави́ть, ds: squeeze}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v06013-s001, ch: погрязнуть, pr: погря́знуть, ds: be bogged down}
+  - {id: ru-or-v05706-s001, ch: увязнуть, pr: увя́знуть, ds: get bogged down}
+  - {id: ru-or-v01261-s001, ch: застрять, pr: застря́ть, ds: be held up}
+  - {id: ru-or-v05357-s001, ch: застревать, pr: застрева́ть, ds: Get caught}
+  - {id: ru-or-v00569-s001, ch: вырваться, pr: вы́рваться, ds: break loose}
+  - {id: ru-or-v01780-s001, ch: вырываться, pr: вырыва́ться, ds: break loose}
+  - {id: ru-or-v01643-s001, ch: пробиться, pr: проби́ться, ds: force a way through}
+  - {id: ru-or-v01654-s001, ch: пробиваться, pr: пробива́ться, ds: push up}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-27-actions-03
+  title: Actions and results - 3
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v06190-s001, ch: сдавливать, pr: сда́вливать, ds: squeeze}
+  - {id: ru-or-v01371-s001, ch: раздавить, pr: раздави́ть, ds: crush}
+  - {id: ru-or-v03292-s001, ch: разжать, pr: разжа́ть, ds: unclench}
+  - {id: ru-or-v05365-s001, ch: разжимать, pr: разжима́ть, ds: unclench}
+  - {id: ru-or-v01201-s001, ch: давить, pr: дави́ть, ds: press}
+  - {id: ru-or-v02298-s001, ch: придавить, pr: придави́ть, ds: press}
+  - {id: ru-or-v01108-s001, ch: прижимать, pr: прижима́ть, ds: press}
+  - {id: ru-or-v00673-s001, ch: прижать, pr: прижа́ть, ds: press}
+  - {id: ru-or-v10701-s001, ch: надавливать, pr: нада́вливать, ds: press}
+  - {id: ru-or-v01192-s001, ch: подавить, pr: подави́ть, ds: press}
+  - {id: ru-or-v01323-s001, ch: подавлять, pr: подавля́ть, ds: suppress}
+  - {id: ru-or-v01843-s001, ch: выдавить, pr: вы́давить, ds: squeeze out}
+  - {id: ru-or-v05036-s001, ch: выдавливать, pr: выда́вливать, ds: squeeze out}
+  - {id: ru-or-v01449-s001, ch: стиснуть, pr: сти́снуть, ds: squeeze}
+  - {id: ru-or-v04798-s001, ch: стискивать, pr: сти́скивать, ds: squeeze}
+  - {id: ru-or-v00250-s001, ch: схватить, pr: схвати́ть, ds: grab}
+  - {id: ru-or-v04928-s001, ch: схватывать, pr: схва́тывать, ds: grasp}
+  - {id: ru-or-v00147-s001, ch: хватать, pr: хвата́ть, ds: grab}
+  - {id: ru-or-v00151-s001, ch: хватить, pr: хвати́ть, ds: be enough}
+  - {id: ru-or-v01775-s001, ch: ухватить, pr: ухвати́ть, ds: grasp}
+  - {id: ru-or-v01614-s001, ch: ухватиться, pr: ухвати́ться, ds: grasp}
+  - {id: ru-or-v03791-s001, ch: сцепить, pr: сцепи́ть, ds: couple}
+  - {id: ru-or-v12759-s001, ch: сцеплять, pr: сцепля́ть, ds: couple}
+  - {id: ru-or-v12760-s001, ch: сцепляться, pr: сцепля́ться, ds: grapple}
+  - {id: ru-or-v01020-s001, ch: разорвать, pr: разорва́ть, ds: tear}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v02963-s001, ch: оживать, pr: ожива́ть, ds: revive}
+  - {id: ru-or-v03400-s001, ch: оживить, pr: оживи́ть, ds: revive}
+  - {id: ru-or-v05408-s001, ch: оживлять, pr: оживля́ть, ds: revive}
+  - {id: ru-or-v01039-s001, ch: сжать, pr: сжать, ds: squeeze}
+  - {id: ru-or-v01095-s001, ch: сжимать, pr: сжима́ть, ds: squeeze}
+  - {id: ru-or-v01679-s001, ch: сжаться, pr: сжа́ться, ds: shrink}
+  - {id: ru-or-v02785-s001, ch: сжиматься, pr: сжима́ться, ds: shrink}
+  - {id: ru-or-v03836-s001, ch: сдавить, pr: сдави́ть, ds: squeeze}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-27-actions-04
+  title: Actions and results - 4
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v03108-s001, ch: разрывать, pr: разрыва́ть, ds: tear}
+  - {id: ru-or-v03093-s001, ch: разорваться, pr: разорва́ться, ds: burst}
+  - {id: ru-or-v03808-s001, ch: разрываться, pr: разрыва́ться, ds: be divided}
+  - {id: ru-or-v03188-s001, ch: расколоть, pr: расколо́ть, ds: split}
+  - {id: ru-or-v08079-s001, ch: раскалывать, pr: раска́лывать, ds: split}
+  - {id: ru-or-v05143-s001, ch: раскалываться, pr: раска́лываться, ds: split}
+  - {id: ru-or-v03058-s001, ch: сломить, pr: сломи́ть, ds: break}
+  - {id: ru-or-v03929-s001, ch: ломить, pr: ломи́ть, ds: break through}
+  - {id: ru-or-v04646-s001, ch: сокрушить, pr: сокруши́ть, ds: shatter}
+  - {id: ru-or-v06836-s001, ch: сокрушать, pr: сокруша́ть, ds: shatter}
+  - {id: ru-or-v04248-s001, ch: сокрушаться, pr: сокруша́ться, ds: grieve}
+  - {id: ru-or-v03894-s001, ch: потрескаться, pr: потре́скаться, ds: crack}
+  - {id: ru-or-v02019-s001, ch: треснуть, pr: тре́снуть, ds: crack}
+  - {id: ru-or-v08469-s001, ch: трескаться, pr: тре́скаться, ds: crack}
+  - {id: ru-or-v01159-s001, ch: лопнуть, pr: ло́пнуть, ds: burst}
+  - {id: ru-or-v02886-s001, ch: лопаться, pr: ло́паться, ds: burst}
+  - {id: ru-or-v05694-s001, ch: надорвать, pr: надорва́ть, ds: tear}
+  - {id: ru-or-v03449-s001, ch: надрываться, pr: надрыва́ться, ds: overstrain oneself}
+  - {id: ru-or-v00319-s001, ch: выдержать, pr: вы́держать, ds: endure}
+  - {id: ru-or-v01651-s001, ch: выдерживать, pr: выде́рживать, ds: endure}
+  - {id: ru-or-v01867-s001, ch: сдержать, pr: сдержа́ть, ds: restrain}
+  - {id: ru-or-v01216-s001, ch: сдерживать, pr: сде́рживать, ds: restrain}
+  - {id: ru-or-v02719-s001, ch: сдерживаться, pr: сде́рживаться, ds: hold oneself in check}
+  - {id: ru-or-v06519-s001, ch: перетерпеть, pr: перетерпе́ть, ds: endure}
+  - {id: ru-or-v00551-s002, ch: вынести, pr: вы́нести, ds: endure}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00147-s001, ch: хватать, pr: хвата́ть, ds: grab}
+  - {id: ru-or-v00151-s001, ch: хватить, pr: хвати́ть, ds: be enough}
+  - {id: ru-or-v01775-s001, ch: ухватить, pr: ухвати́ть, ds: grasp}
+  - {id: ru-or-v01614-s001, ch: ухватиться, pr: ухвати́ться, ds: grasp}
+  - {id: ru-or-v03791-s001, ch: сцепить, pr: сцепи́ть, ds: couple}
+  - {id: ru-or-v12759-s001, ch: сцеплять, pr: сцепля́ть, ds: couple}
+  - {id: ru-or-v12760-s001, ch: сцепляться, pr: сцепля́ться, ds: grapple}
+  - {id: ru-or-v01020-s001, ch: разорвать, pr: разорва́ть, ds: tear}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-27-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a02633-s001, ch: пылкий, pr: пы́лкий, ds: ardent}
+  - {id: ru-or-a04381-s001, ch: страстный, pr: стра́стный, ds: passionate}
+  - {id: ru-or-a02093-s001, ch: пламенный, pr: пла́менный, ds: fiery}
+  - {id: ru-or-a00393-s001, ch: ледяной, pr: ледяно́й, ds: icy}
+  - {id: ru-or-a01176-s001, ch: жгучий, pr: жгу́чий, ds: burning}
+  - {id: ru-or-a00291-s001, ch: горький, pr: го́рький, ds: bitter}
+  - {id: ru-or-a01776-s001, ch: сладостный, pr: сла́достный, ds: sweet}
+  - {id: ru-or-a01381-s001, ch: едкий, pr: е́дкий, ds: caustic}
+  - {id: ru-or-a05179-s001, ch: колкий, pr: ко́лкий, ds: caustic}
+  - {id: ru-or-a01839-s001, ch: язвительный, pr: язви́тельный, ds: caustic}
+  - {id: ru-or-a01286-s001, ch: тягостный, pr: тя́гостный, ds: burdensome}
+  - {id: ru-or-a00663-s001, ch: тяжкий, pr: тя́жкий, ds: heavy}
+  - {id: ru-or-a03005-s001, ch: гнетущий, pr: гнету́щий, ds: oppressive}
+  - {id: ru-or-a00335-s001, ch: мрачный, pr: мра́чный, ds: gloomy}
+  - {id: ru-or-a00756-s001, ch: угрюмый, pr: угрю́мый, ds: sullen}
+  - {id: ru-or-a00927-s001, ch: унылый, pr: уны́лый, ds: despondent}
+  - {id: ru-or-a01332-s001, ch: радужный, pr: ра́дужный, ds: iridescent}
+  - {id: ru-or-a00280-s001, ch: блестящий, pr: блестя́щий, ds: brilliant}
+  - {id: ru-or-a01775-s001, ch: блистательный, pr: блиста́тельный, ds: brilliant}
+  - {id: ru-or-a01167-s001, ch: ослепительный, pr: ослепи́тельный, ds: dazzling}
+  - {id: ru-or-a00989-s001, ch: яростный, pr: я́ростный, ds: furious}
+  - {id: ru-or-a01064-s001, ch: неистовый, pr: неи́стовый, ds: furious}
+  - {id: ru-or-a01421-s001, ch: буйный, pr: бу́йный, ds: violent}
+  - {id: ru-or-a00330-s001, ch: нежный, pr: не́жный, ds: tender}
+  - {id: ru-or-a01020-s001, ch: трогательный, pr: тро́гательный, ds: touching}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a02821-s001, ch: вульгарный, pr: вульга́рный, ds: vulgar}
+  - {id: ru-or-a02639-s001, ch: непристойный, pr: непристо́йный, ds: indecent}
+  - {id: ru-or-a01597-s001, ch: неприличный, pr: неприли́чный, ds: improper}
+  - {id: ru-or-a00466-s001, ch: приличный, pr: прили́чный, ds: decent}
+  - {id: ru-or-a03087-s001, ch: корректный, pr: корре́ктный, ds: correct}
+  - {id: ru-or-a05069-s001, ch: некорректный, pr: некорре́ктный, ds: discourteous}
+  - {id: ru-or-a04780-s001, ch: дипломатичный, pr: дипломати́чный, ds: diplomatic}
+  - {id: ru-or-a01014-s001, ch: дипломатический, pr: дипломати́ческий, ds: diplomatic}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-27-description-02
+  title: Description and comparison - 2
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a06326-s001, ch: умилительный, pr: умили́тельный, ds: touching}
+  - {id: ru-or-a01900-s001, ch: жизнерадостный, pr: жизнера́достный, ds: cheerful}
+  - {id: ru-or-a03601-s001, ch: безрадостный, pr: безра́достный, ds: joyless}
+  - {id: ru-or-a00698-s001, ch: равнодушный, pr: равноду́шный, ds: indifferent}
+  - {id: ru-or-a01362-s001, ch: безразличный, pr: безразли́чный, ds: indifferent}
+  - {id: ru-or-a03282-s001, ch: отзывчивый, pr: отзы́вчивый, ds: responsive}
+  - {id: ru-or-a01276-s001, ch: чуткий, pr: чу́ткий, ds: sensitive}
+  - {id: ru-or-a02098-s001, ch: бесчувственный, pr: бесчу́вственный, ds: insensitive}
+  - {id: ru-or-a01088-s001, ch: упорный, pr: упо́рный, ds: persistent}
+  - {id: ru-or-a00941-s001, ch: упрямый, pr: упря́мый, ds: stubborn}
+  - {id: ru-or-a01415-s001, ch: настойчивый, pr: насто́йчивый, ds: persistent}
+  - {id: ru-or-a04618-s001, ch: самонадеянный, pr: самонаде́янный, ds: presumptuous}
+  - {id: ru-or-a02051-s001, ch: самоуверенный, pr: самоуве́ренный, ds: self-confident}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00280-s001, ch: блестящий, pr: блестя́щий, ds: brilliant}
+  - {id: ru-or-a01775-s001, ch: блистательный, pr: блиста́тельный, ds: brilliant}
+  - {id: ru-or-a01167-s001, ch: ослепительный, pr: ослепи́тельный, ds: dazzling}
+  - {id: ru-or-a00989-s001, ch: яростный, pr: я́ростный, ds: furious}
+  - {id: ru-or-a01064-s001, ch: неистовый, pr: неи́стовый, ds: furious}
+  - {id: ru-or-a01421-s001, ch: буйный, pr: бу́йный, ds: violent}
+  - {id: ru-or-a00330-s001, ch: нежный, pr: не́жный, ds: tender}
+  - {id: ru-or-a01020-s001, ch: трогательный, pr: тро́гательный, ds: touching}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-27-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain a response while making the experiencer and perspective clear.
+  vocabulary:
+  - {id: ru-or-n01154-s001, ch: мука, pr: му́ка, ds: torment}
+  - {id: ru-or-n00058-s001, ch: душа, pr: душа́, ds: soul}
+  - {id: ru-or-n00201-s001, ch: дух, pr: дух, ds: spirit}
+  - {id: ru-or-n00330-s001, ch: воля, pr: во́ля, ds: will}
+  - {id: ru-or-n01063-s001, ch: разум, pr: ра́зум, ds: mind}
+  - {id: ru-or-n00210-s001, ch: ум, pr: ум, ds: mind}
+  - {id: ru-or-n00272-s001, ch: сознание, pr: созна́ние, ds: consciousness}
+  - {id: ru-or-n04557-s001, ch: подсознание, pr: подсозна́ние, ds: subconsciousness}
+  - {id: ru-or-n14077-s001, ch: сердечность, pr: серде́чность, ds: cordiality}
+  - {id: ru-or-n11470-s001, ch: отзывчивость, pr: отзы́вчивость, ds: responsiveness}
+  - {id: ru-or-n04692-s001, ch: пыл, pr: пыл, ds: ardour}
+  - {id: ru-or-n00783-s001, ch: страсть, pr: страсть, ds: passion}
+  - {id: ru-or-n01752-s001, ch: порыв, pr: поры́в, ds: impulse}
+  - {id: ru-or-n01410-s001, ch: стремление, pr: стремле́ние, ds: aspiration}
+  - {id: ru-or-n05593-s001, ch: рвение, pr: рве́ние, ds: zeal}
+  - {id: ru-or-n04450-s001, ch: усердие, pr: усе́рдие, ds: diligence}
+  - {id: ru-or-n05227-s001, ch: настойчивость, pr: насто́йчивость, ds: persistence}
+  - {id: ru-or-n03671-s001, ch: упорство, pr: упо́рство, ds: persistence}
+  - {id: ru-or-n03959-s001, ch: упрямство, pr: упря́мство, ds: stubbornness}
+  - {id: ru-or-n04017-s001, ch: решимость, pr: реши́мость, ds: determination}
+  - {id: ru-or-n04377-s001, ch: отвага, pr: отва́га, ds: courage}
+  - {id: ru-or-n02284-s001, ch: мужество, pr: му́жество, ds: courage}
+  - {id: ru-or-n04500-s001, ch: трусость, pr: тру́сость, ds: cowardice}
+  - {id: ru-or-n07176-s001, ch: хладнокровие, pr: хладнокро́вие, ds: composure}
+  - {id: ru-or-n07661-s001, ch: самообладание, pr: самооблада́ние, ds: self-control}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v02762-s001, ch: озадачить, pr: озада́чить, ds: puzzle}
+  - {id: ru-or-v09057-s001, ch: озадачивать, pr: озада́чивать, ds: puzzle}
+  - {id: ru-or-v02131-s001, ch: недоумевать, pr: недоумева́ть, ds: be perplexed}
+  - {id: ru-or-o00352-s001, ch: невольно, pr: нево́льно, ds: involuntarily}
+  - {id: ru-or-o00435-s001, ch: нарочно, pr: наро́чно, ds: on purpose}
+  - {id: ru-or-o00420-s001, ch: искренне, pr: и́скренне, ds: sincerely}
+  - {id: ru-or-o00446-s001, ch: откровенно, pr: открове́нно, ds: frankly}
+  - {id: ru-or-o00154-s001, ch: едва, pr: едва́, ds: hardly}
+  review_grammar:
+  - {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+  - {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+  - {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- id: level-27-feelings-02
+  title: Feelings and attitudes - 2
+  outcome: Explain a response while making the experiencer and perspective clear.
+  vocabulary:
+  - {id: ru-or-n07731-s001, ch: самоуверенность, pr: самоуве́ренность, ds: self-confidence}
+  - {id: ru-or-n10210-s001, ch: самомнение, pr: самомне́ние, ds: conceit}
+  - {id: ru-or-n05395-s001, ch: тщеславие, pr: тщесла́вие, ds: vanity}
+  - {id: ru-or-n05704-s001, ch: честолюбие, pr: честолю́бие, ds: ambition}
+  - {id: ru-or-n03373-s001, ch: самолюбие, pr: самолю́бие, ds: pride}
+  - {id: ru-or-n05253-s001, ch: обаяние, pr: обая́ние, ds: charm}
+  - {id: ru-or-n06419-s001, ch: очарование, pr: очарова́ние, ds: charm}
+  - {id: ru-or-n00860-s001, ch: восторг, pr: восто́рг, ds: excitement}
+  - {id: ru-or-n02157-s001, ch: восхищение, pr: восхище́ние, ds: admiration}
+  - {id: ru-or-n05401-s001, ch: умиление, pr: умиле́ние, ds: tender emotion}
+  - {id: ru-or-n02131-s001, ch: нежность, pr: не́жность, ds: tenderness}
+  - {id: ru-or-n04276-s001, ch: блаженство, pr: блаже́нство, ds: bliss}
+  - {id: ru-or-n01617-s001, ch: наслаждение, pr: наслажде́ние, ds: enjoyment}
+  - {id: ru-or-n06237-s001, ch: ликование, pr: ликова́ние, ds: exultation}
+  - {id: ru-or-n00778-s001, ch: тоска, pr: тоска́, ds: melancholy}
+  - {id: ru-or-n05001-s001, ch: уныние, pr: уны́ние, ds: dejection}
+  - {id: ru-or-n01100-s001, ch: отчаяние, pr: отча́яние, ds: despair}
+  - {id: ru-or-n13139-s001, ch: подавленность, pr: пода́вленность, ds: depression}
+  - {id: ru-or-n04721-s001, ch: безразличие, pr: безразли́чие, ds: indifference}
+  - {id: ru-or-n02807-s001, ch: равнодушие, pr: равноду́шие, ds: indifference}
+  - {id: ru-or-n08818-s001, ch: апатия, pr: апа́тия, ds: apathy}
+  - {id: ru-or-n01961-s001, ch: отвращение, pr: отвраще́ние, ds: disgust}
+  - {id: ru-or-n02028-s001, ch: презрение, pr: презре́ние, ds: contempt}
+  - {id: ru-or-n03280-s001, ch: негодование, pr: негодова́ние, ds: indignation}
+  - {id: ru-or-n02534-s001, ch: возмущение, pr: возмуще́ние, ds: indignation}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n03671-s001, ch: упорство, pr: упо́рство, ds: persistence}
+  - {id: ru-or-n03959-s001, ch: упрямство, pr: упря́мство, ds: stubbornness}
+  - {id: ru-or-n04017-s001, ch: решимость, pr: реши́мость, ds: determination}
+  - {id: ru-or-n04377-s001, ch: отвага, pr: отва́га, ds: courage}
+  - {id: ru-or-n02284-s001, ch: мужество, pr: му́жество, ds: courage}
+  - {id: ru-or-n04500-s001, ch: трусость, pr: тру́сость, ds: cowardice}
+  - {id: ru-or-n07176-s001, ch: хладнокровие, pr: хладнокро́вие, ds: composure}
+  - {id: ru-or-n07661-s001, ch: самообладание, pr: самооблада́ние, ds: self-control}
+  review_grammar:
+  - {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+  - {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+  - {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- id: level-27-feelings-03
+  title: Feelings and attitudes - 3
+  outcome: Explain a response while making the experiencer and perspective clear.
+  vocabulary:
+  - {id: ru-or-n01529-s001, ch: раздражение, pr: раздраже́ние, ds: irritation}
+  - {id: ru-or-n02243-s001, ch: нетерпение, pr: нетерпе́ние, ds: impatience}
+  - {id: ru-or-n01837-s001, ch: досада, pr: доса́да, ds: annoyance}
+  - {id: ru-or-n02576-s001, ch: растерянность, pr: расте́рянность, ds: confusion}
+  - {id: ru-or-n04385-s001, ch: замешательство, pr: замеша́тельство, ds: confusion}
+  - {id: ru-or-v00423-s001, ch: стремиться, pr: стреми́ться, ds: Aspire}
+  - {id: ru-or-v00700-s001, ch: рваться, pr: рва́ться, ds: long eagerly to do something}
+  - {id: ru-or-v01996-s001, ch: тосковать, pr: тоскова́ть, ds: long}
+  - {id: ru-or-v04824-s001, ch: унывать, pr: уныва́ть, ds: lose heart}
+  - {id: ru-or-v03170-s001, ch: отчаяться, pr: отча́яться, ds: despair}
+  - {id: ru-or-v06729-s001, ch: отчаиваться, pr: отча́иваться, ds: despair}
+  - {id: ru-or-v02861-s001, ch: ликовать, pr: ликова́ть, ds: exult}
+  - {id: ru-or-v04610-s001, ch: восторгаться, pr: восторга́ться, ds: be delighted}
+  - {id: ru-or-v01831-s001, ch: восхищаться, pr: восхища́ться, ds: admire}
+  - {id: ru-or-v05968-s001, ch: восхищать, pr: восхища́ть, ds: delight}
+  - {id: ru-or-v01429-s001, ch: наслаждаться, pr: наслажда́ться, ds: enjoy}
+  - {id: ru-or-v04741-s001, ch: упиваться, pr: упива́ться, ds: revel}
+  - {id: ru-or-v04279-s001, ch: очаровать, pr: очарова́ть, ds: charm}
+  - {id: ru-or-v11415-s001, ch: очаровывать, pr: очаро́вывать, ds: charm}
+  - {id: ru-or-v05640-s001, ch: пленить, pr: плени́ть, ds: capture}
+  - {id: ru-or-v09240-s001, ch: пленять, pr: пленя́ть, ds: captivate}
+  - {id: ru-or-v02897-s001, ch: покорить, pr: покори́ть, ds: conquer}
+  - {id: ru-or-v04178-s001, ch: покорять, pr: покоря́ть, ds: conquer}
+  - {id: ru-or-v00845-s001, ch: потрясти, pr: потрясти́, ds: Shock}
+  - {id: ru-or-v01352-s001, ch: потрясать, pr: потряса́ть, ds: shake}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n13139-s001, ch: подавленность, pr: пода́вленность, ds: depression}
+  - {id: ru-or-n04721-s001, ch: безразличие, pr: безразли́чие, ds: indifference}
+  - {id: ru-or-n02807-s001, ch: равнодушие, pr: равноду́шие, ds: indifference}
+  - {id: ru-or-n08818-s001, ch: апатия, pr: апа́тия, ds: apathy}
+  - {id: ru-or-n01961-s001, ch: отвращение, pr: отвраще́ние, ds: disgust}
+  - {id: ru-or-n02028-s001, ch: презрение, pr: презре́ние, ds: contempt}
+  - {id: ru-or-n03280-s001, ch: негодование, pr: негодова́ние, ds: indignation}
+  - {id: ru-or-n02534-s001, ch: возмущение, pr: возмуще́ние, ds: indignation}
+  review_grammar:
+  - {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+  - {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+  - {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- id: level-27-feelings-04
+  title: Feelings and attitudes - 4
+  outcome: Explain a response while making the experiencer and perspective clear.
+  vocabulary:
+  - {id: ru-or-v00472-s001, ch: поразить, pr: порази́ть, ds: strike}
+  - {id: ru-or-v01339-s001, ch: поражать, pr: поража́ть, ds: strike}
+  - {id: ru-or-v02645-s001, ch: поражаться, pr: поража́ться, ds: to be surprised}
+  - {id: ru-or-v04558-s001, ch: растрогать, pr: растро́гать, ds: touch}
+  - {id: ru-or-v00810-s001, ch: тронуть, pr: тро́нуть, ds: touch}
+  - {id: ru-or-v02432-s001, ch: утешить, pr: уте́шить, ds: comfort}
+  - {id: ru-or-v01697-s001, ch: утешать, pr: утеша́ть, ds: comfort}
+  - {id: ru-or-v08137-s001, ch: утешаться, pr: утеша́ться, ds: console oneself}
+  - {id: ru-or-v04860-s001, ch: ободрить, pr: ободри́ть, ds: encourage}
+  - {id: ru-or-v05551-s001, ch: ободрять, pr: ободря́ть, ds: encourage}
+  - {id: ru-or-v06081-s001, ch: вдохновить, pr: вдохнови́ть, ds: inspire}
+  - {id: ru-or-v04715-s001, ch: вдохновлять, pr: вдохновля́ть, ds: inspire}
+  - {id: ru-or-v08954-s001, ch: воодушевить, pr: воодушеви́ть, ds: inspire}
+  - {id: ru-or-v09075-s001, ch: воодушевлять, pr: воодушевля́ть, ds: inspire}
+  - {id: ru-or-v01826-s001, ch: увлечь, pr: увле́чь, ds: carry away}
+  - {id: ru-or-v03375-s001, ch: увлекать, pr: увлека́ть, ds: carry away}
+  - {id: ru-or-v02074-s001, ch: увлекаться, pr: увлека́ться, ds: be carried away}
+  - {id: ru-or-v07134-s001, ch: презреть, pr: презре́ть, ds: despise}
+  - {id: ru-or-v01200-s001, ch: презирать, pr: презира́ть, ds: despise}
+  - {id: ru-or-v11259-s001, ch: отвращать, pr: отвраща́ть, ds: avert}
+  - {id: ru-or-v01926-s001, ch: возмущаться, pr: возмуща́ться, ds: be indignant}
+  - {id: ru-or-v01087-s001, ch: возмутиться, pr: возмути́ться, ds: react with indignation}
+  - {id: ru-or-v04370-s001, ch: негодовать, pr: негодова́ть, ds: be indignant}
+  - {id: ru-or-v01051-s001, ch: раздражать, pr: раздража́ть, ds: annoy}
+  - {id: ru-or-v02444-s001, ch: раздражить, pr: раздражи́ть, ds: irritate}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v04279-s001, ch: очаровать, pr: очарова́ть, ds: charm}
+  - {id: ru-or-v11415-s001, ch: очаровывать, pr: очаро́вывать, ds: charm}
+  - {id: ru-or-v05640-s001, ch: пленить, pr: плени́ть, ds: capture}
+  - {id: ru-or-v09240-s001, ch: пленять, pr: пленя́ть, ds: captivate}
+  - {id: ru-or-v02897-s001, ch: покорить, pr: покори́ть, ds: conquer}
+  - {id: ru-or-v04178-s001, ch: покорять, pr: покоря́ть, ds: conquer}
+  - {id: ru-or-v00845-s001, ch: потрясти, pr: потрясти́, ds: Shock}
+  - {id: ru-or-v01352-s001, ch: потрясать, pr: потряса́ть, ds: shake}
+  review_grammar:
+  - {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+  - {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+  - {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- id: level-27-feelings-05
+  title: Feelings and attitudes - 5
+  outcome: Explain a response while making the experiencer and perspective clear.
+  vocabulary:
+  - {id: ru-or-v03488-s001, ch: раздражаться, pr: раздража́ться, ds: become irritated}
+  - {id: ru-or-v05922-s001, ch: досадовать, pr: доса́довать, ds: bemoan}
+  - {id: ru-or-v03272-s001, ch: огорчать, pr: огорча́ть, ds: distress}
+  - {id: ru-or-v03962-s001, ch: огорчить, pr: огорчи́ть, ds: distress}
+  - {id: ru-or-v03241-s001, ch: огорчаться, pr: огорча́ться, ds: be disappointed}
+  - {id: ru-or-v03217-s001, ch: огорчиться, pr: огорчи́ться, ds: be disappointed}
+  - {id: ru-or-v00919-s001, ch: мучить, pr: му́чить, ds: torment}
+  - {id: ru-or-v00981-s001, ch: мучиться, pr: му́читься, ds: suffer}
+  - {id: ru-or-v02245-s001, ch: терзать, pr: терза́ть, ds: torment}
+  - {id: ru-or-v05465-s001, ch: терзаться, pr: терза́ться, ds: suffer torments}
+  - {id: ru-or-v02431-s001, ch: томиться, pr: томи́ться, ds: languish}
+  - {id: ru-or-v04607-s001, ch: изнемогать, pr: изнемога́ть, ds: be exhausted}
+  - {id: ru-or-v06987-s001, ch: изнурять, pr: изнуря́ть, ds: exhaust}
+  - {id: ru-or-v04438-s001, ch: обессилеть, pr: обесси́леть, ds: grow weak}
+  - {id: ru-or-a04206-s001, ch: несгибаемый, pr: несгиба́емый, ds: unbending}
+  - {id: ru-or-a01961-s001, ch: непреклонный, pr: непрекло́нный, ds: inflexible}
+  - {id: ru-or-a01952-s001, ch: непримиримый, pr: непримири́мый, ds: irreconcilable}
+  - {id: ru-or-a03021-s001, ch: непоколебимый, pr: непоколеби́мый, ds: unshakeable}
+  - {id: ru-or-a03172-s001, ch: несокрушимый, pr: несокруши́мый, ds: indestructible}
+  - {id: ru-or-a00966-s001, ch: стойкий, pr: сто́йкий, ds: staunch}
+  - {id: ru-or-a00175-s001, ch: крепкий, pr: кре́пкий, ds: strong}
+  - {id: ru-or-a00252-s002, ch: твёрдый, pr: твёрдый, ds: firm}
+  - {id: ru-or-a03361-s001, ch: нерушимый, pr: неруши́мый, ds: inviolable}
+  - {id: ru-or-a02693-s001, ch: неуязвимый, pr: неуязви́мый, ds: invulnerable}
+  - {id: ru-or-a04388-s001, ch: ранимый, pr: рани́мый, ds: vulnerable}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v07134-s001, ch: презреть, pr: презре́ть, ds: despise}
+  - {id: ru-or-v01200-s001, ch: презирать, pr: презира́ть, ds: despise}
+  - {id: ru-or-v11259-s001, ch: отвращать, pr: отвраща́ть, ds: avert}
+  - {id: ru-or-v01926-s001, ch: возмущаться, pr: возмуща́ться, ds: be indignant}
+  - {id: ru-or-v01087-s001, ch: возмутиться, pr: возмути́ться, ds: react with indignation}
+  - {id: ru-or-v04370-s001, ch: негодовать, pr: негодова́ть, ds: be indignant}
+  - {id: ru-or-v01051-s001, ch: раздражать, pr: раздража́ть, ds: annoy}
+  - {id: ru-or-v02444-s001, ch: раздражить, pr: раздражи́ть, ds: irritate}
+  review_grammar:
+  - {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+  - {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+  - {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- id: level-27-feelings-06
+  title: Feelings and attitudes - 6
+  outcome: Explain a response while making the experiencer and perspective clear.
+  vocabulary:
+  - {id: ru-or-a01161-s001, ch: чувствительный, pr: чувстви́тельный, ds: sensitive}
+  - {id: ru-or-a03905-s001, ch: впечатлительный, pr: впечатли́тельный, ds: impressionable}
+  - {id: ru-or-a04170-s001, ch: мнительный, pr: мни́тельный, ds: hypochondriac}
+  - {id: ru-or-a03045-s001, ch: обидчивый, pr: оби́дчивый, ds: touchy}
+  - {id: ru-or-a04127-s001, ch: вспыльчивый, pr: вспы́льчивый, ds: quick-tempered}
+  - {id: ru-or-a03646-s001, ch: раздражительный, pr: раздражи́тельный, ds: irritable}
+  - {id: ru-or-a00518-s001, ch: нетерпеливый, pr: нетерпели́вый, ds: impatient}
+  - {id: ru-or-a03503-s001, ch: хладнокровный, pr: хладнокро́вный, ds: cool}
+  - {id: ru-or-a01424-s001, ch: безмятежный, pr: безмяте́жный, ds: serene}
+  - {id: ru-or-a00891-s001, ch: невозмутимый, pr: невозмути́мый, ds: imperturbable}
+  - {id: ru-or-a02151-s001, ch: сокрушительный, pr: сокруши́тельный, ds: shattering}
+  - {id: ru-or-a05666-s001, ch: надрывный, pr: надры́вный, ds: heart-rending}
+  - {id: ru-or-a00527-s001, ch: отчаянный, pr: отча́янный, ds: desperate}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a03021-s001, ch: непоколебимый, pr: непоколеби́мый, ds: unshakeable}
+  - {id: ru-or-a03172-s001, ch: несокрушимый, pr: несокруши́мый, ds: indestructible}
+  - {id: ru-or-a00966-s001, ch: стойкий, pr: сто́йкий, ds: staunch}
+  - {id: ru-or-a00175-s001, ch: крепкий, pr: кре́пкий, ds: strong}
+  - {id: ru-or-a00252-s002, ch: твёрдый, pr: твёрдый, ds: firm}
+  - {id: ru-or-a03361-s001, ch: нерушимый, pr: неруши́мый, ds: inviolable}
+  - {id: ru-or-a02693-s001, ch: неуязвимый, pr: неуязви́мый, ds: invulnerable}
+  - {id: ru-or-a04388-s001, ch: ранимый, pr: рани́мый, ds: vulnerable}
+  review_grammar:
+  - {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+  - {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+  - {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- id: level-27-communication-practice-01
+  title: Communication and repair - sentence practice 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-conversational-ellipsis, ch: 'Я за. А вы? Мне тоже.', ds: Recover omitted material in a short contextual reply}
+  review_vocabulary:
+  - {id: ru-or-v03543-s001, ch: разъяснять, pr: разъясня́ть, ds: explain}
+  - {id: ru-or-v05711-s001, ch: растолковать, pr: растолкова́ть, ds: explain}
+  - {id: ru-or-v12465-s001, ch: растолковывать, pr: растолко́вывать, ds: explain}
+  - {id: ru-or-v04316-s001, ch: поучать, pr: поуча́ть, ds: teach}
+  - {id: ru-or-v04211-s001, ch: наставлять, pr: наставля́ть, ds: mentor}
+  - {id: ru-or-v06618-s001, ch: увещевать, pr: увещева́ть, ds: exhort}
+  - {id: ru-or-v01744-s001, ch: поведать, pr: пове́дать, ds: tell}
+  - {id: ru-or-v04870-s001, ch: повествовать, pr: повествова́ть, ds: narrate}
+  review_grammar:
+  - {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+  - {id: ru-g-reported-statement, ch: '[speaker] сказал, что [clause]', ds: Report a statement without automatic tense backshift}
+  - {id: ru-g-reported-request, ch: 'попросил [person] [infinitive] / попросил, чтобы ...', ds: Relay a request while keeping the intended actor clear}
+- id: level-27-feelings-practice-01
+  title: Feelings and attitudes - sentence practice 1
+  outcome: Explain a response while making the experiencer and perspective clear.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-preoccupied-ne-do, ch: '[dative person] не до [genitive activity]', ds: Say circumstances leave no attention for an activity}
+  review_vocabulary:
+  - {id: ru-or-a03646-s001, ch: раздражительный, pr: раздражи́тельный, ds: irritable}
+  - {id: ru-or-a00518-s001, ch: нетерпеливый, pr: нетерпели́вый, ds: impatient}
+  - {id: ru-or-a03503-s001, ch: хладнокровный, pr: хладнокро́вный, ds: cool}
+  - {id: ru-or-a01424-s001, ch: безмятежный, pr: безмяте́жный, ds: serene}
+  - {id: ru-or-a00891-s001, ch: невозмутимый, pr: невозмути́мый, ds: imperturbable}
+  - {id: ru-or-a02151-s001, ch: сокрушительный, pr: сокруши́тельный, ds: shattering}
+  - {id: ru-or-a05666-s001, ch: надрывный, pr: надры́вный, ds: heart-rending}
+  - {id: ru-or-a00527-s001, ch: отчаянный, pr: отча́янный, ds: desperate}
+  review_grammar:
+  - {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+  - {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+  - {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- id: level-27-register-practice-01
+  title: Register and implied stance - sentence practice 1
+  outcome: Adapt wording to a relationship and explain its likely effect.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-hands-time-idiom, ch: 'у [person] руки не доходят до [genitive task]', ds: Say someone has not got around to a task}
+  - {id: ru-g-despite-expectation-particle, ch: 'всё-таки [clause]', ds: Mark persistence or an outcome contrary to expectation}
+  review_vocabulary:
+  - {id: ru-or-n20010-s001, ch: неологизм, pr: неологи́зм, ds: neologism}
+  - {id: ru-or-n15401-s001, ch: архаизм, pr: архаи́зм, ds: archaism}
+  - {id: ru-or-n10068-s001, ch: заимствование, pr: заи́мствование, ds: borrowing}
+  - {id: ru-or-n04797-s001, ch: ругательство, pr: руга́тельство, ds: swear-word}
+  - {id: ru-or-n04953-s001, ch: брань, pr: брань, ds: abuse}
+  - {id: ru-or-n26433-s001, ch: острота, pr: остро́та, ds: witticism}
+  - {id: ru-or-n04519-s001, ch: поговорка, pr: погово́рка, ds: saying}
+  - {id: ru-or-n05152-s001, ch: пословица, pr: посло́вица, ds: proverb}
+  review_grammar:
+  - {id: ru-g-softened-disagreement, ch: 'не совсем ...; боюсь, что ...; мне кажется, ...', ds: Soften disagreement while retaining its actual content}
+  - {id: ru-g-diminutive-register, ch: минута / минутка; вопрос / вопросик, ds: Interpret a diminutive's contextual social effect}
+  - {id: ru-g-impersonal-preference, ch: 'хотелось бы / представляется, что ...', ds: Recognize distancing that leaves the viewpoint implicit}

@@ -1,0 +1,516 @@
+schema_version: 3
+id: ru-level-14
+title: Resolving an unclear service problem
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 14
+phase: explanation-problems
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+goals: &id001
+- Distinguish an item needed from an action required.
+- Clarify prohibition versus practical impossibility.
+- Explain absence or a negated object without treating every negative sentence as the same case rule.
+checkpoint:
+  task: Resolve a simulated service or housing problem with incomplete information and revise your explanation after a clarification.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-14-home-01
+  title: Home and shared routines - 1
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-n01532-s001, ch: жильё, pr: жильё, ds: dwelling}
+  - {id: ru-or-n03854-s001, ch: аренда, pr: аре́нда, ds: rent}
+  - {id: ru-or-n11312-s001, ch: арендатор, pr: аренда́тор, ds: tenant}
+  - {id: ru-or-n01038-s001, ch: владелец, pr: владе́лец, ds: owner}
+  - {id: ru-or-n00103-s001, ch: хозяин, pr: хозя́ин, ds: landlord}
+  - {id: ru-or-n01430-s001, ch: соседка, pr: сосе́дка, ds: neighbour}
+  - {id: ru-or-n00129-s001, ch: двор, pr: двор, ds: yard}
+  - {id: ru-or-n00379-s001, ch: здание, pr: зда́ние, ds: building}
+  - {id: ru-or-n00849-s001, ch: строительство, pr: строи́тельство, ds: construction}
+  - {id: ru-or-n00947-s001, ch: подвал, pr: подва́л, ds: basement}
+  - {id: ru-or-n02281-s001, ch: чердак, pr: черда́к, ds: attic}
+  - {id: ru-or-n03107-s001, ch: фундамент, pr: фунда́мент, ds: foundation}
+  - {id: ru-or-n00421-s001, ch: труба, pr: труба́, ds: pipe}
+  - {id: ru-or-n01549-s001, ch: провод, pr: про́вод, ds: wire}
+  - {id: ru-or-n06425-s001, ch: розетка, pr: розе́тка, ds: socket}
+  - {id: ru-or-n04399-s001, ch: выключатель, pr: выключа́тель, ds: switch}
+  - {id: ru-or-n00784-s001, ch: напряжение, pr: напряже́ние, ds: voltage}
+  - {id: ru-or-n05684-s001, ch: водопровод, pr: водопрово́д, ds: water-supply}
+  - {id: ru-or-n05768-s001, ch: канализация, pr: канализа́ция, ds: sewer system}
+  - {id: ru-or-n06269-s001, ch: вентиляция, pr: вентиля́ция, ds: ventilation}
+  - {id: ru-or-n02924-s001, ch: сырость, pr: сы́рость, ds: dampness}
+  - {id: ru-or-n05259-s001, ch: плесень, pr: пле́сень, ds: mould}
+  - {id: ru-or-n02019-s001, ch: трещина, pr: тре́щина, ds: crack}
+  - {id: ru-or-n00662-s001, ch: пятно, pr: пятно́, ds: stain}
+  - {id: ru-or-n00442-s001, ch: пыль, pr: пыль, ds: dust}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n17324-s001, ch: дуршлаг, pr: дуршла́г, ds: colander}
+  - {id: ru-or-n13677-s001, ch: тёрка, pr: тёрка, ds: grater}
+  - {id: ru-or-n04442-s001, ch: термос, pr: те́рмос, ds: thermos}
+  - {id: ru-or-n02180-s001, ch: пробка, pr: про́бка, ds: cork}
+  - {id: ru-or-n01200-s001, ch: крышка, pr: кры́шка, ds: lid}
+  - {id: ru-or-n00621-s002, ch: ручка, pr: ру́чка, ds: handle}
+  - {id: ru-or-v00491-s001, ch: завести, pr: завести́, ds: acquire}
+  - {id: ru-or-v01915-s001, ch: заводить, pr: заводи́ть, ds: acquire}
+  review_grammar:
+  - {id: ru-g-possession-existence, ch: 'У [genitive possessor] есть [noun].', ds: State possession or availability with у ... есть}
+  - {id: ru-g-absence-genitive, ch: 'У [genitive possessor] нет [genitive noun].', ds: Express absence with нет and the genitive}
+  - {id: ru-g-static-spatial-cases, ch: 'под / над / перед / за + [instrumental]; около + [genitive]', ds: Locate things using governed spatial cases}
+- id: level-14-home-02
+  title: Home and shared routines - 2
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-n00278-s001, ch: запах, pr: за́пах, ds: smell}
+  - {id: ru-or-n00433-s001, ch: шум, pr: шум, ds: noise}
+  - {id: ru-or-n03179-s001, ch: беспорядок, pr: беспоря́док, ds: disorder}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n05684-s001, ch: водопровод, pr: водопрово́д, ds: water-supply}
+  - {id: ru-or-n05768-s001, ch: канализация, pr: канализа́ция, ds: sewer system}
+  - {id: ru-or-n06269-s001, ch: вентиляция, pr: вентиля́ция, ds: ventilation}
+  - {id: ru-or-n02924-s001, ch: сырость, pr: сы́рость, ds: dampness}
+  - {id: ru-or-n05259-s001, ch: плесень, pr: пле́сень, ds: mould}
+  - {id: ru-or-n02019-s001, ch: трещина, pr: тре́щина, ds: crack}
+  - {id: ru-or-n00662-s001, ch: пятно, pr: пятно́, ds: stain}
+  - {id: ru-or-n00442-s001, ch: пыль, pr: пыль, ds: dust}
+  review_grammar:
+  - {id: ru-g-possession-existence, ch: 'У [genitive possessor] есть [noun].', ds: State possession or availability with у ... есть}
+  - {id: ru-g-absence-genitive, ch: 'У [genitive possessor] нет [genitive noun].', ds: Express absence with нет and the genitive}
+  - {id: ru-g-static-spatial-cases, ch: 'под / над / перед / за + [instrumental]; около + [genitive]', ds: Locate things using governed spatial cases}
+- id: level-14-health-01
+  title: Body and wellbeing - 1
+  outcome: Describe a need and seek clarification without making a clinical claim.
+  vocabulary:
+  - {id: ru-or-n00851-s001, ch: рана, pr: ра́на, ds: wound}
+  - {id: ru-or-n01875-s001, ch: травма, pr: тра́вма, ds: injury}
+  - {id: ru-or-n03108-s001, ch: ожог, pr: ожо́г, ds: burn}
+  - {id: ru-or-n10533-s001, ch: порез, pr: поре́з, ds: cut}
+  - {id: ru-or-n05371-s001, ch: ушиб, pr: уши́б, ds: bruise}
+  - {id: ru-or-n02508-s001, ch: перелом, pr: перело́м, ds: fracture}
+  - {id: ru-or-n02356-s001, ch: инфекция, pr: инфе́кция, ds: infection}
+  - {id: ru-or-n01755-s001, ch: воспаление, pr: воспале́ние, ds: inflammation}
+  - {id: ru-or-n01138-s001, ch: давление, pr: давле́ние, ds: pressure}
+  - {id: ru-or-n02625-s001, ch: пульс, pr: пульс, ds: pulse}
+  - {id: ru-or-n00101-s001, ch: кровь, pr: кровь, ds: blood}
+  - {id: ru-or-n00303-s001, ch: кожа, pr: ко́жа, ds: skin}
+  - {id: ru-or-n00553-s001, ch: дыхание, pr: дыха́ние, ds: breathing}
+  - {id: ru-or-n01041-s001, ch: слабость, pr: сла́бость, ds: weakness}
+  - {id: ru-or-n03782-s001, ch: головокружение, pr: головокруже́ние, ds: dizziness}
+  - {id: ru-or-n02915-s001, ch: тошнота, pr: тошнота́, ds: nausea}
+  - {id: ru-or-n02257-s001, ch: обморок, pr: о́бморок, ds: fainting}
+  - {id: ru-or-n03448-s001, ch: обследование, pr: обсле́дование, ds: medical examination or investigation}
+  - {id: ru-or-n00464-s001, ch: лечение, pr: лече́ние, ds: treatment}
+  - {id: ru-or-n00324-s001, ch: операция, pr: опера́ция, ds: operation}
+  - {id: ru-or-n02652-s001, ch: укол, pr: уко́л, ds: injection}
+  - {id: ru-or-n02835-s001, ch: бинт, pr: бинт, ds: bandage}
+  - {id: ru-or-n06591-s001, ch: пластырь, pr: пла́стырь, ds: plaster}
+  - {id: ru-or-n01987-s001, ch: таблетка, pr: табле́тка, ds: tablet}
+  - {id: ru-or-n02757-s001, ch: мазь, pr: мазь, ds: ointment}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00004-s001, ch: рука, pr: рука́, ds: hand}
+  - {id: ru-or-n00019-s001, ch: нога, pr: нога́, ds: leg}
+  - {id: ru-or-n00066-s001, ch: палец, pr: па́лец, ds: finger}
+  - {id: ru-or-n00212-s001, ch: колено, pr: коле́но, ds: knee}
+  - {id: ru-or-n00078-s001, ch: спина, pr: спина́, ds: back}
+  - {id: ru-or-n00133-s001, ch: грудь, pr: грудь, ds: chest}
+  - {id: ru-or-n00090-s001, ch: сердце, pr: се́рдце, ds: heart}
+  - {id: ru-or-n00080-s001, ch: тело, pr: те́ло, ds: body}
+  review_grammar:
+  - {id: ru-g-health-experiencer, ch: 'У меня болит / болят [body part]. У меня аллергия на [accusative].', ds: Describe pain or state an allergy without diagnosing}
+- id: level-14-travel-01
+  title: Travel and transport - 1
+  outcome: Explain an origin or destination and negotiate a changed journey.
+  vocabulary:
+  - {id: ru-or-v00148-s001, ch: принести, pr: принести́, ds: bring}
+  - {id: ru-or-v00475-s001, ch: приносить, pr: приноси́ть, ds: bring}
+  - {id: ru-or-v00967-s001, ch: отнести, pr: отнести́, ds: carry}
+  - {id: ru-or-v02301-s001, ch: относить, pr: относи́ть, ds: take}
+  - {id: ru-or-v00968-s001, ch: унести, pr: унести́, ds: carry off}
+  - {id: ru-or-v01676-s001, ch: уносить, pr: уноси́ть, ds: carry off}
+  - {id: ru-or-v01098-s001, ch: занести, pr: занести́, ds: bring}
+  - {id: ru-or-v02953-s001, ch: заносить, pr: заноси́ть, ds: bring}
+  - {id: ru-or-v00551-s001, ch: вынести, pr: вы́нести, ds: carry out}
+  - {id: ru-or-v01016-s001, ch: выносить, pr: выноси́ть, ds: carry away}
+  - {id: ru-or-v01406-s001, ch: донести, pr: донести́, ds: carry}
+  - {id: ru-or-v00296-s001, ch: привезти, pr: привезти́, ds: bring}
+  - {id: ru-or-v01557-s001, ch: привозить, pr: привози́ть, ds: bring}
+  - {id: ru-or-v01029-s001, ch: увезти, pr: увезти́, ds: take away}
+  - {id: ru-or-v02945-s001, ch: увозить, pr: увози́ть, ds: carry off}
+  - {id: ru-or-v01165-s001, ch: отвезти, pr: отвезти́, ds: take}
+  - {id: ru-or-v04714-s001, ch: отвозить, pr: отвози́ть, ds: take}
+  - {id: ru-or-v03484-s001, ch: завезти, pr: завезти́, ds: deliver}
+  - {id: ru-or-v06302-s001, ch: завозить, pr: завози́ть, ds: deliver}
+  - {id: ru-or-v01476-s001, ch: вывезти, pr: вы́везти, ds: take out}
+  - {id: ru-or-v02591-s001, ch: вывозить, pr: вывози́ть, ds: take out}
+  - {id: ru-or-v02875-s001, ch: довезти, pr: довезти́, ds: bring}
+  - {id: ru-or-v09118-s001, ch: довозить, pr: довози́ть, ds: bring}
+  - {id: ru-or-v03175-s001, ch: перевезти, pr: перевезти́, ds: transport}
+  - {id: ru-or-v03422-s001, ch: перевозить, pr: перевози́ть, ds: transport}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01880-s001, ch: трасса, pr: тра́сса, ds: route}
+  - {id: ru-or-n18247-s001, ch: километраж, pr: километра́ж, ds: mileage}
+  - {id: ru-or-n05742-s001, ch: путеводитель, pr: путеводи́тель, ds: guide-book}
+  - {id: ru-or-n02797-s001, ch: экскурсия, pr: экску́рсия, ds: excursion}
+  - {id: ru-or-n05135-s001, ch: экскурсовод, pr: экскурсово́д, ds: guide}
+  - {id: ru-or-n01375-s001, ch: справка, pr: спра́вка, ds: information}
+  - {id: ru-or-n01705-s001, ch: бюро, pr: бюро́, ds: office}
+  - {id: ru-or-n06204-s001, ch: постоялец, pr: постоя́лец, ds: lodger}
+  review_grammar:
+  - {id: ru-g-current-motion, ch: 'иду / идёт; еду / едет + [destination]', ds: Distinguish current travel on foot and by vehicle}
+  - {id: ru-g-origins-and-people, ch: 'из / с / от + [genitive]; к + [dative]', ds: Name an origin or movement toward a person}
+  - {id: ru-g-habitual-motion, ch: идти / ходить; ехать / ездить, ds: Contrast a directed journey with habitual travel}
+- id: level-14-travel-02
+  title: Travel and transport - 2
+  outcome: Explain an origin or destination and negotiate a changed journey.
+  vocabulary:
+  - {id: ru-or-v00601-s001, ch: доставить, pr: доста́вить, ds: deliver}
+  - {id: ru-or-v01426-s001, ch: доставлять, pr: доставля́ть, ds: deliver}
+  - {id: ru-or-v00144-s001, ch: привести, pr: привести́, ds: bring}
+  - {id: ru-or-v00439-s001, ch: приводить, pr: приводи́ть, ds: bring}
+  - {id: ru-or-v01129-s001, ch: увести, pr: увести́, ds: lead away}
+  - {id: ru-or-v02117-s001, ch: уводить, pr: уводи́ть, ds: lead away}
+  - {id: ru-or-v00547-s001, ch: отвести, pr: отвести́, ds: lead}
+  - {id: ru-or-v01718-s001, ch: отводить, pr: отводи́ть, ds: lead}
+  - {id: ru-or-v00263-s001, ch: зайти, pr: зайти́, ds: call}
+  - {id: ru-or-v00310-s001, ch: заходить, pr: заходи́ть, ds: call}
+  - {id: ru-or-v01478-s001, ch: заехать, pr: зае́хать, ds: call}
+  - {id: ru-or-v03570-s001, ch: заезжать, pr: заезжа́ть, ds: call}
+  - {id: ru-or-v01520-s001, ch: доехать, pr: дое́хать, ds: reach}
+  - {id: ru-or-v07007-s001, ch: доезжать, pr: доезжа́ть, ds: reach}
+  - {id: ru-or-v00357-s001, ch: добраться, pr: добра́ться, ds: reach}
+  - {id: ru-or-v01832-s001, ch: добираться, pr: добира́ться, ds: reach}
+  - {id: ru-or-v00665-s001, ch: обойти, pr: обойти́, ds: go around}
+  - {id: ru-or-v01134-s001, ch: обходить, pr: обходи́ть, ds: go around}
+  - {id: ru-or-v04301-s001, ch: объехать, pr: объе́хать, ds: travel around}
+  - {id: ru-or-v05459-s001, ch: объезжать, pr: объезжа́ть, ds: drive around}
+  - {id: ru-or-v00067-s002, ch: пройти, pr: пройти́, ds: pass}
+  - {id: ru-or-v00124-s001, ch: проходить, pr: проходи́ть, ds: pass}
+  - {id: ru-or-v00917-s001, ch: проехать, pr: прое́хать, ds: drive}
+  - {id: ru-or-v01802-s001, ch: проезжать, pr: проезжа́ть, ds: drive}
+  - {id: ru-or-v01537-s001, ch: пролететь, pr: пролете́ть, ds: fly}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v03484-s001, ch: завезти, pr: завезти́, ds: deliver}
+  - {id: ru-or-v06302-s001, ch: завозить, pr: завози́ть, ds: deliver}
+  - {id: ru-or-v01476-s001, ch: вывезти, pr: вы́везти, ds: take out}
+  - {id: ru-or-v02591-s001, ch: вывозить, pr: вывози́ть, ds: take out}
+  - {id: ru-or-v02875-s001, ch: довезти, pr: довезти́, ds: bring}
+  - {id: ru-or-v09118-s001, ch: довозить, pr: довози́ть, ds: bring}
+  - {id: ru-or-v03175-s001, ch: перевезти, pr: перевезти́, ds: transport}
+  - {id: ru-or-v03422-s001, ch: перевозить, pr: перевози́ть, ds: transport}
+  review_grammar:
+  - {id: ru-g-current-motion, ch: 'иду / идёт; еду / едет + [destination]', ds: Distinguish current travel on foot and by vehicle}
+  - {id: ru-g-origins-and-people, ch: 'из / с / от + [genitive]; к + [dative]', ds: Name an origin or movement toward a person}
+  - {id: ru-g-habitual-motion, ch: идти / ходить; ехать / ездить, ds: Contrast a directed journey with habitual travel}
+- id: level-14-travel-03
+  title: Travel and transport - 3
+  outcome: Explain an origin or destination and negotiate a changed journey.
+  vocabulary:
+  - {id: ru-or-v02268-s001, ch: пролетать, pr: пролета́ть, ds: fly}
+  - {id: ru-or-v04231-s001, ch: проплыть, pr: проплы́ть, ds: swim}
+  - {id: ru-or-v03299-s001, ch: проплывать, pr: проплыва́ть, ds: swim}
+  - {id: ru-or-v01065-s001, ch: подъехать, pr: подъе́хать, ds: arrive}
+  - {id: ru-or-v01918-s001, ch: подъезжать, pr: подъезжа́ть, ds: drive up}
+  - {id: ru-or-v00081-s002, ch: подойти, pr: подойти́, ds: approach}
+  - {id: ru-or-v01273-s001, ch: прибежать, pr: прибежа́ть, ds: come running}
+  - {id: ru-or-v01627-s001, ch: прибегать, pr: прибега́ть, ds: come running}
+  - {id: ru-or-v00757-s001, ch: убежать, pr: убежа́ть, ds: run away}
+  - {id: ru-or-v01285-s001, ch: убегать, pr: убега́ть, ds: run away}
+  - {id: ru-or-v01346-s001, ch: выбежать, pr: вы́бежать, ds: run out}
+  - {id: ru-or-v02396-s001, ch: выбегать, pr: выбега́ть, ds: run out}
+  - {id: ru-or-v02456-s001, ch: забежать, pr: забежа́ть, ds: run}
+  - {id: ru-or-v01732-s001, ch: забегать, pr: забега́ть, ds: run}
+  - {id: ru-or-v00769-s001, ch: сбежать, pr: сбежа́ть, ds: run away}
+  - {id: ru-or-v14592-s001, ch: сбегать, pr: сбе́гать, ds: quickly go and get}
+  - {id: ru-or-v00410-s001, ch: спуститься, pr: спусти́ться, ds: go down}
+  - {id: ru-or-v00553-s001, ch: спускаться, pr: спуска́ться, ds: come down}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01134-s001, ch: обходить, pr: обходи́ть, ds: go around}
+  - {id: ru-or-v04301-s001, ch: объехать, pr: объе́хать, ds: travel around}
+  - {id: ru-or-v05459-s001, ch: объезжать, pr: объезжа́ть, ds: drive around}
+  - {id: ru-or-v00067-s002, ch: пройти, pr: пройти́, ds: pass}
+  - {id: ru-or-v00124-s001, ch: проходить, pr: проходи́ть, ds: pass}
+  - {id: ru-or-v00917-s001, ch: проехать, pr: прое́хать, ds: drive}
+  - {id: ru-or-v01802-s001, ch: проезжать, pr: проезжа́ть, ds: drive}
+  - {id: ru-or-v01537-s001, ch: пролететь, pr: пролете́ть, ds: fly}
+  review_grammar:
+  - {id: ru-g-current-motion, ch: 'иду / идёт; еду / едет + [destination]', ds: Distinguish current travel on foot and by vehicle}
+  - {id: ru-g-origins-and-people, ch: 'из / с / от + [genitive]; к + [dative]', ds: Name an origin or movement toward a person}
+  - {id: ru-g-habitual-motion, ch: идти / ходить; ехать / ездить, ds: Contrast a directed journey with habitual travel}
+- id: level-14-services-01
+  title: Services and transactions - 1
+  outcome: Clarify a requirement and respond to an ordinary service problem.
+  vocabulary:
+  - {id: ru-or-n00149-s001, ch: проблема, pr: пробле́ма, ds: problem}
+  - {id: ru-or-n01560-s001, ch: трудность, pr: тру́дность, ds: difficulty}
+  - {id: ru-or-n04338-s001, ch: неудобство, pr: неудо́бство, ds: inconvenience}
+  - {id: ru-or-n08650-s001, ch: неисправность, pr: неиспра́вность, ds: disrepair}
+  - {id: ru-or-n10911-s001, ch: поломка, pr: поло́мка, ds: breakage}
+  - {id: ru-or-n02445-s001, ch: авария, pr: ава́рия, ds: accident}
+  - {id: ru-or-n04741-s001, ch: утечка, pr: уте́чка, ds: leakage}
+  - {id: ru-or-n01428-s001, ch: ремонт, pr: ремо́нт, ds: repair}
+  - {id: ru-or-n02728-s001, ch: замена, pr: заме́на, ds: replacement}
+  - {id: ru-or-n02587-s001, ch: обслуживание, pr: обслу́живание, ds: service}
+  - {id: ru-or-n00196-s001, ch: служба, pr: слу́жба, ds: service}
+  - {id: ru-or-n00486-s001, ch: мастер, pr: ма́стер, ds: skilled tradesperson}
+  - {id: ru-or-n00505-s001, ch: специалист, pr: специали́ст, ds: specialist}
+  - {id: ru-or-n03506-s001, ch: заявка, pr: зая́вка, ds: application}
+  - {id: ru-or-n01636-s001, ch: жалоба, pr: жа́лоба, ds: complaint}
+  - {id: ru-or-n01364-s001, ch: обращение, pr: обраще́ние, ds: appeal}
+  - {id: ru-or-n01317-s001, ch: отказ, pr: отка́з, ds: refusal}
+  - {id: ru-or-n03071-s001, ch: задержка, pr: заде́ржка, ds: delay}
+  - {id: ru-or-n04185-s001, ch: отмена, pr: отме́на, ds: cancellation}
+  - {id: ru-or-n03907-s001, ch: возврат, pr: возвра́т, ds: return}
+  - {id: ru-or-n03640-s001, ch: компенсация, pr: компенса́ция, ds: compensation}
+  - {id: ru-or-n02327-s001, ch: гарантия, pr: гара́нтия, ds: guarantee}
+  - {id: ru-or-n05356-s001, ch: квитанция, pr: квита́нция, ds: receipt}
+  - {id: ru-or-n05296-s001, ch: платёж, pr: платёж, ds: payment}
+  - {id: ru-or-n00540-s001, ch: долг, pr: долг, ds: debt}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00817-s001, ch: заказать, pr: заказа́ть, ds: order}
+  - {id: ru-or-v00302-s001, ch: выбрать, pr: вы́брать, ds: choose}
+  - {id: ru-or-v00486-s001, ch: выбирать, pr: выбира́ть, ds: choose}
+  - {id: ru-or-v00221-s001, ch: попробовать, pr: попро́бовать, ds: try}
+  - {id: ru-or-v00494-s001, ch: менять, pr: меня́ть, ds: change}
+  - {id: ru-or-v02913-s001, ch: обменять, pr: обменя́ть, ds: exchange}
+  - {id: ru-or-n00320-s002, ch: карта, pr: ка́рта, ds: card}
+  - {id: ru-or-v00037-s002, ch: посмотреть, pr: посмотре́ть, ds: have a look}
+  review_grammar:
+  - {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+  - {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+  - {id: ru-g-dative-recipient, ch: 'дать / показать [accusative thing] [dative recipient]', ds: Mark the recipient of giving or showing}
+- id: level-14-services-02
+  title: Services and transactions - 2
+  outcome: Clarify a requirement and respond to an ordinary service problem.
+  vocabulary:
+  - {id: ru-or-n00229-s001, ch: банк, pr: банк, ds: bank}
+  - {id: ru-or-n24115-s001, ch: банкомат, pr: банкома́т, ds: ATM}
+  - {id: ru-or-n01214-s002, ch: перевод, pr: перево́д, ds: transfer}
+  - {id: ru-or-n07271-s001, ch: страхование, pr: страхова́ние, ds: insurance}
+  - {id: ru-or-n04201-s001, ch: страховка, pr: страхо́вка, ds: insurance}
+  - {id: ru-or-n00882-s001, ch: потеря, pr: поте́ря, ds: loss}
+  - {id: ru-or-n05861-s001, ch: пропажа, pr: пропа́жа, ds: loss}
+  - {id: ru-or-n03115-s001, ch: кража, pr: кра́жа, ds: theft}
+  - {id: ru-or-n00960-s001, ch: вор, pr: вор, ds: thief}
+  - {id: ru-or-n00650-s001, ch: полиция, pr: поли́ция, ds: police}
+  - {id: ru-or-n00559-s001, ch: охрана, pr: охра́на, ds: guard}
+  - {id: ru-or-n00673-s001, ch: безопасность, pr: безопа́сность, ds: safety}
+  - {id: ru-or-n00591-s001, ch: опасность, pr: опа́сность, ds: danger}
+  - {id: ru-or-n01505-s001, ch: риск, pr: риск, ds: risk}
+  - {id: ru-or-n01582-s001, ch: происшествие, pr: происше́ствие, ds: incident}
+  - {id: ru-or-n00837-s001, ch: пожар, pr: пожа́р, ds: fire}
+  - {id: ru-or-n00358-s001, ch: дым, pr: дым, ds: smoke}
+  - {id: ru-or-n00128-s001, ch: огонь, pr: ого́нь, ds: fire}
+  - {id: ru-or-n01398-s001, ch: спасение, pr: спасе́ние, ds: rescue}
+  - {id: ru-or-n05792-s001, ch: спасатель, pr: спаса́тель, ds: rescuer}
+  - {id: ru-or-o00376-s001, ch: срочно, pr: сро́чно, ds: urgently}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n03071-s001, ch: задержка, pr: заде́ржка, ds: delay}
+  - {id: ru-or-n04185-s001, ch: отмена, pr: отме́на, ds: cancellation}
+  - {id: ru-or-n03907-s001, ch: возврат, pr: возвра́т, ds: return}
+  - {id: ru-or-n03640-s001, ch: компенсация, pr: компенса́ция, ds: compensation}
+  - {id: ru-or-n02327-s001, ch: гарантия, pr: гара́нтия, ds: guarantee}
+  - {id: ru-or-n05356-s001, ch: квитанция, pr: квита́нция, ds: receipt}
+  - {id: ru-or-n05296-s001, ch: платёж, pr: платёж, ds: payment}
+  - {id: ru-or-n00540-s001, ch: долг, pr: долг, ds: debt}
+  review_grammar:
+  - {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+  - {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+  - {id: ru-g-dative-recipient, ch: 'дать / показать [accusative thing] [dative recipient]', ds: Mark the recipient of giving or showing}
+- id: level-14-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00742-s001, ch: сломать, pr: слома́ть, ds: break}
+  - {id: ru-or-v00729-s001, ch: ломать, pr: лома́ть, ds: break}
+  - {id: ru-or-v02362-s001, ch: сломаться, pr: слома́ться, ds: break}
+  - {id: ru-or-v02221-s001, ch: ломаться, pr: лома́ться, ds: break}
+  - {id: ru-or-v00936-s001, ch: испортить, pr: испо́ртить, ds: spoil}
+  - {id: ru-or-v01545-s001, ch: портить, pr: по́ртить, ds: spoil}
+  - {id: ru-or-v04527-s001, ch: портиться, pr: по́ртиться, ds: go bad}
+  - {id: ru-or-v01624-s001, ch: порвать, pr: порва́ть, ds: tear}
+  - {id: ru-or-v00763-s001, ch: рвать, pr: рвать, ds: tear}
+  - {id: ru-or-v06516-s001, ch: порваться, pr: порва́ться, ds: be torn}
+  - {id: ru-or-v01011-s001, ch: разбить, pr: разби́ть, ds: break}
+  - {id: ru-or-v01713-s001, ch: разбиться, pr: разби́ться, ds: crash}
+  - {id: ru-or-v01498-s001, ch: повредить, pr: повреди́ть, ds: damage}
+  - {id: ru-or-v11704-s001, ch: повреждать, pr: поврежда́ть, ds: damage}
+  - {id: ru-or-v01538-s001, ch: протекать, pr: протека́ть, ds: leak}
+  - {id: ru-or-v08566-s001, ch: протечь, pr: проте́чь, ds: leak}
+  - {id: ru-or-v02523-s001, ch: отключить, pr: отключи́ть, ds: disconnect}
+  - {id: ru-or-v07630-s001, ch: отключать, pr: отключа́ть, ds: disconnect}
+  - {id: ru-or-v00741-s001, ch: заменить, pr: замени́ть, ds: replace}
+  - {id: ru-or-v01669-s001, ch: заменять, pr: заменя́ть, ds: replace}
+  - {id: ru-or-v03313-s001, ch: отремонтировать, pr: отремонти́ровать, ds: repair}
+  - {id: ru-or-v00906-s001, ch: восстановить, pr: восстанови́ть, ds: restore}
+  - {id: ru-or-v02552-s001, ch: восстанавливать, pr: восстана́вливать, ds: restore}
+  - {id: ru-or-v02570-s001, ch: устранить, pr: устрани́ть, ds: eliminate}
+  - {id: ru-or-v05962-s001, ch: устранять, pr: устраня́ть, ds: eliminate}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00166-s001, ch: получиться, pr: получи́ться, ds: turn out}
+  - {id: ru-or-v00226-s001, ch: получаться, pr: получа́ться, ds: be obtained as a result}
+  - {id: ru-or-o00209-s001, ch: осторожно, pr: осторо́жно, ds: carefully}
+  - {id: ru-or-o00341-s001, ch: аккуратно, pr: аккура́тно, ds: neatly}
+  - {id: ru-or-o00201-s001, ch: правильно, pr: пра́вильно, ds: correctly}
+  - {id: ru-or-o02058-s001, ch: неправильно, pr: непра́вильно, ds: incorrectly}
+  - {id: ru-or-o00908-s001, ch: последовательно, pr: после́довательно, ds: consecutively}
+  - {id: ru-or-o00881-s001, ch: поочерёдно, pr: поочерёдно, ds: in turn}
+  review_grammar:
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+  - {id: ru-g-imperative-aspect, ch: 'открывайте / откройте [object]', ds: Choose an imperative for a routine or one result}
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+- id: level-14-actions-02
+  title: Actions and results - 2
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00517-s001, ch: жаловаться, pr: жа́ловаться, ds: complain}
+  - {id: ru-or-v01689-s001, ch: пожаловаться, pr: пожа́ловаться, ds: complain}
+  - {id: ru-or-v01151-s001, ch: потребоваться, pr: потре́боваться, ds: be required}
+  - {id: ru-or-v00513-s001, ch: понадобиться, pr: пона́добиться, ds: be needed}
+  - {id: ru-or-v00146-s001, ch: вызвать, pr: вы́звать, ds: call}
+  - {id: ru-or-v00190-s001, ch: вызывать, pr: вызыва́ть, ds: call}
+  - {id: ru-or-v01292-s001, ch: отменить, pr: отмени́ть, ds: cancel}
+  - {id: ru-or-v04299-s001, ch: отменять, pr: отменя́ть, ds: cancel}
+  - {id: ru-or-v00550-s001, ch: задержать, pr: задержа́ть, ds: delay}
+  - {id: ru-or-v01908-s001, ch: задерживать, pr: заде́рживать, ds: delay}
+  - {id: ru-or-v00366-s001, ch: вернуть, pr: верну́ть, ds: return}
+  - {id: ru-or-v01316-s001, ch: возвращать, pr: возвраща́ть, ds: return}
+  - {id: ru-or-v05093-s001, ch: возместить, pr: возмести́ть, ds: compensate}
+  - {id: ru-or-v09594-s001, ch: возмещать, pr: возмеща́ть, ds: compensate}
+  - {id: ru-or-v00693-s001, ch: украсть, pr: укра́сть, ds: steal}
+  - {id: ru-or-v03032-s001, ch: красть, pr: красть, ds: steal}
+  - {id: ru-or-v00195-s001, ch: обнаружить, pr: обнару́жить, ds: discover}
+  - {id: ru-or-v01660-s001, ch: обнаруживать, pr: обнару́живать, ds: discover}
+  - {id: ru-or-v00264-s001, ch: спасти, pr: спасти́, ds: save}
+  - {id: ru-or-v00785-s001, ch: спасать, pr: спаса́ть, ds: save}
+  - {id: ru-or-v00654-s001, ch: защищать, pr: защища́ть, ds: protect}
+  - {id: ru-or-v00927-s001, ch: защитить, pr: защити́ть, ds: defend}
+  - {id: ru-or-v01340-s001, ch: пострадать, pr: пострада́ть, ds: be injured}
+  - {id: ru-or-v00482-s001, ch: страдать, pr: страда́ть, ds: suffer}
+  - {id: ru-or-v00274-s001, ch: обращаться, pr: обраща́ться, ds: turn to}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v07630-s001, ch: отключать, pr: отключа́ть, ds: disconnect}
+  - {id: ru-or-v00741-s001, ch: заменить, pr: замени́ть, ds: replace}
+  - {id: ru-or-v01669-s001, ch: заменять, pr: заменя́ть, ds: replace}
+  - {id: ru-or-v03313-s001, ch: отремонтировать, pr: отремонти́ровать, ds: repair}
+  - {id: ru-or-v00906-s001, ch: восстановить, pr: восстанови́ть, ds: restore}
+  - {id: ru-or-v02552-s001, ch: восстанавливать, pr: восстана́вливать, ds: restore}
+  - {id: ru-or-v02570-s001, ch: устранить, pr: устрани́ть, ds: eliminate}
+  - {id: ru-or-v05962-s001, ch: устранять, pr: устраня́ть, ds: eliminate}
+  review_grammar:
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+  - {id: ru-g-imperative-aspect, ch: 'открывайте / откройте [object]', ds: Choose an imperative for a routine or one result}
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+- id: level-14-actions-03
+  title: Actions and results - 3
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00255-s001, ch: обратиться, pr: обрати́ться, ds: apply}
+  - {id: ru-or-v00125-s901, ch: удаться, pr: уда́ться, ds: succeed}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01660-s001, ch: обнаруживать, pr: обнару́живать, ds: discover}
+  - {id: ru-or-v00264-s001, ch: спасти, pr: спасти́, ds: save}
+  - {id: ru-or-v00785-s001, ch: спасать, pr: спаса́ть, ds: save}
+  - {id: ru-or-v00654-s001, ch: защищать, pr: защища́ть, ds: protect}
+  - {id: ru-or-v00927-s001, ch: защитить, pr: защити́ть, ds: defend}
+  - {id: ru-or-v01340-s001, ch: пострадать, pr: пострада́ть, ds: be injured}
+  - {id: ru-or-v00482-s001, ch: страдать, pr: страда́ть, ds: suffer}
+  - {id: ru-or-v00274-s001, ch: обращаться, pr: обраща́ться, ds: turn to}
+  review_grammar:
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+  - {id: ru-g-imperative-aspect, ch: 'открывайте / откройте [object]', ds: Choose an imperative for a routine or one result}
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+- id: level-14-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a04332-s001, ch: неисправный, pr: неиспра́вный, ds: faulty}
+  - {id: ru-or-a03948-s001, ch: исправный, pr: испра́вный, ds: in good repair}
+  - {id: ru-or-a00786-s001, ch: срочный, pr: сро́чный, ds: urgent}
+  - {id: ru-or-a01327-s001, ch: аварийный, pr: авари́йный, ds: emergency}
+  - {id: ru-or-a00123-s001, ch: серьёзный, pr: серьёзный, ds: serious}
+  - {id: ru-or-a00288-s001, ch: временный, pr: вре́менный, ds: temporary}
+  - {id: ru-or-a00221-s001, ch: постоянный, pr: постоя́нный, ds: constant}
+  - {id: ru-or-a00754-s001, ch: виновный, pr: вино́вный, ds: guilty}
+  - {id: ru-or-a00773-s001, ch: бесплатный, pr: беспла́тный, ds: free}
+  - {id: ru-or-a01990-s001, ch: платный, pr: пла́тный, ds: paid}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00349-s001, ch: коричневый, pr: кори́чневый, ds: brown}
+  - {id: ru-or-a00241-s001, ch: розовый, pr: ро́зовый, ds: pink}
+  - {id: ru-or-a00751-s001, ch: фиолетовый, pr: фиоле́товый, ds: violet}
+  - {id: ru-or-a00134-s001, ch: голубой, pr: голубо́й, ds: pale blue}
+  - {id: ru-or-a00650-s001, ch: оранжевый, pr: ора́нжевый, ds: orange}
+  - {id: ru-or-a00473-s001, ch: цветной, pr: цветно́й, ds: coloured}
+  - {id: ru-or-n00037-s001, ch: вид, pr: вид, ds: appearance}
+  - {id: ru-or-n00028-s001, ch: сила, pr: си́ла, ds: strength or force}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-14-services-practice-01
+  title: Services and transactions - sentence practice 1
+  outcome: Clarify a requirement and respond to an ordinary service problem.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-needed-noun, ch: 'мне нужен / нужна / нужно / нужны [noun]', ds: Agree a needed item while distinguishing нужно to act}
+  - {id: ru-g-impersonal-time, ch: 'мне было / будет [state]; не было / не будет [genitive]', ds: Place an impersonal state or absence in time}
+  - {id: ru-g-nelzya-aspect, ch: 'нельзя [imperfective / perfective infinitive]', ds: Clarify prohibition versus practical impossibility}
+  review_vocabulary:
+  - {id: ru-or-n01505-s001, ch: риск, pr: риск, ds: risk}
+  - {id: ru-or-n01582-s001, ch: происшествие, pr: происше́ствие, ds: incident}
+  - {id: ru-or-n00837-s001, ch: пожар, pr: пожа́р, ds: fire}
+  - {id: ru-or-n00358-s001, ch: дым, pr: дым, ds: smoke}
+  - {id: ru-or-n00128-s001, ch: огонь, pr: ого́нь, ds: fire}
+  - {id: ru-or-n01398-s001, ch: спасение, pr: спасе́ние, ds: rescue}
+  - {id: ru-or-n05792-s001, ch: спасатель, pr: спаса́тель, ds: rescuer}
+  - {id: ru-or-o00376-s001, ch: срочно, pr: сро́чно, ds: urgently}
+  review_grammar:
+  - {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+  - {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+  - {id: ru-g-dative-recipient, ch: 'дать / показать [accusative thing] [dative recipient]', ds: Mark the recipient of giving or showing}
+- id: level-14-grammar-practice-01
+  title: Sentence construction - sentence practice 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-negated-object-case, ch: 'не [verb] [accusative / genitive object]', ds: Interpret case choice for an object under negation}
+  - {id: ru-g-numeral-case, ch: 'с двумя [instrumental plural]; о трёх [prepositional plural]', ds: Decline a numeral phrase for its governed role}
+  review_vocabulary:
+  - {id: ru-or-o00068-s001, ch: просто, pr: про́сто, ds: simply}
+  - {id: ru-or-o00135-s001, ch: слишком, pr: сли́шком, ds: too}
+  - {id: ru-or-o00182-s001, ch: достаточно, pr: доста́точно, ds: enough}
+  - {id: ru-or-o00085-s001, ch: почти, pr: почти́, ds: almost}
+  - {id: ru-or-o00127-s001, ch: особенно, pr: осо́бенно, ds: especially}
+  - {id: ru-or-o00115-s001, ch: совершенно, pr: соверше́нно, ds: totally}
+  - {id: ru-or-o00084-s001, ch: совсем, pr: совсе́м, ds: completely}
+  - {id: ru-or-o00248-s001, ch: примерно, pr: приме́рно, ds: approximately}
+  review_grammar:
+  - {id: ru-g-irregular-eat-give, ch: ем / ешь / ест / едим / едите / едят; дам / дашь / даст, ds: Distinguish irregular eating and giving forms}
+  - {id: ru-g-relative-kotory, ch: '[noun], который / которую / которому ...', ds: Decline a relative pronoun for its clause role}

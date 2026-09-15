@@ -1,0 +1,400 @@
+schema_version: 3
+id: ru-level-22
+title: Values without overgeneralization
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 22
+phase: analysis-argument
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+- ru-level-19
+- ru-level-20
+- ru-level-21
+goals: &id001
+- Represent competing considerations using concession and contrast.
+- Restrict a generalization to the people or circumstances described.
+- Attribute a perspective rather than presenting it as universal.
+checkpoint:
+  task: Discuss an unfamiliar dilemma while representing two perspectives fairly and limiting claims drawn from individual experience.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-22-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary:
+  - {id: ru-or-v01868-s001, ch: сочувствовать, pr: сочу́вствовать, ds: sympathize}
+  - {id: ru-or-v08707-s001, ch: сострадать, pr: сострада́ть, ds: feel compassion}
+  - {id: ru-or-v00405-s001, ch: терпеть, pr: терпе́ть, ds: tolerate}
+  - {id: ru-or-v03901-s001, ch: вытерпеть, pr: вы́терпеть, ds: endure}
+  - {id: ru-or-v03977-s001, ch: стерпеть, pr: стерпе́ть, ds: endure}
+  - {id: ru-or-v01672-s001, ch: оскорбить, pr: оскорби́ть, ds: insult}
+  - {id: ru-or-v02553-s001, ch: оскорблять, pr: оскорбля́ть, ds: insult}
+  - {id: ru-or-v04028-s001, ch: унизить, pr: уни́зить, ds: humiliate}
+  - {id: ru-or-v02940-s001, ch: унижать, pr: унижа́ть, ds: humiliate}
+  - {id: ru-or-v01171-s001, ch: угрожать, pr: угрожа́ть, ds: threaten}
+  - {id: ru-or-v02462-s001, ch: пригрозить, pr: пригрози́ть, ds: threaten}
+  - {id: ru-or-v04840-s001, ch: принуждать, pr: принужда́ть, ds: compel}
+  - {id: ru-or-v03646-s001, ch: принудить, pr: прину́дить, ds: compel}
+  - {id: ru-or-v00243-s001, ch: заставить, pr: заста́вить, ds: force}
+  - {id: ru-or-v00450-s001, ch: заставлять, pr: заставля́ть, ds: force}
+  - {id: ru-or-v03750-s001, ch: вынудить, pr: вы́нудить, ds: compel}
+  - {id: ru-or-v04828-s001, ch: вынуждать, pr: вынужда́ть, ds: compel}
+  - {id: ru-or-v09893-s001, ch: дискриминировать, pr: дискримини́ровать, ds: discriminate}
+  - {id: ru-or-v08997-s001, ch: ущемлять, pr: ущемля́ть, ds: infringe}
+  - {id: ru-or-v06965-s001, ch: ущемить, pr: ущеми́ть, ds: infringe}
+  - {id: ru-or-v03531-s001, ch: жертвовать, pr: же́ртвовать, ds: sacrifice}
+  - {id: ru-or-v03276-s001, ch: пожертвовать, pr: поже́ртвовать, ds: sacrifice}
+  - {id: ru-or-v03276-s002, ch: пожертвовать, pr: поже́ртвовать, ds: make a donation}
+  - {id: ru-or-v01603-s001, ch: дарить, pr: дари́ть, ds: give}
+  - {id: ru-or-v00467-s001, ch: подарить, pr: подари́ть, ds: give}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n02251-s001, ch: дисциплина, pr: дисципли́на, ds: discipline}
+  - {id: ru-or-n01173-s001, ch: конфликт, pr: конфли́кт, ds: conflict}
+  - {id: ru-or-n03109-s001, ch: спор, pr: спор, ds: dispute}
+  - {id: ru-or-n03933-s001, ch: компромисс, pr: компроми́сс, ds: compromise}
+  - {id: ru-or-n06027-s001, ch: уступка, pr: усту́пка, ds: concession}
+  - {id: ru-or-n01433-s001, ch: согласие, pr: согла́сие, ds: consent}
+  - {id: ru-or-n05679-s001, ch: разногласие, pr: разногла́сие, ds: disagreement}
+  - {id: ru-or-n03110-s001, ch: возражение, pr: возраже́ние, ds: objection}
+  review_grammar:
+  - {id: ru-g-reflexive-reference, ch: 'себя / себе; свой / своя / своё [noun]', ds: Refer back to the subject without changing the possessor}
+  - {id: ru-g-animate-accusative, ch: 'вижу [animate accusative] / вижу [inanimate accusative]', ds: Apply animacy to direct-object forms}
+  - {id: ru-g-pronouns-after-prepositions, ch: у него / у неё / у них; с ним / с ней / с ними, ds: Use governed personal-pronoun forms after prepositions}
+- id: level-22-people-02
+  title: People and relationships - 2
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary:
+  - {id: ru-or-v00955-s001, ch: делиться, pr: дели́ться, ds: share}
+  - {id: ru-or-v01321-s001, ch: поделиться, pr: подели́ться, ds: share}
+  - {id: ru-or-v01566-s001, ch: осуждать, pr: осужда́ть, ds: condemn}
+  - {id: ru-or-v01320-s001, ch: оправдать, pr: оправда́ть, ds: justify}
+  - {id: ru-or-v02063-s001, ch: оправдывать, pr: опра́вдывать, ds: justify}
+  - {id: ru-or-v01206-s001, ch: избежать, pr: избежа́ть, ds: escape}
+  - {id: ru-or-v01304-s001, ch: избегать, pr: избега́ть, ds: avoid}
+  - {id: ru-or-v03569-s001, ch: пренебрегать, pr: пренебрега́ть, ds: neglect}
+  - {id: ru-or-v04856-s001, ch: пренебречь, pr: пренебре́чь, ds: neglect}
+  - {id: ru-or-v04269-s001, ch: злоупотреблять, pr: злоупотребля́ть, ds: abuse}
+  - {id: ru-or-v06883-s001, ch: манипулировать, pr: манипули́ровать, ds: manipulate}
+  - {id: ru-or-v04908-s001, ch: соблюсти, pr: соблюсти́, ds: observe}
+  - {id: ru-or-v02317-s001, ch: противостоять, pr: противостоя́ть, ds: oppose}
+  - {id: ru-or-v01193-s001, ch: сопротивляться, pr: сопротивля́ться, ds: resist}
+  - {id: ru-or-v03438-s001, ch: осознавать, pr: осознава́ть, ds: realize}
+  - {id: ru-or-v00913-s001, ch: осознать, pr: осозна́ть, ds: realize}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v09893-s001, ch: дискриминировать, pr: дискримини́ровать, ds: discriminate}
+  - {id: ru-or-v08997-s001, ch: ущемлять, pr: ущемля́ть, ds: infringe}
+  - {id: ru-or-v06965-s001, ch: ущемить, pr: ущеми́ть, ds: infringe}
+  - {id: ru-or-v03531-s001, ch: жертвовать, pr: же́ртвовать, ds: sacrifice}
+  - {id: ru-or-v03276-s001, ch: пожертвовать, pr: поже́ртвовать, ds: sacrifice}
+  - {id: ru-or-v03276-s002, ch: пожертвовать, pr: поже́ртвовать, ds: make a donation}
+  - {id: ru-or-v01603-s001, ch: дарить, pr: дари́ть, ds: give}
+  - {id: ru-or-v00467-s001, ch: подарить, pr: подари́ть, ds: give}
+  review_grammar:
+  - {id: ru-g-reflexive-reference, ch: 'себя / себе; свой / своя / своё [noun]', ds: Refer back to the subject without changing the possessor}
+  - {id: ru-g-animate-accusative, ch: 'вижу [animate accusative] / вижу [inanimate accusative]', ds: Apply animacy to direct-object forms}
+  - {id: ru-g-pronouns-after-prepositions, ch: у него / у неё / у них; с ним / с ней / с ними, ds: Use governed personal-pronoun forms after prepositions}
+- id: level-22-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00508-s001, ch: моральный, pr: мора́льный, ds: moral}
+  - {id: ru-or-a00642-s001, ch: нравственный, pr: нра́вственный, ds: moral}
+  - {id: ru-or-a02169-s001, ch: этический, pr: эти́ческий, ds: ethical}
+  - {id: ru-or-a00634-s001, ch: справедливый, pr: справедли́вый, ds: fair}
+  - {id: ru-or-a00915-s001, ch: несправедливый, pr: несправедли́вый, ds: unjust}
+  - {id: ru-or-a00392-s001, ch: достойный, pr: досто́йный, ds: worthy}
+  - {id: ru-or-a01241-s001, ch: недостойный, pr: недосто́йный, ds: unworthy}
+  - {id: ru-or-a02123-s001, ch: гуманный, pr: гума́нный, ds: humane}
+  - {id: ru-or-a03720-s001, ch: бесчеловечный, pr: бесчелове́чный, ds: inhumane}
+  - {id: ru-or-a00386-s001, ch: жестокий, pr: жесто́кий, ds: brutal}
+  - {id: ru-or-a02888-s001, ch: терпимый, pr: терпи́мый, ds: tolerant}
+  - {id: ru-or-a04439-s001, ch: нетерпимый, pr: нетерпи́мый, ds: intolerant}
+  - {id: ru-or-a01179-s001, ch: уважительный, pr: уважи́тельный, ds: respectful}
+  - {id: ru-or-a01237-s001, ch: унизительный, pr: унизи́тельный, ds: humiliating}
+  - {id: ru-or-a01610-s001, ch: оскорбительный, pr: оскорби́тельный, ds: insulting}
+  - {id: ru-or-a02421-s001, ch: принудительный, pr: принуди́тельный, ds: compulsory}
+  - {id: ru-or-a00053-s001, ch: личный, pr: ли́чный, ds: personal}
+  - {id: ru-or-a00085-s001, ch: человеческий, pr: челове́ческий, ds: human}
+  - {id: ru-or-a03891-s001, ch: общечеловеческий, pr: общечелове́ческий, ds: common to humanity}
+  - {id: ru-or-a03185-s001, ch: этнический, pr: этни́ческий, ds: ethnic}
+  - {id: ru-or-a00412-s001, ch: культурный, pr: культу́рный, ds: cultural}
+  - {id: ru-or-a00579-s001, ch: религиозный, pr: религио́зный, ds: religious}
+  - {id: ru-or-a02412-s001, ch: уязвимый, pr: уязви́мый, ds: vulnerable}
+  - {id: ru-or-a04478-s001, ch: равноправный, pr: равнопра́вный, ds: equal}
+  - {id: ru-or-a02455-s001, ch: неравный, pr: нера́вный, ds: unequal}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a02006-s001, ch: постепенный, pr: постепе́нный, ds: gradual}
+  - {id: ru-or-a01003-s001, ch: непрерывный, pr: непреры́вный, ds: continuous}
+  - {id: ru-or-a04913-s001, ch: циклический, pr: цикли́ческий, ds: cyclic}
+  - {id: ru-or-a02664-s001, ch: линейный, pr: лине́йный, ds: linear}
+  - {id: ru-or-a01358-s001, ch: относительный, pr: относи́тельный, ds: relative}
+  - {id: ru-or-a00576-s001, ch: абсолютный, pr: абсолю́тный, ds: absolute}
+  - {id: ru-or-a01247-s001, ch: качественный, pr: ка́чественный, ds: qualitative}
+  - {id: ru-or-a02406-s001, ch: количественный, pr: коли́чественный, ds: quantitative}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-22-description-02
+  title: Description and comparison - 2
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a04855-s001, ch: эгоистичный, pr: эгоисти́чный, ds: egotistic}
+  - {id: ru-or-a02268-s001, ch: бескорыстный, pr: бескоры́стный, ds: unselfish}
+  - {id: ru-or-a01231-s001, ch: щедрый, pr: ще́дрый, ds: generous}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00085-s001, ch: человеческий, pr: челове́ческий, ds: human}
+  - {id: ru-or-a03891-s001, ch: общечеловеческий, pr: общечелове́ческий, ds: common to humanity}
+  - {id: ru-or-a03185-s001, ch: этнический, pr: этни́ческий, ds: ethnic}
+  - {id: ru-or-a00412-s001, ch: культурный, pr: культу́рный, ds: cultural}
+  - {id: ru-or-a00579-s001, ch: религиозный, pr: религио́зный, ds: religious}
+  - {id: ru-or-a02412-s001, ch: уязвимый, pr: уязви́мый, ds: vulnerable}
+  - {id: ru-or-a04478-s001, ch: равноправный, pr: равнопра́вный, ds: equal}
+  - {id: ru-or-a02455-s001, ch: неравный, pr: нера́вный, ds: unequal}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-22-society-01
+  title: Society and community - 1
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-n01020-s001, ch: ценность, pr: це́нность, ds: value}
+  - {id: ru-or-n01652-s001, ch: идеал, pr: идеа́л, ds: ideal}
+  - {id: ru-or-n00482-s001, ch: принцип, pr: при́нцип, ds: principle}
+  - {id: ru-or-n00937-s001, ch: норма, pr: но́рма, ds: norm}
+  - {id: ru-or-n02128-s001, ch: мораль, pr: мора́ль, ds: morals}
+  - {id: ru-or-n04585-s001, ch: нравственность, pr: нра́вственность, ds: morals}
+  - {id: ru-or-n05902-s001, ch: этика, pr: э́тика, ds: ethics}
+  - {id: ru-or-n00643-s001, ch: совесть, pr: со́весть, ds: conscience}
+  - {id: ru-or-n00781-s001, ch: достоинство, pr: досто́инство, ds: dignity}
+  - {id: ru-or-n26790-s001, ch: честь, pr: честь, ds: honor}
+  - {id: ru-or-n01191-s001, ch: справедливость, pr: справедли́вость, ds: justice}
+  - {id: ru-or-n03171-s001, ch: несправедливость, pr: несправедли́вость, ds: injustice}
+  - {id: ru-or-n09819-s001, ch: равноправие, pr: равнопра́вие, ds: equality}
+  - {id: ru-or-n09268-s001, ch: дискриминация, pr: дискримина́ция, ds: discrimination}
+  - {id: ru-or-n09575-s001, ch: терпимость, pr: терпи́мость, ds: tolerance}
+  - {id: ru-or-n05714-s001, ch: предрассудок, pr: предрассу́док, ds: prejudice}
+  - {id: ru-or-n05570-s001, ch: стереотип, pr: стереоти́п, ds: stereotype}
+  - {id: ru-or-n14578-s001, ch: идентичность, pr: иденти́чность, ds: identity}
+  - {id: ru-or-n00511-s001, ch: личность, pr: ли́чность, ds: personality}
+  - {id: ru-or-n06004-s001, ch: индивидуальность, pr: индивидуа́льность, ds: individuality}
+  - {id: ru-or-n04004-s001, ch: меньшинство, pr: меньшинство́, ds: minority}
+  - {id: ru-or-n00356-s001, ch: большинство, pr: большинство́, ds: majority}
+  - {id: ru-or-n02715-s001, ch: сообщество, pr: соо́бщество, ds: community}
+  - {id: ru-or-n00782-s001, ch: слой, pr: слой, ds: layer}
+  - {id: ru-or-n00754-s001, ch: поколение, pr: поколе́ние, ds: generation}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00622-s001, ch: победить, pr: победи́ть, ds: win}
+  - {id: ru-or-v02352-s001, ch: побеждать, pr: побежда́ть, ds: win}
+  - {id: ru-or-v01443-s001, ch: нападать, pr: напада́ть, ds: attack}
+  - {id: ru-or-v01262-s001, ch: напасть, pr: напа́сть, ds: attack}
+  - {id: ru-or-v01041-s001, ch: отступить, pr: отступи́ть, ds: retreat}
+  - {id: ru-or-v00958-s001, ch: отступать, pr: отступа́ть, ds: retreat}
+  - {id: ru-or-v03613-s001, ch: переселиться, pr: пересели́ться, ds: move}
+  - {id: ru-or-v07526-s001, ch: переселяться, pr: переселя́ться, ds: move}
+  review_grammar:
+  - {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+- id: level-22-society-02
+  title: Society and community - 2
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-n00061-s002, ch: пол, pr: пол, ds: sex}
+  - {id: ru-or-n03726-s001, ch: раса, pr: ра́са, ds: race}
+  - {id: ru-or-n02188-s001, ch: национальность, pr: национа́льность, ds: nationality}
+  - {id: ru-or-n04161-s001, ch: разнообразие, pr: разнообра́зие, ds: diversity}
+  - {id: ru-or-n05564-s001, ch: солидарность, pr: солида́рность, ds: solidarity}
+  - {id: ru-or-n04300-s001, ch: сострадание, pr: сострада́ние, ds: compassion}
+  - {id: ru-or-n03862-s001, ch: милосердие, pr: милосе́рдие, ds: mercy}
+  - {id: ru-or-n10035-s001, ch: благотворительность, pr: благотвори́тельность, ds: charity}
+  - {id: ru-or-n02436-s001, ch: жестокость, pr: жесто́кость, ds: cruelty}
+  - {id: ru-or-n02465-s001, ch: насилие, pr: наси́лие, ds: violence}
+  - {id: ru-or-n07524-s001, ch: принуждение, pr: принужде́ние, ds: coercion}
+  - {id: ru-or-n00910-s001, ch: угроза, pr: угро́за, ds: threat}
+  - {id: ru-or-n02992-s001, ch: унижение, pr: униже́ние, ds: humiliation}
+  - {id: ru-or-n03032-s001, ch: оскорбление, pr: оскорбле́ние, ds: insult}
+  - {id: ru-or-n00540-s002, ch: долг, pr: долг, ds: duty}
+  - {id: ru-or-n02476-s001, ch: доброта, pr: доброта́, ds: kindness}
+  - {id: ru-or-n06238-s001, ch: щедрость, pr: ще́дрость, ds: generosity}
+  - {id: ru-or-n06752-s001, ch: эгоизм, pr: эгои́зм, ds: egoism}
+  - {id: ru-or-n15232-s001, ch: альтруизм, pr: альтруи́зм, ds: altruism}
+  - {id: ru-or-n03560-s001, ch: честность, pr: че́стность, ds: honesty}
+  - {id: ru-or-n04507-s001, ch: искренность, pr: и́скренность, ds: sincerity}
+  - {id: ru-or-n04935-s001, ch: искушение, pr: искуше́ние, ds: temptation}
+  - {id: ru-or-n03589-s001, ch: соблазн, pr: собла́зн, ds: temptation}
+  - {id: ru-or-n12884-s001, ch: дилемма, pr: диле́мма, ds: dilemma}
+  - {id: ru-or-n01792-s001, ch: противоречие, pr: противоре́чие, ds: contradiction}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n14578-s001, ch: идентичность, pr: иденти́чность, ds: identity}
+  - {id: ru-or-n00511-s001, ch: личность, pr: ли́чность, ds: personality}
+  - {id: ru-or-n06004-s001, ch: индивидуальность, pr: индивидуа́льность, ds: individuality}
+  - {id: ru-or-n04004-s001, ch: меньшинство, pr: меньшинство́, ds: minority}
+  - {id: ru-or-n00356-s001, ch: большинство, pr: большинство́, ds: majority}
+  - {id: ru-or-n02715-s001, ch: сообщество, pr: соо́бщество, ds: community}
+  - {id: ru-or-n00782-s001, ch: слой, pr: слой, ds: layer}
+  - {id: ru-or-n00754-s001, ch: поколение, pr: поколе́ние, ds: generation}
+  review_grammar:
+  - {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+- id: level-22-society-03
+  title: Society and community - 3
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-n06759-s001, ch: убеждённость, pr: убеждённость, ds: conviction}
+  - {id: ru-or-n04264-s001, ch: мировоззрение, pr: мировоззре́ние, ds: world outlook}
+  - {id: ru-or-n02331-s001, ch: восприятие, pr: восприя́тие, ds: perception}
+  - {id: ru-or-n06170-s001, ch: интерпретация, pr: интерпрета́ция, ds: interpretation}
+  - {id: ru-or-n00630-s001, ch: позиция, pr: пози́ция, ds: position}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n06752-s001, ch: эгоизм, pr: эгои́зм, ds: egoism}
+  - {id: ru-or-n15232-s001, ch: альтруизм, pr: альтруи́зм, ds: altruism}
+  - {id: ru-or-n03560-s001, ch: честность, pr: че́стность, ds: honesty}
+  - {id: ru-or-n04507-s001, ch: искренность, pr: и́скренность, ds: sincerity}
+  - {id: ru-or-n04935-s001, ch: искушение, pr: искуше́ние, ds: temptation}
+  - {id: ru-or-n03589-s001, ch: соблазн, pr: собла́зн, ds: temptation}
+  - {id: ru-or-n12884-s001, ch: дилемма, pr: диле́мма, ds: dilemma}
+  - {id: ru-or-n01792-s001, ch: противоречие, pr: противоре́чие, ds: contradiction}
+  review_grammar:
+  - {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+- id: level-22-culture-01
+  title: Practices and perspectives - 1
+  outcome: Explain a practice in context without claiming cultural uniformity.
+  vocabulary:
+  - {id: ru-or-n07668-s001, ch: духовность, pr: духо́вность, ds: spirituality}
+  - {id: ru-or-n08336-s001, ch: верование, pr: ве́рование, ds: belief}
+  - {id: ru-or-n01637-s001, ch: учение, pr: уче́ние, ds: doctrine}
+  - {id: ru-or-n15023-s001, ch: религиозность, pr: религио́зность, ds: religiousness}
+  - {id: ru-or-n13790-s001, ch: атеизм, pr: атеи́зм, ds: atheism}
+  - {id: ru-or-n03945-s001, ch: христианство, pr: христиа́нство, ds: Christianity}
+  - {id: ru-or-n06530-s001, ch: ислам, pr: исла́м, ds: Islam}
+  - {id: ru-or-n08416-s001, ch: буддизм, pr: будди́зм, ds: Buddhism}
+  - {id: ru-or-n11399-s001, ch: иудаизм, pr: иудаи́зм, ds: Judaism}
+  - {id: ru-or-n17866-s001, ch: индуизм, pr: индуи́зм, ds: Hinduism}
+  - {id: ru-or-n14243-s001, ch: язычество, pr: язы́чество, ds: paganism}
+  - {id: ru-or-n06583-s001, ch: православие, pr: правосла́вие, ds: orthodoxy}
+  - {id: ru-or-n14831-s001, ch: католицизм, pr: католици́зм, ds: Catholicism}
+  - {id: ru-or-n21951-s001, ch: протестантизм, pr: протестанти́зм, ds: Protestantism}
+  - {id: ru-or-n00587-s001, ch: церковь, pr: це́рковь, ds: church}
+  - {id: ru-or-n00847-s001, ch: храм, pr: храм, ds: temple}
+  - {id: ru-or-n02108-s001, ch: собор, pr: собо́р, ds: cathedral}
+  - {id: ru-or-n08007-s001, ch: мечеть, pr: мече́ть, ds: mosque}
+  - {id: ru-or-n05018-s001, ch: синагога, pr: синаго́га, ds: synagogue}
+  - {id: ru-or-n01459-s001, ch: монастырь, pr: монасты́рь, ds: monastery}
+  - {id: ru-or-n01796-s001, ch: священник, pr: свяще́нник, ds: priest}
+  - {id: ru-or-n09018-s001, ch: духовенство, pr: духове́нство, ds: clergy}
+  - {id: ru-or-n01366-s001, ch: монах, pr: мона́х, ds: monk}
+  - {id: ru-or-n07622-s001, ch: монахиня, pr: мона́хиня, ds: nun}
+  - {id: ru-or-n02171-s001, ch: молитва, pr: моли́тва, ds: prayer}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-22-culture-02
+  title: Practices and perspectives - 2
+  outcome: Explain a practice in context without claiming cultural uniformity.
+  vocabulary:
+  - {id: ru-or-n00065-s001, ch: бог, pr: бог, ds: God}
+  - {id: ru-or-n04055-s001, ch: богиня, pr: боги́ня, ds: goddess}
+  - {id: ru-or-n06795-s001, ch: святыня, pr: святы́ня, ds: object of worship}
+  - {id: ru-or-n10709-s001, ch: святость, pr: свя́тость, ds: holiness}
+  - {id: ru-or-n04329-s001, ch: обряд, pr: обря́д, ds: rite}
+  - {id: ru-or-n03595-s001, ch: ритуал, pr: ритуа́л, ds: ritual}
+  - {id: ru-or-n02319-s001, ch: церемония, pr: церемо́ния, ds: ceremony}
+  - {id: ru-or-n07597-s001, ch: таинство, pr: та́инство, ds: sacrament}
+  - {id: ru-or-n04487-s001, ch: исповедь, pr: и́споведь, ds: confession}
+  - {id: ru-or-n06659-s001, ch: покаяние, pr: покая́ние, ds: repentance}
+  - {id: ru-or-n00728-s001, ch: грех, pr: грех, ds: sin}
+  - {id: ru-or-n11545-s001, ch: искупление, pr: искупле́ние, ds: atonement}
+  - {id: ru-or-n06215-s001, ch: благословение, pr: благослове́ние, ds: blessing}
+  - {id: ru-or-n11167-s001, ch: паломник, pr: пало́мник, ds: pilgrim}
+  - {id: ru-or-n11666-s001, ch: паломничество, pr: пало́мничество, ds: pilgrimage}
+  - {id: ru-or-n11885-s001, ch: жертвоприношение, pr: жертвоприноше́ние, ds: sacrifice}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n08007-s001, ch: мечеть, pr: мече́ть, ds: mosque}
+  - {id: ru-or-n05018-s001, ch: синагога, pr: синаго́га, ds: synagogue}
+  - {id: ru-or-n01459-s001, ch: монастырь, pr: монасты́рь, ds: monastery}
+  - {id: ru-or-n01796-s001, ch: священник, pr: свяще́нник, ds: priest}
+  - {id: ru-or-n09018-s001, ch: духовенство, pr: духове́нство, ds: clergy}
+  - {id: ru-or-n01366-s001, ch: монах, pr: мона́х, ds: monk}
+  - {id: ru-or-n07622-s001, ch: монахиня, pr: мона́хиня, ds: nun}
+  - {id: ru-or-n02171-s001, ch: молитва, pr: моли́тва, ds: prayer}
+  review_grammar: []
+- id: level-22-society-practice-01
+  title: Society and community - sentence practice 1
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-qualified-generalization, ch: не все / далеко не все / не всегда / в некоторых случаях, ds: Restrict a generalization without reversing it}
+  review_vocabulary:
+  - {id: ru-or-n03589-s001, ch: соблазн, pr: собла́зн, ds: temptation}
+  - {id: ru-or-n12884-s001, ch: дилемма, pr: диле́мма, ds: dilemma}
+  - {id: ru-or-n01792-s001, ch: противоречие, pr: противоре́чие, ds: contradiction}
+  - {id: ru-or-n06759-s001, ch: убеждённость, pr: убеждённость, ds: conviction}
+  - {id: ru-or-n04264-s001, ch: мировоззрение, pr: мировоззре́ние, ds: world outlook}
+  - {id: ru-or-n02331-s001, ch: восприятие, pr: восприя́тие, ds: perception}
+  - {id: ru-or-n06170-s001, ch: интерпретация, pr: интерпрета́ция, ds: interpretation}
+  - {id: ru-or-n00630-s001, ch: позиция, pr: пози́ция, ds: position}
+  review_grammar:
+  - {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+- id: level-22-culture-practice-01
+  title: Practices and perspectives - sentence practice 1
+  outcome: Explain a practice in context without claiming cultural uniformity.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-viewpoint-frame, ch: 'с точки зрения [genitive perspective]; для [genitive experiencer]', ds: Attribute an evaluation to a particular perspective}
+  review_vocabulary:
+  - {id: ru-or-n04487-s001, ch: исповедь, pr: и́споведь, ds: confession}
+  - {id: ru-or-n06659-s001, ch: покаяние, pr: покая́ние, ds: repentance}
+  - {id: ru-or-n00728-s001, ch: грех, pr: грех, ds: sin}
+  - {id: ru-or-n11545-s001, ch: искупление, pr: искупле́ние, ds: atonement}
+  - {id: ru-or-n06215-s001, ch: благословение, pr: благослове́ние, ds: blessing}
+  - {id: ru-or-n11167-s001, ch: паломник, pr: пало́мник, ds: pilgrim}
+  - {id: ru-or-n11666-s001, ch: паломничество, pr: пало́мничество, ds: pilgrimage}
+  - {id: ru-or-n11885-s001, ch: жертвоприношение, pr: жертвоприноше́ние, ds: sacrifice}
+  review_grammar: []
+- id: level-22-argument-practice-01
+  title: Arguments and decisions - sentence practice 1
+  outcome: Defend a position while addressing a relevant objection or qualification.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-concession, ch: 'хотя [clause]; несмотря на [accusative noun]', ds: Acknowledge a fact while resisting its expected implication}
+  - {id: ru-g-concessive-ni, ch: как бы ни / кто бы ни / где бы ни ..., ds: Generalize across alternatives in a concessive clause}
+  review_vocabulary:
+  - {id: ru-or-v00362-s001, ch: утверждать, pr: утвержда́ть, ds: assert}
+  - {id: ru-or-o00238-s001, ch: вероятно, pr: вероя́тно, ds: very likely}
+  - {id: ru-or-o00271-s001, ch: очевидно, pr: очеви́дно, ds: obviously}
+  - {id: ru-or-o00403-s001, ch: несомненно, pr: несомне́нно, ds: undoubtedly}
+  - {id: ru-or-o01991-s001, ch: пожалуй, pr: пожа́луй, ds: perhaps}
+  - {id: ru-or-o02851-s001, ch: скорее, pr: скоре́е, ds: rather}
+  - {id: ru-or-o00165-s001, ch: иначе, pr: ина́че, ds: otherwise}
+  - {id: ru-or-o00263-s001, ch: напротив, pr: напро́тив, ds: on the contrary}
+  review_grammar:
+  - {id: ru-g-hypothetical-by, ch: 'если бы [past-form condition], [past-form consequence] бы', ds: Express a hypothetical or unreal condition}
+  - {id: ru-g-only-if, ch: 'только если [necessary condition]', ds: State a necessary condition rather than a guarantee}

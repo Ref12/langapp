@@ -1,0 +1,1931 @@
+schema_version: 1
+id: ru-tourist
+title: Russian for a short visit
+language: russian
+level_basis: Independent travel route with all vocabulary, fixed forms and construction prerequisites introduced within the route; no completed core level required.
+review_policy: Use a few phrases and senses per lesson; retrieve earlier and fragile items on later days. Source-derived lexical stress is a reading aid, not phonetic transcription or audio evidence. Original travel phrases require human review and provide no legal, medical, payment, accessibility or safety guarantees.
+quick_start:
+- polite-repair
+- food-basics
+- finding-your-way
+- paying
+- asking-for-help
+units:
+- id: polite-repair
+  title: Make contact and ask again
+  outcome: Greet politely, signal that a message was not understood, and request repetition, slower speech, or writing; pointing and reading are valid supported practice, not evidence of spontaneous speech.
+  vocabulary:
+  - ru-or-o00006-s001
+  - ru-or-v00021-s001
+  grammar:
+  - ru-g-polite-repair
+  - ru-g-present-identity
+  - ru-g-basic-negation
+  review_vocabulary: []
+  review_grammar: []
+  phrases:
+  - id: ru-tourist-p001
+    ch: Здравствуйте.
+    pr: Здра́вствуйте
+    ds: Hello. (polite)
+    items: []
+    grammar:
+    - ru-g-polite-repair
+    realizations:
+    - ch: Здравствуйте
+      pr: Здра́вствуйте
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o02191-accented
+  - id: ru-tourist-p002
+    ch: Извините, я не понимаю.
+    pr: Извини́те я не понима́ю
+    ds: Sorry, I do not understand.
+    items:
+    - ru-or-o00006-s001
+    - ru-or-v00021-s001
+    grammar:
+    - ru-g-polite-repair
+    - ru-g-basic-negation
+    realizations:
+    - ch: Извините
+      pr: Извини́те
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o03145-accented
+    - ch: я
+      pr: я
+      items:
+      - ru-or-o00006-s001
+      grammar: []
+      form_id: ru-or-o00006-s001-canonical
+    - ch: не
+      pr: не
+      items: []
+      grammar:
+      - ru-g-basic-negation
+      form_id: ru-fixed-basic-negation-o00003-accented
+    - ch: понимаю
+      pr: понима́ю
+      items:
+      - ru-or-v00021-s001
+      grammar: []
+      form_id: ru-or-v00021-f-presfut-sg1-01
+  - id: ru-tourist-p003
+    ch: Повторите, пожалуйста.
+    pr: Повтори́те пожа́луйста
+    ds: Please repeat that.
+    items: []
+    grammar:
+    - ru-g-polite-repair
+    realizations:
+    - ch: Повторите
+      pr: Повтори́те
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-v00206-imperative-pl
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p004
+    ch: Говорите медленнее, пожалуйста.
+    pr: Говори́те ме́дленнее пожа́луйста
+    ds: Please speak more slowly.
+    items: []
+    grammar:
+    - ru-g-polite-repair
+    realizations:
+    - ch: Говорите
+      pr: Говори́те
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-v00005-imperative-pl
+    - ch: медленнее
+      pr: ме́дленнее
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-a00590-comparative
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p005
+    ch: Напишите, пожалуйста.
+    pr: Напиши́те пожа́луйста
+    ds: Please write it down.
+    items: []
+    grammar:
+    - ru-g-polite-repair
+    realizations:
+    - ch: Напишите
+      pr: Напиши́те
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-v00059-imperative-pl
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+- id: food-basics
+  title: Ask for water and a simple meal
+  outcome: Request water, tea, a menu, or soup and check a simple identification; the request does not establish availability, ingredients, or dietary safety.
+  vocabulary:
+  - ru-or-n00029-s001
+  - ru-or-n03397-s001
+  - ru-or-n00270-s001
+  - ru-or-n01238-s001
+  - ru-or-v00061-s001
+  - ru-or-v00042-s001
+  - ru-or-a00015-s001
+  grammar:
+  - ru-g-polite-vy
+  - ru-g-present-conjugation
+  - ru-g-gender-agreement
+  - ru-g-accusative-object
+  - ru-g-permission-request
+  - ru-g-basic-questions
+  review_vocabulary:
+  - ru-or-o00006-s001
+  - ru-or-v00021-s001
+  review_grammar:
+  - ru-g-polite-repair
+  - ru-g-present-identity
+  - ru-g-basic-negation
+  phrases:
+  - id: ru-tourist-p006
+    ch: Можно воду, пожалуйста?
+    pr: Мо́жно во́ду пожа́луйста
+    ds: Could I have some water, please?
+    items:
+    - ru-or-n00029-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-polite-repair
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: воду
+      pr: во́ду
+      items:
+      - ru-or-n00029-s001
+      grammar: []
+      form_id: ru-or-n00029-f-sg-acc-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p007
+    ch: Можно меню, пожалуйста?
+    pr: Мо́жно меню́ пожа́луйста
+    ds: Could I have a menu, please?
+    items:
+    - ru-or-n03397-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-polite-repair
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: меню
+      pr: меню́
+      items:
+      - ru-or-n03397-s001
+      grammar: []
+      form_id: ru-or-n03397-s001-canonical
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p008
+    ch: Можно чай, пожалуйста?
+    pr: Мо́жно ча́й пожа́луйста
+    ds: Could I have some tea, please?
+    items:
+    - ru-or-n00270-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-polite-repair
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: чай
+      pr: ча́й
+      items:
+      - ru-or-n00270-s001
+      grammar: []
+      form_id: ru-or-n00270-f-sg-acc-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p009
+    ch: Можно суп, пожалуйста?
+    pr: Мо́жно су́п пожа́луйста
+    ds: Could I have some soup, please?
+    items:
+    - ru-or-n01238-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-polite-repair
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: суп
+      pr: су́п
+      items:
+      - ru-or-n01238-s001
+      grammar: []
+      form_id: ru-or-n01238-f-sg-acc-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p010
+    ch: Это вода?
+    pr: Э́то вода́
+    ds: Is this water?
+    items:
+    - ru-or-n00029-s001
+    grammar:
+    - ru-g-present-identity
+    - ru-g-basic-questions
+    realizations:
+    - ch: Это
+      pr: Э́то
+      items: []
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-fixed-present-identity-o00010-accented
+    - ch: вода
+      pr: вода́
+      items:
+      - ru-or-n00029-s001
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-or-n00029-f-sg-nom-01
+- id: finding-your-way
+  title: Locate a place and check the direction
+  outcome: Ask where a toilet or hotel is, request a walking route to a station, and ask someone to show a place on a map; verify the actual destination and response.
+  vocabulary:
+  - ru-or-n01268-s001
+  - ru-or-n00698-s001
+  - ru-or-n00736-s001
+  - ru-or-n00320-s001
+  - ru-or-a00003-s001
+  - ru-or-o00160-s001
+  grammar:
+  - ru-g-location-prepositional
+  - ru-g-place-direction-origin
+  - ru-g-polite-help-imperative
+  review_vocabulary:
+  - ru-or-n03397-s001
+  - ru-or-n00270-s001
+  - ru-or-n01238-s001
+  - ru-or-v00061-s001
+  - ru-or-v00042-s001
+  - ru-or-a00015-s001
+  review_grammar:
+  - ru-g-accusative-object
+  - ru-g-permission-request
+  - ru-g-basic-questions
+  phrases:
+  - id: ru-tourist-p011
+    ch: Где туалет?
+    pr: Где туале́т
+    ds: Where is the toilet?
+    items:
+    - ru-or-n01268-s001
+    grammar:
+    - ru-g-basic-questions
+    realizations:
+    - ch: Где
+      pr: Где
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00044-accented
+    - ch: туалет
+      pr: туале́т
+      items:
+      - ru-or-n01268-s001
+      grammar: []
+      form_id: ru-or-n01268-f-sg-nom-01
+  - id: ru-tourist-p012
+    ch: Где гостиница?
+    pr: Где гости́ница
+    ds: Where is the hotel?
+    items:
+    - ru-or-n00698-s001
+    grammar:
+    - ru-g-basic-questions
+    realizations:
+    - ch: Где
+      pr: Где
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00044-accented
+    - ch: гостиница
+      pr: гости́ница
+      items:
+      - ru-or-n00698-s001
+      grammar: []
+      form_id: ru-or-n00698-f-sg-nom-01
+  - id: ru-tourist-p013
+    ch: Как пройти на вокзал?
+    pr: Как пройти́ на вокза́л
+    ds: How do I walk to the station?
+    items:
+    - ru-or-n00736-s001
+    grammar:
+    - ru-g-place-direction-origin
+    realizations:
+    - ch: Как
+      pr: Как
+      items: []
+      grammar:
+      - ru-g-place-direction-origin
+      form_id: ru-fixed-place-direction-origin-a00002-accented
+    - ch: пройти
+      pr: пройти́
+      items: []
+      grammar:
+      - ru-g-place-direction-origin
+      form_id: ru-fixed-place-direction-origin-v00067-accented
+    - ch: на
+      pr: на
+      items: []
+      grammar:
+      - ru-g-place-direction-origin
+      form_id: ru-fixed-place-direction-origin-o00005-accented
+    - ch: вокзал
+      pr: вокза́л
+      items:
+      - ru-or-n00736-s001
+      grammar: []
+      form_id: ru-or-n00736-f-sg-acc-01
+  - id: ru-tourist-p014
+    ch: Покажите на карте, пожалуйста.
+    pr: Покажи́те на ка́рте пожа́луйста
+    ds: Please show me on the map.
+    items:
+    - ru-or-n00320-s001
+    grammar:
+    - ru-g-polite-help-imperative
+    - ru-g-location-prepositional
+    - ru-g-polite-repair
+    realizations:
+    - ch: Покажите
+      pr: Покажи́те
+      items: []
+      grammar:
+      - ru-g-polite-help-imperative
+      form_id: ru-fixed-polite-help-imperative-v00076-imperative-pl
+    - ch: на
+      pr: на
+      items: []
+      grammar:
+      - ru-g-location-prepositional
+      form_id: ru-fixed-location-prepositional-o00005-accented
+    - ch: карте
+      pr: ка́рте
+      items:
+      - ru-or-n00320-s001
+      grammar: []
+      form_id: ru-or-n00320-f-sg-prep-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p015
+    ch: Это далеко?
+    pr: Э́то далеко́
+    ds: Is it far away?
+    items:
+    - ru-or-a00003-s001
+    - ru-or-o00160-s001
+    grammar:
+    - ru-g-present-identity
+    - ru-g-basic-questions
+    realizations:
+    - ch: Это
+      pr: Э́то
+      items:
+      - ru-or-a00003-s001
+      grammar:
+      - ru-g-present-identity
+      - ru-g-basic-questions
+      form_id: ru-or-a00003-f-decl-n-nom-01
+    - ch: далеко
+      pr: далеко́
+      items:
+      - ru-or-o00160-s001
+      grammar: []
+      form_id: ru-or-o00160-s001-canonical
+- id: paying
+  title: Ask about a price, quantity, and payment
+  outcome: Ask a price, request two tickets or a receipt, and ask about card payment; these questions make no claim about local payment availability, currency, or transaction rules.
+  vocabulary:
+  - ru-or-v00363-s001
+  - ru-or-n00497-s001
+  - ru-or-v00149-s001
+  - ru-or-n00320-s002
+  - ru-or-n05855-s001
+  grammar:
+  - ru-g-small-quantities
+  - ru-g-possession-existence
+  - ru-g-absence-genitive
+  - ru-g-plural-agreement
+  - ru-g-larger-quantities
+  review_vocabulary:
+  - ru-or-n01268-s001
+  - ru-or-n00698-s001
+  - ru-or-n00736-s001
+  - ru-or-n00320-s001
+  - ru-or-a00003-s001
+  - ru-or-o00160-s001
+  review_grammar:
+  - ru-g-location-prepositional
+  - ru-g-place-direction-origin
+  - ru-g-polite-help-imperative
+  phrases:
+  - id: ru-tourist-p016
+    ch: Сколько стоит билет?
+    pr: Ско́лько сто́ит биле́т
+    ds: How much does a ticket cost?
+    items:
+    - ru-or-v00363-s001
+    - ru-or-n00497-s001
+    grammar:
+    - ru-g-larger-quantities
+    realizations:
+    - ch: Сколько
+      pr: Ско́лько
+      items: []
+      grammar:
+      - ru-g-larger-quantities
+      form_id: ru-fixed-larger-quantities-o00101-accented
+    - ch: стоит
+      pr: сто́ит
+      items:
+      - ru-or-v00363-s001
+      grammar: []
+      form_id: ru-or-v00363-f-presfut-sg3-01
+    - ch: билет
+      pr: биле́т
+      items:
+      - ru-or-n00497-s001
+      grammar: []
+      form_id: ru-or-n00497-f-sg-nom-01
+  - id: ru-tourist-p017
+    ch: Сколько это стоит?
+    pr: Ско́лько э́то сто́ит
+    ds: How much does this cost?
+    items:
+    - ru-or-a00003-s001
+    - ru-or-v00363-s001
+    grammar:
+    - ru-g-larger-quantities
+    - ru-g-present-identity
+    realizations:
+    - ch: Сколько
+      pr: Ско́лько
+      items: []
+      grammar:
+      - ru-g-larger-quantities
+      form_id: ru-fixed-larger-quantities-o00101-accented
+    - ch: это
+      pr: э́то
+      items:
+      - ru-or-a00003-s001
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-or-a00003-f-decl-n-nom-01
+    - ch: стоит
+      pr: сто́ит
+      items:
+      - ru-or-v00363-s001
+      grammar: []
+      form_id: ru-or-v00363-f-presfut-sg3-01
+  - id: ru-tourist-p018
+    ch: Вы принимаете карты?
+    pr: Вы принима́ете ка́рты
+    ds: Do you accept cards?
+    items:
+    - ru-or-v00149-s001
+    - ru-or-n00320-s002
+    grammar:
+    - ru-g-polite-vy
+    - ru-g-present-conjugation
+    - ru-g-accusative-object
+    realizations:
+    - ch: Вы
+      pr: Вы
+      items: []
+      grammar:
+      - ru-g-polite-vy
+      form_id: ru-fixed-polite-vy-o00021-accented
+    - ch: принимаете
+      pr: принима́ете
+      items:
+      - ru-or-v00149-s001
+      grammar:
+      - ru-g-present-conjugation
+      - ru-g-accusative-object
+      form_id: ru-or-v00149-f-presfut-pl2-01
+    - ch: карты
+      pr: ка́рты
+      items:
+      - ru-or-n00320-s002
+      grammar: []
+      form_id: ru-or-n00320-f-pl-acc-01
+  - id: ru-tourist-p019
+    ch: Можно чек, пожалуйста?
+    pr: Мо́жно че́к пожа́луйста
+    ds: Could I have a receipt, please?
+    items:
+    - ru-or-n05855-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-polite-repair
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: чек
+      pr: че́к
+      items:
+      - ru-or-n05855-s001
+      grammar: []
+      form_id: ru-or-n05855-f-sg-acc-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p020
+    ch: Два билета, пожалуйста.
+    pr: Два биле́та пожа́луйста
+    ds: Two tickets, please.
+    items:
+    - ru-or-n00497-s001
+    grammar:
+    - ru-g-small-quantities
+    - ru-g-polite-repair
+    realizations:
+    - ch: Два
+      pr: Два
+      items: []
+      grammar:
+      - ru-g-small-quantities
+      form_id: ru-fixed-small-quantities-o00047-accented
+    - ch: билета
+      pr: биле́та
+      items:
+      - ru-or-n00497-s001
+      grammar: []
+      form_id: ru-or-n00497-f-sg-gen-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+- id: asking-for-help
+  title: Ask for help and a way to contact someone
+  outcome: Request help, explain a need to call, ask where a doctor is, or clarify an address; these are language exercises, not emergency procedures or assurance that help will be available.
+  vocabulary:
+  - ru-or-v00218-s001
+  - ru-or-n00172-s001
+  - ru-or-n00457-s001
+  - ru-or-o00063-s001
+  - ru-or-v00295-s001
+  grammar:
+  - ru-g-dative-need
+  review_vocabulary:
+  - ru-or-o00160-s001
+  - ru-or-v00363-s001
+  - ru-or-n00497-s001
+  - ru-or-v00149-s001
+  - ru-or-n00320-s002
+  - ru-or-n05855-s001
+  review_grammar:
+  - ru-g-absence-genitive
+  - ru-g-plural-agreement
+  - ru-g-larger-quantities
+  phrases:
+  - id: ru-tourist-p021
+    ch: Помогите, пожалуйста.
+    pr: Помоги́те пожа́луйста
+    ds: Please help me.
+    items: []
+    grammar:
+    - ru-g-polite-help-imperative
+    - ru-g-polite-repair
+    realizations:
+    - ch: Помогите
+      pr: Помоги́те
+      items: []
+      grammar:
+      - ru-g-polite-help-imperative
+      form_id: ru-fixed-polite-help-imperative-v00167-imperative-pl
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p022
+    ch: Мне нужно позвонить.
+    pr: Мне ну́жно позвони́ть
+    ds: I need to make a phone call.
+    items:
+    - ru-or-v00218-s001
+    grammar:
+    - ru-g-dative-need
+    realizations:
+    - ch: Мне
+      pr: Мне
+      items: []
+      grammar:
+      - ru-g-dative-need
+      form_id: ru-fixed-dative-need-o04984-accented
+    - ch: нужно
+      pr: ну́жно
+      items: []
+      grammar:
+      - ru-g-dative-need
+      form_id: ru-fixed-dative-need-o01974-accented
+    - ch: позвонить
+      pr: позвони́ть
+      items:
+      - ru-or-v00218-s001
+      grammar: []
+      form_id: ru-or-v00218-s001-canonical
+  - id: ru-tourist-p023
+    ch: Где врач?
+    pr: Где вра́ч
+    ds: Where is a doctor?
+    items:
+    - ru-or-n00172-s001
+    grammar:
+    - ru-g-basic-questions
+    realizations:
+    - ch: Где
+      pr: Где
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00044-accented
+    - ch: врач
+      pr: вра́ч
+      items:
+      - ru-or-n00172-s001
+      grammar: []
+      form_id: ru-or-n00172-f-sg-nom-01
+  - id: ru-tourist-p024
+    ch: Я не понимаю адрес.
+    pr: Я не понима́ю а́дрес
+    ds: I do not understand the address.
+    items:
+    - ru-or-o00006-s001
+    - ru-or-v00021-s001
+    - ru-or-n00457-s001
+    grammar:
+    - ru-g-basic-negation
+    - ru-g-accusative-object
+    realizations:
+    - ch: Я
+      pr: Я
+      items:
+      - ru-or-o00006-s001
+      grammar:
+      - ru-g-accusative-object
+      form_id: ru-or-o00006-s001-canonical
+    - ch: не
+      pr: не
+      items: []
+      grammar:
+      - ru-g-basic-negation
+      form_id: ru-fixed-basic-negation-o00003-accented
+    - ch: понимаю
+      pr: понима́ю
+      items:
+      - ru-or-v00021-s001
+      grammar: []
+      form_id: ru-or-v00021-f-presfut-sg1-01
+    - ch: адрес
+      pr: а́дрес
+      items:
+      - ru-or-n00457-s001
+      grammar: []
+      form_id: ru-or-n00457-f-sg-acc-01
+  - id: ru-tourist-p025
+    ch: Можно здесь подождать?
+    pr: Мо́жно здесь подожда́ть
+    ds: May I wait here?
+    items:
+    - ru-or-o00063-s001
+    - ru-or-v00295-s001
+    grammar:
+    - ru-g-permission-request
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: здесь
+      pr: здесь
+      items:
+      - ru-or-o00063-s001
+      grammar: []
+      form_id: ru-or-o00063-s001-canonical
+    - ch: подождать
+      pr: подожда́ть
+      items:
+      - ru-or-v00295-s001
+      grammar: []
+      form_id: ru-or-v00295-s001-canonical
+- id: transport
+  title: Check a bus, stop, or journey
+  outcome: Identify a vehicle or stop, ask when a train departs, and state a station destination; check names, times, and transport details with current local information.
+  vocabulary:
+  - ru-or-n01192-s001
+  - ru-or-n00550-s001
+  - ru-or-n00305-s001
+  - ru-or-v00852-s001
+  - ru-or-v00107-s001
+  - ru-or-n01228-s001
+  - ru-or-v02582-s901
+  - ru-or-v00261-s001
+  - ru-or-v00009-s001
+  grammar:
+  - ru-g-reflexive-routines
+  - ru-g-current-motion
+  - ru-g-needed-noun
+  review_vocabulary:
+  - ru-or-n05855-s001
+  - ru-or-v00218-s001
+  - ru-or-n00172-s001
+  - ru-or-n00457-s001
+  - ru-or-o00063-s001
+  - ru-or-v00295-s001
+  review_grammar:
+  - ru-g-plural-agreement
+  - ru-g-larger-quantities
+  - ru-g-dative-need
+  phrases:
+  - id: ru-tourist-p026
+    ch: Где остановка?
+    pr: Где остано́вка
+    ds: Where is the stop?
+    items:
+    - ru-or-n01192-s001
+    grammar:
+    - ru-g-basic-questions
+    realizations:
+    - ch: Где
+      pr: Где
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00044-accented
+    - ch: остановка
+      pr: остано́вка
+      items:
+      - ru-or-n01192-s001
+      grammar: []
+      form_id: ru-or-n01192-f-sg-nom-01
+  - id: ru-tourist-p027
+    ch: Это автобус?
+    pr: Э́то авто́бус
+    ds: Is this a bus?
+    items:
+    - ru-or-n00550-s001
+    grammar:
+    - ru-g-present-identity
+    - ru-g-basic-questions
+    realizations:
+    - ch: Это
+      pr: Э́то
+      items: []
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-fixed-present-identity-o00010-accented
+    - ch: автобус
+      pr: авто́бус
+      items:
+      - ru-or-n00550-s001
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-or-n00550-f-sg-nom-01
+  - id: ru-tourist-p028
+    ch: Когда поезд отправляется?
+    pr: Когда́ по́езд отправля́ется
+    ds: When does the train leave?
+    items:
+    - ru-or-n00305-s001
+    - ru-or-v00852-s001
+    grammar:
+    - ru-g-basic-questions
+    - ru-g-reflexive-routines
+    realizations:
+    - ch: Когда
+      pr: Когда́
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00033-accented
+    - ch: поезд
+      pr: по́езд
+      items:
+      - ru-or-n00305-s001
+      grammar:
+      - ru-g-reflexive-routines
+      form_id: ru-or-n00305-f-sg-nom-01
+    - ch: отправляется
+      pr: отправля́ется
+      items:
+      - ru-or-v00852-s001
+      grammar: []
+      form_id: ru-or-v00852-f-presfut-sg3-01
+  - id: ru-tourist-p029
+    ch: Я еду на вокзал.
+    pr: Я е́ду на вокза́л
+    ds: I am going to the station by vehicle.
+    items:
+    - ru-or-o00006-s001
+    - ru-or-v00107-s001
+    - ru-or-n00736-s001
+    grammar:
+    - ru-g-current-motion
+    - ru-g-place-direction-origin
+    realizations:
+    - ch: Я
+      pr: Я
+      items:
+      - ru-or-o00006-s001
+      grammar:
+      - ru-g-current-motion
+      form_id: ru-or-o00006-s001-canonical
+    - ch: еду
+      pr: е́ду
+      items:
+      - ru-or-v00107-s001
+      grammar: []
+      form_id: ru-or-v00107-f-presfut-sg1-01
+    - ch: на
+      pr: на
+      items: []
+      grammar:
+      - ru-g-place-direction-origin
+      form_id: ru-fixed-place-direction-origin-o00005-accented
+    - ch: вокзал
+      pr: вокза́л
+      items:
+      - ru-or-n00736-s001
+      grammar: []
+      form_id: ru-or-n00736-f-sg-acc-01
+  - id: ru-tourist-p030
+    ch: Мне нужно такси.
+    pr: Мне ну́жно такси́
+    ds: I need a taxi.
+    items:
+    - ru-or-n01228-s001
+    grammar:
+    - ru-g-needed-noun
+    - ru-g-dative-need
+    realizations:
+    - ch: Мне
+      pr: Мне
+      items: []
+      grammar:
+      - ru-g-dative-need
+      form_id: ru-fixed-dative-need-o04984-accented
+    - ch: нужно
+      pr: ну́жно
+      items: []
+      grammar:
+      - ru-g-needed-noun
+      form_id: ru-fixed-needed-noun-a00018-short-n
+    - ch: такси
+      pr: такси́
+      items:
+      - ru-or-n01228-s001
+      grammar: []
+      form_id: ru-or-n01228-s001-canonical
+- id: accommodation
+  title: Ask about a room and a practical problem
+  outcome: Ask whether a room is available, identify a reservation, request a key, and describe a lack of water; ask about a proposed remedy instead of assuming a booking or facility guarantee.
+  vocabulary:
+  - ru-or-n00155-s001
+  - ru-or-n14963-s001
+  - ru-or-n00406-s001
+  - ru-or-n01158-s001
+  grammar: []
+  review_vocabulary:
+  - ru-or-v00852-s001
+  - ru-or-v00107-s001
+  - ru-or-n01228-s001
+  - ru-or-v02582-s901
+  - ru-or-v00261-s001
+  - ru-or-v00009-s001
+  review_grammar:
+  - ru-g-reflexive-routines
+  - ru-g-current-motion
+  - ru-g-needed-noun
+  phrases:
+  - id: ru-tourist-p031
+    ch: У вас есть номер?
+    pr: У вас есть но́мер
+    ds: Do you have a room available?
+    items:
+    - ru-or-n00155-s001
+    grammar:
+    - ru-g-possession-existence
+    realizations:
+    - ch: У
+      pr: У
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o00016-accented
+    - ch: вас
+      pr: вас
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o04983-accented
+    - ch: есть
+      pr: есть
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o04991-accented
+    - ch: номер
+      pr: но́мер
+      items:
+      - ru-or-n00155-s001
+      grammar: []
+      form_id: ru-or-n00155-f-sg-nom-01
+  - id: ru-tourist-p032
+    ch: У меня есть бронь.
+    pr: У меня́ есть бро́нь
+    ds: I have a reservation.
+    items:
+    - ru-or-n14963-s001
+    grammar:
+    - ru-g-possession-existence
+    realizations:
+    - ch: У
+      pr: У
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o00016-accented
+    - ch: меня
+      pr: меня́
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o04980-accented
+    - ch: есть
+      pr: есть
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o04991-accented
+    - ch: бронь
+      pr: бро́нь
+      items:
+      - ru-or-n14963-s001
+      grammar: []
+      form_id: ru-or-n14963-f-sg-nom-01
+  - id: ru-tourist-p033
+    ch: Можно ключ, пожалуйста?
+    pr: Мо́жно клю́ч пожа́луйста
+    ds: Could I have the key, please?
+    items:
+    - ru-or-n00406-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-polite-repair
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: ключ
+      pr: клю́ч
+      items:
+      - ru-or-n00406-s001
+      grammar: []
+      form_id: ru-or-n00406-f-sg-acc-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p034
+    ch: В номере нет воды.
+    pr: В но́мере нет воды́
+    ds: There is no water in the room.
+    items:
+    - ru-or-n00155-s001
+    - ru-or-n00029-s001
+    grammar:
+    - ru-g-location-prepositional
+    - ru-g-absence-genitive
+    realizations:
+    - ch: В
+      pr: В
+      items: []
+      grammar:
+      - ru-g-location-prepositional
+      form_id: ru-fixed-location-prepositional-o00002-accented
+    - ch: номере
+      pr: но́мере
+      items:
+      - ru-or-n00155-s001
+      grammar: []
+      form_id: ru-or-n00155-f-sg-prep-01
+    - ch: нет
+      pr: нет
+      items: []
+      grammar:
+      - ru-g-absence-genitive
+      form_id: ru-fixed-absence-genitive-o00040-accented
+    - ch: воды
+      pr: воды́
+      items:
+      - ru-or-n00029-s001
+      grammar: []
+      form_id: ru-or-n00029-f-sg-gen-01
+  - id: ru-tourist-p035
+    ch: Когда завтрак?
+    pr: Когда́ за́втрак
+    ds: When is breakfast?
+    items:
+    - ru-or-n01158-s001
+    grammar:
+    - ru-g-basic-questions
+    - ru-g-present-identity
+    realizations:
+    - ch: Когда
+      pr: Когда́
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00033-accented
+    - ch: завтрак
+      pr: за́втрак
+      items:
+      - ru-or-n01158-s001
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-or-n01158-f-sg-nom-01
+- id: food-restrictions
+  title: Explain an ingredient restriction and ask for checking
+  outcome: Ask about milk or nuts, request no sugar, and state a milk allergy as a language exercise; important allergy information, severity, and cross-contact needs require a professionally verified written explanation and qualified human confirmation, not these phrases alone.
+  vocabulary:
+  - ru-or-n01221-s001
+  - ru-or-n00692-s001
+  - ru-or-n02059-s001
+  - ru-or-n07164-s001
+  - ru-or-v00321-s001
+  - ru-or-v00355-s901
+  - ru-or-v00001-s001
+  - ru-or-v00352-s001
+  - ru-or-v00132-s001
+  - ru-or-v00277-s001
+  - ru-or-v00105-s001
+  grammar:
+  - ru-g-without-genitive
+  - ru-g-health-experiencer
+  - ru-g-past-agreement
+  - ru-g-imperfective-future
+  - ru-g-perfective-future
+  - ru-g-narrative-aspect
+  - ru-g-imperative-aspect
+  review_vocabulary:
+  - ru-or-v00261-s001
+  - ru-or-v00009-s001
+  - ru-or-n00155-s001
+  - ru-or-n14963-s001
+  - ru-or-n00406-s001
+  - ru-or-n01158-s001
+  review_grammar:
+  - ru-g-reflexive-routines
+  - ru-g-current-motion
+  - ru-g-needed-noun
+  phrases:
+  - id: ru-tourist-p036
+    ch: Чай без сахара, пожалуйста.
+    pr: Ча́й без са́хара пожа́луйста
+    ds: Tea without sugar, please.
+    items:
+    - ru-or-n00270-s001
+    - ru-or-n01221-s001
+    grammar:
+    - ru-g-without-genitive
+    - ru-g-polite-repair
+    realizations:
+    - ch: Чай
+      pr: Ча́й
+      items:
+      - ru-or-n00270-s001
+      grammar: []
+      form_id: ru-or-n00270-f-sg-acc-01
+    - ch: без
+      pr: без
+      items: []
+      grammar:
+      - ru-g-without-genitive
+      form_id: ru-fixed-without-genitive-o00056-accented
+    - ch: сахара
+      pr: са́хара
+      items:
+      - ru-or-n01221-s001
+      grammar: []
+      form_id: ru-or-n01221-f-sg-gen-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p037
+    ch: Здесь есть молоко?
+    pr: Здесь есть молоко́
+    ds: Is there milk in this?
+    items:
+    - ru-or-o00063-s001
+    - ru-or-n00692-s001
+    grammar:
+    - ru-g-possession-existence
+    - ru-g-basic-questions
+    realizations:
+    - ch: Здесь
+      pr: Здесь
+      items:
+      - ru-or-o00063-s001
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-or-o00063-s001-canonical
+    - ch: есть
+      pr: есть
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o04991-accented
+    - ch: молоко
+      pr: молоко́
+      items:
+      - ru-or-n00692-s001
+      grammar: []
+      form_id: ru-or-n00692-f-sg-nom-01
+  - id: ru-tourist-p038
+    ch: Здесь есть орехи?
+    pr: Здесь есть оре́хи
+    ds: Are there nuts in this?
+    items:
+    - ru-or-o00063-s001
+    - ru-or-n02059-s001
+    grammar:
+    - ru-g-possession-existence
+    - ru-g-basic-questions
+    realizations:
+    - ch: Здесь
+      pr: Здесь
+      items:
+      - ru-or-o00063-s001
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-or-o00063-s001-canonical
+    - ch: есть
+      pr: есть
+      items: []
+      grammar:
+      - ru-g-possession-existence
+      form_id: ru-fixed-possession-existence-o04991-accented
+    - ch: орехи
+      pr: оре́хи
+      items:
+      - ru-or-n02059-s001
+      grammar: []
+      form_id: ru-or-n02059-f-pl-nom-01
+  - id: ru-tourist-p039
+    ch: У меня аллергия на молоко.
+    pr: У меня́ аллерги́я на молоко́
+    ds: I am allergic to milk.
+    items:
+    - ru-or-n07164-s001
+    - ru-or-n00692-s001
+    grammar:
+    - ru-g-health-experiencer
+    realizations:
+    - ch: У
+      pr: У
+      items: []
+      grammar:
+      - ru-g-health-experiencer
+      form_id: ru-fixed-health-experiencer-o00016-accented
+    - ch: меня
+      pr: меня́
+      items: []
+      grammar:
+      - ru-g-health-experiencer
+      form_id: ru-fixed-health-experiencer-o04980-accented
+    - ch: аллергия
+      pr: аллерги́я
+      items:
+      - ru-or-n07164-s001
+      grammar: []
+      form_id: ru-or-n07164-f-sg-nom-01
+    - ch: на
+      pr: на
+      items: []
+      grammar:
+      - ru-g-health-experiencer
+      form_id: ru-fixed-health-experiencer-o00005-accented
+    - ch: молоко
+      pr: молоко́
+      items:
+      - ru-or-n00692-s001
+      grammar: []
+      form_id: ru-or-n00692-f-sg-acc-01
+  - id: ru-tourist-p040
+    ch: Проверьте, пожалуйста.
+    pr: Прове́рьте пожа́луйста
+    ds: Please check.
+    items:
+    - ru-or-v00321-s001
+    grammar:
+    - ru-g-imperative-aspect
+    - ru-g-polite-repair
+    realizations:
+    - ch: Проверьте
+      pr: Прове́рьте
+      items:
+      - ru-or-v00321-s001
+      grammar:
+      - ru-g-imperative-aspect
+      form_id: ru-or-v00321-f-imperative-pl-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+- id: shops-services
+  title: Clarify a purchase or service
+  outcome: Locate a shop, ask to see an item, request a bag, and ask for repair or replacement; distinguish a request from an entitlement or assurance that the service exists.
+  vocabulary:
+  - ru-or-n00274-s001
+  - ru-or-v00037-s002
+  - ru-or-n00943-s001
+  - ru-or-v02489-s001
+  - ru-or-v00741-s001
+  grammar: []
+  review_vocabulary:
+  - ru-or-v00355-s901
+  - ru-or-v00001-s001
+  - ru-or-v00352-s001
+  - ru-or-v00132-s001
+  - ru-or-v00277-s001
+  - ru-or-v00105-s001
+  review_grammar:
+  - ru-g-perfective-future
+  - ru-g-narrative-aspect
+  - ru-g-imperative-aspect
+  phrases:
+  - id: ru-tourist-p041
+    ch: Где магазин?
+    pr: Где магази́н
+    ds: Where is the shop?
+    items:
+    - ru-or-n00274-s001
+    grammar:
+    - ru-g-basic-questions
+    realizations:
+    - ch: Где
+      pr: Где
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00044-accented
+    - ch: магазин
+      pr: магази́н
+      items:
+      - ru-or-n00274-s001
+      grammar: []
+      form_id: ru-or-n00274-f-sg-nom-01
+  - id: ru-tourist-p042
+    ch: Можно посмотреть?
+    pr: Мо́жно посмотре́ть
+    ds: May I have a look?
+    items:
+    - ru-or-v00037-s002
+    grammar:
+    - ru-g-permission-request
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: посмотреть
+      pr: посмотре́ть
+      items:
+      - ru-or-v00037-s002
+      grammar: []
+      form_id: ru-or-v00037-s002-canonical
+  - id: ru-tourist-p043
+    ch: Можно пакет, пожалуйста?
+    pr: Мо́жно паке́т пожа́луйста
+    ds: Could I have a bag, please?
+    items:
+    - ru-or-n00943-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-polite-repair
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: пакет
+      pr: паке́т
+      items:
+      - ru-or-n00943-s001
+      grammar: []
+      form_id: ru-or-n00943-f-sg-acc-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p044
+    ch: Можно это починить?
+    pr: Мо́жно э́то почини́ть
+    ds: Can this be repaired?
+    items:
+    - ru-or-a00003-s001
+    - ru-or-v02489-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-accusative-object
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: это
+      pr: э́то
+      items:
+      - ru-or-a00003-s001
+      grammar:
+      - ru-g-accusative-object
+      form_id: ru-or-a00003-f-decl-n-acc-01
+    - ch: починить
+      pr: почини́ть
+      items:
+      - ru-or-v02489-s001
+      grammar: []
+      form_id: ru-or-v02489-s001-canonical
+  - id: ru-tourist-p045
+    ch: Можно заменить билет?
+    pr: Мо́жно замени́ть биле́т
+    ds: Can the ticket be replaced?
+    items:
+    - ru-or-v00741-s001
+    - ru-or-n00497-s001
+    grammar:
+    - ru-g-permission-request
+    - ru-g-accusative-object
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: заменить
+      pr: замени́ть
+      items:
+      - ru-or-v00741-s001
+      grammar:
+      - ru-g-accusative-object
+      form_id: ru-or-v00741-s001-canonical
+    - ch: билет
+      pr: биле́т
+      items:
+      - ru-or-n00497-s001
+      grammar: []
+      form_id: ru-or-n00497-f-sg-acc-01
+- id: ordinary-health
+  title: Explain a need and seek qualified help
+  outcome: Locate a pharmacy, describe feeling unwell or a headache, ask to see a doctor, and request writing; these short learning phrases cannot convey a diagnosis, urgency, medication suitability, or complete medical history and require qualified verification for consequential use.
+  vocabulary:
+  - ru-or-n02735-s001
+  - ru-or-o00163-s001
+  - ru-or-n00012-s001
+  grammar:
+  - ru-g-impersonal-time
+  - ru-g-dative-recipient
+  - ru-g-origins-and-people
+  review_vocabulary:
+  - ru-or-v00105-s001
+  - ru-or-n00274-s001
+  - ru-or-v00037-s002
+  - ru-or-n00943-s001
+  - ru-or-v02489-s001
+  - ru-or-v00741-s001
+  review_grammar:
+  - ru-g-perfective-future
+  - ru-g-narrative-aspect
+  - ru-g-imperative-aspect
+  phrases:
+  - id: ru-tourist-p046
+    ch: Где аптека?
+    pr: Где апте́ка
+    ds: Where is the pharmacy?
+    items:
+    - ru-or-n02735-s001
+    grammar:
+    - ru-g-basic-questions
+    realizations:
+    - ch: Где
+      pr: Где
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00044-accented
+    - ch: аптека
+      pr: апте́ка
+      items:
+      - ru-or-n02735-s001
+      grammar: []
+      form_id: ru-or-n02735-f-sg-nom-01
+  - id: ru-tourist-p047
+    ch: Мне плохо.
+    pr: Мне пло́хо
+    ds: I feel unwell.
+    items:
+    - ru-or-o00163-s001
+    grammar:
+    - ru-g-dative-need
+    - ru-g-impersonal-time
+    realizations:
+    - ch: Мне
+      pr: Мне
+      items: []
+      grammar:
+      - ru-g-dative-need
+      form_id: ru-fixed-dative-need-o04984-accented
+    - ch: плохо
+      pr: пло́хо
+      items:
+      - ru-or-o00163-s001
+      grammar:
+      - ru-g-impersonal-time
+      form_id: ru-or-o00163-s001-canonical
+  - id: ru-tourist-p048
+    ch: У меня болит голова.
+    pr: У меня́ боли́т голова́
+    ds: I have a headache.
+    items:
+    - ru-or-n00012-s001
+    grammar:
+    - ru-g-health-experiencer
+    realizations:
+    - ch: У
+      pr: У
+      items: []
+      grammar:
+      - ru-g-health-experiencer
+      form_id: ru-fixed-health-experiencer-o00016-accented
+    - ch: меня
+      pr: меня́
+      items: []
+      grammar:
+      - ru-g-health-experiencer
+      form_id: ru-fixed-health-experiencer-o04980-accented
+    - ch: болит
+      pr: боли́т
+      items: []
+      grammar:
+      - ru-g-health-experiencer
+      form_id: ru-fixed-health-experiencer-v14828-accented
+    - ch: голова
+      pr: голова́
+      items:
+      - ru-or-n00012-s001
+      grammar: []
+      form_id: ru-or-n00012-f-sg-nom-01
+  - id: ru-tourist-p049
+    ch: Мне нужно к врачу.
+    pr: Мне ну́жно к врачу́
+    ds: I need to see a doctor.
+    items:
+    - ru-or-n00172-s001
+    grammar:
+    - ru-g-dative-need
+    - ru-g-origins-and-people
+    realizations:
+    - ch: Мне
+      pr: Мне
+      items: []
+      grammar:
+      - ru-g-dative-need
+      form_id: ru-fixed-dative-need-o04984-accented
+    - ch: нужно
+      pr: ну́жно
+      items: []
+      grammar:
+      - ru-g-dative-need
+      form_id: ru-fixed-dative-need-o01974-accented
+    - ch: к
+      pr: к
+      items: []
+      grammar:
+      - ru-g-origins-and-people
+      form_id: ru-fixed-origins-and-people-o00015-accented
+    - ch: врачу
+      pr: врачу́
+      items:
+      - ru-or-n00172-s001
+      grammar: []
+      form_id: ru-or-n00172-f-sg-dat-01
+  - id: ru-tourist-p050
+    ch: Напишите это, пожалуйста.
+    pr: Напиши́те э́то пожа́луйста
+    ds: Please write this down.
+    items:
+    - ru-or-a00003-s001
+    grammar:
+    - ru-g-polite-repair
+    - ru-g-accusative-object
+    realizations:
+    - ch: Напишите
+      pr: Напиши́те
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-v00059-imperative-pl
+    - ch: это
+      pr: э́то
+      items:
+      - ru-or-a00003-s001
+      grammar:
+      - ru-g-accusative-object
+      form_id: ru-or-a00003-f-decl-n-acc-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+- id: timing
+  title: Check a time and change an arrangement
+  outcome: Ask the time, propose tomorrow, request a wait, and check whether a place is open; practise unexpected answers and verify current hours rather than relying on a memorized timetable.
+  vocabulary:
+  - ru-or-n00193-s001
+  - ru-or-o00162-s001
+  - ru-or-a00097-s001
+  grammar:
+  - ru-g-relative-kotory
+  - ru-g-full-participial-description
+  - ru-g-static-spatial-cases
+  - ru-g-instrumental-means
+  - ru-g-reflexive-passive
+  - ru-g-short-passive-result
+  review_vocabulary:
+  - ru-or-n00943-s001
+  - ru-or-v02489-s001
+  - ru-or-v00741-s001
+  - ru-or-n02735-s001
+  - ru-or-o00163-s001
+  - ru-or-n00012-s001
+  review_grammar:
+  - ru-g-impersonal-time
+  - ru-g-dative-recipient
+  - ru-g-origins-and-people
+  phrases:
+  - id: ru-tourist-p051
+    ch: Который час?
+    pr: Кото́рый ча́с
+    ds: What time is it?
+    items: []
+    grammar:
+    - ru-g-basic-questions
+    realizations:
+    - ch: Который
+      pr: Кото́рый
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-a00004-accented
+    - ch: час
+      pr: ча́с
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-n00025-sg-nom
+  - id: ru-tourist-p052
+    ch: Когда встреча?
+    pr: Когда́ встре́ча
+    ds: When is the meeting?
+    items:
+    - ru-or-n00193-s001
+    grammar:
+    - ru-g-basic-questions
+    - ru-g-present-identity
+    realizations:
+    - ch: Когда
+      pr: Когда́
+      items: []
+      grammar:
+      - ru-g-basic-questions
+      form_id: ru-fixed-basic-questions-o00033-accented
+    - ch: встреча
+      pr: встре́ча
+      items:
+      - ru-or-n00193-s001
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-or-n00193-f-sg-nom-01
+  - id: ru-tourist-p053
+    ch: Можно завтра?
+    pr: Мо́жно за́втра
+    ds: Would tomorrow be possible?
+    items:
+    - ru-or-o00162-s001
+    grammar:
+    - ru-g-permission-request
+    realizations:
+    - ch: Можно
+      pr: Мо́жно
+      items: []
+      grammar:
+      - ru-g-permission-request
+      form_id: ru-fixed-permission-request-o00061-accented
+    - ch: завтра
+      pr: за́втра
+      items:
+      - ru-or-o00162-s001
+      grammar: []
+      form_id: ru-or-o00162-s001-canonical
+  - id: ru-tourist-p054
+    ch: Подождите, пожалуйста.
+    pr: Подожди́те пожа́луйста
+    ds: Please wait a moment.
+    items:
+    - ru-or-v00295-s001
+    grammar:
+    - ru-g-imperative-aspect
+    - ru-g-polite-repair
+    realizations:
+    - ch: Подождите
+      pr: Подожди́те
+      items:
+      - ru-or-v00295-s001
+      grammar:
+      - ru-g-imperative-aspect
+      form_id: ru-or-v00295-f-imperative-pl-01
+    - ch: пожалуйста
+      pr: пожа́луйста
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00196-accented
+  - id: ru-tourist-p055
+    ch: Магазин открыт?
+    pr: Магази́н откры́т
+    ds: Is the shop open?
+    items:
+    - ru-or-n00274-s001
+    - ru-or-a00097-s001
+    grammar:
+    - ru-g-short-passive-result
+    - ru-g-basic-questions
+    realizations:
+    - ch: Магазин
+      pr: Магази́н
+      items:
+      - ru-or-n00274-s001
+      grammar:
+      - ru-g-short-passive-result
+      - ru-g-basic-questions
+      form_id: ru-or-n00274-f-sg-nom-01
+    - ch: открыт
+      pr: откры́т
+      items:
+      - ru-or-a00097-s001
+      grammar: []
+      form_id: ru-or-a00097-f-short-m-01
+- id: social-contact
+  title: Meet someone and close a conversation politely
+  outcome: Introduce yourself, ask about an available shared language, and thank someone; use polite address unless a familiar relationship is established, without inferring a person's identity or preferred language.
+  vocabulary:
+  - ru-or-n01342-s001
+  - ru-or-v00005-s001
+  - ru-or-o02067-s001
+  - ru-or-n00116-s001
+  grammar: []
+  review_vocabulary:
+  - ru-or-n02735-s001
+  - ru-or-o00163-s001
+  - ru-or-n00012-s001
+  - ru-or-n00193-s001
+  - ru-or-o00162-s001
+  - ru-or-a00097-s001
+  review_grammar:
+  - ru-g-instrumental-means
+  - ru-g-reflexive-passive
+  - ru-g-short-passive-result
+  phrases:
+  - id: ru-tourist-p056
+    ch: Я турист.
+    pr: Я тури́ст
+    ds: I am a tourist. (male speaker)
+    items:
+    - ru-or-o00006-s001
+    - ru-or-n01342-s001
+    grammar:
+    - ru-g-present-identity
+    realizations:
+    - ch: Я
+      pr: Я
+      items:
+      - ru-or-o00006-s001
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-or-o00006-s001-canonical
+    - ch: турист
+      pr: тури́ст
+      items:
+      - ru-or-n01342-s001
+      grammar: []
+      form_id: ru-or-n01342-f-sg-nom-01
+  - id: ru-tourist-p057
+    ch: Как вас зовут?
+    pr: Как вас зову́т
+    ds: What is your name? (polite)
+    items: []
+    grammar:
+    - ru-g-present-identity
+    - ru-g-polite-vy
+    - ru-g-basic-questions
+    realizations:
+    - ch: Как
+      pr: Как
+      items: []
+      grammar:
+      - ru-g-present-identity
+      - ru-g-polite-vy
+      - ru-g-basic-questions
+      form_id: ru-fixed-present-identity-a00002-accented
+    - ch: вас
+      pr: вас
+      items: []
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-fixed-present-identity-o04983-accented
+    - ch: зовут
+      pr: зову́т
+      items: []
+      grammar:
+      - ru-g-present-identity
+      form_id: ru-fixed-present-identity-v00123-presfut-pl3
+  - id: ru-tourist-p058
+    ch: Вы говорите по-английски?
+    pr: Вы говори́те по-англи́йски
+    ds: Do you speak English? (polite)
+    items:
+    - ru-or-v00005-s001
+    - ru-or-o02067-s001
+    grammar:
+    - ru-g-polite-vy
+    - ru-g-present-conjugation
+    realizations:
+    - ch: Вы
+      pr: Вы
+      items: []
+      grammar:
+      - ru-g-polite-vy
+      form_id: ru-fixed-polite-vy-o00021-accented
+    - ch: говорите
+      pr: говори́те
+      items:
+      - ru-or-v00005-s001
+      grammar:
+      - ru-g-present-conjugation
+      form_id: ru-or-v00005-f-presfut-pl2-01
+    - ch: по-английски
+      pr: по-англи́йски
+      items:
+      - ru-or-o02067-s001
+      grammar: []
+      form_id: ru-or-o02067-s001-canonical
+  - id: ru-tourist-p059
+    ch: Спасибо за помощь.
+    pr: Спаси́бо за по́мощь
+    ds: Thank you for your help.
+    items:
+    - ru-or-n00116-s001
+    grammar:
+    - ru-g-polite-repair
+    realizations:
+    - ch: Спасибо
+      pr: Спаси́бо
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00191-accented
+    - ch: за
+      pr: за
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00019-accented
+    - ch: помощь
+      pr: по́мощь
+      items:
+      - ru-or-n00116-s001
+      grammar: []
+      form_id: ru-or-n00116-f-sg-acc-01
+  - id: ru-tourist-p060
+    ch: До свидания.
+    pr: До свида́ния
+    ds: Goodbye.
+    items: []
+    grammar:
+    - ru-g-polite-repair
+    realizations:
+    - ch: До
+      pr: До
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-o00038-accented
+    - ch: свидания
+      pr: свида́ния
+      items: []
+      grammar:
+      - ru-g-polite-repair
+      form_id: ru-fixed-polite-repair-n01248-sg-gen

@@ -1,0 +1,583 @@
+schema_version: 3
+id: ru-level-21
+title: Explaining an investigation
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 21
+phase: analysis-argument
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+- ru-level-19
+- ru-level-20
+goals: &id001
+- Distinguish a method, an observed result, and an explanatory claim.
+- Interpret formal participial relations and measured comparisons.
+- Describe a dependency without turning correlation into causation.
+checkpoint:
+  task: Summarize a general-audience scientific account and identify a limitation or unanswered question in the evidence.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-21-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning task and ask for useful feedback.
+  vocabulary:
+  - {id: ru-or-n07799-s001, ch: атлас, pr: а́тлас, ds: atlas}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01036-s001, ch: переводить, pr: переводи́ть, ds: translate}
+  - {id: ru-or-v00389-s001, ch: перевести, pr: перевести́, ds: Translate}
+  - {id: ru-or-v00456-s001, ch: запомнить, pr: запо́мнить, ds: memorize}
+  - {id: ru-or-v00045-s001, ch: помнить, pr: по́мнить, ds: remember}
+  - {id: ru-or-v00070-s001, ch: забыть, pr: забы́ть, ds: forget}
+  - {id: ru-or-n00919-s001, ch: библиотека, pr: библиоте́ка, ds: library}
+  - {id: ru-or-n00506-s001, ch: образование, pr: образова́ние, ds: education}
+  - {id: ru-or-v00119-s901, ch: уметь, pr: уме́ть, ds: know how to}
+  review_grammar:
+  - {id: ru-g-learned-skill, ch: 'уметь + [infinitive]; мочь + [infinitive]', ds: Distinguish a learned skill from situational ability}
+  - {id: ru-g-po-dative, ch: 'по [dative subject / route / recurring day]', ds: Interpret selected по plus dative frames}
+- id: level-21-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00228-s001, ch: древний, pr: дре́вний, ds: ancient}
+  - {id: ru-or-a00333-s001, ch: старинный, pr: стари́нный, ds: ancient}
+  - {id: ru-or-a01158-s001, ch: средневековый, pr: средневеко́вый, ds: medieval}
+  - {id: ru-or-a01811-s001, ch: античный, pr: анти́чный, ds: ancient}
+  - {id: ru-or-a04543-s001, ch: доисторический, pr: доистори́ческий, ds: prehistoric}
+  - {id: ru-or-a00895-s001, ch: первобытный, pr: первобы́тный, ds: primitive}
+  - {id: ru-or-a01135-s001, ch: цивилизованный, pr: цивилизо́ванный, ds: civilized}
+  - {id: ru-or-a03038-s001, ch: феодальный, pr: феода́льный, ds: feudal}
+  - {id: ru-or-a01043-s001, ch: капиталистический, pr: капиталисти́ческий, ds: capitalist}
+  - {id: ru-or-a00419-s001, ch: социалистический, pr: социалисти́ческий, ds: socialist}
+  - {id: ru-or-a00372-s001, ch: коммунистический, pr: коммунисти́ческий, ds: communist}
+  - {id: ru-or-a00516-s001, ch: революционный, pr: революцио́нный, ds: revolutionary}
+  - {id: ru-or-a03104-s001, ch: колониальный, pr: колониа́льный, ds: colonial}
+  - {id: ru-or-a01767-s001, ch: имперский, pr: импе́рский, ds: imperial}
+  - {id: ru-or-a00423-s001, ch: царский, pr: ца́рский, ds: royal}
+  - {id: ru-or-a00542-s001, ch: королевский, pr: короле́вский, ds: royal}
+  - {id: ru-or-a01937-s001, ch: дворянский, pr: дворя́нский, ds: noble}
+  - {id: ru-or-a00735-s001, ch: крестьянский, pr: крестья́нский, ds: peasant-related}
+  - {id: ru-or-a00192-s001, ch: научный, pr: нау́чный, ds: scientific}
+  - {id: ru-or-a00264-s001, ch: физический, pr: физи́ческий, ds: physical}
+  - {id: ru-or-a00490-s001, ch: химический, pr: хими́ческий, ds: chemical}
+  - {id: ru-or-a00841-s001, ch: биологический, pr: биологи́ческий, ds: biological}
+  - {id: ru-or-a01474-s001, ch: географический, pr: географи́ческий, ds: geographic}
+  - {id: ru-or-a02336-s001, ch: геологический, pr: геологи́ческий, ds: geological}
+  - {id: ru-or-a02960-s001, ch: астрономический, pr: астрономи́ческий, ds: astronomical}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00695-s001, ch: судебный, pr: суде́бный, ds: judicial}
+  - {id: ru-or-a00837-s001, ch: административный, pr: администрати́вный, ds: administrative}
+  - {id: ru-or-a00788-s001, ch: юридический, pr: юриди́ческий, ds: legal}
+  - {id: ru-or-a07717-s001, ch: договорный, pr: догово́рный, ds: contractual}
+  - {id: ru-or-a02619-s001, ch: оптовый, pr: опто́вый, ds: wholesale}
+  - {id: ru-or-a04202-s001, ch: розничный, pr: ро́зничный, ds: retail}
+  - {id: ru-or-a03359-s001, ch: прибыльный, pr: при́быльный, ds: profitable}
+  - {id: ru-or-a04952-s001, ch: убыточный, pr: убы́точный, ds: unprofitable}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-21-description-02
+  title: Description and comparison - 2
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a01261-s001, ch: математический, pr: математи́ческий, ds: mathematical}
+  - {id: ru-or-a00312-s001, ch: медицинский, pr: медици́нский, ds: medical}
+  - {id: ru-or-a00559-s001, ch: психологический, pr: психологи́ческий, ds: psychological}
+  - {id: ru-or-a00207-s001, ch: исторический, pr: истори́ческий, ds: historical}
+  - {id: ru-or-a00295-s001, ch: естественный, pr: есте́ственный, ds: natural}
+  - {id: ru-or-a00455-s001, ch: искусственный, pr: иску́сственный, ds: artificial}
+  - {id: ru-or-a01542-s001, ch: органический, pr: органи́ческий, ds: organic}
+  - {id: ru-or-a05662-s001, ch: неорганический, pr: неоргани́ческий, ds: inorganic}
+  - {id: ru-or-a00044-s001, ch: живой, pr: живо́й, ds: alive}
+  - {id: ru-or-a01841-s001, ch: неживой, pr: неживо́й, ds: inanimate}
+  - {id: ru-or-a01930-s001, ch: генетический, pr: генети́ческий, ds: genetic}
+  - {id: ru-or-a01742-s001, ch: наследственный, pr: насле́дственный, ds: hereditary}
+  - {id: ru-or-a03008-s001, ch: эволюционный, pr: эволюцио́нный, ds: evolutionary}
+  - {id: ru-or-a02006-s001, ch: постепенный, pr: постепе́нный, ds: gradual}
+  - {id: ru-or-a01003-s001, ch: непрерывный, pr: непреры́вный, ds: continuous}
+  - {id: ru-or-a04913-s001, ch: циклический, pr: цикли́ческий, ds: cyclic}
+  - {id: ru-or-a02664-s001, ch: линейный, pr: лине́йный, ds: linear}
+  - {id: ru-or-a01358-s001, ch: относительный, pr: относи́тельный, ds: relative}
+  - {id: ru-or-a00576-s001, ch: абсолютный, pr: абсолю́тный, ds: absolute}
+  - {id: ru-or-a01247-s001, ch: качественный, pr: ка́чественный, ds: qualitative}
+  - {id: ru-or-a02406-s001, ch: количественный, pr: коли́чественный, ds: quantitative}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00735-s001, ch: крестьянский, pr: крестья́нский, ds: peasant-related}
+  - {id: ru-or-a00192-s001, ch: научный, pr: нау́чный, ds: scientific}
+  - {id: ru-or-a00264-s001, ch: физический, pr: физи́ческий, ds: physical}
+  - {id: ru-or-a00490-s001, ch: химический, pr: хими́ческий, ds: chemical}
+  - {id: ru-or-a00841-s001, ch: биологический, pr: биологи́ческий, ds: biological}
+  - {id: ru-or-a01474-s001, ch: географический, pr: географи́ческий, ds: geographic}
+  - {id: ru-or-a02336-s001, ch: геологический, pr: геологи́ческий, ds: geological}
+  - {id: ru-or-a02960-s001, ch: астрономический, pr: астрономи́ческий, ds: astronomical}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-21-science-01
+  title: Investigation and explanation - 1
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-n00239-s001, ch: наука, pr: нау́ка, ds: science}
+  - {id: ru-or-a00195-s001, ch: учёный, pr: учёный, ds: scientist}
+  - {id: ru-or-n01045-s001, ch: лаборатория, pr: лаборато́рия, ds: laboratory}
+  - {id: ru-or-n01878-s001, ch: метод, pr: ме́тод, ds: method}
+  - {id: ru-or-n03871-s001, ch: методика, pr: мето́дика, ds: method}
+  - {id: ru-or-n11166-s001, ch: методология, pr: методоло́гия, ds: methodology}
+  - {id: ru-or-n01573-s001, ch: физика, pr: фи́зика, ds: physics}
+  - {id: ru-or-n02717-s001, ch: химия, pr: хи́мия, ds: chemistry}
+  - {id: ru-or-n04395-s001, ch: биология, pr: биоло́гия, ds: biology}
+  - {id: ru-or-n03106-s001, ch: география, pr: геогра́фия, ds: geography}
+  - {id: ru-or-n10219-s001, ch: геология, pr: геоло́гия, ds: geology}
+  - {id: ru-or-n07694-s001, ch: астрономия, pr: астроно́мия, ds: astronomy}
+  - {id: ru-or-n02219-s001, ch: математика, pr: матема́тика, ds: mathematics}
+  - {id: ru-or-n01719-s001, ch: медицина, pr: медици́на, ds: medicine}
+  - {id: ru-or-n02290-s001, ch: психология, pr: психоло́гия, ds: psychology}
+  - {id: ru-or-n04575-s001, ch: социология, pr: социоло́гия, ds: sociology}
+  - {id: ru-or-n01741-s001, ch: философия, pr: филосо́фия, ds: philosophy}
+  - {id: ru-or-n00064-s002, ch: история, pr: исто́рия, ds: history}
+  - {id: ru-or-n11600-s001, ch: археология, pr: археоло́гия, ds: archaeology}
+  - {id: ru-or-n14789-s001, ch: лингвистика, pr: лингви́стика, ds: linguistics}
+  - {id: ru-or-n00969-s001, ch: модель, pr: моде́ль, ds: model}
+  - {id: ru-or-n00095-s001, ch: система, pr: систе́ма, ds: system}
+  - {id: ru-or-n00751-s001, ch: структура, pr: структу́ра, ds: structure}
+  - {id: ru-or-n00795-s001, ch: элемент, pr: элеме́нт, ds: element}
+  - {id: ru-or-n06636-s001, ch: компонент, pr: компоне́нт, ds: component}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-21-science-02
+  title: Investigation and explanation - 2
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-n00393-s001, ch: состав, pr: соста́в, ds: composition}
+  - {id: ru-or-n00957-s001, ch: вещество, pr: вещество́, ds: substance}
+  - {id: ru-or-n01872-s001, ch: материя, pr: мате́рия, ds: matter}
+  - {id: ru-or-n00447-s001, ch: масса, pr: ма́сса, ds: mass}
+  - {id: ru-or-n00705-s001, ch: вес, pr: вес, ds: weight}
+  - {id: ru-or-n04165-s001, ch: плотность, pr: пло́тность, ds: density}
+  - {id: ru-or-n00125-s001, ch: движение, pr: движе́ние, ds: movement}
+  - {id: ru-or-n04960-s001, ch: ускорение, pr: ускоре́ние, ds: acceleration}
+  - {id: ru-or-n00398-s001, ch: пространство, pr: простра́нство, ds: space}
+  - {id: ru-or-n00739-s001, ch: расстояние, pr: расстоя́ние, ds: distance}
+  - {id: ru-or-n01469-s001, ch: длина, pr: длина́, ds: length}
+  - {id: ru-or-n02683-s001, ch: ширина, pr: ширина́, ds: width}
+  - {id: ru-or-n00470-s001, ch: высота, pr: высота́, ds: height}
+  - {id: ru-or-n00429-s001, ch: глубина, pr: глубина́, ds: depth}
+  - {id: ru-or-n00296-s002, ch: площадь, pr: пло́щадь, ds: area}
+  - {id: ru-or-n01356-s001, ch: величина, pr: величина́, ds: quantity}
+  - {id: ru-or-n02146-s001, ch: единица, pr: едини́ца, ds: unit}
+  - {id: ru-or-n00244-s001, ch: метр, pr: метр, ds: metre}
+  - {id: ru-or-n02035-s001, ch: сантиметр, pr: сантиме́тр, ds: centimetre}
+  - {id: ru-or-n00359-s001, ch: километр, pr: киломе́тр, ds: kilometre}
+  - {id: ru-or-n06292-s001, ch: миллиметр, pr: миллиме́тр, ds: millimetre}
+  - {id: ru-or-n01881-s001, ch: грамм, pr: грамм, ds: gram}
+  - {id: ru-or-n01661-s001, ch: килограмм, pr: килогра́мм, ds: kilogram}
+  - {id: ru-or-n02392-s001, ch: литр, pr: литр, ds: litre}
+  - {id: ru-or-n01526-s001, ch: тонна, pr: то́нна, ds: ton}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00064-s002, ch: история, pr: исто́рия, ds: history}
+  - {id: ru-or-n11600-s001, ch: археология, pr: археоло́гия, ds: archaeology}
+  - {id: ru-or-n14789-s001, ch: лингвистика, pr: лингви́стика, ds: linguistics}
+  - {id: ru-or-n00969-s001, ch: модель, pr: моде́ль, ds: model}
+  - {id: ru-or-n00095-s001, ch: система, pr: систе́ма, ds: system}
+  - {id: ru-or-n00751-s001, ch: структура, pr: структу́ра, ds: structure}
+  - {id: ru-or-n00795-s001, ch: элемент, pr: элеме́нт, ds: element}
+  - {id: ru-or-n06636-s001, ch: компонент, pr: компоне́нт, ds: component}
+  review_grammar: []
+- id: level-21-science-03
+  title: Investigation and explanation - 3
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-n01645-s001, ch: формула, pr: фо́рмула, ds: formula}
+  - {id: ru-or-n05444-s001, ch: уравнение, pr: уравне́ние, ds: equation}
+  - {id: ru-or-n00178-s001, ch: число, pr: число́, ds: number}
+  - {id: ru-or-n00890-s001, ch: доля, pr: до́ля, ds: share}
+  - {id: ru-or-n05132-s001, ch: пропорция, pr: пропо́рция, ds: proportion}
+  - {id: ru-or-n00726-s001, ch: сумма, pr: су́мма, ds: sum}
+  - {id: ru-or-n08698-s001, ch: разность, pr: ра́зность, ds: difference}
+  - {id: ru-or-n05697-s001, ch: атом, pr: а́том, ds: atom}
+  - {id: ru-or-n05908-s001, ch: молекула, pr: моле́кула, ds: molecule}
+  - {id: ru-or-n02400-s001, ch: частица, pr: части́ца, ds: particle}
+  - {id: ru-or-n10335-s001, ch: электрон, pr: электро́н, ds: electron}
+  - {id: ru-or-n12144-s001, ch: протон, pr: прото́н, ds: proton}
+  - {id: ru-or-n14793-s001, ch: нейтрон, pr: нейтро́н, ds: neutron}
+  - {id: ru-or-n02761-s001, ch: ядро, pr: ядро́, ds: nucleus}
+  - {id: ru-or-n03876-s001, ch: излучение, pr: излуче́ние, ds: radiation}
+  - {id: ru-or-n05404-s001, ch: радиация, pr: радиа́ция, ds: radiation}
+  - {id: ru-or-n00572-s001, ch: тепло, pr: тепло́, ds: heat}
+  - {id: ru-or-n00709-s001, ch: холод, pr: хо́лод, ds: cold}
+  - {id: ru-or-n06852-s001, ch: трение, pr: тре́ние, ds: friction}
+  - {id: ru-or-n12631-s001, ch: гравитация, pr: гравита́ция, ds: gravitation}
+  - {id: ru-or-n01563-s001, ch: кислота, pr: кислота́, ds: acid}
+  - {id: ru-or-n09572-s001, ch: щёлочь, pr: щёлочь, ds: alkali}
+  - {id: ru-or-n00966-s001, ch: раствор, pr: раство́р, ds: solution}
+  - {id: ru-or-n00777-s001, ch: реакция, pr: реа́кция, ds: reaction}
+  - {id: ru-or-n00753-s001, ch: клетка, pr: кле́тка, ds: cell}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00244-s001, ch: метр, pr: метр, ds: metre}
+  - {id: ru-or-n02035-s001, ch: сантиметр, pr: сантиме́тр, ds: centimetre}
+  - {id: ru-or-n00359-s001, ch: километр, pr: киломе́тр, ds: kilometre}
+  - {id: ru-or-n06292-s001, ch: миллиметр, pr: миллиме́тр, ds: millimetre}
+  - {id: ru-or-n01881-s001, ch: грамм, pr: грамм, ds: gram}
+  - {id: ru-or-n01661-s001, ch: килограмм, pr: килогра́мм, ds: kilogram}
+  - {id: ru-or-n02392-s001, ch: литр, pr: литр, ds: litre}
+  - {id: ru-or-n01526-s001, ch: тонна, pr: то́нна, ds: ton}
+  review_grammar: []
+- id: level-21-science-04
+  title: Investigation and explanation - 4
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-n00554-s001, ch: организм, pr: органи́зм, ds: organism}
+  - {id: ru-or-n00921-s002, ch: ткань, pr: ткань, ds: tissue}
+  - {id: ru-or-n00315-s001, ch: орган, pr: о́рган, ds: body organ}
+  - {id: ru-or-n01441-s001, ch: ген, pr: ген, ds: gene}
+  - {id: ru-or-n07922-s001, ch: генетика, pr: гене́тика, ds: genetics}
+  - {id: ru-or-n06517-s001, ch: наследственность, pr: насле́дственность, ds: heredity}
+  - {id: ru-or-n03209-s001, ch: эволюция, pr: эволю́ция, ds: evolution}
+  - {id: ru-or-n00228-s001, ch: развитие, pr: разви́тие, ds: development}
+  - {id: ru-or-n00605-s001, ch: изменение, pr: измене́ние, ds: change}
+  - {id: ru-or-n03132-s001, ch: превращение, pr: превраще́ние, ds: transformation}
+  - {id: ru-or-n01262-s001, ch: происхождение, pr: происхожде́ние, ds: origin}
+  - {id: ru-or-n00301-s001, ch: рост, pr: рост, ds: growth}
+  - {id: ru-or-n06575-s001, ch: спад, pr: спад, ds: downturn}
+  - {id: ru-or-n02309-s001, ch: цикл, pr: цикл, ds: cycle}
+  - {id: ru-or-n02322-s001, ch: стадия, pr: ста́дия, ds: stage}
+  - {id: ru-or-n01559-s001, ch: прогресс, pr: прогре́сс, ds: progress}
+  - {id: ru-or-n13782-s001, ch: регресс, pr: регре́сс, ds: regress}
+  - {id: ru-or-v00133-s001, ch: существовать, pr: существова́ть, ds: exist}
+  - {id: ru-or-v00217-s001, ch: возникнуть, pr: возни́кнуть, ds: arise}
+  - {id: ru-or-v00236-s001, ch: возникать, pr: возника́ть, ds: arise}
+  - {id: ru-or-v03160-s001, ch: образовать, pr: образова́ть, ds: form}
+  - {id: ru-or-v01951-s001, ch: образовывать, pr: образо́вывать, ds: form}
+  - {id: ru-or-v00805-s001, ch: образоваться, pr: образова́ться, ds: form}
+  - {id: ru-or-v07197-s001, ch: образовываться, pr: образо́вываться, ds: form}
+  - {id: ru-or-v00287-s001, ch: состоять, pr: состоя́ть, ds: consist}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00709-s001, ch: холод, pr: хо́лод, ds: cold}
+  - {id: ru-or-n06852-s001, ch: трение, pr: тре́ние, ds: friction}
+  - {id: ru-or-n12631-s001, ch: гравитация, pr: гравита́ция, ds: gravitation}
+  - {id: ru-or-n01563-s001, ch: кислота, pr: кислота́, ds: acid}
+  - {id: ru-or-n09572-s001, ch: щёлочь, pr: щёлочь, ds: alkali}
+  - {id: ru-or-n00966-s001, ch: раствор, pr: раство́р, ds: solution}
+  - {id: ru-or-n00777-s001, ch: реакция, pr: реа́кция, ds: reaction}
+  - {id: ru-or-n00753-s001, ch: клетка, pr: кле́тка, ds: cell}
+  review_grammar: []
+- id: level-21-science-05
+  title: Investigation and explanation - 5
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-v00655-s001, ch: содержать, pr: содержа́ть, ds: contain}
+  - {id: ru-or-v01253-s001, ch: содержаться, pr: содержа́ться, ds: be contained in}
+  - {id: ru-or-v00862-s002, ch: включать, pr: включа́ть, ds: include}
+  - {id: ru-or-v00318-s001, ch: составлять, pr: составля́ть, ds: amount to}
+  - {id: ru-or-v00424-s001, ch: составить, pr: соста́вить, ds: amount to}
+  - {id: ru-or-v00706-s001, ch: развиваться, pr: развива́ться, ds: develop}
+  - {id: ru-or-v01639-s001, ch: развивать, pr: развива́ть, ds: develop}
+  - {id: ru-or-v03460-s001, ch: развить, pr: разви́ть, ds: develop}
+  - {id: ru-or-v05592-s001, ch: преобразовать, pr: преобразова́ть, ds: transform}
+  - {id: ru-or-v11945-s001, ch: преобразовывать, pr: преобразо́вывать, ds: transform}
+  - {id: ru-or-v00768-s001, ch: превращаться, pr: превраща́ться, ds: turn into}
+  - {id: ru-or-v00398-s001, ch: превратиться, pr: преврати́ться, ds: turn into}
+  - {id: ru-or-v00864-s001, ch: превратить, pr: преврати́ть, ds: convert}
+  - {id: ru-or-v01863-s001, ch: превращать, pr: превраща́ть, ds: convert}
+  - {id: ru-or-v01387-s001, ch: распространяться, pr: распространя́ться, ds: spread}
+  - {id: ru-or-v01986-s001, ch: возрастать, pr: возраста́ть, ds: increase}
+  - {id: ru-or-v02024-s001, ch: возрасти, pr: возрасти́, ds: increase}
+  - {id: ru-or-v05078-s001, ch: убывать, pr: убыва́ть, ds: decrease}
+  - {id: ru-or-v06974-s001, ch: убыть, pr: убы́ть, ds: decrease}
+  - {id: ru-or-v01849-s001, ch: вращаться, pr: враща́ться, ds: rotate}
+  - {id: ru-or-v03681-s001, ch: вращать, pr: враща́ть, ds: rotate}
+  - {id: ru-or-v02812-s001, ch: перемещаться, pr: перемеща́ться, ds: move}
+  - {id: ru-or-v03992-s001, ch: переместиться, pr: перемести́ться, ds: move}
+  - {id: ru-or-v00216-s001, ch: двигаться, pr: дви́гаться, ds: move}
+  - {id: ru-or-v06107-s001, ch: взаимодействовать, pr: взаимоде́йствовать, ds: interact}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00133-s001, ch: существовать, pr: существова́ть, ds: exist}
+  - {id: ru-or-v00217-s001, ch: возникнуть, pr: возни́кнуть, ds: arise}
+  - {id: ru-or-v00236-s001, ch: возникать, pr: возника́ть, ds: arise}
+  - {id: ru-or-v03160-s001, ch: образовать, pr: образова́ть, ds: form}
+  - {id: ru-or-v01951-s001, ch: образовывать, pr: образо́вывать, ds: form}
+  - {id: ru-or-v00805-s001, ch: образоваться, pr: образова́ться, ds: form}
+  - {id: ru-or-v07197-s001, ch: образовываться, pr: образо́вываться, ds: form}
+  - {id: ru-or-v00287-s001, ch: состоять, pr: состоя́ть, ds: consist}
+  review_grammar: []
+- id: level-21-science-06
+  title: Investigation and explanation - 6
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-v02967-s001, ch: воздействовать, pr: возде́йствовать, ds: influence}
+  - {id: ru-or-v01144-s001, ch: реагировать, pr: реаги́ровать, ds: react}
+  - {id: ru-or-v03459-s001, ch: растворять, pr: растворя́ть, ds: dissolve}
+  - {id: ru-or-v03340-s001, ch: растворяться, pr: растворя́ться, ds: dissolve}
+  - {id: ru-or-v01133-s001, ch: выделяться, pr: выделя́ться, ds: stand out}
+  - {id: ru-or-v03234-s001, ch: поглощать, pr: поглоща́ть, ds: absorb}
+  - {id: ru-or-v02224-s001, ch: поглотить, pr: поглоти́ть, ds: absorb}
+  - {id: ru-or-v01413-s001, ch: отражать, pr: отража́ть, ds: reflect}
+  - {id: ru-or-v03444-s001, ch: отразить, pr: отрази́ть, ds: reflect}
+  - {id: ru-or-v04264-s001, ch: излучать, pr: излуча́ть, ds: radiate}
+  - {id: ru-or-v05520-s001, ch: испускать, pr: испуска́ть, ds: emit}
+  - {id: ru-or-v03193-s001, ch: притягивать, pr: притя́гивать, ds: attract}
+  - {id: ru-or-v03240-s001, ch: притянуть, pr: притяну́ть, ds: pull}
+  - {id: ru-or-v02864-s001, ch: отталкивать, pr: отта́лкивать, ds: repel}
+  - {id: ru-or-v03837-s001, ch: изолировать, pr: изоли́ровать, ds: isolate}
+  - {id: ru-or-v07404-s001, ch: синтезировать, pr: синтези́ровать, ds: synthesize}
+  - {id: ru-or-v08355-s001, ch: классифицировать, pr: классифици́ровать, ds: classify}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v05078-s001, ch: убывать, pr: убыва́ть, ds: decrease}
+  - {id: ru-or-v06974-s001, ch: убыть, pr: убы́ть, ds: decrease}
+  - {id: ru-or-v01849-s001, ch: вращаться, pr: враща́ться, ds: rotate}
+  - {id: ru-or-v03681-s001, ch: вращать, pr: враща́ть, ds: rotate}
+  - {id: ru-or-v02812-s001, ch: перемещаться, pr: перемеща́ться, ds: move}
+  - {id: ru-or-v03992-s001, ch: переместиться, pr: перемести́ться, ds: move}
+  - {id: ru-or-v00216-s001, ch: двигаться, pr: дви́гаться, ds: move}
+  - {id: ru-or-v06107-s001, ch: взаимодействовать, pr: взаимоде́йствовать, ds: interact}
+  review_grammar: []
+- id: level-21-history-01
+  title: History and long-term change - 1
+  outcome: Relate a development and qualify an interpretation of its significance.
+  vocabulary:
+  - {id: ru-or-n04619-s001, ch: древность, pr: дре́вность, ds: antiquity}
+  - {id: ru-or-n02594-s001, ch: старина, pr: старина́, ds: old times}
+  - {id: ru-or-n04870-s001, ch: современность, pr: совреме́нность, ds: the present}
+  - {id: ru-or-n04772-s001, ch: наследие, pr: насле́дие, ds: heritage}
+  - {id: ru-or-n00874-s001, ch: памятник, pr: па́мятник, ds: monument}
+  - {id: ru-or-n09227-s001, ch: мемориал, pr: мемориа́л, ds: memorial}
+  - {id: ru-or-n06412-s001, ch: летопись, pr: ле́топись, ds: chronicle}
+  - {id: ru-or-n01515-s001, ch: архив, pr: архи́в, ds: archives}
+  - {id: ru-or-n01821-s001, ch: историк, pr: исто́рик, ds: historian}
+  - {id: ru-or-n05299-s001, ch: археолог, pr: архео́лог, ds: archaeologist}
+  - {id: ru-or-n02707-s001, ch: находка, pr: нахо́дка, ds: find}
+  - {id: ru-or-n02288-s001, ch: развалина, pr: разва́лина, ds: ruin}
+  - {id: ru-or-n03858-s001, ch: поселение, pr: поселе́ние, ds: settlement}
+  - {id: ru-or-n01713-s001, ch: племя, pr: пле́мя, ds: tribe}
+  - {id: ru-or-n00250-s001, ch: род, pr: род, ds: lineage or clan}
+  - {id: ru-or-n00510-s001, ch: родина, pr: ро́дина, ds: homeland}
+  - {id: ru-or-n02593-s001, ch: отечество, pr: оте́чество, ds: fatherland}
+  - {id: ru-or-n01265-s001, ch: цивилизация, pr: цивилиза́ция, ds: civilization}
+  - {id: ru-or-n01136-s001, ch: империя, pr: импе́рия, ds: empire}
+  - {id: ru-or-n00994-s001, ch: император, pr: импера́тор, ds: emperor}
+  - {id: ru-or-n06236-s001, ch: императрица, pr: императри́ца, ds: empress}
+  - {id: ru-or-n00449-s001, ch: царь, pr: царь, ds: tsar}
+  - {id: ru-or-n03616-s001, ch: царица, pr: цари́ца, ds: tsarina}
+  - {id: ru-or-n00242-s001, ch: король, pr: коро́ль, ds: king}
+  - {id: ru-or-n00585-s001, ch: королева, pr: короле́ва, ds: queen}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-21-history-02
+  title: History and long-term change - 2
+  outcome: Relate a development and qualify an interpretation of its significance.
+  vocabulary:
+  - {id: ru-or-n01030-s001, ch: князь, pr: князь, ds: Prince}
+  - {id: ru-or-n04670-s001, ch: княгиня, pr: княги́ня, ds: princess}
+  - {id: ru-or-n01254-s001, ch: принц, pr: принц, ds: prince}
+  - {id: ru-or-n01471-s001, ch: принцесса, pr: принце́сса, ds: princess}
+  - {id: ru-or-n06744-s001, ch: монарх, pr: мона́рх, ds: monarch}
+  - {id: ru-or-n06912-s001, ch: монархия, pr: мона́рхия, ds: monarchy}
+  - {id: ru-or-n05091-s001, ch: династия, pr: дина́стия, ds: dynasty}
+  - {id: ru-or-n04077-s001, ch: престол, pr: престо́л, ds: throne}
+  - {id: ru-or-n02525-s001, ch: трон, pr: трон, ds: throne}
+  - {id: ru-or-n03165-s001, ch: корона, pr: коро́на, ds: crown}
+  - {id: ru-or-n04175-s001, ch: герб, pr: герб, ds: coat of arms}
+  - {id: ru-or-n00494-s001, ch: дворец, pr: дворе́ц, ds: palace}
+  - {id: ru-or-n01494-s001, ch: крепость, pr: кре́пость, ds: fortress}
+  - {id: ru-or-n26428-s001, ch: замок, pr: за́мок, ds: castle}
+  - {id: ru-or-n06261-s001, ch: дворянство, pr: дворя́нство, ds: nobility}
+  - {id: ru-or-n04379-s001, ch: дворянин, pr: дворяни́н, ds: nobleman}
+  - {id: ru-or-n04983-s001, ch: аристократ, pr: аристокра́т, ds: aristocrat}
+  - {id: ru-or-n00825-s001, ch: крестьянин, pr: крестья́нин, ds: peasant}
+  - {id: ru-or-n05970-s001, ch: крестьянство, pr: крестья́нство, ds: peasantry}
+  - {id: ru-or-n04813-s001, ch: помещик, pr: поме́щик, ds: landowner}
+  - {id: ru-or-n01449-s001, ch: раб, pr: раб, ds: slave}
+  - {id: ru-or-n03622-s001, ch: рабство, pr: ра́бство, ds: slavery}
+  - {id: ru-or-n18693-s001, ch: крепостничество, pr: крепостни́чество, ds: serfdom}
+  - {id: ru-or-n01129-s001, ch: рыцарь, pr: ры́царь, ds: knight}
+  - {id: ru-or-n11098-s001, ch: вассал, pr: васса́л, ds: vassal}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01265-s001, ch: цивилизация, pr: цивилиза́ция, ds: civilization}
+  - {id: ru-or-n01136-s001, ch: империя, pr: импе́рия, ds: empire}
+  - {id: ru-or-n00994-s001, ch: император, pr: импера́тор, ds: emperor}
+  - {id: ru-or-n06236-s001, ch: императрица, pr: императри́ца, ds: empress}
+  - {id: ru-or-n00449-s001, ch: царь, pr: царь, ds: tsar}
+  - {id: ru-or-n03616-s001, ch: царица, pr: цари́ца, ds: tsarina}
+  - {id: ru-or-n00242-s001, ch: король, pr: коро́ль, ds: king}
+  - {id: ru-or-n00585-s001, ch: королева, pr: короле́ва, ds: queen}
+  review_grammar: []
+- id: level-21-history-03
+  title: History and long-term change - 3
+  outcome: Relate a development and qualify an interpretation of its significance.
+  vocabulary:
+  - {id: ru-or-n09859-s001, ch: феодал, pr: феода́л, ds: feudal lord}
+  - {id: ru-or-n10973-s001, ch: феодализм, pr: феодали́зм, ds: feudalism}
+  - {id: ru-or-n04051-s001, ch: буржуазия, pr: буржуази́я, ds: bourgeoisie}
+  - {id: ru-or-n02811-s001, ch: пролетариат, pr: пролетариа́т, ds: proletariat}
+  - {id: ru-or-n00299-s001, ch: революция, pr: револю́ция, ds: revolution}
+  - {id: ru-or-n02531-s001, ch: революционер, pr: революционе́р, ds: revolutionary}
+  - {id: ru-or-n02416-s001, ch: восстание, pr: восста́ние, ds: uprising}
+  - {id: ru-or-n03318-s001, ch: бунт, pr: бунт, ds: rebellion}
+  - {id: ru-or-n05652-s001, ch: мятеж, pr: мяте́ж, ds: revolt}
+  - {id: ru-or-n02710-s001, ch: переворот, pr: переворо́т, ds: coup}
+  - {id: ru-or-n05288-s001, ch: завоевание, pr: завоева́ние, ds: conquest}
+  - {id: ru-or-n06708-s001, ch: завоеватель, pr: завоева́тель, ds: conqueror}
+  - {id: ru-or-n02383-s001, ch: колония, pr: коло́ния, ds: colony}
+  - {id: ru-or-n12604-s001, ch: колонизация, pr: колониза́ция, ds: colonization}
+  - {id: ru-or-n18415-s001, ch: колониализм, pr: колониали́зм, ds: colonialism}
+  - {id: ru-or-n02263-s001, ch: независимость, pr: незави́симость, ds: independence}
+  - {id: ru-or-n01709-s001, ch: освобождение, pr: освобожде́ние, ds: liberation}
+  - {id: ru-or-n03045-s001, ch: распад, pr: распа́д, ds: disintegration}
+  - {id: ru-or-n04480-s001, ch: расцвет, pr: расцве́т, ds: flourishing}
+  - {id: ru-or-n05342-s001, ch: упадок, pr: упа́док, ds: decline}
+  - {id: ru-or-n01474-s001, ch: кризис, pr: кри́зис, ds: crisis}
+  - {id: ru-or-n01127-s001, ch: поход, pr: похо́д, ds: campaign}
+  - {id: ru-or-n01839-s001, ch: битва, pr: би́тва, ds: battle}
+  - {id: ru-or-n02200-s001, ch: сражение, pr: сраже́ние, ds: battle}
+  - {id: ru-or-n06061-s001, ch: осада, pr: оса́да, ds: siege}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00825-s001, ch: крестьянин, pr: крестья́нин, ds: peasant}
+  - {id: ru-or-n05970-s001, ch: крестьянство, pr: крестья́нство, ds: peasantry}
+  - {id: ru-or-n04813-s001, ch: помещик, pr: поме́щик, ds: landowner}
+  - {id: ru-or-n01449-s001, ch: раб, pr: раб, ds: slave}
+  - {id: ru-or-n03622-s001, ch: рабство, pr: ра́бство, ds: slavery}
+  - {id: ru-or-n18693-s001, ch: крепостничество, pr: крепостни́чество, ds: serfdom}
+  - {id: ru-or-n01129-s001, ch: рыцарь, pr: ры́царь, ds: knight}
+  - {id: ru-or-n11098-s001, ch: вассал, pr: васса́л, ds: vassal}
+  review_grammar: []
+- id: level-21-history-04
+  title: History and long-term change - 4
+  outcome: Relate a development and qualify an interpretation of its significance.
+  vocabulary:
+  - {id: ru-or-n09495-s001, ch: перемирие, pr: переми́рие, ds: armistice}
+  - {id: ru-or-n07628-s001, ch: капитуляция, pr: капитуля́ция, ds: capitulation}
+  - {id: ru-or-n00241-s002, ch: союз, pr: сою́з, ds: alliance}
+  - {id: ru-or-n06467-s001, ch: дипломатия, pr: диплома́тия, ds: diplomacy}
+  - {id: ru-or-n02010-s001, ch: посол, pr: посо́л, ds: ambassador}
+  - {id: ru-or-n01721-s001, ch: посольство, pr: посо́льство, ds: embassy}
+  - {id: ru-or-v01175-s001, ch: основать, pr: основа́ть, ds: found}
+  - {id: ru-or-v11226-s001, ch: основывать, pr: осно́вывать, ds: found}
+  - {id: ru-or-v02682-s001, ch: возвести, pr: возвести́, ds: erect}
+  - {id: ru-or-v03461-s001, ch: возводить, pr: возводи́ть, ds: erect}
+  - {id: ru-or-v00339-s001, ch: построить, pr: постро́ить, ds: build}
+  - {id: ru-or-v00367-s001, ch: строить, pr: стро́ить, ds: build}
+  - {id: ru-or-v02390-s001, ch: соорудить, pr: сооруди́ть, ds: erect}
+  - {id: ru-or-v05972-s001, ch: сооружать, pr: сооружа́ть, ds: erect}
+  - {id: ru-or-v01658-s001, ch: завоевать, pr: завоева́ть, ds: conquer}
+  - {id: ru-or-v05025-s001, ch: завоёвывать, pr: завоёвывать, ds: conquer}
+  - {id: ru-or-v00610-s001, ch: освободить, pr: освободи́ть, ds: liberate}
+  - {id: ru-or-v02016-s001, ch: освобождать, pr: освобожда́ть, ds: liberate}
+  - {id: ru-or-v01162-s001, ch: освободиться, pr: освободи́ться, ds: to be unoccupied}
+  - {id: ru-or-v03306-s001, ch: освобождаться, pr: освобожда́ться, ds: become free}
+  - {id: ru-or-v05008-s001, ch: заселить, pr: засели́ть, ds: settle}
+  - {id: ru-or-v08123-s001, ch: заселять, pr: заселя́ть, ds: settle}
+  - {id: ru-or-v01442-s001, ch: поселиться, pr: посели́ться, ds: settle}
+  - {id: ru-or-v08665-s001, ch: поселяться, pr: поселя́ться, ds: settle}
+  - {id: ru-or-v13758-s001, ch: основаться, pr: основа́ться, ds: be founded}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n03045-s001, ch: распад, pr: распа́д, ds: disintegration}
+  - {id: ru-or-n04480-s001, ch: расцвет, pr: расцве́т, ds: flourishing}
+  - {id: ru-or-n05342-s001, ch: упадок, pr: упа́док, ds: decline}
+  - {id: ru-or-n01474-s001, ch: кризис, pr: кри́зис, ds: crisis}
+  - {id: ru-or-n01127-s001, ch: поход, pr: похо́д, ds: campaign}
+  - {id: ru-or-n01839-s001, ch: битва, pr: би́тва, ds: battle}
+  - {id: ru-or-n02200-s001, ch: сражение, pr: сраже́ние, ds: battle}
+  - {id: ru-or-n06061-s001, ch: осада, pr: оса́да, ds: siege}
+  review_grammar: []
+- id: level-21-history-05
+  title: History and long-term change - 5
+  outcome: Relate a development and qualify an interpretation of its significance.
+  vocabulary:
+  - {id: ru-or-v00782-s001, ch: сохраниться, pr: сохрани́ться, ds: be preserved in a natural state}
+  - {id: ru-or-v01101-s001, ch: уцелеть, pr: уцеле́ть, ds: survive}
+  - {id: ru-or-v00676-s001, ch: пережить, pr: пережи́ть, ds: survive}
+  - {id: ru-or-v00703-s001, ch: переживать, pr: пережива́ть, ds: experience}
+  - {id: ru-or-v06411-s001, ch: возрождаться, pr: возрожда́ться, ds: revive}
+  - {id: ru-or-v04409-s001, ch: возродить, pr: возроди́ть, ds: revive}
+  - {id: ru-or-v08385-s001, ch: возрождать, pr: возрожда́ть, ds: revive}
+  - {id: ru-or-v03363-s001, ch: распасться, pr: распа́сться, ds: disintegrate}
+  - {id: ru-or-v04080-s001, ch: распадаться, pr: распада́ться, ds: disintegrate}
+  - {id: ru-or-v05574-s001, ch: раскопать, pr: раскопа́ть, ds: excavate}
+  - {id: ru-or-v08688-s001, ch: раскапывать, pr: раска́пывать, ds: excavate}
+  - {id: ru-or-v05937-s001, ch: датировать, pr: дати́ровать, ds: date}
+  - {id: ru-or-v01663-s001, ch: предшествовать, pr: предше́ствовать, ds: precede}
+  - {id: ru-or-v00777-s001, ch: сменить, pr: смени́ть, ds: replace}
+  - {id: ru-or-v03349-s001, ch: сменять, pr: сменя́ть, ds: replace}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v02016-s001, ch: освобождать, pr: освобожда́ть, ds: liberate}
+  - {id: ru-or-v01162-s001, ch: освободиться, pr: освободи́ться, ds: to be unoccupied}
+  - {id: ru-or-v03306-s001, ch: освобождаться, pr: освобожда́ться, ds: become free}
+  - {id: ru-or-v05008-s001, ch: заселить, pr: засели́ть, ds: settle}
+  - {id: ru-or-v08123-s001, ch: заселять, pr: заселя́ть, ds: settle}
+  - {id: ru-or-v01442-s001, ch: поселиться, pr: посели́ться, ds: settle}
+  - {id: ru-or-v08665-s001, ch: поселяться, pr: поселя́ться, ds: settle}
+  - {id: ru-or-v13758-s001, ch: основаться, pr: основа́ться, ds: be founded}
+  review_grammar: []
+- id: level-21-science-practice-01
+  title: Investigation and explanation - sentence practice 1
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-method-nominal-frames, ch: 'путём / посредством + [genitive method]', ds: Interpret a formally stated method or means}
+  - {id: ru-g-correlative-comparison, ch: 'чем [comparative], тем [comparative]', ds: Express a covarying comparison without proving causation}
+  - {id: ru-g-impersonal-evidence-clause, ch: 'известно / установлено / показано, что [claim]', ds: Examine a claim packaged as established information}
+  review_vocabulary:
+  - {id: ru-or-v04264-s001, ch: излучать, pr: излуча́ть, ds: radiate}
+  - {id: ru-or-v05520-s001, ch: испускать, pr: испуска́ть, ds: emit}
+  - {id: ru-or-v03193-s001, ch: притягивать, pr: притя́гивать, ds: attract}
+  - {id: ru-or-v03240-s001, ch: притянуть, pr: притяну́ть, ds: pull}
+  - {id: ru-or-v02864-s001, ch: отталкивать, pr: отта́лкивать, ds: repel}
+  - {id: ru-or-v03837-s001, ch: изолировать, pr: изоли́ровать, ds: isolate}
+  - {id: ru-or-v07404-s001, ch: синтезировать, pr: синтези́ровать, ds: synthesize}
+  - {id: ru-or-v08355-s001, ch: классифицировать, pr: классифици́ровать, ds: classify}
+  review_grammar: []
+- id: level-21-science-practice-02
+  title: Investigation and explanation - sentence practice 2
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-participial-process-result, ch: измеряемый / измеренный; получаемый / полученный, ds: Distinguish a participial process from a completed result}
+  review_vocabulary:
+  - {id: ru-or-v04264-s001, ch: излучать, pr: излуча́ть, ds: radiate}
+  - {id: ru-or-v05520-s001, ch: испускать, pr: испуска́ть, ds: emit}
+  - {id: ru-or-v03193-s001, ch: притягивать, pr: притя́гивать, ds: attract}
+  - {id: ru-or-v03240-s001, ch: притянуть, pr: притяну́ть, ds: pull}
+  - {id: ru-or-v02864-s001, ch: отталкивать, pr: отта́лкивать, ds: repel}
+  - {id: ru-or-v03837-s001, ch: изолировать, pr: изоли́ровать, ds: isolate}
+  - {id: ru-or-v07404-s001, ch: синтезировать, pr: синтези́ровать, ds: synthesize}
+  - {id: ru-or-v08355-s001, ch: классифицировать, pr: классифици́ровать, ds: classify}
+  review_grammar:
+  - {id: ru-g-method-nominal-frames, ch: 'путём / посредством + [genitive method]', ds: Interpret a formally stated method or means}
+  - {id: ru-g-correlative-comparison, ch: 'чем [comparative], тем [comparative]', ds: Express a covarying comparison without proving causation}
+  - {id: ru-g-impersonal-evidence-clause, ch: 'известно / установлено / показано, что [claim]', ds: Examine a claim packaged as established information}

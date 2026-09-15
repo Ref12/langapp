@@ -1,0 +1,136 @@
+- {id: ru-g-polite-repair, ch: 'Извините. Повторите, пожалуйста.', ds: Greet politely and ask for communication repair}
+- {id: ru-g-present-identity, ch: 'Я [name]. Это [noun].', ds: State identity without a present-tense copula}
+- {id: ru-g-basic-questions, ch: 'Кто это? Что это? Где [noun]? Когда [event]?', ds: 'Ask identity, location, or time without an auxiliary'}
+- {id: ru-g-basic-negation, ch: 'Я не [verb]. Это не [noun].', ds: Negate a statement or correct identification}
+- {id: ru-g-polite-vy, ch: 'Вы [verb]? Ты [verb]?', ds: Choose polite or familiar personal address}
+- {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+- {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+- {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+- {id: ru-g-possessive-agreement, ch: 'мой / моя / моё [noun]; его / её [noun]', ds: Match a possessive to the thing possessed}
+- {id: ru-g-whose-question, ch: 'Чей / чья / чьё / чьи [noun]?', ds: Ask whose with gender and number agreement}
+- {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+- {id: ru-g-present-conjugation, ch: я читаю / ты читаешь / они читают, ds: Match a present-tense verb to its subject}
+- {id: ru-g-want-infinitive, ch: 'хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]', ds: Express a wish with irregular хотеть}
+- {id: ru-g-accusative-object, ch: 'читать / пить + [accusative object]', ds: Mark a simple direct object in the accusative}
+- {id: ru-g-routine-time, ch: 'утром / днём / вечером; в [clock time]', ds: Place a routine at a time of day}
+- {id: ru-g-place-direction-origin, ch: 'где / куда / откуда; в / на + [accusative destination]', ds: 'Distinguish location, destination, and origin'}
+- {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+- {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+- {id: ru-g-imperfective-future, ch: 'буду / будешь / будет / будем / будете / будут + [imperfective infinitive]', ds: Describe a future activity or repeated action}
+- {id: ru-g-dative-need, ch: 'мне / вам нужно + [infinitive]', ds: Say who needs to perform an action}
+- {id: ru-g-reflexive-reference, ch: 'себя / себе; свой / своя / своё [noun]', ds: Refer back to the subject without changing the possessor}
+- {id: ru-g-possession-existence, ch: 'У [genitive possessor] есть [noun].', ds: State possession or availability with у ... есть}
+- {id: ru-g-absence-genitive, ch: 'У [genitive possessor] нет [genitive noun].', ds: Express absence with нет and the genitive}
+- {id: ru-g-static-spatial-cases, ch: 'под / над / перед / за + [instrumental]; около + [genitive]', ds: Locate things using governed spatial cases}
+- {id: ru-g-reflexive-routines, ch: '[verb]-ся / -сь', ds: Use reflexive verbs for familiar routines}
+- {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+- {id: ru-g-animate-accusative, ch: 'вижу [animate accusative] / вижу [inanimate accusative]', ds: Apply animacy to direct-object forms}
+- {id: ru-g-without-genitive, ch: 'без + [genitive noun]', ds: Request or describe something without an ingredient}
+- {id: ru-g-health-experiencer, ch: 'У меня болит / болят [body part]. У меня аллергия на [accusative].', ds: Describe pain or state an allergy without diagnosing}
+- {id: ru-g-dative-recipient, ch: 'дать / показать [accusative thing] [dative recipient]', ds: Mark the recipient of giving or showing}
+- {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+- {id: ru-g-pronouns-after-prepositions, ch: у него / у неё / у них; с ним / с ней / с ними, ds: Use governed personal-pronoun forms after prepositions}
+- {id: ru-g-current-motion, ch: 'иду / идёт; еду / едет + [destination]', ds: Distinguish current travel on foot and by vehicle}
+- {id: ru-g-origins-and-people, ch: 'из / с / от + [genitive]; к + [dative]', ds: Name an origin or movement toward a person}
+- {id: ru-g-past-agreement, ch: работал / работала / работало / работали, ds: Match a past-tense verb to gender or number}
+- {id: ru-g-duration-deadline, ch: '[duration]; через [accusative time]; до [genitive endpoint]', ds: 'Distinguish duration, time until, and an endpoint'}
+- {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+- {id: ru-g-calendar-frames, ch: 'в [accusative weekday]; [genitive ordinal date] [genitive month]', ds: Give a weekday or date with the appropriate frame}
+- {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+- {id: ru-g-joint-invitation, ch: 'Давай / Давайте + [imperfective infinitive / perfective plural form]', ds: Invite someone to do an activity together}
+- {id: ru-g-ability-moch, ch: 'могу / можешь / может / можем / можете / могут + [infinitive]', ds: Express ability with irregular мочь}
+- {id: ru-g-occupation-instrumental, ch: 'работать [instrumental role]; быть [instrumental role]', ds: Describe a role with an instrumental complement}
+- {id: ru-g-learned-skill, ch: 'уметь + [infinitive]; мочь + [infinitive]', ds: Distinguish a learned skill from situational ability}
+- {id: ru-g-larger-quantities, ch: 'пять / много / мало / сколько + [genitive noun]', ds: Count larger or unspecified quantities}
+- {id: ru-g-irregular-eat-give, ch: ем / ешь / ест / едим / едите / едят; дам / дашь / даст, ds: Distinguish irregular eating and giving forms}
+- {id: ru-g-habitual-motion, ch: идти / ходить; ехать / ездить, ds: Contrast a directed journey with habitual travel}
+- {id: ru-g-narrative-aspect, ch: '[imperfective background], потом [perfective outcome]', ds: Separate narrative background from completed events}
+- {id: ru-g-temporal-clauses, ch: 'когда / пока / после того как [clause]', ds: Link an event to a time or ongoing background}
+- {id: ru-g-time-to-result, ch: 'читать [duration]; прочитать за [accusative duration]', ds: Distinguish activity duration from time to completion}
+- {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+- {id: ru-g-indirect-li, ch: 'не знаю, [verb] ли [subject]', ds: Embed a yes/no question with ли}
+- {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+- {id: ru-g-feeling-government, ch: 'интересоваться [instrumental]; бояться [genitive]', ds: Use the case required by a feeling or interest verb}
+- {id: ru-g-dative-liking, ch: 'мне нравится [singular] / нравятся [plural]', ds: Describe liking with a dative experiencer}
+- {id: ru-g-imperative-aspect, ch: 'открывайте / откройте [object]', ds: Choose an imperative for a routine or one result}
+- {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+- {id: ru-g-manner-adverb, ch: '[verb] быстро / ясно; [noun] быстрый / ясный', ds: Distinguish how an action happens from noun agreement}
+- {id: ru-g-purpose-chtoby, ch: 'чтобы + [infinitive / subject and past-form verb]', ds: State the purpose of an action with чтобы}
+- {id: ru-g-reported-statement, ch: '[speaker] сказал, что [clause]', ds: Report a statement without automatic tense backshift}
+- {id: ru-g-reported-request, ch: 'попросил [person] [infinitive] / попросил, чтобы ...', ds: Relay a request while keeping the intended actor clear}
+- {id: ru-g-po-dative, ch: 'по [dative subject / route / recurring day]', ds: Interpret selected по plus dative frames}
+- {id: ru-g-relative-kotory, ch: '[noun], который / которую / которому ...', ds: Decline a relative pronoun for its clause role}
+- {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+- {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+- {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- {id: ru-g-advice-preference, ch: 'лучше [infinitive]; предпочитаю [object / infinitive]', ds: Recommend an option without making it an obligation}
+- {id: ru-g-cause-consequence, ch: 'потому что [reason]; поэтому [consequence]', ds: Distinguish a reason from the consequence it explains}
+- {id: ru-g-needed-noun, ch: 'мне нужен / нужна / нужно / нужны [noun]', ds: Agree a needed item while distinguishing нужно to act}
+- {id: ru-g-impersonal-time, ch: 'мне было / будет [state]; не было / не будет [genitive]', ds: Place an impersonal state or absence in time}
+- {id: ru-g-nelzya-aspect, ch: 'нельзя [imperfective / perfective infinitive]', ds: Clarify prohibition versus practical impossibility}
+- {id: ru-g-negated-object-case, ch: 'не [verb] [accusative / genitive object]', ds: Interpret case choice for an object under negation}
+- {id: ru-g-numeral-case, ch: 'с двумя [instrumental plural]; о трёх [prepositional plural]', ds: Decline a numeral phrase for its governed role}
+- {id: ru-g-obligation-agreement, ch: 'должен / должна / должно / должны + [infinitive]', ds: Express a duty with subject agreement}
+- {id: ru-g-managed-dative, ch: '[dative person] удалось / не удалось + [infinitive]', ds: Report an achieved or unachieved opportunity}
+- {id: ru-g-dependency-government, ch: 'зависеть от [genitive]; отвечать за [accusative]', ds: State a dependency or responsibility precisely}
+- {id: ru-g-simultaneous-gerund, ch: 'Читая [object], [same actor''s main action]', ds: Link simultaneous actions with one understood actor}
+- {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+- {id: ru-g-source-attribution, ch: 'по словам [genitive source]; по данным [genitive source]', ds: Attribute a report without endorsing it as fact}
+- {id: ru-g-reflexive-passive, ch: '[subject] обсуждается / проверяется [agent instrumental]', ds: Interpret a process-focused reflexive passive}
+- {id: ru-g-full-participial-description, ch: 'книга, написанная [instrumental agent]', ds: Read a participial phrase as a reduced description}
+- {id: ru-g-prefixed-motion, ch: входить / войти; выходить / выйти; приезжать / приехать, ds: Track direction and aspect in prefixed motion verbs}
+- {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+- {id: ru-g-short-passive-result, ch: '[subject] открыт / открыта / открыто / открыты', ds: Describe a result with a short passive participle}
+- {id: ru-g-change-of-state, ch: 'стало [comparative / state]; стать [instrumental role]', ds: Describe a change of state rather than an action alone}
+- {id: ru-g-real-condition, ch: 'если [condition], то [consequence]', ds: Propose a consequence under an open condition}
+- {id: ru-g-prior-completed-gerund, ch: 'Прочитав [object], [same actor''s main action]', ds: Link a prior completed action to a following action}
+- {id: ru-g-hypothetical-by, ch: 'если бы [past-form condition], [past-form consequence] бы', ds: Express a hypothetical or unreal condition}
+- {id: ru-g-tentative-polite-request, ch: 'Я хотел / хотела бы ...; Не могли бы вы ...?', ds: Soften a preference or request without implying inability}
+- {id: ru-g-epistemic-qualification, ch: 'возможно / вероятно / по-видимому, [claim]', ds: Qualify commitment to a claim}
+- {id: ru-g-inference-from-evidence, ch: 'судя по [dative evidence], [inference]', ds: Mark the evidence used to make an inference}
+- {id: ru-g-alleged-report, ch: '[source] якобы [claim]', ds: Report an allegation with explicit distance}
+- {id: ru-g-only-if, ch: 'только если [necessary condition]', ds: State a necessary condition rather than a guarantee}
+- {id: ru-g-purpose-cause-prepositions, ch: 'для / ради [genitive purpose]; из-за / вследствие [genitive cause]', ds: Separate a purpose from an attributed cause}
+- {id: ru-g-action-nominalization, ch: 'обсуждение [genitive object] [instrumental agent]', ds: Recover participants in a nominalized action}
+- {id: ru-g-formal-dative-prepositions, ch: 'согласно / вопреки / благодаря + [dative]', ds: 'Interpret formal accordance, opposition, and enabling cause'}
+- {id: ru-g-nested-genitives, ch: 'результаты [genitive modifier] [genitive modifier]', ds: Resolve a dense genitive chain without losing attachment}
+- {id: ru-g-method-nominal-frames, ch: 'путём / посредством + [genitive method]', ds: Interpret a formally stated method or means}
+- {id: ru-g-correlative-comparison, ch: 'чем [comparative], тем [comparative]', ds: Express a covarying comparison without proving causation}
+- {id: ru-g-impersonal-evidence-clause, ch: 'известно / установлено / показано, что [claim]', ds: Examine a claim packaged as established information}
+- {id: ru-g-participial-process-result, ch: измеряемый / измеренный; получаемый / полученный, ds: Distinguish a participial process from a completed result}
+- {id: ru-g-qualified-generalization, ch: не все / далеко не все / не всегда / в некоторых случаях, ds: Restrict a generalization without reversing it}
+- {id: ru-g-viewpoint-frame, ch: 'с точки зрения [genitive perspective]; для [genitive experiencer]', ds: Attribute an evaluation to a particular perspective}
+- {id: ru-g-concession, ch: 'хотя [clause]; несмотря на [accusative noun]', ds: Acknowledge a fact while resisting its expected implication}
+- {id: ru-g-concessive-ni, ch: как бы ни / кто бы ни / где бы ни ..., ds: Generalize across alternatives in a concessive clause}
+- {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- {id: ru-g-sufficient-necessary, ch: 'достаточно / недостаточно [genitive or infinitive], чтобы ...', ds: Distinguish enough for an outcome from merely required}
+- {id: ru-g-not-so-much, ch: 'не столько [A], сколько [B]', ds: Rebalance an explanation rather than deny its first part}
+- {id: ru-g-exception-inclusion, ch: 'кроме [genitive]; за исключением [genitive]', ds: Clarify an exception versus an additional member}
+- {id: ru-g-correlative-reference, ch: 'тот, кто ...; то, что ...; о том, что ...', ds: Track reference across a correlative clause boundary}
+- {id: ru-g-contrast-sources, ch: '[source] утверждает, что ...; тогда как [other source] ...', ds: Keep conflicting sources and their claims distinct}
+- {id: ru-g-balanced-synthesis, ch: с одной стороны ... с другой стороны ..., ds: Organize two considerations without forcing equal weight}
+- {id: ru-g-formal-conclusion, ch: таким образом / следовательно ...; однако ..., ds: Mark a conclusion and preserve a relevant limitation}
+- {id: ru-g-seeming-comparison, ch: 'будто / как будто [clause]', ds: Interpret seeming or resemblance without asserting reality}
+- {id: ru-g-information-focus, ch: Анна прочитала письмо. Письмо прочитала Анна., ds: Interpret focus shifts without discarding case marking}
+- {id: ru-g-shared-ground-particles, ch: 'ведь / же [contextual proposition]', ds: Interpret an appeal to shared knowledge or contrast}
+- {id: ru-g-focus-particle-scope, ch: 'только [focused element]; даже [focused element]', ds: Identify what only or even places in focus}
+- {id: ru-g-request-register, ch: 'Давай ... / Пожалуйста, ... / Прошу вас ...', ds: Recast the same request for a different relationship}
+- {id: ru-g-softened-disagreement, ch: 'не совсем ...; боюсь, что ...; мне кажется, ...', ds: Soften disagreement while retaining its actual content}
+- {id: ru-g-diminutive-register, ch: минута / минутка; вопрос / вопросик, ds: Interpret a diminutive's contextual social effect}
+- {id: ru-g-impersonal-preference, ch: 'хотелось бы / представляется, что ...', ds: Recognize distancing that leaves the viewpoint implicit}
+- {id: ru-g-conversational-ellipsis, ch: 'Я за. А вы? Мне тоже.', ds: Recover omitted material in a short contextual reply}
+- {id: ru-g-preoccupied-ne-do, ch: '[dative person] не до [genitive activity]', ds: Say circumstances leave no attention for an activity}
+- {id: ru-g-hands-time-idiom, ch: 'у [person] руки не доходят до [genitive task]', ds: Say someone has not got around to a task}
+- {id: ru-g-despite-expectation-particle, ch: 'всё-таки [clause]', ds: Mark persistence or an outcome contrary to expectation}
+- {id: ru-g-explicit-clarification, ch: 'то есть / а именно [clarification]', ds: Restate a meaning or specify its members precisely}
+- {id: ru-g-until-before, ch: 'пока не [endpoint]; прежде чем [action]', ds: Distinguish an until endpoint from a before relation}
+- {id: ru-g-bounds-degree, ch: 'по крайней мере / не менее / не более [quantity]', ds: State a lower or upper bound rather than an exact amount}
+- {id: ru-g-instead-of-action, ch: 'вместо того чтобы [infinitive / clause]', ds: Contrast a chosen action with a displaced alternative}
+- {id: ru-g-labelled-distance, ch: 'так называемый [agreeing noun phrase]', ds: Interpret a reported label and possible skeptical distance}
+- {id: ru-g-figurative-comparison, ch: 'словно [image]; как [comparison]', ds: Interpret an image without converting it into a factual claim}
+- {id: ru-g-rhetorical-questions, ch: 'Разве ...? Неужели ...?', ds: Interpret question particles without assuming neutrality}
+- {id: ru-g-narrative-present, ch: 'Вчера [present-tense narrative events]', ds: Interpret a narrative present within a past setting}
+- {id: ru-g-explicit-self-repair, ch: 'точнее / вернее / иными словами [reformulation]', ds: Revise a claim openly instead of silently changing its scope}
+- {id: ru-g-otherwise-consequence, ch: 'если не ..., то ...; иначе ...', ds: State what follows if a requirement is not met}
+- {id: ru-g-even-if, ch: 'даже если [condition], [maintained claim]', ds: Keep a claim conditional while conceding a possibility}
+- {id: ru-g-framed-claim, ch: 'речь идёт о [prepositional]; это не означает, что ...', ds: Define an argument's scope and block an unwarranted inference}

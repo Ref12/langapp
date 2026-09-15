@@ -1,0 +1,349 @@
+schema_version: 3
+id: ru-level-19
+title: Evidence and degrees of certainty
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 19
+phase: analysis-argument
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+goals: &id001
+- Separate observation from inference and reported evidence.
+- Qualify certainty without treating a modal word as proof.
+- Explain what follows only if a stated condition holds.
+checkpoint:
+  task: Evaluate an unfamiliar argument and explain which parts are supported, inferred, conditional, or still uncertain.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-19-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a01555-s001, ch: достоверный, pr: достове́рный, ds: valid}
+  - {id: ru-or-a08742-s001, ch: недостоверный, pr: недостове́рный, ds: not authentic}
+  - {id: ru-or-a00729-s001, ch: объективный, pr: объекти́вный, ds: objective}
+  - {id: ru-or-a01682-s001, ch: субъективный, pr: субъекти́вный, ds: subjective}
+  - {id: ru-or-a00592-s001, ch: очевидный, pr: очеви́дный, ds: obvious}
+  - {id: ru-or-a00426-s001, ch: явный, pr: я́вный, ds: obvious}
+  - {id: ru-or-a05824-s001, ch: неявный, pr: нея́вный, ds: implicit}
+  - {id: ru-or-a00747-s001, ch: сомнительный, pr: сомни́тельный, ds: doubtful}
+  - {id: ru-or-a02101-s001, ch: бесспорный, pr: бесспо́рный, ds: indisputable}
+  - {id: ru-or-a00573-s001, ch: неопределённый, pr: неопределённый, ds: uncertain}
+  - {id: ru-or-a00198-s001, ch: определённый, pr: определённый, ds: specific}
+  - {id: ru-or-a00365-s001, ch: случайный, pr: случа́йный, ds: random}
+  - {id: ru-or-a02022-s001, ch: закономерный, pr: закономе́рный, ds: naturally determined}
+  - {id: ru-or-a03980-s001, ch: причинный, pr: причи́нный, ds: causal}
+  - {id: ru-or-a03070-s001, ch: зависимый, pr: зави́симый, ds: dependent}
+  - {id: ru-or-a01260-s001, ch: исходный, pr: исхо́дный, ds: initial}
+  - {id: ru-or-a01178-s001, ch: первичный, pr: перви́чный, ds: primary}
+  - {id: ru-or-a01538-s001, ch: вторичный, pr: втори́чный, ds: secondary}
+  - {id: ru-or-a03345-s001, ch: приблизительный, pr: приблизи́тельный, ds: approximate}
+  - {id: ru-or-a02300-s001, ch: статистический, pr: статисти́ческий, ds: statistical}
+  - {id: ru-or-a01631-s001, ch: экспериментальный, pr: эксперимента́льный, ds: experimental}
+  - {id: ru-or-a00883-s001, ch: теоретический, pr: теорети́ческий, ds: theoretical}
+  - {id: ru-or-a05329-s001, ch: эмпирический, pr: эмпири́ческий, ds: empirical}
+  - {id: ru-or-a01080-s001, ch: логический, pr: логи́ческий, ds: logical}
+  - {id: ru-or-a01800-s001, ch: фактический, pr: факти́ческий, ds: actual}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00484-s001, ch: максимальный, pr: максима́льный, ds: maximum}
+  - {id: ru-or-a00776-s001, ch: предварительный, pr: предвари́тельный, ds: preliminary}
+  - {id: ru-or-a00671-s001, ch: окончательный, pr: оконча́тельный, ds: final}
+  - {id: ru-or-a02673-s001, ch: долгосрочный, pr: долгосро́чный, ds: long-term}
+  - {id: ru-or-a03961-s001, ch: краткосрочный, pr: краткосро́чный, ds: short-term}
+  - {id: ru-or-a00709-s001, ch: существенный, pr: суще́ственный, ds: essential}
+  - {id: ru-or-a00790-s001, ch: незначительный, pr: незначи́тельный, ds: insignificant}
+  - {id: ru-or-a00900-s001, ch: принципиальный, pr: принципиа́льный, ds: based on principle}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-19-description-02
+  title: Description and comparison - 2
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a02314-s001, ch: ошибочный, pr: оши́бочный, ds: erroneous}
+  - {id: ru-or-a00714-s001, ch: ложный, pr: ло́жный, ds: 'false'}
+  - {id: ru-or-a00298-s001, ch: истинный, pr: и́стинный, ds: 'true'}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a01538-s001, ch: вторичный, pr: втори́чный, ds: secondary}
+  - {id: ru-or-a03345-s001, ch: приблизительный, pr: приблизи́тельный, ds: approximate}
+  - {id: ru-or-a02300-s001, ch: статистический, pr: статисти́ческий, ds: statistical}
+  - {id: ru-or-a01631-s001, ch: экспериментальный, pr: эксперимента́льный, ds: experimental}
+  - {id: ru-or-a00883-s001, ch: теоретический, pr: теорети́ческий, ds: theoretical}
+  - {id: ru-or-a05329-s001, ch: эмпирический, pr: эмпири́ческий, ds: empirical}
+  - {id: ru-or-a01080-s001, ch: логический, pr: логи́ческий, ds: logical}
+  - {id: ru-or-a01800-s001, ch: фактический, pr: факти́ческий, ds: actual}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-19-reasoning-01
+  title: Reasons and relationships - 1
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary:
+  - {id: ru-or-n00443-s001, ch: знание, pr: зна́ние, ds: knowledge}
+  - {id: ru-or-n00800-s001, ch: исследование, pr: иссле́дование, ds: research}
+  - {id: ru-or-n01009-s001, ch: наблюдение, pr: наблюде́ние, ds: observation}
+  - {id: ru-or-n01112-s001, ch: доказательство, pr: доказа́тельство, ds: proof}
+  - {id: ru-or-n01511-s002, ch: свидетельство, pr: свиде́тельство, ds: evidence}
+  - {id: ru-or-n01728-s001, ch: предположение, pr: предположе́ние, ds: assumption}
+  - {id: ru-or-n02804-s001, ch: гипотеза, pr: гипо́теза, ds: hypothesis}
+  - {id: ru-or-n00806-s001, ch: теория, pr: тео́рия, ds: theory}
+  - {id: ru-or-n01160-s001, ch: версия, pr: ве́рсия, ds: version}
+  - {id: ru-or-n00608-s001, ch: вывод, pr: вы́вод, ds: conclusion}
+  - {id: ru-or-n01120-s001, ch: заключение, pr: заключе́ние, ds: conclusion}
+  - {id: ru-or-n02816-s001, ch: суждение, pr: сужде́ние, ds: judgment}
+  - {id: ru-or-n01840-s001, ch: утверждение, pr: утвержде́ние, ds: assertion}
+  - {id: ru-or-n03423-s001, ch: тезис, pr: те́зис, ds: thesis}
+  - {id: ru-or-n00595-s001, ch: основание, pr: основа́ние, ds: basis}
+  - {id: ru-or-n01220-s001, ch: проверка, pr: прове́рка, ds: examination}
+  - {id: ru-or-n04976-s001, ch: достоверность, pr: достове́рность, ds: trustworthiness}
+  - {id: ru-or-n04033-s001, ch: надёжность, pr: надёжность, ds: reliability}
+  - {id: ru-or-n01371-s001, ch: точность, pr: то́чность, ds: accuracy}
+  - {id: ru-or-n12425-s001, ch: погрешность, pr: погре́шность, ds: error}
+  - {id: ru-or-n02519-s001, ch: измерение, pr: измере́ние, ds: measurement}
+  - {id: ru-or-n04248-s001, ch: подсчёт, pr: подсчёт, ds: calculation}
+  - {id: ru-or-n00767-s001, ch: расчёт, pr: расчёт, ds: calculation}
+  - {id: ru-or-n07358-s001, ch: вычисление, pr: вычисле́ние, ds: calculation}
+  - {id: ru-or-n03786-s001, ch: статистика, pr: стати́стика, ds: statistics}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00149-s001, ch: принимать, pr: принима́ть, ds: accept}
+  - {id: ru-or-v00252-s001, ch: отказаться, pr: отказа́ться, ds: refuse}
+  - {id: ru-or-v00609-s001, ch: отказываться, pr: отка́зываться, ds: refuse}
+  - {id: ru-or-v00155-s001, ch: требовать, pr: тре́бовать, ds: demand}
+  - {id: ru-or-v00560-s001, ch: потребовать, pr: потре́бовать, ds: demand}
+  - {id: ru-or-v00461-s001, ch: сомневаться, pr: сомнева́ться, ds: doubt}
+  - {id: ru-or-v00975-s001, ch: убедить, pr: убеди́ть, ds: convince}
+  - {id: ru-or-v01324-s001, ch: убеждать, pr: убежда́ть, ds: convince}
+  review_grammar:
+  - {id: ru-g-purpose-chtoby, ch: 'чтобы + [infinitive / subject and past-form verb]', ds: State the purpose of an action with чтобы}
+  - {id: ru-g-cause-consequence, ch: 'потому что [reason]; поэтому [consequence]', ds: Distinguish a reason from the consequence it explains}
+  - {id: ru-g-real-condition, ch: 'если [condition], то [consequence]', ds: Propose a consequence under an open condition}
+- id: level-19-reasoning-02
+  title: Reasons and relationships - 2
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary:
+  - {id: ru-or-n13058-s001, ch: выборка, pr: вы́борка, ds: selection}
+  - {id: ru-or-n03962-s001, ch: опрос, pr: опро́с, ds: survey}
+  - {id: ru-or-n01358-s001, ch: эксперимент, pr: экспериме́нт, ds: experiment}
+  - {id: ru-or-n00295-s002, ch: опыт, pr: о́пыт, ds: experiment}
+  - {id: ru-or-n05481-s001, ch: выявление, pr: выявле́ние, ds: exposure}
+  - {id: ru-or-n03381-s001, ch: установление, pr: установле́ние, ds: establishment}
+  - {id: ru-or-n01490-s001, ch: определение, pr: определе́ние, ds: definition}
+  - {id: ru-or-n00701-s001, ch: признак, pr: при́знак, ds: sign}
+  - {id: ru-or-n02213-s001, ch: показатель, pr: показа́тель, ds: index}
+  - {id: ru-or-n03265-s001, ch: критерий, pr: крите́рий, ds: criterion}
+  - {id: ru-or-n01174-s001, ch: свойство, pr: сво́йство, ds: property}
+  - {id: ru-or-n01744-s001, ch: характеристика, pr: характери́стика, ds: characteristic}
+  - {id: ru-or-n02653-s001, ch: параметр, pr: пара́метр, ds: parameter}
+  - {id: ru-or-n02506-s001, ch: совпадение, pr: совпаде́ние, ds: coincidence}
+  - {id: ru-or-n03290-s001, ch: закономерность, pr: закономе́рность, ds: conformity to natural laws}
+  - {id: ru-or-n02087-s001, ch: случайность, pr: случа́йность, ds: chance}
+  - {id: ru-or-n08017-s001, ch: взаимосвязь, pr: взаимосвя́зь, ds: interdependence}
+  - {id: ru-or-n01282-s001, ch: зависимость, pr: зави́симость, ds: dependence}
+  - {id: ru-or-n21845-s001, ch: причинность, pr: причи́нность, ds: causality}
+  - {id: ru-or-n06454-s001, ch: неопределённость, pr: неопределённость, ds: uncertainty}
+  - {id: ru-or-n00525-s001, ch: сомнение, pr: сомне́ние, ds: doubt}
+  - {id: ru-or-n01197-s001, ch: уверенность, pr: уве́ренность, ds: confidence}
+  - {id: ru-or-n01899-s001, ch: убеждение, pr: убежде́ние, ds: belief}
+  - {id: ru-or-n03099-s001, ch: заблуждение, pr: заблужде́ние, ds: delusion}
+  - {id: ru-or-n02411-s001, ch: иллюзия, pr: иллю́зия, ds: illusion}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n04033-s001, ch: надёжность, pr: надёжность, ds: reliability}
+  - {id: ru-or-n01371-s001, ch: точность, pr: то́чность, ds: accuracy}
+  - {id: ru-or-n12425-s001, ch: погрешность, pr: погре́шность, ds: error}
+  - {id: ru-or-n02519-s001, ch: измерение, pr: измере́ние, ds: measurement}
+  - {id: ru-or-n04248-s001, ch: подсчёт, pr: подсчёт, ds: calculation}
+  - {id: ru-or-n00767-s001, ch: расчёт, pr: расчёт, ds: calculation}
+  - {id: ru-or-n07358-s001, ch: вычисление, pr: вычисле́ние, ds: calculation}
+  - {id: ru-or-n03786-s001, ch: статистика, pr: стати́стика, ds: statistics}
+  review_grammar:
+  - {id: ru-g-purpose-chtoby, ch: 'чтобы + [infinitive / subject and past-form verb]', ds: State the purpose of an action with чтобы}
+  - {id: ru-g-cause-consequence, ch: 'потому что [reason]; поэтому [consequence]', ds: Distinguish a reason from the consequence it explains}
+  - {id: ru-g-real-condition, ch: 'если [condition], то [consequence]', ds: Propose a consequence under an open condition}
+- id: level-19-reasoning-03
+  title: Reasons and relationships - 3
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary:
+  - {id: ru-or-n11157-s001, ch: предубеждение, pr: предубежде́ние, ds: prejudice}
+  - {id: ru-or-n21665-s001, ch: предвзятость, pr: предвзя́тость, ds: bias}
+  - {id: ru-or-v01486-s001, ch: колебаться, pr: колеба́ться, ds: hesitate}
+  - {id: ru-or-v01864-s001, ch: исследовать, pr: иссле́довать, ds: investigate}
+  - {id: ru-or-v01245-s001, ch: изучить, pr: изучи́ть, ds: study}
+  - {id: ru-or-v00281-s001, ch: наблюдать, pr: наблюда́ть, ds: observe}
+  - {id: ru-or-v01830-s001, ch: проследить, pr: проследи́ть, ds: trace}
+  - {id: ru-or-v06425-s001, ch: отслеживать, pr: отсле́живать, ds: track}
+  - {id: ru-or-v00546-s001, ch: выяснить, pr: вы́яснить, ds: find out}
+  - {id: ru-or-v01896-s001, ch: выяснять, pr: выясня́ть, ds: find out}
+  - {id: ru-or-v01801-s001, ch: выявить, pr: вы́явить, ds: reveal}
+  - {id: ru-or-v04205-s001, ch: выявлять, pr: выявля́ть, ds: reveal}
+  - {id: ru-or-v00360-s001, ch: определить, pr: определи́ть, ds: determine}
+  - {id: ru-or-v00755-s001, ch: определять, pr: определя́ть, ds: determine}
+  - {id: ru-or-v01934-s001, ch: зафиксировать, pr: зафикси́ровать, ds: fix}
+  - {id: ru-or-v02959-s001, ch: фиксировать, pr: фикси́ровать, ds: fix}
+  - {id: ru-or-v01701-s001, ch: зарегистрировать, pr: зарегистри́ровать, ds: register}
+  - {id: ru-or-v04651-s001, ch: регистрировать, pr: регистри́ровать, ds: register}
+  - {id: ru-or-v02159-s001, ch: подсчитать, pr: подсчита́ть, ds: count}
+  - {id: ru-or-v03656-s001, ch: подсчитывать, pr: подсчи́тывать, ds: count}
+  - {id: ru-or-v02519-s001, ch: вычислить, pr: вы́числить, ds: calculate}
+  - {id: ru-or-v05868-s001, ch: вычислять, pr: вычисля́ть, ds: calculate}
+  - {id: ru-or-v00976-s001, ch: рассчитать, pr: рассчита́ть, ds: calculate}
+  - {id: ru-or-v05216-s001, ch: сопоставить, pr: сопоста́вить, ds: compare}
+  - {id: ru-or-v06298-s001, ch: сопоставлять, pr: сопоставля́ть, ds: compare}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01282-s001, ch: зависимость, pr: зави́симость, ds: dependence}
+  - {id: ru-or-n21845-s001, ch: причинность, pr: причи́нность, ds: causality}
+  - {id: ru-or-n06454-s001, ch: неопределённость, pr: неопределённость, ds: uncertainty}
+  - {id: ru-or-n00525-s001, ch: сомнение, pr: сомне́ние, ds: doubt}
+  - {id: ru-or-n01197-s001, ch: уверенность, pr: уве́ренность, ds: confidence}
+  - {id: ru-or-n01899-s001, ch: убеждение, pr: убежде́ние, ds: belief}
+  - {id: ru-or-n03099-s001, ch: заблуждение, pr: заблужде́ние, ds: delusion}
+  - {id: ru-or-n02411-s001, ch: иллюзия, pr: иллю́зия, ds: illusion}
+  review_grammar:
+  - {id: ru-g-purpose-chtoby, ch: 'чтобы + [infinitive / subject and past-form verb]', ds: State the purpose of an action with чтобы}
+  - {id: ru-g-cause-consequence, ch: 'потому что [reason]; поэтому [consequence]', ds: Distinguish a reason from the consequence it explains}
+  - {id: ru-g-real-condition, ch: 'если [condition], то [consequence]', ds: Propose a consequence under an open condition}
+- id: level-19-reasoning-04
+  title: Reasons and relationships - 4
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary:
+  - {id: ru-or-v03602-s001, ch: проанализировать, pr: проанализи́ровать, ds: analyse}
+  - {id: ru-or-v02518-s001, ch: анализировать, pr: анализи́ровать, ds: analyse}
+  - {id: ru-or-v03785-s001, ch: подтверждаться, pr: подтвержда́ться, ds: be confirmed}
+  - {id: ru-or-v02944-s001, ch: опровергнуть, pr: опрове́ргнуть, ds: refute}
+  - {id: ru-or-v03487-s001, ch: опровергать, pr: опроверга́ть, ds: refute}
+  - {id: ru-or-v03077-s001, ch: обнаруживаться, pr: обнару́живаться, ds: be found}
+  - {id: ru-or-v00489-s001, ch: выясниться, pr: вы́ясниться, ds: come to light}
+  - {id: ru-or-v03078-s001, ch: выясняться, pr: выясня́ться, ds: turn out}
+  - {id: ru-or-v00343-s001, ch: полагать, pr: полага́ть, ds: suppose}
+  - {id: ru-or-v00555-s001, ch: подозревать, pr: подозрева́ть, ds: suspect}
+  - {id: ru-or-v00677-s001, ch: допустить, pr: допусти́ть, ds: admit}
+  - {id: ru-or-v01038-s001, ch: допускать, pr: допуска́ть, ds: admit}
+  - {id: ru-or-v00670-s001, ch: исключить, pr: исключи́ть, ds: exclude}
+  - {id: ru-or-v01825-s001, ch: исключать, pr: исключа́ть, ds: exclude}
+  - {id: ru-or-v02308-s001, ch: отличить, pr: отличи́ть, ds: tell a difference}
+  - {id: ru-or-v04800-s001, ch: заблуждаться, pr: заблужда́ться, ds: be mistaken}
+  - {id: ru-or-v00843-s001, ch: ошибаться, pr: ошиба́ться, ds: be mistaken}
+  - {id: ru-or-v00660-s001, ch: ошибиться, pr: ошиби́ться, ds: make a mistake}
+  - {id: ru-or-o01398-s001, ch: предположительно, pr: предположи́тельно, ds: presumably}
+  - {id: ru-or-o00663-s001, ch: приблизительно, pr: приблизи́тельно, ds: approximately}
+  - {id: ru-or-o00367-s001, ch: относительно, pr: относи́тельно, ds: relatively}
+  - {id: ru-or-o00667-s001, ch: частично, pr: части́чно, ds: partially}
+  - {id: ru-or-o00433-s001, ch: непосредственно, pr: непосре́дственно, ds: directly}
+  - {id: ru-or-o00346-s001, ch: якобы, pr: я́кобы, ds: supposedly}
+  - {id: ru-or-o00094-s001, ch: будто, pr: бу́дто, ds: as if}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v04651-s001, ch: регистрировать, pr: регистри́ровать, ds: register}
+  - {id: ru-or-v02159-s001, ch: подсчитать, pr: подсчита́ть, ds: count}
+  - {id: ru-or-v03656-s001, ch: подсчитывать, pr: подсчи́тывать, ds: count}
+  - {id: ru-or-v02519-s001, ch: вычислить, pr: вы́числить, ds: calculate}
+  - {id: ru-or-v05868-s001, ch: вычислять, pr: вычисля́ть, ds: calculate}
+  - {id: ru-or-v00976-s001, ch: рассчитать, pr: рассчита́ть, ds: calculate}
+  - {id: ru-or-v05216-s001, ch: сопоставить, pr: сопоста́вить, ds: compare}
+  - {id: ru-or-v06298-s001, ch: сопоставлять, pr: сопоставля́ть, ds: compare}
+  review_grammar:
+  - {id: ru-g-purpose-chtoby, ch: 'чтобы + [infinitive / subject and past-form verb]', ds: State the purpose of an action with чтобы}
+  - {id: ru-g-cause-consequence, ch: 'потому что [reason]; поэтому [consequence]', ds: Distinguish a reason from the consequence it explains}
+  - {id: ru-g-real-condition, ch: 'если [condition], то [consequence]', ds: Propose a consequence under an open condition}
+- id: level-19-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-o00250-s001, ch: нечто, pr: не́что, ds: something}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00085-s001, ch: почти, pr: почти́, ds: almost}
+  - {id: ru-or-o00127-s001, ch: особенно, pr: осо́бенно, ds: especially}
+  - {id: ru-or-o00115-s001, ch: совершенно, pr: соверше́нно, ds: totally}
+  - {id: ru-or-o00084-s001, ch: совсем, pr: совсе́м, ds: completely}
+  - {id: ru-or-o00248-s001, ch: примерно, pr: приме́рно, ds: approximately}
+  - {id: ru-or-o00187-s001, ch: поскольку, pr: поско́льку, ds: since}
+  - {id: ru-or-o00198-s001, ch: зато, pr: зато́, ds: but on the other hand}
+  - {id: ru-or-o00028-s001, ch: бы, pr: бы, ds: would}
+  review_grammar:
+  - {id: ru-g-numeral-case, ch: 'с двумя [instrumental plural]; о трёх [prepositional plural]', ds: Decline a numeral phrase for its governed role}
+  - {id: ru-g-simultaneous-gerund, ch: 'Читая [object], [same actor''s main action]', ds: Link simultaneous actions with one understood actor}
+  - {id: ru-g-prior-completed-gerund, ch: 'Прочитав [object], [same actor''s main action]', ds: Link a prior completed action to a following action}
+- id: level-19-reasoning-practice-01
+  title: Reasons and relationships - sentence practice 1
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-epistemic-qualification, ch: 'возможно / вероятно / по-видимому, [claim]', ds: Qualify commitment to a claim}
+  - {id: ru-g-inference-from-evidence, ch: 'судя по [dative evidence], [inference]', ds: Mark the evidence used to make an inference}
+  review_vocabulary:
+  - {id: ru-or-v00660-s001, ch: ошибиться, pr: ошиби́ться, ds: make a mistake}
+  - {id: ru-or-o01398-s001, ch: предположительно, pr: предположи́тельно, ds: presumably}
+  - {id: ru-or-o00663-s001, ch: приблизительно, pr: приблизи́тельно, ds: approximately}
+  - {id: ru-or-o00367-s001, ch: относительно, pr: относи́тельно, ds: relatively}
+  - {id: ru-or-o00667-s001, ch: частично, pr: части́чно, ds: partially}
+  - {id: ru-or-o00433-s001, ch: непосредственно, pr: непосре́дственно, ds: directly}
+  - {id: ru-or-o00346-s001, ch: якобы, pr: я́кобы, ds: supposedly}
+  - {id: ru-or-o00094-s001, ch: будто, pr: бу́дто, ds: as if}
+  review_grammar:
+  - {id: ru-g-purpose-chtoby, ch: 'чтобы + [infinitive / subject and past-form verb]', ds: State the purpose of an action with чтобы}
+  - {id: ru-g-cause-consequence, ch: 'потому что [reason]; поэтому [consequence]', ds: Distinguish a reason from the consequence it explains}
+  - {id: ru-g-real-condition, ch: 'если [condition], то [consequence]', ds: Propose a consequence under an open condition}
+- id: level-19-media-practice-01
+  title: Reports and sources - sentence practice 1
+  outcome: Distinguish events, attributed claims, and interpretation in a report.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-alleged-report, ch: '[source] якобы [claim]', ds: Report an allegation with explicit distance}
+  review_vocabulary:
+  - {id: ru-or-n00986-s001, ch: редакция, pr: реда́кция, ds: editorial office}
+  - {id: ru-or-n00869-s001, ch: пресса, pr: пре́сса, ds: press}
+  - {id: ru-or-n02297-s001, ch: аудитория, pr: аудито́рия, ds: audience}
+  - {id: ru-or-n02359-s001, ch: общественность, pr: обще́ственность, ds: public}
+  - {id: ru-or-n02980-s001, ch: повестка, pr: пове́стка, ds: agenda}
+  - {id: ru-or-n00286-s001, ch: свобода, pr: свобо́да, ds: freedom}
+  - {id: ru-or-n04179-s001, ch: цензура, pr: цензу́ра, ds: censorship}
+  - {id: ru-or-n01688-s001, ch: пропаганда, pr: пропага́нда, ds: propaganda}
+  review_grammar:
+  - {id: ru-g-source-attribution, ch: 'по словам [genitive source]; по данным [genitive source]', ds: Attribute a report without endorsing it as fact}
+  - {id: ru-g-reflexive-passive, ch: '[subject] обсуждается / проверяется [agent instrumental]', ds: Interpret a process-focused reflexive passive}
+  - {id: ru-g-full-participial-description, ch: 'книга, написанная [instrumental agent]', ds: Read a participial phrase as a reduced description}
+- id: level-19-argument-practice-01
+  title: Arguments and decisions - sentence practice 1
+  outcome: Defend a position while addressing a relevant objection or qualification.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-only-if, ch: 'только если [necessary condition]', ds: State a necessary condition rather than a guarantee}
+  review_vocabulary:
+  - {id: ru-or-v00362-s001, ch: утверждать, pr: утвержда́ть, ds: assert}
+  - {id: ru-or-o00238-s001, ch: вероятно, pr: вероя́тно, ds: very likely}
+  - {id: ru-or-o00271-s001, ch: очевидно, pr: очеви́дно, ds: obviously}
+  - {id: ru-or-o00403-s001, ch: несомненно, pr: несомне́нно, ds: undoubtedly}
+  - {id: ru-or-o01991-s001, ch: пожалуй, pr: пожа́луй, ds: perhaps}
+  - {id: ru-or-o02851-s001, ch: скорее, pr: скоре́е, ds: rather}
+  - {id: ru-or-o00165-s001, ch: иначе, pr: ина́че, ds: otherwise}
+  - {id: ru-or-o00263-s001, ch: напротив, pr: напро́тив, ds: on the contrary}
+  review_grammar:
+  - {id: ru-g-hypothetical-by, ch: 'если бы [past-form condition], [past-form consequence] бы', ds: Express a hypothetical or unreal condition}

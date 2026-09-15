@@ -1,0 +1,543 @@
+schema_version: 3
+id: ru-level-28
+title: Precision in abstract explanations
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 28
+phase: nuance-interpretation
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+- ru-level-19
+- ru-level-20
+- ru-level-21
+- ru-level-22
+- ru-level-23
+- ru-level-24
+- ru-level-25
+- ru-level-26
+- ru-level-27
+goals: &id001
+- Clarify scope, degree, and the boundaries of a comparison.
+- Distinguish near-equivalent connectors by the relation they express.
+- Revise dense phrasing into precise Russian without changing its claim.
+checkpoint:
+  task: Revise an imprecise explanation and defend the changes in scope, degree, and logical connection.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-28-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v08378-s001, ch: конкретизировать, pr: конкретизи́ровать, ds: define concretely}
+  - {id: ru-or-v09885-s001, ch: детализировать, pr: детализи́ровать, ds: detail}
+  - {id: ru-or-v09900-s001, ch: дифференцировать, pr: дифференци́ровать, ds: differentiate}
+  - {id: ru-or-v04595-s001, ch: различаться, pr: различа́ться, ds: differ}
+  - {id: ru-or-v01585-s001, ch: совпадать, pr: совпада́ть, ds: coincide}
+  - {id: ru-or-v03180-s001, ch: совпасть, pr: совпа́сть, ds: coincide}
+  - {id: ru-or-v07179-s001, ch: отождествлять, pr: отождествля́ть, ds: identify}
+  - {id: ru-or-v07277-s001, ch: приравнять, pr: приравня́ть, ds: equate}
+  - {id: ru-or-v12043-s001, ch: приравнивать, pr: прира́внивать, ds: equate}
+  - {id: ru-or-v08444-s001, ch: соотнести, pr: соотнести́, ds: correlate}
+  - {id: ru-or-v07764-s001, ch: соотносить, pr: соотноси́ть, ds: correlate}
+  - {id: ru-or-v08863-s001, ch: варьировать, pr: варьи́ровать, ds: vary}
+  - {id: ru-or-v01284-s001, ch: превышать, pr: превыша́ть, ds: exceed}
+  - {id: ru-or-v03558-s001, ch: превысить, pr: превы́сить, ds: exceed}
+  - {id: ru-or-v02684-s001, ch: превосходить, pr: превосходи́ть, ds: surpass}
+  - {id: ru-or-v03121-s001, ch: превзойти, pr: превзойти́, ds: surpass}
+  - {id: ru-or-v03974-s001, ch: равняться, pr: равня́ться, ds: match}
+  - {id: ru-or-v00457-s001, ch: приближаться, pr: приближа́ться, ds: approach}
+  - {id: ru-or-v00897-s001, ch: приблизиться, pr: прибли́зиться, ds: approach}
+  - {id: ru-or-v05417-s001, ch: отдаляться, pr: отдаля́ться, ds: keep away}
+  - {id: ru-or-v05495-s001, ch: сближать, pr: сближа́ть, ds: bring together}
+  - {id: ru-or-v04145-s001, ch: сузить, pr: су́зить, ds: narrow}
+  - {id: ru-or-v02713-s001, ch: расширяться, pr: расширя́ться, ds: widen}
+  - {id: ru-or-v03766-s001, ch: сокращаться, pr: сокраща́ться, ds: decrease}
+  - {id: ru-or-v01394-s001, ch: увеличиваться, pr: увели́чиваться, ds: increase}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v03449-s001, ch: надрываться, pr: надрыва́ться, ds: overstrain oneself}
+  - {id: ru-or-v00319-s001, ch: выдержать, pr: вы́держать, ds: endure}
+  - {id: ru-or-v01651-s001, ch: выдерживать, pr: выде́рживать, ds: endure}
+  - {id: ru-or-v01867-s001, ch: сдержать, pr: сдержа́ть, ds: restrain}
+  - {id: ru-or-v01216-s001, ch: сдерживать, pr: сде́рживать, ds: restrain}
+  - {id: ru-or-v02719-s001, ch: сдерживаться, pr: сде́рживаться, ds: hold oneself in check}
+  - {id: ru-or-v06519-s001, ch: перетерпеть, pr: перетерпе́ть, ds: endure}
+  - {id: ru-or-v00551-s002, ch: вынести, pr: вы́нести, ds: endure}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-28-actions-02
+  title: Actions and results - 2
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v01928-s001, ch: уменьшаться, pr: уменьша́ться, ds: decrease}
+  - {id: ru-or-v06142-s001, ch: усложнять, pr: усложня́ть, ds: complicate}
+  - {id: ru-or-v07932-s001, ch: усложнить, pr: усложни́ть, ds: complicate}
+  - {id: ru-or-v07316-s001, ch: упростить, pr: упрости́ть, ds: simplify}
+  - {id: ru-or-v06711-s001, ch: упрощать, pr: упроща́ть, ds: simplify}
+  - {id: ru-or-v12860-s001, ch: упрощаться, pr: упроща́ться, ds: become simpler}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00457-s001, ch: приближаться, pr: приближа́ться, ds: approach}
+  - {id: ru-or-v00897-s001, ch: приблизиться, pr: прибли́зиться, ds: approach}
+  - {id: ru-or-v05417-s001, ch: отдаляться, pr: отдаля́ться, ds: keep away}
+  - {id: ru-or-v05495-s001, ch: сближать, pr: сближа́ть, ds: bring together}
+  - {id: ru-or-v04145-s001, ch: сузить, pr: су́зить, ds: narrow}
+  - {id: ru-or-v02713-s001, ch: расширяться, pr: расширя́ться, ds: widen}
+  - {id: ru-or-v03766-s001, ch: сокращаться, pr: сокраща́ться, ds: decrease}
+  - {id: ru-or-v01394-s001, ch: увеличиваться, pr: увели́чиваться, ds: increase}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-28-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a03195-s001, ch: единичный, pr: едини́чный, ds: single}
+  - {id: ru-or-a02344-s001, ch: множественный, pr: мно́жественный, ds: plural}
+  - {id: ru-or-a00066-s001, ch: единственный, pr: еди́нственный, ds: only}
+  - {id: ru-or-a00655-s001, ch: уникальный, pr: уника́льный, ds: unique}
+  - {id: ru-or-a00581-s001, ch: типичный, pr: типи́чный, ds: typical}
+  - {id: ru-or-a11755-s001, ch: характерный, pr: характе́рный, ds: characteristic}
+  - {id: ru-or-a00613-s001, ch: своеобразный, pr: своеобра́зный, ds: original}
+  - {id: ru-or-a01124-s001, ch: специфический, pr: специфи́ческий, ds: specific}
+  - {id: ru-or-a03312-s001, ch: отличительный, pr: отличи́тельный, ds: distinctive}
+  - {id: ru-or-a05415-s001, ch: тождественный, pr: тожде́ственный, ds: identical}
+  - {id: ru-or-a03470-s001, ch: идентичный, pr: иденти́чный, ds: identical}
+  - {id: ru-or-a04398-s001, ch: эквивалентный, pr: эквивале́нтный, ds: equivalent}
+  - {id: ru-or-a00762-s001, ch: аналогичный, pr: аналоги́чный, ds: analogous}
+  - {id: ru-or-a10268-s001, ch: соразмерный, pr: соразме́рный, ds: proportionate}
+  - {id: ru-or-a10254-s001, ch: соизмеримый, pr: соизмери́мый, ds: commensurable}
+  - {id: ru-or-a05913-s001, ch: несоизмеримый, pr: несоизмери́мый, ds: incommensurable}
+  - {id: ru-or-a05695-s001, ch: сопоставимый, pr: сопостави́мый, ds: comparable}
+  - {id: ru-or-a02068-s001, ch: сравнимый, pr: сравни́мый, ds: comparable}
+  - {id: ru-or-a04838-s001, ch: несравнимый, pr: несравни́мый, ds: incomparable}
+  - {id: ru-or-a05183-s001, ch: совместимый, pr: совмести́мый, ds: compatible}
+  - {id: ru-or-a02112-s001, ch: несовместимый, pr: несовмести́мый, ds: incompatible}
+  - {id: ru-or-a06561-s001, ch: однородный, pr: одноро́дный, ds: homogeneous}
+  - {id: ru-or-a06792-s001, ch: неоднородный, pr: неодноро́дный, ds: heterogeneous}
+  - {id: ru-or-a06545-s001, ch: однозначный, pr: однозна́чный, ds: unambiguous}
+  - {id: ru-or-a08521-s001, ch: многозначный, pr: многозна́чный, ds: polysemantic}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a03282-s001, ch: отзывчивый, pr: отзы́вчивый, ds: responsive}
+  - {id: ru-or-a01276-s001, ch: чуткий, pr: чу́ткий, ds: sensitive}
+  - {id: ru-or-a02098-s001, ch: бесчувственный, pr: бесчу́вственный, ds: insensitive}
+  - {id: ru-or-a01088-s001, ch: упорный, pr: упо́рный, ds: persistent}
+  - {id: ru-or-a00941-s001, ch: упрямый, pr: упря́мый, ds: stubborn}
+  - {id: ru-or-a01415-s001, ch: настойчивый, pr: насто́йчивый, ds: persistent}
+  - {id: ru-or-a04618-s001, ch: самонадеянный, pr: самонаде́янный, ds: presumptuous}
+  - {id: ru-or-a02051-s001, ch: самоуверенный, pr: самоуве́ренный, ds: self-confident}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-28-description-02
+  title: Description and comparison - 2
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a06553-s001, ch: односторонний, pr: односторо́нний, ds: one-sided}
+  - {id: ru-or-a06525-s001, ch: двусторонний, pr: двусторо́нний, ds: bilateral}
+  - {id: ru-or-a06729-s001, ch: многосторонний, pr: многосторо́нний, ds: multilateral}
+  - {id: ru-or-a00117-s001, ch: внутренний, pr: вну́тренний, ds: inner}
+  - {id: ru-or-a00214-s001, ch: внешний, pr: вне́шний, ds: external}
+  - {id: ru-or-a01050-s001, ch: присущий, pr: прису́щий, ds: inherent}
+  - {id: ru-or-a00665-s001, ch: свойственный, pr: сво́йственный, ds: peculiar}
+  - {id: ru-or-a02744-s001, ch: неотъемлемый, pr: неотъе́млемый, ds: inalienable}
+  - {id: ru-or-a04561-s001, ch: неотделимый, pr: неотдели́мый, ds: inseparable}
+  - {id: ru-or-a00332-s001, ch: обратный, pr: обра́тный, ds: opposite}
+  - {id: ru-or-a04131-s001, ch: обратимый, pr: обрати́мый, ds: reversible}
+  - {id: ru-or-a02223-s001, ch: необратимый, pr: необрати́мый, ds: irreversible}
+  - {id: ru-or-a00728-s001, ch: неизбежный, pr: неизбе́жный, ds: inevitable}
+  - {id: ru-or-a02541-s001, ch: неминуемый, pr: немину́емый, ds: inevitable}
+  - {id: ru-or-a00384-s001, ch: допустимый, pr: допусти́мый, ds: permissible}
+  - {id: ru-or-a03310-s001, ch: недопустимый, pr: недопусти́мый, ds: inadmissible}
+  - {id: ru-or-a01909-s001, ch: предельный, pr: преде́льный, ds: utmost}
+  - {id: ru-or-a00358-s001, ch: бесконечный, pr: бесконе́чный, ds: infinite}
+  - {id: ru-or-a00513-s001, ch: конечный, pr: коне́чный, ds: ultimate}
+  - {id: ru-or-a01743-s001, ch: безграничный, pr: безграни́чный, ds: boundless}
+  - {id: ru-or-a03522-s001, ch: безмерный, pr: безме́рный, ds: boundless}
+  - {id: ru-or-a01955-s001, ch: неограниченный, pr: неограни́ченный, ds: unlimited}
+  - {id: ru-or-a00606-s001, ch: непосредственный, pr: непосре́дственный, ds: direct}
+  - {id: ru-or-a01034-s001, ch: потенциальный, pr: потенциа́льный, ds: potential}
+  - {id: ru-or-a02023-s001, ch: актуальный, pr: актуа́льный, ds: relevant}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a02068-s001, ch: сравнимый, pr: сравни́мый, ds: comparable}
+  - {id: ru-or-a04838-s001, ch: несравнимый, pr: несравни́мый, ds: incomparable}
+  - {id: ru-or-a05183-s001, ch: совместимый, pr: совмести́мый, ds: compatible}
+  - {id: ru-or-a02112-s001, ch: несовместимый, pr: несовмести́мый, ds: incompatible}
+  - {id: ru-or-a06561-s001, ch: однородный, pr: одноро́дный, ds: homogeneous}
+  - {id: ru-or-a06792-s001, ch: неоднородный, pr: неодноро́дный, ds: heterogeneous}
+  - {id: ru-or-a06545-s001, ch: однозначный, pr: однозна́чный, ds: unambiguous}
+  - {id: ru-or-a08521-s001, ch: многозначный, pr: многозна́чный, ds: polysemantic}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-28-description-03
+  title: Description and comparison - 3
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-n00336-s001, ch: цвет, pr: цвет, ds: colour}
+  - {id: ru-or-n01856-s001, ch: оттенок, pr: отте́нок, ds: shade}
+  - {id: ru-or-n06564-s001, ch: яркость, pr: я́ркость, ds: brightness}
+  - {id: ru-or-n05939-s001, ch: контраст, pr: контра́ст, ds: contrast}
+  - {id: ru-or-n13636-s001, ch: насыщенность, pr: насы́щенность, ds: saturation}
+  - {id: ru-or-n07753-s001, ch: прозрачность, pr: прозра́чность, ds: transparency}
+  - {id: ru-or-n20094-s001, ch: непрозрачность, pr: непрозра́чность, ds: opacity}
+  - {id: ru-or-n04318-s001, ch: прочность, pr: про́чность, ds: strength}
+  - {id: ru-or-n04560-s001, ch: твёрдость, pr: твёрдость, ds: hardness}
+  - {id: ru-or-n06038-s001, ch: мягкость, pr: мя́гкость, ds: softness}
+  - {id: ru-or-n09528-s001, ch: гибкость, pr: ги́бкость, ds: flexibility}
+  - {id: ru-or-n12177-s001, ch: упругость, pr: упру́гость, ds: elasticity}
+  - {id: ru-or-n11705-s001, ch: эластичность, pr: эласти́чность, ds: elasticity}
+  - {id: ru-or-n14318-s001, ch: пластичность, pr: пласти́чность, ds: plasticity}
+  - {id: ru-or-n16713-s001, ch: гладкость, pr: гла́дкость, ds: smoothness}
+  - {id: ru-or-n14162-s001, ch: шероховатость, pr: шерохова́тость, ds: roughness}
+  - {id: ru-or-n06986-s001, ch: влажность, pr: вла́жность, ds: humidity}
+  - {id: ru-or-n05426-s001, ch: сухость, pr: су́хость, ds: dryness}
+  - {id: ru-or-n14665-s001, ch: вязкость, pr: вя́зкость, ds: viscosity}
+  - {id: ru-or-n23728-s001, ch: текучесть, pr: теку́честь, ds: fluidity}
+  - {id: ru-or-n22322-s001, ch: растворимость, pr: раствори́мость, ds: solubility}
+  - {id: ru-or-n16833-s001, ch: горючесть, pr: горю́честь, ds: combustibility}
+  - {id: ru-or-n21863-s001, ch: проводимость, pr: проводи́мость, ds: conductivity}
+  - {id: ru-or-n14837-s001, ch: проницаемость, pr: проница́емость, ds: permeability}
+  - {id: ru-or-n03661-s001, ch: ёмкость, pr: ёмкость, ds: capacity}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00358-s001, ch: бесконечный, pr: бесконе́чный, ds: infinite}
+  - {id: ru-or-a00513-s001, ch: конечный, pr: коне́чный, ds: ultimate}
+  - {id: ru-or-a01743-s001, ch: безграничный, pr: безграни́чный, ds: boundless}
+  - {id: ru-or-a03522-s001, ch: безмерный, pr: безме́рный, ds: boundless}
+  - {id: ru-or-a01955-s001, ch: неограниченный, pr: неограни́ченный, ds: unlimited}
+  - {id: ru-or-a00606-s001, ch: непосредственный, pr: непосре́дственный, ds: direct}
+  - {id: ru-or-a01034-s001, ch: потенциальный, pr: потенциа́льный, ds: potential}
+  - {id: ru-or-a02023-s001, ch: актуальный, pr: актуа́льный, ds: relevant}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-28-description-04
+  title: Description and comparison - 4
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-n16240-s001, ch: вместимость, pr: вмести́мость, ds: capacity}
+  - {id: ru-or-n22105-s001, ch: равномерность, pr: равноме́рность, ds: evenness}
+  - {id: ru-or-n20103-s001, ch: неравномерность, pr: неравноме́рность, ds: unevenness}
+  - {id: ru-or-n11001-s001, ch: симметрия, pr: симметри́я, ds: symmetry}
+  - {id: ru-or-n15411-s001, ch: асимметрия, pr: асимметри́я, ds: asymmetry}
+  - {id: ru-or-n21917-s001, ch: пропорциональность, pr: пропорциона́льность, ds: proportionality}
+  - {id: ru-or-a00318-s001, ch: прозрачный, pr: прозра́чный, ds: transparent}
+  - {id: ru-or-a04436-s001, ch: непрозрачный, pr: непрозра́чный, ds: opaque}
+  - {id: ru-or-a01200-s001, ch: матовый, pr: ма́товый, ds: lustreless}
+  - {id: ru-or-a03205-s001, ch: глянцевый, pr: гля́нцевый, ds: glossy}
+  - {id: ru-or-a00778-s001, ch: тусклый, pr: ту́склый, ds: dim}
+  - {id: ru-or-a00696-s001, ch: пёстрый, pr: пёстрый, ds: motley}
+  - {id: ru-or-a02185-s001, ch: красочный, pr: кра́сочный, ds: colourful}
+  - {id: ru-or-a01476-s001, ch: бесцветный, pr: бесцве́тный, ds: colourless}
+  - {id: ru-or-a05428-s001, ch: шероховатый, pr: шерохова́тый, ds: rough}
+  - {id: ru-or-a01412-s001, ch: шершавый, pr: шерша́вый, ds: rough}
+  - {id: ru-or-a01313-s001, ch: неровный, pr: неро́вный, ds: uneven}
+  - {id: ru-or-a03233-s001, ch: бугристый, pr: бугри́стый, ds: uneven}
+  - {id: ru-or-a03845-s001, ch: ребристый, pr: ребри́стый, ds: ribbed}
+  - {id: ru-or-a05355-s001, ch: зернистый, pr: зерни́стый, ds: granular}
+  - {id: ru-or-a03840-s001, ch: пористый, pr: по́ристый, ds: porous}
+  - {id: ru-or-a01442-s001, ch: рыхлый, pr: ры́хлый, ds: loose}
+  - {id: ru-or-a00351-s001, ch: плотный, pr: пло́тный, ds: dense}
+  - {id: ru-or-a01789-s001, ch: вязкий, pr: вя́зкий, ds: viscous}
+  - {id: ru-or-a00620-s001, ch: жидкий, pr: жи́дкий, ds: liquid}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n05426-s001, ch: сухость, pr: су́хость, ds: dryness}
+  - {id: ru-or-n14665-s001, ch: вязкость, pr: вя́зкость, ds: viscosity}
+  - {id: ru-or-n23728-s001, ch: текучесть, pr: теку́честь, ds: fluidity}
+  - {id: ru-or-n22322-s001, ch: растворимость, pr: раствори́мость, ds: solubility}
+  - {id: ru-or-n16833-s001, ch: горючесть, pr: горю́честь, ds: combustibility}
+  - {id: ru-or-n21863-s001, ch: проводимость, pr: проводи́мость, ds: conductivity}
+  - {id: ru-or-n14837-s001, ch: проницаемость, pr: проница́емость, ds: permeability}
+  - {id: ru-or-n03661-s001, ch: ёмкость, pr: ёмкость, ds: capacity}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-28-description-05
+  title: Description and comparison - 5
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00229-s001, ch: густой, pr: густо́й, ds: thick}
+  - {id: ru-or-a01806-s001, ch: тягучий, pr: тягу́чий, ds: viscous}
+  - {id: ru-or-a01072-s001, ch: липкий, pr: ли́пкий, ds: sticky}
+  - {id: ru-or-a03540-s001, ch: клейкий, pr: кле́йкий, ds: sticky}
+  - {id: ru-or-a00893-s001, ch: скользкий, pr: ско́льзкий, ds: slippery}
+  - {id: ru-or-a02896-s001, ch: ломкий, pr: ло́мкий, ds: brittle}
+  - {id: ru-or-a00992-s001, ch: хрупкий, pr: хру́пкий, ds: fragile}
+  - {id: ru-or-a01069-s001, ch: упругий, pr: упру́гий, ds: elastic}
+  - {id: ru-or-a03793-s001, ch: эластичный, pr: эласти́чный, ds: elastic}
+  - {id: ru-or-a09939-s001, ch: растяжимый, pr: растяжи́мый, ds: extensible}
+  - {id: ru-or-a01336-s001, ch: выпуклый, pr: вы́пуклый, ds: convex}
+  - {id: ru-or-a04299-s001, ch: вогнутый, pr: во́гнутый, ds: concave}
+  - {id: ru-or-a01505-s001, ch: округлый, pr: окру́глый, ds: rounded}
+  - {id: ru-or-a01899-s001, ch: овальный, pr: ова́льный, ds: oval}
+  - {id: ru-or-a01640-s001, ch: продолговатый, pr: продолгова́тый, ds: oblong}
+  - {id: ru-or-a02189-s001, ch: треугольный, pr: треуго́льный, ds: triangular}
+  - {id: ru-or-a02132-s001, ch: прямоугольный, pr: прямоуго́льный, ds: rectangular}
+  - {id: ru-or-a04366-s001, ch: цилиндрический, pr: цилиндри́ческий, ds: cylindrical}
+  - {id: ru-or-a06284-s001, ch: конический, pr: кони́ческий, ds: conical}
+  - {id: ru-or-a05049-s001, ch: сферический, pr: сфери́ческий, ds: spherical}
+  - {id: ru-or-a05972-s001, ch: спиральный, pr: спира́льный, ds: spiral}
+  - {id: ru-or-a07916-s001, ch: зигзагообразный, pr: зигзагообра́зный, ds: zigzag}
+  - {id: ru-or-a01266-s001, ch: вертикальный, pr: вертика́льный, ds: vertical}
+  - {id: ru-or-a01512-s001, ch: горизонтальный, pr: горизонта́льный, ds: horizontal}
+  - {id: ru-or-a03222-s001, ch: наклонный, pr: накло́нный, ds: inclined}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a03233-s001, ch: бугристый, pr: бугри́стый, ds: uneven}
+  - {id: ru-or-a03845-s001, ch: ребристый, pr: ребри́стый, ds: ribbed}
+  - {id: ru-or-a05355-s001, ch: зернистый, pr: зерни́стый, ds: granular}
+  - {id: ru-or-a03840-s001, ch: пористый, pr: по́ристый, ds: porous}
+  - {id: ru-or-a01442-s001, ch: рыхлый, pr: ры́хлый, ds: loose}
+  - {id: ru-or-a00351-s001, ch: плотный, pr: пло́тный, ds: dense}
+  - {id: ru-or-a01789-s001, ch: вязкий, pr: вя́зкий, ds: viscous}
+  - {id: ru-or-a00620-s001, ch: жидкий, pr: жи́дкий, ds: liquid}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-28-description-06
+  title: Description and comparison - 6
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a03151-s001, ch: продольный, pr: продо́льный, ds: longitudinal}
+  - {id: ru-or-a01868-s001, ch: поперечный, pr: попере́чный, ds: transverse}
+  - {id: ru-or-n02739-s001, ch: очертание, pr: очерта́ние, ds: outline}
+  - {id: ru-or-n03474-s001, ch: контур, pr: ко́нтур, ds: contour}
+  - {id: ru-or-n02275-s001, ch: силуэт, pr: силуэ́т, ds: silhouette}
+  - {id: ru-or-n02012-s001, ch: грань, pr: грань, ds: edge}
+  - {id: ru-or-n01887-s001, ch: ребро, pr: ребро́, ds: edge}
+  - {id: ru-or-n03050-s001, ch: плоскость, pr: пло́скость, ds: plane}
+  - {id: ru-or-n07575-s001, ch: кривизна, pr: кривизна́, ds: curvature}
+  - {id: ru-or-n05172-s001, ch: изгиб, pr: изги́б, ds: bend}
+  - {id: ru-or-n06319-s001, ch: впадина, pr: впа́дина, ds: hollow}
+  - {id: ru-or-n10874-s001, ch: выпуклость, pr: вы́пуклость, ds: convexity}
+  - {id: ru-or-n11002-s001, ch: выемка, pr: вы́емка, ds: groove}
+  - {id: ru-or-n03828-s001, ch: выступ, pr: вы́ступ, ds: projection}
+  - {id: ru-or-n05462-s001, ch: углубление, pr: углубле́ние, ds: depression}
+  - {id: ru-or-n07235-s001, ch: вмятина, pr: вмя́тина, ds: dent}
+  - {id: ru-or-n02773-s001, ch: бугор, pr: буго́р, ds: mound}
+  - {id: ru-or-n05327-s001, ch: борозда, pr: борозда́, ds: furrow}
+  - {id: ru-or-n02862-s001, ch: морщина, pr: морщи́на, ds: wrinkle}
+  - {id: ru-or-n02190-s001, ch: складка, pr: скла́дка, ds: fold}
+  - {id: ru-or-n07602-s001, ch: сгиб, pr: сгиб, ds: bend}
+  - {id: ru-or-n04368-s001, ch: разрез, pr: разре́з, ds: cut}
+  - {id: ru-or-n06187-s001, ch: срез, pr: срез, ds: cut}
+  - {id: ru-or-n13250-s001, ch: надрез, pr: надре́з, ds: incision}
+  - {id: ru-or-n06891-s001, ch: сечение, pr: сече́ние, ds: section}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a04366-s001, ch: цилиндрический, pr: цилиндри́ческий, ds: cylindrical}
+  - {id: ru-or-a06284-s001, ch: конический, pr: кони́ческий, ds: conical}
+  - {id: ru-or-a05049-s001, ch: сферический, pr: сфери́ческий, ds: spherical}
+  - {id: ru-or-a05972-s001, ch: спиральный, pr: спира́льный, ds: spiral}
+  - {id: ru-or-a07916-s001, ch: зигзагообразный, pr: зигзагообра́зный, ds: zigzag}
+  - {id: ru-or-a01266-s001, ch: вертикальный, pr: вертика́льный, ds: vertical}
+  - {id: ru-or-a01512-s001, ch: горизонтальный, pr: горизонта́льный, ds: horizontal}
+  - {id: ru-or-a03222-s001, ch: наклонный, pr: накло́нный, ds: inclined}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-28-description-07
+  title: Description and comparison - 7
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-n05223-s001, ch: отрезок, pr: отре́зок, ds: segment}
+  - {id: ru-or-n03356-s001, ch: промежуток, pr: промежу́ток, ds: interval}
+  - {id: ru-or-n08048-s001, ch: протяжённость, pr: протяжённость, ds: extent}
+  - {id: ru-or-n02813-s001, ch: толщина, pr: толщина́, ds: thickness}
+  - {id: ru-or-n06819-s001, ch: параллель, pr: паралле́ль, ds: parallel}
+  - {id: ru-or-n21066-s001, ch: перпендикуляр, pr: перпендикуля́р, ds: perpendicular}
+  - {id: ru-or-n10000-s001, ch: диагональ, pr: диагона́ль, ds: diagonal}
+  - {id: ru-or-n06881-s001, ch: окружность, pr: окру́жность, ds: circumference}
+  - {id: ru-or-n04759-s001, ch: радиус, pr: ра́диус, ds: radius}
+  - {id: ru-or-n02467-s001, ch: диаметр, pr: диа́метр, ds: diameter}
+  - {id: ru-or-n01963-s001, ch: ось, pr: ось, ds: axis}
+  - {id: ru-or-n04174-s001, ch: координата, pr: координа́та, ds: co-ordinate}
+  - {id: ru-or-n22954-s001, ch: симметричность, pr: симметри́чность, ds: symmetry}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n05327-s001, ch: борозда, pr: борозда́, ds: furrow}
+  - {id: ru-or-n02862-s001, ch: морщина, pr: морщи́на, ds: wrinkle}
+  - {id: ru-or-n02190-s001, ch: складка, pr: скла́дка, ds: fold}
+  - {id: ru-or-n07602-s001, ch: сгиб, pr: сгиб, ds: bend}
+  - {id: ru-or-n04368-s001, ch: разрез, pr: разре́з, ds: cut}
+  - {id: ru-or-n06187-s001, ch: срез, pr: срез, ds: cut}
+  - {id: ru-or-n13250-s001, ch: надрез, pr: надре́з, ds: incision}
+  - {id: ru-or-n06891-s001, ch: сечение, pr: сече́ние, ds: section}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-28-reasoning-01
+  title: Reasons and relationships - 1
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary:
+  - {id: ru-or-n00600-s001, ch: понятие, pr: поня́тие, ds: concept}
+  - {id: ru-or-n01444-s001, ch: категория, pr: катего́рия, ds: category}
+  - {id: ru-or-n00834-s001, ch: сущность, pr: су́щность, ds: essence}
+  - {id: ru-or-n00644-s001, ch: суть, pr: суть, ds: essence}
+  - {id: ru-or-n00611-s001, ch: явление, pr: явле́ние, ds: phenomenon}
+  - {id: ru-or-n01246-s001, ch: реальность, pr: реа́льность, ds: reality}
+  - {id: ru-or-n01074-s001, ch: действительность, pr: действи́тельность, ds: reality}
+  - {id: ru-or-n02020-s001, ch: бытие, pr: бытие́, ds: being}
+  - {id: ru-or-n00584-s001, ch: существование, pr: существова́ние, ds: existence}
+  - {id: ru-or-n00526-s001, ch: отсутствие, pr: отсу́тствие, ds: absence or lack}
+  - {id: ru-or-n01125-s001, ch: наличие, pr: нали́чие, ds: presence}
+  - {id: ru-or-n02670-s001, ch: единство, pr: еди́нство, ds: unity}
+  - {id: ru-or-n06532-s001, ch: целостность, pr: це́лостность, ds: integrity}
+  - {id: ru-or-n12477-s001, ch: множественность, pr: мно́жественность, ds: plurality}
+  - {id: ru-or-n25637-s001, ch: тождество, pr: то́ждество, ds: identity}
+  - {id: ru-or-n07521-s001, ch: идентификация, pr: идентифика́ция, ds: identification}
+  - {id: ru-or-n08423-s001, ch: эквивалент, pr: эквивале́нт, ds: equivalent}
+  - {id: ru-or-n05285-s001, ch: аналог, pr: ана́лог, ds: analogue}
+  - {id: ru-or-n04421-s001, ch: аналогия, pr: анало́гия, ds: analogy}
+  - {id: ru-or-n02714-s001, ch: подобие, pr: подо́бие, ds: likeness}
+  - {id: ru-or-n16844-s001, ch: градация, pr: града́ция, ds: gradation}
+  - {id: ru-or-n04763-s001, ch: иерархия, pr: иера́рхия, ds: hierarchy}
+  - {id: ru-or-n00237-s001, ch: уровень, pr: у́ровень, ds: level}
+  - {id: ru-or-n02162-s001, ch: ранг, pr: ранг, ds: rank}
+  - {id: ru-or-n00425-s001, ch: степень, pr: сте́пень, ds: degree}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00679-s001, ch: раскрыть, pr: раскры́ть, ds: reveal}
+  - {id: ru-or-v01625-s001, ch: раскрывать, pr: раскрыва́ть, ds: reveal}
+  - {id: ru-or-v02732-s001, ch: разоблачить, pr: разоблачи́ть, ds: expose}
+  - {id: ru-or-v04192-s001, ch: разоблачать, pr: разоблача́ть, ds: expose}
+  - {id: ru-or-v08211-s001, ch: изобличить, pr: изобличи́ть, ds: expose}
+  - {id: ru-or-v09005-s001, ch: изобличать, pr: изоблича́ть, ds: expose}
+  - {id: ru-or-v00390-s001, ch: выдать, pr: вы́дать, ds: reveal}
+  - {id: ru-or-v00567-s001, ch: выдавать, pr: выдава́ть, ds: reveal}
+  review_grammar:
+  - {id: ru-g-epistemic-qualification, ch: 'возможно / вероятно / по-видимому, [claim]', ds: Qualify commitment to a claim}
+  - {id: ru-g-inference-from-evidence, ch: 'судя по [dative evidence], [inference]', ds: Mark the evidence used to make an inference}
+  - {id: ru-g-purpose-cause-prepositions, ch: 'для / ради [genitive purpose]; из-за / вследствие [genitive cause]', ds: Separate a purpose from an attributed cause}
+- id: level-28-reasoning-02
+  title: Reasons and relationships - 2
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary:
+  - {id: ru-or-n01362-s001, ch: масштаб, pr: масшта́б, ds: scale}
+  - {id: ru-or-n04054-s001, ch: диапазон, pr: диапазо́н, ds: range}
+  - {id: ru-or-n04683-s001, ch: интервал, pr: интерва́л, ds: interval}
+  - {id: ru-or-n00576-s001, ch: предел, pr: преде́л, ds: limit}
+  - {id: ru-or-n01177-s001, ch: рамка, pr: ра́мка, ds: frame}
+  - {id: ru-or-n00536-s001, ch: порог, pr: поро́г, ds: threshold}
+  - {id: ru-or-n02869-s001, ch: максимум, pr: ма́ксимум, ds: maximum}
+  - {id: ru-or-n01396-s001, ch: минимум, pr: ми́нимум, ds: minimum}
+  - {id: ru-or-n03202-s001, ch: избыток, pr: избы́ток, ds: surplus}
+  - {id: ru-or-n03259-s001, ch: дефицит, pr: дефици́т, ds: deficit}
+  - {id: ru-or-n05260-s001, ch: достаток, pr: доста́ток, ds: prosperity}
+  - {id: ru-or-n04705-s001, ch: совокупность, pr: совоку́пность, ds: aggregate}
+  - {id: ru-or-n00610-s001, ch: множество, pr: мно́жество, ds: a great number}
+  - {id: ru-or-n14954-s001, ch: совместимость, pr: совмести́мость, ds: compatibility}
+  - {id: ru-or-n12824-s001, ch: несовместимость, pr: несовмести́мость, ds: incompatibility}
+  - {id: ru-or-n20451-s001, ch: однородность, pr: одноро́дность, ds: homogeneity}
+  - {id: ru-or-n14820-s001, ch: неоднородность, pr: неодноро́дность, ds: heterogeneity}
+  - {id: ru-or-n06368-s001, ch: целесообразность, pr: целесообра́зность, ds: expediency}
+  - {id: ru-or-n20371-s001, ch: обратимость, pr: обрати́мость, ds: reversibility}
+  - {id: ru-or-n19999-s001, ch: необратимость, pr: необрати́мость, ds: irreversibility}
+  - {id: ru-or-n05297-s001, ch: неизбежность, pr: неизбе́жность, ds: inevitability}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n05285-s001, ch: аналог, pr: ана́лог, ds: analogue}
+  - {id: ru-or-n04421-s001, ch: аналогия, pr: анало́гия, ds: analogy}
+  - {id: ru-or-n02714-s001, ch: подобие, pr: подо́бие, ds: likeness}
+  - {id: ru-or-n16844-s001, ch: градация, pr: града́ция, ds: gradation}
+  - {id: ru-or-n04763-s001, ch: иерархия, pr: иера́рхия, ds: hierarchy}
+  - {id: ru-or-n00237-s001, ch: уровень, pr: у́ровень, ds: level}
+  - {id: ru-or-n02162-s001, ch: ранг, pr: ранг, ds: rank}
+  - {id: ru-or-n00425-s001, ch: степень, pr: сте́пень, ds: degree}
+  review_grammar:
+  - {id: ru-g-epistemic-qualification, ch: 'возможно / вероятно / по-видимому, [claim]', ds: Qualify commitment to a claim}
+  - {id: ru-g-inference-from-evidence, ch: 'судя по [dative evidence], [inference]', ds: Mark the evidence used to make an inference}
+  - {id: ru-g-purpose-cause-prepositions, ch: 'для / ради [genitive purpose]; из-за / вследствие [genitive cause]', ds: Separate a purpose from an attributed cause}
+- id: level-28-communication-practice-01
+  title: Communication and repair - sentence practice 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-explicit-clarification, ch: 'то есть / а именно [clarification]', ds: Restate a meaning or specify its members precisely}
+  review_vocabulary:
+  - {id: ru-or-v03543-s001, ch: разъяснять, pr: разъясня́ть, ds: explain}
+  - {id: ru-or-v05711-s001, ch: растолковать, pr: растолкова́ть, ds: explain}
+  - {id: ru-or-v12465-s001, ch: растолковывать, pr: растолко́вывать, ds: explain}
+  - {id: ru-or-v04316-s001, ch: поучать, pr: поуча́ть, ds: teach}
+  - {id: ru-or-v04211-s001, ch: наставлять, pr: наставля́ть, ds: mentor}
+  - {id: ru-or-v06618-s001, ch: увещевать, pr: увещева́ть, ds: exhort}
+  - {id: ru-or-v01744-s001, ch: поведать, pr: пове́дать, ds: tell}
+  - {id: ru-or-v04870-s001, ch: повествовать, pr: повествова́ть, ds: narrate}
+  review_grammar:
+  - {id: ru-g-reported-statement, ch: '[speaker] сказал, что [clause]', ds: Report a statement without automatic tense backshift}
+  - {id: ru-g-reported-request, ch: 'попросил [person] [infinitive] / попросил, чтобы ...', ds: Relay a request while keeping the intended actor clear}
+  - {id: ru-g-conversational-ellipsis, ch: 'Я за. А вы? Мне тоже.', ds: Recover omitted material in a short contextual reply}
+- id: level-28-time-practice-01
+  title: Time and event sequence - sentence practice 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-until-before, ch: 'пока не [endpoint]; прежде чем [action]', ds: Distinguish an until endpoint from a before relation}
+  review_vocabulary:
+  - {id: ru-or-o00472-s001, ch: ежедневно, pr: ежедне́вно, ds: daily}
+  - {id: ru-or-o00817-s001, ch: ежегодно, pr: ежего́дно, ds: annually}
+  - {id: ru-or-o00252-s001, ch: постоянно, pr: постоя́нно, ds: constantly}
+  - {id: ru-or-o00164-s001, ch: обычно, pr: обы́чно, ds: usually}
+  - {id: ru-or-o00149-s001, ch: часто, pr: ча́сто, ds: often}
+  - {id: ru-or-o00291-s001, ch: редко, pr: ре́дко, ds: rarely}
+  - {id: ru-or-o00093-s001, ch: никогда, pr: никогда́, ds: never}
+  - {id: ru-or-o00110-s001, ch: долго, pr: до́лго, ds: long}
+  review_grammar:
+  - {id: ru-g-narrative-aspect, ch: '[imperfective background], потом [perfective outcome]', ds: Separate narrative background from completed events}
+  - {id: ru-g-temporal-clauses, ch: 'когда / пока / после того как [clause]', ds: Link an event to a time or ongoing background}
+  - {id: ru-g-time-to-result, ch: 'читать [duration]; прочитать за [accusative duration]', ds: Distinguish activity duration from time to completion}
+- id: level-28-reasoning-practice-01
+  title: Reasons and relationships - sentence practice 1
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-bounds-degree, ch: 'по крайней мере / не менее / не более [quantity]', ds: State a lower or upper bound rather than an exact amount}
+  - {id: ru-g-instead-of-action, ch: 'вместо того чтобы [infinitive / clause]', ds: Contrast a chosen action with a displaced alternative}
+  review_vocabulary:
+  - {id: ru-or-n14954-s001, ch: совместимость, pr: совмести́мость, ds: compatibility}
+  - {id: ru-or-n12824-s001, ch: несовместимость, pr: несовмести́мость, ds: incompatibility}
+  - {id: ru-or-n20451-s001, ch: однородность, pr: одноро́дность, ds: homogeneity}
+  - {id: ru-or-n14820-s001, ch: неоднородность, pr: неодноро́дность, ds: heterogeneity}
+  - {id: ru-or-n06368-s001, ch: целесообразность, pr: целесообра́зность, ds: expediency}
+  - {id: ru-or-n20371-s001, ch: обратимость, pr: обрати́мость, ds: reversibility}
+  - {id: ru-or-n19999-s001, ch: необратимость, pr: необрати́мость, ds: irreversibility}
+  - {id: ru-or-n05297-s001, ch: неизбежность, pr: неизбе́жность, ds: inevitability}
+  review_grammar:
+  - {id: ru-g-epistemic-qualification, ch: 'возможно / вероятно / по-видимому, [claim]', ds: Qualify commitment to a claim}
+  - {id: ru-g-inference-from-evidence, ch: 'судя по [dative evidence], [inference]', ds: Mark the evidence used to make an inference}
+  - {id: ru-g-purpose-cause-prepositions, ch: 'для / ради [genitive purpose]; из-за / вследствие [genitive cause]', ds: Separate a purpose from an attributed cause}

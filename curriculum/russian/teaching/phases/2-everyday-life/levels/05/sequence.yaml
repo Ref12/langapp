@@ -1,0 +1,404 @@
+schema_version: 3
+id: ru-level-05
+title: Sharing a home and belongings
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 5
+phase: everyday-life
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+goals: &id001
+- Explain possession and absence using genitive frames.
+- Locate household items with the case required by a preposition.
+- Coordinate a household routine with plural agreement and familiar reflexive verbs.
+checkpoint:
+  task: Explain a household need and negotiate who has an item, who lacks it, and where it should be found.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-05-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary:
+  - {id: ru-or-n00126-s001, ch: муж, pr: муж, ds: husband}
+  - {id: ru-or-n00049-s001, ch: жена, pr: жена́, ds: wife}
+  - {id: ru-or-n00402-s001, ch: бабушка, pr: ба́бушка, ds: grandmother}
+  - {id: ru-or-n00672-s001, ch: дедушка, pr: де́душка, ds: grandfather}
+  - {id: ru-or-n00082-s001, ch: мама, pr: ма́ма, ds: mom}
+  - {id: ru-or-n00377-s001, ch: папа, pr: па́па, ds: dad}
+  - {id: ru-or-o00030-s001, ch: себя, pr: себя́, ds: oneself (reflexive pronoun)}
+  - {id: ru-or-a00011-s001, ch: свой, pr: свой, ds: one's own (referring to the subject)}
+  - {id: ru-or-a00012-s001, ch: сам, pr: сам, ds: oneself (emphatic pronoun)}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00036-s001, ch: ребёнок, pr: ребёнок, ds: child}
+  - {id: ru-or-n00035-s001, ch: женщина, pr: же́нщина, ds: woman}
+  - {id: ru-or-n00117-s001, ch: мужчина, pr: мужчи́на, ds: man}
+  - {id: ru-or-n01230-s001, ch: иностранец, pr: иностра́нец, ds: person from another country}
+  - {id: ru-or-a00122-s001, ch: чей, pr: чей, ds: whose}
+  - {id: ru-or-n00519-s001, ch: кот, pr: кот, ds: cat}
+  - {id: ru-or-n00142-s001, ch: собака, pr: соба́ка, ds: dog}
+  - {id: ru-or-n00573-s001, ch: кошка, pr: ко́шка, ds: cat}
+  review_grammar:
+  - {id: ru-g-present-identity, ch: 'Я [name]. Это [noun].', ds: State identity without a present-tense copula}
+  - {id: ru-g-possessive-agreement, ch: 'мой / моя / моё [noun]; его / её [noun]', ds: Match a possessive to the thing possessed}
+  - {id: ru-g-whose-question, ch: 'Чей / чья / чьё / чьи [noun]?', ds: Ask whose with gender and number agreement}
+- id: level-05-home-01
+  title: Home and shared routines - 1
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-n00248-s001, ch: кухня, pr: ку́хня, ds: kitchen}
+  - {id: ru-or-n01409-s001, ch: спальня, pr: спа́льня, ds: bedroom}
+  - {id: ru-or-n14507-s001, ch: ванная, pr: ва́нная, ds: bathroom}
+  - {id: ru-or-n00209-s001, ch: коридор, pr: коридо́р, ds: corridor}
+  - {id: ru-or-n01233-s001, ch: балкон, pr: балко́н, ds: balcony}
+  - {id: ru-or-n00284-s001, ch: этаж, pr: эта́ж, ds: storey}
+  - {id: ru-or-n00347-s001, ch: лестница, pr: ле́стница, ds: stairs}
+  - {id: ru-or-n00077-s001, ch: стена, pr: стена́, ds: wall}
+  - {id: ru-or-n00061-s001, ch: пол, pr: пол, ds: floor}
+  - {id: ru-or-n00565-s001, ch: потолок, pr: потоло́к, ds: ceiling}
+  - {id: ru-or-n00335-s001, ch: крыша, pr: кры́ша, ds: roof}
+  - {id: ru-or-n01227-s001, ch: лифт, pr: лифт, ds: elevator}
+  - {id: ru-or-n00734-s001, ch: подъезд, pr: подъе́зд, ds: entrance}
+  - {id: ru-or-n00371-s001, ch: кровать, pr: крова́ть, ds: bed}
+  - {id: ru-or-n00575-s001, ch: диван, pr: дива́н, ds: sofa}
+  - {id: ru-or-n00292-s001, ch: кресло, pr: кре́сло, ds: armchair}
+  - {id: ru-or-n00724-s001, ch: шкаф, pr: шкаф, ds: wardrobe}
+  - {id: ru-or-n14500-s001, ch: полка, pr: по́лка, ds: shelf}
+  - {id: ru-or-n00380-s001, ch: зеркало, pr: зе́ркало, ds: mirror}
+  - {id: ru-or-n01122-s001, ch: ковёр, pr: ковёр, ds: carpet}
+  - {id: ru-or-n00916-s001, ch: лампа, pr: ла́мпа, ds: lamp}
+  - {id: ru-or-n00048-s001, ch: свет, pr: свет, ds: light}
+  - {id: ru-or-n02579-s001, ch: электричество, pr: электри́чество, ds: electricity}
+  - {id: ru-or-n00755-s001, ch: газ, pr: газ, ds: gas}
+  - {id: ru-or-n03609-s001, ch: отопление, pr: отопле́ние, ds: heating}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00021-s001, ch: дверь, pr: дверь, ds: door}
+  - {id: ru-or-n00050-s001, ch: окно, pr: окно́, ds: window}
+  - {id: ru-or-n00031-s001, ch: стол, pr: стол, ds: table}
+  - {id: ru-or-n00341-s001, ch: стул, pr: стул, ds: chair}
+  - {id: ru-or-n00059-s001, ch: книга, pr: кни́га, ds: book}
+  - {id: ru-or-n00214-s001, ch: телефон, pr: телефо́н, ds: telephone}
+  - {id: ru-or-n00626-s001, ch: сумка, pr: су́мка, ds: bag}
+  - {id: ru-or-n00406-s001, ch: ключ, pr: ключ, ds: key}
+  review_grammar:
+  - {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+- id: level-05-home-02
+  title: Home and shared routines - 2
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-n00809-s001, ch: батарея, pr: батаре́я, ds: radiator}
+  - {id: ru-or-n01622-s001, ch: холодильник, pr: холоди́льник, ds: refrigerator}
+  - {id: ru-or-n01294-s001, ch: плита, pr: плита́, ds: stove}
+  - {id: ru-or-n02900-s001, ch: раковина, pr: ра́ковина, ds: sink}
+  - {id: ru-or-n01788-s001, ch: кран, pr: кран, ds: tap}
+  - {id: ru-or-n08129-s001, ch: душ, pr: душ, ds: shower}
+  - {id: ru-or-n01666-s001, ch: ванна, pr: ва́нна, ds: bath}
+  - {id: ru-or-n01351-s001, ch: мыло, pr: мы́ло, ds: soap}
+  - {id: ru-or-n01522-s001, ch: полотенце, pr: полоте́нце, ds: towel}
+  - {id: ru-or-n00964-s001, ch: подушка, pr: поду́шка, ds: pillow}
+  - {id: ru-or-n00846-s001, ch: одеяло, pr: одея́ло, ds: blanket}
+  - {id: ru-or-n01763-s001, ch: простыня, pr: простыня́, ds: bed-sheet}
+  - {id: ru-or-n01169-s001, ch: посуда, pr: посу́да, ds: tableware}
+  - {id: ru-or-n00828-s001, ch: тарелка, pr: таре́лка, ds: plate}
+  - {id: ru-or-n01332-s001, ch: чашка, pr: ча́шка, ds: cup}
+  - {id: ru-or-n00417-s001, ch: стакан, pr: стака́н, ds: glass}
+  - {id: ru-or-n01007-s001, ch: ложка, pr: ло́жка, ds: spoon}
+  - {id: ru-or-n05432-s001, ch: вилка, pr: ви́лка, ds: fork}
+  - {id: ru-or-n00431-s001, ch: нож, pr: нож, ds: knife}
+  - {id: ru-or-n00213-s001, ch: бутылка, pr: буты́лка, ds: bottle}
+  - {id: ru-or-n03849-s001, ch: банка, pr: ба́нка, ds: jar}
+  - {id: ru-or-n01000-s001, ch: коробка, pr: коро́бка, ds: box}
+  - {id: ru-or-n00943-s001, ch: пакет, pr: паке́т, ds: bag}
+  - {id: ru-or-n01681-s001, ch: мусор, pr: му́сор, ds: rubbish}
+  - {id: ru-or-n01405-s001, ch: мебель, pr: ме́бель, ds: furniture}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n14500-s001, ch: полка, pr: по́лка, ds: shelf}
+  - {id: ru-or-n00380-s001, ch: зеркало, pr: зе́ркало, ds: mirror}
+  - {id: ru-or-n01122-s001, ch: ковёр, pr: ковёр, ds: carpet}
+  - {id: ru-or-n00916-s001, ch: лампа, pr: ла́мпа, ds: lamp}
+  - {id: ru-or-n00048-s001, ch: свет, pr: свет, ds: light}
+  - {id: ru-or-n02579-s001, ch: электричество, pr: электри́чество, ds: electricity}
+  - {id: ru-or-n00755-s001, ch: газ, pr: газ, ds: gas}
+  - {id: ru-or-n03609-s001, ch: отопление, pr: отопле́ние, ds: heating}
+  review_grammar:
+  - {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+- id: level-05-home-03
+  title: Home and shared routines - 3
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-n00176-s001, ch: вещь, pr: вещь, ds: thing}
+  - {id: ru-or-n26429-s001, ch: замок, pr: замо́к, ds: lock}
+  - {id: ru-or-n00457-s001, ch: адрес, pr: а́дрес, ds: address}
+  - {id: ru-or-n00312-s001, ch: сосед, pr: сосе́д, ds: neighbour}
+  - {id: ru-or-n00664-s001, ch: телевизор, pr: телеви́зор, ds: TV set}
+  - {id: ru-or-v00025-s001, ch: давать, pr: дава́ть, ds: give}
+  - {id: ru-or-v00105-s001, ch: открыть, pr: откры́ть, ds: open}
+  - {id: ru-or-v00267-s001, ch: закрыть, pr: закры́ть, ds: close}
+  - {id: ru-or-v00277-s001, ch: открывать, pr: открыва́ть, ds: open}
+  - {id: ru-or-v00580-s001, ch: закрывать, pr: закрыва́ть, ds: close}
+  - {id: ru-or-v01335-s001, ch: мыть, pr: мыть, ds: wash}
+  - {id: ru-or-v03002-s001, ch: помыть, pr: помы́ть, ds: wash}
+  - {id: ru-or-v01695-s001, ch: стирать, pr: стира́ть, ds: wash}
+  - {id: ru-or-v01260-s001, ch: убирать, pr: убира́ть, ds: tidy}
+  - {id: ru-or-v00510-s001, ch: убрать, pr: убра́ть, ds: tidy}
+  - {id: ru-or-v01210-s001, ch: чистить, pr: чи́стить, ds: clean}
+  - {id: ru-or-v00121-s001, ch: положить, pr: положи́ть, ds: put}
+  - {id: ru-or-v00680-s001, ch: класть, pr: класть, ds: put}
+  - {id: ru-or-v00231-s001, ch: ставить, pr: ста́вить, ds: put}
+  - {id: ru-or-v00086-s001, ch: поставить, pr: поста́вить, ds: put}
+  - {id: ru-or-v00862-s001, ch: включать, pr: включа́ть, ds: switch on}
+  - {id: ru-or-v00446-s001, ch: включить, pr: включи́ть, ds: turn on}
+  - {id: ru-or-v03452-s001, ch: выключать, pr: выключа́ть, ds: switch off}
+  - {id: ru-or-v01130-s001, ch: выключить, pr: вы́ключить, ds: switch off}
+  - {id: ru-or-v01925-s001, ch: чинить, pr: чини́ть, ds: repair}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n05432-s001, ch: вилка, pr: ви́лка, ds: fork}
+  - {id: ru-or-n00431-s001, ch: нож, pr: нож, ds: knife}
+  - {id: ru-or-n00213-s001, ch: бутылка, pr: буты́лка, ds: bottle}
+  - {id: ru-or-n03849-s001, ch: банка, pr: ба́нка, ds: jar}
+  - {id: ru-or-n01000-s001, ch: коробка, pr: коро́бка, ds: box}
+  - {id: ru-or-n00943-s001, ch: пакет, pr: паке́т, ds: bag}
+  - {id: ru-or-n01681-s001, ch: мусор, pr: му́сор, ds: rubbish}
+  - {id: ru-or-n01405-s001, ch: мебель, pr: ме́бель, ds: furniture}
+  review_grammar:
+  - {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+- id: level-05-home-04
+  title: Home and shared routines - 4
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-v02489-s001, ch: починить, pr: почини́ть, ds: repair}
+  - {id: ru-or-v01291-s001, ch: переехать, pr: перее́хать, ds: move}
+  - {id: ru-or-v03052-s001, ch: переезжать, pr: переезжа́ть, ds: move}
+  - {id: ru-or-v00292-s001, ch: платить, pr: плати́ть, ds: pay}
+  - {id: ru-or-v00127-s001, ch: снять, pr: снять, ds: rent}
+  - {id: ru-or-v00260-s001, ch: снимать, pr: снима́ть, ds: rent}
+  - {id: ru-or-v00351-s001, ch: принадлежать, pr: принадлежа́ть, ds: belong}
+  - {id: ru-or-n03436-s001, ch: утюг, pr: утю́г, ds: iron}
+  - {id: ru-or-n06202-s001, ch: пылесос, pr: пылесо́с, ds: vacuum cleaner}
+  - {id: ru-or-n03728-s001, ch: веник, pr: ве́ник, ds: broom}
+  - {id: ru-or-n00893-s001, ch: ведро, pr: ведро́, ds: bucket}
+  - {id: ru-or-n03023-s001, ch: таз, pr: таз, ds: basin}
+  - {id: ru-or-n03902-s001, ch: щётка, pr: щётка, ds: brush}
+  - {id: ru-or-n04400-s001, ch: губка, pr: гу́бка, ds: sponge}
+  - {id: ru-or-n01290-s001, ch: тряпка, pr: тря́пка, ds: rag}
+  - {id: ru-or-n03161-s001, ch: салфетка, pr: салфе́тка, ds: napkin}
+  - {id: ru-or-n03509-s001, ch: покрывало, pr: покрыва́ло, ds: coverlet}
+  - {id: ru-or-n06057-s001, ch: наволочка, pr: на́волочка, ds: pillow-case}
+  - {id: ru-or-n02040-s001, ch: скатерть, pr: ска́терть, ds: table-cloth}
+  - {id: ru-or-n02597-s001, ch: штора, pr: што́ра, ds: curtain}
+  - {id: ru-or-n01924-s001, ch: занавеска, pr: занаве́ска, ds: curtain}
+  - {id: ru-or-n08673-s001, ch: жалюзи, pr: жалюзи́, ds: Venetian blind}
+  - {id: ru-or-n04075-s001, ch: будильник, pr: буди́льник, ds: alarm clock}
+  - {id: ru-or-n14496-s001, ch: часы, pr: часы́, ds: watch}
+  - {id: ru-or-n01001-s001, ch: печка, pr: пе́чка, ds: stove}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00680-s001, ch: класть, pr: класть, ds: put}
+  - {id: ru-or-v00231-s001, ch: ставить, pr: ста́вить, ds: put}
+  - {id: ru-or-v00086-s001, ch: поставить, pr: поста́вить, ds: put}
+  - {id: ru-or-v00862-s001, ch: включать, pr: включа́ть, ds: switch on}
+  - {id: ru-or-v00446-s001, ch: включить, pr: включи́ть, ds: turn on}
+  - {id: ru-or-v03452-s001, ch: выключать, pr: выключа́ть, ds: switch off}
+  - {id: ru-or-v01130-s001, ch: выключить, pr: вы́ключить, ds: switch off}
+  - {id: ru-or-v01925-s001, ch: чинить, pr: чини́ть, ds: repair}
+  review_grammar:
+  - {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+- id: level-05-home-05
+  title: Home and shared routines - 5
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-n01586-s001, ch: чайник, pr: ча́йник, ds: kettle}
+  - {id: ru-or-n02022-s001, ch: кастрюля, pr: кастрю́ля, ds: saucepan}
+  - {id: ru-or-n14641-s001, ch: сковорода, pr: сковорода́, ds: frying-pan}
+  - {id: ru-or-n17324-s001, ch: дуршлаг, pr: дуршла́г, ds: colander}
+  - {id: ru-or-n13677-s001, ch: тёрка, pr: тёрка, ds: grater}
+  - {id: ru-or-n04442-s001, ch: термос, pr: те́рмос, ds: thermos}
+  - {id: ru-or-n02180-s001, ch: пробка, pr: про́бка, ds: cork}
+  - {id: ru-or-n01200-s001, ch: крышка, pr: кры́шка, ds: lid}
+  - {id: ru-or-n00621-s002, ch: ручка, pr: ру́чка, ds: handle}
+  - {id: ru-or-v00491-s001, ch: завести, pr: завести́, ds: acquire}
+  - {id: ru-or-v01915-s001, ch: заводить, pr: заводи́ть, ds: acquire}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n06057-s001, ch: наволочка, pr: на́волочка, ds: pillow-case}
+  - {id: ru-or-n02040-s001, ch: скатерть, pr: ска́терть, ds: table-cloth}
+  - {id: ru-or-n02597-s001, ch: штора, pr: што́ра, ds: curtain}
+  - {id: ru-or-n01924-s001, ch: занавеска, pr: занаве́ска, ds: curtain}
+  - {id: ru-or-n08673-s001, ch: жалюзи, pr: жалюзи́, ds: Venetian blind}
+  - {id: ru-or-n04075-s001, ch: будильник, pr: буди́льник, ds: alarm clock}
+  - {id: ru-or-n14496-s001, ch: часы, pr: часы́, ds: watch}
+  - {id: ru-or-n01001-s001, ch: печка, pr: пе́чка, ds: stove}
+  review_grammar:
+  - {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+- id: level-05-leisure-01
+  title: Leisure and participation - 1
+  outcome: Discuss an activity and coordinate participation.
+  vocabulary:
+  - {id: ru-or-v00261-s001, ch: встречаться, pr: встреча́ться, ds: meet}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-05-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v02582-s901, ch: умываться, pr: умыва́ться, ds: wash oneself}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00107-s001, ch: ехать, pr: е́хать, ds: go by vehicle}
+  - {id: ru-or-v00036-s001, ch: ждать, pr: ждать, ds: wait}
+  - {id: ru-or-v00167-s001, ch: помочь, pr: помо́чь, ds: help}
+  - {id: ru-or-v00205-s001, ch: помогать, pr: помога́ть, ds: help}
+  - {id: ru-or-v00076-s001, ch: показать, pr: показа́ть, ds: show}
+  - {id: ru-or-v00029-s001, ch: дать, pr: дать, ds: give}
+  - {id: ru-or-v00020-s001, ch: взять, pr: взять, ds: take}
+  - {id: ru-or-v00047-s001, ch: прийти, pr: прийти́, ds: come}
+  review_grammar:
+  - {id: ru-g-present-conjugation, ch: я читаю / ты читаешь / они читают, ds: Match a present-tense verb to its subject}
+  - {id: ru-g-dative-need, ch: 'мне / вам нужно + [infinitive]', ds: Say who needs to perform an action}
+- id: level-05-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00084-s001, ch: чистый, pr: чи́стый, ds: clean}
+  - {id: ru-or-a00186-s001, ch: грязный, pr: гря́зный, ds: dirty}
+  - {id: ru-or-a00080-s001, ch: пустой, pr: пусто́й, ds: empty}
+  - {id: ru-or-a00031-s001, ch: полный, pr: по́лный, ds: full}
+  - {id: ru-or-a00325-s001, ch: удобный, pr: удо́бный, ds: comfortable}
+  - {id: ru-or-a00177-s001, ch: мягкий, pr: мя́гкий, ds: soft}
+  - {id: ru-or-a00252-s001, ch: твёрдый, pr: твёрдый, ds: hard}
+  - {id: ru-or-a00109-s001, ch: тёплый, pr: тёплый, ds: warm}
+  - {id: ru-or-a00187-s001, ch: светлый, pr: све́тлый, ds: light}
+  - {id: ru-or-a00072-s001, ch: тёмный, pr: тёмный, ds: dark}
+  - {id: ru-or-a00127-s001, ch: тихий, pr: ти́хий, ds: quiet}
+  - {id: ru-or-a00302-s001, ch: громкий, pr: гро́мкий, ds: loud}
+  - {id: ru-or-a00721-s001, ch: уютный, pr: ую́тный, ds: cosy}
+  - {id: ru-or-a00046-s001, ch: собственный, pr: со́бственный, ds: own}
+  - {id: ru-or-a00257-s001, ch: домашний, pr: дома́шний, ds: domestic}
+  - {id: ru-or-o00241-s001, ch: внутри, pr: внутри́, ds: inside}
+  - {id: ru-or-o00529-s001, ch: снаружи, pr: снару́жи, ds: outside}
+  - {id: ru-or-o00255-s001, ch: сверху, pr: све́рху, ds: from above}
+  - {id: ru-or-o00357-s001, ch: снизу, pr: сни́зу, ds: from below}
+  - {id: ru-or-o01976-s001, ch: рядом, pr: ря́дом, ds: near}
+  - {id: ru-or-o00098-s001, ch: вместе, pr: вме́сте, ds: together}
+  - {id: ru-or-o00457-s001, ch: отдельно, pr: отде́льно, ds: separately}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00049-s001, ch: там, pr: там, ds: there}
+  - {id: ru-or-o01984-s001, ch: дома, pr: до́ма, ds: at home}
+  - {id: ru-or-a00131-s001, ch: горячий, pr: горя́чий, ds: hot}
+  - {id: ru-or-a00098-s001, ch: холодный, pr: холо́дный, ds: cold}
+  - {id: ru-or-a00679-s001, ch: вкусный, pr: вку́сный, ds: tasty}
+  - {id: ru-or-a00018-s001, ch: нужный, pr: ну́жный, ds: necessary}
+  - {id: ru-or-a00129-s001, ch: левый, pr: ле́вый, ds: left}
+  - {id: ru-or-a00090-s001, ch: правый, pr: пра́вый, ds: right-hand}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+- id: level-05-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-o00043-s001, ch: под, pr: под, ds: under}
+  - {id: ru-or-o00073-s001, ch: над, pr: над, ds: above}
+  - {id: ru-or-o00072-s001, ch: перед, pr: пе́ред, ds: in front of}
+  - {id: ru-or-o00087-s001, ch: между, pr: ме́жду, ds: between}
+  - {id: ru-or-o00056-s001, ch: без, pr: без, ds: without}
+  - {id: ru-or-o00019-s001, ch: за, pr: за, ds: behind}
+  - {id: ru-or-o00059-s001, ch: тоже, pr: то́же, ds: also}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00088-s001, ch: много, pr: мно́го, ds: a lot of}
+  - {id: ru-or-o00132-s001, ch: мало, pr: ма́ло, ds: little}
+  - {id: ru-or-n00243-s001, ch: половина, pr: полови́на, ds: half}
+  - {id: ru-or-v00044-s002, ch: считать, pr: счита́ть, ds: count (numbers or objects)}
+  - {id: ru-or-o00015-s001, ch: к, pr: к, ds: 'towards, to'}
+  - {id: ru-or-o00038-s001, ch: до, pr: до, ds: until}
+  - {id: ru-or-o00024-s001, ch: от, pr: от, ds: from (away)}
+  - {id: ru-or-o00012-s001, ch: по, pr: по, ds: along}
+  review_grammar: []
+- id: level-05-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-reflexive-reference, ch: 'себя / себе; свой / своя / своё [noun]', ds: Refer back to the subject without changing the possessor}
+  review_vocabulary:
+  - {id: ru-or-n00049-s001, ch: жена, pr: жена́, ds: wife}
+  - {id: ru-or-n00402-s001, ch: бабушка, pr: ба́бушка, ds: grandmother}
+  - {id: ru-or-n00672-s001, ch: дедушка, pr: де́душка, ds: grandfather}
+  - {id: ru-or-n00082-s001, ch: мама, pr: ма́ма, ds: mom}
+  - {id: ru-or-n00377-s001, ch: папа, pr: па́па, ds: dad}
+  - {id: ru-or-o00030-s001, ch: себя, pr: себя́, ds: oneself (reflexive pronoun)}
+  - {id: ru-or-a00011-s001, ch: свой, pr: свой, ds: one's own (referring to the subject)}
+  - {id: ru-or-a00012-s001, ch: сам, pr: сам, ds: oneself (emphatic pronoun)}
+  review_grammar:
+  - {id: ru-g-present-identity, ch: 'Я [name]. Это [noun].', ds: State identity without a present-tense copula}
+  - {id: ru-g-possessive-agreement, ch: 'мой / моя / моё [noun]; его / её [noun]', ds: Match a possessive to the thing possessed}
+  - {id: ru-g-whose-question, ch: 'Чей / чья / чьё / чьи [noun]?', ds: Ask whose with gender and number agreement}
+- id: level-05-home-practice-01
+  title: Home and shared routines - sentence practice 1
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-possession-existence, ch: 'У [genitive possessor] есть [noun].', ds: State possession or availability with у ... есть}
+  - {id: ru-g-absence-genitive, ch: 'У [genitive possessor] нет [genitive noun].', ds: Express absence with нет and the genitive}
+  - {id: ru-g-static-spatial-cases, ch: 'под / над / перед / за + [instrumental]; около + [genitive]', ds: Locate things using governed spatial cases}
+  review_vocabulary:
+  - {id: ru-or-n17324-s001, ch: дуршлаг, pr: дуршла́г, ds: colander}
+  - {id: ru-or-n13677-s001, ch: тёрка, pr: тёрка, ds: grater}
+  - {id: ru-or-n04442-s001, ch: термос, pr: те́рмос, ds: thermos}
+  - {id: ru-or-n02180-s001, ch: пробка, pr: про́бка, ds: cork}
+  - {id: ru-or-n01200-s001, ch: крышка, pr: кры́шка, ds: lid}
+  - {id: ru-or-n00621-s002, ch: ручка, pr: ру́чка, ds: handle}
+  - {id: ru-or-v00491-s001, ch: завести, pr: завести́, ds: acquire}
+  - {id: ru-or-v01915-s001, ch: заводить, pr: заводи́ть, ds: acquire}
+  review_grammar:
+  - {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+- id: level-05-actions-practice-01
+  title: Actions and results - sentence practice 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-reflexive-routines, ch: '[verb]-ся / -сь', ds: Use reflexive verbs for familiar routines}
+  review_vocabulary:
+  - {id: ru-or-v02582-s901, ch: умываться, pr: умыва́ться, ds: wash oneself}
+  - {id: ru-or-v00261-s001, ch: встречаться, pr: встреча́ться, ds: meet}
+  - {id: ru-or-v00036-s001, ch: ждать, pr: ждать, ds: wait}
+  - {id: ru-or-v00167-s001, ch: помочь, pr: помо́чь, ds: help}
+  - {id: ru-or-v00205-s001, ch: помогать, pr: помога́ть, ds: help}
+  - {id: ru-or-v00076-s001, ch: показать, pr: показа́ть, ds: show}
+  - {id: ru-or-v00029-s001, ch: дать, pr: дать, ds: give}
+  - {id: ru-or-v00020-s001, ch: взять, pr: взять, ds: take}
+  - {id: ru-or-v00047-s001, ch: прийти, pr: прийти́, ds: come}
+  review_grammar:
+  - {id: ru-g-present-conjugation, ch: я читаю / ты читаешь / они читают, ds: Match a present-tense verb to its subject}
+  - {id: ru-g-dative-need, ch: 'мне / вам нужно + [infinitive]', ds: Say who needs to perform an action}
+- id: level-05-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+  review_vocabulary:
+  - {id: ru-or-a00257-s001, ch: домашний, pr: дома́шний, ds: domestic}
+  - {id: ru-or-o00241-s001, ch: внутри, pr: внутри́, ds: inside}
+  - {id: ru-or-o00529-s001, ch: снаружи, pr: снару́жи, ds: outside}
+  - {id: ru-or-o00255-s001, ch: сверху, pr: све́рху, ds: from above}
+  - {id: ru-or-o00357-s001, ch: снизу, pr: сни́зу, ds: from below}
+  - {id: ru-or-o01976-s001, ch: рядом, pr: ря́дом, ds: near}
+  - {id: ru-or-o00098-s001, ch: вместе, pr: вме́сте, ds: together}
+  - {id: ru-or-o00457-s001, ch: отдельно, pr: отде́льно, ds: separately}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}

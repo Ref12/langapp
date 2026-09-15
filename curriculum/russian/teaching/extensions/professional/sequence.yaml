@@ -1,0 +1,165 @@
+schema_version: 3
+id: ru-extension-professional
+title: Professional communication and coordination
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: extension
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+description: Produce appropriate task updates, requests, and negotiated commitments; optional language practice, not occupational qualification.
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: extension-professional-work-01
+  title: Work and cooperation - 1
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary:
+  - {id: ru-or-n07012-s001, ch: вакансия, pr: вака́нсия, ds: vacancy}
+  - {id: ru-or-n07746-s001, ch: собеседование, pr: собесе́дование, ds: interview}
+  - {id: ru-or-n07231-s002, ch: резюме, pr: резюме́, ds: resume}
+  - {id: ru-or-n09162-s001, ch: наём, pr: наём, ds: hire}
+  - {id: ru-or-n05295-s001, ch: работодатель, pr: рабо́тодатель, ds: employer}
+  - {id: ru-or-n03068-s001, ch: персонал, pr: персона́л, ds: personnel}
+  - {id: ru-or-n18008-s001, ch: кадры, pr: ка́дры, ds: personnel}
+  - {id: ru-or-n01155-s001, ch: штат, pr: штат, ds: staff}
+  - {id: ru-or-n03404-s001, ch: увольнение, pr: увольне́ние, ds: dismissal}
+  - {id: ru-or-n02329-s001, ch: сокращение, pr: сокраще́ние, ds: reduction}
+  - {id: ru-or-n01621-s001, ch: командировка, pr: командиро́вка, ds: business trip}
+  - {id: ru-or-n08050-s001, ch: доверенность, pr: дове́ренность, ds: power of attorney}
+  - {id: ru-or-n01026-s001, ch: агент, pr: аге́нт, ds: agent}
+  - {id: ru-or-n02104-s001, ch: агентство, pr: аге́нтство, ds: agency}
+  - {id: ru-or-n03239-s001, ch: филиал, pr: филиа́л, ds: branch}
+  - {id: ru-or-n04530-s001, ch: представительство, pr: представи́тельство, ds: representation}
+  - {id: ru-or-n14183-s001, ch: делопроизводство, pr: делопроизво́дство, ds: record-keeping}
+  - {id: ru-or-n26905-s001, ch: накладная, pr: накладна́я, ds: delivery slip}
+  - {id: ru-or-n00220-s002, ch: счёт, pr: счёт, ds: account}
+  - {id: ru-or-n11474-s001, ch: фактура, pr: факту́ра, ds: invoice}
+  - {id: ru-or-n13207-s001, ch: неустойка, pr: неусто́йка, ds: forfeit}
+  - {id: ru-or-n08087-s001, ch: пеня, pr: пе́ня, ds: fine}
+  - {id: ru-or-n04550-s001, ch: аванс, pr: ава́нс, ds: advance}
+  - {id: ru-or-n09218-s001, ch: задаток, pr: зада́ток, ds: deposit}
+  - {id: ru-or-n04147-s001, ch: залог, pr: зало́г, ds: pledge}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00688-s001, ch: прервать, pr: прерва́ть, ds: interrupt}
+  - {id: ru-or-v02199-s001, ch: прерывать, pr: прерыва́ть, ds: interrupt}
+  - {id: ru-or-v03666-s001, ch: прерываться, pr: прерыва́ться, ds: be interrupted}
+  - {id: ru-or-v01435-s001, ch: вмешиваться, pr: вме́шиваться, ds: interfere}
+  - {id: ru-or-v00788-s001, ch: помешать, pr: помеша́ть, ds: prevent}
+  - {id: ru-or-v00225-s001, ch: мешать, pr: меша́ть, ds: disturb}
+  - {id: ru-or-v02641-s001, ch: препятствовать, pr: препя́тствовать, ds: hinder}
+  - {id: ru-or-v06525-s001, ch: воспрепятствовать, pr: воспрепя́тствовать, ds: prevent}
+  review_grammar:
+  - {id: ru-g-obligation-agreement, ch: 'должен / должна / должно / должны + [infinitive]', ds: Express a duty with subject agreement}
+  - {id: ru-g-managed-dative, ch: '[dative person] удалось / не удалось + [infinitive]', ds: Report an achieved or unachieved opportunity}
+  - {id: ru-g-dependency-government, ch: 'зависеть от [genitive]; отвечать за [accusative]', ds: State a dependency or responsibility precisely}
+- id: extension-professional-work-02
+  title: Work and cooperation - 2
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary:
+  - {id: ru-or-n21582-s001, ch: поручительство, pr: поручи́тельство, ds: guarantee}
+  - {id: ru-or-n16999-s001, ch: дебитор, pr: дебито́р, ds: debtor}
+  - {id: ru-or-n07994-s001, ch: кредитор, pr: кредито́р, ds: creditor}
+  - {id: ru-or-n02493-s001, ch: бухгалтер, pr: бухга́лтер, ds: accountant}
+  - {id: ru-or-n04735-s001, ch: бухгалтерия, pr: бухгалте́рия, ds: accounts department}
+  - {id: ru-or-n07054-s001, ch: смета, pr: сме́та, ds: estimate}
+  - {id: ru-or-n18032-s001, ch: калькуляция, pr: калькуля́ция, ds: calculation}
+  - {id: ru-or-n08708-s001, ch: себестоимость, pr: себесто́имость, ds: cost price}
+  - {id: ru-or-n11696-s001, ch: маркетинг, pr: марке́тинг, ds: marketing}
+  - {id: ru-or-n26893-s001, ch: франшиза, pr: франши́за, ds: insurance deductible}
+  - {id: ru-or-v02144-s001, ch: нанять, pr: наня́ть, ds: hire}
+  - {id: ru-or-v04203-s001, ch: нанимать, pr: нанима́ть, ds: hire}
+  - {id: ru-or-v01220-s001, ch: уволить, pr: уво́лить, ds: fire}
+  - {id: ru-or-v05335-s001, ch: увольнять, pr: увольня́ть, ds: dismiss}
+  - {id: ru-or-v04684-s001, ch: командировать, pr: командирова́ть, ds: send on an official business trip}
+  - {id: ru-or-v09875-s001, ch: делегировать, pr: делеги́ровать, ds: delegate}
+  - {id: ru-or-v12853-s001, ch: уполномочивать, pr: уполномо́чивать, ds: authorize}
+  - {id: ru-or-v01648-s001, ch: заверить, pr: заве́рить, ds: certify}
+  - {id: ru-or-v04728-s001, ch: заверять, pr: заверя́ть, ds: certify}
+  - {id: ru-or-v05769-s001, ch: засвидетельствовать, pr: засвиде́тельствовать, ds: testify}
+  - {id: ru-or-v14374-s001, ch: удостоверить, pr: удостове́рить, ds: certify}
+  - {id: ru-or-v08632-s001, ch: удостоверять, pr: удостоверя́ть, ds: certify}
+  - {id: ru-or-v10463-s001, ch: калькулировать, pr: калькули́ровать, ds: calculate}
+  - {id: ru-or-v12775-s001, ch: тарифицировать, pr: тарифици́ровать, ds: assign a tariff}
+  - {id: ru-or-a01813-s001, ch: штатный, pr: шта́тный, ds: regular}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n26905-s001, ch: накладная, pr: накладна́я, ds: delivery slip}
+  - {id: ru-or-n00220-s002, ch: счёт, pr: счёт, ds: account}
+  - {id: ru-or-n11474-s001, ch: фактура, pr: факту́ра, ds: invoice}
+  - {id: ru-or-n13207-s001, ch: неустойка, pr: неусто́йка, ds: forfeit}
+  - {id: ru-or-n08087-s001, ch: пеня, pr: пе́ня, ds: fine}
+  - {id: ru-or-n04550-s001, ch: аванс, pr: ава́нс, ds: advance}
+  - {id: ru-or-n09218-s001, ch: задаток, pr: зада́ток, ds: deposit}
+  - {id: ru-or-n04147-s001, ch: залог, pr: зало́г, ds: pledge}
+  review_grammar:
+  - {id: ru-g-obligation-agreement, ch: 'должен / должна / должно / должны + [infinitive]', ds: Express a duty with subject agreement}
+  - {id: ru-g-managed-dative, ch: '[dative person] удалось / не удалось + [infinitive]', ds: Report an achieved or unachieved opportunity}
+  - {id: ru-g-dependency-government, ch: 'зависеть от [genitive]; отвечать за [accusative]', ds: State a dependency or responsibility precisely}
+- id: extension-professional-work-03
+  title: Work and cooperation - 3
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary:
+  - {id: ru-or-a04582-s001, ch: внештатный, pr: внешта́тный, ds: not on permanent staff}
+  - {id: ru-or-a01335-s001, ch: кадровый, pr: ка́дровый, ds: regular staff}
+  - {id: ru-or-a00416-s001, ch: трудовой, pr: трудово́й, ds: labour}
+  - {id: ru-or-a03108-s001, ch: полномочный, pr: полномо́чный, ds: plenipotentiary}
+  - {id: ru-or-a02352-s001, ch: наёмный, pr: наёмный, ds: hired}
+  - {id: ru-or-a03543-s001, ch: бухгалтерский, pr: бухга́лтерский, ds: book-keeping}
+  - {id: ru-or-a03806-s001, ch: конфиденциальный, pr: конфиденциа́льный, ds: confidential}
+  - {id: ru-or-a00402-s001, ch: служебный, pr: служе́бный, ds: official}
+  - {id: ru-or-a02061-s001, ch: должностной, pr: должностно́й, ds: official}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01648-s001, ch: заверить, pr: заве́рить, ds: certify}
+  - {id: ru-or-v04728-s001, ch: заверять, pr: заверя́ть, ds: certify}
+  - {id: ru-or-v05769-s001, ch: засвидетельствовать, pr: засвиде́тельствовать, ds: testify}
+  - {id: ru-or-v14374-s001, ch: удостоверить, pr: удостове́рить, ds: certify}
+  - {id: ru-or-v08632-s001, ch: удостоверять, pr: удостоверя́ть, ds: certify}
+  - {id: ru-or-v10463-s001, ch: калькулировать, pr: калькули́ровать, ds: calculate}
+  - {id: ru-or-v12775-s001, ch: тарифицировать, pr: тарифици́ровать, ds: assign a tariff}
+  - {id: ru-or-a01813-s001, ch: штатный, pr: шта́тный, ds: regular}
+  review_grammar:
+  - {id: ru-g-obligation-agreement, ch: 'должен / должна / должно / должны + [infinitive]', ds: Express a duty with subject agreement}
+  - {id: ru-g-managed-dative, ch: '[dative person] удалось / не удалось + [infinitive]', ds: Report an achieved or unachieved opportunity}
+  - {id: ru-g-dependency-government, ch: 'зависеть от [genitive]; отвечать за [accusative]', ds: State a dependency or responsibility precisely}
+- id: extension-professional-work-practice-01
+  title: Work and cooperation - sentence practice 1
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-professional-request, ch: 'Прошу вас [infinitive]. Просим [infinitive].', ds: Write a clear formal request with a stated action}
+  - {id: ru-g-professional-agreement, ch: 'договорились о [prepositional] / о том, что ...', ds: Record a negotiated commitment without implying a contract}
+  - {id: ru-g-professional-status, ch: 'готов / готова / готовы к [dative]; остаётся [infinitive]', ds: Give a task status and identify the remaining action}
+  review_vocabulary:
+  - {id: ru-or-v00566-s001, ch: договориться, pr: договори́ться, ds: agree}
+  - {id: ru-or-a01335-s001, ch: кадровый, pr: ка́дровый, ds: regular staff}
+  - {id: ru-or-a00416-s001, ch: трудовой, pr: трудово́й, ds: labour}
+  - {id: ru-or-a03108-s001, ch: полномочный, pr: полномо́чный, ds: plenipotentiary}
+  - {id: ru-or-a02352-s001, ch: наёмный, pr: наёмный, ds: hired}
+  - {id: ru-or-a03543-s001, ch: бухгалтерский, pr: бухга́лтерский, ds: book-keeping}
+  - {id: ru-or-a03806-s001, ch: конфиденциальный, pr: конфиденциа́льный, ds: confidential}
+  - {id: ru-or-a00402-s001, ch: служебный, pr: служе́бный, ds: official}
+  - {id: ru-or-a02061-s001, ch: должностной, pr: должностно́й, ds: official}
+  review_grammar:
+  - {id: ru-g-obligation-agreement, ch: 'должен / должна / должно / должны + [infinitive]', ds: Express a duty with subject agreement}
+  - {id: ru-g-managed-dative, ch: '[dative person] удалось / не удалось + [infinitive]', ds: Report an achieved or unachieved opportunity}
+  - {id: ru-g-dependency-government, ch: 'зависеть от [genitive]; отвечать за [accusative]', ds: State a dependency or responsibility precisely}

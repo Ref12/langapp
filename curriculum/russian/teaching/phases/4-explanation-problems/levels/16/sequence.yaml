@@ -1,0 +1,299 @@
+schema_version: 3
+id: ru-level-16
+title: Reports, events, and viewpoints
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 16
+phase: explanation-problems
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+goals: &id001
+- Distinguish an event from an attributed report or opinion.
+- Interpret passive and impersonal reporting choices.
+- Recover the role of a noun in a participial description.
+checkpoint:
+  task: Compare two short reports, separating events, attributed claims, and the emphasis produced by different sentence choices.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-16-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00181-s001, ch: общественный, pr: обще́ственный, ds: public}
+  - {id: ru-or-a00094-s001, ch: государственный, pr: госуда́рственный, ds: state}
+  - {id: ru-or-a00284-s001, ch: гражданский, pr: гражда́нский, ds: civil}
+  - {id: ru-or-a00103-s001, ch: политический, pr: полити́ческий, ds: political}
+  - {id: ru-or-a00179-s001, ch: социальный, pr: социа́льный, ds: social}
+  - {id: ru-or-a00222-s001, ch: международный, pr: междунаро́дный, ds: international}
+  - {id: ru-or-a00210-s001, ch: национальный, pr: национа́льный, ds: national}
+  - {id: ru-or-a00099-s001, ch: местный, pr: ме́стный, ds: local}
+  - {id: ru-or-a00178-s001, ch: городской, pr: городско́й, ds: urban}
+  - {id: ru-or-a00514-s001, ch: сельский, pr: се́льский, ds: rural}
+  - {id: ru-or-a00502-s001, ch: демократический, pr: демократи́ческий, ds: democratic}
+  - {id: ru-or-a01215-s001, ch: правовой, pr: правово́й, ds: legal}
+  - {id: ru-or-a00615-s001, ch: законный, pr: зако́нный, ds: legal}
+  - {id: ru-or-a01148-s001, ch: незаконный, pr: незако́нный, ds: illegal}
+  - {id: ru-or-a00317-s001, ch: равный, pr: ра́вный, ds: equal}
+  - {id: ru-or-a00258-s001, ch: богатый, pr: бога́тый, ds: rich}
+  - {id: ru-or-a00220-s001, ch: бедный, pr: бе́дный, ds: poor}
+  - {id: ru-or-a00309-s001, ch: мирный, pr: ми́рный, ds: peaceful}
+  - {id: ru-or-a00060-s001, ch: военный, pr: вое́нный, ds: military}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00574-s001, ch: эффективный, pr: эффекти́вный, ds: effective}
+  - {id: ru-or-a00978-s001, ch: успешный, pr: успе́шный, ds: successful}
+  - {id: ru-or-a08982-s001, ch: неуспешный, pr: неуспе́шный, ds: unsuccessful}
+  - {id: ru-or-a01386-s001, ch: регулярный, pr: регуля́рный, ds: regular}
+  - {id: ru-or-a00666-s001, ch: обязательный, pr: обяза́тельный, ds: obligatory}
+  - {id: ru-or-a01267-s001, ch: добровольный, pr: доброво́льный, ds: voluntary}
+  - {id: ru-or-a01111-s001, ch: гибкий, pr: ги́бкий, ds: flexible}
+  - {id: ru-or-a01804-s001, ch: терпеливый, pr: терпели́вый, ds: patient}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-16-society-01
+  title: Society and community - 1
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-n00132-s001, ch: общество, pr: о́бщество, ds: society}
+  - {id: ru-or-n00062-s001, ch: народ, pr: наро́д, ds: people}
+  - {id: ru-or-n00441-s001, ch: население, pr: населе́ние, ds: population}
+  - {id: ru-or-n02814-s001, ch: община, pr: общи́на, ds: community}
+  - {id: ru-or-n00490-s001, ch: житель, pr: жи́тель, ds: inhabitant}
+  - {id: ru-or-n00334-s001, ch: гражданин, pr: граждани́н, ds: citizen}
+  - {id: ru-or-n04088-s001, ch: гражданство, pr: гражда́нство, ds: citizenship}
+  - {id: ru-or-n00159-s001, ch: государство, pr: госуда́рство, ds: State}
+  - {id: ru-or-n00769-s001, ch: республика, pr: респу́блика, ds: republic}
+  - {id: ru-or-n01313-s001, ch: федерация, pr: федера́ция, ds: federation}
+  - {id: ru-or-n00246-s001, ch: область, pr: о́бласть, ds: region}
+  - {id: ru-or-n00280-s001, ch: район, pr: райо́н, ds: district}
+  - {id: ru-or-n01574-s001, ch: регион, pr: регио́н, ds: region}
+  - {id: ru-or-n00467-s001, ch: столица, pr: столи́ца, ds: capital}
+  - {id: ru-or-n00206-s001, ch: деревня, pr: дере́вня, ds: village}
+  - {id: ru-or-n01710-s001, ch: село, pr: село́, ds: village}
+  - {id: ru-or-n00779-s001, ch: посёлок, pr: посёлок, ds: settlement}
+  - {id: ru-or-n04532-s001, ch: пригород, pr: при́город, ds: suburb}
+  - {id: ru-or-n00033-s001, ch: мир, pr: мир, ds: world}
+  - {id: ru-or-n00033-s002, ch: мир, pr: мир, ds: peace}
+  - {id: ru-or-n00042-s001, ch: война, pr: война́, ds: war}
+  - {id: ru-or-n00123-s001, ch: армия, pr: а́рмия, ds: army}
+  - {id: ru-or-n00093-s001, ch: солдат, pr: солда́т, ds: soldier}
+  - {id: ru-or-n00251-s001, ch: офицер, pr: офице́р, ds: officer}
+  - {id: ru-or-n00222-s001, ch: оружие, pr: ору́жие, ds: weapon}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-16-society-02
+  title: Society and community - 2
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-n00794-s001, ch: оборона, pr: оборо́на, ds: defence}
+  - {id: ru-or-n01348-s001, ch: нападение, pr: нападе́ние, ds: attack}
+  - {id: ru-or-n03236-s001, ch: беженец, pr: бе́женец, ds: refugee}
+  - {id: ru-or-n10543-s001, ch: миграция, pr: мигра́ция, ds: migration}
+  - {id: ru-or-n05897-s001, ch: переселенец, pr: переселе́нец, ds: settler}
+  - {id: ru-or-n03546-s001, ch: бедность, pr: бе́дность, ds: poverty}
+  - {id: ru-or-n01461-s001, ch: богатство, pr: бога́тство, ds: wealth}
+  - {id: ru-or-n04454-s001, ch: безработица, pr: безрабо́тица, ds: unemployment}
+  - {id: ru-or-n07576-s001, ch: неравенство, pr: нера́венство, ds: inequality}
+  - {id: ru-or-n03818-s001, ch: равенство, pr: ра́венство, ds: equality}
+  - {id: ru-or-n03116-s001, ch: благополучие, pr: благополу́чие, ds: well-being}
+  - {id: ru-or-n04462-s001, ch: здравоохранение, pr: здравоохране́ние, ds: public health}
+  - {id: ru-or-n00469-s001, ch: культура, pr: культу́ра, ds: culture}
+  - {id: ru-or-n00952-s001, ch: традиция, pr: тради́ция, ds: tradition}
+  - {id: ru-or-n01664-s001, ch: обычай, pr: обы́чай, ds: custom}
+  - {id: ru-or-n01889-s001, ch: религия, pr: рели́гия, ds: religion}
+  - {id: ru-or-n00245-s001, ch: вера, pr: ве́ра, ds: faith}
+  - {id: ru-or-v01902-s001, ch: голосовать, pr: голосова́ть, ds: vote}
+  - {id: ru-or-v01988-s001, ch: избрать, pr: избра́ть, ds: elect}
+  - {id: ru-or-v05443-s001, ch: избирать, pr: избира́ть, ds: elect}
+  - {id: ru-or-v01813-s001, ch: править, pr: пра́вить, ds: rule}
+  - {id: ru-or-v00573-s001, ch: запретить, pr: запрети́ть, ds: forbid}
+  - {id: ru-or-v01758-s001, ch: запрещать, pr: запреща́ть, ds: forbid}
+  - {id: ru-or-v00338-s001, ch: разрешить, pr: разреши́ть, ds: permit}
+  - {id: ru-or-v01408-s001, ch: разрешать, pr: разреша́ть, ds: permit}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n04532-s001, ch: пригород, pr: при́город, ds: suburb}
+  - {id: ru-or-n00033-s001, ch: мир, pr: мир, ds: world}
+  - {id: ru-or-n00033-s002, ch: мир, pr: мир, ds: peace}
+  - {id: ru-or-n00042-s001, ch: война, pr: война́, ds: war}
+  - {id: ru-or-n00123-s001, ch: армия, pr: а́рмия, ds: army}
+  - {id: ru-or-n00093-s001, ch: солдат, pr: солда́т, ds: soldier}
+  - {id: ru-or-n00251-s001, ch: офицер, pr: офице́р, ds: officer}
+  - {id: ru-or-n00222-s001, ch: оружие, pr: ору́жие, ds: weapon}
+  review_grammar: []
+- id: level-16-society-03
+  title: Society and community - 3
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-v00826-s001, ch: нарушить, pr: нару́шить, ds: violate}
+  - {id: ru-or-v01030-s001, ch: нарушать, pr: наруша́ть, ds: violate}
+  - {id: ru-or-v01552-s001, ch: соблюдать, pr: соблюда́ть, ds: observe}
+  - {id: ru-or-v00229-s001, ch: судить, pr: суди́ть, ds: judge}
+  - {id: ru-or-v01540-s001, ch: осудить, pr: осуди́ть, ds: condemn}
+  - {id: ru-or-v01642-s001, ch: обвинить, pr: обвини́ть, ds: accuse}
+  - {id: ru-or-v01336-s001, ch: обвинять, pr: обвиня́ть, ds: blame}
+  - {id: ru-or-v01069-s001, ch: наказать, pr: наказа́ть, ds: Punish}
+  - {id: ru-or-v02070-s001, ch: наказывать, pr: нака́зывать, ds: punish}
+  - {id: ru-or-v02101-s001, ch: протестовать, pr: протестова́ть, ds: protest}
+  - {id: ru-or-v00444-s001, ch: бороться, pr: боро́ться, ds: struggle}
+  - {id: ru-or-v00411-s001, ch: воевать, pr: воева́ть, ds: wage war}
+  - {id: ru-or-v00622-s001, ch: победить, pr: победи́ть, ds: win}
+  - {id: ru-or-v02352-s001, ch: побеждать, pr: побежда́ть, ds: win}
+  - {id: ru-or-v01443-s001, ch: нападать, pr: напада́ть, ds: attack}
+  - {id: ru-or-v01262-s001, ch: напасть, pr: напа́сть, ds: attack}
+  - {id: ru-or-v01041-s001, ch: отступить, pr: отступи́ть, ds: retreat}
+  - {id: ru-or-v00958-s001, ch: отступать, pr: отступа́ть, ds: retreat}
+  - {id: ru-or-v03613-s001, ch: переселиться, pr: пересели́ться, ds: move}
+  - {id: ru-or-v07526-s001, ch: переселяться, pr: переселя́ться, ds: move}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01902-s001, ch: голосовать, pr: голосова́ть, ds: vote}
+  - {id: ru-or-v01988-s001, ch: избрать, pr: избра́ть, ds: elect}
+  - {id: ru-or-v05443-s001, ch: избирать, pr: избира́ть, ds: elect}
+  - {id: ru-or-v01813-s001, ch: править, pr: пра́вить, ds: rule}
+  - {id: ru-or-v00573-s001, ch: запретить, pr: запрети́ть, ds: forbid}
+  - {id: ru-or-v01758-s001, ch: запрещать, pr: запреща́ть, ds: forbid}
+  - {id: ru-or-v00338-s001, ch: разрешить, pr: разреши́ть, ds: permit}
+  - {id: ru-or-v01408-s001, ch: разрешать, pr: разреша́ть, ds: permit}
+  review_grammar: []
+- id: level-16-institutions-01
+  title: Institutions and public processes - 1
+  outcome: Explain a process and separate its purpose from its effects.
+  vocabulary:
+  - {id: ru-or-n00085-s001, ch: власть, pr: власть, ds: authority}
+  - {id: ru-or-n00234-s001, ch: правительство, pr: прави́тельство, ds: government}
+  - {id: ru-or-n02166-s001, ch: парламент, pr: парла́мент, ds: parliament}
+  - {id: ru-or-n00198-s001, ch: президент, pr: президе́нт, ds: president}
+  - {id: ru-or-n00348-s001, ch: министр, pr: мини́стр, ds: Minister}
+  - {id: ru-or-n00968-s001, ch: министерство, pr: министе́рство, ds: ministry}
+  - {id: ru-or-n01847-s001, ch: мэр, pr: мэр, ds: mayor}
+  - {id: ru-or-n01067-s001, ch: администрация, pr: администра́ция, ds: administration}
+  - {id: ru-or-n00230-s002, ch: совет, pr: сове́т, ds: council}
+  - {id: ru-or-n01131-s001, ch: выборы, pr: вы́боры, ds: elections}
+  - {id: ru-or-n03391-s001, ch: избиратель, pr: избира́тель, ds: voter}
+  - {id: ru-or-n03903-s001, ch: голосование, pr: голосова́ние, ds: voting}
+  - {id: ru-or-n00161-s001, ch: партия, pr: па́ртия, ds: party}
+  - {id: ru-or-n00703-s001, ch: политика, pr: поли́тика, ds: politics}
+  - {id: ru-or-n00141-s001, ch: закон, pr: зако́н, ds: law}
+  - {id: ru-or-n00070-s001, ch: право, pr: пра́во, ds: right}
+  - {id: ru-or-n00288-s001, ch: суд, pr: суд, ds: court}
+  - {id: ru-or-n01012-s001, ch: судья, pr: судья́, ds: judge}
+  - {id: ru-or-n02390-s001, ch: юрист, pr: юри́ст, ds: lawyer}
+  - {id: ru-or-n01513-s001, ch: адвокат, pr: адвока́т, ds: lawyer}
+  - {id: ru-or-n01225-s001, ch: прокурор, pr: прокуро́р, ds: prosecutor}
+  - {id: ru-or-n00588-s001, ch: преступление, pr: преступле́ние, ds: crime}
+  - {id: ru-or-n01309-s001, ch: наказание, pr: наказа́ние, ds: punishment}
+  - {id: ru-or-n03055-s001, ch: штраф, pr: штраф, ds: fine}
+  - {id: ru-or-n00993-s001, ch: разрешение, pr: разреше́ние, ds: permission}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-16-institutions-02
+  title: Institutions and public processes - 2
+  outcome: Explain a process and separate its purpose from its effects.
+  vocabulary:
+  - {id: ru-or-n02369-s001, ch: запрет, pr: запре́т, ds: ban}
+  - {id: ru-or-n01384-s001, ch: реформа, pr: рефо́рма, ds: reform}
+  - {id: ru-or-n01951-s001, ch: протест, pr: проте́ст, ds: protest}
+  - {id: ru-or-n02449-s001, ch: демонстрация, pr: демонстра́ция, ds: demonstration}
+  - {id: ru-or-n02134-s001, ch: митинг, pr: ми́тинг, ds: rally}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01012-s001, ch: судья, pr: судья́, ds: judge}
+  - {id: ru-or-n02390-s001, ch: юрист, pr: юри́ст, ds: lawyer}
+  - {id: ru-or-n01513-s001, ch: адвокат, pr: адвока́т, ds: lawyer}
+  - {id: ru-or-n01225-s001, ch: прокурор, pr: прокуро́р, ds: prosecutor}
+  - {id: ru-or-n00588-s001, ch: преступление, pr: преступле́ние, ds: crime}
+  - {id: ru-or-n01309-s001, ch: наказание, pr: наказа́ние, ds: punishment}
+  - {id: ru-or-n03055-s001, ch: штраф, pr: штраф, ds: fine}
+  - {id: ru-or-n00993-s001, ch: разрешение, pr: разреше́ние, ds: permission}
+  review_grammar: []
+- id: level-16-media-01
+  title: Reports and sources - 1
+  outcome: Distinguish events, attributed claims, and interpretation in a report.
+  vocabulary:
+  - {id: ru-or-n00594-s001, ch: источник, pr: исто́чник, ds: source}
+  - {id: ru-or-n00339-s001, ch: факт, pr: факт, ds: fact}
+  - {id: ru-or-n14491-s001, ch: данные, pr: да́нные, ds: data}
+  - {id: ru-or-n00460-s001, ch: слух, pr: слух, ds: rumour}
+  - {id: ru-or-n00840-s001, ch: свидетель, pr: свиде́тель, ds: witness}
+  - {id: ru-or-n01511-s001, ch: свидетельство, pr: свиде́тельство, ds: testimony}
+  - {id: ru-or-n00682-s001, ch: заявление, pr: заявле́ние, ds: statement}
+  - {id: ru-or-n02556-s001, ch: комментарий, pr: коммента́рий, ds: comment}
+  - {id: ru-or-n03991-s001, ch: обзор, pr: обзо́р, ds: review}
+  - {id: ru-or-n06655-s001, ch: хроника, pr: хро́ника, ds: chronicle}
+  - {id: ru-or-n02013-s001, ch: публикация, pr: публика́ция, ds: publication}
+  - {id: ru-or-n00986-s001, ch: редакция, pr: реда́кция, ds: editorial office}
+  - {id: ru-or-n00869-s001, ch: пресса, pr: пре́сса, ds: press}
+  - {id: ru-or-n02297-s001, ch: аудитория, pr: аудито́рия, ds: audience}
+  - {id: ru-or-n02359-s001, ch: общественность, pr: обще́ственность, ds: public}
+  - {id: ru-or-n02980-s001, ch: повестка, pr: пове́стка, ds: agenda}
+  - {id: ru-or-n00286-s001, ch: свобода, pr: свобо́да, ds: freedom}
+  - {id: ru-or-n04179-s001, ch: цензура, pr: цензу́ра, ds: censorship}
+  - {id: ru-or-n01688-s001, ch: пропаганда, pr: пропага́нда, ds: propaganda}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00495-s001, ch: камера, pr: ка́мера, ds: camera}
+  - {id: ru-or-n01551-s001, ch: реклама, pr: рекла́ма, ds: advertising}
+  - {id: ru-or-n00623-s001, ch: журналист, pr: журнали́ст, ds: journalist}
+  - {id: ru-or-n00962-s001, ch: редактор, pr: реда́ктор, ds: editor}
+  - {id: ru-or-n00528-s001, ch: читатель, pr: чита́тель, ds: reader}
+  - {id: ru-or-n01135-s001, ch: зритель, pr: зри́тель, ds: audience}
+  - {id: ru-or-n02105-s001, ch: слушатель, pr: слу́шатель, ds: listener}
+  - {id: ru-or-n00217-s001, ch: автор, pr: а́втор, ds: author}
+  review_grammar: []
+- id: level-16-society-practice-01
+  title: Society and community - sentence practice 1
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+  review_vocabulary:
+  - {id: ru-or-v00622-s001, ch: победить, pr: победи́ть, ds: win}
+  - {id: ru-or-v02352-s001, ch: побеждать, pr: побежда́ть, ds: win}
+  - {id: ru-or-v01443-s001, ch: нападать, pr: напада́ть, ds: attack}
+  - {id: ru-or-v01262-s001, ch: напасть, pr: напа́сть, ds: attack}
+  - {id: ru-or-v01041-s001, ch: отступить, pr: отступи́ть, ds: retreat}
+  - {id: ru-or-v00958-s001, ch: отступать, pr: отступа́ть, ds: retreat}
+  - {id: ru-or-v03613-s001, ch: переселиться, pr: пересели́ться, ds: move}
+  - {id: ru-or-v07526-s001, ch: переселяться, pr: переселя́ться, ds: move}
+  review_grammar: []
+- id: level-16-media-practice-01
+  title: Reports and sources - sentence practice 1
+  outcome: Distinguish events, attributed claims, and interpretation in a report.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-source-attribution, ch: 'по словам [genitive source]; по данным [genitive source]', ds: Attribute a report without endorsing it as fact}
+  - {id: ru-g-reflexive-passive, ch: '[subject] обсуждается / проверяется [agent instrumental]', ds: Interpret a process-focused reflexive passive}
+  - {id: ru-g-full-participial-description, ch: 'книга, написанная [instrumental agent]', ds: Read a participial phrase as a reduced description}
+  review_vocabulary:
+  - {id: ru-or-n00986-s001, ch: редакция, pr: реда́кция, ds: editorial office}
+  - {id: ru-or-n00869-s001, ch: пресса, pr: пре́сса, ds: press}
+  - {id: ru-or-n02297-s001, ch: аудитория, pr: аудито́рия, ds: audience}
+  - {id: ru-or-n02359-s001, ch: общественность, pr: обще́ственность, ds: public}
+  - {id: ru-or-n02980-s001, ch: повестка, pr: пове́стка, ds: agenda}
+  - {id: ru-or-n00286-s001, ch: свобода, pr: свобо́да, ds: freedom}
+  - {id: ru-or-n04179-s001, ch: цензура, pr: цензу́ра, ds: censorship}
+  - {id: ru-or-n01688-s001, ch: пропаганда, pr: пропага́нда, ds: propaganda}
+  review_grammar: []

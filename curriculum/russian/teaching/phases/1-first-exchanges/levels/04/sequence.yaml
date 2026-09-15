@@ -1,0 +1,231 @@
+schema_version: 3
+id: ru-level-04
+title: Getting there and getting help
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 4
+phase: first-exchanges
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+goals: &id001
+- Distinguish a location from a destination in a direction question.
+- Ask for permission or help using a polite frame.
+- Agree on a future activity and revise its time or place.
+checkpoint:
+  task: Ask for directions and help, then agree on a changed meeting plan after receiving an unexpected reply.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-04-communication-01
+  title: Communication and repair - 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary:
+  - {id: ru-or-n01923-s001, ch: переводчик, pr: перево́дчик, ds: translator or interpreter (person)}
+  - {id: ru-or-o00061-s001, ch: можно, pr: мо́жно, ds: it is permitted}
+  - {id: ru-or-o00111-s001, ch: нельзя, pr: нельзя́, ds: not allowed or not possible}
+  - {id: ru-or-v00295-s001, ch: подождать, pr: подожда́ть, ds: wait a while}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o02191-s001, ch: здравствуйте, pr: здра́вствуйте, ds: hello}
+  - {id: ru-or-n00953-s001, ch: привет, pr: приве́т, ds: hello (informal)}
+  - {id: ru-or-o00196-s002, ch: пожалуйста, pr: пожа́луйста, ds: you are welcome}
+  - {id: ru-or-a00002-s001, ch: как, pr: как, ds: how}
+  - {id: ru-or-o00044-s001, ch: где, pr: где, ds: where}
+  - {id: ru-or-o00079-s001, ch: хорошо, pr: хорошо́, ds: well}
+  - {id: ru-or-o00163-s001, ch: плохо, pr: пло́хо, ds: it is bad}
+  - {id: ru-or-o00157-s001, ch: медленно, pr: ме́дленно, ds: slowly}
+  review_grammar:
+  - {id: ru-g-polite-repair, ch: 'Извините. Повторите, пожалуйста.', ds: Greet politely and ask for communication repair}
+  - {id: ru-g-basic-questions, ch: 'Кто это? Что это? Где [noun]? Когда [event]?', ds: 'Ask identity, location, or time without an auxiliary'}
+  - {id: ru-g-basic-negation, ch: 'Я не [verb]. Это не [noun].', ds: Negate a statement or correct identification}
+- id: level-04-health-01
+  title: Body and wellbeing - 1
+  outcome: Describe a need and seek clarification without making a clinical claim.
+  vocabulary:
+  - {id: ru-or-n00116-s001, ch: помощь, pr: по́мощь, ds: help}
+  - {id: ru-or-n00172-s001, ch: врач, pr: врач, ds: doctor}
+  - {id: ru-or-n02735-s001, ch: аптека, pr: апте́ка, ds: pharmacy}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-travel-01
+  title: Travel and transport - 1
+  outcome: Explain an origin or destination and negotiate a changed journey.
+  vocabulary:
+  - {id: ru-or-n00047-s001, ch: дорога, pr: доро́га, ds: road}
+  - {id: ru-or-n00550-s001, ch: автобус, pr: авто́бус, ds: bus}
+  - {id: ru-or-n00305-s001, ch: поезд, pr: по́езд, ds: train}
+  - {id: ru-or-n01077-s001, ch: метро, pr: метро́, ds: metro}
+  - {id: ru-or-n01228-s001, ch: такси, pr: такси́, ds: taxi}
+  - {id: ru-or-n00497-s001, ch: билет, pr: биле́т, ds: ticket}
+  - {id: ru-or-n00736-s001, ch: вокзал, pr: вокза́л, ds: station building}
+  - {id: ru-or-n01192-s001, ch: остановка, pr: остано́вка, ds: stop}
+  - {id: ru-or-n00320-s001, ch: карта, pr: ка́рта, ds: map}
+  - {id: ru-or-n00698-s001, ch: гостиница, pr: гости́ница, ds: hotel}
+  - {id: ru-or-n01268-s001, ch: туалет, pr: туале́т, ds: toilet}
+  - {id: ru-or-o00082-s001, ch: куда, pr: куда́, ds: 'where to?'}
+  - {id: ru-or-o00160-s001, ch: далеко, pr: далеко́, ds: far}
+  - {id: ru-or-o00289-s001, ch: близко, pr: бли́зко, ds: near}
+  - {id: ru-or-o00452-s001, ch: налево, pr: нале́во, ds: to the left}
+  - {id: ru-or-o00451-s001, ch: направо, pr: напра́во, ds: to the right}
+  - {id: ru-or-o00109-s001, ch: прямо, pr: пря́мо, ds: straight}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00023-s001, ch: город, pr: го́род, ds: town}
+  - {id: ru-or-n00054-s001, ch: улица, pr: у́лица, ds: street}
+  - {id: ru-or-n00016-s001, ch: место, pr: ме́сто, ds: place}
+  - {id: ru-or-n00041-s001, ch: страна, pr: страна́, ds: country}
+  - {id: ru-or-n00105-s001, ch: школа, pr: шко́ла, ds: school}
+  review_grammar: []
+- id: level-04-time-01
+  title: Time and event sequence - 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary:
+  - {id: ru-or-n00003-s001, ch: время, pr: вре́мя, ds: time}
+  - {id: ru-or-n00193-s001, ch: встреча, pr: встре́ча, ds: meeting}
+  - {id: ru-or-n00183-s001, ch: план, pr: план, ds: plan}
+  - {id: ru-or-o00033-s001, ch: когда, pr: когда́, ds: when}
+  - {id: ru-or-o00051-s001, ch: потом, pr: пото́м, ds: then}
+  - {id: ru-or-o00166-s001, ch: скоро, pr: ско́ро, ds: soon}
+  - {id: ru-or-a00097-s001, ch: открытый, pr: откры́тый, ds: open (not closed)}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00025-s001, ch: час, pr: час, ds: hour}
+  - {id: ru-or-n00043-s001, ch: минута, pr: мину́та, ds: minute}
+  - {id: ru-or-n00265-s001, ch: секунда, pr: секу́нда, ds: second (unit of time)}
+  - {id: ru-or-o00097-s001, ch: сегодня, pr: сего́дня, ds: today}
+  - {id: ru-or-o00162-s001, ch: завтра, pr: за́втра, ds: tomorrow}
+  - {id: ru-or-o00058-s001, ch: сейчас, pr: сейча́с, ds: now}
+  - {id: ru-or-o00081-s001, ch: всегда, pr: всегда́, ds: always}
+  - {id: ru-or-o00122-s001, ch: иногда, pr: иногда́, ds: sometimes}
+  review_grammar:
+  - {id: ru-g-routine-time, ch: 'утром / днём / вечером; в [clock time]', ds: Place a routine at a time of day}
+- id: level-04-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00009-s001, ch: идти, pr: идти́, ds: walk}
+  - {id: ru-or-v00107-s001, ch: ехать, pr: е́хать, ds: go by vehicle}
+  - {id: ru-or-v00036-s001, ch: ждать, pr: ждать, ds: wait}
+  - {id: ru-or-v00167-s001, ch: помочь, pr: помо́чь, ds: help}
+  - {id: ru-or-v00205-s001, ch: помогать, pr: помога́ть, ds: help}
+  - {id: ru-or-v00076-s001, ch: показать, pr: показа́ть, ds: show}
+  - {id: ru-or-v00029-s001, ch: дать, pr: дать, ds: give}
+  - {id: ru-or-v00020-s001, ch: взять, pr: взять, ds: take}
+  - {id: ru-or-v00047-s001, ch: прийти, pr: прийти́, ds: come}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00015-s001, ch: иметь, pr: име́ть, ds: have}
+  - {id: ru-or-v00008-s001, ch: видеть, pr: ви́деть, ds: see}
+  - {id: ru-or-v00096-s001, ch: искать, pr: иска́ть, ds: look for}
+  - {id: ru-or-v00073-s001, ch: находиться, pr: находи́ться, ds: be situated}
+  - {id: ru-or-v00018-s001, ch: делать, pr: де́лать, ds: do or make}
+  - {id: ru-or-v00030-s001, ch: работать, pr: рабо́тать, ds: work}
+  - {id: ru-or-v00094-s001, ch: спать, pr: спать, ds: sleep}
+  - {id: ru-or-v00254-s001, ch: вставать, pr: встава́ть, ds: get up}
+  review_grammar:
+  - {id: ru-g-present-conjugation, ch: я читаю / ты читаешь / они читают, ds: Match a present-tense verb to its subject}
+- id: level-04-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00018-s001, ch: нужный, pr: ну́жный, ds: necessary}
+  - {id: ru-or-a00129-s001, ch: левый, pr: ле́вый, ds: left}
+  - {id: ru-or-a00090-s001, ch: правый, pr: пра́вый, ds: right-hand}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00108-s001, ch: синий, pr: си́ний, ds: dark blue}
+  - {id: ru-or-a00062-s001, ch: зелёный, pr: зелёный, ds: green}
+  - {id: ru-or-o00063-s001, ch: здесь, pr: здесь, ds: here}
+  - {id: ru-or-o00049-s001, ch: там, pr: там, ds: there}
+  - {id: ru-or-o01984-s001, ch: дома, pr: до́ма, ds: at home}
+  - {id: ru-or-a00131-s001, ch: горячий, pr: горя́чий, ds: hot}
+  - {id: ru-or-a00098-s001, ch: холодный, pr: холо́дный, ds: cold}
+  - {id: ru-or-a00679-s001, ch: вкусный, pr: вку́сный, ds: tasty}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+- id: level-04-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-o00015-s001, ch: к, pr: к, ds: 'towards, to'}
+  - {id: ru-or-o00038-s001, ch: до, pr: до, ds: until}
+  - {id: ru-or-o00024-s001, ch: от, pr: от, ds: from (away)}
+  - {id: ru-or-o00012-s001, ch: по, pr: по, ds: along}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00231-s001, ch: восемь, pr: во́семь, ds: eight}
+  - {id: ru-or-o00306-s001, ch: девять, pr: де́вять, ds: nine}
+  - {id: ru-or-o00137-s001, ch: десять, pr: де́сять, ds: ten}
+  - {id: ru-or-o00101-s001, ch: сколько, pr: ско́лько, ds: how much}
+  - {id: ru-or-o00088-s001, ch: много, pr: мно́го, ds: a lot of}
+  - {id: ru-or-o00132-s001, ch: мало, pr: ма́ло, ds: little}
+  - {id: ru-or-n00243-s001, ch: половина, pr: полови́на, ds: half}
+  - {id: ru-or-v00044-s002, ch: считать, pr: счита́ть, ds: count (numbers or objects)}
+  review_grammar: []
+- id: level-04-travel-practice-01
+  title: Travel and transport - sentence practice 1
+  outcome: Explain an origin or destination and negotiate a changed journey.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-place-direction-origin, ch: 'где / куда / откуда; в / на + [accusative destination]', ds: 'Distinguish location, destination, and origin'}
+  review_vocabulary:
+  - {id: ru-or-n00698-s001, ch: гостиница, pr: гости́ница, ds: hotel}
+  - {id: ru-or-n01268-s001, ch: туалет, pr: туале́т, ds: toilet}
+  - {id: ru-or-o00082-s001, ch: куда, pr: куда́, ds: 'where to?'}
+  - {id: ru-or-o00160-s001, ch: далеко, pr: далеко́, ds: far}
+  - {id: ru-or-o00289-s001, ch: близко, pr: бли́зко, ds: near}
+  - {id: ru-or-o00452-s001, ch: налево, pr: нале́во, ds: to the left}
+  - {id: ru-or-o00451-s001, ch: направо, pr: напра́во, ds: to the right}
+  - {id: ru-or-o00109-s001, ch: прямо, pr: пря́мо, ds: straight}
+  review_grammar: []
+- id: level-04-services-practice-01
+  title: Services and transactions - sentence practice 1
+  outcome: Clarify a requirement and respond to an ordinary service problem.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+  - {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-time-practice-01
+  title: Time and event sequence - sentence practice 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-imperfective-future, ch: 'буду / будешь / будет / будем / будете / будут + [imperfective infinitive]', ds: Describe a future activity or repeated action}
+  review_vocabulary:
+  - {id: ru-or-v00001-s001, ch: быть, pr: быть, ds: be}
+  - {id: ru-or-o00122-s001, ch: иногда, pr: иногда́, ds: sometimes}
+  - {id: ru-or-n00003-s001, ch: время, pr: вре́мя, ds: time}
+  - {id: ru-or-n00193-s001, ch: встреча, pr: встре́ча, ds: meeting}
+  - {id: ru-or-n00183-s001, ch: план, pr: план, ds: plan}
+  - {id: ru-or-o00033-s001, ch: когда, pr: когда́, ds: when}
+  - {id: ru-or-o00051-s001, ch: потом, pr: пото́м, ds: then}
+  - {id: ru-or-o00166-s001, ch: скоро, pr: ско́ро, ds: soon}
+  - {id: ru-or-a00097-s001, ch: открытый, pr: откры́тый, ds: open (not closed)}
+  review_grammar:
+  - {id: ru-g-routine-time, ch: 'утром / днём / вечером; в [clock time]', ds: Place a routine at a time of day}
+- id: level-04-actions-practice-01
+  title: Actions and results - sentence practice 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-dative-need, ch: 'мне / вам нужно + [infinitive]', ds: Say who needs to perform an action}
+  review_vocabulary:
+  - {id: ru-or-v00107-s001, ch: ехать, pr: е́хать, ds: go by vehicle}
+  - {id: ru-or-v00036-s001, ch: ждать, pr: ждать, ds: wait}
+  - {id: ru-or-v00167-s001, ch: помочь, pr: помо́чь, ds: help}
+  - {id: ru-or-v00205-s001, ch: помогать, pr: помога́ть, ds: help}
+  - {id: ru-or-v00076-s001, ch: показать, pr: показа́ть, ds: show}
+  - {id: ru-or-v00029-s001, ch: дать, pr: дать, ds: give}
+  - {id: ru-or-v00020-s001, ch: взять, pr: взять, ds: take}
+  - {id: ru-or-v00047-s001, ch: прийти, pr: прийти́, ds: come}
+  review_grammar:
+  - {id: ru-g-present-conjugation, ch: я читаю / ты читаешь / они читают, ds: Match a present-tense verb to its subject}
