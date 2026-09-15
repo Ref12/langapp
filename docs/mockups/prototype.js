@@ -76,6 +76,7 @@ mobileLayout.addEventListener('change', syncWorkspaceNavigation)
 const practiceRoutes = {
   practice: { panel: 'exercises', label: 'Exercises', badge: 'Choose an exercise' },
   review: { panel: 'review', label: 'Exercises / Review', badge: 'Sample review session' },
+  exercise: { panel: 'activity', label: 'Exercises / Sample session', badge: 'Interactive exercise sample' },
   games: { panel: 'games', label: 'Games', badge: 'Games / Concept' },
 }
 

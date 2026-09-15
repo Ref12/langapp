@@ -16,7 +16,8 @@ The prototype uses relative assets and hash navigation. For example,
 `index.html#reader` opens Library's reading view directly, and
 `index.html#lessons` opens the lesson collection. `index.html#games` opens
 the Games section within Practice. `index.html#practice` opens the Exercises
-chooser; `index.html#review` opens the review exercise. Character writing opens
+chooser; `index.html#review` opens the review exercise, and `index.html#exercise`
+opens the mixed lesson/check sample player. Character writing opens
 from a Dictionary entry's pencil action. A fresh `index.html#characters` link
 returns to Dictionary to choose a character rather than opening an arbitrary sample.
 `index.html#discover` opens the separate sample discovery shelf from Library.
@@ -184,7 +185,7 @@ scroll in the interactive prototype to explore the rest of each screen.
 | Overview | Progress-first home with shared tier coverage, a contextual next lesson, goals, and optional checkpoints | Resume your last learning approach, inspect coverage and review needs, or continue reading |
 | Library | Browse, import, create, and read in one experience | Create a story with Assistant, import your material, or append sections; explore the sample reader and vocabulary |
 | Lessons | Path, Goals, and All lessons offer complementary ways into shared learning | Follow ordered units, create a goal with Assistant, search/import lessons, finish a lesson, or try a checkpoint |
-| Practice | Exercises and Games share one practice space | Open Review, create a custom exercise, or save a non-playable game level brief |
+| Practice | Exercises and Games share one practice space | Try seven lesson/check samples, open Review, create a custom exercise, or save a non-playable game level brief |
 | Assistant | A learning partner and app-wide creation workspace | Use a reply's actions menu, review and save content, or look up words; continue Conversation, Shadow, dictation, and Voice mode |
 | Dictionary | Shared lookup, a personal learning set, and character writing | Inspect a definition, add a word to your learning set, or open full-screen writing with its pencil action |
 
@@ -505,6 +506,35 @@ questions. **All practice** returns to the general exercise chooser.
 [Desktop lesson practice](previews/lesson-practice-desktop.png) /
 [Mobile lesson practice](previews/lesson-practice-mobile.png).
 
+**At the tea house** adds seven original, interactive inspiration samples:
+ordered-tile translation (including interchangeable repeated words),
+translation choices, ordered-tile listening, picture-backed gap fill, matching,
+phrase repetition, and choosing and saying a contextual reply. Open one card,
+start the mixed **sample lesson**, or try the **knowledge check**.
+`app.html#exercise` and `index.html#exercise` open the sample player directly.
+
+The player includes normal/slow local playback, a hidden listening transcript
+with an explicit reveal, inline word meanings, new-word highlighting and pinyin
+in lesson mode, tile-level near-miss feedback, guided retries, and post-answer
+meaning. The picture is original artwork; screenshots are inspiration, not
+reused interface assets. Supplied picture/meaning cues are part of the question;
+requesting a hidden transcript or word meaning counts as extra help.
+
+An incorrect unaided attempt, **I don't know**, or extra help records a failed
+Check. Later successful practice remains separate and cannot overwrite it.
+Knowledge checks omit guided retries; lessons offer them. **Can't listen now**
+and **Can't speak now** record an unassessed item unless a failed Check was
+already established. Repetition and guided spoken replies use explicitly
+authored **speech UI previews**, not recording, speech recognition, or
+pronunciation scoring; these never earn knowledge-check credit.
+
+The sample player's answer, progress, and results survive navigation via
+**Resume sample** until reload. **Restart sample** deliberately starts a new
+sample session. Results do not change lesson completion, Dictionary, mastery,
+or the existing Review queue. The classic scripts and local SVG also work via
+`file://`; no build, JSON fetch, account, or service is needed. Local audio still
+requires a compatible browser and an installed local voice.
+
 **Review** retains contextual recall, hints, and the three-question summary.
 The Overview quick-review and Dictionary review links open it directly.
 Switching exercises or visiting Games preserves the question, answer, hints,
@@ -824,7 +854,7 @@ Advanced learning logs and AI request/context history remain out of scope.
 | Ideas: conversation / voice mode | Composer settings for mode, target-speech speed, and romanization; separate dictation and hands-free Voice mode entry points |
 | Conversation design feedback | Continuous transcripts and optional practice recaps; a contextual desktop sidebar, or a mobile main-page picker above the unchanged bottom navigation |
 | Shadow mode feedback | Per-conversation behavior changes with explicit shadow, repeat, and explain intents, separate from voice input/output |
-| Ideas: activities; exercise design feedback | Practice offers recall exercises; Dictionary opens immersive individual character writing |
+| Ideas: activities; exercise design feedback | Practice offers recall plus seven inspiration samples, lesson/check modes, and explicit speech previews; Dictionary opens immersive individual character writing |
 | User direction: merge Games into Practice | Exercises and Games share Practice, without importing game details |
 
 ## Deliberate boundaries and open decisions

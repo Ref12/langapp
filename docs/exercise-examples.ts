@@ -1,0 +1,240 @@
+import type {
+  CharacterCheckResult,
+  CharacterWritingCheckExercise,
+  CharacterWritingExercise,
+  Exercise,
+  Lesson,
+  Quiz,
+} from './exercise-contracts'
+
+// Authored examples use `satisfies`; the equivalent assistant payload is plain JSON.
+
+export const characterTeaching = {
+  id: 'write-tree-teach',
+  type: 'character-writing',
+  instruction: 'Learn to write the character for tree.',
+  target: {
+    character: '木',
+    locale: 'zh-CN',
+  },
+  prompt: [{ type: 'text', text: 'Write the character meaning tree.', locale: 'en-US' }],
+  assessment: { criteria: ['form', 'stroke-order', 'stroke-direction'] },
+  mode: { type: 'teach' },
+} satisfies CharacterWritingExercise
+
+export const characterCheck = {
+  ...characterTeaching,
+  id: 'write-tree-check',
+  instruction: 'Write the character for tree without assistance.',
+  mode: { type: 'check', teachingFallback: 'offer' },
+} satisfies CharacterWritingCheckExercise
+
+export const exerciseSamples = [
+  {
+    id: 'match-drinks',
+    type: 'matching',
+    instruction: 'Match each word to its meaning.',
+    pairs: [
+      {
+        id: 'tea',
+        left: { type: 'text', text: '茶', locale: 'zh-CN' },
+        right: { type: 'text', text: 'tea', locale: 'en-US' },
+      },
+      {
+        id: 'water',
+        left: { type: 'text', text: '水', locale: 'zh-CN' },
+        right: { type: 'text', text: 'water', locale: 'en-US' },
+      },
+    ],
+  },
+  {
+    id: 'recognize-tea',
+    type: 'choice',
+    instruction: 'Choose the meaning of the word you hear.',
+    prompt: [{ type: 'audio', text: '茶', locale: 'zh-CN' }],
+    options: [
+      { id: 'tea', content: { type: 'text', text: 'tea', locale: 'en-US' } },
+      { id: 'water', content: { type: 'text', text: 'water', locale: 'en-US' } },
+    ],
+    answer: { selection: 'single', optionId: 'tea' },
+    support: { answerExplanation: 'The spoken word means tea.' },
+  },
+  {
+    id: 'complete-tea-request',
+    type: 'fill-blank',
+    instruction: 'Complete the sentence meaning I want tea.',
+    locale: 'zh-CN',
+    parts: [
+      { type: 'text', text: '我要' },
+      {
+        type: 'blank',
+        id: 'drink',
+        response: {
+          mode: 'choice',
+          options: [
+            { id: 'tea', text: '茶' },
+            { id: 'water', text: '水' },
+          ],
+          correctOptionId: 'tea',
+        },
+      },
+    ],
+  },
+  {
+    id: 'build-tea-request',
+    type: 'translation',
+    instruction: 'Arrange the tiles to translate the sentence.',
+    source: { type: 'text', text: 'I want tea.', locale: 'en-US' },
+    response: {
+      mode: 'ordered-tiles',
+      locale: 'zh-CN',
+      tiles: ['我', '要', '茶', '水'],
+      acceptedAnswers: [['我', '要', '茶']],
+    },
+  },
+  {
+    id: 'build-two-drink-requests',
+    type: 'translation',
+    instruction: 'Arrange the tiles to translate both sentences.',
+    source: { type: 'text', text: 'I want tea. I want water.', locale: 'en-US' },
+    response: {
+      mode: 'ordered-tiles',
+      locale: 'zh-CN',
+      tiles: ['我', '要', '茶', '。', '我', '要', '水', '。', '咖啡'],
+      acceptedAnswers: [['我', '要', '茶', '。', '我', '要', '水', '。']],
+    },
+  },
+  {
+    id: 'translate-tea-request',
+    type: 'translation',
+    instruction: 'Translate into English.',
+    source: { type: 'text', text: '我要茶。', locale: 'zh-CN' },
+    response: {
+      mode: 'text',
+      locale: 'en-US',
+      evaluation: {
+        type: 'accepted-answers',
+        answers: ['I want tea'],
+        caseSensitive: false,
+        punctuation: 'ignored',
+      },
+    },
+  },
+  {
+    id: 'dictate-tea',
+    type: 'dictation',
+    instruction: 'Type the word you hear using tone-marked pinyin.',
+    audio: { type: 'audio', text: '茶', locale: 'zh-CN' },
+    response: {
+      mode: 'text',
+      notation: { type: 'romanization', system: 'pinyin', tones: 'required' },
+      evaluation: {
+        type: 'accepted-answers',
+        answers: ['chá'],
+        caseSensitive: false,
+        punctuation: 'significant',
+      },
+    },
+  },
+  {
+    id: 'dictate-milk-tea-with-tiles',
+    type: 'dictation',
+    instruction: 'Arrange the tiles to write the word you hear.',
+    audio: { type: 'audio', text: '奶茶', locale: 'zh-CN' },
+    response: {
+      mode: 'ordered-tiles',
+      locale: 'zh-CN',
+      tiles: ['茶', '水', '奶'],
+      acceptedAnswers: [['奶', '茶']],
+    },
+  },
+  {
+    id: 'repeat-tea-request',
+    type: 'speech-imitation',
+    instruction: 'Listen, then repeat the sentence.',
+    reference: { type: 'audio', text: '我要茶。', locale: 'zh-CN' },
+    presentation: 'listen-and-repeat',
+    assessment: { type: 'pronunciation', criteria: ['accuracy', 'completeness'] },
+  },
+  {
+    id: 'answer-waiter',
+    type: 'contextual-response',
+    instruction: 'Answer the waiter in Chinese.',
+    situation: [{ type: 'text', text: 'The waiter asks what you would like to drink.', locale: 'en-US' }],
+    response: {
+      mode: 'speech',
+      locale: 'zh-CN',
+      evaluation: {
+        type: 'model',
+        referenceAnswers: ['我要茶。', '我要水。'],
+        rubric: 'Accept a comprehensible request for a drink, not only the reference answers.',
+      },
+    },
+  },
+  characterTeaching,
+  characterCheck,
+] satisfies Exercise[]
+
+export const sampleLesson = {
+  schemaVersion: 1,
+  id: 'learn-tree',
+  revision: 1,
+  type: 'lesson',
+  title: 'Writing the character for tree',
+  targetLocale: 'zh-CN',
+  objectives: ['Recognize the character for tree.', 'Write it from memory.'],
+  steps: [
+    {
+      type: 'explanation',
+      id: 'introduce-tree',
+      markdown: 'This character means **tree**. First watch it being written, then try it yourself.',
+    },
+    {
+      type: 'worked-example',
+      id: 'show-tree',
+      prompt: [{ type: 'text', text: 'tree', locale: 'en-US' }],
+      answer: [{ type: 'text', text: '木', locale: 'zh-CN' }],
+    },
+    {
+      type: 'exercise',
+      id: 'recognize-tree',
+      exercise: {
+        id: 'recognize-tree-symbol',
+        type: 'choice',
+        instruction: 'Choose the character meaning tree.',
+        prompt: [{ type: 'text', text: 'tree', locale: 'en-US' }],
+        options: [
+          { id: 'tree', content: { type: 'text', text: '木', locale: 'zh-CN' } },
+          { id: 'water', content: { type: 'text', text: '水', locale: 'zh-CN' } },
+        ],
+        answer: { selection: 'single', optionId: 'tree' },
+        support: { answerExplanation: 'This is the character you will learn to write next.' },
+      },
+    },
+    {
+      type: 'character-demonstration',
+      id: 'demonstrate-tree',
+      target: characterTeaching.target,
+    },
+    { type: 'exercise', id: 'practice-tree', exercise: characterTeaching },
+  ],
+} satisfies Lesson
+
+export const sampleQuiz = {
+  schemaVersion: 1,
+  id: 'check-tree',
+  revision: 1,
+  type: 'quiz',
+  title: 'Character recall check',
+  targetLocale: 'zh-CN',
+  instructions: 'Write from memory. Choosing Teach me records a failed Check before practice starts.',
+  exercises: [characterCheck],
+  feedback: 'after-answer',
+} satisfies Quiz
+
+// The app, not the assistant, records this result after the learner requests help.
+export const failedCheckAfterSuccessfulTeaching = {
+  outcome: 'failed',
+  reason: 'requested-teaching',
+  teaching: { status: 'completed', postTeachingRecall: 'passed' },
+} satisfies CharacterCheckResult

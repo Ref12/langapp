@@ -166,9 +166,10 @@ async function playSnippet(snippet, button) {
   playback.utterance = utterance
   utterance.voice = voice
   utterance.lang = voice.lang
-  utterance.rate = mandarin ? Number(document.querySelector('#target-speech-speed').value) : 1
+  utterance.rate = snippet.rate ?? (mandarin ? Number(document.querySelector('#target-speech-speed').value) : 1)
   utterance.onstart = () => {
-    if (snippetPlayback === playback) showSnippetNotice(`${snippetLanguage(snippet.lang)} / ${utterance.rate}x / local voice. ${snippet.text.slice(0, 70)}`, button, true)
+    const description = snippet.concealText ? 'Audio prompt / transcript hidden.' : snippet.text.slice(0, 70)
+    if (snippetPlayback === playback) showSnippetNotice(`${snippetLanguage(snippet.lang)} / ${utterance.rate}x / local voice. ${description}`, button, true)
   }
   utterance.onend = () => {
     if (snippetPlayback !== playback) return

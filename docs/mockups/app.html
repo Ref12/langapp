@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./knowledge.css">
     <link rel="stylesheet" href="./learning.css">
     <link rel="stylesheet" href="./learning-overview.css">
+    <link rel="stylesheet" href="./exercises.css">
     <script src="./snippets.js" defer></script>
     <script src="./knowledge.js" defer></script>
     <script src="./prototype.js" defer></script>
@@ -31,6 +32,7 @@
     <script src="./learning-data.js" defer></script>
     <script src="./learning-overview.js" defer></script>
     <script src="./learning.js" defer></script>
+    <script src="./exercises.js" defer></script>
     <script src="./theme.js" defer></script>
     <script src="./tooltips.js" defer></script>
   </head>
@@ -248,12 +250,36 @@
               <div class="exercise-grid">
                 <article class="exercise-card"><div class="exercise-card-heading"><span class="tile-icon green"><svg aria-hidden="true"><use href="#i-practice"/></svg></span><div><h3>Review</h3><span class="small muted">Contextual recall</span></div></div><p>Revisit words from your reading with a short, focused review.</p><a class="button primary" href="#review">Open Review <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
               </div>
+              <section class="activity-catalog" aria-labelledby="activity-catalog-title">
+                <div class="creation-heading"><div><p class="eyebrow accent">ONE IDEA, DIFFERENT WAYS TO PRACTICE</p><h2 id="activity-catalog-title">At the tea house</h2><p class="small muted">Seven original sample exercises. Explore an interaction, or try them in a sequence.</p></div><button class="button secondary" id="activity-resume" hidden>Resume sample</button></div>
+                <div class="activity-start-actions"><button class="button primary" data-activity-start="lesson">Try the sample lesson</button><button class="button secondary" data-activity-start="quiz">Try a knowledge check</button></div>
+                <p class="small muted">Lesson mode offers word help and guided retries. A knowledge check retains the first unaided result. Speech assessment is explicitly simulated; no microphone, AI, or learning records are used.</p>
+                <div class="exercise-grid" id="activity-cards"></div>
+              </section>
               </div>
+            </section>
+            <section id="practice-activity" data-practice-panel="activity" aria-labelledby="activity-title" hidden>
+              <div class="activity-topline"><a class="back-link" href="#practice"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All exercises</a><span class="tag" id="activity-mode"></span><button class="button quiet" id="activity-restart">Restart sample</button></div>
+              <div class="activity-progress"><span id="activity-position"></span><progress id="activity-progress" max="7" value="0" aria-label="Sample exercise progress"></progress></div>
+              <div class="activity-layout">
+                <article class="activity-card" id="activity-question">
+                  <p class="eyebrow accent" id="activity-skill"></p>
+                  <h2 id="activity-title" tabindex="-1"></h2>
+                  <div id="activity-source"></div>
+                  <aside class="activity-word-help" id="activity-word-help" aria-label="Word help" hidden></aside>
+                  <div id="activity-response"></div>
+                  <section class="activity-feedback" id="activity-feedback" role="status" hidden></section>
+                  <footer class="activity-footer"><div id="activity-support"></div><div class="activity-submit"><button class="button secondary" id="activity-retry" hidden>Practice again</button><button class="button primary" id="activity-submit" disabled>Check answer</button></div></footer>
+                </article>
+                <article class="activity-card" id="activity-summary" aria-labelledby="activity-summary-title" hidden></article>
+                <aside class="activity-aside"><p class="eyebrow">YOUR SAMPLE SESSION</p><h3>Small steps. Real distinctions.</h3><ol id="activity-outline"></ol><p class="small muted">Supplied question material is not extra help. Revealing a meaning or hidden transcript is recorded separately.</p><p class="small muted">Correcting an answer after help completes practice, not an unaided Check. Leaving this screen preserves the sample until reload.</p></aside>
+              </div>
+              <p id="activity-announcement" class="visually-hidden" role="status"></p>
             </section>
             <section id="practice-review" data-practice-panel="review" aria-labelledby="review-title" hidden>
             <a class="back-link" href="#practice"><svg aria-hidden="true"><use href="#i-arrow"/></svg> All exercises</a>
             <div class="exercise-heading"><h2 id="review-title">Review</h2><span class="small muted">Recall words in context.</span></div>
-            <div class="practice-layout"><div><div class="practice-progress"><span id="question-count">01 / 03</span><progress id="quiz-progress" value="0" max="3" aria-label="Practice session progress">0 of 3</progress><span class="small muted">Contextual recall</span></div><article class="practice-card" id="quiz-card"><div class="card-topline"><span class="eyebrow">COMPLETE THE THOUGHT</span><span class="tag green">English to Mandarin</span></div><p class="practice-source">FROM: A MORNING AT THE TEA HOUSE</p><h2 id="quiz-source">I would like a cup of tea.</h2><p class="quiz-sentence" id="quiz-sentence" lang="zh-Hans"></p><p class="muted">Choose the word that completes the sentence.</p><div id="quiz-options" class="quiz-options"></div><div id="quiz-feedback" class="quiz-feedback" role="status"></div><div class="practice-controls"><button class="button quiet" id="quiz-hint">Give me a hint</button><button class="button primary" id="quiz-check" disabled>Check answer <svg><use href="#i-arrow"/></svg></button></div></article><article class="practice-card practice-complete" id="quiz-complete" hidden><span class="completion-icon"><svg><use href="#i-check"/></svg></span><p class="eyebrow accent">A LITTLE MORE FAMILIAR</p><h2>Time well spent.</h2><p id="quiz-summary"></p><p class="muted">One session is evidence, not mastery. These are illustrative results only.</p><div class="button-row"><a href="#reader" class="button primary">Back to the story <svg><use href="#i-arrow"/></svg></a><button class="button secondary" id="restart-quiz">Try again</button></div></article></div><aside class="practice-aside"><span class="tile-icon lavender"><svg><use href="#i-practice"/></svg></span><h2>Learning that travels.</h2><p>Today's practice comes from your tea house story. These same words belong in your reading, your dictionary, and your conversations.</p><div class="mini-rule"></div><h3>Support is part of learning.</h3><p>A hint helps you move forward. It also tells the app what needs another look.</p><span class="tag">Hints are recorded separately</span><p class="small muted">Matching, sentence-building, listening, and reverse recall would use this same focused workspace.</p></aside></div>
+            <div class="practice-layout"><div><div class="practice-progress"><span id="question-count">01 / 03</span><progress id="quiz-progress" value="0" max="3" aria-label="Practice session progress">0 of 3</progress><span class="small muted">Contextual recall</span></div><article class="practice-card" id="quiz-card"><div class="card-topline"><span class="eyebrow">COMPLETE THE THOUGHT</span><span class="tag green">English to Mandarin</span></div><p class="practice-source">FROM: A MORNING AT THE TEA HOUSE</p><h2 id="quiz-source">I would like a cup of tea.</h2><p class="quiz-sentence" id="quiz-sentence" lang="zh-Hans"></p><p class="muted">Choose the word that completes the sentence.</p><div id="quiz-options" class="quiz-options"></div><div id="quiz-feedback" class="quiz-feedback" role="status"></div><div class="practice-controls"><button class="button quiet" id="quiz-hint">Give me a hint</button><button class="button primary" id="quiz-check" disabled>Check answer <svg><use href="#i-arrow"/></svg></button></div></article><article class="practice-card practice-complete" id="quiz-complete" hidden><span class="completion-icon"><svg><use href="#i-check"/></svg></span><p class="eyebrow accent">A LITTLE MORE FAMILIAR</p><h2>Time well spent.</h2><p id="quiz-summary"></p><p class="muted">One session is evidence, not mastery. These are illustrative results only.</p><div class="button-row"><a href="#reader" class="button primary">Back to the story <svg><use href="#i-arrow"/></svg></a><button class="button secondary" id="restart-quiz">Try again</button></div></article></div><aside class="practice-aside"><span class="tile-icon lavender"><svg><use href="#i-practice"/></svg></span><h2>Learning that travels.</h2><p>Today's practice comes from your tea house story. These same words belong in your reading, your dictionary, and your conversations.</p><div class="mini-rule"></div><h3>Support is part of learning.</h3><p>A hint helps you move forward. It also tells the app what needs another look.</p><span class="tag">Hints are recorded separately</span><p class="small muted">Try ordered tiles, listening, matching, and speech previews from All exercises.</p></aside></div>
             </section>
             <section id="practice-games" data-practice-panel="games" aria-labelledby="games-title" hidden>
               <div class="creation-heading"><h2 id="games-title">Games</h2><button class="button secondary" data-assistant-task="game"><svg aria-hidden="true"><use href="#i-chat"/></svg> Create level</button></div>
