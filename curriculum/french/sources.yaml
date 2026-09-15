@@ -1,0 +1,79 @@
+- id: kaikki-enwiktionary-french-20260902
+  title: English Wiktionary French lexical records extracted by Kaikki
+  url: https://kaikki.org/dictionary/French/
+  download_url: https://kaikki.org/dictionary/French/kaikki.org-dictionary-French.jsonl.gz
+  license: CC-BY-SA-4.0 option for retained and adapted Wiktionary text; not the extractor's code license
+  usage: >-
+    Selected French written forms, English sense glosses, source sense IDs,
+    lexical IPA and linguistic metadata. The maintained projection excludes
+    quotations, dictionary examples, images and audio. English teaching labels
+    are selected or shortened independently, with exact source glosses retained
+    separately. No proficiency levels are imported or inferred.
+  attribution: >-
+    English Wiktionary contributors, via Kaikki and wiktextract. Each expanded
+    entry identifies its article, source record, source sense and pinned snapshot.
+    Article history links identify the contributing editors. Preserve attribution,
+    the source and license links, adaptation notices and share-alike conditions
+    for retained/adapted dictionary material.
+  retrieved_on: '2026-09-15'
+  dump: '2026-09-02'
+  extracted: '2026-09-09'
+  sha256: efae9ffb69cb74e4376711c05df77b9571d76dff70bd14bd094562dc00cd81f7
+  bytes: 56996718
+  wiktextract_revision: ccec6f120efedd84f57fe0f1631e89408e9cb62a
+  wikitextprocessor_revision: 4deed5191c9e4cb61ee1a4c822e3f6686ae8541b
+  license_url: https://creativecommons.org/licenses/by-sa/4.0/
+  source_entry_convention: >-
+    Live article/history URLs provide attribution; the immutable content
+    identity is the compressed snapshot SHA-256 plus zero-based JSONL record
+    and sense index. Kaikki en-... sense IDs are source identifiers, not official
+    proficiency or examination IDs. No revision-specific Wiktionary oldid is invented.
+  local_license_files: [licenses/CC-BY-SA-4.0.txt]
+- id: lexique-3.83
+  title: Lexique 3.83 French lexical and phonological database
+  url: https://github.com/chrplr/openlexicon/tree/9009f488f664536940965453c127f43cf18b84a4/datasets-info/Lexique383
+  download_url: http://www.lexique.org/databases/Lexique383/Lexique383.tsv
+  license: CC-BY-SA-4.0 as stated by the pinned dataset-specific documentation
+  usage: >-
+    Selected spelling, lemma, part-of-speech, gender, number, inflection and
+    phonetic-code records. Frequency helps investigate likely senses, never
+    assigns a teaching level or demonstrates mastery. Where suitable lexical
+    IPA is absent, a documented strict code-to-IPA conversion is explicitly
+    identified. Inflected travel forms require aligned source form/phonology.
+  attribution: >-
+    Lexique contributors: Boris New, Christophe Pallier, Ronald Peereman,
+    Sophie Dufour, Christian Lachaud and other contributors identified by the
+    project. Preserve the source/license links and identify selected-field
+    projection and phonetic-code conversion as adaptations.
+  retrieved_on: '2026-09-15'
+  version: '3.83'
+  documentation_revision: 9009f488f664536940965453c127f43cf18b84a4
+  sha256: 637ba37a767a66679c48371d673ece50cbf541b49a4e40e598963d4f3fbce52b
+  md5: a742a88cb00759c1ebed34995aed9904
+  bytes: 25850780
+  license_url: https://creativecommons.org/licenses/by-sa/4.0/
+  local_license_files: [licenses/CC-BY-SA-4.0.txt]
+  scope_note: >-
+    This pin is Lexique383, not Lexique4. Later website wording and historical
+    manual licensing discussions are not substituted for the pinned
+    dataset-specific notice. The phon field is not raw IPA or observed audio.
+- id: original-fr
+  title: Original French teaching selections, explanations, examples and routes
+  url: local:curriculum/french/authoring/teaching/
+  license: Original AI-assisted course data offered under CC-BY-SA-4.0 to the extent rights exist; no claim to ordinary language facts
+  usage: >-
+    Thirty-level goals and checkpoints, thematic placements, explicit sense and
+    counting decisions, concise teaching labels, grammar explanations and
+    bilingual examples, modality-specific mastery rubric, original travel
+    formulae and contextual pronunciation guides. These are not adaptations of
+    a paid course, textbook passage or examination question.
+  attribution: >-
+    Original AI-assisted French curriculum contributions for Ref12/langapp,
+    2026. Not comprehensively human reviewed or certified. Dictionary-derived
+    fields retain their separate Wiktionary/Lexique attribution and notices.
+  retrieved_on: '2026-09-15'
+  scope_note: >-
+    Offering these new course data under this license is an explicit choice
+    for the authored assets, not a claim that consulting language facts
+    automatically licenses an entire course or application. Importer,
+    adapter and shared tool code remain separately governed by repository terms.

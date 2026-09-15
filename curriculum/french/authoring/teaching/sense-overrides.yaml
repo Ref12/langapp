@@ -1,0 +1,161 @@
+# Original sense/label decisions. Exact source IDs are retained in sense-selections.yaml.
+bonjour: {pos: intj, ds: "hello; good day"}
+bonsoir: {pos: intj, ds: "good evening"}
+salut: {pos: intj, ds: "hi; informal greeting"}
+merci: {pos: intj, ds: "thank you"}
+appeler: {pos: verb, source_sense_id: "en-appeler-fr-verb-UG~Hts2y", ds: "to be called; reflexive use"}
+prendre: {pos: verb, source_sense_id: "en-prendre-fr-verb-8uCtsM6l", ds: "to have food or drink"}
+règle: {pos: noun, source_sense_id: "en-règle-fr-noun-DY0m36Ra", ds: "ruler; measuring tool"}
+droit: {pos: adj, source_sense_id: "en-droit-fr-adj-FPxU-aCY", ds: "straight; not bent"}
+qualifier: {pos: verb, source_sense_id: "en-qualifier-fr-verb-l9wLAyBa", ds: "to characterize; consider"}
+minorité: {pos: noun, source_sense_id: "en-minorité-fr-noun-ZLQx6ld9", ds: "minority; group smaller than the majority"}
+campagne: {pos: noun, source_sense_id: "en-campagne-fr-noun-PcJgskcg", ds: "campaign"}
+légende: {pos: noun, source_sense_id: "en-légende-fr-noun-F2ylKQaw", ds: "caption"}
+question: {pos: noun, ds: "question asking for information"}
+que: {pos: conj, source_sense_id: "en-que-fr-conj-UPVcn17h", ds: "that; introduces a subordinate noun clause"}
+addition: {pos: noun, source_sense_id: "en-addition-fr-noun-2K5ayR8V", ds: "bill or check at a bar or restaurant"}
+personne: {pos: noun, source_sense_id: "en-personne-fr-noun-OKgeh-eW", ds: "person; human being"}
+hôtel: {pos: noun, source_sense_id: "en-hôtel-fr-noun-0k58YxE-", ds: "hotel; paid accommodation"}
+billet: {pos: noun, source_sense_id: "en-billet-fr-noun-FAaUKRUK", ds: "ticket"}
+droite: {pos: noun, source_sense_id: "en-droite-fr-noun-elOKo-sg", ds: "right-hand side"}
+toilette: {pos: noun, source_sense_id: "en-toilette-fr-noun-IqL15IXY", ds: "toilet; lavatory"}
+vous: {pos: pron, source_sense_id: "en-vous-fr-pron-BMP3njEu", ds: "you; polite singular or plural"}
+en: {pos: pron, source_sense_id: "en-en-fr-pron-mLTEz-qb", ds: "of it or them; indefinite-quantity clitic"}
+de: {pos: prep, source_sense_id: "en-de-fr-prep-Bz9B5YdO", ds: "of; possession, association, or relationship"}
+plus: {pos: adv, source_sense_id: "en-plus-fr-adv-wHVWvhqx", reading: "/ply/", ds: "more; comparative; pronunciation depends on context"}
+découvert: {pos: noun, source_sense_id: "en-découvert-fr-noun-sRqDObWO", ds: "overdraft"}
+il: {pos: pron, ds: "he; masculine singular subject"}
+elle: {pos: pron, ds: "she; feminine singular subject"}
+sœur: {pos: noun, ds: "sister"}
+papier: {pos: noun, ds: "paper; writing material"}
+table: {pos: noun, ds: "table; piece of furniture"}
+mon: {pos: det, ds: "my; possessive determiner"}
+le: {pos: article, ds: "the; definite article"}
+bouteille: {pos: noun, ds: "bottle"}
+aimer: {pos: verb, ds: "to love; to like"}
+adresse: {pos: noun, ds: "address; location details"}
+venir: {pos: verb, ds: "to come"}
+étagère: {pos: noun, ds: "shelf"}
+calendrier: {pos: noun, ds: "calendar"}
+saison: {pos: noun, ds: "season of the year"}
+septembre: {pos: noun, ds: "September"}
+diplôme: {pos: noun, ds: "diploma; qualification document"}
+dictionnaire: {pos: noun, ds: "dictionary"}
+grammaire: {pos: noun, ds: "grammar; language structure"}
+lecture: {pos: noun, ds: "reading; the act or material"}
+traduction: {pos: noun, ds: "translation between languages"}
+erreur: {pos: noun, ds: "error; mistaken thinking"}
+théâtre: {pos: noun, ds: "theatre; venue or dramatic art"}
+musée: {pos: noun, ds: "museum"}
+évoquer: {pos: verb, ds: "to evoke; bring to mind"}
+reconnaître: {pos: verb, ds: "to recognize a previously encountered person or thing"}
+rapporter: {pos: verb, ds: "to bring something back"}
+impatience: {pos: noun, ds: "impatience; intolerance of waiting"}
+amant: {pos: noun, ds: "lover; partner in an affair"}
+détail: {pos: noun, ds: "detail; small particular"}
+activer: {pos: verb, ds: "to activate; stimulate activity"}
+remuer: {pos: verb, ds: "to move or shake something repeatedly"}
+activité: {pos: noun, ds: "activity; something to do"}
+mot de passe: {pos: noun, ds: "password"}
+studio: {pos: noun, ds: "studio; workshop, recording room, or small apartment"}
+plombier: {pos: noun, ds: "plumber"}
+entrepreneur: {pos: noun, ds: "entrepreneur; business organizer"}
+proactif: {pos: adj, ds: "proactive; acting ahead of an expected difficulty"}
+déclaration: {pos: noun, ds: "declaration; written or spoken statement"}
+stéréotype: {pos: noun, ds: "stereotype; oversimplified conventional view"}
+constitution: {pos: noun, ds: "constitution; fundamental system of laws"}
+chiffrement: {pos: noun, ds: "encryption"}
+cryptage: {pos: noun, ds: "encryption"}
+télécharger: {pos: verb, ds: "to download data"}
+téléverser: {pos: verb, ds: "to upload data"}
+effet de serre: {pos: noun, ds: "greenhouse effect"}
+rivière: {pos: noun, ds: "river flowing into another water body, not the sea"}
+fleuve: {pos: noun, ds: "river flowing into the sea or ocean"}
+océan: {pos: noun, ds: "ocean"}
+autrement dit: {pos: prep, ds: "in other words"}
+toi: {pos: pron, ds: "you; informal singular disjunctive pronoun"}
+alléguer: {ds: "to allege; put forward as an argument"}
+induction: {ds: "induction; generalizing from particular cases"}
+antithèse: {ds: "antithesis; juxtaposition of contrasting ideas"}
+corrélation: {ds: "correlation; relationship between comparable things"}
+qualitatif: {ds: "qualitative; concerning qualities"}
+quantitatif: {ds: "quantitative; concerning measurable quantities"}
+reproductible: {ds: "reproducible by different people or in another setting"}
+pouvoir d'achat: {ds: "purchasing power"}
+canton: {ds: "canton; administrative division"}
+citoyenneté: {ds: "citizenship; status with civic rights and duties"}
+plus-value: {ds: "capital gain; increase in an asset's value"}
+moins-value: {ds: "capital loss; decrease in an asset's value"}
+délai de livraison: {ds: "lead time before delivery"}
+douane: {ds: "customs authority"}
+constante: {ds: "constant; quantity with a fixed value"}
+métabolisme: {ds: "metabolism; chemical reactions in living cells"}
+rameau: {ds: "small tree branch"}
+flore: {ds: "flora; plants of a region or period"}
+bois: {ds: "wood; substance of tree trunks and branches"}
+longitudinal: {ds: "longitudinal; running lengthwise"}
+défense: {ds: "defence; protection against attack or danger"}
+prescription: {ds: "medical prescription"}
+pommade: {ds: "ointment for application to skin"}
+anti-inflammatoire: {ds: "anti-inflammatory drug or agent"}
+vésicule: {ds: "bladder; small sac containing fluid or gas"}
+caricature: {ds: "caricature; comic picture with exaggerated features"}
+migrant: {ds: "migrant; person who moves between regions or countries"}
+protégé: {ds: "protege; person guided by an experienced supporter"}
+égalité des chances: {ds: "equal opportunities"}
+résilience: {ds: "resilience; ability to recover from adversity"}
+diagnostiquer: {ds: "to diagnose an illness"}
+équation: {ds: "equation; statement that two expressions are equal"}
+terminologie: {ds: "terminology; terms used in a field"}
+mise en œuvre: {ds: "implementation; putting an idea into practice"}
+streaming: {ds: "streaming; receiving digital media as it is transmitted"}
+raccourci: {source_sense_id: "en-raccourci-fr-noun-UjEPQsFL", ds: "keyboard shortcut"}
+tableur: {ds: "spreadsheet application"}
+graduation: {ds: "graduation; measurement mark on a scale"}
+incrédulité: {ds: "incredulity; unwillingness to believe"}
+persifler: {ds: "to mock with ironic politeness or veiled insults"}
+polysémique: {ds: "polysemous; having several meanings"}
+condescendant: {ds: "condescending; patronizing"}
+appréhension: {ds: "apprehension; fearful anticipation"}
+dialecte: {ds: "regional language subordinate to a standard language"}
+calque: {source_sense_id: "en-calque-fr-noun-hhj3TUhr", ds: "calque; loan translation"}
+éloquence: {ds: "eloquence; persuasive artistry in speech or writing"}
+bureaucratie: {ds: "bureaucracy; administrative structures and rules"}
+tutoyer: {ds: "to address someone with informal tu"}
+vouvoyer: {ds: "to address someone with formal vous"}
+corniche: {ds: "cornice; projecting architectural moulding"}
+protagoniste: {ds: "protagonist; main character in a story"}
+intrigue: {source_sense_id: "en-intrigue-fr-noun-52Haaarh", ds: "plot; course of a story"}
+métonymie: {ds: "metonymy; naming something by an associated feature"}
+synecdoque: {ds: "synecdoche; a part standing for a whole or conversely"}
+personnification: {ds: "embodiment of an idea or quality"}
+oxymore: {ds: "oxymoron; combination of contradictory terms"}
+chorale: {ds: "choir; group singing or reciting together"}
+harpe: {ds: "harp"}
+flûte: {ds: "flute; wind instrument"}
+crémeux: {ds: "creamy; containing or resembling cream"}
+écho: {ds: "echo; reflected sound heard again"}
+principauté: {ds: "principality; territory headed by a prince or princess"}
+serf: {ds: "serf; peasant bound to a lord's land"}
+château: {ds: "castle; fortified building or wine estate"}
+pensée: {source_sense_id: "en-pensée-fr-noun-USKBRr8v", ds: "pansy; flowering plant"}
+narcisse: {ds: "narcissus; bulbous flowering plant"}
+hibou: {ds: "owl with ear tufts"}
+guêpe: {ds: "wasp"}
+infrastructure: {ds: "infrastructure; underlying support for a system"}
+trémie: {source_sense_id: "en-trémie-fr-noun-tr0qmW8-", ds: "shaft; opening"}
+voie verte: {ds: "greenway; recreational path or corridor"}
+criminalité: {ds: "crime; criminal acts collectively"}
+bouillon: {ds: "broth; liquid in which food has been boiled"}
+chicorée: {ds: "chicory; common chicory or endive"}
+asperge: {ds: "asparagus"}
+lettre de motivation: {ds: "cover letter for a job application"}
+ingénieur: {ds: "engineer"}
+variable indépendante: {ds: "independent variable in an equation"}
+variable dépendante: {ds: "dependent variable in an equation"}
+thermodynamique: {ds: "thermodynamics; science of heat and energy conversions"}
+sire: {ds: "sire; respectful address to a sovereign"}
+synérèse: {ds: "synaeresis; contracting two vowels into one syllable"}
+acrostiche: {ds: "acrostic; text whose selected letters spell a message"}
+expérimentation: {allow_tags: [derogatory], ds: "experimentation"}
+vacance: {source_sense_id: "en-vacance-fr-noun-YYvckCPR", target: vacances, ds: "holidays; vacation; plural usage"}
