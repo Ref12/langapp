@@ -1,0 +1,192 @@
+schema_version: 3
+id: ko-level-24
+title: Formal synthesis
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: level
+number: 24
+phase: analysis-argument
+prerequisites:
+- ko-level-01
+- ko-level-02
+- ko-level-03
+- ko-level-04
+- ko-level-05
+- ko-level-06
+- ko-level-07
+- ko-level-08
+- ko-level-09
+- ko-level-10
+- ko-level-11
+- ko-level-12
+- ko-level-13
+- ko-level-14
+- ko-level-15
+- ko-level-16
+- ko-level-17
+- ko-level-18
+- ko-level-19
+- ko-level-20
+- ko-level-21
+- ko-level-22
+- ko-level-23
+goals: &id001
+- Synthesize two partially conflicting sources in structured Korean prose.
+- Use appropriate written nominalization and source attribution.
+- Separate causal explanation from unsupported causal assertion.
+checkpoint:
+  task: Produce a structured explanation with attributed sources, a qualified conclusion, and a revision addressing a contradiction.
+  criteria: *id001
+mastery_profile: ko-item-mastery
+mastery_target: independent-use
+units:
+- id: level-24-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-35833-s002, ch: 마무리, pr: 마무리, ds: the conclusion of an argumentative essay}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-12121-s001, ch: 자료, pr: 자료, ds: data; materials for research or investigation}
+  - {id: ko-nikl-15219-s001, ch: 조사, pr: 조사, ds: an investigation; a survey}
+  - {id: ko-nikl-47348-s001, ch: 연구, pr: 연ː구, ds: research; detailed investigation and analysis}
+  - {id: ko-nikl-45791-s001, ch: 출처, pr: 출처, ds: a source; where words or things originate}
+  - {id: ko-nikl-44265-s003, ch: 찾다, pr: 찯따, ds: to look something up in a book or computer}
+  - {id: ko-nikl-38451-s001, ch: 문자, pr: 문짜, ds: writing; a system of written characters}
+  - {id: ko-nikl-51222-s001, ch: 호기심, pr: 호ː기심, ds: curiosity}
+  - {id: ko-nikl-02051-s001, ch: 수학, pr: 수ː학, ds: mathematics}
+  review_grammar:
+  - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
+  - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
+  - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
+- id: level-24-work-01
+  title: Work and cooperation - 1
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary:
+  - {id: ko-nikl-14467-s003, ch: 정리, pr: 정ː니, ds: clearing up problems or unnecessary elements}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-28688-s001, ch: 계약, pr: 계ː약 / 게ː약, ds: a contract; a written business agreement}
+  - {id: ko-nikl-38424-s001, ch: 문서, pr: 문서, ds: a document serving as evidence or reference}
+  - {id: ko-nikl-05672-s001, ch: 보고서, pr: 보ː고서, ds: a written report}
+  - {id: ko-nikl-28483-s001, ch: 경쟁, pr: 경ː쟁, ds: competition}
+  - {id: ko-nikl-32917-s002, ch: 기술, pr: 기술, ds: a skill; a technique}
+  - {id: ko-nikl-15074-s002, ch: 조건, pr: 조껀, ds: terms; conditions demanded in advance}
+  - {id: ko-nikl-35410-s001, ch: 노동, pr: 노동, ds: labor; work producing necessities}
+  - {id: ko-nikl-21880-s001, ch: 퇴직, pr: 퇴ː직 / 퉤ː직, ds: retirement; leaving a job or post}
+  review_grammar:
+  - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
+  - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
+  - {id: ko-topik5-g026, ch: V-는 대로, ds: act as soon as something happens or as instructed}
+- id: level-24-communication-01
+  title: Communication and information - 1
+  outcome: Repair ambiguity and relay information with clear attribution.
+  vocabulary:
+  - {id: ko-nikl-49054-s001, ch: 요점, pr: 요쩜, ds: the main point; the gist}
+  - {id: ko-nikl-49033-s001, ch: 요약, pr: 요약, ds: a summary; condensing the important points}
+  - {id: ko-nikl-28139-s001, ch: 결론, pr: 결론, ds: a conclusion ending a speech or text}
+  - {id: ko-nikl-27102-s001, ch: 개요, pr: 개ː요, ds: an outline; an overview}
+  - {id: ko-nikl-09738-s001, ch: 서론, pr: 서ː론, ds: an introduction to a discussion or text}
+  - {id: ko-nikl-06101-s001, ch: 본론, pr: 볼론, ds: the main body of an argument or text}
+  - {id: ko-nikl-09801-s001, ch: 서술, pr: 서ː술, ds: narration; an orderly account of events or ideas}
+  - {id: ko-nikl-11233-s001, ch: 인용, pr: 이뇽, ds: quotation; citing someone else's words}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-40128-s001, ch: 발표, pr: 발표, ds: a presentation; publicly announcing results or work}
+  - {id: ko-nikl-21615-s001, ch: 토의, pr: 토ː의 / 토ː이, ds: discussion; detailed joint deliberation}
+  - {id: ko-nikl-18509-s002, ch: 동의, pr: 동의 / 동이, ds: agreement of opinion}
+  - {id: ko-nikl-00018-s001, ch: 설득, pr: 설뜩, ds: persuasion}
+  - {id: ko-nikl-31168-s002, ch: 구체적, pr: 구체적, ds: concrete; specific and detailed}
+  - {id: ko-nikl-49318-s001, ch: 우선, pr: 우선, ds: first; before other things}
+  - {id: ko-nikl-39608-s001, ch: 반드시, pr: 반드시, ds: certainly; without fail}
+  - {id: ko-nikl-41869-s001, ch: 주제, pr: 주제, ds: a topic; the central issue in discussion or research}
+  review_grammar:
+  - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
+  - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
+  - {id: ko-topik5-g021, ch: V/A-길래, ds: explain your reaction to an observed circumstance}
+- id: level-24-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain causal and conditional relations with appropriate scope.
+  vocabulary:
+  - {id: ko-nikl-24775-s001, ch: 핵심, pr: 핵씸, ds: the core; the most important part}
+  - {id: ko-nikl-41476-s001, ch: 종합, pr: 종합, ds: synthesis; combining related elements into a whole}
+  - {id: ko-nikl-28139-s002, ch: 결론, pr: 결론, ds: a conclusion; a final judgment}
+  - {id: ko-nikl-27832-s001, ch: 검토, pr: 검ː토, ds: review; close examination}
+  - {id: ko-nikl-31923-s001, ch: 균형, pr: 균형, ds: balance; absence of a one-sided leaning}
+  - {id: ko-nikl-28123-s001, ch: 결국, pr: 결국, ds: in the end; as a result}
+  - {id: ko-nikl-28123-s002, ch: 결국, pr: 결국, ds: ultimately; all things considered}
+  - {id: ko-nikl-08425-s001, ch: 사실상, pr: 사ː실쌍, ds: in fact; in practice}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-48053-s001, ch: 예외, pr: 예ː외 / 예ː웨, ds: an exception to a general rule}
+  - {id: ko-nikl-25976-s001, ch: 가정, pr: 가ː정, ds: an assumption; provisionally accepting something}
+  - {id: ko-nikl-24120-s001, ch: 한계, pr: 한ː계 / 한ː게, ds: a limit; a boundary of possibility or influence}
+  - {id: ko-nikl-22424-s001, ch: 판단, pr: 판단, ds: judgment based on logic or a standard}
+  - {id: ko-nikl-25601-s001, ch: 가능성, pr: 가ː능썽, ds: possibility; the prospect that something may happen}
+  - {id: ko-nikl-17144-s001, ch: 대안, pr: 대ː안, ds: an alternative proposal}
+  - {id: ko-nikl-15283-s013, ch: 높다, pr: 놉따, ds: to be high (a probability or possibility)}
+  - {id: ko-nikl-02402-s003, ch: 쉽다, pr: 쉽ː따, ds: to be likely to happen}
+  review_grammar:
+  - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
+  - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
+  - {id: ko-topik5-g030, ch: V/A-았/었더라면, ds: imagine a different past condition and consequence}
+- id: level-24-argument-01
+  title: Argument and decisions - 1
+  outcome: Defend a qualified position and respond to a credible objection.
+  vocabulary:
+  - {id: ko-nikl-11381-s001, ch: 일관성, pr: 일관썽, ds: consistency from beginning to end}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-00020-s001, ch: 설득력, pr: 설뜽녁, ds: persuasiveness; convincing force}
+  - {id: ko-nikl-21056-s001, ch: 타당성, pr: 타ː당썽, ds: validity; soundness}
+  - {id: ko-nikl-14002-s001, ch: 전제, pr: 전제, ds: a premise; something presupposed}
+  - {id: ko-nikl-37468-s001, ch: 모순, pr: 모순, ds: a contradiction; logical inconsistency}
+  - {id: ko-nikl-23717-s001, ch: 필요성, pr: 피료썽, ds: necessity; the need for something}
+  - {id: ko-nikl-42164-s001, ch: 중립, pr: 중닙, ds: neutrality; taking neither side}
+  - {id: ko-nikl-16148-s003, ch: 다만, pr: 다ː만, ds: however; except that (introducing a qualification)}
+  - {id: ko-nikl-17293-s002, ch: 대체로, pr: 대ː체로, ds: generally; on the whole}
+  review_grammar:
+  - {id: ko-topik6-g011, ch: V-지 않고서는, ds: state an action required for a possible result}
+  - {id: ko-topik6-g031, ch: N을/를 막론하고, ds: generalize across a named distinction}
+  - {id: ko-topik6-g033, ch: V/A-다고 해서 반드시 … 것은 아니다, ds: reject a universal inference without its opposite}
+- id: level-24-argument-practice-01
+  title: Argument and decisions - sentence practice 1
+  outcome: Defend a qualified position and respond to a credible objection.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik5-g017, ch: V/A-(으)ㄴ/는 한편, ds: organize parallel or contrasting considerations}
+  - {id: ko-topik6-g027, ch: V/A-(으)ㄴ/는 바, ds: refer to an established matter in formal prose}
+  - {id: ko-topik6-g034, ch: V/A-느냐 / -(으)냐에 달려 있다, ds: identify a determining factor as an embedded question}
+  review_vocabulary:
+  - {id: ko-nikl-21056-s001, ch: 타당성, pr: 타ː당썽, ds: validity; soundness}
+  - {id: ko-nikl-14002-s001, ch: 전제, pr: 전제, ds: a premise; something presupposed}
+  - {id: ko-nikl-37468-s001, ch: 모순, pr: 모순, ds: a contradiction; logical inconsistency}
+  - {id: ko-nikl-23717-s001, ch: 필요성, pr: 피료썽, ds: necessity; the need for something}
+  - {id: ko-nikl-42164-s001, ch: 중립, pr: 중닙, ds: neutrality; taking neither side}
+  - {id: ko-nikl-16148-s003, ch: 다만, pr: 다ː만, ds: however; except that (introducing a qualification)}
+  - {id: ko-nikl-17293-s002, ch: 대체로, pr: 대ː체로, ds: generally; on the whole}
+  - {id: ko-nikl-11381-s001, ch: 일관성, pr: 일관썽, ds: consistency from beginning to end}
+  review_grammar:
+  - {id: ko-topik6-g011, ch: V-지 않고서는, ds: state an action required for a possible result}
+  - {id: ko-topik6-g031, ch: N을/를 막론하고, ds: generalize across a named distinction}
+  - {id: ko-topik6-g033, ch: V/A-다고 해서 반드시 … 것은 아니다, ds: reject a universal inference without its opposite}
+- id: level-24-argument-practice-02
+  title: Argument and decisions - sentence practice 2
+  outcome: Defend a qualified position and respond to a credible objection.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik6-g036, ch: V/A-(으)ㄴ/는 것은 … 때문이다, ds: focus an explicit explanation for an asserted fact}
+  review_vocabulary:
+  - {id: ko-nikl-21056-s001, ch: 타당성, pr: 타ː당썽, ds: validity; soundness}
+  - {id: ko-nikl-14002-s001, ch: 전제, pr: 전제, ds: a premise; something presupposed}
+  - {id: ko-nikl-37468-s001, ch: 모순, pr: 모순, ds: a contradiction; logical inconsistency}
+  - {id: ko-nikl-23717-s001, ch: 필요성, pr: 피료썽, ds: necessity; the need for something}
+  - {id: ko-nikl-42164-s001, ch: 중립, pr: 중닙, ds: neutrality; taking neither side}
+  - {id: ko-nikl-16148-s003, ch: 다만, pr: 다ː만, ds: however; except that (introducing a qualification)}
+  - {id: ko-nikl-17293-s002, ch: 대체로, pr: 대ː체로, ds: generally; on the whole}
+  - {id: ko-nikl-11381-s001, ch: 일관성, pr: 일관썽, ds: consistency from beginning to end}
+  review_grammar:
+  - {id: ko-topik5-g017, ch: V/A-(으)ㄴ/는 한편, ds: organize parallel or contrasting considerations}
+  - {id: ko-topik6-g027, ch: V/A-(으)ㄴ/는 바, ds: refer to an established matter in formal prose}
+  - {id: ko-topik6-g034, ch: V/A-느냐 / -(으)냐에 달려 있다, ds: identify a determining factor as an embedded question}

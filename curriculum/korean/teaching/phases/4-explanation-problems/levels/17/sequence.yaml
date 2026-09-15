@@ -1,0 +1,224 @@
+schema_version: 3
+id: ko-level-17
+title: Technology and environment
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: level
+number: 17
+phase: explanation-problems
+prerequisites:
+- ko-level-01
+- ko-level-02
+- ko-level-03
+- ko-level-04
+- ko-level-05
+- ko-level-06
+- ko-level-07
+- ko-level-08
+- ko-level-09
+- ko-level-10
+- ko-level-11
+- ko-level-12
+- ko-level-13
+- ko-level-14
+- ko-level-15
+- ko-level-16
+goals: &id001
+- Explain a system or environmental process to a nonspecialist.
+- Describe variation and degree without confusing correlation with cause.
+- Explain an achieved outcome and a remaining limitation.
+checkpoint:
+  task: Explain a practical technology or environmental choice and answer a changed-condition question.
+  criteria: *id001
+mastery_profile: ko-item-mastery
+mastery_target: independent-use
+units:
+- id: level-17-description-01
+  title: Description and comparison - 1
+  outcome: Use descriptive predicates and precise comparison standards.
+  vocabulary:
+  - {id: ko-nikl-01050-s001, ch: 속도, pr: 속또, ds: speed; the rate of movement or progress}
+  - {id: ko-nikl-33312-s001, ch: 깊다, pr: 깁따, ds: to be deep}
+  - {id: ko-nikl-46263-s001, ch: 얕다, pr: 얃따, ds: to be shallow}
+  - {id: ko-nikl-16351-s001, ch: 단단하다, pr: 단단하다, ds: to be hard; to resist deformation}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-26197-s001, ch: 간단하다, pr: 간단하다, ds: to be short or uncomplicated}
+  - {id: ko-nikl-34749-s001, ch: 낫다, pr: 낟ː따, ds: to be better than something else}
+  - {id: ko-nikl-39593-s001, ch: 반대, pr: 반ː대, ds: the opposite; a complete contrast}
+  - {id: ko-nikl-42241-s001, ch: 중요, pr: 중ː요, ds: importance; being valuable and necessary}
+  - {id: ko-nikl-07025-s001, ch: 불가능, pr: 불가능, ds: impossibility}
+  - {id: ko-nikl-06635-s001, ch: 부족, pr: 부족, ds: a shortage; insufficiency}
+  - {id: ko-nikl-06024-s001, ch: 복잡하다, pr: 복짜파다, ds: to be complicated; to be tangled}
+  - {id: ko-nikl-22792-s002, ch: 편하다, pr: 편하다, ds: to be convenient; to be easy to use}
+  review_grammar:
+  - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
+  - {id: ko-topik3-g029, ch: V/A-(으)ㄴ/는 편이다, ds: offer a relative characterization or tendency}
+  - {id: ko-topik5-g005, ch: V/A-(으)ㄹ 만하다, ds: evaluate worth or tolerability rather than ability}
+- id: level-17-media-01
+  title: Media and sources - 1
+  outcome: Separate reported claims from observation and interpretation.
+  vocabulary:
+  - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-32870-s001, ch: 기사, pr: 기사, ds: a news article}
+  - {id: ko-nikl-05713-s001, ch: 보도, pr: 보ː도, ds: news reporting; a news report}
+  - {id: ko-nikl-30447-s002, ch: 광고, pr: 광ː고, ds: advertising through the media}
+  - {id: ko-nikl-40368-s001, ch: 방송국, pr: 방ː송국, ds: a broadcasting station}
+  - {id: ko-nikl-47829-s001, ch: 영상, pr: 영상, ds: screen images; film or television images}
+  - {id: ko-nikl-23481-s002, ch: 프로그램, pr: 프로그램, ds: a broadcast program}
+  - {id: ko-nikl-02832-s001, ch: 시사, pr: 시사, ds: current affairs}
+  - {id: ko-nikl-34268-s004, ch: 나오다, pr: 나오다, ds: to appear in print or a broadcast}
+  review_grammar:
+  - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
+  - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
+  - {id: ko-topik6-g021, ch: 'V/A-다면서요?', ds: check remembered or reported information}
+- id: level-17-technology-01
+  title: Technology and systems - 1
+  outcome: Explain a system's use and limits for a general audience.
+  vocabulary:
+  - {id: ko-nikl-37056-s003, ch: 메뉴, pr: 메뉴, ds: a menu of device commands or functions}
+  - {id: ko-nikl-11302-s001, ch: 인터넷, pr: 인터넫, ds: internet; worldwide computer network}
+  - {id: ko-nikl-32917-s001, ch: 기술, pr: 기술, ds: technology; practical application of science}
+  - {id: ko-nikl-21740-s001, ch: 통신, pr: 통신, ds: communication by post or telecommunications}
+  - {id: ko-nikl-47328-s001, ch: 연결, pr: 연결, ds: a connection; linking things together}
+  - {id: ko-nikl-27783-s002, ch: 검색, pr: 검ː색, ds: a search for information in a book or computer}
+  - {id: ko-nikl-13445-s001, ch: 저장, pr: 저ː장, ds: storage; gathering and keeping things}
+  - {id: ko-nikl-08664-s001, ch: 삭제, pr: 삭쩨, ds: deletion; erasing}
+  - {id: ko-nikl-11804-s001, ch: 입력, pr: 임녁, ds: input; entering data into a computer}
+  - {id: ko-nikl-04709-s003, ch: 암호, pr: 암ː호, ds: a password identifying a computer user}
+  - {id: ko-nikl-05800-s001, ch: 보안, pr: 보ː안, ds: security; safeguarding important information}
+  - {id: ko-nikl-23481-s003, ch: 프로그램, pr: 프로그램, ds: a computer program}
+  - {id: ko-nikl-00963-s001, ch: 소프트웨어, pr: 소프트웨어, ds: software}
+  - {id: ko-nikl-22359-s002, ch: 파일, pr: 파일, ds: a computer file}
+  - {id: ko-nikl-51625-s002, ch: 화면, pr: 화ː면, ds: a screen; the image displayed on it}
+  - {id: ko-nikl-40939-s001, ch: 버튼, pr: 버튼, ds: a button controlling an electrical device}
+  - {id: ko-nikl-35861-s001, ch: 마우스, pr: 마우스, ds: a computer mouse}
+  - {id: ko-nikl-45877-s001, ch: 충전, pr: 충전, ds: charging a battery}
+  - {id: ko-nikl-40718-s001, ch: 배터리, pr: 배터리, ds: a battery}
+  - {id: ko-nikl-18250-s005, ch: 돌아가다, pr: 도라가다, ds: to run; to function properly}
+  - {id: ko-nikl-32668-s001, ch: 기계, pr: 기계 / 기게, ds: a machine}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-20679-s001, ch: 컴퓨터, pr: 컴퓨터, ds: a computer}
+  - {id: ko-nikl-13695-s001, ch: 전기, pr: 전ː기, ds: electricity}
+  review_grammar: []
+- id: level-17-nature-01
+  title: Nature and environment - 1
+  outcome: Explain an environmental change and distinguish evidence from prediction.
+  vocabulary:
+  - {id: ko-nikl-32805-s002, ch: 기름, pr: 기름, ds: petroleum; fuel oil}
+  - {id: ko-nikl-12304-s001, ch: 자원, pr: 자원, ds: natural resources; raw materials}
+  - {id: ko-nikl-12273-s002, ch: 자연, pr: 자연, ds: nature; the unaltered natural environment}
+  - {id: ko-nikl-51800-s001, ch: 환경, pr: 환경, ds: the environment; natural conditions for life}
+  - {id: ko-nikl-42519-s001, ch: 지구, pr: 지구, ds: Earth; the planet we live on}
+  - {id: ko-nikl-02379-s001, ch: 숲, pr: 숩, ds: a forest; woods}
+  - {id: ko-nikl-34198-s002, ch: 나무, pr: 나무, ds: wood; timber}
+  - {id: ko-nikl-23321-s001, ch: 풀, pr: 풀, ds: grass; a soft-stemmed plant}
+  - {id: ko-nikl-11969-s001, ch: 잎, pr: 입, ds: a leaf}
+  - {id: ko-nikl-47676-s001, ch: 열매, pr: 열매, ds: fruit growing where a flower has fallen}
+  - {id: ko-nikl-03041-s001, ch: 식물, pr: 싱물, ds: a plant}
+  - {id: ko-nikl-26959-s001, ch: 개구리, pr: 개구리, ds: a frog}
+  - {id: ko-nikl-32987-s001, ch: 기온, pr: 기온, ds: air temperature}
+  - {id: ko-nikl-33178-s002, ch: 기후, pr: 기후, ds: climate; long-term average weather}
+  - {id: ko-nikl-21418-s001, ch: 태풍, pr: 태풍, ds: a typhoon}
+  - {id: ko-nikl-51555-s001, ch: 홍수, pr: 홍수, ds: a flood; a river swollen by heavy rain}
+  - {id: ko-nikl-42827-s001, ch: 지진, pr: 지진, ds: an earthquake}
+  - {id: ko-nikl-25750-s001, ch: 가뭄, pr: 가뭄, ds: drought}
+  - {id: ko-nikl-48281-s001, ch: 오염, pr: 오ː염, ds: pollution; contamination}
+  - {id: ko-nikl-13263-s001, ch: 재활용, pr: 재ː화룡, ds: recycling; reuse}
+  - {id: ko-nikl-23498-s001, ch: 플라스틱, pr: 플라스틱, ds: plastic}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-27962-s001, ch: 겨울, pr: 겨울, ds: winter}
+  - {id: ko-nikl-07431-s001, ch: 비, pr: 비, ds: rain}
+  - {id: ko-nikl-39374-s001, ch: 바람, pr: 바람, ds: wind; moving air}
+  - {id: ko-nikl-30934-s001, ch: 구름, pr: 구름, ds: a cloud}
+  - {id: ko-nikl-17633-s001, ch: 덥다, pr: 덥ː따, ds: to be hot (weather or how it feels)}
+  - {id: ko-nikl-45832-s002, ch: 춥다, pr: 춥따, ds: to feel cold}
+  - {id: ko-nikl-02897-s001, ch: 시원하다, pr: 시원하다, ds: to be pleasantly cool}
+  - {id: ko-nikl-05501-s001, ch: 별, pr: 별ː, ds: a star; a bright heavenly body other than the moon}
+  review_grammar: []
+- id: level-17-science-01
+  title: Science and investigation - 1
+  outcome: Explain a general scientific account without overstating method or conclusion.
+  vocabulary:
+  - {id: ko-nikl-48406-s001, ch: 온도, pr: 온도, ds: temperature}
+  - {id: ko-nikl-46917-s002, ch: 에너지, pr: 에너지, ds: energy; the capacity to do work}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-17-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik5-g010, ch: V-아/어 내다, ds: achieve completion despite difficulty}
+  review_vocabulary:
+  - {id: ko-nikl-00145-s001, ch: 성공, pr: 성공, ds: success; achieving an intended result}
+  - {id: ko-nikl-03560-s001, ch: 실패, pr: 실패, ds: failure to achieve a goal}
+  - {id: ko-nikl-35438-s001, ch: 노력, pr: 노력, ds: effort; trying hard}
+  - {id: ko-nikl-02561-s001, ch: 습관, pr: 습꽌, ds: a habit}
+  - {id: ko-nikl-40908-s001, ch: 버릇, pr: 버륻, ds: an ingrained habit}
+  - {id: ko-nikl-39307-s004, ch: 바꾸다, pr: 바꾸다, ds: change existing content or state}
+  - {id: ko-nikl-03920-s006, ch: 쓰다, pr: 쓰다, ds: to put in effort or energy}
+  - {id: ko-nikl-28080-s001, ch: 견디다, pr: 견디다, ds: to endure hardship; to withstand difficulty}
+  review_grammar:
+  - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
+  - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
+  - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
+- id: level-17-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Use descriptive predicates and precise comparison standards.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik5-g006, ch: V/A-(으)ㄹ 정도로, ds: indicate degree through a result or benchmark}
+  review_vocabulary:
+  - {id: ko-nikl-07025-s001, ch: 불가능, pr: 불가능, ds: impossibility}
+  - {id: ko-nikl-06635-s001, ch: 부족, pr: 부족, ds: a shortage; insufficiency}
+  - {id: ko-nikl-06024-s001, ch: 복잡하다, pr: 복짜파다, ds: to be complicated; to be tangled}
+  - {id: ko-nikl-22792-s002, ch: 편하다, pr: 편하다, ds: to be convenient; to be easy to use}
+  - {id: ko-nikl-01050-s001, ch: 속도, pr: 속또, ds: speed; the rate of movement or progress}
+  - {id: ko-nikl-33312-s001, ch: 깊다, pr: 깁따, ds: to be deep}
+  - {id: ko-nikl-46263-s001, ch: 얕다, pr: 얃따, ds: to be shallow}
+  - {id: ko-nikl-16351-s001, ch: 단단하다, pr: 단단하다, ds: to be hard; to resist deformation}
+  review_grammar:
+  - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
+  - {id: ko-topik3-g029, ch: V/A-(으)ㄴ/는 편이다, ds: offer a relative characterization or tendency}
+  - {id: ko-topik5-g005, ch: V/A-(으)ㄹ 만하다, ds: evaluate worth or tolerability rather than ability}
+- id: level-17-technology-practice-01
+  title: Technology and systems - sentence practice 1
+  outcome: Explain a system's use and limits for a general audience.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik4-g007, ch: V-다 보면, ds: predict an outcome of continued action}
+  - {id: ko-topik4-g033, ch: V-느냐에 따라, ds: relate variation to an embedded question}
+  - {id: ko-topik5-g003, ch: V/A-기 나름이다, ds: make an outcome depend on how something is done}
+  review_vocabulary:
+  - {id: ko-nikl-22359-s002, ch: 파일, pr: 파일, ds: a computer file}
+  - {id: ko-nikl-51625-s002, ch: 화면, pr: 화ː면, ds: a screen; the image displayed on it}
+  - {id: ko-nikl-40939-s001, ch: 버튼, pr: 버튼, ds: a button controlling an electrical device}
+  - {id: ko-nikl-35861-s001, ch: 마우스, pr: 마우스, ds: a computer mouse}
+  - {id: ko-nikl-45877-s001, ch: 충전, pr: 충전, ds: charging a battery}
+  - {id: ko-nikl-40718-s001, ch: 배터리, pr: 배터리, ds: a battery}
+  - {id: ko-nikl-18250-s005, ch: 돌아가다, pr: 도라가다, ds: to run; to function properly}
+  - {id: ko-nikl-32668-s001, ch: 기계, pr: 기계 / 기게, ds: a machine}
+  review_grammar: []
+- id: level-17-nature-practice-01
+  title: Nature and environment - sentence practice 1
+  outcome: Explain an environmental change and distinguish evidence from prediction.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
+  review_vocabulary:
+  - {id: ko-nikl-33178-s002, ch: 기후, pr: 기후, ds: climate; long-term average weather}
+  - {id: ko-nikl-21418-s001, ch: 태풍, pr: 태풍, ds: a typhoon}
+  - {id: ko-nikl-51555-s001, ch: 홍수, pr: 홍수, ds: a flood; a river swollen by heavy rain}
+  - {id: ko-nikl-42827-s001, ch: 지진, pr: 지진, ds: an earthquake}
+  - {id: ko-nikl-25750-s001, ch: 가뭄, pr: 가뭄, ds: drought}
+  - {id: ko-nikl-48281-s001, ch: 오염, pr: 오ː염, ds: pollution; contamination}
+  - {id: ko-nikl-13263-s001, ch: 재활용, pr: 재ː화룡, ds: recycling; reuse}
+  - {id: ko-nikl-23498-s001, ch: 플라스틱, pr: 플라스틱, ds: plastic}
+  review_grammar: []

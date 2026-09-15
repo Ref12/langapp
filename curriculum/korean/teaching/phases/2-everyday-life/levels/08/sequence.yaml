@@ -1,0 +1,406 @@
+schema_version: 3
+id: ko-level-08
+title: Work, study, and relationships
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: level
+number: 8
+phase: everyday-life
+prerequisites:
+- ko-level-01
+- ko-level-02
+- ko-level-03
+- ko-level-04
+- ko-level-05
+- ko-level-06
+- ko-level-07
+goals: &id001
+- Arrange a work or study task and describe an agreed responsibility.
+- Separate listener politeness from subject honorification and humble reference.
+- Choose polite or mutually appropriate familiar speech for a stated relationship.
+checkpoint:
+  task: Coordinate the same task with a peer and a respected colleague, explaining whom each honorific or humble form refers to.
+  criteria: *id001
+mastery_profile: ko-item-mastery
+mastery_target: independent-use
+units:
+- id: level-08-people-01
+  title: People and relationships - 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary:
+  - {id: ko-nikl-04578-s010, ch: 알다, pr: 알ː다, ds: to know someone; to be acquainted}
+  - {id: ko-nikl-11948-s014, ch: 있다, pr: 읻따, ds: to have someone in a personal relationship}
+  - {id: ko-nikl-05699-s006, ch: 보다, pr: 보다, ds: to look after; to watch over}
+  - {id: ko-nikl-25424-s001, ch: 형, pr: 형, ds: a male's older brother or older male cousin}
+  - {id: ko-nikl-15345-s001, ch: 누나, pr: 누ː나, ds: a male's older sister or older female cousin}
+  - {id: ko-nikl-46648-s001, ch: 언니, pr: 언니, ds: a female's older sister or older female cousin}
+  - {id: ko-nikl-48250-s001, ch: 오빠, pr: 오빠, ds: a female's older brother or older male cousin}
+  - {id: ko-nikl-08234-s005, ch: 사다, pr: 사다, ds: to treat someone to a meal}
+  - {id: ko-nikl-08489-s004, ch: 사이, pr: 사이, ds: a relationship; closeness between people}
+  - {id: ko-nikl-18382-s001, ch: 동료, pr: 동뇨, ds: a colleague; a coworker}
+  - {id: ko-nikl-09120-s001, ch: 상사, pr: 상ː사, ds: a superior at work; a boss}
+  - {id: ko-nikl-30248-s001, ch: 관계, pr: 관계 / 관게, ds: a relationship; a connection}
+  - {id: ko-nikl-12063-s001, ch: 자녀, pr: 자녀, ds: one's children; sons and daughters}
+  - {id: ko-nikl-06444-s001, ch: 부부, pr: 부부, ds: a married couple}
+  - {id: ko-nikl-34693-s001, ch: 남편, pr: 남편, ds: a husband}
+  - {id: ko-nikl-04047-s001, ch: 아내, pr: 아내, ds: a wife}
+  - {id: ko-nikl-20408-s001, ch: 친척, pr: 친척, ds: a relative}
+  - {id: ko-nikl-10011-s001, ch: 선물, pr: 선ː물, ds: a gift; giving a present}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-46789-s001, ch: 엄마, pr: 엄마, ds: mom (familiar)}
+  - {id: ko-nikl-18448-s001, ch: 동생, pr: 동생, ds: a younger sibling or younger cousin}
+  - {id: ko-nikl-04032-s001, ch: 아기, pr: 아기, ds: a baby; an infant}
+  - {id: ko-nikl-06438-s001, ch: 부모, pr: 부모, ds: parents}
+  - {id: ko-nikl-10879-s002, ch: 이웃, pr: 이욷, ds: a neighbor; a neighboring home}
+  - {id: ko-nikl-08818-s001, ch: 살, pr: 살, ds: years of age; native-number age counter}
+  - {id: ko-nikl-10319-s001, ch: 의사, pr: 의사, ds: a doctor; a physician}
+  - {id: ko-nikl-26344-s001, ch: 간호사, pr: 간호사, ds: a nurse}
+  review_grammar:
+  - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
+  - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
+  - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
+- id: level-08-clothing-01
+  title: Clothing and appearance - 1
+  outcome: Describe clothing and distinguish putting it on from wearing it.
+  vocabulary:
+  - {id: ko-nikl-46163-s001, ch: 양복, pr: 양복, ds: a man's Western-style suit}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-41685-s002, ch: 주머니, pr: 주머니, ds: a pocket in clothing}
+  - {id: ko-nikl-16501-s001, ch: 단추, pr: 단추, ds: a button fastening clothes}
+  - {id: ko-nikl-42866-s001, ch: 지퍼, pr: 지퍼, ds: a zipper}
+  - {id: ko-nikl-05255-s001, ch: 벗다, pr: 벋따, ds: to take off clothes or something worn}
+  - {id: ko-nikl-03145-s001, ch: 신다, pr: 신ː따, ds: to put on or wear shoes or socks}
+  - {id: ko-nikl-36851-s003, ch: 머리, pr: 머리, ds: hair on the head}
+  - {id: ko-nikl-20920-s002, ch: 크다, pr: 크다, ds: to be too big (clothes or shoes)}
+  - {id: ko-nikl-12453-s002, ch: 작다, pr: 작ː따, ds: to be too small to fit}
+  review_grammar: []
+- id: level-08-food-01
+  title: Food and meals - 1
+  outcome: Clarify ingredients and preferences and make an appropriate meal request.
+  vocabulary:
+  - {id: ko-nikl-03030-s001, ch: 식당, pr: 식땅, ds: a dining room; a cafeteria}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-35340-s002, ch: 넣다, pr: 너ː타, ds: to add or mix in}
+  - {id: ko-nikl-05699-s023, ch: 보다, pr: 보다, ds: to do the grocery shopping}
+  - {id: ko-nikl-41734-s001, ch: 주방, pr: 주방, ds: a kitchen; a food-preparation area}
+  - {id: ko-nikl-24674-s001, ch: 해산물, pr: 해ː산물, ds: seafood; marine produce}
+  - {id: ko-nikl-02269-s001, ch: 술, pr: 술, ds: alcoholic drinks}
+  - {id: ko-nikl-36755-s001, ch: 맥주, pr: 맥쭈, ds: beer}
+  - {id: ko-nikl-00912-s002, ch: 소주, pr: 소주, ds: soju made by diluting alcohol}
+  - {id: ko-nikl-35604-s001, ch: 녹차, pr: 녹차, ds: green tea; green-tea leaves}
+  review_grammar:
+  - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
+  - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+  - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
+- id: level-08-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-03918-s002, ch: 쓰다, pr: 쓰다, ds: to put thoughts or feelings into writing}
+  - {id: ko-nikl-05699-s003, ch: 보다, pr: 보다, ds: to read or consult written material}
+  - {id: ko-nikl-05699-s009, ch: 보다, pr: 보다, ds: to take an examination}
+  - {id: ko-nikl-40665-s002, ch: 배우다, pr: 배우다, ds: to learn a new skill}
+  - {id: ko-nikl-38465-s001, ch: 문제, pr: 문ː제, ds: a test question; a problem requiring an answer}
+  - {id: ko-nikl-01845-s001, ch: 수업, pr: 수업, ds: a class; teaching a lesson}
+  - {id: ko-nikl-30679-s001, ch: 교실, pr: 교ː실, ds: a classroom}
+  - {id: ko-nikl-30604-s001, ch: 교과서, pr: 교ː과서 / 교ː꽈서, ds: a textbook}
+  - {id: ko-nikl-02145-s001, ch: 숙제, pr: 숙쩨, ds: homework}
+  - {id: ko-nikl-03004-s001, ch: 시험, pr: 시험, ds: a test; an examination}
+  - {id: ko-nikl-00281-s002, ch: 성적, pr: 성적, ds: academic grades; examination results}
+  - {id: ko-nikl-14253-s001, ch: 점수, pr: 점쑤 / 점수, ds: a score; points}
+  - {id: ko-nikl-30122-s001, ch: 과목, pr: 과목, ds: a school subject}
+  - {id: ko-nikl-13660-s002, ch: 전공, pr: 전공, ds: a major; a specialized subject of study}
+  - {id: ko-nikl-17367-s001, ch: 대학, pr: 대ː학, ds: a college; a university}
+  - {id: ko-nikl-17369-s001, ch: 대학교, pr: 대ː학꾜, ds: a university; a university campus}
+  - {id: ko-nikl-17901-s001, ch: 도서관, pr: 도서관, ds: a library}
+  - {id: ko-nikl-08522-s001, ch: 사전, pr: 사전, ds: a dictionary}
+  - {id: ko-nikl-38455-s002, ch: 문장, pr: 문장, ds: a sentence}
+  - {id: ko-nikl-38413-s001, ch: 문법, pr: 문뻡, ds: grammar; the rules of a language}
+  - {id: ko-nikl-05998-s001, ch: 복습, pr: 복씁, ds: reviewing; studying something again}
+  - {id: ko-nikl-48030-s001, ch: 예습, pr: 예ː습, ds: studying ahead; preparing for a lesson}
+  - {id: ko-nikl-13519-s001, ch: 적다, pr: 적따, ds: to write down; to note}
+  - {id: ko-nikl-02402-s001, ch: 쉽다, pr: 쉽ː따, ds: to be easy to do}
+  - {id: ko-nikl-46370-s001, ch: 어렵다, pr: 어렵따, ds: to be difficult to do}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-44341-s001, ch: 책, pr: 책, ds: a book}
+  - {id: ko-nikl-11667-s001, ch: 읽다, pr: 익따, ds: to read aloud}
+  - {id: ko-nikl-16442-s001, ch: 단어, pr: 다너, ds: a word}
+  - {id: ko-nikl-29792-s001, ch: 공부하다, pr: 공부하다, ds: study; learn a subject or skill to gain knowledge}
+  - {id: ko-nikl-40665-s001, ch: 배우다, pr: 배우다, ds: to learn new knowledge}
+  - {id: ko-nikl-11667-s002, ch: 읽다, pr: 익따, ds: to read and understand written words}
+  - {id: ko-nikl-29789-s001, ch: 공부, pr: 공부, ds: study; learning knowledge or a skill}
+  - {id: ko-nikl-47492-s001, ch: 연습, pr: 연ː습, ds: practice; repeated training}
+  review_grammar:
+  - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
+  - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
+  - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
+- id: level-08-work-01
+  title: Work and cooperation - 1
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary:
+  - {id: ko-nikl-11654-s002, ch: 일하다, pr: 일ː하다, ds: 'work in an occupation, position, or capacity'}
+  - {id: ko-nikl-02389-s004, ch: 쉬다, pr: 쉬ː다, ds: to take or give a break from an activity}
+  - {id: ko-nikl-23829-s006, ch: 하다, pr: 하다, ds: to work in an occupation or run a business}
+  - {id: ko-nikl-42994-s001, ch: 직장, pr: 직짱, ds: a workplace}
+  - {id: ko-nikl-42979-s001, ch: 직업, pr: 지겁, ds: an occupation; a paid job}
+  - {id: ko-nikl-08336-s001, ch: 사무실, pr: 사ː무실, ds: an office}
+  - {id: ko-nikl-42990-s001, ch: 직원, pr: 지권, ds: an employee; a staff member}
+  - {id: ko-nikl-08512-s001, ch: 사장, pr: 사장, ds: a company president; a business head}
+  - {id: ko-nikl-52077-s001, ch: 회의, pr: 회ː의 / 훼ː이, ds: a meeting; a conference}
+  - {id: ko-nikl-45685-s001, ch: 출근, pr: 출근, ds: going to work}
+  - {id: ko-nikl-21843-s001, ch: 퇴근, pr: 퇴ː근 / 퉤ː근, ds: leaving work; going home from work}
+  - {id: ko-nikl-52456-s001, ch: 휴가, pr: 휴가, ds: leave from work or duty; vacation}
+  - {id: ko-nikl-04133-s001, ch: 아르바이트, pr: 아르바이트, ds: a temporary side job; part-time work}
+  - {id: ko-nikl-19253-s008, ch: 들어가다, pr: 드러가다, ds: to join an organization}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-52048-s001, ch: 회사, pr: 회ː사 / 훼ː사, ds: a company; a business corporation}
+  - {id: ko-nikl-11334-s001, ch: 일, pr: 일ː, ds: work; a task or activity}
+  - {id: ko-nikl-39429-s001, ch: 바쁘다, pr: 바쁘다, ds: to be busy; to have little spare time}
+  - {id: ko-nikl-11654-s001, ch: 일하다, pr: 일ː하다, ds: work; use physical or mental effort to achieve something}
+  review_grammar: []
+- id: level-08-money-01
+  title: Money and commerce - 1
+  outcome: Confirm amounts in won and explain a financial choice without professional claims.
+  vocabulary:
+  - {id: ko-nikl-49853-s001, ch: 월급, pr: 월급, ds: a monthly salary}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-20539-s006, ch: 카드, pr: 카드, ds: payment card}
+  - {id: ko-nikl-47846-s001, ch: 영수증, pr: 영수증, ds: receipt; written record of a transaction}
+  - {id: ko-nikl-07564-s001, ch: 비싸다, pr: 비싸다, ds: to be expensive}
+  - {id: ko-nikl-03760-s001, ch: 싸다, pr: 싸다, ds: to be inexpensive; to be cheap}
+  - {id: ko-nikl-22489-s001, ch: 팔다, pr: 팔다, ds: 'to sell goods, rights, or services'}
+  - {id: ko-nikl-24353-s001, ch: 할인, pr: 하린, ds: a discount}
+  - {id: ko-nikl-48933-s001, ch: 요금, pr: 요ː금, ds: a charge; a fare; an admission fee}
+  - {id: ko-nikl-50982-s001, ch: 은행, pr: 은행, ds: a bank (financial institution)}
+  review_grammar:
+  - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
+- id: level-08-communication-01
+  title: Communication and information - 1
+  outcome: Repair ambiguity and relay information with clear attribution.
+  vocabulary:
+  - {id: ko-nikl-38953-s002, ch: 미안하다, pr: 미안하다, ds: excuse me; used to ask pardon modestly}
+  - {id: ko-nikl-04578-s009, ch: 알다, pr: 알ː다, ds: to acknowledge a request; to agree to comply}
+  - {id: ko-nikl-47403-s001, ch: 연락, pr: 열락, ds: contact; passing on information}
+  - {id: ko-nikl-10691-s001, ch: 이메일, pr: 이메일, ds: email}
+  - {id: ko-nikl-16753-s001, ch: 답장, pr: 답짱, ds: a written reply; a reply letter}
+  - {id: ko-nikl-17402-s001, ch: 대화, pr: 대ː화, ds: conversation; a dialogue}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-32064-s001, ch: 그리고, pr: 그리고, ds: and; also (linking statements)}
+  - {id: ko-nikl-23948-s001, ch: 하지만, pr: 하지만, ds: but; however}
+  - {id: ko-nikl-14476-s001, ch: 정말, pr: 정ː말, ds: really; truly}
+  - {id: ko-nikl-14080-s001, ch: 전화, pr: 전ː화, ds: a telephone call; talking by telephone}
+  - {id: ko-nikl-06699-s001, ch: 부탁하다, pr: 부ː타카다, ds: ask someone a favor; entrust a task}
+  - {id: ko-nikl-30548-s003, ch: 괜찮다, pr: 괜찬타, ds: to be permissible; to be fine to do}
+  - {id: ko-nikl-06698-s001, ch: 부탁, pr: 부ː탁, ds: a request; asking a favor}
+  - {id: ko-nikl-24936-s001, ch: 허락, pr: 허락, ds: permission; granting a request}
+  review_grammar:
+  - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+- id: level-08-time-01
+  title: Time and events - 1
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary:
+  - {id: ko-nikl-02694-s003, ch: 시간, pr: 시간, ds: time to spare; available time}
+  - {id: ko-nikl-11588-s001, ch: 일정, pr: 일쩡, ds: a schedule; a planned set of tasks}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-34291-s001, ch: 나중, pr: 나ː중, ds: later; after some time}
+  - {id: ko-nikl-34291-s002, ch: 나중, pr: 나ː중, ds: afterward; after another task is done first}
+  - {id: ko-nikl-44782-s001, ch: 첫째, pr: 첟째, ds: first in order; ordinal numeral}
+  - {id: ko-nikl-44783-s001, ch: 첫째, pr: 첟째, ds: first in order; before a noun}
+  - {id: ko-nikl-18843-s001, ch: 둘째, pr: 둘ː째, ds: second in order; ordinal numeral}
+  - {id: ko-nikl-18846-s001, ch: 둘째, pr: 둘ː째, ds: second in order; before a noun}
+  - {id: ko-nikl-00567-s001, ch: 셋째, pr: 섿ː째, ds: third in order; ordinal numeral}
+  - {id: ko-nikl-00568-s001, ch: 셋째, pr: 섿ː째, ds: third in order; before a noun}
+  review_grammar:
+  - {id: ko-topik2-g024, ch: N마다, ds: distribute an event over each interval or member}
+  - {id: ko-topik2-g014, ch: V-(으)ㄴ N, ds: modify a noun with a completed action}
+  - {id: ko-topik3-g016, ch: V/A-(으)ㄹ 때, ds: locate an action at the time of a situation}
+- id: level-08-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain feelings without treating another person's inner state as directly known.
+  vocabulary:
+  - {id: ko-nikl-08289-s002, ch: 사랑하다, pr: 사랑하다, ds: cherish and care for someone with affection}
+  - {id: ko-nikl-24830-s001, ch: 행복하다, pr: 행ː보카다, ds: be happy; feel satisfaction and joy in life}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-26499-s001, ch: 감사하다, pr: 감ː사하다, ds: grateful; feeling gratitude}
+  - {id: ko-nikl-29001-s001, ch: 고맙다, pr: 고ː맙따, ds: to be thankful; to be grateful}
+  - {id: ko-nikl-49829-s001, ch: 원하다, pr: 원ː하다, ds: to want; to wish for}
+  - {id: ko-nikl-41493-s001, ch: 좋아하다, pr: 조ː아하다, ds: to like something}
+  - {id: ko-nikl-38953-s001, ch: 미안하다, pr: 미안하다, ds: feel sorry or ashamed for wronging someone}
+  review_grammar: []
+- id: level-08-technology-01
+  title: Technology and systems - 1
+  outcome: Explain a system's use and limits for a general audience.
+  vocabulary:
+  - {id: ko-nikl-20679-s001, ch: 컴퓨터, pr: 컴퓨터, ds: a computer}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-08-register-01
+  title: Register and nuance - 1
+  outcome: Adapt listener endings and implied stance to audience and relationship.
+  vocabulary:
+  - {id: ko-nikl-35196-s001, ch: 너, pr: 너, ds: you (to a friend or junior)}
+  - {id: ko-nikl-49275-s003, ch: 우리, pr: 우리, ds: our; my (expressing familiar affiliation)}
+  - {id: ko-nikl-47062-s001, ch: 여러분, pr: 여러분, ds: you all (respectful address)}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-03975-s001, ch: 씨, pr: 씨, ds: respectful title attached to a person's name}
+  review_grammar: []
+- id: level-08-quantities-01
+  title: Numbers and counters - 1
+  outcome: Choose native or Sino-Korean number forms for quantities, clock time, and payment.
+  vocabulary:
+  - {id: ko-nikl-11661-s001, ch: 일흔, pr: 일흔, ds: seventy (native Korean numeral)}
+  - {id: ko-nikl-11662-s001, ch: 일흔, pr: 일흔, ds: seventy; before a noun or counter}
+  - {id: ko-nikl-47057-s001, ch: 여든, pr: 여든, ds: eighty (native Korean numeral)}
+  - {id: ko-nikl-47058-s001, ch: 여든, pr: 여든, ds: eighty; before a noun or counter}
+  - {id: ko-nikl-04329-s001, ch: 아흔, pr: 아흔, ds: ninety (native Korean numeral)}
+  - {id: ko-nikl-04330-s001, ch: 아흔, pr: 아흔, ds: ninety; before a noun or counter}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-09742-s001, ch: 서른, pr: 서른, ds: thirty (native Korean numeral)}
+  - {id: ko-nikl-09743-s001, ch: 서른, pr: 서른, ds: thirty; before a noun or counter}
+  - {id: ko-nikl-35960-s001, ch: 마흔, pr: 마흔, ds: forty (native Korean numeral)}
+  - {id: ko-nikl-35961-s001, ch: 마흔, pr: 마흔, ds: forty; before a noun or counter}
+  - {id: ko-nikl-02397-s001, ch: 쉰, pr: 쉰ː, ds: fifty (native Korean numeral)}
+  - {id: ko-nikl-02398-s001, ch: 쉰, pr: 쉰ː, ds: fifty; before a noun or counter}
+  - {id: ko-nikl-48017-s001, ch: 예순, pr: 예순, ds: sixty (native Korean numeral)}
+  - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
+  review_grammar:
+  - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
+- id: level-08-learning-practice-01
+  title: Learning and education - sentence practice 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
+  review_vocabulary:
+  - {id: ko-nikl-08522-s001, ch: 사전, pr: 사전, ds: a dictionary}
+  - {id: ko-nikl-38455-s002, ch: 문장, pr: 문장, ds: a sentence}
+  - {id: ko-nikl-38413-s001, ch: 문법, pr: 문뻡, ds: grammar; the rules of a language}
+  - {id: ko-nikl-05998-s001, ch: 복습, pr: 복씁, ds: reviewing; studying something again}
+  - {id: ko-nikl-48030-s001, ch: 예습, pr: 예ː습, ds: studying ahead; preparing for a lesson}
+  - {id: ko-nikl-13519-s001, ch: 적다, pr: 적따, ds: to write down; to note}
+  - {id: ko-nikl-02402-s001, ch: 쉽다, pr: 쉽ː따, ds: to be easy to do}
+  - {id: ko-nikl-46370-s001, ch: 어렵다, pr: 어렵따, ds: to be difficult to do}
+  review_grammar:
+  - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
+  - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
+  - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
+- id: level-08-work-practice-01
+  title: Work and cooperation - sentence practice 1
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik2-g007, ch: V-(으)면서, ds: do two actions at the same time}
+  - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
+  - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
+  review_vocabulary:
+  - {id: ko-nikl-42990-s001, ch: 직원, pr: 지권, ds: an employee; a staff member}
+  - {id: ko-nikl-08512-s001, ch: 사장, pr: 사장, ds: a company president; a business head}
+  - {id: ko-nikl-52077-s001, ch: 회의, pr: 회ː의 / 훼ː이, ds: a meeting; a conference}
+  - {id: ko-nikl-45685-s001, ch: 출근, pr: 출근, ds: going to work}
+  - {id: ko-nikl-21843-s001, ch: 퇴근, pr: 퇴ː근 / 퉤ː근, ds: leaving work; going home from work}
+  - {id: ko-nikl-52456-s001, ch: 휴가, pr: 휴가, ds: leave from work or duty; vacation}
+  - {id: ko-nikl-04133-s001, ch: 아르바이트, pr: 아르바이트, ds: a temporary side job; part-time work}
+  - {id: ko-nikl-19253-s008, ch: 들어가다, pr: 드러가다, ds: to join an organization}
+  review_grammar: []
+- id: level-08-communication-practice-01
+  title: Communication and information - sentence practice 1
+  outcome: Repair ambiguity and relay information with clear attribution.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik2-g026, ch: 'V/A-지요? / -죠?', ds: check shared information or seek confirmation}
+  - {id: ko-topik2-g033, ch: V-는데 / A-(으)ㄴ데, ds: offer background or a contextual contrast}
+  review_vocabulary:
+  - {id: ko-nikl-06698-s001, ch: 부탁, pr: 부ː탁, ds: a request; asking a favor}
+  - {id: ko-nikl-24936-s001, ch: 허락, pr: 허락, ds: permission; granting a request}
+  - {id: ko-nikl-38953-s002, ch: 미안하다, pr: 미안하다, ds: excuse me; used to ask pardon modestly}
+  - {id: ko-nikl-04578-s009, ch: 알다, pr: 알ː다, ds: to acknowledge a request; to agree to comply}
+  - {id: ko-nikl-47403-s001, ch: 연락, pr: 열락, ds: contact; passing on information}
+  - {id: ko-nikl-10691-s001, ch: 이메일, pr: 이메일, ds: email}
+  - {id: ko-nikl-16753-s001, ch: 답장, pr: 답짱, ds: a written reply; a reply letter}
+  - {id: ko-nikl-17402-s001, ch: 대화, pr: 대ː화, ds: conversation; a dialogue}
+  review_grammar:
+  - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+- id: level-08-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain causal and conditional relations with appropriate scope.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik2-g012, ch: N 때문에 / V/A-기 때문에, ds: state an explicit noun or clause cause}
+  review_vocabulary:
+  - {id: ko-nikl-48724-s001, ch: 왜, pr: 왜ː, ds: 'why?'}
+  - {id: ko-nikl-31989-s001, ch: 그래서, pr: 그래서, ds: so; therefore}
+  review_grammar:
+  - {id: ko-topik1-g028, ch: V/A-아/어서, ds: give an ordinary cause and consequence}
+  - {id: ko-topik2-g011, ch: V/A-(으)니까, ds: give a reason supporting advice or a proposal}
+  - {id: ko-topik2-g008, ch: V/A-(으)면, ds: give a condition or recurring circumstance}
+- id: level-08-register-practice-01
+  title: Register and nuance - sentence practice 1
+  outcome: Adapt listener endings and implied stance to audience and relationship.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g017, ch: V/A-ㅂ니다 / -습니다, ds: formal polite statement to a listener}
+  review_vocabulary:
+  - {id: ko-nikl-03975-s001, ch: 씨, pr: 씨, ds: respectful title attached to a person's name}
+  - {id: ko-nikl-35196-s001, ch: 너, pr: 너, ds: you (to a friend or junior)}
+  - {id: ko-nikl-49275-s003, ch: 우리, pr: 우리, ds: our; my (expressing familiar affiliation)}
+  - {id: ko-nikl-47062-s001, ch: 여러분, pr: 여러분, ds: you all (respectful address)}
+  review_grammar: []
+- id: level-08-work-practice-02
+  title: Work and cooperation - sentence practice 2
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g031, ch: V-ㅂ시다 / -읍시다, ds: formal joint-action proposal with role constraints}
+  review_vocabulary:
+  - {id: ko-nikl-42990-s001, ch: 직원, pr: 지권, ds: an employee; a staff member}
+  - {id: ko-nikl-08512-s001, ch: 사장, pr: 사장, ds: a company president; a business head}
+  - {id: ko-nikl-52077-s001, ch: 회의, pr: 회ː의 / 훼ː이, ds: a meeting; a conference}
+  - {id: ko-nikl-45685-s001, ch: 출근, pr: 출근, ds: going to work}
+  - {id: ko-nikl-21843-s001, ch: 퇴근, pr: 퇴ː근 / 퉤ː근, ds: leaving work; going home from work}
+  - {id: ko-nikl-52456-s001, ch: 휴가, pr: 휴가, ds: leave from work or duty; vacation}
+  - {id: ko-nikl-04133-s001, ch: 아르바이트, pr: 아르바이트, ds: a temporary side job; part-time work}
+  - {id: ko-nikl-19253-s008, ch: 들어가다, pr: 드러가다, ds: to join an organization}
+  review_grammar:
+  - {id: ko-topik2-g007, ch: V-(으)면서, ds: do two actions at the same time}
+  - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
+  - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
+- id: level-08-honorifics-practice-01
+  title: Respect and reference - sentence practice 1
+  outcome: Distinguish listener politeness, subject honorification, and humble reference to a beneficiary or recipient.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g036, ch: V/A-(으)시-, ds: honor the subject rather than the listener}
+  - {id: ko-topik2-g021, ch: N에게/한테 / N께, ds: identify an ordinary or honored recipient}
+  - {id: ko-topik2-g022, ch: V-아/어 주다 / 드리다, ds: do an action for an ordinary or honored beneficiary}
+  review_vocabulary: []
+  review_grammar: []
+- id: level-08-register-practice-02
+  title: Register and nuance - sentence practice 2
+  outcome: Adapt listener endings and implied stance to audience and relationship.
+  vocabulary: []
+  grammar:
+  - {id: ko-teaching-g001, ch: V/A-아/어 / N(이)야, ds: use familiar endings only for a suitable relationship}
+  review_vocabulary:
+  - {id: ko-nikl-03975-s001, ch: 씨, pr: 씨, ds: respectful title attached to a person's name}
+  - {id: ko-nikl-35196-s001, ch: 너, pr: 너, ds: you (to a friend or junior)}
+  - {id: ko-nikl-49275-s003, ch: 우리, pr: 우리, ds: our; my (expressing familiar affiliation)}
+  - {id: ko-nikl-47062-s001, ch: 여러분, pr: 여러분, ds: you all (respectful address)}
+  review_grammar:
+  - {id: ko-topik1-g017, ch: V/A-ㅂ니다 / -습니다, ds: formal polite statement to a listener}

@@ -1,0 +1,208 @@
+schema_version: 3
+id: ko-extension-literary
+title: Literary and historical Korean
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: extension
+prerequisites:
+- ko-level-01
+- ko-level-02
+- ko-level-03
+- ko-level-04
+- ko-level-05
+- ko-level-06
+- ko-level-07
+- ko-level-08
+- ko-level-09
+- ko-level-10
+- ko-level-11
+- ko-level-12
+- ko-level-13
+- ko-level-14
+- ko-level-15
+- ko-level-16
+- ko-level-17
+- ko-level-18
+- ko-level-19
+- ko-level-20
+- ko-level-21
+- ko-level-22
+- ko-level-23
+- ko-level-24
+description: Optional contextual reading of literary and older forms, not required ordinary speech or an examination-readiness claim.
+mastery_profile: ko-item-mastery
+mastery_target: understand
+units:
+- id: extension-literary-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-24263-s001, ch: 한자, pr: 한ː짜, ds: Hanja; Chinese characters}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-15219-s001, ch: 조사, pr: 조사, ds: an investigation; a survey}
+  - {id: ko-nikl-47348-s001, ch: 연구, pr: 연ː구, ds: research; detailed investigation and analysis}
+  - {id: ko-nikl-45791-s001, ch: 출처, pr: 출처, ds: a source; where words or things originate}
+  - {id: ko-nikl-44265-s003, ch: 찾다, pr: 찯따, ds: to look something up in a book or computer}
+  - {id: ko-nikl-38451-s001, ch: 문자, pr: 문짜, ds: writing; a system of written characters}
+  - {id: ko-nikl-51222-s001, ch: 호기심, pr: 호ː기심, ds: curiosity}
+  - {id: ko-nikl-02051-s001, ch: 수학, pr: 수ː학, ds: mathematics}
+  - {id: ko-nikl-35833-s002, ch: 마무리, pr: 마무리, ds: the conclusion of an argumentative essay}
+  review_grammar:
+  - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
+  - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
+  - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
+- id: extension-literary-nature-01
+  title: Nature and environment - 1
+  outcome: Explain an environmental change and distinguish evidence from prediction.
+  vocabulary:
+  - {id: ko-nikl-09462-s002, ch: 샘, pr: 샘ː, ds: the site or surroundings of a spring}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-13263-s001, ch: 재활용, pr: 재ː화룡, ds: recycling; reuse}
+  - {id: ko-nikl-23498-s001, ch: 플라스틱, pr: 플라스틱, ds: plastic}
+  - {id: ko-nikl-09462-s001, ch: 샘, pr: 샘ː, ds: a natural spring; water from a spring}
+  - {id: ko-nikl-08065-s001, ch: 뿌리, pr: 뿌리, ds: a plant root}
+  - {id: ko-nikl-03967-s001, ch: 씨, pr: 씨, ds: a seed}
+  - {id: ko-nikl-29467-s001, ch: 곤충, pr: 곤충, ds: an insect}
+  - {id: ko-nikl-09632-s001, ch: 생태계, pr: 생태계 / 생태게, ds: an ecosystem}
+  - {id: ko-nikl-20919-s001, ch: 크다, pr: 크다, ds: to grow (a living organism)}
+  review_grammar:
+  - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
+- id: extension-literary-culture-01
+  title: Culture and customs - 1
+  outcome: Explain a situated practice while allowing variation by person and setting.
+  vocabulary:
+  - {id: ko-nikl-03362-s002, ch: 신화, pr: 신화, ds: a sacred traditional tale}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-45626-s001, ch: 축제, pr: 축쩨, ds: a festival}
+  - {id: ko-nikl-37316-s001, ch: 명절, pr: 명절, ds: a traditional holiday}
+  - {id: ko-nikl-00015-s001, ch: 설날, pr: 설ː랄, ds: Seollal; Korean Lunar New Year}
+  - {id: ko-nikl-45509-s001, ch: 추석, pr: 추석, ds: Chuseok; Korean harvest holiday}
+  - {id: ko-nikl-38524-s001, ch: 문화, pr: 문화, ds: culture; shared material and spiritual practices}
+  - {id: ko-nikl-14041-s001, ch: 전통, pr: 전통, ds: tradition}
+  - {id: ko-nikl-41361-s001, ch: 종교, pr: 종교, ds: religion}
+  - {id: ko-nikl-03258-s001, ch: 신앙, pr: 시ː낭, ds: religious faith}
+  review_grammar: []
+- id: extension-literary-arts-01
+  title: Arts and creative works - 1
+  outcome: Support an interpretation with specific details of a work.
+  vocabulary:
+  - {id: ko-nikl-03918-s004, ch: 쓰다, pr: 쓰다, ds: to write down music in notation}
+  - {id: ko-nikl-12446-s001, ch: 작곡, pr: 작꼭, ds: musical composition}
+  - {id: ko-nikl-40543-s005, ch: 배경, pr: 배ː경, ds: stage scenery}
+  - {id: ko-nikl-00903-s002, ch: 소재, pr: 소재, ds: subject matter or material for an artistic work}
+  - {id: ko-nikl-17099-s001, ch: 대사, pr: 대사, ds: dialogue spoken by actors}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-47361-s001, ch: 연극, pr: 연ː극, ds: theater; a staged play}
+  - {id: ko-nikl-37969-s001, ch: 무대, pr: 무ː대, ds: a stage}
+  - {id: ko-nikl-30244-s001, ch: 관객, pr: 관객, ds: an audience member; a spectator}
+  - {id: ko-nikl-13901-s001, ch: 전시, pr: 전ː시, ds: displaying objects for visitors; exhibition}
+  - {id: ko-nikl-13910-s001, ch: 전시회, pr: 전ː시회 / 전ː시훼, ds: an exhibition event}
+  - {id: ko-nikl-25785-s001, ch: 가사, pr: 가사, ds: lyrics; words sung to music}
+  - {id: ko-nikl-39463-s001, ch: 바이올린, pr: 바이올린, ds: a violin}
+  - {id: ko-nikl-20279-s001, ch: 리듬, pr: 리듬, ds: rhythm in sound or music}
+  review_grammar: []
+- id: extension-literary-register-01
+  title: Register and nuance - 1
+  outcome: Adapt listener endings and implied stance to audience and relationship.
+  vocabulary:
+  - {id: ko-nikl-40405-s001, ch: 방언, pr: 방언, ds: a regional or social dialect}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-03975-s001, ch: 씨, pr: 씨, ds: respectful title attached to a person's name}
+  - {id: ko-nikl-35196-s001, ch: 너, pr: 너, ds: you (to a friend or junior)}
+  - {id: ko-nikl-49275-s003, ch: 우리, pr: 우리, ds: our; my (expressing familiar affiliation)}
+  - {id: ko-nikl-47062-s001, ch: 여러분, pr: 여러분, ds: you all (respectful address)}
+  review_grammar:
+  - {id: ko-topik1-g017, ch: V/A-ㅂ니다 / -습니다, ds: formal polite statement to a listener}
+  - {id: ko-teaching-g001, ch: V/A-아/어 / N(이)야, ds: use familiar endings only for a suitable relationship}
+  - {id: ko-teaching-g002, ch: V-ㄴ/는다 / A-다 / N(이)다, ds: 'distinguish plain action, descriptive, and noun endings'}
+- id: extension-literary-literature-01
+  title: Literary and historical expression - 1
+  outcome: Interpret marked expressions in source context and paraphrase them in ordinary Korean.
+  vocabulary:
+  - {id: ko-nikl-35426-s003, ch: 노래, pr: 노래, ds: verse expressing thoughts or feelings rhythmically}
+  - {id: ko-nikl-37969-s003, ch: 무대, pr: 무ː대, ds: the setting of a story}
+  - {id: ko-nikl-03362-s001, ch: 신화, pr: 신화, ds: a myth; a story about divine beings}
+  - {id: ko-nikl-02907-s001, ch: 시인, pr: 시인, ds: a poet}
+  - {id: ko-nikl-02045-s001, ch: 수필, pr: 수필, ds: a personal essay}
+  - {id: ko-nikl-40543-s004, ch: 배경, pr: 배ː경, ds: 'a work''s temporal, spatial, and social setting'}
+  - {id: ko-nikl-07684-s001, ch: 비평, pr: 비ː평, ds: criticism; analytical judgment of value or beauty}
+  - {id: ko-nikl-23441-s002, ch: 풍자, pr: 풍자, ds: literary satire of social faults or absurdities}
+  - {id: ko-nikl-12867-s001, ch: 장르, pr: 장느, ds: a genre of literature or art}
+  - {id: ko-nikl-29270-s002, ch: 고전, pr: 고ː전, ds: a classic; an enduringly valued literary or artistic work}
+  - {id: ko-nikl-29270-s003, ch: 고전, pr: 고ː전, ds: an old book or work}
+  - {id: ko-nikl-10329-s001, ch: 의성어, pr: 의성어, ds: an onomatopoeic word imitating a sound}
+  - {id: ko-nikl-10407-s001, ch: 의태어, pr: 의태어, ds: a mimetic word imitating appearance or movement}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-38507-s001, ch: 문학, pr: 문학, ds: literature}
+  - {id: ko-nikl-00786-s001, ch: 소설, pr: 소ː설, ds: a novel; fictional prose narrative}
+  - {id: ko-nikl-02669-s001, ch: 시, pr: 시, ds: a poem; poetry}
+  - {id: ko-nikl-18608-s001, ch: 동화, pr: 동ː화, ds: a children's story}
+  - {id: ko-nikl-41820-s001, ch: 주인공, pr: 주인공, ds: a protagonist; a main character}
+  - {id: ko-nikl-42043-s002, ch: 줄거리, pr: 줄거리, ds: a plot; the main storyline}
+  review_grammar: []
+- id: extension-literary-literature-practice-01
+  title: Literary and historical expression - sentence practice 1
+  outcome: Interpret marked expressions in source context and paraphrase them in ordinary Korean.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik6-g001, ch: V/A-(으)ㄹ지언정, ds: literary concession with a firm commitment}
+  - {id: ko-topik6-g002, ch: V/A-(으)ㄹ망정, ds: concede a drawback while affirming another value}
+  - {id: ko-topik6-g003, ch: V/A-(으)ㄴ들, ds: make a rhetorical concession that changes nothing}
+  review_vocabulary:
+  - {id: ko-nikl-40543-s004, ch: 배경, pr: 배ː경, ds: 'a work''s temporal, spatial, and social setting'}
+  - {id: ko-nikl-07684-s001, ch: 비평, pr: 비ː평, ds: criticism; analytical judgment of value or beauty}
+  - {id: ko-nikl-23441-s002, ch: 풍자, pr: 풍자, ds: literary satire of social faults or absurdities}
+  - {id: ko-nikl-12867-s001, ch: 장르, pr: 장느, ds: a genre of literature or art}
+  - {id: ko-nikl-29270-s002, ch: 고전, pr: 고ː전, ds: a classic; an enduringly valued literary or artistic work}
+  - {id: ko-nikl-29270-s003, ch: 고전, pr: 고ː전, ds: an old book or work}
+  - {id: ko-nikl-10329-s001, ch: 의성어, pr: 의성어, ds: an onomatopoeic word imitating a sound}
+  - {id: ko-nikl-10407-s001, ch: 의태어, pr: 의태어, ds: a mimetic word imitating appearance or movement}
+  review_grammar: []
+- id: extension-literary-literature-practice-02
+  title: Literary and historical expression - sentence practice 2
+  outcome: Interpret marked expressions in source context and paraphrase them in ordinary Korean.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik6-g005, ch: V/A-건마는, ds: concede a fact in a marked literary contrast}
+  - {id: ko-topik6-g006, ch: V-노라면, ds: literary reflection on sustained activity}
+  - {id: ko-topik6-g007, ch: V-노라고, ds: marked explanation of effort or attempted action}
+  review_vocabulary:
+  - {id: ko-nikl-40543-s004, ch: 배경, pr: 배ː경, ds: 'a work''s temporal, spatial, and social setting'}
+  - {id: ko-nikl-07684-s001, ch: 비평, pr: 비ː평, ds: criticism; analytical judgment of value or beauty}
+  - {id: ko-nikl-23441-s002, ch: 풍자, pr: 풍자, ds: literary satire of social faults or absurdities}
+  - {id: ko-nikl-12867-s001, ch: 장르, pr: 장느, ds: a genre of literature or art}
+  - {id: ko-nikl-29270-s002, ch: 고전, pr: 고ː전, ds: a classic; an enduringly valued literary or artistic work}
+  - {id: ko-nikl-29270-s003, ch: 고전, pr: 고ː전, ds: an old book or work}
+  - {id: ko-nikl-10329-s001, ch: 의성어, pr: 의성어, ds: an onomatopoeic word imitating a sound}
+  - {id: ko-nikl-10407-s001, ch: 의태어, pr: 의태어, ds: a mimetic word imitating appearance or movement}
+  review_grammar:
+  - {id: ko-topik6-g001, ch: V/A-(으)ㄹ지언정, ds: literary concession with a firm commitment}
+  - {id: ko-topik6-g002, ch: V/A-(으)ㄹ망정, ds: concede a drawback while affirming another value}
+  - {id: ko-topik6-g003, ch: V/A-(으)ㄴ들, ds: make a rhetorical concession that changes nothing}
+- id: extension-literary-literature-practice-03
+  title: Literary and historical expression - sentence practice 3
+  outcome: Interpret marked expressions in source context and paraphrase them in ordinary Korean.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik6-g014, ch: V/A-(으)ㄹ진대, ds: literary premise for a normative conclusion}
+  - {id: ko-topik6-g025, ch: V/A-(으)ㄹ 성싶다, ds: express a literary or marked formal conjecture}
+  review_vocabulary:
+  - {id: ko-nikl-40543-s004, ch: 배경, pr: 배ː경, ds: 'a work''s temporal, spatial, and social setting'}
+  - {id: ko-nikl-07684-s001, ch: 비평, pr: 비ː평, ds: criticism; analytical judgment of value or beauty}
+  - {id: ko-nikl-23441-s002, ch: 풍자, pr: 풍자, ds: literary satire of social faults or absurdities}
+  - {id: ko-nikl-12867-s001, ch: 장르, pr: 장느, ds: a genre of literature or art}
+  - {id: ko-nikl-29270-s002, ch: 고전, pr: 고ː전, ds: a classic; an enduringly valued literary or artistic work}
+  - {id: ko-nikl-29270-s003, ch: 고전, pr: 고ː전, ds: an old book or work}
+  - {id: ko-nikl-10329-s001, ch: 의성어, pr: 의성어, ds: an onomatopoeic word imitating a sound}
+  - {id: ko-nikl-10407-s001, ch: 의태어, pr: 의태어, ds: a mimetic word imitating appearance or movement}
+  review_grammar:
+  - {id: ko-topik6-g005, ch: V/A-건마는, ds: concede a fact in a marked literary contrast}
+  - {id: ko-topik6-g006, ch: V-노라면, ds: literary reflection on sustained activity}
+  - {id: ko-topik6-g007, ch: V-노라고, ds: marked explanation of effort or attempted action}

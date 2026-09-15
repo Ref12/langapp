@@ -1,0 +1,291 @@
+schema_version: 3
+id: ko-level-11
+title: Procedures and outcomes
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: level
+number: 11
+phase: stories-conversations
+prerequisites:
+- ko-level-01
+- ko-level-02
+- ko-level-03
+- ko-level-04
+- ko-level-05
+- ko-level-06
+- ko-level-07
+- ko-level-08
+- ko-level-09
+- ko-level-10
+goals: &id001
+- Explain steps with before, after, and simultaneous-action relations.
+- Describe a prepared or preserved result.
+- Explain who makes or allows another person to act.
+checkpoint:
+  task: Guide a partner through a procedure when an unexpected result requires a revised instruction.
+  criteria: *id001
+mastery_profile: ko-item-mastery
+mastery_target: independent-use
+units:
+- id: level-11-travel-01
+  title: Travel and transport - 1
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary:
+  - {id: ko-nikl-27398-s001, ch: 거리, pr: 거ː리, ds: distance between places or objects}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-06024-s002, ch: 복잡하다, pr: 복짜파다, ds: to be crowded and disorderly}
+  - {id: ko-nikl-11671-s009, ch: 잃다, pr: 일타, ds: to lose one's way}
+  - {id: ko-nikl-18250-s009, ch: 돌아가다, pr: 도라가다, ds: to go back; to return to a former state}
+  - {id: ko-nikl-18259-s001, ch: 돌아오다, pr: 도라오다, ds: to come back; to return}
+  - {id: ko-nikl-34873-s001, ch: 내려가다, pr: 내려가다, ds: to go down}
+  - {id: ko-nikl-48447-s001, ch: 올라가다, pr: 올라가다, ds: to go up}
+  - {id: ko-nikl-34899-s006, ch: 내리다, pr: 내리다, ds: get off or out of a vehicle}
+  - {id: ko-nikl-16872-s001, ch: 대, pr: 대, ds: 'counter for vehicles, machines, and instruments'}
+  review_grammar:
+  - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
+  - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
+  - {id: ko-topik2-g002, ch: V-(으)면 안 되다, ds: prohibit an action by a rule or warning}
+- id: level-11-leisure-01
+  title: Leisure and sport - 1
+  outcome: Explain participation and invite someone without assuming availability.
+  vocabulary:
+  - {id: ko-nikl-02616-s001, ch: 승리, pr: 승니, ds: victory; winning}
+  - {id: ko-nikl-22584-s001, ch: 패배, pr: 패ː배, ds: defeat; losing a contest}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-49470-s001, ch: 운동장, pr: 운ː동장, ds: a sports field; a playground}
+  - {id: ko-nikl-28345-s001, ch: 경기, pr: 경ː기, ds: a match; an athletic contest}
+  - {id: ko-nikl-10058-s001, ch: 선수, pr: 선ː수, ds: an athlete; a player representing a team}
+  - {id: ko-nikl-22206-s002, ch: 팀, pr: 팀, ds: a sports team}
+  - {id: ko-nikl-35689-s001, ch: 놀이, pr: 노리, ds: play; playing for enjoyment}
+  - {id: ko-nikl-27934-s001, ch: 게임, pr: 게임, ds: a game with rules and a winner}
+  - {id: ko-nikl-28348-s001, ch: 경기장, pr: 경ː기장, ds: a stadium; a sports venue}
+  - {id: ko-nikl-01859-s001, ch: 수영장, pr: 수영장, ds: a swimming pool}
+  review_grammar: []
+- id: level-11-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-28668-s001, ch: 계산하다, pr: 계ː산하다 / 게ː산하다, ds: to calculate; to count}
+  - {id: ko-nikl-14467-s002, ch: 정리, pr: 정ː니, ds: systematic sorting or organization}
+  - {id: ko-nikl-37683-s001, ch: 목표, pr: 목표, ds: a goal; a concrete target}
+  - {id: ko-nikl-15937-s001, ch: 능력, pr: 능녁, ds: ability; capability}
+  - {id: ko-nikl-29368-s003, ch: 고치다, pr: 고치다, ds: to correct a mistake}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-38413-s001, ch: 문법, pr: 문뻡, ds: grammar; the rules of a language}
+  - {id: ko-nikl-05998-s001, ch: 복습, pr: 복씁, ds: reviewing; studying something again}
+  - {id: ko-nikl-48030-s001, ch: 예습, pr: 예ː습, ds: studying ahead; preparing for a lesson}
+  - {id: ko-nikl-13519-s001, ch: 적다, pr: 적따, ds: to write down; to note}
+  - {id: ko-nikl-02402-s001, ch: 쉽다, pr: 쉽ː따, ds: to be easy to do}
+  - {id: ko-nikl-46370-s001, ch: 어렵다, pr: 어렵따, ds: to be difficult to do}
+  - {id: ko-nikl-28570-s001, ch: 경험, pr: 경험, ds: experience; knowledge gained through experience}
+  - {id: ko-nikl-11966-s001, ch: 잊다, pr: 읻따, ds: to forget something once known}
+  review_grammar:
+  - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
+  - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
+  - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
+- id: level-11-money-01
+  title: Money and commerce - 1
+  outcome: Confirm amounts in won and explain a financial choice without professional claims.
+  vocabulary:
+  - {id: ko-nikl-03920-s005, ch: 쓰다, pr: 쓰다, ds: to spend time or money}
+  - {id: ko-nikl-21052-s001, ch: 타다, pr: 타다, ds: 'to receive a share, payment, or prize'}
+  - {id: ko-nikl-19195-s006, ch: 들다, pr: 들다, ds: to cost; to require time or effort}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-47846-s001, ch: 영수증, pr: 영수증, ds: receipt; written record of a transaction}
+  - {id: ko-nikl-07564-s001, ch: 비싸다, pr: 비싸다, ds: to be expensive}
+  - {id: ko-nikl-03760-s001, ch: 싸다, pr: 싸다, ds: to be inexpensive; to be cheap}
+  - {id: ko-nikl-22489-s001, ch: 팔다, pr: 팔다, ds: 'to sell goods, rights, or services'}
+  - {id: ko-nikl-24353-s001, ch: 할인, pr: 하린, ds: a discount}
+  - {id: ko-nikl-48933-s001, ch: 요금, pr: 요ː금, ds: a charge; a fare; an admission fee}
+  - {id: ko-nikl-50982-s001, ch: 은행, pr: 은행, ds: a bank (financial institution)}
+  - {id: ko-nikl-49853-s001, ch: 월급, pr: 월급, ds: a monthly salary}
+  review_grammar:
+  - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
+- id: level-11-communication-01
+  title: Communication and information - 1
+  outcome: Repair ambiguity and relay information with clear attribution.
+  vocabulary:
+  - {id: ko-nikl-00038-s001, ch: 설명, pr: 설명, ds: an explanation}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-38953-s002, ch: 미안하다, pr: 미안하다, ds: excuse me; used to ask pardon modestly}
+  - {id: ko-nikl-04578-s009, ch: 알다, pr: 알ː다, ds: to acknowledge a request; to agree to comply}
+  - {id: ko-nikl-47403-s001, ch: 연락, pr: 열락, ds: contact; passing on information}
+  - {id: ko-nikl-10691-s001, ch: 이메일, pr: 이메일, ds: email}
+  - {id: ko-nikl-16753-s001, ch: 답장, pr: 답짱, ds: a written reply; a reply letter}
+  - {id: ko-nikl-17402-s001, ch: 대화, pr: 대ː화, ds: conversation; a dialogue}
+  - {id: ko-nikl-08184-s001, ch: 사과, pr: 사ː과, ds: an apology; asking forgiveness}
+  - {id: ko-nikl-39517-s001, ch: 박수, pr: 박쑤, ds: applause; clapping}
+  review_grammar:
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+  - {id: ko-topik2-g026, ch: 'V/A-지요? / -죠?', ds: check shared information or seek confirmation}
+  - {id: ko-topik2-g033, ch: V-는데 / A-(으)ㄴ데, ds: offer background or a contextual contrast}
+- id: level-11-time-01
+  title: Time and events - 1
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary:
+  - {id: ko-nikl-45013-s001, ch: 초, pr: 초, ds: second (time unit)}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-34510-s004, ch: 날, pr: 날, ds: a day appointed for a purpose}
+  - {id: ko-nikl-23853-s003, ch: 하루, pr: 하루, ds: one day; some unspecified day}
+  - {id: ko-nikl-18870-s002, ch: 뒤, pr: 뒤ː, ds: after; later in time or order}
+  - {id: ko-nikl-33239-s002, ch: 길다, pr: 길ː다, ds: to be long in duration}
+  - {id: ko-nikl-43591-s002, ch: 짧다, pr: 짤따, ds: to be short in duration}
+  - {id: ko-nikl-48179-s001, ch: 오래되다, pr: 오래되다 / 오래뒈다, ds: to be old; to have existed for a long time}
+  - {id: ko-nikl-05696-s007, ch: 보내다, pr: 보내다, ds: to spend time}
+  - {id: ko-nikl-18259-s006, ch: 돌아오다, pr: 도라오다, ds: to come around again (a recurring occasion)}
+  review_grammar:
+  - {id: ko-topik3-g023, ch: V-(으)ㄹ 뻔하다, ds: describe an event that almost happened}
+  - {id: ko-topik4-g002, ch: V/A-던 N, ds: recall a habitual or unfinished past modifier}
+  - {id: ko-topik4-g003, ch: V/A-았/었던 N, ds: recall a bounded or completed past situation}
+- id: level-11-actions-01
+  title: Actions and processes - 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary:
+  - {id: ko-nikl-45715-s002, ch: 출발, pr: 출발, ds: a start; beginning an undertaking}
+  - {id: ko-nikl-35833-s001, ch: 마무리, pr: 마무리, ds: finishing up; completion}
+  - {id: ko-nikl-00145-s001, ch: 성공, pr: 성공, ds: success; achieving an intended result}
+  - {id: ko-nikl-03560-s001, ch: 실패, pr: 실패, ds: failure to achieve a goal}
+  - {id: ko-nikl-35438-s001, ch: 노력, pr: 노력, ds: effort; trying hard}
+  - {id: ko-nikl-02561-s001, ch: 습관, pr: 습꽌, ds: a habit}
+  - {id: ko-nikl-40908-s001, ch: 버릇, pr: 버륻, ds: an ingrained habit}
+  - {id: ko-nikl-39307-s004, ch: 바꾸다, pr: 바꾸다, ds: change existing content or state}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-19263-s001, ch: 들어오다, pr: 드러오다, ds: to come inside}
+  - {id: ko-nikl-34144-s001, ch: 나가다, pr: 나가다, ds: to go outside; to leave a space}
+  - {id: ko-nikl-44265-s001, ch: 찾다, pr: 찯따, ds: to look for; to find someone or something}
+  - {id: ko-nikl-11542-s003, ch: 일어나다, pr: 이러나다, ds: to happen; to occur}
+  - {id: ko-nikl-11334-s003, ch: 일, pr: 일ː, ds: an event; a situation or fact}
+  - {id: ko-nikl-03456-s001, ch: 실수, pr: 실쑤, ds: a mistake; an error}
+  - {id: ko-nikl-24813-s001, ch: 행동, pr: 행동, ds: action; behavior}
+  - {id: ko-nikl-44101-s001, ch: 참다, pr: 참ː따, ds: to hold back a bodily reaction; to endure pain}
+  review_grammar:
+  - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
+  - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
+  - {id: ko-topik3-g026, ch: V-이/히/리/기-, ds: present an event with a lexically selected passive}
+- id: level-11-description-01
+  title: Description and comparison - 1
+  outcome: Use descriptive predicates and precise comparison standards.
+  vocabulary:
+  - {id: ko-nikl-40533-s001, ch: 배, pr: 배ː, ds: double; twice as much}
+  - {id: ko-nikl-05491-s001, ch: 변화, pr: 변ː화, ds: change; a change of state or nature}
+  - {id: ko-nikl-09352-s001, ch: 새롭다, pr: 새롭따, ds: to be new; to be unlike what came before}
+  - {id: ko-nikl-26197-s001, ch: 간단하다, pr: 간단하다, ds: to be short or uncomplicated}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-47995-s001, ch: 예쁘다, pr: 예ː쁘다, ds: to be pretty}
+  - {id: ko-nikl-22160-s001, ch: 튼튼하다, pr: 튼튼하다, ds: to be sturdy; to be strong}
+  - {id: ko-nikl-06377-s001, ch: 부드럽다, pr: 부드럽따, ds: to feel soft or smooth}
+  - {id: ko-nikl-25966-s001, ch: 가장, pr: 가장, ds: most; to the greatest degree}
+  - {id: ko-nikl-14944-s001, ch: 제일, pr: 제ː일, ds: most; best among several}
+  - {id: ko-nikl-25600-s001, ch: 가능, pr: 가ː능, ds: possibility; being able to do something}
+  - {id: ko-nikl-04143-s001, ch: 아름답다, pr: 아름답따, ds: to be beautiful to see or hear}
+  - {id: ko-nikl-37029-s001, ch: 멋있다, pr: 머딛따 / 머싣따, ds: to be stylish; to be impressive}
+  review_grammar:
+  - {id: ko-topik2-g019, ch: N 중에서 가장/제일, ds: identify the highest degree within a set}
+  - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
+  - {id: ko-topik3-g029, ch: V/A-(으)ㄴ/는 편이다, ds: offer a relative characterization or tendency}
+- id: level-11-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain causal and conditional relations with appropriate scope.
+  vocabulary:
+  - {id: ko-nikl-40348-s001, ch: 방법, pr: 방법, ds: a method; a way of doing something}
+  - {id: ko-nikl-28117-s001, ch: 결과, pr: 결과, ds: a result; an outcome}
+  - {id: ko-nikl-30206-s001, ch: 과정, pr: 과ː정, ds: a process; the course of an event}
+  - {id: ko-nikl-11948-s002, ch: 있다, pr: 읻따, ds: exist as a fact or phenomenon}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-48724-s001, ch: 왜, pr: 왜ː, ds: 'why?'}
+  - {id: ko-nikl-31989-s001, ch: 그래서, pr: 그래서, ds: so; therefore}
+  - {id: ko-nikl-09482-s002, ch: 생각, pr: 생각, ds: a memory; recollection}
+  review_grammar:
+  - {id: ko-topik2-g012, ch: N 때문에 / V/A-기 때문에, ds: state an explicit noun or clause cause}
+  - {id: ko-topik2-g034, ch: V/A-(으)ㄴ/는 것 같다, ds: mark an impression or tentative inference}
+  - {id: ko-topik3-g021, ch: V-나 보다 / A-(으)ㄴ가 보다, ds: infer a situation from available evidence}
+- id: level-11-time-practice-01
+  title: Time and events - sentence practice 1
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik3-g011, ch: V-는 동안, ds: locate an event during another activity}
+  review_vocabulary:
+  - {id: ko-nikl-23853-s003, ch: 하루, pr: 하루, ds: one day; some unspecified day}
+  - {id: ko-nikl-18870-s002, ch: 뒤, pr: 뒤ː, ds: after; later in time or order}
+  - {id: ko-nikl-33239-s002, ch: 길다, pr: 길ː다, ds: to be long in duration}
+  - {id: ko-nikl-43591-s002, ch: 짧다, pr: 짤따, ds: to be short in duration}
+  - {id: ko-nikl-48179-s001, ch: 오래되다, pr: 오래되다 / 오래뒈다, ds: to be old; to have existed for a long time}
+  - {id: ko-nikl-05696-s007, ch: 보내다, pr: 보내다, ds: to spend time}
+  - {id: ko-nikl-18259-s006, ch: 돌아오다, pr: 도라오다, ds: to come around again (a recurring occasion)}
+  - {id: ko-nikl-45013-s001, ch: 초, pr: 초, ds: second (time unit)}
+  review_grammar:
+  - {id: ko-topik3-g023, ch: V-(으)ㄹ 뻔하다, ds: describe an event that almost happened}
+  - {id: ko-topik4-g002, ch: V/A-던 N, ds: recall a habitual or unfinished past modifier}
+  - {id: ko-topik4-g003, ch: V/A-았/었던 N, ds: recall a bounded or completed past situation}
+- id: level-11-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik3-g010, ch: V-아/어 두다, ds: act in advance and preserve a useful result}
+  - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
+  - {id: ko-topik3-g025, ch: V-게 하다, ds: make or allow another participant to act}
+  review_vocabulary:
+  - {id: ko-nikl-45715-s002, ch: 출발, pr: 출발, ds: a start; beginning an undertaking}
+  - {id: ko-nikl-35833-s001, ch: 마무리, pr: 마무리, ds: finishing up; completion}
+  - {id: ko-nikl-00145-s001, ch: 성공, pr: 성공, ds: success; achieving an intended result}
+  - {id: ko-nikl-03560-s001, ch: 실패, pr: 실패, ds: failure to achieve a goal}
+  - {id: ko-nikl-35438-s001, ch: 노력, pr: 노력, ds: effort; trying hard}
+  - {id: ko-nikl-02561-s001, ch: 습관, pr: 습꽌, ds: a habit}
+  - {id: ko-nikl-40908-s001, ch: 버릇, pr: 버륻, ds: an ingrained habit}
+  - {id: ko-nikl-39307-s004, ch: 바꾸다, pr: 바꾸다, ds: change existing content or state}
+  review_grammar:
+  - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
+  - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
+  - {id: ko-topik3-g026, ch: V-이/히/리/기-, ds: present an event with a lexically selected passive}
+- id: level-11-actions-practice-02
+  title: Actions and processes - sentence practice 2
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik3-g030, ch: V-(으)려고, ds: give a purpose controlled by the actor}
+  - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
+  - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
+  review_vocabulary:
+  - {id: ko-nikl-45715-s002, ch: 출발, pr: 출발, ds: a start; beginning an undertaking}
+  - {id: ko-nikl-35833-s001, ch: 마무리, pr: 마무리, ds: finishing up; completion}
+  - {id: ko-nikl-00145-s001, ch: 성공, pr: 성공, ds: success; achieving an intended result}
+  - {id: ko-nikl-03560-s001, ch: 실패, pr: 실패, ds: failure to achieve a goal}
+  - {id: ko-nikl-35438-s001, ch: 노력, pr: 노력, ds: effort; trying hard}
+  - {id: ko-nikl-02561-s001, ch: 습관, pr: 습꽌, ds: a habit}
+  - {id: ko-nikl-40908-s001, ch: 버릇, pr: 버륻, ds: an ingrained habit}
+  - {id: ko-nikl-39307-s004, ch: 바꾸다, pr: 바꾸다, ds: change existing content or state}
+  review_grammar:
+  - {id: ko-topik3-g010, ch: V-아/어 두다, ds: act in advance and preserve a useful result}
+  - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
+  - {id: ko-topik3-g025, ch: V-게 하다, ds: make or allow another participant to act}
+- id: level-11-actions-practice-03
+  title: Actions and processes - sentence practice 3
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
+  review_vocabulary:
+  - {id: ko-nikl-45715-s002, ch: 출발, pr: 출발, ds: a start; beginning an undertaking}
+  - {id: ko-nikl-35833-s001, ch: 마무리, pr: 마무리, ds: finishing up; completion}
+  - {id: ko-nikl-00145-s001, ch: 성공, pr: 성공, ds: success; achieving an intended result}
+  - {id: ko-nikl-03560-s001, ch: 실패, pr: 실패, ds: failure to achieve a goal}
+  - {id: ko-nikl-35438-s001, ch: 노력, pr: 노력, ds: effort; trying hard}
+  - {id: ko-nikl-02561-s001, ch: 습관, pr: 습꽌, ds: a habit}
+  - {id: ko-nikl-40908-s001, ch: 버릇, pr: 버륻, ds: an ingrained habit}
+  - {id: ko-nikl-39307-s004, ch: 바꾸다, pr: 바꾸다, ds: change existing content or state}
+  review_grammar:
+  - {id: ko-topik3-g030, ch: V-(으)려고, ds: give a purpose controlled by the actor}
+  - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
+  - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}

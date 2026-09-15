@@ -1,14 +1,19 @@
 """Strict Korean adapter and checked-in curriculum regressions."""
 
 from copy import deepcopy
+from dataclasses import replace
 from pathlib import Path
 import re
+import tempfile
 import unittest
 from unittest.mock import patch
 
+import yaml
+
 from curriculum_yaml import load_yaml
 from generate_practical_program import (
-    analyze_phrase, tourist_outputs, validate_dependencies, validate_model, validate_references,
+    analyze_phrase, generate, program_outputs, tourist_outputs,
+    validate_dependencies, validate_model, validate_references,
 )
 from korean_program_adapter import (
     CORRECTION_REVIEW_STATUS, KoreanAdapter, citation_reading, inventory_counts,
@@ -422,6 +427,160 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         cls.adapter = KoreanAdapter()
         cls.data = cls.adapter.load(cls.root)
         cls.references = cls.data.references
+        cls.outputs = program_outputs(cls.root, cls.data, cls.adapter)
+        cls.core = yaml.safe_load(cls.outputs[cls.root / "teaching" / "core" / "sequence.yaml"])
+
+    def route_directories(self):
+        teaching = self.root / "teaching"
+        result = {}
+        core_units = []
+        for number, phase in enumerate(self.core["phases"], 1):
+            directory = teaching / "phases" / f"{number}-{phase['id']}"
+            phase_units = []
+            for level in phase["levels"]:
+                result[directory / "levels" / f"{level['number']:02d}"] = level["units"]
+                phase_units.extend(level["units"])
+            result[directory] = phase_units
+            core_units.extend(phase_units)
+        result[teaching / "core"] = core_units
+        for path, content in self.outputs.items():
+            if path.name == "sequence.yaml":
+                sequence = yaml.safe_load(content)
+                if sequence["kind"] in {"extension", "route"}:
+                    result[path.parent] = sequence["units"]
+        return result
+
+    def assert_route_closes(self, units):
+        words, grammar = set(), set()
+        anchors = {row["id"]: set(row["anchors"]) for row in self.data.inputs["grammar"]}
+        for unit in units:
+            with self.subTest(module=unit["id"]):
+                self.assertLessEqual(len(unit["vocabulary"]), 25)
+                self.assertLessEqual(len(unit["grammar"]), 3)
+                for field, canonical, seen in (
+                    ("vocabulary", self.references.vocabulary, words),
+                    ("grammar", self.references.grammar, grammar),
+                ):
+                    introduced = {row["id"] for row in unit[field]}
+                    self.assertFalse(introduced & seen)
+                    self.assertTrue({row["id"] for row in unit[f"review_{field}"]} <= seen)
+                    for row in unit[field] + unit[f"review_{field}"]:
+                        self.assertEqual(row, canonical[row["id"]])
+                words.update(row["id"] for row in unit["vocabulary"])
+                grammar.update(row["id"] for row in unit["grammar"])
+                for construction in unit["grammar"]:
+                    identifier = construction["id"]
+                    self.assertTrue(anchors[identifier] <= words)
+                    self.assertTrue(set(self.data.construction_dependencies.get(identifier, ())) <= grammar)
+
+    def test_full_program_has_thirty_nested_levels_and_unchanged_phase_partition(self):
+        expected = [list(range(start, stop + 1)) for start, stop in (
+            (1, 4), (5, 8), (9, 13), (14, 18), (19, 24), (25, 30),
+        )]
+        self.assertEqual([[level["number"] for level in phase["levels"]]
+                          for phase in self.core["phases"]], expected)
+        definitions = {row["number"]: row for row in self.data.inputs["program"]["levels"]}
+        for phase_number, phase in enumerate(self.core["phases"], 1):
+            for level in phase["levels"]:
+                number = level["number"]
+                path = (self.root / "teaching" / "phases" / f"{phase_number}-{phase['id']}"
+                        / "levels" / f"{number:02d}" / "sequence.yaml")
+                with self.subTest(level=number):
+                    self.assertEqual(yaml.safe_load(self.outputs[path]), level)
+                    self.assertEqual(level["goals"], definitions[number]["goals"])
+                    self.assertEqual(level["checkpoint"]["criteria"], level["goals"])
+                    self.assertTrue(level["checkpoint"]["task"])
+                    self.assertTrue(any(unit["vocabulary"] for unit in level["units"]))
+                    self.assertEqual(level["prerequisites"],
+                                     [f"ko-level-{prior:02d}" for prior in range(1, number)])
+        self.assertFalse((self.root / "teaching" / "levels").exists())
+
+    def test_actual_core_branch_and_independent_tourist_routes_close_in_emitted_order(self):
+        levels = [level for phase in self.core["phases"] for level in phase["levels"]]
+        self.assert_route_closes([unit for level in levels for unit in level["units"]])
+        for definition in self.data.inputs["program"]["extensions"]:
+            path = self.root / "teaching" / "extensions" / definition["id"] / "sequence.yaml"
+            extension = yaml.safe_load(self.outputs[path])
+            with self.subTest(branch=definition["id"]):
+                self.assertEqual(extension["prerequisites"], [
+                    f"ko-level-{number:02d}" for number in range(1, definition["after_level"] + 1)
+                ])
+                self.assertTrue(extension["units"])
+                inherited = [unit for level in levels if level["number"] <= definition["after_level"]
+                             for unit in level["units"]]
+                self.assert_route_closes(inherited + extension["units"])
+        for relative in (Path("tourist"), Path("tourist") / "quick-start"):
+            sequence = yaml.safe_load(self.outputs[self.root / "teaching" / relative / "sequence.yaml"])
+            self.assertEqual(sequence["kind"], "route")
+            self.assertNotIn("prerequisites", sequence)
+            self.assert_route_closes(sequence["units"])
+
+    def test_all_compact_views_equal_full_canonical_introductions(self):
+        directories = self.route_directories()
+        self.assertEqual(len(directories), 43)
+        for directory, units in directories.items():
+            sequence = directory / "sequence.yaml"
+            if sequence in self.outputs:
+                expected_records = sum(
+                    len(unit.get(field, [])) for unit in units
+                    for field in ("vocabulary", "grammar", "review_vocabulary", "review_grammar",
+                                  "phrases", "review_phrases")
+                )
+                with self.subTest(sequence=sequence):
+                    self.assertEqual(sum(line.lstrip().startswith("- {id:")
+                                         for line in self.outputs[sequence].splitlines()), expected_records)
+            for kind in ("vocabulary", "grammar", "phrases"):
+                path = directory / f"{kind}.min.yaml"
+                if kind == "phrases" and path not in self.outputs:
+                    continue
+                fields = ("id", "ch", "ds") if kind == "grammar" else ("id", "ch", "pr", "ds")
+                expected = [{key: row[key] for key in fields}
+                            for unit in units for row in unit.get(kind, [])]
+                content = self.outputs[path]
+                with self.subTest(path=path):
+                    self.assertEqual(yaml.safe_load(content), expected)
+                    self.assertEqual(sum(line.startswith("- {id:") for line in content.splitlines()),
+                                     len(expected))
+
+    def test_all_checked_in_views_match_actual_generation(self):
+        for path, expected in self.outputs.items():
+            with self.subTest(path=path):
+                self.assertEqual(path.read_text(encoding="utf-8"), expected)
+
+    def test_real_data_generation_is_deterministic_and_check_never_repairs_stale_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "korean"
+            data = replace(self.data, source_outputs={
+                root / path.relative_to(self.root): content
+                for path, content in self.data.source_outputs.items()
+            })
+            before = deepcopy(data)
+            with patch.object(self.adapter, "load", return_value=data):
+                first = generate(root, self.adapter)
+                original = {path: path.read_bytes() for path in first}
+                self.assertEqual(first, generate(root, self.adapter))
+                generate(root, self.adapter, check=True)
+                self.assertEqual(original, {path: path.read_bytes() for path in first})
+                self.assertEqual(data, before)
+                stale = root / "teaching" / "source-provenance.yaml"
+                stale.write_text("stale\n", encoding="utf-8")
+                expected = {path: path.read_bytes() for path in first}
+                with self.assertRaisesRegex(ValueError, "stale program view"):
+                    generate(root, self.adapter, check=True)
+                self.assertEqual(expected, {path: path.read_bytes() for path in first})
+
+    def test_late_invalid_real_tourist_form_writes_no_partial_program(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "korean"
+            inputs = deepcopy(self.data.inputs)
+            inputs["tourist"]["units"][-1]["phrases"][-1]["realizations"][-1]["form_id"] = "unknown-test-form"
+            data = replace(self.data, inputs=inputs, source_outputs={
+                root / path.relative_to(self.root): content
+                for path, content in self.data.source_outputs.items()
+            })
+            with patch.object(self.adapter, "load", return_value=data), self.assertRaises(ValueError):
+                generate(root, self.adapter)
+            self.assertFalse(root.exists())
 
     def test_all_selected_canonical_records_have_explicit_source_and_reading_evidence(self):
         validate_references(self.references, self.adapter.profile)

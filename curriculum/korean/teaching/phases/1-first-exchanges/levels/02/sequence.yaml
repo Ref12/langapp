@@ -1,0 +1,263 @@
+schema_version: 3
+id: ko-level-02
+title: People, places, and particles
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: level
+number: 2
+phase: first-exchanges
+prerequisites:
+- ko-level-01
+goals: &id001
+- Identify a person or object using subject and topic particles appropriately.
+- Distinguish a location of existence from an action location.
+- Ask where someone is going and whose object this is.
+checkpoint:
+  task: Help a partner locate a missing object and explain who used it and where, preserving the particle contrasts.
+  criteria: *id001
+mastery_profile: ko-item-mastery
+mastery_target: independent-use
+units:
+- id: level-02-people-01
+  title: People and relationships - 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary:
+  - {id: ko-nikl-08256-s001, ch: 사람, pr: 사ː람, ds: a person; a human being}
+  - {id: ko-nikl-34135-s001, ch: 나, pr: 나, ds: I; me (with friends or juniors)}
+  - {id: ko-nikl-49275-s001, ch: 우리, pr: 우리, ds: we; us (including the listener)}
+  - {id: ko-nikl-15334-s001, ch: 누구, pr: 누구, ds: 'who?'}
+  - {id: ko-nikl-26001-s001, ch: 가족, pr: 가족, ds: family; family members}
+  - {id: ko-nikl-20362-s001, ch: 친구, pr: 친구, ds: a friend}
+  - {id: ko-nikl-34672-s001, ch: 남자, pr: 남자, ds: a man; a male person}
+  - {id: ko-nikl-47169-s001, ch: 여자, pr: 여자, ds: a woman; a female person}
+  - {id: ko-nikl-04182-s001, ch: 아버지, pr: 아버지, ds: one's father}
+  - {id: ko-nikl-46417-s001, ch: 어머니, pr: 어머니, ds: one's mother}
+  - {id: ko-nikl-04242-s001, ch: 아이, pr: 아이, ds: a child}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-13297-s001, ch: 저, pr: 저, ds: I; me (humble)}
+  - {id: ko-nikl-10647-s003, ch: 이름, pr: 이름, ds: a person's name}
+  review_grammar:
+  - {id: ko-topik1-g003, ch: N은/는, ds: introduce or contrast a topic}
+- id: level-02-home-01
+  title: Home and daily life - 1
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary:
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-46845-s007, ch: 없다, pr: 업ː따, ds: not to be in a place; to be absent}
+  - {id: ko-nikl-43350-s001, ch: 집, pr: 집, ds: a house; a dwelling}
+  - {id: ko-nikl-40271-s001, ch: 방, pr: 방, ds: a room}
+  - {id: ko-nikl-38354-s001, ch: 문, pr: 문, ds: a door; a gate}
+  - {id: ko-nikl-44361-s001, ch: 책상, pr: 책쌍, ds: a desk}
+  - {id: ko-nikl-10377-s001, ch: 의자, pr: 의자, ds: a chair}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-02-clothing-01
+  title: Clothing and appearance - 1
+  outcome: Describe clothing and distinguish putting it on from wearing it.
+  vocabulary:
+  - {id: ko-nikl-25757-s001, ch: 가방, pr: 가방, ds: a bag}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-02-travel-01
+  title: Travel and transport - 1
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary:
+  - {id: ko-nikl-24126-s001, ch: 한국, pr: 한ː국, ds: South Korea; the Republic of Korea}
+  - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
+  - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-47023-s001, ch: 여기, pr: 여기, ds: here; a place near the speaker}
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  review_grammar: []
+- id: level-02-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-03918-s001, ch: 쓰다, pr: 쓰다, ds: write letters with a writing instrument}
+  - {id: ko-nikl-10048-s001, ch: 선생님, pr: 선생님, ds: a teacher (respectful)}
+  - {id: ko-nikl-24021-s001, ch: 학생, pr: 학쌩, ds: a student}
+  - {id: ko-nikl-23980-s001, ch: 학교, pr: 학꾜, ds: a school}
+  - {id: ko-nikl-44341-s001, ch: 책, pr: 책, ds: a book}
+  - {id: ko-nikl-11667-s001, ch: 읽다, pr: 익따, ds: to read aloud}
+  - {id: ko-nikl-16442-s001, ch: 단어, pr: 다너, ds: a word}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-24130-s001, ch: 한국어, pr: 한ː구거, ds: Korean language}
+  - {id: ko-nikl-47862-s001, ch: 영어, pr: 영어, ds: English language}
+  - {id: ko-nikl-11018-s001, ch: 이해하다, pr: 이ː해하다, ds: to understand; to grasp}
+  - {id: ko-nikl-37433-s001, ch: 모르다, pr: 모ː르다, ds: not to know or understand}
+  - {id: ko-nikl-04578-s001, ch: 알다, pr: 알ː다, ds: to know information or facts}
+  - {id: ko-nikl-40061-s001, ch: 발음, pr: 바름, ds: pronunciation; producing speech sounds}
+  - {id: ko-nikl-19966-s002, ch: 뜻, pr: 뜯, ds: 'meaning of words, writing, or actions'}
+  review_grammar: []
+- id: level-02-communication-01
+  title: Communication and information - 1
+  outcome: Repair ambiguity and relay information with clear attribution.
+  vocabulary:
+  - {id: ko-nikl-16978-s001, ch: 대답하다, pr: 대ː다파다, ds: answer when someone calls}
+  - {id: ko-nikl-38146-s001, ch: 무엇, pr: 무얻, ds: what; an unknown fact or thing}
+  - {id: ko-nikl-52469-s001, ch: 휴대폰, pr: 휴대폰, ds: a mobile phone}
+  - {id: ko-nikl-11153-s002, ch: 인사, pr: 인사, ds: introductions when people first meet}
+  - {id: ko-nikl-19164-s001, ch: 듣다, pr: 듣따, ds: to hear; to perceive a sound}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-44574-s001, ch: 천천히, pr: 천ː천히, ds: slowly; with slow movement or action}
+  - {id: ko-nikl-41331-s003, ch: 좀, pr: 좀, ds: please; just (softening a request)}
+  - {id: ko-nikl-03403-s001, ch: 실례, pr: 실례, ds: a breach of courtesy; an imposition}
+  - {id: ko-nikl-43273-s001, ch: 질문, pr: 질문, ds: a question; asking about something}
+  - {id: ko-nikl-16977-s002, ch: 대답, pr: 대ː답, ds: an answer to a question or request}
+  - {id: ko-nikl-38773-s001, ch: 뭐, pr: 뭐ː, ds: 'what? (conversational)'}
+  - {id: ko-nikl-36518-s003, ch: 맞다, pr: 맏따, ds: to be right; to be so}
+  - {id: ko-nikl-11153-s001, ch: 인사, pr: 인사, ds: a greeting; a farewell}
+  review_grammar:
+  - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+- id: level-02-actions-01
+  title: Actions and processes - 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary:
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  - {id: ko-nikl-48128-s001, ch: 오다, pr: 오다, ds: to come toward here}
+  - {id: ko-nikl-05699-s001, ch: 보다, pr: 보다, ds: to see; to look at}
+  - {id: ko-nikl-04559-s001, ch: 앉다, pr: 안따, ds: to sit down; to sit}
+  - {id: ko-nikl-09720-s001, ch: 서다, pr: 서다, ds: to stand upright}
+  - {id: ko-nikl-23829-s001, ch: 하다, pr: 하다, ds: to do; to perform an activity}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-17939-s001, ch: 도와주다, pr: 도와주다, ds: help; lend support}
+  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
+  review_grammar: []
+- id: level-02-description-01
+  title: Description and comparison - 1
+  outcome: Use descriptive predicates and precise comparison standards.
+  vocabulary:
+  - {id: ko-nikl-41488-s001, ch: 좋다, pr: 조ː타, ds: to be good; to be satisfactory}
+  - {id: ko-nikl-38585-s001, ch: 물건, pr: 물건, ds: a thing; an object}
+  - {id: ko-nikl-20920-s001, ch: 크다, pr: 크다, ds: 'big in length, area, height, or volume'}
+  - {id: ko-nikl-12453-s001, ch: 작다, pr: 작ː따, ds: 'small in length, area, or volume'}
+  - {id: ko-nikl-36198-s001, ch: 많다, pr: 만ː타, ds: to be many; to be much}
+  - {id: ko-nikl-13520-s001, ch: 적다, pr: 적ː따, ds: to be few; to be little in amount}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-30548-s002, ch: 괜찮다, pr: 괜찬타, ds: to be all right; to have no problem}
+  review_grammar: []
+- id: level-02-grammar-01
+  title: Sentence construction and inflection - 1
+  outcome: Select particles and predicate endings to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ko-nikl-10453-s001, ch: 이것, pr: 이걷, ds: this thing near or in mind of the speaker}
+  - {id: ko-nikl-31940-s001, ch: 그것, pr: 그걷, ds: that thing (near the listener)}
+  - {id: ko-nikl-13312-s001, ch: 저것, pr: 저걷, ds: that thing over there}
+  - {id: ko-nikl-11948-s001, ch: 있다, pr: 읻따, ds: exist; be present in reality}
+  - {id: ko-nikl-11948-s013, ch: 있다, pr: 읻따, ds: to have; to possess}
+  - {id: ko-nikl-46845-s001, ch: 없다, pr: 업ː따, ds: not to exist; there is no}
+  - {id: ko-nikl-46845-s011, ch: 없다, pr: 업ː따, ds: not have; lack a possession or qualification}
+  - {id: ko-nikl-04399-s001, ch: 안, pr: 안, ds: not (negating a predicate)}
+  - {id: ko-nikl-27852-s001, ch: 것, pr: 걷, ds: thing or fact not specified; bound noun}
+  - {id: ko-nikl-32042-s001, ch: 그렇다, pr: 그러타, ds: to be so; to be like that}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-04059-s001, ch: 아니다, pr: 아니다, ds: not to be; to be untrue}
+  review_grammar: []
+- id: level-02-register-01
+  title: Register and nuance - 1
+  outcome: Adapt listener endings and implied stance to audience and relationship.
+  vocabulary:
+  - {id: ko-nikl-03975-s001, ch: 씨, pr: 씨, ds: respectful title attached to a person's name}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-02-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
+  review_vocabulary:
+  - {id: ko-nikl-15334-s001, ch: 누구, pr: 누구, ds: 'who?'}
+  - {id: ko-nikl-26001-s001, ch: 가족, pr: 가족, ds: family; family members}
+  - {id: ko-nikl-20362-s001, ch: 친구, pr: 친구, ds: a friend}
+  - {id: ko-nikl-34672-s001, ch: 남자, pr: 남자, ds: a man; a male person}
+  - {id: ko-nikl-47169-s001, ch: 여자, pr: 여자, ds: a woman; a female person}
+  - {id: ko-nikl-04182-s001, ch: 아버지, pr: 아버지, ds: one's father}
+  - {id: ko-nikl-46417-s001, ch: 어머니, pr: 어머니, ds: one's mother}
+  - {id: ko-nikl-04242-s001, ch: 아이, pr: 아이, ds: a child}
+  review_grammar:
+  - {id: ko-topik1-g003, ch: N은/는, ds: introduce or contrast a topic}
+- id: level-02-home-practice-01
+  title: Home and daily life - sentence practice 1
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  review_vocabulary:
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-46845-s007, ch: 없다, pr: 업ː따, ds: not to be in a place; to be absent}
+  - {id: ko-nikl-43350-s001, ch: 집, pr: 집, ds: a house; a dwelling}
+  - {id: ko-nikl-40271-s001, ch: 방, pr: 방, ds: a room}
+  - {id: ko-nikl-38354-s001, ch: 문, pr: 문, ds: a door; a gate}
+  - {id: ko-nikl-44361-s001, ch: 책상, pr: 책쌍, ds: a desk}
+  - {id: ko-nikl-10377-s001, ch: 의자, pr: 의자, ds: a chair}
+  review_grammar: []
+- id: level-02-travel-practice-01
+  title: Travel and transport - sentence practice 1
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
+  review_vocabulary:
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  - {id: ko-nikl-47023-s001, ch: 여기, pr: 여기, ds: here; a place near the speaker}
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  - {id: ko-nikl-24126-s001, ch: 한국, pr: 한ː국, ds: South Korea; the Republic of Korea}
+  - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
+  - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
+  review_grammar: []
+- id: level-02-services-practice-01
+  title: Services and transactions - sentence practice 1
+  outcome: Clarify requirements and resolve a service problem politely.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+  review_vocabulary:
+  - {id: ko-nikl-51680-s001, ch: 화장실, pr: 화장실, ds: toilet; restroom}
+  review_grammar: []
+- id: level-02-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+  review_vocabulary:
+  - {id: ko-nikl-17939-s001, ch: 도와주다, pr: 도와주다, ds: help; lend support}
+  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  - {id: ko-nikl-48128-s001, ch: 오다, pr: 오다, ds: to come toward here}
+  - {id: ko-nikl-05699-s001, ch: 보다, pr: 보다, ds: to see; to look at}
+  - {id: ko-nikl-04559-s001, ch: 앉다, pr: 안따, ds: to sit down; to sit}
+  - {id: ko-nikl-09720-s001, ch: 서다, pr: 서다, ds: to stand upright}
+  - {id: ko-nikl-23829-s001, ch: 하다, pr: 하다, ds: to do; to perform an activity}
+  review_grammar: []
+- id: level-02-home-practice-02
+  title: Home and daily life - sentence practice 2
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
+  review_vocabulary:
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-46845-s007, ch: 없다, pr: 업ː따, ds: not to be in a place; to be absent}
+  - {id: ko-nikl-43350-s001, ch: 집, pr: 집, ds: a house; a dwelling}
+  - {id: ko-nikl-40271-s001, ch: 방, pr: 방, ds: a room}
+  - {id: ko-nikl-38354-s001, ch: 문, pr: 문, ds: a door; a gate}
+  - {id: ko-nikl-44361-s001, ch: 책상, pr: 책쌍, ds: a desk}
+  - {id: ko-nikl-10377-s001, ch: 의자, pr: 의자, ds: a chair}
+  review_grammar:
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}

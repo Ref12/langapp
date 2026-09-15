@@ -1,0 +1,82 @@
+schema_version: 3
+id: ko-level-26
+title: Speech and written register
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: level
+number: 26
+phase: nuance-interpretation
+prerequisites:
+- ko-level-01
+- ko-level-02
+- ko-level-03
+- ko-level-04
+- ko-level-05
+- ko-level-06
+- ko-level-07
+- ko-level-08
+- ko-level-09
+- ko-level-10
+- ko-level-11
+- ko-level-12
+- ko-level-13
+- ko-level-14
+- ko-level-15
+- ko-level-16
+- ko-level-17
+- ko-level-18
+- ko-level-19
+- ko-level-20
+- ko-level-21
+- ko-level-22
+- ko-level-23
+- ko-level-24
+- ko-level-25
+goals: &id001
+- Recast an account between polite conversation and plain written narration.
+- Preserve subject and recipient respect when changing listener endings.
+- Identify forms whose literary or institutional tone is unsuitable for routine conversation.
+checkpoint:
+  task: Adapt the same request and account for a friend, a public notice, and a formal addressee, explaining the changes.
+  criteria: *id001
+mastery_profile: ko-item-mastery
+mastery_target: independent-use
+units:
+- id: level-26-register-01
+  title: Register and nuance - 1
+  outcome: Adapt listener endings and implied stance to audience and relationship.
+  vocabulary:
+  - {id: ko-nikl-43838-s002, ch: 차, pr: 차, ds: bound noun for an occasion or moment of doing something}
+  - {id: ko-nikl-13305-s002, ch: 저, pr: 저ː, ds: um; excuse me (hesitantly opening a topic)}
+  - {id: ko-nikl-13327-s002, ch: 저기, pr: 저기, ds: excuse me; um (an awkward opening)}
+  - {id: ko-nikl-47938-s002, ch: 예, pr: 예ː, ds: yes (polite affirmative)}
+  - {id: ko-nikl-19198-s004, ch: 들다, pr: 들다, ds: to eat (honorific)}
+  - {id: ko-nikl-10048-s002, ch: 선생님, pr: 선생님, ds: a respectful title attached to a name or occupation}
+  - {id: ko-nikl-30902-s001, ch: 구두, pr: 구ː두, ds: spoken words; oral communication}
+  - {id: ko-nikl-48058-s001, ch: 예의, pr: 예의 / 예이, ds: courtesy; socially appropriate manners}
+  - {id: ko-nikl-39634-s001, ch: 반말, pr: 반ː말, ds: informal speech without formal deference}
+  - {id: ko-nikl-39634-s002, ch: 반말, pr: 반ː말, ds: speech lowering the listener}
+  - {id: ko-nikl-41270-s001, ch: 존댓말, pr: 존댄말, ds: respectful language; honorific speech}
+  - {id: ko-nikl-15292-s001, ch: 높임말, pr: 노핌말, ds: honorific language}
+  - {id: ko-nikl-28278-s001, ch: 겸손, pr: 겸손, ds: humility; modesty toward others}
+  - {id: ko-nikl-38004-s001, ch: 무례, pr: 무례, ds: rudeness; discourtesy}
+  - {id: ko-nikl-40908-s002, ch: 버릇, pr: 버륻, ds: manners toward elders or superiors}
+  - {id: ko-nikl-46529-s001, ch: 어조, pr: 어ː조, ds: tone; feelings or thoughts expressed in speech}
+  - {id: ko-nikl-46529-s002, ch: 어조, pr: 어ː조, ds: intonation; pitch of speech}
+  - {id: ko-nikl-19488-s002, ch: 따뜻하다, pr: 따뜨타다, ds: to be warmhearted; to feel welcoming}
+  - {id: ko-nikl-46370-s007, ch: 어렵다, pr: 어렵따, ds: to feel awkward or reserved around someone}
+  - {id: ko-nikl-06377-s004, ch: 부드럽다, pr: 부드럽따, ds: to be gentle or warm in manner}
+  - {id: ko-nikl-15299-s026, ch: 놓다, pr: 노타, ds: to drop honorifics; to speak informally}
+  - {id: ko-nikl-18250-s008, ch: 돌아가다, pr: 도라가다, ds: to pass away (honorific)}
+  - {id: ko-nikl-08596-s001, ch: 사투리, pr: 사ː투리, ds: a regional dialect rather than the standard language}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-03975-s001, ch: 씨, pr: 씨, ds: respectful title attached to a person's name}
+  - {id: ko-nikl-35196-s001, ch: 너, pr: 너, ds: you (to a friend or junior)}
+  - {id: ko-nikl-49275-s003, ch: 우리, pr: 우리, ds: our; my (expressing familiar affiliation)}
+  - {id: ko-nikl-47062-s001, ch: 여러분, pr: 여러분, ds: you all (respectful address)}
+  review_grammar:
+  - {id: ko-topik6-g012, ch: V/A-아/어서야, ds: mark a threshold or express contextual reproach}
+  - {id: ko-topik6-g013, ch: V/A-아/어 봤자, ds: judge a proposed attempt unlikely to help}
+  - {id: ko-topik6-g020, ch: V/A-다니, ds: react with surprise to a newly presented proposition}

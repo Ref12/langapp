@@ -1,0 +1,461 @@
+schema_version: 3
+id: ko-level-04
+title: Routines and plans
+language: korean
+level_basis: Independent communicative progression, not an official TOPIK mapping or examination qualification. Phase headword targets indicate planning scale, not quotas or demonstrated competence. Original AI-authored content requires qualified Korean linguistic review.
+review_policy: Each module introduces at most 25 senses and 3 constructions across small adaptive lessons of about 5-8 new senses; reduce new material when retrieval or inflection is fragile. Select relevant earlier items for retrieval on later days and record modality, assistance, and repair. Reuse familiar vocabulary while changing particles, endings, participants, and register. Coverage is not mastery; target headword scales do not justify filler or forced advancement.
+kind: level
+number: 4
+phase: first-exchanges
+prerequisites:
+- ko-level-01
+- ko-level-02
+- ko-level-03
+goals: &id001
+- Describe a routine with clock times and day expressions.
+- Contrast a completed activity with a future plan.
+- Propose a meeting and distinguish inability from unwillingness.
+checkpoint:
+  task: Arrange a meeting after a schedule conflict and explain what you did earlier and what you plan to do next.
+  criteria: *id001
+mastery_profile: ko-item-mastery
+mastery_target: independent-use
+units:
+- id: level-04-people-01
+  title: People and relationships - 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary:
+  - {id: ko-nikl-36050-s002, ch: 만나다, pr: 만나다, ds: to meet someone}
+  - {id: ko-nikl-05049-s001, ch: 약속, pr: 약쏙, ds: a promise; an appointment}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-15334-s001, ch: 누구, pr: 누구, ds: 'who?'}
+  - {id: ko-nikl-26001-s001, ch: 가족, pr: 가족, ds: family; family members}
+  - {id: ko-nikl-20362-s001, ch: 친구, pr: 친구, ds: a friend}
+  - {id: ko-nikl-34672-s001, ch: 남자, pr: 남자, ds: a man; a male person}
+  - {id: ko-nikl-47169-s001, ch: 여자, pr: 여자, ds: a woman; a female person}
+  - {id: ko-nikl-04182-s001, ch: 아버지, pr: 아버지, ds: one's father}
+  - {id: ko-nikl-46417-s001, ch: 어머니, pr: 어머니, ds: one's mother}
+  - {id: ko-nikl-04242-s001, ch: 아이, pr: 아이, ds: a child}
+  review_grammar:
+  - {id: ko-topik1-g003, ch: N은/는, ds: introduce or contrast a topic}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
+- id: level-04-home-01
+  title: Home and daily life - 1
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary:
+  - {id: ko-nikl-11542-s002, ch: 일어나다, pr: 이러나다, ds: to wake up}
+  - {id: ko-nikl-12081-s001, ch: 자다, pr: 자다, ds: to sleep}
+  - {id: ko-nikl-47651-s001, ch: 열다, pr: 열ː다, ds: to open; to unlock}
+  - {id: ko-nikl-08832-s010, ch: 살다, pr: 살ː다, ds: to live or stay in a place}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-11948-s008, ch: 있다, pr: 읻따, ds: be located; occupy a place}
+  - {id: ko-nikl-46845-s007, ch: 없다, pr: 업ː따, ds: not to be in a place; to be absent}
+  - {id: ko-nikl-43350-s001, ch: 집, pr: 집, ds: a house; a dwelling}
+  - {id: ko-nikl-40271-s001, ch: 방, pr: 방, ds: a room}
+  - {id: ko-nikl-38354-s001, ch: 문, pr: 문, ds: a door; a gate}
+  - {id: ko-nikl-44361-s001, ch: 책상, pr: 책쌍, ds: a desk}
+  - {id: ko-nikl-10377-s001, ch: 의자, pr: 의자, ds: a chair}
+  review_grammar:
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
+- id: level-04-food-01
+  title: Food and meals - 1
+  outcome: Clarify ingredients and preferences and make an appropriate meal request.
+  vocabulary:
+  - {id: ko-nikl-40223-s002, ch: 밥, pr: 밥, ds: a meal}
+  - {id: ko-nikl-04296-s002, ch: 아침, pr: 아침, ds: breakfast}
+  - {id: ko-nikl-14255-s001, ch: 점심, pr: 점ː심, ds: lunch}
+  - {id: ko-nikl-13334-s002, ch: 저녁, pr: 저녁, ds: dinner; the evening meal}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-07059-s001, ch: 불고기, pr: 불고기, ds: bulgogi; grilled marinated beef or pork}
+  - {id: ko-nikl-20058-s001, ch: 라면, pr: 라면, ds: ramyeon; instant noodles}
+  - {id: ko-nikl-28629-s001, ch: 계란, pr: 계란 / 게란, ds: an egg (from a chicken)}
+  - {id: ko-nikl-18621-s001, ch: 돼지고기, pr: 돼ː지고기, ds: pork}
+  - {id: ko-nikl-01420-s001, ch: 쇠고기, pr: 쇠ː고기 / 쉐ː고기, ds: beef}
+  - {id: ko-nikl-16647-s001, ch: 닭고기, pr: 닥꼬기, ds: chicken meat}
+  - {id: ko-nikl-41780-s001, ch: 주스, pr: 주스, ds: fruit or vegetable juice}
+  - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
+  review_grammar:
+  - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
+  - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+  - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
+- id: level-04-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain an ordinary symptom or care need without clinical claims.
+  vocabulary:
+  - {id: ko-nikl-23542-s001, ch: 피곤하다, pr: 피곤하다, ds: be physically or mentally tired; be worn out}
+  - {id: ko-nikl-02389-s001, ch: 쉬다, pr: 쉬ː다, ds: to rest; to relax}
+  - {id: ko-nikl-49456-s001, ch: 운동, pr: 운ː동, ds: physical exercise}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-leisure-01
+  title: Leisure and sport - 1
+  outcome: Explain participation and invite someone without assuming availability.
+  vocabulary:
+  - {id: ko-nikl-05699-s002, ch: 보다, pr: 보다, ds: to watch or enjoy a sight or performance}
+  - {id: ko-nikl-45916-s001, ch: 취미, pr: 취ː미, ds: a hobby; a pastime}
+  - {id: ko-nikl-13081-s001, ch: 재미있다, pr: 재미읻따, ds: to be interesting; to be fun}
+  - {id: ko-nikl-13080-s001, ch: 재미없다, pr: 재미업따, ds: to be boring; not to be fun}
+  - {id: ko-nikl-47912-s001, ch: 영화, pr: 영화, ds: a film; cinema}
+  - {id: ko-nikl-08773-s001, ch: 산책, pr: 산ː책, ds: a stroll; walking for leisure or health}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-29792-s001, ch: 공부하다, pr: 공부하다, ds: study; learn a subject or skill to gain knowledge}
+  - {id: ko-nikl-40665-s001, ch: 배우다, pr: 배우다, ds: to learn new knowledge}
+  - {id: ko-nikl-11667-s002, ch: 읽다, pr: 익따, ds: to read and understand written words}
+  - {id: ko-nikl-29789-s001, ch: 공부, pr: 공부, ds: study; learning knowledge or a skill}
+  - {id: ko-nikl-47492-s001, ch: 연습, pr: 연ː습, ds: practice; repeated training}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-19966-s002, ch: 뜻, pr: 뜯, ds: 'meaning of words, writing, or actions'}
+  - {id: ko-nikl-03918-s001, ch: 쓰다, pr: 쓰다, ds: write letters with a writing instrument}
+  - {id: ko-nikl-10048-s001, ch: 선생님, pr: 선생님, ds: a teacher (respectful)}
+  - {id: ko-nikl-24021-s001, ch: 학생, pr: 학쌩, ds: a student}
+  - {id: ko-nikl-23980-s001, ch: 학교, pr: 학꾜, ds: a school}
+  - {id: ko-nikl-44341-s001, ch: 책, pr: 책, ds: a book}
+  - {id: ko-nikl-11667-s001, ch: 읽다, pr: 익따, ds: to read aloud}
+  - {id: ko-nikl-16442-s001, ch: 단어, pr: 다너, ds: a word}
+  review_grammar: []
+- id: level-04-work-01
+  title: Work and cooperation - 1
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary:
+  - {id: ko-nikl-52048-s001, ch: 회사, pr: 회ː사 / 훼ː사, ds: a company; a business corporation}
+  - {id: ko-nikl-11334-s001, ch: 일, pr: 일ː, ds: work; a task or activity}
+  - {id: ko-nikl-39429-s001, ch: 바쁘다, pr: 바쁘다, ds: to be busy; to have little spare time}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-communication-01
+  title: Communication and information - 1
+  outcome: Repair ambiguity and relay information with clear attribution.
+  vocabulary:
+  - {id: ko-nikl-16978-s002, ch: 대답하다, pr: 대ː다파다, ds: answer a question or respond to a request}
+  - {id: ko-nikl-32064-s001, ch: 그리고, pr: 그리고, ds: and; also (linking statements)}
+  - {id: ko-nikl-23948-s001, ch: 하지만, pr: 하지만, ds: but; however}
+  - {id: ko-nikl-14476-s001, ch: 정말, pr: 정ː말, ds: really; truly}
+  - {id: ko-nikl-14080-s001, ch: 전화, pr: 전ː화, ds: a telephone call; talking by telephone}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-38773-s001, ch: 뭐, pr: 뭐ː, ds: 'what? (conversational)'}
+  - {id: ko-nikl-36518-s003, ch: 맞다, pr: 맏따, ds: to be right; to be so}
+  - {id: ko-nikl-11153-s001, ch: 인사, pr: 인사, ds: a greeting; a farewell}
+  - {id: ko-nikl-16978-s001, ch: 대답하다, pr: 대ː다파다, ds: answer when someone calls}
+  - {id: ko-nikl-38146-s001, ch: 무엇, pr: 무얻, ds: what; an unknown fact or thing}
+  - {id: ko-nikl-52469-s001, ch: 휴대폰, pr: 휴대폰, ds: a mobile phone}
+  - {id: ko-nikl-11153-s002, ch: 인사, pr: 인사, ds: introductions when people first meet}
+  - {id: ko-nikl-19164-s001, ch: 듣다, pr: 듣따, ds: to hear; to perceive a sound}
+  review_grammar:
+  - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
+  - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
+  - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
+- id: level-04-time-01
+  title: Time and events - 1
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary:
+  - {id: ko-nikl-46682-s001, ch: 언제, pr: 언ː제, ds: 'when?'}
+  - {id: ko-nikl-48123-s001, ch: 오늘, pr: 오늘, ds: today}
+  - {id: ko-nikl-35010-s001, ch: 내일, pr: 내일, ds: tomorrow}
+  - {id: ko-nikl-46521-s001, ch: 어제, pr: 어제, ds: yesterday}
+  - {id: ko-nikl-42538-s001, ch: 지금, pr: 지금, ds: now; right now}
+  - {id: ko-nikl-04296-s001, ch: 아침, pr: 아침, ds: morning}
+  - {id: ko-nikl-14255-s002, ch: 점심, pr: 점ː심, ds: noon; midday}
+  - {id: ko-nikl-13334-s001, ch: 저녁, pr: 저녁, ds: evening}
+  - {id: ko-nikl-40179-s001, ch: 밤, pr: 밤, ds: night}
+  - {id: ko-nikl-23853-s001, ch: 하루, pr: 하루, ds: one day; a twenty-four-hour day}
+  - {id: ko-nikl-41578-s001, ch: 주, pr: 주, ds: a week (Monday through Sunday)}
+  - {id: ko-nikl-41683-s001, ch: 주말, pr: 주말, ds: the weekend}
+  - {id: ko-nikl-49842-s001, ch: 월, pr: 월, ds: month (calendar unit)}
+  - {id: ko-nikl-35380-s001, ch: 년, pr: 년, ds: year (counting unit)}
+  - {id: ko-nikl-11338-s001, ch: 일, pr: 일, ds: day (counter for days or dates)}
+  - {id: ko-nikl-02694-s001, ch: 시간, pr: 시간, ds: time; a span of time}
+  - {id: ko-nikl-02696-s001, ch: 시간, pr: 시간, ds: hour (duration unit)}
+  - {id: ko-nikl-02671-s001, ch: 시, pr: 시, ds: o'clock (hour of the day)}
+  - {id: ko-nikl-06807-s001, ch: 분, pr: 분, ds: minute (time unit)}
+  - {id: ko-nikl-11614-s001, ch: 일찍, pr: 일찍, ds: early; ahead of the scheduled time}
+  - {id: ko-nikl-15961-s001, ch: 늦다, pr: 늗따, ds: to be late; to miss the appointed time}
+  - {id: ko-nikl-28734-s001, ch: 계획, pr: 계ː획 / 게ː훽, ds: a plan; planning ahead}
+  - {id: ko-nikl-02694-s002, ch: 시간, pr: 시간, ds: appointed time; particular time of day}
+  - {id: ko-nikl-35011-s001, ch: 내일, pr: 내일, ds: tomorrow; on the next day}
+  - {id: ko-nikl-48124-s001, ch: 오늘, pr: 오늘, ds: today; on the present day}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-12645-s001, ch: 잠깐, pr: 잠깐, ds: for a moment}
+  review_grammar: []
+- id: level-04-time-02
+  title: Time and events - 2
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary:
+  - {id: ko-nikl-12452-s001, ch: 작년, pr: 장년, ds: last year}
+  - {id: ko-nikl-48477-s001, ch: 올해, pr: 올해, ds: this year}
+  - {id: ko-nikl-34852-s001, ch: 내년, pr: 내년, ds: next year}
+  - {id: ko-nikl-42566-s001, ch: 지난주, pr: 지난주, ds: last week}
+  - {id: ko-nikl-32142-s001, ch: 그제, pr: 그제, ds: the day before yesterday; time noun}
+  - {id: ko-nikl-32143-s001, ch: 그제, pr: 그제, ds: on the day before yesterday}
+  - {id: ko-nikl-37428-s001, ch: 모레, pr: 모ː레, ds: the day after tomorrow; time noun}
+  - {id: ko-nikl-37429-s001, ch: 모레, pr: 모ː레, ds: on the day after tomorrow}
+  - {id: ko-nikl-04034-s001, ch: 아까, pr: 아까, ds: a little while ago; time noun}
+  - {id: ko-nikl-04035-s001, ch: 아까, pr: 아까, ds: a little while ago; adverbial use}
+  - {id: ko-nikl-37110-s001, ch: 며칠, pr: 며칠, ds: date of the month}
+  - {id: ko-nikl-37110-s002, ch: 며칠, pr: 며칠, ds: how many days; a few days}
+  - {id: ko-nikl-34291-s001, ch: 나중, pr: 나ː중, ds: later; after some time}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-02671-s001, ch: 시, pr: 시, ds: o'clock (hour of the day)}
+  - {id: ko-nikl-06807-s001, ch: 분, pr: 분, ds: minute (time unit)}
+  - {id: ko-nikl-11614-s001, ch: 일찍, pr: 일찍, ds: early; ahead of the scheduled time}
+  - {id: ko-nikl-15961-s001, ch: 늦다, pr: 늗따, ds: to be late; to miss the appointed time}
+  - {id: ko-nikl-28734-s001, ch: 계획, pr: 계ː획 / 게ː훽, ds: a plan; planning ahead}
+  - {id: ko-nikl-02694-s002, ch: 시간, pr: 시간, ds: appointed time; particular time of day}
+  - {id: ko-nikl-35011-s001, ch: 내일, pr: 내일, ds: tomorrow; on the next day}
+  - {id: ko-nikl-48124-s001, ch: 오늘, pr: 오늘, ds: today; on the present day}
+  review_grammar: []
+- id: level-04-actions-01
+  title: Actions and processes - 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary:
+  - {id: ko-nikl-02914-s001, ch: 시작하다, pr: 시ː자카다, ds: begin; start an action or its initial stage}
+  - {id: ko-nikl-12606-s003, ch: 잘, pr: 잘, ds: well; skillfully}
+  - {id: ko-nikl-03920-s001, ch: 쓰다, pr: 쓰다, ds: 'use a material, tool, or means'}
+  - {id: ko-nikl-19198-s001, ch: 들다, pr: 들다, ds: to hold in the hand}
+  - {id: ko-nikl-32751-s001, ch: 기다리다, pr: 기다리다, ds: to wait for someone or something}
+  - {id: ko-nikl-34068-s001, ch: 끝나다, pr: 끈나다, ds: to end; to be finished}
+  - {id: ko-nikl-27690-s001, ch: 걷다, pr: 걷ː따, ds: to walk}
+  - {id: ko-nikl-42010-s001, ch: 준비, pr: 준ː비, ds: preparation; getting ready}
+  - {id: ko-nikl-02910-s001, ch: 시작, pr: 시ː작, ds: a start; a beginning}
+  - {id: ko-nikl-23715-s001, ch: 필요, pr: 피료, ds: need; being necessary}
+  - {id: ko-nikl-18295-s001, ch: 돕다, pr: 돕ː따, ds: to help; to assist someone with their work}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  - {id: ko-nikl-48128-s001, ch: 오다, pr: 오다, ds: to come toward here}
+  - {id: ko-nikl-05699-s001, ch: 보다, pr: 보다, ds: to see; to look at}
+  - {id: ko-nikl-04559-s001, ch: 앉다, pr: 안따, ds: to sit down; to sit}
+  - {id: ko-nikl-09720-s001, ch: 서다, pr: 서다, ds: to stand upright}
+  - {id: ko-nikl-23829-s001, ch: 하다, pr: 하다, ds: to do; to perform an activity}
+  - {id: ko-nikl-39813-s001, ch: 받다, pr: 받따, ds: to receive something}
+  review_grammar:
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+- id: level-04-description-01
+  title: Description and comparison - 1
+  outcome: Use descriptive predicates and precise comparison standards.
+  vocabulary:
+  - {id: ko-nikl-07856-s001, ch: 빠르다, pr: 빠르다, ds: to be quick in doing something}
+  - {id: ko-nikl-15725-s001, ch: 느리다, pr: 느리다, ds: to be slow in doing something}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-20920-s001, ch: 크다, pr: 크다, ds: 'big in length, area, height, or volume'}
+  - {id: ko-nikl-12453-s001, ch: 작다, pr: 작ː따, ds: 'small in length, area, or volume'}
+  - {id: ko-nikl-36198-s001, ch: 많다, pr: 만ː타, ds: to be many; to be much}
+  - {id: ko-nikl-13520-s001, ch: 적다, pr: 적ː따, ds: to be few; to be little in amount}
+  - {id: ko-nikl-17430-s001, ch: 더, pr: 더, ds: more; further (adding or continuing)}
+  - {id: ko-nikl-04272-s001, ch: 아주, pr: 아주, ds: very; extremely}
+  - {id: ko-nikl-41331-s001, ch: 좀, pr: 좀, ds: a little; somewhat}
+  - {id: ko-nikl-35224-s001, ch: 너무, pr: 너무, ds: too; to an excessive degree}
+  review_grammar: []
+- id: level-04-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain feelings without treating another person's inner state as directly known.
+  vocabulary:
+  - {id: ko-nikl-49829-s001, ch: 원하다, pr: 원ː하다, ds: to want; to wish for}
+  - {id: ko-nikl-41493-s001, ch: 좋아하다, pr: 조ː아하다, ds: to like something}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-26499-s001, ch: 감사하다, pr: 감ː사하다, ds: grateful; feeling gratitude}
+  - {id: ko-nikl-29001-s001, ch: 고맙다, pr: 고ː맙따, ds: to be thankful; to be grateful}
+  review_grammar: []
+- id: level-04-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain causal and conditional relations with appropriate scope.
+  vocabulary:
+  - {id: ko-nikl-48724-s001, ch: 왜, pr: 왜ː, ds: 'why?'}
+  - {id: ko-nikl-31989-s001, ch: 그래서, pr: 그래서, ds: so; therefore}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-grammar-01
+  title: Sentence construction and inflection - 1
+  outcome: Select particles and predicate endings to communicate a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ko-nikl-37811-s001, ch: 못, pr: 몯ː, ds: cannot (unable to perform an action)}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-27852-s001, ch: 것, pr: 걷, ds: thing or fact not specified; bound noun}
+  - {id: ko-nikl-32042-s001, ch: 그렇다, pr: 그러타, ds: to be so; to be like that}
+  - {id: ko-nikl-26923-s001, ch: 개, pr: 개, ds: counter for individual objects}
+  - {id: ko-nikl-37199-s001, ch: 명, pr: 명, ds: counter for people}
+  - {id: ko-nikl-06802-s002, ch: 분, pr: 분, ds: counter for people (respectful)}
+  - {id: ko-nikl-12539-s003, ch: 잔, pr: 잔, ds: cupful; counter for drinks}
+  - {id: ko-nikl-05569-s002, ch: 병, pr: 병, ds: a bottleful (counter)}
+  - {id: ko-nikl-24067-s001, ch: 한, pr: 한, ds: one; before a noun or counter}
+  review_grammar: []
+- id: level-04-arts-01
+  title: Arts and creative works - 1
+  outcome: Support an interpretation with specific details of a work.
+  vocabulary:
+  - {id: ko-nikl-51122-s001, ch: 음악, pr: 으막, ds: music}
+  - {id: ko-nikl-35426-s001, ch: 노래, pr: 노래, ds: a song; singing}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-travel-practice-01
+  title: Travel and transport - sentence practice 1
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
+  review_vocabulary:
+  - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
+  - {id: ko-nikl-47023-s001, ch: 여기, pr: 여기, ds: here; a place near the speaker}
+  - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+  - {id: ko-nikl-24126-s001, ch: 한국, pr: 한ː국, ds: South Korea; the Republic of Korea}
+  - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
+  - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
+  review_grammar:
+  - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
+- id: level-04-learning-practice-01
+  title: Learning and education - sentence practice 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
+  review_vocabulary:
+  - {id: ko-nikl-44341-s001, ch: 책, pr: 책, ds: a book}
+  - {id: ko-nikl-11667-s001, ch: 읽다, pr: 익따, ds: to read aloud}
+  - {id: ko-nikl-16442-s001, ch: 단어, pr: 다너, ds: a word}
+  - {id: ko-nikl-29792-s001, ch: 공부하다, pr: 공부하다, ds: study; learn a subject or skill to gain knowledge}
+  - {id: ko-nikl-40665-s001, ch: 배우다, pr: 배우다, ds: to learn new knowledge}
+  - {id: ko-nikl-11667-s002, ch: 읽다, pr: 익따, ds: to read and understand written words}
+  - {id: ko-nikl-29789-s001, ch: 공부, pr: 공부, ds: study; learning knowledge or a skill}
+  - {id: ko-nikl-47492-s001, ch: 연습, pr: 연ː습, ds: practice; repeated training}
+  review_grammar: []
+- id: level-04-time-practice-01
+  title: Time and events - sentence practice 1
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g009, ch: N에, ds: mark an event's clock time or calendar point}
+  - {id: ko-topik1-g014, ch: N부터 N까지, ds: give starting and ending time bounds}
+  - {id: ko-topik1-g018, ch: V/A-았어요 / -었어요 / -했어요, ds: describe a past event or state politely}
+  review_vocabulary:
+  - {id: ko-nikl-32143-s001, ch: 그제, pr: 그제, ds: on the day before yesterday}
+  - {id: ko-nikl-37428-s001, ch: 모레, pr: 모ː레, ds: the day after tomorrow; time noun}
+  - {id: ko-nikl-37429-s001, ch: 모레, pr: 모ː레, ds: on the day after tomorrow}
+  - {id: ko-nikl-04034-s001, ch: 아까, pr: 아까, ds: a little while ago; time noun}
+  - {id: ko-nikl-04035-s001, ch: 아까, pr: 아까, ds: a little while ago; adverbial use}
+  - {id: ko-nikl-37110-s001, ch: 며칠, pr: 며칠, ds: date of the month}
+  - {id: ko-nikl-37110-s002, ch: 며칠, pr: 며칠, ds: how many days; a few days}
+  - {id: ko-nikl-34291-s001, ch: 나중, pr: 나ː중, ds: later; after some time}
+  review_grammar: []
+- id: level-04-time-practice-02
+  title: Time and events - sentence practice 2
+  outcome: Distinguish time points and duration and relate events in sequence.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g019, ch: V-(으)ㄹ 거예요, ds: express a plan or expected future event}
+  - {id: ko-topik1-g026, ch: V/A-고, ds: connect predicates without asserting a cause}
+  - {id: ko-topik2-g024, ch: N마다, ds: distribute an event over each interval or member}
+  review_vocabulary:
+  - {id: ko-nikl-32143-s001, ch: 그제, pr: 그제, ds: on the day before yesterday}
+  - {id: ko-nikl-37428-s001, ch: 모레, pr: 모ː레, ds: the day after tomorrow; time noun}
+  - {id: ko-nikl-37429-s001, ch: 모레, pr: 모ː레, ds: on the day after tomorrow}
+  - {id: ko-nikl-04034-s001, ch: 아까, pr: 아까, ds: a little while ago; time noun}
+  - {id: ko-nikl-04035-s001, ch: 아까, pr: 아까, ds: a little while ago; adverbial use}
+  - {id: ko-nikl-37110-s001, ch: 며칠, pr: 며칠, ds: date of the month}
+  - {id: ko-nikl-37110-s002, ch: 며칠, pr: 며칠, ds: how many days; a few days}
+  - {id: ko-nikl-34291-s001, ch: 나중, pr: 나ː중, ds: later; after some time}
+  review_grammar:
+  - {id: ko-topik1-g009, ch: N에, ds: mark an event's clock time or calendar point}
+  - {id: ko-topik1-g014, ch: N부터 N까지, ds: give starting and ending time bounds}
+  - {id: ko-topik1-g018, ch: V/A-았어요 / -었어요 / -했어요, ds: describe a past event or state politely}
+- id: level-04-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
+  review_vocabulary:
+  - {id: ko-nikl-20362-s001, ch: 친구, pr: 친구, ds: a friend}
+  - {id: ko-nikl-34672-s001, ch: 남자, pr: 남자, ds: a man; a male person}
+  - {id: ko-nikl-47169-s001, ch: 여자, pr: 여자, ds: a woman; a female person}
+  - {id: ko-nikl-04182-s001, ch: 아버지, pr: 아버지, ds: one's father}
+  - {id: ko-nikl-46417-s001, ch: 어머니, pr: 어머니, ds: one's mother}
+  - {id: ko-nikl-04242-s001, ch: 아이, pr: 아이, ds: a child}
+  - {id: ko-nikl-36050-s002, ch: 만나다, pr: 만나다, ds: to meet someone}
+  - {id: ko-nikl-05049-s001, ch: 약속, pr: 약쏙, ds: a promise; an appointment}
+  review_grammar:
+  - {id: ko-topik1-g003, ch: N은/는, ds: introduce or contrast a topic}
+  - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
+  - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
+- id: level-04-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary: []
+  grammar:
+  - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
+  review_vocabulary:
+  - {id: ko-nikl-19198-s001, ch: 들다, pr: 들다, ds: to hold in the hand}
+  - {id: ko-nikl-32751-s001, ch: 기다리다, pr: 기다리다, ds: to wait for someone or something}
+  - {id: ko-nikl-34068-s001, ch: 끝나다, pr: 끈나다, ds: to end; to be finished}
+  - {id: ko-nikl-27690-s001, ch: 걷다, pr: 걷ː따, ds: to walk}
+  - {id: ko-nikl-42010-s001, ch: 준비, pr: 준ː비, ds: preparation; getting ready}
+  - {id: ko-nikl-02910-s001, ch: 시작, pr: 시ː작, ds: a start; a beginning}
+  - {id: ko-nikl-23715-s001, ch: 필요, pr: 피료, ds: need; being necessary}
+  - {id: ko-nikl-18295-s001, ch: 돕다, pr: 돕ː따, ds: to help; to assist someone with their work}
+  review_grammar:
+  - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+- id: level-04-grammar-practice-01
+  title: Sentence construction and inflection - sentence practice 1
+  outcome: Select particles and predicate endings to communicate a new meaning and explain a relevant contrast.
+  vocabulary: []
+  grammar:
+  - {id: ko-teaching-g003, ch: 듣다 → 들어요 / 듣고, ds: conjugate lexical ㄷ-alternating stems}
+  - {id: ko-teaching-g007, ch: 모르다 → 몰라요 / 빠르다 → 빨라요, ds: conjugate a lexical 르-alternation family}
+  - {id: ko-teaching-g008, ch: 바쁘다 → 바빠요 / 쓰다 → 써요, ds: resolve stem-final ㅡ before an 아/어 ending}
+  review_vocabulary:
+  - {id: ko-nikl-19164-s001, ch: 듣다, pr: 듣따, ds: to hear; to perceive a sound}
+  - {id: ko-nikl-37433-s001, ch: 모르다, pr: 모ː르다, ds: not to know or understand}
+  - {id: ko-nikl-07856-s001, ch: 빠르다, pr: 빠르다, ds: to be quick in doing something}
+  - {id: ko-nikl-39429-s001, ch: 바쁘다, pr: 바쁘다, ds: to be busy; to have little spare time}
+  - {id: ko-nikl-03918-s001, ch: 쓰다, pr: 쓰다, ds: write letters with a writing instrument}
+  - {id: ko-nikl-32042-s001, ch: 그렇다, pr: 그러타, ds: to be so; to be like that}
+  - {id: ko-nikl-26923-s001, ch: 개, pr: 개, ds: counter for individual objects}
+  - {id: ko-nikl-37199-s001, ch: 명, pr: 명, ds: counter for people}
+  - {id: ko-nikl-06802-s002, ch: 분, pr: 분, ds: counter for people (respectful)}
+  - {id: ko-nikl-12539-s003, ch: 잔, pr: 잔, ds: cupful; counter for drinks}
+  - {id: ko-nikl-05569-s002, ch: 병, pr: 병, ds: a bottleful (counter)}
+  - {id: ko-nikl-24067-s001, ch: 한, pr: 한, ds: one; before a noun or counter}
+  - {id: ko-nikl-37811-s001, ch: 못, pr: 몯ː, ds: cannot (unable to perform an action)}
+  review_grammar: []
+- id: level-04-grammar-practice-02
+  title: Sentence construction and inflection - sentence practice 2
+  outcome: Select particles and predicate endings to communicate a new meaning and explain a relevant contrast.
+  vocabulary: []
+  grammar:
+  - {id: ko-teaching-g009, ch: 살다 → 살아요 / 사는 / 삽니다, ds: retain or delete stem ㄹ before a specified ending}
+  review_vocabulary:
+  - {id: ko-nikl-08832-s010, ch: 살다, pr: 살ː다, ds: to live or stay in a place}
+  - {id: ko-nikl-47651-s001, ch: 열다, pr: 열ː다, ds: to open; to unlock}
+  - {id: ko-nikl-32042-s001, ch: 그렇다, pr: 그러타, ds: to be so; to be like that}
+  - {id: ko-nikl-26923-s001, ch: 개, pr: 개, ds: counter for individual objects}
+  - {id: ko-nikl-37199-s001, ch: 명, pr: 명, ds: counter for people}
+  - {id: ko-nikl-06802-s002, ch: 분, pr: 분, ds: counter for people (respectful)}
+  - {id: ko-nikl-12539-s003, ch: 잔, pr: 잔, ds: cupful; counter for drinks}
+  - {id: ko-nikl-05569-s002, ch: 병, pr: 병, ds: a bottleful (counter)}
+  - {id: ko-nikl-24067-s001, ch: 한, pr: 한, ds: one; before a noun or counter}
+  - {id: ko-nikl-37811-s001, ch: 못, pr: 몯ː, ds: cannot (unable to perform an action)}
+  review_grammar:
+  - {id: ko-teaching-g003, ch: 듣다 → 들어요 / 듣고, ds: conjugate lexical ㄷ-alternating stems}
+  - {id: ko-teaching-g007, ch: 모르다 → 몰라요 / 빠르다 → 빨라요, ds: conjugate a lexical 르-alternation family}
+  - {id: ko-teaching-g008, ch: 바쁘다 → 바빠요 / 쓰다 → 써요, ds: resolve stem-final ㅡ before an 아/어 ending}

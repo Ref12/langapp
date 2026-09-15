@@ -5,10 +5,10 @@ a CEFR mapping, or a guarantee of general proficiency. Reference bands describe
 source provenance, not teaching placement. Phase, level, module, and item
 mastery are different things.
 
-**Implementation status:** the independent tourist views and current
-coverage/provenance reports are available. Generated core, phase, level, and
-branch views await the coordinated shared-scheduler integration; their paths
-below describe the intended layout. Vocabulary expansion remains in progress.
+**Implementation status:** generated core, phase, level, branch, and independent
+tourist views are available, alongside current coverage/provenance reports.
+These views cover the actual curated selections; vocabulary expansion remains
+in progress and the full planning-scale curriculum is not yet complete.
 
 ## Choose a route
 
