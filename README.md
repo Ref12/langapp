@@ -10,10 +10,15 @@ Its source, public assets, TypeScript projects, and Vite/PWA configuration live
 there. The repository root owns the shared dependency lockfile, quality gates,
 and deployment assembly; run npm commands from the repository root.
 
-The original app is served at `/v1/` (or `/langapp/v1/` on repository Pages).
-For this first checkpoint, the site root forwards to v1 while preserving query
-parameters and hash routes. Serving the mockups from the root is the next,
-separate checkpoint; the new Mandarin-first experience is not implemented yet.
+The site root now serves the app-only experience mockups directly from
+[`docs/mockups/app.html`](docs/mockups/app.html), with Mandarin sample content.
+This second checkpoint is still an interactive prototype: its progress,
+conversations, and learning interactions are illustrative and memory-only.
+Reloading resets them. It does not access v1's local data or connect live AI.
+
+The original app remains at `/v1/` (or `/langapp/v1/` on repository Pages).
+The device-preview frame is available at `/preview.html`; the writing comparison
+is at `/writing-comparison.html`. Both use the same mockup assets as the root app.
 
 ## Development
 
@@ -22,7 +27,11 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/v1/`. The development server redirects `/` to `/v1/`.
+Open `http://localhost:5173/` for the mockups or
+`http://localhost:5173/v1/` for the archived application. One server hosts both,
+with the original v1 Vite server mounted under `/v1/`. Root mockup changes are
+served directly from `docs/mockups`; no copied frontend source needs updating.
+For standalone v1 development with hot module replacement, use `npm run dev:v1`.
 
 Run the same quality gates as deployment:
 
@@ -37,9 +46,10 @@ npm run build
 Pushes to `main` run `.github/workflows/deploy-pages.yml`. The workflow
 installs from the lockfile, runs lint and tests, creates the production build,
 and deploys `dist` to GitHub Pages. `npm run build:v1` builds the archived app
-into `dist/v1`; `npm run build` also adds the temporary root entry and the
-retirement worker for the former root PWA. `npm run preview` serves the complete
-`dist` site, including `/v1/`.
+into `dist/v1`; `npm run build` also publishes the root mockup HTML, runtime
+assets, and bundled character-data license, plus the retirement worker for the
+former root PWA. Mockup tests, documentation, and screenshot fixtures are not
+published. `npm run preview` serves the complete `dist` site, including `/v1/`.
 
 The app uses hash routing and relative assets so it works at a repository Pages
 path such as `https://ref12.github.io/langapp/v1/`. The v1 manifest and service
@@ -48,10 +58,12 @@ when the browser discovers its update, without clearing IndexedDB or caches.
 
 Moving to a subpath does not move browser storage: v1 retains the `linguaweave`
 IndexedDB database, so existing profiles, imported content, credentials, and
-progress remain available on the same origin. The next app must use a separate
-database unless an explicit migration is introduced.
+progress remain available on the same origin. The root prototype registers no
+service worker and uses no persistent learning database. Future production
+implementation must use a separate database unless an explicit migration is
+introduced.
 
-## Voice tutor setup
+## Voice tutor setup (v1)
 
 1. Keep your preferred OpenAI-compatible endpoint/key/model in **Settings → AI connection**.
 2. Create an Azure Speech resource, then enter its **region identifier** (for example `eastus`) and key in **Settings → Voice and pronunciation**. Acknowledge plaintext browser storage. Saving is not a live connection test. Speech credentials are separate from the LLM and excluded from every backup.

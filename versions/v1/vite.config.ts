@@ -12,6 +12,7 @@ export default defineConfig(async ({ command, isPreview }) => {
 
   return {
     root: fileURLToPath(new URL('.', import.meta.url)),
+    cacheDir: fileURLToPath(new URL('../../node_modules/.vite/v1/', import.meta.url)),
     base: command === 'serve' && !isPreview ? '/v1/' : './',
     build: {
       outDir: '../../dist/v1',
