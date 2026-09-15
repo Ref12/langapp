@@ -13,6 +13,7 @@ from curriculum_yaml import load_yaml
 
 
 SOURCE_ID = "korean-writing-original-pilot"
+RECIPE_VERSION = "2"
 JAMO_RECIPE = "characters/recipes/original-jamo.yaml"
 LAYOUT_RECIPE = "characters/recipes/original-layouts.yaml"
 LEADING = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"
@@ -50,7 +51,7 @@ def load_recipes(root: Path) -> tuple[dict, dict]:
     jamo, layouts = load_yaml(root / JAMO_RECIPE), load_yaml(root / LAYOUT_RECIPE)
     for recipe in (jamo, layouts):
         if (not isinstance(recipe, dict) or recipe.get("source_id") != SOURCE_ID
-                or recipe.get("reviewed") is not False or recipe.get("version") != "1"):
+                or recipe.get("reviewed") is not False or recipe.get("version") != RECIPE_VERSION):
             raise ValueError("Expected versioned original, unreviewed Korean pilot recipes.")
     if set(jamo["consonants"]) != set("ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ"):
         raise ValueError("Pilot needs all 14 basic consonant masters.")
@@ -71,6 +72,10 @@ def load_recipes(root: Path) -> tuple[dict, dict]:
                            or not y <= coordinates[i + 1] <= y + height
                            for i in range(0, len(coordinates), 2)):
                         raise ValueError(f"Original {form} form exceeds its canonical frame.")
+    for paths in [*jamo["vowels"].values(),
+                  *(paths for forms in jamo["vowel_forms"].values() for paths in forms.values())]:
+        for path in paths:
+            parse_path(path)
     pilot = layouts["pilot_syllables"]
     if not isinstance(pilot, list) or len(pilot) != 54 or len(set(pilot)) != 54:
         raise ValueError("Pilot must remain the explicit 54 distinct syllables; scaling needs approval.")
@@ -89,7 +94,7 @@ def letter_paths(jamo: dict, character: str, form: str = "isolated",
         return jamo["consonants"][character][form][:]
     if character in jamo["double_consonants"]:
         base = jamo["double_consonants"][character]
-        paths = letter_paths(jamo, base, form, (*stack, character))
+        paths = letter_paths(jamo, base, "paired-" + form, (*stack, character))
         return [path for transform in jamo["double_placements"][form]
                 for path in placement(paths, transform)]
     if character in jamo["final_clusters"]:
@@ -97,8 +102,10 @@ def letter_paths(jamo: dict, character: str, form: str = "isolated",
             path
             for base, transform in zip(jamo["final_clusters"][character],
                                        jamo["cluster_placements"][form], strict=True)
-            for path in placement(letter_paths(jamo, base, form, (*stack, character)), transform)
+            for path in placement(letter_paths(jamo, base, "paired-" + form, (*stack, character)), transform)
         ]
+    if form in jamo["vowel_forms"].get(character, {}):
+        return jamo["vowel_forms"][character][form][:]
     if form != "isolated":
         raise ValueError(f"No consonant contextual form for {character!r}.")
     if character in jamo["vowels"]:
@@ -106,7 +113,8 @@ def letter_paths(jamo: dict, character: str, form: str = "isolated",
     if character in jamo["compound_vowels"]:
         return [
             path for part in jamo["compound_vowels"][character]
-            for path in placement(letter_paths(jamo, part["character"], stack=(*stack, character)),
+            for path in placement(letter_paths(jamo, part["character"], part.get("form", "isolated"),
+                                               stack=(*stack, character)),
                                   part["placement"])
         ]
     raise ValueError(f"No original pilot letter template for {character!r}.")
@@ -135,7 +143,7 @@ def compose(jamo: dict, layouts: dict, character: str) -> list[dict]:
             for base, transform in zip(bases, layouts["paired_final"], strict=True):
                 override = layouts["paired_final_overrides"].get(base, {})
                 transform = [*transform[:2], override.get("translate_y", transform[2])]
-                paths.extend(placement(letter_paths(jamo, base, override.get("form", "wide")), transform))
+                paths.extend(placement(letter_paths(jamo, base, override.get("form", "paired-wide")), transform))
         else:
             paths = placement(letter_paths(jamo, final, "wide"), layouts["single_final"])
         parts.append({"character": chr(0x11A7 + trailing), "role": "final", "paths": paths})
@@ -238,9 +246,9 @@ def pilot_records(root: Path, inventory: dict) -> tuple[dict[str, CharacterRecor
                 {"source_id": SOURCE_ID, "source_entry": name,
                  "input": name, "sha256": digest} for name, digest in hashes.items()
             ],
-            "transform": {"id": "original-contextual-composer", "version": "1",
+            "transform": {"id": "original-contextual-composer", "version": RECIPE_VERSION,
                           "source_frame": [0, 0, 100, 100], "matrix": [1, 0, 0, 1, 0, 0]},
-            "recipe": {"id": "original-korean-pilot", "version": "1",
+            "recipe": {"id": "original-korean-pilot", "version": RECIPE_VERSION,
                        "input": LAYOUT_RECIPE, "sha256": hashes[LAYOUT_RECIPE]},
             "status": {"generated": True, "validated": True, "reviewed": False},
         }
@@ -264,7 +272,7 @@ def pilot_records(root: Path, inventory: dict) -> tuple[dict[str, CharacterRecor
     contexts = set().union(*(context_cells(c) for c in all_syllables))
     covered = set().union(*(context_cells(c) for c in syllables))
     report = {
-        "version": "1", "authorship": "original-ai-assisted", "reviewed": False,
+        "version": RECIPE_VERSION, "authorship": "original-ai-assisted", "reviewed": False,
         "bulk_generation": "prohibited-pending-review",
         "foundation_keys": sorted(foundations), "pilot_syllables": syllables,
         "literal_signs": sorted(jamo["signs"]), "drawable_count": len(records),

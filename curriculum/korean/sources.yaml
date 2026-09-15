@@ -102,7 +102,7 @@
   attribution: Original langapp contribution, AI-assisted, 2026-09-15. User approval covers authoring a
     bounded pilot with review before scaling, not approval of these geometry candidates.
   retrieved_on: '2026-09-15'
-  revision: '1'
+  revision: '2'
   license_url: https://creativecommons.org/publicdomain/zero/1.0/
   local_notice: licenses/ORIGINAL-WRITING-PILOT.md
 - id: korean-writing-source-audit
@@ -115,6 +115,15 @@
   attribution: Original langapp contribution, AI-assisted; primary sources are identified in the
     assessment. Dictionary and retained third-party reference text keep their separate licenses.
   retrieved_on: '2026-09-15'
-  revision: '2026-09-15.1'
+  revision: '2026-09-15.2'
   license_url: https://creativecommons.org/publicdomain/zero/1.0/
   local_notice: licenses/WRITING-NOTICE.md
+- id: sejong-handwriting-reference
+  title: King Sejong Institute Foundation, Sejong Hakdang Korean Introduction
+  url: https://nuri.iksi.or.kr/front/cms/contents/layout2/learningsejong/detail.do?menuSn=647&csCmsMastrSeq=15258
+  license: Reference-only reading; no textbook artwork, font geometry, or page images redistributed
+  usage: Public ebook diagrams compared for stroke sequence, joins, vowel topology and contextual
+    proportions. Original comparison notes are retained in upstream/writing/handwriting-review.yaml;
+    no paths or coordinates were extracted from the textbook.
+  attribution: King Sejong Institute Foundation. No endorsement or qualified review of the pilot.
+  retrieved_on: '2026-09-15'

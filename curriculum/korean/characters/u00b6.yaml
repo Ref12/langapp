@@ -25,36 +25,36 @@
     locale: ko-KR
     provenance:
     - input: characters/recipes/original-jamo.yaml
-      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
       source_entry: characters/recipes/original-jamo.yaml
       source_id: korean-writing-original-pilot
     - input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
       source_entry: characters/recipes/original-layouts.yaml
       source_id: korean-writing-original-pilot
     recipe:
       id: original-korean-pilot
       input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
-      version: '1'
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
     status:
       generated: true
       reviewed: false
       validated: true
     strokes:
-    - path: M21.95 13.56 L45.71 13.56
-    - path: M21.95 13.56 L21.95 25.44 L45.71 25.44
-    - path: M54.95 13.56 L78.71 13.56
-    - path: M54.95 13.56 L54.95 25.44 L78.71 25.44
+    - path: M20.63 7.62 L44.39 7.62
+    - path: M20.63 7.62 L20.63 31.38 L44.39 31.38
+    - path: M53.63 7.62 L77.39 7.62
+    - path: M53.63 7.62 L53.63 31.38 L77.39 31.38
     - path: M27.6 41.6 L72.4 41.6
     - path: M50 41.6 L50 64
-    - path: M8.2 74.1 L41.8 74.1 L41.8 82.5
-    - path: M8.2 82.5 L41.8 82.5
-    - path: M8.2 82.5 L8.2 90.9 L41.8 90.9
-    - path: M68.7 66.1 L81.3 66.1
-    - path: M60.3 73.66 L89.7 73.66
-    - path: M75 80.8 C67.02 80.8 60.72 83.74 60.72 87.1 C60.72 90.46 67.02 93.4 75 93.4 C82.98 93.4 89.28
-        90.46 89.28 87.1 C89.28 83.74 82.98 80.8 75 80.8
+    - path: M13.3 69.3 L39.7 69.3 L39.7 82.5
+    - path: M13.3 82.5 L39.7 82.5
+    - path: M13.3 82.5 L13.3 95.7 L39.7 95.7
+    - path: M72.5 57.98 L72.5 66.56
+    - path: M59.3 66.56 L85.7 66.56
+    - path: M72.5 73.82 C65.24 73.82 60.62 78.44 60.62 84.38 C60.62 90.32 65.24 95.6 72.5 95.6 C79.76
+        95.6 84.38 90.32 84.38 84.38 C84.38 78.44 79.76 73.82 72.5 73.82
     transform:
       id: original-contextual-composer
       matrix:
@@ -69,4 +69,4 @@
       - 0
       - 100
       - 100
-      version: '1'
+      version: '2'

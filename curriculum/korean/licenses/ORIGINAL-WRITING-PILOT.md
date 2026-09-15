@@ -21,6 +21,12 @@ annotation arrows, unlicensed neural models, or private handwriting recordings.
 The separately retained stroke-diagram README/license are source-gap evidence,
 **not the provenance or license of these original paths**.
 
+Recipe revision 2 corrects defects identified during an AI-assisted comparison
+with public King Sejong Institute Foundation teaching diagrams and user
+feedback. Only original comparison notes and source citations are retained;
+no textbook page artwork, font outlines, or extracted coordinates are included.
+This comparison does not convert the candidates into qualified-reviewed assets.
+
 All generated variants are **unreviewed**. Their metadata distinguishes
 mechanical validation from visual and qualified Korean-language review.
 Original stroke grouping, direction, spacing, and fixed-weight density remain

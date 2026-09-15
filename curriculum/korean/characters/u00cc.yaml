@@ -25,30 +25,30 @@
     locale: ko-KR
     provenance:
     - input: characters/recipes/original-jamo.yaml
-      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
       source_entry: characters/recipes/original-jamo.yaml
       source_id: korean-writing-original-pilot
     - input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
       source_entry: characters/recipes/original-layouts.yaml
       source_id: korean-writing-original-pilot
     recipe:
       id: original-korean-pilot
       input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
-      version: '1'
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
     status:
       generated: true
       reviewed: false
       validated: true
     strokes:
-    - path: M7.38 21.5 L19.08 21.5 Q16.74 34.37 7.38 44.9
-    - path: M13.698 32.498 Q16.038 38.582 19.08 44.9
-    - path: M25.58 21.5 L37.28 21.5 Q34.94 34.37 25.58 44.9
-    - path: M31.898 32.498 Q34.238 38.582 37.28 44.9
+    - path: M7.172 10.424 L17.832 10.424 Q16.5528 21.9368 12.7152 31.744 Q9.304 45.8152 7.172 53.064
+    - path: M12.7152 31.744 Q15.2736 44.536 17.832 53.064
+    - path: M26.412 10.424 L37.072 10.424 Q35.7928 21.9368 31.9552 31.744 Q28.544 45.8152 26.412 53.064
+    - path: M31.9552 31.744 Q34.5136 44.536 37.072 53.064
     - path: M69 7.4 L69 58.6
-    - path: M25.2 70.1 L74.8 70.1 Q63.64 84.36 25.2 94.9
-    - path: M52.48 81.88 Q61.16 88.7 74.8 94.9
+    - path: M25.2 70.1 L74.8 70.1 Q65.5 76.92 51.24 83.12 Q37.6 91.8 25.2 94.9
+    - path: M51.24 83.12 Q63.64 91.18 74.8 94.9
     transform:
       id: original-contextual-composer
       matrix:
@@ -63,7 +63,7 @@
       - 0
       - 100
       - 100
-      version: '1'
+      version: '2'
 찮:
   aliases:
   - kind: canonical-decomposition
@@ -88,33 +88,33 @@
     locale: ko-KR
     provenance:
     - input: characters/recipes/original-jamo.yaml
-      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
       source_entry: characters/recipes/original-jamo.yaml
       source_id: korean-writing-original-pilot
     - input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
       source_entry: characters/recipes/original-layouts.yaml
       source_id: korean-writing-original-pilot
     recipe:
       id: original-korean-pilot
       input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
-      version: '1'
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
     status:
       generated: true
       reviewed: false
       validated: true
     strokes:
-    - path: M17 6.16 L27.4 6.16
-    - path: M9.2 17.6 L35.2 17.6 Q28.96 42.04 9.2 60.24
-    - path: M22.72 36.84 Q28.96 50.88 35.2 60.24
+    - path: M22.2 6.16 L22.2 17.6
+    - path: M9.2 17.6 L35.2 17.6 Q30.52 30.08 21.68 41 Q14.4 53.48 9.2 60.24
+    - path: M21.68 41 Q28.96 52.96 35.2 60.24
     - path: M62.6 7.4 L62.6 58.6
     - path: M62.6 33 L81.8 33
-    - path: M8.2 74.1 L8.2 90.9 L41.8 90.9
-    - path: M68.7 66.1 L81.3 66.1
-    - path: M60.3 73.66 L89.7 73.66
-    - path: M75 80.8 C67.02 80.8 60.72 83.74 60.72 87.1 C60.72 90.46 67.02 93.4 75 93.4 C82.98 93.4 89.28
-        90.46 89.28 87.1 C89.28 83.74 82.98 80.8 75 80.8
+    - path: M13.3 69.3 L13.3 95.7 L39.7 95.7
+    - path: M72.5 57.98 L72.5 66.56
+    - path: M59.3 66.56 L85.7 66.56
+    - path: M72.5 73.82 C65.24 73.82 60.62 78.44 60.62 84.38 C60.62 90.32 65.24 95.6 72.5 95.6 C79.76
+        95.6 84.38 90.32 84.38 84.38 C84.38 78.44 79.76 73.82 72.5 73.82
     transform:
       id: original-contextual-composer
       matrix:
@@ -129,4 +129,4 @@
       - 0
       - 100
       - 100
-      version: '1'
+      version: '2'

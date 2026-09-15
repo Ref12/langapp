@@ -25,35 +25,35 @@
     locale: ko-KR
     provenance:
     - input: characters/recipes/original-jamo.yaml
-      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
       source_entry: characters/recipes/original-jamo.yaml
       source_id: korean-writing-original-pilot
     - input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
       source_entry: characters/recipes/original-layouts.yaml
       source_id: korean-writing-original-pilot
     recipe:
       id: original-korean-pilot
       input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
-      version: '1'
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
     status:
       generated: true
       reviewed: false
       validated: true
     strokes:
-    - path: M17 6.16 L27.4 6.16
+    - path: M22.2 6.16 L22.2 17.6
     - path: M10.24 17.6 L34.16 17.6
     - path: M22.2 26.96 C14.92 26.96 10.24 33.72 10.24 43.6 C10.24 53.48 14.92 60.24 22.2 60.24 C29.48
         60.24 34.16 53.48 34.16 43.6 C34.16 33.72 29.48 26.96 22.2 26.96
     - path: M62.6 7.4 L62.6 58.6
     - path: M62.6 33 L81.8 33
-    - path: M8.2 74.1 L41.8 74.1 L41.8 82.5
-    - path: M8.2 82.5 L41.8 82.5
-    - path: M8.2 82.5 L8.2 90.9 L41.8 90.9
-    - path: M58.2 74.1 L91.8 74.1
-    - path: M58.2 74.1 L58.2 90.9 L91.8 90.9
-    - path: M58.2 82.5 L91.8 82.5
+    - path: M13.3 69.3 L39.7 69.3 L39.7 82.5
+    - path: M13.3 82.5 L39.7 82.5
+    - path: M13.3 82.5 L13.3 95.7 L39.7 95.7
+    - path: M59.3 69.3 L85.7 69.3
+    - path: M59.3 82.5 L85.7 82.5
+    - path: M59.3 69.3 L59.3 95.7 L85.7 95.7
     transform:
       id: original-contextual-composer
       matrix:
@@ -68,4 +68,4 @@
       - 0
       - 100
       - 100
-      version: '1'
+      version: '2'

@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
 source_id: korean-writing-original-pilot
 authorship: Original AI-assisted placements of named canonical forms; no font-derived coordinates.
 reviewed: false
@@ -22,17 +22,17 @@ layouts:
     medial: [0.56, 22, 22]
   mixed-open:
     initial_form: isolated
-    initial: [0.34, 7, 4]
+    initial: [0.34, 15, 4]
     medial: [0.9, 5, 6]
   mixed-final:
     initial_form: isolated
     initial_form_overrides: {ㅎ: hieuh-mixed}
-    initial: [0.24, 12, 2]
+    initial: [0.24, 19, 2]
     medial: [0.68, 15, 5]
 single_final: [0.62, 19, 67]
-paired_final: [[0.42, 4, 72], [0.42, 54, 72]]
+paired_final: [[0.66, 10, 66], [0.66, 56, 66]]
 paired_final_overrides:
-  ㅎ: {form: hieuh-final, translate_y: 64}
+  ㅎ: {form: paired-hieuh-final, translate_y: 56}
 standalone:
   isolated: [0.9, 5, 5]
 pilot_syllables:

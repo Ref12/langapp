@@ -94,6 +94,80 @@ class KoreanPilotTests(unittest.TestCase):
         self.assertEqual(samples[0], samples[-1])
         self.assertGreater(len({tuple(point) for point in samples}), 20)
 
+    def test_requested_vertical_ticks_in_every_hieuh_and_chieuch_form(self):
+        for character in ("ㅎ", "ㅊ"):
+            for form, paths in self.jamo["consonants"][character].items():
+                with self.subTest(character=character, form=form):
+                    tick, bar = parse_path(paths[0], bounded=False), parse_path(paths[1], bounded=False)
+                    self.assertEqual([op for op, _ in tick], ["M", "L"])
+                    start, end = tick[0][1], tick[1][1]
+                    self.assertEqual(start[0], end[0])
+                    self.assertLess(start[1], end[1])
+                    self.assertEqual(end[1], bar[0][1][1])
+                    self.assertLess(bar[0][1][0], end[0])
+                    self.assertGreater(bar[1][1][0], end[0])
+                    self.assertEqual(len(paths), 3)
+
+    def test_branches_join_on_curve_not_at_arbitrary_nearby_points(self):
+        for character in ("ㅅ", "ㅈ", "ㅊ"):
+            for form, paths in self.jamo["consonants"][character].items():
+                with self.subTest(character=character, form=form):
+                    left, right = [parse_path(path, bounded=False) for path in paths[-2:]]
+                    junction = right[0][1]
+                    vertices = [coordinates[-2:] for _, coordinates in left]
+                    self.assertIn(junction, vertices[1:-1])
+                    self.assertLess(vertices[-1][0], junction[0])
+                    self.assertGreater(right[-1][1][-2], junction[0])
+                    self.assertGreater(vertices[-1][1], junction[1])
+                    self.assertGreater(right[-1][1][-1], junction[1])
+
+    def test_joined_vowel_crossbars_reach_the_right_stem(self):
+        for character, bars in (("ㅐ", (1,)), ("ㅒ", (1, 2)), ("ㅙ", (3,))):
+            paths = [parse_path(path) for path in letter_paths(self.jamo, character)]
+            stem_start, stem_end = paths[-1][0][1], paths[-1][-1][1]
+            for index in bars:
+                with self.subTest(character=character, stroke=index):
+                    endpoint = paths[index][-1][1]
+                    self.assertAlmostEqual(endpoint[0], stem_start[0])
+                    self.assertGreater(endpoint[1], stem_start[1])
+                    self.assertLess(endpoint[1], stem_end[1])
+
+    def test_thieuth_draws_middle_bar_before_left_and_bottom(self):
+        for form, paths in self.jamo["consonants"]["ㅌ"].items():
+            with self.subTest(form=form):
+                top, middle, corner = [parse_path(path, bounded=False) for path in paths]
+                self.assertEqual([op for op, _ in top], ["M", "L"])
+                self.assertEqual([op for op, _ in middle], ["M", "L"])
+                self.assertEqual([op for op, _ in corner], ["M", "L", "L"])
+                self.assertLess(top[0][1][1], middle[0][1][1])
+                self.assertLess(middle[0][1][1], corner[-1][1][1])
+                self.assertEqual(corner[0][1][0], corner[1][1][0])
+
+    def test_paired_forms_do_not_halve_component_height(self):
+        def height(paths):
+            coordinates = [values[index + 1] for path in paths
+                           for _, values in parse_path(path, bounded=False)
+                           for index in range(0, len(values), 2)]
+            return max(coordinates) - min(coordinates)
+        for doubled, base in self.jamo["double_consonants"].items():
+            for form in ("isolated", "side", "wide"):
+                with self.subTest(character=doubled, form=form):
+                    original = letter_paths(self.jamo, base, form)
+                    first = letter_paths(self.jamo, doubled, form)[:len(original)]
+                    self.assertGreaterEqual(height(first), 0.8 * height(original))
+
+    def test_mixed_vowel_bars_keep_their_relative_heights(self):
+        for character in ("ㅝ", "ㅞ"):
+            paths = [parse_path(path) for path in letter_paths(self.jamo, character)]
+            u_bar_y, eo_arm_y = paths[0][0][1][1], paths[2][0][1][1]
+            self.assertEqual(u_bar_y, paths[0][-1][1][1])
+            self.assertEqual(paths[1][0][1][0], paths[1][-1][1][0])
+            self.assertGreater(eo_arm_y - u_bar_y, 8)
+            self.assertGreater(paths[3][0][1][0] - paths[0][-1][1][0], 8)
+        for character in ("ㅘ", "ㅙ"):
+            paths = [parse_path(path) for path in letter_paths(self.jamo, character)]
+            self.assertGreater(paths[2][0][1][0] - paths[1][-1][1][0], 8)
+
     def test_composition_preserves_component_order_and_strokes(self):
         for character in self.layouts["pilot_syllables"]:
             parts = compose(self.jamo, self.layouts, character)
@@ -177,6 +251,9 @@ class KoreanPilotTests(unittest.TestCase):
         self.assertIn("102 of 196", html)
         self.assertIn("qualified reviewed: 0", html)
         self.assertIn("UNREVIEWED", html)
+        self.assertIn("Next stroke", html)
+        self.assertIn('class="hide-directions"', html)
+        self.assertIn('id="overview"', html)
         self.assertNotIn("https://fonts.", html)
         for record in self.records.values():
             for stroke in record["variants"][0]["strokes"]:

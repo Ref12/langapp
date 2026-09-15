@@ -25,25 +25,25 @@
     locale: ko-KR
     provenance:
     - input: characters/recipes/original-jamo.yaml
-      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
       source_entry: characters/recipes/original-jamo.yaml
       source_id: korean-writing-original-pilot
     - input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
       source_entry: characters/recipes/original-layouts.yaml
       source_id: korean-writing-original-pilot
     recipe:
       id: original-korean-pilot
       input: characters/recipes/original-layouts.yaml
-      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
-      version: '1'
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
     status:
       generated: true
       reviewed: false
       validated: true
     strokes:
-    - path: M23.6 6.3 L76.4 6.3 Q64.52 21.48 23.6 32.7
-    - path: M52.64 18.84 Q61.88 26.1 76.4 32.7
+    - path: M23.6 6.3 L76.4 6.3 Q66.5 13.56 51.32 20.16 Q36.8 29.4 23.6 32.7
+    - path: M51.32 20.16 Q64.52 28.74 76.4 32.7
     - path: M27.6 50 L72.4 50
     - path: M25.2 70.1 L25.2 94.9
     - path: M74.8 70.1 L74.8 94.9
@@ -63,4 +63,4 @@
       - 0
       - 100
       - 100
-      version: '1'
+      version: '2'

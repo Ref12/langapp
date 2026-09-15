@@ -237,6 +237,9 @@ The [review preview](characters/pilot-preview.html) displays exact final paths,
 stroke order/direction annotations, replay, matching-sample overlays, component
 extents, and conservative density/contact warnings. It supports scalar search
 and a flagged-only filter; `?characters=가값흰` selects a small comparison.
+`?view=overview` shows a compact contact sheet without annotation clutter.
+Direction labels are off initially; **Next stroke** isolates individual
+pen-downs so coincident start labels cannot hide their order.
 Ordinary font labels identify Unicode characters but are not the stroke
 geometry. The same path strings produce completed artwork, replay and samples.
 Small circles/arrows/numbers are annotations, not additional pen strokes.
@@ -279,8 +282,9 @@ missing; neither structural validity nor zero warnings implies readability.
 
 `characters/recipes/original-jamo.yaml` contains 24 core letter masters with
 explicit isolated/side/wide contextual forms, 16 composite alphabet recipes,
-11 final-cluster recipes and two sign candidates. Two additional named HIEUH
-context forms preserve its bars and loop in dense blocks.
+11 final-cluster recipes and two sign candidates. Named HIEUH context forms
+preserve its bar and loop in dense blocks. Narrow paired forms retain height
+when consonants are doubled or clustered.
 `original-layouts.yaml` defines six layout families, uniform placements,
 component-specific contextual selection and the fixed 54-syllable list.
 The composer uses named original em-box forms, not independent bounding-box
@@ -325,3 +329,19 @@ hashes are pinned; the review report also hashes Korean adapter modules.
 Changing paths or recipes requires a new reviewed version, not inherited
 approval. A source refresh is an explicit revision/license/checksum operation.
 Do not edit generated shards or extend the 54-syllable list to bypass review.
+
+### Handwriting correction, recipe revision 2
+
+The first pilot's mechanical checks missed handwriting defects: disconnected
+AE/YAE crossbars, the middle-bar order in THIEUTH, misplaced SIOS/JIEUJ branch
+joins, half-height doubled letters, and incorrect mixed-vowel bar relationships.
+Revision 2 corrects the root templates and regenerates every affected identity
+and pilot syllable. It also selects the user-requested vertical-tick
+HIEUH/CHIEUCH style; horizontal-cap variants exist and are not universally
+incorrect.
+
+The [reference comparison](upstream/writing/handwriting-review.yaml) cites
+actual public King Sejong Institute Foundation teaching diagrams and records
+the corrections and limits. No textbook artwork or font coordinates are
+imported. This corrective self-review is **not qualified Korean approval**;
+all candidate and release gates above remain in force.

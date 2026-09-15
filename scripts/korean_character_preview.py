@@ -27,7 +27,8 @@ def glyph_svg(details: dict, index: int) -> str:
             stroke_index += 1
             samples = sample_path(path)
             paths.append(
-                f'<path class="ink part-{part_index}" d="{escape(path, quote=True)}"/>'
+                f'<path class="ink part-{part_index}" data-stroke="{stroke_index - 1}" '
+                f'd="{escape(path, quote=True)}"/>'
                 f'<path class="trace" pathLength="1" style="--order:{stroke_index - 1}" '
                 f'd="{escape(path, quote=True)}"/>'
             )
@@ -39,11 +40,12 @@ def glyph_svg(details: dict, index: int) -> str:
             angle = math.atan2(after[1] - before[1], after[0] - before[0])
             tip = [before[0] + 3 * math.cos(angle), before[1] + 3 * math.sin(angle)]
             overlays.append(
+                f'<g class="annotation" data-stroke="{stroke_index - 1}">'
                 f'<line class="direction" x1="{_number(before[0])}" y1="{_number(before[1])}" '
                 f'x2="{_number(tip[0])}" y2="{_number(tip[1])}" marker-end="url(#arrow-{index})"/>'
                 f'<circle class="start" cx="{_number(start[0])}" cy="{_number(start[1])}" r="1.4"/>'
                 f'<text class="order" x="{_number(start[0] + 1.5)}" '
-                f'y="{_number(max(5, start[1] - 3))}">{stroke_index}</text>'
+                f'y="{_number(max(5, start[1] - 3))}">{stroke_index}</text></g>'
             )
     return (
         f'<svg viewBox="0 0 100 100" role="img" aria-label="Original unreviewed stroke candidate">'
@@ -75,6 +77,8 @@ def render_preview(inventory: dict, records: dict, report: dict, manifest_hash: 
             + f'<p>{detail["stroke_count"]} logical strokes; original AI-assisted; '
             + escape(records[character]["kind"]) + ".</p>"
             + f'<button type="button" class="replay">Replay {detail["stroke_count"]} strokes</button>'
+            + '<button type="button" class="step">Next stroke</button>'
+            + '<output class="step-status" aria-live="polite">All strokes</output>'
             + "<details><summary>Density / contact hints (" + str(len(flags)) + ")</summary>"
             + warning + "</details><details><summary>Exact final display and sampling paths</summary><ol>"
             + ordered_paths + "</ol></details></article>"
@@ -106,8 +110,15 @@ def render_preview(inventory: dict, records: dict, report: dict, manifest_hash: 
         ".order{fill:#b8193b;font:bold 5px system-ui;paint-order:stroke;stroke:#fff;stroke-width:1}"
         ".start{fill:#b8193b}.show-samples .sample,.show-boxes .component-box{display:block}"
         ".hide-directions .direction,.hide-directions .order,.hide-directions .start{display:none}"
+        ".stepping .ink{opacity:.15}.stepping .ink.current{opacity:1}"
+        ".stepping .annotation:not(.current){display:none}.step-status{display:block;font-size:12px;margin:6px 0}"
+        ".overview .cards{grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}"
+        ".overview article{padding:8px}.overview svg{max-width:130px}.overview h2{font-size:17px}"
+        ".overview h2 small{display:block;font-size:10px}.overview .badge{font-size:7px;padding:2px}"
+        ".overview article p,.overview article button,.overview article details,.overview article output,"
+        ".overview .annotation,.overview .sample,.overview .component-box{display:none}"
         "button,input{font:inherit}button{padding:6px 10px}details{margin-top:8px}code{overflow-wrap:anywhere;"
-        "font-size:11px}li{margin:4px 0}.hidden{display:none}</style></head><body><main>"
+        "font-size:11px}li{margin:4px 0}.hidden{display:none}</style></head><body class=\"hide-directions\"><main>"
         "<h1>Korean original monoline pilot</h1>"
         "<p class=\"warning\"><strong>Original AI-assisted candidates. No qualified Korean approval. "
         "No automatic release.</strong> These paths were authored for this pilot, not imported, traced "
@@ -119,11 +130,15 @@ def render_preview(inventory: dict, records: dict, report: dict, manifest_hash: 
         "The two phonetic-display supplements retain separate inventory reasons, not spelling replacements.</p>"
         f"<p><strong>Context gate:</strong> {contexts['exercised']} of {contexts['total']} observed "
         "initial/vowel/final contextual assignments exercised; qualified reviewed: 0. "
-        f"<strong>{flagged} candidates have density/contact hints.</strong> "
+        f"<strong>Density/contact-flagged candidates: {flagged}.</strong> "
         "Hints are conservative samples, not an exhaustive collision proof; intended contacts also need review. "
         "Fixed pen width is 5.5 in the same 100-unit frame for all parts.</p>"
         "<p>Replay, complete artwork and blue samples use the exact same final paths. "
         "Red numbers/arrows are annotations; dashed boxes show rendered component extents, not fitting targets.</p>"
+        "<p><strong>Revision 2:</strong> vertical-tick ㅎ/ㅊ, connected ㅐ/ㅒ crossbars, corrected ㅌ order, "
+        "joined ㅅ/ㅈ branches, full-height paired forms and revised mixed-vowel spacing. "
+        "Use Next stroke to inspect pen lifts without overlapping labels. "
+        "<a href=\"../upstream/writing/handwriting-review.yaml\">Reference comparison and remaining limits</a>.</p>"
         "<p><a href=\"coverage.yaml\">Authoritative coverage</a> | <a href=\"manifest.yaml\">Manifest</a> | "
         "<a href=\"pilot-review.yaml\">Machine-readable review report</a> | "
         "<a href=\"../licenses/ORIGINAL-WRITING-PILOT.md\">Original asset notice</a> | "
@@ -134,11 +149,13 @@ def render_preview(inventory: dict, records: dict, report: dict, manifest_hash: 
         "<div class=\"controls\"><label>Find scalar <input id=\"find\" size=\"5\" aria-label=\"Find scalar\"></label>"
         "<label><input type=\"checkbox\" id=\"samples\">Samples</label>"
         "<label><input type=\"checkbox\" id=\"boxes\">Component boxes</label>"
-        "<label><input type=\"checkbox\" id=\"directions\" checked>Order / direction</label>"
+        "<label><input type=\"checkbox\" id=\"directions\">Order / direction</label>"
+        "<label><input type=\"checkbox\" id=\"overview\">Overview</label>"
         "<label><input type=\"checkbox\" id=\"flagged\">Flagged only</label></div>"
         "<section class=\"cards\">" + "".join(cards) + "</section>"
         "<script>const body=document.body;for(const [id,name,invert] of "
-        "[['samples','show-samples',false],['boxes','show-boxes',false],['directions','hide-directions',true]]){"
+        "[['samples','show-samples',false],['boxes','show-boxes',false],['directions','hide-directions',true],"
+        "['overview','overview',false]]){"
         "document.getElementById(id).addEventListener('change',e=>body.classList.toggle(name,invert?!e.target.checked:e.target.checked));}"
         "function filter(){const text=document.getElementById('find').value.trim();"
         "const flagged=document.getElementById('flagged').checked;document.querySelectorAll('article').forEach("
@@ -147,7 +164,18 @@ def render_preview(inventory: dict, records: dict, report: dict, manifest_hash: 
         "document.getElementById('flagged').addEventListener('change',filter);"
         "const selected=new URL(location.href).searchParams.get('characters');if(selected){"
         "document.getElementById('find').value=selected;filter();}"
+        "if(new URL(location.href).searchParams.get('view')==='overview'){"
+        "body.classList.add('overview');document.getElementById('overview').checked=true;}"
+        "function showStep(a,index){const count=a.querySelectorAll('.ink').length;"
+        "a.classList.remove('playing');a.classList.toggle('stepping',index<count);"
+        "a.dataset.step=String(index);a.querySelectorAll('.ink,.annotation').forEach("
+        "p=>p.classList.toggle('current',Number(p.dataset.stroke)===index));"
+        "a.querySelector('output').textContent=index<count?'Stroke '+(index+1)+' / '+count:'All strokes';}"
+        "document.querySelectorAll('.step').forEach(b=>b.addEventListener('click',()=>{"
+        "const a=b.closest('article'),count=a.querySelectorAll('.ink').length;"
+        "showStep(a,((a.dataset.step===undefined?count:Number(a.dataset.step))+1)%(count+1));}));"
         "document.querySelectorAll('.replay').forEach(b=>b.addEventListener('click',()=>{"
-        "const a=b.closest('article');a.classList.remove('playing');void a.offsetWidth;a.classList.add('playing');}));"
+        "const a=b.closest('article');showStep(a,a.querySelectorAll('.ink').length);"
+        "void a.offsetWidth;a.classList.add('playing');}));"
         "</script></main></body></html>\n"
     )

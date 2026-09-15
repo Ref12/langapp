@@ -9,13 +9,14 @@ import sys
 from character_assets import InputPin, build_outputs, sha256, write_outputs
 from character_inventory import extract_inventory
 from curriculum_yaml import dump_yaml, load_yaml
-from korean_character_composition import JAMO_RECIPE, LAYOUT_RECIPE, SOURCE_ID, pilot_records
+from korean_character_composition import JAMO_RECIPE, LAYOUT_RECIPE, RECIPE_VERSION, SOURCE_ID, pilot_records
 from korean_character_preview import render_preview
 
 
 ROOT = Path(__file__).resolve().parents[1] / "curriculum"
-ADAPTER_VERSION = "1"
+ADAPTER_VERSION = "2"
 ASSESSMENT = "upstream/writing/source-assessment.yaml"
+HANDWRITING_ASSESSMENT = "upstream/writing/handwriting-review.yaml"
 NOTICE = "licenses/WRITING-NOTICE.md"
 ORIGINAL_NOTICE = "licenses/ORIGINAL-WRITING-PILOT.md"
 SOURCE_VERSION = "935483f7e93d24aa2ec990bca1b43664307768d2"
@@ -53,10 +54,10 @@ def input_pins(language_root: Path) -> list[InputPin]:
         "path": name, "sha256": sha256((language_root / name).read_bytes()),
         "source_id": "korean-writing-source-audit",
         "source_version": assessment["assessment_version"],
-    } for name in (ASSESSMENT, NOTICE))
+    } for name in (ASSESSMENT, HANDWRITING_ASSESSMENT, NOTICE))
     pins.extend({
         "path": name, "sha256": sha256((language_root / name).read_bytes()),
-        "source_id": SOURCE_ID, "source_version": "1",
+        "source_id": SOURCE_ID, "source_version": RECIPE_VERSION,
     } for name in (JAMO_RECIPE, LAYOUT_RECIPE, ORIGINAL_NOTICE))
     return pins
 
