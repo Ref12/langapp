@@ -3,13 +3,19 @@
 from copy import deepcopy
 import math
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
+import zipfile
 
 import yaml
 
-from character_assets import build_outputs, chunk_name, sha256, validate_record, write_outputs
+from character_assets import (
+    build_outputs, chunk_name, sha256, validate_bundle, validate_record, write_outputs,
+)
 from character_geometry import normalize_svg_path, sample_path, transform_path, validate_path
+from character_inventory import extract_inventory, foundation_characters
 from curriculum_yaml import load_yaml, write_yaml
 
 
@@ -45,6 +51,14 @@ class GeometryTests(unittest.TestCase):
         points = sample_path(path, spacing=0.5)
         self.assertEqual(points[0], points[-1])
         self.assertTrue(all(abs(math.dist(point, [50, 50]) - 20) < 0.002 for point in points))
+        self.assertEqual(normalize_svg_path("M70 50A20 20 0 0130 50"),
+                         normalize_svg_path("M70 50A20 20 0 0 1 30 50"))
+
+    def test_source_parser_rejects_nonfinite_degenerate_and_bad_flags(self):
+        for path in ("M10 10A20 20 0 2 1 30 50", "M10 10A1e-300 20 0 0 1 30 50",
+                     "M10 10 L1e999 20", "M10 10Z", "M10 10L20 20 <script>"):
+            with self.subTest(path=path), self.assertRaises(ValueError):
+                normalize_svg_path(path)
 
     def test_fixed_frame_transform_preserves_small_glyph_offset(self):
         self.assertEqual(transform_path("M20 40 L40 60", [0.5, 0, 0, 0.5, 5, 5]),
@@ -190,6 +204,212 @@ class AssetTests(unittest.TestCase):
             modify(record["variants"][0])
             with self.assertRaises(ValueError):
                 self.validate(record)
+
+    def test_bundle_round_trip_and_stale_detection(self):
+        outputs = self.outputs()
+        write_outputs(self.root, outputs)
+        self.assertFalse(validate_bundle(self.root, inventory=self.inventory)["release_ready"])
+        with self.assertRaisesRegex(ValueError, "not release-ready"):
+            validate_bundle(self.root, inventory=self.inventory, require_release=True)
+        path = self.root / "characters" / "u004e.yaml"
+        path.write_bytes(path.read_bytes() + b"\n")
+        with self.assertRaisesRegex(ValueError, "checksum"):
+            validate_bundle(self.root, inventory=self.inventory)
+
+    def test_bundle_rejects_incorrect_shard_membership(self):
+        outputs = self.outputs()
+        write_outputs(self.root, outputs)
+        root = self.root / "characters"
+        (root / "u004e.yaml").rename(root / "u004f.yaml")
+        manifest = load_yaml(root / "manifest.yaml")
+        manifest["chunks"][0]["file"] = "u004f.yaml"
+        write_yaml(root / "manifest.yaml", manifest)
+        with self.assertRaisesRegex(ValueError, "incorrect shard membership"):
+            validate_bundle(self.root, inventory=self.inventory)
+
+    def test_review_does_not_hide_missing_components_or_cross_script(self):
+        self.inventory["required"] = ["\u4e00"]
+        self.inventory["literal_cross_script"] = ["\uff27"]
+        variant = self.record["variants"][0]
+        variant["status"]["reviewed"] = True
+        variant["review"] = {"reviewer": "fixture only", "date": "2026-09-15", "note": "not real artwork"}
+        variant["components"] = [{"character": "\u4e8c", "role": "fixture", "source_id": "test-source"}]
+        coverage = yaml.safe_load(self.outputs()["coverage.yaml"])
+        self.assertEqual(coverage["default_reviewed"], ["\u4e00"])
+        self.assertEqual(coverage["missing_components"], ["\u4e8c"])
+        self.assertEqual(coverage["cross_script_missing"], ["\uff27"])
+        self.assertEqual(coverage["missing_license_inputs"], ["test-source"])
+        self.assertFalse(coverage["release_ready"])
+
+    def test_archive_member_checksums_are_verified_offline(self):
+        path = self.root / "upstream" / "selected.zip"
+        with zipfile.ZipFile(path, "w") as archive:
+            archive.writestr("data/one.txt", b"original bytes")
+        pin = {"path": "upstream/selected.zip", "sha256": sha256(path.read_bytes()),
+               "source_id": "test-source", "source_version": "fixture-archive"}
+        self.inputs.append(pin)
+        provenance = self.record["variants"][0]["provenance"][0]
+        provenance.update(input=pin["path"], sha256=pin["sha256"],
+                          member="data/one.txt", member_sha256=sha256(b"original bytes"))
+        self.outputs()
+        provenance["member_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "member checksum"):
+            self.outputs()
+        provenance["member"] = "../one.txt"
+        with self.assertRaisesRegex(ValueError, "relative"):
+            self.outputs()
+
+    def test_recipe_is_pinned_without_treating_it_as_upstream(self):
+        path = self.root / "characters" / "recipes.yaml"
+        path.parent.mkdir()
+        path.write_bytes(b"fixture: recipe\n")
+        digest = sha256(path.read_bytes())
+        self.inputs.append({"path": "characters/recipes.yaml", "sha256": digest,
+                            "source_id": "test-source", "source_version": "recipe1"})
+        self.record["variants"][0]["recipe"] = {
+            "id": "one", "version": "1", "input": "characters/recipes.yaml", "sha256": digest,
+        }
+        write_outputs(self.root, self.outputs())
+        self.assertEqual(path.read_bytes(), b"fixture: recipe\n")
+        path.write_bytes(b"fixture: changed\n")
+        with self.assertRaisesRegex(ValueError, "checksum"):
+            self.outputs()
+
+    def test_component_links_must_have_source_evidence(self):
+        self.record["variants"][0]["components"] = [
+            {"character": "\u4e8c", "role": "fixture", "source_id": "unsupported"},
+        ]
+        with self.assertRaisesRegex(ValueError, "unknown source"):
+            self.outputs()
+
+    def test_release_gate_requires_review_and_pinned_license_for_every_variant(self):
+        self.inventory["required"] = ["\u4e00"]
+        (self.root / "licenses").mkdir()
+        (self.root / "licenses" / "fixture.txt").write_bytes(b"test fixture license")
+        self.inputs.append({"path": "licenses/fixture.txt", "sha256": sha256(b"test fixture license"),
+                            "source_id": "test-source", "source_version": "fixture-license-1"})
+        variant = self.record["variants"][0]
+        variant["status"]["reviewed"] = True
+        variant["review"] = {"reviewer": "fixture", "date": "2026-09-15", "note": "test only"}
+        outputs = self.outputs()
+        write_outputs(self.root, outputs)
+        self.assertTrue(validate_bundle(self.root, inventory=self.inventory,
+                                        require_release=True)["release_ready"])
+        alternative = deepcopy(variant)
+        alternative["id"] = "unreviewed-alternative"
+        alternative["status"]["reviewed"] = False
+        del alternative["review"]
+        self.record["variants"].append(alternative)
+        coverage = yaml.safe_load(self.outputs()["coverage.yaml"])
+        self.assertEqual(coverage["reviewed"], [])
+        self.assertEqual(coverage["default_reviewed"], ["\u4e00"])
+        self.assertFalse(coverage["release_ready"])
+
+
+class InventoryTests(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root = Path(self.directory.name)
+        level = self.root / "japanese" / "jlpt-n5"
+        level.mkdir(parents=True)
+        write_yaml(self.root / "catalog.yaml", {
+            "schema_version": 1, "languages": [{"id": "japanese", "levels": ["jlpt-n5"]}],
+        })
+        write_yaml(level / "vocabulary.yaml", [{
+            "id": "word1", "target": "\u4e00\uff27", "reading": "\u3044\u3061",
+            "english": "gloss-only \u3013 \u9f8d must never be mined",
+        }])
+        write_yaml(level / "grammar.yaml", [{
+            "id": "grammar1", "pattern": "N+\u3067\u3059",
+            "examples": [{"target": "\u4e8c\u3002", "english": "ignored \u4e09"}],
+        }])
+
+    def test_modern_foundations_exclude_archaic_and_preserve_components(self):
+        japanese = foundation_characters("japanese")
+        self.assertEqual(len(japanese), 177)
+        self.assertNotIn("\u3090", japanese)
+        self.assertNotIn("\u30f7", japanese)
+        self.assertIn("\u3094", japanese)
+        self.assertIn("\u3095", japanese)
+        self.assertEqual(japanese["\u3099"], "component")
+        korean = foundation_characters("korean")
+        self.assertEqual(len(korean), 118)
+        self.assertEqual(korean["\u1100"], "component")
+        self.assertEqual(korean["\u3131"], "character")
+        self.assertNotIn("\u115f", korean)
+        self.assertNotIn("\uac00", korean)
+        self.assertEqual(foundation_characters("chinese"), {})
+
+    def test_inventory_uses_only_authoritative_expanded_fields(self):
+        inventory = extract_inventory(self.root, "japanese")
+        self.assertIn("\u4e00", inventory["required"])
+        self.assertIn("\u4e8c", inventory["required"])
+        self.assertNotIn("\u4e09", inventory["characters"])
+        self.assertNotIn("\u3013", inventory["characters"])
+        self.assertNotIn("\u9f8d", inventory["characters"])
+        self.assertEqual(inventory["literal_cross_script"], ["\uff27"])
+        self.assertIn("N", inventory["notation"])
+        self.assertIn("\u3099", inventory["components"])
+        self.assertNotIn("\u3099", inventory["required"])
+        self.assertEqual(inventory, extract_inventory(self.root, "japanese"))
+        self.assertEqual(len(inventory["inputs"]), 3)
+
+    def test_exact_compatibility_ideographs_are_not_canonicalized(self):
+        path = self.root / "japanese" / "jlpt-n5" / "vocabulary.yaml"
+        write_yaml(path, [{"id": "compat", "target": "\uf900\u8c48", "reading": ""}])
+        inventory = extract_inventory(self.root, "japanese")
+        self.assertIn("\uf900", inventory["required"])
+        self.assertIn("\u8c48", inventory["required"])
+
+    def test_explicit_additions_are_cited_and_stale_sources_fail(self):
+        root = self.root / "japanese"
+        (root / "characters").mkdir()
+        (root / "README.md").write_text("Explicit teaching fixture", encoding="utf-8")
+        write_yaml(root / "characters" / "requirements.yaml", {
+            "schema_version": 1,
+            "characters": {"\u4e09": {"kind": "character", "reason": "Fixture addition",
+                                     "source": "README.md#Explicit teaching fixture"}},
+        })
+        inventory = extract_inventory(self.root, "japanese")
+        self.assertIn("\u4e09", inventory["required"])
+        self.assertIn("supplemental:authored", inventory["scopes"])
+        (root / "README.md").write_text("Changed citation", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "citation"):
+            extract_inventory(self.root, "japanese")
+
+    def test_real_curriculum_snapshot_counts(self):
+        root = Path(__file__).resolve().parents[1] / "curriculum"
+        expected = {"chinese": (2971, 0, 0), "japanese": (2213, 2, 4), "korean": (1276, 67, 0)}
+        for language, (writing, components, cross_script) in expected.items():
+            with self.subTest(language=language):
+                inventory = extract_inventory(root, language)
+                self.assertEqual(inventory["counts"]["writing"], writing)
+                self.assertEqual(len(inventory["components"]), components)
+                self.assertEqual(len(inventory["literal_cross_script"]), cross_script)
+                self.assertEqual(inventory["counts"]["teaching_only"], 0)
+
+    def test_no_write_cli_accepts_honest_missing_bundle_but_not_release(self):
+        root = self.root / "japanese"
+        write_yaml(root / "sources.yaml", [])
+        inventory = extract_inventory(self.root, "japanese")
+        outputs = build_outputs(
+            root, {}, inventory, [], adapter="fixture", adapter_version="1",
+            blocked={character: "No fixture artwork" for character in
+                     inventory["required"] + inventory["components"]},
+        )
+        write_outputs(root, outputs)
+        times = {path: path.stat().st_mtime_ns for path in (root / "characters").iterdir()}
+        command = [sys.executable, str(Path(__file__).with_name("validate_characters.py")),
+                   "--root", str(self.root), "--language", "japanese", "--check"]
+        result = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", check=False)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("release_ready=False", result.stdout)
+        self.assertEqual(times, {path: path.stat().st_mtime_ns for path in times})
+        result = subprocess.run(command + ["--require-release"], capture_output=True, text=True,
+                                encoding="utf-8", check=False)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("not release-ready", result.stderr)
 
 
 if __name__ == "__main__":

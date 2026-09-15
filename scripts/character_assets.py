@@ -6,9 +6,12 @@ from datetime import date
 import hashlib
 from pathlib import Path, PurePosixPath
 import re
-from typing import Literal, NotRequired, TypedDict
+import tarfile
+from typing import Literal, TypedDict
+import zipfile
 
 from character_geometry import SAMPLING, STYLE, finite_number, validate_path
+from character_inventory import extract_inventory, script_of
 from curriculum_yaml import dump_yaml, load_yaml
 
 
@@ -24,11 +27,16 @@ class InputPin(TypedDict):
     source_version: str
 
 
-class Provenance(TypedDict):
+class ProvenanceReference(TypedDict):
     source_id: str
     source_entry: str
     input: str
     sha256: str
+
+
+class Provenance(ProvenanceReference, total=False):
+    member: str
+    member_sha256: str
 
 
 class Stroke(TypedDict):
@@ -89,26 +97,32 @@ class Name(TypedDict):
     source_entry: str
 
 
-class Variant(TypedDict):
+class RequiredVariant(TypedDict):
     id: str
     locale: str
     strokes: list[Stroke]
     provenance: list[Provenance]
     transform: Transform
-    recipe: NotRequired[Recipe]
     status: Status
-    review: NotRequired[Review]
-    components: NotRequired[list[Component]]
-    readings: NotRequired[list[Reading]]
-    names: NotRequired[list[Name]]
 
 
-class CharacterRecord(TypedDict):
+class Variant(RequiredVariant, total=False):
+    recipe: Recipe
+    review: Review
+    components: list[Component]
+    readings: list[Reading]
+    names: list[Name]
+
+
+class RequiredCharacterRecord(TypedDict):
     script: Literal["Han", "Hiragana", "Katakana", "Hangul", "Common", "Inherited"]
     kind: Literal["character", "component", "sign"]
     default_variant: str
     variants: list[Variant]
-    aliases: NotRequired[list[Alias]]
+
+
+class CharacterRecord(RequiredCharacterRecord, total=False):
+    aliases: list[Alias]
 
 
 def sha256(data: bytes) -> str:
@@ -203,6 +217,8 @@ def validate_record(character: str, record: CharacterRecord, *, sources: dict,
     _fields(record, {"script", "kind", "default_variant", "variants"}, {"aliases"}, character)
     if record["script"] not in SCRIPTS or record["kind"] not in ("character", "component", "sign"):
         raise ValueError(f"{character}: invalid script or kind")
+    if record["script"] != script_of(character):
+        raise ValueError(f"{character}: script must preserve its exact Unicode script family")
     aliases = set()
     for alias in _list(record.get("aliases", []), f"{character}.aliases"):
         _fields(alias, {"text", "kind", "policy", "source_id"}, set(), "alias")
@@ -214,6 +230,8 @@ def validate_record(character: str, record: CharacterRecord, *, sources: dict,
             raise ValueError("unknown alias kind")
         _text(alias["policy"], "alias.policy")
         _source(alias["source_id"], sources)
+        if not any(pin["source_id"] == alias["source_id"] for pin in pins.values()):
+            raise ValueError("alias relationship source must have a pinned input")
     variants = set()
     for variant in _list(record["variants"], f"{character}.variants", nonempty=True):
         _fields(variant, {"id", "locale", "strokes", "provenance", "transform", "status"},
@@ -250,6 +268,7 @@ def validate_record(character: str, record: CharacterRecord, *, sources: dict,
             for key in ("id", "version"):
                 _text(recipe[key], f"recipe.{key}")
             _hash(recipe["sha256"], "recipe.sha256")
+            _text(recipe["input"], "recipe.input")
             if recipe["input"] not in pins or recipe["sha256"] != pins[recipe["input"]]["sha256"]:
                 raise ValueError("recipe must reference a pinned input checksum")
         _fields(variant["status"], {"generated", "validated", "reviewed"}, set(), "status")
@@ -269,13 +288,20 @@ def validate_record(character: str, record: CharacterRecord, *, sources: dict,
             date.fromisoformat(variant["review"]["date"])
         provenance_sources = set()
         for provenance in _list(variant["provenance"], "provenance", nonempty=True):
-            _fields(provenance, {"source_id", "source_entry", "input", "sha256"}, set(), "provenance")
+            _fields(provenance, {"source_id", "source_entry", "input", "sha256"},
+                    {"member", "member_sha256"}, "provenance")
             _source(provenance["source_id"], sources)
             _text(provenance["source_entry"], "source_entry")
             _hash(provenance["sha256"], "provenance.sha256")
+            _text(provenance["input"], "provenance.input")
             pin = pins.get(provenance["input"])
             if pin is None or any(pin[key] != provenance[key] for key in ("source_id", "sha256")):
                 raise ValueError("provenance must exactly reference a pinned input and source checksum")
+            if ("member" in provenance) != ("member_sha256" in provenance):
+                raise ValueError("archive provenance needs both member and member_sha256")
+            if "member" in provenance:
+                _relative(provenance["member"])
+                _hash(provenance["member_sha256"], "provenance.member_sha256")
             provenance_sources.add(provenance["source_id"])
         for field, required in (
             ("components", {"character", "role", "source_id"}),
@@ -291,7 +317,7 @@ def validate_record(character: str, record: CharacterRecord, *, sources: dict,
                     raise ValueError(f"{field}: source must be included in variant provenance")
                 if field == "components":
                     _scalar(item["character"])
-    if record["default_variant"] not in variants:
+    if _text(record["default_variant"], "default_variant") not in variants:
         raise ValueError(f"{character}: default_variant must resolve an explicit variant ID")
 
 
@@ -305,7 +331,7 @@ def _stable(value):
 
 def _sources(language_root: Path) -> dict:
     sources = {}
-    for source in _list(load_yaml(language_root / "sources.yaml"), "sources"):
+    for source in _list(load_yaml(_local_file(language_root, "sources.yaml")), "sources"):
         if not isinstance(source, dict):
             raise ValueError("source record must be a mapping")
         identifier = _text(source.get("id"), "source.id")
@@ -315,11 +341,62 @@ def _sources(language_root: Path) -> dict:
     return sources
 
 
+def _verify_archive_members(language_root: Path, records: dict) -> None:
+    requested = {}
+    for record in records.values():
+        for variant in record["variants"]:
+            for provenance in variant["provenance"]:
+                if "member" in provenance:
+                    members = requested.setdefault(provenance["input"], {})
+                    name, digest = provenance["member"], provenance["member_sha256"]
+                    if name in members and members[name] != digest:
+                        raise ValueError(f"conflicting member checksums: {name}")
+                    members[name] = digest
+    for name, wanted in requested.items():
+        path = _local_file(language_root, name)
+        if zipfile.is_zipfile(path):
+            with zipfile.ZipFile(path) as archive:
+                entries = archive.infolist()
+                names = [item.filename.rstrip("/") for item in entries]
+                if len(names) != len(set(names)):
+                    raise ValueError(f"duplicate archive member names: {name}")
+                for member in names:
+                    _relative(member)
+                for member, digest in wanted.items():
+                    if member not in names:
+                        raise ValueError(f"missing archive member: {name}:{member}")
+                    info = archive.getinfo(member)
+                    mode = info.external_attr >> 16
+                    if info.is_dir() or (mode & 0o170000) == 0o120000 or info.file_size > 64 * 1024 * 1024:
+                        raise ValueError(f"archive member is not a bounded regular file: {member}")
+                    if sha256(archive.read(info)) != digest:
+                        raise ValueError(f"archive member checksum mismatch: {name}:{member}")
+        else:
+            with tarfile.open(path, "r:*") as archive:
+                entries = archive.getmembers()
+                names = [item.name.rstrip("/") for item in entries]
+                if len(names) != len(set(names)):
+                    raise ValueError(f"duplicate archive member names: {name}")
+                for member in names:
+                    _relative(member)
+                for member, digest in wanted.items():
+                    if member not in names:
+                        raise ValueError(f"missing archive member: {name}:{member}")
+                    info = archive.getmember(member)
+                    if not info.isfile() or info.size > 64 * 1024 * 1024:
+                        raise ValueError(f"archive member is not a bounded regular file: {member}")
+                    with archive.extractfile(info) as stream:
+                        if sha256(stream.read()) != digest:
+                            raise ValueError(f"archive member checksum mismatch: {name}:{member}")
+
+
 def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inventory: dict,
                   inputs: list[InputPin], *, adapter: str, adapter_version: str,
                   blocked: dict[str, str] | None = None,
                   notice: str | None = None) -> dict[str, str]:
     """Build characters-relative filename -> YAML text, checking every local source pin."""
+    if not isinstance(inventory, dict):
+        raise ValueError("inventory must be a mapping")
     language = inventory.get("language")
     if language not in LANGUAGES:
         raise ValueError("inventory.language must be chinese, japanese, or korean")
@@ -341,6 +418,8 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
         raise ValueError("required and component-only inventory must not overlap")
     if not isinstance(records, dict):
         raise ValueError("records must be a character-keyed mapping")
+    for character in records:
+        _scalar(character)
     blocked = {} if blocked is None else blocked
     if not isinstance(blocked, dict):
         raise ValueError("blocked must map character to explicit source-gap reason")
@@ -350,14 +429,30 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
         if character not in required and character not in components:
             raise ValueError(f"blocked character {character} is not in the inventory")
     chunks, validated, reviewed = {}, [], []
+    default_validated, default_reviewed, variant_status = [], [], {}
     for character in sorted(records):
         record = records[character]
         validate_record(character, record, sources=sources, inputs=inputs)
+        if character in components and record["kind"] != "component":
+            raise ValueError(f"{character}: component-only inventory requires kind: component")
         chunks.setdefault(chunk_name(character), {})[character] = _stable(record)
         if all(variant["status"]["validated"] for variant in record["variants"]):
             validated.append(character)
         if all(variant["status"]["reviewed"] for variant in record["variants"]):
             reviewed.append(character)
+        default = next(variant for variant in record["variants"]
+                       if variant["id"] == record["default_variant"])
+        if default["locale"].split("-")[0] != {"chinese": "zh", "japanese": "ja", "korean": "ko"}[language]:
+            raise ValueError(f"{character}: default variant locale does not match bundle language")
+        if default["status"]["validated"]:
+            default_validated.append(character)
+        if default["status"]["reviewed"]:
+            default_reviewed.append(character)
+        variant_status[character] = {
+            variant["id"]: _stable(variant["status"])
+            for variant in sorted(record["variants"], key=lambda v: v["id"])
+        }
+    _verify_archive_members(language_root, records)
     expected = set(required) | set(components)
     dependency_components = {
         item["character"] for record in records.values() for variant in record["variants"]
@@ -365,6 +460,17 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
     }
     missing_dependencies = sorted(dependency_components - records.keys())
     missing = sorted(expected - records.keys())
+    cross_script_missing = sorted(set(inventory.get("literal_cross_script", [])) - records.keys())
+    literal_signs_missing = sorted(set(inventory.get("literal_signs", [])) - records.keys())
+    used_sources = {
+        provenance["source_id"] for record in records.values() for variant in record["variants"]
+        for provenance in variant["provenance"]
+    }
+    used_sources.update(alias["source_id"] for record in records.values()
+                        for alias in record.get("aliases", []))
+    missing_licenses = sorted(used_sources - {
+        pin["source_id"] for pin in inputs if pin["path"].startswith("licenses/")
+    })
     coverage = {
         "schema_version": SCHEMA_VERSION,
         "language": language,
@@ -374,12 +480,23 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
         "drawable": sorted(records),
         "validated": validated,
         "reviewed": reviewed,
+        "default_validated": default_validated,
+        "default_reviewed": default_reviewed,
+        "variant_status": variant_status,
         "missing": missing,
         "source_blocked": {key: blocked[key] for key in sorted(blocked)},
         "missing_components": missing_dependencies,
+        "cross_script_missing": cross_script_missing,
+        "literal_signs_missing": literal_signs_missing,
+        "missing_license_inputs": missing_licenses,
+        "text_coverage_complete": not missing and not cross_script_missing
+                                  and not literal_signs_missing and not missing_dependencies,
         "extra": sorted(records.keys() - expected),
         "release_ready": bool(expected) and not missing and not blocked and not missing_dependencies
-                         and expected <= set(reviewed),
+                         and not cross_script_missing and not missing_licenses
+                         and (expected | dependency_components
+                              | set(inventory.get("literal_cross_script", []))
+                              | set(records)) <= set(reviewed),
     }
     header = ""
     if notice is not None:
@@ -406,6 +523,12 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
             for name, text in outputs.items() if name in chunks
         ],
         "coverage_sha256": sha256(outputs["coverage.yaml"].encode("utf-8")),
+        "shared_tools": [
+            {"file": name, "sha256": sha256(
+                Path(__file__).with_name(name).read_bytes().replace(b"\r\n", b"\n"),
+            )}
+            for name in ("character_assets.py", "character_geometry.py", "character_inventory.py", "curriculum_yaml.py")
+        ],
         "release_ready": coverage["release_ready"],
     }
     if notice is not None:
@@ -417,11 +540,13 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
 def write_outputs(language_root: Path, outputs: dict[str, str], *, check: bool = False) -> list[str]:
     """Return stale paths; check=True never creates, removes, or modifies anything."""
     root = language_root / "characters"
+    _local_file(language_root, "characters")
     for name, text in outputs.items():
         if not re.fullmatch(r"(?:u[0-9a-f]{4}|manifest|coverage)\.yaml", name):
             raise ValueError(f"unexpected generated filename: {name}")
         if not isinstance(text, str):
             raise ValueError("outputs must contain serialized YAML strings")
+        _local_file(language_root, f"characters/{name}")
     expected = set(outputs)
     existing = {path.name for path in root.glob("u*.yaml")
                 if re.fullmatch(r"u[0-9a-f]{4}\.yaml", path.name)}
@@ -439,3 +564,61 @@ def write_outputs(language_root: Path, outputs: dict[str, str], *, check: bool =
             else:
                 path.unlink()
     return stale
+
+
+def validate_bundle(language_root: Path, *, inventory: dict | None = None,
+                    require_release: bool = False) -> dict:
+    """Check committed structure, source pins, member bytes, coverage, and stale output."""
+    root = language_root / "characters"
+    _local_file(language_root, "characters")
+    manifest = load_yaml(_local_file(language_root, "characters/manifest.yaml"))
+    if not isinstance(manifest, dict) or manifest.get("schema_version") != SCHEMA_VERSION:
+        raise ValueError("invalid character manifest schema")
+    language = manifest.get("language")
+    if language not in LANGUAGES:
+        raise ValueError("invalid manifest language")
+    if inventory is None:
+        inventory = extract_inventory(language_root.parent, language)
+    coverage = load_yaml(_local_file(language_root, "characters/coverage.yaml"))
+    if not isinstance(coverage, dict) or coverage.get("inventory") != inventory:
+        raise ValueError("stale or mismatched curriculum inventory; regenerate the language assets")
+    records, names = {}, []
+    for chunk in _list(manifest.get("chunks"), "manifest.chunks"):
+        _fields(chunk, {"file", "sha256", "characters"}, set(), "chunk")
+        name = _text(chunk["file"], "chunk.file")
+        if not re.fullmatch(r"u[0-9a-f]{4}\.yaml", name) or name in names:
+            raise ValueError("invalid or duplicate manifest chunk filename")
+        names.append(name)
+        _hash(chunk["sha256"], "chunk.sha256")
+        path = _local_file(language_root, f"characters/{name}")
+        if sha256(path.read_bytes()) != chunk["sha256"]:
+            raise ValueError(f"chunk checksum mismatch: {name}")
+        rows = load_yaml(path)
+        if not isinstance(rows, dict):
+            raise ValueError(f"{name}: expected actual-character mapping")
+        if type(chunk["characters"]) is not int or chunk["characters"] != len(rows):
+            raise ValueError(f"{name}: manifest character count mismatch")
+        for character, record in rows.items():
+            if chunk_name(character) != name:
+                raise ValueError(f"{name}: incorrect shard membership for {character}")
+            if character in records:
+                raise ValueError(f"duplicate character key across shards: {character}")
+            records[character] = record
+    if names != sorted(names):
+        raise ValueError("manifest chunks must be sorted")
+    unknown = sorted(path.name for path in root.glob("u*.yaml") if path.name not in names)
+    if unknown:
+        raise ValueError(f"unlisted/stale character chunks: {', '.join(unknown)}")
+    adapter = manifest.get("adapter")
+    _fields(adapter, {"id", "version"}, set(), "manifest.adapter")
+    outputs = build_outputs(
+        language_root, records, inventory, manifest.get("inputs"),
+        adapter=adapter["id"], adapter_version=adapter["version"],
+        blocked=coverage.get("source_blocked"), notice=manifest.get("notice"),
+    )
+    stale = write_outputs(language_root, outputs, check=True)
+    if stale:
+        raise ValueError(f"stale character output: {', '.join(stale)}")
+    if require_release and not coverage["release_ready"]:
+        raise ValueError("character bundle is not release-ready: coverage, provenance, or visual review gaps")
+    return coverage

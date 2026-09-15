@@ -160,11 +160,17 @@ def _arc(start: Point, values: list[float]) -> list[Command]:
     cosine, sine = math.cos(phi), math.sin(phi)
     dx, dy = (start[0] - x) / 2, (start[1] - y) / 2
     xp, yp = cosine * dx + sine * dy, -sine * dx + cosine * dy
-    scale = (xp / rx) ** 2 + (yp / ry) ** 2
+    scale = math.hypot(xp / rx, yp / ry)
+    if not math.isfinite(scale):
+        raise ValueError("SVG arc radii are numerically ill-conditioned")
     if scale > 1:
-        rx, ry = rx * math.sqrt(scale), ry * math.sqrt(scale)
+        rx, ry = rx * scale, ry * scale
+    if max(rx, ry) > 1e12:
+        raise ValueError("SVG arc effective radii are excessive")
     numerator = max(0, rx * rx * ry * ry - rx * rx * yp * yp - ry * ry * xp * xp)
     denominator = rx * rx * yp * yp + ry * ry * xp * xp
+    if not math.isfinite(denominator) or denominator < 1e-250:
+        raise ValueError("SVG arc is numerically ill-conditioned")
     factor = (-1 if large == sweep else 1) * math.sqrt(numerator / denominator)
     cxp, cyp = factor * rx * yp / ry, -factor * ry * xp / rx
     cx = cosine * cxp - sine * cyp + (start[0] + x) / 2
@@ -228,13 +234,31 @@ def normalize_svg_path(path: str, matrix: Sequence[float] = (1, 0, 0, 1, 0, 0)) 
         if not subpaths and op != "M":
             raise ValueError("source path must begin with a moveto")
         size = SOURCE_ARITY[op]
-        raw = tokens[index:index + size]
+        if op == "A":
+            raw = []
+            for position in range(size):
+                if index >= len(tokens) or tokens[index].upper() in SOURCE_ARITY:
+                    raise ValueError("source A has incorrect coordinate count")
+                token = tokens[index]
+                if position in (3, 4):
+                    if token[0] not in "01":
+                        raise ValueError("SVG arc flags must be zero or one")
+                    raw.append(token[0])
+                    if len(token) > 1:
+                        tokens[index] = token[1:]
+                    else:
+                        index += 1
+                else:
+                    raw.append(token)
+                    index += 1
+        else:
+            raw = tokens[index:index + size]
+            index += size
         if len(raw) != size or any(token.upper() in SOURCE_ARITY for token in raw):
             raise ValueError(f"source {op} has incorrect coordinate count")
         values = [float(token) for token in raw]
         if not all(math.isfinite(value) and abs(value) <= 1e9 for value in values):
             raise ValueError("source path has nonfinite or excessive coordinates")
-        index += size
         if relative:
             if op == "H":
                 values[0] += current[0]
