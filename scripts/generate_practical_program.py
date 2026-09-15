@@ -242,12 +242,14 @@ def chunks(values: list, size: int):
 
 
 def schedule_vocabulary(inputs: dict, words: dict, patterns: dict, beginner: dict,
-                        *, first_level: int = 1) -> tuple[list[dict], list[dict]]:
+                        *, first_level: int = 1, seed_vocabulary_levels: dict[str, int] | None = None
+                        ) -> tuple[list[dict], list[dict]]:
     program = inputs["program"]
     placements = placement_rows(inputs["vocabulary"], program, first_level=first_level)
     grammars = placement_rows(inputs["grammar"], program, grammar=True, first_level=first_level)
     taught_words = introduction_index(beginner["units"], "vocabulary")
     taught_grammar = introduction_index(beginner["units"], "grammar")
+    seed_levels = seed_vocabulary_levels if seed_vocabulary_levels is not None else {}
     scheduled = {}
     for row in placements:
         identifier = row["id"]
@@ -267,10 +269,12 @@ def schedule_vocabulary(inputs: dict, words: dict, patterns: dict, beginner: dic
         if (grammar["ch"], grammar["ds"]) != (patterns[identifier]["ch"], patterns[identifier]["ds"]):
             raise ValueError(f"{identifier}: grammar annotation differs from the reference index")
         for anchor in id_list(grammar["anchors"], words, f"{identifier}.anchors"):
-            if anchor in taught_words:
+            if anchor in taught_words and (
+                type(destination) is int or seed_levels.get(anchor, 0) <= extensions[destination]["after_level"]
+            ):
                 continue
             existing = scheduled.get(anchor)
-            old_level = existing["level"] if existing else None
+            old_level = existing["level"] if existing else seed_levels.get(anchor)
             if type(destination) is int:
                 if existing and type(old_level) is int and old_level <= destination:
                     continue
@@ -643,6 +647,10 @@ def program_outputs(root: Path, data: ProgramData, adapter: ProgramAdapter) -> d
         }, words, patterns, refresh=True, language=profile.language, prefix=profile.prefix)
     placements, adjustments = schedule_vocabulary(
         inputs, words, patterns, beginner, first_level=max(seed_levels, default=0) + 1,
+        seed_vocabulary_levels={
+            entry["id"]: seed.level
+            for seed, unit in zip(data.seeds, beginner["units"]) for entry in unit["vocabulary"]
+        },
     )
     if not isinstance(inputs["support"], dict):
         raise ValueError("Support labels must map sense IDs to disambiguators")
@@ -767,6 +775,14 @@ def program_outputs(root: Path, data: ProgramData, adapter: ProgramAdapter) -> d
             if resolved == base or not resolved.is_relative_to(base) or resolved in seen_paths:
                 raise ValueError(f"Colliding or out-of-root output path: {path}")
             seen_paths.add(resolved)
+    for path in seen_paths:
+        if path.is_dir():
+            raise ValueError(f"Output file path is an existing directory: {path}")
+        for parent in path.parents:
+            if parent == base:
+                break
+            if parent in seen_paths or parent.is_file():
+                raise ValueError(f"Output file/directory ancestor conflict: {parent} and {path}")
     outputs.update(data.source_outputs)
     return outputs
 

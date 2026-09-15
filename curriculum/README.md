@@ -332,9 +332,12 @@ inventing exam bands, for example:
 This is a schema example, not a declaration that the French program is enabled.
 Its `reference` directory contains bilingual `vocabulary.yaml`,
 `grammar.yaml`, and an explanatory `README.md`, not an artificial exam-level
-syllabus. Vocabulary uses the shared reference fields; optional expanded
-`senses` are checked by the language adapter rather than Mandarin's sense-ID
-parser. Source notices remain in the language's `sources.yaml`.
+syllabus. Vocabulary uses exactly the nine shared reference fields. Inline
+`senses` are not accepted in these independent reference files: source-specific
+expanded senses belong in separate adapter/build inputs, not an unchecked
+extension of the normalized reference schema. This rule also applies when no
+teaching program is enabled; enabling an unfinished program is not a validation
+workaround. Source notices remain in the language's `sources.yaml`.
 
 The shared owner activates catalog entries only when their artifacts are
 present. Default validation visits active catalog languages. Explicitly

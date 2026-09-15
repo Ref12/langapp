@@ -147,6 +147,27 @@ class NeutralProgramTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "initial level prefix"):
             self.outputs()
 
+    def test_extension_inherits_only_seeded_vocabulary_within_its_core_prerequisites(self):
+        professional = next(row for row in self.data.inputs["grammar"] if row["level"] == "professional")
+        professional["anchors"].append("local:item:020")
+        branch_path = Path("teaching") / "extensions" / "professional" / "vocabulary.min.yaml"
+        expected = self.document(branch_path)
+        self.assertIn("local:item:020", {entry["id"] for entry in expected})
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        levels = [level for phase in core["phases"] for level in phase["levels"] if level["number"] <= 20]
+        seeds = tuple(SeedUnit(level["number"], "grammar", unit) for level in levels for unit in level["units"])
+        for key in ("vocabulary", "grammar"):
+            self.data.inputs[key][:] = [
+                row for row in self.data.inputs[key] if type(row["level"]) is not int or row["level"] > 20
+            ]
+        self.data = replace(self.data, seeds=seeds)
+        self.assertEqual(self.document(branch_path), expected)
+        adjustments = self.document(Path("teaching") / "inventory.yaml")["prerequisite_adjustments"]
+        self.assertIn(
+            {"id": "local:item:020", "from": 20, "to": "professional", "required_by": "construction:031"},
+            adjustments,
+        )
+
     def test_canonical_shapes_labels_and_complete_identity_provenance_are_required(self):
         for mutation in ("identity", "provenance", "label", "grammar-reading", "index-key", "source-identity"):
             with self.subTest(mutation=mutation):
@@ -308,6 +329,18 @@ class NeutralProgramTests(unittest.TestCase):
             generate(self.root, self.adapter)
         self.assertFalse(self.root.exists())
 
+    def test_output_file_ancestor_conflicts_are_rejected_before_any_writes(self):
+        for extra in (
+            {self.root / "teaching": "not a directory"},
+            {self.root / "sources": "a file", self.root / "sources" / "senses.yaml": "[]\n"},
+            {self.root / "sources" / "senses.yaml": "[]\n", self.root / "sources": "a file"},
+        ):
+            with self.subTest(paths=list(extra)):
+                self.adapter.data = replace(self.data, source_outputs=extra)
+                with self.assertRaisesRegex(ValueError, "ancestor conflict"):
+                    generate(self.root, self.adapter)
+                self.assertFalse(self.root.exists())
+
 
 class RegistryTests(unittest.TestCase):
     def setUp(self):
@@ -359,6 +392,46 @@ class RegistryTests(unittest.TestCase):
         with patch("practical_program_registry.import_module", side_effect=error):
             with self.assertRaisesRegex(ValueError, "Enabled french program requires"):
                 get_adapter("french")
+
+    def test_independent_inline_senses_are_rejected_without_enabling_a_program(self):
+        self.catalog["languages"].append({
+            "id": "french", "standard": "Independent teaching inventory", "reference_inventory": "reference",
+        })
+        language = self.root / "french"
+        reference = language / "reference"
+        reference.mkdir(parents=True)
+        for path in (self.root / "README.md", self.root / "TUTOR_GUIDE.md",
+                     language / "README.md", reference / "README.md"):
+            path.write_text("Independent reference documentation.\n", encoding="utf-8")
+        write_yaml(language / "sources.yaml", [{
+            "id": "original-example", "title": "Original test content", "url": "local:reference",
+            "license": "Original test content", "usage": "Test fixtures", "attribution": "Test authors",
+            "retrieved_on": "2026-09-15",
+        }])
+        vocabulary = {
+            "id": "word", "target": "forme", "reading": "reading", "english": "form",
+            "part_of_speech": "noun", "topic": "description", "source_id": "original-example",
+            "source_entry": "local:word", "level_basis": "Independent reference inventory",
+        }
+        write_yaml(reference / "grammar.yaml", [{
+            "id": "construction", "pattern": "N+N", "english": "a noun construction", "note": "A test pattern.",
+            "source_id": "original-example", "level_basis": "Independent original selection",
+            "examples": [{"target": "example one", "english": "First example."},
+                         {"target": "example two", "english": "Second example."}],
+        }])
+        write_yaml(reference / "vocabulary.yaml", [vocabulary])
+        write_yaml(self.root / "catalog.yaml", self.catalog)
+        with patch("validate_curriculum.get_adapter") as adapter:
+            with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                self.assertEqual(Validator(self.root).run(["french"]), 0)
+            for senses in (17, None, {}, [], [{"id": "source", "english": "meaning"}]):
+                with self.subTest(senses=senses):
+                    write_yaml(reference / "vocabulary.yaml", [{**vocabulary, "senses": senses}])
+                    validator = Validator(self.root)
+                    with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                        self.assertEqual(validator.run(["french"]), 1)
+                    self.assertTrue(any("fields must be" in error for error in validator.errors))
+            adapter.assert_not_called()
 
 
 if __name__ == "__main__":
