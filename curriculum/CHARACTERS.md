@@ -126,7 +126,8 @@ normalize_svg_path(path: str, matrix=(1,0,0,1,0,0)) -> list[str]
 
 The normalizer accepts relative/absolute M/L/H/V/C/S/Q/T/A/Z, implicit repeated
 coordinates, reflected controls, closed loops, and explicit pen lifts. It returns
-one canonical path per explicit source subpath. Lines and Beziers transform
+one canonical path per source subpath, including the implicit new subpath when
+drawing follows `Z` without a new moveto. Lines and Beziers transform
 exactly before rounding to six decimals (maximum coordinate rounding error
 0.0000005 frame units). Elliptical arcs use tangent-matched cubic segments of at
 most 22.5 degrees; adapters must reject unsupported source semantics and compare
@@ -194,8 +195,10 @@ coverage and approval coverage are intentionally different.
 target gaps block release; separately reported punctuation does not silently
 become required stroke artwork, but prevents `text_coverage_complete`. That
 field means drawable text coverage only, not review or learner mastery.
-`missing_license_inputs` lists used sources with no pinned local license/notice
-input. These gaps also prevent release. Structural checks cannot certify legal
+`missing_license_inputs` lists cited provenance, alias, component, reading, name,
+and referenced recipe-pin sources with no pinned local license/notice input.
+Unrelated unused pins do not require additional licenses for release. These gaps
+also prevent release. Structural checks cannot certify legal
 permission or expert correctness of a source's own claims.
 
 ## Authoritative inventory and explicit foundations

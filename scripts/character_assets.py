@@ -462,12 +462,14 @@ def build_outputs(language_root: Path, records: dict[str, CharacterRecord], inve
     missing = sorted(expected - records.keys())
     cross_script_missing = sorted(set(inventory.get("literal_cross_script", [])) - records.keys())
     literal_signs_missing = sorted(set(inventory.get("literal_signs", [])) - records.keys())
-    used_sources = {
-        provenance["source_id"] for record in records.values() for variant in record["variants"]
-        for provenance in variant["provenance"]
-    }
-    used_sources.update(alias["source_id"] for record in records.values()
-                        for alias in record.get("aliases", []))
+    used_sources = set()
+    for record in records.values():
+        used_sources.update(alias["source_id"] for alias in record.get("aliases", []))
+        for variant in record["variants"]:
+            for field in ("provenance", "components", "readings", "names"):
+                used_sources.update(item["source_id"] for item in variant.get(field, []))
+            if "recipe" in variant:
+                used_sources.add(pins[variant["recipe"]["input"]]["source_id"])
     missing_licenses = sorted(used_sources - {
         pin["source_id"] for pin in inputs if pin["path"].startswith("licenses/")
     })

@@ -204,8 +204,9 @@ def _arc(start: Point, values: list[float]) -> list[Command]:
 
 
 def normalize_svg_path(path: str, matrix: Sequence[float] = (1, 0, 0, 1, 0, 0)) -> list[str]:
-    """Convert SVG path data to one canonical path per explicit source subpath.
+    """Convert SVG path data to one canonical path per source subpath.
 
+    Drawing after closepath starts a new subpath at the closed subpath's start.
     This does not infer whether animation duplicates represent extra pen lifts.
     Source adapters must resolve that distinction before calling this helper.
     """
@@ -221,6 +222,7 @@ def normalize_svg_path(path: str, matrix: Sequence[float] = (1, 0, 0, 1, 0, 0)) 
         raise ValueError("unsupported source SVG syntax")
     subpaths, current = [], [0.0, 0.0]
     index, command, previous = 0, None, None
+    closed = False
     cubic_control, quadratic_control = None, None
     while index < len(tokens):
         explicit = tokens[index].upper() in SOURCE_ARITY
@@ -269,16 +271,21 @@ def normalize_svg_path(path: str, matrix: Sequence[float] = (1, 0, 0, 1, 0, 0)) 
                 values[-1] += current[1]
             else:
                 values = [value + current[axis % 2] for axis, value in enumerate(values)]
+        if closed and op not in ("M", "Z"):
+            subpaths.append([("M", current[:])])
+            closed = False
         output = []
         if op == "M":
             subpaths.append([("M", values)])
             current = values[:]
             command = "l" if relative else "L"
+            closed = False
         elif op == "Z":
             start = subpaths[-1][0][1]
             if current != start:
                 output = [("L", start[:])]
             current = start[:]
+            closed = True
         elif op == "H":
             output = [("L", [values[0], current[1]])]
         elif op == "V":

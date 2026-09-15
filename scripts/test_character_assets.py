@@ -34,6 +34,32 @@ class GeometryTests(unittest.TestCase):
         self.assertEqual(sample_path(path)[0], sample_path(path)[-1])
         self.assertEqual(len(normalize_svg_path("M10 10L20 20M30 30L40 40")), 2)
 
+    def test_drawing_after_closepath_opens_a_new_subpath(self):
+        triangle = "M10 10 L30 10 L30 30 L10 10"
+        for suffix, expected in (
+            ("L50 10", "M10 10 L50 10"),
+            ("l40 0 0 20", "M10 10 L50 10 L50 30"),
+            ("H50v20z", "M10 10 L50 10 L50 30 L10 10"),
+            ("M40 40 L50 50", "M40 40 L50 50"),
+            ("m20 20 10 10", "M30 30 L40 40"),
+            ("Z L50 10", "M10 10 L50 10"),
+        ):
+            with self.subTest(suffix=suffix):
+                paths = normalize_svg_path("M10 10 L30 10 L30 30 Z " + suffix)
+                self.assertEqual(paths, [triangle, expected])
+                self.assertEqual(sample_path(paths[0])[0], sample_path(paths[0])[-1])
+
+    def test_closepath_resets_reflected_controls_and_keeps_relative_origin(self):
+        for curve, suffix, expected in (
+            ("C15 10 25 30 30 30", "S30 20 40 40", "M10 10 C10 10 30 20 40 40"),
+            ("C15 10 25 30 30 30", "s20 10 30 30", "M10 10 C10 10 30 20 40 40"),
+            ("Q20 30 30 30", "T40 40", "M10 10 Q10 10 40 40"),
+            ("Q20 30 30 30", "t30 30", "M10 10 Q10 10 40 40"),
+        ):
+            with self.subTest(suffix=suffix):
+                paths = normalize_svg_path(f"M10 10 {curve} Z {suffix}")
+                self.assertEqual(paths, [f"M10 10 {curve} L10 10", expected])
+
     def test_normalizes_relative_repeated_and_reflected_curves(self):
         self.assertEqual(normalize_svg_path("m10 10 10 0 0 10"), ["M10 10 L20 10 L20 20"])
         self.assertEqual(
@@ -304,6 +330,69 @@ class AssetTests(unittest.TestCase):
         self.assertEqual(coverage["reviewed"], [])
         self.assertEqual(coverage["default_reviewed"], ["\u4e00"])
         self.assertFalse(coverage["release_ready"])
+
+    def test_license_gate_covers_referenced_recipes_and_all_cited_metadata_sources(self):
+        variant = self.record["variants"][0]
+        variant["status"]["reviewed"] = True
+        variant["review"] = {"reviewer": "fixture", "date": "2026-09-15", "note": "test only"}
+        self.sources["metadata-source"] = {
+            **self.sources["test-source"], "id": "metadata-source",
+        }
+        write_yaml(self.root / "sources.yaml", list(self.sources.values()))
+        for name, source_id, raw in (
+            ("licenses/source.txt", "test-source", b"fixture license"),
+            ("upstream/metadata.txt", "metadata-source", b"fixture metadata"),
+            ("characters/recipes.yaml", "metadata-source", b"fixture recipe"),
+        ):
+            path = self.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(raw)
+            self.inputs.append({"path": name, "sha256": sha256(raw),
+                                "source_id": source_id, "source_version": "fixture-v1"})
+        second = deepcopy(self.record)
+
+        def coverage(record):
+            outputs = build_outputs(
+                self.root, {"\u4e00": record, "\u4e8c": second}, self.inventory, self.inputs,
+                adapter="test", adapter_version="1",
+            )
+            return yaml.safe_load(outputs["coverage.yaml"])
+
+        # Unreferenced metadata/recipe pins do not introduce release license requirements.
+        self.assertTrue(coverage(self.record)["release_ready"])
+        license_path = self.root / "licenses" / "metadata.txt"
+        license_path.write_bytes(b"fixture metadata license")
+        license_pin = {"path": "licenses/metadata.txt", "source_id": "metadata-source",
+                       "source_version": "fixture-v1", "sha256": sha256(license_path.read_bytes())}
+        for field, value in (
+            ("recipe", {"id": "one", "version": "1", "input": "characters/recipes.yaml",
+                        "sha256": sha256(b"fixture recipe")}),
+            ("aliases", [{"text": "\u58f9", "kind": "regional",
+                          "policy": "test-only relation", "source_id": "metadata-source"}]),
+            ("readings", [{"value": "fixture", "system": "fixture",
+                           "source_id": "metadata-source", "source_entry": "one"}]),
+            ("names", [{"value": "fixture", "language": "en",
+                        "source_id": "metadata-source", "source_entry": "one"}]),
+            ("components", [{"character": "\u4e8c", "role": "fixture",
+                             "source_id": "metadata-source"}]),
+        ):
+            with self.subTest(field=field):
+                record = deepcopy(self.record)
+                target = record if field == "aliases" else record["variants"][0]
+                target[field] = value
+                if field in ("readings", "names", "components"):
+                    target["provenance"].append({
+                        "source_id": "metadata-source", "source_entry": "one",
+                        "input": "upstream/metadata.txt", "sha256": sha256(b"fixture metadata"),
+                    })
+                result = coverage(record)
+                self.assertEqual(result["missing_license_inputs"], ["metadata-source"])
+                self.assertFalse(result["release_ready"])
+                self.inputs.append(license_pin)
+                result = coverage(record)
+                self.assertEqual(result["missing_license_inputs"], [])
+                self.assertTrue(result["release_ready"])
+                self.inputs.pop()
 
 
 class InventoryTests(unittest.TestCase):
