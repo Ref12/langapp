@@ -1,0 +1,736 @@
+- {id: ja-n5-00018-s001, ch: 暖かい, pr: あたたかい, ds: warm}
+- {id: ja-n5-00023-s001, ch: 熱い, pr: あつい, ds: hot (to the touch)}
+- {id: ja-n5-00074-s001, ch: いろいろ, pr: いろいろ, ds: various}
+- {id: ja-n5-00094-s001, ch: 多い, pr: おおい, ds: many}
+- {id: ja-n5-00097-s001, ch: 大勢, pr: おおぜい, ds: crowd of people}
+- {id: ja-n5-00096-s001, ch: 大きな, pr: おおきな, ds: big}
+- {id: ja-n5-00376-s001, ch: 小さな, pr: ちいさな, ds: small}
+- {id: ja-n5-00174-s001, ch: かわいい, pr: かわいい, ds: cute}
+- {id: ja-n5-00183-s001, ch: 汚い, pr: きたない, ds: dirty}
+- {id: ja-n5-00083-s001, ch: うるさい, pr: うるさい, ds: noisy}
+- {id: ja-n5-00301-s001, ch: 丈夫, pr: じょうぶ, ds: healthy}
+- {id: ja-n5-00354-s001, ch: 大切, pr: たいせつ, ds: important}
+- {id: ja-n5-00356-s001, ch: 大変, pr: たいへん, ds: very}
+- {id: ja-n5-00364-s001, ch: 楽しい, pr: たのしい, ds: enjoyable}
+- {id: ja-n5-00395-s001, ch: つまらない, pr: つまらない, ds: dull}
+- {id: ja-n5-00434-s001, ch: とても, pr: とても, ds: very}
+- {id: ja-n5-00655-s001, ch: 弱い, pr: よわい, ds: weak}
+- {id: ja-n5-00397-s001, ch: 強い, pr: つよい, ds: strong}
+- {id: ja-n5-00593-s001, ch: 丸い, pr: まるい, ds: round}
+- {id: ja-n5-00177-s001, ch: 黄色, pr: きいろ, ds: yellow}
+- {id: ja-n5-00219-s001, ch: 黒, pr: くろ, ds: black}
+- {id: ja-n5-00305-s001, ch: 白, pr: しろ, ds: white}
+- {id: ja-n5-00004-s001, ch: 赤, pr: あか, ds: red}
+- {id: ja-n5-00002-s001, ch: 青, pr: あお, ds: blue}
+- {id: ja-n5-00382-s001, ch: 茶色, pr: ちゃいろ, ds: brown}
+- {id: ja-n5-00606-s001, ch: 緑, pr: みどり, ds: green}
+- {id: ja-n5-00178-s001, ch: 黄色い, pr: きいろい, ds: yellow}
+- {id: ja-n5-00121-s001, ch: 同じ, pr: おなじ, ds: same}
+- {id: ja-n5-00378-s001, ch: 違う, pr: ちがう, ds: to differ (from)}
+- {id: ja-n5-00261-s001, ch: 先, pr: さき, ds: tip; pointed end}
+- {id: ja-n5-00006-s003, ch: 明るい, pr: あかるい, ds: cheerful}
+- {id: ja-n5-00003-s003, ch: 青い, pr: あおい, ds: pale (facial color)}
+- {id: ja-n5-00031-s001, ch: アパート, pr: アパート, ds: apartment building}
+- {id: ja-n5-00159-s001, ch: 家庭, pr: かてい, ds: home}
+- {id: ja-n5-00227-s001, ch: 玄関, pr: げんかん, ds: entrance}
+- {id: ja-n5-00355-s001, ch: 台所, pr: だいどころ, ds: kitchen}
+- {id: ja-n5-00472-s001, ch: 庭, pr: にわ, ds: garden}
+- {id: ja-n5-00672-s001, ch: 廊下, pr: ろうか, ds: corridor}
+- {id: ja-n5-00592-s001, ch: 窓, pr: まど, ds: window}
+- {id: ja-n5-00417-s001, ch: ドア, pr: ドア, ds: door}
+- {id: ja-n5-00416-s001, ch: 戸, pr: と, ds: door (esp. Japanese-style)}
+- {id: ja-n5-00400-s001, ch: テーブル, pr: テーブル, ds: table}
+- {id: ja-n5-00556-s001, ch: ベッド, pr: ベッド, ds: bed}
+- {id: ja-n5-00573-s001, ch: 本棚, pr: ほんだな, ds: bookshelves}
+- {id: ja-n5-00668-s001, ch: 冷蔵庫, pr: れいぞうこ, ds: refrigerator}
+- {id: ja-n5-00413-s001, ch: 電気, pr: でんき, ds: electricity}
+- {id: ja-n5-00126-s001, ch: お風呂, pr: おふろ, ds: bath}
+- {id: ja-n5-00552-s001, ch: 風呂, pr: ふろ, ds: bath}
+- {id: ja-n5-00295-s001, ch: シャワー, pr: シャワー, ds: shower}
+- {id: ja-n5-00327-s001, ch: 石鹸, pr: せっけん, ds: soap}
+- {id: ja-n5-00335-s001, ch: 洗濯, pr: せんたく, ds: washing}
+- {id: ja-n5-00337-s001, ch: 掃除, pr: そうじ, ds: cleaning}
+- {id: ja-n5-00223-s001, ch: 消す, pr: けす, ds: to erase}
+- {id: ja-n5-00393-s001, ch: つける, pr: つける, ds: to attach}
+- {id: ja-n5-00179-s001, ch: 消える, pr: きえる, ds: to disappear}
+- {id: ja-n5-00008-s001, ch: 開く, pr: あく, ds: to open (e.g. doors)}
+- {id: ja-n5-00288-s001, ch: 閉まる, pr: しまる, ds: to be shut}
+- {id: ja-n5-00487-s001, ch: 入る, pr: はいる, ds: to enter}
+- {id: ja-n5-00410-s001, ch: 出る, pr: でる, ds: to leave}
+- {id: ja-n5-00360-s001, ch: 出す, pr: だす, ds: to take out}
+- {id: ja-n5-00451-s001, ch: なくす, pr: なくす, ds: to lose (something)}
+- {id: ja-n5-00490-s001, ch: 箱, pr: はこ, ds: box}
+- {id: ja-n5-00062-s001, ch: 五つ, pr: いつつ, ds: five}
+- {id: ja-n5-00651-s001, ch: 四つ, pr: よっつ, ds: four}
+- {id: ja-n5-00616-s001, ch: 六つ, pr: むっつ, ds: six}
+- {id: ja-n5-00456-s001, ch: 七つ, pr: ななつ, ds: seven}
+- {id: ja-n5-00635-s001, ch: 八つ, pr: やっつ, ds: eight}
+- {id: ja-n5-00240-s001, ch: 九つ, pr: ここのつ, ds: nine}
+- {id: ja-n4-00337-s001, ch: 生活, pr: せいかつ, ds: life}
+- {id: ja-n4-00054-s001, ch: 内, pr: うち, ds: inside}
+- {id: ja-n4-00085-s001, ch: 押入れ, pr: おしいれ, ds: 'closet (built into the wall, usu. with sliding doors)'}
+- {id: ja-n4-00110-s001, ch: カーテン, pr: カーテン, ds: curtain}
+- {id: ja-n4-00119-s001, ch: 鏡, pr: かがみ, ds: mirror}
+- {id: ja-n4-00120-s001, ch: 飾る, pr: かざる, ds: to decorate}
+- {id: ja-n4-00129-s001, ch: 片付ける, pr: かたづける, ds: to put in order}
+- {id: ja-n4-00139-s001, ch: 壁, pr: かべ, ds: wall}
+- {id: ja-n4-00144-s001, ch: ガラス, pr: ガラス, ds: glass}
+- {id: ja-n4-00178-s001, ch: 近所, pr: きんじょ, ds: neighbourhood}
+- {id: ja-n4-00379-s001, ch: 畳, pr: たたみ, ds: tatami mat}
+- {id: ja-n4-00383-s001, ch: 棚, pr: たな, ds: shelf}
+- {id: ja-n4-00532-s001, ch: 布団, pr: ふとん, ds: futon}
+- {id: ja-n4-00507-s001, ch: 引き出し, pr: ひきだし, ds: drawer}
+- {id: ja-n4-00391-s001, ch: 暖房, pr: だんぼう, ds: (indoor) heating}
+- {id: ja-n4-00625-s001, ch: 冷房, pr: れいぼう, ds: air conditioning}
+- {id: ja-n4-00315-s001, ch: 水道, pr: すいどう, ds: water supply}
+- {id: ja-n4-00122-s001, ch: ガス, pr: ガス, ds: gas (as a fuel)}
+- {id: ja-n4-00426-s001, ch: 電灯, pr: でんとう, ds: electric light}
+- {id: ja-n4-00233-s001, ch: ごみ, pr: ごみ, ds: rubbish}
+- {id: ja-n4-00328-s001, ch: 捨てる, pr: すてる, ds: to throw away}
+- {id: ja-n4-00147-s001, ch: 乾く, pr: かわく, ds: to get dry}
+- {id: ja-n4-00613-s001, ch: 汚れる, pr: よごれる, ds: to get dirty}
+- {id: ja-n4-00470-s001, ch: 濡れる, pr: ぬれる, ds: to get wet}
+- {id: ja-n4-00632-s001, ch: 沸かす, pr: わかす, ds: to boil}
+- {id: ja-n4-00634-s001, ch: 沸く, pr: わく, ds: to grow hot (e.g. water)}
+- {id: ja-n4-00603-s001, ch: 湯, pr: ゆ, ds: hot water}
+- {id: ja-n4-00534-s001, ch: 不便, pr: ふべん, ds: inconvenience}
+- {id: ja-n4-00381-s001, ch: 建てる, pr: たてる, ds: to build}
+- {id: ja-n4-00461-s001, ch: 二階建て, pr: にかいだて, ds: two-storied building}
+- {id: ja-n4-00515-s001, ch: 引っ越す, pr: ひっこす, ds: to move (house)}
+- {id: ja-n4-00624-s001, ch: 留守, pr: るす, ds: absence}
+- {id: ja-n4-00511-s001, ch: 久しぶり, pr: ひさしぶり, ds: a long time (since the last time)}
+- {id: ja-n3-00010-s001, ch: アイロン, pr: アイロン, ds: iron (for pressing clothes)}
+- {id: ja-n3-00012-s001, ch: 明かり, pr: あかり, ds: light; illumination; glow}
+- {id: ja-n3-00020-s001, ch: 預ける, pr: あずける, ds: to leave (in someone's keeping)}
+- {id: ja-n3-00078-s001, ch: 板, pr: いた, ds: board; plank (material)}
+- {id: ja-n3-00112-s001, ch: 居間, pr: いま, ds: living room (Western style)}
+- {id: ja-n3-00190-s001, ch: 大家, pr: おおや, ds: landlord}
+- {id: ja-n3-00264-s001, ch: 家具, pr: かぐ, ds: furniture}
+- {id: ja-n3-00281-s001, ch: かご, pr: かご, ds: 'basket (shopping, etc.)'}
+- {id: ja-n3-00286-s001, ch: 家事, pr: かじ, ds: housework}
+- {id: ja-n3-00371-s001, ch: 帰宅, pr: きたく, ds: returning home}
+- {id: ja-n3-00458-s001, ch: 暮らし, pr: くらし, ds: (way of) life}
+- {id: ja-n3-00460-s001, ch: 暮らす, pr: くらす, ds: 'to live (on, by, etc.)'}
+- {id: ja-n3-00592-s001, ch: 小屋, pr: こや, ds: hut}
+- {id: ja-n3-00706-s001, ch: 芝生, pr: しばふ, ds: lawn}
+- {id: ja-n5-00543-s001, ch: 服, pr: ふく, ds: clothes (esp. Western clothes)}
+- {id: ja-n5-00647-s001, ch: 洋服, pr: ようふく, ds: Western-style clothes (cf. traditional Japanese clothes)}
+- {id: ja-n5-00198-s001, ch: 着る, pr: きる, ds: to wear (from the shoulders down)}
+- {id: ja-n5-00489-s001, ch: 履く, pr: はく, ds: 'to put on (lower-body clothing, e.g. pants, skirt, footwear)'}
+- {id: ja-n5-00473-s001, ch: 脱ぐ, pr: ぬぐ, ds: 'to take off (clothes, shoes, etc.)'}
+- {id: ja-n5-00209-s001, ch: 靴, pr: くつ, ds: shoe}
+- {id: ja-n5-00210-s001, ch: 靴下, pr: くつした, ds: socks}
+- {id: ja-n5-00294-s001, ch: シャツ, pr: シャツ, ds: shirt (undergarment)}
+- {id: ja-n5-00674-s001, ch: ワイシャツ, pr: ワイシャツ, ds: (formal) shirt}
+- {id: ja-n5-00235-s001, ch: コート, pr: コート, ds: coat}
+- {id: ja-n5-00319-s001, ch: ズボン, pr: ズボン, ds: trousers}
+- {id: ja-n5-00310-s001, ch: スカート, pr: スカート, ds: skirt}
+- {id: ja-n5-00326-s001, ch: セーター, pr: セーター, ds: sweater}
+- {id: ja-n5-00084-s001, ch: 上着, pr: うわぎ, ds: coat}
+- {id: ja-n5-00563-s001, ch: 帽子, pr: ぼうし, ds: hat}
+- {id: ja-n5-00475-s001, ch: ネクタイ, pr: ネクタイ, ds: tie}
+- {id: ja-n5-00517-s001, ch: ハンカチ, pr: ハンカチ, ds: handkerchief}
+- {id: ja-n5-00566-s001, ch: ポケット, pr: ポケット, ds: pocket}
+- {id: ja-n5-00077-s001, ch: 薄い, pr: うすい, ds: thin (of an object)}
+- {id: ja-n5-00024-s001, ch: 厚い, pr: あつい, ds: thick}
+- {id: ja-n5-00569-s001, ch: 細い, pr: ほそい, ds: thin}
+- {id: ja-n5-00548-s001, ch: 太い, pr: ふとい, ds: fat}
+- {id: ja-n5-00150-s001, ch: かける, pr: かける, ds: 'to hang up (e.g. a coat, a picture on the wall)'}
+- {id: ja-n5-00150-s002, ch: かける, pr: かける, ds: to put on (e.g. a blanket)}
+- {id: ja-n4-00010-s001, ch: アクセサリー, pr: アクセサリー, ds: accessory (fashion)}
+- {id: ja-n4-00132-s001, ch: 格好, pr: かっこう, ds: shape}
+- {id: ja-n4-00141-s001, ch: 髪, pr: かみ, ds: hair (on the head)}
+- {id: ja-n4-00170-s001, ch: 着物, pr: きもの, ds: kimono}
+- {id: ja-n4-00275-s001, ch: 下着, pr: したぎ, ds: underwear}
+- {id: ja-n4-00263-s001, ch: サンダル, pr: サンダル, ds: sandal}
+- {id: ja-n4-00318-s001, ch: スーツ, pr: スーツ, ds: suit (clothing)}
+- {id: ja-n4-00421-s001, ch: 手袋, pr: てぶくろ, ds: glove}
+- {id: ja-n4-00500-s001, ch: ハンドバッグ, pr: ハンドバッグ, ds: handbag}
+- {id: ja-n4-00509-s001, ch: ひげ, pr: ひげ, ds: moustache}
+- {id: ja-n4-00588-s001, ch: 木綿, pr: もめん, ds: cotton (material)}
+- {id: ja-n4-00163-s001, ch: 絹, pr: きぬ, ds: silk}
+- {id: ja-n4-00607-s001, ch: 指輪, pr: ゆびわ, ds: (finger) ring}
+- {id: ja-n4-00125-s001, ch: 硬い, pr: かたい, ds: hard; rigid; solid}
+- {id: ja-n4-00602-s001, ch: 柔らかい, pr: やわらかい, ds: soft}
+- {id: ja-n4-00232-s001, ch: 細かい, pr: こまかい, ds: small}
+- {id: ja-n4-00128-s001, ch: 形, pr: かたち, ds: (physical) form}
+- {id: ja-n4-00056-s001, ch: 美しい, pr: うつくしい, ds: beautiful}
+- {id: ja-n4-00525-s001, ch: 深い, pr: ふかい, ds: deep}
+- {id: ja-n4-00012-s001, ch: 浅い, pr: あさい, ds: shallow}
+- {id: ja-n3-00111-s001, ch: 衣服, pr: いふく, ds: clothes}
+- {id: ja-n3-00157-s001, ch: 柄, pr: え, ds: handle}
+- {id: ja-n3-00209-s001, ch: 帯, pr: おび, ds: obi (kimono sash)}
+- {id: ja-n3-00316-s001, ch: 髪の毛, pr: かみのけ, ds: hair (on the head)}
+- {id: ja-n3-00321-s001, ch: 柄, pr: がら, ds: pattern}
+- {id: ja-n3-00324-s001, ch: 皮, pr: かわ, ds: skin}
+- {id: ja-n3-00325-s001, ch: 革, pr: かわ, ds: leather}
+- {id: ja-n3-00365-s001, ch: 生地, pr: きじ, ds: cloth}
+- {id: ja-n3-00496-s001, ch: 化粧, pr: けしょう, ds: make-up}
+- {id: ja-n3-00659-s001, ch: ジーンズ, pr: ジーンズ, ds: jeans}
+- {id: ja-n4-00005-s002, ch: 合う, pr: あう, ds: to fit}
+- {id: ja-n5-00082-s001, ch: 売る, pr: うる, ds: to sell}
+- {id: ja-n5-00408-s001, ch: デパート, pr: デパート, ds: department store}
+- {id: ja-n5-00203-s001, ch: 銀行, pr: ぎんこう, ds: bank; financial institution}
+- {id: ja-n5-00233-s001, ch: 交番, pr: こうばん, ds: police box}
+- {id: ja-n5-00129-s001, ch: おまわりさん, pr: おまわりさん, ds: police officer}
+- {id: ja-n5-00221-s001, ch: 警官, pr: けいかん, ds: police officer}
+- {id: ja-n5-00051-s001, ch: 池, pr: いけ, ds: pond}
+- {id: ja-n5-00160-s001, ch: 角, pr: かど, ds: corner}
+- {id: ja-n5-00069-s001, ch: 入り口, pr: いりぐち, ds: entrance}
+- {id: ja-n5-00405-s001, ch: 出口, pr: でぐち, ds: exit}
+- {id: ja-n5-00141-s001, ch: 階段, pr: かいだん, ds: stairs}
+- {id: ja-n5-00091-s001, ch: エレベーター, pr: エレベーター, ds: elevator}
+- {id: ja-n5-00351-s001, ch: 大使館, pr: たいしかん, ds: embassy}
+- {id: ja-n5-00640-s001, ch: 郵便局, pr: ゆうびんきょく, ds: post office}
+- {id: ja-n5-00185-s001, ch: 切手, pr: きって, ds: stamp (postage)}
+- {id: ja-n5-00488-s001, ch: はがき, pr: はがき, ds: postcard}
+- {id: ja-n5-00539-s001, ch: 封筒, pr: ふうとう, ds: envelope}
+- {id: ja-n5-00403-s001, ch: 手紙, pr: てがみ, ds: letter}
+- {id: ja-n5-00568-s001, ch: ポスト, pr: ポスト, ds: postbox}
+- {id: ja-n5-00518-s001, ch: 番号, pr: ばんごう, ds: number}
+- {id: ja-n5-00511-s001, ch: 張る, pr: はる, ds: to stick}
+- {id: ja-n5-00251-s001, ch: コピー, pr: コピー, ds: copy}
+- {id: ja-n5-00071-s001, ch: いる, pr: いる, ds: to be needed}
+- {id: ja-n5-00072-s001, ch: 入れる, pr: いれる, ds: to put in}
+- {id: ja-n5-00109-s001, ch: 押す, pr: おす, ds: to push}
+- {id: ja-n5-00522-s001, ch: 引く, pr: ひく, ds: to pull}
+- {id: ja-n5-00444-s001, ch: 取る, pr: とる, ds: to take}
+- {id: ja-n5-00565-s001, ch: 他, pr: ほか, ds: another place}
+- {id: ja-n5-00384-s001, ch: ちょうど, pr: ちょうど, ds: exactly}
+- {id: ja-n5-00224-s001, ch: 結構, pr: けっこう, ds: splendid}
+- {id: ja-n4-00062-s001, ch: 売り場, pr: うりば, ds: selling area}
+- {id: ja-n4-00171-s001, ch: 客, pr: きゃく, ds: guest}
+- {id: ja-n4-00424-s001, ch: 店員, pr: てんいん, ds: employee (of a store)}
+- {id: ja-n4-00627-s001, ch: レジ, pr: レジ, ds: (cash) register}
+- {id: ja-n4-00091-s001, ch: お釣り, pr: おつり, ds: change (for a purchase)}
+- {id: ja-n4-00497-s001, ch: 払う, pr: はらう, ds: 'to pay (e.g. money, bill)'}
+- {id: ja-n4-00280-s001, ch: 品物, pr: しなもの, ds: article}
+- {id: ja-n4-00471-s001, ch: 値段, pr: ねだん, ds: price}
+- {id: ja-n4-00050-s001, ch: 受付, pr: うけつけ, ds: reception (desk)}
+- {id: ja-n4-00022-s001, ch: 謝る, pr: あやまる, ds: to apologize (apologise)}
+- {id: ja-n4-00393-s001, ch: チェック, pr: チェック, ds: check (pattern)}
+- {id: ja-n4-00440-s001, ch: 届ける, pr: とどける, ds: to deliver}
+- {id: ja-n4-00443-s001, ch: 取り替える, pr: とりかえる, ds: to exchange}
+- {id: ja-n4-00410-s001, ch: 包む, pr: つつむ, ds: to wrap up}
+- {id: ja-n4-00099-s001, ch: お土産, pr: おみやげ, ds: travel souvenir bought as a gift}
+- {id: ja-n4-00516-s001, ch: 必要, pr: ひつよう, ds: necessary}
+- {id: ja-n4-00389-s001, ch: 足りる, pr: たりる, ds: to be sufficient}
+- {id: ja-n4-00293-s001, ch: 十分, pr: じゅうぶん, ds: enough}
+- {id: ja-n4-00136-s001, ch: お金持ち, pr: おかねもち, ds: rich person}
+- {id: ja-n4-00070-s001, ch: 選ぶ, pr: えらぶ, ds: to choose}
+- {id: ja-n3-00119-s001, ch: いらっしゃい, pr: いらっしゃい, ds: come}
+- {id: ja-n3-00135-s001, ch: 受け取る, pr: うけとる, ds: to receive}
+- {id: ja-n3-00154-s001, ch: 売れる, pr: うれる, ds: to sell (well)}
+- {id: ja-n3-00234-s001, ch: カード, pr: カード, ds: 'card (information, filing, etc.)'}
+- {id: ja-n3-00241-s001, ch: 会計, pr: かいけい, ds: accounting}
+- {id: ja-n3-00252-s001, ch: 替える, pr: かえる, ds: to replace}
+- {id: ja-n3-00257-s001, ch: 価格, pr: かかく, ds: price}
+- {id: ja-n3-00289-s001, ch: 数, pr: かず, ds: number}
+- {id: ja-n3-00291-s001, ch: 数える, pr: かぞえる, ds: to count}
+- {id: ja-n3-00429-s001, ch: 金額, pr: きんがく, ds: amount of money}
+- {id: ja-n3-00430-s001, ch: 金庫, pr: きんこ, ds: safe}
+- {id: ja-n3-00432-s001, ch: 金銭, pr: きんせん, ds: money}
+- {id: ja-n3-00508-s001, ch: 券, pr: けん, ds: ticket}
+- {id: ja-n3-00513-s001, ch: 現金, pr: げんきん, ds: cash}
+- {id: ja-n3-00537-s001, ch: 硬貨, pr: こうか, ds: coin}
+- {id: ja-n3-00538-s001, ch: 高価, pr: こうか, ds: highly priced}
+- {id: ja-n3-00541-s001, ch: 交換, pr: こうかん, ds: exchange}
+- {id: ja-n3-00544-s001, ch: 合計, pr: ごうけい, ds: sum total}
+- {id: ja-n3-00582-s001, ch: 小包, pr: こづつみ, ds: parcel}
+- {id: ja-n3-00607-s001, ch: サービス, pr: サービス, ds: service}
+- {id: ja-n3-00618-s001, ch: サイン, pr: サイン, ds: autograph}
+- {id: ja-n3-00632-s001, ch: 座席, pr: ざせき, ds: seat (esp. in public places or places with assigned seating)}
+- {id: ja-n3-00634-s001, ch: 札, pr: さつ, ds: banknote}
+- {id: ja-n3-00707-s001, ch: 支払い, pr: しはらい, ds: payment}
+- {id: ja-n3-00708-s001, ch: 支払う, pr: しはらう, ds: to pay}
+- {id: ja-n5-00150-s005, ch: かける, pr: かける, ds: spend time or money}
+- {id: ja-n5-00572-s005, ch: 本, pr: ほん, ds: 'counter for long, thin objects'}
+- {id: ja-n5-00572-s007, ch: 本, pr: ほん, ds: counter for phone calls or emails}
+- {id: ja-n5-00012-s001, ch: 朝ごはん, pr: あさごはん, ds: breakfast}
+- {id: ja-n5-00519-s001, ch: 晩御飯, pr: ばんごはん, ds: dinner}
+- {id: ja-n5-00536-s001, ch: 昼ご飯, pr: ひるごはん, ds: lunch}
+- {id: ja-n5-00639-s001, ch: 夕飯, pr: ゆうはん, ds: evening meal}
+- {id: ja-n5-00368-s001, ch: 食べ物, pr: たべもの, ds: food}
+- {id: ja-n5-00480-s001, ch: 飲み物, pr: のみもの, ds: drink}
+- {id: ja-n5-00127-s001, ch: お弁当, pr: おべんとう, ds: bento}
+- {id: ja-n5-00099-s001, ch: お菓子, pr: おかし, ds: confections}
+- {id: ja-n5-00037-s001, ch: 飴, pr: あめ, ds: (hard) candy}
+- {id: ja-n5-00104-s001, ch: お酒, pr: おさけ, ds: alcohol}
+- {id: ja-n5-00105-s001, ch: お皿, pr: おさら, ds: plate}
+- {id: ja-n5-00158-s001, ch: カップ, pr: カップ, ds: 'cup (drinking vessel, measure, brassiere, prize, etc.)'}
+- {id: ja-n5-00383-s001, ch: 茶碗, pr: ちゃわん, ds: rice bowl}
+- {id: ja-n5-00317-s001, ch: スプーン, pr: スプーン, ds: spoon}
+- {id: ja-n5-00447-s001, ch: ナイフ, pr: ナイフ, ds: knife}
+- {id: ja-n5-00541-s001, ch: フォーク, pr: フォーク, ds: fork}
+- {id: ja-n5-00492-s001, ch: 箸, pr: はし, ds: chopsticks}
+- {id: ja-n5-00302-s001, ch: 醤油, pr: しょうゆ, ds: soy sauce}
+- {id: ja-n5-00266-s001, ch: 砂糖, pr: さとう, ds: sugar}
+- {id: ja-n5-00273-s001, ch: 塩, pr: しお, ds: salt}
+- {id: ja-n5-00499-s001, ch: バター, pr: バター, ds: butter}
+- {id: ja-n5-00170-s001, ch: カレー, pr: カレー, ds: curry (esp. Japanese curry)}
+- {id: ja-n5-00184-s001, ch: 喫茶店, pr: きっさてん, ds: coffee shop}
+- {id: ja-n5-00232-s001, ch: 紅茶, pr: こうちゃ, ds: black tea}
+- {id: ja-n5-00207-s001, ch: 果物, pr: くだもの, ds: fruit}
+- {id: ja-n5-00629-s001, ch: 八百屋, pr: やおや, ds: greengrocer}
+- {id: ja-n5-00585-s001, ch: まずい, pr: まずい, ds: bad(-tasting)}
+- {id: ja-n5-00474-s001, ch: ぬるい, pr: ぬるい, ds: lukewarm}
+- {id: ja-n5-00520-s001, ch: 半分, pr: はんぶん, ds: half}
+- {id: ja-n5-00336-s001, ch: 全部, pr: ぜんぶ, ds: all}
+- {id: ja-n5-00312-s001, ch: 少ない, pr: すくない, ds: few}
+- {id: ja-n5-00358-s001, ch: たくさん, pr: たくさん, ds: a lot}
+- {id: ja-n5-00625-s001, ch: もっと, pr: もっと, ds: (some) more}
+- {id: ja-n4-00013-s001, ch: 味, pr: あじ, ds: flavor}
+- {id: ja-n4-00042-s001, ch: 一杯, pr: いっぱい, ds: one cup (of)}
+- {id: ja-n4-00060-s001, ch: うまい, pr: うまい, ds: skillful}
+- {id: ja-n4-00195-s001, ch: ケーキ, pr: ケーキ, ds: cake}
+- {id: ja-n4-00227-s001, ch: ご馳走, pr: ごちそう, ds: treat (esp. food and drink)}
+- {id: ja-n4-00235-s001, ch: 米, pr: こめ, ds: (husked grains of) rice}
+- {id: ja-n4-00259-s001, ch: サラダ, pr: サラダ, ds: salad}
+- {id: ja-n4-00264-s001, ch: サンドイッチ, pr: サンドイッチ, ds: sandwich}
+- {id: ja-n4-00288-s001, ch: ジャム, pr: ジャム, ds: jam}
+- {id: ja-n4-00304-s001, ch: 食事, pr: しょくじ, ds: 'meal (e.g. lunch, dinner)'}
+- {id: ja-n4-00305-s001, ch: 食料品, pr: しょくりょうひん, ds: foodstuff}
+- {id: ja-n4-00327-s001, ch: ステーキ, pr: ステーキ, ds: steak}
+- {id: ja-n4-00405-s001, ch: 漬ける, pr: つける, ds: to soak (in)}
+- {id: ja-n4-00459-s001, ch: 匂い, pr: におい, ds: smell}
+- {id: ja-n4-00460-s001, ch: 苦い, pr: にがい, ds: bitter (taste)}
+- {id: ja-n4-00530-s001, ch: ぶどう, pr: ぶどう, ds: grape}
+- {id: ja-n4-00567-s001, ch: 味噌, pr: みそ, ds: miso}
+- {id: ja-n4-00591-s001, ch: 焼く, pr: やく, ds: to burn}
+- {id: ja-n4-00594-s001, ch: 焼ける, pr: やける, ds: to burn}
+- {id: ja-n4-00142-s001, ch: 噛む, pr: かむ, ds: to bite}
+- {id: ja-n4-00504-s001, ch: 冷える, pr: ひえる, ds: to grow cold}
+- {id: ja-n3-00006-s001, ch: アイスクリーム, pr: アイスクリーム, ds: ice cream}
+- {id: ja-n3-00032-s001, ch: 油, pr: あぶら, ds: oil}
+- {id: ja-n3-00082-s001, ch: いただきます, pr: いただきます, ds: thank you (for the meal just served)}
+- {id: ja-n3-00254-s001, ch: 香り, pr: かおり, ds: aroma}
+- {id: ja-n3-00285-s001, ch: 菓子, pr: かし, ds: confectionery}
+- {id: ja-n3-00328-s001, ch: 缶, pr: かん, ds: can}
+- {id: ja-n3-00340-s001, ch: 勘定, pr: かんじょう, ds: calculation}
+- {id: ja-n3-00442-s001, ch: 臭い, pr: くさい, ds: stinking}
+- {id: ja-n3-00444-s001, ch: 腐る, pr: くさる, ds: to rot}
+- {id: ja-n3-00461-s001, ch: グラス, pr: グラス, ds: glass (drinking vessel)}
+- {id: ja-n3-00463-s001, ch: クリーム, pr: クリーム, ds: cream}
+- {id: ja-n3-00532-s001, ch: 濃い, pr: こい, ds: deep (colour)}
+- {id: ja-n3-00562-s001, ch: 氷, pr: こおり, ds: ice}
+- {id: ja-n3-00563-s001, ch: 凍る, pr: こおる, ds: to freeze}
+- {id: ja-n3-00574-s001, ch: 穀物, pr: こくもつ, ds: grain}
+- {id: ja-n3-00587-s001, ch: 粉, pr: こな, ds: flour}
+- {id: ja-n3-00590-s001, ch: 小麦, pr: こむぎ, ds: wheat}
+- {id: ja-n3-00616-s001, ch: 材料, pr: ざいりょう, ds: materials}
+- {id: ja-n3-00647-s001, ch: 皿, pr: さら, ds: plate}
+- {id: ja-n5-00150-s006, ch: かける, pr: かける, ds: to pour (liquid) onto}
+- {id: ja-n5-00392-s002, ch: 作る, pr: つくる, ds: to prepare (food)}
+- {id: ja-n5-00487-s003, ch: 入る, pr: はいる, ds: be contained; be included}
+- {id: ja-n5-00014-s001, ch: 足, pr: あし, ds: foot}
+- {id: ja-n5-00019-s001, ch: 頭, pr: あたま, ds: head}
+- {id: ja-n5-00167-s001, ch: 体, pr: からだ, ds: body}
+- {id: ja-n5-00120-s001, ch: お腹, pr: おなか, ds: belly}
+- {id: ja-n5-00208-s001, ch: 口, pr: くち, ds: mouth}
+- {id: ja-n5-00505-s001, ch: 鼻, pr: はな, ds: nose}
+- {id: ja-n5-00618-s001, ch: 目, pr: め, ds: eye}
+- {id: ja-n5-00609-s001, ch: 耳, pr: みみ, ds: ear}
+- {id: ja-n5-00398-s001, ch: 手, pr: て, ds: hand}
+- {id: ja-n5-00483-s001, ch: 歯, pr: は, ds: tooth}
+- {id: ja-n5-00597-s001, ch: 磨く, pr: みがく, ds: to polish}
+- {id: ja-n5-00154-s001, ch: 風邪, pr: かぜ, ds: (common) cold}
+- {id: ja-n5-00534-s001, ch: 病気, pr: びょうき, ds: 'illness (usu. excluding minor ailments, e.g. common cold)'}
+- {id: ja-n5-00205-s001, ch: 薬, pr: くすり, ds: medicine}
+- {id: ja-n5-00330-s001, ch: ０, pr: ゼロ, ds: zero}
+- {id: ja-n5-00201-s001, ch: キログラム, pr: キログラム, ds: kilogram}
+- {id: ja-n5-00216-s001, ch: グラム, pr: グラム, ds: gram}
+- {id: ja-n5-00619-s001, ch: メートル, pr: メートル, ds: metre (unit of length)}
+- {id: ja-n5-00200-s001, ch: キロ, pr: キロ, ds: kilo-}
+- {id: ja-n5-00202-s001, ch: キロメートル, pr: キロメートル, ds: kilometer}
+- {id: ja-n5-00571-s001, ch: ホテル, pr: ホテル, ds: hotel}
+- {id: ja-n5-00409-s001, ch: でも, pr: でも, ds: but}
+- {id: ja-n5-00624-s002, ch: 持つ, pr: もつ, ds: to possess}
+- {id: ja-n4-00059-s001, ch: 腕, pr: うで, ds: arm}
+- {id: ja-n4-00184-s001, ch: 首, pr: くび, ds: neck}
+- {id: ja-n4-00179-s001, ch: 具合, pr: ぐあい, ds: condition}
+- {id: ja-n4-00196-s001, ch: 怪我, pr: けが, ds: injury}
+- {id: ja-n4-00344-s001, ch: 背中, pr: せなか, ds: back (of the body)}
+- {id: ja-n4-00392-s001, ch: 血, pr: ち, ds: blood}
+- {id: ja-n4-00399-s001, ch: 注射, pr: ちゅうしゃ, ds: injection}
+- {id: ja-n4-00472-s001, ch: 熱, pr: ねつ, ds: heat}
+- {id: ja-n4-00478-s001, ch: 喉, pr: のど, ds: throat}
+- {id: ja-n4-00486-s001, ch: 歯医者, pr: はいしゃ, ds: dentist}
+- {id: ja-n4-00606-s001, ch: 指, pr: ゆび, ds: finger}
+- {id: ja-n4-00165-s001, ch: 気分, pr: きぶん, ds: feeling}
+- {id: ja-n4-00475-s001, ch: 眠い, pr: ねむい, ds: sleepy}
+- {id: ja-n4-00476-s001, ch: 眠る, pr: ねむる, ds: to sleep}
+- {id: ja-n4-00474-s001, ch: 寝坊, pr: ねぼう, ds: sleeping in late}
+- {id: ja-n4-00531-s001, ch: 太る, pr: ふとる, ds: to put on weight}
+- {id: ja-n4-00596-s001, ch: 痩せる, pr: やせる, ds: to become thin}
+- {id: ja-n4-00448-s001, ch: 治る, pr: なおる, ds: to get better}
+- {id: ja-n4-00364-s001, ch: 退院, pr: たいいん, ds: leaving hospital}
+- {id: ja-n4-00464-s001, ch: 入院, pr: にゅういん, ds: hospitalization}
+- {id: ja-n4-00098-s001, ch: お見舞い, pr: おみまい, ds: visit (to someone affected by illness or misfortune)}
+- {id: ja-n4-00026-s001, ch: 安全, pr: あんぜん, ds: safety}
+- {id: ja-n4-00156-s001, ch: 危険, pr: きけん, ds: danger}
+- {id: ja-n3-00021-s001, ch: 汗, pr: あせ, ds: sweat}
+- {id: ja-n3-00055-s001, ch: 胃, pr: い, ds: stomach}
+- {id: ja-n3-00062-s001, ch: 息, pr: いき, ds: breath}
+- {id: ja-n3-00068-s001, ch: 医師, pr: いし, ds: doctor}
+- {id: ja-n3-00084-s001, ch: 痛み, pr: いたみ, ds: pain}
+- {id: ja-n3-00134-s001, ch: うがい, pr: うがい, ds: gargling}
+- {id: ja-n3-00163-s001, ch: 栄養, pr: えいよう, ds: nutrition}
+- {id: ja-n3-00261-s001, ch: かかる, pr: かかる, ds: to contract (a disease)}
+- {id: ja-n3-00293-s001, ch: 肩, pr: かた, ds: shoulder}
+- {id: ja-n3-00339-s001, ch: 患者, pr: かんじゃ, ds: patient (person receiving medical care)}
+- {id: ja-n3-00361-s001, ch: 効く, pr: きく, ds: to be effective}
+- {id: ja-n3-00369-s001, ch: 傷, pr: きず, ds: wound}
+- {id: ja-n3-00428-s001, ch: 禁煙, pr: きんえん, ds: abstaining from smoking}
+- {id: ja-n3-00436-s001, ch: 筋肉, pr: きんにく, ds: muscle}
+- {id: ja-n3-00450-s001, ch: 苦痛, pr: くつう, ds: pain}
+- {id: ja-n3-00451-s001, ch: ぐっすり, pr: ぐっすり, ds: soundly (sleeping)}
+- {id: ja-n3-00515-s001, ch: 健康, pr: けんこう, ds: health}
+- {id: ja-n3-00567-s001, ch: 呼吸, pr: こきゅう, ds: breathing}
+- {id: ja-n3-00575-s001, ch: 腰, pr: こし, ds: lower back}
+- {id: ja-n3-00581-s001, ch: 骨折, pr: こっせつ, ds: bone fracture}
+- {id: ja-n3-00682-s001, ch: 舌, pr: した, ds: tongue}
+- {id: ja-n2-00887-s001, ch: 生年月日, pr: せいねんがっぴ, ds: birth date}
+- {id: ja-n5-00467-s001, ch: 肉, pr: にく, ds: flesh}
+- {id: ja-n5-00652-s002, ch: 呼ぶ, pr: よぶ, ds: summon (e.g. a doctor)}
+- {id: ja-n5-00013-s001, ch: 明後日, pr: あさって, ds: day after tomorrow}
+- {id: ja-n5-00117-s001, ch: 一昨日, pr: おととい, ds: day before yesterday}
+- {id: ja-n5-00222-s001, ch: 今朝, pr: けさ, ds: this morning}
+- {id: ja-n5-00641-s001, ch: 昨夜, pr: ゆうべ, ds: last night}
+- {id: ja-n5-00257-s001, ch: 今晩, pr: こんばん, ds: tonight}
+- {id: ja-n5-00515-s001, ch: 晩, pr: ばん, ds: evening}
+- {id: ja-n5-00195-s001, ch: 去年, pr: きょねん, ds: last year}
+- {id: ja-n5-00246-s001, ch: 今年, pr: ことし, ds: this year}
+- {id: ja-n5-00658-s001, ch: 来年, pr: らいねん, ds: next year}
+- {id: ja-n5-00118-s001, ch: 一昨年, pr: おととし, ds: year before last}
+- {id: ja-n5-00268-s001, ch: 再来年, pr: さらいねん, ds: year after next}
+- {id: ja-n5-00430-s001, ch: 年, pr: とし, ds: year}
+- {id: ja-n5-00373-s001, ch: 誕生日, pr: たんじょうび, ds: birthday}
+- {id: ja-n5-00500-s001, ch: 二十歳, pr: はたち, ds: 20 years old}
+- {id: ja-n5-00386-s001, ch: １日, pr: ついたち, ds: first day of the month}
+- {id: ja-n5-00057-s001, ch: 一日, pr: いちにち, ds: one day}
+- {id: ja-n5-00547-s001, ch: ２日, pr: ふつか, ds: 2nd day of the month}
+- {id: ja-n5-00604-s001, ch: ３日, pr: みっか, ds: 3rd day of the month}
+- {id: ja-n5-00650-s001, ch: ４日, pr: よっか, ds: 4th day of the month}
+- {id: ja-n5-00060-s001, ch: ５日, pr: いつか, ds: 5th day of the month}
+- {id: ja-n5-00613-s001, ch: ６日, pr: むいか, ds: 6th day of the month}
+- {id: ja-n5-00457-s001, ch: ７日, pr: なのか, ds: 7th day of the month}
+- {id: ja-n5-00646-s001, ch: ８日, pr: ようか, ds: 8th day of the month}
+- {id: ja-n5-00239-s001, ch: ９日, pr: ここのか, ds: 9th day of the month}
+- {id: ja-n5-00425-s001, ch: １０日, pr: とおか, ds: 10th day of the month}
+- {id: ja-n5-00503-s001, ch: ２０日, pr: はつか, ds: 20th day of the month}
+- {id: ja-n5-00165-s001, ch: 火曜日, pr: かようび, ds: Tuesday}
+- {id: ja-n5-00308-s001, ch: 水曜日, pr: すいようび, ds: Wednesday}
+- {id: ja-n5-00623-s001, ch: 木曜日, pr: もくようび, ds: Thursday}
+- {id: ja-n5-00204-s001, ch: 金曜日, pr: きんようび, ds: Friday}
+- {id: ja-n5-00441-s001, ch: 土曜日, pr: どようび, ds: Saturday}
+- {id: ja-n5-00469-s001, ch: 日曜日, pr: にちようび, ds: Sunday}
+- {id: ja-n5-00171-s001, ch: カレンダー, pr: カレンダー, ds: calendar}
+- {id: ja-n5-00427-s001, ch: 時計, pr: とけい, ds: clock}
+- {id: ja-n5-00514-s001, ch: 半, pr: はん, ds: half}
+- {id: ja-n5-00666-s001, ch: 旅行, pr: りょこう, ds: travel}
+- {id: ja-n5-00525-s001, ch: 飛行機, pr: ひこうき, ds: airplane}
+- {id: ja-n5-00470-s001, ch: 荷物, pr: にもつ, ds: luggage}
+- {id: ja-n5-00081-s001, ch: 海, pr: うみ, ds: sea}
+- {id: ja-n5-00172-s001, ch: 川, pr: かわ, ds: river}
+- {id: ja-n5-00491-s001, ch: 橋, pr: はし, ds: bridge}
+- {id: ja-n5-00681-s001, ch: 渡る, pr: わたる, ds: to cross over}
+- {id: ja-n5-00636-s001, ch: 山, pr: やま, ds: mountain}
+- {id: ja-n5-00479-s001, ch: 上る, pr: のぼる, ds: to ascend}
+- {id: ja-n5-00181-s001, ch: 北, pr: きた, ds: north}
+- {id: ja-n5-00608-s001, ch: 南, pr: みなみ, ds: south}
+- {id: ja-n5-00521-s001, ch: 東, pr: ひがし, ds: east}
+- {id: ja-n5-00468-s001, ch: 西, pr: にし, ds: west}
+- {id: ja-n5-00614-s001, ch: 向こう, pr: むこう, ds: opposite side}
+- {id: ja-n5-00345-s001, ch: そば, pr: そば, ds: (place) near by}
+- {id: ja-n5-00559-s001, ch: 辺, pr: へん, ds: area}
+- {id: ja-n5-00439-s001, ch: 止まる, pr: とまる, ds: to stop (moving)}
+- {id: ja-n5-00438-s001, ch: 飛ぶ, pr: とぶ, ds: to fly}
+- {id: ja-n5-00637-s001, ch: やる, pr: やる, ds: to do}
+- {id: ja-n5-00665-s001, ch: 料理, pr: りょうり, ds: cooking}
+- {id: ja-n5-00644-s001, ch: 行く, pr: ゆく, ds: to go}
+- {id: ja-n5-00032-s001, ch: 浴びる, pr: あびる, ds: to dash over oneself (e.g. water)}
+- {id: ja-n5-00087-s001, ch: 映画館, pr: えいがかん, ds: movie theatre}
+- {id: ja-n4-00028-s001, ch: 案内, pr: あんない, ds: guidance}
+- {id: ja-n4-00065-s001, ch: 運転, pr: うんてん, ds: operation (of a machine)}
+- {id: ja-n4-00066-s001, ch: 運転手, pr: うんてんしゅ, ds: driver}
+- {id: ja-n4-00068-s001, ch: エスカレーター, pr: エスカレーター, ds: escalator}
+- {id: ja-n4-00074-s001, ch: オートバイ, pr: オートバイ, ds: motorcycle}
+- {id: ja-n4-00081-s001, ch: 遅れる, pr: おくれる, ds: to be late}
+- {id: ja-n4-00173-s001, ch: 急行, pr: きゅうこう, ds: hurrying (to somewhere)}
+- {id: ja-n4-00181-s001, ch: 空港, pr: くうこう, ds: airport}
+- {id: ja-n4-00217-s001, ch: 交通, pr: こうつう, ds: traffic}
+- {id: ja-n4-00234-s001, ch: 込む, pr: こむ, ds: to be crowded}
+- {id: ja-n4-00249-s001, ch: 坂, pr: さか, ds: slope}
+- {id: ja-n4-00295-s001, ch: 出発, pr: しゅっぱつ, ds: departure}
+- {id: ja-n4-00319-s001, ch: スーツケース, pr: スーツケース, ds: suitcase}
+- {id: ja-n4-00342-s001, ch: 席, pr: せき, ds: seat}
+- {id: ja-n4-00400-s001, ch: 駐車場, pr: ちゅうしゃじょう, ds: parking lot}
+- {id: ja-n4-00434-s001, ch: 通る, pr: とおる, ds: to go by}
+- {id: ja-n4-00438-s001, ch: 途中, pr: とちゅう, ds: on the way}
+- {id: ja-n4-00439-s001, ch: 特急, pr: とっきゅう, ds: limited-express train}
+- {id: ja-n4-00441-s001, ch: 泊まる, pr: とまる, ds: to stay at (e.g. hotel)}
+- {id: ja-n4-00479-s001, ch: 乗り換える, pr: のりかえる, ds: to transfer (trains)}
+- {id: ja-n4-00480-s001, ch: 乗り物, pr: のりもの, ds: vehicle}
+- {id: ja-n4-00489-s001, ch: 場所, pr: ばしょ, ds: place}
+- {id: ja-n4-00533-s001, ch: 船, pr: ふね, ds: ship}
+- {id: ja-n4-00571-s001, ch: 港, pr: みなと, ds: harbour}
+- {id: ja-n4-00572-s001, ch: 向かう, pr: むかう, ds: to face}
+- {id: ja-n4-00573-s001, ch: 迎える, pr: むかえる, ds: to go out to meet}
+- {id: ja-n4-00616-s001, ch: 予約, pr: よやく, ds: reservation}
+- {id: ja-n4-00623-s001, ch: 旅館, pr: りょかん, ds: ryokan}
+- {id: ja-n4-00116-s001, ch: 帰り, pr: かえり, ds: return}
+- {id: ja-n4-00587-s001, ch: 戻る, pr: もどる, ds: to turn back (e.g. half-way)}
+- {id: ja-n4-00560-s001, ch: 間に合う, pr: まにあう, ds: to be in time (for)}
+- {id: ja-n4-00621-s001, ch: 利用, pr: りよう, ds: use}
+- {id: ja-n4-00433-s001, ch: 遠く, pr: とおく, ds: far away}
+- {id: ja-n4-00037-s001, ch: 急ぐ, pr: いそぐ, ds: to hurry}
+- {id: ja-n3-00060-s001, ch: 行き, pr: いき, ds: the way there}
+- {id: ja-n3-00087-s001, ch: 位置, pr: いち, ds: place}
+- {id: ja-n3-00105-s001, ch: 移動, pr: いどう, ds: movement}
+- {id: ja-n3-00171-s001, ch: 延期, pr: えんき, ds: postponement}
+- {id: ja-n3-00185-s001, ch: 横断, pr: おうだん, ds: 'crossing (a road, river, etc.)'}
+- {id: ja-n3-00193-s001, ch: 奥, pr: おく, ds: inner part}
+- {id: ja-n3-00240-s001, ch: 海外, pr: かいがい, ds: foreign}
+- {id: ja-n3-00247-s001, ch: 外出, pr: がいしゅつ, ds: going out}
+- {id: ja-n3-00249-s001, ch: 快適, pr: かいてき, ds: pleasant}
+- {id: ja-n3-00335-s001, ch: 観光, pr: かんこう, ds: sightseeing}
+- {id: ja-n3-00392-s001, ch: キャンプ, pr: キャンプ, ds: camp}
+- {id: ja-n3-00396-s001, ch: 休暇, pr: きゅうか, ds: holiday}
+- {id: ja-n3-00397-s001, ch: 休憩, pr: きゅうけい, ds: rest}
+- {id: ja-n3-00449-s001, ch: 下り, pr: くだり, ds: down-train}
+- {id: ja-n3-00491-s001, ch: 経由, pr: けいゆ, ds: going through}
+- {id: ja-n3-00542-s001, ch: 航空, pr: こうくう, ds: aviation}
+- {id: ja-n3-00552-s001, ch: 高速, pr: こうそく, ds: high-speed}
+- {id: ja-n3-00559-s001, ch: 越える, pr: こえる, ds: to cross over}
+- {id: ja-n3-00577-s001, ch: 越す, pr: こす, ds: to cross over (e.g. mountain)}
+- {id: ja-n3-00599-s001, ch: 混雑, pr: こんざつ, ds: congestion}
+- {id: ja-n3-00660-s001, ch: ジェット機, pr: ジェットき, ds: jet aeroplane}
+- {id: ja-n3-00672-s001, ch: 時刻, pr: じこく, ds: time}
+- {id: ja-n2-01607-s001, ch: 見送る, pr: みおくる, ds: to see (someone) off}
+- {id: ja-n5-00261-s004, ch: 先, pr: さき, ds: the way ahead; beyond}
+- {id: ja-n4-00191-s001, ch: 計画, pr: けいかく, ds: plan}
+- {id: ja-n4-00192-s001, ch: 経験, pr: けいけん, ds: experience}
+- {id: ja-n4-00406-s001, ch: 都合, pr: つごう, ds: circumstances}
+- {id: ja-n4-00412-s001, ch: つもり, pr: つもり, ds: intention}
+- {id: ja-n4-00615-s001, ch: 予定, pr: よてい, ds: plans}
+- {id: ja-n4-00297-s001, ch: 準備, pr: じゅんび, ds: preparation}
+- {id: ja-n4-00276-s001, ch: 支度, pr: したく, ds: preparation}
+- {id: ja-n4-00611-s001, ch: 用意, pr: ようい, ds: preparation}
+- {id: ja-n4-00612-s001, ch: 用事, pr: ようじ, ds: business}
+- {id: ja-n4-00592-s001, ch: 約束, pr: やくそく, ds: promise}
+- {id: ja-n4-00303-s001, ch: 将来, pr: しょうらい, ds: future}
+- {id: ja-n4-00301-s001, ch: 招待, pr: しょうたい, ds: invitation}
+- {id: ja-n4-00345-s001, ch: 是非, pr: ぜひ, ds: certainly}
+- {id: ja-n4-00418-s001, ch: できるだけ, pr: できるだけ, ds: as much as one can}
+- {id: ja-n4-00456-s001, ch: なるべく, pr: なるべく, ds: as (much) as possible}
+- {id: ja-n4-00388-s001, ch: だめ, pr: だめ, ds: no good}
+- {id: ja-n4-00578-s001, ch: 無理, pr: むり, ds: unreasonable}
+- {id: ja-n3-00009-s001, ch: あいにく, pr: あいにく, ds: unfortunately}
+- {id: ja-n3-00050-s001, ch: 案, pr: あん, ds: idea}
+- {id: ja-n3-00117-s001, ch: 依頼, pr: いらい, ds: request}
+- {id: ja-n3-00122-s001, ch: 祝い, pr: いわい, ds: congratulation}
+- {id: ja-n3-00123-s001, ch: 祝う, pr: いわう, ds: to celebrate}
+- {id: ja-n3-00194-s001, ch: 贈る, pr: おくる, ds: to give (as a gift)}
+- {id: ja-n3-00214-s001, ch: おめでとう, pr: おめでとう, ds: congratulations!}
+- {id: ja-n3-00273-s001, ch: 確認, pr: かくにん, ds: confirmation}
+- {id: ja-n3-00334-s001, ch: 歓迎, pr: かんげい, ds: welcome}
+- {id: ja-n3-00383-s001, ch: 希望, pr: きぼう, ds: hope}
+- {id: ja-n3-00417-s001, ch: 許可, pr: きょか, ds: permission}
+- {id: ja-n3-00501-s001, ch: 決心, pr: けっしん, ds: determination}
+- {id: ja-n3-00503-s001, ch: 決定, pr: けってい, ds: decision}
+- {id: ja-n3-00586-s001, ch: 断る, pr: ことわる, ds: to refuse}
+- {id: ja-n3-00633-s001, ch: 誘う, pr: さそう, ds: to invite}
+- {id: ja-n3-00652-s001, ch: 参加, pr: さんか, ds: participation}
+- {id: ja-n5-00261-s003, ch: 先, pr: さき, ds: first; before; ahead in order}
+- {id: ja-n3-00234-s004, ch: カード, pr: カード, ds: credit or debit card}
+- {id: ja-n5-00039-s002, ch: ある, pr: ある, ds: to have}
+- {id: ja-n4-00442-s002, ch: 止める, pr: とめる, ds: to park}
+- {id: ja-n5-00103-s001, ch: 奥さん, pr: おくさん, ds: wife}
+- {id: ja-n5-00106-s001, ch: おじいさん, pr: おじいさん, ds: grandfather}
+- {id: ja-n5-00108-s001, ch: おじさん, pr: おじさん, ds: uncle}
+- {id: ja-n5-00124-s001, ch: おばあさん, pr: おばあさん, ds: grandmother}
+- {id: ja-n5-00125-s001, ch: おばさん, pr: おばさん, ds: aunt}
+- {id: ja-n5-00122-s001, ch: お兄さん, pr: おにいさん, ds: older brother}
+- {id: ja-n5-00123-s001, ch: お姉さん, pr: おねえさん, ds: older sister}
+- {id: ja-n5-00115-s001, ch: 男, pr: おとこ, ds: man}
+- {id: ja-n5-00116-s001, ch: 男の子, pr: おとこのこ, ds: boy}
+- {id: ja-n5-00136-s001, ch: 女, pr: おんな, ds: woman}
+- {id: ja-n5-00137-s001, ch: 女の子, pr: おんなのこ, ds: girl}
+- {id: ja-n5-00194-s001, ch: 兄弟, pr: きょうだい, ds: brothers and sisters}
+- {id: ja-n5-00225-s001, ch: 結婚, pr: けっこん, ds: marriage}
+- {id: ja-n5-00080-s001, ch: 生まれる, pr: うまれる, ds: to be born}
+- {id: ja-n5-00287-s001, ch: 自分, pr: じぶん, ds: myself}
+- {id: ja-n5-00662-s001, ch: 立派, pr: りっぱ, ds: splendid}
+- {id: ja-n5-00156-s001, ch: 方, pr: かた, ds: direction}
+- {id: ja-n5-00684-s001, ch: 方, pr: ほう, ds: direction}
+- {id: ja-n5-00678-s001, ch: 私, pr: わたくし, ds: I}
+- {id: ja-n5-00128-s001, ch: 覚える, pr: おぼえる, ds: to memorize}
+- {id: ja-n5-00107-s001, ch: 教える, pr: おしえる, ds: to teach}
+- {id: ja-n5-00242-s001, ch: 答える, pr: こたえる, ds: to answer}
+- {id: ja-n5-00459-s001, ch: 習う, pr: ならう, ds: to take lessons in}
+- {id: ja-n5-00671-s001, ch: 練習, pr: れんしゅう, ds: practice; training; exercises}
+- {id: ja-n5-00298-s001, ch: 授業, pr: じゅぎょう, ds: lesson}
+- {id: ja-n5-00299-s001, ch: 宿題, pr: しゅくだい, ds: homework}
+- {id: ja-n5-00406-s001, ch: テスト, pr: テスト, ds: 'test (of ability, knowledge, etc.)'}
+- {id: ja-n5-00215-s001, ch: クラス, pr: クラス, ds: class}
+- {id: ja-n5-00325-s001, ch: 生徒, pr: せいと, ds: pupil}
+- {id: ja-n5-00175-s001, ch: 漢字, pr: かんじ, ds: kanji}
+- {id: ja-n5-00092-s001, ch: 鉛筆, pr: えんぴつ, ds: (wooden) pencil}
+- {id: ja-n5-00478-s001, ch: ノート, pr: ノート, ds: notebook}
+- {id: ja-n5-00263-s001, ch: 作文, pr: さくぶん, ds: 'writing (an essay, prose, etc.)'}
+- {id: ja-n5-00553-s001, ch: 文章, pr: ぶんしょう, ds: writing}
+- {id: ja-n5-00554-s001, ch: ページ, pr: ページ, ds: page}
+- {id: ja-n5-00628-s001, ch: 問題, pr: もんだい, ds: question (e.g. on a test)}
+- {id: ja-n5-00631-s001, ch: やさしい, pr: やさしい, ds: easy}
+- {id: ja-n5-00615-s001, ch: 難しい, pr: むずかしい, ds: difficult}
+- {id: ja-n5-00138-s001, ch: 外国, pr: がいこく, ds: foreign country}
+- {id: ja-n5-00139-s001, ch: 外国人, pr: がいこくじん, ds: foreigner}
+- {id: ja-n5-00033-s002, ch: 危ない, pr: あぶない, ds: in danger}
+- {id: ja-n5-00574-s001, ch: 本当, pr: ほんとう, ds: truth}
+- {id: ja-n5-00061-s001, ch: 一緒, pr: いっしょ, ds: (doing) together}
+- {id: ja-n5-00496-s001, ch: 初めて, pr: はじめて, ds: for the first time}
+- {id: ja-n5-00494-s001, ch: 始め, pr: はじめ, ds: beginning}
+- {id: ja-n4-00174-s001, ch: 教育, pr: きょういく, ds: education}
+- {id: ja-n4-00198-s001, ch: 消しゴム, pr: けしゴム, ds: eraser}
+- {id: ja-n4-00211-s001, ch: 講義, pr: こうぎ, ds: lecture}
+- {id: ja-n4-00213-s001, ch: 高校, pr: こうこう, ds: senior high school}
+- {id: ja-n4-00214-s001, ch: 高校生, pr: こうこうせい, ds: senior high school student}
+- {id: ja-n4-00216-s001, ch: 校長, pr: こうちょう, ds: principal}
+- {id: ja-n4-00218-s001, ch: 講堂, pr: こうどう, ds: auditorium}
+- {id: ja-n4-00219-s001, ch: 高等学校, pr: こうとうがっこう, ds: senior high school}
+- {id: ja-n4-00226-s001, ch: 答え, pr: こたえ, ds: answer}
+- {id: ja-n4-00267-s001, ch: 字, pr: じ, ds: character (esp. kanji)}
+- {id: ja-n4-00271-s001, ch: 試験, pr: しけん, ds: examination}
+- {id: ja-n4-00279-s001, ch: 辞典, pr: じてん, ds: dictionary}
+- {id: ja-n4-00294-s001, ch: 出席, pr: しゅっせき, ds: attendance}
+- {id: ja-n4-00299-s001, ch: 小学校, pr: しょうがっこう, ds: primary school}
+- {id: ja-n4-00354-s001, ch: 卒業, pr: そつぎょう, ds: graduation}
+- {id: ja-n4-00365-s001, ch: 大学生, pr: だいがくせい, ds: university student}
+- {id: ja-n4-00398-s001, ch: 中学校, pr: ちゅうがっこう, ds: junior high school}
+- {id: ja-n4-00416-s001, ch: テキスト, pr: テキスト, ds: text}
+- {id: ja-n4-00465-s001, ch: 入学, pr: にゅうがく, ds: admission (to a school or university)}
+- {id: ja-n4-00493-s001, ch: 発音, pr: はつおん, ds: pronunciation}
+- {id: ja-n4-00527-s001, ch: 復習, pr: ふくしゅう, ds: review (of learned material)}
+- {id: ja-n4-00540-s001, ch: 文法, pr: ぶんぽう, ds: grammar}
+- {id: ja-n4-00559-s001, ch: 間違える, pr: まちがえる, ds: to make a mistake (in)}
+- {id: ja-n4-00593-s001, ch: 役に立つ, pr: やくにたつ, ds: to be helpful}
+- {id: ja-n4-00614-s001, ch: 予習, pr: よしゅう, ds: preparation for a lesson}
+- {id: ja-n4-00628-s001, ch: レポート, pr: レポート, ds: report}
+- {id: ja-n4-00640-s001, ch: 泳ぎ方, pr: およぎかた, ds: way of swimming}
+- {id: ja-n3-00051-s001, ch: 暗記, pr: あんき, ds: memorization}
+- {id: ja-n3-00126-s001, ch: インク, pr: インク, ds: ink}
+- {id: ja-n3-00270-s001, ch: 学習, pr: がくしゅう, ds: learning}
+- {id: ja-n3-00274-s001, ch: 学問, pr: がくもん, ds: study}
+- {id: ja-n3-00301-s001, ch: 学期, pr: がっき, ds: school term}
+- {id: ja-n3-00317-s001, ch: 科目, pr: かもく, ds: (school) subject}
+- {id: ja-n3-00354-s001, ch: 記憶, pr: きおく, ds: memory}
+- {id: ja-n3-00378-s001, ch: 記入, pr: きにゅう, ds: 'entry (in a form, register, diary, etc.)'}
+- {id: ja-n3-00384-s001, ch: 基本, pr: きほん, ds: basics}
+- {id: ja-n3-00394-s001, ch: 級, pr: きゅう, ds: (school) grade}
+- {id: ja-n3-00405-s001, ch: 教科書, pr: きょうかしょ, ds: textbook}
+- {id: ja-n3-00409-s001, ch: 教師, pr: きょうし, ds: teacher}
+- {id: ja-n3-00410-s001, ch: 教授, pr: きょうじゅ, ds: professor}
+- {id: ja-n3-00424-s001, ch: 記録, pr: きろく, ds: record}
+- {id: ja-n3-00439-s001, ch: 句, pr: く, ds: section (i.e. of text)}
+- {id: ja-n3-00464-s001, ch: 繰り返す, pr: くりかえす, ds: to repeat}
+- {id: ja-n3-00478-s001, ch: 訓練, pr: くんれん, ds: training}
+- {id: ja-n3-00502-s001, ch: 欠席, pr: けっせき, ds: absence}
+- {id: ja-n3-00514-s001, ch: 言語, pr: げんご, ds: language}
+- {id: ja-n3-00530-s001, ch: 語, pr: ご, ds: word}
+- {id: ja-n3-00540-s001, ch: 合格, pr: ごうかく, ds: passing (an exam)}
+- {id: ja-n3-00560-s001, ch: コーチ, pr: コーチ, ds: coach}
+- {id: ja-n3-00566-s001, ch: 語学, pr: ごがく, ds: study of foreign languages}
+- {id: ja-n3-00570-s001, ch: 国語, pr: こくご, ds: national language}
+- {id: ja-n3-00571-s001, ch: 黒板, pr: こくばん, ds: blackboard}
+- {id: ja-n3-00653-s001, ch: 参考, pr: さんこう, ds: reference}
+- {id: ja-n3-00700-s001, ch: 指導, pr: しどう, ds: guidance}
+- {id: ja-n2-01426-s001, ch: 百科事典, pr: ひゃっかじてん, ds: encyclopedia}
+- {id: ja-n2-01740-s001, ch: 幼稚園, pr: ようちえん, ds: kindergarten; optional preschool education}
+- {id: ja-n2-01762-s001, ch: 落第, pr: らくだい, ds: failure (in an examination)}
+- {id: ja-n2-01783-s001, ch: 零点, pr: れいてん, ds: 'zero (points, marks)'}
+- {id: ja-n5-00045-s002, ch: 言う, pr: いう, ds: to name}
+- {id: ja-n5-00387-s004, ch: 使う, pr: つかう, ds: to use (language)}
+- {id: ja-n5-00078-s001, ch: 歌, pr: うた, ds: song}
+- {id: ja-n5-00182-s001, ch: ギター, pr: ギター, ds: guitar}
+- {id: ja-n5-00523-s001, ch: 弾く, pr: ひく, ds: to play (a stringed or keyboard instrument)}
+- {id: ja-n5-00085-s001, ch: 絵, pr: え, ds: picture}
+- {id: ja-n5-00164-s001, ch: カメラ, pr: カメラ, ds: camera}
+- {id: ja-n5-00557-s001, ch: ペット, pr: ペット, ds: pet}
+- {id: ja-n5-00422-s001, ch: 動物, pr: どうぶつ, ds: animal}
+- {id: ja-n5-00442-s001, ch: 鳥, pr: とり, ds: bird}
+- {id: ja-n5-00450-s001, ch: 鳴く, pr: なく, ds: to make sound (of an animal)}
+- {id: ja-n5-00504-s001, ch: 花, pr: はな, ds: flower}
+- {id: ja-n5-00176-s001, ch: 木, pr: き, ds: tree}
+- {id: ja-n5-00262-s001, ch: 咲く, pr: さく, ds: to bloom}
+- {id: ja-n5-00627-s001, ch: 門, pr: もん, ds: gate}
+- {id: ja-n5-00346-s001, ch: 空, pr: そら, ds: sky}
+- {id: ja-n5-00512-s001, ch: 晴れ, pr: はれ, ds: clear weather}
+- {id: ja-n5-00513-s001, ch: 晴れる, pr: はれる, ds: to clear up}
+- {id: ja-n5-00212-s001, ch: 曇り, pr: くもり, ds: cloudiness}
+- {id: ja-n5-00213-s001, ch: 曇る, pr: くもる, ds: to get cloudy}
+- {id: ja-n5-00550-s001, ch: 降る, pr: ふる, ds: 'to fall (of rain, snow, ash, etc.)'}
+- {id: ja-n5-00542-s001, ch: 吹く, pr: ふく, ds: to blow (of the wind)}
+- {id: ja-n5-00153-s001, ch: 風, pr: かぜ, ds: wind}
+- {id: ja-n5-00007-s001, ch: 秋, pr: あき, ds: autumn}
+- {id: ja-n5-00510-s001, ch: 春, pr: はる, ds: spring (season)}
+- {id: ja-n5-00453-s001, ch: 夏, pr: なつ, ds: summer}
+- {id: ja-n5-00549-s001, ch: 冬, pr: ふゆ, ds: winter}
+- {id: ja-n5-00454-s001, ch: 夏休み, pr: なつやすみ, ds: summer vacation}
+- {id: ja-n5-00484-s001, ch: パーティー, pr: パーティー, ds: party (social gathering)}
+- {id: ja-n5-00607-s001, ch: 皆さん, pr: みなさん, ds: all}
+- {id: ja-n5-00612-s001, ch: みんな, pr: みんな, ds: everyone}
+- {id: ja-n4-00016-s001, ch: 遊び, pr: あそび, ds: play}
+- {id: ja-n4-00067-s001, ch: 運動, pr: うんどう, ds: exercise}
+- {id: ja-n4-00094-s001, ch: 踊り, pr: おどり, ds: dance}
+- {id: ja-n4-00095-s001, ch: 踊る, pr: おどる, ds: to dance (orig. a hopping dance)}
+- {id: ja-n4-00097-s001, ch: お祭り, pr: おまつり, ds: festival}
+- {id: ja-n4-00102-s001, ch: おもちゃ, pr: おもちゃ, ds: toy}
+- {id: ja-n4-00131-s001, ch: 勝つ, pr: かつ, ds: to win}
+- {id: ja-n4-00176-s001, ch: 競争, pr: きょうそう, ds: competition}
+- {id: ja-n4-00177-s001, ch: 興味, pr: きょうみ, ds: interest (in something)}
+- {id: ja-n4-00207-s001, ch: 見物, pr: けんぶつ, ds: sightseeing}
+- {id: ja-n4-00241-s001, ch: コンサート, pr: コンサート, ds: concert}
+- {id: ja-n4-00268-s001, ch: 試合, pr: しあい, ds: match; game; sporting contest}
+- {id: ja-n4-00292-s001, ch: 柔道, pr: じゅうどう, ds: judo}
+- {id: ja-n4-00296-s001, ch: 趣味, pr: しゅみ, ds: hobby}
+- {id: ja-n4-00314-s001, ch: 水泳, pr: すいえい, ds: swimming}
+- {id: ja-n4-00384-s001, ch: 楽しみ, pr: たのしみ, ds: enjoyment}
+- {id: ja-n4-00385-s001, ch: 楽しむ, pr: たのしむ, ds: to enjoy}
+- {id: ja-n4-00413-s001, ch: 釣る, pr: つる, ds: to fish}
+- {id: ja-n4-00420-s001, ch: テニス, pr: テニス, ds: tennis}
+- {id: ja-n4-00428-s001, ch: 展覧会, pr: てんらんかい, ds: exhibition}
+- {id: ja-n4-00432-s001, ch: 動物園, pr: どうぶつえん, ds: zoo}
+- {id: ja-n4-00453-s001, ch: 投げる, pr: なげる, ds: to throw}
+- {id: ja-n4-00467-s001, ch: 人形, pr: にんぎょう, ds: doll}
+- {id: ja-n4-00495-s001, ch: 花見, pr: はなみ, ds: cherry blossom viewing}
+- {id: ja-n4-00503-s001, ch: ピアノ, pr: ピアノ, ds: piano (instrument)}
+- {id: ja-n4-00512-s001, ch: 美術館, pr: びじゅつかん, ds: art museum}
+- {id: ja-n4-00537-s001, ch: プレゼント, pr: プレゼント, ds: present; gift}
+- {id: ja-n4-00555-s001, ch: 負ける, pr: まける, ds: to lose}
+- {id: ja-n3-00011-s001, ch: アウト, pr: アウト, ds: 'out (of a ball; in tennis, etc.)'}
+- {id: ja-n3-00046-s001, ch: アルバム, pr: アルバム, ds: album}
+- {id: ja-n3-00166-s001, ch: 餌, pr: えさ, ds: (animal) feed}
+- {id: ja-n3-00172-s001, ch: 演技, pr: えんぎ, ds: acting}
+- {id: ja-n3-00176-s001, ch: 演奏, pr: えんそう, ds: musical performance}
+- {id: ja-n3-00220-s001, ch: 泳ぎ, pr: およぎ, ds: swimming}
+- {id: ja-n3-00239-s001, ch: 絵画, pr: かいが, ds: painting}
+- {id: ja-n3-00255-s001, ch: 画家, pr: がか, ds: painter}
+- {id: ja-n3-00263-s001, ch: 描く, pr: かく, ds: to draw}
+- {id: ja-n3-00288-s001, ch: 歌手, pr: かしゅ, ds: singer}
+- {id: ja-n3-00297-s001, ch: 勝ち, pr: かち, ds: win}
+- {id: ja-n3-00332-s001, ch: 観客, pr: かんきゃく, ds: spectator}
+- {id: ja-n3-00349-s001, ch: 監督, pr: かんとく, ds: supervision}
+- {id: ja-n3-00391-s001, ch: キャプテン, pr: キャプテン, ds: captain}
+- {id: ja-n3-00395-s001, ch: 球, pr: きゅう, ds: sphere}
+- {id: ja-n3-00406-s001, ch: 競技, pr: きょうぎ, ds: game}
+- {id: ja-n3-00459-s001, ch: クラシック, pr: クラシック, ds: classical music}
+- {id: ja-n3-00465-s001, ch: クリスマス, pr: クリスマス, ds: Christmas}
+- {id: ja-n3-00493-s001, ch: ゲーム, pr: ゲーム, ds: game}
+- {id: ja-n3-00494-s001, ch: 劇, pr: げき, ds: drama}
+- {id: ja-n3-00495-s001, ch: 劇場, pr: げきじょう, ds: theatre}
+- {id: ja-n3-00564-s001, ch: ゴール, pr: ゴール, ds: 'goal (in soccer, hockey, etc.)'}
+- {id: ja-n3-00624-s001, ch: 作品, pr: さくひん, ds: 'work (e.g. book, film, painting, composition)'}
+- {id: ja-n3-00635-s001, ch: 作家, pr: さっか, ds: author}
+- {id: ja-n3-00636-s001, ch: 作曲, pr: さっきょく, ds: composition (of music)}
+- {id: ja-n3-00704-s001, ch: 芝居, pr: しばい, ds: play}
+- {id: ja-n3-00876-s002, ch: すみません, pr: すみません, ds: thank you (for another person's trouble)}

@@ -1,0 +1,1415 @@
+schema_version: 1
+id: ja-tourist
+title: Japanese for a short visit
+language: japanese
+level_basis: Independent situation-based route with no prerequisite core level or kana course. The first
+  five ordered units form a self-contained quick start; source bands are provenance only.
+review_policy: Start with 5-8 new senses and a useful phrase. Teach the listed local construction prerequisites,
+  then change a detail and reduce help. Retrieve earlier items later the same day and roughly 1, 3, 7
+  and 14 days later, adapting to evidence. Kana readings are not audio or pitch-accent models. These original
+  phrases do not guarantee safety, accepted payment, dietary suitability, medical accuracy, or current
+  travel arrangements; confirm with an appropriate person.
+quick_start:
+- polite-repair
+- food-basics
+- finding-your-way
+- paying
+- asking-for-help
+units:
+- id: polite-repair
+  title: Polite contact and repair
+  outcome: Get attention, signal non-understanding, and request slower speech or repetition.
+  vocabulary:
+  - ja-n3-00876-s001
+  - ja-n5-00676-s001
+  - ja-n5-00645-s001
+  - ja-n5-00507-s001
+  - ja-n5-00622-s001
+  - ja-n2-00202-s001
+  grammar:
+  - ja-n5-g023
+  - ja-n5-g024
+  - ja-n5-g041
+  - ja-n5-g026
+  review_vocabulary: []
+  review_grammar: []
+  phrases:
+  - id: ja-tourist-p001
+    ch: すみません
+    pr: すみません
+    ds: Excuse me; sorry.
+    items:
+    - ja-n3-00876-s001
+    grammar: []
+    realizations:
+    - ch: すみません
+      pr: すみません
+      items:
+      - ja-n3-00876-s001
+      grammar: []
+  - id: ja-tourist-p002
+    ch: わかりません
+    pr: わかりません
+    ds: I do not understand.
+    items:
+    - ja-n5-00676-s001
+    grammar:
+    - ja-n5-g023
+    - ja-n5-g024
+    realizations:
+    - ch: わかりません
+      pr: わかりません
+      items:
+      - ja-n5-00676-s001
+      grammar:
+      - ja-n5-g023
+      - ja-n5-g024
+      form_id: ja-form-wakarimasen
+  - id: ja-tourist-p003
+    ch: ゆっくり話してください
+    pr: ゆっくりはなしてください
+    ds: Please speak slowly.
+    items:
+    - ja-n5-00645-s001
+    - ja-n5-00507-s001
+    grammar:
+    - ja-n5-g041
+    - ja-n5-g026
+    realizations:
+    - ch: ゆっくり
+      pr: ゆっくり
+      items:
+      - ja-n5-00645-s001
+      grammar: []
+    - ch: 話してください
+      pr: はなしてください
+      items:
+      - ja-n5-00507-s001
+      grammar:
+      - ja-n5-g041
+      - ja-n5-g026
+      form_id: ja-form-hanashite-kudasai
+  - id: ja-tourist-p004
+    ch: もう一度お願いします
+    pr: もういちどおねがいします
+    ds: Once more, please.
+    items:
+    - ja-n5-00622-s001
+    - ja-n2-00202-s001
+    grammar: []
+    realizations:
+    - ch: もう一度
+      pr: もういちど
+      items:
+      - ja-n5-00622-s001
+      grammar: []
+    - ch: お願いします
+      pr: おねがいします
+      items:
+      - ja-n2-00202-s001
+      grammar: []
+- id: food-basics
+  title: Food and water
+  outcome: Ask for water and identify an item; state a basic food preference.
+  vocabulary:
+  - ja-n5-00600-s001
+  - ja-n1-01115-s001
+  - ja-n5-00463-s001
+  - ja-n5-00467-s002
+  - ja-n5-00369-s001
+  grammar:
+  - ja-n5-g006
+  - ja-n5-g004
+  - ja-n5-g001
+  - ja-n5-g003
+  review_vocabulary:
+  - ja-n2-00202-s001
+  review_grammar:
+  - ja-n5-g023
+  - ja-n5-g024
+  phrases:
+  - id: ja-tourist-p005
+    ch: 水をお願いします
+    pr: みずおおねがいします
+    ds: Water, please.
+    items:
+    - ja-n5-00600-s001
+    - ja-n2-00202-s001
+    grammar:
+    - ja-n5-g006
+    realizations:
+    - ch: 水
+      pr: みず
+      items:
+      - ja-n5-00600-s001
+      grammar: []
+    - ch: を
+      pr: お
+      items: []
+      grammar:
+      - ja-n5-g006
+      form_id: ja-form-o-object
+    - ch: お願いします
+      pr: おねがいします
+      items:
+      - ja-n2-00202-s001
+      grammar: []
+  - id: ja-tourist-p006
+    ch: これは何ですか
+    pr: これわなんですか
+    ds: What is this?
+    items:
+    - ja-n1-01115-s001
+    - ja-n5-00463-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: これ
+      pr: これ
+      items:
+      - ja-n1-01115-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 何
+      pr: なん
+      items:
+      - ja-n5-00463-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p007
+    ch: 肉は食べません
+    pr: にくわたべません
+    ds: I do not eat meat.
+    items:
+    - ja-n5-00467-s002
+    - ja-n5-00369-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g023
+    - ja-n5-g024
+    realizations:
+    - ch: 肉
+      pr: にく
+      items:
+      - ja-n5-00467-s002
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 食べません
+      pr: たべません
+      items:
+      - ja-n5-00369-s001
+      grammar:
+      - ja-n5-g023
+      - ja-n5-g024
+      form_id: ja-form-tabemasen
+- id: finding-your-way
+  title: Find a destination
+  outcome: Ask where a station or toilet is and confirm an inanimate thing's location.
+  vocabulary:
+  - ja-n5-00090-s001
+  - ja-n5-00428-s001
+  - ja-n5-00418-s001
+  - ja-n5-00237-s001
+  - ja-n5-00039-s003
+  grammar:
+  - ja-n5-g010
+  review_vocabulary: []
+  review_grammar:
+  - ja-n5-g004
+  - ja-n5-g001
+  - ja-n5-g003
+  - ja-n5-g023
+  phrases:
+  - id: ja-tourist-p008
+    ch: 駅はどこですか
+    pr: えきわどこですか
+    ds: Where is the station?
+    items:
+    - ja-n5-00090-s001
+    - ja-n5-00428-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: 駅
+      pr: えき
+      items:
+      - ja-n5-00090-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: どこ
+      pr: どこ
+      items:
+      - ja-n5-00428-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p009
+    ch: トイレはどこですか
+    pr: トイレわどこですか
+    ds: Where is the toilet?
+    items:
+    - ja-n5-00418-s001
+    - ja-n5-00428-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: トイレ
+      pr: トイレ
+      items:
+      - ja-n5-00418-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: どこ
+      pr: どこ
+      items:
+      - ja-n5-00428-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p010
+    ch: ここにありますか
+    pr: ここにありますか
+    ds: Is it here?
+    items:
+    - ja-n5-00237-s001
+    - ja-n5-00039-s003
+    grammar:
+    - ja-n5-g010
+    - ja-n5-g023
+    - ja-n5-g003
+    realizations:
+    - ch: ここ
+      pr: ここ
+      items:
+      - ja-n5-00237-s001
+      grammar: []
+    - ch: に
+      pr: に
+      items: []
+      grammar:
+      - ja-n5-g010
+      form_id: ja-form-ni-existence
+    - ch: あります
+      pr: あります
+      items:
+      - ja-n5-00039-s003
+      grammar:
+      - ja-n5-g010
+      - ja-n5-g023
+      form_id: ja-form-arimasu-location
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+- id: paying
+  title: Payment and quantities
+  outcome: Ask a price, specify two items, and request payment by card without assuming availability.
+  vocabulary:
+  - ja-n5-00050-s001
+  - ja-n5-00544-s001
+  - ja-n5-00331-s001
+  - ja-n3-00170-s001
+  - ja-n3-00234-s004
+  grammar:
+  - ja-n5-g042
+  - ja-n5-g013
+  review_vocabulary:
+  - ja-n2-00202-s001
+  review_grammar:
+  - ja-n5-g001
+  - ja-n5-g003
+  phrases:
+  - id: ja-tourist-p011
+    ch: いくらですか
+    pr: いくらですか
+    ds: How much is it?
+    items:
+    - ja-n5-00050-s001
+    grammar:
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: いくら
+      pr: いくら
+      items:
+      - ja-n5-00050-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p012
+    ch: 二つお願いします
+    pr: ふたつおねがいします
+    ds: Two, please.
+    items:
+    - ja-n5-00544-s001
+    - ja-n2-00202-s001
+    grammar:
+    - ja-n5-g042
+    realizations:
+    - ch: 二つ
+      pr: ふたつ
+      items:
+      - ja-n5-00544-s001
+      grammar:
+      - ja-n5-g042
+    - ch: お願いします
+      pr: おねがいします
+      items:
+      - ja-n2-00202-s001
+      grammar: []
+  - id: ja-tourist-p013
+    ch: 千円ですか
+    pr: せんえんですか
+    ds: Is it one thousand yen?
+    items:
+    - ja-n5-00331-s001
+    - ja-n3-00170-s001
+    grammar:
+    - ja-n5-g042
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: 千
+      pr: せん
+      items:
+      - ja-n5-00331-s001
+      grammar:
+      - ja-n5-g042
+    - ch: 円
+      pr: えん
+      items:
+      - ja-n3-00170-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p014
+    ch: カードでお願いします
+    pr: カードでおねがいします
+    ds: By card, please.
+    items:
+    - ja-n3-00234-s004
+    - ja-n2-00202-s001
+    grammar:
+    - ja-n5-g013
+    realizations:
+    - ch: カード
+      pr: カード
+      items:
+      - ja-n3-00234-s004
+      grammar: []
+    - ch: で
+      pr: で
+      items: []
+      grammar:
+      - ja-n5-g013
+      form_id: ja-form-de-means
+    - ch: お願いします
+      pr: おねがいします
+      items:
+      - ja-n2-00202-s001
+      grammar: []
+- id: asking-for-help
+  title: Ask for help
+  outcome: Ask for practical assistance, an English-language explanation, or a hospital location.
+  vocabulary:
+  - ja-n4-00419-s001
+  - ja-n5-00088-s001
+  - ja-n5-00533-s001
+  grammar: []
+  review_vocabulary:
+  - ja-n2-00202-s001
+  - ja-n5-00428-s001
+  review_grammar:
+  - ja-n5-g041
+  - ja-n5-g026
+  - ja-n5-g013
+  - ja-n5-g004
+  - ja-n5-g001
+  - ja-n5-g003
+  phrases:
+  - id: ja-tourist-p015
+    ch: 手伝ってください
+    pr: てつだってください
+    ds: Please help me.
+    items:
+    - ja-n4-00419-s001
+    grammar:
+    - ja-n5-g041
+    - ja-n5-g026
+    realizations:
+    - ch: 手伝ってください
+      pr: てつだってください
+      items:
+      - ja-n4-00419-s001
+      grammar:
+      - ja-n5-g041
+      - ja-n5-g026
+      form_id: ja-form-tetsudatte-kudasai
+  - id: ja-tourist-p016
+    ch: 英語でお願いします
+    pr: えいごでおねがいします
+    ds: In English, please.
+    items:
+    - ja-n5-00088-s001
+    - ja-n2-00202-s001
+    grammar:
+    - ja-n5-g013
+    realizations:
+    - ch: 英語
+      pr: えいご
+      items:
+      - ja-n5-00088-s001
+      grammar: []
+    - ch: で
+      pr: で
+      items: []
+      grammar:
+      - ja-n5-g013
+      form_id: ja-form-de-means
+    - ch: お願いします
+      pr: おねがいします
+      items:
+      - ja-n2-00202-s001
+      grammar: []
+  - id: ja-tourist-p017
+    ch: 病院はどこですか
+    pr: びょういんわどこですか
+    ds: Where is the hospital?
+    items:
+    - ja-n5-00533-s001
+    - ja-n5-00428-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: 病院
+      pr: びょういん
+      items:
+      - ja-n5-00533-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: どこ
+      pr: どこ
+      items:
+      - ja-n5-00428-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+- id: local-transport
+  title: Use local transport
+  outcome: Check a train's destination, say where you are getting off, and confirm the next stop.
+  vocabulary:
+  - ja-n5-00249-s001
+  - ja-n5-00414-s001
+  - ja-n5-00048-s001
+  - ja-n4-00181-s001
+  - ja-n5-00133-s002
+  - ja-n5-00389-s001
+  grammar:
+  - ja-n5-g019
+  - ja-n5-g012
+  - ja-n5-g009
+  - ja-n5-g007
+  review_vocabulary:
+  - ja-n5-00237-s001
+  - ja-n5-00090-s001
+  review_grammar:
+  - ja-n5-g004
+  - ja-n5-g023
+  - ja-n5-g003
+  - ja-n5-g001
+  phrases:
+  - id: ja-tourist-p018
+    ch: この電車は空港に行きますか
+    pr: このでんしゃわくうこうにいきますか
+    ds: Does this train go to the airport?
+    items:
+    - ja-n5-00249-s001
+    - ja-n5-00414-s001
+    - ja-n4-00181-s001
+    - ja-n5-00048-s001
+    grammar:
+    - ja-n5-g019
+    - ja-n5-g004
+    - ja-n5-g012
+    - ja-n5-g023
+    - ja-n5-g003
+    realizations:
+    - ch: この
+      pr: この
+      items:
+      - ja-n5-00249-s001
+      grammar:
+      - ja-n5-g019
+    - ch: 電車
+      pr: でんしゃ
+      items:
+      - ja-n5-00414-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 空港
+      pr: くうこう
+      items:
+      - ja-n4-00181-s001
+      grammar: []
+    - ch: に
+      pr: に
+      items: []
+      grammar:
+      - ja-n5-g012
+      form_id: ja-form-ni-destination
+    - ch: 行きます
+      pr: いきます
+      items:
+      - ja-n5-00048-s001
+      grammar:
+      - ja-n5-g023
+      form_id: ja-form-ikimasu
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p019
+    ch: ここで降ります
+    pr: ここでおります
+    ds: I am getting off here.
+    items:
+    - ja-n5-00237-s001
+    - ja-n5-00133-s002
+    grammar:
+    - ja-n5-g009
+    - ja-n5-g023
+    realizations:
+    - ch: ここ
+      pr: ここ
+      items:
+      - ja-n5-00237-s001
+      grammar: []
+    - ch: で
+      pr: で
+      items: []
+      grammar:
+      - ja-n5-g009
+      form_id: ja-form-de-location
+    - ch: 降ります
+      pr: おります
+      items:
+      - ja-n5-00133-s002
+      grammar:
+      - ja-n5-g023
+      form_id: ja-form-orimasu
+  - id: ja-tourist-p020
+    ch: 次の駅ですか
+    pr: つぎのえきですか
+    ds: Is it the next station?
+    items:
+    - ja-n5-00389-s001
+    - ja-n5-00090-s001
+    grammar:
+    - ja-n5-g007
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: 次
+      pr: つぎ
+      items:
+      - ja-n5-00389-s001
+      grammar: []
+    - ch: の
+      pr: の
+      items: []
+      grammar:
+      - ja-n5-g007
+      form_id: ja-form-no-modifier
+    - ch: 駅
+      pr: えき
+      items:
+      - ja-n5-00090-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+- id: accommodation
+  title: Accommodation
+  outcome: State that you have a reservation and clarify a room or check-in detail.
+  vocabulary:
+  - ja-n4-00616-s001
+  - ja-n5-00039-s002
+  - ja-n5-00458-s001
+  - ja-n5-00148-s001
+  - ja-n5-00558-s001
+  - ja-n5-00278-s001
+  grammar:
+  - ja-n5-g005
+  review_vocabulary: []
+  review_grammar:
+  - ja-n5-g010
+  - ja-n5-g023
+  - ja-n5-g006
+  - ja-n5-g004
+  - ja-n5-g001
+  - ja-n5-g003
+  phrases:
+  - id: ja-tourist-p021
+    ch: 予約があります
+    pr: よやくがあります
+    ds: I have a reservation.
+    items:
+    - ja-n4-00616-s001
+    - ja-n5-00039-s002
+    grammar:
+    - ja-n5-g005
+    - ja-n5-g010
+    - ja-n5-g023
+    realizations:
+    - ch: 予約
+      pr: よやく
+      items:
+      - ja-n4-00616-s001
+      grammar: []
+    - ch: が
+      pr: が
+      items: []
+      grammar:
+      - ja-n5-g005
+      form_id: ja-form-ga-subject
+    - ch: あります
+      pr: あります
+      items:
+      - ja-n5-00039-s002
+      grammar:
+      - ja-n5-g010
+      - ja-n5-g023
+      form_id: ja-form-arimasu-possession
+  - id: ja-tourist-p022
+    ch: 名前を書きます
+    pr: なまえおかきます
+    ds: I will write my name.
+    items:
+    - ja-n5-00458-s001
+    - ja-n5-00148-s001
+    grammar:
+    - ja-n5-g006
+    - ja-n5-g023
+    realizations:
+    - ch: 名前
+      pr: なまえ
+      items:
+      - ja-n5-00458-s001
+      grammar: []
+    - ch: を
+      pr: お
+      items: []
+      grammar:
+      - ja-n5-g006
+      form_id: ja-form-o-object
+    - ch: 書きます
+      pr: かきます
+      items:
+      - ja-n5-00148-s001
+      grammar:
+      - ja-n5-g023
+      form_id: ja-form-kakimasu
+  - id: ja-tourist-p023
+    ch: 部屋は静かですか
+    pr: へやわしずかですか
+    ds: Is the room quiet?
+    items:
+    - ja-n5-00558-s001
+    - ja-n5-00278-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g001
+    - ja-n5-g003
+    realizations:
+    - ch: 部屋
+      pr: へや
+      items:
+      - ja-n5-00558-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 静か
+      pr: しずか
+      items:
+      - ja-n5-00278-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g001
+      form_id: ja-form-desu-copula
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+- id: shops-services
+  title: Shops and services
+  outcome: Request a closer look and describe a size mismatch using accurate adjective predicates.
+  vocabulary:
+  - ja-n5-00602-s001
+  - ja-n5-00543-s001
+  - ja-n5-00095-s001
+  - ja-n5-00375-s001
+  grammar:
+  - ja-n5-g020
+  review_vocabulary:
+  - ja-n1-01115-s001
+  - ja-n5-00249-s001
+  review_grammar:
+  - ja-n5-g006
+  - ja-n5-g041
+  - ja-n5-g026
+  - ja-n5-g019
+  - ja-n5-g004
+  phrases:
+  - id: ja-tourist-p024
+    ch: これを見せてください
+    pr: これおみせてください
+    ds: Please show me this.
+    items:
+    - ja-n1-01115-s001
+    - ja-n5-00602-s001
+    grammar:
+    - ja-n5-g006
+    - ja-n5-g041
+    - ja-n5-g026
+    realizations:
+    - ch: これ
+      pr: これ
+      items:
+      - ja-n1-01115-s001
+      grammar: []
+    - ch: を
+      pr: お
+      items: []
+      grammar:
+      - ja-n5-g006
+      form_id: ja-form-o-object
+    - ch: 見せてください
+      pr: みせてください
+      items:
+      - ja-n5-00602-s001
+      grammar:
+      - ja-n5-g041
+      - ja-n5-g026
+      form_id: ja-form-misete-kudasai
+  - id: ja-tourist-p025
+    ch: この服は大きいです
+    pr: このふくわおおきいです
+    ds: This garment is large.
+    items:
+    - ja-n5-00249-s001
+    - ja-n5-00543-s001
+    - ja-n5-00095-s001
+    grammar:
+    - ja-n5-g019
+    - ja-n5-g004
+    - ja-n5-g020
+    realizations:
+    - ch: この
+      pr: この
+      items:
+      - ja-n5-00249-s001
+      grammar:
+      - ja-n5-g019
+    - ch: 服
+      pr: ふく
+      items:
+      - ja-n5-00543-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 大きい
+      pr: おおきい
+      items:
+      - ja-n5-00095-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g020
+      form_id: ja-form-desu-adjective
+  - id: ja-tourist-p026
+    ch: これは小さいです
+    pr: これわちいさいです
+    ds: This is small.
+    items:
+    - ja-n1-01115-s001
+    - ja-n5-00375-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g020
+    realizations:
+    - ch: これ
+      pr: これ
+      items:
+      - ja-n1-01115-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 小さい
+      pr: ちいさい
+      items:
+      - ja-n5-00375-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g020
+      form_id: ja-form-desu-adjective
+- id: dietary-clarification
+  title: Clarify ingredients and preferences
+  outcome: Ask whether meat is included and make an omission request; confirm actual dietary requirements
+    with a person.
+  vocabulary:
+  - ja-n5-00487-s003
+  - ja-n5-00266-s001
+  - ja-n5-00260-s001
+  grammar:
+  - ja-n5-g027
+  - ja-n4-g042
+  - ja-n2-g042
+  review_vocabulary:
+  - ja-n5-00467-s002
+  - ja-n2-00202-s001
+  - ja-n5-00369-s001
+  review_grammar:
+  - ja-n5-g004
+  - ja-n5-g041
+  - ja-n5-g003
+  - ja-n5-g023
+  - ja-n5-g024
+  phrases:
+  - id: ja-tourist-p027
+    ch: 肉は入っていますか
+    pr: にくわはいっていますか
+    ds: Does it contain meat?
+    items:
+    - ja-n5-00467-s002
+    - ja-n5-00487-s003
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g041
+    - ja-n4-g042
+    - ja-n5-g003
+    realizations:
+    - ch: 肉
+      pr: にく
+      items:
+      - ja-n5-00467-s002
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 入っています
+      pr: はいっています
+      items:
+      - ja-n5-00487-s003
+      grammar:
+      - ja-n5-g041
+      - ja-n4-g042
+      form_id: ja-form-haitteimasu-state
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p028
+    ch: 砂糖抜きでお願いします
+    pr: さとうぬきでおねがいします
+    ds: Without sugar, please.
+    items:
+    - ja-n5-00266-s001
+    - ja-n2-00202-s001
+    grammar:
+    - ja-n2-g042
+    realizations:
+    - ch: 砂糖
+      pr: さとう
+      items:
+      - ja-n5-00266-s001
+      grammar: []
+    - ch: 抜きで
+      pr: ぬきで
+      items: []
+      grammar:
+      - ja-n2-g042
+      form_id: ja-form-nuki-de
+    - ch: お願いします
+      pr: おねがいします
+      items:
+      - ja-n2-00202-s001
+      grammar: []
+  - id: ja-tourist-p029
+    ch: 魚は食べません
+    pr: さかなわたべません
+    ds: I do not eat fish.
+    items:
+    - ja-n5-00260-s001
+    - ja-n5-00369-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g023
+    - ja-n5-g024
+    realizations:
+    - ch: 魚
+      pr: さかな
+      items:
+      - ja-n5-00260-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: 食べません
+      pr: たべません
+      items:
+      - ja-n5-00369-s001
+      grammar:
+      - ja-n5-g023
+      - ja-n5-g024
+      form_id: ja-form-tabemasen
+- id: health-assistance
+  title: Communicate a health concern
+  outcome: Describe a simple symptom and request qualified assistance without diagnosing or recommending
+    treatment.
+  vocabulary:
+  - ja-n5-00120-s001
+  - ja-n5-00055-s001
+  - ja-n5-00205-s001
+  - ja-n5-00039-s001
+  - ja-n5-00052-s001
+  - ja-n5-00652-s002
+  grammar: []
+  review_vocabulary: []
+  review_grammar:
+  - ja-n5-g005
+  - ja-n5-g020
+  - ja-n5-g004
+  - ja-n5-g010
+  - ja-n5-g023
+  - ja-n5-g003
+  - ja-n5-g006
+  - ja-n5-g041
+  - ja-n5-g026
+  phrases:
+  - id: ja-tourist-p030
+    ch: お腹が痛いです
+    pr: おなかがいたいです
+    ds: My stomach hurts.
+    items:
+    - ja-n5-00120-s001
+    - ja-n5-00055-s001
+    grammar:
+    - ja-n5-g005
+    - ja-n5-g020
+    realizations:
+    - ch: お腹
+      pr: おなか
+      items:
+      - ja-n5-00120-s001
+      grammar: []
+    - ch: が
+      pr: が
+      items: []
+      grammar:
+      - ja-n5-g005
+      form_id: ja-form-ga-subject
+    - ch: 痛い
+      pr: いたい
+      items:
+      - ja-n5-00055-s001
+      grammar: []
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g020
+      form_id: ja-form-desu-adjective
+  - id: ja-tourist-p031
+    ch: 薬はありますか
+    pr: くすりわありますか
+    ds: Is there any medicine?
+    items:
+    - ja-n5-00205-s001
+    - ja-n5-00039-s001
+    grammar:
+    - ja-n5-g004
+    - ja-n5-g010
+    - ja-n5-g023
+    - ja-n5-g003
+    realizations:
+    - ch: 薬
+      pr: くすり
+      items:
+      - ja-n5-00205-s001
+      grammar: []
+    - ch: は
+      pr: わ
+      items: []
+      grammar:
+      - ja-n5-g004
+      form_id: ja-form-wa-topic
+    - ch: あります
+      pr: あります
+      items:
+      - ja-n5-00039-s001
+      grammar:
+      - ja-n5-g010
+      - ja-n5-g023
+      form_id: ja-form-arimasu-existence
+    - ch: か
+      pr: か
+      items: []
+      grammar:
+      - ja-n5-g003
+      form_id: ja-form-ka-question
+  - id: ja-tourist-p032
+    ch: 医者を呼んでください
+    pr: いしゃおよんでください
+    ds: Please call a doctor.
+    items:
+    - ja-n5-00052-s001
+    - ja-n5-00652-s002
+    grammar:
+    - ja-n5-g006
+    - ja-n5-g041
+    - ja-n5-g026
+    realizations:
+    - ch: 医者
+      pr: いしゃ
+      items:
+      - ja-n5-00052-s001
+      grammar: []
+    - ch: を
+      pr: お
+      items: []
+      grammar:
+      - ja-n5-g006
+      form_id: ja-form-o-object
+    - ch: 呼んでください
+      pr: よんでください
+      items:
+      - ja-n5-00652-s002
+      grammar:
+      - ja-n5-g041
+      - ja-n5-g026
+      form_id: ja-form-yonde-kudasai
+- id: timings-changes
+  title: Timings and changes
+  outcome: Request a reservation change, say you will come tomorrow, and ask someone to wait briefly.
+  vocabulary:
+  - ja-n4-00117-s001
+  - ja-n5-00015-s001
+  - ja-n5-00217-s001
+  - ja-n5-00385-s002
+  - ja-n5-00589-s001
+  grammar:
+  - ja-n5-g031
+  review_vocabulary:
+  - ja-n4-00616-s001
+  review_grammar:
+  - ja-n5-g006
+  - ja-n5-g023
+  - ja-n5-g020
+  - ja-n5-g041
+  - ja-n5-g026
+  phrases:
+  - id: ja-tourist-p033
+    ch: 予約を変えたいです
+    pr: よやくおかえたいです
+    ds: I would like to change my reservation.
+    items:
+    - ja-n4-00616-s001
+    - ja-n4-00117-s001
+    grammar:
+    - ja-n5-g006
+    - ja-n5-g023
+    - ja-n5-g031
+    - ja-n5-g020
+    realizations:
+    - ch: 予約
+      pr: よやく
+      items:
+      - ja-n4-00616-s001
+      grammar: []
+    - ch: を
+      pr: お
+      items: []
+      grammar:
+      - ja-n5-g006
+      form_id: ja-form-o-object
+    - ch: 変えたい
+      pr: かえたい
+      items:
+      - ja-n4-00117-s001
+      grammar:
+      - ja-n5-g023
+      - ja-n5-g031
+      form_id: ja-form-kaetai
+    - ch: です
+      pr: です
+      items: []
+      grammar:
+      - ja-n5-g020
+      form_id: ja-form-desu-adjective
+  - id: ja-tourist-p034
+    ch: 明日来ます
+    pr: あしたきます
+    ds: I will come tomorrow.
+    items:
+    - ja-n5-00015-s001
+    - ja-n5-00217-s001
+    grammar:
+    - ja-n5-g023
+    realizations:
+    - ch: 明日
+      pr: あした
+      items:
+      - ja-n5-00015-s001
+      grammar: []
+    - ch: 来ます
+      pr: きます
+      items:
+      - ja-n5-00217-s001
+      grammar:
+      - ja-n5-g023
+      form_id: ja-form-kimasu
+  - id: ja-tourist-p035
+    ch: ちょっと待ってください
+    pr: ちょっとまってください
+    ds: Please wait a moment.
+    items:
+    - ja-n5-00385-s002
+    - ja-n5-00589-s001
+    grammar:
+    - ja-n5-g041
+    - ja-n5-g026
+    realizations:
+    - ch: ちょっと
+      pr: ちょっと
+      items:
+      - ja-n5-00385-s002
+      grammar: []
+    - ch: 待ってください
+      pr: まってください
+      items:
+      - ja-n5-00589-s001
+      grammar:
+      - ja-n5-g041
+      - ja-n5-g026
+      form_id: ja-form-matte-kudasai
+- id: social-courtesy
+  title: Social courtesy
+  outcome: Thank someone, close a meal politely, and propose meeting again with context-appropriate wording.
+  vocabulary:
+  - ja-n3-00043-s001
+  - ja-n1-01142-s001
+  - ja-n2-00555-s001
+  - ja-n5-00586-s001
+  - ja-n5-00001-s001
+  grammar:
+  - ja-n5-g022
+  - ja-n5-g034
+  review_vocabulary: []
+  review_grammar:
+  - ja-n5-g023
+  phrases:
+  - id: ja-tourist-p036
+    ch: ありがとうございます
+    pr: ありがとうございます
+    ds: Thank you. (polite)
+    items:
+    - ja-n3-00043-s001
+    - ja-n1-01142-s001
+    grammar: []
+    realizations:
+    - ch: ありがとう
+      pr: ありがとう
+      items:
+      - ja-n3-00043-s001
+      grammar: []
+    - ch: ございます
+      pr: ございます
+      items:
+      - ja-n1-01142-s001
+      grammar: []
+  - id: ja-tourist-p037
+    ch: ごちそうさまでした
+    pr: ごちそうさまでした
+    ds: Thank you for the meal.
+    items:
+    - ja-n2-00555-s001
+    grammar:
+    - ja-n5-g022
+    realizations:
+    - ch: ごちそうさま
+      pr: ごちそうさま
+      items:
+      - ja-n2-00555-s001
+      grammar: []
+    - ch: でした
+      pr: でした
+      items: []
+      grammar:
+      - ja-n5-g022
+      form_id: ja-form-deshita-copula
+  - id: ja-tourist-p038
+    ch: また会いましょう
+    pr: またあいましょう
+    ds: Let's meet again.
+    items:
+    - ja-n5-00586-s001
+    - ja-n5-00001-s001
+    grammar:
+    - ja-n5-g023
+    - ja-n5-g034
+    realizations:
+    - ch: また
+      pr: また
+      items:
+      - ja-n5-00586-s001
+      grammar: []
+    - ch: 会いましょう
+      pr: あいましょう
+      items:
+      - ja-n5-00001-s001
+      grammar:
+      - ja-n5-g023
+      - ja-n5-g034
+      form_id: ja-form-aimashou

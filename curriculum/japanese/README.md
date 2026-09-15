@@ -2,6 +2,10 @@
 
 This is a broad, reusable teaching collection, **not an official or exhaustive JLPT word/grammar specification**. Modern JLPT does not publish such a list. Official information describes receptive competence; the vocabulary placement here is an older community estimate, and grammar placement is an original pedagogical estimate. An N1 label does not make every dictionary sense an N1 requirement, nor does an N5 label make advanced senses beginner material.
 
+## Practical teaching route
+
+Start with [`teaching/README.md`](teaching/README.md) for the separate thirty-level practical route, optional kana preparation, twelve beginner modules, and an independent tourist route. Its explicit sense selections and original ordering do not alter the preserved JLPT references below. Teaching uses raw-compatible spelling and reading choices, including documented corrections for misleading source homographs. Human Japanese-language and pedagogy review remains pending; neither route certifies proficiency.
+
 ## Inventory
 
 | Directory | New vocabulary entries | Cumulative vocabulary | Grammar constructs | Original bilingual examples |

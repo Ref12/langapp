@@ -1,0 +1,120 @@
+schema_version: 3
+id: ja-level-02
+title: People, belongings, and nearby places
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 2
+phase: first-exchanges
+prerequisites:
+- ja-level-01
+goals: &id001
+- Identify a person and their belongings.
+- Distinguish where something exists from where an action happens.
+- Choose an object using an adjective contrast.
+checkpoint:
+  task: Locate a missing belonging from a new room diagram and explain whose it is.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: nearby-places
+  title: Locate a person or belonging
+  outcome: Locate an object or person and distinguish existence from action location.
+  vocabulary:
+  - {id: ja-n5-00237-s001, ch: ここ, pr: ここ, ds: here}
+  - {id: ja-n5-00340-s001, ch: そこ, pr: そこ, ds: there (place relatively near listener)}
+  - {id: ja-n5-00016-s001, ch: あそこ, pr: あそこ, ds: there}
+  - {id: ja-n5-00090-s001, ch: 駅, pr: えき, ds: railway station}
+  - {id: ja-n5-00558-s001, ch: 部屋, pr: へや, ds: room}
+  - {id: ja-n5-00046-s001, ch: 家, pr: いえ, ds: house}
+  - {id: ja-n5-00147-s001, ch: 鍵, pr: かぎ, ds: key}
+  - {id: ja-n5-00259-s001, ch: 財布, pr: さいふ, ds: wallet}
+  - {id: ja-n5-00161-s001, ch: かばん, pr: かばん, ds: bag}
+  - {id: ja-n5-00624-s001, ch: 持つ, pr: もつ, ds: to hold (in one's hand)}
+  - {id: ja-n5-00075-s001, ch: 上, pr: うえ, ds: above}
+  - {id: ja-n5-00279-s001, ch: 下, pr: した, ds: below}
+  - {id: ja-n5-00448-s001, ch: 中, pr: なか, ds: inside}
+  - {id: ja-n5-00343-s001, ch: 外, pr: そと, ds: outside}
+  - {id: ja-n5-00436-s001, ch: 隣, pr: となり, ds: next (to)}
+  - {id: ja-n5-00076-s001, ch: 後ろ, pr: うしろ, ds: behind; the rear side}
+  - {id: ja-n5-00583-s001, ch: 前, pr: まえ, ds: in front (of)}
+  - {id: ja-n5-00070-s001, ch: いる, pr: いる, ds: to be (of animate objects)}
+  - {id: ja-n5-00039-s001, ch: ある, pr: ある, ds: to be}
+  - {id: ja-n5-00039-s003, ch: ある, pr: ある, ds: be located}
+  - {id: ja-n5-00476-s001, ch: 猫, pr: ねこ, ds: 'cat (esp. the domestic cat, Felis catus)'}
+  - {id: ja-n5-00064-s001, ch: 犬, pr: いぬ, ds: dog (Canis (lupus) familiaris)}
+  grammar:
+  - {id: ja-n5-g005, ch: Nが, ds: subject; newly identified information}
+  - {id: ja-n5-g010, ch: 場所にNがあります, ds: an inanimate thing exists at a place}
+  - {id: ja-n5-g011, ch: 場所にNがいます, ds: a person or animal exists at a place}
+  - {id: ja-n5-g009, ch: 場所で, ds: at a place where an action happens}
+  review_vocabulary: []
+  review_grammar: []
+- id: people-and-belongings
+  title: Talk about people and belongings
+  outcome: Identify familiar people and distinguish possession from a noun description.
+  vocabulary:
+  - {id: ja-n5-00155-s001, ch: 家族, pr: かぞく, ds: family}
+  - {id: ja-n5-00440-s001, ch: 友達, pr: ともだち, ds: friend}
+  - {id: ja-n5-00028-s001, ch: 兄, pr: あに, ds: older brother}
+  - {id: ja-n5-00029-s001, ch: 姉, pr: あね, ds: older sister}
+  - {id: ja-n5-00067-s001, ch: 妹, pr: いもうと, ds: younger sister}
+  - {id: ja-n5-00114-s001, ch: 弟, pr: おとうと, ds: younger brother}
+  - {id: ja-n5-00098-s001, ch: お母さん, pr: おかあさん, ds: mother}
+  - {id: ja-n5-00113-s001, ch: お父さん, pr: おとうさん, ds: father}
+  - {id: ja-n5-00664-s001, ch: 両親, pr: りょうしん, ds: parents}
+  - {id: ja-n5-00248-s001, ch: 子供, pr: こども, ds: child}
+  - {id: ja-n5-00119-s001, ch: 大人, pr: おとな, ds: adult}
+  - {id: ja-n5-00350-s001, ch: 大学, pr: だいがく, ds: university}
+  - {id: ja-n5-00157-s001, ch: 学校, pr: がっこう, ds: school}
+  - {id: ja-n5-00140-s001, ch: 会社, pr: かいしゃ, ds: company}
+  - {id: ja-n5-00276-s001, ch: 仕事, pr: しごと, ds: work}
+  - {id: ja-n5-00193-s001, ch: 教室, pr: きょうしつ, ds: classroom}
+  - {id: ja-n5-00391-s001, ch: 机, pr: つくえ, ds: desk}
+  - {id: ja-n5-00053-s001, ch: 椅子, pr: いす, ds: chair}
+  - {id: ja-n5-00249-s001, ch: この, pr: この, ds: this}
+  - {id: ja-n5-00344-s001, ch: その, pr: その, ds: that}
+  - {id: ja-n5-00030-s001, ch: あの, pr: あの, ds: say}
+  - {id: ja-n5-00446-s001, ch: どれ, pr: どれ, ds: which (of three or more)}
+  grammar:
+  - {id: ja-n5-g019, ch: この／その／あの＋N, ds: this noun; that noun; that noun over there}
+  - {id: ja-n5-g016, ch: NとN, ds: and; an exhaustive noun list}
+  - {id: ja-n5-g008, ch: Nも, ds: also; too}
+  review_vocabulary: []
+  review_grammar: []
+- id: choose-an-object
+  title: Choose an object by its features
+  outcome: Use an adjective contrast to identify the right object without pointing alone.
+  vocabulary:
+  - {id: ja-n5-00095-s001, ch: 大きい, pr: おおきい, ds: big}
+  - {id: ja-n5-00375-s001, ch: 小さい, pr: ちいさい, ds: small}
+  - {id: ja-n5-00020-s001, ch: 新しい, pr: あたらしい, ds: new}
+  - {id: ja-n5-00551-s001, ch: 古い, pr: ふるい, ds: old}
+  - {id: ja-n5-00005-s001, ch: 赤い, pr: あかい, ds: red}
+  - {id: ja-n5-00003-s001, ch: 青い, pr: あおい, ds: blue}
+  - {id: ja-n5-00306-s001, ch: 白い, pr: しろい, ds: white}
+  - {id: ja-n5-00220-s001, ch: 黒い, pr: くろい, ds: black}
+  - {id: ja-n5-00073-s001, ch: 色, pr: いろ, ds: colour}
+  - {id: ja-n5-00537-s001, ch: 広い, pr: ひろい, ds: spacious}
+  - {id: ja-n5-00329-s001, ch: 狭い, pr: せまい, ds: narrow}
+  - {id: ja-n5-00278-s001, ch: 静か, pr: しずか, ds: quiet}
+  - {id: ja-n5-00199-s001, ch: 綺麗, pr: きれい, ds: pretty}
+  - {id: ja-n5-00632-s001, ch: 安い, pr: やすい, ds: cheap}
+  - {id: ja-n5-00357-s001, ch: 高い, pr: たかい, ds: high}
+  - {id: ja-n5-00449-s001, ch: 長い, pr: ながい, ds: 'long (distance, length)'}
+  - {id: ja-n5-00599-s001, ch: 短い, pr: みじかい, ds: short}
+  - {id: ja-n5-00130-s001, ch: 重い, pr: おもい, ds: heavy}
+  - {id: ja-n5-00169-s001, ch: 軽い, pr: かるい, ds: light (i.e. not heavy)}
+  - {id: ja-n5-00006-s001, ch: 明るい, pr: あかるい, ds: bright; well-lit}
+  - {id: ja-n5-00214-s001, ch: 暗い, pr: くらい, ds: dark}
+  - {id: ja-n5-00042-s001, ch: いい, pr: いい, ds: good}
+  - {id: ja-n5-00682-s001, ch: 悪い, pr: わるい, ds: bad}
+  grammar:
+  - {id: ja-n5-g020, ch: い形容詞＋です, ds: polite i-adjective predicate}
+  - {id: ja-n5-g021, ch: な形容詞＋な＋N, ds: na-adjective modifying a noun}
+  - {id: ja-n5-g002, ch: Nではありません, ds: not be a noun; polite negation}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g001, ch: Nです, ds: be a noun; polite identification}

@@ -1,0 +1,423 @@
+schema_version: 3
+id: ja-level-15
+title: Cooperation and respectful requests
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 15
+phase: explanation-problems
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+- ja-level-09
+- ja-level-10
+- ja-level-11
+- ja-level-12
+- ja-level-13
+- ja-level-14
+goals: &id001
+- Explain a responsibility and report progress.
+- Distinguish polite, respectful, and humble language by viewpoint.
+- Renegotiate help without implying entitlement.
+checkpoint:
+  task: Give a task update and adapt a request for a changed audience.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-15-work-01
+  title: Responsibilities and cooperation - 1
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n4-00024-s001, ch: アルバイト, pr: アルバイト, ds: part-time job}
+  - {id: ja-n4-00112-s001, ch: 会議, pr: かいぎ, ds: meeting}
+  - {id: ja-n4-00113-s001, ch: 会議室, pr: かいぎしつ, ds: conference room}
+  - {id: ja-n4-00114-s001, ch: 会場, pr: かいじょう, ds: assembly hall}
+  - {id: ja-n4-00130-s001, ch: 課長, pr: かちょう, ds: section manager}
+  - {id: ja-n4-00220-s001, ch: 公務員, pr: こうむいん, ds: public employee}
+  - {id: ja-n4-00284-s001, ch: 事務所, pr: じむしょ, ds: office}
+  - {id: ja-n4-00286-s001, ch: 社長, pr: しゃちょう, ds: company president}
+  - {id: ja-n4-00483-s001, ch: パート, pr: パート, ds: part}
+  - {id: ja-n4-00528-s001, ch: 部長, pr: ぶちょう, ds: 'head (chief, director) of a section or department'}
+  - {id: ja-n3-00057-s001, ch: 委員, pr: いいん, ds: committee member}
+  - {id: ja-n3-00129-s001, ch: 引退, pr: いんたい, ds: retirement}
+  - {id: ja-n3-00211-s001, ch: オフィス, pr: オフィス, ds: office}
+  - {id: ja-n3-00232-s001, ch: 課, pr: か, ds: lesson}
+  - {id: ja-n3-00235-s001, ch: 会, pr: かい, ds: meeting}
+  - {id: ja-n3-00238-s001, ch: 会員, pr: かいいん, ds: member}
+  - {id: ja-n3-00243-s001, ch: 会合, pr: かいごう, ds: meeting}
+  - {id: ja-n3-00260-s001, ch: 係, pr: かかり, ds: person in charge; assigned duty}
+  - {id: ja-n3-00284-s001, ch: 貸し, pr: かし, ds: loan}
+  - {id: ja-n3-00290-s001, ch: 稼ぐ, pr: かせぐ, ds: to earn (income)}
+  - {id: ja-n3-00353-s001, ch: 議員, pr: ぎいん, ds: member of an assembly}
+  - {id: ja-n3-00357-s001, ch: 議会, pr: ぎかい, ds: congress}
+  - {id: ja-n3-00359-s001, ch: 機関, pr: きかん, ds: engine}
+  - {id: ja-n3-00360-s001, ch: 企業, pr: きぎょう, ds: enterprise}
+  - {id: ja-n3-00367-s001, ch: 技師, pr: ぎし, ds: engineer}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-15-work-02
+  title: Responsibilities and cooperation - 2
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n3-00373-s001, ch: 議長, pr: ぎちょう, ds: chair}
+  - {id: ja-n3-00382-s001, ch: 寄付, pr: きふ, ds: contribution}
+  - {id: ja-n3-00403-s001, ch: 給料, pr: きゅうりょう, ds: salary}
+  - {id: ja-n3-00418-s001, ch: 局, pr: きょく, ds: bureau}
+  - {id: ja-n3-00454-s001, ch: 組合, pr: くみあい, ds: association}
+  - {id: ja-n3-00716-s001, ch: 事務, pr: じむ, ds: office work}
+  - {id: ja-n3-00732-s001, ch: 就職, pr: しゅうしょく, ds: finding employment}
+  - {id: ja-n3-00738-s001, ch: 集団, pr: しゅうだん, ds: group}
+  - {id: ja-n3-00740-s001, ch: 収入, pr: しゅうにゅう, ds: income}
+  - {id: ja-n3-00784-s001, ch: 商人, pr: しょうにん, ds: merchant}
+  - {id: ja-n3-00787-s001, ch: 商売, pr: しょうばい, ds: trade}
+  - {id: ja-n3-00788-s001, ch: 消費, pr: しょうひ, ds: consumption}
+  - {id: ja-n3-00789-s001, ch: 商品, pr: しょうひん, ds: commodity}
+  - {id: ja-n3-00794-s001, ch: 職, pr: しょく, ds: job}
+  - {id: ja-n3-00795-s001, ch: 職業, pr: しょくぎょう, ds: occupation}
+  - {id: ja-n3-00805-s001, ch: 助手, pr: じょしゅ, ds: assistant}
+  - {id: ja-n3-00816-s001, ch: 進学, pr: しんがく, ds: advancing to the next stage of education}
+  - {id: ja-n3-00883-s001, ch: 税, pr: ぜい, ds: tax}
+  - {id: ja-n3-00887-s001, ch: 請求, pr: せいきゅう, ds: claim}
+  - {id: ja-n3-00888-s001, ch: 税金, pr: ぜいきん, ds: tax}
+  - {id: ja-n3-00897-s001, ch: 製造, pr: せいぞう, ds: manufacture}
+  - {id: ja-n3-00902-s001, ch: 製品, pr: せいひん, ds: manufactured goods}
+  - {id: ja-n3-00914-s001, ch: 設計, pr: せっけい, ds: plan}
+  - {id: ja-n3-00925-s001, ch: 専攻, pr: せんこう, ds: major subject}
+  - {id: ja-n3-00946-s001, ch: 組織, pr: そしき, ds: organization}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00260-s001, ch: 係, pr: かかり, ds: person in charge; assigned duty}
+  - {id: ja-n3-00284-s001, ch: 貸し, pr: かし, ds: loan}
+  - {id: ja-n3-00290-s001, ch: 稼ぐ, pr: かせぐ, ds: to earn (income)}
+  - {id: ja-n3-00353-s001, ch: 議員, pr: ぎいん, ds: member of an assembly}
+  - {id: ja-n3-00357-s001, ch: 議会, pr: ぎかい, ds: congress}
+  - {id: ja-n3-00359-s001, ch: 機関, pr: きかん, ds: engine}
+  - {id: ja-n3-00360-s001, ch: 企業, pr: きぎょう, ds: enterprise}
+  - {id: ja-n3-00367-s001, ch: 技師, pr: ぎし, ds: engineer}
+  review_grammar: []
+- id: level-15-work-03
+  title: Responsibilities and cooperation - 3
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n3-00976-s001, ch: 代金, pr: だいきん, ds: price}
+  - {id: ja-n3-01055-s001, ch: チーム, pr: チーム, ds: team}
+  - {id: ja-n3-01076-s001, ch: 中学, pr: ちゅうがく, ds: junior high school}
+  - {id: ja-n3-01083-s001, ch: 注文, pr: ちゅうもん, ds: order (for an item)}
+  - {id: ja-n3-01089-s001, ch: 貯金, pr: ちょきん, ds: putting money aside}
+  - {id: ja-n3-01094-s001, ch: 通学, pr: つうがく, ds: commuting to school}
+  - {id: ja-n3-01103-s001, ch: 就く, pr: つく, ds: 'to take (seat, position, course, office, etc.)'}
+  - {id: ja-n3-01108-s001, ch: 勤め, pr: つとめ, ds: service}
+  - {id: ja-n3-01127-s001, ch: 提出, pr: ていしゅつ, ds: presentation (of documents)}
+  - {id: ja-n3-01151-s001, ch: 電子, pr: でんし, ds: electron}
+  - {id: ja-n3-01208-s001, ch: 虎, pr: とら, ds: tiger (Panthera tigris)}
+  - {id: ja-n3-01310-s001, ch: パーセント, pr: パーセント, ds: percent}
+  - {id: ja-n3-01344-s001, ch: 発行, pr: はっこう, ds: 'publication (of a newspaper, magazine, book, etc.)'}
+  - {id: ja-n3-01373-s001, ch: 販売, pr: はんばい, ds: sale}
+  - {id: ja-n3-01402-s001, ch: 費用, pr: ひよう, ds: cost}
+  - {id: ja-n3-01445-s001, ch: 物価, pr: ぶっか, ds: prices of commodities}
+  - {id: ja-n3-01670-s001, ch: 予算, pr: よさん, ds: estimate (of costs)}
+  - {id: ja-n2-00104-s001, ch: 承る, pr: うけたまわる, ds: to hear}
+  - {id: ja-n2-00106-s001, ch: 受け持つ, pr: うけもつ, ds: to take (be in) charge of}
+  - {id: ja-n2-00109-s001, ch: 打ち合わせ, pr: うちあわせ, ds: (preparatory) meeting}
+  - {id: ja-n2-00119-s001, ch: 敬う, pr: うやまう, ds: to show respect for}
+  - {id: ja-n2-00138-s001, ch: エチケット, pr: エチケット, ds: politeness}
+  - {id: ja-n2-00142-s001, ch: 宴会, pr: えんかい, ds: party}
+  - {id: ja-n2-00152-s001, ch: 応援, pr: おうえん, ds: aid}
+  - {id: ja-n2-00163-s001, ch: オートメーション, pr: オートメーション, ds: automation}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00883-s001, ch: 税, pr: ぜい, ds: tax}
+  - {id: ja-n3-00887-s001, ch: 請求, pr: せいきゅう, ds: claim}
+  - {id: ja-n3-00888-s001, ch: 税金, pr: ぜいきん, ds: tax}
+  - {id: ja-n3-00897-s001, ch: 製造, pr: せいぞう, ds: manufacture}
+  - {id: ja-n3-00902-s001, ch: 製品, pr: せいひん, ds: manufactured goods}
+  - {id: ja-n3-00914-s001, ch: 設計, pr: せっけい, ds: plan}
+  - {id: ja-n3-00925-s001, ch: 専攻, pr: せんこう, ds: major subject}
+  - {id: ja-n3-00946-s001, ch: 組織, pr: そしき, ds: organization}
+  review_grammar: []
+- id: level-15-work-04
+  title: Responsibilities and cooperation - 4
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n2-00168-s001, ch: おかげさまで, pr: おかげさまで, ds: thankfully}
+  - {id: ja-n2-00172-s001, ch: 補う, pr: おぎなう, ds: to supplement}
+  - {id: ja-n2-00178-s001, ch: 怠る, pr: おこたる, ds: to neglect}
+  - {id: ja-n2-00183-s001, ch: 惜しい, pr: おしい, ds: regrettable}
+  - {id: ja-n2-00184-s001, ch: お辞儀, pr: おじぎ, ds: bow}
+  - {id: ja-n2-00188-s001, ch: おしゃれ, pr: おしゃれ, ds: stylish}
+  - {id: ja-n2-00189-s001, ch: お邪魔します, pr: おじゃまします, ds: please excuse the intrusion}
+  - {id: ja-n2-00190-s001, ch: 教わる, pr: おそわる, ds: to be taught}
+  - {id: ja-n2-00206-s001, ch: お参り, pr: おまいり, ds: 'visit (to a shrine, grave, etc.)'}
+  - {id: ja-n2-00213-s001, ch: 思い付く, pr: おもいつく, ds: to think of}
+  - {id: ja-n2-00219-s001, ch: 卸す, pr: おろす, ds: to sell wholesale}
+  - {id: ja-n2-00220-s001, ch: 恩恵, pr: おんけい, ds: grace}
+  - {id: ja-n2-00229-s001, ch: 開会, pr: かいかい, ds: opening of a meeting}
+  - {id: ja-n2-00230-s001, ch: 会館, pr: かいかん, ds: meeting hall}
+  - {id: ja-n2-00232-s001, ch: 解散, pr: かいさん, ds: 'breaking up (a meeting, gathering, etc.)'}
+  - {id: ja-n2-00236-s001, ch: 改正, pr: かいせい, ds: revision}
+  - {id: ja-n2-00245-s001, ch: 解放, pr: かいほう, ds: release}
+  - {id: ja-n2-00246-s001, ch: 開放, pr: かいほう, ds: 'opening (a door, window, etc.)'}
+  - {id: ja-n2-00254-s001, ch: 関わる, pr: かかわる, ds: to be involved (in)}
+  - {id: ja-n2-00261-s001, ch: 各自, pr: かくじ, ds: each (person)}
+  - {id: ja-n2-00262-s001, ch: 拡充, pr: かくじゅう, ds: expansion}
+  - {id: ja-n2-00265-s001, ch: 拡張, pr: かくちょう, ds: expansion}
+  - {id: ja-n2-00273-s001, ch: 可決, pr: かけつ, ds: approval}
+  - {id: ja-n2-00282-s001, ch: 過失, pr: かしつ, ds: accident (caused by negligence)}
+  - {id: ja-n2-00289-s001, ch: 課税, pr: かぜい, ds: taxation}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00104-s001, ch: 承る, pr: うけたまわる, ds: to hear}
+  - {id: ja-n2-00106-s001, ch: 受け持つ, pr: うけもつ, ds: to take (be in) charge of}
+  - {id: ja-n2-00109-s001, ch: 打ち合わせ, pr: うちあわせ, ds: (preparatory) meeting}
+  - {id: ja-n2-00119-s001, ch: 敬う, pr: うやまう, ds: to show respect for}
+  - {id: ja-n2-00138-s001, ch: エチケット, pr: エチケット, ds: politeness}
+  - {id: ja-n2-00142-s001, ch: 宴会, pr: えんかい, ds: party}
+  - {id: ja-n2-00152-s001, ch: 応援, pr: おうえん, ds: aid}
+  - {id: ja-n2-00163-s001, ch: オートメーション, pr: オートメーション, ds: automation}
+  review_grammar: []
+- id: level-15-work-05
+  title: Responsibilities and cooperation - 5
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n2-00301-s001, ch: 学科, pr: がっか, ds: subject (of study)}
+  - {id: ja-n2-00302-s001, ch: 学会, pr: がっかい, ds: learned society}
+  - {id: ja-n2-00308-s001, ch: 活躍, pr: かつやく, ds: activity (esp. energetic or successful)}
+  - {id: ja-n2-00309-s001, ch: 活力, pr: かつりょく, ds: vitality}
+  - {id: ja-n2-00317-s001, ch: かねる, pr: かねる, ds: to be unable to}
+  - {id: ja-n2-00319-s001, ch: 過半数, pr: かはんすう, ds: majority}
+  - {id: ja-n2-00339-s001, ch: 為替, pr: かわせ, ds: money order}
+  - {id: ja-n2-00353-s001, ch: 官庁, pr: かんちょう, ds: government office}
+  - {id: ja-n2-00373-s001, ch: 儀式, pr: ぎしき, ds: ceremony}
+  - {id: ja-n2-00378-s001, ch: 基礎, pr: きそ, ds: foundation}
+  - {id: ja-n2-00383-s001, ch: 基盤, pr: きばん, ds: base}
+  - {id: ja-n2-00389-s001, ch: 休講, pr: きゅうこう, ds: 'cancellation (of a lecture, class, etc.)'}
+  - {id: ja-n2-00391-s001, ch: 給与, pr: きゅうよ, ds: pay}
+  - {id: ja-n2-00394-s001, ch: 強化, pr: きょうか, ds: strengthening}
+  - {id: ja-n2-00396-s001, ch: 行事, pr: ぎょうじ, ds: event}
+  - {id: ja-n2-00397-s001, ch: 恐縮, pr: きょうしゅく, ds: feeling (much) obliged}
+  - {id: ja-n2-00402-s001, ch: 規律, pr: きりつ, ds: order; discipline; observance of rules}
+  - {id: ja-n2-00406-s001, ch: 区域, pr: くいき, ds: area}
+  - {id: ja-n2-00416-s001, ch: 苦心, pr: くしん, ds: pains}
+  - {id: ja-n2-00433-s001, ch: 工夫, pr: くふう, ds: devising (a way)}
+  - {id: ja-n2-00435-s001, ch: 組み合わせ, pr: くみあわせ, ds: combination}
+  - {id: ja-n2-00443-s001, ch: くれぐれも, pr: くれぐれも, ds: sincerely}
+  - {id: ja-n2-00447-s001, ch: 敬語, pr: けいご, ds: honorific}
+  - {id: ja-n2-00449-s001, ch: 形式, pr: けいしき, ds: form (as opposed to substance)}
+  - {id: ja-n2-00450-s001, ch: 継続, pr: けいぞく, ds: continuation}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00246-s001, ch: 開放, pr: かいほう, ds: 'opening (a door, window, etc.)'}
+  - {id: ja-n2-00254-s001, ch: 関わる, pr: かかわる, ds: to be involved (in)}
+  - {id: ja-n2-00261-s001, ch: 各自, pr: かくじ, ds: each (person)}
+  - {id: ja-n2-00262-s001, ch: 拡充, pr: かくじゅう, ds: expansion}
+  - {id: ja-n2-00265-s001, ch: 拡張, pr: かくちょう, ds: expansion}
+  - {id: ja-n2-00273-s001, ch: 可決, pr: かけつ, ds: approval}
+  - {id: ja-n2-00282-s001, ch: 過失, pr: かしつ, ds: accident (caused by negligence)}
+  - {id: ja-n2-00289-s001, ch: 課税, pr: かぜい, ds: taxation}
+  review_grammar: []
+- id: level-15-work-06
+  title: Responsibilities and cooperation - 6
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n2-00453-s001, ch: 系統, pr: けいとう, ds: system}
+  - {id: ja-n2-00461-s001, ch: 激増, pr: げきぞう, ds: sharp increase}
+  - {id: ja-n2-00470-s001, ch: 月給, pr: げっきゅう, ds: monthly salary}
+  - {id: ja-n2-00478-s001, ch: 見学, pr: けんがく, ds: inspection}
+  - {id: ja-n2-00479-s001, ch: 謙虚, pr: けんきょ, ds: modest}
+  - {id: ja-n2-00483-s001, ch: 研修, pr: けんしゅう, ds: training (esp. in-service)}
+  - {id: ja-n2-00484-s001, ch: 厳重, pr: げんじゅう, ds: strict}
+  - {id: ja-n2-00485-s001, ch: 謙遜, pr: けんそん, ds: modesty}
+  - {id: ja-n2-00487-s001, ch: 限度, pr: げんど, ds: limit}
+  - {id: ja-n2-00491-s001, ch: 原料, pr: げんりょう, ds: raw materials}
+  - {id: ja-n2-00495-s001, ch: 工員, pr: こういん, ds: factory worker}
+  - {id: ja-n2-00499-s001, ch: 公共, pr: こうきょう, ds: 'public (facilities, service, etc.)'}
+  - {id: ja-n2-00503-s001, ch: 講師, pr: こうし, ds: speaker}
+  - {id: ja-n2-00505-s001, ch: 公式, pr: こうしき, ds: official}
+  - {id: ja-n2-00508-s001, ch: 校舎, pr: こうしゃ, ds: school building}
+  - {id: ja-n2-00509-s001, ch: 公衆, pr: こうしゅう, ds: the public}
+  - {id: ja-n2-00511-s001, ch: 公正, pr: こうせい, ds: justice}
+  - {id: ja-n2-00512-s001, ch: 功績, pr: こうせき, ds: achievement}
+  - {id: ja-n2-00516-s001, ch: 交代, pr: こうたい, ds: change}
+  - {id: ja-n2-00519-s001, ch: 校庭, pr: こうてい, ds: schoolyard}
+  - {id: ja-n2-00523-s001, ch: 合同, pr: ごうどう, ds: combination}
+  - {id: ja-n2-00524-s001, ch: 後輩, pr: こうはい, ds: 'junior (at work, school, etc.)'}
+  - {id: ja-n2-00525-s001, ch: 公表, pr: こうひょう, ds: official announcement}
+  - {id: ja-n2-00527-s001, ch: 公務, pr: こうむ, ds: official business}
+  - {id: ja-n2-00528-s001, ch: 項目, pr: こうもく, ds: item}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00406-s001, ch: 区域, pr: くいき, ds: area}
+  - {id: ja-n2-00416-s001, ch: 苦心, pr: くしん, ds: pains}
+  - {id: ja-n2-00433-s001, ch: 工夫, pr: くふう, ds: devising (a way)}
+  - {id: ja-n2-00435-s001, ch: 組み合わせ, pr: くみあわせ, ds: combination}
+  - {id: ja-n2-00443-s001, ch: くれぐれも, pr: くれぐれも, ds: sincerely}
+  - {id: ja-n2-00447-s001, ch: 敬語, pr: けいご, ds: honorific}
+  - {id: ja-n2-00449-s001, ch: 形式, pr: けいしき, ds: form (as opposed to substance)}
+  - {id: ja-n2-00450-s001, ch: 継続, pr: けいぞく, ds: continuation}
+  review_grammar: []
+- id: level-15-work-07
+  title: Responsibilities and cooperation - 7
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n2-00530-s001, ch: 合理, pr: ごうり, ds: rationality}
+  - {id: ja-n2-00531-s001, ch: 交流, pr: こうりゅう, ds: exchange (e.g. cultural)}
+  - {id: ja-n2-00533-s001, ch: 効力, pr: こうりょく, ds: effect}
+  - {id: ja-n2-00541-s001, ch: ご苦労様, pr: ごくろうさま, ds: thank you (for your hard work)}
+  - {id: ja-n2-00544-s001, ch: 心当たり, pr: こころあたり, ds: having in mind}
+  - {id: ja-n2-00545-s001, ch: 心得る, pr: こころえる, ds: to know}
+  - {id: ja-n2-00548-s001, ch: 五十音, pr: ごじゅうおん, ds: the Japanese syllabary}
+  - {id: ja-n2-00552-s001, ch: こする, pr: こする, ds: to rub}
+  - {id: ja-n2-00556-s001, ch: こちらこそ, pr: こちらこそ, ds: it is I who should say so}
+  - {id: ja-n2-00562-s001, ch: 言付ける, pr: ことづける, ds: 'to have someone send (a message, parcel, etc.)'}
+  - {id: ja-n2-00563-s001, ch: 言葉遣い, pr: ことばづかい, ds: speech}
+  - {id: ja-n2-00565-s001, ch: ご無沙汰, pr: ごぶさた, ds: not writing or contacting for a while}
+  - {id: ja-n2-00570-s001, ch: ごめんください, pr: ごめんください, ds: 'may I come in?'}
+  - {id: ja-n2-00574-s001, ch: ごらん, pr: ごらん, ds: (please) try to}
+  - {id: ja-n2-00585-s001, ch: サークル, pr: サークル, ds: group with a common interest (e.g. students)}
+  - {id: ja-n2-00586-s001, ch: 在学, pr: ざいがく, ds: 'attending (school, college, etc.)'}
+  - {id: ja-n2-00590-s001, ch: 採点, pr: さいてん, ds: marking}
+  - {id: ja-n2-00605-s001, ch: 削除, pr: さくじょ, ds: deletion}
+  - {id: ja-n2-00606-s001, ch: 作成, pr: さくせい, ds: 'making (a report, plan, contract, etc.)'}
+  - {id: ja-n2-00607-s001, ch: 作製, pr: さくせい, ds: manufacture}
+  - {id: ja-n2-00629-s001, ch: 妨げる, pr: さまたげる, ds: to disturb}
+  - {id: ja-n2-00652-s001, ch: 司会, pr: しかい, ds: leading a meeting}
+  - {id: ja-n2-00655-s001, ch: 時間割, pr: じかんわり, ds: timetable (esp. a weekly school timetable)}
+  - {id: ja-n2-00665-s001, ch: 自習, pr: じしゅう, ds: self-study}
+  - {id: ja-n2-00679-s001, ch: 実習, pr: じっしゅう, ds: practice (in the field)}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00512-s001, ch: 功績, pr: こうせき, ds: achievement}
+  - {id: ja-n2-00516-s001, ch: 交代, pr: こうたい, ds: change}
+  - {id: ja-n2-00519-s001, ch: 校庭, pr: こうてい, ds: schoolyard}
+  - {id: ja-n2-00523-s001, ch: 合同, pr: ごうどう, ds: combination}
+  - {id: ja-n2-00524-s001, ch: 後輩, pr: こうはい, ds: 'junior (at work, school, etc.)'}
+  - {id: ja-n2-00525-s001, ch: 公表, pr: こうひょう, ds: official announcement}
+  - {id: ja-n2-00527-s001, ch: 公務, pr: こうむ, ds: official business}
+  - {id: ja-n2-00528-s001, ch: 項目, pr: こうもく, ds: item}
+  review_grammar: []
+- id: level-15-work-08
+  title: Responsibilities and cooperation - 8
+  outcome: Explain responsibilities and negotiate help or a changed workflow.
+  vocabulary:
+  - {id: ja-n2-00680-s001, ch: 実績, pr: じっせき, ds: achievements}
+  - {id: ja-n2-00685-s001, ch: 実用, pr: じつよう, ds: practical use}
+  - {id: ja-n2-00686-s001, ch: 実力, pr: じつりょく, ds: (real) ability}
+  - {id: ja-n2-00689-s001, ch: 指定, pr: してい, ds: designation}
+  - {id: ja-n2-00691-s001, ch: 児童, pr: じどう, ds: children}
+  - {id: ja-n2-00720-s001, ch: 集会, pr: しゅうかい, ds: meeting}
+  - {id: ja-n2-00723-s001, ch: 集合, pr: しゅうごう, ds: meeting up}
+  - {id: ja-n2-01280-s001, ch: 入社, pr: にゅうしゃ, ds: joining a company}
+  - {id: ja-n5-00150-s008, ch: かける, pr: かける, ds: 'to cause (someone inconvenience, trouble, etc.)'}
+  - {id: ja-n5-00387-s002, ch: 使う, pr: つかう, ds: 'to use (a person, animal, puppet, etc.)'}
+  - {id: ja-n5-00392-s005, ch: 作る, pr: つくる, ds: to draw up (a document)}
+  - {id: ja-n5-00624-s005, ch: 持つ, pr: もつ, ds: to take charge of}
+  - {id: ja-n5-00624-s006, ch: 持つ, pr: もつ, ds: 'to hold (meeting, etc.)'}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00605-s001, ch: 削除, pr: さくじょ, ds: deletion}
+  - {id: ja-n2-00606-s001, ch: 作成, pr: さくせい, ds: 'making (a report, plan, contract, etc.)'}
+  - {id: ja-n2-00607-s001, ch: 作製, pr: さくせい, ds: manufacture}
+  - {id: ja-n2-00629-s001, ch: 妨げる, pr: さまたげる, ds: to disturb}
+  - {id: ja-n2-00652-s001, ch: 司会, pr: しかい, ds: leading a meeting}
+  - {id: ja-n2-00655-s001, ch: 時間割, pr: じかんわり, ds: timetable (esp. a weekly school timetable)}
+  - {id: ja-n2-00665-s001, ch: 自習, pr: じしゅう, ds: self-study}
+  - {id: ja-n2-00679-s001, ch: 実習, pr: じっしゅう, ds: practice (in the field)}
+  review_grammar: []
+- id: level-15-register-01
+  title: Audience and register - 1
+  outcome: Adapt wording to an audience and explain the viewpoint of a respectful or humble form.
+  vocabulary:
+  - {id: ja-n4-00038-s001, ch: いたす, pr: いたす, ds: to do}
+  - {id: ja-n4-00039-s001, ch: いただく, pr: いただく, ds: to receive}
+  - {id: ja-n4-00047-s001, ch: いらっしゃる, pr: いらっしゃる, ds: to come}
+  - {id: ja-n4-00049-s001, ch: 伺う, pr: うかがう, ds: to call on someone}
+  - {id: ja-n4-00072-s001, ch: おいでになる, pr: おいでになる, ds: to be}
+  - {id: ja-n4-00087-s001, ch: お宅, pr: おたく, ds: your house}
+  - {id: ja-n4-00089-s001, ch: おっしゃる, pr: おっしゃる, ds: to say}
+  - {id: ja-n4-00183-s001, ch: くださる, pr: くださる, ds: to give}
+  - {id: ja-n4-00187-s001, ch: くれる, pr: くれる, ds: to give}
+  - {id: ja-n4-00223-s001, ch: ご主人, pr: ごしゅじん, ds: your husband}
+  - {id: ja-n4-00225-s001, ch: ご存知, pr: ごぞんじ, ds: knowing}
+  - {id: ja-n4-00236-s001, ch: ご覧になる, pr: ごらんになる, ds: to see}
+  - {id: ja-n4-00254-s001, ch: 差し上げる, pr: さしあげる, ds: to lift up}
+  - {id: ja-n4-00454-s001, ch: なさる, pr: なさる, ds: to do}
+  - {id: ja-n4-00485-s001, ch: 拝見, pr: はいけん, ds: seeing}
+  - {id: ja-n4-00554-s001, ch: まいる, pr: まいる, ds: to go}
+  - {id: ja-n4-00579-s001, ch: 召し上がる, pr: めしあがる, ds: to eat}
+  - {id: ja-n4-00581-s001, ch: 申し上げる, pr: もうしあげる, ds: to say}
+  - {id: ja-n4-00582-s001, ch: 申す, pr: もうす, ds: to say}
+  - {id: ja-n4-00589-s001, ch: もらう, pr: もらう, ds: to receive}
+  - {id: ja-n4-00619-s001, ch: よろしい, pr: よろしい, ds: good}
+  - {id: ja-n3-00177-s001, ch: お, pr: お, ds: honorific/polite/humble prefix}
+  - {id: ja-n3-00215-s001, ch: お目に掛かる, pr: おめにかかる, ds: to meet (someone of higher status)}
+  - {id: ja-n3-00223-s001, ch: おる, pr: おる, ds: to be (animate)}
+  - {id: ja-n3-01088-s001, ch: 頂戴, pr: ちょうだい, ds: receiving}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-15-register-02
+  title: Audience and register - 2
+  outcome: Adapt wording to an audience and explain the viewpoint of a respectful or humble form.
+  vocabulary:
+  - {id: ja-n3-01336-s001, ch: 旗, pr: はた, ds: flag}
+  - {id: ja-n2-01554-s001, ch: 坊ちゃん, pr: ぼっちゃん, ds: (another's) son}
+  - {id: ja-n2-01673-s001, ch: 申し訳ない, pr: もうしわけない, ds: I'm sorry}
+  - {id: ja-n2-01804-s001, ch: 詫びる, pr: わびる, ds: to apologize}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00581-s001, ch: 申し上げる, pr: もうしあげる, ds: to say}
+  - {id: ja-n4-00582-s001, ch: 申す, pr: もうす, ds: to say}
+  - {id: ja-n4-00589-s001, ch: もらう, pr: もらう, ds: to receive}
+  - {id: ja-n4-00619-s001, ch: よろしい, pr: よろしい, ds: good}
+  - {id: ja-n3-00177-s001, ch: お, pr: お, ds: honorific/polite/humble prefix}
+  - {id: ja-n3-00215-s001, ch: お目に掛かる, pr: おめにかかる, ds: to meet (someone of higher status)}
+  - {id: ja-n3-00223-s001, ch: おる, pr: おる, ds: to be (animate)}
+  - {id: ja-n3-01088-s001, ch: 頂戴, pr: ちょうだい, ds: receiving}
+  review_grammar: []
+- id: level-15-register-practice-01
+  title: Audience and register - sentence practice 1
+  outcome: Adapt wording to an audience and explain the viewpoint of a respectful or humble form.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g045, ch: お／ご〜になる, ds: respectful description of someone else's action}
+  - {id: ja-n3-g003, ch: お／ご〜する, ds: humble description of one's own action}
+  - {id: ja-n3-g004, ch: 動詞ていただけませんか, ds: could you kindly do something}
+  review_vocabulary:
+  - {id: ja-n3-00177-s001, ch: お, pr: お, ds: honorific/polite/humble prefix}
+  - {id: ja-n3-00215-s001, ch: お目に掛かる, pr: おめにかかる, ds: to meet (someone of higher status)}
+  - {id: ja-n3-00223-s001, ch: おる, pr: おる, ds: to be (animate)}
+  - {id: ja-n3-01088-s001, ch: 頂戴, pr: ちょうだい, ds: receiving}
+  - {id: ja-n3-01336-s001, ch: 旗, pr: はた, ds: flag}
+  - {id: ja-n2-01554-s001, ch: 坊ちゃん, pr: ぼっちゃん, ds: (another's) son}
+  - {id: ja-n2-01673-s001, ch: 申し訳ない, pr: もうしわけない, ds: I'm sorry}
+  - {id: ja-n2-01804-s001, ch: 詫びる, pr: わびる, ds: to apologize}
+  review_grammar: []
+- id: level-15-register-practice-02
+  title: Audience and register - sentence practice 2
+  outcome: Adapt wording to an audience and explain the viewpoint of a respectful or humble form.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g035, ch: Nとして, ds: as; in the role of}
+  - {id: ja-n2-g011, ch: 動詞かねる, ds: be unable to; find it difficult to}
+  review_vocabulary:
+  - {id: ja-n3-00177-s001, ch: お, pr: お, ds: honorific/polite/humble prefix}
+  - {id: ja-n3-00215-s001, ch: お目に掛かる, pr: おめにかかる, ds: to meet (someone of higher status)}
+  - {id: ja-n3-00223-s001, ch: おる, pr: おる, ds: to be (animate)}
+  - {id: ja-n3-01088-s001, ch: 頂戴, pr: ちょうだい, ds: receiving}
+  - {id: ja-n3-01336-s001, ch: 旗, pr: はた, ds: flag}
+  - {id: ja-n2-01554-s001, ch: 坊ちゃん, pr: ぼっちゃん, ds: (another's) son}
+  - {id: ja-n2-01673-s001, ch: 申し訳ない, pr: もうしわけない, ds: I'm sorry}
+  - {id: ja-n2-01804-s001, ch: 詫びる, pr: わびる, ds: to apologize}
+  review_grammar:
+  - {id: ja-n4-g045, ch: お／ご〜になる, ds: respectful description of someone else's action}
+  - {id: ja-n3-g003, ch: お／ご〜する, ds: humble description of one's own action}
+  - {id: ja-n3-g004, ch: 動詞ていただけませんか, ds: could you kindly do something}

@@ -155,3 +155,12 @@
   local_source: characters/recipes.yaml
   local_license: licenses/writing-recipes-NOTICE.txt
   review_status: Generated candidates only; exact-glyph visual and professional review not asserted
+- id: original-ja-practical
+  title: Original practical Japanese teaching order, tasks, and surface realizations
+  url: local:curriculum/japanese/authoring/teaching/vocabulary.yaml
+  license: CC-BY-SA-4.0 for original contributions to the extent copyright applies; upstream dictionary rights and attribution remain in force
+  usage: Independent thirty-level teaching placements, adaptive task pools, beginner and tourist plans, kana preparation, and exact authored inflection or fixed-form realizations. Dictionary-derived senses retain JMdict, scriptin, Waller, and stephenmk provenance. No phrasebook, textbook, exam items, or audio corpus copied.
+  attribution: Original curriculum contributions generated with GitHub Copilot for this project, September 2026. Not endorsed by JLPT, EDRDG, or the other source contributors.
+  retrieved_on: '2026-09-15'
+  local_source: authoring/teaching/vocabulary.yaml
+  review_status: AI-authored first-pass selection and source audit; qualified Japanese-language pedagogy and native-speaker review pending
