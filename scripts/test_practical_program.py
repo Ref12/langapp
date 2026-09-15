@@ -168,6 +168,118 @@ class NeutralProgramTests(unittest.TestCase):
             adjustments,
         )
 
+    def repeat_placement(self, number, destination):
+        for kind, prefix in (("vocabulary", "local:item"), ("grammar", "construction")):
+            source = next(row for row in self.data.inputs[kind] if row["id"] == f"{prefix}:{number:03d}")
+            self.data.inputs[kind].append({**deepcopy(source), "level": destination})
+
+    def test_core_and_independent_branches_can_select_the_same_canonical_ids(self):
+        for branch in ("professional", "technical", "scientific"):
+            self.repeat_placement(20, branch)
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        introductions = [(level["number"], entry["id"]) for phase in core["phases"]
+                         for level in phase["levels"] for unit in level["units"] for entry in unit["vocabulary"]]
+        self.assertEqual([number for number, item in introductions if item == "local:item:020"], [20])
+        for branch in ("professional", "technical", "scientific"):
+            sequence = self.document(Path("teaching") / "extensions" / branch / "sequence.yaml")
+            for kind, identifier in (("vocabulary", "local:item:020"), ("grammar", "construction:020")):
+                introduced = {entry["id"] for unit in sequence["units"] for entry in unit[kind]}
+                reviewed = {entry["id"] for unit in sequence["units"] for entry in unit[f"review_{kind}"]}
+                if branch == "scientific":
+                    self.assertNotIn(identifier, introduced)
+                    self.assertIn(identifier, reviewed)
+                else:
+                    self.assertIn(identifier, introduced)
+        self.assertEqual(self.document(Path("teaching") / "inventory.yaml")["core"]["vocabulary_senses"], 30)
+
+    def test_already_known_explicit_extension_material_becomes_review_not_an_empty_route(self):
+        for kind in ("vocabulary", "grammar"):
+            self.data.inputs[kind][:] = [row for row in self.data.inputs[kind] if row["level"] != "professional"]
+        self.repeat_placement(2, "professional")
+        branch = self.document(Path("teaching") / "extensions" / "professional" / "sequence.yaml")
+        self.assertTrue(branch["units"])
+        for kind, identifier in (("vocabulary", "local:item:002"), ("grammar", "construction:002")):
+            self.assertFalse([entry for unit in branch["units"] for entry in unit[kind]])
+            self.assertIn(identifier, {entry["id"] for unit in branch["units"] for entry in unit[f"review_{kind}"]})
+
+    def test_route_scoping_still_rejects_duplicate_core_or_same_branch_placements(self):
+        for number, destination in ((2, 3), (31, "professional")):
+            with self.subTest(number=number, destination=destination):
+                source = next(row for row in self.data.inputs["vocabulary"] if row["id"] == f"local:item:{number:03d}")
+                self.data.inputs["vocabulary"].append({**source, "level": destination})
+                with self.assertRaisesRegex(ValueError, "Duplicate placement ID"):
+                    self.outputs()
+                self.data.inputs["vocabulary"].pop()
+
+    def test_shared_sense_and_construction_annotations_cannot_differ_between_routes(self):
+        for kind, key, value in (
+            ("vocabulary", "ds", "a changed sense"),
+            ("grammar", "ch", "another form"),
+            ("grammar", "anchors", ["local:item:003"]),
+        ):
+            with self.subTest(kind=kind, key=key):
+                source = self.data.inputs[kind][1]
+                self.data.inputs[kind].append({**deepcopy(source), "level": "professional", key: value})
+                with self.assertRaisesRegex(ValueError, "conflicting canonical placement"):
+                    self.outputs()
+                self.data.inputs[kind].pop()
+
+    def test_seeded_senses_and_constructions_remain_route_scoped(self):
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        levels = [level for phase in core["phases"] for level in phase["levels"] if level["number"] <= 20]
+        seeds = tuple(SeedUnit(level["number"], "grammar", unit) for level in levels for unit in level["units"])
+        self.repeat_placement(2, "professional")
+        self.repeat_placement(20, "professional")
+        for kind in ("vocabulary", "grammar"):
+            self.data.inputs[kind][:] = [
+                row for row in self.data.inputs[kind] if type(row["level"]) is str or row["level"] > 20
+            ]
+        self.data = replace(self.data, seeds=seeds)
+        branch = self.document(Path("teaching") / "extensions" / "professional" / "sequence.yaml")
+        for kind, prefix in (("vocabulary", "local:item"), ("grammar", "construction")):
+            introduced = {entry["id"] for unit in branch["units"] for entry in unit[kind]}
+            reviewed = {entry["id"] for unit in branch["units"] for entry in unit[f"review_{kind}"]}
+            self.assertIn(f"{prefix}:020", introduced)
+            self.assertNotIn(f"{prefix}:002", introduced)
+            self.assertIn(f"{prefix}:002", reviewed)
+
+    def test_core_anchor_promotion_does_not_erase_explicit_branch_selection(self):
+        row = next(row for row in self.data.inputs["vocabulary"] if row["id"] == "local:item:005")
+        row["level"] = "professional"
+        core = self.document(Path("teaching") / "core" / "vocabulary.min.yaml")
+        self.assertIn("local:item:005", {entry["id"] for entry in core})
+        branch = self.document(Path("teaching") / "extensions" / "professional" / "sequence.yaml")
+        self.assertIn("local:item:005",
+                      {entry["id"] for unit in branch["units"] for entry in unit["review_vocabulary"]})
+
+    def test_cross_topic_prerequisites_schedule_ready_groups_and_keep_reviews_earlier(self):
+        metadata = self.data.inputs["program"]["topics"]["grammar"]
+        self.data.inputs["program"]["topics"] = {
+            "first": dict(metadata), "second": dict(metadata), "grammar": dict(metadata),
+        }
+        for number, topic in ((2, "first"), (3, "second"), (4, "first")):
+            row = self.data.inputs["grammar"][number - 1]
+            row.update(level=2, topic=topic, anchors=["local:item:002"])
+        self.data = replace(self.data, construction_dependencies={
+            "construction:002": ("construction:003",),
+            "construction:003": ("construction:004",),
+        })
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        level = core["phases"][0]["levels"][1]
+        practice = [unit for unit in level["units"] if unit["grammar"]]
+        self.assertEqual([entry["id"] for unit in practice for entry in unit["grammar"]],
+                         ["construction:004", "construction:003", "construction:002"])
+        self.assertIn("construction:004", {entry["id"] for entry in practice[-1]["review_grammar"]})
+        known_words, known_grammar = set(), set()
+        for phase in core["phases"]:
+            for level in phase["levels"]:
+                for unit in level["units"]:
+                    self.assertLessEqual(len(unit["grammar"]), 3)
+                    self.assertTrue({entry["id"] for entry in unit["review_vocabulary"]} <= known_words)
+                    self.assertTrue({entry["id"] for entry in unit["review_grammar"]} <= known_grammar)
+                    known_words.update(entry["id"] for entry in unit["vocabulary"])
+                    known_grammar.update(entry["id"] for entry in unit["grammar"])
+
     def test_canonical_shapes_labels_and_complete_identity_provenance_are_required(self):
         for mutation in ("identity", "provenance", "label", "grammar-reading", "index-key", "source-identity"):
             with self.subTest(mutation=mutation):

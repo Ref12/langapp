@@ -242,6 +242,15 @@ Adapters using seeds can include their beginner sequence/compact views in
 explicit `language` and `prefix` keyword arguments. All extra output paths
 must remain within the language root and cannot collide with generated views.
 
+A canonical ID may have one numbered-core placement and one placement in each
+optional extension. Duplicate placements within the same route are errors;
+labels, written construction forms, and universal lexical anchors must agree
+across routes. Keep the same sense ID when a branch needs material introduced
+later in the core. Only that branch's declared core prefix is inherited.
+Explicit branch selections already in its prefix become canonical review
+material rather than disappearing, including a branch containing only reviews.
+Adapters must preserve these route-scoped rows instead of deduplicating by ID.
+
 Vocabulary values contain exactly `{id, ch, pr, ds}` and construction values
 exactly `{id, ch, ds}`. Dictionary keys must equal embedded IDs. `ds` is a
 trimmed, one-line English hint of at most 64 characters, not an automatically
@@ -273,6 +282,14 @@ Lexical `anchors` and construction prerequisites are checked for the core,
 optional branches, and tourist route. No later or unrelated branch can satisfy
 a prerequisite. A construction may teach a fixed marker absent from the
 dictionary without fabricating lexical credit.
+
+Placement-driven destinations introduce their vocabulary first, then emit
+stable groups of at most three ready same-topic constructions. Blocked topics
+are revisited after their prerequisites; different levels need not share one
+global topic order. Review records use the actual emitted order and never refer
+forward. Missing or later-route prerequisites still fail, rather than moving
+construction goals between levels. Authored seed and tourist unit order remains
+explicit; the empty-dependency Mandarin path retains its existing output.
 
 #### Inflected phrases and fixed constructions
 
