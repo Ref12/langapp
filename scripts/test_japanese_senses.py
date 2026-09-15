@@ -3,11 +3,13 @@
 from copy import deepcopy
 import json
 from pathlib import Path
+import shutil
+import tempfile
 import unittest
 
-from curriculum_yaml import load_yaml
+from curriculum_yaml import load_yaml, write_yaml
 from japanese_program_adapter import (
-    JapaneseAdapter, LEVELS, PROFILE, ROOT, entry_number, selected_sense,
+    JapaneseAdapter, LEVELS, PROFILE, ROOT, entry_number, original_paths, selected_sense,
     source_manifest, validate_form_annotations, verify_sources, word_inflections,
 )
 from practical_program_types import PhraseContext, ReferenceBundle
@@ -31,6 +33,41 @@ class JapaneseSenseTests(unittest.TestCase):
         self.assertEqual(len(self.parents), 7828)
         self.assertEqual(len({entry_number(row) for row in self.parents.values()}), 7743)
         self.assertEqual(len(verify_sources(ROOT)["words"]), 7747)
+
+    def source_fixture(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        for original in [*original_paths(ROOT), ROOT / "authoring" / "teaching" / "source-lock.yaml"]:
+            target = root / original.relative_to(ROOT)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(original, target)
+        return root
+
+    def test_additive_writing_assets_do_not_change_the_frozen_curriculum_scope(self):
+        root = self.source_fixture()
+        (root / "licenses" / "writing-kanjivg-COPYING.txt").write_text(
+            "Additional writing-asset notice.", encoding="utf-8",
+        )
+        (root / "upstream" / "writing-metadata.json").write_text("{}", encoding="utf-8")
+        self.assertEqual(source_manifest(root), source_manifest(ROOT))
+        self.assertEqual(len(verify_sources(root)["words"]), 7747)
+        original = root / "licenses" / "Waller-sharing.html"
+        original.write_bytes(original.read_bytes() + b"\nchanged")
+        with self.assertRaisesRegex(ValueError, "frozen source manifest"):
+            verify_sources(root)
+        original.unlink()
+        with self.assertRaises(FileNotFoundError):
+            verify_sources(root)
+
+    def test_frozen_manifest_cannot_silently_drop_an_original_input(self):
+        root = self.source_fixture()
+        path = root / "authoring" / "teaching" / "source-lock.yaml"
+        manifest = load_yaml(path)
+        manifest.pop("licenses/Waller-sharing.html")
+        write_yaml(path, manifest)
+        with self.assertRaisesRegex(ValueError, "frozen source manifest"):
+            verify_sources(root)
 
     def test_raw_ordinals_preserve_gaps_after_reading_restrictions(self):
         sense = self.sense("ja-n1-00174", 3, "first day of a month")

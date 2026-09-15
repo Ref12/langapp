@@ -120,6 +120,8 @@ the Waller/stephenmk entry mappings. Preserve **all** notices in
 scriptin's JSON transformation credit, stephenmk's CC BY-SA 4.0 mapping credit,
 and Waller's CC BY attribution with version unspecified by Waller.
 Existing references and original grammar examples have not been rewritten.
+The source lock covers the fixed 28 original curriculum inputs; additional
+writing assets or their license notices do not expand or weaken that lock.
 
 The placements, tasks, kana preparation, and tourist utterances are original
 AI-authored contributions with an explicit first-pass source audit. **Qualified

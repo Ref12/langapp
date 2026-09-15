@@ -25,13 +25,20 @@ PROFILE = ProgramProfile("japanese", "ja")
 
 
 def original_paths(root: Path) -> list[Path]:
+    # Other features may add their own upstream assets and license notices.
     return [
         *(root / f"jlpt-{level}" / filename
           for level in LEVELS for filename in ("vocabulary.yaml", "grammar.yaml", "syllabus.md")),
         root / "teaching" / "grammar.tsv",
         root / "import-report.yaml",
-        *(path for path in sorted((root / "upstream").iterdir()) if path.is_file()),
-        *(path for path in sorted((root / "licenses").iterdir()) if path.is_file()),
+        *(root / "upstream" / filename for filename in (
+            "download-lock.json", "jmdict-selected.json",
+            *(f"waller-{level}.csv" for level in reversed(LEVELS)),
+        )),
+        *(root / "licenses" / filename for filename in (
+            "CC-BY-SA-4.0.txt", "EDRDG-license.html", "Waller-sharing.html",
+            "yomitan-jlpt-vocab-README.md",
+        )),
     ]
 
 
