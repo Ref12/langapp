@@ -109,17 +109,18 @@ def identifiers(value, location: str, available: EntryIndex, kind: str,
 
 
 def resolve_sequence(sequence: dict, vocabulary: EntryIndex, grammar: EntryIndex,
-                     *, refresh: bool = False) -> dict:
+                     *, refresh: bool = False, language: str = "chinese",
+                     prefix: str = "zh") -> dict:
     if not isinstance(sequence, dict) or set(sequence) != TRACK_FIELDS:
         raise ValueError(f"Teaching track fields must be {', '.join(sorted(TRACK_FIELDS))}")
     version = sequence["schema_version"]
     if type(version) is not int or version not in (1, 2):
         raise ValueError("Teaching track schema_version must be 1 (legacy IDs) or 2 (entries)")
-    if sequence["language"] != "chinese":
-        raise ValueError("This teaching-track generator expects language: chinese")
+    if sequence["language"] != language:
+        raise ValueError(f"This teaching-track generator expects language: {language}")
     identifier = text(sequence["id"], "track.id")
-    if not re.fullmatch(r"zh-[a-z0-9]+(?:-[a-z0-9]+)*", identifier):
-        raise ValueError("Track ID must be a zh-prefixed kebab-case identifier")
+    if not re.fullmatch(re.escape(prefix) + r"-[a-z0-9]+(?:-[a-z0-9]+)*", identifier):
+        raise ValueError(f"Track ID must be a {prefix}-prefixed kebab-case identifier")
     for field in ("title", "level_basis", "review_policy"):
         english(sequence[field], f"track.{field}")
     seen_units = set()
@@ -166,14 +167,16 @@ def _introductions(sequence: dict) -> tuple[list[dict[str, str]], list[dict[str,
     )
 
 
-def sequence_entries(sequence: dict, vocabulary: EntryIndex, grammar: EntryIndex
+def sequence_entries(sequence: dict, vocabulary: EntryIndex, grammar: EntryIndex,
+                     *, language: str = "chinese", prefix: str = "zh"
                      ) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
-    return _introductions(resolve_sequence(sequence, vocabulary, grammar))
+    return _introductions(resolve_sequence(sequence, vocabulary, grammar, language=language, prefix=prefix))
 
 
 def teaching_outputs(directory: Path, sequence: dict, vocabulary: EntryIndex,
-                     grammar: EntryIndex) -> dict[Path, str]:
-    resolved = resolve_sequence(sequence, vocabulary, grammar, refresh=True)
+                     grammar: EntryIndex, *, language: str = "chinese",
+                     prefix: str = "zh") -> dict[Path, str]:
+    resolved = resolve_sequence(sequence, vocabulary, grammar, refresh=True, language=language, prefix=prefix)
     words, patterns = _introductions(resolved)
     return {
         directory / "sequence.yaml": dump_entries(resolved),
