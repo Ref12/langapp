@@ -333,8 +333,6 @@ def build_records(root: Path, inventory: dict, batch: str) -> tuple[dict, list[d
             variant["recipe"] = {"id": f"contextual-mark-{ord(character):04x}", "version": recipes["version"],
                                  "input": recipe_pin["path"], "sha256": recipe_pin["sha256"]}
             variant["provenance"].append(provenance(recipe_pin, f"combining_marks.U+{ord(character):04X}"))
-            variant["components"] = [{"character": recipe["source_character"], "role": recipe["role"],
-                                      "source_id": KVG}]
         else:
             provider, member, source = source_request(character)
             name = source_path(provider, member)

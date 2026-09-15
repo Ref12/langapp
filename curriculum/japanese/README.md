@@ -173,9 +173,9 @@ U+3099 selects the two upper-right dakuten paths from KVG `が`; U+309A selects
 the single upper-right handakuten path from `ぱ`, with exact source/recipe hashes.
 These are contextual component samples, not a universal attachment algorithm.
 Spacing `゛゜` retain their separate source placement rather than being enlarged
-or silently substituted for combining marks. The first batch does not include
-the `が` donor as a drawable record; coverage therefore explicitly reports this
-component relationship until the full batch is approved.
+or silently substituted for combining marks. Donor glyphs belong in extraction
+provenance and recipes: the whole `が` glyph is not a structural component of
+dakuten, and is not recorded as one.
 
 ### Remaining exact-glyph blocker
 

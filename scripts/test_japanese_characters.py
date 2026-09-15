@@ -11,9 +11,8 @@ import xml.etree.ElementTree as ET
 from character_assets import validate_bundle
 from character_geometry import normalize_svg_path, sample_path
 from character_inventory import extract_inventory
-from curriculum_yaml import load_yaml
 from import_japanese_characters import (
-    APL, BLOCKED, FIRST_BATCH, KVG, LGPL, ROOT, SVG, animcjk_paths, build_records,
+    APL, BLOCKED, FIRST_BATCH, LGPL, ROOT, SVG, animcjk_paths, build_records,
     chosen_characters, classify, generate, kanjivg_paths, load_inputs, local_path,
     normalized_strokes, review_only_fish, source_path, svg_root,
 )
@@ -83,7 +82,8 @@ class JapaneseWritingTests(unittest.TestCase):
             self.assertEqual(variant["strokes"], normalized_strokes(paths[-tail:], 109))
             self.assertEqual(len(variant["strokes"]), tail)
             self.assertIn("recipe", variant)
-            self.assertEqual(variant["components"][0]["character"], source)
+            self.assertEqual(self.recipes["combining_marks"][mark]["source_character"], source)
+            self.assertNotIn("components", variant)
             points = [p for s in variant["strokes"] for p in sample_path(s["path"])]
             self.assertGreater(min(p[0] for p in points), 70)
             self.assertLess(max(p[1] for p in points), 30)
@@ -152,6 +152,7 @@ class JapaneseWritingTests(unittest.TestCase):
         self.assertEqual(coverage["default_reviewed"], [])
         self.assertEqual(coverage["cross_script_missing"], list("\uff27\uff2b\uff2f\uff58"))
         self.assertEqual(coverage["missing_license_inputs"], [])
+        self.assertEqual(coverage["missing_components"], [])
         self.assertFalse(coverage["text_coverage_complete"])
         self.assertFalse(coverage["release_ready"])
         for record in self.records.values():

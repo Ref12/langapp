@@ -679,11 +679,7 @@
   kind: component
   script: Inherited
   variants:
-  - components:
-    - character: が
-      role: Contextual dakuten sample at the source kana's upper right; not a universal attachment rule
-      source_id: kanjivg-writing
-    id: japanese-source
+  - id: japanese-source
     locale: ja-JP
     provenance:
     - input: upstream/writing/kanjivg/kanji/0304c.svg
@@ -726,12 +722,7 @@
   kind: component
   script: Inherited
   variants:
-  - components:
-    - character: ぱ
-      role: Contextual handakuten sample at the source kana's upper right; not a universal attachment
-        rule
-      source_id: kanjivg-writing
-    id: japanese-source
+  - id: japanese-source
     locale: ja-JP
     provenance:
     - input: upstream/writing/kanjivg/kanji/03071.svg
