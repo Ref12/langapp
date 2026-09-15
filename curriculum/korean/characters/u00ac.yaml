@@ -1,0 +1,776 @@
+# Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.
+# Unreviewed: no qualified Korean handwriting approval. No font/diagram tracing or source-derived paths.
+# See licenses/ORIGINAL-WRITING-PILOT.md. No warranty; bulk scaling remains gated on review.
+가:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 가
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅡ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M6.6 19.6 L34.6 19.6 L34.6 75.6
+    - path: M66.8 17.2 L66.8 82.8
+    - path: M66.8 50 L91.4 50
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+갇:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 갇
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅡ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᆮ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M9.2 7.2 L35.2 7.2 L35.2 59.2
+    - path: M62.6 7.4 L62.6 58.6
+    - path: M62.6 33 L81.8 33
+    - path: M25.2 70.1 L74.8 70.1
+    - path: M25.2 70.1 L25.2 94.9 L74.8 94.9
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+값:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 값
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅡ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᆹ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M9.2 7.2 L35.2 7.2 L35.2 59.2
+    - path: M62.6 7.4 L62.6 58.6
+    - path: M62.6 33 L81.8 33
+    - path: M8.2 74.1 L8.2 90.9
+    - path: M41.8 74.1 L41.8 90.9
+    - path: M8.2 82.5 L41.8 82.5
+    - path: M8.2 90.9 L41.8 90.9
+    - path: M75 74.1 Q72.06 83.76 58.2 90.9
+    - path: M73.32 81.24 Q80.46 87.12 91.8 90.9
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+갚:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 갚
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅡ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᇁ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M9.2 7.2 L35.2 7.2 L35.2 59.2
+    - path: M62.6 7.4 L62.6 58.6
+    - path: M62.6 33 L81.8 33
+    - path: M23.96 70.1 L76.04 70.1
+    - path: M37.6 70.1 L37.6 94.9
+    - path: M62.4 70.1 L62.4 94.9
+    - path: M23.96 94.9 L76.04 94.9
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+갛:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 갛
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅡ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᇂ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M9.2 7.2 L35.2 7.2 L35.2 59.2
+    - path: M62.6 7.4 L62.6 58.6
+    - path: M62.6 33 L81.8 33
+    - path: M40.7 69.48 L59.3 69.48
+    - path: M28.3 75.68 L71.7 75.68
+    - path: M50 81.88 C38.22 81.88 28.92 84.98 28.92 88.7 C28.92 92.42 38.22 95.52 50 95.52 C61.78 95.52
+        71.08 92.42 71.08 88.7 C71.08 84.98 61.78 81.88 50 81.88
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+걔:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 걔
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅤ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M6.6 19.6 L34.6 19.6 L34.6 75.6
+    - path: M52.04 23.76 L52.04 76.24
+    - path: M52.04 40.16 L71.72 40.16
+    - path: M52.04 59.84 L71.72 59.84
+    - path: M95.5 23.76 L95.5 76.24
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+거:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 거
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅥ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M6.6 19.6 L34.6 19.6 L34.6 75.6
+    - path: M42.2 50 L66.8 50
+    - path: M66.8 17.2 L66.8 82.8
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+게:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 게
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅦ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M6.6 19.6 L34.6 19.6 L34.6 75.6
+    - path: M47.12 50 L66.8 50
+    - path: M66.8 23.76 L66.8 76.24
+    - path: M95.5 23.76 L95.5 76.24
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+겨:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 겨
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅧ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M6.6 19.6 L34.6 19.6 L34.6 75.6
+    - path: M42.2 37.7 L66.8 37.7
+    - path: M42.2 62.3 L66.8 62.3
+    - path: M66.8 17.2 L66.8 82.8
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+계:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 계
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅨ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M6.6 19.6 L34.6 19.6 L34.6 75.6
+    - path: M47.12 40.16 L66.8 40.16
+    - path: M47.12 59.84 L66.8 59.84
+    - path: M66.8 23.76 L66.8 76.24
+    - path: M95.5 23.76 L95.5 76.24
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+고:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 고
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅩ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18 8 L82 8 L82 40
+    - path: M50 52.1 L50 77.9
+    - path: M15.6 77.9 L84.4 77.9
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+곪:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 곪
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅩ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᆱ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M23.6 6.3 L76.4 6.3 L76.4 32.7
+    - path: M50 41.6 L50 58.4
+    - path: M27.6 58.4 L72.4 58.4
+    - path: M8.2 74.1 L41.8 74.1 L41.8 82.5
+    - path: M8.2 82.5 L41.8 82.5
+    - path: M8.2 82.5 L8.2 90.9 L41.8 90.9
+    - path: M58.2 74.1 L58.2 90.9
+    - path: M58.2 74.1 L91.8 74.1 L91.8 90.9
+    - path: M58.2 90.9 L91.8 90.9
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
+과:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 과
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄀ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅪ
+      role: medial
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M12.1 9.1 L35.9 9.1 L35.9 32.9
+    - path: M36.5 44.25 L36.5 63.15
+    - path: M11.3 63.15 L61.7 63.15
+    - path: M63.68 17.52 L63.68 73.68
+    - path: M63.68 45.6 L84.74 45.6
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'

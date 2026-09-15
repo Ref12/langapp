@@ -1,0 +1,76 @@
+assessment_version: '2026-09-15.1'
+assessment_kind: original-source-feasibility-audit
+source_id: korean-writing-source-audit
+upstream_geometry_available: false
+reason: No assessed source supplies licensed, ordered Hangul handwriting centerlines with contextual composition recipes.
+scope:
+  structured_syllables: 1156
+  structured_standalone_jamo: 4
+  modern_compatibility_jamo: 51
+  modern_conjoining_jamo: 67
+  structured_and_foundation_union: 1274
+  supplementary_phonetic_display:
+  - character: 꾜
+    codepoint: U+AF9C
+    context: 학교 [학꾜]
+    english: school; existing broad pedagogical pronunciation display
+  - character: 옫
+    codepoint: U+C62B
+    context: 옷 [옫]
+    english: clothing; existing broad pedagogical pronunciation display
+  supplementary_reference: README.md, Hangul pronunciation prerequisites table
+  hangul_union: 1276
+  required: 1209
+  component_only: 67
+  note: Supplemental glyphs do not replace standard word spellings or populate vocabulary readings.
+sources:
+- id: hangeul-stroke-order-reference
+  url: https://github.com/MagisterAdamus/hangeul-stroke-order
+  revision: 935483f7e93d24aa2ec990bca1b43664307768d2
+  author: Adam Stone
+  declared_license: CC-BY-SA-4.0
+  disposition: reference-only-no-geometry-import
+  inspected_individual_svgs: 35
+  finding: Each jamo is a single filled path with closed outline contours; numbered arrows are separate closed filled polygons, not ordered letter centerlines.
+  examples:
+  - svg/04_rieul.svg has one letter-outline path and three annotation arrows.
+  - svg/08_ieung.svg has outer and inner outline contours; the annotation does not supply a complete closed pen loop.
+  - svg/34_wae.svg has one letter-outline path and five annotation arrows.
+  - svg/22_yu.svg uses class jamo but a different group ID; selection by ID alone misses it.
+  gaps: Five tense consonants, eleven final clusters, contextual glyph forms, and syllable layout recipes are not supplied.
+  rights_limit: README credits UnPen and Inter but does not pin font versions or establish the complete rights lineage for derived UnPen glyph outlines.
+  retained: Only the unchanged, licensed README and project license; no SVG artwork or fonts are redistributed.
+- id: animcjk-reference
+  url: https://github.com/parsimonhi/animCJK#svgsko
+  disposition: wrong-script
+  finding: The primary README identifies svgsKo as 535 Hanja, not a Hangul dataset.
+- id: wikimedia-hangul-reference
+  url: https://commons.wikimedia.org/wiki/Commons:Stroke_Order_Project/Hangeul
+  disposition: reference-only-no-geometry-import
+  finding: The project lists 35 letters. Inspected KIYEOK PNG/GIF files contain raster diagrams, not editable pen trajectories.
+  rights_limit: Per-file metadata differs; the PNG is public domain, while FanNihongo's KIYEOK GIF is CC-BY-3.0.
+  additional_candidate: https://commons.wikimedia.org/wiki/File:Hangeul_letter_order.svg
+  additional_limit: The chart page identifies Byeonggwan and PD-self, but the raw SVG returned HTTP 429; its geometry was not established.
+- id: hilokal-handwriting-reference
+  url: https://github.com/Hilokal/korean-handwriting
+  revision: 44f3cd4c17753984253e5ec70456213ef6883d63
+  disposition: unlicensed-not-imported
+  finding: The primary README says a license is still to be added; training recordings are not committed and sampled model output is described as nearly legible.
+- id: unicode-hangul-reference
+  url: https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-18/#G31028
+  disposition: structure-only
+  finding: Unicode specifies modern positional jamo and three line-based vowel placements, not ordered handwriting paths or exact contextual glyph geometry.
+original_authoring_workload:
+  core_letter_masters: 24
+  composite_alphabet_recipes: 16
+  final_cluster_recipes: 11
+  observed_initial_layout_final_presence_assignments: 102
+  observed_vowel_final_presence_assignments: 41
+  observed_final_layout_assignments: 53
+  note: The 196 contextual assignments measure review coverage, not necessarily 196 independently drawn masters. Original geometry and qualified review remain separate work.
+pilot_authorization:
+  decision: Create an original template pilot, with review before scaling.
+  authoring_only: true
+  qualified_review: pending
+  maximum_curriculum_syllables: 54
+  separate_source_id: korean-writing-original-pilot

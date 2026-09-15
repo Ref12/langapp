@@ -1,0 +1,71 @@
+# Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.
+# Unreviewed: no qualified Korean handwriting approval. No font/diagram tracing or source-derived paths.
+# See licenses/ORIGINAL-WRITING-PILOT.md. No warranty; bulk scaling remains gated on review.
+핥:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 핥
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄒ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅡ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᆴ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M17 6.16 L27.4 6.16
+    - path: M10.24 17.6 L34.16 17.6
+    - path: M22.2 26.96 C14.92 26.96 10.24 33.72 10.24 43.6 C10.24 53.48 14.92 60.24 22.2 60.24 C29.48
+        60.24 34.16 53.48 34.16 43.6 C34.16 33.72 29.48 26.96 22.2 26.96
+    - path: M62.6 7.4 L62.6 58.6
+    - path: M62.6 33 L81.8 33
+    - path: M8.2 74.1 L41.8 74.1 L41.8 82.5
+    - path: M8.2 82.5 L41.8 82.5
+    - path: M8.2 82.5 L8.2 90.9 L41.8 90.9
+    - path: M58.2 74.1 L91.8 74.1
+    - path: M58.2 74.1 L58.2 90.9 L91.8 90.9
+    - path: M58.2 82.5 L91.8 82.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'

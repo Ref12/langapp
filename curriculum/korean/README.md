@@ -222,3 +222,106 @@ raw third-party usages on disk. `--source-file` enforces the same checksum.
 Regeneration is deterministic. A new upstream version requires an explicit
 revision/checksum review, renewed license check, source-row identity migration,
 translation audit and updated counts—not a silent replacement with `main`.
+
+## Original character-writing pilot
+
+The separate `characters/` bundle is a **bounded, original AI-assisted,
+unreviewed monoline pilot**, not a licensed import of Hangul stroke paths or
+a production handwriting activity. Its current output has **174 candidates**:
+118 exact modern-jamo foundation representations, 54 explicitly selected
+curriculum syllables, and the two Common-script literal signs `.` and `?`.
+Every generated variant has `reviewed: false`; `release_ready` remains false.
+No vocabulary targets, empty readings, grammar entries, or learning IDs change.
+
+The [review preview](characters/pilot-preview.html) displays exact final paths,
+stroke order/direction annotations, replay, matching-sample overlays, component
+extents, and conservative density/contact warnings. It supports scalar search
+and a flagged-only filter; `?characters=가값흰` selects a small comparison.
+Ordinary font labels identify Unicode characters but are not the stroke
+geometry. The same path strings produce completed artwork, replay and samples.
+Small circles/arrows/numbers are annotations, not additional pen strokes.
+
+### Coverage and deliberate limits
+
+All six expanded levels contribute **1,156 syllables and four standalone
+compatibility jamo**. Modern foundations are exactly 51 compatibility forms
+U+3131..U+3163 and 67 positional conjoining forms: 19 initials U+1100..U+1112,
+21 vowels U+1161..U+1175, and 27 finals U+11A8..U+11C2. The four observed jamo
+overlap foundations, giving a structured-plus-foundation union of **1,274**.
+Two explicitly cited phonetic-display-support glyphs from the prerequisite
+table above, U+AF9C and U+C62B, bring the Hangul scope to **1,276**:
+**1,209 required plus 67 component-only**. These supplements support existing
+pronunciation displays; they are not replacement spellings for school or
+clothing and do not supply vocabulary pronunciations.
+
+Only 54 of the 1,158 required syllables are authored in this first batch.
+The other **1,104 Hangul keys remain explicitly unavailable/source-blocked**,
+including the two supplemental syllables. All 118 modern foundation identities
+are present, including the final RIEUL-SIOS cluster absent from curriculum
+syllables. Positional/conjoining and compatibility keys remain distinct;
+aliases describe relationships and never silently normalize or redirect keys.
+No archaic jamo, fillers, halfwidth forms, Hanja expansion, or full 11,172-block
+dump is included. The two literal signs are separate from Hangul counts;
+grammar-slot letters, punctuation syntax, spaces, and affix hyphens are not
+silently treated as Korean handwriting lessons.
+
+The 54-syllable batch covers all observed initials, vowels, finals and broad
+layout/final-kind families, but only **102 of 196 observed contextual
+assignments**. `characters/pilot-review.yaml` explicitly lists the **94
+unexercised assignments**; qualified reviewed assignments are zero. Review of
+every implemented family, missing context case, logical stroke sequence and
+flagged exception is required before scaling. The composer rejects the
+unrepresented mixed-vowel/final-cluster family rather than implying broad
+reviewed support. The inventory remains authoritative even when artwork is
+missing; neither structural validity nor zero warnings implies readability.
+
+### Original geometry, source evidence, and ownership
+
+`characters/recipes/original-jamo.yaml` contains 24 core letter masters with
+explicit isolated/side/wide contextual forms, 16 composite alphabet recipes,
+11 final-cluster recipes and two sign candidates. Two additional named HIEUH
+context forms preserve its bars and loop in dense blocks.
+`original-layouts.yaml` defines six layout families, uniform placements,
+component-specific contextual selection and the fixed 54-syllable list.
+The composer uses named original em-box forms, not independent bounding-box
+stretching. All parts share width 5.5 and round caps/joins in the 100-unit
+y-down frame. Pen lifts stay explicit, including closed loops as one stroke.
+
+The [source assessment](upstream/writing/source-assessment.yaml) explains why
+the assessed external sources do **not** supply import-ready centerlines.
+Adam Stone's 35 diagram SVGs contain whole-letter outlines and separate arrow
+polygons; animCJK's Korean directory is Hanja, not Hangul. No UnPen tracing,
+unlicensed neural model output, fonts, SVG diagrams or private recordings are
+bundled. Only the unchanged licensed reference README and license are retained.
+These are source-gap evidence, **not the provenance of original geometry**.
+
+Original artwork and processing have their own source record and
+[CC0 pilot notice](licenses/ORIGINAL-WRITING-PILOT.md).
+The retained reference text keeps [CC BY-SA 4.0 attribution](licenses/WRITING-NOTICE.md);
+existing dictionary rights remain unchanged. There is no professional Korean
+handwriting approval or legal certification.
+
+### Offline generation and checking
+
+Use Python 3.10+ with the existing pinned PyYAML dependency. On this Windows
+installation, `py -3.12` selects the installed runtime instead of the Store
+alias. Ordinary generation and check commands never download resources.
+
+```powershell
+py -3.12 scripts\import_korean_characters.py
+py -3.12 scripts\import_korean_characters.py --check
+py -3.12 scripts\test_korean_characters.py
+py -3.12 scripts\validate_characters.py --language korean --check
+py -3.12 scripts\validate_curriculum.py --language korean
+```
+
+`--check` reports stale bytes without writing or deleting anything.
+`validate_characters.py --require-release` intentionally rejects this
+incomplete, unreviewed pilot. Generated shards use exact-character UTF-8 YAML
+keys and the shared 256-codepoint naming convention; only drawable records are
+written. Manifest and coverage are separate. Source/reference hashes, authored
+recipe hashes, original notices, shared tooling versions and curriculum input
+hashes are pinned; the review report also hashes Korean adapter modules.
+Changing paths or recipes requires a new reviewed version, not inherited
+approval. A source refresh is an explicit revision/license/checksum operation.
+Do not edit generated shards or extend the 54-syllable list to bypass review.

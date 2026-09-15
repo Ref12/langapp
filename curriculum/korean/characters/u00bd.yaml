@@ -1,0 +1,71 @@
+# Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.
+# Unreviewed: no qualified Korean handwriting approval. No font/diagram tracing or source-derived paths.
+# See licenses/ORIGINAL-WRITING-PILOT.md. No warranty; bulk scaling remains gated on review.
+봤:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 봤
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄇ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅪ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᆻ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 9d88e212b298c1f11f87e7b83c8d2e5d793225229a4b054490cc69850a197dcd
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: 3628e9d9e3b2f5c7d4463ed54264f653106955d2cff658359d5c4c5a2b39c705
+      version: '1'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M15.6 5.6 L15.6 22.4
+    - path: M32.4 5.6 L32.4 22.4
+    - path: M15.6 14 L32.4 14
+    - path: M15.6 22.4 L32.4 22.4
+    - path: M38.8 33.9 L38.8 48.18
+    - path: M19.76 48.18 L57.84 48.18
+    - path: M59.336 13.704 L59.336 56.136
+    - path: M59.336 34.92 L75.248 34.92
+    - path: M25 74.1 Q22.06 83.76 8.2 90.9
+    - path: M23.32 81.24 Q30.46 87.12 41.8 90.9
+    - path: M75 74.1 Q72.06 83.76 58.2 90.9
+    - path: M73.32 81.24 Q80.46 87.12 91.8 90.9
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '1'
