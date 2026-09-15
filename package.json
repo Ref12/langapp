@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build",
+    "dev": "vite --config versions/v1/vite.config.ts",
+    "build": "npm run build:v1 && node scripts/build-site.mjs",
+    "build:v1": "tsc -b versions/v1 && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build --config versions/v1/vite.config.ts",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "vite preview --config versions/v1/vite.config.ts --outDir ../../dist --base /",
     "test": "vitest run",
     "test:watch": "vitest"
   },

@@ -1,16 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { webcrypto } from 'node:crypto'
+import { fileURLToPath } from 'node:url'
 
 if (!globalThis.crypto) {
   Object.defineProperty(globalThis, 'crypto', { value: webcrypto })
 }
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ command, isPreview }) => {
   const { VitePWA } = await import('vite-plugin-pwa')
 
   return {
-    base: './',
+    root: fileURLToPath(new URL('.', import.meta.url)),
+    base: command === 'serve' && !isPreview ? '/v1/' : './',
+    build: {
+      outDir: '../../dist/v1',
+      emptyOutDir: true,
+    },
     plugins: [
       react(),
       VitePWA({
@@ -24,6 +30,7 @@ export default defineConfig(async () => {
           background_color: '#f7f3e9',
           display: 'standalone',
           start_url: './',
+          scope: './',
           icons: [
             {
               src: 'icon.svg',

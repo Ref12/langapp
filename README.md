@@ -3,12 +3,26 @@
 A modular, local-first language-learning PWA built around shared learning
 items, reading techniques, and AI conversation.
 
+## Application versions
+
+The original deployed application is preserved in [`versions/v1`](versions/v1).
+Its source, public assets, TypeScript projects, and Vite/PWA configuration live
+there. The repository root owns the shared dependency lockfile, quality gates,
+and deployment assembly; run npm commands from the repository root.
+
+The original app is served at `/v1/` (or `/langapp/v1/` on repository Pages).
+For this first checkpoint, the site root forwards to v1 while preserving query
+parameters and hash routes. Serving the mockups from the root is the next,
+separate checkpoint; the new Mandarin-first experience is not implemented yet.
+
 ## Development
 
 ```powershell
 npm install
 npm run dev
 ```
+
+Open `http://localhost:5173/v1/`. The development server redirects `/` to `/v1/`.
 
 Run the same quality gates as deployment:
 
@@ -22,10 +36,20 @@ npm run build
 
 Pushes to `main` run `.github/workflows/deploy-pages.yml`. The workflow
 installs from the lockfile, runs lint and tests, creates the production build,
-and deploys `dist` to GitHub Pages.
+and deploys `dist` to GitHub Pages. `npm run build:v1` builds the archived app
+into `dist/v1`; `npm run build` also adds the temporary root entry and the
+retirement worker for the former root PWA. `npm run preview` serves the complete
+`dist` site, including `/v1/`.
 
 The app uses hash routing and relative assets so it works at a repository Pages
-path such as `https://ref12.github.io/langapp/`.
+path such as `https://ref12.github.io/langapp/v1/`. The v1 manifest and service
+worker are scoped to that subdirectory. The old root service worker is retired
+when the browser discovers its update, without clearing IndexedDB or caches.
+
+Moving to a subpath does not move browser storage: v1 retains the `linguaweave`
+IndexedDB database, so existing profiles, imported content, credentials, and
+progress remain available on the same origin. The next app must use a separate
+database unless an explicit migration is introduced.
 
 ## Voice tutor setup
 
