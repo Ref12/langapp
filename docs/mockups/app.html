@@ -20,6 +20,7 @@
     <script src="./library.js" defer></script>
     <script src="./character-data.js" defer></script>
     <script src="./character-geometry.js" defer></script>
+    <script src="./character-monoline.js" defer></script>
     <script src="./characters.js" defer></script>
     <script src="./lessons.js" defer></script>
     <script src="./lesson-practice.js" defer></script>
@@ -326,7 +327,7 @@
             <section id="dictionary-learning-panel" aria-label="My learning set" hidden>
             <div class="dictionary-summary"><span class="tile-icon green"><svg><use href="#i-dictionary"/></svg></span><div><h2>Your learning set</h2><p><span id="dictionary-count">3</span> tracked items &middot; From reading, lookup, and Assistant</p></div><a href="#review" class="button secondary">Review in context</a></div>
             <div class="library-toolbar"><label class="search-field dictionary-search"><svg><use href="#i-search"/></svg><input id="dictionary-search" type="search" placeholder="Find a word, meaning, or romanization" aria-label="Search dictionary"></label></div>
-            <div class="dictionary-table-wrap"><table class="dictionary-table"><thead><tr><th scope="col">WORD</th><th scope="col">MEANING</th><th scope="col">SKILL STATES</th><th scope="col">ENCOUNTERED IN</th><th scope="col">NEXT STEP</th></tr></thead><tbody id="dictionary-rows"></tbody></table></div><div class="empty-state" id="dictionary-empty" hidden><h2>No matching words yet</h2><p>Change your search or add a word from the reader.</p></div>
+            <div class="dictionary-table-wrap"><table class="dictionary-table"><thead><tr><th scope="col">Word</th><th scope="col">Meaning</th><th scope="col">Skill states</th><th scope="col">Encountered in</th><th scope="col">Actions</th></tr></thead><tbody id="dictionary-rows"></tbody></table></div><div class="empty-state" id="dictionary-empty" hidden><h2>No matching words yet</h2><p>Change your search or add a word from the reader.</p></div>
             <div class="dictionary-note"><svg><use href="#i-leaf"/></svg><div><h3>More than a vocabulary count.</h3><p>Hearing, speaking, reading, and writing have independent states for every word and construct. Revealing a word is not mastery in any of them.</p></div></div>
             </section>
             <p class="page-footnote">This concept follows the experience document's learning-state language. Production tier naming remains a design decision; see the mockup README.</p>
@@ -354,9 +355,10 @@
     <dialog id="character-info-dialog" aria-labelledby="character-info-title">
       <div class="dialog-heading"><h2 id="character-info-title">Writing practice</h2><button type="button" class="icon-button" data-close-dialog aria-label="Close writing help"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
       <p id="character-help">Start at the blue dot and follow the arrow.</p>
-      <ol class="character-phase-help"><li>Full guide: trace the character with every stroke visible.</li><li>One stroke at a time: finish each stroke to reveal the next.</li><li>From memory: write without a model or upcoming stroke hints.</li></ol>
+      <ol class="character-phase-help"><li>Full guide: trace the character with every stroke visible.</li><li>One stroke at a time: finish each stroke to reveal the next.</li><li>From memory: write without a model. Two misses on the same stroke reveal only that stroke's guide; later strokes stay hidden.</li></ol>
       <p>Repeat each phase three times. Correct strokes snap into place in every phase; approximate strokes are welcome. Undo and Clear affect only the current repetition. Return to Dictionary to choose another character; your progress is kept until reload.</p>
       <p id="character-boundary">Forgiving direction and shape checking, not handwriting recognition or a mastery score.</p>
+      <p class="small muted" id="character-artwork-note"></p>
       <p class="character-data-license">Stroke data: &copy; 1999 Arphic Technology Co., Ltd., adapted via Hanzi Writer Data. No warranty. Redistributable under the <a href="./character-data-LICENSE.txt" target="_blank" rel="noopener">ARPHIC PUBLIC LICENSE</a>.</p>
       <button type="button" class="button secondary" data-theme-toggle aria-label="Switch to light theme"><svg aria-hidden="true"><use href="#i-sun"/></svg><span>Appearance</span><span data-theme-label>Dark</span></button>
     </dialog>

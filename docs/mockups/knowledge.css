@@ -8,8 +8,14 @@
 .knowledge-objective > p[lang] { font-size: 20px; margin-bottom: 8px; }
 .dictionary-skill-states .knowledge-profile { grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 204px; margin: 0; white-space: normal; }
 .dictionary-skill-states .knowledge-profile > div { border: 0; padding: 6px 8px; }
-.dictionary-table .button { min-height: 44px; }
+.dictionary-row-actions .snippet-actions { flex-wrap: nowrap; margin: 0; }
+.dictionary-row-actions .snippet-action { flex-basis: 36px; width: 36px; height: 36px; min-height: 36px; padding: 8px; border-radius: 6px; }
+.dictionary-row-actions .snippet-action:not([aria-pressed="true"]) { background: var(--surface); }
+.dictionary-row-actions .snippet-action svg { width: 16px; height: 16px; }
 #mark-known { min-height: 44px; }
+@media (pointer: coarse) {
+  .dictionary-row-actions .snippet-action { flex-basis: 44px; width: 44px; height: 44px; min-height: 44px; }
+}
 @media (max-width: 760px) {
   .knowledge-profile { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   #reader-panel .knowledge-profile { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
@@ -27,6 +33,6 @@
   .dictionary-skill-states .knowledge-profile { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; min-width: 0; }
   .dictionary-skill-states .knowledge-profile > div { padding: 8px 5px; }
   .dictionary-skill-states .knowledge-profile dd { font-size: 10px; }
-  .dictionary-table .dictionary-source { align-self: center; }
-  .dictionary-table td:last-child { text-align: right; }
+  .dictionary-table .dictionary-source { grid-column: 1 / -1; }
+  .dictionary-table td:last-child { grid-column: 1 / -1; }
 }
