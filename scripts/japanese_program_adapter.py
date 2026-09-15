@@ -6,11 +6,13 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import re
+import unicodedata
 
 from curriculum_yaml import dump_entries, load_yaml
 from generate_curriculum_tokens import label, records, text
 from generate_practical_program import (
-    dependency_closure, fields, id_list, load_inputs, placement_rows, validate_dependencies, validate_model,
+    dependency_closure, fields, id_list, load_inputs, normalized_surface, placement_rows,
+    validate_dependencies, validate_model,
 )
 from generate_teaching_track import resolve_sequence, teaching_outputs
 from import_japanese_curriculum import DICTIONARY_VERSION, KANA, MAPPING_HASHES, applies, digest
@@ -198,6 +200,21 @@ CANONICAL_CONSTRUCTION_POS = {
     "ja-n5-g021": {"adj-na"},
     "ja-n5-g042": {"num", "ctr"},
 }
+# Whole-word examples documented in grammar-notes.md and the tourist route.
+# These are not a rule for concatenating arbitrary numeral/counter readings.
+COUNTED_READINGS = {
+    (number, counter): (written, reading)
+    for counter in ("ja-n5-00572-s005", "ja-n5-00572-s007")
+    for number, written, reading in (
+        ("ja-n5-00056-s001", "\u4e00\u672c", "\u3044\u3063\u307d\u3093"),
+        ("ja-n5-00269-s001", "\u4e09\u672c", "\u3055\u3093\u307c\u3093"),
+        ("ja-n5-00673-s001", "\u516d\u672c", "\u308d\u3063\u307d\u3093"),
+    )
+}
+COUNTED_READINGS[("ja-n5-00331-s001", "ja-n3-00170-s001")] = (
+    "\u5343\u5186", "\u305b\u3093\u3048\u3093",
+)
+COUNTED_NOUN_SURFACES = {"\u5186"}
 
 
 def source_pos(identifier: str, references: ReferenceBundle) -> set[str]:
@@ -206,6 +223,55 @@ def source_pos(identifier: str, references: ReferenceBundle) -> set[str]:
     if not isinstance(values, list) or not values or any(not isinstance(value, str) for value in values):
         raise ValueError(f"{identifier}: a form needs retained raw JMdict part-of-speech evidence")
     return set(values)
+
+
+def validate_counted_reading(identifier: str, items: tuple[str, ...], written: str,
+                             reading: str, references: ReferenceBundle) -> None:
+    expected = COUNTED_READINGS.get(items)
+    if (expected != (written, reading)
+            or written != "".join(references.vocabulary[item]["ch"] for item in items)
+            or "num" not in source_pos(items[0], references)):
+        raise ValueError(f"{identifier}: quantity needs a licensed whole-word counter/number reading")
+
+
+def validate_quantity_boundaries(identifier: str, written: str, segments: list[SurfaceSegment],
+                                 references: ReferenceBundle) -> None:
+    surface = unicodedata.normalize("NFC", written)
+    forms = [normalized_surface(segment.ch) for segment in segments]
+    if normalized_surface(surface) != "".join(forms):
+        raise ValueError(f"{identifier}: uncovered or mismatched Japanese written phrase")
+    positions = [index for index, character in enumerate(surface) if normalized_surface(character)]
+    offset, previous_end = 0, 0
+    pending = []
+
+    def check():
+        if len(pending) > 1:
+            validate_counted_reading(
+                identifier, tuple(item for segment in pending for item in segment.items),
+                "".join(segment.ch for segment in pending), "".join(segment.pr for segment in pending),
+                references,
+            )
+
+    for segment, form in zip(segments, forms):
+        if form:
+            start = positions[offset]
+            # Explicit list/sentence punctuation separates quantities; spacing alone does not.
+            if any(not character.isspace() for character in surface[previous_end:start]):
+                check()
+                pending = []
+            offset += len(form)
+            previous_end = positions[offset - 1] + 1
+        parts = [source_pos(item, references) for item in segment.items]
+        if segment.items and (pending or any("num" in part for part in parts)) and all(
+            part & {"num", "ctr"}
+            or references.vocabulary[item]["ch"] in COUNTED_NOUN_SURFACES
+            for item, part in zip(segment.items, parts)
+        ):
+            pending.append(segment)
+        else:
+            check()
+            pending = []
+    check()
 
 
 def word_inflections(entry: dict, pos: set[str]) -> list[tuple[str, str, set[str], set[str]]]:
@@ -276,6 +342,11 @@ def word_inflections(entry: dict, pos: set[str]) -> list[tuple[str, str, set[str
 
 def validate_atomic_form(identifier: str, form: dict, references: ReferenceBundle) -> None:
     grammar = set(form["grammar"])
+    if len(form["items"]) > 1 and grammar == {"ja-n5-g042"}:
+        validate_counted_reading(
+            identifier, tuple(form["items"]), form["ch"], form["pr"], references,
+        )
+        return
     if not form["items"]:
         if len(grammar) != 1 or (form["ch"], form["pr"]) not in FIXED_CONSTRUCTION_FORMS.get(
                 next(iter(grammar)), set()):
@@ -423,6 +494,7 @@ class JapaneseAdapter:
                 segment["ch"], segment["pr"], tuple(segment["items"]),
                 tuple(segment["grammar"]), form_id,
             ))
+        validate_quantity_boundaries(phrase["id"], phrase["ch"], segments, context.references)
         return PhraseAnalysis(tuple(phrase["items"]), tuple(phrase["grammar"]), tuple(segments))
 
 

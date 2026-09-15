@@ -100,6 +100,16 @@ The selected book, long-thin-object counter, and phone-call/email counter senses
 of **本** remain distinct. Currency **円** is introduced before its geometrical
 circle sense, without treating those as two lemmas.
 
+Standalone readings cannot license a compound by concatenation. The adapter
+checks adjacent numeral/counter components as a whole, including numeral
+combinations such as **三百** or **六百**. Unsupported combinations are rejected,
+not assigned a guessed reading. The documented **一本／三本／六本** readings
+can be represented by an explicitly licensed whole-word form linking the
+number and the intended counter sense under `ja-n5-g042`. **千円／せんえん**
+is an explicitly checked route example; dictionary-backed whole words such
+as **二つ／ふたつ** remain canonical. These examples are a bounded inventory,
+not a general Japanese number-pronunciation algorithm.
+
 ## Connected speech and viewpoint
 
 The next phases contrast:

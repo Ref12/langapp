@@ -8,6 +8,7 @@ import tempfile
 import unittest
 
 from curriculum_yaml import load_yaml, write_yaml
+from generate_practical_program import analyze_phrase
 from japanese_program_adapter import (
     JapaneseAdapter, LEVELS, PROFILE, ROOT, entry_number, original_paths, selected_sense,
     source_manifest, validate_form_annotations, verify_sources, word_inflections,
@@ -280,6 +281,101 @@ class JapaneseRealizationTests(unittest.TestCase):
             self.phrase["pr"] = reading
             with self.assertRaisesRegex(ValueError, "documented kana"):
                 self.adapter.validate_phrase(self.phrase, self.context)
+
+
+class JapaneseQuantityReadingTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        adapter = JapaneseAdapter()
+        cls.references = adapter.load(ROOT).references
+
+    def setUp(self):
+        self.adapter = JapaneseAdapter()
+        self.context = PhraseContext(
+            PROFILE, self.references, frozenset(self.references.vocabulary),
+            frozenset(self.references.grammar),
+        )
+
+    def canonical_phrase(self, *items, grammar=True):
+        words = self.references.vocabulary
+        return {
+            "id": "ja-quantity-regression", "ch": "".join(words[item]["ch"] for item in items),
+            "pr": "".join(words[item]["pr"] for item in items), "ds": "Quantity reading.",
+            "items": list(items), "grammar": ["ja-n5-g042"] if grammar else [],
+            "realizations": [{
+                "ch": words[item]["ch"], "pr": words[item]["pr"], "items": [item],
+                "grammar": ["ja-n5-g042"] if grammar and set(
+                    self.references.provenance[item]["source_sense"]["partOfSpeech"],
+                ) & {"num", "ctr"} else [],
+            } for item in items],
+        }
+
+    def test_real_counter_and_number_readings_cannot_be_naively_concatenated(self):
+        for items in (
+            ("ja-n5-00056-s001", "ja-n5-00572-s005"),
+            ("ja-n5-00269-s001", "ja-n5-00572-s005"),
+            ("ja-n5-00673-s001", "ja-n5-00572-s005"),
+            ("ja-n5-00056-s001", "ja-n5-00572-s007"),
+            ("ja-n5-00056-s001", "ja-n3-00236-s001"),
+            ("ja-n5-00056-s001", "ja-n3-00510-s001"),
+            ("ja-n5-00269-s001", "ja-n5-00532-s001"),
+            ("ja-n5-00673-s001", "ja-n5-00532-s001"),
+            ("ja-n5-00269-s001", "ja-n5-00331-s001"),
+        ):
+            with self.subTest(items=items):
+                phrase = self.canonical_phrase(*items)
+                with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+                    analyze_phrase(phrase, self.context, self.adapter)
+
+    def test_omitting_counter_links_or_spacing_the_surface_does_not_bypass_reading_evidence(self):
+        for grammar, spaced in ((False, False), (True, True)):
+            phrase = self.canonical_phrase("ja-n5-00056-s001", "ja-n5-00572-s005", grammar=grammar)
+            if spaced:
+                phrase["ch"] = "\u4e00 \u672c"
+            with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+                analyze_phrase(phrase, self.context, self.adapter)
+
+    def test_documented_whole_word_counter_form_licenses_ippon_not_ichihon(self):
+        phrase = self.canonical_phrase("ja-n5-00056-s001", "ja-n5-00572-s005")
+        form = {
+            "ch": "\u4e00\u672c", "pr": "\u3044\u3063\u307d\u3093",
+            "items": phrase["items"], "grammar": ["ja-n5-g042"],
+            "source_id": "original-ja-practical",
+            "note": "Whole counted-word reading documented in grammar-notes.md.",
+        }
+        self.adapter.forms = {"ja-form-counter-ippon": form}
+        phrase["pr"] = form["pr"]
+        phrase["realizations"] = [{
+            **{key: form[key] for key in ("ch", "pr", "items", "grammar")},
+            "form_id": "ja-form-counter-ippon",
+        }]
+        validate_form_annotations(self.adapter.forms, self.references, {"original-ja-practical"})
+        result = analyze_phrase(phrase, self.context, self.adapter)
+        self.assertEqual(result.realizations[0].pr, "\u3044\u3063\u307d\u3093")
+        form["pr"] = phrase["pr"] = phrase["realizations"][0]["pr"] = "\u3044\u3061\u307b\u3093"
+        with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+            validate_form_annotations(self.adapter.forms, self.references, {"original-ja-practical"})
+        with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+            analyze_phrase(phrase, self.context, self.adapter)
+
+    def test_supported_currency_and_dictionary_whole_words_remain_canonical(self):
+        for items in (
+            ("ja-n5-00331-s001", "ja-n3-00170-s001"),
+            ("ja-n5-00544-s001", "ja-n2-00202-s001"),
+        ):
+            phrase = self.canonical_phrase(*items)
+            self.assertEqual(analyze_phrase(phrase, self.context, self.adapter).items, items)
+
+    def test_punctuated_number_lists_are_not_treated_as_one_compound(self):
+        items = ("ja-n5-00056-s001", "ja-n5-00269-s001")
+        phrase = self.canonical_phrase(*items, grammar=False)
+        phrase["ch"] = "\u4e00\u3001\u4e09"
+        self.assertEqual(analyze_phrase(phrase, self.context, self.adapter).items, items)
+
+    def test_unsupported_longer_numeric_runs_are_not_checked_only_pairwise(self):
+        phrase = self.canonical_phrase("ja-n5-00056-s001", "ja-n5-00331-s001", "ja-n3-00170-s001")
+        with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+            analyze_phrase(phrase, self.context, self.adapter)
 
 
 if __name__ == "__main__":
