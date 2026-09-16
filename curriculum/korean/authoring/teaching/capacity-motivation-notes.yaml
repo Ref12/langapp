@@ -1,0 +1,234 @@
+schema_version: 1
+id: ko-capacity-motivation
+review_status: original-ai-authored-unreviewed
+status: bounded source-inspected integration complete; overall curriculum remains incomplete
+scope: >
+  Bounded exact-form capacity, character, motivation and energy nouns,
+  meaningful homographs, and one directly necessary practical concentration
+  verb. This is not a psychological assessment, source-order list, innate
+  trait theory, synonym quota or all-hada sweep. Existing meanings are
+  checked before adding useful actual source positions.
+source:
+  baseline: bcc371e
+  mirror_revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  mirror_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  official_archive_sha256: 7cf41e62a2a36158a8be2b6d2f84c086221e9b29d4345c44e5497eebf21c8c40
+  original_records: 53172
+  official_entries: 56555
+  support_parent_ids: [ko-nikl-00706, ko-nikl-01088, ko-nikl-04970, ko-nikl-06870, ko-nikl-11311, ko-nikl-13375, ko-nikl-14457, ko-nikl-15590, ko-nikl-21788, ko-nikl-23366, ko-nikl-23367, ko-nikl-28622, ko-nikl-33011, ko-nikl-33082, ko-nikl-33083, ko-nikl-43378, ko-nikl-43440, ko-nikl-44535, ko-nikl-45551, ko-nikl-47064, ko-nikl-49686]
+  support_complete_original_positions: 25
+  selected_support_positions: 23
+  method: >
+    Compare the complete aligned Korean/English arrays from the pinned CSV
+    for each selected parent and its bounded relevant counterparts. Preserve
+    original POS, source bands, list positions and all whitespace. Complete
+    raw arrays are authoritative in source-senses.yaml, not reconstructed
+    from compact labels. No usage-array alignment, media copying, source-band
+    teaching placement or current official sense renumbering is used.
+selection:
+  selected_senses: 57
+  noun_senses: 56
+  verb_senses: 1
+  selected_source_parents: 48
+  identity_fragments: 46
+  new_provisional_free_families: 38
+  existing_family_extensions: 8
+  new_bound_or_function_families: 0
+  early_practical: >
+    Manual skill supports household tasks at5; physical energy and mild
+    illness-sign language support care reporting at6. A held future hope
+    and actually devoting energy to a task support work/study at8. These
+    meanings are not moved late merely to alter the growth curve.
+  accounts_and_tasks: >
+    Literal bodily reliance enters narration at9. Hopes, expectation,
+    liveliness, ability and active energy support experience accounts at10.
+    Endurance, attention capacity, visual learning and sticky quality
+    support task execution at11. Accelerated learning/completion at12 is
+    not proof that a fast course works. Stimulation and vitality at13,
+    resourceful methods, preparation, strength and effects at14, and work
+    skill, spare capacity and vigor at15 retain their actual conditions.
+  explanation_and_evidence: >
+    An equipped troop/expedition base at16 is a real homograph, not the
+    quick-wisdom meaning or an operational instruction. A measuring
+    instrument at17 differs from protected cause/opportunity 계기.
+    Decision capacity, resourcefulness and purposeful drive at18 support
+    problem-solving; insight, felt atmosphere and an impending-event
+    impression at19 distinguish evidence from inference.
+  analysis_and_nuance: >
+    Physiological stimulus, propulsion and source-limited recessiveness
+    enter general-reader science at21. Ambition and contextual discernment
+    at22, latent power and intense/single-minded wants at23, and earnest
+    hoping at24 support stance. Character framing and influential presence
+    at25 do not establish innate group traits. Bodily constitution and
+    source-framed inborn dispositions at28 require critical interpretation.
+  sensitive_register: >
+    Actual 정력001 physical/mental vigor and002 male sexual capacity are
+    distinguished, not collapsed into an innocuous first sense. The latter
+    enters register interpretation at26, using audience-appropriate,
+    fictional or third-person examples under qualified teaching review.
+    Do not request personal sexual information, assess performance, imply
+    that every vigor use is sexual, or attach worth to sexual capability.
+  necessary_concentration_verb: >
+    Bounded family comparison found that neither 집중 nor its practical
+    predicate was selected. Add actual 집중하다43440-s002 at8 alongside
+    the named attention-capacity noun43436 at11, sharing one new 집중
+    family. This is one attested missing productive verb, not a generated
+    hada form. Full source parent43440 has two positions; the physical
+    gathering position001, nominal placements and passive counterpart
+    remain unselected. Actual official37047 lists sense IDs2 then1 for
+    those ordered definitions; the mirror energy-devotion position remains
+    project s002, not a retroactively invented official sense mapping.
+identity_adjudication:
+  existing_families:
+    ko-lex-06869: Actual 분별력 adds the faculty element to protected 분별.
+    ko-lex-10398: Physical leaning/support adds depth to mental reliance, not the separate will homograph.
+    ko-lex-12381: Bodily/health constitution adds the actual third position to temperament and task ability.
+    ko-lex-21787: 통찰력 is the actual capacity derived from protected 통찰.
+    ko-lex-28127: 결단력 extends the existing family already represented by 결단하다28131.
+    ko-lex-32752: 기대감 adds an actual feeling form to protected hoping/waiting 기대.
+    ko-lex-34004: Literal sticky/viscous quality deepens the protected persistence noun.
+    ko-lex-45549: Physical force and work-driving capacity in 추진력 extend the actual 추진 base; its physical noun position is evidence, not an extra selection.
+  giun:
+    family: ko-lex-33010
+    parents: [ko-nikl-33010, ko-nikl-33011]
+    decision: >
+      Conservatively count related same-written energy/atmosphere and
+      prospective-event atmosphere frames as one provisional family.
+      Keep all five original positions across the two parents distinct.
+      This explicit related-atmosphere analysis is not an official entry
+      merger or proof that their historical etymologies are identical.
+      In particular, an absent origin field for38086 does not establish
+      another origin or automatically justify a second free-family credit.
+  actual_archive_origin_evidence:
+    ko-nikl-23366: {official_entry_id: '88420', origin: 品性, homonym_number: '1'}
+    ko-nikl-23367: {official_entry_id: '88421', origin: 稟性, homonym_number: '2'}
+    ko-nikl-33010: {official_entry_id: '38086', origin_feature: absent, homonym_number: '1'}
+    ko-nikl-33011: {official_entry_id: '23773', origin: 氣運, homonym_number: '2'}
+    ko-nikl-33082: {official_entry_id: '38018', origin: 基地, homonym_number: '1'}
+    ko-nikl-33083: {official_entry_id: '23825', origin: 機智, homonym_number: '2'}
+  origin_limit: >
+    These values were read from the actual matched archive entry features,
+    not guessed from English, inserted into the original mirror, or
+    extracted by the citation-only helper. Keep the character and
+    inborn-character 品性/稟性 and base/wisdom 基地/機智 pairs provisionally
+    separate despite equal readings. Absence of an origin feature is
+    recorded as absence, not proof of a native or different etymology.
+  lexical_names: >
+    Distinctly named hope, energy, character and skill words are not
+    merged merely from overlapping definitions. Conversely, actual
+    faculty/feeling derivatives and added meanings do not increase free
+    breadth. All operational family judgments remain unreviewed.
+semantic_boundaries:
+  - Source descriptions of inborn character are lexical framing, not evidence that character is immutable or genetically determined.
+  - 기질33091 does not itself require innateness; its individual/group scope does not permit assigning immutable traits to actual groups.
+  - Character, right/wrong judgment, skill, ambition and vigor labels are not rankings of human worth or evaluations of real people.
+  - 정력's two positions, 기운's illness/effect positions and vitality words do not establish health, diagnosis, drug efficacy or sexual capability.
+  - Recessive does not mean inferior, rare, undesirable or less worthy, and the simplified source definition does not predict a particular genetic cross.
+  - 자극 includes causing a response or its stimulus; it is not an instruction to manipulate or induce a physiological reaction.
+  - 기운33011 suggests an impending development in context, not a guaranteed prediction or a substitute for evidence.
+  - 여력 requires enough capacity left for another task after doing one; mere energy, latent power or motivation does not establish that condition.
+  - 기지33082 requires equipped facilities for troops or expeditions to stay and work; it is not any abstract starting point or a named actual installation.
+reading_policy:
+  official_text_selected_senses: 57
+  new_authored_decisions: 0
+  new_crosswalks: 4
+  complete_entry_matches: 48
+  actual_alternatives: >
+    Preserve actual 계ː기/게ː기, 정녁, 가고, 결딴녁, 짐념, 집쭝녁,
+    집쭝하다, 추진녁, 여ː뭔 and 욕꾸. Retain dictionary vowel length
+    and distinguish actual citation text from modern speaker realization
+    or audio assessment. No external search or model reading is required.
+  crosswalks:
+    ko-nikl-43436:
+      official_entry_id: '82369'
+      original: 관심이나 생각을 한 가지 일에 쏟아붓는 힘.
+      current: 마음이나 생각을 집중할 수 있는 힘.
+      reason: Rephrases the same attention/thought concentration faculty; it does not supply a new task-energy source sense.
+    ko-nikl-44934:
+      official_entry_id: '25359'
+      original: 몸의 힘이나 기운.
+      current: 육체적 활동을 할 수 있는 몸의 힘이나 기운.
+      reason: Adds the physical-activity purpose to the same bodily power/energy definition.
+    ko-nikl-47685:
+      official_entry_id: '92528'
+      original: 서로 다른 품종을 교배했을 때 우선적으로 나타나지 않는 유전적 성질.
+      current: 서로 다른 품종을 교배했을 때 다음 세대에 잘 나타나지 않는 유전적 성질.
+      reason: Rephrases the corresponding hereditary recessiveness entry with next-generation appearance wording; reject enthusiasm67472 and do not replace the original source or assert genetic predictions.
+    ko-nikl-49085:
+      official_entry_id: '68928'
+      original: 무엇을 얻거나 무슨 일을 하기를 바라는 것.
+      current: 무엇을 얻거나 무슨 일을 하기를 바라는 마음.
+      reason: The same wanting-to-obtain-or-do content changes only the final nominalizer 것 to 마음; no desired-object or new intensity meaning is imported.
+source_correction_requests:
+  ko-nikl-15590-s001:
+    source_korean: 한두 번 보고도 잘 기억하거나 그대로 따라 하는 재주.
+    source_english: Remembering or imitating something very well, just by looking at it or a demonstration just once.
+    authored_interpretation: skill at remembering or copying after one or two looks
+    rationale: Restore 한두 번 (one or two looks), not English just once. This names a faculty, not verified performance by any learner.
+  ko-nikl-28128-s001:
+    source_korean: 중요한 일을 판단하여 최종적으로 결정하는 능력.
+    source_english: The ability to judge what is important and making a final decision.
+    authored_interpretation: ability to judge important matters and reach a final decision
+    rationale: 중요한 일을 is the important matter being judged, not the question of which things are important. The protected predicate already keeps this distinction.
+  ko-nikl-32786-s001:
+    source_korean: 활동을 할 수 있는 정신적, 육체적 힘.
+    source_english: Mental and physical strength to move.
+    authored_interpretation: mental and physical strength for activity
+    rationale: Clarify 활동 as activity, not exclusively bodily motion; retain both mental and physical scope without assessing health.
+  ko-nikl-47685-s001:
+    source_korean: 서로 다른 품종을 교배했을 때 우선적으로 나타나지 않는 유전적 성질.
+    source_english: The genetic disposition that develops non-preferentially when crossbreeding with another species.
+    authored_interpretation: recessive inherited traits in a cross of different varieties
+    rationale: 품종 means varieties or breeds, not necessarily distinct species. Preserve source-framed recessiveness without a superiority judgment or a predicted outcome for any particular cross.
+  ko-nikl-51905-s001:
+    source_korean: 살아 움직이는 힘.
+    source_english: 'A feeling of being alive or a force that keeps one alive. '
+    authored_interpretation: vitality; the energy of being alive and active
+    rationale: The Korean names active living power, not a separate subjective-feeling alternative or a clinically life-sustaining agent.
+bounded_deferrals:
+  ko-nikl-18343-s001: The siblings 동기 homograph is outside this capacity/motivation follow-up; protected motive and same-period 동기 remain distinct and unchanged.
+  ko-nikl-49686-s002: >
+    Preserve the unselected all-things inherent-energy position as source
+    evidence; English narrows 만물 to creatures, but no new cosmological
+    core meaning, healing claim or scientific energy theory is manufactured.
+  related_unselected: >
+    Nominal 결단28127, concentration43434 positions, passive43435,
+    physical-gathering43440-s001 and physical 추진45549-s001 were
+    bounded family evidence only. No complete paradigm is imported.
+  worker_exclusions: 결의 belongs to civic-decisions; 감수성, 감흥 and 몰입 belong to text-interpretation. No unfinished worker shard is inspected or edited.
+  limits: These bounded exact-form comparisons are not an exhaustive inventory of missing useful Korean vocabulary.
+resulting_coverage:
+  core_dictionary_parents: 5585
+  core_senses: 8019
+  core_distinct_spellings: 5258
+  core_spelling_pos_pairs: 5369
+  core_lexical_identities: 5318
+  core_provisional_free_families: 5055
+  core_bound_forms: 40
+  core_function_items: 223
+  core_official_text_reading_senses: 7763
+  core_authored_unreviewed_reading_senses: 256
+  selected_pool_senses: 8145
+  selected_pool_provisional_free_families: 5111
+  retained_support_parents: 989
+  selected_support_parents: 985
+  reading_crosswalks: 412
+  authored_reading_decisions: 210
+  exact_source_interpretations: 198
+  core_modules: 778
+  lower_guide_free_family_gap: 745
+validation:
+  combined_course_tourist_source_tests: 166
+  prior_objects: Every earlier raw source parent, official overlay entry and crosswalk equals its baseline object; authored-reading decisions are unchanged.
+  source_fidelity: >
+    Exact checksum and bilingual-pair preflight caught an omitted trailing
+    English space in the draft 활력 interpretation evidence. Restored it in
+    both notes and the correction ledger before derivation; original source
+    strings were not normalized or altered to make validation pass.
+  admission: Twenty-one complete unbanded parents retain twenty-five original positions; twenty-three are selected.
+  boundary: These checks establish structural and source fidelity, not qualified linguistic, medical, genetic, psychological or audio review.
+overall_limit: >
+  The core planning breadth and substantive early/later-load reassessment
+  remain incomplete. Source/structural checks are not qualified linguistic,
+  psychological, medical, genetic, pedagogical or audio review, and no
+  inventory, source band or module completion confers learner mastery.

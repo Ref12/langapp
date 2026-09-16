@@ -5,6 +5,31 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-15590-s001:
+    source_korean: 한두 번 보고도 잘 기억하거나 그대로 따라 하는 재주.
+    source_english: Remembering or imitating something very well, just by looking at it or a demonstration just once.
+    authored_interpretation: skill at remembering or copying after one or two looks
+    rationale: Restore 한두 번 (one or two looks), not English just once. This names a faculty, not verified performance by any learner.
+  ko-nikl-28128-s001:
+    source_korean: 중요한 일을 판단하여 최종적으로 결정하는 능력.
+    source_english: The ability to judge what is important and making a final decision.
+    authored_interpretation: ability to judge important matters and reach a final decision
+    rationale: 중요한 일을 is the important matter being judged, not the question of which things are important. The protected predicate already keeps this distinction.
+  ko-nikl-32786-s001:
+    source_korean: 활동을 할 수 있는 정신적, 육체적 힘.
+    source_english: Mental and physical strength to move.
+    authored_interpretation: mental and physical strength for activity
+    rationale: Clarify 활동 as activity, not exclusively bodily motion; retain both mental and physical scope without assessing health.
+  ko-nikl-47685-s001:
+    source_korean: 서로 다른 품종을 교배했을 때 우선적으로 나타나지 않는 유전적 성질.
+    source_english: The genetic disposition that develops non-preferentially when crossbreeding with another species.
+    authored_interpretation: recessive inherited traits in a cross of different varieties
+    rationale: 품종 means varieties or breeds, not necessarily distinct species. Preserve source-framed recessiveness without a superiority judgment or a predicted outcome for any particular cross.
+  ko-nikl-51905-s001:
+    source_korean: 살아 움직이는 힘.
+    source_english: 'A feeling of being alive or a force that keeps one alive. '
+    authored_interpretation: vitality; the energy of being alive and active
+    rationale: The Korean names active living power, not a separate subjective-feeling alternative or a clinically life-sustaining agent.
   ko-nikl-29822-s002:
     source_korean: 다른 종류의 생물이 서로 도우며 함께 살아감.
     source_english: 'The state of living beings living together and in so doing acting in ways that help each other. '

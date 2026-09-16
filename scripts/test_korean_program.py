@@ -791,6 +791,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "environmental-resources-notes.yaml",
             "movement-actions-notes.yaml",
             "values-relations-notes.yaml",
+            "capacity-motivation-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -3228,6 +3229,116 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertNotIn("ko-nikl-47338-s001", selected)
         self.assertFalse(any(item.startswith("ko-nikl-09303-") for item in selected))
         self.assertFalse(any(item.startswith("ko-nikl-47337-") for item in selected))
+
+    def test_capacity_actual_faculty_derivatives_keep_protected_family_keys(self):
+        identities = self.references.lexical_identity
+        for parent, family in (
+            ("06870", "06869"), ("21788", "21787"), ("28128", "28127"),
+            ("32753", "32752"), ("45551", "45549"),
+        ):
+            self.assertEqual(identities[f"ko-nikl-{parent}-s001"], f"ko-lex-{family}")
+        for parent, first, second in (("10398", 1, 2), ("12381", 2, 3), ("34004", 1, 2)):
+            self.assertEqual(identities[f"ko-nikl-{parent}-s{first:03d}"],
+                             identities[f"ko-nikl-{parent}-s{second:03d}"])
+        self.assertEqual(identities["ko-nikl-43436-s001"], "ko-lex-43434")
+        self.assertEqual(identities["ko-nikl-43440-s002"], "ko-lex-43434")
+        self.assertNotIn("ko-nikl-43440-s001", self.references.vocabulary)
+        self.assertNotIn("ko-nikl-43434-s001", self.references.vocabulary)
+        self.assertNotIn("ko-nikl-43434-s002", self.references.vocabulary)
+
+    def test_capacity_homographs_use_actual_scope_and_origin_not_reading_alone(self):
+        identities, words = self.references.lexical_identity, self.references.vocabulary
+        for first, second in (
+            ("01088", "01089"), ("10398", "10399"), ("23366", "23367"),
+            ("28622", "28621"), ("33082", "33083"), ("47685", "47686"),
+        ):
+            self.assertNotEqual(identities[f"ko-nikl-{first}-s001"], identities[f"ko-nikl-{second}-s001"])
+        self.assertEqual(words["ko-nikl-23366-s001"]["pr"], words["ko-nikl-23367-s001"]["pr"])
+        notes = load_yaml(self.root / "authoring" / "teaching" / "capacity-motivation-notes.yaml")
+        origins = notes["identity_adjudication"]["actual_archive_origin_evidence"]
+        for parent, origin in (("23366", "品性"), ("23367", "稟性"), ("33082", "基地"), ("33083", "機智")):
+            self.assertEqual(origins[f"ko-nikl-{parent}"]["origin"], origin)
+        self.assertEqual(origins["ko-nikl-33010"]["origin_feature"], "absent")
+        self.assertEqual(origins["ko-nikl-33011"]["origin"], "氣運")
+
+    def test_capacity_related_atmospheres_and_vigor_senses_are_not_extra_roots(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for position in (1, 2, 3, 4):
+            self.assertEqual(identities[f"ko-nikl-33010-s{position:03d}"], "ko-lex-33010")
+        self.assertEqual(identities["ko-nikl-33011-s001"], "ko-lex-33010")
+        self.assertIn("unseen but felt", words["ko-nikl-33010-s002"]["ds"])
+        self.assertIn("mild signs", words["ko-nikl-33010-s003"]["ds"])
+        self.assertIn("medicine or drinking alcohol", words["ko-nikl-33010-s004"]["ds"])
+        self.assertIn("impending event", words["ko-nikl-33011-s001"]["ds"])
+        self.assertEqual(identities["ko-nikl-14457-s001"], identities["ko-nikl-14457-s002"])
+        self.assertEqual(words["ko-nikl-14457-s001"]["ds"], "physical and mental vigor")
+        self.assertEqual(words["ko-nikl-14457-s002"]["ds"], "a man's sexual capacity")
+        self.assertEqual(identities["ko-nikl-45551-s001"], identities["ko-nikl-45551-s002"])
+        self.assertIn("pushes an object forward", words["ko-nikl-45551-s001"]["ds"])
+        self.assertIn("toward a purpose", words["ko-nikl-45551-s002"]["ds"])
+
+    def test_capacity_source_conditions_do_not_become_innate_or_health_judgments(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("individual or group", words["ko-nikl-33091-s001"]["ds"])
+        self.assertNotIn("inborn", words["ko-nikl-33091-s001"]["ds"])
+        self.assertNotIn("타고난", sources["ko-nikl-33091-s001"]["source_korean"])
+        for parent in ("03635", "11311", "23367", "44535"):
+            self.assertIn("inborn", words[f"ko-nikl-{parent}-s001"]["ds"])
+        self.assertIn("physical or health characteristics", words["ko-nikl-12381-s003"]["ds"])
+        self.assertIn("left after one task", words["ko-nikl-47064-s001"]["ds"])
+        self.assertIn("sufficient to do another", words["ko-nikl-47064-s001"]["ds"])
+        self.assertIn("or its stimulus", words["ko-nikl-12021-s001"]["ds"])
+        self.assertIn("organ to react", words["ko-nikl-12021-s002"]["ds"])
+        self.assertIn("in difficult times", words["ko-nikl-13375-s001"]["ds"])
+        self.assertIn("troops or an expedition", words["ko-nikl-33082-s001"]["ds"])
+
+    def test_capacity_source_interpretations_preserve_count_scope_and_heredity_terms(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        for parent, original, corrected in (
+            ("15590", "just once", "one or two looks"),
+            ("28128", "what is important", "important matters"),
+            ("32786", "to move", "for activity"),
+            ("47685", "another species", "different varieties"),
+            ("51905", "keeps one alive", "being alive and active"),
+        ):
+            item = f"ko-nikl-{parent}-s001"
+            self.assertIn(original, sources[item]["source_english"])
+            self.assertIn(corrected, words[item]["ds"])
+            self.assertEqual(sources[item]["source_correction"]["review_status"], "unreviewed")
+        self.assertIn("한두 번", sources["ko-nikl-15590-s001"]["source_korean"])
+        self.assertIn("품종", sources["ko-nikl-47685-s001"]["source_korean"])
+        self.assertIn("important matter", words["ko-nikl-28131-s001"]["ds"])
+
+    def test_capacity_complete_admission_actual_citations_and_concentration_position(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "capacity-motivation-notes.yaml")
+        rows = load_yaml(authoring / "capacity-motivation-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["source"]["support_parent_ids"]
+        self.assertEqual(len(rows), 57)
+        self.assertEqual(len({row["id"].rsplit("-s", 1)[0] for row in rows}), 48)
+        self.assertEqual(len(requests), 21)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 25)
+        self.assertEqual(Counter(parents[row["id"].rsplit("-s", 1)[0]]["source_part_of_speech"]
+                                 for row in rows), {"명사": 56, "동사": 1})
+        for item in requests:
+            self.assertEqual(parents[item]["source_band"], "unbanded")
+            self.assertIsNone(parents[item]["reference_level"])
+            self.assertEqual([x["source_position"] for x in parents[item]["senses"]],
+                             list(range(1, len(parents[item]["senses"]) + 1)))
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+        for parent, reading in (
+            ("14457", "정녁"), ("26131", "가고"), ("28128", "결딴녁"),
+            ("28622", "계ː기 / 게ː기"), ("43378", "짐념"), ("43436", "집쭝녁"),
+            ("45551", "추진녁"), ("47753", "여ː뭔"), ("49085", "욕꾸"),
+        ):
+            self.assertEqual(self.references.vocabulary[f"ko-nikl-{parent}-s001"]["pr"], reading)
+        focus = self.references.provenance["ko-nikl-43440-s002"]
+        self.assertEqual(focus["source_position"], 2)
+        self.assertEqual(focus["reading"]["official_entry_id"], "37047")
+        self.assertEqual(self.references.vocabulary["ko-nikl-43440-s002"]["pr"], "집쭝하다")
+        self.assertNotIn("ko-nikl-49686-s002", self.references.vocabulary)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

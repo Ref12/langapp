@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 968
+  unbanded-support: 989
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -2659,6 +2659,18 @@ entries:
     source_position: 1
     english: To shout loudly.
     korean: 소리를 크게 지르다.
+- id: ko-nikl-00706
+  target: 소망
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=706
+  senses:
+  - id: ko-nikl-00706-s001
+    source_position: 1
+    english: Hope for something, or the thing that one hopes for.
+    korean: 어떤 일을 바람. 또는 바라는 그 일.
 - id: ko-nikl-00709
   target: 소매
   part_of_speech: noun
@@ -3766,6 +3778,18 @@ entries:
     source_position: 1
     english: An explanation or opinion passed down through generations.
     korean: 사람들 사이에서 전해 내려오는 설명이나 의견.
+- id: ko-nikl-01088
+  target: 속성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1088
+  senses:
+  - id: ko-nikl-01088-s001
+    source_position: 1
+    english: The quality or state of being quickly done, or quickly learned.
+    korean: 빨리 이루어짐. 또는 빨리 깨달아 앎.
 - id: ko-nikl-01089
   target: 속성
   part_of_speech: noun
@@ -18321,6 +18345,18 @@ entries:
     source_position: 1
     english: 'A political party currently not in power. '
     korean: 현재 정권을 잡고 있지 않은 정당.
+- id: ko-nikl-04970
+  target: 야망
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4970
+  senses:
+  - id: ko-nikl-04970-s001
+    source_position: 1
+    english: 'A grand desire or hope to achieve something. '
+    korean: 어떤 일을 이루겠다는 큰 희망이나 바람.
 - id: ko-nikl-04972
   target: 야무지다
   part_of_speech: descriptive verb
@@ -24491,6 +24527,18 @@ entries:
     source_position: 2
     english: The trait of thinking or judging wisely and objectively.
     korean: 바른 생각이나 판단.
+- id: ko-nikl-06870
+  target: 분별력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6870
+  senses:
+  - id: ko-nikl-06870-s001
+    source_position: 1
+    english: 'The ability to think correctly by judging what is right or wrong. '
+    korean: 옳고 그름을 판단하여 바른 생각을 하는 능력.
 - id: ko-nikl-06876
   target: 분분하다
   part_of_speech: descriptive verb
@@ -41347,6 +41395,18 @@ entries:
     source_position: 1
     english: 'A crowd of people flocking to one place. '
     korean: 한곳에 몰려든 수많은 사람.
+- id: ko-nikl-11311
+  target: 인품
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11311
+  senses:
+  - id: ko-nikl-11311-s001
+    source_position: 1
+    english: 'A person''s nature or character that he/she is born with or possesses as a human being. '
+    korean: 사람으로서 갖추고 있는 타고난 성품이나 됨됨이.
 - id: ko-nikl-11315
   target: 인하
   part_of_speech: noun
@@ -49185,6 +49245,18 @@ entries:
     source_position: 1
     english: 'Being that way in terms of state, shape, nature, etc. '
     korean: 성질, 모양, 상태 등이 저와 같다.
+- id: ko-nikl-13375
+  target: 저력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13375
+  senses:
+  - id: ko-nikl-13375-s001
+    source_position: 1
+    english: A reassuring power that is invisible on the outside but manifests itself in difficult times.
+    korean: 겉으로 보이지 않지만 어려울 때 드러나는 든든한 힘.
 - id: ko-nikl-13376
   target: 저렴하다
   part_of_speech: descriptive verb
@@ -52926,6 +52998,22 @@ entries:
     source_position: 1
     english: A certain defined quantity.
     korean: 일정하게 정해진 양.
+- id: ko-nikl-14457
+  target: 정력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14457
+  senses:
+  - id: ko-nikl-14457-s001
+    source_position: 1
+    english: Physical and mental vigor.
+    korean: 몸과 마음의 기운찬 활동력.
+  - id: ko-nikl-14457-s002
+    source_position: 2
+    english: The sexual ability of a man.
+    korean: 남자의 성적인 능력.
 - id: ko-nikl-14466
   target: 정류장
   part_of_speech: noun
@@ -56690,6 +56778,19 @@ entries:
     source_position: 1
     english: A fun fight, throwing balls of snow at each other.
     korean: 눈을 뭉쳐 서로 던져서 맞히는 놀이.
+- id: ko-nikl-15590
+  target: 눈썰미
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15590
+  senses:
+  - id: ko-nikl-15590-s001
+    source_position: 1
+    english: Remembering or imitating something very well, just by looking at it or a demonstration just
+      once.
+    korean: 한두 번 보고도 잘 기억하거나 그대로 따라 하는 재주.
 - id: ko-nikl-15591
   target: 눈썹
   part_of_speech: noun
@@ -78219,6 +78320,18 @@ entries:
     source_position: 1
     english: The state of accurately and sharply seeing through an object, phenomenon, etc.
     korean: 사물이나 현상 등을 정확하고 날카롭게 꿰뚫어 봄.
+- id: ko-nikl-21788
+  target: 통찰력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21788
+  senses:
+  - id: ko-nikl-21788-s001
+    source_position: 1
+    english: An ability to accurately and sharply see through an object, phenomenon, etc.
+    korean: 사물이나 현상 등을 정확하고 날카롭게 꿰뚫어 보는 능력.
 - id: ko-nikl-21791
   target: 통치
   part_of_speech: noun
@@ -83936,6 +84049,30 @@ entries:
     source_position: 2
     english: The name of an item.
     korean: 물품 종류의 이름.
+- id: ko-nikl-23366
+  target: 품성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23366
+  senses:
+  - id: ko-nikl-23366-s001
+    source_position: 1
+    english: One's dignity and disposition.
+    korean: 품격과 성질.
+- id: ko-nikl-23367
+  target: 품성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23367
+  senses:
+  - id: ko-nikl-23367-s001
+    source_position: 1
+    english: One's innate personality or temperament.
+    korean: 타고난 성격이나 성질.
 - id: ko-nikl-23371
   target: 품위
   part_of_speech: noun
@@ -102040,6 +102177,19 @@ entries:
     source_position: 1
     english: A cause or opportunity for something to happen or be decided.
     korean: 어떤 일이 일어나거나 결정되도록 하는 원인이나 기회.
+- id: ko-nikl-28622
+  target: 계기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28622
+  senses:
+  - id: ko-nikl-28622-s001
+    source_position: 1
+    english: The instrument or device used to measure length, area, weight, volume, temperature, time,
+      strength, etc.
+    korean: 길이, 면적, 무게, 양 등이나 온도, 시간, 강도 등을 재는 기구나 장치.
 - id: ko-nikl-28625
   target: 계단
   part_of_speech: noun
@@ -115419,6 +115569,18 @@ entries:
     source_position: 4
     english: An effect or influence that occurs after taking medicine or drinking alcohol.
     korean: 약을 먹거나 술을 마신 후에 나타나는 효과나 영향력.
+- id: ko-nikl-33011
+  target: 기운
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33011
+  senses:
+  - id: ko-nikl-33011-s001
+    source_position: 1
+    english: A movement or atmosphere that signals something is going to happen.
+    korean: 어떤 일이 일어나려고 하는 움직임이나 분위기.
 - id: ko-nikl-33012
   target: 기울다
   part_of_speech: verb
@@ -115687,6 +115849,31 @@ entries:
     source_position: 1
     english: The act of giving one's belongings, property or an organ for nothing for others.
     korean: 남을 위하여 자신의 물품이나 재산, 장기 등을 대가 없이 줌.
+- id: ko-nikl-33082
+  target: 기지
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33082
+  senses:
+  - id: ko-nikl-33082-s001
+    source_position: 1
+    english: A place equipped with facilities required for troops or an expedition team in which they
+      can stay and perform activities.
+    korean: 군대나 탐험대 등이 머물면서 활동할 수 있게 필요한 시설을 갖춘 장소.
+- id: ko-nikl-33083
+  target: 기지
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33083
+  senses:
+  - id: ko-nikl-33083-s001
+    source_position: 1
+    english: Resources or wisdom to solve a problem quickly and wisely in responding to situations.
+    korean: 상황에 맞게 빠르고 현명하게 문제를 해결하고 대처하는 꾀나 지혜.
 - id: ko-nikl-33084
   target: 기지개
   part_of_speech: noun
@@ -151109,6 +151296,18 @@ entries:
     english: An act of adding the results of several calculations together to get a total value, or such
       a calculation.
     korean: 이미 계산된 것들을 한데 모아서 계산함. 또는 그런 계산.
+- id: ko-nikl-43378
+  target: 집념
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43378
+  senses:
+  - id: ko-nikl-43378-s001
+    source_position: 1
+    english: The quality of being devoted to a specific task, or such a thought or attitude.
+    korean: 한 가지 일에만 매달려 마음을 쏟음. 또는 그 마음이나 생각.
 - id: ko-nikl-43379
   target: 집다
   part_of_speech: verb
@@ -151293,6 +151492,22 @@ entries:
     source_position: 1
     english: One's attention, efforts, etc., being given to one thing.
     korean: 관심이나 노력 등이 한곳으로 모이는.
+- id: ko-nikl-43440
+  target: 집중하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43440
+  senses:
+  - id: ko-nikl-43440-s001
+    source_position: 1
+    english: 'To gather in a place, or to gather things or people in a place. '
+    korean: 한곳을 중심으로 하여 모이다. 또는 그렇게 모으다.
+  - id: ko-nikl-43440-s002
+    source_position: 2
+    english: 'To put all one''s energy into one thing. '
+    korean: 한 가지 일에 모든 힘을 쏟아붓다.
 - id: ko-nikl-43443
   target: 집집
   part_of_speech: noun
@@ -155249,6 +155464,18 @@ entries:
     source_position: 1
     english: One's divinely foreordained spouse.
     korean: 하늘이 맺어 준 인연.
+- id: ko-nikl-44535
+  target: 천성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44535
+  senses:
+  - id: ko-nikl-44535-s001
+    source_position: 1
+    english: An inborn trait of a person.
+    korean: 타고난 성격이나 됨됨이.
 - id: ko-nikl-44544
   target: 천연
   part_of_speech: noun
@@ -157829,6 +158056,22 @@ entries:
     source_position: 2
     english: An act of proceeding with a project for a certain purpose.
     korean: 어떤 목적을 위해서 일을 밀고 나아감.
+- id: ko-nikl-45551
+  target: 추진력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45551
+  senses:
+  - id: ko-nikl-45551-s001
+    source_position: 1
+    english: The force that pushes an object forward.
+    korean: 물체를 앞으로 밀어 내보내는 힘.
+  - id: ko-nikl-45551-s002
+    source_position: 2
+    english: One's ability or power to proceed with a project for a certain purpose.
+    korean: 목적을 위하여 일을 계속 이루어 나아가는 힘.
 - id: ko-nikl-45557
   target: 추천
   part_of_speech: noun
@@ -163810,6 +164053,18 @@ entries:
     source_position: 2
     english: Many people; several people.
     korean: 여러 사람.
+- id: ko-nikl-47064
+  target: 여력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47064
+  senses:
+  - id: ko-nikl-47064-s001
+    source_position: 1
+    english: 'The power or ability left enough to do another work after finishing a certain job. '
+    korean: 어떤 일을 하고 난 뒤 또 다른 일을 할 수 있을 만큼 남아 있는 힘이나 능력.
 - id: ko-nikl-47065
   target: 여론
   part_of_speech: noun
@@ -173301,6 +173556,22 @@ entries:
     source_position: 1
     english: 'The initial amount of money borrowed or lent without additional interest. '
     korean: 빌리거나 맡긴 돈에 이자를 붙이지 않은 원래의 돈.
+- id: ko-nikl-49686
+  target: 원기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49686
+  senses:
+  - id: ko-nikl-49686-s001
+    source_position: 1
+    english: The force that makes a person act physically and mentally to achieve a certain thing.
+    korean: 어떤 일을 이루기 위하여 마음과 몸을 움직이는 힘.
+  - id: ko-nikl-49686-s002
+    source_position: 2
+    english: 'The innate spirit that all creatures are born with. '
+    korean: 만물이 원래 타고난 기운.
 - id: ko-nikl-49692
   target: 원동력
   part_of_speech: noun

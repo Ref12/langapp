@@ -38764,7 +38764,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '71412'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71412
-      pronunciations:
+      pronunciations: &id1485
       - 의지
     lexical_identity: ko-lex-10398
     lexical_category: free-lemma
@@ -39395,7 +39395,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '37871'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37871
-      pronunciations:
+      pronunciations: &id1491
       - 끈기
     lexical_identity: ko-lex-34004
     lexical_category: free-lemma
@@ -156963,6 +156963,1147 @@ items:
       - 상호
     lexical_identity: ko-lex-09304
     lexical_category: function-item
+  ko-nikl-00706-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=706
+    source_parent: ko-nikl-00706
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Hope for something, or the thing that one hopes for.
+    source_korean: 어떤 일을 바람. 또는 바라는 그 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49235'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49235
+      pronunciations:
+      - 소ː망
+    lexical_identity: ko-lex-00706
+    lexical_category: free-lemma
+  ko-nikl-01088-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1088
+    source_parent: ko-nikl-01088
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The quality or state of being quickly done, or quickly learned.
+    source_korean: 빨리 이루어짐. 또는 빨리 깨달아 앎.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64321'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64321
+      pronunciations:
+      - 속썽
+    lexical_identity: ko-lex-01088
+    lexical_category: free-lemma
+  ko-nikl-01317-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1317
+    source_parent: ko-nikl-01317
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A talent of handling or making something with hands. '
+    source_korean: 손으로 무엇을 만들거나 다루는 재주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15610'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15610
+      pronunciations: &id1484
+      - 솜씨
+    lexical_identity: ko-lex-01317
+    lexical_category: free-lemma
+  ko-nikl-01317-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1317
+    source_parent: ko-nikl-01317
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A tactic or an ability to cope with a certain work. '
+    source_korean: 일을 처리하는 수단이나 능력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15610'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15610
+      pronunciations: *id1484
+    lexical_identity: ko-lex-01317
+    lexical_category: free-lemma
+  ko-nikl-03635-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3635
+    source_parent: ko-nikl-03635
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: One's inborn nature.
+    source_korean: 타고난 마음씨.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66137'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66137
+      pronunciations:
+      - 심성
+    lexical_identity: ko-lex-03635
+    lexical_category: free-lemma
+  ko-nikl-04970-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4970
+    source_parent: ko-nikl-04970
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A grand desire or hope to achieve something. '
+    source_korean: 어떤 일을 이루겠다는 큰 희망이나 바람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '17410'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=17410
+      pronunciations:
+      - 야ː망
+    lexical_identity: ko-lex-04970
+    lexical_category: free-lemma
+  ko-nikl-06870-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6870
+    source_parent: ko-nikl-06870
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The ability to think correctly by judging what is right or wrong. '
+    source_korean: 옳고 그름을 판단하여 바른 생각을 하는 능력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60678'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60678
+      pronunciations:
+      - 분별력
+    lexical_identity: ko-lex-06869
+    lexical_category: free-lemma
+  ko-nikl-09509-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9509
+    source_parent: ko-nikl-09509
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A lively, healthy energy.
+    source_korean: 활발하고 건강한 기운.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '16584'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16584
+      pronunciations:
+      - 생기
+    lexical_identity: ko-lex-09509
+    lexical_category: free-lemma
+  ko-nikl-10398-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10398
+    source_parent: ko-nikl-10398
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The act of leaning against something; an object against which one leans.
+    source_korean: 다른 것에 몸을 기댐. 또는 그렇게 하는 대상.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71412'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71412
+      pronunciations: *id1485
+    lexical_identity: ko-lex-10398
+    lexical_category: free-lemma
+  ko-nikl-11311-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11311
+    source_parent: ko-nikl-11311
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A person''s nature or character that he/she is born with or possesses as a human
+      being. '
+    source_korean: 사람으로서 갖추고 있는 타고난 성품이나 됨됨이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72267'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72267
+      pronunciations:
+      - 인품
+    lexical_identity: ko-lex-11311
+    lexical_category: free-lemma
+  ko-nikl-12021-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12021
+    source_parent: ko-nikl-12021
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The act of causing one's sense or heart to react with a stimulus, or such an agent.
+    source_korean: 어떠한 작용을 주어 감각이나 마음에 반응을 일으키게 함. 또는 그런 사물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24765'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24765
+      pronunciations: &id1486
+      - 자ː극
+    lexical_identity: ko-lex-12021
+    lexical_category: free-lemma
+  ko-nikl-12021-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12021
+    source_parent: ko-nikl-12021
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The act of causing an organ of a person, animal, etc., to react with a stimulus, or
+      such an agent.
+    source_korean: 사람이나 동물의 기관 등에 작용하여 반응을 일으키게 함. 또는 그런 사물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24765'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24765
+      pronunciations: *id1486
+    lexical_identity: ko-lex-12021
+    lexical_category: free-lemma
+  ko-nikl-12381-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12381
+    source_parent: ko-nikl-12381
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-5
+    source_english: One's health or physical characteristics that one was born with.
+    source_korean: 몸이나 건강의 타고난 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73192'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73192
+      pronunciations: *id313
+    lexical_identity: ko-lex-12381
+    lexical_category: free-lemma
+  ko-nikl-13200-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13200
+    source_parent: ko-nikl-13200
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: An inborn ability to do something well.
+    source_korean: 무엇을 잘하는 타고난 능력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24957'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24957
+      pronunciations: &id1487
+      - 재주
+    lexical_identity: ko-lex-13200
+    lexical_category: free-lemma
+  ko-nikl-13200-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13200
+    source_parent: ko-nikl-13200
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A way or idea to cope with something.
+    source_korean: 어떤 일에 대처하는 방법이나 꾀.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24957'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24957
+      pronunciations: *id1487
+    lexical_identity: ko-lex-13200
+    lexical_category: free-lemma
+  ko-nikl-13227-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13227
+    source_parent: ko-nikl-13227
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The ability to deal with something adroitly and skillfully.
+    source_korean: 어떤 일을 눈치 빠르고 능숙하게 처리하는 재주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74374'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74374
+      pronunciations:
+      - 재치
+    lexical_identity: ko-lex-13227
+    lexical_category: free-lemma
+  ko-nikl-13375-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13375
+    source_parent: ko-nikl-13375
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A reassuring power that is invisible on the outside but manifests itself in difficult
+      times.
+    source_korean: 겉으로 보이지 않지만 어려울 때 드러나는 든든한 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74098'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74098
+      pronunciations:
+      - 저ː력
+    lexical_identity: ko-lex-13375
+    lexical_category: free-lemma
+  ko-nikl-14457-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14457
+    source_parent: ko-nikl-14457
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Physical and mental vigor.
+    source_korean: 몸과 마음의 기운찬 활동력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76069'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76069
+      pronunciations: &id1488
+      - 정녁
+    lexical_identity: ko-lex-14457
+    lexical_category: free-lemma
+  ko-nikl-14457-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14457
+    source_parent: ko-nikl-14457
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The sexual ability of a man.
+    source_korean: 남자의 성적인 능력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76069'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76069
+      pronunciations: *id1488
+    lexical_identity: ko-lex-14457
+    lexical_category: free-lemma
+  ko-nikl-15590-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15590
+    source_parent: ko-nikl-15590
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Remembering or imitating something very well, just by looking at it or a demonstration
+      just once.
+    source_korean: 한두 번 보고도 잘 기억하거나 그대로 따라 하는 재주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41602'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41602
+      pronunciations:
+      - 눈썰미
+    source_correction:
+      source_korean: 한두 번 보고도 잘 기억하거나 그대로 따라 하는 재주.
+      source_english: Remembering or imitating something very well, just by looking at it or a demonstration
+        just once.
+      authored_interpretation: skill at remembering or copying after one or two looks
+      rationale: Restore 한두 번 (one or two looks), not English just once. This names a faculty, not verified
+        performance by any learner.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-15590
+    lexical_category: free-lemma
+  ko-nikl-21788-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21788
+    source_parent: ko-nikl-21788
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An ability to accurately and sharply see through an object, phenomenon, etc.
+    source_korean: 사물이나 현상 등을 정확하고 날카롭게 꿰뚫어 보는 능력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81328'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81328
+      pronunciations:
+      - 통ː찰력
+    lexical_identity: ko-lex-21787
+    lexical_category: free-lemma
+  ko-nikl-23031-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23031
+    source_parent: ko-nikl-23031
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: One's plan or hope for the future, that one has in mind.
+    source_korean: 마음속에 가지고 있는 미래에 대한 계획이나 희망.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83367'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83367
+      pronunciations:
+      - 포ː부
+    lexical_identity: ko-lex-23031
+    lexical_category: free-lemma
+  ko-nikl-23366-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23366
+    source_parent: ko-nikl-23366
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: One's dignity and disposition.
+    source_korean: 품격과 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88420'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88420
+      pronunciations:
+      - 품ː성
+    lexical_identity: ko-lex-23366
+    lexical_category: free-lemma
+  ko-nikl-23367-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23367
+    source_parent: ko-nikl-23367
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: One's innate personality or temperament.
+    source_korean: 타고난 성격이나 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88421'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88421
+      pronunciations:
+      - 품ː성
+    lexical_identity: ko-lex-23367
+    lexical_category: free-lemma
+  ko-nikl-26131-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26131
+    source_parent: ko-nikl-26131
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'Mental readiness for the difficulties that lie ahead. '
+    source_korean: 앞으로 겪을 힘든 일에 대한 마음의 준비.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '16209'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16209
+      pronunciations:
+      - 가고
+    lexical_identity: ko-lex-26131
+    lexical_category: free-lemma
+  ko-nikl-28128-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28128
+    source_parent: ko-nikl-28128
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The ability to judge what is important and making a final decision.
+    source_korean: 중요한 일을 판단하여 최종적으로 결정하는 능력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '30271'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30271
+      pronunciations:
+      - 결딴녁
+    source_correction:
+      source_korean: 중요한 일을 판단하여 최종적으로 결정하는 능력.
+      source_english: The ability to judge what is important and making a final decision.
+      authored_interpretation: ability to judge important matters and reach a final decision
+      rationale: 중요한 일을 is the important matter being judged, not the question of which things are important.
+        The protected predicate already keeps this distinction.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-28127
+    lexical_category: free-lemma
+  ko-nikl-28622-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28622
+    source_parent: ko-nikl-28622
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The instrument or device used to measure length, area, weight, volume, temperature,
+      time, strength, etc.
+    source_korean: 길이, 면적, 무게, 양 등이나 온도, 시간, 강도 등을 재는 기구나 장치.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15270'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15270
+      pronunciations:
+      - 계ː기
+      - 게ː기
+    lexical_identity: ko-lex-28622
+    lexical_category: free-lemma
+  ko-nikl-32753-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32753
+    source_parent: ko-nikl-32753
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The act or state of hoping and waiting for something to be realized.
+    source_korean: 어떤 일이 이루어지기를 바라고 기다리는 마음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37848'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37848
+      pronunciations:
+      - 기대감
+    lexical_identity: ko-lex-32752
+    lexical_category: free-lemma
+  ko-nikl-32784-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32784
+    source_parent: ko-nikl-32784
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Technical talent or knack.
+    source_korean: 기술적인 재주나 솜씨.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38126'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38126
+      pronunciations:
+      - 기량
+    lexical_identity: ko-lex-32784
+    lexical_category: free-lemma
+  ko-nikl-32786-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32786
+    source_parent: ko-nikl-32786
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Mental and physical strength to move.
+    source_korean: 활동을 할 수 있는 정신적, 육체적 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38128'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38128
+      pronunciations:
+      - 기력
+    source_correction:
+      source_korean: 활동을 할 수 있는 정신적, 육체적 힘.
+      source_english: Mental and physical strength to move.
+      authored_interpretation: mental and physical strength for activity
+      rationale: Clarify 활동 as activity, not exclusively bodily motion; retain both mental and physical
+        scope without assessing health.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-32786
+    lexical_category: free-lemma
+  ko-nikl-32905-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32905
+    source_parent: ko-nikl-32905
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The vigor or vitality which extends strongly. '
+    source_korean: 힘차게 뻗치는 기운이나 세력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38337'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38337
+      pronunciations: &id1489
+      - 기세
+    lexical_identity: ko-lex-32905
+    lexical_category: free-lemma
+  ko-nikl-32905-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32905
+    source_parent: ko-nikl-32905
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The vigor or an attitude that influences on others. '
+    source_korean: 남에게 영향을 끼칠 기운이나 태도.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38337'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38337
+      pronunciations: *id1489
+    lexical_identity: ko-lex-32905
+    lexical_category: free-lemma
+  ko-nikl-33010-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33010
+    source_parent: ko-nikl-33010
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'Living things'' force to move and act.  '
+    source_korean: 생물이 몸을 움직이고 활동하는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38086'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38086
+      pronunciations: &id1490
+      - 기운
+    lexical_identity: ko-lex-33010
+    lexical_category: free-lemma
+  ko-nikl-33010-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33010
+    source_parent: ko-nikl-33010
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'Force or atmosphere invisible yet felt. '
+    source_korean: 눈에 보이지는 않지만 느껴지는 힘이나 분위기.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38086'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38086
+      pronunciations: *id1490
+    lexical_identity: ko-lex-33010
+    lexical_category: free-lemma
+  ko-nikl-33010-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33010
+    source_parent: ko-nikl-33010
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A minor symptom indicating that a person has a cold or aches all over the body..
+    source_korean: 감기나 몸살 등이 걸린 것을 알 수 있게 하는 가벼운 증상.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38086'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38086
+      pronunciations: *id1490
+    lexical_identity: ko-lex-33010
+    lexical_category: free-lemma
+  ko-nikl-33010-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33010
+    source_parent: ko-nikl-33010
+    source_position: 4
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: An effect or influence that occurs after taking medicine or drinking alcohol.
+    source_korean: 약을 먹거나 술을 마신 후에 나타나는 효과나 영향력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38086'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38086
+      pronunciations: *id1490
+    lexical_identity: ko-lex-33010
+    lexical_category: free-lemma
+  ko-nikl-33011-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33011
+    source_parent: ko-nikl-33011
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A movement or atmosphere that signals something is going to happen.
+    source_korean: 어떤 일이 일어나려고 하는 움직임이나 분위기.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23773'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23773
+      pronunciations:
+      - 기운
+    lexical_identity: ko-lex-33010
+    lexical_category: free-lemma
+  ko-nikl-33082-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33082
+    source_parent: ko-nikl-33082
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A place equipped with facilities required for troops or an expedition team in which
+      they can stay and perform activities.
+    source_korean: 군대나 탐험대 등이 머물면서 활동할 수 있게 필요한 시설을 갖춘 장소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38018'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38018
+      pronunciations:
+      - 기지
+    lexical_identity: ko-lex-33082
+    lexical_category: free-lemma
+  ko-nikl-33083-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33083
+    source_parent: ko-nikl-33083
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Resources or wisdom to solve a problem quickly and wisely in responding to situations.
+    source_korean: 상황에 맞게 빠르고 현명하게 문제를 해결하고 대처하는 꾀나 지혜.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23825'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23825
+      pronunciations:
+      - 기지
+    lexical_identity: ko-lex-33083
+    lexical_category: free-lemma
+  ko-nikl-33091-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33091
+    source_parent: ko-nikl-33091
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A unique temperament shown by an individual or group.
+    source_korean: 개인이나 집단이 가지고 있는 특별한 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38168'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38168
+      pronunciations:
+      - 기질
+    lexical_identity: ko-lex-33091
+    lexical_category: free-lemma
+  ko-nikl-34004-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34004
+    source_parent: ko-nikl-34004
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The quality of being viscous.
+    source_korean: 끈끈한 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37871'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37871
+      pronunciations: *id1491
+    lexical_identity: ko-lex-34004
+    lexical_category: free-lemma
+  ko-nikl-42520-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42520
+    source_parent: ko-nikl-42520
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The power of bearing something for a long time. '
+    source_korean: 오랫동안 버티며 견디는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91676'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91676
+      pronunciations:
+      - 지구력
+    lexical_identity: ko-lex-42520
+    lexical_category: free-lemma
+  ko-nikl-43378-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43378
+    source_parent: ko-nikl-43378
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The quality of being devoted to a specific task, or such a thought or attitude.
+    source_korean: 한 가지 일에만 매달려 마음을 쏟음. 또는 그 마음이나 생각.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '78385'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=78385
+      pronunciations:
+      - 짐념
+    lexical_identity: ko-lex-43378
+    lexical_category: free-lemma
+  ko-nikl-43436-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43436
+    source_parent: ko-nikl-43436
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The ability to engross one's attention or mind in one thing.
+    source_korean: 관심이나 생각을 한 가지 일에 쏟아붓는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '82369'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82369
+      pronunciations:
+      - 집쭝녁
+      match_reason: 'Compare the entire single attention-capacity definition: pouring attention/thought
+        into one task becomes the ability to concentrate mind/thought. The same faculty and noun are retained.
+        Use actual 집쭝녁 citation text without changing the original definition.
+
+        '
+    lexical_identity: ko-lex-43434
+    lexical_category: free-lemma
+  ko-nikl-43440-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43440
+    source_parent: ko-nikl-43440
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'To put all one''s energy into one thing. '
+    source_korean: 한 가지 일에 모든 힘을 쏟아붓다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37047'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37047
+      pronunciations:
+      - 집쭝하다
+    lexical_identity: ko-lex-43434
+    lexical_category: free-lemma
+  ko-nikl-44535-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44535
+    source_parent: ko-nikl-44535
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An inborn trait of a person.
+    source_korean: 타고난 성격이나 됨됨이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77586'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77586
+      pronunciations:
+      - 천성
+    lexical_identity: ko-lex-44535
+    lexical_category: free-lemma
+  ko-nikl-44934-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44934
+    source_parent: ko-nikl-44934
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'Physical power or energy. '
+    source_korean: 몸의 힘이나 기운.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '25359'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25359
+      pronunciations:
+      - 체력
+      match_reason: 'The sole same-spelling noun adds 육체적 활동을 할 수 있는 to the unchanged bodily power/energy
+        definition. Both refer to physical strength; retain the older wording and use the actual 체력 citation.
+
+        '
+    lexical_identity: ko-lex-44934
+    lexical_category: free-lemma
+  ko-nikl-45551-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45551
+    source_parent: ko-nikl-45551
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The force that pushes an object forward.
+    source_korean: 물체를 앞으로 밀어 내보내는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79752'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79752
+      pronunciations: &id1492
+      - 추진녁
+    lexical_identity: ko-lex-45549
+    lexical_category: free-lemma
+  ko-nikl-45551-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45551
+    source_parent: ko-nikl-45551
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: One's ability or power to proceed with a project for a certain purpose.
+    source_korean: 목적을 위하여 일을 계속 이루어 나아가는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79752'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79752
+      pronunciations: *id1492
+    lexical_identity: ko-lex-45549
+    lexical_category: free-lemma
+  ko-nikl-47064-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47064
+    source_parent: ko-nikl-47064
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The power or ability left enough to do another work after finishing a certain job. '
+    source_korean: 어떤 일을 하고 난 뒤 또 다른 일을 할 수 있을 만큼 남아 있는 힘이나 능력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22660'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22660
+      pronunciations:
+      - 여력
+    lexical_identity: ko-lex-47064
+    lexical_category: free-lemma
+  ko-nikl-47674-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47674
+    source_parent: ko-nikl-47674
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A strong desire or craving for something. '
+    source_korean: 무엇을 강하게 원하거나 바람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68549'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68549
+      pronunciations:
+      - 열망
+    lexical_identity: ko-lex-47674
+    lexical_category: free-lemma
+  ko-nikl-47685-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47685
+    source_parent: ko-nikl-47685
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The genetic disposition that develops non-preferentially when crossbreeding with another
+      species.
+    source_korean: 서로 다른 품종을 교배했을 때 우선적으로 나타나지 않는 유전적 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '92528'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=92528
+      pronunciations:
+      - 열썽
+      match_reason: 'Compare the complete recessiveness definition: 우선적으로 나타나지 않는 becomes 다음 세대에 잘 나타나지
+        않는, retaining the cross of different varieties and hereditary property. Reject enthusiasm67472
+        despite identical spelling, POS and reading. This identity crosswalk supplies actual 열썽, not a
+        new original sense or a genetic prediction.
+
+        '
+    source_correction:
+      source_korean: 서로 다른 품종을 교배했을 때 우선적으로 나타나지 않는 유전적 성질.
+      source_english: The genetic disposition that develops non-preferentially when crossbreeding with
+        another species.
+      authored_interpretation: recessive inherited traits in a cross of different varieties
+      rationale: 품종 means varieties or breeds, not necessarily distinct species. Preserve source-framed
+        recessiveness without a superiority judgment or a predicted outcome for any particular cross.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-47685
+    lexical_category: free-lemma
+  ko-nikl-47753-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47753
+    source_parent: ko-nikl-47753
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A feeling of wishing and hoping fervently for something. '
+    source_korean: 간절히 생각하고 바람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67645'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67645
+      pronunciations:
+      - 여ː뭔
+    lexical_identity: ko-lex-47753
+    lexical_category: free-lemma
+  ko-nikl-49085-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49085
+    source_parent: ko-nikl-49085
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The act of hoping to gain or do something. '
+    source_korean: 무엇을 얻거나 무슨 일을 하기를 바라는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '68928'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68928
+      pronunciations:
+      - 욕꾸
+      match_reason: 'The same single wanting-to-obtain-or-do definition changes only its final nominalizer
+        것 to 마음. Retain the original scope rather than inventing a desired-object or intensified sense;
+        use actual 욕꾸 text.
+
+        '
+    lexical_identity: ko-lex-49085
+    lexical_category: free-lemma
+  ko-nikl-49686-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49686
+    source_parent: ko-nikl-49686
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The force that makes a person act physically and mentally to achieve a certain thing.
+    source_korean: 어떤 일을 이루기 위하여 마음과 몸을 움직이는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69842'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69842
+      pronunciations:
+      - 원기
+    lexical_identity: ko-lex-49686
+    lexical_category: free-lemma
+  ko-nikl-51893-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51893
+    source_parent: ko-nikl-51893
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A lively spirit. '
+    source_korean: 활발한 기운.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87083'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87083
+      pronunciations:
+      - 활기
+    lexical_identity: ko-lex-51893
+    lexical_category: free-lemma
+  ko-nikl-51905-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51905
+    source_parent: ko-nikl-51905
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A feeling of being alive or a force that keeps one alive. '
+    source_korean: 살아 움직이는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87092'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87092
+      pronunciations:
+      - 활력
+    source_correction:
+      source_korean: 살아 움직이는 힘.
+      source_english: 'A feeling of being alive or a force that keeps one alive. '
+      authored_interpretation: vitality; the energy of being alive and active
+      rationale: The Korean names active living power, not a separate subjective-feeling alternative or
+        a clinically life-sustaining agent.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-51905
+    lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
     source_entry: topik-1/grammar.yaml#ko-topik1-g001
