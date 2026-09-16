@@ -1,12 +1,12 @@
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowRight, BookOpen, BookText, ChevronRight, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
+import { BookOpen, BookText, ChevronRight, Home, LibraryBig, MessageCircle, Moon, PanelLeftClose, PanelLeftOpen, Settings as SettingsIcon, ShieldCheck, Sparkles, Sun, X } from 'lucide-react'
 import { initializeWorkspace, loadWorkspace } from './core/database'
 import { savePreferences } from './core/learning'
 import { useRoute } from './core/routing'
 import { lessons, stories } from './data/mandarin'
 import { curriculumLevels } from './data/curriculum'
-import { EmptyState, PageHeading, type PageProps } from './components/shared'
+import { EmptyState, type PageProps } from './components/shared'
 import { Overview } from './pages/Overview'
 import { Library, Reader } from './pages/Reading'
 import { LessonDetail, Lessons } from './pages/Lessons'
@@ -14,7 +14,12 @@ import { Practice, PracticeSessionPage } from './pages/Practice'
 import { Dictionary } from './pages/Dictionary'
 import { Settings } from './pages/Settings'
 import { LevelDetail } from './pages/Curriculum'
+import { Assistant, AssistantSidebar } from './pages/Assistant'
+import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
+import { DraftStatus } from './components/assistant/DraftStatus'
+import { stopLocalSpeech } from './core/assistant/speech'
 import './App.css'
+import './components/assistant/assistant.css'
 
 const navigation = [
   { id: 'overview', label: 'Overview', icon: Home },
@@ -29,7 +34,7 @@ function NotFound() {
   return <EmptyState title="This page is not available"><p>The story, lesson, or saved session may no longer be in this workspace.</p><a className="button primary" href="#overview">Return to overview</a></EmptyState>
 }
 
-function CurrentPage({ route, ...props }: PageProps & { route: string }) {
+function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: string; returnRoute: string }) {
   const [page, id] = route.split('/')
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
@@ -53,13 +58,7 @@ function CurrentPage({ route, ...props }: PageProps & { route: string }) {
   if (page === 'practice' || page === 'review') return <Practice {...props} />
   if (page === 'dictionary') return <Dictionary {...props} />
   if (page === 'settings') return <Settings {...props} />
-  if (page === 'conversation') return <>
-    <PageHeading eyebrow="A PARTNER IN YOUR LEARNING" title="Assistant">A connected Mandarin assistant is a later checkpoint.</PageHeading>
-    <section className="panel feature-panel"><MessageCircle size={36} className="accent" /><h2>No pretend conversations.</h2>
-      <p>This workspace does not send messages to an AI service yet. The original app's text and voice tutor is still available in v1, with its own settings and learning data.</p>
-      <a className="button primary" href="./v1/#/modules/conversation">Open the v1 Assistant <ArrowRight size={16} /></a>
-    </section>
-  </>
+  if (page === 'conversation') return <Assistant threadId={id} returnRoute={returnRoute} />
   return <NotFound />
 }
 
@@ -70,6 +69,7 @@ function WorkspaceApp() {
   const [error, setError] = useState('')
   const [now, setNow] = useState(Date.now)
   const main = useRef<HTMLElement>(null)
+  const returnRoute = useRef('overview')
   const run = useCallback(async (operation: () => Promise<void>) => {
     setPending(value => value + 1)
     setError('')
@@ -82,13 +82,29 @@ function WorkspaceApp() {
     }
   }, [])
   const page = route.split('/')[0]
+  const assistant = page === 'conversation'
   const section = page === 'reader' ? 'library' : ['lesson', 'level'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
+  const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
+    : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
   useEffect(() => {
+    if (!assistant) returnRoute.current = route
+    stopLocalSpeech()
     document.title = `${label} / LinguaWeave`
     main.current?.focus({ preventScroll: true })
     window.scrollTo(0, 0)
-  }, [route, label])
+  }, [route, label, assistant])
+  useEffect(() => {
+    if (!assistant || !window.visualViewport) return
+    const viewport = window.visualViewport
+    const resize = () => document.documentElement.style.setProperty('--assistant-viewport-height', `${viewport.height}px`)
+    resize()
+    viewport.addEventListener('resize', resize)
+    return () => {
+      viewport.removeEventListener('resize', resize)
+      document.documentElement.style.removeProperty('--assistant-viewport-height')
+    }
+  }, [assistant])
   useEffect(() => {
     if (workspace) document.documentElement.dataset.theme = workspace.preferences.theme
   }, [workspace])
@@ -103,8 +119,11 @@ function WorkspaceApp() {
   const busy = pending > 0
   return <>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
-    <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''}`}>
+    <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
       <aside className="sidebar" aria-label="Workspace navigation">
+        {assistant && <AssistantSidebar selectedId={route.split('/')[1]} collapsed={collapsed}
+          toggle={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))} returnRoute={returnRoute.current} />}
+        <div className="workspace-navigation">
         <div className="sidebar-header"><a className="brand" href="#overview" aria-label="LinguaWeave home"><span className="brand-mark">lw.</span><span className="brand-name">linguaweave</span></a>
           <button className="icon-button sidebar-toggle" disabled={busy} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'} aria-expanded={!collapsed}
             onClick={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))}>{collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button></div>
@@ -115,6 +134,7 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><div className="workspace-note"><ShieldCheck size={18} /><p>Your own pace.<br />Your own space.<small>Saved on this device.</small></p></div>
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a>
           <a className="legacy-link" href="./v1/">Original app / v1</a></div>
+        </div>
       </aside>
       <div className="workspace"><header className="topbar"><div className="breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>{label}</strong></div>
         <div className="topbar-actions"><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
@@ -122,11 +142,14 @@ function WorkspaceApp() {
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current={page === 'settings' ? 'page' : undefined}><SettingsIcon size={20} /></a>
         </div></header>
-        <main id="main" ref={main} tabIndex={-1}>
+        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
-          <CurrentPage key={route} route={route} workspace={workspace} busy={busy} now={now} run={run} />
+          <CurrentPage key={route} route={route} returnRoute={returnRoute.current} workspace={workspace} busy={busy} now={now} run={run} />
         </main>
       </div>
+      <PlaybackStatus />
+      <DraftStatus />
+      {page !== 'settings' && <SelectionActions route={route} title={sourceTitle ?? label} />}
     </div>
   </>
 }

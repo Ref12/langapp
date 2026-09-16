@@ -170,7 +170,7 @@ describe('workspace backups', () => {
     await moveReading('zh:tea-house', 0, 1, true)
     const before = await loadWorkspace()
     const backup = exportBackup(before)
-    expect(readBackup(backup)).toEqual(before)
+    expect(readBackup(backup)).toEqual({ ...before, assistant: { threads: [], messages: [], runs: [] } })
     await advancePractice(id, 0)
     await restoreBackup(backup)
     expect(await loadWorkspace()).toEqual(before)

@@ -13,7 +13,8 @@ and deployment assembly; run npm commands from the repository root.
 
 The site root serves the new React/TypeScript application in [`src`](src), using
 the mockups' blue/slate design and shared theme tokens. It has a real, isolated
-Mandarin workspace: no seeded progress, accounts, credentials, or live AI calls.
+Mandarin workspace with no seeded progress or accounts. Assistant can use your
+own AI connection after explicit configuration; no credentials are preloaded.
 
 The original app remains at `/v1/` (or `/langapp/v1/` on repository Pages).
 Use `/dev/` for the real app with **Desktop / Mobile** preview controls.
@@ -59,7 +60,8 @@ Those design artifacts remain memory-only and never access either app's database
   does not pass a level's goals. Prerequisites are guidance, not enforced gates.
 - Save appearance and reading preferences; download or explicitly restore a
   versioned backup in Settings. Restore replaces only the new workspace, inside
-  one transaction. Backups are bounded to 5 MiB and are not compatible with v1.
+  one transaction. Backups include Assistant conversations but exclude device
+  credentials, are bounded to 5 MiB, and are not compatible with v1.
   Content version 2 adds curriculum references; previous content-version-1
   starter backups remain readable without rewriting their IDs or saved answers.
 
@@ -73,10 +75,63 @@ shared English gloss alternatives; recognition still does not assess use in cont
 
 Not connected in this checkpoint: personal imports, playable levels 5-30,
 tourist or specialist routes, contextual and productive exercises or level assessment,
-live Assistant/voice services, audio or handwriting assessment, other target
+microphone/voice conversation, generated stories/lessons/exercises, audio or
+handwriting assessment, other target
 languages, synchronization, and installation/offline shell caching for the new
-app. The Assistant and Library pages link to the original v1 tools rather than
-simulating those features.
+app. The Library links to the original v1 import tools rather than simulating
+imports. V1's voice tutor remains available independently.
+
+## Assistant
+
+Assistant provides persistent English/Mandarin text conversations and **Shadow**
+practice. Configure an OpenAI-compatible API base URL, key, and model in
+**Settings -> Assistant AI connection**. Saving is local and does not send a
+request. **Test connection** sends a synthetic request with the selected
+capabilities; it does not send your conversations or learning data.
+
+Enable native tool calling or strict JSON-schema responses only if your endpoint
+supports them. Without schema support, the app requests JSON and validates the
+response locally. Unsupported responses fail visibly rather than switching
+protocols or displaying a simulated conversation. HTTPS is required except for
+localhost, and the endpoint must permit browser CORS requests.
+
+**Send** shares bounded conversation history, relevant learning context, and
+any selected source text with your configured provider; provider charges may
+apply. Optional native tools retrieve known words, lessons, and reading evidence.
+They cannot modify learning progress or save generated content. Responses are
+validated text and locale-tagged speech blocks, not executable code. Ordinary
+Markdown examples never dispatch app operations.
+
+Each conversation keeps its own draft, source context, mode, romanization
+preference, and Mandarin playback speed. New conversations are named after the
+first sent message. Failed draft saves are visibly reported, and the unsaved
+text remains in memory across in-app navigation so you can retry; it is not safe
+to close or reload until saved. Switching Conversation/Shadow affects subsequent turns and
+preserves previous messages. Shadow supports a new phrase, **Repeat after me**,
+and **Explain more** without treating text repetition as pronunciation scoring.
+**Stop reply** cancels generation; retry is explicit. Reloading never sends a
+request. Interrupted work can be stopped and retried.
+
+**Ask Assistant** on a word, example, lesson, reading passage, or reply prepares a
+fresh editable draft without sending, replacing another draft, or adding
+learning evidence. Selected text offers the same actions; **Alt+Enter** focuses
+them and Escape dismisses them. Source context excludes pronunciation annotations
+and controls. During recognition practice, help is available only after checking
+or revealing the answer, so it cannot bypass the existing assistance policy.
+
+**Hear** uses only a matching installed local browser voice. It never requests
+microphone access or falls back to remote/wrong-language voices. Missing voices
+and playback failures are reported visibly. English plays at normal speed;
+Mandarin phrases in a conversation use that conversation's chosen rate.
+Navigation, page hiding, and Escape stop playback.
+
+AI keys are plaintext device settings accessible to code on the same origin;
+use a restricted key. They are excluded from every workspace backup. New
+version-2 backups include conversations, drafts, and recoverable run state.
+Version-1 root-app backups remain readable and restore with no conversations.
+Restoring replaces learning and conversation data, preserves the device's AI
+connection, and never resumes a request automatically. V1 data and settings
+remain isolated.
 
 ## Curriculum source integration
 
@@ -159,8 +214,10 @@ when the browser discovers its update, without clearing IndexedDB or caches.
 Moving to a subpath does not move browser storage: v1 retains the `linguaweave`
 IndexedDB database, so existing profiles, imported content, credentials, and
 progress remain available on the same origin. The new root app uses
-`linguaweave-next` (schema version 1), with its own preferences, word states,
-reading positions, lesson completion, practice sessions, and immutable attempts.
+`linguaweave-next` (schema version 2), with its own preferences, word states,
+reading positions, lesson completion, practice sessions, immutable attempts,
+Assistant conversations/runs, and separate device AI settings. Existing
+schema-version-1 workspaces migrate without rewriting learning evidence.
 It does not open, migrate, or restore the v1 database. No new root service worker
 is registered yet.
 

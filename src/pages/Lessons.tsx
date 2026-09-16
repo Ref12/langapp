@@ -6,6 +6,7 @@ import { lessonReviewWords, startPractice } from '../core/learning'
 import { navigate } from '../core/routing'
 import { PageHeading, WordCard, type PageProps } from '../components/shared'
 import { CurriculumMap, GrammarReference } from './Curriculum'
+import { SnippetActions } from '../components/assistant/SnippetActions'
 
 export function Lessons(props: PageProps) {
   return <CurriculumMap {...props} />
@@ -22,6 +23,7 @@ export function LessonDetail({ lesson, workspace, busy, run }: PageProps & { les
   return <>
     <a className="back-link" href={`#level/${plan.levelId}`}><ArrowLeft size={16} /> Level {level?.number}: {level?.title}</a>
     <PageHeading eyebrow={`LEVEL ${level?.number} / PART ${plan.number}`} title={lesson.title}>{lesson.objective}</PageHeading>
+    <SnippetActions source={{ title: lesson.title, route: `lesson/${lesson.id}`, text: `${lesson.title}\n${lesson.objective}\nVocabulary:\n${lesson.wordIds.map(id => { const word = getWord(id); return `${word.native} (${word.pinyin}): ${word.meaning} [${word.id}]` }).join('\n')}` }} />
     <section className="panel feature-panel"><h2>A small step toward the module goal</h2><p>{lesson.wordIds.length} selected vocabulary senses, {plan.grammarIds.length} new grammar references, and {reviewIds.length} earlier senses to revisit. The practice session checks reading recognition only.</p>
       <p className="small muted">Pinyin keeps each source sense's dictionary pronunciation. Tone changes in connected speech and spoken accuracy need separate instruction and assessment.</p>
     </section>

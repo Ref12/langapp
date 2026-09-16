@@ -4,6 +4,7 @@ import { getWord, stories } from '../data/mandarin'
 import { moveReading, openStory, savePreferences } from '../core/learning'
 import type { ReadingMode, Segment, Story } from '../core/model'
 import { EmptyState, PageHeading, WordCard, type PageProps } from '../components/shared'
+import { SnippetActions } from '../components/assistant/SnippetActions'
 
 export function Library({ workspace }: PageProps) {
   const [query, setQuery] = useState('')
@@ -52,6 +53,8 @@ function Passage({ story, index, ...props }: PageProps & { story: Story; index: 
   return <div className="reader-layout">
     <article className="reading-surface"><p className="eyebrow">PASSAGE {index + 1} OF {story.passages.length}</p>
       <div className="reading-text" lang={mode === 'target' ? 'zh-Hans' : 'en'}>{(mode === 'target' ? passage.target : passage.source).map(render)}</div>
+      <SnippetActions source={{ text: passage.target.map(segment => typeof segment === 'string' ? segment : segment.text ?? getWord(segment.wordId).native).join(''),
+        title: `${story.title}, passage ${index + 1}`, route: `reader/${story.id}`, locale: 'zh-Hans' }} />
       <p className="small muted">Select an underlined word for help. Weave replaces only the annotated words you have added to your learning set.</p>
       <div className="button-row reader-navigation">
         <button className="button secondary" disabled={busy || index === 0} onClick={() => void run(() => moveReading(story.id, index, index - 1, false))}><ArrowLeft size={16} /> Previous</button>

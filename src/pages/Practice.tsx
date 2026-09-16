@@ -6,6 +6,7 @@ import { advancePractice, revealAnswer, startPractice, submitAnswer } from '../c
 import type { Attempt, PracticeSession } from '../core/model'
 import { navigate } from '../core/routing'
 import { EmptyState, PageHeading, type PageProps } from '../components/shared'
+import { SnippetActions } from '../components/assistant/SnippetActions'
 
 export function Practice({ workspace, now, run, busy }: PageProps) {
   const due = workspace.words.filter(word => word.dueAt <= now).length
@@ -35,7 +36,7 @@ function PracticeQuestion({ session, attempt, workspace, run, busy }: PageProps 
   const reviewing = lesson?.curriculum && !lesson.wordIds.includes(word.id)
   const module = word.curriculum && curriculumLevels.find(level => level.id === word.curriculum?.levelId)?.modules.find(item => item.id === word.curriculum?.moduleId)
   useEffect(() => { title.current?.focus() }, [])
-  return <div className="practice-player panel">
+  return <div className="practice-player panel" data-assistant-protected={!question.revealed && !attempt ? 'true' : undefined}>
     <div className="card-topline"><span className="eyebrow">READING / {meaning ? 'RECOGNIZE A MEANING' : 'RECOGNIZE A WORD'}</span><span className="small muted">Question {session.cursor + 1} of {session.questions.length}</span></div>
     <progress aria-label="Practice progress" value={session.cursor} max={session.questions.length} />
     <h2 ref={title} tabIndex={-1}>{meaning ? 'What does this word mean?' : 'Which Mandarin word matches?'}</h2>
@@ -55,6 +56,7 @@ function PracticeQuestion({ session, attempt, workspace, run, busy }: PageProps 
       <strong>{attempt ? attempt.correct ? attempt.assisted ? 'Correct, with help.' : 'Correct, without help.' : 'Not quite. Keep this one close.' : 'Answer revealed. This question will be recorded as assisted.'}</strong>
       <p><span lang="zh-Hans">{word.native}</span> / {word.pinyin} / {word.meaning}</p>
       <p className="small">{attempt ? attempt.assisted || !attempt.correct ? 'This word will be due again in about five minutes.' : 'Saved to your reading progress. The other language skills are unchanged.' : 'Choose the answer, then Check to save your attempt.'}</p>
+      <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: 'zh-Hans', title: 'Practice answer explanation', route: `practice/${session.id}` }} />
     </div>}
     <div className="button-row">
       {!attempt ? <>

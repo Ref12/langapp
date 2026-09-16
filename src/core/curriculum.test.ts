@@ -119,7 +119,8 @@ describe('content-version compatible backups', () => {
     await revealAnswer(id, 0)
     await submitAnswer(id, 0, session.questions[0].wordId)
     const original = await loadWorkspace()
-    const old = { ...JSON.parse(exportBackup(original)), contentVersion: 1 }
+    const old = { ...JSON.parse(exportBackup(original)), version: 1, contentVersion: 1 }
+    delete old.assistant
     await startPractice('lesson', curriculumLessons[0].id)
     await restoreBackup(JSON.stringify(old))
     expect(await loadWorkspace()).toEqual(original)
@@ -140,7 +141,7 @@ describe('content-version compatible backups', () => {
     const workspace = await loadWorkspace()
     const text = exportBackup(workspace)
     expect(JSON.parse(text).contentVersion).toBe(2)
-    expect(readBackup(text)).toEqual(workspace)
+    expect(readBackup(text)).toEqual({ ...workspace, assistant: { threads: [], messages: [], runs: [] } })
     await advancePractice(id, 0)
     await restoreBackup(text)
     expect(await loadWorkspace()).toEqual(workspace)

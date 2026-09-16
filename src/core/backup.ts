@@ -1,7 +1,9 @@
 import { z } from 'zod'
 import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from '../data/mandarin'
-import { db } from './database'
+import { db, loadWorkspace } from './database'
 import type { Workspace } from './model'
+import { assistantBackupSchema, type AssistantBackup } from './assistant/contracts'
+import { clearUnsavedDrafts } from './assistant/drafts'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()
@@ -29,10 +31,21 @@ const workspaceSchema = z.object({
     correct: z.boolean(), assisted: z.boolean(), createdAt: time,
   }).strict()).max(50000),
 }).strict()
-const backupSchema = z.object({
+const legacyBackupSchema = z.object({
   format: z.literal('linguaweave-next-backup'), version: z.literal(1),
   contentVersion: z.union([z.literal(1), z.literal(CONTENT_VERSION)]), exportedAt: time, workspace: workspaceSchema,
 }).strict()
+const backupSchema = z.discriminatedUnion('version', [
+  legacyBackupSchema,
+  legacyBackupSchema.extend({ version: z.literal(2), assistant: assistantBackupSchema }).strict(),
+])
+
+export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup }
+
+function exportableTables() {
+  return [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
+    db.assistantThreads, db.assistantMessages, db.assistantRuns]
+}
 
 function unique(values: unknown[], label: string) {
   if (new Set(values).size !== values.length) throw new Error(`Backup contains duplicate ${label}.`)
@@ -42,9 +55,65 @@ function validateLessonReference(id: string) {
   if (!retiredLessonIds.includes(id)) getLesson(id)
 }
 
-export function readBackup(text: string): Workspace {
+function validateAssistant(assistant: AssistantBackup) {
+  unique(assistant.threads.map(thread => thread.id), 'Assistant threads')
+  unique(assistant.messages.map(message => message.id), 'Assistant messages')
+  unique(assistant.runs.map(run => run.id), 'Assistant runs')
+  unique(assistant.messages.map(message => JSON.stringify([message.threadId, message.sequence])), 'Assistant message sequences')
+  unique(assistant.runs.filter(run => run.status === 'running').map(run => run.threadId), 'running Assistant threads')
+  const threads = new Set(assistant.threads.map(thread => thread.id))
+  const messages = new Map(assistant.messages.map(message => [message.id, message]))
+  const runs = new Map(assistant.runs.map(run => [run.id, run]))
+  for (const message of assistant.messages) {
+    if (!threads.has(message.threadId)) throw new Error('Backup Assistant message refers to a missing conversation.')
+    if (message.role !== 'assistant' && message.status !== 'completed') throw new Error('Backup contains an invalid user or event message status.')
+    if (message.role === 'event' && message.runId !== undefined) throw new Error('Backup mode events cannot belong to an Assistant run.')
+    if (message.status === 'pending' && !message.runId) throw new Error('Backup contains an unowned pending Assistant message.')
+    if (message.runId !== undefined) {
+      const run = runs.get(message.runId)
+      if (!run || run.threadId !== message.threadId
+        || (message.role === 'user' ? run.userMessageId : run.assistantMessageId) !== message.id) {
+        throw new Error('Backup contains inconsistent Assistant message ownership.')
+      }
+    }
+  }
+  for (const run of assistant.runs) {
+    const user = messages.get(run.userMessageId)
+    const reply = messages.get(run.assistantMessageId)
+    if (!threads.has(run.threadId) || !user || !reply || user.role !== 'user' || reply.role !== 'assistant'
+      || user.threadId !== run.threadId || reply.threadId !== run.threadId
+      || user.runId !== run.id || reply.runId !== run.id || user.sequence >= reply.sequence) {
+      throw new Error('Backup contains inconsistent Assistant run ownership or message references.')
+    }
+    const status = run.status === 'running' ? 'pending'
+      : run.status === 'awaiting-learner' ? 'completed'
+        : run.status === 'cancelled' ? 'cancelled' : 'failed'
+    if (reply.status !== status) throw new Error('Backup contains inconsistent Assistant run and message statuses.')
+  }
+}
+
+function interruptImportedRuns(assistant: AssistantBackup) {
+  const messages = new Map(assistant.messages.map(message => [message.id, message]))
+  for (const run of assistant.runs) {
+    if (run.status !== 'running') continue
+    const error = 'This response was interrupted by restoring a backup. Review your message and send again when ready.'
+    run.status = 'interrupted'
+    run.error = error
+    run.updatedAt = Math.max(run.updatedAt, Date.now())
+    const reply = messages.get(run.assistantMessageId)!
+    reply.status = 'failed'
+    reply.error = error
+  }
+}
+
+export function readBackup(text: string): WorkspaceBackup {
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('The backup exceeds the 5 MiB limit.')
-  const { workspace } = backupSchema.parse(JSON.parse(text))
+  const input = JSON.parse(text)
+  const backup = backupSchema.parse(input)
+  const { workspace } = backup
+  if (backup.version === 2) {
+    validateAssistant(backup.assistant)
+  }
   for (const word of workspace.words) {
     getWord(word.wordId)
     unique(word.successfulDays, 'practice days')
@@ -90,24 +159,50 @@ export function readBackup(text: string): Workspace {
       throw new Error('Backup contains an inconsistent practice answer.')
     }
   }
+  if (backup.version === 2) {
+    interruptImportedRuns(backup.assistant)
+    return { ...workspace, assistant: backup.assistant }
+  }
   return workspace
 }
 
-export function exportBackup(workspace: Workspace): string {
-  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 1, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace }, null, 2)
+export function exportBackup(workspace: WorkspaceBackup, assistant?: AssistantBackup): string {
+  const { assistant: includedAssistant, ...learning } = workspace
+  const snapshot = assistant ?? includedAssistant ?? { threads: [], messages: [], runs: [] }
+  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 2, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot }, null, 2)
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('This workspace exceeds the 5 MiB backup limit.')
+  readBackup(text)
   return text
+}
+
+export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<string> {
+  // A UI snapshot may be stale; both domains must come from the same database transaction.
+  void _workspace
+  return db.transaction('r', exportableTables(), async () => {
+    const workspace = await loadWorkspace()
+    const assistant = {
+      threads: await db.assistantThreads.toArray(),
+      messages: await db.assistantMessages.toArray(),
+      runs: await db.assistantRuns.toArray(),
+    }
+    return exportBackup(workspace, assistant)
+  })
 }
 
 export async function restoreBackup(text: string): Promise<void> {
   const workspace = readBackup(text)
-  await db.transaction('rw', db.tables, async () => {
-    for (const table of db.tables) await table.clear()
+  const assistant = workspace.assistant ?? { threads: [], messages: [], runs: [] }
+  await db.transaction('rw', exportableTables(), async () => {
+    for (const table of exportableTables()) await table.clear()
     await db.preferences.add(workspace.preferences)
     await db.words.bulkAdd(workspace.words)
     await db.readings.bulkAdd(workspace.readings)
     await db.lessons.bulkAdd(workspace.lessons)
     await db.sessions.bulkAdd(workspace.sessions)
     await db.attempts.bulkAdd(workspace.attempts)
+    await db.assistantThreads.bulkAdd(assistant.threads)
+    await db.assistantMessages.bulkAdd(assistant.messages)
+    await db.assistantRuns.bulkAdd(assistant.runs)
   })
+  clearUnsavedDrafts()
 }

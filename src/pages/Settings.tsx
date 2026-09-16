@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Download, Upload } from 'lucide-react'
-import { exportBackup, MAX_BACKUP_BYTES, readBackup, restoreBackup } from '../core/backup'
+import { exportWorkspaceBackup, MAX_BACKUP_BYTES, readBackup, restoreBackup } from '../core/backup'
 import { savePreferences } from '../core/learning'
 import { PageHeading, type PageProps } from '../components/shared'
+import { AIConnectionSettings } from '../components/assistant/AIConnectionSettings'
 
 export function Settings({ workspace, busy, run }: PageProps) {
   const [name, setName] = useState(workspace.preferences.name)
@@ -25,10 +26,11 @@ export function Settings({ workspace, busy, run }: PageProps) {
       <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Show pinyin in reading and lessons</label>
       <p className="small muted">Practice hides pronunciation until you reveal the answer. Revealing is recorded as assistance.</p>
     </section>
+    <AIConnectionSettings />
     <section className="panel"><h2>Keep your learning safe</h2><p>Your progress is saved in this browser, not synced to an account. Clearing site data or using private browsing can remove it. Download a backup regularly.</p>
       <div className="button-row">
         <button className="button secondary" disabled={busy} onClick={() => void run(async () => {
-          const text = exportBackup(workspace)
+          const text = await exportWorkspaceBackup(workspace)
           const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }))
           const link = document.createElement('a')
           link.href = url
@@ -50,7 +52,7 @@ export function Settings({ workspace, busy, run }: PageProps) {
           })
         }} /></label>
       </div>
-      {pendingBackup && <div className="notice"><h3>Replace this Mandarin workspace?</h3><p>This backup contains {pendingBackup.words} learning words in {pendingBackup.name}. Restoring replaces this workspace's progress and preferences. It does not change v1 data.</p>
+      {pendingBackup && <div className="notice"><h3>Replace this Mandarin workspace?</h3><p>This backup contains {pendingBackup.words} learning words in {pendingBackup.name}. Restoring replaces this workspace's progress, preferences, and conversations. Older backups have no conversations. Your device's AI connection and v1 data are unchanged.</p>
         <div className="button-row"><button className="button primary" disabled={busy} onClick={() => void run(async () => {
           await restoreBackup(pendingBackup.text)
           setName(pendingBackup.name)
@@ -58,10 +60,10 @@ export function Settings({ workspace, busy, run }: PageProps) {
           setNotice('Mandarin workspace restored.')
         })}>Replace this workspace</button><button className="button secondary" disabled={busy} onClick={() => setPendingBackup(null)}>Cancel</button></div>
       </div>}
-      <p className="small muted">Backups contain only this Mandarin workspace. v1 backups, recordings, credentials, and conversations are not imported here.</p>
+      <p className="small muted">Backups contain this Mandarin workspace and Assistant conversations, not credentials or audio. v1 backups are not compatible. Restored requests never send automatically.</p>
     </section>
     {notice && <p className="notice success" role="status">{notice}</p>}
-    <section className="panel"><h2>About this checkpoint</h2><p>The real 30-level Mandarin course map, with beginner levels 1-4 available for small lessons, grammar reference, and reading-recognition practice. The original stories remain available. No communicative checkpoint assessment, live AI, pronunciation scoring, handwriting assessment, or official HSK certification is connected.</p>
+    <section className="panel"><h2>About this checkpoint</h2><p>The real 30-level Mandarin course map, with beginner levels 1-4 available for small lessons, grammar reference, and reading-recognition practice. Assistant supports connected text conversation and Shadow with local Hear playback. Microphone input, generated activities, pronunciation scoring, handwriting assessment, and official HSK certification are not connected.</p>
       <div className="button-row"><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
     </section>
   </>

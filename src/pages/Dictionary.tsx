@@ -3,11 +3,8 @@ import { Search } from 'lucide-react'
 import { starterWords, words } from '../data/mandarin'
 import { curriculumWords } from '../data/curriculum'
 import { readingStage } from '../core/progress'
+import { normalizeSearch } from '../core/search'
 import { EmptyState, PageHeading, WordCard, type PageProps } from '../components/shared'
-
-function searchable(text: string) {
-  return text.toLowerCase().normalize('NFD').replace(/\p{M}|\s/gu, '')
-}
 
 export function Dictionary({ workspace, run, busy }: PageProps) {
   const [query, setQuery] = useState('')
@@ -17,7 +14,7 @@ export function Dictionary({ workspace, run, busy }: PageProps) {
     const state = workspace.words.find(item => item.wordId === word.id)
     return (collection === 'learning' ? state : collection === 'curriculum' ? word.curriculum : !word.curriculum)
       && (stage === 'all' || readingStage(state) === stage)
-      && searchable(`${word.native} ${word.pinyin} ${word.meaning} ${word.id}`).includes(searchable(query.trim()))
+      && normalizeSearch(`${word.native} ${word.pinyin} ${word.meaning} ${word.id}`).includes(normalizeSearch(query))
   })
   return <>
     <PageHeading eyebrow="YOUR WORDS, TOGETHER" title="Your learning set.">Precise vocabulary senses, with saved reading recognition. Different meanings of the same word keep separate evidence.</PageHeading>
