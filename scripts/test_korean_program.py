@@ -757,6 +757,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "kitchen-notes.yaml", "personal-notes.yaml", "content-notes.yaml",
             "expression-notes.yaml",
             "society-notes.yaml",
+            "predicate-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1116,6 +1117,48 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             self.assertEqual(len({identities[key] for key in senses}), 1)
         self.assertIn("fair amount", self.references.vocabulary["ko-nikl-39286-s003"]["ds"])
         self.assertIn("hollow needle", self.references.vocabulary["ko-nikl-39315-s004"]["ds"])
+
+    def test_predicate_homographs_keep_direction_and_argument_perspective(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for first, second in (
+            ("05832", "05833"), ("12642", "12643"),
+            ("07861", "07862"), ("47672", "47673"),
+        ):
+            first, second = f"ko-nikl-{first}-s001", f"ko-nikl-{second}-s001"
+            self.assertEqual(words[first]["ch"], words[second]["ch"])
+            self.assertNotEqual(identities[first], identities[second])
+        self.assertIn("visible", words["ko-nikl-05832-s001"]["ds"])
+        self.assertIn("show someone", words["ko-nikl-05833-s001"]["ds"])
+        self.assertIn("locked", words["ko-nikl-12642-s001"]["ds"])
+        self.assertIn("submerged", words["ko-nikl-12643-s001"]["ds"])
+        self.assertIn("fruit to form", words["ko-nikl-47672-s001"]["ds"])
+
+    def test_predicate_family_links_do_not_equate_inflections_or_source_ordinals(self):
+        identities = self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-09866-s001"], identities["ko-nikl-09867-s001"])
+        self.assertEqual(identities["ko-nikl-34101-s001"], identities["ko-nikl-34108-s001"])
+        self.assertNotEqual(identities["ko-nikl-34101-s001"], identities["ko-nikl-34100-s001"])
+        words = self.references.vocabulary
+        self.assertIn("people to stop coming", words["ko-nikl-34016-s008"]["ds"])
+        self.assertIn("speech or reading", words["ko-nikl-34018-s008"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-34016-s008"], identities["ko-nikl-34018-s008"])
+        self.assertEqual(
+            self.references.provenance["ko-nikl-10408-s001"]["lexical_category"],
+            "function-item",
+        )
+
+    def test_predicate_interpretations_preserve_original_direction_and_scope_errors(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        self.assertIn("down", words["ko-nikl-34899-s007"]["ds"])
+        self.assertIn("pull something up", evidence["ko-nikl-34899-s007"]["source_english"])
+        self.assertIn("a region", words["ko-nikl-34882-s002"]["ds"])
+        self.assertIn("rural area", evidence["ko-nikl-34882-s002"]["source_english"])
+        self.assertIn("credit", words["ko-nikl-18224-s009"]["ds"])
+        self.assertIn("deed", evidence["ko-nikl-18224-s009"]["source_english"])
+        self.assertIn("text or narrative", words["ko-nikl-47309-s003"]["ds"])
+        self.assertIn("plot of a novel", evidence["ko-nikl-47309-s003"]["source_english"])
+        self.assertIn("unreasonably", words["ko-nikl-49217-s001"]["ds"])
+        self.assertNotIn("ko-nikl-39007-s001", words)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

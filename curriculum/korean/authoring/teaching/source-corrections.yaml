@@ -5,6 +5,61 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-34899-s007:
+    source_korean: 위에 있는 것을 낮은 곳이나 아래로 끌어당기거나 늘어지게 하다.
+    source_english: To pull something up to a lower place or downward, or to hang it loose.
+    authored_interpretation: to pull something down or let it hang lower
+    rationale: The English pull something up contradicts the Korean downward movement; preserve lowering or hanging.
+  ko-nikl-34882-s002:
+    source_korean: 서울 등의 대도시에서 지방으로 오다.
+    source_english: To come to a rural area from a large city such as Seoul.
+    authored_interpretation: to come from Seoul or another major city to a region
+    rationale: A regional destination can include another city; the English rural area is an unwarranted restriction.
+  ko-nikl-18224-s009:
+    source_korean: 책임이나 공로를 다른 사람에게 넘기다.
+    source_english: To pass a responsibility or deed over to another person.
+    authored_interpretation: to pass responsibility or credit to someone else
+    rationale: 공로 concerns credit or merit for an action, not transfer of the action itself suggested by English deed.
+  ko-nikl-34899-s014:
+    source_korean: 막이나 커튼 등이 위에서 아래로 옮겨 가다. 또는 그렇게 하다.
+    source_english: For a wall, curtain, etc., to move from up downward, or make this happen.
+    authored_interpretation: for a curtain to come down, or to lower it
+    rationale: The source screen or curtain moves downward or is lowered; wall is misleading in that context.
+  ko-nikl-49217-s001:
+    source_korean: 억지를 부려 자기의 의견이나 뜻을 고집스럽게 내세우다.
+    source_english: To assert one's opinion or will in a persistent manner.
+    authored_interpretation: to insist stubbornly and unreasonably on one's view
+    rationale: The Korean explicitly combines unreasonable and stubborn insistence; persistent alone can sound neutral or commendable.
+  ko-nikl-47309-s003:
+    source_korean: 글이나 이야기 등을 구성하기 위해 여러 가지 소재를 일정한 순서와 체계에 맞추어 짜다.
+    source_english: To arrange various materials in a certain order or according to a system in order to construct the plot of a novel, story, etc.
+    authored_interpretation: to organize material into a structured text or narrative
+    rationale: The Korean includes organizing general writing or narrative, not only a fictional plot.
+  ko-nikl-07559-s003:
+    source_korean: 부족하지만 비교 대상과 어느 정도 닮아 있다.
+    source_english: Resembling something, though not precisely.
+    authored_interpretation: to resemble something while still falling short of it
+    rationale: 부족하지만 retains inadequacy relative to the comparison target, not merely imprecise resemblance.
+  ko-nikl-34017-s009:
+    source_korean: 말을 하거나 글을 읽을 때 마디와 마디 사이에서 잠시 멈추다.
+    source_english: To stop talking or reading temporarily in between words.
+    authored_interpretation: to pause between phrases when speaking or reading
+    rationale: 마디 refers to speech or reading units, not necessarily each individual word; phrases is an authored phrasing clarification.
+  ko-nikl-34018-s008:
+    source_korean: 말을 하거나 글을 읽을 때 마디와 마디 사이에서 잠시 멈춰지다.
+    source_english: To be paused temporarily between words while speaking or reading.
+    authored_interpretation: for speech or reading to pause between phrases
+    rationale: The passive phrasing concerns speech/reading units, not obligatory pauses between individual words.
+  ko-nikl-47672-s001:
+    source_korean: 열매가 나뭇가지에 맺히다.
+    source_english: To produce fruit on the branch.
+    authored_interpretation: for fruit to form on a branch
+    rationale: The Korean describes fruit forming, not a transitive agent producing fruit; this is a perspective clarification.
+  ko-nikl-19260-s005:
+    source_korean: 아이가 배 속에 생기다.
+    source_english: To conceive an embryo.
+    authored_interpretation: for a child to be conceived
+    rationale: The Korean describes a child coming to be in the womb; the label preserves that grammatical perspective rather than birth or physical entry.
   ko-nikl-06831-s001:
     source_korean: 본래 하나였던 것이 둘 이상으로 나누어짐.
     source_english: "Something being divided into more than two parts. "

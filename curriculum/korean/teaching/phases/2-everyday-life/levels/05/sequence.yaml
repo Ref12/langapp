@@ -53,8 +53,8 @@ units:
   - {id: ko-nikl-41748-s001, ch: 주부, pr: 주부, ds: a homemaker}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-19558-s001, ch: 딸, pr: 딸, ds: a daughter}
   - {id: ko-nikl-17372-s001, ch: 대학생, pr: 대ː학쌩, ds: a university or college student}
+  - {id: ko-nikl-14227-s001, ch: 젊다, pr: 점ː따, ds: to be in one's youthful prime}
   - {id: ko-nikl-36050-s002, ch: 만나다, pr: 만나다, ds: to meet someone}
   - {id: ko-nikl-05049-s001, ch: 약속, pr: 약쏙, ds: a promise; an appointment}
   - {id: ko-nikl-24369-s001, ch: 함께, pr: 함께, ds: all together; several people at once}
@@ -394,6 +394,23 @@ units:
   - {id: ko-nikl-40637-s001, ch: 배수구, pr: 배수구, ds: a drain opening in a sink or similar fixture}
   - {id: ko-nikl-48249-s001, ch: 오븐, pr: 오븐, ds: an oven that heats food from several sides}
   - {id: ko-nikl-49104-s001, ch: 욕조, pr: 욕쪼, ds: a bathtub}
+  - {id: ko-nikl-46543-s005, ch: 어지럽다, pr: 어지럽따, ds: to be messy with things scattered everywhere}
+  - {id: ko-nikl-12638-s001, ch: 잠그다, pr: 잠그다, ds: to lock or latch a door so others cannot open it}
+  - {id: ko-nikl-12638-s002, ch: 잠그다, pr: 잠그다, ds: to shut off the flow of water or gas}
+  - {id: ko-nikl-12642-s001, ch: 잠기다, pr: 잠기다, ds: to be locked or latched against opening}
+  - {id: ko-nikl-15306-s002, ch: 놓이다, pr: 노이다, ds: for a held object to be laid somewhere}
+  - {id: ko-nikl-34099-s002, ch: 끼다, pr: 끼ː다, ds: for dirt or dust to build up and cling}
+  - {id: ko-nikl-34100-s001, ch: 끼다, pr: 끼ː다, ds: to be fitted tightly into a gap}
+  - {id: ko-nikl-34101-s001, ch: 끼다, pr: 끼다, ds: to insert something tightly into a gap}
+  - {id: ko-nikl-34108-s001, ch: 끼우다, pr: 끼우다, ds: to insert something into a gap and secure it}
+  - {id: ko-nikl-07934-s001, ch: 빼내다, pr: 빼ː내다, ds: to pull out something lodged or inserted inside}
+  - {id: ko-nikl-07936-s001, ch: 빼다, pr: 빼ː다, ds: to take out something inside or embedded in something else}
+  - {id: ko-nikl-07936-s006, ch: 빼다, pr: 빼ː다, ds: to let air or water out of a space}
+  - {id: ko-nikl-32804-s001, ch: 기르다, pr: 기르다, ds: to nurture and raise an animal or plant}
+  - {id: ko-nikl-19764-s001, ch: 떼다, pr: 떼ː다, ds: to detach something that is attached or connected}
+  - {id: ko-nikl-48457-s003, ch: 올리다, pr: 올리다, ds: to lift or raise something upward}
+  - {id: ko-nikl-48457-s009, ch: 올리다, pr: 올리다, ds: to place something on top of something else}
+  - {id: ko-nikl-34899-s007, ch: 내리다, pr: 내리다, ds: to pull something down or let it hang lower}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-00425-s001, ch: 세면대, pr: 세ː면대, ds: a washbasin with a water supply}
@@ -404,6 +421,36 @@ units:
   - {id: ko-nikl-12188-s001, ch: 자물쇠, pr: 자물쐬 / 자물쒜, ds: a lock for keeping something closed}
   - {id: ko-nikl-13281-s001, ch: 쟁반, pr: 쟁반, ds: a shallow serving tray for carrying dishes}
   - {id: ko-nikl-13699-s001, ch: 전기밥솥, pr: 전ː기밥쏟, ds: an electric rice cooker}
+  review_grammar:
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
+- id: level-05-home-09
+  title: Home and daily life - 9
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary:
+  - {id: ko-nikl-34899-s010, ch: 내리다, pr: 내리다, ds: to set something down in a lower place}
+  - {id: ko-nikl-34899-s014, ch: 내리다, pr: 내리다, ds: 'for a curtain to come down, or to lower it'}
+  - {id: ko-nikl-18211-s001, ch: 돌다, pr: 돌ː다, ds: to rotate around a point or axis}
+  - {id: ko-nikl-18224-s001, ch: 돌리다, pr: 돌리다, ds: to turn or rotate something}
+  - {id: ko-nikl-42582-s003, ch: 지다, pr: 지다, ds: for a stain to be cleaned off}
+  - {id: ko-nikl-47309-s002, ch: 엮다, pr: 역따, ds: to tie several items together in a row}
+  - {id: ko-nikl-46779-s001, ch: 얽히다, pr: 얼키다, ds: for strings or ropes to become tangled or intertwined}
+  - {id: ko-nikl-16537-s001, ch: 닫히다, pr: 다치다, ds: 'for an open door, lid, or drawer to close'}
+  - {id: ko-nikl-47673-s001, ch: 열리다, pr: 열리다, ds: for something closed or locked to open}
+  - {id: ko-nikl-34017-s001, ch: 끊다, pr: 끈타, ds: 'to cut apart a connected thread, rope, or similar thing'}
+  - {id: ko-nikl-34017-s005, ch: 끊다, pr: 끈타, ds: to cut off a supply of water or electricity}
+  - {id: ko-nikl-02551-s002, ch: 슬쩍, pr: 슬쩍, ds: lightly; with little effort}
+  - {id: ko-nikl-41126-s001, ch: 조용히, pr: 조용히, ds: quietly; with no sound being heard}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-07934-s001, ch: 빼내다, pr: 빼ː내다, ds: to pull out something lodged or inserted inside}
+  - {id: ko-nikl-07936-s001, ch: 빼다, pr: 빼ː다, ds: to take out something inside or embedded in something else}
+  - {id: ko-nikl-07936-s006, ch: 빼다, pr: 빼ː다, ds: to let air or water out of a space}
+  - {id: ko-nikl-32804-s001, ch: 기르다, pr: 기르다, ds: to nurture and raise an animal or plant}
+  - {id: ko-nikl-19764-s001, ch: 떼다, pr: 떼ː다, ds: to detach something that is attached or connected}
+  - {id: ko-nikl-48457-s003, ch: 올리다, pr: 올리다, ds: to lift or raise something upward}
+  - {id: ko-nikl-48457-s009, ch: 올리다, pr: 올리다, ds: to place something on top of something else}
+  - {id: ko-nikl-34899-s007, ch: 내리다, pr: 내리다, ds: to pull something down or let it hang lower}
   review_grammar:
   - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
   - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
@@ -449,10 +496,10 @@ units:
   - {id: ko-nikl-31215-s002, ch: 국, pr: 국, ds: the liquid part of soup or stew}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34613-s001, ch: 남다, pr: 남ː따, ds: to be left over without being used up}
-  - {id: ko-nikl-34604-s001, ch: 남기다, pr: 남기다, ds: to leave some of something unused}
-  - {id: ko-nikl-43854-s001, ch: 차다, pr: 차다, ds: 'to become completely full, with no room for more'}
-  - {id: ko-nikl-44319-s001, ch: 채우다, pr: 채우다, ds: to fill a space or container to capacity}
+  - {id: ko-nikl-48457-s010, ch: 올리다, pr: 올리다, ds: to set food on the table}
+  - {id: ko-nikl-48451-s008, ch: 올라오다, pr: 올라오다, ds: for food to be served on the table}
+  - {id: ko-nikl-19930-s003, ch: 뜨다, pr: 뜨다, ds: to scoop water or powder out of a container}
+  - {id: ko-nikl-19930-s004, ch: 뜨다, pr: 뜨다, ds: to take and eat a spoonful of food}
   - {id: ko-nikl-40223-s002, ch: 밥, pr: 밥, ds: a meal}
   - {id: ko-nikl-04296-s002, ch: 아침, pr: 아침, ds: breakfast}
   - {id: ko-nikl-14255-s001, ch: 점심, pr: 점ː심, ds: lunch}
@@ -477,6 +524,11 @@ units:
   - {id: ko-nikl-52831-s001, ch: 흰자, pr: 힌자, ds: the white surrounding an egg yolk}
   - {id: ko-nikl-39156-s006, ch: 밀다, pr: 밀ː다, ds: to press or roll something into a thin layer}
   - {id: ko-nikl-22661-s003, ch: 퍼지다, pr: 퍼ː지다, ds: for boiled food to swell}
+  - {id: ko-nikl-15914-s003, ch: 늙다, pr: 늑따, ds: to become overripe (a plant)}
+  - {id: ko-nikl-16672-s001, ch: 담기다, pr: 담기다, ds: for something to be put in a dish or container}
+  - {id: ko-nikl-34899-s011, ch: 내리다, pr: 내리다, ds: to sift powder through a sieve}
+  - {id: ko-nikl-19930-s002, ch: 뜨다, pr: 뜨다, ds: to scoop something up out of water}
+  - {id: ko-nikl-19930-s005, ch: 뜨다, pr: 뜨다, ds: to cut meat or similar food into thin slices}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-05741-s001, ch: 보리, pr: 보리, ds: barley grain}
@@ -541,6 +593,7 @@ units:
   - {id: ko-nikl-13080-s001, ch: 재미없다, pr: 재미업따, ds: to be boring; not to be fun}
   - {id: ko-nikl-47912-s001, ch: 영화, pr: 영화, ds: a film; cinema}
   - {id: ko-nikl-08773-s001, ch: 산책, pr: 산ː책, ds: a stroll; walking for leisure or health}
+  - {id: ko-nikl-18211-s015, ch: 돌다, pr: 돌ː다, ds: to move around something in a circle}
   review_grammar: []
 - id: level-05-work-01
   title: Work and cooperation - 1
@@ -560,14 +613,14 @@ units:
   - {id: ko-nikl-06699-s001, ch: 부탁하다, pr: 부ː타카다, ds: ask someone a favor; entrust a task}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-32064-s001, ch: 그리고, pr: 그리고, ds: and; also (linking statements)}
-  - {id: ko-nikl-23948-s001, ch: 하지만, pr: 하지만, ds: but; however}
-  - {id: ko-nikl-14476-s001, ch: 정말, pr: 정ː말, ds: really; truly}
   - {id: ko-nikl-14080-s001, ch: 전화, pr: 전ː화, ds: a telephone call; talking by telephone}
   - {id: ko-nikl-38543-s001, ch: 묻다, pr: 묻ː따, ds: to ask for an answer or explanation}
   - {id: ko-nikl-27706-s014, ch: 걸다, pr: 걸ː다, ds: to make a telephone call}
   - {id: ko-nikl-32008-s002, ch: 그러면, pr: 그러면, ds: then; taking up the preceding point to make a new claim}
   - {id: ko-nikl-32032-s002, ch: 그럼, pr: 그럼, ds: in that case; taking up the preceding point}
+  - {id: ko-nikl-34017-s013, ch: 끊다, pr: 끈타, ds: to end a telephone or Internet exchange}
+  - {id: ko-nikl-34016-s010, ch: 끊기다, pr: 끈키다, ds: for a telephone or Internet exchange to be cut off}
+  - {id: ko-nikl-34018-s010, ch: 끊어지다, pr: 끄너지다, ds: for a telephone or Internet exchange to be interrupted}
   review_grammar:
   - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
   - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
@@ -579,14 +632,14 @@ units:
   - {id: ko-nikl-34291-s002, ch: 나중, pr: 나ː중, ds: afterward; after another task is done first}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-07479-s003, ch: 비다, pr: 비ː다, ds: to have time free or to spare}
-  - {id: ko-nikl-07582-s004, ch: 비우다, pr: 비우다, ds: to free up time; to make oneself available}
-  - {id: ko-nikl-35310-s001, ch: 넘다, pr: 넘ː따, ds: to go beyond a certain time or period}
-  - {id: ko-nikl-36650-s001, ch: 매번, pr: 매ː번, ds: each turn or occasion}
-  - {id: ko-nikl-36686-s001, ch: 매일, pr: 매ː일, ds: each and every day}
-  - {id: ko-nikl-42537-s001, ch: 지금, pr: 지금, ds: the present moment of speaking}
   - {id: ko-nikl-40479-s001, ch: 방학, pr: 방ː학, ds: a school vacation between terms}
   - {id: ko-nikl-11503-s001, ch: 일상, pr: 일쌍, ds: ordinary daily life}
+  - {id: ko-nikl-25574-s005, ch: 가깝다, pr: 가깝따, ds: to be near in time}
+  - {id: ko-nikl-36994-s004, ch: 멀다, pr: 멀ː다, ds: to have a long time still to go}
+  - {id: ko-nikl-18224-s013, ch: 돌리다, pr: 돌리다, ds: to postpone; to put off until later}
+  - {id: ko-nikl-38867-s001, ch: 미리, pr: 미리, ds: in advance; before an event}
+  - {id: ko-nikl-15962-s001, ch: 늦다, pr: 늗따, ds: to be later than the reference time}
+  - {id: ko-nikl-44574-s002, ch: 천천히, pr: 천ː천히, ds: 'later, without rushing'}
   review_grammar:
   - {id: ko-topik1-g019, ch: V-(으)ㄹ 거예요, ds: express a plan or expected future event}
   - {id: ko-topik1-g026, ch: V/A-고, ds: connect predicates without asserting a cause}
@@ -609,14 +662,14 @@ units:
   - {id: ko-nikl-32754-s001, ch: 기대다, pr: 기ː대다, ds: to lean one's body or an object against something}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-33536-s001, ch: 깨우다, pr: 깨우다, ds: to bring someone out of sleep or intoxication}
-  - {id: ko-nikl-12649-s001, ch: 잠들다, pr: 잠들다, ds: to fall asleep}
   - {id: ko-nikl-15644-s001, ch: 눕다, pr: 눕ː따, ds: to lie down on one's back or side}
   - {id: ko-nikl-16057-s001, ch: 다녀오다, pr: 다녀오다, ds: to go somewhere and return}
   - {id: ko-nikl-52894-s001, ch: 힘들다, pr: 힘들다, ds: to require substantial strength or effort}
   - {id: ko-nikl-14737-s001, ch: 정하다, pr: 정ː하다, ds: to decide on one option from several}
   - {id: ko-nikl-34071-s001, ch: 끝내다, pr: 끈내다, ds: to finish a task completely}
   - {id: ko-nikl-32104-s001, ch: 그만하다, pr: 그만하다, ds: to stop what one is doing}
+  - {id: ko-nikl-19931-s001, ch: 뜨다, pr: 뜨다, ds: to open one's closed eyes}
+  - {id: ko-nikl-07903-s001, ch: 빨리, pr: 빨리, ds: quickly; in a short time}
   review_grammar:
   - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
   - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
@@ -713,7 +766,8 @@ units:
   - {id: ko-nikl-21560-s001, ch: 토끼, pr: 토끼, ds: a rabbit}
   - {id: ko-nikl-26794-s001, ch: 강아지, pr: 강아지, ds: a puppy}
   grammar: []
-  review_vocabulary: []
+  review_vocabulary:
+  - {id: ko-nikl-34899-s001, ch: 내리다, pr: 내리다, ds: for rain or snow to fall}
   review_grammar: []
 - id: level-05-arts-01
   title: Arts and creative works - 1
@@ -757,14 +811,14 @@ units:
   - {id: ko-topik1-g027, ch: V/A-지만, ds: contrast two clauses}
   - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
   review_vocabulary:
-  - {id: ko-nikl-16897-s001, ch: 대걸레, pr: 대걸레, ds: a mop with a long handle}
-  - {id: ko-nikl-20781-s001, ch: 콘센트, pr: 콘센트, ds: an electrical outlet or socket}
-  - {id: ko-nikl-21607-s001, ch: 토스터, pr: 토스터, ds: an electric toaster for slices of bread}
-  - {id: ko-nikl-39040-s001, ch: 믹서, pr: 믹써, ds: a blender or grinder for fruit and vegetables}
-  - {id: ko-nikl-40114-s001, ch: 발코니, pr: 발코니, ds: a balcony projecting outside a building wall}
-  - {id: ko-nikl-40637-s001, ch: 배수구, pr: 배수구, ds: a drain opening in a sink or similar fixture}
-  - {id: ko-nikl-48249-s001, ch: 오븐, pr: 오븐, ds: an oven that heats food from several sides}
-  - {id: ko-nikl-49104-s001, ch: 욕조, pr: 욕쪼, ds: a bathtub}
+  - {id: ko-nikl-47309-s002, ch: 엮다, pr: 역따, ds: to tie several items together in a row}
+  - {id: ko-nikl-46779-s001, ch: 얽히다, pr: 얼키다, ds: for strings or ropes to become tangled or intertwined}
+  - {id: ko-nikl-16537-s001, ch: 닫히다, pr: 다치다, ds: 'for an open door, lid, or drawer to close'}
+  - {id: ko-nikl-47673-s001, ch: 열리다, pr: 열리다, ds: for something closed or locked to open}
+  - {id: ko-nikl-34017-s001, ch: 끊다, pr: 끈타, ds: 'to cut apart a connected thread, rope, or similar thing'}
+  - {id: ko-nikl-34017-s005, ch: 끊다, pr: 끈타, ds: to cut off a supply of water or electricity}
+  - {id: ko-nikl-02551-s002, ch: 슬쩍, pr: 슬쩍, ds: lightly; with little effort}
+  - {id: ko-nikl-41126-s001, ch: 조용히, pr: 조용히, ds: quietly; with no sound being heard}
   review_grammar:
   - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
   - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
@@ -776,14 +830,14 @@ units:
   - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
   - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
   review_vocabulary:
-  - {id: ko-nikl-16897-s001, ch: 대걸레, pr: 대걸레, ds: a mop with a long handle}
-  - {id: ko-nikl-20781-s001, ch: 콘센트, pr: 콘센트, ds: an electrical outlet or socket}
-  - {id: ko-nikl-21607-s001, ch: 토스터, pr: 토스터, ds: an electric toaster for slices of bread}
-  - {id: ko-nikl-39040-s001, ch: 믹서, pr: 믹써, ds: a blender or grinder for fruit and vegetables}
-  - {id: ko-nikl-40114-s001, ch: 발코니, pr: 발코니, ds: a balcony projecting outside a building wall}
-  - {id: ko-nikl-40637-s001, ch: 배수구, pr: 배수구, ds: a drain opening in a sink or similar fixture}
-  - {id: ko-nikl-48249-s001, ch: 오븐, pr: 오븐, ds: an oven that heats food from several sides}
-  - {id: ko-nikl-49104-s001, ch: 욕조, pr: 욕쪼, ds: a bathtub}
+  - {id: ko-nikl-47309-s002, ch: 엮다, pr: 역따, ds: to tie several items together in a row}
+  - {id: ko-nikl-46779-s001, ch: 얽히다, pr: 얼키다, ds: for strings or ropes to become tangled or intertwined}
+  - {id: ko-nikl-16537-s001, ch: 닫히다, pr: 다치다, ds: 'for an open door, lid, or drawer to close'}
+  - {id: ko-nikl-47673-s001, ch: 열리다, pr: 열리다, ds: for something closed or locked to open}
+  - {id: ko-nikl-34017-s001, ch: 끊다, pr: 끈타, ds: 'to cut apart a connected thread, rope, or similar thing'}
+  - {id: ko-nikl-34017-s005, ch: 끊다, pr: 끈타, ds: to cut off a supply of water or electricity}
+  - {id: ko-nikl-02551-s002, ch: 슬쩍, pr: 슬쩍, ds: lightly; with little effort}
+  - {id: ko-nikl-41126-s001, ch: 조용히, pr: 조용히, ds: quietly; with no sound being heard}
   review_grammar:
   - {id: ko-topik1-g025, ch: V-지 마세요, ds: ask someone not to do an action}
   - {id: ko-topik1-g027, ch: V/A-지만, ds: contrast two clauses}

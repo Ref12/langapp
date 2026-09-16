@@ -1,0 +1,384 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: coherent predicate selection; not complete-scale vocabulary coverage
+
+scope:
+  - Only predicate-vocabulary.yaml, predicate-identities.yaml, and this file are authored here.
+  - Base, early, expansion, breadth, community, kitchen, personal, content, expression, mobility, and now-readable household inputs are protected.
+  - The original cohort author did not inspect active society files; parent integration now checks their completed union.
+  - No source, reading, support-parent, correction-ledger, manifest, grammar, or shared-runtime file is changed.
+  - No noun additions, synthesized X하다 predicates, or unlisted inflection rows are selected.
+  - Candidate lists follow concrete communicative needs; actual Korean and English sense positions were inspected before selection.
+  - Every selected ID, level, topic, and label is an explicit authored decision, not a source-band, first-sense, alphabetical, or capacity rule.
+  - This cohort emphasizes useful predicate depth; selected senses are never represented as an equal number of new lemmas.
+
+integration:
+  selection_files: >
+    Both predicate files are registered after society and household.
+    Parent checks found no source-ID overlap or incompatible existing
+    identity keys across the full manifest; nothing is silently deduplicated.
+  fragments: >
+    Existing identity keys receive only new members and preserve their exact
+    canonical lemma and category. Fragment source_parents describe only the
+    new members, not all parents in the protected identity.
+  source_corrections: >
+    All eleven requests below are incorporated in source-corrections.yaml
+    with exact original bilingual evidence and matching selected labels.
+    They remain unreviewed interpretations, not official errata or source edits.
+  readings: >
+    Both originally missing parents, covering thirteen selected senses, now
+    have official citation text after complete-definition and homograph
+    comparison. 끊기다 has 끈키다 from official 14657; mental-state 미치다
+    uses 62742, not the reaching/influence entry. No authored reading was
+    added. The original resolver queue is retained below as history, with
+    no remaining selected gap.
+  frozen_support: >
+    The currently frozen support registry is not expanded. Missing requested
+    headwords below are limitations for later parent-authorized research,
+    not permission to synthesize predicates from noun-plus-hada constructions.
+  validation_boundary: >
+    The author's limited composition was followed by parent validation of the
+    actual complete manifest, including returned society and household files.
+    Original source positions, protected placements, and identity categories
+    remain unchanged.
+  unread_manifest_inputs: []
+
+curation_rationales:
+  evaluation_and_evidence: >
+    Distinguish obviousness, absolute correctness, normative rightness,
+    personal satisfaction, reasonable expectation, uncertain identification,
+    inadequate resemblance, excessive insistence, and an unsupported assumption.
+    A speaker's belief, sensation, or certainty is not evidence that the
+    proposition is objectively true.
+  people_and_conditions: >
+    Youthful prime, actual aging, apparent age, overripe plants, dizzy balance,
+    messy surroundings, improper conduct, and social disorder have different
+    selected meanings. Proximity distinguishes space, time, kinship, intimacy,
+    resemblance, and numerical approximation.
+  perception_and_perspective: >
+    The two 보이다 parents distinguish coming to be visible/discernible from
+    causing another person to see or inspect something. 느끼다 separates
+    sensation, emotion, realization, subjective judgment, and direct experience.
+    담기다 and 엮다 support interpreting and constructing texts without
+    restricting all writing to fictional plots.
+  handling_and_state: >
+    Locking, shut-off flow, buttoning, hoarseness, submersion, coating,
+    insertion, being stuck, omission, extraction, and falling into something
+    are source-specific. Coming out 빠지다 is not falling in 빠지다.
+    Stains coming off 지다 must not be reversed into surface patterns forming.
+  change_and_growth: >
+    Preserve biological growth, upbringing, cultivated ability or habits,
+    gradual quantity change, improvement, replacement, exchange, translation,
+    calendar transition, and changed turns. Related forms remain explicit
+    lexical decisions rather than automatically produced conjugations.
+  spatial_motion_and_direction: >
+    Going up, raising something, coming up, coming down, moving an object,
+    alighting, landing, lowering a curtain, circling, turning at a corner,
+    taking a detour, and running errands support different tasks.
+    Up/down directions may refer to a capital or central office, rank,
+    north/south, or document routing rather than physical elevation.
+  processes_and_results: >
+    Do not collapse being inferior into becoming worse, losing a selection
+    into losing affection, falling off into running out, an assigned task
+    into a completed task, or an unpaid balance into a division remainder.
+    Accomplishments and outcomes remain separate source positions.
+  directional_reversion: >
+    Source 17812 도로 is an adverb, not road noun 17814. Opposite-direction
+    return supports route repair; returning to the original state supports
+    process and outcome descriptions. The second meaning is not unrestricted
+    repetition or merely doing something again. Neither row selects a
+    concrete mobility noun or any reserved 후진 sense.
+  interpretation_and_composition: >
+    Literal weaving, sequential tying, organizing writing, compiling a book,
+    conspicuous details, basis-dependent reasoning, and tactful reformulation
+    support general-interest interpretation and independent projects.
+    Existing parents gain useful meanings without being counted anew.
+  ordinary_not_specialist: >
+    Physical handling, food serving, social relationships, movement, work
+    procedures, public information, and evidence-based description remain core.
+    Unneeded rare bodily, military, craft-specialist, and highly
+    context-dependent positions are not selected merely because they exist.
+  continuity_and_interruption: >
+    Physical severing, ending a relationship, quitting a habit, utility or
+    delivery interruption, speech pausing, call termination, and transport
+    cessation have separate source positions. Actual 끊다 also supports
+    buying tickets/fabric, issuing documents, paid enrollment, settling a
+    transaction, and clocking a race time. These uses are not invented from
+    a generic English cut gloss, and race timing does not imply a new record.
+  opening_and_entry: >
+    Distinguish fruit-forming 열리다 from opening/unlocking 열리다, business
+    hours from literal door movement, an emerging opportunity from emotional
+    receptiveness, and a newly built institution from simply stepping inside.
+    Source-exact conception is not collapsed into physical entry or birth.
+  ordinary_manner_and_timing: >
+    Quickness, advance preparation, temporal precedence, late timing, slow
+    speed, secrecy, slight degree, absence of sound, peace without trouble,
+    and leisure are different meanings. 천천히's later-without-rushing sense
+    is not slow speech; quietness is not automatically secrecy.
+
+identity_policy:
+  provisional_status: >
+    These are documented source-anchored teaching candidates, not independently
+    verified true-lexeme counts. Report source parents, selected senses,
+    spellings, identity fragments, and net-new free candidates separately.
+  identifiers: >
+    ko-nikl IDs retain pinned CSV record ordinals and original definition
+    positions. ko-lex keys are stable local identity names, not official
+    dictionary IDs.
+  explicit_declarations: >
+    Every canonical lemma, category, source-parent grouping, and semantic
+    rationale is authored in predicate-identities.yaml. Mechanical
+    materialization only enumerates already-selected members of those
+    explicitly declared parents; it does not curate or classify vocabulary.
+  function_items: >
+    의하다 is conservatively a function item for relational basis/cause.
+    It is not counted as a new free content lemma just because the source
+    labels it a verb.
+  mixed_ranges: >
+    Independent benefiting/cherishing 위하다, event-beginning 비롯하다, and
+    rightness 옳다 remain content candidates. Their purpose, inclusive-list,
+    or fixed-response senses add no extra identity or free-lemma count.
+  bound_forms: >
+    No new bound-form identity is selected. Conjugated realizations, shortened
+    responses, and construction strings are not separate vocabulary rows.
+  lexical_adverb: >
+    Directional/reversion 도로 is explicitly one free lexical-adverb candidate,
+    not a case marker, deictic pronoun, or discourse connector. Its two source
+    positions do not create two headwords, and its spelling does not merge it
+    with the protected road noun.
+    빨리, 먼저, 미리, and 몰래 are explicitly lexical manner/timing
+    candidates. Newly selected senses of already-protected manner adverbs
+    retain their existing categories and add no independent free identities.
+  related_predicates: >
+    Actually sourced passive, causative, compound, and change-of-state
+    predicates remain provisional candidates unless a specific grouping below
+    says otherwise. No generic suffix deletion, generated derivation, or
+    English-synonym merger establishes lexical identity.
+  function_identity_ids: [ko-lex-10408]
+  bound_form_identity_ids: []
+
+documented_group_decisions:
+  ko-lex-15961: >
+    Protected verbal 늦다 15961 and new descriptive 늦다 15962 explicitly
+    describe being after a set/reference time. Conservatively extend that
+    existing temporal identity rather than count a new spelling/POS pair.
+    Keep the adjective's past-the-right-time and slow-speed extensions and
+    the different verbal/adjectival distributions visible.
+  ko-lex-09866: >
+    Shorter 서툴다 has the same retained Korean definition as protected
+    서투르다. Extend the existing canonical lemma and free category with only
+    ko-nikl-09867-s001. The shorter ㄹ-stem and fuller 르-stem must not be
+    assumed to share every inflected realization.
+  ko-lex-34101: >
+    Active 끼다 source 34101 and 끼우다 source 34108 share the same Korean
+    definitions for physical fitting positions one and two. Group them
+    conservatively for counting while preserving all distinct source forms
+    and the additional selected contexts. This is not proof that their
+    grammatical distributions are interchangeable. Coating 끼다 34099 and
+    intransitive fitting/involvement 끼다 34100 remain separate.
+  related_change_predicates: >
+    늘어나다 and 줄어들다 explicitly describe gradual change in the source.
+    달라지다 and 나아지다 are actually registered predicates, not invented
+    adjective-plus-jida rows. Their derivational relationships require
+    lexical-boundary review. In particular, general improvement 나아지다
+    is not automatically the exact recovery 낫다 or comparative 낫다 sense.
+  interruption_predicates: >
+    끊다, 끊기다, and 끊어지다 are actually registered predicates, not
+    generated inflections. The two latter sources have many parallel Korean
+    definitions, but their eighth positions are not aliases: 끊기다 concerns
+    visitors ceasing to come, while 끊어지다 concerns pauses between speech
+    or reading units. Never merge positions by matching their ordinal alone.
+    Their independent provisional lexical counting and passive/change
+    distributions remain subject to qualified lexical review.
+  existing_key_fragments: >
+    Preserve ko-lex-34899, ko-lex-39144, ko-lex-19518, ko-lex-19099,
+    ko-lex-46777, ko-lex-46779, ko-lex-16125, ko-lex-26197, and ko-lex-07559.
+    Only the newly selected predicate members are appended. Earlier
+    alighting, belief, analysis, revelation, constraint, handling, simplicity,
+    and resemblance placements remain untouched.
+    Additional protected fragments retain 슬쩍, 살짝, 가만히, 조용히,
+    천천히, 멈추다, and 잇다. The existing shorter 가만 source fragment in
+    expression is preserved while the missing 가만히 fourth position is added.
+
+homograph_rationales:
+  ko-nikl-47672: Fruit forming on a branch, not a closed thing opening.
+  ko-nikl-47673: Opening, beginning operation, opportunity, and receptiveness, not fruit bearing.
+  ko-nikl-17812: Directional/reversion adverb 도로, not the protected road noun 17814.
+  ko-nikl-05832: Visibility and apparent properties, not causative showing.
+  ko-nikl-05833: Causing someone to see or examine, not the visibility predicate.
+  ko-nikl-12642: Locking, flow closure, buttons, and hoarse voice, not submersion.
+  ko-nikl-12643: Submersion and absorption, not a locked closure or hoarse voice.
+  ko-nikl-34099: Coating or gathering and subtle atmosphere, not inserting or participating.
+  ko-nikl-34100: Intransitive fitting, being stuck, and involvement, not active insertion.
+  ko-nikl-34101: Active fitting and its selected extensions, grouped only with the specifically reviewed 끼우다.
+  ko-nikl-07861: Coming out, omission, depletion, and related losses, not falling into something.
+  ko-nikl-07862: Falling into water, trouble, deception, sleep, or absorption, not coming out.
+  ko-nikl-39007: Mental-state and disparaging readings, not reaching or exerting influence.
+  ko-nikl-39009: Reaching a level and exerting or receiving influence, not mental-state meanings.
+  ko-nikl-19927: Floating and selected gap/excitement/slang extensions, not departure, scooping, or eyes.
+  ko-nikl-19929: Leaving a place or this world, not floating or opening the eyes.
+  ko-nikl-19930: Scooping, a spoonful, and thin slicing, not floating, departing, or opening eyes.
+  ko-nikl-19931: Opening or shaping the eyes, not the other 뜨다 parents.
+  ko-nikl-42582: Setting, withering, and stain removal, not losing, pattern formation, or carrying.
+  ko-nikl-42583: Losing a contest, not setting, carrying, or developing a pattern.
+  ko-nikl-42585: Pattern formation and bad relationships, not the stain-removal homograph.
+  ko-nikl-42586: Carrying, favors, responsibility, and indebtedness, not losing or setting.
+
+register_and_review:
+  preserved_markers: >
+    Keep explicit euphemism on 떠나다-s006; figurative interval use on
+    멀다-s007; disparaging conduct on 미치다-s002; slang on 돌다-s007;
+    and the figurative, feared-arrival slang, and fame slang positions of
+    floating 뜨다. Do not relabel the feared figure's appearance as an
+    unrestricted neutral arrival.
+  respect_and_hierarchy: >
+    올리다's elder/superior presentation and upward document submission
+    retain their recipient hierarchy. 내리다's awards, penalties, and
+    instructions and 내려오다's downward directives retain direction.
+    These lexical facts do not endorse social inequality. Regional movement
+    does not imply that every place outside a major city is rural.
+  not_diagnostic_or_recommended_abuse: >
+    Marked mental-state slang and disparaging speech are included for
+    contextual comprehension, not as recommended labels for people or clinical
+    diagnoses. The literal first position of 미치다 39007 is unselected.
+    Age, appearance, status-relative overstepping, and improper conduct need
+    situated teaching rather than assumed universally acceptable judgments.
+  pragmatic_context: >
+    Fixed 옳다 responses, conventional letter or document language, and
+    indirect 돌리다 wording need context and audience review. Dictionary
+    lemma membership does not make every response equally polite.
+  metaphor_and_source_tags: >
+    Some short labels add figurative or emotional clarification to an
+    inspected abstract meaning. Such authoring clarification is not falsely
+    claimed as an explicit dictionary tag. Departing 뜨다's this-world
+    meaning is rendered euphemistically without inventing a separate surface
+    form or claiming it has the explicit marker found on 떠나다.
+  medical_and_physical_language: >
+    Sensations, hoarseness, swelling, sleep, regurgitation, medicine effects,
+    and infectious-illness spread are vocabulary meanings, not diagnoses,
+    medication instructions, or health advice. Physical or perceived outcomes
+    are not universally guaranteed effects.
+    Conception, quitting a habitual activity, and cosmetic absorption likewise
+    describe vocabulary meanings rather than personal medical instructions.
+  lexical_boundary_limitations: >
+    The conservative active 끼다/끼우다 grouping and independently retained
+    change/causative/passive predicates need lexicographic review. Raw source
+    rows and spelling/POS pairs do not prove true independent-lemma breadth.
+
+remaining_gaps:
+  - The full planning guide is still far unmet; this cohort is substantial predicate depth, not complete-scale coverage.
+  - Still-useful ordinary actions, descriptive nuances, idiomatic conduct, and general-interest interpretation wording require further targeted curation.
+  - Several requested common predicates are absent from the frozen registry, as listed below; none is synthesized or source-added here.
+  - Already-covered 분명하다, 확실하다, 공평하다, 솔직하다, 복잡하다, 꼼꼼하다, 섬세하다, 적절하다, 타당하다, 모호하다, 애매하다, 뚜렷하다, 훌륭하다, 드러내다, 미루다, 깨닫다, and 감추다 are not falsely reported as absent.
+  - Unselected specialized or ambiguous source positions remain available in the unchanged registry, not automatically assigned to advanced core or optional branches.
+
+absent_from_frozen_registry:
+  - 정확하다
+  - 공정하다
+  - 엄격하다
+  - 성실하다
+  - 편리하다
+  - 불리하다
+  - 유리하다
+  - 대꾸하다
+  - 판단하다
+  - 확인하다
+
+protected_exclusions:
+  ko-nikl-48419-s001: Coordinator-directed exclusion; do not reselect, substitute another sense, invent a reading, or research further.
+  ko-nikl-22209-s001: Coordinator-held 팀장 sense pending pronunciation review; do not reintroduce, invent a reading, or research further. Parent-owned society notes retain the evidence and deferred placement.
+
+source_correction_requests:
+  ko-nikl-34899-s007:
+    source_korean: 위에 있는 것을 낮은 곳이나 아래로 끌어당기거나 늘어지게 하다.
+    source_english: To pull something up to a lower place or downward, or to hang it loose.
+    authored_interpretation: to pull something down or let it hang lower
+    rationale: The Korean moves or pulls something from above to a lower position. The English phrase pull something
+      up contradicts that direction; the selected label preserves downward pulling or hanging.
+  ko-nikl-34882-s002:
+    source_korean: 서울 등의 대도시에서 지방으로 오다.
+    source_english: To come to a rural area from a large city such as Seoul.
+    authored_interpretation: to come from Seoul or another major city to a region
+    rationale: The Korean contrasts Seoul or another major city with a regional destination. Regional areas can
+      include other cities; rural area in the English is an unwarranted narrowing.
+  ko-nikl-18224-s009:
+    source_korean: 책임이나 공로를 다른 사람에게 넘기다.
+    source_english: To pass a responsibility or deed over to another person.
+    authored_interpretation: to pass responsibility or credit to someone else
+    rationale: The Korean contrasts passing responsibility with attributing 공로, meaning credit or merit. English
+      deed does not clearly convey that credit attribution and can suggest a different object.
+  ko-nikl-34899-s014:
+    source_korean: 막이나 커튼 등이 위에서 아래로 옮겨 가다. 또는 그렇게 하다.
+    source_english: For a wall, curtain, etc., to move from up downward, or make this happen.
+    authored_interpretation: for a curtain to come down, or to lower it
+    rationale: The Korean names 막 or curtains moving downward or being lowered. The English wall is misleading here;
+      the selected curtain reading keeps the movable screen/curtain context and both change perspectives.
+  ko-nikl-49217-s001:
+    source_korean: 억지를 부려 자기의 의견이나 뜻을 고집스럽게 내세우다.
+    source_english: To assert one's opinion or will in a persistent manner.
+    authored_interpretation: to insist stubbornly and unreasonably on one's view
+    rationale: 'The Korean explicitly includes 억지를 부려 and 고집스럽게: unreasonable, stubborn insistence. The English
+      persistent wording can sound neutral or commendable and omits that evaluative force.'
+  ko-nikl-47309-s003:
+    source_korean: 글이나 이야기 등을 구성하기 위해 여러 가지 소재를 일정한 순서와 체계에 맞추어 짜다.
+    source_english: To arrange various materials in a certain order or according to a system in order to construct
+      the plot of a novel, story, etc.
+    authored_interpretation: to organize material into a structured text or narrative
+    rationale: The Korean covers structuring 글 or 이야기 from materials in an ordered system. The English narrows this
+      to a fictional plot; the selected interpretation also permits general structured writing.
+  ko-nikl-07559-s003:
+    source_korean: 부족하지만 비교 대상과 어느 정도 닮아 있다.
+    source_english: Resembling something, though not precisely.
+    authored_interpretation: to resemble something while still falling short of it
+    rationale: The Korean explicitly says 부족하지만, retaining inadequacy relative to the comparison target. English
+      though not precisely can reduce that to mere imprecision; the selected label preserves falling short.
+  ko-nikl-34017-s009:
+    source_korean: 말을 하거나 글을 읽을 때 마디와 마디 사이에서 잠시 멈추다.
+    source_english: To stop talking or reading temporarily in between words.
+    authored_interpretation: to pause between phrases when speaking or reading
+    rationale: 'Phrasing clarification: Korean 마디 refers to units of speech or reading and need not mean individual
+      words. The English between words can imply pausing after every word; the selected label preserves phrasing
+      rather than requiring that behavior.'
+  ko-nikl-34018-s008:
+    source_korean: 말을 하거나 글을 읽을 때 마디와 마디 사이에서 잠시 멈춰지다.
+    source_english: To be paused temporarily between words while speaking or reading.
+    authored_interpretation: for speech or reading to pause between phrases
+    rationale: 'Phrasing clarification: Korean 마디 concerns speech/reading units, not necessarily individual words.
+      This passive source position also differs from 끊기다 position eight, which concerns people ceasing to come.'
+  ko-nikl-47672-s001:
+    source_korean: 열매가 나뭇가지에 맺히다.
+    source_english: To produce fruit on the branch.
+    authored_interpretation: for fruit to form on a branch
+    rationale: 'Perspective clarification: the Korean makes fruit forming on a branch the subject/event. English
+      produce fruit can misleadingly suggest a transitive agent; the selected label retains the fruit-forming perspective
+      and does not mean opening a door.'
+  ko-nikl-19260-s005:
+    source_korean: 아이가 배 속에 생기다.
+    source_english: To conceive an embryo.
+    authored_interpretation: for a child to be conceived
+    rationale: 'Perspective clarification: the Korean describes a child coming to be in the womb. The English active
+      conceive can suggest a different grammatical subject; the selected label makes the child-being-conceived perspective
+      explicit rather than implying birth or physical entry.'
+selected_reading_gaps: []
+resolved_reading_gaps:
+- source_parent: ko-nikl-39007
+  lemma: 미치다
+  reason: 'ko-nikl-39007: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-39007-s002
+  - ko-nikl-39007-s003
+  - ko-nikl-39007-s004
+- source_parent: ko-nikl-34016
+  lemma: 끊기다
+  reason: 'ko-nikl-34016: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-34016-s001
+  - ko-nikl-34016-s002
+  - ko-nikl-34016-s003
+  - ko-nikl-34016-s004
+  - ko-nikl-34016-s005
+  - ko-nikl-34016-s006
+  - ko-nikl-34016-s007
+  - ko-nikl-34016-s008
+  - ko-nikl-34016-s010
+  - ko-nikl-34016-s011
