@@ -1,0 +1,97 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: integrated selections; linguistic and lexical review remains pending
+scope: >
+  Concrete cleaning, washing, cooking, small repair, and gardening equipment.
+  Social roles and abstract connections remain in the society cohort. Literal
+  매듭 positions 1 and 4 are selected here; the abstract positions 2 and 3
+  remain available to the separately owned society cohort.
+selection_policy: >
+  All labels and placements follow inspection of exact bilingual source
+  positions. Specifically missing words were located in the pinned original
+  CSV, including competing homographs. No automatic first-sense import,
+  compound manufacture, or numeric/source-band placement rule is used.
+  Ordinary household items remain early rather than being moved to imitate
+  later-phase growth.
+identity_policy: >
+  New members extend existing 걸레 and 바늘 identities without changing
+  their lemma or category. Container/tool measures for 바가지 and 삽 add
+  source senses but not separate free lemmas, following the existing 병/잔
+  treatment. All lexical identities are provisional; no POS-based classifier
+  or global derivational suffix rule is used.
+lexical_review_flags:
+  - 나사 and 나사못 overlap in fastener meaning; their separate source-backed headword accounting needs review.
+  - 세면기 describes a washing bowl; 세면대 explicitly includes water-supply facilities.
+  - The old/dirty-item 걸레 sense is not extended to unlicensed gendered or personal insults.
+  - 테이프 position 1 does not itself assert adhesive material or electrical insulation.
+  - A scoopful or shovelful is not a fixed metric volume.
+  - 바가지 position 3 preserves excessive pricing; it does not establish fraud in any real transaction.
+  - 드라이버 has only screwdriver and golf-club meanings in the selected source, not software or a motorist.
+  - 믹서 is a food appliance here, not an audio console.
+  - The dryer is parent 27657, not the dry-season homograph 27656.
+  - The saw is parent 21655, not ranking/headline homograph 21656.
+source_integration: >
+  The thirty-one specifically selected unbanded parents below are retained
+  with all original positions, bringing the registry to 102 support parents.
+  Full composition with society has no repeated sense IDs. The compatible
+  매듭 fragments merge into one identity, so household adds 39 rather than
+  40 free identities after society. Original TOPIK files remain untouched.
+retained_unbanded_support:
+  - ko-nikl-00424
+  - ko-nikl-00425
+  - ko-nikl-03026
+  - ko-nikl-03752
+  - ko-nikl-03934
+  - ko-nikl-06862
+  - ko-nikl-07798
+  - ko-nikl-08236
+  - ko-nikl-08599
+  - ko-nikl-08996
+  - ko-nikl-12188
+  - ko-nikl-13281
+  - ko-nikl-13699
+  - ko-nikl-14348
+  - ko-nikl-16897
+  - ko-nikl-19092
+  - ko-nikl-19116
+  - ko-nikl-20781
+  - ko-nikl-21607
+  - ko-nikl-21655
+  - ko-nikl-22710
+  - ko-nikl-27657
+  - ko-nikl-34251
+  - ko-nikl-34255
+  - ko-nikl-39040
+  - ko-nikl-40114
+  - ko-nikl-40637
+  - ko-nikl-42060
+  - ko-nikl-48249
+  - ko-nikl-49104
+  - ko-nikl-51292
+unfilled_source_gaps:
+  words: [경첩, 고글, 렌치, 멀티탭, 스패너, 양동이]
+  status: No exact or space-normalized match found in the pinned January 2024 CSV.
+reading_policy: >
+  Thirty-five selected senses have official citation readings. Eleven
+  parents covering fifteen senses now have individually documented authored
+  readings, all unreviewed; there are no selected reading gaps. 믹서 becomes
+  믹써 through stop-triggered tensing rather than an arbitrary spelling copy.
+  No authored proposal is dictionary-verified or an audio assessment.
+selected_reading_gaps: []
+resolved_authored_reading_parents:
+  - ko-nikl-21545
+  - ko-nikl-03752
+  - ko-nikl-19092
+  - ko-nikl-19116
+  - ko-nikl-20781
+  - ko-nikl-21607
+  - ko-nikl-22710
+  - ko-nikl-39040
+  - ko-nikl-40114
+  - ko-nikl-48249
+  - ko-nikl-51292
+limitations: >
+  These are communication meanings, not instructions for electrical, medical,
+  chemical, or tool use. Dictionary labels do not establish safe procedures,
+  equipment compatibility, or clinical competence. Language naturalness,
+  sense boundaries, and lexical family accounting remain unreviewed.

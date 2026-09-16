@@ -36,6 +36,26 @@ checkpoint:
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: level-19-people-01
+  title: People and relationships - 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary:
+  - {id: ko-nikl-24049-s001, ch: 학자, pr: 학짜, ds: a scholar or academic researcher}
+  - {id: ko-nikl-13803-s001, ch: 전문가, pr: 전문가, ds: an expert with knowledge and experience in a field}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-12799-s001, ch: 장군, pr: 장군, ds: a high-ranking military commander; a general}
+  - {id: ko-nikl-26225-s001, ch: 간부, pr: 간부, ds: a senior official in a key organizational position}
+  - {id: ko-nikl-02916-s001, ch: 시장, pr: 시ː장, ds: a mayor}
+  - {id: ko-nikl-19894-s001, ch: 뛰어나다, pr: 뛰어나다 / 뛰여나다, ds: to be outstanding in ability}
+  - {id: ko-nikl-33742-s001, ch: 꼼꼼하다, pr: 꼼꼼하다, ds: to be meticulous and attentive to detail}
+  - {id: ko-nikl-13512-s001, ch: 적극적, pr: 적끅쩍, ds: proactive and positive in attitude}
+  - {id: ko-nikl-09866-s001, ch: 서투르다, pr: 서ː투르다, ds: to be inexperienced or unskilled at something}
+  - {id: ko-nikl-40543-s003, ch: 배경, pr: 배ː경, ds: backing influence or supportive conditions}
+  review_grammar:
+  - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
+  - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
+  - {id: ko-topik5-g029, ch: V/A-(으)ㄹ까 하다, ds: express a tentative intention}
 - id: level-19-leisure-01
   title: Leisure and sport - 1
   outcome: Explain participation and invite someone without assuming availability.
@@ -65,18 +85,37 @@ units:
   - {id: ko-nikl-32794-s001, ch: 기록, pr: 기록, ds: a written or visual record preserved for later use}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-47488-s001, ch: 연수, pr: 연ː수, ds: training or study to acquire knowledge or skills}
-  - {id: ko-nikl-26843-s001, ch: 강좌, pr: 강ː좌, ds: a fixed-duration course outside regular schooling}
   - {id: ko-nikl-12982-s001, ch: 장학금, pr: 장ː학끔, ds: a scholarship for high-achieving students in financial need}
   - {id: ko-nikl-07411-s016, ch: 붙다, pr: 붇따, ds: for skill or ability to develop or increase}
   - {id: ko-nikl-37514-s002, ch: 모자라다, pr: 모ː자라다, ds: 'to fall short in ability, strength, or knowledge'}
   - {id: ko-nikl-05080-s005, ch: 약하다, pr: 야카다, ds: to be weak in a skill or field of knowledge}
+  - {id: ko-nikl-13560-s001, ch: 적성, pr: 적썽, ds: aptitude; suitability of character or ability for a task}
   - {id: ko-nikl-11048-s001, ch: 익히다, pr: 이키다, ds: to master something through repeated practice}
   - {id: ko-nikl-15903-s004, ch: 늘리다, pr: 늘리다, ds: to improve someone's skill or ability}
+  - {id: ko-nikl-00436-s001, ch: 세미나, pr: 세미나, ds: a university seminar using guided discussion and presentations}
   review_grammar:
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
   - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
   - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
+- id: level-19-work-01
+  title: Work and cooperation - 1
+  outcome: Coordinate responsibilities and report progress for a specified relationship.
+  vocabulary:
+  - {id: ko-nikl-47352-s001, ch: 연구소, pr: 연ː구소, ds: a research institute}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-16267-s003, ch: 다지다, pr: 다지다, ds: to strengthen the foundations of a structure or system}
+  - {id: ko-nikl-03841-s004, ch: 쌓다, pr: 싸타, ds: to lay a foundation or basis for something}
+  - {id: ko-nikl-12705-s022, ch: 잡다, pr: 잡따, ds: to estimate a duration or amount}
+  - {id: ko-nikl-39156-s008, ch: 밀다, pr: 밀ː다, ds: to assert or push ahead with a proposal (figurative)}
+  - {id: ko-nikl-21815-s010, ch: 통하다, pr: 통하다, ds: to use someone or something as an intermediary}
+  - {id: ko-nikl-44315-s002, ch: 채용, pr: 채ː용, ds: adoption of an opinion or method for use}
+  - {id: ko-nikl-11334-s002, ch: 일, pr: 일ː, ds: an undertaking one intends to accomplish}
+  - {id: ko-nikl-12488-s002, ch: 작업, pr: 자겁, ds: work undertaken with a specific purpose and plan}
+  review_grammar:
+  - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
+  - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
+  - {id: ko-topik5-g026, ch: V-는 대로, ds: act as soon as something happens or as instructed}
 - id: level-19-communication-01
   title: Communication and information - 1
   outcome: Repair ambiguity and relay information with clear attribution.
@@ -86,14 +125,14 @@ units:
   - {id: ko-nikl-39401-s002, ch: 바로, pr: 바로, ds: truthfully; exactly as the facts are}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-48927-s001, ch: 요구, pr: 요구, ds: a demand for something needed or due}
-  - {id: ko-nikl-49069-s001, ch: 요청, pr: 요청, ds: a request for someone to do something necessary}
-  - {id: ko-nikl-01823-s001, ch: 수신자, pr: 수신자, ds: the recipient of a message or signal}
-  - {id: ko-nikl-08637-s001, ch: 사회자, pr: 사회자 / 사훼자, ds: a moderator or host presiding over a meeting or ceremony}
   - {id: ko-nikl-29992-s001, ch: 공지, pr: 공지, ds: a notice informing many people}
   - {id: ko-nikl-40037-s001, ch: 발신자, pr: 발씬자, ds: the sender of a message or signal}
   - {id: ko-nikl-44184-s003, ch: 창구, pr: 창구, ds: a channel for negotiating with an outside party}
   - {id: ko-nikl-13070-s002, ch: 재료, pr: 재료, ds: material or resources used for a task}
+  - {id: ko-nikl-36623-s003, ch: 매듭, pr: 매듭, ds: the conclusion or closure of a matter}
+  - {id: ko-nikl-14938-s001, ch: 제의, pr: 제의 / 제이, ds: a proposal offered for consideration or discussion}
+  - {id: ko-nikl-44010-s001, ch: 찬반, pr: 찬ː반, ds: support and opposition; views for and against}
+  - {id: ko-nikl-52030-s001, ch: 회담, pr: 회ː담 / 훼ː담, ds: talks between parties concerned with a matter}
   review_grammar:
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
   - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
@@ -105,14 +144,15 @@ units:
   - {id: ko-nikl-43838-s003, ch: 차, pr: 차, ds: bound marker for a stage after a given period}
   - {id: ko-nikl-13818-s001, ch: 전반, pr: 전반, ds: the first half of a period or match}
   - {id: ko-nikl-18344-s001, ch: 동기, pr: 동기, ds: the corresponding period}
+  - {id: ko-nikl-42537-s002, ch: 지금, pr: 지금, ds: the present rather than past or future}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-19621-s003, ch: 때, pr: 때, ds: the right time to do something}
   - {id: ko-nikl-15307-s005, ch: 놓치다, pr: 녿치다, ds: to miss the right time or opportunity}
   - {id: ko-nikl-28704-s002, ch: 계절, pr: 계ː절 / 게ː절, ds: the peak or suitable season for an activity}
   - {id: ko-nikl-42538-s002, ch: 지금, pr: 지금, ds: 'at present, rather than in the past or future'}
   - {id: ko-nikl-01813-s001, ch: 수시로, pr: 수시로, ds: frequently; at any time}
   - {id: ko-nikl-43929-s002, ch: 차차, pr: 차차, ds: 'later on, little by little without rushing'}
+  - {id: ko-nikl-16825-s001, ch: 당장, pr: 당장, ds: the very place or time of an event}
   - {id: ko-nikl-22187-s002, ch: 틈틈이, pr: 틈트미, ds: whenever one has spare time}
   - {id: ko-nikl-16282-s003, ch: 다투다, pr: 다투다, ds: for a situation to become extremely urgent}
   review_grammar:
@@ -144,6 +184,7 @@ units:
   vocabulary:
   - {id: ko-nikl-05024-s001, ch: 약, pr: 약, ds: approximately; about (before a quantity)}
   - {id: ko-nikl-13571-s001, ch: 적어도, pr: 저ː거도, ds: at least (a minimum quantity)}
+  - {id: ko-nikl-23241-s002, ch: 표준, pr: 표준, ds: an average or generally usual condition}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-46349-s001, ch: 어둡다, pr: 어둡따, ds: to be dark through lack of light}
@@ -189,14 +230,14 @@ units:
   - {id: ko-nikl-34268-s016, ch: 나오다, pr: 나오다, ds: to come out; to emerge as a result}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-17961-s001, ch: 도저히, pr: 도ː저히, ds: however hard one tries (with a negative expression)}
-  - {id: ko-nikl-08059-s002, ch: 뾰족하다, pr: 뾰조카다, ds: to be effective enough to solve a problem (figurative)}
   - {id: ko-nikl-19873-s003, ch: 뚫리다, pr: 뚤리다, ds: for a difficulty to be overcome (figurative)}
+  - {id: ko-nikl-42997-s001, ch: 직접, pr: 직쩝, ds: direct connection without an intermediary}
   - {id: ko-nikl-15074-s001, ch: 조건, pr: 조껀, ds: a condition; a prerequisite}
   - {id: ko-nikl-12840-s001, ch: 장단점, pr: 장단쩜, ds: advantages and disadvantages; pros and cons}
   - {id: ko-nikl-01580-s001, ch: 수단, pr: 수단, ds: a means or tool for achieving a purpose}
   - {id: ko-nikl-08934-s002, ch: 삼다, pr: 삼ː따, ds: to use something as a means or tool}
   - {id: ko-nikl-22178-s003, ch: 틈, pr: 틈, ds: an opportunity to act}
+  - {id: ko-nikl-14443-s002, ch: 정도, pr: 정도, ds: a suitable limit that should not be exceeded}
   review_grammar:
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
@@ -300,6 +341,13 @@ units:
   - {id: ko-nikl-21815-s012, ch: 통하다, pr: 통하다, ds: to draw on a process or experience}
   - {id: ko-nikl-19873-s004, ch: 뚫리다, pr: 뚤리다, ds: for a way to solve a problem to be found (figurative)}
   - {id: ko-nikl-35310-s004, ch: 넘다, pr: 넘ː따, ds: to go beyond a standard or limit}
+  - {id: ko-nikl-11010-s001, ch: 이해, pr: 이ː해, ds: recognizing what something is}
+  - {id: ko-nikl-38465-s005, ch: 문제, pr: 문ː제, ds: matters concerning a particular subject}
+  - {id: ko-nikl-47250-s002, ch: 역사, pr: 역싸, ds: the history of changes in a thing or phenomenon}
+  - {id: ko-nikl-18049-s002, ch: 독립, pr: 동닙, ds: separate existence independent of other things}
+  - {id: ko-nikl-01965-s002, ch: 수준, pr: 수준, ds: a standard considered ordinary or average}
+  - {id: ko-nikl-25290-s001, ch: 현실, pr: 현ː실, ds: present reality; the actual state of things}
+  - {id: ko-nikl-40074-s002, ch: 발전, pr: 발쩐, ds: unfolding of events in a particular direction}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-00993-s007, ch: 속, pr: 속ː, ds: the concealed substance of an affair}
@@ -314,6 +362,22 @@ units:
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
+- id: level-19-society-01
+  title: Society and community - 1
+  outcome: Explain an issue without generalizing all Korean speakers from one example.
+  vocabulary:
+  - {id: ko-nikl-27111-s001, ch: 개인, pr: 개ː인, ds: an individual within a group or organization}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-06354-s001, ch: 부대, pr: 부대, ds: a military unit or its quarters}
+  - {id: ko-nikl-31422-s001, ch: 군대, pr: 군대, ds: an organized military force}
+  - {id: ko-nikl-06945-s001, ch: 분쟁, pr: 분쟁, ds: a fierce dispute in which neither side yields}
+  - {id: ko-nikl-11219-s003, ch: 인심, pr: 인심, ds: public sentiment}
+  - {id: ko-nikl-50458-s002, ch: 유행, pr: 유행, ds: a trend; widespread popularity}
+  - {id: ko-nikl-16492-s001, ch: 단지, pr: 단지, ds: a complex of buildings or facilities with a shared purpose}
+  - {id: ko-nikl-04038-s001, ch: 아끼다, pr: 아끼다, ds: to use something valued carefully rather than wastefully}
+  - {id: ko-nikl-16803-s001, ch: 당사자, pr: 당사자, ds: a party directly involved in a matter}
+  review_grammar: []
 - id: level-19-institutions-01
   title: Institutions and public life - 1
   outcome: Explain a public process and distinguish a rule from its practical effects.
@@ -337,11 +401,11 @@ units:
   - {id: ko-nikl-30406-s002, ch: 관측, pr: 관측, ds: an outlook inferred from observed circumstances}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-48010-s001, ch: 예선, pr: 예ː선, ds: a preliminary or qualifying round}
-  - {id: ko-nikl-08716-s001, ch: 산사태, pr: 산사태, ds: a landslide}
-  - {id: ko-nikl-07101-s001, ch: 불길, pr: 불낄, ds: fierce flames}
-  - {id: ko-nikl-32393-s003, ch: 금, pr: 금, ds: a gold medal}
-  - {id: ko-nikl-48481-s008, ch: 옮기다, pr: 옴기다, ds: to spread fire or a rumor from one place to another}
+  - {id: ko-nikl-49169-s001, ch: 용의자, pr: 용의자 / 용이자, ds: a person suspected of committing a crime}
+  - {id: ko-nikl-16804-s001, ch: 당선, pr: 당선, ds: being elected}
+  - {id: ko-nikl-31398-s002, ch: 국회, pr: 구쾨 / 구퀘, ds: a parliamentary session}
+  - {id: ko-nikl-08389-s001, ch: 사상, pr: 사ː상, ds: since the beginning of recorded history}
+  - {id: ko-nikl-21545-s003, ch: 테이프, pr: 테이프, ds: tape for recording sound or video}
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   - {id: ko-nikl-11303-s001, ch: 인터뷰, pr: 인터뷰, ds: an interview to gather information}
   - {id: ko-nikl-43229-s001, ch: 진행자, pr: 진ː행자, ds: a presenter who hosts an event or broadcast}
@@ -362,6 +426,7 @@ units:
   - {id: ko-nikl-00295-s002, ch: 성질, pr: 성ː질, ds: an inherent property of a thing or phenomenon}
   - {id: ko-nikl-38721-s001, ch: 물체, pr: 물체, ds: a physical object with a definite form}
   - {id: ko-nikl-44594-s001, ch: 철, pr: 철, ds: iron; the metal}
+  - {id: ko-nikl-11056-s001, ch: 인간, pr: 인간, ds: a human being}
   review_grammar: []
 - id: level-19-argument-01
   title: Argument and decisions - 1
@@ -393,10 +458,10 @@ units:
   - {id: ko-nikl-17009-s001, ch: 대략, pr: 대ː략, ds: approximately; by rough estimation}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-42048-s002, ch: 줄다, pr: 줄ː다, ds: to decrease in number or quantity}
-  - {id: ko-nikl-34613-s003, ch: 남다, pr: 남ː따, ds: to leave a remainder in division}
+  - {id: ko-nikl-08996-s002, ch: 삽, pr: 삽, ds: a shovelful of soil or similar material}
   - {id: ko-nikl-43874-s004, ch: 차례, pr: 차례, ds: a time or occasion as a unit for counting occurrences}
   - {id: ko-nikl-09077-s002, ch: 상당히, pr: 상당히, ds: quite a lot; a considerable amount}
+  - {id: ko-nikl-27485-s001, ch: 거의, pr: 거의 / 거이, ds: an amount just short of the whole}
   - {id: ko-nikl-00398-s002, ch: 세대, pr: 세ː대, ds: a counter for households living together in a home}
   - {id: ko-nikl-25561-s002, ch: 가구, pr: 가구, ds: a counter for households}
   - {id: ko-nikl-15044-s003, ch: 조각, pr: 조각, ds: a piece as a unit for counting fragments}
@@ -410,14 +475,14 @@ units:
   grammar:
   - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
   review_vocabulary:
-  - {id: ko-nikl-32152-s003, ch: 그치다, pr: 그치다, ds: to remain at a certain level without progressing further}
-  - {id: ko-nikl-12705-s006, ch: 잡다, pr: 잡따, ds: 'to discover a clue, main point, or evidence'}
-  - {id: ko-nikl-12758-s014, ch: 잡히다, pr: 자피다, ds: 'for a clue, main point, or evidence to be found'}
-  - {id: ko-nikl-39401-s003, ch: 바로, pr: 바로, ds: 'correctly, in accordance with a principle or logic'}
-  - {id: ko-nikl-07882-s002, ch: 빤히, pr: 빤ː히, ds: clearly; with the result or state plainly evident}
-  - {id: ko-nikl-21815-s012, ch: 통하다, pr: 통하다, ds: to draw on a process or experience}
-  - {id: ko-nikl-19873-s004, ch: 뚫리다, pr: 뚤리다, ds: for a way to solve a problem to be found (figurative)}
   - {id: ko-nikl-35310-s004, ch: 넘다, pr: 넘ː따, ds: to go beyond a standard or limit}
+  - {id: ko-nikl-11010-s001, ch: 이해, pr: 이ː해, ds: recognizing what something is}
+  - {id: ko-nikl-38465-s005, ch: 문제, pr: 문ː제, ds: matters concerning a particular subject}
+  - {id: ko-nikl-47250-s002, ch: 역사, pr: 역싸, ds: the history of changes in a thing or phenomenon}
+  - {id: ko-nikl-18049-s002, ch: 독립, pr: 동닙, ds: separate existence independent of other things}
+  - {id: ko-nikl-01965-s002, ch: 수준, pr: 수준, ds: a standard considered ordinary or average}
+  - {id: ko-nikl-25290-s001, ch: 현실, pr: 현ː실, ds: present reality; the actual state of things}
+  - {id: ko-nikl-40074-s002, ch: 발전, pr: 발쩐, ds: unfolding of events in a particular direction}
   review_grammar:
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}

@@ -117,6 +117,11 @@ category_adjudication:
     count classification only; they never generate teaching placements.
   function_identities_by_role:
     reference_and_questions:
+      - ko-lex-06138
+      - ko-lex-21111
+      - ko-lex-31831
+      - ko-lex-34584
+      - ko-lex-08389
       - ko-lex-24369
       - ko-lex-26900
       - ko-lex-09735
@@ -354,6 +359,20 @@ multi_parent_decisions:
       temporal lexeme, not separately counted homographs.
 
 additional_grouping_evidence:
+  society-roles-and-relationships: >
+    society-identities.yaml and society-notes.yaml retain distinct human
+    roles, organizational reference, institutional processes, economic
+    relationships, and abstract connections. Five new person/time-reference
+    identities are explicitly function-accounted above. Sourced longer names,
+    noun/adverb counterparts, and the existing branch-only 채용 family have
+    individual identity decisions; source noun POS does not automatically
+    create another free lemma.
+  household-equipment-and-measures: >
+    household-identities.yaml and household-notes.yaml cover source-backed
+    home equipment and tools, preserve the existing 걸레/바늘 identities,
+    and share 매듭 with society's abstract meanings. Conventional vessel and
+    tool measures add senses without additional free identities. The
+    provisional 나사/나사못 boundary requires lexical-family review.
   physical-mobility-and-wayfinding: >
     mobility-identities.yaml and mobility-notes.yaml identify forty provisional
     free lexical units and forty-six selected senses. Vehicles, lanes, luggage

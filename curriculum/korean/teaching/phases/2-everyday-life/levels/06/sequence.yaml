@@ -29,16 +29,19 @@ units:
   vocabulary:
   - {id: ko-nikl-10319-s001, ch: 의사, pr: 의사, ds: a doctor; a physician}
   - {id: ko-nikl-26344-s001, ch: 간호사, pr: 간호사, ds: a nurse}
+  - {id: ko-nikl-00265-s001, ch: 성인, pr: 성인, ds: an adult}
+  - {id: ko-nikl-46380-s001, ch: 어른, pr: 어ː른, ds: a fully grown person; an adult}
+  - {id: ko-nikl-28540-s001, ch: 경찰관, pr: 경ː찰관, ds: a police officer}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-18448-s001, ch: 동생, pr: 동생, ds: a younger sibling or younger cousin}
-  - {id: ko-nikl-04032-s001, ch: 아기, pr: 아기, ds: a baby; an infant}
-  - {id: ko-nikl-06438-s001, ch: 부모, pr: 부모, ds: parents}
-  - {id: ko-nikl-10879-s002, ch: 이웃, pr: 이욷, ds: a neighbor; a neighboring home}
-  - {id: ko-nikl-08818-s001, ch: 살, pr: 살, ds: years of age; native-number age counter}
-  - {id: ko-nikl-01196-s001, ch: 손님, pr: 손님, ds: a guest or visitor (respectful)}
-  - {id: ko-nikl-41819-s004, ch: 주인, pr: 주인, ds: a host who invites or receives guests}
-  - {id: ko-nikl-28398-s002, ch: 경비, pr: 경ː비, ds: a guard watching over a building or area}
+  - {id: ko-nikl-35979-s001, ch: 막내, pr: 망내, ds: the youngest sibling}
+  - {id: ko-nikl-36208-s001, ch: 맏이, pr: 마지, ds: the eldest child among siblings}
+  - {id: ko-nikl-41748-s001, ch: 주부, pr: 주부, ds: a homemaker}
+  - {id: ko-nikl-46402-s001, ch: 어린이, pr: 어리니, ds: a child from preschool through primary-school age}
+  - {id: ko-nikl-24014-s001, ch: 학부모, pr: 학뿌모, ds: the parent of a student}
+  - {id: ko-nikl-28903-s001, ch: 고등학생, pr: 고등학쌩, ds: a high-school student}
+  - {id: ko-nikl-42310-s001, ch: 중학생, pr: 중학쌩, ds: a middle-school student}
+  - {id: ko-nikl-45052-s001, ch: 초등학생, pr: 초등학쌩, ds: a primary-school student}
   review_grammar:
   - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
   - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
@@ -50,14 +53,14 @@ units:
   - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34024-s001, ch: 끌다, pr: 끌ː다, ds: to drag something along the ground}
-  - {id: ko-nikl-39156-s001, ch: 밀다, pr: 밀ː다, ds: to push something in the desired direction}
-  - {id: ko-nikl-48481-s001, ch: 옮기다, pr: 옴기다, ds: to move something from one place to another}
-  - {id: ko-nikl-21815-s001, ch: 통하다, pr: 통하다, ds: to flow through without obstruction}
-  - {id: ko-nikl-35988-s001, ch: 막다, pr: 막따, ds: 'to block a road, passage, or opening'}
-  - {id: ko-nikl-35310-s007, ch: 넘다, pr: 넘ː따, ds: to overflow from a space filled beyond its capacity}
-  - {id: ko-nikl-44318-s001, ch: 채우다, pr: 채우다, ds: to lock a door or drawer so it cannot be opened}
-  - {id: ko-nikl-24785-s001, ch: 핸들, pr: 핸들, ds: a handle used to open or lift an object or hold onto it}
+  - {id: ko-nikl-16897-s001, ch: 대걸레, pr: 대걸레, ds: a mop with a long handle}
+  - {id: ko-nikl-20781-s001, ch: 콘센트, pr: 콘센트, ds: an electrical outlet or socket}
+  - {id: ko-nikl-21607-s001, ch: 토스터, pr: 토스터, ds: an electric toaster for slices of bread}
+  - {id: ko-nikl-39040-s001, ch: 믹서, pr: 믹써, ds: a blender or grinder for fruit and vegetables}
+  - {id: ko-nikl-40114-s001, ch: 발코니, pr: 발코니, ds: a balcony projecting outside a building wall}
+  - {id: ko-nikl-40637-s001, ch: 배수구, pr: 배수구, ds: a drain opening in a sink or similar fixture}
+  - {id: ko-nikl-48249-s001, ch: 오븐, pr: 오븐, ds: an oven that heats food from several sides}
+  - {id: ko-nikl-49104-s001, ch: 욕조, pr: 욕쪼, ds: a bathtub}
   review_grammar:
   - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
   - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
@@ -409,6 +412,12 @@ units:
   - {id: ko-nikl-35988-s003, ch: 막다, pr: 막따, ds: to keep something from coming inside}
   - {id: ko-nikl-05080-s002, ch: 약하다, pr: 야카다, ds: to be physically frail or weak}
   - {id: ko-nikl-05080-s004, ch: 약하다, pr: 야카다, ds: to have little resistance or endurance}
+  - {id: ko-nikl-04077-s001, ch: 아동, pr: 아동, ds: a young child}
+  - {id: ko-nikl-05926-s001, ch: 보호자, pr: 보ː호자, ds: a person responsible for protecting someone in their care}
+  - {id: ko-nikl-10331-s001, ch: 의식, pr: 의ː식, ds: consciousness; ability to perceive while awake}
+  - {id: ko-nikl-31204-s002, ch: 구호, pr: 구ː호, ds: care for sick or injured people}
+  - {id: ko-nikl-12234-s001, ch: 자세, pr: 자세, ds: posture; how one holds or moves one's body}
+  - {id: ko-nikl-29369-s001, ch: 고통, pr: 고통, ds: physical or mental pain}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-35854-s002, ch: 마스크, pr: 마스크, ds: a mask covering the nose and mouth}
@@ -476,6 +485,17 @@ units:
   - {id: ko-nikl-36562-s010, ch: 맞추다, pr: 맏추다, ds: to order something made to one's specifications}
   - {id: ko-nikl-28958-s001, ch: 고르다, pr: 고르다, ds: to choose or pick something from several possibilities}
   - {id: ko-nikl-16568-s001, ch: 달다, pr: 달다, ds: to weigh something on a scale}
+  - {id: ko-nikl-33166-s001, ch: 기혼, pr: 기혼, ds: the state of already being married}
+  - {id: ko-nikl-39029-s001, ch: 미혼, pr: 미ː혼, ds: not yet married; an unmarried person}
+  - {id: ko-nikl-40666-s001, ch: 배우자, pr: 배ː우자, ds: a spouse}
+  - {id: ko-nikl-50308-s001, ch: 유아, pr: 유아, ds: a young child not yet in school}
+  - {id: ko-nikl-06138-s001, ch: 본인, pr: 보닌, ds: the person directly concerned}
+  - {id: ko-nikl-32922-s001, ch: 기술자, pr: 기술짜, ds: a skilled specialist or technician}
+  - {id: ko-nikl-44368-s001, ch: 책임자, pr: 채김자, ds: a person responsible for a matter}
+  - {id: ko-nikl-08501-s001, ch: 사인, pr: 사인, ds: signing one's name; a signature}
+  - {id: ko-nikl-28228-s001, ch: 결제, pr: 결쩨, ds: settling a payment or transaction}
+  - {id: ko-nikl-30319-s002, ch: 관리, pr: 괄리, ds: maintenance or improvement of facilities}
+  - {id: ko-nikl-44184-s001, ch: 창구, pr: 창구, ds: an opening for communication between inside and outside}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-39796-s001, ch: 반품, pr: 반ː품, ds: returning purchased goods; the goods returned}
@@ -486,6 +506,33 @@ units:
   - {id: ko-nikl-23376-s001, ch: 품질, pr: 품ː질, ds: the quality and characteristics of goods}
   - {id: ko-nikl-49724-s001, ch: 원산지, pr: 원산지, ds: the place where goods are produced}
   - {id: ko-nikl-38448-s001, ch: 문의, pr: 무ː늬 / 무ː니, ds: an inquiry about something one wants to know}
+  review_grammar:
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+- id: level-06-services-03
+  title: Services and transactions - 3
+  outcome: Clarify requirements and resolve a service problem politely.
+  vocabulary:
+  - {id: ko-nikl-30405-s001, ch: 관청, pr: 관청, ds: a government office or its building}
+  - {id: ko-nikl-07423-s001, ch: 브랜드, pr: 브랜드, ds: a brand; a product name}
+  - {id: ko-nikl-09281-s001, ch: 상품, pr: 상품, ds: goods bought and sold; merchandise}
+  - {id: ko-nikl-09783-s002, ch: 서비스, pr: 서비스, ds: kind and attentive treatment of another person}
+  - {id: ko-nikl-11681-s001, ch: 임대, pr: 임ː대, ds: renting out property or goods}
+  - {id: ko-nikl-22438-s001, ch: 판매, pr: 판매, ds: selling goods}
+  - {id: ko-nikl-23363-s002, ch: 품목, pr: 품ː목, ds: the name of a type of goods}
+  - {id: ko-nikl-30949-s001, ch: 구매, pr: 구매, ds: purchasing goods}
+  - {id: ko-nikl-38734-s001, ch: 물품, pr: 물품, ds: articles made for practical use}
+  - {id: ko-nikl-13430-s001, ch: 저울, pr: 저울, ds: a weighing scale}
+  - {id: ko-nikl-42060-s001, ch: 줄자, pr: 줄자, ds: a flexible measuring tape}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-50308-s001, ch: 유아, pr: 유아, ds: a young child not yet in school}
+  - {id: ko-nikl-06138-s001, ch: 본인, pr: 보닌, ds: the person directly concerned}
+  - {id: ko-nikl-32922-s001, ch: 기술자, pr: 기술짜, ds: a skilled specialist or technician}
+  - {id: ko-nikl-44368-s001, ch: 책임자, pr: 채김자, ds: a person responsible for a matter}
+  - {id: ko-nikl-08501-s001, ch: 사인, pr: 사인, ds: signing one's name; a signature}
+  - {id: ko-nikl-28228-s001, ch: 결제, pr: 결쩨, ds: settling a payment or transaction}
+  - {id: ko-nikl-30319-s002, ch: 관리, pr: 괄리, ds: maintenance or improvement of facilities}
+  - {id: ko-nikl-44184-s001, ch: 창구, pr: 창구, ds: an opening for communication between inside and outside}
   review_grammar:
   - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
 - id: level-06-leisure-01
@@ -514,6 +561,22 @@ units:
   - {id: ko-nikl-11530-s001, ch: 일시불, pr: 일씨불, ds: paying the whole amount at once}
   - {id: ko-nikl-10036-s001, ch: 선불, pr: 선불, ds: payment before work is completed or goods are received}
   - {id: ko-nikl-01793-s001, ch: 수수료, pr: 수수료, ds: a fee for doing something on someone else's behalf}
+  - {id: ko-nikl-01910-s001, ch: 수입, pr: 수입, ds: earnings or income received from work}
+  - {id: ko-nikl-04920-s001, ch: 액수, pr: 액쑤, ds: an amount of money}
+  - {id: ko-nikl-07581-s001, ch: 비용, pr: 비ː용, ds: a cost or expense}
+  - {id: ko-nikl-09651-s001, ch: 생활비, pr: 생활비, ds: living expenses}
+  - {id: ko-nikl-11683-s001, ch: 임대료, pr: 임ː대료, ds: a fee received for renting out property or goods}
+  - {id: ko-nikl-13472-s002, ch: 저축, pr: 저ː축, ds: earned money left after spending; savings}
+  - {id: ko-nikl-13513-s002, ch: 적금, pr: 적끔, ds: installment savings deposited over a fixed period}
+  - {id: ko-nikl-16874-s001, ch: 대가, pr: 대ː까, ds: the price paid for an item}
+  - {id: ko-nikl-16936-s001, ch: 대금, pr: 대ː금, ds: payment for goods or work}
+  - {id: ko-nikl-25242-s002, ch: 현금, pr: 현ː금, ds: money currently in one's possession}
+  - {id: ko-nikl-25242-s003, ch: 현금, pr: 현ː금, ds: payment made immediately at the point of sale}
+  - {id: ko-nikl-28689-s001, ch: 계약금, pr: 계ː약끔 / 게ː약끔, ds: a deposit paid when signing a contract}
+  - {id: ko-nikl-32462-s001, ch: 금액, pr: 그맥, ds: a monetary amount}
+  - {id: ko-nikl-42699-s001, ch: 지불, pr: 지불, ds: paying money or a price}
+  - {id: ko-nikl-47951-s001, ch: 예금, pr: 예ː금, ds: depositing money with a financial institution; the deposit}
+  - {id: ko-nikl-03268-s002, ch: 신용, pr: 시ː뇽, ds: capacity to receive goods or money now and pay later}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-25242-s001, ch: 현금, pr: 현ː금, ds: cash; issued currency}
@@ -593,6 +656,7 @@ units:
   - {id: ko-nikl-04603-s001, ch: 알맞다, pr: 알ː맏따, ds: 'to be just right, neither too much nor too little'}
   - {id: ko-nikl-13522-s001, ch: 적당하다, pr: 적땅하다, ds: 'to suit the requirements, conditions, or degree'}
   - {id: ko-nikl-08059-s001, ch: 뾰족하다, pr: 뾰조카다, ds: 'to have a thin, sharp point'}
+  - {id: ko-nikl-14443-s001, ch: 정도, pr: 정도, ds: a degree or level of quality or intensity}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-25966-s001, ch: 가장, pr: 가장, ds: most; to the greatest degree}
@@ -649,6 +713,7 @@ units:
   - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
   - {id: ko-nikl-37379-s001, ch: 모금, pr: 모금, ds: a counter for mouthfuls of liquid or gas}
   - {id: ko-nikl-04575-s001, ch: 알, pr: 알, ds: a counter for small round objects}
+  - {id: ko-nikl-14443-s003, ch: 정도, pr: 정도, ds: that amount or level}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-27486-s001, ch: 거의, pr: 거의 / 거이, ds: almost all; nearly the whole amount}
@@ -668,14 +733,14 @@ units:
   grammar:
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
   review_vocabulary:
-  - {id: ko-nikl-06438-s001, ch: 부모, pr: 부모, ds: parents}
-  - {id: ko-nikl-10879-s002, ch: 이웃, pr: 이욷, ds: a neighbor; a neighboring home}
-  - {id: ko-nikl-08818-s001, ch: 살, pr: 살, ds: years of age; native-number age counter}
-  - {id: ko-nikl-01196-s001, ch: 손님, pr: 손님, ds: a guest or visitor (respectful)}
-  - {id: ko-nikl-41819-s004, ch: 주인, pr: 주인, ds: a host who invites or receives guests}
-  - {id: ko-nikl-28398-s002, ch: 경비, pr: 경ː비, ds: a guard watching over a building or area}
+  - {id: ko-nikl-28903-s001, ch: 고등학생, pr: 고등학쌩, ds: a high-school student}
+  - {id: ko-nikl-42310-s001, ch: 중학생, pr: 중학쌩, ds: a middle-school student}
+  - {id: ko-nikl-45052-s001, ch: 초등학생, pr: 초등학쌩, ds: a primary-school student}
   - {id: ko-nikl-10319-s001, ch: 의사, pr: 의사, ds: a doctor; a physician}
   - {id: ko-nikl-26344-s001, ch: 간호사, pr: 간호사, ds: a nurse}
+  - {id: ko-nikl-00265-s001, ch: 성인, pr: 성인, ds: an adult}
+  - {id: ko-nikl-46380-s001, ch: 어른, pr: 어ː른, ds: a fully grown person; an adult}
+  - {id: ko-nikl-28540-s001, ch: 경찰관, pr: 경ː찰관, ds: a police officer}
   review_grammar:
   - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
   - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
@@ -687,14 +752,14 @@ units:
   grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
   review_vocabulary:
-  - {id: ko-nikl-19463-s002, ch: 따갑다, pr: 따갑따, ds: to sting as if the skin were being pricked}
-  - {id: ko-nikl-27714-s008, ch: 걸리다, pr: 걸리다, ds: to fall ill or catch a disease}
-  - {id: ko-nikl-37806-s001, ch: 몹시, pr: 몹ː씨, ds: very intensely; extremely}
-  - {id: ko-nikl-39156-s002, ch: 밀다, pr: 밀ː다, ds: to scrub or scrape something off a surface}
-  - {id: ko-nikl-48481-s010, ch: 옮기다, pr: 옴기다, ds: to pass an illness to another person}
-  - {id: ko-nikl-35988-s003, ch: 막다, pr: 막따, ds: to keep something from coming inside}
   - {id: ko-nikl-05080-s002, ch: 약하다, pr: 야카다, ds: to be physically frail or weak}
   - {id: ko-nikl-05080-s004, ch: 약하다, pr: 야카다, ds: to have little resistance or endurance}
+  - {id: ko-nikl-04077-s001, ch: 아동, pr: 아동, ds: a young child}
+  - {id: ko-nikl-05926-s001, ch: 보호자, pr: 보ː호자, ds: a person responsible for protecting someone in their care}
+  - {id: ko-nikl-10331-s001, ch: 의식, pr: 의ː식, ds: consciousness; ability to perceive while awake}
+  - {id: ko-nikl-31204-s002, ch: 구호, pr: 구ː호, ds: care for sick or injured people}
+  - {id: ko-nikl-12234-s001, ch: 자세, pr: 자세, ds: posture; how one holds or moves one's body}
+  - {id: ko-nikl-29369-s001, ch: 고통, pr: 고통, ds: physical or mental pain}
   review_grammar: []
 - id: level-06-services-practice-01
   title: Services and transactions - sentence practice 1
@@ -705,14 +770,14 @@ units:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
   review_vocabulary:
-  - {id: ko-nikl-50874-s001, ch: 은, pr: 은, ds: silver; the metal}
-  - {id: ko-nikl-01614-s001, ch: 수량, pr: 수ː량, ds: number and quantity}
-  - {id: ko-nikl-09218-s002, ch: 상자, pr: 상자, ds: boxful; a unit for boxed goods}
-  - {id: ko-nikl-21669-s002, ch: 통, pr: 통, ds: containerful; a unit of quantity}
-  - {id: ko-nikl-04620-s001, ch: 알아보다, pr: 아라보다, ds: to inquire or investigate in order to find something out}
-  - {id: ko-nikl-36562-s010, ch: 맞추다, pr: 맏추다, ds: to order something made to one's specifications}
-  - {id: ko-nikl-28958-s001, ch: 고르다, pr: 고르다, ds: to choose or pick something from several possibilities}
-  - {id: ko-nikl-16568-s001, ch: 달다, pr: 달다, ds: to weigh something on a scale}
+  - {id: ko-nikl-09783-s002, ch: 서비스, pr: 서비스, ds: kind and attentive treatment of another person}
+  - {id: ko-nikl-11681-s001, ch: 임대, pr: 임ː대, ds: renting out property or goods}
+  - {id: ko-nikl-22438-s001, ch: 판매, pr: 판매, ds: selling goods}
+  - {id: ko-nikl-23363-s002, ch: 품목, pr: 품ː목, ds: the name of a type of goods}
+  - {id: ko-nikl-30949-s001, ch: 구매, pr: 구매, ds: purchasing goods}
+  - {id: ko-nikl-38734-s001, ch: 물품, pr: 물품, ds: articles made for practical use}
+  - {id: ko-nikl-13430-s001, ch: 저울, pr: 저울, ds: a weighing scale}
+  - {id: ko-nikl-42060-s001, ch: 줄자, pr: 줄자, ds: a flexible measuring tape}
   review_grammar:
   - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
 - id: level-06-services-practice-02
@@ -722,14 +787,14 @@ units:
   grammar:
   - {id: ko-topik2-g036, ch: V/A-지 않다, ds: negate a predicate with a final auxiliary}
   review_vocabulary:
-  - {id: ko-nikl-50874-s001, ch: 은, pr: 은, ds: silver; the metal}
-  - {id: ko-nikl-01614-s001, ch: 수량, pr: 수ː량, ds: number and quantity}
-  - {id: ko-nikl-09218-s002, ch: 상자, pr: 상자, ds: boxful; a unit for boxed goods}
-  - {id: ko-nikl-21669-s002, ch: 통, pr: 통, ds: containerful; a unit of quantity}
-  - {id: ko-nikl-04620-s001, ch: 알아보다, pr: 아라보다, ds: to inquire or investigate in order to find something out}
-  - {id: ko-nikl-36562-s010, ch: 맞추다, pr: 맏추다, ds: to order something made to one's specifications}
-  - {id: ko-nikl-28958-s001, ch: 고르다, pr: 고르다, ds: to choose or pick something from several possibilities}
-  - {id: ko-nikl-16568-s001, ch: 달다, pr: 달다, ds: to weigh something on a scale}
+  - {id: ko-nikl-09783-s002, ch: 서비스, pr: 서비스, ds: kind and attentive treatment of another person}
+  - {id: ko-nikl-11681-s001, ch: 임대, pr: 임ː대, ds: renting out property or goods}
+  - {id: ko-nikl-22438-s001, ch: 판매, pr: 판매, ds: selling goods}
+  - {id: ko-nikl-23363-s002, ch: 품목, pr: 품ː목, ds: the name of a type of goods}
+  - {id: ko-nikl-30949-s001, ch: 구매, pr: 구매, ds: purchasing goods}
+  - {id: ko-nikl-38734-s001, ch: 물품, pr: 물품, ds: articles made for practical use}
+  - {id: ko-nikl-13430-s001, ch: 저울, pr: 저울, ds: a weighing scale}
+  - {id: ko-nikl-42060-s001, ch: 줄자, pr: 줄자, ds: a flexible measuring tape}
   review_grammar:
   - {id: ko-topik2-g004, ch: V-아/어 보다, ds: try an action or describe trying it before}
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
@@ -758,14 +823,14 @@ units:
   grammar:
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
   review_vocabulary:
-  - {id: ko-nikl-19463-s002, ch: 따갑다, pr: 따갑따, ds: to sting as if the skin were being pricked}
-  - {id: ko-nikl-27714-s008, ch: 걸리다, pr: 걸리다, ds: to fall ill or catch a disease}
-  - {id: ko-nikl-37806-s001, ch: 몹시, pr: 몹ː씨, ds: very intensely; extremely}
-  - {id: ko-nikl-39156-s002, ch: 밀다, pr: 밀ː다, ds: to scrub or scrape something off a surface}
-  - {id: ko-nikl-48481-s010, ch: 옮기다, pr: 옴기다, ds: to pass an illness to another person}
-  - {id: ko-nikl-35988-s003, ch: 막다, pr: 막따, ds: to keep something from coming inside}
   - {id: ko-nikl-05080-s002, ch: 약하다, pr: 야카다, ds: to be physically frail or weak}
   - {id: ko-nikl-05080-s004, ch: 약하다, pr: 야카다, ds: to have little resistance or endurance}
+  - {id: ko-nikl-04077-s001, ch: 아동, pr: 아동, ds: a young child}
+  - {id: ko-nikl-05926-s001, ch: 보호자, pr: 보ː호자, ds: a person responsible for protecting someone in their care}
+  - {id: ko-nikl-10331-s001, ch: 의식, pr: 의ː식, ds: consciousness; ability to perceive while awake}
+  - {id: ko-nikl-31204-s002, ch: 구호, pr: 구ː호, ds: care for sick or injured people}
+  - {id: ko-nikl-12234-s001, ch: 자세, pr: 자세, ds: posture; how one holds or moves one's body}
+  - {id: ko-nikl-29369-s001, ch: 고통, pr: 고통, ds: physical or mental pain}
   review_grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
 - id: level-06-time-practice-01
@@ -775,13 +840,13 @@ units:
   grammar:
   - {id: ko-topik2-g014, ch: V-(으)ㄴ N, ds: modify a noun with a completed action}
   review_vocabulary:
-  - {id: ko-nikl-29475-s002, ch: 곧, pr: 곧, ds: soon; before much time has passed}
-  - {id: ko-nikl-39401-s005, ch: 바로, pr: 바로, ds: immediately; without a time gap}
-  - {id: ko-nikl-05887-s001, ch: 보통, pr: 보ː통, ds: generally; ordinarily or normally}
-  - {id: ko-nikl-00495-s004, ch: 세우다, pr: 세우다, ds: to make a definite plan or resolution}
-  - {id: ko-nikl-07479-s003, ch: 비다, pr: 비ː다, ds: to have time free or to spare}
   - {id: ko-nikl-07582-s004, ch: 비우다, pr: 비우다, ds: to free up time; to make oneself available}
   - {id: ko-nikl-35310-s001, ch: 넘다, pr: 넘ː따, ds: to go beyond a certain time or period}
+  - {id: ko-nikl-36650-s001, ch: 매번, pr: 매ː번, ds: each turn or occasion}
+  - {id: ko-nikl-36686-s001, ch: 매일, pr: 매ː일, ds: each and every day}
+  - {id: ko-nikl-42537-s001, ch: 지금, pr: 지금, ds: the present moment of speaking}
+  - {id: ko-nikl-40479-s001, ch: 방학, pr: 방ː학, ds: a school vacation between terms}
+  - {id: ko-nikl-11503-s001, ch: 일상, pr: 일쌍, ds: ordinary daily life}
   - {id: ko-nikl-34291-s002, ch: 나중, pr: 나ː중, ds: afterward; after another task is done first}
   review_grammar:
   - {id: ko-topik1-g019, ch: V-(으)ㄹ 거예요, ds: express a plan or expected future event}
@@ -794,14 +859,14 @@ units:
   grammar:
   - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
   review_vocabulary:
-  - {id: ko-nikl-19463-s002, ch: 따갑다, pr: 따갑따, ds: to sting as if the skin were being pricked}
-  - {id: ko-nikl-27714-s008, ch: 걸리다, pr: 걸리다, ds: to fall ill or catch a disease}
-  - {id: ko-nikl-37806-s001, ch: 몹시, pr: 몹ː씨, ds: very intensely; extremely}
-  - {id: ko-nikl-39156-s002, ch: 밀다, pr: 밀ː다, ds: to scrub or scrape something off a surface}
-  - {id: ko-nikl-48481-s010, ch: 옮기다, pr: 옴기다, ds: to pass an illness to another person}
-  - {id: ko-nikl-35988-s003, ch: 막다, pr: 막따, ds: to keep something from coming inside}
   - {id: ko-nikl-05080-s002, ch: 약하다, pr: 야카다, ds: to be physically frail or weak}
   - {id: ko-nikl-05080-s004, ch: 약하다, pr: 야카다, ds: to have little resistance or endurance}
+  - {id: ko-nikl-04077-s001, ch: 아동, pr: 아동, ds: a young child}
+  - {id: ko-nikl-05926-s001, ch: 보호자, pr: 보ː호자, ds: a person responsible for protecting someone in their care}
+  - {id: ko-nikl-10331-s001, ch: 의식, pr: 의ː식, ds: consciousness; ability to perceive while awake}
+  - {id: ko-nikl-31204-s002, ch: 구호, pr: 구ː호, ds: care for sick or injured people}
+  - {id: ko-nikl-12234-s001, ch: 자세, pr: 자세, ds: posture; how one holds or moves one's body}
+  - {id: ko-nikl-29369-s001, ch: 고통, pr: 고통, ds: physical or mental pain}
   review_grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
@@ -815,7 +880,6 @@ units:
   review_vocabulary:
   - {id: ko-nikl-17430-s002, ch: 더, pr: 더, ds: more than; to a greater degree}
   - {id: ko-nikl-25966-s001, ch: 가장, pr: 가장, ds: most; to the greatest degree}
-  - {id: ko-nikl-43909-s001, ch: 차이, pr: 차이, ds: a difference; the degree of difference}
   - {id: ko-nikl-18717-s001, ch: 두께, pr: 두께, ds: thickness}
   - {id: ko-nikl-23097-s001, ch: 폭, pr: 폭, ds: width}
   - {id: ko-nikl-39235-s002, ch: 밉다, pr: 밉따, ds: to be unattractive in appearance}
@@ -823,6 +887,7 @@ units:
   - {id: ko-nikl-04603-s001, ch: 알맞다, pr: 알ː맏따, ds: 'to be just right, neither too much nor too little'}
   - {id: ko-nikl-13522-s001, ch: 적당하다, pr: 적땅하다, ds: 'to suit the requirements, conditions, or degree'}
   - {id: ko-nikl-08059-s001, ch: 뾰족하다, pr: 뾰조카다, ds: 'to have a thin, sharp point'}
+  - {id: ko-nikl-14443-s001, ch: 정도, pr: 정도, ds: a degree or level of quality or intensity}
   review_grammar:
   - {id: ko-topik1-g034, ch: A-(으)ㄴ N, ds: modify a noun with a descriptive predicate}
 - id: level-06-reasoning-practice-01

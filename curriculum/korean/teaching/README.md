@@ -103,6 +103,14 @@ Only selected senses become requirements. Unselected dictionary records or
 readings are not hidden advanced content. Necessary unbanded support stays
 explicitly unbanded and outside the original TOPIK folders.
 
+Two source-backed terms, **온실가스** (greenhouse gas) and **팀장** (team
+leader), remain outside active teaching pending word-specific pronunciation
+review. Their compound-tensing choices are unresolved, not inferred from
+spelling. Exact source meanings, IDs, proposed placements, and consulted
+dictionary entries remain in the authoring
+[community notes](../authoring/teaching/community-notes.yaml) and
+[society notes](../authoring/teaching/society-notes.yaml).
+
 Counts distinguish dictionary parent entries, source positions, selected
 senses, distinct spellings, spelling/POS pairs, and curated lexical identities.
 `coverage.yaml` additionally separates free lemmas from bound forms and

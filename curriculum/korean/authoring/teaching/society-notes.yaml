@@ -1,0 +1,700 @@
+schema_version: 1
+id: ko-society-noun-cohort
+review_status: original-ai-authored-unreviewed
+review_requirement: >-
+  All selections, placements, identity groupings, English labels, and correction
+  proposals are original AI-authored work requiring qualified Korean linguistic
+  and pedagogical review. Structural validation is not linguistic approval.
+scope:
+  - Describe family relationships, life stages, and roles without assuming a listener's circumstances.
+  - Discuss schooling, learning tasks, working conditions, and career choices.
+  - Identify participants, responsibilities, assistance, and cooperation.
+  - Follow ordinary institutional, civic, and economic explanations.
+  - Compare resources, livelihood, costs, and organizational arrangements.
+  - Explain social relationships, attitudes, values, and abstract connections.
+selection_policy: >-
+  Communicative questions guided bounded discovery. Each selected Korean and
+  English source-definition position was inspected before explicit selection.
+  Source order, initial position, spelling, dictionary band, part of speech,
+  and numerical targets do not assign levels. Noun ownership prevents concurrent
+  editing collisions; it is not a teaching-order rule. These sections are not
+  lesson batches, and no exhaustive unselected-source audit or round-number
+  cutoff was used. Common polysemy remains separately labeled without counting
+  each meaning as another free lemma.
+counts:
+  selected_senses: 584
+  core_senses: 584
+  branch_senses: 0
+  source_parents: 450
+  distinct_selected_spellings: 438
+  identity_records_in_fragment: 448
+  existing_identity_fragments: 80
+  new_identity_groups: 368
+  new_provisional_free_lemma_groups: 363
+  new_bound_form_groups: 0
+  new_function_item_groups: 5
+  source_noun_senses: 584
+  source_bound_noun_senses: 0
+  nonfirst_source_positions: 191
+  source_parents_new_to_protected_selections: 384
+  source_parents_already_represented: 66
+  source_bands: {beginner: 130, intermediate: 279, advanced: 175}
+  phases:
+    first-exchanges: 10
+    everyday-life: 178
+    stories-conversations: 107
+    explanation-problems: 116
+    analysis-argument: 142
+    nuance-interpretation: 31
+count_interpretation: >-
+  A sense is one preserved definition-list position; a parent is one pinned
+  local source record; spelling is visible Korean text; an identity is an
+  explicitly justified provisional family. They are different measurements.
+  Homographs need not share identities, and an explicitly related longer name
+  need not create a new free identity. Source noun POS does not make every
+  use an independent descriptive noun. No word-count achievement, learner
+  mastery, or completion of the program's planning scale follows from these totals.
+placement_rationale:
+  first_exchanges: >-
+    Sons, daughters, children, and university-student reference enter at
+    level 2. The person-counting use supports level 3 quantities; school
+    vacations, ordinary daily life, named recurrence, and present-time
+    reference support routine plans at 4. An
+    occupation or abstract noun is not made introductory solely because
+    its source band is beginner.
+  everyday_life: >-
+    Family and household relationships support help at 5; service and care
+    roles, costs, and school contact support 6; travel and moving between
+    places support 7. Level 8 develops work and study relationships, class
+    activities, employment reference, and respectful address. Honorific person
+    reference is distinguished from being socially higher in an organization.
+  stories_conversations: >-
+    Family events and life histories support narration at 9. Feelings,
+    encouragement, attachment, and posture or attitude support experience at
+    10. Tasks, practice, practical execution, and outcomes support 11.
+    Presenting or showcasing achievements supports reporting at 12; learning,
+    work, and personal decisions support reasons and comparisons at 13.
+    Source polysemy is not all introduced at a word's earliest selected level.
+  explanation_problems: >-
+    Level 14 handles difficult circumstances and assistance. Level 15 names
+    participants, management, responsibilities, cooperation, and workplace
+    procedures.     Public roles and events support news at 16. Electronic information,
+    electricity generation, and human reference support explanation at 17; terms,
+    resource choices, and adopting proposals support negotiation at 18.
+  analysis_argument: >-
+    Level 19 distinguishes relationships, standards, and evidential reasoning.
+    Level 20 introduces civic institutions, economic activity, credit,
+    livelihood, and resource flows for ordinary public explanation rather
+    than occupational certification. Level 21 includes psychology and general
+    development; 22 discusses values, social position, and viewpoints.
+    Qualified reasoning at 23 uses relationships and reference standards.
+    Academic papers, seminars, scholarship, form, and considered ideas
+    support formal synthesis at 24.
+  nuance_interpretation: >-
+    Stance and implication enter at 25. Level 26 makes respectful, familiar,
+    written, and organizational self-reference explicit. Selected common
+    figurative roles support 27; precise abstract relationships support 28;
+    source framing of social background and fabrication support critical
+    interpretation at 29. Level 30 can reuse these in independent projects;
+    it is not padded with new specialist
+    nouns merely to populate every level. No branch additions were needed.
+identity_decisions:
+  existing_fragments: >-
+    All 80 existing groups retain their exact IDs, canonical lemmas, and
+    categories. Their society fragments contain only new members. Protected
+    members, meanings, placements, and branch choices remain unchanged.
+  company_employee_family:
+    identity: ko-lex-08466
+    parents: [ko-nikl-08466, ko-nikl-52049]
+    shorter:
+      id: ko-nikl-08466-s001
+      target: 사원
+      source_korean: "회사에 속하여 일하는 사람."
+      source_english: "A person who works at a company. "
+    longer:
+      id: ko-nikl-52049-s001
+      target: 회사원
+      source_korean: "회사에 속하여 일하는 사람."
+      source_english: "A person who works at a company."
+    rationale: >-
+      These inspected positions name the same company-employee role with a
+      shorter and longer company-related name. They provisionally share one
+      free identity, not two. This is an explicit conservative family decision
+      requiring review, not an official abbreviation crosswalk or a claim that
+      every use has identical rank or collocation. Religious 사원08465 is separate.
+  economics_expanded_name:
+    identity: ko-lex-28496
+    protected:
+      id: ko-nikl-28496-s002
+      target: 경제
+      source_korean: "사회의 경제 현상을 분석하고 연구하는 학문."
+      source_english: "The field of study in which economic phenomena are analyzed and studied."
+    new:
+      id: ko-nikl-28512-s001
+      target: 경제학
+      source_korean: "경제 현상을 분석하고 연구하는 학문."
+      source_english: "The field of study in which economic phenomena are analyzed and studied. "
+    rationale: >-
+      The expanded discipline name is explicitly related to the already
+      selected economics-discipline position, not to an arbitrary same-English
+      synonym. Existing economy/economics and new economizing positions keep
+      their labels in one provisional family. The fragment adds only the
+      economizing and expanded-name IDs; protected s002 is evidence, not a
+      duplicate member. No separate ko-lex-28512 is introduced.
+  function_only:
+    - {identity: ko-lex-06138, lemma: 본인, role: person-concerned and self-reference}
+    - {identity: ko-lex-21111, lemma: 타인, role: other-person reference}
+    - {identity: ko-lex-31831, lemma: 귀하, role: written honorific addressee reference}
+    - {identity: ko-lex-34584, lemma: 남, role: other-person or outside-relationship reference}
+    - {identity: ko-lex-08389, lemma: 사상, role: historical-time reference in since-history-began comparisons}
+  category_limits: >-
+    These five groups conservatively count as function-item rather than
+    additional descriptive free lemmas. That is this curriculum's provisional
+    counting decision, not a change to the source POS noun or a claim that
+    all five have identical syntax. Ideology/thought 사상08390 remains a
+    separate free identity. No new bound-only family was added.
+  functional_members_in_free_families:
+    - >-
+      사람08256-s009 counts people inside the already independently attested
+      person family. It creates neither a second person lemma nor a fabricated
+      lexical counter source position.
+    - >-
+      본사06120-s002 is formal our-company reference; s001 independently names
+      headquarters. Both are one family, not two free introductions.
+    - >-
+      대우17181-s004 describes treatment at a specified status or standard.
+      Independent treatment, working conditions, and respectful treatment
+      remain separately labeled in that family.
+    - >-
+      정도14443-s003 refers to the stated amount or level. Independent degree
+      s001 is introduced at the same level 6. The reference use does not add a
+      free identity, nor is an unsupplied approximation-operator rule invented.
+  synonyms_and_derivatives: >-
+    Similar English alone does not merge 친교/친분, 금액/액수, 모범/모델,
+    or other independent forms. The naming decisions above and noun/adverb
+    counterpart decisions below rely on explicitly related forms and inspected
+    meanings. Independently
+    attested compounds keep their supplied identities; no X하다 predicates,
+    심리학 parent absent from this frozen registry, or unseen derivatives were
+    generated. Source spellings were not mechanically collapsed.
+  homographs: >-
+    Keep presiding 사회08617 separate from society08618; official 관리30318
+    from management30319; religious 사원08465 from employee08466; priest
+    신부03197 from bride03198; father/son 부자06574 from wealthy person06575;
+    foreign study 유학50448 from Confucian learning50450; interests 이해11009
+    from comprehension11010; rationality 이성10793 from gender-relation10794;
+    historical-time 사상08389 from thought08390; legal promulgation 공포30032
+    from fear; electricity 발전40075 from development40074; and corporate
+    shares 주식41784 from staple food41783. Managerial approval 결재28214
+    and payment 결제28228 are different words, not spelling alternatives.
+returned_expression_followup:
+  status: completed-against-returned-protected-expression
+  inspected_deferred_noun_senses: 21
+  added_noun_senses: 18
+  existing_identity_fragments_added: 14
+  new_identity_groups_added: 1
+  selected_sense_ids:
+    - ko-nikl-17008-s001
+    - ko-nikl-36650-s001
+    - ko-nikl-36686-s001
+    - ko-nikl-28669-s001
+    - ko-nikl-28669-s002
+    - ko-nikl-27485-s001
+    - ko-nikl-51472-s001
+    - ko-nikl-02441-s001
+    - ko-nikl-42997-s001
+    - ko-nikl-36134-s001
+    - ko-nikl-36147-s001
+    - ko-nikl-40295-s001
+    - ko-nikl-16825-s001
+    - ko-nikl-16825-s002
+    - ko-nikl-42537-s001
+    - ko-nikl-42537-s002
+    - ko-nikl-16889-s001
+    - ko-nikl-05885-s001
+  meaning_decisions:
+    - >-
+      매번 and 매일 name each occasion and every day for routine reference.
+      They join the protected recurrence adverbs without adding free identities.
+      Their noun positions are not evidence for creating new calendar variants.
+    - >-
+      계속 distinguishes uninterrupted continuation from restarting after an
+      interruption. Each noun position corresponds to the same distinction in
+      the protected adverb, supporting procedure and work-outcome explanation
+      at level 11 rather than treating resumption as uninterrupted activity.
+    - >-
+      거의 names an amount just short of all; 혼자 names a person alone rather
+      than marital status; 스스로 is own-self reference. 만약 and 만일 name
+      possible unexpected cases. These nominal quantity, relational, reflexive,
+      and hypothetical uses preserve their five protected function categories.
+      Source noun POS does not automatically promote a family to free-lemma.
+    - >-
+      직접 names an unmediated connection for cooperation at 15. Its shared
+      absence of an intermediary supports the protected direct-action family.
+      The noun and adverb are not claimed to have interchangeable syntax.
+    - >-
+      The just-before-speaking noun 방금 supports narration at 9; the present
+      moment 지금 supports routine plans at 4, and its contrast with past or
+      future supports evidential time framing at 19. Both remain in their
+      protected temporal free families. 지금 specifically uses existing
+      ko-lex-42538, not a new key inferred from noun parent 42537.
+    - >-
+      당장 supplies a named event-site/occasion and immediate aftermath,
+      supporting unfamiliar circumstances at 14 and event narration at 9.
+      They form one new provisional circumstance/time free family. No existing
+      당장 identity was present; the source's separate expression-like third
+      position was not added merely because the parent was selected.
+    - >-
+      대강 supplies a brief storyline or outline for reporting at 12; its
+      protected adverb also explicitly omits detail. This is a brevity family,
+      not a newly invented technical outline or blueprint. 보통 supplies
+      ordinariness or an average level for comparison at 13, retaining the
+      protected generally/normally family's free category.
+  unchanged_function_identities:
+    - ko-lex-17008
+    - ko-lex-27485
+    - ko-lex-51472
+    - ko-lex-02441
+    - ko-lex-36134
+    - ko-lex-36147
+  unchanged_free_identities:
+    - ko-lex-36650
+    - ko-lex-36686
+    - ko-lex-28669
+    - ko-lex-42997
+    - ko-lex-40295
+    - ko-lex-42538
+    - ko-lex-16889
+    - ko-lex-05885
+  illustrative_source_evidence:
+    ko-nikl-28669-s002:
+      source_korean: "중단됐던 일을 다시 이어 나감."
+      source_english: "The act of restarting something after an interruption."
+    ko-nikl-42997-s001:
+      source_korean: "중간에 다른 사람이나 물건 등이 끼어들지 않고 바로 연결되는 관계."
+      source_english: "The state of being connected directly without any other person, object, etc., in between. "
+    ko-nikl-05885-s001:
+      source_korean: "흔히 볼 수 있어 특별하지 않고 평범함. 또는 뛰어나지도 뒤떨어지지도 않은 중간 정도."
+      source_english: "The quality of being common and ordinary as opposed to extraordinary, or being average as opposed to excellent or sub-par."
+  not_selected:
+    ko-nikl-40295-s002: >-
+      The at-speaking-time noun overlaps current-time reference already
+      supplied by 지금. Its source validity is not rejected, but another
+      nominal timing position is not needed for this bounded follow-up.
+    ko-nikl-40295-s003: >-
+      The just-after-speaking noun was inspected but is not needed for this
+      cohort's retrospective narration and current-time contrast. Protected
+      prospective adverb coverage remains untouched.
+    ko-nikl-16825-s003: >-
+      The source marks this parent noun but defines this position as here and
+      now. This follow-up selects the event-site/time and aftermath nouns,
+      not every expression-like position; no third free item is implied.
+household_boundary_followup:
+  status: five-source-backed-abstract-positions-added
+  selected_sense_ids:
+    - ko-nikl-34001-s003
+    - ko-nikl-34001-s004
+    - ko-nikl-34001-s006
+    - ko-nikl-36623-s002
+    - ko-nikl-36623-s003
+  placement_and_meaning: >-
+    The earning-method position supports level 20 discussion of income
+    resources; it does not necessarily imply earning a complete livelihood.
+    Dependable-person/connection reference and sustained feeling or effort
+    support level 27 interpretation of tie/string imagery. The reliable
+    support meaning is distinct from the already protected generic figurative
+    relationship position s005. A difficult unresolved matter supports
+    unfamiliar-problem explanation at 14; closure of a matter supports ending
+    a discussion at 18, not necessarily a logical inference or legal settlement.
+    These placements are individually chosen by communicative function, not
+    by the shared noun spelling or source band's difficulty label.
+  source_evidence:
+    ko-nikl-34001-s003:
+      source_korean: "돈을 벌 수 있는 방법."
+      source_english: "A method to earn money."
+    ko-nikl-34001-s004:
+      source_korean: "의지할 만한 사람이나 연줄."
+      source_english: "A person or relation to rely on."
+    ko-nikl-34001-s006:
+      source_korean: "어떠한 감정이나 노력의 연속이나 지속."
+      source_english: "The continuation or lasting of a certain emotion or effort."
+    ko-nikl-36623-s002:
+      source_korean: "쉽게 해결되지 않는 일."
+      source_english: "A matter that is not easily solved."
+    ko-nikl-36623-s003:
+      source_korean: "어떤 일의 끝맺음."
+      source_english: "The conclusion of something."
+  identity_compatibility:
+    - >-
+      ko-lex-34001 keeps protected lemma 끈 and free-lemma category. Its
+      society fragment contains only new s003/s004/s006. Protected string,
+      strap, and generic figurative relationship s001/s002/s005 remain untouched.
+    - >-
+      ko-lex-36623 uses canonical lemma 매듭 and free-lemma category with only
+      s002/s003. If the parent selects literal knot s001 and knot craft s004,
+      those compatible independent noun meanings can be merged into the same
+      identity without counting another free family. No separate abstract-knot
+      key was invented, and the reserved literal/craft positions were not selected.
+  parent_reserved_ids:
+    - ko-nikl-36623-s001
+    - ko-nikl-36623-s004
+    - ko-nikl-39286-s001
+    - ko-nikl-39286-s002
+    - ko-nikl-39286-s003
+  reservation_check: >-
+    All five reserved IDs are absent from society, including the vessel
+    overcharge meaning explicitly reserved by the parent. No physical
+    household, kitchen, bath fixture, tool, or source addition is made here.
+    The five inspected abstract definitions do not require an additional
+    English-versus-Korean correction request.
+parent_adjudication_requests:
+  ko-nikl-17008-s001:
+    status: selected-with-conservative-existing-function-accounting
+    target: 대략
+    existing_identity: ko-lex-17008
+    protected_category: function-item
+    protected_members: [ko-nikl-17009-s001]
+    source_korean: "자세하지 않은 간단한 줄거리."
+    source_english: "A short, simple plot without adding details."
+    protected_adverb_evidence:
+      source_korean: "대충 짐작으로 따져서."
+      source_english: "When calculating by guessing in a rough manner."
+    candidate_interpretation: a brief storyline or outline without details
+    candidate_level: 12
+    candidate_topic: communication
+    parent_decision: >-
+      Add the genuine outline noun at level 12 without changing the existing
+      family ID or its conservative function category. The noun retains its
+      source POS and referable nominal meaning; the category describes
+      provisional family accounting, not identical syntax for every member.
+      This adds a useful sense but no new free lemma. Do not silently promote
+      an entire family because one newly selected member is a noun, or create
+      a second outline identity. Qualified lexical review may revise this
+      mixed-family accounting. Its existing exact official reading is 대ː략.
+meaning_and_scope_checks:
+  - >-
+    수학02050 is study rather than mathematics and was not imported as a
+    mathematics lead. Source category or alphabetical proximity did not
+    rescue an unsuitable meaning.
+  - >-
+    모델37406 supplies prototype, exemplar, and fashion-model occupation.
+    Mathematical and machine-learning models were not fabricated. Selecting
+    the occupation does not select garments or accessories.
+  - >-
+    급식 names institutional meal provision and 대접17239 names courtesy or
+    treating a person to food. These are service/social-activity nouns, not
+    a new dish, ingredient, or the unrelated 대접 bowl.
+  - >-
+    서민09762-s002 retains both not-well-off and below-middle-class conditions.
+    It is not silently broadened to all ordinary people or restricted only
+    to measured income. Class vocabulary describes concepts, not personal worth.
+  - >-
+    증권42407-s002 specifically represents property rights; unselected
+    general evidence-document s001 was not imported. 적금13513-s002 is the
+    periodic bank-saving product, not automatic selection of its first position.
+  - >-
+    유통50436-s002/s003 distinguish currency circulation and distribution of
+    goods; air flow s001 was not imported. 임대 preserves the providing
+    rather than borrowing perspective. Deposit and rental labels do not
+    invent contract, refund, interest-rate, or eligibility rules.
+  - >-
+    파업22342-s001 only defines stopping work in progress in this source.
+    Its label does not silently add collective bargaining, legality, industrial
+    action procedures, or a more specific sense not present in the registry.
+  - >-
+    Selected sympathy, faith, reverence, instinct, human nature, and social
+    classification are topics for description and discussion, not endorsed
+    beliefs, diagnoses, judgments of individuals, or deterministic theories.
+source_register:
+  explicit_marked_ids:
+    - ko-nikl-12252-s002
+    - ko-nikl-13500-s002
+    - ko-nikl-20362-s002
+    - ko-nikl-46380-s005
+    - ko-nikl-31831-s001
+    - ko-nikl-10048-s003
+    - ko-nikl-30604-s002
+    - ko-nikl-10058-s002
+  policy: >-
+    All eight selected definitions beginning with a source parenthetical
+    register marker retain it in their compact labels. Endearing 자식,
+    familiar or lowering 친구, respectful 어른 and 선생님, and written 귀하
+    are not neutral address recommendations for strangers. Figurative 적,
+    교과서, and 선수 remain marked. Catholic priest, Confucian learning,
+    and religious faith retain their relevant context. Unrelated religious
+    sibling-address positions, disparaging person labels, and euphemistic
+    일 or 관계 positions were not indiscriminately imported.
+source_correction_requests:
+  ko-nikl-06831-s001:
+    source_korean: "본래 하나였던 것이 둘 이상으로 나누어짐."
+    source_english: "Something being divided into more than two parts. "
+    authored_interpretation: division into two or more parts
+    rationale: Korean 둘 이상 includes exactly two parts; the English incorrectly requires more than two.
+  ko-nikl-30297-s001:
+    source_korean: "둘 이상의 사람, 사물, 현상 등이 서로 영향을 주고받도록 관계를 맺고 있음. 또는 그 관계."
+    source_english: "People, objects, or phenomena, etc., of more than two, being related so as to influence each other, or the relationship."
+    authored_interpretation: connection or relevance between two or more things
+    rationale: Korean 둘 이상 includes a relationship between exactly two; the English incorrectly says more than two.
+  ko-nikl-24001-s001:
+    source_korean: "학교를 다닌 경력."
+    source_english: "The level of education one completes."
+    authored_interpretation: educational background; schooling history
+    rationale: The Korean describes schooling history; the English narrows it to a completed level and can wrongly exclude attendance without completion.
+  ko-nikl-06354-s001:
+    source_korean: "조직을 이루고 있는 군인 집단. 또는 군인 집단이 머물러 있는 시설."
+    source_english: "An army consisting of a certain number of soldiers or where the army stays."
+    authored_interpretation: a military unit or its quarters
+    rationale: The Korean names an organized military group or its facilities, not necessarily an entire army; review the English scope and accommodation alternative.
+correction_policy: >-
+  These four interpretations are incorporated in source-corrections.yaml
+  with exact original strings, including trailing whitespace, and matching
+  selected labels. They remain unreviewed, not upstream edits or claims of
+  dictionary approval. Source IDs and positions remain unchanged.
+source_wording_review:
+  policy: >-
+    The following limitations occur in both source languages; they are not
+    merely English mistranslations. Preserve the historical source evidence
+    and seek qualified contemporary-usage review. Do not teach reproductive
+    capacity as an eligibility test for sex or gender identity, infer any
+    person's identity, or exclude anyone from ordinary human reference.
+    The concise person labels do not endorse the source's biological
+    generalizations. Romantic labels explicitly flag the source's man-woman
+    framing rather than claiming that framing is a universal relationship rule.
+  evidence:
+    ko-nikl-34655-s001:
+      source_korean: "아기를 낳지 못하는 성, 또는 그런 성을 가진 어른이 된 사람."
+      source_english: "The gender that cannot give birth, or a fully-grown person of such a gender."
+      limitation: Reproductive capacity is used to generalize about male sex and adult men; this must not classify individuals.
+    ko-nikl-47114-s001:
+      source_korean: "어른이 되어 아이를 낳을 수 있는 여자."
+      source_english: "A grown-up woman capable of having a baby. "
+      limitation: Fertility is used to generalize about adult women; the supplied position does not separately define an abstract female-sex category.
+    ko-nikl-04880-s001:
+      source_korean: "남녀 간의 사랑하는 사람."
+      source_english: "A person who loves or is loved in a romantic relationship between a man and woman.  "
+      limitation: The dictionary frames romantic partnership as a man-woman relationship; review contemporary usage rather than enforcing that restriction.
+    ko-nikl-47529-s001:
+      source_korean: "서로 사랑하여 사귀는 남자와 여자."
+      source_english: "A man and a woman who are in love with each other and have a relationship."
+      limitation: The dating-couple definition uses a man-woman frame; it is not a rule governing whose relationships count.
+    ko-nikl-10794-s001:
+      source_korean: "남성에게는 여성, 여성에게는 남성으로 다른 성별."
+      source_english: "A person of the opposite gender, namely a woman to a man, and a man to a woman. "
+      limitation: The selected label explicitly identifies the source's binary gender framing rather than claiming an exhaustive model.
+  other_limits: >-
+    Human-being definitions referring to language, tools, or cognitive ability
+    must not be applied to deny anyone's humanity. 학벌, social-background
+    성분, 계급, and 계층 do not endorse ranking people by background.
+    School categories, institutional structures, offices, ages, and licenses
+    are lexical descriptions, not complete jurisdiction-specific rules,
+    guaranteed legal eligibility, or qualifications granted by this course.
+    Simplified civic definitions require appropriate contextual review.
+protected_inputs:
+  vocabulary:
+    - vocabulary.yaml
+    - early-vocabulary.yaml
+    - expansion-vocabulary.yaml
+    - breadth-vocabulary.yaml
+    - community-vocabulary.yaml
+    - kitchen-vocabulary.yaml
+    - personal-vocabulary.yaml
+    - content-vocabulary.yaml
+    - expression-vocabulary.yaml
+    - mobility-vocabulary.yaml
+  lexical_identities:
+    - lexical-identities.yaml
+    - early-identities.yaml
+    - expansion-identities.yaml
+    - breadth-identities.yaml
+    - community-identities.yaml
+    - kitchen-identities.yaml
+    - personal-identities.yaml
+    - content-identities.yaml
+    - expression-identities.yaml
+    - mobility-identities.yaml
+  excluded_ids: [ko-nikl-48419-s001]
+  policy: >-
+    All manifest cohorts through expression and the newly registered mobility
+    cohort were read as protected inputs.
+    None of their members was reselected or replaced. The coordinator's explicit
+    exclusion remains absent; it was not researched or replaced. Protected
+    expression files, reading ledgers, overlays, source registry, manifest,
+    shared infrastructure, and other worktrees were not edited.
+composition_snapshot:
+  scope: Society integration snapshot after mobility, before adding the separate household cohort.
+  protected_total_senses: 4827
+  protected_identity_groups: 3362
+  protected_core_senses: 4702
+  protected_core_free_identities: 3116
+  with_society_total_senses: 5411
+  with_society_identity_groups: 3730
+  with_society_core_senses: 5286
+  with_society_core_free_identities: 3480
+  additional_core_free_coverage: 364
+  branch_identity_gaining_core_use:
+    identity: ko-lex-44315
+    new_core_member: ko-nikl-44315-s002
+    protected_branch_member: ko-nikl-44315-s001
+    rationale: >-
+      Adoption of an opinion or method enters core level 18. Existing staff
+      recruitment remains professional. Thus 363 globally new free identities
+      add 364 core free identities when this existing branch-only family gains
+      a core use. This is not a duplicate new lexical family.
+validation:
+  yaml_loader: curriculum_yaml.load_yaml
+  selection_contract: Exact four-field rows; unique known source IDs; declared topics; integer levels 1-30; nonempty labels no longer than 64 characters.
+  source_contract: korean_program_adapter.sense_index validates the pinned registry and exact original definition positions.
+  identity_contract: korean_program_adapter.lexical_members validates complete single membership and exact parent sets for standalone and composed selections.
+  composition_method: >-
+    Used actual load_selections against the complete registered manifest
+    through the returned expression and newly registered mobility cohorts,
+    then an in-memory manifest adding the two society shards. Only the
+    manifest read was substituted for the proposed composition; all selection
+    and identity files were read normally.
+    This simulates registration without editing the manifest or bypassing
+    collision and canonical-identity checks. Every protected row and group
+    member was preserved, including canonical lemma and category.
+    After the coordinator returned expression and authorized inspection, its
+    notes and full selections/identities were included as protected inputs.
+    This supersedes the earlier through-content-only snapshot and validates
+    the combined expression/society identity composition. Mobility subsequently
+    appeared in the explicit manifest and was also protected and composed;
+    it has no sense-ID or identity-key intersection with society. No protected
+    category, canonical key, member, or placement was changed.
+  correction_contract: Four exact bilingual source-evidence and selected-label proposals passed korean_program_adapter.source_corrections.
+  existing_tests:
+    command: python -B -m unittest test_korean_program.KoreanSelectionFilesTests test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+    result: Eight tests passed; no testing dependency was installed.
+  limits: >-
+    These checks establish data consistency, not qualified linguistic review.
+    Pronunciation and generated-program integration remain with the parent
+    and reading owner. No reading-dependent integration success is claimed.
+reading_review:
+  status: resolved-selected-readings-with-one-explicit-exclusion
+  actual_gap_parents: 0
+  actual_gap_senses: 0
+  supported_senses: {official-text: 574, authored-broad-hangul: 10}
+  resolved_gap_parents: {official-text: 27, authored-broad-hangul: 5}
+  excluded_pending_review: [ko-nikl-22209-s001]
+  policy: >-
+    The 384 new parent IDs below are the retained authoring review queue,
+    not 384 missing readings. Of the original 33 parents covering 44 sense
+    gaps, 27 parents/34 senses received official text and five parents/nine
+    senses received individually authored unreviewed readings. One parent
+    and sense remains explicitly excluded below. The outline noun already
+    had exact official citation text and added no gap.
+    The 66 reused parents also need selected-sense compatibility checked;
+    prior parent coverage alone does not approve every new context.
+    The cohort author did not invent a pronunciation, audio record, or pr
+    field. ID-sorted queue order is administrative, not pedagogical ordering.
+  new_parent_ids: [
+    ko-nikl-00030, ko-nikl-00152, ko-nikl-00263, ko-nikl-00265, ko-nikl-00304, ko-nikl-00364, ko-nikl-00436, ko-nikl-00652,
+    ko-nikl-00654, ko-nikl-00867, ko-nikl-00926, ko-nikl-01193, ko-nikl-01261, ko-nikl-01283, ko-nikl-01652, ko-nikl-01902,
+    ko-nikl-01965, ko-nikl-02077, ko-nikl-02441, ko-nikl-02611, ko-nikl-02622, ko-nikl-02916, ko-nikl-02999, ko-nikl-03157, ko-nikl-03197,
+    ko-nikl-03198, ko-nikl-03268, ko-nikl-03400, ko-nikl-03458, ko-nikl-03500, ko-nikl-03501, ko-nikl-03610, ko-nikl-03667,
+    ko-nikl-03770, ko-nikl-04077, ko-nikl-04087, ko-nikl-04657, ko-nikl-04880, ko-nikl-04920, ko-nikl-05178, ko-nikl-05223,
+    ko-nikl-05885, ko-nikl-05912, ko-nikl-05926, ko-nikl-06050, ko-nikl-06085, ko-nikl-06120, ko-nikl-06125, ko-nikl-06138, ko-nikl-06340,
+    ko-nikl-06354, ko-nikl-06574, ko-nikl-06575, ko-nikl-06666, ko-nikl-06831, ko-nikl-06835, ko-nikl-06945, ko-nikl-07423,
+    ko-nikl-07581, ko-nikl-07735, ko-nikl-08362, ko-nikl-08389, ko-nikl-08440, ko-nikl-08441, ko-nikl-08465, ko-nikl-08466,
+    ko-nikl-08501, ko-nikl-08527, ko-nikl-08576, ko-nikl-08617, ko-nikl-08914, ko-nikl-09080, ko-nikl-09186, ko-nikl-09217,
+    ko-nikl-09281, ko-nikl-09311, ko-nikl-09495, ko-nikl-09561, ko-nikl-09597, ko-nikl-09644, ko-nikl-09651,
+    ko-nikl-09762, ko-nikl-10151, ko-nikl-10258, ko-nikl-10271, ko-nikl-10331, ko-nikl-10332, ko-nikl-10409, ko-nikl-10793,
+    ko-nikl-10794, ko-nikl-10892, ko-nikl-10957, ko-nikl-11009, ko-nikl-11056, ko-nikl-11127, ko-nikl-11130, ko-nikl-11144,
+    ko-nikl-11182, ko-nikl-11183, ko-nikl-11219, ko-nikl-11229, ko-nikl-11246, ko-nikl-11503, ko-nikl-11520, ko-nikl-11679,
+    ko-nikl-11681, ko-nikl-11683, ko-nikl-11692, ko-nikl-11710, ko-nikl-11920, ko-nikl-12030, ko-nikl-12163, ko-nikl-12234,
+    ko-nikl-12252, ko-nikl-12488, ko-nikl-12799, ko-nikl-12826, ko-nikl-12896, ko-nikl-13154, ko-nikl-13248, ko-nikl-13500,
+    ko-nikl-13513, ko-nikl-13560, ko-nikl-13588, ko-nikl-13803, ko-nikl-14068, ko-nikl-14162, ko-nikl-14228, ko-nikl-14371,
+    ko-nikl-14443, ko-nikl-14564, ko-nikl-14709, ko-nikl-14938, ko-nikl-14972, ko-nikl-15008, ko-nikl-15228, ko-nikl-15274,
+    ko-nikl-16496, ko-nikl-16803, ko-nikl-16804, ko-nikl-16825, ko-nikl-16874, ko-nikl-16889, ko-nikl-16936, ko-nikl-16943, ko-nikl-17008, ko-nikl-17181, ko-nikl-17239,
+    ko-nikl-17345, ko-nikl-17372, ko-nikl-17855, ko-nikl-18049, ko-nikl-18096, ko-nikl-18304, ko-nikl-18399, ko-nikl-18558,
+    ko-nikl-18571, ko-nikl-19345, ko-nikl-19558, ko-nikl-20361, ko-nikl-20380, ko-nikl-20406, ko-nikl-20634, ko-nikl-21111,
+    ko-nikl-21761, ko-nikl-22075, ko-nikl-22342, ko-nikl-22438, ko-nikl-22968, ko-nikl-23241, ko-nikl-23363,
+    ko-nikl-23425, ko-nikl-23538, ko-nikl-23651, ko-nikl-23701, ko-nikl-23770, ko-nikl-23979, ko-nikl-24001, ko-nikl-24005,
+    ko-nikl-24009, ko-nikl-24010, ko-nikl-24014, ko-nikl-24028, ko-nikl-24033, ko-nikl-24041, ko-nikl-24046, ko-nikl-24047,
+    ko-nikl-24049, ko-nikl-24609, ko-nikl-24832, ko-nikl-24848, ko-nikl-24856, ko-nikl-24912, ko-nikl-25290, ko-nikl-25411,
+    ko-nikl-25421, ko-nikl-25470, ko-nikl-25483, ko-nikl-26073, ko-nikl-26205, ko-nikl-26225, ko-nikl-26433, ko-nikl-26615,
+    ko-nikl-27111, ko-nikl-27382, ko-nikl-27485, ko-nikl-27824, ko-nikl-27993, ko-nikl-28178, ko-nikl-28193, ko-nikl-28214, ko-nikl-28228,
+    ko-nikl-28446, ko-nikl-28453, ko-nikl-28489, ko-nikl-28504, ko-nikl-28512, ko-nikl-28540, ko-nikl-28618, ko-nikl-28669, ko-nikl-28689,
+    ko-nikl-28722, ko-nikl-28883, ko-nikl-28903, ko-nikl-29178, ko-nikl-29369, ko-nikl-29879, ko-nikl-29961, ko-nikl-30032,
+    ko-nikl-30044, ko-nikl-30207, ko-nikl-30254, ko-nikl-30258, ko-nikl-30297, ko-nikl-30318, ko-nikl-30319, ko-nikl-30405,
+    ko-nikl-30598, ko-nikl-30601, ko-nikl-30656, ko-nikl-30715, ko-nikl-30725, ko-nikl-30727, ko-nikl-30949, ko-nikl-31032,
+    ko-nikl-31125, ko-nikl-31232, ko-nikl-31324, ko-nikl-31345, ko-nikl-31351, ko-nikl-31422, ko-nikl-31486, ko-nikl-31494,
+    ko-nikl-31831, ko-nikl-31891, ko-nikl-32462, ko-nikl-32471, ko-nikl-32574, ko-nikl-32704, ko-nikl-32709, ko-nikl-32915,
+    ko-nikl-32922, ko-nikl-32969, ko-nikl-33078, ko-nikl-33166, ko-nikl-33926, ko-nikl-34584, ko-nikl-34607, ko-nikl-34627,
+    ko-nikl-34655, ko-nikl-35413, ko-nikl-35631, ko-nikl-35733, ko-nikl-35758, ko-nikl-35979, ko-nikl-36134, ko-nikl-36147, ko-nikl-36208, ko-nikl-36623, ko-nikl-36637, ko-nikl-36650, ko-nikl-36686,
+    ko-nikl-37173, ko-nikl-37406, ko-nikl-37450, ko-nikl-37590, ko-nikl-37651, ko-nikl-38396, ko-nikl-38517, ko-nikl-38617,
+    ko-nikl-38734, ko-nikl-39029, ko-nikl-39111, ko-nikl-39928, ko-nikl-39953, ko-nikl-40075, ko-nikl-40133, ko-nikl-40295, ko-nikl-40479,
+    ko-nikl-40666, ko-nikl-40702, ko-nikl-41262, ko-nikl-41282, ko-nikl-41315, ko-nikl-41317, ko-nikl-41585, ko-nikl-41618,
+    ko-nikl-41748, ko-nikl-41784, ko-nikl-42200, ko-nikl-42228, ko-nikl-42310, ko-nikl-42407, ko-nikl-42537, ko-nikl-42595, ko-nikl-42600,
+    ko-nikl-42699, ko-nikl-42703, ko-nikl-42718, ko-nikl-42784, ko-nikl-42787, ko-nikl-42946, ko-nikl-42995, ko-nikl-42997, ko-nikl-43095,
+    ko-nikl-43107, ko-nikl-43135, ko-nikl-43224, ko-nikl-43287, ko-nikl-43380, ko-nikl-44010, ko-nikl-44080, ko-nikl-44083,
+    ko-nikl-44220, ko-nikl-44368, ko-nikl-44806, ko-nikl-44846, ko-nikl-44936, ko-nikl-45052, ko-nikl-45323, ko-nikl-45838,
+    ko-nikl-46380, ko-nikl-46402, ko-nikl-46438, ko-nikl-46492, ko-nikl-46840, ko-nikl-47114, ko-nikl-47352, ko-nikl-47354,
+    ko-nikl-47529, ko-nikl-47598, ko-nikl-47871, ko-nikl-47901, ko-nikl-47940, ko-nikl-47951, ko-nikl-48774, ko-nikl-48902,
+    ko-nikl-49087, ko-nikl-49094, ko-nikl-49169, ko-nikl-49474, ko-nikl-49503, ko-nikl-49528, ko-nikl-49685, ko-nikl-49704,
+    ko-nikl-49801, ko-nikl-49927, ko-nikl-50038, ko-nikl-50308, ko-nikl-50436, ko-nikl-50448, ko-nikl-50450, ko-nikl-50451,
+    ko-nikl-50458, ko-nikl-51472, ko-nikl-52030, ko-nikl-52049, ko-nikl-52070, ko-nikl-52092, ko-nikl-52273, ko-nikl-52334, ko-nikl-52495,
+    ko-nikl-52497, ko-nikl-52585]
+  reused_parent_ids: [
+    ko-nikl-00214, ko-nikl-00272, ko-nikl-00281, ko-nikl-01196, ko-nikl-01910, ko-nikl-01911, ko-nikl-02145, ko-nikl-03004,
+    ko-nikl-03473, ko-nikl-07718, ko-nikl-08256, ko-nikl-08280, ko-nikl-08390, ko-nikl-08618, ko-nikl-09482, ko-nikl-09783,
+    ko-nikl-10048, ko-nikl-10058, ko-nikl-10372, ko-nikl-10879, ko-nikl-11010, ko-nikl-11145, ko-nikl-11153, ko-nikl-11191,
+    ko-nikl-11334, ko-nikl-12213, ko-nikl-12304, ko-nikl-12403, ko-nikl-13472, ko-nikl-13660, ko-nikl-14506, ko-nikl-14523,
+    ko-nikl-17258, ko-nikl-17770, ko-nikl-18537, ko-nikl-19966, ko-nikl-20362, ko-nikl-25242, ko-nikl-27377, ko-nikl-28458,
+    ko-nikl-28496, ko-nikl-30248, ko-nikl-30604, ko-nikl-30679, ko-nikl-31204, ko-nikl-31349, ko-nikl-31398, ko-nikl-34001, ko-nikl-35410,
+    ko-nikl-35866, ko-nikl-38465, ko-nikl-39147, ko-nikl-40074, ko-nikl-40543, ko-nikl-41819, ko-nikl-42671, ko-nikl-42994,
+    ko-nikl-43131, ko-nikl-44184, ko-nikl-44315, ko-nikl-44365, ko-nikl-44967, ko-nikl-47250, ko-nikl-50982, ko-nikl-51800,
+    ko-nikl-52260]
+pending_reading_exclusions:
+  - id: ko-nikl-22209-s001
+    source_parent: ko-nikl-22209
+    lemma: 팀장
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22209
+    source_korean: 회사 등에서 같은 일을 맡아서 하는 한 팀의 책임자.
+    source_english: A person who leads a team whose members do the same kind of work for a company, etc.
+    proposed_placement: {level: 8, topic: people, ds: a team leader}
+    provisional_identity: ko-lex-22209
+    identity_evidence:
+      lemma: 팀장
+      category: free-lemma
+      members: [ko-nikl-22209-s001]
+      source_parents: [ko-nikl-22209]
+      rationale: The leader of a working team.
+    status: excluded-pending-qualified-pronunciation-review
+    reason: >
+      Plain ㅈ versus lexical tensing to ㅉ at 팀-장 remains unresolved.
+      A nasal coda and the written form do not establish this word-specific
+      compound choice. Both consulted dictionary entries lack pronunciation
+      text; a bounded search found no directly applicable authority answer.
+    decision: >
+      Retain the exact source and proposed placement here, outside active
+      teaching, under the existing missing-reading policy. Do not choose a
+      canonical hypothesis, substitute an unrelated leadership sense, or
+      block the other selected society/household senses. The original TOPIK
+      record remains unchanged; qualified pronunciation review is still needed.
+    consulted_reading_sources:
+      - dictionary: NIKL Korean Learners' Dictionary
+        official_entry_id: '82681'
+        locator: https://krdict.korean.go.kr/kor/dicSearch/SearchView?ParaWordNo=82681
+        finding: The pinned archive and live entry contain no citation pronunciation text.
+      - dictionary: NIKL Standard Korean Dictionary
+        official_entry_id: '515514'
+        locator: https://stdict.korean.go.kr/search/searchView.do?word_no=515514&searchKeywordTo=3
+        finding: >
+          Inspected the actual public entry detail via contentViewOne.do with
+          word_no=515514, not just the JavaScript page shell. It supplies the
+          team-leader definition and team/長 origin, but no pronunciation text.
+source_and_license_limits: >-
+  The existing pinned source-senses.yaml supplies exact bilingual meanings.
+  ko-nikl-NNNNN denotes the project's preserved CSV record and sNNN its original
+  definition-list position, not an official NIKL sense number. Dictionary bands,
+  source strings, provenance, and licensing metadata remain unchanged.
+  These original selection files do not relicense upstream definitions or
+  grant permission beyond the repository's established source terms; quoted
+  evidence retains those obligations. No dictionary endorsement, TOPIK
+  qualification, complete native lexical inventory, professional certificate,
+  or legal, medical, or financial advice is supplied. Linguistic review,
+  source-wording adjudication, and reading coverage remain explicit follow-ups.

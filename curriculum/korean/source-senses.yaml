@@ -9,7 +9,7 @@ band_counts:
   advanced: 5105
   beginner: 1942
   intermediate: 3981
-  unbanded-support: 71
+  unbanded-support: 102
 entries:
 - id: ko-nikl-00001
   target: 설
@@ -1551,6 +1551,30 @@ entries:
     source_position: 1
     english: In the direction from the top to bottom, or long downward.
     korean: 위에서 아래로 이어지는 방향으로. 또는 아래로 길게.
+- id: ko-nikl-00424
+  target: 세면기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=424
+  senses:
+  - id: ko-nikl-00424-s001
+    source_position: 1
+    english: A bowl to hold the water for washing one's face.
+    korean: 얼굴을 씻기 위한 물을 담는 그릇.
+- id: ko-nikl-00425
+  target: 세면대
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=425
+  senses:
+  - id: ko-nikl-00425-s001
+    source_position: 1
+    english: A basin connected with a water supply, for washing one's hands and face.
+    korean: 손과 얼굴을 씻을 수 있도록 수도와 물 받는 곳을 갖추어 놓은 시설.
 - id: ko-nikl-00426
   target: 세면도구
   part_of_speech: noun
@@ -9431,6 +9455,18 @@ entries:
     source_position: 1
     english: Plates to hold food.
     korean: 음식을 담는 그릇.
+- id: ko-nikl-03026
+  target: 식기세척기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3026
+  senses:
+  - id: ko-nikl-03026-s001
+    source_position: 1
+    english: A machine that washes dishes, cups, etc.
+    korean: 그릇이나 컵 등을 씻어 주는 기계.
 - id: ko-nikl-03027
   target: 식다
   part_of_speech: verb
@@ -12162,6 +12198,18 @@ entries:
     source_position: 3
     english: 'A color, etc., being clear and bright. '
     korean: 빛깔 등이 맑고 산뜻하다.
+- id: ko-nikl-03752
+  target: 싱크대
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3752
+  senses:
+  - id: ko-nikl-03752-s001
+    source_position: 1
+    english: Kitchen furniture used to wash or rinse food ingredients, dishes, etc.
+    korean: 조리할 재료나 그릇 등을 씻는 부엌 가구.
 - id: ko-nikl-03755
   target: 싸구려
   part_of_speech: noun
@@ -13129,6 +13177,18 @@ entries:
     source_position: 1
     english: A can used to contain or keep garbage.
     korean: 쓰레기를 담거나 모아 두는 통.
+- id: ko-nikl-03934
+  target: 쓰레받기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3934
+  senses:
+  - id: ko-nikl-03934-s001
+    source_position: 1
+    english: An object into which the waste is swept.
+    korean: 비로 쓰레기를 쓸어서 담는 기구.
 - id: ko-nikl-03935
   target: 쓰리다
   part_of_speech: descriptive verb
@@ -23042,6 +23102,18 @@ entries:
     source_position: 3
     english: (a fact being confirmed) Certainly and accurately.
     korean: 어떤 사실이 틀림이 없이 확실하게.
+- id: ko-nikl-06862
+  target: 분무기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6862
+  senses:
+  - id: ko-nikl-06862-s001
+    source_position: 1
+    english: 'A device for spraying water, a chemical, etc. '
+    korean: 물이나 약품 등을 뿜어내는 도구.
 - id: ko-nikl-06866
   target: 분배
   part_of_speech: noun
@@ -26539,6 +26611,18 @@ entries:
     source_position: 1
     english: 'A drop of water that falls from the sky as rain. '
     korean: 비가 되어 하늘에서 떨어지는 물방울.
+- id: ko-nikl-07798
+  target: 빗자루
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7798
+  senses:
+  - id: ko-nikl-07798-s001
+    source_position: 1
+    english: 'An implement for sweeping away dirt or trash. '
+    korean: 먼지나 쓰레기를 쓸어 내는 도구.
 - id: ko-nikl-07800
   target: 빗줄기
   part_of_speech: noun
@@ -28258,6 +28342,18 @@ entries:
     source_position: 5
     english: To pay for someone's food after you both ate together.
     korean: 다른 사람과 함께 먹은 음식의 값을 치르다.
+- id: ko-nikl-08236
+  target: 사다리
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8236
+  senses:
+  - id: ko-nikl-08236-s001
+    source_position: 1
+    english: An apparatus designed to place one's foot on when one climbs up and down.
+    korean: 높은 곳이나 낮은 곳에 오르내릴 때 발을 디딜 수 있도록 만든 물건.
 - id: ko-nikl-08253
   target: 사들이다
   part_of_speech: verb
@@ -29522,6 +29618,19 @@ entries:
     source_position: 1
     english: 'A type of language different from a standard language and used only in some local provinces.  '
     korean: 일부 지방에서만 쓰는, 표준어가 아닌 말.
+- id: ko-nikl-08599
+  target: 사포
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8599
+  senses:
+  - id: ko-nikl-08599-s001
+    source_position: 1
+    english: 'A piece of paper or cloth coated with powered sand, glass, etc., used to rub and smooth
+      the surface of an object. '
+    korean: 물체의 표면을 문질러 매끄럽게 닦는 데에 쓰는, 모래나 유리 가루 등을 발라 붙인 천이나 종이.
 - id: ko-nikl-08601
   target: 사표
   part_of_speech: noun
@@ -30690,6 +30799,22 @@ entries:
     source_position: 3
     english: To repress one's emotion or expression.
     korean: 감정이나 표현이 드러나지 않게 애써서 참다.
+- id: ko-nikl-08996
+  target: 삽
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8996
+  senses:
+  - id: ko-nikl-08996-s001
+    source_position: 1
+    english: An implement used for digging in the ground and scooping soil.
+    korean: 땅을 파고 흙을 푸는 데 쓰는 도구.
+  - id: ko-nikl-08996-s002
+    source_position: 2
+    english: The unit for counting the amount of soil or sand, etc., scooped with a shovel.
+    korean: 삽으로 흙이나 모래 등을 퍼 담은 분량을 세는 단위.
 - id: ko-nikl-09009
   target: 상
   part_of_speech: noun
@@ -41999,6 +42124,22 @@ entries:
     english: 'An act of seeking the opinion of an expert or a professional organization in order to deal
       with a matter more efficiently. '
     korean: 어떤 일을 더 효율적이고 바르게 처리하기 위해 전문가나 전문 기관에 의견을 물음.
+- id: ko-nikl-12188
+  target: 자물쇠
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12188
+  senses:
+  - id: ko-nikl-12188-s001
+    source_position: 1
+    english: A device used to lock something that can be opened and closed.
+    korean: 열고 닫게 되어 있는 물건을 잠그는 장치.
+  - id: ko-nikl-12188-s002
+    source_position: 2
+    english: A device that prevents the trigger of a gun, etc., from being pulled.
+    korean: 총이나 대포 등에서 방아쇠가 당겨지지 않도록 고정시키는 장치.
 - id: ko-nikl-12192
   target: 자발적
   part_of_speech: noun
@@ -45886,6 +46027,18 @@ entries:
     source_position: 1
     english: Very quick-witted or quick in action.
     korean: 눈치나 동작이 매우 빠르다.
+- id: ko-nikl-13281
+  target: 쟁반
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13281
+  senses:
+  - id: ko-nikl-13281-s001
+    source_position: 1
+    english: A shallow, wide-surfaced container that is used to carry other containers.
+    korean: 보통 다른 그릇을 받쳐 드는 데에 쓰는, 높이가 매우 낮고 바닥이 넓고 큰 그릇.
 - id: ko-nikl-13290
   target: 쟁점
   part_of_speech: noun
@@ -47269,6 +47422,18 @@ entries:
     source_position: 1
     english: An opportunity or period that becomes a turning point for someone or something.
     korean: 전환점이 되는 기회나 시기.
+- id: ko-nikl-13699
+  target: 전기밥솥
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13699
+  senses:
+  - id: ko-nikl-13699-s001
+    source_position: 1
+    english: An electric apparatus used for cooking rice.
+    korean: 전기를 이용하여 밥을 짓도록 만든 기구.
 - id: ko-nikl-13706
   target: 전날
   part_of_speech: noun
@@ -49304,6 +49469,18 @@ entries:
     english: The act of injecting germs, antitoxins, antibodies, etc., into the body of a human or animal
       for disease prevention, treatment, diagnosis, experiment, etc., or such a task.
     korean: 병의 예방, 치료, 진단, 실험 등을 위해 병원균이나 항독소, 항체 등을 사람이나 동물의 몸속에 넣음. 또는 그렇게 하는 일.
+- id: ko-nikl-14348
+  target: 접착제
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14348
+  senses:
+  - id: ko-nikl-14348-s001
+    source_position: 1
+    english: Something used to bond two objects together.
+    korean: 두 물체를 서로 붙이는 데 쓰는 것.
 - id: ko-nikl-14350
   target: 접촉
   part_of_speech: noun
@@ -57596,6 +57773,18 @@ entries:
     source_position: 1
     english: 'In large amounts at the same time. '
     korean: 한꺼번에 많이.
+- id: ko-nikl-16897
+  target: 대걸레
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16897
+  senses:
+  - id: ko-nikl-16897-s001
+    source_position: 1
+    english: A wet cloth fastened to a long stick for cleaning floors.
+    korean: 긴 막대 자루가 달린 걸레.
 - id: ko-nikl-16903
   target: 대견하다
   part_of_speech: descriptive verb
@@ -64708,6 +64897,22 @@ entries:
     source_position: 2
     english: 'A cleaning method that dissolves stains off of clothes with chemicals instead of water. '
     korean: 물 대신 화학 약품으로 옷의 때를 빼는 세탁 방법.
+- id: ko-nikl-19092
+  target: 드라이버
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19092
+  senses:
+  - id: ko-nikl-19092-s001
+    source_position: 1
+    english: 'A tool for driving a screw into something or pulling it out. '
+    korean: 나사못을 돌려서 박거나 빼는 기구.
+  - id: ko-nikl-19092-s002
+    source_position: 2
+    english: 'A golf club used to hit a golf ball far in a golf game. '
+    korean: 골프에서, 공을 멀리 칠 때 쓰는 골프채.
 - id: ko-nikl-19093
   target: 드라이브
   part_of_speech: noun
@@ -64869,6 +65074,18 @@ entries:
     source_position: 3
     english: To leave one's traces for posterity by letting  people know one's name, achievements, etc.
     korean: 이름이나 공적 등을 널리 전하여 후세에 자취를 남기다.
+- id: ko-nikl-19116
+  target: 드릴
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19116
+  senses:
+  - id: ko-nikl-19116-s001
+    source_position: 1
+    english: A tool used to make a hole in wood or metal.
+    korean: 나무나 금속에 구멍을 뚫는 도구.
 - id: ko-nikl-19119
   target: 드물다
   part_of_speech: descriptive verb
@@ -70576,6 +70793,19 @@ entries:
     source_position: 1
     english: 'A gathering organized so that people can listen to songs or music being sung or played live. '
     korean: 악기를 연주하거나 노래를 하여 청중에게 들려주는 모임.
+- id: ko-nikl-20781
+  target: 콘센트
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20781
+  senses:
+  - id: ko-nikl-20781-s001
+    source_position: 1
+    english: An implement connecting an electric cable and cord, which enables electricity to pass when
+      a plug is inserted into it.
+    korean: 전기가 흐르는 선과 코드를 이어주며, 플러그를 끼워 전기를 통하게 하는 기구.
 - id: ko-nikl-20788
   target: 콜라
   part_of_speech: noun
@@ -72841,6 +73071,18 @@ entries:
     source_position: 4
     english: The unit for counting sliced or cut chunks of something.
     korean: 잘려지거나 떼어낸 한 부분을 세는 단위.
+- id: ko-nikl-21607
+  target: 토스터
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21607
+  senses:
+  - id: ko-nikl-21607-s001
+    source_position: 1
+    english: A device to toast slices of plain bread using electricity.
+    korean: 전기를 이용해 식빵을 굽는 기구.
 - id: ko-nikl-21613
   target: 토양
   part_of_speech: noun
@@ -73015,6 +73257,18 @@ entries:
     source_position: 2
     english: A bound noun that serves as a unit to indicate the loading capacity of a truck, ship, etc.
     korean: 트럭이나 배 등이 실을 수 있는 양을 나타내는 단위.
+- id: ko-nikl-21655
+  target: 톱
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21655
+  senses:
+  - id: ko-nikl-21655-s001
+    source_position: 1
+    english: A tool used to cut or saw lumber, metal, etc.
+    korean: 나무나 쇠붙이 등을 자르거나 켜는 데 쓰는 도구.
 - id: ko-nikl-21666
   target: 통
   part_of_speech: noun
@@ -76331,6 +76585,18 @@ entries:
     source_position: 2
     english: A unit for counting the pages of a book, newspaper, document, etc.
     korean: 책, 신문, 문서 등의 면을 세는 단위.
+- id: ko-nikl-22710
+  target: 펜치
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22710
+  senses:
+  - id: ko-nikl-22710-s001
+    source_position: 1
+    english: An hand tool used to cut or bend steel wires.
+    korean: 손에 쥐고 철사를 끊거나 구부리거나 하는 데에 쓰는 도구.
 - id: ko-nikl-22712
   target: 펭귄
   part_of_speech: noun
@@ -92531,6 +92797,18 @@ entries:
     source_position: 2
     english: The act of drying up water or lowering humidity by drying something.
     korean: 말려서 물기나 습기를 없앰.
+- id: ko-nikl-27657
+  target: 건조기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27657
+  senses:
+  - id: ko-nikl-27657-s001
+    source_position: 1
+    english: A machine which dries something by using heat, hot wind, dehydrating agents, etc.
+    korean: 열을 가하거나 뜨거운 바람을 보내거나 물기를 흡수하는 약을 써서 물체에 있는 물기를 말리는 기계.
 - id: ko-nikl-27669
   target: 건지다
   part_of_speech: verb
@@ -112686,6 +112964,31 @@ entries:
     source_position: 6
     english: Hard to do something.
     korean: 어떤 일을 하기가 쉽지 아니하다.
+- id: ko-nikl-34251
+  target: 나사
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34251
+  senses:
+  - id: ko-nikl-34251-s001
+    source_position: 1
+    english: A nail with grooves, which is twisted in one direction to fasten something.
+    korean: 한 방향으로 비틀어 돌려 물체를 조이는 데 쓰는 홈이 파인 못.
+- id: ko-nikl-34255
+  target: 나사못
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34255
+  senses:
+  - id: ko-nikl-34255-s001
+    source_position: 1
+    english: 'A nail with a spiral thread on its shaft, and whose head has a nick in it for a screw-driver
+      to use.  '
+    korean: 못 표면에는 나선형으로 빙빙 돌아가며 홈이 나 있고, 못 머리에는 드라이버로 돌려 박을 수 있도록 홈이 나 있는 못.
 - id: ko-nikl-34256
   target: 나서다
   part_of_speech: verb
@@ -128773,6 +129076,18 @@ entries:
     source_position: 1
     english: Not satisfactory.
     korean: 만족스럽지 못하다.
+- id: ko-nikl-39040
+  target: 믹서
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39040
+  senses:
+  - id: ko-nikl-39040-s001
+    source_position: 1
+    english: An appliance that grinds fruits, vegetables, etc. into powder or juice.
+    korean: 과일, 야채 등을 갈아서 가루나 즙으로 만드는 기계.
 - id: ko-nikl-39044
   target: 민간
   part_of_speech: noun
@@ -131854,6 +132169,23 @@ entries:
     source_position: 1
     english: A bound noun that serves as a unit for counting the number of steps.
     korean: 걸음의 수를 세는 단위.
+- id: ko-nikl-40114
+  target: 발코니
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40114
+  senses:
+  - id: ko-nikl-40114-s001
+    source_position: 1
+    english: 'The small space enclosed by a balustrade or low walls outside the surface of a building. '
+    korean: 건물 벽면 바깥으로 난간이나 낮은 벽으로 둘러싸이게 지은 작은 공간.
+  - id: ko-nikl-40114-s002
+    source_position: 2
+    english: 'In a theater, a special seat designed exclusively for several people to sit on together
+      on the second floor or above. '
+    korean: 극장에서, 이 층 이상에 몇 사람만 같이 앉을 수 있도록 만든 특별한 자리.
 - id: ko-nikl-40118
   target: 발톱
   part_of_speech: noun
@@ -133138,6 +133470,18 @@ entries:
     source_position: 1
     english: The act of sending supplies to a specific place.
     korean: 어떤 물자를 특정 장소로 보냄.
+- id: ko-nikl-40637
+  target: 배수구
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40637
+  senses:
+  - id: ko-nikl-40637-s001
+    source_position: 1
+    english: A hole in the sink, bathtub, floor, etc., that drains water away.
+    korean: 물이 빠져 나갈 수 있도록 싱크대나 욕조, 바닥 등에 만든 구멍.
 - id: ko-nikl-40643
   target: 배신
   part_of_speech: noun
@@ -137245,6 +137589,18 @@ entries:
     source_position: 4
     english: At the end of a speech or writing, to stop and finish although one has a lot more to say.
     korean: 말이나 글의 끝에서, 할 말이 많으나 그만하고 마치다.
+- id: ko-nikl-42060
+  target: 줄자
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42060
+  senses:
+  - id: ko-nikl-42060-s001
+    source_position: 1
+    english: A belt-like ruler made of cloth, vinyl, steel, etc.
+    korean: 헝겊, 비닐, 강철 등으로 띠처럼 만든 자.
 - id: ko-nikl-42063
   target: 줄줄이
   part_of_speech: adverb
@@ -157474,6 +157830,18 @@ entries:
     source_position: 2
     english: One's household size or income being enough and substantial.
     korean: 살림이나 수입이 넉넉하여 실속 있다.
+- id: ko-nikl-48249
+  target: 오븐
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48249
+  senses:
+  - id: ko-nikl-48249-s001
+    source_position: 1
+    english: A cooking device which cooks food by heating it from above, below, and both sides.
+    korean: 위, 아래, 양옆에서 열을 가해 음식을 익히는 조리 기구.
 - id: ko-nikl-48250
   target: 오빠
   part_of_speech: noun
@@ -160027,6 +160395,18 @@ entries:
     source_position: 1
     english: An excessive longing to get or have something.
     korean: 무엇을 지나치게 탐내거나 가지고 싶어 하는 마음.
+- id: ko-nikl-49104
+  target: 욕조
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49104
+  senses:
+  - id: ko-nikl-49104-s001
+    source_position: 1
+    english: A large container that can be filled with water for a bath.
+    korean: 목욕을 하기 위해 물을 담는 큰 통.
 - id: ko-nikl-49112
   target: -용
   part_of_speech: affix
@@ -165070,6 +165450,18 @@ entries:
     source_position: 1
     english: 'A large pond surrounded by land. '
     korean: 땅으로 둘러싸인 큰 못.
+- id: ko-nikl-51292
+  target: 호스
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51292
+  senses:
+  - id: ko-nikl-51292-s001
+    source_position: 1
+    english: 'A flexible tube made of plastic or rubber, etc., used for conveying water or gas. '
+    korean: 물이나 가스 등을 보내는 데 쓰며, 잘 휘어지도록 비닐, 고무 등으로 만든 관.
 - id: ko-nikl-51300
   target: 호실
   part_of_speech: noun

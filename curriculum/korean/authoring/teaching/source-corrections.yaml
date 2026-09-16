@@ -5,6 +5,26 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-06831-s001:
+    source_korean: 본래 하나였던 것이 둘 이상으로 나누어짐.
+    source_english: "Something being divided into more than two parts. "
+    authored_interpretation: division into two or more parts
+    rationale: Korean 둘 이상 includes exactly two parts; the English incorrectly requires more than two.
+  ko-nikl-30297-s001:
+    source_korean: 둘 이상의 사람, 사물, 현상 등이 서로 영향을 주고받도록 관계를 맺고 있음. 또는 그 관계.
+    source_english: People, objects, or phenomena, etc., of more than two, being related so as to influence each other, or the relationship.
+    authored_interpretation: connection or relevance between two or more things
+    rationale: Korean 둘 이상 includes a relationship between exactly two; the English incorrectly says more than two.
+  ko-nikl-24001-s001:
+    source_korean: 학교를 다닌 경력.
+    source_english: The level of education one completes.
+    authored_interpretation: educational background; schooling history
+    rationale: The Korean describes schooling history, not only a completed level; attendance without completion is not excluded.
+  ko-nikl-06354-s001:
+    source_korean: 조직을 이루고 있는 군인 집단. 또는 군인 집단이 머물러 있는 시설.
+    source_english: An army consisting of a certain number of soldiers or where the army stays.
+    authored_interpretation: a military unit or its quarters
+    rationale: The Korean names an organized military group or its facilities, not necessarily an entire army.
   ko-nikl-16728-s004:
     source_korean: 공간이 좁아 시원한 느낌이 없다.
     source_english: Feeling a lack of air.

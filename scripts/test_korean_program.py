@@ -756,6 +756,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml",
             "kitchen-notes.yaml", "personal-notes.yaml", "content-notes.yaml",
             "expression-notes.yaml",
+            "society-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -822,28 +823,32 @@ class KoreanCourseArtifactTests(unittest.TestCase):
                       for number in range(1, 5)}
         self.assertEqual(len(identities), 1)
 
-    def test_pending_community_reading_retains_source_without_a_canonical_guess(self):
-        notes = load_yaml(self.root / "authoring" / "teaching" / "community-notes.yaml")
-        pending = notes["pending_reading_exclusions"]
-        self.assertEqual([row["id"] for row in pending], ["ko-nikl-48419-s001"])
+    def test_pending_readings_retain_source_without_canonical_guesses(self):
         _, original = sense_index(load_yaml(self.root / "source-senses.yaml"))
-        for row in pending:
-            parent, sense = original[row["id"]]
-            self.assertNotIn(row["id"], self.references.vocabulary)
-            self.assertNotIn(row["provisional_identity"], self.references.lexical_identity.values())
-            self.assertEqual(row["source_parent"], parent["id"])
-            self.assertEqual(row["lemma"], parent["target"])
-            self.assertEqual(row["source_position"], sense["source_position"])
-            for key in ("source_band", "reference_level", "source_entry"):
-                self.assertEqual(row[key], parent[key])
-            for language in ("korean", "english"):
-                self.assertEqual(row[f"source_{language}"], sense[language])
-            self.assertNotIn("pr", row)
-            self.assertEqual(row["status"], "excluded-pending-qualified-pronunciation-review")
-            self.assertEqual(
-                {entry["official_entry_id"] for entry in row["consulted_reading_sources"]},
-                {"93471", "515681"},
-            )
+        for filename, identifier, official_ids in (
+            ("community-notes.yaml", "ko-nikl-48419-s001", {"93471", "515681"}),
+            ("society-notes.yaml", "ko-nikl-22209-s001", {"82681", "515514"}),
+        ):
+            notes = load_yaml(self.root / "authoring" / "teaching" / filename)
+            pending = notes["pending_reading_exclusions"]
+            self.assertEqual([row["id"] for row in pending], [identifier])
+            for row in pending:
+                parent, sense = original[row["id"]]
+                self.assertNotIn(row["id"], self.references.vocabulary)
+                self.assertNotIn(row["provisional_identity"], self.references.lexical_identity.values())
+                self.assertEqual(row["source_parent"], parent["id"])
+                self.assertEqual(row["lemma"], parent["target"])
+                self.assertEqual(row["source_position"], sense["source_position"])
+                for key in ("source_band", "reference_level", "source_entry"):
+                    self.assertEqual(row[key], parent[key])
+                for language in ("korean", "english"):
+                    self.assertEqual(row[f"source_{language}"], sense[language])
+                self.assertNotIn("pr", row)
+                self.assertEqual(row["status"], "excluded-pending-qualified-pronunciation-review")
+                self.assertEqual(
+                    {entry["official_entry_id"] for entry in row["consulted_reading_sources"]},
+                    official_ids,
+                )
 
     def test_pantry_support_and_related_meanings_preserve_source_and_breadth(self):
         words, evidence, identities = (
@@ -1040,6 +1045,77 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("figurative", words["ko-nikl-33248-s003"]["ds"])
         self.assertIn("reversing", words["ko-nikl-52299-s002"]["ds"])
         self.assertNotEqual(identities["ko-nikl-24785-s002"], identities["ko-nikl-49519-s001"])
+
+    def test_society_homographs_keep_distinct_roles_and_concepts(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for first, second in (
+            ("08617", "08618"), ("30318", "30319"), ("08465", "08466"),
+            ("06574", "06575"), ("10793", "10794"), ("08389", "08390"),
+        ):
+            first, second = f"ko-nikl-{first}-s001", f"ko-nikl-{second}-s001"
+            self.assertEqual(words[first]["ch"], words[second]["ch"])
+            self.assertNotEqual(identities[first], identities[second])
+        self.assertIn("father and his son", words["ko-nikl-06574-s001"]["ds"])
+        self.assertIn("wealthy", words["ko-nikl-06575-s001"]["ds"])
+        self.assertIn("binary source framing", words["ko-nikl-10794-s001"]["ds"])
+        self.assertIn("writing", words["ko-nikl-31831-s001"]["ds"])
+        self.assertIn("honorific", words["ko-nikl-31831-s001"]["ds"])
+
+    def test_society_naming_and_function_families_preserve_identity_accounting(self):
+        identities, evidence = self.references.lexical_identity, self.references.provenance
+        self.assertEqual(identities["ko-nikl-08466-s001"], identities["ko-nikl-52049-s001"])
+        self.assertEqual(identities["ko-nikl-28496-s002"], identities["ko-nikl-28512-s001"])
+        self.assertEqual(identities["ko-nikl-17008-s001"], identities["ko-nikl-17009-s001"])
+        self.assertIn("outline", self.references.vocabulary["ko-nikl-17008-s001"]["ds"])
+        for key in ("06138", "21111", "31831", "34584", "08389", "17008"):
+            self.assertEqual(evidence[f"ko-nikl-{key}-s001"]["lexical_category"], "function-item")
+        rows, _ = load_selections(
+            self.root / "authoring" / "teaching",
+            load_yaml(self.root / "authoring" / "teaching" / "vocabulary.yaml"),
+        )
+        placements = {row["id"]: row["level"] for row in rows}
+        self.assertEqual(placements["ko-nikl-44315-s001"], "professional")
+        self.assertEqual(placements["ko-nikl-44315-s002"], 18)
+        self.assertEqual(identities["ko-nikl-44315-s001"], identities["ko-nikl-44315-s002"])
+
+    def test_society_corrections_preserve_exact_original_scope_errors(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        for key in ("ko-nikl-06831-s001", "ko-nikl-30297-s001"):
+            self.assertIn("two or more", words[key]["ds"])
+            self.assertIn("more than two", evidence[key]["source_english"])
+        self.assertIn("schooling history", words["ko-nikl-24001-s001"]["ds"])
+        self.assertIn("completes", evidence["ko-nikl-24001-s001"]["source_english"])
+        self.assertIn("unit or its quarters", words["ko-nikl-06354-s001"]["ds"])
+        self.assertIn("army", evidence["ko-nikl-06354-s001"]["source_english"])
+
+    def test_household_fixtures_and_equipment_keep_source_specific_meanings(self):
+        words = self.references.vocabulary
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertIn("bowl", words["ko-nikl-00424-s001"]["ds"])
+        self.assertIn("water supply", words["ko-nikl-00425-s001"]["ds"])
+        self.assertIn("drying", words["ko-nikl-27657-s001"]["ds"])
+        self.assertIn("machine", parents["ko-nikl-27657"]["senses"][0]["english"])
+        self.assertIn("saw", words["ko-nikl-21655-s001"]["ds"])
+        self.assertEqual(len(parents["ko-nikl-19092"]["senses"]), 2)
+        self.assertIn("screwdriver", words["ko-nikl-19092-s001"]["ds"])
+        self.assertIn("golf", words["ko-nikl-19092-s002"]["ds"])
+        self.assertEqual(len(parents["ko-nikl-39040"]["senses"]), 1)
+        self.assertIn("fruit and vegetables", words["ko-nikl-39040-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-39040-s001"]["pr"], "믹써")
+        self.assertEqual(
+            self.references.provenance["ko-nikl-39040-s001"]["reading"]["review_status"],
+            "unreviewed",
+        )
+
+    def test_household_measures_and_cross_cohort_knot_senses_do_not_add_lemmas(self):
+        identities = self.references.lexical_identity
+        for parent, count in (("39286", 3), ("08996", 2), ("36623", 4),
+                              ("21545", 3), ("40114", 2), ("39315", 4)):
+            senses = [f"ko-nikl-{parent}-s{number:03d}" for number in range(1, count + 1)]
+            self.assertTrue(all(key in self.references.vocabulary for key in senses))
+            self.assertEqual(len({identities[key] for key in senses}), 1)
+        self.assertIn("fair amount", self.references.vocabulary["ko-nikl-39286-s003"]["ds"])
+        self.assertIn("hollow needle", self.references.vocabulary["ko-nikl-39315-s004"]["ds"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
