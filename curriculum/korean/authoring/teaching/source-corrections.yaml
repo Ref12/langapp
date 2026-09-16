@@ -5,6 +5,26 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-04148-s002:
+    source_korean: 생각이 날 듯하면서도 나지 않다.
+    source_english: Something almost coming to one's mind, but in the end, disappearing.
+    authored_interpretation: to almost come to mind but remain unrecalled
+    rationale: The Korean does not require an actual recalled thought that subsequently disappears.
+  ko-nikl-16728-s003:
+    source_korean: 마음이 넓지 못하거나 행동이나 모습이 시원스럽지 못하다.
+    source_english: Behavior or appearance looking bored and rigid, or narrow-minded.
+    authored_interpretation: to be narrow-minded or frustratingly constrained
+    rationale: The Korean does not establish that the person is bored; do not attribute that inner state from appearance.
+  ko-nikl-27958-s002:
+    source_korean: 다해야 고작.
+    source_english: At a minimum.
+    authored_interpretation: only; amounting to no more than
+    rationale: This is a restrictive total, not a lower-bound or at-least claim. Keep the raw erroneous English unchanged.
+  ko-nikl-32030-s001:
+    source_korean: 제법 이치에 맞고 말이 되는 듯하다.
+    source_english: Making sense and standing to reason.
+    authored_interpretation: to seem plausible and reasonably coherent
+    rationale: Preserve 듯하다 apparent plausibility; the English omits that qualification and cannot establish truth.
   ko-nikl-47463-s001:
     source_korean: 어떤 사물을 보거나 듣거나 생각할 때 그것과 관련 있는 사물을 머릿속에 떠올리다.
     source_english: To be reminded of things related to an object when one sees, hears, or thinks of it.

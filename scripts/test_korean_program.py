@@ -772,6 +772,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "infrastructure-support-notes.yaml",
             "cognition-notes.yaml",
             "representation-notes.yaml",
+            "circumstance-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1928,10 +1929,10 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertNotEqual(identities["ko-nikl-37556-s003"], identities["ko-nikl-37406-s001"])
         self.assertEqual(self.references.provenance["ko-nikl-17921-s001"]["reading"]["official_entry_id"], "47614")
 
-    def test_cognition_and_representation_support_retains_every_requested_source_position(self):
+    def test_completed_support_cohorts_retain_every_requested_source_position(self):
         authoring = self.root / "authoring" / "teaching"
         parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
-        for name in ("cognition", "representation"):
+        for name in ("cognition", "representation", "circumstance"):
             notes = load_yaml(authoring / f"{name}-notes.yaml")
             rows = load_yaml(authoring / f"{name}-vocabulary.yaml")
             for parent, request in notes["support_parent_requests"].items():
@@ -1947,6 +1948,63 @@ class KoreanCourseArtifactTests(unittest.TestCase):
                         self.assertEqual(record["senses"], request["senses"])
             for row in rows:
                 self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+
+    def test_circumstance_small_amount_forms_preserve_the_stable_function_family(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        authoring = self.root / "authoring" / "teaching"
+        _, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        group = groups["ko-lex-41331"]
+        self.assertEqual((group["lemma"], group["category"]), ("좀", "function-item"))
+        self.assertEqual(words["ko-nikl-15085-s001"]["ch"], "조금")
+        for item in (
+            "ko-nikl-15085-s001", "ko-nikl-15085-s002",
+            "ko-nikl-15086-s001", "ko-nikl-15086-s002",
+            "ko-nikl-41331-s001", "ko-nikl-41331-s002", "ko-nikl-41331-s003",
+            "ko-nikl-41331-s004", "ko-nikl-41331-s005",
+        ):
+            self.assertEqual(identities[item], "ko-lex-41331")
+        self.assertIn("strong intensity", words["ko-nikl-41331-s005"]["ds"])
+        self.assertIn("softening", words["ko-nikl-41331-s003"]["ds"])
+        for parent in ("07067", "11411", "23879", "24294", "29259", "32715", "32993", "36007", "52386"):
+            self.assertEqual(groups[f"ko-lex-{parent}"]["category"], "function-item")
+
+    def test_circumstance_well_senses_are_not_all_skillful_performance(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for position, meaning in (
+            (3, "skillfully"), (4, "accurately"), (6, "without trouble"),
+            (7, "habit"), (9, "attentively"), (11, "natural tendency"),
+            (12, "function or effect"), (13, "sincere care"), (15, "prosperously"),
+        ):
+            item = f"ko-nikl-12606-s{position:03}"
+            self.assertEqual(identities[item], "ko-lex-12606")
+            self.assertIn(meaning, words[item]["ds"])
+            self.assertEqual(self.references.provenance[item]["source_position"], position)
+
+    def test_circumstance_degree_and_appearance_preserve_qualified_source_meanings(self):
+        words = self.references.vocabulary
+        limited = "ko-nikl-27958-s002"
+        self.assertEqual(self.references.provenance[limited]["source_english"], "At a minimum.")
+        self.assertIn("no more than", words[limited]["ds"])
+        self.assertIn("seem plausible", words["ko-nikl-32030-s001"]["ds"])
+        self.assertNotIn("bored", words["ko-nikl-16728-s003"]["ds"])
+        self.assertIn("unrecalled", words["ko-nikl-04148-s002"]["ds"])
+        self.assertIn("temporary", words["ko-nikl-11411-s002"]["ds"])
+        self.assertIn("once", words["ko-nikl-11411-s003"]["ds"])
+        self.assertIn("appear unperturbed", words["ko-nikl-21401-s001"]["ds"])
+        self.assertIn("without showing", words["ko-nikl-17621-s001"]["ds"])
+
+    def test_circumstance_derivatives_do_not_zip_senses_or_collapse_homographs(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-46538-s004"], identities["ko-nikl-46539-s003"])
+        self.assertIn("amenable", words["ko-nikl-46538-s003"]["ds"])
+        self.assertIn("difficult", words["ko-nikl-46539-s003"]["ds"])
+        self.assertIn("average", words["ko-nikl-46539-s001"]["ds"])
+        self.assertIn("far beyond", words["ko-nikl-46539-s004"]["ds"])
+        self.assertEqual(identities["ko-nikl-49900-s002"], identities["ko-nikl-49901-s002"])
+        self.assertEqual(identities["ko-nikl-38130-s001"], identities["ko-nikl-38126-s001"])
+        self.assertNotEqual(identities["ko-nikl-35999-s002"], identities["ko-nikl-36000-s002"])
+        self.assertEqual(identities["ko-nikl-46567-s001"], identities["ko-nikl-46566-s002"])
+        self.assertEqual(identities["ko-nikl-32716-s002"], identities["ko-nikl-32715-s001"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
