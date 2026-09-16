@@ -5,6 +5,26 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-33546-s001:
+    source_korean: 들깨와 참깨의 잎.
+    source_english: The leaf of wild sesame and sesame.
+    authored_interpretation: leaves of perilla or sesame
+    rationale: Use the culinary name perilla for 들깨 while retaining both source leaf referents, not a perilla-only gloss or botanical-identification guarantee.
+  ko-nikl-37341-s001:
+    source_korean: 팔뚝만 한 크기에 입과 눈이 크고 등은 푸른 갈색, 배는 은백색이며 말리면 북어가 되는 바닷물고기.
+    source_english: A forearm-sized saltwater fish with large eyes and mouth, brown back and silver-white belly, known in Korea as bugeo and sometimes eaten dried.
+    authored_interpretation: pollock (not the dried product bugeo)
+    rationale: The Korean explicitly says the fish becomes 북어 when dried, rather than calling the undried fish bugeo. This distinction does not establish product freshness or safety.
+  ko-nikl-46187-s001:
+    source_korean: 겉은 연한 갈색이고 살은 흰색인, 독특한 향기와 맛을 지닌 버섯.
+    source_english: A mushroom with a unique scent and taste of which the outside is light brown and the skin is white.
+    authored_interpretation: button mushrooms
+    rationale: Korean 살 is flesh, not skin. The culinary common-name label does not repeat the incorrect English surface-color description or certify botanical identity.
+  ko-nikl-49357-s001:
+    source_korean: 7월에 검은 자주색 또는 흰색의 꽃이 피며 뿌리와 어린잎을 먹는 풀. 또는 그 뿌리.
+    source_english: A plant that produces dark violet or white flowers in July and has edible roots and young leaves.
+    authored_interpretation: burdock (plant or root)
+    rationale: Preserve the explicit alternative root referent omitted in English, without turning flowering descriptions or historical food-use wording into identification or consumption instructions.
   ko-nikl-12978-s001:
     source_korean: 내용이 길고 복잡한 소설, 시, 영화 등.
     source_english: A novel, poem, movie, etc., with a long and complex story.

@@ -66,6 +66,15 @@ actual consulted Standard Dictionary record supplies pronunciation text.
 This is an unreviewed loanword decision, not a verified import or permission
 to infer length or the colloquial form 딸라.
 
+The pantry entries 셀러리, 아몬드, 생크림, 케첩, 크림, 피망, and 올리브유
+also have individually authored, unreviewed aids. Neither their matched
+learner-dictionary entries nor the actual consulted Standard Dictionary
+contents supply citation text. The pantry notes record those entry locators;
+the decisions explain each syllable boundary and any isolation-dependent
+final consonant. These are not English pronunciation transcriptions, automatic
+spelling copies, or dictionary-verified readings. They confer no dietary or
+food-safety assurance.
+
 The source-listed compounds 주민 등록증 and 외국인 등록증 remain unselected.
 Their learner-dictionary records have no whole-term citation text; the
 consulted Standard Dictionary resident-ID entry also lacks it, and the

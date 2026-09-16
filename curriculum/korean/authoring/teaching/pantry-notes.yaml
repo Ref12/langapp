@@ -1,0 +1,609 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: integrated source and reading decisions; qualified review remains
+scope:
+  - Only pantry-vocabulary.yaml, pantry-identities.yaml, and this notes file are authored here.
+  - Every earlier cohort, including cognition, representation, circumstance, governance, and interaction, remains parent-owned and untouched.
+  - No source, reading, manifest, root, code, test, or generated-output edits; no commits, dependency installation, or delegation.
+  - Select useful grocery and recipe vocabulary, not a taxonomic catalogue or a fixed number of foods.
+source_provenance:
+  source_id: nikl-2024-mirror
+  revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  ids: Parent IDs are one-based CSV data-record ordinals; sNNN is the original definition-list position, not an official dictionary identifier.
+  inspection: >
+    Independently reread bounded, explicitly named grocery/ingredient forms,
+    all their exact-form homographs, and necessary related family members
+    from the checksum-verified pinned CSV in memory. The supplied parent
+    audit file was not read; no claim to have consumed its three chunks is
+    made. No source cache or scratch file was written.
+  array_contract: >
+    Each support request below preserves the complete original Korean and
+    English lists. Their one-based indexes are the original sense positions;
+    selected_positions refers to those indexes. No definition is reordered,
+    deduplicated, shortened, or split into invented source senses.
+  attribution: National Institute of Korean Language and Korean-English Learners' Dictionary contributors, via the unofficial binjang extraction.
+  license: CC-BY-SA-2.0-KR for dictionary text; not the mirror's MIT metadata.
+  license_url: https://creativecommons.org/licenses/by-sa/2.0/kr/
+  reuse_notice: >
+    Dictionary definitions are preserved as evidence. Compact English labels,
+    teaching placements, and provisional identity judgments are adaptations.
+    Retain attribution, source/license links, and share-alike terms. No NIKL
+    endorsement, usage-example, audio, or image redistribution is claimed.
+safety_and_scope:
+  - Food and allergen-related words are vocabulary, not a medical or legally exhaustive allergen classification.
+  - Recognizing a word does not establish a product's ingredients, contamination status, processing method, freshness, or safety for a particular person.
+  - No plant or mushroom description certifies botanical identity or edibility. No foraging or preparation instructions are supplied.
+  - Source mentions of edible plants, cooking, salting, drying, or fermentation are historical lexical descriptions, not safe-consumption procedures.
+  - No raw-consumption, gluten-free, lactose-free, added-sugar, nut-free, or other dietary guarantee follows from these labels.
+  - Culinary common names are not verified scientific taxa; no Latin species names or cultivar identities are invented.
+curation:
+  early_communication: Salmon and ketchup support simple food ordering at 3; groceries and basic materials support home tasks at 5.
+  shopping_and_care: >
+    At 6, category/ingredient names support reading labels and asking questions.
+    The prepared mung-sprout side dish is distinguished from its ingredient.
+    These words do not establish the safety of a meal or product.
+  travel_and_recipes: >
+    Common seafood/menu names enter at 7. Recipe distinctions such as starch,
+    seeds, ground seasoning, sticky rice, egg-part variants, cream mixtures,
+    concentrated milk, and dried pollock enter at 11.
+  unfamiliar_products: >
+    Sorghum and actual hulled foxtail-millet grain support questions about
+    unfamiliar grain products at 14. No grain 기장 or plant 조 source ID is
+    invented to complete a cereal list.
+  source_band_independence: Placement follows these communicative uses, not source bands, alphabetic order, numerical quotas, or a blanket level6 assignment.
+identity_policy:
+  status: Explicit provisional lexical families, not independently verified true-lexeme breadth. Report parents, spellings, senses, and family counts separately.
+  existing_fragments: Keep canonical lemma/category unchanged and include only new members and their actual parents.
+  starch: 전분13841 matches protected cooking 녹말35581-s001, not automatically its distinct biological-carbohydrate position.
+  egg_parts: >
+    Full 노른자/노른자위 and 흰자/흰자위 comparisons preserve their
+    literal and figurative/eye meanings. Only the newly selected recipe
+    variants extend existing families here; no second free head is counted.
+  soybean: >
+    Actual 대두16997 and protected 콩20825 both specify the round,
+    yellow/black-skinned grain used in tofu/soy products. Reuse that family
+    without declaring every bean word synonymous or including emergence16998.
+  pepper: >
+    후춧가루52310 explicitly grinds protected 후추52309 into seasoning.
+    This conservative single-material family decision is not a rule merging
+    every powder, grain, plant, or processed product.
+  cream: >
+    생크림09629 and 크림20932-s001 both describe milk-derived fat.
+    Count them once while retaining the separate prepared egg/milk/sugar
+    cream20932-s002 position. Cosmetic20932-s003 is unselected. Neither
+    plain dairy-cream definition requires whipping, sweetening, or a fat
+    percentage; the milk-concentration definition of 연유 adds no sugar.
+  distinguish_products: >
+    명태 fish and gutted/dried 북어 are explicitly different named food
+    states, not interchangeable spelling variants. A cereal plant is not
+    automatically identical to flour, and two named salad/wrap vegetables
+    are not merged merely because English calls both lettuce.
+  no_automatic_taxonomy: >
+    A named ingredient, a product made from it, and a broad food category
+    need not share a family. Conversely, transparent variants and matched
+    material synonyms do not automatically create new breadth. The actual
+    decisions are documented individually in pantry-identities.yaml.
+homograph_reviews:
+  수수: {compared_parents: [ko-nikl-01788, ko-nikl-01789], selected_parent: ko-nikl-01788, excluded: Receipt of money or objects01789 is not the cereal.}
+  전복: {compared_parents: [ko-nikl-13833, ko-nikl-13834], selected_parent: ko-nikl-13833, excluded: Both capsizing and regime-overthrow positions of13834 are unrelated.}
+  대구: {compared_parents: [ko-nikl-16925, ko-nikl-16926], selected_parent: ko-nikl-16925, excluded: City16926 is not cod fish.}
+  대두: {compared_parents: [ko-nikl-16997, ko-nikl-16998], selected_parent: ko-nikl-16997, excluded: Emergence16998 is not soybean.}
+  문어: {compared_parents: [ko-nikl-38438, ko-nikl-38439], selected_parent: ko-nikl-38438, excluded: Both written-language positions of38439 are not octopus.}
+  연어: {compared_parents: [ko-nikl-47514, ko-nikl-47515], selected_parent: ko-nikl-47515, excluded: Collocation47514 is not salmon.}
+  가지: {compared_parents: [ko-nikl-26019, ko-nikl-26022, ko-nikl-26023], selected_parent: ko-nikl-26022, excluded: Protected branch and kind-counter families remain separate and unchanged.}
+  젓갈: {compared_parents: [ko-nikl-14362, ko-nikl-14363], selected_parent: ko-nikl-14362, excluded: Utensil and amount positions of14363 are not the seafood dish.}
+  간장: {compared_parents: [ko-nikl-26266, ko-nikl-26267, ko-nikl-26274], selected_here: false, decision: Soy sauce26266 is already protected; neither organs nor figurative mind/liver meanings are pantry additions.}
+  감자: {compared_parents: [ko-nikl-26568, ko-nikl-26569], selected_here: false, decision: Potato26568 is protected; capital reduction26569 is unrelated.}
+  기장: {compared_parents: [ko-nikl-33048, ko-nikl-33049], selected_here: false, decision: Garment length and aircraft commander only; neither may substitute for a missing grain record.}
+  조:
+    compared_parents: [ko-nikl-15031, ko-nikl-15034, ko-nikl-15036, ko-nikl-15037, ko-nikl-15038, ko-nikl-15039, ko-nikl-15040, ko-nikl-15041]
+    selected_here: false
+    decision: Group, musical system, bound forms, numeral and determiner records do not supply a cereal sense. The independently listed food 좁쌀 remains valid but is not relabeled 기장.
+  김: {compared_parents: [ko-nikl-33272, ko-nikl-33275, ko-nikl-33276, ko-nikl-33277], selected_here: false, decision: Food33276 is protected; vapor/carbonation, weeds, and opportunity do not add pantry senses.}
+  미역: {compared_parents: [ko-nikl-38958, ko-nikl-38959], selected_here: false, decision: Seaweed38959 is protected; river bathing38958 is unrelated.}
+unselected_positions:
+  ko-nikl-52832-s002: Eye white is fully preserved in the request evidence but is not an ingredient addition; the short-form eye sense is already protected.
+  ko-nikl-35455-s002: Figurative most-valuable part is not a recipe sense; the short-form figurative meaning is already protected.
+  ko-nikl-41343-s002: Narrow-minded person or tiny object is not a grocery meaning.
+  ko-nikl-20932-s003: Cosmetic cream is outside this cohort.
+  ko-nikl-51259-s001: No extra plant position is added merely to duplicate the already-selected squash/pumpkin fruit.
+  ko-nikl-51259-s003: The source derogatory-person use is not food and is not selected.
+source_limits:
+  absent_exact_forms: [귀리, 목이버섯, 표고, 표고버섯, 브로콜리, 새우젓, 액젓, 오트밀, 요거트, 쪽파, 파프리카, 후추가루]
+  bounded_probe: >
+    Both 표고 and 표고버섯 were checked; a bounded raw-Form prefix check
+    found no 표고 entry either. 오트밀 was checked as an actual possible
+    processed-food name, not fabricated as an alias for absent 귀리.
+    The listed 후춧가루 spelling is used, not absent 후추가루.
+  existing_alternative: Protected 요구르트48929 supplies its actual fermented-milk-drink sense; no invented 요거트 parent is needed.
+  interpretation: Exact absence in this pin is not absence from Korean or a license to replace a word with an unrelated homograph. No exhaustive food-source audit is claimed.
+  bounded_deferrals: >
+    Protected staples, oils, soy sauce/pastes, flour, leafy vegetables,
+    seaweeds, honey, butter, cheese, mayonnaise, and pepper are not imported
+    again. Unselected 견과 and 곡식 were inspected but do not add another
+    near-equivalent category merely to increase the count.
+support_parent_requests:
+  ko-nikl-00551:
+    lemma: 셀러리
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['달걀 모양 잎이 갈라져 나고, 줄기가 굵고 길며 독특한 냄새와 맛이 나는 서양 채소.']
+    english_definitions: ['A western vegetable that has a thick, long stem with egg-shaped leaves and a unique smell and taste.']
+  ko-nikl-01788:
+    lemma: 수수
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['키가 크고 잎이 좁으며 여름에 작고 동그란 열매가 달리는 식물. 또는 그 열매.']
+    english_definitions: ['A tall plant with narrow leaves that produces small, round fruit in the summer, or the fruit.']
+  ko-nikl-02149:
+    lemma: 숙주나물
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [1, 2]
+    korean_definitions: ['녹두에 물을 주어서 싹을 낸 나물.', '숙주를 양념에 무친 반찬.']
+    english_definitions: ['Vegetables produced by watering mung beans and making them sprout buds.', 'A dish made by mixing mung bean sprouts with seasoning.']
+  ko-nikl-04156:
+    lemma: 아몬드
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['껍데기는 단단하고 속살은 갈색의 얇은 껍질로 싸여 있으며 맛이 고소한 열매.']
+    english_definitions: ['A fruit with a hard shell and a nut-flavored flesh wrapped in thin, brown skin.']
+  ko-nikl-06680:
+    lemma: 부추
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['독특한 냄새와 맛이 나는, 부드럽고 가는 녹색 잎이 뭉쳐나는 채소.']
+    english_definitions: ['A vegetable that has a unique flavor and taste, with long, smoooth green leaves which grow in a bundle. ']
+  ko-nikl-06778:
+    lemma: 북어
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['내장을 빼내고 말린 명태.']
+    english_definitions: ['A gutted and dried pollack.']
+  ko-nikl-09629:
+    lemma: 생크림
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['우유에서 지방 성분을 분리하여 만든 희고 부드러운 식품.']
+    english_definitions: ['White, soft food made by separating the fat component from milk.']
+  ko-nikl-12697:
+    lemma: 잡곡
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['쌀 이외의 모든 곡식.']
+    english_definitions: ['All grains except rice. ']
+  ko-nikl-13833:
+    lemma: 전복
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['바닷속 바위에 붙어 살며 살은 고급 식품이고 껍데기는 장신구 등으로 쓰이는 조개.']
+    english_definitions: ['A shellfish living on a rock whose meat is considered a delicacy and whose shell is used for making ornaments, etc.']
+  ko-nikl-13841:
+    lemma: 전분
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['감자나 고구마 등을 갈아서 가라앉힌 앙금을 말린 가루.']
+    english_definitions: ['A powder made by drying minute granules released from ground potato, sweet potato, etc.']
+  ko-nikl-14362:
+    lemma: 젓갈
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['젓으로 담근 음식.']
+    english_definitions: ['A dish made with jeot, salted seafood.']
+  ko-nikl-16925:
+    lemma: 대구
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['엷은 회갈색에 배는 흰색이고 입이 크며 비늘이 작고 둥근 바닷물고기.']
+    english_definitions: ['A sea fish with a big mouth and small, round scales; it has a light grayish-brown body and a white belly.']
+  ko-nikl-16997:
+    lemma: 대두
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['두유, 두부 등의 재료로, 노란색 또는 검은색의 얇은 껍질에 싸인 동그란 모양의 곡식.']
+    english_definitions: ['The round grain in thin, yellow or black skin, which is the ingredient for soybean milk or soybean curd.']
+  ko-nikl-19188:
+    lemma: 들깨
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['독특한 냄새가 나는 잎은 반찬으로 먹고 씨는 볶아서 양념으로 쓰거나 기름을 짜는 채소. 또는 그 씨.']
+    english_definitions: ['A vegetable with a unique smell, of which the leaves are eaten as side dishes and the seeds are roasted and used as seasoning or squeezed for oil, or its seed.']
+  ko-nikl-22636:
+    lemma: 팽이버섯
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['옅은 누런색으로 갓이 작고 줄기가 긴, 먹을 수 있는 버섯.']
+    english_definitions: ['A slightly yellowish, edible mushroom with a small cap and long stem.']
+  ko-nikl-23581:
+    lemma: 피망
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['짧은 타원형의, 매운맛이 별로 없는 고추.']
+    english_definitions: ['A short, oval-shaped pepper rarely tasting spicy.']
+  ko-nikl-26022:
+    lemma: 가지
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['검은 자주색의 긴 원통 모양이며 익혀서 반찬으로 먹는 열매, 또는 그 열매가 열리는 풀.']
+    english_definitions: ['A long, purple-black, cylinder-like fruit, cooked as a side dish, or the plant bearing this fruit.']
+  ko-nikl-28079:
+    lemma: 견과류
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['딱딱한 껍데기에 싸여 있는 나무 열매의 종류.']
+    english_definitions: ['A kind of tree fruit, inside of a hard shell.']
+  ko-nikl-33546:
+    lemma: 깻잎
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['들깨와 참깨의 잎.']
+    english_definitions: ['The leaf of wild sesame and sesame.']
+  ko-nikl-35455:
+    lemma: 노른자위
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [1]
+    korean_definitions: ['알의 흰자위에 둘러싸인 동그랗고 노란 부분.', '(비유적으로) 가장 중요하거나 값이 높은 부분.']
+    english_definitions: ['The round, yellow part of an egg which is surrounded by the egg white.', '(figurative) The most important or highly valuable part.']
+  ko-nikl-35579:
+    lemma: 녹두
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['묵, 숙주나물, 빈대떡 등의 재료가 되는 녹색의 작고 동그란 콩.']
+    english_definitions: ['A small, round bean, used as the ingredient of muk, jelly, sukjunamul, bean sprouts, bindaetteok, mung-bean pancake, etc.']
+  ko-nikl-37341:
+    lemma: 명태
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['팔뚝만 한 크기에 입과 눈이 크고 등은 푸른 갈색, 배는 은백색이며 말리면 북어가 되는 바닷물고기.']
+    english_definitions: ['A forearm-sized saltwater fish with large eyes and mouth, brown back and silver-white belly, known in Korea as bugeo and sometimes eaten dried.']
+  ko-nikl-38438:
+    lemma: 문어
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['붉은 갈색의 둥근 몸통에 빨판이 달린 여덟 개의 발이 아래에 붙어 있는 연체동물.']
+    english_definitions: ['A mollusk with a reddish brown, round body that has eight legs with suckers on them.']
+  ko-nikl-39150:
+    lemma: 밀
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['생김새가 벼와 비슷하며, 열매로 가루를 내어 빵, 과자, 국수 등을 만드는 식물.']
+    english_definitions: ['A plant shaped similar to the rice plant, whose grains are ground into powder and then made into bread, cookies, noodles, etc.']
+  ko-nikl-41343:
+    lemma: 좁쌀
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [1]
+    korean_definitions: ['오곡의 하나인 조의 열매를 찧어 속껍질을 벗긴 쌀.', '(비유적으로) 마음이 좁은 사람이나 작은 물건.']
+    english_definitions: ['Grains produced by pounding foxtail millet, one of the five grains, and removing its inner covering.', '(figurative) A narrow-minded person or tiny object.']
+  ko-nikl-46176:
+    lemma: 양상추
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['샐러드를 만들 때 넣는 잎이 둥글고 넓으면서 물기가 많은 채소.']
+    english_definitions: ['A wide and round-leafed vegetable with plenty of moisture, used as an ingredient for making salad. ']
+  ko-nikl-46187:
+    lemma: 양송이
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['겉은 연한 갈색이고 살은 흰색인, 독특한 향기와 맛을 지닌 버섯.']
+    english_definitions: ['A mushroom with a unique scent and taste of which the outside is light brown and the skin is white.']
+  ko-nikl-47364:
+    lemma: 연근
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['구멍이 많이 나 있으며 주로 조림 음식으로 해 먹는, 연꽃의 뿌리.']
+    english_definitions: ['The root of a lotus flower, which has a lot of holes and is usually eaten boiled. ']
+  ko-nikl-47515:
+    lemma: 연어
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['알을 낳을 때가 되면 태어난 강으로 거슬러 올라가는 바닷물고기.']
+    english_definitions: ['Salt water fish which swims upstream toward the place where it was hatched in order to spawn. ']
+  ko-nikl-47527:
+    lemma: 연유
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['우유를 진공 상태에서 농축한 것.']
+    english_definitions: ['Milk condensed in a vacuum.']
+  ko-nikl-48459:
+    lemma: 올리브유
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['올리브 열매에서 짠 기름.']
+    english_definitions: ['Oil extracted from olives. ']
+  ko-nikl-49357:
+    lemma: 우엉
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['7월에 검은 자주색 또는 흰색의 꽃이 피며 뿌리와 어린잎을 먹는 풀. 또는 그 뿌리.']
+    english_definitions: ['A plant that produces dark violet or white flowers in July and has edible roots and young leaves.']
+  ko-nikl-50391:
+    lemma: 유제품
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['버터, 치즈와 같이 우유를 가공하여 만든 식품.']
+    english_definitions: ['Food made by processing milk such as butter or cheese.']
+  ko-nikl-52310:
+    lemma: 후춧가루
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['후추를 갈아서 만든, 양념으로 쓰는 가루.']
+    english_definitions: ['Powder used as seasoning, made by grinding pepper. ']
+  ko-nikl-52581:
+    lemma: 흑설탕
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['깨끗하게 거르지 않은 검은 빛깔의 설탕.']
+    english_definitions: ['Unrefined, black-colored sugar.']
+  ko-nikl-52832:
+    lemma: 흰자위
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [1]
+    korean_definitions: ['새알이나 달걀 등에서 노른자위를 둘러싼 흰 부분.', '눈알의 흰 부분.']
+    english_definitions: ['The white part that surrounds the yolk in a bird''s egg or an egg.', 'The white part of the eye.']
+  ko-nikl-20695:
+    lemma: 케첩
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['토마토를 주요 재료로 하여 식초, 설탕 등을 넣고 끓여 만든 서양식 양념.']
+    english_definitions: ['A western seasoning made by adding vinegar, sugar, etc., to tomatoes, the main ingredient, and boiling it.']
+related_source_evidence:
+  ko-nikl-14359:
+    lemma: 젓
+    source_part_of_speech: 명사
+    source_sense_count: 1
+    selected: false
+    korean_definitions: ['새우, 멸치 등의 생선이나 조개, 생선의 알 등을 소금에 절여 삭힌 음식.']
+    english_definitions: ['Salted seafood, a dish made by salting and fermenting seafood such as shrimps, anchovies, clams, roes, etc.']
+  ko-nikl-28078:
+    lemma: 견과
+    source_part_of_speech: 명사
+    source_sense_count: 1
+    selected: false
+    korean_definitions: ['밤, 호두, 은행 등과 같이 단단한 껍데기 안에 한 개의 씨가 들어 있는 나무 열매.']
+    english_definitions: ['The fruit from a tree, such as chestnut, walnut, ginkgo, etc., which has one seed inside a hard shell.']
+source_correction_requests:
+  ko-nikl-33546-s001:
+    source_korean: 들깨와 참깨의 잎.
+    source_english: The leaf of wild sesame and sesame.
+    authored_interpretation: leaves of perilla or sesame
+    rationale: Scope/common-name clarification; use perilla for the named 들깨 while preserving both leaf referents. The source is not limited to perilla alone, and wild sesame is not a foraging or botanical-identification claim.
+  ko-nikl-37341-s001:
+    source_korean: 팔뚝만 한 크기에 입과 눈이 크고 등은 푸른 갈색, 배는 은백색이며 말리면 북어가 되는 바닷물고기.
+    source_english: A forearm-sized saltwater fish with large eyes and mouth, brown back and silver-white belly, known in Korea as bugeo and sometimes eaten dried.
+    authored_interpretation: pollock (not the dried product bugeo)
+    rationale: Korean explicitly says the fish becomes 북어 when dried. English incorrectly calls the fish already bugeo; preserve the separate fresh/undried fish and dried-product concepts without guaranteeing product freshness.
+  ko-nikl-46187-s001:
+    source_korean: 겉은 연한 갈색이고 살은 흰색인, 독특한 향기와 맛을 지닌 버섯.
+    source_english: A mushroom with a unique scent and taste of which the outside is light brown and the skin is white.
+    authored_interpretation: button mushrooms
+    rationale: Korean 살 is flesh, not skin. The concise culinary name avoids repeating the conflicting English surface-color description; it does not certify a species or provide an identification guide.
+  ko-nikl-49357-s001:
+    source_korean: 7월에 검은 자주색 또는 흰색의 꽃이 피며 뿌리와 어린잎을 먹는 풀. 또는 그 뿌리.
+    source_english: A plant that produces dark violet or white flowers in July and has edible roots and young leaves.
+    authored_interpretation: burdock (plant or root)
+    rationale: Preserve the explicit alternative 또는 그 뿌리, omitted as a standalone referent in English. Neither the flowering description nor source food-use wording is a safe wild-identification or consumption instruction.
+protected_constraints:
+  held_source_ids: [ko-nikl-22209-s001, ko-nikl-48419-s001]
+  category_checks:
+    ko-lex-41331: function-item
+    ko-lex-03447: function-item
+    ko-lex-26499: free-lemma
+  retired_identity_keys: [ko-lex-26491, ko-lex-03445]
+reading_followup:
+  assessment: unassessed
+  owner: parent
+  policy: >
+    Assess each selected original parent independently after admission.
+    Existing-source status is not proof of a usable citation reading.
+    Do not borrow readings between short/full variants or food/non-food
+    homographs, and do not fill pr from spelling.
+  selected_parent_ids_to_assess: [ko-nikl-00551, ko-nikl-01788, ko-nikl-02149, ko-nikl-03072, ko-nikl-04156, ko-nikl-06680, ko-nikl-06778, ko-nikl-09629, ko-nikl-12697, ko-nikl-13833, ko-nikl-13841, ko-nikl-14362, ko-nikl-16925, ko-nikl-16997, ko-nikl-19188, ko-nikl-19619, ko-nikl-20695, ko-nikl-20932, ko-nikl-22636, ko-nikl-23581, ko-nikl-26022, ko-nikl-28079, ko-nikl-33530, ko-nikl-33546, ko-nikl-35455, ko-nikl-35579, ko-nikl-37341, ko-nikl-38438, ko-nikl-39150, ko-nikl-41343, ko-nikl-44159, ko-nikl-46176, ko-nikl-46187, ko-nikl-47364, ko-nikl-47515, ko-nikl-47527, ko-nikl-48374, ko-nikl-48459, ko-nikl-49357, ko-nikl-50391, ko-nikl-51229, ko-nikl-52310, ko-nikl-52581, ko-nikl-52832]
+  source_admission_queue: Exactly the 37 support_parent_requests keys; all were absent from the retained registry at validation.
+  interpretation: All 44 original parents are unassessed here, not necessarily missing readings. Seven were already retained; source and pronunciation approval remain separate.
+integration:
+  owner: parent after handoff
+  vocabulary_file: pantry-vocabulary.yaml
+  identity_file: pantry-identities.yaml
+  notes_file: pantry-notes.yaml
+  compose: Parent adds the two selection files to their corresponding manifest lists only after source/reading approval and correction adjudication.
+  related_evidence_policy: Related-source records and excluded homographs are comparison evidence, not implicit support requests or placements.
+  stop_rule: This is one bounded handoff; after delivery no completed file is reopened because of queued baseline/status notices.
+validation:
+  status: passed
+  counts:
+    selected_senses: 46
+    noun_senses: 46
+    core_senses: 46
+    branch_senses: 0
+    dictionary_source_parents: 44
+    distinct_spellings: 44
+    identity_fragments: 43
+    existing_family_extensions: 5
+    projected_new_provisional_free_identities: 38
+    new_function_items: 0
+    new_bound_forms: 0
+    requested_support_parents: 37
+    actually_missing_from_retained_registry: 37
+    complete_positions_in_requested_parents: 41
+    selected_positions_from_requested_parents: 38
+    selected_source_correction_requests: 4
+    maximum_label_characters: 46
+  existing_family_keys: [ko-lex-20825, ko-lex-35454, ko-lex-35581, ko-lex-52309, ko-lex-52831]
+  selected_senses_by_level: {3: 2, 5: 12, 6: 9, 7: 5, 11: 16, 14: 2}
+  measured_protected_baseline:
+    manifest_vocabulary_files: 34
+    retained_unbanded_parents: 739
+    core_selected_senses: 7365
+    core_provisional_free_families: 4710
+    manifest_sha256: d5784029c273adfb50841c2a1a710bbe6b66048462b7919cbb89836ec3ac51f4
+    retained_registry_sha256: 87459550549b9fb833ed66e562d09b79997a797be79ce1a5a1468b0aa56f8995
+    snapshot_policy: Measures the actual live files at validation, not earlier 642-support or 7027-core notices; later parent updates require their own reconciliation.
+    reconciliation: >
+      The first complete validation used the 33-file/723-support baseline.
+      Parent then registered culture while final metadata was being checked.
+      The real importer, exact bilingual evidence, retained-source preservation,
+      and live placement/identity/correction composition were rerun against
+      this 34-file/739-support snapshot. Pantry needed no placement or family
+      changes; zero overlaps, five extensions, 38 new candidates, and all
+      37 pending support requests were reconfirmed.
+  checks:
+    - Unique YAML keys; exact four-field placements and five-field identity fragments; every label fits 64 characters.
+    - Full pinned CSV hash and 53172 records verified in memory; every requested and related bilingual array matches exactly, including whitespace.
+    - Complete same-form homograph sets verified; selected original positions and actual noun POS checked against the pin.
+    - Real extract_senses importer preserved all current registry entries and original TOPIK references; proposed support was added only in memory.
+    - Real load_selections, placement_rows, lexical_members, and source_corrections validators passed on the current manifest plus pantry.
+    - Zero duplicate selected IDs or conflicting identity keys; exact member/parent closure and compatible protected canonical/category values.
+    - Held source exclusions, retired-key absence, protected 좀/실상/감사하다 categories, and global level/branch coverage remain intact.
+    - Read protected file bytes stayed unchanged throughout validation; authored files have consistent line endings and no trailing file-line whitespace.
+  regressions:
+    result: Three existing read-only tests passed together.
+    tests:
+      - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+      - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+      - test_korean_program.KoreanSourceArtifactTests.test_figurative_spring_correction_matches_the_actual_pinned_definition
+    invocation: Python312 -B -m unittest with the three selectors from scripts; no installs or new test tooling.
+  planning_scale_snapshot:
+    projected_core_senses_with_pantry: 7411
+    projected_core_provisional_free_with_pantry: 4748
+    short_of_5800: 1052
+    short_of_6000: 1252
+    interpretation: This is projected authoring-family accounting, not published/source-approved coverage, true-lexeme verification, or mastery. The remaining planning shortfall is not a quota.
+remaining_limits:
+  - Source definitions and common-name labels do not replace qualified Korean linguistic, botanical, medical, or food-safety review.
+  - The supplied parent audit was not read; independent bounded source reinspection, explicit exclusions, and observed missing forms are documented instead.
+  - This cohort adds 38 provisional free families, not 46 new headwords, and does not claim to complete the overall planning scale or exhaust missing ingredient vocabulary.
+  - No further pantry extensions or edits follow handback without a new explicit ownership assignment.
+parent_integration:
+  source_admission:
+    new_support_parents: 37
+    complete_original_positions: 41
+    retained_support_parents_after: 776
+    selected_support_parents_after: 772
+    previous_source_records: unchanged
+    source_interpretations_accepted: 4
+  family_adjudication:
+    new_free_families: 38
+    new_bound_or_function_families: 0
+    protected_families: unchanged
+    homograph_check: Cereal 수수 is not plain-looking 수수하다; eggplant 가지 is neither a branch nor the kinds counter.
+  generated_coverage:
+    core_dictionary_entries: 5192
+    core_selected_senses: 7411
+    core_distinct_spellings: 4894
+    core_spelling_pos_pairs: 4994
+    core_lexical_identities: 4982
+    core_provisional_free_families: 4748
+    core_bound_forms: 40
+    core_function_items: 194
+    actual_modules: 746
+    generated_views: 128
+    free_family_gap_to_lower_guide: 1052
+    scope: Intermediate coverage, not final curriculum completion or coordinated catalog activation.
+  final_reading_assessment:
+    official_text_parents: 37
+    official_text_senses: 38
+    authored_unreviewed_parents: 7
+    authored_unreviewed_senses: 8
+    new_crosswalks: {ko-nikl-46176: '14323'}
+    unresolved_selected_parents: []
+    prior_queue: The earlier44-parent unassessed queue is the worker snapshot, not the final reading state.
+    actual_standard_content:
+      method: Follow observed searchResult.do links, then publicly POST word_no to https://stdict.korean.go.kr/search/contentViewOne.do.
+      result: Every listed actual entry lacked pronunciation text; searchView shells and generic download controls were not treated as readings.
+      entries:
+        ko-nikl-00551: {basic_entry_id: '74831', standard_word_no: '444634', target: 셀러리}
+        ko-nikl-04156: {basic_entry_id: '23109', standard_word_no: '217980', target: 아몬드}
+        ko-nikl-09629: {basic_entry_id: '62245', standard_word_no: '515977', target: 생크림}
+        ko-nikl-20695: {basic_entry_id: '28151', standard_word_no: '340390', target: 케첩}
+        ko-nikl-20932: {basic_entry_id: '28162', standard_word_no: '492957', target: 크림}
+        ko-nikl-23581: {basic_entry_id: '84041', standard_word_no: '498804', target: 피망}
+        ko-nikl-48459: {basic_entry_id: '68193', standard_word_no: '240139', target: 올리브유}
+      limits: >
+        No Standard definitions, examples, media, broader ketchup ingredients,
+        extra cream sense, or product-processing condition replace the pinned
+        source. These observations document missing citation evidence, not
+        verification of the individually authored proposals.
+    cream_identity: >
+      The complete ordered Basic definitions match the source, but the
+      official sense numbers occur as1,3,2. Original project food positions
+      s001 and s002 stay unchanged; cosmetic s003 is not selected here.
+  remaining_work: >
+    Qualified lexical, pronunciation, pragmatic, and teaching review remains.
+    No inventory total, written reading aid, or structural check establishes
+    listening, spoken production, safety, or examination readiness.

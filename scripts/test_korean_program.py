@@ -777,6 +777,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "governance-support-notes.yaml",
             "interaction-notes.yaml",
             "culture-notes.yaml",
+            "pantry-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename == "governance-notes.yaml"
@@ -2189,6 +2190,87 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         selected = {row["id"] for row in rows}
         self.assertNotIn("ko-nikl-04905-s001", selected)
         self.assertNotIn("ko-nikl-47947-s001", selected)
+
+    def test_pantry_admission_preserves_complete_arrays_and_original_positions(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "pantry-notes.yaml")
+        rows = load_yaml(authoring / "pantry-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        for identifier, request in notes["support_parent_requests"].items():
+            with self.subTest(parent=identifier):
+                record = parents[identifier]
+                self.assertEqual(record["source_band"], "unbanded")
+                self.assertEqual(record["target"], request["lemma"])
+                self.assertEqual(record["source_part_of_speech"], request["source_part_of_speech"])
+                self.assertEqual(len(record["senses"]), request["source_sense_count"])
+                self.assertEqual([item["korean"] for item in record["senses"]], request["korean_definitions"])
+                self.assertEqual([item["english"] for item in record["senses"]], request["english_definitions"])
+                actual = {int(row["id"].rsplit("-s", 1)[1]) for row in rows if row["id"].startswith(identifier)}
+                self.assertEqual(actual, set(request["selected_positions"]))
+        self.assertEqual(
+            self.references.provenance["ko-nikl-20932-s002"]["source_position"], 2
+        )
+        self.assertIn("눈알", parents["ko-nikl-52832"]["senses"][1]["korean"])
+        self.assertIn("비유적으로", parents["ko-nikl-35455"]["senses"][1]["korean"])
+
+    def test_pantry_variants_and_prepared_senses_do_not_inflate_free_breadth(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for members in (
+            ("ko-nikl-13841-s001", "ko-nikl-35581-s001"),
+            ("ko-nikl-35455-s001", "ko-nikl-35454-s001"),
+            ("ko-nikl-52832-s001", "ko-nikl-52831-s001"),
+            ("ko-nikl-16997-s001", "ko-nikl-20825-s001"),
+            ("ko-nikl-52310-s001", "ko-nikl-52309-s001"),
+            ("ko-nikl-09629-s001", "ko-nikl-20932-s001", "ko-nikl-20932-s002"),
+            ("ko-nikl-02149-s001", "ko-nikl-02149-s002"),
+        ):
+            self.assertEqual(len({identities[item] for item in members}), 1)
+        self.assertIn("ingredient", words["ko-nikl-02149-s001"]["ds"])
+        self.assertIn("side dish", words["ko-nikl-02149-s002"]["ds"])
+        self.assertIn("egg, milk, sugar", words["ko-nikl-20932-s002"]["ds"])
+        self.assertNotIn("sweet", words["ko-nikl-09629-s001"]["ds"])
+        self.assertNotIn("sugar", words["ko-nikl-47527-s001"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-37341-s001"], identities["ko-nikl-06778-s001"])
+
+    def test_pantry_food_scope_preserves_homographs_and_source_corrections(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertNotEqual(identities["ko-nikl-26022-s001"], identities["ko-nikl-26019-s001"])
+        self.assertNotEqual(identities["ko-nikl-26022-s001"], identities["ko-nikl-26023-s001"])
+        self.assertIn("fish", words["ko-nikl-16925-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-38438-s001"]["ds"], "octopus")
+        self.assertEqual(words["ko-nikl-47515-s001"]["ds"], "salmon")
+        self.assertEqual(words["ko-nikl-33546-s001"]["ds"], "leaves of perilla or sesame")
+        self.assertIn("or root", words["ko-nikl-49357-s001"]["ds"])
+        self.assertIn("not the dried product", words["ko-nikl-37341-s001"]["ds"])
+        self.assertIn("말리면 북어가", self.references.provenance["ko-nikl-37341-s001"]["source_korean"])
+        self.assertIn("known in Korea as bugeo", self.references.provenance["ko-nikl-37341-s001"]["source_english"])
+        self.assertIn("with or without salt", words["ko-nikl-33530-s001"]["ds"])
+        self.assertIn("tree fruits", words["ko-nikl-28079-s001"]["ds"])
+        self.assertIn("other than rice", words["ko-nikl-12697-s001"]["ds"])
+
+    def test_pantry_missing_citation_text_never_becomes_verified_pronunciation(self):
+        authoring = self.root / "authoring" / "teaching"
+        overlay = load_yaml(self.root / "reading-overlay.yaml")
+        decisions = load_yaml(authoring / "reading-decisions.yaml")
+        rows = load_yaml(authoring / "pantry-vocabulary.yaml")
+        authored = {
+            "ko-nikl-00551", "ko-nikl-04156", "ko-nikl-09629",
+            "ko-nikl-20695", "ko-nikl-20932", "ko-nikl-23581", "ko-nikl-48459",
+        }
+        for row in rows:
+            parent = row["id"].rsplit("-s", 1)[0]
+            reading = self.references.provenance[row["id"]]["reading"]
+            with self.subTest(item=row["id"]):
+                if parent in authored:
+                    self.assertEqual(overlay["entries"][parent]["pronunciations"], [])
+                    self.assertEqual(reading["method"], "authored-broad-hangul")
+                    self.assertEqual(decisions[parent]["review_status"], "unreviewed")
+                else:
+                    self.assertEqual(reading["method"], "official-text")
+        self.assertEqual(
+            self.references.provenance["ko-nikl-46176-s001"]["reading"]["official_entry_id"],
+            "14323",
+        )
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
