@@ -117,6 +117,12 @@ category_adjudication:
     count classification only; they never generate teaching placements.
   function_identities_by_role:
     reference_and_questions:
+      - ko-lex-24369
+      - ko-lex-26900
+      - ko-lex-09735
+      - ko-lex-51472
+      - ko-lex-51507
+      - ko-lex-02441
       - ko-lex-33117
       - ko-lex-13297
       - ko-lex-47023
@@ -178,11 +184,33 @@ category_adjudication:
       - ko-lex-18843
       - ko-lex-00567
     quantity_and_degree_operators:
+      - ko-lex-33831
+      - ko-lex-14876
+      - ko-lex-09077
+      - ko-lex-38276
+      - ko-lex-36679
+      - ko-lex-37806
+      - ko-lex-46823
+      - ko-lex-30594
+      - ko-lex-15087
+      - ko-lex-27485
+      - ko-lex-17008
+      - ko-lex-46744
       - ko-lex-00807
       - ko-lex-16180
       - ko-lex-16195
       - ko-lex-16200
     discourse_linking_and_examples:
+      - ko-lex-32003
+      - ko-lex-32008
+      - ko-lex-32013
+      - ko-lex-32026
+      - ko-lex-31998
+      - ko-lex-19791
+      - ko-lex-48731
+      - ko-lex-36134
+      - ko-lex-36147
+      - ko-lex-04170
       - ko-lex-00056
       - ko-lex-10646
       - ko-lex-17434
@@ -201,6 +229,10 @@ category_adjudication:
       - ko-lex-49076
       - ko-lex-51413
     focus_stance_and_uncertainty:
+      - ko-lex-50163
+      - ko-lex-22159
+      - ko-lex-22094
+      - ko-lex-17291
       - ko-lex-00866
       - ko-lex-03447
       - ko-lex-10645
@@ -222,6 +254,10 @@ category_adjudication:
       - ko-lex-46579
       - ko-lex-48738
     negative_polarity_and_absence:
+      - ko-lex-17961
+      - ko-lex-14075
+      - ko-lex-05524
+      - ko-lex-04165
       - ko-lex-17865
       - ko-lex-28235
       - ko-lex-41337
@@ -233,6 +269,8 @@ category_adjudication:
       - ko-lex-37811
       - ko-lex-32042
     discourse_replies_openers_and_connectives:
+      - ko-lex-32033
+      - ko-lex-46454
       - ko-lex-35345
       - ko-lex-04067
       - ko-lex-47938
@@ -316,6 +354,13 @@ multi_parent_decisions:
       temporal lexeme, not separately counted homographs.
 
 additional_grouping_evidence:
+  predicates-and-conversational-expression: >
+    expression-identities.yaml and expression-notes.yaml distinguish native
+    predicate senses, descriptive contrasts, temporal/manner adverbs, and
+    conversational operators. Thirty-eight new function identities are
+    explicitly listed above, not counted as free vocabulary. Sourced emotion
+    predicates, temporal short/full forms, 가만/가만히, and emphatic 혹시나
+    have individual grouping decisions; no automatic suffix rule applies.
   arts-recreation-and-public-explanation: >
     content-identities.yaml and content-notes.yaml distinguish actual-event,
     text, performance, recreation, nature, material, and explanation senses.

@@ -5,6 +5,110 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-16728-s004:
+    source_korean: 공간이 좁아 시원한 느낌이 없다.
+    source_english: Feeling a lack of air.
+    authored_interpretation: to feel cramped because space is small
+    rationale: >
+      The Korean explicitly describes cramped space, not necessarily a lack
+      of breathable air. Keep this distinct from the breathing/stifling position.
+  ko-nikl-16728-s005:
+    source_korean: 다른 사람의 태도나 상황이 마음에 차지 않아 안타깝다.
+    source_english: Feeling anxious because someone's attitude or situation is not uncomfortable.
+    authored_interpretation: to feel frustrated by someone's attitude or a situation
+    rationale: >
+      The Korean describes dissatisfaction and frustration with an attitude
+      or situation. The English negative wording not uncomfortable loses that meaning.
+  ko-nikl-39571-s001:
+    source_korean: 보고 싶던 사람을 만나거나 원하는 일이 이루어져서 마음이 즐겁고 기쁘다.
+    source_english: Joyful and happy as one meets a person that one missed.
+    authored_interpretation: to be glad at a welcome meeting or hoped-for event
+    rationale: >
+      The Korean includes both meeting a missed person and a desired event
+      occurring. The English mentions only the meeting.
+  ko-nikl-43727-s001:
+    source_korean: 어떤 대상을 만나기 위하여 급히 가다.
+    source_english: To go to a place to do something in haste.
+    authored_interpretation: to hurry to meet someone
+    rationale: >
+      The Korean purpose is meeting a target. The English substitutes any
+      hurried task; this ordinary-person interpretation restores the stated purpose.
+  ko-nikl-11492-s002:
+    source_korean: 알면서도 아는 것을 숨기거나 어떤 행위를 하는 본래 마음을 숨기고.
+    source_english: With one's real purpose or intention hidden.
+    authored_interpretation: while concealing what one knows or one's real intention
+    rationale: >
+      The Korean includes hiding what one knows as well as concealing the
+      original intention. The English omits the knowledge alternative.
+  ko-nikl-04165-s001:
+    source_korean: 전혀 어떠한.
+    source_english: 'Not at all. '
+    authored_interpretation: any at all (before a noun, usually with a negative)
+    rationale: >
+      The source is an indefinite noun-modifying determiner. Bare English
+      not at all does not express that relation; the label also clarifies
+      ordinary negative-context use without claiming a new dictionary erratum.
+  ko-nikl-14075-s001:
+    source_korean: 도무지. 또는 완전히.
+    source_english: By any possibility or wholly.
+    authored_interpretation: at all (with a negative); completely
+    rationale: >
+      The first English phrase obscures ordinary at-all usage with negation.
+      Preserve the alternative complete-degree meaning rather than making
+      the whole entry negative-only.
+  ko-nikl-17364-s003:
+    source_korean: 대상이나 상대로 삼다.
+    source_english: To consider as a counterpart or opponent.
+    authored_interpretation: to take someone or something as a subject or counterpart
+    rationale: >
+      The Korean includes taking something as a 대상, not only an opponent
+      or counterpart. Retain the subject/object-of-discourse interpretation.
+  ko-nikl-17306-s002:
+    source_korean: 어느 정도로 적당히.
+    source_english: 'In a somewhat slapdash manner. '
+    authored_interpretation: roughly; to an approximately suitable degree
+    rationale: >
+      The Korean specifies roughly suitable degree without necessarily
+      judging the work careless. English slapdash imposes that negative evaluation.
+  ko-nikl-04170-s001:
+    source_korean: 정도가 매우 심하게.
+    source_english: 'To an extremely severe degree. '
+    authored_interpretation: however much; no matter how great the degree
+    rationale: >
+      This high-degree use belongs to concessive however-much framing, not
+      unrestricted affirmative very. This authored contextual interpretation
+      requires teacher review; original Korean and English remain unchanged.
+  ko-nikl-16773-s001:
+    source_korean: 관심이 쏠리거나 마음이 끌리다.
+    source_english: To attract interest or attention.
+    authored_interpretation: to feel drawn to something
+    rationale: >
+      Korean describes interest being drawn and the experiencer feeling
+      attracted. English attract can suggest only an external causer; this
+      selected label retains the experiencing perspective.
+  ko-nikl-16773-s002:
+    source_korean: 입맛이 생기다.
+    source_english: To stimulate the appetite.
+    authored_interpretation: to feel an appetite or craving
+    rationale: >
+      Korean says an appetite arises, whereas English uses causative
+      stimulate. The ordinary-food reading expresses feeling an appetite
+      or craving rather than intentionally stimulating another person.
+  ko-nikl-34604-s008:
+    source_korean: 정해진 시간을 다 채우지 않거나 정해진 거리에 도달하지 않게 하다.
+    source_english: 'To fail to fill up a certain amount of time or reach a certain distance. '
+    authored_interpretation: to leave time or distance still to go
+    rationale: >
+      Korean describes leaving time or distance not yet completed. English
+      fail to can imply unsuccessful performance; retain the remaining-time
+      or distance use without assuming failure.
+  ko-nikl-31564-s006:
+    source_korean: 소리의 울림이 크다.
+    source_english: The reverberation of a sound being strong and at low decibels.
+    authored_interpretation: to have a full, resonant sound
+    rationale: >
+      Korean describes full or strong resonance. English adds low decibels,
+      which is absent from Korean and confuses sound quality with measured intensity.
   ko-nikl-01312-s001:
     source_korean: 목화에서 나온 섬유로, 주로 이불 속이나 면직물의 재료가 되는 물질.
     source_english: Fabric made of cotton that is mainly used as a material for blanket fillings or cotton cloth.

@@ -67,14 +67,14 @@ units:
   - {id: ko-nikl-43169-s001, ch: 진정, pr: 진정, ds: sincerity; genuine feeling without falsehood}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-33557-s001, ch: 꺼리다, pr: 꺼ː리다, ds: to avoid something for fear that it may cause harm}
-  - {id: ko-nikl-13461-s001, ch: 저지르다, pr: 저지르다, ds: to do something that causes a problem}
-  - {id: ko-nikl-42580-s003, ch: 지니다, pr: 지니다, ds: to possess a character trait or habit}
-  - {id: ko-nikl-44379-s003, ch: 챙기다, pr: 챙기다, ds: to take or secure something for oneself}
   - {id: ko-nikl-25575-s002, ch: 가꾸다, pr: 가꾸다, ds: to improve or maintain one's appearance}
   - {id: ko-nikl-19691-s001, ch: 떠맡다, pr: 떠맏따, ds: to take over the whole of a task or responsibility}
   - {id: ko-nikl-06060-s002, ch: 볶다, pr: 복따, ds: to pester someone with incessant demands}
   - {id: ko-nikl-13938-s002, ch: 전염, pr: 저념, ds: 'taking on another person''s habits, atmosphere, or mood'}
+  - {id: ko-nikl-07990-s001, ch: 뻔뻔하다, pr: 뻔뻔하다, ds: to be shamelessly composed after doing something shameful}
+  - {id: ko-nikl-45000-s003, ch: 쳐다보다, pr: 처ː다보다, ds: to rely entirely on someone or something}
+  - {id: ko-nikl-47779-s001, ch: 엿보다, pr: 엳ː뽀다, ds: to peek secretly without being noticed}
+  - {id: ko-nikl-34256-s003, ch: 나서다, pr: 나서다, ds: to interfere in a matter}
   review_grammar:
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -170,7 +170,6 @@ units:
   - {id: ko-nikl-46553-s001, ch: 어쨌든, pr: 어짿뜬, ds: anyhow; however things turn out or stand}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-31203-s001, ch: 구호, pr: 구ː호, ds: 'a slogan expressing a demand, claim, or idea'}
   - {id: ko-nikl-37559-s001, ch: 모호하다, pr: 모호하다, ds: for words or an attitude to have an unclear meaning}
   - {id: ko-nikl-34951-s004, ch: 내비치다, pr: 내ː비치다, ds: 'to let one''s thoughts, feelings, or intentions show'}
   - {id: ko-nikl-07471-s001, ch: 비난, pr: 비ː난, ds: blame; speaking badly of someone's faults}
@@ -178,6 +177,7 @@ units:
   - {id: ko-nikl-10490-s002, ch: 이끌다, pr: 이끌다, ds: to draw people's attention or gaze to one place}
   - {id: ko-nikl-14769-s007, ch: 젖다, pr: 젇따, ds: for a voice to sound sad or deeply moved}
   - {id: ko-nikl-02901-s001, ch: 시위, pr: 시ː위, ds: showing power or views to intimidate or gain recognition}
+  - {id: ko-nikl-19463-s003, ch: 따갑다, pr: 따갑따, ds: for a look or advice to be sharply critical}
   review_grammar:
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
   - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
@@ -429,6 +429,10 @@ units:
   - {id: ko-nikl-33323-s005, ch: 까다, pr: 까다, ds: to attack someone's faults or weaknesses (slang)}
   - {id: ko-nikl-42424-s002, ch: 증발, pr: 증발, ds: a sudden disappearance without known whereabouts (slang)}
   - {id: ko-nikl-35854-s003, ch: 마스크, pr: 마스크, ds: a person's facial features or appearance}
+  - {id: ko-nikl-52894-s004, ch: 힘들다, pr: 힘들다, ds: to require care or effort from someone}
+  - {id: ko-nikl-32003-s003, ch: 그러니까, pr: 그러니까, ds: well; introducing what one is about to say}
+  - {id: ko-nikl-17291-s001, ch: 대체, pr: 대ː체, ds: 'to get to the point, leaving other details aside'}
+  - {id: ko-nikl-42058-s004, ch: 줄이다, pr: 주리다, ds: to close a letter or speech with more left to say}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-19488-s002, ch: 따뜻하다, pr: 따뜨타다, ds: to be warmhearted; to feel welcoming}
@@ -439,6 +443,26 @@ units:
   - {id: ko-nikl-08596-s001, ch: 사투리, pr: 사ː투리, ds: a regional dialect rather than the standard language}
   - {id: ko-nikl-10896-s001, ch: 이윽고, pr: 이윽꼬, ds: 'at last, after some time has passed'}
   - {id: ko-nikl-16213-s001, ch: 다시금, pr: 다시금, ds: once again (emphatic)}
+  review_grammar:
+  - {id: ko-topik6-g012, ch: V/A-아/어서야, ds: mark a threshold or express contextual reproach}
+  - {id: ko-topik6-g013, ch: V/A-아/어 봤자, ds: judge a proposed attempt unlikely to help}
+  - {id: ko-topik6-g020, ch: V/A-다니, ds: react with surprise to a newly presented proposition}
+- id: level-26-register-03
+  title: Register and nuance - 3
+  outcome: Adapt listener endings and implied stance to audience and relationship.
+  vocabulary:
+  - {id: ko-nikl-13522-s002, ch: 적당하다, pr: 적땅하다, ds: to be tactful enough not to cause a problem}
+  - {id: ko-nikl-43856-s005, ch: 차다, pr: 차다, ds: to dump a romantic partner (slang)}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-07998-s006, ch: 뻗다, pr: 뻗따, ds: to die or collapse from exhaustion (slang)}
+  - {id: ko-nikl-33323-s005, ch: 까다, pr: 까다, ds: to attack someone's faults or weaknesses (slang)}
+  - {id: ko-nikl-42424-s002, ch: 증발, pr: 증발, ds: a sudden disappearance without known whereabouts (slang)}
+  - {id: ko-nikl-35854-s003, ch: 마스크, pr: 마스크, ds: a person's facial features or appearance}
+  - {id: ko-nikl-52894-s004, ch: 힘들다, pr: 힘들다, ds: to require care or effort from someone}
+  - {id: ko-nikl-32003-s003, ch: 그러니까, pr: 그러니까, ds: well; introducing what one is about to say}
+  - {id: ko-nikl-17291-s001, ch: 대체, pr: 대ː체, ds: 'to get to the point, leaving other details aside'}
+  - {id: ko-nikl-42058-s004, ch: 줄이다, pr: 주리다, ds: to close a letter or speech with more left to say}
   review_grammar:
   - {id: ko-topik6-g012, ch: V/A-아/어서야, ds: mark a threshold or express contextual reproach}
   - {id: ko-topik6-g013, ch: V/A-아/어 봤자, ds: judge a proposed attempt unlikely to help}

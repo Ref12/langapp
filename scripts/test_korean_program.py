@@ -755,6 +755,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         for filename in (
             "expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml",
             "kitchen-notes.yaml", "personal-notes.yaml", "content-notes.yaml",
+            "expression-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -954,6 +955,55 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(placements["ko-nikl-03362-s003"], 27)
         self.assertEqual(len({self.references.lexical_identity[f"ko-nikl-03362-s{i:03d}"]
                               for i in range(1, 4)}), 1)
+
+    def test_expression_homographs_keep_different_actions_and_argument_roles(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for first, second in (
+            ("ko-nikl-36566-s001", "ko-nikl-36567-s004"),
+            ("ko-nikl-36570-s001", "ko-nikl-36572-s001"),
+            ("ko-nikl-44318-s001", "ko-nikl-44319-s001"),
+        ):
+            self.assertEqual(words[first]["ch"], words[second]["ch"])
+            self.assertNotEqual(identities[first], identities[second])
+        cold_and_actions = [f"ko-nikl-{parent}-s001" for parent in ("43854", "43856", "43857", "43858")]
+        self.assertEqual({words[key]["ch"] for key in cold_and_actions}, {"차다"})
+        self.assertEqual(len({identities[key] for key in cold_and_actions}), 4)
+        self.assertIn("correct answer", words["ko-nikl-36566-s001"]["ds"])
+        self.assertIn("target", words["ko-nikl-36567-s004"]["ds"])
+        self.assertIn("slang", words["ko-nikl-43856-s005"]["ds"])
+        self.assertIn("figurative", words["ko-nikl-43856-s006"]["ds"])
+
+    def test_expression_short_forms_and_operators_do_not_manufacture_free_breadth(self):
+        words, evidence, identities = (
+            self.references.vocabulary, self.references.provenance, self.references.lexical_identity,
+        )
+        self.assertEqual(identities["ko-nikl-32008-s001"], identities["ko-nikl-32032-s001"])
+        self.assertEqual(words["ko-nikl-32032-s001"]["ch"], words["ko-nikl-32033-s001"]["ch"])
+        self.assertNotEqual(identities["ko-nikl-32032-s001"], identities["ko-nikl-32033-s001"])
+        self.assertEqual(identities["ko-nikl-10548-s001"], identities["ko-nikl-10549-s001"])
+        self.assertEqual({words[f"ko-nikl-{parent}-s001"]["ch"] for parent in ("10548", "10549")},
+                         {"이따", "이따가"})
+        self.assertEqual(identities["ko-nikl-25715-s001"], identities["ko-nikl-25721-s001"])
+        self.assertEqual(identities["ko-nikl-51410-s001"], identities["ko-nikl-51408-s003"])
+        self.assertIn("emphasis", words["ko-nikl-51410-s001"]["ds"])
+        for key in ("ko-nikl-14075-s001", "ko-nikl-33831-s001", "ko-nikl-26900-s001",
+                    "ko-nikl-04165-s001", "ko-nikl-04170-s001"):
+            self.assertEqual(evidence[key]["lexical_category"], "function-item")
+
+    def test_expression_corrections_preserve_perspective_and_usage_boundaries(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        self.assertIn("feel drawn", words["ko-nikl-16773-s001"]["ds"])
+        self.assertIn("attract", evidence["ko-nikl-16773-s001"]["source_english"])
+        self.assertIn("feel an appetite", words["ko-nikl-16773-s002"]["ds"])
+        self.assertIn("stimulate", evidence["ko-nikl-16773-s002"]["source_english"])
+        self.assertIn("cramped", words["ko-nikl-16728-s004"]["ds"])
+        self.assertIn("lack of air", evidence["ko-nikl-16728-s004"]["source_english"])
+        self.assertIn("still to go", words["ko-nikl-34604-s008"]["ds"])
+        self.assertIn("fail", evidence["ko-nikl-34604-s008"]["source_english"])
+        self.assertIn("resonant", words["ko-nikl-31564-s006"]["ds"])
+        self.assertIn("low decibels", evidence["ko-nikl-31564-s006"]["source_english"])
+        self.assertIn("no matter", words["ko-nikl-04170-s001"]["ds"])
+        self.assertNotIn("ko-nikl-16773-s007", words)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

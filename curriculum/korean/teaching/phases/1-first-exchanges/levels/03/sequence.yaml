@@ -108,6 +108,12 @@ units:
   - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
   - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
   - {id: ko-nikl-46758-s001, ch: 얼음, pr: 어름, ds: ice}
+  - {id: ko-nikl-34156-s005, ch: 나누다, pr: 나누다, ds: to share food with others}
+  - {id: ko-nikl-02982-s002, ch: 시키다, pr: 시키다, ds: to order food or drinks}
+  - {id: ko-nikl-34613-s001, ch: 남다, pr: 남ː따, ds: to be left over without being used up}
+  - {id: ko-nikl-34604-s001, ch: 남기다, pr: 남기다, ds: to leave some of something unused}
+  - {id: ko-nikl-43854-s001, ch: 차다, pr: 차다, ds: 'to become completely full, with no room for more'}
+  - {id: ko-nikl-44319-s001, ch: 채우다, pr: 채우다, ds: to fill a space or container to capacity}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
@@ -195,14 +201,14 @@ units:
   - {id: ko-nikl-39813-s001, ch: 받다, pr: 받따, ds: to receive something}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-17939-s001, ch: 도와주다, pr: 도와주다, ds: help; lend support}
-  - {id: ko-nikl-41632-s001, ch: 주다, pr: 주다, ds: give someone an item to have or use}
   - {id: ko-nikl-25603-s001, ch: 가다, pr: 가다, ds: go; move from one place to another}
   - {id: ko-nikl-48128-s001, ch: 오다, pr: 오다, ds: to come toward here}
   - {id: ko-nikl-05699-s001, ch: 보다, pr: 보다, ds: to see; to look at}
   - {id: ko-nikl-04559-s001, ch: 앉다, pr: 안따, ds: to sit down; to sit}
   - {id: ko-nikl-09720-s001, ch: 서다, pr: 서다, ds: to stand upright}
   - {id: ko-nikl-23829-s001, ch: 하다, pr: 하다, ds: to do; to perform an activity}
+  - {id: ko-nikl-12705-s001, ch: 잡다, pr: 잡따, ds: to hold something in one's hand without letting go}
+  - {id: ko-nikl-49601-s001, ch: 움직이다, pr: 움지기다, ds: to move or change position or posture}
   review_grammar:
   - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
 - id: level-03-description-01
@@ -215,14 +221,14 @@ units:
   - {id: ko-nikl-35224-s001, ch: 너무, pr: 너무, ds: too; to an excessive degree}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-41488-s001, ch: 좋다, pr: 조ː타, ds: to be good; to be satisfactory}
-  - {id: ko-nikl-38585-s001, ch: 물건, pr: 물건, ds: a thing; an object}
   - {id: ko-nikl-20920-s001, ch: 크다, pr: 크다, ds: 'big in length, area, height, or volume'}
   - {id: ko-nikl-12453-s001, ch: 작다, pr: 작ː따, ds: 'small in length, area, or volume'}
   - {id: ko-nikl-36198-s001, ch: 많다, pr: 만ː타, ds: to be many; to be much}
   - {id: ko-nikl-13520-s001, ch: 적다, pr: 적ː따, ds: to be few; to be little in amount}
   - {id: ko-nikl-20916-s001, ch: 크기, pr: 크기, ds: size}
   - {id: ko-nikl-37480-s001, ch: 모양, pr: 모양, ds: shape or outward appearance}
+  - {id: ko-nikl-18857-s001, ch: 둥글다, pr: 둥글다, ds: 'to be round, like a circle or ball'}
+  - {id: ko-nikl-35358-s001, ch: 네모나다, pr: 네ː모나다, ds: to have four sides and four corners}
   review_grammar: []
 - id: level-03-grammar-01
   title: Sentence construction and inflection - 1
@@ -261,6 +267,10 @@ units:
   - {id: ko-nikl-04320-s001, ch: 아홉, pr: 아홉, ds: nine (native Korean numeral)}
   - {id: ko-nikl-04322-s001, ch: 아홉, pr: 아홉, ds: nine; before a noun or counter}
   - {id: ko-nikl-26023-s001, ch: 가지, pr: 가지, ds: a counter for kinds or types of things}
+  - {id: ko-nikl-34156-s003, ch: 나누다, pr: 나누다, ds: to perform division in mathematics}
+  - {id: ko-nikl-35310-s008, ch: 넘다, pr: 넘ː따, ds: to exceed an amount or other comparison point}
+  - {id: ko-nikl-45856-s001, ch: 충분하다, pr: 충분하다, ds: 'to be ample or sufficient, without a shortage'}
+  - {id: ko-nikl-37514-s001, ch: 모자라다, pr: 모ː자라다, ds: 'to fall short of a set number, quantity, or degree'}
   grammar: []
   review_vocabulary: []
   review_grammar: []
@@ -273,14 +283,14 @@ units:
   - {id: ko-topik1-g012, ch: N도, ds: include an additional item or participant}
   - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
   review_vocabulary:
-  - {id: ko-nikl-31317-s001, ch: 국수, pr: 국쑤, ds: noodles or a dish made with boiled noodles}
-  - {id: ko-nikl-36064-s001, ch: 만두, pr: 만두, ds: 'dumplings with meat, vegetables, or other fillings'}
-  - {id: ko-nikl-19710-s001, ch: 떡, pr: 떡, ds: rice cakes or other cakes made from cooked grain flour}
-  - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
-  - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
-  - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
   - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
   - {id: ko-nikl-46758-s001, ch: 얼음, pr: 어름, ds: ice}
+  - {id: ko-nikl-34156-s005, ch: 나누다, pr: 나누다, ds: to share food with others}
+  - {id: ko-nikl-02982-s002, ch: 시키다, pr: 시키다, ds: to order food or drinks}
+  - {id: ko-nikl-34613-s001, ch: 남다, pr: 남ː따, ds: to be left over without being used up}
+  - {id: ko-nikl-34604-s001, ch: 남기다, pr: 남기다, ds: to leave some of something unused}
+  - {id: ko-nikl-43854-s001, ch: 차다, pr: 차다, ds: 'to become completely full, with no room for more'}
+  - {id: ko-nikl-44319-s001, ch: 채우다, pr: 채우다, ds: to fill a space or container to capacity}
   review_grammar: []
 - id: level-03-food-practice-02
   title: Food and meals - sentence practice 2
@@ -290,14 +300,14 @@ units:
   - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
   - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
   review_vocabulary:
-  - {id: ko-nikl-31317-s001, ch: 국수, pr: 국쑤, ds: noodles or a dish made with boiled noodles}
-  - {id: ko-nikl-36064-s001, ch: 만두, pr: 만두, ds: 'dumplings with meat, vegetables, or other fillings'}
-  - {id: ko-nikl-19710-s001, ch: 떡, pr: 떡, ds: rice cakes or other cakes made from cooked grain flour}
-  - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
-  - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
-  - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
   - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
   - {id: ko-nikl-46758-s001, ch: 얼음, pr: 어름, ds: ice}
+  - {id: ko-nikl-34156-s005, ch: 나누다, pr: 나누다, ds: to share food with others}
+  - {id: ko-nikl-02982-s002, ch: 시키다, pr: 시키다, ds: to order food or drinks}
+  - {id: ko-nikl-34613-s001, ch: 남다, pr: 남ː따, ds: to be left over without being used up}
+  - {id: ko-nikl-34604-s001, ch: 남기다, pr: 남기다, ds: to leave some of something unused}
+  - {id: ko-nikl-43854-s001, ch: 차다, pr: 차다, ds: 'to become completely full, with no room for more'}
+  - {id: ko-nikl-44319-s001, ch: 채우다, pr: 채우다, ds: to fill a space or container to capacity}
   review_grammar:
   - {id: ko-topik1-g011, ch: N하고 / N과/와, ds: coordinate nouns or name a companion}
   - {id: ko-topik1-g012, ch: N도, ds: include an additional item or participant}
@@ -309,12 +319,12 @@ units:
   grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
   review_vocabulary:
-  - {id: ko-nikl-47110-s001, ch: 여섯, pr: 여섣, ds: six; before a noun or counter}
-  - {id: ko-nikl-11372-s001, ch: 일곱, pr: 일곱, ds: seven (native Korean numeral)}
-  - {id: ko-nikl-11373-s001, ch: 일곱, pr: 일곱, ds: seven; before a noun or counter}
-  - {id: ko-nikl-47042-s001, ch: 여덟, pr: 여덜, ds: eight (native Korean numeral)}
   - {id: ko-nikl-47043-s001, ch: 여덟, pr: 여덜, ds: eight; before a noun or counter}
   - {id: ko-nikl-04320-s001, ch: 아홉, pr: 아홉, ds: nine (native Korean numeral)}
   - {id: ko-nikl-04322-s001, ch: 아홉, pr: 아홉, ds: nine; before a noun or counter}
   - {id: ko-nikl-26023-s001, ch: 가지, pr: 가지, ds: a counter for kinds or types of things}
+  - {id: ko-nikl-34156-s003, ch: 나누다, pr: 나누다, ds: to perform division in mathematics}
+  - {id: ko-nikl-35310-s008, ch: 넘다, pr: 넘ː따, ds: to exceed an amount or other comparison point}
+  - {id: ko-nikl-45856-s001, ch: 충분하다, pr: 충분하다, ds: 'to be ample or sufficient, without a shortage'}
+  - {id: ko-nikl-37514-s001, ch: 모자라다, pr: 모ː자라다, ds: 'to fall short of a set number, quantity, or degree'}
   review_grammar: []

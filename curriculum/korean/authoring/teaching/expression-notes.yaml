@@ -1,0 +1,490 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: coherent expression selection; not complete-scale coverage
+scope:
+- Only expression-vocabulary.yaml, expression-identities.yaml, and this file are authored here.
+- The active selection contains predicates, descriptive words, adverbs, and conversational function items, not noun
+  additions.
+- Noun rows from the earlier draft are deferred to the separate noun cohort; this is ownership separation, not a
+  teaching-placement rule.
+- The original cohort author did not inspect the active noun files; parent integration now checks the completed content cohort too.
+- All previously authorized selection sets, including committed kitchen and personal, remain protected.
+- The original cohort author did not change the source registry, reading overlay, correction ledger, manifest, grammar, or runtime.
+- Candidate discovery followed concrete communicative needs, followed by inspection of bilingual source positions.
+- Every selected sense, teaching location, topic, and label was manually authored.
+- No source-band, alphabetical, first-sense, or numeric-capacity rule selects or schedules these rows.
+- No source predicate is synthesized from a noun, suffix, phrase, or inflected surface.
+integration:
+  selections: >
+    selection-files.yaml registers both expression files after the completed
+    content cohort. Parent checks found no source-ID collisions or conflicting
+    existing identity keys across the full manifest; nothing is silently deduplicated.
+  validated_protected_sets: [base, early, expansion, breadth, community, kitchen, personal, content]
+  deferred_manifest_inputs: []
+  identity_fragments: 'Existing ko-lex-42538, ko-lex-25721, and ko-lex-51408 receive only new expression members.
+    Their canonical lemmas and count categories are preserved. Other identity groups are new local declarations.
+    Stable local keys are retained when a draft noun/adverb group loses its noun members; a key''s ordinal suffix
+    is not a claim that its namesake source parent is selected. Only members and source_parents declare that. Future
+    noun/adverb consolidation and any category reconciliation belong to the parent, not an automatic same-spelling
+    merger.
+
+    '
+  corrections: >
+    All fourteen requests below are incorporated into the parent-owned ledger
+    with exact retained Korean/English and the selected interpretation.
+    Polarity and usage clarifications remain unreviewed authored interpretations,
+    not official dictionary errata or changes to the pinned source.
+  readings: >
+    All eight originally missing parents, covering twenty-one selected
+    senses, now have explicitly matched official citation text. Complete
+    ordered source definitions and competing homographs were compared.
+    No authored reading was added. resolved_reading_gaps retains the original
+    resolver snapshot as history; there are no remaining selected gaps.
+    The historical fire-lighting position of 당기다 remains unselected and
+    is not verified as a meaning by the current primary official entry.
+curation_rationales:
+  feelings_and_sensation: 'Add useful distinctions among boredom, repeated tedium, worry, frustration, embarrassment,
+    envy, unfair treatment, warm satisfaction, clear conscience, shamelessness, fatigue, itching, stinging, and
+    numbness. Physical and emotional uses of the same predicate deepen it without adding headwords.
+
+    '
+  perception_and_judgment: 'Looking upward, observing attentively, recognizing, understanding speech, assessing
+    ability, being deceived, concealing facts, getting an answer right, adjusting something, and moral incorrectness
+    support different communicative tasks. Ordinary difference is not relabeled as 틀리다.
+
+    '
+  agency_and_relationships: 'Choosing, deciding, hesitating, wavering, sharing, forming relationships, taking initiative,
+    interfering, quarreling, recommending, accepting responsibility, obtaining permission, and completing or abandoning
+    work support connected accounts of everyday social action.
+
+    '
+  native_predicate_depth: 'Important noninitial positions include calling with 걸다, elapsed time with 걸리다, scheduling
+    and estimates with 잡다, settled dates with 잡히다, appended explanation with 달다, reasons and disclosure with 대다,
+    and interpersonal treatment with 대하다. These are not additional lemmas for every English translation. Unsupported
+    or unnecessary specialized, slang, and highly context-dependent positions are not swept into the selection.
+
+    '
+  narrative_modifiers: 'Frequency, continuity versus resumption, intentional versus inadvertent action, simultaneous
+    versus successive action, recent past versus immediacy versus near future, gradual change, and expected versus
+    unexpectedly early completion support coherent narration and explanation.
+
+    '
+  conversational_operators: 'Conditional uptake, contrast, reformulation, conversation opening, reciprocal reference,
+    self-reference, degree, uncertainty, and emphatic replies are explicitly function-accounted rather than free-lemma
+    padding. Simple routines receive genuinely elementary frequency and timing words; later argument and register
+    uses are introduced where their goals fit.
+
+    '
+  source_positions: 'Identical or near-identical English paraphrases never authorize discarding different original
+    positions. In particular, matching an answer is not hitting a target, weighing is not attaching or tasting sweet,
+    and responsibility 맡다 is not the smelling predicate.
+
+    '
+  handling_and_movement: 'Standing things up, seating people, moving aside, pushing versus pulling, dragging versus
+    leading, moving belongings, transferring positions, and stopping movement support home, travel, and ordinary
+    work. Vacancy, being briefly away, and freeing time are different source positions, not one guessed translation
+    of empty.
+
+    '
+  quantities_and_outcomes: 'Physical expansion versus quantity increase, improved skill versus longer duration,
+    shrinkage versus reduction, leftovers versus profit, remaining versus deliberately leaving something, and reaching
+    or exceeding a limit support plans and connected explanations. Successful progress is not silently inferred
+    from an unchanged state, and having distance still to go is not automatically failure.
+
+    '
+  access_and_communication: 'Flow, coherent meaning, effective acceptance, connected routes, understood intentions,
+    passage, intermediaries, and experience-based knowledge retain distinct 통하다 positions. Obstruction, prevention,
+    defense, and covering a debt retain separate 막다 meanings. Literal openings and finding a solution are different
+    뚫리다 outcomes.
+
+    '
+  descriptive_contrasts: 'Strength, frailty, resistance, resolve, skill, appropriate degree, sufficiency, thinness,
+    thickness, grain size, voice resonance, roundness, and four-sided shape support concrete description without
+    specialist terminology padding. A thin long object is not necessarily a thin sheet, four-sided does not require
+    equal sides, and resonant voice does not mean low measured decibels.
+
+    '
+  fullness_wearing_and_tone: 'Fullness 차다, kicking 차다, body-worn-item 차다, and cold 차다 retain distinct source parents.
+    Dumping a partner is explicitly slang; rejecting an opportunity keeps its figurative marker. Unfriendly expression
+    is not neutralized into pleasant coolness. Fastening 채우다 is not filling 채우다. A conventional letter-closing use
+    of 줄이다 is a source sense, not a new inflected headword.
+
+    '
+  register_qualifiers: 'Preserve source-marked figurative, derogatory, dated, respectful, humble, emphatic, or otherwise
+    meaningful usage restrictions in the short label. The explicit emphatic marker on 혹시나 remains in its label.
+    Additional figurative/emotional clarifiers distinguish the selected abstract or emotional uses of 흔들다, 흔들리다,
+    달아나다, 쫓기다, and 저리다 from physical interpretations. Those clarifiers describe the inspected meanings; they are
+    not invented claims of dictionary register markings. No placement was moved to make room for these labels.
+
+    '
+identity_policy:
+  status: 'These are documented, provisional teaching identities, not independently proven true-lexeme counts. Report
+    selected source parents, senses, spellings, identities, and free candidates separately.
+
+    '
+  identifiers: 'ko-nikl IDs retain pinned CSV record ordinals and original definition positions. ko-lex IDs are
+    stable local identity names, not official dictionary identifiers.
+
+    '
+  explicit_decisions: 'Every identity''s lemma, category, source-parent membership, and concise semantic rationale
+    was authored directly. Mechanical materialization only enumerates already-selected sense IDs belonging to those
+    declared parents. It does not choose a sense, label, level, category, or lexical merger.
+
+    '
+  content_candidates: 'Independently sourced predicates and the specifically declared lexical manner, frequency,
+    and temporal expressions are free-lemma candidates. Only the retained non-noun meanings support the current
+    identity declarations. Directly acting, ordinary frequency, and non-detailed presentation remain lexical manner/frequency
+    candidates; their noun counterparts are not selected here. POS is not a teaching-location rule.
+
+    '
+  function_accounting: 'Pure degree/focus, discourse connection, reciprocal/comitative relations, indefinite or
+    self-reference, hypothetical framing, and directive expressions are explicitly function items. The attested
+    small-increment expression 조금씩 contributes no new free-content count. With the outline noun deferred, 대략''s
+    retained rough-estimation adverb is conservatively a function item rather than a new free content word.
+
+    '
+  mixed_ranges: '곧 and 바로 retain lexical timing/manner candidates, with discourse senses adding no further identity.
+    어서 is conservatively a directive function identity even with its prompt-action adverbial sense. These are explicit
+    accounting judgments, not a universal linguistic taxonomy.
+
+    '
+  bound_forms: 'No new bound-form identity is selected here. No noun parent remains in the active selection, and
+    no productive particle or conjugation is promoted to a headword.
+
+    '
+  derivation_and_synonymy: 'Actual sourced active/intransitive or causative/passive predicates remain reviewable
+    individual candidates unless an explicit grouping below says otherwise. No global suffix-stripping or English-synonym
+    merger applies. Distinct forms such as 만약/만일, 혼자/홀로, 늘/항상, and 대강/대략 are not asserted to be spelling variants
+    just because their meanings overlap.
+
+    '
+  bound_form_identity_ids: []
+  function_identity_ids:
+  - ko-lex-17961
+  - ko-lex-14075
+  - ko-lex-27485
+  - ko-lex-05524
+  - ko-lex-33831
+  - ko-lex-14876
+  - ko-lex-09077
+  - ko-lex-38276
+  - ko-lex-36679
+  - ko-lex-37806
+  - ko-lex-46823
+  - ko-lex-30594
+  - ko-lex-50163
+  - ko-lex-22159
+  - ko-lex-22094
+  - ko-lex-24369
+  - ko-lex-26900
+  - ko-lex-09735
+  - ko-lex-51472
+  - ko-lex-51507
+  - ko-lex-02441
+  - ko-lex-32003
+  - ko-lex-32008
+  - ko-lex-32033
+  - ko-lex-32013
+  - ko-lex-32026
+  - ko-lex-31998
+  - ko-lex-19791
+  - ko-lex-36134
+  - ko-lex-36147
+  - ko-lex-51408
+  - ko-lex-48731
+  - ko-lex-15087
+  - ko-lex-46454
+  - ko-lex-17291
+  - ko-lex-04170
+  - ko-lex-04165
+  - ko-lex-46744
+  - ko-lex-17008
+documented_group_decisions:
+  ko-lex-06409: 'Source 06409 describes envy of another''s achievement or possession; 06406 is the actually attested
+    experiencing verb 부러워하다. Count one conservative envy base here without asserting identical syntax, productive
+    interchangeability, or independently verified derivational identity.
+
+    '
+  ko-lex-30563: 'Source 30563 describes bodily or mental distress and 30561 is the actually attested suffering verb
+    괴로워하다. The conservative single-base accounting does not turn a descriptive predicate into a freely generated
+    verb.
+
+    '
+  adverb_only_after_rescope: '매번, 매일, 계속, 거의, 혼자, 스스로, 직접, 만약, 만일, 방금, 대강, 대략, and 보통 retain only their inspected
+    adverbial source parents. Their earlier noun memberships are removed, not claimed as completed noun coverage.
+    Stable local keys and canonical spellings remain. Possible future noun/adverb identity relationships require
+    parent review, including the differing content/function implications for 대략.
+
+    '
+  ko-lex-17008: 'Only adverb parent 17009 remains. Its rough-estimation meaning is conservatively function-accounted
+    now that outline noun 17008 is outside this cohort. This is an explicit revision to an unintegrated draft group,
+    not a change to a protected identity or a POS-based placement rule.
+
+    '
+  ko-lex-32008: 'The two adverbial 그럼 positions match the conditional and prior-point uptake meanings of 그러면 and
+    use its familiar shortened form. The separately sourced emphatic affirmative interjection 32033 is not included.
+
+    '
+  ko-lex-10549: '이따 and 이따가 are the shorter/fuller temporal forms with the inspected little-later meaning. They
+    are not the inflected sequence 있다가.
+
+    '
+  ko-lex-25721: 'The new 가만 parent has the same three retained Korean definitions as the corresponding 가만히 positions:
+    stillness/silence, inaction, and calm attention. Preserve the existing canonical lemma and category. This decision
+    is not a rule to remove 히 from other adverbs.
+
+    '
+  ko-lex-51408: 'The source explicitly defines 혹시나 as emphatic 혹시. Extend the protected function identity with only
+    the new parent/sense and preserve the original tentative and hesitation meanings in protected data.
+
+    '
+  ko-lex-42538: 'The previously unselected second adverbial position of protected parent 42538 contrasts the present
+    with past/future. It replaces the draft noun additions; source noun parent 42537 is deferred. Preserve the existing
+    free-lemma category, canonical lemma, and all protected memberships.
+
+    '
+homograph_rationales:
+  ko-nikl-36566: Correct-answer 맞히다, not the target-hitting/causing-to-receive source.
+  ko-nikl-36567: Target-hitting/causing-to-receive 맞히다, not getting an answer correct.
+  ko-nikl-28958: Choosing 고르다, not even or uniform conditions.
+  ko-nikl-28960: Evenness and steadiness 고르다, not the choosing verb.
+  ko-nikl-36570: Responsibility, custody, and authorization 맡다, not smelling.
+  ko-nikl-36572: Smelling and inferential sensing 맡다, not taking responsibility.
+  ko-nikl-16567: Attachment and its selected extensions, not weighing or protected sweet-taste 달다.
+  ko-nikl-16568: Weighing 달다, not attachment or protected sweet-taste source 16570.
+  ko-nikl-32033: Affirmative interjection 그럼, not the adverbial short form of 그러면.
+  ko-nikl-17291: Discourse-focused 대체, not protected substitution noun 17290.
+  ko-nikl-32104: Stopping-action 그만하다, not a descriptive degree homograph.
+  ko-nikl-43854: Fullness and its selected extensions, not kicking, wearing, or coldness.
+  ko-nikl-43856: Kicking with separately marked slang and figurative extensions, not the other 차다 homographs.
+  ko-nikl-43857: Wearing or fastening an item to the body, not fullness or kicking; the slang second position is
+    unselected.
+  ko-nikl-43858: Cold temperature or an unfriendly expression, not a filling, kicking, or wearing verb.
+  ko-nikl-44318: Locking or fastening, not filling a container or meeting an amount.
+  ko-nikl-44319: Filling or satisfying, not fastening a closure.
+review_flags:
+  lexical_boundaries: 'The two conservative emotion-base groupings and the independent treatment of other sourced
+    derivational predicates require lexicographic review. The declared counts are provisional; neither raw rows
+    nor spelling/POS pairs establish true lexical breadth.
+
+    '
+  category_borderlines: 'Temporal/aspect and frequency adverbs, especially 아직/이미 and 매번/매일, can receive different
+    theoretical function-word analyses. Likewise 특별히, solitary/comitative expressions, 직접, and mixed 곧/바로/어서 merit
+    category review. Their current accounting is explicit, stable, and not silently copied from POS or chosen to
+    inflate breadth.
+
+    '
+  polarity_and_concession: 'Teach 도저히, 별로, 전혀, 아무런, and 아무리 with their appropriate negative or concessive environments.
+    전혀 also retains complete degree. 아무리 is not a freely interchangeable positive 매우. Labels and the proposed clarifications
+    are authored usage interpretations needing teacher review, not new conjugation rows.
+
+    '
+  reference_time: 'The retained 방금 definitions distinguish just-before, at, and just-after speaking within the adverb
+    parent; do not count them as separate words. Contemporary distribution and production contexts for the less
+    usual present/future readings need review. 금방''s immediacy is not restricted to an already ongoing present event,
+    and 벌써''s two source positions differ.
+
+    '
+  interpersonal_register: 'Affirmative 그럼 has emphatic confidence, not the neutral all-purpose politeness of 네.
+    대체''s selected source focuses on the point of discourse; it is not simply substitution. Production examples
+    should establish conversational tone rather than infer it from a short English gloss.
+
+    '
+  reference_constructions: '대하다''s subject/counterpart sense supports referential use, but a construction such as
+    에 대해 does not become another lexical identity. Main-verb 시키다 is sourced independently; no productive causative
+    suffix or automatically generated X시키다 family is added.
+
+    '
+  descriptive_and_social_judgments: '모자라다''s ability/knowledge shortfall and 약하다''s frailty are not clinical diagnoses
+    or neutral labels for a person''s worth. The source''s personality judgments remain recognizable in labels for
+    뾰족하다 and 둥글다. Tongue-clicking is an attested action, not an assertion that its pragmatic meaning or politeness
+    is constant across contexts.
+
+    '
+  introduced_homographs: 'The four 차다 and two 채우다 source boundaries are retained provisionally because their inspected
+    meanings and argument structures differ. Related cold predicates and sourced causative/intransitive pairs still
+    require lexical-boundary review; no shared spelling or derivational suffix mechanically decides identity.
+
+    '
+remaining_scope:
+- The original free-lemma planning guide remains far unmet; this cohort is not a complete-course claim.
+- Broader everyday descriptive qualities, spatial motion and manipulation, and ordinary social evaluation still
+  need further targeted curation.
+- Later general-interest argument, interpretation, arts, institutions, and independent-project breadth still need
+  expansion where useful meanings genuinely justify it.
+- Inflected or unspecified contraction source 31988 그래도 is not added as a new vocabulary headword.
+- Restricted giving/request predicate source 16569 달다 remains unselected pending form and identity review; it is
+  not confused with weighing or attaching.
+- Specialist, slang, and uncommon figurative positions of large predicates were inspected but are not automatically
+  added.
+- Missing official readings and unresolved lexicographic boundaries require their own evidence rather than guessed
+  replacements.
+protected_exclusions:
+  ko-nikl-48419-s001: Coordinator-directed exclusion pending qualified review; do not reselect, substitute another
+    sense, invent a reading, or research further.
+deferred_noun_sense_ids:
+- ko-nikl-36650-s001
+- ko-nikl-36686-s001
+- ko-nikl-28669-s001
+- ko-nikl-28669-s002
+- ko-nikl-27485-s001
+- ko-nikl-51472-s001
+- ko-nikl-02441-s001
+- ko-nikl-42997-s001
+- ko-nikl-36134-s001
+- ko-nikl-36147-s001
+- ko-nikl-40295-s001
+- ko-nikl-40295-s002
+- ko-nikl-40295-s003
+- ko-nikl-16825-s001
+- ko-nikl-16825-s002
+- ko-nikl-16825-s003
+- ko-nikl-42537-s001
+- ko-nikl-42537-s002
+- ko-nikl-16889-s001
+- ko-nikl-17008-s001
+- ko-nikl-05885-s001
+source_correction_requests:
+  ko-nikl-16728-s004:
+    source_korean: 공간이 좁아 시원한 느낌이 없다.
+    source_english: Feeling a lack of air.
+    authored_interpretation: to feel cramped because space is small
+    rationale: The Korean explicitly describes cramped space, not necessarily a lack of breathable air. Keep this
+      distinct from the breathing/stifling position.
+  ko-nikl-16728-s005:
+    source_korean: 다른 사람의 태도나 상황이 마음에 차지 않아 안타깝다.
+    source_english: Feeling anxious because someone's attitude or situation is not uncomfortable.
+    authored_interpretation: to feel frustrated by someone's attitude or a situation
+    rationale: The Korean describes dissatisfaction and frustration with an attitude or situation. The English negative
+      wording not uncomfortable loses that meaning.
+  ko-nikl-39571-s001:
+    source_korean: 보고 싶던 사람을 만나거나 원하는 일이 이루어져서 마음이 즐겁고 기쁘다.
+    source_english: Joyful and happy as one meets a person that one missed.
+    authored_interpretation: to be glad at a welcome meeting or hoped-for event
+    rationale: The Korean includes both meeting a missed person and a desired event occurring. The English mentions
+      only the meeting.
+  ko-nikl-43727-s001:
+    source_korean: 어떤 대상을 만나기 위하여 급히 가다.
+    source_english: To go to a place to do something in haste.
+    authored_interpretation: to hurry to meet someone
+    rationale: The Korean purpose is meeting a target. The English substitutes any hurried task; the selected ordinary-person
+      interpretation restores the stated purpose.
+  ko-nikl-11492-s002:
+    source_korean: 알면서도 아는 것을 숨기거나 어떤 행위를 하는 본래 마음을 숨기고.
+    source_english: With one's real purpose or intention hidden.
+    authored_interpretation: while concealing what one knows or one's real intention
+    rationale: The Korean explicitly includes hiding what one knows as well as concealing the original intention.
+      The English omits the knowledge alternative.
+  ko-nikl-04165-s001:
+    source_korean: 전혀 어떠한.
+    source_english: 'Not at all. '
+    authored_interpretation: any at all (before a noun, usually with a negative)
+    rationale: The retained source is an indefinite noun-modifying determiner. Bare English not at all does not
+      express that any-noun relation; the label also clarifies ordinary negative-context use.
+  ko-nikl-14075-s001:
+    source_korean: 도무지. 또는 완전히.
+    source_english: By any possibility or wholly.
+    authored_interpretation: at all (with a negative); completely
+    rationale: 'Polarity clarification: the awkward first English phrase obscures ordinary at-all usage with negation.
+      Preserve the Korean alternative complete-degree meaning rather than making the whole entry negative-only.'
+  ko-nikl-17364-s003:
+    source_korean: 대상이나 상대로 삼다.
+    source_english: To consider as a counterpart or opponent.
+    authored_interpretation: to take someone or something as a subject or counterpart
+    rationale: The Korean includes taking something as a 대상, not only an opponent or counterpart. Retain the subject/object-of-discourse
+      interpretation alongside the counterpart meaning.
+  ko-nikl-17306-s002:
+    source_korean: 어느 정도로 적당히.
+    source_english: 'In a somewhat slapdash manner. '
+    authored_interpretation: roughly; to an approximately suitable degree
+    rationale: The Korean specifies roughly suitable degree, without necessarily judging the work careless. The
+      English slapdash wording imposes that negative evaluation.
+  ko-nikl-04170-s001:
+    source_korean: 정도가 매우 심하게.
+    source_english: 'To an extremely severe degree. '
+    authored_interpretation: however much; no matter how great the degree
+    rationale: 'Usage clarification: the high-degree definition belongs to concessive however-much framing, not
+      an unrestricted affirmative synonym of very. This authored contextual interpretation requires teacher review;
+      original Korean and English stay unchanged.'
+  ko-nikl-16773-s001:
+    source_korean: 관심이 쏠리거나 마음이 끌리다.
+    source_english: To attract interest or attention.
+    authored_interpretation: to feel drawn to something
+    rationale: 'Perspective clarification: the Korean describes interest being drawn and the experiencer feeling
+      attracted. The English active attract can misleadingly suggest only an external causer; this selected label
+      retains the experiencing perspective.'
+  ko-nikl-16773-s002:
+    source_korean: 입맛이 생기다.
+    source_english: To stimulate the appetite.
+    authored_interpretation: to feel an appetite or craving
+    rationale: 'Perspective clarification: the Korean says an appetite arises, whereas the English uses the causative
+      stimulate. The selected ordinary-food reading expresses feeling an appetite or craving rather than intentionally
+      stimulating another person.'
+  ko-nikl-34604-s008:
+    source_korean: 정해진 시간을 다 채우지 않거나 정해진 거리에 도달하지 않게 하다.
+    source_english: 'To fail to fill up a certain amount of time or reach a certain distance. '
+    authored_interpretation: to leave time or distance still to go
+    rationale: The Korean describes time or distance not yet completed. English fail to can imply unsuccessful performance;
+      the selected label preserves the ordinary remaining-time or remaining-distance use without assuming failure.
+  ko-nikl-31564-s006:
+    source_korean: 소리의 울림이 크다.
+    source_english: The reverberation of a sound being strong and at low decibels.
+    authored_interpretation: to have a full, resonant sound
+    rationale: The Korean describes a full or strong resonance. The English adds low decibels, which is not present
+      in the Korean and confuses sound quality with a measured intensity claim. Retain resonance without inventing
+      an acoustic measurement.
+selected_reading_gaps: []
+resolved_reading_gaps:
+- source_parent: ko-nikl-25668
+  lemma: 가렵다
+  reason: 'ko-nikl-25668: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-25668-s001
+- source_parent: ko-nikl-12705
+  lemma: 잡다
+  reason: 'ko-nikl-12705: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-12705-s001
+  - ko-nikl-12705-s002
+  - ko-nikl-12705-s006
+  - ko-nikl-12705-s007
+  - ko-nikl-12705-s008
+  - ko-nikl-12705-s013
+  - ko-nikl-12705-s015
+  - ko-nikl-12705-s022
+  - ko-nikl-12705-s023
+- source_parent: ko-nikl-33831
+  lemma: 꽤
+  reason: 'ko-nikl-33831: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-33831-s001
+- source_parent: ko-nikl-26900
+  lemma: 같이
+  reason: 'ko-nikl-26900: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-26900-s001
+  - ko-nikl-26900-s002
+  - ko-nikl-26900-s003
+- source_parent: ko-nikl-19089
+  lemma: 드디어
+  reason: 'ko-nikl-19089: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-19089-s001
+- source_parent: ko-nikl-17291
+  lemma: 대체
+  reason: 'ko-nikl-17291: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-17291-s001
+- source_parent: ko-nikl-16773
+  lemma: 당기다
+  reason: 'ko-nikl-16773: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-16773-s001
+  - ko-nikl-16773-s002
+  - ko-nikl-16773-s003
+  - ko-nikl-16773-s004
+- source_parent: ko-nikl-35358
+  lemma: 네모나다
+  reason: 'ko-nikl-35358: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-35358-s001
