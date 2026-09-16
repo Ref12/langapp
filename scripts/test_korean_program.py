@@ -786,6 +786,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "measurement-notes.yaml",
             "interpretive-actions-notes.yaml",
             "practical-descriptors-notes.yaml",
+            "financial-exchanges-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -2814,6 +2815,73 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("words or actions", words["ko-nikl-46520-s001"]["ds"])
         self.assertIn("between alternatives", words["ko-nikl-46520-s002"]["ds"])
         self.assertIn("seems dubious", words["ko-nikl-46520-s003"]["ds"])
+
+    def test_financial_accounts_books_and_operations_keep_their_actual_scope(self):
+        words, sources, identities = (
+            self.references.vocabulary, self.references.provenance, self.references.lexical_identity,
+        )
+        self.assertIn("savings and loans", words["ko-nikl-28712-s001"]["ds"])
+        self.assertIn("passbook", words["ko-nikl-21768-s001"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-28712-s001"], identities["ko-nikl-21768-s001"])
+        self.assertIn("into", words["ko-nikl-11788-s001"]["ds"])
+        self.assertIn("out of", words["ko-nikl-45689-s001"]["ds"])
+        self.assertIn("one financial account to another", words["ko-nikl-10979-s001"]["ds"])
+        self.assertEqual(sources["ko-nikl-11297-s002"]["source_position"], 2)
+        self.assertIn("deposited", words["ko-nikl-11297-s002"]["ds"])
+        self.assertIn("맡겨 둔 돈", sources["ko-nikl-11297-s002"]["source_korean"])
+
+    def test_financial_remaining_money_and_existing_polysemy_do_not_add_multiple_roots(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for suffix, marker in ((1, "after spending"), (2, "unpaid"), (3, "last installment")):
+            item = f"ko-nikl-12550-s{suffix:03d}"
+            self.assertIn(marker, words[item]["ds"])
+            self.assertEqual(identities[item], identities["ko-nikl-12550-s001"])
+        for parent in ("13513", "48902"):
+            self.assertEqual(identities[f"ko-nikl-{parent}-s001"], identities[f"ko-nikl-{parent}-s002"])
+        self.assertIn("goods", words["ko-nikl-48902-s002"]["ds"])
+        self.assertIn("accumulating", words["ko-nikl-13513-s001"]["ds"])
+        self.assertIn("borrowed things", words["ko-nikl-09307-s001"]["ds"])
+        self.assertIn("borrowed money", words["ko-nikl-10893-s001"]["ds"])
+        self.assertIn("deposited", self.references.provenance["ko-nikl-32424-s001"]["source_english"])
+
+    def test_financial_statements_requirements_and_fees_do_not_claim_completed_collection(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("requiring", words["ko-nikl-30139-s001"]["ds"])
+        self.assertIn("collecting", sources["ko-nikl-30139-s001"]["source_english"])
+        self.assertIn("money amounts", words["ko-nikl-37272-s001"]["ds"])
+        self.assertIn("goods", sources["ko-nikl-37272-s001"]["source_english"])
+        self.assertIn("requesting money, goods", words["ko-nikl-44802-s001"]["ds"])
+        self.assertIn("promised", words["ko-nikl-49986-s001"]["ds"])
+        self.assertIn("days overdue", words["ko-nikl-47572-s001"]["ds"])
+        self.assertIn("annual earnings", words["ko-nikl-00678-s001"]["ds"])
+        self.assertNotEqual(
+            self.references.lexical_identity["ko-nikl-44800-s001"],
+            self.references.lexical_identity["ko-nikl-44802-s001"],
+        )
+
+    def test_financial_source_admission_preserves_every_position_and_actual_reading(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "financial-exchanges-notes.yaml")
+        rows = load_yaml(authoring / "financial-exchanges-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requested = notes["source"]["support_parent_ids"]
+        self.assertEqual(len(rows), 30)
+        self.assertEqual(len(requested), 17)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requested), 19)
+        for item in requested:
+            parent = parents[item]
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertEqual(parent["source_part_of_speech"], "명사")
+            self.assertEqual(
+                [row["source_position"] for row in parent["senses"]],
+                list(range(1, len(parent["senses"]) + 1)),
+            )
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+        self.assertFalse({row["id"].rsplit("-s", 1)[0] for row in rows} & {
+            "ko-nikl-06665", "ko-nikl-10913", "ko-nikl-12549", "ko-nikl-12893",
+            "ko-nikl-13589", "ko-nikl-29966", "ko-nikl-31148", "ko-nikl-48903", "ko-nikl-48904",
+        })
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

@@ -1,0 +1,160 @@
+schema_version: 1
+review_status: original-ai-authored-unreviewed
+scope: >
+  Bounded practical banking, billing, balances, payment arrangements and
+  general-reader financial descriptions. Actual missing 계좌, 통장, 입금,
+  출금 and 이체 distinguish an account, its passbook and different money
+  operations. This is not a securities catalogue or current financial/legal
+  advice, and already covered words are not duplicated to reach a quota.
+source:
+  source_id: nikl-2024-mirror
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  support_parent_ids:
+    - ko-nikl-00499
+    - ko-nikl-00678
+    - ko-nikl-05451
+    - ko-nikl-06985
+    - ko-nikl-08459
+    - ko-nikl-09307
+    - ko-nikl-09970
+    - ko-nikl-10875
+    - ko-nikl-10893
+    - ko-nikl-10979
+    - ko-nikl-12550
+    - ko-nikl-12573
+    - ko-nikl-30139
+    - ko-nikl-37147
+    - ko-nikl-37272
+    - ko-nikl-44802
+    - ko-nikl-49986
+  complete_support_positions: 19
+  policy: >
+    All exact source forms, complete bilingual arrays and same-form
+    homographs were inspected in the checksum-pinned CSV. Root
+    source-senses.yaml retains every original position for these17 parents.
+    No raw meaning, original TOPIK record/band or project positional ID
+    changes; no usage examples, financial records, credentials or media.
+selection:
+  senses: 30
+  dictionary_parents: 28
+  identity_fragments: 28
+  new_provisional_free_families: 26
+  existing_family_extensions: 2
+  new_bound_or_function_families: 0
+placement_rationale:
+  - The actual airport/downtown tax-exempt shop at7 supports travel signs without promising eligibility or an allowance.
+  - Level14 financial-service problems distinguish accounts, passbooks, deposits, transfers, withdrawals, balance words, bills and overdue fees.
+  - Responsibility and reporting at15 use unspent money and itemized statements; neither proves the correctness of an account.
+  - Negotiating at18 uses generic division into parts and the actual contractual-breach payment term, not a fabricated installment-only division sense.
+  - Level20 public/economic reading covers tax imposition, rates, annual personal earnings, debt repayment, remaining obligations and imported money/goods.
+  - Existing professional/scientific branch placements and original source bands are not moved or turned into legal/examination qualifications.
+identity_adjudication:
+  existing_families:
+    ko-lex-13513: Original generic accumulation position1 deepens previously selected periodic bank-product position2.
+    ko-lex-48902: Original imported-money-or-goods position2 deepens previously selected foreign-currency position1.
+  accounts_and_books: >
+    The actual 계좌 record and physical/documentary 통장 passbook are
+    separate content words. A passbook does not become an online login
+    account or supply a missing generic 장부 source. No 구좌 synonym is
+    added solely to increase names for an already selected account concept.
+  document_policy: >
+    청구서 is a requesting document, not the protected 청구 requesting
+    action. This follows existing 신청/신청서 and 보고/보고서 distinctions.
+    명세서 can itemize without demanding payment.
+  synonym_policy: >
+    Useful actual names 사용료/이용료 and 잔고/잔액 remain separate
+    provisional lexical candidates, not automatically variants because a
+    Korean or English definition overlaps. No extra senses or pronunciation
+    knowledge are inherited from another name.
+  interest_scope: >
+    Actual 이율 names the rate on borrowed money. Protected 금리 also
+    includes interest or rate on money deposited at a financial institution.
+    Do not import that extra deposit scope into this source position.
+reading_review:
+  official_text_senses: 30
+  official_text_parents: 28
+  new_crosswalks: 0
+  new_authored_decisions: 0
+  policy: >
+    Every selected parent resolves to actual independently pinned official
+    citation text. No spelling fallback, compound-reading concatenation,
+    bank audio or learner speech assessment is supplied.
+source_correction_requests:
+  ko-nikl-12547-s001:
+    source_korean: "남은 돈의 액수."
+    source_english: "The amount of money left unspent."
+    authored_interpretation: the remaining balance of money
+    rationale: The Korean says remaining money without the English's extra unspent restriction; the label does not prove available spending funds or a particular kind of balance.
+  ko-nikl-30139-s001:
+    source_korean: "어떠한 항목에 대한 세금을 정해서 그것을 내도록 함."
+    source_english: "The act of imposing and collecting taxes on items."
+    authored_interpretation: setting a tax on an item and requiring its payment
+    rationale: Requiring payment is not proof of collection; preserve the Korean imposition/requirement scope.
+  ko-nikl-37272-s001:
+    source_korean: "주로 물품이나 금액의 내용이나 항목, 수량 등을 자세하고 구체적으로 적은 문서."
+    source_english: "A document which records the amount, item, or quantity of goods in detail."
+    authored_interpretation: a detailed statement of items, quantities or money amounts
+    rationale: Preserve monetary contents as well as goods/items; the English's goods-only wording is too narrow.
+  ko-nikl-45689-s001:
+    source_korean: "은행과 같은 금융 기관의 계좌에서 돈을 뺌."
+    source_english: "An act of taking money out of one’s account in a financial institution such as a bank."
+    authored_interpretation: taking money out of a financial account
+    rationale: The Korean does not specify ownership; omitting that added restriction grants no authorization to access anyone's account.
+source_boundaries:
+  operations: >
+    입금 puts funds into an account; 출금 removes them; 이체 moves funds
+    between accounts. 인출 selected position2 withdraws deposited money,
+    not generic drawing-out position1 or new borrowing. None establishes
+    ownership, authorization, availability, cleared funds or completed action.
+  remaining_money: >
+    잔금 includes leftover-after-spending, still-unpaid and final-house/
+    land-purchase-installment positions. Keep those three source identities
+    and contexts, not thin-short-line homograph12549 or a single vague balance.
+  fees_and_promises: >
+    선금 is advance money for buying/borrowing, not an automatically
+    refundable security deposit. 연체료 depends on overdue days for money
+    or items but supplies no rate or universal charge. 위약금 is money
+    promised to the other party, not a ruling on enforceability or breach.
+  taxation: >
+    The sources give a statutory-reference rate, personal annual-earnings
+    tax, imposition and exemption concepts. They do not identify actual
+    applicable laws, current rates, duty-free allowances, tax liability or
+    eligibility, nor promise all purchases at a named shop are exempt.
+  foreign_scope: >
+    Imported money/goods is actual 외화 position2. Foreign-film48903 is
+    another source parent, and narrow international-bill 외환48904 is not
+    a substitute for general modern foreign exchange or foreign currency.
+bounded_gaps_and_deferrals:
+  - Exact 부가세 and 임차 were not found in this bounded pin lookup; previously documented 환급 and other source gaps were not re-probed.
+  - Exact 장부 yielded only male-person12893, not a financial-ledger meaning. Do not substitute it; 통장 supplies only its actual depositor-passbook concept.
+  - The financial 계좌 source does not fill the separately documented online-account 계정 gap.
+  - The actually present equivalent-account name 구좌31148 is not added merely as a second name in this bounded cohort.
+  - Narrow international-bill 외환48904 and loan-security portion 보증금05869-s001 remain unselected rather than relabelled as broad foreign exchange, interest or a fee.
+  - Institutional-payment nouns 불입07300 and 납입34732 are not added beyond already covered payment families merely to increase breadth.
+  - Generic physical 인출11297-s001 and unrelated hand-fan, disparaging-person, male-person, fitted-person and mutual-help homographs remain outside this cohort.
+limits: >
+  Original labels and source/family/placement interpretations require qualified
+  Korean linguistic and pragmatic review. Dictionary definitions and passing
+  structural checks are not financial/legal advice, historical or current
+  market accuracy, payment authorization, learner mastery or exam readiness.
+integration:
+  core_dictionary_parents: 5462
+  core_selected_senses: 7831
+  core_distinct_spellings: 5150
+  core_spelling_pos_pairs: 5259
+  core_lexical_identities: 5211
+  core_provisional_free_families: 4948
+  core_bound_forms: 40
+  core_function_items: 223
+  retained_support_parents: 920
+  selected_support_parents: 916
+  core_modules: 767
+  gap_to_lower_core_free_guide: 852
+  checks:
+    targeted_course_tourist_source_tests: 143
+    deterministic_views: 128
+    preservation: All prior source-parent objects and official reading entries remained unchanged; no crosswalk or authored reading decision was edited.
+  completion_boundary: >
+    The selected pool including branches now exceeds5000 provisional free
+    families, but core does not. Do not substitute the overlapping pool
+    count for core breadth, qualified review, mastery or catalog activation.

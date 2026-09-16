@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 903
+  unbanded-support: 920
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -1928,6 +1928,18 @@ entries:
     source_position: 3
     english: A certain period or time.
     korean: 어떤 기간이나 어느 한 때.
+- id: ko-nikl-00499
+  target: 세율
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=499
+  senses:
+  - id: ko-nikl-00499-s001
+    source_position: 1
+    english: The rate of tax imposed according to the standards defined by law.
+    korean: 법으로 정해져 있는 기준에 따라 세금을 계산하여 매기는 비율.
 - id: ko-nikl-00501
   target: 세일
   part_of_speech: noun
@@ -2534,6 +2546,18 @@ entries:
     source_position: 2
     english: 'Money paid in return for doing a certain task during a certain period. '
     korean: 일정 기간 동안에 정해진 일을 하고 그 대가로 받는 수입.
+- id: ko-nikl-00678
+  target: 소득세
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=678
+  senses:
+  - id: ko-nikl-00678-s001
+    source_position: 1
+    english: Tax imposed by the government on the money that one earned over a year.
+    korean: 개인이 한 해 동안 벌어들인 돈에 대하여 국가가 매기는 세금.
 - id: ko-nikl-00685
   target: 소란
   part_of_speech: noun
@@ -19757,6 +19781,18 @@ entries:
     source_position: 1
     english: The act of changing an appearance or attitude in a different way from before.
     korean: 겉모습이나 태도를 전과 다르게 바꿈.
+- id: ko-nikl-05451
+  target: 변제
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5451
+  senses:
+  - id: ko-nikl-05451-s001
+    source_position: 1
+    english: 'The act of repaying debts.  '
+    korean: 남에게 진 빚을 갚음.
 - id: ko-nikl-05466
   target: 변천
   part_of_speech: noun
@@ -24688,6 +24724,18 @@ entries:
     source_position: 1
     english: Feeling angry because one has suffered unfairness or something does not go as well as expected.
     korean: 억울한 일을 당하거나 될 듯한 일이 되지 않아서 매우 화가 나다.
+- id: ko-nikl-06985
+  target: 분할
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6985
+  senses:
+  - id: ko-nikl-06985-s001
+    source_position: 1
+    english: 'The act of dividing something into several pieces. '
+    korean: 여러 개로 쪼개어 나눔.
 - id: ko-nikl-06988
   target: 분해
   part_of_speech: noun
@@ -30698,6 +30746,18 @@ entries:
     source_position: 2
     english: The act of hiring and using someone for doing something.
     korean: 사람을 어떤 일을 하는 데 부려 씀.
+- id: ko-nikl-08459
+  target: 사용료
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8459
+  senses:
+  - id: ko-nikl-08459-s001
+    source_position: 1
+    english: A fee charged as the price for usage.
+    korean: 쓴 값으로 내는 요금.
 - id: ko-nikl-08460
   target: 사용법
   part_of_speech: noun
@@ -33574,6 +33634,18 @@ entries:
     source_position: 1
     english: An action taking place between both sides in a relationship or pair.
     korean: 짝을 이루거나 관계를 맺고 있는 이쪽과 저쪽 사이에서 이루어지는 작용.
+- id: ko-nikl-09307
+  target: 상환
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9307
+  senses:
+  - id: ko-nikl-09307-s001
+    source_position: 1
+    english: The act of returning or paying back a borrowed object, money, etc.
+    korean: 빌린 돈이나 물건 등을 갚거나 돌려줌.
 - id: ko-nikl-09311
   target: 상황
   part_of_speech: noun
@@ -35978,6 +36050,18 @@ entries:
     source_position: 1
     english: Colored glasses worn to protect one's eyes from strong sunlight or dress oneself up.
     korean: 강렬한 햇빛으로부터 눈을 보호하거나 멋을 부리기 위해 쓰는, 색깔이 있는 안경.
+- id: ko-nikl-09970
+  target: 선금
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9970
+  senses:
+  - id: ko-nikl-09970-s001
+    source_position: 1
+    english: Money paid in advance to buy or borrow something.
+    korean: 무엇을 사거나 빌릴 때 미리 내는 돈.
 - id: ko-nikl-09988
   target: 선동적
   part_of_speech: noun
@@ -39356,6 +39440,18 @@ entries:
     source_position: 2
     english: The act of using someone or something as a means to satisfy one's own interests.
     korean: 다른 사람이나 대상을 자신의 이익을 채우기 위한 수단으로 씀.
+- id: ko-nikl-10875
+  target: 이용료
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10875
+  senses:
+  - id: ko-nikl-10875-s001
+    source_position: 1
+    english: 'A sum of money paid for using a facility, service, etc. '
+    korean: 이용한 값으로 내는 돈.
 - id: ko-nikl-10877
   target: 이용자
   part_of_speech: noun
@@ -39440,6 +39536,18 @@ entries:
     source_position: 2
     english: A company's profit left after subtracting its total expenses from its total revenue.
     korean: 기업의 총수익에서 제품 생산에 들어간 비용 등을 빼고 남는 순이익.
+- id: ko-nikl-10893
+  target: 이율
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10893
+  senses:
+  - id: ko-nikl-10893-s001
+    source_position: 1
+    english: 'A rate of interest that is added to the money borrowed. '
+    korean: 빌린 돈에 대한 이자의 비율.
 - id: ko-nikl-10896
   target: 이윽고
   part_of_speech: adverb
@@ -39711,6 +39819,19 @@ entries:
     source_position: 4
     english: A pronoun used to indicate several people including a person close to the speaker.
     korean: 말하는 사람에게 가까이 있는 사람과 그 사람을 포함한 여러 사람을 가리키는 말.
+- id: ko-nikl-10979
+  target: 이체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10979
+  senses:
+  - id: ko-nikl-10979-s001
+    source_position: 1
+    english: An act of taking a sum of money from an account at a financial institution such as a bank,
+      etc., over to another account through a bank employee, automated teller machine, the Internet, etc.
+    korean: 은행 등 금융 기관의 계좌에 있는 돈을 은행 직원, 인터넷, 기계 등을 통하여 다른 계좌로 옮김.
 - id: ko-nikl-10982
   target: 이치
   part_of_speech: noun
@@ -45818,6 +45939,26 @@ entries:
     source_position: 1
     english: The amount of money left unspent.
     korean: 남은 돈의 액수.
+- id: ko-nikl-12550
+  target: 잔금
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12550
+  senses:
+  - id: ko-nikl-12550-s001
+    source_position: 1
+    english: Money left after spending.
+    korean: 쓰고 남은 돈.
+  - id: ko-nikl-12550-s002
+    source_position: 2
+    english: Money left unpaid after paying some of one's debts.
+    korean: 갚지 못하고 남은 돈.
+  - id: ko-nikl-12550-s003
+    source_position: 3
+    english: The final installment that one pays after purchasing a house, land, etc., in installments.
+    korean: 집이나 토지 등을 살 때 여러 번 나누어 내는 돈에서 마지막으로 내는 돈.
 - id: ko-nikl-12554
   target: 잔돈
   part_of_speech: noun
@@ -45919,6 +46060,18 @@ entries:
     english: The act of rebuking someone or interfering in his/her affair while saying unnecessary things
       that he/she does not want to hear; such words.
     korean: 필요 이상으로 듣기 싫은 말을 하며 꾸짖거나 참견함. 또는 그런 말.
+- id: ko-nikl-12573
+  target: 잔액
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12573
+  senses:
+  - id: ko-nikl-12573-s001
+    source_position: 1
+    english: 'The amount of money left over. '
+    korean: 남은 돈의 액수.
 - id: ko-nikl-12575
   target: 잔여
   part_of_speech: noun
@@ -105613,6 +105766,18 @@ entries:
     source_position: 1
     english: A woman remaining unmarried after her husband's death.
     korean: 남편이 죽고 나서 남편 없이 사는 여자.
+- id: ko-nikl-30139
+  target: 과세
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30139
+  senses:
+  - id: ko-nikl-30139-s001
+    source_position: 1
+    english: The act of imposing and collecting taxes on items.
+    korean: 어떠한 항목에 대한 세금을 정해서 그것을 내도록 함.
 - id: ko-nikl-30144
   target: 과소비
   part_of_speech: noun
@@ -130741,6 +130906,18 @@ entries:
     source_position: 1
     english: A narrow stick, to whose end cotton is attached.
     korean: 끝에 솜을 말아 붙인 가느다란 막대.
+- id: ko-nikl-37147
+  target: 면세
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37147
+  senses:
+  - id: ko-nikl-37147-s001
+    source_position: 1
+    english: An exemption from taxation.
+    korean: 세금을 면제하는 것.
 - id: ko-nikl-37148
   target: 면세점
   part_of_speech: noun
@@ -131146,6 +131323,18 @@ entries:
     source_position: 1
     english: A name highly thought of by many people and well-known to the world.
     korean: 사람들에게 높은 평가를 받으며 세상에 널리 알려진 이름.
+- id: ko-nikl-37272
+  target: 명세서
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37272
+  senses:
+  - id: ko-nikl-37272-s001
+    source_position: 1
+    english: A document which records the amount, item, or quantity of goods in detail.
+    korean: 주로 물품이나 금액의 내용이나 항목, 수량 등을 자세하고 구체적으로 적은 문서.
 - id: ko-nikl-37273
   target: 명소
   part_of_speech: noun
@@ -155051,6 +155240,18 @@ entries:
     source_position: 1
     english: An act of demanding a sum of money, property, etc., from someone.
     korean: 다른 사람에게 돈이나 물건 등을 달라고 요구함.
+- id: ko-nikl-44802
+  target: 청구서
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44802
+  senses:
+  - id: ko-nikl-44802-s001
+    source_position: 1
+    english: A document that requests another person to give money, objects, etc.
+    korean: 다른 사람에게 돈이나 물건 등을 달라고 요구하는 내용을 적은 문서.
 - id: ko-nikl-44806
   target: 청년
   part_of_speech: noun
@@ -173467,6 +173668,18 @@ entries:
     source_position: 1
     english: 'A cancer developing in the stomach. '
     korean: 위에 생기는 암.
+- id: ko-nikl-49986
+  target: 위약금
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49986
+  senses:
+  - id: ko-nikl-49986-s001
+    source_position: 1
+    english: 'Money that a person who breaks a contract is supposed to give to the other party.  '
+    korean: 계약을 어기는 사람이 계약의 상대방에게 주기로 약속한 돈.
 - id: ko-nikl-49992
   target: 위염
   part_of_speech: noun

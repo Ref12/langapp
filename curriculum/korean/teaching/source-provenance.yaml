@@ -100909,7 +100909,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '74548'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74548
-      pronunciations:
+      pronunciations: &id1455
       - 적끔
     lexical_identity: ko-lex-13513
     lexical_category: free-lemma
@@ -101655,7 +101655,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '69172'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69172
-      pronunciations:
+      pronunciations: &id1456
       - 외ː화
       - 웨ː화
     lexical_identity: ko-lex-48902
@@ -153716,6 +153716,610 @@ items:
       pronunciations:
       - 화견하다
     lexical_identity: ko-lex-51771
+    lexical_category: free-lemma
+  ko-nikl-00499-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=499
+    source_parent: ko-nikl-00499
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The rate of tax imposed according to the standards defined by law.
+    source_korean: 법으로 정해져 있는 기준에 따라 세금을 계산하여 매기는 비율.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63566'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63566
+      pronunciations:
+      - 세ː율
+    lexical_identity: ko-lex-00499
+    lexical_category: free-lemma
+  ko-nikl-00678-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=678
+    source_parent: ko-nikl-00678
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Tax imposed by the government on the money that one earned over a year.
+    source_korean: 개인이 한 해 동안 벌어들인 돈에 대하여 국가가 매기는 세금.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63436'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63436
+      pronunciations:
+      - 소ː득쎄
+    lexical_identity: ko-lex-00678
+    lexical_category: free-lemma
+  ko-nikl-02042-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2042
+    source_parent: ko-nikl-02042
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A certificate used like money with which the bank gives the amount of money written
+      on it.
+    source_korean: 적힌 액수의 돈을 은행이 내어 주어 돈처럼 쓸 수 있는 증서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64707'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64707
+      pronunciations:
+      - 수표
+    lexical_identity: ko-lex-02042
+    lexical_category: free-lemma
+  ko-nikl-05451-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5451
+    source_parent: ko-nikl-05451
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of repaying debts.  '
+    source_korean: 남에게 진 빚을 갚음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58857'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58857
+      pronunciations:
+      - 변ː제
+    lexical_identity: ko-lex-05451
+    lexical_category: free-lemma
+  ko-nikl-06985-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6985
+    source_parent: ko-nikl-06985
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of dividing something into several pieces. '
+    source_korean: 여러 개로 쪼개어 나눔.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60264'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60264
+      pronunciations:
+      - 분할
+    lexical_identity: ko-lex-06985
+    lexical_category: free-lemma
+  ko-nikl-08459-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8459
+    source_parent: ko-nikl-08459
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A fee charged as the price for usage.
+    source_korean: 쓴 값으로 내는 요금.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61640'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61640
+      pronunciations:
+      - 사ː용뇨
+    lexical_identity: ko-lex-08459
+    lexical_category: free-lemma
+  ko-nikl-09307-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9307
+    source_parent: ko-nikl-09307
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of returning or paying back a borrowed object, money, etc.
+    source_korean: 빌린 돈이나 물건 등을 갚거나 돌려줌.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83506'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83506
+      pronunciations:
+      - 상환
+    lexical_identity: ko-lex-09307
+    lexical_category: free-lemma
+  ko-nikl-09970-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9970
+    source_parent: ko-nikl-09970
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Money paid in advance to buy or borrow something.
+    source_korean: 무엇을 사거나 빌릴 때 미리 내는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63422'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63422
+      pronunciations:
+      - 선금
+    lexical_identity: ko-lex-09970
+    lexical_category: free-lemma
+  ko-nikl-10875-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10875
+    source_parent: ko-nikl-10875
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A sum of money paid for using a facility, service, etc. '
+    source_korean: 이용한 값으로 내는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73470'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73470
+      pronunciations:
+      - 이ː용뇨
+    lexical_identity: ko-lex-10875
+    lexical_category: free-lemma
+  ko-nikl-10893-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10893
+    source_parent: ko-nikl-10893
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A rate of interest that is added to the money borrowed. '
+    source_korean: 빌린 돈에 대한 이자의 비율.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72565'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72565
+      pronunciations:
+      - 이ː율
+    lexical_identity: ko-lex-10893
+    lexical_category: free-lemma
+  ko-nikl-10979-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10979
+    source_parent: ko-nikl-10979
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of taking a sum of money from an account at a financial institution such as
+      a bank, etc., over to another account through a bank employee, automated teller machine, the Internet,
+      etc.
+    source_korean: 은행 등 금융 기관의 계좌에 있는 돈을 은행 직원, 인터넷, 기계 등을 통하여 다른 계좌로 옮김.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72851'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72851
+      pronunciations:
+      - 이체
+    lexical_identity: ko-lex-10979
+    lexical_category: free-lemma
+  ko-nikl-11297-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11297
+    source_parent: ko-nikl-11297
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The act of taking out money from a financial institution like a bank, etc.
+    source_korean: 은행 등의 금융 기관에서 맡겨 둔 돈을 찾음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72254'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72254
+      pronunciations:
+      - 인출
+    lexical_identity: ko-lex-11297
+    lexical_category: free-lemma
+  ko-nikl-11788-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11788
+    source_parent: ko-nikl-11788
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'An act of putting a sum of money into his/her account or other person''s account
+      in a financial institution like a bank. '
+    source_korean: 은행과 같은 금융 기관의 계좌에 돈을 넣음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73308'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73308
+      pronunciations:
+      - 입끔
+    lexical_identity: ko-lex-11788
+    lexical_category: free-lemma
+  ko-nikl-12547-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12547
+    source_parent: ko-nikl-12547
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The amount of money left unspent.
+    source_korean: 남은 돈의 액수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76125'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76125
+      pronunciations:
+      - 잔고
+    source_correction:
+      source_korean: 남은 돈의 액수.
+      source_english: The amount of money left unspent.
+      authored_interpretation: the remaining balance of money
+      rationale: Preserve remaining money without the English's added unspent restriction or a claim that
+        a balance is available to spend.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-12547
+    lexical_category: free-lemma
+  ko-nikl-12550-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12550
+    source_parent: ko-nikl-12550
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Money left after spending.
+    source_korean: 쓰고 남은 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76128'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76128
+      pronunciations: &id1454
+      - 잔금
+    lexical_identity: ko-lex-12550
+    lexical_category: free-lemma
+  ko-nikl-12550-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12550
+    source_parent: ko-nikl-12550
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Money left unpaid after paying some of one's debts.
+    source_korean: 갚지 못하고 남은 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76128'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76128
+      pronunciations: *id1454
+    lexical_identity: ko-lex-12550
+    lexical_category: free-lemma
+  ko-nikl-12550-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12550
+    source_parent: ko-nikl-12550
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: The final installment that one pays after purchasing a house, land, etc., in installments.
+    source_korean: 집이나 토지 등을 살 때 여러 번 나누어 내는 돈에서 마지막으로 내는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76128'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76128
+      pronunciations: *id1454
+    lexical_identity: ko-lex-12550
+    lexical_category: free-lemma
+  ko-nikl-12573-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12573
+    source_parent: ko-nikl-12573
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The amount of money left over. '
+    source_korean: 남은 돈의 액수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77883'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77883
+      pronunciations:
+      - 자낵
+    lexical_identity: ko-lex-12573
+    lexical_category: free-lemma
+  ko-nikl-13513-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13513
+    source_parent: ko-nikl-13513
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The act of accumulating money, or such money.
+    source_korean: 돈을 모음. 또는 그 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74548'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74548
+      pronunciations: *id1455
+    lexical_identity: ko-lex-13513
+    lexical_category: free-lemma
+  ko-nikl-21768-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21768
+    source_parent: ko-nikl-21768
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: In a financial institution, a book given to a person who deposits money, in which
+      deposits and withdrawals are recorded.
+    source_korean: 금융 기관에서, 예금한 사람에게 예금의 입금과 출금 내역을 적어 주는 장부.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71295'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71295
+      pronunciations:
+      - 통장
+    lexical_identity: ko-lex-21768
+    lexical_category: free-lemma
+  ko-nikl-28712-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28712
+    source_parent: ko-nikl-28712
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The record of each client's status of savings, loans, etc., kept by a financial institution.
+    source_korean: 금융 기관에서 각 고객의 저축과 대출 상황 등을 계산하여 기록한 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22565'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22565
+      pronunciations:
+      - 계ː좌
+      - 게ː좌
+    lexical_identity: ko-lex-28712
+    lexical_category: free-lemma
+  ko-nikl-30139-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30139
+    source_parent: ko-nikl-30139
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of imposing and collecting taxes on items.
+    source_korean: 어떠한 항목에 대한 세금을 정해서 그것을 내도록 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18845'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18845
+      pronunciations:
+      - 과세
+    source_correction:
+      source_korean: 어떠한 항목에 대한 세금을 정해서 그것을 내도록 함.
+      source_english: The act of imposing and collecting taxes on items.
+      authored_interpretation: setting a tax on an item and requiring its payment
+      rationale: Requiring a payment does not establish that the tax was collected.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-30139
+    lexical_category: free-lemma
+  ko-nikl-37147-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37147
+    source_parent: ko-nikl-37147
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An exemption from taxation.
+    source_korean: 세금을 면제하는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '54861'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=54861
+      pronunciations:
+      - 면ː세
+    lexical_identity: ko-lex-37147
+    lexical_category: free-lemma
+  ko-nikl-37148-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37148
+    source_parent: ko-nikl-37148
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A store located in an airport or downtown, that sells products tax-free.
+    source_korean: 공항이나 시내에 있는, 세금이 면제된 상품을 파는 가게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '54862'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=54862
+      pronunciations:
+      - 면ː세점
+    lexical_identity: ko-lex-37148
+    lexical_category: free-lemma
+  ko-nikl-37272-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37272
+    source_parent: ko-nikl-37272
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A document which records the amount, item, or quantity of goods in detail.
+    source_korean: 주로 물품이나 금액의 내용이나 항목, 수량 등을 자세하고 구체적으로 적은 문서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '54433'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=54433
+      pronunciations:
+      - 명세서
+    source_correction:
+      source_korean: 주로 물품이나 금액의 내용이나 항목, 수량 등을 자세하고 구체적으로 적은 문서.
+      source_english: A document which records the amount, item, or quantity of goods in detail.
+      authored_interpretation: a detailed statement of items, quantities or money amounts
+      rationale: Preserve explicitly included monetary contents rather than restricting every statement
+        to goods.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-37272
+    lexical_category: free-lemma
+  ko-nikl-44802-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44802
+    source_parent: ko-nikl-44802
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A document that requests another person to give money, objects, etc.
+    source_korean: 다른 사람에게 돈이나 물건 등을 달라고 요구하는 내용을 적은 문서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77862'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77862
+      pronunciations:
+      - 청구서
+    lexical_identity: ko-lex-44802
+    lexical_category: free-lemma
+  ko-nikl-45689-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45689
+    source_parent: ko-nikl-45689
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: An act of taking money out of one’s account in a financial institution such as a bank.
+    source_korean: 은행과 같은 금융 기관의 계좌에서 돈을 뺌.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79082'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79082
+      pronunciations:
+      - 출금
+    source_correction:
+      source_korean: 은행과 같은 금융 기관의 계좌에서 돈을 뺌.
+      source_english: An act of taking money out of one’s account in a financial institution such as a
+        bank.
+      authored_interpretation: taking money out of a financial account
+      rationale: The source does not specify account ownership; this lexical scope grants no access authorization.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-45689
+    lexical_category: free-lemma
+  ko-nikl-47572-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47572
+    source_parent: ko-nikl-47572
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Money one should pay for the days in arrears when one is late in paying money or returning
+      an object.
+    source_korean: 내야 하는 돈이나 물건 등을 기한이 지나도록 내지 않았을 때 밀린 날짜에 따라 더 내는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67773'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67773
+      pronunciations:
+      - 연체료
+    lexical_identity: ko-lex-47572
+    lexical_category: free-lemma
+  ko-nikl-48902-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48902
+    source_parent: ko-nikl-48902
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The money or goods imported from foreign countries. '
+    source_korean: 외국에서 들여오는 돈이나 물건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69172'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69172
+      pronunciations: *id1456
+    lexical_identity: ko-lex-48902
+    lexical_category: free-lemma
+  ko-nikl-49986-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49986
+    source_parent: ko-nikl-49986
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Money that a person who breaks a contract is supposed to give to the other party.  '
+    source_korean: 계약을 어기는 사람이 계약의 상대방에게 주기로 약속한 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69632'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69632
+      pronunciations:
+      - 위약끔
+    lexical_identity: ko-lex-49986
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
