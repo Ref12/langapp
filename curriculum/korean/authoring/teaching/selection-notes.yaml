@@ -83,6 +83,17 @@ category_adjudication:
     personal title. They are not counted as free lexical headwords. This is an
     explicit decision for these selected identities, not an automatic spelling rule.
   bound_form_identities:
+    ko-lex-00550: 센티미터; centimetre unit
+    ko-lex-14233: 점; score or tiny-amount counter, not an independent dot
+    ko-lex-17730: 도; degree units for temperature, angle, and geography
+    ko-lex-20309: 리터; litre volume unit
+    ko-lex-21023: 킬로그램; kilogram unit
+    ko-lex-21024: 킬로미터; kilometre unit
+    ko-lex-21652: 톤; ton unit
+    ko-lex-22659: 퍼센트; proportion-per-hundred unit
+    ko-lex-31993: 그램; gram unit
+    ko-lex-39011: 미터; metre unit
+    ko-lex-39172: 밀리미터; millimetre unit
     ko-lex-00360: 세; Sino-Korean-number age counter, not determiner three
     ko-lex-02671: 시; hour-of-day unit
     ko-lex-03373: 실; bound room counter, not thread
@@ -116,6 +127,23 @@ category_adjudication:
     teachable items with their original source senses. The role lists document
     count classification only; they never generate teaching placements.
   function_identities_by_role:
+    explicit_quality_and_scope_modifiers:
+      - ko-lex-09319
+      - ko-lex-11572
+      - ko-lex-16818
+      - ko-lex-34813
+      - ko-lex-48637
+      - ko-lex-03698
+      - ko-lex-34053
+      - ko-lex-42529
+      - ko-lex-02224
+      - ko-lex-09042
+      - ko-lex-30252
+      - ko-lex-16446
+      - ko-lex-22665
+      - ko-lex-24117
+      - ko-lex-31953
+      - ko-lex-32137
     reference_and_questions:
       - ko-lex-06138
       - ko-lex-21111
@@ -189,6 +217,10 @@ category_adjudication:
       - ko-lex-18843
       - ko-lex-00567
     quantity_and_degree_operators:
+      - ko-lex-45363
+      - ko-lex-45377
+      - ko-lex-45397
+      - ko-lex-45418
       - ko-lex-33831
       - ko-lex-14876
       - ko-lex-09077
@@ -375,6 +407,32 @@ additional_grouping_evidence:
     The 역설 homographs remain distinct; both 반증 positions share one
     identity without erasing their different argumentative directions.
     Source-listed 고정 관념 preserves its spacing and raw empty POS.
+  procedural-actions-and-argument: >
+    procedure-identities.yaml retains actual application, receipt, issuing,
+    notification, review, cooperative action and argument predicates.
+    The 인정하다/인정되다 active-passive pair is conservatively one
+    recognition family, with distinct source positions and argument direction.
+    이해하다 gains an existing-family fragment. Homographs for accepting
+    versus accommodating, supporting versus applying, mediation versus
+    adjustment, and postponing versus acting retain separate source identities.
+  natural-world-measurement-and-imagery: >
+    nature-identities.yaml and nature-notes.yaml distinguish useful physical,
+    environmental, measurement and figurative senses. Units and superlative
+    reference have the explicit bound/function classifications above.
+    Source-attested 새싹 joins 싹; 각/각도 and circular 원/원형 have
+    individually documented conservative families, not automatic suffix removal.
+    Moon/month and sun/year/daylight families retain their independent senses
+    alongside counters; practical polysemy does not add equivalent lemma breadth.
+  qualities-and-actuality: >
+    qualities-identities.yaml retains descriptive and modifier contrasts
+    without inferring clinical judgments or rhetorical force from bare degree.
+    Sixteen explicitly listed operators are function-accounted, not free.
+    The source-attested 억지로 is conservatively reserved under the 억지
+    family; its noun has not been selected. The existing 차차 family gains
+    gradual change without another free identity. A targeted three-entry
+    official origin comparison additionally groups noun/adverb 實狀 under
+    the protected function identity ko-lex-03447, retiring provisional
+    ko-lex-03445 without changing any source sense ID or source POS.
   society-roles-and-relationships: >
     society-identities.yaml and society-notes.yaml retain distinct human
     roles, organizational reference, institutional processes, economic

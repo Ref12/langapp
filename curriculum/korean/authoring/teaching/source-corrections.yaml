@@ -5,6 +5,126 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-37821-s002:
+    source_korean: 일이 제대로 되지 못하다.
+    source_english: Ugly and not pretty in appearance.
+    authored_interpretation: for things not to work out properly
+    rationale: The Korean concerns work or events not proceeding properly, not ugliness of appearance. Preserve the actual situation/outcome perspective rather than copying this unrelated English definition.
+  ko-nikl-24117-s001:
+    source_korean: 전보다 훨씬 더.
+    source_english: 'Much better than before. '
+    authored_interpretation: much more than before
+    rationale: The Korean expresses a greater degree than before, without requiring an improvement. The English better adds an unsupported positive direction to the comparison.
+  ko-nikl-31953-s002:
+    source_korean: 좋지 않거나 모자라는데 그것마저도.
+    source_english: With disappointment over something when others are unsatisfactory or insufficient.
+    authored_interpretation: even that, though it is already inadequate
+    rationale: The Korean refers back to the already-poor or insufficient thing with 그것마저도. It does not introduce other unsatisfactory things as the English others suggests; the discourse perspective remains context-dependent.
+  ko-nikl-01683-s001:
+    source_korean: "사람이나 동식물이 살아 있는 기간."
+    source_english: "The length of time during which a person or animal is alive. "
+    authored_interpretation: "lifespan of a person, animal, or plant"
+    rationale: Korean 동식물 explicitly includes plants; the English omits them.
+  ko-nikl-05146-s001:
+    source_korean: "사방으로 펼쳐진 넓고 평평한 땅."
+    source_english: "Wide, flat, open land with no fences, etc."
+    authored_interpretation: wide open flat land
+    rationale: The Korean describes broad flat open land without requiring fences to be absent.
+  ko-nikl-10622-s002:
+    source_korean: "실천에 대립되는 관념적인 지식."
+    source_english: "Ideological knowledge as opposed to practice."
+    authored_interpretation: abstract theoretical knowledge rather than practice
+    rationale: 관념적인 contrasts abstract knowledge with practice here; ideological can misleadingly add a political or doctrinal restriction.
+  ko-nikl-22638-s001:
+    source_korean: "부풀어서 크기가 커짐."
+    source_english: "The state of something becoming bigger because it has been inflated."
+    authored_interpretation: physical expansion or swelling
+    rationale: Review the passive inflation wording, which can suggest a specific inflation process rather than the Korean's general swelling or enlargement.
+  ko-nikl-27655-s001:
+    source_korean: "말라서 물기나 습기가 없음."
+    source_english: "Neither wet nor humid due to evaporation."
+    authored_interpretation: absence of moisture or humidity
+    rationale: The Korean describes dryness without naming evaporation as the required physical mechanism.
+  ko-nikl-29857-s003:
+    source_korean: "수학 계산, 과학에서 법칙을 수식이나 기호로 나타낸 것."
+    source_english: "In math and science, a state in which rules are indicated in words or symbols. "
+    authored_interpretation: a mathematical or scientific formula
+    rationale: 수식 means a mathematical expression rather than words; the noun names the formula representing a rule rather than a state.
+  ko-nikl-35728-s002:
+    source_korean: "어떤 성질의 강한 정도."
+    source_english: "Depth or intensity of emotions such as love, sadness, etc. "
+    authored_interpretation: intensity of a quality
+    rationale: Korean refers to the strength of a quality generally; the English confines it to emotions.
+  ko-nikl-43241-s001:
+    source_korean: "빛깔이 붉고 물기가 있어 잘 들러붙는 흙."
+    source_english: "Soil that is sticky and red because it contains a large amount of water."
+    authored_interpretation: reddish moist sticky soil
+    rationale: The Korean separately gives reddish color and moisture-related stickiness; it does not say abundant water causes redness.
+  ko-nikl-44596-s001:
+    source_korean: "탄소가 2퍼센트 미만으로 들어 있고 열로 성질을 변화시킬 수 있어 여러 가지 기계나 기구 등의 재료로 쓰이는 철."
+    source_english: "Steel that contains less than 2% of carbon, which is used for making machines, equipment, etc., because of the ease with which it can be shaped when heat is applied."
+    authored_interpretation: steel
+    rationale: Heat changing 성질 means changing properties, not merely being easy to shape; retain the material term without teaching the altered explanation.
+  ko-nikl-47652-s001:
+    source_korean: "적도에 가까우며, 연평균 기온이 섭씨 20도 이상인 덥고 비가 많이 오는 지역."
+    source_english: "A region with a great deal of rainfall, which is near the equator and has an annual average temperature of over 20 degrees Celsius. "
+    authored_interpretation: tropical regions
+    rationale: Korean 20도 이상 includes exactly 20 while English over 20 excludes it; the simplified climate description separately needs qualified geographical review.
+  ko-nikl-02642-s001:
+    source_korean: 어떤 일을 허락하다.
+    source_english: To agree to do something.
+    authored_interpretation: to approve or authorize something
+    rationale: Korean grants permission for something; English agreeing to do it shifts the approving participant into the acting participant.
+  ko-nikl-05843-s001:
+    source_korean: 어떤 일이 잘 이루어지도록 조건을 마련하거나 보호하다.
+    source_english: To assure someone that there will not be a problem, or protect someone so that he/she will not meet a problem.
+    authored_interpretation: to provide conditions or protection for successful fulfillment
+    rationale: Korean includes establishing conditions for something to be fulfilled; English unnecessarily narrows this to reassurance or protection of a person.
+  ko-nikl-17192-s002:
+    source_korean: 어떤 두 대상이 서로 짝을 이루다.
+    source_english: For two things to be equivalent to each other.
+    authored_interpretation: for two things to correspond or form a pair
+    rationale: Pairing or correspondence in Korean does not require equivalence or identical value.
+  ko-nikl-24410-s002:
+    source_korean: 말이나 글이 속에 많은 뜻을 담고 있다.
+    source_english: For a speech or text to contain many hidden meanings or messages.
+    authored_interpretation: for speech or writing to contain many meanings
+    rationale: Korean says many meanings are contained; unlike the first position it does not independently require concealment.
+  ko-nikl-25010-s002:
+    source_korean: 주로 경기에서, 막아야 할 것을 막지 못하여 당하다.
+    source_english: Usually in a game, to lose by failing to defend against an attack, etc.
+    authored_interpretation: to concede something in a game by failing to stop it
+    rationale: Korean concerns allowing what should have been defended against; conceding a hit or point does not entail losing the whole game.
+  ko-nikl-25992-s001:
+    source_korean: 사실이 아니거나 사실인지 아닌지 분명하지 않은 것을 임시로 받아들이다.
+    source_english: 'To accept temporarily an unproven or uncertain fact. '
+    authored_interpretation: to temporarily assume something untrue or not established
+    rationale: Retain the explicit Korean counterfactual alternative as well as uncertainty; an assumption need not be an unproven fact.
+  ko-nikl-27068-s001:
+    source_korean: 부족한 점, 잘못된 점, 나쁜 점 등을 고쳐서 더 좋아지게 하다.
+    source_english: To reform shortcomings, wrong or bad sides, etc., to one's character and make them better.
+    authored_interpretation: to correct shortcomings or faults and make something better
+    rationale: Korean is not restricted to personal character; faults in a service or system can also be improved.
+  ko-nikl-37284-s001:
+    source_korean: 글로 분명하게 드러내 보이다.
+    source_english: To make something clear in a statement or an expression.
+    authored_interpretation: to specify something clearly in writing
+    rationale: Preserve the Korean 글로 written-medium restriction instead of allowing English expression to imply any spoken clarity.
+  ko-nikl-41209-s001:
+    source_korean: 벌어진 사태에 대하여 적절한 대책을 세워서 행하다.
+    source_english: To develop and implement an adequate solution to an issue.
+    authored_interpretation: to devise and take appropriate measures for a situation
+    rationale: The Korean involves responsive measures; English solution can incorrectly imply that the issue has been fully resolved.
+  ko-nikl-42423-s001:
+    source_korean: 어떤 사건이나 내용이나 판단이 진실인지 아닌지를 증거를 들어서 밝히다.
+    source_english: To establish that an event, some certain content, or a decision is true by presenting proof.
+    authored_interpretation: to establish with evidence whether something is true
+    rationale: Korean establishes whether it is true or not; the English affirmative-only claim loses the falsity alternative.
+  ko-nikl-42423-s002:
+    source_korean: 수학이나 논리학에서, 어떤 명제나 판단이 진실인지 아닌지를 근본 원리로부터 이끌어 내어 밝히다.
+    source_english: To demonstrate that a proposition or judgment is true by using fundamental principles, in mathematics or logic.
+    authored_interpretation: to determine truth or falsity from fundamental principles
+    rationale: Preserve whether a mathematical/logical proposition is true or false rather than automatically asserting its truth.
   ko-nikl-39751-s001:
     source_korean: 반대되는 근거를 들어 어떤 사실이나 주장이 옳지 않음을 증명함. 또는 그런 증거.
     source_english: The act of refuting that a fact or argument is wrong through counterevidence, or such an evidence.

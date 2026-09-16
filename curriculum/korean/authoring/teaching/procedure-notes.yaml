@@ -1,0 +1,237 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: source-backed selections integrated; qualified review pending
+scope: >
+  Practical actions in service requests, school and work administration,
+  cooperative decisions, public reporting, interpretation, and argument.
+  A bounded list of communicative actions was looked up in the actual pinned
+  January 2024 CSV, including all original positions and same-spelling
+  competitors. No noun-plus-hada rule generated a word, source identifier,
+  pronunciation, meaning, or teaching placement.
+counts:
+  selected_senses: 113
+  source_parents: 89
+  identity_fragments: 88
+  existing_fragments: 1
+  proposed_new_free_identities: 87
+  additional_unbanded_support_parents: 86
+placement_policy: >
+  Early explanation and notification stay at level 4; care at 6; reservations,
+  cancellation, postponement, permissions and administrative inquiries at 7;
+  enrollment and submission at 8. Different later tasks introduce review,
+  negotiation, public procedures, evidence, implication, register and
+  interpretation. The source band and record order do not assign levels.
+  Do not relocate these practical early words to manufacture later growth.
+identity_policy: >
+  The existing 이해하다 family gains position 3 only. Source-attested
+  active 인정하다 and passive 인정되다 are conservatively one recognition
+  family here, with separate argument direction but no second breadth item.
+  Other actual action verbs remain explicitly justified provisional source
+  lemmas; sharing a noun or productive suffix does not by itself establish
+  another form or force a family merger.
+homograph_boundaries:
+  - >
+    수용하다01883 accommodates people/things in facilities; 01884 accepts.
+    Expropriation01882 is not selected. Similar English acceptance does not
+    make these one automatic spelling identity.
+  - >
+    접수하다14334 receives submissions or goods; forceful seizure14333
+    is excluded. 신청하다 requests; 접수하다 receives; 발급하다 issues.
+    These different participants cannot substitute for one another.
+  - >
+    합의하다24480 agrees; the gathering-for-discussion homograph24481
+    is not selected merely to increase dictionary-entry counts. 협의하다
+    and 논의하다 supply their own actual discussion meanings.
+  - >
+    개선하다27068 improves; victorious return27069 is not selected.
+    준수하다42021 is compliance, not descriptive excellence42022;
+    the latter remains outside this action-verb cohort.
+  - >
+    조정하다41167 mediates a dispute, while41168 adjusts to a standard.
+    지원하다42782 assists, while42783 applies to join or undertake work.
+    연기하다47378 postpones, while47379 performs an acting role.
+usage_limits:
+  - >
+    The five 정리하다 positions distinguish tidying, systematic sorting,
+    clearing problems, relationship ending, and passbook updating. A broad
+    English tidy gloss cannot silently stand for all five.
+  - >
+    신청하다's date-invitation definition is retained without treating its
+    binary gender wording as a rule about who may invite whom. Invitation,
+    consent, refusal and their politeness depend on the actual interaction.
+  - >
+    보고하다 preserves the source research/investigation scope rather than
+    claiming every ordinary notification is licensed by this one definition.
+    제시하다's first position concerns an intended plan; its second presents
+    an item for inspection. Do not silently broaden either to all evidence.
+  - >
+    항의하다's interstate diplomatic-protest position remains unselected.
+    처리하다's physical/chemical treatment is useful for general-reader
+    explanations but supplies no experimental protocol or safety assurance.
+  - >
+    동의하다 can share an opinion or approve an action. 협의/논의 describe
+    discussion, 합의 agreement, 조치 responsive measures, and 해결 successful
+    resolution. These words do not award consent, agreement, or task completion.
+  - >
+    Claims, estimates, evaluation, evidence, approval and certification are
+    distinct. No label certifies a fact, scientific finding, legal standing,
+    linguistic mastery, successful prevention, safety, or exam readiness.
+  - >
+    규정하다 may set a rule or define meaning. 규제하다 restricts activities
+    through rules/law; 제한하다 has a wider bounds meaning. 제정 establishes
+    a law/system while 시행 can put an announced law into effect.
+source_correction_requests:
+  ko-nikl-02642-s001:
+    source_korean: 어떤 일을 허락하다.
+    source_english: To agree to do something.
+    authored_interpretation: to approve or authorize something
+    rationale: Korean grants permission for something; English agreeing to do it shifts the approving participant into the acting participant.
+  ko-nikl-05843-s001:
+    source_korean: 어떤 일이 잘 이루어지도록 조건을 마련하거나 보호하다.
+    source_english: To assure someone that there will not be a problem, or protect someone so that he/she will not meet a problem.
+    authored_interpretation: to provide conditions or protection for successful fulfillment
+    rationale: Korean includes establishing conditions for something to be fulfilled; English unnecessarily narrows this to reassurance or protection of a person.
+  ko-nikl-17192-s002:
+    source_korean: 어떤 두 대상이 서로 짝을 이루다.
+    source_english: For two things to be equivalent to each other.
+    authored_interpretation: for two things to correspond or form a pair
+    rationale: Pairing or correspondence in Korean does not require equivalence or identical value.
+  ko-nikl-24410-s002:
+    source_korean: 말이나 글이 속에 많은 뜻을 담고 있다.
+    source_english: For a speech or text to contain many hidden meanings or messages.
+    authored_interpretation: for speech or writing to contain many meanings
+    rationale: Korean says many meanings are contained; unlike the first position it does not independently require concealment.
+  ko-nikl-25010-s002:
+    source_korean: 주로 경기에서, 막아야 할 것을 막지 못하여 당하다.
+    source_english: Usually in a game, to lose by failing to defend against an attack, etc.
+    authored_interpretation: to concede something in a game by failing to stop it
+    rationale: Korean concerns allowing what should have been defended against; conceding a hit or point does not entail losing the whole game.
+  ko-nikl-25992-s001:
+    source_korean: 사실이 아니거나 사실인지 아닌지 분명하지 않은 것을 임시로 받아들이다.
+    source_english: 'To accept temporarily an unproven or uncertain fact. '
+    authored_interpretation: to temporarily assume something untrue or not established
+    rationale: Retain the explicit Korean counterfactual alternative as well as uncertainty; an assumption need not be an unproven fact.
+  ko-nikl-27068-s001:
+    source_korean: 부족한 점, 잘못된 점, 나쁜 점 등을 고쳐서 더 좋아지게 하다.
+    source_english: To reform shortcomings, wrong or bad sides, etc., to one's character and make them better.
+    authored_interpretation: to correct shortcomings or faults and make something better
+    rationale: Korean is not restricted to personal character; faults in a service or system can also be improved.
+  ko-nikl-37284-s001:
+    source_korean: 글로 분명하게 드러내 보이다.
+    source_english: To make something clear in a statement or an expression.
+    authored_interpretation: to specify something clearly in writing
+    rationale: Preserve the Korean 글로 written-medium restriction instead of allowing English expression to imply any spoken clarity.
+  ko-nikl-41209-s001:
+    source_korean: 벌어진 사태에 대하여 적절한 대책을 세워서 행하다.
+    source_english: To develop and implement an adequate solution to an issue.
+    authored_interpretation: to devise and take appropriate measures for a situation
+    rationale: The Korean involves responsive measures; English solution can incorrectly imply that the issue has been fully resolved.
+  ko-nikl-42423-s001:
+    source_korean: 어떤 사건이나 내용이나 판단이 진실인지 아닌지를 증거를 들어서 밝히다.
+    source_english: To establish that an event, some certain content, or a decision is true by presenting proof.
+    authored_interpretation: to establish with evidence whether something is true
+    rationale: Korean establishes whether it is true or not; the English affirmative-only claim loses the falsity alternative.
+  ko-nikl-42423-s002:
+    source_korean: 수학이나 논리학에서, 어떤 명제나 판단이 진실인지 아닌지를 근본 원리로부터 이끌어 내어 밝히다.
+    source_english: To demonstrate that a proposition or judgment is true by using fundamental principles, in mathematics or logic.
+    authored_interpretation: to determine truth or falsity from fundamental principles
+    rationale: Preserve whether a mathematical/logical proposition is true or false rather than automatically asserting its truth.
+source_support_requests:
+  - ko-nikl-00021
+  - ko-nikl-00042
+  - ko-nikl-01883
+  - ko-nikl-01884
+  - ko-nikl-02642
+  - ko-nikl-03003
+  - ko-nikl-03319
+  - ko-nikl-04691
+  - ko-nikl-05673
+  - ko-nikl-05843
+  - ko-nikl-05928
+  - ko-nikl-06897
+  - ko-nikl-07596
+  - ko-nikl-07683
+  - ko-nikl-10265
+  - ko-nikl-11257
+  - ko-nikl-11265
+  - ko-nikl-13578
+  - ko-nikl-14005
+  - ko-nikl-14334
+  - ko-nikl-14469
+  - ko-nikl-14912
+  - ko-nikl-14918
+  - ko-nikl-14976
+  - ko-nikl-15002
+  - ko-nikl-15017
+  - ko-nikl-15223
+  - ko-nikl-17192
+  - ko-nikl-18515
+  - ko-nikl-19374
+  - ko-nikl-21785
+  - ko-nikl-21825
+  - ko-nikl-22814
+  - ko-nikl-24410
+  - ko-nikl-24480
+  - ko-nikl-24564
+  - ko-nikl-24593
+  - ko-nikl-24681
+  - ko-nikl-25010
+  - ko-nikl-25402
+  - ko-nikl-25992
+  - ko-nikl-26842
+  - ko-nikl-27068
+  - ko-nikl-27442
+  - ko-nikl-27496
+  - ko-nikl-27834
+  - ko-nikl-28336
+  - ko-nikl-29638
+  - ko-nikl-31896
+  - ko-nikl-31900
+  - ko-nikl-34719
+  - ko-nikl-35651
+  - ko-nikl-37284
+  - ko-nikl-38449
+  - ko-nikl-39601
+  - ko-nikl-39656
+  - ko-nikl-39902
+  - ko-nikl-40132
+  - ko-nikl-41167
+  - ko-nikl-41168
+  - ko-nikl-41209
+  - ko-nikl-41840
+  - ko-nikl-42021
+  - ko-nikl-42264
+  - ko-nikl-42423
+  - ko-nikl-42782
+  - ko-nikl-42783
+  - ko-nikl-42799
+  - ko-nikl-43947
+  - ko-nikl-44019
+  - ko-nikl-44403
+  - ko-nikl-45545
+  - ko-nikl-45612
+  - ko-nikl-45925
+  - ko-nikl-47378
+  - ko-nikl-47379
+  - ko-nikl-47981
+  - ko-nikl-48009
+  - ko-nikl-48046
+  - ko-nikl-48349
+  - ko-nikl-48542
+  - ko-nikl-49035
+  - ko-nikl-49072
+  - ko-nikl-49938
+  - ko-nikl-51754
+  - ko-nikl-51779
+reading_policy: >
+  The 86 requested source parents have been recovered with all their original
+  positions. Four complete-definition crosswalks resolved eight selected
+  senses; all 113 now use official citation text. Preserve length in
+  비ː유하다 and 정ː니하다 and both 노늬하다 / 노니하다 alternatives.
+  No authored pronunciation or spelling fallback was needed.
+  Both protected unresolved readings, 팀장22209 and 온실가스48419,
+  remain excluded without further research.
+reading_review:
+  official_text_senses: 113
+  authored_reading_senses: 0
+  remaining_selected_gaps: []

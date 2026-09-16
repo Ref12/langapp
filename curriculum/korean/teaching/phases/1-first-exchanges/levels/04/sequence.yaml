@@ -159,6 +159,9 @@ units:
   - {id: ko-nikl-34017-s013, ch: 끊다, pr: 끈타, ds: to end a telephone or Internet exchange}
   - {id: ko-nikl-34016-s010, ch: 끊기다, pr: 끈키다, ds: for a telephone or Internet exchange to be cut off}
   - {id: ko-nikl-34018-s010, ch: 끊어지다, pr: 끄너지다, ds: for a telephone or Internet exchange to be interrupted}
+  - {id: ko-nikl-00042-s001, ch: 설명하다, pr: 설명하다, ds: to explain something in an easily understood way}
+  - {id: ko-nikl-04599-s001, ch: 알리다, pr: 알리다, ds: to let someone know or recall something}
+  - {id: ko-nikl-09041-s002, ch: 상관없다, pr: 상과넙따, ds: to be fine; no problem or cause for concern}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-46454-s002, ch: 어서, pr: 어서, ds: welcome; warmly inviting someone in or encouraging them}
@@ -297,6 +300,12 @@ units:
   - {id: ko-nikl-38867-s001, ch: 미리, pr: 미리, ds: in advance; before an event}
   - {id: ko-nikl-15962-s001, ch: 늦다, pr: 늗따, ds: to be later than the reference time}
   - {id: ko-nikl-44574-s002, ch: 천천히, pr: 천ː천히, ds: 'later, without rushing'}
+  - {id: ko-nikl-34064-s001, ch: 끝, pr: 끋, ds: the end of a period of time}
+  - {id: ko-nikl-24147-s001, ch: 한낮, pr: 한낟, ds: midday around noon}
+  - {id: ko-nikl-40185-s001, ch: 밤낮, pr: 밤낟, ds: day and night}
+  - {id: ko-nikl-16539-s002, ch: 달, pr: 달, ds: a month; one of a year's twelve divisions}
+  - {id: ko-nikl-24576-s002, ch: 해, pr: 해, ds: a year as one orbit of Earth around the Sun}
+  - {id: ko-nikl-24576-s003, ch: 해, pr: 해, ds: daylight hours from sunrise to sunset}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-00495-s004, ch: 세우다, pr: 세우다, ds: to make a definite plan or resolution}
@@ -376,10 +385,10 @@ units:
   - {id: ko-nikl-46744-s002, ch: 얼마나, pr: 얼마나, ds: how much; to what degree}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-20916-s001, ch: 크기, pr: 크기, ds: size}
-  - {id: ko-nikl-37480-s001, ch: 모양, pr: 모양, ds: shape or outward appearance}
-  - {id: ko-nikl-18857-s001, ch: 둥글다, pr: 둥글다, ds: 'to be round, like a circle or ball'}
-  - {id: ko-nikl-35358-s001, ch: 네모나다, pr: 네ː모나다, ds: to have four sides and four corners}
+  - {id: ko-nikl-09934-s001, ch: 선, pr: 선, ds: a drawn line or border}
+  - {id: ko-nikl-14232-s001, ch: 점, pr: 점, ds: a small round dot or mark}
+  - {id: ko-nikl-29622-s001, ch: 공간, pr: 공간, ds: an empty place or space}
+  - {id: ko-nikl-34064-s002, ch: 끝, pr: 끋, ds: the end of a space}
   - {id: ko-nikl-17430-s001, ch: 더, pr: 더, ds: more; further (adding or continuing)}
   - {id: ko-nikl-04272-s001, ch: 아주, pr: 아주, ds: very; extremely}
   - {id: ko-nikl-41331-s001, ch: 좀, pr: 좀, ds: a little; somewhat}
@@ -449,16 +458,18 @@ units:
   outcome: Choose native or Sino-Korean number forms for quantities, clock time, and payment.
   vocabulary:
   - {id: ko-nikl-27486-s001, ch: 거의, pr: 거의 / 거이, ds: almost all; nearly the whole amount}
+  - {id: ko-nikl-16542-s001, ch: 달, pr: 달, ds: a counter for months}
+  - {id: ko-nikl-24581-s001, ch: 해, pr: 해, ds: a counter for years}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-04320-s001, ch: 아홉, pr: 아홉, ds: nine (native Korean numeral)}
-  - {id: ko-nikl-04322-s001, ch: 아홉, pr: 아홉, ds: nine; before a noun or counter}
-  - {id: ko-nikl-26023-s001, ch: 가지, pr: 가지, ds: a counter for kinds or types of things}
-  - {id: ko-nikl-34156-s003, ch: 나누다, pr: 나누다, ds: to perform division in mathematics}
   - {id: ko-nikl-35310-s008, ch: 넘다, pr: 넘ː따, ds: to exceed an amount or other comparison point}
   - {id: ko-nikl-45856-s001, ch: 충분하다, pr: 충분하다, ds: 'to be ample or sufficient, without a shortage'}
   - {id: ko-nikl-37514-s001, ch: 모자라다, pr: 모ː자라다, ds: 'to fall short of a set number, quantity, or degree'}
   - {id: ko-nikl-08256-s009, ch: 사람, pr: 사ː람, ds: person; a unit for counting people}
+  - {id: ko-nikl-20309-s001, ch: 리터, pr: 리터, ds: litre; a volume unit}
+  - {id: ko-nikl-21023-s001, ch: 킬로그램, pr: 킬로그램, ds: kilogram unit}
+  - {id: ko-nikl-22659-s001, ch: 퍼센트, pr: 퍼센트, ds: percent; a proportion per hundred}
+  - {id: ko-nikl-31993-s001, ch: 그램, pr: 그램, ds: gram unit}
   review_grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-04-travel-practice-01
@@ -502,14 +513,14 @@ units:
   - {id: ko-topik1-g014, ch: N부터 N까지, ds: give starting and ending time bounds}
   - {id: ko-topik1-g018, ch: V/A-았어요 / -었어요 / -했어요, ds: describe a past event or state politely}
   review_vocabulary:
-  - {id: ko-nikl-40479-s001, ch: 방학, pr: 방ː학, ds: a school vacation between terms}
-  - {id: ko-nikl-11503-s001, ch: 일상, pr: 일쌍, ds: ordinary daily life}
-  - {id: ko-nikl-25574-s005, ch: 가깝다, pr: 가깝따, ds: to be near in time}
-  - {id: ko-nikl-36994-s004, ch: 멀다, pr: 멀ː다, ds: to have a long time still to go}
-  - {id: ko-nikl-18224-s013, ch: 돌리다, pr: 돌리다, ds: to postpone; to put off until later}
-  - {id: ko-nikl-38867-s001, ch: 미리, pr: 미리, ds: in advance; before an event}
   - {id: ko-nikl-15962-s001, ch: 늦다, pr: 늗따, ds: to be later than the reference time}
   - {id: ko-nikl-44574-s002, ch: 천천히, pr: 천ː천히, ds: 'later, without rushing'}
+  - {id: ko-nikl-34064-s001, ch: 끝, pr: 끋, ds: the end of a period of time}
+  - {id: ko-nikl-24147-s001, ch: 한낮, pr: 한낟, ds: midday around noon}
+  - {id: ko-nikl-40185-s001, ch: 밤낮, pr: 밤낟, ds: day and night}
+  - {id: ko-nikl-16539-s002, ch: 달, pr: 달, ds: a month; one of a year's twelve divisions}
+  - {id: ko-nikl-24576-s002, ch: 해, pr: 해, ds: a year as one orbit of Earth around the Sun}
+  - {id: ko-nikl-24576-s003, ch: 해, pr: 해, ds: daylight hours from sunrise to sunset}
   review_grammar: []
 - id: level-04-time-practice-02
   title: Time and events - sentence practice 2
@@ -520,14 +531,14 @@ units:
   - {id: ko-topik1-g026, ch: V/A-고, ds: connect predicates without asserting a cause}
   - {id: ko-topik2-g024, ch: N마다, ds: distribute an event over each interval or member}
   review_vocabulary:
-  - {id: ko-nikl-40479-s001, ch: 방학, pr: 방ː학, ds: a school vacation between terms}
-  - {id: ko-nikl-11503-s001, ch: 일상, pr: 일쌍, ds: ordinary daily life}
-  - {id: ko-nikl-25574-s005, ch: 가깝다, pr: 가깝따, ds: to be near in time}
-  - {id: ko-nikl-36994-s004, ch: 멀다, pr: 멀ː다, ds: to have a long time still to go}
-  - {id: ko-nikl-18224-s013, ch: 돌리다, pr: 돌리다, ds: to postpone; to put off until later}
-  - {id: ko-nikl-38867-s001, ch: 미리, pr: 미리, ds: in advance; before an event}
   - {id: ko-nikl-15962-s001, ch: 늦다, pr: 늗따, ds: to be later than the reference time}
   - {id: ko-nikl-44574-s002, ch: 천천히, pr: 천ː천히, ds: 'later, without rushing'}
+  - {id: ko-nikl-34064-s001, ch: 끝, pr: 끋, ds: the end of a period of time}
+  - {id: ko-nikl-24147-s001, ch: 한낮, pr: 한낟, ds: midday around noon}
+  - {id: ko-nikl-40185-s001, ch: 밤낮, pr: 밤낟, ds: day and night}
+  - {id: ko-nikl-16539-s002, ch: 달, pr: 달, ds: a month; one of a year's twelve divisions}
+  - {id: ko-nikl-24576-s002, ch: 해, pr: 해, ds: a year as one orbit of Earth around the Sun}
+  - {id: ko-nikl-24576-s003, ch: 해, pr: 해, ds: daylight hours from sunrise to sunset}
   review_grammar:
   - {id: ko-topik1-g009, ch: N에, ds: mark an event's clock time or calendar point}
   - {id: ko-topik1-g014, ch: N부터 N까지, ds: give starting and ending time bounds}

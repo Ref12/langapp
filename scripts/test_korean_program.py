@@ -759,6 +759,9 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "society-notes.yaml",
             "predicate-notes.yaml",
             "interpretation-notes.yaml",
+            "procedure-notes.yaml",
+            "nature-notes.yaml",
+            "qualities-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1217,6 +1220,165 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("볼 수 있는", evidence[second]["source_korean"])
         self.assertIn("matter or event", words["ko-nikl-50562-s001"]["ds"])
         self.assertIn("incident or accident", evidence["ko-nikl-50562-s001"]["source_english"])
+
+    def test_procedural_homographs_preserve_distinct_actions_and_participants(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for first, second in (
+            ("01883", "01884"), ("41167", "41168"),
+            ("42782", "42783"), ("47378", "47379"),
+        ):
+            first, second = f"ko-nikl-{first}-s001", f"ko-nikl-{second}-s001"
+            self.assertEqual(words[first]["ch"], words[second]["ch"])
+            self.assertNotEqual(identities[first], identities[second])
+        self.assertIn("formal request", words["ko-nikl-03319-s001"]["ds"])
+        self.assertIn("receive", words["ko-nikl-14334-s001"]["ds"])
+        self.assertIn("issue", words["ko-nikl-39902-s001"]["ds"])
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-42021"]["source_part_of_speech"], "동사")
+        self.assertIn("comply", words["ko-nikl-42021-s001"]["ds"])
+
+    def test_procedural_polysemy_and_active_passive_family_do_not_inflate_breadth(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-11257-s001"], identities["ko-nikl-11265-s001"])
+        self.assertIn("to be regarded", words["ko-nikl-11257-s001"]["ds"])
+        self.assertIn("to regard", words["ko-nikl-11265-s001"]["ds"])
+        self.assertEqual(
+            {identities[f"ko-nikl-14469-s{position:03d}"] for position in range(1, 6)},
+            {"ko-lex-14469"},
+        )
+        self.assertIn("relationship", words["ko-nikl-14469-s004"]["ds"])
+        self.assertIn("passbook", words["ko-nikl-14469-s005"]["ds"])
+        self.assertEqual(words["ko-nikl-14469-s001"]["pr"], "정ː니하다")
+        self.assertEqual(words["ko-nikl-35651-s001"]["pr"], "노늬하다 / 노니하다")
+        self.assertEqual(identities["ko-nikl-11018-s001"], identities["ko-nikl-11018-s003"])
+
+    def test_procedural_interpretations_keep_permission_evidence_and_outcome_distinct(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        self.assertIn("authorize", words["ko-nikl-02642-s001"]["ds"])
+        self.assertEqual(evidence["ko-nikl-02642-s001"]["source_english"], "To agree to do something.")
+        self.assertIn("form a pair", words["ko-nikl-17192-s002"]["ds"])
+        self.assertIn("equivalent", evidence["ko-nikl-17192-s002"]["source_english"])
+        self.assertIn("in writing", words["ko-nikl-37284-s001"]["ds"])
+        self.assertIn("whether", words["ko-nikl-42423-s001"]["ds"])
+        self.assertIn("truth or falsity", words["ko-nikl-42423-s002"]["ds"])
+        self.assertIn("concede", words["ko-nikl-25010-s002"]["ds"])
+        self.assertIn("to lose", evidence["ko-nikl-25010-s002"]["source_english"])
+        self.assertIn("measures", words["ko-nikl-41209-s001"]["ds"])
+        self.assertIn("successfully", words["ko-nikl-24593-s001"]["ds"])
+
+    def test_nature_units_and_scale_reference_are_explicitly_not_free_lemmas(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "nature-notes.yaml")
+        _, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        for field, expected in (("bound_only", "bound-form"), ("function_only", "function-item")):
+            for identity in notes["identity_decisions"][field]["identity_ids"]:
+                with self.subTest(identity=identity):
+                    self.assertEqual(groups[identity]["category"], expected)
+                    for identifier in groups[identity]["members"]:
+                        self.assertEqual(self.references.provenance[identifier]["lexical_category"], expected)
+        self.assertNotEqual(
+            self.references.lexical_identity["ko-nikl-14232-s001"],
+            self.references.lexical_identity["ko-nikl-14233-s001"],
+        )
+        for parent in ("00550", "20309", "21023", "21024", "21652", "22659", "31993", "39011", "39172"):
+            reading = self.references.provenance[f"ko-nikl-{parent}-s001"]["reading"]
+            self.assertEqual(reading["method"], "authored-broad-hangul")
+            self.assertEqual(reading["review_status"], "unreviewed")
+
+    def test_nature_family_fragments_preserve_calendar_shape_and_physical_senses(self):
+        identities = self.references.lexical_identity
+        for first, second in (
+            ("ko-nikl-03785-s001", "ko-nikl-09374-s001"),
+            ("ko-nikl-26083-s002", "ko-nikl-26100-s001"),
+            ("ko-nikl-49664-s001", "ko-nikl-49833-s001"),
+            ("ko-nikl-16539-s001", "ko-nikl-16542-s001"),
+            ("ko-nikl-24576-s001", "ko-nikl-24581-s001"),
+            ("ko-nikl-50562-s001", "ko-nikl-50562-s002"),
+            ("ko-nikl-39735-s001", "ko-nikl-39735-s003"),
+            ("ko-nikl-47153-s001", "ko-nikl-47153-s002"),
+        ):
+            self.assertEqual(identities[first], identities[second])
+        self.assertNotEqual(identities["ko-nikl-49664-s001"], identities["ko-nikl-49668-s001"])
+        self.assertEqual(
+            self.references.provenance["ko-nikl-24581-s001"]["lexical_category"], "free-lemma",
+        )
+
+    def test_nature_labels_do_not_turn_short_source_definitions_into_scientific_claims(self):
+        words = self.references.vocabulary
+        self.assertIn("quadrilateral", words["ko-nikl-08165-s001"]["ds"])
+        self.assertNotIn("square", words["ko-nikl-08165-s001"]["ds"])
+        self.assertIn("fields of study", words["ko-nikl-12275-s001"]["ds"])
+        self.assertIn("plant", words["ko-nikl-01683-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-27655-s001"]["ds"], "absence of moisture or humidity")
+        self.assertIn(
+            "evaporation", self.references.provenance["ko-nikl-27655-s001"]["source_english"],
+        )
+        notes = load_yaml(self.root / "authoring" / "teaching" / "nature-notes.yaml")
+        for identifier, observation in notes["source_wording_review"]["entries"].items():
+            with self.subTest(sense=identifier):
+                for language in ("korean", "english"):
+                    self.assertEqual(
+                        self.references.provenance[identifier][f"source_{language}"],
+                        observation[f"source_{language}"],
+                    )
+                self.assertTrue(observation["limitation"])
+
+    def test_quality_labels_preserve_comparison_outcome_and_discourse_perspective(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        self.assertEqual(words["ko-nikl-24117-s001"]["ds"], "much more than before")
+        self.assertEqual(evidence["ko-nikl-24117-s001"]["source_english"], "Much better than before. ")
+        self.assertEqual(words["ko-nikl-37821-s002"]["ds"], "for things not to work out properly")
+        self.assertIn("appearance", evidence["ko-nikl-37821-s002"]["source_english"])
+        self.assertEqual(words["ko-nikl-31953-s002"]["ds"], "even that, though it is already inadequate")
+        self.assertIn("others", evidence["ko-nikl-31953-s002"]["source_english"])
+        self.assertIn("no worse", words["ko-nikl-37832-s001"]["ds"])
+        self.assertIn("to seem sincere", words["ko-nikl-14566-s001"]["ds"])
+        self.assertIn("to seem to happen", words["ko-nikl-12288-s003"]["ds"])
+        self.assertEqual(words["ko-nikl-32620-s001"]["pr"], "그피")
+        self.assertEqual(
+            self.references.provenance["ko-nikl-32620-s001"]["reading"]["method"], "official-text",
+        )
+
+    def test_quality_operators_and_attested_particle_family_keep_explicit_accounting(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "qualities-notes.yaml")
+        groups = load_yaml(authoring / "qualities-identities.yaml")
+        for identity in notes["identity_policy"]["function_identity_ids"]:
+            self.assertEqual(groups[identity]["category"], "function-item")
+            for identifier in groups[identity]["members"]:
+                self.assertEqual(
+                    self.references.provenance[identifier]["lexical_category"], "function-item",
+                )
+        self.assertEqual(self.references.lexical_identity["ko-nikl-46636-s001"], "ko-lex-46634")
+        self.assertEqual(groups["ko-lex-46634"]["lemma"], "억지")
+        self.assertEqual(groups["ko-lex-46634"]["members"], ["ko-nikl-46636-s001"])
+        self.assertEqual(
+            self.references.lexical_identity["ko-nikl-43929-s001"],
+            self.references.lexical_identity["ko-nikl-43929-s002"],
+        )
+
+    def test_actuality_noun_and_adverb_have_source_compared_conservative_family(self):
+        noun, adverb = "ko-nikl-03445-s001", "ko-nikl-03447-s001"
+        self.assertEqual(self.references.lexical_identity[noun], "ko-lex-03447")
+        self.assertEqual(self.references.lexical_identity[noun], self.references.lexical_identity[adverb])
+        for identifier in (noun, adverb):
+            self.assertEqual(self.references.provenance[identifier]["lexical_category"], "function-item")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-03445"]["source_part_of_speech"], "명사")
+        self.assertEqual(parents["ko-nikl-03447"]["source_part_of_speech"], "부사")
+        notes = load_yaml(self.root / "authoring" / "teaching" / "interpretation-notes.yaml")
+        decision = notes["actuality_family_adjudication"]
+        self.assertEqual(decision["retired_provisional_identity"], "ko-lex-03445")
+        evidence = {item["source_parent"]: item for item in decision["official_origin_evidence"]}
+        for identifier in (noun, adverb):
+            parent = identifier.rsplit("-s", 1)[0]
+            self.assertEqual(
+                self.references.provenance[identifier]["reading"]["official_entry_id"],
+                evidence[parent]["official_entry_id"],
+            )
+        self.assertEqual(evidence["ko-nikl-03445"]["origin"], evidence["ko-nikl-03447"]["origin"])
+        self.assertNotEqual(evidence["ko-nikl-03445"]["origin"], evidence["ko-nikl-03446"]["origin"])
+        self.assertNotIn("ko-nikl-03446-s001", self.references.vocabulary)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

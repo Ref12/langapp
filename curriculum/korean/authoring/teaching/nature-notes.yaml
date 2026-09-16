@@ -1,0 +1,600 @@
+schema_version: 1
+id: ko-nature-noun-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: source-backed-selections-integrated-qualified-review-pending
+review_requirement: >-
+  Every selection, placement, label, identity decision, and correction proposal
+  is original AI-authored work requiring qualified Korean linguistic and
+  pedagogical review. Scientific terminology and questionable source statements
+  additionally require appropriate domain review. Structural checks are not
+  approval of usage, scientific facts, or pronunciation.
+scope:
+  - Understand ordinary weather and plan seasonal activities.
+  - Describe natural terrain, water, vegetation, and observable living things.
+  - Discuss environmental conditions, resources, and accessible science.
+  - Read ordinary measurements, comparisons, and physical descriptions.
+  - Interpret selected common natural imagery without importing every figurative position.
+selection_policy: >-
+  Targeted communicative-domain discovery was followed by individual inspection
+  of original Korean and English source positions. Neither source order,
+  dictionary band, part of speech, alphabet, nor numerical targets assign
+  teaching levels. Sections organize authoring, not lessons. No exhaustive
+  unselected-source audit, invented source entry, generated predicate, or
+  specialist taxonomy/equipment inventory is added. Candidate availability was
+  not a reason to import every source position. This is a bounded completed
+  domain selection, not an assertion that every useful nature noun is covered.
+counts:
+  selected_senses: 213
+  core_senses: 213
+  branch_senses: 0
+  source_parents: 159
+  distinct_selected_spellings: 156
+  identity_records_in_fragment: 155
+  existing_identity_fragments: 29
+  new_identity_groups: 126
+  new_provisional_free_lemma_groups: 111
+  new_bound_form_groups: 11
+  new_function_item_groups: 4
+  source_noun_senses: 196
+  source_bound_noun_senses: 17
+  nonfirst_source_positions: 79
+  source_parents_new_to_protected_selections: 131
+  source_parents_already_represented: 28
+  source_bands: {beginner: 24, intermediate: 95, advanced: 90, unbanded: 4}
+  phases:
+    first-exchanges: 16
+    everyday-life: 105
+    stories-conversations: 15
+    explanation-problems: 34
+    analysis-argument: 28
+    nuance-interpretation: 15
+count_interpretation: >-
+  Senses, pinned source parents, visible spellings, and provisional identity
+  groups measure different things. Additional meanings, bound counters,
+  naming elements, and superlative reference do not each create a free lemma.
+  The 29 existing fragments exceed the 28 reused source parents because the
+  newly selected 새싹 parent joins the already protected 싹 identity.
+  No protected branch-only identity gains its first core use here; additional
+  core free coverage equals the 111 globally new provisional free identities.
+  These totals are neither learner mastery nor completion of the planning guide.
+placement_rationale:
+  first_exchanges: >-
+    Drawn lines, dots, vacant space and spatial endpoints support observable
+    description at 2. Grams, kilograms, litres and percentages support familiar
+    transactions at 3. Named months, years, daylight and daily periods support
+    routine plans at 4. Those ordinary uses are not delayed until a science phase.
+  everyday_life: >-
+    Plant care, visible growth, ground conditions, temperature sensations and
+    simple surfaces support household help at 5. Body descriptions and ordinary
+    dimensions support service/care communication at 6 without diagnosis.
+    Showers, strong winds, seasonal periods, river courses and terrain support
+    travel planning at 7 even when the dictionary band is advanced. Basic
+    shape diagrams, scores and angle measures support work/study at 8.
+  stories_conversations: >-
+    Open landscapes, dense forests, nighttime and counts of natural branches
+    support recounting experiences at 9. Excited atmosphere supports experience
+    at 10. Drying, mixing, preliminary trials, maintaining conditions and final
+    process stages support procedures at 11. Proportions, particular aspects,
+    seasonal-period contrasts and motivation support comparisons and reasons
+    at 13. Source order does not impose the order of these meanings.
+  explanation_problems: >-
+    Lightning, unexpected drenching, severe rain with wind, natural hazards and
+    usable object life support unfamiliar problems at 14. Repercussions of a
+    shocking event support public reporting at 16. Environmental conditions,
+    resource depletion, packing density, steel, purification, pollutants and
+    observation satellites support accessible explanation at 17.
+  analysis_argument: >-
+    Measurement standards, categories, endpoints and theory/practice contrast
+    support analysis from 19. General biology, geography, waves, geometric
+    relationships and formulas enter at 21. Conventional methods, growth of
+    scale or influence, and viewpoint support qualified reasoning at 23.
+    No new specialist branch was needed to complete this domain scope.
+  nuance_interpretation: >-
+    Figurative prevailing atmosphere supports stance at 25. Selected natural
+    imagery supports interpretation at 27. Scope of understanding, the real
+    world, intensity of a quality, resource imagery applied to thought, and the
+    broad universe conception support precise abstraction at 28. These later
+    meanings are not inferred to be official exam requirements.
+identity_decisions:
+  policy: >-
+    Every protected key, canonical lemma, category, member and placement is
+    preserved. Existing fragments contain only new members and the exact
+    parents of those members. A fragment's canonical spelling can come from
+    its protected family rather than its newly added parent. New groups and
+    selected related forms require qualified lexical review; no official
+    dictionary equivalence or verified true-lexeme count is asserted.
+  new_growth_family:
+    identity: ko-lex-03785
+    protected:
+      id: ko-nikl-03785-s001
+      target: 싹
+      source_korean: "씨나 줄기에서 처음 나오는 어린 잎이나 줄기."
+      source_english: "A new leaf or stem that is produced for the first time from a seed or stem."
+    new:
+      id: ko-nikl-09374-s001
+      target: 새싹
+      source_korean: "씨나 줄기 등에서 새로 나오는 잎."
+      source_english: "A leaf newly coming out of a seed, stem, etc."
+    rationale: >-
+      The newness-emphasized name closely overlaps protected emerging leaf/stem
+      reference. Conservatively count the new leaves and child metaphor in the
+      same emergence family. This does not call the forms spelling variants or
+      make every context interchangeable; no general 새-prefix rule is applied.
+  angular_family:
+    identity: ko-lex-26083
+    broader:
+      id: ko-nikl-26083-s002
+      target: 각
+      source_korean: "같은 지점에서 시작되는 두 개의 직선이나 평면이 벌어진 곳. 또는 벌어진 정도."
+      source_english: "The space between two straight lines or planes that start from a common point, or the measured degree of the space."
+    degree_focused:
+      id: ko-nikl-26100-s001
+      target: 각도
+      source_korean: "같은 지점에서 시작되는 두 개의 직선이나 평면이 벌어진 정도."
+      source_english: "The degree of divergence between two lines or planes that start from a common point."
+    rationale: >-
+      The measured-opening part of 각 already supplies the meaning emphasized
+      by 각도. Count one provisional angular family, including viewpoint,
+      rather than an extra free identity for the degree-focused form. This
+      does not license global stripping of 도 or merging unrelated same-English words.
+  circular_family:
+    identity: ko-lex-49664
+    shorter:
+      id: ko-nikl-49664-s001
+      target: 원
+      source_korean: "둥근 모양이나 형태."
+      source_english: "A round shape or form. "
+    shape_focused:
+      id: ko-nikl-49833-s001
+      target: 원형
+      source_korean: "둥근 모양."
+      source_english: "A round shape. "
+    rationale: >-
+      These round-form meanings share one conservative shape family. Original
+      form/prototype 원형49832 is a different homograph, and the protected
+      currency unit ko-lex-49668 is not merged merely because it is written 원.
+  calendar_families:
+    - >-
+      Protected moon ko-lex-16539 gains independent month16539-s002 and bound
+      month-counting16542-s001, both at 4. No uniform month duration, lunar-period
+      equality, or invented unit conversion is asserted.
+    - >-
+      Protected sun ko-lex-24576 gains independent year and daylight periods
+      plus bound year-counting24581-s001. Independent time meanings accompany
+      counting at 4. The year refers to Earth's orbit, not its daily axial spin.
+  bound_only:
+    identity_ids:
+      - ko-lex-00550
+      - ko-lex-20309
+      - ko-lex-21023
+      - ko-lex-21024
+      - ko-lex-21652
+      - ko-lex-22659
+      - ko-lex-31993
+      - ko-lex-39011
+      - ko-lex-39172
+      - ko-lex-17730
+      - ko-lex-14233
+    rationale: >-
+      Metric/measurement names, degrees and the separately supplied point
+      counters remain bound-only. Source14233 score/tiny-amount uses are not
+      promoted to another free dot noun. Dot/spot/decimal/punctuation/aspect
+      source14232 is a separate provisional mark family; no extra free point
+      counter is counted under either treatment.
+  function_only:
+    identity_ids: [ko-lex-45363, ko-lex-45377, ko-lex-45397, ko-lex-45418]
+    rationale: >-
+      Highest/best, maximum, minimum and lowest are conservatively treated as
+      scale-extremum or superlative reference. The counting category function-item
+      does not change their source POS noun or claim a universal grammatical
+      taxonomy. Their five senses contribute no new free identities.
+  functions_inside_free_families: >-
+    Grain counting remains in protected 알; leaf/petal counting and leaf-name
+    elements remain in 잎; branch and ray/stream counting remain in 줄기.
+    Category/kind counting shares independently referable 종-s002 at 19.
+    Color, metal-made and light-ray naming elements stay within already
+    independently attested 빛, 금, 은 and 선 families. None licenses generated
+    plant/color compounds, fabricated scientific terms, or a separate free
+    count merely for being used in a compound.
+  protected_placement_limits: >-
+    Protected independent 잎 is currently at 17 and the plant-stem position
+    of 줄기 at 21. These placements were not edited. New leaf functions enter
+    at 21 rather than causing a bound/naming use to introduce a free family
+    before its selected independent leaf. Independent natural branch 줄기-s002
+    enters at 7 before new branch-counting at 9; this is a real new content
+    meaning, not a promotion caused only by a counter. Packing density does
+    not move protected mass-per-volume 밀도-s001 out of its scientific branch.
+  compounds_and_synonyms: >-
+    Supplied compounds such as 산꼭대기, 강물, 동식물 and 몸무게 retain explicit
+    provisional source-based identities; no new compounds or X하다 predicates
+    were generated. Similar English alone does not collapse 평지/벌판,
+    햇볕/햇빛/햇살, curved/straight/horizontal line names, or all stone-related
+    words. There is no universal noun-to-predicate derivational merger.
+    Only the specifically documented family decisions apply.
+meaning_and_boundary_checks:
+  - >-
+    사각형08165 is a quadrilateral, not necessarily a square or rectangle.
+    No equal sides or right angles are invented. Geometry labels are not
+    complete axioms or promises to cover every degenerate mathematical case.
+  - >-
+    자연계12275 is the academic track including mathematics and natural
+    sciences, not an unsupplied natural-world sense. 종41347 selects category
+    and kind-counting, not an invented technical biological species definition.
+  - >-
+    대16856-s001 is an upright hollow plant stalk, not an alias for the entire
+    bamboo plant16950 and not the protected vehicle/device counter16872.
+    The long-stick and determination positions are not imported.
+  - >-
+    Sunlight and scientific context do not turn 산소08726 tomb into oxygen,
+    전자13978 past-time reference into an electron, 자기12040 self-reference
+    into magnetism, or 탄성21182 exclamation into elasticity. None was selected
+    by matching an English concept to the wrong homograph.
+  - >-
+    The social-class positions of 상류/하류, person-directed 절벽 labels,
+    geomantic 지리, and old-fashioned honor-reference 면37115-s005 are not
+    neutralized into ordinary geography or material description.
+  - >-
+    The source's 이슬10812-s003 bodily fluid, 독18034-s002 poisonous drug,
+    정화14745-s002 mental purification and 열기47646-s002 fever positions
+    remain unselected. No detoxification, exposure limit, clinical diagnosis,
+    treatment, poisoning method, or chemical-mixing recipe is supplied.
+  - >-
+    Clinical labels in the active cohort are ordinary terms such as breathing,
+    body weight, joint and muscle. They do not interpret a person's appearance,
+    body size or breathing sound as a diagnosis, fitness judgment or prognosis.
+  - >-
+    센티00549 is a real available short unit form, but the full centimetre
+    form supplies this cohort's practical need. Musical/alcohol degrees,
+    cargo-capacity tons, art/meat/drop/go-stone point counters and household
+    connective-cord 선09934-s002 are not added merely because a parent is selected.
+  - >-
+    Parent-owned concrete tools, fixtures, street features and vehicle parts
+    remain outside this cohort. The selected satellite is a general-reader
+    astronomical/observation concept, not a launch-equipment inventory.
+returned_interpretation_followup:
+  status: four-existing-source-physical-positions-added
+  selected_sense_ids:
+    - ko-nikl-50562-s002
+    - ko-nikl-39735-s001
+    - ko-nikl-39735-s002
+    - ko-nikl-47153-s002
+  protected_abstract_sense_ids:
+    - ko-nikl-50562-s001
+    - ko-nikl-39735-s003
+    - ko-nikl-47153-s001
+    - ko-nikl-14571-s001
+  unchanged_free_identity_ids: [ko-lex-50562, ko-lex-39735, ko-lex-47153]
+  rationale: >-
+    Physical contour supports ordinary description at 6. Positional/order/
+    directional reversal supports procedures at 11; reverse turning or rolling
+    supports general physical/technical explanation at 17. Gentle lingering
+    sound or resonance supports accessible acoustics at 21, without inventing
+    an echo-reflection mechanism. These are four already registered unbanded
+    source positions, not new source additions or a source-band placement rule.
+    Each joins its protected abstract family's exact free-lemma key and category,
+    adding no free identity. No machine-operation instructions or equipment
+    inventory was added.
+  source_evidence:
+    ko-nikl-50562-s002:
+      source_korean: "사물의 테두리나 대강의 모습."
+      source_english: "The outer rim or general appearance of an object."
+    ko-nikl-39735-s001:
+      source_korean: "기계 등이 반대 방향으로 돌거나 구름."
+      source_english: "The act of a machine, etc., turning or rolling in the opposite direction."
+    ko-nikl-39735-s002:
+      source_korean: "위치, 순서, 방향 등이 반대로 바뀜."
+      source_english: "A change of a position, order, direction, etc., to the opposite."
+    ko-nikl-47153-s002:
+      source_korean: "소리가 그치거나 거의 사라진 뒤에도 남아 있는 잔잔한 소리나 울림."
+      source_english: "A gentle sound or resonance that lingers even after the sound stops or almost disappears. "
+  other_parent_keys: >-
+    The later parent adjudication merges 실상 under protected function
+    ko-lex-03447; 내심 ko-lex-34984 remains free-lemma. Nature adds no
+    members to either family. See interpretation-notes.yaml for the actual
+    three-entry official-origin comparison and unchanged source sense IDs.
+  source_and_reading_limits: >-
+    The three added parents are already represented by protected abstract
+    selections. They join the reused-parent compatibility queue, not the
+    new-parent queue or an invented missing-pronunciation count. Purification
+    parent14570 is absent from the registered source view and is not replaced
+    with protected essence14571 or assigned a guessed sense position.
+source_correction_requests:
+  ko-nikl-01683-s001:
+    source_korean: "사람이나 동식물이 살아 있는 기간."
+    source_english: "The length of time during which a person or animal is alive. "
+    authored_interpretation: "lifespan of a person, animal, or plant"
+    rationale: Korean 동식물 explicitly includes plants; the English omits them.
+  ko-nikl-05146-s001:
+    source_korean: "사방으로 펼쳐진 넓고 평평한 땅."
+    source_english: "Wide, flat, open land with no fences, etc."
+    authored_interpretation: wide open flat land
+    rationale: The Korean describes broad flat open land without requiring fences to be absent.
+  ko-nikl-10622-s002:
+    source_korean: "실천에 대립되는 관념적인 지식."
+    source_english: "Ideological knowledge as opposed to practice."
+    authored_interpretation: abstract theoretical knowledge rather than practice
+    rationale: 관념적인 contrasts abstract knowledge with practice here; ideological can misleadingly add a political or doctrinal restriction.
+  ko-nikl-22638-s001:
+    source_korean: "부풀어서 크기가 커짐."
+    source_english: "The state of something becoming bigger because it has been inflated."
+    authored_interpretation: physical expansion or swelling
+    rationale: Review the passive inflation wording, which can suggest a specific inflation process rather than the Korean's general swelling or enlargement.
+  ko-nikl-27655-s001:
+    source_korean: "말라서 물기나 습기가 없음."
+    source_english: "Neither wet nor humid due to evaporation."
+    authored_interpretation: absence of moisture or humidity
+    rationale: The Korean describes dryness without naming evaporation as the required physical mechanism.
+  ko-nikl-29857-s003:
+    source_korean: "수학 계산, 과학에서 법칙을 수식이나 기호로 나타낸 것."
+    source_english: "In math and science, a state in which rules are indicated in words or symbols. "
+    authored_interpretation: a mathematical or scientific formula
+    rationale: 수식 means a mathematical expression rather than words; the noun names the formula representing a rule rather than a state.
+  ko-nikl-35728-s002:
+    source_korean: "어떤 성질의 강한 정도."
+    source_english: "Depth or intensity of emotions such as love, sadness, etc. "
+    authored_interpretation: intensity of a quality
+    rationale: Korean refers to the strength of a quality generally; the English confines it to emotions.
+  ko-nikl-43241-s001:
+    source_korean: "빛깔이 붉고 물기가 있어 잘 들러붙는 흙."
+    source_english: "Soil that is sticky and red because it contains a large amount of water."
+    authored_interpretation: reddish moist sticky soil
+    rationale: The Korean separately gives reddish color and moisture-related stickiness; it does not say abundant water causes redness.
+  ko-nikl-44596-s001:
+    source_korean: "탄소가 2퍼센트 미만으로 들어 있고 열로 성질을 변화시킬 수 있어 여러 가지 기계나 기구 등의 재료로 쓰이는 철."
+    source_english: "Steel that contains less than 2% of carbon, which is used for making machines, equipment, etc., because of the ease with which it can be shaped when heat is applied."
+    authored_interpretation: steel
+    rationale: Heat changing 성질 means changing properties, not merely being easy to shape; retain the material term without teaching the altered explanation.
+  ko-nikl-47652-s001:
+    source_korean: "적도에 가까우며, 연평균 기온이 섭씨 20도 이상인 덥고 비가 많이 오는 지역."
+    source_english: "A region with a great deal of rainfall, which is near the equator and has an annual average temperature of over 20 degrees Celsius. "
+    authored_interpretation: tropical regions
+    rationale: Korean 20도 이상 includes exactly 20 while English over 20 excludes it; the simplified climate description separately needs qualified geographical review.
+correction_policy: >-
+  The ten exact-source proposals are original AI-authored requests for qualified
+  adjudication, including translation-scope clarifications as well as direct
+  mismatches. They preserve upstream strings and match selected labels. No
+  upstream definition was edited. The parent integrated all ten exact-source
+  interpretations in source-corrections.yaml with unreviewed status; this is
+  not qualified linguistic or scientific approval.
+reading_review:
+  assessment: actual selected-parent resolver followed by complete-definition comparison
+  resolved_parent_count: 22
+  resolved_selected_senses: 30
+  official_crosswalk_parents: 13
+  authored_unit_parents: 9
+  official_text_senses: 204
+  authored_reading_senses: 9
+  remaining_selected_gaps: []
+  limitation: >
+    The nine metric-unit readings are individually reasoned broad-Hangul
+    proposals with unreviewed status, not dictionary pronunciation text.
+    Preserve official lengths and homograph-specific text for the other
+    selected parents. The original unassessed handoff queue below is not
+    a count of missing or unresolved pronunciations.
+source_wording_review:
+  policy: >-
+    The following limitations occur in both source languages or concern the
+    limits of a short dictionary definition, rather than an English-only
+    mistranslation. Labels name the intended concepts without presenting those
+    descriptions as complete scientific models or clinical recommendations.
+  entries:
+    ko-nikl-01058-s001:
+      source_korean: "물체가 움직이거나 일이 진행되는 빠르기의 크기. 또는 그런 빠르기를 이루는 힘."
+      source_english: "The speed of an object's movement or the process of things, or the power that makes up the speed."
+      limitation: Speed must not be equated with force or power merely because the source appends 힘 and power wording.
+    ko-nikl-32316-s001:
+      source_korean: "사람이나 동물의 몸을 움직이게 하는 힘줄과 살."
+      source_english: "The tendons and flesh which move the body of an animal or person."
+      limitation: The intended muscle term is useful, but the tendons-and-flesh description requires qualified anatomy review and must not identify tendons as muscle tissue.
+    ko-nikl-31912-s001:
+      source_korean: "사람들을 병에 걸리게 하거나 음식을 썩게 하는 아주 작은 생물."
+      source_english: "A very small organism that makes food rot or people sick."
+      limitation: This harmful-germ position is not evidence that all microorganisms or all uses of 균 are harmful.
+    ko-nikl-12290-s001:
+      source_korean: "태풍, 가뭄, 홍수, 지진, 화산 폭발 등의 피할 수 없는 자연 현상으로 인해 받게 되는 피해."
+      source_english: "Damage from unavoidable natural phenomena such as typhoons, droughts, floods, earthquakes, volcanic eruptions, etc. "
+      limitation: Do not convert unavoidable wording into a claim that damage mitigation or safer decisions are futile.
+    ko-nikl-12301-s001:
+      source_korean: "태양에서 나오는 눈에 보이지 않으며 파장이 짧은 빛."
+      source_english: "Light produced from the sun, which is invisible and has a short wavelength."
+      limitation: The source's solar example is not an exclusive-origin rule or an exposure recommendation; no wavelength range was invented.
+    ko-nikl-16950-s001:
+      source_korean: "줄기가 곧고 마디가 있으며 속이 비고, 잎이 가늘고 빳빳한 높이 30미터 정도의 늘 푸른 식물."
+      source_english: "A plant about 30 meters high that features joints and has upright, hollow stems and thin, stiff leaves."
+      limitation: Approximate height and plant appearance are a simplified description, not universal guarantees for every bamboo.
+    ko-nikl-12882-s001:
+      source_korean: "줄기에 가시가 있고 오월이나 유월에 향기롭게 피는 빨간색, 하얀색, 노란색 등의 꽃."
+      source_english: "A fragrant flower with thorns on the stem that blooms in red, white, yellow, etc., in May or June."
+      limitation: The flowering months must not be taught as a global or cultivar-independent timetable.
+    ko-nikl-48402-s001:
+      source_korean: "열대와 한대 사이에 있으며, 일 년 동안의 평균 기온이 섭씨 0도에서 20도 사이인 따뜻한 지역."
+      source_english: "A region which is between the tropical and frigid zones and has an annual average temperature range from 0 to 20 degrees Celsius."
+      limitation: The short temperature description is not a universal climate-classification standard; review alongside tropical-region wording.
+    ko-nikl-49391-s001:
+      source_korean: "무한한 시간과 만물을 포함하는 끝없는 공간."
+      source_english: "An endless space that includes infinite time and all the things in the world. "
+      limitation: The infinity formulation is a broad conception, not evidence that physical cosmological infinity has been established.
+  measurement_limits: >-
+    Everyday Korean 무게 and English weight in gram/kilogram/ton definitions
+    must not be used to equate mass with force in science teaching. The terse
+    ton position does not specify a numerical conversion. Temperature scales,
+    coordinate degrees and angular degrees remain separately contextualized.
+    No conversion table, formal measurement standard, calibration procedure,
+    biological normal range, or clinical threshold was fabricated.
+  protected_source_observation:
+    id: ko-nikl-50874-s001
+    source_korean: "귀금속이나 그릇 등을 만드는 데 쓰는, 흰 광택이 나고 무른 성질이 있는 금속."
+    source_english: "Metal that is used to make precious stones, kitchenware, etc., that is white and smooth."
+    followup: >-
+      Observed while checking the protected silver family: precious stones
+      differs from the Korean metal/metalware wording, and smooth differs from
+      softness. The existing source-corrections.yaml entry already covers
+      both mismatches with the unchanged label silver; the metal.
+      This observation adds no correction, selection or free identity.
+source_register:
+  explicit_marked_ids:
+    - ko-nikl-00647-s002
+    - ko-nikl-05335-s002
+    - ko-nikl-05335-s004
+    - ko-nikl-10812-s002
+    - ko-nikl-32803-s002
+    - ko-nikl-14172-s004
+    - ko-nikl-22258-s003
+    - ko-nikl-09374-s002
+    - ko-nikl-22362-s002
+    - ko-nikl-35098-s002
+  policy: >-
+    All ten selected definitions with explicit source parenthetical register
+    markers retain figurative in ds. Scolding remains description, not a
+    recommendation for addressing learners. No historical, disparaging,
+    clinical, mystical, or unfamiliar figurative position was silently made
+    neutral because its parent had an eligible physical meaning. Unmarked
+    extended senses do not receive invented official register metadata.
+remaining_gaps:
+  policy: >-
+    These are examples encountered in the bounded domain searches, not an
+    exhaustive audit or a claim that the original upstream export lacks the
+    words. They were absent as noun entries in the registered source view
+    inspected here. No source ID, substitute sense, or pronunciation was
+    invented. Parent may separately inspect and register actual source entries.
+  weather: [서리, 우박, 눈보라, 미세먼지]
+  land_and_water: [갯벌, 습지, 지하수, 해류, 지층, 지평선]
+  living_world: [서식지, 광합성, 꽃가루, 지느러미]
+  accessible_science: [원자, 분자, 용액, 행성, 별자리, 태양계]
+  measurement: [반지름, 오차, 밀리리터]
+  parent_identified_unregistered_homograph:
+    source_parent: ko-nikl-14570
+    target: 정수
+    meaning_named_by_parent: water purification
+    protected_different_parent: ko-nikl-14571
+    status: absent-from-current-registered-source
+    decision: >-
+      No source-definition position, English label, reading, or selection is
+      fabricated. Parent may derive the actual source entry separately; its
+      absence must not be worked around with the protected essence homograph.
+  later_review: >-
+    Existing basic leaf/stem placements and the three explicit new related-form
+    decisions need pedagogical/lexical review. Additional ecology, material
+    properties and general-reader science may be worth later bounded curation,
+    but this cohort does not compensate for missing registered terms with
+    specialist taxonomic lists, obscure equipment or a round numerical target.
+protected_inputs:
+  vocabulary:
+    - vocabulary.yaml
+    - early-vocabulary.yaml
+    - expansion-vocabulary.yaml
+    - breadth-vocabulary.yaml
+    - community-vocabulary.yaml
+    - kitchen-vocabulary.yaml
+    - personal-vocabulary.yaml
+    - content-vocabulary.yaml
+    - expression-vocabulary.yaml
+    - mobility-vocabulary.yaml
+    - society-vocabulary.yaml
+    - household-vocabulary.yaml
+    - predicate-vocabulary.yaml
+    - everyday-predicates-vocabulary.yaml
+    - interpretation-vocabulary.yaml
+  lexical_identities:
+    - lexical-identities.yaml
+    - early-identities.yaml
+    - expansion-identities.yaml
+    - breadth-identities.yaml
+    - community-identities.yaml
+    - kitchen-identities.yaml
+    - personal-identities.yaml
+    - content-identities.yaml
+    - expression-identities.yaml
+    - mobility-identities.yaml
+    - society-identities.yaml
+    - household-identities.yaml
+    - predicate-identities.yaml
+    - everyday-predicates-identities.yaml
+    - interpretation-identities.yaml
+  excluded_ids: [ko-nikl-48419-s001, ko-nikl-22209-s001]
+  policy: >-
+    Current registered society and household contents, including changes made
+    by their parent owner after the earlier handoff, are protected in full.
+    All listed readable parent-owned cohorts are protected regardless of
+    registration status. In particular interpretation and everyday-predicates
+    are protected as readable proposals without this worker registering them.
+    Each filename is composed once; sense rows are never silently deduplicated.
+    No in-progress unregistered worker shard was inspected. Both excluded IDs
+    remain absent; neither was researched, replaced, or added to reading work.
+    The later parent hold on ko-nikl-22209-s001 was checked by membership only.
+composition_snapshot:
+  scope: Historical worker-only snapshot before parent procedure/qualities integration and actuality-family adjudication; not current coverage.
+  protected_total_senses: 5946
+  protected_identity_groups: 3921
+  protected_core_senses: 5821
+  protected_core_free_identities: 3670
+  with_nature_total_senses: 6159
+  with_nature_identity_groups: 4047
+  with_nature_core_senses: 6034
+  with_nature_core_free_identities: 3781
+  additional_core_free_coverage: 111
+reading_handoff_history:
+  status: unassessed-parent-queue
+  policy: >-
+    The 131 new source parents and 28 reused parents below are exact source
+    coverage groups, not an assertion that 131 readings are missing. Reused
+    parents also require compatibility with their newly selected meanings.
+    New parent09374 shares a protected lexical family but still needs source-
+    parent reading verification. No reading ledger, pronunciation overlay,
+    recording, generated pr, or official-pronunciation claim was added.
+  new_parent_ids: [
+    ko-nikl-00550, ko-nikl-00647, ko-nikl-00648, ko-nikl-01058, ko-nikl-01683, ko-nikl-01685, ko-nikl-01716, ko-nikl-01972,
+    ko-nikl-01978, ko-nikl-02037, ko-nikl-02313, ko-nikl-02338, ko-nikl-02568, ko-nikl-02876, ko-nikl-05146, ko-nikl-05293,
+    ko-nikl-05335, ko-nikl-05772, ko-nikl-07500, ko-nikl-07525, ko-nikl-07795, ko-nikl-07819, ko-nikl-08165, ko-nikl-08685,
+    ko-nikl-08924, ko-nikl-09091, ko-nikl-09374, ko-nikl-09464, ko-nikl-09544, ko-nikl-09934, ko-nikl-11389, ko-nikl-12275,
+    ko-nikl-12290, ko-nikl-12294, ko-nikl-12301, ko-nikl-12882, ko-nikl-14232, ko-nikl-14233, ko-nikl-14745, ko-nikl-15958,
+    ko-nikl-15968, ko-nikl-16454, ko-nikl-16519, ko-nikl-16542, ko-nikl-16856, ko-nikl-16950, ko-nikl-17519, ko-nikl-17730,
+    ko-nikl-18034, ko-nikl-18090, ko-nikl-18230, ko-nikl-18473, ko-nikl-19616, ko-nikl-20309, ko-nikl-21023, ko-nikl-21024,
+    ko-nikl-21621, ko-nikl-21652, ko-nikl-22362, ko-nikl-22638, ko-nikl-22659, ko-nikl-22841, ko-nikl-22900, ko-nikl-23874,
+    ko-nikl-24116, ko-nikl-24147, ko-nikl-24250, ko-nikl-24381, ko-nikl-24581, ko-nikl-24725, ko-nikl-24799, ko-nikl-26083,
+    ko-nikl-26100, ko-nikl-26723, ko-nikl-26751, ko-nikl-26870, ko-nikl-27578, ko-nikl-27655, ko-nikl-28762, ko-nikl-29226,
+    ko-nikl-29421, ko-nikl-29622, ko-nikl-29857, ko-nikl-29977, ko-nikl-30049, ko-nikl-30382, ko-nikl-31912, ko-nikl-31993,
+    ko-nikl-32316, ko-nikl-32803, ko-nikl-32881, ko-nikl-34064, ko-nikl-34355, ko-nikl-34944, ko-nikl-35098, ko-nikl-35728,
+    ko-nikl-36678, ko-nikl-37778, ko-nikl-37799, ko-nikl-37979, ko-nikl-39011, ko-nikl-39172, ko-nikl-39173, ko-nikl-40185,
+    ko-nikl-40217, ko-nikl-40623, ko-nikl-41347, ko-nikl-42633, ko-nikl-42707, ko-nikl-42956, ko-nikl-44596, ko-nikl-45019,
+    ko-nikl-45085, ko-nikl-45363, ko-nikl-45377, ko-nikl-45397, ko-nikl-45418, ko-nikl-45533, ko-nikl-46347, ko-nikl-47646,
+    ko-nikl-47652, ko-nikl-48402, ko-nikl-48822, ko-nikl-49216, ko-nikl-49664, ko-nikl-49833, ko-nikl-49959, ko-nikl-50398,
+    ko-nikl-50528, ko-nikl-51490, ko-nikl-52188]
+  reused_parent_ids: [
+    ko-nikl-02039, ko-nikl-03572, ko-nikl-04575, ko-nikl-07836, ko-nikl-10622, ko-nikl-10812, ko-nikl-11969, ko-nikl-14172,
+    ko-nikl-14547, ko-nikl-16539, ko-nikl-21480, ko-nikl-21613, ko-nikl-22258, ko-nikl-24576, ko-nikl-32393, ko-nikl-33178,
+    ko-nikl-37115, ko-nikl-37463, ko-nikl-39159, ko-nikl-39453, ko-nikl-39735, ko-nikl-42045, ko-nikl-42635, ko-nikl-43241,
+    ko-nikl-47153, ko-nikl-49391, ko-nikl-50562, ko-nikl-50874]
+validation:
+  loader: curriculum_yaml.load_yaml
+  selection_contract: Exact four-field rows; unique known IDs; declared topics; integer levels 1-30; nonempty labels no longer than 64 characters.
+  source_contract: korean_program_adapter.sense_index checks the pinned registry and original definition positions.
+  identity_contract: korean_program_adapter.lexical_members checks exact shape, unique complete membership and source-parent sets for standalone and composed selections.
+  composition_method: >-
+    Used actual load_selections against the listed protected inputs, including
+    readable parent proposals whether registered or not, then an in-memory
+    manifest adding only nature-vocabulary.yaml and nature-identities.yaml.
+    Only manifest reads are substituted; every actual selection and identity
+    file is read normally. This simulates composition without registering any
+    cohort or bypassing collision, canonical-key or category checks. Protected
+    rows and identity members are checked for exact preservation.
+  correction_contract: Ten exact Korean/English evidence and selected-label proposals passed korean_program_adapter.source_corrections.
+  existing_tests:
+    command: python -B -m unittest test_korean_program.KoreanSelectionFilesTests test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+    result: Eight existing tests passed; no test dependency was installed.
+  limits: >-
+    Structural checks do not replace linguistic, scientific or pronunciation
+    review. Parent owns reading coverage, source adjudication, registration and
+    generated-program integration; no reading-dependent integration pass is claimed.
+source_and_license_limits: >-
+  The pinned source-senses.yaml supplies the original bilingual definitions.
+  ko-nikl-NNNNN is the project's preserved CSV record and sNNN the original
+  definition-list position, not an official NIKL sense identifier. Source bands
+  remain independent of authored placements. No registry, source record,
+  reading asset, manifest, shared runtime, or previously owned curriculum file
+  was edited. Source strings, provenance and licensing obligations remain
+  unchanged; quoted evidence does not relicense upstream material or imply
+  additional redistribution rights. No dictionary endorsement, exam readiness,
+  professional qualification, completed lexical inventory or planning-scale
+  completion is claimed. Qualified linguistic, scientific and reading review
+  remain necessary.

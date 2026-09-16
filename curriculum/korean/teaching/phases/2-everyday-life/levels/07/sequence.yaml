@@ -55,13 +55,13 @@ units:
   - {id: ko-nikl-32915-s001, ch: 기숙사, pr: 기숙싸, ds: a dormitory for students or employees}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-46779-s001, ch: 얽히다, pr: 얼키다, ds: for strings or ropes to become tangled or intertwined}
-  - {id: ko-nikl-16537-s001, ch: 닫히다, pr: 다치다, ds: 'for an open door, lid, or drawer to close'}
-  - {id: ko-nikl-47673-s001, ch: 열리다, pr: 열리다, ds: for something closed or locked to open}
-  - {id: ko-nikl-34017-s001, ch: 끊다, pr: 끈타, ds: 'to cut apart a connected thread, rope, or similar thing'}
-  - {id: ko-nikl-34017-s005, ch: 끊다, pr: 끈타, ds: to cut off a supply of water or electricity}
-  - {id: ko-nikl-02551-s002, ch: 슬쩍, pr: 슬쩍, ds: lightly; with little effort}
-  - {id: ko-nikl-41126-s001, ch: 조용히, pr: 조용히, ds: quietly; with no sound being heard}
+  - {id: ko-nikl-02568-s001, ch: 습기, pr: 습끼, ds: dampness due to moisture}
+  - {id: ko-nikl-27655-s001, ch: 건조, pr: 건조, ds: absence of moisture or humidity}
+  - {id: ko-nikl-35098-s001, ch: 냉기, pr: 냉ː기, ds: cold air or a chill}
+  - {id: ko-nikl-18819-s005, ch: 둔하다, pr: 둔ː하다, ds: for a blade to be blunt}
+  - {id: ko-nikl-34579-s001, ch: 날카롭다, pr: 날카롭따, ds: to have a sharp point or edge}
+  - {id: ko-nikl-35258-s001, ch: 넉넉하다, pr: 넝너카다, ds: to be ample in size or quantity}
+  - {id: ko-nikl-46465-s001, ch: 어수선하다, pr: 어수선하다, ds: to be cluttered with things mixed and tangled together}
   - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
   review_grammar:
   - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
@@ -75,14 +75,14 @@ units:
   - {id: ko-nikl-09969-s001, ch: 선글라스, pr: 선글라스, ds: tinted glasses for sunlight or fashion}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-12642-s003, ch: 잠기다, pr: 잠기다, ds: for buttons on clothes to be fastened}
-  - {id: ko-nikl-34100-s002, ch: 끼다, pr: 끼ː다, ds: to be threaded or fitted onto something securely}
   - {id: ko-nikl-34101-s002, ch: 끼다, pr: 끼다, ds: to fit or thread something securely onto another thing}
   - {id: ko-nikl-34108-s002, ch: 끼우다, pr: 끼우다, ds: to thread or fit something on so it cannot fall off}
   - {id: ko-nikl-07861-s005, ch: 빠지다, pr: 빠ː지다, ds: for a stain or dye to wash out}
   - {id: ko-nikl-07936-s007, ch: 빼다, pr: 빼ː다, ds: to wash or rinse out dirt or a stain}
   - {id: ko-nikl-32804-s006, ch: 기르다, pr: 기르다, ds: to grow one's hair or beard long}
   - {id: ko-nikl-19745-s022, ch: 떨어지다, pr: 떠러지다, ds: for clothes or shoes to wear out and become unusable}
+  - {id: ko-nikl-01797-s001, ch: 수수하다, pr: 수수하다, ds: to be plain and modest rather than flashy}
+  - {id: ko-nikl-51617-s001, ch: 화려하다, pr: 화려하다, ds: 'to be beautiful, bright, and showy'}
   review_grammar: []
 - id: level-07-food-01
   title: Food and meals - 1
@@ -93,14 +93,14 @@ units:
   - {id: ko-nikl-22364-s001, ch: 파전, pr: 파전, ds: green-onion pancake with additions such as seafood}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-09547-s003, ch: 생물, pr: 생물, ds: fresh unfrozen goods}
-  - {id: ko-nikl-04573-s002, ch: 알, pr: 알, ds: a single small round fruit or grain}
-  - {id: ko-nikl-31691-s002, ch: 권하다, pr: 권ː하다, ds: 'to invite someone to eat, smoke, or use something'}
   - {id: ko-nikl-16773-s002, ch: 당기다, pr: 당기다, ds: to feel an appetite or craving}
   - {id: ko-nikl-26874-s002, ch: 강하다, pr: 강하다, ds: to be high or intense in degree}
   - {id: ko-nikl-25594-s003, ch: 가늘다, pr: 가늘다, ds: to be fine-grained}
   - {id: ko-nikl-31564-s002, ch: 굵다, pr: 국ː따, ds: 'to be large in size (nuts, fruit, eggs, or similar items)'}
   - {id: ko-nikl-43858-s001, ch: 차다, pr: 차다, ds: to be cold in temperature; to lack warmth}
+  - {id: ko-nikl-23305-s001, ch: 푸짐하다, pr: 푸짐하다, ds: to be satisfyingly plentiful}
+  - {id: ko-nikl-29192-s001, ch: 고약하다, pr: 고ː야카다, ds: for a taste or smell to be disgusting or awful}
+  - {id: ko-nikl-27103-s002, ch: 개운하다, pr: 개운하다, ds: 'to taste clean and refreshing, not greasy'}
   review_grammar:
   - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
   - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -469,6 +469,7 @@ units:
   - {id: ko-nikl-34016-s006, ch: 끊기다, pr: 끈키다, ds: for a route to become blocked to people or goods}
   - {id: ko-nikl-34016-s011, ch: 끊기다, pr: 끈키다, ds: for a transport service to stop running}
   - {id: ko-nikl-34018-s011, ch: 끊어지다, pr: 끄너지다, ds: for a transport service to cease operating}
+  - {id: ko-nikl-28336-s001, ch: 경고하다, pr: 경ː고하다, ds: to warn someone in advance about danger}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-05832-s001, ch: 보이다, pr: 보이다, ds: to come into view; to be visible}
@@ -479,6 +480,25 @@ units:
   - {id: ko-nikl-19669-s005, ch: 떠나다, pr: 떠나다, ds: to set out on a journey}
   - {id: ko-nikl-48191-s001, ch: 오르다, pr: 오르다, ds: for a person or animal to go upward}
   - {id: ko-nikl-48191-s003, ch: 오르다, pr: 오르다, ds: to board a vehicle}
+  review_grammar:
+  - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
+  - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
+- id: level-07-travel-10
+  title: Travel and transport - 10
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary:
+  - {id: ko-nikl-48046-s001, ch: 예약하다, pr: 예ː야카다, ds: to reserve a place or room or item for later use}
+  - {id: ko-nikl-08685-s001, ch: 산꼭대기, pr: 산꼭때기, ds: the top of a mountain}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-19260-s001, ch: 들어서다, pr: 드러서다, ds: to step inside a place}
+  - {id: ko-nikl-27580-s001, ch: 건너가다, pr: 건ː너가다, ds: 'to go across a river, bridge, or road'}
+  - {id: ko-nikl-27580-s002, ch: 건너가다, pr: 건ː너가다, ds: to go from this side to the other}
+  - {id: ko-nikl-34017-s010, ch: 끊다, pr: 끈타, ds: to buy a ticket or fabric}
+  - {id: ko-nikl-34016-s006, ch: 끊기다, pr: 끈키다, ds: for a route to become blocked to people or goods}
+  - {id: ko-nikl-34016-s011, ch: 끊기다, pr: 끈키다, ds: for a transport service to stop running}
+  - {id: ko-nikl-34018-s011, ch: 끊어지다, pr: 끄너지다, ds: for a transport service to cease operating}
+  - {id: ko-nikl-28336-s001, ch: 경고하다, pr: 경ː고하다, ds: to warn someone in advance about danger}
   review_grammar:
   - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
   - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -534,6 +554,15 @@ units:
   - {id: ko-nikl-05833-s001, ch: 보이다, pr: 보이다, ds: to show someone a person or object}
   - {id: ko-nikl-16537-s002, ch: 닫히다, pr: 다치다, ds: for work or business operations to cease}
   - {id: ko-nikl-51776-s001, ch: 확인하다, pr: 화긴하다, ds: to check or acknowledge that something is so}
+  - {id: ko-nikl-03319-s001, ch: 신청하다, pr: 신청하다, ds: to make a formal request to an organization or institution}
+  - {id: ko-nikl-14334-s001, ch: 접수하다, pr: 접쑤하다, ds: to receive a spoken or written application or report}
+  - {id: ko-nikl-14912-s002, ch: 제시하다, pr: 제시하다, ds: to present an item for inspection or examination}
+  - {id: ko-nikl-25010-s001, ch: 허용하다, pr: 허용하다, ds: to allow and accept something without objecting}
+  - {id: ko-nikl-38449-s001, ch: 문의하다, pr: 무ː늬하다 / 무ː니하다, ds: to inquire about and discuss something one wants to know}
+  - {id: ko-nikl-39902-s001, ch: 발급하다, pr: 발그파다, ds: for an institution to issue a certificate or document}
+  - {id: ko-nikl-45925-s001, ch: 취소하다, pr: 취ː소하다, ds: to cancel plans or promises or withdraw an announcement}
+  - {id: ko-nikl-32613-s001, ch: 급하다, pr: 그파다, ds: to be urgent and need prompt handling}
+  - {id: ko-nikl-32620-s001, ch: 급히, pr: 그피, ds: urgently; requiring prompt handling}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-06917-s001, ch: 분실물, pr: 분실물, ds: a lost item}
@@ -609,13 +638,13 @@ units:
   - {id: ko-nikl-21815-s015, ch: 통하다, pr: 통하다, ds: to communicate with someone in a shared language}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-38543-s001, ch: 묻다, pr: 묻ː따, ds: to ask for an answer or explanation}
-  - {id: ko-nikl-27706-s014, ch: 걸다, pr: 걸ː다, ds: to make a telephone call}
-  - {id: ko-nikl-32008-s002, ch: 그러면, pr: 그러면, ds: then; taking up the preceding point to make a new claim}
   - {id: ko-nikl-32032-s002, ch: 그럼, pr: 그럼, ds: in that case; taking up the preceding point}
   - {id: ko-nikl-34017-s013, ch: 끊다, pr: 끈타, ds: to end a telephone or Internet exchange}
   - {id: ko-nikl-34016-s010, ch: 끊기다, pr: 끈키다, ds: for a telephone or Internet exchange to be cut off}
   - {id: ko-nikl-34018-s010, ch: 끊어지다, pr: 끄너지다, ds: for a telephone or Internet exchange to be interrupted}
+  - {id: ko-nikl-00042-s001, ch: 설명하다, pr: 설명하다, ds: to explain something in an easily understood way}
+  - {id: ko-nikl-04599-s001, ch: 알리다, pr: 알리다, ds: to let someone know or recall something}
+  - {id: ko-nikl-09041-s002, ch: 상관없다, pr: 상과넙따, ds: to be fine; no problem or cause for concern}
   - {id: ko-nikl-06699-s001, ch: 부탁하다, pr: 부ː타카다, ds: ask someone a favor; entrust a task}
   review_grammar:
   - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
@@ -631,15 +660,22 @@ units:
   - {id: ko-nikl-18846-s001, ch: 둘째, pr: 둘ː째, ds: second in order; before a noun}
   - {id: ko-nikl-00567-s001, ch: 셋째, pr: 섿ː째, ds: third in order; ordinal numeral}
   - {id: ko-nikl-00568-s001, ch: 셋째, pr: 섿ː째, ds: third in order; before a noun}
+  - {id: ko-nikl-47378-s001, ch: 연기하다, pr: 연기하다, ds: to postpone something to a later time}
+  - {id: ko-nikl-15958-s001, ch: 늦가을, pr: 늗까을, ds: late autumn}
+  - {id: ko-nikl-15968-s001, ch: 늦봄, pr: 늗뽐, ds: late spring}
+  - {id: ko-nikl-24116-s001, ch: 한겨울, pr: 한겨울, ds: the coldest part of winter}
+  - {id: ko-nikl-24250-s001, ch: 한여름, pr: 한녀름, ds: the hottest part of summer}
+  - {id: ko-nikl-45019-s001, ch: 초겨울, pr: 초겨울, ds: the beginning of winter}
+  - {id: ko-nikl-45085-s001, ch: 초봄, pr: 초봄, ds: early spring}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-11503-s001, ch: 일상, pr: 일쌍, ds: ordinary daily life}
-  - {id: ko-nikl-25574-s005, ch: 가깝다, pr: 가깝따, ds: to be near in time}
-  - {id: ko-nikl-36994-s004, ch: 멀다, pr: 멀ː다, ds: to have a long time still to go}
-  - {id: ko-nikl-18224-s013, ch: 돌리다, pr: 돌리다, ds: to postpone; to put off until later}
-  - {id: ko-nikl-38867-s001, ch: 미리, pr: 미리, ds: in advance; before an event}
-  - {id: ko-nikl-15962-s001, ch: 늦다, pr: 늗따, ds: to be later than the reference time}
   - {id: ko-nikl-44574-s002, ch: 천천히, pr: 천ː천히, ds: 'later, without rushing'}
+  - {id: ko-nikl-34064-s001, ch: 끝, pr: 끋, ds: the end of a period of time}
+  - {id: ko-nikl-24147-s001, ch: 한낮, pr: 한낟, ds: midday around noon}
+  - {id: ko-nikl-40185-s001, ch: 밤낮, pr: 밤낟, ds: day and night}
+  - {id: ko-nikl-16539-s002, ch: 달, pr: 달, ds: a month; one of a year's twelve divisions}
+  - {id: ko-nikl-24576-s002, ch: 해, pr: 해, ds: a year as one orbit of Earth around the Sun}
+  - {id: ko-nikl-24576-s003, ch: 해, pr: 해, ds: daylight hours from sunrise to sunset}
   - {id: ko-nikl-34291-s002, ch: 나중, pr: 나ː중, ds: afterward; after another task is done first}
   review_grammar:
   - {id: ko-topik1-g026, ch: V/A-고, ds: connect predicates without asserting a cause}
@@ -650,6 +686,7 @@ units:
   outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
   vocabulary:
   - {id: ko-nikl-44265-s001, ch: 찾다, pr: 찯따, ds: to look for; to find someone or something}
+  - {id: ko-nikl-13109-s001, ch: 재빠르다, pr: 재빠르다, ds: to be nimble and quick in movement}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-33554-s001, ch: 꺼내다, pr: 꺼ː내다, ds: to take something out}
@@ -673,14 +710,14 @@ units:
   - {id: ko-nikl-42214-s001, ch: 중심, pr: 중심, ds: the center of something}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-23097-s001, ch: 폭, pr: 폭, ds: width}
-  - {id: ko-nikl-39235-s002, ch: 밉다, pr: 밉따, ds: to be unattractive in appearance}
-  - {id: ko-nikl-05524-s001, ch: 별로, pr: 별로, ds: particularly; especially (usually with a negative)}
-  - {id: ko-nikl-04603-s001, ch: 알맞다, pr: 알ː맏따, ds: 'to be just right, neither too much nor too little'}
-  - {id: ko-nikl-13522-s001, ch: 적당하다, pr: 적땅하다, ds: 'to suit the requirements, conditions, or degree'}
-  - {id: ko-nikl-08059-s001, ch: 뾰족하다, pr: 뾰조카다, ds: 'to have a thin, sharp point'}
-  - {id: ko-nikl-14443-s001, ch: 정도, pr: 정도, ds: a degree or level of quality or intensity}
-  - {id: ko-nikl-15962-s003, ch: 늦다, pr: 늗따, ds: to be slow in speed}
+  - {id: ko-nikl-09934-s003, ch: 선, pr: 선, ds: the outline of an object}
+  - {id: ko-nikl-26083-s001, ch: 각, pr: 각, ds: a corner or edge where lines or faces meet}
+  - {id: ko-nikl-45363-s002, ch: 최고, pr: 최ː고 / 췌ː고, ds: the best or most outstanding thing}
+  - {id: ko-nikl-32393-s004, ch: 금, pr: 금, ds: the element meaning golden or made of gold}
+  - {id: ko-nikl-50874-s002, ch: 은, pr: 은, ds: silver-colored or made of silver}
+  - {id: ko-nikl-50562-s002, ch: 윤곽, pr: 윤곽, ds: an object's outer contour or general appearance}
+  - {id: ko-nikl-30593-s001, ch: 굉장하다, pr: 굉장하다 / 궹장하다, ds: to be immense; very large}
+  - {id: ko-nikl-22092-s001, ch: 특별하다, pr: 특뼐하다, ds: to be noticeably different; special}
   review_grammar:
   - {id: ko-topik1-g034, ch: A-(으)ㄴ N, ds: modify a noun with a descriptive predicate}
   - {id: ko-topik2-g018, ch: N보다 더, ds: compare a quality against a stated standard}
@@ -723,16 +760,73 @@ units:
   - {id: ko-nikl-37416-s001, ch: 모래, pr: 모래, ds: sand}
   - {id: ko-nikl-39453-s001, ch: 바위, pr: 바위, ds: a large rock}
   - {id: ko-nikl-07489-s001, ch: 비둘기, pr: 비둘기, ds: a pigeon or dove}
+  - {id: ko-nikl-00647-s001, ch: 소나기, pr: 소나기, ds: a sudden heavy shower that soon stops}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-00578-s001, ch: 소, pr: 소, ds: cattle; a cow or ox}
-  - {id: ko-nikl-05105-s001, ch: 양, pr: 양, ds: a sheep}
-  - {id: ko-nikl-05613-s001, ch: 병아리, pr: 병아리, ds: a chick; a young chicken}
-  - {id: ko-nikl-09337-s001, ch: 새끼, pr: 새끼, ds: a baby animal}
-  - {id: ko-nikl-16643-s001, ch: 닭, pr: 닥, ds: a chicken; a domestic fowl}
-  - {id: ko-nikl-18617-s001, ch: 돼지, pr: 돼ː지, ds: a pig}
-  - {id: ko-nikl-21560-s001, ch: 토끼, pr: 토끼, ds: a rabbit}
-  - {id: ko-nikl-26794-s001, ch: 강아지, pr: 강아지, ds: a puppy}
+  - {id: ko-nikl-16856-s001, ch: 대, pr: 대, ds: an upright hollow stalk of a tall plant}
+  - {id: ko-nikl-09374-s001, ch: 새싹, pr: 새싹, ds: new leaves sprouting from seed or stem}
+  - {id: ko-nikl-34355-s002, ch: 낙엽, pr: 나겹, ds: fallen leaves mainly in autumn}
+  - {id: ko-nikl-16519-s002, ch: 단풍, pr: 단풍, ds: a maple tree}
+  - {id: ko-nikl-24799-s001, ch: 햇볕, pr: 해뼏 / 핻뼏, ds: direct sunshine}
+  - {id: ko-nikl-47646-s001, ch: 열기, pr: 열기, ds: hot air or heat}
+  - {id: ko-nikl-05772-s001, ch: 보석, pr: 보ː석, ds: a precious stone used in jewelry}
+  - {id: ko-nikl-07836-s005, ch: 빛, pr: 빋, ds: the bright gleam of a glittering object}
+  review_grammar: []
+- id: level-07-nature-02
+  title: Nature and environment - 2
+  outcome: Explain an environmental change and distinguish evidence from prediction.
+  vocabulary:
+  - {id: ko-nikl-11389-s001, ch: 일교차, pr: 일교차, ds: daily variation in temperature or other weather measures}
+  - {id: ko-nikl-33178-s001, ch: 기후, pr: 기후, ds: weather conditions}
+  - {id: ko-nikl-37979-s001, ch: 무더위, pr: 무더위, ds: oppressive sweltering heat}
+  - {id: ko-nikl-07525-s001, ch: 비바람, pr: 비바람, ds: rain and wind}
+  - {id: ko-nikl-07795-s001, ch: 빗방울, pr: 비빵울 / 빋빵울, ds: a raindrop}
+  - {id: ko-nikl-24381-s001, ch: 함박눈, pr: 함방눈, ds: large-flaked snow}
+  - {id: ko-nikl-26870-s001, ch: 강풍, pr: 강풍, ds: a strong wind}
+  - {id: ko-nikl-27578-s001, ch: 건기, pr: 건기, ds: a dry period with little rain}
+  - {id: ko-nikl-49216-s001, ch: 우기, pr: 우ː기, ds: the rainy season}
+  - {id: ko-nikl-05146-s001, ch: 벌판, pr: 벌판, ds: wide open flat land}
+  - {id: ko-nikl-09091-s001, ch: 상류, pr: 상ː뉴, ds: the upper course of a river or stream}
+  - {id: ko-nikl-09464-s001, ch: 샘물, pr: 샘ː물, ds: spring water emerging from the ground}
+  - {id: ko-nikl-22900-s001, ch: 평지, pr: 평지, ds: broad level ground}
+  - {id: ko-nikl-23874-s001, ch: 하류, pr: 하ː류, ds: the lower course of a river or stream}
+  - {id: ko-nikl-26751-s001, ch: 강물, pr: 강물, ds: water flowing in a river}
+  - {id: ko-nikl-43241-s001, ch: 진흙, pr: 진흑, ds: reddish moist sticky soil}
+  - {id: ko-nikl-01972-s001, ch: 수중, pr: 수중, ds: the space under water}
+  - {id: ko-nikl-29977-s001, ch: 공중, pr: 공중, ds: the airspace between sky and ground}
+  - {id: ko-nikl-42707-s001, ch: 지상, pr: 지상, ds: the surface of the land}
+  - {id: ko-nikl-05293-s001, ch: 벚꽃, pr: 벋꼳, ds: cherry blossoms}
+  - {id: ko-nikl-34355-s001, ch: 낙엽, pr: 나겹, ds: leaves falling mainly in autumn}
+  - {id: ko-nikl-16519-s001, ch: 단풍, pr: 단풍, ds: autumn leaf coloration or colored autumn leaves}
+  - {id: ko-nikl-42045-s002, ch: 줄기, pr: 줄기, ds: an extending branch of a river or mountain range}
+  - {id: ko-nikl-01978-s001, ch: 수직, pr: 수직, ds: movement or falling straight downward}
+  - {id: ko-nikl-02876-s001, ch: 시야, pr: 시ː야, ds: field of vision}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-45832-s002, ch: 춥다, pr: 춥따, ds: to feel cold}
+  - {id: ko-nikl-02897-s001, ch: 시원하다, pr: 시원하다, ds: to be pleasantly cool}
+  - {id: ko-nikl-19594-s001, ch: 땅, pr: 땅, ds: land rather than water}
+  - {id: ko-nikl-22258-s001, ch: 파도, pr: 파도, ds: sea waves}
+  - {id: ko-nikl-37416-s001, ch: 모래, pr: 모래, ds: sand}
+  - {id: ko-nikl-39453-s001, ch: 바위, pr: 바위, ds: a large rock}
+  - {id: ko-nikl-07489-s001, ch: 비둘기, pr: 비둘기, ds: a pigeon or dove}
+  - {id: ko-nikl-00647-s001, ch: 소나기, pr: 소나기, ds: a sudden heavy shower that soon stops}
+  review_grammar: []
+- id: level-07-nature-03
+  title: Nature and environment - 3
+  outcome: Explain an environmental change and distinguish evidence from prediction.
+  vocabulary:
+  - {id: ko-nikl-37115-s003, ch: 면, pr: 면ː, ds: the side facing something}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-29977-s001, ch: 공중, pr: 공중, ds: the airspace between sky and ground}
+  - {id: ko-nikl-42707-s001, ch: 지상, pr: 지상, ds: the surface of the land}
+  - {id: ko-nikl-05293-s001, ch: 벚꽃, pr: 벋꼳, ds: cherry blossoms}
+  - {id: ko-nikl-34355-s001, ch: 낙엽, pr: 나겹, ds: leaves falling mainly in autumn}
+  - {id: ko-nikl-16519-s001, ch: 단풍, pr: 단풍, ds: autumn leaf coloration or colored autumn leaves}
+  - {id: ko-nikl-42045-s002, ch: 줄기, pr: 줄기, ds: an extending branch of a river or mountain range}
+  - {id: ko-nikl-01978-s001, ch: 수직, pr: 수직, ds: movement or falling straight downward}
+  - {id: ko-nikl-02876-s001, ch: 시야, pr: 시ː야, ds: field of vision}
   review_grammar: []
 - id: level-07-history-01
   title: History and change - 1
@@ -756,16 +850,19 @@ units:
   vocabulary:
   - {id: ko-nikl-42032-s003, ch: 줄, pr: 줄, ds: a counter for rows or lines of people or things}
   - {id: ko-nikl-03373-s001, ch: 실, pr: 실, ds: a counter for rooms}
+  - {id: ko-nikl-21024-s001, ch: 킬로미터, pr: 킬로미터, ds: kilometre unit}
+  - {id: ko-nikl-17730-s001, ch: 도, pr: 도ː, ds: degree of temperature}
+  - {id: ko-nikl-01058-s001, ch: 속력, pr: 송녁, ds: speed of motion or progress}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-45987-s004, ch: 층, pr: 층, ds: a unit for numbering floors from the bottom of a building}
-  - {id: ko-nikl-02397-s001, ch: 쉰, pr: 쉰ː, ds: fifty (native Korean numeral)}
-  - {id: ko-nikl-02398-s001, ch: 쉰, pr: 쉰ː, ds: fifty; before a noun or counter}
-  - {id: ko-nikl-48017-s001, ch: 예순, pr: 예순, ds: sixty (native Korean numeral)}
-  - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
-  - {id: ko-nikl-37379-s001, ch: 모금, pr: 모금, ds: a counter for mouthfuls of liquid or gas}
-  - {id: ko-nikl-04575-s001, ch: 알, pr: 알, ds: a counter for small round objects}
-  - {id: ko-nikl-14443-s003, ch: 정도, pr: 정도, ds: that amount or level}
+  - {id: ko-nikl-39172-s001, ch: 밀리미터, pr: 밀리미터, ds: millimetre unit}
+  - {id: ko-nikl-16454-s001, ch: 단위, pr: 다뉘, ds: a standard unit of measurement}
+  - {id: ko-nikl-14232-s003, ch: 점, pr: 점, ds: a decimal point}
+  - {id: ko-nikl-42633-s001, ch: 지름, pr: 지름, ds: a diameter through the center of a circle or sphere}
+  - {id: ko-nikl-45363-s001, ch: 최고, pr: 최ː고 / 췌ː고, ds: the highest level}
+  - {id: ko-nikl-45377-s001, ch: 최대, pr: 최ː대 / 췌ː대, ds: 'the maximum number, amount, or size'}
+  - {id: ko-nikl-45397-s001, ch: 최소, pr: 최ː소 / 췌ː소, ds: the minimum number or degree}
+  - {id: ko-nikl-45418-s001, ch: 최저, pr: 최ː저 / 췌ː저, ds: the lowest level or degree}
   review_grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-07-travel-practice-01
@@ -777,14 +874,14 @@ units:
   - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
   - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
   review_vocabulary:
-  - {id: ko-nikl-17812-s001, ch: 도로, pr: 도로, ds: back; in the opposite direction}
-  - {id: ko-nikl-19260-s001, ch: 들어서다, pr: 드러서다, ds: to step inside a place}
-  - {id: ko-nikl-27580-s001, ch: 건너가다, pr: 건ː너가다, ds: 'to go across a river, bridge, or road'}
   - {id: ko-nikl-27580-s002, ch: 건너가다, pr: 건ː너가다, ds: to go from this side to the other}
   - {id: ko-nikl-34017-s010, ch: 끊다, pr: 끈타, ds: to buy a ticket or fabric}
   - {id: ko-nikl-34016-s006, ch: 끊기다, pr: 끈키다, ds: for a route to become blocked to people or goods}
   - {id: ko-nikl-34016-s011, ch: 끊기다, pr: 끈키다, ds: for a transport service to stop running}
   - {id: ko-nikl-34018-s011, ch: 끊어지다, pr: 끄너지다, ds: for a transport service to cease operating}
+  - {id: ko-nikl-28336-s001, ch: 경고하다, pr: 경ː고하다, ds: to warn someone in advance about danger}
+  - {id: ko-nikl-48046-s001, ch: 예약하다, pr: 예ː야카다, ds: to reserve a place or room or item for later use}
+  - {id: ko-nikl-08685-s001, ch: 산꼭대기, pr: 산꼭때기, ds: the top of a mountain}
   review_grammar:
   - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
   - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -796,14 +893,14 @@ units:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
   - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
   review_vocabulary:
-  - {id: ko-nikl-17812-s001, ch: 도로, pr: 도로, ds: back; in the opposite direction}
-  - {id: ko-nikl-19260-s001, ch: 들어서다, pr: 드러서다, ds: to step inside a place}
-  - {id: ko-nikl-27580-s001, ch: 건너가다, pr: 건ː너가다, ds: 'to go across a river, bridge, or road'}
   - {id: ko-nikl-27580-s002, ch: 건너가다, pr: 건ː너가다, ds: to go from this side to the other}
   - {id: ko-nikl-34017-s010, ch: 끊다, pr: 끈타, ds: to buy a ticket or fabric}
   - {id: ko-nikl-34016-s006, ch: 끊기다, pr: 끈키다, ds: for a route to become blocked to people or goods}
   - {id: ko-nikl-34016-s011, ch: 끊기다, pr: 끈키다, ds: for a transport service to stop running}
   - {id: ko-nikl-34018-s011, ch: 끊어지다, pr: 끄너지다, ds: for a transport service to cease operating}
+  - {id: ko-nikl-28336-s001, ch: 경고하다, pr: 경ː고하다, ds: to warn someone in advance about danger}
+  - {id: ko-nikl-48046-s001, ch: 예약하다, pr: 예ː야카다, ds: to reserve a place or room or item for later use}
+  - {id: ko-nikl-08685-s001, ch: 산꼭대기, pr: 산꼭때기, ds: the top of a mountain}
   review_grammar:
   - {id: ko-topik1-g015, ch: N에서 N까지, ds: give a route's origin and endpoint}
   - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
@@ -849,14 +946,14 @@ units:
   grammar:
   - {id: ko-topik3-g016, ch: V/A-(으)ㄹ 때, ds: locate an action at the time of a situation}
   review_vocabulary:
-  - {id: ko-nikl-44574-s002, ch: 천천히, pr: 천ː천히, ds: 'later, without rushing'}
-  - {id: ko-nikl-34291-s002, ch: 나중, pr: 나ː중, ds: afterward; after another task is done first}
-  - {id: ko-nikl-44782-s001, ch: 첫째, pr: 첟째, ds: first in order; ordinal numeral}
-  - {id: ko-nikl-44783-s001, ch: 첫째, pr: 첟째, ds: first in order; before a noun}
-  - {id: ko-nikl-18843-s001, ch: 둘째, pr: 둘ː째, ds: second in order; ordinal numeral}
-  - {id: ko-nikl-18846-s001, ch: 둘째, pr: 둘ː째, ds: second in order; before a noun}
-  - {id: ko-nikl-00567-s001, ch: 셋째, pr: 섿ː째, ds: third in order; ordinal numeral}
   - {id: ko-nikl-00568-s001, ch: 셋째, pr: 섿ː째, ds: third in order; before a noun}
+  - {id: ko-nikl-47378-s001, ch: 연기하다, pr: 연기하다, ds: to postpone something to a later time}
+  - {id: ko-nikl-15958-s001, ch: 늦가을, pr: 늗까을, ds: late autumn}
+  - {id: ko-nikl-15968-s001, ch: 늦봄, pr: 늗뽐, ds: late spring}
+  - {id: ko-nikl-24116-s001, ch: 한겨울, pr: 한겨울, ds: the coldest part of winter}
+  - {id: ko-nikl-24250-s001, ch: 한여름, pr: 한녀름, ds: the hottest part of summer}
+  - {id: ko-nikl-45019-s001, ch: 초겨울, pr: 초겨울, ds: the beginning of winter}
+  - {id: ko-nikl-45085-s001, ch: 초봄, pr: 초봄, ds: early spring}
   review_grammar:
   - {id: ko-topik1-g026, ch: V/A-고, ds: connect predicates without asserting a cause}
   - {id: ko-topik2-g024, ch: N마다, ds: distribute an event over each interval or member}
@@ -884,14 +981,14 @@ units:
   grammar:
   - {id: ko-topik2-g002, ch: V-(으)면 안 되다, ds: prohibit an action by a rule or warning}
   review_vocabulary:
-  - {id: ko-nikl-17812-s001, ch: 도로, pr: 도로, ds: back; in the opposite direction}
-  - {id: ko-nikl-19260-s001, ch: 들어서다, pr: 드러서다, ds: to step inside a place}
-  - {id: ko-nikl-27580-s001, ch: 건너가다, pr: 건ː너가다, ds: 'to go across a river, bridge, or road'}
   - {id: ko-nikl-27580-s002, ch: 건너가다, pr: 건ː너가다, ds: to go from this side to the other}
   - {id: ko-nikl-34017-s010, ch: 끊다, pr: 끈타, ds: to buy a ticket or fabric}
   - {id: ko-nikl-34016-s006, ch: 끊기다, pr: 끈키다, ds: for a route to become blocked to people or goods}
   - {id: ko-nikl-34016-s011, ch: 끊기다, pr: 끈키다, ds: for a transport service to stop running}
   - {id: ko-nikl-34018-s011, ch: 끊어지다, pr: 끄너지다, ds: for a transport service to cease operating}
+  - {id: ko-nikl-28336-s001, ch: 경고하다, pr: 경ː고하다, ds: to warn someone in advance about danger}
+  - {id: ko-nikl-48046-s001, ch: 예약하다, pr: 예ː야카다, ds: to reserve a place or room or item for later use}
+  - {id: ko-nikl-08685-s001, ch: 산꼭대기, pr: 산꼭때기, ds: the top of a mountain}
   review_grammar:
   - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}

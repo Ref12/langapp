@@ -13,20 +13,43 @@ placement_policy: >
   implication, register, rhetorical contrast, and precise conceptual
   distinctions support 25-29. No arbitrary new level-30 pile is created.
 identity_policy: >
-  Five fragments add meanings to existing 단서, 함축, 검증, 근거, and 문법
-  without new free lemmas. New identities are explicit source-backed
+  Six fragments add meanings to existing 실상, 단서, 함축, 검증, 근거,
+  and 문법 without new free lemmas. New identities are explicit source-backed
   candidates, not verified lexicographic units. Similar English does not
   merge 신뢰성/신빙성 or 정설/통설/학설. The two 역설 parents retain their
   distinct forceful-assertion and counterargument/paradox meanings.
   고정 관념 remains an actual source nominal compound with its original
   space and empty POS, not an arbitrary phrase promoted to a headword.
 composition_cautions:
-  - Future 실상/내심 adverb counterparts need explicit identity-family composition, not a second automatic free identity.
+  - 실상 has the explicit noun/adverb family decision below; future 내심 adverb counterparts still need source evidence.
   - The near-overlapping 실상 parent 03446 is not selected merely to add a dictionary entry.
   - Already-selected bound 여지47192-s001 is not duplicated.
   - Possession 소지00918 and small-finger/toe 소지00917 do not supply the desired potential/ground meaning.
   - Physical 윤곽s002, 반전s001/s002, acoustic 여운s002, and purification 정수14570 are not selected here.
   - Source concepts about correctness, necessity, or universality are not endorsements of particular claims or theories.
+actuality_family_adjudication:
+  status: source-compared conservative family accounting; unreviewed
+  surviving_identity: ko-lex-03447
+  retired_provisional_identity: ko-lex-03445
+  category: function-item
+  noun_sense: ko-nikl-03445-s001
+  adverb_sense: ko-nikl-03447-s001
+  unselected_near_overlap: ko-nikl-03446-s001
+  evidence_source: nikl-official-20260819
+  official_origin_evidence:
+    - {source_parent: ko-nikl-03445, official_entry_id: '78660', origin: 實狀, source_pos: 명사}
+    - {source_parent: ko-nikl-03447, official_entry_id: '78662', origin: 實狀, source_pos: 부사}
+    - {source_parent: ko-nikl-03446, official_entry_id: '78663', origin: 實相, source_pos: 명사}
+  rationale: >
+    Compare all three complete Korean definitions and their actual official
+    entry metadata, not only spelling or POS. The selected actual-state noun
+    and in-reality adverb share 實狀 and a closely related actuality meaning;
+    the unused near-overlapping noun has 實相. Preserve the existing
+    function-accounted family conservatively, as with the explicit 대략
+    noun/function family, rather than promoting another free count.
+    This retires only the recently provisional lexical grouping key; both
+    source sense IDs, labels, source POS, bands, placements and readings are
+    unchanged. The earlier 61-new-free estimate for this cohort is now 60.
 source_correction_requests:
   ko-nikl-39751-s001:
     source_korean: 반대되는 근거를 들어 어떤 사실이나 주장이 옳지 않음을 증명함. 또는 그런 증거.
