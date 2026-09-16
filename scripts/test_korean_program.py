@@ -783,6 +783,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "demeanor-notes.yaml",
             "argumentation-notes.yaml",
             "argumentation-support-notes.yaml",
+            "measurement-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -2542,6 +2543,125 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             self.assertIn(raw_marker, evidence[item]["source_english"])
             self.assertEqual(words[item]["ds"], authored_label)
             self.assertEqual(evidence[item]["source_correction"]["review_status"], "unreviewed")
+
+    def test_measurement_comparators_preserve_inclusive_and_exclusive_source_boundaries(self):
+        authoring = self.root / "authoring" / "teaching"
+        _, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        notes = load_yaml(authoring / "measurement-notes.yaml")
+        words, sources = self.references.vocabulary, self.references.provenance
+        for identifier in notes["identity_adjudication"]["new_function_ids"]:
+            self.assertEqual(groups[identifier]["category"], "function-item")
+        for item, marker in (("ko-nikl-10769-s001", "at least"), ("ko-nikl-11007-s001", "at most")):
+            self.assertIn(marker, words[item]["ds"])
+            self.assertIn("포함하여", sources[item]["source_korean"])
+        self.assertIn("less than", words["ko-nikl-38869-s001"]["ds"])
+        self.assertIn("이르지 못함", sources["ko-nikl-38869-s001"]["source_korean"])
+        self.assertIn("ahead of", words["ko-nikl-10769-s002"]["ds"])
+        self.assertIn("after or below", words["ko-nikl-11007-s002"]["ds"])
+        self.assertIn("within", words["ko-nikl-10501-s001"]["ds"])
+        self.assertEqual(groups["ko-lex-45026"]["category"], "free-lemma")
+        self.assertEqual(
+            self.references.lexical_identity["ko-nikl-45026-s001"],
+            self.references.lexical_identity["ko-nikl-45030-s001"],
+        )
+        self.assertEqual(
+            self.references.lexical_identity["ko-nikl-45397-s001"],
+            self.references.lexical_identity["ko-nikl-45398-s001"],
+        )
+
+    def test_measurement_same_spellings_do_not_replace_unrelated_source_parents(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for first, second in (
+            ("ko-nikl-13782-s001", "ko-nikl-13783-s001"),
+            ("ko-nikl-33238-s001", "ko-nikl-33239-s001"),
+            ("ko-nikl-10501-s001", "ko-nikl-10503-s001"),
+        ):
+            self.assertEqual(words[first]["ch"], words[second]["ch"])
+            self.assertNotEqual(identities[first], identities[second])
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-33238"]["source_part_of_speech"], "동사")
+        self.assertEqual(parents["ko-nikl-33239"]["source_part_of_speech"], "형용사")
+        self.assertIn("hair", words["ko-nikl-33238-s001"]["ds"])
+        cohort = load_yaml(self.root / "authoring" / "teaching" / "measurement-vocabulary.yaml")
+        selected_parents = {row["id"].rsplit("-s", 1)[0] for row in cohort}
+        self.assertFalse(selected_parents & {
+            "ko-nikl-08778", "ko-nikl-10502", "ko-nikl-10770", "ko-nikl-10771",
+            "ko-nikl-10772", "ko-nikl-14414", "ko-nikl-32848", "ko-nikl-34999",
+            "ko-nikl-40633", "ko-nikl-40634", "ko-nikl-40636", "ko-nikl-46088",
+        })
+
+    def test_measurement_actual_adverbs_deepen_predicates_without_absorbing_measure_nouns(self):
+        identities = self.references.lexical_identity
+        for base, adverb in (
+            ("ko-nikl-15283-s001", "ko-nikl-15288-s006"),
+            ("ko-nikl-33239-s002", "ko-nikl-33259-s001"),
+            ("ko-nikl-33312-s002", "ko-nikl-33317-s002"),
+            ("ko-nikl-41623-s001", "ko-nikl-41628-s001"),
+        ):
+            self.assertEqual(identities[base], identities[adverb])
+        for noun, adverb in (
+            ("ko-nikl-15287-s001", "ko-nikl-15288-s001"),
+            ("ko-nikl-33258-s001", "ko-nikl-33259-s001"),
+            ("ko-nikl-33316-s001", "ko-nikl-33317-s001"),
+        ):
+            self.assertNotEqual(identities[noun], identities[adverb])
+        self.assertIn("high-pitched", self.references.vocabulary["ko-nikl-15283-s007"]["ds"])
+        self.assertIn("sound intensity", self.references.vocabulary["ko-nikl-15283-s012"]["ds"])
+        self.assertIn("loudly or", self.references.vocabulary["ko-nikl-15288-s006"]["ds"])
+        self.assertEqual(self.references.provenance["ko-nikl-15288-s006"]["source_position"], 6)
+        self.assertEqual(self.references.vocabulary["ko-nikl-15288-s006"]["pr"], "노피")
+
+    def test_measurement_source_admission_and_readings_preserve_complete_real_evidence(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "measurement-notes.yaml")
+        rows = load_yaml(authoring / "measurement-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requested = notes["source"]["support_parent_ids"]
+        self.assertEqual(len(rows), 93)
+        self.assertEqual(len(requested), 31)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requested), 35)
+        for item in requested:
+            parent = parents[item]
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertEqual(
+                [sense["source_position"] for sense in parent["senses"]],
+                list(range(1, len(parent["senses"]) + 1)),
+            )
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+        for item, official in notes["reading_review"]["explicit_crosswalks"].items():
+            first_selected = next(row["id"] for row in rows if row["id"].startswith(item + "-s"))
+            self.assertEqual(self.references.provenance[first_selected]["reading"]["official_entry_id"], official)
+
+    def test_measurement_leftovers_multiples_and_optical_ratio_keep_actual_meanings(self):
+        words, sources, identities = (
+            self.references.vocabulary, self.references.provenance, self.references.lexical_identity,
+        )
+        for suffix, marker in ((1, "remaining"), (2, "unfinished"), (3, "result"), (4, "division")):
+            item = f"ko-nikl-34196-s{suffix:03d}"
+            self.assertIn(marker, words[item]["ds"])
+            self.assertEqual(identities[item], identities["ko-nikl-34196-s001"])
+        self.assertIn("double", words["ko-nikl-40635-s001"]["ds"])
+        self.assertIn("multiple", words["ko-nikl-40635-s002"]["ds"])
+        self.assertEqual(identities["ko-nikl-40635-s001"], identities["ko-nikl-40635-s002"])
+        self.assertIn("apparent-to-actual", words["ko-nikl-40670-s001"]["ds"])
+        self.assertIn("ratio of the actual size", sources["ko-nikl-40670-s001"]["source_english"])
+        self.assertIn("after filling", words["ko-nikl-47094-s001"]["ds"])
+        self.assertIn("unused", sources["ko-nikl-47094-s001"]["source_english"])
+
+    def test_measurement_public_description_does_not_claim_more_than_its_source(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("dispersed", words["ko-nikl-06885-s001"]["ds"])
+        self.assertNotIn("variance", words["ko-nikl-06885-s001"]["ds"])
+        self.assertIn("pair matching", words["ko-nikl-17316-s001"]["ds"])
+        self.assertIn("spending", words["ko-nikl-31881-s002"]["ds"])
+        self.assertIn("irregular", words["ko-nikl-32849-s002"]["ds"])
+        self.assertIn("ratio or rate", words["ko-nikl-18385-s001"]["ds"])
+        self.assertIn("contest", sources["ko-nikl-18385-s001"]["source_english"])
+        self.assertIn("specified time", words["ko-nikl-14377-s001"]["ds"])
+        self.assertIn("hour", sources["ko-nikl-14377-s001"]["source_english"])
+        self.assertIn("set", words["ko-nikl-15283-s003"]["ds"])
+        self.assertIn("normal", sources["ko-nikl-15283-s003"]["source_english"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

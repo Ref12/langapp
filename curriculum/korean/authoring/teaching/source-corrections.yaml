@@ -5,6 +5,61 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-14377-s001:
+    source_korean: "정확히 그 시각."
+    source_english: "An exact hour."
+    authored_interpretation: the exact specified time
+    rationale: Preserve the Korean specified time rather than a whole-hour-only restriction; idiomatic time phrasing remains unreviewed.
+  ko-nikl-15283-s003:
+    source_korean: "온도, 습도, 압력 등이 정해진 기준보다 위에 있다."
+    source_english: "The temperature, humidity, pressure, etc., being higher than normal."
+    authored_interpretation: to exceed a set temperature, humidity or pressure reference
+    rationale: A set reference is not necessarily a normal or medically safe value.
+  ko-nikl-15288-s002:
+    source_korean: "온도나 습도나 압력 등이 기준치보다 위에 있게."
+    source_english: "In the state of the temperature, humidity, pressure, etc., being higher than normal."
+    authored_interpretation: above a reference temperature, humidity or pressure level
+    rationale: Preserve the stated reference value without an unsupported normality or safety threshold.
+  ko-nikl-15288-s006:
+    source_korean: "소리나 음계가 보통보다 크거나 위에 있게."
+    source_english: "In the staten of a sound being at a high pitch."
+    authored_interpretation: loudly or at a high pitch
+    rationale: Korean includes loudness as well as pitch; the English omits the first alternative.
+  ko-nikl-18385-s001:
+    source_korean: "같은 비율."
+    source_english: "The state of being equal in points, the score, etc., in a contest."
+    authored_interpretation: the same ratio or rate
+    rationale: The Korean is not restricted to contest scores; preserve its ratio/rate meaning.
+  ko-nikl-33239-s003:
+    source_korean: "글의 분량이나 말수가 많다."
+    source_english: "A piece of writing being long and containing lots of words."
+    authored_interpretation: for writing or speech to contain many words
+    rationale: Preserve 말수 as well as written volume rather than erasing spoken words.
+  ko-nikl-33317-s003:
+    source_korean: "수준이 높거나 정도가 심하게."
+    source_english: "At a high level or to an excessive degree."
+    authored_interpretation: at a high level or to an intense degree
+    rationale: Intense degree need not always exceed an acceptable limit; do not add an automatic adverse-value judgment.
+  ko-nikl-40635-s002:
+    source_korean: "어떤 수의 몇 배가 되는 수."
+    source_english: "A number obtained by multiplying another number a certain number of times. "
+    authored_interpretation: a number that is some multiple of another
+    rationale: Korean specifies a multiple rather than repeated multiplication by the same number; retain the original source scope.
+  ko-nikl-40670-s001:
+    source_korean: "거울, 렌즈, 현미경, 망원경 등을 통하여 보이는 물체의 크기와 실제 크기의 비율."
+    source_english: "A ratio of the actual size of an object to that of its image seen through a mirror, lens, telescope, microscope, etc. "
+    authored_interpretation: apparent-to-actual size ratio through an optical device
+    rationale: Preserve apparent-image size relative to actual size, not the English's reversed order or an invented digital-zoom meaning.
+  ko-nikl-41929-s001:
+    source_korean: "전파나 음파가 1초 동안에 흔들려 움직이는 횟수."
+    source_english: "The number of times an electric or sound wave vibrates per second."
+    authored_interpretation: radio or sound-wave vibrations per second
+    rationale: Preserve 전파 radio waves rather than an unrestricted electric-wave gloss, as well as the per-second and sound-wave scope.
+  ko-nikl-47094-s001:
+    source_korean: "어떤 양을 채우고 남은 부분."
+    source_english: "The remaining or unused portion of something. "
+    authored_interpretation: the surplus left after filling a set amount
+    rationale: Keep the Korean after-filling condition instead of including every merely unused portion.
   ko-nikl-01091-s001:
     source_korean: 마음속으로 세우는 계획.
     source_english: Secretly harbored plans.

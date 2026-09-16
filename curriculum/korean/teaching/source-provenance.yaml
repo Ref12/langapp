@@ -30608,7 +30608,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '24107'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24107
-      pronunciations:
+      pronunciations: &id1429
       - 이내
     lexical_identity: ko-lex-10503
     lexical_category: free-lemma
@@ -134523,7 +134523,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '57179'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57179
-      pronunciations:
+      pronunciations: &id1441
       - 문턱
     lexical_identity: ko-lex-38492
     lexical_category: free-lemma
@@ -150615,6 +150615,1896 @@ items:
 
         '
     lexical_identity: ko-lex-40494
+    lexical_category: free-lemma
+  ko-nikl-02201-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2201
+    source_parent: ko-nikl-02201
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'A relationship of order such as front and back, left and right, and up and down,
+      etc., fixed according to a certain standard. '
+    source_korean: 정해진 기준에서 앞뒤, 좌우, 위아래 등으로 벌여진 관계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '64563'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64563
+      pronunciations: &id1427
+      - 순ː서
+      match_reason: 'Compare both sequence-noun positions. First-position 기준에서 becomes 기준에 따라 and 벌여진
+        becomes 이루어진, retaining the standard-based spatial ordering; position2 is identical. Preserve
+        actual 순ː서 citation text and both original definitions.
+
+        '
+    lexical_identity: ko-lex-02201
+    lexical_category: free-lemma
+  ko-nikl-02201-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2201
+    source_parent: ko-nikl-02201
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: An order by which one does a certain task or a sequence in which work is done.
+    source_korean: 어떤 일을 하거나 어떤 일이 이루어지는 차례.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '64563'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64563
+      pronunciations: *id1427
+      match_reason: 'Compare both sequence-noun positions. First-position 기준에서 becomes 기준에 따라 and 벌여진
+        becomes 이루어진, retaining the standard-based spatial ordering; position2 is identical. Preserve
+        actual 순ː서 citation text and both original definitions.
+
+        '
+    lexical_identity: ko-lex-02201
+    lexical_category: free-lemma
+  ko-nikl-02216-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2216
+    source_parent: ko-nikl-02216
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A position or status that shows the order of people or things according to certain
+      standards.
+    source_korean: 어떤 기준에 따라 순서를 나타내는 위치나 지위.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15799'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15799
+      pronunciations:
+      - 수ː뉘
+    lexical_identity: ko-lex-02216
+    lexical_category: free-lemma
+  ko-nikl-04556-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4556
+    source_parent: ko-nikl-04556
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The inside and outside.
+    source_korean: 안과 밖.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '16012'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16012
+      pronunciations: &id1428
+      - 안팍
+    lexical_identity: ko-lex-04556
+    lexical_category: free-lemma
+  ko-nikl-04556-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4556
+    source_parent: ko-nikl-04556
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The thought on the inside and the behavior on the outside.
+    source_korean: 마음속으로 하는 생각과 겉으로 드러나는 행동.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '16012'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16012
+      pronunciations: *id1428
+    lexical_identity: ko-lex-04556
+    lexical_category: free-lemma
+  ko-nikl-04556-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4556
+    source_parent: ko-nikl-04556
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A degree that is slightly higher or lower than a certain amount.
+    source_korean: 어떤 수량에 약간 모자라거나 넘치는 정도.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '16012'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16012
+      pronunciations: *id1428
+    lexical_identity: ko-lex-04556
+    lexical_category: free-lemma
+  ko-nikl-06885-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6885
+    source_parent: ko-nikl-06885
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Things or people being dispersed; the act of dispersing things or people.
+    source_korean: 갈라져 흩어짐. 또는 그렇게 되게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60840'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60840
+      pronunciations:
+      - 분산
+    lexical_identity: ko-lex-06885
+    lexical_category: free-lemma
+  ko-nikl-08779-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8779
+    source_parent: ko-nikl-08779
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of calculating a numerical figure or value. '
+    source_korean: 수치나 값을 계산해 냄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61817'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61817
+      pronunciations:
+      - 산ː출
+    lexical_identity: ko-lex-08779
+    lexical_category: free-lemma
+  ko-nikl-09292-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9292
+    source_parent: ko-nikl-09292
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The limit that something cannot go over.
+    source_korean: 더 이상 올라갈 수 없는 한계가 되는 선.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83328'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83328
+      pronunciations:
+      - 상ː한선
+    lexical_identity: ko-lex-09292
+    lexical_category: free-lemma
+  ko-nikl-10501-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10501
+    source_parent: ko-nikl-10501
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Within a certain range.
+    source_korean: 일정한 범위의 안.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24109'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24109
+      pronunciations:
+      - 이ː내
+    lexical_identity: ko-lex-10501
+    lexical_category: function-item
+  ko-nikl-10503-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10503
+    source_parent: ko-nikl-10503
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Continuously from a certain moment.
+    source_korean: 어느 때부터 계속.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24107'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24107
+      pronunciations: *id1429
+    lexical_identity: ko-lex-10503
+    lexical_category: free-lemma
+  ko-nikl-10769-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10769
+    source_parent: ko-nikl-10769
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: A state in which something equals to or is larger or better than a certain point of
+      reference in quantity or degree.
+    source_korean: 수량이나 정도가 일정한 기준을 포함하여 그보다 많거나 나은 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66580'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66580
+      pronunciations: &id1430
+      - 이ː상
+    lexical_identity: ko-lex-10769
+    lexical_category: function-item
+  ko-nikl-10769-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10769
+    source_parent: ko-nikl-10769
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: A state in which something precedes or tops a certain point of reference in order
+      or ranking.
+    source_korean: 순서나 위치가 일정한 기준보다 앞이거나 위인 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66580'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66580
+      pronunciations: *id1430
+    lexical_identity: ko-lex-10769
+    lexical_category: function-item
+  ko-nikl-10769-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10769
+    source_parent: ko-nikl-10769
+    source_position: 3
+    source_band: beginner
+    reference_level: topik-2
+    source_english: Since it has turned out that way.
+    source_korean: 이미 그렇게 된 바에는.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66580'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66580
+      pronunciations: *id1430
+    lexical_identity: ko-lex-10769
+    lexical_category: function-item
+  ko-nikl-10769-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10769
+    source_parent: ko-nikl-10769
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-2
+    source_english: A word used at the end of a document, lecture, etc., meaning the &quot;end.&quot;
+    source_korean: 서류나 강연 등에 마지막에 써서 ‘끝’의 뜻을 나타내는 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66580'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66580
+      pronunciations: *id1430
+    lexical_identity: ko-lex-10769
+    lexical_category: function-item
+  ko-nikl-11007-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11007
+    source_parent: ko-nikl-11007
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A state in which something is equal to or is smaller or lower than a certain point
+      of reference in quantity or degree.
+    source_korean: 수량이나 정도가 일정한 기준을 포함하여 그보다 적거나 모자란 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70755'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70755
+      pronunciations: &id1431
+      - 이ː하
+    lexical_identity: ko-lex-11007
+    lexical_category: function-item
+  ko-nikl-11007-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11007
+    source_parent: ko-nikl-11007
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A state in which something comes after or is below a certain point of reference in
+      order or ranking.
+    source_korean: 순서나 위치가 일정한 기준보다 뒤거나 아래인 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70755'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70755
+      pronunciations: *id1431
+    lexical_identity: ko-lex-11007
+    lexical_category: function-item
+  ko-nikl-12559-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12559
+    source_parent: ko-nikl-12559
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The remaining amount.
+    source_korean: 남은 분량.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76133'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76133
+      pronunciations: &id1432
+      - 잘량
+    lexical_identity: ko-lex-12559
+    lexical_category: free-lemma
+  ko-nikl-12559-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12559
+    source_parent: ko-nikl-12559
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Things left.
+    source_korean: 남은 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76133'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76133
+      pronunciations: *id1432
+    lexical_identity: ko-lex-12559
+    lexical_category: free-lemma
+  ko-nikl-12575-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12575
+    source_parent: ko-nikl-12575
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The state of being still left; things left. '
+    source_korean: 아직 남아 있음. 또는 그런 나머지.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77885'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77885
+      pronunciations:
+      - 자녀
+    lexical_identity: ko-lex-12575
+    lexical_category: free-lemma
+  ko-nikl-13782-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13782
+    source_parent: ko-nikl-13782
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The entire, overall aspect of something, or all its areas.
+    source_korean: 전체적인 모든 면. 또는 모든 부문.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74315'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74315
+      pronunciations: &id1433
+      - 전면
+    lexical_identity: ko-lex-13782
+    lexical_category: free-lemma
+  ko-nikl-13782-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13782
+    source_parent: ko-nikl-13782
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The entirety of a surface.
+    source_korean: 하나의 면 전체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74315'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74315
+      pronunciations: *id1433
+    lexical_identity: ko-lex-13782
+    lexical_category: free-lemma
+  ko-nikl-13783-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13783
+    source_parent: ko-nikl-13783
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The front side of something.
+    source_korean: 앞쪽 면.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91797'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91797
+      pronunciations: &id1434
+      - 전면
+    lexical_identity: ko-lex-13783
+    lexical_category: free-lemma
+  ko-nikl-13783-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13783
+    source_parent: ko-nikl-13783
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The forward direction.
+    source_korean: 앞을 향한 방향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91797'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91797
+      pronunciations: *id1434
+    lexical_identity: ko-lex-13783
+    lexical_category: free-lemma
+  ko-nikl-14377-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14377
+    source_parent: ko-nikl-14377
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An exact hour.
+    source_korean: 정확히 그 시각.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74961'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74961
+      pronunciations:
+      - 정ː각
+    source_correction:
+      source_korean: 정확히 그 시각.
+      source_english: An exact hour.
+      authored_interpretation: the exact specified time
+      rationale: Preserve the Korean specified time rather than a whole-hour-only restriction; idiomatic
+        time phrasing remains unreviewed.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-14377
+    lexical_category: free-lemma
+  ko-nikl-14413-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14413
+    source_parent: ko-nikl-14413
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The state of a deadline or period being set at a defined interval, or such deadline
+      or period.
+    source_korean: 기한이나 기간이 일정하게 정해져 있음. 또는 그 기한이나 기간.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '31740'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=31740
+      pronunciations:
+      - 정ː기
+    lexical_identity: ko-lex-14413
+    lexical_category: free-lemma
+  ko-nikl-14456-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14456
+    source_parent: ko-nikl-14456
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A certain defined quantity.
+    source_korean: 일정하게 정해진 양.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76068'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76068
+      pronunciations:
+      - 정ː냥
+    lexical_identity: ko-lex-14456
+    lexical_category: free-lemma
+  ko-nikl-15283-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: The space from bottom to top being large.
+    source_korean: 아래에서 위까지의 벌어진 사이가 크다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 3
+    source_band: beginner
+    reference_level: topik-1
+    source_english: The temperature, humidity, pressure, etc., being higher than normal.
+    source_korean: 온도, 습도, 압력 등이 정해진 기준보다 위에 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    source_correction:
+      source_korean: 온도, 습도, 압력 등이 정해진 기준보다 위에 있다.
+      source_english: The temperature, humidity, pressure, etc., being higher than normal.
+      authored_interpretation: to exceed a set temperature, humidity or pressure reference
+      rationale: A set reference is not necessarily a normal or medically safe value.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-1
+    source_english: The quality, level, ability, or value being higher than the average.
+    source_korean: 품질이나 수준 또는 능력이나 가치가 보통보다 위에 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 5
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A price or rate being higher than the average.
+    source_korean: 값이나 비율이 보통보다 위에 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s006:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 6
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Someone's status or position being higher than the average.
+    source_korean: 지위나 신분 등이 보통보다 위에 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s007:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 7
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A sound being at a high pitch or its number of vibrations being large.
+    source_korean: 소리가 음의 차례에서 위쪽이거나 진동수가 크다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s009:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 9
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'The force of someone or something being great and powerful. '
+    source_korean: 기운 등이 매우 세차고 대단한 상태에 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s010:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 10
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'An opinion being more predominant than others. '
+    source_korean: 어떤 의견이 다른 의견보다 많고 세다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15283-s012:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15283
+    source_parent: ko-nikl-15283
+    source_position: 12
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A sound being strong.
+    source_korean: 소리의 세기가 세다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64523
+      pronunciations: *id173
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15288-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15288
+    source_parent: ko-nikl-15288
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: High, in an upward direction.
+    source_korean: 아래에서 위쪽으로 높게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48746'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48746
+      pronunciations: &id1435
+      - 노피
+      match_reason: 'The ten ordered adverb definitions are identical except second-position 기준치 becomes
+        기준. Actual citation is 노피. Official sense numbers appear as1,2,3,4,9,5,6,10,7,8, not original
+        positional ordinals; this whole-parent reading match never renumbers project senses or mistakes
+        measured-height noun15287 for the adverb.
+
+        '
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15288-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15288
+    source_parent: ko-nikl-15288
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: In the state of the temperature, humidity, pressure, etc., being higher than normal.
+    source_korean: 온도나 습도나 압력 등이 기준치보다 위에 있게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48746'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48746
+      pronunciations: *id1435
+      match_reason: 'The ten ordered adverb definitions are identical except second-position 기준치 becomes
+        기준. Actual citation is 노피. Official sense numbers appear as1,2,3,4,9,5,6,10,7,8, not original
+        positional ordinals; this whole-parent reading match never renumbers project senses or mistakes
+        measured-height noun15287 for the adverb.
+
+        '
+    source_correction:
+      source_korean: 온도나 습도나 압력 등이 기준치보다 위에 있게.
+      source_english: In the state of the temperature, humidity, pressure, etc., being higher than normal.
+      authored_interpretation: above a reference temperature, humidity or pressure level
+      rationale: Preserve the stated reference value without an unsupported normality or safety threshold.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15288-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15288
+    source_parent: ko-nikl-15288
+    source_position: 3
+    source_band: beginner
+    reference_level: topik-2
+    source_english: In the state of the quality, level, ability, or value being higher than the average.
+    source_korean: 품질이나 수준 또는 능력이나 가치가 보통보다 위에 있게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48746'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48746
+      pronunciations: *id1435
+      match_reason: 'The ten ordered adverb definitions are identical except second-position 기준치 becomes
+        기준. Actual citation is 노피. Official sense numbers appear as1,2,3,4,9,5,6,10,7,8, not original
+        positional ordinals; this whole-parent reading match never renumbers project senses or mistakes
+        measured-height noun15287 for the adverb.
+
+        '
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15288-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15288
+    source_parent: ko-nikl-15288
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-2
+    source_english: In the state of a price or rate being higher that the average.
+    source_korean: 값이나 비율이 보통보다 위에 있게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48746'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48746
+      pronunciations: *id1435
+      match_reason: 'The ten ordered adverb definitions are identical except second-position 기준치 becomes
+        기준. Actual citation is 노피. Official sense numbers appear as1,2,3,4,9,5,6,10,7,8, not original
+        positional ordinals; this whole-parent reading match never renumbers project senses or mistakes
+        measured-height noun15287 for the adverb.
+
+        '
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15288-s006:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15288
+    source_parent: ko-nikl-15288
+    source_position: 6
+    source_band: beginner
+    reference_level: topik-2
+    source_english: In the staten of a sound being at a high pitch.
+    source_korean: 소리나 음계가 보통보다 크거나 위에 있게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48746'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48746
+      pronunciations: *id1435
+      match_reason: 'The ten ordered adverb definitions are identical except second-position 기준치 becomes
+        기준. Actual citation is 노피. Official sense numbers appear as1,2,3,4,9,5,6,10,7,8, not original
+        positional ordinals; this whole-parent reading match never renumbers project senses or mistakes
+        measured-height noun15287 for the adverb.
+
+        '
+    source_correction:
+      source_korean: 소리나 음계가 보통보다 크거나 위에 있게.
+      source_english: In the staten of a sound being at a high pitch.
+      authored_interpretation: loudly or at a high pitch
+      rationale: Korean includes loudness as well as pitch; the English omits the first alternative.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15288-s008:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15288
+    source_parent: ko-nikl-15288
+    source_position: 8
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'In the state of the force of someone or something being great and powerful. '
+    source_korean: 기세 등이 힘차고 대단하게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48746'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48746
+      pronunciations: *id1435
+      match_reason: 'The ten ordered adverb definitions are identical except second-position 기준치 becomes
+        기준. Actual citation is 노피. Official sense numbers appear as1,2,3,4,9,5,6,10,7,8, not original
+        positional ordinals; this whole-parent reading match never renumbers project senses or mistakes
+        measured-height noun15287 for the adverb.
+
+        '
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15288-s009:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15288
+    source_parent: ko-nikl-15288
+    source_position: 9
+    source_band: beginner
+    reference_level: topik-2
+    source_english: In the state of an opinion being more predominant than the others.
+    source_korean: 어떤 의견이 다른 의견보다 많고 우세하게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48746'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48746
+      pronunciations: *id1435
+      match_reason: 'The ten ordered adverb definitions are identical except second-position 기준치 becomes
+        기준. Actual citation is 노피. Official sense numbers appear as1,2,3,4,9,5,6,10,7,8, not original
+        positional ordinals; this whole-parent reading match never renumbers project senses or mistakes
+        measured-height noun15287 for the adverb.
+
+        '
+    lexical_identity: ko-lex-15283
+    lexical_category: free-lemma
+  ko-nikl-15398-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15398
+    source_parent: ko-nikl-15398
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being stacked over and over, or stacking something in this manner.
+    source_korean: 계속 반복되어 쌓임. 또는 계속 반복하여 쌓음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90458'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90458
+      pronunciations:
+      - 누ː적
+    lexical_identity: ko-lex-15398
+    lexical_category: free-lemma
+  ko-nikl-17003-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17003
+    source_parent: ko-nikl-17003
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A state in which two entities are about the same in their power or ability without
+      one being better or worse than the other. '
+    source_korean: 어느 한쪽의 힘이나 능력이 낫거나 못하지 않고 서로 비슷함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48445'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48445
+      pronunciations:
+      - 대ː등
+    lexical_identity: ko-lex-17003
+    lexical_category: free-lemma
+  ko-nikl-17005-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17005
+    source_parent: ko-nikl-17005
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Two things or persons being similar, and one being not better or worse than the other
+      in terms of power or ability.
+    source_korean: 어느 한쪽의 힘이나 능력이 낫거나 못하지 않고 서로 비슷하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48440'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48440
+      pronunciations:
+      - 대ː등하다
+    lexical_identity: ko-lex-17003
+    lexical_category: free-lemma
+  ko-nikl-17316-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17316
+    source_parent: ko-nikl-17316
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of pairing of two objects that are exactly the same in size or shape. '
+    source_korean: 두 사물이 서로 크기나 모양이 정확히 같아 한 쌍을 이룸.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '46854'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=46854
+      pronunciations:
+      - 대ː칭
+    lexical_identity: ko-lex-17316
+    lexical_category: free-lemma
+  ko-nikl-18373-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18373
+    source_parent: ko-nikl-18373
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The state or quality of having the same ranking or being of the same amount, or such
+      a ranking or amount.
+    source_korean: 등급이나 정도가 같음. 또는 그런 등급이나 정도.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61433'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61433
+      pronunciations:
+      - 동등
+    lexical_identity: ko-lex-18373
+    lexical_category: free-lemma
+  ko-nikl-18375-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18375
+    source_parent: ko-nikl-18375
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being at the same level or degree.
+    source_korean: 등급이나 정도가 같다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61436'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61436
+      pronunciations:
+      - 동등하다
+    lexical_identity: ko-lex-18373
+    lexical_category: free-lemma
+  ko-nikl-18385-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18385
+    source_parent: ko-nikl-18385
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of being equal in points, the score, etc., in a contest.
+    source_korean: 같은 비율.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '47149'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=47149
+      pronunciations:
+      - 동뉼
+    source_correction:
+      source_korean: 같은 비율.
+      source_english: The state of being equal in points, the score, etc., in a contest.
+      authored_interpretation: the same ratio or rate
+      rationale: The Korean is not restricted to contest scores; preserve its ratio/rate meaning.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-18385
+    lexical_category: free-lemma
+  ko-nikl-23968-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23968
+    source_parent: ko-nikl-23968
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The limit that something cannot go under within a certain range. '
+    source_korean: 위아래로 일정한 범위를 이루고 있을 때, 아래쪽의 한계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84002'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84002
+      pronunciations:
+      - 하ː한
+    lexical_identity: ko-lex-23968
+    lexical_category: free-lemma
+  ko-nikl-24419-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24419
+    source_parent: ko-nikl-24419
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The act of adding numbers, or the added value.
+    source_korean: 한데 합하여 계산함. 또는 그렇게 계산하여 나온 값.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85612'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85612
+      pronunciations:
+      - 합꼐
+      - 합께
+    lexical_identity: ko-lex-24419
+    lexical_category: free-lemma
+  ko-nikl-24453-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24453
+    source_parent: ko-nikl-24453
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of adding two or more numbers.
+    source_korean: 둘 이상을 더하여 계산함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84564'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84564
+      pronunciations:
+      - 합싼
+    lexical_identity: ko-lex-24453
+    lexical_category: free-lemma
+  ko-nikl-28635-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28635
+    source_parent: ko-nikl-28635
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of counting the number of things, or measuring the volume, weight, etc., of
+      things.
+    source_korean: 수량을 헤아리거나 부피나 무게 등을 잼.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '25655'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25655
+      pronunciations:
+      - 계ː량
+      - 게ː량
+    lexical_identity: ko-lex-28635
+    lexical_category: free-lemma
+  ko-nikl-28720-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28720
+    source_parent: ko-nikl-28720
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Deciding and expressing the time, size, length, quantity, etc., using equipment.
+    source_korean: 장치를 써서 시간, 크기, 길이, 양 등을 헤아려 수치로 나타냄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22643'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22643
+      pronunciations:
+      - 계ː측
+      - 게ː측
+    lexical_identity: ko-lex-28720
+    lexical_category: free-lemma
+  ko-nikl-31872-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31872
+    source_parent: ko-nikl-31872
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A figure or form chosen as the standard to follow.
+    source_korean: 표준으로 삼아 따르도록 정해 놓은 수치나 형식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35193'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35193
+      pronunciations:
+      - 규격
+    lexical_identity: ko-lex-31872
+    lexical_category: free-lemma
+  ko-nikl-31881-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31881
+    source_parent: ko-nikl-31881
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'The size or scale of an object or phenomenon. '
+    source_korean: 물건이나 현상의 크기나 범위.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37054'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37054
+      pronunciations: &id1436
+      - 규모
+    lexical_identity: ko-lex-31881
+    lexical_category: free-lemma
+  ko-nikl-31881-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31881
+    source_parent: ko-nikl-31881
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A plan or system for spending money. '
+    source_korean: 씀씀이의 계획성이나 짜임새.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37054'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37054
+      pronunciations: *id1436
+    lexical_identity: ko-lex-31881
+    lexical_category: free-lemma
+  ko-nikl-31914-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31914
+    source_parent: ko-nikl-31914
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being the same without difference or variation.
+    source_korean: 차이가 없이 고르다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35305'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35305
+      pronunciations:
+      - 균등하다
+    lexical_identity: ko-lex-31914
+    lexical_category: free-lemma
+  ko-nikl-31922-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31922
+    source_parent: ko-nikl-31922
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being the same, without any differentiating aspects.
+    source_korean: 차이가 없이 같다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35317'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35317
+      pronunciations:
+      - 규닐하다
+    lexical_identity: ko-lex-31922
+    lexical_category: free-lemma
+  ko-nikl-32849-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32849
+    source_parent: ko-nikl-32849
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An area of land that gets higher and lower due to its uneven surfaces.
+    source_korean: 땅이 고르지 않고 높아졌다 낮아졌다 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23593'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23593
+      pronunciations: &id1437
+      - 기복
+    lexical_identity: ko-lex-32849
+    lexical_category: free-lemma
+  ko-nikl-32849-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32849
+    source_parent: ko-nikl-32849
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: An irregular situation which gets better and worse.
+    source_korean: 상태가 일정하지 않고 좋아졌다 나빠졌다 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23593'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23593
+      pronunciations: *id1437
+    lexical_identity: ko-lex-32849
+    lexical_category: free-lemma
+  ko-nikl-33238-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33238
+    source_parent: ko-nikl-33238
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: For hair to grow.
+    source_korean: 머리카락이나 털이 자라다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '43881'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=43881
+      pronunciations:
+      - 길ː다
+    lexical_identity: ko-lex-33238
+    lexical_category: free-lemma
+  ko-nikl-33239-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33239
+    source_parent: ko-nikl-33239
+    source_position: 3
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A piece of writing being long and containing lots of words.
+    source_korean: 글의 분량이나 말수가 많다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26808'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26808
+      pronunciations: *id171
+    source_correction:
+      source_korean: 글의 분량이나 말수가 많다.
+      source_english: A piece of writing being long and containing lots of words.
+      authored_interpretation: for writing or speech to contain many words
+      rationale: Preserve 말수 as well as written volume rather than erasing spoken words.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-33239
+    lexical_category: free-lemma
+  ko-nikl-33239-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33239
+    source_parent: ko-nikl-33239
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A sound, sigh, etc. lasting long.
+    source_korean: 소리나 한숨 등이 오래 계속되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26808'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26808
+      pronunciations: *id171
+    lexical_identity: ko-lex-33239
+    lexical_category: free-lemma
+  ko-nikl-33258-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33258
+    source_parent: ko-nikl-33258
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'The direction from the top toward the bottom. '
+    source_korean: 위에서 아래로의 방향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62471'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62471
+      pronunciations: *id776
+    lexical_identity: ko-lex-33258
+    lexical_category: free-lemma
+  ko-nikl-33259-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33259
+    source_parent: ko-nikl-33259
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Abidingly for a long time.
+    source_korean: 오랫동안 계속해서 내내.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '45107'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=45107
+      pronunciations:
+      - 기리
+    lexical_identity: ko-lex-33239
+    lexical_category: free-lemma
+  ko-nikl-33316-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33316
+    source_parent: ko-nikl-33316
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A state of being prudent, not careless in one''s thought. '
+    source_korean: 생각이 가볍지 않고 신중함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '45159'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=45159
+      pronunciations: *id777
+    lexical_identity: ko-lex-33316
+    lexical_category: free-lemma
+  ko-nikl-33317-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33317
+    source_parent: ko-nikl-33317
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'In the state of the length from top to bottom, or from outside to inside being long. '
+    source_korean: 위에서 밑바닥까지 또는 겉에서 속까지의 거리가 멀게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '45169'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=45169
+      pronunciations: &id1438
+      - 기피
+    lexical_identity: ko-lex-33312
+    lexical_category: free-lemma
+  ko-nikl-33317-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33317
+    source_parent: ko-nikl-33317
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: In the manner of thinking carefully, not carelessly.
+    source_korean: 생각이 가볍지 않고 신중하게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '45169'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=45169
+      pronunciations: *id1438
+    lexical_identity: ko-lex-33312
+    lexical_category: free-lemma
+  ko-nikl-33317-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33317
+    source_parent: ko-nikl-33317
+    source_position: 3
+    source_band: beginner
+    reference_level: topik-2
+    source_english: At a high level or to an excessive degree.
+    source_korean: 수준이 높거나 정도가 심하게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '45169'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=45169
+      pronunciations: *id1438
+    source_correction:
+      source_korean: 수준이 높거나 정도가 심하게.
+      source_english: At a high level or to an excessive degree.
+      authored_interpretation: at a high level or to an intense degree
+      rationale: Intense degree need not always exceed an acceptable limit; do not add an automatic adverse-value
+        judgment.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-33312
+    lexical_category: free-lemma
+  ko-nikl-34196-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34196
+    source_parent: ko-nikl-34196
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'The portion left over after something has been filled. '
+    source_korean: 어떤 양을 채우고 남은 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59230'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59230
+      pronunciations: &id1439
+      - 나머지
+    lexical_identity: ko-lex-34196
+    lexical_category: free-lemma
+  ko-nikl-34196-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34196
+    source_parent: ko-nikl-34196
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: The part of a certain task that has not been finished.
+    source_korean: 어떤 일을 하다가 마치지 못한 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59230'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59230
+      pronunciations: *id1439
+    lexical_identity: ko-lex-34196
+    lexical_category: free-lemma
+  ko-nikl-34196-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34196
+    source_parent: ko-nikl-34196
+    source_position: 3
+    source_band: beginner
+    reference_level: topik-2
+    source_english: The outcome of something.
+    source_korean: 어떤 일의 결과.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59230'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59230
+      pronunciations: *id1439
+    lexical_identity: ko-lex-34196
+    lexical_category: free-lemma
+  ko-nikl-34196-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34196
+    source_parent: ko-nikl-34196
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'The number left when one number is divided by another. '
+    source_korean: 나눗셈에서 나누어 똑 떨어지지 않고 남는 수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59230'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59230
+      pronunciations: *id1439
+    lexical_identity: ko-lex-34196
+    lexical_category: free-lemma
+  ko-nikl-34998-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34998
+    source_parent: ko-nikl-34998
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A compound word for the inside and outside.
+    source_korean: 안쪽과 바깥쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28545'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28545
+      pronunciations: &id1440
+      - 내ː외
+      - 내ː웨
+    lexical_identity: ko-lex-34998
+    lexical_category: free-lemma
+  ko-nikl-34998-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34998
+    source_parent: ko-nikl-34998
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The state of being a little less or a little more.
+    source_korean: 약간 덜하거나 넘음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28545'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28545
+      pronunciations: *id1440
+    lexical_identity: ko-lex-34998
+    lexical_category: free-lemma
+  ko-nikl-35231-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35231
+    source_parent: ko-nikl-35231
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The horizontal length of a plane figure or a wide object.
+    source_korean: 평면이나 넓은 물체의 가로 길이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '42368'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=42368
+      pronunciations:
+      - 너비
+    lexical_identity: ko-lex-35231
+    lexical_category: free-lemma
+  ko-nikl-38492-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38492
+    source_parent: ko-nikl-38492
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: (figurative) A phase right before something occurs or takes place.
+    source_korean: (비유적으로) 어떤 일이 생기거나 일어나기 직전의 단계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57179'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57179
+      pronunciations: *id1441
+    lexical_identity: ko-lex-38492
+    lexical_category: free-lemma
+  ko-nikl-38869-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38869
+    source_parent: ko-nikl-38869
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The state of not reaching a certain quantity or amount.
+    source_korean: 일정한 수량이나 정도에 이르지 못함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15762'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15762
+      pronunciations:
+      - 미ː만
+    lexical_identity: ko-lex-38869
+    lexical_category: function-item
+  ko-nikl-40635-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40635
+    source_parent: ko-nikl-40635
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A number obtained by adding another number twice. '
+    source_korean: 어떤 수를 두 번 합한 만큼인 수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59175'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59175
+      pronunciations: &id1442
+      - 배ː수
+    lexical_identity: ko-lex-40635
+    lexical_category: function-item
+  ko-nikl-40635-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40635
+    source_parent: ko-nikl-40635
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A number obtained by multiplying another number a certain number of times. '
+    source_korean: 어떤 수의 몇 배가 되는 수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59175'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59175
+      pronunciations: *id1442
+    source_correction:
+      source_korean: 어떤 수의 몇 배가 되는 수.
+      source_english: 'A number obtained by multiplying another number a certain number of times. '
+      authored_interpretation: a number that is some multiple of another
+      rationale: Korean specifies a multiple rather than repeated multiplication by the same number; retain
+        the original source scope.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-40635
+    lexical_category: function-item
+  ko-nikl-40670-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40670
+    source_parent: ko-nikl-40670
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A ratio of the actual size of an object to that of its image seen through a mirror,
+      lens, telescope, microscope, etc. '
+    source_korean: 거울, 렌즈, 현미경, 망원경 등을 통하여 보이는 물체의 크기와 실제 크기의 비율.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58218'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58218
+      pronunciations:
+      - 배ː율
+    source_correction:
+      source_korean: 거울, 렌즈, 현미경, 망원경 등을 통하여 보이는 물체의 크기와 실제 크기의 비율.
+      source_english: 'A ratio of the actual size of an object to that of its image seen through a mirror,
+        lens, telescope, microscope, etc. '
+      authored_interpretation: apparent-to-actual size ratio through an optical device
+      rationale: Preserve apparent-image size relative to actual size, not the English's reversed order
+        or an invented digital-zoom meaning.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-40670
+    lexical_category: free-lemma
+  ko-nikl-41627-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41627
+    source_parent: ko-nikl-41627
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of the same phenomenon or feature appearing again at regular intervals. '
+    source_korean: 일정한 간격을 두고 같은 현상이나 특징이 다시 나타나는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75977'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75977
+      pronunciations:
+      - 주기적
+    lexical_identity: ko-lex-41623
+    lexical_category: free-lemma
+  ko-nikl-41628-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41628
+    source_parent: ko-nikl-41628
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The same phenomenon or feature appearing again at regular intervals. '
+    source_korean: 일정한 간격을 두고 같은 현상이나 특징이 다시 나타나는.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75976'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75976
+      pronunciations:
+      - 주기적
+    lexical_identity: ko-lex-41623
+    lexical_category: free-lemma
+  ko-nikl-41929-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41929
+    source_parent: ko-nikl-41929
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The number of times an electric or sound wave vibrates per second.
+    source_korean: 전파나 음파가 1초 동안에 흔들려 움직이는 횟수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77125'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77125
+      pronunciations:
+      - 주파수
+    source_correction:
+      source_korean: 전파나 음파가 1초 동안에 흔들려 움직이는 횟수.
+      source_english: The number of times an electric or sound wave vibrates per second.
+      authored_interpretation: radio or sound-wave vibrations per second
+      rationale: Preserve 전파 radio waves rather than an unrestricted electric-wave gloss, as well as the
+        per-second and sound-wave scope.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-41929
+    lexical_category: free-lemma
+  ko-nikl-43867-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43867
+    source_parent: ko-nikl-43867
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A state of things or people being distinct and different, not equal or uniform, or
+      an act of treating things or people in such a manner.
+    source_korean: 고르거나 가지런하지 않고 차별이 있음. 또는 그렇게 대함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82455'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82455
+      pronunciations:
+      - 차등
+    lexical_identity: ko-lex-43867
+    lexical_category: free-lemma
+  ko-nikl-45026-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45026
+    source_parent: ko-nikl-45026
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The state of exceeding a certain standard or limit.
+    source_korean: 일정한 기준을 넘음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '79211'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79211
+      pronunciations:
+      - 초과
+      match_reason: 'The sole same-spelling noun keeps exceeding a set comparison basis; 기준 becomes 수량이나
+        정도 등. Preserve the broader original standard/limit wording and actual 초과 citation text independently.
+
+        '
+    lexical_identity: ko-lex-45026
+    lexical_category: free-lemma
+  ko-nikl-45030-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45030
+    source_parent: ko-nikl-45030
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To get to exceed a certain standard or limit, or to exceed a certain standard or limit.
+    source_korean: 일정한 기준을 넘게 되다. 또는 일정한 기준을 넘다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '79216'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79216
+      pronunciations:
+      - 초과하다
+      match_reason: 'The sole same-spelling verb preserves both becoming-exceeded and exceeding alternatives.
+        기준 becomes 수량이나 정도 등, with 넘게 되다 changed to 넘어가다 in the first alternative. Retain the original
+        full definition and independently supplied 초과하다 text.
+
+        '
+    lexical_identity: ko-lex-45026
+    lexical_category: free-lemma
+  ko-nikl-45398-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45398
+    source_parent: ko-nikl-45398
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The quantity, etc., of something being the least. '
+    source_korean: 양이 가장 적음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79466'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79466
+      pronunciations:
+      - 최ː소
+      - 췌ː소
+    lexical_identity: ko-lex-45397
+    lexical_category: function-item
+  ko-nikl-46087-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46087
+    source_parent: ko-nikl-46087
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The value obtained by measuring the lengths of a piece of clothing, a shoe, or a part
+      of one's body, etc.
+    source_korean: 옷, 신발, 몸의 일부분 등의 길이를 잰 값.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79380'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79380
+      pronunciations:
+      - 치수
+    lexical_identity: ko-lex-46087
+    lexical_category: free-lemma
+  ko-nikl-47081-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47081
+    source_parent: ko-nikl-47081
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A blank space left after writing or painting on a piece of paper, etc. '
+    source_korean: 종이 등에 글씨를 쓰거나 그림을 그리고 남은 빈 자리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67710'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67710
+      pronunciations:
+      - 여백
+    lexical_identity: ko-lex-47081
+    lexical_category: free-lemma
+  ko-nikl-47094-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47094
+    source_parent: ko-nikl-47094
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The remaining or unused portion of something. '
+    source_korean: 어떤 양을 채우고 남은 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67717'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67717
+      pronunciations:
+      - 여분
+    source_correction:
+      source_korean: 어떤 양을 채우고 남은 부분.
+      source_english: 'The remaining or unused portion of something. '
+      authored_interpretation: the surplus left after filling a set amount
+      rationale: Keep the Korean after-filling condition instead of including every merely unused portion.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-47094
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

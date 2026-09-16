@@ -189,7 +189,6 @@ units:
   - {id: ko-nikl-34873-s007, ch: 내려가다, pr: 내려가다, ds: 'to fall (a price, temperature, or figure)'}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-07936-s004, ch: 빼다, pr: 빼ː다, ds: to withdraw savings or recover a deposit}
   - {id: ko-nikl-19745-s026, ch: 떨어지다, pr: 떠러지다, ds: for part of a price or amount to remain unpaid}
   - {id: ko-nikl-14469-s005, ch: 정리하다, pr: 정ː니하다, ds: to update a bank passbook with transaction records}
   - {id: ko-nikl-16694-s001, ch: 담보, pr: 담보, ds: security offered against failure to repay a debt}
@@ -197,6 +196,7 @@ units:
   - {id: ko-nikl-48004-s001, ch: 예산, pr: 예ː산, ds: a budget; estimated costs}
   - {id: ko-nikl-06340-s002, ch: 부담, pr: 부ː담, ds: responsibility for paying a cost}
   - {id: ko-nikl-11009-s001, ch: 이해, pr: 이ː해, ds: interests; gains and losses}
+  - {id: ko-nikl-24453-s001, ch: 합산, pr: 합싼, ds: adding two or more amounts together}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
 - id: level-20-money-02
@@ -330,6 +330,9 @@ units:
   - {id: ko-nikl-43503-s002, ch: 징수, pr: 징수, ds: 'government collection of taxes, fees or fines under law'}
   - {id: ko-nikl-44285-s001, ch: 채권, pr: 채ː꿘, ds: bonds issued to borrow funds for a project or business}
   - {id: ko-nikl-35258-s002, ch: 넉넉하다, pr: 넝너카다, ds: having ample household means}
+  - {id: ko-nikl-15283-s005, ch: 높다, pr: 놉따, ds: to be above average in price or rate}
+  - {id: ko-nikl-15288-s004, ch: 높이, pr: 노피, ds: at an above-average price or rate}
+  - {id: ko-nikl-31881-s002, ch: 규모, pr: 규모, ds: planning or organization in spending}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-00511-s001, ch: 세제, pr: 세ː제, ds: the system of taxation}
@@ -601,14 +604,14 @@ units:
   - {id: ko-nikl-34792-s002, ch: 낮추다, pr: 낟추다, ds: to lower a figure below a reference level}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-25171-s001, ch: 헤아리다, pr: 헤ː아리다, ds: to count a number or quantity}
-  - {id: ko-nikl-17009-s001, ch: 대략, pr: 대ː략, ds: approximately; by rough estimation}
-  - {id: ko-nikl-25574-s003, ch: 가깝다, pr: 가깝따, ds: to be close to a numerical value}
-  - {id: ko-nikl-19745-s025, ch: 떨어지다, pr: 떠러지다, ds: 'to divide exactly, leaving no remainder'}
-  - {id: ko-nikl-41347-s003, ch: 종, pr: 종, ds: a counter for kinds or categories}
-  - {id: ko-nikl-06940-s001, ch: 분자, pr: 분자, ds: the numerator above a fraction's dividing line}
-  - {id: ko-nikl-48329-s001, ch: 오차, pr: 오ː차, ds: error between a calculated or measured value and the exact value}
-  - {id: ko-nikl-21675-s001, ch: 통계, pr: 통ː계 / 통ː게, ds: an overall rough calculation by estimation}
+  - {id: ko-nikl-09292-s001, ch: 상한선, pr: 상ː한선, ds: an upper limit beyond which something cannot rise}
+  - {id: ko-nikl-10769-s002, ch: 이상, pr: 이ː상, ds: ahead of or above a given rank or position}
+  - {id: ko-nikl-11007-s002, ch: 이하, pr: 이ː하, ds: after or below a given rank or position}
+  - {id: ko-nikl-18385-s001, ch: 동률, pr: 동뉼, ds: the same ratio or rate}
+  - {id: ko-nikl-23968-s001, ch: 하한, pr: 하ː한, ds: the lower limit of a bounded range}
+  - {id: ko-nikl-34196-s004, ch: 나머지, pr: 나머지, ds: the remainder left by a division that is not exact}
+  - {id: ko-nikl-40635-s001, ch: 배수, pr: 배ː수, ds: a number double another}
+  - {id: ko-nikl-40635-s002, ch: 배수, pr: 배ː수, ds: a number that is some multiple of another}
   review_grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-20-money-practice-01
@@ -618,14 +621,14 @@ units:
   grammar:
   - {id: ko-topik4-g020, ch: V/A-(으)ㄴ/는 셈이다, ds: state what something effectively amounts to}
   review_vocabulary:
-  - {id: ko-nikl-11073-s001, ch: 인건비, pr: 인껀비, ds: labour costs}
-  - {id: ko-nikl-13074-s001, ch: 재무, pr: 재무, ds: financial affairs concerning money or assets}
-  - {id: ko-nikl-15243-s001, ch: 조세, pr: 조세, ds: taxes collected to fund national or local government}
   - {id: ko-nikl-31235-s001, ch: 국고, pr: 국꼬, ds: national treasury funds}
   - {id: ko-nikl-49671-s001, ch: 원가, pr: 원까, ds: total costs from making a product through selling it}
   - {id: ko-nikl-43503-s002, ch: 징수, pr: 징수, ds: 'government collection of taxes, fees or fines under law'}
   - {id: ko-nikl-44285-s001, ch: 채권, pr: 채ː꿘, ds: bonds issued to borrow funds for a project or business}
   - {id: ko-nikl-35258-s002, ch: 넉넉하다, pr: 넝너카다, ds: having ample household means}
+  - {id: ko-nikl-15283-s005, ch: 높다, pr: 놉따, ds: to be above average in price or rate}
+  - {id: ko-nikl-15288-s004, ch: 높이, pr: 노피, ds: at an above-average price or rate}
+  - {id: ko-nikl-31881-s002, ch: 규모, pr: 규모, ds: planning or organization in spending}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
 - id: level-20-institutions-practice-01

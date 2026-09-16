@@ -1,0 +1,230 @@
+schema_version: 1
+review_status: original-ai-authored-unreviewed
+scope: >
+  Bounded source-inspected practical measurement, ordering, approximation,
+  limits, leftovers and general-reader quantitative description. Fill actual
+  missing everyday words and distinctions, including 순서, 나머지 and
+  inclusive versus exclusive comparison. This is not a unit/formula catalogue,
+  an automatic first-position selection, or a quota-based late-level bucket.
+source:
+  source_id: nikl-2024-mirror
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  support_parent_ids:
+    - ko-nikl-08779
+    - ko-nikl-09292
+    - ko-nikl-12559
+    - ko-nikl-12575
+    - ko-nikl-13783
+    - ko-nikl-14377
+    - ko-nikl-14456
+    - ko-nikl-15398
+    - ko-nikl-17005
+    - ko-nikl-17316
+    - ko-nikl-18375
+    - ko-nikl-18385
+    - ko-nikl-23968
+    - ko-nikl-24453
+    - ko-nikl-28635
+    - ko-nikl-28720
+    - ko-nikl-31872
+    - ko-nikl-31914
+    - ko-nikl-31922
+    - ko-nikl-32849
+    - ko-nikl-33259
+    - ko-nikl-40635
+    - ko-nikl-40670
+    - ko-nikl-41627
+    - ko-nikl-41628
+    - ko-nikl-41929
+    - ko-nikl-43867
+    - ko-nikl-45030
+    - ko-nikl-45398
+    - ko-nikl-47081
+    - ko-nikl-47094
+  retained_support_positions: 35
+  evidence: >
+    Every exact Form match was inspected across POS in the checksum-pinned
+    CSV, including complete paired definition arrays. Original banded parents
+    and already admitted support remain unchanged; the root source-senses.yaml
+    retains all original positions for the31 additional parents. No usages,
+    images, media, fabricated official sense IDs or rewritten definitions.
+selection:
+  senses: 93
+  parents: 59
+  identity_fragments: 53
+  new_free_families: 39
+  new_function_families: 5
+  existing_family_fragments: 9
+  new_bound_families: 0
+  interpretation: >
+    Actual free families remain provisional. Additional senses, source POS
+    positions, corresponding predicates/adverbs, and function items do not
+    masquerade as new free headwords or learner mastery.
+placement_rationale:
+  - Level6 comparisons and clothing measures fill practical service/label needs; they do not define actual eligibility rules.
+  - Levels7-8 cover ranges, leftovers, regular/exact timing and totals, not an expanded catalogue of sizes or units.
+  - Levels10-14 support bodily changes, instructions, voice/text descriptions, ordering and real quantity limits.
+  - Levels17-22 introduce specifications, reference measurements, ratios, instrumental methods and qualified comparisons for general readers.
+  - Levels23-27 distinguish prevalent opinions from truth, total/front readings, irregular fluctuations, degree, intensity and figurative event thresholds.
+identity_adjudication:
+  new_function_ids: [ko-lex-10501, ko-lex-10769, ko-lex-11007, ko-lex-38869, ko-lex-40635]
+  existing_minimum_family: ko-lex-45397
+  minimum_quantity_parent: ko-nikl-45398
+  actual_parent_form_joins:
+    ko-lex-15283: Source 높이 adverbs join the existing 높다 predicate, not the independent height noun15287.
+    ko-lex-33239: Source duration 길이 adverb and writing/sound predicates join descriptive 길다, not hair-growing verb33238 or length noun33258.
+    ko-lex-33312: Three actual 깊이 adverb positions join the existing predicate, not depth noun33316.
+    ko-lex-41623: Both actual 주기적 POS entries join the protected cycle family, not the death-anniversary counter.
+    ko-lex-17003: Actual comparable-power noun and predicate share a family without asserting exact equality.
+    ko-lex-18373: Actual equal-rank/degree noun and predicate share a family, distinct from comparability.
+    ko-lex-45026: Actual exceeding noun and verb are a lexical process family, not a generated X하다 form or a bound unit.
+  synonym_policy: >
+    The documented project policy does not collapse similar meanings into
+    one lexeme without a variant/category-alternation analysis. 순서/차례,
+    너비/폭, 안팎/내외 and 나머지/여분 are useful separate lexical names.
+    Some exact definitions overlap; that is semantic evidence, not proof
+    of inflection or spelling variants. Their provisional status is explicit.
+    The additional words are not awarded other synonyms' sense or modality
+    mastery. No new atomic mathematical meaning is inferred from English.
+  mixed_content: >
+    Spatial 안팎/내외 remain free-accounted with their approximate-quantity
+    meanings, like protected 전후; approximation adds no headword. 나머지
+    includes actual residual material, unfinished work and result meanings.
+    Generic multiplicative 배수 is conservatively function-accounted under
+    the existing numeric policy. Opposite inclusive/exclusive comparisons
+    stay distinct even when English could call all of them a limit.
+reading_review:
+  official_text_senses: 93
+  authored_reading_decisions: 0
+  explicit_crosswalks:
+    ko-nikl-02201: '64563'
+    ko-nikl-15288: '48746'
+    ko-nikl-45026: '79211'
+    ko-nikl-45030: '79216'
+  source_id: nikl-official-20260819
+  identity_boundary: >
+    높이 current official sense numbers appear in order1,2,3,4,9,5,6,10,7,8.
+    Their ordered Korean definitions match original positions except for
+    second-position 기준치 becoming 기준. This is not permission to
+    renumber original project sense6 to official5 or to apply that item's
+    loudness/pitch wording to unrelated source positions.
+  limits: >
+    Use independently matched actual citation text, including 노피, not
+    copied spelling or a generated -이 reading. Written pitch/intensity
+    labels do not measure sound or establish audio/listening competence.
+source_correction_requests:
+  ko-nikl-14377-s001:
+    source_korean: "정확히 그 시각."
+    source_english: "An exact hour."
+    authored_interpretation: the exact specified time
+    rationale: Preserve the stated 시각 rather than restricting the source to a whole hour; idiomatic time phrasing still needs qualified review.
+  ko-nikl-15283-s003:
+    source_korean: "온도, 습도, 압력 등이 정해진 기준보다 위에 있다."
+    source_english: "The temperature, humidity, pressure, etc., being higher than normal."
+    authored_interpretation: to exceed a set temperature, humidity or pressure reference
+    rationale: A set reference is not necessarily a normal or medically safe value; preserve the Korean's actual comparison basis.
+  ko-nikl-15288-s002:
+    source_korean: "온도나 습도나 압력 등이 기준치보다 위에 있게."
+    source_english: "In the state of the temperature, humidity, pressure, etc., being higher than normal."
+    authored_interpretation: above a reference temperature, humidity or pressure level
+    rationale: Preserve comparison with a reference value rather than an unsupported normality or safety threshold.
+  ko-nikl-15288-s006:
+    source_korean: "소리나 음계가 보통보다 크거나 위에 있게."
+    source_english: "In the staten of a sound being at a high pitch."
+    authored_interpretation: loudly or at a high pitch
+    rationale: The Korean 크거나 위에 retains loudness as well as pitch; the English omits the volume alternative. No audio assessment is implied.
+  ko-nikl-18385-s001:
+    source_korean: "같은 비율."
+    source_english: "The state of being equal in points, the score, etc., in a contest."
+    authored_interpretation: the same ratio or rate
+    rationale: The source Korean is not restricted to contest points or scores; preserve its general ratio/rate wording.
+  ko-nikl-33239-s003:
+    source_korean: "글의 분량이나 말수가 많다."
+    source_english: "A piece of writing being long and containing lots of words."
+    authored_interpretation: for writing or speech to contain many words
+    rationale: Korean includes 말수 as well as written volume; do not erase speech because the English mentions only writing.
+  ko-nikl-33317-s003:
+    source_korean: "수준이 높거나 정도가 심하게."
+    source_english: "At a high level or to an excessive degree."
+    authored_interpretation: at a high level or to an intense degree
+    rationale: Strong degree need not always exceed an acceptable limit; preserve intensity without an automatic adverse-value judgment.
+  ko-nikl-40635-s002:
+    source_korean: "어떤 수의 몇 배가 되는 수."
+    source_english: "A number obtained by multiplying another number a certain number of times. "
+    authored_interpretation: a number that is some multiple of another
+    rationale: Korean 몇 배 specifies a multiple, not repeated multiplication of a number by itself; no additional technical definition is supplied.
+  ko-nikl-40670-s001:
+    source_korean: "거울, 렌즈, 현미경, 망원경 등을 통하여 보이는 물체의 크기와 실제 크기의 비율."
+    source_english: "A ratio of the actual size of an object to that of its image seen through a mirror, lens, telescope, microscope, etc. "
+    authored_interpretation: apparent-to-actual size ratio through an optical device
+    rationale: Preserve apparent-image size relative to actual size, not the English's reversed order. Do not infer a digital-zoom position or instrument accuracy.
+  ko-nikl-41929-s001:
+    source_korean: "전파나 음파가 1초 동안에 흔들려 움직이는 횟수."
+    source_english: "The number of times an electric or sound wave vibrates per second."
+    authored_interpretation: radio or sound-wave vibrations per second
+    rationale: Use the Korean radio-wave term 전파 rather than an unrestricted electric-wave gloss; keep the per-second and sound-wave scope.
+  ko-nikl-47094-s001:
+    source_korean: "어떤 양을 채우고 남은 부분."
+    source_english: "The remaining or unused portion of something. "
+    authored_interpretation: the surplus left after filling a set amount
+    rationale: Preserve the Korean after-filling condition instead of including every merely unused portion.
+source_boundaries:
+  comparisons: >
+    이상/이하 first positions include the stated quantity/degree boundary;
+    미만 and the exceeding process do not. The separately worded ordering
+    positions do not silently acquire that numeric inclusivity. 이내 is
+    within the given range; none defines a current legal duration or limit.
+  homographs: >
+    Preserve full-versus-front 전면 parents, descriptive-long versus
+    hair-growing 길다, calculation versus production 산출, physical/
+    approximate 내외 versus gender/couple34999, numerical 배수 versus
+    water meanings, measurement 치수 versus water control, and fluctuating
+    기복 versus praying-for-blessing32848. No Hanja or etymology is inferred.
+  public_science: >
+    분산 is actual dispersal, not an unprovided statistical-variance sense.
+    대칭 is this source's matching-pair description, not complete geometry.
+    Reference measurements, apparent-size ratios and regular recurrence do
+    not confer accuracy, causation, calibrated instruments or certification.
+  voice: >
+    높다 source7 is pitch; source12 is sound strength. The actual adverb's
+    source6 spans loudness/pitch. Keep IDs, source positions and evidence
+    separate rather than teaching volume and pitch as the same physical property.
+  leftovers: >
+    나머지 contains the residual portion, unfinished work, result and
+    division remainder. 잔량 separately contains an amount and things left.
+    No remainder, subtotal or total proves that the source inputs are complete.
+bounded_deferrals:
+  - Exact 상한, 선형, 수치화, 임계점, 잔여분, 중앙값, 측정값, 통산 and 편차 were absent in the targeted pinned-CSV lookup; this is not a claim about every dictionary.
+  - The independently checked 상한선 is present and selected; exact 하한선 was not found. No fictitious partner ID is made.
+  - Narrow technical maximum/minimum-function values and the speed-only 가속도 definition are not used to manufacture a mathematical or physical curriculum.
+  - The additional nominal counterparts of 균등하다 and 균일하다 are not selected merely for a noun/predicate catalogue.
+  - The inspected 높다 fame/grand-ideal positions and additional 높이 status/fame/ideal positions are retained but not selected just to fill every row.
+  - Alternate exact-time14378, cosmic-energy 정기14414, moral-path 정도14442, foundational 기간32657 and emphatic-my 이내10502 remain out of this practical scope.
+  - Extra total-name 총계 and diameter-name 직경 are not added solely as another spelling of already covered concepts.
+limitations: >
+  Selection, provisional lexical/category decisions, disambiguation,
+  pronunciation crosswalks and pedagogy need qualified Korean review. No
+  official sense IDs, source-band-to-teaching/exam mappings, learner records,
+  audio assessments or up-to-date policy thresholds are supplied.
+integration:
+  core_dictionary_parents: 5394
+  core_selected_senses: 7740
+  core_distinct_spellings: 5084
+  core_spelling_pos_pairs: 5192
+  core_lexical_identities: 5154
+  core_provisional_free_families: 4891
+  core_bound_forms: 40
+  core_function_items: 223
+  retained_support_parents: 873
+  selected_support_parents: 869
+  core_modules: 763
+  core_free_gap_to_lower_guide: 909
+  checks:
+    targeted_course_tourist_source_tests: 130
+    deterministic_views: 128
+    preservation: Every prior source-parent object and official overlay entry was preserved; the authored reading ledger was not changed.
+  remaining_work: >
+    The planning guide is not met and this is not overall completion.
+    Early everyday-life load remains too large relative to later phases.
+    Continue useful vocabulary and common senses before a substantive
+    placement/phase-growth reassessment, not a cosmetic module-count shuffle.
