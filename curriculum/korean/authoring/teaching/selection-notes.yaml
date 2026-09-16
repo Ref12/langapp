@@ -83,6 +83,7 @@ category_adjudication:
     personal title. They are not counted as free lexical headwords. This is an
     explicit decision for these selected identities, not an automatic spelling rule.
   bound_form_identities:
+    ko-lex-39171: 밀리리터; millilitre volume unit
     ko-lex-00550: 센티미터; centimetre unit
     ko-lex-14233: 점; score or tiny-amount counter, not an independent dot
     ko-lex-17730: 도; degree units for temperature, angle, and geography
@@ -433,6 +434,13 @@ additional_grouping_evidence:
     official origin comparison additionally groups noun/adverb 實狀 under
     the protected function identity ko-lex-03447, retiring provisional
     ko-lex-03445 without changing any source sense ID or source POS.
+  specifically-recovered-nature-and-quality-gaps: >
+    natural-support-identities.yaml supplies actual omitted weather, ecology,
+    geometry and general-science source words, with the millilitre unit bound
+    and molecular/numerator 분자 kept distinct. Water-purification 정수 is
+    not essence 정수. quality-support-identities.yaml recovers eight actual
+    precision/fairness predicates and a manner adverb; the individually
+    compared 엄밀하다/엄밀히 pair counts as one provisional precision family.
   society-roles-and-relationships: >
     society-identities.yaml and society-notes.yaml retain distinct human
     roles, organizational reference, institutional processes, economic

@@ -1,0 +1,102 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and scientific review
+completion_status: source-backed selections integrated; qualified review pending
+purpose: >
+  Follow up the specifically named gaps in nature-notes.yaml rather than
+  searching every unselected source row. Inspect exact and space-normalized
+  forms in the pinned January 2024 CSV, then compare all returned original
+  bilingual positions and homographs before selecting useful meanings.
+counts:
+  selected_senses: 25
+  source_parents: 24
+  proposed_new_free_identities: 23
+  proposed_new_bound_identities: 1
+placement_policy: >
+  Pollen, radii and the millilitre unit support ordinary descriptions at 6;
+  frost, windblown snow, hail, mudflats, fins and horizon support outdoor
+  understanding at 7. General error supports work at 15; wetlands, habitats
+  and water resources support environmental explanation at 17. Numerator
+  and measurement error support quantitative reasoning at 19. Named
+  scientific concepts support accessible reading at 21. No placement is
+  derived from record order, missing-reference status, or a phase quota.
+boundaries:
+  - Molecular 분자06939 and numerator06940 retain distinct identities.
+  - The group-member second position of06939 remains unselected.
+  - Frost09745 is not crop stealing09744 or acting office-holder09749.
+  - Water-purification 정수14570 is not the protected essence14571.
+  - The millilitre unit is bound; two 오차 meanings add only one free identity.
+source_correction_requests:
+  ko-nikl-21387-s001:
+    source_korean: 태양과 그것을 중심으로 돌고 있는 지구를 비롯한 천체의 집합.
+    source_english: The sun and its group of planets, including the Earth, that go around the sun.
+    authored_interpretation: the solar system
+    rationale: Korean 천체 includes celestial bodies rather than restricting the group to planets; preserve the ordinary system term without the narrower English restriction.
+  ko-nikl-42880-s001:
+    source_korean: 땅속에 고여 있는 물.
+    source_english: 'Stagnant water that is under the ground. '
+    authored_interpretation: groundwater
+    rationale: English stagnant adds an immobility implication to underground collected water; the term must not teach that all groundwater is motionless.
+source_wording_limits:
+  - >
+    The atom and molecule definitions are short dictionary accounts, not
+    interchangeable units or complete chemical definitions. In particular,
+    atoms need not retain the properties of every compound or bulk substance.
+  - >
+    A planet is not defined completely by the short orbital description;
+    a constellation's apparent pattern does not establish physical proximity
+    or astrological influence. No scientific competency is awarded.
+  - >
+    The green-plant photosynthesis example does not exhaust organisms or
+    pathways. Pollen does not establish a personal allergy diagnosis.
+    Fin reference does not say every aquatic animal has fins.
+  - >
+    Wetland and ocean-current descriptions do not establish permanent
+    wetness or invariant current speed. The hail definition is not a complete
+    formation model. A mudflat label does not establish safe walking access.
+  - >
+    Purification does not certify drinking safety, and solution vocabulary
+    supplies no mixing instructions. Units imply no medical dose, conversion
+    table, calibration standard or measurement uncertainty model.
+source_support_requests:
+  - ko-nikl-02589
+  - ko-nikl-05547
+  - ko-nikl-06939
+  - ko-nikl-06940
+  - ko-nikl-09745
+  - ko-nikl-09816
+  - ko-nikl-14570
+  - ko-nikl-15572
+  - ko-nikl-21387
+  - ko-nikl-24635
+  - ko-nikl-24839
+  - ko-nikl-27281
+  - ko-nikl-30533
+  - ko-nikl-33779
+  - ko-nikl-39171
+  - ko-nikl-39757
+  - ko-nikl-42571
+  - ko-nikl-42849
+  - ko-nikl-42868
+  - ko-nikl-42880
+  - ko-nikl-48329
+  - ko-nikl-49161
+  - ko-nikl-49298
+  - ko-nikl-49779
+unfilled_source_gaps:
+  - target: 미세먼지
+    status: absent from exact and space-normalized pinned-CSV lookup
+    limitation: >
+      Do not fabricate a January 2024 project source ID or substitute ordinary
+      dust. A separately sourced lexical entry needs an explicit identity,
+      source/license and adapter decision before activation.
+reading_policy: >
+  All 24 exact source parents have been recovered. Twenty-four selected
+  senses have official citation text. The millilitre unit's complete-definition
+  match57428 lacks pronunciation text, so 밀리리터 has an individually
+  reasoned authored proposal with unreviewed status, not a spelling fallback
+  or a dictionary-verified claim. Both protected exclusions,
+  팀장22209 and 온실가스48419, remain untouched.
+reading_review:
+  official_text_senses: 24
+  authored_reading_senses: 1
+  remaining_selected_gaps: []

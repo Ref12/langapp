@@ -9,7 +9,7 @@ band_counts:
   advanced: 5105
   beginner: 1942
   intermediate: 3981
-  unbanded-support: 249
+  unbanded-support: 281
 entries:
 - id: ko-nikl-00001
   target: 설
@@ -7740,6 +7740,18 @@ entries:
     source_position: 2
     english: A common lifestyle or behavioral pattern among the same type of animal.
     korean: 같은 종류의 동물에서 공통되는 생활 방식이나 행동 양식.
+- id: ko-nikl-02589
+  target: 습지
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2589
+  senses:
+  - id: ko-nikl-02589-s001
+    source_position: 1
+    english: Land that is always damp due to excessive moisture.
+    korean: 습기가 많아 늘 축축한 땅.
 - id: ko-nikl-02592
   target: 습하다
   part_of_speech: descriptive verb
@@ -19308,6 +19320,19 @@ entries:
     source_position: 3
     english: 'A variety of affairs. '
     korean: 이런저런 여러 가지 일.
+- id: ko-nikl-05547
+  target: 별자리
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5547
+  senses:
+  - id: ko-nikl-05547-s001
+    source_position: 1
+    english: 'A group of stars having the name of an animal, object or mythological figure similar to
+      the shape made by the stars.  '
+    korean: 여러 개의 별들이 이어진 모습에 그와 비슷하게 생긴 동물, 물건, 신화 속 인물의 이름을 붙인 것.
 - id: ko-nikl-05566
   target: 병
   part_of_speech: noun
@@ -21731,6 +21756,18 @@ entries:
     source_position: 1
     english: 'A state of being contrary to reason, and therefore considered unjust. '
     korean: 도리에 어긋나서 정당하지 않음.
+- id: ko-nikl-06350
+  target: 부당하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6350
+  senses:
+  - id: ko-nikl-06350-s001
+    source_position: 1
+    english: 'Being contrary to reason, and therefore considered unjust. '
+    korean: 도리에 어긋나서 정당하지 않다.
 - id: ko-nikl-06354
   target: 부대
   part_of_speech: noun
@@ -23592,6 +23629,35 @@ entries:
     source_position: 1
     english: 'Powder made by drying milk. '
     korean: 우유의 물기를 없애고 만든 가루.
+- id: ko-nikl-06939
+  target: 분자
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6939
+  senses:
+  - id: ko-nikl-06939-s001
+    source_position: 1
+    english: The smallest particle of a certain substance, which has that substance's chemical form and
+      qualities.
+    korean: 어떤 물질의 화학적 형태와 성질을 띠고 있는 가장 작은 알갱이.
+  - id: ko-nikl-06939-s002
+    source_position: 2
+    english: An individual member of a group that has a certain characteristic.
+    korean: 어떤 특성을 지닌 집단의 구성원 개개인.
+- id: ko-nikl-06940
+  target: 분자
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6940
+  senses:
+  - id: ko-nikl-06940-s001
+    source_position: 1
+    english: 'The number or expression that is above the line of a fraction or fractional expression. '
+    korean: 분수나 분수식에서 가로줄 위에 있는 수 또는 식.
 - id: ko-nikl-06945
   target: 분쟁
   part_of_speech: noun
@@ -23818,6 +23884,18 @@ entries:
     source_position: 1
     english: 'barbequed beef: Traditional Korean food made by roasting seasoned slices of pork or beef.'
     korean: 얇게 썰어 양념한 돼지고기나 쇠고기를 불에 구운 한국 전통 음식.
+- id: ko-nikl-07066
+  target: 불공평하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7066
+  senses:
+  - id: ko-nikl-07066-s001
+    source_position: 1
+    english: Losses or interests are unfair and one-sided.
+    korean: 손해나 이익 등이 고르지 못하고 어느 한쪽으로 치우치다.
 - id: ko-nikl-07067
   target: 불과
   part_of_speech: adverb
@@ -33805,6 +33883,18 @@ entries:
     source_position: 1
     english: Being a number equaling ten times three.
     korean: 열의 세 배가 되는 수의.
+- id: ko-nikl-09745
+  target: 서리
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9745
+  senses:
+  - id: ko-nikl-09745-s001
+    source_position: 1
+    english: Vapor in the air that has frozen onto an object on the ground.
+    korean: 공기 중의 수증기가 땅 위의 물체 겉에 얼어붙은 것.
 - id: ko-nikl-09750
   target: 서리다
   part_of_speech: verb
@@ -34029,6 +34119,18 @@ entries:
     source_position: 1
     english: Without hesitation in one's remark or behavior.
     korean: 말이나 행동에 망설임이나 막힘이 없이.
+- id: ko-nikl-09816
+  target: 서식지
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9816
+  senses:
+  - id: ko-nikl-09816-s001
+    source_position: 1
+    english: A place where a living thing dwells.
+    korean: 생물이 보금자리를 만들어 사는 곳.
 - id: ko-nikl-09818
   target: 서신
   part_of_speech: noun
@@ -45664,6 +45766,18 @@ entries:
     source_position: 1
     english: A student who receives a scholarship.
     korean: 장학금을 받는 학생.
+- id: ko-nikl-12987
+  target: 장황하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12987
+  senses:
+  - id: ko-nikl-12987-s001
+    source_position: 1
+    english: Very long and cumbersome.
+    korean: 매우 길고 번거롭다.
 - id: ko-nikl-12990
   target: 잦다
   part_of_speech: descriptive verb
@@ -47589,6 +47703,18 @@ entries:
     english: 'The state of being suitable thanks to the quality of fully meeting certain requirements
       or conditions. '
     korean: 어떤 일이나 조건에 꼭 들어맞아 알맞음.
+- id: ko-nikl-13623
+  target: 적합하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13623
+  senses:
+  - id: ko-nikl-13623-s001
+    source_position: 1
+    english: Suitable thanks to the quality of fully meeting certain requirements or conditions.
+    korean: 어떤 일이나 조건에 꼭 들어맞아 알맞다.
 - id: ko-nikl-13628
   target: 적히다
   part_of_speech: verb
@@ -50710,6 +50836,18 @@ entries:
     source_position: 1
     english: A situation where something unfolds.
     korean: 일이 되어 가는 형편.
+- id: ko-nikl-14570
+  target: 정수
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14570
+  senses:
+  - id: ko-nikl-14570-s001
+    source_position: 1
+    english: The act of making water clean and clear, or such water.
+    korean: 물을 깨끗하고 맑게 함. 또는 그 물.
 - id: ko-nikl-14571
   target: 정수
   part_of_speech: noun
@@ -53805,6 +53943,18 @@ entries:
     source_position: 1
     english: A disease that occurs in the eye.
     korean: 눈에 생기는 병.
+- id: ko-nikl-15572
+  target: 눈보라
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15572
+  senses:
+  - id: ko-nikl-15572-s001
+    source_position: 1
+    english: Snow that is blown furiously in one direction by the wind.
+    korean: 바람과 함께 한쪽으로 세차게 날리는 눈.
 - id: ko-nikl-15573
   target: 눈부시다
   part_of_speech: descriptive verb
@@ -72998,6 +73148,18 @@ entries:
     source_position: 2
     english: (figurative) A very cherished existence which gives hope.
     korean: (비유적으로) 매우 소중하거나 희망을 주는 존재.
+- id: ko-nikl-21387
+  target: 태양계
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21387
+  senses:
+  - id: ko-nikl-21387-s001
+    source_position: 1
+    english: The sun and its group of planets, including the Earth, that go around the sun.
+    korean: 태양과 그것을 중심으로 돌고 있는 지구를 비롯한 천체의 집합.
 - id: ko-nikl-21390
   target: 태양열
   part_of_speech: noun
@@ -83875,6 +84037,18 @@ entries:
     source_position: 1
     english: 'Doing harm without any benefits. '
     korean: 이롭지 않고 해가 되는 점이 있다.
+- id: ko-nikl-24635
+  target: 해류
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24635
+  senses:
+  - id: ko-nikl-24635-s001
+    source_position: 1
+    english: The flow of seawater that shifts in a certain direction at a regular speed.
+    korean: 일정한 방향과 빠르기로 이동하는 바닷물의 흐름.
 - id: ko-nikl-24638
   target: 해마다
   part_of_speech: adverb
@@ -84646,6 +84820,19 @@ entries:
     source_position: 1
     english: 'A place where an event is held. '
     korean: 행사가 열리는 장소.
+- id: ko-nikl-24839
+  target: 행성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24839
+  senses:
+  - id: ko-nikl-24839-s001
+    source_position: 1
+    english: 'A celestial body revolving around a central star in elliptical orbits due to the pulling
+      force from the star. '
+    korean: 중심 별이 강하게 끌어당기는 힘 때문에 타원형의 궤도를 그리며 중심 별의 주위를 도는 천체.
 - id: ko-nikl-24840
   target: 행세
   part_of_speech: noun
@@ -85126,6 +85313,18 @@ entries:
     source_position: 3
     english: Looking or acting indifferent or paying little attention to something.
     korean: 태도나 행동이 무심하고 소홀하다.
+- id: ko-nikl-24997
+  target: 허심탄회하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24997
+  senses:
+  - id: ko-nikl-24997-s001
+    source_position: 1
+    english: Being honest without hesitation to the extent of disclosing all of one's thoughts openly.
+    korean: 마음에 품은 생각을 숨김없이 말할 수 있을 만큼 아무 거리낌이 없고 솔직하다.
 - id: ko-nikl-25006
   target: 허옇다
   part_of_speech: descriptive verb
@@ -92481,6 +92680,18 @@ entries:
     source_position: 1
     english: The place one stays in away from home.
     korean: 자기가 원래 살던 곳을 떠나 머무르는 곳.
+- id: ko-nikl-27281
+  target: 갯벌
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27281
+  senses:
+  - id: ko-nikl-27281-s001
+    source_position: 1
+    english: A wide expanse of mud revealed when the tide goes down.
+    korean: 바닷물이 빠졌을 때에 드러나는 넓은 진흙 벌판.
 - id: ko-nikl-27314
   target: 걔
   part_of_speech: unspecified
@@ -101539,6 +101750,19 @@ entries:
       or South Jeolla Province; its main industry is the service industry and it also has developed machine
       and metalworking industries.
     korean: 전라남도의 중앙부에 있는 광역시. 호남 지방 최대의 도시로 산업은 서비스업이 중심을 이루며 기계 및 금속 공업도 발달하였다.
+- id: ko-nikl-30533
+  target: 광합성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30533
+  senses:
+  - id: ko-nikl-30533-s001
+    source_position: 1
+    english: The process of a green plant making organic matter with carbon dioxide and water through
+      solar energy.
+    korean: 녹색 식물이 태양 에너지를 이용하여 이산화 탄소와 수분으로 유기물을 만들어 내는 과정.
 - id: ko-nikl-30535
   target: 광활하다
   part_of_speech: descriptive verb
@@ -111911,6 +112135,18 @@ entries:
     source_position: 5
     english: (figurative) Roundish red swellings on the skin, caused by a fever.
     korean: (비유적으로) 열이 올라 피부에 빨갛고 동그랗게 돋아난 것.
+- id: ko-nikl-33779
+  target: 꽃가루
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33779
+  senses:
+  - id: ko-nikl-33779-s001
+    source_position: 1
+    english: The powder from anthers, carried from stamen to pistil, enabling the fertilization in flowers.
+    korean: 꽃의 수술에 붙어 있다가 암술로 운반되어 씨를 맺게 하는 가루.
 - id: ko-nikl-33783
   target: 꽃꽂이
   part_of_speech: noun
@@ -125146,6 +125382,22 @@ entries:
     source_position: 1
     english: 'A name given or designated to a person, an object, etc. '
     korean: 사람이나 사물 등을 가리켜 부르는 이름.
+- id: ko-nikl-37338
+  target: 명쾌하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37338
+  senses:
+  - id: ko-nikl-37338-s001
+    source_position: 1
+    english: A speech or writing's being straightforward due to its coherent and organized structure.
+    korean: 말이나 글이 앞뒤가 들어맞고 체계가 있어 시원스럽다.
+  - id: ko-nikl-37338-s002
+    source_position: 2
+    english: 'Being gay, cheerful and outgoing. '
+    korean: 명랑하고 쾌활하다.
 - id: ko-nikl-37344
   target: 명품
   part_of_speech: noun
@@ -130769,6 +131021,18 @@ entries:
     source_position: 3
     english: To be moved after being demolished, or disappear after being cut off.
     korean: 허물어 옮겨지거나 깎여서 없어지다.
+- id: ko-nikl-39171
+  target: 밀리리터
+  part_of_speech: bound noun
+  source_part_of_speech: 의존 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39171
+  senses:
+  - id: ko-nikl-39171-s001
+    source_position: 1
+    english: A bound noun that serves as a unit of volume.
+    korean: 부피의 단위.
 - id: ko-nikl-39172
   target: 밀리미터
   part_of_speech: bound noun
@@ -132635,6 +132899,19 @@ entries:
     source_position: 1
     english: A round accessory for wearing on one's finger.
     korean: 손가락에 끼는 동그란 장신구.
+- id: ko-nikl-39757
+  target: 반지름
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39757
+  senses:
+  - id: ko-nikl-39757-s001
+    source_position: 1
+    english: A straight line extending from the center of a circle or sphere to a point on the circumference
+      or surface, or the length of the line.
+    korean: 원이나 구의 중심에서 그 둘레나 면의 한 점까지 이어지는 선분. 또는 그 선분의 길이.
 - id: ko-nikl-39766
   target: 반짝거리다
   part_of_speech: verb
@@ -140629,6 +140906,18 @@ entries:
     source_position: 5
     english: To pass a certain amount of time.
     korean: 일정한 기간을 보내다.
+- id: ko-nikl-42571
+  target: 지느러미
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42571
+  senses:
+  - id: ko-nikl-42571-s001
+    source_position: 1
+    english: 'An organ that fish or underwater creatures use to maintain their balance or swim in water. '
+    korean: 물고기나 물에 사는 동물이 물속에서 몸의 균형을 유지하거나 헤엄치는 데 쓰는 기관.
 - id: ko-nikl-42572
   target: 지능
   part_of_speech: noun
@@ -141696,6 +141985,19 @@ entries:
     source_position: 1
     english: The act of spending money for a certain purpose, or such money.
     korean: 어떤 목적으로 돈을 씀. 또는 그렇게 쓰는 돈.
+- id: ko-nikl-42849
+  target: 지층
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42849
+  senses:
+  - id: ko-nikl-42849-s001
+    source_position: 1
+    english: 'A layer formed by gravel, sand, mud, volcanic ash, etc., that is piled up over a long a
+      period of time. '
+    korean: 자갈, 모래, 진흙, 화산재 등이 오랜 시간 동안 쌓여 이루어진 층.
 - id: ko-nikl-42850
   target: 지치다
   part_of_speech: verb
@@ -141792,6 +142094,18 @@ entries:
       manner that can be interlocked, attaching the cloth to pants, jackets, bags, etc., which are interlocked
       or separated by the pulling of a slide between them.
     korean: 금속이나 플라스틱 등의 조각을 서로 이가 맞물리도록 긴 헝겊에 나란히 박은 다음 바지, 점퍼, 가방 등에 달아서 고리를 밀고 당겨 여닫을 수 있게 만든 것.
+- id: ko-nikl-42868
+  target: 지평선
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42868
+  senses:
+  - id: ko-nikl-42868-s001
+    source_position: 1
+    english: The line at which the earth and sky appear to meet.
+    korean: 평평한 땅의 끝과 하늘이 맞닿은 것처럼 보이는 선.
 - id: ko-nikl-42869
   target: 지폐
   part_of_speech: noun
@@ -141848,6 +142162,18 @@ entries:
     source_position: 1
     english: 'A passage made by digging underground. '
     korean: 땅 밑을 파서 만들어 놓은 길.
+- id: ko-nikl-42880
+  target: 지하수
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42880
+  senses:
+  - id: ko-nikl-42880-s001
+    source_position: 1
+    english: 'Stagnant water that is under the ground. '
+    korean: 땅속에 고여 있는 물.
 - id: ko-nikl-42881
   target: 지하실
   part_of_speech: noun
@@ -154039,6 +154365,30 @@ entries:
     english: A word used to refer to or address a woman with a child regarding her child, usually attached
       to the child's name.
     korean: 주로 자녀 이름 뒤에 붙여 자녀가 있는 여자를 자식과 관련하여 이르거나 부르는 말.
+- id: ko-nikl-46793
+  target: 엄밀하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46793
+  senses:
+  - id: ko-nikl-46793-s001
+    source_position: 1
+    english: Being strict and minute without any loopholes or errors.
+    korean: 빈틈이나 잘못이 전혀 없을 만큼 엄격하고 세밀하다.
+- id: ko-nikl-46794
+  target: 엄밀히
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46794
+  senses:
+  - id: ko-nikl-46794-s001
+    source_position: 1
+    english: In a manner of being strict and minute without any loopholes or errors.
+    korean: 빈틈이나 잘못이 전혀 없을 만큼 엄격하고 세밀하게.
 - id: ko-nikl-46798
   target: 엄살
   part_of_speech: noun
@@ -159760,6 +160110,22 @@ entries:
     source_position: 1
     english: 'A sea animal which has a long, pliable body with ten long legs and no bones. '
     korean: 뼈가 없고 말랑말랑한 긴 몸에 긴 다리가 열 개 달린, 바다에 사는 동물.
+- id: ko-nikl-48329
+  target: 오차
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48329
+  senses:
+  - id: ko-nikl-48329-s001
+    source_position: 1
+    english: 'The difference between calculated or measured value and theoretically correct value. '
+    korean: 실제로 계산하거나 측정한 값과 이론적으로 정확한 값과의 차이.
+  - id: ko-nikl-48329-s002
+    source_position: 2
+    english: 'A mistake or error. '
+    korean: 실수나 잘못.
 - id: ko-nikl-48332
   target: 오케스트라
   part_of_speech: noun
@@ -162403,6 +162769,18 @@ entries:
     source_position: 1
     english: 'The act of granting pardon without punishing or scolding someone''s mistake or sin. '
     korean: 잘못이나 죄에 대하여 꾸중을 하거나 벌을 주지 않고 너그럽게 덮어 줌.
+- id: ko-nikl-49161
+  target: 용액
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49161
+  senses:
+  - id: ko-nikl-49161-s001
+    source_position: 1
+    english: 'A liquid made by an even mixture of two or more substances. '
+    korean: 두 가지 이상의 물질이 고르게 섞인 액체.
 - id: ko-nikl-49162
   target: 용어
   part_of_speech: noun
@@ -162714,6 +163092,18 @@ entries:
     source_position: 1
     english: A hole dug to collect underground water for human use.
     korean: 물을 긷기 위해 땅을 파서 지하수가 모이도록 한 곳.
+- id: ko-nikl-49298
+  target: 우박
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49298
+  senses:
+  - id: ko-nikl-49298-s001
+    source_position: 1
+    english: Big water droplets in the atmosphere that become frozen and fall when they meet cold air.
+    korean: 큰 물방울들이 공중에서 찬 기운을 만나 얼음이 되어 떨어지는 덩어리.
 - id: ko-nikl-49301
   target: 우발적
   part_of_speech: noun
@@ -164441,6 +164831,18 @@ entries:
     english: 'An affair or event that acts as the root of an occurrence of a certain thing or change of
       an object''s state. '
     korean: 어떤 일이 일어나게 하거나 어떤 사물의 상태를 바꾸는 근본이 된 일이나 사건.
+- id: ko-nikl-49779
+  target: 원자
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49779
+  senses:
+  - id: ko-nikl-49779-s001
+    source_position: 1
+    english: 'The smallest unit that constitutes matter or indicates its quality. '
+    korean: 물질을 이루며 그 물질의 성질을 나타내는 가장 작은 단위.
 - id: ko-nikl-49780
   target: 원자력
   part_of_speech: noun

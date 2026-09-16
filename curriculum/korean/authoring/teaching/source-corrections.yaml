@@ -5,6 +5,16 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-21387-s001:
+    source_korean: 태양과 그것을 중심으로 돌고 있는 지구를 비롯한 천체의 집합.
+    source_english: The sun and its group of planets, including the Earth, that go around the sun.
+    authored_interpretation: the solar system
+    rationale: Korean 천체 includes celestial bodies rather than restricting the group to planets; preserve the ordinary system term without the narrower English restriction.
+  ko-nikl-42880-s001:
+    source_korean: 땅속에 고여 있는 물.
+    source_english: 'Stagnant water that is under the ground. '
+    authored_interpretation: groundwater
+    rationale: English stagnant adds an immobility implication to underground collected water; the term must not teach that all groundwater is motionless.
   ko-nikl-37821-s002:
     source_korean: 일이 제대로 되지 못하다.
     source_english: Ugly and not pretty in appearance.

@@ -762,6 +762,8 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "procedure-notes.yaml",
             "nature-notes.yaml",
             "qualities-notes.yaml",
+            "natural-support-notes.yaml",
+            "quality-support-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1379,6 +1381,61 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(evidence["ko-nikl-03445"]["origin"], evidence["ko-nikl-03447"]["origin"])
         self.assertNotEqual(evidence["ko-nikl-03445"]["origin"], evidence["ko-nikl-03446"]["origin"])
         self.assertNotIn("ko-nikl-03446-s001", self.references.vocabulary)
+
+    def test_recovered_nature_homographs_do_not_substitute_unrelated_meanings(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for first, second in (("06939", "06940"), ("14570", "14571")):
+            first, second = f"ko-nikl-{first}-s001", f"ko-nikl-{second}-s001"
+            self.assertEqual(words[first]["ch"], words[second]["ch"])
+            self.assertNotEqual(identities[first], identities[second])
+        self.assertEqual(words["ko-nikl-06939-s001"]["ds"], "a molecule")
+        self.assertIn("numerator", words["ko-nikl-06940-s001"]["ds"])
+        self.assertIn("purification", words["ko-nikl-14570-s001"]["ds"])
+        self.assertIn("frost", words["ko-nikl-09745-s001"]["ds"])
+        self.assertEqual(
+            self.references.provenance["ko-nikl-39171-s001"]["lexical_category"], "bound-form",
+        )
+        reading = self.references.provenance["ko-nikl-39171-s001"]["reading"]
+        self.assertEqual(reading["method"], "authored-broad-hangul")
+        self.assertEqual(reading["review_status"], "unreviewed")
+
+    def test_recovered_source_parents_keep_original_unselected_positions(self):
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        authoring = self.root / "authoring" / "teaching"
+        for name in ("natural-support", "quality-support"):
+            notes = load_yaml(authoring / f"{name}-notes.yaml")
+            for parent in notes["source_support_requests"]:
+                self.assertEqual(parents[parent]["source_band"], "unbanded")
+        self.assertEqual(
+            [sense["id"] for sense in parents["ko-nikl-06939"]["senses"]],
+            ["ko-nikl-06939-s001", "ko-nikl-06939-s002"],
+        )
+        self.assertEqual(
+            [sense["id"] for sense in parents["ko-nikl-37338"]["senses"]],
+            ["ko-nikl-37338-s001", "ko-nikl-37338-s002"],
+        )
+        note = load_yaml(authoring / "quality-support-notes.yaml")["source_boundary"]
+        self.assertEqual(parents["ko-nikl-37338"]["senses"][1]["english"], note["source_english"])
+        self.assertNotIn(
+            note["excluded_sense"], {row["id"] for row in load_yaml(authoring / "quality-support-vocabulary.yaml")},
+        )
+
+    def test_recovered_precision_family_does_not_generate_or_double_count_an_adverb(self):
+        adjective, adverb = "ko-nikl-46793-s001", "ko-nikl-46794-s001"
+        self.assertEqual(
+            self.references.lexical_identity[adjective], self.references.lexical_identity[adverb],
+        )
+        self.assertEqual(self.references.vocabulary[adjective]["ch"], "엄밀하다")
+        self.assertEqual(self.references.vocabulary[adverb]["ch"], "엄밀히")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-46793"]["source_part_of_speech"], "형용사")
+        self.assertEqual(parents["ko-nikl-46794"]["source_part_of_speech"], "부사")
+        for identifier in (adjective, adverb):
+            self.assertEqual(self.references.provenance[identifier]["reading"]["method"], "official-text")
+        self.assertIn(
+            "Stagnant", self.references.provenance["ko-nikl-42880-s001"]["source_english"],
+        )
+        self.assertEqual(self.references.vocabulary["ko-nikl-42880-s001"]["ds"], "groundwater")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

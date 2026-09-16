@@ -209,7 +209,6 @@ units:
   - {id: ko-nikl-25476-s002, ch: 형태, pr: 형태, ds: a form taken by a structure or whole}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-37250-s001, ch: 명백히, pr: 명배키, ds: very clearly and definitely}
   - {id: ko-nikl-39409-s003, ch: 바르다, pr: 바르다, ds: to accord with the facts}
   - {id: ko-nikl-09319-s001, ch: 샅샅이, pr: 삳싸치, ds: exhaustively; without leaving anything out}
   - {id: ko-nikl-10352-s001, ch: 의아하다, pr: 의아하다, ds: to seem strange and raise doubts}
@@ -217,6 +216,7 @@ units:
   - {id: ko-nikl-51771-s001, ch: 확연히, pr: 화견히, ds: very clearly; unmistakably}
   - {id: ko-nikl-09041-s001, ch: 상관없다, pr: 상과넙따, ds: to be unrelated to each other}
   - {id: ko-nikl-30251-s001, ch: 관계없다, pr: 관계업따 / 관게업따, ds: to have no relation to each other}
+  - {id: ko-nikl-46793-s001, ch: 엄밀하다, pr: 엄밀하다, ds: 'to be rigorous and precise, leaving no gaps or errors'}
   review_grammar:
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
@@ -294,14 +294,14 @@ units:
   - {id: ko-nikl-48402-s001, ch: 온대, pr: 온대, ds: temperate regions}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-18473-s001, ch: 동식물, pr: 동ː싱물, ds: animals and plants}
-  - {id: ko-nikl-39159-s003, ch: 밀도, pr: 밀또, ds: the degree of dense packing}
-  - {id: ko-nikl-12294-s001, ch: 자연환경, pr: 자연환경, ds: the natural environment surrounding human life}
-  - {id: ko-nikl-14745-s001, ch: 정화, pr: 정화, ds: purification; making something dirty or impure cleaner}
   - {id: ko-nikl-28762-s001, ch: 고갈, pr: 고갈, ds: water running dry}
   - {id: ko-nikl-28762-s002, ch: 고갈, pr: 고갈, ds: depletion of resources or materials}
   - {id: ko-nikl-30049-s001, ch: 공해, pr: 공해, ds: harmful pollution from industry or transport}
   - {id: ko-nikl-36678-s001, ch: 매연, pr: 매연, ds: black sooty smoke from burning fuel}
+  - {id: ko-nikl-02589-s001, ch: 습지, pr: 습찌, ds: wetland; persistently damp ground}
+  - {id: ko-nikl-09816-s001, ch: 서식지, pr: 서ː식찌, ds: a habitat where a living thing dwells}
+  - {id: ko-nikl-14570-s001, ch: 정수, pr: 정수, ds: water purification or purified water}
+  - {id: ko-nikl-42880-s001, ch: 지하수, pr: 지하수, ds: groundwater}
   review_grammar:
   - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
 - id: level-21-nature-02
@@ -310,6 +310,8 @@ units:
   vocabulary:
   - {id: ko-nikl-21480-s003, ch: 털, pr: 털, ds: fine hairs on a plant's petals or leaves}
   - {id: ko-nikl-50528-s002, ch: 육식, pr: 육씩, ds: animals feeding on the flesh of other animals}
+  - {id: ko-nikl-24635-s001, ch: 해류, pr: 해ː류, ds: an ocean current}
+  - {id: ko-nikl-42849-s001, ch: 지층, pr: 지층, ds: a geological stratum of accumulated earth materials}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-27536-s005, ch: 거칠다, pr: 거칠다, ds: for wind or waves to be strong and fierce}
@@ -457,6 +459,13 @@ units:
   - {id: ko-nikl-49959-s001, ch: 위성, pr: 위성, ds: a natural satellite orbiting a planet}
   - {id: ko-nikl-47153-s002, ch: 여운, pr: 여운, ds: a gentle lingering sound or resonance}
   - {id: ko-nikl-02206-s001, ch: 순수하다, pr: 순수하다, ds: 'to be pure, with nothing else mixed in'}
+  - {id: ko-nikl-05547-s001, ch: 별자리, pr: 별ː자리, ds: a constellation named for a perceived pattern of stars}
+  - {id: ko-nikl-06939-s001, ch: 분자, pr: 분자, ds: a molecule}
+  - {id: ko-nikl-21387-s001, ch: 태양계, pr: 태양계 / 태양게, ds: the solar system}
+  - {id: ko-nikl-24839-s001, ch: 행성, pr: 행성, ds: a planet}
+  - {id: ko-nikl-30533-s001, ch: 광합성, pr: 광합썽, ds: photosynthesis}
+  - {id: ko-nikl-49161-s001, ch: 용액, pr: 용액, ds: a liquid solution; an evenly mixed liquid}
+  - {id: ko-nikl-49779-s001, ch: 원자, pr: 원자, ds: an atom}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-11130-s002, ch: 인류, pr: 일류, ds: humans distinguished from other animals}
@@ -496,12 +505,12 @@ units:
   - {id: ko-nikl-17730-s004, ch: 도, pr: 도ː, ds: degree of latitude or longitude}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-09076-s004, ch: 상당하다, pr: 상당하다, ds: to be fairly large in amount}
-  - {id: ko-nikl-25171-s001, ch: 헤아리다, pr: 헤ː아리다, ds: to count a number or quantity}
   - {id: ko-nikl-17009-s001, ch: 대략, pr: 대ː략, ds: approximately; by rough estimation}
   - {id: ko-nikl-25574-s003, ch: 가깝다, pr: 가깝따, ds: to be close to a numerical value}
   - {id: ko-nikl-19745-s025, ch: 떨어지다, pr: 떠러지다, ds: 'to divide exactly, leaving no remainder'}
   - {id: ko-nikl-41347-s003, ch: 종, pr: 종, ds: a counter for kinds or categories}
+  - {id: ko-nikl-06940-s001, ch: 분자, pr: 분자, ds: the numerator above a fraction's dividing line}
+  - {id: ko-nikl-48329-s001, ch: 오차, pr: 오ː차, ds: error between a calculated or measured value and the exact value}
   - {id: ko-nikl-10641-s004, ch: 이르다, pr: 이르다, ds: to amount to a particular figure}
   - {id: ko-nikl-34792-s002, ch: 낮추다, pr: 낟추다, ds: to lower a figure below a reference level}
   review_grammar:
@@ -513,12 +522,12 @@ units:
   grammar:
   - {id: ko-topik5-g002, ch: V/A-기 마련이다, ds: present an expected tendency rather than a law}
   review_vocabulary:
-  - {id: ko-nikl-02037-s002, ch: 수평, pr: 수평, ds: horizontal orientation}
-  - {id: ko-nikl-09934-s006, ch: 선, pr: 선, ds: the element meaning a beam of light}
-  - {id: ko-nikl-37463-s002, ch: 모서리, pr: 모서리, ds: an edge where two faces of a polyhedron meet}
-  - {id: ko-nikl-12275-s001, ch: 자연계, pr: 자연계 / 자연게, ds: the natural-science and mathematics fields of study}
-  - {id: ko-nikl-22362-s001, ch: 파장, pr: 파장, ds: wavelength in radio or sound waves}
-  - {id: ko-nikl-49959-s001, ch: 위성, pr: 위성, ds: a natural satellite orbiting a planet}
-  - {id: ko-nikl-47153-s002, ch: 여운, pr: 여운, ds: a gentle lingering sound or resonance}
   - {id: ko-nikl-02206-s001, ch: 순수하다, pr: 순수하다, ds: 'to be pure, with nothing else mixed in'}
+  - {id: ko-nikl-05547-s001, ch: 별자리, pr: 별ː자리, ds: a constellation named for a perceived pattern of stars}
+  - {id: ko-nikl-06939-s001, ch: 분자, pr: 분자, ds: a molecule}
+  - {id: ko-nikl-21387-s001, ch: 태양계, pr: 태양계 / 태양게, ds: the solar system}
+  - {id: ko-nikl-24839-s001, ch: 행성, pr: 행성, ds: a planet}
+  - {id: ko-nikl-30533-s001, ch: 광합성, pr: 광합썽, ds: photosynthesis}
+  - {id: ko-nikl-49161-s001, ch: 용액, pr: 용액, ds: a liquid solution; an evenly mixed liquid}
+  - {id: ko-nikl-49779-s001, ch: 원자, pr: 원자, ds: an atom}
   review_grammar: []

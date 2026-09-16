@@ -3228,6 +3228,7 @@ phases:
       vocabulary:
       - {id: ko-nikl-05772-s001, ch: 보석, pr: 보ː석, ds: a precious stone used in jewelry}
       - {id: ko-nikl-07836-s005, ch: 빛, pr: 빋, ds: the bright gleam of a glittering object}
+      - {id: ko-nikl-33779-s001, ch: 꽃가루, pr: 꼳까루, ds: pollen from a flower's stamen}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-12882-s001, ch: 장미, pr: 장미, ds: a rose flower}
@@ -3260,6 +3261,8 @@ phases:
       - {id: ko-nikl-45377-s001, ch: 최대, pr: 최ː대 / 췌ː대, ds: 'the maximum number, amount, or size'}
       - {id: ko-nikl-45397-s001, ch: 최소, pr: 최ː소 / 췌ː소, ds: the minimum number or degree}
       - {id: ko-nikl-45418-s001, ch: 최저, pr: 최ː저 / 췌ː저, ds: the lowest level or degree}
+      - {id: ko-nikl-39171-s001, ch: 밀리리터, pr: 밀리리터, ds: millilitre; a volume unit}
+      - {id: ko-nikl-39757-s001, ch: 반지름, pr: 반ː지름, ds: a radius of a circle or sphere}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-02436-s001, ch: 스물, pr: 스물, ds: twenty (native Korean numeral)}
@@ -4237,7 +4240,6 @@ phases:
       - {id: ko-nikl-00647-s001, ch: 소나기, pr: 소나기, ds: a sudden heavy shower that soon stops}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-16856-s001, ch: 대, pr: 대, ds: an upright hollow stalk of a tall plant}
       - {id: ko-nikl-09374-s001, ch: 새싹, pr: 새싹, ds: new leaves sprouting from seed or stem}
       - {id: ko-nikl-34355-s002, ch: 낙엽, pr: 나겹, ds: fallen leaves mainly in autumn}
       - {id: ko-nikl-16519-s002, ch: 단풍, pr: 단풍, ds: a maple tree}
@@ -4245,6 +4247,7 @@ phases:
       - {id: ko-nikl-47646-s001, ch: 열기, pr: 열기, ds: hot air or heat}
       - {id: ko-nikl-05772-s001, ch: 보석, pr: 보ː석, ds: a precious stone used in jewelry}
       - {id: ko-nikl-07836-s005, ch: 빛, pr: 빋, ds: the bright gleam of a glittering object}
+      - {id: ko-nikl-33779-s001, ch: 꽃가루, pr: 꼳까루, ds: pollen from a flower's stamen}
       review_grammar: []
     - id: level-07-nature-02
       title: Nature and environment - 2
@@ -4291,6 +4294,12 @@ phases:
       outcome: Explain an environmental change and distinguish evidence from prediction.
       vocabulary:
       - {id: ko-nikl-37115-s003, ch: 면, pr: 면ː, ds: the side facing something}
+      - {id: ko-nikl-09745-s001, ch: 서리, pr: 서리, ds: frost on an exposed surface}
+      - {id: ko-nikl-15572-s001, ch: 눈보라, pr: 눈ː보라, ds: snow blown fiercely by wind; a snowstorm}
+      - {id: ko-nikl-27281-s001, ch: 갯벌, pr: 개뻘 / 갣뻘, ds: a tidal mudflat exposed when the tide falls}
+      - {id: ko-nikl-42571-s001, ch: 지느러미, pr: 지느러미, ds: a fin used by an aquatic animal for balance or swimming}
+      - {id: ko-nikl-42868-s001, ch: 지평선, pr: 지평선, ds: the horizon where level land appears to meet the sky}
+      - {id: ko-nikl-49298-s001, ch: 우박, pr: 우ː박, ds: hail; falling lumps of ice}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-29977-s001, ch: 공중, pr: 공중, ds: the airspace between sky and ground}
@@ -4329,14 +4338,14 @@ phases:
       - {id: ko-nikl-01058-s001, ch: 속력, pr: 송녁, ds: speed of motion or progress}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-39172-s001, ch: 밀리미터, pr: 밀리미터, ds: millimetre unit}
-      - {id: ko-nikl-16454-s001, ch: 단위, pr: 다뉘, ds: a standard unit of measurement}
       - {id: ko-nikl-14232-s003, ch: 점, pr: 점, ds: a decimal point}
       - {id: ko-nikl-42633-s001, ch: 지름, pr: 지름, ds: a diameter through the center of a circle or sphere}
       - {id: ko-nikl-45363-s001, ch: 최고, pr: 최ː고 / 췌ː고, ds: the highest level}
       - {id: ko-nikl-45377-s001, ch: 최대, pr: 최ː대 / 췌ː대, ds: 'the maximum number, amount, or size'}
       - {id: ko-nikl-45397-s001, ch: 최소, pr: 최ː소 / 췌ː소, ds: the minimum number or degree}
       - {id: ko-nikl-45418-s001, ch: 최저, pr: 최ː저 / 췌ː저, ds: the lowest level or degree}
+      - {id: ko-nikl-39171-s001, ch: 밀리리터, pr: 밀리리터, ds: millilitre; a volume unit}
+      - {id: ko-nikl-39757-s001, ch: 반지름, pr: 반ː지름, ds: a radius of a circle or sphere}
       review_grammar:
       - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
     - id: level-07-travel-practice-01
@@ -5306,9 +5315,9 @@ phases:
       - {id: ko-nikl-26100-s001, ch: 각도, pr: 각또, ds: the degree of an angle}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-45377-s001, ch: 최대, pr: 최ː대 / 췌ː대, ds: 'the maximum number, amount, or size'}
-      - {id: ko-nikl-45397-s001, ch: 최소, pr: 최ː소 / 췌ː소, ds: the minimum number or degree}
       - {id: ko-nikl-45418-s001, ch: 최저, pr: 최ː저 / 췌ː저, ds: the lowest level or degree}
+      - {id: ko-nikl-39171-s001, ch: 밀리리터, pr: 밀리리터, ds: millilitre; a volume unit}
+      - {id: ko-nikl-39757-s001, ch: 반지름, pr: 반ː지름, ds: a radius of a circle or sphere}
       - {id: ko-nikl-42032-s003, ch: 줄, pr: 줄, ds: a counter for rows or lines of people or things}
       - {id: ko-nikl-03373-s001, ch: 실, pr: 실, ds: a counter for rooms}
       - {id: ko-nikl-21024-s001, ch: 킬로미터, pr: 킬로미터, ds: kilometre unit}
@@ -6249,14 +6258,14 @@ phases:
       - {id: ko-nikl-33817-s001, ch: 꽃잎, pr: 꼰닙, ds: a flower petal}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-42707-s001, ch: 지상, pr: 지상, ds: the surface of the land}
-      - {id: ko-nikl-05293-s001, ch: 벚꽃, pr: 벋꼳, ds: cherry blossoms}
-      - {id: ko-nikl-34355-s001, ch: 낙엽, pr: 나겹, ds: leaves falling mainly in autumn}
-      - {id: ko-nikl-16519-s001, ch: 단풍, pr: 단풍, ds: autumn leaf coloration or colored autumn leaves}
-      - {id: ko-nikl-42045-s002, ch: 줄기, pr: 줄기, ds: an extending branch of a river or mountain range}
-      - {id: ko-nikl-01978-s001, ch: 수직, pr: 수직, ds: movement or falling straight downward}
       - {id: ko-nikl-02876-s001, ch: 시야, pr: 시ː야, ds: field of vision}
       - {id: ko-nikl-37115-s003, ch: 면, pr: 면ː, ds: the side facing something}
+      - {id: ko-nikl-09745-s001, ch: 서리, pr: 서리, ds: frost on an exposed surface}
+      - {id: ko-nikl-15572-s001, ch: 눈보라, pr: 눈ː보라, ds: snow blown fiercely by wind; a snowstorm}
+      - {id: ko-nikl-27281-s001, ch: 갯벌, pr: 개뻘 / 갣뻘, ds: a tidal mudflat exposed when the tide falls}
+      - {id: ko-nikl-42571-s001, ch: 지느러미, pr: 지느러미, ds: a fin used by an aquatic animal for balance or swimming}
+      - {id: ko-nikl-42868-s001, ch: 지평선, pr: 지평선, ds: the horizon where level land appears to meet the sky}
+      - {id: ko-nikl-49298-s001, ch: 우박, pr: 우ː박, ds: hail; falling lumps of ice}
       review_grammar: []
     - id: level-09-nature-02
       title: Nature and environment - 2
@@ -8893,6 +8902,7 @@ phases:
       vocabulary:
       - {id: ko-nikl-08411-s001, ch: 사소하다, pr: 사소하다, ds: to be too small or minor to be important}
       - {id: ko-nikl-36014-s001, ch: 막연히, pr: 마견히, ds: vaguely; indistinctly}
+      - {id: ko-nikl-13623-s001, ch: 적합하다, pr: 저카파다, ds: to be suitable by fitting the task or conditions}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-34719-s001, ch: 납득하다, pr: 납뜨카다, ds: to accept and understand someone's words or actions}
@@ -9043,7 +9053,6 @@ phases:
       - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
       - {id: ko-topik3-g020, ch: V/A-(으)ㄴ/는 탓에, ds: attribute an unfavorable result to a cause}
       review_vocabulary:
-      - {id: ko-nikl-14232-s005, ch: 점, pr: 점, ds: a particular aspect among others}
       - {id: ko-nikl-25269-s001, ch: 현명하다, pr: 현명하다, ds: 'to be wise, generous-minded, and sensible'}
       - {id: ko-nikl-46398-s001, ch: 어리석다, pr: 어리석따, ds: to be foolish or unwise in thought or action}
       - {id: ko-nikl-39394-s001, ch: 바람직하다, pr: 바람지카다, ds: to be desirable; worthy of being considered good}
@@ -9051,6 +9060,7 @@ phases:
       - {id: ko-nikl-34424-s001, ch: 난감하다, pr: 난ː감하다, ds: to find it hard to make a firm decision}
       - {id: ko-nikl-08411-s001, ch: 사소하다, pr: 사소하다, ds: to be too small or minor to be important}
       - {id: ko-nikl-36014-s001, ch: 막연히, pr: 마견히, ds: vaguely; indistinctly}
+      - {id: ko-nikl-13623-s001, ch: 적합하다, pr: 저카파다, ds: to be suitable by fitting the task or conditions}
       review_grammar:
       - {id: ko-topik2-g012, ch: N 때문에 / V/A-기 때문에, ds: state an explicit noun or clause cause}
       - {id: ko-topik2-g034, ch: V/A-(으)ㄴ/는 것 같다, ds: mark an impression or tentative inference}
@@ -9064,7 +9074,6 @@ phases:
       - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}
       - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
       review_vocabulary:
-      - {id: ko-nikl-14232-s005, ch: 점, pr: 점, ds: a particular aspect among others}
       - {id: ko-nikl-25269-s001, ch: 현명하다, pr: 현명하다, ds: 'to be wise, generous-minded, and sensible'}
       - {id: ko-nikl-46398-s001, ch: 어리석다, pr: 어리석따, ds: to be foolish or unwise in thought or action}
       - {id: ko-nikl-39394-s001, ch: 바람직하다, pr: 바람지카다, ds: to be desirable; worthy of being considered good}
@@ -9072,6 +9081,7 @@ phases:
       - {id: ko-nikl-34424-s001, ch: 난감하다, pr: 난ː감하다, ds: to find it hard to make a firm decision}
       - {id: ko-nikl-08411-s001, ch: 사소하다, pr: 사소하다, ds: to be too small or minor to be important}
       - {id: ko-nikl-36014-s001, ch: 막연히, pr: 마견히, ds: vaguely; indistinctly}
+      - {id: ko-nikl-13623-s001, ch: 적합하다, pr: 저카파다, ds: to be suitable by fitting the task or conditions}
       review_grammar:
       - {id: ko-topik3-g015, ch: V/A-아/어도, ds: keep a conclusion despite a circumstance}
       - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
@@ -9084,7 +9094,6 @@ phases:
       - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
       - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
       review_vocabulary:
-      - {id: ko-nikl-14232-s005, ch: 점, pr: 점, ds: a particular aspect among others}
       - {id: ko-nikl-25269-s001, ch: 현명하다, pr: 현명하다, ds: 'to be wise, generous-minded, and sensible'}
       - {id: ko-nikl-46398-s001, ch: 어리석다, pr: 어리석따, ds: to be foolish or unwise in thought or action}
       - {id: ko-nikl-39394-s001, ch: 바람직하다, pr: 바람지카다, ds: to be desirable; worthy of being considered good}
@@ -9092,6 +9101,7 @@ phases:
       - {id: ko-nikl-34424-s001, ch: 난감하다, pr: 난ː감하다, ds: to find it hard to make a firm decision}
       - {id: ko-nikl-08411-s001, ch: 사소하다, pr: 사소하다, ds: to be too small or minor to be important}
       - {id: ko-nikl-36014-s001, ch: 막연히, pr: 마견히, ds: vaguely; indistinctly}
+      - {id: ko-nikl-13623-s001, ch: 적합하다, pr: 저카파다, ds: to be suitable by fitting the task or conditions}
       review_grammar:
       - {id: ko-topik3-g022, ch: V/A-(으)ㄹ지도 모르다, ds: acknowledge an uncertain possibility}
       - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}
@@ -9850,7 +9860,6 @@ phases:
       - {id: ko-nikl-03424-s002, ch: 실마리, pr: 실ː마리, ds: a starting clue for solving a problem or case}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-14232-s005, ch: 점, pr: 점, ds: a particular aspect among others}
       - {id: ko-nikl-25269-s001, ch: 현명하다, pr: 현명하다, ds: 'to be wise, generous-minded, and sensible'}
       - {id: ko-nikl-46398-s001, ch: 어리석다, pr: 어리석따, ds: to be foolish or unwise in thought or action}
       - {id: ko-nikl-39394-s001, ch: 바람직하다, pr: 바람지카다, ds: to be desirable; worthy of being considered good}
@@ -9858,6 +9867,7 @@ phases:
       - {id: ko-nikl-34424-s001, ch: 난감하다, pr: 난ː감하다, ds: to find it hard to make a firm decision}
       - {id: ko-nikl-08411-s001, ch: 사소하다, pr: 사소하다, ds: to be too small or minor to be important}
       - {id: ko-nikl-36014-s001, ch: 막연히, pr: 마견히, ds: vaguely; indistinctly}
+      - {id: ko-nikl-13623-s001, ch: 적합하다, pr: 저카파다, ds: to be suitable by fitting the task or conditions}
       review_grammar:
       - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
       - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
@@ -10186,6 +10196,7 @@ phases:
       - {id: ko-nikl-09996-s001, ch: 선뜻, pr: 선뜯, ds: readily; without hesitation or difficulty}
       - {id: ko-nikl-14566-s001, ch: 정성스럽다, pr: 정성스럽따, ds: to seem sincere and wholehearted in effort}
       - {id: ko-nikl-24118-s001, ch: 한결같다, pr: 한결갇따, ds: to remain the same from beginning to end}
+      - {id: ko-nikl-07066-s001, ch: 불공평하다, pr: 불공평하다, ds: for losses or benefits to be unfairly one-sided}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-46294-s001, ch: 어김없이, pr: 어기멉씨, ds: faithfully; without breaking a promise}
@@ -10379,6 +10390,7 @@ phases:
       - {id: ko-nikl-39137-s001, ch: 민첩하다, pr: 민처파다, ds: to be agile and quick in action or judgment}
       - {id: ko-nikl-33191-s001, ch: 긴밀하다, pr: 긴밀하다, ds: to be closely connected in a relationship}
       - {id: ko-nikl-34015-s002, ch: 끈질기다, pr: 끈질기다, ds: to be persistent in pursuing a goal without giving up}
+      - {id: ko-nikl-48329-s002, ch: 오차, pr: 오ː차, ds: a mistake or error}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-02642-s001, ch: 승인하다, pr: 승인하다, ds: to approve or authorize something}
@@ -10604,7 +10616,6 @@ phases:
       - {id: ko-topik4-g010, ch: V/A-(으)ㄴ/는 대신에, ds: substitute one action or offer compensation}
       - {id: ko-topik4-g021, ch: V-(으)ㄹ 겸, ds: combine compatible purposes for an action}
       review_vocabulary:
-      - {id: ko-nikl-14334-s002, ch: 접수하다, pr: 접쑤하다, ds: to receive money or goods}
       - {id: ko-nikl-21785-s001, ch: 통지하다, pr: 통지하다, ds: to notify someone of a fact}
       - {id: ko-nikl-41168-s001, ch: 조정하다, pr: 조정하다, ds: to adjust something to a standard or circumstances}
       - {id: ko-nikl-42782-s001, ch: 지원하다, pr: 지원하다, ds: to help through material support or action}
@@ -10612,6 +10623,7 @@ phases:
       - {id: ko-nikl-39137-s001, ch: 민첩하다, pr: 민처파다, ds: to be agile and quick in action or judgment}
       - {id: ko-nikl-33191-s001, ch: 긴밀하다, pr: 긴밀하다, ds: to be closely connected in a relationship}
       - {id: ko-nikl-34015-s002, ch: 끈질기다, pr: 끈질기다, ds: to be persistent in pursuing a goal without giving up}
+      - {id: ko-nikl-48329-s002, ch: 오차, pr: 오ː차, ds: a mistake or error}
       review_grammar:
       - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
       - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
@@ -10625,7 +10637,6 @@ phases:
       - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
       - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
       review_vocabulary:
-      - {id: ko-nikl-14334-s002, ch: 접수하다, pr: 접쑤하다, ds: to receive money or goods}
       - {id: ko-nikl-21785-s001, ch: 통지하다, pr: 통지하다, ds: to notify someone of a fact}
       - {id: ko-nikl-41168-s001, ch: 조정하다, pr: 조정하다, ds: to adjust something to a standard or circumstances}
       - {id: ko-nikl-42782-s001, ch: 지원하다, pr: 지원하다, ds: to help through material support or action}
@@ -10633,6 +10644,7 @@ phases:
       - {id: ko-nikl-39137-s001, ch: 민첩하다, pr: 민처파다, ds: to be agile and quick in action or judgment}
       - {id: ko-nikl-33191-s001, ch: 긴밀하다, pr: 긴밀하다, ds: to be closely connected in a relationship}
       - {id: ko-nikl-34015-s002, ch: 끈질기다, pr: 끈질기다, ds: to be persistent in pursuing a goal without giving up}
+      - {id: ko-nikl-48329-s002, ch: 오차, pr: 오ː차, ds: a mistake or error}
       review_grammar:
       - {id: ko-topik3-g031, ch: V-(으)ㄹ 테니까, ds: base a request on an intention or expectation}
       - {id: ko-topik4-g010, ch: V/A-(으)ㄴ/는 대신에, ds: substitute one action or offer compensation}
@@ -10644,7 +10656,6 @@ phases:
       grammar:
       - {id: ko-topik5-g026, ch: V-는 대로, ds: act as soon as something happens or as instructed}
       review_vocabulary:
-      - {id: ko-nikl-14334-s002, ch: 접수하다, pr: 접쑤하다, ds: to receive money or goods}
       - {id: ko-nikl-21785-s001, ch: 통지하다, pr: 통지하다, ds: to notify someone of a fact}
       - {id: ko-nikl-41168-s001, ch: 조정하다, pr: 조정하다, ds: to adjust something to a standard or circumstances}
       - {id: ko-nikl-42782-s001, ch: 지원하다, pr: 지원하다, ds: to help through material support or action}
@@ -10652,6 +10663,7 @@ phases:
       - {id: ko-nikl-39137-s001, ch: 민첩하다, pr: 민처파다, ds: to be agile and quick in action or judgment}
       - {id: ko-nikl-33191-s001, ch: 긴밀하다, pr: 긴밀하다, ds: to be closely connected in a relationship}
       - {id: ko-nikl-34015-s002, ch: 끈질기다, pr: 끈질기다, ds: to be persistent in pursuing a goal without giving up}
+      - {id: ko-nikl-48329-s002, ch: 오차, pr: 오ː차, ds: a mistake or error}
       review_grammar:
       - {id: ko-topik4-g031, ch: V-도록, ds: enable an outcome or state a purpose}
       - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
@@ -10704,7 +10716,6 @@ phases:
       - {id: ko-nikl-02916-s001, ch: 시장, pr: 시ː장, ds: a mayor}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-30284-s001, ch: 관대하다, pr: 관대하다, ds: to be broad-minded and understanding}
       - {id: ko-nikl-35208-s001, ch: 너그럽다, pr: 너그럽따, ds: to be generous and understanding of others' circumstances}
       - {id: ko-nikl-01797-s002, ch: 수수하다, pr: 수수하다, ds: 'to be gentle, unpretentious, and undemanding'}
       - {id: ko-nikl-04040-s001, ch: 아낌없다, pr: 아끼멉따, ds: to be generous and ungrudging}
@@ -10712,6 +10723,7 @@ phases:
       - {id: ko-nikl-09996-s001, ch: 선뜻, pr: 선뜯, ds: readily; without hesitation or difficulty}
       - {id: ko-nikl-14566-s001, ch: 정성스럽다, pr: 정성스럽따, ds: to seem sincere and wholehearted in effort}
       - {id: ko-nikl-24118-s001, ch: 한결같다, pr: 한결갇따, ds: to remain the same from beginning to end}
+      - {id: ko-nikl-07066-s001, ch: 불공평하다, pr: 불공평하다, ds: for losses or benefits to be unfairly one-sided}
       review_grammar:
       - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
       - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -10802,7 +10814,6 @@ phases:
       - {id: ko-nikl-52092-s002, ch: 회장, pr: 회ː장 / 훼ː장, ds: a company chairperson; its highest leading position}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-14334-s002, ch: 접수하다, pr: 접쑤하다, ds: to receive money or goods}
       - {id: ko-nikl-21785-s001, ch: 통지하다, pr: 통지하다, ds: to notify someone of a fact}
       - {id: ko-nikl-41168-s001, ch: 조정하다, pr: 조정하다, ds: to adjust something to a standard or circumstances}
       - {id: ko-nikl-42782-s001, ch: 지원하다, pr: 지원하다, ds: to help through material support or action}
@@ -10810,6 +10821,7 @@ phases:
       - {id: ko-nikl-39137-s001, ch: 민첩하다, pr: 민처파다, ds: to be agile and quick in action or judgment}
       - {id: ko-nikl-33191-s001, ch: 긴밀하다, pr: 긴밀하다, ds: to be closely connected in a relationship}
       - {id: ko-nikl-34015-s002, ch: 끈질기다, pr: 끈질기다, ds: to be persistent in pursuing a goal without giving up}
+      - {id: ko-nikl-48329-s002, ch: 오차, pr: 오ː차, ds: a mistake or error}
       review_grammar:
       - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
       - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
@@ -11728,6 +11740,10 @@ phases:
       - {id: ko-nikl-28762-s002, ch: 고갈, pr: 고갈, ds: depletion of resources or materials}
       - {id: ko-nikl-30049-s001, ch: 공해, pr: 공해, ds: harmful pollution from industry or transport}
       - {id: ko-nikl-36678-s001, ch: 매연, pr: 매연, ds: black sooty smoke from burning fuel}
+      - {id: ko-nikl-02589-s001, ch: 습지, pr: 습찌, ds: wetland; persistently damp ground}
+      - {id: ko-nikl-09816-s001, ch: 서식지, pr: 서ː식찌, ds: a habitat where a living thing dwells}
+      - {id: ko-nikl-14570-s001, ch: 정수, pr: 정수, ds: water purification or purified water}
+      - {id: ko-nikl-42880-s001, ch: 지하수, pr: 지하수, ds: groundwater}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-35766-s001, ch: 농작물, pr: 농장물, ds: cultivated crops}
@@ -11844,14 +11860,14 @@ phases:
       grammar:
       - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
       review_vocabulary:
-      - {id: ko-nikl-18473-s001, ch: 동식물, pr: 동ː싱물, ds: animals and plants}
-      - {id: ko-nikl-39159-s003, ch: 밀도, pr: 밀또, ds: the degree of dense packing}
-      - {id: ko-nikl-12294-s001, ch: 자연환경, pr: 자연환경, ds: the natural environment surrounding human life}
-      - {id: ko-nikl-14745-s001, ch: 정화, pr: 정화, ds: purification; making something dirty or impure cleaner}
       - {id: ko-nikl-28762-s001, ch: 고갈, pr: 고갈, ds: water running dry}
       - {id: ko-nikl-28762-s002, ch: 고갈, pr: 고갈, ds: depletion of resources or materials}
       - {id: ko-nikl-30049-s001, ch: 공해, pr: 공해, ds: harmful pollution from industry or transport}
       - {id: ko-nikl-36678-s001, ch: 매연, pr: 매연, ds: black sooty smoke from burning fuel}
+      - {id: ko-nikl-02589-s001, ch: 습지, pr: 습찌, ds: wetland; persistently damp ground}
+      - {id: ko-nikl-09816-s001, ch: 서식지, pr: 서ː식찌, ds: a habitat where a living thing dwells}
+      - {id: ko-nikl-14570-s001, ch: 정수, pr: 정수, ds: water purification or purified water}
+      - {id: ko-nikl-42880-s001, ch: 지하수, pr: 지하수, ds: groundwater}
       review_grammar: []
   - schema_version: 3
     id: ko-level-18
@@ -11903,7 +11919,7 @@ phases:
       - {id: ko-nikl-42264-s001, ch: 중재하다, pr: 중재하다, ds: to mediate between disputing people for reconciliation}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-24118-s001, ch: 한결같다, pr: 한결갇따, ds: to remain the same from beginning to end}
+      - {id: ko-nikl-07066-s001, ch: 불공평하다, pr: 불공평하다, ds: for losses or benefits to be unfairly one-sided}
       - {id: ko-nikl-11025-s001, ch: 이혼, pr: 이ː혼, ds: divorce}
       - {id: ko-nikl-12936-s001, ch: 장애인, pr: 장애인, ds: a person with a disability affecting daily or social life}
       - {id: ko-nikl-41820-s002, ch: 주인공, pr: 주인공, ds: a central figure leading an affair}
@@ -11966,8 +11982,8 @@ phases:
       - {id: ko-nikl-34855-s025, ch: 내다, pr: 내ː다, ds: to take leave or a vacation}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-33191-s001, ch: 긴밀하다, pr: 긴밀하다, ds: to be closely connected in a relationship}
       - {id: ko-nikl-34015-s002, ch: 끈질기다, pr: 끈질기다, ds: to be persistent in pursuing a goal without giving up}
+      - {id: ko-nikl-48329-s002, ch: 오차, pr: 오ː차, ds: a mistake or error}
       - {id: ko-nikl-35417-s001, ch: 노동자, pr: 노동자, ds: a worker who earns a living through paid work}
       - {id: ko-nikl-46842-s001, ch: 업체, pr: 업체, ds: a business enterprise operating for profit}
       - {id: ko-nikl-03473-s001, ch: 실업, pr: 시럽, ds: loss of a job}
@@ -12713,6 +12729,7 @@ phases:
       - {id: ko-nikl-51771-s001, ch: 확연히, pr: 화견히, ds: very clearly; unmistakably}
       - {id: ko-nikl-09041-s001, ch: 상관없다, pr: 상과넙따, ds: to be unrelated to each other}
       - {id: ko-nikl-30251-s001, ch: 관계없다, pr: 관계업따 / 관게업따, ds: to have no relation to each other}
+      - {id: ko-nikl-46793-s001, ch: 엄밀하다, pr: 엄밀하다, ds: 'to be rigorous and precise, leaving no gaps or errors'}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-42423-s001, ch: 증명하다, pr: 증명하다, ds: to establish with evidence whether something is true}
@@ -12829,6 +12846,8 @@ phases:
       - {id: ko-nikl-25574-s003, ch: 가깝다, pr: 가깝따, ds: to be close to a numerical value}
       - {id: ko-nikl-19745-s025, ch: 떨어지다, pr: 떠러지다, ds: 'to divide exactly, leaving no remainder'}
       - {id: ko-nikl-41347-s003, ch: 종, pr: 종, ds: a counter for kinds or categories}
+      - {id: ko-nikl-06940-s001, ch: 분자, pr: 분자, ds: the numerator above a fraction's dividing line}
+      - {id: ko-nikl-48329-s001, ch: 오차, pr: 오ː차, ds: error between a calculated or measured value and the exact value}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-27485-s001, ch: 거의, pr: 거의 / 거이, ds: an amount just short of the whole}
@@ -12848,7 +12867,6 @@ phases:
       grammar:
       - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
       review_vocabulary:
-      - {id: ko-nikl-37250-s001, ch: 명백히, pr: 명배키, ds: very clearly and definitely}
       - {id: ko-nikl-39409-s003, ch: 바르다, pr: 바르다, ds: to accord with the facts}
       - {id: ko-nikl-09319-s001, ch: 샅샅이, pr: 삳싸치, ds: exhaustively; without leaving anything out}
       - {id: ko-nikl-10352-s001, ch: 의아하다, pr: 의아하다, ds: to seem strange and raise doubts}
@@ -12856,6 +12874,7 @@ phases:
       - {id: ko-nikl-51771-s001, ch: 확연히, pr: 화견히, ds: very clearly; unmistakably}
       - {id: ko-nikl-09041-s001, ch: 상관없다, pr: 상과넙따, ds: to be unrelated to each other}
       - {id: ko-nikl-30251-s001, ch: 관계없다, pr: 관계업따 / 관게업따, ds: to have no relation to each other}
+      - {id: ko-nikl-46793-s001, ch: 엄밀하다, pr: 엄밀하다, ds: 'to be rigorous and precise, leaving no gaps or errors'}
       review_grammar:
       - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
       - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
@@ -13428,14 +13447,14 @@ phases:
       - {id: ko-nikl-34792-s002, ch: 낮추다, pr: 낟추다, ds: to lower a figure below a reference level}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-07729-s001, ch: 빈도, pr: 빈도, ds: frequency; how often the same event occurs}
-      - {id: ko-nikl-22821-s001, ch: 평균, pr: 평균, ds: 'an average value for a number, amount, or degree'}
       - {id: ko-nikl-09076-s004, ch: 상당하다, pr: 상당하다, ds: to be fairly large in amount}
       - {id: ko-nikl-25171-s001, ch: 헤아리다, pr: 헤ː아리다, ds: to count a number or quantity}
       - {id: ko-nikl-17009-s001, ch: 대략, pr: 대ː략, ds: approximately; by rough estimation}
       - {id: ko-nikl-25574-s003, ch: 가깝다, pr: 가깝따, ds: to be close to a numerical value}
       - {id: ko-nikl-19745-s025, ch: 떨어지다, pr: 떠러지다, ds: 'to divide exactly, leaving no remainder'}
       - {id: ko-nikl-41347-s003, ch: 종, pr: 종, ds: a counter for kinds or categories}
+      - {id: ko-nikl-06940-s001, ch: 분자, pr: 분자, ds: the numerator above a fraction's dividing line}
+      - {id: ko-nikl-48329-s001, ch: 오차, pr: 오ː차, ds: error between a calculated or measured value and the exact value}
       review_grammar:
       - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
     - id: level-20-money-practice-01
@@ -13703,7 +13722,6 @@ phases:
       - {id: ko-nikl-25476-s002, ch: 형태, pr: 형태, ds: a form taken by a structure or whole}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-37250-s001, ch: 명백히, pr: 명배키, ds: very clearly and definitely}
       - {id: ko-nikl-39409-s003, ch: 바르다, pr: 바르다, ds: to accord with the facts}
       - {id: ko-nikl-09319-s001, ch: 샅샅이, pr: 삳싸치, ds: exhaustively; without leaving anything out}
       - {id: ko-nikl-10352-s001, ch: 의아하다, pr: 의아하다, ds: to seem strange and raise doubts}
@@ -13711,6 +13729,7 @@ phases:
       - {id: ko-nikl-51771-s001, ch: 확연히, pr: 화견히, ds: very clearly; unmistakably}
       - {id: ko-nikl-09041-s001, ch: 상관없다, pr: 상과넙따, ds: to be unrelated to each other}
       - {id: ko-nikl-30251-s001, ch: 관계없다, pr: 관계업따 / 관게업따, ds: to have no relation to each other}
+      - {id: ko-nikl-46793-s001, ch: 엄밀하다, pr: 엄밀하다, ds: 'to be rigorous and precise, leaving no gaps or errors'}
       review_grammar:
       - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
       - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
@@ -13788,14 +13807,14 @@ phases:
       - {id: ko-nikl-48402-s001, ch: 온대, pr: 온대, ds: temperate regions}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-18473-s001, ch: 동식물, pr: 동ː싱물, ds: animals and plants}
-      - {id: ko-nikl-39159-s003, ch: 밀도, pr: 밀또, ds: the degree of dense packing}
-      - {id: ko-nikl-12294-s001, ch: 자연환경, pr: 자연환경, ds: the natural environment surrounding human life}
-      - {id: ko-nikl-14745-s001, ch: 정화, pr: 정화, ds: purification; making something dirty or impure cleaner}
       - {id: ko-nikl-28762-s001, ch: 고갈, pr: 고갈, ds: water running dry}
       - {id: ko-nikl-28762-s002, ch: 고갈, pr: 고갈, ds: depletion of resources or materials}
       - {id: ko-nikl-30049-s001, ch: 공해, pr: 공해, ds: harmful pollution from industry or transport}
       - {id: ko-nikl-36678-s001, ch: 매연, pr: 매연, ds: black sooty smoke from burning fuel}
+      - {id: ko-nikl-02589-s001, ch: 습지, pr: 습찌, ds: wetland; persistently damp ground}
+      - {id: ko-nikl-09816-s001, ch: 서식지, pr: 서ː식찌, ds: a habitat where a living thing dwells}
+      - {id: ko-nikl-14570-s001, ch: 정수, pr: 정수, ds: water purification or purified water}
+      - {id: ko-nikl-42880-s001, ch: 지하수, pr: 지하수, ds: groundwater}
       review_grammar:
       - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
     - id: level-21-nature-02
@@ -13804,6 +13823,8 @@ phases:
       vocabulary:
       - {id: ko-nikl-21480-s003, ch: 털, pr: 털, ds: fine hairs on a plant's petals or leaves}
       - {id: ko-nikl-50528-s002, ch: 육식, pr: 육씩, ds: animals feeding on the flesh of other animals}
+      - {id: ko-nikl-24635-s001, ch: 해류, pr: 해ː류, ds: an ocean current}
+      - {id: ko-nikl-42849-s001, ch: 지층, pr: 지층, ds: a geological stratum of accumulated earth materials}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-27536-s005, ch: 거칠다, pr: 거칠다, ds: for wind or waves to be strong and fierce}
@@ -13951,6 +13972,13 @@ phases:
       - {id: ko-nikl-49959-s001, ch: 위성, pr: 위성, ds: a natural satellite orbiting a planet}
       - {id: ko-nikl-47153-s002, ch: 여운, pr: 여운, ds: a gentle lingering sound or resonance}
       - {id: ko-nikl-02206-s001, ch: 순수하다, pr: 순수하다, ds: 'to be pure, with nothing else mixed in'}
+      - {id: ko-nikl-05547-s001, ch: 별자리, pr: 별ː자리, ds: a constellation named for a perceived pattern of stars}
+      - {id: ko-nikl-06939-s001, ch: 분자, pr: 분자, ds: a molecule}
+      - {id: ko-nikl-21387-s001, ch: 태양계, pr: 태양계 / 태양게, ds: the solar system}
+      - {id: ko-nikl-24839-s001, ch: 행성, pr: 행성, ds: a planet}
+      - {id: ko-nikl-30533-s001, ch: 광합성, pr: 광합썽, ds: photosynthesis}
+      - {id: ko-nikl-49161-s001, ch: 용액, pr: 용액, ds: a liquid solution; an evenly mixed liquid}
+      - {id: ko-nikl-49779-s001, ch: 원자, pr: 원자, ds: an atom}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-11130-s002, ch: 인류, pr: 일류, ds: humans distinguished from other animals}
@@ -13990,12 +14018,12 @@ phases:
       - {id: ko-nikl-17730-s004, ch: 도, pr: 도ː, ds: degree of latitude or longitude}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-09076-s004, ch: 상당하다, pr: 상당하다, ds: to be fairly large in amount}
-      - {id: ko-nikl-25171-s001, ch: 헤아리다, pr: 헤ː아리다, ds: to count a number or quantity}
       - {id: ko-nikl-17009-s001, ch: 대략, pr: 대ː략, ds: approximately; by rough estimation}
       - {id: ko-nikl-25574-s003, ch: 가깝다, pr: 가깝따, ds: to be close to a numerical value}
       - {id: ko-nikl-19745-s025, ch: 떨어지다, pr: 떠러지다, ds: 'to divide exactly, leaving no remainder'}
       - {id: ko-nikl-41347-s003, ch: 종, pr: 종, ds: a counter for kinds or categories}
+      - {id: ko-nikl-06940-s001, ch: 분자, pr: 분자, ds: the numerator above a fraction's dividing line}
+      - {id: ko-nikl-48329-s001, ch: 오차, pr: 오ː차, ds: error between a calculated or measured value and the exact value}
       - {id: ko-nikl-10641-s004, ch: 이르다, pr: 이르다, ds: to amount to a particular figure}
       - {id: ko-nikl-34792-s002, ch: 낮추다, pr: 낟추다, ds: to lower a figure below a reference level}
       review_grammar:
@@ -14007,14 +14035,14 @@ phases:
       grammar:
       - {id: ko-topik5-g002, ch: V/A-기 마련이다, ds: present an expected tendency rather than a law}
       review_vocabulary:
-      - {id: ko-nikl-02037-s002, ch: 수평, pr: 수평, ds: horizontal orientation}
-      - {id: ko-nikl-09934-s006, ch: 선, pr: 선, ds: the element meaning a beam of light}
-      - {id: ko-nikl-37463-s002, ch: 모서리, pr: 모서리, ds: an edge where two faces of a polyhedron meet}
-      - {id: ko-nikl-12275-s001, ch: 자연계, pr: 자연계 / 자연게, ds: the natural-science and mathematics fields of study}
-      - {id: ko-nikl-22362-s001, ch: 파장, pr: 파장, ds: wavelength in radio or sound waves}
-      - {id: ko-nikl-49959-s001, ch: 위성, pr: 위성, ds: a natural satellite orbiting a planet}
-      - {id: ko-nikl-47153-s002, ch: 여운, pr: 여운, ds: a gentle lingering sound or resonance}
       - {id: ko-nikl-02206-s001, ch: 순수하다, pr: 순수하다, ds: 'to be pure, with nothing else mixed in'}
+      - {id: ko-nikl-05547-s001, ch: 별자리, pr: 별ː자리, ds: a constellation named for a perceived pattern of stars}
+      - {id: ko-nikl-06939-s001, ch: 분자, pr: 분자, ds: a molecule}
+      - {id: ko-nikl-21387-s001, ch: 태양계, pr: 태양계 / 태양게, ds: the solar system}
+      - {id: ko-nikl-24839-s001, ch: 행성, pr: 행성, ds: a planet}
+      - {id: ko-nikl-30533-s001, ch: 광합성, pr: 광합썽, ds: photosynthesis}
+      - {id: ko-nikl-49161-s001, ch: 용액, pr: 용액, ds: a liquid solution; an evenly mixed liquid}
+      - {id: ko-nikl-49779-s001, ch: 원자, pr: 원자, ds: an atom}
       review_grammar: []
   - schema_version: 3
     id: ko-level-22
@@ -14289,11 +14317,11 @@ phases:
       - {id: ko-nikl-17133-s001, ch: 대수롭다, pr: 대ː수롭따, ds: to be worth considering important or serious}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-10352-s001, ch: 의아하다, pr: 의아하다, ds: to seem strange and raise doubts}
       - {id: ko-nikl-25314-s001, ch: 현저히, pr: 현ː저히, ds: noticeably; enough to stand out clearly}
       - {id: ko-nikl-51771-s001, ch: 확연히, pr: 화견히, ds: very clearly; unmistakably}
       - {id: ko-nikl-09041-s001, ch: 상관없다, pr: 상과넙따, ds: to be unrelated to each other}
       - {id: ko-nikl-30251-s001, ch: 관계없다, pr: 관계업따 / 관게업따, ds: to have no relation to each other}
+      - {id: ko-nikl-46793-s001, ch: 엄밀하다, pr: 엄밀하다, ds: 'to be rigorous and precise, leaving no gaps or errors'}
       - {id: ko-nikl-48072-s001, ch: 예측, pr: 예ː측, ds: prediction; anticipating what will happen}
       - {id: ko-nikl-35625-s002, ch: 논리, pr: 놀리, ds: an underlying principle connecting things}
       - {id: ko-nikl-25476-s002, ch: 형태, pr: 형태, ds: a form taken by a structure or whole}
@@ -14390,6 +14418,7 @@ phases:
       - {id: ko-nikl-12325-s001, ch: 자율성, pr: 자율썽, ds: self-direction according to one's own principles}
       - {id: ko-nikl-29280-s001, ch: 고정 관념, pr: 고정 관념, ds: a fixed idea or preconception resistant to change}
       - {id: ko-nikl-41903-s001, ch: 주체성, pr: 주체썽, ds: acting according to one's own will}
+      - {id: ko-nikl-06350-s001, ch: 부당하다, pr: 부당하다, ds: to be unjust or contrary to reason}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-24010-s002, ch: 학벌, pr: 학뻘, ds: a group defined by school or school of thought}
@@ -14827,7 +14856,6 @@ phases:
       - {id: ko-nikl-43107-s002, ch: 진보, pr: 진ː보, ds: pursuit of social change or development}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-11182-s001, ch: 인생, pr: 인생, ds: human life; living in the world}
       - {id: ko-nikl-11183-s001, ch: 인생관, pr: 인생관, ds: 'a view of life''s purpose, meaning and value'}
       - {id: ko-nikl-28618-s002, ch: 계급, pr: 계급 / 게급, ds: a social class or the status it assigns}
       - {id: ko-nikl-29961-s001, ch: 공정, pr: 공정, ds: fairness without bias toward one side}
@@ -14835,6 +14863,7 @@ phases:
       - {id: ko-nikl-12325-s001, ch: 자율성, pr: 자율썽, ds: self-direction according to one's own principles}
       - {id: ko-nikl-29280-s001, ch: 고정 관념, pr: 고정 관념, ds: a fixed idea or preconception resistant to change}
       - {id: ko-nikl-41903-s001, ch: 주체성, pr: 주체썽, ds: acting according to one's own will}
+      - {id: ko-nikl-06350-s001, ch: 부당하다, pr: 부당하다, ds: to be unjust or contrary to reason}
       review_grammar: []
     - id: level-23-institutions-01
       title: Institutions and public life - 1
@@ -14972,6 +15001,7 @@ phases:
       - {id: ko-nikl-30252-s001, ch: 관계없이, pr: 관계업씨 / 관게업씨, ds: without any relation to something else}
       - {id: ko-nikl-37832-s001, ch: 못지않다, pr: 몯ː찌안타, ds: to be no worse than another in comparison}
       - {id: ko-nikl-16446-s001, ch: 단연, pr: 다ː년, ds: 'clearly; unmistakably in rank, level, or degree'}
+      - {id: ko-nikl-46794-s001, ch: 엄밀히, pr: 엄밀히, ds: rigorously; with exacting precision and no gaps}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-15012-s001, ch: 제한, pr: 제ː한, ds: a restriction defining a scope or preventing excess}
@@ -14996,9 +15026,9 @@ phases:
       - {id: ko-nikl-35321-s005, ch: 넘어서다, pr: 너머서다, ds: to exceed a particular numerical value}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-25574-s003, ch: 가깝다, pr: 가깝따, ds: to be close to a numerical value}
-      - {id: ko-nikl-19745-s025, ch: 떨어지다, pr: 떠러지다, ds: 'to divide exactly, leaving no remainder'}
       - {id: ko-nikl-41347-s003, ch: 종, pr: 종, ds: a counter for kinds or categories}
+      - {id: ko-nikl-06940-s001, ch: 분자, pr: 분자, ds: the numerator above a fraction's dividing line}
+      - {id: ko-nikl-48329-s001, ch: 오차, pr: 오ː차, ds: error between a calculated or measured value and the exact value}
       - {id: ko-nikl-10641-s004, ch: 이르다, pr: 이르다, ds: to amount to a particular figure}
       - {id: ko-nikl-34792-s002, ch: 낮추다, pr: 낟추다, ds: to lower a figure below a reference level}
       - {id: ko-nikl-37156-s001, ch: 면적, pr: 면ː적, ds: area; the size of a flat or curved surface}
@@ -15015,7 +15045,6 @@ phases:
       - {id: ko-topik5-g016, ch: V/A-(으)ㄴ/는 한, ds: restrict a claim to its stated scope or condition}
       - {id: ko-topik6-g008, ch: V-고도, ds: contrast an outcome with an already completed act}
       review_vocabulary:
-      - {id: ko-nikl-41840-s001, ch: 주장하다, pr: 주장하다, ds: to firmly assert one's opinion or belief}
       - {id: ko-nikl-42799-s002, ch: 지적하다, pr: 지저카다, ds: to point out a fault or something needing correction}
       - {id: ko-nikl-48542-s001, ch: 옹호하다, pr: 옹ː호하다, ds: to defend someone or something by taking its side and helping}
       - {id: ko-nikl-16818-s001, ch: 당연히, pr: 당연히, ds: naturally; as reason would lead one to expect}
@@ -15023,6 +15052,7 @@ phases:
       - {id: ko-nikl-30252-s001, ch: 관계없이, pr: 관계업씨 / 관게업씨, ds: without any relation to something else}
       - {id: ko-nikl-37832-s001, ch: 못지않다, pr: 몯ː찌안타, ds: to be no worse than another in comparison}
       - {id: ko-nikl-16446-s001, ch: 단연, pr: 다ː년, ds: 'clearly; unmistakably in rank, level, or degree'}
+      - {id: ko-nikl-46794-s001, ch: 엄밀히, pr: 엄밀히, ds: rigorously; with exacting precision and no gaps}
       review_grammar:
       - {id: ko-topik5-g023, ch: V-(으)ㄹ 바에야, ds: reject a course in favor of an evaluated alternative}
       - {id: ko-topik6-g009, ch: V/A-(으)면서도, ds: contrast behavior with a simultaneous circumstance}
@@ -15036,7 +15066,6 @@ phases:
       - {id: ko-topik6-g031, ch: N을/를 막론하고, ds: generalize across a named distinction}
       - {id: ko-topik6-g033, ch: V/A-다고 해서 반드시 … 것은 아니다, ds: reject a universal inference without its opposite}
       review_vocabulary:
-      - {id: ko-nikl-41840-s001, ch: 주장하다, pr: 주장하다, ds: to firmly assert one's opinion or belief}
       - {id: ko-nikl-42799-s002, ch: 지적하다, pr: 지저카다, ds: to point out a fault or something needing correction}
       - {id: ko-nikl-48542-s001, ch: 옹호하다, pr: 옹ː호하다, ds: to defend someone or something by taking its side and helping}
       - {id: ko-nikl-16818-s001, ch: 당연히, pr: 당연히, ds: naturally; as reason would lead one to expect}
@@ -15044,6 +15073,7 @@ phases:
       - {id: ko-nikl-30252-s001, ch: 관계없이, pr: 관계업씨 / 관게업씨, ds: without any relation to something else}
       - {id: ko-nikl-37832-s001, ch: 못지않다, pr: 몯ː찌안타, ds: to be no worse than another in comparison}
       - {id: ko-nikl-16446-s001, ch: 단연, pr: 다ː년, ds: 'clearly; unmistakably in rank, level, or degree'}
+      - {id: ko-nikl-46794-s001, ch: 엄밀히, pr: 엄밀히, ds: rigorously; with exacting precision and no gaps}
       review_grammar:
       - {id: ko-topik5-g015, ch: V/A-(으)ㄴ/는 이상, ds: draw a consequence from an established premise}
       - {id: ko-topik5-g016, ch: V/A-(으)ㄴ/는 한, ds: restrict a claim to its stated scope or condition}
@@ -15175,6 +15205,7 @@ phases:
       - {id: ko-nikl-39247-s001, ch: 및, pr: 믿, ds: and; and also}
       - {id: ko-nikl-25337-s001, ch: 현황, pr: 현ː황, ds: the current situation or state of affairs}
       - {id: ko-nikl-47309-s003, ch: 엮다, pr: 역따, ds: to organize material into a structured text or narrative}
+      - {id: ko-nikl-37338-s001, ch: 명쾌하다, pr: 명쾌하다, ds: for speech or writing to be clear through coherent structure}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-14938-s001, ch: 제의, pr: 제의 / 제이, ds: a proposal offered for consideration or discussion}
@@ -15274,12 +15305,12 @@ phases:
       - {id: ko-nikl-13930-s001, ch: 전역, pr: 저녁, ds: an entire region}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-28618-s002, ch: 계급, pr: 계급 / 게급, ds: a social class or the status it assigns}
       - {id: ko-nikl-29961-s001, ch: 공정, pr: 공정, ds: fairness without bias toward one side}
       - {id: ko-nikl-34583-s002, ch: 낡다, pr: 낙따, ds: to be outdated or obsolete (ideas or systems)}
       - {id: ko-nikl-12325-s001, ch: 자율성, pr: 자율썽, ds: self-direction according to one's own principles}
       - {id: ko-nikl-29280-s001, ch: 고정 관념, pr: 고정 관념, ds: a fixed idea or preconception resistant to change}
       - {id: ko-nikl-41903-s001, ch: 주체성, pr: 주체썽, ds: acting according to one's own will}
+      - {id: ko-nikl-06350-s001, ch: 부당하다, pr: 부당하다, ds: to be unjust or contrary to reason}
       - {id: ko-nikl-47065-s001, ch: 여론, pr: 여ː론, ds: public opinion}
       - {id: ko-nikl-43107-s002, ch: 진보, pr: 진ː보, ds: pursuit of social change or development}
       review_grammar: []
@@ -15416,7 +15447,6 @@ phases:
       - {id: ko-nikl-35641-s001, ch: 논설, pr: 논설, ds: logical explanation of one's opinions on a subject}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-41840-s001, ch: 주장하다, pr: 주장하다, ds: to firmly assert one's opinion or belief}
       - {id: ko-nikl-42799-s002, ch: 지적하다, pr: 지저카다, ds: to point out a fault or something needing correction}
       - {id: ko-nikl-48542-s001, ch: 옹호하다, pr: 옹ː호하다, ds: to defend someone or something by taking its side and helping}
       - {id: ko-nikl-16818-s001, ch: 당연히, pr: 당연히, ds: naturally; as reason would lead one to expect}
@@ -15424,6 +15454,7 @@ phases:
       - {id: ko-nikl-30252-s001, ch: 관계없이, pr: 관계업씨 / 관게업씨, ds: without any relation to something else}
       - {id: ko-nikl-37832-s001, ch: 못지않다, pr: 몯ː찌안타, ds: to be no worse than another in comparison}
       - {id: ko-nikl-16446-s001, ch: 단연, pr: 다ː년, ds: 'clearly; unmistakably in rank, level, or degree'}
+      - {id: ko-nikl-46794-s001, ch: 엄밀히, pr: 엄밀히, ds: rigorously; with exacting precision and no gaps}
       review_grammar:
       - {id: ko-topik6-g011, ch: V-지 않고서는, ds: state an action required for a possible result}
       - {id: ko-topik6-g031, ch: N을/를 막론하고, ds: generalize across a named distinction}
@@ -15739,7 +15770,6 @@ phases:
       - {id: ko-nikl-24410-s001, ch: 함축하다, pr: 함추카다, ds: to keep something inwardly without revealing it}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-26183-s002, ch: 간결하다, pr: 간결하다, ds: for speech or writing to be concise and uncluttered}
       - {id: ko-nikl-26215-s001, ch: 간략하다, pr: 갈랴카다, ds: to be brief and simple}
       - {id: ko-nikl-37353-s001, ch: 명확하다, pr: 명화카다, ds: to be clear and definite}
       - {id: ko-nikl-05256-s006, ch: 벗어나다, pr: 벗어나다, ds: to stray from the topic of a discussion}
@@ -15747,6 +15777,7 @@ phases:
       - {id: ko-nikl-39247-s001, ch: 및, pr: 믿, ds: and; and also}
       - {id: ko-nikl-25337-s001, ch: 현황, pr: 현ː황, ds: the current situation or state of affairs}
       - {id: ko-nikl-47309-s003, ch: 엮다, pr: 역따, ds: to organize material into a structured text or narrative}
+      - {id: ko-nikl-37338-s001, ch: 명쾌하다, pr: 명쾌하다, ds: for speech or writing to be clear through coherent structure}
       review_grammar:
       - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
       - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
@@ -15978,10 +16009,10 @@ phases:
       - {id: ko-nikl-32803-s002, ch: 기류, pr: 기류, ds: the prevailing situation or atmosphere (figurative)}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-34583-s002, ch: 낡다, pr: 낙따, ds: to be outdated or obsolete (ideas or systems)}
       - {id: ko-nikl-12325-s001, ch: 자율성, pr: 자율썽, ds: self-direction according to one's own principles}
       - {id: ko-nikl-29280-s001, ch: 고정 관념, pr: 고정 관념, ds: a fixed idea or preconception resistant to change}
       - {id: ko-nikl-41903-s001, ch: 주체성, pr: 주체썽, ds: acting according to one's own will}
+      - {id: ko-nikl-06350-s001, ch: 부당하다, pr: 부당하다, ds: to be unjust or contrary to reason}
       - {id: ko-nikl-47065-s001, ch: 여론, pr: 여ː론, ds: public opinion}
       - {id: ko-nikl-43107-s002, ch: 진보, pr: 진ː보, ds: pursuit of social change or development}
       - {id: ko-nikl-18602-s001, ch: 동향, pr: 동ː향, ds: the direction of developments in ideas or activities}
@@ -16706,6 +16737,8 @@ phases:
       - {id: ko-nikl-30220-s002, ch: 과하다, pr: 과ː하다, ds: to be too good for one's circumstances or qualifications}
       - {id: ko-nikl-22665-s001, ch: 퍽, pr: 퍽, ds: considerably; well above the ordinary degree}
       - {id: ko-nikl-32137-s005, ch: 그저, pr: 그저, ds: merely; nothing grand or important}
+      - {id: ko-nikl-12987-s001, ch: 장황하다, pr: 장황하다, ds: to be very long and cumbersome}
+      - {id: ko-nikl-24997-s001, ch: 허심탄회하다, pr: 허심탄회하다 / 허심탄훼하다, ds: to be candid and unreserved enough to speak openly}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-19669-s006, ch: 떠나다, pr: 떠나다, ds: to pass away (euphemism)}
@@ -17226,14 +17259,14 @@ phases:
       - {id: ko-nikl-03954-s002, ch: 쓸쓸하다, pr: 쓸쓸하다, ds: for the weather to feel cold and gloomy}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-25575-s001, ch: 가꾸다, pr: 가꾸다, ds: to tend plants so that they grow well}
-      - {id: ko-nikl-27346-s001, ch: 거두다, pr: 거두다, ds: to gather ripe grain or fruit}
       - {id: ko-nikl-49724-s002, ch: 원산지, pr: 원산지, ds: the place of origin of an animal or plant}
       - {id: ko-nikl-36632-s001, ch: 매립, pr: 매립, ds: filling low land or water areas with soil or stone}
       - {id: ko-nikl-47652-s001, ch: 열대, pr: 열때, ds: tropical regions}
       - {id: ko-nikl-48402-s001, ch: 온대, pr: 온대, ds: temperate regions}
       - {id: ko-nikl-21480-s003, ch: 털, pr: 털, ds: fine hairs on a plant's petals or leaves}
       - {id: ko-nikl-50528-s002, ch: 육식, pr: 육씩, ds: animals feeding on the flesh of other animals}
+      - {id: ko-nikl-24635-s001, ch: 해류, pr: 해ː류, ds: an ocean current}
+      - {id: ko-nikl-42849-s001, ch: 지층, pr: 지층, ds: a geological stratum of accumulated earth materials}
       review_grammar:
       - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
     - id: level-27-history-01
@@ -17300,14 +17333,14 @@ phases:
       - {id: ko-nikl-19929-s002, ch: 뜨다, pr: 뜨다, ds: to pass away; leave this world (euphemistic)}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-19927-s005, ch: 뜨다, pr: 뜨다, ds: for a feared person to show up (slang)}
-      - {id: ko-nikl-09272-s001, ch: 상투어, pr: 상투어, ds: a habitual or stock expression}
       - {id: ko-nikl-37284-s001, ch: 명시하다, pr: 명시하다, ds: to specify something clearly in writing}
       - {id: ko-nikl-03698-s001, ch: 심히, pr: 심ː히, ds: excessively; to a severe degree}
       - {id: ko-nikl-34053-s003, ch: 끔찍이, pr: 끔찌기, ds: extremely; to a tremendous degree}
       - {id: ko-nikl-30220-s002, ch: 과하다, pr: 과ː하다, ds: to be too good for one's circumstances or qualifications}
       - {id: ko-nikl-22665-s001, ch: 퍽, pr: 퍽, ds: considerably; well above the ordinary degree}
       - {id: ko-nikl-32137-s005, ch: 그저, pr: 그저, ds: merely; nothing grand or important}
+      - {id: ko-nikl-12987-s001, ch: 장황하다, pr: 장황하다, ds: to be very long and cumbersome}
+      - {id: ko-nikl-24997-s001, ch: 허심탄회하다, pr: 허심탄회하다 / 허심탄훼하다, ds: to be candid and unreserved enough to speak openly}
       review_grammar:
       - {id: ko-topik6-g012, ch: V/A-아/어서야, ds: mark a threshold or express contextual reproach}
       - {id: ko-topik6-g013, ch: V/A-아/어 봤자, ds: judge a proposed attempt unlikely to help}
@@ -17371,10 +17404,10 @@ phases:
       grammar:
       - {id: ko-topik5-g008, ch: V-다시피 하다, ds: characterize an action as practically another}
       review_vocabulary:
-      - {id: ko-nikl-34053-s003, ch: 끔찍이, pr: 끔찌기, ds: extremely; to a tremendous degree}
-      - {id: ko-nikl-30220-s002, ch: 과하다, pr: 과ː하다, ds: to be too good for one's circumstances or qualifications}
       - {id: ko-nikl-22665-s001, ch: 퍽, pr: 퍽, ds: considerably; well above the ordinary degree}
       - {id: ko-nikl-32137-s005, ch: 그저, pr: 그저, ds: merely; nothing grand or important}
+      - {id: ko-nikl-12987-s001, ch: 장황하다, pr: 장황하다, ds: to be very long and cumbersome}
+      - {id: ko-nikl-24997-s001, ch: 허심탄회하다, pr: 허심탄회하다 / 허심탄훼하다, ds: to be candid and unreserved enough to speak openly}
       - {id: ko-nikl-48019-s003, ch: 예술, pr: 예ː술, ds: exceptionally beautiful skill (figurative)}
       - {id: ko-nikl-03362-s003, ch: 신화, pr: 신화, ds: a legendary successful achievement (figurative)}
       - {id: ko-nikl-10058-s002, ch: 선수, pr: 선ː수, ds: an expert or frequent practitioner (figurative)}
@@ -17824,14 +17857,14 @@ phases:
       - {id: ko-nikl-49391-s001, ch: 우주, pr: 우ː주, ds: 'the universe as all space, time, and things'}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-02037-s002, ch: 수평, pr: 수평, ds: horizontal orientation}
-      - {id: ko-nikl-09934-s006, ch: 선, pr: 선, ds: the element meaning a beam of light}
-      - {id: ko-nikl-37463-s002, ch: 모서리, pr: 모서리, ds: an edge where two faces of a polyhedron meet}
-      - {id: ko-nikl-12275-s001, ch: 자연계, pr: 자연계 / 자연게, ds: the natural-science and mathematics fields of study}
-      - {id: ko-nikl-22362-s001, ch: 파장, pr: 파장, ds: wavelength in radio or sound waves}
-      - {id: ko-nikl-49959-s001, ch: 위성, pr: 위성, ds: a natural satellite orbiting a planet}
-      - {id: ko-nikl-47153-s002, ch: 여운, pr: 여운, ds: a gentle lingering sound or resonance}
       - {id: ko-nikl-02206-s001, ch: 순수하다, pr: 순수하다, ds: 'to be pure, with nothing else mixed in'}
+      - {id: ko-nikl-05547-s001, ch: 별자리, pr: 별ː자리, ds: a constellation named for a perceived pattern of stars}
+      - {id: ko-nikl-06939-s001, ch: 분자, pr: 분자, ds: a molecule}
+      - {id: ko-nikl-21387-s001, ch: 태양계, pr: 태양계 / 태양게, ds: the solar system}
+      - {id: ko-nikl-24839-s001, ch: 행성, pr: 행성, ds: a planet}
+      - {id: ko-nikl-30533-s001, ch: 광합성, pr: 광합썽, ds: photosynthesis}
+      - {id: ko-nikl-49161-s001, ch: 용액, pr: 용액, ds: a liquid solution; an evenly mixed liquid}
+      - {id: ko-nikl-49779-s001, ch: 원자, pr: 원자, ds: an atom}
       review_grammar:
       - {id: ko-topik5-g002, ch: V/A-기 마련이다, ds: present an expected tendency rather than a law}
     - id: level-28-culture-01
@@ -18418,10 +18451,10 @@ phases:
       - {id: ko-nikl-00214-s002, ch: 성분, pr: 성분, ds: ideological or social-class background}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-34053-s003, ch: 끔찍이, pr: 끔찌기, ds: extremely; to a tremendous degree}
-      - {id: ko-nikl-30220-s002, ch: 과하다, pr: 과ː하다, ds: to be too good for one's circumstances or qualifications}
       - {id: ko-nikl-22665-s001, ch: 퍽, pr: 퍽, ds: considerably; well above the ordinary degree}
       - {id: ko-nikl-32137-s005, ch: 그저, pr: 그저, ds: merely; nothing grand or important}
+      - {id: ko-nikl-12987-s001, ch: 장황하다, pr: 장황하다, ds: to be very long and cumbersome}
+      - {id: ko-nikl-24997-s001, ch: 허심탄회하다, pr: 허심탄회하다 / 허심탄훼하다, ds: to be candid and unreserved enough to speak openly}
       - {id: ko-nikl-48019-s003, ch: 예술, pr: 예ː술, ds: exceptionally beautiful skill (figurative)}
       - {id: ko-nikl-03362-s003, ch: 신화, pr: 신화, ds: a legendary successful achievement (figurative)}
       - {id: ko-nikl-10058-s002, ch: 선수, pr: 선ː수, ds: an expert or frequent practitioner (figurative)}
@@ -18493,9 +18526,9 @@ phases:
       grammar:
       - {id: ko-topik6-g023, ch: V/A-더라니, ds: reinterpret a remembered observation as explained}
       review_vocabulary:
-      - {id: ko-nikl-30220-s002, ch: 과하다, pr: 과ː하다, ds: to be too good for one's circumstances or qualifications}
-      - {id: ko-nikl-22665-s001, ch: 퍽, pr: 퍽, ds: considerably; well above the ordinary degree}
       - {id: ko-nikl-32137-s005, ch: 그저, pr: 그저, ds: merely; nothing grand or important}
+      - {id: ko-nikl-12987-s001, ch: 장황하다, pr: 장황하다, ds: to be very long and cumbersome}
+      - {id: ko-nikl-24997-s001, ch: 허심탄회하다, pr: 허심탄회하다 / 허심탄훼하다, ds: to be candid and unreserved enough to speak openly}
       - {id: ko-nikl-48019-s003, ch: 예술, pr: 예ː술, ds: exceptionally beautiful skill (figurative)}
       - {id: ko-nikl-03362-s003, ch: 신화, pr: 신화, ds: a legendary successful achievement (figurative)}
       - {id: ko-nikl-10058-s002, ch: 선수, pr: 선ː수, ds: an expert or frequent practitioner (figurative)}
