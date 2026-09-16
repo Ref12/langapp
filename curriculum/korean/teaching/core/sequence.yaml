@@ -537,6 +537,8 @@ phases:
       - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
       - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
       - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
+      - {id: ko-nikl-20825-s001, ch: 콩, pr: 콩, ds: soybeans used for tofu and soybean paste}
+      - {id: ko-nikl-27882-s001, ch: 게, pr: 게ː, ds: a crab}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-36428-s001, ch: 맛, pr: 맏, ds: taste; flavor}
@@ -547,6 +549,32 @@ phases:
       - {id: ko-nikl-16570-s001, ch: 달다, pr: 달다, ds: to be sweet in taste}
       - {id: ko-nikl-19915-s001, ch: 뜨겁다, pr: 뜨겁따, ds: to be hot in temperature}
       - {id: ko-nikl-43840-s001, ch: 차갑다, pr: 차갑따, ds: to feel cold to the touch}
+      review_grammar: []
+    - id: level-03-food-03
+      title: Food and meals - 3
+      outcome: Clarify ingredients and preferences and make an appropriate meal request.
+      vocabulary:
+      - {id: ko-nikl-00822-s001, ch: 소시지, pr: 소시지, ds: sausage made with seasoned minced meat}
+      - {id: ko-nikl-29352-s001, ch: 고추, pr: 고추, ds: a chili pepper}
+      - {id: ko-nikl-34216-s002, ch: 나물, pr: 나물, ds: a seasoned vegetable or greens side dish}
+      - {id: ko-nikl-43755-s001, ch: 찌개, pr: 찌개, ds: a seasoned stew with relatively little broth}
+      - {id: ko-nikl-31317-s001, ch: 국수, pr: 국쑤, ds: noodles or a dish made with boiled noodles}
+      - {id: ko-nikl-36064-s001, ch: 만두, pr: 만두, ds: 'dumplings with meat, vegetables, or other fillings'}
+      - {id: ko-nikl-19710-s001, ch: 떡, pr: 떡, ds: rice cakes or other cakes made from cooked grain flour}
+      - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
+      - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
+      - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
+      - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
+      grammar: []
+      review_vocabulary:
+      - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
+      - {id: ko-nikl-23077-s001, ch: 포크, pr: 포크, ds: a fork for eating}
+      - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
+      - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
+      - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
+      - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
+      - {id: ko-nikl-20825-s001, ch: 콩, pr: 콩, ds: soybeans used for tofu and soybean paste}
+      - {id: ko-nikl-27882-s001, ch: 게, pr: 게ː, ds: a crab}
       review_grammar: []
     - id: level-03-services-01
       title: Services and transactions - 1
@@ -701,14 +729,14 @@ phases:
       - {id: ko-topik1-g012, ch: N도, ds: include an additional item or participant}
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
       review_vocabulary:
-      - {id: ko-nikl-16647-s001, ch: 닭고기, pr: 닥꼬기, ds: chicken meat}
-      - {id: ko-nikl-41780-s001, ch: 주스, pr: 주스, ds: fruit or vegetable juice}
-      - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
-      - {id: ko-nikl-23077-s001, ch: 포크, pr: 포크, ds: a fork for eating}
-      - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
-      - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
-      - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
-      - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
+      - {id: ko-nikl-43755-s001, ch: 찌개, pr: 찌개, ds: a seasoned stew with relatively little broth}
+      - {id: ko-nikl-31317-s001, ch: 국수, pr: 국쑤, ds: noodles or a dish made with boiled noodles}
+      - {id: ko-nikl-36064-s001, ch: 만두, pr: 만두, ds: 'dumplings with meat, vegetables, or other fillings'}
+      - {id: ko-nikl-19710-s001, ch: 떡, pr: 떡, ds: rice cakes or other cakes made from cooked grain flour}
+      - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
+      - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
+      - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
+      - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
       review_grammar: []
     - id: level-03-food-practice-02
       title: Food and meals - sentence practice 2
@@ -718,14 +746,14 @@ phases:
       - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
       - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
       review_vocabulary:
-      - {id: ko-nikl-16647-s001, ch: 닭고기, pr: 닥꼬기, ds: chicken meat}
-      - {id: ko-nikl-41780-s001, ch: 주스, pr: 주스, ds: fruit or vegetable juice}
-      - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
-      - {id: ko-nikl-23077-s001, ch: 포크, pr: 포크, ds: a fork for eating}
-      - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
-      - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
-      - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
-      - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
+      - {id: ko-nikl-43755-s001, ch: 찌개, pr: 찌개, ds: a seasoned stew with relatively little broth}
+      - {id: ko-nikl-31317-s001, ch: 국수, pr: 국쑤, ds: noodles or a dish made with boiled noodles}
+      - {id: ko-nikl-36064-s001, ch: 만두, pr: 만두, ds: 'dumplings with meat, vegetables, or other fillings'}
+      - {id: ko-nikl-19710-s001, ch: 떡, pr: 떡, ds: rice cakes or other cakes made from cooked grain flour}
+      - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
+      - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
+      - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
+      - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
       review_grammar:
       - {id: ko-topik1-g011, ch: N하고 / N과/와, ds: coordinate nouns or name a companion}
       - {id: ko-topik1-g012, ch: N도, ds: include an additional item or participant}
@@ -819,14 +847,14 @@ phases:
       - {id: ko-nikl-13334-s002, ch: 저녁, pr: 저녁, ds: dinner; the evening meal}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-16647-s001, ch: 닭고기, pr: 닥꼬기, ds: chicken meat}
-      - {id: ko-nikl-41780-s001, ch: 주스, pr: 주스, ds: fruit or vegetable juice}
-      - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
-      - {id: ko-nikl-23077-s001, ch: 포크, pr: 포크, ds: a fork for eating}
-      - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
-      - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
-      - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
-      - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
+      - {id: ko-nikl-43755-s001, ch: 찌개, pr: 찌개, ds: a seasoned stew with relatively little broth}
+      - {id: ko-nikl-31317-s001, ch: 국수, pr: 국쑤, ds: noodles or a dish made with boiled noodles}
+      - {id: ko-nikl-36064-s001, ch: 만두, pr: 만두, ds: 'dumplings with meat, vegetables, or other fillings'}
+      - {id: ko-nikl-19710-s001, ch: 떡, pr: 떡, ds: rice cakes or other cakes made from cooked grain flour}
+      - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
+      - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
+      - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
+      - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
       review_grammar:
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
       - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -1507,16 +1535,53 @@ phases:
       - {id: ko-nikl-03798-s001, ch: 쌀, pr: 쌀, ds: uncooked rice; hulled rice grain}
       - {id: ko-nikl-39151-s001, ch: 밀가루, pr: 밀까루, ds: wheat flour}
       - {id: ko-nikl-35340-s002, ch: 넣다, pr: 너ː타, ds: to add or mix in}
+      - {id: ko-nikl-29358-s001, ch: 고춧가루, pr: 고추까루 / 고춛까루, ds: powder made from dried red chili peppers}
+      - {id: ko-nikl-05741-s001, ch: 보리, pr: 보리, ds: barley grain}
+      - {id: ko-nikl-35454-s001, ch: 노른자, pr: 노른자, ds: the yolk of an egg}
+      - {id: ko-nikl-22212-s001, ch: 파, pr: 파, ds: green onions; scallions used in seasoning}
+      - {id: ko-nikl-16772-s001, ch: 당근, pr: 당근, ds: a carrot}
+      - {id: ko-nikl-40691-s001, ch: 배추, pr: 배ː추, ds: 'napa cabbage, commonly used to make kimchi'}
+      - {id: ko-nikl-48289-s001, ch: 오이, pr: 오이, ds: a cucumber plant or its fruit}
+      - {id: ko-nikl-34216-s001, ch: 나물, pr: 나물, ds: edible greens or leaves used as food}
+      - {id: ko-nikl-31215-s002, ch: 국, pr: 국, ds: the liquid part of soup or stew}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
-      - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
-      - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
-      - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
+      - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
+      - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
+      - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
+      - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
       - {id: ko-nikl-40223-s002, ch: 밥, pr: 밥, ds: a meal}
       - {id: ko-nikl-04296-s002, ch: 아침, pr: 아침, ds: breakfast}
       - {id: ko-nikl-14255-s001, ch: 점심, pr: 점ː심, ds: lunch}
       - {id: ko-nikl-13334-s002, ch: 저녁, pr: 저녁, ds: dinner; the evening meal}
+      review_grammar:
+      - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
+      - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+      - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
+    - id: level-05-food-02
+      title: Food and meals - 2
+      outcome: Clarify ingredients and preferences and make an appropriate meal request.
+      vocabulary:
+      - {id: ko-nikl-33294-s001, ch: 김치찌개, pr: 김치찌개, ds: kimchi stew with other ingredients such as meat}
+      - {id: ko-nikl-18693-s001, ch: 된장찌개, pr: 된ː장찌개 / 뒌ː장찌개, ds: soybean-paste stew with vegetables and tofu}
+      - {id: ko-nikl-03029-s001, ch: 식단, pr: 식딴, ds: a meal plan specifying dishes and their order}
+      - {id: ko-nikl-09490-s001, ch: 생강, pr: 생강, ds: 'ginger used for seasoning, tea, or other preparations'}
+      - {id: ko-nikl-16215-s001, ch: 다시마, pr: 다시마, ds: 'edible kelp with broad, thick fronds'}
+      - {id: ko-nikl-17329-s001, ch: 대파, pr: 대ː파, ds: 'a large green onion with a long, thick stem'}
+      - {id: ko-nikl-33408-s001, ch: 깍두기, pr: 깍뚜기, ds: kimchi made with small cubes of radish}
+      - {id: ko-nikl-35860-s001, ch: 마요네즈, pr: 마요네즈, ds: 'mayonnaise, a sauce made with egg yolk, oil, and vinegar'}
+      - {id: ko-nikl-44098-s001, ch: 참깨, pr: 참깨, ds: sesame seeds used for seasoning or oil}
+      - {id: ko-nikl-52831-s001, ch: 흰자, pr: 힌자, ds: the white surrounding an egg yolk}
+      grammar: []
+      review_vocabulary:
+      - {id: ko-nikl-05741-s001, ch: 보리, pr: 보리, ds: barley grain}
+      - {id: ko-nikl-35454-s001, ch: 노른자, pr: 노른자, ds: the yolk of an egg}
+      - {id: ko-nikl-22212-s001, ch: 파, pr: 파, ds: green onions; scallions used in seasoning}
+      - {id: ko-nikl-16772-s001, ch: 당근, pr: 당근, ds: a carrot}
+      - {id: ko-nikl-40691-s001, ch: 배추, pr: 배ː추, ds: 'napa cabbage, commonly used to make kimchi'}
+      - {id: ko-nikl-48289-s001, ch: 오이, pr: 오이, ds: a cucumber plant or its fruit}
+      - {id: ko-nikl-34216-s001, ch: 나물, pr: 나물, ds: edible greens or leaves used as food}
+      - {id: ko-nikl-31215-s002, ch: 국, pr: 국, ds: the liquid part of soup or stew}
       review_grammar:
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
       - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -1973,14 +2038,14 @@ phases:
       - {id: ko-nikl-51259-s002, ch: 호박, pr: 호ː박, ds: a pumpkin}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-23470-s001, ch: 프라이팬, pr: 프라이팬, ds: a frying pan}
-      - {id: ko-nikl-16546-s001, ch: 달걀, pr: 달걀, ds: a chicken egg}
-      - {id: ko-nikl-00631-s001, ch: 소금, pr: 소금, ds: salt}
-      - {id: ko-nikl-00083-s001, ch: 설탕, pr: 설탕, ds: sugar}
-      - {id: ko-nikl-32805-s001, ch: 기름, pr: 기름, ds: oil; a slippery liquid that does not mix with water}
-      - {id: ko-nikl-03798-s001, ch: 쌀, pr: 쌀, ds: uncooked rice; hulled rice grain}
-      - {id: ko-nikl-39151-s001, ch: 밀가루, pr: 밀까루, ds: wheat flour}
-      - {id: ko-nikl-35340-s002, ch: 넣다, pr: 너ː타, ds: to add or mix in}
+      - {id: ko-nikl-03029-s001, ch: 식단, pr: 식딴, ds: a meal plan specifying dishes and their order}
+      - {id: ko-nikl-09490-s001, ch: 생강, pr: 생강, ds: 'ginger used for seasoning, tea, or other preparations'}
+      - {id: ko-nikl-16215-s001, ch: 다시마, pr: 다시마, ds: 'edible kelp with broad, thick fronds'}
+      - {id: ko-nikl-17329-s001, ch: 대파, pr: 대ː파, ds: 'a large green onion with a long, thick stem'}
+      - {id: ko-nikl-33408-s001, ch: 깍두기, pr: 깍뚜기, ds: kimchi made with small cubes of radish}
+      - {id: ko-nikl-35860-s001, ch: 마요네즈, pr: 마요네즈, ds: 'mayonnaise, a sauce made with egg yolk, oil, and vinegar'}
+      - {id: ko-nikl-44098-s001, ch: 참깨, pr: 참깨, ds: sesame seeds used for seasoning or oil}
+      - {id: ko-nikl-52831-s001, ch: 흰자, pr: 힌자, ds: the white surrounding an egg yolk}
       review_grammar:
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
       - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -1997,6 +2062,15 @@ phases:
       - {id: ko-nikl-20350-s001, ch: 마늘, pr: 마늘, ds: garlic}
       - {id: ko-nikl-44147-s001, ch: 참치, pr: 참치, ds: tuna}
       - {id: ko-nikl-15068-s001, ch: 조개, pr: 조개, ds: 'a bivalve shellfish, such as a clam'}
+      - {id: ko-nikl-22554-s001, ch: 팥, pr: 팓, ds: 'red beans used in porridge, rice cakes, and bread'}
+      - {id: ko-nikl-28899-s001, ch: 고등어, pr: 고등어, ds: 'mackerel, a sea fish'}
+      - {id: ko-nikl-43803-s001, ch: 찜, pr: 찜, ds: seasoned food steamed or cooked in a little liquid}
+      - {id: ko-nikl-41952-s001, ch: 죽, pr: 죽, ds: porridge made by boiling grain until soft}
+      - {id: ko-nikl-19729-s001, ch: 떡볶이, pr: 떡뽀끼, ds: rice cakes cooked with vegetables and seasoned sauce}
+      - {id: ko-nikl-08927-s001, ch: 삼겹살, pr: 삼겹쌀, ds: pork belly with layers of fat and lean meat}
+      - {id: ko-nikl-19185-s001, ch: 들기름, pr: 들기름, ds: perilla-seed oil}
+      - {id: ko-nikl-25277-s001, ch: 현미, pr: 현미, ds: brown rice with only its outer husk removed}
+      - {id: ko-nikl-38826-s001, ch: 미나리, pr: 미나리, ds: minari; aromatic edible water-dropwort greens}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-13272-s001, ch: 잼, pr: 잼, ds: fruit jam}
@@ -2105,6 +2179,8 @@ phases:
       - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
       - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
       - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
+      - {id: ko-nikl-26388-s002, ch: 갈비, pr: 갈비, ds: the ribs surrounding the heart and lungs}
+      - {id: ko-nikl-52831-s002, ch: 흰자, pr: 힌자, ds: the white part of the eye}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-21480-s001, ch: 털, pr: 털, ds: body hair or animal fur}
@@ -2293,14 +2369,14 @@ phases:
       grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
       review_vocabulary:
-      - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
-      - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
       - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
       - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
       - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
       - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
       - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
       - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
+      - {id: ko-nikl-26388-s002, ch: 갈비, pr: 갈비, ds: the ribs surrounding the heart and lungs}
+      - {id: ko-nikl-52831-s002, ch: 흰자, pr: 힌자, ds: the white part of the eye}
       review_grammar: []
     - id: level-06-services-practice-01
       title: Services and transactions - sentence practice 1
@@ -2364,14 +2440,14 @@ phases:
       grammar:
       - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
       review_vocabulary:
-      - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
-      - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
       - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
       - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
       - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
       - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
       - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
       - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
+      - {id: ko-nikl-26388-s002, ch: 갈비, pr: 갈비, ds: the ribs surrounding the heart and lungs}
+      - {id: ko-nikl-52831-s002, ch: 흰자, pr: 힌자, ds: the white part of the eye}
       review_grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
     - id: level-06-time-practice-01
@@ -2400,14 +2476,14 @@ phases:
       grammar:
       - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
       review_vocabulary:
-      - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
-      - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
       - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
       - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
       - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
       - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
       - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
       - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
+      - {id: ko-nikl-26388-s002, ch: 갈비, pr: 갈비, ds: the ribs surrounding the heart and lungs}
+      - {id: ko-nikl-52831-s002, ch: 흰자, pr: 힌자, ds: the white part of the eye}
       review_grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
       - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
@@ -2489,6 +2565,27 @@ phases:
     mastery_profile: ko-item-mastery
     mastery_target: independent-use
     units:
+    - id: level-07-food-01
+      title: Food and meals - 1
+      outcome: Clarify ingredients and preferences and make an appropriate meal request.
+      vocabulary:
+      - {id: ko-nikl-35116-s001, ch: 냉면, pr: 냉ː면, ds: cold noodles in broth or mixed with chili-paste seasoning}
+      - {id: ko-nikl-08929-s001, ch: 삼계탕, pr: 삼계탕 / 삼게탕, ds: chicken soup with ginseng and glutinous-rice stuffing}
+      - {id: ko-nikl-22364-s001, ch: 파전, pr: 파전, ds: green-onion pancake with additions such as seafood}
+      grammar: []
+      review_vocabulary:
+      - {id: ko-nikl-28899-s001, ch: 고등어, pr: 고등어, ds: 'mackerel, a sea fish'}
+      - {id: ko-nikl-43803-s001, ch: 찜, pr: 찜, ds: seasoned food steamed or cooked in a little liquid}
+      - {id: ko-nikl-41952-s001, ch: 죽, pr: 죽, ds: porridge made by boiling grain until soft}
+      - {id: ko-nikl-19729-s001, ch: 떡볶이, pr: 떡뽀끼, ds: rice cakes cooked with vegetables and seasoned sauce}
+      - {id: ko-nikl-08927-s001, ch: 삼겹살, pr: 삼겹쌀, ds: pork belly with layers of fat and lean meat}
+      - {id: ko-nikl-19185-s001, ch: 들기름, pr: 들기름, ds: perilla-seed oil}
+      - {id: ko-nikl-25277-s001, ch: 현미, pr: 현미, ds: brown rice with only its outer husk removed}
+      - {id: ko-nikl-38826-s001, ch: 미나리, pr: 미나리, ds: minari; aromatic edible water-dropwort greens}
+      review_grammar:
+      - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
+      - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+      - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
     - id: level-07-travel-01
       title: Travel and transport - 1
       outcome: Clarify destinations and means and revise arrangements.
@@ -3136,14 +3233,14 @@ phases:
       - {id: ko-nikl-03030-s001, ch: 식당, pr: 식땅, ds: a dining room; a cafeteria}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-40928-s001, ch: 버섯, pr: 버섣, ds: a mushroom}
-      - {id: ko-nikl-37890-s001, ch: 무, pr: 무ː, ds: a white radish}
-      - {id: ko-nikl-26568-s001, ch: 감자, pr: 감자, ds: a potato}
-      - {id: ko-nikl-28805-s001, ch: 고구마, pr: 고ː구마, ds: a sweet potato}
-      - {id: ko-nikl-46252-s001, ch: 양파, pr: 양파, ds: an onion}
-      - {id: ko-nikl-20350-s001, ch: 마늘, pr: 마늘, ds: garlic}
-      - {id: ko-nikl-44147-s001, ch: 참치, pr: 참치, ds: tuna}
-      - {id: ko-nikl-15068-s001, ch: 조개, pr: 조개, ds: 'a bivalve shellfish, such as a clam'}
+      - {id: ko-nikl-19729-s001, ch: 떡볶이, pr: 떡뽀끼, ds: rice cakes cooked with vegetables and seasoned sauce}
+      - {id: ko-nikl-08927-s001, ch: 삼겹살, pr: 삼겹쌀, ds: pork belly with layers of fat and lean meat}
+      - {id: ko-nikl-19185-s001, ch: 들기름, pr: 들기름, ds: perilla-seed oil}
+      - {id: ko-nikl-25277-s001, ch: 현미, pr: 현미, ds: brown rice with only its outer husk removed}
+      - {id: ko-nikl-38826-s001, ch: 미나리, pr: 미나리, ds: minari; aromatic edible water-dropwort greens}
+      - {id: ko-nikl-35116-s001, ch: 냉면, pr: 냉ː면, ds: cold noodles in broth or mixed with chili-paste seasoning}
+      - {id: ko-nikl-08929-s001, ch: 삼계탕, pr: 삼계탕 / 삼게탕, ds: chicken soup with ginseng and glutinous-rice stuffing}
+      - {id: ko-nikl-22364-s001, ch: 파전, pr: 파전, ds: green-onion pancake with additions such as seafood}
       review_grammar:
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
       - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -3706,13 +3803,13 @@ phases:
       - {id: ko-nikl-17913-s002, ch: 도시락, pr: 도시락, ds: a packed meal carried in a small container}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-37890-s001, ch: 무, pr: 무ː, ds: a white radish}
-      - {id: ko-nikl-26568-s001, ch: 감자, pr: 감자, ds: a potato}
-      - {id: ko-nikl-28805-s001, ch: 고구마, pr: 고ː구마, ds: a sweet potato}
-      - {id: ko-nikl-46252-s001, ch: 양파, pr: 양파, ds: an onion}
-      - {id: ko-nikl-20350-s001, ch: 마늘, pr: 마늘, ds: garlic}
-      - {id: ko-nikl-44147-s001, ch: 참치, pr: 참치, ds: tuna}
-      - {id: ko-nikl-15068-s001, ch: 조개, pr: 조개, ds: 'a bivalve shellfish, such as a clam'}
+      - {id: ko-nikl-08927-s001, ch: 삼겹살, pr: 삼겹쌀, ds: pork belly with layers of fat and lean meat}
+      - {id: ko-nikl-19185-s001, ch: 들기름, pr: 들기름, ds: perilla-seed oil}
+      - {id: ko-nikl-25277-s001, ch: 현미, pr: 현미, ds: brown rice with only its outer husk removed}
+      - {id: ko-nikl-38826-s001, ch: 미나리, pr: 미나리, ds: minari; aromatic edible water-dropwort greens}
+      - {id: ko-nikl-35116-s001, ch: 냉면, pr: 냉ː면, ds: cold noodles in broth or mixed with chili-paste seasoning}
+      - {id: ko-nikl-08929-s001, ch: 삼계탕, pr: 삼계탕 / 삼게탕, ds: chicken soup with ginseng and glutinous-rice stuffing}
+      - {id: ko-nikl-22364-s001, ch: 파전, pr: 파전, ds: green-onion pancake with additions such as seafood}
       - {id: ko-nikl-03030-s001, ch: 식당, pr: 식땅, ds: a dining room; a cafeteria}
       review_grammar:
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
@@ -3732,14 +3829,14 @@ phases:
       - {id: ko-nikl-21863-s001, ch: 퇴원, pr: 퇴ː원 / 퉤ː원, ds: leaving hospital after a period of treatment}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
-      - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
       - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
       - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
       - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
       - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
       - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
       - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
+      - {id: ko-nikl-26388-s002, ch: 갈비, pr: 갈비, ds: the ribs surrounding the heart and lungs}
+      - {id: ko-nikl-52831-s002, ch: 흰자, pr: 힌자, ds: the white part of the eye}
       review_grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
       - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
@@ -4801,6 +4898,8 @@ phases:
       - {id: ko-nikl-34045-s001, ch: 끓이다, pr: 끄리다, ds: to bring a liquid to a boil}
       - {id: ko-nikl-17716-s001, ch: 데치다, pr: 데ː치다, ds: to blanch food briefly in boiling water}
       - {id: ko-nikl-23326-s013, ch: 풀다, pr: 풀다, ds: to dissolve or mix something evenly into a liquid}
+      - {id: ko-nikl-43803-s002, ch: 찜, pr: 찜, ds: a food-name element indicating a steamed dish}
+      - {id: ko-nikl-35581-s001, ch: 녹말, pr: 농말, ds: starch powder obtained by settling crushed ingredients}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-16268-s001, ch: 다지다, pr: 다지다, ds: to mince meat or vegetables with a knife}
@@ -5975,14 +6074,14 @@ phases:
       - {id: ko-nikl-19504-s001, ch: 따르다, pr: 따르다, ds: to pour liquid gradually from a tilted container}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-33272-s001, ch: 김, pr: 김ː, ds: vapor produced by heating a liquid}
-      - {id: ko-nikl-33272-s004, ch: 김, pr: 김ː, ds: carbon dioxide dissolved in a fizzy drink}
       - {id: ko-nikl-16669-s002, ch: 담그다, pr: 담그다, ds: to mix and store ingredients to ripen or ferment}
       - {id: ko-nikl-22030-s001, ch: 튀기다, pr: 튀기다, ds: to deep-fry food in hot oil}
       - {id: ko-nikl-22030-s002, ch: 튀기다, pr: 튀기다, ds: to pop or puff dried grains by heating them}
       - {id: ko-nikl-34045-s001, ch: 끓이다, pr: 끄리다, ds: to bring a liquid to a boil}
       - {id: ko-nikl-17716-s001, ch: 데치다, pr: 데ː치다, ds: to blanch food briefly in boiling water}
       - {id: ko-nikl-23326-s013, ch: 풀다, pr: 풀다, ds: to dissolve or mix something evenly into a liquid}
+      - {id: ko-nikl-43803-s002, ch: 찜, pr: 찜, ds: a food-name element indicating a steamed dish}
+      - {id: ko-nikl-35581-s001, ch: 녹말, pr: 농말, ds: starch powder obtained by settling crushed ingredients}
       review_grammar:
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
       - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -8729,6 +8828,7 @@ phases:
       - {id: ko-nikl-41100-s005, ch: 벌어지다, pr: 버ː러지다, ds: for a difference or gap to grow wider}
       - {id: ko-nikl-13774-s002, ch: 전망, pr: 전ː망, ds: an outlook; an anticipated future situation}
       - {id: ko-nikl-41184-s001, ch: 조직, pr: 조직, ds: an organized group formed to achieve a goal}
+      - {id: ko-nikl-07920-s002, ch: 빵, pr: 빵, ds: food needed for subsistence (figurative)}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-52282-s001, ch: 후원, pr: 후ː원, ds: support or backing given to someone}
@@ -8944,7 +9044,7 @@ phases:
       - {id: ko-nikl-11047-s002, ch: 익히다, pr: 이키다, ds: 'to let kimchi, liquor, or fermented sauce develop flavor'}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-23326-s013, ch: 풀다, pr: 풀다, ds: to dissolve or mix something evenly into a liquid}
+      - {id: ko-nikl-35581-s001, ch: 녹말, pr: 농말, ds: starch powder obtained by settling crushed ingredients}
       - {id: ko-nikl-46195-s001, ch: 양식, pr: 양식, ds: 'Western-style food, such as soup or steak'}
       - {id: ko-nikl-03231-s002, ch: 신선하다, pr: 신선하다, ds: 'to be fresh, not wilted or spoiled'}
       - {id: ko-nikl-25704-s005, ch: 가리다, pr: 가리다, ds: to be picky about food}
@@ -9104,7 +9204,6 @@ phases:
       - {id: ko-nikl-17918-s001, ch: 도시화, pr: 도시화, ds: urbanization; nonurban places becoming urban in character}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-07948-s002, ch: 빼앗기다, pr: 빼앋끼다, ds: 'to be deprived of work, time, or status'}
       - {id: ko-nikl-03473-s002, ch: 실업, pr: 시럽, ds: unemployment despite willingness and ability to work}
       - {id: ko-nikl-06038-s001, ch: 복지, pr: 복찌, ds: welfare; a comfortable and happy life}
       - {id: ko-nikl-28043-s001, ch: 격차, pr: 격차, ds: a gap; a disparity in level or quantity}
@@ -9112,6 +9211,7 @@ phases:
       - {id: ko-nikl-41100-s005, ch: 벌어지다, pr: 버ː러지다, ds: for a difference or gap to grow wider}
       - {id: ko-nikl-13774-s002, ch: 전망, pr: 전ː망, ds: an outlook; an anticipated future situation}
       - {id: ko-nikl-41184-s001, ch: 조직, pr: 조직, ds: an organized group formed to achieve a goal}
+      - {id: ko-nikl-07920-s002, ch: 빵, pr: 빵, ds: food needed for subsistence (figurative)}
       review_grammar: []
     - id: level-21-technology-01
       title: Technology and systems - 1
@@ -9262,6 +9362,7 @@ phases:
       - {id: ko-nikl-42424-s001, ch: 증발, pr: 증발, ds: vaporization; a substance changing from liquid to gas}
       - {id: ko-nikl-01974-s001, ch: 수증기, pr: 수증기, ds: water vapor}
       - {id: ko-nikl-13118-s004, ch: 재생, pr: 재ː생, ds: regrowth of a lost or damaged part of a living organism}
+      - {id: ko-nikl-35581-s002, ch: 녹말, pr: 농말, ds: starch produced by photosynthesis and stored in plants}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-21164-s003, ch: 탄력, pr: 탈ː력, ds: elastic force returning an object to its original shape}
@@ -9310,7 +9411,6 @@ phases:
       grammar:
       - {id: ko-topik5-g002, ch: V/A-기 마련이다, ds: present an expected tendency rather than a law}
       review_vocabulary:
-      - {id: ko-nikl-47858-s001, ch: 영양소, pr: 영양소, ds: a nutrient supporting growth or supplying energy}
       - {id: ko-nikl-16937-s001, ch: 대기, pr: 대ː기, ds: the atmosphere surrounding the Earth}
       - {id: ko-nikl-23406-s002, ch: 풍력, pr: 풍녁, ds: the force or power of wind}
       - {id: ko-nikl-49780-s001, ch: 원자력, pr: 원자력, ds: nuclear energy used as a power source}
@@ -9318,6 +9418,7 @@ phases:
       - {id: ko-nikl-42424-s001, ch: 증발, pr: 증발, ds: vaporization; a substance changing from liquid to gas}
       - {id: ko-nikl-01974-s001, ch: 수증기, pr: 수증기, ds: water vapor}
       - {id: ko-nikl-13118-s004, ch: 재생, pr: 재ː생, ds: regrowth of a lost or damaged part of a living organism}
+      - {id: ko-nikl-35581-s002, ch: 녹말, pr: 농말, ds: starch produced by photosynthesis and stored in plants}
       review_grammar: []
   - schema_version: 3
     id: ko-level-22
@@ -9623,8 +9724,8 @@ phases:
       - {id: ko-nikl-16319-s001, ch: 단결, pr: 단결, ds: unity; joining people's efforts and purpose}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-13774-s002, ch: 전망, pr: 전ː망, ds: an outlook; an anticipated future situation}
       - {id: ko-nikl-41184-s001, ch: 조직, pr: 조직, ds: an organized group formed to achieve a goal}
+      - {id: ko-nikl-07920-s002, ch: 빵, pr: 빵, ds: food needed for subsistence (figurative)}
       - {id: ko-nikl-40074-s001, ch: 발전, pr: 발쩐, ds: development; progress to a better state}
       - {id: ko-nikl-14092-s001, ch: 전환, pr: 전ː환, ds: a shift to another direction or state}
       - {id: ko-nikl-28568-s001, ch: 경향, pr: 경향, ds: 'a tendency in thought, behavior, or events'}
@@ -11772,6 +11873,8 @@ phases:
       - {id: ko-nikl-19622-s002, ch: 때, pr: 때, ds: worldliness or impurity that spoils innocence}
       - {id: ko-nikl-41080-s002, ch: 벌레, pr: 벌레, ds: a tireless devotee of an activity (figurative)}
       - {id: ko-nikl-34001-s005, ch: 끈, pr: 끈, ds: a tie or connection between people (figurative)}
+      - {id: ko-nikl-00631-s002, ch: 소금, pr: 소금, ds: an indispensable person (figurative)}
+      - {id: ko-nikl-33408-s002, ch: 깍두기, pr: 깍뚜기, ds: someone not included in either group (figurative)}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-36080-s001, ch: 만만하다, pr: 만만하다, ds: to be easy to deal with or handle}
@@ -12053,6 +12156,7 @@ phases:
       - {id: ko-nikl-18663-s003, ch: 되살리다, pr: 되살리다 / 뒈살리다, ds: to bring something forgotten back to mind}
       - {id: ko-nikl-36782-s003, ch: 맴돌다, pr: 맴ː돌다, ds: for the same thought or feeling to keep returning}
       - {id: ko-nikl-42580-s002, ch: 지니다, pr: 지니다, ds: to keep something in mind without forgetting it}
+      - {id: ko-nikl-35454-s002, ch: 노른자, pr: 노른자, ds: the most important or valuable part (figurative)}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-19707-s002, ch: 떠오르다, pr: 떠오르다, ds: for a memory or idea to come to mind}
@@ -12259,14 +12363,14 @@ phases:
       - {id: ko-nikl-46777-s002, ch: 얽매이다, pr: 엉매이다, ds: to be bound by severe restrictions}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-51878-s005, ch: 환하다, pr: 환ː하다, ds: to look cheerful and bright}
-      - {id: ko-nikl-19707-s003, ch: 떠오르다, pr: 떠오르다, ds: for an expression to appear on one's face}
       - {id: ko-nikl-19708-s002, ch: 떠올리다, pr: 떠올리다, ds: to show an expression on one's face}
       - {id: ko-nikl-40579-s002, ch: 배다, pr: 배ː다, ds: for an attitude or behavior to become ingrained}
       - {id: ko-nikl-07419-s007, ch: 붙잡다, pr: 붇짭따, ds: to seize a good opportunity or hold on to a valued person}
       - {id: ko-nikl-19622-s002, ch: 때, pr: 때, ds: worldliness or impurity that spoils innocence}
       - {id: ko-nikl-41080-s002, ch: 벌레, pr: 벌레, ds: a tireless devotee of an activity (figurative)}
       - {id: ko-nikl-34001-s005, ch: 끈, pr: 끈, ds: a tie or connection between people (figurative)}
+      - {id: ko-nikl-00631-s002, ch: 소금, pr: 소금, ds: an indispensable person (figurative)}
+      - {id: ko-nikl-33408-s002, ch: 깍두기, pr: 깍뚜기, ds: someone not included in either group (figurative)}
       review_grammar:
       - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
       - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -12426,7 +12530,6 @@ phases:
       - {id: ko-nikl-00214-s001, ch: 성분, pr: 성분, ds: a component of an organized whole}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-46654-s002, ch: 언뜻, pr: 언뜯, ds: 'suddenly, as a thought or memory occurs'}
       - {id: ko-nikl-46773-s002, ch: 얼핏, pr: 얼핃, ds: in a sudden brief flash of thought or memory}
       - {id: ko-nikl-52556-s001, ch: 흐리다, pr: 흐리다, ds: for a memory or thought to be vague}
       - {id: ko-nikl-18378-s002, ch: 동력, pr: 동ː녁, ds: the driving force moving an undertaking forward}
@@ -12434,6 +12537,7 @@ phases:
       - {id: ko-nikl-18663-s003, ch: 되살리다, pr: 되살리다 / 뒈살리다, ds: to bring something forgotten back to mind}
       - {id: ko-nikl-36782-s003, ch: 맴돌다, pr: 맴ː돌다, ds: for the same thought or feeling to keep returning}
       - {id: ko-nikl-42580-s002, ch: 지니다, pr: 지니다, ds: to keep something in mind without forgetting it}
+      - {id: ko-nikl-35454-s002, ch: 노른자, pr: 노른자, ds: the most important or valuable part (figurative)}
       review_grammar:
       - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
       - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
@@ -12755,9 +12859,9 @@ phases:
       - {id: ko-nikl-48811-s002, ch: 외면, pr: 외ː면 / 웨ː면, ds: a person's outward speech or behavior}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-19622-s002, ch: 때, pr: 때, ds: worldliness or impurity that spoils innocence}
-      - {id: ko-nikl-41080-s002, ch: 벌레, pr: 벌레, ds: a tireless devotee of an activity (figurative)}
       - {id: ko-nikl-34001-s005, ch: 끈, pr: 끈, ds: a tie or connection between people (figurative)}
+      - {id: ko-nikl-00631-s002, ch: 소금, pr: 소금, ds: an indispensable person (figurative)}
+      - {id: ko-nikl-33408-s002, ch: 깍두기, pr: 깍뚜기, ds: someone not included in either group (figurative)}
       - {id: ko-nikl-01580-s002, ch: 수단, pr: 수단, ds: ingenuity or skill in getting something done}
       - {id: ko-nikl-12381-s001, ch: 자질, pr: 자질, ds: an inborn disposition or aptitude}
       - {id: ko-nikl-35628-s002, ch: 논리적, pr: 놀리적, ds: skilled at reasoning or logical thought}

@@ -1,0 +1,150 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: bounded pantry and meal selection; not complete-scale coverage
+scope:
+  - Explicitly inspected named pantry, ingredient, and meal candidates against retained bilingual source positions.
+  - Queried fourteen specifically missing kitchen names in the original pinned CSV, not the whole unselected inventory.
+  - Retained thirteen real unbanded parents; broccoli was absent from the pinned CSV and was not fabricated.
+  - Preserved all previous active selections and the coordinator-directed greenhouse-gas exclusion.
+  - No noun-plus-hada predicates, inflections, example sentences, or new recipe combinations are manufactured.
+  - Source bands and numerical phase targets do not determine placement.
+
+curation_rationales:
+  early_meals: >
+    Ordinary noodles, dumplings, beans, chili peppers, crab, rib meat, grain
+    cakes, fried rice, snacks, sausage, and ham support identifying a meal
+    or clarifying a preference. A category label never guarantees ingredients
+    or dietary safety.
+  household_and_shopping: >
+    Pantry ingredients, vegetables, egg parts, kimchi varieties, and meal
+    planning support household coordination at level five. Purchasing cuts,
+    grains, greens, and prepared foods extends shopping at level six.
+    Named cold-noodle, green-onion-pancake, and stuffed-chicken dishes support
+    unfamiliar menu choices while traveling at level seven.
+  processes_and_public_explanation: >
+    Cooking starch and the food-name use of 찜 support process explanations.
+    Plant starch has its own original position in general science at level
+    twenty-one. Anatomical ribs and the white of the eye belong to ordinary
+    body descriptions, not diagnoses or treatment recommendations.
+  figurative_depth: >
+    Indispensable-person 소금, valuable-part 노른자, subsistence-food 빵,
+    and the outsider meaning of 깍두기 retain their explicit figurative
+    source status. These deepen existing or newly introduced identities;
+    they do not count as four additional headwords.
+  inspected_but_not_substituted: >
+    The remaining 굴 positions describe caves, tunnels, and animal holes,
+    not oysters. The inspected 전 records concern time, not pancakes.
+    The non-food 파 parent denotes a faction or ancestral line. Other
+    workers may curate such genuine meanings independently; this cohort
+    does not relabel them as food.
+
+identity_policy:
+  status: Provisional source-anchored culinary identities, not verified etymology or universal lexical taxonomy.
+  selected_senses: 53
+  source_parents: 46
+  authored_identity_fragments: 46
+  net_new_core_free_identities: 42
+  bound_form_identity_ids: []
+  function_identity_ids: []
+  shared_source_positions: >
+    Plant/fruit cucumber, noodle ingredient/prepared noodles, and rib
+    meat/prepared ribs are retained as their original positions. Do not split
+    their joined source referents into invented official senses.
+  shared_identities: >
+    Egg yolk/valuable part, edible greens/seasoned side dish, food ribs/body
+    ribs, radish kimchi/outsider, starch powder/plant starch, and egg white/
+    eye white remain explicit source families. Independent 찜 and its use
+    in food names share one free noun, not an added bound-form identity.
+  existing_fragments: >
+    Salt, soup, and bread receive new source-position members only. The
+    source-specific names 깨 and 참깨 are conservatively grouped under the
+    existing sesame identity rather than increasing provisional breadth.
+  attested_compounds: >
+    Distinct sourced dish and ingredient nouns remain provisional free
+    identities, including 김치찌개, 된장찌개, 고춧가루, and 볶음밥.
+    They are not generated combinations or inflections. Ingredient families
+    and predictable compounds still need lexicographic review.
+
+documented_group_decisions:
+  ko-lex-33509:
+    members_added: [ko-nikl-44098-s001]
+    rationale: >
+      The selected everyday 깨 and explicit 참깨 name culinary sesame seeds
+      used for seasoning or oil. Preserve their separate yellowish/white seed
+      descriptions and distinct written forms, but count one provisional
+      family. This decision does not merge perilla-seed oil with sesame oil.
+
+unbanded_support:
+  policy: >
+    These thirteen specifically inspected original CSV parents fill ordinary
+    pantry/menu gaps. All their original positions remain in source-senses.yaml;
+    only explicit kitchen selections become teaching requirements. They remain
+    unbanded and outside the preserved TOPIK folders.
+  source_parents:
+    ko-nikl-09490: ginger for seasoning or tea
+    ko-nikl-16215: edible kelp
+    ko-nikl-17329: large green onion
+    ko-nikl-19185: perilla-seed oil
+    ko-nikl-22364: green-onion pancake
+    ko-nikl-24789: ham
+    ko-nikl-25277: brown rice
+    ko-nikl-33408: cubed-radish kimchi and an explicit outsider metaphor
+    ko-nikl-35581: cooking starch and plant starch
+    ko-nikl-35860: mayonnaise
+    ko-nikl-38826: aromatic minari greens
+    ko-nikl-44098: explicit sesame-seed name
+    ko-nikl-52831: egg white and eye white
+
+source_correction_requests:
+  ko-nikl-35581-s001:
+    source_korean: 감자, 고구마, 물에 불린 녹두 등을 갈아서 가라앉힌 앙금을 말린 가루.
+    source_english: 'Flour made by grating potatoes, sweet potatoes, or soaked mung beans in a bowl and drying the sediments settled at the bottom of the bowl. '
+    authored_interpretation: starch powder obtained by settling crushed ingredients
+    rationale: >
+      The Korean identifies the dried, settled sediment separated from crushed
+      starchy ingredients, not the entire milled ingredient ordinarily called
+      flour. Distinguish cooking starch powder from the plant-carbohydrate
+      definition at the separate second source position.
+
+reading_status: >
+  All eight formerly unsupported parents are resolved: five parents covering
+  seven selected senses use official citation text, and three single-sense
+  parents have individually authored, unreviewed readings. All 53 active
+  kitchen senses have explicit reading records. The list below is historical,
+  not an unresolved-selection inventory.
+original_reading_gaps:
+  ko-nikl-00822: 소시지
+  ko-nikl-24789: 햄
+  ko-nikl-26388: 갈비
+  ko-nikl-27882: 게
+  ko-nikl-29352: 고추
+  ko-nikl-33294: 김치찌개
+  ko-nikl-35860: 마요네즈
+  ko-nikl-43803: 찜
+
+review_flags:
+  - >
+    Dish definitions describe source preparations, not complete recipes or
+    universal restaurant ingredients. Menu recognition does not establish
+    allergy safety, vegetarian suitability, or absence of cross-contact.
+  - >
+    Ingredient names and source mentions of medicinal use do not establish
+    treatment effects, nutrition advice, or safe wild-plant identification.
+    The unselected compress/hot-bathing senses of 찜 include therapeutic
+    source claims and are not imported as instructions.
+  - >
+    The source English for 떡볶이 says boiling while the Korean uses 볶다.
+    The compact label names cooking with vegetables and seasoning without
+    choosing an exclusive preparation technique. 삼겹살 follows the raw
+    layered-meat sense, not the English's added grilled-dish use; its
+    source-specific anatomical wording also needs qualified review.
+  - >
+    Teasing body/appearance senses of 갈비 and 호박, the matted-hair sense
+    of 떡, and the body metaphor of 고추 are not added by this food cohort.
+    No claim is made that every source position is useful core vocabulary.
+
+remaining_gaps:
+  - The broader core vocabulary planning scale remains substantially unfilled.
+  - Broccoli was not found in the pinned original CSV; no substitute source ID is supplied.
+  - Other specifically noted absent pantry terms have not been exhaustively investigated.
+  - Reading proposals, source interpretation, pragmatic use, and lexical-family grouping need qualified review.

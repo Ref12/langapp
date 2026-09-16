@@ -443,3 +443,20 @@ ko-nikl-40563:
 # by reliable word-specific evidence. A dictionary-search landing page does not
 # verify either reading, so neither is silently asserted here. Exact source
 # evidence and consulted entry locators remain in community-notes.yaml.
+# Kitchen selected readings: individual broad-Hangul citation proposals where
+# exact complete-definition matches contain no official pronunciation text.
+ko-nikl-00822:
+  pronunciations: [소시지]
+  method: authored-broad-hangul
+  reason: "Individually authored for seasoned ground meat in a casing, whose complete definition exactly matches official 63634. Retain 소-시-지 as three open syllables with plain ㅅ and ㅈ; 시 represents the Korean ㅅ-before-ㅣ realization without introducing a tense consonant or an English final consonant. No coda triggers neutralization, assimilation, or tensification, and no vowel length is inferred. Official pronunciation text is absent."
+  review_status: unreviewed
+ko-nikl-24789:
+  pronunciations: [햄]
+  method: authored-broad-hangul
+  reason: "Individually authored for salted, smoked, and dried pork, whose complete single definition exactly matches official 84954. Retain the single syllable's initial ㅎ, ㅐ vowel, and final bilabial nasal ㅁ. There is no following syllable for liaison or boundary assimilation, and no stop coda to neutralize; no vowel length is inferred. Official pronunciation text is absent."
+  review_status: unreviewed
+ko-nikl-35860:
+  pronunciations: [마요네즈]
+  method: authored-broad-hangul
+  reason: "Individually authored for the sauce made with egg yolk, oil, vinegar, sugar, salt, and similar ingredients, whose complete definition exactly matches official 15710. Retain 마-요-네-즈 as four open syllables, the 요 glide, and plain ㅈ in vowel-bearing 즈 rather than importing an English final voiced fricative. No coda requires assimilation or tensification, and no vowel length is inferred. Official pronunciation text is absent."
+  review_status: unreviewed

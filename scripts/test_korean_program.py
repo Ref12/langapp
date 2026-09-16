@@ -752,7 +752,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(len(actual), 1)
 
     def test_expansion_corrections_are_explicit_unreviewed_overrides_not_source_replacements(self):
-        for filename in ("expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml"):
+        for filename in ("expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml", "kitchen-notes.yaml"):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
                 with self.subTest(sense=identifier):
@@ -840,6 +840,34 @@ class KoreanCourseArtifactTests(unittest.TestCase):
                 {entry["official_entry_id"] for entry in row["consulted_reading_sources"]},
                 {"93471", "515681"},
             )
+
+    def test_pantry_support_and_related_meanings_preserve_source_and_breadth(self):
+        words, evidence, identities = (
+            self.references.vocabulary, self.references.provenance, self.references.lexical_identity,
+        )
+        for parent, spelling in (
+            ("09490", "생강"), ("16215", "다시마"), ("17329", "대파"),
+            ("19185", "들기름"), ("22364", "파전"), ("24789", "햄"),
+            ("25277", "현미"), ("33408", "깍두기"), ("35581", "녹말"),
+            ("35860", "마요네즈"), ("38826", "미나리"), ("44098", "참깨"),
+            ("52831", "흰자"),
+        ):
+            identifier = f"ko-nikl-{parent}-s001"
+            with self.subTest(sense=identifier):
+                self.assertEqual(words[identifier]["ch"], spelling)
+                self.assertEqual(evidence[identifier]["source_band"], "unbanded")
+                self.assertIsNone(evidence[identifier]["reference_level"])
+                self.assertTrue(evidence[identifier]["source_entry"].endswith(f"#record={int(parent)}"))
+        for parent in ("00631", "07920", "31215", "35454", "26388", "33408", "35581", "52831", "43803"):
+            with self.subTest(parent=parent):
+                self.assertEqual(identities[f"ko-nikl-{parent}-s001"],
+                                 identities[f"ko-nikl-{parent}-s002"])
+        self.assertEqual(identities["ko-nikl-33509-s001"], identities["ko-nikl-44098-s001"])
+        self.assertNotEqual(words["ko-nikl-33509-s001"]["ch"], words["ko-nikl-44098-s001"]["ch"])
+        self.assertEqual(evidence["ko-nikl-43803-s002"]["lexical_category"], "free-lemma")
+        self.assertIn("starch powder", words["ko-nikl-35581-s001"]["ds"])
+        self.assertIn("Flour", evidence["ko-nikl-35581-s001"]["source_english"])
+        self.assertIn("photosynthesis", words["ko-nikl-35581-s002"]["ds"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

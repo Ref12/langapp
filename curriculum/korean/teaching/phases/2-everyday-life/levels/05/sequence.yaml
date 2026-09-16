@@ -271,16 +271,53 @@ units:
   - {id: ko-nikl-03798-s001, ch: 쌀, pr: 쌀, ds: uncooked rice; hulled rice grain}
   - {id: ko-nikl-39151-s001, ch: 밀가루, pr: 밀까루, ds: wheat flour}
   - {id: ko-nikl-35340-s002, ch: 넣다, pr: 너ː타, ds: to add or mix in}
+  - {id: ko-nikl-29358-s001, ch: 고춧가루, pr: 고추까루 / 고춛까루, ds: powder made from dried red chili peppers}
+  - {id: ko-nikl-05741-s001, ch: 보리, pr: 보리, ds: barley grain}
+  - {id: ko-nikl-35454-s001, ch: 노른자, pr: 노른자, ds: the yolk of an egg}
+  - {id: ko-nikl-22212-s001, ch: 파, pr: 파, ds: green onions; scallions used in seasoning}
+  - {id: ko-nikl-16772-s001, ch: 당근, pr: 당근, ds: a carrot}
+  - {id: ko-nikl-40691-s001, ch: 배추, pr: 배ː추, ds: 'napa cabbage, commonly used to make kimchi'}
+  - {id: ko-nikl-48289-s001, ch: 오이, pr: 오이, ds: a cucumber plant or its fruit}
+  - {id: ko-nikl-34216-s001, ch: 나물, pr: 나물, ds: edible greens or leaves used as food}
+  - {id: ko-nikl-31215-s002, ch: 국, pr: 국, ds: the liquid part of soup or stew}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
-  - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
-  - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
-  - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
+  - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
+  - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
+  - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
+  - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
   - {id: ko-nikl-40223-s002, ch: 밥, pr: 밥, ds: a meal}
   - {id: ko-nikl-04296-s002, ch: 아침, pr: 아침, ds: breakfast}
   - {id: ko-nikl-14255-s001, ch: 점심, pr: 점ː심, ds: lunch}
   - {id: ko-nikl-13334-s002, ch: 저녁, pr: 저녁, ds: dinner; the evening meal}
+  review_grammar:
+  - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
+  - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
+  - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
+- id: level-05-food-02
+  title: Food and meals - 2
+  outcome: Clarify ingredients and preferences and make an appropriate meal request.
+  vocabulary:
+  - {id: ko-nikl-33294-s001, ch: 김치찌개, pr: 김치찌개, ds: kimchi stew with other ingredients such as meat}
+  - {id: ko-nikl-18693-s001, ch: 된장찌개, pr: 된ː장찌개 / 뒌ː장찌개, ds: soybean-paste stew with vegetables and tofu}
+  - {id: ko-nikl-03029-s001, ch: 식단, pr: 식딴, ds: a meal plan specifying dishes and their order}
+  - {id: ko-nikl-09490-s001, ch: 생강, pr: 생강, ds: 'ginger used for seasoning, tea, or other preparations'}
+  - {id: ko-nikl-16215-s001, ch: 다시마, pr: 다시마, ds: 'edible kelp with broad, thick fronds'}
+  - {id: ko-nikl-17329-s001, ch: 대파, pr: 대ː파, ds: 'a large green onion with a long, thick stem'}
+  - {id: ko-nikl-33408-s001, ch: 깍두기, pr: 깍뚜기, ds: kimchi made with small cubes of radish}
+  - {id: ko-nikl-35860-s001, ch: 마요네즈, pr: 마요네즈, ds: 'mayonnaise, a sauce made with egg yolk, oil, and vinegar'}
+  - {id: ko-nikl-44098-s001, ch: 참깨, pr: 참깨, ds: sesame seeds used for seasoning or oil}
+  - {id: ko-nikl-52831-s001, ch: 흰자, pr: 힌자, ds: the white surrounding an egg yolk}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-05741-s001, ch: 보리, pr: 보리, ds: barley grain}
+  - {id: ko-nikl-35454-s001, ch: 노른자, pr: 노른자, ds: the yolk of an egg}
+  - {id: ko-nikl-22212-s001, ch: 파, pr: 파, ds: green onions; scallions used in seasoning}
+  - {id: ko-nikl-16772-s001, ch: 당근, pr: 당근, ds: a carrot}
+  - {id: ko-nikl-40691-s001, ch: 배추, pr: 배ː추, ds: 'napa cabbage, commonly used to make kimchi'}
+  - {id: ko-nikl-48289-s001, ch: 오이, pr: 오이, ds: a cucumber plant or its fruit}
+  - {id: ko-nikl-34216-s001, ch: 나물, pr: 나물, ds: edible greens or leaves used as food}
+  - {id: ko-nikl-31215-s002, ch: 국, pr: 국, ds: the liquid part of soup or stew}
   review_grammar:
   - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
   - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}

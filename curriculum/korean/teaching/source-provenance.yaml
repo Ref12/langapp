@@ -5327,7 +5327,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '23402'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23402
-      pronunciations:
+      pronunciations: &id684
       - 빵
     lexical_identity: ko-lex-07920
     lexical_category: free-lemma
@@ -12076,7 +12076,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '36778'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36778
-      pronunciations:
+      pronunciations: &id682
       - 국
     lexical_identity: ko-lex-31215
     lexical_category: free-lemma
@@ -12236,7 +12236,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '61167'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61167
-      pronunciations:
+      pronunciations: &id679
       - 소금
     lexical_identity: ko-lex-00631
     lexical_category: free-lemma
@@ -72228,6 +72228,1084 @@ items:
       pronunciations:
       - 지속
     lexical_identity: ko-lex-42725
+    lexical_category: free-lemma
+  ko-nikl-00631-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=631
+    source_parent: ko-nikl-00631
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: (figurative) An indispensable person.
+    source_korean: (비유적으로) 꼭 필요한 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61167'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61167
+      pronunciations: *id679
+    lexical_identity: ko-lex-00631
+    lexical_category: free-lemma
+  ko-nikl-29358-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29358
+    source_parent: ko-nikl-29358
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Spicy powder made by pounding dried red pepper.
+    source_korean: 붉은 고추를 말려서 빻은 매운맛의 가루.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '25597'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25597
+      pronunciations:
+      - 고추까루
+      - 고춛까루
+    lexical_identity: ko-lex-29358
+    lexical_category: free-lemma
+  ko-nikl-05741-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5741
+    source_parent: ko-nikl-05741
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A grain that has a line in the middle and is usually mixed with rice when it is boiled. '
+    source_korean: 주로 밥을 지을 때 쌀과 섞는, 알갱이 가운데 선이 있는 곡물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14507'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14507
+      pronunciations:
+      - 보리
+    lexical_identity: ko-lex-05741
+    lexical_category: free-lemma
+  ko-nikl-20825-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20825
+    source_parent: ko-nikl-20825
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: A round grain with a thin, yellow or black skin that is used as an ingredient in tofu,
+      doenjang, soybean paste, etc.
+    source_korean: 두부나 된장 등의 재료로 쓰이며 노란색 또는 검은색의 얇은 껍질에 쌓인 동그란 모양의 곡식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72171'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72171
+      pronunciations:
+      - 콩
+    lexical_identity: ko-lex-20825
+    lexical_category: free-lemma
+  ko-nikl-22554-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22554
+    source_parent: ko-nikl-22554
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A dark purple grain with savory flavor that is used as an ingredient in porridge,
+      tteok, rice cake, or bread.
+    source_korean: 삶아서 죽을 쑤거나 떡이나 빵에 넣어서 먹는, 맛이 구수한 짙은 자주색의 곡식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80742'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80742
+      pronunciations:
+      - 팓
+    lexical_identity: ko-lex-22554
+    lexical_category: free-lemma
+  ko-nikl-35454-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35454
+    source_parent: ko-nikl-35454
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A round, yellow part of an egg which is surrounded by the egg white.
+    source_korean: 알의 흰자위에 둘러싸인 동그랗고 노란 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24158'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24158
+      pronunciations: &id680
+      - 노른자
+    lexical_identity: ko-lex-35454
+    lexical_category: free-lemma
+  ko-nikl-35454-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35454
+    source_parent: ko-nikl-35454
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: (figurative) The most important or highly valuable part.
+    source_korean: (비유적으로) 가장 중요하거나 값이 높은 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24158'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24158
+      pronunciations: *id680
+    lexical_identity: ko-lex-35454
+    lexical_category: free-lemma
+  ko-nikl-28899-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28899
+    source_parent: ko-nikl-28899
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A saltwater fish with much flesh, with a blue, wave-patterned back and white belly.
+    source_korean: 등이 푸르고 검은 물결무늬가 있으며 배는 흰, 살이 많은 바닷물고기.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23373'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23373
+      pronunciations:
+      - 고등어
+    lexical_identity: ko-lex-28899
+    lexical_category: free-lemma
+  ko-nikl-27882-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27882
+    source_parent: ko-nikl-27882
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: An animal, covered by a hard shell, which crawls sideways with its ten feet.
+    source_korean: 온몸이 단단한 껍질로 싸여 있으며 열 개의 발이 있어 옆으로 기어 다니는 동물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '15940'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15940
+      pronunciations:
+      - 게ː
+      match_reason: Compared the single crab definition, including the hard shell, ten limbs, and sideways
+        crawling. Only 기어 다니는 becomes 기어다니는. Preserve the official 게ː citation length.
+    lexical_identity: ko-lex-27882
+    lexical_category: free-lemma
+  ko-nikl-00822-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=822
+    source_parent: ko-nikl-00822
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A type of food made by stuffing minced, seasoned meat into a pig''s intestine or
+      other long, thin sack. '
+    source_korean: 으깨어 양념한 고기를 돼지 창자나 가늘고 긴 자루에 채워 만든 식품.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 소시지
+      method: authored-broad-hangul
+      reason: Individually authored for seasoned ground meat in a casing, whose complete definition exactly
+        matches official 63634. Retain 소-시-지 as three open syllables with plain ㅅ and ㅈ; 시 represents
+        the Korean ㅅ-before-ㅣ realization without introducing a tense consonant or an English final consonant.
+        No coda triggers neutralization, assimilation, or tensification, and no vowel length is inferred.
+        Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-00822
+    lexical_category: free-lemma
+  ko-nikl-22212-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22212
+    source_parent: ko-nikl-22212
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A vegetable whose long, pointy, cylindrical leaves are empty in the center, and which
+      is often used as garnish or seasoning due to its unique smell and flavor.
+    source_korean: 잎은 둥근기둥 모양으로 속이 비고 끝이 뾰족하게 길며, 독특한 냄새와 맛이 있어 양념으로 자주 쓰이는 채소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71303'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71303
+      pronunciations:
+      - 파
+    lexical_identity: ko-lex-22212
+    lexical_category: free-lemma
+  ko-nikl-16772-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16772
+    source_parent: ko-nikl-16772
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: An orange-colored root vegetable that has a sweet taste and the shape of a horn.
+    source_korean: 붉은색 긴 뿔 모양의 단맛이 나는, 뿌리를 먹는 채소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49463'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49463
+      pronunciations:
+      - 당근
+    lexical_identity: ko-lex-16772
+    lexical_category: free-lemma
+  ko-nikl-40691-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40691
+    source_parent: ko-nikl-40691
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A long, green vegetable with yellowish white insides, of which the round leaves are
+      grown overlapping each other, mainly used to make kimchi.
+    source_korean: 길고 둥근 잎이 포개져 자라는, 속은 누런 흰색이고 겉은 녹색이며 김칫거리로 많이 쓰이는 채소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58433'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58433
+      pronunciations:
+      - 배ː추
+    lexical_identity: ko-lex-40691
+    lexical_category: free-lemma
+  ko-nikl-48289-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48289
+    source_parent: ko-nikl-48289
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'A plant which has yellow flowers and long, oval-shaped, green fruits in summer, or
+      its fruit. '
+    source_korean: 여름에 노란 꽃이 피고 초록색의 긴 타원형 열매가 열리는 식물. 또는 그 열매.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68059'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68059
+      pronunciations:
+      - 오이
+    lexical_identity: ko-lex-48289
+    lexical_category: free-lemma
+  ko-nikl-29352-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29352
+    source_parent: ko-nikl-29352
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A finger-sized, spicy fruit, whose initial green color changes to red when ripe.
+    source_korean: 손가락만한 크기로 처음에는 초록색이나 익으면 빨갛게 되고 매운 맛이 나는 열매.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '18366'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18366
+      pronunciations:
+      - 고추
+      match_reason: Compared both ordered definitions, including the unselected figurative anatomical
+        sense. The pepper fruit's size, green-to-red ripening, and spicy taste are unchanged except 매운
+        맛 becomes 매운맛. The second definition is identical; no source positions are merged or added.
+    lexical_identity: ko-lex-29352
+    lexical_category: free-lemma
+  ko-nikl-34216-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34216
+    source_parent: ko-nikl-34216
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A variety of edible grass or leaves such as bracken and bellflowers.
+    source_korean: 고사리, 도라지 등의 사람이 먹을 수 있는 풀이나 나뭇잎.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38848'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38848
+      pronunciations: &id681
+      - 나물
+    lexical_identity: ko-lex-34216
+    lexical_category: free-lemma
+  ko-nikl-34216-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34216
+    source_parent: ko-nikl-34216
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A variety of Korean side dishes made by seasoning boiled, fried or uncooked edible
+      grass, leaves, vegetables, etc.
+    source_korean: 먹을 수 있는 풀이나 나뭇잎, 채소 등을 삶거나 볶거나 또는 날것으로 양념하여 무친 반찬.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38848'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38848
+      pronunciations: *id681
+    lexical_identity: ko-lex-34216
+    lexical_category: free-lemma
+  ko-nikl-31215-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31215
+    source_parent: ko-nikl-31215
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: In a dish like a soup or jjigae, stew, liquid left after solid ingredients have been
+      taken out.
+    source_korean: 국이나 찌개 등의 음식에서 건더기를 빼고 남은 물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '36778'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36778
+      pronunciations: *id682
+    lexical_identity: ko-lex-31215
+    lexical_category: free-lemma
+  ko-nikl-43755-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43755
+    source_parent: ko-nikl-43755
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A side dish made by putting tofu, vegetables, etc., in a small amount of broth with
+      doenjang, soybean paste, or gochujang, red chili paste, and then boiling it with some spices or
+      seasonings to taste a little salty.
+    source_korean: 국물을 적게 하여 고기나 두부, 채소 등을 넣고 고추장이나 된장 등을 넣고 양념과 간을 맞추어 약간 짜게 끓인 반찬.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26901'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26901
+      pronunciations:
+      - 찌개
+    lexical_identity: ko-lex-43755
+    lexical_category: free-lemma
+  ko-nikl-43803-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43803
+    source_parent: ko-nikl-43803
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A dish made by seasoning meat or vegetables and then steaming or boiling them in a
+      small amount of liquid.
+    source_korean: 고기나 채소에 양념을 해서 찌거나 국물을 적게 해서 삶은 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '79673'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79673
+      pronunciations: &id683
+      - 찜
+      match_reason: Compared all four ordered definitions, including both unselected treatment-related
+        uses. The steamed or low-liquid cooked dish and the term indicating a steamed dish are identical
+        in senses 1 and 2. Applying a warm wet cloth or ice bag to an affected area in sense 3 reorders
+        the treatment purpose. Sense 4 generalizes immersion in hot springs/water or warm sand to hot
+        sand/water and sweating, omitting the source's treatment claim. Preserve all original positions;
+        this citation crosswalk does not endorse those medical claims.
+    lexical_identity: ko-lex-43803
+    lexical_category: free-lemma
+  ko-nikl-43803-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43803
+    source_parent: ko-nikl-43803
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A noun used to indicate a steamed dish.
+    source_korean: 찐 음식의 뜻을 나타내는 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '79673'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79673
+      pronunciations: *id683
+      match_reason: Compared all four ordered definitions, including both unselected treatment-related
+        uses. The steamed or low-liquid cooked dish and the term indicating a steamed dish are identical
+        in senses 1 and 2. Applying a warm wet cloth or ice bag to an affected area in sense 3 reorders
+        the treatment purpose. Sense 4 generalizes immersion in hot springs/water or warm sand to hot
+        sand/water and sweating, omitting the source's treatment claim. Preserve all original positions;
+        this citation crosswalk does not endorse those medical claims.
+    lexical_identity: ko-lex-43803
+    lexical_category: free-lemma
+  ko-nikl-41952-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41952
+    source_parent: ko-nikl-41952
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'porridge: A dish made from grains such as rice, glutinous rice, etc., that is cooked
+      really soft by boiling for a long time.'
+    source_korean: 쌀이나 찹쌀 등의 곡식을 오래 끓여서 몹시 무르게 만든 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91773'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91773
+      pronunciations:
+      - 죽
+    lexical_identity: ko-lex-41952
+    lexical_category: free-lemma
+  ko-nikl-31317-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31317
+    source_parent: ko-nikl-31317
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'Food made by kneading wheat flour, buckwheat, potatoes, etc. and cutting the dough
+      into long thin strips with a knife, machine, or by hand, or a dish made by boiling this. '
+    source_korean: 밀, 메밀, 감자 등의 가루를 반죽하여 칼이나 기계, 손으로 가늘고 길게 만든 식품. 또는 그것을 삶아서 만든 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38579'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38579
+      pronunciations:
+      - 국쑤
+    lexical_identity: ko-lex-31317
+    lexical_category: free-lemma
+  ko-nikl-35116-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35116
+    source_parent: ko-nikl-35116
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A dish made by putting noodles in naengguk, cold soup, kimchitguk, kimchi soup, or
+      mixing gochujang, red chili paste, seasoning, etc.
+    source_korean: 국수를 냉국이나 김칫국 등에 말거나 고추장 양념에 비벼서 먹는 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '32777'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=32777
+      pronunciations:
+      - 냉ː면
+    lexical_identity: ko-lex-35116
+    lexical_category: free-lemma
+  ko-nikl-36064-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36064
+    source_parent: ko-nikl-36064
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Dumplings, made by kneading and pressing flour and wrapping minced meat, vegetables,
+      etc., with the dough.
+    source_korean: 밀가루를 반죽하여 얇게 민 후 그 위에 다진 고기나 야채 등 여러 가지 음식을 넣고 빚은 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15782'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15782
+      pronunciations:
+      - 만두
+    lexical_identity: ko-lex-36064
+    lexical_category: free-lemma
+  ko-nikl-19710-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19710
+    source_parent: ko-nikl-19710
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A dish made by steaming or boiling grain powder such as injeolmi, rice cake coated
+      with red bean powder or soy bean powder, and songpyeon, half-moon-shaped rice cake, etc.
+    source_korean: 인절미, 송편 등과 같이 곡식 가루를 찌거나 삶아서 익힌 것을 빚어서 만든 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '20199'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=20199
+      pronunciations:
+      - 떡
+    lexical_identity: ko-lex-19710
+    lexical_category: free-lemma
+  ko-nikl-07920-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7920
+    source_parent: ko-nikl-07920
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: (figurative) Food needed for living.
+    source_korean: (비유적으로) 사는 데에 필요한 식량.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23402'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23402
+      pronunciations: *id684
+    lexical_identity: ko-lex-07920
+    lexical_category: free-lemma
+  ko-nikl-30194-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30194
+    source_parent: ko-nikl-30194
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Snacks baked or fried by mixing milk, sugar, etc., into flour or rice powder.
+    source_korean: 밀가루나 쌀가루 등에 우유, 설탕 등을 넣고 반죽하여 굽거나 튀긴 간식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18286'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18286
+      pronunciations:
+      - 과자
+    lexical_identity: ko-lex-30194
+    lexical_category: free-lemma
+  ko-nikl-19729-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19729
+    source_parent: ko-nikl-19729
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Boiled rice cake with seasoning, made by boiling garaetteok, rice cake stick, vegetables,
+      seasonings such as soy sauce, gochujang, red chili paste, etc.
+    source_korean: 적당히 자른 가래떡에 간장이나 고추장 등의 양념과 여러 가지 채소를 넣고 볶은 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15180'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15180
+      pronunciations:
+      - 떡뽀끼
+    lexical_identity: ko-lex-19729
+    lexical_category: free-lemma
+  ko-nikl-06063-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6063
+    source_parent: ko-nikl-06063
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'A dish made by stir-frying rice with sliced vegetables or meat in oil. '
+    source_korean: 밥에 채소나 고기 등을 잘게 썰어 넣고 기름에 볶아 만든 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60202'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60202
+      pronunciations:
+      - 보끔밥
+    lexical_identity: ko-lex-06063
+    lexical_category: free-lemma
+  ko-nikl-26388-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26388
+    source_parent: ko-nikl-26388
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Short ribs of cows, pigs, chickens, etc., and the flesh attached to these bones, used
+      as an ingredient for food; or food made from these bones and their flesh.
+    source_korean: 음식의 재료로 쓰이는 소, 돼지, 닭 등의 가슴뼈와 거기에 붙은 살. 또는 그것으로 만든 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '57275'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57275
+      pronunciations: &id685
+      - 갈비
+      match_reason: Compared all three ordered rib definitions. Food ribs/meat or the prepared dish in
+        sense 1 and the teasing description of a very thin person in sense 3 are identical. Anatomical
+        ribs in sense 2 add 사람의 before 등뼈, explicitly specifying a human referent; retain the original
+        source wording and position rather than replacing them.
+    lexical_identity: ko-lex-26388
+    lexical_category: free-lemma
+  ko-nikl-26388-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26388
+    source_parent: ko-nikl-26388
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Several bow-shaped bones attached to both sides of the spine which surround the heart
+      and lungs.
+    source_korean: 등뼈에 붙어 좌우로 둥글게 심장과 폐를 둘러싸고 있는 여러 개의 뼈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '57275'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57275
+      pronunciations: *id685
+      match_reason: Compared all three ordered rib definitions. Food ribs/meat or the prepared dish in
+        sense 1 and the teasing description of a very thin person in sense 3 are identical. Anatomical
+        ribs in sense 2 add 사람의 before 등뼈, explicitly specifying a human referent; retain the original
+        source wording and position rather than replacing them.
+    lexical_identity: ko-lex-26388
+    lexical_category: free-lemma
+  ko-nikl-08927-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8927
+    source_parent: ko-nikl-08927
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A fleshy part of pork belly, featuring three layers of fat and flesh, grilled pork
+      belly, a Korea dish made from the meat.
+    source_korean: 비계와 살이 세 겹으로 되어 있는, 돼지의 가슴 부분 살.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61847'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61847
+      pronunciations:
+      - 삼겹쌀
+    lexical_identity: ko-lex-08927
+    lexical_category: free-lemma
+  ko-nikl-08929-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8929
+    source_parent: ko-nikl-08929
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A dish made by boiling down a young chicken stuffed with ginseng, sticky rice, jujubes,
+      etc.
+    source_korean: 어린 닭에 인삼, 찹쌀, 대추 등을 넣고 푹 삶은 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14582'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14582
+      pronunciations:
+      - 삼계탕
+      - 삼게탕
+    lexical_identity: ko-lex-08929
+    lexical_category: free-lemma
+  ko-nikl-33294-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33294
+    source_parent: ko-nikl-33294
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Jjigae, stew, made by boiling kimchi and other ingredients such as meat, etc.
+    source_korean: 김치를 고기 등과 함께 넣고 끓인 찌개.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '32543'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=32543
+      pronunciations:
+      - 김치찌개
+      match_reason: Compared the complete single kimchi-stew definition. The official text omits 고기 등과
+        함께, leaving stew cooked with kimchi; the source explicitly mentions meat and other accompanying
+        ingredients. This is the same dish, not an assertion that the broader official wording replaces
+        the source recipe detail.
+    lexical_identity: ko-lex-33294
+    lexical_category: free-lemma
+  ko-nikl-18693-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18693
+    source_parent: ko-nikl-18693
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Jjigae, stew, made by boiling fermented doenjang, soybean paste, with scallions, zucchini,
+      bean curd, etc., added to water.
+    source_korean: 된장을 물에 넣고 파, 호박, 두부 등을 넣고 끓인 찌개.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14930'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14930
+      pronunciations:
+      - 된ː장찌개
+      - 뒌ː장찌개
+    lexical_identity: ko-lex-18693
+    lexical_category: free-lemma
+  ko-nikl-03029-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3029
+    source_parent: ko-nikl-03029
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A chart showing the kinds of food that will be eaten and the order in which they will
+      be eaten.
+    source_korean: 먹을 음식의 종류와 순서를 짜 놓은 계획표.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90716'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90716
+      pronunciations:
+      - 식딴
+    lexical_identity: ko-lex-03029
+    lexical_category: free-lemma
+  ko-nikl-09490-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9490
+    source_parent: ko-nikl-09490
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Rough, thick roots that taste and smell spicy used as seasoning, ingredient for tea,
+      medicinal herbs, etc.
+    source_korean: 매운 맛과 향이 나서 양념이나 차의 재료, 한약재 등으로 쓰이는 울퉁불퉁하고 굵은 뿌리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62553'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62553
+      pronunciations:
+      - 생강
+    lexical_identity: ko-lex-09490
+    lexical_category: free-lemma
+  ko-nikl-16215-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16215
+    source_parent: ko-nikl-16215
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Edible brown seaweed that has soft, long, wide, thick fronds. '
+    source_korean: 황갈색의 잎이 넓고 길고 두꺼우며 부드러운 식용 바다 식물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40543'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40543
+      pronunciations:
+      - 다시마
+    lexical_identity: ko-lex-16215
+    lexical_category: free-lemma
+  ko-nikl-17329-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17329
+    source_parent: ko-nikl-17329
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A large green onion with a long, thick stem.
+    source_korean: 줄기가 길고 굵은 파.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '46865'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=46865
+      pronunciations:
+      - 대ː파
+    lexical_identity: ko-lex-17329
+    lexical_category: free-lemma
+  ko-nikl-19185-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19185
+    source_parent: ko-nikl-19185
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The oil extracted from wild sesame seeds.
+    source_korean: 들깨로 짠 기름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '50567'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=50567
+      pronunciations:
+      - 들기름
+    lexical_identity: ko-lex-19185
+    lexical_category: free-lemma
+  ko-nikl-22364-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22364
+    source_parent: ko-nikl-22364
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A dish made by adding green onions cut long, seafood, etc., into a flour dough, and
+      panfrying it.
+    source_korean: 반죽한 밀가루에 길쭉하게 썬 파와 해산물 등을 넣어 지진 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80542'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80542
+      pronunciations:
+      - 파전
+    lexical_identity: ko-lex-22364
+    lexical_category: free-lemma
+  ko-nikl-24789-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24789
+    source_parent: ko-nikl-24789
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Food made by smoking and drying pork preserved in salt. '
+    source_korean: 돼지고기를 소금에 절인 뒤 연기에 익히고 말려 만든 식품.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 햄
+      method: authored-broad-hangul
+      reason: Individually authored for salted, smoked, and dried pork, whose complete single definition
+        exactly matches official 84954. Retain the single syllable's initial ㅎ, ㅐ vowel, and final bilabial
+        nasal ㅁ. There is no following syllable for liaison or boundary assimilation, and no stop coda
+        to neutralize; no vowel length is inferred. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-24789
+    lexical_category: free-lemma
+  ko-nikl-25277-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25277
+    source_parent: ko-nikl-25277
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Yellowish brown rice produced by removing the outer skin alone from rice grains. '
+    source_korean: 벼의 겉껍질만 벗겨 낸, 누르스름한 쌀.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87160'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87160
+      pronunciations:
+      - 현미
+    lexical_identity: ko-lex-25277
+    lexical_category: free-lemma
+  ko-nikl-33408-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33408
+    source_parent: ko-nikl-33408
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Kimchi made of salt-pickled radish chopped in small cubes mixed with seasonings such
+      as red pepper powder, etc.
+    source_korean: 무를 작고 네모나게 썰어서 소금에 절인 후 고춧가루 등의 양념을 넣고 버무려 만든 김치.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '32551'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=32551
+      pronunciations: &id686
+      - 깍뚜기
+    lexical_identity: ko-lex-33408
+    lexical_category: free-lemma
+  ko-nikl-33408-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33408
+    source_parent: ko-nikl-33408
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: (figurative) A person who is not able to belong to any parties.
+    source_korean: (비유적으로) 어느 쪽에도 끼지 못하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '32551'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=32551
+      pronunciations: *id686
+    lexical_identity: ko-lex-33408
+    lexical_category: free-lemma
+  ko-nikl-35581-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35581
+    source_parent: ko-nikl-35581
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Flour made by grating potatoes, sweet potatoes, or soaked mung beans in a bowl and
+      drying the sediments settled at the bottom of the bowl. '
+    source_korean: 감자, 고구마, 물에 불린 녹두 등을 갈아서 가라앉힌 앙금을 말린 가루.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '42962'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=42962
+      pronunciations: &id687
+      - 농말
+    source_correction:
+      source_korean: 감자, 고구마, 물에 불린 녹두 등을 갈아서 가라앉힌 앙금을 말린 가루.
+      source_english: 'Flour made by grating potatoes, sweet potatoes, or soaked mung beans in a bowl
+        and drying the sediments settled at the bottom of the bowl. '
+      authored_interpretation: starch powder obtained by settling crushed ingredients
+      rationale: 'The Korean identifies the dried, settled sediment separated from crushed starchy ingredients,
+        not the entire milled ingredient ordinarily called flour. Distinguish cooking starch powder from
+        the plant-carbohydrate definition at the separate second source position.
+
+        '
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-35581
+    lexical_category: free-lemma
+  ko-nikl-35581-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35581
+    source_parent: ko-nikl-35581
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A carbohydrate produced from photosynthesis of a green plant and then stored in its
+      roots, stems, and seeds.
+    source_korean: 녹색 식물의 광합성 작용으로 만들어져 뿌리, 줄기, 씨앗 등에 저장되는 탄수화물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '42962'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=42962
+      pronunciations: *id687
+    lexical_identity: ko-lex-35581
+    lexical_category: free-lemma
+  ko-nikl-35860-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35860
+    source_parent: ko-nikl-35860
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A sauce made by mixing egg yolk, oil, vinegar, salt, etc.
+    source_korean: 달걀노른자, 기름, 식초, 설탕, 소금 등을 섞어서 만든 소스.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 마요네즈
+      method: authored-broad-hangul
+      reason: Individually authored for the sauce made with egg yolk, oil, vinegar, sugar, salt, and similar
+        ingredients, whose complete definition exactly matches official 15710. Retain 마-요-네-즈 as four
+        open syllables, the 요 glide, and plain ㅈ in vowel-bearing 즈 rather than importing an English final
+        voiced fricative. No coda requires assimilation or tensification, and no vowel length is inferred.
+        Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-35860
+    lexical_category: free-lemma
+  ko-nikl-38826-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38826
+    source_parent: ko-nikl-38826
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Plant that grows on moist ground, and is used as an ingredient for namul, seasoned
+      vegetables, as its leaves and stalks have a distinctive scent.
+    source_korean: 축축한 땅에서 자라며 잎과 줄기에 독특한 향기가 있어서 나물 등의 재료로 사용되는 풀.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57734'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57734
+      pronunciations:
+      - 미나리
+    lexical_identity: ko-lex-38826
+    lexical_category: free-lemma
+  ko-nikl-44098-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44098
+    source_parent: ko-nikl-44098
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A small white seed that is roasted to use as seasoning or squeezed for oil. '
+    source_korean: 볶아서 양념으로 쓰거나 기름을 짜서 먹는 작고 하얀 씨앗.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '78303'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=78303
+      pronunciations:
+      - 참깨
+    lexical_identity: ko-lex-33509
+    lexical_category: free-lemma
+  ko-nikl-52831-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52831
+    source_parent: ko-nikl-52831
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The white part that surrounds the yolk in a bird's egg or an egg.
+    source_korean: 새알이나 달걀 등에서 노른자를 둘러싼 흰 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88221'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88221
+      pronunciations: &id688
+      - 힌자
+    lexical_identity: ko-lex-52831
+    lexical_category: free-lemma
+  ko-nikl-52831-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52831
+    source_parent: ko-nikl-52831
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The white part of the eye.
+    source_korean: 눈알의 흰 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88221'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88221
+      pronunciations: *id688
+    lexical_identity: ko-lex-52831
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
