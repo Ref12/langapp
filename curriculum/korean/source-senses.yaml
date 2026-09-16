@@ -9,7 +9,7 @@ band_counts:
   advanced: 5105
   beginner: 1942
   intermediate: 3981
-  unbanded-support: 482
+  unbanded-support: 512
 entries:
 - id: ko-nikl-00001
   target: 설
@@ -3481,6 +3481,19 @@ entries:
     source_position: 1
     english: Equipment that puts out fire by spreading chemicals on it.
     korean: 화학 물질을 퍼뜨려 불을 끄는 기구.
+- id: ko-nikl-00985
+  target: 소화전
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=985
+  senses:
+  - id: ko-nikl-00985-s001
+    source_position: 1
+    english: A facility connected with the water supply so that in case of fire, water comes out in order
+      to put out the flames.
+    korean: 불이 났을 때 불을 끄기 위하여 수도에 연결되어 물이 나오는 시설.
 - id: ko-nikl-00986
   target: 소화제
   part_of_speech: noun
@@ -4952,6 +4965,18 @@ entries:
     source_position: 1
     english: The act of cultivating oneself spiritually.
     korean: 도를 닦음.
+- id: ko-nikl-01589
+  target: 수도관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1589
+  senses:
+  - id: ko-nikl-01589-s001
+    source_position: 1
+    english: The pipe through which water from the water supply flows.
+    korean: 수도의 물이 흐르는 관.
 - id: ko-nikl-01590
   target: 수도권
   part_of_speech: noun
@@ -7623,6 +7648,22 @@ entries:
     english: The act of moving the body according to certain rules or competing using athletic equipment,
       in order to train one's body or improve one's health.
     korean: 몸을 단련하거나 건강을 위해 규칙에 따라 몸을 움직이거나 도구를 사용하여 겨루는 일.
+- id: ko-nikl-02533
+  target: 스피커
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2533
+  senses:
+  - id: ko-nikl-02533-s001
+    source_position: 1
+    english: A device that converts electrical signals into acoustic signals to emit sounds.
+    korean: 전기 신호를 음향 신호로 바꾸어 소리를 밖으로 내보내는 장치.
+  - id: ko-nikl-02533-s002
+    source_position: 2
+    english: A device that makes a sound louder so that it can reach farther.
+    korean: 소리를 크게 하여 멀리까지 들리게 하는 기구.
 - id: ko-nikl-02536
   target: 슬그머니
   part_of_speech: adverb
@@ -15076,6 +15117,18 @@ entries:
     source_position: 1
     english: A smooth ice snack, made by freezing the mixture of sugar, milk, fruit juice, etc.
     korean: 설탕, 우유, 과일즙 등을 섞어 얼려서 만든 부드러운 얼음과자.
+- id: ko-nikl-04264
+  target: 아이콘
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4264
+  senses:
+  - id: ko-nikl-04264-s001
+    source_position: 1
+    english: A computer execution order, expressed as a character or image.
+    korean: 컴퓨터에서 실행할 수 있는 명령을 문자나 그림으로 나타낸 것.
 - id: ko-nikl-04268
   target: 아장아장
   part_of_speech: adverb
@@ -23011,6 +23064,18 @@ entries:
     source_position: 1
     english: 'A state of paying little attention to something and thus being not careful. '
     korean: 어떤 일을 하는 데에 정신을 집중하지 않아 조심스럽지 않음.
+- id: ko-nikl-06645
+  target: 부지
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6645
+  senses:
+  - id: ko-nikl-06645-s001
+    source_position: 1
+    english: 'A piece of ground prepared for building a house or making a road. '
+    korean: 집을 짓거나 길을 만들기 위해 마련한 땅.
 - id: ko-nikl-06649
   target: 부지런하다
   part_of_speech: descriptive verb
@@ -48976,6 +49041,18 @@ entries:
     source_position: 1
     english: The amount of energy used during a certain period of time.
     korean: 전류가 일정한 시간 동안 하는 일. 또는 일정한 시간 동안 사용되는 에너지의 양.
+- id: ko-nikl-13769
+  target: 전류
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13769
+  senses:
+  - id: ko-nikl-13769-s001
+    source_position: 1
+    english: The phenomenon of electricity flow or the measurable degree to which it flows.
+    korean: 전기가 흐르는 현상이나 그 정도.
 - id: ko-nikl-13774
   target: 전망
   part_of_speech: noun
@@ -49249,6 +49326,18 @@ entries:
     source_position: 1
     english: Wholly without anything omitted.
     korean: 빠짐없이 다.
+- id: ko-nikl-13854
+  target: 전선
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13854
+  senses:
+  - id: ko-nikl-13854-s001
+    source_position: 1
+    english: A wire through which electricity flows.
+    korean: 전기가 흐르는 선.
 - id: ko-nikl-13857
   target: 전설
   part_of_speech: noun
@@ -49392,6 +49481,18 @@ entries:
     source_position: 1
     english: The entire body.
     korean: 몸 전체.
+- id: ko-nikl-13920
+  target: 전압
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13920
+  senses:
+  - id: ko-nikl-13920-s001
+    source_position: 1
+    english: Difference in electric energy between two points in an electric field or conductor.
+    korean: 전기장이나 도체 내에 있는 두 점 사이의 전기 에너지의 차.
 - id: ko-nikl-13921
   target: 전액
   part_of_speech: noun
@@ -59647,6 +59748,18 @@ entries:
     english: Literally meaning that it takes time to make a big bowl, a person who succeeds after a great
       deal of effort.
     korean: 큰 그릇을 만드는 데는 시간이 오래 걸린다는 뜻으로 크게 될 사람은 많은 노력을 한 끝에 늦게 성공함.
+- id: ko-nikl-16942
+  target: 대기실
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16942
+  senses:
+  - id: ko-nikl-16942-s001
+    source_position: 1
+    english: 'A room arranged for people to stay briefly when they wait for their time or turn. '
+    korean: 때나 순서를 기다리는 사람들이 잠시 머물 수 있게 마련한 장소.
 - id: ko-nikl-16943
   target: 대기업
   part_of_speech: noun
@@ -62178,6 +62291,36 @@ entries:
     source_position: 1
     english: To make something cold become warm.
     korean: 찬 것을 따뜻하게 하다.
+- id: ko-nikl-17712
+  target: 데이터
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17712
+  senses:
+  - id: ko-nikl-17712-s001
+    source_position: 1
+    english: A fact or information that constitutes the basis for developing a principle; a fact or information
+      collected through observation, experiment, or survey.
+    korean: 이론을 세우는 데 기초가 되는 사실이나 정보. 또는 관찰이나 실험, 조사로 얻은 사실이나 정보.
+  - id: ko-nikl-17712-s002
+    source_position: 2
+    english: Information stored after going through computerization so that it can be processed electronically.
+    korean: 컴퓨터로 처리할 수 있도록 전산화되어 저장된 정보.
+- id: ko-nikl-17713
+  target: 데이터베이스
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17713
+  senses:
+  - id: ko-nikl-17713-s001
+    source_position: 1
+    english: 'A program that enables one to store a large volume of information in a computer and use
+      it in different formats; or such information. '
+    korean: 컴퓨터에 많은 자료를 저장해 두고 여러 가지 형태로 이용할 수 있도록 한 프로그램, 또는 그 자료.
 - id: ko-nikl-17714
   target: 데이트
   part_of_speech: noun
@@ -71192,6 +71335,19 @@ entries:
     source_position: 2
     english: A suffix used to mean a town with a wide road in the middle.
     korean: ‘큰 도로를 가운데 둔 동네’의 뜻을 더하는 접미사.
+- id: ko-nikl-20219
+  target: 로그아웃
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20219
+  senses:
+  - id: ko-nikl-20219-s001
+    source_position: 1
+    english: The act of disconnecting after one has completed one's work when using a computer or internet
+      site.
+    korean: 컴퓨터나 인터넷 사이트를 이용할 때, 하던 일을 마치고 연결을 끊는 일.
 - id: ko-nikl-20220
   target: 로그인
   part_of_speech: noun
@@ -71393,6 +71549,18 @@ entries:
     source_position: 1
     english: A reporter who delivers news from the scene for a newspaper, broadcast, magazine, etc.
     korean: 신문, 방송, 잡지 등에서 현장의 소식을 보도하는 기자.
+- id: ko-nikl-20324
+  target: 링크
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20324
+  senses:
+  - id: ko-nikl-20324-s001
+    source_position: 1
+    english: A connection between websites for a user to move to a selected file or page on the Internet.
+    korean: 인터넷에서 지정한 파일이나 페이지로 이동할 수 있도록 홈페이지를 서로 연결하는 것.
 - id: ko-nikl-20330
   target: 마감
   part_of_speech: noun
@@ -73384,6 +73552,31 @@ entries:
     english: The part of a keyboard instrument such as a piano or harmonium, that makes sounds when pressed
       with fingers.
     korean: 피아노나 풍금과 같은 건반 악기에서, 손가락으로 눌러 소리를 내는 부분.
+- id: ko-nikl-21011
+  target: 키보드
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21011
+  senses:
+  - id: ko-nikl-21011-s001
+    source_position: 1
+    english: The part of a musical instrument such as a piano or organ, that makes sounds when pressed
+      or stroked with fingers.
+    korean: 피아노나 오르간 같은 악기에서 손가락으로 누르거나 두들겨 소리를 내도록 하는 부분.
+  - id: ko-nikl-21011-s002
+    source_position: 2
+    english: At a hotel, a board where keys are hung from.
+    korean: 호텔에서, 방 열쇠를 걸어 두는 판.
+  - id: ko-nikl-21011-s003
+    source_position: 3
+    english: An electronic keyboard musical instrument.
+    korean: 전자식 건반 악기.
+  - id: ko-nikl-21011-s004
+    source_position: 4
+    english: In a computer, the board of keys that is used to input letters or signs.
+    korean: 컴퓨터에서, 문자나 기호를 입력하는 글자판.
 - id: ko-nikl-21012
   target: 키스
   part_of_speech: noun
@@ -80130,6 +80323,18 @@ entries:
     english: (euphemism) An act of forcefully having sex with someone reluctant, by beating or threatening
       him/her.
     korean: (완곡한 말로) 원하지 않는 상대를 때리거나 협박하여 강제로 성관계를 가짐.
+- id: ko-nikl-23175
+  target: 폴더
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23175
+  senses:
+  - id: ko-nikl-23175-s001
+    source_position: 1
+    english: In a computer, something made by binding related files and indicated as an icon.
+    korean: 컴퓨터에서 관련 있는 파일을 묶어서 하나의 아이콘으로 나타낸 것.
 - id: ko-nikl-23186
   target: 표
   part_of_speech: noun
@@ -81463,6 +81668,22 @@ entries:
     english: The process or method of doing a certain job which is written down using a computer language,
       to give an order to do the job to a computer.
     korean: 컴퓨터에 어떤 명령을 하기 위하여 그 작업의 차례나 방법을 컴퓨터 언어로 기술한 것.
+- id: ko-nikl-23489
+  target: 프로필
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23489
+  senses:
+  - id: ko-nikl-23489-s001
+    source_position: 1
+    english: A brief resume of someone.
+    korean: 한 사람의 간단한 이력.
+  - id: ko-nikl-23489-s002
+    source_position: 2
+    english: The face of someone seen from the side.
+    korean: 옆면에서 본 얼굴 모습.
 - id: ko-nikl-23494
   target: 프린터
   part_of_speech: noun
@@ -89881,6 +90102,18 @@ entries:
     source_position: 4
     english: Gas that occurs as food digests in the stomach.
     korean: 배 속에서 음식물이 소화되면서 생기는 기체.
+- id: ko-nikl-25822
+  target: 가스관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25822
+  senses:
+  - id: ko-nikl-25822-s001
+    source_position: 1
+    english: A pipe through which gas passes.
+    korean: 가스가 통할 수 있게 만든 관.
 - id: ko-nikl-25823
   target: 가스레인지
   part_of_speech: noun
@@ -97853,6 +98086,18 @@ entries:
     english: 'Warning of danger in advance for people to be prepared and cautious, or this kind of announcement
       or signal. '
     korean: 위험에 대비하여 주의하고 조심할 수 있도록 미리 알리는 일, 또는 그 보도나 신호.
+- id: ko-nikl-28393
+  target: 경보기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28393
+  senses:
+  - id: ko-nikl-28393-s001
+    source_position: 1
+    english: 'A machine warning of danger or an accident with a siren, flash, etc. '
+    korean: 소리나 빛 등으로 갑작스러운 사고나 위험 등을 알리는 기계.
 - id: ko-nikl-28396
   target: 경복궁
   part_of_speech: noun
@@ -97921,6 +98166,18 @@ entries:
     source_position: 1
     english: An area where the ground is inclined, or the state or degree of being slanted.
     korean: 바닥이 평평하지 않고 기울어진 부분, 또는 그런 상태나 정도.
+- id: ko-nikl-28411
+  target: 경사로
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28411
+  senses:
+  - id: ko-nikl-28411-s001
+    source_position: 1
+    english: 'A passage made with an inclination instead of being flat for wheelchairs or strollers. '
+    korean: 환자나 장애인을 위해 바닥을 평평하지 않고 기울어지게 만든 통로.
 - id: ko-nikl-28427
   target: 경솔하다
   part_of_speech: descriptive verb
@@ -98703,6 +98960,23 @@ entries:
     source_position: 1
     english: A chicken egg.
     korean: 닭의 알.
+- id: ko-nikl-28636
+  target: 계량기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28636
+  senses:
+  - id: ko-nikl-28636-s001
+    source_position: 1
+    english: 'An implement used to measure the amount of gas, water, electricity, etc., used during a
+      certain period. '
+    korean: 일정 기간 동안 쓴 가스, 물, 전기 등의 양을 재는 도구.
+  - id: ko-nikl-28636-s002
+    source_position: 2
+    english: An implement used to measure the volume, weight, etc.
+    korean: 부피나 무게 등을 재는 도구.
 - id: ko-nikl-28654
   target: 계발
   part_of_speech: noun
@@ -101430,6 +101704,18 @@ entries:
     english: People or groups of more than two doing something together, or being involved in something
       with equal rights.
     korean: 둘 이상의 사람이나 단체가 어떤 일을 함께 하거나 동등한 자격으로 관계됨.
+- id: ko-nikl-29719
+  target: 공동 주택
+  part_of_speech: unspecified
+  source_part_of_speech: ''
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29719
+  senses:
+  - id: ko-nikl-29719-s001
+    source_position: 1
+    english: A housing unit made for more than two families where they can live independently in one building.
+    korean: 한 건물에 두 세대 이상이 각각 독립하여 살 수 있게 만들어진 주택.
 - id: ko-nikl-29720
   target: 공동체
   part_of_speech: noun
@@ -103237,6 +103523,18 @@ entries:
     source_position: 4
     english: The act of taking care of the body of a person, animal, plant, etc.
     korean: 사람의 몸이나 동물, 식물 등을 보살피거나 돌봄.
+- id: ko-nikl-30324
+  target: 관리실
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30324
+  senses:
+  - id: ko-nikl-30324-s001
+    source_position: 1
+    english: An office that maintains or renovates facilities or buildings.
+    korean: 시설이나 건물을 유지하거나 개량하는 일을 맡아보는 사무실.
 - id: ko-nikl-30349
   target: 관세
   part_of_speech: noun
@@ -126652,6 +126950,23 @@ entries:
     english: The act of writing down in simple words something that one should not forget or deliver to
       another person, or such a writing.
     korean: 잊지 않거나 다른 사람에게 전하기 위해 어떤 내용을 간단하게 글로 적음. 또는 그렇게 적은 글.
+- id: ko-nikl-37067
+  target: 메모리
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37067
+  senses:
+  - id: ko-nikl-37067-s001
+    source_position: 1
+    english: The maximum amount of information that can be stored in memory.
+    korean: 기억 장치에 담을 수 있는 정보의 최대량.
+  - id: ko-nikl-37067-s002
+    source_position: 2
+    english: In a digital device such as a computer, mobile phone, etc., a component for memorizing a
+      number or command, etc.
+    korean: 컴퓨터를 비롯한 디지털 기기에서, 수치나 명령 등을 기억하는 장치.
 - id: ko-nikl-37068
   target: 메모지
   part_of_speech: noun
@@ -130968,6 +131283,22 @@ entries:
     english: The overall characteristics that are noticeable in a writing which reflect the writer's personality
       or thoughts, or the type of writing or content.
     korean: 글쓴이의 개성이나 사상, 또는 글의 종류나 내용에 따라 글에 나타나는 전반적인 특색.
+- id: ko-nikl-38492
+  target: 문턱
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38492
+  senses:
+  - id: ko-nikl-38492-s001
+    source_position: 1
+    english: The top of the threshold that is touched by the bottom of the door.
+    korean: 문의 밑이 닿는 문지방의 윗부분.
+  - id: ko-nikl-38492-s002
+    source_position: 2
+    english: (figurative) A phase right before something occurs or takes place.
+    korean: (비유적으로) 어떤 일이 생기거나 일어나기 직전의 단계.
 - id: ko-nikl-38507
   target: 문학
   part_of_speech: noun
@@ -137033,6 +137364,19 @@ entries:
     source_position: 2
     english: Being badly off and poor.
     korean: 생활이 넉넉하지 못하고 가난하다.
+- id: ko-nikl-40548
+  target: 배관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40548
+  senses:
+  - id: ko-nikl-40548-s001
+    source_position: 1
+    english: The act of installing pipes to  transport liquid or gas, or an installation made for such
+      a purpose.
+    korean: 액체나 기체를 보내기 위하여 관을 이어 설치함. 또는 그런 설치물.
 - id: ko-nikl-40552
   target: 배구
   part_of_speech: noun
@@ -137187,6 +137531,23 @@ entries:
     source_position: 1
     english: The act of paying for the damage that one caused to another person.
     korean: 남에게 입힌 손해를 물어 주는 일.
+- id: ko-nikl-40620
+  target: 배선
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40620
+  senses:
+  - id: ko-nikl-40620-s001
+    source_position: 1
+    english: 'The act of connecting wires properly to a variety of electric devices to use power. '
+    korean: 전력을 쓰기 위하여 여러 전기 장치에 전선을 알맞게 연결하는 일.
+  - id: ko-nikl-40620-s002
+    source_position: 2
+    english: 'An electric line that sends power to a place in need of electricity or a variety of electric
+      devices. '
+    korean: 전력을 전력이 필요한 곳이나 여러 전기 장치에 보내는 전선로.
 - id: ko-nikl-40623
   target: 배설
   part_of_speech: noun
@@ -147536,6 +147897,18 @@ entries:
     source_position: 2
     english: One's personality or attitude being unfriendly rather than kind or warm.
     korean: 성격이나 태도가 상냥하거나 따뜻하지 않고 쌀쌀하다.
+- id: ko-nikl-43841
+  target: 차고
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43841
+  senses:
+  - id: ko-nikl-43841-s001
+    source_position: 1
+    english: A place in which to keep a vehicle such as a car, train, trolley, etc.
+    korean: 자동차나 기차, 전차 등의 차량을 넣어 두는 곳.
 - id: ko-nikl-43842
   target: 차곡차곡
   part_of_speech: adverb
@@ -148841,6 +149214,18 @@ entries:
     source_position: 1
     english: An act of creating something new and original.
     korean: 전에 없던 것을 새로 만들어 냄.
+- id: ko-nikl-44258
+  target: 창틀
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44258
+  senses:
+  - id: ko-nikl-44258-s001
+    source_position: 1
+    english: 'A structure for supporting or putting in a window. '
+    korean: 창문을 달거나 끼울 수 있게 되어 있는 틀.
 - id: ko-nikl-44260
   target: 창피
   part_of_speech: noun
@@ -152807,6 +153192,18 @@ entries:
     source_position: 1
     english: An act of leaving or entering a country.
     korean: 나라 밖으로 나가거나 나라 안으로 들어오는 일.
+- id: ko-nikl-45770
+  target: 출입문
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45770
+  senses:
+  - id: ko-nikl-45770-s001
+    source_position: 1
+    english: The door through which one goes in or out of a place.
+    korean: 들어가고 나오는 문.
 - id: ko-nikl-45776
   target: 출장
   part_of_speech: noun
@@ -153163,6 +153560,18 @@ entries:
     english: (figurative) An act of taking some time off from work and recovering one's energy or developing
       one's capabilities.
     korean: (비유적으로) 쉬면서 기운을 되찾거나 실력을 쌓는 일.
+- id: ko-nikl-45878
+  target: 충전기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45878
+  senses:
+  - id: ko-nikl-45878-s001
+    source_position: 1
+    english: A device used to fill another device with electricity, which stores electric energy.
+    korean: 전기 에너지를 모아 두는 장치에 전기를 채워 넣는 데 쓰는 기구.
 - id: ko-nikl-45886
   target: 충족
   part_of_speech: noun

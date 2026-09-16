@@ -768,6 +768,8 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "stance-notes.yaml",
             "rapport-notes.yaml",
             "evaluation-notes.yaml",
+            "infrastructure-notes.yaml",
+            "infrastructure-support-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1712,6 +1714,104 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(len(groups["ko-lex-21675"]["members"]), 2)
         self.assertIn("rough", self.references.vocabulary["ko-nikl-21675-s001"]["ds"])
         self.assertIn("statistics", self.references.vocabulary["ko-nikl-21675-s002"]["ds"])
+
+    def test_infrastructure_district_and_building_counter_keep_distinct_categories(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        district, office, counter = (
+            "ko-nikl-18300-s001", "ko-nikl-18300-s002", "ko-nikl-18302-s001",
+        )
+        self.assertEqual({words[item]["ch"] for item in (district, office, counter)}, {"동"})
+        self.assertEqual(identities[district], identities[office])
+        self.assertNotEqual(identities[district], identities[counter])
+        self.assertEqual(self.references.provenance[district]["lexical_category"], "free-lemma")
+        self.assertEqual(self.references.provenance[counter]["lexical_category"], "bound-form")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-18300"]["source_part_of_speech"], "명사")
+        self.assertEqual(parents["ko-nikl-18302"]["source_part_of_speech"], "의존 명사")
+
+    def test_infrastructure_short_names_and_narrow_door_use_preserve_family_depth(self):
+        identities = self.references.lexical_identity
+        for members in (
+            ("ko-nikl-21437-s001", "ko-nikl-21437-s002", "ko-nikl-30015-s001"),
+            ("ko-nikl-10691-s001", "ko-nikl-37089-s001"),
+            ("ko-nikl-14080-s001", "ko-nikl-14080-s002", "ko-nikl-14081-s001"),
+            ("ko-nikl-44202-s001", "ko-nikl-44169-s001", "ko-nikl-44169-s002", "ko-nikl-50211-s001"),
+            ("ko-nikl-38354-s001", "ko-nikl-45770-s001"),
+        ):
+            with self.subTest(members=members):
+                self.assertEqual(len({identities[item] for item in members}), 1)
+        words = self.references.vocabulary
+        self.assertIn("computer window", words["ko-nikl-44169-s002"]["ds"])
+        self.assertIn("glass", words["ko-nikl-50211-s001"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-44258-s001"], identities["ko-nikl-44202-s001"])
+        self.assertEqual(identities["ko-nikl-29364-s001"], identities["ko-nikl-29364-s002"])
+        self.assertIn("upper floors", words["ko-nikl-29364-s001"]["ds"])
+        self.assertIn("many storeys", words["ko-nikl-29364-s002"]["ds"])
+
+    def test_infrastructure_water_and_interface_positions_keep_source_specific_meanings(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-01586-s001"], identities["ko-nikl-01586-s002"])
+        self.assertEqual(identities["ko-nikl-01586-s002"], identities["ko-nikl-01586-s003"])
+        for item, fragment in (
+            ("ko-nikl-01586-s002", "drainage"), ("ko-nikl-01586-s003", "tap water"),
+            ("ko-nikl-52494-s001", "physical wastebasket"), ("ko-nikl-49428-s001", "receiving mail"),
+            ("ko-nikl-00074-s001", "establishing"), ("ko-nikl-17712-s002", "computerised"),
+            ("ko-nikl-21011-s004", "computer keyboard"), ("ko-nikl-20324-s001", "web link"),
+            ("ko-nikl-37067-s001", "maximum information capacity"),
+            ("ko-nikl-37067-s002", "memory component"),
+        ):
+            with self.subTest(sense=item):
+                self.assertIn(fragment, words[item]["ds"])
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual([sense["source_position"] for sense in parents["ko-nikl-21011"]["senses"]], [1, 2, 3, 4])
+        self.assertIn("컴퓨터에서", self.references.provenance["ko-nikl-21011-s004"]["source_korean"])
+        self.assertIn("전력을 전력이", self.references.provenance["ko-nikl-40620-s002"]["source_korean"])
+        self.assertEqual(identities["ko-nikl-37067-s001"], identities["ko-nikl-37067-s002"])
+        self.assertNotIn("permanent", words["ko-nikl-37067-s002"]["ds"])
+
+    def test_infrastructure_support_preserves_held_source_meanings_without_guessing_readings(self):
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        item = "ko-nikl-29719-s001"
+        self.assertEqual(parents["ko-nikl-29719"]["source_part_of_speech"], "")
+        self.assertEqual(parents["ko-nikl-29719"]["target"], "공동 주택")
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "infrastructure-support-notes.yaml")
+        rows = load_yaml(authoring / "infrastructure-support-vocabulary.yaml")
+        held = notes["held_reading_items"]
+        self.assertIn("at least two", held[item]["proposed_placement"]["ds"])
+        self.assertIn("두 세대 이상", held[item]["source_korean"])
+        self.assertIn("more than two", held[item]["source_english"])
+        self.assertEqual(set(notes["source_support_requests"]),
+                         {row["id"].rsplit("-s", 1)[0] for row in rows}
+                         | {row["source_parent"] for row in held.values()})
+        self.assertEqual(notes["composition_snapshot"]["selected_senses"], len(rows))
+        self.assertTrue(set(notes["source_support_requests"]) <= set(load_yaml(authoring / "support-parents.yaml")))
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["source_band"], "unbanded")
+        overlay = load_yaml(self.root / "reading-overlay.yaml")
+        decisions = load_yaml(authoring / "reading-decisions.yaml")
+        for identifier, record in held.items():
+            self.assertNotIn(identifier, self.references.vocabulary)
+            source = parents[record["source_parent"]]["senses"][0]
+            self.assertEqual(source["korean"], record["source_korean"])
+            self.assertEqual(source["english"], record["source_english"])
+            with self.assertRaisesRegex(ValueError, "no supported citation reading"):
+                citation_reading(record["source_parent"], overlay, decisions)
+        correction = load_yaml(authoring / "source-corrections.yaml")["corrections"][item]
+        self.assertEqual(correction["authored_interpretation"], held[item]["proposed_placement"]["ds"])
+
+    def test_infrastructure_domain_clarifications_do_not_claim_verified_science(self):
+        source = self.references.provenance["ko-nikl-13920-s001"]
+        self.assertEqual(self.references.vocabulary["ko-nikl-13920-s001"]["ds"],
+                         "voltage; electrical potential difference")
+        self.assertIn("electric energy", source["source_english"])
+        self.assertEqual(source["source_correction"]["review_status"], "unreviewed")
+        self.assertIn("per-unit-charge", source["source_correction"]["rationale"])
+        self.assertIn("into the ears", self.references.vocabulary["ko-nikl-10855-s001"]["ds"])
+        self.assertIn("patients", self.references.vocabulary["ko-nikl-28411-s001"]["ds"])
+        notes = load_yaml(self.root / "authoring" / "teaching" / "infrastructure-support-notes.yaml")
+        self.assertIn("compatibility", notes["usage_and_assessment_limits"])
+        self.assertEqual(notes["bounded_discovery_result"]["already_selected"], "ko-nikl-20288-s001")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

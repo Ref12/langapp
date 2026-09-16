@@ -111,6 +111,21 @@ dictionary entries remain in the authoring
 [community notes](../authoring/teaching/community-notes.yaml) and
 [society notes](../authoring/teaching/society-notes.yaml).
 
+**가스관** (gas pipe) and **공동 주택** (joint housing) are also held:
+the learner and Standard dictionaries provide no whole-term pronunciation
+text, and compound tensing or length cannot be settled by copying spelling
+or joining isolated word readings. Their retained source records, proposed
+placements, and evidence are in the
+[infrastructure support notes](../authoring/teaching/infrastructure-support-notes.yaml).
+
+Named practical gaps remain in the pinned mirror: 개인정보 (personal
+information), 계정 (account), 브라우저 (browser), 서버 (server), and 알림
+(notification) were not found in an exact, space-normalized search across
+all parts of speech. A user ID, physical mailbox, or generic information sense
+does not silently replace a missing account, digital inbox, or privacy term.
+The infrastructure support notes record the bounded search and remaining
+source limitations; this is not a claim that Korean lacks these expressions.
+
 Counts distinguish dictionary parent entries, source positions, selected
 senses, distinct spellings, spelling/POS pairs, and curated lexical identities.
 `coverage.yaml` additionally separates free lemmas from bound forms and

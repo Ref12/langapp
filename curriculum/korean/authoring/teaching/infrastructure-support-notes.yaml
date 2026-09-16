@@ -1,0 +1,180 @@
+schema_version: 1
+review_status: AI-authored; qualified Korean-teacher, lexicographic and domain review outstanding
+completion_status: 29 supported senses integrated; two source-backed senses held for pronunciation review
+scope: >
+  Useful named building, utility and digital components omitted from the
+  banded reference inventory. The 28 individually inspected infrastructure
+  requests and two parent additions supplied31 inspected positions.
+  Twenty-nine are active; gas pipe25822 and space-preserving joint housing29719
+  are held for pronunciation review. Nothing is inserted into TOPIK folders.
+composition_snapshot:
+  basis: evaluation669fcb6 plus the separate107-sense infrastructure cohort
+  selected_senses: 29
+  core_senses: 29
+  source_parents: 28
+  identity_fragments: 28
+  existing_fragments: 1
+  new_free_identities: 27
+  old_support_parent_count: 482
+  new_support_parent_count: 512
+  retained_but_held_parents: 2
+  limitation: Provisional lexical accounting, not verified lexeme boundaries or learner knowledge.
+source_support_requests:
+  - ko-nikl-00985
+  - ko-nikl-01589
+  - ko-nikl-02533
+  - ko-nikl-04264
+  - ko-nikl-06645
+  - ko-nikl-13769
+  - ko-nikl-13854
+  - ko-nikl-13920
+  - ko-nikl-16942
+  - ko-nikl-17712
+  - ko-nikl-17713
+  - ko-nikl-20219
+  - ko-nikl-20324
+  - ko-nikl-21011
+  - ko-nikl-23175
+  - ko-nikl-23489
+  - ko-nikl-25822
+  - ko-nikl-28393
+  - ko-nikl-28411
+  - ko-nikl-28636
+  - ko-nikl-29719
+  - ko-nikl-30324
+  - ko-nikl-37067
+  - ko-nikl-38492
+  - ko-nikl-40548
+  - ko-nikl-40620
+  - ko-nikl-43841
+  - ko-nikl-44258
+  - ko-nikl-45770
+  - ko-nikl-45878
+placement_rationale: >
+  Housing and its components serve level5, service access and charging6,
+  ordinary digital participation8, fault/resource reporting14, and explanatory
+  system/component distinctions17. These are useful early/middle additions,
+  not material moved to late levels to improve the phase distribution.
+family_adjudications:
+  doors:
+    existing_lexical_id: ko-lex-38354
+    added_member: ko-nikl-45770-s001
+    source_comparison: >
+      문001 supplies an openable structure for people entering/leaving or
+      objects being put in/taken out; 출입문001 explicitly names a door for
+      entering/leaving. Conservatively count that specifically people-access
+      naming use with the existing door rather than claiming another free
+      family. Preserve both records and their different spellings.
+    limit: >
+      This is an explicit provisional grouping, not a general instruction to
+      strip compounds, merge all doors or regard every synonym as one lemma.
+  memory:
+    lexical_id: ko-lex-37067
+    reasoning: >
+      Maximum information capacity001 and a digital memory component002
+      deepen one family. Neither source position asserts permanent storage.
+source_boundaries:
+  - Computer data17712-s002 is not source evidence/material001.
+  - Computer keyboard21011-s004 is not the musical or hotel-key-board positions.
+  - Web link20324 is not skating rink20325.
+  - Distribution wiring40620-s002 preserves the original repeated Korean words.
+  - Profile23489-s001 supplies a brief personal history, not an account or a side-view image.
+  - Utility meter28636-s001 does not automatically import general measuring device002.
+  - >
+    Database17713 broadly includes a program/system and stored data in one
+    source position. Do not invent two official senses or teach that a database
+    and its management software are universally the same technical object.
+  - >
+    The source folder description mentions an icon; this does not establish
+    that every filesystem folder must have a graphical representation.
+  - >
+    Joint housing29719 has empty raw POS and internal spacing. It is a
+    source-listed lexical expression, not a synthetic compound or bound suffix.
+  - >
+    Voltage13920 was initially deferred in the infrastructure handoff. The
+    parent inspected both the exact CSV and official74720, which has the same
+    imprecise energy-difference wording and a real citation reading. Selection
+    uses a separately flagged potential-difference clarification, not a
+    fabricated official definition or a claim of completed physics review.
+source_correction_requests:
+  ko-nikl-13920-s001:
+    source_korean: 전기장이나 도체 내에 있는 두 점 사이의 전기 에너지의 차.
+    source_english: Difference in electric energy between two points in an electric field or conductor.
+    authored_interpretation: voltage; electrical potential difference
+    rationale: Raw energy difference omits the per-unit-charge distinction; qualified domain review remains required.
+  ko-nikl-28411-s001:
+    source_korean: 환자나 장애인을 위해 바닥을 평평하지 않고 기울어지게 만든 통로.
+    source_english: 'A passage made with an inclination instead of being flat for wheelchairs or strollers. '
+    authored_interpretation: an access ramp for patients or disabled people
+    rationale: Preserve the people named in Korean rather than replacing them with devices or imposing a stroller restriction.
+held_source_correction_requests:
+  ko-nikl-29719-s001:
+    source_korean: 한 건물에 두 세대 이상이 각각 독립하여 살 수 있게 만들어진 주택.
+    source_english: A housing unit made for more than two families where they can live independently in one building.
+    authored_interpretation: housing for at least two independent households in one building
+    rationale: Two or more includes exactly two; households need not be related families.
+bounded_discovery_result:
+  method: >
+    Exact Form matching with internal spaces ignored for discovery, across
+    every POS in the checksum-pinned January2024 CSV. Original spelling and
+    POS remain untouched after a match. This was a named practical-gap query,
+    not an exhaustive scan to manufacture new selections.
+  recovered: [ko-nikl-13920, ko-nikl-29719]
+  already_selected: ko-nikl-20288-s001
+  already_selected_note: Standard 리모컨 already supplies remote control; absent 리모콘 is not an extra vocabulary gap.
+  absent_named_targets: [개인정보, 계정, 브라우저, 서버, 알림]
+  limitations: >
+    No unrelated sense or approximately spelled source ID fills these named
+    gaps. This result is specific to the pinned mirror and this matching
+    method, not a claim about every Korean dictionary or spelling variant.
+    Physical wastebasket/mailbox and mental image positions still cannot be
+    relabelled as a digital recycle bin/inbox or a digital image.
+usage_and_assessment_limits: >
+  Building services and electrical/component names support recognition,
+  reporting and clarification, not operating instructions, repair competence,
+  accessibility certification or a promise of charger/device compatibility.
+  Dictionary text, authored interpretations and official citation readings
+  are distinct evidence. No text record assesses audio, spoken production,
+  learner mastery, official TOPIK level, CEFR or professional readiness.
+held_reading_items:
+  ko-nikl-25822-s001:
+    source_parent: ko-nikl-25822
+    target: 가스관
+    proposed_placement: {level: 5, topic: home, ds: a pipe carrying gas}
+    proposed_identity: {id: ko-lex-25822, lemma: 가스관, category: free-lemma}
+    source_korean: 가스가 통할 수 있게 만든 관.
+    source_english: A pipe through which gas passes.
+    basic_dictionary_entry: '14638'
+    standard_dictionary_entry: '3702'
+    standard_locator: https://stdict.korean.go.kr/search/searchView.do?word_no=3702&searchKeywordTo=3
+    reason: Neither dictionary supplies citation text; plain versus tense consonant at 스-관 is not established by spelling.
+  ko-nikl-29719-s001:
+    source_parent: ko-nikl-29719
+    target: 공동 주택
+    proposed_placement: {level: 5, topic: home, ds: housing for at least two independent households in one building}
+    proposed_identity: {id: ko-lex-29719, lemma: 공동 주택, category: free-lemma}
+    source_korean: 한 건물에 두 세대 이상이 각각 독립하여 살 수 있게 만들어진 주택.
+    source_english: A housing unit made for more than two families where they can live independently in one building.
+    basic_dictionary_entry: '22739'
+    standard_dictionary_entry: '28402'
+    standard_locator: https://stdict.korean.go.kr/search/searchView.do?word_no=28402&searchKeywordTo=3
+    reason: >
+      Neither dictionary supplies whole-term citation text. Separate
+      공ː동 and 주ː택 citations do not establish compound realization or
+      retention/shortening of the second word's length. Preserve the actual
+      empty source POS, original space, and threshold correction while held.
+held_evidence_policy: >
+  Standard Dictionary IDs were obtained from actual public search results.
+  Its public contentViewOne.do word_no request was then inspected, not merely
+  the outer searchView page or its generic pronunciation-download checkbox.
+  Both actual records lack pronunciation text. No usages or multimedia from
+  that inspection are redistributed. No additional open-ended research or
+  invented canonical reading is authorized by this record.
+reading_review:
+  status: all29 active senses supported; two held senses remain unselected
+  whole_infrastructure_cohort: >
+    The combined107 plus29 active senses are supported. Reader supplied12
+    explicit crosswalks and28 individually reasoned authored/unreviewed
+    readings, preserving all prior357 crosswalks and162 authored decisions.
+    Those changes resolve37 originally unsupported parents; the two held
+    parents are not falsely counted as resolved.

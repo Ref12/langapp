@@ -84,6 +84,13 @@ has no pronunciation text, and the commentary does not establish a unique
 current standard. Do not reject a learner's different realization solely
 because it differs from this unreviewed teaching aid.
 
+The gas-pipe term 가스관 and joint-housing term 공동 주택 are also outside
+active teaching. Actual learner-dictionary and Standard Dictionary records
+lack citation text. Their compound consonants and word-length realization
+remain unresolved; isolated component readings are not a verified reading
+of the whole term. The infrastructure support notes retain their source IDs,
+proposals, and exact dictionary locators.
+
 These decisions require qualified Korean-language review. They are not
 dictionary-verified pronunciations, native-speaker recordings, or evidence of
 learner ability. A changed source or new approved reading must update the

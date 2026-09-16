@@ -1,0 +1,899 @@
+schema_version: 1
+id: ko-infrastructure-noun-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: all107 senses supported and integrated; qualified review remains outstanding
+review_requirement: >-
+  All selections, placements, labels, groupings and correction proposals are
+  original AI-authored work requiring qualified Korean linguistic and
+  pedagogical review. Technical explanations additionally require appropriate
+  domain review. Structural validation is not linguistic approval, pronunciation
+  verification, audio evidence, learner mastery or an examination qualification.
+scope:
+  - Identify rooms, shared spaces, entrances and ordinary building components.
+  - Use public facilities and explain utility or maintenance problems.
+  - Participate through Internet identities, messages and visible interfaces.
+  - Name ordinary devices and explain their parts, operation and resources.
+selection_policy: >-
+  Targeted domain questions led to inspection of individual original Korean
+  and English definition positions. Source bands, alphabetical order, first
+  positions and numerical targets did not determine selection or level.
+  New common headword breadth takes priority over adding every meaning to a
+  few polysemous parents. This bounded domain selection is not an exhaustive
+  inventory of unselected source nouns. No predicate, source entry, pronunciation
+  or software-specific meaning has been generated from a plausible spelling.
+  Action nouns are actual noun records, not newly generated verbs.
+counts:
+  selected_senses: 107
+  core_senses: 107
+  branch_senses: 0
+  source_parents: 92
+  distinct_selected_spellings: 91
+  identity_records_in_fragment: 90
+  existing_identity_fragments: 6
+  new_identity_groups: 84
+  new_provisional_free_lemma_groups: 83
+  new_bound_form_groups: 1
+  new_function_item_groups: 0
+  source_noun_senses: 106
+  source_bound_noun_senses: 1
+  nonfirst_source_positions: 18
+  source_parents_new_to_protected_selections: 90
+  source_parents_already_represented: 2
+  source_bands: {beginner: 15, intermediate: 60, advanced: 32, unbanded: 0}
+  phases:
+    first-exchanges: 0
+    everyday-life: 86
+    stories-conversations: 10
+    explanation-problems: 11
+    analysis-argument: 0
+    nuance-interpretation: 0
+count_interpretation: >-
+  These are inventory measures, not achieved knowledge. Six existing fragments
+  exceed the two reused source parents because newly introduced naming forms
+  also join protected families. No existing branch-only identity gains its
+  first core use; globally new provisional free groups and additional core
+  free coverage both total 83. The support handoff history below is excluded
+  from these107 counts; active support has its own29-sense cohort with two
+  additional source-backed proposals held for pronunciation review.
+  No advanced-level or branch
+  padding is used to hide the larger program's remaining breadth shortfall.
+worker_composition_snapshot:
+  last_registered_cohort_at_check: evaluation
+  source_support_parents_at_check: 482
+  protected_selected_senses: 6828
+  protected_core_senses: 6702
+  protected_core_free_identities: 4302
+  proposed_selected_senses: 6933
+  proposed_core_senses: 6807
+  proposed_core_free_identities: 4384
+  active_sense_overlaps: 0
+  pending_support_sense_overlaps: 0
+  pending_support_parents_already_registered: 0
+  status: >-
+    Actual in-memory composition through the repository selection and identity
+    helpers. No manifest registration, reading integration or generated view
+    is claimed. Parent may subsequently add other cohorts.
+  protected_identity_adjustments: >-
+    Preserve the noun/adverb 실상 family under ko-lex-03447/function-item;
+    retired free key ko-lex-03445 remains absent. Preserve gratitude noun26491
+    under ko-lex-26499, canonical 감사하다/free-lemma, without recreating
+    retired ko-lex-26491 or merging the unrelated audit meaning.
+placement_rationale:
+  household_help: >-
+    At 5, ask about the floor, bedroom, shared space, gate, yard, storage,
+    mailbox, telephone, heater, water supply and ordinary devices. Building
+    numbering belongs here because apartment-block identification is practical;
+    it does not wait for an advanced counting lesson.
+  services_and_travel: >-
+    At 6, recognise emergency exits, lifts, escalators, public telephones,
+    rest areas, civil-service locations, service users and itemised charges.
+    At 7, locate a city centre, square, lane, upper floor, construction site
+    or tunnel and describe a photograph-taking camera. Source-framed countryside
+    and outskirts descriptions remain qualified rather than silently broadened.
+  participation_and_study: >-
+    At 8, identify a user ID, site, reply, computer window, live chat, recorded
+    images, ordered table, laptop, screen, microphone, earphones and copier.
+    The computer-specific system position supports practical device use before
+    general system structure at 17. Sound-playing equipment enters at 5,
+    before the broadcast sound/image distinction at 8.
+  explaining_operations: >-
+    At 11, explain equipping, operation, inspection, replacement, consumption,
+    maintenance and the support provided by a post. 설정 remains the generic
+    act of establishing something new, not an asserted software-settings screen.
+    Drainage problems, electrical leakage and restoring facilities support
+    unfamiliar-problem communication at 14, not do-it-yourself repair advice.
+  public_explanation: >-
+    A common opportunity to communicate or cooperate supports 15. New
+    construction supports ordinary news at 16. Built structures, regional
+    land, power generation, general systems and means to a goal support
+    accessible explanations at 17. There is no invented need to move basic
+    infrastructure to levels 19-30 merely to enlarge later phases.
+identity_policy: >-
+  All protected canonical names, keys, categories, members and placements
+  remain unchanged. Fragments contain only newly selected members and their
+  exact parents. The canonical spelling may come from the protected family.
+  Same spelling does not merge homographs; similar English does not automatically
+  merge different lexical forms. These are conservative, reviewable proposals,
+  not an official source-family crosswalk or verified true-lexeme count.
+identity_evidence:
+  email:
+    identity: ko-lex-10691
+    protected:
+      id: ko-nikl-10691-s001
+      target: 이메일
+      source_korean: "인터넷이나 통신망으로 주고받는 편지."
+      source_english: "Letters exchanged through the Internet or a communications network."
+    new:
+      id: ko-nikl-37089-s001
+      target: 메일
+      source_korean: "인터넷이나 통신망으로 주고받는 편지."
+      source_english: "A letter sent and received through the Internet or other forms of computer networks."
+    rationale: The shorter loan name shares the identical Korean definition; it adds no new free email identity.
+  telephone:
+    identity: ko-lex-14080
+    protected:
+      id: ko-nikl-14080-s002
+      target: 전화
+      source_korean: "말소리를 전파나 전류로 바꿔 보내 멀리 떨어져 있는 사람이 서로 이야기할 수 있게 만든 기계."
+      source_english: "A device that turns voice into an electric wave or current to allow people who are far away from each other to communicate."
+    new:
+      id: ko-nikl-14081-s001
+      target: 전화기
+      source_korean: "말소리를 전파나 전류로 보내 멀리 떨어져 있는 사람이 서로 이야기할 수 있게 만든 기계."
+      source_english: "A device that turns voice into electric waves or currents to allow people far away from each other to have a conversation."
+    rationale: The device-explicit name joins an already selected device meaning, not merely the act of calling.
+  windows:
+    identity: ko-lex-44202
+    protected:
+      id: ko-nikl-44202-s001
+      target: 창문
+      source_korean: "공기나 햇빛이 들어올 수 있도록 벽이나 지붕에 만들어 놓은 문."
+      source_english: "An opening in the wall or roof made to let in air or light."
+    shorter:
+      id: ko-nikl-44169-s001
+      target: 창
+      source_korean: "공기나 햇빛이 들어올 수 있도록 벽이나 지붕에 만들어 놓은 문."
+      source_english: "An opening in the wall or roof made to let in air or light."
+    glass_focused:
+      id: ko-nikl-50211-s001
+      target: 유리창
+      source_korean: "유리를 끼워 만든 창."
+      source_english: "A window made by inserting glass."
+    rationale: >-
+      Count the identical shorter name and glass-focused subtype conservatively
+      with the protected window family. The actual computer-window position
+      44169-s002 extends 창; this does not license calling a physical 창문 a
+      computer window in every context or stripping material modifiers globally.
+  room_floor:
+    identity: ko-lex-39329
+    protected:
+      id: ko-nikl-39329-s004
+      target: 바닥
+      source_korean: "건물 내부의 아래 부분."
+      source_english: "The bottom part of a building's inside space."
+    new:
+      id: ko-nikl-40341-s001
+      target: 방바닥
+      source_korean: "방의 바닥."
+      source_english: "The floor of a room."
+    rationale: The room-specific name adds interior-floor reference without another free identity.
+  vacant_ground:
+    identity: ko-lex-21437
+    broader:
+      id: ko-nikl-21437-s002
+      target: 터
+      source_korean: "집이나 밭 등이 없는 빈 땅."
+      source_english: "Empty land without houses, fields, etc."
+    vacancy_focused:
+      id: ko-nikl-30015-s001
+      target: 공터
+      source_korean: "집이나 밭 등이 없는 빈 땅."
+      source_english: "Empty land without houses, fields, etc."
+    rationale: Identical bilingual vacant-ground definitions support one explicit site family, not two free counts.
+  non_mergers:
+    - >-
+      Administrative 동18300 is free; building-counting 동18302 is bound.
+      Neither is directional 동18298. Shared spelling is not family evidence.
+    - >-
+      Lift 승강기 and protected 엘리베이터 are different lexical forms, not
+      a longer/shorter shared stem. Their shared function alone is insufficient
+      for a spelling-family merger. Likewise 작동/가동 and 사용자/이용자
+      retain separate provisional word candidates despite overlapping English.
+    - >-
+      Garden 정원14623 is not capacity 정원14622; electrical 전원13954 is
+      not all-members 전원13953; ordered-information 표23186 is not
+      ticket/vote 표23187; water 수도01586 is not a capital or spiritual practice.
+    - >-
+      수화기 is the listening component rather than the whole telephone.
+      공중전화 names the specifically public coin/card installation. Different
+      referents are not all collapsed just because their names contain 전화.
+source_correction_requests:
+  ko-nikl-02600-s001:
+    source_korean: "동력을 이용하여 사람이나 짐을 위아래로 나르는 장치."
+    source_english: "An installation that conveys people or freight up and down, using electric power."
+    authored_interpretation: a powered lift for people or goods
+    rationale: >-
+      동력 specifies motive power generally; the English narrows it to electric
+      power. Preserve the powered lifting function without teaching an exclusive
+      drive mechanism. Qualified Korean review is required.
+  ko-nikl-10855-s001:
+    source_korean: "귀에 꽂아서 기계에서 나오는 소리를 듣는 작은 장치."
+    source_english: "A little device that a person inserts over his/her ears to listen to the sounds coming from a machine. "
+    authored_interpretation: earphones inserted into the ears
+    rationale: >-
+      귀에 꽂아서 places the device into the ear, not over it. The source's
+      English wording should not turn these into over-ear headphones. This
+      original interpretation requires qualified Korean review.
+  ko-nikl-35915-s001:
+    source_korean: "소리를 전류로 바꾸어 소리가 크게 나게 하는 기계."
+    source_english: "A machine that changes sound into electric currents to make the sound louder."
+    authored_interpretation: a microphone converting sound into electrical signals
+    rationale: >-
+      Retain sound-to-electrical conversion while avoiding the inference that
+      the microphone alone is the amplifier or loudspeaker. The source
+      compresses several sound-system roles; this clarification requires
+      qualified Korean and relevant technical review.
+source_boundaries_and_review:
+  - ids: [ko-nikl-02710-s001, ko-nikl-30691-s001]
+    issue: >-
+      The source frames countryside as thinly populated and less developed,
+      and outskirts as quiet and unhurried. Labels retain those qualifiers,
+      but neither is a universal social or geographical fact. Review modern
+      usage and avoid ranking rural residents or places as inferior.
+  - ids: [ko-nikl-07772-s001, ko-nikl-35807-s001, ko-nikl-49583-s001]
+    issue: >-
+      Preserve Western-style high-rise office use, a traditional raised wooden
+      hanok platform, and a woven grass/wood boundary fence respectively.
+      Do not silently turn them into every building, floor or fence.
+  - ids: [ko-nikl-18300-s001, ko-nikl-18300-s002]
+    issue: >-
+      District and district office are both actually supplied. The source's
+      administrative hierarchy and office naming are not current municipal
+      legal guidance; do not invent present-day office titles or functions.
+  - ids: [ko-nikl-00074-s001, ko-nikl-34990-s001, ko-nikl-51540-s001]
+    issue: >-
+      설정 supplies establishing something new, not a settings panel. 내역
+      supplies itemised goods/expenses, not browser history. 홈페이지 supplies
+      an Internet-viewable document, not only the first page of a site.
+  - ids: [ko-nikl-07493-s001, ko-nikl-48159-s001, ko-nikl-48159-s002]
+    issue: >-
+      비디오 here contrasts television images with sound. Its unselected
+      tape and tape-player positions are not modern video files or streaming
+      players. 오디오 distinguishes sound and listening equipment; no codec,
+      file-format or digital-audio position is invented.
+  - ids: [ko-nikl-04251-s001, ko-nikl-52494-s001, ko-nikl-49428-s001]
+    issue: >-
+      A user ID is not an account or password. 휴지통 is only a physical
+      wastebasket here, and 우편함 is an attached physical receiving box, not
+      automatically a recycle-bin interface or email inbox.
+  - ids: [ko-nikl-49414-s001, ko-nikl-49428-s001]
+    issue: >-
+      우체통 says a box for putting mail in; unlike 우편함 it does not
+      explicitly specify receiving. Do not overread that as an exclusive
+      outgoing-mail condition. Both selected positions describe physical boxes.
+  - ids: [ko-nikl-35557-s001, ko-nikl-37399-s001, ko-nikl-22617-s001]
+    issue: >-
+      노트북 is a laptop, not a paper notebook. 모니터 supplies a screen;
+      reviewer/product-testing positions do not supply technical monitoring.
+      The complete 팩스 definition explicitly includes both the method over
+      telephone lines and the machine, so retaining both is source-backed.
+  - ids: [ko-nikl-14572-s001, ko-nikl-25885-s001, ko-nikl-27652-s001, ko-nikl-15402-s001]
+    issue: >-
+      Water filtration is not a potability guarantee. A humidifier is not
+      prescribed treatment. The battery position does not specify chemistry,
+      rechargeability or compatibility. Electrical leakage vocabulary supports
+      reporting a problem, not diagnosis, live-circuit work or repair steps.
+  - ids: [ko-nikl-21813-s001, ko-nikl-35126-s001, ko-nikl-52463-s001]
+    issue: >-
+      통풍 is ventilation rather than gout. 냉수 is a water noun relevant to
+      fixture labels, not a clinical recommendation or new food preparation.
+      휴게실 is a place to rest rather than a toilet inferred from restroom.
+registered_position_handoff_history:
+  - id: ko-nikl-04470-s001
+    target: 안방
+    source_korean: "한 집안의 안주인이 지내는 방."
+    source_english: "inner room; master bedroom; women's quarters: The room of a house where its hostess stays."
+    reason: >-
+      The retained definition is gendered and narrower than an unqualified
+      modern main bedroom. Do not silently modernise it or push a common
+      word to a late phase to conceal the mismatch. 침실 supplies a supported
+      early sleeping-room term; current 안방 use needs qualified adjudication.
+  - id: ko-nikl-00180-s001
+    target: 성능
+    source_korean: "기계 등이 지닌 성질이나 기능."
+    source_english: "The quality or functions of a machine, etc."
+    reason: Machine performance/capability overlaps the separately owned qualities scope; no selection or category change is made here.
+  - id: ko-nikl-29364-s002
+    target: 고층
+    source_korean: "건물의 층수가 많은 것."
+    source_english: "A state in which a building consists of a great number of floors. "
+    reason: >-
+      The tall-building property is not selected alongside upper-floor location.
+      A later accepted noun counterpart can reuse ko-lex-29364/free-lemma with
+      only this additional member, subject to the parent's scope adjudication.
+support_handoff_history:
+  status: inspected-real-source-positions-not-registered-or-selected
+  requested_parents: 28
+  proposed_senses: 29
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  evidence_method: >-
+    Read the pinned CSV in memory, verify its SHA-256, enumerate every original
+    record before filtering, and inspect exact targeted Korean/English list
+    positions. Preserve source forms, part of speech, empty source band and
+    original list ordering. These identifiers are project CSV ordinals, not
+    official dictionary entry or sense numbers. No source/cache file was written.
+  integration_boundary: >-
+    Requests are proposals only. None occurs in the active vocabulary or
+    identity fragment. Parent owns source registration, selection activation,
+    identity adjudication and pronunciation review. Pending names do not
+    increase the 82 active free candidates. Every proposed new family below
+    remains unreviewed and must be checked against the live inventory again.
+  requests:
+    - source_parent: ko-nikl-00985
+      target: 소화전
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-00985
+      rationale: Recognise a named public fire-water facility without teaching its operation.
+      placements:
+        - {id: ko-nikl-00985-s001, level: 14, topic: services, ds: a fire hydrant connected to the water supply}
+      evidence:
+        - position: 1
+          source_korean: "불이 났을 때 불을 끄기 위하여 수도에 연결되어 물이 나오는 시설."
+          source_english: "A facility connected with the water supply so that in case of fire, water comes out in order to put out the flames."
+    - source_parent: ko-nikl-01589
+      target: 수도관
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-01589
+      rationale: Name the water pipe when asking for household help; do not add repair instructions.
+      placements:
+        - {id: ko-nikl-01589-s001, level: 5, topic: home, ds: a pipe carrying water from the water supply}
+      evidence:
+        - position: 1
+          source_korean: "수도의 물이 흐르는 관."
+          source_english: "The pipe through which water from the water supply flows."
+    - source_parent: ko-nikl-02533
+      target: 스피커
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-02533
+      rationale: Name the ordinary sound-output device in contrast to the microphone input device.
+      placements:
+        - {id: ko-nikl-02533-s001, level: 8, topic: technology, ds: a speaker converting electrical signals into sound}
+      evidence:
+        - position: 1
+          source_korean: "전기 신호를 음향 신호로 바꾸어 소리를 밖으로 내보내는 장치."
+          source_english: "A device that converts electrical signals into acoustic signals to emit sounds."
+    - source_parent: ko-nikl-04264
+      target: 아이콘
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-04264
+      rationale: The source supplies a text-or-picture computer command representation, not every social or cultural icon.
+      placements:
+        - {id: ko-nikl-04264-s001, level: 8, topic: technology, ds: a computer command represented by text or a picture}
+      evidence:
+        - position: 1
+          source_korean: "컴퓨터에서 실행할 수 있는 명령을 문자나 그림으로 나타낸 것."
+          source_english: "A computer execution order, expressed as a character or image."
+    - source_parent: ko-nikl-06645
+      target: 부지
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-06645
+      rationale: Read ordinary construction-site and road-planning descriptions, not specialist land law.
+      placements:
+        - {id: ko-nikl-06645-s001, level: 17, topic: nature, ds: land set aside for a house or road}
+      evidence:
+        - position: 1
+          source_korean: "집을 짓거나 길을 만들기 위해 마련한 땅."
+          source_english: "A piece of ground prepared for building a house or making a road. "
+    - source_parent: ko-nikl-13769
+      target: 전류
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-13769
+      rationale: Supply the ordinary electric-current term for accessible device explanations, not a circuit-work qualification.
+      placements:
+        - {id: ko-nikl-13769-s001, level: 17, topic: science, ds: electric current or its magnitude}
+      evidence:
+        - position: 1
+          source_korean: "전기가 흐르는 현상이나 그 정도."
+          source_english: "The phenomenon of electricity flow or the measurable degree to which it flows."
+    - source_parent: ko-nikl-13854
+      target: 전선
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-13854
+      rationale: Select the electrical wire, not the activity, battle-front or weather-front parents13853/13855.
+      placements:
+        - {id: ko-nikl-13854-s001, level: 5, topic: home, ds: an electrical wire}
+      evidence:
+        - position: 1
+          source_korean: "전기가 흐르는 선."
+          source_english: "A wire through which electricity flows."
+    - source_parent: ko-nikl-16942
+      target: 대기실
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-16942
+      rationale: Locate the waiting room when using a service without adding any medical claim.
+      placements:
+        - {id: ko-nikl-16942-s001, level: 6, topic: services, ds: a room for waiting for one's time or turn}
+      evidence:
+        - position: 1
+          source_korean: "때나 순서를 기다리는 사람들이 잠시 머물 수 있게 마련한 장소."
+          source_english: "A room arranged for people to stay briefly when they wait for their time or turn. "
+    - source_parent: ko-nikl-17712
+      target: 데이터
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-17712
+      rationale: Select the explicitly computerised information position, not first-position evidence merely because it comes first.
+      placements:
+        - {id: ko-nikl-17712-s002, level: 8, topic: technology, ds: computerised information stored for processing}
+      evidence:
+        - position: 2
+          source_korean: "컴퓨터로 처리할 수 있도록 전산화되어 저장된 정보."
+          source_english: "Information stored after going through computerization so that it can be processed electronically."
+    - source_parent: ko-nikl-17713
+      target: 데이터베이스
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-17713
+      rationale: Explain ordinary information storage without adding database administration or programming material.
+      source_review: >-
+        The source includes both a storage/use program and its data. Preserve
+        that broad framing; qualified computing review must distinguish a
+        database from database-management software before detailed teaching.
+      placements:
+        - {id: ko-nikl-17713-s001, level: 17, topic: technology, ds: a database system or its stored data}
+      evidence:
+        - position: 1
+          source_korean: "컴퓨터에 많은 자료를 저장해 두고 여러 가지 형태로 이용할 수 있도록 한 프로그램, 또는 그 자료."
+          source_english: "A program that enables one to store a large volume of information in a computer and use it in different formats; or such information. "
+    - source_parent: ko-nikl-20219
+      target: 로그아웃
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-20219
+      rationale: This is the actual logout noun, not a generated action verb or a claim that a user has been logged out.
+      placements:
+        - {id: ko-nikl-20219-s001, level: 8, topic: technology, ds: logging out after using a computer or Internet site}
+      evidence:
+        - position: 1
+          source_korean: "컴퓨터나 인터넷 사이트를 이용할 때, 하던 일을 마치고 연결을 끊는 일."
+          source_english: "The act of disconnecting after one has completed one's work when using a computer or internet site."
+    - source_parent: ko-nikl-20324
+      target: 링크
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-20324
+      rationale: Select a web link rather than the indoor skating rink in the adjacent homograph20325.
+      placements:
+        - {id: ko-nikl-20324-s001, level: 8, topic: technology, ds: a web link leading to a selected file or page}
+      evidence:
+        - position: 1
+          source_korean: "인터넷에서 지정한 파일이나 페이지로 이동할 수 있도록 홈페이지를 서로 연결하는 것."
+          source_english: "A connection between websites for a user to move to a selected file or page on the Internet."
+    - source_parent: ko-nikl-21011
+      target: 키보드
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-21011
+      rationale: Only position4 supplies computer input; musical keyboards and a hotel key board are not substituted.
+      placements:
+        - {id: ko-nikl-21011-s004, level: 8, topic: technology, ds: a computer keyboard for entering letters or symbols}
+      evidence:
+        - position: 4
+          source_korean: "컴퓨터에서, 문자나 기호를 입력하는 글자판."
+          source_english: "In a computer, the board of keys that is used to input letters or signs."
+    - source_parent: ko-nikl-23175
+      target: 폴더
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-23175
+      rationale: The source supplies grouping computer files, with an icon in its description; do not make icon display a universal filesystem requirement.
+      placements:
+        - {id: ko-nikl-23175-s001, level: 8, topic: technology, ds: a computer folder grouping related files}
+      evidence:
+        - position: 1
+          source_korean: "컴퓨터에서 관련 있는 파일을 묶어서 하나의 아이콘으로 나타낸 것."
+          source_english: "In a computer, something made by binding related files and indicated as an icon."
+    - source_parent: ko-nikl-23489
+      target: 프로필
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-23489
+      rationale: A brief personal history can support introductions; it is not the source's side-view face or a whole authenticated account.
+      placements:
+        - {id: ko-nikl-23489-s001, level: 8, topic: people, ds: a brief personal profile or resume}
+      evidence:
+        - position: 1
+          source_korean: "한 사람의 간단한 이력."
+          source_english: "A brief resume of someone."
+    - source_parent: ko-nikl-25822
+      target: 가스관
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-25822
+      rationale: Name a gas pipe when describing a facility; no leak testing, connection or repair procedure is supplied.
+      placements:
+        - {id: ko-nikl-25822-s001, level: 5, topic: home, ds: a pipe carrying gas}
+      evidence:
+        - position: 1
+          source_korean: "가스가 통할 수 있게 만든 관."
+          source_english: "A pipe through which gas passes."
+    - source_parent: ko-nikl-28393
+      target: 경보기
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-28393
+      rationale: Identify an alarm device when reporting danger, not a method for disabling it.
+      placements:
+        - {id: ko-nikl-28393-s001, level: 14, topic: services, ds: a device warning of danger or accidents}
+      evidence:
+        - position: 1
+          source_korean: "소리나 빛 등으로 갑작스러운 사고나 위험 등을 알리는 기계."
+          source_english: "A machine warning of danger or an accident with a siren, flash, etc. "
+    - source_parent: ko-nikl-28411
+      target: 경사로
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-28411
+      rationale: Supply a practical accessibility location before advanced infrastructure discussion.
+      source_review: >-
+        Korean names patients and disabled people; English instead names
+        wheelchairs and strollers. Preserve the human-access purpose and
+        request qualified review rather than calling every sloping road this sense.
+      placements:
+        - {id: ko-nikl-28411-s001, level: 6, topic: services, ds: an access ramp for patients or disabled people}
+      evidence:
+        - position: 1
+          source_korean: "환자나 장애인을 위해 바닥을 평평하지 않고 기울어지게 만든 통로."
+          source_english: "A passage made with an inclination instead of being flat for wheelchairs or strollers. "
+    - source_parent: ko-nikl-28636
+      target: 계량기
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-28636
+      rationale: Select the utility-consumption meter, not every weight or volume instrument from position2.
+      placements:
+        - {id: ko-nikl-28636-s001, level: 6, topic: services, ds: "a meter measuring gas, water or electricity use"}
+      evidence:
+        - position: 1
+          source_korean: "일정 기간 동안 쓴 가스, 물, 전기 등의 양을 재는 도구."
+          source_english: "An implement used to measure the amount of gas, water, electricity, etc., used during a certain period. "
+    - source_parent: ko-nikl-30324
+      target: 관리실
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-30324
+      rationale: Locate the building-management office for household or facility help.
+      placements:
+        - {id: ko-nikl-30324-s001, level: 5, topic: home, ds: an office responsible for maintaining a building}
+      evidence:
+        - position: 1
+          source_korean: "시설이나 건물을 유지하거나 개량하는 일을 맡아보는 사무실."
+          source_english: "An office that maintains or renovates facilities or buildings."
+    - source_parent: ko-nikl-37067
+      target: 메모리
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-37067
+      rationale: Capacity supports ordinary device problems before the component supports a general explanation; neither position equates all memory with permanent storage.
+      placements:
+        - {id: ko-nikl-37067-s001, level: 14, topic: technology, ds: the maximum information capacity of a memory device}
+        - {id: ko-nikl-37067-s002, level: 17, topic: technology, ds: a memory component in a digital device}
+      evidence:
+        - position: 1
+          source_korean: "기억 장치에 담을 수 있는 정보의 최대량."
+          source_english: "The maximum amount of information that can be stored in memory."
+        - position: 2
+          source_korean: "컴퓨터를 비롯한 디지털 기기에서, 수치나 명령 등을 기억하는 장치."
+          source_english: "In a digital device such as a computer, mobile phone, etc., a component for memorizing a number or command, etc."
+    - source_parent: ko-nikl-38492
+      target: 문턱
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-38492
+      rationale: The physical door threshold supports household access descriptions, not an imported figurative threshold stage.
+      placements:
+        - {id: ko-nikl-38492-s001, level: 5, topic: home, ds: the upper surface of a door sill}
+      evidence:
+        - position: 1
+          source_korean: "문의 밑이 닿는 문지방의 윗부분."
+          source_english: "The top of the threshold that is touched by the bottom of the door."
+    - source_parent: ko-nikl-40548
+      target: 배관
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-40548
+      rationale: Name pipework and its installation when explaining a utility system, without giving installation instructions.
+      placements:
+        - {id: ko-nikl-40548-s001, level: 17, topic: technology, ds: pipe installation or the installed pipework}
+      evidence:
+        - position: 1
+          source_korean: "액체나 기체를 보내기 위하여 관을 이어 설치함. 또는 그런 설치물."
+          source_english: "The act of installing pipes to  transport liquid or gas, or an installation made for such a purpose."
+    - source_parent: ko-nikl-40620
+      target: 배선
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-40620
+      rationale: Select the actual distribution wiring in position2 rather than automatically importing the wiring action in position1.
+      source_review: The Korean string repeats 전력을 전력이; preserve it as evidence and request editorial review instead of silently rewriting the registry.
+      placements:
+        - {id: ko-nikl-40620-s002, level: 17, topic: technology, ds: wiring that distributes electrical power}
+      evidence:
+        - position: 2
+          source_korean: "전력을 전력이 필요한 곳이나 여러 전기 장치에 보내는 전선로."
+          source_english: "An electric line that sends power to a place in need of electricity or a variety of electric devices. "
+    - source_parent: ko-nikl-43841
+      target: 차고
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-43841
+      rationale: A vehicle-storage building supports household location; the source also permits rail vehicles rather than cars alone.
+      placements:
+        - {id: ko-nikl-43841-s001, level: 5, topic: home, ds: a garage or depot for keeping vehicles}
+      evidence:
+        - position: 1
+          source_korean: "자동차나 기차, 전차 등의 차량을 넣어 두는 곳."
+          source_english: "A place in which to keep a vehicle such as a car, train, trolley, etc."
+    - source_parent: ko-nikl-44258
+      target: 창틀
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-44258
+      rationale: A window's supporting frame is a component, not another naming form for the entire protected window family.
+      placements:
+        - {id: ko-nikl-44258-s001, level: 5, topic: home, ds: a frame supporting a window}
+      evidence:
+        - position: 1
+          source_korean: "창문을 달거나 끼울 수 있게 되어 있는 틀."
+          source_english: "A structure for supporting or putting in a window. "
+    - source_parent: ko-nikl-45770
+      target: 출입문
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-45770
+      rationale: Name the physical entrance/exit door without converting it into an abstract permission or access-control capability.
+      placements:
+        - {id: ko-nikl-45770-s001, level: 5, topic: home, ds: a door used for entering and leaving}
+      evidence:
+        - position: 1
+          source_korean: "들어가고 나오는 문."
+          source_english: "The door through which one goes in or out of a place."
+    - source_parent: ko-nikl-45878
+      target: 충전기
+      source_part_of_speech: 명사
+      source_band: unbanded
+      suggested_identity: ko-lex-45878
+      rationale: A common charger supports obtaining help or a replacement without asserting voltage or device compatibility.
+      placements:
+        - {id: ko-nikl-45878-s001, level: 6, topic: services, ds: a charger supplying electricity to an energy store}
+      evidence:
+        - position: 1
+          source_korean: "전기 에너지를 모아 두는 장치에 전기를 채워 넣는 데 쓰는 기구."
+          source_english: "A device used to fill another device with electricity, which stores electric energy."
+voltage_handoff_history:
+  source_parent: ko-nikl-13920
+  id: ko-nikl-13920-s001
+  target: 전압
+  source_part_of_speech: 명사
+  source_band: unbanded
+  source_korean: "전기장이나 도체 내에 있는 두 점 사이의 전기 에너지의 차."
+  source_english: "Difference in electric energy between two points in an electric field or conductor."
+  status: not-requested-for-registration-or-selection-pending-domain-review
+  reason: >-
+    Both definitions describe an electric-energy difference, which is
+    insufficiently precise for teaching voltage. A qualified source/domain
+    correction should distinguish potential difference from raw energy
+    difference before an explanatory placement is activated. No formula,
+    measurement protocol or replacement source definition is invented here.
+remaining_source_discovery_limits:
+  - >-
+    The specifically checked targets 개인정보, 계정, 공동주택, 리모콘,
+    브라우저, 서버 and 알림 had no matching noun/bound-noun record in the
+    targeted CSV query after normalising internal whitespace for discovery.
+    This does not establish absence from every source POS or dictionary.
+    No approximate spelling or unrelated meaning is substituted.
+  - >-
+    A follow-up Form/POS check located ko-nikl-29719 with exact source spacing
+    공동 주택 and an empty source POS. Its definition positions and curriculum
+    family classification were not assessed for selection. It is a separate
+    parent-review lead, not one of the 28 inspected noun support requests.
+  - >-
+    No registered physical 휴지통 or 우편함 position is a source-backed
+    digital recycle bin or inbox. No mental-impression 이미지 position is
+    automatically a digital image. These remain semantic gaps if explicit
+    digital senses are required, not permission to invent positions.
+reading_handoff_history:
+  status: unassessed-parent-owned
+  policy: >-
+    The queues distinguish newly selected parents from already represented
+    parents, not missing or blocked pronunciations. No reading overlay,
+    pronunciation ledger, official entry content or audio was inspected for
+    this handoff. Parent must measure actual coverage, review homographs and
+    approve any reading decisions. Pending source requests need a separate
+    assessment after registration; no invented gap count is attached to them.
+  new_parent_count: 89
+  new_parent_queue:
+    - ko-nikl-00051
+    - ko-nikl-00074
+    - ko-nikl-00729
+    - ko-nikl-02086
+    - ko-nikl-02600
+    - ko-nikl-02710
+    - ko-nikl-02845
+    - ko-nikl-02853
+    - ko-nikl-04251
+    - ko-nikl-05981
+    - ko-nikl-07493
+    - ko-nikl-07519
+    - ko-nikl-07537
+    - ko-nikl-07772
+    - ko-nikl-08461
+    - ko-nikl-08498
+    - ko-nikl-10855
+    - ko-nikl-10877
+    - ko-nikl-12459
+    - ko-nikl-12895
+    - ko-nikl-13954
+    - ko-nikl-14081
+    - ko-nikl-14237
+    - ko-nikl-14485
+    - ko-nikl-14528
+    - ko-nikl-14572
+    - ko-nikl-14623
+    - ko-nikl-15402
+    - ko-nikl-16709
+    - ko-nikl-17420
+    - ko-nikl-17738
+    - ko-nikl-17927
+    - ko-nikl-18300
+    - ko-nikl-18302
+    - ko-nikl-19040
+    - ko-nikl-19961
+    - ko-nikl-20485
+    - ko-nikl-20547
+    - ko-nikl-21437
+    - ko-nikl-21439
+    - ko-nikl-21813
+    - ko-nikl-22617
+    - ko-nikl-23186
+    - ko-nikl-25625
+    - ko-nikl-25885
+    - ko-nikl-26324
+    - ko-nikl-27624
+    - ko-nikl-27652
+    - ko-nikl-27674
+    - ko-nikl-28403
+    - ko-nikl-29364
+    - ko-nikl-29524
+    - ko-nikl-29672
+    - ko-nikl-29795
+    - ko-nikl-29802
+    - ko-nikl-29945
+    - ko-nikl-29984
+    - ko-nikl-30015
+    - ko-nikl-30513
+    - ko-nikl-30691
+    - ko-nikl-30766
+    - ko-nikl-31088
+    - ko-nikl-32710
+    - ko-nikl-32777
+    - ko-nikl-34423
+    - ko-nikl-34437
+    - ko-nikl-34990
+    - ko-nikl-35126
+    - ko-nikl-35557
+    - ko-nikl-35607
+    - ko-nikl-35807
+    - ko-nikl-35915
+    - ko-nikl-37089
+    - ko-nikl-37399
+    - ko-nikl-40341
+    - ko-nikl-42590
+    - ko-nikl-44169
+    - ko-nikl-44182
+    - ko-nikl-44338
+    - ko-nikl-46942
+    - ko-nikl-48159
+    - ko-nikl-48410
+    - ko-nikl-49414
+    - ko-nikl-49428
+    - ko-nikl-49583
+    - ko-nikl-50211
+    - ko-nikl-51540
+    - ko-nikl-52463
+    - ko-nikl-52494
+  reused_parent_count: 2
+  reused_parent_queue: [ko-nikl-01586, ko-nikl-41923]
+worker_handoff_boundaries:
+  - All selections and identity fragments from the live manifest through evaluation are unchanged.
+  - Held IDs ko-nikl-48419-s001 and ko-nikl-22209-s001 remain excluded; no pronunciation research was performed.
+  - Nature, society, content and all earlier cohorts are parent-owned and untouched.
+  - Source registry, source support, readings, shared code, manifest and generated views are parent-owned and untouched.
+  - No generated predicate, additional worker, session, factory, commit, push or pull request is part of this handoff.
+worker_validation_history:
+  status: structural-and-exact-source-checks-passed
+  checks:
+    - Strict curriculum_yaml.load_yaml loading of all three authored files.
+    - Exact known unique source positions, source POS, row fields, levels, topics and label lengths.
+    - Complete single identity membership and exact parent sets with compatible protected fragments.
+    - Actual proposed composition through load_selections and lexical_members with no protected changes.
+    - Authored counts, category totals, phase counts and exact unassessed reading-parent queues.
+    - Five source-evidenced naming families and three exact bilingual correction proposals.
+    - SHA-256-verified original CSV evidence for all 28 support requests and 29 proposed positions.
+    - Both held IDs and all pending support positions excluded from active selections.
+  existing_tests:
+    - test_korean_program.KoreanSelectionFilesTests
+    - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+    - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+  existing_test_count: 8
+  limitation: Parent must integrate source corrections, readings and manifest selections before testing generated teaching views; these checks do not assert that integration.
+source_and_license_limits: >-
+  Exact bilingual quotations are limited to source identification and review
+  evidence. Original source strings, positions and provenance remain retained
+  by the existing pinned source system; this cohort neither republishes a new
+  dictionary nor changes its existing attribution or licensing declarations.
+  Source bands are reference metadata, not placement rules or official exam
+  readiness. All new authored material remains openly unreviewed.
+parent_integration:
+  additional_banded_selections:
+    ko-nikl-00180-s001: >
+      Machine performance was not selected by the completed qualities scope.
+      Add this real headword at14 for ordinary device reporting/comparison;
+      official63499 already supplies 성ː능, without a new authored reading.
+    ko-nikl-29364-s002: >
+      The many-storeyed building property helps distinguish a high-rise
+      building from an upper-floor location at7. It reuses the existing
+      고층 family and supported parent reading, adding no free breadth.
+  accepted_support: >
+    The original inspected requests and parent additions are addressed in
+    infrastructure-support-notes.yaml. Twenty-nine positions are active;
+    gas pipe and joint housing remain held for word-specific pronunciation
+    review, with raw definitions and proposed placements retained.
+    Historical pending/not-selected statuses above describe the worker handoff,
+    not current generated coverage.
+  remaining_gap: >
+    The gendered 안방 source meaning still requires qualified adjudication
+    before being taught as an unqualified modern main bedroom. Neither this
+    scope nor the support cohort invents that broader dictionary position.
+reading_review:
+  status: all107 active main-cohort senses supported
+  evidence: >
+    The completed combined-cohort reading handback distinguishes official
+    citation text from28 individually authored/unreviewed readings, including
+    loanword sound-change proposals. It does not establish audio evidence,
+    native-speaker review or productive mastery. Support-cohort holds are
+    documented separately, not silently assigned guessed readings.
+persisted_integration_snapshot:
+  status: 128 views generated;113 Korean tests passed; original references preserved
+  core_senses: 6838
+  core_dictionary_parents: 4727
+  core_distinct_spellings: 4447
+  core_spelling_pos_pairs: 4539
+  core_lexical_identities: 4635
+  core_provisional_free_families: 4412
+  core_bound_forms: 39
+  core_function_items: 184
+  core_modules: 720
+  selected_pool_senses: 6964
+  selected_pool_free_families: 4471
+  retained_support_parents: 512
+  selected_support_parents: 510
+  core_reading_methods: {official-text: 6603, authored-broad-hangul: 235}
+  phase_senses: [444, 1692, 1269, 1099, 1162, 1172]
+  phase_modules: [72, 152, 133, 120, 119, 124]
+  gap_to_lower_free_lemma_guide: 1388
+  limitations: >
+    Intermediate expansion, not whole-course completion or linguistic
+    approval. These actual early/middle additions do not repair later-phase
+    growth by relocating words or padding modules. Generated coverage is the
+    current authority after subsequent cohorts. Catalog activation remains
+    coordinated; four named pronunciation holds remain outside active teaching.
