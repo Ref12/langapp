@@ -152942,7 +152942,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '38025'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38025
-      pronunciations:
+      pronunciations: &id1471
       - 끄ː러내다
     lexical_identity: ko-lex-34031
     lexical_category: free-lemma
@@ -155599,6 +155599,919 @@ items:
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87984
       pronunciations: *id1466
     lexical_identity: ko-lex-51619
+    lexical_category: free-lemma
+  ko-nikl-36556-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36556
+    source_parent: ko-nikl-36556
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To receive something that comes.
+    source_korean: 오는 것을 맞다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15924'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15924
+      pronunciations: &id1467
+      - 마지하다
+    lexical_identity: ko-lex-36519
+    lexical_category: free-lemma
+  ko-nikl-36556-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36556
+    source_parent: ko-nikl-36556
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To accept someone as a new family member.
+    source_korean: 어떤 사람을 가족으로 받아들이다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15924'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15924
+      pronunciations: *id1467
+    lexical_identity: ko-lex-36519
+    lexical_category: free-lemma
+  ko-nikl-44266-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44266
+    source_parent: ko-nikl-44266
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: To go to a place to meet someone or do something.
+    source_korean: 사람을 만나거나 어떤 일을 하러 가다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71812'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71812
+      pronunciations: &id1468
+      - 차자가다
+    lexical_identity: ko-lex-44265
+    lexical_category: free-lemma
+  ko-nikl-44266-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44266
+    source_parent: ko-nikl-44266
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: To take back something that was lost, lent, or entrusted.
+    source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 가다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71812'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71812
+      pronunciations: *id1468
+    source_correction:
+      source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 가다.
+      source_english: To take back something that was lost, lent, or entrusted.
+      authored_interpretation: to retrieve a lost, lent or entrusted item and take it away
+      rationale: The English omits 가지고 가다; preserve the lost/lent/entrusted object condition and retrieval
+        followed by carrying away, contrasted with carrying back in 찾아오다2.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-44265
+    lexical_category: free-lemma
+  ko-nikl-44274-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44274
+    source_parent: ko-nikl-44274
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: To go to a place to meet someone or do something.
+    source_korean: 사람을 만나거나 어떤 일을 하러 오다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60322'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60322
+      pronunciations: &id1469
+      - 차자오다
+    source_correction:
+      source_korean: 사람을 만나거나 어떤 일을 하러 오다.
+      source_english: To go to a place to meet someone or do something.
+      authored_interpretation: to come to meet someone or do something
+      rationale: Source 오다 is coming, not the English go. Preserve the contextual deictic contrast rather
+        than copying the identical-looking visit frame from 찾아가다.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-44265
+    lexical_category: free-lemma
+  ko-nikl-44274-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44274
+    source_parent: ko-nikl-44274
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: To take back something that was lost, lent, or entrusted.
+    source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 오다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60322'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60322
+      pronunciations: *id1469
+    source_correction:
+      source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 오다.
+      source_english: To take back something that was lost, lent, or entrusted.
+      authored_interpretation: to retrieve a lost, lent or entrusted item and bring it back
+      rationale: The English omits 가지고 오다; preserve the lost/lent/entrusted object condition and retrieval
+        with carrying back. Identical English does not collapse this into 찾아가다2.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-44265
+    lexical_category: free-lemma
+  ko-nikl-18920-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18920
+    source_parent: ko-nikl-18920
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To chase or follow someone.
+    source_korean: 뒤를 좇거나 뒤에서 따르다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14991'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14991
+      pronunciations: *id511
+    lexical_identity: ko-lex-18920
+    lexical_category: free-lemma
+  ko-nikl-04798-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4798
+    source_parent: ko-nikl-04798
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To stand ahead.
+    source_korean: 앞에 서다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71587'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71587
+      pronunciations: *id508
+    lexical_identity: ko-lex-04798
+    lexical_category: free-lemma
+  ko-nikl-04798-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4798
+    source_parent: ko-nikl-04798
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To outrun or pass something or someone ahead.
+    source_korean: 앞에 있는 것을 지나쳐 가거나 앞지르다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71587'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71587
+      pronunciations: *id508
+    lexical_identity: ko-lex-04798
+    lexical_category: free-lemma
+  ko-nikl-07859-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7859
+    source_parent: ko-nikl-07859
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To come outside the limited environment or  boundary. '
+    source_korean: 제한된 환경 또는 경계에서 밖으로 나오다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15645'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15645
+      pronunciations:
+      - 빠ː저나오다
+    lexical_identity: ko-lex-07859
+    lexical_category: free-lemma
+  ko-nikl-18257-s007:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18257
+    source_parent: ko-nikl-18257
+    source_position: 7
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To go around a place and pass by.
+    source_korean: 어떤 장소를 돌아서 지나가다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62831'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62831
+      pronunciations: *id601
+    lexical_identity: ko-lex-18257
+    lexical_category: free-lemma
+  ko-nikl-18259-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18259
+    source_parent: ko-nikl-18259
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-1
+    source_english: To come the long way.
+    source_korean: 먼 쪽으로 둘러서 오다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66268'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66268
+      pronunciations: *id214
+    lexical_identity: ko-lex-18259
+    lexical_category: free-lemma
+  ko-nikl-07855-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7855
+    source_parent: ko-nikl-07855
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To make someone or something fall into a deep place such as water and a pit. '
+    source_korean: 물이나 구덩이 등의 깊은 곳에 빠지게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15643'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15643
+      pronunciations: &id1470
+      - 빠ː뜨리다
+    lexical_identity: ko-lex-07855
+    lexical_category: free-lemma
+  ko-nikl-07855-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7855
+    source_parent: ko-nikl-07855
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To place someone in a certain state or situation. '
+    source_korean: 어떤 상태나 처지에 놓이게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15643'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15643
+      pronunciations: *id1470
+    lexical_identity: ko-lex-07855
+    lexical_category: free-lemma
+  ko-nikl-07855-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7855
+    source_parent: ko-nikl-07855
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To drop and lose something.
+    source_korean: 가지고 있던 것을 흘려서 잃어버리다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15643'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15643
+      pronunciations: *id1470
+    lexical_identity: ko-lex-07855
+    lexical_category: free-lemma
+  ko-nikl-07855-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7855
+    source_parent: ko-nikl-07855
+    source_position: 4
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To not get something that is necessary.
+    source_korean: 갖추어야 할 것을 갖추지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15643'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15643
+      pronunciations: *id1470
+    lexical_identity: ko-lex-07855
+    lexical_category: free-lemma
+  ko-nikl-34854-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34854
+    source_parent: ko-nikl-34854
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To take something out and place it outside. '
+    source_korean: 물건을 밖으로 꺼내 놓다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61013'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61013
+      pronunciations: *id477
+    lexical_identity: ko-lex-34854
+    lexical_category: free-lemma
+  ko-nikl-34854-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34854
+    source_parent: ko-nikl-34854
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To place something at the front side to make it visible. '
+    source_korean: 보이도록 앞에 놓다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61013'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61013
+      pronunciations: *id477
+    lexical_identity: ko-lex-34854
+    lexical_category: free-lemma
+  ko-nikl-34854-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34854
+    source_parent: ko-nikl-34854
+    source_position: 4
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To allow a confined person or animal to go outside and act freely. '
+    source_korean: 가두어 두었던 사람이나 동물 등을 바깥에서 마음대로 활동하게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61013'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61013
+      pronunciations: *id477
+    lexical_identity: ko-lex-34854
+    lexical_category: free-lemma
+  ko-nikl-34854-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34854
+    source_parent: ko-nikl-34854
+    source_position: 5
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To serve food, etc.
+    source_korean: 음식 등을 대접하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61013'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61013
+      pronunciations: *id477
+    lexical_identity: ko-lex-34854
+    lexical_category: free-lemma
+  ko-nikl-34854-s008:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34854
+    source_parent: ko-nikl-34854
+    source_position: 8
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To give something one possessed or occupied to another. '
+    source_korean: 가지고 있던 것이나 차지하고 있던 것을 넘겨주다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61013'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61013
+      pronunciations: *id477
+    lexical_identity: ko-lex-34854
+    lexical_category: free-lemma
+  ko-nikl-34031-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34031
+    source_parent: ko-nikl-34031
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To pull an object outside.
+    source_korean: 물건을 당겨서 밖으로 나오게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38025'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38025
+      pronunciations: *id1471
+    lexical_identity: ko-lex-34031
+    lexical_category: free-lemma
+  ko-nikl-34031-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34031
+    source_parent: ko-nikl-34031
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To make a person or animal come out by force.
+    source_korean: 사람이나 동물을 강제로 나오게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38025'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38025
+      pronunciations: *id1471
+    lexical_identity: ko-lex-34031
+    lexical_category: free-lemma
+  ko-nikl-27595-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27595
+    source_parent: ko-nikl-27595
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To give money or goods over to another person.
+    source_korean: 다른 사람에게 돈이나 물건을 전하여 넘기다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15879'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15879
+      pronunciations: &id1472
+      - 건ː네다
+    lexical_identity: ko-lex-27595
+    lexical_category: free-lemma
+  ko-nikl-27595-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27595
+    source_parent: ko-nikl-27595
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To speak to another person.
+    source_korean: 다른 사람에게 말을 걸다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15879'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15879
+      pronunciations: *id1472
+    lexical_identity: ko-lex-27595
+    lexical_category: free-lemma
+  ko-nikl-34874-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34874
+    source_parent: ko-nikl-34874
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To put down something one has been holding.
+    source_korean: 들고 있던 것을 아래에 놓다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59468'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59468
+      pronunciations: &id1473
+      - 내려노타
+    lexical_identity: ko-lex-34874
+    lexical_category: free-lemma
+  ko-nikl-34874-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34874
+    source_parent: ko-nikl-34874
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To carry someone to a certain place in a vehicle.
+    source_korean: 탈것을 이용해서 사람을 어떤 곳에 옮겨다 주다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59468'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59468
+      pronunciations: *id1473
+    lexical_identity: ko-lex-34874
+    lexical_category: free-lemma
+  ko-nikl-18652-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18652
+    source_parent: ko-nikl-18652
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To make something change its direction to the opposite direction.
+    source_korean: 원래 움직이던 방향에서 반대의 방향으로 바꾸어 가게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14906'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14906
+      pronunciations: &id1474
+      - 되돌리다
+      - 뒈돌리다
+    lexical_identity: ko-lex-18652
+    lexical_category: free-lemma
+  ko-nikl-18652-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18652
+    source_parent: ko-nikl-18652
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To make a certain thing or phenomenon go back to its earlier state.
+    source_korean: 어떤 대상이나 현상을 원래의 상태가 되게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14906'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14906
+      pronunciations: *id1474
+    lexical_identity: ko-lex-18652
+    lexical_category: free-lemma
+  ko-nikl-18652-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18652
+    source_parent: ko-nikl-18652
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To give back something. '
+    source_korean: 도로 돌려주다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14906'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14906
+      pronunciations: *id1474
+    lexical_identity: ko-lex-18652
+    lexical_category: free-lemma
+  ko-nikl-48449-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48449
+    source_parent: ko-nikl-48449
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To climb to a high place and stand on it.
+    source_korean: 높은 곳으로 올라가서 그 위에 서다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22085'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22085
+      pronunciations: &id1475
+      - 올라서다
+    lexical_identity: ko-lex-48449
+    lexical_category: free-lemma
+  ko-nikl-48449-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48449
+    source_parent: ko-nikl-48449
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To rise to a high position or level.
+    source_korean: 높은 지위나 수준에 오르다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22085'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22085
+      pronunciations: *id1475
+    lexical_identity: ko-lex-48449
+    lexical_category: free-lemma
+  ko-nikl-34879-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34879
+    source_parent: ko-nikl-34879
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: To step down from a high place to a lower place.
+    source_korean: 높은 곳에서 낮은 곳으로 옮겨 서다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41880'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41880
+      pronunciations: &id1476
+      - 내려서다
+    lexical_identity: ko-lex-34879
+    lexical_category: free-lemma
+  ko-nikl-34879-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34879
+    source_parent: ko-nikl-34879
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: For a grade, position, etc., to be moved from a high place to a lower place.
+    source_korean: 등급이나 지위 등이 높은 쪽에서 낮은 쪽으로 옮아가다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41880'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41880
+      pronunciations: *id1476
+    lexical_identity: ko-lex-34879
+    lexical_category: free-lemma
+  ko-nikl-18257-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18257
+    source_parent: ko-nikl-18257
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: For an event or situation to change to another state.
+    source_korean: 일이나 상황이 다른 상태로 바뀌다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62831'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62831
+      pronunciations: *id601
+    lexical_identity: ko-lex-18257
+    lexical_category: free-lemma
+  ko-nikl-18257-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18257
+    source_parent: ko-nikl-18257
+    source_position: 4
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: For the state of a disease to gradually become better.
+    source_korean: 병의 상태가 점점 나아지다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62831'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62831
+      pronunciations: *id601
+    lexical_identity: ko-lex-18257
+    lexical_category: free-lemma
+  ko-nikl-18259-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18259
+    source_parent: ko-nikl-18259
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: To be one's turn to do something.
+    source_korean: 어떤 것을 할 순서가 되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66268'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66268
+      pronunciations: *id214
+    lexical_identity: ko-lex-18259
+    lexical_category: free-lemma
+  ko-nikl-27528-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27528
+    source_parent: ko-nikl-27528
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To be stuck or blocked by something.
+    source_korean: 무엇에 걸리거나 막히다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15853'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15853
+      pronunciations: *id247
+    lexical_identity: ko-lex-27528
+    lexical_category: free-lemma
+  ko-nikl-05256-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5256
+    source_parent: ko-nikl-05256
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To be unsatisfactory or different from what is expected.
+    source_korean: 만족스럽지 못하거나 예상한 것과 다르게 되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58495'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58495
+      pronunciations: *id329
+    lexical_identity: ko-lex-05256
+    lexical_category: free-lemma
+  ko-nikl-05256-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5256
+    source_parent: ko-nikl-05256
+    source_position: 5
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To become free from one's duty, things to do.
+    source_korean: 맡은 일이나 할 일을 더 이상 하지 않게 되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58495'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58495
+      pronunciations: *id329
+    lexical_identity: ko-lex-05256
+    lexical_category: free-lemma
+  ko-nikl-05256-s007:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5256
+    source_parent: ko-nikl-05256
+    source_position: 7
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To escape from a group, a group of people, etc.
+    source_korean: 집단이나 무리 등에서 빠져나오다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58495'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58495
+      pronunciations: *id329
+    lexical_identity: ko-lex-05256
+    lexical_category: free-lemma
+  ko-nikl-34256-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34256
+    source_parent: ko-nikl-34256
+    source_position: 5
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: For a wanted person, object, etc., to appear.
+    source_korean: 구하던 사람이나 물건 등이 나타나다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61183'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61183
+      pronunciations: *id815
+    lexical_identity: ko-lex-34256
+    lexical_category: free-lemma
+  ko-nikl-16017-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16017
+    source_parent: ko-nikl-16017
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To make someone feel familiar and friendly.
+    source_korean: 익숙하고 친근하게 느끼게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64527'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64527
+      pronunciations: *id602
+    source_correction:
+      source_korean: 익숙하고 친근하게 느끼게 하다.
+      source_english: To make someone feel familiar and friendly.
+      authored_interpretation: to give a familiar and friendly impression
+      rationale: Authored role-clarification rather than a claimed typographical error; 느끼게 하다 concerns
+        the caused impression. Do not describe the experiencer themselves as familiar/friendly or assert
+        an actual friendship.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-16017
+    lexical_category: free-lemma
+  ko-nikl-18599-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18599
+    source_parent: ko-nikl-18599
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To make a journey together.
+    source_korean: 함께 길을 가다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48152'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48152
+      pronunciations:
+      - 동행하다
+    lexical_identity: ko-lex-18598
+    lexical_category: free-lemma
+  ko-nikl-35924-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35924
+    source_parent: ko-nikl-35924
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To face each other head-on.
+    source_korean: 서로 정면으로 대하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56102'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56102
+      pronunciations:
+      - 마주하다
+    lexical_identity: ko-lex-35924
+    lexical_category: free-lemma
+  ko-nikl-40340-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40340
+    source_parent: ko-nikl-40340
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'To go to a certain place in order to meet a person or see something. '
+    source_korean: 사람을 만나거나 무엇을 보기 위해 어떤 장소를 찾아가다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61516'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61516
+      pronunciations:
+      - 방ː문하다
+    lexical_identity: ko-lex-40335
+    lexical_category: free-lemma
+  ko-nikl-42561-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42561
+    source_parent: ko-nikl-42561
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To go past a place without dropping by some place.
+    source_korean: 어떤 곳에 들르거나 머무르지 않고 그냥 지나다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '27760'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=27760
+      pronunciations: &id1477
+      - 지나치다
+    lexical_identity: ko-lex-42562
+    lexical_category: free-lemma
+  ko-nikl-42561-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42561
+    source_parent: ko-nikl-42561
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To take no notice or pay no attention to a thing or phenomenon, and consider it as
+      something light.
+    source_korean: 어떤 일이나 현상을 문제 삼거나 관심 가지지 않고 가볍게 생각하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '27760'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=27760
+      pronunciations: *id1477
+    lexical_identity: ko-lex-42562
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

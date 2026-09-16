@@ -5,6 +5,26 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-44266-s002:
+    source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 가다.
+    source_english: To take back something that was lost, lent, or entrusted.
+    authored_interpretation: to retrieve a lost, lent or entrusted item and take it away
+    rationale: The English omits 가지고 가다; preserve the lost/lent/entrusted object condition and retrieval followed by carrying away, contrasted with carrying back in 찾아오다2.
+  ko-nikl-44274-s001:
+    source_korean: 사람을 만나거나 어떤 일을 하러 오다.
+    source_english: To go to a place to meet someone or do something.
+    authored_interpretation: to come to meet someone or do something
+    rationale: Source 오다 is coming, not the English go. Preserve the contextual deictic contrast rather than copying the identical-looking visit frame from 찾아가다.
+  ko-nikl-44274-s002:
+    source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 오다.
+    source_english: To take back something that was lost, lent, or entrusted.
+    authored_interpretation: to retrieve a lost, lent or entrusted item and bring it back
+    rationale: The English omits 가지고 오다; preserve the lost/lent/entrusted object condition and retrieval with carrying back. Identical English does not collapse this into 찾아가다2.
+  ko-nikl-16017-s003:
+    source_korean: 익숙하고 친근하게 느끼게 하다.
+    source_english: To make someone feel familiar and friendly.
+    authored_interpretation: to give a familiar and friendly impression
+    rationale: Authored role-clarification rather than a claimed typographical error; 느끼게 하다 concerns the caused impression. Do not describe the experiencer themselves as familiar/friendly or assert an actual friendship.
   ko-nikl-01979-s001:
     source_korean: 온도, 맑고 흐림, 빛깔, 비중, 어떤 물질이나 세균이 포함된 양 등에 따라 결정되는 물의 성질.
     source_english: 'A property of water determined by its temperature, cleanness or murkiness, color, proportion, the amount of a substance or germ, etc.  '

@@ -1,0 +1,444 @@
+schema_version: 1
+id: ko-movement-actions-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: bounded parent integration complete; overall curriculum remains incomplete
+parent_integration:
+  baseline: 6947696
+  accepted_active_senses: 43
+  accepted_support_senses: 5
+  combined_senses: 48
+  source_parents: 24
+  new_core_source_parents: 14
+  new_provisional_free_families: 10
+  admitted_unbanded_parents: 4
+  admitted_complete_source_positions: 5
+  original_positions_across_all_selected_parents: 92
+  official_text_reading_senses: 48
+  new_crosswalks: 0
+  new_authored_reading_decisions: 0
+  exact_source_interpretations: 4
+  source_admission: >
+    Rechecked all forty-eight selected meanings and every complete pending
+    source array against the pinned CSV. Admit all four requested parents,
+    preserving original POS, unbanded status, positions and English whitespace.
+    Complete unchanged parents remain in source-senses.yaml, not a new source.
+  label_refinements: >
+    Retrieval labels explicitly retain the lost/lent/entrusted object
+    condition as well as taking away versus bringing back. The causative
+    falling position explicitly retains a deep place, with water/pit examples
+    in its complete source. No unrelated sense or grammar anchor is substituted.
+  identity_adjudication: >
+    Retain the seven active new families and three requested nominal/
+    predicate families. Preserve all prior canonical names, categories and
+    members. For 지나치다, use an explicit provisional shared-stem
+    passing-beyond/category relationship: actual passing/overlooking verbs
+    versus descriptive degree beyond a limit, not merely shared spelling.
+    Original POS and valency remain separate; qualified lexical review is
+    still needed. No extra noun or source sense is synthesized as a bridge.
+  reading_assessment: >
+    All twenty-four source parents have exact full ordered-definition
+    matches with actual official citation text. The handoff's unassessed
+    queues were not measured gaps. Preserve alternatives 되돌리다/뒈돌리다
+    and actual source length/sound changes such as 마지하다, 차자가다,
+    차자오다, 빠ː저나오다, 내ː노타, 내려노타 and 끄ː러내다.
+    No external search, new authored aid, changed crosswalk or borrowed
+    homograph reading is needed. Six earlier reading holds remain.
+  resulting_coverage:
+    core_dictionary_parents: 5525
+    core_senses: 7939
+    core_distinct_spellings: 5205
+    core_spelling_pos_pairs: 5315
+    core_lexical_identities: 5268
+    core_provisional_free_families: 5005
+    core_bound_forms: 40
+    core_function_items: 223
+    core_official_text_senses: 7683
+    core_authored_unreviewed_reading_senses: 256
+    selected_pool_senses: 8065
+    selected_pool_provisional_free_families: 5061
+    retained_support_parents: 962
+    selected_support_parents: 958
+    reading_crosswalks: 407
+    authored_reading_decisions: 210
+    exact_source_interpretations: 192
+    core_modules: 772
+    free_family_gap_to_lower_planning_guide: 795
+  validation:
+    combined_course_tourist_source_tests: 156
+    prior_objects: Every earlier raw parent and official overlay entry remains equal to its baseline object; both crosswalk and authored-reading ledgers are unchanged.
+    source_support: Four complete unbanded parents add exactly five original positions.
+    limitation: Reaching five thousand provisional free families is not completing the planning scale, qualified linguistic review or learner mastery.
+  overall_limit: Continued useful breadth, substantive later-growth reassessment and qualified linguistic/pedagogical review remain outstanding; catalog activation is coordinated.
+review_requirement: >-
+  All placements, labels, family decisions and correction requests are
+  original AI-authored work requiring qualified Korean linguistic,
+  lexicographic and pedagogical review. Source comparison and structural
+  tests are not linguistic approval, verified readings, audio assessment,
+  demonstrated mastery or examination readiness.
+scope:
+  - Receive an arrival, visit for a task, and distinguish bringing back from taking away.
+  - Describe following, passing, a detour, an exit and a blocked movement.
+  - Distinguish holding, placing, dropping, giving, returning and dropping a passenger off.
+  - Narrate a changed situation, restored state, standing result, changed rank or turn coming around.
+selection_policy: >-
+  This is a bounded gap-based addition, not a motion-verb dictionary, a
+  noun/predicate catalogue or a quota. Complete original positions of selected
+  parents were inspected, alongside protected counterparts and named leads.
+  Existing semantic coverage is deliberately reused. No source-order,
+  source-band, spelling or automatic first-sense rule assigns teaching levels.
+  Parent owns source admission, pronunciation, corrections-ledger integration,
+  the manifest, generated outputs and every previously handed-back cohort.
+source:
+  source_id: nikl-2024-mirror
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  cached_source_basename: nikl-202401.csv
+  original_records: 53172
+  identity_policy: Original CSV record numbers and definition-list positions are project IDs, not official NIKL entry or sense IDs.
+  evidence_policy: Preserve raw forms, source POS, source bands, ordered Korean/English definitions and whitespace; no reading or missing sense is invented.
+historical_handoff_counts:
+  selected_senses: 43
+  core_senses: 43
+  branch_senses: 0
+  source_parents: 20
+  distinct_selected_spellings: 20
+  identity_records_in_fragment: 19
+  existing_identity_fragments: 12
+  new_independent_family_candidates: 7
+  new_provisional_free_lemma_groups: 7
+  new_bound_form_groups: 0
+  new_function_item_groups: 0
+  senses_in_new_families: 16
+  additional_senses_within_new_families: 9
+  senses_added_to_existing_families: 27
+  additional_sense_depth_total: 36
+  existing_free_families_gaining_first_core_use: 0
+  additional_core_free_coverage: 7
+  source_verb_senses: 43
+  source_nonverb_senses: 0
+  nonfirst_source_positions: 28
+  inspected_original_positions_across_selected_parents: 87
+  source_parents_new_to_protected_selections: 10
+  source_parents_already_represented: 10
+  source_bands: {beginner: 6, intermediate: 33, advanced: 4, unbanded: 0}
+  phases:
+    first-exchanges: 3
+    everyday-life: 23
+    stories-conversations: 13
+    explanation-problems: 4
+    analysis-argument: 0
+    nuance-interpretation: 0
+historical_handoff_count_interpretation: >-
+  Forty-three senses do not mean forty-three new words or twenty new families.
+  Seven provisional new families contain sixteen senses: one family
+  introduction each and nine further meanings. Twenty-seven other senses
+  extend twelve protected families. Thirty-six additions are therefore sense
+  depth rather than new independent-family credit. Ten newly selected source
+  parents are not ten new families: 맞이하다 and the two 찾아- directional
+  compounds conservatively extend two existing families. Pending support
+  contributes to none of the active counts. These are authored operational
+  family counts, not a verified inventory of true lexemes.
+historical_handoff_composition_snapshot:
+  last_registered_cohort_at_check: culture-loanwords
+  source_support_parents_at_check: 925
+  protected_selected_senses: 7966
+  protected_core_senses: 7840
+  protected_core_free_identities: 4957
+  proposed_selected_senses: 8009
+  proposed_core_senses: 7883
+  proposed_core_free_identities: 4964
+  active_sense_overlaps: 0
+  pending_support_sense_overlaps: 0
+  pending_support_parents_already_registered: 0
+  status: >-
+    Live explicit-manifest composition, not the older baseline in the
+    assignment. Proposed totals append only the active movement shards
+    in memory. They are not already registered/published totals.
+placement_rationale:
+  first_exchanges: >-
+    Physical money/object handover supports payment at3. Going versus coming
+    to meet someone or perform a task supports arrangements at4. These
+    source-listed compounds do not themselves choose a polite ending.
+  ordinary_help_services_and_routes: >-
+    Putting down a held object, pulling it out, placing it outside and serving
+    food support household help at5. Presenting an item visibly, retrieving
+    and carrying it away/back, giving it back and explaining an omission
+    support services at6. An illness improving is ordinary care reporting,
+    not medical assessment. Following, passing, an exit, detours and passenger
+    drop-off support route arrangements at7 without granting permission.
+  relationships_and_responsibilities: >-
+    Receiving arrivals, family admission, initiating an exchange, turns and
+    rank changes support work/relationships at8. No predicate inherently
+    supplies subject honorification, humble reference or listener politeness;
+    an institutional rank change is not automatically a polite personal request.
+  narrative_and_procedural_frames: >-
+    Standing after ascending/descending, reversing direction, dropping and
+    losing, leaving a crowd and a situation changing support narration at9.
+    Coerced movement is described, not recommended. Causing a state, restoring
+    an earlier state and letting a confined participant move freely support
+    participant/causation contrasts at11.
+  explanations_and_problems: >-
+    A familiar impression and outcomes departing from expectations support
+    reasons/choices at13. A caught/blocked movement and the appearance of a
+    sought helper/item support unfamiliar problems at14. Handing over an
+    occupied/possessed resource and no longer doing assigned work support
+    negotiated responsibility at15, not unilateral authority. No late-level
+    bucket is added merely because an English label sounds abstract.
+source_position_audit:
+  - {parent: ko-nikl-04798, target: 앞서다, original_positions: 5, selected_positions: [1, 3]}
+  - {parent: ko-nikl-05256, target: 벗어나다, original_positions: 10, selected_positions: [2, 5, 7]}
+  - {parent: ko-nikl-07855, target: 빠뜨리다, original_positions: 4, selected_positions: [1, 2, 3, 4]}
+  - {parent: ko-nikl-07859, target: 빠져나오다, original_positions: 1, selected_positions: [1]}
+  - {parent: ko-nikl-16017, target: 다가가다, original_positions: 3, selected_positions: [3]}
+  - {parent: ko-nikl-18257, target: 돌아서다, original_positions: 7, selected_positions: [3, 4, 7]}
+  - {parent: ko-nikl-18259, target: 돌아오다, original_positions: 8, selected_positions: [2, 4]}
+  - {parent: ko-nikl-18652, target: 되돌리다, original_positions: 3, selected_positions: [1, 2, 3]}
+  - {parent: ko-nikl-18920, target: 뒤따르다, original_positions: 3, selected_positions: [1]}
+  - {parent: ko-nikl-27528, target: 거치다, original_positions: 5, selected_positions: [1]}
+  - {parent: ko-nikl-27595, target: 건네다, original_positions: 2, selected_positions: [1, 2]}
+  - {parent: ko-nikl-34031, target: 끌어내다, original_positions: 3, selected_positions: [1, 2]}
+  - {parent: ko-nikl-34256, target: 나서다, original_positions: 5, selected_positions: [5]}
+  - {parent: ko-nikl-34854, target: 내놓다, original_positions: 13, selected_positions: [1, 2, 4, 5, 8]}
+  - {parent: ko-nikl-34874, target: 내려놓다, original_positions: 3, selected_positions: [1, 3]}
+  - {parent: ko-nikl-34879, target: 내려서다, original_positions: 3, selected_positions: [1, 2]}
+  - {parent: ko-nikl-36556, target: 맞이하다, original_positions: 2, selected_positions: [1, 2]}
+  - {parent: ko-nikl-44266, target: 찾아가다, original_positions: 2, selected_positions: [1, 2]}
+  - {parent: ko-nikl-44274, target: 찾아오다, original_positions: 3, selected_positions: [1, 2]}
+  - {parent: ko-nikl-48449, target: 올라서다, original_positions: 2, selected_positions: [1, 2]}
+identity_policy: >-
+  Exact five-field fragments preserve protected canonical IDs, names and
+  categories and contain only new members with their exact source parents.
+  Same spelling, a new CSV parent or a superficially different English label
+  is insufficient evidence for another free family. Conversely, a shared
+  ending does not prove interchangeability: transitive 빠뜨리다 is not an
+  intransitive 빠지다. New lexicalized-compound families remain provisional
+  after comparison, not an automatic permission to count every variant.
+  Preserve 감사하다26499/free, 실상03447/function, 좀41331/function and
+  중재하다42264/free; do not recreate retired keys26491,03445 or42260.
+existing_fragments:
+  - {identity: ko-lex-36519, lemma: 맞다, category: free-lemma, members: [ko-nikl-36556-s001, ko-nikl-36556-s002]}
+  - {identity: ko-lex-44265, lemma: 찾다, category: free-lemma, members: [ko-nikl-44266-s001, ko-nikl-44266-s002, ko-nikl-44274-s001, ko-nikl-44274-s002]}
+  - {identity: ko-lex-16017, lemma: 다가가다, category: free-lemma, members: [ko-nikl-16017-s003]}
+  - {identity: ko-lex-34256, lemma: 나서다, category: free-lemma, members: [ko-nikl-34256-s005]}
+  - {identity: ko-lex-18920, lemma: 뒤따르다, category: free-lemma, members: [ko-nikl-18920-s001]}
+  - {identity: ko-lex-04798, lemma: 앞서다, category: free-lemma, members: [ko-nikl-04798-s001, ko-nikl-04798-s003]}
+  - {identity: ko-lex-05256, lemma: 벗어나다, category: free-lemma, members: [ko-nikl-05256-s002, ko-nikl-05256-s005, ko-nikl-05256-s007]}
+  - {identity: ko-lex-34854, lemma: 내놓다, category: free-lemma, members: [ko-nikl-34854-s001, ko-nikl-34854-s002, ko-nikl-34854-s004, ko-nikl-34854-s005, ko-nikl-34854-s008]}
+  - {identity: ko-lex-34031, lemma: 끌어내다, category: free-lemma, members: [ko-nikl-34031-s001, ko-nikl-34031-s002]}
+  - {identity: ko-lex-18257, lemma: 돌아서다, category: free-lemma, members: [ko-nikl-18257-s003, ko-nikl-18257-s004, ko-nikl-18257-s007]}
+  - {identity: ko-lex-27528, lemma: 거치다, category: free-lemma, members: [ko-nikl-27528-s001]}
+  - {identity: ko-lex-18259, lemma: 돌아오다, category: free-lemma, members: [ko-nikl-18259-s002, ko-nikl-18259-s004]}
+counterpart_evidence:
+  receiving_family:
+    canonical_identity: ko-lex-36519
+    counterpart_positions: [ko-nikl-36519-s001, ko-nikl-36519-s007]
+    already_selected_position: ko-nikl-36519-s003
+    decision: The two newly selected 맞이하다 positions extend reception/family admission in this existing family; the counterpart positions are evidence, not additional selections.
+  visiting_and_retrieval:
+    canonical_identity: ko-lex-44265
+    counterpart_positions: [ko-nikl-44265-s004, ko-nikl-44265-s005]
+    decision: Directional task-visiting and retrieval/carrying compounds share a conservative existing family while retaining their contrasting source senses.
+  causation:
+    compared_identities: [ko-lex-07861, ko-lex-07862]
+    decision: The coming-out and falling-into 빠지다 homographs remain protected; new transitive 빠뜨리다 is not substituted into their intransitive frames.
+  restoration:
+    compared_positions: [ko-nikl-18224-s010, ko-nikl-18224-s011, ko-nikl-18219-s002]
+    decision: Protected changes of direction/opinion/state do not necessarily restore an earlier state; 되돌리다 explicitly reverses/restores/returns. No existing 돌리다 member is moved.
+  placement_and_passenger:
+    compared_positions: [ko-nikl-15299-s009, ko-nikl-34899-s006, ko-nikl-34899-s010]
+    decision: A held-object placement overlaps ordinary 놓다, but 내려놓다 also has the attested passenger-drop-off frame. Alighting oneself and transporting another person must not be conflated; the high-to-low object variant is not added.
+  stance_after_moving:
+    compared_identities: [ko-lex-48191, ko-lex-48447, ko-lex-34899]
+    decision: Climbing/descending and then standing has a resultant-posture restriction absent from generic ascent/descent. The same selected families carry rank extensions, not extra independent-family credits.
+valency_and_source_boundaries:
+  - 찾아오다 is coming toward the contextual reference point; 찾아가다 is going. Neither must be mechanically equated with movement toward or away from the current speaker in every narrative.
+  - Their retrieval positions concern things lost, entrusted or lent; carrying back/away does not mean picking up any arbitrary new item.
+  - 빠뜨리다1/2 causes entry into a place/state; 빠뜨리다3 loses an item by dropping it; position4 is omission or failure to include what is needed, not automatically an intentional act or an all-purpose forget verb.
+  - 내놓다4 permits a previously confined participant to move outside; 끌어내다2 forces a participant out. Neither is an instruction to restrain or force someone, and neither establishes legal authority.
+  - 거치다1 is being caught or blocked, not blocking another participant or undergoing the already covered inspection process.
+  - 돌아서다3/4 changes a situation or an illness intransitively; 되돌리다2 makes a target return to an earlier state. Change does not entail restoration, and restoration does not entail improvement.
+  - 벗어나다5 states cessation of assigned/required work; it does not specify permission, lawful release, dismissal or blame. Leaving a group/crowd does not automatically mean formally resigning from an institution.
+  - 올라서다/내려서다 rank uses do not specify who caused a promotion/demotion. Their physical standing results should not be discarded in favor of generic go up/down glosses.
+  - 내려놓다 has only physical placement, moving lower and passenger transport in this source parent. No psychological letting-go sense is invented; protected 놓다 already has an actual worry-release position.
+  - 건네다2 addresses another person with words. It does not by itself mean reporting what a third person said or guaranteeing a reply.
+source_correction_requests:
+  ko-nikl-44266-s002:
+    source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 가다.
+    source_english: To take back something that was lost, lent, or entrusted.
+    authored_interpretation: to retrieve a lost, lent or entrusted item and take it away
+    rationale: The English omits 가지고 가다; preserve the lost/lent/entrusted object condition and retrieval followed by carrying away, contrasted with carrying back in 찾아오다2.
+  ko-nikl-44274-s001:
+    source_korean: 사람을 만나거나 어떤 일을 하러 오다.
+    source_english: To go to a place to meet someone or do something.
+    authored_interpretation: to come to meet someone or do something
+    rationale: Source 오다 is coming, not the English go. Preserve the contextual deictic contrast rather than copying the identical-looking visit frame from 찾아가다.
+  ko-nikl-44274-s002:
+    source_korean: 잃어버리거나 맡기거나 빌려주었던 것을 돌려받아서 가지고 오다.
+    source_english: To take back something that was lost, lent, or entrusted.
+    authored_interpretation: to retrieve a lost, lent or entrusted item and bring it back
+    rationale: The English omits 가지고 오다; preserve the lost/lent/entrusted object condition and retrieval with carrying back. Identical English does not collapse this into 찾아가다2.
+  ko-nikl-16017-s003:
+    source_korean: 익숙하고 친근하게 느끼게 하다.
+    source_english: To make someone feel familiar and friendly.
+    authored_interpretation: to give a familiar and friendly impression
+    rationale: Authored role-clarification rather than a claimed typographical error; 느끼게 하다 concerns the caused impression. Do not describe the experiencer themselves as familiar/friendly or assert an actual friendship.
+covered_leads_not_reselected:
+  - {parent: ko-nikl-16023, target: 다가오다, positions: [1, 2], coverage: Both spatial approach and an event/time drawing near are protected.}
+  - {parent: ko-nikl-19260, target: 들어서다, positions: [1, 2, 3, 4, 5], coverage: All five positions are protected; no institution or pregnancy variant is added.}
+  - {parent: ko-nikl-34261, target: 나아가다, positions: [1, 2, 3], coverage: Forward movement and goal/progress meanings are protected.}
+  - {parent: ko-nikl-18973, target: 뒤처지다, positions: [1], coverage: The sole source position is falling behind an ability/level standard; no literal race meaning is invented.}
+  - {parent: ko-nikl-19708, target: 떠올리다, positions: [1, 2], coverage: Both memory/idea and facial-expression positions are protected; no floating-object sense is invented.}
+  - {parent: ko-nikl-35306, target: 넘겨주다, positions: [1], coverage: The full goods/rights/responsibility/task handover position is protected.}
+  - {parent: ko-nikl-11939, target: 잇다, positions: [1, 2, 3, 4], coverage: 'Joining and causing continuation are protected, along with a line and immediate succession.'}
+  - {parent: ko-nikl-10854, target: 이어지다, positions: [1, 2, 3, 4], coverage: 'Connection and continued activity are protected, along with next-stage effects and intergenerational transmission.'}
+bounded_deferrals:
+  - {parent: ko-nikl-04810, target: 앞지르다, positions: [1, 2, 3], reason: Protected and newly extended 앞서다 already supports passing and precedence. Do not add a parallel family for every front/ahead compound or treat the schedule use as required padding.}
+  - {parent: ko-nikl-18656, target: 되돌아오다, positions: [1, 2], reason: Return/restoration largely repeats the protected 돌아오다 frame; instead add the actual turn-taking and long-way meanings of that nearby protected root.}
+  - {parent: ko-nikl-07858, target: 빠져나가다, positions: [1], reason: 'Going out is a real attested deictic counterpart, but this bounded set selects coming out rather than every direction pair.'}
+  - {parent: ko-nikl-27597, target: 건네주다, positions: [1], reason: Real giving-over counterpart inspected; no additional beneficiary/compound-family credit is needed beside selected 건네다.}
+  - {parent: ko-nikl-18222, target: 돌려주다, positions: [1, 2], reason: Giving back to an owner and arranging something for another to use are real positions; not selected merely to complete the return/beneficiary derivational set.}
+  - {parent: ko-nikl-04775, target: 앞당기다, positions: [1, 2], reason: 'Pulling forward and moving an appointment earlier are real nearby meanings, but this cohort is not extended into a new schedule-change or all-prefix sweep.'}
+  - {parent: ko-nikl-34854, target: 내놓다, positions: [9, 10, 11, 12, 13], reason: 'Body exposure, sacrifice, exclusion, public disclosure and emitted substances are not added just because this polysemous parent is open.'}
+  - {parent: ko-nikl-34879, target: 내려서다, positions: [3], reason: The leaving-a-high-place phase does not need an additional near-overlapping placement after selecting standing lower.}
+  - {parent: ko-nikl-34874, target: 내려놓다, positions: [2], reason: The high-to-low object movement overlaps protected 내리다10; prioritize held placement and the genuinely different passenger frame.}
+variant_comparison:
+  selected_parent: ko-nikl-07855
+  selected_target: 빠뜨리다
+  unregistered_variant_parent: ko-nikl-07865
+  unregistered_variant_target: 빠트리다
+  original_positions: [1, 2, 3, 4]
+  full_bilingual_comparison: identical
+  decision: No support request and no second free family. Any later spelling admission should extend the selected family rather than create a duplicate.
+source_limited_gaps:
+  exact_forms_absent_across_all_source_pos: [이어가다, 이어나가다, 맞이]
+  decision: >-
+    No exact form was found after checking the full pinned CSV across all POS,
+    not merely the band-filtered registry. This is a limitation of this source,
+    not a claim that the Korean forms are invalid. No ordinal, nominal base or
+    invented definition is supplied. Existing 잇다/이어지다 cover the required
+    causative/intransitive continuation contrasts without a manufactured row.
+historical_support_requests:
+  status: exact-source-requests-not-active-selections
+  requested_parents: 4
+  proposed_senses: 5
+  preserved_original_source_positions: 5
+  source_verb_parents: 4
+  source_unspecified_pos_parents: 0
+  proposed_new_free_families: 3
+  proposed_existing_family_fragments: 1
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  policy: >-
+    These complete original unbanded records are requests only, not admitted
+    source, assessed readings or extra active words. Preferred identities
+    conservatively compare retained nominal counterparts and the protected
+    지나치다 adjective. Parent decides admission and final family composition.
+  requests:
+    - source_parent: ko-nikl-18599
+      target: 동행하다
+      source_part_of_speech: 동사
+      source_vocabulary_level: ''
+      identity: {key: ko-lex-18598, lemma: 동행, category: free-lemma}
+      counterpart_parent: ko-nikl-18598
+      evidence:
+        - position: 1
+          source_korean: 함께 길을 가다.
+          source_english: To make a journey together.
+      placements:
+        - {id: ko-nikl-18599-s001, level: 7, topic: travel, ds: to make a journey together with someone}
+      reason: >-
+        Joint travel supports accompanying someone to an appointment or
+        coordinating a journey, rather than following behind them. The retained
+        noun 동행18598 has both the journey act and a companion position;
+        use one provisional base family, without selecting those extra nouns.
+    - source_parent: ko-nikl-35924
+      target: 마주하다
+      source_part_of_speech: 동사
+      source_vocabulary_level: ''
+      identity: {key: ko-lex-35924, lemma: 마주하다, category: free-lemma}
+      evidence:
+        - position: 1
+          source_korean: 서로 정면으로 대하다.
+          source_english: To face each other head-on.
+      placements:
+        - {id: ko-nikl-35924-s001, level: 8, topic: people, ds: to face each other directly}
+      reason: >-
+        Mutual direct facing supports describing an encounter, not automatically
+        confrontation, disagreement or metaphorically confronting a problem.
+        Related adverb 마주35922 was checked but is not selected or promoted to
+        a free family. Its existence does not create a second requested item.
+    - source_parent: ko-nikl-40340
+      target: 방문하다
+      source_part_of_speech: 동사
+      source_vocabulary_level: ''
+      identity: {key: ko-lex-40335, lemma: 방문, category: free-lemma}
+      counterpart_parent: ko-nikl-40335
+      evidence:
+        - position: 1
+          source_korean: 사람을 만나거나 무엇을 보기 위해 어떤 장소를 찾아가다.
+          source_english: 'To go to a certain place in order to meet a person or see something. '
+      placements:
+        - {id: ko-nikl-40340-s001, level: 6, topic: services, ds: to visit a place to meet someone or see something}
+      reason: >-
+        A conventional lexical predicate for arranging a service or personal
+        visit, not an unrestricted go/do-a-task gloss. The retained act noun
+        방문40335 supplies the proposed canonical base; do not select it again
+        for noun/predicate breadth. Room-door homograph 방문40334 is distinct.
+    - source_parent: ko-nikl-42561
+      target: 지나치다
+      source_part_of_speech: 동사
+      source_vocabulary_level: ''
+      identity: {key: ko-lex-42562, lemma: 지나치다, category: free-lemma}
+      evidence:
+        - position: 1
+          source_korean: 어떤 곳에 들르거나 머무르지 않고 그냥 지나다.
+          source_english: To go past a place without dropping by some place.
+        - position: 2
+          source_korean: 어떤 일이나 현상을 문제 삼거나 관심 가지지 않고 가볍게 생각하다.
+          source_english: To take no notice or pay no attention to a thing or phenomenon, and consider it as something light.
+      placements:
+        - {id: ko-nikl-42561-s001, level: 7, topic: travel, ds: to pass a place without stopping there}
+        - {id: ko-nikl-42561-s002, level: 13, topic: reasoning, ds: to take little notice of something and treat it lightly}
+      reason: >-
+        Passing without stopping and lightly overlooking a matter are actual
+        verb positions, not the registered descriptive excess position42562.
+        Conservatively share the protected spelling's existing free family
+        rather than turn a new POS-separated parent into another free credit.
+        Preserve verb versus descriptive-predicate inflection and valency;
+        this operational grouping is not a claim that the uses are identical.
+pending_source_correction_requests: {}
+historical_reading_review:
+  status: unassessed-parent-owned
+  new_parent_count: 10
+  reused_parent_count: 10
+  new_parent_queue: [ko-nikl-07855, ko-nikl-07859, ko-nikl-18652, ko-nikl-27595, ko-nikl-34874, ko-nikl-34879, ko-nikl-36556, ko-nikl-44266, ko-nikl-44274, ko-nikl-48449]
+  reused_parent_queue: [ko-nikl-04798, ko-nikl-05256, ko-nikl-16017, ko-nikl-18257, ko-nikl-18259, ko-nikl-18920, ko-nikl-27528, ko-nikl-34031, ko-nikl-34256, ko-nikl-34854]
+  pending_support_parent_queue: [ko-nikl-18599, ko-nikl-35924, ko-nikl-40340, ko-nikl-42561]
+  policy: >-
+    These are coverage queues, not measured pronunciation gaps. No dictionary
+    lookup, crosswalk decision, generated pronunciation or audio is asserted.
+    Existing parent readings may already suffice; parent measures actual
+    missing evidence and retains all earlier reading holds unchanged.
+scope_protection:
+  excluded_interpretive_forms: [되짚다, 짚다, 파고들다, 내세우다, 내비치다, 덧붙이다, 풀어내다, 빚어내다, 비유하다, 묘사하다, 규정하다, 단정하다, 시사하다, 옹호하다, 반박하다, 수긍하다, 일축하다, 관철하다, 내포하다, 함축하다, 치우치다, 돋보이다, 부각하다, 뒷받침하다, 뭉뚱그리다, 따지다, 따져보다, 가리키다, 드러내다, 압축하다]
+  held_sense_exclusions: [ko-nikl-48419-s001, ko-nikl-22209-s001, ko-nikl-41731-s001, ko-nikl-48777-s001]
+  policy: No excluded form or held sense is selected; no unfinished other cohort is manually inspected or edited. Registered shards are composed read-only through the explicit live manifest.
+historical_handoff_validation:
+  status: structural-and-exact-source-checks-passed
+  checks:
+    - Strict repository YAML loading and exact vocabulary/identity field sets.
+    - Actual source IDs, complete original positions, POS, bands and labels of at most64 characters.
+    - Exact count, phase, queue and source-position-audit agreement.
+    - Live explicit-manifest composition without duplicate senses or changed protected identities/categories/members.
+    - Hash-verified cached CSV evidence for all selected parents, pending requests and spelling comparison.
+    - Exact selected source corrections through the repository correction helper.
+    - Pending preferred-identity composition in memory, including preserved 지나치다 category.
+    - Existing targeted selection, lexical-identity and correction tests.
+  existing_tests:
+    - test_korean_program.KoreanSelectionFilesTests
+    - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+    - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+  existing_test_count: 8
+  existing_test_result: passed
+  active_source_correction_request_count: 4
+  pending_source_correction_request_count: 0
+  limitation: Parent must admit any approved support and integrate readings, source corrections and manifest selections before validating generated teaching views.

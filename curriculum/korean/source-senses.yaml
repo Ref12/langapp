@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 958
+  unbanded-support: 962
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -66980,6 +66980,18 @@ entries:
     source_position: 2
     english: A person who makes a journey together with someone.
     korean: 함께 길을 가는 사람.
+- id: ko-nikl-18599
+  target: 동행하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18599
+  senses:
+  - id: ko-nikl-18599-s001
+    source_position: 1
+    english: To make a journey together.
+    korean: 함께 길을 가다.
 - id: ko-nikl-18601
   target: 동향
   part_of_speech: noun
@@ -127006,6 +127018,18 @@ entries:
     source_position: 4
     english: To face an occasion or situation.
     korean: 어떤 경우나 처지에 당하게 되다.
+- id: ko-nikl-35924
+  target: 마주하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35924
+  senses:
+  - id: ko-nikl-35924-s001
+    source_position: 1
+    english: To face each other head-on.
+    korean: 서로 정면으로 대하다.
 - id: ko-nikl-35925
   target: 마중
   part_of_speech: noun
@@ -141219,6 +141243,18 @@ entries:
     source_position: 1
     english: The act of going to a certain place in order to meet a person or see something.
     korean: 사람을 만나거나 무엇을 보기 위해 어떤 장소를 찾아감.
+- id: ko-nikl-40340
+  target: 방문하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40340
+  senses:
+  - id: ko-nikl-40340-s001
+    source_position: 1
+    english: 'To go to a certain place in order to meet a person or see something. '
+    korean: 사람을 만나거나 무엇을 보기 위해 어떤 장소를 찾아가다.
 - id: ko-nikl-40341
   target: 방바닥
   part_of_speech: noun
@@ -148015,6 +148051,23 @@ entries:
     source_position: 6
     english: To go beyond a certain state or degree.
     korean: 어떤 상태나 정도를 넘어서다.
+- id: ko-nikl-42561
+  target: 지나치다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42561
+  senses:
+  - id: ko-nikl-42561-s001
+    source_position: 1
+    english: To go past a place without dropping by some place.
+    korean: 어떤 곳에 들르거나 머무르지 않고 그냥 지나다.
+  - id: ko-nikl-42561-s002
+    source_position: 2
+    english: To take no notice or pay no attention to a thing or phenomenon, and consider it as something
+      light.
+    korean: 어떤 일이나 현상을 문제 삼거나 관심 가지지 않고 가볍게 생각하다.
 - id: ko-nikl-42562
   target: 지나치다
   part_of_speech: descriptive verb

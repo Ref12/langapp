@@ -789,6 +789,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "financial-exchanges-notes.yaml",
             "culture-loanwords-notes.yaml",
             "environmental-resources-notes.yaml",
+            "movement-actions-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -3068,6 +3069,88 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("or that time", words["ko-nikl-36154-s001"]["ds"])
         self.assertNotIn("time", words["ko-nikl-26287-s001"]["ds"])
         self.assertIn("inside the earth", words["ko-nikl-42765-s001"]["ds"])
+
+    def test_movement_retrieval_keeps_source_condition_and_come_go_contrast(self):
+        words, sources, identities = (
+            self.references.vocabulary, self.references.provenance, self.references.lexical_identity,
+        )
+        self.assertIn("to go", words["ko-nikl-44266-s001"]["ds"])
+        self.assertIn("to come", words["ko-nikl-44274-s001"]["ds"])
+        for parent, direction in (("44266", "take it away"), ("44274", "bring it back")):
+            item = f"ko-nikl-{parent}-s002"
+            self.assertIn("lost, lent or entrusted", words[item]["ds"])
+            self.assertIn(direction, words[item]["ds"])
+            self.assertEqual(identities[item], "ko-lex-44265")
+        self.assertEqual(sources["ko-nikl-44266-s002"]["source_english"],
+                         sources["ko-nikl-44274-s002"]["source_english"])
+        self.assertNotEqual(words["ko-nikl-44266-s002"]["ds"], words["ko-nikl-44274-s002"]["ds"])
+
+    def test_movement_valency_posture_and_state_changes_keep_actual_frames(self):
+        words = self.references.vocabulary
+        self.assertIn("deep place", words["ko-nikl-07855-s001"]["ds"])
+        self.assertIn("drop and lose", words["ko-nikl-07855-s003"]["ds"])
+        self.assertIn("leave out", words["ko-nikl-07855-s004"]["ds"])
+        self.assertIn("let a confined", words["ko-nikl-34854-s004"]["ds"])
+        self.assertIn("force a person or animal", words["ko-nikl-34031-s002"]["ds"])
+        self.assertIn("pull an object", words["ko-nikl-34031-s001"]["ds"])
+        self.assertIn("stand", words["ko-nikl-48449-s001"]["ds"])
+        self.assertIn("stand lower", words["ko-nikl-34879-s001"]["ds"])
+        self.assertIn("a lower grade or position", words["ko-nikl-34879-s002"]["ds"])
+        self.assertIn("restore", words["ko-nikl-18652-s002"]["ds"])
+        self.assertIn("another state", words["ko-nikl-18257-s003"]["ds"])
+        self.assertIn("illness to improve gradually", words["ko-nikl-18257-s004"]["ds"])
+        self.assertIn("caught or blocked", words["ko-nikl-27528-s001"]["ds"])
+        self.assertIn("no longer do", words["ko-nikl-05256-s005"]["ds"])
+        self.assertIn("familiar and friendly impression", words["ko-nikl-16017-s003"]["ds"])
+
+    def test_movement_support_preserves_actual_arrays_pos_and_protected_families(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "movement-actions-notes.yaml")
+        rows = load_yaml(authoring / "movement-actions-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["historical_support_requests"]["requests"]
+        self.assertEqual(len(rows), 48)
+        self.assertEqual(len({row["id"].rsplit("-s", 1)[0] for row in rows}), 24)
+        self.assertEqual(len(requests), 4)
+        for request in requests:
+            parent = parents[request["source_parent"]]
+            self.assertEqual(parent["source_part_of_speech"], "동사")
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertIsNone(parent["reference_level"])
+            self.assertEqual(
+                [(x["source_position"], x["korean"], x["english"]) for x in parent["senses"]],
+                [(x["position"], x["source_korean"], x["source_english"]) for x in request["evidence"]],
+            )
+        identities = self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-36556-s001"], identities["ko-nikl-36519-s003"])
+        self.assertEqual(identities["ko-nikl-34031-s001"], identities["ko-nikl-34031-s003"])
+        self.assertEqual(identities["ko-nikl-42561-s001"], identities["ko-nikl-42562-s001"])
+        self.assertEqual(identities["ko-nikl-42561-s002"], identities["ko-nikl-42562-s001"])
+        self.assertEqual(parents["ko-nikl-42562"]["source_part_of_speech"], "형용사")
+        self.assertEqual(identities["ko-nikl-40340-s001"], "ko-lex-40335")
+        self.assertEqual(identities["ko-nikl-18599-s001"], "ko-lex-18598")
+        self.assertNotIn("ko-nikl-40335-s001", self.references.vocabulary)
+        self.assertNotIn("ko-nikl-18598-s001", self.references.vocabulary)
+
+    def test_movement_citations_are_actual_text_and_variants_do_not_pad_counts(self):
+        authoring = self.root / "authoring" / "teaching"
+        rows = load_yaml(authoring / "movement-actions-vocabulary.yaml")
+        words = self.references.vocabulary
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+        for parent, expected in (
+            ("36556", "마지하다"), ("44266", "차자가다"), ("44274", "차자오다"),
+            ("07859", "빠ː저나오다"), ("34854", "내ː노타"), ("34874", "내려노타"),
+            ("34031", "끄ː러내다"), ("18652", "되돌리다 / 뒈돌리다"),
+        ):
+            self.assertEqual(words[f"ko-nikl-{parent}-s001"]["pr"], expected)
+        for parent in ("07865", "18656", "07858", "27597"):
+            self.assertFalse(any(row["id"].startswith(f"ko-nikl-{parent}-") for row in rows))
+        self.assertIn("someone's turn", words["ko-nikl-18259-s002"]["ds"])
+        self.assertIn("longer roundabout route", words["ko-nikl-18259-s004"]["ds"])
+        self.assertIn("face each other", words["ko-nikl-35924-s001"]["ds"])
+        self.assertIn("without stopping", words["ko-nikl-42561-s001"]["ds"])
+        self.assertIn("treat it lightly", words["ko-nikl-42561-s002"]["ds"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

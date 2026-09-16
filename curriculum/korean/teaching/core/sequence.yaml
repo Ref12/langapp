@@ -683,6 +683,7 @@ phases:
       - {id: ko-nikl-16593-s001, ch: 달러, pr: 달러, ds: United States currency}
       - {id: ko-nikl-16594-s001, ch: 달러, pr: 달러, ds: the US dollar as a currency unit}
       - {id: ko-nikl-51872-s001, ch: 환전, pr: 환ː전, ds: exchanging one country's currency for another's}
+      - {id: ko-nikl-27595-s001, ch: 건네다, pr: 건ː네다, ds: to hand money or an object to another person}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-03699-s001, ch: 십, pr: 십, ds: ten (Sino-Korean numeral)}
@@ -943,6 +944,22 @@ phases:
       grammar: []
       review_vocabulary: []
       review_grammar: []
+    - id: level-04-travel-01
+      title: Travel and transport - 1
+      outcome: Clarify destinations and means and revise arrangements.
+      vocabulary:
+      - {id: ko-nikl-44266-s001, ch: 찾아가다, pr: 차자가다, ds: to go to meet someone or do something}
+      - {id: ko-nikl-44274-s001, ch: 찾아오다, pr: 차자오다, ds: to come to meet someone or do something}
+      grammar: []
+      review_vocabulary:
+      - {id: ko-nikl-47023-s001, ch: 여기, pr: 여기, ds: here; a place near the speaker}
+      - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
+      - {id: ko-nikl-24126-s001, ch: 한국, pr: 한ː국, ds: South Korea; the Republic of Korea}
+      - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
+      - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
+      - {id: ko-nikl-45768-s001, ch: 출입구, pr: 추립꾸, ds: an entrance or exit}
+      review_grammar:
+      - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
     - id: level-04-leisure-01
       title: Leisure and sport - 1
       outcome: Explain participation and invite someone without assuming availability.
@@ -1341,6 +1358,8 @@ phases:
       - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
       - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
       - {id: ko-nikl-45768-s001, ch: 출입구, pr: 추립꾸, ds: an entrance or exit}
+      - {id: ko-nikl-44266-s001, ch: 찾아가다, pr: 차자가다, ds: to go to meet someone or do something}
+      - {id: ko-nikl-44274-s001, ch: 찾아오다, pr: 차자오다, ds: to come to meet someone or do something}
       review_grammar:
       - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
     - id: level-04-learning-practice-01
@@ -2016,6 +2035,9 @@ phases:
       - {id: ko-nikl-13864-s002, ch: 전세, pr: 전세, ds: a room leased for a set term against a fixed deposit}
       - {id: ko-nikl-04054-s002, ch: 아늑하다, pr: 아느카다, ds: warm and cozy in feeling}
       - {id: ko-nikl-29214-s001, ch: 고요하다, pr: 고요하다, ds: quiet; without noise or disorder}
+      - {id: ko-nikl-34854-s001, ch: 내놓다, pr: 내ː노타, ds: to take an object out and put it outside}
+      - {id: ko-nikl-34031-s001, ch: 끌어내다, pr: 끄ː러내다, ds: to pull an object out}
+      - {id: ko-nikl-34874-s001, ch: 내려놓다, pr: 내려노타, ds: to put down something one is holding}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-13954-s001, ch: 전원, pr: 저ː눤, ds: a source supplying electrical power to a device}
@@ -2137,6 +2159,7 @@ phases:
       - {id: ko-nikl-26022-s001, ch: 가지, pr: 가지, ds: eggplant (aubergine)}
       - {id: ko-nikl-46176-s001, ch: 양상추, pr: 양상추, ds: round-leaved salad lettuce}
       - {id: ko-nikl-15173-s001, ch: 조림, pr: 조림, ds: seasoned food simmered until almost no broth remains}
+      - {id: ko-nikl-34854-s005, ch: 내놓다, pr: 내ː노타, ds: to serve food}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-03072-s001, ch: 식용유, pr: 시굥뉴, ds: cooking oil}
@@ -2183,6 +2206,8 @@ phases:
       - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
       - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
       - {id: ko-nikl-45768-s001, ch: 출입구, pr: 추립꾸, ds: an entrance or exit}
+      - {id: ko-nikl-44266-s001, ch: 찾아가다, pr: 차자가다, ds: to go to meet someone or do something}
+      - {id: ko-nikl-44274-s001, ch: 찾아오다, pr: 차자오다, ds: to come to meet someone or do something}
       review_grammar:
       - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
       - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -2476,14 +2501,14 @@ phases:
       - {id: ko-topik1-g027, ch: V/A-지만, ds: contrast two clauses}
       - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
       review_vocabulary:
-      - {id: ko-nikl-45770-s001, ch: 출입문, pr: 추림문, ds: a door used for entering and leaving}
-      - {id: ko-nikl-16508-s001, ch: 단층, pr: 단층, ds: a building having only one storey}
-      - {id: ko-nikl-12606-s010, ch: 잘, pr: 잘, ds: sufficiently and satisfactorily}
       - {id: ko-nikl-26648-s002, ch: 갑갑하다, pr: 갑까파다, ds: to feel stifled by a cramped space}
       - {id: ko-nikl-50534-s001, ch: 육아, pr: 유가, ds: caring for and bringing up young children}
       - {id: ko-nikl-13864-s002, ch: 전세, pr: 전세, ds: a room leased for a set term against a fixed deposit}
       - {id: ko-nikl-04054-s002, ch: 아늑하다, pr: 아느카다, ds: warm and cozy in feeling}
       - {id: ko-nikl-29214-s001, ch: 고요하다, pr: 고요하다, ds: quiet; without noise or disorder}
+      - {id: ko-nikl-34854-s001, ch: 내놓다, pr: 내ː노타, ds: to take an object out and put it outside}
+      - {id: ko-nikl-34031-s001, ch: 끌어내다, pr: 끄ː러내다, ds: to pull an object out}
+      - {id: ko-nikl-34874-s001, ch: 내려놓다, pr: 내려노타, ds: to put down something one is holding}
       review_grammar:
       - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
       - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
@@ -2495,14 +2520,14 @@ phases:
       - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
       - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
       review_vocabulary:
-      - {id: ko-nikl-45770-s001, ch: 출입문, pr: 추림문, ds: a door used for entering and leaving}
-      - {id: ko-nikl-16508-s001, ch: 단층, pr: 단층, ds: a building having only one storey}
-      - {id: ko-nikl-12606-s010, ch: 잘, pr: 잘, ds: sufficiently and satisfactorily}
       - {id: ko-nikl-26648-s002, ch: 갑갑하다, pr: 갑까파다, ds: to feel stifled by a cramped space}
       - {id: ko-nikl-50534-s001, ch: 육아, pr: 유가, ds: caring for and bringing up young children}
       - {id: ko-nikl-13864-s002, ch: 전세, pr: 전세, ds: a room leased for a set term against a fixed deposit}
       - {id: ko-nikl-04054-s002, ch: 아늑하다, pr: 아느카다, ds: warm and cozy in feeling}
       - {id: ko-nikl-29214-s001, ch: 고요하다, pr: 고요하다, ds: quiet; without noise or disorder}
+      - {id: ko-nikl-34854-s001, ch: 내놓다, pr: 내ː노타, ds: to take an object out and put it outside}
+      - {id: ko-nikl-34031-s001, ch: 끌어내다, pr: 끄ː러내다, ds: to pull an object out}
+      - {id: ko-nikl-34874-s001, ch: 내려놓다, pr: 내려노타, ds: to put down something one is holding}
       review_grammar:
       - {id: ko-topik1-g025, ch: V-지 마세요, ds: ask someone not to do an action}
       - {id: ko-topik1-g027, ch: V/A-지만, ds: contrast two clauses}
@@ -2616,14 +2641,14 @@ phases:
       - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-45770-s001, ch: 출입문, pr: 추림문, ds: a door used for entering and leaving}
-      - {id: ko-nikl-16508-s001, ch: 단층, pr: 단층, ds: a building having only one storey}
-      - {id: ko-nikl-12606-s010, ch: 잘, pr: 잘, ds: sufficiently and satisfactorily}
       - {id: ko-nikl-26648-s002, ch: 갑갑하다, pr: 갑까파다, ds: to feel stifled by a cramped space}
       - {id: ko-nikl-50534-s001, ch: 육아, pr: 유가, ds: caring for and bringing up young children}
       - {id: ko-nikl-13864-s002, ch: 전세, pr: 전세, ds: a room leased for a set term against a fixed deposit}
       - {id: ko-nikl-04054-s002, ch: 아늑하다, pr: 아느카다, ds: warm and cozy in feeling}
       - {id: ko-nikl-29214-s001, ch: 고요하다, pr: 고요하다, ds: quiet; without noise or disorder}
+      - {id: ko-nikl-34854-s001, ch: 내놓다, pr: 내ː노타, ds: to take an object out and put it outside}
+      - {id: ko-nikl-34031-s001, ch: 끌어내다, pr: 끄ː러내다, ds: to pull an object out}
+      - {id: ko-nikl-34874-s001, ch: 내려놓다, pr: 내려노타, ds: to put down something one is holding}
       review_grammar:
       - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
       - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
@@ -2796,7 +2821,6 @@ phases:
       - {id: ko-nikl-51259-s002, ch: 호박, pr: 호ː박, ds: a pumpkin}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-22636-s001, ch: 팽이버섯, pr: 팽이버섣, ds: enoki mushrooms}
       - {id: ko-nikl-46187-s001, ch: 양송이, pr: 양송이, ds: button mushrooms}
       - {id: ko-nikl-00551-s001, ch: 셀러리, pr: 셀러리, ds: celery}
       - {id: ko-nikl-20932-s001, ch: 크림, pr: 크림, ds: dairy cream}
@@ -2804,6 +2828,7 @@ phases:
       - {id: ko-nikl-26022-s001, ch: 가지, pr: 가지, ds: eggplant (aubergine)}
       - {id: ko-nikl-46176-s001, ch: 양상추, pr: 양상추, ds: round-leaved salad lettuce}
       - {id: ko-nikl-15173-s001, ch: 조림, pr: 조림, ds: seasoned food simmered until almost no broth remains}
+      - {id: ko-nikl-34854-s005, ch: 내놓다, pr: 내ː노타, ds: to serve food}
       review_grammar:
       - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
       - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -3090,6 +3115,7 @@ phases:
       outcome: Explain an ordinary symptom or care need without clinical claims.
       vocabulary:
       - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
+      - {id: ko-nikl-18257-s004, ch: 돌아서다, pr: 도라서다, ds: for an illness to improve gradually}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-03688-s001, ch: 심하다, pr: 심ː하다, ds: to be severe; excessive in degree}
@@ -3286,6 +3312,12 @@ phases:
       - {id: ko-nikl-45084-s001, ch: 초본, pr: 초본, ds: a document copying selected parts of an original}
       - {id: ko-nikl-50003-s001, ch: 위임장, pr: 위임짱, ds: a document entrusting another person with a task}
       - {id: ko-nikl-21990-s001, ch: 투표소, pr: 투표소, ds: a polling place where voting takes place}
+      - {id: ko-nikl-44266-s002, ch: 찾아가다, pr: 차자가다, ds: 'to retrieve a lost, lent or entrusted item and take it away'}
+      - {id: ko-nikl-44274-s002, ch: 찾아오다, pr: 차자오다, ds: 'to retrieve a lost, lent or entrusted item and bring it back'}
+      - {id: ko-nikl-07855-s004, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to leave out something that should be included}
+      - {id: ko-nikl-34854-s002, ch: 내놓다, pr: 내ː노타, ds: to put something in front where it can be seen}
+      - {id: ko-nikl-18652-s003, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to give something back}
+      - {id: ko-nikl-40340-s001, ch: 방문하다, pr: 방ː문하다, ds: to visit a place to meet someone or see something}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-05826-s001, ch: 보육, pr: 보ː육, ds: caring for and educating young children}
@@ -3362,7 +3394,6 @@ phases:
       - {id: ko-nikl-34899-s012, ch: 내리다, pr: 내리다, ds: 'for a value to fall, or to lower that value'}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-07564-s001, ch: 비싸다, pr: 비싸다, ds: to be expensive}
       - {id: ko-nikl-03760-s001, ch: 싸다, pr: 싸다, ds: to be inexpensive; to be cheap}
       - {id: ko-nikl-12554-s001, ch: 잔돈, pr: 잔돈, ds: money in small denominations}
       - {id: ko-nikl-12555-s002, ch: 잔돈, pr: 잔돈, ds: change given or received after payment}
@@ -3370,6 +3401,7 @@ phases:
       - {id: ko-nikl-16593-s001, ch: 달러, pr: 달러, ds: United States currency}
       - {id: ko-nikl-16594-s001, ch: 달러, pr: 달러, ds: the US dollar as a currency unit}
       - {id: ko-nikl-51872-s001, ch: 환전, pr: 환ː전, ds: exchanging one country's currency for another's}
+      - {id: ko-nikl-27595-s001, ch: 건네다, pr: 건ː네다, ds: to hand money or an object to another person}
       review_grammar: []
     - id: level-06-money-02
       title: Money and commerce - 2
@@ -3620,7 +3652,6 @@ phases:
       grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
       review_vocabulary:
-      - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
       - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
       - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
       - {id: ko-nikl-36748-s005, ch: 맥, pr: 맥, ds: a pulse; arterial movement accompanying the heartbeat}
@@ -3628,6 +3659,7 @@ phases:
       - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
       - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
       - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
+      - {id: ko-nikl-18257-s004, ch: 돌아서다, pr: 도라서다, ds: for an illness to improve gradually}
       review_grammar: []
     - id: level-06-services-practice-01
       title: Services and transactions - sentence practice 1
@@ -3638,14 +3670,14 @@ phases:
       - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
       - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
       review_vocabulary:
-      - {id: ko-nikl-19380-s001, ch: 등본, pr: 등본, ds: an exact copy of a government-registered document}
-      - {id: ko-nikl-28691-s001, ch: 계약서, pr: 계ː약써 / 게ː약써, ds: a document recording a contract's terms and formation}
-      - {id: ko-nikl-38828-s001, ch: 미납, pr: 미ː납, ds: money due that has not yet been paid}
-      - {id: ko-nikl-39103-s001, ch: 민원, pr: 미눤, ds: a resident's request for administrative agency action}
-      - {id: ko-nikl-39105-s001, ch: 민원인, pr: 미눠닌, ds: person or group requesting administrative agency action}
-      - {id: ko-nikl-45084-s001, ch: 초본, pr: 초본, ds: a document copying selected parts of an original}
       - {id: ko-nikl-50003-s001, ch: 위임장, pr: 위임짱, ds: a document entrusting another person with a task}
       - {id: ko-nikl-21990-s001, ch: 투표소, pr: 투표소, ds: a polling place where voting takes place}
+      - {id: ko-nikl-44266-s002, ch: 찾아가다, pr: 차자가다, ds: 'to retrieve a lost, lent or entrusted item and take it away'}
+      - {id: ko-nikl-44274-s002, ch: 찾아오다, pr: 차자오다, ds: 'to retrieve a lost, lent or entrusted item and bring it back'}
+      - {id: ko-nikl-07855-s004, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to leave out something that should be included}
+      - {id: ko-nikl-34854-s002, ch: 내놓다, pr: 내ː노타, ds: to put something in front where it can be seen}
+      - {id: ko-nikl-18652-s003, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to give something back}
+      - {id: ko-nikl-40340-s001, ch: 방문하다, pr: 방ː문하다, ds: to visit a place to meet someone or see something}
       review_grammar:
       - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
     - id: level-06-services-practice-02
@@ -3655,14 +3687,14 @@ phases:
       grammar:
       - {id: ko-topik2-g036, ch: V/A-지 않다, ds: negate a predicate with a final auxiliary}
       review_vocabulary:
-      - {id: ko-nikl-19380-s001, ch: 등본, pr: 등본, ds: an exact copy of a government-registered document}
-      - {id: ko-nikl-28691-s001, ch: 계약서, pr: 계ː약써 / 게ː약써, ds: a document recording a contract's terms and formation}
-      - {id: ko-nikl-38828-s001, ch: 미납, pr: 미ː납, ds: money due that has not yet been paid}
-      - {id: ko-nikl-39103-s001, ch: 민원, pr: 미눤, ds: a resident's request for administrative agency action}
-      - {id: ko-nikl-39105-s001, ch: 민원인, pr: 미눠닌, ds: person or group requesting administrative agency action}
-      - {id: ko-nikl-45084-s001, ch: 초본, pr: 초본, ds: a document copying selected parts of an original}
       - {id: ko-nikl-50003-s001, ch: 위임장, pr: 위임짱, ds: a document entrusting another person with a task}
       - {id: ko-nikl-21990-s001, ch: 투표소, pr: 투표소, ds: a polling place where voting takes place}
+      - {id: ko-nikl-44266-s002, ch: 찾아가다, pr: 차자가다, ds: 'to retrieve a lost, lent or entrusted item and take it away'}
+      - {id: ko-nikl-44274-s002, ch: 찾아오다, pr: 차자오다, ds: 'to retrieve a lost, lent or entrusted item and bring it back'}
+      - {id: ko-nikl-07855-s004, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to leave out something that should be included}
+      - {id: ko-nikl-34854-s002, ch: 내놓다, pr: 내ː노타, ds: to put something in front where it can be seen}
+      - {id: ko-nikl-18652-s003, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to give something back}
+      - {id: ko-nikl-40340-s001, ch: 방문하다, pr: 방ː문하다, ds: to visit a place to meet someone or see something}
       review_grammar:
       - {id: ko-topik2-g004, ch: V-아/어 보다, ds: try an action or describe trying it before}
       - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
@@ -3691,7 +3723,6 @@ phases:
       grammar:
       - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
       review_vocabulary:
-      - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
       - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
       - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
       - {id: ko-nikl-36748-s005, ch: 맥, pr: 맥, ds: a pulse; arterial movement accompanying the heartbeat}
@@ -3699,6 +3730,7 @@ phases:
       - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
       - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
       - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
+      - {id: ko-nikl-18257-s004, ch: 돌아서다, pr: 도라서다, ds: for an illness to improve gradually}
       review_grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
     - id: level-06-time-practice-01
@@ -3727,7 +3759,6 @@ phases:
       grammar:
       - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
       review_vocabulary:
-      - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
       - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
       - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
       - {id: ko-nikl-36748-s005, ch: 맥, pr: 맥, ds: a pulse; arterial movement accompanying the heartbeat}
@@ -3735,6 +3766,7 @@ phases:
       - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
       - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
       - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
+      - {id: ko-nikl-18257-s004, ch: 돌아서다, pr: 도라서다, ds: for an illness to improve gradually}
       review_grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
       - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
@@ -3856,13 +3888,13 @@ phases:
       - {id: ko-nikl-48762-s001, ch: 외관, pr: 외ː관 / 웨ː관, ds: outward appearance}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-16508-s001, ch: 단층, pr: 단층, ds: a building having only one storey}
-      - {id: ko-nikl-12606-s010, ch: 잘, pr: 잘, ds: sufficiently and satisfactorily}
-      - {id: ko-nikl-26648-s002, ch: 갑갑하다, pr: 갑까파다, ds: to feel stifled by a cramped space}
       - {id: ko-nikl-50534-s001, ch: 육아, pr: 유가, ds: caring for and bringing up young children}
       - {id: ko-nikl-13864-s002, ch: 전세, pr: 전세, ds: a room leased for a set term against a fixed deposit}
       - {id: ko-nikl-04054-s002, ch: 아늑하다, pr: 아느카다, ds: warm and cozy in feeling}
       - {id: ko-nikl-29214-s001, ch: 고요하다, pr: 고요하다, ds: quiet; without noise or disorder}
+      - {id: ko-nikl-34854-s001, ch: 내놓다, pr: 내ː노타, ds: to take an object out and put it outside}
+      - {id: ko-nikl-34031-s001, ch: 끌어내다, pr: 끄ː러내다, ds: to pull an object out}
+      - {id: ko-nikl-34874-s001, ch: 내려놓다, pr: 내려노타, ds: to put down something one is holding}
       - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
       review_grammar:
       - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
@@ -3942,11 +3974,11 @@ phases:
       - {id: ko-nikl-27395-s001, ch: 거리, pr: 거리, ds: a street}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
-      - {id: ko-nikl-24126-s001, ch: 한국, pr: 한ː국, ds: South Korea; the Republic of Korea}
       - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
       - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
       - {id: ko-nikl-45768-s001, ch: 출입구, pr: 추립꾸, ds: an entrance or exit}
+      - {id: ko-nikl-44266-s001, ch: 찾아가다, pr: 차자가다, ds: to go to meet someone or do something}
+      - {id: ko-nikl-44274-s001, ch: 찾아오다, pr: 차자오다, ds: to come to meet someone or do something}
       - {id: ko-nikl-04763-s001, ch: 앞, pr: 압, ds: the front; ahead}
       - {id: ko-nikl-18870-s001, ch: 뒤, pr: 뒤ː, ds: the back; behind}
       - {id: ko-nikl-08489-s001, ch: 사이, pr: 사이, ds: between; the space between things}
@@ -4345,6 +4377,15 @@ phases:
       - {id: ko-nikl-37148-s001, ch: 면세점, pr: 면ː세점, ds: an airport or downtown shop selling tax-exempt goods}
       - {id: ko-nikl-26287-s001, ch: 간조, pr: 간조, ds: low tide; the sea at its lowest level as water recedes}
       - {id: ko-nikl-36154-s001, ch: 만조, pr: 만ː조, ds: 'high tide; water reaching its highest level, or that time'}
+      - {id: ko-nikl-18920-s001, ch: 뒤따르다, pr: 뒤ː따르다, ds: to follow behind someone}
+      - {id: ko-nikl-04798-s001, ch: 앞서다, pr: 압써다, ds: to stand ahead}
+      - {id: ko-nikl-04798-s003, ch: 앞서다, pr: 압써다, ds: to go past someone or something ahead}
+      - {id: ko-nikl-07859-s001, ch: 빠져나오다, pr: 빠ː저나오다, ds: to come out of a bounded place or environment}
+      - {id: ko-nikl-18257-s007, ch: 돌아서다, pr: 도라서다, ds: to go around a place and pass it}
+      - {id: ko-nikl-18259-s004, ch: 돌아오다, pr: 도라오다, ds: to come by a longer roundabout route}
+      - {id: ko-nikl-34874-s003, ch: 내려놓다, pr: 내려노타, ds: to take someone somewhere in a vehicle and drop them off}
+      - {id: ko-nikl-18599-s001, ch: 동행하다, pr: 동행하다, ds: to make a journey together with someone}
+      - {id: ko-nikl-42561-s001, ch: 지나치다, pr: 지나치다, ds: to pass a place without stopping there}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-09686-s001, ch: 서, pr: 서, ds: west as a cardinal direction}
@@ -4389,14 +4430,14 @@ phases:
       - {id: ko-nikl-16938-s001, ch: 대기, pr: 대ː기, ds: waiting for a time or opportunity}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-19380-s001, ch: 등본, pr: 등본, ds: an exact copy of a government-registered document}
-      - {id: ko-nikl-28691-s001, ch: 계약서, pr: 계ː약써 / 게ː약써, ds: a document recording a contract's terms and formation}
-      - {id: ko-nikl-38828-s001, ch: 미납, pr: 미ː납, ds: money due that has not yet been paid}
-      - {id: ko-nikl-39103-s001, ch: 민원, pr: 미눤, ds: a resident's request for administrative agency action}
-      - {id: ko-nikl-39105-s001, ch: 민원인, pr: 미눠닌, ds: person or group requesting administrative agency action}
-      - {id: ko-nikl-45084-s001, ch: 초본, pr: 초본, ds: a document copying selected parts of an original}
       - {id: ko-nikl-50003-s001, ch: 위임장, pr: 위임짱, ds: a document entrusting another person with a task}
       - {id: ko-nikl-21990-s001, ch: 투표소, pr: 투표소, ds: a polling place where voting takes place}
+      - {id: ko-nikl-44266-s002, ch: 찾아가다, pr: 차자가다, ds: 'to retrieve a lost, lent or entrusted item and take it away'}
+      - {id: ko-nikl-44274-s002, ch: 찾아오다, pr: 차자오다, ds: 'to retrieve a lost, lent or entrusted item and bring it back'}
+      - {id: ko-nikl-07855-s004, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to leave out something that should be included}
+      - {id: ko-nikl-34854-s002, ch: 내놓다, pr: 내ː노타, ds: to put something in front where it can be seen}
+      - {id: ko-nikl-18652-s003, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to give something back}
+      - {id: ko-nikl-40340-s001, ch: 방문하다, pr: 방ː문하다, ds: to visit a place to meet someone or see something}
       review_grammar:
       - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
       - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -4769,14 +4810,14 @@ phases:
       - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
       - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
       review_vocabulary:
-      - {id: ko-nikl-30349-s001, ch: 관세, pr: 관세, ds: customs duty charged on imported goods}
-      - {id: ko-nikl-46852-s001, ch: 엇갈리다, pr: 얻깔리다, ds: to miss each other because timing or direction differs}
-      - {id: ko-nikl-20873-s001, ch: 쾌적하다, pr: 쾌저카다, ds: pleasant and refreshing}
-      - {id: ko-nikl-24272-s001, ch: 한적하다, pr: 한저카다, ds: leisurely and quiet}
-      - {id: ko-nikl-40494-s001, ch: 방향, pr: 방향, ds: a direction toward a place or compass point}
-      - {id: ko-nikl-37148-s001, ch: 면세점, pr: 면ː세점, ds: an airport or downtown shop selling tax-exempt goods}
-      - {id: ko-nikl-26287-s001, ch: 간조, pr: 간조, ds: low tide; the sea at its lowest level as water recedes}
-      - {id: ko-nikl-36154-s001, ch: 만조, pr: 만ː조, ds: 'high tide; water reaching its highest level, or that time'}
+      - {id: ko-nikl-04798-s001, ch: 앞서다, pr: 압써다, ds: to stand ahead}
+      - {id: ko-nikl-04798-s003, ch: 앞서다, pr: 압써다, ds: to go past someone or something ahead}
+      - {id: ko-nikl-07859-s001, ch: 빠져나오다, pr: 빠ː저나오다, ds: to come out of a bounded place or environment}
+      - {id: ko-nikl-18257-s007, ch: 돌아서다, pr: 도라서다, ds: to go around a place and pass it}
+      - {id: ko-nikl-18259-s004, ch: 돌아오다, pr: 도라오다, ds: to come by a longer roundabout route}
+      - {id: ko-nikl-34874-s003, ch: 내려놓다, pr: 내려노타, ds: to take someone somewhere in a vehicle and drop them off}
+      - {id: ko-nikl-18599-s001, ch: 동행하다, pr: 동행하다, ds: to make a journey together with someone}
+      - {id: ko-nikl-42561-s001, ch: 지나치다, pr: 지나치다, ds: to pass a place without stopping there}
       review_grammar:
       - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
       - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -4788,14 +4829,14 @@ phases:
       - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
       - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
       review_vocabulary:
-      - {id: ko-nikl-30349-s001, ch: 관세, pr: 관세, ds: customs duty charged on imported goods}
-      - {id: ko-nikl-46852-s001, ch: 엇갈리다, pr: 얻깔리다, ds: to miss each other because timing or direction differs}
-      - {id: ko-nikl-20873-s001, ch: 쾌적하다, pr: 쾌저카다, ds: pleasant and refreshing}
-      - {id: ko-nikl-24272-s001, ch: 한적하다, pr: 한저카다, ds: leisurely and quiet}
-      - {id: ko-nikl-40494-s001, ch: 방향, pr: 방향, ds: a direction toward a place or compass point}
-      - {id: ko-nikl-37148-s001, ch: 면세점, pr: 면ː세점, ds: an airport or downtown shop selling tax-exempt goods}
-      - {id: ko-nikl-26287-s001, ch: 간조, pr: 간조, ds: low tide; the sea at its lowest level as water recedes}
-      - {id: ko-nikl-36154-s001, ch: 만조, pr: 만ː조, ds: 'high tide; water reaching its highest level, or that time'}
+      - {id: ko-nikl-04798-s001, ch: 앞서다, pr: 압써다, ds: to stand ahead}
+      - {id: ko-nikl-04798-s003, ch: 앞서다, pr: 압써다, ds: to go past someone or something ahead}
+      - {id: ko-nikl-07859-s001, ch: 빠져나오다, pr: 빠ː저나오다, ds: to come out of a bounded place or environment}
+      - {id: ko-nikl-18257-s007, ch: 돌아서다, pr: 도라서다, ds: to go around a place and pass it}
+      - {id: ko-nikl-18259-s004, ch: 돌아오다, pr: 도라오다, ds: to come by a longer roundabout route}
+      - {id: ko-nikl-34874-s003, ch: 내려놓다, pr: 내려노타, ds: to take someone somewhere in a vehicle and drop them off}
+      - {id: ko-nikl-18599-s001, ch: 동행하다, pr: 동행하다, ds: to make a journey together with someone}
+      - {id: ko-nikl-42561-s001, ch: 지나치다, pr: 지나치다, ds: to pass a place without stopping there}
       review_grammar:
       - {id: ko-topik1-g015, ch: N에서 N까지, ds: give a route's origin and endpoint}
       - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
@@ -4877,14 +4918,14 @@ phases:
       grammar:
       - {id: ko-topik2-g002, ch: V-(으)면 안 되다, ds: prohibit an action by a rule or warning}
       review_vocabulary:
-      - {id: ko-nikl-30349-s001, ch: 관세, pr: 관세, ds: customs duty charged on imported goods}
-      - {id: ko-nikl-46852-s001, ch: 엇갈리다, pr: 얻깔리다, ds: to miss each other because timing or direction differs}
-      - {id: ko-nikl-20873-s001, ch: 쾌적하다, pr: 쾌저카다, ds: pleasant and refreshing}
-      - {id: ko-nikl-24272-s001, ch: 한적하다, pr: 한저카다, ds: leisurely and quiet}
-      - {id: ko-nikl-40494-s001, ch: 방향, pr: 방향, ds: a direction toward a place or compass point}
-      - {id: ko-nikl-37148-s001, ch: 면세점, pr: 면ː세점, ds: an airport or downtown shop selling tax-exempt goods}
-      - {id: ko-nikl-26287-s001, ch: 간조, pr: 간조, ds: low tide; the sea at its lowest level as water recedes}
-      - {id: ko-nikl-36154-s001, ch: 만조, pr: 만ː조, ds: 'high tide; water reaching its highest level, or that time'}
+      - {id: ko-nikl-04798-s001, ch: 앞서다, pr: 압써다, ds: to stand ahead}
+      - {id: ko-nikl-04798-s003, ch: 앞서다, pr: 압써다, ds: to go past someone or something ahead}
+      - {id: ko-nikl-07859-s001, ch: 빠져나오다, pr: 빠ː저나오다, ds: to come out of a bounded place or environment}
+      - {id: ko-nikl-18257-s007, ch: 돌아서다, pr: 도라서다, ds: to go around a place and pass it}
+      - {id: ko-nikl-18259-s004, ch: 돌아오다, pr: 도라오다, ds: to come by a longer roundabout route}
+      - {id: ko-nikl-34874-s003, ch: 내려놓다, pr: 내려노타, ds: to take someone somewhere in a vehicle and drop them off}
+      - {id: ko-nikl-18599-s001, ch: 동행하다, pr: 동행하다, ds: to make a journey together with someone}
+      - {id: ko-nikl-42561-s001, ch: 지나치다, pr: 지나치다, ds: to pass a place without stopping there}
       review_grammar:
       - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
       - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
@@ -5058,6 +5099,9 @@ phases:
       - {id: ko-nikl-04906-s001, ch: 애호가, pr: 애ː호가, ds: an enthusiast for a thing or activity}
       - {id: ko-nikl-03793-s001, ch: 싹싹하다, pr: 싹싸카다, ds: 'socially perceptive, friendly, and open in manner'}
       - {id: ko-nikl-22619-s001, ch: 팬, pr: 팬, ds: 'an enthusiastic admirer of sports, arts, or their performers'}
+      - {id: ko-nikl-36556-s001, ch: 맞이하다, pr: 마지하다, ds: to receive someone or something that comes}
+      - {id: ko-nikl-36556-s002, ch: 맞이하다, pr: 마지하다, ds: to accept someone as a family member}
+      - {id: ko-nikl-35924-s001, ch: 마주하다, pr: 마주하다, ds: to face each other directly}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-19929-s001, ch: 뜨다, pr: 뜨다, ds: to leave a place for another}
@@ -5623,6 +5667,9 @@ phases:
       - {id: ko-nikl-08606-s001, ch: 사항, pr: 사ː항, ds: an item or detail constituting a matter or fact}
       - {id: ko-nikl-10617-s001, ch: 이력, pr: 이ː력, ds: 'one''s history of education, work and experience'}
       - {id: ko-nikl-15250-s001, ch: 조수, pr: 조ː수, ds: an assistant helping under a supervisor's guidance}
+      - {id: ko-nikl-48449-s002, ch: 올라서다, pr: 올라서다, ds: to rise to a high position or level}
+      - {id: ko-nikl-34879-s002, ch: 내려서다, pr: 내려서다, ds: to move to a lower grade or position}
+      - {id: ko-nikl-18259-s002, ch: 돌아오다, pr: 도라오다, ds: for someone's turn to do something to come}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-29767-s001, ch: 공문, pr: 공문, ds: an official work document from a public organisation}
@@ -5715,6 +5762,7 @@ phases:
       - {id: ko-nikl-31751-s001, ch: 귀담아듣다, pr: 귀다마듣따, ds: to listen carefully and attentively}
       - {id: ko-nikl-38633-s001, ch: 물론, pr: 물론, ds: something that goes without saying}
       - {id: ko-nikl-06392-s001, ch: 부디, pr: 부ː디, ds: 'please, earnestly; if at all possible'}
+      - {id: ko-nikl-27595-s002, ch: 건네다, pr: 건ː네다, ds: to address someone and start speaking to them}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-34156-s006, ch: 나누다, pr: 나누다, ds: 'to exchange words, conversation, or greetings'}
@@ -5986,14 +6034,14 @@ phases:
       - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
       - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
       review_vocabulary:
-      - {id: ko-nikl-02726-s001, ch: 시급, pr: 시급, ds: pay calculated according to hours worked}
-      - {id: ko-nikl-07611-s001, ch: 비정규직, pr: 비ː정규직, ds: nonregular work with insecure tenure or benefits (source)}
-      - {id: ko-nikl-35418-s001, ch: 노동조합, pr: 노동조합, ds: a workers' organisation improving conditions and status}
       - {id: ko-nikl-37931-s001, ch: 무급, pr: 무급, ds: receiving no pay for work}
       - {id: ko-nikl-50129-s001, ch: 유급, pr: 유ː급, ds: receiving pay for work}
       - {id: ko-nikl-08606-s001, ch: 사항, pr: 사ː항, ds: an item or detail constituting a matter or fact}
       - {id: ko-nikl-10617-s001, ch: 이력, pr: 이ː력, ds: 'one''s history of education, work and experience'}
       - {id: ko-nikl-15250-s001, ch: 조수, pr: 조ː수, ds: an assistant helping under a supervisor's guidance}
+      - {id: ko-nikl-48449-s002, ch: 올라서다, pr: 올라서다, ds: to rise to a high position or level}
+      - {id: ko-nikl-34879-s002, ch: 내려서다, pr: 내려서다, ds: to move to a lower grade or position}
+      - {id: ko-nikl-18259-s002, ch: 돌아오다, pr: 도라오다, ds: for someone's turn to do something to come}
       review_grammar: []
     - id: level-08-communication-practice-01
       title: Communication and information - sentence practice 1
@@ -6003,7 +6051,6 @@ phases:
       - {id: ko-topik2-g026, ch: 'V/A-지요? / -죠?', ds: check shared information or seek confirmation}
       - {id: ko-topik2-g033, ch: V-는데 / A-(으)ㄴ데, ds: offer background or a contextual contrast}
       review_vocabulary:
-      - {id: ko-nikl-37089-s001, ch: 메일, pr: 메일, ds: an email sent through a computer network}
       - {id: ko-nikl-36384-s001, ch: 말씀하다, pr: 말ː씀하다, ds: to speak (honorific)}
       - {id: ko-nikl-36383-s001, ch: 말씀, pr: 말ː씀, ds: another person's words (honorific)}
       - {id: ko-nikl-36383-s002, ch: 말씀, pr: 말ː씀, ds: one's own words (humble)}
@@ -6011,6 +6058,7 @@ phases:
       - {id: ko-nikl-31751-s001, ch: 귀담아듣다, pr: 귀다마듣따, ds: to listen carefully and attentively}
       - {id: ko-nikl-38633-s001, ch: 물론, pr: 물론, ds: something that goes without saying}
       - {id: ko-nikl-06392-s001, ch: 부디, pr: 부ː디, ds: 'please, earnestly; if at all possible'}
+      - {id: ko-nikl-27595-s002, ch: 건네다, pr: 건ː네다, ds: to address someone and start speaking to them}
       review_grammar:
       - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
       - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
@@ -6052,14 +6100,14 @@ phases:
       grammar:
       - {id: ko-topik1-g031, ch: V-ㅂ시다 / -읍시다, ds: formal joint-action proposal with role constraints}
       review_vocabulary:
-      - {id: ko-nikl-02726-s001, ch: 시급, pr: 시급, ds: pay calculated according to hours worked}
-      - {id: ko-nikl-07611-s001, ch: 비정규직, pr: 비ː정규직, ds: nonregular work with insecure tenure or benefits (source)}
-      - {id: ko-nikl-35418-s001, ch: 노동조합, pr: 노동조합, ds: a workers' organisation improving conditions and status}
       - {id: ko-nikl-37931-s001, ch: 무급, pr: 무급, ds: receiving no pay for work}
       - {id: ko-nikl-50129-s001, ch: 유급, pr: 유ː급, ds: receiving pay for work}
       - {id: ko-nikl-08606-s001, ch: 사항, pr: 사ː항, ds: an item or detail constituting a matter or fact}
       - {id: ko-nikl-10617-s001, ch: 이력, pr: 이ː력, ds: 'one''s history of education, work and experience'}
       - {id: ko-nikl-15250-s001, ch: 조수, pr: 조ː수, ds: an assistant helping under a supervisor's guidance}
+      - {id: ko-nikl-48449-s002, ch: 올라서다, pr: 올라서다, ds: to rise to a high position or level}
+      - {id: ko-nikl-34879-s002, ch: 내려서다, pr: 내려서다, ds: to move to a lower grade or position}
+      - {id: ko-nikl-18259-s002, ch: 돌아오다, pr: 도라오다, ds: for someone's turn to do something to come}
       review_grammar:
       - {id: ko-topik2-g007, ch: V-(으)면서, ds: do two actions at the same time}
       - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
@@ -6154,14 +6202,14 @@ phases:
       - {id: ko-nikl-32804-s002, ch: 기르다, pr: 기르다, ds: to raise a child}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-11061-s001, ch: 인간관계, pr: 인간관계 / 인간관게, ds: relationships among people or between people and groups}
-      - {id: ko-nikl-20372-s001, ch: 친목, pr: 친목, ds: friendly and harmonious relations}
-      - {id: ko-nikl-23489-s001, ch: 프로필, pr: 프로필, ds: a brief personal profile or resume}
       - {id: ko-nikl-20532-s001, ch: 칭찬하다, pr: 칭찬하다, ds: to praise someone's strengths or good work in words}
       - {id: ko-nikl-12606-s013, ch: 잘, pr: 잘, ds: kindly and with sincere care}
       - {id: ko-nikl-04906-s001, ch: 애호가, pr: 애ː호가, ds: an enthusiast for a thing or activity}
       - {id: ko-nikl-03793-s001, ch: 싹싹하다, pr: 싹싸카다, ds: 'socially perceptive, friendly, and open in manner'}
       - {id: ko-nikl-22619-s001, ch: 팬, pr: 팬, ds: 'an enthusiastic admirer of sports, arts, or their performers'}
+      - {id: ko-nikl-36556-s001, ch: 맞이하다, pr: 마지하다, ds: to receive someone or something that comes}
+      - {id: ko-nikl-36556-s002, ch: 맞이하다, pr: 마지하다, ds: to accept someone as a family member}
+      - {id: ko-nikl-35924-s001, ch: 마주하다, pr: 마주하다, ds: to face each other directly}
       review_grammar:
       - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
       - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
@@ -6175,6 +6223,7 @@ phases:
       - {id: ko-nikl-19260-s005, ch: 들어서다, pr: 드러서다, ds: for a child to be conceived}
       - {id: ko-nikl-41126-s003, ch: 조용히, pr: 조용히, ds: peacefully; without trouble}
       - {id: ko-nikl-02710-s002, ch: 시골, pr: 시골, ds: one's hometown left behind when moving to a city}
+      - {id: ko-nikl-05256-s007, ch: 벗어나다, pr: 벗어나다, ds: to leave a group or crowd}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-18399-s001, ch: 동문, pr: 동문, ds: someone from the same school or teacher}
@@ -6202,7 +6251,7 @@ phases:
       - {id: ko-nikl-19745-s011, ch: 떨어지다, pr: 떠러지다, ds: for something attached to come apart or fall off}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-29214-s001, ch: 고요하다, pr: 고요하다, ds: quiet; without noise or disorder}
+      - {id: ko-nikl-34874-s001, ch: 내려놓다, pr: 내려노타, ds: to put down something one is holding}
       - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
       - {id: ko-nikl-32915-s001, ch: 기숙사, pr: 기숙싸, ds: a dormitory for students or employees}
       - {id: ko-nikl-18601-s001, ch: 동향, pr: 동향, ds: facing east or an eastward direction}
@@ -6287,7 +6336,6 @@ phases:
       - {id: ko-nikl-42850-s001, ch: 지치다, pr: 지ː치다, ds: to become exhausted through hard work or suffering}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
       - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
       - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
       - {id: ko-nikl-36748-s005, ch: 맥, pr: 맥, ds: a pulse; arterial movement accompanying the heartbeat}
@@ -6295,6 +6343,7 @@ phases:
       - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
       - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
       - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
+      - {id: ko-nikl-18257-s004, ch: 돌아서다, pr: 도라서다, ds: for an illness to improve gradually}
       review_grammar:
       - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
       - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
@@ -6319,14 +6368,14 @@ phases:
       - {id: ko-nikl-34256-s004, ch: 나서다, pr: 나서다, ds: to leave a place and set out for somewhere}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-30349-s001, ch: 관세, pr: 관세, ds: customs duty charged on imported goods}
-      - {id: ko-nikl-46852-s001, ch: 엇갈리다, pr: 얻깔리다, ds: to miss each other because timing or direction differs}
-      - {id: ko-nikl-20873-s001, ch: 쾌적하다, pr: 쾌저카다, ds: pleasant and refreshing}
-      - {id: ko-nikl-24272-s001, ch: 한적하다, pr: 한저카다, ds: leisurely and quiet}
-      - {id: ko-nikl-40494-s001, ch: 방향, pr: 방향, ds: a direction toward a place or compass point}
-      - {id: ko-nikl-37148-s001, ch: 면세점, pr: 면ː세점, ds: an airport or downtown shop selling tax-exempt goods}
-      - {id: ko-nikl-26287-s001, ch: 간조, pr: 간조, ds: low tide; the sea at its lowest level as water recedes}
-      - {id: ko-nikl-36154-s001, ch: 만조, pr: 만ː조, ds: 'high tide; water reaching its highest level, or that time'}
+      - {id: ko-nikl-04798-s001, ch: 앞서다, pr: 압써다, ds: to stand ahead}
+      - {id: ko-nikl-04798-s003, ch: 앞서다, pr: 압써다, ds: to go past someone or something ahead}
+      - {id: ko-nikl-07859-s001, ch: 빠져나오다, pr: 빠ː저나오다, ds: to come out of a bounded place or environment}
+      - {id: ko-nikl-18257-s007, ch: 돌아서다, pr: 도라서다, ds: to go around a place and pass it}
+      - {id: ko-nikl-18259-s004, ch: 돌아오다, pr: 도라오다, ds: to come by a longer roundabout route}
+      - {id: ko-nikl-34874-s003, ch: 내려놓다, pr: 내려노타, ds: to take someone somewhere in a vehicle and drop them off}
+      - {id: ko-nikl-18599-s001, ch: 동행하다, pr: 동행하다, ds: to make a journey together with someone}
+      - {id: ko-nikl-42561-s001, ch: 지나치다, pr: 지나치다, ds: to pass a place without stopping there}
       review_grammar:
       - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
       - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
@@ -6451,14 +6500,14 @@ phases:
       - {id: ko-nikl-29779-s003, ch: 공백, pr: 공백, ds: a gap in one's history without activity or achievement}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-02726-s001, ch: 시급, pr: 시급, ds: pay calculated according to hours worked}
-      - {id: ko-nikl-07611-s001, ch: 비정규직, pr: 비ː정규직, ds: nonregular work with insecure tenure or benefits (source)}
-      - {id: ko-nikl-35418-s001, ch: 노동조합, pr: 노동조합, ds: a workers' organisation improving conditions and status}
       - {id: ko-nikl-37931-s001, ch: 무급, pr: 무급, ds: receiving no pay for work}
       - {id: ko-nikl-50129-s001, ch: 유급, pr: 유ː급, ds: receiving pay for work}
       - {id: ko-nikl-08606-s001, ch: 사항, pr: 사ː항, ds: an item or detail constituting a matter or fact}
       - {id: ko-nikl-10617-s001, ch: 이력, pr: 이ː력, ds: 'one''s history of education, work and experience'}
       - {id: ko-nikl-15250-s001, ch: 조수, pr: 조ː수, ds: an assistant helping under a supervisor's guidance}
+      - {id: ko-nikl-48449-s002, ch: 올라서다, pr: 올라서다, ds: to rise to a high position or level}
+      - {id: ko-nikl-34879-s002, ch: 내려서다, pr: 내려서다, ds: to move to a lower grade or position}
+      - {id: ko-nikl-18259-s002, ch: 돌아오다, pr: 도라오다, ds: for someone's turn to do something to come}
       review_grammar:
       - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
       - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
@@ -6497,7 +6546,6 @@ phases:
       - {id: ko-nikl-37878-s001, ch: 묘사하다, pr: 묘ː사하다, ds: 'to depict faithfully and in detail, in words or pictures'}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-37089-s001, ch: 메일, pr: 메일, ds: an email sent through a computer network}
       - {id: ko-nikl-36384-s001, ch: 말씀하다, pr: 말ː씀하다, ds: to speak (honorific)}
       - {id: ko-nikl-36383-s001, ch: 말씀, pr: 말ː씀, ds: another person's words (honorific)}
       - {id: ko-nikl-36383-s002, ch: 말씀, pr: 말ː씀, ds: one's own words (humble)}
@@ -6505,6 +6553,7 @@ phases:
       - {id: ko-nikl-31751-s001, ch: 귀담아듣다, pr: 귀다마듣따, ds: to listen carefully and attentively}
       - {id: ko-nikl-38633-s001, ch: 물론, pr: 물론, ds: something that goes without saying}
       - {id: ko-nikl-06392-s001, ch: 부디, pr: 부ː디, ds: 'please, earnestly; if at all possible'}
+      - {id: ko-nikl-27595-s002, ch: 건네다, pr: 건ː네다, ds: to address someone and start speaking to them}
       review_grammar:
       - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
       - {id: ko-topik2-g026, ch: 'V/A-지요? / -죠?', ds: check shared information or seek confirmation}
@@ -6783,6 +6832,10 @@ phases:
       - {id: ko-nikl-07249-s001, ch: 불쑥, pr: 불쑥, ds: with a sudden protrusion or thrust outward}
       - {id: ko-nikl-27958-s001, ch: 겨우, pr: 겨우, ds: with great difficulty; only just managing}
       - {id: ko-nikl-38384-s002, ch: 문득, pr: 문득, ds: 'suddenly, of an action being done'}
+      - {id: ko-nikl-07855-s001, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to make someone or something fall into a deep place}
+      - {id: ko-nikl-07855-s003, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to drop and lose something}
+      - {id: ko-nikl-34031-s002, ch: 끌어내다, pr: 끄ː러내다, ds: to force a person or animal to come out}
+      - {id: ko-nikl-18652-s001, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to make something move in the opposite direction}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-11492-s001, ch: 일부러, pr: 일ː부러, ds: deliberately; with a particular intention}
@@ -6793,6 +6846,26 @@ phases:
       - {id: ko-nikl-11334-s004, ch: 일, pr: 일ː, ds: an action someone has done}
       - {id: ko-nikl-07420-s001, ch: 붙잡히다, pr: 붇짜피다, ds: to be held firmly so as not to slip away}
       - {id: ko-nikl-07420-s002, ch: 붙잡히다, pr: 붇짜피다, ds: to be caught while trying to flee}
+      review_grammar:
+      - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
+      - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
+    - id: level-09-actions-05
+      title: Actions and processes - 5
+      outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+      vocabulary:
+      - {id: ko-nikl-48449-s001, ch: 올라서다, pr: 올라서다, ds: to climb to a high place and stand on it}
+      - {id: ko-nikl-34879-s001, ch: 내려서다, pr: 내려서다, ds: to move from a high place and stand lower down}
+      - {id: ko-nikl-18257-s003, ch: 돌아서다, pr: 도라서다, ds: for an event or situation to change to another state}
+      grammar: []
+      review_vocabulary:
+      - {id: ko-nikl-36423-s001, ch: 맘먹다, pr: 맘ː먹따, ds: to decide or intend to do something}
+      - {id: ko-nikl-07249-s001, ch: 불쑥, pr: 불쑥, ds: with a sudden protrusion or thrust outward}
+      - {id: ko-nikl-27958-s001, ch: 겨우, pr: 겨우, ds: with great difficulty; only just managing}
+      - {id: ko-nikl-38384-s002, ch: 문득, pr: 문득, ds: 'suddenly, of an action being done'}
+      - {id: ko-nikl-07855-s001, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to make someone or something fall into a deep place}
+      - {id: ko-nikl-07855-s003, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to drop and lose something}
+      - {id: ko-nikl-34031-s002, ch: 끌어내다, pr: 끄ː러내다, ds: to force a person or animal to come out}
+      - {id: ko-nikl-18652-s001, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to make something move in the opposite direction}
       review_grammar:
       - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
       - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
@@ -7089,14 +7162,14 @@ phases:
       - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
       - {id: ko-topik3-g026, ch: V-이/히/리/기-, ds: present an event with a lexically selected passive}
       review_vocabulary:
-      - {id: ko-nikl-32137-s004, ch: 그저, pr: 그저, ds: just; without a particular reason or purpose}
-      - {id: ko-nikl-16272-s002, ch: 다짐하다, pr: 다짐하다, ds: to resolve firmly and make up one's mind}
-      - {id: ko-nikl-28194-s001, ch: 결심하다, pr: 결씸하다, ds: to make up one's mind firmly about what to do}
-      - {id: ko-nikl-35907-s001, ch: 마음먹다, pr: 마음먹따, ds: to decide or intend to do something}
-      - {id: ko-nikl-36423-s001, ch: 맘먹다, pr: 맘ː먹따, ds: to decide or intend to do something}
-      - {id: ko-nikl-07249-s001, ch: 불쑥, pr: 불쑥, ds: with a sudden protrusion or thrust outward}
-      - {id: ko-nikl-27958-s001, ch: 겨우, pr: 겨우, ds: with great difficulty; only just managing}
       - {id: ko-nikl-38384-s002, ch: 문득, pr: 문득, ds: 'suddenly, of an action being done'}
+      - {id: ko-nikl-07855-s001, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to make someone or something fall into a deep place}
+      - {id: ko-nikl-07855-s003, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to drop and lose something}
+      - {id: ko-nikl-34031-s002, ch: 끌어내다, pr: 끄ː러내다, ds: to force a person or animal to come out}
+      - {id: ko-nikl-18652-s001, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to make something move in the opposite direction}
+      - {id: ko-nikl-48449-s001, ch: 올라서다, pr: 올라서다, ds: to climb to a high place and stand on it}
+      - {id: ko-nikl-34879-s001, ch: 내려서다, pr: 내려서다, ds: to move from a high place and stand lower down}
+      - {id: ko-nikl-18257-s003, ch: 돌아서다, pr: 도라서다, ds: for an event or situation to change to another state}
       review_grammar:
       - {id: ko-topik1-g005, ch: N을/를, ds: mark a direct object}
       - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
@@ -7199,7 +7272,6 @@ phases:
       - {id: ko-nikl-11145-s002, ch: 인물, pr: 인물, ds: a person's appearance}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-34101-s003, ch: 끼다, pr: 끼다, ds: to link fingers or arms together}
       - {id: ko-nikl-12112-s002, ch: 자라다, pr: 자라다, ds: to grow up in a particular environment}
       - {id: ko-nikl-32804-s002, ch: 기르다, pr: 기르다, ds: to raise a child}
       - {id: ko-nikl-19669-s002, ch: 떠나다, pr: 떠나다, ds: to leave familiar people or places for new ones}
@@ -7207,6 +7279,7 @@ phases:
       - {id: ko-nikl-19260-s005, ch: 들어서다, pr: 드러서다, ds: for a child to be conceived}
       - {id: ko-nikl-41126-s003, ch: 조용히, pr: 조용히, ds: peacefully; without trouble}
       - {id: ko-nikl-02710-s002, ch: 시골, pr: 시골, ds: one's hometown left behind when moving to a city}
+      - {id: ko-nikl-05256-s007, ch: 벗어나다, pr: 벗어나다, ds: to leave a group or crowd}
       review_grammar:
       - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
       - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
@@ -7438,7 +7511,7 @@ phases:
       - {id: ko-nikl-30116-s001, ch: 과로, pr: 과ː로, ds: overwork; severe fatigue caused by excessive work}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-15250-s001, ch: 조수, pr: 조ː수, ds: an assistant helping under a supervisor's guidance}
+      - {id: ko-nikl-18259-s002, ch: 돌아오다, pr: 도라오다, ds: for someone's turn to do something to come}
       - {id: ko-nikl-16057-s002, ch: 다녀오다, pr: 다녀오다, ds: to go somewhere for a task and come back}
       - {id: ko-nikl-27094-s001, ch: 개업, pr: 개업, ds: starting a business or opening a shop}
       - {id: ko-nikl-04945-s001, ch: 야근, pr: 야ː근, ds: working beyond normal hours into the night}
@@ -7535,14 +7608,14 @@ phases:
       - {id: ko-nikl-19764-s004, ch: 떼다, pr: 떼ː다, ds: to take one's eyes off something}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-32137-s004, ch: 그저, pr: 그저, ds: just; without a particular reason or purpose}
-      - {id: ko-nikl-16272-s002, ch: 다짐하다, pr: 다짐하다, ds: to resolve firmly and make up one's mind}
-      - {id: ko-nikl-28194-s001, ch: 결심하다, pr: 결씸하다, ds: to make up one's mind firmly about what to do}
-      - {id: ko-nikl-35907-s001, ch: 마음먹다, pr: 마음먹따, ds: to decide or intend to do something}
-      - {id: ko-nikl-36423-s001, ch: 맘먹다, pr: 맘ː먹따, ds: to decide or intend to do something}
-      - {id: ko-nikl-07249-s001, ch: 불쑥, pr: 불쑥, ds: with a sudden protrusion or thrust outward}
-      - {id: ko-nikl-27958-s001, ch: 겨우, pr: 겨우, ds: with great difficulty; only just managing}
       - {id: ko-nikl-38384-s002, ch: 문득, pr: 문득, ds: 'suddenly, of an action being done'}
+      - {id: ko-nikl-07855-s001, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to make someone or something fall into a deep place}
+      - {id: ko-nikl-07855-s003, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to drop and lose something}
+      - {id: ko-nikl-34031-s002, ch: 끌어내다, pr: 끄ː러내다, ds: to force a person or animal to come out}
+      - {id: ko-nikl-18652-s001, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to make something move in the opposite direction}
+      - {id: ko-nikl-48449-s001, ch: 올라서다, pr: 올라서다, ds: to climb to a high place and stand on it}
+      - {id: ko-nikl-34879-s001, ch: 내려서다, pr: 내려서다, ds: to move from a high place and stand lower down}
+      - {id: ko-nikl-18257-s003, ch: 돌아서다, pr: 도라서다, ds: for an event or situation to change to another state}
       review_grammar:
       - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
       - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
@@ -8453,10 +8526,10 @@ phases:
       - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-36423-s001, ch: 맘먹다, pr: 맘ː먹따, ds: to decide or intend to do something}
-      - {id: ko-nikl-07249-s001, ch: 불쑥, pr: 불쑥, ds: with a sudden protrusion or thrust outward}
-      - {id: ko-nikl-27958-s001, ch: 겨우, pr: 겨우, ds: with great difficulty; only just managing}
-      - {id: ko-nikl-38384-s002, ch: 문득, pr: 문득, ds: 'suddenly, of an action being done'}
+      - {id: ko-nikl-18652-s001, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to make something move in the opposite direction}
+      - {id: ko-nikl-48449-s001, ch: 올라서다, pr: 올라서다, ds: to climb to a high place and stand on it}
+      - {id: ko-nikl-34879-s001, ch: 내려서다, pr: 내려서다, ds: to move from a high place and stand lower down}
+      - {id: ko-nikl-18257-s003, ch: 돌아서다, pr: 도라서다, ds: for an event or situation to change to another state}
       - {id: ko-nikl-44101-s001, ch: 참다, pr: 참ː따, ds: to hold back a bodily reaction; to endure pain}
       - {id: ko-nikl-28070-s001, ch: 겪다, pr: 격따, ds: to experience something difficult or important}
       - {id: ko-nikl-07882-s003, ch: 빤히, pr: 빤ː히, ds: 'directly and intently, when looking at something'}
@@ -8559,6 +8632,9 @@ phases:
       - {id: ko-nikl-28635-s001, ch: 계량, pr: 계ː량 / 게ː량, ds: 'counting quantity or measuring volume, weight and the like'}
       - {id: ko-nikl-34196-s002, ch: 나머지, pr: 나머지, ds: the unfinished part of a task}
       - {id: ko-nikl-07830-s004, ch: 빚다, pr: 빋따, ds: to bring about a situation or result}
+      - {id: ko-nikl-07855-s002, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to place someone in a particular state or situation}
+      - {id: ko-nikl-34854-s004, ch: 내놓다, pr: 내ː노타, ds: to let a confined person or animal move freely outside}
+      - {id: ko-nikl-18652-s002, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to restore something or a situation to its earlier state}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-12295-s001, ch: 자연히, pr: 자연히, ds: of its own accord; without intention or effort}
@@ -8818,14 +8894,14 @@ phases:
       - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
       - {id: ko-topik3-g025, ch: V-게 하다, ds: make or allow another participant to act}
       review_vocabulary:
-      - {id: ko-nikl-27374-s001, ch: 거뜬하다, pr: 거뜬하다, ds: to be easy and simple to handle}
-      - {id: ko-nikl-27375-s001, ch: 거뜬히, pr: 거뜬히, ds: easily and effortlessly in handling a task}
-      - {id: ko-nikl-38207-s001, ch: 무작정, pr: 무작쩡, ds: without prior thought or a plan}
       - {id: ko-nikl-02201-s002, ch: 순서, pr: 순ː서, ds: the sequence of doing a task or of events}
       - {id: ko-nikl-14456-s001, ch: 정량, pr: 정ː냥, ds: a fixed or specified quantity}
       - {id: ko-nikl-28635-s001, ch: 계량, pr: 계ː량 / 게ː량, ds: 'counting quantity or measuring volume, weight and the like'}
       - {id: ko-nikl-34196-s002, ch: 나머지, pr: 나머지, ds: the unfinished part of a task}
       - {id: ko-nikl-07830-s004, ch: 빚다, pr: 빋따, ds: to bring about a situation or result}
+      - {id: ko-nikl-07855-s002, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to place someone in a particular state or situation}
+      - {id: ko-nikl-34854-s004, ch: 내놓다, pr: 내ː노타, ds: to let a confined person or animal move freely outside}
+      - {id: ko-nikl-18652-s002, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to restore something or a situation to its earlier state}
       review_grammar:
       - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
       - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
@@ -8839,14 +8915,14 @@ phases:
       - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
       - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
       review_vocabulary:
-      - {id: ko-nikl-27374-s001, ch: 거뜬하다, pr: 거뜬하다, ds: to be easy and simple to handle}
-      - {id: ko-nikl-27375-s001, ch: 거뜬히, pr: 거뜬히, ds: easily and effortlessly in handling a task}
-      - {id: ko-nikl-38207-s001, ch: 무작정, pr: 무작쩡, ds: without prior thought or a plan}
       - {id: ko-nikl-02201-s002, ch: 순서, pr: 순ː서, ds: the sequence of doing a task or of events}
       - {id: ko-nikl-14456-s001, ch: 정량, pr: 정ː냥, ds: a fixed or specified quantity}
       - {id: ko-nikl-28635-s001, ch: 계량, pr: 계ː량 / 게ː량, ds: 'counting quantity or measuring volume, weight and the like'}
       - {id: ko-nikl-34196-s002, ch: 나머지, pr: 나머지, ds: the unfinished part of a task}
       - {id: ko-nikl-07830-s004, ch: 빚다, pr: 빋따, ds: to bring about a situation or result}
+      - {id: ko-nikl-07855-s002, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to place someone in a particular state or situation}
+      - {id: ko-nikl-34854-s004, ch: 내놓다, pr: 내ː노타, ds: to let a confined person or animal move freely outside}
+      - {id: ko-nikl-18652-s002, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to restore something or a situation to its earlier state}
       review_grammar:
       - {id: ko-topik3-g010, ch: V-아/어 두다, ds: act in advance and preserve a useful result}
       - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
@@ -8858,14 +8934,14 @@ phases:
       grammar:
       - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
       review_vocabulary:
-      - {id: ko-nikl-27374-s001, ch: 거뜬하다, pr: 거뜬하다, ds: to be easy and simple to handle}
-      - {id: ko-nikl-27375-s001, ch: 거뜬히, pr: 거뜬히, ds: easily and effortlessly in handling a task}
-      - {id: ko-nikl-38207-s001, ch: 무작정, pr: 무작쩡, ds: without prior thought or a plan}
       - {id: ko-nikl-02201-s002, ch: 순서, pr: 순ː서, ds: the sequence of doing a task or of events}
       - {id: ko-nikl-14456-s001, ch: 정량, pr: 정ː냥, ds: a fixed or specified quantity}
       - {id: ko-nikl-28635-s001, ch: 계량, pr: 계ː량 / 게ː량, ds: 'counting quantity or measuring volume, weight and the like'}
       - {id: ko-nikl-34196-s002, ch: 나머지, pr: 나머지, ds: the unfinished part of a task}
       - {id: ko-nikl-07830-s004, ch: 빚다, pr: 빋따, ds: to bring about a situation or result}
+      - {id: ko-nikl-07855-s002, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to place someone in a particular state or situation}
+      - {id: ko-nikl-34854-s004, ch: 내놓다, pr: 내ː노타, ds: to let a confined person or animal move freely outside}
+      - {id: ko-nikl-18652-s002, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to restore something or a situation to its earlier state}
       review_grammar:
       - {id: ko-topik3-g030, ch: V-(으)려고, ds: give a purpose controlled by the actor}
       - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
@@ -9728,14 +9804,14 @@ phases:
       - {id: ko-nikl-41854-s001, ch: 주저하다, pr: 주저하다, ds: to hesitate instead of readily deciding and acting}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-27374-s001, ch: 거뜬하다, pr: 거뜬하다, ds: to be easy and simple to handle}
-      - {id: ko-nikl-27375-s001, ch: 거뜬히, pr: 거뜬히, ds: easily and effortlessly in handling a task}
-      - {id: ko-nikl-38207-s001, ch: 무작정, pr: 무작쩡, ds: without prior thought or a plan}
       - {id: ko-nikl-02201-s002, ch: 순서, pr: 순ː서, ds: the sequence of doing a task or of events}
       - {id: ko-nikl-14456-s001, ch: 정량, pr: 정ː냥, ds: a fixed or specified quantity}
       - {id: ko-nikl-28635-s001, ch: 계량, pr: 계ː량 / 게ː량, ds: 'counting quantity or measuring volume, weight and the like'}
       - {id: ko-nikl-34196-s002, ch: 나머지, pr: 나머지, ds: the unfinished part of a task}
       - {id: ko-nikl-07830-s004, ch: 빚다, pr: 빋따, ds: to bring about a situation or result}
+      - {id: ko-nikl-07855-s002, ch: 빠뜨리다, pr: 빠ː뜨리다, ds: to place someone in a particular state or situation}
+      - {id: ko-nikl-34854-s004, ch: 내놓다, pr: 내ː노타, ds: to let a confined person or animal move freely outside}
+      - {id: ko-nikl-18652-s002, ch: 되돌리다, pr: 되돌리다 / 뒈돌리다, ds: to restore something or a situation to its earlier state}
       review_grammar:
       - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
       - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
@@ -9874,6 +9950,7 @@ phases:
       - {id: ko-nikl-11104-s001, ch: 인내심, pr: 인내심, ds: patience in enduring suffering or difficulties}
       - {id: ko-nikl-44137-s001, ch: 참을성, pr: 차믈썽, ds: patience; a capacity to endure or tolerate}
       - {id: ko-nikl-10415-s001, ch: 의향, pr: 의ː향, ds: an inclination or intention to do something}
+      - {id: ko-nikl-16017-s003, ch: 다가가다, pr: 다가가다, ds: to give a familiar and friendly impression}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-43854-s003, ch: 차다, pr: 차다, ds: to be fully pleasing or satisfactory}
@@ -10076,6 +10153,8 @@ phases:
       - {id: ko-nikl-21099-s002, ch: 타의, pr: 타의 / 타이, ds: another person's thoughts or opinions}
       - {id: ko-nikl-16482-s001, ch: 단정하다, pr: 단ː정하다, ds: to judge and decide that something is certain}
       - {id: ko-nikl-33757-s002, ch: 꼽다, pr: 꼽따, ds: to select and single out someone or something}
+      - {id: ko-nikl-05256-s002, ch: 벗어나다, pr: 벗어나다, ds: to be unsatisfactory or differ from expectations}
+      - {id: ko-nikl-42561-s002, ch: 지나치다, pr: 지나치다, ds: to take little notice of something and treat it lightly}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-04229-s001, ch: 아예, pr: 아예, ds: from the outset; in advance}
@@ -10232,14 +10311,14 @@ phases:
       - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
       - {id: ko-topik3-g020, ch: V/A-(으)ㄴ/는 탓에, ds: attribute an unfavorable result to a cause}
       review_vocabulary:
-      - {id: ko-nikl-01091-s001, ch: 속셈, pr: 속ː쎔, ds: a plan formed in one's mind}
-      - {id: ko-nikl-06935-s002, ch: 분위기, pr: 부뉘기, ds: surrounding conditions or environment}
       - {id: ko-nikl-40494-s002, ch: 방향, pr: 방향, ds: the direction in which a task advances toward its goal}
       - {id: ko-nikl-03455-s002, ch: 실속, pr: 실쏙, ds: real benefits that are not outwardly apparent}
       - {id: ko-nikl-12330-s001, ch: 자의, pr: 자의 / 자이, ds: one's own thoughts or intentions}
       - {id: ko-nikl-21099-s002, ch: 타의, pr: 타의 / 타이, ds: another person's thoughts or opinions}
       - {id: ko-nikl-16482-s001, ch: 단정하다, pr: 단ː정하다, ds: to judge and decide that something is certain}
       - {id: ko-nikl-33757-s002, ch: 꼽다, pr: 꼽따, ds: to select and single out someone or something}
+      - {id: ko-nikl-05256-s002, ch: 벗어나다, pr: 벗어나다, ds: to be unsatisfactory or differ from expectations}
+      - {id: ko-nikl-42561-s002, ch: 지나치다, pr: 지나치다, ds: to take little notice of something and treat it lightly}
       review_grammar:
       - {id: ko-topik2-g012, ch: N 때문에 / V/A-기 때문에, ds: state an explicit noun or clause cause}
       - {id: ko-topik2-g034, ch: V/A-(으)ㄴ/는 것 같다, ds: mark an impression or tentative inference}
@@ -10253,14 +10332,14 @@ phases:
       - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}
       - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
       review_vocabulary:
-      - {id: ko-nikl-01091-s001, ch: 속셈, pr: 속ː쎔, ds: a plan formed in one's mind}
-      - {id: ko-nikl-06935-s002, ch: 분위기, pr: 부뉘기, ds: surrounding conditions or environment}
       - {id: ko-nikl-40494-s002, ch: 방향, pr: 방향, ds: the direction in which a task advances toward its goal}
       - {id: ko-nikl-03455-s002, ch: 실속, pr: 실쏙, ds: real benefits that are not outwardly apparent}
       - {id: ko-nikl-12330-s001, ch: 자의, pr: 자의 / 자이, ds: one's own thoughts or intentions}
       - {id: ko-nikl-21099-s002, ch: 타의, pr: 타의 / 타이, ds: another person's thoughts or opinions}
       - {id: ko-nikl-16482-s001, ch: 단정하다, pr: 단ː정하다, ds: to judge and decide that something is certain}
       - {id: ko-nikl-33757-s002, ch: 꼽다, pr: 꼽따, ds: to select and single out someone or something}
+      - {id: ko-nikl-05256-s002, ch: 벗어나다, pr: 벗어나다, ds: to be unsatisfactory or differ from expectations}
+      - {id: ko-nikl-42561-s002, ch: 지나치다, pr: 지나치다, ds: to take little notice of something and treat it lightly}
       review_grammar:
       - {id: ko-topik3-g015, ch: V/A-아/어도, ds: keep a conclusion despite a circumstance}
       - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
@@ -10273,14 +10352,14 @@ phases:
       - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
       - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
       review_vocabulary:
-      - {id: ko-nikl-01091-s001, ch: 속셈, pr: 속ː쎔, ds: a plan formed in one's mind}
-      - {id: ko-nikl-06935-s002, ch: 분위기, pr: 부뉘기, ds: surrounding conditions or environment}
       - {id: ko-nikl-40494-s002, ch: 방향, pr: 방향, ds: the direction in which a task advances toward its goal}
       - {id: ko-nikl-03455-s002, ch: 실속, pr: 실쏙, ds: real benefits that are not outwardly apparent}
       - {id: ko-nikl-12330-s001, ch: 자의, pr: 자의 / 자이, ds: one's own thoughts or intentions}
       - {id: ko-nikl-21099-s002, ch: 타의, pr: 타의 / 타이, ds: another person's thoughts or opinions}
       - {id: ko-nikl-16482-s001, ch: 단정하다, pr: 단ː정하다, ds: to judge and decide that something is certain}
       - {id: ko-nikl-33757-s002, ch: 꼽다, pr: 꼽따, ds: to select and single out someone or something}
+      - {id: ko-nikl-05256-s002, ch: 벗어나다, pr: 벗어나다, ds: to be unsatisfactory or differ from expectations}
+      - {id: ko-nikl-42561-s002, ch: 지나치다, pr: 지나치다, ds: to take little notice of something and treat it lightly}
       review_grammar:
       - {id: ko-topik3-g022, ch: V/A-(으)ㄹ지도 모르다, ds: acknowledge an uncertain possibility}
       - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}
@@ -10889,6 +10968,7 @@ phases:
       - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
       - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
       - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
+      - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-29056-s002, ch: 고발, pr: 고ː발, ds: reporting a crime to authorities and requesting punishment}
@@ -11092,6 +11172,7 @@ phases:
       - {id: ko-nikl-36548-s003, ch: 맞서다, pr: 맏써다, ds: to face a situation or stand firm against it}
       - {id: ko-nikl-16046-s001, ch: 다급하다, pr: 다그파다, ds: very urgent as a situation is upon one}
       - {id: ko-nikl-37946-s001, ch: 무난하다, pr: 무난하다, ds: to have few difficulties or obstacles}
+      - {id: ko-nikl-27528-s001, ch: 거치다, pr: 거치다, ds: to be caught or blocked by something}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-10634-s002, ch: 이루어지다, pr: 이루어지다, ds: to come true; to turn out as desired}
@@ -11156,7 +11237,6 @@ phases:
       - {id: ko-nikl-52557-s001, ch: 흐리멍덩하다, pr: 흐리멍덩하다, ds: mentally foggy; not clear-headed}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-10481-s002, ch: 이기다, pr: 이기다, ds: to overcome or suppress a feeling or desire}
       - {id: ko-nikl-34017-s017, ch: 끊다, pr: 끈타, ds: to cut off a feeling or interest}
       - {id: ko-nikl-47646-s004, ch: 열기, pr: 열기, ds: desire or enthusiasm to do something}
       - {id: ko-nikl-02868-s001, ch: 시시하다, pr: 시시하다, ds: to be unremarkable and trivial}
@@ -11164,6 +11244,7 @@ phases:
       - {id: ko-nikl-11104-s001, ch: 인내심, pr: 인내심, ds: patience in enduring suffering or difficulties}
       - {id: ko-nikl-44137-s001, ch: 참을성, pr: 차믈썽, ds: patience; a capacity to endure or tolerate}
       - {id: ko-nikl-10415-s001, ch: 의향, pr: 의ː향, ds: an inclination or intention to do something}
+      - {id: ko-nikl-16017-s003, ch: 다가가다, pr: 다가가다, ds: to give a familiar and friendly impression}
       review_grammar:
       - {id: ko-topik4-g001, ch: V/A-더라고요, ds: report a personal observation or discovery}
       - {id: ko-topik5-g032, ch: V/A-(으)ㄹ 줄 알았다 / 몰랐다, ds: recall an expectation rather than a learned skill}
@@ -11199,14 +11280,14 @@ phases:
       - {id: ko-nikl-04229-s002, ch: 아예, pr: 아예, ds: not at all; never}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-01091-s001, ch: 속셈, pr: 속ː쎔, ds: a plan formed in one's mind}
-      - {id: ko-nikl-06935-s002, ch: 분위기, pr: 부뉘기, ds: surrounding conditions or environment}
       - {id: ko-nikl-40494-s002, ch: 방향, pr: 방향, ds: the direction in which a task advances toward its goal}
       - {id: ko-nikl-03455-s002, ch: 실속, pr: 실쏙, ds: real benefits that are not outwardly apparent}
       - {id: ko-nikl-12330-s001, ch: 자의, pr: 자의 / 자이, ds: one's own thoughts or intentions}
       - {id: ko-nikl-21099-s002, ch: 타의, pr: 타의 / 타이, ds: another person's thoughts or opinions}
       - {id: ko-nikl-16482-s001, ch: 단정하다, pr: 단ː정하다, ds: to judge and decide that something is certain}
       - {id: ko-nikl-33757-s002, ch: 꼽다, pr: 꼽따, ds: to select and single out someone or something}
+      - {id: ko-nikl-05256-s002, ch: 벗어나다, pr: 벗어나다, ds: to be unsatisfactory or differ from expectations}
+      - {id: ko-nikl-42561-s002, ch: 지나치다, pr: 지나치다, ds: to take little notice of something and treat it lightly}
       review_grammar:
       - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
       - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
@@ -11359,7 +11440,6 @@ phases:
       - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}
       - {id: ko-topik4-g022, ch: V-(으)려다가, ds: change course from an intended action}
       review_vocabulary:
-      - {id: ko-nikl-30216-s001, ch: 과태료, pr: 과ː태료, ds: a government fine for unmet duties or minor order violations}
       - {id: ko-nikl-22177-s002, ch: 틀어지다, pr: 트러지다, ds: for an intended task or plan to go wrong}
       - {id: ko-nikl-47094-s001, ch: 여분, pr: 여분, ds: the surplus left after filling a set amount}
       - {id: ko-nikl-37946-s002, ch: 무난하다, pr: 무난하다, ds: to have no conspicuous flaw or shortcoming}
@@ -11367,6 +11447,7 @@ phases:
       - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
       - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
       - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
+      - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
       review_grammar:
       - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
       - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -11380,7 +11461,6 @@ phases:
       - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
       - {id: ko-topik6-g022, ch: V/A-다가는, ds: warn of an unwanted result if a course continues}
       review_vocabulary:
-      - {id: ko-nikl-30216-s001, ch: 과태료, pr: 과ː태료, ds: a government fine for unmet duties or minor order violations}
       - {id: ko-nikl-22177-s002, ch: 틀어지다, pr: 트러지다, ds: for an intended task or plan to go wrong}
       - {id: ko-nikl-47094-s001, ch: 여분, pr: 여분, ds: the surplus left after filling a set amount}
       - {id: ko-nikl-37946-s002, ch: 무난하다, pr: 무난하다, ds: to have no conspicuous flaw or shortcoming}
@@ -11388,6 +11468,7 @@ phases:
       - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
       - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
       - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
+      - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
       review_grammar:
       - {id: ko-topik3-g034, ch: N에 따라, ds: describe variation or compliance with a standard}
       - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}
@@ -11440,7 +11521,7 @@ phases:
       - {id: ko-topik5-g009, ch: V-고 말다, ds: reach an eventual and often unwanted outcome}
       - {id: ko-topik5-g031, ch: V-았/었어야 했는데, ds: regret a past obligation that was not fulfilled}
       review_vocabulary:
-      - {id: ko-nikl-10415-s001, ch: 의향, pr: 의ː향, ds: an inclination or intention to do something}
+      - {id: ko-nikl-16017-s003, ch: 다가가다, pr: 다가가다, ds: to give a familiar and friendly impression}
       - {id: ko-nikl-07157-s001, ch: 불만, pr: 불만, ds: dissatisfaction; discontent}
       - {id: ko-nikl-36013-s001, ch: 막연하다, pr: 마견하다, ds: to feel at a loss about what to do}
       - {id: ko-nikl-46510-s001, ch: 어이없다, pr: 어이업따, ds: to be dumbfounded by something wholly unexpected}
@@ -11620,7 +11701,6 @@ phases:
       - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-30216-s001, ch: 과태료, pr: 과ː태료, ds: a government fine for unmet duties or minor order violations}
       - {id: ko-nikl-22177-s002, ch: 틀어지다, pr: 트러지다, ds: for an intended task or plan to go wrong}
       - {id: ko-nikl-47094-s001, ch: 여분, pr: 여분, ds: the surplus left after filling a set amount}
       - {id: ko-nikl-37946-s002, ch: 무난하다, pr: 무난하다, ds: to have no conspicuous flaw or shortcoming}
@@ -11628,6 +11708,7 @@ phases:
       - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
       - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
       - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
+      - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
       review_grammar:
       - {id: ko-topik4-g023, ch: V-(으)려면, ds: state a prerequisite for an intended outcome}
       - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
@@ -11813,6 +11894,8 @@ phases:
       - {id: ko-nikl-19048-s001, ch: 뒷받침하다, pr: 뒤ː빧침하다 / 뒫ː빧침하다, ds: to provide backing and support}
       - {id: ko-nikl-37272-s001, ch: 명세서, pr: 명세서, ds: 'a detailed statement of items, quantities or money amounts'}
       - {id: ko-nikl-09814-s001, ch: 서식, pr: 서식, ds: a fixed format for writing a document}
+      - {id: ko-nikl-34854-s008, ch: 내놓다, pr: 내ː노타, ds: to hand over something one possessed or occupied}
+      - {id: ko-nikl-05256-s005, ch: 벗어나다, pr: 벗어나다, ds: to no longer do one's assigned or required work}
       grammar: []
       review_vocabulary:
       - {id: ko-nikl-02642-s001, ch: 승인하다, pr: 승인하다, ds: to approve or authorize something}
@@ -11904,7 +11987,6 @@ phases:
       - {id: ko-nikl-50891-s001, ch: 은근히, pr: 은근히, ds: steadily without being forceful or conspicuous}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-24593-s001, ch: 해결하다, pr: 해ː결하다, ds: to handle and finish a problem or task successfully}
       - {id: ko-nikl-41209-s001, ch: 조치하다, pr: 조치하다, ds: to devise and take appropriate measures for a situation}
       - {id: ko-nikl-10190-s001, ch: 섣불리, pr: 섣ː뿔리, ds: clumsily; without adequate skill or preparation}
       - {id: ko-nikl-37821-s002, ch: 못되다, pr: 몯ː뙤다 / 몯ː뛔다, ds: for things not to work out properly}
@@ -11912,6 +11994,7 @@ phases:
       - {id: ko-nikl-36548-s003, ch: 맞서다, pr: 맏써다, ds: to face a situation or stand firm against it}
       - {id: ko-nikl-16046-s001, ch: 다급하다, pr: 다그파다, ds: very urgent as a situation is upon one}
       - {id: ko-nikl-37946-s001, ch: 무난하다, pr: 무난하다, ds: to have few difficulties or obstacles}
+      - {id: ko-nikl-27528-s001, ch: 거치다, pr: 거치다, ds: to be caught or blocked by something}
       review_grammar:
       - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
       - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
@@ -11927,7 +12010,7 @@ phases:
       - {id: ko-nikl-40953-s002, ch: 번거롭다, pr: 번거롭따, ds: to be bothersome and irritating}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-10415-s001, ch: 의향, pr: 의ː향, ds: an inclination or intention to do something}
+      - {id: ko-nikl-16017-s003, ch: 다가가다, pr: 다가가다, ds: to give a familiar and friendly impression}
       - {id: ko-nikl-07157-s001, ch: 불만, pr: 불만, ds: dissatisfaction; discontent}
       - {id: ko-nikl-36013-s001, ch: 막연하다, pr: 마견하다, ds: to feel at a loss about what to do}
       - {id: ko-nikl-46510-s001, ch: 어이없다, pr: 어이업따, ds: to be dumbfounded by something wholly unexpected}
@@ -12075,14 +12158,14 @@ phases:
       - {id: ko-topik4-g010, ch: V/A-(으)ㄴ/는 대신에, ds: substitute one action or offer compensation}
       - {id: ko-topik4-g021, ch: V-(으)ㄹ 겸, ds: combine compatible purposes for an action}
       review_vocabulary:
-      - {id: ko-nikl-52080-s001, ch: 회의록, pr: 회ː의록 / 훼ː이록, ds: 'written minutes of a meeting''s discussion, progress and results'}
-      - {id: ko-nikl-45866-s001, ch: 충실하다, pr: 충실하다, ds: 'loyal, honest, and sincere'}
       - {id: ko-nikl-41637-s001, ch: 주도, pr: 주도, ds: taking a central role in leading an activity}
       - {id: ko-nikl-12559-s002, ch: 잔량, pr: 잘량, ds: things that are left}
       - {id: ko-nikl-12575-s001, ch: 잔여, pr: 자녀, ds: still being left; the remaining things}
       - {id: ko-nikl-19048-s001, ch: 뒷받침하다, pr: 뒤ː빧침하다 / 뒫ː빧침하다, ds: to provide backing and support}
       - {id: ko-nikl-37272-s001, ch: 명세서, pr: 명세서, ds: 'a detailed statement of items, quantities or money amounts'}
       - {id: ko-nikl-09814-s001, ch: 서식, pr: 서식, ds: a fixed format for writing a document}
+      - {id: ko-nikl-34854-s008, ch: 내놓다, pr: 내ː노타, ds: to hand over something one possessed or occupied}
+      - {id: ko-nikl-05256-s005, ch: 벗어나다, pr: 벗어나다, ds: to no longer do one's assigned or required work}
       review_grammar:
       - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
       - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
@@ -12096,14 +12179,14 @@ phases:
       - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
       - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
       review_vocabulary:
-      - {id: ko-nikl-52080-s001, ch: 회의록, pr: 회ː의록 / 훼ː이록, ds: 'written minutes of a meeting''s discussion, progress and results'}
-      - {id: ko-nikl-45866-s001, ch: 충실하다, pr: 충실하다, ds: 'loyal, honest, and sincere'}
       - {id: ko-nikl-41637-s001, ch: 주도, pr: 주도, ds: taking a central role in leading an activity}
       - {id: ko-nikl-12559-s002, ch: 잔량, pr: 잘량, ds: things that are left}
       - {id: ko-nikl-12575-s001, ch: 잔여, pr: 자녀, ds: still being left; the remaining things}
       - {id: ko-nikl-19048-s001, ch: 뒷받침하다, pr: 뒤ː빧침하다 / 뒫ː빧침하다, ds: to provide backing and support}
       - {id: ko-nikl-37272-s001, ch: 명세서, pr: 명세서, ds: 'a detailed statement of items, quantities or money amounts'}
       - {id: ko-nikl-09814-s001, ch: 서식, pr: 서식, ds: a fixed format for writing a document}
+      - {id: ko-nikl-34854-s008, ch: 내놓다, pr: 내ː노타, ds: to hand over something one possessed or occupied}
+      - {id: ko-nikl-05256-s005, ch: 벗어나다, pr: 벗어나다, ds: to no longer do one's assigned or required work}
       review_grammar:
       - {id: ko-topik3-g031, ch: V-(으)ㄹ 테니까, ds: base a request on an intention or expectation}
       - {id: ko-topik4-g010, ch: V/A-(으)ㄴ/는 대신에, ds: substitute one action or offer compensation}
@@ -12115,14 +12198,14 @@ phases:
       grammar:
       - {id: ko-topik5-g026, ch: V-는 대로, ds: act as soon as something happens or as instructed}
       review_vocabulary:
-      - {id: ko-nikl-52080-s001, ch: 회의록, pr: 회ː의록 / 훼ː이록, ds: 'written minutes of a meeting''s discussion, progress and results'}
-      - {id: ko-nikl-45866-s001, ch: 충실하다, pr: 충실하다, ds: 'loyal, honest, and sincere'}
       - {id: ko-nikl-41637-s001, ch: 주도, pr: 주도, ds: taking a central role in leading an activity}
       - {id: ko-nikl-12559-s002, ch: 잔량, pr: 잘량, ds: things that are left}
       - {id: ko-nikl-12575-s001, ch: 잔여, pr: 자녀, ds: still being left; the remaining things}
       - {id: ko-nikl-19048-s001, ch: 뒷받침하다, pr: 뒤ː빧침하다 / 뒫ː빧침하다, ds: to provide backing and support}
       - {id: ko-nikl-37272-s001, ch: 명세서, pr: 명세서, ds: 'a detailed statement of items, quantities or money amounts'}
       - {id: ko-nikl-09814-s001, ch: 서식, pr: 서식, ds: a fixed format for writing a document}
+      - {id: ko-nikl-34854-s008, ch: 내놓다, pr: 내ː노타, ds: to hand over something one possessed or occupied}
+      - {id: ko-nikl-05256-s005, ch: 벗어나다, pr: 벗어나다, ds: to no longer do one's assigned or required work}
       review_grammar:
       - {id: ko-topik4-g031, ch: V-도록, ds: enable an outcome or state a purpose}
       - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
@@ -12236,13 +12319,13 @@ phases:
       - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-22177-s002, ch: 틀어지다, pr: 트러지다, ds: for an intended task or plan to go wrong}
       - {id: ko-nikl-47094-s001, ch: 여분, pr: 여분, ds: the surplus left after filling a set amount}
       - {id: ko-nikl-37946-s002, ch: 무난하다, pr: 무난하다, ds: to have no conspicuous flaw or shortcoming}
       - {id: ko-nikl-08459-s001, ch: 사용료, pr: 사ː용뇨, ds: a fee charged for use of something}
       - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
       - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
       - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
+      - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
       - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
       review_grammar:
       - {id: ko-topik4-g023, ch: V-(으)려면, ds: state a prerequisite for an intended outcome}
@@ -12277,14 +12360,14 @@ phases:
       - {id: ko-nikl-46830-s001, ch: 업계, pr: 업꼐 / 업께, ds: a particular industry or trade sector}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-52080-s001, ch: 회의록, pr: 회ː의록 / 훼ː이록, ds: 'written minutes of a meeting''s discussion, progress and results'}
-      - {id: ko-nikl-45866-s001, ch: 충실하다, pr: 충실하다, ds: 'loyal, honest, and sincere'}
       - {id: ko-nikl-41637-s001, ch: 주도, pr: 주도, ds: taking a central role in leading an activity}
       - {id: ko-nikl-12559-s002, ch: 잔량, pr: 잘량, ds: things that are left}
       - {id: ko-nikl-12575-s001, ch: 잔여, pr: 자녀, ds: still being left; the remaining things}
       - {id: ko-nikl-19048-s001, ch: 뒷받침하다, pr: 뒤ː빧침하다 / 뒫ː빧침하다, ds: to provide backing and support}
       - {id: ko-nikl-37272-s001, ch: 명세서, pr: 명세서, ds: 'a detailed statement of items, quantities or money amounts'}
       - {id: ko-nikl-09814-s001, ch: 서식, pr: 서식, ds: a fixed format for writing a document}
+      - {id: ko-nikl-34854-s008, ch: 내놓다, pr: 내ː노타, ds: to hand over something one possessed or occupied}
+      - {id: ko-nikl-05256-s005, ch: 벗어나다, pr: 벗어나다, ds: to no longer do one's assigned or required work}
       review_grammar:
       - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
       - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
@@ -12335,8 +12418,8 @@ phases:
       - {id: ko-nikl-04806-s001, ch: 앞장서다, pr: 압짱서다, ds: to stand at the very front of a group}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-16046-s001, ch: 다급하다, pr: 다그파다, ds: very urgent as a situation is upon one}
       - {id: ko-nikl-37946-s001, ch: 무난하다, pr: 무난하다, ds: to have few difficulties or obstacles}
+      - {id: ko-nikl-27528-s001, ch: 거치다, pr: 거치다, ds: to be caught or blocked by something}
       - {id: ko-nikl-03920-s006, ch: 쓰다, pr: 쓰다, ds: to put in effort or energy}
       - {id: ko-nikl-28080-s001, ch: 견디다, pr: 견디다, ds: to endure hardship; to withstand difficulty}
       - {id: ko-nikl-27063-s001, ch: 개선, pr: 개ː선, ds: improvement by correcting faults or shortcomings}
@@ -12939,12 +13022,12 @@ phases:
       - {id: ko-nikl-40502-s001, ch: 방화, pr: 방화, ds: preventing a fire before it occurs}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-47094-s001, ch: 여분, pr: 여분, ds: the surplus left after filling a set amount}
       - {id: ko-nikl-37946-s002, ch: 무난하다, pr: 무난하다, ds: to have no conspicuous flaw or shortcoming}
       - {id: ko-nikl-08459-s001, ch: 사용료, pr: 사ː용뇨, ds: a fee charged for use of something}
       - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
       - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
       - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
+      - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
       - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
       - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
       review_grammar:
@@ -12961,7 +13044,7 @@ phases:
       - {id: ko-nikl-28367-s002, ch: 경로, pr: 경노, ds: the means or course through which something happens}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-37946-s001, ch: 무난하다, pr: 무난하다, ds: to have few difficulties or obstacles}
+      - {id: ko-nikl-27528-s001, ch: 거치다, pr: 거치다, ds: to be caught or blocked by something}
       - {id: ko-nikl-03920-s006, ch: 쓰다, pr: 쓰다, ds: to put in effort or energy}
       - {id: ko-nikl-28080-s001, ch: 견디다, pr: 견디다, ds: to endure hardship; to withstand difficulty}
       - {id: ko-nikl-27063-s001, ch: 개선, pr: 개ː선, ds: improvement by correcting faults or shortcomings}
@@ -13605,9 +13688,9 @@ phases:
       - {id: ko-nikl-33404-s001, ch: 까탈스럽다, pr: 까탈스럽다, ds: 'hard to handle due to complex, strict conditions or methods'}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
       - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
       - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
+      - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
       - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
       - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
       - {id: ko-nikl-29633-s002, ch: 공개, pr: 공개, ds: opening a place for public access}
@@ -13668,7 +13751,7 @@ phases:
       - {id: ko-nikl-34855-s025, ch: 내다, pr: 내ː다, ds: to take leave or a vacation}
       grammar: []
       review_vocabulary:
-      - {id: ko-nikl-09814-s001, ch: 서식, pr: 서식, ds: a fixed format for writing a document}
+      - {id: ko-nikl-05256-s005, ch: 벗어나다, pr: 벗어나다, ds: to no longer do one's assigned or required work}
       - {id: ko-nikl-35417-s001, ch: 노동자, pr: 노동자, ds: a worker who earns a living through paid work}
       - {id: ko-nikl-46842-s001, ch: 업체, pr: 업체, ds: a business enterprise operating for profit}
       - {id: ko-nikl-03473-s001, ch: 실업, pr: 시럽, ds: loss of a job}
