@@ -903,6 +903,7 @@ breadth_groups:
   # unos is approximative, and cuánto is an adverb: do not merge them with
   # determiner poco, numeral uno, article un, or pronoun cuántas by spelling.
 exclude:
+  - es-v-a558425eb4b363b2
   - es-v-1e9d9e6d3edd2604
   - es-v-dcaa76b071f7d964
   - es-v-afa64bde2427c255
@@ -1146,6 +1147,7 @@ exclude:
   - es-v-9d025eeb5dbcf9a3 # desconectado
   - es-v-00bc2e1f4063030f # secuestrado
 exclusion_notes:
+  es-v-a558425eb4b363b2: "Tuya here names thuja, not a possessive form. Surface frequency of the possessive does not justify this narrow botanical homograph in the practical core; ordinary tuya remains available through possessive grammar and source inflection metadata."
   es-v-1e9d9e6d3edd2604: "The selected socia sense is an insult, not the female partner sense. Re-select a sourced partner sense before teaching this as a gender counterpart."
   es-v-dcaa76b071f7d964: "The selected jueza sense means a judge's wife, not a female judge. Unsuitable for modern occupational or gender teaching."
   es-v-afa64bde2427c255: "The selected doctora sense means a doctor's wife, not a female doctor. Do not use it as a professional gender counterpart."
