@@ -2,6 +2,72 @@
 This document describes ideas for implementing various features of language learning app. Anywhere where specific languages are mentioned (English = source language). Other languages (such as Chinese/Japanese/Korean/Spanish) can mean any target language. When referring to specific romanization forms like pinyin (that should be taken to generally refer to romanization and only where it applies)
 
 
+## Future feature backlog
+
+Suggestions captured on 2026-09-16 for future consideration. These are unprioritized
+ideas, not implementation commitments or claims about current functionality.
+Unchecked items remain open for scoping and follow-up.
+
+### Reader and listening
+
+- [ ] **Hover for word explanations:** Show a word's meaning and contextual
+  explanation when hovering in reader mode; consider a tap equivalent for touch.
+- [ ] **Audiobook experience:** Explore continuous book narration and listening
+  controls, with a way to follow along in the reader.
+- [ ] **Click to hear a word:** Let the learner select a word in a book to hear
+  its pronunciation.
+- [ ] **Reader replacement without a learning set:** Allow word replacement in
+  the reader without requiring the word to belong to a learning set.
+- [ ] **Vocabulary-aware reading simplification:** Adapt a passage to the
+  learner's vocabulary while preserving its meaning.
+- [ ] **Contextual note taking:** Let learners attach notes to words or passages
+  and revisit them with their original context.
+
+### Content import and sharing
+
+- [ ] **Webpage or article import:** Scrape or extract readable content from a
+  webpage or article for use in the reader.
+- [ ] **Share button:** Add a sharing action; decide which content can be shared
+  and what the recipient receives before implementation.
+- [ ] **Import Anki decks:** Bring existing Anki study material into the app;
+  scope supported card types, media, and progress handling.
+
+### Learning plans and practice
+
+- [ ] **Lesson plan from a goal:** Turn a learner's stated goal into a tailored
+  lesson plan.
+- [ ] **Scenarios:** Offer practice organized around situations the learner
+  wants to handle.
+- [ ] **Roleplay from TV shows:** Explore roleplay inspired by TV-show situations,
+  with a clear approach to permitted source material.
+- [ ] **Optional AI review after a mistake:** Offer an opt-in AI session when a
+  learner gets something wrong, to explain the error and practice the concept.
+- [ ] **Find neural pathways:** Preserve this exploration idea; clarify what
+  "neural pathways" means here and the intended learner benefit before scoping.
+- [ ] **Try Shadow:** Explore this suggestion; confirm whether "Shadow" refers
+  to a particular tool or product, or to a shadowing practice technique.
+
+### AI navigation and time awareness
+
+- [ ] **AI-driven navigation and links:** Let the AI navigate to other parts of
+  the UI or provide actionable in-app links, including relevant lessons, words,
+  books, and practice activities. Resolve destinations through supported app
+  routes and content identifiers rather than inventing links.
+- [ ] **Time-aware learning review:** Give the AI the current date, time, and
+  learner's timezone, plus access to timestamped learning history. Interpret
+  requests such as "Let's go over what I learned yesterday" using the learner's
+  local calendar day, retrieve the relevant material, and offer a review with
+  links or navigation to it. Be explicit when history is missing; do not infer
+  mastery from activity alone.
+
+### Proficiency assessment
+
+- [ ] **AI-assisted collection of proficiency tests:** Have AI find and catalog
+  existing language proficiency tests, including sources and usage permissions.
+- [ ] **Generate language proficiency tests:** Create original practice
+  assessments; define skill coverage, level alignment, and scoring, and
+  distinguish practice results from official certification.
+
 ## Declarative exercise contract draft
 
 The discussion-derived [TypeScript contracts](exercise-contracts.ts) and
