@@ -74,14 +74,14 @@ units:
   - {id: fr-v-2a34a801c65d11b8, ch: tour de parole, pr: /tuʁ də pa.ʁɔl/, ds: turn to speak}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-5ff79ee06dd8440a, ch: spécification, pr: /spesifikasjɔ̃/, ds: specification}
-  - {id: fr-v-4e558ca8a6397b1a, ch: norme, pr: /nɔʁm/, ds: norm (normal state)}
-  - {id: fr-v-75b72ac2e78b01ae, ch: ampleur, pr: /ɑ̃.plœʁ/, ds: 'scale, size, extent, scope (of problem, project, deficit etc.)'}
   - {id: fr-v-b87cd32f29135251, ch: périmètre, pr: /peʁimɛtʁ/, ds: perimeter}
   - {id: fr-v-06eb11a5810949c1, ch: terminologie, pr: /tɛʁ.mi.nɔ.lɔ.ʒi/, ds: terminology; terms used in a field}
   - {id: fr-v-e9b6e8066837daa8, ch: syntaxe, pr: /sɛ̃.taks/, ds: syntax}
   - {id: fr-v-8e1465549c0b52d1, ch: typographie, pr: /ti.pɔ.ɡʁa.fi/, ds: typography}
   - {id: fr-v-e10dcce616e8cad6, ch: mise en page, pr: /miz ɑ̃ paʒ/, ds: page setting}
+  - {id: fr-v-074cea10ecc61203, ch: note, pr: /nɔt/, ds: note; written or spoken message}
+  - {id: fr-v-4fb10e2ed4598411, ch: tableau, pr: /ta.blo/, ds: table; arrangement of rows and columns}
+  - {id: fr-v-011a4d556606989f, ch: volume, pr: /vɔ.lym/, ds: volume; amount or quantity}
   review_grammar:
   - {id: fr-g-relative-qui-que, ch: nom + qui + verbe ; nom + que + sujet + verbe, ds: Relative qui is a subject and que a direct object}
   - {id: fr-g-indirect-questions, ch: demander / savoir + si / où / ce que + sujet + verbe, ds: Embed a question without direct-question inversion}
@@ -138,6 +138,7 @@ units:
   - {id: fr-v-97987345c3bbd1c3, ch: assentiment, pr: /a.sɑ̃.ti.mɑ̃/, ds: consent; approval}
   - {id: fr-v-9fcef5e1232d4f5e, ch: dénégation, pr: /de.ne.ɡa.sjɔ̃/, ds: denial}
   - {id: fr-v-b824e9052cae087b, ch: refus, pr: /ʁə.fy/, ds: 'refusal, act of refusing'}
+  - {id: fr-v-b2ddb080f2e61cdb, ch: volume, pr: /vɔ.lym/, ds: volume; sound level}
   grammar: []
   review_vocabulary:
   - {id: fr-v-3598e85b144faf8f, ch: onomatopée, pr: /ɔ.nɔ.ma.tɔ.pe/, ds: onomatopoeia}
@@ -183,7 +184,6 @@ units:
   - {id: fr-v-7a970f1cbf043d18, ch: vulgaire, pr: /vyl.ɡɛʁ/, ds: 'vulgar, crude'}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-11dcaaca386fe7f3, ch: fataliste, pr: /fa.ta.list/, ds: fatalist}
   - {id: fr-v-97886b699c1dc464, ch: lucide, pr: /ly.sid/, ds: lucid}
   - {id: fr-v-ccc75556fc002874, ch: candide, pr: /kɑ̃.did/, ds: 'candid, frank'}
   - {id: fr-v-caac8d5542dca34b, ch: naïf, pr: /na.if/, ds: 'naive, dewy-eyed; gullible'}
@@ -191,6 +191,7 @@ units:
   - {id: fr-v-361bc6a8cb1f54d3, ch: crédule, pr: /kʁe.dyl/, ds: gullible; credulous}
   - {id: fr-v-e773c2b9c13a26a7, ch: circonspect, pr: /siʁ.kɔ̃s.pɛ/, ds: 'circumspect, cautious, prudent'}
   - {id: fr-v-754285156a956031, ch: perspicace, pr: /pɛʁ.spi.kas/, ds: perspicacious}
+  - {id: fr-v-4c26b2c97c122222, ch: simple, pr: /sɛ̃pl/, ds: plain; unpretentious}
   review_grammar:
   - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
   - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
@@ -317,6 +318,7 @@ units:
   - {id: fr-v-bdc0ce32d7b03948, ch: réciter, pr: /ʁe.si.te/, ds: 'to review, revise (something previously written or learned)'}
   - {id: fr-v-807f6718cfaf0256, ch: improviser, pr: /ɛ̃.pʁɔ.vi.ze/, ds: to improvise}
   - {id: fr-v-fd35a7fa3af54e46, ch: relancer, pr: /ʁə.lɑ̃.se/, ds: to throw back}
+  - {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to command; to tell someone what to do}
   grammar: []
   review_vocabulary:
   - {id: fr-v-1522361617658b50, ch: prohiber, pr: /pʁɔ.i.be/, ds: to prohibit (to proscribe)}
@@ -362,7 +364,6 @@ units:
   - {id: fr-v-b4d377aa002695ad, ch: rhétorique, pr: /ʁe.tɔ.ʁik/, ds: rhetoric}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-21eefe442ce9894b, ch: spontanéité, pr: /spɔ̃.ta.ne.i.te/, ds: spontaneity}
   - {id: fr-v-ba8596a7b618a91c, ch: duplicité, pr: /dy.pli.si.te/, ds: duplicity (intentional deceptiveness)}
   - {id: fr-v-1a9c08082ae926f7, ch: hypocrisie, pr: /i.pɔ.kʁi.zi/, ds: hypocrisy}
   - {id: fr-v-813e3e3bb17caf1a, ch: fausseté, pr: /fos.te/, ds: 'falseness, falsity, falsehood (property of being false)'}
@@ -370,6 +371,7 @@ units:
   - {id: fr-v-a4faa31ad6be431f, ch: complaisance, pr: /kɔ̃.plɛ.zɑ̃s/, ds: kindness}
   - {id: fr-v-ad271207a5c71ef6, ch: flagornerie, pr: /flaɡɔʁnəʁi/, ds: coarse flattery}
   - {id: fr-v-cf527ed857251f34, ch: servilité, pr: /sɛʁvilite/, ds: servility}
+  - {id: fr-v-775e2873c98d3fc1, ch: cadre, pr: /kadʁ/, ds: context; defining circumstances}
   review_grammar:
   - {id: fr-g-cleft-focus, ch: c'est X qui / que + proposition, ds: Focus one constituent while keeping its grammatical role}
   - {id: fr-g-dislocated-topics, ch: 'thème, pronom + proposition ; proposition, thème', ds: Detach a topic and resume it inside the clause}
@@ -422,6 +424,7 @@ units:
   - {id: fr-v-d887d477fe913b81, ch: remerciement, pr: /ʁə.mɛʁ.si.mɑ̃/, ds: thanks (grateful feelings)}
   - {id: fr-v-fe1b7ddeee144cd9, ch: félicitation, pr: /fe.li.si.ta.sjɔ̃/, ds: congratulation}
   - {id: fr-v-2063b0b907bd78e6, ch: condoléance, pr: /kɔ̃.dɔ.le.ɑ̃s/, ds: 'sympathy, condolence'}
+  - {id: fr-v-f2aee505022b10ac, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: correspondence; exchange of messages}
   grammar: []
   review_vocabulary:
   - {id: fr-v-fbc24d437411d75c, ch: connivence, pr: /kɔ.ni.vɑ̃s/, ds: connivance}
@@ -450,7 +453,6 @@ units:
   - {id: fr-v-356bea12e0492392, ch: comprendre, pr: /kɔ̃.pʁɑ̃dʁ/, ds: 'to understand, comprehend'}
   - {id: fr-v-9bd6afe04827273d, ch: partir, pr: /paʁ.tiʁ/, ds: 'to go away, leave, depart'}
   - {id: fr-v-6593090b9a9f5875, ch: travailler, pr: /tʁa.va.je/, ds: to work}
-  - {id: fr-v-18a19c7e5228b9c6, ch: bureaucratie, pr: /by.ʁo.kʁa.si/, ds: bureaucracy; administrative structures and rules}
   - {id: fr-v-dd9df8e833deb209, ch: circulaire, pr: /siʁ.ky.lɛʁ/, ds: circular}
   - {id: fr-v-795f48145838ae8d, ch: courrier, pr: /ku.ʁje/, ds: mail}
   - {id: fr-v-116fd9b12048f541, ch: relance, pr: /ʁə.lɑ̃s/, ds: reminder}
@@ -458,6 +460,7 @@ units:
   - {id: fr-v-d887d477fe913b81, ch: remerciement, pr: /ʁə.mɛʁ.si.mɑ̃/, ds: thanks (grateful feelings)}
   - {id: fr-v-fe1b7ddeee144cd9, ch: félicitation, pr: /fe.li.si.ta.sjɔ̃/, ds: congratulation}
   - {id: fr-v-2063b0b907bd78e6, ch: condoléance, pr: /kɔ̃.dɔ.le.ɑ̃s/, ds: 'sympathy, condolence'}
+  - {id: fr-v-f2aee505022b10ac, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: correspondence; exchange of messages}
   review_grammar:
   - {id: fr-g-cleft-focus, ch: c'est X qui / que + proposition, ds: Focus one constituent while keeping its grammatical role}
   - {id: fr-g-dislocated-topics, ch: 'thème, pronom + proposition ; proposition, thème', ds: Detach a topic and resume it inside the clause}
@@ -470,7 +473,6 @@ units:
   review_vocabulary:
   - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
   - {id: fr-v-405e7736ab8e3c19, ch: porte, pr: /pɔʁt/, ds: door}
-  - {id: fr-v-18a19c7e5228b9c6, ch: bureaucratie, pr: /by.ʁo.kʁa.si/, ds: bureaucracy; administrative structures and rules}
   - {id: fr-v-dd9df8e833deb209, ch: circulaire, pr: /siʁ.ky.lɛʁ/, ds: circular}
   - {id: fr-v-795f48145838ae8d, ch: courrier, pr: /ku.ʁje/, ds: mail}
   - {id: fr-v-116fd9b12048f541, ch: relance, pr: /ʁə.lɑ̃s/, ds: reminder}
@@ -478,6 +480,7 @@ units:
   - {id: fr-v-d887d477fe913b81, ch: remerciement, pr: /ʁə.mɛʁ.si.mɑ̃/, ds: thanks (grateful feelings)}
   - {id: fr-v-fe1b7ddeee144cd9, ch: félicitation, pr: /fe.li.si.ta.sjɔ̃/, ds: congratulation}
   - {id: fr-v-2063b0b907bd78e6, ch: condoléance, pr: /kɔ̃.dɔ.le.ɑ̃s/, ds: 'sympathy, condolence'}
+  - {id: fr-v-f2aee505022b10ac, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: correspondence; exchange of messages}
   review_grammar:
   - {id: fr-g-spoken-reductions, ch: '[conversation familière] je sais pas ; y a ; t''es', ds: Recognize common reductions without universalizing them}
   - {id: fr-g-formal-question-inversion, ch: 'verbe-pronom ? ; a-t-il / elle + participe ?', ds: Form a compact question in a more formal register}

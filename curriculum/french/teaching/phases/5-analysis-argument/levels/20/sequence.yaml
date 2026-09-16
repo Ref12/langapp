@@ -288,6 +288,7 @@ units:
   - {id: fr-v-a56a502ff1509b26, ch: magasinage, pr: /ma.ɡa.zi.naʒ/, ds: 'stockroom, storeroom'}
   - {id: fr-v-daa921d016e7ccdb, ch: stock, pr: /stɔk/, ds: 'stock, goods in supply'}
   - {id: fr-v-6f77fbcf0d552aa5, ch: rupture de stock, pr: /ʁyp.tyʁ də stɔk/, ds: stockout}
+  - {id: fr-v-ea919dbe38657fa0, ch: commande, pr: /kɔ.mɑ̃d/, ds: order for goods or services}
   - {id: fr-v-1749ae0111e59fae, ch: délai de livraison, pr: /de.lɛ d(ə) li.vʁɛ.zɔ̃/, ds: lead time before delivery}
   - {id: fr-v-22cd3ef63d1d5c92, ch: importation, pr: /ɛ̃.pɔʁ.ta.sjɔ̃/, ds: importation}
   - {id: fr-v-f9ab8cb7f2da302a, ch: exportation, pr: /ɛk.spɔʁ.ta.sjɔ̃/, ds: 'exportation, export'}
@@ -298,7 +299,6 @@ units:
   - {id: fr-v-f9d884e68fbe4bae, ch: parité, pr: /pa.ʁi.te/, ds: 'equality, parity'}
   - {id: fr-v-47b263bc0a5d5fd8, ch: dévaluation, pr: /de.va.lɥa.sjɔ̃/, ds: devaluation}
   - {id: fr-v-f12788551ab32b3c, ch: réévaluation, pr: /ʁe.e.va.lɥa.sjɔ̃/, ds: reevaluation}
-  - {id: fr-v-0d3738e62e74b619, ch: volatilité, pr: /vɔ.la.ti.li.te/, ds: volatility}
   grammar: []
   review_vocabulary:
   - {id: fr-v-312ffaff2e67754d, ch: filiale, pr: /fi.ljal/, ds: subsidiary}
@@ -314,6 +314,7 @@ units:
   title: Money and commerce - 6
   outcome: Explain a financial or commercial choice and its practical implications.
   vocabulary:
+  - {id: fr-v-0d3738e62e74b619, ch: volatilité, pr: /vɔ.la.ti.li.te/, ds: volatility}
   - {id: fr-v-2bf3bf76057fff80, ch: stabilité, pr: /sta.bi.li.te/, ds: stability}
   - {id: fr-v-6f80195006b0e5d8, ch: spéculateur, pr: /spekylatœʁ/, ds: speculator}
   - {id: fr-v-bf3a435ea9c310f7, ch: courtier, pr: /kuʁ.tje/, ds: broker; stockbroker}
@@ -338,9 +339,9 @@ units:
   - {id: fr-v-d874ad521a38e1f2, ch: saisie, pr: /sɛ.zi/, ds: 'seizure (of drugs, property etc.)'}
   - {id: fr-v-9cabb8eb4014a417, ch: hypothèque, pr: /i.pɔ.tɛk/, ds: mortgage}
   - {id: fr-v-dd840ee86e51e0cd, ch: gage, pr: /ɡaʒ/, ds: 'pledge, guarantee'}
-  - {id: fr-v-234fbc9c870c1147, ch: nantissement, pr: /nɑ̃.tis.mɑ̃/, ds: pledge}
   grammar: []
   review_vocabulary:
+  - {id: fr-v-f9ab8cb7f2da302a, ch: exportation, pr: /ɛk.spɔʁ.ta.sjɔ̃/, ds: 'exportation, export'}
   - {id: fr-v-7d9c59972c9ad765, ch: douane, pr: /dwan/, ds: customs authority}
   - {id: fr-v-c4b4eaa0a02f7beb, ch: douanier, pr: /dwa.nje/, ds: customs officer}
   - {id: fr-v-3a030cb674f2b6df, ch: change, pr: /ʃɑ̃ʒ/, ds: exchange}
@@ -348,12 +349,12 @@ units:
   - {id: fr-v-f9d884e68fbe4bae, ch: parité, pr: /pa.ʁi.te/, ds: 'equality, parity'}
   - {id: fr-v-47b263bc0a5d5fd8, ch: dévaluation, pr: /de.va.lɥa.sjɔ̃/, ds: devaluation}
   - {id: fr-v-f12788551ab32b3c, ch: réévaluation, pr: /ʁe.e.va.lɥa.sjɔ̃/, ds: reevaluation}
-  - {id: fr-v-0d3738e62e74b619, ch: volatilité, pr: /vɔ.la.ti.li.te/, ds: volatility}
   review_grammar: []
 - id: level-20-money-07
   title: Money and commerce - 7
   outcome: Explain a financial or commercial choice and its practical implications.
   vocabulary:
+  - {id: fr-v-234fbc9c870c1147, ch: nantissement, pr: /nɑ̃.tis.mɑ̃/, ds: pledge}
   - {id: fr-v-9af9d02e8ead719d, ch: cautionnement, pr: /ko.sjɔn.mɑ̃/, ds: suretyship}
   - {id: fr-v-6deda46269277f7f, ch: sûreté, pr: /syʁ.te/, ds: safety}
   - {id: fr-v-20eceeba1ba765ee, ch: fiscal, pr: /fis.kal/, ds: 'fiscal, financial'}
@@ -371,8 +372,10 @@ units:
   - {id: fr-v-c06d853368246e3b, ch: lucratif, pr: /ly.kʁa.tif/, ds: 'lucrative, profitable'}
   - {id: fr-v-e723d4201ee167db, ch: déficitaire, pr: /de.fi.si.tɛʁ/, ds: 'loss-making, in the red'}
   - {id: fr-v-c356841a5891de9a, ch: excédentaire, pr: /ɛk.se.dɑ̃.tɛʁ/, ds: 'surplus, excess'}
+  - {id: fr-v-759e5d8a263c26b1, ch: réception, pr: /ʁe.sɛp.sjɔ̃/, ds: reception; act of receiving}
   grammar: []
   review_vocabulary:
+  - {id: fr-v-ba1961c27226aaf2, ch: cessation, pr: /sɛ.sa.sjɔ̃/, ds: cessation}
   - {id: fr-v-d952f28a815d8386, ch: solvabilité, pr: /sɔl.va.bi.li.te/, ds: solvency}
   - {id: fr-v-8c1b0b47662c3944, ch: solvable, pr: /sɔl.vabl/, ds: solvent}
   - {id: fr-v-d001a8c6c52d3faa, ch: insolvable, pr: /ɛ̃.sɔl.vabl/, ds: insolvent}
@@ -380,7 +383,6 @@ units:
   - {id: fr-v-d874ad521a38e1f2, ch: saisie, pr: /sɛ.zi/, ds: 'seizure (of drugs, property etc.)'}
   - {id: fr-v-9cabb8eb4014a417, ch: hypothèque, pr: /i.pɔ.tɛk/, ds: mortgage}
   - {id: fr-v-dd840ee86e51e0cd, ch: gage, pr: /ɡaʒ/, ds: 'pledge, guarantee'}
-  - {id: fr-v-234fbc9c870c1147, ch: nantissement, pr: /nɑ̃.tis.mɑ̃/, ds: pledge}
   review_grammar: []
 - id: level-20-institutions-01
   title: Institutions and public life - 1
@@ -469,6 +471,7 @@ units:
   - {id: fr-v-821225791eae0c1e, ch: consul, pr: /kɔ̃.syl/, ds: 'consul, in its various senses'}
   - {id: fr-v-7461d31cdde8d7fc, ch: ambassadeur, pr: /ɑ̃.ba.sa.dœʁ/, ds: ambassador}
   - {id: fr-v-a38e08f8f8e93994, ch: pouvoir, pr: /pu.vwaʁ/, ds: authority}
+  - {id: fr-v-b7f82af8d07cf0f3, ch: article, pr: /aʁ.tikl/, ds: article; section of a law}
   grammar: []
   review_vocabulary:
   - {id: fr-v-0de1ec30b7cba31b, ch: citoyenneté, pr: /si.twa.jɛn.te/, ds: citizenship; status with civic rights and duties}
@@ -510,7 +513,6 @@ units:
   review_vocabulary:
   - {id: fr-v-c68bb07d29dbc737, ch: terminer, pr: /tɛʁ.mi.ne/, ds: to end; to finish; to terminate}
   - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
-  - {id: fr-v-89920cb296bfe7c0, ch: obstacle, pr: /ɔp.stakl/, ds: obstacle}
   - {id: fr-v-6a4d4ff963103d3b, ch: avancement, pr: /a.vɑ̃s.mɑ̃/, ds: 'the state of advancing, progress'}
   - {id: fr-v-e555768ee848e354, ch: progression, pr: /pʁɔ.ɡʁɛ.sjɔ̃/, ds: progression}
   - {id: fr-v-2037cf79ac0828a1, ch: accomplissement, pr: /a.kɔ̃.plis.mɑ̃/, ds: 'accomplishment, achievement, fulfillment'}
@@ -518,6 +520,7 @@ units:
   - {id: fr-v-14ea8b6b2df89c1f, ch: livraison, pr: /li.vʁɛ.zɔ̃/, ds: delivery}
   - {id: fr-v-07bde498070c511c, ch: validation, pr: /va.li.da.sjɔ̃/, ds: validation}
   - {id: fr-v-7d8b802e495088d2, ch: approbation, pr: /a.pʁɔ.ba.sjɔ̃/, ds: approval (permission)}
+  - {id: fr-v-eaf6c59ac2b26183, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: promotion; career advancement}
   review_grammar:
   - {id: fr-g-open-si-condition, ch: 'si + présent, présent / futur / impératif', ds: Set an open practical condition without future in its si clause}
   - {id: fr-g-passive-voice, ch: patient + être au temps voulu + participe + par agent, ds: Make the affected participant the grammatical subject}
@@ -552,7 +555,6 @@ units:
   review_vocabulary:
   - {id: fr-v-88f6d7cc694e32a8, ch: train, pr: /tʁɛ̃/, ds: train (rail mounted vehicle)}
   - {id: fr-v-23e5dda7dc9a9361, ch: maison, pr: /mɛ.zɔ̃/, ds: house}
-  - {id: fr-v-664951124878a46d, ch: décentralisation, pr: /de.sɑ̃.tʁa.li.za.sjɔ̃/, ds: decentralisation}
   - {id: fr-v-904a505c089e2981, ch: fédération, pr: /fe.de.ʁa.sjɔ̃/, ds: federation}
   - {id: fr-v-070c9a3b19afc142, ch: union, pr: /y.njɔ̃/, ds: union}
   - {id: fr-v-b48fd40d2e66ad6d, ch: harmonisation, pr: /aʁ.mɔ.ni.za.sjɔ̃/, ds: harmonization}
@@ -560,4 +562,5 @@ units:
   - {id: fr-v-821225791eae0c1e, ch: consul, pr: /kɔ̃.syl/, ds: 'consul, in its various senses'}
   - {id: fr-v-7461d31cdde8d7fc, ch: ambassadeur, pr: /ɑ̃.ba.sa.dœʁ/, ds: ambassador}
   - {id: fr-v-a38e08f8f8e93994, ch: pouvoir, pr: /pu.vwaʁ/, ds: authority}
+  - {id: fr-v-b7f82af8d07cf0f3, ch: article, pr: /aʁ.tikl/, ds: article; section of a law}
   review_grammar: []

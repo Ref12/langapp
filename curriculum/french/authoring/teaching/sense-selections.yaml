@@ -1,68 +1,3 @@
-- id: fr-v-23aed6f0aa7352ba
-  word: faire
-  pos: verb
-  source_sense_id: en-faire-fr-verb-IXZV9I3e
-  record: 3614
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 3614
-  reading_index: 0
-  reading_raw: /fɛʁ/
-  pr: /fɛʁ/
-  ds: to do
-  primary: true
-- id: fr-v-5c68a89f38d9b824
-  word: voir
-  pos: verb
-  source_sense_id: en-voir-fr-verb-fZHSw7TU
-  record: 817
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 817
-  reading_index: 0
-  reading_raw: /vwaʁ/
-  pr: /vwaʁ/
-  ds: to see (visually)
-  primary: true
-- id: fr-v-90e551d22bb952c9
-  word: donner
-  pos: verb
-  source_sense_id: en-donner-fr-verb-S7URuIAd
-  record: 401
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 401
-  reading_index: 0
-  reading_raw: /dɔ.ne/
-  pr: /dɔ.ne/
-  ds: to give
-  primary: true
-- id: fr-v-e54a8e8169505408
-  word: nommer
-  pos: verb
-  source_sense_id: en-nommer-fr-verb-38ss8cX1
-  record: 16815
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 16815
-  reading_index: 0
-  reading_raw: /nɔ.me/
-  pr: /nɔ.me/
-  ds: to nominate
-  primary: true
-- id: fr-v-b37372fc5aa9116d
-  word: nom
-  pos: noun
-  source_sense_id: en-nom-fr-noun-gqNTf~Db
-  record: 8149
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 8149
-  reading_index: 0
-  reading_raw: /nɔ̃/
-  pr: /nɔ̃/
-  ds: name
-  primary: true
 - id: fr-v-10ad6bebc867671d
   word: bonjour
   pos: intj
@@ -75,19 +10,6 @@
   reading_raw: /bɔ̃.ʒuʁ/
   pr: /bɔ̃.ʒuʁ/
   ds: hello; good day
-  primary: true
-- id: fr-v-c3a6c08e3b04aad2
-  word: merci
-  pos: intj
-  source_sense_id: en-merci-fr-intj-hENH5U8A
-  record: 12059
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 12059
-  reading_index: 0
-  reading_raw: /mɛʁ.si/
-  pr: /mɛʁ.si/
-  ds: thank you
   primary: true
 - id: fr-v-95f66f45204bd122
   word: bonsoir
@@ -114,6 +36,19 @@
   reading_raw: /sa.ly/
   pr: /sa.ly/
   ds: hi; informal greeting
+  primary: true
+- id: fr-v-c3a6c08e3b04aad2
+  word: merci
+  pos: intj
+  source_sense_id: en-merci-fr-intj-hENH5U8A
+  record: 12059
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 12059
+  reading_index: 0
+  reading_raw: /mɛʁ.si/
+  pr: /mɛʁ.si/
+  ds: thank you
   primary: true
 - id: fr-v-cb63b4cbe04aa734
   word: pardon
@@ -154,18 +89,18 @@
   pr: /nɔ̃/
   ds: 'no'
   primary: true
-- id: fr-v-3979041abde4fbe8
+- id: fr-v-f485cb3f25713bcc
   word: bienvenue
-  pos: noun
-  source_sense_id: en-bienvenue-fr-noun-KA1Eqx6f
-  record: 14072
+  pos: intj
+  source_sense_id: en-bienvenue-fr-intj-50fXK1DX
+  record: 14073
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 14072
+  reading_record: 14073
   reading_index: 0
   reading_raw: /bjɛ̃.v(ə).ny/
   pr: /bjɛ̃.v(ə).ny/
-  ds: welcome
+  ds: welcome; greeting
   primary: true
 - id: fr-v-bd5fce6e0788c23a
   word: au revoir
@@ -193,18 +128,18 @@
   pr: /ɛk.skyz/
   ds: excuse
   primary: true
-- id: fr-v-d670bc52ae8a1fb9
+- id: fr-v-e82d4ba5bcde3555
   word: français
-  pos: adj
-  source_sense_id: en-français-fr-adj-dFgZn-l6
-  record: 1867
+  pos: noun
+  source_sense_id: en-français-fr-noun-fr:Q150
+  record: 1868
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1867
+  reading_record: 1868
   reading_index: 0
   reading_raw: /fʁɑ̃.sɛ/
   pr: /fʁɑ̃.sɛ/
-  ds: French
+  ds: French language
   primary: true
 - id: fr-v-5f616523a0cc1100
   word: anglais
@@ -219,18 +154,18 @@
   pr: /ɑ̃.ɡlɛ/
   ds: English (language)
   primary: true
-- id: fr-v-87472db5bce31239
+- id: fr-v-61bcd768c548455a
   word: langue
   pos: noun
-  source_sense_id: en-langue-fr-noun-snFSEtk5
+  source_sense_id: en-langue-fr-noun-SsSou5zl
   record: 229
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 229
   reading_index: 0
   reading_raw: /lɑ̃ɡ/
   pr: /lɑ̃ɡ/
-  ds: tongue
+  ds: language; system of communication
   primary: true
 - id: fr-v-d439345d496b922c
   word: mot
@@ -257,6 +192,19 @@
   reading_raw: /fʁaz/
   pr: /fʁaz/
   ds: sentence
+  primary: true
+- id: fr-v-b37372fc5aa9116d
+  word: nom
+  pos: noun
+  source_sense_id: en-nom-fr-noun-gqNTf~Db
+  record: 8149
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 8149
+  reading_index: 0
+  reading_raw: /nɔ̃/
+  pr: /nɔ̃/
+  ds: name
   primary: true
 - id: fr-v-39af8aa9de433567
   word: prénom
@@ -595,6 +543,58 @@
   reading_raw: /mɛ̃t.nɑ̃/
   pr: /mɛ̃t.nɑ̃/
   ds: now, currently
+  primary: true
+- id: fr-v-23aed6f0aa7352ba
+  word: faire
+  pos: verb
+  source_sense_id: en-faire-fr-verb-IXZV9I3e
+  record: 3614
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 3614
+  reading_index: 0
+  reading_raw: /fɛʁ/
+  pr: /fɛʁ/
+  ds: to do
+  primary: true
+- id: fr-v-5c68a89f38d9b824
+  word: voir
+  pos: verb
+  source_sense_id: en-voir-fr-verb-fZHSw7TU
+  record: 817
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 817
+  reading_index: 0
+  reading_raw: /vwaʁ/
+  pr: /vwaʁ/
+  ds: to see (visually)
+  primary: true
+- id: fr-v-90e551d22bb952c9
+  word: donner
+  pos: verb
+  source_sense_id: en-donner-fr-verb-S7URuIAd
+  record: 401
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 401
+  reading_index: 0
+  reading_raw: /dɔ.ne/
+  pr: /dɔ.ne/
+  ds: to give
+  primary: true
+- id: fr-v-18caab3d7c690471
+  word: nommer
+  pos: verb
+  source_sense_id: en-nommer-fr-verb-e~xsvLhC
+  record: 16815
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 16815
+  reading_index: 0
+  reading_raw: /nɔ.me/
+  pr: /nɔ.me/
+  ds: to name; to call by a name
   primary: true
 - id: fr-v-004b7eb26bb697a6
   word: je
@@ -1324,18 +1324,18 @@
   pr: /ʃɛz/
   ds: chair, seat
   primary: true
-- id: fr-v-c1e69ebea158f92f
+- id: fr-v-8603a8b24d483724
   word: place
   pos: noun
-  source_sense_id: en-place-fr-noun-nXNp0LfE
+  source_sense_id: en-place-fr-noun-zvH8HkkK
   record: 3748
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3748
   reading_index: 0
   reading_raw: /plas/
   pr: /plas/
-  ds: place, square, plaza, piazza
+  ds: space; available room
   primary: true
 - id: fr-v-627d5e482176d163
   word: photo
@@ -1376,18 +1376,18 @@
   pr: /pə.ti/
   ds: small
   primary: true
-- id: fr-v-202e33aad699334e
+- id: fr-v-51376bb19ca5a0c7
   word: nouveau
-  pos: noun
-  source_sense_id: en-nouveau-fr-noun-NcRfJDgV
-  record: 12226
+  pos: adj
+  source_sense_id: en-nouveau-fr-adj-ksnpHM5K
+  record: 12225
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 12226
+  reading_record: 12225
   reading_index: 0
   reading_raw: /nu.vo/
   pr: /nu.vo/
-  ds: new person, new thing
+  ds: new
   primary: true
 - id: fr-v-8332cdeadc9fd451
   word: vieux
@@ -1545,18 +1545,18 @@
   pr: /ku.lœʁ/
   ds: color/colour
   primary: true
-- id: fr-v-17e38e9a014ef68b
+- id: fr-v-6b1b8caaff1de9be
   word: même
-  pos: adv
-  source_sense_id: en-même-fr-adv-7DgGPIgf
-  record: 6462
+  pos: adj
+  source_sense_id: en-même-fr-adj-CWcRXygT
+  record: 6463
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 6462
+  reading_record: 6463
   reading_index: 0
   reading_raw: /mɛm/
   pr: /mɛm/
-  ds: even
+  ds: same
   primary: true
 - id: fr-v-3ec5d5479bdc6cff
   word: autre
@@ -1675,18 +1675,18 @@
   pr: /vɔtʁ/
   ds: your, belonging to you (plural or formal)
   primary: true
-- id: fr-v-fbf60a681af7aaca
+- id: fr-v-631eeb660c5dd532
   word: leur
-  pos: pron
-  source_sense_id: en-leur-fr-pron-4RMMe4Bv
-  record: 7459
+  pos: det
+  source_sense_id: en-leur-fr-det-~ZY-T9RZ
+  record: 7460
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 7459
+  reading_record: 7460
   reading_index: 0
   reading_raw: /lœʁ/
   pr: /lœʁ/
-  ds: (to) them
+  ds: their; possessive determiner
   primary: true
 - id: fr-v-a421908bf7011681
   word: de
@@ -1766,18 +1766,18 @@
   pr: /ɑ̃tʁ/
   ds: between
   primary: true
-- id: fr-v-bc5110cf1dfcb1f0
+- id: fr-v-fd582a89df883fb0
   word: devant
   pos: prep
-  source_sense_id: en-devant-fr-prep-UT1MwOMI
+  source_sense_id: en-devant-fr-prep-jwtcZiHA
   record: 10450
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 10450
   reading_index: 0
   reading_raw: /də.vɑ̃/
   pr: /də.vɑ̃/
-  ds: confronted with, faced with
+  ds: in front of
   primary: true
 - id: fr-v-df1df27984b04cc8
   word: derrière
@@ -1804,266 +1804,6 @@
   reading_raw: /ʃe/
   pr: /ʃe/
   ds: to, at, in or into the place of
-  primary: true
-- id: fr-v-288bf44439bda94e
-  word: treize
-  pos: num
-  source_sense_id: en-treize-fr-num-nsyB8KS2
-  record: 1468
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1468
-  reading_index: 0
-  reading_raw: /tʁɛz/
-  pr: /tʁɛz/
-  ds: thirteen
-  primary: true
-- id: fr-v-4c1938986208231c
-  word: quatorze
-  pos: num
-  source_sense_id: en-quatorze-fr-num-~vj0HNzS
-  record: 1469
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1469
-  reading_index: 0
-  reading_raw: /ka.tɔʁz/
-  pr: /ka.tɔʁz/
-  ds: fourteen
-  primary: true
-- id: fr-v-e476a24a5cad770d
-  word: quinze
-  pos: num
-  source_sense_id: en-quinze-fr-num-xGOWflcI
-  record: 1470
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1470
-  reading_index: 0
-  reading_raw: /kɛ̃z/
-  pr: /kɛ̃z/
-  ds: fifteen
-  primary: true
-- id: fr-v-c77139361856faea
-  word: seize
-  pos: num
-  source_sense_id: en-seize-fr-num-8s40H9qm
-  record: 1471
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1471
-  reading_index: 0
-  reading_raw: /sɛz/
-  pr: /sɛz/
-  ds: sixteen
-  primary: true
-- id: fr-v-6410ac051a64af89
-  word: dix-sept
-  pos: num
-  source_sense_id: en-dix-sept-fr-num-LFq97yoO
-  record: 12068
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 12068
-  reading_index: 0
-  reading_raw: /di.sɛt/
-  pr: /di.sɛt/
-  ds: seventeen
-  primary: true
-- id: fr-v-9d5fd2811b98ad03
-  word: dix-huit
-  pos: num
-  source_sense_id: en-dix-huit-fr-num-NDV7GKvd
-  record: 12069
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 12069
-  reading_index: 0
-  reading_raw: /di.z‿ɥit/
-  pr: /di.z‿ɥit/
-  ds: eighteen
-  primary: true
-- id: fr-v-45063b33a1034688
-  word: dix-neuf
-  pos: num
-  source_sense_id: en-dix-neuf-fr-num-zeThAO~S
-  record: 1701
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1701
-  reading_index: 0
-  reading_raw: /diz.nœf/
-  pr: /diz.nœf/
-  ds: nineteen
-  primary: true
-- id: fr-v-069bca6ff317bf78
-  word: soixante
-  pos: num
-  source_sense_id: en-soixante-fr-num-30EWThUS
-  record: 6530
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 6530
-  reading_index: 0
-  reading_raw: /swa.sɑ̃t/
-  pr: /swa.sɑ̃t/
-  ds: sixty
-  primary: true
-- id: fr-v-6855e4e4301ff411
-  word: soixante-dix
-  pos: num
-  source_sense_id: en-soixante-dix-fr-num-qw5LGng5
-  record: 12065
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 12065
-  reading_index: 0
-  reading_raw: /swa.sɑ̃t.dis/
-  pr: /swa.sɑ̃t.dis/
-  ds: seventy
-  primary: true
-- id: fr-v-747260543b4f6be5
-  word: quatre-vingts
-  pos: num
-  source_sense_id: en-quatre-vingts-fr-num-1KSWYxaF
-  record: 1404
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1404
-  reading_index: 0
-  reading_raw: /ka.tʁə.vɛ̃/
-  pr: /ka.tʁə.vɛ̃/
-  ds: eighty, 80
-  primary: true
-- id: fr-v-67c7897101ffd90e
-  word: quatre-vingt-dix
-  pos: num
-  source_sense_id: en-quatre-vingt-dix-fr-num-Uhx0pNWC
-  record: 12071
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 12071
-  reading_index: 0
-  reading_raw: /ka.tʁə.vɛ̃.dis/
-  pr: /ka.tʁə.vɛ̃.dis/
-  ds: ninety
-  primary: true
-- id: fr-v-999a4a03763c288a
-  word: mille
-  pos: num
-  source_sense_id: en-mille-fr-num-d~cvvUEJ
-  record: 5853
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 5853
-  reading_index: 0
-  reading_raw: /mil/
-  pr: /mil/
-  ds: thousand, one thousand, a thousand
-  primary: true
-- id: fr-v-2d65ad11e090e5c4
-  word: beaucoup
-  pos: adv
-  source_sense_id: en-beaucoup-fr-adv-AJ6b-n3x
-  record: 4409
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 4409
-  reading_index: 0
-  reading_raw: /bo.ku/
-  pr: /bo.ku/
-  ds: much, very much, a lot
-  primary: true
-- id: fr-v-ae8015bcfc2423b9
-  word: peu
-  pos: noun
-  source_sense_id: en-peu-fr-noun--pXlCAiC
-  record: 3918
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 3918
-  reading_index: 0
-  reading_raw: /pø/
-  pr: /pø/
-  ds: few
-  primary: true
-- id: fr-v-0bab267f71053c23
-  word: assez
-  pos: adv
-  source_sense_id: en-assez-fr-adv-NPlkXNjR
-  record: 6496
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 6496
-  reading_index: 0
-  reading_raw: /a.se/
-  pr: /a.se/
-  ds: to a sufficient or moderate degree; enough; sufficiently
-  primary: true
-- id: fr-v-1ee296be52917894
-  word: trop
-  pos: adv
-  source_sense_id: en-trop-fr-adv-VZpGgS2X
-  record: 7249
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 7249
-  reading_index: 0
-  reading_raw: /tʁo/
-  pr: /tʁo/
-  ds: too; too much
-  primary: true
-- id: fr-v-32dc4e88ac574eea
-  word: tout
-  pos: det
-  source_sense_id: en-tout-fr-det-XvXvA2S2
-  record: 1000
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1000
-  reading_index: 0
-  reading_raw: /tu/
-  pr: /tu/
-  ds: all
-  primary: true
-- id: fr-v-316e14adeeec3729
-  word: combien
-  pos: adv
-  source_sense_id: en-combien-fr-adv-Q8I~hgSG
-  record: 9731
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 9731
-  reading_index: 0
-  reading_raw: /kɔ̃.bjɛ̃/
-  pr: /kɔ̃.bjɛ̃/
-  ds: how much (for uncountable nouns and portions)
-  primary: true
-- id: fr-v-c2dae6967cacba06
-  word: pour
-  pos: prep
-  source_sense_id: en-pour-fr-prep-6L8XdWUU
-  record: 1218
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1218
-  reading_index: 0
-  reading_raw: /puʁ/
-  pr: /puʁ/
-  ds: for (meant for, intended for)
-  primary: true
-- id: fr-v-cc5b9e82c78eacc1
-  word: addition
-  pos: noun
-  source_sense_id: en-addition-fr-noun-2K5ayR8V
-  record: 944
-  sense_index: 1
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 944
-  reading_index: 0
-  reading_raw: /a.di.sjɔ̃/
-  pr: /a.di.sjɔ̃/
-  ds: bill or check at a bar or restaurant
   primary: true
 - id: fr-v-dffaea6b9559b478
   word: eau
@@ -2208,18 +1948,18 @@
   pr: /ʁi/
   ds: rice
   primary: true
-- id: fr-v-aac6eeb0dd32fb54
+- id: fr-v-3ef2ab34a5424838
   word: pâte
   pos: noun
-  source_sense_id: en-pâte-fr-noun-KJfBOZ4U
+  source_sense_id: en-pâte-fr-noun-GO226VY7
   record: 26934
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 26934
   reading_index: 0
   reading_raw: /pat/
   pr: /pat/
-  ds: paste (a soft moist mixture)
+  ds: pasta; noodles; plural usage
   primary: true
 - id: fr-v-d7a7a3a155f173eb
   word: pomme
@@ -2273,18 +2013,18 @@
   pr: /si.tʁɔ̃/
   ds: lemon
   primary: true
-- id: fr-v-72020551d9d629e5
+- id: fr-v-0840bed1993363ac
   word: tomate
   pos: noun
-  source_sense_id: en-tomate-fr-noun-qpdGXdAo
+  source_sense_id: en-tomate-fr-noun-FZ-UhIWx
   record: 1967
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 1967
   reading_index: 0
   reading_raw: /tɔ.mat/
   pr: /tɔ.mat/
-  ds: tomato (plant)
+  ds: tomato; edible fruit
   primary: true
 - id: fr-v-9879878c86d02e63
   word: salade
@@ -2455,18 +2195,18 @@
   pr: /di.ne/
   ds: dinner, evening meal
   primary: true
-- id: fr-v-392230f6d1c0eb5a
+- id: fr-v-adbf339013accf71
   word: menu
   pos: noun
-  source_sense_id: en-menu-fr-noun-yCsdkrxP
+  source_sense_id: en-menu-fr-noun-HDb9KOl-
   record: 1266
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 1266
   reading_index: 0
   reading_raw: /mə.ny/
   pr: /mə.ny/
-  ds: detailed list
+  ds: menu; set meal
   primary: true
 - id: fr-v-32eaf4fd3e3a1c13
   word: restaurant
@@ -2481,18 +2221,18 @@
   pr: /ʁɛs.tɔ.ʁɑ̃/
   ds: restaurant
   primary: true
-- id: fr-v-43c1306104468b9b
+- id: fr-v-dcd9ee218154e929
   word: verre
   pos: noun
-  source_sense_id: en-verre-fr-noun-7FwKEEcq
+  source_sense_id: en-verre-fr-noun-gyTdXvbq
   record: 709
-  sense_index: 0
+  sense_index: 4
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 709
   reading_index: 0
   reading_raw: /vɛʁ/
   pr: /vɛʁ/
-  ds: glass (substance)
+  ds: drinking glass
   primary: true
 - id: fr-v-272b5254d973b8b4
   word: tasse
@@ -2507,18 +2247,18 @@
   pr: /tas/
   ds: cup
   primary: true
-- id: fr-v-e0383a8acd88b034
+- id: fr-v-e3dd185d0abea415
   word: assiette
   pos: noun
-  source_sense_id: en-assiette-fr-noun-XSwT1vn6
+  source_sense_id: en-assiette-fr-noun-POkaqxZ7
   record: 16118
-  sense_index: 1
+  sense_index: 5
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 16118
   reading_index: 0
   reading_raw: /a.sjɛt/
   pr: /a.sjɛt/
-  ds: seat
+  ds: plate; tableware
   primary: true
 - id: fr-v-15c728a1d6e88066
   word: bouteille
@@ -2585,18 +2325,18 @@
   pr: /ɛ.me/
   ds: to love; to like
   primary: true
-- id: fr-v-931d65d1f00c6019
+- id: fr-v-794486ca61c84640
   word: commander
   pos: verb
-  source_sense_id: en-commander-fr-verb-1ycoSxp3
+  source_sense_id: en-commander-fr-verb-MASy~qJG
   record: 2983
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 2983
   reading_index: 0
   reading_raw: /kɔ.mɑ̃.de/
   pr: /kɔ.mɑ̃.de/
-  ds: to order (tell someone to do something)
+  ds: to order food or goods
   primary: true
 - id: fr-v-6746733a972453d5
   word: chaud
@@ -3053,18 +2793,18 @@
   pr: /ɥit/
   ds: eight
   primary: true
-- id: fr-v-c588381de578c5b2
+- id: fr-v-603343c7b524e167
   word: neuf
-  pos: adj
-  source_sense_id: en-neuf-fr-adj-VfgzXXjw
-  record: 1463
+  pos: num
+  source_sense_id: en-neuf-fr-num-7c2OcBot
+  record: 1462
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 1463
+  reading_record: 1462
   reading_index: 0
   reading_raw: /nœf/
   pr: /nœf/
-  ds: brand new, very new
+  ds: nine
   primary: true
 - id: fr-v-2ae096aa7e26a300
   word: dix
@@ -3104,6 +2844,97 @@
   reading_raw: /duz/
   pr: /duz/
   ds: twelve
+  primary: true
+- id: fr-v-288bf44439bda94e
+  word: treize
+  pos: num
+  source_sense_id: en-treize-fr-num-nsyB8KS2
+  record: 1468
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1468
+  reading_index: 0
+  reading_raw: /tʁɛz/
+  pr: /tʁɛz/
+  ds: thirteen
+  primary: true
+- id: fr-v-4c1938986208231c
+  word: quatorze
+  pos: num
+  source_sense_id: en-quatorze-fr-num-~vj0HNzS
+  record: 1469
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1469
+  reading_index: 0
+  reading_raw: /ka.tɔʁz/
+  pr: /ka.tɔʁz/
+  ds: fourteen
+  primary: true
+- id: fr-v-e476a24a5cad770d
+  word: quinze
+  pos: num
+  source_sense_id: en-quinze-fr-num-xGOWflcI
+  record: 1470
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1470
+  reading_index: 0
+  reading_raw: /kɛ̃z/
+  pr: /kɛ̃z/
+  ds: fifteen
+  primary: true
+- id: fr-v-c77139361856faea
+  word: seize
+  pos: num
+  source_sense_id: en-seize-fr-num-8s40H9qm
+  record: 1471
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1471
+  reading_index: 0
+  reading_raw: /sɛz/
+  pr: /sɛz/
+  ds: sixteen
+  primary: true
+- id: fr-v-6410ac051a64af89
+  word: dix-sept
+  pos: num
+  source_sense_id: en-dix-sept-fr-num-LFq97yoO
+  record: 12068
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 12068
+  reading_index: 0
+  reading_raw: /di.sɛt/
+  pr: /di.sɛt/
+  ds: seventeen
+  primary: true
+- id: fr-v-9d5fd2811b98ad03
+  word: dix-huit
+  pos: num
+  source_sense_id: en-dix-huit-fr-num-NDV7GKvd
+  record: 12069
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 12069
+  reading_index: 0
+  reading_raw: /di.z‿ɥit/
+  pr: /di.z‿ɥit/
+  ds: eighteen
+  primary: true
+- id: fr-v-45063b33a1034688
+  word: dix-neuf
+  pos: num
+  source_sense_id: en-dix-neuf-fr-num-zeThAO~S
+  record: 1701
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1701
+  reading_index: 0
+  reading_raw: /diz.nœf/
+  pr: /diz.nœf/
+  ds: nineteen
   primary: true
 - id: fr-v-6b66def7e01a5c14
   word: vingt
@@ -3157,6 +2988,58 @@
   pr: /sɛ̃.kɑ̃t/
   ds: fifty
   primary: true
+- id: fr-v-069bca6ff317bf78
+  word: soixante
+  pos: num
+  source_sense_id: en-soixante-fr-num-30EWThUS
+  record: 6530
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 6530
+  reading_index: 0
+  reading_raw: /swa.sɑ̃t/
+  pr: /swa.sɑ̃t/
+  ds: sixty
+  primary: true
+- id: fr-v-6855e4e4301ff411
+  word: soixante-dix
+  pos: num
+  source_sense_id: en-soixante-dix-fr-num-qw5LGng5
+  record: 12065
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 12065
+  reading_index: 0
+  reading_raw: /swa.sɑ̃t.dis/
+  pr: /swa.sɑ̃t.dis/
+  ds: seventy
+  primary: true
+- id: fr-v-747260543b4f6be5
+  word: quatre-vingts
+  pos: num
+  source_sense_id: en-quatre-vingts-fr-num-1KSWYxaF
+  record: 1404
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1404
+  reading_index: 0
+  reading_raw: /ka.tʁə.vɛ̃/
+  pr: /ka.tʁə.vɛ̃/
+  ds: eighty, 80
+  primary: true
+- id: fr-v-67c7897101ffd90e
+  word: quatre-vingt-dix
+  pos: num
+  source_sense_id: en-quatre-vingt-dix-fr-num-Uhx0pNWC
+  record: 12071
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 12071
+  reading_index: 0
+  reading_raw: /ka.tʁə.vɛ̃.dis/
+  pr: /ka.tʁə.vɛ̃.dis/
+  ds: ninety
+  primary: true
 - id: fr-v-c7c28a0409da2972
   word: cent
   pos: num
@@ -3170,18 +3053,31 @@
   pr: /sɑ̃/
   ds: hundred
   primary: true
-- id: fr-v-e5b14a76d6a37833
+- id: fr-v-999a4a03763c288a
+  word: mille
+  pos: num
+  source_sense_id: en-mille-fr-num-d~cvvUEJ
+  record: 5853
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 5853
+  reading_index: 0
+  reading_raw: /mil/
+  pr: /mil/
+  ds: thousand, one thousand, a thousand
+  primary: true
+- id: fr-v-896ec121ba67f365
   word: prix
   pos: noun
-  source_sense_id: en-prix-fr-noun-cqek-C5I
+  source_sense_id: en-prix-fr-noun-aDtTH0Hs
   record: 6944
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 6944
   reading_index: 0
   reading_raw: /pʁi/
   pr: /pʁi/
-  ds: prize
+  ds: price; amount to pay
   primary: true
 - id: fr-v-7d966e2f1c31bfab
   word: euro
@@ -3196,18 +3092,31 @@
   pr: /ø.ʁo/
   ds: euro (currency)
   primary: true
-- id: fr-v-a890afc708ce1153
+- id: fr-v-b70ae08dfe2e0599
   word: argent
   pos: noun
-  source_sense_id: en-argent-fr-noun-eM3mTD5H
+  source_sense_id: en-argent-fr-noun-R6UWTbwf
   record: 5479
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5479
   reading_index: 0
   reading_raw: /aʁ.ʒɑ̃/
   pr: /aʁ.ʒɑ̃/
-  ds: silver
+  ds: money; cash
+  primary: true
+- id: fr-v-316e14adeeec3729
+  word: combien
+  pos: adv
+  source_sense_id: en-combien-fr-adv-Q8I~hgSG
+  record: 9731
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 9731
+  reading_index: 0
+  reading_raw: /kɔ̃.bjɛ̃/
+  pr: /kɔ̃.bjɛ̃/
+  ds: how much (for uncountable nouns and portions)
   primary: true
 - id: fr-v-efce47b635a01e44
   word: acheter
@@ -3234,6 +3143,97 @@
   reading_raw: /pɛ.je/
   pr: /pɛ.je/
   ds: to pay (for)
+  primary: true
+- id: fr-v-c2dae6967cacba06
+  word: pour
+  pos: prep
+  source_sense_id: en-pour-fr-prep-6L8XdWUU
+  record: 1218
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1218
+  reading_index: 0
+  reading_raw: /puʁ/
+  pr: /puʁ/
+  ds: for (meant for, intended for)
+  primary: true
+- id: fr-v-cc5b9e82c78eacc1
+  word: addition
+  pos: noun
+  source_sense_id: en-addition-fr-noun-2K5ayR8V
+  record: 944
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 944
+  reading_index: 0
+  reading_raw: /a.di.sjɔ̃/
+  pr: /a.di.sjɔ̃/
+  ds: bill or check at a bar or restaurant
+  primary: true
+- id: fr-v-2d65ad11e090e5c4
+  word: beaucoup
+  pos: adv
+  source_sense_id: en-beaucoup-fr-adv-AJ6b-n3x
+  record: 4409
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 4409
+  reading_index: 0
+  reading_raw: /bo.ku/
+  pr: /bo.ku/
+  ds: much, very much, a lot
+  primary: true
+- id: fr-v-d8a0575215bda862
+  word: peu
+  pos: adv
+  source_sense_id: en-peu-fr-adv-u0lXIPqJ
+  record: 3917
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 3917
+  reading_index: 0
+  reading_raw: /pø/
+  pr: /pø/
+  ds: little; not much or many
+  primary: true
+- id: fr-v-0bab267f71053c23
+  word: assez
+  pos: adv
+  source_sense_id: en-assez-fr-adv-NPlkXNjR
+  record: 6496
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 6496
+  reading_index: 0
+  reading_raw: /a.se/
+  pr: /a.se/
+  ds: to a sufficient or moderate degree; enough; sufficiently
+  primary: true
+- id: fr-v-1ee296be52917894
+  word: trop
+  pos: adv
+  source_sense_id: en-trop-fr-adv-VZpGgS2X
+  record: 7249
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 7249
+  reading_index: 0
+  reading_raw: /tʁo/
+  pr: /tʁo/
+  ds: too; too much
+  primary: true
+- id: fr-v-32dc4e88ac574eea
+  word: tout
+  pos: det
+  source_sense_id: en-tout-fr-det-XvXvA2S2
+  record: 1000
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1000
+  reading_index: 0
+  reading_raw: /tu/
+  pr: /tu/
+  ds: all
   primary: true
 - id: fr-v-311c524c92e8ee52
   word: devoir
@@ -3300,18 +3300,18 @@
   pr: /ɔ.fʁiʁ/
   ds: to offer; to provide
   primary: true
-- id: fr-v-22afdd0b327e4284
+- id: fr-v-fbaea30b3c0cb6ec
   word: prévenir
   pos: verb
-  source_sense_id: en-prévenir-fr-verb-qghr5aky
+  source_sense_id: en-prévenir-fr-verb-treSMQ5a
   record: 17059
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 17059
   reading_index: 0
   reading_raw: /pʁev.niʁ/
   pr: /pʁev.niʁ/
-  ds: to prevent, to avert, to guard against
+  ds: to notify; to warn
   primary: true
 - id: fr-v-49bc81663759a40a
   word: secours
@@ -3443,18 +3443,18 @@
   pr: /tak.si/
   ds: taxi
   primary: true
-- id: fr-v-ff345ef6640adb7d
+- id: fr-v-f2ae151ce048f91c
   word: voiture
   pos: noun
-  source_sense_id: en-voiture-fr-noun-25yEqXye
+  source_sense_id: en-voiture-fr-noun-fq1Ljws7
   record: 12559
-  sense_index: 1
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 12559
   reading_index: 0
   reading_raw: /vwa.tyʁ/
   pr: /vwa.tyʁ/
-  ds: car (wagon)
+  ds: car; motor vehicle
   primary: true
 - id: fr-v-36819c829fedec30
   word: avion
@@ -3495,18 +3495,18 @@
   pr: /o.tɛl/
   ds: hotel; paid accommodation
   primary: true
-- id: fr-v-d6b7a3b6f9402564
+- id: fr-v-c22fc3483ea21daf
   word: chambre
   pos: noun
-  source_sense_id: en-chambre-fr-noun-9Cmr9F7q
+  source_sense_id: en-chambre-fr-noun-iQ6mGCNP
   record: 3378
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3378
   reading_index: 0
   reading_raw: /ʃɑ̃bʁ/
   pr: /ʃɑ̃bʁ/
-  ds: a room.
+  ds: hotel room
   primary: true
 - id: fr-v-bcd3a43850411ae2
   word: billet
@@ -3573,18 +3573,18 @@
   pr: /ʃə.mɛ̃/
   ds: path, way, road
   primary: true
-- id: fr-v-718bbcc6fa05a8a0
+- id: fr-v-b3d3165d893a973f
   word: arrêt
   pos: noun
-  source_sense_id: en-arrêt-fr-noun-zDCuKXmn
+  source_sense_id: en-arrêt-fr-noun-5NOpqA-y
   record: 3427
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3427
   reading_index: 0
   reading_raw: /a.ʁɛ/
   pr: /a.ʁɛ/
-  ds: stopping
+  ds: stop; stopping place
   primary: true
 - id: fr-v-aa510f7ac10470c7
   word: sortie
@@ -3599,18 +3599,18 @@
   pr: /sɔʁ.ti/
   ds: exit; way out
   primary: true
-- id: fr-v-350323259b922cb2
+- id: fr-v-2dbdc68186ce2499
   word: entrée
   pos: noun
-  source_sense_id: en-entrée-fr-noun-TOGJiku3
+  source_sense_id: en-entrée-fr-noun-i-WjxhgK
   record: 11054
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11054
   reading_index: 0
   reading_raw: /ɑ̃.tʁe/
   pr: /ɑ̃.tʁe/
-  ds: entry, act of entering
+  ds: entrance; way in
   primary: true
 - id: fr-v-f65b1c1fbb3f942a
   word: gauche
@@ -3703,31 +3703,31 @@
   pr: /lwɛ̃/
   ds: far, distant
   primary: true
-- id: fr-v-843bf90dee592612
+- id: fr-v-27a89ec0f35e3d21
   word: près
-  pos: prep
-  source_sense_id: en-près-fr-prep-Nluu6NlN
-  record: 14471
+  pos: adv
+  source_sense_id: en-près-fr-adv-O1a02u4i
+  record: 14470
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 14471
+  reading_record: 14470
   reading_index: 0
   reading_raw: /pʁɛ/
   pr: /pʁɛ/
-  ds: attached to
+  ds: near; close by
   primary: true
-- id: fr-v-21a45e0338858e0a
+- id: fr-v-b4b6f559cec59cd2
   word: tout droit
   pos: adv
-  source_sense_id: en-tout_droit-fr-adv-45VUsAy8
+  source_sense_id: en-tout_droit-fr-adv-8bsTYcmD
   record: 21266
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 21266
   reading_index: 0
   reading_raw: /tu dʁwa/
   pr: /tu dʁwa/
-  ds: to the front
+  ds: straight ahead
   primary: true
 - id: fr-v-d25330c17e0381a1
   word: aller
@@ -3781,18 +3781,18 @@
   pr: /a.ʁi.ve/
   ds: to arrive (often followed by a location)
   primary: true
-- id: fr-v-6a95d3dbe3a8dd58
+- id: fr-v-adada4742558d18e
   word: retourner
   pos: verb
-  source_sense_id: en-retourner-fr-verb-7mrRktw8
+  source_sense_id: en-retourner-fr-verb-pM7DeXZA
   record: 7740
-  sense_index: 0
+  sense_index: 4
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 7740
   reading_index: 0
   reading_raw: /ʁə.tuʁ.ne/
   pr: /ʁə.tuʁ.ne/
-  ds: to turn over; to turn upside-down
+  ds: to go back; to return to a place
   primary: true
 - id: fr-v-cd70435b8e7ed4af
   word: marcher
@@ -3937,18 +3937,18 @@
   pr: /pʁɔ.blɛm/
   ds: problem
   primary: true
-- id: fr-v-20f24503913d51ee
+- id: fr-v-59698bbf70abc161
   word: rendez-vous
   pos: noun
-  source_sense_id: en-rendez-vous-fr-noun-DodjLNRr
+  source_sense_id: en-rendez-vous-fr-noun-~Tf4da0p
   record: 12084
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 12084
   reading_index: 0
   reading_raw: /ʁɑ̃.de.vu/
   pr: /ʁɑ̃.de.vu/
-  ds: date
+  ds: appointment
   primary: true
 - id: fr-v-c2747f81008e4c62
   word: besoin
@@ -3963,18 +3963,18 @@
   pr: /bə.zwɛ̃/
   ds: need
   primary: true
-- id: fr-v-4aae37cb84ca2cfe
+- id: fr-v-24e1299f952bb227
   word: accord
   pos: noun
-  source_sense_id: en-accord-fr-noun-JXNbqqW0
+  source_sense_id: en-accord-fr-noun-RqgXOcbu
   record: 148
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 148
   reading_index: 0
   reading_raw: /a.kɔʁ/
   pr: /a.kɔʁ/
-  ds: chord
+  ds: agreement
   primary: true
 - id: fr-v-a1a099edb53a0999
   word: attention
@@ -4457,18 +4457,18 @@
   pr: /pla.fɔ̃/
   ds: ceiling
   primary: true
-- id: fr-v-d9723a0f4fe7135b
+- id: fr-v-b98ad7c0caa6bae5
   word: sol
   pos: noun
-  source_sense_id: en-sol-fr-noun-ZVwPNiEr
+  source_sense_id: en-sol-fr-noun-o-H0k1sJ
   record: 469
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 469
   reading_index: 0
   reading_raw: /sɔl/
   pr: /sɔl/
-  ds: soil, earth
+  ds: floor; indoor surface
   primary: true
 - id: fr-v-1430837d28d27c88
   word: toit
@@ -4548,18 +4548,18 @@
   pr: /sa.lɔ̃/
   ds: living room
   primary: true
-- id: fr-v-c6e8fe20085dc289
+- id: fr-v-7edcc5d3166475ea
   word: salle
   pos: noun
-  source_sense_id: en-salle-fr-noun-PLrrV8ZA
+  source_sense_id: en-salle-fr-noun-nnpBcHjz
   record: 8361
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 8361
   reading_index: 0
   reading_raw: /sal/
   pr: /sal/
-  ds: hall
+  ds: room in a house
   primary: true
 - id: fr-v-f1ea76ac16e35da6
   word: bureau
@@ -5003,18 +5003,18 @@
   pr: /sɛʁ.vjɛt/
   ds: towel (cloth used for wiping)
   primary: true
-- id: fr-v-3713e18c0d9c8166
+- id: fr-v-095f902a74e6c9af
   word: éponge
   pos: noun
-  source_sense_id: en-éponge-fr-noun-CCnjjvHh
+  source_sense_id: en-éponge-fr-noun-sWn9nMVU
   record: 14450
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 14450
   reading_index: 0
   reading_raw: /e.pɔ̃ʒ/
   pr: /e.pɔ̃ʒ/
-  ds: sponge (creature)
+  ds: sponge for cleaning
   primary: true
 - id: fr-v-9175034ec581fa04
   word: balai
@@ -5575,18 +5575,18 @@
   pr: /ɛ̃.vi.te/
   ds: to invite
   primary: true
-- id: fr-v-38623331065f795f
+- id: fr-v-ae8bebb56dc9376d
   word: déménager
   pos: verb
-  source_sense_id: en-déménager-fr-verb-6IL~sVvW
+  source_sense_id: en-déménager-fr-verb-e2KVV044
   record: 29704
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 29704
   reading_index: 0
   reading_raw: /de.me.na.ʒe/
   pr: /de.me.na.ʒe/
-  ds: to move (an object from a place to another)
+  ds: to move house
   primary: true
 - id: fr-v-672c936aeb582d52
   word: installer
@@ -5705,18 +5705,18 @@
   pr: /a.bi.tɥɛl.mɑ̃/
   ds: usually, habitually
   primary: true
-- id: fr-v-b8615644143fd76f
+- id: fr-v-413a1a928d96f038
   word: normalement
   pos: adv
-  source_sense_id: en-normalement-fr-adv-HUTTDOEJ
+  source_sense_id: en-normalement-fr-adv--987tqVe
   record: 91923
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 91923
   reading_index: 0
   reading_raw: /nɔʁ.mal.mɑ̃/
   pr: /nɔʁ.mal.mɑ̃/
-  ds: in theory
+  ds: usually
   primary: true
 - id: fr-v-58bc50ae8df2bf3d
   word: régulièrement
@@ -5770,18 +5770,18 @@
   pr: /ɑ̃.sɥit/
   ds: in turn, subsequently, thereafter, then
   primary: true
-- id: fr-v-d8c54d320f468ddd
+- id: fr-v-963369a726481d04
   word: puis
-  pos: conj
-  source_sense_id: en-puis-fr-conj-YgERG4Og
-  record: 10287
+  pos: adv
+  source_sense_id: en-puis-fr-adv-uOccZeUc
+  record: 10286
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 10287
+  reading_record: 10286
   reading_index: 0
   reading_raw: /pɥi/
   pr: /pɥi/
-  ds: and
+  ds: then; next
   primary: true
 - id: fr-v-964ed2fe9cbdf9e8
   word: enfin
@@ -6407,31 +6407,31 @@
   pr: /bu.tɔ̃/
   ds: button
   primary: true
-- id: fr-v-8c8c7d500b559655
+- id: fr-v-be74c3b7578999db
   word: fermeture
   pos: noun
-  source_sense_id: en-fermeture-fr-noun-b5pIgA0v
+  source_sense_id: en-fermeture-fr-noun-z-CkILdJ
   record: 24884
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 24884
   reading_index: 0
   reading_raw: /fɛʁ.mə.tyʁ/
   pr: /fɛʁ.mə.tyʁ/
-  ds: closing
+  ds: fastener; clothing closure
   primary: true
-- id: fr-v-b45162731c9cc5f2
+- id: fr-v-560f509943381f3a
   word: taille
   pos: noun
-  source_sense_id: en-taille-fr-noun-N~DQY~hC
+  source_sense_id: en-taille-fr-noun-zNy-hG89
   record: 11467
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11467
   reading_index: 0
   reading_raw: /taj/
   pr: /taj/
-  ds: the act of cutting, pruning, trimming
+  ds: size; clothing size
   primary: true
 - id: fr-v-61c8f5a45759f795
   word: pointure
@@ -6615,18 +6615,18 @@
   pr: /ʃwa.ziʁ/
   ds: to choose
   primary: true
-- id: fr-v-2e4622c34693aade
+- id: fr-v-b168b142ce44ef02
   word: convenir
   pos: verb
-  source_sense_id: en-convenir-fr-verb-ZM6g40G4
+  source_sense_id: en-convenir-fr-verb-WnlRpzag
   record: 20706
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20706
   reading_index: 0
   reading_raw: /kɔ̃v.niʁ/
   pr: /kɔ̃v.niʁ/
-  ds: to admit; to agree
+  ds: to suit; to be suitable for
   primary: true
 - id: fr-v-8e89946bf1e412ed
   word: serré
@@ -6680,18 +6680,18 @@
   pr: /kuʁ/
   ds: short
   primary: true
-- id: fr-v-422c9637122de350
+- id: fr-v-659cca1eeee04e37
   word: propre
   pos: adj
-  source_sense_id: en-propre-fr-adj-Wzl1ZRw8
+  source_sense_id: en-propre-fr-adj-OwZoBPbR
   record: 12685
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 12685
   reading_index: 0
   reading_raw: /pʁɔpʁ/
   pr: /pʁɔpʁ/
-  ds: own
+  ds: clean; not dirty
   primary: true
 - id: fr-v-9a39cad84b7d0084
   word: sale
@@ -6758,18 +6758,18 @@
   pr: /e.le.ɡɑ̃/
   ds: elegant (exhibiting elegance)
   primary: true
-- id: fr-v-0ce17e63123cca2e
+- id: fr-v-1bb222514a7799c4
   word: rose
-  pos: noun
-  source_sense_id: en-rose-fr-noun-xDETYqUB
-  record: 608
+  pos: adj
+  source_sense_id: en-rose-fr-adj-pnpByLx5
+  record: 610
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 608
+  reading_record: 610
   reading_index: 0
   reading_raw: /ʁoz/
   pr: /ʁoz/
-  ds: rose (flower)
+  ds: pink
   primary: true
 - id: fr-v-44976ea7edb856b1
   word: violet
@@ -6810,18 +6810,18 @@
   pr: /ma.ʁɔ̃/
   ds: brown
   primary: true
-- id: fr-v-b2676998de1dae99
+- id: fr-v-0832a033751f9462
   word: clair
   pos: adj
-  source_sense_id: en-clair-fr-adj-YviD6Vn~
+  source_sense_id: en-clair-fr-adj-wqv9m~3w
   record: 3621
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3621
   reading_index: 0
   reading_raw: /klɛʁ/
   pr: /klɛʁ/
-  ds: clear (see-through)
+  ds: light in colour
   primary: true
 - id: fr-v-6b4eddeee3bedfc3
   word: foncé
@@ -6836,31 +6836,31 @@
   pr: /fɔ̃.se/
   ds: dark (having a dark shade)
   primary: true
-- id: fr-v-b93c00def194be82
+- id: fr-v-af8be34a71f1ac39
   word: rayure
   pos: noun
-  source_sense_id: en-rayure-fr-noun-kBbVQi70
+  source_sense_id: en-rayure-fr-noun-fzVEyeMn
   record: 92934
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 92934
   reading_index: 0
   reading_raw: /ʁɛ.jyʁ/
   pr: /ʁɛ.jyʁ/
-  ds: scratch (on the surface of something)
+  ds: stripe; line in a pattern
   primary: true
-- id: fr-v-ea494be241a617f4
+- id: fr-v-21da0d77d23a7c47
   word: uni
   pos: adj
-  source_sense_id: en-uni-fr-adj-ylLn0cGJ
-  record: 3011
+  source_sense_id: en-uni-fr-adj-9oit8-9u
+  record: 3012
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 3011
+  reading_record: 3012
   reading_index: 0
   reading_raw: /y.ni/
   pr: /y.ni/
-  ds: united
+  ds: plain; one colour
   primary: true
 - id: fr-v-ce201fece38e2987
   word: magasin
@@ -6914,18 +6914,18 @@
   pr: /bu.lɑ̃ʒ.ʁi/
   ds: bread shop; bakery, baker's
   primary: true
-- id: fr-v-4b6304d1fbf1b722
+- id: fr-v-a807bf345d3497bc
   word: boucherie
   pos: noun
-  source_sense_id: en-boucherie-fr-noun-Yf6QojQI
+  source_sense_id: en-boucherie-fr-noun-qnHV4FMD
   record: 20712
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20712
   reading_index: 0
   reading_raw: /buʃ.ʁi/
   pr: /buʃ.ʁi/
-  ds: butchery, butchering (profession of the butcher)
+  ds: butcher's shop
   primary: true
 - id: fr-v-42aa0b38bfb05999
   word: pharmacie
@@ -6953,18 +6953,18 @@
   pr: /sy.pɛʁ.maʁ.ʃe/
   ds: supermarket
   primary: true
-- id: fr-v-d5e0cafd0c0902e7
+- id: fr-v-88021db987ebe707
   word: caisse
   pos: noun
-  source_sense_id: en-caisse-fr-noun-3VGgpwUR
+  source_sense_id: en-caisse-fr-noun-AlGWW-2t
   record: 17975
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 17975
   reading_index: 0
   reading_raw: /kɛs/
   pr: /kɛs/
-  ds: box, crate
+  ds: checkout; place to pay in a shop
   primary: true
 - id: fr-v-92a15f97a0ff69b4
   word: vendeur
@@ -7005,18 +7005,18 @@
   pr: /pʁɔ.dɥi/
   ds: product
   primary: true
-- id: fr-v-e6eadccb7699889f
+- id: fr-v-7051fce4607af937
   word: article
   pos: noun
-  source_sense_id: en-article-fr-noun-UdGB6qnB
+  source_sense_id: en-article-fr-noun-rIwDhrdn
   record: 509
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 509
   reading_index: 0
   reading_raw: /aʁ.tikl/
   pr: /aʁ.tikl/
-  ds: article (a piece of nonfictional writing)
+  ds: item for sale
   primary: true
 - id: fr-v-eef5b467cf32b074
   word: achat
@@ -7057,18 +7057,18 @@
   pr: /pɛ.mɑ̃/
   ds: payment
   primary: true
-- id: fr-v-ea4fe4fe74256810
+- id: fr-v-14e73416b8a8f438
   word: reçu
-  pos: adj
-  source_sense_id: en-reçu-fr-adj-ce7mJndi
-  record: 15247
+  pos: noun
+  source_sense_id: en-reçu-fr-noun-bzKGCRDK
+  record: 15248
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 15247
+  reading_record: 15248
   reading_index: 0
   reading_raw: /ʁə.sy/
   pr: /ʁə.sy/
-  ds: accomplished
+  ds: receipt; proof of payment
   primary: true
 - id: fr-v-183145fb51dd71db
   word: monnaie
@@ -7083,18 +7083,18 @@
   pr: /mɔ.nɛ/
   ds: change (money back after a transaction)
   primary: true
-- id: fr-v-1e1c2f3e26381241
+- id: fr-v-57a937b95e5e4427
   word: espèce
   pos: noun
-  source_sense_id: en-espèce-fr-noun-4OTptur1
+  source_sense_id: en-espèce-fr-noun-DWHTe2uP
   record: 7933
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 7933
   reading_index: 0
   reading_raw: /ɛs.pɛs/
   pr: /ɛs.pɛs/
-  ds: type, sort, kind
+  ds: cash; plural usage
   primary: true
 - id: fr-v-8e5af8a7f0a8e507
   word: banque
@@ -7161,18 +7161,18 @@
   pr: /ʁe.dyk.sjɔ̃/
   ds: reduction
   primary: true
-- id: fr-v-eaf6c59ac2b26183
+- id: fr-v-7039843a0eabb574
   word: promotion
   pos: noun
-  source_sense_id: en-promotion-fr-noun-qSnsruTd
+  source_sense_id: en-promotion-fr-noun-K~DQ8c03
   record: 6455
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 6455
   reading_index: 0
   reading_raw: /pʁɔ.mɔ.sjɔ̃/
   pr: /pʁɔ.mɔ.sjɔ̃/
-  ds: promotion (career advancement)
+  ds: special offer; sale
   primary: true
 - id: fr-v-701c390240abda6a
   word: échange
@@ -7213,18 +7213,18 @@
   pr: /ti.kɛ/
   ds: ticket (admission, pass)
   primary: true
-- id: fr-v-00534d92cf316aa8
+- id: fr-v-7b92e9312bbecfea
   word: cher
   pos: adj
-  source_sense_id: en-cher-fr-adj-yAqM9Hv9
+  source_sense_id: en-cher-fr-adj-gKkg~kDn
   record: 3610
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3610
   reading_index: 0
   reading_raw: /ʃɛʁ/
   pr: /ʃɛʁ/
-  ds: dear, beloved
+  ds: expensive
   primary: true
 - id: fr-v-ff26cc7c8bb64f44
   word: gratuit
@@ -7822,7 +7822,7 @@
   reading_index: 0
   reading_raw: /ɔʁ.dɔ.nɑ̃s/
   pr: /ɔʁ.dɔ.nɑ̃s/
-  ds: prescription
+  ds: medical prescription
   primary: true
 - id: fr-v-37b2c6a82f8ca9ce
   word: allergie
@@ -7915,18 +7915,18 @@
   pr: /ʁɛs.pi.ʁe/
   ds: to breathe
   primary: true
-- id: fr-v-eef4c9c8dacad218
+- id: fr-v-0a7cf8ed3cf2c6cd
   word: reposer
   pos: verb
-  source_sense_id: en-reposer-fr-verb-uDOuqrkb
+  source_sense_id: en-reposer-fr-verb-1TxAE3um
   record: 20419
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20419
   reading_index: 0
   reading_raw: /ʁə.po.ze/
   pr: /ʁə.po.ze/
-  ds: to put down, to place
+  ds: to rest; reflexive use
   primary: true
 - id: fr-v-88887749bd9d1b51
   word: soigner
@@ -7954,18 +7954,18 @@
   pr: /tɔ̃.be/
   ds: to fall
   primary: true
-- id: fr-v-006b1a71db8f24bb
+- id: fr-v-b03ca1b453349362
   word: sentir
   pos: verb
-  source_sense_id: en-sentir-fr-verb-nCTBXH1n
+  source_sense_id: en-sentir-fr-verb-5pH7JmJJ
   record: 4053
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 4053
   reading_index: 0
   reading_raw: /sɑ̃.tiʁ/
   pr: /sɑ̃.tiʁ/
-  ds: to smell (to have a certain odor)
+  ds: to feel; physical sensation
   primary: true
 - id: fr-v-a3d027cd17d9683f
   word: transport
@@ -8045,31 +8045,31 @@
   pr: /di.ʁɛk.sjɔ̃/
   ds: direction
   primary: true
-- id: fr-v-f2aee505022b10ac
+- id: fr-v-99ad50d606d3f053
   word: correspondance
   pos: noun
-  source_sense_id: en-correspondance-fr-noun-FGVL8rdz
+  source_sense_id: en-correspondance-fr-noun-I6k4LUUU
   record: 28885
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 28885
   reading_index: 0
   reading_raw: /kɔ.ʁɛs.pɔ̃.dɑ̃s/
   pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/
-  ds: correspondence
+  ds: connection; transfer between transport services
   primary: true
-- id: fr-v-1b78cd5cc10934b4
+- id: fr-v-da69ce9586983cbf
   word: quai
   pos: noun
-  source_sense_id: en-quai-fr-noun-hcHCQaLr
+  source_sense_id: en-quai-fr-noun-pCRh3v9Q
   record: 16468
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 16468
   reading_index: 0
   reading_raw: /ke/
   pr: /ke/
-  ds: quay, wharf
+  ds: station platform
   primary: true
 - id: fr-v-850695d92c9a491e
   word: voie
@@ -8136,18 +8136,18 @@
   pr: /kɔ̃.dyk.tœʁ/
   ds: the driver of a vehicle or of a group of animated creatures
   primary: true
-- id: fr-v-aa890a13bfbdda4e
+- id: fr-v-609d62ee776f0345
   word: chauffeur
   pos: noun
-  source_sense_id: en-chauffeur-fr-noun-GX48p3fP
+  source_sense_id: en-chauffeur-fr-noun-tN74IXyt
   record: 3964
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3964
   reading_index: 0
   reading_raw: /ʃo.fœʁ/
   pr: /ʃo.fœʁ/
-  ds: stoker; fireman
+  ds: driver
   primary: true
 - id: fr-v-14ce7ea38dfd0d5f
   word: pilote
@@ -8240,31 +8240,31 @@
   pr: /i.dɑ̃.ti.te/
   ds: identity
   primary: true
-- id: fr-v-b0a0d4d66fb6616a
+- id: fr-v-ed399ab172229ca9
   word: réservation
   pos: noun
-  source_sense_id: en-réservation-fr-noun-nvoHfwRO
+  source_sense_id: en-réservation-fr-noun-AB0FfEmI
   record: 25962
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 25962
   reading_index: 0
   reading_raw: /ʁe.zɛʁ.va.sjɔ̃/
   pr: /ʁe.zɛʁ.va.sjɔ̃/
-  ds: reservation
+  ds: booking
   primary: true
-- id: fr-v-759e5d8a263c26b1
+- id: fr-v-aaa45dd8a10a7bc0
   word: réception
   pos: noun
-  source_sense_id: en-réception-fr-noun-z87Gmint
+  source_sense_id: en-réception-fr-noun-v3ebnnIz
   record: 91435
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 91435
   reading_index: 0
   reading_raw: /ʁe.sɛp.sjɔ̃/
   pr: /ʁe.sɛp.sjɔ̃/
-  ds: reception (action of receiving)
+  ds: reception desk; place welcoming arrivals
   primary: true
 - id: fr-v-734fba950fc995e8
   word: accueil
@@ -8420,7 +8420,7 @@
   reading_index: 0
   reading_raw: /pɛ.i/
   pr: /pɛ.i/
-  ds: land
+  ds: country; homeland
   primary: true
 - id: fr-v-b79c18b1f38d1c41
   word: région
@@ -8500,18 +8500,18 @@
   pr: /kaʁ.fuʁ/
   ds: crossroads
   primary: true
-- id: fr-v-fef58965d43c6bc7
+- id: fr-v-b3601b2d8f81626a
   word: feu
   pos: noun
-  source_sense_id: en-feu-fr-noun-3J8osS3R
+  source_sense_id: en-feu-fr-noun-NNc5ljV3
   record: 3906
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3906
   reading_index: 0
   reading_raw: /fø/
   pr: /fø/
-  ds: fire
+  ds: traffic light
   primary: true
 - id: fr-v-295175eb86c22e58
   word: trottoir
@@ -8578,18 +8578,18 @@
   pr: /sta.sjɔ̃/
   ds: station
   primary: true
-- id: fr-v-710291472fa7a1c0
+- id: fr-v-a1dee051ec474120
   word: essence
   pos: noun
-  source_sense_id: en-essence-fr-noun-CSvYZGz1
+  source_sense_id: en-essence-fr-noun-s-fHEX0u
   record: 6232
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 6232
   reading_index: 0
   reading_raw: /e.sɑ̃s/
   pr: /e.sɑ̃s/
-  ds: essence
+  ds: petrol; gasoline
   primary: true
 - id: fr-v-7c470eba265bad91
   word: vélo
@@ -8669,18 +8669,18 @@
   pr: /ve.i.kyl/
   ds: vehicle
   primary: true
-- id: fr-v-d3f32b8ed4a5ec60
+- id: fr-v-8ce9e5a626f87246
   word: circulation
   pos: noun
-  source_sense_id: en-circulation-fr-noun-g9sO~vG0
+  source_sense_id: en-circulation-fr-noun-B19KuFTi
   record: 5063
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5063
   reading_index: 0
   reading_raw: /siʁ.ky.la.sjɔ̃/
   pr: /siʁ.ky.la.sjɔ̃/
-  ds: circulation (act of moving in a circular shape)
+  ds: traffic
   primary: true
 - id: fr-v-ff2f50c27c3c9f55
   word: retard
@@ -8708,18 +8708,18 @@
   pr: /a.vɑ̃s/
   ds: progression, advance
   primary: true
-- id: fr-v-12a17eaaba726774
+- id: fr-v-2fc871e37e151440
   word: panne
   pos: noun
-  source_sense_id: en-panne-fr-noun-C56y5~65
+  source_sense_id: en-panne-fr-noun-uU6FbO7o
   record: 16576
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 16576
   reading_index: 0
   reading_raw: /pan/
   pr: /pan/
-  ds: plush velvet
+  ds: breakdown; failure to function
   primary: true
 - id: fr-v-15dfef60ac061f12
   word: accident
@@ -8799,18 +8799,18 @@
   pr: /kɔ̃.dɥiʁ/
   ds: to drive (a vehicle)
   primary: true
-- id: fr-v-e49ab3f67dcc5560
+- id: fr-v-76a0b1e9c044b085
   word: rouler
   pos: verb
-  source_sense_id: en-rouler-fr-verb-6r1jmsPA
+  source_sense_id: en-rouler-fr-verb-rj5iHeYj
   record: 17211
-  sense_index: 0
+  sense_index: 4
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 17211
   reading_index: 0
   reading_raw: /ʁu.le/
   pr: /ʁu.le/
-  ds: to roll
+  ds: to drive; to ride a vehicle
   primary: true
 - id: fr-v-46e22ad635f12e56
   word: voler
@@ -8877,18 +8877,18 @@
   pr: /sta.sjɔ.ne/
   ds: to park (bring to a halt)
   primary: true
-- id: fr-v-307fc2e6b58b5ff5
+- id: fr-v-dc7a94c719eb6149
   word: garer
   pos: verb
-  source_sense_id: en-garer-fr-verb-alcWAHMZ
+  source_sense_id: en-garer-fr-verb-rNKwNRF8
   record: 19726
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 19726
   reading_index: 0
   reading_raw: /ɡa.ʁe/
   pr: /ɡa.ʁe/
-  ds: to cover, shelter
+  ds: to park a vehicle
   primary: true
 - id: fr-v-c3c11e6654187132
   word: tourner
@@ -8903,18 +8903,18 @@
   pr: /tuʁ.ne/
   ds: to turn; to change (direction); to rotate; to spin
   primary: true
-- id: fr-v-027321ccbfdf56ab
+- id: fr-v-c708e42c1aacfcd4
   word: dépasser
   pos: verb
-  source_sense_id: en-dépasser-fr-verb-jWTUAE3D
+  source_sense_id: en-dépasser-fr-verb-ggYmJv5I
   record: 84154
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 84154
   reading_index: 0
   reading_raw: /de.pa.se/
   pr: /de.pa.se/
-  ds: to exceed
+  ds: to overtake; to go past
   primary: true
 - id: fr-v-1b5bc29149408d95
   word: freiner
@@ -9033,18 +9033,18 @@
   pr: /tʁɑ̃s.pɔʁ.te/
   ds: to transport
   primary: true
-- id: fr-v-c5403dcd7eabc4be
+- id: fr-v-6531b7a97affeba5
   word: enregistrer
   pos: verb
-  source_sense_id: en-enregistrer-fr-verb-qfMCMdvR
+  source_sense_id: en-enregistrer-fr-verb-KZ592Mg1
   record: 32250
-  sense_index: 0
+  sense_index: 5
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 32250
   reading_index: 0
   reading_raw: /ɑ̃.ʁ(ə).ʒis.tʁe/
   pr: /ɑ̃.ʁ(ə).ʒis.tʁe/
-  ds: to record for later replay or use, especially sound
+  ds: to check in; reflexive use
   primary: true
 - id: fr-v-0f9452ab06d17f80
   word: confirmer
@@ -9369,20 +9369,20 @@
   reading_index: 0
   reading_raw: /mɛ.jœʁ/
   pr: /mɛ.jœʁ/
-  ds: best
+  ds: the best; nominal superlative
   primary: true
-- id: fr-v-4206798c0a3b5d39
+- id: fr-v-5fc8eedfe442d750
   word: pire
-  pos: adj
-  source_sense_id: en-pire-fr-adj-sTUh7ttn
-  record: 13681
-  sense_index: 2
+  pos: noun
+  source_sense_id: en-pire-fr-noun-js4ls-aD
+  record: 13682
+  sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 13681
+  reading_record: 13682
   reading_index: 0
   reading_raw: /piʁ/
   pr: /piʁ/
-  ds: bad; harmful, serious
+  ds: the worst; nominal superlative
   primary: true
 - id: fr-v-8ff6218979c05b97
   word: facile
@@ -9410,18 +9410,18 @@
   pr: /di.fi.sil/
   ds: difficult
   primary: true
-- id: fr-v-0d02dae39a34ffe7
+- id: fr-v-e802853e6a230eba
   word: simple
   pos: adj
-  source_sense_id: en-simple-fr-adj-lH8YdQb3
+  source_sense_id: en-simple-fr-adj-kiWVpn7R
   record: 958
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 958
   reading_index: 0
   reading_raw: /sɛ̃pl/
   pr: /sɛ̃pl/
-  ds: single
+  ds: simple; easy to understand or do
   primary: true
 - id: fr-v-e8ec566cf49a294c
   word: compliqué
@@ -9501,31 +9501,31 @@
   pr: /dɑ̃ʒ.ʁø/
   ds: dangerous
   primary: true
-- id: fr-v-bad9353a9cee6f86
+- id: fr-v-7858d6c5e9434ae9
   word: sûr
   pos: adj
-  source_sense_id: en-sûr-fr-adj-LUxP6~g5
+  source_sense_id: en-sûr-fr-adj-izNplE3S
   record: 7493
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 7493
   reading_index: 0
   reading_raw: /syʁ/
   pr: /syʁ/
-  ds: sure, certain
+  ds: safe; not dangerous
   primary: true
-- id: fr-v-c7c366d548aba1d1
+- id: fr-v-74f7264b7aa99856
   word: calme
-  pos: noun
-  source_sense_id: en-calme-fr-noun-QYDI43-G
-  record: 15743
-  sense_index: 0
+  pos: adj
+  source_sense_id: en-calme-fr-adj-rVhFuE4p
+  record: 15742
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 15743
+  reading_record: 15742
   reading_index: 0
   reading_raw: /kalm/
   pr: /kalm/
-  ds: calmness, stillness
+  ds: quiet; peaceful
   primary: true
 - id: fr-v-708231dc592e42f4
   word: bruyant
@@ -9605,18 +9605,18 @@
   pr: /e.kɔl/
   ds: school
   primary: true
-- id: fr-v-164394b2c9192977
+- id: fr-v-d6517a80195d50a4
   word: collège
   pos: noun
-  source_sense_id: en-collège-fr-noun-5vkz92Jn
+  source_sense_id: en-collège-fr-noun-Ad-XotLx
   record: 23572
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 23572
   reading_index: 0
   reading_raw: /kɔ.lɛʒ/
   pr: /kɔ.lɛʒ/
-  ds: academy
+  ds: lower secondary school
   primary: true
 - id: fr-v-fe13d04aa4851bc9
   word: lycée
@@ -9644,31 +9644,31 @@
   pr: /y.ni.vɛʁ.si.te/
   ds: university (institution of higher education)
   primary: true
-- id: fr-v-9465a5a3f055ba76
+- id: fr-v-2ab50d00b8d10e1b
   word: classe
   pos: noun
-  source_sense_id: en-classe-fr-noun-ZxUUjODK
+  source_sense_id: en-classe-fr-noun-CIkRPgTT
   record: 13563
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 13563
   reading_index: 0
   reading_raw: /klas/
   pr: /klas/
-  ds: class, type, group
+  ds: class; teaching group
   primary: true
-- id: fr-v-9e599bbee580df93
+- id: fr-v-ac146fc46226421d
   word: cours
   pos: noun
-  source_sense_id: en-cours-fr-noun-aOfpP5BP
+  source_sense_id: en-cours-fr-noun-~IICEhzo
   record: 11913
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11913
   reading_index: 0
   reading_raw: /kuʁ/
   pr: /kuʁ/
-  ds: stream of water, river
+  ds: class; lesson
   primary: true
 - id: fr-v-f6bbb1280804925f
   word: leçon
@@ -9696,44 +9696,44 @@
   pr: /e.tyd/
   ds: study (act of studying or examining)
   primary: true
-- id: fr-v-1a39ac008a3c1381
+- id: fr-v-f34abb1db284a3fb
   word: exercice
   pos: noun
-  source_sense_id: en-exercice-fr-noun-p0hjsuh-
+  source_sense_id: en-exercice-fr-noun-ZiEJrw56
   record: 90902
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 90902
   reading_index: 0
   reading_raw: /ɛɡ.zɛʁ.sis/
   pr: /ɛɡ.zɛʁ.sis/
-  ds: exercise, performance
+  ds: exercise; practice task
   primary: true
-- id: fr-v-3352437603933571
+- id: fr-v-411aa35dd697867e
   word: examen
   pos: noun
-  source_sense_id: en-examen-fr-noun-bPBsvt60
+  source_sense_id: en-examen-fr-noun-6wJFetlN
   record: 11519
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11519
   reading_index: 0
   reading_raw: /ɛɡ.za.mɛ̃/
   pr: /ɛɡ.za.mɛ̃/
-  ds: examination, inspection, study, analysis
+  ds: exam; test of learning
   primary: true
-- id: fr-v-074cea10ecc61203
+- id: fr-v-5e333271c36891d8
   word: note
   pos: noun
-  source_sense_id: en-note-fr-noun-pR7bkz4g
+  source_sense_id: en-note-fr-noun-YjLvSpMz
   record: 1267
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 1267
   reading_index: 0
   reading_raw: /nɔt/
   pr: /nɔt/
-  ds: note (written or spoken)
+  ds: grade; mark for schoolwork
   primary: true
 - id: fr-v-7f3b1d55e0c26ab9
   word: résultat
@@ -9761,18 +9761,18 @@
   pr: /di.plom/
   ds: diploma; qualification document
   primary: true
-- id: fr-v-a890b4494250cf08
+- id: fr-v-042c38a7607905d3
   word: formation
   pos: noun
-  source_sense_id: en-formation-fr-noun-Ym7SE9FM
+  source_sense_id: en-formation-fr-noun-DzPUb9Hk
   record: 4229
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 4229
   reading_index: 0
   reading_raw: /fɔʁ.ma.sjɔ̃/
   pr: /fɔʁ.ma.sjɔ̃/
-  ds: formation, forming, development
+  ds: training; education
   primary: true
 - id: fr-v-0b466bc85bb8b2dc
   word: enseignant
@@ -9826,18 +9826,18 @@
   pr: /kʁɛ.jɔ̃/
   ds: pencil
   primary: true
-- id: fr-v-67b07acf44b84d75
+- id: fr-v-a2c7d45fe539fe68
   word: gomme
   pos: noun
-  source_sense_id: en-gomme-fr-noun-SJd-Ko7I
+  source_sense_id: en-gomme-fr-noun-ra~Z1gC8
   record: 21970
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 21970
   reading_index: 0
   reading_raw: /ɡɔm/
   pr: /ɡɔm/
-  ds: gum (adhesive on an envelope)
+  ds: eraser; pencil rubber
   primary: true
 - id: fr-v-8ea8cfc77a6bcdc1
   word: règle
@@ -9852,18 +9852,18 @@
   pr: /ʁɛɡl/
   ds: ruler; measuring tool
   primary: true
-- id: fr-v-93e45df2ee31f031
+- id: fr-v-f28b152594876f67
   word: tableau
   pos: noun
-  source_sense_id: en-tableau-fr-noun-pU5WOLvD
+  source_sense_id: en-tableau-fr-noun-2QpQxPki
   record: 2423
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 2423
   reading_index: 0
   reading_raw: /ta.blo/
   pr: /ta.blo/
-  ds: painting
+  ds: writing board
   primary: true
 - id: fr-v-89a9e4672e19a2e5
   word: bibliothèque
@@ -10138,18 +10138,18 @@
   pr: /kɔ.ʁi.ʒe/
   ds: to correct
   primary: true
-- id: fr-v-e07785146bcd9204
+- id: fr-v-2d10953f981d143f
   word: retenir
   pos: verb
-  source_sense_id: en-retenir-fr-verb-RFpSRtbg
+  source_sense_id: en-retenir-fr-verb-OC7Eux0Z
   record: 20656
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20656
   reading_index: 0
   reading_raw: /ʁə.t(ə).niʁ/
   pr: /ʁə.t(ə).niʁ/
-  ds: to hold back, rein in
+  ds: to remember; to retain in memory
   primary: true
 - id: fr-v-754e3041937fd5ff
   word: travail
@@ -10190,18 +10190,18 @@
   pr: /me.tje/
   ds: job, profession, trade
   primary: true
-- id: fr-v-310f44b51b6a6c4f
+- id: fr-v-5d0e46f32fe87979
   word: profession
   pos: noun
-  source_sense_id: en-profession-fr-noun-~xaWHUR0
+  source_sense_id: en-profession-fr-noun-ich0eghI
   record: 3468
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3468
   reading_index: 0
   reading_raw: /pʁɔ.fɛ.sjɔ̃/
   pr: /pʁɔ.fɛ.sjɔ̃/
-  ds: profession, public declaration
+  ds: profession; occupation
   primary: true
 - id: fr-v-7a60a791d5ce1c66
   word: entreprise
@@ -10229,18 +10229,18 @@
   pr: /e.kip/
   ds: team
   primary: true
-- id: fr-v-fbc39ac417d25efe
+- id: fr-v-7f9cfe5ccdc7ce5d
   word: poste
   pos: noun
-  source_sense_id: en-poste-fr-noun-SzuqT05Y
-  record: 7608
+  source_sense_id: en-poste-fr-noun-eEAQf25M
+  record: 7609
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 7608
+  reading_record: 7609
   reading_index: 0
   reading_raw: /pɔst/
   pr: /pɔst/
-  ds: post office
+  ds: job; position at work
   primary: true
 - id: fr-v-1c85d36fa60cd1f3
   word: patron
@@ -10385,31 +10385,31 @@
   pr: /kɑ̃.di.da.tyʁ/
   ds: application; candidacy
   primary: true
-- id: fr-v-5297392828150df2
+- id: fr-v-c683dd06636f1a8f
   word: entretien
   pos: noun
-  source_sense_id: en-entretien-fr-noun-Alu0ZnmT
+  source_sense_id: en-entretien-fr-noun-hH2hfBZQ
   record: 83639
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 83639
   reading_index: 0
   reading_raw: /ɑ̃.tʁə.tjɛ̃/
   pr: /ɑ̃.tʁə.tjɛ̃/
-  ds: upkeep (maintenance)
+  ds: interview
   primary: true
-- id: fr-v-53c6cfaa3e33626e
+- id: fr-v-505dc04cfa8e2868
   word: expérience
   pos: noun
-  source_sense_id: en-expérience-fr-noun-19L3f-Jk
+  source_sense_id: en-expérience-fr-noun-VBz1dklw
   record: 23014
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 23014
   reading_index: 0
   reading_raw: /ɛk.spe.ʁjɑ̃s/
   pr: /ɛk.spe.ʁjɑ̃s/
-  ds: experiment, trial, test
+  ds: experience; acquired knowledge and skills
   primary: true
 - id: fr-v-0ba27304c252a3a1
   word: compétence
@@ -10463,18 +10463,18 @@
   pr: /dɔ.ky.mɑ̃/
   ds: document
   primary: true
-- id: fr-v-241550c1b3eeb238
+- id: fr-v-fae14417e58ec847
   word: dossier
   pos: noun
-  source_sense_id: en-dossier-fr-noun-SJ~9pZyG
+  source_sense_id: en-dossier-fr-noun-yOwD7Zzn
   record: 3958
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3958
   reading_index: 0
   reading_raw: /do.sje/
   pr: /do.sje/
-  ds: back of furniture, to rest the sitter's back on
+  ds: dossier; collection of documents
   primary: true
 - id: fr-v-b27ae6d97cdcbe0d
   word: formulaire
@@ -10515,18 +10515,18 @@
   pr: /ku.ʁjɛl/
   ds: email (message)
   primary: true
-- id: fr-v-282ea9944dc1ba81
+- id: fr-v-353ab117aaa507be
   word: lettre
   pos: noun
-  source_sense_id: en-lettre-fr-noun-NhcpUfS~
+  source_sense_id: en-lettre-fr-noun-JbLk0dW0
   record: 3663
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3663
   reading_index: 0
   reading_raw: /lɛtʁ/
   pr: /lɛtʁ/
-  ds: letter (written character)
+  ds: letter; written message
   primary: true
 - id: fr-v-3b43a02beed8fa40
   word: signature
@@ -10567,18 +10567,18 @@
   pr: /tʁa.va.je/
   ds: to work
   primary: true
-- id: fr-v-a2a3bfa50a30e80e
+- id: fr-v-b95c93ac0fd8760f
   word: discuter
   pos: verb
-  source_sense_id: en-discuter-fr-verb--~WAivbT
+  source_sense_id: en-discuter-fr-verb-ZDsWhDmn
   record: 17251
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 17251
   reading_index: 0
   reading_raw: /dis.ky.te/
   pr: /dis.ky.te/
-  ds: to argue, to debate
+  ds: to discuss
   primary: true
 - id: fr-v-09f138c9d1a7ba04
   word: participer
@@ -10684,18 +10684,18 @@
   pr: /ʁə.mɛʁ.sje/
   ds: to thank (someone)
   primary: true
-- id: fr-v-e9ece3ca4fc84fb6
+- id: fr-v-788a2fdb298da6aa
   word: gagner
   pos: verb
-  source_sense_id: en-gagner-fr-verb-P4APTMzZ
+  source_sense_id: en-gagner-fr-verb-ti9X~2-T
   record: 15254
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 15254
   reading_index: 0
   reading_raw: /ɡa.ɲe/
   pr: /ɡa.ɲe/
-  ds: to win
+  ds: to earn
   primary: true
 - id: fr-v-c68bb07d29dbc737
   word: terminer
@@ -10736,18 +10736,18 @@
   pr: /lwa.ziʁ/
   ds: leisure, hobby
   primary: true
-- id: fr-v-28bb3d41b2b1d4db
+- id: fr-v-b4f8ada5ea42193d
   word: fête
   pos: noun
-  source_sense_id: en-fête-fr-noun-5e35FulD
+  source_sense_id: en-fête-fr-noun-HQ~qOewz
   record: 5017
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5017
   reading_index: 0
   reading_raw: /fɛt/
   pr: /fɛt/
-  ds: winter holidays (always in plural)
+  ds: party; celebration
   primary: true
 - id: fr-v-05453eb6ef4e7ca8
   word: invitation
@@ -10815,18 +10815,18 @@
   pr: /wi.kɛnd/
   ds: post-1990 spelling of week-end
   primary: true
-- id: fr-v-e6761cba949f957d
+- id: fr-v-ab77e8e11319ea68
   word: cinéma
   pos: noun
-  source_sense_id: en-cinéma-fr-noun--kgGdJRN
+  source_sense_id: en-cinéma-fr-noun-BJ1~dBfZ
   record: 15219
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 15219
   reading_index: 0
   reading_raw: /si.ne.ma/
   pr: /si.ne.ma/
-  ds: cinema, filmmaking (the art of making films and movies)
+  ds: cinema; movie theatre
   primary: true
 - id: fr-v-6fb43b21930d7d00
   word: film
@@ -10919,18 +10919,18 @@
   pr: /my.ze/
   ds: museum
   primary: true
-- id: fr-v-3f37fbf854c47218
+- id: fr-v-16050f9f8f3c7c52
   word: exposition
   pos: noun
-  source_sense_id: en-exposition-fr-noun-PL9ZSLWy
+  source_sense_id: en-exposition-fr-noun-g6K~-Esd
   record: 11095
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11095
   reading_index: 0
   reading_raw: /ɛk.spo.zi.sjɔ̃/
   pr: /ɛk.spo.zi.sjɔ̃/
-  ds: exposition
+  ds: exhibition
   primary: true
 - id: fr-v-2b8d7f147e35eddd
   word: promenade
@@ -11270,18 +11270,18 @@
   pr: /is.twaʁ/
   ds: story
   primary: true
-- id: fr-v-00cfd847dc0e7a43
+- id: fr-v-d5628b536b66bee2
   word: récit
   pos: noun
-  source_sense_id: en-récit-fr-noun-Rp30DDSk
+  source_sense_id: en-récit-fr-noun-gQ8rQsgO
   record: 82748
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 82748
   reading_index: 0
   reading_raw: /ʁe.si/
   pr: /ʁe.si/
-  ds: recital
+  ds: narrative; account of events
   primary: true
 - id: fr-v-f34cd8db9bbbf948
   word: souvenir
@@ -11426,18 +11426,18 @@
   pr: /fɛ̃/
   ds: end, close, finish
   primary: true
-- id: fr-v-624297557ee0e1ec
+- id: fr-v-3aa7b67d6110f367
   word: suite
   pos: noun
-  source_sense_id: en-suite-fr-noun-9qIU96X8
+  source_sense_id: en-suite-fr-noun--SBXp6uG
   record: 5416
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5416
   reading_index: 0
   reading_raw: /sɥit/
   pr: /sɥit/
-  ds: result
+  ds: what follows; continuation
   primary: true
 - id: fr-v-91738eeaaeccd972
   word: étape
@@ -12024,18 +12024,18 @@
   pr: /e.vɔ.ke/
   ds: to evoke; bring to mind
   primary: true
-- id: fr-v-455b8296a712350e
+- id: fr-v-2e351aec11a20709
   word: rappeler
   pos: verb
-  source_sense_id: en-rappeler-fr-verb-qgk8T-ph
+  source_sense_id: en-rappeler-fr-verb-lxJJ~Q5C
   record: 20577
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20577
   reading_index: 0
   reading_raw: /ʁa.ple/
   pr: /ʁa.ple/
-  ds: to call again; to call back
+  ds: to remind
   primary: true
 - id: fr-v-4bbfd20e9a93d0bd
   word: imaginer
@@ -12193,18 +12193,18 @@
   pr: /pʁɔ.vɔ.ke/
   ds: to provoke, bring on, bring about
   primary: true
-- id: fr-v-3f4682dd036a50e4
+- id: fr-v-4a9b8a5dfe98828a
   word: entraîner
   pos: verb
-  source_sense_id: en-entraîner-fr-verb-hbtCd8qP
+  source_sense_id: en-entraîner-fr-verb-oRlI-bIR
   record: 29727
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 29727
   reading_index: 0
   reading_raw: /ɑ̃.tʁɛ.ne/
   pr: /ɑ̃.tʁɛ.ne/
-  ds: to coach, to train
+  ds: to bring about; to lead to
   primary: true
 - id: fr-v-be7706111a8dd3b9
   word: causer
@@ -12258,18 +12258,18 @@
   pr: /ɛ̃.tɛ.ʁɔ̃pʁ/
   ds: to interrupt
   primary: true
-- id: fr-v-d6ae2fc94099daf3
+- id: fr-v-3b9c6ac5fd96209e
   word: reprendre
   pos: verb
-  source_sense_id: en-reprendre-fr-verb-r2bSC4AA
+  source_sense_id: en-reprendre-fr-verb-V1sCTkMa
   record: 23742
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 23742
   reading_index: 0
   reading_raw: /ʁə.pʁɑ̃dʁ/
   pr: /ʁə.pʁɑ̃dʁ/
-  ds: to take back, recover, regain
+  ds: to resume; to carry on with
   primary: true
 - id: fr-v-0e0a39378aa9f2bb
   word: poursuivre
@@ -13831,18 +13831,18 @@
   pr: /ʒwa/
   ds: joy (feeling of happiness or elation)
   primary: true
-- id: fr-v-b71b14d8d41a94d4
+- id: fr-v-cf3019ca1d791dff
   word: bonheur
   pos: noun
-  source_sense_id: en-bonheur-fr-noun-yw4WVubi
+  source_sense_id: en-bonheur-fr-noun-QvOMEld7
   record: 5616
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5616
   reading_index: 0
   reading_raw: /bɔ.nœʁ/
   pr: /bɔ.nœʁ/
-  ds: goodhap, good fortune
+  ds: happiness
   primary: true
 - id: fr-v-c86335eb9383799e
   word: tristesse
@@ -14260,18 +14260,18 @@
   pr: /de.ziʁ/
   ds: desire
   primary: true
-- id: fr-v-a30b30ed9ec75dd7
+- id: fr-v-a87869e448483e0e
   word: passion
   pos: noun
-  source_sense_id: en-passion-fr-noun-VAJYtmf0
+  source_sense_id: en-passion-fr-noun-lR9clzNL
   record: 2573
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 2573
   reading_index: 0
   reading_raw: /pa.sjɔ̃/
   pr: /pa.sjɔ̃/
-  ds: Passion, suffering
+  ds: passion; enthusiasm
   primary: true
 - id: fr-v-622edd64ee746d21
   word: dégoût
@@ -14299,18 +14299,18 @@
   pr: /ad.mi.ʁa.sjɔ̃/
   ds: admiration
   primary: true
-- id: fr-v-8eda843d24a3e393
+- id: fr-v-5d6ac0294c64e0ff
   word: reconnaissance
   pos: noun
-  source_sense_id: en-reconnaissance-fr-noun-fBK9hKz8
+  source_sense_id: en-reconnaissance-fr-noun-pq-xscN5
   record: 15067
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 15067
   reading_index: 0
   reading_raw: /ʁə.kɔ.nɛ.sɑ̃s/
   pr: /ʁə.kɔ.nɛ.sɑ̃s/
-  ds: recognition
+  ds: gratitude; thankfulness
   primary: true
 - id: fr-v-8286281cd5c20c65
   word: compassion
@@ -14429,31 +14429,31 @@
   pr: /ʃa.ɡʁɛ̃/
   ds: sorrow, grief, chagrin
   primary: true
-- id: fr-v-60f9f7a7aa647c64
+- id: fr-v-f85dcfc572070615
   word: humeur
   pos: noun
-  source_sense_id: en-humeur-fr-noun-LrmzsHH4
+  source_sense_id: en-humeur-fr-noun-fPcH~u6D
   record: 15343
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 15343
   reading_index: 0
   reading_raw: /y.mœʁ/
   pr: /y.mœʁ/
-  ds: humour/humor (the liquid in the body)
+  ds: mood; state of mind
   primary: true
-- id: fr-v-45d392b92477b46a
+- id: fr-v-b84b83379f1eab52
   word: caractère
   pos: noun
-  source_sense_id: en-caractère-fr-noun-sKp0KacO
+  source_sense_id: en-caractère-fr-noun-ZhPmXAa4
   record: 15797
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 15797
   reading_index: 0
   reading_raw: /ka.ʁak.tɛʁ/
   pr: /ka.ʁak.tɛʁ/
-  ds: character (written symbol)
+  ds: character; demeanour
   primary: true
 - id: fr-v-8bb1c3bdf92d166b
   word: personnalité
@@ -14702,18 +14702,18 @@
   pr: /ɛ̃.pa.sjɑ̃/
   ds: impatient
   primary: true
-- id: fr-v-a69a7409a4c66167
+- id: fr-v-fe79d5771cfc54a5
   word: patient
-  pos: noun
-  source_sense_id: en-patient-fr-noun-K0NLnu1f
-  record: 3183
+  pos: adj
+  source_sense_id: en-patient-fr-adj-IpX~eovY
+  record: 3182
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 3183
+  reading_record: 3182
   reading_index: 0
   reading_raw: /pa.sjɑ̃/
   pr: /pa.sjɑ̃/
-  ds: patient, outpatient
+  ds: patient; able to wait calmly
   primary: true
 - id: fr-v-a7ffe569895e0ff2
   word: courageux
@@ -14975,18 +14975,18 @@
   pr: /ʁɑ̃.kɔ̃tʁ/
   ds: encounter
   primary: true
-- id: fr-v-d7a72d4eb9550edc
+- id: fr-v-c2c55efe03a98b86
   word: connaissance
   pos: noun
-  source_sense_id: en-connaissance-fr-noun-4PiVhy1l
+  source_sense_id: en-connaissance-fr-noun-GV~CgcvE
   record: 17330
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 17330
   reading_index: 0
   reading_raw: /kɔ.nɛ.sɑ̃s/
   pr: /kɔ.nɛ.sɑ̃s/
-  ds: knowledge
+  ds: acquaintance; someone one knows
   primary: true
 - id: fr-v-2fa15d9121da475b
   word: partenaire
@@ -15144,18 +15144,18 @@
   pr: /vjɛ.jɛs/
   ds: old age
   primary: true
-- id: fr-v-ed14991bc1697198
+- id: fr-v-54f2071a3f776e07
   word: génération
   pos: noun
-  source_sense_id: en-génération-fr-noun-0Q1c77Rd
+  source_sense_id: en-génération-fr-noun-SO0r0cr7
   record: 23317
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 23317
   reading_index: 0
   reading_raw: /ʒe.ne.ʁa.sjɔ̃/
   pr: /ʒe.ne.ʁa.sjɔ̃/
-  ds: generation (act of generating)
+  ds: generation; position in family descent
   primary: true
 - id: fr-v-a7cb84a54219edb4
   word: grand-parent
@@ -15430,18 +15430,18 @@
   pr: /pa.ʁɑ̃.te/
   ds: kinship
   primary: true
-- id: fr-v-a8227fb839dc2595
+- id: fr-v-dc36eb194757edfb
   word: entourage
   pos: noun
-  source_sense_id: en-entourage-fr-noun-ONGpORXj
+  source_sense_id: en-entourage-fr-noun-E4CFnRCb
   record: 17614
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 17614
   reading_index: 0
   reading_raw: /ɑ̃.tu.ʁaʒ/
   pr: /ɑ̃.tu.ʁaʒ/
-  ds: ornament, decoration surrounding something
+  ds: circle of acquaintances
   primary: true
 - id: fr-v-7b4c61e1eb41e7ca
   word: amant
@@ -15638,18 +15638,18 @@
   pr: /vik.tim/
   ds: victim
   primary: true
-- id: fr-v-665a3ad7e81b561e
+- id: fr-v-4dad68733a05ce7c
   word: soutien
   pos: noun
-  source_sense_id: en-soutien-fr-noun-vUcwlLfg
+  source_sense_id: en-soutien-fr-noun-7iOYmy~p
   record: 78425
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 78425
   reading_index: 0
   reading_raw: /su.tjɛ̃/
   pr: /su.tjɛ̃/
-  ds: support (physical)
+  ds: emotional support
   primary: true
 - id: fr-v-5195990b0671c7c9
   word: dispute
@@ -16756,18 +16756,18 @@
   pr: /ma.te.ʁjɛl/
   ds: equipment, supplies
   primary: true
-- id: fr-v-9e23eb0e98e0627b
+- id: fr-v-00b1e93f5cc300fd
   word: pièce
   pos: noun
-  source_sense_id: en-pièce-fr-noun-Ow44Z-8o
+  source_sense_id: en-pièce-fr-noun-NCNaLFAu
   record: 11558
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11558
   reading_index: 0
   reading_raw: /pjɛs/
   pr: /pjɛs/
-  ds: room in a house, etc.
+  ds: piece; part of a whole
   primary: true
 - id: fr-v-e9d20abc8a97b70b
   word: composant
@@ -17016,18 +17016,18 @@
   pr: /a.ta.ʃe/
   ds: to affix
   primary: true
-- id: fr-v-703221385a8ff4a7
+- id: fr-v-5959c1cbb9d317c9
   word: détacher
   pos: verb
-  source_sense_id: en-détacher-fr-verb-clU9bNLd
-  record: 84151
+  source_sense_id: en-détacher-fr-verb-SFIEf1zU
+  record: 84152
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 84151
+  reading_record: 84152
   reading_index: 0
   reading_raw: /de.ta.ʃe/
   pr: /de.ta.ʃe/
-  ds: to remove spots, stains
+  ds: to detach; to untie
   primary: true
 - id: fr-v-f1fcfe23a45508f4
   word: coller
@@ -17042,18 +17042,18 @@
   pr: /kɔ.le/
   ds: to stick (together), to glue
   primary: true
-- id: fr-v-c466c79726969e1c
+- id: fr-v-ce571f5f0526dffc
   word: décoller
   pos: verb
-  source_sense_id: en-décoller-fr-verb-ZWATtEwL
+  source_sense_id: en-décoller-fr-verb-7JkSVAfm
   record: 15432
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 15432
   reading_index: 0
   reading_raw: /de.kɔ.le/
   pr: /de.kɔ.le/
-  ds: to take off (i.e. a plane)
+  ds: to unstick
   primary: true
 - id: fr-v-d34a052223ffc652
   word: visser
@@ -17783,18 +17783,18 @@
   pr: /pɛʁ.søz/
   ds: drill (tool)
   primary: true
-- id: fr-v-2f45a12ab1fb8a54
+- id: fr-v-00cc31a56f7e063f
   word: pince
   pos: noun
-  source_sense_id: en-pince-fr-noun-UrbDLCRj
+  source_sense_id: en-pince-fr-noun-aPVrqbO0
   record: 14145
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 14145
   reading_index: 0
   reading_raw: /pɛ̃s/
   pr: /pɛ̃s/
-  ds: pincer, claw
+  ds: pliers
   primary: true
 - id: fr-v-0f0920a338ecaaff
   word: scie
@@ -17874,18 +17874,18 @@
   pr: /ka.sʁɔl/
   ds: saucepan (utensil)
   primary: true
-- id: fr-v-09b8d49b9d02e77b
+- id: fr-v-8ab4a6cf4cc26a6b
   word: poêle
   pos: noun
-  source_sense_id: en-poêle-fr-noun-XcYO-jkS
-  record: 20736
+  source_sense_id: en-poêle-fr-noun-AON~-uBW
+  record: 20737
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 20736
+  reading_record: 20737
   reading_index: 0
   reading_raw: /pwal/
   pr: /pwal/
-  ds: stove
+  ds: pan for cooking
   primary: true
 - id: fr-v-c654ae5379ad750c
   word: couvercle
@@ -17978,18 +17978,18 @@
   pr: /plɑ̃ʃ/
   ds: board
   primary: true
-- id: fr-v-ecf66be241b78731
+- id: fr-v-d87869fd301bacf2
   word: plateau
   pos: noun
-  source_sense_id: en-plateau-fr-noun-I2LeygYo
+  source_sense_id: en-plateau-fr-noun-rZoMqxLu
   record: 10631
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 10631
   reading_index: 0
   reading_raw: /pla.to/
   pr: /pla.to/
-  ds: flat area
+  ds: tray
   primary: true
 - id: fr-v-703946b6f14ce45f
   word: moule
@@ -18056,18 +18056,18 @@
   pr: /pʁiz/
   ds: socket, wall socket (also prise électrique)
   primary: true
-- id: fr-v-14020ed37a8557f3
+- id: fr-v-ed4bad1c2083e0fc
   word: fiche
   pos: noun
-  source_sense_id: en-fiche-fr-noun-cM6HH4o9
+  source_sense_id: en-fiche-fr-noun-Da8MnKN~
   record: 14505
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 14505
   reading_index: 0
   reading_raw: /fiʃ/
   pr: /fiʃ/
-  ds: record
+  ds: plug; electrical connector
   primary: true
 - id: fr-v-d4339e789b08df5c
   word: câble
@@ -18134,18 +18134,18 @@
   pr: /ɑ̃.pul/
   ds: light bulb
   primary: true
-- id: fr-v-00c61929c37f6af0
+- id: fr-v-c521b937d2fd8e2a
   word: pile
   pos: noun
-  source_sense_id: en-pile-fr-noun-CGPlPj1G
+  source_sense_id: en-pile-fr-noun-89FwHh1X
   record: 3783
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3783
   reading_index: 0
   reading_raw: /pil/
   pr: /pil/
-  ds: heap, stack
+  ds: battery; electrical cell
   primary: true
 - id: fr-v-fc84dfec725e68dd
   word: batterie
@@ -18173,18 +18173,18 @@
   pr: /mɔ.tœʁ/
   ds: motor, engine
   primary: true
-- id: fr-v-012bee8dc12a4e93
+- id: fr-v-c5e2b640ed80ee35
   word: poignée
   pos: noun
-  source_sense_id: en-poignée-fr-noun-12mPvAqv
+  source_sense_id: en-poignée-fr-noun-PSfidh7x
   record: 28197
-  sense_index: 0
+  sense_index: 4
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 28197
   reading_index: 0
   reading_raw: /pwa.ɲe/
   pr: /pwa.ɲe/
-  ds: handful (amount held in hand)
+  ds: handle; part held to open or carry something
   primary: true
 - id: fr-v-52d46c687250d8c5
   word: serrure
@@ -18316,18 +18316,18 @@
   pr: /fi.syʁ/
   ds: fissure
   primary: true
-- id: fr-v-065a538ccaaaaf77
+- id: fr-v-ef0a750467db0746
   word: fuite
   pos: noun
-  source_sense_id: en-fuite-fr-noun-2dPTKXs4
+  source_sense_id: en-fuite-fr-noun-OHHq~ju4
   record: 20669
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20669
   reading_index: 0
   reading_raw: /fɥit/
   pr: /fɥit/
-  ds: escape; getaway; flight (e.g. from prison)
+  ds: leak; escaping liquid or gas
   primary: true
 - id: fr-v-5770610be6dea541
   word: rouille
@@ -18381,18 +18381,18 @@
   pr: /maʁk/
   ds: mark (spot)
   primary: true
-- id: fr-v-dce4e3e1f6010c9e
+- id: fr-v-56645d2484e482a8
   word: peinture
   pos: noun
-  source_sense_id: en-peinture-fr-noun-pU5WOLvD
+  source_sense_id: en-peinture-fr-noun-KX5hnbXu
   record: 20696
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20696
   reading_index: 0
   reading_raw: /pɛ̃.tyʁ/
   pr: /pɛ̃.tyʁ/
-  ds: painting
+  ds: paint; coating material
   primary: true
 - id: fr-v-40a1382a4eb0d464
   word: colle
@@ -18888,18 +18888,18 @@
   pr: /bʁi.jɑ̃/
   ds: shining; shiny
   primary: true
-- id: fr-v-c3497c0f0c96ec7d
+- id: fr-v-43be326d15788e2d
   word: mat
-  pos: noun
-  source_sense_id: en-mat-fr-noun-XZrRaXmT
-  record: 4008
+  pos: adj
+  source_sense_id: en-mat-fr-adj-TzH6UOW9
+  record: 4006
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 4008
+  reading_record: 4006
   reading_index: 0
   reading_raw: /mat/
   pr: /mat/
-  ds: checkmate
+  ds: matt; not shiny
   primary: true
 - id: fr-v-04de402783ad6ce9
   word: pointu
@@ -18979,18 +18979,18 @@
   pr: /me.ka.nik/
   ds: mechanics
   primary: true
-- id: fr-v-46e026efe729ca58
+- id: fr-v-856d7b8a2b4890fc
   word: manuel
-  pos: noun
-  source_sense_id: en-manuel-fr-noun-O68fkmXZ
-  record: 20402
-  sense_index: 0
+  pos: adj
+  source_sense_id: en-manuel-fr-adj-NNotkHl3
+  record: 20401
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 20402
+  reading_record: 20401
   reading_index: 0
   reading_raw: /ma.nɥɛl/
   pr: /ma.nɥɛl/
-  ds: manual, handbook
+  ds: manual; operated by a person rather than a machine
   primary: true
 - id: fr-v-1583dcba8c6cf221
   word: automatique
@@ -19655,18 +19655,18 @@
   pr: /ʁɛ.ɡlə.mɑ̃/
   ds: rules, regulations
   primary: true
-- id: fr-v-4f9e62c3d58ca92e
+- id: fr-v-1fb53d8964255371
   word: démarche
   pos: noun
-  source_sense_id: en-démarche-fr-noun-OqsG1V4l
+  source_sense_id: en-démarche-fr-noun-z4K-ArzE
   record: 6353
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 6353
   reading_index: 0
   reading_raw: /de.maʁʃ/
   pr: /de.maʁʃ/
-  ds: gait, walk
+  ds: procedure; step taken to get something done
   primary: true
 - id: fr-v-04045261d99ed365
   word: formalité
@@ -19798,18 +19798,18 @@
   pr: /kɔ̃t ʁɑ̃.dy/
   ds: proceedings (published record), see usage notes
   primary: true
-- id: fr-v-2845edc963c71a56
+- id: fr-v-62c45261703fa8a6
   word: rapport
   pos: noun
-  source_sense_id: en-rapport-fr-noun-LwSnnvE7
+  source_sense_id: en-rapport-fr-noun-hF6RgxMZ
   record: 7036
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 7036
   reading_index: 0
   reading_raw: /ʁa.pɔʁ/
   pr: /ʁa.pɔʁ/
-  ds: ratio
+  ds: report
   primary: true
 - id: fr-v-3a7a5c9c444c1295
   word: description
@@ -19954,18 +19954,18 @@
   pr: /si.ɲa.le/
   ds: to signal
   primary: true
-- id: fr-v-925f2658d0ebe0d8
+- id: fr-v-59b16fab37aa1be6
   word: indiquer
   pos: verb
-  source_sense_id: en-indiquer-fr-verb-pQaMOkm9
+  source_sense_id: en-indiquer-fr-verb-7GCPHImZ
   record: 29965
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 29965
   reading_index: 0
   reading_raw: /ɛ̃.di.ke/
   pr: /ɛ̃.di.ke/
-  ds: to connote (to signify beyond principal meaning)
+  ds: to indicate; to show
   primary: true
 - id: fr-v-11152b5d3cabd668
   word: préciser
@@ -20149,18 +20149,18 @@
   pr: /ʁə.pʁɔ.dɥiʁ/
   ds: to reproduce
   primary: true
-- id: fr-v-44b0eee814abb636
+- id: fr-v-8843c46a8cf3c46f
   word: sauvegarder
   pos: verb
-  source_sense_id: en-sauvegarder-fr-verb-J5IhjQZ7
+  source_sense_id: en-sauvegarder-fr-verb-vFbiU1oc
   record: 68624
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 68624
   reading_index: 0
   reading_raw: /sov.ɡaʁ.de/
   pr: /sov.ɡaʁ.de/
-  ds: to safeguard; to protect
+  ds: to save digital information
   primary: true
 - id: fr-v-9da3733fc32b3728
   word: supprimer
@@ -20994,18 +20994,18 @@
   pr: /kɔ̃.ʒy.ɡɛ.zɔ̃/
   ds: conjugation
   primary: true
-- id: fr-v-bf3975b263776f93
+- id: fr-v-b3f45778cb99df55
   word: verbe
   pos: noun
-  source_sense_id: en-verbe-fr-noun-BfthetVD
+  source_sense_id: en-verbe-fr-noun-aAb4ahfw
   record: 7706
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 7706
   reading_index: 0
   reading_raw: /vɛʁb/
   pr: /vɛʁb/
-  ds: speech
+  ds: verb; grammatical word class
   primary: true
 - id: fr-v-49fbfdf990f8dc0b
   word: adjectif
@@ -21059,31 +21059,18 @@
   pr: /pʁe.po.zi.sjɔ̃/
   ds: preposition
   primary: true
-- id: fr-v-c2995b0b27061b57
+- id: fr-v-95d95cf5d1d2623c
   word: sujet
   pos: noun
-  source_sense_id: en-sujet-fr-noun-L0XK4n-T
+  source_sense_id: en-sujet-fr-noun-qUkfTBv3
   record: 11466
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11466
   reading_index: 0
   reading_raw: /sy.ʒɛ/
   pr: /sy.ʒɛ/
-  ds: subject (in a monarchy)
-  primary: true
-- id: fr-v-89d839cbc6cb2bb8
-  word: complément
-  pos: noun
-  source_sense_id: en-complément-fr-noun-nB69qer5
-  record: 98672
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 98672
-  reading_index: 0
-  reading_raw: /kɔ̃.ple.mɑ̃/
-  pr: /kɔ̃.ple.mɑ̃/
-  ds: complement, thing added that makes a whole
+  ds: subject; grammatical role
   primary: true
 - id: fr-v-b773afea339d9a06
   word: féminin
@@ -21163,44 +21150,44 @@
   pr: /paʁ.ti.sip/
   ds: participle
   primary: true
-- id: fr-v-f913fc4c1fc86e3f
+- id: fr-v-e77451f587529369
   word: temps
   pos: noun
-  source_sense_id: en-temps-fr-noun-05K7g3Z2
+  source_sense_id: en-temps-fr-noun-3rjMJfAU
   record: 5625
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5625
   reading_index: 0
   reading_raw: /tɑ̃/
   pr: /tɑ̃/
-  ds: time (in general)
+  ds: tense; grammatical time reference
   primary: true
-- id: fr-v-46024474d4ba1343
+- id: fr-v-7281e8a386e96536
   word: mode
   pos: noun
-  source_sense_id: en-mode-fr-noun-m1Iq8bo0
-  record: 2542
-  sense_index: 0
+  source_sense_id: en-mode-fr-noun-Jdk95NHk
+  record: 2543
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 2542
+  reading_record: 2543
   reading_index: 0
   reading_raw: /mɔd/
   pr: /mɔd/
-  ds: fashion, trend
+  ds: mood; grammatical verb category
   primary: true
-- id: fr-v-4816f1dc1249ae41
+- id: fr-v-320068d7720a833d
   word: journal
   pos: noun
-  source_sense_id: en-journal-fr-noun-kUwmda7Q
+  source_sense_id: en-journal-fr-noun-8pxFEWcv
   record: 6520
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 6520
   reading_index: 0
   reading_raw: /ʒuʁ.nal/
   pr: /ʒuʁ.nal/
-  ds: diary, journal
+  ds: newspaper
   primary: true
 - id: fr-v-be9b2b424eb45aab
   word: magazine
@@ -21280,18 +21267,18 @@
   pr: /te.le.vi.zjɔ̃/
   ds: television
   primary: true
-- id: fr-v-6e83fe88790a7ed8
+- id: fr-v-a79c74b3753affb5
   word: émission
   pos: noun
-  source_sense_id: en-émission-fr-noun-BpZN0vrD
+  source_sense_id: en-émission-fr-noun-OTbkVcf1
   record: 20272
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20272
   reading_index: 0
   reading_raw: /e.mi.sjɔ̃/
   pr: /e.mi.sjɔ̃/
-  ds: emission
+  ds: programme; broadcast show
   primary: true
 - id: fr-v-433118b12e4621ab
   word: programme
@@ -21371,18 +21358,18 @@
   pr: /lɛk.tœʁ/
   ds: reader
   primary: true
-- id: fr-v-0dd8a120517211cb
+- id: fr-v-84e196ffc57448ab
   word: auditeur
   pos: noun
-  source_sense_id: en-auditeur-fr-noun-xaYs4~p~
+  source_sense_id: en-auditeur-fr-noun-eZBJDZZw
   record: 84583
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 84583
   reading_index: 0
   reading_raw: /o.di.tœʁ/
   pr: /o.di.tœʁ/
-  ds: auditor
+  ds: listener
   primary: true
 - id: fr-v-9b58ad6933e1ebb6
   word: public
@@ -21397,18 +21384,18 @@
   pr: /py.blik/
   ds: public (people in general)
   primary: true
-- id: fr-v-2b18e80582d6a688
+- id: fr-v-7b935a9eac148d90
   word: contenu
   pos: noun
-  source_sense_id: en-contenu-fr-noun-hhgcBITC
+  source_sense_id: en-contenu-fr-noun-7LuXF~Ti
   record: 69302
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 69302
   reading_index: 0
   reading_raw: /kɔ̃t.ny/
   pr: /kɔ̃t.ny/
-  ds: content (that which is physically contained in a container)
+  ds: content; subject matter
   primary: true
 - id: fr-v-099bc03d9438f618
   word: rubrique
@@ -21462,18 +21449,18 @@
   pr: /ak.tɥa.li.te/
   ds: topic; topicality
   primary: true
-- id: fr-v-006ba27aab95f655
+- id: fr-v-6e1fb054411039d2
   word: source
   pos: noun
-  source_sense_id: en-source-fr-noun-AQYEbuy0
+  source_sense_id: en-source-fr-noun-dIP5DIks
   record: 2597
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 2597
   reading_index: 0
   reading_raw: /suʁs/
   pr: /suʁs/
-  ds: source, spring (of water)
+  ds: source; origin of information
   primary: true
 - id: fr-v-d3e3c83b4f1bea3b
   word: auteur
@@ -24413,18 +24400,18 @@
   pr: /ɡa.ʁɑ̃.ti/
   ds: guarantee
   primary: true
-- id: fr-v-05f4d02be40301f9
+- id: fr-v-7561f312e879df38
   word: assurance
   pos: noun
-  source_sense_id: en-assurance-fr-noun-~2wrypel
+  source_sense_id: en-assurance-fr-noun-ZOiTerxt
   record: 10687
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 10687
   reading_index: 0
   reading_raw: /a.sy.ʁɑ̃s/
   pr: /a.sy.ʁɑ̃s/
-  ds: self-confidence
+  ds: insurance
   primary: true
 - id: fr-v-ece1a3531c8c7e79
   word: indemnité
@@ -24491,18 +24478,18 @@
   pr: /ko.sjɔ̃/
   ds: caution, guaranty, bail
   primary: true
-- id: fr-v-0d1be7c947965be2
+- id: fr-v-14a6566449847ddc
   word: dépôt
   pos: noun
-  source_sense_id: en-dépôt-fr-noun-XzTuBn1f
+  source_sense_id: en-dépôt-fr-noun-w7n7eKRS
   record: 88654
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 88654
   reading_index: 0
   reading_raw: /de.po/
   pr: /de.po/
-  ds: warehouse, store, depot, depository
+  ds: bank deposit
   primary: true
 - id: fr-v-130e380a8a295561
   word: acompte
@@ -24647,18 +24634,18 @@
   pr: /ɑ̃.pʁœ̃/
   ds: loan
   primary: true
-- id: fr-v-e624ce529d9e2410
+- id: fr-v-88bc1d56b88bf3b7
   word: retrait
   pos: noun
-  source_sense_id: en-retrait-fr-noun-GgdjMqoY
+  source_sense_id: en-retrait-fr-noun-t56MW2e8
   record: 93363
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 93363
   reading_index: 0
   reading_raw: /ʁə.tʁɛ/
   pr: /ʁə.tʁɛ/
-  ds: retreat
+  ds: withdrawal
   primary: true
 - id: fr-v-ea8e264ecd6d246c
   word: virement
@@ -24686,18 +24673,18 @@
   pr: /vɛʁ.sə.mɑ̃/
   ds: payment, especially an electronic transaction
   primary: true
-- id: fr-v-a7bdaaaffa4db180
+- id: fr-v-14c6b3d37f7ecc13
   word: prélèvement
   pos: noun
-  source_sense_id: en-prélèvement-fr-noun-UmMOQTH5
+  source_sense_id: en-prélèvement-fr-noun-H5zxzfCJ
   record: 140778
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 140778
   reading_index: 0
   reading_raw: /pʁe.lɛv.mɑ̃/
   pr: /pʁe.lɛv.mɑ̃/
-  ds: sampling
+  ds: deduction; levy
   primary: true
 - id: fr-v-a852d1c65046cd98
   word: chèque
@@ -24764,18 +24751,18 @@
   pr: /de.pɑ̃s/
   ds: expense
   primary: true
-- id: fr-v-bda4c0b2450ea61e
+- id: fr-v-642cdfc7c46f6d7e
   word: recette
   pos: noun
-  source_sense_id: en-recette-fr-noun-4djlUjMJ
+  source_sense_id: en-recette-fr-noun-7vryXE4f
   record: 21724
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 21724
   reading_index: 0
   reading_raw: /ʁə.sɛt/
   pr: /ʁə.sɛt/
-  ds: recipe
+  ds: takings; income received
   primary: true
 - id: fr-v-f24806d823e8fc3b
   word: devis
@@ -25115,18 +25102,18 @@
   pr: /sɛʁ.vis/
   ds: service
   primary: true
-- id: fr-v-fb7f51b70681f48d
+- id: fr-v-d4b45ad333e8aef1
   word: guichet
   pos: noun
-  source_sense_id: en-guichet-fr-noun-dEPARPsY
+  source_sense_id: en-guichet-fr-noun-AZt8bgrM
   record: 28026
-  sense_index: 1
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 28026
   reading_index: 0
   reading_raw: /ɡi.ʃɛ/
   pr: /ɡi.ʃɛ/
-  ds: hatch, grill (in cell etc.)
+  ds: service counter; bank or post-office window
   primary: true
 - id: fr-v-b3601afeeb0957a8
   word: comptoir
@@ -25440,18 +25427,18 @@
   pr: /sty.djo/
   ds: studio; workshop, recording room, or small apartment
   primary: true
-- id: fr-v-962971657c3b7787
+- id: fr-v-747e37a14b5a9411
   word: duplex
   pos: noun
-  source_sense_id: en-duplex-fr-noun-l2f9Fv7e
+  source_sense_id: en-duplex-fr-noun-LDl6WGwb
   record: 3352
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 3352
   reading_index: 0
   reading_raw: /dy.plɛks/
   pr: /dy.plɛks/
-  ds: a link between two points, such as a cable or a wire
+  ds: duplex; two-level dwelling
   primary: true
 - id: fr-v-987607a74742401b
   word: pavillon
@@ -25531,18 +25518,18 @@
   pr: /syʁ.fas/
   ds: surface
   primary: true
-- id: fr-v-61304aee7a7ff416
+- id: fr-v-7355142a066f975d
   word: volume
   pos: noun
-  source_sense_id: en-volume-fr-noun-t2HFbzEj
+  source_sense_id: en-volume-fr-noun-MCvBv-v4
   record: 1128
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 1128
   reading_index: 0
   reading_raw: /vɔ.lym/
   pr: /vɔ.lym/
-  ds: volume (of a book, a written work)
+  ds: volume; amount of space occupied
   primary: true
 - id: fr-v-c7a0450443bb71e4
   word: dimension
@@ -25661,18 +25648,18 @@
   pr: /mwa.zi.syʁ/
   ds: mould (woolly or furry growth of tiny fungi)
   primary: true
-- id: fr-v-9327799efb2e33ee
+- id: fr-v-d336d2aa3cb387b1
   word: infiltration
   pos: noun
-  source_sense_id: en-infiltration-fr-noun-VFpwAZk2
+  source_sense_id: en-infiltration-fr-noun-M9MHdspE
   record: 5269
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5269
   reading_index: 0
   reading_raw: /ɛ̃.fil.tʁa.sjɔ̃/
   pr: /ɛ̃.fil.tʁa.sjɔ̃/
-  ds: injection
+  ds: infiltration; seepage
   primary: true
 - id: fr-v-89347d6a00c7e00a
   word: inondation
@@ -25713,18 +25700,18 @@
   pr: /ku.pyʁ/
   ds: the act or result of cutting; a cut
   primary: true
-- id: fr-v-7aff2929fa77b6e4
+- id: fr-v-8f6a00217ec6a493
   word: alimentation
   pos: noun
-  source_sense_id: en-alimentation-fr-noun-LhCtzduB
+  source_sense_id: en-alimentation-fr-noun-Tgve0YLJ
   record: 21045
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 21045
   reading_index: 0
   reading_raw: /a.li.mɑ̃.ta.sjɔ̃/
   pr: /a.li.mɑ̃.ta.sjɔ̃/
-  ds: feeding
+  ds: power supply
   primary: true
 - id: fr-v-c4d753152c2d8d1d
   word: compteur
@@ -25972,19 +25959,6 @@
   reading_raw: /ma.sɔ̃/
   pr: /ma.sɔ̃/
   ds: bricklayer, mason, builder
-  primary: true
-- id: fr-v-9facc0d0c26dc754
-  word: peintre
-  pos: noun
-  source_sense_id: en-peintre-fr-noun-ihC8bYaE
-  record: 29911
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 29911
-  reading_index: 0
-  reading_raw: /pɛ̃tʁ/
-  pr: /pɛ̃tʁ/
-  ds: painter (artist)
   primary: true
 - id: fr-v-4a4dbc4dc47e1323
   word: déménageur
@@ -26311,19 +26285,6 @@
   pr: /ʁə.mɛtʁ/
   ds: to put back, replace
   primary: true
-- id: fr-v-64e985be5512199b
-  word: délivrer
-  pos: verb
-  source_sense_id: en-délivrer-fr-verb-O49PKooo
-  record: 90819
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 90819
-  reading_index: 0
-  reading_raw: /de.li.vʁe/
-  pr: /de.li.vʁe/
-  ds: to set free
-  primary: true
 - id: fr-v-2360a8211484f50f
   word: déposer
   pos: verb
@@ -26376,31 +26337,31 @@
   pr: /pʁɔ.lɔ̃.ʒe/
   ds: to prolong
   primary: true
-- id: fr-v-22d06c30c4b353ca
+- id: fr-v-829e64644f184303
   word: expirer
   pos: verb
-  source_sense_id: en-expirer-fr-verb-W~~dttei
+  source_sense_id: en-expirer-fr-verb-gJZg0428
   record: 84416
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 84416
   reading_index: 0
   reading_raw: /ɛk.spi.ʁe/
   pr: /ɛk.spi.ʁe/
-  ds: to breathe out
+  ds: to expire; to run out
   primary: true
-- id: fr-v-3d45792a0c48b5cd
+- id: fr-v-0d8f1f1ea05a68b3
   word: reporter
   pos: verb
-  source_sense_id: en-reporter-fr-verb-gm-t4Ojn
+  source_sense_id: en-reporter-fr-verb-rmnuH044
   record: 9819
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 9819
   reading_index: 0
   reading_raw: /ʁə.pɔʁ.te/
   pr: /ʁə.pɔʁ.te/
-  ds: to carry something back to where it was
+  ds: to postpone
   primary: true
 - id: fr-v-2a4ca065f43937ad
   word: retarder
@@ -26415,18 +26376,18 @@
   pr: /ʁə.taʁ.de/
   ds: to retard, slow down
   primary: true
-- id: fr-v-7524ac2ae390d741
+- id: fr-v-4e5ca7446c6788c6
   word: suspendre
   pos: verb
-  source_sense_id: en-suspendre-fr-verb-SxEIcZZX
+  source_sense_id: en-suspendre-fr-verb-NlCgcXX2
   record: 89894
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 89894
   reading_index: 0
   reading_raw: /sys.pɑ̃dʁ/
   pr: /sys.pɑ̃dʁ/
-  ds: to suspend (hang freely)
+  ds: to suspend; to cancel temporarily
   primary: true
 - id: fr-v-e5696c93e9a47fb1
   word: réactiver
@@ -26441,18 +26402,18 @@
   pr: /ʁe.ak.ti.ve/
   ds: to reactivate
   primary: true
-- id: fr-v-130590eeb812b81e
+- id: fr-v-bbd0cb9bb948502f
   word: débiter
   pos: verb
-  source_sense_id: en-débiter-fr-verb-KC~A1f2d
-  record: 97221
+  source_sense_id: en-débiter-fr-verb-vwcQ65ve
+  record: 97222
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 97221
+  reading_record: 97222
   reading_index: 0
   reading_raw: /de.bi.te/
   pr: /de.bi.te/
-  ds: to sell continuously
+  ds: to debit an account
   primary: true
 - id: fr-v-915a91b9b5612001
   word: créditer
@@ -26636,18 +26597,18 @@
   pr: /kwɛ̃.se/
   ds: to wedge, to jam, to catch (e.g. one's finger in a door)
   primary: true
-- id: fr-v-6dba8f9ea46f8cc8
+- id: fr-v-5152745ec0928ca5
   word: fuir
   pos: verb
-  source_sense_id: en-fuir-fr-verb-q0Vdc~Th
+  source_sense_id: en-fuir-fr-verb-QI72GNIC
   record: 8645
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 8645
   reading_index: 0
   reading_raw: /fɥiʁ/
   pr: /fɥiʁ/
-  ds: to escape
+  ds: to leak
   primary: true
 - id: fr-v-ab54ae056d5bba6e
   word: déborder
@@ -27091,18 +27052,18 @@
   pr: /di.ʁɛk.tœʁ/
   ds: director
   primary: true
-- id: fr-v-e74c0c9edc84b050
+- id: fr-v-bca58810a26ec573
   word: cadre
   pos: noun
-  source_sense_id: en-cadre-fr-noun-KNOSMzVV
+  source_sense_id: en-cadre-fr-noun-hFgfBblP
   record: 736
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 736
   reading_index: 0
   reading_raw: /kadʁ/
   pr: /kadʁ/
-  ds: frame (of a door or picture)
+  ds: executive; manager
   primary: true
 - id: fr-v-ea9ea1606fd5d403
   word: salarié
@@ -27273,44 +27234,44 @@
   pr: /de.mi.sjɔ̃/
   ds: resignation
   primary: true
-- id: fr-v-e87ba21bde45a2f9
+- id: fr-v-f2fd77e2b5bc99a7
   word: mutation
   pos: noun
-  source_sense_id: en-mutation-fr-noun-bEkHwGU6
+  source_sense_id: en-mutation-fr-noun-ONYlIrcC
   record: 10620
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 10620
   reading_index: 0
   reading_raw: /my.ta.sjɔ̃/
   pr: /my.ta.sjɔ̃/
-  ds: substitution
+  ds: transfer; move to another post
   primary: true
-- id: fr-v-194583add04d7627
+- id: fr-v-af30505287b23eed
   word: carrière
   pos: noun
-  source_sense_id: en-carrière-fr-noun-UFdDQOzQ
+  source_sense_id: en-carrière-fr-noun-ibdQWtea
   record: 20391
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 20391
   reading_index: 0
   reading_raw: /ka.ʁjɛʁ/
   pr: /ka.ʁjɛʁ/
-  ds: racecourse
+  ds: career
   primary: true
-- id: fr-v-d00a0955363094cd
+- id: fr-v-b7256f3e12045159
   word: ancienneté
   pos: noun
-  source_sense_id: en-ancienneté-fr-noun-NRdj1cvS
+  source_sense_id: en-ancienneté-fr-noun-qCOOfJTS
   record: 96379
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 96379
   reading_index: 0
   reading_raw: /ɑ̃.sjɛn.te/
   pr: /ɑ̃.sjɛn.te/
-  ds: oldness (state of being old)
+  ds: seniority
   primary: true
 - id: fr-v-605c2013aea34f9c
   word: qualification
@@ -27416,18 +27377,18 @@
   pr: /sy.pɛʁ.vi.zjɔ̃/
   ds: supervision
   primary: true
-- id: fr-v-ed435747c56e708a
+- id: fr-v-fdd5ff57a954ce95
   word: encadrement
   pos: noun
-  source_sense_id: en-encadrement-fr-noun-NtXnptey
+  source_sense_id: en-encadrement-fr-noun-xwnjgJ7J
   record: 220430
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 220430
   reading_index: 0
   reading_raw: /ɑ̃.ka.dʁə.mɑ̃/
   pr: /ɑ̃.ka.dʁə.mɑ̃/
-  ds: framing (of a picture)
+  ds: supervision
   primary: true
 - id: fr-v-f74a8004f0d6c617
   word: management
@@ -27702,18 +27663,18 @@
   pr: /a.tə.lje/
   ds: workshop
   primary: true
-- id: fr-v-2d5e384c55f91fc3
+- id: fr-v-b68685c593420d31
   word: séminaire
   pos: noun
-  source_sense_id: en-séminaire-fr-noun-llPiA71B
+  source_sense_id: en-séminaire-fr-noun-skbPif6C
   record: 98254
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 98254
   reading_index: 0
   reading_raw: /se.mi.nɛʁ/
   pr: /se.mi.nɛʁ/
-  ds: seminary
+  ds: seminar; training or discussion meeting
   primary: true
 - id: fr-v-673e6e1673b381a1
   word: ordre du jour
@@ -28040,18 +28001,18 @@
   pr: /ʁe.paʁ.tiʁ/
   ds: to distribute, to apportion
   primary: true
-- id: fr-v-33bcc2ead6858405
+- id: fr-v-6a765369438db7a8
   word: affecter
   pos: verb
-  source_sense_id: en-affecter-fr-verb-JmAp32wS
+  source_sense_id: en-affecter-fr-verb-v9SfLMXL
   record: 31771
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 31771
   reading_index: 0
   reading_raw: /a.fɛk.te/
   pr: /a.fɛk.te/
-  ds: to feign, affect (an emotion, etc.)
+  ds: to assign someone to a post
   primary: true
 - id: fr-v-402c6d465e8c3067
   word: mobiliser
@@ -28144,18 +28105,18 @@
   pr: /kɔ̃.tʁi.bɥe/
   ds: to contribute
   primary: true
-- id: fr-v-a97682bf0015d45a
+- id: fr-v-e944f1e78b562f18
   word: encadrer
   pos: verb
-  source_sense_id: en-encadrer-fr-verb-eHntEqcN
+  source_sense_id: en-encadrer-fr-verb-2hPTTVNx
   record: 97446
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 97446
   reading_index: 0
   reading_raw: /ɑ̃.ka.dʁe/
   pr: /ɑ̃.ka.dʁe/
-  ds: to frame
+  ds: to supervise
   primary: true
 - id: fr-v-a97d60e69bb54e61
   word: superviser
@@ -28209,19 +28170,6 @@
   pr: /ad.mi.nis.tʁe/
   ds: to administer
   primary: true
-- id: fr-v-2bfc2e622b081a07
-  word: piloter
-  pos: verb
-  source_sense_id: en-piloter-fr-verb-MNdfIhjl
-  record: 90034
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 90034
-  reading_index: 0
-  reading_raw: /pi.lɔ.te/
-  pr: /pi.lɔ.te/
-  ds: to pilot (control an aircraft)
-  primary: true
 - id: fr-v-bda5949c28f95cbd
   word: embaucher
   pos: verb
@@ -28248,18 +28196,18 @@
   pr: /ʁə.kʁy.te/
   ds: to recruit
   primary: true
-- id: fr-v-16003a349b8def23
+- id: fr-v-9167a97ec4cf0a01
   word: former
   pos: verb
-  source_sense_id: en-former-fr-verb-KY688zR1
+  source_sense_id: en-former-fr-verb-EAOKQ6mW
   record: 570
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 570
   reading_index: 0
   reading_raw: /fɔʁ.me/
   pr: /fɔʁ.me/
-  ds: to form (generic sense)
+  ds: to train; to educate
   primary: true
 - id: fr-v-5aa28a28ad5672ec
   word: qualifier
@@ -28352,18 +28300,18 @@
   pr: /ɑ̃.ɡa.ʒe/
   ds: to pledge, commit
   primary: true
-- id: fr-v-760f371ab7a8bd92
+- id: fr-v-2ae1bdbf609edcbf
   word: réaliser
   pos: verb
-  source_sense_id: en-réaliser-fr-verb-8m0o6phK
+  source_sense_id: en-réaliser-fr-verb-EliRxdAS
   record: 12155
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 12155
   reading_index: 0
   reading_raw: /ʁe.a.li.ze/
   pr: /ʁe.a.li.ze/
-  ds: to direct (a movie)
+  ds: to perform a task
   primary: true
 - id: fr-v-937e25b153869585
   word: exécuter
@@ -29457,18 +29405,18 @@
   pr: /de.pɛʃ/
   ds: dispatch (express private message)
   primary: true
-- id: fr-v-ee459a0e1bb8596e
+- id: fr-v-0dd714d52f8185f6
   word: manchette
   pos: noun
-  source_sense_id: en-manchette-fr-noun-Y99yBhZ7
+  source_sense_id: en-manchette-fr-noun-JbHtlhWg
   record: 12692
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 12692
   reading_index: 0
   reading_raw: /mɑ̃.ʃɛt/
   pr: /mɑ̃.ʃɛt/
-  ds: cuff
+  ds: headline
   primary: true
 - id: fr-v-b2abc2875954c14d
   word: légende
@@ -29483,18 +29431,18 @@
   pr: /le.ʒɑ̃d/
   ds: caption
   primary: true
-- id: fr-v-776c869040c423dd
+- id: fr-v-6c77436b14a282b2
   word: cliché
   pos: noun
-  source_sense_id: en-cliché-fr-noun-NkN2YFub
+  source_sense_id: en-cliché-fr-noun-FqDusHkb
   record: 926
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 926
   reading_index: 0
   reading_raw: /kli.ʃe/
   pr: /kli.ʃe/
-  ds: stereotype (printing plate)
+  ds: snapshot; photograph
   primary: true
 - id: fr-v-42a0a6cef3bdcffd
   word: prise de vue
@@ -29652,18 +29600,18 @@
   pr: /o.tɔ.sɑ̃.syʁ/
   ds: self-censorship
   primary: true
-- id: fr-v-68985b464290040c
+- id: fr-v-8e33e5bfda54e7f0
   word: intoxication
   pos: noun
-  source_sense_id: en-intoxication-fr-noun-vWJIlUAc
+  source_sense_id: en-intoxication-fr-noun-TexnpU6-
   record: 5301
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5301
   reading_index: 0
   reading_raw: /ɛ̃.tɔk.si.ka.sjɔ̃/
   pr: /ɛ̃.tɔk.si.ka.sjɔ̃/
-  ds: poisoning
+  ds: spreading false information
   primary: true
 - id: fr-v-4b7b746393687305
   word: démenti
@@ -29821,18 +29769,18 @@
   pr: /paʁ.sja.li.te/
   ds: partiality, bias
   primary: true
-- id: fr-v-914e2f90d65242e5
+- id: fr-v-a3a0798fa1a8e02c
   word: biais
   pos: noun
-  source_sense_id: en-biais-fr-noun-p1R~tROh
+  source_sense_id: en-biais-fr-noun--kgk6DdG1
   record: 91566
-  sense_index: 0
+  sense_index: 4
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 91566
   reading_index: 0
   reading_raw: /bjɛ/
   pr: /bjɛ/
-  ds: means, way
+  ds: bias; distorted judgement
   primary: true
 - id: fr-v-4f1723c3515e474d
   word: neutralité
@@ -29925,18 +29873,18 @@
   pr: /o.di.ma/
   ds: ratings (TV)
   primary: true
-- id: fr-v-a66b3fad0d926247
+- id: fr-v-a25314fa69f510d7
   word: tirage
   pos: noun
-  source_sense_id: en-tirage-fr-noun-kmc4dtpN
+  source_sense_id: en-tirage-fr-noun-Gc71ku2A
   record: 96472
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 96472
   reading_index: 0
   reading_raw: /ti.ʁaʒ/
   pr: /ti.ʁaʒ/
-  ds: pulling (action of pulling)
+  ds: circulation; number of newspaper copies sold
   primary: true
 - id: fr-v-324cfc6bb34d7edc
   word: rédaction
@@ -29951,18 +29899,18 @@
   pr: /ʁe.dak.sjɔ̃/
   ds: editing (act of editing e.g. a newspaper)
   primary: true
-- id: fr-v-8f85741c8d820731
+- id: fr-v-d9376fc8f00a3f9a
   word: correspondant
   pos: noun
-  source_sense_id: en-correspondant-fr-noun-gqmIYA76
+  source_sense_id: en-correspondant-fr-noun-hBoKS8qB
   record: 63964
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 63964
   reading_index: 0
   reading_raw: /kɔ.ʁɛs.pɔ̃.dɑ̃/
   pr: /kɔ.ʁɛs.pɔ̃.dɑ̃/
-  ds: pen pal
+  ds: correspondent; journalist reporting from a location
   primary: true
 - id: fr-v-a0f4425abdc7ca27
   word: présentateur
@@ -30223,19 +30171,6 @@
   reading_raw: /ʁɛk.ti.fje/
   pr: /ʁɛk.ti.fje/
   ds: to rectify
-  primary: true
-- id: fr-v-82d3b6269939fabe
-  word: recouper
-  pos: verb
-  source_sense_id: en-recouper-fr-verb-nFKeBPXK
-  record: 27879
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 27879
-  reading_index: 0
-  reading_raw: /ʁə.ku.pe/
-  pr: /ʁə.ku.pe/
-  ds: to recut
   primary: true
 - id: fr-v-e91be32376c1e974
   word: infirmer
@@ -30757,18 +30692,18 @@
   pr: /pʁekaʁite/
   ds: precarity, existence without financial or social security
   primary: true
-- id: fr-v-d7637b1f51b445b0
+- id: fr-v-9568b02353db737d
   word: chômage
   pos: noun
-  source_sense_id: en-chômage-fr-noun-xbx5tUV4
+  source_sense_id: en-chômage-fr-noun-CrN8jkou
   record: 17331
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 17331
   reading_index: 0
   reading_raw: /ʃo.maʒ/
   pr: /ʃo.maʒ/
-  ds: idleness
+  ds: unemployment
   primary: true
 - id: fr-v-ba1b9e675ce30c87
   word: revenu
@@ -30848,18 +30783,18 @@
   pr: /kɔ.ti.za.sjɔ̃/
   ds: subscription, dues (for organisation etc.)
   primary: true
-- id: fr-v-1d87a0e71ace8569
+- id: fr-v-c68da9270b29bdbb
   word: syndicat
   pos: noun
-  source_sense_id: en-syndicat-fr-noun-bpSLXTTK
+  source_sense_id: en-syndicat-fr-noun-gNan2KAf
   record: 98661
-  sense_index: 2
+  sense_index: 8
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 98661
   reading_index: 0
   reading_raw: /sɛ̃.di.ka/
   pr: /sɛ̃.di.ka/
-  ds: maritime district (of the Inscription maritime)
+  ds: trade union; workers' organization
   primary: true
 - id: fr-v-febc6d3f9e2290c3
   word: association
@@ -30978,18 +30913,18 @@
   pr: /pʁɔ.tɛs.ta.sjɔ̃/
   ds: admission, exclamation, statement
   primary: true
-- id: fr-v-e66d59f7fe211376
+- id: fr-v-ec71de3be67e5ae2
   word: grève
   pos: noun
-  source_sense_id: en-grève-fr-noun-Lr2OAmbK
-  record: 19471
+  source_sense_id: en-grève-fr-noun-~xlD3XM8
+  record: 19472
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 19471
+  reading_record: 19472
   reading_index: 0
   reading_raw: /ɡʁɛv/
   pr: /ɡʁɛv/
-  ds: bank (of a river); shore, strand
+  ds: strike; work stoppage
   primary: true
 - id: fr-v-bc8a24730bc5dd93
   word: négociation
@@ -31888,18 +31823,18 @@
   pr: /ʁe.zo/
   ds: network
   primary: true
-- id: fr-v-c5986da7a8a27bc7
+- id: fr-v-97d17e2fce1bd517
   word: serveur
   pos: noun
-  source_sense_id: en-serveur-fr-noun-7nzjUsde
+  source_sense_id: en-serveur-fr-noun-s-rNM0M7
   record: 16000
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 16000
   reading_index: 0
   reading_raw: /sɛʁ.vœʁ/
   pr: /sɛʁ.vœʁ/
-  ds: waiter (in restaurant)
+  ds: computer server
   primary: true
 - id: fr-v-eb4ac73b3df11527
   word: terminal
@@ -31940,31 +31875,18 @@
   pr: /kla.vje/
   ds: keyboard (of a computer)
   primary: true
-- id: fr-v-552c05903f3df810
+- id: fr-v-8185a1bebe62a0b9
   word: souris
   pos: noun
-  source_sense_id: en-souris-fr-noun-gZwb-DXD
+  source_sense_id: en-souris-fr-noun-azz6b0zF
   record: 8868
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 8868
   reading_index: 0
   reading_raw: /su.ʁi/
   pr: /su.ʁi/
-  ds: mouse (rodent)
-  primary: true
-- id: fr-v-7ba6f3457cacd45f
-  word: pavé
-  pos: noun
-  source_sense_id: en-pavé-fr-noun-wosB502~
-  record: 11660
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 11660
-  reading_index: 0
-  reading_raw: /pa.ve/
-  pr: /pa.ve/
-  ds: cobblestone
+  ds: computer mouse
   primary: true
 - id: fr-v-9ffbf327aa2fc6ca
   word: imprimante
@@ -31979,31 +31901,31 @@
   pr: /ɛ̃.pʁi.mɑ̃t/
   ds: printer (machine used to print text or images)
   primary: true
-- id: fr-v-bc1408fa5f021cb9
+- id: fr-v-227f5ccda49626aa
   word: scanner
-  pos: noun
-  source_sense_id: en-scanner-fr-noun-aM1dJW3E
-  record: 2259
+  pos: verb
+  source_sense_id: en-scanner-fr-verb-4PBRDIei
+  record: 2258
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 2259
+  reading_record: 2258
   reading_index: 0
-  reading_raw: /ska.nɛʁ/
-  pr: /ska.nɛʁ/
-  ds: an X-ray scanner
+  reading_raw: /ska.ne/
+  pr: /ska.ne/
+  ds: to scan; to make a digital image
   primary: true
-- id: fr-v-31531cd52265c1b6
+- id: fr-v-a8e1ae6543ac7b8d
   word: capteur
   pos: noun
-  source_sense_id: en-capteur-fr-noun-pJheXr6q
+  source_sense_id: en-capteur-fr-noun-ynP2EDSv
   record: 26622
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 26622
   reading_index: 0
   reading_raw: /kap.tœʁ/
   pr: /kap.tœʁ/
-  ds: catcher
+  ds: sensor
   primary: true
 - id: fr-v-79286930b0ea1603
   word: processeur
@@ -32056,19 +31978,6 @@
   reading_raw: /kle y.ɛs.be/
   pr: /kle y.ɛs.be/
   ds: USB flash drive
-  primary: true
-- id: fr-v-f8a65caeb3bbc6d8
-  word: port
-  pos: noun
-  source_sense_id: en-port-fr-noun-zJ5k9m0v
-  record: 195
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 195
-  reading_index: 0
-  reading_raw: /pɔʁ/
-  pr: /pɔʁ/
-  ds: port, harbour
   primary: true
 - id: fr-v-63e1798b3e68e8f8
   word: périphérique
@@ -32148,31 +32057,31 @@
   pr: /sit/
   ds: site
   primary: true
-- id: fr-v-41689c5aa485e856
+- id: fr-v-9a8fa9cc108a706b
   word: lien
   pos: noun
-  source_sense_id: en-lien-fr-noun-~tvakcR4
+  source_sense_id: en-lien-fr-noun-sbG9tIDG
   record: 4839
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 4839
   reading_index: 0
   reading_raw: /ljɛ̃/
   pr: /ljɛ̃/
-  ds: tie, bond
+  ds: link
   primary: true
-- id: fr-v-a7bd367bac705bc0
+- id: fr-v-5ac0253ebec48371
   word: navigateur
   pos: noun
-  source_sense_id: en-navigateur-fr-noun-6~SdzYNv
+  source_sense_id: en-navigateur-fr-noun-1MPooRJW
   record: 73012
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 73012
   reading_index: 0
   reading_raw: /na.vi.ɡa.tœʁ/
   pr: /na.vi.ɡa.tœʁ/
-  ds: navigator
+  ds: web browser
   primary: true
 - id: fr-v-1a2b1ff9757c247f
   word: recherche
@@ -32200,18 +32109,18 @@
   pr: /mɔ.tœʁ də ʁ(ə).ʃɛʁʃ/
   ds: search engine
   primary: true
-- id: fr-v-6785fd7df4f8de3c
+- id: fr-v-2396f62c747ad6e4
   word: fichier
   pos: noun
-  source_sense_id: en-fichier-fr-noun-Aq-z53uv
+  source_sense_id: en-fichier-fr-noun-O5w1jzbw
   record: 28307
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 28307
   reading_index: 0
   reading_raw: /fi.ʃje/
   pr: /fi.ʃje/
-  ds: file (collection of papers)
+  ds: computer file
   primary: true
 - id: fr-v-7be10cbb7dcc25c4
   word: format
@@ -32239,31 +32148,31 @@
   pr: /dɔ.ne/
   ds: datum (item of data)
   primary: true
-- id: fr-v-41d02ffe3d31378c
+- id: fr-v-f9dc36aa2dcee6be
   word: traitement
   pos: noun
-  source_sense_id: en-traitement-fr-noun-YMQRsrrs
+  source_sense_id: en-traitement-fr-noun-CmPdmqCp
   record: 92589
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 92589
   reading_index: 0
   reading_raw: /tʁɛt.mɑ̃/
   pr: /tʁɛt.mɑ̃/
-  ds: treatment
+  ds: processing
   primary: true
-- id: fr-v-bca989cb01ca414b
+- id: fr-v-ce21d2f836a6dbb5
   word: calcul
   pos: noun
-  source_sense_id: en-calcul-fr-noun-IqhgUX8w
+  source_sense_id: en-calcul-fr-noun-ADk6DWb5
   record: 14352
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 14352
   reading_index: 0
   reading_raw: /kal.kyl/
   pr: /kal.kyl/
-  ds: calculus, stone (stony concretion that forms in a bodily organ)
+  ds: calculation; computation
   primary: true
 - id: fr-v-ca41f4884e08ad1e
   word: algorithme
@@ -32277,19 +32186,6 @@
   reading_raw: /al.ɡɔ.ʁitm/
   pr: /al.ɡɔ.ʁitm/
   ds: algorithm
-  primary: true
-- id: fr-v-ea919dbe38657fa0
-  word: commande
-  pos: noun
-  source_sense_id: en-commande-fr-noun-V1RnmOdK
-  record: 41552
-  sense_index: 0
-  reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 41552
-  reading_index: 0
-  reading_raw: /kɔ.mɑ̃d/
-  pr: /kɔ.mɑ̃d/
-  ds: order (request for some product or service)
   primary: true
 - id: fr-v-8aea906bf282028c
   word: interface
@@ -32330,18 +32226,18 @@
   pr: /ɔ.tɑ̃.ti.fi.ka.sjɔ̃/
   ds: authentication
   primary: true
-- id: fr-v-1c19b3c9e4c26534
+- id: fr-v-1ea609492f11e391
   word: sauvegarde
   pos: noun
-  source_sense_id: en-sauvegarde-fr-noun-IAK0fRf7
+  source_sense_id: en-sauvegarde-fr-noun-0pZnpHbT
   record: 70353
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 70353
   reading_index: 0
   reading_raw: /sov.ɡaʁd/
   pr: /sov.ɡaʁd/
-  ds: protection, safeguard (protection granted by any authority)
+  ds: backup; saving information safely
   primary: true
 - id: fr-v-d27c31270b558833
   word: mise à jour
@@ -32512,18 +32408,18 @@
   pr: /piʁataʒ/
   ds: piracy
   primary: true
-- id: fr-v-7c49a4693aa01291
+- id: fr-v-e571f2e69176427f
   word: faille
   pos: noun
-  source_sense_id: en-faille-fr-noun-8cVi6uMv
+  source_sense_id: en-faille-fr-noun-AxoEJ7I3
   record: 11322
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 11322
   reading_index: 0
   reading_raw: /faj/
   pr: /faj/
-  ds: fault
+  ds: flaw; weakness
   primary: true
 - id: fr-v-d78b968dc6f4fbc4
   word: chiffrement
@@ -32655,18 +32551,18 @@
   pr: /kɔ.de/
   ds: to code; to encode
   primary: true
-- id: fr-v-4bcd582a61661c13
+- id: fr-v-fc055a0f3e0f3e88
   word: traiter
   pos: verb
-  source_sense_id: en-traiter-fr-verb-H2EPCS8B
+  source_sense_id: en-traiter-fr-verb-yeGIMGIm
   record: 83960
-  sense_index: 0
+  sense_index: 3
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 83960
   reading_index: 0
   reading_raw: /tʁɛ.te/
   pr: /tʁɛ.te/
-  ds: to treat (someone) (a particular way)
+  ds: to process
   primary: true
 - id: fr-v-3db457bc35b3d854
   word: stocker
@@ -32720,18 +32616,18 @@
   pr: /kli.ke/
   ds: to click
   primary: true
-- id: fr-v-db1195d09efaa8a9
+- id: fr-v-b86342548eed63a5
   word: taper
   pos: verb
-  source_sense_id: en-taper-fr-verb-gUHlYCZ8
+  source_sense_id: en-taper-fr-verb-5RTkqzfc
   record: 5457
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 5457
   reading_index: 0
   reading_raw: /ta.pe/
   pr: /ta.pe/
-  ds: to slap, knock, beat
+  ds: to type on a keyboard
   primary: true
 - id: fr-v-0acfaf262e26976c
   word: environnement
@@ -32967,31 +32863,31 @@
   pr: /si.klon/
   ds: cyclone (rotating system of winds)
   primary: true
-- id: fr-v-2e6c56474ab34068
+- id: fr-v-4023c81cb9e1efa1
   word: sécheresse
   pos: noun
-  source_sense_id: en-sécheresse-fr-noun-zMgRGHwQ
+  source_sense_id: en-sécheresse-fr-noun-yq7YxOuN
   record: 25066
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 25066
   reading_index: 0
   reading_raw: /seʃ.ʁɛs/
   pr: /seʃ.ʁɛs/
-  ds: dryness
+  ds: drought
   primary: true
-- id: fr-v-4f7e56fb4c311464
+- id: fr-v-4d43fd593f7d8fcd
   word: canicule
   pos: noun
-  source_sense_id: en-canicule-fr-noun-nr1NeUgS
+  source_sense_id: en-canicule-fr-noun-QcFB~qQl
   record: 86051
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 86051
   reading_index: 0
   reading_raw: /ka.ni.kyl/
   pr: /ka.ni.kyl/
-  ds: the dog days of late summer
+  ds: heat wave
   primary: true
 - id: fr-v-b992893b4a770890
   word: gel
@@ -33305,18 +33201,18 @@
   pr: /aʁbʁ/
   ds: tree (plant, diagram, anything in the form of a tree)
   primary: true
-- id: fr-v-7d67bf14d1312095
+- id: fr-v-ffaa650e3178fdce
   word: plante
   pos: noun
-  source_sense_id: en-plante-fr-noun-pvJgC7b9
-  record: 19681
+  source_sense_id: en-plante-fr-noun-lgRNlzS2
+  record: 19682
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 19681
+  reading_record: 19682
   reading_index: 0
   reading_raw: /plɑ̃t/
   pr: /plɑ̃t/
-  ds: sole of the foot
+  ds: plant; living vegetation
   primary: true
 - id: fr-v-4aacf58c91110dbd
   word: fleur
@@ -33578,18 +33474,18 @@
   pr: /ɔ.se.ɑ̃/
   ds: ocean
   primary: true
-- id: fr-v-fbdaa0ea5d067cf4
+- id: fr-v-b1d06701dfa0e5a8
   word: côte
   pos: noun
-  source_sense_id: en-côte-fr-noun-NBHo1OHO
+  source_sense_id: en-côte-fr-noun-I8B1oDXz
   record: 15505
-  sense_index: 0
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 15505
   reading_index: 0
   reading_raw: /kot/
   pr: /kot/
-  ds: rib (bone)
+  ds: coast; land beside the sea
   primary: true
 - id: fr-v-3fb3b83c646ce824
   word: littoral
@@ -35333,18 +35229,18 @@
   pr: /tuʁ.nyʁ/
   ds: appearance, shape, figure; bearing
   primary: true
-- id: fr-v-3fa02e561e7f75a4
+- id: fr-v-b5eec00220bd40d5
   word: registre
   pos: noun
-  source_sense_id: en-registre-fr-noun-42FjRA4b
+  source_sense_id: en-registre-fr-noun-32IcFjrr
   record: 19941
-  sense_index: 0
+  sense_index: 1
   reading_source_id: kaikki-enwiktionary-french-20260902
   reading_record: 19941
   reading_index: 0
   reading_raw: /ʁə.ʒistʁ/
   pr: /ʁə.ʒistʁ/
-  ds: register (official book)
+  ds: register; level or category
   primary: true
 - id: fr-v-1e718efc9f7ad899
   word: style
@@ -35411,18 +35307,18 @@
   pr: /sut.ny/
   ds: sustained, maintained, concerted
   primary: true
-- id: fr-v-50b64a59696aceea
+- id: fr-v-b9196f00660223c0
   word: courant
-  pos: noun
-  source_sense_id: en-courant-fr-noun-ZfQFcbFg
-  record: 13613
-  sense_index: 0
+  pos: adj
+  source_sense_id: en-courant-fr-adj-kqXcBL1v
+  record: 13612
+  sense_index: 2
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 13613
+  reading_record: 13612
   reading_index: 0
   reading_raw: /ku.ʁɑ̃/
   pr: /ku.ʁɑ̃/
-  ds: current (of water, electricity, thought, etc.)
+  ds: common; in ordinary use
   primary: true
 - id: fr-v-6d00f7511e58a8ac
   word: poli
@@ -35528,18 +35424,18 @@
   pr: /di.plɔ.ma.tik/
   ds: diplomatic
   primary: true
-- id: fr-v-6cd1b69fb70febbd
+- id: fr-v-e68be75a26fc055a
   word: ferme
-  pos: noun
-  source_sense_id: en-ferme-fr-noun-dB9CvKhv
-  record: 7255
+  pos: adj
+  source_sense_id: en-ferme-fr-adj-P2JVBzHZ
+  record: 7254
   sense_index: 0
   reading_source_id: kaikki-enwiktionary-french-20260902
-  reading_record: 7255
+  reading_record: 7254
   reading_index: 0
   reading_raw: /fɛʁm/
   pr: /fɛʁm/
-  ds: roof truss
+  ds: firm; resolute
   primary: true
 - id: fr-v-aba157e4cf1c245e
   word: indirect
@@ -41481,6 +41377,19 @@
   reading_raw: /ʁyp.tyʁ də stɔk/
   pr: /ʁyp.tyʁ də stɔk/
   ds: stockout
+  primary: true
+- id: fr-v-ea919dbe38657fa0
+  word: commande
+  pos: noun
+  source_sense_id: en-commande-fr-noun-V1RnmOdK
+  record: 41552
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 41552
+  reading_index: 0
+  reading_raw: /kɔ.mɑ̃d/
+  pr: /kɔ.mɑ̃d/
+  ds: order for goods or services
   primary: true
 - id: fr-v-1749ae0111e59fae
   word: délai de livraison
@@ -72463,6 +72372,19 @@
   pr: /diɡ/
   ds: seawall, dyke, breakwater
   primary: true
+- id: fr-v-f8a65caeb3bbc6d8
+  word: port
+  pos: noun
+  source_sense_id: en-port-fr-noun-zJ5k9m0v
+  record: 195
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 195
+  reading_index: 0
+  reading_raw: /pɔʁ/
+  pr: /pɔʁ/
+  ds: harbour; port
+  primary: true
 - id: fr-v-42f3ea93cc0b2d5e
   word: aérodrome
   pos: noun
@@ -80076,6 +79998,32 @@
   ds: free verse
   primary: true
   allow_marked: true
+- id: fr-v-98fb5c748d865023
+  word: un
+  pos: num
+  source_sense_id: en-un-fr-num-dpLDrTVA
+  record: 1452
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1452
+  reading_index: 0
+  reading_raw: /œ̃/
+  pr: /œ̃/
+  ds: one
+  primary: false
+- id: fr-v-fbf60a681af7aaca
+  word: leur
+  pos: pron
+  source_sense_id: en-leur-fr-pron-4RMMe4Bv
+  record: 7459
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 7459
+  reading_index: 0
+  reading_raw: /lœʁ/
+  pr: /lœʁ/
+  ds: to them; indirect-object clitic
+  primary: false
 - id: fr-v-0d080607a4098425
   word: de
   pos: prep
@@ -80335,4 +80283,850 @@
   reading_raw: /pu.vwaʁ/
   pr: /pu.vwaʁ/
   ds: authority
+  primary: false
+- id: fr-v-87472db5bce31239
+  word: langue
+  pos: noun
+  source_sense_id: en-langue-fr-noun-snFSEtk5
+  record: 229
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 229
+  reading_index: 0
+  reading_raw: /lɑ̃ɡ/
+  pr: /lɑ̃ɡ/
+  ds: tongue; body part
+  primary: false
+- id: fr-v-931d65d1f00c6019
+  word: commander
+  pos: verb
+  source_sense_id: en-commander-fr-verb-1ycoSxp3
+  record: 2983
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 2983
+  reading_index: 0
+  reading_raw: /kɔ.mɑ̃.de/
+  pr: /kɔ.mɑ̃.de/
+  ds: to command; to tell someone what to do
+  primary: false
+- id: fr-v-392230f6d1c0eb5a
+  word: menu
+  pos: noun
+  source_sense_id: en-menu-fr-noun-yCsdkrxP
+  record: 1266
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1266
+  reading_index: 0
+  reading_raw: /mə.ny/
+  pr: /mə.ny/
+  ds: menu; detailed list
+  primary: false
+- id: fr-v-4aae37cb84ca2cfe
+  word: accord
+  pos: noun
+  source_sense_id: en-accord-fr-noun-JXNbqqW0
+  record: 148
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 148
+  reading_index: 0
+  reading_raw: /a.kɔʁ/
+  pr: /a.kɔʁ/
+  ds: chord; musical combination
+  primary: false
+- id: fr-v-0509552be428de16
+  word: arrêt
+  pos: noun
+  source_sense_id: en-arrêt-fr-noun-BXcJG-W6
+  record: 3427
+  sense_index: 2
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 3427
+  reading_index: 0
+  reading_raw: /a.ʁɛ/
+  pr: /a.ʁɛ/
+  ds: judgment; court ruling
+  primary: false
+- id: fr-v-22afdd0b327e4284
+  word: prévenir
+  pos: verb
+  source_sense_id: en-prévenir-fr-verb-qghr5aky
+  record: 17059
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 17059
+  reading_index: 0
+  reading_raw: /pʁev.niʁ/
+  pr: /pʁev.niʁ/
+  ds: to prevent; to avert
+  primary: false
+- id: fr-v-d9723a0f4fe7135b
+  word: sol
+  pos: noun
+  source_sense_id: en-sol-fr-noun-ZVwPNiEr
+  record: 469
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 469
+  reading_index: 0
+  reading_raw: /sɔl/
+  pr: /sɔl/
+  ds: soil; earth
+  primary: false
+- id: fr-v-8f599235856cd4b5
+  word: article
+  pos: noun
+  source_sense_id: en-article-fr-noun-hDk63YxI
+  record: 509
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 509
+  reading_index: 0
+  reading_raw: /aʁ.tikl/
+  pr: /aʁ.tikl/
+  ds: article; grammatical determiner
+  primary: false
+- id: fr-v-e6eadccb7699889f
+  word: article
+  pos: noun
+  source_sense_id: en-article-fr-noun-UdGB6qnB
+  record: 509
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 509
+  reading_index: 0
+  reading_raw: /aʁ.tikl/
+  pr: /aʁ.tikl/
+  ds: article; nonfiction text
+  primary: false
+- id: fr-v-b7f82af8d07cf0f3
+  word: article
+  pos: noun
+  source_sense_id: en-article-fr-noun-KH7UON~Y
+  record: 509
+  sense_index: 3
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 509
+  reading_index: 0
+  reading_raw: /aʁ.tikl/
+  pr: /aʁ.tikl/
+  ds: article; section of a law
+  primary: false
+- id: fr-v-8245d60f21bd4ac4
+  word: clair
+  pos: adj
+  source_sense_id: en-clair-fr-adj-g3YHkSnn
+  record: 3621
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 3621
+  reading_index: 0
+  reading_raw: /klɛʁ/
+  pr: /klɛʁ/
+  ds: clear; understandable
+  primary: false
+- id: fr-v-2e4622c34693aade
+  word: convenir
+  pos: verb
+  source_sense_id: en-convenir-fr-verb-ZM6g40G4
+  record: 20706
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 20706
+  reading_index: 0
+  reading_raw: /kɔ̃v.niʁ/
+  pr: /kɔ̃v.niʁ/
+  ds: to agree; to acknowledge
+  primary: false
+- id: fr-v-4bb28d74d4b2564d
+  word: espèce
+  pos: noun
+  source_sense_id: en-espèce-fr-noun-FVnWqjw2
+  record: 7933
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 7933
+  reading_index: 0
+  reading_raw: /ɛs.pɛs/
+  pr: /ɛs.pɛs/
+  ds: species
+  primary: false
+- id: fr-v-eaf6c59ac2b26183
+  word: promotion
+  pos: noun
+  source_sense_id: en-promotion-fr-noun-qSnsruTd
+  record: 6455
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 6455
+  reading_index: 0
+  reading_raw: /pʁɔ.mɔ.sjɔ̃/
+  pr: /pʁɔ.mɔ.sjɔ̃/
+  ds: promotion; career advancement
+  primary: false
+- id: fr-v-0ce17e63123cca2e
+  word: rose
+  pos: noun
+  source_sense_id: en-rose-fr-noun-xDETYqUB
+  record: 608
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 608
+  reading_index: 0
+  reading_raw: /ʁoz/
+  pr: /ʁoz/
+  ds: rose; flower
+  primary: false
+- id: fr-v-f2aee505022b10ac
+  word: correspondance
+  pos: noun
+  source_sense_id: en-correspondance-fr-noun-FGVL8rdz
+  record: 28885
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 28885
+  reading_index: 0
+  reading_raw: /kɔ.ʁɛs.pɔ̃.dɑ̃s/
+  pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/
+  ds: correspondence; exchange of messages
+  primary: false
+- id: fr-v-e0cce9913fb80cb3
+  word: correspondance
+  pos: noun
+  source_sense_id: en-correspondance-fr-noun-SUWnD6f5
+  record: 28885
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 28885
+  reading_index: 0
+  reading_raw: /kɔ.ʁɛs.pɔ̃.dɑ̃s/
+  pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/
+  ds: match; correspondence between things
+  primary: false
+- id: fr-v-1b78cd5cc10934b4
+  word: quai
+  pos: noun
+  source_sense_id: en-quai-fr-noun-hcHCQaLr
+  record: 16468
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 16468
+  reading_index: 0
+  reading_raw: /ke/
+  pr: /ke/
+  ds: quay; wharf
+  primary: false
+- id: fr-v-759e5d8a263c26b1
+  word: réception
+  pos: noun
+  source_sense_id: en-réception-fr-noun-z87Gmint
+  record: 91435
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 91435
+  reading_index: 0
+  reading_raw: /ʁe.sɛp.sjɔ̃/
+  pr: /ʁe.sɛp.sjɔ̃/
+  ds: reception; act of receiving
+  primary: false
+- id: fr-v-710291472fa7a1c0
+  word: essence
+  pos: noun
+  source_sense_id: en-essence-fr-noun-CSvYZGz1
+  record: 6232
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 6232
+  reading_index: 0
+  reading_raw: /e.sɑ̃s/
+  pr: /e.sɑ̃s/
+  ds: essence; fundamental nature
+  primary: false
+- id: fr-v-ec9d43f284dc0e8b
+  word: circulation
+  pos: noun
+  source_sense_id: en-circulation-fr-noun-gZ9tvc2B
+  record: 5063
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 5063
+  reading_index: 0
+  reading_raw: /siʁ.ky.la.sjɔ̃/
+  pr: /siʁ.ky.la.sjɔ̃/
+  ds: blood circulation
+  primary: false
+- id: fr-v-c5403dcd7eabc4be
+  word: enregistrer
+  pos: verb
+  source_sense_id: en-enregistrer-fr-verb-qfMCMdvR
+  record: 32250
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 32250
+  reading_index: 0
+  reading_raw: /ɑ̃.ʁ(ə).ʒis.tʁe/
+  pr: /ɑ̃.ʁ(ə).ʒis.tʁe/
+  ds: to record for later use or playback
+  primary: false
+- id: fr-v-4c26b2c97c122222
+  word: simple
+  pos: adj
+  source_sense_id: en-simple-fr-adj-FzlL4BI2
+  record: 958
+  sense_index: 2
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 958
+  reading_index: 0
+  reading_raw: /sɛ̃pl/
+  pr: /sɛ̃pl/
+  ds: plain; unpretentious
+  primary: false
+- id: fr-v-9465a5a3f055ba76
+  word: classe
+  pos: noun
+  source_sense_id: en-classe-fr-noun-ZxUUjODK
+  record: 13563
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 13563
+  reading_index: 0
+  reading_raw: /klas/
+  pr: /klas/
+  ds: class; category or group
+  primary: false
+- id: fr-v-19b9308486b322ce
+  word: dossier
+  pos: noun
+  source_sense_id: en-dossier-fr-noun-A0oAYkiC
+  record: 3958
+  sense_index: 2
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 3958
+  reading_index: 0
+  reading_raw: /do.sje/
+  pr: /do.sje/
+  ds: computer folder
+  primary: false
+- id: fr-v-5297392828150df2
+  word: entretien
+  pos: noun
+  source_sense_id: en-entretien-fr-noun-Alu0ZnmT
+  record: 83639
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 83639
+  reading_index: 0
+  reading_raw: /ɑ̃.tʁə.tjɛ̃/
+  pr: /ɑ̃.tʁə.tjɛ̃/
+  ds: maintenance; upkeep
+  primary: false
+- id: fr-v-53c6cfaa3e33626e
+  word: expérience
+  pos: noun
+  source_sense_id: en-expérience-fr-noun-19L3f-Jk
+  record: 23014
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 23014
+  reading_index: 0
+  reading_raw: /ɛk.spe.ʁjɑ̃s/
+  pr: /ɛk.spe.ʁjɑ̃s/
+  ds: experiment; test
+  primary: false
+- id: fr-v-282ea9944dc1ba81
+  word: lettre
+  pos: noun
+  source_sense_id: en-lettre-fr-noun-NhcpUfS~
+  record: 3663
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 3663
+  reading_index: 0
+  reading_raw: /lɛtʁ/
+  pr: /lɛtʁ/
+  ds: letter; written character
+  primary: false
+- id: fr-v-074cea10ecc61203
+  word: note
+  pos: noun
+  source_sense_id: en-note-fr-noun-pR7bkz4g
+  record: 1267
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1267
+  reading_index: 0
+  reading_raw: /nɔt/
+  pr: /nɔt/
+  ds: note; written or spoken message
+  primary: false
+- id: fr-v-3dacb9ed5ee5697a
+  word: note
+  pos: noun
+  source_sense_id: en-note-fr-noun-7bRlYkKR
+  record: 1267
+  sense_index: 3
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1267
+  reading_index: 0
+  reading_raw: /nɔt/
+  pr: /nɔt/
+  ds: musical note
+  primary: false
+- id: fr-v-4fb10e2ed4598411
+  word: tableau
+  pos: noun
+  source_sense_id: en-tableau-fr-noun-3mILPi4O
+  record: 2423
+  sense_index: 3
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 2423
+  reading_index: 0
+  reading_raw: /ta.blo/
+  pr: /ta.blo/
+  ds: table; arrangement of rows and columns
+  primary: false
+- id: fr-v-93e45df2ee31f031
+  word: tableau
+  pos: noun
+  source_sense_id: en-tableau-fr-noun-pU5WOLvD
+  record: 2423
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 2423
+  reading_index: 0
+  reading_raw: /ta.blo/
+  pr: /ta.blo/
+  ds: painting; artwork
+  primary: false
+- id: fr-v-d7a72d4eb9550edc
+  word: connaissance
+  pos: noun
+  source_sense_id: en-connaissance-fr-noun-4PiVhy1l
+  record: 17330
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 17330
+  reading_index: 0
+  reading_raw: /kɔ.nɛ.sɑ̃s/
+  pr: /kɔ.nɛ.sɑ̃s/
+  ds: knowledge
+  primary: false
+- id: fr-v-8eda843d24a3e393
+  word: reconnaissance
+  pos: noun
+  source_sense_id: en-reconnaissance-fr-noun-fBK9hKz8
+  record: 15067
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 15067
+  reading_index: 0
+  reading_raw: /ʁə.kɔ.nɛ.sɑ̃s/
+  pr: /ʁə.kɔ.nɛ.sɑ̃s/
+  ds: recognition; acknowledgment
+  primary: false
+- id: fr-v-aab93c744b03ab11
+  word: pièce
+  pos: noun
+  source_sense_id: en-pièce-fr-noun-VnNFuYdT
+  record: 11558
+  sense_index: 6
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 11558
+  reading_index: 0
+  reading_raw: /pjɛs/
+  pr: /pjɛs/
+  ds: document; legal paper
+  primary: false
+- id: fr-v-a3c6da11e0ea6cbf
+  word: pièce
+  pos: noun
+  source_sense_id: en-pièce-fr-noun-q6TMm4r4
+  record: 11558
+  sense_index: 5
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 11558
+  reading_index: 0
+  reading_raw: /pjɛs/
+  pr: /pjɛs/
+  ds: play; theatrical work
+  primary: false
+- id: fr-v-14020ed37a8557f3
+  word: fiche
+  pos: noun
+  source_sense_id: en-fiche-fr-noun-cM6HH4o9
+  record: 14505
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 14505
+  reading_index: 0
+  reading_raw: /fiʃ/
+  pr: /fiʃ/
+  ds: record; information entry
+  primary: false
+- id: fr-v-dce4e3e1f6010c9e
+  word: peinture
+  pos: noun
+  source_sense_id: en-peinture-fr-noun-pU5WOLvD
+  record: 20696
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 20696
+  reading_index: 0
+  reading_raw: /pɛ̃.tyʁ/
+  pr: /pɛ̃.tyʁ/
+  ds: painting; artistic activity
+  primary: false
+- id: fr-v-2845edc963c71a56
+  word: rapport
+  pos: noun
+  source_sense_id: en-rapport-fr-noun-LwSnnvE7
+  record: 7036
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 7036
+  reading_index: 0
+  reading_raw: /ʁa.pɔʁ/
+  pr: /ʁa.pɔʁ/
+  ds: ratio
+  primary: false
+- id: fr-v-86ee26c13d0acd7c
+  word: mode
+  pos: noun
+  source_sense_id: en-mode-fr-noun-e6OQ5Gl7
+  record: 2543
+  sense_index: 3
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 2543
+  reading_index: 0
+  reading_raw: /mɔd/
+  pr: /mɔd/
+  ds: mode; most frequent value
+  primary: false
+- id: fr-v-4816f1dc1249ae41
+  word: journal
+  pos: noun
+  source_sense_id: en-journal-fr-noun-kUwmda7Q
+  record: 6520
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 6520
+  reading_index: 0
+  reading_raw: /ʒuʁ.nal/
+  pr: /ʒuʁ.nal/
+  ds: diary; personal journal
+  primary: false
+- id: fr-v-7414237946f990f9
+  word: journal
+  pos: noun
+  source_sense_id: en-journal-fr-noun-g2~xhOe0
+  record: 6520
+  sense_index: 4
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 6520
+  reading_index: 0
+  reading_raw: /ʒuʁ.nal/
+  pr: /ʒuʁ.nal/
+  ds: computer log
+  primary: false
+- id: fr-v-6e83fe88790a7ed8
+  word: émission
+  pos: noun
+  source_sense_id: en-émission-fr-noun-BpZN0vrD
+  record: 20272
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 20272
+  reading_index: 0
+  reading_raw: /e.mi.sjɔ̃/
+  pr: /e.mi.sjɔ̃/
+  ds: emission; release
+  primary: false
+- id: fr-v-93c3d117ad5e91ea
+  word: alimentation
+  pos: noun
+  source_sense_id: en-alimentation-fr-noun-wfAmWC~m
+  record: 21045
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 21045
+  reading_index: 0
+  reading_raw: /a.li.mɑ̃.ta.sjɔ̃/
+  pr: /a.li.mɑ̃.ta.sjɔ̃/
+  ds: food; nourishment
+  primary: false
+- id: fr-v-4be472830053ad9d
+  word: assurance
+  pos: noun
+  source_sense_id: en-assurance-fr-noun-c5MUo9fp
+  record: 10687
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 10687
+  reading_index: 0
+  reading_raw: /a.sy.ʁɑ̃s/
+  pr: /a.sy.ʁɑ̃s/
+  ds: assurance; guarantee
+  primary: false
+- id: fr-v-bda4c0b2450ea61e
+  word: recette
+  pos: noun
+  source_sense_id: en-recette-fr-noun-4djlUjMJ
+  record: 21724
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 21724
+  reading_index: 0
+  reading_raw: /ʁə.sɛt/
+  pr: /ʁə.sɛt/
+  ds: recipe; cooking instructions
+  primary: false
+- id: fr-v-acbcf538b8da0b0a
+  word: reporter
+  pos: noun
+  source_sense_id: en-reporter-fr-noun-u2pjqZPc
+  record: 9820
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 9820
+  reading_index: 0
+  reading_raw: /ʁə.pɔʁ.tɛʁ/
+  pr: /ʁə.pɔʁ.tɛʁ/
+  ds: news reporter; journalist
+  primary: false
+- id: fr-v-011a4d556606989f
+  word: volume
+  pos: noun
+  source_sense_id: en-volume-fr-noun-L-tj1Q3M
+  record: 1128
+  sense_index: 3
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1128
+  reading_index: 0
+  reading_raw: /vɔ.lym/
+  pr: /vɔ.lym/
+  ds: volume; amount or quantity
+  primary: false
+- id: fr-v-b2ddb080f2e61cdb
+  word: volume
+  pos: noun
+  source_sense_id: en-volume-fr-noun-ECxVIntU
+  record: 1128
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1128
+  reading_index: 0
+  reading_raw: /vɔ.lym/
+  pr: /vɔ.lym/
+  ds: volume; sound level
+  primary: false
+- id: fr-v-61304aee7a7ff416
+  word: volume
+  pos: noun
+  source_sense_id: en-volume-fr-noun-t2HFbzEj
+  record: 1128
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 1128
+  reading_index: 0
+  reading_raw: /vɔ.lym/
+  pr: /vɔ.lym/
+  ds: volume; book
+  primary: false
+- id: fr-v-775e2873c98d3fc1
+  word: cadre
+  pos: noun
+  source_sense_id: en-cadre-fr-noun-KdGR5PML
+  record: 736
+  sense_index: 6
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 736
+  reading_index: 0
+  reading_raw: /kadʁ/
+  pr: /kadʁ/
+  ds: context; defining circumstances
+  primary: false
+- id: fr-v-f762c30044b1de90
+  word: cadre
+  pos: noun
+  source_sense_id: en-cadre-fr-noun-TbLn888m
+  record: 736
+  sense_index: 8
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 736
+  reading_index: 0
+  reading_raw: /kadʁ/
+  pr: /kadʁ/
+  ds: setting; environment
+  primary: false
+- id: fr-v-a1f1934920464b08
+  word: mutation
+  pos: noun
+  source_sense_id: en-mutation-fr-noun-0zNqM0pe
+  record: 10620
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 10620
+  reading_index: 0
+  reading_raw: /my.ta.sjɔ̃/
+  pr: /my.ta.sjɔ̃/
+  ds: mutation; change
+  primary: false
+- id: fr-v-20a464d8c6ef18f4
+  word: réaliser
+  pos: verb
+  source_sense_id: en-réaliser-fr-verb--ylmXByi
+  record: 12155
+  sense_index: 5
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 12155
+  reading_index: 0
+  reading_raw: /ʁe.a.li.ze/
+  pr: /ʁe.a.li.ze/
+  ds: to make real
+  primary: false
+- id: fr-v-1a5d22746b115587
+  word: cliché
+  pos: noun
+  source_sense_id: en-cliché-fr-noun-WucYjyJP
+  record: 926
+  sense_index: 3
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 926
+  reading_index: 0
+  reading_raw: /kli.ʃe/
+  pr: /kli.ʃe/
+  ds: cliche; overused expression or stereotype
+  primary: false
+- id: fr-v-68985b464290040c
+  word: intoxication
+  pos: noun
+  source_sense_id: en-intoxication-fr-noun-vWJIlUAc
+  record: 5301
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 5301
+  reading_index: 0
+  reading_raw: /ɛ̃.tɔk.si.ka.sjɔ̃/
+  pr: /ɛ̃.tɔk.si.ka.sjɔ̃/
+  ds: poisoning
+  primary: false
+- id: fr-v-552c05903f3df810
+  word: souris
+  pos: noun
+  source_sense_id: en-souris-fr-noun-gZwb-DXD
+  record: 8868
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 8868
+  reading_index: 0
+  reading_raw: /su.ʁi/
+  pr: /su.ʁi/
+  ds: mouse; rodent
+  primary: false
+- id: fr-v-7c49a4693aa01291
+  word: faille
+  pos: noun
+  source_sense_id: en-faille-fr-noun-8cVi6uMv
+  record: 11322
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 11322
+  reading_index: 0
+  reading_raw: /faj/
+  pr: /faj/
+  ds: fault; geological fracture
+  primary: false
+- id: fr-v-2e6c56474ab34068
+  word: sécheresse
+  pos: noun
+  source_sense_id: en-sécheresse-fr-noun-zMgRGHwQ
+  record: 25066
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 25066
+  reading_index: 0
+  reading_raw: /seʃ.ʁɛs/
+  pr: /seʃ.ʁɛs/
+  ds: dryness
+  primary: false
+- id: fr-v-7d67bf14d1312095
+  word: plante
+  pos: noun
+  source_sense_id: en-plante-fr-noun-pvJgC7b9
+  record: 19681
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 19681
+  reading_index: 0
+  reading_raw: /plɑ̃t/
+  pr: /plɑ̃t/
+  ds: sole of the foot
+  primary: false
+- id: fr-v-fbdaa0ea5d067cf4
+  word: côte
+  pos: noun
+  source_sense_id: en-côte-fr-noun-NBHo1OHO
+  record: 15505
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 15505
+  reading_index: 0
+  reading_raw: /kot/
+  pr: /kot/
+  ds: rib; bone
+  primary: false
+- id: fr-v-41d02ffe3d31378c
+  word: traitement
+  pos: noun
+  source_sense_id: en-traitement-fr-noun-YMQRsrrs
+  record: 92589
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 92589
+  reading_index: 0
+  reading_raw: /tʁɛt.mɑ̃/
+  pr: /tʁɛt.mɑ̃/
+  ds: treatment; medical care
+  primary: false
+- id: fr-v-50b64a59696aceea
+  word: courant
+  pos: noun
+  source_sense_id: en-courant-fr-noun-ZfQFcbFg
+  record: 13613
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 13613
+  reading_index: 0
+  reading_raw: /ku.ʁɑ̃/
+  pr: /ku.ʁɑ̃/
+  ds: current; movement of thought
+  primary: false
+- id: fr-v-e66d59f7fe211376
+  word: grève
+  pos: noun
+  source_sense_id: en-grève-fr-noun-Lr2OAmbK
+  record: 19471
+  sense_index: 0
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 19471
+  reading_index: 0
+  reading_raw: /ɡʁɛv/
+  pr: /ɡʁɛv/
+  ds: shore; riverbank
+  primary: false
+  allow_marked: true
+- id: fr-v-bc39743256dfd28c
+  word: ordonnance
+  pos: noun
+  source_sense_id: en-ordonnance-fr-noun-qAQKO5QO
+  record: 92999
+  sense_index: 1
+  reading_source_id: kaikki-enwiktionary-french-20260902
+  reading_record: 92999
+  reading_index: 0
+  reading_raw: /ɔʁ.dɔ.nɑ̃s/
+  pr: /ɔʁ.dɔ.nɑ̃s/
+  ds: order; legal decree
   primary: false

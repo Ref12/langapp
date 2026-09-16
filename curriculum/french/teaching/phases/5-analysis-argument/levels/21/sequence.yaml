@@ -155,10 +155,10 @@ units:
   - {id: fr-v-683b8a86726616a7, ch: souffrir, pr: /su.fʁiʁ/, ds: to suffer}
   - {id: fr-v-f727be7977b7a0a5, ch: tousser, pr: /tu.se/, ds: to cough}
   - {id: fr-v-23abd133e667fe88, ch: respirer, pr: /ʁɛs.pi.ʁe/, ds: to breathe}
-  - {id: fr-v-eef4c9c8dacad218, ch: reposer, pr: /ʁə.po.ze/, ds: 'to put down, to place'}
+  - {id: fr-v-0a7cf8ed3cf2c6cd, ch: reposer, pr: /ʁə.po.ze/, ds: to rest; reflexive use}
   - {id: fr-v-88887749bd9d1b51, ch: soigner, pr: /swa.ɲe/, ds: to treat; to nurse}
   - {id: fr-v-5ddae89baff4c017, ch: tomber, pr: /tɔ̃.be/, ds: to fall}
-  - {id: fr-v-006b1a71db8f24bb, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to smell (to have a certain odor)}
+  - {id: fr-v-b03ca1b453349362, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to feel; physical sensation}
   review_grammar:
   - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
   - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
@@ -380,6 +380,13 @@ units:
   - {id: fr-v-0dbc740823178a5f, ch: tympan, pr: /tɛ̃.pɑ̃/, ds: eardrum}
   - {id: fr-v-de7f91533251b521, ch: larynx, pr: /la.ʁɛ̃ks/, ds: larynx}
   - {id: fr-v-874c4d96fe40c4cf, ch: trachée, pr: /tʁa.ʃe/, ds: trachea}
+  - {id: fr-v-87472db5bce31239, ch: langue, pr: /lɑ̃ɡ/, ds: tongue; body part}
+  - {id: fr-v-ec9d43f284dc0e8b, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: blood circulation}
+  - {id: fr-v-93c3d117ad5e91ea, ch: alimentation, pr: /a.li.mɑ̃.ta.sjɔ̃/, ds: food; nourishment}
+  - {id: fr-v-68985b464290040c, ch: intoxication, pr: /ɛ̃.tɔk.si.ka.sjɔ̃/, ds: poisoning}
+  - {id: fr-v-7d67bf14d1312095, ch: plante, pr: /plɑ̃t/, ds: sole of the foot}
+  - {id: fr-v-fbdaa0ea5d067cf4, ch: côte, pr: /kot/, ds: rib; bone}
+  - {id: fr-v-41d02ffe3d31378c, ch: traitement, pr: /tʁɛt.mɑ̃/, ds: treatment; medical care}
   grammar: []
   review_vocabulary:
   - {id: fr-v-7657d76bac85f8a6, ch: joue, pr: /ʒu/, ds: cheek}
@@ -424,14 +431,14 @@ units:
   - {id: fr-v-8bcd25246a3323bb, ch: nectar, pr: /nɛk.taʁ/, ds: nectar (all meanings)}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-a71d82e8e93231b5, ch: habitat, pr: /a.bi.ta/, ds: habitat}
-  - {id: fr-v-0b81edbef2097f4c, ch: écosystème, pr: /e.ko.sis.tɛm/, ds: ecosystem}
-  - {id: fr-v-f1b9d020cada287a, ch: biodiversité, pr: /bjɔ.di.vɛʁ.si.te/, ds: biodiversity}
   - {id: fr-v-9f94eaa7e74ac42c, ch: extinction, pr: /ɛk.stɛ̃k.sjɔ̃/, ds: extinction}
   - {id: fr-v-d62648c048151f3f, ch: disparition, pr: /dis.pa.ʁi.sjɔ̃/, ds: disappearance}
   - {id: fr-v-92e08c6048fe68e7, ch: conservation, pr: /kɔ̃.sɛʁ.va.sjɔ̃/, ds: conservation}
   - {id: fr-v-d64fe538d0d98cb3, ch: restauration, pr: /ʁɛs.tɔ.ʁa.sjɔ̃/, ds: restoration}
   - {id: fr-v-ba256256135713ac, ch: campagne, pr: /kɑ̃.paɲ/, ds: countryside; rural area}
+  - {id: fr-v-d9723a0f4fe7135b, ch: sol, pr: /sɔl/, ds: soil; earth}
+  - {id: fr-v-4bb28d74d4b2564d, ch: espèce, pr: /ɛs.pɛs/, ds: species}
+  - {id: fr-v-6e83fe88790a7ed8, ch: émission, pr: /e.mi.sjɔ̃/, ds: emission; release}
   review_grammar:
   - {id: fr-g-nominal-cause, ch: à cause de / grâce à + nom, ds: Present a cause with a negative or favorable framing}
 - id: level-21-nature-02
@@ -527,6 +534,8 @@ units:
   - {id: fr-v-0b88c83d40a33e37, ch: iceberg, pr: /ajs.bɛʁɡ/, ds: iceberg}
   - {id: fr-v-2bb183bcbf53591a, ch: fonte, pr: /fɔ̃t/, ds: 'melting, smelting, thawing'}
   - {id: fr-v-a9adad30e8413fe0, ch: marée, pr: /ma.ʁe/, ds: tide}
+  - {id: fr-v-a1f1934920464b08, ch: mutation, pr: /my.ta.sjɔ̃/, ds: mutation; change}
+  - {id: fr-v-7c49a4693aa01291, ch: faille, pr: /faj/, ds: fault; geological fracture}
   grammar: []
   review_vocabulary:
   - {id: fr-v-aba0cee6792e4e38, ch: volcan, pr: /vɔl.kɑ̃/, ds: volcano}
@@ -665,6 +674,9 @@ units:
   - {id: fr-v-8b2d57bfda39cccf, ch: attraction, pr: /a.tʁak.sjɔ̃/, ds: attraction (all senses)}
   - {id: fr-v-6a814d0800d0e270, ch: répulsion, pr: /ʁe.pyl.sjɔ̃/, ds: repulsion}
   - {id: fr-v-d4cf893636e9ab8a, ch: magnétisme, pr: /ma.ɲe.tism/, ds: magnetism (property of being magnetic)}
+  - {id: fr-v-53c6cfaa3e33626e, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experiment; test}
+  - {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+  - {id: fr-v-86ee26c13d0acd7c, ch: mode, pr: /mɔd/, ds: mode; most frequent value}
   grammar: []
   review_vocabulary:
   - {id: fr-v-92a49a0db3fe8675, ch: poids, pr: /pwa/, ds: weight}
@@ -730,12 +742,12 @@ units:
   - {id: fr-v-9b1059e266cc270e, ch: donnée, pr: /dɔ.ne/, ds: datum (item of data)}
   - {id: fr-v-e3451c3d3c8417b4, ch: observer, pr: /ɔp.sɛʁ.ve/, ds: 'to observe, watch'}
   - {id: fr-v-4b9b8f3a97c165aa, ch: dormir, pr: /dɔʁ.miʁ/, ds: to sleep}
-  - {id: fr-v-46ca8683b45e5d81, ch: réflexion, pr: /ʁe.flɛk.sjɔ̃/, ds: reflection (in mirror)}
-  - {id: fr-v-6467eb1446e7da63, ch: réfraction, pr: /ʁefʁaksjɔ̃/, ds: refraction (bending of any wave)}
-  - {id: fr-v-80a97f1c103c14a4, ch: conduction, pr: /kɔ̃.dyk.sjɔ̃/, ds: conduction}
   - {id: fr-v-d5566741cfd94a6b, ch: gravité, pr: /ɡʁa.vi.te/, ds: gravity}
   - {id: fr-v-1d31ef129f5edf3e, ch: pesanteur, pr: /pə.zɑ̃.tœʁ/, ds: gravity}
   - {id: fr-v-8b2d57bfda39cccf, ch: attraction, pr: /a.tʁak.sjɔ̃/, ds: attraction (all senses)}
   - {id: fr-v-6a814d0800d0e270, ch: répulsion, pr: /ʁe.pyl.sjɔ̃/, ds: repulsion}
   - {id: fr-v-d4cf893636e9ab8a, ch: magnétisme, pr: /ma.ɲe.tism/, ds: magnetism (property of being magnetic)}
+  - {id: fr-v-53c6cfaa3e33626e, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experiment; test}
+  - {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+  - {id: fr-v-86ee26c13d0acd7c, ch: mode, pr: /mɔd/, ds: mode; most frequent value}
   review_grammar: []

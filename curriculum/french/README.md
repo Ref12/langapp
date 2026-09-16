@@ -68,6 +68,15 @@ not an automatic teaching order. Do not treat its first eligible sense as a
 substitute for editorial disambiguation. Stable teaching IDs derive from retained
 source sense identities; changes in meaning require an explicit changed selection.
 
+`authoring/teaching/semantic-regressions.yaml` maintains practical meaning
+expectations alongside the source overrides. These pair the intended learner
+label with an exact source sense, POS and lesson placement; spelling or ordering
+alone cannot establish that a numbers lesson teaches nine rather than brand new.
+Reassess these expectations against retained source evidence when changing a
+selection. Passing them is not a substitute for comprehensive human review.
+Unavailable meanings at otherwise retained words' destinations are documented
+at the top of `lemma-groups.yaml`; whole-word exclusions remain in `exclusions.yaml`.
+
 In `sense-selections.yaml`, `primary` identifies the chosen default teaching sense
 for a maintained lemma group or word anchor. It is not a claim about the most
 frequent or officially primary dictionary meaning. `additional-senses.yaml`

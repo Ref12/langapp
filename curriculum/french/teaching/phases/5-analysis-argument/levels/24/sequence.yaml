@@ -72,14 +72,14 @@ units:
   - {id: fr-v-634edc1be8bb0173, ch: prolongement, pr: /pʁolɔ̃ʒəmɑ̃/, ds: 'prolonging, extension'}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-ea3e73cdec574806, ch: inclure, pr: /ɛ̃.klyʁ/, ds: to include}
-  - {id: fr-v-21a8e6807b123303, ch: omettre, pr: /ɔ.mɛtʁ/, ds: to omit}
   - {id: fr-v-cc9c88061fa7fb9b, ch: distinguer, pr: /dis.tɛ̃.ɡe/, ds: to distinguish}
   - {id: fr-v-d18e8a93a8e9668e, ch: identifier, pr: /i.dɑ̃.ti.fje/, ds: to identify}
   - {id: fr-v-9b1c6dc28037fa3f, ch: désigner, pr: /de.zi.ɲe/, ds: to designate}
   - {id: fr-v-c746ce0320c3b2a5, ch: référer, pr: /ʁe.fe.ʁe/, ds: to refer (someone)}
   - {id: fr-v-7fccfdef01c7c6b8, ch: concerner, pr: /kɔ̃.sɛʁ.ne/, ds: 'to concern (be concerned with, be associated with)'}
   - {id: fr-v-afe7ae71d73cf0bf, ch: règle, pr: /ʁɛɡl/, ds: rule; regulation}
+  - {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to record for later use or playback}
+  - {id: fr-v-aab93c744b03ab11, ch: pièce, pr: /pjɛs/, ds: document; legal paper}
   review_grammar:
   - {id: fr-g-relative-qui-que, ch: nom + qui + verbe ; nom + que + sujet + verbe, ds: Relative qui is a subject and que a direct object}
   - {id: fr-g-indirect-questions, ch: demander / savoir + si / où / ce que + sujet + verbe, ds: Embed a question without direct-question inversion}
@@ -103,6 +103,9 @@ units:
   - {id: fr-v-e9b6e8066837daa8, ch: syntaxe, pr: /sɛ̃.taks/, ds: syntax}
   - {id: fr-v-8e1465549c0b52d1, ch: typographie, pr: /ti.pɔ.ɡʁa.fi/, ds: typography}
   - {id: fr-v-e10dcce616e8cad6, ch: mise en page, pr: /miz ɑ̃ paʒ/, ds: page setting}
+  - {id: fr-v-074cea10ecc61203, ch: note, pr: /nɔt/, ds: note; written or spoken message}
+  - {id: fr-v-4fb10e2ed4598411, ch: tableau, pr: /ta.blo/, ds: table; arrangement of rows and columns}
+  - {id: fr-v-011a4d556606989f, ch: volume, pr: /vɔ.lym/, ds: volume; amount or quantity}
   grammar: []
   review_vocabulary:
   - {id: fr-v-32f71b2947340ec9, ch: équation, pr: /e.kwa.sjɔ̃/, ds: equation; statement that two expressions are equal}
@@ -229,7 +232,6 @@ units:
   - {id: fr-v-76139b56a6d5afa2, ch: mise en œuvre, pr: /mi.z‿ɑ̃.n‿œvʁ/, ds: implementation; putting an idea into practice}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-89920cb296bfe7c0, ch: obstacle, pr: /ɔp.stakl/, ds: obstacle}
   - {id: fr-v-6a4d4ff963103d3b, ch: avancement, pr: /a.vɑ̃s.mɑ̃/, ds: 'the state of advancing, progress'}
   - {id: fr-v-e555768ee848e354, ch: progression, pr: /pʁɔ.ɡʁɛ.sjɔ̃/, ds: progression}
   - {id: fr-v-2037cf79ac0828a1, ch: accomplissement, pr: /a.kɔ̃.plis.mɑ̃/, ds: 'accomplishment, achievement, fulfillment'}
@@ -237,6 +239,26 @@ units:
   - {id: fr-v-14ea8b6b2df89c1f, ch: livraison, pr: /li.vʁɛ.zɔ̃/, ds: delivery}
   - {id: fr-v-07bde498070c511c, ch: validation, pr: /va.li.da.sjɔ̃/, ds: validation}
   - {id: fr-v-7d8b802e495088d2, ch: approbation, pr: /a.pʁɔ.ba.sjɔ̃/, ds: approval (permission)}
+  - {id: fr-v-eaf6c59ac2b26183, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: promotion; career advancement}
+  review_grammar:
+  - {id: fr-g-passive-voice, ch: patient + être au temps voulu + participe + par agent, ds: Make the affected participant the grammatical subject}
+  - {id: fr-g-subjunctive-will-necessity, ch: vouloir que / il faut que + subjonctif présent, ds: Express a desired or required action with its own subject}
+  - {id: fr-g-future-perfect, ch: avoir / être au futur + participe passé, ds: Locate completion before a future reference point}
+- id: level-24-work-02
+  title: Work and cooperation - 2
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary:
+  - {id: fr-v-14020ed37a8557f3, ch: fiche, pr: /fiʃ/, ds: record; information entry}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-27a555f1a65ba2f0, ch: agrégation, pr: /a.ɡʁe.ɡa.sjɔ̃/, ds: aggregation}
+  - {id: fr-v-11f5179b237401af, ch: relecture, pr: /ʁə.lɛk.tyʁ/, ds: rereading (act of rereading)}
+  - {id: fr-v-89018950f5fbcd15, ch: actualisation, pr: /ak.tɥa.li.za.sjɔ̃/, ds: update}
+  - {id: fr-v-681ff5a5eb7c130f, ch: restitution, pr: /ʁɛstitysjɔ̃/, ds: restitution}
+  - {id: fr-v-e5602e57a8598180, ch: archivage, pr: /aʁ.ʃi.vaʒ/, ds: filing}
+  - {id: fr-v-d40169638b32e5f5, ch: traçabilité, pr: /tʁa.sa.bi.li.te/, ds: traceability}
+  - {id: fr-v-6cedc25a69e9d6ed, ch: pilotage, pr: /pi.lɔ.taʒ/, ds: pilotage (all senses); piloting}
+  - {id: fr-v-76139b56a6d5afa2, ch: mise en œuvre, pr: /mi.z‿ɑ̃.n‿œvʁ/, ds: implementation; putting an idea into practice}
   review_grammar:
   - {id: fr-g-passive-voice, ch: patient + être au temps voulu + participe + par agent, ds: Make the affected participant the grammatical subject}
   - {id: fr-g-subjunctive-will-necessity, ch: vouloir que / il faut que + subjonctif présent, ds: Express a desired or required action with its own subject}
@@ -272,14 +294,14 @@ units:
   - {id: fr-v-7b41d16aa9363727, ch: filtrage, pr: /fil.tʁaʒ/, ds: filtering}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-05dca4590fb43321, ch: configurer, pr: /kɔ̃.fi.ɡy.ʁe/, ds: to configure (to set up or arrange something)}
   - {id: fr-v-1abfeba7a239c1f5, ch: coder, pr: /kɔ.de/, ds: to code; to encode}
-  - {id: fr-v-4bcd582a61661c13, ch: traiter, pr: /tʁɛ.te/, ds: to treat (someone) (a particular way)}
+  - {id: fr-v-fc055a0f3e0f3e88, ch: traiter, pr: /tʁɛ.te/, ds: to process}
   - {id: fr-v-3db457bc35b3d854, ch: stocker, pr: /stɔ.ke/, ds: to store (keep (something) while not in use)}
   - {id: fr-v-d2b54acee8521a40, ch: synchroniser, pr: /sɛ̃.kʁɔ.ni.ze/, ds: to synchronize}
   - {id: fr-v-e62ce8f0799cc529, ch: accéder, pr: /ak.se.de/, ds: to reach (a place)}
   - {id: fr-v-fee555eb5a139ad5, ch: cliquer, pr: /kli.ke/, ds: to click}
-  - {id: fr-v-db1195d09efaa8a9, ch: taper, pr: /ta.pe/, ds: 'to slap, knock, beat'}
+  - {id: fr-v-b86342548eed63a5, ch: taper, pr: /ta.pe/, ds: to type on a keyboard}
+  - {id: fr-v-19b9308486b322ce, ch: dossier, pr: /do.sje/, ds: computer folder}
   review_grammar:
   - {id: fr-g-purpose-infinitive, ch: pour / afin de + infinitif, ds: Express an intended purpose with a controlled infinitive}
 - id: level-24-technology-02
@@ -339,6 +361,7 @@ units:
   - {id: fr-v-4243c4c7541f83e9, ch: plagiat, pr: /pla.ʒja/, ds: plagiarism}
   - {id: fr-v-1ce6e88168ebccbc, ch: reformulation, pr: /ʁøfɔʁmylasjɔ̃/, ds: reformulation}
   - {id: fr-v-c9e6cdf421c76636, ch: droit d'auteur, pr: /dʁwa d‿o.tœʁ/, ds: copyright (right of an author's creations)}
+  - {id: fr-v-392230f6d1c0eb5a, ch: menu, pr: /mə.ny/, ds: menu; detailed list}
   grammar: []
   review_vocabulary:
   - {id: fr-v-7b516ab18b307b4d, ch: axe, pr: /aks/, ds: axis}
@@ -383,7 +406,6 @@ units:
   - {id: fr-v-97cb4542cadc0b6b, ch: dire, pr: /diʁ/, ds: 'to say, to tell (to express through speech)'}
   - {id: fr-v-da5f3df909a3be91, ch: message, pr: /mɛ.saʒ/, ds: message}
   - {id: fr-v-d3e3c83b4f1bea3b, ch: auteur, pr: /o.tœʁ/, ds: author}
-  - {id: fr-v-af3dc0ab430675ed, ch: divulguer, pr: /di.vyl.ɡe/, ds: to divulge}
   - {id: fr-v-4221c137a341abcb, ch: révéler, pr: /ʁe.ve.le/, ds: 'to reveal, to give away'}
   - {id: fr-v-1e21584f7405d98b, ch: censurer, pr: /sɑ̃.sy.ʁe/, ds: to formally rebuke; to censure}
   - {id: fr-v-00b364a229ac2373, ch: manipuler, pr: /ma.ni.py.le/, ds: to manipulate}
@@ -391,6 +413,7 @@ units:
   - {id: fr-v-ef04f13206e7ac1c, ch: exagérer, pr: /ɛɡ.za.ʒe.ʁe/, ds: to exaggerate}
   - {id: fr-v-48a1f6ff9213a5c5, ch: minimiser, pr: /mi.ni.mi.ze/, ds: To lessen the importance of in the mind of people}
   - {id: fr-v-81ff3feb8a7db410, ch: nuancer, pr: /nɥɑ̃.se/, ds: 'to moderate, to qualify (e.g., an opinion)'}
+  - {id: fr-v-acbcf538b8da0b0a, ch: reporter, pr: /ʁə.pɔʁ.tɛʁ/, ds: news reporter; journalist}
   review_grammar:
   - {id: fr-g-present-reporting, ch: dire / expliquer que + proposition, ds: Report a statement while tracking its speaker and reference}
   - {id: fr-g-past-reporting-perspective, ch: a dit que + imparfait / conditionnel présent, ds: Locate reported states and later events from a past viewpoint}

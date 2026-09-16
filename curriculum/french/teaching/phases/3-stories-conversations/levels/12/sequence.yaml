@@ -80,7 +80,7 @@ units:
   - {id: fr-v-34e605dfb78a67d1, ch: condition, pr: /kɔ̃.di.sjɔ̃/, ds: 'term, condition'}
   - {id: fr-v-9864198b04cb8a05, ch: exigence, pr: /ɛɡ.zi.ʒɑ̃s/, ds: demand}
   - {id: fr-v-953d4fd18918a188, ch: règlement, pr: /ʁɛ.ɡlə.mɑ̃/, ds: 'rules, regulations'}
-  - {id: fr-v-4f9e62c3d58ca92e, ch: démarche, pr: /de.maʁʃ/, ds: 'gait, walk'}
+  - {id: fr-v-1fb53d8964255371, ch: démarche, pr: /de.maʁʃ/, ds: procedure; step taken to get something done}
   - {id: fr-v-04045261d99ed365, ch: formalité, pr: /fɔʁ.ma.li.te/, ds: formality (all meanings)}
   - {id: fr-v-7f58b29d072fd667, ch: justificatif, pr: /ʒystifikatif/, ds: proof}
   - {id: fr-v-57592d282c5d7c6d, ch: copie, pr: /kɔ.pi/, ds: copying}
@@ -91,7 +91,7 @@ units:
   - {id: fr-v-0227ffaaf5c14248, ch: résumé, pr: /ʁe.zy.me/, ds: 'summary, résumé'}
   - {id: fr-v-e6d806faf2d54d4d, ch: synthèse, pr: /sɛ̃.tɛz/, ds: synthesis}
   - {id: fr-v-dd7b337ec5e90f9b, ch: compte rendu, pr: /kɔ̃t ʁɑ̃.dy/, ds: 'proceedings (published record), see usage notes'}
-  - {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+  - {id: fr-v-62c45261703fa8a6, ch: rapport, pr: /ʁa.pɔʁ/, ds: report}
   - {id: fr-v-3a7a5c9c444c1295, ch: description, pr: /dɛs.kʁip.sjɔ̃/, ds: description}
   - {id: fr-v-84cad7e34180feff, ch: commentaire, pr: /kɔ.mɑ̃.tɛʁ/, ds: 'comment, remark'}
   - {id: fr-v-0d0c9fabe0c55a6c, ch: remarque, pr: /ʁə.maʁk/, ds: 'remark (comment, something said)'}
@@ -121,7 +121,7 @@ units:
   vocabulary:
   - {id: fr-v-dad5db1090ece80a, ch: avertir, pr: /a.vɛʁ.tiʁ/, ds: to warn}
   - {id: fr-v-66ce6d9aed8e7456, ch: signaler, pr: /si.ɲa.le/, ds: to signal}
-  - {id: fr-v-925f2658d0ebe0d8, ch: indiquer, pr: /ɛ̃.di.ke/, ds: to connote (to signify beyond principal meaning)}
+  - {id: fr-v-59b16fab37aa1be6, ch: indiquer, pr: /ɛ̃.di.ke/, ds: to indicate; to show}
   - {id: fr-v-11152b5d3cabd668, ch: préciser, pr: /pʁe.si.ze/, ds: to specify}
   - {id: fr-v-6dd87ee861df5107, ch: clarifier, pr: /kla.ʁi.fje/, ds: to clarify}
   - {id: fr-v-0978a65f250be971, ch: mentionner, pr: /mɑ̃.sjɔ.ne/, ds: to mention}
@@ -136,7 +136,7 @@ units:
   - {id: fr-v-a68fedeceeb5a63a, ch: recopier, pr: /ʁə.kɔ.pje/, ds: to copy (again)}
   - {id: fr-v-289cff5ef6e8e5d3, ch: copier, pr: /kɔ.pje/, ds: to copy}
   - {id: fr-v-61517335dede66cd, ch: reproduire, pr: /ʁə.pʁɔ.dɥiʁ/, ds: to reproduce}
-  - {id: fr-v-44b0eee814abb636, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to safeguard; to protect}
+  - {id: fr-v-8843c46a8cf3c46f, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to save digital information}
   - {id: fr-v-9da3733fc32b3728, ch: supprimer, pr: /sy.pʁi.me/, ds: to delete}
   - {id: fr-v-360f53ddec7184be, ch: effacer, pr: /e.fa.se/, ds: to erase}
   - {id: fr-v-ae8ec47ecc8acd37, ch: rédiger, pr: /ʁe.di.ʒe/, ds: to compose}
@@ -170,9 +170,11 @@ units:
   - {id: fr-v-c746ce0320c3b2a5, ch: référer, pr: /ʁe.fe.ʁe/, ds: to refer (someone)}
   - {id: fr-v-7fccfdef01c7c6b8, ch: concerner, pr: /kɔ̃.sɛʁ.ne/, ds: 'to concern (be concerned with, be associated with)'}
   - {id: fr-v-afe7ae71d73cf0bf, ch: règle, pr: /ʁɛɡl/, ds: rule; regulation}
+  - {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to record for later use or playback}
+  - {id: fr-v-aab93c744b03ab11, ch: pièce, pr: /pjɛs/, ds: document; legal paper}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-44b0eee814abb636, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to safeguard; to protect}
+  - {id: fr-v-8843c46a8cf3c46f, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to save digital information}
   - {id: fr-v-9da3733fc32b3728, ch: supprimer, pr: /sy.pʁi.me/, ds: to delete}
   - {id: fr-v-360f53ddec7184be, ch: effacer, pr: /e.fa.se/, ds: to erase}
   - {id: fr-v-ae8ec47ecc8acd37, ch: rédiger, pr: /ʁe.di.ʒe/, ds: to compose}
@@ -221,7 +223,7 @@ units:
   - {id: fr-v-01e523f0c386c3d3, ch: traduire, pr: /tʁa.dɥiʁ/, ds: to translate}
   - {id: fr-v-25c8f7f5e9f31e73, ch: prononcer, pr: /pʁɔ.nɔ̃.se/, ds: to pronounce}
   - {id: fr-v-7d5daa535cad4fae, ch: corriger, pr: /kɔ.ʁi.ʒe/, ds: to correct}
-  - {id: fr-v-e07785146bcd9204, ch: retenir, pr: /ʁə.t(ə).niʁ/, ds: 'to hold back, rein in'}
+  - {id: fr-v-2d10953f981d143f, ch: retenir, pr: /ʁə.t(ə).niʁ/, ds: to remember; to retain in memory}
   - {id: fr-v-f213384880166813, ch: savoir, pr: /sa.vwaʁ/, ds: to know how to do something}
   review_grammar: []
 - id: level-12-learning-02
@@ -268,21 +270,23 @@ units:
   title: Learning and education - 3
   outcome: Explain a learning experience or approach and respond to clarification questions.
   vocabulary:
-  - {id: fr-v-bf3975b263776f93, ch: verbe, pr: /vɛʁb/, ds: speech}
+  - {id: fr-v-b3f45778cb99df55, ch: verbe, pr: /vɛʁb/, ds: verb; grammatical word class}
   - {id: fr-v-49fbfdf990f8dc0b, ch: adjectif, pr: /a.dʒɛk.tif/, ds: adjective}
   - {id: fr-v-8dbed7f7371283a7, ch: adverbe, pr: /ad.vɛʁb/, ds: adverb (lexical category)}
   - {id: fr-v-e719f556947f924f, ch: pronom, pr: /pʁɔ.nɔ̃/, ds: pronoun}
   - {id: fr-v-34579cbd6d9e3bfd, ch: préposition, pr: /pʁe.po.zi.sjɔ̃/, ds: preposition}
-  - {id: fr-v-c2995b0b27061b57, ch: sujet, pr: /sy.ʒɛ/, ds: subject (in a monarchy)}
-  - {id: fr-v-89d839cbc6cb2bb8, ch: complément, pr: /kɔ̃.ple.mɑ̃/, ds: 'complement, thing added that makes a whole'}
+  - {id: fr-v-95d95cf5d1d2623c, ch: sujet, pr: /sy.ʒɛ/, ds: subject; grammatical role}
   - {id: fr-v-b773afea339d9a06, ch: féminin, pr: /fe.mi.nɛ̃/, ds: female}
   - {id: fr-v-82e002348a2184d8, ch: masculin, pr: /mas.ky.lɛ̃/, ds: male}
   - {id: fr-v-f67ee188d56ea6da, ch: singulier, pr: /sɛ̃.ɡy.lje/, ds: singular}
   - {id: fr-v-4f65aa18afdc0581, ch: pluriel, pr: /ply.ʁjɛl/, ds: plural}
   - {id: fr-v-8837ed2da96b5874, ch: infinitif, pr: /ɛ̃.fi.ni.tif/, ds: infinitive (uninflected verb form)}
   - {id: fr-v-c719b620c176ba58, ch: participe, pr: /paʁ.ti.sip/, ds: participle}
-  - {id: fr-v-f913fc4c1fc86e3f, ch: temps, pr: /tɑ̃/, ds: time (in general)}
-  - {id: fr-v-46024474d4ba1343, ch: mode, pr: /mɔd/, ds: 'fashion, trend'}
+  - {id: fr-v-e77451f587529369, ch: temps, pr: /tɑ̃/, ds: tense; grammatical time reference}
+  - {id: fr-v-7281e8a386e96536, ch: mode, pr: /mɔd/, ds: mood; grammatical verb category}
+  - {id: fr-v-8f599235856cd4b5, ch: article, pr: /aʁ.tikl/, ds: article; grammatical determiner}
+  - {id: fr-v-282ea9944dc1ba81, ch: lettre, pr: /lɛtʁ/, ds: letter; written character}
+  - {id: fr-v-d7a72d4eb9550edc, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: knowledge}
   grammar: []
   review_vocabulary:
   - {id: fr-v-9a6a47124d6c23ff, ch: ponctuation, pr: /pɔ̃k.tɥa.sjɔ̃/, ds: punctuation}
@@ -298,28 +302,28 @@ units:
   title: Media and information - 1
   outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
   vocabulary:
-  - {id: fr-v-4816f1dc1249ae41, ch: journal, pr: /ʒuʁ.nal/, ds: 'diary, journal'}
+  - {id: fr-v-320068d7720a833d, ch: journal, pr: /ʒuʁ.nal/, ds: newspaper}
   - {id: fr-v-be9b2b424eb45aab, ch: magazine, pr: /ma.ɡa.zin/, ds: magazine (periodical publication)}
   - {id: fr-v-5bf1e41cf0030a3c, ch: revue, pr: /ʁə.vy/, ds: 'magazine, journal'}
   - {id: fr-v-07bec40f6d4d4bc5, ch: hebdomadaire, pr: /ɛb.dɔ.ma.dɛʁ/, ds: weekly}
   - {id: fr-v-6917548c517a958d, ch: presse, pr: /pʁɛs/, ds: 'press, papers (the media)'}
   - {id: fr-v-7d87ed8525a3b47e, ch: radio, pr: /ʁa.djo/, ds: 'radio, tuner'}
   - {id: fr-v-03cb12a47bd7ce21, ch: télévision, pr: /te.le.vi.zjɔ̃/, ds: television}
-  - {id: fr-v-6e83fe88790a7ed8, ch: émission, pr: /e.mi.sjɔ̃/, ds: emission}
+  - {id: fr-v-a79c74b3753affb5, ch: émission, pr: /e.mi.sjɔ̃/, ds: programme; broadcast show}
   - {id: fr-v-433118b12e4621ab, ch: programme, pr: /pʁɔ.ɡʁam/, ds: a program (set of structured activities)}
   - {id: fr-v-63a59871fbbf33f9, ch: reportage, pr: /ʁə.pɔʁ.taʒ/, ds: reportage}
   - {id: fr-v-370312eed12bcbbb, ch: interview, pr: /ɛ̃.tɛʁ.vju/, ds: interview (by a journalist)}
   - {id: fr-v-d207bf410a088bdd, ch: journaliste, pr: /ʒuʁ.na.list/, ds: a journalist}
   - {id: fr-v-aea0efad3f973b0f, ch: rédacteur, pr: /ʁedaktœʁ/, ds: editor (main writer of e.g. a newspaper)}
   - {id: fr-v-dd6bcb90fc093f01, ch: lecteur, pr: /lɛk.tœʁ/, ds: reader}
-  - {id: fr-v-0dd8a120517211cb, ch: auditeur, pr: /o.di.tœʁ/, ds: auditor}
+  - {id: fr-v-84e196ffc57448ab, ch: auditeur, pr: /o.di.tœʁ/, ds: listener}
   - {id: fr-v-9b58ad6933e1ebb6, ch: public, pr: /py.blik/, ds: public (people in general)}
-  - {id: fr-v-2b18e80582d6a688, ch: contenu, pr: /kɔ̃t.ny/, ds: content (that which is physically contained in a container)}
+  - {id: fr-v-7b935a9eac148d90, ch: contenu, pr: /kɔ̃t.ny/, ds: content; subject matter}
   - {id: fr-v-099bc03d9438f618, ch: rubrique, pr: /ʁy.bʁik/, ds: 'category, heading'}
   - {id: fr-v-744d767728f63886, ch: éditorial, pr: /e.di.tɔ.ʁjal/, ds: editorial}
   - {id: fr-v-c9b324e06bad3c0c, ch: chronique, pr: /kʁɔ.nik/, ds: chronicle}
   - {id: fr-v-fd626dc8d7f28493, ch: actualité, pr: /ak.tɥa.li.te/, ds: topic; topicality}
-  - {id: fr-v-006ba27aab95f655, ch: source, pr: /suʁs/, ds: 'source, spring (of water)'}
+  - {id: fr-v-6e1fb054411039d2, ch: source, pr: /suʁs/, ds: source; origin of information}
   - {id: fr-v-d3e3c83b4f1bea3b, ch: auteur, pr: /o.tœʁ/, ds: author}
   - {id: fr-v-b1907a120c53b7aa, ch: destinataire, pr: /dɛs.ti.na.tɛʁ/, ds: 'recipient, addressee'}
   - {id: fr-v-8915b88e3dab9a65, ch: expéditeur, pr: /ɛk.spe.di.tœʁ/, ds: 'sender, transmitter'}
@@ -340,13 +344,14 @@ units:
   - {id: fr-v-7988ea78dc411b32, ch: illustration, pr: /i.lys.tʁa.sjɔ̃/, ds: illustration}
   - {id: fr-v-822b5134bcea5353, ch: photographie, pr: /fɔ.tɔ.ɡʁa.fi/, ds: photography}
   - {id: fr-v-6fe9de990baa7e65, ch: image, pr: /i.maʒ/, ds: 'picture, image'}
+  - {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article; nonfiction text}
   grammar: []
   review_vocabulary:
   - {id: fr-v-099bc03d9438f618, ch: rubrique, pr: /ʁy.bʁik/, ds: 'category, heading'}
   - {id: fr-v-744d767728f63886, ch: éditorial, pr: /e.di.tɔ.ʁjal/, ds: editorial}
   - {id: fr-v-c9b324e06bad3c0c, ch: chronique, pr: /kʁɔ.nik/, ds: chronicle}
   - {id: fr-v-fd626dc8d7f28493, ch: actualité, pr: /ak.tɥa.li.te/, ds: topic; topicality}
-  - {id: fr-v-006ba27aab95f655, ch: source, pr: /suʁs/, ds: 'source, spring (of water)'}
+  - {id: fr-v-6e1fb054411039d2, ch: source, pr: /suʁs/, ds: source; origin of information}
   - {id: fr-v-d3e3c83b4f1bea3b, ch: auteur, pr: /o.tœʁ/, ds: author}
   - {id: fr-v-b1907a120c53b7aa, ch: destinataire, pr: /dɛs.ti.na.tɛʁ/, ds: 'recipient, addressee'}
   - {id: fr-v-8915b88e3dab9a65, ch: expéditeur, pr: /ɛk.spe.di.tœʁ/, ds: 'sender, transmitter'}
@@ -363,14 +368,14 @@ units:
   - {id: fr-v-2dba9f88fd442914, ch: écrire, pr: /e.kʁiʁ/, ds: to write}
   - {id: fr-v-4dcfce5510fbc326, ch: savoir, pr: /sa.vwaʁ/, ds: to know (something)}
   - {id: fr-v-79dc1d8bf443d63f, ch: demander, pr: /də.mɑ̃.de/, ds: to ask}
-  - {id: fr-v-ea3e73cdec574806, ch: inclure, pr: /ɛ̃.klyʁ/, ds: to include}
-  - {id: fr-v-21a8e6807b123303, ch: omettre, pr: /ɔ.mɛtʁ/, ds: to omit}
   - {id: fr-v-cc9c88061fa7fb9b, ch: distinguer, pr: /dis.tɛ̃.ɡe/, ds: to distinguish}
   - {id: fr-v-d18e8a93a8e9668e, ch: identifier, pr: /i.dɑ̃.ti.fje/, ds: to identify}
   - {id: fr-v-9b1c6dc28037fa3f, ch: désigner, pr: /de.zi.ɲe/, ds: to designate}
   - {id: fr-v-c746ce0320c3b2a5, ch: référer, pr: /ʁe.fe.ʁe/, ds: to refer (someone)}
   - {id: fr-v-7fccfdef01c7c6b8, ch: concerner, pr: /kɔ̃.sɛʁ.ne/, ds: 'to concern (be concerned with, be associated with)'}
   - {id: fr-v-afe7ae71d73cf0bf, ch: règle, pr: /ʁɛɡl/, ds: rule; regulation}
+  - {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to record for later use or playback}
+  - {id: fr-v-aab93c744b03ab11, ch: pièce, pr: /pjɛs/, ds: document; legal paper}
   review_grammar:
   - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
   - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
@@ -405,7 +410,6 @@ units:
   review_vocabulary:
   - {id: fr-v-97cb4542cadc0b6b, ch: dire, pr: /diʁ/, ds: 'to say, to tell (to express through speech)'}
   - {id: fr-v-82d372a542f98615, ch: expliquer, pr: /ɛks.pli.ke/, ds: to explain}
-  - {id: fr-v-56395aa232e337c4, ch: éditeur, pr: /e.di.tœʁ/, ds: editor; publisher}
   - {id: fr-v-911f7cfe5d807171, ch: publication, pr: /py.bli.ka.sjɔ̃/, ds: publication}
   - {id: fr-v-3d0fcb18f7a22377, ch: abonnement, pr: /a.bɔn.mɑ̃/, ds: subscription}
   - {id: fr-v-f3ad1582802cf0c3, ch: diffusion, pr: /di.fy.zjɔ̃/, ds: 'broadcasting, showing'}
@@ -413,4 +417,5 @@ units:
   - {id: fr-v-7988ea78dc411b32, ch: illustration, pr: /i.lys.tʁa.sjɔ̃/, ds: illustration}
   - {id: fr-v-822b5134bcea5353, ch: photographie, pr: /fɔ.tɔ.ɡʁa.fi/, ds: photography}
   - {id: fr-v-6fe9de990baa7e65, ch: image, pr: /i.maʒ/, ds: 'picture, image'}
+  - {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article; nonfiction text}
   review_grammar: []

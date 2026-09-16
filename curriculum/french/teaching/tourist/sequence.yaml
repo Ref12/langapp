@@ -325,8 +325,8 @@ units:
   - {id: fr-g-travel-location-question, ch: Où est la gare / l'hôtel / Où sont les toilettes, ds: Ask where a taught place or the toilets are}
   - {id: fr-g-travel-time-question, ch: À quelle heure / À quelle heure est le départ, ds: Ask the time of an understood event or departure}
   vocabulary:
-  - {id: fr-v-b0a0d4d66fb6616a, ch: réservation, pr: /ʁe.zɛʁ.va.sjɔ̃/, ds: reservation}
-  - {id: fr-v-d6b7a3b6f9402564, ch: chambre, pr: /ʃɑ̃bʁ/, ds: a room.}
+  - {id: fr-v-ed399ab172229ca9, ch: réservation, pr: /ʁe.zɛʁ.va.sjɔ̃/, ds: booking}
+  - {id: fr-v-c22fc3483ea21daf, ch: chambre, pr: /ʃɑ̃bʁ/, ds: hotel room}
   - {id: fr-v-5f205da766a8e659, ch: clé, pr: /kle/, ds: key (device for unlocking)}
   - {id: fr-v-7d4b1a3ec129806b, ch: hôtel, pr: /o.tɛl/, ds: hotel; paid accommodation}
   review_vocabulary:
@@ -340,7 +340,7 @@ units:
   phrase_components:
     fr-tourist-p016:
       items:
-      - fr-v-b0a0d4d66fb6616a
+      - fr-v-ed399ab172229ca9
       grammar:
       - fr-g-travel-have
       realizations:
@@ -353,11 +353,11 @@ units:
       - ch: réservation
         pr: /ʁe.zɛʁ.va.sjɔ̃/
         items:
-        - fr-v-b0a0d4d66fb6616a
+        - fr-v-ed399ab172229ca9
         grammar: []
     fr-tourist-p017:
       items:
-      - fr-v-d6b7a3b6f9402564
+      - fr-v-c22fc3483ea21daf
       grammar:
       - fr-g-travel-would-like
       realizations:
@@ -370,7 +370,7 @@ units:
       - ch: chambre
         pr: /ʃɑ̃bʁ/
         items:
-        - fr-v-d6b7a3b6f9402564
+        - fr-v-c22fc3483ea21daf
         grammar: []
     fr-tourist-p018:
       items:

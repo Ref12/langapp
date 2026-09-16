@@ -51,7 +51,16 @@
   previous_realizations: []
   source_id: lexique-3.83
   source_record: 129119
-  status: Source-attested inflection and aligned phonology; syllable separators may differ.
+  canonical_record: 129117
+  lemma: toilette
+  part_of_speech: NOM
+  gender: f
+  number: p
+  requested_tags:
+  - plural
+  source_phonetic_code: twalEt
+  status: Selected lemma/POS-aligned canonical and inflected Lexique evidence; requested and unchanged
+    morphology checked.
 - id: fr-f-travel-perdue-feminine
   kind: source-inflection
   ch: perdue
@@ -65,8 +74,17 @@
   next_realizations: []
   previous_realizations: []
   source_id: lexique-3.83
-  source_record: 94291
-  status: Source-attested inflection and aligned phonology; syllable separators may differ.
+  source_record: 94292
+  canonical_record: 94289
+  lemma: perdu
+  part_of_speech: ADJ
+  gender: f
+  number: s
+  requested_tags:
+  - feminine
+  source_phonetic_code: pERdy
+  status: Selected lemma/POS-aligned canonical and inflected Lexique evidence; requested and unchanged
+    morphology checked.
 - id: fr-f-travel-please
   kind: construction
   ch: S'il vous plaît
@@ -248,7 +266,7 @@
   grammar:
   - fr-g-travel-have
   next_words:
-  - fr-v-b0a0d4d66fb6616a
+  - fr-v-ed399ab172229ca9
   - fr-v-37b2c6a82f8ca9ce
   previous_words: []
   next_realizations:
@@ -264,7 +282,7 @@
   grammar:
   - fr-g-travel-would-like
   next_words:
-  - fr-v-d6b7a3b6f9402564
+  - fr-v-c22fc3483ea21daf
   - fr-v-2acd436a33e93a82
   previous_words: []
   next_realizations:

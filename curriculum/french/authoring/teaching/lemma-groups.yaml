@@ -1,6 +1,13 @@
 # Original ordered teaching selections. A pipe separates lemmas, not senses.
 # Repeated lemmas revisit a theme; the earliest core level introduces the lemma.
 # Exact sense choices and additional meanings are maintained separately.
+# Destination-only source gaps: cours (20 money), commande (17 technology),
+# port (17 and technical technology), pile and dépôt (technical technology),
+# and statistical biais (scientific science). Their other uses remain retained.
+# The missing meanings are a market quotation, computer command, computer port,
+# software stack, code repository, and statistical bias respectively.
+# Journal's technical log and grève's literary shore are explicit additional
+# senses, not branch placements of the primary newspaper and strike meanings.
 - level: 2
   topic: people
   words: >-
@@ -609,12 +616,12 @@
     ordinateur | informatique | logiciel | application | programme |
     système | réseau | serveur | client | terminal | écran |
     clavier | souris | pavé | imprimante | scanner | capteur |
-    processeur | mémoire | stockage | disque | clé USB | port |
+    processeur | mémoire | stockage | disque | clé USB |
     périphérique | composant | circuit | connexion | communication |
     internet | Web | site | page | lien | navigateur | recherche |
     moteur de recherche | fichier | dossier | document | format |
     donnée | information | traitement | calcul | algorithme | code |
-    instruction | commande | interface | utilisateur | identifiant |
+    instruction | interface | utilisateur | identifiant |
     mot de passe | accès | authentification | sauvegarde | copie |
     mise à jour | installation | configuration | paramètre | réglage |
     option | fonctionnalité | fonction | capacité | vitesse | débit |
@@ -799,7 +806,7 @@
     avoir | dette | créance | liquidité | trésorerie | fonds |
     investissement | placement | financement | emprunt | crédit |
     intérêt | taux | rendement | dividende | action | obligation |
-    titre | bourse | cotation | cours | portefeuille | spéculation |
+    titre | bourse | cotation | portefeuille | spéculation |
     inflation | déflation | croissance | récession | stagnation |
     expansion | contraction | crise | reprise | ralentissement |
     conjoncture | cycle | indice | indicateur | statistique |
@@ -1869,14 +1876,14 @@
     machine virtuelle | système d'exploitation | noyau | pilote |
     processus | fil d'exécution | thread | ordonnanceur |
     mémoire vive | mémoire morte | cache | tampon |
-    pile | tas | allocation | désallocation | pointeur |
+    tas | allocation | désallocation | pointeur |
     référence | adresse mémoire | octet | bit | binaire |
     hexadécimal | encodage | décodage | compression | décompression |
     sérialisation | désérialisation | chiffrement | déchiffrement |
     hachage | empreinte | signature numérique | certificat |
     authentification | autorisation | authentification multifacteur |
     identifiant | jeton | session | cookie | témoin de connexion |
-    protocole | port | socket | paquet | trame |
+    protocole | socket | paquet | trame |
     routage | routeur | commutateur | pare-feu | passerelle |
     réseau local | réseau privé virtuel | proxy | mandataire |
     serveur web | serveur de messagerie | serveur de fichiers |
@@ -1887,12 +1894,12 @@
     réplication | partitionnement | fragmentation | agrégation |
     API | interface de programmation | bibliothèque | framework |
     cadriciel | module | paquetage | dépendance | gestionnaire de paquets |
-    dépôt | branche | commit | fusion | rebasage |
+    branche | commit | fusion | rebasage |
     version | étiquette | correctif | rustine | mise à niveau |
     test unitaire | test d'intégration | test de régression |
     assertion | fixture | simulation | couverture de code |
     anomalie | bogue | bug | régression | exception |
-    erreur | avertissement | journal | journalisation | traçage |
+    erreur | avertissement | journalisation | traçage |
     observabilité | télémétrie | métrique | alerte | supervision |
     latence | débit | bande passante | disponibilité |
     résilience | tolérance aux pannes | redondance |
@@ -1913,7 +1920,7 @@
     variable indépendante | variable dépendante | variable aléatoire |
     loi normale | distribution normale | distribution binomiale |
     probabilité conditionnelle | vraisemblance | inférence bayésienne |
-    estimation | estimateur | biais | précision | exactitude |
+    estimation | estimateur | précision | exactitude |
     sensibilité | spécificité | faux positif | faux négatif |
     puissance statistique | taille d'effet | méta-analyse |
     revue systématique | reproductibilité | réplicabilité |
@@ -1960,7 +1967,7 @@
     lande | brande | orée | lisière | frondaison |
     ramure | feuillée | bocage | bosquet | futaie |
     ruisselet | onde | flot | ondelette | rivage |
-    grève | écueil | récif | gouffre | abîme |
+    écueil | récif | gouffre | abîme |
     firmament | azur | empyrée | zénith | nadir |
     astre | luminaire | crépuscule | aurore | aube |
     alexandrin | décasyllabe | octosyllabe | hémistiche |

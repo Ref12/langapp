@@ -116,7 +116,7 @@ units:
   vocabulary:
   - {id: fr-v-fc4efa883ca168ab, ch: relation, pr: /ʁə.la.sjɔ̃/, ds: relation}
   - {id: fr-v-f96baf9a3a6bd23f, ch: rencontre, pr: /ʁɑ̃.kɔ̃tʁ/, ds: encounter}
-  - {id: fr-v-d7a72d4eb9550edc, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: knowledge}
+  - {id: fr-v-c2c55efe03a98b86, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: acquaintance; someone one knows}
   - {id: fr-v-2fa15d9121da475b, ch: partenaire, pr: /paʁ.tə.nɛʁ/, ds: partner}
   - {id: fr-v-9ba88e734f2a36f5, ch: compagnon, pr: /kɔ̃.pa.ɲɔ̃/, ds: 'lifelong partner, significant other'}
   - {id: fr-v-340d7057c588b749, ch: conjoint, pr: /kɔ̃.ʒwɛ̃/, ds: 'spouse or unmarried, spouse-like partner'}
@@ -129,7 +129,7 @@ units:
   - {id: fr-v-7bcae2f3039af3d8, ch: adolescence, pr: /a.dɔ.lɛ.sɑ̃s/, ds: 'adolescence, teenage years, teenagehood'}
   - {id: fr-v-c3c17741f1bf055e, ch: jeunesse, pr: /ʒœ.nɛs/, ds: youth}
   - {id: fr-v-c85c759b23234c2e, ch: vieillesse, pr: /vjɛ.jɛs/, ds: old age}
-  - {id: fr-v-ed14991bc1697198, ch: génération, pr: /ʒe.ne.ʁa.sjɔ̃/, ds: generation (act of generating)}
+  - {id: fr-v-54f2071a3f776e07, ch: génération, pr: /ʒe.ne.ʁa.sjɔ̃/, ds: generation; position in family descent}
   - {id: fr-v-a7cb84a54219edb4, ch: grand-parent, pr: /ɡʁɑ̃.pa.ʁɑ̃/, ds: grandparent (parent of someone’s parent)}
   - {id: fr-v-952462a13fef649d, ch: grand-mère, pr: /ɡʁɑ̃.mɛʁ/, ds: grandmother}
   - {id: fr-v-56ee39d8b048a7a2, ch: grand-père, pr: /ɡʁɑ̃.pɛʁ/, ds: grandfather}
@@ -169,7 +169,7 @@ units:
   - {id: fr-v-58ce53f5be03a245, ch: veuve, pr: /vœv/, ds: widow}
   - {id: fr-v-abb0ca29caa3bdd2, ch: orphelin, pr: /ɔʁ.fə.lɛ̃/, ds: orphaned}
   - {id: fr-v-2fe7535e6e29d4c0, ch: parenté, pr: /pa.ʁɑ̃.te/, ds: kinship}
-  - {id: fr-v-a8227fb839dc2595, ch: entourage, pr: /ɑ̃.tu.ʁaʒ/, ds: 'ornament, decoration surrounding something'}
+  - {id: fr-v-dc36eb194757edfb, ch: entourage, pr: /ɑ̃.tu.ʁaʒ/, ds: circle of acquaintances}
   - {id: fr-v-7b4c61e1eb41e7ca, ch: amant, pr: /a.mɑ̃/, ds: lover; partner in an affair}
   - {id: fr-v-6984542a6aac56c9, ch: camarade, pr: /ka.ma.ʁad/, ds: 'buddy, mate'}
   - {id: fr-v-96e239f3eef4cef1, ch: copain, pr: /kɔ.pɛ̃/, ds: 'friend, chum, mate (UK), pal, buddy'}
@@ -203,7 +203,7 @@ units:
   - {id: fr-v-e9947849cbaef8e7, ch: allié, pr: /a.lje/, ds: ally}
   - {id: fr-v-20fdc76410c4bcb8, ch: témoin, pr: /te.mwɛ̃/, ds: witness}
   - {id: fr-v-5eb4b1b7155b34f0, ch: victime, pr: /vik.tim/, ds: victim}
-  - {id: fr-v-665a3ad7e81b561e, ch: soutien, pr: /su.tjɛ̃/, ds: support (physical)}
+  - {id: fr-v-4dad68733a05ce7c, ch: soutien, pr: /su.tjɛ̃/, ds: emotional support}
   - {id: fr-v-5195990b0671c7c9, ch: dispute, pr: /dis.pyt/, ds: dispute}
   - {id: fr-v-91f8ae9bdb7ca615, ch: conflit, pr: /kɔ̃.fli/, ds: conflict (clash or disagreement)}
   - {id: fr-v-f514a72b06f5de22, ch: malentendu, pr: /ma.lɑ̃.tɑ̃.dy/, ds: misunderstanding}
@@ -236,7 +236,7 @@ units:
   - {id: fr-v-206c7e0311f4e1a0, ch: émotion, pr: /e.mo.sjɔ̃/, ds: emotion}
   - {id: fr-v-b536d42dc250e2c7, ch: sentiment, pr: /sɑ̃.ti.mɑ̃/, ds: 'a sentiment, general thought, sense or feeling'}
   - {id: fr-v-c9431e3f732c63f4, ch: joie, pr: /ʒwa/, ds: joy (feeling of happiness or elation)}
-  - {id: fr-v-b71b14d8d41a94d4, ch: bonheur, pr: /bɔ.nœʁ/, ds: 'goodhap, good fortune'}
+  - {id: fr-v-cf3019ca1d791dff, ch: bonheur, pr: /bɔ.nœʁ/, ds: happiness}
   - {id: fr-v-c86335eb9383799e, ch: tristesse, pr: /tʁis.tɛs/, ds: sadness}
   - {id: fr-v-020e84f53cf77db6, ch: peur, pr: /pœʁ/, ds: fear}
   - {id: fr-v-aaa273b863983f99, ch: colère, pr: /kɔ.lɛʁ/, ds: 'anger, rage'}
@@ -276,10 +276,10 @@ units:
   - {id: fr-v-eabb16237ef2317c, ch: jalousie, pr: /ʒa.lu.zi/, ds: jealousy}
   - {id: fr-v-c6c4da2b7046a4b3, ch: envie, pr: /ɑ̃.vi/, ds: 'desire, lust, urge'}
   - {id: fr-v-44fa9676ec5e7433, ch: désir, pr: /de.ziʁ/, ds: desire}
-  - {id: fr-v-a30b30ed9ec75dd7, ch: passion, pr: /pa.sjɔ̃/, ds: 'Passion, suffering'}
+  - {id: fr-v-a87869e448483e0e, ch: passion, pr: /pa.sjɔ̃/, ds: passion; enthusiasm}
   - {id: fr-v-622edd64ee746d21, ch: dégoût, pr: /de.ɡu/, ds: disgust}
   - {id: fr-v-179518cede5a5dae, ch: admiration, pr: /ad.mi.ʁa.sjɔ̃/, ds: admiration}
-  - {id: fr-v-8eda843d24a3e393, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: recognition}
+  - {id: fr-v-5d6ac0294c64e0ff, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: gratitude; thankfulness}
   - {id: fr-v-8286281cd5c20c65, ch: compassion, pr: /kɔ̃.pa.sjɔ̃/, ds: 'compassion, pity'}
   - {id: fr-v-66faf167db70cd76, ch: pitié, pr: /pi.tje/, ds: 'pity, mercy'}
   - {id: fr-v-4f858df908621f5c, ch: mépris, pr: /me.pʁi/, ds: scorn}
@@ -289,7 +289,7 @@ units:
   - {id: fr-v-01220994b39d4665, ch: satisfaction, pr: /sa.tis.fak.sjɔ̃/, ds: satisfaction}
   - {id: fr-v-b16a5eaa07eac3b9, ch: mécontentement, pr: /me.kɔ̃.tɑ̃t.mɑ̃/, ds: 'discontent, displeasure, dissatisfaction'}
   - {id: fr-v-4a9948da2782df09, ch: chagrin, pr: /ʃa.ɡʁɛ̃/, ds: 'sorrow, grief, chagrin'}
-  - {id: fr-v-60f9f7a7aa647c64, ch: humeur, pr: /y.mœʁ/, ds: humour/humor (the liquid in the body)}
+  - {id: fr-v-f85dcfc572070615, ch: humeur, pr: /y.mœʁ/, ds: mood; state of mind}
   grammar: []
   review_vocabulary:
   - {id: fr-v-e67c8ba245c88da7, ch: fierté, pr: /fjɛʁ.te/, ds: 'pride (positive emotion), self-esteem'}
@@ -305,7 +305,7 @@ units:
   title: Feelings and attitudes - 3
   outcome: Explain an emotional response with relevant circumstances and suitable register.
   vocabulary:
-  - {id: fr-v-45d392b92477b46a, ch: caractère, pr: /ka.ʁak.tɛʁ/, ds: character (written symbol)}
+  - {id: fr-v-b84b83379f1eab52, ch: caractère, pr: /ka.ʁak.tɛʁ/, ds: character; demeanour}
   - {id: fr-v-8bb1c3bdf92d166b, ch: personnalité, pr: /pɛʁ.sɔ.na.li.te/, ds: personality}
   - {id: fr-v-c9ac3440a8f334d2, ch: sensibilité, pr: /sɑ̃.si.bi.li.te/, ds: sensitivity}
   - {id: fr-v-4f1a633dacac1d1b, ch: tempérament, pr: /tɑ̃.pe.ʁa.mɑ̃/, ds: 'temperament, character'}
@@ -325,7 +325,7 @@ units:
   - {id: fr-v-6d97815b5870d5ca, ch: curieux, pr: /ky.ʁjø/, ds: 'curious, inquisitive, intrigued, wondering; possessing curiosity'}
   - {id: fr-v-01cbd03f15f9b606, ch: enthousiaste, pr: /ɑ̃.tu.zjast/, ds: 'inspired, passionate (religiously or artistically)'}
   - {id: fr-v-ae429b41cf07277b, ch: impatient, pr: /ɛ̃.pa.sjɑ̃/, ds: impatient}
-  - {id: fr-v-a69a7409a4c66167, ch: patient, pr: /pa.sjɑ̃/, ds: 'patient, outpatient'}
+  - {id: fr-v-fe79d5771cfc54a5, ch: patient, pr: /pa.sjɑ̃/, ds: patient; able to wait calmly}
   - {id: fr-v-a7ffe569895e0ff2, ch: courageux, pr: /ku.ʁa.ʒø/, ds: 'courageous, brave, daring'}
   - {id: fr-v-60f557fa0defd1b1, ch: timide, pr: /ti.mid/, ds: 'shy, timid'}
   - {id: fr-v-547dc12a2abfe939, ch: solitaire, pr: /sɔ.li.tɛʁ/, ds: 'solitary, alone (living alone or being by oneself)'}
@@ -339,7 +339,7 @@ units:
   - {id: fr-v-01220994b39d4665, ch: satisfaction, pr: /sa.tis.fak.sjɔ̃/, ds: satisfaction}
   - {id: fr-v-b16a5eaa07eac3b9, ch: mécontentement, pr: /me.kɔ̃.tɑ̃t.mɑ̃/, ds: 'discontent, displeasure, dissatisfaction'}
   - {id: fr-v-4a9948da2782df09, ch: chagrin, pr: /ʃa.ɡʁɛ̃/, ds: 'sorrow, grief, chagrin'}
-  - {id: fr-v-60f9f7a7aa647c64, ch: humeur, pr: /y.mœʁ/, ds: humour/humor (the liquid in the body)}
+  - {id: fr-v-f85dcfc572070615, ch: humeur, pr: /y.mœʁ/, ds: mood; state of mind}
   review_grammar: []
 - id: level-10-feelings-04
   title: Feelings and attitudes - 4
@@ -365,7 +365,7 @@ units:
   - {id: fr-v-6d97815b5870d5ca, ch: curieux, pr: /ky.ʁjø/, ds: 'curious, inquisitive, intrigued, wondering; possessing curiosity'}
   - {id: fr-v-01cbd03f15f9b606, ch: enthousiaste, pr: /ɑ̃.tu.zjast/, ds: 'inspired, passionate (religiously or artistically)'}
   - {id: fr-v-ae429b41cf07277b, ch: impatient, pr: /ɛ̃.pa.sjɑ̃/, ds: impatient}
-  - {id: fr-v-a69a7409a4c66167, ch: patient, pr: /pa.sjɑ̃/, ds: 'patient, outpatient'}
+  - {id: fr-v-fe79d5771cfc54a5, ch: patient, pr: /pa.sjɑ̃/, ds: patient; able to wait calmly}
   - {id: fr-v-a7ffe569895e0ff2, ch: courageux, pr: /ku.ʁa.ʒø/, ds: 'courageous, brave, daring'}
   - {id: fr-v-60f557fa0defd1b1, ch: timide, pr: /ti.mid/, ds: 'shy, timid'}
   - {id: fr-v-547dc12a2abfe939, ch: solitaire, pr: /sɔ.li.tɛʁ/, ds: 'solitary, alone (living alone or being by oneself)'}
@@ -410,9 +410,9 @@ units:
   - {id: fr-v-683b8a86726616a7, ch: souffrir, pr: /su.fʁiʁ/, ds: to suffer}
   - {id: fr-v-f727be7977b7a0a5, ch: tousser, pr: /tu.se/, ds: to cough}
   - {id: fr-v-23abd133e667fe88, ch: respirer, pr: /ʁɛs.pi.ʁe/, ds: to breathe}
-  - {id: fr-v-eef4c9c8dacad218, ch: reposer, pr: /ʁə.po.ze/, ds: 'to put down, to place'}
+  - {id: fr-v-0a7cf8ed3cf2c6cd, ch: reposer, pr: /ʁə.po.ze/, ds: to rest; reflexive use}
   - {id: fr-v-88887749bd9d1b51, ch: soigner, pr: /swa.ɲe/, ds: to treat; to nurse}
   - {id: fr-v-5ddae89baff4c017, ch: tomber, pr: /tɔ̃.be/, ds: to fall}
-  - {id: fr-v-006b1a71db8f24bb, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to smell (to have a certain odor)}
+  - {id: fr-v-b03ca1b453349362, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to feel; physical sensation}
   review_grammar:
   - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}

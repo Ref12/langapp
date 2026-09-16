@@ -77,14 +77,14 @@ units:
   - {id: fr-v-5c5910a45bb0b666, ch: biographique, pr: /bjɔ.ɡʁa.fik/, ds: 'biographic, biographical'}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-b24d39b9361c6c81, ch: mousseux, pr: /mu.sø/, ds: foamy; frothy}
-  - {id: fr-v-61a13968db868a71, ch: pétillant, pr: /pe.ti.jɑ̃/, ds: fizzy}
   - {id: fr-v-ea7a88ff53fff264, ch: effervescent, pr: /e.fɛʁ.vɛ.sɑ̃/, ds: effervescent}
   - {id: fr-v-90d50ce4c83d862b, ch: vaporeux, pr: /va.pɔ.ʁø/, ds: 'vaporous, misty'}
   - {id: fr-v-9233d5e252845dc3, ch: nébuleux, pr: /ne.by.lø/, ds: nebulous (all meanings)}
   - {id: fr-v-91769c6ff74959f1, ch: compact, pr: /kɔ̃.pakt/, ds: 'dense, compact (closely packed)'}
   - {id: fr-v-e9a2622f5b3ca1b0, ch: lâche, pr: /laʃ/, ds: coward}
   - {id: fr-v-ad0c575d115b6e5f, ch: clairsemé, pr: /klɛʁ.sə.me/, ds: scattered}
+  - {id: fr-v-710291472fa7a1c0, ch: essence, pr: /e.sɑ̃s/, ds: essence; fundamental nature}
+  - {id: fr-v-2e6c56474ab34068, ch: sécheresse, pr: /seʃ.ʁɛs/, ds: dryness}
   review_grammar:
   - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
   - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
@@ -193,14 +193,14 @@ units:
   - {id: fr-v-ba96f05cfc5ad2f5, ch: prunier, pr: /pʁy.nje/, ds: 'plum, plum tree'}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-f1304236a09c9cb3, ch: canyon, pr: /ka.ɲɔn/, ds: canyon}
-  - {id: fr-v-51fa2e99491952a4, ch: delta, pr: /dɛl.ta/, ds: delta (Greek letter)}
   - {id: fr-v-46fbac24d44d25dd, ch: estuaire, pr: /ɛs.tɥɛʁ/, ds: estuary}
   - {id: fr-v-2e55cc72fe06068f, ch: glacier, pr: /ɡla.sje/, ds: glacier}
   - {id: fr-v-54932a83a59de296, ch: banquise, pr: /bɑ̃.kiz/, ds: 'sea ice, pack ice, ice floe; ice field'}
   - {id: fr-v-0b88c83d40a33e37, ch: iceberg, pr: /ajs.bɛʁɡ/, ds: iceberg}
   - {id: fr-v-2bb183bcbf53591a, ch: fonte, pr: /fɔ̃t/, ds: 'melting, smelting, thawing'}
   - {id: fr-v-a9adad30e8413fe0, ch: marée, pr: /ma.ʁe/, ds: tide}
+  - {id: fr-v-a1f1934920464b08, ch: mutation, pr: /my.ta.sjɔ̃/, ds: mutation; change}
+  - {id: fr-v-7c49a4693aa01291, ch: faille, pr: /faj/, ds: fault; geological fracture}
   review_grammar:
   - {id: fr-g-nominal-cause, ch: à cause de / grâce à + nom, ds: Present a cause with a negative or favorable framing}
 - id: level-29-nature-02
@@ -517,6 +517,8 @@ units:
   - {id: fr-v-9b724cdfe7d580b4, ch: anémone, pr: /a.ne.mɔn/, ds: anemone (any plant of genus Anemone)}
   - {id: fr-v-ad53b8dd09af0960, ch: oursin, pr: /uʁ.sɛ̃/, ds: sea urchin}
   - {id: fr-v-f66d6701678f611e, ch: étoile de mer, pr: /e.twal də mɛʁ/, ds: starfish}
+  - {id: fr-v-0ce17e63123cca2e, ch: rose, pr: /ʁoz/, ds: rose; flower}
+  - {id: fr-v-552c05903f3df810, ch: souris, pr: /su.ʁi/, ds: mouse; rodent}
   grammar: []
   review_vocabulary:
   - {id: fr-v-53877bec62289d9f, ch: thon, pr: /tɔ̃/, ds: tuna}
@@ -700,14 +702,14 @@ units:
   - {id: fr-v-03310d4738889c64, ch: providence, pr: /pʁɔ.vi.dɑ̃s/, ds: providence}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-d0eb229a7a7d6b2b, ch: oxymore, pr: /ɔk.si.mɔʁ/, ds: oxymoron; combination of contradictory terms}
-  - {id: fr-v-c5d2e55b0f2f2a16, ch: anaphore, pr: /a.na.fɔʁ/, ds: anaphora (repetition of a phrase used for emphasis)}
-  - {id: fr-v-794f765e14e0570b, ch: gradation, pr: /ɡʁa.da.sjɔ̃/, ds: gradation}
-  - {id: fr-v-97812da7b704982f, ch: répétition, pr: /ʁe.pe.ti.sjɔ̃/, ds: repetition}
   - {id: fr-v-19bfdebff2c441d8, ch: allitération, pr: /a.li.te.ʁa.sjɔ̃/, ds: alliteration}
   - {id: fr-v-1f92d41c202d99e2, ch: assonance, pr: /a.sɔ.nɑ̃s/, ds: assonance}
   - {id: fr-v-74b123204ffc75c5, ch: chiasme, pr: /kjasm/, ds: chiasmus}
   - {id: fr-v-f3c0c1a9bb594e16, ch: légende, pr: /le.ʒɑ̃d/, ds: legend; traditional story}
+  - {id: fr-v-a3c6da11e0ea6cbf, ch: pièce, pr: /pjɛs/, ds: play; theatrical work}
+  - {id: fr-v-4816f1dc1249ae41, ch: journal, pr: /ʒuʁ.nal/, ds: diary; personal journal}
+  - {id: fr-v-61304aee7a7ff416, ch: volume, pr: /vɔ.lym/, ds: volume; book}
+  - {id: fr-v-f762c30044b1de90, ch: cadre, pr: /kadʁ/, ds: setting; environment}
   review_grammar: []
 - id: level-29-literature-02
   title: Literary and historical expression - 2

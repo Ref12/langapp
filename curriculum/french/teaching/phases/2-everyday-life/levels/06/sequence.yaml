@@ -46,8 +46,8 @@ units:
   - {id: fr-v-e033ce0000761d48, ch: ceinture, pr: /sɛ̃.tyʁ/, ds: belt (item of clothing)}
   - {id: fr-v-6b939d7096a0eb17, ch: poche, pr: /pɔʃ/, ds: pocket (part of the clothing)}
   - {id: fr-v-7ae5330b43ad4896, ch: bouton, pr: /bu.tɔ̃/, ds: button}
-  - {id: fr-v-8c8c7d500b559655, ch: fermeture, pr: /fɛʁ.mə.tyʁ/, ds: closing}
-  - {id: fr-v-b45162731c9cc5f2, ch: taille, pr: /taj/, ds: 'the act of cutting, pruning, trimming'}
+  - {id: fr-v-be74c3b7578999db, ch: fermeture, pr: /fɛʁ.mə.tyʁ/, ds: fastener; clothing closure}
+  - {id: fr-v-560f509943381f3a, ch: taille, pr: /taj/, ds: size; clothing size}
   - {id: fr-v-61c8f5a45759f795, ch: pointure, pr: /pwɛ̃.tyʁ/, ds: shoe size}
   - {id: fr-v-fc05d59dd778e8fc, ch: tissu, pr: /ti.sy/, ds: fabric}
   - {id: fr-v-6faeed776fca4255, ch: coton, pr: /kɔ.tɔ̃/, ds: cotton (material)}
@@ -69,18 +69,18 @@ units:
   - {id: fr-v-db9d58713320d383, ch: parapluie, pr: /pa.ʁa.plɥi/, ds: umbrella for rain}
   - {id: fr-v-ca0e13345e98d3d3, ch: essayer, pr: /e.sɛ.je/, ds: 'to test, to try on'}
   - {id: fr-v-3b58e2412fe564d3, ch: choisir, pr: /ʃwa.ziʁ/, ds: to choose}
-  - {id: fr-v-2e4622c34693aade, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to admit; to agree}
+  - {id: fr-v-b168b142ce44ef02, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to suit; to be suitable for}
   - {id: fr-v-8e89946bf1e412ed, ch: serré, pr: /sɛ.ʁe/, ds: tight}
   - {id: fr-v-142615f8ae584ab6, ch: large, pr: /laʁʒ/, ds: 'wide, broad'}
   - {id: fr-v-f4366e70b81bca94, ch: long, pr: /lɔ̃/, ds: long}
   - {id: fr-v-c2ea205c3f981029, ch: court, pr: /kuʁ/, ds: short}
-  - {id: fr-v-422c9637122de350, ch: propre, pr: /pʁɔpʁ/, ds: own}
+  - {id: fr-v-659cca1eeee04e37, ch: propre, pr: /pʁɔpʁ/, ds: clean; not dirty}
   - {id: fr-v-9a39cad84b7d0084, ch: sale, pr: /sal/, ds: dirty}
   - {id: fr-v-f84656bb5a028fb6, ch: léger, pr: /le.ʒe/, ds: light (not heavy)}
   - {id: fr-v-0d74bb4cd7f27a30, ch: lourd, pr: /luʁ/, ds: heavy}
   - {id: fr-v-d0ca0edb79bee9cf, ch: confortable, pr: /kɔ̃.fɔʁ.tabl/, ds: 'comfortable, providing comfort'}
   - {id: fr-v-468cfc8f7ae5c5a6, ch: élégant, pr: /e.le.ɡɑ̃/, ds: elegant (exhibiting elegance)}
-  - {id: fr-v-0ce17e63123cca2e, ch: rose, pr: /ʁoz/, ds: rose (flower)}
+  - {id: fr-v-1bb222514a7799c4, ch: rose, pr: /ʁoz/, ds: pink}
   - {id: fr-v-44976ea7edb856b1, ch: violet, pr: /vjɔ.lɛ/, ds: purple}
   - {id: fr-v-1a3b1a581dc0ca81, ch: gris, pr: /ɡʁi/, ds: grey / gray}
   - {id: fr-v-c089718039590795, ch: marron, pr: /ma.ʁɔ̃/, ds: brown}
@@ -88,8 +88,8 @@ units:
   review_vocabulary:
   - {id: fr-v-6b939d7096a0eb17, ch: poche, pr: /pɔʃ/, ds: pocket (part of the clothing)}
   - {id: fr-v-7ae5330b43ad4896, ch: bouton, pr: /bu.tɔ̃/, ds: button}
-  - {id: fr-v-8c8c7d500b559655, ch: fermeture, pr: /fɛʁ.mə.tyʁ/, ds: closing}
-  - {id: fr-v-b45162731c9cc5f2, ch: taille, pr: /taj/, ds: 'the act of cutting, pruning, trimming'}
+  - {id: fr-v-be74c3b7578999db, ch: fermeture, pr: /fɛʁ.mə.tyʁ/, ds: fastener; clothing closure}
+  - {id: fr-v-560f509943381f3a, ch: taille, pr: /taj/, ds: size; clothing size}
   - {id: fr-v-61c8f5a45759f795, ch: pointure, pr: /pwɛ̃.tyʁ/, ds: shoe size}
   - {id: fr-v-fc05d59dd778e8fc, ch: tissu, pr: /ti.sy/, ds: fabric}
   - {id: fr-v-6faeed776fca4255, ch: coton, pr: /kɔ.tɔ̃/, ds: cotton (material)}
@@ -99,17 +99,17 @@ units:
   title: Clothing and appearance - 3
   outcome: Describe appearance and compare choices appropriate to a situation.
   vocabulary:
-  - {id: fr-v-b2676998de1dae99, ch: clair, pr: /klɛʁ/, ds: clear (see-through)}
+  - {id: fr-v-0832a033751f9462, ch: clair, pr: /klɛʁ/, ds: light in colour}
   - {id: fr-v-6b4eddeee3bedfc3, ch: foncé, pr: /fɔ̃.se/, ds: dark (having a dark shade)}
-  - {id: fr-v-b93c00def194be82, ch: rayure, pr: /ʁɛ.jyʁ/, ds: scratch (on the surface of something)}
-  - {id: fr-v-ea494be241a617f4, ch: uni, pr: /y.ni/, ds: united}
+  - {id: fr-v-af8be34a71f1ac39, ch: rayure, pr: /ʁɛ.jyʁ/, ds: stripe; line in a pattern}
+  - {id: fr-v-21da0d77d23a7c47, ch: uni, pr: /y.ni/, ds: plain; one colour}
   grammar: []
   review_vocabulary:
   - {id: fr-v-f84656bb5a028fb6, ch: léger, pr: /le.ʒe/, ds: light (not heavy)}
   - {id: fr-v-0d74bb4cd7f27a30, ch: lourd, pr: /luʁ/, ds: heavy}
   - {id: fr-v-d0ca0edb79bee9cf, ch: confortable, pr: /kɔ̃.fɔʁ.tabl/, ds: 'comfortable, providing comfort'}
   - {id: fr-v-468cfc8f7ae5c5a6, ch: élégant, pr: /e.le.ɡɑ̃/, ds: elegant (exhibiting elegance)}
-  - {id: fr-v-0ce17e63123cca2e, ch: rose, pr: /ʁoz/, ds: rose (flower)}
+  - {id: fr-v-1bb222514a7799c4, ch: rose, pr: /ʁoz/, ds: pink}
   - {id: fr-v-44976ea7edb856b1, ch: violet, pr: /vjɔ.lɛ/, ds: purple}
   - {id: fr-v-1a3b1a581dc0ca81, ch: gris, pr: /ɡʁi/, ds: grey / gray}
   - {id: fr-v-c089718039590795, ch: marron, pr: /ma.ʁɔ̃/, ds: brown}
@@ -124,7 +124,7 @@ units:
   - {id: fr-v-d37f9ed8cf6bf472, ch: boire, pr: /bwaʁ/, ds: to drink}
   - {id: fr-v-72f899689de74107, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to have food or drink}
   - {id: fr-v-32b69e67f5d2fa92, ch: aimer, pr: /ɛ.me/, ds: to love; to like}
-  - {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order (tell someone to do something)}
+  - {id: fr-v-794486ca61c84640, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order food or goods}
   - {id: fr-v-6746733a972453d5, ch: chaud, pr: /ʃo/, ds: 'warm, hot'}
   - {id: fr-v-fe3439b43195c5bf, ch: froid, pr: /fʁwa/, ds: cold (temperature)}
   - {id: fr-v-429fa20a62c1cffc, ch: faim, pr: /fɛ̃/, ds: hunger (desire of food)}
@@ -139,37 +139,37 @@ units:
   - {id: fr-v-e5c8d63edba934fd, ch: boutique, pr: /bu.tik/, ds: shop; boutique}
   - {id: fr-v-2f842c17980c4859, ch: marché, pr: /maʁ.ʃe/, ds: market}
   - {id: fr-v-3ac8c7b4f4c0924c, ch: boulangerie, pr: /bu.lɑ̃ʒ.ʁi/, ds: 'bread shop; bakery, baker''s'}
-  - {id: fr-v-4b6304d1fbf1b722, ch: boucherie, pr: /buʃ.ʁi/, ds: 'butchery, butchering (profession of the butcher)'}
+  - {id: fr-v-a807bf345d3497bc, ch: boucherie, pr: /buʃ.ʁi/, ds: butcher's shop}
   - {id: fr-v-42aa0b38bfb05999, ch: pharmacie, pr: /faʁ.ma.si/, ds: 'pharmacy, drugstore'}
   - {id: fr-v-9560da2b476cbf23, ch: supermarché, pr: /sy.pɛʁ.maʁ.ʃe/, ds: supermarket}
-  - {id: fr-v-d5e0cafd0c0902e7, ch: caisse, pr: /kɛs/, ds: 'box, crate'}
+  - {id: fr-v-88021db987ebe707, ch: caisse, pr: /kɛs/, ds: checkout; place to pay in a shop}
   - {id: fr-v-92a15f97a0ff69b4, ch: vendeur, pr: /vɑ̃.dœʁ/, ds: salesman}
   - {id: fr-v-247108f4402da258, ch: client, pr: /kli.jɑ̃/, ds: customer (one who purchases or receives a product or service)}
   - {id: fr-v-b9bf6c2a19603c4e, ch: produit, pr: /pʁɔ.dɥi/, ds: product}
-  - {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article (a piece of nonfictional writing)}
+  - {id: fr-v-7051fce4607af937, ch: article, pr: /aʁ.tikl/, ds: item for sale}
   - {id: fr-v-eef5b467cf32b074, ch: achat, pr: /a.ʃa/, ds: 'buy, purchase'}
   - {id: fr-v-4449bd09c743c427, ch: vente, pr: /vɑ̃t/, ds: sale}
   - {id: fr-v-39fdfe64b77f424d, ch: paiement, pr: /pɛ.mɑ̃/, ds: payment}
-  - {id: fr-v-ea4fe4fe74256810, ch: reçu, pr: /ʁə.sy/, ds: accomplished}
+  - {id: fr-v-14e73416b8a8f438, ch: reçu, pr: /ʁə.sy/, ds: receipt; proof of payment}
   - {id: fr-v-183145fb51dd71db, ch: monnaie, pr: /mɔ.nɛ/, ds: change (money back after a transaction)}
-  - {id: fr-v-1e1c2f3e26381241, ch: espèce, pr: /ɛs.pɛs/, ds: 'type, sort, kind'}
+  - {id: fr-v-57a937b95e5e4427, ch: espèce, pr: /ɛs.pɛs/, ds: cash; plural usage}
   - {id: fr-v-8e5af8a7f0a8e507, ch: banque, pr: /bɑ̃k/, ds: bank}
   - {id: fr-v-8139f8e758350e71, ch: compte, pr: /kɔ̃t/, ds: account (bank or user account)}
   - {id: fr-v-d1a1051d1a057607, ch: solde, pr: /sɔld/, ds: balance (list of credits and debits)}
   - {id: fr-v-2acd436a33e93a82, ch: facture, pr: /fak.tyʁ/, ds: 'bill, invoice'}
   - {id: fr-v-08da9f18d20cb748, ch: réduction, pr: /ʁe.dyk.sjɔ̃/, ds: reduction}
-  - {id: fr-v-eaf6c59ac2b26183, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: promotion (career advancement)}
+  - {id: fr-v-7039843a0eabb574, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: special offer; sale}
   - {id: fr-v-701c390240abda6a, ch: échange, pr: /e.ʃɑ̃ʒ/, ds: exchange}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-87f49d1132e9bfcb, ch: payer, pr: /pɛ.je/, ds: to pay (for)}
   - {id: fr-v-c2dae6967cacba06, ch: pour, pr: /puʁ/, ds: 'for (meant for, intended for)'}
   - {id: fr-v-cc5b9e82c78eacc1, ch: addition, pr: /a.di.sjɔ̃/, ds: bill or check at a bar or restaurant}
   - {id: fr-v-2d65ad11e090e5c4, ch: beaucoup, pr: /bo.ku/, ds: 'much, very much, a lot'}
-  - {id: fr-v-ae8015bcfc2423b9, ch: peu, pr: /pø/, ds: few}
+  - {id: fr-v-d8a0575215bda862, ch: peu, pr: /pø/, ds: little; not much or many}
   - {id: fr-v-0bab267f71053c23, ch: assez, pr: /a.se/, ds: to a sufficient or moderate degree; enough; sufficiently}
   - {id: fr-v-1ee296be52917894, ch: trop, pr: /tʁo/, ds: too; too much}
   - {id: fr-v-32dc4e88ac574eea, ch: tout, pr: /tu/, ds: all}
+  - {id: fr-v-98fb5c748d865023, ch: un, pr: /œ̃/, ds: one}
   review_grammar:
   - {id: fr-g-polite-modal-request, ch: 'je voudrais + nom ; vous pouvez + infinitif ?', ds: Soften a request with a learned conditional or modal}
 - id: level-06-services-02
@@ -178,7 +178,7 @@ units:
   vocabulary:
   - {id: fr-v-9354d72931ad68e7, ch: remboursement, pr: /ʁɑ̃.buʁ.sə.mɑ̃/, ds: 'reimbursement, refund'}
   - {id: fr-v-bda4fe1b3de542d8, ch: ticket, pr: /ti.kɛ/, ds: 'ticket (admission, pass)'}
-  - {id: fr-v-00534d92cf316aa8, ch: cher, pr: /ʃɛʁ/, ds: 'dear, beloved'}
+  - {id: fr-v-7b92e9312bbecfea, ch: cher, pr: /ʃɛʁ/, ds: expensive}
   - {id: fr-v-ff26cc7c8bb64f44, ch: gratuit, pr: /ɡʁa.tɥi/, ds: free of charge}
   - {id: fr-v-67c6698123eda03a, ch: disponible, pr: /dis.pɔ.nibl/, ds: 'available (pour for, à to)'}
   - {id: fr-v-446b94df6fc5340a, ch: manquer, pr: /mɑ̃.ke/, ds: 'to lack; to be lacking in; to be short of [with de] (something)'}
@@ -193,13 +193,13 @@ units:
   - {id: fr-v-d6bdd8033f5a7a0a, ch: peser, pr: /pə.ze/, ds: to weigh (to have a weight of)}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-1e1c2f3e26381241, ch: espèce, pr: /ɛs.pɛs/, ds: 'type, sort, kind'}
+  - {id: fr-v-57a937b95e5e4427, ch: espèce, pr: /ɛs.pɛs/, ds: cash; plural usage}
   - {id: fr-v-8e5af8a7f0a8e507, ch: banque, pr: /bɑ̃k/, ds: bank}
   - {id: fr-v-8139f8e758350e71, ch: compte, pr: /kɔ̃t/, ds: account (bank or user account)}
   - {id: fr-v-d1a1051d1a057607, ch: solde, pr: /sɔld/, ds: balance (list of credits and debits)}
   - {id: fr-v-2acd436a33e93a82, ch: facture, pr: /fak.tyʁ/, ds: 'bill, invoice'}
   - {id: fr-v-08da9f18d20cb748, ch: réduction, pr: /ʁe.dyk.sjɔ̃/, ds: reduction}
-  - {id: fr-v-eaf6c59ac2b26183, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: promotion (career advancement)}
+  - {id: fr-v-7039843a0eabb574, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: special offer; sale}
   - {id: fr-v-701c390240abda6a, ch: échange, pr: /e.ʃɑ̃ʒ/, ds: exchange}
   review_grammar:
   - {id: fr-g-polite-modal-request, ch: 'je voudrais + nom ; vous pouvez + infinitif ?', ds: Soften a request with a learned conditional or modal}
@@ -247,7 +247,7 @@ units:
   - {id: fr-v-c99d82853d1efe3b, ch: infirmier, pr: /ɛ̃.fiʁ.mje/, ds: nurse (medical professional)}
   - {id: fr-v-0ea18b7bf5b72870, ch: hôpital, pr: /o.pi.tal/, ds: hospital}
   - {id: fr-v-618d9a5aba603c24, ch: médicament, pr: /me.di.ka.mɑ̃/, ds: 'drug, medication, medicine, pharmaceutical, prescription'}
-  - {id: fr-v-a1b2ddd68c6274d1, ch: ordonnance, pr: /ɔʁ.dɔ.nɑ̃s/, ds: prescription}
+  - {id: fr-v-a1b2ddd68c6274d1, ch: ordonnance, pr: /ɔʁ.dɔ.nɑ̃s/, ds: medical prescription}
   - {id: fr-v-37b2c6a82f8ca9ce, ch: allergie, pr: /a.lɛʁ.ʒi/, ds: allergy}
   - {id: fr-v-2527ab29a8fe6145, ch: blessure, pr: /blɛ.syʁ/, ds: wound}
   - {id: fr-v-0fa81a980437bed9, ch: malade, pr: /ma.lad/, ds: 'ill, unwell, sick'}
@@ -255,10 +255,10 @@ units:
   - {id: fr-v-683b8a86726616a7, ch: souffrir, pr: /su.fʁiʁ/, ds: to suffer}
   - {id: fr-v-f727be7977b7a0a5, ch: tousser, pr: /tu.se/, ds: to cough}
   - {id: fr-v-23abd133e667fe88, ch: respirer, pr: /ʁɛs.pi.ʁe/, ds: to breathe}
-  - {id: fr-v-eef4c9c8dacad218, ch: reposer, pr: /ʁə.po.ze/, ds: 'to put down, to place'}
+  - {id: fr-v-0a7cf8ed3cf2c6cd, ch: reposer, pr: /ʁə.po.ze/, ds: to rest; reflexive use}
   - {id: fr-v-88887749bd9d1b51, ch: soigner, pr: /swa.ɲe/, ds: to treat; to nurse}
   - {id: fr-v-5ddae89baff4c017, ch: tomber, pr: /tɔ̃.be/, ds: to fall}
-  - {id: fr-v-006b1a71db8f24bb, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to smell (to have a certain odor)}
+  - {id: fr-v-b03ca1b453349362, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to feel; physical sensation}
   grammar: []
   review_vocabulary:
   - {id: fr-v-531ad913163ed0d3, ch: genou, pr: /ʒə.nu/, ds: knee}
@@ -306,8 +306,8 @@ units:
   - {id: fr-v-683b8a86726616a7, ch: souffrir, pr: /su.fʁiʁ/, ds: to suffer}
   - {id: fr-v-f727be7977b7a0a5, ch: tousser, pr: /tu.se/, ds: to cough}
   - {id: fr-v-23abd133e667fe88, ch: respirer, pr: /ʁɛs.pi.ʁe/, ds: to breathe}
-  - {id: fr-v-eef4c9c8dacad218, ch: reposer, pr: /ʁə.po.ze/, ds: 'to put down, to place'}
+  - {id: fr-v-0a7cf8ed3cf2c6cd, ch: reposer, pr: /ʁə.po.ze/, ds: to rest; reflexive use}
   - {id: fr-v-88887749bd9d1b51, ch: soigner, pr: /swa.ɲe/, ds: to treat; to nurse}
   - {id: fr-v-5ddae89baff4c017, ch: tomber, pr: /tɔ̃.be/, ds: to fall}
-  - {id: fr-v-006b1a71db8f24bb, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to smell (to have a certain odor)}
+  - {id: fr-v-b03ca1b453349362, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to feel; physical sensation}
   review_grammar: []

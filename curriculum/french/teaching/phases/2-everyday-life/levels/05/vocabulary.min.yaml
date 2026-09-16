@@ -10,14 +10,14 @@
 - {id: fr-v-2a091091f727a47a, ch: fenêtre, pr: /fə.nɛtʁ/, ds: window}
 - {id: fr-v-f1dcdaf1ceb2f4d0, ch: mur, pr: /myʁ/, ds: wall}
 - {id: fr-v-79fe7652aaa70c9a, ch: plafond, pr: /pla.fɔ̃/, ds: ceiling}
-- {id: fr-v-d9723a0f4fe7135b, ch: sol, pr: /sɔl/, ds: 'soil, earth'}
+- {id: fr-v-b98ad7c0caa6bae5, ch: sol, pr: /sɔl/, ds: floor; indoor surface}
 - {id: fr-v-1430837d28d27c88, ch: toit, pr: /twa/, ds: roof}
 - {id: fr-v-227c0f3d7dc35a02, ch: balcon, pr: /bal.kɔ̃/, ds: balcony}
 - {id: fr-v-ba7528b010e23ed3, ch: jardin, pr: /ʒaʁ.dɛ̃/, ds: garden}
 - {id: fr-v-b71ada19a922d6bc, ch: cour, pr: /kuʁ/, ds: 'courtyard,'}
 - {id: fr-v-79b8e9571389310f, ch: cuisine, pr: /kɥi.zin/, ds: kitchen}
 - {id: fr-v-e6ee8368165702d8, ch: salon, pr: /sa.lɔ̃/, ds: living room}
-- {id: fr-v-c6e8fe20085dc289, ch: salle, pr: /sal/, ds: hall}
+- {id: fr-v-7edcc5d3166475ea, ch: salle, pr: /sal/, ds: room in a house}
 - {id: fr-v-f1ea76ac16e35da6, ch: bureau, pr: /by.ʁo/, ds: desk}
 - {id: fr-v-9bb102ee78354498, ch: toilette, pr: /twa.lɛt/, ds: toilet; lavatory}
 - {id: fr-v-24addd70198fc992, ch: douche, pr: /duʃ/, ds: shower}
@@ -52,7 +52,7 @@
 - {id: fr-v-b8c21d9b8d622f9e, ch: savon, pr: /sa.vɔ̃/, ds: soap}
 - {id: fr-v-b1d8b80fd8bc81ec, ch: lessive, pr: /le.siv/, ds: 'lye, alkaline solution; detergent'}
 - {id: fr-v-1a0e3f81096b2231, ch: serviette, pr: /sɛʁ.vjɛt/, ds: towel (cloth used for wiping)}
-- {id: fr-v-3713e18c0d9c8166, ch: éponge, pr: /e.pɔ̃ʒ/, ds: sponge (creature)}
+- {id: fr-v-095f902a74e6c9af, ch: éponge, pr: /e.pɔ̃ʒ/, ds: sponge for cleaning}
 - {id: fr-v-9175034ec581fa04, ch: balai, pr: /ba.lɛ/, ds: broom}
 - {id: fr-v-d251290ec76cee69, ch: aspirateur, pr: /as.pi.ʁa.tœʁ/, ds: vacuum cleaner}
 - {id: fr-v-6beeee02c66ff68a, ch: chauffage, pr: /ʃo.faʒ/, ds: heating}
@@ -69,12 +69,12 @@
 - {id: fr-v-b99ef38e35496ca9, ch: parfois, pr: /paʁ.fwa/, ds: sometimes}
 - {id: fr-v-b79403b9e947f300, ch: rarement, pr: /ʁaʁ.mɑ̃/, ds: 'rarely, seldom'}
 - {id: fr-v-d636e344fcd3d2b3, ch: habituellement, pr: /a.bi.tɥɛl.mɑ̃/, ds: 'usually, habitually'}
-- {id: fr-v-b8615644143fd76f, ch: normalement, pr: /nɔʁ.mal.mɑ̃/, ds: in theory}
+- {id: fr-v-413a1a928d96f038, ch: normalement, pr: /nɔʁ.mal.mɑ̃/, ds: usually}
 - {id: fr-v-58bc50ae8df2bf3d, ch: régulièrement, pr: /ʁe.ɡy.ljɛʁ.mɑ̃/, ds: 'regularly, on a regular basis, frequently'}
 - {id: fr-v-8e6f407f3be67477, ch: déjà, pr: /de.ʒa/, ds: 'already, before'}
 - {id: fr-v-46a3e4b156cbedfb, ch: bientôt, pr: /bjɛ̃.to/, ds: soon}
 - {id: fr-v-bc7ff10c18433de7, ch: ensuite, pr: /ɑ̃.sɥit/, ds: 'in turn, subsequently, thereafter, then'}
-- {id: fr-v-d8c54d320f468ddd, ch: puis, pr: /pɥi/, ds: and}
+- {id: fr-v-963369a726481d04, ch: puis, pr: /pɥi/, ds: then; next}
 - {id: fr-v-964ed2fe9cbdf9e8, ch: enfin, pr: /ɑ̃.fɛ̃/, ds: finally; in the end}
 - {id: fr-v-94b223ea9dc52484, ch: pendant, pr: /pɑ̃.dɑ̃/, ds: 'during, throughout, for the duration of'}
 - {id: fr-v-0bd3264a73c4ddcd, ch: depuis, pr: /də.pɥi/, ds: since}
@@ -137,7 +137,7 @@
 - {id: fr-v-b9153876bde7a405, ch: arroser, pr: /a.ʁo.ze/, ds: to water (e.g. plants)}
 - {id: fr-v-5cf94dcf68e9533d, ch: recevoir, pr: /ʁə.sə.vwaʁ/, ds: to receive}
 - {id: fr-v-c1a085b4c4407d25, ch: inviter, pr: /ɛ̃.vi.te/, ds: to invite}
-- {id: fr-v-38623331065f795f, ch: déménager, pr: /de.me.na.ʒe/, ds: to move (an object from a place to another)}
+- {id: fr-v-ae8bebb56dc9376d, ch: déménager, pr: /de.me.na.ʒe/, ds: to move house}
 - {id: fr-v-672c936aeb582d52, ch: installer, pr: /ɛ̃s.ta.le/, ds: to install}
 - {id: fr-v-f35e3d99b4844c10, ch: prêter, pr: /pʁɛ.te/, ds: to lend}
 - {id: fr-v-ba55e4aaf26a3249, ch: emprunter, pr: /ɑ̃.pʁœ̃.te/, ds: to borrow (~ à (“from”))}

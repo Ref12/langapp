@@ -9,8 +9,8 @@ import unicodedata
 
 from curriculum_yaml import dump_yaml, load_yaml
 from import_french_curriculum import (
-    ORIGINAL_SOURCE, ROOT, authoring_fields as fields, authoring_label as label,
-    authoring_text as nonempty, compile_grammar, phonetic_ipa, read_projection,
+    LEXIQUE_ID, ORIGINAL_SOURCE, ROOT, authoring_fields as fields, authoring_label as label,
+    authoring_text as nonempty, compile_grammar, lexical_pos, phonetic_ipa, read_projection,
     reference_data, serialize_references, stable_id,
 )
 from practical_program_types import (
@@ -22,6 +22,26 @@ def phones(value: str) -> str:
     """Compare source phonemes without IPA brackets or syllabification."""
     return "".join(character for character in unicodedata.normalize("NFC", value)
                    if not character.isspace() and character not in "/[].")
+
+
+def lexique_inflection_matches(base: dict, inflected: dict, tags: set[str]) -> bool:
+    morphology = {
+        "feminine": ("genre", "f"), "masculine": ("genre", "m"),
+        "singular": ("nombre", "s"), "plural": ("nombre", "p"),
+    }
+    if (lexical_pos(base["cgram"]) not in ("noun", "adj")
+            or tags - morphology.keys() or inflected["lemme"] != base["lemme"]
+            or inflected["cgram"] != base["cgram"] or base["infover"] or inflected["infover"]):
+        return False
+    requested = {}
+    for tag in tags:
+        feature, value = morphology[tag]
+        if feature in requested and requested[feature] != value:
+            return False
+        requested[feature] = value
+    # Unchanged features still matter: feminine alone does not permit a plural.
+    expected = {feature: requested.get(feature, base[feature]) for feature in ("genre", "nombre")}
+    return all(not value or inflected[feature] == value for feature, value in expected.items())
 
 
 def compile_realizations(specs: list[dict], words: dict, patterns: dict,
@@ -84,25 +104,41 @@ def compile_realizations(specs: list[dict], words: dict, patterns: dict,
                 if not spec["grammar"] or not isinstance(spec.get("tags"), list) or not spec["tags"]:
                     raise ValueError(f"{identifier}: inflection needs grammatical licensing and source tags")
                 record = source_records[source["source_record"]]
+                if record["word"] != source["lemma"] or record["pos"] != source["part_of_speech"]:
+                    raise ValueError(f"{identifier}: inflection source has a different lemma or part of speech")
                 forms = [form for form in record["forms"]
                          if form.get("form") == spec["ch"] and set(spec["tags"]) <= set(form.get("tags", []))]
                 if not forms:
                     raise ValueError(f"{identifier}: written inflection is not attested for its lexical owner")
                 direct = any(form.get("ipa") and phones(form["ipa"]) == phones(spec["pr"]) for form in forms)
-                base_lemmas = {row["lemme"] for row in phonetic_rows[source["lemma"]]
-                               if row["phon"] and phones(phonetic_ipa(row["phon"])) == phones(word["pr"])}
-                supporting = [
-                    row for row in phonetic_rows[spec["ch"]]
-                    if row["lemme"] in base_lemmas and row["phon"]
-                    and phones(phonetic_ipa(row["phon"])) == phones(spec["pr"])
-                ]
-                if not direct and not supporting:
-                    raise ValueError(f"{identifier}: inflection pronunciation lacks aligned source support")
-                evidence = {
-                    "source_id": source["source_id"] if direct else "lexique-3.83",
-                    "source_record": source["source_record"] if direct else supporting[0]["record"],
-                    "status": "Source-attested inflection and aligned phonology; syllable separators may differ.",
-                }
+                if direct:
+                    evidence = {
+                        "source_id": source["source_id"], "source_record": source["source_record"],
+                        "status": "IPA on the selected lexical owner's attested form; syllable separators may differ.",
+                    }
+                else:
+                    bases = [
+                        row for row in phonetic_rows[source["lemma"]]
+                        if row["lemme"] == source["lemma"] and row["islem"] == "1"
+                        and lexical_pos(row["cgram"]) == source["part_of_speech"]
+                        and row["phon"] and phones(phonetic_ipa(row["phon"])) == phones(word["pr"])
+                    ]
+                    supporting = [
+                        (base, row) for base in bases for row in phonetic_rows[spec["ch"]]
+                        if lexique_inflection_matches(base, row, set(spec["tags"]))
+                        and row["phon"] and phones(phonetic_ipa(row["phon"])) == phones(spec["pr"])
+                    ]
+                    if not supporting:
+                        raise ValueError(f"{identifier}: inflection pronunciation lacks aligned source support")
+                    base, inflected = supporting[0]
+                    evidence = {
+                        "source_id": LEXIQUE_ID, "source_record": inflected["record"],
+                        "canonical_record": base["record"], "lemma": base["lemme"],
+                        "part_of_speech": base["cgram"], "gender": inflected["genre"],
+                        "number": inflected["nombre"], "requested_tags": spec["tags"],
+                        "source_phonetic_code": inflected["phon"],
+                        "status": "Selected lemma/POS-aligned canonical and inflected Lexique evidence; requested and unchanged morphology checked.",
+                    }
         else:
             raise ValueError(f"{identifier}: unknown realization kind {kind!r}")
         # Authored boundary spaces guide joining; engine segments are trimmed.

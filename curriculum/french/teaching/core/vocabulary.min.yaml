@@ -5,12 +5,12 @@
 - {id: fr-v-cb63b4cbe04aa734, ch: pardon, pr: /paʁ.dɔ̃/, ds: excuse me}
 - {id: fr-v-9679872d677a1a0e, ch: oui, pr: /wi/, ds: 'yes'}
 - {id: fr-v-19a1375d75dedfdd, ch: non, pr: /nɔ̃/, ds: 'no'}
-- {id: fr-v-3979041abde4fbe8, ch: bienvenue, pr: /bjɛ̃.v(ə).ny/, ds: welcome}
+- {id: fr-v-f485cb3f25713bcc, ch: bienvenue, pr: /bjɛ̃.v(ə).ny/, ds: welcome; greeting}
 - {id: fr-v-bd5fce6e0788c23a, ch: au revoir, pr: /o ʁə.vwaʁ/, ds: goodbye}
 - {id: fr-v-d8844688f35121d4, ch: excuse, pr: /ɛk.skyz/, ds: excuse}
-- {id: fr-v-d670bc52ae8a1fb9, ch: français, pr: /fʁɑ̃.sɛ/, ds: French}
+- {id: fr-v-e82d4ba5bcde3555, ch: français, pr: /fʁɑ̃.sɛ/, ds: French language}
 - {id: fr-v-5f616523a0cc1100, ch: anglais, pr: /ɑ̃.ɡlɛ/, ds: English (language)}
-- {id: fr-v-87472db5bce31239, ch: langue, pr: /lɑ̃ɡ/, ds: tongue}
+- {id: fr-v-61bcd768c548455a, ch: langue, pr: /lɑ̃ɡ/, ds: language; system of communication}
 - {id: fr-v-d439345d496b922c, ch: mot, pr: /mo/, ds: word}
 - {id: fr-v-bac21c7193e90f29, ch: phrase, pr: /fʁaz/, ds: sentence}
 - {id: fr-v-b37372fc5aa9116d, ch: nom, pr: /nɔ̃/, ds: name}
@@ -43,7 +43,7 @@
 - {id: fr-v-23aed6f0aa7352ba, ch: faire, pr: /fɛʁ/, ds: to do}
 - {id: fr-v-5c68a89f38d9b824, ch: voir, pr: /vwaʁ/, ds: to see (visually)}
 - {id: fr-v-90e551d22bb952c9, ch: donner, pr: /dɔ.ne/, ds: to give}
-- {id: fr-v-e54a8e8169505408, ch: nommer, pr: /nɔ.me/, ds: to nominate}
+- {id: fr-v-18caab3d7c690471, ch: nommer, pr: /nɔ.me/, ds: to name; to call by a name}
 - {id: fr-v-004b7eb26bb697a6, ch: je, pr: /ʒə/, ds: I}
 - {id: fr-v-0f958efe3b6dd8df, ch: tu, pr: /ty/, ds: you (singular)}
 - {id: fr-v-e01b4fb2f75bc841, ch: vous, pr: /vu/, ds: you; polite singular or plural}
@@ -100,11 +100,11 @@
 - {id: fr-v-405e7736ab8e3c19, ch: porte, pr: /pɔʁt/, ds: door}
 - {id: fr-v-f2771df010b4d956, ch: table, pr: /tabl/, ds: table; piece of furniture}
 - {id: fr-v-33d059909d38fe5d, ch: chaise, pr: /ʃɛz/, ds: 'chair, seat'}
-- {id: fr-v-c1e69ebea158f92f, ch: place, pr: /plas/, ds: 'place, square, plaza, piazza'}
+- {id: fr-v-8603a8b24d483724, ch: place, pr: /plas/, ds: space; available room}
 - {id: fr-v-627d5e482176d163, ch: photo, pr: /fɔ.to/, ds: photo}
 - {id: fr-v-b736bac02ea9efb2, ch: grand, pr: /ɡʁɑ̃/, ds: big}
 - {id: fr-v-fff5cbc01133f140, ch: petit, pr: /pə.ti/, ds: small}
-- {id: fr-v-202e33aad699334e, ch: nouveau, pr: /nu.vo/, ds: 'new person, new thing'}
+- {id: fr-v-51376bb19ca5a0c7, ch: nouveau, pr: /nu.vo/, ds: new}
 - {id: fr-v-8332cdeadc9fd451, ch: vieux, pr: /vjø/, ds: old}
 - {id: fr-v-2421d5e16ee85796, ch: jeune, pr: /ʒœn/, ds: young}
 - {id: fr-v-f0273331a5e2c75c, ch: beau, pr: /bo/, ds: 'handsome, fine, attractive'}
@@ -117,7 +117,7 @@
 - {id: fr-v-4c21d85fcc0322ee, ch: vert, pr: /vɛʁ/, ds: green}
 - {id: fr-v-b2b0a4d3e600dc47, ch: jaune, pr: /ʒon/, ds: yellow}
 - {id: fr-v-58ad292acdcaa334, ch: couleur, pr: /ku.lœʁ/, ds: color/colour}
-- {id: fr-v-17e38e9a014ef68b, ch: même, pr: /mɛm/, ds: even}
+- {id: fr-v-6b1b8caaff1de9be, ch: même, pr: /mɛm/, ds: same}
 - {id: fr-v-3ec5d5479bdc6cff, ch: autre, pr: /otʁ/, ds: other}
 - {id: fr-v-3cd9eb8a99ac0682, ch: le, pr: /lə/, ds: the; definite article}
 - {id: fr-v-eec2f795ebff342d, ch: un, pr: /œ̃/, ds: 'an, a'}
@@ -127,14 +127,14 @@
 - {id: fr-v-38019a7825f51308, ch: son, pr: /sɔ̃/, ds: his}
 - {id: fr-v-143aea7c7952a856, ch: notre, pr: /nɔtʁ/, ds: our}
 - {id: fr-v-8f9fce34db0b90ff, ch: votre, pr: /vɔtʁ/, ds: 'your, belonging to you (plural or formal)'}
-- {id: fr-v-fbf60a681af7aaca, ch: leur, pr: /lœʁ/, ds: (to) them}
+- {id: fr-v-631eeb660c5dd532, ch: leur, pr: /lœʁ/, ds: their; possessive determiner}
 - {id: fr-v-a421908bf7011681, ch: de, pr: /də/, ds: 'of; possession, association, or relationship'}
 - {id: fr-v-5ec809f61dd4f922, ch: à, pr: /a/, ds: to (destination)}
 - {id: fr-v-8b08d0d1eb85ad1c, ch: dans, pr: /dɑ̃/, ds: 'in, inside (enclosed in a physical space, a group, a state)'}
 - {id: fr-v-098e19a148c05266, ch: sur, pr: /syʁ/, ds: 'on, upon'}
 - {id: fr-v-8cd331fbd521083e, ch: sous, pr: /su/, ds: 'below, under'}
 - {id: fr-v-810ff3f01a4e6b01, ch: entre, pr: /ɑ̃tʁ/, ds: between}
-- {id: fr-v-bc5110cf1dfcb1f0, ch: devant, pr: /də.vɑ̃/, ds: 'confronted with, faced with'}
+- {id: fr-v-fd582a89df883fb0, ch: devant, pr: /də.vɑ̃/, ds: in front of}
 - {id: fr-v-df1df27984b04cc8, ch: derrière, pr: /dɛ.ʁjɛʁ/, ds: behind}
 - {id: fr-v-c1a655ae9925085a, ch: chez, pr: /ʃe/, ds: 'to, at, in or into the place of'}
 - {id: fr-v-dffaea6b9559b478, ch: eau, pr: /o/, ds: water}
@@ -148,12 +148,12 @@
 - {id: fr-v-bf17917ceffc5ec3, ch: sel, pr: /sɛl/, ds: 'table salt, i.e. sodium chloride (NaCl)'}
 - {id: fr-v-56dd80a816c8baf2, ch: poivre, pr: /pwavʁ/, ds: pepper (spice)}
 - {id: fr-v-37150acd429cefe7, ch: riz, pr: /ʁi/, ds: rice}
-- {id: fr-v-aac6eeb0dd32fb54, ch: pâte, pr: /pat/, ds: paste (a soft moist mixture)}
+- {id: fr-v-3ef2ab34a5424838, ch: pâte, pr: /pat/, ds: pasta; noodles; plural usage}
 - {id: fr-v-d7a7a3a155f173eb, ch: pomme, pr: /pɔm/, ds: apple (fruit)}
 - {id: fr-v-9d3c06c79ead84f3, ch: banane, pr: /ba.nan/, ds: banana (the fruit)}
 - {id: fr-v-889256b7407723ce, ch: orange, pr: /ɔ.ʁɑ̃ʒ/, ds: orange (fruit)}
 - {id: fr-v-5c9f0e39483c9966, ch: citron, pr: /si.tʁɔ̃/, ds: lemon}
-- {id: fr-v-72020551d9d629e5, ch: tomate, pr: /tɔ.mat/, ds: tomato (plant)}
+- {id: fr-v-0840bed1993363ac, ch: tomate, pr: /tɔ.mat/, ds: tomato; edible fruit}
 - {id: fr-v-9879878c86d02e63, ch: salade, pr: /sa.lad/, ds: salad (raw vegetables in general)}
 - {id: fr-v-6dbd14cf15613b0e, ch: légume, pr: /le.ɡym/, ds: vegetable}
 - {id: fr-v-40f2bffedc255b0b, ch: fruit, pr: /fʁɥi/, ds: fruit}
@@ -167,17 +167,17 @@
 - {id: fr-v-2db5c686c476a424, ch: petit déjeuner, pr: /pə.ti de.ʒœ.ne/, ds: breakfast (morning meal)}
 - {id: fr-v-0cd96d2f90926428, ch: déjeuner, pr: /de.ʒœ.ne/, ds: 'lunch, luncheon'}
 - {id: fr-v-68e0964d734b9187, ch: dîner, pr: /di.ne/, ds: 'dinner, evening meal'}
-- {id: fr-v-392230f6d1c0eb5a, ch: menu, pr: /mə.ny/, ds: detailed list}
+- {id: fr-v-adbf339013accf71, ch: menu, pr: /mə.ny/, ds: menu; set meal}
 - {id: fr-v-32eaf4fd3e3a1c13, ch: restaurant, pr: /ʁɛs.tɔ.ʁɑ̃/, ds: restaurant}
-- {id: fr-v-43c1306104468b9b, ch: verre, pr: /vɛʁ/, ds: glass (substance)}
+- {id: fr-v-dcd9ee218154e929, ch: verre, pr: /vɛʁ/, ds: drinking glass}
 - {id: fr-v-272b5254d973b8b4, ch: tasse, pr: /tas/, ds: cup}
-- {id: fr-v-e0383a8acd88b034, ch: assiette, pr: /a.sjɛt/, ds: seat}
+- {id: fr-v-e3dd185d0abea415, ch: assiette, pr: /a.sjɛt/, ds: plate; tableware}
 - {id: fr-v-15c728a1d6e88066, ch: bouteille, pr: /bu.tɛj/, ds: bottle}
 - {id: fr-v-301115bbbccf8ad3, ch: manger, pr: /mɑ̃.ʒe/, ds: to eat}
 - {id: fr-v-d37f9ed8cf6bf472, ch: boire, pr: /bwaʁ/, ds: to drink}
 - {id: fr-v-72f899689de74107, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to have food or drink}
 - {id: fr-v-32b69e67f5d2fa92, ch: aimer, pr: /ɛ.me/, ds: to love; to like}
-- {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order (tell someone to do something)}
+- {id: fr-v-794486ca61c84640, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order food or goods}
 - {id: fr-v-6746733a972453d5, ch: chaud, pr: /ʃo/, ds: 'warm, hot'}
 - {id: fr-v-fe3439b43195c5bf, ch: froid, pr: /fʁwa/, ds: cold (temperature)}
 - {id: fr-v-429fa20a62c1cffc, ch: faim, pr: /fɛ̃/, ds: hunger (desire of food)}
@@ -190,7 +190,7 @@
 - {id: fr-v-6fcf9448c4876de9, ch: six, pr: /sis/, ds: six}
 - {id: fr-v-a1bfeb9dac673071, ch: sept, pr: /sɛt/, ds: seven}
 - {id: fr-v-2eefd6b871be5309, ch: huit, pr: /ɥit/, ds: eight}
-- {id: fr-v-c588381de578c5b2, ch: neuf, pr: /nœf/, ds: 'brand new, very new'}
+- {id: fr-v-603343c7b524e167, ch: neuf, pr: /nœf/, ds: nine}
 - {id: fr-v-2ae096aa7e26a300, ch: dix, pr: /dis/, ds: ten}
 - {id: fr-v-5ca5a116c72a736d, ch: onze, pr: /ɔ̃z/, ds: eleven}
 - {id: fr-v-8a24d169c204a3bb, ch: douze, pr: /duz/, ds: twelve}
@@ -211,19 +211,20 @@
 - {id: fr-v-67c7897101ffd90e, ch: quatre-vingt-dix, pr: /ka.tʁə.vɛ̃.dis/, ds: ninety}
 - {id: fr-v-c7c28a0409da2972, ch: cent, pr: /sɑ̃/, ds: hundred}
 - {id: fr-v-999a4a03763c288a, ch: mille, pr: /mil/, ds: 'thousand, one thousand, a thousand'}
-- {id: fr-v-e5b14a76d6a37833, ch: prix, pr: /pʁi/, ds: prize}
+- {id: fr-v-896ec121ba67f365, ch: prix, pr: /pʁi/, ds: price; amount to pay}
 - {id: fr-v-7d966e2f1c31bfab, ch: euro, pr: /ø.ʁo/, ds: euro (currency)}
-- {id: fr-v-a890afc708ce1153, ch: argent, pr: /aʁ.ʒɑ̃/, ds: silver}
+- {id: fr-v-b70ae08dfe2e0599, ch: argent, pr: /aʁ.ʒɑ̃/, ds: money; cash}
 - {id: fr-v-316e14adeeec3729, ch: combien, pr: /kɔ̃.bjɛ̃/, ds: how much (for uncountable nouns and portions)}
 - {id: fr-v-efce47b635a01e44, ch: acheter, pr: /aʃ.te/, ds: to purchase; buy}
 - {id: fr-v-87f49d1132e9bfcb, ch: payer, pr: /pɛ.je/, ds: to pay (for)}
 - {id: fr-v-c2dae6967cacba06, ch: pour, pr: /puʁ/, ds: 'for (meant for, intended for)'}
 - {id: fr-v-cc5b9e82c78eacc1, ch: addition, pr: /a.di.sjɔ̃/, ds: bill or check at a bar or restaurant}
 - {id: fr-v-2d65ad11e090e5c4, ch: beaucoup, pr: /bo.ku/, ds: 'much, very much, a lot'}
-- {id: fr-v-ae8015bcfc2423b9, ch: peu, pr: /pø/, ds: few}
+- {id: fr-v-d8a0575215bda862, ch: peu, pr: /pø/, ds: little; not much or many}
 - {id: fr-v-0bab267f71053c23, ch: assez, pr: /a.se/, ds: to a sufficient or moderate degree; enough; sufficiently}
 - {id: fr-v-1ee296be52917894, ch: trop, pr: /tʁo/, ds: too; too much}
 - {id: fr-v-32dc4e88ac574eea, ch: tout, pr: /tu/, ds: all}
+- {id: fr-v-98fb5c748d865023, ch: un, pr: /œ̃/, ds: one}
 - {id: fr-v-a1dd1b331b48f8f8, ch: jour, pr: /ʒuʁ/, ds: day}
 - {id: fr-v-af55d38f8285cc88, ch: nuit, pr: /nɥi/, ds: night}
 - {id: fr-v-5987f5a575fb9c78, ch: matin, pr: /ma.tɛ̃/, ds: morning}
@@ -252,13 +253,13 @@
 - {id: fr-v-9c2e0fa594d789d1, ch: connaître, pr: /kɔ.nɛtʁ/, ds: 'to know (of), to be familiar with (a person, place, fact, event)'}
 - {id: fr-v-f65a24ea817bd09b, ch: apporter, pr: /a.pɔʁ.te/, ds: to bring (something)}
 - {id: fr-v-68ee1dcb283c64ae, ch: offrir, pr: /ɔ.fʁiʁ/, ds: to offer; to provide}
-- {id: fr-v-22afdd0b327e4284, ch: prévenir, pr: /pʁev.niʁ/, ds: 'to prevent, to avert, to guard against'}
+- {id: fr-v-fbaea30b3c0cb6ec, ch: prévenir, pr: /pʁev.niʁ/, ds: to notify; to warn}
 - {id: fr-v-49bc81663759a40a, ch: secours, pr: /sə.kuʁ/, ds: aid; assistance; help}
 - {id: fr-v-57ea8e93200fea91, ch: aide, pr: /ɛd/, ds: 'help, support'}
 - {id: fr-v-26a1657b2305ce98, ch: problème, pr: /pʁɔ.blɛm/, ds: problem}
-- {id: fr-v-20f24503913d51ee, ch: rendez-vous, pr: /ʁɑ̃.de.vu/, ds: date}
+- {id: fr-v-59698bbf70abc161, ch: rendez-vous, pr: /ʁɑ̃.de.vu/, ds: appointment}
 - {id: fr-v-c2747f81008e4c62, ch: besoin, pr: /bə.zwɛ̃/, ds: need}
-- {id: fr-v-4aae37cb84ca2cfe, ch: accord, pr: /a.kɔʁ/, ds: chord}
+- {id: fr-v-24e1299f952bb227, ch: accord, pr: /a.kɔʁ/, ds: agreement}
 - {id: fr-v-a1a099edb53a0999, ch: attention, pr: /a.tɑ̃.sjɔ̃/, ds: look out! watch out! careful!}
 - {id: fr-v-1bc5897f17aaef34, ch: possible, pr: /pɔ.sibl/, ds: possible}
 - {id: fr-v-280b1dd2c60c1c9d, ch: impossible, pr: /ɛ̃.pɔ.sibl/, ds: impossible}
@@ -294,19 +295,19 @@
 - {id: fr-v-049176dcb52dab60, ch: bus, pr: /bys/, ds: bus}
 - {id: fr-v-7729f59216a4d6e0, ch: métro, pr: /me.tʁo/, ds: 'metro; subway (US), underground (UK), Tube (UK)'}
 - {id: fr-v-710246ed5515ac42, ch: taxi, pr: /tak.si/, ds: taxi}
-- {id: fr-v-ff345ef6640adb7d, ch: voiture, pr: /vwa.tyʁ/, ds: car (wagon)}
+- {id: fr-v-f2ae151ce048f91c, ch: voiture, pr: /vwa.tyʁ/, ds: car; motor vehicle}
 - {id: fr-v-36819c829fedec30, ch: avion, pr: /a.vjɔ̃/, ds: aeroplane}
 - {id: fr-v-13a5672c70a750ba, ch: aéroport, pr: /a.e.ʁɔ.pɔʁ/, ds: 'airport (place, company managing such a place)'}
 - {id: fr-v-7d4b1a3ec129806b, ch: hôtel, pr: /o.tɛl/, ds: hotel; paid accommodation}
-- {id: fr-v-d6b7a3b6f9402564, ch: chambre, pr: /ʃɑ̃bʁ/, ds: a room.}
+- {id: fr-v-c22fc3483ea21daf, ch: chambre, pr: /ʃɑ̃bʁ/, ds: hotel room}
 - {id: fr-v-bcd3a43850411ae2, ch: billet, pr: /bi.jɛ/, ds: ticket}
 - {id: fr-v-af3b9aa259375c11, ch: voyage, pr: /vwa.jaʒ/, ds: 'trip, journey, voyage'}
 - {id: fr-v-b73cbb16bfc51474, ch: carte, pr: /kaʁt/, ds: card}
 - {id: fr-v-0eb4b169d661d99c, ch: plan, pr: /plɑ̃/, ds: 'map (schematic maps of streets, subways, etc.)'}
 - {id: fr-v-ac514549469b27e0, ch: chemin, pr: /ʃə.mɛ̃/, ds: 'path, way, road'}
-- {id: fr-v-718bbcc6fa05a8a0, ch: arrêt, pr: /a.ʁɛ/, ds: stopping}
+- {id: fr-v-b3d3165d893a973f, ch: arrêt, pr: /a.ʁɛ/, ds: stop; stopping place}
 - {id: fr-v-aa510f7ac10470c7, ch: sortie, pr: /sɔʁ.ti/, ds: exit; way out}
-- {id: fr-v-350323259b922cb2, ch: entrée, pr: /ɑ̃.tʁe/, ds: 'entry, act of entering'}
+- {id: fr-v-2dbdc68186ce2499, ch: entrée, pr: /ɑ̃.tʁe/, ds: entrance; way in}
 - {id: fr-v-f65b1c1fbb3f942a, ch: gauche, pr: /ɡoʃ/, ds: 'the left, the left-hand side'}
 - {id: fr-v-fd0ac678bbeb492d, ch: droite, pr: /dʁwat/, ds: right-hand side}
 - {id: fr-v-ec10bcff5ba86d15, ch: nord, pr: /nɔʁ/, ds: north}
@@ -314,13 +315,13 @@
 - {id: fr-v-9d13e5b232bf95ad, ch: est, pr: /ɛst/, ds: east}
 - {id: fr-v-7b3a41f9e9f449d6, ch: ouest, pr: /wɛst/, ds: west}
 - {id: fr-v-1132693274584f4f, ch: loin, pr: /lwɛ̃/, ds: 'far, distant'}
-- {id: fr-v-843bf90dee592612, ch: près, pr: /pʁɛ/, ds: attached to}
-- {id: fr-v-21a45e0338858e0a, ch: tout droit, pr: /tu dʁwa/, ds: to the front}
+- {id: fr-v-27a89ec0f35e3d21, ch: près, pr: /pʁɛ/, ds: near; close by}
+- {id: fr-v-b4b6f559cec59cd2, ch: tout droit, pr: /tu dʁwa/, ds: straight ahead}
 - {id: fr-v-d25330c17e0381a1, ch: aller, pr: /a.le/, ds: to go}
 - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
 - {id: fr-v-9bd6afe04827273d, ch: partir, pr: /paʁ.tiʁ/, ds: 'to go away, leave, depart'}
 - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
-- {id: fr-v-6a95d3dbe3a8dd58, ch: retourner, pr: /ʁə.tuʁ.ne/, ds: to turn over; to turn upside-down}
+- {id: fr-v-adada4742558d18e, ch: retourner, pr: /ʁə.tuʁ.ne/, ds: to go back; to return to a place}
 - {id: fr-v-cd70435b8e7ed4af, ch: marcher, pr: /maʁ.ʃe/, ds: to walk}
 - {id: fr-v-909016573f8971be, ch: chercher, pr: /ʃɛʁ.ʃe/, ds: 'to look for, to seek'}
 - {id: fr-v-e3939d1d2a7cb2dc, ch: trouver, pr: /tʁu.ve/, ds: to find}
@@ -346,14 +347,14 @@
 - {id: fr-v-2a091091f727a47a, ch: fenêtre, pr: /fə.nɛtʁ/, ds: window}
 - {id: fr-v-f1dcdaf1ceb2f4d0, ch: mur, pr: /myʁ/, ds: wall}
 - {id: fr-v-79fe7652aaa70c9a, ch: plafond, pr: /pla.fɔ̃/, ds: ceiling}
-- {id: fr-v-d9723a0f4fe7135b, ch: sol, pr: /sɔl/, ds: 'soil, earth'}
+- {id: fr-v-b98ad7c0caa6bae5, ch: sol, pr: /sɔl/, ds: floor; indoor surface}
 - {id: fr-v-1430837d28d27c88, ch: toit, pr: /twa/, ds: roof}
 - {id: fr-v-227c0f3d7dc35a02, ch: balcon, pr: /bal.kɔ̃/, ds: balcony}
 - {id: fr-v-ba7528b010e23ed3, ch: jardin, pr: /ʒaʁ.dɛ̃/, ds: garden}
 - {id: fr-v-b71ada19a922d6bc, ch: cour, pr: /kuʁ/, ds: 'courtyard,'}
 - {id: fr-v-79b8e9571389310f, ch: cuisine, pr: /kɥi.zin/, ds: kitchen}
 - {id: fr-v-e6ee8368165702d8, ch: salon, pr: /sa.lɔ̃/, ds: living room}
-- {id: fr-v-c6e8fe20085dc289, ch: salle, pr: /sal/, ds: hall}
+- {id: fr-v-7edcc5d3166475ea, ch: salle, pr: /sal/, ds: room in a house}
 - {id: fr-v-f1ea76ac16e35da6, ch: bureau, pr: /by.ʁo/, ds: desk}
 - {id: fr-v-9bb102ee78354498, ch: toilette, pr: /twa.lɛt/, ds: toilet; lavatory}
 - {id: fr-v-24addd70198fc992, ch: douche, pr: /duʃ/, ds: shower}
@@ -388,7 +389,7 @@
 - {id: fr-v-b8c21d9b8d622f9e, ch: savon, pr: /sa.vɔ̃/, ds: soap}
 - {id: fr-v-b1d8b80fd8bc81ec, ch: lessive, pr: /le.siv/, ds: 'lye, alkaline solution; detergent'}
 - {id: fr-v-1a0e3f81096b2231, ch: serviette, pr: /sɛʁ.vjɛt/, ds: towel (cloth used for wiping)}
-- {id: fr-v-3713e18c0d9c8166, ch: éponge, pr: /e.pɔ̃ʒ/, ds: sponge (creature)}
+- {id: fr-v-095f902a74e6c9af, ch: éponge, pr: /e.pɔ̃ʒ/, ds: sponge for cleaning}
 - {id: fr-v-9175034ec581fa04, ch: balai, pr: /ba.lɛ/, ds: broom}
 - {id: fr-v-d251290ec76cee69, ch: aspirateur, pr: /as.pi.ʁa.tœʁ/, ds: vacuum cleaner}
 - {id: fr-v-6beeee02c66ff68a, ch: chauffage, pr: /ʃo.faʒ/, ds: heating}
@@ -405,12 +406,12 @@
 - {id: fr-v-b99ef38e35496ca9, ch: parfois, pr: /paʁ.fwa/, ds: sometimes}
 - {id: fr-v-b79403b9e947f300, ch: rarement, pr: /ʁaʁ.mɑ̃/, ds: 'rarely, seldom'}
 - {id: fr-v-d636e344fcd3d2b3, ch: habituellement, pr: /a.bi.tɥɛl.mɑ̃/, ds: 'usually, habitually'}
-- {id: fr-v-b8615644143fd76f, ch: normalement, pr: /nɔʁ.mal.mɑ̃/, ds: in theory}
+- {id: fr-v-413a1a928d96f038, ch: normalement, pr: /nɔʁ.mal.mɑ̃/, ds: usually}
 - {id: fr-v-58bc50ae8df2bf3d, ch: régulièrement, pr: /ʁe.ɡy.ljɛʁ.mɑ̃/, ds: 'regularly, on a regular basis, frequently'}
 - {id: fr-v-8e6f407f3be67477, ch: déjà, pr: /de.ʒa/, ds: 'already, before'}
 - {id: fr-v-46a3e4b156cbedfb, ch: bientôt, pr: /bjɛ̃.to/, ds: soon}
 - {id: fr-v-bc7ff10c18433de7, ch: ensuite, pr: /ɑ̃.sɥit/, ds: 'in turn, subsequently, thereafter, then'}
-- {id: fr-v-d8c54d320f468ddd, ch: puis, pr: /pɥi/, ds: and}
+- {id: fr-v-963369a726481d04, ch: puis, pr: /pɥi/, ds: then; next}
 - {id: fr-v-964ed2fe9cbdf9e8, ch: enfin, pr: /ɑ̃.fɛ̃/, ds: finally; in the end}
 - {id: fr-v-94b223ea9dc52484, ch: pendant, pr: /pɑ̃.dɑ̃/, ds: 'during, throughout, for the duration of'}
 - {id: fr-v-0bd3264a73c4ddcd, ch: depuis, pr: /də.pɥi/, ds: since}
@@ -473,7 +474,7 @@
 - {id: fr-v-b9153876bde7a405, ch: arroser, pr: /a.ʁo.ze/, ds: to water (e.g. plants)}
 - {id: fr-v-5cf94dcf68e9533d, ch: recevoir, pr: /ʁə.sə.vwaʁ/, ds: to receive}
 - {id: fr-v-c1a085b4c4407d25, ch: inviter, pr: /ɛ̃.vi.te/, ds: to invite}
-- {id: fr-v-38623331065f795f, ch: déménager, pr: /de.me.na.ʒe/, ds: to move (an object from a place to another)}
+- {id: fr-v-ae8bebb56dc9376d, ch: déménager, pr: /de.me.na.ʒe/, ds: to move house}
 - {id: fr-v-672c936aeb582d52, ch: installer, pr: /ɛ̃s.ta.le/, ds: to install}
 - {id: fr-v-f35e3d99b4844c10, ch: prêter, pr: /pʁɛ.te/, ds: to lend}
 - {id: fr-v-ba55e4aaf26a3249, ch: emprunter, pr: /ɑ̃.pʁœ̃.te/, ds: to borrow (~ à (“from”))}
@@ -496,8 +497,8 @@
 - {id: fr-v-e033ce0000761d48, ch: ceinture, pr: /sɛ̃.tyʁ/, ds: belt (item of clothing)}
 - {id: fr-v-6b939d7096a0eb17, ch: poche, pr: /pɔʃ/, ds: pocket (part of the clothing)}
 - {id: fr-v-7ae5330b43ad4896, ch: bouton, pr: /bu.tɔ̃/, ds: button}
-- {id: fr-v-8c8c7d500b559655, ch: fermeture, pr: /fɛʁ.mə.tyʁ/, ds: closing}
-- {id: fr-v-b45162731c9cc5f2, ch: taille, pr: /taj/, ds: 'the act of cutting, pruning, trimming'}
+- {id: fr-v-be74c3b7578999db, ch: fermeture, pr: /fɛʁ.mə.tyʁ/, ds: fastener; clothing closure}
+- {id: fr-v-560f509943381f3a, ch: taille, pr: /taj/, ds: size; clothing size}
 - {id: fr-v-61c8f5a45759f795, ch: pointure, pr: /pwɛ̃.tyʁ/, ds: shoe size}
 - {id: fr-v-fc05d59dd778e8fc, ch: tissu, pr: /ti.sy/, ds: fabric}
 - {id: fr-v-6faeed776fca4255, ch: coton, pr: /kɔ.tɔ̃/, ds: cotton (material)}
@@ -512,54 +513,54 @@
 - {id: fr-v-db9d58713320d383, ch: parapluie, pr: /pa.ʁa.plɥi/, ds: umbrella for rain}
 - {id: fr-v-ca0e13345e98d3d3, ch: essayer, pr: /e.sɛ.je/, ds: 'to test, to try on'}
 - {id: fr-v-3b58e2412fe564d3, ch: choisir, pr: /ʃwa.ziʁ/, ds: to choose}
-- {id: fr-v-2e4622c34693aade, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to admit; to agree}
+- {id: fr-v-b168b142ce44ef02, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to suit; to be suitable for}
 - {id: fr-v-8e89946bf1e412ed, ch: serré, pr: /sɛ.ʁe/, ds: tight}
 - {id: fr-v-142615f8ae584ab6, ch: large, pr: /laʁʒ/, ds: 'wide, broad'}
 - {id: fr-v-f4366e70b81bca94, ch: long, pr: /lɔ̃/, ds: long}
 - {id: fr-v-c2ea205c3f981029, ch: court, pr: /kuʁ/, ds: short}
-- {id: fr-v-422c9637122de350, ch: propre, pr: /pʁɔpʁ/, ds: own}
+- {id: fr-v-659cca1eeee04e37, ch: propre, pr: /pʁɔpʁ/, ds: clean; not dirty}
 - {id: fr-v-9a39cad84b7d0084, ch: sale, pr: /sal/, ds: dirty}
 - {id: fr-v-f84656bb5a028fb6, ch: léger, pr: /le.ʒe/, ds: light (not heavy)}
 - {id: fr-v-0d74bb4cd7f27a30, ch: lourd, pr: /luʁ/, ds: heavy}
 - {id: fr-v-d0ca0edb79bee9cf, ch: confortable, pr: /kɔ̃.fɔʁ.tabl/, ds: 'comfortable, providing comfort'}
 - {id: fr-v-468cfc8f7ae5c5a6, ch: élégant, pr: /e.le.ɡɑ̃/, ds: elegant (exhibiting elegance)}
-- {id: fr-v-0ce17e63123cca2e, ch: rose, pr: /ʁoz/, ds: rose (flower)}
+- {id: fr-v-1bb222514a7799c4, ch: rose, pr: /ʁoz/, ds: pink}
 - {id: fr-v-44976ea7edb856b1, ch: violet, pr: /vjɔ.lɛ/, ds: purple}
 - {id: fr-v-1a3b1a581dc0ca81, ch: gris, pr: /ɡʁi/, ds: grey / gray}
 - {id: fr-v-c089718039590795, ch: marron, pr: /ma.ʁɔ̃/, ds: brown}
-- {id: fr-v-b2676998de1dae99, ch: clair, pr: /klɛʁ/, ds: clear (see-through)}
+- {id: fr-v-0832a033751f9462, ch: clair, pr: /klɛʁ/, ds: light in colour}
 - {id: fr-v-6b4eddeee3bedfc3, ch: foncé, pr: /fɔ̃.se/, ds: dark (having a dark shade)}
-- {id: fr-v-b93c00def194be82, ch: rayure, pr: /ʁɛ.jyʁ/, ds: scratch (on the surface of something)}
-- {id: fr-v-ea494be241a617f4, ch: uni, pr: /y.ni/, ds: united}
+- {id: fr-v-af8be34a71f1ac39, ch: rayure, pr: /ʁɛ.jyʁ/, ds: stripe; line in a pattern}
+- {id: fr-v-21da0d77d23a7c47, ch: uni, pr: /y.ni/, ds: plain; one colour}
 - {id: fr-v-80721e3d185812d8, ch: carte, pr: /kaʁt/, ds: menu; list of dishes}
 - {id: fr-v-ce201fece38e2987, ch: magasin, pr: /ma.ɡa.zɛ̃/, ds: 'shop, store'}
 - {id: fr-v-e5c8d63edba934fd, ch: boutique, pr: /bu.tik/, ds: shop; boutique}
 - {id: fr-v-2f842c17980c4859, ch: marché, pr: /maʁ.ʃe/, ds: market}
 - {id: fr-v-3ac8c7b4f4c0924c, ch: boulangerie, pr: /bu.lɑ̃ʒ.ʁi/, ds: 'bread shop; bakery, baker''s'}
-- {id: fr-v-4b6304d1fbf1b722, ch: boucherie, pr: /buʃ.ʁi/, ds: 'butchery, butchering (profession of the butcher)'}
+- {id: fr-v-a807bf345d3497bc, ch: boucherie, pr: /buʃ.ʁi/, ds: butcher's shop}
 - {id: fr-v-42aa0b38bfb05999, ch: pharmacie, pr: /faʁ.ma.si/, ds: 'pharmacy, drugstore'}
 - {id: fr-v-9560da2b476cbf23, ch: supermarché, pr: /sy.pɛʁ.maʁ.ʃe/, ds: supermarket}
-- {id: fr-v-d5e0cafd0c0902e7, ch: caisse, pr: /kɛs/, ds: 'box, crate'}
+- {id: fr-v-88021db987ebe707, ch: caisse, pr: /kɛs/, ds: checkout; place to pay in a shop}
 - {id: fr-v-92a15f97a0ff69b4, ch: vendeur, pr: /vɑ̃.dœʁ/, ds: salesman}
 - {id: fr-v-247108f4402da258, ch: client, pr: /kli.jɑ̃/, ds: customer (one who purchases or receives a product or service)}
 - {id: fr-v-b9bf6c2a19603c4e, ch: produit, pr: /pʁɔ.dɥi/, ds: product}
-- {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article (a piece of nonfictional writing)}
+- {id: fr-v-7051fce4607af937, ch: article, pr: /aʁ.tikl/, ds: item for sale}
 - {id: fr-v-eef5b467cf32b074, ch: achat, pr: /a.ʃa/, ds: 'buy, purchase'}
 - {id: fr-v-4449bd09c743c427, ch: vente, pr: /vɑ̃t/, ds: sale}
 - {id: fr-v-39fdfe64b77f424d, ch: paiement, pr: /pɛ.mɑ̃/, ds: payment}
-- {id: fr-v-ea4fe4fe74256810, ch: reçu, pr: /ʁə.sy/, ds: accomplished}
+- {id: fr-v-14e73416b8a8f438, ch: reçu, pr: /ʁə.sy/, ds: receipt; proof of payment}
 - {id: fr-v-183145fb51dd71db, ch: monnaie, pr: /mɔ.nɛ/, ds: change (money back after a transaction)}
-- {id: fr-v-1e1c2f3e26381241, ch: espèce, pr: /ɛs.pɛs/, ds: 'type, sort, kind'}
+- {id: fr-v-57a937b95e5e4427, ch: espèce, pr: /ɛs.pɛs/, ds: cash; plural usage}
 - {id: fr-v-8e5af8a7f0a8e507, ch: banque, pr: /bɑ̃k/, ds: bank}
 - {id: fr-v-8139f8e758350e71, ch: compte, pr: /kɔ̃t/, ds: account (bank or user account)}
 - {id: fr-v-d1a1051d1a057607, ch: solde, pr: /sɔld/, ds: balance (list of credits and debits)}
 - {id: fr-v-2acd436a33e93a82, ch: facture, pr: /fak.tyʁ/, ds: 'bill, invoice'}
 - {id: fr-v-08da9f18d20cb748, ch: réduction, pr: /ʁe.dyk.sjɔ̃/, ds: reduction}
-- {id: fr-v-eaf6c59ac2b26183, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: promotion (career advancement)}
+- {id: fr-v-7039843a0eabb574, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: special offer; sale}
 - {id: fr-v-701c390240abda6a, ch: échange, pr: /e.ʃɑ̃ʒ/, ds: exchange}
 - {id: fr-v-9354d72931ad68e7, ch: remboursement, pr: /ʁɑ̃.buʁ.sə.mɑ̃/, ds: 'reimbursement, refund'}
 - {id: fr-v-bda4fe1b3de542d8, ch: ticket, pr: /ti.kɛ/, ds: 'ticket (admission, pass)'}
-- {id: fr-v-00534d92cf316aa8, ch: cher, pr: /ʃɛʁ/, ds: 'dear, beloved'}
+- {id: fr-v-7b92e9312bbecfea, ch: cher, pr: /ʃɛʁ/, ds: expensive}
 - {id: fr-v-ff26cc7c8bb64f44, ch: gratuit, pr: /ɡʁa.tɥi/, ds: free of charge}
 - {id: fr-v-67c6698123eda03a, ch: disponible, pr: /dis.pɔ.nibl/, ds: 'available (pour for, à to)'}
 - {id: fr-v-446b94df6fc5340a, ch: manquer, pr: /mɑ̃.ke/, ds: 'to lack; to be lacking in; to be short of [with de] (something)'}
@@ -605,7 +606,7 @@
 - {id: fr-v-c99d82853d1efe3b, ch: infirmier, pr: /ɛ̃.fiʁ.mje/, ds: nurse (medical professional)}
 - {id: fr-v-0ea18b7bf5b72870, ch: hôpital, pr: /o.pi.tal/, ds: hospital}
 - {id: fr-v-618d9a5aba603c24, ch: médicament, pr: /me.di.ka.mɑ̃/, ds: 'drug, medication, medicine, pharmaceutical, prescription'}
-- {id: fr-v-a1b2ddd68c6274d1, ch: ordonnance, pr: /ɔʁ.dɔ.nɑ̃s/, ds: prescription}
+- {id: fr-v-a1b2ddd68c6274d1, ch: ordonnance, pr: /ɔʁ.dɔ.nɑ̃s/, ds: medical prescription}
 - {id: fr-v-37b2c6a82f8ca9ce, ch: allergie, pr: /a.lɛʁ.ʒi/, ds: allergy}
 - {id: fr-v-2527ab29a8fe6145, ch: blessure, pr: /blɛ.syʁ/, ds: wound}
 - {id: fr-v-0fa81a980437bed9, ch: malade, pr: /ma.lad/, ds: 'ill, unwell, sick'}
@@ -613,10 +614,10 @@
 - {id: fr-v-683b8a86726616a7, ch: souffrir, pr: /su.fʁiʁ/, ds: to suffer}
 - {id: fr-v-f727be7977b7a0a5, ch: tousser, pr: /tu.se/, ds: to cough}
 - {id: fr-v-23abd133e667fe88, ch: respirer, pr: /ʁɛs.pi.ʁe/, ds: to breathe}
-- {id: fr-v-eef4c9c8dacad218, ch: reposer, pr: /ʁə.po.ze/, ds: 'to put down, to place'}
+- {id: fr-v-0a7cf8ed3cf2c6cd, ch: reposer, pr: /ʁə.po.ze/, ds: to rest; reflexive use}
 - {id: fr-v-88887749bd9d1b51, ch: soigner, pr: /swa.ɲe/, ds: to treat; to nurse}
 - {id: fr-v-5ddae89baff4c017, ch: tomber, pr: /tɔ̃.be/, ds: to fall}
-- {id: fr-v-006b1a71db8f24bb, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to smell (to have a certain odor)}
+- {id: fr-v-b03ca1b453349362, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to feel; physical sensation}
 - {id: fr-v-7fc48bcbd1a01711, ch: rapide, pr: /ʁa.pid/, ds: 'fast, rapid'}
 - {id: fr-v-1d2fddb3eff71a4a, ch: lent, pr: /lɑ̃/, ds: slow}
 - {id: fr-v-2d3cd350ae7b18ec, ch: direct, pr: /di.ʁɛkt/, ds: direct}
@@ -631,19 +632,19 @@
 - {id: fr-v-307c438a0ab0864a, ch: premier, pr: /pʁə.mje/, ds: first}
 - {id: fr-v-4aa8aed5e3c72cce, ch: deuxième, pr: /dø.zjɛm/, ds: second}
 - {id: fr-v-cbe828de33086bad, ch: troisième, pr: /tʁwa.zjɛm/, ds: third}
-- {id: fr-v-dd0bc1d26595b1e6, ch: meilleur, pr: /mɛ.jœʁ/, ds: best}
-- {id: fr-v-4206798c0a3b5d39, ch: pire, pr: /piʁ/, ds: 'bad; harmful, serious'}
+- {id: fr-v-dd0bc1d26595b1e6, ch: meilleur, pr: /mɛ.jœʁ/, ds: the best; nominal superlative}
+- {id: fr-v-5fc8eedfe442d750, ch: pire, pr: /piʁ/, ds: the worst; nominal superlative}
 - {id: fr-v-8ff6218979c05b97, ch: facile, pr: /fa.sil/, ds: 'easy, simple'}
 - {id: fr-v-866f1b15bef63d81, ch: difficile, pr: /di.fi.sil/, ds: difficult}
-- {id: fr-v-0d02dae39a34ffe7, ch: simple, pr: /sɛ̃pl/, ds: single}
+- {id: fr-v-e802853e6a230eba, ch: simple, pr: /sɛ̃pl/, ds: simple; easy to understand or do}
 - {id: fr-v-e8ec566cf49a294c, ch: compliqué, pr: /kɔ̃.pli.ke/, ds: 'complicated, intricate, convoluted'}
 - {id: fr-v-f32c33a4501ff390, ch: pratique, pr: /pʁa.tik/, ds: practical}
 - {id: fr-v-b0e16a71f8dbfc68, ch: utile, pr: /y.til/, ds: useful}
 - {id: fr-v-4e1e32e922813347, ch: nécessaire, pr: /ne.se.sɛʁ/, ds: necessary}
 - {id: fr-v-693ffe9ee900ad59, ch: important, pr: /ɛ̃.pɔʁ.tɑ̃/, ds: important}
 - {id: fr-v-13b25af179c6bcb6, ch: dangereux, pr: /dɑ̃ʒ.ʁø/, ds: dangerous}
-- {id: fr-v-bad9353a9cee6f86, ch: sûr, pr: /syʁ/, ds: 'sure, certain'}
-- {id: fr-v-c7c366d548aba1d1, ch: calme, pr: /kalm/, ds: 'calmness, stillness'}
+- {id: fr-v-7858d6c5e9434ae9, ch: sûr, pr: /syʁ/, ds: safe; not dangerous}
+- {id: fr-v-74f7264b7aa99856, ch: calme, pr: /kalm/, ds: quiet; peaceful}
 - {id: fr-v-708231dc592e42f4, ch: bruyant, pr: /bʁɥi.jɑ̃/, ds: noisy (making a noise)}
 - {id: fr-v-a3d027cd17d9683f, ch: transport, pr: /tʁɑ̃s.pɔʁ/, ds: transport}
 - {id: fr-v-4b791a8d93446222, ch: trajet, pr: /tʁa.ʒɛ/, ds: 'route, course, trajectory'}
@@ -651,14 +652,14 @@
 - {id: fr-v-da11f973e6c08cd9, ch: arrivée, pr: /a.ʁi.ve/, ds: arrival}
 - {id: fr-v-a40bbc0e57b01464, ch: destination, pr: /dɛs.ti.na.sjɔ̃/, ds: destination}
 - {id: fr-v-cbcafd96086677bc, ch: direction, pr: /di.ʁɛk.sjɔ̃/, ds: direction}
-- {id: fr-v-f2aee505022b10ac, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: correspondence}
-- {id: fr-v-1b78cd5cc10934b4, ch: quai, pr: /ke/, ds: 'quay, wharf'}
+- {id: fr-v-99ad50d606d3f053, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: connection; transfer between transport services}
+- {id: fr-v-da69ce9586983cbf, ch: quai, pr: /ke/, ds: station platform}
 - {id: fr-v-850695d92c9a491e, ch: voie, pr: /vwa/, ds: 'way, track'}
 - {id: fr-v-319bb1e4b014ea82, ch: wagon, pr: /va.ɡɔ̃/, ds: railway carriage}
 - {id: fr-v-4669a18c926b8847, ch: siège, pr: /sjɛʒ/, ds: 'seat, chair'}
 - {id: fr-v-2cd8f047d3217984, ch: passager, pr: /pa.sa.ʒe/, ds: passenger}
 - {id: fr-v-a7c0d0da338b8c50, ch: conducteur, pr: /kɔ̃.dyk.tœʁ/, ds: the driver of a vehicle or of a group of animated creatures}
-- {id: fr-v-aa890a13bfbdda4e, ch: chauffeur, pr: /ʃo.fœʁ/, ds: stoker; fireman}
+- {id: fr-v-609d62ee776f0345, ch: chauffeur, pr: /ʃo.fœʁ/, ds: driver}
 - {id: fr-v-14ce7ea38dfd0d5f, ch: pilote, pr: /pi.lɔt/, ds: pilot (controller of aircraft)}
 - {id: fr-v-562c75a09027e644, ch: vol, pr: /vɔl/, ds: flight}
 - {id: fr-v-564bb8ef3029fc2e, ch: escale, pr: /ɛs.kal/, ds: port of call}
@@ -666,8 +667,8 @@
 - {id: fr-v-4d11d7b6fadb8a3a, ch: valise, pr: /va.liz/, ds: 'case, suitcase'}
 - {id: fr-v-037027283a41abc9, ch: passeport, pr: /pas.pɔʁ/, ds: passport (official document)}
 - {id: fr-v-d4b6d9360f942387, ch: identité, pr: /i.dɑ̃.ti.te/, ds: identity}
-- {id: fr-v-b0a0d4d66fb6616a, ch: réservation, pr: /ʁe.zɛʁ.va.sjɔ̃/, ds: reservation}
-- {id: fr-v-759e5d8a263c26b1, ch: réception, pr: /ʁe.sɛp.sjɔ̃/, ds: reception (action of receiving)}
+- {id: fr-v-ed399ab172229ca9, ch: réservation, pr: /ʁe.zɛʁ.va.sjɔ̃/, ds: booking}
+- {id: fr-v-aaa45dd8a10a7bc0, ch: réception, pr: /ʁe.sɛp.sjɔ̃/, ds: reception desk; place welcoming arrivals}
 - {id: fr-v-734fba950fc995e8, ch: accueil, pr: /a.kœj/, ds: 'reception, hospitality'}
 - {id: fr-v-69c4494905301d6b, ch: séjour, pr: /se.ʒuʁ/, ds: 'stay, visit, trip, sojourn'}
 - {id: fr-v-ce3390e558e92ad4, ch: nuitée, pr: /nɥi.te/, ds: night (night spent at a hotel)}
@@ -679,45 +680,45 @@
 - {id: fr-v-2c02215129831d0a, ch: lac, pr: /lak/, ds: lake}
 - {id: fr-v-65f1e41ec249aa7a, ch: île, pr: /il/, ds: island}
 - {id: fr-v-b19e15a780e84744, ch: frontière, pr: /fʁɔ̃.tjɛʁ/, ds: 'boundary, frontier, border'}
-- {id: fr-v-365877371fd80feb, ch: pays, pr: /pɛ.i/, ds: land}
+- {id: fr-v-365877371fd80feb, ch: pays, pr: /pɛ.i/, ds: country; homeland}
 - {id: fr-v-b79c18b1f38d1c41, ch: région, pr: /ʁe.ʒjɔ̃/, ds: region; area}
 - {id: fr-v-a777524c52d17617, ch: village, pr: /vi.laʒ/, ds: village}
 - {id: fr-v-b50ce7f64df38f4c, ch: centre, pr: /sɑ̃tʁ/, ds: 'centre, center'}
 - {id: fr-v-0b1ea69d3df82d9f, ch: quartier, pr: /kaʁ.tje/, ds: 'quarter, district (part of town), neighbourhood'}
 - {id: fr-v-536f5b318e751c5d, ch: rond-point, pr: /ʁɔ̃.pwɛ̃/, ds: roundabout; traffic circle}
 - {id: fr-v-9f9b442161e455b4, ch: carrefour, pr: /kaʁ.fuʁ/, ds: crossroads}
-- {id: fr-v-fef58965d43c6bc7, ch: feu, pr: /fø/, ds: fire}
+- {id: fr-v-b3601b2d8f81626a, ch: feu, pr: /fø/, ds: traffic light}
 - {id: fr-v-295175eb86c22e58, ch: trottoir, pr: /tʁɔ.twaʁ/, ds: sidewalk}
 - {id: fr-v-5da6f2f96e450b17, ch: pont, pr: /pɔ̃/, ds: bridge}
 - {id: fr-v-c6a92a97fd0773b2, ch: tunnel, pr: /ty.nɛl/, ds: tunnel}
 - {id: fr-v-ec3e411ae9683b4c, ch: parking, pr: /paʁ.kiŋ/, ds: 'car park, parking lot'}
 - {id: fr-v-7a986f92fe503b3f, ch: station, pr: /sta.sjɔ̃/, ds: station}
-- {id: fr-v-710291472fa7a1c0, ch: essence, pr: /e.sɑ̃s/, ds: essence}
+- {id: fr-v-a1dee051ec474120, ch: essence, pr: /e.sɑ̃s/, ds: petrol; gasoline}
 - {id: fr-v-7c470eba265bad91, ch: vélo, pr: /ve.lo/, ds: 'bike, bicycle, cycle'}
 - {id: fr-v-5ae89c393dc67717, ch: moto, pr: /mɔ.to/, ds: 'bike, motorbike (motorcycle)'}
 - {id: fr-v-3e7cc1c417451be6, ch: bateau, pr: /ba.to/, ds: 'a vessel of any size, a ship or boat'}
 - {id: fr-v-30d8d011feaf8d75, ch: ferry, pr: /fɛ.ʁi/, ds: ferry}
 - {id: fr-v-328d064dc4cf202f, ch: ambulance, pr: /ɑ̃.by.lɑ̃s/, ds: ambulance (emergency vehicle)}
 - {id: fr-v-6c53e19dc2736894, ch: véhicule, pr: /ve.i.kyl/, ds: vehicle}
-- {id: fr-v-d3f32b8ed4a5ec60, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: circulation (act of moving in a circular shape)}
+- {id: fr-v-8ce9e5a626f87246, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: traffic}
 - {id: fr-v-ff2f50c27c3c9f55, ch: retard, pr: /ʁə.taʁ/, ds: delay}
 - {id: fr-v-134d682b90091767, ch: avance, pr: /a.vɑ̃s/, ds: 'progression, advance'}
-- {id: fr-v-12a17eaaba726774, ch: panne, pr: /pan/, ds: plush velvet}
+- {id: fr-v-2fc871e37e151440, ch: panne, pr: /pan/, ds: breakdown; failure to function}
 - {id: fr-v-15dfef60ac061f12, ch: accident, pr: /ak.si.dɑ̃/, ds: accident}
 - {id: fr-v-d3ac47e512a6629e, ch: détour, pr: /de.tuʁ/, ds: detour}
 - {id: fr-v-d03eafd50764946b, ch: distance, pr: /dis.tɑ̃s/, ds: distance (literal physical distance)}
 - {id: fr-v-dc530793661ccd04, ch: kilomètre, pr: /ki.lɔ.mɛtʁ/, ds: kilometre (UK) / kilometer (US)}
 - {id: fr-v-bffa1b46d865a377, ch: voyager, pr: /vwa.ja.ʒe/, ds: 'to travel, to voyage'}
 - {id: fr-v-cd6741ca601bee13, ch: conduire, pr: /kɔ̃.dɥiʁ/, ds: to drive (a vehicle)}
-- {id: fr-v-e49ab3f67dcc5560, ch: rouler, pr: /ʁu.le/, ds: to roll}
+- {id: fr-v-76a0b1e9c044b085, ch: rouler, pr: /ʁu.le/, ds: to drive; to ride a vehicle}
 - {id: fr-v-46e22ad635f12e56, ch: voler, pr: /vɔ.le/, ds: to fly through the air}
 - {id: fr-v-8799b19e04d4504c, ch: naviguer, pr: /na.vi.ɡe/, ds: to navigate}
 - {id: fr-v-378b8f6fd971f81e, ch: embarquer, pr: /ɑ̃.baʁ.ke/, ds: to board (a vehicle)}
 - {id: fr-v-4b2ddf4c9afe0ee3, ch: débarquer, pr: /de.baʁ.ke/, ds: 'to unload (merchandise), land (troops, passengers)'}
 - {id: fr-v-a9491698d2b55419, ch: stationner, pr: /sta.sjɔ.ne/, ds: to park (bring to a halt)}
-- {id: fr-v-307fc2e6b58b5ff5, ch: garer, pr: /ɡa.ʁe/, ds: 'to cover, shelter'}
+- {id: fr-v-dc7a94c719eb6149, ch: garer, pr: /ɡa.ʁe/, ds: to park a vehicle}
 - {id: fr-v-c3c11e6654187132, ch: tourner, pr: /tuʁ.ne/, ds: to turn; to change (direction); to rotate; to spin}
-- {id: fr-v-027321ccbfdf56ab, ch: dépasser, pr: /de.pa.se/, ds: to exceed}
+- {id: fr-v-c708e42c1aacfcd4, ch: dépasser, pr: /de.pa.se/, ds: to overtake; to go past}
 - {id: fr-v-1b5bc29149408d95, ch: freiner, pr: /fʁɛ.ne/, ds: to brake}
 - {id: fr-v-79d12a2f60c58089, ch: accélérer, pr: /ak.se.le.ʁe/, ds: to accelerate}
 - {id: fr-v-87deb99ab5a5a341, ch: visiter, pr: /vi.zi.te/, ds: to visit (a place)}
@@ -727,7 +728,7 @@
 - {id: fr-v-7a289ba3c008ef89, ch: emmener, pr: /ɑ̃.m(ə).ne/, ds: 'to take off, take away or out'}
 - {id: fr-v-366b796bd773dd05, ch: emporter, pr: /ɑ̃.pɔʁ.te/, ds: to take}
 - {id: fr-v-7b617105bd0582ac, ch: transporter, pr: /tʁɑ̃s.pɔʁ.te/, ds: to transport}
-- {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: 'to record for later replay or use, especially sound'}
+- {id: fr-v-6531b7a97affeba5, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to check in; reflexive use}
 - {id: fr-v-0f9452ab06d17f80, ch: confirmer, pr: /kɔ̃.fiʁ.me/, ds: to confirm (a fact etc.)}
 - {id: fr-v-268e1179b117fbbc, ch: modifier, pr: /mɔ.di.fje/, ds: 'to change, modify'}
 - {id: fr-v-6a91b0a1e4c20ac0, ch: décider, pr: /de.si.de/, ds: to decide}
@@ -739,13 +740,13 @@
 - {id: fr-v-be0b3c2d0f00fe32, ch: finir, pr: /fi.niʁ/, ds: 'to finish, end, complete'}
 - {id: fr-v-7248608fa57704b7, ch: réussir, pr: /ʁe.y.siʁ/, ds: to manage to do something}
 - {id: fr-v-d28cffab5c6fe04d, ch: loisir, pr: /lwa.ziʁ/, ds: 'leisure, hobby'}
-- {id: fr-v-28bb3d41b2b1d4db, ch: fête, pr: /fɛt/, ds: winter holidays (always in plural)}
+- {id: fr-v-b4f8ada5ea42193d, ch: fête, pr: /fɛt/, ds: party; celebration}
 - {id: fr-v-05453eb6ef4e7ca8, ch: invitation, pr: /ɛ̃.vi.ta.sjɔ̃/, ds: invitation}
 - {id: fr-v-540751bc063d9539, ch: cadeau, pr: /ka.do/, ds: 'present, gift'}
 - {id: fr-v-695662f89a05f8b9, ch: anniversaire, pr: /a.ni.vɛʁ.sɛʁ/, ds: birthday}
 - {id: fr-v-969cc734aaadef85, ch: vacances, pr: /va.kɑ̃s/, ds: holidays; vacation; plural usage}
 - {id: fr-v-d8ecfdc0c2c3e0df, ch: weekend, pr: /wi.kɛnd/, ds: post-1990 spelling of week-end}
-- {id: fr-v-e6761cba949f957d, ch: cinéma, pr: /si.ne.ma/, ds: 'cinema, filmmaking (the art of making films and movies)'}
+- {id: fr-v-ab77e8e11319ea68, ch: cinéma, pr: /si.ne.ma/, ds: cinema; movie theatre}
 - {id: fr-v-6fb43b21930d7d00, ch: film, pr: /film/, ds: 'movie, film'}
 - {id: fr-v-bd480c149a6b7e23, ch: musique, pr: /my.zik/, ds: music}
 - {id: fr-v-0b7f2aa80899ed2c, ch: chanson, pr: /ʃɑ̃.sɔ̃/, ds: song}
@@ -753,7 +754,7 @@
 - {id: fr-v-6eaf7004cdb34dbd, ch: théâtre, pr: /te.ɑtʁ/, ds: theatre; venue or dramatic art}
 - {id: fr-v-ce472e7a93af8ead, ch: spectacle, pr: /spɛk.takl/, ds: 'a show, a spectacle, a performance, a concert'}
 - {id: fr-v-c8e1b3319caaef50, ch: musée, pr: /my.ze/, ds: museum}
-- {id: fr-v-3f37fbf854c47218, ch: exposition, pr: /ɛk.spo.zi.sjɔ̃/, ds: exposition}
+- {id: fr-v-16050f9f8f3c7c52, ch: exposition, pr: /ɛk.spo.zi.sjɔ̃/, ds: exhibition}
 - {id: fr-v-2b8d7f147e35eddd, ch: promenade, pr: /pʁɔm.nad/, ds: walk; stroll (walk for enjoyment)}
 - {id: fr-v-93c3b88ecb90d0c5, ch: sport, pr: /spɔʁ/, ds: sport}
 - {id: fr-v-961f38a5787f8b16, ch: jeu, pr: /ʒø/, ds: game (activity performed for amusement)}
@@ -779,26 +780,26 @@
 - {id: fr-v-853544204c424f7b, ch: dessiner, pr: /de.si.ne/, ds: 'to draw, to sketch'}
 - {id: fr-v-8e868ad0bea54eee, ch: regarder, pr: /ʁə.ɡaʁ.de/, ds: to look at}
 - {id: fr-v-7bf3d973e01373bf, ch: école, pr: /e.kɔl/, ds: school}
-- {id: fr-v-164394b2c9192977, ch: collège, pr: /kɔ.lɛʒ/, ds: academy}
+- {id: fr-v-d6517a80195d50a4, ch: collège, pr: /kɔ.lɛʒ/, ds: lower secondary school}
 - {id: fr-v-fe13d04aa4851bc9, ch: lycée, pr: /li.se/, ds: a public secondary school}
 - {id: fr-v-dbd19542545ab62e, ch: université, pr: /y.ni.vɛʁ.si.te/, ds: university (institution of higher education)}
-- {id: fr-v-9465a5a3f055ba76, ch: classe, pr: /klas/, ds: 'class, type, group'}
-- {id: fr-v-9e599bbee580df93, ch: cours, pr: /kuʁ/, ds: 'stream of water, river'}
+- {id: fr-v-2ab50d00b8d10e1b, ch: classe, pr: /klas/, ds: class; teaching group}
+- {id: fr-v-ac146fc46226421d, ch: cours, pr: /kuʁ/, ds: class; lesson}
 - {id: fr-v-f6bbb1280804925f, ch: leçon, pr: /lə.sɔ̃/, ds: lesson}
 - {id: fr-v-7ef1bb4fc85f4f92, ch: étude, pr: /e.tyd/, ds: study (act of studying or examining)}
-- {id: fr-v-1a39ac008a3c1381, ch: exercice, pr: /ɛɡ.zɛʁ.sis/, ds: 'exercise, performance'}
-- {id: fr-v-3352437603933571, ch: examen, pr: /ɛɡ.za.mɛ̃/, ds: 'examination, inspection, study, analysis'}
-- {id: fr-v-074cea10ecc61203, ch: note, pr: /nɔt/, ds: note (written or spoken)}
+- {id: fr-v-f34abb1db284a3fb, ch: exercice, pr: /ɛɡ.zɛʁ.sis/, ds: exercise; practice task}
+- {id: fr-v-411aa35dd697867e, ch: examen, pr: /ɛɡ.za.mɛ̃/, ds: exam; test of learning}
+- {id: fr-v-5e333271c36891d8, ch: note, pr: /nɔt/, ds: grade; mark for schoolwork}
 - {id: fr-v-7f3b1d55e0c26ab9, ch: résultat, pr: /ʁe.zyl.ta/, ds: outcome; result}
 - {id: fr-v-bb8f01eda60b8645, ch: diplôme, pr: /di.plom/, ds: diploma; qualification document}
-- {id: fr-v-a890b4494250cf08, ch: formation, pr: /fɔʁ.ma.sjɔ̃/, ds: 'formation, forming, development'}
+- {id: fr-v-042c38a7607905d3, ch: formation, pr: /fɔʁ.ma.sjɔ̃/, ds: training; education}
 - {id: fr-v-0b466bc85bb8b2dc, ch: enseignant, pr: /ɑ̃.sɛ.ɲɑ̃/, ds: teacher}
 - {id: fr-v-aba499209db66587, ch: élève, pr: /e.lɛv/, ds: 'schoolboy, pupil, student'}
 - {id: fr-v-c510b57d28cfc9b8, ch: cahier, pr: /ka.je/, ds: 'notebook, exercise book'}
 - {id: fr-v-6bc8beb19ef8bc6b, ch: crayon, pr: /kʁɛ.jɔ̃/, ds: pencil}
-- {id: fr-v-67b07acf44b84d75, ch: gomme, pr: /ɡɔm/, ds: gum (adhesive on an envelope)}
+- {id: fr-v-a2c7d45fe539fe68, ch: gomme, pr: /ɡɔm/, ds: eraser; pencil rubber}
 - {id: fr-v-8ea8cfc77a6bcdc1, ch: règle, pr: /ʁɛɡl/, ds: ruler; measuring tool}
-- {id: fr-v-93e45df2ee31f031, ch: tableau, pr: /ta.blo/, ds: painting}
+- {id: fr-v-f28b152594876f67, ch: tableau, pr: /ta.blo/, ds: writing board}
 - {id: fr-v-89a9e4672e19a2e5, ch: bibliothèque, pr: /bi.bli.jɔ.tɛk/, ds: library}
 - {id: fr-v-63529b1b7341739e, ch: dictionnaire, pr: /dik.sjɔ.nɛʁ/, ds: dictionary}
 - {id: fr-v-040c67b36982ed6b, ch: grammaire, pr: /ɡʁa.mɛʁ/, ds: grammar; language structure}
@@ -820,15 +821,15 @@
 - {id: fr-v-01e523f0c386c3d3, ch: traduire, pr: /tʁa.dɥiʁ/, ds: to translate}
 - {id: fr-v-25c8f7f5e9f31e73, ch: prononcer, pr: /pʁɔ.nɔ̃.se/, ds: to pronounce}
 - {id: fr-v-7d5daa535cad4fae, ch: corriger, pr: /kɔ.ʁi.ʒe/, ds: to correct}
-- {id: fr-v-e07785146bcd9204, ch: retenir, pr: /ʁə.t(ə).niʁ/, ds: 'to hold back, rein in'}
+- {id: fr-v-2d10953f981d143f, ch: retenir, pr: /ʁə.t(ə).niʁ/, ds: to remember; to retain in memory}
 - {id: fr-v-f213384880166813, ch: savoir, pr: /sa.vwaʁ/, ds: to know how to do something}
 - {id: fr-v-754e3041937fd5ff, ch: travail, pr: /tʁa.vaj/, ds: work; labor}
 - {id: fr-v-f592dcbf88de9879, ch: emploi, pr: /ɑ̃.plwa/, ds: job}
 - {id: fr-v-bfb152264f3adb4a, ch: métier, pr: /me.tje/, ds: 'job, profession, trade'}
-- {id: fr-v-310f44b51b6a6c4f, ch: profession, pr: /pʁɔ.fɛ.sjɔ̃/, ds: 'profession, public declaration'}
+- {id: fr-v-5d0e46f32fe87979, ch: profession, pr: /pʁɔ.fɛ.sjɔ̃/, ds: profession; occupation}
 - {id: fr-v-7a60a791d5ce1c66, ch: entreprise, pr: /ɑ̃.tʁə.pʁiz/, ds: 'company, business'}
 - {id: fr-v-5cd21e0c662c50ef, ch: équipe, pr: /e.kip/, ds: team}
-- {id: fr-v-fbc39ac417d25efe, ch: poste, pr: /pɔst/, ds: post office}
+- {id: fr-v-7f9cfe5ccdc7ce5d, ch: poste, pr: /pɔst/, ds: job; position at work}
 - {id: fr-v-1c85d36fa60cd1f3, ch: patron, pr: /pa.tʁɔ̃/, ds: 'a boss, employer,'}
 - {id: fr-v-465e25b368cb506d, ch: responsable, pr: /ʁɛs.pɔ̃.sabl/, ds: responsible}
 - {id: fr-v-2609c22ee15dd944, ch: réunion, pr: /ʁe.y.njɔ̃/, ds: meeting}
@@ -840,21 +841,21 @@
 - {id: fr-v-f6cc450c830577db, ch: salaire, pr: /sa.lɛʁ/, ds: 'salary, wage'}
 - {id: fr-v-50ab76bb273c227d, ch: contrat, pr: /kɔ̃.tʁa/, ds: contract}
 - {id: fr-v-5bd12a54c3d88e57, ch: candidature, pr: /kɑ̃.di.da.tyʁ/, ds: application; candidacy}
-- {id: fr-v-5297392828150df2, ch: entretien, pr: /ɑ̃.tʁə.tjɛ̃/, ds: upkeep (maintenance)}
-- {id: fr-v-53c6cfaa3e33626e, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: 'experiment, trial, test'}
+- {id: fr-v-c683dd06636f1a8f, ch: entretien, pr: /ɑ̃.tʁə.tjɛ̃/, ds: interview}
+- {id: fr-v-505dc04cfa8e2868, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experience; acquired knowledge and skills}
 - {id: fr-v-0ba27304c252a3a1, ch: compétence, pr: /kɔ̃.pe.tɑ̃s/, ds: 'competence, ability, skill'}
 - {id: fr-v-4650647986a74a14, ch: objectif, pr: /ɔb.ʒɛk.tif/, ds: 'objective, goal, aim'}
 - {id: fr-v-84fe42a029fd0e91, ch: délai, pr: /de.lɛ/, ds: time limit}
 - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
-- {id: fr-v-241550c1b3eeb238, ch: dossier, pr: /do.sje/, ds: 'back of furniture, to rest the sitter''s back on'}
+- {id: fr-v-fae14417e58ec847, ch: dossier, pr: /do.sje/, ds: dossier; collection of documents}
 - {id: fr-v-b27ae6d97cdcbe0d, ch: formulaire, pr: /fɔʁ.my.lɛʁ/, ds: form (document to be filled in)}
 - {id: fr-v-da5f3df909a3be91, ch: message, pr: /mɛ.saʒ/, ds: message}
 - {id: fr-v-91c8b7efdb544403, ch: courriel, pr: /ku.ʁjɛl/, ds: email (message)}
-- {id: fr-v-282ea9944dc1ba81, ch: lettre, pr: /lɛtʁ/, ds: letter (written character)}
+- {id: fr-v-353ab117aaa507be, ch: lettre, pr: /lɛtʁ/, ds: letter; written message}
 - {id: fr-v-3b43a02beed8fa40, ch: signature, pr: /si.ɲa.tyʁ/, ds: signature (a person's name written in their own handwriting)}
 - {id: fr-v-ac0bcd0974d58c38, ch: appel, pr: /a.pɛl/, ds: call}
 - {id: fr-v-6593090b9a9f5875, ch: travailler, pr: /tʁa.va.je/, ds: to work}
-- {id: fr-v-a2a3bfa50a30e80e, ch: discuter, pr: /dis.ky.te/, ds: 'to argue, to debate'}
+- {id: fr-v-b95c93ac0fd8760f, ch: discuter, pr: /dis.ky.te/, ds: to discuss}
 - {id: fr-v-09f138c9d1a7ba04, ch: participer, pr: /paʁ.ti.si.pe/, ds: to participate}
 - {id: fr-v-15d9984b24a3b44a, ch: proposer, pr: /pʁɔ.po.ze/, ds: 'to propose, suggest'}
 - {id: fr-v-6c0e9cbd80f22214, ch: accepter, pr: /ak.sɛp.te/, ds: to accept}
@@ -863,13 +864,14 @@
 - {id: fr-v-3b6520b3ca90d3c0, ch: signer, pr: /si.ɲe/, ds: to sign (put a signature on)}
 - {id: fr-v-17646b0b66772308, ch: contacter, pr: /kɔ̃.tak.te/, ds: to contact (all senses)}
 - {id: fr-v-dd8b321d26fc3b37, ch: remercier, pr: /ʁə.mɛʁ.sje/, ds: to thank (someone)}
-- {id: fr-v-e9ece3ca4fc84fb6, ch: gagner, pr: /ɡa.ɲe/, ds: to win}
+- {id: fr-v-788a2fdb298da6aa, ch: gagner, pr: /ɡa.ɲe/, ds: to earn}
 - {id: fr-v-c68bb07d29dbc737, ch: terminer, pr: /tɛʁ.mi.ne/, ds: to end; to finish; to terminate}
 - {id: fr-v-c4d2fd64dfd14c21, ch: vérifier, pr: /ve.ʁi.fje/, ds: to confirm}
 - {id: fr-v-eab0c80edc723bb2, ch: se, pr: /sə/, ds: himself}
 - {id: fr-v-4f53448b7fe6a72d, ch: me, pr: /mə/, ds: me (direct object)}
 - {id: fr-v-0f43d5639e8a89a8, ch: te, pr: /tə/, ds: you}
 - {id: fr-v-325147ea043e2d09, ch: que, pr: /kə/, ds: that; introduces a subordinate noun clause}
+- {id: fr-v-fbf60a681af7aaca, ch: leur, pr: /lœʁ/, ds: to them; indirect-object clitic}
 - {id: fr-v-f76c90b02db72913, ch: le, pr: /lə/, ds: him or it; masculine direct-object clitic}
 - {id: fr-v-4bd31032cc4b6132, ch: ancien, pr: /ɑ̃.sjɛ̃/, ds: 'old, former, ex- (no longer current)'}
 - {id: fr-v-67b5922c334585fd, ch: récent, pr: /ʁe.sɑ̃/, ds: recent}
@@ -925,7 +927,7 @@
 - {id: fr-v-158c8c5d4894b4ea, ch: pourtant, pr: /puʁ.tɑ̃/, ds: 'however, yet'}
 - {id: fr-v-a2d4c19a2352df53, ch: événement, pr: /e.ven.mɑ̃/, ds: event}
 - {id: fr-v-d2086ef66cdf0fcc, ch: histoire, pr: /is.twaʁ/, ds: story}
-- {id: fr-v-00cfd847dc0e7a43, ch: récit, pr: /ʁe.si/, ds: recital}
+- {id: fr-v-d5628b536b66bee2, ch: récit, pr: /ʁe.si/, ds: narrative; account of events}
 - {id: fr-v-f34cd8db9bbbf948, ch: souvenir, pr: /su.v(ə).niʁ/, ds: to remember}
 - {id: fr-v-343489c627b86bd5, ch: passé, pr: /pa.se/, ds: past}
 - {id: fr-v-d473941f756e872f, ch: présent, pr: /pʁe.zɑ̃/, ds: 'the now, the present moment'}
@@ -937,7 +939,7 @@
 - {id: fr-v-654f4426cee22ae3, ch: durée, pr: /dy.ʁe/, ds: 'duration, period, time taken'}
 - {id: fr-v-0716791147ff3dc1, ch: début, pr: /de.by/, ds: 'start, beginning'}
 - {id: fr-v-b906ff6b88b2eb0d, ch: fin, pr: /fɛ̃/, ds: 'end, close, finish'}
-- {id: fr-v-624297557ee0e1ec, ch: suite, pr: /sɥit/, ds: result}
+- {id: fr-v-3aa7b67d6110f367, ch: suite, pr: /sɥit/, ds: what follows; continuation}
 - {id: fr-v-91738eeaaeccd972, ch: étape, pr: /e.tap/, ds: 'stage, stop (on a journey)'}
 - {id: fr-v-bb35e08110c80bca, ch: intervalle, pr: /ɛ̃.tɛʁ.val/, ds: interval}
 - {id: fr-v-7d9372dd1a016ed4, ch: fréquence, pr: /fʁe.kɑ̃s/, ds: frequency (all meanings)}
@@ -983,7 +985,7 @@
 - {id: fr-v-0491034df20a63ec, ch: raconter, pr: /ʁa.kɔ̃.te/, ds: to recount; to tell; to narrate}
 - {id: fr-v-068342cd2e4b99a0, ch: décrire, pr: /de.kʁiʁ/, ds: to describe}
 - {id: fr-v-46c90f054f9b3bd0, ch: évoquer, pr: /e.vɔ.ke/, ds: to evoke; bring to mind}
-- {id: fr-v-455b8296a712350e, ch: rappeler, pr: /ʁa.ple/, ds: to call again; to call back}
+- {id: fr-v-2e351aec11a20709, ch: rappeler, pr: /ʁa.ple/, ds: to remind}
 - {id: fr-v-4bbfd20e9a93d0bd, ch: imaginer, pr: /i.ma.ʒi.ne/, ds: to imagine}
 - {id: fr-v-55a7afe6d0792b56, ch: remarquer, pr: /ʁə.maʁ.ke/, ds: to observe}
 - {id: fr-v-e3451c3d3c8417b4, ch: observer, pr: /ɔp.sɛʁ.ve/, ds: 'to observe, watch'}
@@ -996,12 +998,12 @@
 - {id: fr-v-dc47b25b528b5a16, ch: survenir, pr: /syʁ.və.niʁ/, ds: to occur}
 - {id: fr-v-69af645ca8f088a6, ch: produire, pr: /pʁɔ.dɥiʁ/, ds: 'to produce, to yield'}
 - {id: fr-v-6b03df34471be695, ch: provoquer, pr: /pʁɔ.vɔ.ke/, ds: 'to provoke, bring on, bring about'}
-- {id: fr-v-3f4682dd036a50e4, ch: entraîner, pr: /ɑ̃.tʁɛ.ne/, ds: 'to coach, to train'}
+- {id: fr-v-4a9b8a5dfe98828a, ch: entraîner, pr: /ɑ̃.tʁɛ.ne/, ds: to bring about; to lead to}
 - {id: fr-v-be7706111a8dd3b9, ch: causer, pr: /ko.ze/, ds: to cause (be the cause of)}
 - {id: fr-v-3998736f771b999b, ch: exister, pr: /ɛɡ.zis.te/, ds: to exist}
 - {id: fr-v-909dc2d36e39a0fe, ch: durer, pr: /dy.ʁe/, ds: to last (for)}
 - {id: fr-v-36c28424e68c124f, ch: interrompre, pr: /ɛ̃.tɛ.ʁɔ̃pʁ/, ds: to interrupt}
-- {id: fr-v-d6ae2fc94099daf3, ch: reprendre, pr: /ʁə.pʁɑ̃dʁ/, ds: 'to take back, recover, regain'}
+- {id: fr-v-3b9c6ac5fd96209e, ch: reprendre, pr: /ʁə.pʁɑ̃dʁ/, ds: to resume; to carry on with}
 - {id: fr-v-0e0a39378aa9f2bb, ch: poursuivre, pr: /puʁ.sɥivʁ/, ds: 'to pursue, to chase'}
 - {id: fr-v-84cd07a99fe44608, ch: achever, pr: /aʃ.ve/, ds: 'to finish, to complete'}
 - {id: fr-v-c31a646569655350, ch: accomplir, pr: /a.kɔ̃.pliʁ/, ds: to accomplish}
@@ -1116,7 +1118,7 @@
 - {id: fr-v-877f9ded6e692e76, ch: moquer, pr: /mɔ.ke/, ds: to mock}
 - {id: fr-v-fc4efa883ca168ab, ch: relation, pr: /ʁə.la.sjɔ̃/, ds: relation}
 - {id: fr-v-f96baf9a3a6bd23f, ch: rencontre, pr: /ʁɑ̃.kɔ̃tʁ/, ds: encounter}
-- {id: fr-v-d7a72d4eb9550edc, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: knowledge}
+- {id: fr-v-c2c55efe03a98b86, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: acquaintance; someone one knows}
 - {id: fr-v-2fa15d9121da475b, ch: partenaire, pr: /paʁ.tə.nɛʁ/, ds: partner}
 - {id: fr-v-9ba88e734f2a36f5, ch: compagnon, pr: /kɔ̃.pa.ɲɔ̃/, ds: 'lifelong partner, significant other'}
 - {id: fr-v-340d7057c588b749, ch: conjoint, pr: /kɔ̃.ʒwɛ̃/, ds: 'spouse or unmarried, spouse-like partner'}
@@ -1129,7 +1131,7 @@
 - {id: fr-v-7bcae2f3039af3d8, ch: adolescence, pr: /a.dɔ.lɛ.sɑ̃s/, ds: 'adolescence, teenage years, teenagehood'}
 - {id: fr-v-c3c17741f1bf055e, ch: jeunesse, pr: /ʒœ.nɛs/, ds: youth}
 - {id: fr-v-c85c759b23234c2e, ch: vieillesse, pr: /vjɛ.jɛs/, ds: old age}
-- {id: fr-v-ed14991bc1697198, ch: génération, pr: /ʒe.ne.ʁa.sjɔ̃/, ds: generation (act of generating)}
+- {id: fr-v-54f2071a3f776e07, ch: génération, pr: /ʒe.ne.ʁa.sjɔ̃/, ds: generation; position in family descent}
 - {id: fr-v-a7cb84a54219edb4, ch: grand-parent, pr: /ɡʁɑ̃.pa.ʁɑ̃/, ds: grandparent (parent of someone’s parent)}
 - {id: fr-v-952462a13fef649d, ch: grand-mère, pr: /ɡʁɑ̃.mɛʁ/, ds: grandmother}
 - {id: fr-v-56ee39d8b048a7a2, ch: grand-père, pr: /ɡʁɑ̃.pɛʁ/, ds: grandfather}
@@ -1151,7 +1153,7 @@
 - {id: fr-v-58ce53f5be03a245, ch: veuve, pr: /vœv/, ds: widow}
 - {id: fr-v-abb0ca29caa3bdd2, ch: orphelin, pr: /ɔʁ.fə.lɛ̃/, ds: orphaned}
 - {id: fr-v-2fe7535e6e29d4c0, ch: parenté, pr: /pa.ʁɑ̃.te/, ds: kinship}
-- {id: fr-v-a8227fb839dc2595, ch: entourage, pr: /ɑ̃.tu.ʁaʒ/, ds: 'ornament, decoration surrounding something'}
+- {id: fr-v-dc36eb194757edfb, ch: entourage, pr: /ɑ̃.tu.ʁaʒ/, ds: circle of acquaintances}
 - {id: fr-v-7b4c61e1eb41e7ca, ch: amant, pr: /a.mɑ̃/, ds: lover; partner in an affair}
 - {id: fr-v-6984542a6aac56c9, ch: camarade, pr: /ka.ma.ʁad/, ds: 'buddy, mate'}
 - {id: fr-v-96e239f3eef4cef1, ch: copain, pr: /kɔ.pɛ̃/, ds: 'friend, chum, mate (UK), pal, buddy'}
@@ -1167,7 +1169,7 @@
 - {id: fr-v-e9947849cbaef8e7, ch: allié, pr: /a.lje/, ds: ally}
 - {id: fr-v-20fdc76410c4bcb8, ch: témoin, pr: /te.mwɛ̃/, ds: witness}
 - {id: fr-v-5eb4b1b7155b34f0, ch: victime, pr: /vik.tim/, ds: victim}
-- {id: fr-v-665a3ad7e81b561e, ch: soutien, pr: /su.tjɛ̃/, ds: support (physical)}
+- {id: fr-v-4dad68733a05ce7c, ch: soutien, pr: /su.tjɛ̃/, ds: emotional support}
 - {id: fr-v-5195990b0671c7c9, ch: dispute, pr: /dis.pyt/, ds: dispute}
 - {id: fr-v-91f8ae9bdb7ca615, ch: conflit, pr: /kɔ̃.fli/, ds: conflict (clash or disagreement)}
 - {id: fr-v-f514a72b06f5de22, ch: malentendu, pr: /ma.lɑ̃.tɑ̃.dy/, ds: misunderstanding}
@@ -1182,7 +1184,7 @@
 - {id: fr-v-206c7e0311f4e1a0, ch: émotion, pr: /e.mo.sjɔ̃/, ds: emotion}
 - {id: fr-v-b536d42dc250e2c7, ch: sentiment, pr: /sɑ̃.ti.mɑ̃/, ds: 'a sentiment, general thought, sense or feeling'}
 - {id: fr-v-c9431e3f732c63f4, ch: joie, pr: /ʒwa/, ds: joy (feeling of happiness or elation)}
-- {id: fr-v-b71b14d8d41a94d4, ch: bonheur, pr: /bɔ.nœʁ/, ds: 'goodhap, good fortune'}
+- {id: fr-v-cf3019ca1d791dff, ch: bonheur, pr: /bɔ.nœʁ/, ds: happiness}
 - {id: fr-v-c86335eb9383799e, ch: tristesse, pr: /tʁis.tɛs/, ds: sadness}
 - {id: fr-v-020e84f53cf77db6, ch: peur, pr: /pœʁ/, ds: fear}
 - {id: fr-v-aaa273b863983f99, ch: colère, pr: /kɔ.lɛʁ/, ds: 'anger, rage'}
@@ -1215,10 +1217,10 @@
 - {id: fr-v-eabb16237ef2317c, ch: jalousie, pr: /ʒa.lu.zi/, ds: jealousy}
 - {id: fr-v-c6c4da2b7046a4b3, ch: envie, pr: /ɑ̃.vi/, ds: 'desire, lust, urge'}
 - {id: fr-v-44fa9676ec5e7433, ch: désir, pr: /de.ziʁ/, ds: desire}
-- {id: fr-v-a30b30ed9ec75dd7, ch: passion, pr: /pa.sjɔ̃/, ds: 'Passion, suffering'}
+- {id: fr-v-a87869e448483e0e, ch: passion, pr: /pa.sjɔ̃/, ds: passion; enthusiasm}
 - {id: fr-v-622edd64ee746d21, ch: dégoût, pr: /de.ɡu/, ds: disgust}
 - {id: fr-v-179518cede5a5dae, ch: admiration, pr: /ad.mi.ʁa.sjɔ̃/, ds: admiration}
-- {id: fr-v-8eda843d24a3e393, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: recognition}
+- {id: fr-v-5d6ac0294c64e0ff, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: gratitude; thankfulness}
 - {id: fr-v-8286281cd5c20c65, ch: compassion, pr: /kɔ̃.pa.sjɔ̃/, ds: 'compassion, pity'}
 - {id: fr-v-66faf167db70cd76, ch: pitié, pr: /pi.tje/, ds: 'pity, mercy'}
 - {id: fr-v-4f858df908621f5c, ch: mépris, pr: /me.pʁi/, ds: scorn}
@@ -1228,8 +1230,8 @@
 - {id: fr-v-01220994b39d4665, ch: satisfaction, pr: /sa.tis.fak.sjɔ̃/, ds: satisfaction}
 - {id: fr-v-b16a5eaa07eac3b9, ch: mécontentement, pr: /me.kɔ̃.tɑ̃t.mɑ̃/, ds: 'discontent, displeasure, dissatisfaction'}
 - {id: fr-v-4a9948da2782df09, ch: chagrin, pr: /ʃa.ɡʁɛ̃/, ds: 'sorrow, grief, chagrin'}
-- {id: fr-v-60f9f7a7aa647c64, ch: humeur, pr: /y.mœʁ/, ds: humour/humor (the liquid in the body)}
-- {id: fr-v-45d392b92477b46a, ch: caractère, pr: /ka.ʁak.tɛʁ/, ds: character (written symbol)}
+- {id: fr-v-f85dcfc572070615, ch: humeur, pr: /y.mœʁ/, ds: mood; state of mind}
+- {id: fr-v-b84b83379f1eab52, ch: caractère, pr: /ka.ʁak.tɛʁ/, ds: character; demeanour}
 - {id: fr-v-8bb1c3bdf92d166b, ch: personnalité, pr: /pɛʁ.sɔ.na.li.te/, ds: personality}
 - {id: fr-v-c9ac3440a8f334d2, ch: sensibilité, pr: /sɑ̃.si.bi.li.te/, ds: sensitivity}
 - {id: fr-v-4f1a633dacac1d1b, ch: tempérament, pr: /tɑ̃.pe.ʁa.mɑ̃/, ds: 'temperament, character'}
@@ -1249,7 +1251,7 @@
 - {id: fr-v-6d97815b5870d5ca, ch: curieux, pr: /ky.ʁjø/, ds: 'curious, inquisitive, intrigued, wondering; possessing curiosity'}
 - {id: fr-v-01cbd03f15f9b606, ch: enthousiaste, pr: /ɑ̃.tu.zjast/, ds: 'inspired, passionate (religiously or artistically)'}
 - {id: fr-v-ae429b41cf07277b, ch: impatient, pr: /ɛ̃.pa.sjɑ̃/, ds: impatient}
-- {id: fr-v-a69a7409a4c66167, ch: patient, pr: /pa.sjɑ̃/, ds: 'patient, outpatient'}
+- {id: fr-v-fe79d5771cfc54a5, ch: patient, pr: /pa.sjɑ̃/, ds: patient; able to wait calmly}
 - {id: fr-v-a7ffe569895e0ff2, ch: courageux, pr: /ku.ʁa.ʒø/, ds: 'courageous, brave, daring'}
 - {id: fr-v-60f557fa0defd1b1, ch: timide, pr: /ti.mid/, ds: 'shy, timid'}
 - {id: fr-v-547dc12a2abfe939, ch: solitaire, pr: /sɔ.li.tɛʁ/, ds: 'solitary, alone (living alone or being by oneself)'}
@@ -1274,14 +1276,14 @@
 - {id: fr-v-610bb63c96f93f43, ch: vis, pr: /vis/, ds: screw (metal fastener)}
 - {id: fr-v-9ad69ce11ba6bf12, ch: clou, pr: /klu/, ds: nail (metal pin)}
 - {id: fr-v-069f4714d0f26bc9, ch: perceuse, pr: /pɛʁ.søz/, ds: drill (tool)}
-- {id: fr-v-2f45a12ab1fb8a54, ch: pince, pr: /pɛ̃s/, ds: 'pincer, claw'}
+- {id: fr-v-00cc31a56f7e063f, ch: pince, pr: /pɛ̃s/, ds: pliers}
 - {id: fr-v-0f0920a338ecaaff, ch: scie, pr: /si/, ds: saw tool}
 - {id: fr-v-3ab7c3b13b8aee96, ch: ciseaux, pr: /si.zo/, ds: scissors}
 - {id: fr-v-5db3bc06bac6d0d1, ch: couteau, pr: /ku.to/, ds: knife}
 - {id: fr-v-a6ff6fa341521117, ch: fourchette, pr: /fuʁ.ʃɛt/, ds: fork (for eating)}
 - {id: fr-v-2591b47528f45df4, ch: cuillère, pr: /kɥi.jɛʁ/, ds: spoon}
 - {id: fr-v-20df8a7280bc8a55, ch: casserole, pr: /ka.sʁɔl/, ds: saucepan (utensil)}
-- {id: fr-v-09b8d49b9d02e77b, ch: poêle, pr: /pwal/, ds: stove}
+- {id: fr-v-8ab4a6cf4cc26a6b, ch: poêle, pr: /pwal/, ds: pan for cooking}
 - {id: fr-v-c654ae5379ad750c, ch: couvercle, pr: /ku.vɛʁkl/, ds: 'lid, cap, cover'}
 - {id: fr-v-1388b78e8c0ecbfa, ch: passoire, pr: /paswaʁ/, ds: sieve}
 - {id: fr-v-23adf99fc4b7bfeb, ch: saladier, pr: /saladje/, ds: 'a salad bowl, a mixing bowl'}
@@ -1289,22 +1291,22 @@
 - {id: fr-v-84e481ee30ef1ba1, ch: plat, pr: /pla/, ds: a flat area of ground; a flat thing; a flat dish or receptacle}
 - {id: fr-v-795441e4668cb3cf, ch: récipient, pr: /ʁe.si.pjɑ̃/, ds: 'container, vessel, recipient'}
 - {id: fr-v-9196bc534936748f, ch: planche, pr: /plɑ̃ʃ/, ds: board}
-- {id: fr-v-ecf66be241b78731, ch: plateau, pr: /pla.to/, ds: flat area}
+- {id: fr-v-d87869fd301bacf2, ch: plateau, pr: /pla.to/, ds: tray}
 - {id: fr-v-703946b6f14ce45f, ch: moule, pr: /mul/, ds: 'mould (UK), mold (US)'}
 - {id: fr-v-6efe7e9ee826ac08, ch: balance, pr: /ba.lɑ̃s/, ds: scales}
 - {id: fr-v-3cb70df5cef01225, ch: thermomètre, pr: /tɛʁ.mɔ.mɛtʁ/, ds: thermometer}
 - {id: fr-v-c162a16626d019c7, ch: minuteur, pr: /mi.ny.tœʁ/, ds: timer (device that times backwards)}
 - {id: fr-v-de6975b59adcf9da, ch: prise, pr: /pʁiz/, ds: 'socket, wall socket (also prise électrique)'}
-- {id: fr-v-14020ed37a8557f3, ch: fiche, pr: /fiʃ/, ds: record}
+- {id: fr-v-ed4bad1c2083e0fc, ch: fiche, pr: /fiʃ/, ds: plug; electrical connector}
 - {id: fr-v-d4339e789b08df5c, ch: câble, pr: /kabl/, ds: cable}
 - {id: fr-v-3e6fdbe93a10d45f, ch: fil, pr: /fil/, ds: 'yarn, thread, wire'}
 - {id: fr-v-db191207fe0d3e06, ch: rallonge, pr: /ʁa.lɔ̃ʒ/, ds: extension (something used to make something else longer)}
 - {id: fr-v-010221499a6c65f6, ch: interrupteur, pr: /ɛ̃.tɛ.ʁyp.tœʁ/, ds: switch}
 - {id: fr-v-660a25cdc2727ee5, ch: ampoule, pr: /ɑ̃.pul/, ds: light bulb}
-- {id: fr-v-00c61929c37f6af0, ch: pile, pr: /pil/, ds: 'heap, stack'}
+- {id: fr-v-c521b937d2fd8e2a, ch: pile, pr: /pil/, ds: battery; electrical cell}
 - {id: fr-v-fc84dfec725e68dd, ch: batterie, pr: /ba.tʁi/, ds: battery}
 - {id: fr-v-d4b18c3835bc7c7a, ch: moteur, pr: /mɔ.tœʁ/, ds: 'motor, engine'}
-- {id: fr-v-012bee8dc12a4e93, ch: poignée, pr: /pwa.ɲe/, ds: handful (amount held in hand)}
+- {id: fr-v-c5e2b640ed80ee35, ch: poignée, pr: /pwa.ɲe/, ds: handle; part held to open or carry something}
 - {id: fr-v-52d46c687250d8c5, ch: serrure, pr: /sɛ.ʁyʁ/, ds: lock}
 - {id: fr-v-aa73f3c5983c2fa5, ch: charnière, pr: /ʃaʁ.njɛʁ/, ds: hinge}
 - {id: fr-v-f1668b926524c698, ch: tuyau, pr: /tɥi.jo/, ds: pipe}
@@ -1315,12 +1317,12 @@
 - {id: fr-v-4774729ae4949488, ch: trou, pr: /tʁu/, ds: hole}
 - {id: fr-v-b9a031b0301f3d6d, ch: fente, pr: /fɑ̃t/, ds: 'cleft, fissure, crack (in rock)'}
 - {id: fr-v-ef5d7b81d5078bbd, ch: fissure, pr: /fi.syʁ/, ds: fissure}
-- {id: fr-v-065a538ccaaaaf77, ch: fuite, pr: /fɥit/, ds: escape; getaway; flight (e.g. from prison)}
+- {id: fr-v-ef0a750467db0746, ch: fuite, pr: /fɥit/, ds: leak; escaping liquid or gas}
 - {id: fr-v-5770610be6dea541, ch: rouille, pr: /ʁuj/, ds: 'rust (oxidation of iron or, by extension, other metals)'}
 - {id: fr-v-0fe266d48c75ce7a, ch: tache, pr: /taʃ/, ds: 'blot, stain or smear'}
 - {id: fr-v-e8abfb9c758af667, ch: trace, pr: /tʁas/, ds: trace}
 - {id: fr-v-e15b2d531b1bd10a, ch: marque, pr: /maʁk/, ds: mark (spot)}
-- {id: fr-v-dce4e3e1f6010c9e, ch: peinture, pr: /pɛ̃.tyʁ/, ds: painting}
+- {id: fr-v-56645d2484e482a8, ch: peinture, pr: /pɛ̃.tyʁ/, ds: paint; coating material}
 - {id: fr-v-40a1382a4eb0d464, ch: colle, pr: /kɔl/, ds: glue}
 - {id: fr-v-357cf3648add801e, ch: ruban, pr: /ʁy.bɑ̃/, ds: 'band, stripe'}
 - {id: fr-v-733ad39f3a30e95c, ch: ficelle, pr: /fi.sɛl/, ds: twine}
@@ -1359,14 +1361,14 @@
 - {id: fr-v-2128ce57bfbf9b93, ch: transparent, pr: /tʁɑ̃s.pa.ʁɑ̃/, ds: transparent; see-through}
 - {id: fr-v-142216e3b4d122b8, ch: opaque, pr: /ɔ.pak/, ds: opaque}
 - {id: fr-v-2b4613a46c7846fd, ch: brillant, pr: /bʁi.jɑ̃/, ds: shining; shiny}
-- {id: fr-v-c3497c0f0c96ec7d, ch: mat, pr: /mat/, ds: checkmate}
+- {id: fr-v-43be326d15788e2d, ch: mat, pr: /mat/, ds: matt; not shiny}
 - {id: fr-v-04de402783ad6ce9, ch: pointu, pr: /pwɛ̃.ty/, ds: 'sharp, pointed'}
 - {id: fr-v-4b33c10c1a6e7fcc, ch: coupant, pr: /ku.pɑ̃/, ds: cutting}
 - {id: fr-v-982158974214a579, ch: tranchant, pr: /tʁɑ̃.ʃɑ̃/, ds: sharp}
 - {id: fr-v-c6fc15732a84fa97, ch: métallique, pr: /me.ta.lik/, ds: metallic}
 - {id: fr-v-df98f855c3810bdd, ch: électrique, pr: /e.lɛk.tʁik/, ds: 'electric, electrical'}
 - {id: fr-v-9b02881688bad869, ch: mécanique, pr: /me.ka.nik/, ds: mechanics}
-- {id: fr-v-46e026efe729ca58, ch: manuel, pr: /ma.nɥɛl/, ds: 'manual, handbook'}
+- {id: fr-v-856d7b8a2b4890fc, ch: manuel, pr: /ma.nɥɛl/, ds: manual; operated by a person rather than a machine}
 - {id: fr-v-1583dcba8c6cf221, ch: automatique, pr: /o.tɔ.ma.tik/, ds: automatic}
 - {id: fr-v-1817fdb8e3337fec, ch: numérique, pr: /ny.me.ʁik/, ds: 'number, numeric, numerical'}
 - {id: fr-v-5e50f97d04387645, ch: tiède, pr: /tjɛd/, ds: 'tepid, lukewarm'}
@@ -1416,7 +1418,7 @@
 - {id: fr-v-f6dec3a078a95521, ch: machine, pr: /ma.ʃin/, ds: 'machine, device'}
 - {id: fr-v-f1b6f9075173b2fc, ch: équipement, pr: /e.kip.mɑ̃/, ds: 'equipment, kit, provision'}
 - {id: fr-v-ea7fdcf136767620, ch: matériel, pr: /ma.te.ʁjɛl/, ds: 'equipment, supplies'}
-- {id: fr-v-9e23eb0e98e0627b, ch: pièce, pr: /pjɛs/, ds: 'room in a house, etc.'}
+- {id: fr-v-00b1e93f5cc300fd, ch: pièce, pr: /pjɛs/, ds: piece; part of a whole}
 - {id: fr-v-e9d20abc8a97b70b, ch: composant, pr: /kɔ̃.po.zɑ̃/, ds: 'component (smaller, self-contained part of larger entity)'}
 - {id: fr-v-57166fcf86292faf, ch: élément, pr: /e.le.mɑ̃/, ds: element (part of a whole)}
 - {id: fr-v-50e36a21da549e39, ch: partie, pr: /paʁ.ti/, ds: 'part (portion, amount)'}
@@ -1436,9 +1438,9 @@
 - {id: fr-v-3d1ca84a4ab68a3f, ch: démonter, pr: /de.mɔ̃.te/, ds: 'to dismantle, to take down'}
 - {id: fr-v-3ee33739ba758312, ch: fixer, pr: /fik.se/, ds: 'to fix, fasten'}
 - {id: fr-v-7433ab6af44c21e8, ch: attacher, pr: /a.ta.ʃe/, ds: to affix}
-- {id: fr-v-703221385a8ff4a7, ch: détacher, pr: /de.ta.ʃe/, ds: 'to remove spots, stains'}
+- {id: fr-v-5959c1cbb9d317c9, ch: détacher, pr: /de.ta.ʃe/, ds: to detach; to untie}
 - {id: fr-v-f1fcfe23a45508f4, ch: coller, pr: /kɔ.le/, ds: 'to stick (together), to glue'}
-- {id: fr-v-c466c79726969e1c, ch: décoller, pr: /de.kɔ.le/, ds: to take off (i.e. a plane)}
+- {id: fr-v-ce571f5f0526dffc, ch: décoller, pr: /de.kɔ.le/, ds: to unstick}
 - {id: fr-v-d34a052223ffc652, ch: visser, pr: /vi.se/, ds: to screw in; to screw on}
 - {id: fr-v-8a5a52fdb7477c29, ch: dévisser, pr: /de.vi.se/, ds: 'to unscrew, undo'}
 - {id: fr-v-e2bdafe9a8c5f270, ch: clouer, pr: /klu.e/, ds: to nail (to attach using a nail)}
@@ -1490,6 +1492,7 @@
 - {id: fr-v-fe0b093f86411cb7, ch: couvrir, pr: /ku.vʁiʁ/, ds: 'to cover up, to cover (put a cover over)'}
 - {id: fr-v-6d8b79d33b32da96, ch: isoler, pr: /i.zɔ.le/, ds: to isolate}
 - {id: fr-v-a33130585e0527fa, ch: renforcer, pr: /ʁɑ̃.fɔʁ.se/, ds: 'to reinforce, strengthen'}
+- {id: fr-v-5297392828150df2, ch: entretien, pr: /ɑ̃.tʁə.tjɛ̃/, ds: maintenance; upkeep}
 - {id: fr-v-c05f3766e3eb95c3, ch: information, pr: /ɛ̃.fɔʁ.ma.sjɔ̃/, ds: 'piece of information]'}
 - {id: fr-v-05bedc57e13672fb, ch: renseignement, pr: /ʁɑ̃.sɛɲ.mɑ̃/, ds: piece of information}
 - {id: fr-v-961dd2dc179fa37d, ch: nouvelle, pr: /nu.vɛl/, ds: 'news, a piece of information'}
@@ -1519,7 +1522,7 @@
 - {id: fr-v-34e605dfb78a67d1, ch: condition, pr: /kɔ̃.di.sjɔ̃/, ds: 'term, condition'}
 - {id: fr-v-9864198b04cb8a05, ch: exigence, pr: /ɛɡ.zi.ʒɑ̃s/, ds: demand}
 - {id: fr-v-953d4fd18918a188, ch: règlement, pr: /ʁɛ.ɡlə.mɑ̃/, ds: 'rules, regulations'}
-- {id: fr-v-4f9e62c3d58ca92e, ch: démarche, pr: /de.maʁʃ/, ds: 'gait, walk'}
+- {id: fr-v-1fb53d8964255371, ch: démarche, pr: /de.maʁʃ/, ds: procedure; step taken to get something done}
 - {id: fr-v-04045261d99ed365, ch: formalité, pr: /fɔʁ.ma.li.te/, ds: formality (all meanings)}
 - {id: fr-v-7f58b29d072fd667, ch: justificatif, pr: /ʒystifikatif/, ds: proof}
 - {id: fr-v-57592d282c5d7c6d, ch: copie, pr: /kɔ.pi/, ds: copying}
@@ -1530,7 +1533,7 @@
 - {id: fr-v-0227ffaaf5c14248, ch: résumé, pr: /ʁe.zy.me/, ds: 'summary, résumé'}
 - {id: fr-v-e6d806faf2d54d4d, ch: synthèse, pr: /sɛ̃.tɛz/, ds: synthesis}
 - {id: fr-v-dd7b337ec5e90f9b, ch: compte rendu, pr: /kɔ̃t ʁɑ̃.dy/, ds: 'proceedings (published record), see usage notes'}
-- {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+- {id: fr-v-62c45261703fa8a6, ch: rapport, pr: /ʁa.pɔʁ/, ds: report}
 - {id: fr-v-3a7a5c9c444c1295, ch: description, pr: /dɛs.kʁip.sjɔ̃/, ds: description}
 - {id: fr-v-84cad7e34180feff, ch: commentaire, pr: /kɔ.mɑ̃.tɛʁ/, ds: 'comment, remark'}
 - {id: fr-v-0d0c9fabe0c55a6c, ch: remarque, pr: /ʁə.maʁk/, ds: 'remark (comment, something said)'}
@@ -1542,7 +1545,7 @@
 - {id: fr-v-4f7c21e11755df90, ch: annoncer, pr: /a.nɔ̃.se/, ds: to announce}
 - {id: fr-v-dad5db1090ece80a, ch: avertir, pr: /a.vɛʁ.tiʁ/, ds: to warn}
 - {id: fr-v-66ce6d9aed8e7456, ch: signaler, pr: /si.ɲa.le/, ds: to signal}
-- {id: fr-v-925f2658d0ebe0d8, ch: indiquer, pr: /ɛ̃.di.ke/, ds: to connote (to signify beyond principal meaning)}
+- {id: fr-v-59b16fab37aa1be6, ch: indiquer, pr: /ɛ̃.di.ke/, ds: to indicate; to show}
 - {id: fr-v-11152b5d3cabd668, ch: préciser, pr: /pʁe.si.ze/, ds: to specify}
 - {id: fr-v-6dd87ee861df5107, ch: clarifier, pr: /kla.ʁi.fje/, ds: to clarify}
 - {id: fr-v-0978a65f250be971, ch: mentionner, pr: /mɑ̃.sjɔ.ne/, ds: to mention}
@@ -1557,7 +1560,7 @@
 - {id: fr-v-a68fedeceeb5a63a, ch: recopier, pr: /ʁə.kɔ.pje/, ds: to copy (again)}
 - {id: fr-v-289cff5ef6e8e5d3, ch: copier, pr: /kɔ.pje/, ds: to copy}
 - {id: fr-v-61517335dede66cd, ch: reproduire, pr: /ʁə.pʁɔ.dɥiʁ/, ds: to reproduce}
-- {id: fr-v-44b0eee814abb636, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to safeguard; to protect}
+- {id: fr-v-8843c46a8cf3c46f, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to save digital information}
 - {id: fr-v-9da3733fc32b3728, ch: supprimer, pr: /sy.pʁi.me/, ds: to delete}
 - {id: fr-v-360f53ddec7184be, ch: effacer, pr: /e.fa.se/, ds: to erase}
 - {id: fr-v-ae8ec47ecc8acd37, ch: rédiger, pr: /ʁe.di.ʒe/, ds: to compose}
@@ -1573,6 +1576,8 @@
 - {id: fr-v-c746ce0320c3b2a5, ch: référer, pr: /ʁe.fe.ʁe/, ds: to refer (someone)}
 - {id: fr-v-7fccfdef01c7c6b8, ch: concerner, pr: /kɔ̃.sɛʁ.ne/, ds: 'to concern (be concerned with, be associated with)'}
 - {id: fr-v-afe7ae71d73cf0bf, ch: règle, pr: /ʁɛɡl/, ds: rule; regulation}
+- {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to record for later use or playback}
+- {id: fr-v-aab93c744b03ab11, ch: pièce, pr: /pjɛs/, ds: document; legal paper}
 - {id: fr-v-e060358778c119e8, ch: apprentissage, pr: /a.pʁɑ̃.ti.saʒ/, ds: apprenticeship}
 - {id: fr-v-d1735709d2cdf728, ch: enseignement, pr: /ɑ̃.sɛ.ɲ(ə).mɑ̃/, ds: 'education, teaching'}
 - {id: fr-v-8c76da0d6a0b337c, ch: éducation, pr: /e.dy.ka.sjɔ̃/, ds: education (all meanings)}
@@ -1623,43 +1628,45 @@
 - {id: fr-v-7591cd6e656dc78b, ch: trait, pr: /tʁɛ/, ds: line}
 - {id: fr-v-647cc16f3490d097, ch: orthographe, pr: /ɔʁ.to.ɡʁaf/, ds: orthography; spelling}
 - {id: fr-v-ba866e271b716db3, ch: conjugaison, pr: /kɔ̃.ʒy.ɡɛ.zɔ̃/, ds: conjugation}
-- {id: fr-v-bf3975b263776f93, ch: verbe, pr: /vɛʁb/, ds: speech}
+- {id: fr-v-b3f45778cb99df55, ch: verbe, pr: /vɛʁb/, ds: verb; grammatical word class}
 - {id: fr-v-49fbfdf990f8dc0b, ch: adjectif, pr: /a.dʒɛk.tif/, ds: adjective}
 - {id: fr-v-8dbed7f7371283a7, ch: adverbe, pr: /ad.vɛʁb/, ds: adverb (lexical category)}
 - {id: fr-v-e719f556947f924f, ch: pronom, pr: /pʁɔ.nɔ̃/, ds: pronoun}
 - {id: fr-v-34579cbd6d9e3bfd, ch: préposition, pr: /pʁe.po.zi.sjɔ̃/, ds: preposition}
-- {id: fr-v-c2995b0b27061b57, ch: sujet, pr: /sy.ʒɛ/, ds: subject (in a monarchy)}
-- {id: fr-v-89d839cbc6cb2bb8, ch: complément, pr: /kɔ̃.ple.mɑ̃/, ds: 'complement, thing added that makes a whole'}
+- {id: fr-v-95d95cf5d1d2623c, ch: sujet, pr: /sy.ʒɛ/, ds: subject; grammatical role}
 - {id: fr-v-b773afea339d9a06, ch: féminin, pr: /fe.mi.nɛ̃/, ds: female}
 - {id: fr-v-82e002348a2184d8, ch: masculin, pr: /mas.ky.lɛ̃/, ds: male}
 - {id: fr-v-f67ee188d56ea6da, ch: singulier, pr: /sɛ̃.ɡy.lje/, ds: singular}
 - {id: fr-v-4f65aa18afdc0581, ch: pluriel, pr: /ply.ʁjɛl/, ds: plural}
 - {id: fr-v-8837ed2da96b5874, ch: infinitif, pr: /ɛ̃.fi.ni.tif/, ds: infinitive (uninflected verb form)}
 - {id: fr-v-c719b620c176ba58, ch: participe, pr: /paʁ.ti.sip/, ds: participle}
-- {id: fr-v-f913fc4c1fc86e3f, ch: temps, pr: /tɑ̃/, ds: time (in general)}
-- {id: fr-v-46024474d4ba1343, ch: mode, pr: /mɔd/, ds: 'fashion, trend'}
-- {id: fr-v-4816f1dc1249ae41, ch: journal, pr: /ʒuʁ.nal/, ds: 'diary, journal'}
+- {id: fr-v-e77451f587529369, ch: temps, pr: /tɑ̃/, ds: tense; grammatical time reference}
+- {id: fr-v-7281e8a386e96536, ch: mode, pr: /mɔd/, ds: mood; grammatical verb category}
+- {id: fr-v-8f599235856cd4b5, ch: article, pr: /aʁ.tikl/, ds: article; grammatical determiner}
+- {id: fr-v-282ea9944dc1ba81, ch: lettre, pr: /lɛtʁ/, ds: letter; written character}
+- {id: fr-v-d7a72d4eb9550edc, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: knowledge}
+- {id: fr-v-320068d7720a833d, ch: journal, pr: /ʒuʁ.nal/, ds: newspaper}
 - {id: fr-v-be9b2b424eb45aab, ch: magazine, pr: /ma.ɡa.zin/, ds: magazine (periodical publication)}
 - {id: fr-v-5bf1e41cf0030a3c, ch: revue, pr: /ʁə.vy/, ds: 'magazine, journal'}
 - {id: fr-v-07bec40f6d4d4bc5, ch: hebdomadaire, pr: /ɛb.dɔ.ma.dɛʁ/, ds: weekly}
 - {id: fr-v-6917548c517a958d, ch: presse, pr: /pʁɛs/, ds: 'press, papers (the media)'}
 - {id: fr-v-7d87ed8525a3b47e, ch: radio, pr: /ʁa.djo/, ds: 'radio, tuner'}
 - {id: fr-v-03cb12a47bd7ce21, ch: télévision, pr: /te.le.vi.zjɔ̃/, ds: television}
-- {id: fr-v-6e83fe88790a7ed8, ch: émission, pr: /e.mi.sjɔ̃/, ds: emission}
+- {id: fr-v-a79c74b3753affb5, ch: émission, pr: /e.mi.sjɔ̃/, ds: programme; broadcast show}
 - {id: fr-v-433118b12e4621ab, ch: programme, pr: /pʁɔ.ɡʁam/, ds: a program (set of structured activities)}
 - {id: fr-v-63a59871fbbf33f9, ch: reportage, pr: /ʁə.pɔʁ.taʒ/, ds: reportage}
 - {id: fr-v-370312eed12bcbbb, ch: interview, pr: /ɛ̃.tɛʁ.vju/, ds: interview (by a journalist)}
 - {id: fr-v-d207bf410a088bdd, ch: journaliste, pr: /ʒuʁ.na.list/, ds: a journalist}
 - {id: fr-v-aea0efad3f973b0f, ch: rédacteur, pr: /ʁedaktœʁ/, ds: editor (main writer of e.g. a newspaper)}
 - {id: fr-v-dd6bcb90fc093f01, ch: lecteur, pr: /lɛk.tœʁ/, ds: reader}
-- {id: fr-v-0dd8a120517211cb, ch: auditeur, pr: /o.di.tœʁ/, ds: auditor}
+- {id: fr-v-84e196ffc57448ab, ch: auditeur, pr: /o.di.tœʁ/, ds: listener}
 - {id: fr-v-9b58ad6933e1ebb6, ch: public, pr: /py.blik/, ds: public (people in general)}
-- {id: fr-v-2b18e80582d6a688, ch: contenu, pr: /kɔ̃t.ny/, ds: content (that which is physically contained in a container)}
+- {id: fr-v-7b935a9eac148d90, ch: contenu, pr: /kɔ̃t.ny/, ds: content; subject matter}
 - {id: fr-v-099bc03d9438f618, ch: rubrique, pr: /ʁy.bʁik/, ds: 'category, heading'}
 - {id: fr-v-744d767728f63886, ch: éditorial, pr: /e.di.tɔ.ʁjal/, ds: editorial}
 - {id: fr-v-c9b324e06bad3c0c, ch: chronique, pr: /kʁɔ.nik/, ds: chronicle}
 - {id: fr-v-fd626dc8d7f28493, ch: actualité, pr: /ak.tɥa.li.te/, ds: topic; topicality}
-- {id: fr-v-006ba27aab95f655, ch: source, pr: /suʁs/, ds: 'source, spring (of water)'}
+- {id: fr-v-6e1fb054411039d2, ch: source, pr: /suʁs/, ds: source; origin of information}
 - {id: fr-v-d3e3c83b4f1bea3b, ch: auteur, pr: /o.tœʁ/, ds: author}
 - {id: fr-v-b1907a120c53b7aa, ch: destinataire, pr: /dɛs.ti.na.tɛʁ/, ds: 'recipient, addressee'}
 - {id: fr-v-8915b88e3dab9a65, ch: expéditeur, pr: /ɛk.spe.di.tœʁ/, ds: 'sender, transmitter'}
@@ -1673,6 +1680,7 @@
 - {id: fr-v-7988ea78dc411b32, ch: illustration, pr: /i.lys.tʁa.sjɔ̃/, ds: illustration}
 - {id: fr-v-822b5134bcea5353, ch: photographie, pr: /fɔ.tɔ.ɡʁa.fi/, ds: photography}
 - {id: fr-v-6fe9de990baa7e65, ch: image, pr: /i.maʒ/, ds: 'picture, image'}
+- {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article; nonfiction text}
 - {id: fr-v-abfebb7b92ce5ae0, ch: agréable, pr: /a.ɡʁe.abl/, ds: 'pleasurable, nice, pleasant, agreeable'}
 - {id: fr-v-29e05509504a45fd, ch: désagréable, pr: /de.za.ɡʁe.abl/, ds: unpleasant; disagreeable}
 - {id: fr-v-86bd6ac004c197c4, ch: plaisant, pr: /plɛ.zɑ̃/, ds: pleasing; pleasant}
@@ -1828,14 +1836,14 @@
 - {id: fr-v-850edecbb5c38da0, ch: agence, pr: /a.ʒɑ̃s/, ds: agency}
 - {id: fr-v-3e9b4a2b087f467b, ch: agent, pr: /a.ʒɑ̃/, ds: agent}
 - {id: fr-v-76183b8af321de12, ch: studio, pr: /sty.djo/, ds: 'studio; workshop, recording room, or small apartment'}
-- {id: fr-v-962971657c3b7787, ch: duplex, pr: /dy.plɛks/, ds: 'a link between two points, such as a cable or a wire'}
+- {id: fr-v-747e37a14b5a9411, ch: duplex, pr: /dy.plɛks/, ds: duplex; two-level dwelling}
 - {id: fr-v-987607a74742401b, ch: pavillon, pr: /pa.vi.jɔ̃/, ds: 'pavilion (tent, structure, ear part)'}
 - {id: fr-v-230aae5a876ab062, ch: villa, pr: /vi.la/, ds: villa}
 - {id: fr-v-36769e3be609cd46, ch: propriété, pr: /pʁɔ.pʁi.je.te/, ds: property (something owned)}
 - {id: fr-v-58183ad74f47232b, ch: terrain, pr: /tɛ.ʁɛ̃/, ds: 'ground, landscape'}
 - {id: fr-v-f69b5d10b9f07275, ch: superficie, pr: /sy.pɛʁ.fi.si/, ds: surface}
 - {id: fr-v-88c90a59b79c3824, ch: surface, pr: /syʁ.fas/, ds: surface}
-- {id: fr-v-61304aee7a7ff416, ch: volume, pr: /vɔ.lym/, ds: 'volume (of a book, a written work)'}
+- {id: fr-v-7355142a066f975d, ch: volume, pr: /vɔ.lym/, ds: volume; amount of space occupied}
 - {id: fr-v-c7a0450443bb71e4, ch: dimension, pr: /di.mɑ̃.sjɔ̃/, ds: dimension}
 - {id: fr-v-d23f799f32503bbe, ch: état, pr: /e.ta/, ds: 'state, condition'}
 - {id: fr-v-1adc325354606708, ch: état des lieux, pr: /e.ta de ljø/, ds: inventory of fixtures}
@@ -1845,11 +1853,11 @@
 - {id: fr-v-362f471216162c2a, ch: ventilation, pr: /vɑ̃.ti.la.sjɔ̃/, ds: 'ventilation: replacement of stale or noxious air with fresh'}
 - {id: fr-v-9c792429f2082c44, ch: humidité, pr: /y.mi.di.te/, ds: 'humidity; moisture, wetness, dampness'}
 - {id: fr-v-aab2feed68875b38, ch: moisissure, pr: /mwa.zi.syʁ/, ds: mould (woolly or furry growth of tiny fungi)}
-- {id: fr-v-9327799efb2e33ee, ch: infiltration, pr: /ɛ̃.fil.tʁa.sjɔ̃/, ds: injection}
+- {id: fr-v-d336d2aa3cb387b1, ch: infiltration, pr: /ɛ̃.fil.tʁa.sjɔ̃/, ds: infiltration; seepage}
 - {id: fr-v-89347d6a00c7e00a, ch: inondation, pr: /i.nɔ̃.da.sjɔ̃/, ds: flood (overflow of water)}
 - {id: fr-v-3ceef803c095aaa2, ch: incendie, pr: /ɛ̃.sɑ̃.di/, ds: fire (something on fire which is out of control)}
 - {id: fr-v-c4dea596a7970dbe, ch: coupure, pr: /ku.pyʁ/, ds: the act or result of cutting; a cut}
-- {id: fr-v-7aff2929fa77b6e4, ch: alimentation, pr: /a.li.mɑ̃.ta.sjɔ̃/, ds: feeding}
+- {id: fr-v-8f6a00217ec6a493, ch: alimentation, pr: /a.li.mɑ̃.ta.sjɔ̃/, ds: power supply}
 - {id: fr-v-c4d753152c2d8d1d, ch: compteur, pr: /kɔ̃.tœʁ/, ds: 'a measuring device that keeps a count: a meter, a counter'}
 - {id: fr-v-48004e1dac0085f5, ch: raccordement, pr: /ʁa.kɔʁ.də.mɑ̃/, ds: 'act of linking, act of joining'}
 - {id: fr-v-f802383b994df464, ch: plomberie, pr: /plɔ̃.bʁi/, ds: plumbing; plumbery}
@@ -1869,7 +1877,6 @@
 - {id: fr-v-52dd87e986925cb7, ch: électricien, pr: /e.lɛk.tʁi.sjɛ̃/, ds: electrician}
 - {id: fr-v-453049a77cfdd240, ch: serrurier, pr: /sɛ.ʁy.ʁje/, ds: locksmith (lock maker)}
 - {id: fr-v-e9b54dc05075a027, ch: maçon, pr: /ma.sɔ̃/, ds: 'bricklayer, mason, builder'}
-- {id: fr-v-9facc0d0c26dc754, ch: peintre, pr: /pɛ̃tʁ/, ds: painter (artist)}
 - {id: fr-v-4a4dbc4dc47e1323, ch: déménageur, pr: /de.me.na.ʒœʁ/, ds: mover}
 - {id: fr-v-6a02c47b6704b3dd, ch: gardien, pr: /ɡaʁ.djɛ̃/, ds: guard (someone who keeps guard of something)}
 - {id: fr-v-989516764082916c, ch: concierge, pr: /kɔ̃.sjɛʁʒ/, ds: 'house-porter, doorkeeper, caretaker'}
@@ -1901,13 +1908,13 @@
 - {id: fr-v-91ec5b8395fcb1db, ch: dégât, pr: /de.ɡa/, ds: damage}
 - {id: fr-v-e517e1cadad978fb, ch: remplacement, pr: /ʁɑ̃.plas.mɑ̃/, ds: replacement (the act of replacing)}
 - {id: fr-v-f1b8a8318d2cb33a, ch: garantie, pr: /ɡa.ʁɑ̃.ti/, ds: guarantee}
-- {id: fr-v-05f4d02be40301f9, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: self-confidence}
+- {id: fr-v-7561f312e879df38, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: insurance}
 - {id: fr-v-ece1a3531c8c7e79, ch: indemnité, pr: /ɛ̃.dɛm.ni.te/, ds: indemnity}
 - {id: fr-v-07daf9198e03dedb, ch: indemnisation, pr: /ɛ̃.dɛm.ni.za.sjɔ̃/, ds: compensation}
 - {id: fr-v-cdf622ba189bb55a, ch: compensation, pr: /kɔ̃.pɑ̃.sa.sjɔ̃/, ds: compensation}
 - {id: fr-v-575f5d37a8a6be3e, ch: dédommagement, pr: /de.dɔ.maʒ.mɑ̃/, ds: compensation}
 - {id: fr-v-d7682b1c6ce8320a, ch: caution, pr: /ko.sjɔ̃/, ds: 'caution, guaranty, bail'}
-- {id: fr-v-0d1be7c947965be2, ch: dépôt, pr: /de.po/, ds: 'warehouse, store, depot, depository'}
+- {id: fr-v-14a6566449847ddc, ch: dépôt, pr: /de.po/, ds: bank deposit}
 - {id: fr-v-130e380a8a295561, ch: acompte, pr: /a.kɔ̃t/, ds: 'down payment, advance payment'}
 - {id: fr-v-c759796c3ccddcc4, ch: échéance, pr: /e.ʃe.ɑ̃s/, ds: 'expiry date, expiration date'}
 - {id: fr-v-f3b8a761037e900d, ch: échéancier, pr: /e.ʃe.ɑ̃.sje/, ds: repayment schedule}
@@ -1919,16 +1926,16 @@
 - {id: fr-v-fd8036274542f152, ch: dette, pr: /dɛt/, ds: debt}
 - {id: fr-v-dda79f8fdf93e676, ch: crédit, pr: /kʁe.di/, ds: credit}
 - {id: fr-v-f1c039d4558f52e9, ch: emprunt, pr: /ɑ̃.pʁœ̃/, ds: loan}
-- {id: fr-v-e624ce529d9e2410, ch: retrait, pr: /ʁə.tʁɛ/, ds: retreat}
+- {id: fr-v-88bc1d56b88bf3b7, ch: retrait, pr: /ʁə.tʁɛ/, ds: withdrawal}
 - {id: fr-v-ea8e264ecd6d246c, ch: virement, pr: /viʁ.mɑ̃/, ds: 'bank transfer, wire transfer'}
 - {id: fr-v-23a963b43d246337, ch: versement, pr: /vɛʁ.sə.mɑ̃/, ds: 'payment, especially an electronic transaction'}
-- {id: fr-v-a7bdaaaffa4db180, ch: prélèvement, pr: /pʁe.lɛv.mɑ̃/, ds: sampling}
+- {id: fr-v-14c6b3d37f7ecc13, ch: prélèvement, pr: /pʁe.lɛv.mɑ̃/, ds: deduction; levy}
 - {id: fr-v-a852d1c65046cd98, ch: chèque, pr: /ʃɛk/, ds: cheque}
 - {id: fr-v-7e6c9e42585ded9f, ch: découvert, pr: /de.ku.vɛʁ/, ds: overdraft}
 - {id: fr-v-ad204576fb921a11, ch: épargne, pr: /e.paʁɲ/, ds: savings}
 - {id: fr-v-81016d3c6d02fbee, ch: budget, pr: /by.dʒɛ/, ds: a budget}
 - {id: fr-v-3f7552d492623e5a, ch: dépense, pr: /de.pɑ̃s/, ds: expense}
-- {id: fr-v-bda4c0b2450ea61e, ch: recette, pr: /ʁə.sɛt/, ds: recipe}
+- {id: fr-v-642cdfc7c46f6d7e, ch: recette, pr: /ʁə.sɛt/, ds: takings; income received}
 - {id: fr-v-f24806d823e8fc3b, ch: devis, pr: /də.vi/, ds: 'quote, cost estimate'}
 - {id: fr-v-7743d8659d973bbc, ch: prestation, pr: /pʁɛs.ta.sjɔ̃/, ds: 'financial payment, benefit'}
 - {id: fr-v-d749c3c908e754ef, ch: résiliation, pr: /ʁe.zi.lja.sjɔ̃/, ds: 'termination, cancellation'}
@@ -1955,7 +1962,7 @@
 - {id: fr-v-eb47030cddcfb8cf, ch: dépannage, pr: /de.pa.naʒ/, ds: 'troubleshooting, fixing, repairing'}
 - {id: fr-v-b372d3793f830ed3, ch: intervention, pr: /ɛ̃.tɛʁ.vɑ̃.sjɔ̃/, ds: intervention}
 - {id: fr-v-80a6108e4214e427, ch: service, pr: /sɛʁ.vis/, ds: service}
-- {id: fr-v-fb7f51b70681f48d, ch: guichet, pr: /ɡi.ʃɛ/, ds: 'hatch, grill (in cell etc.)'}
+- {id: fr-v-d4b45ad333e8aef1, ch: guichet, pr: /ɡi.ʃɛ/, ds: service counter; bank or post-office window}
 - {id: fr-v-b3601afeeb0957a8, ch: comptoir, pr: /kɔ̃.twaʁ/, ds: 'a counter, countertop (as of a store or bank)'}
 - {id: fr-v-e586948f73c5bcea, ch: permanence, pr: /pɛʁ.ma.nɑ̃s/, ds: permanence (state of being permanent)}
 - {id: fr-v-03d71ecb4d9a003f, ch: standard, pr: /stɑ̃.daʁ/, ds: standard}
@@ -2027,17 +2034,16 @@
 - {id: fr-v-51c55f6beaf0732c, ch: fournir, pr: /fuʁ.niʁ/, ds: 'to supply, to provide, to furnish'}
 - {id: fr-v-497dd6a4e74ef292, ch: présenter, pr: /pʁe.zɑ̃.te/, ds: 'to present, to introduce'}
 - {id: fr-v-5eeca2e9323c19f7, ch: remettre, pr: /ʁə.mɛtʁ/, ds: 'to put back, replace'}
-- {id: fr-v-64e985be5512199b, ch: délivrer, pr: /de.li.vʁe/, ds: to set free}
 - {id: fr-v-2360a8211484f50f, ch: déposer, pr: /de.po.ze/, ds: 'to put down (set down), lay down'}
 - {id: fr-v-addb57e2c5115360, ch: résilier, pr: /ʁe.zi.lje/, ds: 'to cancel, annul, invalidate'}
 - {id: fr-v-8773b6450f473394, ch: renouveler, pr: /ʁə.nu.vle/, ds: to renew}
 - {id: fr-v-7e9cec7645c3b7c7, ch: prolonger, pr: /pʁɔ.lɔ̃.ʒe/, ds: to prolong}
-- {id: fr-v-22d06c30c4b353ca, ch: expirer, pr: /ɛk.spi.ʁe/, ds: to breathe out}
-- {id: fr-v-3d45792a0c48b5cd, ch: reporter, pr: /ʁə.pɔʁ.te/, ds: to carry something back to where it was}
+- {id: fr-v-829e64644f184303, ch: expirer, pr: /ɛk.spi.ʁe/, ds: to expire; to run out}
+- {id: fr-v-0d8f1f1ea05a68b3, ch: reporter, pr: /ʁə.pɔʁ.te/, ds: to postpone}
 - {id: fr-v-2a4ca065f43937ad, ch: retarder, pr: /ʁə.taʁ.de/, ds: 'to retard, slow down'}
-- {id: fr-v-7524ac2ae390d741, ch: suspendre, pr: /sys.pɑ̃dʁ/, ds: to suspend (hang freely)}
+- {id: fr-v-4e5ca7446c6788c6, ch: suspendre, pr: /sys.pɑ̃dʁ/, ds: to suspend; to cancel temporarily}
 - {id: fr-v-e5696c93e9a47fb1, ch: réactiver, pr: /ʁe.ak.ti.ve/, ds: to reactivate}
-- {id: fr-v-130590eeb812b81e, ch: débiter, pr: /de.bi.te/, ds: to sell continuously}
+- {id: fr-v-bbd0cb9bb948502f, ch: débiter, pr: /de.bi.te/, ds: to debit an account}
 - {id: fr-v-915a91b9b5612001, ch: créditer, pr: /kʁe.di.te/, ds: to credit (to) (add credit)}
 - {id: fr-v-a02d6a64c52a1f8f, ch: transférer, pr: /tʁɑ̃s.fe.ʁe/, ds: 'to transfer, remove'}
 - {id: fr-v-d594699d3148f143, ch: prélever, pr: /pʁel.ve/, ds: to take (sur from)}
@@ -2052,7 +2058,7 @@
 - {id: fr-v-f57d346a4cec799a, ch: endommager, pr: /ɑ̃.dɔ.ma.ʒe/, ds: to damage (to cause damage to something)}
 - {id: fr-v-1f80f9d133e14481, ch: dégrader, pr: /de.ɡʁa.de/, ds: to demote (lower someone's position in an organisation)}
 - {id: fr-v-b9871f73bfc49e2b, ch: coincer, pr: /kwɛ̃.se/, ds: 'to wedge, to jam, to catch (e.g. one''s finger in a door)'}
-- {id: fr-v-6dba8f9ea46f8cc8, ch: fuir, pr: /fɥiʁ/, ds: to escape}
+- {id: fr-v-5152745ec0928ca5, ch: fuir, pr: /fɥiʁ/, ds: to leak}
 - {id: fr-v-ab54ae056d5bba6e, ch: déborder, pr: /de.bɔʁ.de/, ds: 'to overflow (exceed the brim), to spill over'}
 - {id: fr-v-1e74cf294e4b5421, ch: invalider, pr: /ɛ̃.va.li.de/, ds: 'to invalidate, void'}
 - {id: fr-v-442f8ebdf43bd54c, ch: authentifier, pr: /ɔ.tɑ̃.ti.fje/, ds: to authenticate}
@@ -2152,7 +2158,7 @@
 - {id: fr-v-4d9cbd2e15b53749, ch: associé, pr: /a.sɔ.sje/, ds: associate}
 - {id: fr-v-b37afbf9da7dc548, ch: dirigeant, pr: /di.ʁi.ʒɑ̃/, ds: 'ruler, leader'}
 - {id: fr-v-ba478215c852cfab, ch: directeur, pr: /di.ʁɛk.tœʁ/, ds: director}
-- {id: fr-v-e74c0c9edc84b050, ch: cadre, pr: /kadʁ/, ds: frame (of a door or picture)}
+- {id: fr-v-bca58810a26ec573, ch: cadre, pr: /kadʁ/, ds: executive; manager}
 - {id: fr-v-ea9ea1606fd5d403, ch: salarié, pr: /sa.la.ʁje/, ds: employee}
 - {id: fr-v-fb863ef49e559244, ch: employé, pr: /ɑ̃.plwa.je/, ds: employee}
 - {id: fr-v-5fdcac601ae67129, ch: employeur, pr: /ɑ̃.plwa.jœʁ/, ds: employer}
@@ -2166,9 +2172,9 @@
 - {id: fr-v-ca6903f1ee83789c, ch: embauche, pr: /ɑ̃.boʃ/, ds: 'hiring, employment, taking-on'}
 - {id: fr-v-2c1aaaed1b21dac0, ch: licenciement, pr: /li.sɑ̃.si.mɑ̃/, ds: sacking (termination of work)}
 - {id: fr-v-dd636014e449d86f, ch: démission, pr: /de.mi.sjɔ̃/, ds: resignation}
-- {id: fr-v-e87ba21bde45a2f9, ch: mutation, pr: /my.ta.sjɔ̃/, ds: substitution}
-- {id: fr-v-194583add04d7627, ch: carrière, pr: /ka.ʁjɛʁ/, ds: racecourse}
-- {id: fr-v-d00a0955363094cd, ch: ancienneté, pr: /ɑ̃.sjɛn.te/, ds: oldness (state of being old)}
+- {id: fr-v-f2fd77e2b5bc99a7, ch: mutation, pr: /my.ta.sjɔ̃/, ds: transfer; move to another post}
+- {id: fr-v-af30505287b23eed, ch: carrière, pr: /ka.ʁjɛʁ/, ds: career}
+- {id: fr-v-b7256f3e12045159, ch: ancienneté, pr: /ɑ̃.sjɛn.te/, ds: seniority}
 - {id: fr-v-605c2013aea34f9c, ch: qualification, pr: /ka.li.fi.ka.sjɔ̃/, ds: qualification (all senses)}
 - {id: fr-v-c701dc583223b9a2, ch: responsabilité, pr: /ʁɛs.pɔ̃.sa.bi.li.te/, ds: responsibility}
 - {id: fr-v-2950aad44d8180f3, ch: fonction, pr: /fɔ̃k.sjɔ̃/, ds: function (what something does or is used for)}
@@ -2177,7 +2183,7 @@
 - {id: fr-v-06d622719884b58b, ch: attribution, pr: /a.tʁi.by.sjɔ̃/, ds: 'allocation, allotment'}
 - {id: fr-v-b9624b5ca318db65, ch: délégation, pr: /de.le.ɡa.sjɔ̃/, ds: delegation}
 - {id: fr-v-134683a370681bc5, ch: supervision, pr: /sy.pɛʁ.vi.zjɔ̃/, ds: supervision}
-- {id: fr-v-ed435747c56e708a, ch: encadrement, pr: /ɑ̃.ka.dʁə.mɑ̃/, ds: framing (of a picture)}
+- {id: fr-v-fdd5ff57a954ce95, ch: encadrement, pr: /ɑ̃.ka.dʁə.mɑ̃/, ds: supervision}
 - {id: fr-v-f74a8004f0d6c617, ch: management, pr: /ma.na(d)ʒ.mɑ̃/, ds: management}
 - {id: fr-v-3d1ded5724afce96, ch: gestion, pr: /ʒɛs.tjɔ̃/, ds: administration}
 - {id: fr-v-c0c88554e501b21f, ch: planification, pr: /pla.ni.fi.ka.sjɔ̃/, ds: planning (act of making a plan)}
@@ -2199,7 +2205,7 @@
 - {id: fr-v-0c55d6f09784a9fe, ch: séance, pr: /se.ɑ̃s/, ds: session}
 - {id: fr-v-bf5ce7a860adcbf0, ch: conférence, pr: /kɔ̃.fe.ʁɑ̃s/, ds: conference}
 - {id: fr-v-2d7dd2efba680be0, ch: atelier, pr: /a.tə.lje/, ds: workshop}
-- {id: fr-v-2d5e384c55f91fc3, ch: séminaire, pr: /se.mi.nɛʁ/, ds: seminary}
+- {id: fr-v-b68685c593420d31, ch: séminaire, pr: /se.mi.nɛʁ/, ds: seminar; training or discussion meeting}
 - {id: fr-v-673e6e1673b381a1, ch: ordre du jour, pr: /ɔʁ.dʁə dy ʒuʁ/, ds: 'order of the day, agenda (list of matters to be taken up)'}
 - {id: fr-v-709ba8e9c7088321, ch: procès-verbal, pr: /pʁɔ.sɛ.vɛʁ.bal/, ds: 'minutes (of a meeting, etc.)'}
 - {id: fr-v-879beb75f7a617cb, ch: bilan, pr: /bi.lɑ̃/, ds: balance sheet}
@@ -2215,6 +2221,7 @@
 - {id: fr-v-14ea8b6b2df89c1f, ch: livraison, pr: /li.vʁɛ.zɔ̃/, ds: delivery}
 - {id: fr-v-07bde498070c511c, ch: validation, pr: /va.li.da.sjɔ̃/, ds: validation}
 - {id: fr-v-7d8b802e495088d2, ch: approbation, pr: /a.pʁɔ.ba.sjɔ̃/, ds: approval (permission)}
+- {id: fr-v-eaf6c59ac2b26183, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: promotion; career advancement}
 - {id: fr-v-b4c4d8f91101ee31, ch: collaborer, pr: /kɔ.la.bɔ.ʁe/, ds: to collaborate}
 - {id: fr-v-b5996503f94afc87, ch: coopérer, pr: /kɔ.ɔ.pe.ʁe/, ds: to cooperate}
 - {id: fr-v-57fd50c7db2a0bfb, ch: coordonner, pr: /kɔ.ɔʁ.dɔ.ne/, ds: 'to coordinate, to organise thoroughly'}
@@ -2225,7 +2232,7 @@
 - {id: fr-v-134da06c4e40b9df, ch: déléguer, pr: /de.le.ɡe/, ds: 'to delegate (to commit a task to someone), depute'}
 - {id: fr-v-575552715f337eda, ch: attribuer, pr: /a.tʁi.bɥe/, ds: 'to grant, to award'}
 - {id: fr-v-ea17f757a7bc3a75, ch: répartir, pr: /ʁe.paʁ.tiʁ/, ds: 'to distribute, to apportion'}
-- {id: fr-v-33bcc2ead6858405, ch: affecter, pr: /a.fɛk.te/, ds: 'to feign, affect (an emotion, etc.)'}
+- {id: fr-v-6a765369438db7a8, ch: affecter, pr: /a.fɛk.te/, ds: to assign someone to a post}
 - {id: fr-v-402c6d465e8c3067, ch: mobiliser, pr: /mɔ.bi.li.ze/, ds: to mobilize}
 - {id: fr-v-1fbace25c3f4bafc, ch: réunir, pr: /ʁe.y.niʁ/, ds: 'to gather, collect'}
 - {id: fr-v-4c7b4cbd2386c61c, ch: rassembler, pr: /ʁa.sɑ̃.ble/, ds: to assemble}
@@ -2233,15 +2240,14 @@
 - {id: fr-v-a637115d70d79ef8, ch: concerter, pr: /kɔ̃.sɛʁ.te/, ds: to concert; plan}
 - {id: fr-v-3724034cc0e7e5d8, ch: associer, pr: /a.sɔ.sje/, ds: to associate}
 - {id: fr-v-edef1d60ca2f585c, ch: contribuer, pr: /kɔ̃.tʁi.bɥe/, ds: to contribute}
-- {id: fr-v-a97682bf0015d45a, ch: encadrer, pr: /ɑ̃.ka.dʁe/, ds: to frame}
+- {id: fr-v-e944f1e78b562f18, ch: encadrer, pr: /ɑ̃.ka.dʁe/, ds: to supervise}
 - {id: fr-v-a97d60e69bb54e61, ch: superviser, pr: /sy.pɛʁ.vi.ze/, ds: to supervise}
 - {id: fr-v-99a6c3e63b043d23, ch: diriger, pr: /di.ʁi.ʒe/, ds: to run; to direct (be the director of)}
 - {id: fr-v-d42ef1a3def7d7c5, ch: gérer, pr: /ʒe.ʁe/, ds: to manage}
 - {id: fr-v-d8c70cb7e7bc50bd, ch: administrer, pr: /ad.mi.nis.tʁe/, ds: to administer}
-- {id: fr-v-2bfc2e622b081a07, ch: piloter, pr: /pi.lɔ.te/, ds: to pilot (control an aircraft)}
 - {id: fr-v-bda5949c28f95cbd, ch: embaucher, pr: /ɑ̃.bo.ʃe/, ds: 'to hire, to employ'}
 - {id: fr-v-0943efc25e511cbc, ch: recruter, pr: /ʁə.kʁy.te/, ds: to recruit}
-- {id: fr-v-16003a349b8def23, ch: former, pr: /fɔʁ.me/, ds: to form (generic sense)}
+- {id: fr-v-9167a97ec4cf0a01, ch: former, pr: /fɔʁ.me/, ds: to train; to educate}
 - {id: fr-v-5aa28a28ad5672ec, ch: qualifier, pr: /ka.li.fje/, ds: to characterize; consider}
 - {id: fr-v-38139e0d79df812e, ch: promouvoir, pr: /pʁɔ.mu.vwaʁ/, ds: to promote (advertise a product)}
 - {id: fr-v-3fab9aa5adcc993e, ch: licencier, pr: /li.sɑ̃.sje/, ds: 'to fire, to sack (to terminate the employment of)'}
@@ -2249,7 +2255,7 @@
 - {id: fr-v-7b8e1558ec72fca8, ch: muter, pr: /my.te/, ds: to transfer}
 - {id: fr-v-45e2955b045a823c, ch: conclure, pr: /kɔ̃.klyʁ/, ds: to conclude}
 - {id: fr-v-8e696f0e18f40523, ch: engager, pr: /ɑ̃.ɡa.ʒe/, ds: 'to pledge, commit'}
-- {id: fr-v-760f371ab7a8bd92, ch: réaliser, pr: /ʁe.a.li.ze/, ds: to direct (a movie)}
+- {id: fr-v-2ae1bdbf609edcbf, ch: réaliser, pr: /ʁe.a.li.ze/, ds: to perform a task}
 - {id: fr-v-937e25b153869585, ch: exécuter, pr: /ɛɡ.ze.ky.te/, ds: to execute; to carry out}
 - {id: fr-v-4e5b38a354aadaf6, ch: finaliser, pr: /fi.na.li.ze/, ds: to finalize}
 - {id: fr-v-56fc99180c094bf4, ch: valider, pr: /va.li.de/, ds: to validate}
@@ -2301,14 +2307,14 @@
 - {id: fr-v-b74bb8ae9749ab97, ch: pauvreté, pr: /po.vʁə.te/, ds: poverty}
 - {id: fr-v-9862c0c60a25cd72, ch: richesse, pr: /ʁi.ʃɛs/, ds: wealth}
 - {id: fr-v-f768a0f405f9c867, ch: précarité, pr: /pʁekaʁite/, ds: 'precarity, existence without financial or social security'}
-- {id: fr-v-d7637b1f51b445b0, ch: chômage, pr: /ʃo.maʒ/, ds: idleness}
+- {id: fr-v-9568b02353db737d, ch: chômage, pr: /ʃo.maʒ/, ds: unemployment}
 - {id: fr-v-ba1b9e675ce30c87, ch: revenu, pr: /ʁə.v(ə).ny/, ds: revenue}
 - {id: fr-v-bd6f556d07bbf39d, ch: protection, pr: /pʁɔ.tɛk.sjɔ̃/, ds: protection}
 - {id: fr-v-5a52ec958ab29b81, ch: allocation, pr: /a.lɔ.ka.sjɔ̃/, ds: allocation}
 - {id: fr-v-aa33a32624cef951, ch: retraite, pr: /ʁə.tʁɛt/, ds: retirement}
 - {id: fr-v-459d8296b2f0ae1c, ch: pension, pr: /pɑ̃.sjɔ̃/, ds: 'a pension, regularly received payment'}
 - {id: fr-v-12f2bf875f5a367d, ch: cotisation, pr: /kɔ.ti.za.sjɔ̃/, ds: 'subscription, dues (for organisation etc.)'}
-- {id: fr-v-1d87a0e71ace8569, ch: syndicat, pr: /sɛ̃.di.ka/, ds: maritime district (of the Inscription maritime)}
+- {id: fr-v-c68da9270b29bdbb, ch: syndicat, pr: /sɛ̃.di.ka/, ds: trade union; workers' organization}
 - {id: fr-v-febc6d3f9e2290c3, ch: association, pr: /a.sɔ.sja.sjɔ̃/, ds: 'association, society, group'}
 - {id: fr-v-c156c42ff4a3783c, ch: fondation, pr: /fɔ̃.da.sjɔ̃/, ds: foundation (act of founding)}
 - {id: fr-v-edb1d2f2cd42db01, ch: mouvement, pr: /muv.mɑ̃/, ds: movement}
@@ -2318,7 +2324,7 @@
 - {id: fr-v-92190c206e317735, ch: pétition, pr: /pe.ti.sjɔ̃/, ds: petition (a written request containing many signatures)}
 - {id: fr-v-b441d34eb5ec9671, ch: revendication, pr: /ʁə.vɑ̃.di.ka.sjɔ̃/, ds: airing of one's demand; claiming of one's identity}
 - {id: fr-v-c567111c230bf666, ch: protestation, pr: /pʁɔ.tɛs.ta.sjɔ̃/, ds: 'admission, exclamation, statement'}
-- {id: fr-v-e66d59f7fe211376, ch: grève, pr: /ɡʁɛv/, ds: 'bank (of a river); shore, strand'}
+- {id: fr-v-ec71de3be67e5ae2, ch: grève, pr: /ɡʁɛv/, ds: strike; work stoppage}
 - {id: fr-v-bc8a24730bc5dd93, ch: négociation, pr: /ne.ɡɔ.sja.sjɔ̃/, ds: negotiation}
 - {id: fr-v-83724f92b36fa32e, ch: réforme, pr: /ʁe.fɔʁm/, ds: reform (change)}
 - {id: fr-v-9e198ce5e297a5ae, ch: recul, pr: /ʁə.kyl/, ds: 'retreat, climb-down'}
@@ -2328,6 +2334,7 @@
 - {id: fr-v-b02a31b06c92c131, ch: paix, pr: /pɛ/, ds: peace}
 - {id: fr-v-b495dff90a57fda7, ch: coexistence, pr: /kɔ.ɛɡ.zis.tɑ̃s/, ds: coexistence}
 - {id: fr-v-edc128fcefa720b4, ch: cohésion, pr: /kɔ.e.zjɔ̃/, ds: 'cohesion (the state of cohering, or of sticking together)'}
+- {id: fr-v-9465a5a3f055ba76, ch: classe, pr: /klas/, ds: class; category or group}
 - {id: fr-v-c45fde231c2f1409, ch: gouvernement, pr: /ɡu.vɛʁ.nə.mɑ̃/, ds: government}
 - {id: fr-v-7945389f8716314c, ch: parlement, pr: /paʁ.lə.mɑ̃/, ds: parliament}
 - {id: fr-v-706ad35334cc101c, ch: assemblée, pr: /a.sɑ̃.ble/, ds: assembly}
@@ -2385,9 +2392,9 @@
 - {id: fr-v-00d5670276961200, ch: communiqué, pr: /kɔ.my.ni.ke/, ds: 'communiqué, statement'}
 - {id: fr-v-9eb56b288f4c56ee, ch: conférence de presse, pr: /kɔ̃.fe.ʁɑ̃s də pʁɛs/, ds: press conference}
 - {id: fr-v-a2a36a4b0396336b, ch: dépêche, pr: /de.pɛʃ/, ds: dispatch (express private message)}
-- {id: fr-v-ee459a0e1bb8596e, ch: manchette, pr: /mɑ̃.ʃɛt/, ds: cuff}
+- {id: fr-v-0dd714d52f8185f6, ch: manchette, pr: /mɑ̃.ʃɛt/, ds: headline}
 - {id: fr-v-b2abc2875954c14d, ch: légende, pr: /le.ʒɑ̃d/, ds: caption}
-- {id: fr-v-776c869040c423dd, ch: cliché, pr: /kli.ʃe/, ds: stereotype (printing plate)}
+- {id: fr-v-6c77436b14a282b2, ch: cliché, pr: /kli.ʃe/, ds: snapshot; photograph}
 - {id: fr-v-42a0a6cef3bdcffd, ch: prise de vue, pr: /pʁiz də vy/, ds: 'filming, shooting'}
 - {id: fr-v-70d4ac6886f04c7b, ch: séquence, pr: /se.kɑ̃s/, ds: sequence (set of things in a set order)}
 - {id: fr-v-fbe883befc9fd8d6, ch: extrait, pr: /ɛk.stʁɛ/, ds: an extract}
@@ -2400,7 +2407,7 @@
 - {id: fr-v-cd94143d3ad9f2e5, ch: propagande, pr: /pʁɔ.pa.ɡɑ̃d/, ds: propaganda}
 - {id: fr-v-9a76577aadee05e1, ch: censure, pr: /sɑ̃.syʁ/, ds: censorship}
 - {id: fr-v-ee926a9c7741e292, ch: autocensure, pr: /o.tɔ.sɑ̃.syʁ/, ds: self-censorship}
-- {id: fr-v-68985b464290040c, ch: intoxication, pr: /ɛ̃.tɔk.si.ka.sjɔ̃/, ds: poisoning}
+- {id: fr-v-8e33e5bfda54e7f0, ch: intoxication, pr: /ɛ̃.tɔk.si.ka.sjɔ̃/, ds: spreading false information}
 - {id: fr-v-4b7b746393687305, ch: démenti, pr: /de.mɑ̃.ti/, ds: denial (claim that a rumour or other statement is not true)}
 - {id: fr-v-be096860acb8b61b, ch: rectification, pr: /ʁɛk.ti.fi.ka.sjɔ̃/, ds: rectification}
 - {id: fr-v-9380d3f6b7292ffe, ch: vérification, pr: /ve.ʁi.fi.ka.sjɔ̃/, ds: verification}
@@ -2413,7 +2420,7 @@
 - {id: fr-v-d20591d90109901a, ch: subjectivité, pr: /sybʒɛktivite/, ds: subjectivity (stating of being subjective)}
 - {id: fr-v-4e161ce11b446e40, ch: impartialité, pr: /ɛ̃.paʁ.sja.li.te/, ds: impartiality (the quality of being impartial; fairness)}
 - {id: fr-v-a074be9fe05e489f, ch: partialité, pr: /paʁ.sja.li.te/, ds: 'partiality, bias'}
-- {id: fr-v-914e2f90d65242e5, ch: biais, pr: /bjɛ/, ds: 'means, way'}
+- {id: fr-v-a3a0798fa1a8e02c, ch: biais, pr: /bjɛ/, ds: bias; distorted judgement}
 - {id: fr-v-4f1723c3515e474d, ch: neutralité, pr: /nøtʁalite/, ds: neutrality}
 - {id: fr-v-5ed55d60a57f82e6, ch: indépendance, pr: /ɛ̃.de.pɑ̃.dɑ̃s/, ds: independence}
 - {id: fr-v-da1e270a8a984d52, ch: influence, pr: /ɛ̃.fly.ɑ̃s/, ds: influence}
@@ -2421,9 +2428,9 @@
 - {id: fr-v-07eccf7b628ce90a, ch: audience, pr: /o.djɑ̃s/, ds: 'audience, viewer'}
 - {id: fr-v-1b50fdc721291025, ch: lectorat, pr: /lɛk.tɔ.ʁa/, ds: readership (the people who read a book)}
 - {id: fr-v-123aa79e991700a2, ch: audimat, pr: /o.di.ma/, ds: ratings (TV)}
-- {id: fr-v-a66b3fad0d926247, ch: tirage, pr: /ti.ʁaʒ/, ds: pulling (action of pulling)}
+- {id: fr-v-a25314fa69f510d7, ch: tirage, pr: /ti.ʁaʒ/, ds: circulation; number of newspaper copies sold}
 - {id: fr-v-324cfc6bb34d7edc, ch: rédaction, pr: /ʁe.dak.sjɔ̃/, ds: editing (act of editing e.g. a newspaper)}
-- {id: fr-v-8f85741c8d820731, ch: correspondant, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃/, ds: pen pal}
+- {id: fr-v-d9376fc8f00a3f9a, ch: correspondant, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃/, ds: correspondent; journalist reporting from a location}
 - {id: fr-v-a0f4425abdc7ca27, ch: présentateur, pr: /pʁe.zɑ̃.ta.tœʁ/, ds: 'announcer, newscaster, anchor'}
 - {id: fr-v-f6b28d0e471bd505, ch: animateur, pr: /a.ni.ma.tœʁ/, ds: presenter}
 - {id: fr-v-2f38297e44c90559, ch: chroniqueur, pr: /kʁɔ.ni.kœʁ/, ds: chronicler}
@@ -2444,7 +2451,6 @@
 - {id: fr-v-20994377f22829be, ch: alléguer, pr: /a.le.ɡe/, ds: to allege; put forward as an argument}
 - {id: fr-v-b64b6e4e74264111, ch: démentir, pr: /de.mɑ̃.tiʁ/, ds: 'to contradict, gainsay (someone)'}
 - {id: fr-v-3bca99fcd46eff45, ch: rectifier, pr: /ʁɛk.ti.fje/, ds: to rectify}
-- {id: fr-v-82d3b6269939fabe, ch: recouper, pr: /ʁə.ku.pe/, ds: to recut}
 - {id: fr-v-e91be32376c1e974, ch: infirmer, pr: /ɛ̃.fiʁ.me/, ds: 'to weaken, to undermine (a theory, a testimony, etc.)'}
 - {id: fr-v-af3dc0ab430675ed, ch: divulguer, pr: /di.vyl.ɡe/, ds: to divulge}
 - {id: fr-v-4221c137a341abcb, ch: révéler, pr: /ʁe.ve.le/, ds: 'to reveal, to give away'}
@@ -2454,6 +2460,7 @@
 - {id: fr-v-ef04f13206e7ac1c, ch: exagérer, pr: /ɛɡ.za.ʒe.ʁe/, ds: to exaggerate}
 - {id: fr-v-48a1f6ff9213a5c5, ch: minimiser, pr: /mi.ni.mi.ze/, ds: To lessen the importance of in the mind of people}
 - {id: fr-v-81ff3feb8a7db410, ch: nuancer, pr: /nɥɑ̃.se/, ds: 'to moderate, to qualify (e.g., an opinion)'}
+- {id: fr-v-acbcf538b8da0b0a, ch: reporter, pr: /ʁə.pɔʁ.tɛʁ/, ds: news reporter; journalist}
 - {id: fr-v-82fe33a476812b7c, ch: impact, pr: /ɛ̃.pakt/, ds: impact}
 - {id: fr-v-9d8d9a55727ef904, ch: répercussion, pr: /ʁe.pɛʁ.ky.sjɔ̃/, ds: repercussion}
 - {id: fr-v-1ab5c055e5f5b370, ch: incidence, pr: /ɛ̃.si.dɑ̃s/, ds: 'impact, effect, consequence'}
@@ -2494,6 +2501,7 @@
 - {id: fr-v-78f53e5d69ad8189, ch: survivre, pr: /syʁ.vivʁ/, ds: to survive}
 - {id: fr-v-372d1f7c4a17f74e, ch: atténuer, pr: /a.te.nɥe/, ds: to attenuate; to mitigate}
 - {id: fr-v-fd120a190653ff9f, ch: sensibiliser, pr: /sɑ̃.si.bi.li.ze/, ds: to make sensitive}
+- {id: fr-v-22afdd0b327e4284, ch: prévenir, pr: /pʁev.niʁ/, ds: to prevent; to avert}
 - {id: fr-v-0cce9d9a59471495, ch: technologie, pr: /tɛk.nɔ.lɔ.ʒi/, ds: technology}
 - {id: fr-v-d522b75aa9f2dcb0, ch: technique, pr: /tɛk.nik/, ds: technical}
 - {id: fr-v-c24ee0100d2ca7d0, ch: innovation, pr: /i.nɔ.va.sjɔ̃/, ds: innovation}
@@ -2505,41 +2513,38 @@
 - {id: fr-v-259971ccd14de8a1, ch: application, pr: /a.pli.ka.sjɔ̃/, ds: application}
 - {id: fr-v-301a98c28ea19a7c, ch: système, pr: /sis.tɛm/, ds: system (various meanings)}
 - {id: fr-v-b121208dae5c5e6b, ch: réseau, pr: /ʁe.zo/, ds: network}
-- {id: fr-v-c5986da7a8a27bc7, ch: serveur, pr: /sɛʁ.vœʁ/, ds: waiter (in restaurant)}
+- {id: fr-v-97d17e2fce1bd517, ch: serveur, pr: /sɛʁ.vœʁ/, ds: computer server}
 - {id: fr-v-eb4ac73b3df11527, ch: terminal, pr: /tɛʁ.mi.nal/, ds: terminal}
 - {id: fr-v-7fe91fd2d63663fb, ch: écran, pr: /e.kʁɑ̃/, ds: screen}
 - {id: fr-v-bb5aa31c3ba60006, ch: clavier, pr: /kla.vje/, ds: keyboard (of a computer)}
-- {id: fr-v-552c05903f3df810, ch: souris, pr: /su.ʁi/, ds: mouse (rodent)}
-- {id: fr-v-7ba6f3457cacd45f, ch: pavé, pr: /pa.ve/, ds: cobblestone}
+- {id: fr-v-8185a1bebe62a0b9, ch: souris, pr: /su.ʁi/, ds: computer mouse}
 - {id: fr-v-9ffbf327aa2fc6ca, ch: imprimante, pr: /ɛ̃.pʁi.mɑ̃t/, ds: printer (machine used to print text or images)}
-- {id: fr-v-bc1408fa5f021cb9, ch: scanner, pr: /ska.nɛʁ/, ds: an X-ray scanner}
-- {id: fr-v-31531cd52265c1b6, ch: capteur, pr: /kap.tœʁ/, ds: catcher}
+- {id: fr-v-227f5ccda49626aa, ch: scanner, pr: /ska.ne/, ds: to scan; to make a digital image}
+- {id: fr-v-a8e1ae6543ac7b8d, ch: capteur, pr: /kap.tœʁ/, ds: sensor}
 - {id: fr-v-79286930b0ea1603, ch: processeur, pr: /pʁɔ.sɛ.sœʁ/, ds: processor}
 - {id: fr-v-8546a0bed363d0c2, ch: stockage, pr: /stɔ.kaʒ/, ds: storage}
 - {id: fr-v-37334b4027cb2f06, ch: disque, pr: /disk/, ds: disc}
 - {id: fr-v-00bb9c7722097964, ch: clé USB, pr: /kle y.ɛs.be/, ds: USB flash drive}
-- {id: fr-v-f8a65caeb3bbc6d8, ch: port, pr: /pɔʁ/, ds: 'port, harbour'}
 - {id: fr-v-63e1798b3e68e8f8, ch: périphérique, pr: /pe.ʁi.fe.ʁik/, ds: peripheral}
 - {id: fr-v-cf418fe5d617dfcd, ch: circuit, pr: /siʁ.kɥi/, ds: circuit}
 - {id: fr-v-96bb2e319e15b36b, ch: connexion, pr: /kɔ.nɛk.sjɔ̃/, ds: connection}
 - {id: fr-v-1d9468d52d940617, ch: communication, pr: /kɔ.my.ni.ka.sjɔ̃/, ds: communication}
 - {id: fr-v-8a1b92d7cacab06f, ch: internet, pr: /ɛ̃.tɛʁ.nɛt/, ds: the Internet}
 - {id: fr-v-3c1fb037e1738a09, ch: site, pr: /sit/, ds: site}
-- {id: fr-v-41689c5aa485e856, ch: lien, pr: /ljɛ̃/, ds: 'tie, bond'}
-- {id: fr-v-a7bd367bac705bc0, ch: navigateur, pr: /na.vi.ɡa.tœʁ/, ds: navigator}
+- {id: fr-v-9a8fa9cc108a706b, ch: lien, pr: /ljɛ̃/, ds: link}
+- {id: fr-v-5ac0253ebec48371, ch: navigateur, pr: /na.vi.ɡa.tœʁ/, ds: web browser}
 - {id: fr-v-1a2b1ff9757c247f, ch: recherche, pr: /ʁə.ʃɛʁʃ/, ds: research}
 - {id: fr-v-13aaf260ebfa949e, ch: moteur de recherche, pr: /mɔ.tœʁ də ʁ(ə).ʃɛʁʃ/, ds: search engine}
-- {id: fr-v-6785fd7df4f8de3c, ch: fichier, pr: /fi.ʃje/, ds: file (collection of papers)}
+- {id: fr-v-2396f62c747ad6e4, ch: fichier, pr: /fi.ʃje/, ds: computer file}
 - {id: fr-v-7be10cbb7dcc25c4, ch: format, pr: /fɔʁ.ma/, ds: format}
 - {id: fr-v-9b1059e266cc270e, ch: donnée, pr: /dɔ.ne/, ds: datum (item of data)}
-- {id: fr-v-41d02ffe3d31378c, ch: traitement, pr: /tʁɛt.mɑ̃/, ds: treatment}
-- {id: fr-v-bca989cb01ca414b, ch: calcul, pr: /kal.kyl/, ds: 'calculus, stone (stony concretion that forms in a bodily organ)'}
+- {id: fr-v-f9dc36aa2dcee6be, ch: traitement, pr: /tʁɛt.mɑ̃/, ds: processing}
+- {id: fr-v-ce21d2f836a6dbb5, ch: calcul, pr: /kal.kyl/, ds: calculation; computation}
 - {id: fr-v-ca41f4884e08ad1e, ch: algorithme, pr: /al.ɡɔ.ʁitm/, ds: algorithm}
-- {id: fr-v-ea919dbe38657fa0, ch: commande, pr: /kɔ.mɑ̃d/, ds: order (request for some product or service)}
 - {id: fr-v-8aea906bf282028c, ch: interface, pr: /ɛ̃.tɛʁ.fas/, ds: interface}
 - {id: fr-v-dbe4123ab00cf9a2, ch: utilisateur, pr: /y.ti.li.za.tœʁ/, ds: user}
 - {id: fr-v-ac4b17cc7f651493, ch: authentification, pr: /ɔ.tɑ̃.ti.fi.ka.sjɔ̃/, ds: authentication}
-- {id: fr-v-1c19b3c9e4c26534, ch: sauvegarde, pr: /sov.ɡaʁd/, ds: 'protection, safeguard (protection granted by any authority)'}
+- {id: fr-v-1ea609492f11e391, ch: sauvegarde, pr: /sov.ɡaʁd/, ds: backup; saving information safely}
 - {id: fr-v-d27c31270b558833, ch: mise à jour, pr: /mi.z‿a ʒuʁ/, ds: update (action or result of updating)}
 - {id: fr-v-7f222a7b940d4b77, ch: configuration, pr: /kɔ̃.fi.ɡy.ʁa.sjɔ̃/, ds: configuration}
 - {id: fr-v-235914fc65159c76, ch: paramètre, pr: /pa.ʁa.mɛtʁ/, ds: parameter}
@@ -2553,7 +2558,7 @@
 - {id: fr-v-80997a21f5de3b8b, ch: synchronisation, pr: /sɛ̃.kʁɔ.ni.za.sjɔ̃/, ds: synchronization}
 - {id: fr-v-826663b2e9986bdc, ch: virus, pr: /vi.ʁys/, ds: virus}
 - {id: fr-v-c51997efaceee292, ch: piratage, pr: /piʁataʒ/, ds: piracy}
-- {id: fr-v-7c49a4693aa01291, ch: faille, pr: /faj/, ds: fault}
+- {id: fr-v-e571f2e69176427f, ch: faille, pr: /faj/, ds: flaw; weakness}
 - {id: fr-v-d78b968dc6f4fbc4, ch: chiffrement, pr: /ʃi.fʁə.mɑ̃/, ds: encryption}
 - {id: fr-v-66906c3dc3714fdf, ch: cryptage, pr: /kʁip.taʒ/, ds: encryption}
 - {id: fr-v-6d79c8019bea0a3a, ch: surveillance, pr: /syʁ.vɛ.jɑ̃s/, ds: surveillance}
@@ -2564,12 +2569,13 @@
 - {id: fr-v-b95abe879175c769, ch: téléverser, pr: /te.le.vɛʁ.se/, ds: to upload data}
 - {id: fr-v-05dca4590fb43321, ch: configurer, pr: /kɔ̃.fi.ɡy.ʁe/, ds: to configure (to set up or arrange something)}
 - {id: fr-v-1abfeba7a239c1f5, ch: coder, pr: /kɔ.de/, ds: to code; to encode}
-- {id: fr-v-4bcd582a61661c13, ch: traiter, pr: /tʁɛ.te/, ds: to treat (someone) (a particular way)}
+- {id: fr-v-fc055a0f3e0f3e88, ch: traiter, pr: /tʁɛ.te/, ds: to process}
 - {id: fr-v-3db457bc35b3d854, ch: stocker, pr: /stɔ.ke/, ds: to store (keep (something) while not in use)}
 - {id: fr-v-d2b54acee8521a40, ch: synchroniser, pr: /sɛ̃.kʁɔ.ni.ze/, ds: to synchronize}
 - {id: fr-v-e62ce8f0799cc529, ch: accéder, pr: /ak.se.de/, ds: to reach (a place)}
 - {id: fr-v-fee555eb5a139ad5, ch: cliquer, pr: /kli.ke/, ds: to click}
-- {id: fr-v-db1195d09efaa8a9, ch: taper, pr: /ta.pe/, ds: 'to slap, knock, beat'}
+- {id: fr-v-b86342548eed63a5, ch: taper, pr: /ta.pe/, ds: to type on a keyboard}
+- {id: fr-v-19b9308486b322ce, ch: dossier, pr: /do.sje/, ds: computer folder}
 - {id: fr-v-0acfaf262e26976c, ch: environnement, pr: /ɑ̃.vi.ʁɔn.mɑ̃/, ds: environment}
 - {id: fr-v-2b94ff9983384ae1, ch: nature, pr: /na.tyʁ/, ds: nature}
 - {id: fr-v-2c9c21ac5b9b7f26, ch: planète, pr: /pla.nɛt/, ds: planet}
@@ -2588,8 +2594,8 @@
 - {id: fr-v-0a58eea7c933dc52, ch: orage, pr: /ɔ.ʁaʒ/, ds: thunderstorm}
 - {id: fr-v-9bf65ba39755796a, ch: tempête, pr: /tɑ̃.pɛt/, ds: 'storm, tempest'}
 - {id: fr-v-5c85a6cf1ffc91d8, ch: cyclone, pr: /si.klon/, ds: cyclone (rotating system of winds)}
-- {id: fr-v-2e6c56474ab34068, ch: sécheresse, pr: /seʃ.ʁɛs/, ds: dryness}
-- {id: fr-v-4f7e56fb4c311464, ch: canicule, pr: /ka.ni.kyl/, ds: the dog days of late summer}
+- {id: fr-v-4023c81cb9e1efa1, ch: sécheresse, pr: /seʃ.ʁɛs/, ds: drought}
+- {id: fr-v-4d43fd593f7d8fcd, ch: canicule, pr: /ka.ni.kyl/, ds: heat wave}
 - {id: fr-v-b992893b4a770890, ch: gel, pr: /ʒɛl/, ds: frost}
 - {id: fr-v-37cf0a9311706785, ch: température, pr: /tɑ̃.pe.ʁa.tyʁ/, ds: temperature}
 - {id: fr-v-e84cbeb4b0a1ddb7, ch: chaleur, pr: /ʃa.lœʁ/, ds: heat}
@@ -2614,7 +2620,7 @@
 - {id: fr-v-e75628d6e0563e70, ch: nucléaire, pr: /ny.kle.ɛʁ/, ds: nuclear}
 - {id: fr-v-1bef00fd4387922b, ch: forêt, pr: /fɔ.ʁɛ/, ds: forest}
 - {id: fr-v-332888e715739ede, ch: arbre, pr: /aʁbʁ/, ds: 'tree (plant, diagram, anything in the form of a tree)'}
-- {id: fr-v-7d67bf14d1312095, ch: plante, pr: /plɑ̃t/, ds: sole of the foot}
+- {id: fr-v-ffaa650e3178fdce, ch: plante, pr: /plɑ̃t/, ds: plant; living vegetation}
 - {id: fr-v-4aacf58c91110dbd, ch: fleur, pr: /flœʁ/, ds: flower}
 - {id: fr-v-1d70f0f0116fe5e6, ch: herbe, pr: /ɛʁb/, ds: grass (the plant)}
 - {id: fr-v-b462b001d56e441e, ch: feuille, pr: /fœj/, ds: leaf (of a plant)}
@@ -2635,7 +2641,7 @@
 - {id: fr-v-f15c4510922868a7, ch: étang, pr: /e.tɑ̃/, ds: 'pond (small lake, often shallow)'}
 - {id: fr-v-6912f9e404fe0a6f, ch: marais, pr: /ma.ʁɛ/, ds: 'swamp, marsh'}
 - {id: fr-v-e1f4b23b914d5dc5, ch: océan, pr: /ɔ.se.ɑ̃/, ds: ocean}
-- {id: fr-v-fbdaa0ea5d067cf4, ch: côte, pr: /kot/, ds: rib (bone)}
+- {id: fr-v-b1d06701dfa0e5a8, ch: côte, pr: /kot/, ds: coast; land beside the sea}
 - {id: fr-v-3fb3b83c646ce824, ch: littoral, pr: /li.tɔ.ʁal/, ds: 'littoral, coastal'}
 - {id: fr-v-127090b3b957c1dc, ch: animal, pr: /a.ni.mal/, ds: animal}
 - {id: fr-v-4e8ef2c0daf5e3f0, ch: oiseau, pr: /wa.zo/, ds: bird}
@@ -2649,6 +2655,9 @@
 - {id: fr-v-92e08c6048fe68e7, ch: conservation, pr: /kɔ̃.sɛʁ.va.sjɔ̃/, ds: conservation}
 - {id: fr-v-d64fe538d0d98cb3, ch: restauration, pr: /ʁɛs.tɔ.ʁa.sjɔ̃/, ds: restoration}
 - {id: fr-v-ba256256135713ac, ch: campagne, pr: /kɑ̃.paɲ/, ds: countryside; rural area}
+- {id: fr-v-d9723a0f4fe7135b, ch: sol, pr: /sɔl/, ds: soil; earth}
+- {id: fr-v-4bb28d74d4b2564d, ch: espèce, pr: /ɛs.pɛs/, ds: species}
+- {id: fr-v-6e83fe88790a7ed8, ch: émission, pr: /e.mi.sjɔ̃/, ds: emission; release}
 - {id: fr-v-25dd152774e69a4f, ch: afin de, pr: /a.fɛ̃ də/, ds: 'in order to, so, so that'}
 - {id: fr-v-a26d40a2af3ab096, ch: afin que, pr: /a.fɛ̃ kə/, ds: so that}
 - {id: fr-v-83aa14d129ba70c6, ch: pour que, pr: /puʁ kə/, ds: 'so that, in order that'}
@@ -2743,6 +2752,8 @@
 - {id: fr-v-1d725ca98d1ac779, ch: céder, pr: /se.de/, ds: to yield}
 - {id: fr-v-682bc57e2ea95a83, ch: rejeter, pr: /ʁə.ʒ(ə).te/, ds: 'to throw back (a fish, etc.)'}
 - {id: fr-v-09c171c39ab1d911, ch: résister, pr: /ʁe.zis.te/, ds: to resist}
+- {id: fr-v-2e4622c34693aade, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to agree; to acknowledge}
+- {id: fr-v-4be472830053ad9d, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: assurance; guarantee}
 - {id: fr-v-1959d039ac110d61, ch: politesse, pr: /pɔ.li.tɛs/, ds: 'politeness, courtesy'}
 - {id: fr-v-d5ae6ebce9e50be0, ch: courtoisie, pr: /kuʁ.twa.zi/, ds: courtesy}
 - {id: fr-v-a74c55c329e34b70, ch: délicatesse, pr: /de.li.ka.tɛs/, ds: delicacy; delicateness}
@@ -2773,13 +2784,13 @@
 - {id: fr-v-2b77315b03de1ab8, ch: emphase, pr: /ɑ̃.faz/, ds: 'bombast, pomposity, grandiloquence'}
 - {id: fr-v-0dba033b102c6b8b, ch: formulation, pr: /fɔʁ.my.la.sjɔ̃/, ds: 'wording, phrasing'}
 - {id: fr-v-90acb430485e0aaa, ch: tournure, pr: /tuʁ.nyʁ/, ds: 'appearance, shape, figure; bearing'}
-- {id: fr-v-3fa02e561e7f75a4, ch: registre, pr: /ʁə.ʒistʁ/, ds: register (official book)}
+- {id: fr-v-b5eec00220bd40d5, ch: registre, pr: /ʁə.ʒistʁ/, ds: register; level or category}
 - {id: fr-v-1e718efc9f7ad899, ch: style, pr: /stil/, ds: style (manner of doing something)}
 - {id: fr-v-b736c816c435317a, ch: formel, pr: /fɔʁ.mɛl/, ds: formal; official}
 - {id: fr-v-ef59e92704bf0182, ch: informel, pr: /ɛ̃.fɔʁ.mɛl/, ds: informal}
 - {id: fr-v-a11e4c993f150fa1, ch: familier, pr: /fa.mi.lje/, ds: familiar (known to one)}
 - {id: fr-v-3b12111bc5b594b1, ch: soutenu, pr: /sut.ny/, ds: 'sustained, maintained, concerted'}
-- {id: fr-v-50b64a59696aceea, ch: courant, pr: /ku.ʁɑ̃/, ds: 'current (of water, electricity, thought, etc.)'}
+- {id: fr-v-b9196f00660223c0, ch: courant, pr: /ku.ʁɑ̃/, ds: common; in ordinary use}
 - {id: fr-v-6d00f7511e58a8ac, ch: poli, pr: /pɔ.li/, ds: polite}
 - {id: fr-v-f5092321b7218e9d, ch: impoli, pr: /ɛ̃.pɔ.li/, ds: rude; impolite (bad-mannered)}
 - {id: fr-v-22313bc96c705704, ch: courtois, pr: /kuʁ.twa/, ds: courtly}
@@ -2788,7 +2799,7 @@
 - {id: fr-v-362fb95277e1ee70, ch: délicat, pr: /de.li.ka/, ds: delicate}
 - {id: fr-v-570091ec1f0d79e7, ch: attentionné, pr: /atɑ̃sjone/, ds: 'thoughtful, considerate'}
 - {id: fr-v-2c71f3515ff3e8e0, ch: diplomatique, pr: /di.plɔ.ma.tik/, ds: diplomatic}
-- {id: fr-v-6cd1b69fb70febbd, ch: ferme, pr: /fɛʁm/, ds: roof truss}
+- {id: fr-v-e68be75a26fc055a, ch: ferme, pr: /fɛʁm/, ds: firm; resolute}
 - {id: fr-v-aba157e4cf1c245e, ch: indirect, pr: /ɛ̃.di.ʁɛkt/, ds: indirect}
 - {id: fr-v-308ee23fc85dc6d6, ch: sincère, pr: /sɛ̃.sɛʁ/, ds: sincere}
 - {id: fr-v-981f86f47016a238, ch: honnête, pr: /ɔ.nɛt/, ds: honest (scrupulous with regard to telling the truth)}
@@ -2813,6 +2824,7 @@
 - {id: fr-v-a665dfcd5c857b8c, ch: éventuellement, pr: /e.vɑ̃.tɥɛl.mɑ̃/, ds: 'possibly, maybe, perhaps; if you want'}
 - {id: fr-v-24c249b4048b8899, ch: assurément, pr: /a.sy.ʁe.mɑ̃/, ds: 'assuredly, in an assured fashion'}
 - {id: fr-v-5dee6fce7590b37f, ch: incontestablement, pr: /ɛ̃.kɔ̃.tɛs.ta.blə.mɑ̃/, ds: undeniably}
+- {id: fr-v-8245d60f21bd4ac4, ch: clair, pr: /klɛʁ/, ds: clear; understandable}
 - {id: fr-v-a07e550cc57907ee, ch: probant, pr: /pʁɔ.bɑ̃/, ds: 'compelling, convincing'}
 - {id: fr-v-77ba0fbae8954352, ch: concluant, pr: /kɔ̃.kly.ɑ̃/, ds: concluding}
 - {id: fr-v-07a4560fcb02ae2b, ch: démontrable, pr: /de.mɔ̃.tʁabl/, ds: 'demonstrable, provable'}
@@ -3153,6 +3165,7 @@
 - {id: fr-v-a56a502ff1509b26, ch: magasinage, pr: /ma.ɡa.zi.naʒ/, ds: 'stockroom, storeroom'}
 - {id: fr-v-daa921d016e7ccdb, ch: stock, pr: /stɔk/, ds: 'stock, goods in supply'}
 - {id: fr-v-6f77fbcf0d552aa5, ch: rupture de stock, pr: /ʁyp.tyʁ də stɔk/, ds: stockout}
+- {id: fr-v-ea919dbe38657fa0, ch: commande, pr: /kɔ.mɑ̃d/, ds: order for goods or services}
 - {id: fr-v-1749ae0111e59fae, ch: délai de livraison, pr: /de.lɛ d(ə) li.vʁɛ.zɔ̃/, ds: lead time before delivery}
 - {id: fr-v-22cd3ef63d1d5c92, ch: importation, pr: /ɛ̃.pɔʁ.ta.sjɔ̃/, ds: importation}
 - {id: fr-v-f9ab8cb7f2da302a, ch: exportation, pr: /ɛk.spɔʁ.ta.sjɔ̃/, ds: 'exportation, export'}
@@ -3206,6 +3219,7 @@
 - {id: fr-v-c06d853368246e3b, ch: lucratif, pr: /ly.kʁa.tif/, ds: 'lucrative, profitable'}
 - {id: fr-v-e723d4201ee167db, ch: déficitaire, pr: /de.fi.si.tɛʁ/, ds: 'loss-making, in the red'}
 - {id: fr-v-c356841a5891de9a, ch: excédentaire, pr: /ɛk.se.dɑ̃.tɛʁ/, ds: 'surplus, excess'}
+- {id: fr-v-759e5d8a263c26b1, ch: réception, pr: /ʁe.sɛp.sjɔ̃/, ds: reception; act of receiving}
 - {id: fr-v-b1008b3e34a8431a, ch: État, pr: /e.ta/, ds: 'state, nation'}
 - {id: fr-v-d180ae078d5c39e2, ch: organisme, pr: /ɔʁ.ɡa.nism/, ds: organism}
 - {id: fr-v-1abc9b7342e82b83, ch: établissement, pr: /e.ta.blis.mɑ̃/, ds: establishment}
@@ -3259,6 +3273,7 @@
 - {id: fr-v-821225791eae0c1e, ch: consul, pr: /kɔ̃.syl/, ds: 'consul, in its various senses'}
 - {id: fr-v-7461d31cdde8d7fc, ch: ambassadeur, pr: /ɑ̃.ba.sa.dœʁ/, ds: ambassador}
 - {id: fr-v-a38e08f8f8e93994, ch: pouvoir, pr: /pu.vwaʁ/, ds: authority}
+- {id: fr-v-b7f82af8d07cf0f3, ch: article, pr: /aʁ.tikl/, ds: article; section of a law}
 - {id: fr-v-f2c939baead3c276, ch: physique, pr: /fi.zik/, ds: 'physical, sportive'}
 - {id: fr-v-6f6d6715e3e897fd, ch: chimique, pr: /ʃi.mik/, ds: 'chemistry, chemical'}
 - {id: fr-v-8ea466b2bf5f216d, ch: géologique, pr: /ʒe.ɔ.lɔ.ʒik/, ds: geological}
@@ -3459,6 +3474,13 @@
 - {id: fr-v-0dbc740823178a5f, ch: tympan, pr: /tɛ̃.pɑ̃/, ds: eardrum}
 - {id: fr-v-de7f91533251b521, ch: larynx, pr: /la.ʁɛ̃ks/, ds: larynx}
 - {id: fr-v-874c4d96fe40c4cf, ch: trachée, pr: /tʁa.ʃe/, ds: trachea}
+- {id: fr-v-87472db5bce31239, ch: langue, pr: /lɑ̃ɡ/, ds: tongue; body part}
+- {id: fr-v-ec9d43f284dc0e8b, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: blood circulation}
+- {id: fr-v-93c3d117ad5e91ea, ch: alimentation, pr: /a.li.mɑ̃.ta.sjɔ̃/, ds: food; nourishment}
+- {id: fr-v-68985b464290040c, ch: intoxication, pr: /ɛ̃.tɔk.si.ka.sjɔ̃/, ds: poisoning}
+- {id: fr-v-7d67bf14d1312095, ch: plante, pr: /plɑ̃t/, ds: sole of the foot}
+- {id: fr-v-fbdaa0ea5d067cf4, ch: côte, pr: /kot/, ds: rib; bone}
+- {id: fr-v-41d02ffe3d31378c, ch: traitement, pr: /tʁɛt.mɑ̃/, ds: treatment; medical care}
 - {id: fr-v-4062e555e7a4a932, ch: biologique, pr: /bjɔ.lɔ.ʒik/, ds: biological}
 - {id: fr-v-12d8d580ab07b503, ch: naturel, pr: /na.ty.ʁɛl/, ds: natural}
 - {id: fr-v-62b4d1408bf02c76, ch: artificiel, pr: /aʁ.ti.fi.sjɛl/, ds: artificial}
@@ -3541,6 +3563,8 @@
 - {id: fr-v-0b88c83d40a33e37, ch: iceberg, pr: /ajs.bɛʁɡ/, ds: iceberg}
 - {id: fr-v-2bb183bcbf53591a, ch: fonte, pr: /fɔ̃t/, ds: 'melting, smelting, thawing'}
 - {id: fr-v-a9adad30e8413fe0, ch: marée, pr: /ma.ʁe/, ds: tide}
+- {id: fr-v-a1f1934920464b08, ch: mutation, pr: /my.ta.sjɔ̃/, ds: mutation; change}
+- {id: fr-v-7c49a4693aa01291, ch: faille, pr: /faj/, ds: fault; geological fracture}
 - {id: fr-v-8f4689d4887b06a1, ch: science, pr: /sjɑ̃s/, ds: 'science (field of study, etc.)'}
 - {id: fr-v-b74b955ef9e5644d, ch: chercheur, pr: /ʃɛʁ.ʃœʁ/, ds: searcher (one who searches)}
 - {id: fr-v-751bfd29233bfb5c, ch: scientifique, pr: /sjɑ̃.ti.fik/, ds: scientific}
@@ -3626,6 +3650,9 @@
 - {id: fr-v-8b2d57bfda39cccf, ch: attraction, pr: /a.tʁak.sjɔ̃/, ds: attraction (all senses)}
 - {id: fr-v-6a814d0800d0e270, ch: répulsion, pr: /ʁe.pyl.sjɔ̃/, ds: repulsion}
 - {id: fr-v-d4cf893636e9ab8a, ch: magnétisme, pr: /ma.ɲe.tism/, ds: magnetism (property of being magnetic)}
+- {id: fr-v-53c6cfaa3e33626e, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experiment; test}
+- {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+- {id: fr-v-86ee26c13d0acd7c, ch: mode, pr: /mɔd/, ds: mode; most frequent value}
 - {id: fr-v-e3578afd18f3198e, ch: individu, pr: /ɛ̃.di.vi.dy/, ds: individual}
 - {id: fr-v-848d9294dc142bcb, ch: être humain, pr: /ɛ.tʁ‿y.mɛ̃/, ds: a human being}
 - {id: fr-v-c8b38f09841c9adc, ch: concitoyen, pr: /kɔ̃.si.twa.jɛ̃/, ds: fellow citizen}
@@ -3865,6 +3892,8 @@
 - {id: fr-v-288e4841f54c1046, ch: intimidation, pr: /ɛ̃.ti.mi.da.sjɔ̃/, ds: intimidation}
 - {id: fr-v-63d287652fbfe7df, ch: emprise, pr: /ɑ̃.pʁiz/, ds: expropriation}
 - {id: fr-v-a6010ae876bcb0be, ch: droit, pr: /dʁwa/, ds: right; entitlement}
+- {id: fr-v-8eda843d24a3e393, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: recognition; acknowledgment}
+- {id: fr-v-1a5d22746b115587, ch: cliché, pr: /kli.ʃe/, ds: cliche; overused expression or stereotype}
 - {id: fr-v-77f99190228d3d7a, ch: problématiser, pr: /pʁɔ.ble.ma.ti.ze/, ds: to problematize}
 - {id: fr-v-c367473adac17b30, ch: examiner, pr: /ɛɡ.za.mi.ne/, ds: to examine}
 - {id: fr-v-a3ad06b824a288ba, ch: approfondir, pr: /a.pʁɔ.fɔ̃.diʁ/, ds: to deepen}
@@ -4028,6 +4057,9 @@
 - {id: fr-v-e9b6e8066837daa8, ch: syntaxe, pr: /sɛ̃.taks/, ds: syntax}
 - {id: fr-v-8e1465549c0b52d1, ch: typographie, pr: /ti.pɔ.ɡʁa.fi/, ds: typography}
 - {id: fr-v-e10dcce616e8cad6, ch: mise en page, pr: /miz ɑ̃ paʒ/, ds: page setting}
+- {id: fr-v-074cea10ecc61203, ch: note, pr: /nɔt/, ds: note; written or spoken message}
+- {id: fr-v-4fb10e2ed4598411, ch: tableau, pr: /ta.blo/, ds: table; arrangement of rows and columns}
+- {id: fr-v-011a4d556606989f, ch: volume, pr: /vɔ.lym/, ds: volume; amount or quantity}
 - {id: fr-v-4d2a75f2a37411a3, ch: synthétique, pr: /sɛ̃.te.tik/, ds: synthetic}
 - {id: fr-v-f83ecb7a50551e8a, ch: argumentatif, pr: /aʁ.ɡy.mɑ̃.ta.tif/, ds: argumentative}
 - {id: fr-v-c5a1986aad7ab91f, ch: démonstratif, pr: /de.mɔ̃s.tʁa.tif/, ds: demonstrative}
@@ -4098,6 +4130,7 @@
 - {id: fr-v-d40169638b32e5f5, ch: traçabilité, pr: /tʁa.sa.bi.li.te/, ds: traceability}
 - {id: fr-v-6cedc25a69e9d6ed, ch: pilotage, pr: /pi.lɔ.taʒ/, ds: pilotage (all senses); piloting}
 - {id: fr-v-76139b56a6d5afa2, ch: mise en œuvre, pr: /mi.z‿ɑ̃.n‿œvʁ/, ds: implementation; putting an idea into practice}
+- {id: fr-v-14020ed37a8557f3, ch: fiche, pr: /fiʃ/, ds: record; information entry}
 - {id: fr-v-b875e98573c1c0ef, ch: média, pr: /me.dja/, ds: media}
 - {id: fr-v-11395501cb42b4a9, ch: multimédia, pr: /myl.ti.me.dja/, ds: multimedia}
 - {id: fr-v-3dd03429856b53a6, ch: audiovisuel, pr: /o.djo.vi.zɥɛl/, ds: audiovisual}
@@ -4160,6 +4193,7 @@
 - {id: fr-v-4243c4c7541f83e9, ch: plagiat, pr: /pla.ʒja/, ds: plagiarism}
 - {id: fr-v-1ce6e88168ebccbc, ch: reformulation, pr: /ʁøfɔʁmylasjɔ̃/, ds: reformulation}
 - {id: fr-v-c9e6cdf421c76636, ch: droit d'auteur, pr: /dʁwa d‿o.tœʁ/, ds: copyright (right of an author's creations)}
+- {id: fr-v-392230f6d1c0eb5a, ch: menu, pr: /mə.ny/, ds: menu; detailed list}
 - {id: fr-v-598bd7578c382729, ch: ironique, pr: /i.ʁɔ.nik/, ds: ironic}
 - {id: fr-v-40205ba29ed06a89, ch: sarcastique, pr: /saʁ.kas.tik/, ds: sarcastic}
 - {id: fr-v-640271b87f47e5ad, ch: humoristique, pr: /y.mɔ.ʁis.tik/, ds: 'funny, humorous'}
@@ -4229,6 +4263,7 @@
 - {id: fr-v-361bc6a8cb1f54d3, ch: crédule, pr: /kʁe.dyl/, ds: gullible; credulous}
 - {id: fr-v-e773c2b9c13a26a7, ch: circonspect, pr: /siʁ.kɔ̃s.pɛ/, ds: 'circumspect, cautious, prudent'}
 - {id: fr-v-754285156a956031, ch: perspicace, pr: /pɛʁ.spi.kas/, ds: perspicacious}
+- {id: fr-v-4c26b2c97c122222, ch: simple, pr: /sɛ̃pl/, ds: plain; unpretentious}
 - {id: fr-v-23d36e2a5d5956f2, ch: étonnement, pr: /e.tɔn.mɑ̃/, ds: 'astonishment, amazement'}
 - {id: fr-v-4f3e58cbed744a94, ch: stupéfaction, pr: /sty.pe.fak.sjɔ̃/, ds: amazement}
 - {id: fr-v-e29c1c6e53999ce7, ch: stupeur, pr: /sty.pœʁ/, ds: 'stupor, amazement, astonishment, stupefaction, wonder'}
@@ -4427,6 +4462,7 @@
 - {id: fr-v-a4faa31ad6be431f, ch: complaisance, pr: /kɔ̃.plɛ.zɑ̃s/, ds: kindness}
 - {id: fr-v-ad271207a5c71ef6, ch: flagornerie, pr: /flaɡɔʁnəʁi/, ds: coarse flattery}
 - {id: fr-v-cf527ed857251f34, ch: servilité, pr: /sɛʁvilite/, ds: servility}
+- {id: fr-v-775e2873c98d3fc1, ch: cadre, pr: /kadʁ/, ds: context; defining circumstances}
 - {id: fr-v-03fb1fa4febffd5e, ch: apostrophe, pr: /a.pɔs.tʁɔf/, ds: apostrophe}
 - {id: fr-v-c7852ef313a87571, ch: interpellation, pr: /ɛ̃.tɛʁ.pɛ.la.sjɔ̃/, ds: 'hailing, calling out'}
 - {id: fr-v-8b2798db02fe1664, ch: salutation, pr: /sa.ly.ta.sjɔ̃/, ds: greeting}
@@ -4482,6 +4518,7 @@
 - {id: fr-v-97987345c3bbd1c3, ch: assentiment, pr: /a.sɑ̃.ti.mɑ̃/, ds: consent; approval}
 - {id: fr-v-9fcef5e1232d4f5e, ch: dénégation, pr: /de.ne.ɡa.sjɔ̃/, ds: denial}
 - {id: fr-v-b824e9052cae087b, ch: refus, pr: /ʁə.fy/, ds: 'refusal, act of refusing'}
+- {id: fr-v-b2ddb080f2e61cdb, ch: volume, pr: /vɔ.lym/, ds: volume; sound level}
 - {id: fr-v-dd178b98c328746b, ch: normatif, pr: /nɔʁ.ma.tif/, ds: normative}
 - {id: fr-v-fe733c234db40e18, ch: usuel, pr: /y.zɥɛl/, ds: 'usual, everyday'}
 - {id: fr-v-2d086078e73a0e79, ch: fréquent, pr: /fʁe.kɑ̃/, ds: frequent}
@@ -4571,6 +4608,7 @@
 - {id: fr-v-bdc0ce32d7b03948, ch: réciter, pr: /ʁe.si.te/, ds: 'to review, revise (something previously written or learned)'}
 - {id: fr-v-807f6718cfaf0256, ch: improviser, pr: /ɛ̃.pʁɔ.vi.ze/, ds: to improvise}
 - {id: fr-v-fd35a7fa3af54e46, ch: relancer, pr: /ʁə.lɑ̃.se/, ds: to throw back}
+- {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to command; to tell someone what to do}
 - {id: fr-v-2c542f502461171f, ch: dialecte, pr: /dja.lɛkt/, ds: regional language subordinate to a standard language}
 - {id: fr-v-fef7f6c3127975b5, ch: patois, pr: /pa.twa/, ds: patois (French dialect)}
 - {id: fr-v-13212926d858debd, ch: régionalisme, pr: /ʁe.ʒjɔ.na.lism/, ds: regionalism}
@@ -4624,6 +4662,7 @@
 - {id: fr-v-d887d477fe913b81, ch: remerciement, pr: /ʁə.mɛʁ.si.mɑ̃/, ds: thanks (grateful feelings)}
 - {id: fr-v-fe1b7ddeee144cd9, ch: félicitation, pr: /fe.li.si.ta.sjɔ̃/, ds: congratulation}
 - {id: fr-v-2063b0b907bd78e6, ch: condoléance, pr: /kɔ̃.dɔ.le.ɑ̃s/, ds: 'sympathy, condolence'}
+- {id: fr-v-f2aee505022b10ac, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: correspondence; exchange of messages}
 - {id: fr-v-4552ac500472f605, ch: créer, pr: /kʁe.e/, ds: to create}
 - {id: fr-v-5acfdb99bba64a3e, ch: composer, pr: /kɔ̃.po.ze/, ds: to compose}
 - {id: fr-v-23d65013c2ef1a2b, ch: inventer, pr: /ɛ̃.vɑ̃.te/, ds: to invent (to make something for the first time)}
@@ -4747,6 +4786,9 @@
 - {id: fr-v-9e1ef612a7b12c1e, ch: vitrail, pr: /vi.tʁaj/, ds: stained glass}
 - {id: fr-v-72c81ad5c6db60b5, ch: verrière, pr: /vɛ.ʁjɛʁ/, ds: a glass skylight}
 - {id: fr-v-a838e0716d5f6345, ch: galerie, pr: /ɡal.ʁi/, ds: gallery}
+- {id: fr-v-93e45df2ee31f031, ch: tableau, pr: /ta.blo/, ds: painting; artwork}
+- {id: fr-v-dce4e3e1f6010c9e, ch: peinture, pr: /pɛ̃.tyʁ/, ds: painting; artistic activity}
+- {id: fr-v-50b64a59696aceea, ch: courant, pr: /ku.ʁɑ̃/, ds: current; movement of thought}
 - {id: fr-v-46067509b015b0e2, ch: mélodie, pr: /me.lɔ.di/, ds: melody (sequence of notes that makes up a musical phrase)}
 - {id: fr-v-44fe807fce7366c3, ch: tempo, pr: /tɛmpo/, ds: tempo}
 - {id: fr-v-7b259937e0527555, ch: pulsation, pr: /pyl.sa.sjɔ̃/, ds: pulsation}
@@ -4805,6 +4847,8 @@
 - {id: fr-v-e95fec01d45b22a9, ch: audition, pr: /o.di.sjɔ̃/, ds: audition}
 - {id: fr-v-bbde13319ce9c76e, ch: récital, pr: /ʁe.si.tal/, ds: recital}
 - {id: fr-v-f5dd2e6be9a331ff, ch: festival, pr: /fɛs.ti.val/, ds: festival}
+- {id: fr-v-4aae37cb84ca2cfe, ch: accord, pr: /a.kɔʁ/, ds: chord; musical combination}
+- {id: fr-v-3dacb9ed5ee5697a, ch: note, pr: /nɔt/, ds: musical note}
 - {id: fr-v-40cac89c4eda9f50, ch: littérature, pr: /li.te.ʁa.tyʁ/, ds: literature}
 - {id: fr-v-d0670ede673186c5, ch: écrivain, pr: /e.kʁi.vɛ̃/, ds: writer}
 - {id: fr-v-45f56d4418e62d3e, ch: romancier, pr: /ʁɔ.mɑ̃.sje/, ds: novelist (author of novels)}
@@ -4880,6 +4924,10 @@
 - {id: fr-v-1f92d41c202d99e2, ch: assonance, pr: /a.sɔ.nɑ̃s/, ds: assonance}
 - {id: fr-v-74b123204ffc75c5, ch: chiasme, pr: /kjasm/, ds: chiasmus}
 - {id: fr-v-f3c0c1a9bb594e16, ch: légende, pr: /le.ʒɑ̃d/, ds: legend; traditional story}
+- {id: fr-v-a3c6da11e0ea6cbf, ch: pièce, pr: /pjɛs/, ds: play; theatrical work}
+- {id: fr-v-4816f1dc1249ae41, ch: journal, pr: /ʒuʁ.nal/, ds: diary; personal journal}
+- {id: fr-v-61304aee7a7ff416, ch: volume, pr: /vɔ.lym/, ds: volume; book}
+- {id: fr-v-f762c30044b1de90, ch: cadre, pr: /kadʁ/, ds: setting; environment}
 - {id: fr-v-504e6ac889574ecb, ch: caractéristique, pr: /ka.ʁak.te.ʁis.tik/, ds: 'characteristic, trait'}
 - {id: fr-v-ce2de4940ebcbcd9, ch: attribut, pr: /a.tʁi.by/, ds: attribute (characteristic or quality)}
 - {id: fr-v-380e9107009c2016, ch: spécificité, pr: /spe.si.fi.si.te/, ds: specificity}
@@ -5046,6 +5094,8 @@
 - {id: fr-v-91769c6ff74959f1, ch: compact, pr: /kɔ̃.pakt/, ds: 'dense, compact (closely packed)'}
 - {id: fr-v-e9a2622f5b3ca1b0, ch: lâche, pr: /laʃ/, ds: coward}
 - {id: fr-v-ad0c575d115b6e5f, ch: clairsemé, pr: /klɛʁ.sə.me/, ds: scattered}
+- {id: fr-v-710291472fa7a1c0, ch: essence, pr: /e.sɑ̃s/, ds: essence; fundamental nature}
+- {id: fr-v-2e6c56474ab34068, ch: sécheresse, pr: /seʃ.ʁɛs/, ds: dryness}
 - {id: fr-v-c355d55db28822e4, ch: caractériser, pr: /ka.ʁak.te.ʁi.ze/, ds: to characterize}
 - {id: fr-v-12e6a5452d80cb0c, ch: définir, pr: /de.fi.niʁ/, ds: to define}
 - {id: fr-v-8c05b0a977a71fb9, ch: calibrer, pr: /ka.li.bʁe/, ds: to calibrate}
@@ -5087,6 +5137,7 @@
 - {id: fr-v-8cea0f24fee62ee0, ch: segmenter, pr: /sɛɡ.mɑ̃.te/, ds: to segment}
 - {id: fr-v-40cef42d485ef9cc, ch: désagréger, pr: /de.za.ɡʁe.ʒe/, ds: to break up or disintegrate}
 - {id: fr-v-56bdde1273a683c6, ch: disséquer, pr: /di.se.ke/, ds: to dissect}
+- {id: fr-v-20a464d8c6ef18f4, ch: réaliser, pr: /ʁe.a.li.ze/, ds: to make real}
 - {id: fr-v-92676dbd6f9cce2b, ch: concept, pr: /kɔ̃.sɛpt/, ds: concept}
 - {id: fr-v-0923da50ca4109a5, ch: notion, pr: /nɔ.sjɔ̃/, ds: notion}
 - {id: fr-v-c62ad5013ee39972, ch: entité, pr: /ɑ̃.ti.te/, ds: entity}
@@ -5119,6 +5170,7 @@
 - {id: fr-v-75b972791a0c9d22, ch: phénomène, pr: /fe.nɔ.mɛn/, ds: phenomenon}
 - {id: fr-v-599d5245c36a29f5, ch: émergence, pr: /e.mɛʁ.ʒɑ̃s/, ds: emergence}
 - {id: fr-v-a9ff6c3766a25f19, ch: complexité, pr: /kɔ̃.plɛk.si.te/, ds: complexity}
+- {id: fr-v-e0cce9913fb80cb3, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: match; correspondence between things}
 - {id: fr-v-23edfb4dbfd6ec8e, ch: épique, pr: /e.pik/, ds: of epic poetry; epic}
 - {id: fr-v-1c526a01bcbb4228, ch: tragique, pr: /tʁa.ʒik/, ds: tragic}
 - {id: fr-v-2f6418d3b2d56231, ch: comique, pr: /kɔ.mik/, ds: comedy}
@@ -5404,6 +5456,8 @@
 - {id: fr-v-9b724cdfe7d580b4, ch: anémone, pr: /a.ne.mɔn/, ds: anemone (any plant of genus Anemone)}
 - {id: fr-v-ad53b8dd09af0960, ch: oursin, pr: /uʁ.sɛ̃/, ds: sea urchin}
 - {id: fr-v-f66d6701678f611e, ch: étoile de mer, pr: /e.twal də mɛʁ/, ds: starfish}
+- {id: fr-v-0ce17e63123cca2e, ch: rose, pr: /ʁoz/, ds: rose; flower}
+- {id: fr-v-552c05903f3df810, ch: souris, pr: /su.ʁi/, ds: mouse; rodent}
 - {id: fr-v-ab0732623d81ee54, ch: historien, pr: /is.tɔ.ʁjɛ̃/, ds: historian}
 - {id: fr-v-a70fb55428f15943, ch: historiographie, pr: /is.tɔ.ʁjɔ.ɡʁa.fi/, ds: historiography}
 - {id: fr-v-0a0593ea465858da, ch: vestige, pr: /vɛs.tiʒ/, ds: 'vestige, relic'}
@@ -5731,6 +5785,7 @@
 - {id: fr-v-8402612168097f2f, ch: ingrédient, pr: /ɛ̃.ɡʁe.djɑ̃/, ds: ingredient}
 - {id: fr-v-889172b32db8b8c9, ch: portion, pr: /pɔʁ.sjɔ̃/, ds: portion}
 - {id: fr-v-cdce9fc6464bed97, ch: ration, pr: /ʁa.sjɔ̃/, ds: ration}
+- {id: fr-v-bda4c0b2450ea61e, ch: recette, pr: /ʁə.sɛt/, ds: recipe; cooking instructions}
 - {id: fr-v-64092a6b2b5cc01d, ch: savoureux, pr: /sa.vu.ʁø/, ds: tasty}
 - {id: fr-v-c0dc7f9d9e23fb8c, ch: goûteux, pr: /ɡu.tø/, ds: tasty}
 - {id: fr-v-4eec46329026d5c0, ch: délicieux, pr: /de.li.sjø/, ds: delicious}
@@ -5821,6 +5876,7 @@
 - {id: fr-v-733cd30a6b2b6bc8, ch: débarcadère, pr: /de.baʁ.ka.dɛʁ/, ds: 'landing stage, jetty'}
 - {id: fr-v-4ad6febaaeff2b5a, ch: jetée, pr: /ʒə.te/, ds: pier; jetty}
 - {id: fr-v-c917ae0dc38774a4, ch: digue, pr: /diɡ/, ds: 'seawall, dyke, breakwater'}
+- {id: fr-v-f8a65caeb3bbc6d8, ch: port, pr: /pɔʁ/, ds: harbour; port}
 - {id: fr-v-42f3ea93cc0b2d5e, ch: aérodrome, pr: /a.e.ʁɔ.dʁom/, ds: aerodrome}
 - {id: fr-v-ad138fc8be5b9704, ch: déplacement, pr: /de.plas.mɑ̃/, ds: 'trip, journey'}
 - {id: fr-v-e5b9aba471d5f47a, ch: navette, pr: /na.vɛt/, ds: shuttle (in weaving)}
@@ -5845,6 +5901,7 @@
 - {id: fr-v-cb47d455932c819b, ch: démocratie participative, pr: /de.mɔ.kʁa.si paʁ.ti.si.pa.tiv/, ds: participatory democracy (political system)}
 - {id: fr-v-48060b3948149346, ch: développement durable, pr: /de.vlɔp.mɑ̃ dy.ʁabl/, ds: sustainable development}
 - {id: fr-v-406c1350a8e8d827, ch: qualité de vie, pr: /ka.li.te d(ə) vi/, ds: quality of life}
+- {id: fr-v-1b78cd5cc10934b4, ch: quai, pr: /ke/, ds: quay; wharf}
 - {id: fr-v-35e14896d19b915a, ch: jurisprudence, pr: /ʒy.ʁis.pʁy.dɑ̃s/, ds: case law}
 - {id: fr-v-24b420044ee0c33e, ch: recours, pr: /ʁə.kuʁ/, ds: 'recourse, resort, way out'}
 - {id: fr-v-566e2c16f1176740, ch: pourvoi, pr: /puʁ.vwa/, ds: appeal}
@@ -5898,3 +5955,5 @@
 - {id: fr-v-36de8199f5439ac5, ch: liberté d'expression, pr: /li.bɛʁ.te d‿ɛk.spʁɛ.sjɔ̃/, ds: 'freedom of speech, free speech'}
 - {id: fr-v-d0fceb2382d90eb8, ch: vie privée, pr: /vi pʁi.ve/, ds: private life}
 - {id: fr-v-38d03968b1e53af8, ch: droit, pr: /dʁwa/, ds: law; field of study}
+- {id: fr-v-0509552be428de16, ch: arrêt, pr: /a.ʁɛ/, ds: judgment; court ruling}
+- {id: fr-v-bc39743256dfd28c, ch: ordonnance, pr: /ɔʁ.dɔ.nɑ̃s/, ds: order; legal decree}

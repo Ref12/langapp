@@ -5,12 +5,12 @@
 - {id: fr-v-cb63b4cbe04aa734, ch: pardon, pr: /paʁ.dɔ̃/, ds: excuse me}
 - {id: fr-v-9679872d677a1a0e, ch: oui, pr: /wi/, ds: 'yes'}
 - {id: fr-v-19a1375d75dedfdd, ch: non, pr: /nɔ̃/, ds: 'no'}
-- {id: fr-v-3979041abde4fbe8, ch: bienvenue, pr: /bjɛ̃.v(ə).ny/, ds: welcome}
+- {id: fr-v-f485cb3f25713bcc, ch: bienvenue, pr: /bjɛ̃.v(ə).ny/, ds: welcome; greeting}
 - {id: fr-v-bd5fce6e0788c23a, ch: au revoir, pr: /o ʁə.vwaʁ/, ds: goodbye}
 - {id: fr-v-d8844688f35121d4, ch: excuse, pr: /ɛk.skyz/, ds: excuse}
-- {id: fr-v-d670bc52ae8a1fb9, ch: français, pr: /fʁɑ̃.sɛ/, ds: French}
+- {id: fr-v-e82d4ba5bcde3555, ch: français, pr: /fʁɑ̃.sɛ/, ds: French language}
 - {id: fr-v-5f616523a0cc1100, ch: anglais, pr: /ɑ̃.ɡlɛ/, ds: English (language)}
-- {id: fr-v-87472db5bce31239, ch: langue, pr: /lɑ̃ɡ/, ds: tongue}
+- {id: fr-v-61bcd768c548455a, ch: langue, pr: /lɑ̃ɡ/, ds: language; system of communication}
 - {id: fr-v-d439345d496b922c, ch: mot, pr: /mo/, ds: word}
 - {id: fr-v-bac21c7193e90f29, ch: phrase, pr: /fʁaz/, ds: sentence}
 - {id: fr-v-b37372fc5aa9116d, ch: nom, pr: /nɔ̃/, ds: name}
@@ -43,7 +43,7 @@
 - {id: fr-v-23aed6f0aa7352ba, ch: faire, pr: /fɛʁ/, ds: to do}
 - {id: fr-v-5c68a89f38d9b824, ch: voir, pr: /vwaʁ/, ds: to see (visually)}
 - {id: fr-v-90e551d22bb952c9, ch: donner, pr: /dɔ.ne/, ds: to give}
-- {id: fr-v-e54a8e8169505408, ch: nommer, pr: /nɔ.me/, ds: to nominate}
+- {id: fr-v-18caab3d7c690471, ch: nommer, pr: /nɔ.me/, ds: to name; to call by a name}
 - {id: fr-v-004b7eb26bb697a6, ch: je, pr: /ʒə/, ds: I}
 - {id: fr-v-0f958efe3b6dd8df, ch: tu, pr: /ty/, ds: you (singular)}
 - {id: fr-v-e01b4fb2f75bc841, ch: vous, pr: /vu/, ds: you; polite singular or plural}
@@ -100,11 +100,11 @@
 - {id: fr-v-405e7736ab8e3c19, ch: porte, pr: /pɔʁt/, ds: door}
 - {id: fr-v-f2771df010b4d956, ch: table, pr: /tabl/, ds: table; piece of furniture}
 - {id: fr-v-33d059909d38fe5d, ch: chaise, pr: /ʃɛz/, ds: 'chair, seat'}
-- {id: fr-v-c1e69ebea158f92f, ch: place, pr: /plas/, ds: 'place, square, plaza, piazza'}
+- {id: fr-v-8603a8b24d483724, ch: place, pr: /plas/, ds: space; available room}
 - {id: fr-v-627d5e482176d163, ch: photo, pr: /fɔ.to/, ds: photo}
 - {id: fr-v-b736bac02ea9efb2, ch: grand, pr: /ɡʁɑ̃/, ds: big}
 - {id: fr-v-fff5cbc01133f140, ch: petit, pr: /pə.ti/, ds: small}
-- {id: fr-v-202e33aad699334e, ch: nouveau, pr: /nu.vo/, ds: 'new person, new thing'}
+- {id: fr-v-51376bb19ca5a0c7, ch: nouveau, pr: /nu.vo/, ds: new}
 - {id: fr-v-8332cdeadc9fd451, ch: vieux, pr: /vjø/, ds: old}
 - {id: fr-v-2421d5e16ee85796, ch: jeune, pr: /ʒœn/, ds: young}
 - {id: fr-v-f0273331a5e2c75c, ch: beau, pr: /bo/, ds: 'handsome, fine, attractive'}
@@ -117,7 +117,7 @@
 - {id: fr-v-4c21d85fcc0322ee, ch: vert, pr: /vɛʁ/, ds: green}
 - {id: fr-v-b2b0a4d3e600dc47, ch: jaune, pr: /ʒon/, ds: yellow}
 - {id: fr-v-58ad292acdcaa334, ch: couleur, pr: /ku.lœʁ/, ds: color/colour}
-- {id: fr-v-17e38e9a014ef68b, ch: même, pr: /mɛm/, ds: even}
+- {id: fr-v-6b1b8caaff1de9be, ch: même, pr: /mɛm/, ds: same}
 - {id: fr-v-3ec5d5479bdc6cff, ch: autre, pr: /otʁ/, ds: other}
 - {id: fr-v-3cd9eb8a99ac0682, ch: le, pr: /lə/, ds: the; definite article}
 - {id: fr-v-eec2f795ebff342d, ch: un, pr: /œ̃/, ds: 'an, a'}
@@ -127,14 +127,14 @@
 - {id: fr-v-38019a7825f51308, ch: son, pr: /sɔ̃/, ds: his}
 - {id: fr-v-143aea7c7952a856, ch: notre, pr: /nɔtʁ/, ds: our}
 - {id: fr-v-8f9fce34db0b90ff, ch: votre, pr: /vɔtʁ/, ds: 'your, belonging to you (plural or formal)'}
-- {id: fr-v-fbf60a681af7aaca, ch: leur, pr: /lœʁ/, ds: (to) them}
+- {id: fr-v-631eeb660c5dd532, ch: leur, pr: /lœʁ/, ds: their; possessive determiner}
 - {id: fr-v-a421908bf7011681, ch: de, pr: /də/, ds: 'of; possession, association, or relationship'}
 - {id: fr-v-5ec809f61dd4f922, ch: à, pr: /a/, ds: to (destination)}
 - {id: fr-v-8b08d0d1eb85ad1c, ch: dans, pr: /dɑ̃/, ds: 'in, inside (enclosed in a physical space, a group, a state)'}
 - {id: fr-v-098e19a148c05266, ch: sur, pr: /syʁ/, ds: 'on, upon'}
 - {id: fr-v-8cd331fbd521083e, ch: sous, pr: /su/, ds: 'below, under'}
 - {id: fr-v-810ff3f01a4e6b01, ch: entre, pr: /ɑ̃tʁ/, ds: between}
-- {id: fr-v-bc5110cf1dfcb1f0, ch: devant, pr: /də.vɑ̃/, ds: 'confronted with, faced with'}
+- {id: fr-v-fd582a89df883fb0, ch: devant, pr: /də.vɑ̃/, ds: in front of}
 - {id: fr-v-df1df27984b04cc8, ch: derrière, pr: /dɛ.ʁjɛʁ/, ds: behind}
 - {id: fr-v-c1a655ae9925085a, ch: chez, pr: /ʃe/, ds: 'to, at, in or into the place of'}
 - {id: fr-v-dffaea6b9559b478, ch: eau, pr: /o/, ds: water}
@@ -148,12 +148,12 @@
 - {id: fr-v-bf17917ceffc5ec3, ch: sel, pr: /sɛl/, ds: 'table salt, i.e. sodium chloride (NaCl)'}
 - {id: fr-v-56dd80a816c8baf2, ch: poivre, pr: /pwavʁ/, ds: pepper (spice)}
 - {id: fr-v-37150acd429cefe7, ch: riz, pr: /ʁi/, ds: rice}
-- {id: fr-v-aac6eeb0dd32fb54, ch: pâte, pr: /pat/, ds: paste (a soft moist mixture)}
+- {id: fr-v-3ef2ab34a5424838, ch: pâte, pr: /pat/, ds: pasta; noodles; plural usage}
 - {id: fr-v-d7a7a3a155f173eb, ch: pomme, pr: /pɔm/, ds: apple (fruit)}
 - {id: fr-v-9d3c06c79ead84f3, ch: banane, pr: /ba.nan/, ds: banana (the fruit)}
 - {id: fr-v-889256b7407723ce, ch: orange, pr: /ɔ.ʁɑ̃ʒ/, ds: orange (fruit)}
 - {id: fr-v-5c9f0e39483c9966, ch: citron, pr: /si.tʁɔ̃/, ds: lemon}
-- {id: fr-v-72020551d9d629e5, ch: tomate, pr: /tɔ.mat/, ds: tomato (plant)}
+- {id: fr-v-0840bed1993363ac, ch: tomate, pr: /tɔ.mat/, ds: tomato; edible fruit}
 - {id: fr-v-9879878c86d02e63, ch: salade, pr: /sa.lad/, ds: salad (raw vegetables in general)}
 - {id: fr-v-6dbd14cf15613b0e, ch: légume, pr: /le.ɡym/, ds: vegetable}
 - {id: fr-v-40f2bffedc255b0b, ch: fruit, pr: /fʁɥi/, ds: fruit}
@@ -167,17 +167,17 @@
 - {id: fr-v-2db5c686c476a424, ch: petit déjeuner, pr: /pə.ti de.ʒœ.ne/, ds: breakfast (morning meal)}
 - {id: fr-v-0cd96d2f90926428, ch: déjeuner, pr: /de.ʒœ.ne/, ds: 'lunch, luncheon'}
 - {id: fr-v-68e0964d734b9187, ch: dîner, pr: /di.ne/, ds: 'dinner, evening meal'}
-- {id: fr-v-392230f6d1c0eb5a, ch: menu, pr: /mə.ny/, ds: detailed list}
+- {id: fr-v-adbf339013accf71, ch: menu, pr: /mə.ny/, ds: menu; set meal}
 - {id: fr-v-32eaf4fd3e3a1c13, ch: restaurant, pr: /ʁɛs.tɔ.ʁɑ̃/, ds: restaurant}
-- {id: fr-v-43c1306104468b9b, ch: verre, pr: /vɛʁ/, ds: glass (substance)}
+- {id: fr-v-dcd9ee218154e929, ch: verre, pr: /vɛʁ/, ds: drinking glass}
 - {id: fr-v-272b5254d973b8b4, ch: tasse, pr: /tas/, ds: cup}
-- {id: fr-v-e0383a8acd88b034, ch: assiette, pr: /a.sjɛt/, ds: seat}
+- {id: fr-v-e3dd185d0abea415, ch: assiette, pr: /a.sjɛt/, ds: plate; tableware}
 - {id: fr-v-15c728a1d6e88066, ch: bouteille, pr: /bu.tɛj/, ds: bottle}
 - {id: fr-v-301115bbbccf8ad3, ch: manger, pr: /mɑ̃.ʒe/, ds: to eat}
 - {id: fr-v-d37f9ed8cf6bf472, ch: boire, pr: /bwaʁ/, ds: to drink}
 - {id: fr-v-72f899689de74107, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to have food or drink}
 - {id: fr-v-32b69e67f5d2fa92, ch: aimer, pr: /ɛ.me/, ds: to love; to like}
-- {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order (tell someone to do something)}
+- {id: fr-v-794486ca61c84640, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order food or goods}
 - {id: fr-v-6746733a972453d5, ch: chaud, pr: /ʃo/, ds: 'warm, hot'}
 - {id: fr-v-fe3439b43195c5bf, ch: froid, pr: /fʁwa/, ds: cold (temperature)}
 - {id: fr-v-429fa20a62c1cffc, ch: faim, pr: /fɛ̃/, ds: hunger (desire of food)}
@@ -190,7 +190,7 @@
 - {id: fr-v-6fcf9448c4876de9, ch: six, pr: /sis/, ds: six}
 - {id: fr-v-a1bfeb9dac673071, ch: sept, pr: /sɛt/, ds: seven}
 - {id: fr-v-2eefd6b871be5309, ch: huit, pr: /ɥit/, ds: eight}
-- {id: fr-v-c588381de578c5b2, ch: neuf, pr: /nœf/, ds: 'brand new, very new'}
+- {id: fr-v-603343c7b524e167, ch: neuf, pr: /nœf/, ds: nine}
 - {id: fr-v-2ae096aa7e26a300, ch: dix, pr: /dis/, ds: ten}
 - {id: fr-v-5ca5a116c72a736d, ch: onze, pr: /ɔ̃z/, ds: eleven}
 - {id: fr-v-8a24d169c204a3bb, ch: douze, pr: /duz/, ds: twelve}
@@ -211,19 +211,20 @@
 - {id: fr-v-67c7897101ffd90e, ch: quatre-vingt-dix, pr: /ka.tʁə.vɛ̃.dis/, ds: ninety}
 - {id: fr-v-c7c28a0409da2972, ch: cent, pr: /sɑ̃/, ds: hundred}
 - {id: fr-v-999a4a03763c288a, ch: mille, pr: /mil/, ds: 'thousand, one thousand, a thousand'}
-- {id: fr-v-e5b14a76d6a37833, ch: prix, pr: /pʁi/, ds: prize}
+- {id: fr-v-896ec121ba67f365, ch: prix, pr: /pʁi/, ds: price; amount to pay}
 - {id: fr-v-7d966e2f1c31bfab, ch: euro, pr: /ø.ʁo/, ds: euro (currency)}
-- {id: fr-v-a890afc708ce1153, ch: argent, pr: /aʁ.ʒɑ̃/, ds: silver}
+- {id: fr-v-b70ae08dfe2e0599, ch: argent, pr: /aʁ.ʒɑ̃/, ds: money; cash}
 - {id: fr-v-316e14adeeec3729, ch: combien, pr: /kɔ̃.bjɛ̃/, ds: how much (for uncountable nouns and portions)}
 - {id: fr-v-efce47b635a01e44, ch: acheter, pr: /aʃ.te/, ds: to purchase; buy}
 - {id: fr-v-87f49d1132e9bfcb, ch: payer, pr: /pɛ.je/, ds: to pay (for)}
 - {id: fr-v-c2dae6967cacba06, ch: pour, pr: /puʁ/, ds: 'for (meant for, intended for)'}
 - {id: fr-v-cc5b9e82c78eacc1, ch: addition, pr: /a.di.sjɔ̃/, ds: bill or check at a bar or restaurant}
 - {id: fr-v-2d65ad11e090e5c4, ch: beaucoup, pr: /bo.ku/, ds: 'much, very much, a lot'}
-- {id: fr-v-ae8015bcfc2423b9, ch: peu, pr: /pø/, ds: few}
+- {id: fr-v-d8a0575215bda862, ch: peu, pr: /pø/, ds: little; not much or many}
 - {id: fr-v-0bab267f71053c23, ch: assez, pr: /a.se/, ds: to a sufficient or moderate degree; enough; sufficiently}
 - {id: fr-v-1ee296be52917894, ch: trop, pr: /tʁo/, ds: too; too much}
 - {id: fr-v-32dc4e88ac574eea, ch: tout, pr: /tu/, ds: all}
+- {id: fr-v-98fb5c748d865023, ch: un, pr: /œ̃/, ds: one}
 - {id: fr-v-a1dd1b331b48f8f8, ch: jour, pr: /ʒuʁ/, ds: day}
 - {id: fr-v-af55d38f8285cc88, ch: nuit, pr: /nɥi/, ds: night}
 - {id: fr-v-5987f5a575fb9c78, ch: matin, pr: /ma.tɛ̃/, ds: morning}
@@ -252,13 +253,13 @@
 - {id: fr-v-9c2e0fa594d789d1, ch: connaître, pr: /kɔ.nɛtʁ/, ds: 'to know (of), to be familiar with (a person, place, fact, event)'}
 - {id: fr-v-f65a24ea817bd09b, ch: apporter, pr: /a.pɔʁ.te/, ds: to bring (something)}
 - {id: fr-v-68ee1dcb283c64ae, ch: offrir, pr: /ɔ.fʁiʁ/, ds: to offer; to provide}
-- {id: fr-v-22afdd0b327e4284, ch: prévenir, pr: /pʁev.niʁ/, ds: 'to prevent, to avert, to guard against'}
+- {id: fr-v-fbaea30b3c0cb6ec, ch: prévenir, pr: /pʁev.niʁ/, ds: to notify; to warn}
 - {id: fr-v-49bc81663759a40a, ch: secours, pr: /sə.kuʁ/, ds: aid; assistance; help}
 - {id: fr-v-57ea8e93200fea91, ch: aide, pr: /ɛd/, ds: 'help, support'}
 - {id: fr-v-26a1657b2305ce98, ch: problème, pr: /pʁɔ.blɛm/, ds: problem}
-- {id: fr-v-20f24503913d51ee, ch: rendez-vous, pr: /ʁɑ̃.de.vu/, ds: date}
+- {id: fr-v-59698bbf70abc161, ch: rendez-vous, pr: /ʁɑ̃.de.vu/, ds: appointment}
 - {id: fr-v-c2747f81008e4c62, ch: besoin, pr: /bə.zwɛ̃/, ds: need}
-- {id: fr-v-4aae37cb84ca2cfe, ch: accord, pr: /a.kɔʁ/, ds: chord}
+- {id: fr-v-24e1299f952bb227, ch: accord, pr: /a.kɔʁ/, ds: agreement}
 - {id: fr-v-a1a099edb53a0999, ch: attention, pr: /a.tɑ̃.sjɔ̃/, ds: look out! watch out! careful!}
 - {id: fr-v-1bc5897f17aaef34, ch: possible, pr: /pɔ.sibl/, ds: possible}
 - {id: fr-v-280b1dd2c60c1c9d, ch: impossible, pr: /ɛ̃.pɔ.sibl/, ds: impossible}
@@ -294,19 +295,19 @@
 - {id: fr-v-049176dcb52dab60, ch: bus, pr: /bys/, ds: bus}
 - {id: fr-v-7729f59216a4d6e0, ch: métro, pr: /me.tʁo/, ds: 'metro; subway (US), underground (UK), Tube (UK)'}
 - {id: fr-v-710246ed5515ac42, ch: taxi, pr: /tak.si/, ds: taxi}
-- {id: fr-v-ff345ef6640adb7d, ch: voiture, pr: /vwa.tyʁ/, ds: car (wagon)}
+- {id: fr-v-f2ae151ce048f91c, ch: voiture, pr: /vwa.tyʁ/, ds: car; motor vehicle}
 - {id: fr-v-36819c829fedec30, ch: avion, pr: /a.vjɔ̃/, ds: aeroplane}
 - {id: fr-v-13a5672c70a750ba, ch: aéroport, pr: /a.e.ʁɔ.pɔʁ/, ds: 'airport (place, company managing such a place)'}
 - {id: fr-v-7d4b1a3ec129806b, ch: hôtel, pr: /o.tɛl/, ds: hotel; paid accommodation}
-- {id: fr-v-d6b7a3b6f9402564, ch: chambre, pr: /ʃɑ̃bʁ/, ds: a room.}
+- {id: fr-v-c22fc3483ea21daf, ch: chambre, pr: /ʃɑ̃bʁ/, ds: hotel room}
 - {id: fr-v-bcd3a43850411ae2, ch: billet, pr: /bi.jɛ/, ds: ticket}
 - {id: fr-v-af3b9aa259375c11, ch: voyage, pr: /vwa.jaʒ/, ds: 'trip, journey, voyage'}
 - {id: fr-v-b73cbb16bfc51474, ch: carte, pr: /kaʁt/, ds: card}
 - {id: fr-v-0eb4b169d661d99c, ch: plan, pr: /plɑ̃/, ds: 'map (schematic maps of streets, subways, etc.)'}
 - {id: fr-v-ac514549469b27e0, ch: chemin, pr: /ʃə.mɛ̃/, ds: 'path, way, road'}
-- {id: fr-v-718bbcc6fa05a8a0, ch: arrêt, pr: /a.ʁɛ/, ds: stopping}
+- {id: fr-v-b3d3165d893a973f, ch: arrêt, pr: /a.ʁɛ/, ds: stop; stopping place}
 - {id: fr-v-aa510f7ac10470c7, ch: sortie, pr: /sɔʁ.ti/, ds: exit; way out}
-- {id: fr-v-350323259b922cb2, ch: entrée, pr: /ɑ̃.tʁe/, ds: 'entry, act of entering'}
+- {id: fr-v-2dbdc68186ce2499, ch: entrée, pr: /ɑ̃.tʁe/, ds: entrance; way in}
 - {id: fr-v-f65b1c1fbb3f942a, ch: gauche, pr: /ɡoʃ/, ds: 'the left, the left-hand side'}
 - {id: fr-v-fd0ac678bbeb492d, ch: droite, pr: /dʁwat/, ds: right-hand side}
 - {id: fr-v-ec10bcff5ba86d15, ch: nord, pr: /nɔʁ/, ds: north}
@@ -314,13 +315,13 @@
 - {id: fr-v-9d13e5b232bf95ad, ch: est, pr: /ɛst/, ds: east}
 - {id: fr-v-7b3a41f9e9f449d6, ch: ouest, pr: /wɛst/, ds: west}
 - {id: fr-v-1132693274584f4f, ch: loin, pr: /lwɛ̃/, ds: 'far, distant'}
-- {id: fr-v-843bf90dee592612, ch: près, pr: /pʁɛ/, ds: attached to}
-- {id: fr-v-21a45e0338858e0a, ch: tout droit, pr: /tu dʁwa/, ds: to the front}
+- {id: fr-v-27a89ec0f35e3d21, ch: près, pr: /pʁɛ/, ds: near; close by}
+- {id: fr-v-b4b6f559cec59cd2, ch: tout droit, pr: /tu dʁwa/, ds: straight ahead}
 - {id: fr-v-d25330c17e0381a1, ch: aller, pr: /a.le/, ds: to go}
 - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
 - {id: fr-v-9bd6afe04827273d, ch: partir, pr: /paʁ.tiʁ/, ds: 'to go away, leave, depart'}
 - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
-- {id: fr-v-6a95d3dbe3a8dd58, ch: retourner, pr: /ʁə.tuʁ.ne/, ds: to turn over; to turn upside-down}
+- {id: fr-v-adada4742558d18e, ch: retourner, pr: /ʁə.tuʁ.ne/, ds: to go back; to return to a place}
 - {id: fr-v-cd70435b8e7ed4af, ch: marcher, pr: /maʁ.ʃe/, ds: to walk}
 - {id: fr-v-909016573f8971be, ch: chercher, pr: /ʃɛʁ.ʃe/, ds: 'to look for, to seek'}
 - {id: fr-v-e3939d1d2a7cb2dc, ch: trouver, pr: /tʁu.ve/, ds: to find}

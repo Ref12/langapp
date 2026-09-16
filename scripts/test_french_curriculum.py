@@ -113,6 +113,29 @@ class FrenchSourceTests(unittest.TestCase):
         }.items():
             self.assertEqual(self.by_word[word]["source_sense_id"], source_id)
 
+    def test_practical_semantic_expectations_match_source_and_learner_meaning(self):
+        expected = load_yaml(ROOT / "authoring" / "teaching" / "semantic-regressions.yaml")
+        self.assertLessEqual({"neuf", "langue", "assiette", "prix", "argent"},
+                             {row["word"] for row in expected})
+        self.assertLessEqual(set(range(1, 9)), {row["level"] for row in expected})
+        selections = {row["source_sense_id"]: row for row in self.choices}
+        records = {row["record"]: row for row in self.projection["kaikki"]}
+        placements = {(row["id"], row["level"], row["topic"]) for row in self.placements}
+        for row in expected:
+            with self.subTest(word=row["word"], level=row["level"], meaning=row["ds"]):
+                self.assertEqual(set(row), {"word", "source_sense_id", "pos", "ds", "level", "topic", "primary"})
+                choice = selections[row["source_sense_id"]]
+                for field in ("word", "source_sense_id", "pos", "ds", "primary"):
+                    self.assertEqual(choice[field], row[field], field)
+                source = records[choice["record"]]
+                sense = source["senses"][choice["sense_index"]]
+                self.assertEqual((source["word"], source["pos"], sense["id"]),
+                                 (row["word"], row["pos"], row["source_sense_id"]))
+                expanded = self.by_id[choice["id"]]
+                self.assertEqual(expanded["disambiguator"], row["ds"])
+                self.assertEqual(expanded["source_glosses"], sense["glosses"])
+                self.assertIn((choice["id"], row["level"], row["topic"]), placements)
+
     def test_lexique_conversion_is_strict_and_disclosed(self):
         self.assertEqual(phonetic_ipa("S9vR"), "/ʃœvʁ/")
         self.assertEqual(phonetic_ipa("@f5"), "/ɑ̃fɛ̃/")
@@ -262,6 +285,23 @@ class FrenchProgramTests(unittest.TestCase):
         cls.outputs = program_outputs(ROOT, cls.data, cls.adapter)
         cls.core = parsed(cls.outputs[ROOT / "teaching" / "core" / "sequence.yaml"])
         cls.tourist = parsed(cls.outputs[ROOT / "teaching" / "tourist" / "sequence.yaml"])
+        cls.projection = read_projection(ROOT)
+        cls.words = {
+            choice["word"]: cls.data.references.vocabulary[choice["id"]]
+            for choice in load_yaml(ROOT / "authoring" / "teaching" / "sense-selections.yaml")
+            if choice["primary"]
+        }
+        cls.inflections = [
+            spec for spec in load_yaml(ROOT / "authoring" / "teaching" / "realizations.yaml")
+            if spec["kind"] == "source-inflection"
+        ]
+
+    def compile_inflections(self, projection, specs=None):
+        from french_program_adapter import compile_realizations
+        return compile_realizations(
+            self.inflections if specs is None else specs, self.words, self.data.references.grammar,
+            self.data.references.provenance, projection,
+        )
 
     def test_exact_compact_equality_and_earlier_reviews(self):
         known = {"vocabulary": set(), "grammar": set()}
@@ -425,6 +465,76 @@ class FrenchProgramTests(unittest.TestCase):
                     [altered], words, self.data.references.grammar,
                     self.data.references.provenance, read_projection(ROOT),
                 )
+
+    def test_inflection_provenance_identifies_canonical_owner_and_morphology(self):
+        for identifier, canonical, inflected, lemma, pos, gender, number in (
+            ("fr-f-travel-perdue-feminine", 94289, 94292, "perdu", "ADJ", "f", "s"),
+            ("fr-f-travel-toilettes-plural", 129117, 129119, "toilette", "NOM", "f", "p"),
+        ):
+            with self.subTest(identifier=identifier):
+                evidence = self.adapter._realizations[identifier]["evidence"]
+                self.assertEqual(evidence["source_id"], "lexique-3.83")
+                self.assertEqual(
+                    tuple(evidence[key] for key in (
+                        "canonical_record", "source_record", "lemma", "part_of_speech", "gender", "number",
+                    )), (canonical, inflected, lemma, pos, gender, number),
+                )
+                row = next(row for row in self.projection["lexique"] if row["record"] == inflected)
+                self.assertEqual(evidence["source_phonetic_code"], row["phon"])
+
+    def test_adjective_inflection_rejects_verb_only_canonical_or_form_evidence(self):
+        for removed in ({94289}, {94292}, {94289, 94292}):
+            with self.subTest(removed=removed):
+                projection = dict(
+                    self.projection,
+                    lexique=[row for row in self.projection["lexique"] if row["record"] not in removed],
+                )
+                self.assertTrue({94288, 94291} <= {row["record"] for row in projection["lexique"]})
+                with self.assertRaisesRegex(ValueError, "perdue-feminine.*lacks aligned source support"):
+                    self.compile_inflections(projection)
+
+    def test_inflection_rejects_wrong_lemma_pos_and_agreement_metadata(self):
+        for record, field, value in (
+            (94289, "lemme", "perdre"), (94289, "cgram", "VER"), (94289, "islem", "0"),
+            (94289, "ortho", "perdre"), (94289, "phon", "pERd"),
+            (94292, "lemme", "perdre"), (94292, "cgram", "VER"),
+            (94292, "ortho", "perdus"), (94292, "phon", "pERd"),
+            (94292, "genre", "m"), (94292, "nombre", "p"),
+            (94292, "infover", "par:pas;"), (129119, "nombre", "s"), (129119, "genre", "m"),
+        ):
+            with self.subTest(record=record, field=field, value=value):
+                projection = dict(self.projection, lexique=[
+                    dict(row, **{field: value}) if row["record"] == record else row
+                    for row in self.projection["lexique"]
+                ])
+                with self.assertRaisesRegex(ValueError, "lacks aligned source support"):
+                    self.compile_inflections(projection)
+
+    def test_lexique_agreement_does_not_infer_unsupported_morphology(self):
+        from french_program_adapter import lexique_inflection_matches
+        rows = {row["record"]: row for row in self.projection["lexique"]}
+        for tags in ({"feminine", "past"}, {"feminine", "singular", "plural"}):
+            with self.subTest(tags=tags):
+                self.assertFalse(lexique_inflection_matches(rows[94289], rows[94292], tags))
+
+    def test_exact_source_form_ipa_remains_independent_of_lexique(self):
+        projection = deepcopy(self.projection)
+        projection["lexique"] = []
+        spec = next(spec for spec in self.inflections if spec["id"] == "fr-f-travel-perdue-feminine")
+        source = self.data.references.provenance[self.words[spec["word"]]["id"]]
+        record = next(row for row in projection["kaikki"] if row["record"] == source["source_record"])
+        form = next(row for row in record["forms"] if row["form"] == spec["ch"])
+        form["ipa"] = spec["pr"]
+        compiled = self.compile_inflections(projection, [spec])
+        self.assertEqual(compiled[spec["id"]]["evidence"]["source_record"], source["source_record"])
+        self.assertEqual(compiled[spec["id"]]["evidence"]["source_id"], source["source_id"])
+        for field, value in (("word", "perdre"), ("pos", "verb")):
+            with self.subTest(field=field):
+                original = record[field]
+                record[field] = value
+                with self.assertRaisesRegex(ValueError, "different lemma or part of speech"):
+                    self.compile_inflections(projection, [spec])
+                record[field] = original
 
     def test_sentence_case_does_not_allow_arbitrary_rewriting(self):
         from french_program_adapter import compile_realizations

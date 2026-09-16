@@ -1,4 +1,12 @@
 # Original pedagogical choices deepen meanings without adding lemma breadth.
+- word: un
+  level: 3
+  topic: services
+  selection: {pos: num, source_sense_id: "en-un-fr-num-dpLDrTVA", ds: "one"}
+- word: leur
+  level: 8
+  topic: grammar
+  selection: {pos: pron, source_sense_id: "en-leur-fr-pron-4RMMe4Bv", ds: "to them; indirect-object clitic"}
 - word: de
   level: 4
   topic: travel
@@ -83,3 +91,266 @@
   level: professional
   topic: work
   selection: {pos: noun, source_sense_id: "en-pouvoir-fr-noun-j3b9UBu2", ds: "authority"}
+
+# Distinct meanings required by existing later lemma-group destinations.
+# A repeated core destination revisits its first matching sense introduction.
+- word: langue
+  level: 21
+  topic: health
+  selection: {pos: noun, source_sense_id: "en-langue-fr-noun-snFSEtk5", ds: "tongue; body part"}
+- word: commander
+  level: 26
+  topic: actions
+  selection: {pos: verb, source_sense_id: "en-commander-fr-verb-1ycoSxp3", ds: "to command; to tell someone what to do"}
+- word: menu
+  level: 24
+  topic: technology
+  selection: {pos: noun, source_sense_id: "en-menu-fr-noun-yCsdkrxP", ds: "menu; detailed list"}
+- word: accord
+  level: 27
+  topic: music
+  selection: {pos: noun, source_sense_id: "en-accord-fr-noun-JXNbqqW0", ds: "chord; musical combination"}
+- word: arrêt
+  level: 30
+  topic: institutions
+  selection: {pos: noun, source_sense_id: "en-arrêt-fr-noun-BXcJG-W6", ds: "judgment; court ruling"}
+- word: prévenir
+  level: 17
+  topic: reasoning
+  selection: {pos: verb, source_sense_id: "en-prévenir-fr-verb-qghr5aky", ds: "to prevent; to avert"}
+- word: sol
+  level: 17
+  topic: nature
+  selection: {pos: noun, source_sense_id: "en-sol-fr-noun-ZVwPNiEr", ds: "soil; earth"}
+- word: article
+  level: 12
+  topic: learning
+  selection: {pos: noun, source_sense_id: "en-article-fr-noun-hDk63YxI", ds: "article; grammatical determiner"}
+- word: article
+  level: 12
+  topic: media
+  selection: {pos: noun, source_sense_id: "en-article-fr-noun-UdGB6qnB", ds: "article; nonfiction text"}
+- word: article
+  level: 20
+  topic: institutions
+  selection: {pos: noun, source_sense_id: "en-article-fr-noun-KH7UON~Y", ds: "article; section of a law"}
+- word: clair
+  level: 18
+  topic: register
+  selection: {pos: adj, source_sense_id: "en-clair-fr-adj-g3YHkSnn", ds: "clear; understandable"}
+- word: convenir
+  level: 18
+  topic: argument
+  selection: {pos: verb, source_sense_id: "en-convenir-fr-verb-ZM6g40G4", ds: "to agree; to acknowledge"}
+- word: espèce
+  level: 17
+  topic: nature
+  selection: {pos: noun, source_sense_id: "en-espèce-fr-noun-FVnWqjw2", ds: "species"}
+- word: promotion
+  level: 15
+  topic: work
+  selection: {pos: noun, source_sense_id: "en-promotion-fr-noun-qSnsruTd", ds: "promotion; career advancement"}
+- word: rose
+  level: 29
+  topic: nature
+  selection: {pos: noun, source_sense_id: "en-rose-fr-noun-xDETYqUB", ds: "rose; flower"}
+- word: correspondance
+  level: 26
+  topic: register
+  selection: {pos: noun, source_sense_id: "en-correspondance-fr-noun-FGVL8rdz", ds: "correspondence; exchange of messages"}
+- word: correspondance
+  level: 28
+  topic: reasoning
+  selection: {pos: noun, source_sense_id: "en-correspondance-fr-noun-SUWnD6f5", ds: "match; correspondence between things"}
+- word: quai
+  level: 30
+  topic: society
+  selection: {pos: noun, source_sense_id: "en-quai-fr-noun-hcHCQaLr", ds: "quay; wharf"}
+- word: réception
+  level: 20
+  topic: money
+  selection: {pos: noun, source_sense_id: "en-réception-fr-noun-z87Gmint", ds: "reception; act of receiving"}
+- word: essence
+  level: 28
+  topic: description
+  selection: {pos: noun, source_sense_id: "en-essence-fr-noun-CSvYZGz1", ds: "essence; fundamental nature"}
+- word: circulation
+  level: 21
+  topic: health
+  selection: {pos: noun, source_sense_id: "en-circulation-fr-noun-gZ9tvc2B", ds: "blood circulation"}
+- word: enregistrer
+  level: 12
+  topic: communication
+  selection: {pos: verb, source_sense_id: "en-enregistrer-fr-verb-qfMCMdvR", ds: "to record for later use or playback"}
+- word: simple
+  level: 25
+  topic: description
+  selection: {pos: adj, source_sense_id: "en-simple-fr-adj-FzlL4BI2", ds: "plain; unpretentious"}
+- word: classe
+  level: 16
+  topic: society
+  selection: {pos: noun, source_sense_id: "en-classe-fr-noun-ZxUUjODK", ds: "class; category or group"}
+- word: dossier
+  level: 17
+  topic: technology
+  selection: {pos: noun, source_sense_id: "en-dossier-fr-noun-A0oAYkiC", ds: "computer folder"}
+- word: entretien
+  level: 11
+  topic: actions
+  selection: {pos: noun, source_sense_id: "en-entretien-fr-noun-Alu0ZnmT", ds: "maintenance; upkeep"}
+- word: expérience
+  level: 21
+  topic: science
+  selection: {pos: noun, source_sense_id: "en-expérience-fr-noun-19L3f-Jk", ds: "experiment; test"}
+- word: lettre
+  level: 12
+  topic: learning
+  selection: {pos: noun, source_sense_id: "en-lettre-fr-noun-NhcpUfS~", ds: "letter; written character"}
+- word: note
+  level: 24
+  topic: communication
+  selection: {pos: noun, source_sense_id: "en-note-fr-noun-pR7bkz4g", ds: "note; written or spoken message"}
+- word: note
+  level: 27
+  topic: music
+  selection: {pos: noun, source_sense_id: "en-note-fr-noun-7bRlYkKR", ds: "musical note"}
+- word: tableau
+  level: 24
+  topic: communication
+  selection: {pos: noun, source_sense_id: "en-tableau-fr-noun-3mILPi4O", ds: "table; arrangement of rows and columns"}
+- word: tableau
+  level: 27
+  topic: arts
+  selection: {pos: noun, source_sense_id: "en-tableau-fr-noun-pU5WOLvD", ds: "painting; artwork"}
+- word: connaissance
+  level: 12
+  topic: learning
+  selection: {pos: noun, source_sense_id: "en-connaissance-fr-noun-4PiVhy1l", ds: "knowledge"}
+- word: reconnaissance
+  level: 22
+  topic: society
+  selection: {pos: noun, source_sense_id: "en-reconnaissance-fr-noun-fBK9hKz8", ds: "recognition; acknowledgment"}
+- word: pièce
+  level: 12
+  topic: communication
+  selection: {pos: noun, source_sense_id: "en-pièce-fr-noun-VnNFuYdT", ds: "document; legal paper"}
+- word: pièce
+  level: 27
+  topic: literature
+  selection: {pos: noun, source_sense_id: "en-pièce-fr-noun-q6TMm4r4", ds: "play; theatrical work"}
+- word: fiche
+  level: 24
+  topic: work
+  selection: {pos: noun, source_sense_id: "en-fiche-fr-noun-cM6HH4o9", ds: "record; information entry"}
+- word: peinture
+  level: 27
+  topic: arts
+  selection: {pos: noun, source_sense_id: "en-peinture-fr-noun-pU5WOLvD", ds: "painting; artistic activity"}
+- word: rapport
+  level: 21
+  topic: science
+  selection: {pos: noun, source_sense_id: "en-rapport-fr-noun-LwSnnvE7", ds: "ratio"}
+- word: mode
+  level: 21
+  topic: science
+  selection: {pos: noun, source_sense_id: "en-mode-fr-noun-e6OQ5Gl7", ds: "mode; most frequent value"}
+- word: journal
+  level: 27
+  topic: literature
+  selection: {pos: noun, source_sense_id: "en-journal-fr-noun-kUwmda7Q", ds: "diary; personal journal"}
+- word: journal
+  level: technical
+  topic: technology
+  selection: {pos: noun, source_sense_id: "en-journal-fr-noun-g2~xhOe0", ds: "computer log"}
+- word: émission
+  level: 17
+  topic: nature
+  selection: {pos: noun, source_sense_id: "en-émission-fr-noun-BpZN0vrD", ds: "emission; release"}
+- word: alimentation
+  level: 21
+  topic: health
+  selection: {pos: noun, source_sense_id: "en-alimentation-fr-noun-wfAmWC~m", ds: "food; nourishment"}
+- word: assurance
+  level: 18
+  topic: argument
+  selection: {pos: noun, source_sense_id: "en-assurance-fr-noun-c5MUo9fp", ds: "assurance; guarantee"}
+- word: recette
+  level: 30
+  topic: food
+  selection: {pos: noun, source_sense_id: "en-recette-fr-noun-4djlUjMJ", ds: "recipe; cooking instructions"}
+- word: reporter
+  level: 16
+  topic: media
+  selection: {pos: noun, source_sense_id: "en-reporter-fr-noun-u2pjqZPc", ds: "news reporter; journalist"}
+- word: volume
+  level: 24
+  topic: communication
+  selection: {pos: noun, source_sense_id: "en-volume-fr-noun-L-tj1Q3M", ds: "volume; amount or quantity"}
+- word: volume
+  level: 26
+  topic: communication
+  selection: {pos: noun, source_sense_id: "en-volume-fr-noun-ECxVIntU", ds: "volume; sound level"}
+- word: volume
+  level: 27
+  topic: literature
+  selection: {pos: noun, source_sense_id: "en-volume-fr-noun-t2HFbzEj", ds: "volume; book"}
+- word: cadre
+  level: 25
+  topic: register
+  selection: {pos: noun, source_sense_id: "en-cadre-fr-noun-KdGR5PML", ds: "context; defining circumstances"}
+- word: cadre
+  level: 27
+  topic: literature
+  selection: {pos: noun, source_sense_id: "en-cadre-fr-noun-TbLn888m", ds: "setting; environment"}
+- word: mutation
+  level: 21
+  topic: nature
+  selection: {pos: noun, source_sense_id: "en-mutation-fr-noun-0zNqM0pe", ds: "mutation; change"}
+- word: réaliser
+  level: 28
+  topic: actions
+  selection: {pos: verb, source_sense_id: "en-réaliser-fr-verb--ylmXByi", ds: "to make real"}
+- word: cliché
+  level: 22
+  topic: society
+  selection: {pos: noun, source_sense_id: "en-cliché-fr-noun-WucYjyJP", ds: "cliche; overused expression or stereotype"}
+- word: intoxication
+  level: 21
+  topic: health
+  selection: {pos: noun, source_sense_id: "en-intoxication-fr-noun-vWJIlUAc", ds: "poisoning"}
+- word: souris
+  level: 29
+  topic: nature
+  selection: {pos: noun, source_sense_id: "en-souris-fr-noun-gZwb-DXD", ds: "mouse; rodent"}
+- word: faille
+  level: 21
+  topic: nature
+  selection: {pos: noun, source_sense_id: "en-faille-fr-noun-8cVi6uMv", ds: "fault; geological fracture"}
+- word: sécheresse
+  level: 28
+  topic: description
+  selection: {pos: noun, source_sense_id: "en-sécheresse-fr-noun-zMgRGHwQ", ds: "dryness"}
+- word: plante
+  level: 21
+  topic: health
+  selection: {pos: noun, source_sense_id: "en-plante-fr-noun-pvJgC7b9", ds: "sole of the foot"}
+- word: côte
+  level: 21
+  topic: health
+  selection: {pos: noun, source_sense_id: "en-côte-fr-noun-NBHo1OHO", ds: "rib; bone"}
+- word: traitement
+  level: 21
+  topic: health
+  selection: {pos: noun, source_sense_id: "en-traitement-fr-noun-YMQRsrrs", ds: "treatment; medical care"}
+- word: courant
+  level: 27
+  topic: arts
+  selection: {pos: noun, source_sense_id: "en-courant-fr-noun-ZfQFcbFg", ds: "current; movement of thought"}
+- word: grève
+  level: literary
+  topic: literature
+  selection: {pos: noun, source_sense_id: "en-grève-fr-noun-Lr2OAmbK", ds: "shore; riverbank"}
+- word: ordonnance
+  level: 30
+  topic: institutions
+  selection: {pos: noun, source_sense_id: "en-ordonnance-fr-noun-qAQKO5QO", ds: "order; legal decree"}

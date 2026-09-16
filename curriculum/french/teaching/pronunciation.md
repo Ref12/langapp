@@ -80,6 +80,22 @@ identified inflected or fixed forms. Full coverage and exact reconstruction
 can expose missing or mismatched components, but do not prove that the
 phrase sounds natural or that its intonation fits every situation.
 
+An inflected lexical segment requires the selected dictionary entry's exact
+written form and requested grammatical tags. Pronunciation support is either
+IPA attached to that same source form, or aligned Lexique evidence: a canonical
+lemma entry with the selected lemma, part of speech and reading, followed by an
+inflected entry with that same lemma/POS owner and the requested agreement.
+Unchanged gender or number must still agree with the canonical entry. This
+Lexique fallback currently supports noun/adjective gender and number, not an
+unchecked interpretation of verb codes or other grammatical tags. Unsupported
+morphology needs direct source-form IPA or an explicitly implemented decoder.
+Conservative headword-counting equivalences are not phonological evidence.
+
+For example, adjective `perdu` and feminine `perdue` use Lexique records 94289
+and 94292. The homophonous verb participle rows belonging to `perdre` cannot
+support the adjective. `realization-provenance.yaml` records both canonical and
+inflected locators, POS, agreement, and the original phonetic code.
+
 No audio corpus is bundled by this pronunciation policy. An upstream audio
 link, if retained as metadata, does not establish permission to redistribute
 the recording or its suitability for an assessment.

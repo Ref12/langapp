@@ -35,12 +35,12 @@ units:
   - {id: fr-v-bf17917ceffc5ec3, ch: sel, pr: /sɛl/, ds: 'table salt, i.e. sodium chloride (NaCl)'}
   - {id: fr-v-56dd80a816c8baf2, ch: poivre, pr: /pwavʁ/, ds: pepper (spice)}
   - {id: fr-v-37150acd429cefe7, ch: riz, pr: /ʁi/, ds: rice}
-  - {id: fr-v-aac6eeb0dd32fb54, ch: pâte, pr: /pat/, ds: paste (a soft moist mixture)}
+  - {id: fr-v-3ef2ab34a5424838, ch: pâte, pr: /pat/, ds: pasta; noodles; plural usage}
   - {id: fr-v-d7a7a3a155f173eb, ch: pomme, pr: /pɔm/, ds: apple (fruit)}
   - {id: fr-v-9d3c06c79ead84f3, ch: banane, pr: /ba.nan/, ds: banana (the fruit)}
   - {id: fr-v-889256b7407723ce, ch: orange, pr: /ɔ.ʁɑ̃ʒ/, ds: orange (fruit)}
   - {id: fr-v-5c9f0e39483c9966, ch: citron, pr: /si.tʁɔ̃/, ds: lemon}
-  - {id: fr-v-72020551d9d629e5, ch: tomate, pr: /tɔ.mat/, ds: tomato (plant)}
+  - {id: fr-v-0840bed1993363ac, ch: tomate, pr: /tɔ.mat/, ds: tomato; edible fruit}
   - {id: fr-v-9879878c86d02e63, ch: salade, pr: /sa.lad/, ds: salad (raw vegetables in general)}
   - {id: fr-v-6dbd14cf15613b0e, ch: légume, pr: /le.ɡym/, ds: vegetable}
   - {id: fr-v-40f2bffedc255b0b, ch: fruit, pr: /fʁɥi/, ds: fruit}
@@ -61,17 +61,17 @@ units:
   - {id: fr-v-2db5c686c476a424, ch: petit déjeuner, pr: /pə.ti de.ʒœ.ne/, ds: breakfast (morning meal)}
   - {id: fr-v-0cd96d2f90926428, ch: déjeuner, pr: /de.ʒœ.ne/, ds: 'lunch, luncheon'}
   - {id: fr-v-68e0964d734b9187, ch: dîner, pr: /di.ne/, ds: 'dinner, evening meal'}
-  - {id: fr-v-392230f6d1c0eb5a, ch: menu, pr: /mə.ny/, ds: detailed list}
+  - {id: fr-v-adbf339013accf71, ch: menu, pr: /mə.ny/, ds: menu; set meal}
   - {id: fr-v-32eaf4fd3e3a1c13, ch: restaurant, pr: /ʁɛs.tɔ.ʁɑ̃/, ds: restaurant}
-  - {id: fr-v-43c1306104468b9b, ch: verre, pr: /vɛʁ/, ds: glass (substance)}
+  - {id: fr-v-dcd9ee218154e929, ch: verre, pr: /vɛʁ/, ds: drinking glass}
   - {id: fr-v-272b5254d973b8b4, ch: tasse, pr: /tas/, ds: cup}
-  - {id: fr-v-e0383a8acd88b034, ch: assiette, pr: /a.sjɛt/, ds: seat}
+  - {id: fr-v-e3dd185d0abea415, ch: assiette, pr: /a.sjɛt/, ds: plate; tableware}
   - {id: fr-v-15c728a1d6e88066, ch: bouteille, pr: /bu.tɛj/, ds: bottle}
   - {id: fr-v-301115bbbccf8ad3, ch: manger, pr: /mɑ̃.ʒe/, ds: to eat}
   - {id: fr-v-d37f9ed8cf6bf472, ch: boire, pr: /bwaʁ/, ds: to drink}
   - {id: fr-v-72f899689de74107, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to have food or drink}
   - {id: fr-v-32b69e67f5d2fa92, ch: aimer, pr: /ɛ.me/, ds: to love; to like}
-  - {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order (tell someone to do something)}
+  - {id: fr-v-794486ca61c84640, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order food or goods}
   - {id: fr-v-6746733a972453d5, ch: chaud, pr: /ʃo/, ds: 'warm, hot'}
   - {id: fr-v-fe3439b43195c5bf, ch: froid, pr: /fʁwa/, ds: cold (temperature)}
   - {id: fr-v-429fa20a62c1cffc, ch: faim, pr: /fɛ̃/, ds: hunger (desire of food)}
@@ -99,7 +99,7 @@ units:
   - {id: fr-v-6fcf9448c4876de9, ch: six, pr: /sis/, ds: six}
   - {id: fr-v-a1bfeb9dac673071, ch: sept, pr: /sɛt/, ds: seven}
   - {id: fr-v-2eefd6b871be5309, ch: huit, pr: /ɥit/, ds: eight}
-  - {id: fr-v-c588381de578c5b2, ch: neuf, pr: /nœf/, ds: 'brand new, very new'}
+  - {id: fr-v-603343c7b524e167, ch: neuf, pr: /nœf/, ds: nine}
   - {id: fr-v-2ae096aa7e26a300, ch: dix, pr: /dis/, ds: ten}
   - {id: fr-v-5ca5a116c72a736d, ch: onze, pr: /ɔ̃z/, ds: eleven}
   - {id: fr-v-8a24d169c204a3bb, ch: douze, pr: /duz/, ds: twelve}
@@ -127,19 +127,20 @@ units:
   - {id: fr-v-67c7897101ffd90e, ch: quatre-vingt-dix, pr: /ka.tʁə.vɛ̃.dis/, ds: ninety}
   - {id: fr-v-c7c28a0409da2972, ch: cent, pr: /sɑ̃/, ds: hundred}
   - {id: fr-v-999a4a03763c288a, ch: mille, pr: /mil/, ds: 'thousand, one thousand, a thousand'}
-  - {id: fr-v-e5b14a76d6a37833, ch: prix, pr: /pʁi/, ds: prize}
+  - {id: fr-v-896ec121ba67f365, ch: prix, pr: /pʁi/, ds: price; amount to pay}
   - {id: fr-v-7d966e2f1c31bfab, ch: euro, pr: /ø.ʁo/, ds: euro (currency)}
-  - {id: fr-v-a890afc708ce1153, ch: argent, pr: /aʁ.ʒɑ̃/, ds: silver}
+  - {id: fr-v-b70ae08dfe2e0599, ch: argent, pr: /aʁ.ʒɑ̃/, ds: money; cash}
   - {id: fr-v-316e14adeeec3729, ch: combien, pr: /kɔ̃.bjɛ̃/, ds: how much (for uncountable nouns and portions)}
   - {id: fr-v-efce47b635a01e44, ch: acheter, pr: /aʃ.te/, ds: to purchase; buy}
   - {id: fr-v-87f49d1132e9bfcb, ch: payer, pr: /pɛ.je/, ds: to pay (for)}
   - {id: fr-v-c2dae6967cacba06, ch: pour, pr: /puʁ/, ds: 'for (meant for, intended for)'}
   - {id: fr-v-cc5b9e82c78eacc1, ch: addition, pr: /a.di.sjɔ̃/, ds: bill or check at a bar or restaurant}
   - {id: fr-v-2d65ad11e090e5c4, ch: beaucoup, pr: /bo.ku/, ds: 'much, very much, a lot'}
-  - {id: fr-v-ae8015bcfc2423b9, ch: peu, pr: /pø/, ds: few}
+  - {id: fr-v-d8a0575215bda862, ch: peu, pr: /pø/, ds: little; not much or many}
   - {id: fr-v-0bab267f71053c23, ch: assez, pr: /a.se/, ds: to a sufficient or moderate degree; enough; sufficiently}
   - {id: fr-v-1ee296be52917894, ch: trop, pr: /tʁo/, ds: too; too much}
   - {id: fr-v-32dc4e88ac574eea, ch: tout, pr: /tu/, ds: all}
+  - {id: fr-v-98fb5c748d865023, ch: un, pr: /œ̃/, ds: one}
   grammar: []
   review_vocabulary:
   - {id: fr-v-9d5fd2811b98ad03, ch: dix-huit, pr: /di.z‿ɥit/, ds: eighteen}
@@ -193,7 +194,7 @@ units:
   - {id: fr-v-d37f9ed8cf6bf472, ch: boire, pr: /bwaʁ/, ds: to drink}
   - {id: fr-v-72f899689de74107, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to have food or drink}
   - {id: fr-v-32b69e67f5d2fa92, ch: aimer, pr: /ɛ.me/, ds: to love; to like}
-  - {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order (tell someone to do something)}
+  - {id: fr-v-794486ca61c84640, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order food or goods}
   - {id: fr-v-6746733a972453d5, ch: chaud, pr: /ʃo/, ds: 'warm, hot'}
   - {id: fr-v-fe3439b43195c5bf, ch: froid, pr: /fʁwa/, ds: cold (temperature)}
   - {id: fr-v-429fa20a62c1cffc, ch: faim, pr: /fɛ̃/, ds: hunger (desire of food)}
@@ -208,14 +209,14 @@ units:
   review_vocabulary:
   - {id: fr-v-0891babf4e71b2e6, ch: vouloir, pr: /vu.lwaʁ/, ds: 'to want, wish, desire'}
   - {id: fr-v-f6383a9a7bf35178, ch: pouvoir, pr: /pu.vwaʁ/, ds: 'can, to be able to'}
-  - {id: fr-v-87f49d1132e9bfcb, ch: payer, pr: /pɛ.je/, ds: to pay (for)}
   - {id: fr-v-c2dae6967cacba06, ch: pour, pr: /puʁ/, ds: 'for (meant for, intended for)'}
   - {id: fr-v-cc5b9e82c78eacc1, ch: addition, pr: /a.di.sjɔ̃/, ds: bill or check at a bar or restaurant}
   - {id: fr-v-2d65ad11e090e5c4, ch: beaucoup, pr: /bo.ku/, ds: 'much, very much, a lot'}
-  - {id: fr-v-ae8015bcfc2423b9, ch: peu, pr: /pø/, ds: few}
+  - {id: fr-v-d8a0575215bda862, ch: peu, pr: /pø/, ds: little; not much or many}
   - {id: fr-v-0bab267f71053c23, ch: assez, pr: /a.se/, ds: to a sufficient or moderate degree; enough; sufficiently}
   - {id: fr-v-1ee296be52917894, ch: trop, pr: /tʁo/, ds: too; too much}
   - {id: fr-v-32dc4e88ac574eea, ch: tout, pr: /tu/, ds: all}
+  - {id: fr-v-98fb5c748d865023, ch: un, pr: /œ̃/, ds: one}
   review_grammar: []
 - id: level-03-time-practice-01
   title: Time and events - sentence practice 1

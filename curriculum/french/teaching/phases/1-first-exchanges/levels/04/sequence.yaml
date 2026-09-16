@@ -30,13 +30,13 @@ units:
   - {id: fr-v-9c2e0fa594d789d1, ch: connaître, pr: /kɔ.nɛtʁ/, ds: 'to know (of), to be familiar with (a person, place, fact, event)'}
   - {id: fr-v-f65a24ea817bd09b, ch: apporter, pr: /a.pɔʁ.te/, ds: to bring (something)}
   - {id: fr-v-68ee1dcb283c64ae, ch: offrir, pr: /ɔ.fʁiʁ/, ds: to offer; to provide}
-  - {id: fr-v-22afdd0b327e4284, ch: prévenir, pr: /pʁev.niʁ/, ds: 'to prevent, to avert, to guard against'}
+  - {id: fr-v-fbaea30b3c0cb6ec, ch: prévenir, pr: /pʁev.niʁ/, ds: to notify; to warn}
   - {id: fr-v-49bc81663759a40a, ch: secours, pr: /sə.kuʁ/, ds: aid; assistance; help}
   - {id: fr-v-57ea8e93200fea91, ch: aide, pr: /ɛd/, ds: 'help, support'}
   - {id: fr-v-26a1657b2305ce98, ch: problème, pr: /pʁɔ.blɛm/, ds: problem}
-  - {id: fr-v-20f24503913d51ee, ch: rendez-vous, pr: /ʁɑ̃.de.vu/, ds: date}
+  - {id: fr-v-59698bbf70abc161, ch: rendez-vous, pr: /ʁɑ̃.de.vu/, ds: appointment}
   - {id: fr-v-c2747f81008e4c62, ch: besoin, pr: /bə.zwɛ̃/, ds: need}
-  - {id: fr-v-4aae37cb84ca2cfe, ch: accord, pr: /a.kɔʁ/, ds: chord}
+  - {id: fr-v-24e1299f952bb227, ch: accord, pr: /a.kɔʁ/, ds: agreement}
   - {id: fr-v-a1a099edb53a0999, ch: attention, pr: /a.tɑ̃.sjɔ̃/, ds: look out! watch out! careful!}
   - {id: fr-v-1bc5897f17aaef34, ch: possible, pr: /pɔ.sibl/, ds: possible}
   - {id: fr-v-280b1dd2c60c1c9d, ch: impossible, pr: /ɛ̃.pɔ.sibl/, ds: impossible}
@@ -59,7 +59,7 @@ units:
   - {id: fr-v-23aed6f0aa7352ba, ch: faire, pr: /fɛʁ/, ds: to do}
   - {id: fr-v-5c68a89f38d9b824, ch: voir, pr: /vwaʁ/, ds: to see (visually)}
   - {id: fr-v-90e551d22bb952c9, ch: donner, pr: /dɔ.ne/, ds: to give}
-  - {id: fr-v-e54a8e8169505408, ch: nommer, pr: /nɔ.me/, ds: to nominate}
+  - {id: fr-v-18caab3d7c690471, ch: nommer, pr: /nɔ.me/, ds: to name; to call by a name}
   review_grammar:
   - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
   - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
@@ -108,19 +108,19 @@ units:
   - {id: fr-v-049176dcb52dab60, ch: bus, pr: /bys/, ds: bus}
   - {id: fr-v-7729f59216a4d6e0, ch: métro, pr: /me.tʁo/, ds: 'metro; subway (US), underground (UK), Tube (UK)'}
   - {id: fr-v-710246ed5515ac42, ch: taxi, pr: /tak.si/, ds: taxi}
-  - {id: fr-v-ff345ef6640adb7d, ch: voiture, pr: /vwa.tyʁ/, ds: car (wagon)}
+  - {id: fr-v-f2ae151ce048f91c, ch: voiture, pr: /vwa.tyʁ/, ds: car; motor vehicle}
   - {id: fr-v-36819c829fedec30, ch: avion, pr: /a.vjɔ̃/, ds: aeroplane}
   - {id: fr-v-13a5672c70a750ba, ch: aéroport, pr: /a.e.ʁɔ.pɔʁ/, ds: 'airport (place, company managing such a place)'}
   - {id: fr-v-7d4b1a3ec129806b, ch: hôtel, pr: /o.tɛl/, ds: hotel; paid accommodation}
-  - {id: fr-v-d6b7a3b6f9402564, ch: chambre, pr: /ʃɑ̃bʁ/, ds: a room.}
+  - {id: fr-v-c22fc3483ea21daf, ch: chambre, pr: /ʃɑ̃bʁ/, ds: hotel room}
   - {id: fr-v-bcd3a43850411ae2, ch: billet, pr: /bi.jɛ/, ds: ticket}
   - {id: fr-v-af3b9aa259375c11, ch: voyage, pr: /vwa.jaʒ/, ds: 'trip, journey, voyage'}
   - {id: fr-v-b73cbb16bfc51474, ch: carte, pr: /kaʁt/, ds: card}
   - {id: fr-v-0eb4b169d661d99c, ch: plan, pr: /plɑ̃/, ds: 'map (schematic maps of streets, subways, etc.)'}
   - {id: fr-v-ac514549469b27e0, ch: chemin, pr: /ʃə.mɛ̃/, ds: 'path, way, road'}
-  - {id: fr-v-718bbcc6fa05a8a0, ch: arrêt, pr: /a.ʁɛ/, ds: stopping}
+  - {id: fr-v-b3d3165d893a973f, ch: arrêt, pr: /a.ʁɛ/, ds: stop; stopping place}
   - {id: fr-v-aa510f7ac10470c7, ch: sortie, pr: /sɔʁ.ti/, ds: exit; way out}
-  - {id: fr-v-350323259b922cb2, ch: entrée, pr: /ɑ̃.tʁe/, ds: 'entry, act of entering'}
+  - {id: fr-v-2dbdc68186ce2499, ch: entrée, pr: /ɑ̃.tʁe/, ds: entrance; way in}
   - {id: fr-v-f65b1c1fbb3f942a, ch: gauche, pr: /ɡoʃ/, ds: 'the left, the left-hand side'}
   - {id: fr-v-fd0ac678bbeb492d, ch: droite, pr: /dʁwat/, ds: right-hand side}
   - {id: fr-v-ec10bcff5ba86d15, ch: nord, pr: /nɔʁ/, ds: north}
@@ -135,13 +135,13 @@ units:
   - {id: fr-v-9d13e5b232bf95ad, ch: est, pr: /ɛst/, ds: east}
   - {id: fr-v-7b3a41f9e9f449d6, ch: ouest, pr: /wɛst/, ds: west}
   - {id: fr-v-1132693274584f4f, ch: loin, pr: /lwɛ̃/, ds: 'far, distant'}
-  - {id: fr-v-843bf90dee592612, ch: près, pr: /pʁɛ/, ds: attached to}
-  - {id: fr-v-21a45e0338858e0a, ch: tout droit, pr: /tu dʁwa/, ds: to the front}
+  - {id: fr-v-27a89ec0f35e3d21, ch: près, pr: /pʁɛ/, ds: near; close by}
+  - {id: fr-v-b4b6f559cec59cd2, ch: tout droit, pr: /tu dʁwa/, ds: straight ahead}
   - {id: fr-v-d25330c17e0381a1, ch: aller, pr: /a.le/, ds: to go}
   - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
   - {id: fr-v-9bd6afe04827273d, ch: partir, pr: /paʁ.tiʁ/, ds: 'to go away, leave, depart'}
   - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
-  - {id: fr-v-6a95d3dbe3a8dd58, ch: retourner, pr: /ʁə.tuʁ.ne/, ds: to turn over; to turn upside-down}
+  - {id: fr-v-adada4742558d18e, ch: retourner, pr: /ʁə.tuʁ.ne/, ds: to go back; to return to a place}
   - {id: fr-v-cd70435b8e7ed4af, ch: marcher, pr: /maʁ.ʃe/, ds: to walk}
   - {id: fr-v-909016573f8971be, ch: chercher, pr: /ʃɛʁ.ʃe/, ds: 'to look for, to seek'}
   - {id: fr-v-e3939d1d2a7cb2dc, ch: trouver, pr: /tʁu.ve/, ds: to find}
@@ -158,9 +158,9 @@ units:
   review_vocabulary:
   - {id: fr-v-0eb4b169d661d99c, ch: plan, pr: /plɑ̃/, ds: 'map (schematic maps of streets, subways, etc.)'}
   - {id: fr-v-ac514549469b27e0, ch: chemin, pr: /ʃə.mɛ̃/, ds: 'path, way, road'}
-  - {id: fr-v-718bbcc6fa05a8a0, ch: arrêt, pr: /a.ʁɛ/, ds: stopping}
+  - {id: fr-v-b3d3165d893a973f, ch: arrêt, pr: /a.ʁɛ/, ds: stop; stopping place}
   - {id: fr-v-aa510f7ac10470c7, ch: sortie, pr: /sɔʁ.ti/, ds: exit; way out}
-  - {id: fr-v-350323259b922cb2, ch: entrée, pr: /ɑ̃.tʁe/, ds: 'entry, act of entering'}
+  - {id: fr-v-2dbdc68186ce2499, ch: entrée, pr: /ɑ̃.tʁe/, ds: entrance; way in}
   - {id: fr-v-f65b1c1fbb3f942a, ch: gauche, pr: /ɡoʃ/, ds: 'the left, the left-hand side'}
   - {id: fr-v-fd0ac678bbeb492d, ch: droite, pr: /dʁwat/, ds: right-hand side}
   - {id: fr-v-ec10bcff5ba86d15, ch: nord, pr: /nɔʁ/, ds: north}
@@ -211,7 +211,7 @@ units:
   - {id: fr-v-098e19a148c05266, ch: sur, pr: /syʁ/, ds: 'on, upon'}
   - {id: fr-v-8cd331fbd521083e, ch: sous, pr: /su/, ds: 'below, under'}
   - {id: fr-v-810ff3f01a4e6b01, ch: entre, pr: /ɑ̃tʁ/, ds: between}
-  - {id: fr-v-bc5110cf1dfcb1f0, ch: devant, pr: /də.vɑ̃/, ds: 'confronted with, faced with'}
+  - {id: fr-v-fd582a89df883fb0, ch: devant, pr: /də.vɑ̃/, ds: in front of}
   - {id: fr-v-df1df27984b04cc8, ch: derrière, pr: /dɛ.ʁjɛʁ/, ds: behind}
   - {id: fr-v-c1a655ae9925085a, ch: chez, pr: /ʃe/, ds: 'to, at, in or into the place of'}
   review_grammar: []

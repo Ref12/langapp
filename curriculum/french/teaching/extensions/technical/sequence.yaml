@@ -59,14 +59,14 @@ units:
   - {id: fr-v-007cb2cc2c2ec54a, ch: tampon, pr: /tɑ̃.pɔ̃/, ds: 'plug, stopper'}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-05dca4590fb43321, ch: configurer, pr: /kɔ̃.fi.ɡy.ʁe/, ds: to configure (to set up or arrange something)}
   - {id: fr-v-1abfeba7a239c1f5, ch: coder, pr: /kɔ.de/, ds: to code; to encode}
-  - {id: fr-v-4bcd582a61661c13, ch: traiter, pr: /tʁɛ.te/, ds: to treat (someone) (a particular way)}
+  - {id: fr-v-fc055a0f3e0f3e88, ch: traiter, pr: /tʁɛ.te/, ds: to process}
   - {id: fr-v-3db457bc35b3d854, ch: stocker, pr: /stɔ.ke/, ds: to store (keep (something) while not in use)}
   - {id: fr-v-d2b54acee8521a40, ch: synchroniser, pr: /sɛ̃.kʁɔ.ni.ze/, ds: to synchronize}
   - {id: fr-v-e62ce8f0799cc529, ch: accéder, pr: /ak.se.de/, ds: to reach (a place)}
   - {id: fr-v-fee555eb5a139ad5, ch: cliquer, pr: /kli.ke/, ds: to click}
-  - {id: fr-v-db1195d09efaa8a9, ch: taper, pr: /ta.pe/, ds: 'to slap, knock, beat'}
+  - {id: fr-v-b86342548eed63a5, ch: taper, pr: /ta.pe/, ds: to type on a keyboard}
+  - {id: fr-v-19b9308486b322ce, ch: dossier, pr: /do.sje/, ds: computer folder}
   review_grammar:
   - {id: fr-g-purpose-infinitive, ch: pour / afin de + infinitif, ds: Express an intended purpose with a controlled infinitive}
 - id: extension-technical-technology-02
@@ -175,6 +175,7 @@ units:
   - {id: fr-v-20cd42445988a3ab, ch: injection, pr: /ɛ̃.ʒɛk.sjɔ̃/, ds: injection}
   - {id: fr-v-4c5a2e149121abd5, ch: vulnérabilité, pr: /vyl.ne.ʁa.bi.li.te/, ds: vulnerability (the state of being vulnerable)}
   - {id: fr-v-2d2822ebb0ac615b, ch: exploit, pr: /ɛk.splwa/, ds: 'exploit, feat'}
+  - {id: fr-v-7414237946f990f9, ch: journal, pr: /ʒuʁ.nal/, ds: computer log}
   grammar: []
   review_vocabulary:
   - {id: fr-v-e1f4e1822bc63e52, ch: cadriciel, pr: /ka.dʁi.sjɛl/, ds: software framework}
@@ -196,7 +197,6 @@ units:
   - {id: fr-v-d435bf6d79de0c96, ch: intégration, pr: /ɛ̃.te.ɡʁa.sjɔ̃/, ds: integration}
   - {id: fr-v-14ce7ea38dfd0d5f, ch: pilote, pr: /pi.lɔt/, ds: pilot (controller of aircraft)}
   - {id: fr-v-f7ea687dbf176b08, ch: processus, pr: /pʁɔ.sɛ.sys/, ds: process}
-  - {id: fr-v-00c61929c37f6af0, ch: pile, pr: /pil/, ds: 'heap, stack'}
   - {id: fr-v-5a52ec958ab29b81, ch: allocation, pr: /a.lɔ.ka.sjɔ̃/, ds: allocation}
   - {id: fr-v-396b58e0143fc1e5, ch: référence, pr: /ʁe.fe.ʁɑ̃s/, ds: reference}
   - {id: fr-v-d78b968dc6f4fbc4, ch: chiffrement, pr: /ʃi.fʁə.mɑ̃/, ds: encryption}
@@ -204,21 +204,21 @@ units:
   - {id: fr-v-ac4b17cc7f651493, ch: authentification, pr: /ɔ.tɑ̃.ti.fi.ka.sjɔ̃/, ds: authentication}
   - {id: fr-v-e13a0f303cc546f7, ch: autorisation, pr: /o.tɔ.ʁi.za.sjɔ̃/, ds: authorization (act of authorizing)}
   - {id: fr-v-c690eb0d4dcfe7ba, ch: identifiant, pr: /i.dɑ̃.ti.fjɑ̃/, ds: login}
-  - {id: fr-v-f8a65caeb3bbc6d8, ch: port, pr: /pɔʁ/, ds: 'port, harbour'}
   - {id: fr-v-0e18e54574f25c1d, ch: paquet, pr: /pa.kɛ/, ds: packet}
   - {id: fr-v-f2771df010b4d956, ch: table, pr: /tabl/, ds: table; piece of furniture}
   - {id: fr-v-138fd2475a64c64b, ch: isolation, pr: /i.zɔ.la.sjɔ̃/, ds: isolation; insulation}
   - {id: fr-v-889ed79558fb6610, ch: requête, pr: /ʁə.kɛt/, ds: request}
-  - {id: fr-v-1c19b3c9e4c26534, ch: sauvegarde, pr: /sov.ɡaʁd/, ds: 'protection, safeguard (protection granted by any authority)'}
+  - {id: fr-v-1ea609492f11e391, ch: sauvegarde, pr: /sov.ɡaʁd/, ds: backup; saving information safely}
   - {id: fr-v-d64fe538d0d98cb3, ch: restauration, pr: /ʁɛs.tɔ.ʁa.sjɔ̃/, ds: restoration}
   - {id: fr-v-89a9e4672e19a2e5, ch: bibliothèque, pr: /bi.bli.jɔ.tɛk/, ds: library}
   - {id: fr-v-f39de8296ba0153a, ch: dépendance, pr: /de.pɑ̃.dɑ̃s/, ds: 'dependence, reliance'}
-  - {id: fr-v-0d1be7c947965be2, ch: dépôt, pr: /de.po/, ds: 'warehouse, store, depot, depository'}
   - {id: fr-v-9175da376d064dd2, ch: branche, pr: /bʁɑ̃ʃ/, ds: branch (of tree)}
   - {id: fr-v-b8f9191e3b4d0cde, ch: version, pr: /vɛʁ.sjɔ̃/, ds: 'version; model (a specific state, variant, or form of something)'}
   - {id: fr-v-ac2f2eaaf10b8c16, ch: étiquette, pr: /e.ti.kɛt/, ds: 'tag, label'}
   - {id: fr-v-4959066b2e90e6c1, ch: anomalie, pr: /a.nɔ.ma.li/, ds: anomaly}
-  - {id: fr-v-a530d544441b986d, ch: redondance, pr: /ʁə.dɔ̃.dɑ̃s/, ds: redundancy (the state of being redundant)}
+  - {id: fr-v-d7e380bb4787ea24, ch: erreur, pr: /e.ʁœʁ/, ds: error; mistaken thinking}
+  - {id: fr-v-847ddb312cb9691b, ch: avertissement, pr: /a.vɛʁ.tis.mɑ̃/, ds: warning}
+  - {id: fr-v-134683a370681bc5, ch: supervision, pr: /sy.pɛʁ.vi.zjɔ̃/, ds: supervision}
   - {id: fr-v-0cbcae802ec8c41d, ch: évolutivité, pr: /e.vɔ.ly.ti.vi.te/, ds: 'upgradability, scalability'}
   - {id: fr-v-bc0075e8133d06bd, ch: interblocage, pr: /ɛ̃.tɛʁ.blɔ.kaʒ/, ds: deadlock}
   - {id: fr-v-9e57eb8bd54f887d, ch: goulot d'étranglement, pr: /ɡu.lo d‿e.tʁɑ̃.ɡlə.mɑ̃/, ds: bottleneck}
@@ -226,6 +226,7 @@ units:
   - {id: fr-v-20cd42445988a3ab, ch: injection, pr: /ɛ̃.ʒɛk.sjɔ̃/, ds: injection}
   - {id: fr-v-4c5a2e149121abd5, ch: vulnérabilité, pr: /vyl.ne.ʁa.bi.li.te/, ds: vulnerability (the state of being vulnerable)}
   - {id: fr-v-2d2822ebb0ac615b, ch: exploit, pr: /ɛk.splwa/, ds: 'exploit, feat'}
+  - {id: fr-v-7414237946f990f9, ch: journal, pr: /ʒuʁ.nal/, ds: computer log}
   review_grammar:
   - {id: fr-g-purpose-infinitive, ch: pour / afin de + infinitif, ds: Express an intended purpose with a controlled infinitive}
 - id: extension-technical-technology-review-02
@@ -234,14 +235,9 @@ units:
   vocabulary: []
   grammar: []
   review_vocabulary:
-  - {id: fr-v-d7e380bb4787ea24, ch: erreur, pr: /e.ʁœʁ/, ds: error; mistaken thinking}
-  - {id: fr-v-847ddb312cb9691b, ch: avertissement, pr: /a.vɛʁ.tis.mɑ̃/, ds: warning}
-  - {id: fr-v-4816f1dc1249ae41, ch: journal, pr: /ʒuʁ.nal/, ds: 'diary, journal'}
-  - {id: fr-v-134683a370681bc5, ch: supervision, pr: /sy.pɛʁ.vi.zjɔ̃/, ds: supervision}
   - {id: fr-v-5bc9227806442e6d, ch: débit, pr: /de.bi/, ds: 'flow, rate of flow'}
   - {id: fr-v-91c10f755dd33091, ch: bande passante, pr: /bɑ̃d pa.sɑ̃t/, ds: bandwidth}
   - {id: fr-v-958c85e021eacbc7, ch: disponibilité, pr: /dis.pɔ.ni.bi.li.te/, ds: availability}
-  - {id: fr-v-a530d544441b986d, ch: redondance, pr: /ʁə.dɔ̃.dɑ̃s/, ds: redundancy (the state of being redundant)}
   - {id: fr-v-0cbcae802ec8c41d, ch: évolutivité, pr: /e.vɔ.ly.ti.vi.te/, ds: 'upgradability, scalability'}
   - {id: fr-v-bc0075e8133d06bd, ch: interblocage, pr: /ɛ̃.tɛʁ.blɔ.kaʒ/, ds: deadlock}
   - {id: fr-v-9e57eb8bd54f887d, ch: goulot d'étranglement, pr: /ɡu.lo d‿e.tʁɑ̃.ɡlə.mɑ̃/, ds: bottleneck}
@@ -249,6 +245,7 @@ units:
   - {id: fr-v-20cd42445988a3ab, ch: injection, pr: /ɛ̃.ʒɛk.sjɔ̃/, ds: injection}
   - {id: fr-v-4c5a2e149121abd5, ch: vulnérabilité, pr: /vyl.ne.ʁa.bi.li.te/, ds: vulnerability (the state of being vulnerable)}
   - {id: fr-v-2d2822ebb0ac615b, ch: exploit, pr: /ɛk.splwa/, ds: 'exploit, feat'}
+  - {id: fr-v-7414237946f990f9, ch: journal, pr: /ʒuʁ.nal/, ds: computer log}
   review_grammar:
   - {id: fr-g-purpose-infinitive, ch: pour / afin de + infinitif, ds: Express an intended purpose with a controlled infinitive}
 - id: extension-technical-technology-practice-01
@@ -263,7 +260,6 @@ units:
   - {id: fr-v-916cd6d9c510488c, ch: appareil, pr: /a.pa.ʁɛj/, ds: 'apparatus, device'}
   - {id: fr-v-d4339e789b08df5c, ch: câble, pr: /kabl/, ds: cable}
   - {id: fr-v-301a98c28ea19a7c, ch: système, pr: /sis.tɛm/, ds: system (various meanings)}
-  - {id: fr-v-a530d544441b986d, ch: redondance, pr: /ʁə.dɔ̃.dɑ̃s/, ds: redundancy (the state of being redundant)}
   - {id: fr-v-0cbcae802ec8c41d, ch: évolutivité, pr: /e.vɔ.ly.ti.vi.te/, ds: 'upgradability, scalability'}
   - {id: fr-v-bc0075e8133d06bd, ch: interblocage, pr: /ɛ̃.tɛʁ.blɔ.kaʒ/, ds: deadlock}
   - {id: fr-v-9e57eb8bd54f887d, ch: goulot d'étranglement, pr: /ɡu.lo d‿e.tʁɑ̃.ɡlə.mɑ̃/, ds: bottleneck}
@@ -271,5 +267,6 @@ units:
   - {id: fr-v-20cd42445988a3ab, ch: injection, pr: /ɛ̃.ʒɛk.sjɔ̃/, ds: injection}
   - {id: fr-v-4c5a2e149121abd5, ch: vulnérabilité, pr: /vyl.ne.ʁa.bi.li.te/, ds: vulnerability (the state of being vulnerable)}
   - {id: fr-v-2d2822ebb0ac615b, ch: exploit, pr: /ɛk.splwa/, ds: 'exploit, feat'}
+  - {id: fr-v-7414237946f990f9, ch: journal, pr: /ʒuʁ.nal/, ds: computer log}
   review_grammar:
   - {id: fr-g-purpose-infinitive, ch: pour / afin de + infinitif, ds: Express an intended purpose with a controlled infinitive}

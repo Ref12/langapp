@@ -12,19 +12,19 @@
 - {id: fr-v-307c438a0ab0864a, ch: premier, pr: /pʁə.mje/, ds: first}
 - {id: fr-v-4aa8aed5e3c72cce, ch: deuxième, pr: /dø.zjɛm/, ds: second}
 - {id: fr-v-cbe828de33086bad, ch: troisième, pr: /tʁwa.zjɛm/, ds: third}
-- {id: fr-v-dd0bc1d26595b1e6, ch: meilleur, pr: /mɛ.jœʁ/, ds: best}
-- {id: fr-v-4206798c0a3b5d39, ch: pire, pr: /piʁ/, ds: 'bad; harmful, serious'}
+- {id: fr-v-dd0bc1d26595b1e6, ch: meilleur, pr: /mɛ.jœʁ/, ds: the best; nominal superlative}
+- {id: fr-v-5fc8eedfe442d750, ch: pire, pr: /piʁ/, ds: the worst; nominal superlative}
 - {id: fr-v-8ff6218979c05b97, ch: facile, pr: /fa.sil/, ds: 'easy, simple'}
 - {id: fr-v-866f1b15bef63d81, ch: difficile, pr: /di.fi.sil/, ds: difficult}
-- {id: fr-v-0d02dae39a34ffe7, ch: simple, pr: /sɛ̃pl/, ds: single}
+- {id: fr-v-e802853e6a230eba, ch: simple, pr: /sɛ̃pl/, ds: simple; easy to understand or do}
 - {id: fr-v-e8ec566cf49a294c, ch: compliqué, pr: /kɔ̃.pli.ke/, ds: 'complicated, intricate, convoluted'}
 - {id: fr-v-f32c33a4501ff390, ch: pratique, pr: /pʁa.tik/, ds: practical}
 - {id: fr-v-b0e16a71f8dbfc68, ch: utile, pr: /y.til/, ds: useful}
 - {id: fr-v-4e1e32e922813347, ch: nécessaire, pr: /ne.se.sɛʁ/, ds: necessary}
 - {id: fr-v-693ffe9ee900ad59, ch: important, pr: /ɛ̃.pɔʁ.tɑ̃/, ds: important}
 - {id: fr-v-13b25af179c6bcb6, ch: dangereux, pr: /dɑ̃ʒ.ʁø/, ds: dangerous}
-- {id: fr-v-bad9353a9cee6f86, ch: sûr, pr: /syʁ/, ds: 'sure, certain'}
-- {id: fr-v-c7c366d548aba1d1, ch: calme, pr: /kalm/, ds: 'calmness, stillness'}
+- {id: fr-v-7858d6c5e9434ae9, ch: sûr, pr: /syʁ/, ds: safe; not dangerous}
+- {id: fr-v-74f7264b7aa99856, ch: calme, pr: /kalm/, ds: quiet; peaceful}
 - {id: fr-v-708231dc592e42f4, ch: bruyant, pr: /bʁɥi.jɑ̃/, ds: noisy (making a noise)}
 - {id: fr-v-a3d027cd17d9683f, ch: transport, pr: /tʁɑ̃s.pɔʁ/, ds: transport}
 - {id: fr-v-4b791a8d93446222, ch: trajet, pr: /tʁa.ʒɛ/, ds: 'route, course, trajectory'}
@@ -32,14 +32,14 @@
 - {id: fr-v-da11f973e6c08cd9, ch: arrivée, pr: /a.ʁi.ve/, ds: arrival}
 - {id: fr-v-a40bbc0e57b01464, ch: destination, pr: /dɛs.ti.na.sjɔ̃/, ds: destination}
 - {id: fr-v-cbcafd96086677bc, ch: direction, pr: /di.ʁɛk.sjɔ̃/, ds: direction}
-- {id: fr-v-f2aee505022b10ac, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: correspondence}
-- {id: fr-v-1b78cd5cc10934b4, ch: quai, pr: /ke/, ds: 'quay, wharf'}
+- {id: fr-v-99ad50d606d3f053, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: connection; transfer between transport services}
+- {id: fr-v-da69ce9586983cbf, ch: quai, pr: /ke/, ds: station platform}
 - {id: fr-v-850695d92c9a491e, ch: voie, pr: /vwa/, ds: 'way, track'}
 - {id: fr-v-319bb1e4b014ea82, ch: wagon, pr: /va.ɡɔ̃/, ds: railway carriage}
 - {id: fr-v-4669a18c926b8847, ch: siège, pr: /sjɛʒ/, ds: 'seat, chair'}
 - {id: fr-v-2cd8f047d3217984, ch: passager, pr: /pa.sa.ʒe/, ds: passenger}
 - {id: fr-v-a7c0d0da338b8c50, ch: conducteur, pr: /kɔ̃.dyk.tœʁ/, ds: the driver of a vehicle or of a group of animated creatures}
-- {id: fr-v-aa890a13bfbdda4e, ch: chauffeur, pr: /ʃo.fœʁ/, ds: stoker; fireman}
+- {id: fr-v-609d62ee776f0345, ch: chauffeur, pr: /ʃo.fœʁ/, ds: driver}
 - {id: fr-v-14ce7ea38dfd0d5f, ch: pilote, pr: /pi.lɔt/, ds: pilot (controller of aircraft)}
 - {id: fr-v-562c75a09027e644, ch: vol, pr: /vɔl/, ds: flight}
 - {id: fr-v-564bb8ef3029fc2e, ch: escale, pr: /ɛs.kal/, ds: port of call}
@@ -47,8 +47,8 @@
 - {id: fr-v-4d11d7b6fadb8a3a, ch: valise, pr: /va.liz/, ds: 'case, suitcase'}
 - {id: fr-v-037027283a41abc9, ch: passeport, pr: /pas.pɔʁ/, ds: passport (official document)}
 - {id: fr-v-d4b6d9360f942387, ch: identité, pr: /i.dɑ̃.ti.te/, ds: identity}
-- {id: fr-v-b0a0d4d66fb6616a, ch: réservation, pr: /ʁe.zɛʁ.va.sjɔ̃/, ds: reservation}
-- {id: fr-v-759e5d8a263c26b1, ch: réception, pr: /ʁe.sɛp.sjɔ̃/, ds: reception (action of receiving)}
+- {id: fr-v-ed399ab172229ca9, ch: réservation, pr: /ʁe.zɛʁ.va.sjɔ̃/, ds: booking}
+- {id: fr-v-aaa45dd8a10a7bc0, ch: réception, pr: /ʁe.sɛp.sjɔ̃/, ds: reception desk; place welcoming arrivals}
 - {id: fr-v-734fba950fc995e8, ch: accueil, pr: /a.kœj/, ds: 'reception, hospitality'}
 - {id: fr-v-69c4494905301d6b, ch: séjour, pr: /se.ʒuʁ/, ds: 'stay, visit, trip, sojourn'}
 - {id: fr-v-ce3390e558e92ad4, ch: nuitée, pr: /nɥi.te/, ds: night (night spent at a hotel)}
@@ -60,45 +60,45 @@
 - {id: fr-v-2c02215129831d0a, ch: lac, pr: /lak/, ds: lake}
 - {id: fr-v-65f1e41ec249aa7a, ch: île, pr: /il/, ds: island}
 - {id: fr-v-b19e15a780e84744, ch: frontière, pr: /fʁɔ̃.tjɛʁ/, ds: 'boundary, frontier, border'}
-- {id: fr-v-365877371fd80feb, ch: pays, pr: /pɛ.i/, ds: land}
+- {id: fr-v-365877371fd80feb, ch: pays, pr: /pɛ.i/, ds: country; homeland}
 - {id: fr-v-b79c18b1f38d1c41, ch: région, pr: /ʁe.ʒjɔ̃/, ds: region; area}
 - {id: fr-v-a777524c52d17617, ch: village, pr: /vi.laʒ/, ds: village}
 - {id: fr-v-b50ce7f64df38f4c, ch: centre, pr: /sɑ̃tʁ/, ds: 'centre, center'}
 - {id: fr-v-0b1ea69d3df82d9f, ch: quartier, pr: /kaʁ.tje/, ds: 'quarter, district (part of town), neighbourhood'}
 - {id: fr-v-536f5b318e751c5d, ch: rond-point, pr: /ʁɔ̃.pwɛ̃/, ds: roundabout; traffic circle}
 - {id: fr-v-9f9b442161e455b4, ch: carrefour, pr: /kaʁ.fuʁ/, ds: crossroads}
-- {id: fr-v-fef58965d43c6bc7, ch: feu, pr: /fø/, ds: fire}
+- {id: fr-v-b3601b2d8f81626a, ch: feu, pr: /fø/, ds: traffic light}
 - {id: fr-v-295175eb86c22e58, ch: trottoir, pr: /tʁɔ.twaʁ/, ds: sidewalk}
 - {id: fr-v-5da6f2f96e450b17, ch: pont, pr: /pɔ̃/, ds: bridge}
 - {id: fr-v-c6a92a97fd0773b2, ch: tunnel, pr: /ty.nɛl/, ds: tunnel}
 - {id: fr-v-ec3e411ae9683b4c, ch: parking, pr: /paʁ.kiŋ/, ds: 'car park, parking lot'}
 - {id: fr-v-7a986f92fe503b3f, ch: station, pr: /sta.sjɔ̃/, ds: station}
-- {id: fr-v-710291472fa7a1c0, ch: essence, pr: /e.sɑ̃s/, ds: essence}
+- {id: fr-v-a1dee051ec474120, ch: essence, pr: /e.sɑ̃s/, ds: petrol; gasoline}
 - {id: fr-v-7c470eba265bad91, ch: vélo, pr: /ve.lo/, ds: 'bike, bicycle, cycle'}
 - {id: fr-v-5ae89c393dc67717, ch: moto, pr: /mɔ.to/, ds: 'bike, motorbike (motorcycle)'}
 - {id: fr-v-3e7cc1c417451be6, ch: bateau, pr: /ba.to/, ds: 'a vessel of any size, a ship or boat'}
 - {id: fr-v-30d8d011feaf8d75, ch: ferry, pr: /fɛ.ʁi/, ds: ferry}
 - {id: fr-v-328d064dc4cf202f, ch: ambulance, pr: /ɑ̃.by.lɑ̃s/, ds: ambulance (emergency vehicle)}
 - {id: fr-v-6c53e19dc2736894, ch: véhicule, pr: /ve.i.kyl/, ds: vehicle}
-- {id: fr-v-d3f32b8ed4a5ec60, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: circulation (act of moving in a circular shape)}
+- {id: fr-v-8ce9e5a626f87246, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: traffic}
 - {id: fr-v-ff2f50c27c3c9f55, ch: retard, pr: /ʁə.taʁ/, ds: delay}
 - {id: fr-v-134d682b90091767, ch: avance, pr: /a.vɑ̃s/, ds: 'progression, advance'}
-- {id: fr-v-12a17eaaba726774, ch: panne, pr: /pan/, ds: plush velvet}
+- {id: fr-v-2fc871e37e151440, ch: panne, pr: /pan/, ds: breakdown; failure to function}
 - {id: fr-v-15dfef60ac061f12, ch: accident, pr: /ak.si.dɑ̃/, ds: accident}
 - {id: fr-v-d3ac47e512a6629e, ch: détour, pr: /de.tuʁ/, ds: detour}
 - {id: fr-v-d03eafd50764946b, ch: distance, pr: /dis.tɑ̃s/, ds: distance (literal physical distance)}
 - {id: fr-v-dc530793661ccd04, ch: kilomètre, pr: /ki.lɔ.mɛtʁ/, ds: kilometre (UK) / kilometer (US)}
 - {id: fr-v-bffa1b46d865a377, ch: voyager, pr: /vwa.ja.ʒe/, ds: 'to travel, to voyage'}
 - {id: fr-v-cd6741ca601bee13, ch: conduire, pr: /kɔ̃.dɥiʁ/, ds: to drive (a vehicle)}
-- {id: fr-v-e49ab3f67dcc5560, ch: rouler, pr: /ʁu.le/, ds: to roll}
+- {id: fr-v-76a0b1e9c044b085, ch: rouler, pr: /ʁu.le/, ds: to drive; to ride a vehicle}
 - {id: fr-v-46e22ad635f12e56, ch: voler, pr: /vɔ.le/, ds: to fly through the air}
 - {id: fr-v-8799b19e04d4504c, ch: naviguer, pr: /na.vi.ɡe/, ds: to navigate}
 - {id: fr-v-378b8f6fd971f81e, ch: embarquer, pr: /ɑ̃.baʁ.ke/, ds: to board (a vehicle)}
 - {id: fr-v-4b2ddf4c9afe0ee3, ch: débarquer, pr: /de.baʁ.ke/, ds: 'to unload (merchandise), land (troops, passengers)'}
 - {id: fr-v-a9491698d2b55419, ch: stationner, pr: /sta.sjɔ.ne/, ds: to park (bring to a halt)}
-- {id: fr-v-307fc2e6b58b5ff5, ch: garer, pr: /ɡa.ʁe/, ds: 'to cover, shelter'}
+- {id: fr-v-dc7a94c719eb6149, ch: garer, pr: /ɡa.ʁe/, ds: to park a vehicle}
 - {id: fr-v-c3c11e6654187132, ch: tourner, pr: /tuʁ.ne/, ds: to turn; to change (direction); to rotate; to spin}
-- {id: fr-v-027321ccbfdf56ab, ch: dépasser, pr: /de.pa.se/, ds: to exceed}
+- {id: fr-v-c708e42c1aacfcd4, ch: dépasser, pr: /de.pa.se/, ds: to overtake; to go past}
 - {id: fr-v-1b5bc29149408d95, ch: freiner, pr: /fʁɛ.ne/, ds: to brake}
 - {id: fr-v-79d12a2f60c58089, ch: accélérer, pr: /ak.se.le.ʁe/, ds: to accelerate}
 - {id: fr-v-87deb99ab5a5a341, ch: visiter, pr: /vi.zi.te/, ds: to visit (a place)}
@@ -108,7 +108,7 @@
 - {id: fr-v-7a289ba3c008ef89, ch: emmener, pr: /ɑ̃.m(ə).ne/, ds: 'to take off, take away or out'}
 - {id: fr-v-366b796bd773dd05, ch: emporter, pr: /ɑ̃.pɔʁ.te/, ds: to take}
 - {id: fr-v-7b617105bd0582ac, ch: transporter, pr: /tʁɑ̃s.pɔʁ.te/, ds: to transport}
-- {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: 'to record for later replay or use, especially sound'}
+- {id: fr-v-6531b7a97affeba5, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to check in; reflexive use}
 - {id: fr-v-0f9452ab06d17f80, ch: confirmer, pr: /kɔ̃.fiʁ.me/, ds: to confirm (a fact etc.)}
 - {id: fr-v-268e1179b117fbbc, ch: modifier, pr: /mɔ.di.fje/, ds: 'to change, modify'}
 - {id: fr-v-6a91b0a1e4c20ac0, ch: décider, pr: /de.si.de/, ds: to decide}

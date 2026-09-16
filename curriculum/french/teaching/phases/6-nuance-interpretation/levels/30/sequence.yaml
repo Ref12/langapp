@@ -80,7 +80,7 @@ units:
   review_vocabulary:
   - {id: fr-v-72f899689de74107, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to have food or drink}
   - {id: fr-v-32b69e67f5d2fa92, ch: aimer, pr: /ɛ.me/, ds: to love; to like}
-  - {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order (tell someone to do something)}
+  - {id: fr-v-794486ca61c84640, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order food or goods}
   - {id: fr-v-6746733a972453d5, ch: chaud, pr: /ʃo/, ds: 'warm, hot'}
   - {id: fr-v-fe3439b43195c5bf, ch: froid, pr: /fʁwa/, ds: cold (temperature)}
   - {id: fr-v-429fa20a62c1cffc, ch: faim, pr: /fɛ̃/, ds: hunger (desire of food)}
@@ -339,6 +339,7 @@ units:
   outcome: Discuss ingredients and preferences and clarify a food-related request.
   vocabulary:
   - {id: fr-v-cdce9fc6464bed97, ch: ration, pr: /ʁa.sjɔ̃/, ds: ration}
+  - {id: fr-v-bda4c0b2450ea61e, ch: recette, pr: /ʁə.sɛt/, ds: recipe; cooking instructions}
   grammar: []
   review_vocabulary:
   - {id: fr-v-4721a482c87ebbea, ch: dégustation, pr: /de.ɡys.ta.sjɔ̃/, ds: 'tasting, act of tasting or trying out food'}
@@ -490,14 +491,14 @@ units:
   - {id: fr-v-20e9e67cac4bfafe, ch: giratoire, pr: /ʒi.ʁa.twaʁ/, ds: gyratory}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-9711a55a7cbbb159, ch: inviolable, pr: /ɛ̃.vjɔ.labl/, ds: inviolable}
-  - {id: fr-v-91956b755f111a5b, ch: abus, pr: /a.by/, ds: abuse (improper usage)}
   - {id: fr-v-0c786747620e4263, ch: maltraitance, pr: /mal.tʁɛ.tɑ̃s/, ds: 'maltreatment, ill-treatment'}
   - {id: fr-v-1489c3bad9cf3be0, ch: négligence, pr: /ne.ɡli.ʒɑ̃s/, ds: negligence; carelessness}
   - {id: fr-v-0c9889771d34b97c, ch: harcèlement, pr: /aʁ.sɛl.mɑ̃/, ds: harassment; bullying}
   - {id: fr-v-288e4841f54c1046, ch: intimidation, pr: /ɛ̃.ti.mi.da.sjɔ̃/, ds: intimidation}
   - {id: fr-v-63d287652fbfe7df, ch: emprise, pr: /ɑ̃.pʁiz/, ds: expropriation}
   - {id: fr-v-a6010ae876bcb0be, ch: droit, pr: /dʁwa/, ds: right; entitlement}
+  - {id: fr-v-8eda843d24a3e393, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: recognition; acknowledgment}
+  - {id: fr-v-1a5d22746b115587, ch: cliché, pr: /kli.ʃe/, ds: cliche; overused expression or stereotype}
   review_grammar: []
 - id: level-30-society-02
   title: Society and community - 2
@@ -514,6 +515,7 @@ units:
   - {id: fr-v-733cd30a6b2b6bc8, ch: débarcadère, pr: /de.baʁ.ka.dɛʁ/, ds: 'landing stage, jetty'}
   - {id: fr-v-4ad6febaaeff2b5a, ch: jetée, pr: /ʒə.te/, ds: pier; jetty}
   - {id: fr-v-c917ae0dc38774a4, ch: digue, pr: /diɡ/, ds: 'seawall, dyke, breakwater'}
+  - {id: fr-v-f8a65caeb3bbc6d8, ch: port, pr: /pɔʁ/, ds: harbour; port}
   - {id: fr-v-42f3ea93cc0b2d5e, ch: aérodrome, pr: /a.e.ʁɔ.dʁom/, ds: aerodrome}
   - {id: fr-v-ad138fc8be5b9704, ch: déplacement, pr: /de.plas.mɑ̃/, ds: 'trip, journey'}
   - {id: fr-v-e5b9aba471d5f47a, ch: navette, pr: /na.vɛt/, ds: shuttle (in weaving)}
@@ -527,7 +529,6 @@ units:
   - {id: fr-v-ffe99c9f473692ce, ch: funiculaire, pr: /fy.ni.ky.lɛʁ/, ds: funicular railway}
   - {id: fr-v-92eaa9b56cb4c59e, ch: téléphérique, pr: /te.le.fe.ʁik/, ds: 'aerial tramway, cable car'}
   - {id: fr-v-7f03355df4a656d1, ch: télécabine, pr: /te.le.ka.bin/, ds: cable car (or a gondola of such a system)}
-  - {id: fr-v-e2321ba03ac0310d, ch: escalator, pr: /ɛs.ka.la.tɔʁ/, ds: escalator}
   grammar: []
   review_vocabulary:
   - {id: fr-v-a67a5e114e8f2c56, ch: ruelle, pr: /ʁɥɛl/, ds: 'lane/laneway, alley/alleyway'}
@@ -543,6 +544,7 @@ units:
   title: Society and community - 3
   outcome: Explain a social issue without turning individual experiences into universal claims.
   vocabulary:
+  - {id: fr-v-e2321ba03ac0310d, ch: escalator, pr: /ɛs.ka.la.tɔʁ/, ds: escalator}
   - {id: fr-v-4d75d246bff9db65, ch: insécurité, pr: /ɛ̃.se.ky.ʁi.te/, ds: insecurity}
   - {id: fr-v-3ab3bb03e4cb2146, ch: délinquance, pr: /de.lɛ̃.kɑ̃s/, ds: delinquency}
   - {id: fr-v-0d073dac1437d221, ch: criminalité, pr: /kʁi.mi.na.li.te/, ds: crime; criminal acts collectively}
@@ -553,8 +555,10 @@ units:
   - {id: fr-v-cb47d455932c819b, ch: démocratie participative, pr: /de.mɔ.kʁa.si paʁ.ti.si.pa.tiv/, ds: participatory democracy (political system)}
   - {id: fr-v-48060b3948149346, ch: développement durable, pr: /de.vlɔp.mɑ̃ dy.ʁabl/, ds: sustainable development}
   - {id: fr-v-406c1350a8e8d827, ch: qualité de vie, pr: /ka.li.te d(ə) vi/, ds: quality of life}
+  - {id: fr-v-1b78cd5cc10934b4, ch: quai, pr: /ke/, ds: quay; wharf}
   grammar: []
   review_vocabulary:
+  - {id: fr-v-18a9e001fe895dc4, ch: piste cyclable, pr: /pis.t(ə) si.klabl/, ds: 'bicycle path, bike path, cycle path, cycle lane, bikeway'}
   - {id: fr-v-8ea3311580414704, ch: voie verte, pr: /vwa vɛʁt/, ds: greenway; recreational path or corridor}
   - {id: fr-v-2a35904d89a26ce7, ch: passage piéton, pr: /pa.saʒ pje.tɔ̃/, ds: pedestrian crossing}
   - {id: fr-v-b925ceaf674e86e7, ch: transport en commun, pr: /tʁɑ̃s.pɔ.ʁ‿ɑ̃ kɔ.mœ̃/, ds: public transport}
@@ -562,7 +566,6 @@ units:
   - {id: fr-v-ffe99c9f473692ce, ch: funiculaire, pr: /fy.ni.ky.lɛʁ/, ds: funicular railway}
   - {id: fr-v-92eaa9b56cb4c59e, ch: téléphérique, pr: /te.le.fe.ʁik/, ds: 'aerial tramway, cable car'}
   - {id: fr-v-7f03355df4a656d1, ch: télécabine, pr: /te.le.ka.bin/, ds: cable car (or a gondola of such a system)}
-  - {id: fr-v-e2321ba03ac0310d, ch: escalator, pr: /ɛs.ka.la.tɔʁ/, ds: escalator}
   review_grammar: []
 - id: level-30-institutions-01
   title: Institutions and public life - 1
@@ -595,7 +598,6 @@ units:
   - {id: fr-v-1a374be9eef137e4, ch: peine, pr: /pɛn/, ds: punishment}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-664951124878a46d, ch: décentralisation, pr: /de.sɑ̃.tʁa.li.za.sjɔ̃/, ds: decentralisation}
   - {id: fr-v-904a505c089e2981, ch: fédération, pr: /fe.de.ʁa.sjɔ̃/, ds: federation}
   - {id: fr-v-070c9a3b19afc142, ch: union, pr: /y.njɔ̃/, ds: union}
   - {id: fr-v-b48fd40d2e66ad6d, ch: harmonisation, pr: /aʁ.mɔ.ni.za.sjɔ̃/, ds: harmonization}
@@ -603,6 +605,7 @@ units:
   - {id: fr-v-821225791eae0c1e, ch: consul, pr: /kɔ̃.syl/, ds: 'consul, in its various senses'}
   - {id: fr-v-7461d31cdde8d7fc, ch: ambassadeur, pr: /ɑ̃.ba.sa.dœʁ/, ds: ambassador}
   - {id: fr-v-a38e08f8f8e93994, ch: pouvoir, pr: /pu.vwaʁ/, ds: authority}
+  - {id: fr-v-b7f82af8d07cf0f3, ch: article, pr: /aʁ.tikl/, ds: article; section of a law}
   review_grammar:
   - {id: fr-g-action-nominalization, ch: nom d'action + de + participant, ds: Package an event as a noun while preserving its participants}
 - id: level-30-institutions-02
@@ -653,6 +656,8 @@ units:
   - {id: fr-v-36de8199f5439ac5, ch: liberté d'expression, pr: /li.bɛʁ.te d‿ɛk.spʁɛ.sjɔ̃/, ds: 'freedom of speech, free speech'}
   - {id: fr-v-d0fceb2382d90eb8, ch: vie privée, pr: /vi pʁi.ve/, ds: private life}
   - {id: fr-v-38d03968b1e53af8, ch: droit, pr: /dʁwa/, ds: law; field of study}
+  - {id: fr-v-0509552be428de16, ch: arrêt, pr: /a.ʁɛ/, ds: judgment; court ruling}
+  - {id: fr-v-bc39743256dfd28c, ch: ordonnance, pr: /ɔʁ.dɔ.nɑ̃s/, ds: order; legal decree}
   grammar: []
   review_vocabulary:
   - {id: fr-v-e96765598d5e5568, ch: escroquerie, pr: /ɛs.kʁɔ.kʁi/, ds: 'swindle, swindling'}
@@ -674,7 +679,6 @@ units:
   review_vocabulary:
   - {id: fr-v-4c618d6414128672, ch: tâche, pr: /taʃ/, ds: task}
   - {id: fr-v-9801f1a97266a8c4, ch: projet, pr: /pʁɔ.ʒɛ/, ds: project}
-  - {id: fr-v-80a482d02fad9fca, ch: regard, pr: /ʁə.ɡaʁ/, ds: 'look, glance'}
   - {id: fr-v-99be55d47d6cc4fb, ch: clin d'œil, pr: /klɛ̃ d‿œj/, ds: a wink}
   - {id: fr-v-31affc9ab34f443c, ch: haussement, pr: /os.mɑ̃/, ds: shrug}
   - {id: fr-v-6546a5c3d50ee45f, ch: hochement, pr: /ɔʃəmɑ̃/, ds: 'nod, shake (of the head)'}
@@ -682,6 +686,7 @@ units:
   - {id: fr-v-97987345c3bbd1c3, ch: assentiment, pr: /a.sɑ̃.ti.mɑ̃/, ds: consent; approval}
   - {id: fr-v-9fcef5e1232d4f5e, ch: dénégation, pr: /de.ne.ɡa.sjɔ̃/, ds: denial}
   - {id: fr-v-b824e9052cae087b, ch: refus, pr: /ʁə.fy/, ds: 'refusal, act of refusing'}
+  - {id: fr-v-b2ddb080f2e61cdb, ch: volume, pr: /vɔ.lym/, ds: volume; sound level}
   review_grammar:
   - {id: fr-g-relative-qui-que, ch: nom + qui + verbe ; nom + que + sujet + verbe, ds: Relative qui is a subject and que a direct object}
   - {id: fr-g-indirect-questions, ch: demander / savoir + si / où / ce que + sujet + verbe, ds: Embed a question without direct-question inversion}

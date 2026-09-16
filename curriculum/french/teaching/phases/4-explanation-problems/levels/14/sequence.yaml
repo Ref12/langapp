@@ -48,14 +48,14 @@ units:
   - {id: fr-v-850edecbb5c38da0, ch: agence, pr: /a.ʒɑ̃s/, ds: agency}
   - {id: fr-v-3e9b4a2b087f467b, ch: agent, pr: /a.ʒɑ̃/, ds: agent}
   - {id: fr-v-76183b8af321de12, ch: studio, pr: /sty.djo/, ds: 'studio; workshop, recording room, or small apartment'}
-  - {id: fr-v-962971657c3b7787, ch: duplex, pr: /dy.plɛks/, ds: 'a link between two points, such as a cable or a wire'}
+  - {id: fr-v-747e37a14b5a9411, ch: duplex, pr: /dy.plɛks/, ds: duplex; two-level dwelling}
   - {id: fr-v-987607a74742401b, ch: pavillon, pr: /pa.vi.jɔ̃/, ds: 'pavilion (tent, structure, ear part)'}
   - {id: fr-v-230aae5a876ab062, ch: villa, pr: /vi.la/, ds: villa}
   - {id: fr-v-36769e3be609cd46, ch: propriété, pr: /pʁɔ.pʁi.je.te/, ds: property (something owned)}
   - {id: fr-v-58183ad74f47232b, ch: terrain, pr: /tɛ.ʁɛ̃/, ds: 'ground, landscape'}
   - {id: fr-v-f69b5d10b9f07275, ch: superficie, pr: /sy.pɛʁ.fi.si/, ds: surface}
   - {id: fr-v-88c90a59b79c3824, ch: surface, pr: /syʁ.fas/, ds: surface}
-  - {id: fr-v-61304aee7a7ff416, ch: volume, pr: /vɔ.lym/, ds: 'volume (of a book, a written work)'}
+  - {id: fr-v-7355142a066f975d, ch: volume, pr: /vɔ.lym/, ds: volume; amount of space occupied}
   - {id: fr-v-c7a0450443bb71e4, ch: dimension, pr: /di.mɑ̃.sjɔ̃/, ds: dimension}
   - {id: fr-v-d23f799f32503bbe, ch: état, pr: /e.ta/, ds: 'state, condition'}
   - {id: fr-v-1adc325354606708, ch: état des lieux, pr: /e.ta de ljø/, ds: inventory of fixtures}
@@ -83,11 +83,11 @@ units:
   - {id: fr-v-362f471216162c2a, ch: ventilation, pr: /vɑ̃.ti.la.sjɔ̃/, ds: 'ventilation: replacement of stale or noxious air with fresh'}
   - {id: fr-v-9c792429f2082c44, ch: humidité, pr: /y.mi.di.te/, ds: 'humidity; moisture, wetness, dampness'}
   - {id: fr-v-aab2feed68875b38, ch: moisissure, pr: /mwa.zi.syʁ/, ds: mould (woolly or furry growth of tiny fungi)}
-  - {id: fr-v-9327799efb2e33ee, ch: infiltration, pr: /ɛ̃.fil.tʁa.sjɔ̃/, ds: injection}
+  - {id: fr-v-d336d2aa3cb387b1, ch: infiltration, pr: /ɛ̃.fil.tʁa.sjɔ̃/, ds: infiltration; seepage}
   - {id: fr-v-89347d6a00c7e00a, ch: inondation, pr: /i.nɔ̃.da.sjɔ̃/, ds: flood (overflow of water)}
   - {id: fr-v-3ceef803c095aaa2, ch: incendie, pr: /ɛ̃.sɑ̃.di/, ds: fire (something on fire which is out of control)}
   - {id: fr-v-c4dea596a7970dbe, ch: coupure, pr: /ku.pyʁ/, ds: the act or result of cutting; a cut}
-  - {id: fr-v-7aff2929fa77b6e4, ch: alimentation, pr: /a.li.mɑ̃.ta.sjɔ̃/, ds: feeding}
+  - {id: fr-v-8f6a00217ec6a493, ch: alimentation, pr: /a.li.mɑ̃.ta.sjɔ̃/, ds: power supply}
   - {id: fr-v-c4d753152c2d8d1d, ch: compteur, pr: /kɔ̃.tœʁ/, ds: 'a measuring device that keeps a count: a meter, a counter'}
   - {id: fr-v-48004e1dac0085f5, ch: raccordement, pr: /ʁa.kɔʁ.də.mɑ̃/, ds: 'act of linking, act of joining'}
   - {id: fr-v-f802383b994df464, ch: plomberie, pr: /plɔ̃.bʁi/, ds: plumbing; plumbery}
@@ -108,7 +108,7 @@ units:
   - {id: fr-v-58183ad74f47232b, ch: terrain, pr: /tɛ.ʁɛ̃/, ds: 'ground, landscape'}
   - {id: fr-v-f69b5d10b9f07275, ch: superficie, pr: /sy.pɛʁ.fi.si/, ds: surface}
   - {id: fr-v-88c90a59b79c3824, ch: surface, pr: /syʁ.fas/, ds: surface}
-  - {id: fr-v-61304aee7a7ff416, ch: volume, pr: /vɔ.lym/, ds: 'volume (of a book, a written work)'}
+  - {id: fr-v-7355142a066f975d, ch: volume, pr: /vɔ.lym/, ds: volume; amount of space occupied}
   - {id: fr-v-c7a0450443bb71e4, ch: dimension, pr: /di.mɑ̃.sjɔ̃/, ds: dimension}
   - {id: fr-v-d23f799f32503bbe, ch: état, pr: /e.ta/, ds: 'state, condition'}
   - {id: fr-v-1adc325354606708, ch: état des lieux, pr: /e.ta de ljø/, ds: inventory of fixtures}
@@ -125,7 +125,6 @@ units:
   - {id: fr-v-52dd87e986925cb7, ch: électricien, pr: /e.lɛk.tʁi.sjɛ̃/, ds: electrician}
   - {id: fr-v-453049a77cfdd240, ch: serrurier, pr: /sɛ.ʁy.ʁje/, ds: locksmith (lock maker)}
   - {id: fr-v-e9b54dc05075a027, ch: maçon, pr: /ma.sɔ̃/, ds: 'bricklayer, mason, builder'}
-  - {id: fr-v-9facc0d0c26dc754, ch: peintre, pr: /pɛ̃tʁ/, ds: painter (artist)}
   - {id: fr-v-4a4dbc4dc47e1323, ch: déménageur, pr: /de.me.na.ʒœʁ/, ds: mover}
   - {id: fr-v-6a02c47b6704b3dd, ch: gardien, pr: /ɡaʁ.djɛ̃/, ds: guard (someone who keeps guard of something)}
   - {id: fr-v-989516764082916c, ch: concierge, pr: /kɔ̃.sjɛʁʒ/, ds: 'house-porter, doorkeeper, caretaker'}
@@ -175,13 +174,13 @@ units:
   - {id: fr-v-91ec5b8395fcb1db, ch: dégât, pr: /de.ɡa/, ds: damage}
   - {id: fr-v-e517e1cadad978fb, ch: remplacement, pr: /ʁɑ̃.plas.mɑ̃/, ds: replacement (the act of replacing)}
   - {id: fr-v-f1b8a8318d2cb33a, ch: garantie, pr: /ɡa.ʁɑ̃.ti/, ds: guarantee}
-  - {id: fr-v-05f4d02be40301f9, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: self-confidence}
+  - {id: fr-v-7561f312e879df38, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: insurance}
   - {id: fr-v-ece1a3531c8c7e79, ch: indemnité, pr: /ɛ̃.dɛm.ni.te/, ds: indemnity}
   - {id: fr-v-07daf9198e03dedb, ch: indemnisation, pr: /ɛ̃.dɛm.ni.za.sjɔ̃/, ds: compensation}
   - {id: fr-v-cdf622ba189bb55a, ch: compensation, pr: /kɔ̃.pɑ̃.sa.sjɔ̃/, ds: compensation}
   - {id: fr-v-575f5d37a8a6be3e, ch: dédommagement, pr: /de.dɔ.maʒ.mɑ̃/, ds: compensation}
   - {id: fr-v-d7682b1c6ce8320a, ch: caution, pr: /ko.sjɔ̃/, ds: 'caution, guaranty, bail'}
-  - {id: fr-v-0d1be7c947965be2, ch: dépôt, pr: /de.po/, ds: 'warehouse, store, depot, depository'}
+  - {id: fr-v-14a6566449847ddc, ch: dépôt, pr: /de.po/, ds: bank deposit}
   - {id: fr-v-130e380a8a295561, ch: acompte, pr: /a.kɔ̃t/, ds: 'down payment, advance payment'}
   - {id: fr-v-c759796c3ccddcc4, ch: échéance, pr: /e.ʃe.ɑ̃s/, ds: 'expiry date, expiration date'}
   - {id: fr-v-f3b8a761037e900d, ch: échéancier, pr: /e.ʃe.ɑ̃.sje/, ds: repayment schedule}
@@ -211,16 +210,16 @@ units:
   - {id: fr-v-fd8036274542f152, ch: dette, pr: /dɛt/, ds: debt}
   - {id: fr-v-dda79f8fdf93e676, ch: crédit, pr: /kʁe.di/, ds: credit}
   - {id: fr-v-f1c039d4558f52e9, ch: emprunt, pr: /ɑ̃.pʁœ̃/, ds: loan}
-  - {id: fr-v-e624ce529d9e2410, ch: retrait, pr: /ʁə.tʁɛ/, ds: retreat}
+  - {id: fr-v-88bc1d56b88bf3b7, ch: retrait, pr: /ʁə.tʁɛ/, ds: withdrawal}
   - {id: fr-v-ea8e264ecd6d246c, ch: virement, pr: /viʁ.mɑ̃/, ds: 'bank transfer, wire transfer'}
   - {id: fr-v-23a963b43d246337, ch: versement, pr: /vɛʁ.sə.mɑ̃/, ds: 'payment, especially an electronic transaction'}
-  - {id: fr-v-a7bdaaaffa4db180, ch: prélèvement, pr: /pʁe.lɛv.mɑ̃/, ds: sampling}
+  - {id: fr-v-14c6b3d37f7ecc13, ch: prélèvement, pr: /pʁe.lɛv.mɑ̃/, ds: deduction; levy}
   - {id: fr-v-a852d1c65046cd98, ch: chèque, pr: /ʃɛk/, ds: cheque}
   - {id: fr-v-7e6c9e42585ded9f, ch: découvert, pr: /de.ku.vɛʁ/, ds: overdraft}
   - {id: fr-v-ad204576fb921a11, ch: épargne, pr: /e.paʁɲ/, ds: savings}
   - {id: fr-v-81016d3c6d02fbee, ch: budget, pr: /by.dʒɛ/, ds: a budget}
   - {id: fr-v-3f7552d492623e5a, ch: dépense, pr: /de.pɑ̃s/, ds: expense}
-  - {id: fr-v-bda4c0b2450ea61e, ch: recette, pr: /ʁə.sɛt/, ds: recipe}
+  - {id: fr-v-642cdfc7c46f6d7e, ch: recette, pr: /ʁə.sɛt/, ds: takings; income received}
   - {id: fr-v-f24806d823e8fc3b, ch: devis, pr: /də.vi/, ds: 'quote, cost estimate'}
   - {id: fr-v-7743d8659d973bbc, ch: prestation, pr: /pʁɛs.ta.sjɔ̃/, ds: 'financial payment, benefit'}
   - {id: fr-v-d749c3c908e754ef, ch: résiliation, pr: /ʁe.zi.lja.sjɔ̃/, ds: 'termination, cancellation'}
@@ -234,7 +233,7 @@ units:
   grammar: []
   review_vocabulary:
   - {id: fr-v-d7682b1c6ce8320a, ch: caution, pr: /ko.sjɔ̃/, ds: 'caution, guaranty, bail'}
-  - {id: fr-v-0d1be7c947965be2, ch: dépôt, pr: /de.po/, ds: 'warehouse, store, depot, depository'}
+  - {id: fr-v-14a6566449847ddc, ch: dépôt, pr: /de.po/, ds: bank deposit}
   - {id: fr-v-130e380a8a295561, ch: acompte, pr: /a.kɔ̃t/, ds: 'down payment, advance payment'}
   - {id: fr-v-c759796c3ccddcc4, ch: échéance, pr: /e.ʃe.ɑ̃s/, ds: 'expiry date, expiration date'}
   - {id: fr-v-f3b8a761037e900d, ch: échéancier, pr: /e.ʃe.ɑ̃.sje/, ds: repayment schedule}
@@ -265,7 +264,7 @@ units:
   - {id: fr-v-eb47030cddcfb8cf, ch: dépannage, pr: /de.pa.naʒ/, ds: 'troubleshooting, fixing, repairing'}
   - {id: fr-v-b372d3793f830ed3, ch: intervention, pr: /ɛ̃.tɛʁ.vɑ̃.sjɔ̃/, ds: intervention}
   - {id: fr-v-80a6108e4214e427, ch: service, pr: /sɛʁ.vis/, ds: service}
-  - {id: fr-v-fb7f51b70681f48d, ch: guichet, pr: /ɡi.ʃɛ/, ds: 'hatch, grill (in cell etc.)'}
+  - {id: fr-v-d4b45ad333e8aef1, ch: guichet, pr: /ɡi.ʃɛ/, ds: service counter; bank or post-office window}
   - {id: fr-v-b3601afeeb0957a8, ch: comptoir, pr: /kɔ̃.twaʁ/, ds: 'a counter, countertop (as of a store or bank)'}
   - {id: fr-v-e586948f73c5bcea, ch: permanence, pr: /pɛʁ.ma.nɑ̃s/, ds: permanence (state of being permanent)}
   - {id: fr-v-03d71ecb4d9a003f, ch: standard, pr: /stɑ̃.daʁ/, ds: standard}
@@ -423,10 +422,10 @@ units:
   - {id: fr-v-99da31563f3638e3, ch: en, pr: /ɑ̃/, ds: in; spatial preposition}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-d3f32b8ed4a5ec60, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: circulation (act of moving in a circular shape)}
+  - {id: fr-v-8ce9e5a626f87246, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: traffic}
   - {id: fr-v-ff2f50c27c3c9f55, ch: retard, pr: /ʁə.taʁ/, ds: delay}
   - {id: fr-v-134d682b90091767, ch: avance, pr: /a.vɑ̃s/, ds: 'progression, advance'}
-  - {id: fr-v-12a17eaaba726774, ch: panne, pr: /pan/, ds: plush velvet}
+  - {id: fr-v-2fc871e37e151440, ch: panne, pr: /pan/, ds: breakdown; failure to function}
   - {id: fr-v-15dfef60ac061f12, ch: accident, pr: /ak.si.dɑ̃/, ds: accident}
   - {id: fr-v-d3ac47e512a6629e, ch: détour, pr: /de.tuʁ/, ds: detour}
   - {id: fr-v-d03eafd50764946b, ch: distance, pr: /dis.tɑ̃s/, ds: distance (literal physical distance)}
@@ -445,17 +444,16 @@ units:
   - {id: fr-v-51c55f6beaf0732c, ch: fournir, pr: /fuʁ.niʁ/, ds: 'to supply, to provide, to furnish'}
   - {id: fr-v-497dd6a4e74ef292, ch: présenter, pr: /pʁe.zɑ̃.te/, ds: 'to present, to introduce'}
   - {id: fr-v-5eeca2e9323c19f7, ch: remettre, pr: /ʁə.mɛtʁ/, ds: 'to put back, replace'}
-  - {id: fr-v-64e985be5512199b, ch: délivrer, pr: /de.li.vʁe/, ds: to set free}
   - {id: fr-v-2360a8211484f50f, ch: déposer, pr: /de.po.ze/, ds: 'to put down (set down), lay down'}
   - {id: fr-v-addb57e2c5115360, ch: résilier, pr: /ʁe.zi.lje/, ds: 'to cancel, annul, invalidate'}
   - {id: fr-v-8773b6450f473394, ch: renouveler, pr: /ʁə.nu.vle/, ds: to renew}
   - {id: fr-v-7e9cec7645c3b7c7, ch: prolonger, pr: /pʁɔ.lɔ̃.ʒe/, ds: to prolong}
-  - {id: fr-v-22d06c30c4b353ca, ch: expirer, pr: /ɛk.spi.ʁe/, ds: to breathe out}
-  - {id: fr-v-3d45792a0c48b5cd, ch: reporter, pr: /ʁə.pɔʁ.te/, ds: to carry something back to where it was}
+  - {id: fr-v-829e64644f184303, ch: expirer, pr: /ɛk.spi.ʁe/, ds: to expire; to run out}
+  - {id: fr-v-0d8f1f1ea05a68b3, ch: reporter, pr: /ʁə.pɔʁ.te/, ds: to postpone}
   - {id: fr-v-2a4ca065f43937ad, ch: retarder, pr: /ʁə.taʁ.de/, ds: 'to retard, slow down'}
-  - {id: fr-v-7524ac2ae390d741, ch: suspendre, pr: /sys.pɑ̃dʁ/, ds: to suspend (hang freely)}
+  - {id: fr-v-4e5ca7446c6788c6, ch: suspendre, pr: /sys.pɑ̃dʁ/, ds: to suspend; to cancel temporarily}
   - {id: fr-v-e5696c93e9a47fb1, ch: réactiver, pr: /ʁe.ak.ti.ve/, ds: to reactivate}
-  - {id: fr-v-130590eeb812b81e, ch: débiter, pr: /de.bi.te/, ds: to sell continuously}
+  - {id: fr-v-bbd0cb9bb948502f, ch: débiter, pr: /de.bi.te/, ds: to debit an account}
   - {id: fr-v-915a91b9b5612001, ch: créditer, pr: /kʁe.di.te/, ds: to credit (to) (add credit)}
   - {id: fr-v-a02d6a64c52a1f8f, ch: transférer, pr: /tʁɑ̃s.fe.ʁe/, ds: 'to transfer, remove'}
   - {id: fr-v-d594699d3148f143, ch: prélever, pr: /pʁel.ve/, ds: to take (sur from)}
@@ -464,9 +462,9 @@ units:
   - {id: fr-v-741620f30cbfdd77, ch: dédommager, pr: /de.dɔ.ma.ʒe/, ds: to compensate}
   - {id: fr-v-93646a3756791ac7, ch: garantir, pr: /ɡa.ʁɑ̃.tiʁ/, ds: to guarantee (to assure that something will get done right)}
   - {id: fr-v-bb078aba0bb7e598, ch: assurer, pr: /a.sy.ʁe/, ds: 'to assure, to ensure, to make sure'}
+  - {id: fr-v-7559c56c19a4b306, ch: restaurer, pr: /ʁɛs.tɔ.ʁe/, ds: to restore}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-b293f33e2844559a, ch: congeler, pr: /kɔ̃ʒ.le/, ds: freeze (to lower something's temperature to freezing point)}
   - {id: fr-v-376eeab82879e081, ch: décongeler, pr: /de.kɔ̃ʒ.le/, ds: 'to thaw, unfreeze, defrost'}
   - {id: fr-v-f0d81e6fd35a13ca, ch: conserver, pr: /kɔ̃.sɛʁ.ve/, ds: to keep (in a particular place)}
   - {id: fr-v-9dffc82b634eaae2, ch: emballer, pr: /ɑ̃.ba.le/, ds: to pack up; to wrap up; to parcel}
@@ -474,6 +472,7 @@ units:
   - {id: fr-v-fe0b093f86411cb7, ch: couvrir, pr: /ku.vʁiʁ/, ds: 'to cover up, to cover (put a cover over)'}
   - {id: fr-v-6d8b79d33b32da96, ch: isoler, pr: /i.zɔ.le/, ds: to isolate}
   - {id: fr-v-a33130585e0527fa, ch: renforcer, pr: /ʁɑ̃.fɔʁ.se/, ds: 'to reinforce, strengthen'}
+  - {id: fr-v-5297392828150df2, ch: entretien, pr: /ɑ̃.tʁə.tjɛ̃/, ds: maintenance; upkeep}
   review_grammar:
   - {id: fr-g-infinitive-clitic-placement, ch: verbe conjugué + pronom objet + infinitif, ds: Place an object clitic with the infinitive that governs it}
   - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}
@@ -482,13 +481,12 @@ units:
   title: Actions and processes - 2
   outcome: Explain a process and distinguish its intention, circumstances, and result.
   vocabulary:
-  - {id: fr-v-7559c56c19a4b306, ch: restaurer, pr: /ʁɛs.tɔ.ʁe/, ds: to restore}
   - {id: fr-v-c357bf24a56cbb46, ch: fonctionner, pr: /fɔ̃k.sjɔ.ne/, ds: 'to function, to work'}
   - {id: fr-v-4d222e0967ed0af7, ch: dysfonctionner, pr: /dis.fɔ̃k.sjɔ.ne/, ds: to malfunction}
   - {id: fr-v-f57d346a4cec799a, ch: endommager, pr: /ɑ̃.dɔ.ma.ʒe/, ds: to damage (to cause damage to something)}
   - {id: fr-v-1f80f9d133e14481, ch: dégrader, pr: /de.ɡʁa.de/, ds: to demote (lower someone's position in an organisation)}
   - {id: fr-v-b9871f73bfc49e2b, ch: coincer, pr: /kwɛ̃.se/, ds: 'to wedge, to jam, to catch (e.g. one''s finger in a door)'}
-  - {id: fr-v-6dba8f9ea46f8cc8, ch: fuir, pr: /fɥiʁ/, ds: to escape}
+  - {id: fr-v-5152745ec0928ca5, ch: fuir, pr: /fɥiʁ/, ds: to leak}
   - {id: fr-v-ab54ae056d5bba6e, ch: déborder, pr: /de.bɔʁ.de/, ds: 'to overflow (exceed the brim), to spill over'}
   - {id: fr-v-1e74cf294e4b5421, ch: invalider, pr: /ɛ̃.va.li.de/, ds: 'to invalidate, void'}
   - {id: fr-v-442f8ebdf43bd54c, ch: authentifier, pr: /ɔ.tɑ̃.ti.fje/, ds: to authenticate}
@@ -508,7 +506,6 @@ units:
   - {id: fr-v-f02664c081e5400f, ch: renouvelable, pr: /ʁə.nu.vlabl/, ds: renewable (able to be renewed)}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-915a91b9b5612001, ch: créditer, pr: /kʁe.di.te/, ds: to credit (to) (add credit)}
   - {id: fr-v-a02d6a64c52a1f8f, ch: transférer, pr: /tʁɑ̃s.fe.ʁe/, ds: 'to transfer, remove'}
   - {id: fr-v-d594699d3148f143, ch: prélever, pr: /pʁel.ve/, ds: to take (sur from)}
   - {id: fr-v-e1fe4152e3c9e502, ch: facturer, pr: /fak.ty.ʁe/, ds: 'to charge, invoice, bill'}
@@ -516,6 +513,7 @@ units:
   - {id: fr-v-741620f30cbfdd77, ch: dédommager, pr: /de.dɔ.ma.ʒe/, ds: to compensate}
   - {id: fr-v-93646a3756791ac7, ch: garantir, pr: /ɡa.ʁɑ̃.tiʁ/, ds: to guarantee (to assure that something will get done right)}
   - {id: fr-v-bb078aba0bb7e598, ch: assurer, pr: /a.sy.ʁe/, ds: 'to assure, to ensure, to make sure'}
+  - {id: fr-v-7559c56c19a4b306, ch: restaurer, pr: /ʁɛs.tɔ.ʁe/, ds: to restore}
   review_grammar:
   - {id: fr-g-infinitive-clitic-placement, ch: verbe conjugué + pronom objet + infinitif, ds: Place an object clitic with the infinitive that governs it}
   - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}

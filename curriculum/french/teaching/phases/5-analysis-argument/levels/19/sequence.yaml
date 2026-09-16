@@ -294,7 +294,6 @@ units:
   - {id: fr-v-dd40e50b65d2ca3c, ch: scepticisme, pr: /sɛp.ti.sism/, ds: scepticism}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-28e59b124c80c704, ch: émettre, pr: /e.mɛtʁ/, ds: to emit}
   - {id: fr-v-7ccf6b3903a109eb, ch: polluer, pr: /pɔ.lɥe/, ds: to pollute (create pollution)}
   - {id: fr-v-5650bc94ec00a76d, ch: contaminer, pr: /kɔ̃.ta.mi.ne/, ds: to contaminate}
   - {id: fr-v-ce41e34843042b66, ch: détruire, pr: /de.tʁɥiʁ/, ds: to destroy}
@@ -302,6 +301,7 @@ units:
   - {id: fr-v-78f53e5d69ad8189, ch: survivre, pr: /syʁ.vivʁ/, ds: to survive}
   - {id: fr-v-372d1f7c4a17f74e, ch: atténuer, pr: /a.te.nɥe/, ds: to attenuate; to mitigate}
   - {id: fr-v-fd120a190653ff9f, ch: sensibiliser, pr: /sɑ̃.si.bi.li.ze/, ds: to make sensitive}
+  - {id: fr-v-22afdd0b327e4284, ch: prévenir, pr: /pʁev.niʁ/, ds: to prevent; to avert}
   review_grammar:
   - {id: fr-g-restrictive-ne-que, ch: ne + verbe + que + élément restreint, ds: Restrict a statement to only the focused element}
   - {id: fr-g-degree-consequence, ch: si + adjectif / tellement + verbe ou adjectif + que, ds: Link an asserted result to the degree of a cause}
@@ -429,14 +429,14 @@ units:
   review_vocabulary:
   - {id: fr-v-cecc5bedb850a554, ch: parler, pr: /paʁ.le/, ds: 'to speak, talk'}
   - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
-  - {id: fr-v-9f69d3289a082fce, ch: marchander, pr: /maʁ.ʃɑ̃.de/, ds: 'to bargain over, to haggle over'}
-  - {id: fr-v-afed280e940a5df6, ch: concilier, pr: /kɔ̃.si.lje/, ds: to reconcile}
   - {id: fr-v-4edbd2c7eeda8646, ch: arbitrer, pr: /aʁ.bi.tʁe/, ds: to arbitrate}
   - {id: fr-v-648316bab3e622ee, ch: trancher, pr: /tʁɑ̃.ʃe/, ds: 'to slice, cut into slices'}
   - {id: fr-v-26748de6a4d39cc2, ch: consentir, pr: /kɔ̃.sɑ̃.tiʁ/, ds: to consent}
   - {id: fr-v-1d725ca98d1ac779, ch: céder, pr: /se.de/, ds: to yield}
   - {id: fr-v-682bc57e2ea95a83, ch: rejeter, pr: /ʁə.ʒ(ə).te/, ds: 'to throw back (a fish, etc.)'}
   - {id: fr-v-09c171c39ab1d911, ch: résister, pr: /ʁe.zis.te/, ds: to resist}
+  - {id: fr-v-2e4622c34693aade, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to agree; to acknowledge}
+  - {id: fr-v-4be472830053ad9d, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: assurance; guarantee}
   review_grammar:
   - {id: fr-g-nominal-concession, ch: 'malgré + nom ; proposition, pourtant proposition', ds: Acknowledge an obstacle without denying the outcome}
   - {id: fr-g-subjunctive-concession, ch: 'bien que + subjonctif, proposition', ds: Acknowledge a circumstance despite an unexpected outcome}

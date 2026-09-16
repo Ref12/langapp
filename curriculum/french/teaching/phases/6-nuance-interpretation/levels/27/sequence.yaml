@@ -75,7 +75,6 @@ units:
   - {id: fr-v-da8214064bd40cae, ch: mixer, pr: /mik.se/, ds: to mix}
   grammar: []
   review_vocabulary:
-  - {id: fr-v-af4acf4c10545eb7, ch: souligner, pr: /su.li.ɲe/, ds: 'to underscore, to underline (draw a line under)'}
   - {id: fr-v-8f261ac82e33fa99, ch: marteler, pr: /maʁ.tə.le/, ds: to strike with a hammer; to hammer}
   - {id: fr-v-1c880563aa7d8815, ch: énoncer, pr: /e.nɔ̃.se/, ds: 'to enounce, lay out, declare'}
   - {id: fr-v-4810b36c28f3cc90, ch: proférer, pr: /pʁɔ.fe.ʁe/, ds: 'to utter, intonate, say emphatically'}
@@ -83,6 +82,7 @@ units:
   - {id: fr-v-bdc0ce32d7b03948, ch: réciter, pr: /ʁe.si.te/, ds: 'to review, revise (something previously written or learned)'}
   - {id: fr-v-807f6718cfaf0256, ch: improviser, pr: /ɛ̃.pʁɔ.vi.ze/, ds: to improvise}
   - {id: fr-v-fd35a7fa3af54e46, ch: relancer, pr: /ʁə.lɑ̃.se/, ds: to throw back}
+  - {id: fr-v-931d65d1f00c6019, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to command; to tell someone what to do}
   review_grammar:
   - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
   - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
@@ -244,6 +244,9 @@ units:
   - {id: fr-v-9e1ef612a7b12c1e, ch: vitrail, pr: /vi.tʁaj/, ds: stained glass}
   - {id: fr-v-72c81ad5c6db60b5, ch: verrière, pr: /vɛ.ʁjɛʁ/, ds: a glass skylight}
   - {id: fr-v-a838e0716d5f6345, ch: galerie, pr: /ɡal.ʁi/, ds: gallery}
+  - {id: fr-v-93e45df2ee31f031, ch: tableau, pr: /ta.blo/, ds: painting; artwork}
+  - {id: fr-v-dce4e3e1f6010c9e, ch: peinture, pr: /pɛ̃.tyʁ/, ds: painting; artistic activity}
+  - {id: fr-v-50b64a59696aceea, ch: courant, pr: /ku.ʁɑ̃/, ds: current; movement of thought}
   grammar: []
   review_vocabulary:
   - {id: fr-v-43bbc1f021e7b45f, ch: façade, pr: /fa.sad/, ds: façade (of a building)}
@@ -339,6 +342,8 @@ units:
   - {id: fr-v-e95fec01d45b22a9, ch: audition, pr: /o.di.sjɔ̃/, ds: audition}
   - {id: fr-v-bbde13319ce9c76e, ch: récital, pr: /ʁe.si.tal/, ds: recital}
   - {id: fr-v-f5dd2e6be9a331ff, ch: festival, pr: /fɛs.ti.val/, ds: festival}
+  - {id: fr-v-4aae37cb84ca2cfe, ch: accord, pr: /a.kɔʁ/, ds: chord; musical combination}
+  - {id: fr-v-3dacb9ed5ee5697a, ch: note, pr: /nɔt/, ds: musical note}
   grammar: []
   review_vocabulary:
   - {id: fr-v-f2c101cfbb6e9c2d, ch: bécarre, pr: /be.kaʁ/, ds: natural}
@@ -462,6 +467,25 @@ units:
   - {id: fr-v-b63c2669a7e31d1f, ch: élégie, pr: /e.le.ʒi/, ds: elegy (mournful or plaintive poem or song)}
   - {id: fr-v-7ba18130c07a62dd, ch: hymne, pr: /imn/, ds: hymn}
   review_grammar: []
+- id: level-27-literature-04
+  title: Literary and historical expression - 4
+  outcome: Interpret selected expressions in context and paraphrase them in contemporary ordinary language.
+  vocabulary:
+  - {id: fr-v-a3c6da11e0ea6cbf, ch: pièce, pr: /pjɛs/, ds: play; theatrical work}
+  - {id: fr-v-4816f1dc1249ae41, ch: journal, pr: /ʒuʁ.nal/, ds: diary; personal journal}
+  - {id: fr-v-61304aee7a7ff416, ch: volume, pr: /vɔ.lym/, ds: volume; book}
+  - {id: fr-v-f762c30044b1de90, ch: cadre, pr: /kadʁ/, ds: setting; environment}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-d0eb229a7a7d6b2b, ch: oxymore, pr: /ɔk.si.mɔʁ/, ds: oxymoron; combination of contradictory terms}
+  - {id: fr-v-c5d2e55b0f2f2a16, ch: anaphore, pr: /a.na.fɔʁ/, ds: anaphora (repetition of a phrase used for emphasis)}
+  - {id: fr-v-794f765e14e0570b, ch: gradation, pr: /ɡʁa.da.sjɔ̃/, ds: gradation}
+  - {id: fr-v-97812da7b704982f, ch: répétition, pr: /ʁe.pe.ti.sjɔ̃/, ds: repetition}
+  - {id: fr-v-19bfdebff2c441d8, ch: allitération, pr: /a.li.te.ʁa.sjɔ̃/, ds: alliteration}
+  - {id: fr-v-1f92d41c202d99e2, ch: assonance, pr: /a.sɔ.nɑ̃s/, ds: assonance}
+  - {id: fr-v-74b123204ffc75c5, ch: chiasme, pr: /kjasm/, ds: chiasmus}
+  - {id: fr-v-f3c0c1a9bb594e16, ch: légende, pr: /le.ʒɑ̃d/, ds: legend; traditional story}
+  review_grammar: []
 - id: level-27-arts-practice-01
   title: Arts and creative works - sentence practice 1
   outcome: Discuss a work and support an interpretation with specific details.
@@ -473,14 +497,14 @@ units:
   - {id: fr-v-2a7e384a758123bc, ch: réponse, pr: /ʁe.pɔ̃s/, ds: 'response, answer, reply (a communication)'}
   - {id: fr-v-627d5e482176d163, ch: photo, pr: /fɔ.to/, ds: photo}
   - {id: fr-v-da5f3df909a3be91, ch: message, pr: /mɛ.saʒ/, ds: message}
-  - {id: fr-v-b41c85135b1bd1fd, ch: dôme, pr: /dom/, ds: dome}
-  - {id: fr-v-bac8b689f92d0b41, ch: fronton, pr: /fʁɔ̃.tɔ̃/, ds: fronton}
-  - {id: fr-v-212489e21675664c, ch: corniche, pr: /kɔʁ.niʃ/, ds: cornice; projecting architectural moulding}
   - {id: fr-v-db1a2eb28adbaef7, ch: moulure, pr: /mu.lyʁ/, ds: 'moulding (UK), molding (US)'}
   - {id: fr-v-e56ae1a7d93872bc, ch: balustrade, pr: /ba.lys.tʁad/, ds: balustrade}
   - {id: fr-v-9e1ef612a7b12c1e, ch: vitrail, pr: /vi.tʁaj/, ds: stained glass}
   - {id: fr-v-72c81ad5c6db60b5, ch: verrière, pr: /vɛ.ʁjɛʁ/, ds: a glass skylight}
   - {id: fr-v-a838e0716d5f6345, ch: galerie, pr: /ɡal.ʁi/, ds: gallery}
+  - {id: fr-v-93e45df2ee31f031, ch: tableau, pr: /ta.blo/, ds: painting; artwork}
+  - {id: fr-v-dce4e3e1f6010c9e, ch: peinture, pr: /pɛ̃.tyʁ/, ds: painting; artistic activity}
+  - {id: fr-v-50b64a59696aceea, ch: courant, pr: /ku.ʁɑ̃/, ds: current; movement of thought}
   review_grammar: []
 - id: level-27-argument-practice-01
   title: Argument and decisions - sentence practice 1
@@ -512,7 +536,6 @@ units:
   review_vocabulary:
   - {id: fr-v-82d372a542f98615, ch: expliquer, pr: /ɛks.pli.ke/, ds: to explain}
   - {id: fr-v-909016573f8971be, ch: chercher, pr: /ʃɛʁ.ʃe/, ds: 'to look for, to seek'}
-  - {id: fr-v-18a19c7e5228b9c6, ch: bureaucratie, pr: /by.ʁo.kʁa.si/, ds: bureaucracy; administrative structures and rules}
   - {id: fr-v-dd9df8e833deb209, ch: circulaire, pr: /siʁ.ky.lɛʁ/, ds: circular}
   - {id: fr-v-795f48145838ae8d, ch: courrier, pr: /ku.ʁje/, ds: mail}
   - {id: fr-v-116fd9b12048f541, ch: relance, pr: /ʁə.lɑ̃s/, ds: reminder}
@@ -520,6 +543,7 @@ units:
   - {id: fr-v-d887d477fe913b81, ch: remerciement, pr: /ʁə.mɛʁ.si.mɑ̃/, ds: thanks (grateful feelings)}
   - {id: fr-v-fe1b7ddeee144cd9, ch: félicitation, pr: /fe.li.si.ta.sjɔ̃/, ds: congratulation}
   - {id: fr-v-2063b0b907bd78e6, ch: condoléance, pr: /kɔ̃.dɔ.le.ɑ̃s/, ds: 'sympathy, condolence'}
+  - {id: fr-v-f2aee505022b10ac, ch: correspondance, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃s/, ds: correspondence; exchange of messages}
   review_grammar:
   - {id: fr-g-formal-question-inversion, ch: 'verbe-pronom ? ; a-t-il / elle + participe ?', ds: Form a compact question in a more formal register}
   - {id: fr-g-expletive-ne, ch: craindre que ne ; avant que ne ; plus...que ne, ds: Recognize optional formal ne that does not negate its clause}
