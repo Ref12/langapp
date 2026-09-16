@@ -13,6 +13,8 @@ account, or network connection is needed. With `npm run dev`, open `/app.html`
 for the app-only mockup, `/preview.html` for the Desktop / Mobile frame, or
 `/writing-comparison.html` for the artwork study. The built site publishes the
 same routes alongside the archived application at `/v1/`.
+For the **real app** with these same viewport controls, use `/dev/` instead.
+That frame connects to the production workspace, not the memory-only prototype.
 
 The site root now runs the separate Mandarin foundation in `src/`, using this
 design direction and shared theme tokens. These prototype interactions remain

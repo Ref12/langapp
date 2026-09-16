@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark light">
-    <title>LinguaWeave / UI concept</title>
-    <link rel="stylesheet" href="./theme.css">
-    <link rel="stylesheet" href="./preview.css">
-    <script src="./device-preview.js" defer></script>
+    <title>LinguaWeave / App preview</title>
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="../preview.css">
+    <script src="../device-preview.js" defer></script>
     <script src="./preview.js" defer></script>
   </head>
   <body>
     <header class="preview-toolbar">
-      <div class="preview-title"><span class="preview-dot"></span><strong>UI exploration</strong><span>Working name / LinguaWeave</span></div>
+      <div class="preview-title"><span class="preview-dot"></span><strong>App preview</strong><span>LinguaWeave / Mandarin</span></div>
       <div class="device-controls" role="group" aria-label="Preview viewport">
         <button type="button" data-device="desktop" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M12 16v5M7 21h10"/></svg> Desktop</button>
         <button type="button" data-device="mobile" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg> Mobile</button>
       </div>
-      <div class="preview-meta"><output id="viewport-size" aria-live="polite">Fluid viewport</output><a id="open-app" href="./app.html" target="_blank" rel="noopener">Open app only <span aria-hidden="true">&#x2197;</span></a></div>
+      <div class="preview-meta"><output id="viewport-size" aria-live="polite">Fluid viewport</output><a id="open-app" href="../index.html" target="_blank" rel="noopener">Open app only <span aria-hidden="true">&#x2197;</span></a></div>
     </header>
     <main class="preview-stage" id="preview-stage" data-device="desktop">
-      <iframe id="prototype-frame" src="./app.html" title="Interactive language-learning app mockup"></iframe>
+      <iframe id="prototype-frame" title="Live Mandarin learning app"></iframe>
     </main>
-    <noscript>Open <a href="./app.html">the app mockup</a> directly. JavaScript is needed for the interactive controls.</noscript>
+    <noscript>Open <a href="../index.html">the Mandarin app</a> directly. JavaScript is needed for the preview controls.</noscript>
   </body>
 </html>

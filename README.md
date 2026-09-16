@@ -16,7 +16,10 @@ the mockups' blue/slate design and shared theme tokens. It has a real, isolated
 Mandarin workspace: no seeded progress, accounts, credentials, or live AI calls.
 
 The original app remains at `/v1/` (or `/langapp/v1/` on repository Pages).
-The device-preview frame is available at `/preview.html`; the writing comparison
+Use `/dev/` for the real app with **Desktop / Mobile** preview controls.
+The controls resize the same app without resetting drafts or saved progress;
+the preview follows its route and theme. `/dev` redirects to `/dev/`.
+The mockup device-preview frame is available at `/preview.html`; the writing comparison
 is at `/writing-comparison.html`. `/app.html` opens the original app-only mockup.
 Those design artifacts remain memory-only and never access either app's database.
 
@@ -122,6 +125,9 @@ with the original v1 Vite server mounted under `/v1/`. Each app has its own
 dependency-optimization cache. Design previews are served directly from
 `docs/mockups`, not from copies connected to production storage.
 For standalone v1 development with hot module replacement, use `npm run dev:v1`.
+Open `http://localhost:5173/dev/#lessons` to review the real curriculum in desktop
+and phone-sized layouts. The same `/dev/` route is included in the built site
+and works beneath a Pages prefix such as `/langapp/dev/`.
 
 Run the same quality gates as deployment:
 

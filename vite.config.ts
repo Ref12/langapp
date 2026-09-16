@@ -3,12 +3,29 @@ import { createServer, defineConfig, type Plugin, type UserConfig, type ViteDevS
 import react from '@vitejs/plugin-react'
 import { mockupFiles } from './scripts/mockup-files.mjs'
 
+function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
+  const base = server.config.base.startsWith('/') ? server.config.base : '/'
+  server.middlewares.use((request, response, next) => {
+    const url = new URL(request.url ?? '/', 'http://localhost')
+    if (url.pathname === '/dev' || url.pathname === `${base}dev`) {
+      response.writeHead(302, { Location: `${base}dev/${url.search}` })
+      response.end()
+      return
+    }
+    if (url.pathname === '/dev/' || url.pathname === `${base}dev/`) {
+      request.url = `${url.pathname}index.html${url.search}`
+    }
+    next()
+  })
+}
+
 function versionedSite(mockups: Set<string>): Plugin {
   let v1: ViteDevServer | undefined
 
   return {
     name: 'versioned-site',
     async configureServer(server) {
+      mountDevicePreview(server)
       v1 = await createServer({
         configFile: fileURLToPath(new URL('./versions/v1/vite.config.ts', import.meta.url)),
         server: { middlewareMode: true, hmr: false, watch: null },
@@ -29,6 +46,9 @@ function versionedSite(mockups: Set<string>): Plugin {
         }
         next()
       })
+    },
+    configurePreviewServer(server) {
+      mountDevicePreview(server)
     },
     async closeBundle() {
       await v1?.close()
