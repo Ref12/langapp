@@ -47,6 +47,8 @@ units:
   - {id: ko-nikl-04047-s001, ch: 아내, pr: 아내, ds: a wife}
   - {id: ko-nikl-20408-s001, ch: 친척, pr: 친척, ds: a relative}
   - {id: ko-nikl-10011-s001, ch: 선물, pr: 선ː물, ds: a gift; giving a present}
+  - {id: ko-nikl-43408-s001, ch: 집안, pr: 지반, ds: a household or close family}
+  - {id: ko-nikl-16017-s002, ch: 다가가다, pr: 다가가다, ds: to draw closer to someone in order to befriend them}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-46789-s001, ch: 엄마, pr: 엄마, ds: mom (familiar)}
@@ -68,14 +70,14 @@ units:
   - {id: ko-nikl-46163-s001, ch: 양복, pr: 양복, ds: a man's Western-style suit}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-41685-s002, ch: 주머니, pr: 주머니, ds: a pocket in clothing}
-  - {id: ko-nikl-16501-s001, ch: 단추, pr: 단추, ds: a button fastening clothes}
-  - {id: ko-nikl-42866-s001, ch: 지퍼, pr: 지퍼, ds: a zipper}
-  - {id: ko-nikl-05255-s001, ch: 벗다, pr: 벋따, ds: to take off clothes or something worn}
-  - {id: ko-nikl-03145-s001, ch: 신다, pr: 신ː따, ds: to put on or wear shoes or socks}
-  - {id: ko-nikl-36851-s003, ch: 머리, pr: 머리, ds: hair on the head}
-  - {id: ko-nikl-20920-s002, ch: 크다, pr: 크다, ds: to be too big (clothes or shoes)}
   - {id: ko-nikl-12453-s002, ch: 작다, pr: 작ː따, ds: to be too small to fit}
+  - {id: ko-nikl-46732-s001, ch: 얼룩, pr: 얼룩, ds: a patch or streak of a different color}
+  - {id: ko-nikl-46732-s002, ch: 얼룩, pr: 얼룩, ds: a stain left by liquid soaking into something}
+  - {id: ko-nikl-41672-s002, ch: 주름, pr: 주름, ds: a fold or pleat in a garment or fabric}
+  - {id: ko-nikl-39315-s001, ch: 바늘, pr: 바늘, ds: a sewing needle}
+  - {id: ko-nikl-03368-s001, ch: 실, pr: 실ː, ds: thread or yarn for sewing or weaving}
+  - {id: ko-nikl-36612-s001, ch: 매다, pr: 매ː다, ds: to fasten the ends of a cord or lace together}
+  - {id: ko-nikl-36612-s002, ch: 매다, pr: 매ː다, ds: to put a belt or long strap around the body}
   review_grammar: []
 - id: level-08-food-01
   title: Food and meals - 1
@@ -84,18 +86,33 @@ units:
   - {id: ko-nikl-03030-s001, ch: 식당, pr: 식땅, ds: a dining room; a cafeteria}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-35340-s002, ch: 넣다, pr: 너ː타, ds: to add or mix in}
-  - {id: ko-nikl-05699-s023, ch: 보다, pr: 보다, ds: to do the grocery shopping}
-  - {id: ko-nikl-41734-s001, ch: 주방, pr: 주방, ds: a kitchen; a food-preparation area}
-  - {id: ko-nikl-24674-s001, ch: 해산물, pr: 해ː산물, ds: seafood; marine produce}
-  - {id: ko-nikl-02269-s001, ch: 술, pr: 술, ds: alcoholic drinks}
-  - {id: ko-nikl-36755-s001, ch: 맥주, pr: 맥쭈, ds: beer}
-  - {id: ko-nikl-00912-s002, ch: 소주, pr: 소주, ds: soju made by diluting alcohol}
-  - {id: ko-nikl-35604-s001, ch: 녹차, pr: 녹차, ds: green tea; green-tea leaves}
+  - {id: ko-nikl-40928-s001, ch: 버섯, pr: 버섣, ds: a mushroom}
+  - {id: ko-nikl-37890-s001, ch: 무, pr: 무ː, ds: a white radish}
+  - {id: ko-nikl-26568-s001, ch: 감자, pr: 감자, ds: a potato}
+  - {id: ko-nikl-28805-s001, ch: 고구마, pr: 고ː구마, ds: a sweet potato}
+  - {id: ko-nikl-46252-s001, ch: 양파, pr: 양파, ds: an onion}
+  - {id: ko-nikl-20350-s001, ch: 마늘, pr: 마늘, ds: garlic}
+  - {id: ko-nikl-44147-s001, ch: 참치, pr: 참치, ds: tuna}
+  - {id: ko-nikl-15068-s001, ch: 조개, pr: 조개, ds: 'a bivalve shellfish, such as a clam'}
   review_grammar:
   - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
   - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
   - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
+- id: level-08-leisure-01
+  title: Leisure and sport - 1
+  outcome: Explain participation and invite someone without assuming availability.
+  vocabulary:
+  - {id: ko-nikl-44960-s001, ch: 체육관, pr: 체육꽌, ds: a gymnasium for indoor exercise}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-05699-s002, ch: 보다, pr: 보다, ds: to watch or enjoy a sight or performance}
+  - {id: ko-nikl-45916-s001, ch: 취미, pr: 취ː미, ds: a hobby; a pastime}
+  - {id: ko-nikl-13081-s001, ch: 재미있다, pr: 재미읻따, ds: to be interesting; to be fun}
+  - {id: ko-nikl-13080-s001, ch: 재미없다, pr: 재미업따, ds: to be boring; not to be fun}
+  - {id: ko-nikl-47912-s001, ch: 영화, pr: 영화, ds: a film; cinema}
+  - {id: ko-nikl-08773-s001, ch: 산책, pr: 산ː책, ds: a stroll; walking for leisure or health}
+  - {id: ko-nikl-29913-s001, ch: 공원, pr: 공원, ds: a park}
+  review_grammar: []
 - id: level-08-learning-01
   title: Learning and education - 1
   outcome: Explain a learning approach and request clarification.
@@ -139,6 +156,26 @@ units:
   - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
   - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
+- id: level-08-learning-02
+  title: Learning and education - 2
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-42032-s004, ch: 줄, pr: 줄, ds: a line of written text}
+  - {id: ko-nikl-23326-s005, ch: 풀다, pr: 풀다, ds: to solve a difficult problem or find its answer}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-08522-s001, ch: 사전, pr: 사전, ds: a dictionary}
+  - {id: ko-nikl-38455-s002, ch: 문장, pr: 문장, ds: a sentence}
+  - {id: ko-nikl-38413-s001, ch: 문법, pr: 문뻡, ds: grammar; the rules of a language}
+  - {id: ko-nikl-05998-s001, ch: 복습, pr: 복씁, ds: reviewing; studying something again}
+  - {id: ko-nikl-48030-s001, ch: 예습, pr: 예ː습, ds: studying ahead; preparing for a lesson}
+  - {id: ko-nikl-13519-s001, ch: 적다, pr: 적따, ds: to write down; to note}
+  - {id: ko-nikl-02402-s001, ch: 쉽다, pr: 쉽ː따, ds: to be easy to do}
+  - {id: ko-nikl-46370-s001, ch: 어렵다, pr: 어렵따, ds: to be difficult to do}
+  review_grammar:
+  - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
+  - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
+  - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
 - id: level-08-work-01
   title: Work and cooperation - 1
   outcome: Coordinate responsibilities and report progress for a specified relationship.
@@ -157,6 +194,7 @@ units:
   - {id: ko-nikl-52456-s001, ch: 휴가, pr: 휴가, ds: leave from work or duty; vacation}
   - {id: ko-nikl-04133-s001, ch: 아르바이트, pr: 아르바이트, ds: a temporary side job; part-time work}
   - {id: ko-nikl-19253-s008, ch: 들어가다, pr: 드러가다, ds: to join an organization}
+  - {id: ko-nikl-05002-s001, ch: 야유회, pr: 야ː유회 / 야ː유훼, ds: an outdoor gathering for socializing}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-52048-s001, ch: 회사, pr: 회ː사 / 훼ː사, ds: a company; a business corporation}
@@ -191,12 +229,13 @@ units:
   - {id: ko-nikl-10691-s001, ch: 이메일, pr: 이메일, ds: email}
   - {id: ko-nikl-16753-s001, ch: 답장, pr: 답짱, ds: a written reply; a reply letter}
   - {id: ko-nikl-17402-s001, ch: 대화, pr: 대ː화, ds: conversation; a dialogue}
+  - {id: ko-nikl-06261-s001, ch: 봉투, pr: 봉투, ds: a paper envelope for letters or documents}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-32064-s001, ch: 그리고, pr: 그리고, ds: and; also (linking statements)}
   - {id: ko-nikl-23948-s001, ch: 하지만, pr: 하지만, ds: but; however}
   - {id: ko-nikl-14476-s001, ch: 정말, pr: 정ː말, ds: really; truly}
   - {id: ko-nikl-14080-s001, ch: 전화, pr: 전ː화, ds: a telephone call; talking by telephone}
+  - {id: ko-nikl-38543-s001, ch: 묻다, pr: 묻ː따, ds: to ask for an answer or explanation}
   - {id: ko-nikl-06699-s001, ch: 부탁하다, pr: 부ː타카다, ds: ask someone a favor; entrust a task}
   - {id: ko-nikl-30548-s003, ch: 괜찮다, pr: 괜찬타, ds: to be permissible; to be fine to do}
   - {id: ko-nikl-06698-s001, ch: 부탁, pr: 부ː탁, ds: a request; asking a favor}
@@ -213,7 +252,7 @@ units:
   - {id: ko-nikl-11588-s001, ch: 일정, pr: 일쩡, ds: a schedule; a planned set of tasks}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34291-s001, ch: 나중, pr: 나ː중, ds: later; after some time}
+  - {id: ko-nikl-16238-s002, ch: 다음, pr: 다음, ds: the next turn after this one}
   - {id: ko-nikl-34291-s002, ch: 나중, pr: 나ː중, ds: afterward; after another task is done first}
   - {id: ko-nikl-44782-s001, ch: 첫째, pr: 첟째, ds: first in order; ordinal numeral}
   - {id: ko-nikl-44783-s001, ch: 첫째, pr: 첟째, ds: first in order; before a noun}
@@ -268,16 +307,17 @@ units:
   - {id: ko-nikl-47058-s001, ch: 여든, pr: 여든, ds: eighty; before a noun or counter}
   - {id: ko-nikl-04329-s001, ch: 아흔, pr: 아흔, ds: ninety (native Korean numeral)}
   - {id: ko-nikl-04330-s001, ch: 아흔, pr: 아흔, ds: ninety; before a noun or counter}
+  - {id: ko-nikl-42032-s005, ch: 줄, pr: 줄, ds: a counter for lines of written text}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-09742-s001, ch: 서른, pr: 서른, ds: thirty (native Korean numeral)}
-  - {id: ko-nikl-09743-s001, ch: 서른, pr: 서른, ds: thirty; before a noun or counter}
-  - {id: ko-nikl-35960-s001, ch: 마흔, pr: 마흔, ds: forty (native Korean numeral)}
   - {id: ko-nikl-35961-s001, ch: 마흔, pr: 마흔, ds: forty; before a noun or counter}
+  - {id: ko-nikl-45987-s004, ch: 층, pr: 층, ds: a unit for numbering floors from the bottom of a building}
   - {id: ko-nikl-02397-s001, ch: 쉰, pr: 쉰ː, ds: fifty (native Korean numeral)}
   - {id: ko-nikl-02398-s001, ch: 쉰, pr: 쉰ː, ds: fifty; before a noun or counter}
   - {id: ko-nikl-48017-s001, ch: 예순, pr: 예순, ds: sixty (native Korean numeral)}
   - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
+  - {id: ko-nikl-42032-s003, ch: 줄, pr: 줄, ds: a counter for rows or lines of people or things}
+  - {id: ko-nikl-03373-s001, ch: 실, pr: 실, ds: a counter for rooms}
   review_grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-08-learning-practice-01
@@ -287,14 +327,14 @@ units:
   grammar:
   - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
   review_vocabulary:
-  - {id: ko-nikl-08522-s001, ch: 사전, pr: 사전, ds: a dictionary}
-  - {id: ko-nikl-38455-s002, ch: 문장, pr: 문장, ds: a sentence}
   - {id: ko-nikl-38413-s001, ch: 문법, pr: 문뻡, ds: grammar; the rules of a language}
   - {id: ko-nikl-05998-s001, ch: 복습, pr: 복씁, ds: reviewing; studying something again}
   - {id: ko-nikl-48030-s001, ch: 예습, pr: 예ː습, ds: studying ahead; preparing for a lesson}
   - {id: ko-nikl-13519-s001, ch: 적다, pr: 적따, ds: to write down; to note}
   - {id: ko-nikl-02402-s001, ch: 쉽다, pr: 쉽ː따, ds: to be easy to do}
   - {id: ko-nikl-46370-s001, ch: 어렵다, pr: 어렵따, ds: to be difficult to do}
+  - {id: ko-nikl-42032-s004, ch: 줄, pr: 줄, ds: a line of written text}
+  - {id: ko-nikl-23326-s005, ch: 풀다, pr: 풀다, ds: to solve a difficult problem or find its answer}
   review_grammar:
   - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
@@ -308,7 +348,6 @@ units:
   - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
   - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
   review_vocabulary:
-  - {id: ko-nikl-42990-s001, ch: 직원, pr: 지권, ds: an employee; a staff member}
   - {id: ko-nikl-08512-s001, ch: 사장, pr: 사장, ds: a company president; a business head}
   - {id: ko-nikl-52077-s001, ch: 회의, pr: 회ː의 / 훼ː이, ds: a meeting; a conference}
   - {id: ko-nikl-45685-s001, ch: 출근, pr: 출근, ds: going to work}
@@ -316,6 +355,7 @@ units:
   - {id: ko-nikl-52456-s001, ch: 휴가, pr: 휴가, ds: leave from work or duty; vacation}
   - {id: ko-nikl-04133-s001, ch: 아르바이트, pr: 아르바이트, ds: a temporary side job; part-time work}
   - {id: ko-nikl-19253-s008, ch: 들어가다, pr: 드러가다, ds: to join an organization}
+  - {id: ko-nikl-05002-s001, ch: 야유회, pr: 야ː유회 / 야ː유훼, ds: an outdoor gathering for socializing}
   review_grammar: []
 - id: level-08-communication-practice-01
   title: Communication and information - sentence practice 1
@@ -325,7 +365,6 @@ units:
   - {id: ko-topik2-g026, ch: 'V/A-지요? / -죠?', ds: check shared information or seek confirmation}
   - {id: ko-topik2-g033, ch: V-는데 / A-(으)ㄴ데, ds: offer background or a contextual contrast}
   review_vocabulary:
-  - {id: ko-nikl-06698-s001, ch: 부탁, pr: 부ː탁, ds: a request; asking a favor}
   - {id: ko-nikl-24936-s001, ch: 허락, pr: 허락, ds: permission; granting a request}
   - {id: ko-nikl-38953-s002, ch: 미안하다, pr: 미안하다, ds: excuse me; used to ask pardon modestly}
   - {id: ko-nikl-04578-s009, ch: 알다, pr: 알ː다, ds: to acknowledge a request; to agree to comply}
@@ -333,6 +372,7 @@ units:
   - {id: ko-nikl-10691-s001, ch: 이메일, pr: 이메일, ds: email}
   - {id: ko-nikl-16753-s001, ch: 답장, pr: 답짱, ds: a written reply; a reply letter}
   - {id: ko-nikl-17402-s001, ch: 대화, pr: 대ː화, ds: conversation; a dialogue}
+  - {id: ko-nikl-06261-s001, ch: 봉투, pr: 봉투, ds: a paper envelope for letters or documents}
   review_grammar:
   - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
   - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
@@ -346,6 +386,7 @@ units:
   review_vocabulary:
   - {id: ko-nikl-48724-s001, ch: 왜, pr: 왜ː, ds: 'why?'}
   - {id: ko-nikl-31989-s001, ch: 그래서, pr: 그래서, ds: so; therefore}
+  - {id: ko-nikl-11967-s001, ch: 잊어버리다, pr: 이저버리다, ds: to fail to remember something one once knew}
   review_grammar:
   - {id: ko-topik1-g028, ch: V/A-아/어서, ds: give an ordinary cause and consequence}
   - {id: ko-topik2-g011, ch: V/A-(으)니까, ds: give a reason supporting advice or a proposal}
@@ -369,7 +410,6 @@ units:
   grammar:
   - {id: ko-topik1-g031, ch: V-ㅂ시다 / -읍시다, ds: formal joint-action proposal with role constraints}
   review_vocabulary:
-  - {id: ko-nikl-42990-s001, ch: 직원, pr: 지권, ds: an employee; a staff member}
   - {id: ko-nikl-08512-s001, ch: 사장, pr: 사장, ds: a company president; a business head}
   - {id: ko-nikl-52077-s001, ch: 회의, pr: 회ː의 / 훼ː이, ds: a meeting; a conference}
   - {id: ko-nikl-45685-s001, ch: 출근, pr: 출근, ds: going to work}
@@ -377,6 +417,7 @@ units:
   - {id: ko-nikl-52456-s001, ch: 휴가, pr: 휴가, ds: leave from work or duty; vacation}
   - {id: ko-nikl-04133-s001, ch: 아르바이트, pr: 아르바이트, ds: a temporary side job; part-time work}
   - {id: ko-nikl-19253-s008, ch: 들어가다, pr: 드러가다, ds: to join an organization}
+  - {id: ko-nikl-05002-s001, ch: 야유회, pr: 야ː유회 / 야ː유훼, ds: an outdoor gathering for socializing}
   review_grammar:
   - {id: ko-topik2-g007, ch: V-(으)면서, ds: do two actions at the same time}
   - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}

@@ -85,6 +85,7 @@ category_adjudication:
   bound_form_identities:
     ko-lex-00360: 세; Sino-Korean-number age counter, not determiner three
     ko-lex-02671: 시; hour-of-day unit
+    ko-lex-03373: 실; bound room counter, not thread
     ko-lex-03975: 씨; respectful title attached to a personal name
     ko-lex-06802: 분; respectful person reference or counter
     ko-lex-06807: 분; minute unit, distinct from respectful person counting
@@ -93,6 +94,7 @@ category_adjudication:
     ko-lex-11338: 일; day or date counter
     ko-lex-12779: 장; counter for thin flat objects
     ko-lex-16872: 대; vehicle, machine, or instrument counter
+    ko-lex-26023: 가지; bound kinds counter, not a plant branch or eggplant
     ko-lex-26923: 개; counter for individual objects, not the dog noun
     ko-lex-27852: 것; bound noun for an unspecified thing or fact
     ko-lex-35380: 년; year unit
@@ -133,6 +135,7 @@ category_adjudication:
       - ko-lex-37110
       - ko-lex-09304
       - ko-lex-13978
+      - ko-lex-16238
     cardinals_and_multiples:
       - ko-lex-40533
       - ko-lex-23787
@@ -176,6 +179,7 @@ category_adjudication:
       - ko-lex-16195
       - ko-lex-16200
     discourse_linking_and_examples:
+      - ko-lex-00056
       - ko-lex-10646
       - ko-lex-17434
       - ko-lex-17516
@@ -308,6 +312,13 @@ multi_parent_decisions:
       temporal lexeme, not separately counted homographs.
 
 additional_grouping_evidence:
+  concrete-everyday-and-narration: >
+    breadth-identities.yaml and breadth-notes.yaml document concrete home,
+    food, personal-care, transport, and ordinary-interaction senses. They
+    distinguish time from grime, vapor from seaweed, swelling from pouring,
+    and awakening from breaking. Explicit related loss/forgetting forms keep
+    their source positions within existing conservative identities. Bound
+    kinds and room counters remain separate from their content-noun homographs.
   narration-argument-and-interpretation: >
     expansion-identities.yaml and expansion-notes.yaml document literal and
     figurative source senses, discourse operators, the bound 여지 identity,

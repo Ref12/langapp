@@ -74,6 +74,11 @@ units:
   - {id: ko-nikl-16647-s001, ch: 닭고기, pr: 닥꼬기, ds: chicken meat}
   - {id: ko-nikl-41780-s001, ch: 주스, pr: 주스, ds: fruit or vegetable juice}
   - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
+  - {id: ko-nikl-23077-s001, ch: 포크, pr: 포크, ds: a fork for eating}
+  - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
+  - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
+  - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
+  - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-36428-s001, ch: 맛, pr: 맏, ds: taste; flavor}
@@ -221,6 +226,7 @@ units:
   - {id: ko-nikl-47043-s001, ch: 여덟, pr: 여덜, ds: eight; before a noun or counter}
   - {id: ko-nikl-04320-s001, ch: 아홉, pr: 아홉, ds: nine (native Korean numeral)}
   - {id: ko-nikl-04322-s001, ch: 아홉, pr: 아홉, ds: nine; before a noun or counter}
+  - {id: ko-nikl-26023-s001, ch: 가지, pr: 가지, ds: a counter for kinds or types of things}
   grammar: []
   review_vocabulary: []
   review_grammar: []
@@ -233,14 +239,14 @@ units:
   - {id: ko-topik1-g012, ch: N도, ds: include an additional item or participant}
   - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
   review_vocabulary:
-  - {id: ko-nikl-07059-s001, ch: 불고기, pr: 불고기, ds: bulgogi; grilled marinated beef or pork}
-  - {id: ko-nikl-20058-s001, ch: 라면, pr: 라면, ds: ramyeon; instant noodles}
-  - {id: ko-nikl-28629-s001, ch: 계란, pr: 계란 / 게란, ds: an egg (from a chicken)}
-  - {id: ko-nikl-18621-s001, ch: 돼지고기, pr: 돼ː지고기, ds: pork}
-  - {id: ko-nikl-01420-s001, ch: 쇠고기, pr: 쇠ː고기 / 쉐ː고기, ds: beef}
   - {id: ko-nikl-16647-s001, ch: 닭고기, pr: 닥꼬기, ds: chicken meat}
   - {id: ko-nikl-41780-s001, ch: 주스, pr: 주스, ds: fruit or vegetable juice}
   - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
+  - {id: ko-nikl-23077-s001, ch: 포크, pr: 포크, ds: a fork for eating}
+  - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
+  - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
+  - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
+  - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
   review_grammar: []
 - id: level-03-food-practice-02
   title: Food and meals - sentence practice 2
@@ -250,14 +256,14 @@ units:
   - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
   - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
   review_vocabulary:
-  - {id: ko-nikl-07059-s001, ch: 불고기, pr: 불고기, ds: bulgogi; grilled marinated beef or pork}
-  - {id: ko-nikl-20058-s001, ch: 라면, pr: 라면, ds: ramyeon; instant noodles}
-  - {id: ko-nikl-28629-s001, ch: 계란, pr: 계란 / 게란, ds: an egg (from a chicken)}
-  - {id: ko-nikl-18621-s001, ch: 돼지고기, pr: 돼ː지고기, ds: pork}
-  - {id: ko-nikl-01420-s001, ch: 쇠고기, pr: 쇠ː고기 / 쉐ː고기, ds: beef}
   - {id: ko-nikl-16647-s001, ch: 닭고기, pr: 닥꼬기, ds: chicken meat}
   - {id: ko-nikl-41780-s001, ch: 주스, pr: 주스, ds: fruit or vegetable juice}
   - {id: ko-nikl-11151-s001, ch: 인분, pr: 인분, ds: person-portion; serving counter}
+  - {id: ko-nikl-23077-s001, ch: 포크, pr: 포크, ds: a fork for eating}
+  - {id: ko-nikl-18780-s001, ch: 두부, pr: 두부, ds: tofu}
+  - {id: ko-nikl-09384-s001, ch: 새우, pr: 새우, ds: shrimp; prawn}
+  - {id: ko-nikl-48328-s001, ch: 오징어, pr: 오징어, ds: squid}
+  - {id: ko-nikl-33276-s001, ch: 김, pr: 김ː, ds: dried edible seaweed pressed into thin sheets}
   review_grammar:
   - {id: ko-topik1-g011, ch: N하고 / N과/와, ds: coordinate nouns or name a companion}
   - {id: ko-topik1-g012, ch: N도, ds: include an additional item or participant}
@@ -269,7 +275,6 @@ units:
   grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
   review_vocabulary:
-  - {id: ko-nikl-16186-s001, ch: 다섯, pr: 다섣, ds: five; before a noun or counter}
   - {id: ko-nikl-47110-s001, ch: 여섯, pr: 여섣, ds: six; before a noun or counter}
   - {id: ko-nikl-11372-s001, ch: 일곱, pr: 일곱, ds: seven (native Korean numeral)}
   - {id: ko-nikl-11373-s001, ch: 일곱, pr: 일곱, ds: seven; before a noun or counter}
@@ -277,4 +282,5 @@ units:
   - {id: ko-nikl-47043-s001, ch: 여덟, pr: 여덜, ds: eight; before a noun or counter}
   - {id: ko-nikl-04320-s001, ch: 아홉, pr: 아홉, ds: nine (native Korean numeral)}
   - {id: ko-nikl-04322-s001, ch: 아홉, pr: 아홉, ds: nine; before a noun or counter}
+  - {id: ko-nikl-26023-s001, ch: 가지, pr: 가지, ds: a counter for kinds or types of things}
   review_grammar: []

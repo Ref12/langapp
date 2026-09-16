@@ -1,0 +1,546 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: coherent practical-breadth addition; not complete-scale coverage
+
+scope:
+  - Only breadth-vocabulary.yaml, breadth-identities.yaml, and this file are authored here.
+  - All base, early, and expansion selections and identity groups remain protected.
+  - Source records, readings, corrections, manifests, grammar, and shared code are unchanged.
+  - Vocabulary placements and labels were manually authored after bilingual source inspection.
+  - Topic-oriented searches discovered candidates but never selected or scheduled them automatically.
+  - Neither source bands nor alphabetic order nor numeric targets determine teaching placement.
+  - No inflected phrase or invented noun-plus-hada predicate is added as a vocabulary headword.
+
+integration:
+  selection_manifest: >
+    selection-files.yaml registers breadth-vocabulary.yaml and
+    breadth-identities.yaml after the base, early, and expansion files.
+    Duplicate placements are rejected. Existing identity fragments contain
+    only new members and preserve their existing canonical lemma and category.
+  corrections: >
+    The source_correction_requests below are incorporated into the parent-owned
+    ledger with exact original bilingual text and explicitly unreviewed authored
+    interpretations. Prior corrections and their evidence remain unchanged.
+  readings: >
+    original_reading_gaps preserves the historical handoff, not current missing
+    readings. Every listed parent now has official citation text or an
+    individually reasoned authored reading. Current per-item methods are in
+    source-provenance.yaml; authored choices remain unreviewed.
+  existing_identity_extensions:
+    ko-lex-11671: Adds source-backed completion-emphasized loss forms under existing 잃다.
+    ko-lex-11966: Adds source-backed completion-emphasized forgetting forms under existing 잊다.
+
+curation_rationales:
+  earlier_prerequisites: >
+    Household objects and cleaning belong with living at home; personal-care
+    products and symptoms support shopping and care; waking, showering, and
+    postponing support routines and plans. These words were not delayed just
+    to increase narration-phase totals. Previously selected words were not moved.
+  connected_narration: >
+    Spilling, slipping, dropping, bumping, breaking, picking up, getting wet,
+    losing belongings, and looking around enable connected accounts of ordinary
+    events. Original agentive and result-state positions remain separate.
+    Visits, picnics, games, cooking, and shared meals supply concrete participants,
+    objects, settings, and outcomes instead of abstract nouns alone.
+  cooking_and_material_change: >
+    Select actual boiling, warming, blanching, mincing, frying, stirring, and
+    pouring senses. 김 distinguishes heated vapor, condensed droplets, warm
+    breath, and dissolved gas from the separate dried-seaweed parent. Do not
+    teach condensation as freezing or dissolution as melting.
+  service_and_travel_complications: >
+    Missing transport, congestion, leaks, blocked passages, damaged objects,
+    wet belongings, ticket offices, admission tickets, and schedule changes
+    support specific everyday problems. 막히다's traffic position is not
+    silently replaced by its more general blocked-opening position.
+  ordinary_social_communication: >
+    Questions, passing remarks, drifting off topic, overlooking another's words,
+    refusal gestures, encouragement, changing opinions, and shifting responsibility
+    support ordinary interaction. More demanding accountability, inference,
+    public disclosure, and institutional restrictions keep their appropriate
+    later contexts rather than becoming beginner senses by association.
+  restrained_optional_selection: >
+    Combining several things under one organizational system is optional
+    professional vocabulary. A source's unrelated, technical, or insulting
+    positions are not automatically included. No optional branch was filled
+    merely to make this shard's branch counts symmetrical.
+  source_discovery_traps: >
+    The inspected unselected 수도 was spiritual cultivation, not a water supply;
+    싸다 was excretion, not wrapping or cheapness; 자수 was criminal surrender,
+    not embroidery; and 지나치다 was the descriptive excessive predicate,
+    not a passing-by verb. The available movement senses of 지나가다 are used
+    instead. 낚시's hobby is position three, and 도시락's packed food is position
+    two. An English homograph or a requested topic never overrides the Korean.
+  scope_of_short_labels: >
+    봉투 remains a paper envelope for letters or documents, not an unrestricted
+    grocery bag. 요구르트 retains the source's drink interpretation. 베란다
+    retains the roofed, open-sided space rather than every modern enclosed balcony.
+    집안 denotes a family household, not simply the physical inside of a house.
+    낚시's figurative lure does not invent a cybersecurity phishing sense.
+
+identity_policy:
+  identifiers: >
+    ko-nikl names retain the pinned CSV record ordinal and original sense
+    position. ko-lex names are stable local teaching identifiers, not official
+    NIKL identifiers or independently verified etymological classifications.
+  default_authored_decision: >
+    Retain each independently inspected and selected source boundary as one
+    provisional lexical candidate except for the explicit grouping decisions
+    below. Mechanical manifest enumeration copies these decisions, original
+    POS evidence, homograph rationales, and manually authored labels. It makes
+    no vocabulary selection or teaching-placement decision.
+  counting: >
+    Report source parents, selected senses, spellings, and provisional free
+    identities separately. Additional senses, numbered-floor or line-count
+    uses, and the documented related-form groups do not add free-lemma breadth.
+    A source parent is not automatically a proven true lexeme.
+  free_lemma_decision: >
+    Independently usable content nouns and predicates are free-lemma candidates.
+    The temporal noun 때 has standalone moment and opportune-time meanings;
+    use in a clause-plus-time construction does not create another headword.
+    층 and 줄 include freely usable layer/floor and cord/line nouns as well
+    as counting positions, so their counter uses stay in those free identities.
+  bound_form_decision: >
+    가지 as a kinds counter and 실 as a rooms counter are explicitly bound
+    nouns in the retained source. They are distinct from branch 가지 and thread 실.
+  function_item_decision: >
+    설사 is a concessive supposition operator. The selected 다음 positions
+    provide sequential or discourse reference rather than a separately counted
+    free content noun. These are explicit conservative accounting choices,
+    not a claim that all nouns or adverbs with temporal meanings form one class.
+  bound_form_identity_ids: [ko-lex-26023, ko-lex-03373]
+  function_identity_ids: [ko-lex-00056, ko-lex-16238]
+
+documented_group_decisions:
+  ko-lex-11671:
+    lemma: 잃다
+    category: free-lemma
+    source_parents: [ko-nikl-11672]
+    rationale: >
+      Keep the selected 잃어버리다 positions for lost possessions, losing one's
+      way, and separation from a companion with the existing 잃다 identity.
+      The inspected simplex source has these same loss meanings at positions
+      one, nine, and ten. The completion-emphasized lexical form retains its
+      own source positions and pronunciation but does not add a free headword
+      in this conservative teaching analysis. This is not an official variant
+      crosswalk or a claim that every verb-plus-beorida sequence is one lexeme.
+  ko-lex-11966:
+    lemma: 잊다
+    category: free-lemma
+    source_parents: [ko-nikl-11967]
+    rationale: >
+      The inspected 잊다 and 잊어버리다 sources share the selected meanings of
+      failing to recall prior knowledge, momentary forgetting, and setting
+      past pain aside. The latter strengthens completion or totality. Preserve
+      its separately sourced members in the existing 잊다 identity without
+      adding a free headword for this related completed form. Retain the
+      existing lemma and category and require lexical-family review.
+  ko-lex-33523:
+    lemma: 깨다
+    category: free-lemma
+    source_parents: [ko-nikl-33523, ko-nikl-33526]
+    rationale: >
+      Conservatively group breaking 깨다 and the expanded breaking form 깨뜨리다
+      as one teaching lexical base. Their Korean definitions overlap in breaking
+      hard objects, promises, and maintained states; preserve each selected
+      original position and the distinct forms. This explicit family analysis
+      requires lexical review and is not inferred solely from equal English.
+      Awakening or sobering 깨다 at ko-nikl-33521 remains a separate identity.
+
+homograph_rationales:
+  ko-nikl-00055: Diarrhea, not the concessive supposition operator.
+  ko-nikl-00056: Concessive even-if supposition, not the bowel symptom.
+  ko-nikl-03368: Thread or yarn, not a rooms counter.
+  ko-nikl-03373: A bound rooms counter, not textile thread.
+  ko-nikl-03759: Excretion, distinct from the protected wrapping and inexpensive predicates.
+  ko-nikl-07398: Bodily swelling, not pouring or periodic money deposits.
+  ko-nikl-07399: Pouring and periodic deposits, not bodily swelling.
+  ko-nikl-09344: Leakage and departure from a channel or topic, not daybreak.
+  ko-nikl-09345: Daybreak, not leakage.
+  ko-nikl-12801: A person's strongest skill, not a duration, internal organs, or a board game.
+  ko-nikl-12802: A long period, not a person's special talent or internal organs.
+  ko-nikl-12804: Internal organs, not a long period or special talent.
+  ko-nikl-14545: Normal functioning or condition, not a summit or national leader.
+  ko-nikl-14547: Summit and highest-ranking national leader, not normal functioning.
+  ko-nikl-16267: Strengthening resolve, foundations, or relationships, not mincing ingredients.
+  ko-nikl-16268: Mincing food, not strengthening resolve or foundations.
+  ko-nikl-16660: An enclosing wall, not the sequence-reference 담 source.
+  ko-nikl-19621: Time, occasion, and circumstance, not grime or worldly impurity.
+  ko-nikl-19622: Grime and figurative impurity, not a moment or circumstance.
+  ko-nikl-22029: Bouncing or scattering, not frying or puffing grains.
+  ko-nikl-22030: Cooking by frying or puffing, not making an object bounce.
+  ko-nikl-26019: A plant branch and its figurative offshoot, not a kinds counter or eggplant.
+  ko-nikl-26023: A bound kinds counter, not a botanical branch or eggplant.
+  ko-nikl-26989: Weather clearing, not folding clothes.
+  ko-nikl-26991: Neatly folding fabric, not weather clearing.
+  ko-nikl-33272: Vapor, condensation, warm breath, and dissolved gas, not dried edible seaweed.
+  ko-nikl-33276: Dried edible seaweed, not vapor or gas.
+  ko-nikl-33521: Awakening and sobering, not physical or figurative breaking.
+  ko-nikl-33523: Breaking and overcoming barriers, not awakening or sobering.
+  ko-nikl-33526: The expanded breaking form, grouped with breaking 깨다, not awakening 깨다.
+  ko-nikl-36339: Preventing someone from acting, not drying moisture.
+  ko-nikl-36340: Drying, not stopping another person's action.
+  ko-nikl-38541: Dirt or liquid adhering, not burying or questioning.
+  ko-nikl-38542: Burying, covering up, or hiding the face, not asking a question or dirt adhering.
+  ko-nikl-38543: Asking or holding accountable, not burying or becoming dirty.
+  ko-nikl-38548: Being covered or obscured, not causing liquid or powder to adhere.
+  ko-nikl-38549: Getting liquid or powder onto another surface, not being buried.
+
+review_flags:
+  - >
+    Passive, causative, and compound verb families still require lexical review.
+    Examples include 쌓다/쌓이다, 넘어지다/넘어뜨리다, 부수다/부서지다,
+    눕다/눕히다, and 부딪치다/부딪히다. They are actual source predicates,
+    not generated conjugations. Their separate provisional source candidates
+    do not establish a verified true-lexeme count or interchangeable syntax.
+  - >
+    Asking 묻다 and the dirt/burying homographs require different inflectional
+    treatment. Exact source identities are retained; this shard supplies no
+    new realization rule or fabricated surface form.
+  - >
+    Existing free-lemma categories for 잃다 and 잊다 are unchanged. If later
+    lexical review revises a grouping or count category, do so explicitly
+    rather than silently reclassifying a fragment during composition.
+  - >
+    A compact mushroom label does not endorse the source definition's older
+    plant classification. Food-production descriptions in the raw dictionary
+    are not verified scientific procedures or health advice.
+  - >
+    Bodily-function vocabulary and source-marked slang need contextual and
+    register review before dialogue authoring. No selected noun automatically
+    licenses an unverified joined noun-plus-hada lexical predicate.
+
+source_correction_requests:
+  ko-nikl-44171-s001:
+    source_korean: 창문과 가까운 곳이나 옆.
+    source_english: The area immediately behind a window.
+    authored_interpretation: the area beside or near a window
+    rationale: >
+      The Korean says near or beside the window, not specifically behind it.
+      The label removes the unsupported directional restriction.
+  ko-nikl-26019-s001:
+    source_korean: 나무나 풀의 큰 줄기에서 갈라져 나간 작은 줄기.
+    source_english: A small twig broken off from a branch of a tree or blade of grass.
+    authored_interpretation: a branch or twig growing off a larger stem
+    rationale: >
+      The Korean describes a smaller stem branching from a larger one.
+      It does not require that the branch has broken off or become detached.
+  ko-nikl-33272-s002:
+    source_korean: 수증기가 차갑게 되어 엉긴 작은 물방울.
+    source_english: Small droplets made when steam becomes frozen.
+    authored_interpretation: tiny water droplets formed as vapor cools
+    rationale: >
+      The Korean describes cooled vapor collecting into small liquid droplets,
+      not freezing into ice. Preserve this second position as distinct from
+      heated vapor, warm breath, and gas in a drink.
+  ko-nikl-33272-s004:
+    source_korean: 탄산음료 속에 녹아 들어가 있는 이산화 탄소.
+    source_english: Carbon dioxide melted in soda.
+    authored_interpretation: carbon dioxide dissolved in a fizzy drink
+    rationale: >
+      The Korean describes carbon dioxide dissolved in a carbonated drink.
+      The English's melted incorrectly suggests a different physical process.
+  ko-nikl-33542-s002:
+    source_korean: 약속이나 일 등이 지켜지거나 이루어지지 않다.
+    source_english: To break a promise, or something.
+    authored_interpretation: for a promise or undertaking to fall through
+    rationale: >
+      The Korean describes a promise not being kept or an undertaking not
+      being realized. The English's active break obscures that result-state
+      perspective. Keep it distinct from the selected agentive breaking senses.
+  ko-nikl-43829-s001:
+    source_korean: 도구에 의해서나 잡아당겨져 갈라지다.
+    source_english: To be split by using a tool or being pushed apart.
+    authored_interpretation: to be torn apart by pulling or by a tool
+    rationale: >
+      The Korean specifies being pulled apart, not pushed apart. The label
+      preserves that direction and the alternative use of a tool.
+  ko-nikl-35277-s001:
+    source_korean: 볕을 쬐거나 바람을 쐬어 말리기 위하여 펼쳐 놓다.
+    source_english: To hang washed clothes out to be dried in the sun or wind.
+    authored_interpretation: to spread something out to dry in the sun or air
+    rationale: >
+      The Korean describes spreading something for drying in sun or air.
+      It does not restrict the object to washed clothes or require hanging.
+      The label retains the general drying action without inventing new senses.
+
+remaining_gaps:
+  - The broad core-lemma planning aspiration remains unmet.
+  - This is a targeted practical addition, not an exhaustive review of unselected entries.
+  - Remaining transport, consumer-service, work, and social vocabulary deserves further targeted curation.
+  - Teacher and lexical-family review are still required before claiming exact true-lexeme breadth.
+  - Citation text and authored readings do not establish pronunciation mastery or validate learner audio.
+
+reading_resolution:
+  status: All parents in the historical list below have a documented reading.
+  official_text_parents: 33
+  authored_unreviewed_parents: 17
+  limitation: >
+    These are method counts for this fixed handoff cohort, not live curriculum
+    totals. The authored readings are individual phonological proposals where
+    official text is absent; spelling agreement is not a fallback or evidence
+    of dictionary/audio verification.
+
+original_reading_gaps:
+- source_parent: ko-nikl-00814
+  lemma: 소스
+  reason: 'ko-nikl-00814: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-00814-s001
+- source_parent: ko-nikl-00960
+  lemma: 소풍
+  reason: 'ko-nikl-00960: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-00960-s001
+- source_parent: ko-nikl-01280
+  lemma: 손톱
+  reason: 'ko-nikl-01280: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-01280-s001
+- source_parent: ko-nikl-02450
+  lemma: 스위치
+  reason: 'ko-nikl-02450: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-02450-s001
+- source_parent: ko-nikl-05002
+  lemma: 야유회
+  reason: 'ko-nikl-05002: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-05002-s001
+- source_parent: ko-nikl-05304
+  lemma: 베란다
+  reason: 'ko-nikl-05304: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-05304-s001
+- source_parent: ko-nikl-05424
+  lemma: 변비
+  reason: 'ko-nikl-05424: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-05424-s001
+- source_parent: ko-nikl-05836
+  lemma: 보일러
+  reason: 'ko-nikl-05836: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-05836-s001
+- source_parent: ko-nikl-06048
+  lemma: 복통
+  reason: 'ko-nikl-06048: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-06048-s001
+- source_parent: ko-nikl-06174
+  lemma: 볼링
+  reason: 'ko-nikl-06174: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-06174-s001
+- source_parent: ko-nikl-09672
+  lemma: 샤워
+  reason: 'ko-nikl-09672: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-09672-s001
+- source_parent: ko-nikl-09678
+  lemma: 샴푸
+  reason: 'ko-nikl-09678: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-09678-s001
+  - ko-nikl-09678-s002
+- source_parent: ko-nikl-09728
+  lemma: 서두르다
+  reason: 'ko-nikl-09728: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-09728-s001
+  - ko-nikl-09728-s002
+- source_parent: ko-nikl-09729
+  lemma: 서랍
+  reason: 'ko-nikl-09729: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-09729-s001
+- source_parent: ko-nikl-10016
+  lemma: 선반
+  reason: 'ko-nikl-10016: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-10016-s001
+- source_parent: ko-nikl-13217
+  lemma: 재채기
+  reason: 'ko-nikl-13217: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-13217-s001
+- source_parent: ko-nikl-13272
+  lemma: 잼
+  reason: 'ko-nikl-13272: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-13272-s001
+- source_parent: ko-nikl-13678
+  lemma: 전구
+  reason: 'ko-nikl-13678: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-13678-s001
+- source_parent: ko-nikl-14547
+  lemma: 정상
+  reason: 'ko-nikl-14547: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-14547-s001
+  - ko-nikl-14547-s003
+- source_parent: ko-nikl-16765
+  lemma: 당구
+  reason: 'ko-nikl-16765: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-16765-s001
+- source_parent: ko-nikl-20288
+  lemma: 리모컨
+  reason: 'ko-nikl-20288: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-20288-s001
+- source_parent: ko-nikl-20655
+  lemma: 커튼
+  reason: 'ko-nikl-20655: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-20655-s001
+  - ko-nikl-20655-s002
+- source_parent: ko-nikl-21142
+  lemma: 탁구
+  reason: 'ko-nikl-21142: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-21142-s001
+- source_parent: ko-nikl-21480
+  lemma: 털
+  reason: 'ko-nikl-21480: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-21480-s001
+  - ko-nikl-21480-s002
+  - ko-nikl-21480-s004
+- source_parent: ko-nikl-23077
+  lemma: 포크
+  reason: 'ko-nikl-23077: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-23077-s001
+- source_parent: ko-nikl-23504
+  lemma: 플러그
+  reason: 'ko-nikl-23504: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-23504-s001
+- source_parent: ko-nikl-25823
+  lemma: 가스레인지
+  reason: 'ko-nikl-25823: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-25823-s001
+- source_parent: ko-nikl-27709
+  lemma: 걸레
+  reason: 'ko-nikl-27709: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-27709-s001
+- source_parent: ko-nikl-28805
+  lemma: 고구마
+  reason: 'ko-nikl-28805: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-28805-s001
+- source_parent: ko-nikl-29357
+  lemma: 고추장
+  reason: 'ko-nikl-29357: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-29357-s001
+- source_parent: ko-nikl-34403
+  lemma: 낚시
+  reason: 'ko-nikl-34403: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-34403-s003
+  - ko-nikl-34403-s001
+  - ko-nikl-34403-s004
+- source_parent: ko-nikl-35117
+  lemma: 냉방
+  reason: 'ko-nikl-35117: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-35117-s001
+- source_parent: ko-nikl-35690
+  lemma: 놀이공원
+  reason: 'ko-nikl-35690: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-35690-s001
+- source_parent: ko-nikl-35695
+  lemma: 놀이터
+  reason: 'ko-nikl-35695: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-35695-s001
+- source_parent: ko-nikl-36732
+  lemma: 매표소
+  reason: 'ko-nikl-36732: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-36732-s001
+- source_parent: ko-nikl-36987
+  lemma: 먼지
+  reason: 'ko-nikl-36987: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-36987-s001
+- source_parent: ko-nikl-37033
+  lemma: 멍
+  reason: 'ko-nikl-37033: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-37033-s001
+  - ko-nikl-37033-s002
+- source_parent: ko-nikl-37123
+  lemma: 면도기
+  reason: 'ko-nikl-37123: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-37123-s001
+- source_parent: ko-nikl-37190
+  lemma: 멸치
+  reason: 'ko-nikl-37190: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-37190-s001
+- source_parent: ko-nikl-38541
+  lemma: 묻다
+  reason: 'ko-nikl-38541: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-38541-s001
+- source_parent: ko-nikl-38542
+  lemma: 묻다
+  reason: 'ko-nikl-38542: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-38542-s001
+  - ko-nikl-38542-s002
+  - ko-nikl-38542-s003
+- source_parent: ko-nikl-38549
+  lemma: 묻히다
+  reason: 'ko-nikl-38549: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-38549-s001
+- source_parent: ko-nikl-38865
+  lemma: 미루다
+  reason: 'ko-nikl-38865: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-38865-s001
+  - ko-nikl-38865-s002
+  - ko-nikl-38865-s003
+- source_parent: ko-nikl-39353
+  lemma: 바둑
+  reason: 'ko-nikl-39353: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-39353-s001
+- source_parent: ko-nikl-40118
+  lemma: 발톱
+  reason: 'ko-nikl-40118: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-40118-s001
+- source_parent: ko-nikl-40593
+  lemma: 배드민턴
+  reason: 'ko-nikl-40593: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-40593-s001
+- source_parent: ko-nikl-40938
+  lemma: 버터
+  reason: 'ko-nikl-40938: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-40938-s001
+- source_parent: ko-nikl-46123
+  lemma: 치즈
+  reason: 'ko-nikl-46123: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-46123-s001
+- source_parent: ko-nikl-46246
+  lemma: 양치질
+  reason: 'ko-nikl-46246: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-46246-s001
+- source_parent: ko-nikl-48929
+  lemma: 요구르트
+  reason: 'ko-nikl-48929: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-48929-s001

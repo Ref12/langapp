@@ -752,20 +752,50 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(len(actual), 1)
 
     def test_expansion_corrections_are_explicit_unreviewed_overrides_not_source_replacements(self):
-        notes = load_yaml(self.root / "authoring" / "teaching" / "expansion-notes.yaml")
-        for identifier, request in notes["source_correction_requests"].items():
-            with self.subTest(sense=identifier):
-                source = self.references.provenance[identifier]
-                correction = source["source_correction"]
-                self.assertEqual(self.references.vocabulary[identifier]["ds"], request["authored_interpretation"])
-                for language in ("korean", "english"):
-                    self.assertEqual(source[f"source_{language}"], request[f"source_{language}"])
-                    self.assertEqual(correction[f"source_{language}"], source[f"source_{language}"])
-                self.assertEqual(correction["method"], "authored-interpretation")
-                self.assertEqual(correction["review_status"], "unreviewed")
+        for filename in ("expansion-notes.yaml", "breadth-notes.yaml"):
+            notes = load_yaml(self.root / "authoring" / "teaching" / filename)
+            for identifier, request in notes["source_correction_requests"].items():
+                with self.subTest(sense=identifier):
+                    source = self.references.provenance[identifier]
+                    correction = source["source_correction"]
+                    self.assertEqual(self.references.vocabulary[identifier]["ds"], request["authored_interpretation"])
+                    for language in ("korean", "english"):
+                        self.assertEqual(source[f"source_{language}"], request[f"source_{language}"])
+                        self.assertEqual(correction[f"source_{language}"], source[f"source_{language}"])
+                    self.assertEqual(correction["method"], "authored-interpretation")
+                    self.assertEqual(correction["review_status"], "unreviewed")
         polarity = self.references.vocabulary["ko-nikl-43882-s001"]
         self.assertIn("negative predicate", polarity["ds"])
         self.assertIn("compelled", self.references.provenance[polarity["id"]]["source_english"])
+
+    def test_everyday_homographs_and_related_forms_have_explicit_distinct_identities(self):
+        identities = self.references.lexical_identity
+        for first, second in (
+            ("ko-nikl-19621-s001", "ko-nikl-19622-s001"),
+            ("ko-nikl-33272-s001", "ko-nikl-33276-s001"),
+            ("ko-nikl-33521-s003", "ko-nikl-33523-s001"),
+            ("ko-nikl-03368-s001", "ko-nikl-03373-s001"),
+            ("ko-nikl-26019-s001", "ko-nikl-26023-s001"),
+            ("ko-nikl-00055-s001", "ko-nikl-00056-s001"),
+        ):
+            with self.subTest(pair=(first, second)):
+                self.assertEqual(self.references.vocabulary[first]["ch"], self.references.vocabulary[second]["ch"])
+                self.assertNotEqual(identities[first], identities[second])
+        self.assertEqual(identities["ko-nikl-33523-s001"], identities["ko-nikl-33526-s001"])
+        self.assertEqual(identities["ko-nikl-11672-s001"], "ko-lex-11671")
+        self.assertEqual(identities["ko-nikl-11967-s001"], "ko-lex-11966")
+        for identifier in ("ko-nikl-03373-s001", "ko-nikl-26023-s001"):
+            self.assertEqual(self.references.provenance[identifier]["lexical_category"], "bound-form")
+
+    def test_vapor_condensation_and_dissolved_gas_are_not_replaced_by_source_english_errors(self):
+        words, source = self.references.vocabulary, self.references.provenance
+        self.assertIn("cools", words["ko-nikl-33272-s002"]["ds"])
+        self.assertIn("frozen", source["ko-nikl-33272-s002"]["source_english"])
+        self.assertIn("dissolved", words["ko-nikl-33272-s004"]["ds"])
+        self.assertIn("melted", source["ko-nikl-33272-s004"]["source_english"])
+        identities = {self.references.lexical_identity[f"ko-nikl-33272-s{number:03d}"]
+                      for number in range(1, 5)}
+        self.assertEqual(len(identities), 1)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
