@@ -5,6 +5,26 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-30169-s002:
+    source_korean: 지나치게 심해지거나 활발해짐.
+    source_english: A state of being intensified or overly active.
+    authored_interpretation: becoming excessively intense or active
+    rationale: Preserve change and 지나치게 across both alternatives; mere intensification is not necessarily excessive.
+  ko-nikl-31916-s001:
+    source_korean: 사이가 갈라져 틈이 생김. 또는 그런 틈.
+    source_english: A gap made by a split in a given space; or such a gap.
+    authored_interpretation: cracking that creates a gap or the resulting crack
+    rationale: Korean includes formation of a split/gap and its result; English describes the result twice. This does not establish structural failure.
+  ko-nikl-35090-s001:
+    source_korean: 식어서 차게 됨. 또는 식혀서 차게 함.
+    source_english: The state of getting cool and then cold or frozen; the act of cooling and then freezing something.
+    authored_interpretation: becoming cold by cooling or making something cold
+    rationale: Korean requires becoming cold through cooling or causing that state, not freezing or a phase change.
+  ko-nikl-35090-s002:
+    source_korean: 관계나 분위기 등이 가라앉음. 또는 가라앉힘.
+    source_english: The state of a good atmosphere or feeling being subdued, or relations deteriorating; the act of making this happen.
+    authored_interpretation: 'cooling of relations or a mood, or causing this'
+    rationale: Korean does not require a previously good atmosphere or universal deterioration. Preserve cooling/subsiding and its causative alternative.
   ko-nikl-49676-s001:
     source_korean: '인쇄하거나 발표하기 위하여 쓴 글이나 그림.'
     source_english: 'A writing or picture created to print or publish. '

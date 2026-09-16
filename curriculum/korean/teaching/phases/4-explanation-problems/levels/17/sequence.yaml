@@ -47,13 +47,13 @@ units:
   - {id: ko-nikl-31140-s001, ch: 구조물, pr: 구조물, ds: a large structure systematically built to a design}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-19203-s002, ch: 들뜨다, pr: 들뜨다, ds: for wallpaper or a thin covering to lift away or peel}
-  - {id: ko-nikl-19927-s002, ch: 뜨다, pr: 뜨다, ds: 'to fail to sit flush, leaving a gap'}
-  - {id: ko-nikl-00007-s001, ch: 설계도, pr: 설계도 / 설게도, ds: a drawing of a construction or machinery design}
-  - {id: ko-nikl-17861-s001, ch: 도면, pr: 도면, ds: a drawing showing construction or machinery structure or plans}
-  - {id: ko-nikl-31212-s001, ch: 구획, pr: 구획 / 구훽, ds: dividing land or space into bounded areas; such an area}
   - {id: ko-nikl-24992-s001, ch: 허술하다, pr: 허술하다, ds: 'old, worn, and shabby'}
   - {id: ko-nikl-07868-s004, ch: 빡빡하다, pr: 빡빠카다, ds: hard to move because it fits too tightly}
+  - {id: ko-nikl-16449-s001, ch: 단열, pr: 다ː녈, ds: thermal insulation against heat entering or leaving}
+  - {id: ko-nikl-23908-s001, ch: 하수구, pr: 하ː수구, ds: a drain ditch for rainwater or wastewater}
+  - {id: ko-nikl-31916-s001, ch: 균열, pr: 규녈, ds: cracking that creates a gap or the resulting crack}
+  - {id: ko-nikl-35571-s001, ch: 노후, pr: 노ː후, ds: facilities or objects being aged and worn}
+  - {id: ko-nikl-39228-s001, ch: 밀폐, pr: 밀폐 / 밀페, ds: tight closing or sealing with no gap for escape}
   - {id: ko-nikl-41923-s001, ch: 주택, pr: 주ː택, ds: housing; a residential building}
   review_grammar:
   - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
@@ -68,11 +68,11 @@ units:
   - {id: ko-nikl-50455-s001, ch: 유해, pr: 유ː해, ds: harmfulness; the presence of a hazard}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-42606-s005, ch: 지독하다, pr: 지도카다, ds: for an illness to be extremely severe}
   - {id: ko-nikl-45865-s002, ch: 충실하다, pr: 충실하다, ds: physically healthy and strong}
   - {id: ko-nikl-22400-s004, ch: 팍팍하다, pr: 팍파카다, ds: 'legs heavy and weak from exhaustion, making movement hard'}
   - {id: ko-nikl-32786-s001, ch: 기력, pr: 기력, ds: mental and physical strength for activity}
   - {id: ko-nikl-33010-s004, ch: 기운, pr: 기운, ds: effects after taking medicine or drinking alcohol}
+  - {id: ko-nikl-26572-s001, ch: 감전, pr: 감ː전, ds: electric shock from bodily contact with a live object}
   - {id: ko-nikl-49686-s001, ch: 원기, pr: 원기, ds: physical and mental energy for accomplishing something}
   - {id: ko-nikl-12933-s002, ch: 장애, pr: 장애, ds: a physical or mental impairment}
   - {id: ko-nikl-50458-s001, ch: 유행, pr: 유행, ds: widespread transmission of an infectious disease}
@@ -89,12 +89,12 @@ units:
   - {id: ko-nikl-40502-s001, ch: 방화, pr: 방화, ds: preventing a fire before it occurs}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-37946-s002, ch: 무난하다, pr: 무난하다, ds: to have no conspicuous flaw or shortcoming}
-  - {id: ko-nikl-08459-s001, ch: 사용료, pr: 사ː용뇨, ds: a fee charged for use of something}
-  - {id: ko-nikl-10875-s001, ch: 이용료, pr: 이ː용뇨, ds: money paid for using something}
-  - {id: ko-nikl-44802-s001, ch: 청구서, pr: 청구서, ds: 'a document requesting money, goods or other things'}
-  - {id: ko-nikl-47572-s001, ch: 연체료, pr: 연체료, ds: an extra fee based on days overdue for money or an item}
   - {id: ko-nikl-34256-s005, ch: 나서다, pr: 나서다, ds: for a sought person or thing to appear}
+  - {id: ko-nikl-01231-s003, ch: 손상, pr: 손ː상, ds: deterioration in quality}
+  - {id: ko-nikl-52390-s002, ch: 훼손, pr: 훼ː손, ds: damaging something by destroying or breaking it}
+  - {id: ko-nikl-24458-s001, ch: 합선, pr: 합썬, ds: accidental direct contact of current-carrying wires}
+  - {id: ko-nikl-35830-s001, ch: 마모, pr: 마모, ds: material wearing smaller or away through friction}
+  - {id: ko-nikl-40636-s001, ch: 배수, pr: 배수, ds: drainage of contained or collected water elsewhere}
   - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
   - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
   review_grammar:
@@ -296,7 +296,6 @@ units:
   - {id: ko-nikl-41145-s001, ch: 조작, pr: 조작, ds: operation of a machine or device}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-49601-s006, ch: 움직이다, pr: 움지기다, ds: to operate or be operated (a machine or factory)}
   - {id: ko-nikl-24785-s002, ch: 핸들, pr: 핸들, ds: a hand control for steering a vehicle or machine}
   - {id: ko-nikl-18211-s003, ch: 돌다, pr: 돌ː다, ds: for a machine or organ to function properly}
   - {id: ko-nikl-01683-s002, ch: 수명, pr: 수명, ds: usable life of an object or facility}
@@ -304,6 +303,7 @@ units:
   - {id: ko-nikl-37067-s001, ch: 메모리, pr: 메모리, ds: the maximum information capacity of a memory device}
   - {id: ko-nikl-16384-s001, ch: 단면, pr: 단ː면, ds: a surface exposed by cutting an object}
   - {id: ko-nikl-45834-s001, ch: 충격, pr: 충격, ds: a force suddenly applied to an object}
+  - {id: ko-nikl-30169-s001, ch: 과열, pr: 과ː열, ds: overheating; becoming excessively hot}
   review_grammar: []
 - id: level-17-technology-02
   title: Technology and systems - 2
@@ -359,6 +359,8 @@ units:
   - {id: ko-nikl-13783-s001, ch: 전면, pr: 전면, ds: the front face or side}
   - {id: ko-nikl-31872-s001, ch: 규격, pr: 규격, ds: a specified numerical or format standard to follow}
   - {id: ko-nikl-28622-s001, ch: 계기, pr: 계ː기 / 게ː기, ds: an instrument or device for measuring physical quantities}
+  - {id: ko-nikl-40620-s001, ch: 배선, pr: 배ː선, ds: properly connecting wires to electrical devices for power}
+  - {id: ko-nikl-35090-s001, ch: 냉각, pr: 냉ː각, ds: becoming cold by cooling or making something cold}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-21545-s002, ch: 테이프, pr: 테이프, ds: electrical insulating tape}
@@ -657,14 +659,14 @@ units:
   - {id: ko-topik4-g033, ch: V-느냐에 따라, ds: relate variation to an embedded question}
   - {id: ko-topik5-g003, ch: V/A-기 나름이다, ds: make an outcome depend on how something is done}
   review_vocabulary:
-  - {id: ko-nikl-17713-s001, ch: 데이터베이스, pr: 데이터베이스, ds: a database system or its stored data}
-  - {id: ko-nikl-37067-s002, ch: 메모리, pr: 메모리, ds: a memory component in a digital device}
   - {id: ko-nikl-40548-s001, ch: 배관, pr: 배ː관, ds: pipe installation or the installed pipework}
   - {id: ko-nikl-40620-s002, ch: 배선, pr: 배ː선, ds: wiring that distributes electrical power}
   - {id: ko-nikl-06885-s001, ch: 분산, pr: 분산, ds: being dispersed; dispersing things or people}
   - {id: ko-nikl-13783-s001, ch: 전면, pr: 전면, ds: the front face or side}
   - {id: ko-nikl-31872-s001, ch: 규격, pr: 규격, ds: a specified numerical or format standard to follow}
   - {id: ko-nikl-28622-s001, ch: 계기, pr: 계ː기 / 게ː기, ds: an instrument or device for measuring physical quantities}
+  - {id: ko-nikl-40620-s001, ch: 배선, pr: 배ː선, ds: properly connecting wires to electrical devices for power}
+  - {id: ko-nikl-35090-s001, ch: 냉각, pr: 냉ː각, ds: becoming cold by cooling or making something cold}
   review_grammar: []
 - id: level-17-nature-practice-01
   title: Nature and environment - sentence practice 1

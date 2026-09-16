@@ -4,6 +4,7 @@ from collections import Counter
 from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
+import ast
 import re
 import tempfile
 import unittest
@@ -793,6 +794,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "values-relations-notes.yaml",
             "capacity-motivation-notes.yaml",
             "text-interpretation-notes.yaml",
+            "maintenance-condition-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -3392,6 +3394,69 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             self.assertEqual(source["reading"]["official_entry_id"], expected["official_entry_id"])
             self.assertEqual(self.references.vocabulary[item]["pr"], " / ".join(expected["pronunciations"]))
         self.assertEqual(self.references.vocabulary["ko-nikl-21841-s001"]["pr"], "퇴고 / 퉤고")
+
+    def test_maintenance_real_depth_keeps_core_and_branch_placements_independent(self):
+        identities = self.references.lexical_identity
+        rows = {row["id"]: row for row in self.data.inputs["vocabulary"]}
+        self.assertEqual(rows["ko-nikl-14321-s001"]["level"], 11)
+        self.assertEqual(rows["ko-nikl-14321-s002"]["level"], "technical")
+        self.assertEqual(identities["ko-nikl-14321-s001"], identities["ko-nikl-14321-s002"])
+        self.assertEqual(identities["ko-nikl-10898-s001"], "ko-lex-11939")
+        self.assertEqual(identities["ko-nikl-23908-s001"], "ko-lex-23906")
+        for parent in ("30169", "31916", "35090", "52390"):
+            self.assertEqual(identities[f"ko-nikl-{parent}-s001"],
+                             identities[f"ko-nikl-{parent}-s002"])
+        self.assertNotEqual(identities["ko-nikl-40635-s001"], identities["ko-nikl-40636-s001"])
+        self.assertEqual(identities["ko-nikl-35571-s001"], "ko-lex-35571")
+
+    def test_maintenance_labels_keep_source_conditions_and_receptive_register(self):
+        words = self.references.vocabulary
+        for item, required in (
+            ("01231-s003", "deterioration"), ("22323-s001", "unusable"),
+            ("35830-s001", "friction"), ("29263-s002", "slang"),
+            ("40620-s001", "properly"), ("40620-s001", "electrical devices"),
+            ("24458-s001", "accidental"), ("26572-s001", "bodily contact"),
+            ("16422-s002", "tap-water"), ("16471-s001", "or causing this"),
+            ("15389-s001", "or the water"), ("31916-s002", "figurative"),
+            ("30169-s002", "excessively"), ("35090-s002", "or causing this"),
+        ):
+            self.assertIn(required, words[f"ko-nikl-{item}"]["ds"])
+        self.assertNotIn("freez", words["ko-nikl-35090-s001"]["ds"])
+        self.assertNotIn("deteriorat", words["ko-nikl-35090-s002"]["ds"])
+        self.assertNotIn("ko-nikl-16422-s001", words)
+
+    def test_maintenance_support_preserves_all_definitions_but_excludes_usages(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "maintenance-condition-notes.yaml")
+        rows = load_yaml(authoring / "maintenance-condition-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["historical_support_requests"]["requests"]
+        self.assertEqual(len(rows), 28)
+        self.assertEqual(len(requests), 16)
+        self.assertEqual(sum(len(parents[x["source_parent"]]["senses"]) for x in requests), 19)
+        self.assertEqual(len(notes["raw_csv_records"]), 24)
+        for raw in notes["raw_csv_records"].values():
+            self.assertEqual(set(raw), {"Form", "Part of Speech", "Korean Definition",
+                                       "English Definition", "Vocabulary Level", "Semantic Category"})
+        for request in requests:
+            item = request["source_parent"]
+            parent, raw = parents[item], notes["raw_csv_records"][item]
+            self.assertEqual(parent["target"], raw["Form"])
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertIsNone(parent["reference_level"])
+            self.assertEqual([x["korean"] for x in parent["senses"]],
+                             ast.literal_eval(raw["Korean Definition"]))
+            self.assertEqual([x["english"] for x in parent["senses"]],
+                             ast.literal_eval(raw["English Definition"]))
+        for row in rows:
+            item = row["id"]
+            evidence = notes["reading_evidence"]["parents"][item.rsplit("-s", 1)[0]]
+            reading = self.references.provenance[item]["reading"]
+            self.assertEqual(reading["method"], "official-text")
+            self.assertEqual(reading["official_entry_id"], evidence["official_entry_id"])
+            self.assertEqual(self.references.vocabulary[item]["pr"],
+                             " / ".join(evidence["pronunciations"]))
+        self.assertEqual(self.references.vocabulary["ko-nikl-39228-s001"]["pr"], "밀폐 / 밀페")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

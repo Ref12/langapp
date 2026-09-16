@@ -1,0 +1,446 @@
+schema_version: 1
+id: ko-maintenance-condition-noun-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: bounded parent integration complete; overall curriculum and qualified review outstanding
+parent_integration:
+  baseline: ca15bc2
+  selections: Twenty-eight actual noun senses, including all eighteen formerly pending positions.
+  breadth: Sixteen new pool families; the existing technical 접속 family gains its first core sense, so core-free coverage gains seventeen.
+  support: Sixteen complete unbanded parents admitted with nineteen original positions; eighteen selected.
+  label_refinement: 배선 retains proper connection to electrical devices, not just an arbitrary wiring action.
+  source_examples: All twenty-four accidentally copied Usages fields were removed from the uncommitted draft before admission. They are not retained even as provenance or quarantine.
+  readings: All twenty-four selected/requested parents have actual official citation text, with no crosswalk or authored decision additions.
+  accounting_boundary: Original handback counts and formerly pending proposals below are historical evidence; parent measurements supersede them.
+  resulting_coverage:
+    core_dictionary_parents: 5615
+    core_senses: 8059
+    core_distinct_spellings: 5284
+    core_spelling_pos_pairs: 5395
+    core_provisional_free_families: 5082
+    core_modules: 780
+    selected_pool_senses: 8185
+    selected_pool_provisional_free_families: 5137
+    retained_support_parents: 1014
+    selected_support_parents: 1010
+    exact_source_interpretations: 205
+    lower_guide_free_family_gap: 718
+  validation:
+    combined_course_tourist_source_tests: 172
+    prior_objects: All earlier raw source parents and official overlay entries remain unchanged; both reading ledgers are identical.
+    source_evidence: All twenty-four six-field raw records and eight retained full source arrays match the pinned CSV; regression rejects copied Usages fields.
+    test_correction: The first run exposed a test assumption that the old-age homograph35572 was selected. The corrected test checks the actual protected aging-object identity without inventing another selection.
+    limitation: Structural/source checks do not certify repair, safety, legal liability, learner ability or qualified linguistic review.
+  overall_limit: Useful breadth expansion and phase-load reassessment remain outstanding; no curriculum completion or catalog activation is claimed.
+review_requirement: >-
+  All selections, placements, labels, family judgments and correction requests
+  are original AI-authored work requiring qualified Korean linguistic and
+  relevant-domain review. Dictionary identity/reading checks are not evidence
+  of learner mastery, verified repair, legal responsibility, electrical safety,
+  clinical diagnosis or examination readiness.
+scope: >-
+  General service requests, product-condition reports and nonspecialist
+  manual/news comprehension. Preserve process/result, deterioration,
+  unusability, excess and physical/figurative distinctions. No counterpart
+  verb catalogue, technical specifications, repair procedures or electrical
+  work instructions are authored.
+source:
+  source_id: nikl-2024-mirror
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  cached_source_basename: nikl-202401.csv
+  original_records: 53172
+  id_policy: Project IDs preserve original CSV records and definition-list positions; they are not official NIKL IDs.
+  raw_record_policy: >-
+    raw_csv_records preserves the six non-usage original CSV cells, including
+    complete serialized Korean/English definition arrays.
+    No whitespace, position, source POS or empty vocabulary band is normalized.
+    These include inspected but deliberately unrequested homographs.
+  preserved_absent_raw_records: 24
+  preserved_absent_raw_definition_positions: 29
+  requested_raw_records: 16
+  deferred_raw_records: 8
+  usage_exclusion: Source Usages, example sentences, dialogues and media are not retained or redistributed.
+counts:
+  selected_senses: 10
+  core_senses: 10
+  branch_senses: 0
+  source_parents: 8
+  distinct_selected_spellings: 8
+  identity_records_in_fragment: 8
+  existing_identity_fragments: 6
+  new_independent_family_candidates: 2
+  new_provisional_free_lemma_groups: 2
+  new_bound_form_groups: 0
+  new_function_item_groups: 0
+  senses_in_new_families: 4
+  additional_senses_within_new_families: 2
+  senses_added_to_existing_families: 6
+  additional_sense_depth_total: 8
+  existing_free_families_gaining_first_core_use: 1
+  additional_core_free_coverage: 3
+  source_noun_senses: 10
+  nonfirst_source_positions: 5
+  inspected_original_positions_across_selected_parents: 22
+  source_parents_new_to_protected_selections: 2
+  source_parents_already_represented: 6
+  source_bands: {beginner: 1, intermediate: 2, advanced: 6, unbanded: 1}
+  phases: {first-exchanges: 0, everyday-life: 0, stories-conversations: 1, explanation-problems: 7, analysis-argument: 1, nuance-interpretation: 1}
+count_interpretation: >-
+  Ten active senses introduce two provisional new families, not ten new words.
+  Six meanings extend six protected families; two further meanings occur
+  within the two new families. General joining gives technical-only 접속 its
+  first core use, so core-free coverage gains three without moving its old
+  branch row. All pending source requests are excluded from active counts.
+  No quota or automatic first-position/source-band placement rule is used.
+composition_validation:
+  baseline_last_registered_shard: capacity-motivation-vocabulary.yaml
+  protected_selected_senses: 8145
+  protected_core_senses: 8019
+  protected_core_free_identities: 5055
+  active_proposed_selected_senses: 8155
+  active_proposed_core_senses: 8029
+  active_proposed_core_free_identities: 5058
+  with_pending_proposed_selected_senses: 8173
+  with_pending_proposed_core_senses: 8047
+  with_pending_proposed_core_free_identities: 5072
+  duplicate_senses: 0
+  conflicting_protected_categories: 0
+  policy: >-
+    One bounded validation snapshot, not a refresh obligation or a claim of
+    already published coverage. Active shards were composed through the actual
+    manifest helper in memory. A separate virtual-source composition checked
+    pending requests, preserving every protected row, canonical identity,
+    category and member. Parent owns final live admission and integration.
+placement_rationale:
+  ordinary_service_needs: >-
+    Pending leakage, water-supply interruption, power-supply interruption,
+    unusable breakage and water supply support everyday service communication
+    at6. No participant is assumed to have caused a failure or owe compensation.
+  procedures_and_unfamiliar_problems: >-
+    General joining and the appearance/state of a join support describing
+    connections at11. Quality deterioration, destructive damage, overheating,
+    cracks, wear, aging equipment, drainage, sealing and insulation support
+    unfamiliar product/housing reports at14. Wiring activity and cooling
+    support nonspecialist system descriptions at17, not operating instructions.
+  sourced_extensions_and_register: >-
+    Ordering a disordered system supports cooperation at15. Excessive
+    activity, distance between people, a figurative rift and cooled relations
+    support negotiation at18. Claims of harm to value/reputation belong in
+    qualified argument at23; slang bodily 고장 is receptive register work at26.
+    These meanings do not imply blame, actual defamation, diagnosis or an
+    irreparable relationship. No artificial 19-30 fill is added.
+source_position_audit:
+  - {parent: ko-nikl-01231, target: 손상, original_positions: 4, selected_positions: [3]}
+  - {parent: ko-nikl-14321, target: 접속, original_positions: 3, selected_positions: [1]}
+  - {parent: ko-nikl-14528, target: 정비, original_positions: 3, selected_positions: [1]}
+  - {parent: ko-nikl-22178, target: 틈, original_positions: 4, selected_positions: [4]}
+  - {parent: ko-nikl-29263, target: 고장, original_positions: 2, selected_positions: [2]}
+  - {parent: ko-nikl-30169, target: 과열, original_positions: 2, selected_positions: [1, 2]}
+  - {parent: ko-nikl-40620, target: 배선, original_positions: 2, selected_positions: [1]}
+  - {parent: ko-nikl-52390, target: 훼손, original_positions: 2, selected_positions: [1, 2]}
+family_policy: >-
+  Preserve all protected keys, names, categories, members and placements.
+  Actual synonymy is not proof of morphological variation, and a new source
+  parent is not proof of a new independent family. Source-listed noun/predicate
+  and restricted-compound relationships are compared explicitly; no predicate
+  is created or selected. Existing overlapping infrastructure families are
+  not retroactively merged by this cohort.
+family_evidence:
+  first_core_connection:
+    identity: ko-lex-14321
+    old_branch_member: ko-nikl-14321-s002
+    old_level: technical
+    new_core_member: ko-nikl-14321-s001
+    decision: Retain device connection in its technical branch; add only the distinct general joining position at11.
+  supplied_water:
+    protected_identity: ko-lex-01586
+    protected_member: ko-nikl-01586-s001
+    deferred_parent: ko-nikl-09152
+    shared_source_korean: 마시거나 사용할 물을 관을 통해 보내 주는 시설.
+    decision: 상수도 duplicates this complete Korean facility definition. Preserve its raw record but do not request another compound or claim a new family.
+  drainage:
+    protected_identity: ko-lex-23906
+    protected_member: ko-nikl-23906-s002
+    deferred_parent: ko-nikl-23909
+    shared_source_korean: 빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물이 흘러가도록 만든 시설.
+    decision: >-
+      하수도 repeats this facility definition and is not requested. Actual
+      하수구 narrows the facility to a draining ditch; its transparent 구
+      compound is proposed within protected 하수, not a new free family.
+      Preserve the older 수도01586 drainage member as well; do not merge
+      those two already protected families or touch lower-skill 하수23905.
+  join_appearance:
+    protected_identity: ko-lex-11939
+    protected_member: ko-nikl-11939-s001
+    requested_parent: ko-nikl-10898
+    decision: >-
+      Source 이음새 describes the state/appearance of objects that have been
+      joined; protected 잇다 supplies the actual joining base. Conservatively
+      count this lexicalized result/appearance noun within that family.
+      No unattested standalone 이음 parent is fabricated.
+  gap_variant:
+    protected_identity: ko-lex-22178
+    selected_member: ko-nikl-22178-s004
+    unselected_equivalent: ko-nikl-22183-s004
+    shared_source_korean: 사람들 사이에 생기는 거리.
+    shared_source_english: The distance between people.
+    decision: >-
+      The complete bilingual position is identical. Use the protected 틈 base
+      instead of inflating 틈새 variants. Its physical gap/opportunity positions
+      also repeat already protected functions; the crowd-position variant is
+      not needed for this bounded service cohort.
+  new_word_not_automatic_variant: >-
+    훼손 names harming/damaging, while selected 손상 positions describe damage
+    and worsening conditions. 파손 additionally requires breakage making a
+    thing unusable; 마모 specifies material wearing away through friction.
+    These differently formed lexical nouns are not merged solely because
+    English may call all of them damage. 누수 names both water leakage and
+    the leaked water; protected 누출 includes liquids/gases and information.
+    Substituting a constituent is not an automatic transparent suffix addition.
+  homographs: >-
+    Drainage 배수40636 is not distribution/irrigation40634, back-to-water40633
+    or the protected function-accounted numerical multiple40635. Water-supply
+    급수32568 is not skill-grade32567. Water-cut 단수16422 is neither
+    dan/tactics16420 nor grammatical singular16421. Power-cut 단전16471 is
+    not below-navel16470. Aging objects 노후35571 is not old-age period35572.
+    Do not merge these by spelling or promote the protected numerical category.
+protected_environmental_families:
+  - {identity: ko-lex-09816, lemma: 서식지, category: free-lemma, retained_members: [ko-nikl-09816-s001, ko-nikl-09815-s001]}
+  - {identity: ko-lex-01680, lemma: 수면, category: free-lemma, retained_members: [ko-nikl-01680-s001, ko-nikl-24690-s001]}
+  - {identity: ko-lex-23906, lemma: 하수, category: free-lemma, retained_members: [ko-nikl-23906-s001, ko-nikl-23906-s002]}
+  - {identity: ko-lex-40635, lemma: 배수, category: function-item, retained_members: [ko-nikl-40635-s001, ko-nikl-40635-s002]}
+source_correction_requests:
+  ko-nikl-31916-s001:
+    source_korean: 사이가 갈라져 틈이 생김. 또는 그런 틈.
+    source_english: A gap made by a split in a given space; or such a gap.
+    authored_interpretation: cracking that creates a gap or the resulting crack
+    rationale: Retain both crack formation and its result, not merely the result twice.
+  ko-nikl-35090-s001:
+    source_korean: 식어서 차게 됨. 또는 식혀서 차게 함.
+    source_english: The state of getting cool and then cold or frozen; the act of cooling and then freezing something.
+    authored_interpretation: becoming cold by cooling or making something cold
+    rationale: Preserve cooling/becoming cold or causing it without adding freezing.
+  ko-nikl-35090-s002:
+    source_korean: 관계나 분위기 등이 가라앉음. 또는 가라앉힘.
+    source_english: The state of a good atmosphere or feeling being subdued, or relations deteriorating; the act of making this happen.
+    authored_interpretation: 'cooling of relations or a mood, or causing this'
+    rationale: Preserve cooling/subsiding and causation without a previously good mood or inevitable deterioration.
+  ko-nikl-30169-s002:
+    source_korean: 지나치게 심해지거나 활발해짐.
+    source_english: A state of being intensified or overly active.
+    authored_interpretation: becoming excessively intense or active
+    rationale: Preserve both change and 지나치게 across the alternatives; mere intensification is not necessarily excessive. This is an authored scope clarification requiring review.
+historical_support_requests:
+  status: all requested source parents and placements integrated by parent
+  requested_parents: 16
+  proposed_senses: 18
+  preserved_original_source_positions: 19
+  proposed_new_free_families: 14
+  proposed_existing_family_fragments: 2
+  source_pos: 명사
+  source_band: ''
+  policy: Full non-usage cells are keyed by parent in raw_csv_records; unselected original positions remain preserved. These are the historical requests now integrated by parent.
+  requests:
+    - source_parent: ko-nikl-10898
+      identity_key: ko-lex-11939
+      identity: {lemma: 잇다, category: free-lemma, members: [ko-nikl-10898-s001], source_parents: [ko-nikl-10898], rationale: The actual appearance/state of a join extends protected joining; no independent family for a transparent result noun.}
+      placements:
+        - {id: ko-nikl-10898-s001, level: 11, topic: actions, ds: the state or appearance of a join between objects}
+    - source_parent: ko-nikl-15389
+      identity_key: ko-lex-15389
+      identity: {lemma: 누수, category: free-lemma, members: [ko-nikl-15389-s001], source_parents: [ko-nikl-15389], rationale: Water leakage and the leaked water share one actual noun; do not infer a cause or liability from a leak report.}
+      placements:
+        - {id: ko-nikl-15389-s001, level: 6, topic: home, ds: water leakage or the water leaking out}
+    - source_parent: ko-nikl-16422
+      identity_key: ko-lex-16422
+      identity: {lemma: 단수, category: free-lemma, members: [ko-nikl-16422-s002], source_parents: [ko-nikl-16422], rationale: Tap-water supply being cut off; not martial-arts grade or grammatical singular. Preserve but do not select waterway blockage position1.}
+      placements:
+        - {id: ko-nikl-16422-s002, level: 6, topic: services, ds: cutting off the tap-water supply}
+    - source_parent: ko-nikl-16449
+      identity_key: ko-lex-16449
+      identity: {lemma: 단열, category: free-lemma, members: [ko-nikl-16449-s001], source_parents: [ko-nikl-16449], rationale: Insulation against heat entering or leaving; not a measured performance or safety guarantee.}
+      placements:
+        - {id: ko-nikl-16449-s001, level: 14, topic: home, ds: thermal insulation against heat entering or leaving}
+    - source_parent: ko-nikl-16471
+      identity_key: ko-lex-16471
+      identity: {lemma: 단전, category: free-lemma, members: [ko-nikl-16471-s001], source_parents: [ko-nikl-16471], rationale: Power supply being suspended or suspending it; no intentional actor or authority is required in every use. Separate below-navel homograph16470.}
+      placements:
+        - {id: ko-nikl-16471-s001, level: 6, topic: services, ds: suspension of the power supply or causing this}
+    - source_parent: ko-nikl-22323
+      identity_key: ko-lex-22323
+      identity: {lemma: 파손, category: free-lemma, members: [ko-nikl-22323-s001], source_parents: [ko-nikl-22323], rationale: The source requires becoming unusable through breakage or causing this; not every cosmetic mark or any arbitrary poor quality.}
+      placements:
+        - {id: ko-nikl-22323-s001, level: 6, topic: services, ds: breakage making something unusable or causing this}
+    - source_parent: ko-nikl-23908
+      identity_key: ko-lex-23906
+      identity: {lemma: 하수, category: free-lemma, members: [ko-nikl-23908-s001], source_parents: [ko-nikl-23908], rationale: The actual rainwater/wastewater draining ditch is a narrower transparent 구 compound within protected 하수; not another free family or a safe-work assertion.}
+      placements:
+        - {id: ko-nikl-23908-s001, level: 14, topic: home, ds: a drain ditch for rainwater or wastewater}
+    - source_parent: ko-nikl-24458
+      identity_key: ko-lex-24458
+      identity: {lemma: 합선, category: free-lemma, members: [ko-nikl-24458-s001], source_parents: [ko-nikl-24458], rationale: Source describes accidental direct contact between current-carrying wires; preserve that narrow account without a universal circuit specification or diagnosis.}
+      placements:
+        - {id: ko-nikl-24458-s001, level: 14, topic: services, ds: accidental direct contact of current-carrying wires}
+    - source_parent: ko-nikl-26572
+      identity_key: ko-lex-26572
+      identity: {lemma: 감전, category: free-lemma, members: [ko-nikl-26572-s001], source_parents: [ko-nikl-26572], rationale: Electric shock from bodily contact with a live object; recognizing a warning term is not medical assessment or permission to handle equipment.}
+      placements:
+        - {id: ko-nikl-26572-s001, level: 14, topic: health, ds: electric shock from bodily contact with a live object}
+    - source_parent: ko-nikl-31916
+      identity_key: ko-lex-31916
+      identity: {lemma: 균열, category: free-lemma, members: [ko-nikl-31916-s001, ko-nikl-31916-s002], source_parents: [ko-nikl-31916], rationale: Physical cracking/resulting crack and the explicitly figurative distance or divergence of views share one source family; no structural assessment or permanent rupture is implied.}
+      placements:
+        - {id: ko-nikl-31916-s001, level: 14, topic: home, ds: cracking that creates a gap or the resulting crack}
+        - {id: ko-nikl-31916-s002, level: 18, topic: people, ds: figurative distance or divergence of opinions}
+    - source_parent: ko-nikl-32568
+      identity_key: ko-lex-32568
+      identity: {lemma: 급수, category: free-lemma, members: [ko-nikl-32568-s001], source_parents: [ko-nikl-32568], rationale: Supplying water is distinct from the source's skill-grade homograph; the noun alone establishes neither drinkability nor continuity of service.}
+      placements:
+        - {id: ko-nikl-32568-s001, level: 6, topic: services, ds: supplying water}
+    - source_parent: ko-nikl-35090
+      identity_key: ko-lex-35090
+      identity: {lemma: 냉각, category: free-lemma, members: [ko-nikl-35090-s001, ko-nikl-35090-s002], source_parents: [ko-nikl-35090], rationale: Physical cooling and cooled/subdued relations or atmosphere each preserve state and causation; neither freezing nor inevitable deterioration is required by the Korean definitions.}
+      placements:
+        - {id: ko-nikl-35090-s001, level: 17, topic: technology, ds: becoming cold by cooling or making something cold}
+        - {id: ko-nikl-35090-s002, level: 18, topic: people, ds: 'cooling of relations or a mood, or causing this'}
+    - source_parent: ko-nikl-35571
+      identity_key: ko-lex-35571
+      identity: {lemma: 노후, category: free-lemma, members: [ko-nikl-35571-s001], source_parents: [ko-nikl-35571], rationale: Aging and worn condition of facilities/objects; not the life period after becoming old and not an automatic finding of unsafe operation.}
+      placements:
+        - {id: ko-nikl-35571-s001, level: 14, topic: home, ds: facilities or objects being aged and worn}
+    - source_parent: ko-nikl-35830
+      identity_key: ko-lex-35830
+      identity: {lemma: 마모, category: free-lemma, members: [ko-nikl-35830-s001], source_parents: [ko-nikl-35830], rationale: A rubbed portion wearing smaller or away preserves the friction condition; no specialist threshold or recommendation for replacement is supplied.}
+      placements:
+        - {id: ko-nikl-35830-s001, level: 14, topic: services, ds: material wearing smaller or away through friction}
+    - source_parent: ko-nikl-39228
+      identity_key: ko-lex-39228
+      identity: {lemma: 밀폐, category: free-lemma, members: [ko-nikl-39228-s001], source_parents: [ko-nikl-39228], rationale: Tight closing with no escape gap is the source meaning; no claim of measured airtightness or safety of an occupied enclosure is made.}
+      placements:
+        - {id: ko-nikl-39228-s001, level: 14, topic: home, ds: tight closing or sealing with no gap for escape}
+    - source_parent: ko-nikl-40636
+      identity_key: ko-lex-40636
+      identity: {lemma: 배수, category: free-lemma, members: [ko-nikl-40636-s001], source_parents: [ko-nikl-40636], rationale: Draining contained or collected water elsewhere; not water distribution/irrigation or the protected numerical function family with the same spelling.}
+      placements:
+        - {id: ko-nikl-40636-s001, level: 14, topic: services, ds: drainage of contained or collected water elsewhere}
+  source_correction_requests:
+    ko-nikl-31916-s001:
+      source_korean: 사이가 갈라져 틈이 생김. 또는 그런 틈.
+      source_english: A gap made by a split in a given space; or such a gap.
+      authored_interpretation: cracking that creates a gap or the resulting crack
+      rationale: The Korean includes formation of a split/gap and its result; the English describes the resulting gap in both alternatives. Preserve formation without inferring failure of the structure.
+    ko-nikl-35090-s001:
+      source_korean: 식어서 차게 됨. 또는 식혀서 차게 함.
+      source_english: The state of getting cool and then cold or frozen; the act of cooling and then freezing something.
+      authored_interpretation: becoming cold by cooling or making something cold
+      rationale: The Korean requires cooling/becoming cold or causing that state, not freezing or a phase change. Source examples involving ice do not replace the definition.
+    ko-nikl-35090-s002:
+      source_korean: 관계나 분위기 등이 가라앉음. 또는 가라앉힘.
+      source_english: The state of a good atmosphere or feeling being subdued, or relations deteriorating; the act of making this happen.
+      authored_interpretation: 'cooling of relations or a mood, or causing this'
+      rationale: Korean does not explicitly require a previously good mood or make every instance deterioration. Retain subsiding/cooling and its causative counterpart without deciding social benefit or harm.
+bounded_omissions:
+  - Existing maintenance/repair, checking, ordinary malfunction, defect and product-poor-quality senses are already selected; no duplicate rows or counterpart verbs are added.
+  - Electrical power13763 and output45708 already have technical placements; no same-sense duplication or relocation is used to claim core coverage.
+  - 접속14321-s003 processor/memory connections are specialized; no invented modern login meaning is substituted.
+  - 불량07128 behavior/character and grade positions are not new service-defect meanings and are not added to label people.
+  - 단수16422-s001 waterway blockage is preserved in full raw evidence but not added to expand into environmental works.
+  - The raw skill/tactics, grammatical singular, below-navel and skill-grade homographs remain unrequested.
+  - Distribution/irrigation 배수40634 and back-to-water40633 remain outside the bounded drainage-report need.
+  - 상수도09152 and 하수도23909 repeat protected facility meanings; preserve their full raw metadata without requesting variant-family growth.
+source_limited_gaps:
+  exact_forms_absent_across_all_source_pos: [오작동, 과부하]
+  policy: No exact Form was found in the complete pinned CSV across all POS. This is a source limitation, not a statement that these Korean words are invalid. No parent ID, reading or definition is invented.
+reading_evidence:
+  status: actual-official-archive-text-assessed
+  source_id: nikl-official-20260819
+  source_url: https://krdict.korean.go.kr/dicBatchDownload?seq=214
+  source_sha256: 7cf41e62a2a36158a8be2b6d2f84c086221e9b29d4345c44e5497eebf21c8c40
+  cached_archive_basename: nikl-20260819-json.zip
+  official_archive_entries: 56555
+  selected_or_requested_parents: 24
+  exact_ordered_definition_matches: 24
+  parents_with_available_citation_text: 24
+  needed_explicit_crosswalks: 0
+  genuine_reading_holds: []
+  policy: >-
+    Existing official_index and match_readings helpers read and hash-check the
+    retained current archive. Every complete ordered Korean definition array
+    for the selected/requested parents matches exactly under the helper's
+    normalization, with a unique same-form/POS candidate. No manual crosswalk
+    is needed; no candidate was selected by spelling alone. Citation text
+    and length/alternative marks below are copied from actual archive fields,
+    not model-generated readings or audio. Parent alone integrates ledgers.
+  parents:
+    ko-nikl-01231: {official_entry_id: '63978', pronunciations: ['손ː상'], source_positions: [1, 2, 3, 4]}
+    ko-nikl-14321: {official_entry_id: '77450', pronunciations: ['접쏙'], source_positions: [1, 2, 3]}
+    ko-nikl-14528: {official_entry_id: '31751', pronunciations: ['정ː비'], source_positions: [1, 2, 3]}
+    ko-nikl-22178: {official_entry_id: '82641', pronunciations: ['틈'], source_positions: [1, 2, 3, 4]}
+    ko-nikl-29263: {official_entry_id: '18856', pronunciations: ['고ː장'], source_positions: [1, 2]}
+    ko-nikl-30169: {official_entry_id: '18189', pronunciations: ['과ː열'], source_positions: [1, 2]}
+    ko-nikl-40620: {official_entry_id: '59198', pronunciations: ['배ː선'], source_positions: [1, 2]}
+    ko-nikl-52390: {official_entry_id: '87753', pronunciations: ['훼ː손'], source_positions: [1, 2]}
+    ko-nikl-10898: {official_entry_id: '72568', pronunciations: ['이음새'], source_positions: [1]}
+    ko-nikl-15389: {official_entry_id: '45648', pronunciations: ['누ː수'], source_positions: [1]}
+    ko-nikl-16422: {official_entry_id: '19908', pronunciations: ['단ː수'], source_positions: [1, 2]}
+    ko-nikl-16449: {official_entry_id: '19936', pronunciations: ['다ː녈'], source_positions: [1]}
+    ko-nikl-16471: {official_entry_id: '41506', pronunciations: ['단ː전'], source_positions: [1]}
+    ko-nikl-22323: {official_entry_id: '82388', pronunciations: ['파ː손'], source_positions: [1]}
+    ko-nikl-23908: {official_entry_id: '83959', pronunciations: ['하ː수구'], source_positions: [1]}
+    ko-nikl-24458: {official_entry_id: '84569', pronunciations: ['합썬'], source_positions: [1]}
+    ko-nikl-26572: {official_entry_id: '15217', pronunciations: ['감ː전'], source_positions: [1]}
+    ko-nikl-31916: {official_entry_id: '35311', pronunciations: ['규녈'], source_positions: [1, 2]}
+    ko-nikl-32568: {official_entry_id: '41380', pronunciations: ['급쑤'], source_positions: [1]}
+    ko-nikl-35090: {official_entry_id: '20356', pronunciations: ['냉ː각'], source_positions: [1, 2]}
+    ko-nikl-35571: {official_entry_id: '24234', pronunciations: ['노ː후'], source_positions: [1]}
+    ko-nikl-35830: {official_entry_id: '51786', pronunciations: ['마모'], source_positions: [1]}
+    ko-nikl-39228: {official_entry_id: '56662', pronunciations: ['밀폐', '밀페'], source_positions: [1]}
+    ko-nikl-40636: {official_entry_id: '59182', pronunciations: ['배수'], source_positions: [1]}
+scope_protection:
+  held_sense_exclusions: [ko-nikl-48419-s001, ko-nikl-22209-s001, ko-nikl-41731-s001, ko-nikl-48777-s001]
+  policy: No old cohort, environmental source admission, reading ledger, source registry, manifest, test or generated file is edited. Other workers' unfinished files are not opened or modified.
+validation:
+  status: structural-source-identity-and-official-text-checks-passed
+  existing_tests:
+    - test_korean_sources
+    - test_korean_program.KoreanSelectionFilesTests
+    - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+    - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+  existing_test_count: 16
+  existing_test_result: passed
+  active_source_correction_count: 1
+  pending_source_correction_count: 3
+  checks:
+    - Exact four-field vocabulary rows and five-field identity records, complete unique membership and labels at most64 characters.
+    - Source positions, original POS/bands, counts, phases, family evidence and the first-core connection case agree with actual data.
+    - Protected source selections, canonical names/categories, environmental families and prior reading holds remain unchanged.
+    - The six retained non-usage CSV cells and complete original arrays match the pinned source for twenty-four absent parents; no definition whitespace changes.
+    - Actual current official archive yields twenty-four unique full-definition matches with nonempty citation text and preserved alternatives.
+    - Active and pending correction interpretations match their exact selected labels and original bilingual source strings.
+    - Sixteen pending parents/eighteen senses compose with fourteen new and two existing families without duplicate selections.
+  limitations: Qualified linguistic/domain review and parent source/manifest integration remain outstanding; no generated views, audio, repair procedures or ledger changes are claimed.
+raw_csv_records:
+  ko-nikl-09152: {"Form": "상수도", "Part of Speech": "명사", "Korean Definition": "['마시거나 사용할 물을 관을 통해 보내 주는 시설.']", "English Definition": "['A facility that uses a pipe and sends out water for certain uses including drinking.  ']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-10898: {"Form": "이음새", "Part of Speech": "명사", "Korean Definition": "['둘 이상의 물체를 이은 상태나 모양새.']", "English Definition": "['A state or shape of joining two or more things together. ']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-15389: {"Form": "누수", "Part of Speech": "명사", "Korean Definition": "['물이 새어 나옴. 또는 새어 나오는 물.']", "English Definition": "['Water leakage or leaking water.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-16420: {"Form": "단수", "Part of Speech": "명사", "Korean Definition": "['바둑, 유도, 태권도 등 단으로 등급을 매기는 운동이나 기술에서 그 단의 수.', '수단이나 술수를 쓰는 정도.']", "English Definition": "[\"A player's level in a sport or skills such as go, judo, taekwondo, etc., measured as a unit of 'dan'.\", 'The level of using tactics or tricks.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-16421: {"Form": "단수", "Part of Speech": "명사", "Korean Definition": "['문법에서, 한 사람이나 사물을 나타내는 말. 또는 그러한 명사를 받는 동사, 형용사, 관형사 등의 형식.']", "English Definition": "['In grammar, a noun meaning a person or a thing, or the form of a verb, adjective, determiner, etc., that comes with this singular noun.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-16422: {"Form": "단수", "Part of Speech": "명사", "Korean Definition": "['물길이 막히거나 물길을 막아 물이 흐르지 못하게 함.', '수돗물의 공급을 끊음.']", "English Definition": "['The state of a waterway being blocked, or the act of blocking a waterway to shut off the water flow. ', 'The act of cutting off the water supply.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-16449: {"Form": "단열", "Part of Speech": "명사", "Korean Definition": "['열이 나가거나 들어오지 않도록 막음.']", "English Definition": "['Prevention of heat from coming in or going out.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-16470: {"Form": "단전", "Part of Speech": "명사", "Korean Definition": "['배꼽 아래 부분.']", "English Definition": "['A body part below the navel.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-16471: {"Form": "단전", "Part of Speech": "명사", "Korean Definition": "['전기의 공급이 끊김. 또는 그렇게 함.']", "English Definition": "['A state in which power supply has been suspended, or an action of suspending power supply.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-22323: {"Form": "파손", "Part of Speech": "명사", "Korean Definition": "['깨어져 못 쓰게 됨. 또는 깨뜨려 못 쓰게 함.']", "English Definition": "['The state of something being broken and useless, or an act of breaking something and making it useless.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-23908: {"Form": "하수구", "Part of Speech": "명사", "Korean Definition": "['빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물이 흘러내려 가도록 만든 도랑.']", "English Definition": "['A ditch for draining out rainwater, or waste water dumped after being used at home, factories, etc. ']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-23909: {"Form": "하수도", "Part of Speech": "명사", "Korean Definition": "['빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물이 흘러가도록 만든 시설.']", "English Definition": "['A facility for draining out rainwater, or waste water dumped after being used at home, factories, etc. ']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-24458: {"Form": "합선", "Part of Speech": "명사", "Korean Definition": "['전류가 흐르는 두 선이 사고로 직접 맞붙는 일.']", "English Definition": "['A state in which two wires with a current are connected to each other by accident. ']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-26572: {"Form": "감전", "Part of Speech": "명사", "Korean Definition": "['전기가 통하고 있는 물체가 몸에 닿아 충격을 받음.']", "English Definition": "['A shock caused by an object with electric currents running through it coming into contact with the human body.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-31916: {"Form": "균열", "Part of Speech": "명사", "Korean Definition": "['사이가 갈라져 틈이 생김. 또는 그런 틈.', '(비유적으로) 사이가 멀어지거나 의견이 서로 달라짐.']", "English Definition": "['A gap made by a split in a given space; or such a gap.', '(figurative) A state of becoming distant or having different opinions.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-32567: {"Form": "급수", "Part of Speech": "명사", "Korean Definition": "['기술의 수준이나 능력의 높고 낮음을 일정한 기준에 따라 나누어 놓은 등급.']", "English Definition": "['Levels of skill or ability that are divided based on certain criteria.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-32568: {"Form": "급수", "Part of Speech": "명사", "Korean Definition": "['물을 공급함.']", "English Definition": "['The act of supplying water.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-35090: {"Form": "냉각", "Part of Speech": "명사", "Korean Definition": "['식어서 차게 됨. 또는 식혀서 차게 함.', '관계나 분위기 등이 가라앉음. 또는 가라앉힘.']", "English Definition": "['The state of getting cool and then cold or frozen; the act of cooling and then freezing something.', 'The state of a good atmosphere or feeling being subdued, or relations deteriorating; the act of making this happen.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-35571: {"Form": "노후", "Part of Speech": "명사", "Korean Definition": "['시설이나 물건 등이 오래되고 낡음.']", "English Definition": "['Facilities or an object being old and shabby from being aged.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-35830: {"Form": "마모", "Part of Speech": "명사", "Korean Definition": "['마찰이 일어난 부분이 닳아서 작아지거나 없어짐.']", "English Definition": "['A state in which a part of something gets smaller or worn out after being repeatedly rubbed against something else.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-39228: {"Form": "밀폐", "Part of Speech": "명사", "Korean Definition": "['빠져나갈 틈이 없이 꼭 막거나 닫음.']", "English Definition": "['The act of closing up or stopping something so that nothing leaks.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-40633: {"Form": "배수", "Part of Speech": "명사", "Korean Definition": "['바다, 강, 호수 등의 물을 뒤에 등지고 있음. 또는 그 물.']", "English Definition": "['The state of having water such as an ocean, river, lake, etc., in the back, or such water.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-40634: {"Form": "배수", "Part of Speech": "명사", "Korean Definition": "['수도관이나 수로를 통해 수돗물을 나누어 보냄.', '논에 물을 댐.']", "English Definition": "['The act of distributing tap water through water pipes or waterways.', 'The act of supplying water to rice paddies.']", "Vocabulary Level": "", "Semantic Category": ""}
+  ko-nikl-40636: {"Form": "배수", "Part of Speech": "명사", "Korean Definition": "['안에 있거나 고여 있는 물을 다른 곳으로 내보냄.']", "English Definition": "['The act of carrying off water that is inside or stagnant to another place.']", "Vocabulary Level": "", "Semantic Category": ""}

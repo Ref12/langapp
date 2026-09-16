@@ -8643,7 +8643,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '18856'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18856
-      pronunciations:
+      pronunciations: &id1498
       - 고ː장
     lexical_identity: ko-lex-29263
     lexical_category: free-lemma
@@ -20672,7 +20672,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '77450'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77450
-      pronunciations:
+      pronunciations: &id1495
       - 접쏙
     lexical_identity: ko-lex-14321
     lexical_category: free-lemma
@@ -134563,7 +134563,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '59198'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59198
-      pronunciations:
+      pronunciations: &id1494
       - 배ː선
     lexical_identity: ko-lex-40620
     lexical_category: free-lemma
@@ -158360,6 +158360,570 @@ items:
       method: authored-interpretation
       review_status: unreviewed
     lexical_identity: ko-lex-30733
+    lexical_category: free-lemma
+  ko-nikl-01231-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1231
+    source_parent: ko-nikl-01231
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The worsening of the quality of something.
+    source_korean: 품질이 나빠짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63978'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63978
+      pronunciations: *id620
+    lexical_identity: ko-lex-01231
+    lexical_category: free-lemma
+  ko-nikl-52390-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52390
+    source_parent: ko-nikl-52390
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: An act of doing damage to something by destroying or breaking it.
+    source_korean: 무너뜨리거나 깨뜨려 상하게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87753'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87753
+      pronunciations: &id1497
+      - 훼ː손
+    lexical_identity: ko-lex-52390
+    lexical_category: free-lemma
+  ko-nikl-30169-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30169
+    source_parent: ko-nikl-30169
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A state of being too hot.
+    source_korean: 지나치게 뜨거워짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18189'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18189
+      pronunciations: &id1496
+      - 과ː열
+    lexical_identity: ko-lex-30169
+    lexical_category: free-lemma
+  ko-nikl-40620-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40620
+    source_parent: ko-nikl-40620
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of connecting wires properly to a variety of electric devices to use power. '
+    source_korean: 전력을 쓰기 위하여 여러 전기 장치에 전선을 알맞게 연결하는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59198'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59198
+      pronunciations: *id1494
+    lexical_identity: ko-lex-40620
+    lexical_category: free-lemma
+  ko-nikl-14321-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14321
+    source_parent: ko-nikl-14321
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The act of connecting by conjunction.
+    source_korean: 서로 맞대어 이음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77450'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77450
+      pronunciations: *id1495
+    lexical_identity: ko-lex-14321
+    lexical_category: free-lemma
+  ko-nikl-14528-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14528
+    source_parent: ko-nikl-14528
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of renovating a flawed system to make it work.
+    source_korean: 흐트러진 체계를 정리하여 제대로 갖춤.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '31751'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=31751
+      pronunciations: *id1294
+    lexical_identity: ko-lex-14528
+    lexical_category: free-lemma
+  ko-nikl-22178-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22178
+    source_parent: ko-nikl-22178
+    source_position: 4
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The distance between people.
+    source_korean: 사람들 사이에 생기는 거리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82641'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82641
+      pronunciations: *id769
+    lexical_identity: ko-lex-22178
+    lexical_category: free-lemma
+  ko-nikl-30169-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30169
+    source_parent: ko-nikl-30169
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A state of being intensified or overly active.
+    source_korean: 지나치게 심해지거나 활발해짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18189'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18189
+      pronunciations: *id1496
+    source_correction:
+      source_korean: 지나치게 심해지거나 활발해짐.
+      source_english: A state of being intensified or overly active.
+      authored_interpretation: becoming excessively intense or active
+      rationale: Preserve change and 지나치게 across both alternatives; mere intensification is not necessarily
+        excessive.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-30169
+    lexical_category: free-lemma
+  ko-nikl-52390-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52390
+    source_parent: ko-nikl-52390
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: An act of doing harm to one's value, name, reputation, etc.
+    source_korean: 가치나 이름, 체면 등을 상하게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87753'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87753
+      pronunciations: *id1497
+    lexical_identity: ko-lex-52390
+    lexical_category: free-lemma
+  ko-nikl-29263-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29263
+    source_parent: ko-nikl-29263
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: (slang) One's body becoming sick or suffering from a disorder.
+    source_korean: (속된 말로) 사람 몸이 아프거나 탈이 생긴 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18856'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18856
+      pronunciations: *id1498
+    lexical_identity: ko-lex-29263
+    lexical_category: free-lemma
+  ko-nikl-10898-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10898
+    source_parent: ko-nikl-10898
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A state or shape of joining two or more things together. '
+    source_korean: 둘 이상의 물체를 이은 상태나 모양새.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72568'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72568
+      pronunciations:
+      - 이음새
+    lexical_identity: ko-lex-11939
+    lexical_category: free-lemma
+  ko-nikl-15389-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15389
+    source_parent: ko-nikl-15389
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Water leakage or leaking water.
+    source_korean: 물이 새어 나옴. 또는 새어 나오는 물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '45648'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=45648
+      pronunciations:
+      - 누ː수
+    lexical_identity: ko-lex-15389
+    lexical_category: free-lemma
+  ko-nikl-16422-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16422
+    source_parent: ko-nikl-16422
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of cutting off the water supply.
+    source_korean: 수돗물의 공급을 끊음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19908'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19908
+      pronunciations:
+      - 단ː수
+    lexical_identity: ko-lex-16422
+    lexical_category: free-lemma
+  ko-nikl-16449-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16449
+    source_parent: ko-nikl-16449
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Prevention of heat from coming in or going out.
+    source_korean: 열이 나가거나 들어오지 않도록 막음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19936'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19936
+      pronunciations:
+      - 다ː녈
+    lexical_identity: ko-lex-16449
+    lexical_category: free-lemma
+  ko-nikl-16471-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16471
+    source_parent: ko-nikl-16471
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A state in which power supply has been suspended, or an action of suspending power
+      supply.
+    source_korean: 전기의 공급이 끊김. 또는 그렇게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41506'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41506
+      pronunciations:
+      - 단ː전
+    lexical_identity: ko-lex-16471
+    lexical_category: free-lemma
+  ko-nikl-22323-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22323
+    source_parent: ko-nikl-22323
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of something being broken and useless, or an act of breaking something and
+      making it useless.
+    source_korean: 깨어져 못 쓰게 됨. 또는 깨뜨려 못 쓰게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82388'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82388
+      pronunciations:
+      - 파ː손
+    lexical_identity: ko-lex-22323
+    lexical_category: free-lemma
+  ko-nikl-23908-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23908
+    source_parent: ko-nikl-23908
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A ditch for draining out rainwater, or waste water dumped after being used at home,
+      factories, etc. '
+    source_korean: 빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물이 흘러내려 가도록 만든 도랑.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83959'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83959
+      pronunciations:
+      - 하ː수구
+    lexical_identity: ko-lex-23906
+    lexical_category: free-lemma
+  ko-nikl-24458-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24458
+    source_parent: ko-nikl-24458
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A state in which two wires with a current are connected to each other by accident. '
+    source_korean: 전류가 흐르는 두 선이 사고로 직접 맞붙는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84569'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84569
+      pronunciations:
+      - 합썬
+    lexical_identity: ko-lex-24458
+    lexical_category: free-lemma
+  ko-nikl-26572-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26572
+    source_parent: ko-nikl-26572
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A shock caused by an object with electric currents running through it coming into
+      contact with the human body.
+    source_korean: 전기가 통하고 있는 물체가 몸에 닿아 충격을 받음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15217'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15217
+      pronunciations:
+      - 감ː전
+    lexical_identity: ko-lex-26572
+    lexical_category: free-lemma
+  ko-nikl-31916-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31916
+    source_parent: ko-nikl-31916
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A gap made by a split in a given space; or such a gap.
+    source_korean: 사이가 갈라져 틈이 생김. 또는 그런 틈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35311'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35311
+      pronunciations: &id1499
+      - 규녈
+    source_correction:
+      source_korean: 사이가 갈라져 틈이 생김. 또는 그런 틈.
+      source_english: A gap made by a split in a given space; or such a gap.
+      authored_interpretation: cracking that creates a gap or the resulting crack
+      rationale: Korean includes formation of a split/gap and its result; English describes the result
+        twice. This does not establish structural failure.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-31916
+    lexical_category: free-lemma
+  ko-nikl-31916-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31916
+    source_parent: ko-nikl-31916
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: (figurative) A state of becoming distant or having different opinions.
+    source_korean: (비유적으로) 사이가 멀어지거나 의견이 서로 달라짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35311'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35311
+      pronunciations: *id1499
+    lexical_identity: ko-lex-31916
+    lexical_category: free-lemma
+  ko-nikl-32568-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32568
+    source_parent: ko-nikl-32568
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of supplying water.
+    source_korean: 물을 공급함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41380'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41380
+      pronunciations:
+      - 급쑤
+    lexical_identity: ko-lex-32568
+    lexical_category: free-lemma
+  ko-nikl-35090-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35090
+    source_parent: ko-nikl-35090
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of getting cool and then cold or frozen; the act of cooling and then freezing
+      something.
+    source_korean: 식어서 차게 됨. 또는 식혀서 차게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '20356'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=20356
+      pronunciations: &id1500
+      - 냉ː각
+    source_correction:
+      source_korean: 식어서 차게 됨. 또는 식혀서 차게 함.
+      source_english: The state of getting cool and then cold or frozen; the act of cooling and then freezing
+        something.
+      authored_interpretation: becoming cold by cooling or making something cold
+      rationale: Korean requires becoming cold through cooling or causing that state, not freezing or
+        a phase change.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-35090
+    lexical_category: free-lemma
+  ko-nikl-35090-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35090
+    source_parent: ko-nikl-35090
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of a good atmosphere or feeling being subdued, or relations deteriorating;
+      the act of making this happen.
+    source_korean: 관계나 분위기 등이 가라앉음. 또는 가라앉힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '20356'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=20356
+      pronunciations: *id1500
+    source_correction:
+      source_korean: 관계나 분위기 등이 가라앉음. 또는 가라앉힘.
+      source_english: The state of a good atmosphere or feeling being subdued, or relations deteriorating;
+        the act of making this happen.
+      authored_interpretation: cooling of relations or a mood, or causing this
+      rationale: Korean does not require a previously good atmosphere or universal deterioration. Preserve
+        cooling/subsiding and its causative alternative.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-35090
+    lexical_category: free-lemma
+  ko-nikl-35571-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35571
+    source_parent: ko-nikl-35571
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Facilities or an object being old and shabby from being aged.
+    source_korean: 시설이나 물건 등이 오래되고 낡음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24234'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24234
+      pronunciations:
+      - 노ː후
+    lexical_identity: ko-lex-35571
+    lexical_category: free-lemma
+  ko-nikl-35830-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35830
+    source_parent: ko-nikl-35830
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A state in which a part of something gets smaller or worn out after being repeatedly
+      rubbed against something else.
+    source_korean: 마찰이 일어난 부분이 닳아서 작아지거나 없어짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '51786'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=51786
+      pronunciations:
+      - 마모
+    lexical_identity: ko-lex-35830
+    lexical_category: free-lemma
+  ko-nikl-39228-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39228
+    source_parent: ko-nikl-39228
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of closing up or stopping something so that nothing leaks.
+    source_korean: 빠져나갈 틈이 없이 꼭 막거나 닫음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56662'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56662
+      pronunciations:
+      - 밀폐
+      - 밀페
+    lexical_identity: ko-lex-39228
+    lexical_category: free-lemma
+  ko-nikl-40636-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40636
+    source_parent: ko-nikl-40636
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of carrying off water that is inside or stagnant to another place.
+    source_korean: 안에 있거나 고여 있는 물을 다른 곳으로 내보냄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59182'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59182
+      pronunciations:
+      - 배수
+    lexical_identity: ko-lex-40636
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
