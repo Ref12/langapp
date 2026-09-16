@@ -1,0 +1,218 @@
+schema_version: 1
+id: ko-environmental-resources
+review_status: original-ai-authored-unreviewed
+status: bounded source-inspected integration complete; overall curriculum remains incomplete
+scope: >
+  A bounded exact-form audit of landscape, water, resources, ecological
+  processes and their genuinely useful common homographs/figurative senses.
+  No periodic-table, species, industry or engineering-procedure catalogue,
+  source-band placement, first-position-only rule or frequency claim.
+  Source evidence and licensed citation readings are not qualified scientific,
+  pedagogical, medical, pragmatic or pronunciation assessment.
+source:
+  baseline: 24d1061
+  mirror_revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  mirror_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  official_archive_sha256: 7cf41e62a2a36158a8be2b6d2f84c086221e9b29d4345c44e5497eebf21c8c40
+  original_records: 53172
+  official_entries: 56555
+  method: >
+    Inspect the actual aligned original Korean/English lists and POS for
+    each named parent; do not split joined reference English or use source
+    usage arrays as sense alignment. Recover all positions of each approved
+    unbanded parent through the existing checksum-verified extractor.
+    The complete unchanged arrays are authoritative in source-senses.yaml,
+    not reconstructed from these shorter teaching labels.
+  support_parent_ids: [ko-nikl-00589, ko-nikl-01625, ko-nikl-05155, ko-nikl-09814, ko-nikl-09815, ko-nikl-15152, ko-nikl-15174, ko-nikl-15250, ko-nikl-15251, ko-nikl-20477, ko-nikl-20478, ko-nikl-21183, ko-nikl-21871, ko-nikl-23461, ko-nikl-23905, ko-nikl-23906, ko-nikl-24690, ko-nikl-24779, ko-nikl-26287, ko-nikl-36154, ko-nikl-40502, ko-nikl-40503, ko-nikl-41090, ko-nikl-42765, ko-nikl-43288, ko-nikl-45621, ko-nikl-46197, ko-nikl-46514, ko-nikl-46598, ko-nikl-47506, ko-nikl-48258, ko-nikl-50327, ko-nikl-51619]
+  support_complete_original_positions: 41
+  namespace: >
+    ko-nikl IDs are original mirror row/position locators, not official
+    dictionary IDs. The two erosion nouns were unbanded in January2024;
+    their newer official advanced bands do not reclassify the original records.
+selection:
+  senses: 51
+  source_parents: 42
+  new_provisional_free_families: 38
+  existing_family_fragments: 4
+  new_bound_or_function_families: 0
+  early_practical: >
+    The real braised-dish noun fills a food-label gap at5. Low/high tide
+    support travel-condition language at7, without tide predictions. The
+    guided assistant and general fishing location support work/leisure at8.
+    These uses are not moved late merely to alter the growth curve.
+  practical_reports: >
+    Document format at15 supports structured work communication. Flooding,
+    submersion, fire-setting and firepower at16 support understanding reports,
+    not enacting them. At17 distinguish water properties, waste, facilities,
+    heat sources and land bordering water. Restoration at18 is unrestricted
+    return to original state/shape, unlike damage-specific protected 복구.
+  general_reader_explanation: >
+    Accumulation at19 supports evidence and experience. Forestry, felling,
+    aquatic production, harvest and resource-rich fisheries at20 support
+    economic/environmental explanation. At21 distinguish habitat action,
+    tides/currents, erosion/weathering/deposition, living regeneration,
+    propagation, common elements and source-bounded nuclear waste.
+    The two heat sources and land/water margins retain independent senses.
+  later_meanings: >
+    General layered accumulation at24 and actual figurative overflowing,
+    emotional outburst, trend flow and external erosion at25 support
+    abstraction. Relative-skill 하수 at26 requires register/context judgment,
+    not labels applied to real learners. Emotional clearing at27 is not
+    proof of a treatment or a guarantee about mental health.
+identity_adjudications:
+  preserved_families: >
+    재생13118 and 정화14745 gain actual missing positions. The transparent
+    서식 plus site element 지 extends protected 서식지09816; actual
+    해수면 adds a sea modifier to physical 수면01680. Preserve their
+    original canonical labels/members and distinct senses without another
+    free base for each modifier or derivation. Do not join document 서식
+    or sleeping 수면 merely because their written forms match.
+  independent_names: >
+    Restore 복원 versus damage-specific 복구, and dirty 오수 versus used/
+    discharged 하수, remain distinct actual lexical names. Semantic overlap
+    alone is not a variant analysis. Selected nominal action/result
+    alternatives and literal/figurative positions do not multiply roots.
+  actual_erosion_origin_evidence:
+    ko-nikl-20477: {official_entry_id: '80794', origin: 侵蝕, homonym_number: '1', source_scope: external weakening or reduction}
+    ko-nikl-20478: {official_entry_id: '80799', origin: 浸蝕, homonym_number: '2', source_scope: natural wearing of land or rock}
+  origin_method: >
+    The exact matched archive bodies were inspected directly: feat.origin
+    and feat.homonym_number supply these values. The reading helper does
+    not itself extract origin. Both entries have 침ː식; equal pronunciation
+    is not evidence that they are one source lexeme. Eating/sleeping20479
+    remains unselected, and no Hanja is assigned to the original mirror.
+  other_homographs: >
+    Distinguish document/dwelling 서식, food/forestation 조림,
+    assistant/tide 조수, lower-skill/sewage 하수, and prevention/fire-setting
+    방화. Artificial propagation 양식46197 is not judgment, Western food,
+    formats/style or sustenance; it explicitly includes mushrooms.
+reading_policy:
+  official_text_selected_senses: 51
+  new_authored_decisions: 0
+  new_crosswalks: 2
+  match_scope: >
+    Forty whole ordered-definition matches and two individually compared
+    same-spelling/POS single-position entries establish actual citation
+    text. No external search, model pronunciation, automatic spelling
+    fallback or reading transferred from an unrelated homograph is used.
+  changed_definitions:
+    ko-nikl-11706:
+      official_entry_id: '72645'
+      original: 산림을 유지 혹은 조성하고 이를 경제적으로 이용하는 사업.
+      current: 산림을 유지 혹은 조성하고 이를 경제적으로 이용하는 산업.
+      assessment: Only business 사업 becomes industry 산업; forest establishment/maintenance and economic use remain the same.
+    ko-nikl-46598:
+      official_entry_id: '67140'
+      original: 바다나 강에 사는 생물을 잡거나 캐냄. 또는 그 생물.
+      current: 바다나 강에 사는 생물을 잡거나 채취함. 또는 그 생물.
+      assessment: The corresponding harvest/catch entry replaces digging out with collecting; use citation text without broadening the original teaching sense.
+  examples: >
+    Preserve 범ː남, 보권, 이멉, 질쏘, 축쩍 and 여난 from actual text.
+    Retain both 퇴적/퉤적, 어획/어훽 and 핵폐기물/핵페기물 alternatives.
+    Document-format 서식 versus dwelling 서ː식, food 조림 versus forest
+    조ː림, assistant 조ː수 versus tide 조수, and prevention 방화 versus
+    fire-setting 방ː화 retain the supplied length marks. These dictionary
+    distinctions are not uniformly realized by modern speakers or assessed
+    by a text exercise. Six earlier pronunciation holds remain untouched.
+source_correction_requests:
+  ko-nikl-01979-s001:
+    source_korean: 온도, 맑고 흐림, 빛깔, 비중, 어떤 물질이나 세균이 포함된 양 등에 따라 결정되는 물의 성질.
+    source_english: 'A property of water determined by its temperature, cleanness or murkiness, color, proportion, the amount of a substance or germ, etc.  '
+    authored_interpretation: water quality by temperature, clarity, density and contents
+    rationale: 비중 is relative density/specific gravity here, not an unspecified arithmetic proportion. Preserve the complete physical and constituent criteria in the raw source; no potable-water judgment follows.
+  ko-nikl-06961-s002:
+    source_korean: 쌓였던 감정이 한꺼번에 터져 나옴.
+    source_english: An unrestrained expression of a deep-rooted emotion.
+    authored_interpretation: a sudden burst of accumulated feelings
+    rationale: 쌓였던 describes accumulated feelings; it does not require the English suggestion that their cause is deep-rooted. 한꺼번에 supplies the simultaneous burst.
+  ko-nikl-13118-s001:
+    source_korean: 죽게 되었다가 다시 살아남.
+    source_english: The act of dying and being brought back to life.
+    authored_interpretation: reviving after being at the point of death
+    rationale: 죽게 되었다가 does not require asserting medically established death followed by reversal. Keep revival from the point of death separate from the original recycling, playback and body-part-regrowth positions; no intervention or outcome is endorsed.
+  ko-nikl-21871-s002:
+    source_korean: 흙이나 죽은 생물의 뼈 등이 물이나 바람, 빙하 등에 의해 운반되어 일정한 곳에 쌓이는 일.
+    source_english: The state of a substance such as soil, the bones of dead creatures, etc., being delivered by streaming water, wind, an iceberg, etc., and being stacked in a certain place.
+    authored_interpretation: deposition of material carried by water, wind or glaciers
+    rationale: 빙하 denotes glaciers, not the English iceberg. Preserve transport followed by deposition and the source material examples, not an invented separate sediment-material sense.
+  ko-nikl-26287-s001:
+    source_korean: 바다에서 바닷물이 빠져나가 바닷물의 높이가 가장 낮아진 상태.
+    source_english: The natural phenomenon in which the surface of the ocean falls to its lowest level due to the flood tide, or such a time.
+    authored_interpretation: low tide; the sea at its lowest level as water recedes
+    rationale: The Korean describes receding water and its lowest state, not flood tide. Unlike 만조, this Korean position does not separately list the time; preserve that distinction without providing a local prediction.
+  ko-nikl-42765-s002:
+    source_korean: 땅의 표면에서 햇볕을 받아 나는 열.
+    source_english: Hot air rising from the surface of ground that has been heated by sunlight.
+    authored_interpretation: heat at the ground surface produced by sunlight
+    rationale: The Korean names heat from sunlight at the ground surface, not necessarily air or its upward movement. This is distinct from the internal-earth heat in position001.
+explicit_deferrals:
+  source_science_review:
+    ko-nikl-40359-s001: >
+      The radiation definition in BOTH languages groups alpha and beta
+      emissions with electromagnetic waves. Do not import that physical
+      classification or silently replace the pinned definition. A qualified
+      source/physics review is required; no supplemental source or position
+      was invented to fill this gap.
+    ko-nikl-37938-s001: >
+      The inorganic-material source defines nonliving matter, with water,
+      soil and air as examples. That is not a reliable modern organic/
+      inorganic classification. Preserve the unselected source observation
+      rather than call all nonliving material chemically inorganic.
+    ko-nikl-50134-s001: >
+      The organic-material Korean frames formation inside living bodies
+      through 생명력, while English adds continuously and tenaciously.
+      Neither supports a universal modern chemical definition. Do not
+      manufacture one or silently repair the original source.
+    ko-nikl-15153-s001: >
+      The algae homograph describes aquatic photosynthetic plants without
+      flowers, reproducing by spores. Its scope needs qualified modern
+      biological review, not a guessed new organism-category definition.
+      It is not selected as a substitute for current15152 or an absent
+      bird-class position.
+  lower_priority_or_outside_scope:
+    - ko-nikl-14746-s001
+    - ko-nikl-14746-s002
+    - ko-nikl-15173-s002
+    - ko-nikl-20479-s001
+    - ko-nikl-46194-s001
+    - ko-nikl-48257-s001
+  explanation: >
+    Unrelated quintessence, eating/sleeping, Western lifestyle and daytime
+    sleep are not added merely because they share the named spelling.
+    The braised-food compound-forming position does not add another free
+    headword. Source comparisons are not automatic admission requests.
+  exact_forms_absent: [남획, 대기질, 오염원, 태양광, 화석연료]
+  absence_limit: These exact-form observations concern the pinned mirror, not all spelling variants, compound spacing, newer sources or the availability of the concepts in Korean.
+resulting_coverage:
+  core_dictionary_parents: 5511
+  core_senses: 7891
+  core_distinct_spellings: 5192
+  core_spelling_pos_pairs: 5301
+  core_lexical_identities: 5258
+  core_provisional_free_families: 4995
+  core_bound_forms: 40
+  core_function_items: 223
+  core_official_text_reading_senses: 7635
+  core_authored_unreviewed_reading_senses: 256
+  selected_pool_senses: 8017
+  selected_pool_provisional_free_families: 5051
+  retained_support_parents: 958
+  selected_support_parents: 954
+  reading_crosswalks: 407
+  authored_reading_decisions: 210
+  exact_source_interpretations: 188
+  core_modules: 770
+  lower_guide_free_family_gap: 805
+validation:
+  combined_course_tourist_source_tests: 152
+  prior_object_comparison: Every earlier raw source parent, official overlay entry, reading decision and crosswalk equals its baseline object.
+  source_admission: Thirty-three complete original unbanded parents add forty-one unchanged positions; no extra source row or sense was synthesized.
+  reading_boundary: All fifty-one selected readings are actual official text; the authored decision ledger is unchanged.
+  scope: Structural and source validation is not scientific, medical, linguistic, pedagogical or audio assessment.
+boundaries: >
+  No handling or burning procedure, legal conclusion, radiation safety claim,
+  medical therapy, tide timetable or access assurance follows from vocabulary.
+  Lexical identities and adapted labels are provisional and unreviewed.
+  The overall core-breadth and later-growth assignment remains incomplete;
+  neither dictionary counts nor completion of these lessons establishes
+  listening, speaking, examination readiness or independent professional use.

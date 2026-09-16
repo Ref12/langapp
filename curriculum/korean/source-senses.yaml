@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 925
+  unbanded-support: 958
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -2276,6 +2276,18 @@ entries:
     source_position: 1
     english: A prefix used to mean small-sized.
     korean: '''작은''의 뜻을 더하는 접두사.'
+- id: ko-nikl-00589
+  target: 소각
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=589
+  senses:
+  - id: ko-nikl-00589-s001
+    source_position: 1
+    english: The act of eliminating by burning with fire.
+    korean: 불에 태워 없앰.
 - id: ko-nikl-00595
   target: 소감
   part_of_speech: noun
@@ -5152,6 +5164,18 @@ entries:
     source_position: 1
     english: 'Extremely beautiful. '
     korean: 뛰어나게 아름답다.
+- id: ko-nikl-01625
+  target: 수력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1625
+  senses:
+  - id: ko-nikl-01625-s001
+    source_position: 1
+    english: The power generated when water flows or falls.
+    korean: 물이 흐르거나 떨어질 때 발생하는 힘.
 - id: ko-nikl-01633
   target: 수렴
   part_of_speech: noun
@@ -18897,6 +18921,22 @@ entries:
     source_position: 1
     english: Wide, flat, open land with no fences, etc.
     korean: 사방으로 펼쳐진 넓고 평평한 땅.
+- id: ko-nikl-05155
+  target: 범람
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5155
+  senses:
+  - id: ko-nikl-05155-s001
+    source_position: 1
+    english: An overflowing of a river, stream, etc.
+    korean: 강이나 개천 등의 물이 흘러넘침.
+  - id: ko-nikl-05155-s002
+    source_position: 2
+    english: A state in which an undesirable power, goods, etc., forms and prevails.
+    korean: 바람직하지 못한 세력이나 물건 등이 마구 생겨 나와 널리 퍼짐.
 - id: ko-nikl-05176
   target: 범위
   part_of_speech: noun
@@ -35596,6 +35636,30 @@ entries:
     source_position: 1
     english: Without hesitation in one's remark or behavior.
     korean: 말이나 행동에 망설임이나 막힘이 없이.
+- id: ko-nikl-09814
+  target: 서식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9814
+  senses:
+  - id: ko-nikl-09814-s001
+    source_position: 1
+    english: A way of writing a formatted document.
+    korean: 일정한 형식을 갖춘 서류를 쓰는 방식.
+- id: ko-nikl-09815
+  target: 서식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9815
+  senses:
+  - id: ko-nikl-09815-s001
+    source_position: 1
+    english: A living thing dwelling in a place.
+    korean: 생물이 어떤 곳에 보금자리를 만들어 삶.
 - id: ko-nikl-09816
   target: 서식지
   part_of_speech: noun
@@ -55189,6 +55253,22 @@ entries:
     english: A law enacted by a local government in connection with municipal affairs after clearing the
       council.
     korean: 지방 자치 단체가 그 지방의 사무와 관련하여 지방 의회의 회의를 거쳐 정한 법.
+- id: ko-nikl-15152
+  target: 조류
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15152
+  senses:
+  - id: ko-nikl-15152-s001
+    source_position: 1
+    english: The flow of ocean currents caused by the ebb and tide.
+    korean: 밀물과 썰물 때문에 생기는 바닷물의 흐름.
+  - id: ko-nikl-15152-s002
+    source_position: 2
+    english: The development in trends that occurs with the passage of time.
+    korean: 시대에 따른 경향의 흐름.
 - id: ko-nikl-15154
   target: 조르다
   part_of_speech: verb
@@ -55270,6 +55350,18 @@ entries:
     source_position: 2
     english: A word meaning braised dish.
     korean: 조린 음식의 뜻을 나타내는 말.
+- id: ko-nikl-15174
+  target: 조림
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15174
+  senses:
+  - id: ko-nikl-15174-s001
+    source_position: 1
+    english: The act of planting trees or sowing seeds to build or enhance a forest.
+    korean: 나무를 심거나 씨를 뿌려 숲을 가꾸거나 새로 만듦.
 - id: ko-nikl-15175
   target: 조립
   part_of_speech: noun
@@ -55488,6 +55580,31 @@ entries:
     source_position: 1
     english: A levy imposed by a nation or local government on its people to finance necessary expenditures.
     korean: 국가나 지방 공공 단체가 필요한 경비로 사용하기 위해 국민으로부터 강제로 거두어들이는 돈.
+- id: ko-nikl-15250
+  target: 조수
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15250
+  senses:
+  - id: ko-nikl-15250-s001
+    source_position: 1
+    english: A person who assists and learns from a director or supervisor.
+    korean: 감독이나 책임자 밑에서 지도를 받으면서 그 일을 도와주는 사람.
+- id: ko-nikl-15251
+  target: 조수
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15251
+  senses:
+  - id: ko-nikl-15251-s001
+    source_position: 1
+    english: The seawater that flows in and out from the shore periodically due to the gravitational pull
+      of the sun and moon.
+    korean: 해와 달의 인력 때문에 주기적으로 밀려들었다가 빠져나가는 바닷물.
 - id: ko-nikl-15261
   target: 조심
   part_of_speech: noun
@@ -74186,6 +74303,31 @@ entries:
     source_position: 1
     english: The state of being submerged in water.
     korean: 물에 잠김.
+- id: ko-nikl-20477
+  target: 침식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20477
+  senses:
+  - id: ko-nikl-20477-s001
+    source_position: 1
+    english: 'The state of power, range, etc., becoming weak or being reduced, due to an external influence. '
+    korean: 외부의 영향으로 세력이나 범위 등이 약해지거나 줄어듦.
+- id: ko-nikl-20478
+  target: 침식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20478
+  senses:
+  - id: ko-nikl-20478-s001
+    source_position: 1
+    english: An act of such a natural phenomenon as rain, a stream, wind, etc., wearing down land, stone,
+      etc.
+    korean: 비, 하천, 빙하, 바람 등의 자연 현상이 땅이나 돌 등을 깎는 일.
 - id: ko-nikl-20485
   target: 침실
   part_of_speech: noun
@@ -76174,6 +76316,18 @@ entries:
     source_position: 2
     english: A sound of great admiration.
     korean: 몹시 감탄하는 소리.
+- id: ko-nikl-21183
+  target: 탄소
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21183
+  senses:
+  - id: ko-nikl-21183-s001
+    source_position: 1
+    english: A major component of charcoal or coal.
+    korean: 숯이나 석탄의 주된 구성 원소.
 - id: ko-nikl-21184
   target: 탄수화물
   part_of_speech: noun
@@ -78278,6 +78432,24 @@ entries:
     source_position: 3
     english: During a sports game, an act of a player leaving the game, due to a foul, injury, etc.
     korean: 경기 중에 선수가 반칙이나 부상 등으로 물러남.
+- id: ko-nikl-21871
+  target: 퇴적
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21871
+  senses:
+  - id: ko-nikl-21871-s001
+    source_position: 1
+    english: The state of a large amount of something being stacked in layers; or an act of stacking a
+      large amount of something in layers.
+    korean: 많이 겹쳐져 쌓임. 또는 많이 겹쳐 쌓음.
+  - id: ko-nikl-21871-s002
+    source_position: 2
+    english: The state of a substance such as soil, the bones of dead creatures, etc., being delivered
+      by streaming water, wind, an iceberg, etc., and being stacked in a certain place.
+    korean: 흙이나 죽은 생물의 뼈 등이 물이나 바람, 빙하 등에 의해 운반되어 일정한 곳에 쌓이는 일.
 - id: ko-nikl-21880
   target: 퇴직
   part_of_speech: noun
@@ -83992,6 +84164,19 @@ entries:
     source_position: 2
     english: (figurative) Rules or conditions, as the foundation of something.
     korean: (비유적으로) 어떤 일의 바탕이 되는 제도나 조건.
+- id: ko-nikl-23461
+  target: 풍화
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23461
+  senses:
+  - id: ko-nikl-23461-s001
+    source_position: 1
+    english: The gradual change of a rock on the Earth's surface, in which it is cracked and broken little
+      by little, from being exposed to the sunlight, air, water, organisms, etc.
+    korean: 지구 표면에 있는 암석이 햇빛, 공기, 물, 생물 등의 작용으로 조금씩 깨지고 부서지는 일.
 - id: ko-nikl-23470
   target: 프라이팬
   part_of_speech: noun
@@ -85332,6 +85517,36 @@ entries:
     english: The act of describing one's situation, such as unfair treatment, pitiable circumstances,
       etc., plaintively to someone.
     korean: 억울하고 딱한 사정 등을 다른 사람에게 간절하게 말함.
+- id: ko-nikl-23905
+  target: 하수
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23905
+  senses:
+  - id: ko-nikl-23905-s001
+    source_position: 1
+    english: 'A state of being below another in a certain skill or ability; or a person with such a skill
+      or ability. '
+    korean: 남보다 낮은 솜씨나 실력. 또는 그런 솜씨나 실력을 가진 사람.
+- id: ko-nikl-23906
+  target: 하수
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23906
+  senses:
+  - id: ko-nikl-23906-s001
+    source_position: 1
+    english: Rainwater, or waste water dumped after being used at home, factories, etc.
+    korean: 빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물.
+  - id: ko-nikl-23906-s002
+    source_position: 2
+    english: A facility for draining out rainwater, or waste water dumped after being used at  home, factories,
+      etc.
+    korean: 빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물이 흘러가도록 만든 시설.
 - id: ko-nikl-23911
   target: 하숙
   part_of_speech: noun
@@ -88289,6 +88504,18 @@ entries:
     source_position: 2
     english: An act of breaking up a certain group or organization and making it disappear.
     korean: 어떤 단체나 조직 등을 없애 버림.
+- id: ko-nikl-24690
+  target: 해수면
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24690
+  senses:
+  - id: ko-nikl-24690-s001
+    source_position: 1
+    english: 'The surface of the sea. '
+    korean: 바닷물의 표면.
 - id: ko-nikl-24691
   target: 해수욕
   part_of_speech: noun
@@ -88633,6 +88860,19 @@ entries:
     source_position: 1
     english: 'Being the central or most important part of something. '
     korean: 가장 중심이 되거나 중요한.
+- id: ko-nikl-24779
+  target: 핵폐기물
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24779
+  senses:
+  - id: ko-nikl-24779-s001
+    source_position: 1
+    english: 'The residual substance that remains radioactive and is dumped after nuclear energy is generated
+      through nuclear reactions or nuclear decay. '
+    korean: 핵반응이나 핵붕괴로 원자력을 얻은 뒤에 버리는, 방사능이 남아 있는 찌꺼기 물질.
 - id: ko-nikl-24781
   target: 핸드백
   part_of_speech: noun
@@ -94122,6 +94362,19 @@ entries:
     source_position: 1
     english: Being indirectly affected, not at the center of an event or situation.
     korean: 중간에 다른 것을 통해 이어지는.
+- id: ko-nikl-26287
+  target: 간조
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26287
+  senses:
+  - id: ko-nikl-26287-s001
+    source_position: 1
+    english: The natural phenomenon in which the surface of the ocean falls to its lowest level due to
+      the flood tide, or such a time.
+    korean: 바다에서 바닷물이 빠져나가 바닷물의 높이가 가장 낮아진 상태.
 - id: ko-nikl-26288
   target: 간주
   part_of_speech: noun
@@ -127639,6 +127892,19 @@ entries:
     source_position: 2
     english: 'A state of being completely satisfied without lacking anything. '
     korean: 부족한 것 없이 아주 만족할 만한 정도나 상태.
+- id: ko-nikl-36154
+  target: 만조
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36154
+  senses:
+  - id: ko-nikl-36154-s001
+    source_position: 1
+    english: The natural phenomenon in which the surface of the ocean rises to its highest level due to
+      the flood tide, or such a time.
+    korean: 밀물이 들어와 바다의 수면이 가장 높은 곳까지 올라오는 현상. 또는 그런 때.
 - id: ko-nikl-36155
   target: 만족
   part_of_speech: noun
@@ -141313,6 +141579,30 @@ entries:
     source_position: 2
     english: 'A direction toward which a certain thing advances to reach a goal. '
     korean: 어떤 일이 일정한 목표를 향하여 나아가는 쪽.
+- id: ko-nikl-40502
+  target: 방화
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40502
+  senses:
+  - id: ko-nikl-40502-s001
+    source_position: 1
+    english: 'An act of preventing a fire before it happens. '
+    korean: 불이 나는 것을 미리 막음.
+- id: ko-nikl-40503
+  target: 방화
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40503
+  senses:
+  - id: ko-nikl-40503-s001
+    source_position: 1
+    english: The act of setting fire intentionally.
+    korean: 일부러 불을 지름.
 - id: ko-nikl-40507
   target: 방황
   part_of_speech: noun
@@ -142865,6 +143155,18 @@ entries:
     source_position: 3
     english: To spread out or open something that is closed.
     korean: 오므라져 있는 것을 펴지거나 열리게 하다.
+- id: ko-nikl-41090
+  target: 벌목
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41090
+  senses:
+  - id: ko-nikl-41090-s001
+    source_position: 1
+    english: The work or business of cutting down trees in a mountain or forest.
+    korean: 산이나 숲에 있는 나무를 벰.
 - id: ko-nikl-41097
   target: 벌써
   part_of_speech: adverb
@@ -148570,6 +148872,22 @@ entries:
     source_position: 1
     english: An instance of something taking longer than expected or dragging on.
     korean: 일이 예정보다 오래 걸리거나 시간이 늦추어짐.
+- id: ko-nikl-42765
+  target: 지열
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42765
+  senses:
+  - id: ko-nikl-42765-s001
+    source_position: 1
+    english: The internal heat of the earth.
+    korean: 지구 안에 원래 있는 열.
+  - id: ko-nikl-42765-s002
+    source_position: 2
+    english: Hot air rising from the surface of ground that has been heated by sunlight.
+    korean: 땅의 표면에서 햇볕을 받아 나는 열.
 - id: ko-nikl-42769
   target: 지옥
   part_of_speech: noun
@@ -150384,6 +150702,19 @@ entries:
     english: A state in which people or things are well organized without any confusion, or rules to be
       kept in order to avoid confusion.
     korean: 사람들이나 물건들이 혼란스럽지 않게 정돈되어 있는 모습. 또는 그러기 위하여 지켜야 하는 규칙.
+- id: ko-nikl-43288
+  target: 질소
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43288
+  senses:
+  - id: ko-nikl-43288-s001
+    source_position: 1
+    english: An element that constitutes nearly 78% of the air, occurring as a colorless, odorless, and
+      tasteless gas at room temperature.
+    korean: 상온에서 기체 상태로 존재하며 공기의 약 78%를 이루는, 색깔이나 냄새, 맛이 없는 원소.
 - id: ko-nikl-43289
   target: 질시
   part_of_speech: noun
@@ -157538,6 +157869,19 @@ entries:
     source_position: 1
     english: To make the number, volume, size, etc., smaller.
     korean: 수량, 부피, 규모 등을 줄여서 작게 하다.
+- id: ko-nikl-45621
+  target: 축적
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45621
+  senses:
+  - id: ko-nikl-45621-s001
+    source_position: 1
+    english: An act of gathering and piling up knowledge, experience, money, etc., or that which has been
+      accumulated in such a way.
+    korean: 지식, 경험, 돈 등을 모아서 쌓음. 또는 모아서 쌓은 것.
 - id: ko-nikl-45626
   target: 축제
   part_of_speech: noun
@@ -159548,6 +159892,18 @@ entries:
     english: An expression method or form of works of art, architectures, etc., which is peculiar to a
       certain era or group.
     korean: 시대나 부류에 따라 독특하게 나타나는, 예술 작품이나 건축물 등의 표현 방법이나 형식.
+- id: ko-nikl-46197
+  target: 양식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46197
+  senses:
+  - id: ko-nikl-46197-s001
+    source_position: 1
+    english: An artificial breeding and propagating of fish, laver, seaweed, mushroom, etc.
+    korean: 물고기, 김, 미역, 버섯 등을 인공적으로 길러서 번식하게 함.
 - id: ko-nikl-46198
   target: 양식
   part_of_speech: noun
@@ -160870,6 +161226,22 @@ entries:
     source_position: 1
     english: Being dumbfounded due to an extremely unexpected occurrence.
     korean: 너무 뜻밖의 일을 당해서 기가 막히는 듯하다.
+- id: ko-nikl-46514
+  target: 어장
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46514
+  senses:
+  - id: ko-nikl-46514-s001
+    source_position: 1
+    english: A place where one goes fishing.
+    korean: 고기잡이를 하는 곳.
+  - id: ko-nikl-46514-s002
+    source_position: 2
+    english: A place where there are abundant marine resources and people can engage in fisheries.
+    korean: 풍부한 수산 자원이 있고 어업을 할 수 있는 곳.
 - id: ko-nikl-46516
   target: 어저께
   part_of_speech: noun
@@ -161296,6 +161668,18 @@ entries:
     source_position: 2
     english: 'The act of learning a foreign language, or speaking or writing in a foreign language. '
     korean: 외국어를 배우거나 말하고 쓰는 것.
+- id: ko-nikl-46598
+  target: 어획
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46598
+  senses:
+  - id: ko-nikl-46598-s001
+    source_position: 1
+    english: 'An act of catching or digging out life in the sea or river, or the thing caught. '
+    korean: 바다나 강에 사는 생물을 잡거나 캐냄. 또는 그 생물.
 - id: ko-nikl-46601
   target: 어휘
   part_of_speech: noun
@@ -164881,6 +165265,22 @@ entries:
     source_position: 1
     english: To do something repeatedly in order to be good at it.
     korean: 무엇을 잘할 수 있도록 반복하여 익히다.
+- id: ko-nikl-47506
+  target: 연안
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47506
+  senses:
+  - id: ko-nikl-47506-s001
+    source_position: 1
+    english: Land bordered by the sea, rivers, lakes, etc.
+    korean: 바다, 강, 호수 등과 닿아 있는 땅.
+  - id: ko-nikl-47506-s002
+    source_position: 2
+    english: 'The edge of the sea, rivers, lakes, etc., bordered by land. '
+    korean: 땅과 닿아 있는 바다, 강, 호수 등의 물가.
 - id: ko-nikl-47507
   target: 연애
   part_of_speech: noun
@@ -168024,6 +168424,18 @@ entries:
     english: A word used only by a girl to refer to or address endearingly another male who is older than
       she.
     korean: 여자가 자기보다 나이 많은 남자를 다정하게 이르거나 부르는 말.
+- id: ko-nikl-48258
+  target: 오수
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48258
+  senses:
+  - id: ko-nikl-48258-s001
+    source_position: 1
+    english: Filthy water.
+    korean: 더러운 물.
 - id: ko-nikl-48266
   target: 오십
   part_of_speech: numeral
@@ -174555,6 +174967,18 @@ entries:
     source_position: 1
     english: A wide-spread, groundless rumor.
     korean: 확실한 근거 없이 퍼진 소문.
+- id: ko-nikl-50327
+  target: 유역
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50327
+  senses:
+  - id: ko-nikl-50327-s001
+    source_position: 1
+    english: The area near a river, which is influenced by it.
+    korean: 강의 영향을 받는 강의 주변 지역.
 - id: ko-nikl-50328
   target: 유연성
   part_of_speech: noun
@@ -176944,6 +177368,22 @@ entries:
     source_position: 4
     english: Having a lot of great experiences in one's career.
     korean: 경력 등이 아주 많고 대단하다.
+- id: ko-nikl-51619
+  target: 화력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51619
+  senses:
+  - id: ko-nikl-51619-s001
+    source_position: 1
+    english: The power of heat when fire burns.
+    korean: 불이 탈 때에 내는 열의 힘.
+  - id: ko-nikl-51619-s002
+    source_position: 2
+    english: The power and capacity of weapons such as guns, cannons, bombs, etc.
+    korean: 총, 포, 폭탄 등의 무기의 힘과 성능.
 - id: ko-nikl-51625
   target: 화면
   part_of_speech: noun

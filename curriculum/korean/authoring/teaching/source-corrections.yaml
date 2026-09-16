@@ -5,6 +5,36 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-01979-s001:
+    source_korean: 온도, 맑고 흐림, 빛깔, 비중, 어떤 물질이나 세균이 포함된 양 등에 따라 결정되는 물의 성질.
+    source_english: 'A property of water determined by its temperature, cleanness or murkiness, color, proportion, the amount of a substance or germ, etc.  '
+    authored_interpretation: water quality by temperature, clarity, density and contents
+    rationale: 비중 is relative density/specific gravity here, not an unspecified arithmetic proportion. Preserve the complete physical and constituent criteria in the raw source; no potable-water judgment follows.
+  ko-nikl-06961-s002:
+    source_korean: 쌓였던 감정이 한꺼번에 터져 나옴.
+    source_english: An unrestrained expression of a deep-rooted emotion.
+    authored_interpretation: a sudden burst of accumulated feelings
+    rationale: 쌓였던 describes accumulated feelings; it does not require the English suggestion that their cause is deep-rooted. 한꺼번에 supplies the simultaneous burst.
+  ko-nikl-13118-s001:
+    source_korean: 죽게 되었다가 다시 살아남.
+    source_english: The act of dying and being brought back to life.
+    authored_interpretation: reviving after being at the point of death
+    rationale: 죽게 되었다가 does not require asserting medically established death followed by reversal. Keep revival from the point of death separate from the original recycling, playback and body-part-regrowth positions; no intervention or outcome is endorsed.
+  ko-nikl-21871-s002:
+    source_korean: 흙이나 죽은 생물의 뼈 등이 물이나 바람, 빙하 등에 의해 운반되어 일정한 곳에 쌓이는 일.
+    source_english: The state of a substance such as soil, the bones of dead creatures, etc., being delivered by streaming water, wind, an iceberg, etc., and being stacked in a certain place.
+    authored_interpretation: deposition of material carried by water, wind or glaciers
+    rationale: 빙하 denotes glaciers, not the English iceberg. Preserve transport followed by deposition and the source material examples, not an invented separate sediment-material sense.
+  ko-nikl-26287-s001:
+    source_korean: 바다에서 바닷물이 빠져나가 바닷물의 높이가 가장 낮아진 상태.
+    source_english: The natural phenomenon in which the surface of the ocean falls to its lowest level due to the flood tide, or such a time.
+    authored_interpretation: low tide; the sea at its lowest level as water recedes
+    rationale: The Korean describes receding water and its lowest state, not flood tide. Unlike 만조, this Korean position does not separately list the time; preserve that distinction without providing a local prediction.
+  ko-nikl-42765-s002:
+    source_korean: 땅의 표면에서 햇볕을 받아 나는 열.
+    source_english: Hot air rising from the surface of ground that has been heated by sunlight.
+    authored_interpretation: heat at the ground surface produced by sunlight
+    rationale: The Korean names heat from sunlight at the ground surface, not necessarily air or its upward movement. This is distinct from the internal-earth heat in position001.
   ko-nikl-39951-s001:
     source_korean: 일정한 이야기 줄거리가 있고 주로 고전 음악 반주에 맞추어 무대에서 추는, 유럽에서 발생한 무용.
     source_english: A dance that originated in Europe, which has a certain plot and is performed on the stage to classical music.

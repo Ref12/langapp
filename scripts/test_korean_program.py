@@ -788,6 +788,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "practical-descriptors-notes.yaml",
             "financial-exchanges-notes.yaml",
             "culture-loanwords-notes.yaml",
+            "environmental-resources-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -2967,6 +2968,106 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("unassessed", decisions["ko-nikl-48342"]["reason"])
         self.assertIn("ㄹ+ㄹ", decisions["ko-nikl-39951"]["reason"])
         self.assertIn("unreleased", decisions["ko-nikl-20975"]["reason"])
+
+    def test_environmental_homographs_do_not_merge_on_spelling_or_reading(self):
+        identities, words = self.references.lexical_identity, self.references.vocabulary
+        for first, second in (
+            ("09814", "09815"), ("15173", "15174"), ("15250", "15251"),
+            ("20477", "20478"), ("23905", "23906"), ("40502", "40503"),
+        ):
+            self.assertNotEqual(identities[f"ko-nikl-{first}-s001"], identities[f"ko-nikl-{second}-s001"])
+        for parent in ("46193", "46195", "46196", "46198"):
+            self.assertNotEqual(identities["ko-nikl-46197-s001"], identities[f"ko-nikl-{parent}-s001"])
+        self.assertEqual(words["ko-nikl-20477-s001"]["pr"], words["ko-nikl-20478-s001"]["pr"])
+        notes = load_yaml(self.root / "authoring" / "teaching" / "environmental-resources-notes.yaml")
+        origins = notes["identity_adjudications"]["actual_erosion_origin_evidence"]
+        self.assertEqual(origins["ko-nikl-20477"]["origin"], "侵蝕")
+        self.assertEqual(origins["ko-nikl-20478"]["origin"], "浸蝕")
+        self.assertIn("outside influence", words["ko-nikl-20477-s001"]["ds"])
+        self.assertIn("land or rock", words["ko-nikl-20478-s001"]["ds"])
+
+    def test_environmental_polysemy_and_actual_derivations_preserve_family_breadth(self):
+        identities = self.references.lexical_identity
+        for parent in ("05155", "06961", "13118", "14745", "15152", "21871", "23906",
+                       "42765", "46514", "47506", "51619"):
+            self.assertEqual(identities[f"ko-nikl-{parent}-s001"], identities[f"ko-nikl-{parent}-s002"])
+        for position in (3, 4):
+            self.assertEqual(identities["ko-nikl-13118-s001"],
+                             identities[f"ko-nikl-13118-s{position:03d}"])
+        self.assertEqual(identities["ko-nikl-09815-s001"], identities["ko-nikl-09816-s001"])
+        self.assertEqual(identities["ko-nikl-24690-s001"], identities["ko-nikl-01680-s001"])
+        self.assertNotEqual(identities["ko-nikl-24690-s001"], identities["ko-nikl-01681-s001"])
+        self.assertNotEqual(identities["ko-nikl-06009-s001"], identities["ko-nikl-05944-s001"])
+        self.assertNotEqual(identities["ko-nikl-48258-s001"], identities["ko-nikl-23906-s001"])
+
+    def test_environmental_resource_scope_does_not_add_technical_or_health_claims(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("mushrooms", words["ko-nikl-46197-s001"]["ds"])
+        self.assertIn("economic use", words["ko-nikl-11706-s001"]["ds"])
+        self.assertIn("abundant", words["ko-nikl-46514-s002"]["ds"])
+        self.assertNotIn("abundant", words["ko-nikl-46514-s001"]["ds"])
+        self.assertIn("or the catch", words["ko-nikl-46598-s001"]["ds"])
+        self.assertIn("캐냄", sources["ko-nikl-46598-s001"]["source_korean"])
+        self.assertIn("rainwater", words["ko-nikl-23906-s001"]["ds"])
+        self.assertIn("facility", words["ko-nikl-23906-s002"]["ds"])
+        self.assertEqual(words["ko-nikl-24690-s001"]["ds"], "the surface of the sea")
+        self.assertIn("river or a lake", words["ko-nikl-47506-s001"]["ds"])
+        self.assertIn("river or lake", words["ko-nikl-47506-s002"]["ds"])
+        self.assertIn("지도를 받으면서", sources["ko-nikl-15250-s001"]["source_korean"])
+        self.assertIn("guidance", words["ko-nikl-15250-s001"]["ds"])
+        self.assertIn("lower skill than another", words["ko-nikl-23905-s001"]["ds"])
+        self.assertIn("clearing the mind", words["ko-nikl-14745-s002"]["ds"])
+        for parent in ("40359", "37938", "50134", "15153", "20479", "46194", "48257"):
+            self.assertNotIn(f"ko-nikl-{parent}-s001", words)
+
+    def test_environmental_source_admissions_and_citations_remain_exact(self):
+        authoring = self.root / "authoring" / "teaching"
+        rows = load_yaml(authoring / "environmental-resources-vocabulary.yaml")
+        notes = load_yaml(authoring / "environmental-resources-notes.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["source"]["support_parent_ids"]
+        self.assertEqual(len(rows), 51)
+        self.assertEqual(len({row["id"].rsplit("-s", 1)[0] for row in rows}), 42)
+        self.assertEqual(len(requests), 33)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 41)
+        for item in requests:
+            self.assertEqual(parents[item]["source_band"], "unbanded")
+            self.assertIsNone(parents[item]["reference_level"])
+            self.assertEqual(
+                [sense["source_position"] for sense in parents[item]["senses"]],
+                list(range(1, len(parents[item]["senses"]) + 1)),
+            )
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+        words = self.references.vocabulary
+        for parent, expected in (
+            ("05155", "범ː남"), ("06009", "보권"), ("11706", "이멉"),
+            ("43288", "질쏘"), ("45621", "축쩍"), ("47506", "여난"),
+            ("21871", "퇴적 / 퉤적"), ("46598", "어획 / 어훽"),
+            ("24779", "핵폐기물 / 핵페기물"),
+        ):
+            self.assertEqual(words[f"ko-nikl-{parent}-s001"]["pr"], expected)
+        for short, long in (("09814", "09815"), ("15173", "15174"), ("15251", "15250"), ("40502", "40503")):
+            self.assertNotIn("ː", words[f"ko-nikl-{short}-s001"]["pr"])
+            self.assertIn("ː", words[f"ko-nikl-{long}-s001"]["pr"])
+
+    def test_environmental_corrections_keep_low_tide_glaciers_and_heat_distinct(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        for parent, position, original, corrected in (
+            ("01979", 1, "proportion", "density"),
+            ("06961", 2, "deep-rooted", "accumulated"),
+            ("13118", 1, "dying", "point of death"),
+            ("21871", 2, "iceberg", "glaciers"),
+            ("26287", 1, "flood tide", "water recedes"),
+            ("42765", 2, "Hot air", "heat at the ground surface"),
+        ):
+            item = f"ko-nikl-{parent}-s{position:03d}"
+            self.assertIn(original, sources[item]["source_english"])
+            self.assertIn(corrected, words[item]["ds"])
+            self.assertEqual(sources[item]["source_correction"]["review_status"], "unreviewed")
+        self.assertIn("or that time", words["ko-nikl-36154-s001"]["ds"])
+        self.assertNotIn("time", words["ko-nikl-26287-s001"]["ds"])
+        self.assertIn("inside the earth", words["ko-nikl-42765-s001"]["ds"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

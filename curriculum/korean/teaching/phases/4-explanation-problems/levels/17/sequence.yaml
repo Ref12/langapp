@@ -85,6 +85,8 @@ units:
   outcome: Clarify requirements and resolve a service problem politely.
   vocabulary:
   - {id: ko-nikl-29633-s002, ch: 공개, pr: 공개, ds: opening a place for public access}
+  - {id: ko-nikl-23906-s002, ch: 하수, pr: 하ː수, ds: facility draining rainwater or dirty water discharged after use}
+  - {id: ko-nikl-40502-s001, ch: 방화, pr: 방화, ds: preventing a fire before it occurs}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-47094-s001, ch: 여분, pr: 여분, ds: the surplus left after filling a set amount}
@@ -251,14 +253,14 @@ units:
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-19303-s003, ch: 들추다, pr: 들추다, ds: 'to uncover hidden, past, or forgotten matters'}
-  - {id: ko-nikl-39807-s001, ch: 반향, pr: 반ː향, ds: a response to an event's or phenomenon's wider influence}
   - {id: ko-nikl-07832-s003, ch: 빚어내다, pr: 비저내다, ds: to bring about an event or result}
   - {id: ko-nikl-34970-s004, ch: 내세우다, pr: 내ː세우다, ds: to publicly assert or announce a fact}
   - {id: ko-nikl-06294-s002, ch: 부각되다, pr: 부각뙤다 / 부각뛔다, ds: to emerge as a focus of attention}
   - {id: ko-nikl-11629-s002, ch: 일축하다, pr: 일추카다, ds: 'to firmly deny or stop discussing rumors, suspicions, or claims'}
   - {id: ko-nikl-33759-s002, ch: 꼽히다, pr: 꼬피다, ds: to be selected and singled out}
   - {id: ko-nikl-06711-s005, ch: 부풀다, pr: 부풀다, ds: for a matter to become known in exaggerated form}
+  - {id: ko-nikl-40503-s001, ch: 방화, pr: 방ː화, ds: deliberately setting a fire}
+  - {id: ko-nikl-51619-s002, ch: 화력, pr: 화ː력, ds: firepower; the power and capacity of weapons}
   review_grammar:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
   - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
@@ -398,14 +400,14 @@ units:
   - {id: ko-nikl-23329-s012, ch: 풀리다, pr: 풀리다, ds: for ice to thaw or cold weather to become warmer}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-23134-s001, ch: 폭설, pr: 폭썰, ds: sudden heavy snowfall}
-  - {id: ko-nikl-23145-s001, ch: 폭염, pr: 포겸, ds: extreme heat}
   - {id: ko-nikl-24310-s001, ch: 한파, pr: 한파, ds: a sudden drop in temperature during winter}
   - {id: ko-nikl-05335-s001, ch: 벼락, pr: 벼락, ds: a lightning bolt with a loud thunderclap}
   - {id: ko-nikl-05335-s004, ch: 벼락, pr: 벼락, ds: an unexpected drenching (figurative)}
   - {id: ko-nikl-07525-s002, ch: 비바람, pr: 비바람, ds: strong wind accompanied by heavy rain}
   - {id: ko-nikl-12290-s001, ch: 자연재해, pr: 자연재해, ds: damage from natural hazards; natural disaster}
   - {id: ko-nikl-32881-s001, ch: 기상, pr: 기상, ds: atmospheric weather phenomena}
+  - {id: ko-nikl-05155-s001, ch: 범람, pr: 범ː남, ds: a river or stream overflowing}
+  - {id: ko-nikl-20473-s001, ch: 침수, pr: 침수, ds: being submerged in water}
   review_grammar: []
 - id: level-17-nature-02
   title: Nature and environment - 2
@@ -535,6 +537,16 @@ units:
   - {id: ko-nikl-06645-s001, ch: 부지, pr: 부지, ds: land set aside for a house or road}
   - {id: ko-nikl-26107-s002, ch: 각박하다, pr: 각빠카다, ds: rough and arid (land)}
   - {id: ko-nikl-32849-s001, ch: 기복, pr: 기복, ds: uneven rises and falls of terrain}
+  - {id: ko-nikl-00589-s001, ch: 소각, pr: 소각, ds: eliminating something by burning it}
+  - {id: ko-nikl-01625-s001, ch: 수력, pr: 수력, ds: power produced by flowing or falling water}
+  - {id: ko-nikl-01979-s001, ch: 수질, pr: 수질, ds: 'water quality by temperature, clarity, density and contents'}
+  - {id: ko-nikl-06961-s001, ch: 분출, pr: 분ː출, ds: a forceful gush of liquid or gas}
+  - {id: ko-nikl-23906-s001, ch: 하수, pr: 하ː수, ds: rainwater or dirty water discharged after use}
+  - {id: ko-nikl-24690-s001, ch: 해수면, pr: 해ː수면, ds: the surface of the sea}
+  - {id: ko-nikl-42765-s001, ch: 지열, pr: 지열, ds: heat naturally present inside the earth}
+  - {id: ko-nikl-47506-s001, ch: 연안, pr: 여난, ds: 'land bordering the sea, a river or a lake'}
+  - {id: ko-nikl-48258-s001, ch: 오수, pr: 오ː수, ds: dirty water}
+  - {id: ko-nikl-51619-s001, ch: 화력, pr: 화ː력, ds: the power of heat produced by burning fire}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-28762-s002, ch: 고갈, pr: 고갈, ds: depletion of resources or materials}
@@ -660,12 +672,12 @@ units:
   grammar:
   - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
   review_vocabulary:
-  - {id: ko-nikl-09816-s001, ch: 서식지, pr: 서ː식찌, ds: a habitat where a living thing dwells}
-  - {id: ko-nikl-14570-s001, ch: 정수, pr: 정수, ds: water purification or purified water}
-  - {id: ko-nikl-42880-s001, ch: 지하수, pr: 지하수, ds: groundwater}
-  - {id: ko-nikl-42867-s002, ch: 지평, pr: 지평, ds: the horizon where level land appears to meet the sky}
-  - {id: ko-nikl-42590-s001, ch: 지대, pr: 지대, ds: the land of a particular region or zone}
-  - {id: ko-nikl-06645-s001, ch: 부지, pr: 부지, ds: land set aside for a house or road}
-  - {id: ko-nikl-26107-s002, ch: 각박하다, pr: 각빠카다, ds: rough and arid (land)}
-  - {id: ko-nikl-32849-s001, ch: 기복, pr: 기복, ds: uneven rises and falls of terrain}
+  - {id: ko-nikl-01979-s001, ch: 수질, pr: 수질, ds: 'water quality by temperature, clarity, density and contents'}
+  - {id: ko-nikl-06961-s001, ch: 분출, pr: 분ː출, ds: a forceful gush of liquid or gas}
+  - {id: ko-nikl-23906-s001, ch: 하수, pr: 하ː수, ds: rainwater or dirty water discharged after use}
+  - {id: ko-nikl-24690-s001, ch: 해수면, pr: 해ː수면, ds: the surface of the sea}
+  - {id: ko-nikl-42765-s001, ch: 지열, pr: 지열, ds: heat naturally present inside the earth}
+  - {id: ko-nikl-47506-s001, ch: 연안, pr: 여난, ds: 'land bordering the sea, a river or a lake'}
+  - {id: ko-nikl-48258-s001, ch: 오수, pr: 오ː수, ds: dirty water}
+  - {id: ko-nikl-51619-s001, ch: 화력, pr: 화ː력, ds: the power of heat produced by burning fire}
   review_grammar: []

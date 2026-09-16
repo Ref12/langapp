@@ -120377,7 +120377,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '75449'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75449
-      pronunciations:
+      pronunciations: &id1459
       - 정화
     lexical_identity: ko-lex-14745
     lexical_category: free-lemma
@@ -154556,6 +154556,1049 @@ items:
         '
       review_status: unreviewed
     lexical_identity: ko-lex-17510
+    lexical_category: free-lemma
+  ko-nikl-00589-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=589
+    source_parent: ko-nikl-00589
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of eliminating by burning with fire.
+    source_korean: 불에 태워 없앰.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64293'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64293
+      pronunciations:
+      - 소각
+    lexical_identity: ko-lex-00589
+    lexical_category: free-lemma
+  ko-nikl-01625-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1625
+    source_parent: ko-nikl-01625
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The power generated when water flows or falls.
+    source_korean: 물이 흐르거나 떨어질 때 발생하는 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64960'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64960
+      pronunciations:
+      - 수력
+    lexical_identity: ko-lex-01625
+    lexical_category: free-lemma
+  ko-nikl-01736-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1736
+    source_parent: ko-nikl-01736
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A state of coming from the ocean, from a river, etc., or such a thing. '
+    source_korean: 바다나 강 등의 물에서 나는 것. 또는 그런 물건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65501'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65501
+      pronunciations:
+      - 수산
+    lexical_identity: ko-lex-01736
+    lexical_category: free-lemma
+  ko-nikl-01979-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1979
+    source_parent: ko-nikl-01979
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A property of water determined by its temperature, cleanness or murkiness, color,
+      proportion, the amount of a substance or germ, etc.  '
+    source_korean: 온도, 맑고 흐림, 빛깔, 비중, 어떤 물질이나 세균이 포함된 양 등에 따라 결정되는 물의 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65485'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65485
+      pronunciations:
+      - 수질
+    source_correction:
+      source_korean: 온도, 맑고 흐림, 빛깔, 비중, 어떤 물질이나 세균이 포함된 양 등에 따라 결정되는 물의 성질.
+      source_english: 'A property of water determined by its temperature, cleanness or murkiness, color,
+        proportion, the amount of a substance or germ, etc.  '
+      authored_interpretation: water quality by temperature, clarity, density and contents
+      rationale: 비중 is relative density/specific gravity here, not an unspecified arithmetic proportion.
+        Preserve the complete physical and constituent criteria in the raw source; no potable-water judgment
+        follows.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-01979
+    lexical_category: free-lemma
+  ko-nikl-05155-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5155
+    source_parent: ko-nikl-05155
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An overflowing of a river, stream, etc.
+    source_korean: 강이나 개천 등의 물이 흘러넘침.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59039'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59039
+      pronunciations: &id1457
+      - 범ː남
+    lexical_identity: ko-lex-05155
+    lexical_category: free-lemma
+  ko-nikl-05155-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5155
+    source_parent: ko-nikl-05155
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A state in which an undesirable power, goods, etc., forms and prevails.
+    source_korean: 바람직하지 못한 세력이나 물건 등이 마구 생겨 나와 널리 퍼짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59039'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59039
+      pronunciations: *id1457
+    lexical_identity: ko-lex-05155
+    lexical_category: free-lemma
+  ko-nikl-06009-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6009
+    source_parent: ko-nikl-06009
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'The act of restoring something to its original state or shape. '
+    source_korean: 원래의 상태나 모습으로 돌아가게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59589'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59589
+      pronunciations:
+      - 보권
+    lexical_identity: ko-lex-06009
+    lexical_category: free-lemma
+  ko-nikl-06961-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6961
+    source_parent: ko-nikl-06961
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A forceful gush of liquid or gas.
+    source_korean: 액체나 기체가 세차게 뿜어져 나옴.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60883'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60883
+      pronunciations: &id1458
+      - 분ː출
+    lexical_identity: ko-lex-06961
+    lexical_category: free-lemma
+  ko-nikl-06961-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6961
+    source_parent: ko-nikl-06961
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: An unrestrained expression of a deep-rooted emotion.
+    source_korean: 쌓였던 감정이 한꺼번에 터져 나옴.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60883'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60883
+      pronunciations: *id1458
+    source_correction:
+      source_korean: 쌓였던 감정이 한꺼번에 터져 나옴.
+      source_english: An unrestrained expression of a deep-rooted emotion.
+      authored_interpretation: a sudden burst of accumulated feelings
+      rationale: 쌓였던 describes accumulated feelings; it does not require the English suggestion that their
+        cause is deep-rooted. 한꺼번에 supplies the simultaneous burst.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-06961
+    lexical_category: free-lemma
+  ko-nikl-09814-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9814
+    source_parent: ko-nikl-09814
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A way of writing a formatted document.
+    source_korean: 일정한 형식을 갖춘 서류를 쓰는 방식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62705'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62705
+      pronunciations:
+      - 서식
+    lexical_identity: ko-lex-09814
+    lexical_category: free-lemma
+  ko-nikl-09815-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9815
+    source_parent: ko-nikl-09815
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A living thing dwelling in a place.
+    source_korean: 생물이 어떤 곳에 보금자리를 만들어 삶.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62706'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62706
+      pronunciations:
+      - 서ː식
+    lexical_identity: ko-lex-09816
+    lexical_category: free-lemma
+  ko-nikl-11706-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11706
+    source_parent: ko-nikl-11706
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A business of forming or nurturing forests, and making use of them economically. '
+    source_korean: 산림을 유지 혹은 조성하고 이를 경제적으로 이용하는 사업.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '72645'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72645
+      pronunciations:
+      - 이멉
+      match_reason: 'Compare the sole same-spelling noun and its complete single definition: only 사업 (business)
+        becomes 산업 (industry). Establishing or maintaining forests and using them economically remain
+        the same forestry activity. Preserve the original parent, definition and source band while using
+        the actual 이멉 citation text.
+
+        '
+    lexical_identity: ko-lex-11706
+    lexical_category: free-lemma
+  ko-nikl-13118-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13118
+    source_parent: ko-nikl-13118
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The act of dying and being brought back to life.
+    source_korean: 죽게 되었다가 다시 살아남.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24927'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24927
+      pronunciations: *id678
+    source_correction:
+      source_korean: 죽게 되었다가 다시 살아남.
+      source_english: The act of dying and being brought back to life.
+      authored_interpretation: reviving after being at the point of death
+      rationale: 죽게 되었다가 does not require asserting medically established death followed by reversal.
+        Keep revival from the point of death separate from the original recycling, playback and body-part-regrowth
+        positions; no intervention or outcome is endorsed.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-13118
+    lexical_category: free-lemma
+  ko-nikl-14745-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14745
+    source_parent: ko-nikl-14745
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of removing feelings of depression, anxiety, nervousness, etc., and purifying
+      one's mind.
+    source_korean: 마음속의 우울, 불안, 긴장 등을 해소하고 마음을 깨끗하게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75449'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75449
+      pronunciations: *id1459
+    lexical_identity: ko-lex-14745
+    lexical_category: free-lemma
+  ko-nikl-15152-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15152
+    source_parent: ko-nikl-15152
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The flow of ocean currents caused by the ebb and tide.
+    source_korean: 밀물과 썰물 때문에 생기는 바닷물의 흐름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91799'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91799
+      pronunciations: &id1460
+      - 조류
+    lexical_identity: ko-lex-15152
+    lexical_category: free-lemma
+  ko-nikl-15152-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15152
+    source_parent: ko-nikl-15152
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The development in trends that occurs with the passage of time.
+    source_korean: 시대에 따른 경향의 흐름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91799'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91799
+      pronunciations: *id1460
+    lexical_identity: ko-lex-15152
+    lexical_category: free-lemma
+  ko-nikl-15173-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15173
+    source_parent: ko-nikl-15173
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A dish made by seasoning meat, fish, vegetables, etc., and boiling them until the
+      water is almost gone.
+    source_korean: 고기, 생선, 채소 등을 양념해서 국물이 거의 남지 않게 바짝 끓여 만든 음식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75503'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75503
+      pronunciations:
+      - 조림
+    lexical_identity: ko-lex-15173
+    lexical_category: free-lemma
+  ko-nikl-15174-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15174
+    source_parent: ko-nikl-15174
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of planting trees or sowing seeds to build or enhance a forest.
+    source_korean: 나무를 심거나 씨를 뿌려 숲을 가꾸거나 새로 만듦.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75504'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75504
+      pronunciations:
+      - 조ː림
+    lexical_identity: ko-lex-15174
+    lexical_category: free-lemma
+  ko-nikl-15250-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15250
+    source_parent: ko-nikl-15250
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A person who assists and learns from a director or supervisor.
+    source_korean: 감독이나 책임자 밑에서 지도를 받으면서 그 일을 도와주는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75333'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75333
+      pronunciations:
+      - 조ː수
+    lexical_identity: ko-lex-15250
+    lexical_category: free-lemma
+  ko-nikl-15251-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15251
+    source_parent: ko-nikl-15251
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The seawater that flows in and out from the shore periodically due to the gravitational
+      pull of the sun and moon.
+    source_korean: 해와 달의 인력 때문에 주기적으로 밀려들었다가 빠져나가는 바닷물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75334'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75334
+      pronunciations:
+      - 조수
+    lexical_identity: ko-lex-15251
+    lexical_category: free-lemma
+  ko-nikl-20473-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20473
+    source_parent: ko-nikl-20473
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The state of being submerged in water.
+    source_korean: 물에 잠김.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80788'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80788
+      pronunciations:
+      - 침수
+    lexical_identity: ko-lex-20473
+    lexical_category: free-lemma
+  ko-nikl-20477-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20477
+    source_parent: ko-nikl-20477
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The state of power, range, etc., becoming weak or being reduced, due to an external
+      influence. '
+    source_korean: 외부의 영향으로 세력이나 범위 등이 약해지거나 줄어듦.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80794'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80794
+      pronunciations:
+      - 침ː식
+    lexical_identity: ko-lex-20477
+    lexical_category: free-lemma
+  ko-nikl-20478-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20478
+    source_parent: ko-nikl-20478
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of such a natural phenomenon as rain, a stream, wind, etc., wearing down land,
+      stone, etc.
+    source_korean: 비, 하천, 빙하, 바람 등의 자연 현상이 땅이나 돌 등을 깎는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80799'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80799
+      pronunciations:
+      - 침ː식
+    lexical_identity: ko-lex-20478
+    lexical_category: free-lemma
+  ko-nikl-21183-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21183
+    source_parent: ko-nikl-21183
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A major component of charcoal or coal.
+    source_korean: 숯이나 석탄의 주된 구성 원소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81451'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81451
+      pronunciations:
+      - 탄ː소
+    lexical_identity: ko-lex-21183
+    lexical_category: free-lemma
+  ko-nikl-21871-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21871
+    source_parent: ko-nikl-21871
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of a large amount of something being stacked in layers; or an act of stacking
+      a large amount of something in layers.
+    source_korean: 많이 겹쳐져 쌓임. 또는 많이 겹쳐 쌓음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82881'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82881
+      pronunciations: &id1461
+      - 퇴적
+      - 퉤적
+    lexical_identity: ko-lex-21871
+    lexical_category: free-lemma
+  ko-nikl-21871-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21871
+    source_parent: ko-nikl-21871
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of a substance such as soil, the bones of dead creatures, etc., being delivered
+      by streaming water, wind, an iceberg, etc., and being stacked in a certain place.
+    source_korean: 흙이나 죽은 생물의 뼈 등이 물이나 바람, 빙하 등에 의해 운반되어 일정한 곳에 쌓이는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82881'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82881
+      pronunciations: *id1461
+    source_correction:
+      source_korean: 흙이나 죽은 생물의 뼈 등이 물이나 바람, 빙하 등에 의해 운반되어 일정한 곳에 쌓이는 일.
+      source_english: The state of a substance such as soil, the bones of dead creatures, etc., being
+        delivered by streaming water, wind, an iceberg, etc., and being stacked in a certain place.
+      authored_interpretation: deposition of material carried by water, wind or glaciers
+      rationale: 빙하 denotes glaciers, not the English iceberg. Preserve transport followed by deposition
+        and the source material examples, not an invented separate sediment-material sense.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-21871
+    lexical_category: free-lemma
+  ko-nikl-23461-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23461
+    source_parent: ko-nikl-23461
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The gradual change of a rock on the Earth's surface, in which it is cracked and broken
+      little by little, from being exposed to the sunlight, air, water, organisms, etc.
+    source_korean: 지구 표면에 있는 암석이 햇빛, 공기, 물, 생물 등의 작용으로 조금씩 깨지고 부서지는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84480'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84480
+      pronunciations:
+      - 풍화
+    lexical_identity: ko-lex-23461
+    lexical_category: free-lemma
+  ko-nikl-23905-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23905
+    source_parent: ko-nikl-23905
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A state of being below another in a certain skill or ability; or a person with such
+      a skill or ability. '
+    source_korean: 남보다 낮은 솜씨나 실력. 또는 그런 솜씨나 실력을 가진 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84172'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84172
+      pronunciations:
+      - 하ː수
+    lexical_identity: ko-lex-23905
+    lexical_category: free-lemma
+  ko-nikl-23906-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23906
+    source_parent: ko-nikl-23906
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Rainwater, or waste water dumped after being used at home, factories, etc.
+    source_korean: 빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83911'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83911
+      pronunciations: &id1462
+      - 하ː수
+    lexical_identity: ko-lex-23906
+    lexical_category: free-lemma
+  ko-nikl-23906-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23906
+    source_parent: ko-nikl-23906
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A facility for draining out rainwater, or waste water dumped after being used at  home,
+      factories, etc.
+    source_korean: 빗물이나 집, 공장 등에서 쓰고 버리는 더러운 물이 흘러가도록 만든 시설.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83911'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83911
+      pronunciations: *id1462
+    lexical_identity: ko-lex-23906
+    lexical_category: free-lemma
+  ko-nikl-24690-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24690
+    source_parent: ko-nikl-24690
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The surface of the sea. '
+    source_korean: 바닷물의 표면.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85724'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85724
+      pronunciations:
+      - 해ː수면
+    lexical_identity: ko-lex-01680
+    lexical_category: free-lemma
+  ko-nikl-24779-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24779
+    source_parent: ko-nikl-24779
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The residual substance that remains radioactive and is dumped after nuclear energy
+      is generated through nuclear reactions or nuclear decay. '
+    source_korean: 핵반응이나 핵붕괴로 원자력을 얻은 뒤에 버리는, 방사능이 남아 있는 찌꺼기 물질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84944'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84944
+      pronunciations:
+      - 핵폐기물
+      - 핵페기물
+    lexical_identity: ko-lex-24779
+    lexical_category: free-lemma
+  ko-nikl-26287-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26287
+    source_parent: ko-nikl-26287
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The natural phenomenon in which the surface of the ocean falls to its lowest level
+      due to the flood tide, or such a time.
+    source_korean: 바다에서 바닷물이 빠져나가 바닷물의 높이가 가장 낮아진 상태.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14056'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14056
+      pronunciations:
+      - 간조
+    source_correction:
+      source_korean: 바다에서 바닷물이 빠져나가 바닷물의 높이가 가장 낮아진 상태.
+      source_english: The natural phenomenon in which the surface of the ocean falls to its lowest level
+        due to the flood tide, or such a time.
+      authored_interpretation: low tide; the sea at its lowest level as water recedes
+      rationale: The Korean describes receding water and its lowest state, not flood tide. Unlike 만조,
+        this Korean position does not separately list the time; preserve that distinction without providing
+        a local prediction.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-26287
+    lexical_category: free-lemma
+  ko-nikl-36154-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36154
+    source_parent: ko-nikl-36154
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The natural phenomenon in which the surface of the ocean rises to its highest level
+      due to the flood tide, or such a time.
+    source_korean: 밀물이 들어와 바다의 수면이 가장 높은 곳까지 올라오는 현상. 또는 그런 때.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '52979'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=52979
+      pronunciations:
+      - 만ː조
+    lexical_identity: ko-lex-36154
+    lexical_category: free-lemma
+  ko-nikl-40502-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40502
+    source_parent: ko-nikl-40502
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of preventing a fire before it happens. '
+    source_korean: 불이 나는 것을 미리 막음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57916'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57916
+      pronunciations:
+      - 방화
+    lexical_identity: ko-lex-40502
+    lexical_category: free-lemma
+  ko-nikl-40503-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40503
+    source_parent: ko-nikl-40503
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of setting fire intentionally.
+    source_korean: 일부러 불을 지름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91291'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91291
+      pronunciations:
+      - 방ː화
+    lexical_identity: ko-lex-40503
+    lexical_category: free-lemma
+  ko-nikl-41090-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41090
+    source_parent: ko-nikl-41090
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The work or business of cutting down trees in a mountain or forest.
+    source_korean: 산이나 숲에 있는 나무를 벰.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58938'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58938
+      pronunciations:
+      - 벌목
+    lexical_identity: ko-lex-41090
+    lexical_category: free-lemma
+  ko-nikl-42765-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42765
+    source_parent: ko-nikl-42765
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The internal heat of the earth.
+    source_korean: 지구 안에 원래 있는 열.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76860'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76860
+      pronunciations: &id1463
+      - 지열
+    lexical_identity: ko-lex-42765
+    lexical_category: free-lemma
+  ko-nikl-42765-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42765
+    source_parent: ko-nikl-42765
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Hot air rising from the surface of ground that has been heated by sunlight.
+    source_korean: 땅의 표면에서 햇볕을 받아 나는 열.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76860'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76860
+      pronunciations: *id1463
+    source_correction:
+      source_korean: 땅의 표면에서 햇볕을 받아 나는 열.
+      source_english: Hot air rising from the surface of ground that has been heated by sunlight.
+      authored_interpretation: heat at the ground surface produced by sunlight
+      rationale: The Korean names heat from sunlight at the ground surface, not necessarily air or its
+        upward movement. This is distinct from the internal-earth heat in position001.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-42765
+    lexical_category: free-lemma
+  ko-nikl-43288-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43288
+    source_parent: ko-nikl-43288
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An element that constitutes nearly 78% of the air, occurring as a colorless, odorless,
+      and tasteless gas at room temperature.
+    source_korean: 상온에서 기체 상태로 존재하며 공기의 약 78%를 이루는, 색깔이나 냄새, 맛이 없는 원소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83775'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83775
+      pronunciations:
+      - 질쏘
+    lexical_identity: ko-lex-43288
+    lexical_category: free-lemma
+  ko-nikl-45621-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45621
+    source_parent: ko-nikl-45621
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of gathering and piling up knowledge, experience, money, etc., or that which
+      has been accumulated in such a way.
+    source_korean: 지식, 경험, 돈 등을 모아서 쌓음. 또는 모아서 쌓은 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82284'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82284
+      pronunciations:
+      - 축쩍
+    lexical_identity: ko-lex-45621
+    lexical_category: free-lemma
+  ko-nikl-46197-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46197
+    source_parent: ko-nikl-46197
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An artificial breeding and propagating of fish, laver, seaweed, mushroom, etc.
+    source_korean: 물고기, 김, 미역, 버섯 등을 인공적으로 길러서 번식하게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91973'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91973
+      pronunciations:
+      - 양ː식
+    lexical_identity: ko-lex-46197
+    lexical_category: free-lemma
+  ko-nikl-46514-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46514
+    source_parent: ko-nikl-46514
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A place where one goes fishing.
+    source_korean: 고기잡이를 하는 곳.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67117'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67117
+      pronunciations: &id1464
+      - 어장
+    lexical_identity: ko-lex-46514
+    lexical_category: free-lemma
+  ko-nikl-46514-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46514
+    source_parent: ko-nikl-46514
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A place where there are abundant marine resources and people can engage in fisheries.
+    source_korean: 풍부한 수산 자원이 있고 어업을 할 수 있는 곳.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67117'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67117
+      pronunciations: *id1464
+    lexical_identity: ko-lex-46514
+    lexical_category: free-lemma
+  ko-nikl-46598-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46598
+    source_parent: ko-nikl-46598
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of catching or digging out life in the sea or river, or the thing caught. '
+    source_korean: 바다나 강에 사는 생물을 잡거나 캐냄. 또는 그 생물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '67140'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67140
+      pronunciations:
+      - 어획
+      - 어훽
+      match_reason: 'The corresponding harvest/catch noun retains catching aquatic life in seas or rivers
+        and the action/result alternatives in one definition. Original 캐냄 (digging out) becomes 채취함 (collecting).
+        This checked identity crosswalk supplies the actual 어획/어훽 citation alternatives, not permission
+        to broaden the older source definition or change its ID.
+
+        '
+    lexical_identity: ko-lex-46598
+    lexical_category: free-lemma
+  ko-nikl-47506-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47506
+    source_parent: ko-nikl-47506
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Land bordered by the sea, rivers, lakes, etc.
+    source_korean: 바다, 강, 호수 등과 닿아 있는 땅.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67518'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67518
+      pronunciations: &id1465
+      - 여난
+    lexical_identity: ko-lex-47506
+    lexical_category: free-lemma
+  ko-nikl-47506-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47506
+    source_parent: ko-nikl-47506
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The edge of the sea, rivers, lakes, etc., bordered by land. '
+    source_korean: 땅과 닿아 있는 바다, 강, 호수 등의 물가.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67518'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67518
+      pronunciations: *id1465
+    lexical_identity: ko-lex-47506
+    lexical_category: free-lemma
+  ko-nikl-48258-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48258
+    source_parent: ko-nikl-48258
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Filthy water.
+    source_korean: 더러운 물.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68013'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68013
+      pronunciations:
+      - 오ː수
+    lexical_identity: ko-lex-48258
+    lexical_category: free-lemma
+  ko-nikl-50327-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50327
+    source_parent: ko-nikl-50327
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The area near a river, which is influenced by it.
+    source_korean: 강의 영향을 받는 강의 주변 지역.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70586'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70586
+      pronunciations:
+      - 유역
+    lexical_identity: ko-lex-50327
+    lexical_category: free-lemma
+  ko-nikl-51619-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51619
+    source_parent: ko-nikl-51619
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The power of heat when fire burns.
+    source_korean: 불이 탈 때에 내는 열의 힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87984'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87984
+      pronunciations: &id1466
+      - 화ː력
+    lexical_identity: ko-lex-51619
+    lexical_category: free-lemma
+  ko-nikl-51619-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51619
+    source_parent: ko-nikl-51619
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The power and capacity of weapons such as guns, cannons, bombs, etc.
+    source_korean: 총, 포, 폭탄 등의 무기의 힘과 성능.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87984'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87984
+      pronunciations: *id1466
+    lexical_identity: ko-lex-51619
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
