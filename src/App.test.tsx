@@ -21,6 +21,15 @@ async function go(route: string) {
 }
 
 describe('Mandarin learning loop', () => {
+  it('shows the practice activities without the modality disclaimer', async () => {
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Make the language yours.' })
+    await go('practice')
+    await screen.findByRole('heading', { name: 'A little practice. A little closer.' })
+    expect(screen.getByRole('button', { name: 'Review due words' })).toBeInTheDocument()
+    expect(screen.queryByText('These are reading-recognition activities, not speaking, listening, handwriting, or HSK assessments. Those skills remain separate.')).not.toBeInTheDocument()
+  })
+
   it('starts with real zero progress, persists a word from reading, and resumes its bookmark', async () => {
     const user = userEvent.setup()
     const view = render(<App />)

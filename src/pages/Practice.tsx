@@ -22,7 +22,6 @@ export function Practice({ workspace, now, run, busy }: PageProps) {
         <button className="button secondary" disabled={busy || !workspace.words.length} onClick={() => void run(async () => navigate(`practice/${await startPractice('all')}`))}>Practice now <RotateCcw size={16} /></button></section>
     </div>
     {!workspace.words.length && <EmptyState title="Your first words are waiting"><p>Start a lesson, or add an underlined word while reading.</p><a href="#lessons" className="button primary">Explore lessons</a></EmptyState>}
-    <p className="page-footnote">These are reading-recognition activities, not speaking, listening, handwriting, or HSK assessments. Those skills remain separate.</p>
   </>
 }
 
