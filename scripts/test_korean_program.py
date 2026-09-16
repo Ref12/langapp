@@ -792,6 +792,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "movement-actions-notes.yaml",
             "values-relations-notes.yaml",
             "capacity-motivation-notes.yaml",
+            "text-interpretation-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -3339,6 +3340,58 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(focus["reading"]["official_entry_id"], "37047")
         self.assertEqual(self.references.vocabulary["ko-nikl-43440-s002"]["pr"], "집쭝하다")
         self.assertNotIn("ko-nikl-49686-s002", self.references.vocabulary)
+
+    def test_text_interpretation_keeps_homographs_and_actual_family_depth(self):
+        identities = self.references.lexical_identity
+        for first, second in (("30732", "30733"), ("30732", "30735"), ("49675", "49676")):
+            self.assertNotEqual(identities[f"ko-nikl-{first}-s001"],
+                                identities[f"ko-nikl-{second}-s001"])
+        self.assertEqual(identities["ko-nikl-24809-s001"], identities["ko-nikl-24809-s002"])
+        self.assertEqual(identities["ko-nikl-35057-s001"], identities["ko-nikl-35059-s001"])
+        notes = load_yaml(self.root / "authoring" / "teaching" / "text-interpretation-notes.yaml")
+        origins = notes["parent_integration"]["actual_archive_origin_evidence"]
+        for parent, origin in (("30732", "校正"), ("30733", "校訂"), ("30734", "校庭"),
+                               ("30735", "矯正"), ("49675", "原告"), ("49676", "原稿")):
+            self.assertEqual(origins[f"ko-nikl-{parent}"]["origin"], origin)
+
+    def test_text_interpretation_preserves_drafting_and_reading_distinctions(self):
+        words = self.references.vocabulary
+        for item, required in (
+            ("45022-s001", "first draft"), ("49676-s001", "pictures"),
+            ("49676-s001", "presentation"), ("30732-s001", "against a manuscript"),
+            ("30733-s001", "others' sentences or publications"), ("21841-s001", "repeatedly"),
+            ("21841-s001", "polishing"), ("26642-s001", "pleasant"),
+            ("24809-s001", "space"), ("24809-s002", "implicit"),
+            ("14195-s002", "progress or development"), ("37745-s001", "exclusion of others"),
+        ):
+            self.assertIn(required, words[f"ko-nikl-{item}"]["ds"])
+        self.assertNotIn("ko-nikl-49676-s002", words)
+        self.assertNotIn("ko-nikl-30734-s001", words)
+
+    def test_text_interpretation_admits_complete_sources_and_real_reading_alternatives(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "text-interpretation-notes.yaml")
+        rows = load_yaml(authoring / "text-interpretation-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["support_parent_requests"]
+        self.assertEqual(len(rows), 12)
+        self.assertEqual(len({row["id"].rsplit("-s", 1)[0] for row in rows}), 11)
+        self.assertEqual(len(requests), 9)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 11)
+        for item, request in requests.items():
+            parent = parents[item]
+            self.assertEqual(parent["target"], request["lemma"])
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertIsNone(parent["reference_level"])
+            self.assertEqual(parent["senses"], request["senses"])
+        for row in rows:
+            item = row["id"]
+            expected = notes["official_reading_evidence"]["entries"][item.rsplit("-s", 1)[0]]
+            source = self.references.provenance[item]
+            self.assertEqual(source["reading"]["method"], "official-text")
+            self.assertEqual(source["reading"]["official_entry_id"], expected["official_entry_id"])
+            self.assertEqual(self.references.vocabulary[item]["pr"], " / ".join(expected["pronunciations"]))
+        self.assertEqual(self.references.vocabulary["ko-nikl-21841-s001"]["pr"], "퇴고 / 퉤고")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

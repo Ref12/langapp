@@ -5,6 +5,21 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-49676-s001:
+    source_korean: '인쇄하거나 발표하기 위하여 쓴 글이나 그림.'
+    source_english: 'A writing or picture created to print or publish. '
+    authored_interpretation: 'manuscript; text or pictures for printing or presentation'
+    rationale: Preserve 발표 as presentation and both writing and pictures; do not impose publication or first-draft restrictions.
+  ko-nikl-30733-s001:
+    source_korean: '남의 문장 또는 출판물의 잘못된 글자나 글귀 등을 바르게 고침.'
+    source_english: 'The act of revising sentences or incorrect words or phrases written by others in a publication.'
+    authored_interpretation: 'correcting errors in others'' sentences or publications'
+    rationale: Korean gives sentences or publications as alternatives. Retain textual error correction without requiring manuscript/print comparison.
+  ko-nikl-21841-s001:
+    source_korean: '글을 쓸 때 여러 번 고치고 다듬음. 또는 그런 일.'
+    source_english: 'An act of changing one''s wording over and over when writing something, or such a task.'
+    authored_interpretation: 'repeatedly revising and polishing a piece of writing'
+    rationale: Preserve both correction and polishing in 고치고 다듬음 and repeated cycles, not merely repeated word substitution.
   ko-nikl-15590-s001:
     source_korean: 한두 번 보고도 잘 기억하거나 그대로 따라 하는 재주.
     source_english: Remembering or imitating something very well, just by looking at it or a demonstration just once.

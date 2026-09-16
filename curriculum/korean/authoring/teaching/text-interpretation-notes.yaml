@@ -1,0 +1,498 @@
+schema_version: 1
+id: ko-text-interpretation-noun-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: source-inspected handoff; parent admission and qualified review pending
+parent_integration:
+  baseline: 301db5b
+  status: bounded integration complete; overall curriculum remains incomplete
+  selections: All twelve returned noun senses retained; ten new provisional free families and two depth senses.
+  support: Nine complete unbanded parents admitted with all eleven positions; ten positions selected.
+  corrections: All three exact-source interpretations accepted in the separate ledger; raw definitions unchanged.
+  readings: All eleven actual official entries have citation text; no crosswalk or authored decision needed.
+  actual_archive_origin_evidence:
+    ko-nikl-30732: {official_entry_id: '35145', origin: 校正}
+    ko-nikl-30733: {official_entry_id: '35148', origin: 校訂}
+    ko-nikl-30734: {official_entry_id: '35151', origin: 校庭}
+    ko-nikl-30735: {official_entry_id: '35154', origin: 矯正}
+    ko-nikl-49675: {official_entry_id: '26716', origin: 原告}
+    ko-nikl-49676: {official_entry_id: '91717', origin: 原稿}
+  evidence_boundary: >
+    Parent inspected actual origin features in the pinned official archive.
+    Textual correction homographs have distinct written origins despite
+    identical Hangul and readings. Complete original source arrays and
+    metadata were independently compared with the pinned CSV, including
+    trailing English spaces. Historical handback status below is retained,
+    not an instruction to repeat completed admission or lookup.
+  resulting_coverage:
+    core_dictionary_parents: 5596
+    core_senses: 8031
+    core_distinct_spellings: 5266
+    core_spelling_pos_pairs: 5377
+    core_provisional_free_families: 5065
+    core_modules: 778
+    selected_pool_senses: 8157
+    selected_pool_provisional_free_families: 5121
+    retained_support_parents: 998
+    selected_support_parents: 994
+    exact_source_interpretations: 201
+    lower_guide_free_family_gap: 735
+  validation:
+    combined_course_tourist_source_tests: 169
+    prior_objects: All earlier raw source parents and official overlay entries are unchanged; both reading ledgers are identical.
+    limitation: Source and structural validation do not establish independent linguistic or pronunciation assessment.
+  overall_limit: Core breadth, phase-load reassessment and qualified review remain outstanding; catalog stays inactive.
+ownership:
+  authored_files: [text-interpretation-vocabulary.yaml, text-interpretation-identities.yaml, text-interpretation-notes.yaml]
+  protected: all prior cohorts, canonical identities, manifests, sources, reading ledgers, tests, and generated output
+  disjoint_scopes: movement actions, values/relations, and environmental/landscape/resource nouns remain with their owners
+  excluded_parent_ids: [ko-nikl-48419, ko-nikl-22209, ko-nikl-25822, ko-nikl-29719]
+scope: >
+  Fill actual gaps in sustained reading, implicit-text interpretation,
+  drafting, and revision. Inspect only the forty-three named leads and
+  their exact-source homographs, together with relevant live family members.
+  Already selected positions, including optional literary ones, are not
+  duplicated or promoted. No genre catalogue, inferred derivative, source
+  expansion, Standard Dictionary lookup, archive refresh, or pronunciation
+  guess is part of this handoff.
+counts:
+  named_leads: 43
+  source_parents_under_exact_named_forms: 50
+  complete_original_positions_inspected: 66
+  already_selected_positions_under_named_forms: 43
+  selected_senses: 12
+  core_senses: 12
+  branch_senses: 0
+  selected_source_parents: 11
+  distinct_selected_spellings: 10
+  identity_fragments: 11
+  new_provisional_free_families: 10
+  existing_family_fragments: 1
+  senses_extending_existing_families: 1
+  additional_senses_within_new_families: 1
+  total_depth_beyond_new_free_families: 2
+  new_bound_form_families: 0
+  new_function_item_families: 0
+  retained_selected_parents: 2
+  selected_senses_from_retained_parents: 2
+  requested_unbanded_parents: 9
+  complete_original_positions_in_requests: 11
+  selected_positions_in_requests: 10
+  nonfirst_selected_positions: 2
+  source_correction_requests: 3
+  official_text_parent_matches: 11
+  selected_senses_with_official_text_available: 12
+  proposed_crosswalks: 0
+  authored_readings: 0
+  selected_reading_blockers: 0
+  external_dictionary_requests: 0
+  source_bands: {beginner: 0, intermediate: 0, advanced: 2, unbanded: 10}
+  levels: {19: 2, 24: 4, 25: 1, 27: 1, 29: 2, 30: 2}
+  phases: {analysis-argument: 6, nuance-interpretation: 6}
+  limitation: >
+    These are bounded cohort counts, not refreshed global totals or a
+    quota. Lexical-family counts remain provisional. Nine absent parents
+    require source admission before the ten associated selected positions
+    can be registered; available citation evidence is not publication.
+source_verification:
+  source_id: nikl-2024-mirror
+  source_revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  official_source_id: nikl-official-20260819
+  official_archive_sha256: 7cf41e62a2a36158a8be2b6d2f84c086221e9b29d4345c44e5497eebf21c8c40
+  official_archive_entries: 56555
+  source_entry_rule: 'The source URL above followed by #record= and the exact source_record below.'
+  method: >
+    Read complete original Korean and English definition arrays, preserving
+    their order and every English trailing space. Project source IDs refer
+    to original CSV records and definition positions, not official entry
+    numbers. Inspect all exact-spelling/POS official competitors for each
+    newly selected parent. Do not replace original definitions with current
+    official wording, borrow a homograph's pronunciation, or split one
+    original act/result definition into several learner senses.
+  no_imported_assets: >
+    No source examples, practice sentences, literary passages, translations
+    of literary works, audio, pictures, or stroke assets are copied into
+    the cohort. Official pronunciation text is not audio verification.
+placement_rationale:
+  reading_evidence_19: >
+    At19, distinguish deep absorption from merely spending time on a text
+    and check an actual reading error against the text. Absorption does
+    not establish comprehension; a defensible alternative interpretation
+    is not automatically an 오독.
+  formal_drafting_24: >
+    At24, keep a first draft separate from the text or pictures prepared
+    for printing/presentation, discuss literal space between written
+    lines, and compare printed output against its manuscript. These serve
+    structured synthesis and accurate presentation rather than a technical
+    typography or publishing catalogue.
+  implication_and_response_25_27: >
+    At25, name containment of meaning or properties while preserving
+    protected 내포하다 and avoiding invented entailment or author intention.
+    At27, identify the specifically pleasant response to being deeply
+    moved, without equating it with any emotion or sensitivity as a capacity.
+  interpretive_contrast_29: >
+    At29, contrast literal 행간 with meaning not directly stated, and locate
+    a peak in a narrative's development. The 절정 source position is broader
+    than narrative climax; neither every ending nor every reversal is
+    automatically such a peak.
+  iterative_revision_30: >
+    At30, revise and polish a sustained project repeatedly and distinguish
+    correction of others' textual errors from comparing manuscript and
+    print. Placement follows these different tasks, not a requirement to
+    put every newly discovered noun at the final level.
+family_accounting:
+  policy: >
+    Actual added senses of a parent stay in that parent's family. Similar
+    English meanings alone neither merge independent roots nor create new
+    ones. In particular, 초고 and 원고 are not collapsed; their overlapping
+    draft positions do not demonstrate derivation or variant status.
+    The two newly selected 교정 parents are distinct lexical homographs,
+    not two spellings of one family or senses of protected30735.
+  protected_extension:
+    identity: ko-lex-35057
+    lemma: 내포
+    category: free-lemma
+    old_member: ko-nikl-35059-s001
+    old_parent: ko-nikl-35059
+    old_source_korean: '어떤 뜻이나 성질 등을 속에 가지다.'
+    old_source_english: 'To contain a meaning or attribute, etc. '
+    added_member: ko-nikl-35057-s001
+    evidence: >
+      The noun 속에 가짐 and real selected 내포하다 verb 속에 가지다 share
+      the same meaning/property base. The existing group already reserves
+      the noun identity; add only the actual noun, preserving the old
+      member, lemma, category, and represented parent.
+  protected_homographs:
+    ko-lex-49675:
+      lemma: 원고
+      old_members: [ko-nikl-49675-s001]
+      distinction: plaintiff who brings a court case, not manuscript49676
+    ko-lex-30735:
+      lemma: 교정
+      old_members: [ko-nikl-30735-s001, ko-nikl-30735-s002]
+      distinction: general correction and offender rehabilitation, not textual proofing30732 or emendation30733
+  other_protected_families: >
+    Keep every prior canonical key/category/member unchanged, including
+    감사26499 rather than audit26498, 실상03447, 좀41331, and all completed
+    culture/loanword families. No 시나리오 selection or lookup is repeated.
+already_covered_source_positions:
+  - ko-nikl-02925-s001
+  - ko-nikl-04687-s001
+  - ko-nikl-05988-s001
+  - ko-nikl-05988-s002
+  - ko-nikl-07592-s001
+  - ko-nikl-09240-s001
+  - ko-nikl-09801-s001
+  - ko-nikl-09869-s001
+  - ko-nikl-10694-s001
+  - ko-nikl-10694-s002
+  - ko-nikl-13649-s002
+  - ko-nikl-14076-s001
+  - ko-nikl-17952-s002
+  - ko-nikl-22838-s001
+  - ko-nikl-23441-s001
+  - ko-nikl-23441-s002
+  - ko-nikl-24396-s001
+  - ko-nikl-24405-s001
+  - ko-nikl-24405-s002
+  - ko-nikl-24682-s001
+  - ko-nikl-24764-s001
+  - ko-nikl-26530-s001
+  - ko-nikl-27099-s001
+  - ko-nikl-28146-s001
+  - ko-nikl-30735-s001
+  - ko-nikl-30735-s002
+  - ko-nikl-35665-s001
+  - ko-nikl-36750-s001
+  - ko-nikl-38391-s001
+  - ko-nikl-39709-s001
+  - ko-nikl-39735-s001
+  - ko-nikl-39735-s002
+  - ko-nikl-39735-s003
+  - ko-nikl-39807-s001
+  - ko-nikl-44877-s001
+  - ko-nikl-47153-s001
+  - ko-nikl-47153-s002
+  - ko-nikl-47262-s001
+  - ko-nikl-47263-s001
+  - ko-nikl-47263-s002
+  - ko-nikl-49675-s001
+  - ko-nikl-50947-s001
+  - ko-nikl-51674-s001
+useful_exclusions:
+  missing_exact_source_forms: [서사, 인칭]
+  unsupported_narrative_sense:
+    lemma: 시점
+    inspected_parents: [ko-nikl-02924, ko-nikl-02925]
+    reason: >
+      The complete original entries supply a place where something first
+      starts and a moment in time, respectively. Neither supplies narrative
+      viewpoint. Do not substitute one of those senses or invent a third.
+  unselected_original_positions:
+    ko-nikl-02924-s001: a starting place, not narrative viewpoint
+    ko-nikl-10693-s001: a listing particle, not the noun 이면
+    ko-nikl-13649-s001: starting and performing work, not the already selected unfolding-details position002
+    ko-nikl-13649-s003: spreading in width or length, not text interpretation
+    ko-nikl-14077-s001: evaluating and selecting people for positions, outside this cohort
+    ko-nikl-14195-s001: a mountain summit, reserved outside the text-reading scope
+    ko-nikl-17952-s001: bringing in knowledge, technology, or goods, not the selected introductory-stage position002
+    ko-nikl-30734-s001: a school yard, not either text-correction homograph
+    ko-nikl-39807-s002: physical reflected sound, not the already selected public response
+    ko-nikl-44876-s001: blue-green glazed pottery, not the protected listener noun
+    ko-nikl-49676-s002: genuine first-draft depth, omitted because the actual 초고 selection already serves that task
+  unselected_source_caution: >
+    For physical echo39807-s002, Korean describes sound meeting an obstacle;
+    English introduces an object hitting it. This unselected physical sense
+    is neither silently substituted for interpretive response nor corrected
+    in this handoff.
+  already_covered_policy: >
+    Forty-three original positions under the named forms are already
+    registered. This includes metaphor, foreshadowing, irony, paradox,
+    contextual relations, commentary, and review terms. Preserve their
+    existing placements, including literary-branch 풍자23441-s002, rather
+    than duplicate or promote them to satisfy a breadth target.
+retained_selected_source_records:
+  ko-nikl-14195:
+    source_record: 14195
+    lemma: 절정
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: 고급
+    raw_semantic_category: ''
+    source_band: advanced
+    reference_level: topik-6
+    selected_positions: [2]
+    senses:
+      - {id: ko-nikl-14195-s001, source_position: 1, korean: '산의 맨 꼭대기.', english: 'The topmost part of a mountain.'}
+      - {id: ko-nikl-14195-s002, source_position: 2, korean: '사물의 진행이나 발전이 최고에 이른 상태.', english: 'The highest state in terms of progress or development.'}
+  ko-nikl-37745:
+    source_record: 37745
+    lemma: 몰입
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: 고급
+    raw_semantic_category: ''
+    source_band: advanced
+    reference_level: topik-6
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-37745-s001, source_position: 1, korean: '다른 일에 관심을 가지지 않고 한 가지 일에만 집중하여 깊이 빠짐.', english: 'An act of focusing solely on one thing, being deeply involved in it without paying any attention to other affairs. '}
+support_parent_requests:
+  ko-nikl-21841:
+    source_record: 21841
+    lemma: 퇴고
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-21841-s001, source_position: 1, korean: '글을 쓸 때 여러 번 고치고 다듬음. 또는 그런 일.', english: 'An act of changing one''s wording over and over when writing something, or such a task.'}
+  ko-nikl-24809:
+    source_record: 24809
+    lemma: 행간
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1, 2]
+    senses:
+      - {id: ko-nikl-24809-s001, source_position: 1, korean: '쓰거나 인쇄한 글의 줄과 줄 사이.', english: 'The space between the lines in a handwritten or printed text.'}
+      - {id: ko-nikl-24809-s002, source_position: 2, korean: '(비유적으로) 글에 직접 드러나 있지 않고 글의 속에 숨어 있는 뜻.', english: '(figurative) A meaning that is hidden, not directly expressed in a text.'}
+  ko-nikl-26642:
+    source_record: 26642
+    lemma: 감흥
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-26642-s001, source_position: 1, korean: '마음속 깊이 감동을 받아서 일어나는 즐거운 느낌.', english: 'An enjoyable feeling from being touched deeply.'}
+  ko-nikl-30732:
+    source_record: 30732
+    lemma: 교정
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-30732-s001, source_position: 1, korean: '원고와 인쇄물을 대조하여 글자가 잘못되거나 틀리게 인쇄된 것, 배열이나 색이 잘못된 것 등을 바르게 고침.', english: 'The act of revising misspellings, misprints, arrangements, colors, etc., by comparing the manuscript with the printout.'}
+  ko-nikl-30733:
+    source_record: 30733
+    lemma: 교정
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-30733-s001, source_position: 1, korean: '남의 문장 또는 출판물의 잘못된 글자나 글귀 등을 바르게 고침.', english: 'The act of revising sentences or incorrect words or phrases written by others in a publication.'}
+  ko-nikl-35057:
+    source_record: 35057
+    lemma: 내포
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-35057-s001, source_position: 1, korean: '어떤 뜻이나 성질 등을 속에 가짐.', english: 'A state in which a meaning or property, etc., are contained. '}
+  ko-nikl-45022:
+    source_record: 45022
+    lemma: 초고
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-45022-s001, source_position: 1, korean: '처음 쓴 글.', english: 'First draft.'}
+  ko-nikl-48148:
+    source_record: 48148
+    lemma: 오독
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-48148-s001, source_position: 1, korean: '잘못 읽거나 틀리게 읽음.', english: 'The act of reading incorrectly or wrongly. '}
+  ko-nikl-49676:
+    source_record: 49676
+    lemma: 원고
+    part_of_speech: noun
+    source_part_of_speech: 명사
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    source_band: unbanded
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-49676-s001, source_position: 1, korean: '인쇄하거나 발표하기 위하여 쓴 글이나 그림.', english: 'A writing or picture created to print or publish. '}
+      - {id: ko-nikl-49676-s002, source_position: 2, korean: '처음 쓴 글.', english: 'The preliminary version of writing. '}
+source_correction_requests:
+  ko-nikl-49676-s001:
+    source_korean: '인쇄하거나 발표하기 위하여 쓴 글이나 그림.'
+    source_english: 'A writing or picture created to print or publish. '
+    authored_interpretation: 'manuscript; text or pictures for printing or presentation'
+    rationale: >
+      Preserve 발표 as presentation rather than imply that the material must
+      be a published item. Keep both writing and pictures and the printing/
+      presentation alternatives; do not impose a first-draft restriction.
+  ko-nikl-30733-s001:
+    source_korean: '남의 문장 또는 출판물의 잘못된 글자나 글귀 등을 바르게 고침.'
+    source_english: 'The act of revising sentences or incorrect words or phrases written by others in a publication.'
+    authored_interpretation: 'correcting errors in others'' sentences or publications'
+    rationale: >
+      English places the work in a publication, whereas Korean gives
+      sentences or publications as alternatives. Retain correction of
+      faulty characters/wording rather than unconstrained rewriting, and
+      do not require the manuscript/print comparison belonging to30732.
+  ko-nikl-21841-s001:
+    source_korean: '글을 쓸 때 여러 번 고치고 다듬음. 또는 그런 일.'
+    source_english: 'An act of changing one''s wording over and over when writing something, or such a task.'
+    authored_interpretation: 'repeatedly revising and polishing a piece of writing'
+    rationale: >
+      Preserve both correction and polishing in 고치고 다듬음 and their
+      repeated cycles. The English wording-change paraphrase should not
+      reduce the task to repeated word substitution; no particular
+      structural-editing technique is added.
+official_reading_evidence:
+  method: exact complete ordered Korean definitions, with all exact-spelling/POS competitors inspected locally
+  compared_official_candidates: 14
+  selected_parent_matches: 11
+  entries:
+    ko-nikl-14195: {official_entry_id: '81820', pronunciations: [절쩡], complete_source_positions: [1, 2], availability: already-supported-retained-parent}
+    ko-nikl-21841: {official_entry_id: '82093', pronunciations: [퇴고, 퉤고], complete_source_positions: [1], availability: available-after-parent-source-admission}
+    ko-nikl-24809: {official_entry_id: '84969', pronunciations: [행간], complete_source_positions: [1, 2], availability: available-after-parent-source-admission}
+    ko-nikl-26642: {official_entry_id: '22870', pronunciations: [감ː흥], complete_source_positions: [1], availability: available-after-parent-source-admission}
+    ko-nikl-30732: {official_entry_id: '35145', pronunciations: [교ː정], complete_source_positions: [1], availability: available-after-parent-source-admission}
+    ko-nikl-30733: {official_entry_id: '35148', pronunciations: [교ː정], complete_source_positions: [1], availability: available-after-parent-source-admission}
+    ko-nikl-35057: {official_entry_id: '41151', pronunciations: [내ː포], complete_source_positions: [1], availability: available-after-parent-source-admission}
+    ko-nikl-37745: {official_entry_id: '57469', pronunciations: [모립], complete_source_positions: [1], availability: already-supported-retained-parent}
+    ko-nikl-45022: {official_entry_id: '90325', pronunciations: [초고], complete_source_positions: [1], availability: available-after-parent-source-admission}
+    ko-nikl-48148: {official_entry_id: '70160', pronunciations: [오ː독], complete_source_positions: [1], availability: available-after-parent-source-admission}
+    ko-nikl-49676: {official_entry_id: '91717', pronunciations: [원고], complete_source_positions: [1, 2], availability: available-after-parent-source-admission}
+  complete_competing_homographs:
+    교정:
+      - {official_entry_id: '35145', original_parent: ko-nikl-30732, pronunciations: [교ː정], korean_definitions: ['원고와 인쇄물을 대조하여 글자가 잘못되거나 틀리게 인쇄된 것, 배열이나 색이 잘못된 것 등을 바르게 고침.']}
+      - {official_entry_id: '35148', original_parent: ko-nikl-30733, pronunciations: [교ː정], korean_definitions: ['남의 문장 또는 출판물의 잘못된 글자나 글귀 등을 바르게 고침.']}
+      - {official_entry_id: '35151', original_parent: ko-nikl-30734, pronunciations: [교ː정], korean_definitions: ['학교 안의 뜰.']}
+      - {official_entry_id: '35154', original_parent: ko-nikl-30735, pronunciations: [교ː정], korean_definitions: ['고르지 못하거나 틀어지거나 잘못된 것을 바로잡음.', '교도소나 소년원 등에서 죄를 지은 사람의 품성과 행동을 바로잡음.']}
+    원고:
+      - {official_entry_id: '26716', original_parent: ko-nikl-49675, pronunciations: [원고], korean_definitions: ['법원에 재판을 신청한 사람.']}
+      - {official_entry_id: '91717', original_parent: ko-nikl-49676, pronunciations: [원고], korean_definitions: ['인쇄하거나 발표하기 위하여 쓴 글이나 그림.', '처음 쓴 글.']}
+  pronunciation_boundary: >
+    Preserve all actual length marks and both 퇴고 / 퉤고 alternatives.
+    These are official citation strings, not authored readings, phrase
+    pronunciations, or audio-assessed production. Identical pronunciation
+    does not merge source homographs. All selected matches are unique
+    exact ordered-definition matches, so no explicit crosswalk is needed.
+proposed_reading_matches: {}
+remaining_reading_blockers: []
+remaining_source_scope_gaps:
+  - No original exact-form 서사 record was found within the pinned source.
+  - No original exact-form 인칭 record was found within the pinned source.
+  - Neither original 시점 parent supplies narrative viewpoint; its time/place senses cannot stand in for that meaning.
+qualified_review:
+  status: outstanding
+  limits: >
+    Source evidence and existing validation helpers do not establish
+    independent lexical-family verification, pedagogical optimality,
+    interpretive correctness, achieved mastery, professional editorial
+    competence, or examination readiness. Teacher/domain review and the
+    parent's source admission, registration, and generation remain separate.
+validation:
+  status: passed bounded existing-helper checks
+  runtime: Windows Python312 -B with existing PyYAML and repository helpers
+  methods:
+    - load_selections and sense_index checked the live registered membership without refreshing global-count snapshots.
+    - Existing extract_senses and reference_parents projected only the requested source additions in memory.
+    - validate_lexical_group and lexical_members checked all new fragments against the protected composition.
+    - The existing compact-label and source-correction validators checked every selected label and all three correction proposals.
+    - Cached official_index, match_readings, and citation_reading verified exact complete-definition matches and display alternatives.
+  results:
+    - All 43 named leads, 50 original parents, and 66 positions are accounted for as missing forms, old selections, new selections, or deliberate exclusions.
+    - All 12 noun rows have the exact schema, valid levels/topics, and English labels no longer than 64 characters.
+    - The nine support requests retain all eleven original positions and exact metadata, bilingual text, and trailing English whitespace.
+    - Ten new provisional free families and two depth senses compose without changing any prior canonical category or member.
+    - The one old-family extension is the actual 내포 noun paired with protected 내포하다; manuscript and correction homographs remain separate.
+    - All three correction proposals retain exact original strings and agree with their selected labels.
+    - Fourteen official candidates yield eleven unique exact matches covering all twelve selected senses; all citation text is available.
+    - Official length marks and both 퇴고 / 퉤고 alternatives are preserved; no crosswalk, authored reading, or reading blocker was introduced.
+    - All 160 checked prior files stayed byte-identical during validation; no source, ledger, manifest, test, or generated-output file was written.
+  handoff_boundary: >
+    The nine support admissions and normal parent registration/generation
+    are still necessary. No generated-course test run, external dictionary
+    search, audio assessment, or independent linguistic verification is
+    claimed. After handback these three files return to parent ownership;
+    changing global snapshots are not permission to reopen them.

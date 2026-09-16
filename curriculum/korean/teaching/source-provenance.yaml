@@ -158104,6 +158104,263 @@ items:
       review_status: unreviewed
     lexical_identity: ko-lex-51905
     lexical_category: free-lemma
+  ko-nikl-37745-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37745
+    source_parent: ko-nikl-37745
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'An act of focusing solely on one thing, being deeply involved in it without paying
+      any attention to other affairs. '
+    source_korean: 다른 일에 관심을 가지지 않고 한 가지 일에만 집중하여 깊이 빠짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57469'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57469
+      pronunciations:
+      - 모립
+    lexical_identity: ko-lex-37745
+    lexical_category: free-lemma
+  ko-nikl-48148-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48148
+    source_parent: ko-nikl-48148
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of reading incorrectly or wrongly. '
+    source_korean: 잘못 읽거나 틀리게 읽음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70160'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70160
+      pronunciations:
+      - 오ː독
+    lexical_identity: ko-lex-48148
+    lexical_category: free-lemma
+  ko-nikl-45022-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45022
+    source_parent: ko-nikl-45022
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: First draft.
+    source_korean: 처음 쓴 글.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90325'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90325
+      pronunciations:
+      - 초고
+    lexical_identity: ko-lex-45022
+    lexical_category: free-lemma
+  ko-nikl-49676-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49676
+    source_parent: ko-nikl-49676
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A writing or picture created to print or publish. '
+    source_korean: 인쇄하거나 발표하기 위하여 쓴 글이나 그림.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91717'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91717
+      pronunciations:
+      - 원고
+    source_correction:
+      source_korean: 인쇄하거나 발표하기 위하여 쓴 글이나 그림.
+      source_english: 'A writing or picture created to print or publish. '
+      authored_interpretation: manuscript; text or pictures for printing or presentation
+      rationale: Preserve 발표 as presentation and both writing and pictures; do not impose publication
+        or first-draft restrictions.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-49676
+    lexical_category: free-lemma
+  ko-nikl-24809-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24809
+    source_parent: ko-nikl-24809
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The space between the lines in a handwritten or printed text.
+    source_korean: 쓰거나 인쇄한 글의 줄과 줄 사이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84969'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84969
+      pronunciations: &id1493
+      - 행간
+    lexical_identity: ko-lex-24809
+    lexical_category: free-lemma
+  ko-nikl-30732-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30732
+    source_parent: ko-nikl-30732
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of revising misspellings, misprints, arrangements, colors, etc., by comparing
+      the manuscript with the printout.
+    source_korean: 원고와 인쇄물을 대조하여 글자가 잘못되거나 틀리게 인쇄된 것, 배열이나 색이 잘못된 것 등을 바르게 고침.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35145'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35145
+      pronunciations:
+      - 교ː정
+    lexical_identity: ko-lex-30732
+    lexical_category: free-lemma
+  ko-nikl-35057-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35057
+    source_parent: ko-nikl-35057
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A state in which a meaning or property, etc., are contained. '
+    source_korean: 어떤 뜻이나 성질 등을 속에 가짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41151'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41151
+      pronunciations:
+      - 내ː포
+    lexical_identity: ko-lex-35057
+    lexical_category: free-lemma
+  ko-nikl-26642-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26642
+    source_parent: ko-nikl-26642
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An enjoyable feeling from being touched deeply.
+    source_korean: 마음속 깊이 감동을 받아서 일어나는 즐거운 느낌.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22870'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22870
+      pronunciations:
+      - 감ː흥
+    lexical_identity: ko-lex-26642
+    lexical_category: free-lemma
+  ko-nikl-14195-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14195
+    source_parent: ko-nikl-14195
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The highest state in terms of progress or development.
+    source_korean: 사물의 진행이나 발전이 최고에 이른 상태.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81820'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81820
+      pronunciations:
+      - 절쩡
+    lexical_identity: ko-lex-14195
+    lexical_category: free-lemma
+  ko-nikl-24809-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24809
+    source_parent: ko-nikl-24809
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: (figurative) A meaning that is hidden, not directly expressed in a text.
+    source_korean: (비유적으로) 글에 직접 드러나 있지 않고 글의 속에 숨어 있는 뜻.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84969'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84969
+      pronunciations: *id1493
+    lexical_identity: ko-lex-24809
+    lexical_category: free-lemma
+  ko-nikl-21841-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21841
+    source_parent: ko-nikl-21841
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of changing one's wording over and over when writing something, or such a task.
+    source_korean: 글을 쓸 때 여러 번 고치고 다듬음. 또는 그런 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82093'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82093
+      pronunciations:
+      - 퇴고
+      - 퉤고
+    source_correction:
+      source_korean: 글을 쓸 때 여러 번 고치고 다듬음. 또는 그런 일.
+      source_english: An act of changing one's wording over and over when writing something, or such a
+        task.
+      authored_interpretation: repeatedly revising and polishing a piece of writing
+      rationale: Preserve both correction and polishing in 고치고 다듬음 and repeated cycles, not merely repeated
+        word substitution.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-21841
+    lexical_category: free-lemma
+  ko-nikl-30733-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30733
+    source_parent: ko-nikl-30733
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of revising sentences or incorrect words or phrases written by others in a
+      publication.
+    source_korean: 남의 문장 또는 출판물의 잘못된 글자나 글귀 등을 바르게 고침.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35148'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35148
+      pronunciations:
+      - 교ː정
+    source_correction:
+      source_korean: 남의 문장 또는 출판물의 잘못된 글자나 글귀 등을 바르게 고침.
+      source_english: The act of revising sentences or incorrect words or phrases written by others in
+        a publication.
+      authored_interpretation: correcting errors in others' sentences or publications
+      rationale: Korean gives sentences or publications as alternatives. Retain textual error correction
+        without requiring manuscript/print comparison.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-30733
+    lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
     source_entry: topik-1/grammar.yaml#ko-topik1-g001

@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 989
+  unbanded-support: 998
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -78552,6 +78552,18 @@ entries:
     source_position: 2
     english: The unit for counting phone calls.
     korean: 통화한 횟수를 세는 단위.
+- id: ko-nikl-21841
+  target: 퇴고
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21841
+  senses:
+  - id: ko-nikl-21841-s001
+    source_position: 1
+    english: An act of changing one's wording over and over when writing something, or such a task.
+    korean: 글을 쓸 때 여러 번 고치고 다듬음. 또는 그런 일.
 - id: ko-nikl-21843
   target: 퇴근
   part_of_speech: noun
@@ -89218,6 +89230,22 @@ entries:
     source_position: 2
     english: The unit of counting a group of words that are arranged horizontally or vertically.
     korean: 가로나 세로로 늘어놓은 글을 세는 단위.
+- id: ko-nikl-24809
+  target: 행간
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24809
+  senses:
+  - id: ko-nikl-24809-s001
+    source_position: 1
+    english: The space between the lines in a handwritten or printed text.
+    korean: 쓰거나 인쇄한 글의 줄과 줄 사이.
+  - id: ko-nikl-24809-s002
+    source_position: 2
+    english: (figurative) A meaning that is hidden, not directly expressed in a text.
+    korean: (비유적으로) 글에 직접 드러나 있지 않고 글의 속에 숨어 있는 뜻.
 - id: ko-nikl-24813
   target: 행동
   part_of_speech: noun
@@ -95889,6 +95917,18 @@ entries:
     source_position: 1
     english: Thoughts or feelings on the past.
     korean: 마음속에 일어나는 지난 일에 대한 생각이나 느낌.
+- id: ko-nikl-26642
+  target: 감흥
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26642
+  senses:
+  - id: ko-nikl-26642-s001
+    source_position: 1
+    english: An enjoyable feeling from being touched deeply.
+    korean: 마음속 깊이 감동을 받아서 일어나는 즐거운 느낌.
 - id: ko-nikl-26643
   target: 감히
   part_of_speech: adverb
@@ -108004,6 +108044,31 @@ entries:
     source_position: 1
     english: Textbooks or other materials necessary for teaching or learning.
     korean: 교육이나 학습을 하는 데 필요한 교과서나 그 외의 자료.
+- id: ko-nikl-30732
+  target: 교정
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30732
+  senses:
+  - id: ko-nikl-30732-s001
+    source_position: 1
+    english: The act of revising misspellings, misprints, arrangements, colors, etc., by comparing the
+      manuscript with the printout.
+    korean: 원고와 인쇄물을 대조하여 글자가 잘못되거나 틀리게 인쇄된 것, 배열이나 색이 잘못된 것 등을 바르게 고침.
+- id: ko-nikl-30733
+  target: 교정
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30733
+  senses:
+  - id: ko-nikl-30733-s001
+    source_position: 1
+    english: The act of revising sentences or incorrect words or phrases written by others in a publication.
+    korean: 남의 문장 또는 출판물의 잘못된 글자나 글귀 등을 바르게 고침.
 - id: ko-nikl-30735
   target: 교정
   part_of_speech: noun
@@ -123862,6 +123927,18 @@ entries:
     source_position: 1
     english: 'To feel like doing something. '
     korean: 하고 싶은 마음이 생기다.
+- id: ko-nikl-35057
+  target: 내포
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35057
+  senses:
+  - id: ko-nikl-35057-s001
+    source_position: 1
+    english: 'A state in which a meaning or property, etc., are contained. '
+    korean: 어떤 뜻이나 성질 등을 속에 가짐.
 - id: ko-nikl-35059
   target: 내포하다
   part_of_speech: verb
@@ -156665,6 +156742,18 @@ entries:
     source_position: 1
     english: The time when winter starts.
     korean: 겨울이 시작되는 시기.
+- id: ko-nikl-45022
+  target: 초고
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45022
+  senses:
+  - id: ko-nikl-45022-s001
+    source_position: 1
+    english: First draft.
+    korean: 처음 쓴 글.
 - id: ko-nikl-45023
   target: 초고속
   part_of_speech: noun
@@ -168337,6 +168426,18 @@ entries:
     source_position: 23
     english: To move from another place to here for a purpose or business.
     korean: 어떤 목적이나 일을 위하여 다른 곳에서 이곳으로 위치를 옮기다.
+- id: ko-nikl-48148
+  target: 오독
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48148
+  senses:
+  - id: ko-nikl-48148-s001
+    source_position: 1
+    english: 'The act of reading incorrectly or wrongly. '
+    korean: 잘못 읽거나 틀리게 읽음.
 - id: ko-nikl-48159
   target: 오디오
   part_of_speech: noun
@@ -173515,6 +173616,22 @@ entries:
     source_position: 1
     english: A person who takes something or someone to court.
     korean: 법원에 재판을 신청한 사람.
+- id: ko-nikl-49676
+  target: 원고
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49676
+  senses:
+  - id: ko-nikl-49676-s001
+    source_position: 1
+    english: 'A writing or picture created to print or publish. '
+    korean: 인쇄하거나 발표하기 위하여 쓴 글이나 그림.
+  - id: ko-nikl-49676-s002
+    source_position: 2
+    english: 'The preliminary version of writing. '
+    korean: 처음 쓴 글.
 - id: ko-nikl-49682
   target: 원근
   part_of_speech: noun
