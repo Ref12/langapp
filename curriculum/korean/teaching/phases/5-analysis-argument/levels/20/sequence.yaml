@@ -85,14 +85,14 @@ units:
   - {id: ko-nikl-28512-s001, ch: 경제학, pr: 경제학, ds: economics as an academic field}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-32804-s004, ch: 기르다, pr: 기르다, ds: to strengthen physical or mental ability}
-  - {id: ko-nikl-42741-s001, ch: 지식, pr: 지식, ds: knowledge gained through learning or experience}
-  - {id: ko-nikl-12121-s001, ch: 자료, pr: 자료, ds: data; materials for research or investigation}
   - {id: ko-nikl-15219-s001, ch: 조사, pr: 조사, ds: an investigation; a survey}
   - {id: ko-nikl-47348-s001, ch: 연구, pr: 연ː구, ds: research; detailed investigation and analysis}
   - {id: ko-nikl-45791-s001, ch: 출처, pr: 출처, ds: a source; where words or things originate}
   - {id: ko-nikl-44265-s003, ch: 찾다, pr: 찯따, ds: to look something up in a book or computer}
   - {id: ko-nikl-32794-s001, ch: 기록, pr: 기록, ds: a written or visual record preserved for later use}
+  - {id: ko-nikl-08177-s001, ch: 사고력, pr: 사고력, ds: the ability to think deeply about something}
+  - {id: ko-nikl-18159-s001, ch: 독해력, pr: 도캐력, ds: the ability to read and understand a text}
+  - {id: ko-nikl-22426-s001, ch: 판단력, pr: 판단녁, ds: ability to judge by logic or standards}
   review_grammar:
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
   - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
@@ -123,13 +123,13 @@ units:
   - {id: ko-nikl-18224-s012, ch: 돌리다, pr: 돌리다, ds: to move people between workplaces or positions}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-18224-s003, ch: 돌리다, pr: 돌리다, ds: to arrange money or supplies}
   - {id: ko-nikl-47673-s004, ch: 열리다, pr: 열리다, ds: for an important opportunity or condition to arise}
   - {id: ko-nikl-50562-s001, ch: 윤곽, pr: 윤곽, ds: the overall outline of a matter or event}
   - {id: ko-nikl-14912-s001, ch: 제시하다, pr: 제시하다, ds: to present an intended plan in speech or writing}
   - {id: ko-nikl-25402-s001, ch: 협의하다, pr: 혀븨하다 / 혀비하다, ds: for several people to discuss something together}
   - {id: ko-nikl-07767-s002, ch: 빈틈없이, pr: 빈ː트멉씨, ds: thoroughly; without shortcomings or weak points}
   - {id: ko-nikl-44681-s001, ch: 철저히, pr: 철쩌히, ds: 'thoroughly and carefully, without shortcomings'}
+  - {id: ko-nikl-41132-s002, ch: 조율, pr: 조율, ds: adjusting differences between positions (figurative)}
   - {id: ko-nikl-47352-s001, ch: 연구소, pr: 연ː구소, ds: a research institute}
   review_grammar:
   - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
@@ -334,6 +334,11 @@ units:
   outcome: Explain an issue without generalizing all Korean speakers from one example.
   vocabulary:
   - {id: ko-nikl-50038-s002, ch: 위치, pr: 위치, ds: one's social position or role}
+  - {id: ko-nikl-05480-s001, ch: 변혁, pr: 변ː혁, ds: rapid and radical transformation}
+  - {id: ko-nikl-07089-s001, ch: 불균형, pr: 불균형, ds: imbalance; a lopsided or uneven state}
+  - {id: ko-nikl-11011-s001, ch: 이해관계, pr: 이ː해관계 / 이ː해관게, ds: a relationship involving mutual gains and losses}
+  - {id: ko-nikl-16173-s001, ch: 다변화, pr: 다변화, ds: 'diversification of forms or methods, or causing it'}
+  - {id: ko-nikl-22239-s001, ch: 파급, pr: 파급, ds: gradual spread of an effect to other areas}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-42671-s001, ch: 지방, pr: 지방, ds: a region defined by administration or shared characteristics}
@@ -465,12 +470,30 @@ units:
   - {id: ko-nikl-14523-s001, ch: 정부, pr: 정부, ds: 'government including legislative, judicial and executive bodies'}
   - {id: ko-nikl-14972-s001, ch: 제정, pr: 제ː정, ds: enactment or establishment of a law or system}
   review_grammar: []
+- id: level-20-institutions-04
+  title: Institutions and public life - 4
+  outcome: Explain a public process and distinguish a rule from its practical effects.
+  vocabulary:
+  - {id: ko-nikl-08434-s001, ch: 사안, pr: 사ː안, ds: a matter at issue under laws or regulations}
+  - {id: ko-nikl-29665-s001, ch: 공공성, pr: 공공썽, ds: public character involving the interests of society as a whole}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-14976-s001, ch: 제정하다, pr: 제ː정하다, ds: to establish a law or system}
+  - {id: ko-nikl-19374-s002, ch: 등록하다, pr: 등노카다, ds: to enter one's name in official records for legal recognition}
+  - {id: ko-nikl-29638-s002, ch: 공개하다, pr: 공개하다, ds: to open a place for people to enter and leave}
+  - {id: ko-nikl-31896-s001, ch: 규정하다, pr: 규정하다, ds: to establish something as a rule}
+  - {id: ko-nikl-31900-s001, ch: 규제하다, pr: 규제하다, ds: to restrict activities through rules or law}
+  - {id: ko-nikl-42021-s001, ch: 준수하다, pr: 준ː수하다, ds: to comply with an order or rule or law}
+  - {id: ko-nikl-42423-s003, ch: 증명하다, pr: 증명하다, ds: to officially certify a fact by public authority}
+  - {id: ko-nikl-49938-s001, ch: 위반하다, pr: 위반하다, ds: to violate a law or order or promise}
+  review_grammar: []
 - id: level-20-history-01
   title: History and change - 1
   outcome: Relate a development using explicit time and source context.
   vocabulary:
   - {id: ko-nikl-18049-s003, ch: 독립, pr: 동닙, ds: a country's possession of full sovereignty}
   - {id: ko-nikl-47901-s001, ch: 영토, pr: 영토, ds: a country's territory}
+  - {id: ko-nikl-14096-s001, ch: 전환점, pr: 전ː환쩜, ds: a turning point or occasion for a change of direction}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-50378-s001, ch: 유적지, pr: 유적찌, ds: a site containing historical remains}
@@ -541,14 +564,14 @@ units:
   - {id: ko-topik5-g012, ch: V/A-(으)므로, ds: give a reason in formal written language}
   - {id: ko-topik5-g013, ch: V-(으)ㅁ으로써, ds: name an action as the means of an outcome}
   review_vocabulary:
-  - {id: ko-nikl-14976-s001, ch: 제정하다, pr: 제ː정하다, ds: to establish a law or system}
-  - {id: ko-nikl-19374-s002, ch: 등록하다, pr: 등노카다, ds: to enter one's name in official records for legal recognition}
   - {id: ko-nikl-29638-s002, ch: 공개하다, pr: 공개하다, ds: to open a place for people to enter and leave}
   - {id: ko-nikl-31896-s001, ch: 규정하다, pr: 규정하다, ds: to establish something as a rule}
   - {id: ko-nikl-31900-s001, ch: 규제하다, pr: 규제하다, ds: to restrict activities through rules or law}
   - {id: ko-nikl-42021-s001, ch: 준수하다, pr: 준ː수하다, ds: to comply with an order or rule or law}
   - {id: ko-nikl-42423-s003, ch: 증명하다, pr: 증명하다, ds: to officially certify a fact by public authority}
   - {id: ko-nikl-49938-s001, ch: 위반하다, pr: 위반하다, ds: to violate a law or order or promise}
+  - {id: ko-nikl-08434-s001, ch: 사안, pr: 사ː안, ds: a matter at issue under laws or regulations}
+  - {id: ko-nikl-29665-s001, ch: 공공성, pr: 공공썽, ds: public character involving the interests of society as a whole}
   review_grammar: []
 - id: level-20-institutions-practice-02
   title: Institutions and public life - sentence practice 2
@@ -557,14 +580,14 @@ units:
   grammar:
   - {id: ko-topik5-g035, ch: N을/를 비롯해, ds: introduce a representative member of a larger set}
   review_vocabulary:
-  - {id: ko-nikl-14976-s001, ch: 제정하다, pr: 제ː정하다, ds: to establish a law or system}
-  - {id: ko-nikl-19374-s002, ch: 등록하다, pr: 등노카다, ds: to enter one's name in official records for legal recognition}
   - {id: ko-nikl-29638-s002, ch: 공개하다, pr: 공개하다, ds: to open a place for people to enter and leave}
   - {id: ko-nikl-31896-s001, ch: 규정하다, pr: 규정하다, ds: to establish something as a rule}
   - {id: ko-nikl-31900-s001, ch: 규제하다, pr: 규제하다, ds: to restrict activities through rules or law}
   - {id: ko-nikl-42021-s001, ch: 준수하다, pr: 준ː수하다, ds: to comply with an order or rule or law}
   - {id: ko-nikl-42423-s003, ch: 증명하다, pr: 증명하다, ds: to officially certify a fact by public authority}
   - {id: ko-nikl-49938-s001, ch: 위반하다, pr: 위반하다, ds: to violate a law or order or promise}
+  - {id: ko-nikl-08434-s001, ch: 사안, pr: 사ː안, ds: a matter at issue under laws or regulations}
+  - {id: ko-nikl-29665-s001, ch: 공공성, pr: 공공썽, ds: public character involving the interests of society as a whole}
   review_grammar:
   - {id: ko-topik4-g036, ch: V/A-(으)ㅁ, ds: nominalize a fact in concise written language}
   - {id: ko-topik5-g012, ch: V/A-(으)므로, ds: give a reason in formal written language}

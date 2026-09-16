@@ -122,12 +122,12 @@ units:
   - {id: ko-nikl-11969-s003, ch: 잎, pr: 입, ds: the leaf element after a plant name}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-12121-s001, ch: 자료, pr: 자료, ds: data; materials for research or investigation}
-  - {id: ko-nikl-15219-s001, ch: 조사, pr: 조사, ds: an investigation; a survey}
-  - {id: ko-nikl-47348-s001, ch: 연구, pr: 연ː구, ds: research; detailed investigation and analysis}
   - {id: ko-nikl-45791-s001, ch: 출처, pr: 출처, ds: a source; where words or things originate}
   - {id: ko-nikl-44265-s003, ch: 찾다, pr: 찯따, ds: to look something up in a book or computer}
   - {id: ko-nikl-32794-s001, ch: 기록, pr: 기록, ds: a written or visual record preserved for later use}
+  - {id: ko-nikl-08177-s001, ch: 사고력, pr: 사고력, ds: the ability to think deeply about something}
+  - {id: ko-nikl-18159-s001, ch: 독해력, pr: 도캐력, ds: the ability to read and understand a text}
+  - {id: ko-nikl-22426-s001, ch: 판단력, pr: 판단녁, ds: ability to judge by logic or standards}
   - {id: ko-nikl-28453-s001, ch: 경영학, pr: 경영학, ds: business management as an academic field}
   - {id: ko-nikl-28512-s001, ch: 경제학, pr: 경제학, ds: economics as an academic field}
   review_grammar:
@@ -209,14 +209,14 @@ units:
   - {id: ko-nikl-25476-s002, ch: 형태, pr: 형태, ds: a form taken by a structure or whole}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-39409-s003, ch: 바르다, pr: 바르다, ds: to accord with the facts}
-  - {id: ko-nikl-09319-s001, ch: 샅샅이, pr: 삳싸치, ds: exhaustively; without leaving anything out}
-  - {id: ko-nikl-10352-s001, ch: 의아하다, pr: 의아하다, ds: to seem strange and raise doubts}
-  - {id: ko-nikl-25314-s001, ch: 현저히, pr: 현ː저히, ds: noticeably; enough to stand out clearly}
-  - {id: ko-nikl-51771-s001, ch: 확연히, pr: 화견히, ds: very clearly; unmistakably}
   - {id: ko-nikl-09041-s001, ch: 상관없다, pr: 상과넙따, ds: to be unrelated to each other}
   - {id: ko-nikl-30251-s001, ch: 관계없다, pr: 관계업따 / 관게업따, ds: to have no relation to each other}
   - {id: ko-nikl-46793-s001, ch: 엄밀하다, pr: 엄밀하다, ds: 'to be rigorous and precise, leaving no gaps or errors'}
+  - {id: ko-nikl-03165-s001, ch: 신뢰도, pr: 실ː뢰도 / 실ː뤠도, ds: the degree of reliability or dependability}
+  - {id: ko-nikl-07380-s001, ch: 불확실성, pr: 불확씰썽, ds: uncertainty as a quality or state}
+  - {id: ko-nikl-14752-s001, ch: 정확도, pr: 정ː확또, ds: degree of accuracy or correctness}
+  - {id: ko-nikl-27251-s001, ch: 객관성, pr: 객꽌썽, ds: objectivity; freedom from personal bias}
+  - {id: ko-nikl-41609-s001, ch: 주관성, pr: 주관썽, ds: subjectivity shaped by personal thought or perspective}
   review_grammar:
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
@@ -234,14 +234,14 @@ units:
   - {id: ko-nikl-39928-s002, ch: 발달, pr: 발딸, ds: development to a higher level in society or knowledge}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-47598-s001, ch: 연합, pr: 연합, ds: a union of groups; forming such a union}
-  - {id: ko-nikl-50982-s002, ch: 은행, pr: 은행, ds: a bank storing scarce or urgently needed things}
-  - {id: ko-nikl-28722-s001, ch: 계층, pr: 계층 / 게층, ds: 'a social stratum based on status, work or economic position'}
-  - {id: ko-nikl-38396-s001, ch: 문명, pr: 문명, ds: civilization; developed material and social life}
-  - {id: ko-nikl-39928-s003, ch: 발달, pr: 발딸, ds: growth in power or scale}
   - {id: ko-nikl-42784-s001, ch: 지위, pr: 지위, ds: social rank or position}
   - {id: ko-nikl-43107-s001, ch: 진보, pr: 진ː보, ds: progress toward a better state or higher level}
   - {id: ko-nikl-50038-s002, ch: 위치, pr: 위치, ds: one's social position or role}
+  - {id: ko-nikl-05480-s001, ch: 변혁, pr: 변ː혁, ds: rapid and radical transformation}
+  - {id: ko-nikl-07089-s001, ch: 불균형, pr: 불균형, ds: imbalance; a lopsided or uneven state}
+  - {id: ko-nikl-11011-s001, ch: 이해관계, pr: 이ː해관계 / 이ː해관게, ds: a relationship involving mutual gains and losses}
+  - {id: ko-nikl-16173-s001, ch: 다변화, pr: 다변화, ds: 'diversification of forms or methods, or causing it'}
+  - {id: ko-nikl-22239-s001, ch: 파급, pr: 파급, ds: gradual spread of an effect to other areas}
   review_grammar: []
 - id: level-21-technology-01
   title: Technology and systems - 1
@@ -466,6 +466,9 @@ units:
   - {id: ko-nikl-30533-s001, ch: 광합성, pr: 광합썽, ds: photosynthesis}
   - {id: ko-nikl-49161-s001, ch: 용액, pr: 용액, ds: a liquid solution; an evenly mixed liquid}
   - {id: ko-nikl-49779-s001, ch: 원자, pr: 원자, ds: an atom}
+  - {id: ko-nikl-09038-s001, ch: 상관관계, pr: 상관관계 / 상관관게, ds: correlation; a relationship of associated variation}
+  - {id: ko-nikl-09305-s001, ch: 상호 작용, pr: 상호 자굥, ds: interaction between related or paired sides}
+  - {id: ko-nikl-42727-s001, ch: 지속성, pr: 지속썽, ds: continuity of an action or state over time}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-11130-s002, ch: 인류, pr: 일류, ds: humans distinguished from other animals}
@@ -487,7 +490,6 @@ units:
   - {id: ko-nikl-08746-s001, ch: 산업화, pr: 사ː너퐈, ds: industrialization; mechanized production and urban growth}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-02914-s002, ch: 시작하다, pr: 시ː자카다, ds: originate; first occur in a place or event}
   - {id: ko-nikl-13989-s001, ch: 전쟁, pr: 전ː쟁, ds: war; armed conflict}
   - {id: ko-nikl-06831-s001, ch: 분단, pr: 분단, ds: division into two or more parts}
   - {id: ko-nikl-21761-s001, ch: 통일, pr: 통ː일, ds: unification of divided parts}
@@ -495,6 +497,7 @@ units:
   - {id: ko-nikl-07505-s002, ch: 비롯하다, pr: 비로타다, ds: to start an event or action}
   - {id: ko-nikl-18049-s003, ch: 독립, pr: 동닙, ds: a country's possession of full sovereignty}
   - {id: ko-nikl-47901-s001, ch: 영토, pr: 영토, ds: a country's territory}
+  - {id: ko-nikl-14096-s001, ch: 전환점, pr: 전ː환쩜, ds: a turning point or occasion for a change of direction}
   review_grammar: []
 - id: level-21-quantities-01
   title: Numbers and counters - 1
@@ -522,12 +525,12 @@ units:
   grammar:
   - {id: ko-topik5-g002, ch: V/A-기 마련이다, ds: present an expected tendency rather than a law}
   review_vocabulary:
-  - {id: ko-nikl-02206-s001, ch: 순수하다, pr: 순수하다, ds: 'to be pure, with nothing else mixed in'}
-  - {id: ko-nikl-05547-s001, ch: 별자리, pr: 별ː자리, ds: a constellation named for a perceived pattern of stars}
-  - {id: ko-nikl-06939-s001, ch: 분자, pr: 분자, ds: a molecule}
   - {id: ko-nikl-21387-s001, ch: 태양계, pr: 태양계 / 태양게, ds: the solar system}
   - {id: ko-nikl-24839-s001, ch: 행성, pr: 행성, ds: a planet}
   - {id: ko-nikl-30533-s001, ch: 광합성, pr: 광합썽, ds: photosynthesis}
   - {id: ko-nikl-49161-s001, ch: 용액, pr: 용액, ds: a liquid solution; an evenly mixed liquid}
   - {id: ko-nikl-49779-s001, ch: 원자, pr: 원자, ds: an atom}
+  - {id: ko-nikl-09038-s001, ch: 상관관계, pr: 상관관계 / 상관관게, ds: correlation; a relationship of associated variation}
+  - {id: ko-nikl-09305-s001, ch: 상호 작용, pr: 상호 자굥, ds: interaction between related or paired sides}
+  - {id: ko-nikl-42727-s001, ch: 지속성, pr: 지속썽, ds: continuity of an action or state over time}
   review_grammar: []
