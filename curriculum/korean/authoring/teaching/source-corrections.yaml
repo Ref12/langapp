@@ -5,6 +5,36 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-02549-s003:
+    source_korean: 속으로 천천히 은밀하게.
+    source_english: In a manner of being slow and secretive.
+    authored_interpretation: inwardly, gradually, and unobtrusively
+    rationale: Preserve inward development from 속으로 rather than another externally secret action identical to the first position.
+  ko-nikl-16148-s002:
+    source_korean: 그 정도라도.
+    source_english: Only to such an extent.
+    authored_interpretation: even just to that extent
+    rationale: Retain the concessive라도 minimum/acceptable-extent nuance rather than merely an upper bound.
+  ko-nikl-25638-s001:
+    source_korean: 그러지 않아도 매우.
+    source_english: Moreover to make matters worse.
+    authored_interpretation: already very much so, even without that
+    rationale: The Korean defines already-intense background without requiring a negative outcome; common adverse contexts do not make worsening part of every use.
+  ko-nikl-43346-s001:
+    source_korean: 마음이나 생각과 다르게 일부러.
+    source_english: In the manner of doing something on purpose, intentionally.
+    authored_interpretation: deliberately contrary to one's real thoughts or feelings
+    rationale: Preserve the explicit divergence from real thought or feeling that English omits, rather than conflating this with ordinary intentional action.
+  ko-nikl-50891-s002:
+    source_korean: 정취가 그윽하게.
+    source_english: Exquisitely.
+    authored_interpretation: with a deep, subtle atmosphere
+    rationale: Preserve atmospheric depth, not every form of exquisite workmanship, secrecy, or earnestness.
+  ko-nikl-38018-s001:
+    source_korean: 대체로 미루어 생각해 보면.
+    source_english: Considering everything.
+    authored_interpretation: generally speaking; judging broadly
+    rationale: Preserve broad inferred generalization from 대체로 미루어 rather than exhaustive evaluation of every fact or an exceptionless universal claim.
   ko-nikl-33546-s001:
     source_korean: 들깨와 참깨의 잎.
     source_english: The leaf of wild sesame and sesame.

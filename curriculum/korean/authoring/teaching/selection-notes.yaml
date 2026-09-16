@@ -130,6 +130,31 @@ category_adjudication:
     teachable items with their original source senses. The role lists document
     count classification only; they never generate teaching placements.
   function_identities_by_role:
+    stance_qualifiers_and_scope:
+      - ko-lex-38634
+      - ko-lex-14874
+      - ko-lex-06392
+      - ko-lex-04169
+      - ko-lex-04174
+      - ko-lex-04229
+      - ko-lex-16148
+      - ko-lex-48353
+      - ko-lex-07482
+      - ko-lex-24148
+      - ko-lex-11585
+      - ko-lex-11624
+      - ko-lex-16838
+      - ko-lex-10363
+      - ko-lex-25638
+      - ko-lex-23780
+      - ko-lex-23926
+      - ko-lex-24843
+      - ko-lex-23708
+      - ko-lex-14427
+      - ko-lex-46367
+      - ko-lex-10261
+      - ko-lex-37438
+      - ko-lex-38018
     circumstance_quantity_and_discourse:
       - ko-lex-41331
       - ko-lex-07067
@@ -406,6 +431,13 @@ multi_parent_decisions:
       temporal lexeme, not separately counted homographs.
 
 additional_grouping_evidence:
+  stance-qualifiers-and-evaluative-predicates: >
+    stance-qualifiers-notes.yaml records inspected function-category corrections
+    for 다만 and 오히려 and explicit consolidation of the formerly separate
+    빈틈없이 and 뚜렷이 family IDs into their predicate families. All source
+    item IDs, existing placements, and separate modality evidence remain
+    unchanged. New scope operators are not counted as free lexical breadth;
+    actual perceptual and evaluative polysemy adds depth rather than roots.
   predicate-direction-and-perspective: >
     predicate-identities.yaml and predicate-notes.yaml distinguish visibility
     from showing, locking from submersion, coming out from falling in,

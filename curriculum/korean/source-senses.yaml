@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 776
+  unbanded-support: 803
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -14947,6 +14947,19 @@ entries:
     source_position: 2
     english: Being in a state where one does something without giving much thought to it.
     korean: 되는대로 막 하는 상태에 있다.
+- id: ko-nikl-04169
+  target: 아무렴
+  part_of_speech: interjection
+  source_part_of_speech: 감탄사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4169
+  senses:
+  - id: ko-nikl-04169-s001
+    source_position: 1
+    english: An exclamation used when the speaker strongly affirms the other party's remark, in order
+      to indicate that the speaker agrees with the other party absolutely.
+    korean: 말할 필요도 없이 그렇다는 뜻으로, 상대방의 말에 강한 긍정을 보일 때 하는 말.
 - id: ko-nikl-04170
   target: 아무리
   part_of_speech: adverb
@@ -23458,6 +23471,18 @@ entries:
     source_position: 1
     english: A state in which growth or progress is slow.
     korean: 어떤 일이 좋은 쪽으로 이루어지는 기세가 활발하지 않음.
+- id: ko-nikl-06656
+  target: 부질없다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6656
+  senses:
+  - id: ko-nikl-06656-s001
+    source_position: 1
+    english: Fruitless and of no use.
+    korean: 헛되고 쓸모가 없다.
 - id: ko-nikl-06658
   target: 부쩍
   part_of_speech: adverb
@@ -36563,6 +36588,18 @@ entries:
     source_position: 1
     english: An act of sharing opinions about a certain topic.
     korean: 어떤 일에 대해 서로 의견을 나눔.
+- id: ko-nikl-10261
+  target: 의당
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10261
+  senses:
+  - id: ko-nikl-10261-s001
+    source_position: 1
+    english: 'Naturally because it is right to do so. '
+    korean: 그렇게 하는 것이 옳으므로 마땅히.
 - id: ko-nikl-10262
   target: 의도
   part_of_speech: noun
@@ -36949,6 +36986,30 @@ entries:
     source_position: 1
     english: The mind of considering something to be uncertain or not believing someone or something.
     korean: 불확실하게 여기거나 믿지 못하는 마음.
+- id: ko-nikl-10346
+  target: 의심스럽다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10346
+  senses:
+  - id: ko-nikl-10346-s001
+    source_position: 1
+    english: 'Having some parts that are uncertain and thus incur distrust. '
+    korean: 불확실하여 믿지 못할 만한 데가 있다.
+- id: ko-nikl-10347
+  target: 의심쩍다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10347
+  senses:
+  - id: ko-nikl-10347-s001
+    source_position: 1
+    english: Having some parts that are uncertain and thus incur distrust.
+    korean: 불확실하여 믿지 못할 만한 데가 있다.
 - id: ko-nikl-10352
   target: 의아하다
   part_of_speech: descriptive verb
@@ -41942,6 +42003,18 @@ entries:
     source_position: 1
     english: An occupation or a place where one is employed like a workplace, an office, etc.
     korean: 일터나 직장과 같이 직업으로 삼아 일하는 곳.
+- id: ko-nikl-11585
+  target: 일절
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11585
+  senses:
+  - id: ko-nikl-11585-s001
+    source_position: 1
+    english: In any case; without exception.
+    korean: 어떤 일이 있어도 꼭. 또는 이러니저러니 할 것 없이 아주.
 - id: ko-nikl-11587
   target: 일정
   part_of_speech: noun
@@ -52094,6 +52167,18 @@ entries:
     source_position: 1
     english: An act of resigning from one's job, at one's retirement age.
     korean: 정해진 나이가 되어 직장에서 물러남.
+- id: ko-nikl-14427
+  target: 정녕
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14427
+  senses:
+  - id: ko-nikl-14427-s001
+    source_position: 1
+    english: Indeed without any lack of conformity to truth.
+    korean: 조금도 틀림없이 진짜로.
 - id: ko-nikl-14431
   target: 정답
   part_of_speech: noun
@@ -52333,6 +52418,18 @@ entries:
     source_position: 1
     english: Being extremely accurate, meticulous, flawless and detailed.
     korean: 아주 정확하고 꼼꼼하여 빈틈이 없고 자세함.
+- id: ko-nikl-14495
+  target: 정밀하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14495
+  senses:
+  - id: ko-nikl-14495-s001
+    source_position: 1
+    english: Extremely accurate, meticulous, flawless and detailed.
+    korean: 아주 정확하고 꼼꼼하여 빈틈이 없고 자세하다.
 - id: ko-nikl-14500
   target: 정반대
   part_of_speech: noun
@@ -60163,6 +60260,18 @@ entries:
     source_position: 1
     english: Winning a prize in a drawing of lots.
     korean: 여럿 가운데 어느 하나를 골라잡는 추첨에서 뽑힘.
+- id: ko-nikl-16838
+  target: 당최
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16838
+  senses:
+  - id: ko-nikl-16838-s001
+    source_position: 1
+    english: (not) In the least; never.
+    korean: 전혀 또는 도무지.
 - id: ko-nikl-16841
   target: 당하다
   part_of_speech: verb
@@ -63038,6 +63147,22 @@ entries:
     source_position: 1
     english: 'To make an addition to something that already  exists or that one has been working on. '
     korean: 원래 있던 것이나 이미 하던 일에 다른 것을 더하다.
+- id: ko-nikl-17656
+  target: 덧없다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17656
+  senses:
+  - id: ko-nikl-17656-s001
+    source_position: 1
+    english: In vain as time passes so fast.
+    korean: 시간이 너무 빨리 지나가서 허무하다.
+  - id: ko-nikl-17656-s002
+    source_position: 2
+    english: Feeling that life is all in vain without any reward or value in it.
+    korean: 삶이 보람이나 가치를 느낄 수 없이 헛되다.
 - id: ko-nikl-17665
   target: 덩달다
   part_of_speech: verb
@@ -66421,6 +66546,18 @@ entries:
     source_position: 2
     english: 'To return to the former state or the past. '
     korean: 이전의 상태나 시간으로 다시 돌아오다.
+- id: ko-nikl-18657
+  target: 되레
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18657
+  senses:
+  - id: ko-nikl-18657-s001
+    source_position: 1
+    english: In the manner of being against or contrary to one's expectation or a general assumption.
+    korean: 기대했던 것이나 일반적인 생각과는 반대되거나 다르게.
 - id: ko-nikl-18658
   target: 되묻다
   part_of_speech: verb
@@ -83652,6 +83789,18 @@ entries:
     source_position: 1
     english: 'The necessities for one''s daily life. '
     korean: 일상생활에 없어서는 안 되는 반드시 필요한 물건.
+- id: ko-nikl-23708
+  target: 필시
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23708
+  senses:
+  - id: ko-nikl-23708-s001
+    source_position: 1
+    english: 'Almost without any doubt. '
+    korean: 거의 어긋나는 일이 없이.
 - id: ko-nikl-23711
   target: 필연성
   part_of_speech: noun
@@ -87916,6 +88065,18 @@ entries:
     source_position: 3
     english: An act of behaving in a group; or such an attitude.
     korean: 사람들 사이에 어울려 살아가면서 행동함. 또는 그런 태도.
+- id: ko-nikl-24843
+  target: 행여
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24843
+  senses:
+  - id: ko-nikl-24843-s001
+    source_position: 1
+    english: 'Possibly by any chance. '
+    korean: 어쩌다가 혹시.
 - id: ko-nikl-24845
   target: 행운
   part_of_speech: noun
@@ -90816,6 +90977,18 @@ entries:
     source_position: 1
     english: The act of joining a team or a group to help or to work together.
     korean: 한편이 되어 일을 하거나 도움.
+- id: ko-nikl-25621
+  target: 가당찮다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25621
+  senses:
+  - id: ko-nikl-25621-s001
+    source_position: 1
+    english: Not making any sense.
+    korean: 전혀 이치에 맞지 않다.
 - id: ko-nikl-25625
   target: 가동
   part_of_speech: noun
@@ -129528,6 +129701,18 @@ entries:
     source_position: 2
     english: A state of mind or position to deal with others without the sting of embarrassment.
     korean: 남을 대하기에 떳떳한 마음이나 처지.
+- id: ko-nikl-37135
+  target: 면밀하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37135
+  senses:
+  - id: ko-nikl-37135-s001
+    source_position: 1
+    english: 'Being detailed and thorough. '
+    korean: 자세하고 빈틈이 없다.
 - id: ko-nikl-37141
   target: 면봉
   part_of_speech: noun
@@ -130454,6 +130639,18 @@ entries:
     source_position: 10
     english: To fail to do something one should.
     korean: 마땅히 해야 할 일을 하지 않다.
+- id: ko-nikl-37438
+  target: 모름지기
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37438
+  senses:
+  - id: ko-nikl-37438-s001
+    source_position: 1
+    english: 'As a matter of course when thinking rationally. '
+    korean: 이치를 따져 보아 마땅히.
 - id: ko-nikl-37447
   target: 모발
   part_of_speech: noun
@@ -132543,6 +132740,18 @@ entries:
     source_position: 1
     english: To bear and endure a hard or difficult incident or situation.
     korean: 힘들고 어려운 일이나 상황을 참고 견디다.
+- id: ko-nikl-38018
+  target: 무릇
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38018
+  senses:
+  - id: ko-nikl-38018-s001
+    source_position: 1
+    english: Considering everything.
+    korean: 대체로 미루어 생각해 보면.
 - id: ko-nikl-38020
   target: 무릎
   part_of_speech: noun
@@ -135044,6 +135253,18 @@ entries:
     source_position: 1
     english: A facility exhibiting works of art for people to see.
     korean: 미술품을 전시하여 사람들이 볼 수 있게 만든 시설.
+- id: ko-nikl-38946
+  target: 미심쩍다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38946
+  senses:
+  - id: ko-nikl-38946-s001
+    source_position: 1
+    english: 'Feeling uneasy because there is something uncertain. '
+    korean: 분명하지 못해 마음이 편하지 않다.
 - id: ko-nikl-38948
   target: 미아
   part_of_speech: noun
@@ -141513,6 +141734,18 @@ entries:
     source_position: 1
     english: The act of making a machine, device, etc., move by handling it in a certain way.
     korean: 기계나 장치 같은 것을 일정한 방식에 따라 다루어 움직이게 함.
+- id: ko-nikl-41154
+  target: 조잡하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41154
+  senses:
+  - id: ko-nikl-41154-s001
+    source_position: 1
+    english: One's words, behavior, skills, etc., being rough, vulgar and undignified.
+    korean: 말, 행동, 솜씨 등이 거칠고 천하여 품위가 없다.
 - id: ko-nikl-41155
   target: 조장
   part_of_speech: noun
@@ -148886,6 +149119,18 @@ entries:
     source_position: 1
     english: To estimate a situation, circumstances, etc.
     korean: 사정이나 형편 등을 어림잡아 생각하다.
+- id: ko-nikl-43346
+  target: 짐짓
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43346
+  senses:
+  - id: ko-nikl-43346-s001
+    source_position: 1
+    english: In the manner of doing something on purpose, intentionally.
+    korean: 마음이나 생각과 다르게 일부러.
 - id: ko-nikl-43350
   target: 집
   part_of_speech: noun
@@ -150484,6 +150729,18 @@ entries:
     english: A place complete with a traditional sauna and other recreational facilities so as to allow
       visitors to sweat and relax.
     korean: 높은 온도의 방에서 땀을 내며 찜질을 할 수 있도록 사우나와 휴게 시설을 갖춘 곳.
+- id: ko-nikl-43807
+  target: 찜찜하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43807
+  senses:
+  - id: ko-nikl-43807-s001
+    source_position: 1
+    english: Feeling unpleasant due to something.
+    korean: 마음에 걸려 언짢은 느낌이 있다.
 - id: ko-nikl-43816
   target: 찡그리다
   part_of_speech: verb
@@ -158434,6 +158691,18 @@ entries:
     source_position: 2
     english: To regard something as hard or difficult to do.
     korean: 하기가 까다롭거나 힘들게 여기다.
+- id: ko-nikl-46367
+  target: 어련히
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46367
+  senses:
+  - id: ko-nikl-46367-s001
+    source_position: 1
+    english: In a definite manner in which there is no need to worry because things will turn out fine.
+    korean: 걱정하지 않아도 될 만큼 잘될 것이 분명하게.
 - id: ko-nikl-46368
   target: 어렴풋이
   part_of_speech: adverb
@@ -158462,6 +158731,34 @@ entries:
     source_position: 5
     english: In the state of light being not bright but dim.
     korean: 빛이 밝지 않고 희미하게.
+- id: ko-nikl-46369
+  target: 어렴풋하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46369
+  senses:
+  - id: ko-nikl-46369-s001
+    source_position: 1
+    english: One's memory, thought, etc., being dim, not distinct.
+    korean: 기억이나 생각 등이 분명하지 않고 흐릿하다.
+  - id: ko-nikl-46369-s002
+    source_position: 2
+    english: Something that is seen being obscure, not clear.
+    korean: 물체가 분명하게 보이지 않고 흐릿하다.
+  - id: ko-nikl-46369-s003
+    source_position: 3
+    english: A sound that is heard being dim, not distinct.
+    korean: 소리가 분명하게 들리지 않고 희미하다.
+  - id: ko-nikl-46369-s004
+    source_position: 4
+    english: Slightly asleep, not sound asleep.
+    korean: 잠이 깊이 들지 않고 살짝 든 듯 만 듯 하다.
+  - id: ko-nikl-46369-s005
+    source_position: 5
+    english: Light being not bright but dim.
+    korean: 빛이 밝지 않고 희미하다.
 - id: ko-nikl-46370
   target: 어렵다
   part_of_speech: descriptive verb
@@ -161938,6 +162235,18 @@ entries:
     source_position: 2
     english: The lingering effects after a certain event ends.
     korean: 어떤 일이 끝난 뒤에 남아 미치는 영향.
+- id: ko-nikl-47211
+  target: 여하튼
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47211
+  senses:
+  - id: ko-nikl-47211-s001
+    source_position: 1
+    english: Regardless of what has happened or whatever reasons a person might have.
+    korean: 일이 어떻게 되었든지 또는 어떤 이유가 있든지 상관없이.
 - id: ko-nikl-47213
   target: 여학생
   part_of_speech: noun
@@ -166437,6 +166746,18 @@ entries:
     source_position: 1
     english: 'The phenomenon in which the temperature of the earth increases. '
     korean: 지구의 기온이 높아지는 일.
+- id: ko-nikl-48401
+  target: 온당하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48401
+  senses:
+  - id: ko-nikl-48401-s001
+    source_position: 1
+    english: A judgment, behavior, etc., being right without being contrary to reason.
+    korean: 판단이나 행동 등이 일의 이치에 어긋나지 않고 알맞다.
 - id: ko-nikl-48402
   target: 온대
   part_of_speech: noun
@@ -174471,6 +174792,26 @@ entries:
     source_position: 1
     english: '(emphasizing form) By any chance. '
     korean: (강조하는 말로) 혹시.
+- id: ko-nikl-51412
+  target: 혹여
+  part_of_speech: adverb
+  source_part_of_speech: 부사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51412
+  senses:
+  - id: ko-nikl-51412-s001
+    source_position: 1
+    english: Not probably but possibly.
+    korean: 그러할 리는 없지만 만약에.
+  - id: ko-nikl-51412-s002
+    source_position: 2
+    english: By chance.
+    korean: 어쩌다가 우연히.
+  - id: ko-nikl-51412-s003
+    source_position: 3
+    english: Perhaps as one has guessed.
+    korean: 짐작대로 어쩌면.
 - id: ko-nikl-51413
   target: 혹은
   part_of_speech: adverb
@@ -178246,6 +178587,30 @@ entries:
     source_position: 7
     english: Light not being bright.
     korean: 불빛이 밝지 않다.
+- id: ko-nikl-52557
+  target: 흐리멍덩하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52557
+  senses:
+  - id: ko-nikl-52557-s001
+    source_position: 1
+    english: One's mind being fuzzy, not being clear.
+    korean: 정신이 맑지 않고 흐리다.
+  - id: ko-nikl-52557-s002
+    source_position: 2
+    english: Being vague and not clear in telling right from wrong or doing a task.
+    korean: 옳고 그름의 구별이나 하는 일 등이 흐릿하여 분명하지 않다.
+  - id: ko-nikl-52557-s003
+    source_position: 3
+    english: One's memory being hazy, not being clear.
+    korean: 기억이 또렷하지 않고 흐릿하다.
+  - id: ko-nikl-52557-s004
+    source_position: 4
+    english: A sound, voice, etc., being obscure, not being clear.
+    korean: 귀에 들리는 것이 분명하지 않고 희미하다.
 - id: ko-nikl-52561
   target: 흐릿하다
   part_of_speech: descriptive verb

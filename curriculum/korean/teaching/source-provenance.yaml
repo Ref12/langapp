@@ -6817,7 +6817,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '26226'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26226
-      pronunciations:
+      pronunciations: &id1381
       - 일찍
     lexical_identity: ko-lex-11614
     lexical_category: free-lemma
@@ -22971,10 +22971,10 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '22037'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22037
-      pronunciations:
+      pronunciations: &id1376
       - 오히려
     lexical_identity: ko-lex-48353
-    lexical_category: free-lemma
+    lexical_category: function-item
   ko-nikl-43869-s001:
     source_id: nikl-2024-mirror
     source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43869
@@ -23011,10 +23011,10 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '23370'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23370
-      pronunciations:
+      pronunciations: &id1375
       - 다ː만
     lexical_identity: ko-lex-16148
-    lexical_category: free-lemma
+    lexical_category: function-item
   ko-nikl-13571-s001:
     source_id: nikl-2024-mirror
     source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13571
@@ -40734,7 +40734,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '79237'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79237
-      pronunciations:
+      pronunciations: &id1390
       - 치밀하다
     lexical_identity: ko-lex-46065
     lexical_category: free-lemma
@@ -42777,7 +42777,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '92437'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=92437
-      pronunciations:
+      pronunciations: &id1379
       - 정ː작
     lexical_identity: ko-lex-14643
     lexical_category: function-item
@@ -48425,7 +48425,7 @@ items:
       match_method: explicit-crosswalk
       official_entry_id: '14385'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14385
-      pronunciations:
+      pronunciations: &id1377
       - 도대체
       match_reason: Compared all three 도대체 adverb definitions. Sense 1 replaces 요점 with 중요한 것; the emphatic
         negative and strongly curious-question uses in senses 2-3 are unchanged.
@@ -48446,7 +48446,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '47105'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=47105
-      pronunciations:
+      pronunciations: &id1378
       - 도무지
     lexical_identity: ko-lex-17865
     lexical_category: function-item
@@ -49652,7 +49652,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '60563'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60563
-      pronunciations:
+      pronunciations: &id1388
       - 빈ː트멉따
     lexical_identity: ko-lex-07766
     lexical_category: free-lemma
@@ -122383,9 +122383,9 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '60564'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60564
-      pronunciations:
+      pronunciations: &id1389
       - 빈ː트멉씨
-    lexical_identity: ko-lex-07767
+    lexical_identity: ko-lex-07766
     lexical_category: free-lemma
   ko-nikl-09319-s001:
     source_id: nikl-2024-mirror
@@ -122421,7 +122421,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '63349'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63349
-      pronunciations:
+      pronunciations: &id1384
       - 새삼
     lexical_identity: ko-lex-09367
     lexical_category: free-lemma
@@ -123085,7 +123085,7 @@ items:
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=53131
       pronunciations:
       - 뚜려시
-    lexical_identity: ko-lex-19845
+    lexical_identity: ko-lex-19846
     lexical_category: free-lemma
   ko-nikl-23953-s002:
     source_id: nikl-2024-mirror
@@ -146018,6 +146018,1696 @@ items:
       pronunciations:
       - 젇깔
     lexical_identity: ko-lex-14362
+    lexical_category: free-lemma
+  ko-nikl-38634-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38634
+    source_parent: ko-nikl-38634
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'Without need to say. '
+    source_korean: 굳이 말할 필요 없이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62600'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62600
+      pronunciations:
+      - 물론
+    lexical_identity: ko-lex-38634
+    lexical_category: function-item
+  ko-nikl-38633-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38633
+    source_parent: ko-nikl-38633
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: No need to say.
+    source_korean: 굳이 말할 필요가 없음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '89812'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=89812
+      pronunciations:
+      - 물론
+    lexical_identity: ko-lex-38634
+    lexical_category: function-item
+  ko-nikl-14874-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14874
+    source_parent: ko-nikl-14874
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Beg or request with a desperate plea.
+    source_korean: 간절히 부탁하는데.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '31788'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=31788
+      pronunciations:
+      - 제ː발
+    lexical_identity: ko-lex-14874
+    lexical_category: function-item
+  ko-nikl-06392-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6392
+    source_parent: ko-nikl-06392
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: I hope eagerly; if possible.
+    source_korean: 간절하게 바라건대. 또는 될 수 있는 대로.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59429'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59429
+      pronunciations:
+      - 부ː디
+    lexical_identity: ko-lex-06392
+    lexical_category: function-item
+  ko-nikl-04169-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4169
+    source_parent: ko-nikl-04169
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An exclamation used when the speaker strongly affirms the other party's remark, in
+      order to indicate that the speaker agrees with the other party absolutely.
+    source_korean: 말할 필요도 없이 그렇다는 뜻으로, 상대방의 말에 강한 긍정을 보일 때 하는 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66834'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66834
+      pronunciations:
+      - 아ː무렴
+    lexical_identity: ko-lex-04169
+    lexical_category: function-item
+  ko-nikl-04174-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4174
+    source_parent: ko-nikl-04174
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'As much as possible. '
+    source_korean: 될 수 있는 대로.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66836'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66836
+      pronunciations:
+      - 아ː무쪼록
+    lexical_identity: ko-lex-04174
+    lexical_category: function-item
+  ko-nikl-04229-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4229
+    source_parent: ko-nikl-04229
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Before doing something; from the beginning.
+    source_korean: 미리부터. 또는 처음부터.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14747'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14747
+      pronunciations: &id1374
+      - 아예
+    lexical_identity: ko-lex-04229
+    lexical_category: function-item
+  ko-nikl-04229-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4229
+    source_parent: ko-nikl-04229
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Never; not in the least.
+    source_korean: 절대로. 또는 조금도.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14747'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14747
+      pronunciations: *id1374
+    lexical_identity: ko-lex-04229
+    lexical_category: function-item
+  ko-nikl-04229-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4229
+    source_parent: ko-nikl-04229
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Completely.
+    source_korean: 전적으로.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14747'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14747
+      pronunciations: *id1374
+    lexical_identity: ko-lex-04229
+    lexical_category: function-item
+  ko-nikl-16148-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16148
+    source_parent: ko-nikl-16148
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'Only, not others. '
+    source_korean: 다른 것이 아니라 오로지.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23370'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23370
+      pronunciations: *id1375
+    lexical_identity: ko-lex-16148
+    lexical_category: function-item
+  ko-nikl-16148-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16148
+    source_parent: ko-nikl-16148
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Only to such an extent.
+    source_korean: 그 정도라도.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23370'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23370
+      pronunciations: *id1375
+    source_correction:
+      source_korean: 그 정도라도.
+      source_english: Only to such an extent.
+      authored_interpretation: even just to that extent
+      rationale: Retain the concessive라도 minimum/acceptable-extent nuance rather than merely an upper
+        bound.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-16148
+    lexical_category: function-item
+  ko-nikl-48353-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48353
+    source_parent: ko-nikl-48353
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Instead of doing something.
+    source_korean: 그럴 바에는 차라리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22037'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22037
+      pronunciations: *id1376
+    lexical_identity: ko-lex-48353
+    lexical_category: function-item
+  ko-nikl-07482-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7482
+    source_parent: ko-nikl-07482
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'Only something among many. '
+    source_korean: 여럿 가운데 오직.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60408'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60408
+      pronunciations:
+      - 비단
+    lexical_identity: ko-lex-07482
+    lexical_category: function-item
+  ko-nikl-24148-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24148
+    source_parent: ko-nikl-24148
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Only to such an extent without something great even if one tries hard.
+    source_korean: 아무리 한다고 해야 대단한 것 없이 다만.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84117'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84117
+      pronunciations:
+      - 한낟
+    lexical_identity: ko-lex-24148
+    lexical_category: function-item
+  ko-nikl-11585-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11585
+    source_parent: ko-nikl-11585
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: In any case; without exception.
+    source_korean: 어떤 일이 있어도 꼭. 또는 이러니저러니 할 것 없이 아주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72382'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72382
+      pronunciations:
+      - 일쩔
+    lexical_identity: ko-lex-11585
+    lexical_category: function-item
+  ko-nikl-11623-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11623
+    source_parent: ko-nikl-11623
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'All of something. '
+    source_korean: 모든 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24576'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24576
+      pronunciations:
+      - 일체
+    lexical_identity: ko-lex-11624
+    lexical_category: function-item
+  ko-nikl-11624-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11624
+    source_parent: ko-nikl-11624
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: All of everything.
+    source_korean: 모든 것을 전부 다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91526'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91526
+      pronunciations:
+      - 일체
+    lexical_identity: ko-lex-11624
+    lexical_category: function-item
+  ko-nikl-16838-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16838
+    source_parent: ko-nikl-16838
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: (not) In the least; never.
+    source_korean: 전혀 또는 도무지.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49510'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49510
+      pronunciations:
+      - 당최
+      - 당췌
+    lexical_identity: ko-lex-16838
+    lexical_category: function-item
+  ko-nikl-17769-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17769
+    source_parent: ko-nikl-17769
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Only touching on key points, leaving out unnecessary things.
+    source_korean: 다른 말은 다 빼고 요점만 말하면.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '14385'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14385
+      pronunciations: *id1377
+      match_reason: Compared all three 도대체 adverb definitions. Sense 1 replaces 요점 with 중요한 것; the emphatic
+        negative and strongly curious-question uses in senses 2-3 are unchanged.
+    lexical_identity: ko-lex-17769
+    lexical_category: function-item
+  ko-nikl-17769-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17769
+    source_parent: ko-nikl-17769
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Unfortunately never.
+    source_korean: 유감스럽게도 전혀.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '14385'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14385
+      pronunciations: *id1377
+      match_reason: Compared all three 도대체 adverb definitions. Sense 1 replaces 요점 with 중요한 것; the emphatic
+        negative and strongly curious-question uses in senses 2-3 are unchanged.
+    lexical_identity: ko-lex-17769
+    lexical_category: function-item
+  ko-nikl-17865-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17865
+    source_parent: ko-nikl-17865
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Needless to say, completely.
+    source_korean: 뭐라고 할 것도 없이 아주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '47105'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=47105
+      pronunciations: *id1378
+    lexical_identity: ko-lex-17865
+    lexical_category: function-item
+  ko-nikl-14643-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14643
+    source_parent: ko-nikl-14643
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: In a manner that one faces a certain thing actually.
+    source_korean: 실제로 어떤 일에 부닥쳐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '92437'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=92437
+      pronunciations: *id1379
+    lexical_identity: ko-lex-14643
+    lexical_category: function-item
+  ko-nikl-17440-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17440
+    source_parent: ko-nikl-17440
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: On top of the fact that already exists.
+    source_korean: 이미 있는 사실에 더하여.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '47368'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=47368
+      pronunciations:
+      - 더군다나
+    lexical_identity: ko-lex-17434
+    lexical_category: function-item
+  ko-nikl-18657-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18657
+    source_parent: ko-nikl-18657
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: In the manner of being against or contrary to one's expectation or a general assumption.
+    source_korean: 기대했던 것이나 일반적인 생각과는 반대되거나 다르게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48231'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48231
+      pronunciations:
+      - 되ː레
+      - 뒈ː레
+    lexical_identity: ko-lex-17835
+    lexical_category: function-item
+  ko-nikl-10363-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10363
+    source_parent: ko-nikl-10363
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: In the manner of being against one's expectation or thought.
+    source_korean: 예상하거나 생각한 것과는 다르게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24092'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24092
+      pronunciations:
+      - 의ː외로
+      - 의ː웨로
+    lexical_identity: ko-lex-10363
+    lexical_category: function-item
+  ko-nikl-25638-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25638
+    source_parent: ko-nikl-25638
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Moreover to make matters worse.
+    source_korean: 그러지 않아도 매우.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14842'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14842
+      pronunciations:
+      - 가뜨기나
+    source_correction:
+      source_korean: 그러지 않아도 매우.
+      source_english: Moreover to make matters worse.
+      authored_interpretation: already very much so, even without that
+      rationale: The Korean defines already-intense background without requiring a negative outcome; common
+        adverse contexts do not make worsening part of every use.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-25638
+    lexical_category: function-item
+  ko-nikl-23780-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23780
+    source_parent: ko-nikl-23780
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To tell the truth. '
+    source_korean: 사실 말하자면.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85236'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85236
+      pronunciations:
+      - 하긴
+    lexical_identity: ko-lex-23780
+    lexical_category: function-item
+  ko-nikl-23926-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23926
+    source_parent: ko-nikl-23926
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'Regardless of how something turns out. '
+    source_korean: 무엇이 어떻게 되어 있든.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72410'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72410
+      pronunciations:
+      - 하여튼
+    lexical_identity: ko-lex-23926
+    lexical_category: function-item
+  ko-nikl-47211-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47211
+    source_parent: ko-nikl-47211
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Regardless of what has happened or whatever reasons a person might have.
+    source_korean: 일이 어떻게 되었든지 또는 어떤 이유가 있든지 상관없이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71141'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71141
+      pronunciations:
+      - 여하튼
+    lexical_identity: ko-lex-23926
+    lexical_category: function-item
+  ko-nikl-51408-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51408
+    source_parent: ko-nikl-51408
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: Not probably but possibly.
+    source_korean: 그러할 리는 없지만 만약에.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87955'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87955
+      pronunciations: *id363
+    lexical_identity: ko-lex-51408
+    lexical_category: function-item
+  ko-nikl-51408-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51408
+    source_parent: ko-nikl-51408
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: By chance.
+    source_korean: 어쩌다가 우연히.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87955'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87955
+      pronunciations: *id363
+    lexical_identity: ko-lex-51408
+    lexical_category: function-item
+  ko-nikl-51412-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51412
+    source_parent: ko-nikl-51412
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Not probably but possibly.
+    source_korean: 그러할 리는 없지만 만약에.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87958'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87958
+      pronunciations: &id1380
+      - 호겨
+    lexical_identity: ko-lex-51408
+    lexical_category: function-item
+  ko-nikl-51412-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51412
+    source_parent: ko-nikl-51412
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: By chance.
+    source_korean: 어쩌다가 우연히.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87958'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87958
+      pronunciations: *id1380
+    lexical_identity: ko-lex-51408
+    lexical_category: function-item
+  ko-nikl-51412-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51412
+    source_parent: ko-nikl-51412
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: Perhaps as one has guessed.
+    source_korean: 짐작대로 어쩌면.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87958'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87958
+      pronunciations: *id1380
+    lexical_identity: ko-lex-51408
+    lexical_category: function-item
+  ko-nikl-24843-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24843
+    source_parent: ko-nikl-24843
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Possibly by any chance. '
+    source_korean: 어쩌다가 혹시.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85102'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85102
+      pronunciations:
+      - 행ː여
+    lexical_identity: ko-lex-24843
+    lexical_category: function-item
+  ko-nikl-23708-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23708
+    source_parent: ko-nikl-23708
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Almost without any doubt. '
+    source_korean: 거의 어긋나는 일이 없이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '86211'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86211
+      pronunciations:
+      - 필씨
+    lexical_identity: ko-lex-23708
+    lexical_category: function-item
+  ko-nikl-14427-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14427
+    source_parent: ko-nikl-14427
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Indeed without any lack of conformity to truth.
+    source_korean: 조금도 틀림없이 진짜로.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75004'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75004
+      pronunciations:
+      - 정녕
+    lexical_identity: ko-lex-14427
+    lexical_category: function-item
+  ko-nikl-46367-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46367
+    source_parent: ko-nikl-46367
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: In a definite manner in which there is no need to worry because things will turn out
+      fine.
+    source_korean: 걱정하지 않아도 될 만큼 잘될 것이 분명하게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70485'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70485
+      pronunciations:
+      - 어련히
+    lexical_identity: ko-lex-46367
+    lexical_category: function-item
+  ko-nikl-10261-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10261
+    source_parent: ko-nikl-10261
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Naturally because it is right to do so. '
+    source_korean: 그렇게 하는 것이 옳으므로 마땅히.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71655'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71655
+      pronunciations:
+      - 의당
+    lexical_identity: ko-lex-10261
+    lexical_category: function-item
+  ko-nikl-37438-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37438
+    source_parent: ko-nikl-37438
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'As a matter of course when thinking rationally. '
+    source_korean: 이치를 따져 보아 마땅히.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '55791'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=55791
+      pronunciations:
+      - 모름지기
+    lexical_identity: ko-lex-37438
+    lexical_category: function-item
+  ko-nikl-38018-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38018
+    source_parent: ko-nikl-38018
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Considering everything.
+    source_korean: 대체로 미루어 생각해 보면.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '55311'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=55311
+      pronunciations:
+      - 무륻
+    source_correction:
+      source_korean: 대체로 미루어 생각해 보면.
+      source_english: Considering everything.
+      authored_interpretation: generally speaking; judging broadly
+      rationale: Preserve broad inferred generalization from 대체로 미루어 rather than exhaustive evaluation
+        of every fact or an exceptionless universal claim.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-38018
+    lexical_category: function-item
+  ko-nikl-11614-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11614
+    source_parent: ko-nikl-11614
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Earlier than something or someone.
+    source_korean: 보통 다른 일이나 다른 사람보다 먼저.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26226'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26226
+      pronunciations: *id1381
+    lexical_identity: ko-lex-11614
+    lexical_category: free-lemma
+  ko-nikl-11613-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11613
+    source_parent: ko-nikl-11613
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Quite early enough to be considered a little bit early.
+    source_korean: 조금 이르다고 할 만큼 꽤 일찍.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72559'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72559
+      pronunciations: &id1382
+      - 일찌감치
+    lexical_identity: ko-lex-11614
+    lexical_category: free-lemma
+  ko-nikl-11613-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11613
+    source_parent: ko-nikl-11613
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: As early as possible.
+    source_korean: 가능한 한 일찍.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72559'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72559
+      pronunciations: *id1382
+    lexical_identity: ko-lex-11614
+    lexical_category: free-lemma
+  ko-nikl-11615-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11615
+    source_parent: ko-nikl-11615
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Earlier than usual.
+    source_korean: 평소 시간보다 이르게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24574'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24574
+      pronunciations: &id1383
+      - 일찌기
+    lexical_identity: ko-lex-11614
+    lexical_category: free-lemma
+  ko-nikl-11615-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11615
+    source_parent: ko-nikl-11615
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: In former days; before.
+    source_korean: 예전에. 또는 이전까지.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24574'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24574
+      pronunciations: *id1383
+    lexical_identity: ko-lex-11614
+    lexical_category: free-lemma
+  ko-nikl-09367-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9367
+    source_parent: ko-nikl-09367
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: In a sudden manner, by doing something one had not done before.
+    source_korean: 전에 안 하던 일을 하여 갑작스러운 느낌이 들게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63349'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63349
+      pronunciations: *id1384
+    lexical_identity: ko-lex-09367
+    lexical_category: free-lemma
+  ko-nikl-02549-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2549
+    source_parent: ko-nikl-02549
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: In a gentle manner that someone behaves so that other people will not notice.
+    source_korean: 남이 알아차리지 못하도록 드러나지 않게 가만히.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65249'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65249
+      pronunciations: &id1385
+      - 슬며시
+    lexical_identity: ko-lex-02549
+    lexical_category: free-lemma
+  ko-nikl-02549-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2549
+    source_parent: ko-nikl-02549
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: In a slow manner that an action or situation is not exposed clearly.
+    source_korean: 행동이나 상황이 뚜렷하게 드러나지 않고 천천히.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65249'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65249
+      pronunciations: *id1385
+    lexical_identity: ko-lex-02549
+    lexical_category: free-lemma
+  ko-nikl-02549-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2549
+    source_parent: ko-nikl-02549
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: In a manner of being slow and secretive.
+    source_korean: 속으로 천천히 은밀하게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65249'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65249
+      pronunciations: *id1385
+    source_correction:
+      source_korean: 속으로 천천히 은밀하게.
+      source_english: In a manner of being slow and secretive.
+      authored_interpretation: inwardly, gradually, and unobtrusively
+      rationale: Preserve inward development from 속으로 rather than another externally secret action identical
+        to the first position.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-02549
+    lexical_category: free-lemma
+  ko-nikl-43346-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43346
+    source_parent: ko-nikl-43346
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: In the manner of doing something on purpose, intentionally.
+    source_korean: 마음이나 생각과 다르게 일부러.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '78363'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=78363
+      pronunciations:
+      - 짐짇
+    source_correction:
+      source_korean: 마음이나 생각과 다르게 일부러.
+      source_english: In the manner of doing something on purpose, intentionally.
+      authored_interpretation: deliberately contrary to one's real thoughts or feelings
+      rationale: Preserve the explicit divergence from real thought or feeling that English omits, rather
+        than conflating this with ordinary intentional action.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-43346
+    lexical_category: free-lemma
+  ko-nikl-50891-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50891
+    source_parent: ko-nikl-50891
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Exquisitely.
+    source_korean: 정취가 그윽하게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90375'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90375
+      pronunciations: *id417
+    source_correction:
+      source_korean: 정취가 그윽하게.
+      source_english: Exquisitely.
+      authored_interpretation: with a deep, subtle atmosphere
+      rationale: Preserve atmospheric depth, not every form of exquisite workmanship, secrecy, or earnestness.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-50891
+    lexical_category: free-lemma
+  ko-nikl-10346-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10346
+    source_parent: ko-nikl-10346
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Having some parts that are uncertain and thus incur distrust. '
+    source_korean: 불확실하여 믿지 못할 만한 데가 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71899'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71899
+      pronunciations:
+      - 의심스럽따
+    lexical_identity: ko-lex-10343
+    lexical_category: free-lemma
+  ko-nikl-10347-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10347
+    source_parent: ko-nikl-10347
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Having some parts that are uncertain and thus incur distrust.
+    source_korean: 불확실하여 믿지 못할 만한 데가 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71900'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71900
+      pronunciations:
+      - 의심쩍따
+    lexical_identity: ko-lex-10343
+    lexical_category: free-lemma
+  ko-nikl-38946-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38946
+    source_parent: ko-nikl-38946
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Feeling uneasy because there is something uncertain. '
+    source_korean: 분명하지 못해 마음이 편하지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56524'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56524
+      pronunciations:
+      - 미ː심쩍따
+    lexical_identity: ko-lex-38946
+    lexical_category: free-lemma
+  ko-nikl-33559-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33559
+    source_parent: ko-nikl-33559
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Feeling unpleasant or bad because something weighs on one's mind.
+    source_korean: 마음에 걸려서 언짢고 싫은 느낌이 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41565'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41565
+      pronunciations:
+      - 꺼림치카다
+    lexical_identity: ko-lex-33559
+    lexical_category: free-lemma
+  ko-nikl-43807-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43807
+    source_parent: ko-nikl-43807
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Feeling unpleasant due to something.
+    source_korean: 마음에 걸려 언짢은 느낌이 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79681'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79681
+      pronunciations:
+      - 찜찜하다
+    lexical_identity: ko-lex-43807
+    lexical_category: free-lemma
+  ko-nikl-48401-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48401
+    source_parent: ko-nikl-48401
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A judgment, behavior, etc., being right without being contrary to reason.
+    source_korean: 판단이나 행동 등이 일의 이치에 어긋나지 않고 알맞다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68617'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68617
+      pronunciations:
+      - 온ː당하다
+    lexical_identity: ko-lex-48401
+    lexical_category: free-lemma
+  ko-nikl-25621-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25621
+    source_parent: ko-nikl-25621
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Not making any sense.
+    source_korean: 전혀 이치에 맞지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28170'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28170
+      pronunciations:
+      - 가ː당찬타
+    lexical_identity: ko-lex-25621
+    lexical_category: free-lemma
+  ko-nikl-06656-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6656
+    source_parent: ko-nikl-06656
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Fruitless and of no use.
+    source_korean: 헛되고 쓸모가 없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59283'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59283
+      pronunciations:
+      - 부지럽따
+    lexical_identity: ko-lex-06656
+    lexical_category: free-lemma
+  ko-nikl-17656-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17656
+    source_parent: ko-nikl-17656
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: In vain as time passes so fast.
+    source_korean: 시간이 너무 빨리 지나가서 허무하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '51340'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=51340
+      pronunciations: &id1386
+      - 더덥따
+    lexical_identity: ko-lex-17656
+    lexical_category: free-lemma
+  ko-nikl-17656-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17656
+    source_parent: ko-nikl-17656
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Feeling that life is all in vain without any reward or value in it.
+    source_korean: 삶이 보람이나 가치를 느낄 수 없이 헛되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '51340'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=51340
+      pronunciations: *id1386
+    lexical_identity: ko-lex-17656
+    lexical_category: free-lemma
+  ko-nikl-14402-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14402
+    source_parent: ko-nikl-14402
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Flawless, detailed and superb in skills or technique.
+    source_korean: 솜씨나 기술이 빈틈이 없이 자세하고 뛰어나다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74983'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74983
+      pronunciations: &id1387
+      - 정교하다
+    lexical_identity: ko-lex-14402
+    lexical_category: free-lemma
+  ko-nikl-14402-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14402
+    source_parent: ko-nikl-14402
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Precise and detailed in content or organization.
+    source_korean: 내용이나 구성이 정확하고 자세하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74983'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74983
+      pronunciations: *id1387
+    lexical_identity: ko-lex-14402
+    lexical_category: free-lemma
+  ko-nikl-14495-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14495
+    source_parent: ko-nikl-14495
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Extremely accurate, meticulous, flawless and detailed.
+    source_korean: 아주 정확하고 꼼꼼하여 빈틈이 없고 자세하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75764'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75764
+      pronunciations:
+      - 정밀하다
+    lexical_identity: ko-lex-14495
+    lexical_category: free-lemma
+  ko-nikl-14612-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14612
+    source_parent: ko-nikl-14612
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Speech, text, act, etc., being coherent and organized.
+    source_korean: 말이나 글, 행동 등이 앞뒤가 들어맞고 짜임새가 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75662'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75662
+      pronunciations:
+      - 정연하다
+    lexical_identity: ko-lex-14612
+    lexical_category: free-lemma
+  ko-nikl-37135-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37135
+    source_parent: ko-nikl-37135
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Being detailed and thorough. '
+    source_korean: 자세하고 빈틈이 없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56100'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56100
+      pronunciations:
+      - 면밀하다
+    lexical_identity: ko-lex-37135
+    lexical_category: free-lemma
+  ko-nikl-41154-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41154
+    source_parent: ko-nikl-41154
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: One's words, behavior, skills, etc., being rough, vulgar and undignified.
+    source_korean: 말, 행동, 솜씨 등이 거칠고 천하여 품위가 없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75489'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75489
+      pronunciations:
+      - 조자파다
+    lexical_identity: ko-lex-41154
+    lexical_category: free-lemma
+  ko-nikl-07766-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7766
+    source_parent: ko-nikl-07766
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Not missing something or not having a vacant part.
+    source_korean: 어떤 것이 빠져 있거나 어떤 부분이 비어 있지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60563'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60563
+      pronunciations: *id1388
+    lexical_identity: ko-lex-07766
+    lexical_category: free-lemma
+  ko-nikl-07767-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7767
+    source_parent: ko-nikl-07767
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Without missing something or without having a vacant part.
+    source_korean: 어떤 것이 빠져 있거나 어떤 부분이 비어 있지 않게.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60564'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60564
+      pronunciations: *id1389
+    lexical_identity: ko-lex-07766
+    lexical_category: free-lemma
+  ko-nikl-19783-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19783
+    source_parent: ko-nikl-19783
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Clear and sure.
+    source_korean: 분명하고 확실하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '52129'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=52129
+      pronunciations:
+      - 또려타다
+    lexical_identity: ko-lex-19846
+    lexical_category: free-lemma
+  ko-nikl-24992-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24992
+    source_parent: ko-nikl-24992
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Being old and worn out, making it look worthless.
+    source_korean: 낡고 헐어서 보잘것없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '86798'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86798
+      pronunciations: *id432
+    lexical_identity: ko-lex-24992
+    lexical_category: free-lemma
+  ko-nikl-46065-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46065
+    source_parent: ko-nikl-46065
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Very fine and close.
+    source_korean: 아주 곱고 촘촘하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79237'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79237
+      pronunciations: *id1390
+    lexical_identity: ko-lex-46065
+    lexical_category: free-lemma
+  ko-nikl-46879-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46879
+    source_parent: ko-nikl-46879
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Something being incomplete and not dense in structure because it was made haphazardly.
+    source_korean: 잘 짜이지 않아 어설프고 빈틈이 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67430'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67430
+      pronunciations: &id1391
+      - 엉성하다
+    lexical_identity: ko-lex-46879
+    lexical_category: free-lemma
+  ko-nikl-46879-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46879
+    source_parent: ko-nikl-46879
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Standing apart from each other.
+    source_korean: 사이가 넓어 드문드문하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67430'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67430
+      pronunciations: *id1391
+    lexical_identity: ko-lex-46879
+    lexical_category: free-lemma
+  ko-nikl-46879-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46879
+    source_parent: ko-nikl-46879
+    source_position: 4
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Poor in form or substance.
+    source_korean: 모양이나 내용이 부실하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67430'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67430
+      pronunciations: *id1391
+    lexical_identity: ko-lex-46879
+    lexical_category: free-lemma
+  ko-nikl-46462-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46462
+    source_parent: ko-nikl-46462
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Behaving recklessly without thinking carefully or preparing perfectly.
+    source_korean: 주의 깊게 생각하거나 철저하게 준비하지 않고 마구 행동하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67029'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67029
+      pronunciations: *id412
+    lexical_identity: ko-lex-46462
+    lexical_category: free-lemma
+  ko-nikl-46462-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46462
+    source_parent: ko-nikl-46462
+    source_position: 4
+    source_band: advanced
+    reference_level: topik-5
+    source_english: One's sleep being not deep or one's dream being vague.
+    source_korean: 잠이 깊지 않거나 꿈이 희미하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67029'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67029
+      pronunciations: *id412
+    lexical_identity: ko-lex-46462
+    lexical_category: free-lemma
+  ko-nikl-46462-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46462
+    source_parent: ko-nikl-46462
+    source_position: 5
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Smoke, smell, etc., being very weak, not thick or strong.
+    source_korean: 연기나 냄새 등이 짙거나 선명하지 않고 매우 연하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67029'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67029
+      pronunciations: *id412
+    lexical_identity: ko-lex-46462
+    lexical_category: free-lemma
+  ko-nikl-46369-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46369
+    source_parent: ko-nikl-46369
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: One's memory, thought, etc., being dim, not distinct.
+    source_korean: 기억이나 생각 등이 분명하지 않고 흐릿하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70487
+      pronunciations: &id1392
+      - 어렴푸타다
+    lexical_identity: ko-lex-46369
+    lexical_category: free-lemma
+  ko-nikl-46369-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46369
+    source_parent: ko-nikl-46369
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Something that is seen being obscure, not clear.
+    source_korean: 물체가 분명하게 보이지 않고 흐릿하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70487
+      pronunciations: *id1392
+    lexical_identity: ko-lex-46369
+    lexical_category: free-lemma
+  ko-nikl-46369-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46369
+    source_parent: ko-nikl-46369
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: A sound that is heard being dim, not distinct.
+    source_korean: 소리가 분명하게 들리지 않고 희미하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70487
+      pronunciations: *id1392
+    lexical_identity: ko-lex-46369
+    lexical_category: free-lemma
+  ko-nikl-46369-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46369
+    source_parent: ko-nikl-46369
+    source_position: 4
+    source_band: unbanded
+    reference_level: null
+    source_english: Slightly asleep, not sound asleep.
+    source_korean: 잠이 깊이 들지 않고 살짝 든 듯 만 듯 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70487
+      pronunciations: *id1392
+    lexical_identity: ko-lex-46369
+    lexical_category: free-lemma
+  ko-nikl-46369-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46369
+    source_parent: ko-nikl-46369
+    source_position: 5
+    source_band: unbanded
+    reference_level: null
+    source_english: Light being not bright but dim.
+    source_korean: 빛이 밝지 않고 희미하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70487
+      pronunciations: *id1392
+    lexical_identity: ko-lex-46369
+    lexical_category: free-lemma
+  ko-nikl-52557-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52557
+    source_parent: ko-nikl-52557
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: One's mind being fuzzy, not being clear.
+    source_korean: 정신이 맑지 않고 흐리다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '89186'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=89186
+      pronunciations: &id1393
+      - 흐리멍덩하다
+    lexical_identity: ko-lex-52557
+    lexical_category: free-lemma
+  ko-nikl-52557-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52557
+    source_parent: ko-nikl-52557
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Being vague and not clear in telling right from wrong or doing a task.
+    source_korean: 옳고 그름의 구별이나 하는 일 등이 흐릿하여 분명하지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '89186'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=89186
+      pronunciations: *id1393
+    lexical_identity: ko-lex-52557
+    lexical_category: free-lemma
+  ko-nikl-52557-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52557
+    source_parent: ko-nikl-52557
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: One's memory being hazy, not being clear.
+    source_korean: 기억이 또렷하지 않고 흐릿하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '89186'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=89186
+      pronunciations: *id1393
+    lexical_identity: ko-lex-52557
+    lexical_category: free-lemma
+  ko-nikl-52557-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52557
+    source_parent: ko-nikl-52557
+    source_position: 4
+    source_band: unbanded
+    reference_level: null
+    source_english: A sound, voice, etc., being obscure, not being clear.
+    source_korean: 귀에 들리는 것이 분명하지 않고 희미하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '89186'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=89186
+      pronunciations: *id1393
+    lexical_identity: ko-lex-52557
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

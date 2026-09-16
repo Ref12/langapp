@@ -1,0 +1,218 @@
+schema_version: 1
+id: ko-stance-qualifiers-and-evaluative-predicates
+review_status: original-ai-authored-unreviewed
+completion_status: integrated; overall breadth and pedagogical review remain incomplete
+scope: >
+  Fill actual common conversational gaps, then distinguish quantity/contrast,
+  time, evidential stance, evaluative predicates, and perceptual meanings.
+  This bounded exact-form investigation is not an exhaustive unselected-source
+  sweep, a list translation, or a later-phase quota. All original source senses
+  and readings remain independent of pedagogy and lexical-family accounting.
+source:
+  source_id: nikl-2024-mirror
+  revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  records: 53172
+  inspection: >
+    Inspect full aligned Korean/English lists for named stance/evaluation
+    candidates and their actual same-form competitors. Compare the existing
+    canonical families and the complete predicate/adverb and short/long-form
+    definitions before grouping. No usages, audio, or media are redistributed.
+  complete_source_evidence: >
+    ../../source-senses.yaml is the authoritative retained bilingual evidence,
+    derived directly from the verified bytes, not reconstructed from the joined
+    reference English. The27 additional parent IDs below retain all37 original
+    positions, POS, band, source_entry locator, and whitespace. Parent and
+    sense ordinals are project locators, not invented official identifiers.
+  support_parent_ids:
+    - ko-nikl-04169
+    - ko-nikl-06656
+    - ko-nikl-10261
+    - ko-nikl-10346
+    - ko-nikl-10347
+    - ko-nikl-11585
+    - ko-nikl-14427
+    - ko-nikl-14495
+    - ko-nikl-16838
+    - ko-nikl-17656
+    - ko-nikl-18657
+    - ko-nikl-23708
+    - ko-nikl-24843
+    - ko-nikl-25621
+    - ko-nikl-37135
+    - ko-nikl-37438
+    - ko-nikl-38018
+    - ko-nikl-38946
+    - ko-nikl-41154
+    - ko-nikl-43346
+    - ko-nikl-43807
+    - ko-nikl-46367
+    - ko-nikl-46369
+    - ko-nikl-47211
+    - ko-nikl-48401
+    - ko-nikl-51412
+    - ko-nikl-52557
+  counts: {selected_senses: 88, selected_parents: 64, new_support_parents: 27, complete_new_positions: 37}
+reading_review:
+  official_archive: nikl-official-20260819
+  assessed_parents: 64
+  official_text_parents: 64
+  official_text_senses: 88
+  new_crosswalks: 0
+  new_authored_readings: 0
+  unresolved_selected_parents: []
+  policy: >
+    Each original parent was matched independently against actual citation
+    text. Existing explicit crosswalks were reused where applicable. Equal
+    meanings, merged families, or spelling variants never transfer a reading.
+generated_coverage:
+  core_dictionary_entries: 5242
+  core_selected_senses: 7499
+  core_distinct_spellings: 4942
+  core_spelling_pos_pairs: 5044
+  core_lexical_identities: 5019
+  core_provisional_free_families: 4761
+  core_bound_forms: 40
+  core_function_items: 218
+  retained_support_parents: 803
+  selected_support_parents: 799
+  actual_modules: 749
+  generated_views: 128
+  free_family_gap_to_lower_guide: 1039
+  limits: >
+    This is an intermediate snapshot, not final course completion, verified
+    true-lexeme breadth, or catalog activation. The larger early-phase load
+    still needs substantive pedagogical reassessment after useful expansion;
+    no words were relocated or modules padded to improve the shape.
+placement:
+  common_conversation: >
+    Of-course framing appears at4, earnest pleas at6, and wish/nominal
+    agreement uses at8. Strong 아무렴 agreement is later than a polite yes:
+    it is not interchangeable with 네 in every relationship. 제발 can sound
+    urgent or exasperated, and 부디 is not a mandatory politeness token.
+  narration_and_decisions: >
+    Time comparisons and accidental occurrence support9; concerns and memory
+    support10. Perceptual clarity and early process timing support11.
+    Alternatives, scope, and initial planning support13; actual encounters,
+    worn condition, and faint/light states support14. Historical timing and
+    reported perceptions support16; material and spatial distinctions support17.
+  explanation_and_evidence: >
+    Summary, exceptionless scope, and minimal acceptable extent support18.
+    Doubtful aspects, certainty levels, gradual development, and thoroughness
+    support19. Precision in a general scientific account enters21, workmanship
+    appraisal22, and reasonableness of a claim or judgment23. Coherent content
+    and weak/strong organization support synthesis24.
+  interpretation_and_register: >
+    Hidden intent, reassuring certainty, belittling scope, and changed behavior
+    belong in contextual stance work25. Marked negative, truth, generalization,
+    and normative frames enter26, not everyday speech as universally suitable
+    substitutes. Fleeting-time feelings and atmospheric depth support27;
+    closely related doubt predicates and refinement judgments support28.
+    Existing placements are not moved to make later phases look larger.
+  context_limits: >
+    비단 is particularly useful in not-only contrasts; 일절 and 당최 commonly
+    occur with negative restrictions. The source definitions do not license
+    stripping their collocational context or assigning a universal substitute.
+    모름지기, 무릇, 정녕, and 여하튼 need marked/written-register discussion.
+    A reassurance using 어련히 may be sincere or ironic in context; no fixed
+    sarcastic meaning or intonation is inferred from the spelling.
+identity_adjudication:
+  new_free_families: 17
+  new_function_families: 22
+  corrected_existing_function_categories: [ko-lex-16148, ko-lex-48353]
+  category_rationale: >
+    All selected 다만 and 오히려 senses are restriction, qualification,
+    alternative, or contrastive scope. Their former provisional free
+    classifications were inconsistent with the same role already assigned
+    to 도리어 and other operators. Correct only these inspected affected
+    families, retaining their canonical IDs, lemmas, and source item IDs.
+  consolidated_prior_identities:
+    ko-lex-07767:
+      into: ko-lex-07766
+      rationale: >
+        Both full 빈틈없다/빈틈없이 lists have matching literal-completeness
+        and thoroughness meanings, differing in predicate/adverb syntax.
+        The old manner sense remains selected with its original ID and
+        placement; consolidation changes breadth accounting, not mastery.
+    ko-lex-19845:
+      into: ko-lex-19846
+      rationale: >
+        The actual 뚜렷하다/뚜렷이 definitions match apart from predicate/
+        adverb syntax. The selected 또렷하다 clarity alternant is counted
+        conservatively with them; retain the stronger 아주 qualification
+        where present, separate citations, and distinct usage evidence.
+  net_free_change: 13
+  net_function_change: 24
+  net_total_identity_change: 37
+  preserved_evidence_boundaries: >
+    의심스럽다/의심쩍다 have identical full Korean definitions but remain
+    separate source items within protected 의심. The first three 혹여
+    definitions exactly match the first three 혹시 positions, whose original
+    conditional and chance uses were also missing. Early-time variants deepen
+    일찍, while old-time 일찍이 does not inherit mastery from clock timing.
+    Further adjective senses deepen old families without another free root.
+    Concrete lexical manner 슬며시 and deliberate pretence 짐짓 remain free
+    content families, not automatically discourse operators because of POS.
+  nonautomatic_grouping: >
+    Do not merge every synonym, vowel alternant, noun/adverb, or hada form.
+    슬며시's slow/unobtrusive development differs from the rapid/light/cursory
+    meanings of protected 슬쩍. Normative 의당 is not the independent predicate
+    마땅하다. 일절 and 일체 retain different source readings and use profiles.
+    The new 하여튼/여하튼 family does not automatically replace protected 아무튼.
+source_correction_requests:
+  ko-nikl-02549-s003:
+    source_korean: 속으로 천천히 은밀하게.
+    source_english: In a manner of being slow and secretive.
+    authored_interpretation: inwardly, gradually, and unobtrusively
+    rationale: Preserve inward development from 속으로 rather than presenting another externally secret action identical to the first position.
+  ko-nikl-16148-s002:
+    source_korean: 그 정도라도.
+    source_english: Only to such an extent.
+    authored_interpretation: even just to that extent
+    rationale: Retain the concessive라도 minimum/acceptable-extent nuance, not merely an upper bound.
+  ko-nikl-25638-s001:
+    source_korean: 그러지 않아도 매우.
+    source_english: Moreover to make matters worse.
+    authored_interpretation: already very much so, even without that
+    rationale: The Korean defines an already-intense background without an obligatory negative outcome. Common adverse contexts do not restrict every use to worsening.
+  ko-nikl-43346-s001:
+    source_korean: 마음이나 생각과 다르게 일부러.
+    source_english: In the manner of doing something on purpose, intentionally.
+    authored_interpretation: deliberately contrary to one's real thoughts or feelings
+    rationale: Preserve the explicit divergence from real thought or feeling; English omits it and otherwise conflates this with ordinary intentional action.
+  ko-nikl-50891-s002:
+    source_korean: 정취가 그윽하게.
+    source_english: Exquisitely.
+    authored_interpretation: with a deep, subtle atmosphere
+    rationale: Preserve atmospheric depth rather than claiming every form of exquisite workmanship, secrecy, or earnestness.
+  ko-nikl-38018-s001:
+    source_korean: 대체로 미루어 생각해 보면.
+    source_english: Considering everything.
+    authored_interpretation: generally speaking; judging broadly
+    rationale: Preserve broad inferred generalization from 대체로 미루어, not an exhaustive evaluation of every fact or an exceptionless universal claim.
+bounded_exclusions:
+  unrelated_homographs:
+    ko-nikl-01749: Receiving an award is not the suspicious adjective or this adverb/adjective cohort.
+    ko-nikl-04857: Unjustly punished without wrongdoing is not the already selected ambiguous adjective.
+    ko-nikl-07481: Silk cloth is not restrictive 비단.
+    ko-nikl-16491: A small jar is not only/merely 단지.
+    ko-nikl-24423: Combining political parties is not the reasonable/fitting adjective.
+    ko-nikl-50162: Toxicity is not the focus adverb 유독.
+  other_positions:
+    ko-nikl-46879-s002: Thinness after weight loss is retained in the source but not added as a loosely-made-object or argument-quality meaning.
+    ko-nikl-07996-s001: Near-event auxiliary 뻔하다 is a construction-owned question, not another lexical clear/obvious sense.
+    ko-nikl-46554-s001: The metalinguistic abbreviated-form record is not a newly invented lexical meaning for 어쨌든.
+    ko-nikl-14642-s001: The nominal important/real-part record is not needed to add the actual-encounter adverb.
+    ko-nikl-25567-s001: No automatic nominal counterpart is selected merely because the existing 가급적 adverb is useful.
+    ko-nikl-41513-s001: No automatic nominal counterpart is selected for the already covered 좌우간 discourse use.
+  absent_exact_forms: [대놓고, 뚱딴지같다, 말하자면, 석연찮다]
+  absence_limit: The bounded exact-form result concerns this pin, not absence from Korean, and supplies no invented spelling, lexical sense, or ID.
+review_limits: >
+  Dictionary text and authored interpretations retain separate provenance.
+  Families are provisional, not independently adjudicated true lexemes.
+  No written sensory adjective establishes actual hearing, visibility, smell
+  detection, safety, diagnosis, mental state, or competence. Teach criticism
+  with suitable relationship/context and evaluate claims rather than a person's
+  worth. Qualified Korean-language and pedagogical review remains necessary;
+  counts, modules, and citation text award no item or modality mastery.

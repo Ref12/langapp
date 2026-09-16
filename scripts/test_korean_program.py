@@ -778,6 +778,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "interaction-notes.yaml",
             "culture-notes.yaml",
             "pantry-notes.yaml",
+            "stance-qualifiers-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename == "governance-notes.yaml"
@@ -2271,6 +2272,97 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             self.references.provenance["ko-nikl-46176-s001"]["reading"]["official_entry_id"],
             "14323",
         )
+
+    def test_stance_common_replies_and_scope_are_not_counted_as_free_content(self):
+        authoring = self.root / "authoring" / "teaching"
+        _, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        notes = load_yaml(authoring / "stance-qualifiers-notes.yaml")
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for group in notes["identity_adjudication"]["corrected_existing_function_categories"]:
+            self.assertEqual(groups[group]["category"], "function-item")
+        for item in (
+            "ko-nikl-38634-s001", "ko-nikl-38633-s001", "ko-nikl-14874-s001",
+            "ko-nikl-06392-s001", "ko-nikl-04169-s001", "ko-nikl-11623-s001",
+            "ko-nikl-11624-s001", "ko-nikl-04229-s001",
+        ):
+            self.assertEqual(groups[identities[item]]["category"], "function-item")
+        self.assertEqual(identities["ko-nikl-38634-s001"], identities["ko-nikl-38633-s001"])
+        self.assertEqual(identities["ko-nikl-11623-s001"], identities["ko-nikl-11624-s001"])
+        self.assertNotEqual(identities["ko-nikl-11585-s001"], identities["ko-nikl-11624-s001"])
+        self.assertIn("earnest", words["ko-nikl-14874-s001"]["ds"])
+        self.assertIn("if at all possible", words["ko-nikl-06392-s001"]["ds"])
+        self.assertIn("outset", words["ko-nikl-04229-s001"]["ds"])
+        self.assertIn("never", words["ko-nikl-04229-s002"]["ds"])
+        self.assertIn("entirely", words["ko-nikl-04229-s003"]["ds"])
+        self.assertIn("preferably", words["ko-nikl-48353-s002"]["ds"])
+
+    def test_stance_source_corrections_keep_concession_pretence_and_atmosphere(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        self.assertIn("even just", words["ko-nikl-16148-s002"]["ds"])
+        self.assertIn("라도", evidence["ko-nikl-16148-s002"]["source_korean"])
+        self.assertIn("real thoughts or feelings", words["ko-nikl-43346-s001"]["ds"])
+        self.assertNotIn("thought", evidence["ko-nikl-43346-s001"]["source_english"])
+        self.assertIn("마음이나 생각과 다르게", evidence["ko-nikl-43346-s001"]["source_korean"])
+        self.assertIn("inwardly", words["ko-nikl-02549-s003"]["ds"])
+        self.assertIn("atmosphere", words["ko-nikl-50891-s002"]["ds"])
+        self.assertEqual(evidence["ko-nikl-50891-s002"]["source_english"], "Exquisitely.")
+        self.assertIn("worse", evidence["ko-nikl-25638-s001"]["source_english"])
+        self.assertNotIn("worse", words["ko-nikl-25638-s001"]["ds"])
+        self.assertIn("generally", words["ko-nikl-38018-s001"]["ds"])
+
+    def test_stance_actual_category_pairs_and_variants_share_inspected_families(self):
+        authoring = self.root / "authoring" / "teaching"
+        _, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        identities = self.references.lexical_identity
+        self.assertNotIn("ko-lex-07767", groups)
+        self.assertNotIn("ko-lex-19845", groups)
+        for members in (
+            ("ko-nikl-07766-s001", "ko-nikl-07766-s002", "ko-nikl-07767-s001", "ko-nikl-07767-s002"),
+            ("ko-nikl-19783-s001", "ko-nikl-19845-s001", "ko-nikl-19846-s001"),
+            ("ko-nikl-10343-s001", "ko-nikl-10346-s001", "ko-nikl-10347-s001"),
+            ("ko-nikl-11614-s001", "ko-nikl-11614-s002", "ko-nikl-11613-s002", "ko-nikl-11615-s002"),
+            ("ko-nikl-51408-s001", "ko-nikl-51408-s003", "ko-nikl-51412-s001", "ko-nikl-51412-s003"),
+            ("ko-nikl-17434-s001", "ko-nikl-17440-s001"),
+            ("ko-nikl-17835-s001", "ko-nikl-18657-s001"),
+        ):
+            self.assertEqual(len({identities[item] for item in members}), 1)
+        self.assertNotEqual(identities["ko-nikl-02549-s001"], identities["ko-nikl-02551-s001"])
+
+    def test_stance_epistemic_and_perceptual_senses_remain_separate_targets(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertIn("almost", words["ko-nikl-23708-s001"]["ds"])
+        self.assertIn("거의", self.references.provenance["ko-nikl-23708-s001"]["source_korean"])
+        self.assertIn("unlikely", words["ko-nikl-51408-s001"]["ds"])
+        self.assertIn("chance", words["ko-nikl-51408-s002"]["ds"])
+        self.assertIn("suspected", words["ko-nikl-51412-s003"]["ds"])
+        for suffix, marker in ((1, "memory"), (2, "eye"), (3, "audible"), (4, "asleep"), (5, "lit")):
+            item = f"ko-nikl-46369-s{suffix:03d}"
+            self.assertIn(marker, words[item]["ds"])
+            self.assertEqual(identities[item], "ko-lex-46369")
+            self.assertEqual(self.references.provenance[item]["source_position"], suffix)
+        self.assertIn("sleep", words["ko-nikl-46462-s004"]["ds"])
+        self.assertIn("smoke or smell", words["ko-nikl-46462-s005"]["ds"])
+        self.assertIn("closely packed", words["ko-nikl-46065-s002"]["ds"])
+        self.assertIn("worn", words["ko-nikl-24992-s001"]["ds"])
+
+    def test_stance_new_parents_retain_full_source_and_actual_official_readings(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "stance-qualifiers-notes.yaml")
+        rows = load_yaml(authoring / "stance-qualifiers-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["source"]["support_parent_ids"]
+        self.assertEqual(len(requests), 27)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 37)
+        for parent in requests:
+            record = parents[parent]
+            self.assertEqual(record["source_band"], "unbanded")
+            self.assertEqual(
+                [item["source_position"] for item in record["senses"]],
+                list(range(1, len(record["senses"]) + 1)),
+            )
+            self.assertTrue(all(item["korean"] and item["english"] for item in record["senses"]))
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
