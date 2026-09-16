@@ -9,16 +9,16 @@ Game mechanics from `games.md` are intentionally out of scope.
 ## Open the prototype
 
 Open [`index.html`](index.html) directly in a browser. No build, dependencies,
-account, or network connection is needed. With `npm run dev`, the site root
-serves [`app.html`](app.html) directly, without the device-preview toolbar.
-Open `/preview.html` for the Desktop / Mobile frame or
+account, or network connection is needed. With `npm run dev`, open `/app.html`
+for the app-only mockup, `/preview.html` for the Desktop / Mobile frame, or
 `/writing-comparison.html` for the artwork study. The built site publishes the
 same routes alongside the archived application at `/v1/`.
 
-Root serving is an implementation checkpoint, not a conversion to production
-features: all prototype interactions remain illustrative and memory-only.
-The existing files here are the source of truth for both direct-file previews
-and the root site; no duplicate frontend source or shared v1 storage is introduced.
+The site root now runs the separate Mandarin foundation in `src/`, using this
+design direction and shared theme tokens. These prototype interactions remain
+illustrative and memory-only. The files here are still the source of truth for
+direct-file and served design previews; neither the new app's database nor v1
+storage is connected to the prototype.
 
 The prototype uses relative assets and hash navigation. For example,
 `index.html#reader` opens Library's reading view directly, and

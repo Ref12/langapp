@@ -1,7 +1,9 @@
 import { fileURLToPath } from 'node:url'
-import { createServer, defineConfig, type Plugin, type ViteDevServer } from 'vite'
+import { createServer, defineConfig, type Plugin, type UserConfig, type ViteDevServer } from 'vite'
+import react from '@vitejs/plugin-react'
+import { mockupFiles } from './scripts/mockup-files.mjs'
 
-function versionedSite(): Plugin {
+function versionedSite(mockups: Set<string>): Plugin {
   let v1: ViteDevServer | undefined
 
   return {
@@ -13,17 +15,18 @@ function versionedSite(): Plugin {
       })
       const legacy = v1
       server.middlewares.use((request, response, next) => {
-        const [pathname, query] = (request.url ?? '/').split('?')
+        const url = new URL(request.url ?? '/', 'http://localhost')
+        const pathname = url.pathname
         if (pathname === '/v1' || pathname.startsWith('/v1/')) {
           legacy.middlewares(request, response, next)
           return
         }
 
-        // Keep app-only navigation at root and the device frame at /preview.html.
-        const entry = pathname === '/' || pathname === '/index.html'
-          ? '/app.html'
-          : pathname === '/preview.html' ? '/index.html' : undefined
-        if (entry) request.url = entry + (query === undefined ? '' : `?${query}`)
+        // The design previews retain their original relative URLs, on a separate page.
+        const filename = pathname === '/preview.html' ? 'index.html' : pathname.slice(1)
+        if (pathname !== '/index.html' && mockups.has(filename)) {
+          request.url = `/docs/mockups/${filename}${url.search}`
+        }
         next()
       })
     },
@@ -33,12 +36,12 @@ function versionedSite(): Plugin {
   }
 }
 
-export default defineConfig({
-  root: fileURLToPath(new URL('./docs/mockups/', import.meta.url)),
-  cacheDir: fileURLToPath(new URL('./node_modules/.vite/mockups/', import.meta.url)),
+export default defineConfig(async (): Promise<UserConfig> => ({
+  root: fileURLToPath(new URL('.', import.meta.url)),
+  cacheDir: fileURLToPath(new URL('./node_modules/.vite/next/', import.meta.url)),
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
   base: './',
   appType: 'mpa',
-  plugins: [versionedSite()],
-  build: { outDir: '../../dist' },
-})
+  plugins: [react(), versionedSite(new Set(await mockupFiles()))],
+  build: { outDir: 'dist' },
+}))

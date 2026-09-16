@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { createServer } from 'vite'
 import { expect, it } from 'vitest'
 
-it('serves the mockups and transformed v1 dependencies from the same development origin', async () => {
+it('serves the production app, separate mockups, and transformed v1 dependencies from one origin', async () => {
   const server = await createServer({
     configFile: resolve('vite.config.ts'),
     server: { host: '127.0.0.1', port: 0 },
@@ -15,10 +15,12 @@ it('serves the mockups and transformed v1 dependencies from the same development
     if (!address || typeof address === 'string') throw new Error('Missing development server address')
     const base = `http://127.0.0.1:${address.port}`
     const root = await fetch(base + '/').then(response => response.text())
-    expect(root).toContain('id="overview"')
+    expect(root).toContain('src="/src/main.tsx"')
     expect(root).not.toContain('<iframe')
-    expect(await fetch(base + '/index.html').then(response => response.text())).toContain('id="overview"')
+    expect(await fetch(base + '/index.html').then(response => response.text())).toContain('src="/src/main.tsx"')
     expect(await fetch(base + '/preview.html').then(response => response.text())).toContain('id="prototype-frame"')
+    expect(await fetch(base + '/app.html').then(response => response.text())).toContain('id="overview"')
+    expect(await fetch(base + '/exercise-cafe.svg').then(response => response.text())).toContain('<svg')
 
     const legacy = await fetch(base + '/v1/').then(response => response.text())
     expect(legacy).toContain('id="root"')

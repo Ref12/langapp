@@ -17,18 +17,19 @@ describe('mockup site assembly', () => {
     try {
       await mkdir(new URL('v1/', output))
       await writeFile(new URL('v1/index.html', output), 'Archived app')
+      await writeFile(new URL('index.html', output), 'Production app')
       await buildSite(output)
       await buildSite(output)
 
       const entry = await readFile(new URL('index.html', output), 'utf8')
-      expect(entry).toBe(readFileSync(resolve('docs', 'mockups', 'app.html'), 'utf8'))
+      expect(entry).toBe('Production app')
       expect(entry).not.toContain('<iframe')
       expect(await readFile(new URL('v1/index.html', output), 'utf8')).toBe('Archived app')
       expect(await readFile(new URL('preview.html', output), 'utf8'))
         .toBe(readFileSync(resolve('docs', 'mockups', 'index.html'), 'utf8'))
       expect(await readFile(new URL('sw.js', output), 'utf8')).toBe(retirementWorker)
 
-      for (const page of ['index.html', 'preview.html', 'app.html', 'writing-comparison.html']) {
+      for (const page of ['preview.html', 'app.html', 'writing-comparison.html']) {
         const markup = await readFile(new URL(page, output), 'utf8')
         for (const [, asset] of markup.matchAll(/(?:href|src)="\.\/([^"#]+)(?:#[^"]*)?"/g)) {
           expect((await readFile(new URL(asset, output))).byteLength).toBeGreaterThan(0)
