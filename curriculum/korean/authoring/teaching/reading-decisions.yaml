@@ -1041,3 +1041,24 @@ ko-nikl-51540:
 # second word's length. No concatenation or guessed compound reading is asserted.
 # Actual Standard Dictionary content records3702 and28402 also have no
 # pronunciation text. The support notes preserve their locators and proposals.
+ko-nikl-16593:
+  pronunciations: [달러]
+  method: authored-broad-hangul
+  reason: >
+    Explicit authored standard-loanword citation aid for the US-currency noun,
+    not dictionary-verified text. The exact official entry57291 and actual
+    Standard Dictionary content413929 both lack pronunciation text. Retain
+    the lateral ㄹ-ㄹ sequence in 달러; do not invent a length mark or replace
+    it with colloquial 딸라. This individual decision is not a spelling-copy
+    fallback for other words and requires qualified review and audio evidence.
+  review_status: unreviewed
+ko-nikl-16594:
+  pronunciations: [달러]
+  method: authored-broad-hangul
+  reason: >
+    Explicit authored citation aid for the US-dollar counting unit. Exact
+    official entry26828 has no pronunciation text; Standard Dictionary
+    content413929 also provides none. Preserve the same written lateral
+    sequence as the currency noun, without claiming an imported reading,
+    vowel length, colloquial variant or actual learner-audio assessment.
+  review_status: unreviewed

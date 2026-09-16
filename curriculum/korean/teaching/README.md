@@ -111,6 +111,14 @@ dictionary entries remain in the authoring
 [community notes](../authoring/teaching/community-notes.yaml) and
 [society notes](../authoring/teaching/society-notes.yaml).
 
+The source-listed **주민 등록증** and **외국인 등록증** ID-card compounds
+also remain unselected: whole-term citation text is missing, and component
+readings alone do not settle compound realization or length. Their exact
+source records, original spaces/empty POS, proposed meanings and bounded
+dictionary checks are retained in the
+[governance support notes](../authoring/teaching/governance-support-notes.yaml).
+These archived definitions are not current eligibility or immigration rules.
+
 **가스관** (gas pipe) and **공동 주택** (joint housing) are also held:
 the learner and Standard dictionaries provide no whole-term pronunciation
 text, and compound tensing or length cannot be settled by copying spelling

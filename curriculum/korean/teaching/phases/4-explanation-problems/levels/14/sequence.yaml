@@ -39,7 +39,6 @@ units:
   - {id: ko-nikl-30254-s001, ch: 관계자, pr: 관계자 / 관게자, ds: a person concerned with a particular matter}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34018-s002, ch: 끊어지다, pr: 끄너지다, ds: for a relationship to come to an end}
   - {id: ko-nikl-34614-s001, ch: 남다르다, pr: 남다르다, ds: to stand out as different from other people}
   - {id: ko-nikl-07440-s001, ch: 비겁하다, pr: 비ː거파다, ds: to be cowardly and dishonorable in conduct}
   - {id: ko-nikl-16781-s001, ch: 당당히, pr: 당당히, ds: 'confidently and openly, without shame or hesitation'}
@@ -47,6 +46,7 @@ units:
   - {id: ko-nikl-37821-s001, ch: 못되다, pr: 몯ː뙤다 / 몯ː뛔다, ds: to be morally bad in character or behavior}
   - {id: ko-nikl-50140-s001, ch: 유난스럽다, pr: 유ː난스럽따, ds: 'to be very unusual in condition, character, or conduct'}
   - {id: ko-nikl-04623-s001, ch: 알아채다, pr: 아라채다, ds: to infer a situation's mood in advance}
+  - {id: ko-nikl-46852-s003, ch: 엇갈리다, pr: 얻깔리다, ds: for opinions or positions to conflict}
   review_grammar:
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -364,10 +364,10 @@ units:
   - {id: ko-nikl-36569-s003, ch: 맡기다, pr: 맏끼다, ds: to leave something somewhere or with someone for safekeeping}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-39902-s001, ch: 발급하다, pr: 발그파다, ds: for an institution to issue a certificate or document}
   - {id: ko-nikl-45925-s001, ch: 취소하다, pr: 취ː소하다, ds: to cancel plans or promises or withdraw an announcement}
   - {id: ko-nikl-32613-s001, ch: 급하다, pr: 그파다, ds: to be urgent and need prompt handling}
   - {id: ko-nikl-32620-s001, ch: 급히, pr: 그피, ds: urgently; requiring prompt handling}
+  - {id: ko-nikl-34106-s001, ch: 끼어들다, pr: 끼어들다 / 끼여들다, ds: to push into someone else's place or turn}
   - {id: ko-nikl-19368-s001, ch: 등록, pr: 등녹, ds: registration of a name or details for permission or recognition}
   - {id: ko-nikl-25955-s001, ch: 가입, pr: 가입, ds: joining a group or signing up for goods or services}
   - {id: ko-nikl-42072-s002, ch: 줍다, pr: 줍ː따, ds: to find and pick up someone else's lost property}
@@ -524,6 +524,13 @@ units:
   - {id: ko-nikl-28393-s001, ch: 경보기, pr: 경ː보기, ds: a device warning of danger or accidents}
   - {id: ko-nikl-25192-s002, ch: 헷갈리다, pr: 헫깔리다, ds: to lose direction as different things get mixed up}
   - {id: ko-nikl-44267-s001, ch: 찾아내다, pr: 차자내다, ds: to locate a hard-to-find person or object}
+  - {id: ko-nikl-24699-s002, ch: 해약, pr: 해ː약, ds: one party ending a contractual relationship}
+  - {id: ko-nikl-10902-s001, ch: 이의, pr: 이ː의 / 이ː이, ds: an objection to a claim or decision}
+  - {id: ko-nikl-29056-s002, ch: 고발, pr: 고ː발, ds: reporting a crime to authorities and requesting punishment}
+  - {id: ko-nikl-29129-s001, ch: 고소, pr: 고ː소, ds: a victim's criminal complaint requesting punishment}
+  - {id: ko-nikl-44926-s001, ch: 체납, pr: 체납, ds: taxes or similar payments overdue beyond their deadline}
+  - {id: ko-nikl-30216-s001, ch: 과태료, pr: 과ː태료, ds: a government fine for unmet duties or minor order violations}
+  - {id: ko-nikl-22177-s002, ch: 틀어지다, pr: 트러지다, ds: for an intended task or plan to go wrong}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-16125-s002, ch: 다루다, pr: 다루다, ds: to trade in a particular item}
@@ -566,14 +573,15 @@ units:
   - {id: ko-nikl-12000-s001, ch: 자격증, pr: 자격쯩, ds: a certificate recognizing a qualification}
   - {id: ko-nikl-31152-s001, ch: 구직, pr: 구직, ds: looking for a job}
   - {id: ko-nikl-34024-s005, ch: 끌다, pr: 끌ː다, ds: to draw something out so that it takes a long time}
+  - {id: ko-nikl-43485-s002, ch: 징계, pr: 징계 / 징게, ds: a penalty for improper conduct}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-40702-s001, ch: 배치, pr: 배치, ds: arranging people or things in order or at intervals}
-  - {id: ko-nikl-11520-s002, ch: 일손, pr: 일ː쏜, ds: skill in performing work}
   - {id: ko-nikl-12488-s001, ch: 작업, pr: 자겁, ds: doing work; the work being done}
   - {id: ko-nikl-15008-s001, ch: 제품, pr: 제ː품, ds: making an item; a manufactured product}
   - {id: ko-nikl-23363-s001, ch: 품목, pr: 품ː목, ds: an ordered list of item names}
   - {id: ko-nikl-37406-s001, ch: 모델, pr: 모델, ds: a prototype or representative example of a finished product}
+  - {id: ko-nikl-49490-s001, ch: 운송, pr: 운ː송, ds: transporting people or goods in a vehicle}
+  - {id: ko-nikl-28170-s002, ch: 결산, pr: 결싼, ds: summing up the results of work done over a period}
   - {id: ko-nikl-26874-s004, ch: 강하다, pr: 강하다, ds: to withstand something well or be good at coping}
   - {id: ko-nikl-14918-s001, ch: 제안하다, pr: 제안하다, ds: to put forward an opinion or proposal}
   review_grammar:
@@ -602,16 +610,17 @@ units:
   - {id: ko-nikl-07936-s004, ch: 빼다, pr: 빼ː다, ds: to withdraw savings or recover a deposit}
   - {id: ko-nikl-19745-s026, ch: 떨어지다, pr: 떠러지다, ds: for part of a price or amount to remain unpaid}
   - {id: ko-nikl-14469-s005, ch: 정리하다, pr: 정ː니하다, ds: to update a bank passbook with transaction records}
+  - {id: ko-nikl-16694-s001, ch: 담보, pr: 담보, ds: security offered against failure to repay a debt}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-07399-s002, ch: 붓다, pr: 붇ː따, ds: to deposit money at regular intervals}
-  - {id: ko-nikl-12555-s001, ch: 잔돈, pr: 잔돈, ds: money remaining after spending}
-  - {id: ko-nikl-28397-s001, ch: 경비, pr: 경비, ds: expenses necessary to carry out an activity}
-  - {id: ko-nikl-14182-s001, ch: 절약, pr: 저략, ds: economizing by using resources only where needed}
   - {id: ko-nikl-34763-s001, ch: 낭비, pr: 낭ː비, ds: 'wasteful use of money, time, or things'}
   - {id: ko-nikl-07418-s021, ch: 붙이다, pr: 부치다, ds: to add interest or tax to an original amount}
+  - {id: ko-nikl-52014-s001, ch: 회계, pr: 회ː계 / 훼ː게, ds: calculating money coming in and going out}
   - {id: ko-nikl-06575-s001, ch: 부자, pr: 부ː자, ds: a wealthy person}
   - {id: ko-nikl-16874-s002, ch: 대가, pr: 대ː까, ds: reward for effort}
+  - {id: ko-nikl-49671-s002, ch: 원가, pr: 원까, ds: the original purchase price of something}
+  - {id: ko-nikl-01975-s002, ch: 수지, pr: 수지, ds: profit from a business or trading transaction}
+  - {id: ko-nikl-06284-s001, ch: 부, pr: 부ː, ds: wealth in the form of substantial possessions}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
 - id: level-14-communication-01
@@ -629,6 +638,9 @@ units:
   - {id: ko-nikl-08527-s002, ch: 사정, pr: 사ː정, ds: explaining one's circumstances to ask for help}
   - {id: ko-nikl-07862-s003, ch: 빠지다, pr: 빠ː지다, ds: to be taken in by plausible words or a trick}
   - {id: ko-nikl-08894-s004, ch: 살짝, pr: 살짝, ds: 'quietly, so that others do not know'}
+  - {id: ko-nikl-18827-s002, ch: 둘러대다, pr: 둘러대다, ds: 'to deceive with a made-up, plausible story'}
+  - {id: ko-nikl-46745-s001, ch: 얼버무리다, pr: 얼버무리다, ds: to be evasive or vague in speech or attitude}
+  - {id: ko-nikl-25680-s002, ch: 가로막다, pr: 가로막따, ds: 'to obstruct someone''s speech, actions, or work'}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-48481-s004, ch: 옮기다, pr: 옴기다, ds: to turn one's attention or gaze to another target}
@@ -688,6 +700,7 @@ units:
   - {id: ko-nikl-10190-s001, ch: 섣불리, pr: 섣ː뿔리, ds: clumsily; without adequate skill or preparation}
   - {id: ko-nikl-37821-s002, ch: 못되다, pr: 몯ː뙤다 / 몯ː뛔다, ds: for things not to work out properly}
   - {id: ko-nikl-46636-s001, ch: 억지로, pr: 억찌로, ds: 'forcibly and unreasonably, against the circumstances'}
+  - {id: ko-nikl-36548-s003, ch: 맞서다, pr: 맏써다, ds: to face a situation or stand firm against it}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-10634-s002, ch: 이루어지다, pr: 이루어지다, ds: to come true; to turn out as desired}
@@ -783,16 +796,17 @@ units:
   - {id: ko-nikl-22339-s001, ch: 파악하다, pr: 파아카다, ds: to grasp the content or situation clearly}
   - {id: ko-nikl-31622-s001, ch: 궁리하다, pr: 궁니하다, ds: to think hard about how to solve a problem}
   - {id: ko-nikl-11411-s003, ch: 일단, pr: 일딴, ds: once something happens; if it happens at all}
+  - {id: ko-nikl-46287-s002, ch: 어긋나다, pr: 어근나다, ds: to fall short of expectations or depart from a standard}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-25599-s002, ch: 가늠하다, pr: 가늠하다, ds: to roughly estimate a situation or condition}
-  - {id: ko-nikl-43345-s001, ch: 짐작하다, pr: 짐자카다, ds: to roughly judge a situation or circumstances}
   - {id: ko-nikl-04037-s003, ch: 아깝다, pr: 아깝따, ds: to feel it a shame that something is not properly used}
   - {id: ko-nikl-04148-s001, ch: 아리송하다, pr: 아리송하다, ds: to be unclear whether something is so or not}
   - {id: ko-nikl-12407-s001, ch: 자칫, pr: 자칟, ds: if something goes slightly wrong by chance}
   - {id: ko-nikl-12606-s008, ch: 잘, pr: 잘, ds: with deep thought and care}
   - {id: ko-nikl-32715-s001, ch: 기껏, pr: 기ː껃, ds: to the full extent of one's effort or capacity}
   - {id: ko-nikl-32993-s001, ch: 기왕, pr: 기왕, ds: since things have already turned out this way}
+  - {id: ko-nikl-07789-s002, ch: 빗나가다, pr: 빈나가다, ds: to turn out differently from an expectation or prediction}
+  - {id: ko-nikl-35307-s001, ch: 넘겨짚다, pr: 넘겨집따, ds: to judge by guesswork without accurate knowledge}
   review_grammar:
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
@@ -918,14 +932,14 @@ units:
   - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}
   - {id: ko-topik4-g022, ch: V-(으)려다가, ds: change course from an intended action}
   review_vocabulary:
-  - {id: ko-nikl-02404-s001, ch: 쉽사리, pr: 쉽ː싸리, ds: 'very easily, without trouble or difficulty'}
-  - {id: ko-nikl-01586-s002, ch: 수도, pr: 수도, ds: a drainage system for rainwater or wastewater}
-  - {id: ko-nikl-14528-s003, ch: 정비, pr: 정ː비, ds: putting roads or facilities into working order}
-  - {id: ko-nikl-15402-s001, ch: 누전, pr: 누ː전, ds: electrical leakage from wiring}
-  - {id: ko-nikl-00985-s001, ch: 소화전, pr: 소화전, ds: a fire hydrant connected to the water supply}
-  - {id: ko-nikl-28393-s001, ch: 경보기, pr: 경ː보기, ds: a device warning of danger or accidents}
-  - {id: ko-nikl-25192-s002, ch: 헷갈리다, pr: 헫깔리다, ds: to lose direction as different things get mixed up}
   - {id: ko-nikl-44267-s001, ch: 찾아내다, pr: 차자내다, ds: to locate a hard-to-find person or object}
+  - {id: ko-nikl-24699-s002, ch: 해약, pr: 해ː약, ds: one party ending a contractual relationship}
+  - {id: ko-nikl-10902-s001, ch: 이의, pr: 이ː의 / 이ː이, ds: an objection to a claim or decision}
+  - {id: ko-nikl-29056-s002, ch: 고발, pr: 고ː발, ds: reporting a crime to authorities and requesting punishment}
+  - {id: ko-nikl-29129-s001, ch: 고소, pr: 고ː소, ds: a victim's criminal complaint requesting punishment}
+  - {id: ko-nikl-44926-s001, ch: 체납, pr: 체납, ds: taxes or similar payments overdue beyond their deadline}
+  - {id: ko-nikl-30216-s001, ch: 과태료, pr: 과ː태료, ds: a government fine for unmet duties or minor order violations}
+  - {id: ko-nikl-22177-s002, ch: 틀어지다, pr: 트러지다, ds: for an intended task or plan to go wrong}
   review_grammar:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -939,14 +953,14 @@ units:
   - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
   - {id: ko-topik6-g022, ch: V/A-다가는, ds: warn of an unwanted result if a course continues}
   review_vocabulary:
-  - {id: ko-nikl-02404-s001, ch: 쉽사리, pr: 쉽ː싸리, ds: 'very easily, without trouble or difficulty'}
-  - {id: ko-nikl-01586-s002, ch: 수도, pr: 수도, ds: a drainage system for rainwater or wastewater}
-  - {id: ko-nikl-14528-s003, ch: 정비, pr: 정ː비, ds: putting roads or facilities into working order}
-  - {id: ko-nikl-15402-s001, ch: 누전, pr: 누ː전, ds: electrical leakage from wiring}
-  - {id: ko-nikl-00985-s001, ch: 소화전, pr: 소화전, ds: a fire hydrant connected to the water supply}
-  - {id: ko-nikl-28393-s001, ch: 경보기, pr: 경ː보기, ds: a device warning of danger or accidents}
-  - {id: ko-nikl-25192-s002, ch: 헷갈리다, pr: 헫깔리다, ds: to lose direction as different things get mixed up}
   - {id: ko-nikl-44267-s001, ch: 찾아내다, pr: 차자내다, ds: to locate a hard-to-find person or object}
+  - {id: ko-nikl-24699-s002, ch: 해약, pr: 해ː약, ds: one party ending a contractual relationship}
+  - {id: ko-nikl-10902-s001, ch: 이의, pr: 이ː의 / 이ː이, ds: an objection to a claim or decision}
+  - {id: ko-nikl-29056-s002, ch: 고발, pr: 고ː발, ds: reporting a crime to authorities and requesting punishment}
+  - {id: ko-nikl-29129-s001, ch: 고소, pr: 고ː소, ds: a victim's criminal complaint requesting punishment}
+  - {id: ko-nikl-44926-s001, ch: 체납, pr: 체납, ds: taxes or similar payments overdue beyond their deadline}
+  - {id: ko-nikl-30216-s001, ch: 과태료, pr: 과ː태료, ds: a government fine for unmet duties or minor order violations}
+  - {id: ko-nikl-22177-s002, ch: 틀어지다, pr: 트러지다, ds: for an intended task or plan to go wrong}
   review_grammar:
   - {id: ko-topik3-g034, ch: N에 따라, ds: describe variation or compliance with a standard}
   - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}
@@ -960,14 +974,14 @@ units:
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
   - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
   review_vocabulary:
-  - {id: ko-nikl-17104-s001, ch: 대상, pr: 대ː상, ds: the target or object of an action}
-  - {id: ko-nikl-35004-s002, ch: 내용, pr: 내ː용, ds: the details or substance of a matter}
-  - {id: ko-nikl-01099-s001, ch: 속이다, pr: 소기다, ds: to trick someone into believing something untrue}
   - {id: ko-nikl-16963-s016, ch: 대다, pr: 대ː다, ds: to state or disclose a fact}
   - {id: ko-nikl-51410-s001, ch: 혹시나, pr: 혹씨나, ds: by any chance; with added emphasis}
   - {id: ko-nikl-08527-s002, ch: 사정, pr: 사ː정, ds: explaining one's circumstances to ask for help}
   - {id: ko-nikl-07862-s003, ch: 빠지다, pr: 빠ː지다, ds: to be taken in by plausible words or a trick}
   - {id: ko-nikl-08894-s004, ch: 살짝, pr: 살짝, ds: 'quietly, so that others do not know'}
+  - {id: ko-nikl-18827-s002, ch: 둘러대다, pr: 둘러대다, ds: 'to deceive with a made-up, plausible story'}
+  - {id: ko-nikl-46745-s001, ch: 얼버무리다, pr: 얼버무리다, ds: to be evasive or vague in speech or attitude}
+  - {id: ko-nikl-25680-s002, ch: 가로막다, pr: 가로막따, ds: 'to obstruct someone''s speech, actions, or work'}
   review_grammar:
   - {id: ko-topik3-g003, ch: V/A-냐고 하다, ds: report the content of a question}
   - {id: ko-topik3-g004, ch: V-(으)라고 하다, ds: report an instruction and identify its actor}
@@ -979,14 +993,14 @@ units:
   grammar:
   - {id: ko-topik5-g021, ch: V/A-길래, ds: explain your reaction to an observed circumstance}
   review_vocabulary:
-  - {id: ko-nikl-17104-s001, ch: 대상, pr: 대ː상, ds: the target or object of an action}
-  - {id: ko-nikl-35004-s002, ch: 내용, pr: 내ː용, ds: the details or substance of a matter}
-  - {id: ko-nikl-01099-s001, ch: 속이다, pr: 소기다, ds: to trick someone into believing something untrue}
   - {id: ko-nikl-16963-s016, ch: 대다, pr: 대ː다, ds: to state or disclose a fact}
   - {id: ko-nikl-51410-s001, ch: 혹시나, pr: 혹씨나, ds: by any chance; with added emphasis}
   - {id: ko-nikl-08527-s002, ch: 사정, pr: 사ː정, ds: explaining one's circumstances to ask for help}
   - {id: ko-nikl-07862-s003, ch: 빠지다, pr: 빠ː지다, ds: to be taken in by plausible words or a trick}
   - {id: ko-nikl-08894-s004, ch: 살짝, pr: 살짝, ds: 'quietly, so that others do not know'}
+  - {id: ko-nikl-18827-s002, ch: 둘러대다, pr: 둘러대다, ds: 'to deceive with a made-up, plausible story'}
+  - {id: ko-nikl-46745-s001, ch: 얼버무리다, pr: 얼버무리다, ds: to be evasive or vague in speech or attitude}
+  - {id: ko-nikl-25680-s002, ch: 가로막다, pr: 가로막따, ds: 'to obstruct someone''s speech, actions, or work'}
   review_grammar:
   - {id: ko-topik3-g032, ch: V/A-(으)ㄹ 텐데, ds: give an expectation as concerned background}
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}

@@ -1,0 +1,107 @@
+schema_version: 1
+completion_status: all39 active senses integrated with official readings; two retained reading holds
+review_status: AI-authored and unreviewed; qualified Korean, legal and economic review required
+source_evidence: governance-notes.yaml pending_support preserves the full forty-parent original request evidence.
+admission:
+  requested_parents_admitted: 40
+  additional_short_name_parent: ko-nikl-35540
+  retained_new_parents: 41
+  active_new_parents: 39
+  active_senses: 39
+  held_senses: 2
+  new_provisional_free_families: 37
+  existing_family_extensions: 1
+  explanation: >
+    Two actual ID compounds are retained but held for missing whole-term
+    pronunciation evidence. The independently inspected short union name
+    supplies useful reporting depth without another free family. The
+    mediation noun extends the existing predicate family rather than
+    incorrectly adding the proposed new ko-lex-42260 family.
+parent_adjudications:
+  mediation:
+    canonical_identity: ko-lex-42264
+    canonical_lemma: 중재하다
+    existing_sense: ko-nikl-42264-s001
+    existing_korean: 다투는 사람들 사이에 끼어들어 당사자들을 화해시키다.
+    added_sense: ko-nikl-42260-s001
+    added_korean: 다투는 사람들 사이에 끼어들어 당사자들을 화해시킴.
+    reason: These are the noun and predicate perspectives on the same reconciliation action; no independently verified new lexeme or specialised arbitration sense is established.
+  short_union_name:
+    id: ko-nikl-35540-s001
+    parent: ko-nikl-35540
+    target: 노조
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_korean: 근로자가 중심이 되어 더 좋은 근로 조건을 만들고 사회적, 경제적 지위를 향상시키기 위해 활동하는 단체.
+    source_english: A body that does activities to establish better working conditions and improve the social and economic status of workers.
+    source_positions: 1
+    identity: ko-lex-35418
+    official_entry_id: '42900'
+    pronunciation: 노조
+    match: exact complete Korean definitions and POS in the pinned official archive
+    placement_reason: Short-name recognition supports level16 public-interest reporting after the full organisation name in level8 work participation.
+held_reading_items:
+  ko-nikl-41731-s001:
+    source_parent: ko-nikl-41731
+    target: 주민 등록증
+    official_entry_id: '75186'
+    standard_dictionary_word_no: '482654'
+    status: Both actual records lack whole-term pronunciation text.
+    reason: Do not assume compound realization or length by joining isolated 주민 and 등록증 citation readings.
+  ko-nikl-48777-s001:
+    source_parent: ko-nikl-48777
+    target: 외국인 등록증
+    official_entry_id: '68124'
+    standard_dictionary_search: Exact joined and spaced searches returned no entry.
+    status: The pinned learner-dictionary record has no whole-term pronunciation text.
+    reason: Do not borrow a different ID-card entry or silently combine component readings.
+held_reading_evidence_limits: >
+  Standard Dictionary actual contentViewOne.do for word_no482654 was read,
+  not just a generic pronunciation-download control. These are bounded
+  text-evidence results, not claims that no speaker or source can supply
+  a reading. Retain the original empty POS, spaces and bilingual definitions.
+  No current immigration or resident-registration eligibility is inferred.
+source_correction_requests:
+  ko-nikl-28691-s001:
+    source_korean: 계약의 내용을 적고 계약이 성립되었음을 증명하는 문서.
+    source_english: A document stating the terms and conditions of an agreement and which proves the contract's validity.
+    authored_interpretation: a document recording a contract's terms and formation
+    rationale: Formation does not establish legal validity or enforceability; preserve the actual Korean scope.
+  ko-nikl-05204-s001:
+    source_korean: 법과 명령.
+    source_english: Law and order.
+    authored_interpretation: laws and official orders
+    rationale: The Korean enumerates legal instruments, not the English public-order idiom.
+  ko-nikl-43503-s002:
+    source_korean: 행정 기관이 법에 따라 세금, 수수료, 벌금 등을 국민에게서 거두어들임.
+    source_english: An act of legally imposing taxes, fees, fines, etc., on the public by an administrative institution.
+    authored_interpretation: "government collection of taxes, fees or fines under law"
+    rationale: Collection is not the imposition or assessment of the charge. No real authority, liability or procedure is established.
+  ko-nikl-44285-s001:
+    source_korean: 국가, 지방 자치 단체, 은행, 회사 등이 사업에 필요한 자금을 빌리기 위해 발행하는 유가 증권.
+    source_english: Securities issued in order for the government, a local government, bank, company, etc., to raise funds necessary for a project.
+    authored_interpretation: bonds issued to borrow funds for a project or business
+    rationale: The Korean explicitly specifies borrowing; raising funds alone loses the debt-financing distinction.
+held_source_correction_requests:
+  ko-nikl-48777-s001:
+    source_korean: 한 나라 안에 일정 기간 이상 머무르는 외국인이 발급받는 신분증명서.
+    source_english: The ID certificate issued to a foreigner who stays in a country exceeding a fixed period.
+    authored_interpretation: a foreign-resident ID for stays of at least a set duration
+    rationale: 이상 includes the threshold, unlike exceeding; preserve that relation without inventing a duration or eligibility rule.
+limits: >
+  All source prototypes remain archived dictionary meanings, not current
+  legal rules. In particular, 동의서's described no-later-objection promise
+  is not an assertion that rights are waived or that informed consent is
+  valid. 비정규직's source-qualified guarantees framing is not a universal
+  legal classification. Reading, listening and productive use need separate
+  evidence; official citation text cannot certify competence or naturalness.
+integrated_snapshot:
+  selected_senses: 39
+  new_provisional_free_families: 37
+  existing_family_extension: ko-lex-42264
+  actual_official_reading_senses: 39
+  new_authored_readings: 0
+  retained_support_parents_all_cohorts: 723
+  selected_support_parents_all_cohorts: 719
+  validation: Combined103 targeted real-data tests passed with128 generated views and unchanged pinned source/reference evidence.
+  core_after_combined_civic_and_interaction_integration: {senses: 7330, provisional_free_families: 4685, modules: 742}

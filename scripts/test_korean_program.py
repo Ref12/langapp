@@ -773,9 +773,14 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "cognition-notes.yaml",
             "representation-notes.yaml",
             "circumstance-notes.yaml",
+            "governance-notes.yaml",
+            "governance-support-notes.yaml",
+            "interaction-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
-            for identifier, request in notes["source_correction_requests"].items():
+            field = ("source_correction_proposals" if filename == "governance-notes.yaml"
+                     else "source_correction_requests")
+            for identifier, request in notes[field].items():
                 with self.subTest(sense=identifier):
                     source = self.references.provenance[identifier]
                     correction = source["source_correction"]
@@ -2005,6 +2010,133 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertNotEqual(identities["ko-nikl-35999-s002"], identities["ko-nikl-36000-s002"])
         self.assertEqual(identities["ko-nikl-46567-s001"], identities["ko-nikl-46566-s002"])
         self.assertEqual(identities["ko-nikl-32716-s002"], identities["ko-nikl-32715-s001"])
+
+    def test_governance_homographs_currency_and_document_counter_keep_separate_roles(self):
+        identities = self.references.lexical_identity
+        self.assertEqual(len({identities[item] for item in (
+            "ko-nikl-06282-s001", "ko-nikl-06284-s001", "ko-nikl-06286-s002",
+        )}), 3)
+        for left, right in (
+            ("ko-nikl-14622-s001", "ko-nikl-14623-s001"),
+            ("ko-nikl-00511-s001", "ko-nikl-00510-s001"),
+            ("ko-nikl-17727-s001", "ko-nikl-17730-s001"),
+            ("ko-nikl-30825-s001", "ko-nikl-30831-s001"),
+            ("ko-nikl-28203-s001", "ko-nikl-28208-s001"),
+        ):
+            self.assertNotEqual(identities[left], identities[right])
+        authoring = self.root / "authoring" / "teaching"
+        _, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        self.assertEqual(groups["ko-lex-06286"]["category"], "bound-form")
+        self.assertEqual(identities["ko-nikl-16593-s001"], identities["ko-nikl-16594-s001"])
+        self.assertEqual(groups["ko-lex-16593"]["category"], "free-lemma")
+        for item in ("ko-nikl-16593-s001", "ko-nikl-16594-s001"):
+            reading = self.references.provenance[item]["reading"]
+            self.assertEqual(reading["method"], "authored-broad-hangul")
+            self.assertEqual(reading["review_status"], "unreviewed")
+            self.assertNotIn("official_entry_id", reading)
+
+    def test_governance_new_core_senses_do_not_move_or_duplicate_professional_meanings(self):
+        authoring = self.root / "authoring" / "teaching"
+        rows, _ = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        placements = {row["id"]: row["level"] for row in rows}
+        for item, level in (
+            ("ko-nikl-28170-s001", "professional"), ("ko-nikl-28170-s002", 12),
+            ("ko-nikl-52014-s003", "professional"), ("ko-nikl-52014-s001", 11),
+            ("ko-nikl-52014-s004", 8),
+        ):
+            self.assertEqual(placements[item], level)
+        identities = self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-28170-s001"], identities["ko-nikl-28170-s002"])
+        self.assertEqual(identities["ko-nikl-52014-s003"], identities["ko-nikl-52014-s004"])
+        self.assertEqual(identities["ko-nikl-42260-s001"], identities["ko-nikl-42264-s001"])
+        self.assertEqual(identities["ko-nikl-35418-s001"], identities["ko-nikl-35540-s001"])
+        self.assertIn("person employed", self.references.vocabulary["ko-nikl-52014-s004"]["ds"])
+
+    def test_governance_source_qualifications_are_not_legal_or_financial_guarantees(self):
+        words = self.references.vocabulary
+        self.assertIn("victim", words["ko-nikl-29129-s001"]["ds"])
+        self.assertIn("due date", words["ko-nikl-06362-s001"]["ds"])
+        self.assertIn("formation", words["ko-nikl-28691-s001"]["ds"])
+        self.assertIn("collection", words["ko-nikl-43503-s002"]["ds"])
+        self.assertIn("borrow", words["ko-nikl-44285-s001"]["ds"])
+        self.assertIn("not yet", words["ko-nikl-38828-s001"]["ds"])
+        self.assertIn("deadline", words["ko-nikl-44926-s001"]["ds"])
+        self.assertEqual(self.references.provenance["ko-nikl-31235-s001"]["source_korean"], "국가의 돈.")
+        self.assertEqual(self.references.provenance["ko-nikl-31235-s001"]["reading"]["official_entry_id"], "36790")
+        first, second = (self.references.provenance[f"ko-nikl-16694-s{number:03}"] for number in (1, 2))
+        self.assertEqual((first["source_position"], second["source_position"]), (1, 2))
+        self.assertIn("빚을 진 사람", first["source_korean"])
+        self.assertIn("어떠한 일이", second["source_korean"])
+        self.assertEqual(first["reading"]["official_entry_id"], "44193")
+
+    def test_governance_support_preserves_complete_sources_and_unread_id_compounds(self):
+        authoring = self.root / "authoring" / "teaching"
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        notes = load_yaml(authoring / "governance-notes.yaml")
+        held = {"ko-nikl-41731-s001", "ko-nikl-48777-s001"}
+        for request in notes["pending_support"]["requests"]:
+            parent = parents[request["source_parent"]]
+            self.assertEqual(parent["target"], request["target"])
+            self.assertEqual(parent["source_part_of_speech"], request["source_part_of_speech"])
+            self.assertEqual(parent["source_band"], "unbanded")
+            expected = [{
+                "id": f"{parent['id']}-s{source['position']:03}",
+                "source_position": source["position"],
+                "korean": source["source_korean"], "english": source["source_english"],
+            } for source in request["evidence"]]
+            self.assertEqual(parent["senses"], expected)
+            for placement in request["placements"]:
+                if placement["id"] not in held:
+                    self.assertEqual(self.references.vocabulary[placement["id"]]["ds"], placement["ds"])
+        overlay = load_yaml(self.root / "reading-overlay.yaml")
+        decisions = load_yaml(authoring / "reading-decisions.yaml")
+        for item in held:
+            parent = item.rsplit("-s", 1)[0]
+            self.assertEqual(parents[parent]["source_part_of_speech"], "")
+            self.assertIn(" ", parents[parent]["target"])
+            self.assertNotIn(item, self.references.vocabulary)
+            with self.assertRaisesRegex(ValueError, "no supported citation reading"):
+                citation_reading(parent, overlay, decisions)
+        correction = load_yaml(authoring / "source-corrections.yaml")["corrections"]["ko-nikl-48777-s001"]
+        self.assertIn("at least", correction["authored_interpretation"])
+        self.assertIn("exceeding", correction["source_english"])
+        short = parents["ko-nikl-35540"]
+        self.assertEqual(short["target"], "노조")
+        self.assertEqual(len(short["senses"]), 1)
+        self.assertEqual(self.references.provenance["ko-nikl-35540-s001"]["reading"]["official_entry_id"], "42900")
+
+    def test_interaction_positions_preserve_intent_response_and_relationship_boundaries(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for item, meaning in (
+            ("ko-nikl-18827-s002", "deceive"), ("ko-nikl-46745-s001", "vague"),
+            ("ko-nikl-18660-s002", "repeat back"), ("ko-nikl-18660-s003", "defiantly"),
+            ("ko-nikl-39824-s001", "counter"), ("ko-nikl-39819-s003", "handle"),
+            ("ko-nikl-35307-s001", "without accurate knowledge"),
+            ("ko-nikl-22177-s005", "grow apart"), ("ko-nikl-26370-s002", "break off"),
+        ):
+            self.assertIn(meaning, words[item]["ds"])
+        self.assertNotEqual(identities["ko-nikl-18827-s002"], identities["ko-nikl-46745-s001"])
+        self.assertEqual(identities["ko-nikl-18660-s002"], identities["ko-nikl-18660-s003"])
+        self.assertEqual(identities["ko-nikl-19303-s003"], identities["ko-nikl-19305-s002"])
+        self.assertEqual(identities["ko-nikl-36624-s002"], "ko-lex-36623")
+        self.assertEqual(identities["ko-nikl-25680-s002"], "ko-lex-35988")
+        self.assertEqual(identities["ko-nikl-18219-s002"], "ko-lex-18224")
+        self.assertEqual(identities["ko-nikl-40173-s001"], "ko-lex-40176")
+        self.assertEqual(self.references.provenance["ko-nikl-19305-s002"]["reading"]["official_entry_id"], "90914")
+
+    def test_interaction_support_keeps_unselected_source_positions_and_actual_official_readings(self):
+        authoring = self.root / "authoring" / "teaching"
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        notes = load_yaml(authoring / "interaction-notes.yaml")
+        for parent, request in notes["support_parent_requests"].items():
+            self.assertEqual(parents[parent]["target"], request["lemma"])
+            self.assertEqual(parents[parent]["source_part_of_speech"], "동사")
+            self.assertEqual(parents[parent]["source_band"], "unbanded")
+            self.assertEqual(parents[parent]["senses"], request["source_senses"])
+            self.assertEqual(len(parents[parent]["senses"]), request["complete_source_sense_count"])
+        for filename in ("interaction-vocabulary.yaml", "governance-support-vocabulary.yaml"):
+            for row in load_yaml(authoring / filename):
+                self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

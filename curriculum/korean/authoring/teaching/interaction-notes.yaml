@@ -1,0 +1,419 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: all31 senses integrated with official readings; qualified review remains outstanding
+scope:
+  - Only interaction-vocabulary.yaml, interaction-identities.yaml, and this notes file are owned here.
+  - Protect the complete current manifest and all actual parent-owned cognition selections, including its continuation and speech-noun addendum.
+  - No cognition, governance, source, reading, manifest, code, test, generated-output, or other-cohort edits.
+  - No noun curation, constructed predicates, automatic first-sense imports, or source-band/alphabetical/quota placement.
+  - Ordinary interaction is placed by prerequisites and usefulness, not moved to levels 25-30 to increase late-phase counts.
+source_provenance:
+  source_id: nikl-2024-mirror
+  revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  identity_policy: IDs preserve the one-based CSV data-record ordinal and original definition-list position, not official NIKL identifiers.
+  inspection_method: >
+    Read the exact pinned CSV into memory and verify its full checksum.
+    Inspect complete paired Korean/English lists and every matching named
+    form, not the first record returned or a guessed figurative meaning.
+    No source cache, pronunciation, or usage-example file is created.
+  attribution: National Institute of Korean Language and Korean-English Learners' Dictionary contributors, via the unofficial binjang extraction.
+  license: CC-BY-SA-2.0-KR for dictionary text; not the mirror's MIT metadata.
+  license_url: https://creativecommons.org/licenses/by-sa/2.0/kr/
+  reuse_notice: >
+    Full bilingual definitions below are preserved as source evidence.
+    Concise English labels, placements, and provisional family decisions are
+    original adaptations; retain attribution, source/license links, and
+    share-alike terms. No dictionary endorsement, multimedia, or usage-example
+    redistribution is claimed.
+identity_policy:
+  provisional_status: >
+    Source-parent counts, selected spellings, and lexical identity candidates
+    are separate measures. No spelling/POS pair or actually listed compound
+    by itself proves an independently verified true lexeme.
+  fragments: Existing families receive new members only, preserving canonical lemma/category and listing only the parents represented by those new members.
+  voice_and_related_forms: >
+    Do not infer new breadth from regular voice or transparent counterpart
+    spellings. Where one family is supported, count it once and preserve
+    participant perspectives. A physical source meaning never licenses an
+    invented abstract placement for a related form.
+  function_identity_ids: []
+  bound_form_identity_ids: []
+protected_exclusions:
+  ko-nikl-22209-s001: Parent-held 팀장; do not select, invent a reading, or research further.
+  ko-nikl-48419-s001: Parent-held 온실가스; do not select, substitute, invent a reading, or research further.
+protected_family_categories:
+  ko-lex-26499: {lemma: 감사하다, category: free-lemma, policy: Preserve the protected gratitude family and its noun extension; audit meanings remain distinct.}
+  ko-lex-03447: {lemma: 실상, category: function-item, policy: Preserve the merged noun/adverb function family; do not restore retired free key03445.}
+retired_identity_keys: [ko-lex-26491, ko-lex-03445]
+lead_disposition:
+  already_covered: >
+    Cognition already selects mental 되짚다 and indirect 빗대다. Protected
+    cohorts cover cognitive 되새기다, comparison 견주다, both 가려내다
+    meanings, reconsideration/opinion-changing 돌이키다, and all 엿보다
+    positions. Those are not new interaction breadth.
+  physical_only_remainders: >
+    Unselected chewing/rumination in 되새기다, route retracing in 되짚다,
+    and direction reversal/restoration in 돌이키다 are not repurposed as
+    new interpretation meanings.
+  absent_exact_forms: [에두르다, 둘러말하다, 돌려말하다, 가려듣다, 돌려세우다, 새겨보다, 짚어내다]
+  absence_policy: These are exact pinned-form limits, not claims that Korean cannot express the intended meaning. No IDs or phrase-shaped vocabulary rows are invented.
+  additional_covered: Protected cohorts already select responsibility-shifting 떠넘기다, taking responsibility 떠맡다, and problem/misunderstanding resolution 풀어내다.
+  bounded_deferrals: >
+    Direct/immediate counter-response forms 맞받다, 맞받아치다,
+    되받아치다, and the multi-meaning 맞부딪치다 were inspected but are
+    not all imported. They are not declared identical merely because English
+    glosses overlap. 뒤얽히다 gives general complicated entanglement/mixing;
+    no separate interpersonal source position is manufactured here.
+  final_batch_deferrals: >
+    Protected 돌아보다/되돌아보다 already supply retrospection, 내다보다
+    supplies prediction, and 짚다 supplies singling out and estimation.
+    내비치다 already supplies revealing thoughts/feelings/intentions: its
+    source does not promise exclusively indirect expression. Both 내보이다
+    homographs were inspected; the intransitive appearance parent 34940 is
+    not the active inner-thought revelation parent 34941, and neither is
+    added. Actual 지레짐작 noun 42618 and verb 42619 were inspected but this
+    bounded cohort does not add another noun/하다 family beside 넘겨짚다.
+  uncertainty_not_absence: >
+    Unselected alternatives remain available; a deferral is not a claim
+    that two forms are interchangeable or that a source word is unusable.
+    There is no exhaustive unselected-source audit or global-scale
+    completion claim.
+curation_rationales:
+  indirectness_and_deception: >
+    둘러대다 explicitly deceives through a plausible fabrication; it is not
+    interchangeable with every excuse or indirect account. 얼버무리다
+    leaves speech/attitude unclear and need not be assigned the same intent.
+    떠보다 discreetly probes rather than guaranteeing access to another mind.
+  relations_and_coordination: >
+    Closely related factors need not be socially friendly. Missing a meeting
+    through timing/direction and disagreeing in opinion are different
+    coordination problems; preserve the actual source positions.
+  conservative_counting: >
+    Existing 매듭, 막다, 돌리다, and 밝히다 families receive compatible new
+    event/compound members only. 들추다 and selected contracted 들춰내다
+    are counted once; the unselected full-form variant is source evidence,
+    not another requested support parent or headword. Active 맞물다 and
+    틀다 comparisons constrain future voice-family accounting without
+    fabricating abstract active meanings or selecting their other senses.
+  degree_and_perspective: >
+    An expectation being wrong is not the same as conduct being undesirable.
+    A developing relationship rift is not automatically an ended relationship.
+    Guesswork is not established knowledge; replying to a joke need not
+    prove anything false; closing a matter need not resolve it successfully.
+    Exact repetition, defiant talk-back, counter-reply, vague evasion, and
+    deliberate fabricated deception retain their separate source boundaries.
+  late_register_placement: >
+    Only explicitly defiant advice/scolding response and hurtful sarcastic
+    speech are placed at 26. Their shared lexical families enter earlier
+    through other useful meanings; no ordinary action is moved there to
+    fill a phase.
+support_parent_requests:
+  ko-nikl-18219:
+    record_ordinal: 18219
+    lemma: 돌려놓다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 3
+    selected_positions: [2]
+    compared_same_form_parents: [ko-nikl-18219]
+    matched_protected_counterpart_sense: ko-nikl-18224-s011
+    decision: A changed thought or state, not necessarily restoration; extend the protected causative change family without importing social exclusion or physical reorientation.
+    source_senses:
+      - {id: ko-nikl-18219-s001, source_position: 1, korean: '방향을 바꾸어 놓다.', english: 'To change the position of something  to a different direction.'}
+      - {id: ko-nikl-18219-s002, source_position: 2, korean: '생각이나 일의 상태를 바꾸어 놓다.', english: 'To change the state of something or one''s opinion.'}
+      - {id: ko-nikl-18219-s003, source_position: 3, korean: '어떤 사람을 따돌려 어울리지 못하게 하다.', english: 'To leave somebody out from socializing.'}
+  ko-nikl-18660:
+    record_ordinal: 18660
+    lemma: 되받다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 3
+    selected_positions: [2, 3]
+    compared_same_form_parents: [ko-nikl-18660]
+    decision: Distinguish exact repetition from defiant talk-back; physical return and nearby counter-response compounds are not automatically imported or merged.
+    source_senses:
+      - {id: ko-nikl-18660-s001, source_position: 1, korean: '무엇을 도로 돌려받다.', english: 'To receive something back.'}
+      - {id: ko-nikl-18660-s002, source_position: 2, korean: '상대편의 말을 들은 그대로 되풀이하여 다시 말하다.', english: 'To repeat what the other person said.'}
+      - {id: ko-nikl-18660-s003, source_position: 3, korean: '다른 사람의 충고나 꾸중에 말대답을 하며 대들다.', english: 'To challenge someone who has given advice or a scolding by talking back to him/her.'}
+  ko-nikl-22177:
+    record_ordinal: 22177
+    lemma: 틀어지다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 5
+    selected_positions: [2, 5]
+    compared_same_form_parents: [ko-nikl-22177]
+    related_compared_parents: [ko-nikl-22166]
+    decision: Use plan failure and relationship separation, not guessed metaphorical uses of the physical positions.
+    source_senses:
+      - {id: ko-nikl-22177-s001, source_position: 1, korean: '어떤 것이 휘거나 꼬여서 반듯하고 곧바르지 않게 되다.', english: 'For something to become bent or twisted, to no longer be square or straight.'}
+      - {id: ko-nikl-22177-s002, source_position: 2, korean: '하려던 일이 잘못되어 어긋나다.', english: 'For an intended task to be made difficult or to go wrong.'}
+      - {id: ko-nikl-22177-s003, source_position: 3, korean: '원래의 방향에서 벗어나 다른 쪽으로 나가다.', english: 'For someone or something to be turned o a certain direction, that is not the original direction.'}
+      - {id: ko-nikl-22177-s004, source_position: 4, korean: '마음이 언짢아 토라지다.', english: 'To become angry and sullen.'}
+      - {id: ko-nikl-22177-s005, source_position: 5, korean: '사귀는 사이가 서로 벌어지다.', english: 'For two people in a relationship to grow apart.'}
+  ko-nikl-19305:
+    record_ordinal: 19305
+    lemma: 들춰내다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 3
+    selected_positions: [2]
+    compared_same_form_parents: [ko-nikl-19305]
+    related_compared_parents: [ko-nikl-19303, ko-nikl-19304]
+    decision: Select the contracted whole predicate's fault-exposing meaning inside the 들추다 family; the identical full-form counterpart is not separately selected or requested.
+    source_senses:
+      - {id: ko-nikl-19305-s001, source_position: 1, korean: '속에 있는 것을 밖으로 내어 꺼내다.', english: 'To take something out of something else.'}
+      - {id: ko-nikl-19305-s002, source_position: 2, korean: '잘못되거나 부족한 점을 따져서 드러나게 하다.', english: 'To find someone''s fault or shortcoming, and make it exposed.  '}
+      - {id: ko-nikl-19305-s003, source_position: 3, korean: '드러나지 않은 일을 알아내어 밝히다.', english: 'To find out something hidden, and make it public.'}
+  ko-nikl-26370:
+    record_ordinal: 26370
+    lemma: 갈라서다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 3
+    selected_positions: [2]
+    compared_same_form_parents: [ko-nikl-26370]
+    decision: Actual ending of a relationship, not merely physical standing apart or going in different directions.
+    source_senses:
+      - {id: ko-nikl-26370-s001, source_position: 1, korean: '사람들이 서로 다른 쪽으로 나뉘어서 따로 서다.', english: 'To separate into different groups.'}
+      - {id: ko-nikl-26370-s002, source_position: 2, korean: '맺고 있던 관계를 끊고 헤어지다.', english: 'To break up with each other.'}
+      - {id: ko-nikl-26370-s003, source_position: 3, korean: '서로 다른 방향으로 나뉘어 헤어지다.', english: 'To part from each other and go separate ways.'}
+  ko-nikl-35307:
+    record_ordinal: 35307
+    lemma: 넘겨짚다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 1
+    selected_positions: [1]
+    compared_same_form_parents: [ko-nikl-35307]
+    decision: Guess-based judgment lacks accurate knowledge; do not relabel it as reliable evidence or import the related premature-assumption noun/하다 pair automatically.
+    source_senses:
+      - {id: ko-nikl-35307-s001, source_position: 1, korean: '정확히 알지 못하고 짐작으로 판단하다.', english: 'To jump to a conclusion about something without accurate knowledge about it.'}
+  ko-nikl-36624:
+    record_ordinal: 36624
+    lemma: 매듭짓다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 2
+    selected_positions: [2]
+    compared_same_form_parents: [ko-nikl-36624]
+    matched_protected_nominal_sense: ko-nikl-36623-s003
+    decision: Concluding a matter matches the existing nominal conclusion meaning; no physical knot or new free family is added.
+    source_senses:
+      - {id: ko-nikl-36624-s001, source_position: 1, korean: '끈이나 실 등을 매어서 마디를 만들다.', english: 'To make a joint by tying strings, ropes, etc.'}
+      - {id: ko-nikl-36624-s002, source_position: 2, korean: '어떤 일을 끝맺다.', english: 'To conclude something.'}
+  ko-nikl-39819:
+    record_ordinal: 39819
+    lemma: 받아넘기다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 4
+    selected_positions: [3]
+    compared_same_form_parents: [ko-nikl-39819]
+    decision: Select the explicit words/song-handling position; ball return, wholesale transfer, and attack evasion remain unselected.
+    source_senses:
+      - {id: ko-nikl-39819-s001, source_position: 1, korean: '넘어온 공을 쳐서 다시 상대 팀에게 보내다.', english: 'To hit the ball coming across and send it back to the opposing team.'}
+      - {id: ko-nikl-39819-s002, source_position: 2, korean: '물건을 도매로 사서 다른 사람에게 넘기다.', english: 'To buy goods at wholesaler''s prices and sell them to another person.'}
+      - {id: ko-nikl-39819-s003, source_position: 3, korean: '다른 사람의 말이나 노래를 받아 거침없이 처리하다.', english: 'To take over someone''s remark or song, and to continue it without hesitating.'}
+      - {id: ko-nikl-39819-s004, source_position: 4, korean: '공격을 요령 있게 피해 나가다.', english: 'To evade an attack skillfully.'}
+  ko-nikl-39824:
+    record_ordinal: 39824
+    lemma: 받아치다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 1
+    selected_positions: [1]
+    compared_same_form_parents: [ko-nikl-39824]
+    decision: A counter-reply to criticism or a joke, not a generic affirmative answer or proof that the other speaker is wrong.
+    source_senses:
+      - {id: ko-nikl-39824-s001, source_position: 1, korean: '다른 사람의 비판이나 농담 등의 말을 맞받아 대꾸하다.', english: 'To answer upon hearing someone''s criticism, joke, etc.'}
+  ko-nikl-18827:
+    record_ordinal: 18827
+    lemma: 둘러대다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 3
+    selected_positions: [2]
+    compared_same_form_parents: [ko-nikl-18827]
+    decision: Select deceptive fabrication only; the full borrowing/provisioning and physical-wrapping meanings remain unselected.
+    source_senses:
+      - {id: ko-nikl-18827-s001, source_position: 1, korean: '모자라는 돈이나 물건 등을 다른 곳에서 꾸거나 얻어서 마련하다.', english: 'To prepare money or goods that one is short of, by borrowing or obtaining it elsewhere.'}
+      - {id: ko-nikl-18827-s002, source_position: 2, korean: '그럴듯한 말로 꾸며 속이다.', english: 'To deceive someone by making up a plausible story.'}
+      - {id: ko-nikl-18827-s003, source_position: 3, korean: '한 바퀴 둘러 감아서 대다.', english: 'To wrap something around something else once and place it there.'}
+  ko-nikl-19703:
+    record_ordinal: 19703
+    lemma: 떠보다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 1
+    selected_positions: [1]
+    compared_same_form_parents: [ko-nikl-19703]
+    decision: Discreetly sounding someone out; no certainty or neutral direct questioning is substituted.
+    source_senses:
+      - {id: ko-nikl-19703-s001, source_position: 1, korean: '남의 마음을 슬쩍 알아보다.', english: 'To find out someone''s thought by stealth.'}
+  ko-nikl-36532:
+    record_ordinal: 36532
+    lemma: 맞물리다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    complete_source_sense_count: 2
+    selected_positions: [2]
+    compared_same_form_parents: [ko-nikl-36532]
+    related_compared_parents: [ko-nikl-36531]
+    decision: The passive-form source explicitly supports close interrelation; do not invent an abstract meaning for the inspected active form or count that counterpart again automatically.
+    source_senses:
+      - {id: ko-nikl-36532-s001, source_position: 1, korean: '서로 마주 대어지거나 연결되다.', english: 'To be put together or connected with each other.'}
+      - {id: ko-nikl-36532-s002, source_position: 2, korean: '서로 밀접한 관련을 맺으며 어우러지다.', english: 'For two things or people to be closely connected and get along.'}
+related_source_evidence:
+  ko-nikl-19304:
+    lemma: 들추어내다
+    source_part_of_speech: 동사
+    complete_source_sense_count: 3
+    selected: false
+    comparison: All paired positions match contracted 들춰내다19305, with the specific 추어-to-춰 contraction; not a homograph merger based on English alone.
+    source_senses:
+      - {id: ko-nikl-19304-s001, source_position: 1, korean: '속에 있는 것을 밖으로 내어 꺼내다.', english: 'To take something out of something else.'}
+      - {id: ko-nikl-19304-s002, source_position: 2, korean: '잘못되거나 부족한 점을 따져서 드러나게 하다.', english: 'To find someone''s fault or shortcoming, and make it exposed.  '}
+      - {id: ko-nikl-19304-s003, source_position: 3, korean: '드러나지 않은 일을 알아내어 밝히다.', english: 'To find out something hidden, and make it public.'}
+  ko-nikl-36531:
+    lemma: 맞물다
+    source_part_of_speech: 동사
+    complete_source_sense_count: 2
+    selected: false
+    source_senses:
+      - {id: ko-nikl-36531-s001, source_position: 1, korean: '아래윗니나 입술, 주둥이, 부리 등을 마주 대어 꼭 붙이거나 마주 물다.', english: 'To close and bite upper and lower teeth, lips, beaks, bills, etc., each other.'}
+      - {id: ko-nikl-36531-s002, source_position: 2, korean: '서로 닿은 채 끊어지지 않고 이어지다.', english: 'For two things to touch each other and be connected with each other, without being interrupted.'}
+source_correction_requests:
+  ko-nikl-19305-s002:
+    source_korean: 잘못되거나 부족한 점을 따져서 드러나게 하다.
+    source_english: 'To find someone''s fault or shortcoming, and make it exposed.  '
+    authored_interpretation: to examine and expose faults or shortcomings
+    rationale: Preserve the examining-and-exposing action of 따져서 드러나게 하다; the Korean does not restrict the faults to a particular person's character. Original English and its two trailing spaces remain untouched.
+  ko-nikl-33704-s002:
+    source_korean: 어떤 사실에 대해 분명하게 말해서 지적하거나 들춰내다.
+    source_english: To disclose or find fault with something by clearly stating its problems.
+    authored_interpretation: to point out or expose a fact by stating it clearly
+    rationale: The Korean names a fact explicitly pointed out or exposed; English problems narrows every instance to fault-finding. Preserve the possibility of criticism without inserting that restriction into every use.
+  ko-nikl-39824-s001:
+    source_korean: 다른 사람의 비판이나 농담 등의 말을 맞받아 대꾸하다.
+    source_english: To answer upon hearing someone's criticism, joke, etc.
+    authored_interpretation: to counter a criticism or joke with a reply
+    rationale: Restore the counter-reply perspective of 맞받아 대꾸하다 rather than any answer after hearing the words; a counter-reply to a joke is not necessarily a factual refutation.
+  ko-nikl-39819-s003:
+    source_korean: 다른 사람의 말이나 노래를 받아 거침없이 처리하다.
+    source_english: To take over someone's remark or song, and to continue it without hesitating.
+    authored_interpretation: to handle another's words or song without hesitation
+    rationale: Scope clarification; 처리하다 concerns handling the received words or song. English continue it narrows the possible response to continuation, whereas the selected label leaves the handling response context-dependent.
+  ko-nikl-36532-s002:
+    source_korean: 서로 밀접한 관련을 맺으며 어우러지다.
+    source_english: For two things or people to be closely connected and get along.
+    authored_interpretation: to be closely interrelated and intertwined
+    rationale: Scope clarification; the Korean explicitly concerns close mutual relations and combination. English get along can narrow this to friendly interpersonal agreement, which is not required when factors or events interrelate.
+reading_followup:
+  assessment: all24 parents have actual official citation text; the inspected 들춰내다 crosswalk is integrated
+  owner: parent
+  policy: Parent assesses actual citation evidence after source approval. No reading is guessed or copied between related forms.
+  selected_parent_ids_to_assess: [ko-nikl-07789, ko-nikl-18219, ko-nikl-18660, ko-nikl-18827, ko-nikl-19303, ko-nikl-19305, ko-nikl-19703, ko-nikl-22177, ko-nikl-25680, ko-nikl-25690, ko-nikl-26370, ko-nikl-33704, ko-nikl-34106, ko-nikl-35307, ko-nikl-36525, ko-nikl-36532, ko-nikl-36548, ko-nikl-36624, ko-nikl-39819, ko-nikl-39824, ko-nikl-40173, ko-nikl-46287, ko-nikl-46745, ko-nikl-46852]
+  pending_source_parent_ids: [ko-nikl-18219, ko-nikl-18660, ko-nikl-18827, ko-nikl-19305, ko-nikl-19703, ko-nikl-22177, ko-nikl-26370, ko-nikl-35307, ko-nikl-36532, ko-nikl-36624, ko-nikl-39819, ko-nikl-39824]
+  interpretation: >
+    These are assessment queues, not claims that all readings are missing.
+    Twelve requested parents are absent from the measured retained registry;
+    the other twelve selected parents are already retained but their readings
+    were not assessed here. Parent decides actual evidence and approval.
+integration:
+  owner: parent after handoff
+  vocabulary_file: interaction-vocabulary.yaml
+  identity_file: interaction-identities.yaml
+  notes_file: interaction-notes.yaml
+  compose: Add the vocabulary and identity files to their corresponding manifest lists only after parent approval; no shard composition is necessary.
+  source_requests: Only the twelve keys in support_parent_requests require new approval. Related-source evidence is not an additional support request.
+  correction_requests: Parent adjudicates the five exact selected-source clarification/correction records; they were validated in a copied ledger only.
+  protected_dependencies: All current manifest selections and all 143 actual cognition rows were protected; no pending cognition source dependency remained at the validation snapshot.
+  publication_limits: No source, pronunciation, manifest, or generated curriculum file was changed. This is a source-backed authored addition, not an activated or pedagogically reviewed release.
+parent_integration:
+  selected_senses: 31
+  new_provisional_free_families: 19
+  support_parents_admitted: 12
+  full_source_positions_in_new_parents: 31
+  correction_requests_integrated: 5
+  reading_crosswalk:
+    parent: ko-nikl-19305
+    official_entry_id: '90914'
+    pronunciation: 들춰내다
+    reason: The first and third definitions expand 내어/알아내어 to 내어서/알아내어서; selected position002 is unchanged.
+  authored_reading_additions: 0
+  validation: >
+    All complete requested bilingual lists and selected correction strings
+    matched the pinned source. Combined with governance and its support,
+    103 targeted real-data course/tourist/source tests passed and128 views
+    were generated. Prior source parents and reading entries were preserved.
+  resulting_core: {senses: 7330, provisional_free_families: 4685, modules: 742}
+  scope_boundary: The earlier validation/publication sections describe worker handoff, not current generated status; overall curriculum completion and qualified review remain open.
+validation:
+  status: passed
+  counts:
+    selected_senses: 31
+    action_verb_senses: 31
+    core_senses: 31
+    branch_senses: 0
+    dictionary_source_parents: 24
+    distinct_spellings: 24
+    identity_fragments: 23
+    existing_family_extensions: 4
+    projected_new_provisional_free_identities: 19
+    new_function_items: 0
+    new_bound_forms: 0
+    requested_support_parents: 12
+    actually_missing_from_retained_registry: 12
+    complete_positions_in_requested_parents: 31
+    selected_positions_from_requested_parents: 14
+    selected_source_correction_requests: 5
+    maximum_label_characters: 57
+  existing_family_keys: [ko-lex-18224, ko-lex-35988, ko-lex-36623, ko-lex-40176]
+  selected_senses_by_level: {7: 2, 10: 3, 12: 1, 13: 3, 14: 6, 15: 4, 16: 1, 17: 1, 18: 3, 19: 4, 22: 1, 26: 2}
+  measured_protected_baseline:
+    manifest_vocabulary_files: 29
+    cognition_selected_senses: 143
+    support_list_parents: 642
+    retained_unbanded_parents: 642
+    cognition_requested_parents_still_missing: 0
+    manifest_sha256: b2c5ca6203a4ee39b2806b44cae83b20194430830835e0a6e121e2adcabd03d0
+    retained_registry_sha256: c77da5e916d6cce7e5538a5bedab4e8ccf74304e1181400429c8be6a8b4d81f1
+    snapshot_policy: Counts measure the actual protected files at validation, not an earlier message's source512 or cognition126 snapshot; they are not assertions about future parent edits.
+  evidence_checks:
+    - Unique YAML keys, exact four-field placements and five-field identity fragments, with no extra vocabulary fields.
+    - Complete pinned CSV checksum and 53172 data records verified in memory.
+    - All requested and related evidence lists match every original bilingual position exactly, including source whitespace and unselected positions.
+    - Every requested lemma matches every named same-form parent in the pin; exact original POS and unbanded status were checked.
+    - Selected source positions are explicit; all 31 are actually listed action-verb senses.
+    - Real extract_senses importer preserved all retained entries and original TOPIK references while augmenting only memory.
+    - Real load_selections, placement_rows, lexical_members, and source_corrections validators composed the current manifest, cognition, and interaction.
+    - Zero source-ID overlaps or conflicting identity keys; fragments have exact parent closure and preserve protected canonical/category values.
+    - Both held exclusions, both protected family categories, retired-key absence, and global level/branch coverage passed.
+    - All read protected input bytes stayed unchanged during validation; interaction YAML has consistent line endings and no trailing file-line whitespace.
+  regressions:
+    result: All three existing read-only tests passed together.
+    tests:
+      - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+      - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+      - test_korean_program.KoreanSourceArtifactTests.test_figurative_spring_correction_matches_the_actual_pinned_definition
+    invocation: Python312 -B -m unittest with the three selectors from scripts; no dependency installation, added test tooling, or cache files.
+  planning_scale_snapshot:
+    protected_authoring_core_provisional_free: 4497
+    projected_with_interaction: 4516
+    short_of_5800: 1284
+    short_of_6000: 1484
+    interpretation: >
+      These are counts of explicit provisional families in the measured
+      authoring composition, not verified true-lexeme breadth, mastery, or
+      a newly published release. The remaining range is a reported planning
+      shortfall, not a quota or permission to add weak material.
+remaining_limits:
+  - This bounded addition contributes 19 provisional free families, not 31 new headwords, and does not close or claim completion of the overall aspirational core scale.
+  - Source approval, actual citation-reading assessment, five correction adjudications, and qualified Korean-teacher/lexicographic review remain parent-owned.
+  - Exact-form gaps listed above remain source limitations, not permission to invent full predicates; familiar related words may support separately authored phrases and grammar.
+  - Near-overlapping response compounds and other unselected meanings were deliberately not swept into the cohort; no exhaustive missing-predicate claim is made.
+  - Conservative event-family grouping is transparent accounting, not proof that all member spellings and source positions are interchangeable.

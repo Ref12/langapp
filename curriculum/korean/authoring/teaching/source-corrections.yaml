@@ -5,6 +5,96 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-06362-s001:
+    source_korean: 수표나 어음에 적힌 금액을 기한 안에 받지 못하는 일.
+    source_english: "A state in which a company fails to receive a certain amount of money written on a check or note. "
+    authored_interpretation: a cheque or note not paid by its due date
+    rationale: The Korean includes a deadline and does not restrict the recipient to a company. Do not equate this nonpayment with bankruptcy or a current legal classification.
+  ko-nikl-14405-s001:
+    source_korean: 정치를 맡아 행하는 권력.
+    source_english: An authority or administrative organization that is responsible for dealing with political matters.
+    authored_interpretation: the power to govern
+    rationale: The Korean names governing power, not the administrative organisation added by the English.
+  ko-nikl-21881-s001:
+    source_korean: 직장을 그만두는 사람에게 일하던 곳에서 주는 돈.
+    source_english: The money that an employer gives to a person who resigns from a job.
+    authored_interpretation: a workplace's payment to someone leaving a job
+    rationale: Do not narrow leaving work to voluntary resignation or infer anyone's actual payment eligibility.
+  ko-nikl-29129-s001:
+    source_korean: 피해자가 범죄 사실을 경찰이나 법률 기관에 알려 범인을 처벌해 달라고 요구하는 일.
+    source_english: The act of reporting a crime to the police or a law enforcement authority and asking them to punish the criminal.
+    authored_interpretation: a victim's criminal complaint requesting punishment
+    rationale: The Korean explicitly identifies the victim as complainant; no additional eligibility, procedural deadline or finding about a real person is supplied.
+  ko-nikl-30825-s001:
+    source_korean: 특별시, 광역시 및 인구 50만 이상의 대도시에 두는 동 위의 행정 구역 단위.
+    source_english: An administrative district above 'dong (the smallest unit of districts)' in large and metropolitan cities with a population of 500,000 or more.
+    authored_interpretation: an urban administrative district above dong
+    rationale: The English flattens the separate special/metropolitan-city and large-city population conditions and adds a smallest-unit claim. Preserve the above-dong relation without treating the archive as current law.
+  ko-nikl-39129-s001:
+    source_korean: 민주주의 이념에 따르게 되거나 민주적인 것으로 바뀌는 것. 또는 그렇게 되게 하는 것.
+    source_english: A state in which a nation comes to follow a democratic ideology or becomes democratic; the act of making a nation change in such a way.
+    authored_interpretation: becoming democratic or making something democratic
+    rationale: The Korean does not restrict the subject to a nation; no real institution is thereby certified democratic.
+  ko-nikl-43843-s001:
+    source_korean: 장관을 보좌하고 장관의 직무를 대행할 수 있는 장관 다음의 직위. 또는 그 직위에 있는 사람.
+    source_english: "A position just below minister, who assists the minister and substitutes for him/her when the office is vacant; a person in such a position. "
+    authored_interpretation: a deputy minister or that office
+    rationale: The Korean does not require a vacant ministerial office for substitution; do not invent a statutory succession rule.
+  ko-nikl-50534-s001:
+    source_korean: 어린아이를 돌보고 기름.
+    source_english: An act of taking care of and growing a child.
+    authored_interpretation: caring for and bringing up young children
+    rationale: Raising or nurturing children is not a claim about physically growing a child or a medical outcome.
+  ko-nikl-28691-s001:
+    source_korean: 계약의 내용을 적고 계약이 성립되었음을 증명하는 문서.
+    source_english: A document stating the terms and conditions of an agreement and which proves the contract's validity.
+    authored_interpretation: a document recording a contract's terms and formation
+    rationale: Formation does not establish legal validity or enforceability; preserve the actual Korean scope.
+  ko-nikl-48777-s001:
+    source_korean: 한 나라 안에 일정 기간 이상 머무르는 외국인이 발급받는 신분증명서.
+    source_english: The ID certificate issued to a foreigner who stays in a country exceeding a fixed period.
+    authored_interpretation: a foreign-resident ID for stays of at least a set duration
+    rationale: 이상 includes equality, unlike exceeding. This retained but unselected source correction does not invent a duration or current immigration eligibility.
+  ko-nikl-05204-s001:
+    source_korean: 법과 명령.
+    source_english: Law and order.
+    authored_interpretation: laws and official orders
+    rationale: The Korean enumerates legal instruments, not the English public-order idiom.
+  ko-nikl-43503-s002:
+    source_korean: 행정 기관이 법에 따라 세금, 수수료, 벌금 등을 국민에게서 거두어들임.
+    source_english: An act of legally imposing taxes, fees, fines, etc., on the public by an administrative institution.
+    authored_interpretation: "government collection of taxes, fees or fines under law"
+    rationale: Collection is not assessment or imposition; no actual authority, liability or procedure is established.
+  ko-nikl-44285-s001:
+    source_korean: 국가, 지방 자치 단체, 은행, 회사 등이 사업에 필요한 자금을 빌리기 위해 발행하는 유가 증권.
+    source_english: Securities issued in order for the government, a local government, bank, company, etc., to raise funds necessary for a project.
+    authored_interpretation: bonds issued to borrow funds for a project or business
+    rationale: The Korean explicitly names borrowing, rather than undifferentiated fundraising or an investment-return promise.
+  ko-nikl-19305-s002:
+    source_korean: 잘못되거나 부족한 점을 따져서 드러나게 하다.
+    source_english: "To find someone's fault or shortcoming, and make it exposed.  "
+    authored_interpretation: to examine and expose faults or shortcomings
+    rationale: Preserve examination and exposure without restricting the faults to a particular person's character.
+  ko-nikl-33704-s002:
+    source_korean: 어떤 사실에 대해 분명하게 말해서 지적하거나 들춰내다.
+    source_english: To disclose or find fault with something by clearly stating its problems.
+    authored_interpretation: to point out or expose a fact by stating it clearly
+    rationale: The Korean permits stating and pointing out a fact, not exclusively finding problems.
+  ko-nikl-39824-s001:
+    source_korean: 다른 사람의 비판이나 농담 등의 말을 맞받아 대꾸하다.
+    source_english: To answer upon hearing someone's criticism, joke, etc.
+    authored_interpretation: to counter a criticism or joke with a reply
+    rationale: Retain the counter-reply perspective rather than any answer; replying does not necessarily refute a fact.
+  ko-nikl-39819-s003:
+    source_korean: 다른 사람의 말이나 노래를 받아 거침없이 처리하다.
+    source_english: To take over someone's remark or song, and to continue it without hesitating.
+    authored_interpretation: to handle another's words or song without hesitation
+    rationale: 처리하다 names handling the received words or song, not necessarily continuing the same utterance.
+  ko-nikl-36532-s002:
+    source_korean: 서로 밀접한 관련을 맺으며 어우러지다.
+    source_english: For two things or people to be closely connected and get along.
+    authored_interpretation: to be closely interrelated and intertwined
+    rationale: Mutual relation and combination need not be friendly interpersonal agreement, as English get along can suggest.
   ko-nikl-04148-s002:
     source_korean: 생각이 날 듯하면서도 나지 않다.
     source_english: Something almost coming to one's mind, but in the end, disappearing.

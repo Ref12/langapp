@@ -8464,7 +8464,7 @@ items:
       match_method: explicit-crosswalk
       official_entry_id: '25310'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25310
-      pronunciations:
+      pronunciations: &id1355
       - 전세
       match_reason: Compared both source deposit-lease definitions against all three noun candidates.
         Entry 25310 broadens building to real estate and room to room or house while retaining the deposit
@@ -27847,7 +27847,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '88155'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88155
-      pronunciations:
+      pronunciations: &id1357
       - 회ː계
       - 훼ː게
     lexical_identity: ko-lex-52014
@@ -27867,7 +27867,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '31456'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=31456
-      pronunciations:
+      pronunciations: &id1363
       - 결싼
     lexical_identity: ko-lex-28170
     lexical_category: free-lemma
@@ -36914,7 +36914,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '83688'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83688
-      pronunciations:
+      pronunciations: &id1360
       - 제ː재
     lexical_identity: ko-lex-14964
     lexical_category: free-lemma
@@ -133229,7 +133229,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '61642'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61642
-      pronunciations:
+      pronunciations: &id1354
       - 사ː용자
     lexical_identity: ko-lex-08461
     lexical_category: free-lemma
@@ -140617,6 +140617,3734 @@ items:
       - 훨씬
     lexical_identity: ko-lex-52386
     lexical_category: function-item
+  ko-nikl-00196-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=196
+    source_parent: ko-nikl-00196
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: One's given name and last name.
+    source_korean: 성과 이름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63598'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63598
+      pronunciations:
+      - 성ː명
+    lexical_identity: ko-lex-00196
+    lexical_category: free-lemma
+  ko-nikl-00769-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=769
+    source_parent: ko-nikl-00769
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A person who pays money to buy products, services, etc.
+    source_korean: 생산자가 만든 물건이나 서비스 등을 돈을 주고 사는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28821'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28821
+      pronunciations:
+      - 소비자
+    lexical_identity: ko-lex-00769
+    lexical_category: free-lemma
+  ko-nikl-05826-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5826
+    source_parent: ko-nikl-05826
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The act of taking care of, teaching, and bringing up children. '
+    source_korean: 어린아이들을 돌보아 가르치고 기름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '59510'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59510
+      pronunciations:
+      - 보ː육
+      match_reason: The current childcare definition omits the older explicit 가르치고 teaching component.
+        Use the same-spelling/POS citation reading only; retain the original care-and-education meaning.
+    lexical_identity: ko-lex-05826
+    lexical_category: free-lemma
+  ko-nikl-06116-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6116
+    source_parent: ko-nikl-06116
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'The central group or central office of an organization. '
+    source_korean: 기관의 중심이 되는 조직. 또는 그 조직이 있는 곳.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14552'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14552
+      pronunciations:
+      - 본부
+    lexical_identity: ko-lex-06116
+    lexical_category: free-lemma
+  ko-nikl-06282-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6282
+    source_parent: ko-nikl-06282
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: One of the small units into which an organization is divided by duty.
+    source_korean: 업무 조직 안에서 맡은 일에 따라 나눈 작은 집단.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '25685'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25685
+      pronunciations:
+      - 부
+    lexical_identity: ko-lex-06282
+    lexical_category: free-lemma
+  ko-nikl-06286-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6286
+    source_parent: ko-nikl-06286
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A bound noun that serves as a unit for counting the number of newspapers, books, or
+      documents.
+    source_korean: 신문이나 책, 서류 등을 세는 단위.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '25692'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25692
+      pronunciations:
+      - 부
+    lexical_identity: ko-lex-06286
+    lexical_category: bound-form
+  ko-nikl-08309-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8309
+    source_parent: ko-nikl-08309
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A state in which an individual establishes and manages an institution for the public
+      benefit with his/her private fund.
+    source_korean: 개인이 자신의 자금으로 공공의 이익을 위한 사업 기관을 설립하여 유지함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15659'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15659
+      pronunciations:
+      - 사립
+    lexical_identity: ko-lex-08309
+    lexical_category: free-lemma
+  ko-nikl-11686-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11686
+    source_parent: ko-nikl-11686
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'An act of assigning a certain position or work to someone. '
+    source_korean: 어떤 사람에게 일정한 직위나 임무를 맡김.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73114'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73114
+      pronunciations:
+      - 임ː명
+    lexical_identity: ko-lex-11686
+    lexical_category: free-lemma
+  ko-nikl-14622-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14622
+    source_parent: ko-nikl-14622
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The number of people that is pre-determined in accordance with certain rules.
+    source_korean: 일정한 규정에 따라 정해진 사람의 수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75671'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75671
+      pronunciations:
+      - 정ː원
+    lexical_identity: ko-lex-14622
+    lexical_category: free-lemma
+  ko-nikl-14720-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14720
+    source_parent: ko-nikl-14720
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A person who is responsible for politics.
+    source_korean: 정치를 맡아서 하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '31768'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=31768
+      pronunciations:
+      - 정치인
+    lexical_identity: ko-lex-14720
+    lexical_category: free-lemma
+  ko-nikl-17029-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17029
+    source_parent: ko-nikl-17029
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The act of handling something on behalf of somebody else.
+    source_korean: 다른 사람을 대신하여 일을 처리함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48362'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48362
+      pronunciations: &id1352
+      - 대ː리
+      match_reason: Only the acting-on-behalf definition contracts 대신하여 to 대신해; the company rank and acting-post
+        definitions are unchanged.
+    lexical_identity: ko-lex-17029
+    lexical_category: free-lemma
+  ko-nikl-17029-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17029
+    source_parent: ko-nikl-17029
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A position between a general employee and a section chief in a company, or a person
+      in such a position.
+    source_korean: 회사에서 일반 사원과 과장 사이에 있는 직위. 또는 그 직위에 있는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48362'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48362
+      pronunciations: *id1352
+      match_reason: Only the acting-on-behalf definition contracts 대신하여 to 대신해; the company rank and acting-post
+        definitions are unchanged.
+    lexical_identity: ko-lex-17029
+    lexical_category: free-lemma
+  ko-nikl-17029-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17029
+    source_parent: ko-nikl-17029
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A position that replaces the duty of another position in an organization such as a
+      company, or the person in such a position.
+    source_korean: 회사 등의 조직에서 다른 직위의 직무를 대신하는 직위. 또는 그 직위에 있는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '48362'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48362
+      pronunciations: *id1352
+      match_reason: Only the acting-on-behalf definition contracts 대신하여 to 대신해; the company rank and acting-post
+        definitions are unchanged.
+    lexical_identity: ko-lex-17029
+    lexical_category: free-lemma
+  ko-nikl-17100-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17100
+    source_parent: ko-nikl-17100
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'The institution representing a country in a foreign land, with an ambassador as its
+      head and who is responsible for diplomatic affairs. '
+    source_korean: 대사를 중심으로 한 나라를 대표하여 다른 나라에서 외교 업무를 보는 기관.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '27805'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=27805
+      pronunciations:
+      - 대ː사관
+      match_reason: The embassy definition now explicitly says 국가 기관 rather than 기관; its country-representing
+        diplomatic-institution meaning remains.
+    lexical_identity: ko-lex-17100
+    lexical_category: free-lemma
+  ko-nikl-17727-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17727
+    source_parent: ko-nikl-17727
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A province, or the largest local administrative district that  has jurisdiction over
+      a si, gun, etc., in Korea.
+    source_korean: 대한민국의 시, 군 등을 관할하는 가장 큰 지방 행정 구역.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14382'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14382
+      pronunciations:
+      - 도ː
+    lexical_identity: ko-lex-17727
+    lexical_category: free-lemma
+  ko-nikl-19373-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19373
+    source_parent: ko-nikl-19373
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A document that proves registration.
+    source_korean: 등록한 것을 증명하는 문서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15068'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15068
+      pronunciations:
+      - 등녹쯩
+    lexical_identity: ko-lex-19373
+    lexical_category: free-lemma
+  ko-nikl-25491-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25491
+    source_parent: ko-nikl-25491
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'Help or benefit from an institution or environment, or another person. '
+    source_korean: 제도나 환경, 다른 사람 등으로부터 받는 도움이나 이익.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '86397'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86397
+      pronunciations:
+      - 혜ː택
+      - 헤ː택
+    lexical_identity: ko-lex-25491
+    lexical_category: free-lemma
+  ko-nikl-25960-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25960
+    source_parent: ko-nikl-25960
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A person who joins a group or organization, or who signs a contract to use a product
+      or service.
+    source_korean: 단체나 조직에 들어가거나 상품 및 서비스 계약을 한 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15398'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15398
+      pronunciations:
+      - 가입짜
+    lexical_identity: ko-lex-25960
+    lexical_category: free-lemma
+  ko-nikl-26474-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26474
+    source_parent: ko-nikl-26474
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: An act of reducing or exempting someone from taxes, tuition or punishments.
+    source_korean: 세금이나 학비, 형벌 등을 줄이거나 면제함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '18983'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18983
+      pronunciations:
+      - 감ː면
+      match_reason: The current reduction/exemption definition generalizes taxes and tuition to money
+        due and expands 줄이거나 to 줄여 주거나. Retain the original examples and penalty scope; this is a pronunciation-only
+        crosswalk.
+    lexical_identity: ko-lex-26474
+    lexical_category: free-lemma
+  ko-nikl-27035-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27035
+    source_parent: ko-nikl-27035
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The act of opening the entrance to a place for people to enter or use freely.
+    source_korean: 자유롭게 들어가거나 이용할 수 있도록 열어 놓음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15753'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15753
+      pronunciations: &id1361
+      - 개방
+    lexical_identity: ko-lex-27035
+    lexical_category: free-lemma
+  ko-nikl-28203-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28203
+    source_parent: ko-nikl-28203
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'Making a decision in a meeting after hearing various opinions. '
+    source_korean: 회의에서 여러 사람의 의견을 모아 결정함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '32116'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=32116
+      pronunciations:
+      - 겨릐
+      - 겨리
+    lexical_identity: ko-lex-28203
+    lexical_category: free-lemma
+  ko-nikl-29749-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29749
+    source_parent: ko-nikl-29749
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The state of being established and run by a local government, or such facilities.
+    source_korean: 지방 자치 단체가 설립하여 운영함. 또는 그런 시설.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22873'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22873
+      pronunciations:
+      - 공닙
+    lexical_identity: ko-lex-29749
+    lexical_category: free-lemma
+  ko-nikl-29767-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29767
+    source_parent: ko-nikl-29767
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: An official document related to work written by a public organization or institution.
+    source_korean: 공공 기관이나 단체에서 업무에 관련하여 공식적으로 작성한 서류.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23117'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23117
+      pronunciations:
+      - 공문
+    lexical_identity: ko-lex-29767
+    lexical_category: free-lemma
+  ko-nikl-29996-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29996
+    source_parent: ko-nikl-29996
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A position or post in a governmental institution or public organization.
+    source_korean: 국가 기관이나 공공 단체의 직책이나 직위.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24123'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24123
+      pronunciations:
+      - 공직
+    lexical_identity: ko-lex-29996
+    lexical_category: free-lemma
+  ko-nikl-30133-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30133
+    source_parent: ko-nikl-30133
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The number more than half.
+    source_korean: 전체의 수에서 절반이 넘는 수.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18832'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18832
+      pronunciations:
+      - 과ː반수
+    lexical_identity: ko-lex-30133
+    lexical_category: free-lemma
+  ko-nikl-30256-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30256
+    source_parent: ko-nikl-30256
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A government office or public institution for the nation.
+    source_korean: 국가의 일을 하는 관청이나 공공 기관.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '22364'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22364
+      pronunciations:
+      - 관공서
+      match_reason: 국가의 일을 하는 is revised to 국가의 사무를 맡아보는 for the same government-office/public-agency
+        noun.
+    lexical_identity: ko-lex-30256
+    lexical_category: free-lemma
+  ko-nikl-30825-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30825
+    source_parent: ko-nikl-30825
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: An administrative district above 'dong (the smallest unit of districts)' in large
+      and metropolitan cities with a population of 500,000 or more.
+    source_korean: 특별시, 광역시 및 인구 50만 이상의 대도시에 두는 동 위의 행정 구역 단위.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24085'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24085
+      pronunciations:
+      - 구
+    source_correction:
+      source_korean: 특별시, 광역시 및 인구 50만 이상의 대도시에 두는 동 위의 행정 구역 단위.
+      source_english: An administrative district above 'dong (the smallest unit of districts)' in large
+        and metropolitan cities with a population of 500,000 or more.
+      authored_interpretation: an urban administrative district above dong
+      rationale: The English flattens the separate special/metropolitan-city and large-city population
+        conditions and adds a smallest-unit claim. Preserve the above-dong relation without treating the
+        archive as current law.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-30825
+    lexical_category: free-lemma
+  ko-nikl-31259-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31259
+    source_parent: ko-nikl-31259
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The state of being established and managed with the national budget for the public
+      benefit.
+    source_korean: 공공의 이익을 위하여 국가의 예산으로 설립하고 관리함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '42224'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=42224
+      pronunciations:
+      - 궁닙
+    lexical_identity: ko-lex-31259
+    lexical_category: free-lemma
+  ko-nikl-31347-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31347
+    source_parent: ko-nikl-31347
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The position that supervises or manages a department of an institution or organization,
+      or the person of such a position.
+    source_korean: 기관이나 조직에서 한 국을 책임지고 운영하는 직위나 그 직위에 있는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38605'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38605
+      pronunciations:
+      - 국짱
+    lexical_identity: ko-lex-31347
+    lexical_category: free-lemma
+  ko-nikl-31404-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31404
+    source_parent: ko-nikl-31404
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'In Korea, a local administrative district which is under ''do'', and above ''eup''
+      or ''myeon.'' '
+    source_korean: 한국에서, 도 아래이며 읍이나 면보다 위인 지방 행정 구역.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '36857'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36857
+      pronunciations: &id1353
+      - 군ː
+    lexical_identity: ko-lex-31404
+    lexical_category: free-lemma
+  ko-nikl-31404-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31404
+    source_parent: ko-nikl-31404
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A government office responsible for administrative affairs of a ''gun.'' '
+    source_korean: 군의 행정 업무를 맡아보는 기관.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '36857'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36857
+      pronunciations: *id1353
+    lexical_identity: ko-lex-31404
+    lexical_category: free-lemma
+  ko-nikl-36150-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36150
+    source_parent: ko-nikl-36150
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The opinions of all people being the same.
+    source_korean: 모든 사람의 의견이 같음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '52971'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=52971
+      pronunciations:
+      - 만ː장일치
+    lexical_identity: ko-lex-36150
+    lexical_category: free-lemma
+  ko-nikl-37162-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37162
+    source_parent: ko-nikl-37162
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Freeing someone from a responsibility or duty.
+    source_korean: 책임이나 의무에서 벗어나게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '55073'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=55073
+      pronunciations:
+      - 면ː제
+    lexical_identity: ko-lex-37162
+    lexical_category: free-lemma
+  ko-nikl-40455-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40455
+    source_parent: ko-nikl-40455
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A person who attends a meeting, debate, trial, public broadcasting, etc., and watches
+      it.
+    source_korean: 회의, 토론, 재판, 공개 방송 등에 참석하여 진행되는 것을 보고 듣는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58462'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58462
+      pronunciations:
+      - 방청객
+    lexical_identity: ko-lex-40455
+    lexical_category: free-lemma
+  ko-nikl-43843-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43843
+    source_parent: ko-nikl-43843
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A position just below minister, who assists the minister and substitutes for him/her
+      when the office is vacant; a person in such a position. '
+    source_korean: 장관을 보좌하고 장관의 직무를 대행할 수 있는 장관 다음의 직위. 또는 그 직위에 있는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80193'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80193
+      pronunciations:
+      - 차관
+    source_correction:
+      source_korean: 장관을 보좌하고 장관의 직무를 대행할 수 있는 장관 다음의 직위. 또는 그 직위에 있는 사람.
+      source_english: 'A position just below minister, who assists the minister and substitutes for him/her
+        when the office is vacant; a person in such a position. '
+      authored_interpretation: a deputy minister or that office
+      rationale: The Korean does not require a vacant ministerial office for substitution; do not invent
+        a statutory succession rule.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-43843
+    lexical_category: free-lemma
+  ko-nikl-48765-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48765
+    source_parent: ko-nikl-48765
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A position of dealing with diplomatic affairs on behalf of one''s country while staying
+      in a foreign country, or a person in such a position. '
+    source_korean: 외국에 살며 자기 나라를 대표하여 외교 업무를 보는 관직. 또는 그 일을 하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67853'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67853
+      pronunciations:
+      - 외ː교관
+      - 웨ː교관
+    lexical_identity: ko-lex-48765
+    lexical_category: free-lemma
+  ko-nikl-49994-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49994
+    source_parent: ko-nikl-49994
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A person elected or appointed to be responsible for doing something for a special
+      purpose in a group.
+    source_korean: 선거나 임명을 통하여 단체에서 특정한 목적의 일을 맡은 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26754'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26754
+      pronunciations:
+      - 위원
+    lexical_identity: ko-lex-49994
+    lexical_category: free-lemma
+  ko-nikl-49996-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49996
+    source_parent: ko-nikl-49996
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'An institution that discusses and handles a certain matter in a fairly independent
+      field unlike general administration. '
+    source_korean: 일반 행정과는 달리 어느 정도 독립된 분야에서 어떤 일의 처리를 맡아 의논하는 기관.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69641'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69641
+      pronunciations:
+      - 위원회
+      - 위원훼
+    lexical_identity: ko-lex-49996
+    lexical_category: free-lemma
+  ko-nikl-50128-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50128
+    source_parent: ko-nikl-50128
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A person who has the right to vote.
+    source_korean: 선거할 권리를 가진 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72400'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72400
+      pronunciations:
+      - 유ː꿘자
+    lexical_identity: ko-lex-50128
+    lexical_category: free-lemma
+  ko-nikl-50534-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50534
+    source_parent: ko-nikl-50534
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: An act of taking care of and growing a child.
+    source_korean: 어린아이를 돌보고 기름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71009'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71009
+      pronunciations:
+      - 유가
+    source_correction:
+      source_korean: 어린아이를 돌보고 기름.
+      source_english: An act of taking care of and growing a child.
+      authored_interpretation: caring for and bringing up young children
+      rationale: Raising or nurturing children is not a claim about physically growing a child or a medical
+        outcome.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-50534
+    lexical_category: free-lemma
+  ko-nikl-01342-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1342
+    source_parent: ko-nikl-01342
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The act of sending money through a financial institution such as the bank, etc., or
+      the money sent.
+    source_korean: 은행 등의 금융 기관을 통하여 돈을 보냄. 또는 그 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '64660'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64660
+      pronunciations:
+      - 송ː금
+      match_reason: The money-transfer definition contracts 통하여 to 통해; both the sending action and money
+        sent are preserved.
+    lexical_identity: ko-lex-01342
+    lexical_category: free-lemma
+  ko-nikl-03531-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3531
+    source_parent: ko-nikl-03531
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Losing a job.
+    source_korean: 직업을 잃음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65961'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65961
+      pronunciations:
+      - 실찍
+    lexical_identity: ko-lex-03531
+    lexical_category: free-lemma
+  ko-nikl-05916-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5916
+    source_parent: ko-nikl-05916
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'An amount of money that the insured pays the insurer regularly.  '
+    source_korean: 보험에 가입한 사람이 보험 회사에 정기적으로 내는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59692'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59692
+      pronunciations:
+      - 보ː험뇨
+    lexical_identity: ko-lex-05916
+    lexical_category: free-lemma
+  ko-nikl-08442-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8442
+    source_parent: ko-nikl-08442
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A person who runs a business professionally. '
+    source_korean: 전문적으로 사업을 하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15667'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15667
+      pronunciations:
+      - 사ː업짜
+    lexical_identity: ko-lex-08442
+    lexical_category: free-lemma
+  ko-nikl-08461-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8461
+    source_parent: ko-nikl-08461
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A person who makes a worker do something and pays him/her a wage in return. '
+    source_korean: 노동자에게 일을 시키고 그 대가로 보수를 주는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61642'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61642
+      pronunciations: *id1354
+    lexical_identity: ko-lex-08461
+    lexical_category: free-lemma
+  ko-nikl-10937-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10937
+    source_parent: ko-nikl-10937
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The act of a person, tribe, ethnic group, etc., leaving an area where he/she or it
+      has lived, and moving to another area to live there.
+    source_korean: 개인이나 종족, 민족 등의 집단이 원래 살던 지역을 떠나 다른 지역으로 이동해서 삶.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72687'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72687
+      pronunciations:
+      - 이주
+    lexical_identity: ko-lex-10937
+    lexical_category: free-lemma
+  ko-nikl-10938-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10938
+    source_parent: ko-nikl-10938
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A person who migrates to another place, or who leaves one place to settle in another. '
+    source_korean: 다른 곳으로 옮겨 가서 사는 사람. 또는 다른 곳에서 옮겨 와서 사는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72689'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72689
+      pronunciations:
+      - 이주민
+    lexical_identity: ko-lex-10938
+    lexical_category: free-lemma
+  ko-nikl-11707-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11707
+    source_parent: ko-nikl-11707
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'An act of hiring someone and assigning a certain job to him/her. '
+    source_korean: 직무를 맡기어 사람을 씀.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72646'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72646
+      pronunciations:
+      - 이ː묭
+    lexical_identity: ko-lex-11707
+    lexical_category: free-lemma
+  ko-nikl-12298-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12298
+    source_parent: ko-nikl-12298
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A business that one manages and runs on one''s own. '
+    source_korean: 자신이 직접 관리하고 운영하는 사업.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73502'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73502
+      pronunciations:
+      - 자영업
+    lexical_identity: ko-lex-12298
+    lexical_category: free-lemma
+  ko-nikl-13864-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13864
+    source_parent: ko-nikl-13864
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'rent; rented house: A room that one leases from its owner in exchange for a sum of
+      money given to him/her as a security.'
+    source_korean: 건물을 가지고 있는 사람에게 정해진 기간 동안 일정한 금액을 맡겨 놓고 빌려 쓰는 방.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '25310'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25310
+      pronunciations: *id1355
+      match_reason: Compared both source deposit-lease definitions against all three noun candidates.
+        Entry 25310 broadens building to real estate and room to room or house while retaining the deposit
+        arrangement and rented premises in order. Reject exclusive hire 600672 and war/match situation
+        74159.
+    lexical_identity: ko-lex-13864
+    lexical_category: free-lemma
+  ko-nikl-13925-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13925
+    source_parent: ko-nikl-13925
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of focusing on a work or occupation, or such a work or occupation.
+    source_korean: 한 가지 일이나 직업에 집중해서 일함. 또는 그런 일이나 직업.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74725'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74725
+      pronunciations:
+      - 저넙
+    lexical_identity: ko-lex-13925
+    lexical_category: free-lemma
+  ko-nikl-14016-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14016
+    source_parent: ko-nikl-14016
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: An occupation or position that one used to have.
+    source_korean: 전에 일하던 직업이나 직위.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74554'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74554
+      pronunciations:
+      - 전직
+    lexical_identity: ko-lex-14016
+    lexical_category: free-lemma
+  ko-nikl-14423-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14423
+    source_parent: ko-nikl-14423
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: An age at which a worker is required to retire.
+    source_korean: 직장에서 물러나도록 정해져 있는 나이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75000'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75000
+      pronunciations:
+      - 정년
+    lexical_identity: ko-lex-14423
+    lexical_category: free-lemma
+  ko-nikl-16593-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16593
+    source_parent: ko-nikl-16593
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'The currency of the United States. '
+    source_korean: 미국의 돈.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 달러
+      method: authored-broad-hangul
+      reason: 'Explicit authored standard-loanword citation aid for the US-currency noun, not dictionary-verified
+        text. The exact official entry57291 and actual Standard Dictionary content413929 both lack pronunciation
+        text. Retain the lateral ㄹ-ㄹ sequence in 달러; do not invent a length mark or replace it with colloquial
+        딸라. This individual decision is not a spelling-copy fallback for other words and requires qualified
+        review and audio evidence.
+
+        '
+      review_status: unreviewed
+    lexical_identity: ko-lex-16593
+    lexical_category: free-lemma
+  ko-nikl-16594-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16594
+    source_parent: ko-nikl-16594
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A bound noun that serves as a unit for American currency.
+    source_korean: 미국의 화폐 단위.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 달러
+      method: authored-broad-hangul
+      reason: 'Explicit authored citation aid for the US-dollar counting unit. Exact official entry26828
+        has no pronunciation text; Standard Dictionary content413929 also provides none. Preserve the
+        same written lateral sequence as the currency noun, without claiming an imported reading, vowel
+        length, colloquial variant or actual learner-audio assessment.
+
+        '
+      review_status: unreviewed
+    lexical_identity: ko-lex-16593
+    lexical_category: free-lemma
+  ko-nikl-16694-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16694
+    source_parent: ko-nikl-16694
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A thing that a debtor hands over as a substitute for the money to pay back in case
+      that he/she cannot repay his/her debt.
+    source_korean: 빚을 진 사람이 빚을 갚지 않을 경우에 그 빚을 대신할 수 있는 것으로 내놓는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '44193'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=44193
+      pronunciations: &id1356
+      - 담보
+      match_reason: The archive lists the unchanged security-for-adverse-outcome definition before the
+        unchanged debt-security definition, with official sense IDs2 then1. Do not reorder or renumber
+        the original project senses to match that archive presentation.
+    lexical_identity: ko-lex-16694
+    lexical_category: free-lemma
+  ko-nikl-16694-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16694
+    source_parent: ko-nikl-16694
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A thing that a person gives to make up for a situation in which something has gone
+      wrong.
+    source_korean: 어떠한 일이 잘못될 때 그 잘못을 대신하기 위해 내놓는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '44193'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=44193
+      pronunciations: *id1356
+      match_reason: The archive lists the unchanged security-for-adverse-outcome definition before the
+        unchanged debt-security definition, with official sense IDs2 then1. Do not reorder or renumber
+        the original project senses to match that archive presentation.
+    lexical_identity: ko-lex-16694
+    lexical_category: free-lemma
+  ko-nikl-21881-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21881
+    source_parent: ko-nikl-21881
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The money that an employer gives to a person who resigns from a job.
+    source_korean: 직장을 그만두는 사람에게 일하던 곳에서 주는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82891'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82891
+      pronunciations:
+      - 퇴ː직끔
+      - 퉤ː직끔
+    source_correction:
+      source_korean: 직장을 그만두는 사람에게 일하던 곳에서 주는 돈.
+      source_english: The money that an employer gives to a person who resigns from a job.
+      authored_interpretation: a workplace's payment to someone leaving a job
+      rationale: Do not narrow leaving work to voluntary resignation or infer anyone's actual payment
+        eligibility.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-21881
+    lexical_category: free-lemma
+  ko-nikl-24699-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24699
+    source_parent: ko-nikl-24699
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A state in which one party of a contract ends the contractual relationship with another.
+    source_korean: 계약을 한 한쪽이 계약으로 성립된 관계를 취소함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85720'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85720
+      pronunciations:
+      - 해ː약
+    lexical_identity: ko-lex-24699
+    lexical_category: free-lemma
+  ko-nikl-25389-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25389
+    source_parent: ko-nikl-25389
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A state in which groups with different opinions get together to discuss an issue and
+      make a decision.
+    source_korean: 서로 다른 의견을 가진 집단이 모여 문제를 해결하고 결정을 하기 위해 의논함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90592'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90592
+      pronunciations:
+      - 협쌍
+    lexical_identity: ko-lex-25389
+    lexical_category: free-lemma
+  ko-nikl-25394-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25394
+    source_parent: ko-nikl-25394
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A state in which many people reach an agreement through discussion to accomplish a
+      common goal; or the agreement.
+    source_korean: 공동의 목적을 이루기 위해 여러 사람이 의논하여 약속을 맺음. 또는 그 약속.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90619'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90619
+      pronunciations:
+      - 혀뱍
+    lexical_identity: ko-lex-25394
+    lexical_category: free-lemma
+  ko-nikl-35488-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35488
+    source_parent: ko-nikl-35488
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A compound word referring to a person who is paid to do work and a person who pays
+      someone to do work.
+    source_korean: 노동자와 사용자. 돈을 받고 일을 하는 사람과 돈을 주고 일을 시키는 사람을 아울러 이르는 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '93371'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=93371
+      pronunciations:
+      - 노사
+    lexical_identity: ko-lex-35488
+    lexical_category: free-lemma
+  ko-nikl-42991-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42991
+    source_parent: ko-nikl-42991
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The social, administrative position given to a person based on his/her duties and
+      responsibilities at work. '
+    source_korean: 직장에서 책임을 지고 맡은 일에 따른 사회적, 행정적 위치.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '76800'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76800
+      pronunciations:
+      - 지귀
+      match_reason: The workplace-status definition rephrases responsibility for assigned work as status
+        conferred according to assigned work. Preserve the older wording and use the same lexical entry
+        for citation reading only.
+    lexical_identity: ko-lex-42991
+    lexical_category: free-lemma
+  ko-nikl-43009-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43009
+    source_parent: ko-nikl-43009
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A type of occupation. '
+    source_korean: 직업의 종류.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76809'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76809
+      pronunciations:
+      - 직쫑
+    lexical_identity: ko-lex-43009
+    lexical_category: free-lemma
+  ko-nikl-49490-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49490
+    source_parent: ko-nikl-49490
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The act of sending people or goods in a vehicle.
+    source_korean: 사람을 태워 보내거나 물건 등을 실어 보냄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69004'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69004
+      pronunciations:
+      - 운ː송
+    lexical_identity: ko-lex-49490
+    lexical_category: free-lemma
+  ko-nikl-49671-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49671
+    source_parent: ko-nikl-49671
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The initial price at which a product is bought.
+    source_korean: 물건을 처음 사들였을 때의 가격.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69829'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69829
+      pronunciations: &id1362
+      - 원까
+    lexical_identity: ko-lex-49671
+    lexical_category: free-lemma
+  ko-nikl-51872-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51872
+    source_parent: ko-nikl-51872
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'The act of changing one country''s currency into another''s. '
+    source_korean: 한 나라의 화폐를 다른 나라의 화폐와 맞바꿈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87065'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87065
+      pronunciations:
+      - 환ː전
+    lexical_identity: ko-lex-51872
+    lexical_category: free-lemma
+  ko-nikl-52014-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52014
+    source_parent: ko-nikl-52014
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: An act of calculating income and expenses.
+    source_korean: 나가고 들어오는 돈을 따져서 계산함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88155'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88155
+      pronunciations: *id1357
+    lexical_identity: ko-lex-52014
+    lexical_category: free-lemma
+  ko-nikl-52014-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52014
+    source_parent: ko-nikl-52014
+    source_position: 4
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A person whose job it is to calculate income and expenses.
+    source_korean: 나가고 들어오는 돈을 계산하는 일을 직업으로 하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88155'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88155
+      pronunciations: *id1357
+    lexical_identity: ko-lex-52014
+    lexical_category: free-lemma
+  ko-nikl-00511-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=511
+    source_parent: ko-nikl-00511
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The system of taxation.
+    source_korean: 세금에 관한 제도.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74717'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74717
+      pronunciations:
+      - 세ː제
+    lexical_identity: ko-lex-00511
+    lexical_category: free-lemma
+  ko-nikl-01975-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1975
+    source_parent: ko-nikl-01975
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A collective noun for earnings and expenses. '
+    source_korean: 수입과 지출.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65481'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65481
+      pronunciations: &id1358
+      - 수지
+    lexical_identity: ko-lex-01975
+    lexical_category: free-lemma
+  ko-nikl-01975-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1975
+    source_parent: ko-nikl-01975
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A profit gained from a transaction such as selling, doing business, etc. '
+    source_korean: 장사나 사업 등의 거래에서 얻는 이익.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65481'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65481
+      pronunciations: *id1358
+    lexical_identity: ko-lex-01975
+    lexical_category: free-lemma
+  ko-nikl-06284-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6284
+    source_parent: ko-nikl-06284
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A lot of property or possessions.
+    source_korean: 많은 재산.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '25694'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25694
+      pronunciations: &id1359
+      - 부ː
+    lexical_identity: ko-lex-06284
+    lexical_category: free-lemma
+  ko-nikl-06284-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6284
+    source_parent: ko-nikl-06284
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The entire wealth of a country or society such as capital, products, resources, etc.
+    source_korean: 한 국가나 사회가 가지고 있는 자본, 생산물, 자원 등 재산의 전체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '25694'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25694
+      pronunciations: *id1359
+    lexical_identity: ko-lex-06284
+    lexical_category: free-lemma
+  ko-nikl-06362-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6362
+    source_parent: ko-nikl-06362
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A state in which a company fails to receive a certain amount of money written on
+      a check or note. '
+    source_korean: 수표나 어음에 적힌 금액을 기한 안에 받지 못하는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60154'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60154
+      pronunciations:
+      - 부도
+    source_correction:
+      source_korean: 수표나 어음에 적힌 금액을 기한 안에 받지 못하는 일.
+      source_english: 'A state in which a company fails to receive a certain amount of money written on
+        a check or note. '
+      authored_interpretation: a cheque or note not paid by its due date
+      rationale: The Korean includes a deadline and does not restrict the recipient to a company. Do not
+        equate this nonpayment with bankruptcy or a current legal classification.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-06362
+    lexical_category: free-lemma
+  ko-nikl-06704-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6704
+    source_parent: ko-nikl-06704
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A state in which politics, ideology, consciousness, etc., becomes immoral.
+    source_korean: 정치, 사상, 의식 등이 정의롭지 못한 쪽으로 빠져드는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '59892'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59892
+      pronunciations:
+      - 부ː패
+      match_reason: Both decomposition and moral-corruption definitions replace 는 것 nominalization with
+        음 or 듦. Their meanings and original project positions stay unchanged.
+    lexical_identity: ko-lex-06704
+    lexical_category: free-lemma
+  ko-nikl-07507-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7507
+    source_parent: ko-nikl-07507
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'An act that is not morally right. '
+    source_korean: 올바르지 않은 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60892'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60892
+      pronunciations:
+      - 비ː리
+    lexical_identity: ko-lex-07507
+    lexical_category: free-lemma
+  ko-nikl-09565-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9565
+    source_parent: ko-nikl-09565
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The ratio of output to its production cost.
+    source_korean: 생산하는 데 들어간 비용과 그에 따른 생산량의 비율.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74289'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74289
+      pronunciations:
+      - 생산썽
+    lexical_identity: ko-lex-09565
+    lexical_category: free-lemma
+  ko-nikl-10902-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10902
+    source_parent: ko-nikl-10902
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A different opinion held by one against a certain argument, decision, etc. '
+    source_korean: 어떤 주장이나 결정 등에 대하여 가지는 다른 의견.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '72569'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72569
+      pronunciations:
+      - 이ː의
+      - 이ː이
+      match_reason: This objection-to-a-claim-or-decision entry contracts 대하여 to 대해. The broader different-opinion
+        homograph90764 is not the matching definition, even though its readings coincide.
+    lexical_identity: ko-lex-10902
+    lexical_category: free-lemma
+  ko-nikl-11073-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11073
+    source_parent: ko-nikl-11073
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A cost that one spends using human resources. '
+    source_korean: 사람에게 일을 시키는 데 드는 비용.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72958'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72958
+      pronunciations:
+      - 인껀비
+    lexical_identity: ko-lex-11073
+    lexical_category: free-lemma
+  ko-nikl-13050-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13050
+    source_parent: ko-nikl-13050
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A corporate body that is established to manage a property devoted to a certain purpose
+      independently.
+    source_korean: 일정한 목적을 위하여 제공된 재산을, 개인 소유로 하지 않고 독립된 것으로 운영하기 위하여 설립한 법인.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '93492'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=93492
+      pronunciations:
+      - 재단
+    lexical_identity: ko-lex-13050
+    lexical_category: free-lemma
+  ko-nikl-13074-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13074
+    source_parent: ko-nikl-13074
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Matters related to money and assets.
+    source_korean: 돈이나 재산에 관한 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74495'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74495
+      pronunciations:
+      - 재무
+    lexical_identity: ko-lex-13074
+    lexical_category: free-lemma
+  ko-nikl-14405-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14405
+    source_parent: ko-nikl-14405
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: An authority or administrative organization that is responsible for dealing with political
+      matters.
+    source_korean: 정치를 맡아 행하는 권력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74986'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74986
+      pronunciations:
+      - 정꿘
+    source_correction:
+      source_korean: 정치를 맡아 행하는 권력.
+      source_english: An authority or administrative organization that is responsible for dealing with
+        political matters.
+      authored_interpretation: the power to govern
+      rationale: The Korean names governing power, not the administrative organisation added by the English.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-14405
+    lexical_category: free-lemma
+  ko-nikl-14964-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14964
+    source_parent: ko-nikl-14964
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of preventing someone from breaking a rule or custom, or such a prevention.
+    source_korean: 일정한 규칙이나 관습을 어기지 못하게 함. 또는 그런 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83688'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83688
+      pronunciations: *id1360
+    lexical_identity: ko-lex-14964
+    lexical_category: free-lemma
+  ko-nikl-15243-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15243
+    source_parent: ko-nikl-15243
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A levy imposed by a nation or local government on its people to finance necessary
+      expenditures.
+    source_korean: 국가나 지방 공공 단체가 필요한 경비로 사용하기 위해 국민으로부터 강제로 거두어들이는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75326'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75326
+      pronunciations:
+      - 조세
+    lexical_identity: ko-lex-15243
+    lexical_category: free-lemma
+  ko-nikl-15316-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15316
+    source_parent: ko-nikl-15316
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Illegal money or things given to a person in charge of public affairs in exchange
+      for having one's personal interest looked after.
+    source_korean: 개인의 이익을 위해 공적인 책임이 있는 사람에게 건네는 부정한 돈이나 물건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '45308'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=45308
+      pronunciations:
+      - 뇌물
+      - 눼물
+    lexical_identity: ko-lex-15316
+    lexical_category: free-lemma
+  ko-nikl-18113-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18113
+    source_parent: ko-nikl-18113
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A form of politics in which a single person exercises absolute power and handles
+      everything in his/her own way in a country. '
+    source_korean: 한 나라의 권력을 한 사람이 모두 차지하고 자기 마음대로 하는 정치.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48507'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48507
+      pronunciations:
+      - 독째
+    lexical_identity: ko-lex-18113
+    lexical_category: free-lemma
+  ko-nikl-21791-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21791
+    source_parent: ko-nikl-21791
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'An act of taking on and ruling a country or region. '
+    source_korean: 나라나 지역을 맡아 다스림.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81354'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81354
+      pronunciations:
+      - 통ː치
+    lexical_identity: ko-lex-21791
+    lexical_category: free-lemma
+  ko-nikl-22070-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22070
+    source_parent: ko-nikl-22070
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A special right.
+    source_korean: 특별한 권리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82977'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82977
+      pronunciations:
+      - 특꿘
+    lexical_identity: ko-lex-22070
+    lexical_category: free-lemma
+  ko-nikl-22154-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22154
+    source_parent: ko-nikl-22154
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A special help or benefit one receives.
+    source_korean: 특별한 은혜나 혜택.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82611'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82611
+      pronunciations:
+      - 트켸
+      - 트케
+    lexical_identity: ko-lex-22154
+    lexical_category: free-lemma
+  ko-nikl-25407-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25407
+    source_parent: ko-nikl-25407
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A state of making an agreement with another country; or the agreement.
+    source_korean: 한 국가가 다른 국가와 약정을 맺음. 또는 그 약정.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '86041'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86041
+      pronunciations:
+      - 협쩡
+    lexical_identity: ko-lex-25407
+    lexical_category: free-lemma
+  ko-nikl-27035-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27035
+    source_parent: ko-nikl-27035
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The act of removing a ban on something and letting people or goods travel or interact
+      freely.
+    source_korean: 금지하던 것을 풀어 자유롭게 교류하고 활동하게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15753'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15753
+      pronunciations: *id1361
+    lexical_identity: ko-lex-27035
+    lexical_category: free-lemma
+  ko-nikl-29056-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29056
+    source_parent: ko-nikl-29056
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of reporting a crime or criminal, and requesting his/her punishment by the
+      police or investigating agency.
+    source_korean: 경찰이나 수사 기관에 범죄 사실 또는 범인을 신고하고 처벌을 요청함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19231'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19231
+      pronunciations: &id1364
+      - 고ː발
+    lexical_identity: ko-lex-29056
+    lexical_category: free-lemma
+  ko-nikl-29129-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29129
+    source_parent: ko-nikl-29129
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of reporting a crime to the police or a law enforcement authority and asking
+      them to punish the criminal.
+    source_korean: 피해자가 범죄 사실을 경찰이나 법률 기관에 알려 범인을 처벌해 달라고 요구하는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '17950'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=17950
+      pronunciations:
+      - 고ː소
+    source_correction:
+      source_korean: 피해자가 범죄 사실을 경찰이나 법률 기관에 알려 범인을 처벌해 달라고 요구하는 일.
+      source_english: The act of reporting a crime to the police or a law enforcement authority and asking
+        them to punish the criminal.
+      authored_interpretation: a victim's criminal complaint requesting punishment
+      rationale: The Korean explicitly identifies the victim as complainant; no additional eligibility,
+        procedural deadline or finding about a real person is supplied.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-29129
+    lexical_category: free-lemma
+  ko-nikl-30349-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30349
+    source_parent: ko-nikl-30349
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Tax imposed on imports that came through customs.
+    source_korean: 세관을 통과하여 들어오는 해외 상품에 부과되는 세금.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37010'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37010
+      pronunciations:
+      - 관세
+    lexical_identity: ko-lex-30349
+    lexical_category: free-lemma
+  ko-nikl-31235-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31235
+    source_parent: ko-nikl-31235
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Government money.
+    source_korean: 국가의 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '36790'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36790
+      pronunciations:
+      - 국꼬
+      match_reason: The older state-money definition is revised to state-held deposit accounts or their
+        deposits. Retain the original treasury-funds sense and use only the actual citation reading; do
+        not import the new account referent into the old sense.
+    lexical_identity: ko-lex-31235
+    lexical_category: free-lemma
+  ko-nikl-48818-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48818
+    source_parent: ko-nikl-48818
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'Business that deals with the political, economic, and cultural relations with other
+      countries. '
+    source_korean: 다른 나라와 정치적, 경제적, 문화적 관계를 맺는 일에 관한 사무.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '92092'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=92092
+      pronunciations:
+      - 외ː무
+      - 웨ː무
+    lexical_identity: ko-lex-48818
+    lexical_category: free-lemma
+  ko-nikl-49671-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49671
+    source_parent: ko-nikl-49671
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The price equal to the addition of all the expenses incurred from the point of the
+      manufacturing of a product to that of selling it.
+    source_korean: 상품을 만들어서 팔기까지의 과정에 들어간 모든 비용을 합한 가격.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69829'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69829
+      pronunciations: *id1362
+    lexical_identity: ko-lex-49671
+    lexical_category: free-lemma
+  ko-nikl-49942-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49942
+    source_parent: ko-nikl-49942
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of violating the law.
+    source_korean: 법을 어김.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26747'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26747
+      pronunciations:
+      - 위법
+    lexical_identity: ko-lex-49942
+    lexical_category: free-lemma
+  ko-nikl-08593-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8593
+    source_parent: ko-nikl-08593
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'An act of quitting and withdrawing from a certain position and title. '
+    source_korean: 어떤 직위나 직책을 그만두고 물러남.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61360'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61360
+      pronunciations:
+      - 사퇴
+      - 사퉤
+    lexical_identity: ko-lex-08593
+    lexical_category: free-lemma
+  ko-nikl-14395-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14395
+    source_parent: ko-nikl-14395
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A field of activity which political professionals are engaged in.
+    source_korean: 정치에 관련된 일을 하는 사람들의 활동 분야.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '74977'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74977
+      pronunciations:
+      - 정계
+      - 정게
+      match_reason: The political-sphere definition changes 정치에 관련된 to 정치와 관련된; both actual citation alternatives
+        are retained.
+    lexical_identity: ko-lex-14395
+    lexical_category: free-lemma
+  ko-nikl-21867-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21867
+    source_parent: ko-nikl-21867
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'An act of resigning from a job or duty. '
+    source_korean: 직책이나 임무에서 물러남.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82877'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82877
+      pronunciations:
+      - 퇴ː임
+      - 퉤ː임
+    lexical_identity: ko-lex-21867
+    lexical_category: free-lemma
+  ko-nikl-21977-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21977
+    source_parent: ko-nikl-21977
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A person who spends money, time, or energy in a certain project or business, to gain
+      a profit.
+    source_korean: 이익을 얻기 위해 어떤 일이나 사업에 돈을 대거나 시간이나 정성을 쏟는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81620'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81620
+      pronunciations:
+      - 투자자
+    lexical_identity: ko-lex-21977
+    lexical_category: free-lemma
+  ko-nikl-28170-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28170
+    source_parent: ko-nikl-28170
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of recording the result of what one has done for a certain period.
+    source_korean: 일정한 기간 동안에 한 일의 결과를 정리하는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '31456'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=31456
+      pronunciations: *id1363
+    lexical_identity: ko-lex-28170
+    lexical_category: free-lemma
+  ko-nikl-29056-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29056
+    source_parent: ko-nikl-29056
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of disclosing hidden faults or corruption to the public.
+    source_korean: 감춰져 있던 잘못이나 비리 등을 공개적으로 많은 사람에게 알림.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19231'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19231
+      pronunciations: *id1364
+    lexical_identity: ko-lex-29056
+    lexical_category: free-lemma
+  ko-nikl-39129-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39129
+    source_parent: ko-nikl-39129
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A state in which a nation comes to follow a democratic ideology or becomes democratic;
+      the act of making a nation change in such a way.
+    source_korean: 민주주의 이념에 따르게 되거나 민주적인 것으로 바뀌는 것. 또는 그렇게 되게 하는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15778'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15778
+      pronunciations:
+      - 민주화
+    source_correction:
+      source_korean: 민주주의 이념에 따르게 되거나 민주적인 것으로 바뀌는 것. 또는 그렇게 되게 하는 것.
+      source_english: A state in which a nation comes to follow a democratic ideology or becomes democratic;
+        the act of making a nation change in such a way.
+      authored_interpretation: becoming democratic or making something democratic
+      rationale: The Korean does not restrict the subject to a nation; no real institution is thereby
+        certified democratic.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-39129
+    lexical_category: free-lemma
+  ko-nikl-42823-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42823
+    source_parent: ko-nikl-42823
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A rating based on voters' support towards a certain candidate in an election, etc.
+    source_korean: 선거 등에서 투표하는 사람들이 어떤 후보를 지지하는 비율.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77357'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77357
+      pronunciations:
+      - 지지율
+    lexical_identity: ko-lex-42823
+    lexical_category: free-lemma
+  ko-nikl-45711-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45711
+    source_parent: ko-nikl-45711
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: An act of running in an election as a candidate.
+    source_korean: 선거에 나감.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79130'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79130
+      pronunciations:
+      - 출마
+    lexical_identity: ko-lex-45711
+    lexical_category: free-lemma
+  ko-nikl-46659-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46659
+    source_parent: ko-nikl-46659
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A company that practices journalism, such as a newspaper, broadcasting network, etc. '
+    source_korean: 신문사, 방송국 등 언론을 담당하는 회사.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67214'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67214
+      pronunciations:
+      - 얼론사
+    lexical_identity: ko-lex-46659
+    lexical_category: free-lemma
+  ko-nikl-46660-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46660
+    source_parent: ko-nikl-46660
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A person who practices journalism as his/her profession in the press such as newspapers,
+      magazines, broadcasting companies etc. '
+    source_korean: 신문사, 잡지사, 방송국 등의 언론 기관에서 언론과 관계된 일을 직업으로 하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67215'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67215
+      pronunciations:
+      - 얼로닌
+    lexical_identity: ko-lex-46660
+    lexical_category: free-lemma
+  ko-nikl-46830-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46830
+    source_parent: ko-nikl-46830
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'The area of activity for people engaged in the same industrial or commercial field. '
+    source_korean: 같은 산업이나 상업 부문에서 일하는 사람들의 활동 분야.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67351'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67351
+      pronunciations:
+      - 업꼐
+      - 업께
+    lexical_identity: ko-lex-46830
+    lexical_category: free-lemma
+  ko-nikl-48764-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48764
+    source_parent: ko-nikl-48764
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'The practice of making political, economic, and cultural relations with other countries. '
+    source_korean: 다른 나라와 정치적, 경제적, 문화적 관계를 맺는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67852'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67852
+      pronunciations:
+      - 외ː교
+      - 웨ː교
+    lexical_identity: ko-lex-48764
+    lexical_category: free-lemma
+  ko-nikl-51191-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51191
+    source_parent: ko-nikl-51191
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A person who answers someone's call or question.
+    source_korean: 부름이나 물음에 답하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71762'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71762
+      pronunciations:
+      - 응ː답짜
+    lexical_identity: ko-lex-51191
+    lexical_category: free-lemma
+  ko-nikl-05030-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5030
+    source_parent: ko-nikl-05030
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A contract''s details prepared in a certain format. '
+    source_korean: 일정한 형식에 의해 정해진 계약의 내용.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66969'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66969
+      pronunciations:
+      - 약꽌
+    lexical_identity: ko-lex-05030
+    lexical_category: free-lemma
+  ko-nikl-06825-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6825
+    source_parent: ko-nikl-06825
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of paying money in installments.
+    source_korean: 돈을 여러 번에 나누어서 냄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '92091'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=92091
+      pronunciations:
+      - 분납
+    lexical_identity: ko-lex-06825
+    lexical_category: free-lemma
+  ko-nikl-08372-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8372
+    source_parent: ko-nikl-08372
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A document or book that copies or transcribes its original. '
+    source_korean: 원본을 복사하거나 베껴 놓은 서류나 책.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61140'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61140
+      pronunciations:
+      - 사본
+    lexical_identity: ko-lex-08372
+    lexical_category: free-lemma
+  ko-nikl-18513-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18513
+    source_parent: ko-nikl-18513
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A form that agrees to a certain issue or content and not to raise questions at a later
+      date.
+    source_korean: 어떤 문제나 내용에 대하여 의견을 같이하여 나중에 문제 삼지 않기로 하는 문서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48631'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48631
+      pronunciations:
+      - 동의서
+      - 동이서
+    lexical_identity: ko-lex-18513
+    lexical_category: free-lemma
+  ko-nikl-19380-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19380
+    source_parent: ko-nikl-19380
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An exact copy of the original document registered in a government office.
+    source_korean: 관청에 등록한 문서의 원본의 내용을 그대로 복사한 서류.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '50070'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=50070
+      pronunciations:
+      - 등본
+    lexical_identity: ko-lex-19380
+    lexical_category: free-lemma
+  ko-nikl-28691-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28691
+    source_parent: ko-nikl-28691
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A document stating the terms and conditions of an agreement and which proves the contract's
+      validity.
+    source_korean: 계약의 내용을 적고 계약이 성립되었음을 증명하는 문서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '17759'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=17759
+      pronunciations:
+      - 계ː약써
+      - 게ː약써
+    source_correction:
+      source_korean: 계약의 내용을 적고 계약이 성립되었음을 증명하는 문서.
+      source_english: A document stating the terms and conditions of an agreement and which proves the
+        contract's validity.
+      authored_interpretation: a document recording a contract's terms and formation
+      rationale: Formation does not establish legal validity or enforceability; preserve the actual Korean
+        scope.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-28691
+    lexical_category: free-lemma
+  ko-nikl-29967-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29967
+    source_parent: ko-nikl-29967
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of deducting or subtracting a certain amount of money or quantity from one's
+      share.
+    source_korean: 전체 몫에서 일정한 금액이나 수량을 빼거나 뗌.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23565'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23565
+      pronunciations:
+      - 공ː제
+    lexical_identity: ko-lex-29967
+    lexical_category: free-lemma
+  ko-nikl-34730-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34730
+    source_parent: ko-nikl-34730
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An individual or group that pays tax to a state or public organization. '
+    source_korean: 국가나 공공 기관에 세금을 내는 개인 또는 단체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38506'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38506
+      pronunciations:
+      - 납쎄자
+    lexical_identity: ko-lex-34730
+    lexical_category: free-lemma
+  ko-nikl-38828-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38828
+    source_parent: ko-nikl-38828
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of having not paid money yet.
+    source_korean: 내야 할 돈을 아직 내지 못함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57732'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57732
+      pronunciations:
+      - 미ː납
+    lexical_identity: ko-lex-38828
+    lexical_category: free-lemma
+  ko-nikl-39103-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39103
+    source_parent: ko-nikl-39103
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A resident asking an administrative agency to process something.  '
+    source_korean: 주민이 행정 기관에 처리해 달라고 요구하는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57364'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57364
+      pronunciations:
+      - 미눤
+    lexical_identity: ko-lex-39103
+    lexical_category: free-lemma
+  ko-nikl-39105-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39105
+    source_parent: ko-nikl-39105
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An individual or organization demanding the processing of a civil petition submitted
+      to an administrative agency.
+    source_korean: 행정 기관에 민원을 처리해 달라고 요구하는 개인 또는 단체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57366'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57366
+      pronunciations:
+      - 미눠닌
+    lexical_identity: ko-lex-39105
+    lexical_category: free-lemma
+  ko-nikl-44926-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44926
+    source_parent: ko-nikl-44926
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Failure to pay taxes, etc., in time, making them overdue. '
+    source_korean: 세금 등을 정해진 기간까지 내지 못해 밀림.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81689'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81689
+      pronunciations:
+      - 체납
+    lexical_identity: ko-lex-44926
+    lexical_category: free-lemma
+  ko-nikl-45084-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45084
+    source_parent: ko-nikl-45084
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A document in which only necessary parts have been copied from an original document.
+    source_korean: 원본에서 필요한 부분만 뽑아내어 베낀 문서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90971'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90971
+      pronunciations:
+      - 초본
+    lexical_identity: ko-lex-45084
+    lexical_category: free-lemma
+  ko-nikl-50003-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50003
+    source_parent: ko-nikl-50003
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A document stating that a task is left to someone so that he/she takes charge of it.
+    source_korean: 어떤 일을 다른 사람에게 책임지도록 맡긴다는 내용을 적은 문서.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69648'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69648
+      pronunciations:
+      - 위임짱
+    lexical_identity: ko-lex-50003
+    lexical_category: free-lemma
+  ko-nikl-05204-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5204
+    source_parent: ko-nikl-05204
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Law and order.
+    source_korean: 법과 명령.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '58739'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=58739
+      pronunciations:
+      - 범녕
+    source_correction:
+      source_korean: 법과 명령.
+      source_english: Law and order.
+      authored_interpretation: laws and official orders
+      rationale: The Korean enumerates legal instruments, not the English public-order idiom.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-05204
+    lexical_category: free-lemma
+  ko-nikl-15141-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15141
+    source_parent: ko-nikl-15141
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A law enacted by a local government in connection with municipal affairs after clearing
+      the council.
+    source_korean: 지방 자치 단체가 그 지방의 사무와 관련하여 지방 의회의 회의를 거쳐 정한 법.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75611'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75611
+      pronunciations:
+      - 조례
+    lexical_identity: ko-lex-15141
+    lexical_category: free-lemma
+  ko-nikl-16201-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16201
+    source_parent: ko-nikl-16201
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of deciding according to the opinion of many people.
+    source_korean: 많은 사람의 의견에 따라 결정을 내리는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24334'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24334
+      pronunciations:
+      - 다수결
+    lexical_identity: ko-lex-16201
+    lexical_category: free-lemma
+  ko-nikl-21989-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21989
+    source_parent: ko-nikl-21989
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The right with which one can vote.
+    source_korean: 투표할 수 있는 권리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81631'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81631
+      pronunciations:
+      - 투표꿘
+    lexical_identity: ko-lex-21989
+    lexical_category: free-lemma
+  ko-nikl-21990-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21990
+    source_parent: ko-nikl-21990
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A place where one can vote.
+    source_korean: 투표를 하는 장소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81632'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81632
+      pronunciations:
+      - 투표소
+    lexical_identity: ko-lex-21990
+    lexical_category: free-lemma
+  ko-nikl-30010-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30010
+    source_parent: ko-nikl-30010
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An open meeting at the National Assembly or an administrative institution to gather
+      public or expert opinions before deciding on a socially important issue.
+    source_korean: 국회나 행정 기관에서 사회적으로 중요한 문제를 결정하기 전에 국민의 생각이나 전문가의 의견을 듣는 공개적인 회의.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15274'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15274
+      pronunciations:
+      - 공청회
+      - 공청훼
+    lexical_identity: ko-lex-30010
+    lexical_category: free-lemma
+  ko-nikl-30216-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30216
+    source_parent: ko-nikl-30216
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Money collected by the government on light violations; a fine for neglect of duties.
+    source_korean: 해야 할 일을 하지 않거나 가벼운 질서를 위반한 사람에게 국가에서 납부하게 하는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '21514'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=21514
+      pronunciations:
+      - 과ː태료
+    lexical_identity: ko-lex-30216
+    lexical_category: free-lemma
+  ko-nikl-31890-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31890
+    source_parent: ko-nikl-31890
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Rules on the composition or management of an organization. '
+    source_korean: 한 조직체의 구성이나 운영에 관한 규칙.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35255'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35255
+      pronunciations:
+      - 규약
+    lexical_identity: ko-lex-31890
+    lexical_category: free-lemma
+  ko-nikl-41226-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41226
+    source_parent: ko-nikl-41226
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Each item in a law or rule.
+    source_korean: 법률이나 규정 등의 낱낱의 항목.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76029'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76029
+      pronunciations:
+      - 조항
+    lexical_identity: ko-lex-41226
+    lexical_category: free-lemma
+  ko-nikl-42260-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42260
+    source_parent: ko-nikl-42260
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of intervening and making the contending parties reconcile.
+    source_korean: 다투는 사람들 사이에 끼어들어 당사자들을 화해시킴.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77039'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77039
+      pronunciations:
+      - 중재
+    lexical_identity: ko-lex-42264
+    lexical_category: free-lemma
+  ko-nikl-42453-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42453
+    source_parent: ko-nikl-42453
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of verifying a truth, or such a statement. '
+    source_korean: 어떤 사실을 증명함. 또는 그런 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91623'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91623
+      pronunciations:
+      - 증언
+    lexical_identity: ko-lex-42453
+    lexical_category: free-lemma
+  ko-nikl-42466-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42466
+    source_parent: ko-nikl-42466
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A person who verifies the truth or gives testimony.
+    source_korean: 어떤 사실을 증명하거나 증언하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91636'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91636
+      pronunciations:
+      - 증인
+    lexical_identity: ko-lex-42466
+    lexical_category: free-lemma
+  ko-nikl-43485-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43485
+    source_parent: ko-nikl-43485
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of punishing someone for his/her wrongdoing. '
+    source_korean: 옳지 않은 행동에 대하여 벌을 줌.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77711'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77711
+      pronunciations:
+      - 징계
+      - 징게
+    lexical_identity: ko-lex-43485
+    lexical_category: free-lemma
+  ko-nikl-43503-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43503
+    source_parent: ko-nikl-43503
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of legally imposing taxes, fees, fines, etc., on the public by an administrative
+      institution.
+    source_korean: 행정 기관이 법에 따라 세금, 수수료, 벌금 등을 국민에게서 거두어들임.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77729'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77729
+      pronunciations:
+      - 징수
+    source_correction:
+      source_korean: 행정 기관이 법에 따라 세금, 수수료, 벌금 등을 국민에게서 거두어들임.
+      source_english: An act of legally imposing taxes, fees, fines, etc., on the public by an administrative
+        institution.
+      authored_interpretation: government collection of taxes, fees or fines under law
+      rationale: Collection is not assessment or imposition; no actual authority, liability or procedure
+        is established.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-43503
+    lexical_category: free-lemma
+  ko-nikl-44868-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44868
+    source_parent: ko-nikl-44868
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of requesting and wanting something to be achieved.
+    source_korean: 어떤 일이 이루어지도록 요청하고 원함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79315'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79315
+      pronunciations:
+      - 청원
+    lexical_identity: ko-lex-44868
+    lexical_category: free-lemma
+  ko-nikl-52080-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52080
+    source_parent: ko-nikl-52080
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A written record of the discussion, progress, and outcome of a meeting. '
+    source_korean: 여럿이 모여 의논한 내용, 진행 과정, 결과 등을 적은 기록.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90091'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90091
+      pronunciations:
+      - 회ː의록
+      - 훼ː이록
+    lexical_identity: ko-lex-52080
+    lexical_category: free-lemma
+  ko-nikl-02726-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2726
+    source_parent: ko-nikl-02726
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Money received according to the hours worked.
+    source_korean: 일한 시간에 따라 받는 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65848'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65848
+      pronunciations:
+      - 시급
+    lexical_identity: ko-lex-02726
+    lexical_category: free-lemma
+  ko-nikl-07611-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7611
+    source_parent: ko-nikl-07611
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A position or job that does not provide proper guarantee for the employee in terms
+      of a work period, welfare benefit, etc. '
+    source_korean: 근로 기간이나 복지 혜택 등에서 제대로 보장을 받지 못하는 직위나 직무.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60723'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60723
+      pronunciations:
+      - 비ː정규직
+    lexical_identity: ko-lex-07611
+    lexical_category: free-lemma
+  ko-nikl-29686-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29686
+    source_parent: ko-nikl-29686
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Money owned by a group rather than an individual.
+    source_korean: 개인이 아닌 단체 소유의 돈.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22612'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22612
+      pronunciations:
+      - 공금
+    lexical_identity: ko-lex-29686
+    lexical_category: free-lemma
+  ko-nikl-35418-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35418
+    source_parent: ko-nikl-35418
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A body that does activities to establish better working conditions and improve the
+      social and economic status of workers. '
+    source_korean: 노동자 중심에서 더 좋은 근로 조건을 만들고 사회적, 경제적 지위를 향상시키기 위해 활동하는 단체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40088'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40088
+      pronunciations:
+      - 노동조합
+    lexical_identity: ko-lex-35418
+    lexical_category: free-lemma
+  ko-nikl-35540-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35540
+    source_parent: ko-nikl-35540
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A body that does activities to establish better working conditions and improve the
+      social and economic status of workers.
+    source_korean: 근로자가 중심이 되어 더 좋은 근로 조건을 만들고 사회적, 경제적 지위를 향상시키기 위해 활동하는 단체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '42900'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=42900
+      pronunciations:
+      - 노조
+    lexical_identity: ko-lex-35418
+    lexical_category: free-lemma
+  ko-nikl-37931-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37931
+    source_parent: ko-nikl-37931
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of not getting paid for one's workload.
+    source_korean: 일에 대한 대가를 받지 않음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57807'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57807
+      pronunciations:
+      - 무급
+    lexical_identity: ko-lex-37931
+    lexical_category: free-lemma
+  ko-nikl-44285-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44285
+    source_parent: ko-nikl-44285
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Securities issued in order for the government, a local government, bank, company,
+      etc., to raise funds necessary for a project.
+    source_korean: 국가, 지방 자치 단체, 은행, 회사 등이 사업에 필요한 자금을 빌리기 위해 발행하는 유가 증권.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83121'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83121
+      pronunciations:
+      - 채ː꿘
+    source_correction:
+      source_korean: 국가, 지방 자치 단체, 은행, 회사 등이 사업에 필요한 자금을 빌리기 위해 발행하는 유가 증권.
+      source_english: Securities issued in order for the government, a local government, bank, company,
+        etc., to raise funds necessary for a project.
+      authored_interpretation: bonds issued to borrow funds for a project or business
+      rationale: The Korean explicitly names borrowing, rather than undifferentiated fundraising or an
+        investment-return promise.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-44285
+    lexical_category: free-lemma
+  ko-nikl-44296-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44296
+    source_parent: ko-nikl-44296
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An obligation to give something to or do something for another person.
+    source_korean: 어떤 사람이 다른 사람에게 어떤 행위를 해야 할 의무.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83125'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83125
+      pronunciations:
+      - 채ː무
+    lexical_identity: ko-lex-44296
+    lexical_category: free-lemma
+  ko-nikl-50129-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50129
+    source_parent: ko-nikl-50129
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of receiving money for working.
+    source_korean: 일을 한 대가로 받는 돈이 있음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72402'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72402
+      pronunciations:
+      - 유ː급
+    lexical_identity: ko-lex-50129
+    lexical_category: free-lemma
+  ko-nikl-18827-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18827
+    source_parent: ko-nikl-18827
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To deceive someone by making up a plausible story.
+    source_korean: 그럴듯한 말로 꾸며 속이다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49375'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49375
+      pronunciations:
+      - 둘러대다
+    lexical_identity: ko-lex-18827
+    lexical_category: free-lemma
+  ko-nikl-19703-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19703
+    source_parent: ko-nikl-19703
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To find out someone's thought by stealth.
+    source_korean: 남의 마음을 슬쩍 알아보다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '53792'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=53792
+      pronunciations:
+      - 떠보다
+    lexical_identity: ko-lex-19703
+    lexical_category: free-lemma
+  ko-nikl-36532-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36532
+    source_parent: ko-nikl-36532
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: For two things or people to be closely connected and get along.
+    source_korean: 서로 밀접한 관련을 맺으며 어우러지다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57503'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57503
+      pronunciations:
+      - 만물리다
+    source_correction:
+      source_korean: 서로 밀접한 관련을 맺으며 어우러지다.
+      source_english: For two things or people to be closely connected and get along.
+      authored_interpretation: to be closely interrelated and intertwined
+      rationale: Mutual relation and combination need not be friendly interpersonal agreement, as English
+        get along can suggest.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-36532
+    lexical_category: free-lemma
+  ko-nikl-46745-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46745
+    source_parent: ko-nikl-46745
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Not to clarify one's speech, attitude, etc., but to be evasive.
+    source_korean: 말이나 태도 등을 분명하게 하지 않고 대충 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67317'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67317
+      pronunciations:
+      - 얼버무리다
+    lexical_identity: ko-lex-46745
+    lexical_category: free-lemma
+  ko-nikl-46852-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46852
+    source_parent: ko-nikl-46852
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To fail to meet each other because their directions or timings of passing a certain
+      point are different from each other.
+    source_korean: 가는 방향이나 마주치는 시간이 맞지 않아 서로 만나지 못하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15192'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15192
+      pronunciations: &id1365
+      - 얻깔리다
+    lexical_identity: ko-lex-46852
+    lexical_category: free-lemma
+  ko-nikl-46852-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46852
+    source_parent: ko-nikl-46852
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: For opinions or arguments to conflict with each other.
+    source_korean: 서로의 의견이나 주장이 일치하지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15192'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15192
+      pronunciations: *id1365
+    lexical_identity: ko-lex-46852
+    lexical_category: free-lemma
+  ko-nikl-07789-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7789
+    source_parent: ko-nikl-07789
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To be different from one's expectation or prediction.
+    source_korean: 기대하거나 미리 생각했던 것에서 벗어나다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60157'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60157
+      pronunciations: &id1366
+      - 빈나가다
+    lexical_identity: ko-lex-07789
+    lexical_category: free-lemma
+  ko-nikl-07789-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7789
+    source_parent: ko-nikl-07789
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'For one''s thinking, behavior, etc., to develop in an undesirable direction. '
+    source_korean: 생각이나 행동 등이 바람직하지 않은 방향으로 나가다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60157'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60157
+      pronunciations: *id1366
+    lexical_identity: ko-lex-07789
+    lexical_category: free-lemma
+  ko-nikl-18660-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18660
+    source_parent: ko-nikl-18660
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To repeat what the other person said.
+    source_korean: 상대편의 말을 들은 그대로 되풀이하여 다시 말하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48184'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48184
+      pronunciations: &id1367
+      - 되받따
+      - 뒈받따
+    lexical_identity: ko-lex-18660
+    lexical_category: free-lemma
+  ko-nikl-18660-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18660
+    source_parent: ko-nikl-18660
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: To challenge someone who has given advice or a scolding by talking back to him/her.
+    source_korean: 다른 사람의 충고나 꾸중에 말대답을 하며 대들다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48184'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48184
+      pronunciations: *id1367
+    lexical_identity: ko-lex-18660
+    lexical_category: free-lemma
+  ko-nikl-22177-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22177
+    source_parent: ko-nikl-22177
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: For an intended task to be made difficult or to go wrong.
+    source_korean: 하려던 일이 잘못되어 어긋나다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82639'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82639
+      pronunciations: &id1368
+      - 트러지다
+    lexical_identity: ko-lex-22177
+    lexical_category: free-lemma
+  ko-nikl-22177-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22177
+    source_parent: ko-nikl-22177
+    source_position: 5
+    source_band: unbanded
+    reference_level: null
+    source_english: For two people in a relationship to grow apart.
+    source_korean: 사귀는 사이가 서로 벌어지다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82639'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82639
+      pronunciations: *id1368
+    lexical_identity: ko-lex-22177
+    lexical_category: free-lemma
+  ko-nikl-25680-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25680
+    source_parent: ko-nikl-25680
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To obstruct someone from saying a word or doing a certain action, task, etc.
+    source_korean: 말이나 행동, 일 등을 하지 못하게 방해하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '16414'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16414
+      pronunciations:
+      - 가로막따
+    lexical_identity: ko-lex-35988
+    lexical_category: free-lemma
+  ko-nikl-25690-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25690
+    source_parent: ko-nikl-25690
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To interrupt someone when he/she is talking, and stop him/her from talking further.
+    source_korean: 남이 말하는 중간에 끼어들어 말을 계속하지 못하게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15046'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15046
+      pronunciations:
+      - 가로채다
+    lexical_identity: ko-lex-25690
+    lexical_category: free-lemma
+  ko-nikl-34106-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34106
+    source_parent: ko-nikl-34106
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To squeeze into a line of people; to interrupt.
+    source_korean: 다른 사람의 자리나 순서 등에 비집고 들어서다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28298'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28298
+      pronunciations:
+      - 끼어들다
+      - 끼여들다
+    lexical_identity: ko-lex-34106
+    lexical_category: free-lemma
+  ko-nikl-36525-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36525
+    source_parent: ko-nikl-36525
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: For two people of the same qualification to compare each other.
+    source_korean: 같은 자격으로 서로 비교하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57497'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57497
+      pronunciations:
+      - 맏때다
+    lexical_identity: ko-lex-36525
+    lexical_category: free-lemma
+  ko-nikl-36548-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36548
+    source_parent: ko-nikl-36548
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To compete against each other and not give in.
+    source_korean: 서로 겨루어 굽히지 않고 버티다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61115'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61115
+      pronunciations: &id1369
+      - 맏써다
+    lexical_identity: ko-lex-36548
+    lexical_category: free-lemma
+  ko-nikl-36548-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36548
+    source_parent: ko-nikl-36548
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To accept a certain situation or bear the situation.
+    source_korean: 어떤 상황을 받아들이거나 그 상황에 굽히지 않고 버티다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61115'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61115
+      pronunciations: *id1369
+    lexical_identity: ko-lex-36548
+    lexical_category: free-lemma
+  ko-nikl-36624-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36624
+    source_parent: ko-nikl-36624
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To conclude something.
+    source_korean: 어떤 일을 끝맺다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '55564'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=55564
+      pronunciations:
+      - '매듭찓따 '
+      display_normalization: trim-surrounding-whitespace-only
+      display_pronunciations:
+      - 매듭찓따
+    lexical_identity: ko-lex-36623
+    lexical_category: free-lemma
+  ko-nikl-39819-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39819
+    source_parent: ko-nikl-39819
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: To take over someone's remark or song, and to continue it without hesitating.
+    source_korean: 다른 사람의 말이나 노래를 받아 거침없이 처리하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57593'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57593
+      pronunciations:
+      - 바다넘기다
+    source_correction:
+      source_korean: 다른 사람의 말이나 노래를 받아 거침없이 처리하다.
+      source_english: To take over someone's remark or song, and to continue it without hesitating.
+      authored_interpretation: to handle another's words or song without hesitation
+      rationale: 처리하다 names handling the received words or song, not necessarily continuing the same utterance.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-39819
+    lexical_category: free-lemma
+  ko-nikl-39824-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39824
+    source_parent: ko-nikl-39824
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To answer upon hearing someone's criticism, joke, etc.
+    source_korean: 다른 사람의 비판이나 농담 등의 말을 맞받아 대꾸하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56551'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56551
+      pronunciations:
+      - 바다치다
+    source_correction:
+      source_korean: 다른 사람의 비판이나 농담 등의 말을 맞받아 대꾸하다.
+      source_english: To answer upon hearing someone's criticism, joke, etc.
+      authored_interpretation: to counter a criticism or joke with a reply
+      rationale: Retain the counter-reply perspective rather than any answer; replying does not necessarily
+        refute a fact.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-39824
+    lexical_category: free-lemma
+  ko-nikl-46287-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46287
+    source_parent: ko-nikl-46287
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To not come up to one's expectations or be contrary to a given standard.
+    source_korean: 기대에 맞지 않거나 정해진 기준에서 벗어나다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67264'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67264
+      pronunciations: &id1370
+      - '어근나다 '
+      display_normalization: trim-surrounding-whitespace-only
+      display_pronunciations:
+      - 어근나다
+    lexical_identity: ko-lex-46287
+    lexical_category: free-lemma
+  ko-nikl-46287-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46287
+    source_parent: ko-nikl-46287
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To have a break in the relationship between two persons.
+    source_korean: 사람과 사람의 사이가 서로 벌어져 틈이 생기다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67264'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67264
+      pronunciations: *id1370
+      display_normalization: trim-surrounding-whitespace-only
+      display_pronunciations:
+      - 어근나다
+    lexical_identity: ko-lex-46287
+    lexical_category: free-lemma
+  ko-nikl-18219-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18219
+    source_parent: ko-nikl-18219
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To change the state of something or one's opinion.
+    source_korean: 생각이나 일의 상태를 바꾸어 놓다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '92527'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=92527
+      pronunciations:
+      - 돌려노타
+    lexical_identity: ko-lex-18224
+    lexical_category: free-lemma
+  ko-nikl-19303-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19303
+    source_parent: ko-nikl-19303
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To find out and uncover an incident that has been hidden, past, forgotten, etc.
+    source_korean: 숨긴 일, 지난 일, 잊은 일 등을 찾아내어 드러나게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49955'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49955
+      pronunciations:
+      - 들추다
+    lexical_identity: ko-lex-19303
+    lexical_category: free-lemma
+  ko-nikl-19305-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19305
+    source_parent: ko-nikl-19305
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'To find someone''s fault or shortcoming, and make it exposed.  '
+    source_korean: 잘못되거나 부족한 점을 따져서 드러나게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '90914'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90914
+      pronunciations:
+      - 들춰내다
+      match_reason: The first and third definitions expand 내어 and 알아내어 to 내어서 and 알아내어서. The selected
+        fault-exposing second definition is unchanged; preserve all original positions.
+    source_correction:
+      source_korean: 잘못되거나 부족한 점을 따져서 드러나게 하다.
+      source_english: 'To find someone''s fault or shortcoming, and make it exposed.  '
+      authored_interpretation: to examine and expose faults or shortcomings
+      rationale: Preserve examination and exposure without restricting the faults to a particular person's
+        character.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-19303
+    lexical_category: free-lemma
+  ko-nikl-26370-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26370
+    source_parent: ko-nikl-26370
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To break up with each other.
+    source_korean: 맺고 있던 관계를 끊고 헤어지다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14695'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14695
+      pronunciations:
+      - 갈라서다
+    lexical_identity: ko-lex-26370
+    lexical_category: free-lemma
+  ko-nikl-33704-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33704
+    source_parent: ko-nikl-33704
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: To disclose or find fault with something by clearly stating its problems.
+    source_korean: 어떤 사실에 대해 분명하게 말해서 지적하거나 들춰내다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40675'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40675
+      pronunciations: &id1371
+      - 꼬집따
+    source_correction:
+      source_korean: 어떤 사실에 대해 분명하게 말해서 지적하거나 들춰내다.
+      source_english: To disclose or find fault with something by clearly stating its problems.
+      authored_interpretation: to point out or expose a fact by stating it clearly
+      rationale: The Korean permits stating and pointing out a fact, not exclusively finding problems.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-33704
+    lexical_category: free-lemma
+  ko-nikl-33704-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33704
+    source_parent: ko-nikl-33704
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-5
+    source_english: To say something sarcastically, hurting someone's feeling.
+    source_korean: 기분이 상하게 비틀어 말하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40675'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40675
+      pronunciations: *id1371
+    lexical_identity: ko-lex-33704
+    lexical_category: free-lemma
+  ko-nikl-35307-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35307
+    source_parent: ko-nikl-35307
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To jump to a conclusion about something without accurate knowledge about it.
+    source_korean: 정확히 알지 못하고 짐작으로 판단하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41227'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41227
+      pronunciations:
+      - 넘겨집따
+    lexical_identity: ko-lex-35307
+    lexical_category: free-lemma
+  ko-nikl-40173-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40173
+    source_parent: ko-nikl-40173
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'To judge the truth, value, or right and wrong of something and show the result. '
+    source_korean: 진리, 가치, 옳고 그름 등을 판단하여 드러내다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15880'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15880
+      pronunciations:
+      - 발켜내다
+    lexical_identity: ko-lex-40176
+    lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
     source_entry: topik-1/grammar.yaml#ko-topik1-g001

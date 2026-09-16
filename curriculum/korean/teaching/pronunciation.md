@@ -60,6 +60,19 @@ each is an explicit authored decision, not a generic `reading or spelling`
 fallback. An unresolved **selected** word is an error; unselected dictionary
 gaps do not block an unrelated lesson.
 
+The US-currency noun and counting-unit entries for 달러 both use the explicit
+authored aid [달러]. Neither the pinned learner-dictionary records nor the
+actual consulted Standard Dictionary record supplies pronunciation text.
+This is an unreviewed loanword decision, not a verified import or permission
+to infer length or the colloquial form 딸라.
+
+The source-listed compounds 주민 등록증 and 외국인 등록증 remain unselected.
+Their learner-dictionary records have no whole-term citation text; the
+consulted Standard Dictionary resident-ID entry also lacks it, and the
+bounded foreign-ID searches found no entry. Do not silently join isolated
+component readings to claim a verified compound realization or length.
+The governance support notes preserve the exact entries and evidence limits.
+
 The proposed greenhouse-gas item 온실가스 (`ko-nikl-48419-s001`) is excluded
 from active teaching pending qualified review of plain ㄱ versus compound
 tensing at 실-가. Neither the pinned learner-dictionary entry nor the
