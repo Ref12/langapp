@@ -790,6 +790,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "culture-loanwords-notes.yaml",
             "environmental-resources-notes.yaml",
             "movement-actions-notes.yaml",
+            "values-relations-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -3151,6 +3152,82 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("face each other", words["ko-nikl-35924-s001"]["ds"])
         self.assertIn("without stopping", words["ko-nikl-42561-s001"]["ds"])
         self.assertIn("treat it lightly", words["ko-nikl-42561-s002"]["ds"])
+
+    def test_values_actual_nominal_and_function_extensions_preserve_categories(self):
+        identities = self.references.lexical_identity
+        for noun, base in (
+            ("16283", "16282"), ("20531", "20532"), ("09302", "09304"),
+        ):
+            self.assertEqual(identities[f"ko-nikl-{noun}-s001"], identities[f"ko-nikl-{base}-s001"])
+        self.assertEqual(identities["ko-nikl-09302-s001"], "ko-lex-09304")
+        notes = load_yaml(self.root / "authoring" / "teaching" / "values-relations-identities.yaml")
+        self.assertEqual(notes["ko-lex-09304"]["category"], "function-item")
+        for parent in ("29822", "21979", "03770", "22914", "47332"):
+            self.assertEqual(identities[f"ko-nikl-{parent}-s001"], identities[f"ko-nikl-{parent}-s002"])
+        self.assertEqual(identities["ko-nikl-11229-s001"], identities["ko-nikl-11229-s003"])
+        self.assertEqual(identities["ko-nikl-10282-s002"], identities["ko-nikl-10282-s003"])
+        self.assertNotEqual(identities["ko-nikl-03274-s001"], identities["ko-nikl-10282-s002"])
+        self.assertNotEqual(identities["ko-nikl-01684-s001"], identities["ko-nikl-37490-s001"])
+
+    def test_values_source_norms_are_descriptive_not_moral_or_legal_findings(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("expected within relationships", words["ko-nikl-10282-s002"]["ds"])
+        self.assertIn("should follow", sources["ko-nikl-10282-s002"]["source_english"])
+        self.assertIn("without blood ties", words["ko-nikl-10282-s003"]["ds"])
+        self.assertIn("not of the same blood", sources["ko-nikl-10282-s003"]["source_english"])
+        self.assertIn("law", words["ko-nikl-47338-s002"]["ds"])
+        self.assertIn("firmly upholds", words["ko-nikl-03301-s001"]["ds"])
+        self.assertIn("for gains against opponents", words["ko-nikl-21979-s002"]["ds"])
+        self.assertIn("competition", words["ko-nikl-03770-s002"]["ds"])
+        self.assertIn("or a praising remark", words["ko-nikl-20531-s001"]["ds"])
+        self.assertIn("both sides", words["ko-nikl-09302-s001"]["ds"])
+        self.assertIn("subjected to", words["ko-nikl-01684-s001"]["ds"])
+        self.assertIn("treatment", words["ko-nikl-37490-s001"]["ds"])
+
+    def test_values_biological_polysemy_keeps_different_kinds_and_mutual_help(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        general = words["ko-nikl-29822-s001"]["ds"]
+        biological = words["ko-nikl-29822-s002"]["ds"]
+        self.assertIn("mutual help", general)
+        self.assertIn("different kinds of organisms", biological)
+        self.assertIn("mutual help", biological)
+        self.assertNotIn("species", biological)
+        source = sources["ko-nikl-29822-s002"]
+        self.assertIn("다른 종류", source["source_korean"])
+        self.assertNotIn("different", source["source_english"])
+        self.assertEqual(source["source_correction"]["method"], "authored-interpretation")
+        self.assertEqual(source["source_correction"]["review_status"], "unreviewed")
+
+    def test_values_complete_support_and_actual_citations_keep_original_evidence(self):
+        authoring = self.root / "authoring" / "teaching"
+        rows = load_yaml(authoring / "values-relations-vocabulary.yaml")
+        notes = load_yaml(authoring / "values-relations-notes.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["support_parent_requests"]
+        self.assertEqual(len(rows), 23)
+        self.assertEqual(len({row["id"].rsplit("-s", 1)[0] for row in rows}), 19)
+        self.assertEqual(len(requests), 6)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 9)
+        for item, request in requests.items():
+            parent = parents[item]
+            self.assertEqual(parent["target"], request["lemma"])
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertEqual(parent["source_part_of_speech"], "명사")
+            self.assertEqual([x["korean"] for x in parent["senses"]], request["korean_definitions"])
+            self.assertEqual([x["english"] for x in parent["senses"]], request["english_definitions"])
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+        for parent, reading in (
+            ("00298", "성ː차별"), ("03274", "시ː늬 / 시ː니"), ("47332", "연계 / 연게"),
+            ("25366", "혀모"), ("11229", "이년"), ("29822", "공ː생"),
+        ):
+            self.assertEqual(self.references.vocabulary[f"ko-nikl-{parent}-s001"]["pr"], reading)
+        self.assertEqual(load_yaml(self.root / "reading-overlay.yaml")["entries"]["ko-nikl-00298"][
+            "match_method"], "explicit-crosswalk")
+        selected = {row["id"] for row in rows}
+        self.assertNotIn("ko-nikl-47338-s001", selected)
+        self.assertFalse(any(item.startswith("ko-nikl-09303-") for item in selected))
+        self.assertFalse(any(item.startswith("ko-nikl-47337-") for item in selected))
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

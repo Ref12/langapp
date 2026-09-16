@@ -1,0 +1,428 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: bounded parent integration complete; overall curriculum remains incomplete
+parent_integration:
+  baseline: 3047f70
+  handback_senses: 22
+  additional_actual_source_senses: 1
+  selected_noun_senses: 23
+  selected_source_parents: 19
+  new_provisional_free_families: 12
+  existing_family_extensions: 7
+  admitted_unbanded_parents: 6
+  admitted_complete_positions: 9
+  selected_support_positions: 8
+  new_official_crosswalks: 1
+  official_text_reading_senses: 23
+  new_authored_reading_decisions: 0
+  new_exact_source_interpretations: 1
+  source_review: >
+    Compare all selected original Korean/English definitions and the complete
+    six requested source arrays. Add the already inspected 공생 biological
+    position002 at21 as useful actual polysemy, not a new family or source
+    parent. It explicitly requires different kinds of organisms and mutual
+    help; do not call every biological association beneficial or assert a
+    precise species classification. Retain the unselected 연고 reason
+    position and every original source string.
+  labels: >
+    Preserve the goal of obtaining gains in the social/labor-movement
+    투쟁 position. All normative definitions remain evidence, not commands.
+    성차별 is a separately attested lexicalized human-treatment term, not
+    an automatic count for every conceivable subtype of general 차별.
+    Preserve the six free-family extensions and the 상호 function family,
+    with original nominal/verb/adverb categories and distinct source IDs.
+  reading_assessment: >
+    All nineteen parent entries supply actual official citation text.
+    Eighteen are exact complete ordered-definition matches; 성차별85185
+    compresses the original treating-people-differently-by-gender definition
+    to 성별로 인한 차별. This explicit identity match supplies 성ː차별,
+    not a rewritten original meaning, legal definition or model reading.
+    Preserve actual 신의 alternatives 시ː늬/시ː니, 연계/연게, and source
+    forms 혀모 and 이년. Six prior pronunciation holds remain unchanged.
+  resulting_coverage:
+    core_dictionary_parents: 5540
+    core_senses: 7962
+    core_distinct_spellings: 5219
+    core_spelling_pos_pairs: 5330
+    core_lexical_identities: 5280
+    core_provisional_free_families: 5017
+    core_bound_forms: 40
+    core_function_items: 223
+    core_official_text_senses: 7706
+    core_authored_unreviewed_reading_senses: 256
+    selected_pool_senses: 8088
+    selected_pool_provisional_free_families: 5073
+    retained_support_parents: 968
+    selected_support_parents: 964
+    reading_crosswalks: 408
+    authored_reading_decisions: 210
+    exact_source_interpretations: 193
+    core_modules: 774
+    free_family_gap_to_lower_planning_guide: 783
+  validation:
+    combined_course_tourist_source_tests: 160
+    prior_objects: Every earlier raw parent, official overlay entry and crosswalk is preserved; the authored-reading ledger is unchanged.
+    source_admission: Six complete unbanded parents add nine original positions, of which eight are selected.
+    limitation: Structural and source checks do not establish normative truth, legal conclusions, scientific taxonomy, linguistic review or learner mastery.
+  overall_limit: Core planning breadth, substantive later-growth reassessment, and qualified linguistic/pedagogical review remain incomplete; no catalog activation.
+historical_handoff_scope:
+  - Only values-relations-vocabulary.yaml, values-relations-identities.yaml, and this notes file are authored here.
+  - All old cohorts, sources, readings, manifests, tests, generated output, and shared code remain parent-owned and unchanged.
+  - Movement-action and cultural-loanword workers retain their scopes; no undeclared unfinished shard is inspected.
+  - This is bounded practical/general-reader noun curation, not moral advice, an exhaustive source audit, a philosophical inventory, or a quota.
+source_provenance:
+  source_id: nikl-2024-mirror
+  revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  ids: Parent IDs preserve the one-based CSV data-record ordinal, and sNNN preserves the original definition-list position; these are not official NIKL IDs.
+  method: >
+    Inspect complete bilingual lists for the explicitly named value/relation
+    leads, every exact-form homograph, and bounded actual predicate/nominal
+    competitors. Reconcile against the complete live manifest and the
+    current selection-notes identity policy. Source bands do not determine
+    teaching locations. No source cache or scratch file is written.
+  array_contract: Complete Korean and English arrays retain original order and whitespace; selected_positions refers to their one-based indexes without deduplication or invented source positions.
+  evidence_limits: No Hanja, etymological identity, frequency measurements, teacher approval, or exam alignment is inferred from Korean definitions, POS, or reading availability.
+  attribution: National Institute of Korean Language and Korean-English Learners' Dictionary contributors, via the unofficial binjang extraction.
+  license: CC-BY-SA-2.0-KR for dictionary text; not the mirror's MIT metadata.
+  license_url: https://creativecommons.org/licenses/by-sa/2.0/kr/
+  reuse_notice: >
+    Source definitions are retained as evidence; compact labels, placements,
+    and provisional family judgments are adaptations. Retain attribution,
+    source/license links, and share-alike terms. No dictionary endorsement,
+    multimedia, or usage-example redistribution is claimed.
+descriptive_not_prescriptive:
+  - Prescriptive wording in source definitions remains dictionary evidence, not this curriculum's command, an empirical consensus, or a universal moral standard.
+  - Duties described by 의리 are framed as expectations within relationships; no person or status is assigned greater intrinsic worth.
+  - The labels do not establish anyone's actual motives, sincerity, loyalty, prejudice, culpability, or moral character.
+  - 성차별 names a concept; it does not make a legal finding about any particular treatment or jurisdiction.
+  - 모욕 and 수모 do not establish legal defamation, a clinical diagnosis, trauma, or a particular internal emotional response.
+  - Trust, an upheld belief, or a claimed justification is not proof. Praise is reported appreciation, not certified merit.
+  - Reconciliation is not advice or an obligation to forgive, restore contact, or resume a relationship.
+  - Kinship-like or legally described connections do not determine actual legal kinship, entitlement, nepotism, or the legitimacy of a family.
+  - Contest performance is not human worth. Struggle need not involve physical violence, and naming a movement does not endorse it or imply its success.
+placement_rationale:
+  relationships_and_feedback: Praise vocabulary and source-defined personal connections enter at 8, supporting study/work relationships and feedback.
+  personal_accounts: >
+    At 9, 인연's reason/background position supports narration. At 10,
+    quarrels, dislike/hatred, experiencing humiliation, family-like bonds,
+    and peaceful conditions support personal accounts without diagnoses
+    or inferred motives.
+  contests_and_problems: Contest meanings enter at 13, without labeling every competition violent. Insulting treatment enters at 14 for describing unfamiliar interpersonal problems.
+  cooperation: >
+    At 15, friendly ties, backing trust/loyalty, relational expectations,
+    reconciliation, mutually helpful living, link-making, and reference
+    to both parties support cooperation and responsibility discussions.
+  general_reading: >
+    Gender-based discrimination and the source social/labor-movement
+    struggle meaning enter at 16 for understanding attributed reports.
+    A firmly upheld belief enters at 22 with values/perspectives. No
+    abstract noun is moved to 25-30 merely to fill later phases.
+  near_meaning_choices: >
+    친선 supplies the actual friendly-closeness word without an invented
+    international-only restriction; 신조 highlights a belief one upholds;
+    공생 supplies the explicitly mutually helpful living meaning rather
+    than bare pair-reference. These are separately inspectable words,
+    not newly discovered concepts or frequency claims.
+identity_policy:
+  source_policy: Follow the current selection-notes.yaml policy; source-parent IDs are stable local anchors and provisional candidates, not verified true-lexeme counts.
+  no_synonym_merging: >
+    Similar English or one similar Korean definition does not prove a
+    variant. Preserve 예의/예절 and every other old family. Newly selected
+    친선 is not merged into 친목; 공생 is not merged into 공존; 신조 is
+    not merged into 소신/신념; 신의 is not merged into 신뢰/의리.
+  real_noun_predicate_joins:
+    ko-lex-16282:
+      canonical_lemma: 다투다
+      new_noun_parent: ko-nikl-16283
+      protected_predicate_parent: ko-nikl-16282
+      analysis: >
+        An explicit lexical nominalization analysis, supported by the actual
+        다툼 form and full fight/competition noun and predicate definitions.
+        This is not a claim of historical etymology. Noun positions1/2
+        retain their own scopes; predicate imminence and competitive-effort
+        positions are not projected into nonexistent noun positions.
+    ko-lex-20531:
+      canonical_lemma: 칭찬
+      new_noun_parent: ko-nikl-20531
+      protected_predicate_parent: ko-nikl-20532
+      analysis: The actual nominal appreciation event and its words extend the protected family already containing 칭찬하다; canonical lemma/category remain unchanged.
+  category_alternation:
+    ko-lex-09304:
+      canonical_lemma: 상호
+      category: function-item
+      new_noun_parent: ko-nikl-09302
+      protected_adverb_parent: ko-nikl-09304
+      analysis: >
+        Same-written-form noun/adverb category alternation with parallel
+        full definitions referring to both sides in a pair or relationship.
+        The noun fills a nominal reference slot; the adverb distributes
+        reference/action over those sides. This is not a new free abstract
+        reciprocity noun, a claimed Hanja identity, or a merger with merely
+        synonymous 서로.
+  other_existing_depth: >
+    New positions extend the already selected 싸움, 평화, 인연, and 연계
+    families without changing their canonical values or repeating old members.
+  no_predicate_imports: >
+    Actual 혐오하다25370, 투쟁하다21980, 공생하다29823, 화해하다51730,
+    and 모욕하다37496 were inspected as corresponding predicates but were
+    unselected in the inspected live composition. They are not new placements
+    or support requests. Future parent-approved counterparts need matching
+    family analysis rather than automatic extra roots.
+  nominal_perspectives: >
+    모욕's action/treatment, 수모's undergoing humiliation, and protected
+    수치심's internal shame feeling are related but differently worded
+    perspectives, not proven lexical variants. No synonym or inverse-event
+    merger is inferred just because English uses humiliation.
+meaning_boundaries:
+  - 상호09302 denotes both related or paired sides, which can be physical or social; it does not itself assert cooperation, equal status, mutual benefit, or a moral duty of reciprocity.
+  - 공생29822-s001 includes mutual help in general living together; parent additionally selects actual s002 with its different-kind biological restriction, not every form of symbiosis.
+  - 연계47332-s001 is causing links or connections, not necessarily cultivating personal contacts; the existing second position is a close relationship state.
+  - 인연11229-s003 supplies a reason or background history, not proof of predestination, a hidden motive, or a causal theory.
+  - 연고47338-s002 includes connections by kinship, closeness, law, etc.; it is not restricted to local contacts and is not medicinal ointment.
+  - 의리10282-s002 is framed as expected relational loyalty/duty, not a universal obligation; s003 is a family-like bond without blood ties, not necessarily a sworn oath or legally recognized adoption.
+  - 화해 includes ending fighting and ill feeling, not merely agreeing, consulting, or temporarily stopping hostilities.
+  - 평화22914-s001 is quiet harmony free of worries/troubles, not exclusively an absence of war or a clinical state of mind.
+  - 싸움03770-s002 and 다툼16283-s002 concern competition; they are not simply additional violent-fight senses.
+  - 투쟁's opponent-directed and movement-specific positions seek victory or gains; success and physical violence are not automatic entailments.
+  - 신의's trust/loyalty and 신조's upheld belief remain distinct from evidence that an assertion is true or a person is trustworthy.
+  - 칭찬 retains appreciation expressed in words and the resulting remark; no source assertion about deservedness, objective superiority, or an obligatory response is added.
+covered_and_deferred:
+  already_selected: >
+    The live families already cover 예의, 예절, 도덕, 양심, 인격, 품위,
+    인권, 존중, 경의, 존경, 배려, 양보, social 관용, 편견, 차별,
+    불신, 갈등, social/physical 마찰, 불화, 합의, consultation 협의,
+    분쟁, 논쟁, 공존, solidarity 연대, 유대, 결속, 친목, 연관,
+    relational/meddling 상관, 신뢰, 신념, 소신, 명분, 체면, 자존심,
+    자부심, 수치심, 비난, 비판, 찬사, and 폭력.
+  존엄:
+    compared_parents: [ko-nikl-41279, ko-nikl-41280, ko-nikl-41281]
+    decision: >
+      Protected 존엄성 already supplies the inspected lofty/solemn-quality
+      concept. Do not merge unselected 존엄 into it merely from related
+      wording and definitions, or add a near-equivalent just for count.
+      The source person/status elevation wording does not authorize a new
+      universal-rights, equal-worth, or legal-dignity sense here.
+  unselected_의리_position: ko-nikl-10282-s001 is the broader prescriptive human-duty position; it remains available as source evidence, not another mandatory selection.
+  unselected_연고_position: ko-nikl-47338-s001 means a reason; this cohort selects the relational second position rather than every position of the new parent.
+  parent_added_공생_position: ko-nikl-29822-s002 is admitted at21 with different-kind organisms and mutual help explicit; this is one actual further meaning, not another root or a claim about every biological association.
+  explicit_source_gap: No exact 상생 parent was found in the pin. 공생 and 공존 keep their own IDs and meanings; neither substitutes for an invented 상생 record.
+  absent_counterpart_hypotheses: [성차별하다, 수모하다, 수모당하다, 의리있다, 의리없다, 친선하다]
+  absence_limit: These bounded exact-form observations are not claims that Korean cannot express those meanings. No unlisted predicate, inflection, or phrase is fabricated.
+homograph_reviews:
+  관용: {compared_parents: [ko-nikl-30365, ko-nikl-30366, ko-nikl-30367], selected_here: false, decision: Social tolerance30367 is protected; government/public-institution use30365 and customary usage30366 are not added.}
+  협의: {compared_parents: [ko-nikl-25399, ko-nikl-25400], selected_here: false, decision: Consultation25399 is protected; narrowly defined word meaning25400 is not a social-consultation sense.}
+  연대: {compared_parents: [ko-nikl-47386, ko-nikl-47387, ko-nikl-47388], selected_here: false, decision: Chronological period47386 and solidarity47387 are protected separately; regiment47388 is not another solidarity meaning.}
+  상관: {compared_parents: [ko-nikl-09036, ko-nikl-09037], selected_here: false, decision: Organizational superior09036 is not the protected relation/interference parent09037.}
+  상호: {compared_parents: [ko-nikl-09302, ko-nikl-09303, ko-nikl-09304], selected_parent: ko-nikl-09302, decision: Extend the protected same-form reference-function family09304; exclude trade/company name09303 and leave the separate 상호 작용 compound unchanged.}
+  소신: {compared_parents: [ko-nikl-00830, ko-nikl-00831], selected_here: false, decision: Firm-belief noun00830 is protected; archaic humble first-person pronoun00831 is not a values noun.}
+  연고: {compared_parents: [ko-nikl-47337, ko-nikl-47338], selected_parent: ko-nikl-47338, decision: Relational parent47338 is selected; medicinal ointment47337 is a separate homograph.}
+support_parent_requests:
+  ko-nikl-01684:
+    lemma: 수모
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['모욕을 당함.']
+    english_definitions: ['The state of being humiliated.']
+  ko-nikl-03301:
+    lemma: 신조
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['굳게 믿어 지키고 있는 생각.']
+    english_definitions: ['A belief that one has been firmly keeping.']
+  ko-nikl-16283:
+    lemma: 다툼
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [1, 2]
+    korean_definitions: ['싸우는 일.', '승부를 가르거나 경쟁하는 일.']
+    english_definitions: ['Fighting.', 'The act of competing or contending for victory.']
+  ko-nikl-20383:
+    lemma: 친선
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['서로 친하고 가까워 사이가 좋음.']
+    english_definitions: ['The state of two or more persons being on good terms, as they are friendly and close.']
+  ko-nikl-29822:
+    lemma: 공생
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [1, 2]
+    korean_definitions: ['서로 도우며 함께 삶.', '다른 종류의 생물이 서로 도우며 함께 살아감.']
+    english_definitions: ['A state of living together and helping each other.', 'The state of living beings living together and in so doing acting in ways that help each other. ']
+  ko-nikl-47338:
+    lemma: 연고
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [2]
+    korean_definitions: ['일의 까닭.', '혈통, 정분, 법률 등으로 맺어진 관계.']
+    english_definitions: ['The reason for something. ', 'A relationship by blood, intimacy, law, etc.']
+family_comparison_evidence:
+  ko-nikl-16282:
+    lemma: 다투다
+    source_part_of_speech: 동사
+    source_band: intermediate
+    source_sense_count: 4
+    selected_here: false
+    korean_definitions: ['생각이나 마음이 달라 따지며 싸우다.', '어떤 목표를 두고 경쟁하다.', '상황이 매우 급박한 상태가 되다.', '남보다 앞서거나 잘하려고 경쟁적으로 애쓰다.']
+    english_definitions: ['To argue and fight because one thinks differently from or disagrees with someone.', 'To compete for a desired end.', 'For something to be imminent.', 'To try to be better than others in a competitive manner.']
+  ko-nikl-20532:
+    lemma: 칭찬하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_here: false
+    korean_definitions: ['좋은 점이나 잘한 일 등을 매우 훌륭하게 여기는 마음을 말로 나타내다.']
+    english_definitions: ['To express one’s appreciation of someone’s strength or achievement, etc.']
+  ko-nikl-09302:
+    lemma: 상호
+    source_part_of_speech: 명사
+    source_band: advanced
+    source_sense_count: 1
+    selected_here: true
+    korean_definitions: ['짝을 이루거나 관계를 맺고 있는 이쪽과 저쪽 모두.']
+    english_definitions: ['Both sides that are in a relationship or pair.']
+  ko-nikl-09304:
+    lemma: 상호
+    source_part_of_speech: 부사
+    source_band: advanced
+    source_sense_count: 1
+    selected_here: false
+    korean_definitions: ['짝을 이루거나 관계를 맺고 있는 이쪽과 저쪽이 함께.']
+    english_definitions: ['Of both sides that are in a relationship or pair. ']
+retained_prescriptive_evidence:
+  ko-nikl-10282:
+    lemma: 의리
+    source_part_of_speech: 명사
+    source_band: advanced
+    source_sense_count: 3
+    selected_positions: [2, 3]
+    korean_definitions: ['사람으로서 지켜야 할 도리.', '사람과의 관계에서 지켜야 할 바른 도리.', '피가 섞이지 않은 남과 맺은 혈연과 같은 관계.']
+    english_definitions: ['A principle that one should follow as a moral person.', 'A moral, righteous principle that one should follow in a relationship with a person.', 'A bond which is like a blood relation between two persons who are not of the same blood.']
+    interpretation: >
+      Preserve these definitions verbatim as dictionary evidence. The
+      expected-loyalty/duty wording describes a norm in context, not a
+      universal obligation or hierarchy of people. The inspected 신의
+      definition pairs 믿음과 의리 with English faith and loyalty,
+      supporting that gloss without a morphological or etymological claim.
+source_correction_requests:
+  ko-nikl-29822-s002:
+    source_korean: 다른 종류의 생물이 서로 도우며 함께 살아감.
+    source_english: 'The state of living beings living together and in so doing acting in ways that help each other. '
+    authored_interpretation: different kinds of organisms living together with mutual help
+    rationale: Restore 다른 종류 (different kinds), omitted in English. Preserve mutual help and living together without imposing an unsourced species-level taxonomy or claiming that all symbiosis is mutually beneficial.
+correction_policy: >
+  The historical twenty-two-sense handback proposed no source correction.
+  Parent's added biological position restores the omitted different-kind
+  condition. Descriptive framing of prescriptive
+  source language and avoiding legal/clinical inferences are label/context
+  choices, not declarations that the source's moral judgments were factual
+  mistranslations. Original definitions remain unchanged.
+historical_reading_availability:
+  assessment: Read-only measurement using the live retained registry, reading overlay, authored decisions, and citation_reading; no pronunciation is guessed or admitted here.
+  available_official_text_parent_ids: [ko-nikl-03274, ko-nikl-03770, ko-nikl-09302, ko-nikl-10282, ko-nikl-11229, ko-nikl-20531, ko-nikl-21979, ko-nikl-22914, ko-nikl-25366, ko-nikl-37490, ko-nikl-47332, ko-nikl-51727]
+  available_unverified_authored_parent_ids: []
+  retained_without_current_supported_citation_parent_ids: [ko-nikl-00298]
+  pending_source_parent_ids: [ko-nikl-01684, ko-nikl-03301, ko-nikl-16283, ko-nikl-20383, ko-nikl-29822, ko-nikl-47338]
+  existing_source_followup: 성차별00298 is retained but currently has no supported citation through the adapter; keep the noun and let the parent investigate actual evidence.
+  pending_interpretation: The six proposed source parents lack current retained/overlay/decision entries. This is not a claim that their dictionary pronunciation text is absent.
+  ownership: Parent owns all source and reading approval; do not borrow a reading across homographs or nominal/predicate/adverb variants.
+protected_constraints:
+  held_source_ids: [ko-nikl-22209-s001, ko-nikl-48419-s001]
+  category_checks:
+    ko-lex-41331: function-item
+    ko-lex-03447: function-item
+    ko-lex-26499: free-lemma
+    ko-lex-09304: function-item
+  retired_identity_keys: [ko-lex-26491, ko-lex-03445]
+historical_handoff_integration:
+  owner: parent after handoff
+  vocabulary_file: values-relations-vocabulary.yaml
+  identity_file: values-relations-identities.yaml
+  notes_file: values-relations-notes.yaml
+  compose: Parent adds the two selection filenames to their corresponding manifest lists only after source/reading review; no shard assembly is required.
+  support_scope: Only the six support_parent_requests keys are requested. Compared predicates, unselected positions, deferred synonyms, and excluded homographs are not additional admissions or placements.
+  stop_rule: Return this one completed bounded handoff, then freeze all three files. Queued updates never reopen completed work.
+historical_handoff_validation:
+  status: passed
+  counts:
+    selected_senses: 22
+    source_noun_senses: 22
+    core_senses: 22
+    branch_senses: 0
+    dictionary_source_parents: 19
+    distinct_spellings: 19
+    identity_fragments: 19
+    existing_family_extensions: 7
+    existing_free_family_extensions: 6
+    existing_function_family_extensions: 1
+    new_provisional_free_family_keys: 12
+    new_core_provisional_free_families: 12
+    new_function_items: 0
+    new_bound_forms: 0
+    requested_support_parents: 6
+    actually_missing_from_retained_registry: 6
+    complete_positions_in_requested_parents: 9
+    selected_positions_from_requested_parents: 7
+    selected_source_correction_requests: 0
+    maximum_label_characters: 58
+    parents_with_existing_official_citation_text: 12
+    parents_with_existing_unverified_authored_readings: 0
+    retained_parents_without_current_supported_citation: 1
+    parents_pending_source_and_reading: 6
+  existing_family_keys: [ko-lex-03770, ko-lex-09304, ko-lex-11229, ko-lex-16282, ko-lex-20531, ko-lex-22914, ko-lex-47332]
+  new_family_keys: [ko-lex-00298, ko-lex-01684, ko-lex-03274, ko-lex-03301, ko-lex-10282, ko-lex-20383, ko-lex-21979, ko-lex-25366, ko-lex-29822, ko-lex-37490, ko-lex-47338, ko-lex-51727]
+  selected_senses_by_level: {8: 2, 9: 1, 10: 5, 13: 2, 14: 1, 15: 8, 16: 2, 22: 1}
+  measured_protected_baseline:
+    manifest_vocabulary_files: 45
+    retained_unbanded_parents: 958
+    core_selected_senses: 7891
+    core_provisional_free_families: 4995
+    manifest_sha256: 2860ea8eae9ce4681c817653be3f65c2bbb42f363340511cb5871cb839634940
+    retained_registry_sha256: 588ec7134f809a1f67f616e124d2ca02789bb22e6a1232d9d6702273285d4fc3
+    reading_overlay_sha256: 0e468bc63ed4d681e099d56164d4d5bfc11b7ce4c82ad24808e7528718141f7b
+    reading_decisions_sha256: 423b35c72af33310ed45657591a441b35ff461d499f844ac11e5348ec1434039
+    selection_policy_sha256: 1a8ae9e36e58d1fbc9f10d367923a90bb133838fd14b64c95e3519be2f02a447
+    snapshot_policy: Measured from the live declared composition during validation, not the earlier 873/885-support notice. Subsequent parent changes do not reopen this frozen cohort.
+  checks:
+    - Unique YAML keys, exact four-field placements and five-field identity records, and labels within 64 characters.
+    - Full pinned CSV checksum and 53172 records; all requested, family-comparison, and prescriptive-evidence arrays match original bilingual wording, order, counts, and whitespace.
+    - Original POS and bands checked; all 22 selected sources are nouns, including the explicitly classified reference-function noun.
+    - Full same-form homograph sets and the bounded absent-form observations verified; no Hanja, etymology, frequency, official-ID, or predicate generation.
+    - Real extract_senses importer preserved all retained entries and original TOPIK references; proposed support was added only to memory.
+    - Real load_selections, placement_rows, lexical_members, and source_corrections validators passed on the live manifest plus values-relations.
+    - Zero selected-ID overlaps, conflicting canonical/category values, repeated identity members, or member/parent-closure mismatches.
+    - Protected function categories, held exclusions, retired-key absence, and global level/branch coverage remain intact.
+    - Actual citation_reading availability matched 12 official-text parents, one retained-source follow-up, and six unadmitted parents with no current overlay or authored-decision entry.
+    - Protected input bytes stayed unchanged throughout validation; owned YAML uses consistent line endings with no trailing file-line whitespace.
+  regressions:
+    result: Three existing read-only tests passed together.
+    tests:
+      - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+      - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+      - test_korean_program.KoreanSourceArtifactTests.test_figurative_spring_correction_matches_the_actual_pinned_definition
+    invocation: Python312 -B -m unittest with the three selectors from scripts; no dependency installation or new test tooling.
+  planning_scale_snapshot:
+    projected_core_senses_with_cohort: 7913
+    projected_core_provisional_free_with_cohort: 5007
+    short_of_5800: 793
+    short_of_6000: 993
+    interpretation: Projected provisional family accounting, not source-approved publication, verified true-lexeme breadth, or mastery. The shortfall is not a quota.
+historical_handoff_remaining_limits:
+  - Parent must approve six exact source requests and assess their actual readings; retained 성차별00298 independently needs citation follow-up.
+  - No active selected-source correction is requested. Normative language remains evidence to interpret, not advice or a purported universal moral fact.
+  - Lexical/category-alternation judgments remain provisional and require qualified Korean review; no similar-meaning synonym is declared a proven variant.
+  - The bounded lead inspection found no exact 상생 parent and left the unproved 존엄/존엄성 variant question unmerged; this is not an exhaustive account of remaining vocabulary.
+  - This contributes 12 new provisional free families and seven existing-family extensions, not 22 new headwords; the overall planning scale remains unmet.
+  - All three files freeze after handback; no continuation follows from queued updates.

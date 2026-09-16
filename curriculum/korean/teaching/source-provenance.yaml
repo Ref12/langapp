@@ -18300,7 +18300,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '71342'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71342
-      pronunciations:
+      pronunciations: &id1481
       - 평화
     lexical_identity: ko-lex-22914
     lexical_category: free-lemma
@@ -44901,7 +44901,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '67651'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67651
-      pronunciations:
+      pronunciations: &id1483
       - 연계
       - 연게
     lexical_identity: ko-lex-47332
@@ -156513,6 +156513,456 @@ items:
       pronunciations: *id1477
     lexical_identity: ko-lex-42562
     lexical_category: free-lemma
+  ko-nikl-00298-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=298
+    source_parent: ko-nikl-00298
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act or manner of treating people differently according to their gender.
+    source_korean: 성별에 따라 차이를 두어 사람을 대함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '85185'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85185
+      pronunciations:
+      - 성ː차별
+      match_reason: 'The sole same-spelling noun retains the complete single gender-based discrimination
+        meaning. Original 성별에 따라 차이를 두어 사람을 대함 is compressed to 성별로 인한 차별. Preserve the original human-treatment
+        definition and band while using the actual 성ː차별 citation; this is not a legal classification,
+        a source-sense renumbering or a guessed reading.
+
+        '
+    lexical_identity: ko-lex-00298
+    lexical_category: free-lemma
+  ko-nikl-25366-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25366
+    source_parent: ko-nikl-25366
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: An act of disliking and hating something or someone.
+    source_korean: 싫어하고 미워함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90496'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90496
+      pronunciations:
+      - 혀모
+    lexical_identity: ko-lex-25366
+    lexical_category: free-lemma
+  ko-nikl-16283-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16283
+    source_parent: ko-nikl-16283
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Fighting.
+    source_korean: 싸우는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28358'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28358
+      pronunciations: &id1478
+      - 다툼
+    lexical_identity: ko-lex-16282
+    lexical_category: free-lemma
+  ko-nikl-16283-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16283
+    source_parent: ko-nikl-16283
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of competing or contending for victory.
+    source_korean: 승부를 가르거나 경쟁하는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28358'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28358
+      pronunciations: *id1478
+    lexical_identity: ko-lex-16282
+    lexical_category: free-lemma
+  ko-nikl-20383-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20383
+    source_parent: ko-nikl-20383
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of two or more persons being on good terms, as they are friendly and close.
+    source_korean: 서로 친하고 가까워 사이가 좋음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81378'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81378
+      pronunciations:
+      - 친선
+    lexical_identity: ko-lex-20383
+    lexical_category: free-lemma
+  ko-nikl-21979-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21979
+    source_parent: ko-nikl-21979
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A fight to beat a certain opponent.
+    source_korean: 어떤 대상을 이기기 위한 싸움.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81621'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81621
+      pronunciations: &id1479
+      - 투쟁
+    lexical_identity: ko-lex-21979
+    lexical_category: free-lemma
+  ko-nikl-21979-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21979
+    source_parent: ko-nikl-21979
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: In a social movement, labor movement, etc., an act of fighting against people of different
+      beliefs or of different groups, to win something.
+    source_korean: 사회 운동, 노동 운동 등에서 무엇을 얻기 위해 생각이 다른 사람이나 집단 간에 싸우는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81621'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81621
+      pronunciations: *id1479
+    lexical_identity: ko-lex-21979
+    lexical_category: free-lemma
+  ko-nikl-29822-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29822
+    source_parent: ko-nikl-29822
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A state of living together and helping each other.
+    source_korean: 서로 도우며 함께 삶.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19271'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19271
+      pronunciations: &id1480
+      - 공ː생
+    lexical_identity: ko-lex-29822
+    lexical_category: free-lemma
+  ko-nikl-29822-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29822
+    source_parent: ko-nikl-29822
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The state of living beings living together and in so doing acting in ways that help
+      each other. '
+    source_korean: 다른 종류의 생물이 서로 도우며 함께 살아감.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19271'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19271
+      pronunciations: *id1480
+    source_correction:
+      source_korean: 다른 종류의 생물이 서로 도우며 함께 살아감.
+      source_english: 'The state of living beings living together and in so doing acting in ways that
+        help each other. '
+      authored_interpretation: different kinds of organisms living together with mutual help
+      rationale: Restore 다른 종류 (different kinds), omitted in English. Preserve mutual help and living
+        together without imposing an unsourced species-level taxonomy or claiming that all symbiosis is
+        mutually beneficial.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-29822
+    lexical_category: free-lemma
+  ko-nikl-51727-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51727
+    source_parent: ko-nikl-51727
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'An act of stopping fighting and letting go of negative feelings toward another. '
+    source_korean: 싸움을 멈추고 서로 가지고 있던 안 좋은 감정을 풀어 없앰.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '86869'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86869
+      pronunciations:
+      - 화해
+    lexical_identity: ko-lex-51727
+    lexical_category: free-lemma
+  ko-nikl-22914-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22914
+    source_parent: ko-nikl-22914
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The state of being quiet and harmonious, free from worries or troubles.
+    source_korean: 걱정이나 탈이 없이 조용하고 화목함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71342'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71342
+      pronunciations: *id1481
+    lexical_identity: ko-lex-22914
+    lexical_category: free-lemma
+  ko-nikl-03770-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3770
+    source_parent: ko-nikl-03770
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: The act of competing in a match, etc., to determine who is better or worse.
+    source_korean: 경기 등에서 더 낫고 못함을 가리기 위해 경쟁하는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24286'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24286
+      pronunciations: *id1006
+    lexical_identity: ko-lex-03770
+    lexical_category: free-lemma
+  ko-nikl-03274-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3274
+    source_parent: ko-nikl-03274
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Faith and loyalty.
+    source_korean: 믿음과 의리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91240'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91240
+      pronunciations:
+      - 시ː늬
+      - 시ː니
+    lexical_identity: ko-lex-03274
+    lexical_category: free-lemma
+  ko-nikl-03301-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3301
+    source_parent: ko-nikl-03301
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A belief that one has been firmly keeping.
+    source_korean: 굳게 믿어 지키고 있는 생각.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91261'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91261
+      pronunciations:
+      - 신ː조
+    lexical_identity: ko-lex-03301
+    lexical_category: free-lemma
+  ko-nikl-01684-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1684
+    source_parent: ko-nikl-01684
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of being humiliated.
+    source_korean: 모욕을 당함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64985'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64985
+      pronunciations:
+      - 수모
+    lexical_identity: ko-lex-01684
+    lexical_category: free-lemma
+  ko-nikl-37490-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37490
+    source_parent: ko-nikl-37490
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of defaming, humiliating, and looking down on someone.
+    source_korean: 낮추어 보고 창피를 주고 불명예스럽게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '55492'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=55492
+      pronunciations:
+      - 모ː욕
+    lexical_identity: ko-lex-37490
+    lexical_category: free-lemma
+  ko-nikl-20531-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20531
+    source_parent: ko-nikl-20531
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: An act of expressing one’s appreciation of someone’s strength or achievement, etc.,
+      or such a remark.
+    source_korean: 좋은 점이나 잘한 일 등을 매우 훌륭하게 여기는 마음을 말로 나타냄. 또는 그런 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72160'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72160
+      pronunciations:
+      - 칭찬
+    lexical_identity: ko-lex-20531
+    lexical_category: free-lemma
+  ko-nikl-10282-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10282
+    source_parent: ko-nikl-10282
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A moral, righteous principle that one should follow in a relationship with a person.
+    source_korean: 사람과의 관계에서 지켜야 할 바른 도리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71672'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71672
+      pronunciations: &id1482
+      - 의ː리
+    lexical_identity: ko-lex-10282
+    lexical_category: free-lemma
+  ko-nikl-10282-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10282
+    source_parent: ko-nikl-10282
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A bond which is like a blood relation between two persons who are not of the same
+      blood.
+    source_korean: 피가 섞이지 않은 남과 맺은 혈연과 같은 관계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71672'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71672
+      pronunciations: *id1482
+    lexical_identity: ko-lex-10282
+    lexical_category: free-lemma
+  ko-nikl-47338-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47338
+    source_parent: ko-nikl-47338
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A relationship by blood, intimacy, law, etc.
+    source_korean: 혈통, 정분, 법률 등으로 맺어진 관계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '92038'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=92038
+      pronunciations:
+      - 연고
+    lexical_identity: ko-lex-47338
+    lexical_category: free-lemma
+  ko-nikl-11229-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11229
+    source_parent: ko-nikl-11229
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A reason for, or the history of, something.
+    source_korean: 어떤 일의 이유나 내력.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '25094'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=25094
+      pronunciations: *id1015
+    lexical_identity: ko-lex-11229
+    lexical_category: free-lemma
+  ko-nikl-47332-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47332
+    source_parent: ko-nikl-47332
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of connecting things.
+    source_korean: 서로 연결되게 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67651'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67651
+      pronunciations: *id1483
+    lexical_identity: ko-lex-47332
+    lexical_category: free-lemma
+  ko-nikl-09302-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9302
+    source_parent: ko-nikl-09302
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Both sides that are in a relationship or pair.
+    source_korean: 짝을 이루거나 관계를 맺고 있는 이쪽과 저쪽 모두.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83487
+      pronunciations:
+      - 상호
+    lexical_identity: ko-lex-09304
+    lexical_category: function-item
   ko-topik1-g001:
     source_id: original-ko
     source_entry: topik-1/grammar.yaml#ko-topik1-g001
