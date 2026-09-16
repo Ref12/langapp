@@ -1,43 +1,67 @@
-import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url'
+import { createServer, defineConfig, type Plugin, type UserConfig, type ViteDevServer } from 'vite'
 import react from '@vitejs/plugin-react'
-import { webcrypto } from 'node:crypto'
+import { mockupFiles } from './scripts/mockup-files.mjs'
 
-if (!globalThis.crypto) {
-  Object.defineProperty(globalThis, 'crypto', { value: webcrypto })
+function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
+  const base = server.config.base.startsWith('/') ? server.config.base : '/'
+  server.middlewares.use((request, response, next) => {
+    const url = new URL(request.url ?? '/', 'http://localhost')
+    if (url.pathname === '/dev' || url.pathname === `${base}dev`) {
+      response.writeHead(302, { Location: `${base}dev/${url.search}` })
+      response.end()
+      return
+    }
+    if (url.pathname === '/dev/' || url.pathname === `${base}dev/`) {
+      request.url = `${url.pathname}index.html${url.search}`
+    }
+    next()
+  })
 }
 
-export default defineConfig(async () => {
-  const { VitePWA } = await import('vite-plugin-pwa')
+function versionedSite(mockups: Set<string>): Plugin {
+  let v1: ViteDevServer | undefined
 
   return {
-    base: './',
-    plugins: [
-      react(),
-      VitePWA({
-        registerType: 'prompt',
-        injectRegister: null,
-        manifest: {
-          name: 'LinguaWeave',
-          short_name: 'LinguaWeave',
-          description: 'Learn languages through reading and conversation.',
-          theme_color: '#173f35',
-          background_color: '#f7f3e9',
-          display: 'standalone',
-          start_url: './',
-          icons: [
-            {
-              src: 'icon.svg',
-              sizes: 'any',
-              type: 'image/svg+xml',
-              purpose: 'any maskable',
-            },
-          ],
-        },
-        workbox: {
-          globPatterns: ['**/*.{js,css,html,svg,woff2}'],
-          globIgnores: ['**/microsoft.cognitiveservices.speech.sdk-*.js'],
-        },
-      }),
-    ],
+    name: 'versioned-site',
+    async configureServer(server) {
+      mountDevicePreview(server)
+      v1 = await createServer({
+        configFile: fileURLToPath(new URL('./versions/v1/vite.config.ts', import.meta.url)),
+        server: { middlewareMode: true, hmr: false, watch: null },
+      })
+      const legacy = v1
+      server.middlewares.use((request, response, next) => {
+        const url = new URL(request.url ?? '/', 'http://localhost')
+        const pathname = url.pathname
+        if (pathname === '/v1' || pathname.startsWith('/v1/')) {
+          legacy.middlewares(request, response, next)
+          return
+        }
+
+        // The design previews retain their original relative URLs, on a separate page.
+        const filename = pathname === '/preview.html' ? 'index.html' : pathname.slice(1)
+        if (pathname !== '/index.html' && mockups.has(filename)) {
+          request.url = `/docs/mockups/${filename}${url.search}`
+        }
+        next()
+      })
+    },
+    configurePreviewServer(server) {
+      mountDevicePreview(server)
+    },
+    async closeBundle() {
+      await v1?.close()
+    },
   }
-})
+}
+
+export default defineConfig(async (): Promise<UserConfig> => ({
+  root: fileURLToPath(new URL('.', import.meta.url)),
+  cacheDir: fileURLToPath(new URL('./node_modules/.vite/next/', import.meta.url)),
+  publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
+  base: './',
+  appType: 'mpa',
+  plugins: [react(), versionedSite(new Set(await mockupFiles()))],
+  build: { outDir: 'dist' },
+}))

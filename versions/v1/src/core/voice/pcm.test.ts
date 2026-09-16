@@ -67,7 +67,7 @@ describe('shared PCM pipeline', () => {
       process(inputs: Float32Array[][]): boolean
     }
     let ProcessorClass!: new () => Processor
-    runInNewContext(readFileSync(resolve('src', 'core', 'voice', 'pcm-worklet.js'), 'utf8'), {
+    runInNewContext(readFileSync(resolve('versions', 'v1', 'src', 'core', 'voice', 'pcm-worklet.js'), 'utf8'), {
       Float32Array,
       AudioWorkletProcessor: class {
         port = { postMessage: (data: Float32Array | string) => posted.push(data), onmessage: undefined }

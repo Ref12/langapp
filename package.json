@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build",
+    "dev:v1": "vite --config versions/v1/vite.config.ts",
+    "build": "npm run build:next && npm run build:v1 && node scripts/build-site.mjs",
+    "build:next": "npm run curriculum:check && tsc -b && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build",
+    "curriculum:generate": "node scripts/generate-app-curriculum.mjs",
+    "curriculum:check": "node scripts/generate-app-curriculum.mjs --check",
+    "build:v1": "tsc -b versions/v1 && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build --config versions/v1/vite.config.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
@@ -41,6 +46,7 @@
     "typescript-eslint": "^8.11.0",
     "vite": "^6.4.3",
     "vite-plugin-pwa": "^1.0.3",
-    "vitest": "^3.2.7"
+    "vitest": "^3.2.7",
+    "yaml": "^2.8.1"
   }
 }
