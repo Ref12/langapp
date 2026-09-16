@@ -5,6 +5,69 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-47463-s001:
+    source_korean: 어떤 사물을 보거나 듣거나 생각할 때 그것과 관련 있는 사물을 머릿속에 떠올리다.
+    source_english: To be reminded of things related to an object when one sees, hears, or thinks of it.
+    authored_interpretation: to bring related things to mind
+    rationale: >
+      The Korean uses the active bringing-to-mind perspective. Preserve it
+      without requiring another person to provide a reminder or treating
+      association as proof that the associated objects have a real connection.
+  ko-nikl-36383-s002:
+    source_korean: (낮추는 말로) 자기의 말.
+    source_english: (impolite form) One's own words.
+    authored_interpretation: one's own words (humble)
+    rationale: >
+      Self-humbling reference to one's own words is not impoliteness to a
+      listener. Keep the speaker perspective separate from the honorific
+      reference to another person's words in position001.
+  ko-nikl-09327-s002:
+    source_korean: 다른 사람이 하는 말을 잘 이해하며 듣다.
+    source_english: To listen carefully to another person.
+    authored_interpretation: to listen with understanding to what someone says
+    rationale: >
+      The Korean explicitly includes comprehension, not only careful
+      attention or the intention to retain advice in position001.
+  ko-nikl-21102-s001:
+    source_korean: 잘 알아듣도록 자상하고 조리 있게 말해 주다.
+    source_english: To say something kindly and logically in order to get someone to understand and agree.
+    authored_interpretation: to explain kindly and coherently to help someone understand
+    rationale: >
+      The Korean aims at understanding through kind, coherent explanation;
+      the English adds agreement. Comprehension does not automatically mean
+      acceptance or compliance.
+  ko-nikl-16384-s001:
+    source_korean: 물체를 잘랐을 때 나오는 면.
+    source_english: The cross section of something cut lengthwise.
+    authored_interpretation: a surface exposed by cutting an object
+    rationale: >
+      The Korean specifies a cut surface without a longitudinal orientation.
+      Keep this broad scope separate from the actually perpendicular-to-length
+      surface of 횡단면52150, which is not a generic cut direction.
+  ko-nikl-43251-s001:
+    source_korean: 어떤 재료에서 느껴지는 독특한 느낌.
+    source_english: A distinctive quality one feels when touching something.
+    authored_interpretation: a distinctive feel or quality of a material
+    rationale: >
+      The Korean does not require touching. Do not import the skin-contact
+      condition that belongs to the different tactile noun 촉감45191.
+  ko-nikl-43251-s002:
+    source_korean: 물감, 캔버스, 화구 등이 만들어 내는 화면 대상의 느낌.
+    source_english: A quality one feels from the surface of a work of art created by paint, canvas, painting tools, etc.
+    authored_interpretation: texture conveyed by painting materials and tools
+    rationale: >
+      Preserve the material/tool-created impression in a picture, without
+      restricting it to a touched physical substrate or excluding depicted
+      texture. Material and depicted texture can interact; qualified review
+      of this interpretation is still required.
+  ko-nikl-45834-s002:
+    source_korean: 슬픈 일이나 뜻밖의 사건 등으로 마음에 받은 심한 자극이나 영향.
+    source_english: A very strong stimulation or influence one receives from a sad incident or an unexpected accident, etc.
+    authored_interpretation: emotional shock from distressing or unexpected events
+    rationale: >
+      The Korean event/incident need not be an accident. Preserve severe
+      emotional effect without requiring physical impact or implying a
+      clinical diagnosis.
   ko-nikl-02600-s001:
     source_korean: 동력을 이용하여 사람이나 짐을 위아래로 나르는 장치.
     source_english: An installation that conveys people or freight up and down, using electric power.

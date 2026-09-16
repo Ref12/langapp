@@ -1,0 +1,739 @@
+schema_version: 1
+id: ko-representation-noun-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: all34 selected senses and official readings integrated; qualified review outstanding
+scope:
+  - Compare the feel, constituent amount, weight, endurance, and visible form of ordinary materials and objects.
+  - Interpret physical models, document typefaces, diagrams, cut surfaces, and pictorial depth.
+  - Describe building form or space using actual source nouns without asserting engineering competence.
+  - Preserve a few useful literal/nonliteral contrasts without collecting every meaning or filling later phases.
+ownership:
+  authored_files: [representation-vocabulary.yaml, representation-identities.yaml, representation-notes.yaml]
+  parent_owned: source registries, support admission, readings, corrections, manifest, tests, generated views
+  protected_cohorts: [all active selection-files.yaml inputs through orientation, cognition143, orientation12]
+  excluded_parent_ids: [ko-nikl-48419, ko-nikl-22209, ko-nikl-25822, ko-nikl-29719]
+  other_workers: >
+    No public/institutional/economic or interaction-verb selection is added.
+    Same-hometown18600 and robbery26724 remain outside this cohort. No
+    direction, facing, or compass/map-label source from orientation is repeated.
+selection_policy: >
+  Inspect each bounded lead's complete original ordered Korean and English
+  lists, all exact-Form homographs in the pinned CSV, and actual protected
+  membership. Select for a communicative task, not source band, first position,
+  alphabetical order, a numerical quota, or a late-phase deficit. All selected
+  forms are actual noun records; no predicate, compound, suffix derivative,
+  source sense, or pronunciation has been generated. Dictionary inclusion
+  alone is not proof of independent true-lexeme status.
+counts:
+  selected_senses: 34
+  core_senses: 34
+  branch_senses: 0
+  source_parents: 29
+  distinct_selected_spellings: 29
+  identity_fragments: 26
+  new_provisional_free_families: 19
+  existing_identity_fragments: 7
+  senses_extending_existing_families: 7
+  additional_senses_within_new_families: 8
+  total_depth_beyond_new_free_families: 15
+  existing_branch_only_families_gaining_first_core_use: 0
+  new_bound_form_families: 0
+  new_function_item_families: 0
+  source_noun_senses: 34
+  nonfirst_source_positions: 7
+  parents_new_to_protected_selections: 26
+  parents_already_selected_elsewhere: 3
+  retained_source_parents: 5
+  selected_senses_from_retained_parents: 7
+  requested_unbanded_parents: 24
+  selected_senses_from_requested_parents: 27
+  all_original_positions_in_requested_parents: 34
+  selected_source_correction_requests: 4
+  source_bands: {beginner: 0, intermediate: 2, advanced: 3, unbanded: 29}
+  phases:
+    first-exchanges: 0
+    everyday-life: 10
+    stories-conversations: 11
+    explanation-problems: 12
+    analysis-argument: 1
+    nuance-interpretation: 0
+counting_policy: >
+  These are source inventory and provisional family counts, not achieved
+  knowledge, certified true lexemes, or a number target. Nineteen new
+  provisional free families and fifteen depth selections are reported
+  separately. Seven existing-family fragments add seven senses without new
+  free breadth. Eight additional senses deepen the new families. Source
+  spelling counts do not turn naming derivatives into independent free bases.
+  Existing family keys, canonical lemmas, categories, members, and placements
+  are preserved, including existing core uses at later levels.
+inspection_snapshot:
+  last_registered_cohort: orientation
+  protected_unregistered_cognition_senses: 143
+  protected_orientation_senses: 12
+  source_support_parents: 512
+  protected_selected_senses: 7119
+  protected_core_senses: 6993
+  protected_identity_groups: 4760
+  protected_free_families: 4537
+  protected_core_free_families: 4478
+  projected_selected_senses: 7153
+  projected_core_senses: 7027
+  projected_free_families: 4556
+  projected_core_free_families: 4497
+  limitation: >
+    Snapshot of the live manifest plus the separately protected cognition
+    handoff, not a published integration result. Subsequent parent source
+    recovery or other cohorts can change these totals.
+source_verification:
+  source_id: nikl-2024-mirror
+  source_revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  inspected_registry_sha256: 54c463d0840317a075875f45ccca2c9a5ab0c79593ebc41cd8cf02da826e5343
+  inspected_support_sha256: e0fbfac9d13634f66a7c7956f73ebd76a1b362d0cd242346b31679a69703073c
+  method: >
+    Read the retained January2024 CSV, verify its complete checksum, and
+    inspect actual record ordinals and complete bilingual definition lists.
+    Compare full same-spelling/POS competitors and relevant protected families.
+    The request blocks retain every original position and registry metadata,
+    including empty source bands/categories and original English whitespace.
+    A request's source_record gives its original CSV ordinal, not an official
+    NIKL entry number; its source_entry is source_url followed by #record=N.
+  examples_policy: >
+    Source usage examples remain in the pinned CSV and are not copied into
+    learner material, used as pronunciation evidence, or treated as verified
+    domain advice. In particular, a weight example's volume-unit wording is
+    not imported as a definition of weight or a conversion instruction.
+placement_rationale:
+  practical_materials_and_documents: >
+    Single-storey housing and fabric/material feel enter at5. Content amount
+    and the explicit weight name serve comparing products or package labels
+    at6; they do not wait for a source's advanced or unbanded classification.
+    Visible exterior appearance helps housing/travel comparisons at7.
+    Computer typeface, general character shape, a physical model, and two
+    object surfaces support study or document tasks at8. General 글꼴 is not
+    narrowed to computer fonts, and 양면 is not invented as a printer setting.
+  descriptions_and_visual_explanations: >
+    Emotional 충격 at9 prevents interpreting every shocking event as a
+    mechanical collision. At12, compare handwriting, a three-dimensional
+    object, a diagram, painted texture, color shading, and near/far depiction.
+    Computer 서체003 deliberately precedes handwritten 서체001; no source
+    ordinal dictates a teaching sequence. Physical body/frame and endurance
+    at13 support explanations of why an object or material is suitable.
+  problems_and_representation_limits: >
+    Design drawings, existing structures shown on drawings, generic cut
+    surfaces, bounded spatial division, and physical impact support
+    unfamiliar housing or object problems at14. At17, explain particles,
+    spring-like force, elasticity, built structures, and an explicitly
+    perpendicular section to a nonspecialist. These are vocabulary for
+    interpreting or reporting, not instructions for construction or cutting.
+    Diagramming and partial-aspect language support qualified presentations
+    at18. An explanatory model at19 is evaluated as evidence, not treated
+    as a proof merely because the source names that intended purpose.
+  no_late_bucket: >
+    There are no level25-30 or specialist-branch fillers. Calligraphic-style,
+    mould, abstract future-plan, established-formula, somber-face, and
+    near/far-person positions are not added merely because their parent
+    already needs a source request.
+identity_evidence:
+  design_drawing:
+    identity: ko-lex-00006
+    protected_id: ko-nikl-00006-s002
+    source_korean: 건축, 토목, 기계 등에 관한 계획을 세우거나 그 계획을 그림 등으로 나타내는 것.
+    source_english: An act of making plans regarding construction, civil engineering, machinery, etc., or to express the plan in a drawing, etc.
+    new_id: ko-nikl-00007-s001
+    decision: >
+      설계도 is the explicit planned-drawing name within this protected
+      planning/drawing family. Do not add its future-plan002 again. 도면 has
+      a different lexical base and describes structure or design; its
+      provisional separate family is not erased by an English drawing gloss.
+  floor_naming:
+    identity: ko-lex-45987
+    protected_id: ko-nikl-45987-s002
+    source_korean: 위로 높이 포개어 지은 건물에서 같은 높이를 이루는 부분.
+    source_english: An area of the same height inside a building that has been built in multiple stories.
+    new_id: ko-nikl-16508-s001
+    decision: >
+      The single-floor condition is conservatively grouped with floors.
+      This adds a useful housing contrast but no new free base, numerical
+      suffix generator, or geological-fault meaning. Existing 고층 remains
+      in its protected identity and its two selected positions are not copied.
+  constructed_object:
+    identity: ko-lex-31136
+    protected_id: ko-nikl-31136-s002
+    source_korean: 건물 등의 뼈대가 되는 부분.
+    source_english: 'The part that serves as the frame of a building, etc. '
+    new_id: ko-nikl-31140-s001
+    decision: >
+      Count the actual structure-plus-object naming form conservatively in
+      this family, preserving the built/designed large-object qualifier.
+      Do not equate every 구조 with a constructed object or use rescue31135.
+  weight_name:
+    identity: ko-lex-37903
+    protected_id: ko-nikl-37903-s001
+    source_korean: 물건의 무거운 정도.
+    source_english: "The degree of an object's heaviness."
+    new_id: ko-nikl-42155-s001
+    decision: >
+      Both original languages exactly match the physical quantity position.
+      Count 중량 as an explicit alternative weight name in that existing
+      family. This is an individual conservative decision, not a universal
+      rule merging all synonyms with different lexical bases.
+  same_base_derivatives:
+    - The complete 도식001 and 도식화001 descriptions share structure/state/relations displayed in tables or pictures; both actual records use ko-lex-17921.
+    - The actual perpendicular-to-length 횡단면001 is a narrower named 단면 subtype and uses ko-lex-16384.
+    - The actual image-depth method 원근법001 reuses the near/far family ko-lex-49682; no arbitrary method-suffix noun is generated.
+  distinct_bases_not_universal_concepts:
+    - Material 질감 does not require the skin contact that defines 촉감; neither is merged into generic 감각.
+    - Material elasticity 탄성 names a response property; protected 탄력 names force or figurative responsiveness.
+    - Generic written-character shape 글꼴 and handwriting/computer style 서체 retain their different source scopes and lexical bases.
+    - Actual-copy/explanatory 모형 is not automatically the whole protected 모델 prototype, career, sitter, and exemplar family.
+    - Color-shade 음영002 has representation scope not supplied by the identical ordinary-shadow definition under protected 그늘001.
+  existing_position_extensions:
+    ko-nikl-21164: {added: [1], protected: [2, 3], identity: ko-lex-21164}
+    ko-nikl-29504: {added: [1], protected: [2], identity: ko-lex-29504}
+    ko-nikl-46151: {added: [1], protected: [2, 3], identity: ko-lex-46151}
+  limitation: >
+    Complete source lists were inspected; the focused evidence above is not
+    a replacement registry or permission to truncate unselected meanings.
+    All family decisions remain provisional pending qualified lexical review.
+bounded_nonselections:
+  ko-nikl-16278:
+    target: 다층
+    inspected_positions: [1]
+    reason: >
+      The whole one-position meaning is several layers or storeys, not
+      permission to split it into two new senses. Protected 층 already
+      supplies layers/floors, and 고층 supplies many-storey buildings.
+      The productive quantity naming form is not needed for this bounded
+      curation and is not requested solely to inflate physical-form breadth.
+  ko-nikl-25444:
+    target: 형상
+    inspected_positions: [1]
+    reason: >
+      General object form/state overlaps useful protected 모양 and 형태.
+      Prioritize body-focused 형체 and visible exterior 외관 in this pass;
+      do not count a generic near-synonym merely to add a row.
+      Omission does not assert that these different lexical bases are one word.
+  ko-nikl-26722:
+    target: 강도
+    inspected_positions: [1]
+    compared_parents: [ko-nikl-26722, ko-nikl-26723, ko-nikl-26724]
+    reason: >
+      The metal hardness/strength description is narrower than protected
+      general intensity26723. Do not borrow that parent's sense, declare
+      the homographs identical, or teach a precise hardness/stiffness/strength
+      measure from this broad definition. The English steel wording is also
+      narrower than 쇠붙이. This specialist distinction is not necessary
+      here; robbery26724 remains the governance worker's separate scope.
+  ko-nikl-48899:
+    target: 외형
+    inspected_positions: [1, 2]
+    reason: >
+      Object exterior shape is close to existing shape vocabulary and the
+      selected exterior-appearance task. Outwardly displayed circumstances
+      would broaden this into another abstract-description bucket. Retain
+      the two real positions for possible later curation, not this selection.
+  unselected_positions_in_selected_parents:
+    ko-nikl-00007: {positions: [2], reason: Future planning is already protected; the engineering drawing is the actual gap.}
+    ko-nikl-09862: {positions: [2], reason: Calligraphic style is a possible arts extension, not a required computer/handwriting lesson or stroke asset.}
+    ko-nikl-11892: {positions: [2], reason: This requires the body's having the containing material's properties, not merely being tiny; do not conflate it with selected atom or molecule scopes.}
+    ko-nikl-17921: {positions: [2], reason: A pre-established procedural formula is distinct from a visible diagram and is not needed to fill a late level.}
+    ko-nikl-37556: {positions: [1], reason: A manufacturing mould is a different source use from a copy or explanatory exemplar and is not compulsory technical padding.}
+    ko-nikl-49682: {positions: [2], reason: Near/far places or their people are not the selected spatial-depth property and are not new orientation items.}
+    ko-nikl-51132: {positions: [1, 3], reason: Ordinary blocked-light shadow is already available through other words; somber appearance is not selected as a visual-material property or an assessment of emotion.}
+homograph_boundaries:
+  - Elasticity21181 is not the sigh or admiration noun21182; both complete noun lists were compared.
+  - The exact-Form 단층 row inspected here defines a one-storey building only; no geological-fault source ID is invented.
+  - Metal-strength26722, general-intensity26723, and robbery26724 have different complete definitions and are not chosen by spelling alone.
+  - Protected structural 구조31136 and rescue 구조31135 remain distinct; the constructed-object member joins only the structural family.
+  - Neither generic 단면 nor actual 횡단면 is reinterpreted as a lengthwise-only section.
+  - 원근 is near/far distance for image discussion, not another direction, facing, or compass source.
+source_correction_policy: >
+  Requests below preserve exact raw Korean and English strings. The proposed
+  compact interpretation is authored, not a replacement source definition or
+  official dictionary correction. Parent owns the shared ledger and decides
+  integration; qualified Korean-teacher review remains required.
+source_correction_requests:
+  ko-nikl-16384-s001:
+    source_korean: 물체를 잘랐을 때 나오는 면.
+    source_english: The cross section of something cut lengthwise.
+    authored_interpretation: a surface exposed by cutting an object
+    rationale: >
+      Korean specifies a surface produced by cutting, without imposing a
+      longitudinal orientation. Remove the English lengthwise restriction;
+      separately selected 횡단면52150 explicitly requires perpendicular cutting.
+  ko-nikl-43251-s001:
+    source_korean: 어떤 재료에서 느껴지는 독특한 느낌.
+    source_english: A distinctive quality one feels when touching something.
+    authored_interpretation: a distinctive feel or quality of a material
+    rationale: >
+      Korean names the characteristic impression/feel from a material without
+      requiring touch. Preserve that scope instead of importing the skin-contact
+      condition that actually belongs to 촉감45191.
+  ko-nikl-43251-s002:
+    source_korean: 물감, 캔버스, 화구 등이 만들어 내는 화면 대상의 느낌.
+    source_english: A quality one feels from the surface of a work of art created by paint, canvas, painting tools, etc.
+    authored_interpretation: texture conveyed by painting materials and tools
+    rationale: >
+      Keep the material/tool-created impression in the picture explicit.
+      The English surface wording can suggest only the physical substrate;
+      do not require touching an artwork or exclude visually conveyed texture.
+      This is a qualified interpretation request, not a claim that material
+      surface texture and depicted texture never interact.
+  ko-nikl-45834-s002:
+    source_korean: 슬픈 일이나 뜻밖의 사건 등으로 마음에 받은 심한 자극이나 영향.
+    source_english: A very strong stimulation or influence one receives from a sad incident or an unexpected accident, etc.
+    authored_interpretation: emotional shock from distressing or unexpected events
+    rationale: >
+      사건 means an event or incident, not necessarily an accident. Preserve
+      the severe emotional effect without requiring an accident, physical
+      impact, or a clinical diagnosis.
+unselected_source_issue:
+  id: ko-nikl-11892-s002
+  source_korean: 어떤 물질을 이루면서 그 물질의 성질을 지니고 있는 아주 작은 크기의 물체.
+  source_english: A tiny body that constitutes a substance and has its own properties.
+  issue: >
+    그 물질 refers to the containing substance's properties, not just the
+    little body's unspecified own properties. This position remains unselected;
+    preserving it in a complete support request is not selecting or correcting
+    it in the shared ledger.
+support_request_policy: >
+  These twenty-four exact unbanded parents are absent from the inspected
+  512-support registry. Request only them, retaining all thirty-four original
+  definition positions although twenty-seven are selected. Do not add banded
+  records again, truncate parents to selected positions, normalize raw English
+  whitespace, create TOPIK references, or recover unselected comparison leads.
+  Canonical-family evidence for existing parents is not an additional request.
+support_parent_requests:
+  ko-nikl-00007:
+    source_record: 7
+    lemma: 설계도
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1]
+    rationale: The actual planned design drawing helps explain a layout; general future planning is not selected again.
+    senses:
+      - {id: ko-nikl-00007-s001, source_position: 1, korean: '건축, 토목, 기계 등의 구조, 모양, 치수 등을 계획하여 그린 그림.', english: 'A drawing made by planning the structure, shape, size, etc., of a construction project, civil engineering project, machinery, etc.'}
+      - {id: ko-nikl-00007-s002, source_position: 2, korean: '앞으로 할 일에 대한 계획이나 생각.', english: 'A plan or thought about a future project.'}
+  ko-nikl-09862:
+    source_record: 9862
+    lemma: 서체
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 3
+    selected_positions: [1, 3]
+    rationale: Select handwriting and computer-document styles without manufacturing glyph or calligraphy assets.
+    senses:
+      - {id: ko-nikl-09862-s001, source_position: 1, korean: '손으로 직접 쓴 글씨의 모양.', english: 'A style of writing something by hand. '}
+      - {id: ko-nikl-09862-s002, source_position: 2, korean: '붓글씨에서 글씨를 쓰는 일정한 양식.', english: 'A specific style of writing letters in calligraphy. '}
+      - {id: ko-nikl-09862-s003, source_position: 3, korean: '컴퓨터로 문서를 작성할 때 사용하는 글씨의 모양.', english: 'A style of characters used for writing a text using a computer.'}
+  ko-nikl-11892:
+    source_record: 11892
+    lemma: 입자
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1]
+    rationale: A small matter constituent supports nonspecialist explanation; the property-bearing second position remains separate.
+    senses:
+      - {id: ko-nikl-11892-s001, source_position: 1, korean: '물질을 이루는 아주 작은 크기의 물체.', english: 'A tiny body that constitutes a substance.'}
+      - {id: ko-nikl-11892-s002, source_position: 2, korean: '어떤 물질을 이루면서 그 물질의 성질을 지니고 있는 아주 작은 크기의 물체.', english: 'A tiny body that constitutes a substance and has its own properties.'}
+  ko-nikl-11911:
+    source_record: 11911
+    lemma: 입체
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Name an actual volume-bearing form, not an invented digital or stereoscopic sense.
+    senses:
+      - {id: ko-nikl-11911-s001, source_position: 1, korean: '삼차원의 공간에서 여러 개의 평면이나 곡면으로 둘러싸여 부피를 가지는 물체.', english: 'An object with volume, surrounded by multiple flat and curved surfaces in three-dimensional space.'}
+  ko-nikl-16384:
+    source_record: 16384
+    lemma: 단면
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1, 2]
+    rationale: Relate a literal cut surface to a partial-aspect use without the source English's unsupported cutting orientation.
+    senses:
+      - {id: ko-nikl-16384-s001, source_position: 1, korean: '물체를 잘랐을 때 나오는 면.', english: 'The cross section of something cut lengthwise.'}
+      - {id: ko-nikl-16384-s002, source_position: 2, korean: '일이나 사물의 현상 중 한 부분.', english: 'A partial aspect of a phenomenon or situation.'}
+  ko-nikl-16508:
+    source_record: 16508
+    lemma: 단층
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: A real single-storey housing condition, not a geological fault or newly generated floor label.
+    senses:
+      - {id: ko-nikl-16508-s001, source_position: 1, korean: '건물이 하나의 층으로 된 것.', english: 'A state in which a building has one floor.'}
+  ko-nikl-17861:
+    source_record: 17861
+    lemma: 도면
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Interpret a drawing of a structure or design when explaining a housing or object problem.
+    senses:
+      - {id: ko-nikl-17861-s001, source_position: 1, korean: '토목, 건축, 기계 등의 구조나 설계 등을 나타낸 그림.', english: 'A drawing that shows the structure or plan of civil engineering, architecture, machinery, etc.'}
+  ko-nikl-17921:
+    source_record: 17921
+    lemma: 도식
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1]
+    rationale: The diagram/table meaning serves explanation; the pre-established procedural formula is not silently merged with it.
+    senses:
+      - {id: ko-nikl-17921-s001, source_position: 1, korean: '어떤 것의 구조나 상태, 관계 등을 쉽게 보이기 위하여 나타낸 표나 그림.', english: 'A table or figure that shows the structure, state, relationship, etc., of something in an easy way.'}
+      - {id: ko-nikl-17921-s002, source_position: 2, korean: '어떤 일을 풀거나 진행시키는 미리 만들어진 공식.', english: 'An already established formula for resolving or promoting something.'}
+  ko-nikl-17924:
+    source_record: 17924
+    lemma: 도식화
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: This exact sourced diagramming noun supports presentations but shares the 도식 family rather than inflating free breadth.
+    senses:
+      - {id: ko-nikl-17924-s001, source_position: 1, korean: '무엇의 구조나 상태, 관계 등을 쉽게 보이기 위하여 표나 그림으로 나타냄.', english: 'The act of showing the structure, status, relationship, etc., of something on graphs or pictures for an easy explanation.'}
+  ko-nikl-21181:
+    source_record: 21181
+    lemma: 탄성
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Select the material response property, not either meaning of the sigh/admiration homograph21182.
+    senses:
+      - {id: ko-nikl-21181-s001, source_position: 1, korean: '물체에 외부에서 힘을 가하면 부피와 모양이 바뀌었다가, 그 힘을 없애면 본디의 모양으로 되돌아가려 하는 성질.', english: 'The characteristic of something changing in volume and shape when an external force is given, and returning to its former state when the force is removed.'}
+  ko-nikl-24375:
+    source_record: 24375
+    lemma: 함량
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Read component-amount labels without asserting a percentage, a nutritional benefit, or an allergy guarantee.
+    senses:
+      - {id: ko-nikl-24375-s001, source_position: 1, korean: '물질에 들어 있는 어떤 성분의 양.', english: 'The amount of a certain element contained in substance. '}
+  ko-nikl-25475:
+    source_record: 25475
+    lemma: 형체
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Preserve both visible shape and its underlying physical body in one original position.
+    senses:
+      - {id: ko-nikl-25475-s001, source_position: 1, korean: '물체의 생긴 모양이나 그 바탕이 되는 몸체.', english: 'The appearance of an object or the body that is the base of it. '}
+  ko-nikl-31140:
+    source_record: 31140
+    lemma: 구조물
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The actual large built-object name serves explanation and conservatively deepens the structural family.
+    senses:
+      - {id: ko-nikl-31140-s001, source_position: 1, korean: '건물, 다리, 터널 등과 같이 설계에 따라 체계적으로 만든 큰 물건.', english: 'A large object designed and built systematically, such as buildings, bridges, tunnels, etc.'}
+  ko-nikl-31212:
+    source_record: 31212
+    lemma: 구획
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Dividing a physical space and its resulting area stay one source position; no legal or administrative meaning is added.
+    senses:
+      - {id: ko-nikl-31212-s001, source_position: 1, korean: '땅이나 공간을 경계를 지어 나눔. 또는 그런 구역.', english: 'Dividing land or space with boundaries, or the divided land or space.'}
+  ko-nikl-32345:
+    source_record: 32345
+    lemma: 글꼴
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: General character shape supports study and document choices without adding a computer-only restriction or stroke assets.
+    senses:
+      - {id: ko-nikl-32345-s001, source_position: 1, korean: '글자의 모양.', english: 'The shape of a letter.'}
+  ko-nikl-34843:
+    source_record: 34843
+    lemma: 내구성
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Endurance without change supports comparing materials or objects, not an automatically generated property catalogue.
+    senses:
+      - {id: ko-nikl-34843-s001, source_position: 1, korean: '물질이 변하지 않고 오래 견디는 성질.', english: 'The unchanging and long-lasting quality of a substance.'}
+  ko-nikl-42155:
+    source_record: 42155
+    lemma: 중량
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: A useful explicit weight name on labels, with an exactly matching protected physical-weight definition and no new free base.
+    senses:
+      - {id: ko-nikl-42155-s001, source_position: 1, korean: '물건의 무거운 정도.', english: "The degree of an object's heaviness."}
+  ko-nikl-43251:
+    source_record: 43251
+    lemma: 질감
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1, 2]
+    rationale: Material feel and painting-created texture retain separate positions without a blanket physical-touch requirement.
+    senses:
+      - {id: ko-nikl-43251-s001, source_position: 1, korean: '어떤 재료에서 느껴지는 독특한 느낌.', english: 'A distinctive quality one feels when touching something.'}
+      - {id: ko-nikl-43251-s002, source_position: 2, korean: '물감, 캔버스, 화구 등이 만들어 내는 화면 대상의 느낌.', english: 'A quality one feels from the surface of a work of art created by paint, canvas, painting tools, etc.'}
+  ko-nikl-45191:
+    source_record: 45191
+    lemma: 촉감
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: This source explicitly requires contact with skin, unlike the selected broader material-feel position.
+    senses:
+      - {id: ko-nikl-45191-s001, source_position: 1, korean: '어떤 것이 피부에 닿아서 생기는 느낌.', english: 'A sensation from an object touching the skin.'}
+  ko-nikl-48762:
+    source_record: 48762
+    lemma: 외관
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Name outward appearance while explicitly avoiding inference about internal quality or suitability.
+    senses:
+      - {id: ko-nikl-48762-s001, source_position: 1, korean: '겉으로 보이는 모양.', english: 'The outer appearance of something.'}
+  ko-nikl-49682:
+    source_record: 49682
+    lemma: 원근
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1]
+    rationale: Nearness/distance supports image discussion without duplicating orientation or selecting the place/person meaning.
+    senses:
+      - {id: ko-nikl-49682-s001, source_position: 1, korean: '멀고 가까움.', english: 'A compound noun meaning a state of being distant and near. '}
+      - {id: ko-nikl-49682-s002, source_position: 2, korean: '먼 곳과 가까운 곳. 또는 그곳에 있는 사람.', english: 'A compound noun meaning a place far and near; or a person in such a place.'}
+  ko-nikl-49684:
+    source_record: 49684
+    lemma: 원근법
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The actual image-representation method deepens the near/far family rather than adding a method-suffix headword.
+    senses:
+      - {id: ko-nikl-49684-s001, source_position: 1, korean: '그림이나 사진 등에서, 멀고 가까움을 느낄 수 있도록 표현하는 방법.', english: 'A way of expressing the distance of things in relation to each other in a picture or photo, etc.'}
+  ko-nikl-51132:
+    source_record: 51132
+    lemma: 음영
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 3
+    selected_positions: [2]
+    rationale: Select subtle color-shade variation and its impression, not automatic first-position shadow or a person's supposed inner feelings.
+    senses:
+      - {id: ko-nikl-51132-s001, source_position: 1, korean: '빛이 어떤 물체에 가려져 생긴 어두운 부분.', english: 'The dark area formed when the light is hidden by an object.'}
+      - {id: ko-nikl-51132-s002, source_position: 2, korean: '색깔의 짙거나 옅은 정도에 따라 나타나는 미묘한 차이. 또는 그런 차이에 의한 느낌.', english: 'A subtle difference revealed depending on how much a color is rich or pale; an impression based on such a difference.'}
+      - {id: ko-nikl-51132-s003, source_position: 3, korean: '얼굴이나 모습 등에서 나타나는 어두운 분위기.', english: "A dark air on one's face or appearance."}
+  ko-nikl-52150:
+    source_record: 52150
+    lemma: 횡단면
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The genuine perpendicular-section qualifier is useful for interpreting a figure but contributes depth within 단면.
+    senses:
+      - {id: ko-nikl-52150-s001, source_position: 1, korean: '물체를 그 길이에 직각이 되게 가로로 잘라 생긴 면.', english: 'A section formed by cutting an object transversely at a right angle to its length.  '}
+worker_reading_assessment:
+  method: Existing citation_reading availability check only; no archive search, pronunciation proposal, or reading-file edit.
+  retained_selected_parents: [ko-nikl-21164, ko-nikl-29504, ko-nikl-37556, ko-nikl-45834, ko-nikl-46151]
+  retained_supported_official_parents: 5
+  retained_supported_official_senses: 7
+  retained_actual_reading_gap_parents: []
+  source_admission_pending_parents: 24
+  source_admission_pending_selected_senses: 27
+  status: >
+    The twenty-four requested parents are an unassessed admission queue, not
+    twenty-four proven missing-pronunciation cases. Parent must derive source
+    evidence and measure actual citation gaps after admission. No spelling
+    fallback, official entry ID, pronunciation, or audio verification is supplied.
+worker_remaining_work_at_handoff:
+  - Parent approval and recovery of the24 explicitly documented unbanded parents with all34 original positions.
+  - Parent assessment of the27 selected senses from those parents; report actual reading gaps rather than presume every request lacks official text.
+  - Parent adjudication of four source-interpretation requests and provisional lexical families before registration.
+  - Qualified Korean-teacher, lexical, and appropriate domain review; no full generation or learner outcome is claimed.
+validation:
+  status: passed bounded source, schema, identity, correction, and preservation checks
+  method: >
+    Python312 -B with the existing source extractor, sense index, lexical
+    membership validator, compact-label validator, source-correction validator,
+    and citation_reading function. The proposed registry and combined
+    manifest/cognition/representation identity map existed only in memory.
+    No test file, shared input, source artifact, reading artifact, manifest,
+    or generated curriculum view was written.
+  checks:
+    - Pinned CSV checksum and53172 original rows verified.
+    - All24 support requests match complete original POS, band, category, definition ordinals, Korean strings, and untrimmed English strings.
+    - All existing source-parent objects remain identical in the projected source admission.
+    - All34 authored labels have the exact placement schema, valid existing topics/levels, and at most64 characters.
+    - Full protected manifest plus cognition143 and orientation12 composes with the26 fragments without duplicate senses, changed canonical lemmas, or category conflicts.
+    - Exactly19 new free families,7 existing-family senses, and8 additional senses within new families; no bound/function additions or branch-only promotions.
+    - All four selected correction proposals pass the existing correction validator against original strings and authored labels.
+    - All five retained selected parents covering seven senses have existing official citation text; no pronunciation was authored.
+    - Thirteen checked source, reading, manifest, correction, cognition, and orientation files remained byte-identical during validation.
+  publication_limit: >
+    Structural validity and preserved source identity do not supply readings
+    for the admission queue, certify lexical boundaries, or establish
+    linguistic, domain, pedagogical, audio, or learner-mastery review.
+usage_and_assessment_limits: >
+  A label is not a statement that a material is safe, a component is compatible,
+  or a building is accessible or structurally sound. Content amount does not
+  guarantee allergy safety or nutritional suitability; weight is not silently
+  converted from volume. Elasticity, impact, and durability are not certified
+  mechanical ratings. A visual model is not automatically a faithful copy or
+  valid proof, and visible exterior quality does not establish internal quality.
+  Image-depth vocabulary does not authorize inference about real distance,
+  a person's emotional state, or the truth of a representation. No glyph,
+  font, stroke-order, handwriting, audio, speech-assessment, automatic mastery,
+  exam-readiness, or professional-competence asset is created.
+parent_integration:
+  source_admission: >
+    All24 requests were admitted alongside the106 cognition requests,
+    producing the exact512 plus130 union of642 retained support parents.
+    Every request's complete bilingual senses and metadata matched the real
+    source extractor; no old parent changed or comparison-only lead was added.
+  selected_senses: 34
+  new_provisional_free_families: 19
+  depth_senses: 15
+  correction_requests_integrated: 4
+  reading_assessment:
+    selected_parents: 29
+    exact_supported_parents: 28
+    explicit_crosswalks: 1
+    new_authored_readings: 0
+    unresolved_selected_readings: 0
+    ko-nikl-17921:
+      official_entry_id: '47614'
+      pronunciation: 도식
+      reason: The first diagram definition contracts 위하여 to 위해; the second pre-established-formula definition is unchanged.
+  validation: >
+    Combined with cognition143, all128 views were generated and93 targeted
+    real-data course, tourist and source tests passed. Pinned-source derivation
+    and original11028 vocabulary,216 grammar,432 example references were
+    preserved. All prior official entries and authored decisions are unchanged.
+  resulting_core: {selected_senses: 7027, provisional_free_families: 4497, modules: 726}
+  limitations: >
+    This is an intermediate useful-content expansion, not a completion
+    declaration or a late-level/module quota. Generated coverage records
+    the remaining1303 gap to the lower free-lemma planning guide. Four
+    word-specific pronunciation holds and qualified linguistic/domain
+    review remain outside the scope of structural correctness.

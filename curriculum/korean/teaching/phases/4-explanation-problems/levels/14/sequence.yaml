@@ -39,7 +39,6 @@ units:
   - {id: ko-nikl-30254-s001, ch: 관계자, pr: 관계자 / 관게자, ds: a person concerned with a particular matter}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34016-s002, ch: 끊기다, pr: 끈키다, ds: for a relationship to be cut off}
   - {id: ko-nikl-34018-s002, ch: 끊어지다, pr: 끄너지다, ds: for a relationship to come to an end}
   - {id: ko-nikl-34614-s001, ch: 남다르다, pr: 남다르다, ds: to stand out as different from other people}
   - {id: ko-nikl-07440-s001, ch: 비겁하다, pr: 비ː거파다, ds: to be cowardly and dishonorable in conduct}
@@ -47,6 +46,7 @@ units:
   - {id: ko-nikl-29192-s003, ch: 고약하다, pr: 고ː야카다, ds: to be nasty or rough in character or conduct}
   - {id: ko-nikl-37821-s001, ch: 못되다, pr: 몯ː뙤다 / 몯ː뛔다, ds: to be morally bad in character or behavior}
   - {id: ko-nikl-50140-s001, ch: 유난스럽다, pr: 유ː난스럽따, ds: 'to be very unusual in condition, character, or conduct'}
+  - {id: ko-nikl-04623-s001, ch: 알아채다, pr: 아라채다, ds: to infer a situation's mood in advance}
   review_grammar:
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -119,6 +119,9 @@ units:
   - {id: ko-nikl-07936-s005, ch: 빼다, pr: 빼ː다, ds: to vacate a rented residence}
   - {id: ko-nikl-19203-s002, ch: 들뜨다, pr: 들뜨다, ds: for wallpaper or a thin covering to lift away or peel}
   - {id: ko-nikl-19927-s002, ch: 뜨다, pr: 뜨다, ds: 'to fail to sit flush, leaving a gap'}
+  - {id: ko-nikl-00007-s001, ch: 설계도, pr: 설계도 / 설게도, ds: a drawing of a construction or machinery design}
+  - {id: ko-nikl-17861-s001, ch: 도면, pr: 도면, ds: a drawing showing construction or machinery structure or plans}
+  - {id: ko-nikl-31212-s001, ch: 구획, pr: 구획 / 구훽, ds: dividing land or space into bounded areas; such an area}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-35117-s001, ch: 냉방, pr: 냉ː방, ds: mechanical cooling of an indoor space}
@@ -294,13 +297,13 @@ units:
   - {id: ko-nikl-33466-s001, ch: 깜빡이, pr: 깜빠기, ds: a vehicle's turn signal or indicator}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-14547-s001, ch: 정상, pr: 정상, ds: the summit or highest point of a mountain}
   - {id: ko-nikl-42555-s006, ch: 지나가다, pr: 지나가다, ds: to go past something}
   - {id: ko-nikl-18830-s001, ch: 둘러보다, pr: 둘러보다, ds: to look around and inspect one's surroundings}
   - {id: ko-nikl-42801-s001, ch: 지점, pr: 지점, ds: a particular point or place within an area}
   - {id: ko-nikl-27592-s002, ch: 건널목, pr: 건ː널목, ds: 'an established crossing over a river, road, or stream'}
   - {id: ko-nikl-25158-s001, ch: 헤매다, pr: 헤매다, ds: to wander from place to place}
   - {id: ko-nikl-34256-s004, ch: 나서다, pr: 나서다, ds: to leave a place and set out for somewhere}
+  - {id: ko-nikl-21332-s001, ch: 탐험하다, pr: 탐험하다, ds: to explore a place while enduring danger}
   - {id: ko-nikl-27398-s001, ch: 거리, pr: 거ː리, ds: distance between places or objects}
   review_grammar:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
@@ -519,6 +522,8 @@ units:
   - {id: ko-nikl-15402-s001, ch: 누전, pr: 누ː전, ds: electrical leakage from wiring}
   - {id: ko-nikl-00985-s001, ch: 소화전, pr: 소화전, ds: a fire hydrant connected to the water supply}
   - {id: ko-nikl-28393-s001, ch: 경보기, pr: 경ː보기, ds: a device warning of danger or accidents}
+  - {id: ko-nikl-25192-s002, ch: 헷갈리다, pr: 헫깔리다, ds: to lose direction as different things get mixed up}
+  - {id: ko-nikl-44267-s001, ch: 찾아내다, pr: 차자내다, ds: to locate a hard-to-find person or object}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-16125-s002, ch: 다루다, pr: 다루다, ds: to trade in a particular item}
@@ -533,6 +538,25 @@ units:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
   - {id: ko-topik2-g036, ch: V/A-지 않다, ds: negate a predicate with a final auxiliary}
+- id: level-14-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning approach and request clarification.
+  vocabulary:
+  - {id: ko-nikl-02150-s001, ch: 숙지하다, pr: 숙찌하다, ds: to learn thoroughly and know well}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-47488-s001, ch: 연수, pr: 연ː수, ds: training or study to acquire knowledge or skills}
+  - {id: ko-nikl-26843-s001, ch: 강좌, pr: 강ː좌, ds: a fixed-duration course outside regular schooling}
+  - {id: ko-nikl-12982-s001, ch: 장학금, pr: 장ː학끔, ds: a scholarship for high-achieving students in financial need}
+  - {id: ko-nikl-07411-s016, ch: 붙다, pr: 붇따, ds: for skill or ability to develop or increase}
+  - {id: ko-nikl-37514-s002, ch: 모자라다, pr: 모ː자라다, ds: 'to fall short in ability, strength, or knowledge'}
+  - {id: ko-nikl-05080-s005, ch: 약하다, pr: 야카다, ds: to be weak in a skill or field of knowledge}
+  - {id: ko-nikl-13560-s001, ch: 적성, pr: 적썽, ds: aptitude; suitability of character or ability for a task}
+  - {id: ko-nikl-36994-s003, ch: 멀다, pr: 멀ː다, ds: to be far below a particular level}
+  review_grammar:
+  - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
+  - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
+  - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
 - id: level-14-work-01
   title: Work and cooperation - 1
   outcome: Coordinate responsibilities and report progress for a specified relationship.
@@ -607,7 +631,6 @@ units:
   - {id: ko-nikl-08894-s004, ch: 살짝, pr: 살짝, ds: 'quietly, so that others do not know'}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-39401-s007, ch: 바로, pr: 바로, ds: precisely that; none other than}
   - {id: ko-nikl-48481-s004, ch: 옮기다, pr: 옴기다, ds: to turn one's attention or gaze to another target}
   - {id: ko-nikl-43856-s003, ch: 차다, pr: 차다, ds: to click one's tongue}
   - {id: ko-nikl-18304-s001, ch: 동감, pr: 동감, ds: sharing another person's opinion}
@@ -615,6 +638,7 @@ units:
   - {id: ko-nikl-48485-s005, ch: 옳다, pr: 올타, ds: right; expressing agreement}
   - {id: ko-nikl-34108-s003, ch: 끼우다, pr: 끼우다, ds: to include something along with other things}
   - {id: ko-nikl-07861-s011, ch: 빠지다, pr: 빠ː지다, ds: to turn off a route or digress from a subject}
+  - {id: ko-nikl-18305-s001, ch: 동감하다, pr: 동감하다, ds: to agree with an opinion}
   review_grammar:
   - {id: ko-topik3-g003, ch: V/A-냐고 하다, ds: report the content of a question}
   - {id: ko-topik3-g004, ch: V-(으)라고 하다, ds: report an instruction and identify its actor}
@@ -666,14 +690,14 @@ units:
   - {id: ko-nikl-46636-s001, ch: 억지로, pr: 억찌로, ds: 'forcibly and unreasonably, against the circumstances'}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-18910-s001, ch: 뒤끝, pr: 뒤ː끝, ds: the final part or end of an undertaking}
-  - {id: ko-nikl-10633-s002, ch: 이루다, pr: 이루다, ds: to achieve a desired result}
   - {id: ko-nikl-10634-s002, ch: 이루어지다, pr: 이루어지다, ds: to come true; to turn out as desired}
   - {id: ko-nikl-02442-s002, ch: 스스로, pr: 스스로, ds: 'of one''s own accord, without being told'}
   - {id: ko-nikl-25715-s002, ch: 가만, pr: 가만, ds: without taking action or making an effort}
   - {id: ko-nikl-25715-s003, ch: 가만, pr: 가만, ds: calmly and attentively}
   - {id: ko-nikl-17306-s002, ch: 대충, pr: 대충, ds: roughly; to an approximately suitable degree}
   - {id: ko-nikl-25721-s004, ch: 가만히, pr: 가만히, ds: 'quietly, without others noticing'}
+  - {id: ko-nikl-12532-s001, ch: 작정하다, pr: 작쩡하다, ds: to decide how one intends to do something}
+  - {id: ko-nikl-41854-s001, ch: 주저하다, pr: 주저하다, ds: to hesitate instead of readily deciding and acting}
   review_grammar:
   - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
   - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
@@ -694,14 +718,14 @@ units:
   - {id: ko-nikl-03596-s001, ch: 심각하다, pr: 심ː가카다, ds: 'to be serious, severe, or urgent'}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-14840-s004, ch: 제대로, pr: 제대로, ds: just as in the original state}
-  - {id: ko-nikl-27709-s002, ch: 걸레, pr: 걸레, ds: an old and dirty item}
-  - {id: ko-nikl-46876-s001, ch: 엉뚱하다, pr: 엉뚱하다, ds: to be far from what common sense would suggest}
   - {id: ko-nikl-25574-s004, ch: 가깝다, pr: 가깝따, ds: to be nearly alike in quality or state}
   - {id: ko-nikl-02551-s003, ch: 슬쩍, pr: 슬쩍, ds: slightly; not to a severe degree}
   - {id: ko-nikl-07500-s002, ch: 비례, pr: 비ː례, ds: proportions among the parts of a whole}
   - {id: ko-nikl-19119-s003, ch: 드물다, pr: 드물다, ds: to be rare; uncommon}
   - {id: ko-nikl-05839-s001, ch: 보잘것없다, pr: 보잘꺼덥따, ds: to be unimpressive or of little worth}
+  - {id: ko-nikl-25475-s001, ch: 형체, pr: 형체, ds: an object's shape or underlying physical body}
+  - {id: ko-nikl-29504-s001, ch: 골격, pr: 골격, ds: the supporting frame of an animal or object}
+  - {id: ko-nikl-34843-s001, ch: 내구성, pr: 내ː구썽, ds: durability; enduring for a long time without changing}
   review_grammar:
   - {id: ko-topik2-g030, ch: A-아/어지다, ds: describe becoming different in a quality}
   - {id: ko-topik3-g029, ch: V/A-(으)ㄴ/는 편이다, ds: offer a relative characterization or tendency}
@@ -752,16 +776,18 @@ units:
   - {id: ko-nikl-19745-s002, ch: 떨어지다, pr: 떠러지다, ds: to fall into a particular state or situation}
   - {id: ko-nikl-03424-s002, ch: 실마리, pr: 실ː마리, ds: a starting clue for solving a problem or case}
   - {id: ko-nikl-28332-s001, ch: 경계심, pr: 경ː계심 / 경ː게심, ds: wariness; suspicion or caution against danger}
+  - {id: ko-nikl-22339-s001, ch: 파악하다, pr: 파아카다, ds: to grasp the content or situation clearly}
+  - {id: ko-nikl-31622-s001, ch: 궁리하다, pr: 궁니하다, ds: to think hard about how to solve a problem}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-46398-s001, ch: 어리석다, pr: 어리석따, ds: to be foolish or unwise in thought or action}
-  - {id: ko-nikl-39394-s001, ch: 바람직하다, pr: 바람지카다, ds: to be desirable; worthy of being considered good}
-  - {id: ko-nikl-16817-s001, ch: 당연하다, pr: 당연하다, ds: to be only natural; to be expected}
-  - {id: ko-nikl-34424-s001, ch: 난감하다, pr: 난ː감하다, ds: to find it hard to make a firm decision}
-  - {id: ko-nikl-08411-s001, ch: 사소하다, pr: 사소하다, ds: to be too small or minor to be important}
   - {id: ko-nikl-36014-s001, ch: 막연히, pr: 마견히, ds: vaguely; indistinctly}
   - {id: ko-nikl-13623-s001, ch: 적합하다, pr: 저카파다, ds: to be suitable by fitting the task or conditions}
   - {id: ko-nikl-31621-s001, ch: 궁리, pr: 궁니, ds: 'deep thought about a solution, or the resulting idea'}
+  - {id: ko-nikl-51432-s001, ch: 혼동하다, pr: 혼ː동하다, ds: to confuse different things with one another}
+  - {id: ko-nikl-28948-s001, ch: 고려하다, pr: 고려하다, ds: to weigh circumstances and conditions carefully}
+  - {id: ko-nikl-01558-s001, ch: 수긍하다, pr: 수긍하다, ds: to accept something as right}
+  - {id: ko-nikl-25599-s002, ch: 가늠하다, pr: 가늠하다, ds: to roughly estimate a situation or condition}
+  - {id: ko-nikl-43345-s001, ch: 짐작하다, pr: 짐자카다, ds: to roughly judge a situation or circumstances}
   review_grammar:
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
@@ -808,6 +834,8 @@ units:
   - {id: ko-nikl-01683-s002, ch: 수명, pr: 수명, ds: usable life of an object or facility}
   - {id: ko-nikl-00180-s001, ch: 성능, pr: 성ː능, ds: the performance or functions of a machine}
   - {id: ko-nikl-37067-s001, ch: 메모리, pr: 메모리, ds: the maximum information capacity of a memory device}
+  - {id: ko-nikl-16384-s001, ch: 단면, pr: 단ː면, ds: a surface exposed by cutting an object}
+  - {id: ko-nikl-45834-s001, ch: 충격, pr: 충격, ds: a force suddenly applied to an object}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-14528-s002, ch: 정비, pr: 정ː비, ds: maintenance and repair of machinery or equipment}
@@ -849,14 +877,14 @@ units:
   - {id: ko-nikl-11893-s001, ch: 입장, pr: 입짱, ds: admission; entering an event or performance venue}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-12447-s001, ch: 작곡가, pr: 작꼭까, ds: a composer}
-  - {id: ko-nikl-29407-s002, ch: 곡, pr: 곡, ds: a tune or melody}
-  - {id: ko-nikl-32091-s002, ch: 그림책, pr: 그ː림책, ds: a book collecting pictures}
-  - {id: ko-nikl-37097-s001, ch: 멜로디, pr: 멜로디, ds: a melody; a rhythmic sequence of notes}
   - {id: ko-nikl-40658-s001, ch: 배역, pr: 배ː역, ds: casting an actor; an assigned dramatic part}
   - {id: ko-nikl-48332-s001, ch: 오케스트라, pr: 오케스트라, ds: an orchestra}
   - {id: ko-nikl-17050-s003, ch: 대목, pr: 대목, ds: a passage in a story or song}
   - {id: ko-nikl-22406-s003, ch: 판, pr: 판, ds: a sound record or disc}
+  - {id: ko-nikl-43251-s002, ch: 질감, pr: 질감, ds: texture conveyed by painting materials and tools}
+  - {id: ko-nikl-49682-s001, ch: 원근, pr: 원ː근, ds: nearness and distance}
+  - {id: ko-nikl-49684-s001, ch: 원근법, pr: 원ːː근뻡, ds: perspective; showing nearness and distance in images}
+  - {id: ko-nikl-51132-s002, ch: 음영, pr: 으명, ds: subtle differences or impressions from shades of color}
   review_grammar: []
 - id: level-14-quantities-01
   title: Numbers and counters - 1
@@ -885,14 +913,14 @@ units:
   - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}
   - {id: ko-topik4-g022, ch: V-(으)려다가, ds: change course from an intended action}
   review_vocabulary:
-  - {id: ko-nikl-01750-s001, ch: 수상하다, pr: 수상하다, ds: to be unusual and suspicious}
-  - {id: ko-nikl-14180-s002, ch: 절실하다, pr: 절씰하다, ds: to be urgently needed}
   - {id: ko-nikl-02404-s001, ch: 쉽사리, pr: 쉽ː싸리, ds: 'very easily, without trouble or difficulty'}
   - {id: ko-nikl-01586-s002, ch: 수도, pr: 수도, ds: a drainage system for rainwater or wastewater}
   - {id: ko-nikl-14528-s003, ch: 정비, pr: 정ː비, ds: putting roads or facilities into working order}
   - {id: ko-nikl-15402-s001, ch: 누전, pr: 누ː전, ds: electrical leakage from wiring}
   - {id: ko-nikl-00985-s001, ch: 소화전, pr: 소화전, ds: a fire hydrant connected to the water supply}
   - {id: ko-nikl-28393-s001, ch: 경보기, pr: 경ː보기, ds: a device warning of danger or accidents}
+  - {id: ko-nikl-25192-s002, ch: 헷갈리다, pr: 헫깔리다, ds: to lose direction as different things get mixed up}
+  - {id: ko-nikl-44267-s001, ch: 찾아내다, pr: 차자내다, ds: to locate a hard-to-find person or object}
   review_grammar:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -906,14 +934,14 @@ units:
   - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
   - {id: ko-topik6-g022, ch: V/A-다가는, ds: warn of an unwanted result if a course continues}
   review_vocabulary:
-  - {id: ko-nikl-01750-s001, ch: 수상하다, pr: 수상하다, ds: to be unusual and suspicious}
-  - {id: ko-nikl-14180-s002, ch: 절실하다, pr: 절씰하다, ds: to be urgently needed}
   - {id: ko-nikl-02404-s001, ch: 쉽사리, pr: 쉽ː싸리, ds: 'very easily, without trouble or difficulty'}
   - {id: ko-nikl-01586-s002, ch: 수도, pr: 수도, ds: a drainage system for rainwater or wastewater}
   - {id: ko-nikl-14528-s003, ch: 정비, pr: 정ː비, ds: putting roads or facilities into working order}
   - {id: ko-nikl-15402-s001, ch: 누전, pr: 누ː전, ds: electrical leakage from wiring}
   - {id: ko-nikl-00985-s001, ch: 소화전, pr: 소화전, ds: a fire hydrant connected to the water supply}
   - {id: ko-nikl-28393-s001, ch: 경보기, pr: 경ː보기, ds: a device warning of danger or accidents}
+  - {id: ko-nikl-25192-s002, ch: 헷갈리다, pr: 헫깔리다, ds: to lose direction as different things get mixed up}
+  - {id: ko-nikl-44267-s001, ch: 찾아내다, pr: 차자내다, ds: to locate a hard-to-find person or object}
   review_grammar:
   - {id: ko-topik3-g034, ch: N에 따라, ds: describe variation or compliance with a standard}
   - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}

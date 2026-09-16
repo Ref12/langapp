@@ -53,7 +53,6 @@ units:
   - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-48159-s002, ch: 오디오, pr: 오디오, ds: equipment for listening to music or other sound}
   - {id: ko-nikl-01589-s001, ch: 수도관, pr: 수도관, ds: a pipe carrying water from the water supply}
   - {id: ko-nikl-13854-s001, ch: 전선, pr: 전ː선, ds: an electrical wire}
   - {id: ko-nikl-30324-s001, ch: 관리실, pr: 괄리실, ds: an office responsible for maintaining a building}
@@ -61,6 +60,7 @@ units:
   - {id: ko-nikl-43841-s001, ch: 차고, pr: 차고, ds: a garage or depot for keeping vehicles}
   - {id: ko-nikl-44258-s001, ch: 창틀, pr: 창틀, ds: a frame supporting a window}
   - {id: ko-nikl-45770-s001, ch: 출입문, pr: 추림문, ds: a door used for entering and leaving}
+  - {id: ko-nikl-16508-s001, ch: 단층, pr: 단층, ds: a building having only one storey}
   review_grammar:
   - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
   - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
@@ -100,6 +100,8 @@ units:
   - {id: ko-nikl-11794-s001, ch: 입다, pr: 입따, ds: to put on or wear clothes}
   - {id: ko-nikl-34942-s001, ch: 내복, pr: 내ː복, ds: long underwear for warmth in winter}
   - {id: ko-nikl-02548-s001, ch: 슬리퍼, pr: 슬리퍼, ds: backless slippers covering the front of the foot}
+  - {id: ko-nikl-43251-s001, ch: 질감, pr: 질감, ds: a distinctive feel or quality of a material}
+  - {id: ko-nikl-45191-s001, ch: 촉감, pr: 촉깜, ds: a sensation caused by something touching the skin}
   review_grammar: []
 - id: level-06-clothing-02
   title: Clothing and appearance - 2
@@ -292,6 +294,7 @@ units:
   - {id: ko-nikl-23305-s001, ch: 푸짐하다, pr: 푸짐하다, ds: to be satisfyingly plentiful}
   - {id: ko-nikl-29192-s001, ch: 고약하다, pr: 고ː야카다, ds: for a taste or smell to be disgusting or awful}
   - {id: ko-nikl-27103-s002, ch: 개운하다, pr: 개운하다, ds: 'to taste clean and refreshing, not greasy'}
+  - {id: ko-nikl-24375-s001, ch: 함량, pr: 함냥, ds: the amount of a component contained in a substance}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-05111-s003, ch: 양, pr: 양, ds: the amount of food someone can eat}
@@ -638,6 +641,8 @@ units:
   - {id: ko-nikl-28411-s001, ch: 경사로, pr: 경사로, ds: an access ramp for patients or disabled people}
   - {id: ko-nikl-28636-s001, ch: 계량기, pr: 계ː량기 / 게ː량기, ds: 'a meter measuring gas, water or electricity use'}
   - {id: ko-nikl-45878-s001, ch: 충전기, pr: 충전기, ds: a charger supplying electricity to an energy store}
+  - {id: ko-nikl-10162-s001, ch: 선택하다, pr: 선ː태카다, ds: to choose what one needs from several options}
+  - {id: ko-nikl-29519-s001, ch: 골라내다, pr: 골ː라내다, ds: to single something out from among many}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-02845-s001, ch: 시설, pr: 시ː설, ds: facilities or their construction for a purpose}
@@ -887,6 +892,7 @@ units:
   - {id: ko-nikl-45418-s001, ch: 최저, pr: 최ː저 / 췌ː저, ds: the lowest level or degree}
   - {id: ko-nikl-39171-s001, ch: 밀리리터, pr: 밀리리터, ds: millilitre; a volume unit}
   - {id: ko-nikl-39757-s001, ch: 반지름, pr: 반ː지름, ds: a radius of a circle or sphere}
+  - {id: ko-nikl-42155-s001, ch: 중량, pr: 중ː냥, ds: weight; how heavy an object is}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-02436-s001, ch: 스물, pr: 스물, ds: twenty (native Korean numeral)}
@@ -943,14 +949,14 @@ units:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
   review_vocabulary:
-  - {id: ko-nikl-49414-s001, ch: 우체통, pr: 우체통, ds: a postbox for depositing letters or other mail}
-  - {id: ko-nikl-52463-s001, ch: 휴게실, pr: 휴게실, ds: a lounge or room for taking a short rest}
   - {id: ko-nikl-10877-s001, ch: 이용자, pr: 이ː용자, ds: a user of an object or facility or system}
   - {id: ko-nikl-22617-s001, ch: 팩스, pr: 팩쓰, ds: fax communication over telephone lines or a fax machine}
   - {id: ko-nikl-16942-s001, ch: 대기실, pr: 대ː기실, ds: a room for waiting for one's time or turn}
   - {id: ko-nikl-28411-s001, ch: 경사로, pr: 경사로, ds: an access ramp for patients or disabled people}
   - {id: ko-nikl-28636-s001, ch: 계량기, pr: 계ː량기 / 게ː량기, ds: 'a meter measuring gas, water or electricity use'}
   - {id: ko-nikl-45878-s001, ch: 충전기, pr: 충전기, ds: a charger supplying electricity to an energy store}
+  - {id: ko-nikl-10162-s001, ch: 선택하다, pr: 선ː태카다, ds: to choose what one needs from several options}
+  - {id: ko-nikl-29519-s001, ch: 골라내다, pr: 골ː라내다, ds: to single something out from among many}
   review_grammar:
   - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
 - id: level-06-services-practice-02
@@ -960,14 +966,14 @@ units:
   grammar:
   - {id: ko-topik2-g036, ch: V/A-지 않다, ds: negate a predicate with a final auxiliary}
   review_vocabulary:
-  - {id: ko-nikl-49414-s001, ch: 우체통, pr: 우체통, ds: a postbox for depositing letters or other mail}
-  - {id: ko-nikl-52463-s001, ch: 휴게실, pr: 휴게실, ds: a lounge or room for taking a short rest}
   - {id: ko-nikl-10877-s001, ch: 이용자, pr: 이ː용자, ds: a user of an object or facility or system}
   - {id: ko-nikl-22617-s001, ch: 팩스, pr: 팩쓰, ds: fax communication over telephone lines or a fax machine}
   - {id: ko-nikl-16942-s001, ch: 대기실, pr: 대ː기실, ds: a room for waiting for one's time or turn}
   - {id: ko-nikl-28411-s001, ch: 경사로, pr: 경사로, ds: an access ramp for patients or disabled people}
   - {id: ko-nikl-28636-s001, ch: 계량기, pr: 계ː량기 / 게ː량기, ds: 'a meter measuring gas, water or electricity use'}
   - {id: ko-nikl-45878-s001, ch: 충전기, pr: 충전기, ds: a charger supplying electricity to an energy store}
+  - {id: ko-nikl-10162-s001, ch: 선택하다, pr: 선ː태카다, ds: to choose what one needs from several options}
+  - {id: ko-nikl-29519-s001, ch: 골라내다, pr: 골ː라내다, ds: to single something out from among many}
   review_grammar:
   - {id: ko-topik2-g004, ch: V-아/어 보다, ds: try an action or describe trying it before}
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
@@ -979,7 +985,6 @@ units:
   grammar:
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
   review_vocabulary:
-  - {id: ko-nikl-44341-s001, ch: 책, pr: 책, ds: a book}
   - {id: ko-nikl-11667-s001, ch: 읽다, pr: 익따, ds: to read aloud}
   - {id: ko-nikl-16442-s001, ch: 단어, pr: 다너, ds: a word}
   - {id: ko-nikl-29792-s001, ch: 공부하다, pr: 공부하다, ds: study; learn a subject or skill to gain knowledge}
@@ -987,6 +992,7 @@ units:
   - {id: ko-nikl-11667-s002, ch: 읽다, pr: 익따, ds: to read and understand written words}
   - {id: ko-nikl-29789-s001, ch: 공부, pr: 공부, ds: study; learning knowledge or a skill}
   - {id: ko-nikl-47492-s001, ch: 연습, pr: 연ː습, ds: practice; repeated training}
+  - {id: ko-nikl-47500-s001, ch: 연습하다, pr: 연ː스파다, ds: to practice repeatedly to become good at something}
   review_grammar:
   - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
 - id: level-06-health-practice-02

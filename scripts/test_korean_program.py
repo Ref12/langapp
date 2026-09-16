@@ -770,6 +770,8 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "evaluation-notes.yaml",
             "infrastructure-notes.yaml",
             "infrastructure-support-notes.yaml",
+            "cognition-notes.yaml",
+            "representation-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1847,6 +1849,104 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(len(parents["ko-nikl-18298"]["senses"]), 3)
         self.assertNotIn("(N)", parents["ko-nikl-06746"]["senses"][0]["korean"])
         self.assertEqual(parents["ko-nikl-34683"]["senses"][1]["korean"], "북한 지역에 상대하여, 남한 지역.")
+
+    def test_cognition_voice_and_variants_deepen_existing_event_families(self):
+        identities = self.references.lexical_identity
+        for members in (
+            ("ko-nikl-32959-s001", "ko-nikl-32967-s001", "ko-nikl-32961-s001"),
+            ("ko-nikl-28218-s001", "ko-nikl-28227-s001", "ko-nikl-28221-s001"),
+            ("ko-nikl-25192-s001", "ko-nikl-25192-s002", "ko-nikl-25116-s001"),
+            ("ko-nikl-33458-s003", "ko-nikl-33468-s003"),
+            ("ko-nikl-35907-s001", "ko-nikl-36423-s001"),
+            ("ko-nikl-10843-s001", "ko-nikl-10843-s002", "ko-nikl-46272-s002"),
+        ):
+            with self.subTest(members=members):
+                self.assertEqual(len({identities[item] for item in members}), 1)
+        words = self.references.vocabulary
+        self.assertIn("be remembered", words["ko-nikl-32961-s001"]["ds"])
+        self.assertIn("be settled", words["ko-nikl-28221-s001"]["ds"])
+        self.assertIn("slang", words["ko-nikl-33364-s003"]["ds"])
+        self.assertEqual(identities["ko-nikl-46162-s003"], identities["ko-nikl-46161-s002"])
+
+    def test_cognition_humble_speech_and_comprehension_are_not_impoliteness_or_agreement(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        honorific, humble, verb = "ko-nikl-36383-s001", "ko-nikl-36383-s002", "ko-nikl-36384-s001"
+        self.assertEqual(words[honorific]["ch"], words[humble]["ch"])
+        self.assertEqual(identities[honorific], "ko-lex-36211")
+        self.assertEqual(identities[honorific], identities[humble])
+        self.assertEqual(identities[verb], "ko-lex-36412")
+        self.assertIn("honorific", words[honorific]["ds"])
+        self.assertIn("humble", words[humble]["ds"])
+        self.assertIn("impolite form", self.references.provenance[humble]["source_english"])
+        self.assertEqual(words[humble]["pr"], "말ː씀")
+        self.assertIn("understanding", words["ko-nikl-09327-s002"]["ds"])
+        self.assertNotIn("agree", words["ko-nikl-21102-s001"]["ds"])
+        self.assertIn("agree", self.references.provenance["ko-nikl-21102-s001"]["source_english"])
+
+    def test_cognition_inference_and_planning_preserve_nonliteral_source_positions(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for item, fragment in (
+            ("ko-nikl-18681-s002", "revisit"), ("ko-nikl-29603-s002", "mull over"),
+            ("ko-nikl-25599-s001", "standard"), ("ko-nikl-25599-s002", "roughly"),
+            ("ko-nikl-31011-s002", "artwork"), ("ko-nikl-47463-s001", "bring related"),
+        ):
+            self.assertIn(fragment, words[item]["ds"])
+        self.assertEqual(identities["ko-nikl-31011-s001"], "ko-lex-31007")
+        self.assertNotEqual(identities["ko-nikl-31011-s001"], identities["ko-nikl-31006-s001"])
+        self.assertEqual(identities["ko-nikl-47463-s001"], "ko-lex-47460")
+        self.assertEqual(identities["ko-nikl-25599-s001"], identities["ko-nikl-25599-s002"])
+        for parent, official in (("07472", "60910"), ("40597", "58817"), ("49154", "26638")):
+            self.assertEqual(self.references.provenance[f"ko-nikl-{parent}-s001"]["reading"]["official_entry_id"],
+                             official)
+
+    def test_representation_cut_surfaces_and_texture_keep_their_actual_scope(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-16384-s001"], identities["ko-nikl-52150-s001"])
+        self.assertNotIn("lengthwise", words["ko-nikl-16384-s001"]["ds"])
+        self.assertIn("lengthwise", self.references.provenance["ko-nikl-16384-s001"]["source_english"])
+        self.assertIn("right angles", words["ko-nikl-52150-s001"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-43251-s001"], identities["ko-nikl-45191-s001"])
+        self.assertIn("skin", words["ko-nikl-45191-s001"]["ds"])
+        self.assertNotIn("touch", words["ko-nikl-43251-s001"]["ds"])
+        self.assertIn("painting", words["ko-nikl-43251-s002"]["ds"])
+        self.assertIn("emotional shock", words["ko-nikl-45834-s002"]["ds"])
+        self.assertIn("force", words["ko-nikl-45834-s001"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-21181-s001"], identities["ko-nikl-21164-s001"])
+
+    def test_representation_named_subtypes_and_methods_do_not_pad_free_breadth(self):
+        identities = self.references.lexical_identity
+        for members in (
+            ("ko-nikl-00006-s002", "ko-nikl-00007-s001"),
+            ("ko-nikl-17921-s001", "ko-nikl-17924-s001"),
+            ("ko-nikl-37903-s001", "ko-nikl-42155-s001"),
+            ("ko-nikl-49682-s001", "ko-nikl-49684-s001"),
+            ("ko-nikl-31136-s002", "ko-nikl-31140-s001"),
+            ("ko-nikl-45987-s002", "ko-nikl-16508-s001"),
+        ):
+            self.assertEqual(len({identities[item] for item in members}), 1)
+        self.assertNotEqual(identities["ko-nikl-09862-s003"], identities["ko-nikl-32345-s001"])
+        self.assertNotEqual(identities["ko-nikl-37556-s003"], identities["ko-nikl-37406-s001"])
+        self.assertEqual(self.references.provenance["ko-nikl-17921-s001"]["reading"]["official_entry_id"], "47614")
+
+    def test_cognition_and_representation_support_retains_every_requested_source_position(self):
+        authoring = self.root / "authoring" / "teaching"
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        for name in ("cognition", "representation"):
+            notes = load_yaml(authoring / f"{name}-notes.yaml")
+            rows = load_yaml(authoring / f"{name}-vocabulary.yaml")
+            for parent, request in notes["support_parent_requests"].items():
+                with self.subTest(cohort=name, parent=parent):
+                    record = parents[parent]
+                    self.assertEqual(record["source_band"], "unbanded")
+                    self.assertEqual(record["target"], request["lemma"])
+                    self.assertEqual(record["source_part_of_speech"], request["source_part_of_speech"])
+                    self.assertEqual(len(record["senses"]), request["complete_source_senses"])
+                    actual = {int(row["id"].rsplit("-s", 1)[1]) for row in rows if row["id"].startswith(parent)}
+                    self.assertEqual(actual, set(request["selected_positions"]))
+                    if "senses" in request:
+                        self.assertEqual(record["senses"], request["senses"])
+            for row in rows:
+                self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

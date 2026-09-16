@@ -47,14 +47,14 @@ units:
   - {id: ko-nikl-41162-s001, ch: 조정, pr: 조정, ds: mediation to reconcile parties or reach a compromise}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-02206-s002, ch: 순수하다, pr: 순수하다, ds: to be free of selfish desires or ill intentions}
-  - {id: ko-nikl-03163-s001, ch: 신뢰, pr: 실ː뢰 / 실ː뤠, ds: firm trust and reliance}
   - {id: ko-nikl-39641-s001, ch: 반목, pr: 반ː목, ds: mutual envy and hostility}
   - {id: ko-nikl-23053-s001, ch: 포용성, pr: 포ː용썽, ds: an open-hearted capacity to understand or accept others}
   - {id: ko-nikl-10090-s001, ch: 선의, pr: 서ː늬 / 서ː니, ds: a kind or benevolent disposition}
   - {id: ko-nikl-18561-s001, ch: 동질감, pr: 동질감, ds: a feeling of affinity from similar conditions or qualities}
   - {id: ko-nikl-23052-s001, ch: 포용력, pr: 포ː용녁, ds: an ability to understand or accept others open-heartedly}
   - {id: ko-nikl-47389-s001, ch: 연대감, pr: 연대감, ds: a sense of solidarity around a shared goal or idea}
+  - {id: ko-nikl-34875-s002, ch: 내려다보다, pr: 내려다보다, ds: to look down on someone as inferior}
+  - {id: ko-nikl-07472-s001, ch: 비난하다, pr: 비ː난하다, ds: to speak negatively about someone's faults}
   review_grammar:
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -172,7 +172,6 @@ units:
   - {id: ko-nikl-49047-s001, ch: 요인, pr: 요인, ds: a major factor behind an event or state of affairs}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-33524-s001, ch: 깨닫다, pr: 깨닫따, ds: 'to grasp an essence, principle, or truth after deep thought'}
   - {id: ko-nikl-42503-s001, ch: 지각, pr: 지각, ds: the ability to understand the principles of things}
   - {id: ko-nikl-39368-s006, ch: 바라보다, pr: 바라보다, ds: to regard something in a particular way}
   - {id: ko-nikl-35795-s003, ch: 마땅하다, pr: 마땅하다, ds: 'to be right, reasonable, or only natural'}
@@ -180,6 +179,7 @@ units:
   - {id: ko-nikl-23953-s002, ch: 하찮다, pr: 하찬타, ds: to be of little importance}
   - {id: ko-nikl-17133-s001, ch: 대수롭다, pr: 대ː수롭따, ds: to be worth considering important or serious}
   - {id: ko-nikl-06869-s002, ch: 분별, pr: 분별, ds: sound judgment or sensible thinking}
+  - {id: ko-nikl-28208-s001, ch: 결의하다, pr: 겨릐하다 / 겨리하다, ds: to resolve firmly to do something}
   review_grammar:
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
   - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
@@ -255,6 +255,7 @@ units:
   - {id: ko-nikl-29174-s001, ch: 고심, pr: 고심, ds: painstaking thought about a difficult problem}
   - {id: ko-nikl-30246-s001, ch: 관건, pr: 관건 / 관껀, ds: the crucial factor in solving a problem}
   - {id: ko-nikl-41995-s001, ch: 준거, pr: 준ː거, ds: a basis or criterion for understanding degree or character}
+  - {id: ko-nikl-02098-s001, ch: 숙고하다, pr: 숙꼬하다, ds: to think deeply and carefully about something}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-18963-s003, ch: 뒤집다, pr: 뒤집따, ds: to reverse the order or course of events}
@@ -265,6 +266,26 @@ units:
   - {id: ko-nikl-28496-s003, ch: 경제, pr: 경제, ds: 'economizing on money, time or effort to increase benefit'}
   - {id: ko-nikl-03770-s004, ch: 싸움, pr: 싸움, ds: a struggle to obtain or achieve something}
   - {id: ko-nikl-09482-s008, ch: 생각, pr: 생각, ds: judgment distinguishing right and wrong}
+  review_grammar:
+  - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
+  - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
+  - {id: ko-topik5-g030, ch: V/A-았/었더라면, ds: imagine a different past condition and consequence}
+- id: level-23-reasoning-04
+  title: Reasons and connections - 4
+  outcome: Explain causal and conditional relations with appropriate scope.
+  vocabulary:
+  - {id: ko-nikl-03630-s001, ch: 심사숙고하다, pr: 심ː사숙꼬하다, ds: to think deeply about a matter}
+  - {id: ko-nikl-13029-s001, ch: 재고하다, pr: 재ː고하다, ds: to reconsider a matter or issue}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-03629-s001, ch: 심사숙고, pr: 심ː사숙꼬, ds: deep and careful deliberation}
+  - {id: ko-nikl-22412-s001, ch: 판가름, pr: 판가름, ds: 'deciding rightness, wrongness, or relative superiority'}
+  - {id: ko-nikl-22454-s001, ch: 판별, pr: 판별, ds: 'discrimination by judging right or wrong, good or bad'}
+  - {id: ko-nikl-28527-s002, ch: 경중, pr: 경중, ds: relative importance or unimportance}
+  - {id: ko-nikl-29174-s001, ch: 고심, pr: 고심, ds: painstaking thought about a difficult problem}
+  - {id: ko-nikl-30246-s001, ch: 관건, pr: 관건 / 관껀, ds: the crucial factor in solving a problem}
+  - {id: ko-nikl-41995-s001, ch: 준거, pr: 준ː거, ds: a basis or criterion for understanding degree or character}
+  - {id: ko-nikl-02098-s001, ch: 숙고하다, pr: 숙꼬하다, ds: to think deeply and carefully about something}
   review_grammar:
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
   - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}

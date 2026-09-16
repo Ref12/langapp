@@ -1,0 +1,536 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: all143 selected senses and official readings integrated; qualified review remains outstanding
+scope:
+  - Only cognition-vocabulary.yaml, cognition-identities.yaml, and this notes file are owned here.
+  - Protect all current manifest inputs, parent-owned qualities178, and the readable natural-support25 proposal regardless of registration.
+  - No descriptive adjectives or quality-gap recovery; parent adds two directly related source-listed speech-noun senses.
+  - Native compounds and noun-plus-hada verbs are selected only when the full verb exists in the verified pinned CSV.
+  - No automatic source-band, alphabetical, first-sense, suffix, or numerical-quota teaching assignment.
+source_verification:
+  source_revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  method: >
+    Fetch the pinned CSV into memory, verify its complete SHA-256, and inspect
+    every Korean/English position of each named form, including same-spelling
+    parents and explicitly named nominal/voice counterparts. No downloaded
+    source/cache file is written. Retain original record and definition-list
+    ordinals, not invented official NIKL numbers.
+  bilingual_policy: >
+    A requested parent must have complete, nonempty Korean and English lists
+    of equal length. Full original meanings remain unmodified even when only
+    one source position is selected; equal English does not merge positions.
+  support_policy: >
+    Requests below are explicit real source parents already inspected, not
+    permission to generate verbs from nouns. Parent owns approval, registry
+    regeneration, and reading resolution. Request metadata records the full
+    inspected sense count, not a truncated replacement for the original.
+    An unselected nominal source used to establish a canonical event family
+    is evidence, not an implicit request to add that noun to the registry.
+identity_policy:
+  status: >
+    These are provisional semantic event families, not verified true-lexeme
+    counts. Report selected senses, source parents, spellings, group fragments,
+    and net-new free candidates separately.
+  noun_hada_and_voice: >
+    Where complete Korean meanings directly correspond, conservatively reuse
+    an existing nominal/event identity or reserve one shared event family.
+    An extra hada or regular passive spelling does not itself establish new
+    free breadth. Preserve original subjects, perspective, and source members.
+  protected_fragments: >
+    Existing-key fragments include new members only, keep the exact canonical
+    lemma/category, and list only parents represented by those new members.
+  알아채다: >
+    Its complete Korean definition exactly matches protected 알아차리다's
+    second position. Extend ko-lex-04622 without counting another free lemma,
+    while keeping the attested shorter verb and its own source ID visible.
+  compatible_new_parent_nouns: >
+    Later parent manifest updates select the nouns 숙달, 심사숙고, and
+    고민 under the same explicit family keys. Treat the corresponding
+    cognition verbs as existing-family extensions, not new free breadth.
+    No protected canonical lemma, category, or member is replaced.
+  register_and_voice: >
+    Explicit honorific 말씀하다 extends 말하다. Slang auditory 알아먹다
+    extends 알아듣다, not the separate visual/recall source homograph.
+    Remembering/being remembered, deciding/being decided, confusing/being
+    confused, and forgetting/being forgotten preserve voice and participant
+    roles while sharing conservative event identities.
+  variants: >
+    Complete Korean lists match for 헷갈리다/헛갈리다,
+    마음먹다/맘먹다, and 이야기하다/얘기하다. The selected memory-lapse
+    position matches for 깜박하다/깜빡하다. Preserve each actual spelling,
+    original parent, and original position; no reading is transferred between
+    them, and matching selected meanings does not erase unselected meanings.
+  native_compounds: >
+    Actually listed compounds such as 찾아보다, 찾아내다, 물어보다,
+    알아주다, 골라내다, 새겨듣다, and 귀담아듣다 remain provisional
+    lexical candidates. Their compositional relationships need lexicographic
+    review; source-row existence is not proof of independent true-lexeme
+    status. No auxiliary construction or conjugated phrase is generated.
+  categories: >
+    The worker's126 selected items are complete action verbs with a lexical
+    content event reading. Parent adds two genuine noun senses of 말씀,
+    sharing the existing speech-content family. No new bound-form or
+    function-item identity is declared.
+    Honorific/slang forms and regular voice counterparts are not added as
+    separate free categories just to increase the count.
+  function_identity_ids: []
+  bound_form_identity_ids: []
+curation_rationales:
+  observation: >
+    Distinguish careful observation, natural-phenomenon observation supporting
+    inference, direct witnessing, nonintervention, focused examination, lookup,
+    and inferred social cues. Inferred mood or anticipated outcomes are not
+    guaranteed knowledge of another mind or future events.
+  source_perspective: >
+    Physical upward/downward gaze differs from respectful service or looking
+    down on another person. Preserve the condescending perspective when chosen;
+    do not neutralize it or assume every English look up to is the same sense.
+  learning_and_memory: >
+    Practice, advance preparation, review, memorization, exact recitation,
+    skillful familiarity, self-discovered understanding, memory retrieval,
+    and momentary inattention support different learner actions. New verbs
+    realize already-known nominal concepts where appropriate without being
+    counted again as new concepts or independent free identities.
+  decisions: >
+    Distinguish choosing for need or purpose, firm intention, final decision,
+    reconsideration, careful consideration, worry, and hesitation. 고민하다
+    includes distress; neutral considering is not substituted for it.
+    A 결정되다 subject is a settled decision, not an agent making it.
+  communication_and_understanding: >
+    Sharing information, conversation, answering, stating an opinion,
+    acknowledgment, shared feeling, shared opinion, careful listening,
+    comprehension, and agreement are not equivalent. 타이르다 aims at
+    understanding; the source does not require agreement. 새겨듣다's second
+    position includes comprehension, not attention alone.
+  conduct_and_register: >
+    Keep explicit slang on 까먹다 and 알아먹다, honorific speech on
+    말씀하다, and figurative soothing on 어루만지다. 헐뜯다 includes
+    intent to harm; 비난하다 does not necessarily add that purpose.
+    These meanings support contextual comprehension, not recommended insults,
+    mind-reading claims, compulsory forgiveness, or guarantees of emotional
+    or medical improvement.
+  broad_core_not_padding: >
+    This bounded scope covers observing, learning, memory, inquiry, decisions,
+    and interpersonal responses. It does not import every leftover native
+    verb position, every regular passive, or specialist homograph. No phase
+    is filled by source band, alphabet, nominal count, or a desired row total.
+homograph_reviews:
+  acquisition:
+    compared_parents: [ko-nikl-02574, ko-nikl-02577, ko-nikl-02578]
+    decision: Select learning/acquisition 02578 with noun 02574; obtaining a picked-up object 02577 is not selected.
+  existing_익히다:
+    compared_parents: [ko-nikl-11047, ko-nikl-11048]
+    decision: Both cooking/ripening and repeated-experience learning families were inspected and already protected; neither is added.
+  guidance:
+    compared_parents: [ko-nikl-42593, ko-nikl-42595, ko-nikl-42603]
+    decision: Use guidance noun 42595 for the teaching verb; exclude the map homograph and the unselected judo-penalty position.
+  rehearsal_and_practice:
+    compared_parents: [ko-nikl-47491, ko-nikl-47492, ko-nikl-47499, ko-nikl-47500]
+    decision: Simulated-real-situation rehearsal and general repeated practice remain distinct source pairs; select only general practice verb 47500.
+  recollection_vs_written_above:
+    compared_parents: [ko-nikl-09055, ko-nikl-09057, ko-nikl-09058, ko-nikl-09059]
+    decision: Memory 09059 and its real causative 09057 share one family; written-above noun 09055 and verb 09058 do not belong to it.
+  attention_vs_ventilation:
+    compared_parents: [ko-nikl-51809, ko-nikl-51810, ko-nikl-51814, ko-nikl-51815]
+    decision: Select attention/opinion/thought arousal 51814 with 51809; do not merge with protected air-changing 환기 51810.
+  selection_vs_governance:
+    compared_parents: [ko-nikl-10115, ko-nikl-10116, ko-nikl-10121]
+    decision: Purpose-suited selection 10121 matches 10116, not good-government noun 10115.
+  reconsideration_vs_inventory:
+    compared_parents: [ko-nikl-13025, ko-nikl-13026, ko-nikl-13029]
+    decision: Select reconsideration 13029 with 13025, not protected stock/inventory 13026.
+  three_결의_families:
+    compared_parents: [ko-nikl-28202, ko-nikl-28203, ko-nikl-28204, ko-nikl-28208, ko-nikl-28209, ko-nikl-28210]
+    decision: Select firm resolve 28208 with 28202; meeting resolution and sworn kinship retain their other source pairs.
+  decision_vs_crystal:
+    compared_parents: [ko-nikl-28218, ko-nikl-28219, ko-nikl-28221, ko-nikl-28227]
+    decision: Active/passive decisions match 28218; crystal and figurative product-of-effort noun 28219 are not added.
+  consideration_vs_country:
+    compared_parents: [ko-nikl-28941, ko-nikl-28942, ko-nikl-28948]
+    decision: Consideration 28948 matches 28941, not the protected historical country 28942.
+  auditory_vs_visual_slang:
+    compared_parents: [ko-nikl-04616, ko-nikl-04618, ko-nikl-04619, ko-nikl-04620]
+    decision: Select auditory-comprehension slang 04618-s001 only; visual recognition/recall slang 04619 belongs to a different source range.
+  apology_vs_apple:
+    compared_parents: [ko-nikl-08183, ko-nikl-08184, ko-nikl-08188]
+    decision: Apology verb 08188 matches noun 08184, not apple noun 08183.
+nonparallel_positions:
+  yielding_opinion:
+    selected_verb: ko-nikl-46162-s003
+    matched_protected_noun: ko-nikl-46161-s002
+    decision: The noun and verb reorder opinion-yielding and giving up personal interest. Never zip them by source_position.
+integration:
+  before_manifest_registration: >
+    Approve the explicit support requests, derive complete source parents
+    through the existing pinned-CSV importer, and resolve actual citation
+    readings before publishing these placements. This worker does not write
+    any of those shared artifacts.
+  projected_validation: >
+    Source/schema/identity checks may use an in-memory registry augmented only
+    by the explicitly requested original CSV parents. That proves consistency
+    of the proposal, not that pending parents or readings are already available
+    in the working published course. No placeholder reading is written.
+  selection_files: >
+    After integration, compose cognition-vocabulary.yaml and
+    cognition-identities.yaml through the parent-owned manifest. Preserve
+    new-members-only fragments and reject rather than silently deduplicate
+    any conflict with newer parent-approved cohorts.
+  corrections: >
+    The selected-source requests below preserve exact bilingual text and
+    match authored labels. The separate unselected noun issue is not a new
+    placement or a request to fabricate vocabulary coverage.
+remaining_scope:
+  assessment: >
+    This is a coherent action-verb addition, not completion of the whole
+    core breadth guide or an exhaustive unselected-source audit. Many verbs
+    appropriately realize existing event-noun families, so source-parent or
+    spelling counts must not be substituted for new free-identity counts.
+  further_work: >
+    Continued useful breadth can come from independently inspected
+    context-sensitive conversational actions and general-reader inquiry,
+    not arbitrary new hada/passive variants or specialist padding.
+    Native compound boundaries and related register/voice families remain
+    qualified-review questions.
+  exact_form_limits: >
+    Missing exact full forms are reported below as source limits, not claims
+    that Korean cannot express those meanings. Protected alternatives and
+    original phrase/grammar representations may already cover the function.
+validation_snapshot:
+  status: Passed pinned-source and projected-composition checks; not published-source or pronunciation approval.
+  checks:
+    - Complete CSV SHA-256 and 53172-record verification.
+    - Complete bilingual lists, exact requested parent metadata, and original sense positions.
+    - Canonical-family source evidence and all explicitly listed homograph comparisons.
+    - Existing source registry and original reference entries preserved by the real importer.
+    - Verb-only selections, exact row/group schemas, labels within 64 characters, and identity closure.
+    - Current manifest plus readable protected drafts composed in memory with no duplicate selected IDs.
+    - Existing-key canonical lemma/category compatibility and new-members-only fragments.
+    - Exact bilingual correction evidence, held-ID exclusion, and unchanged input-file hashes.
+    - Three existing read-only lexical-accounting and source-correction regression tests passed.
+  cohort_counts:
+    selected_core_senses: 126
+    dictionary_source_parents: 113
+    distinct_selected_spellings: 113
+    identity_fragments: 105
+    existing_family_extensions: 49
+    projected_new_provisional_free_identities: 56
+    new_bound_or_function_identities: 0
+    pending_support_parents: 93
+    complete_positions_in_requested_parents: 121
+    selected_positions_from_requested_parents: 99
+    selected_source_correction_requests: 2
+    unselected_source_issues: 1
+  counting_limit: >
+    These cohort figures are the checked handoff snapshot, not independent
+    proof of true lexemes or whole-course completion. Later parent selections
+    can turn a proposed new family into an existing-family extension.
+    Readings remain deliberately unassessed and parent-owned.
+inference_continuation:
+  scope: >
+    One bounded, explicitly source-inspected continuation for indirect
+    expression, imagination, quotation, revisiting, estimation, planning,
+    association, and prediction. Existing cognition rows and the parent's
+    speech-noun adjudication are preserved unchanged.
+  protected_analysis: >
+    Protect analysis-vocabulary.yaml and analysis-identities.yaml whether
+    registered or still a readable parent draft. This includes the source-listed
+    unspecified-POS compound ko-nikl-09305-s001; no noun or unspecified-POS
+    placement is added by this continuation.
+  new_selected_parents: [ko-nikl-07791, ko-nikl-09126, ko-nikl-11237, ko-nikl-18681, ko-nikl-25599, ko-nikl-29603, ko-nikl-31011, ko-nikl-31622, ko-nikl-43345, ko-nikl-45571, ko-nikl-47463, ko-nikl-47946, ko-nikl-48074]
+  semantic_checks: >
+    Mental revisiting is not retracing a route; repeated thought is not food
+    chewing; rough estimation is not a precise standard check. Imagination,
+    inference, and prediction do not establish that a proposition is true.
+    Quote attribution and conceptual planning are actions rather than new
+    noun headwords or automatic phase-filling devices.
+  homograph_reviews:
+    구상:
+      compared_parents: [ko-nikl-31006, ko-nikl-31007, ko-nikl-31011]
+      decision: Use planning noun 31007 for the verb, not concrete/representational form noun 31006.
+    연상:
+      compared_parents: [ko-nikl-47459, ko-nikl-47460, ko-nikl-47463]
+      decision: Use mental-association noun 47460, not older-age/person noun 47459.
+  integration: >
+    These are additional actual pinned-CSV support requests; parent still
+    owns source approval, derivation, and reading assessment. Earlier handoff
+    and parent-adjudication counts above are historical snapshots.
+  validation:
+    status: Passed exact-source and projected-composition checks; continuation complete.
+    method: >
+      Reverified the complete pinned CSV hash, all compared bilingual
+      homographs, request counts/positions, and canonical-source evidence.
+      The real importer preserved existing source and original reference
+      entries in memory. The actual selection/identity validators composed
+      every current manifest input plus the protected analysis draft.
+      No source-ID, category, canonical-lemma, or label conflicts were found.
+      The parent speech-noun addendum, merged 실상 function family, and both
+      held-source exclusions remain intact. Three existing read-only
+      regression tests passed. No shared artifact or reading was written.
+    added_verb_senses: 15
+    added_source_parents: 13
+    added_new_provisional_free_identities: 6
+    whole_cohort_counts:
+      selected_senses: 143
+      action_verb_senses: 141
+      parent_added_speech_noun_senses: 2
+      dictionary_source_parents: 127
+      distinct_spellings: 127
+      identity_fragments: 119
+      existing_family_extensions: 57
+      projected_new_provisional_free_identities: 62
+      pending_support_parents: 106
+      complete_positions_in_requested_parents: 139
+      selected_positions_from_requested_parents: 114
+      selected_source_correction_requests: 4
+    publication_limit: Source approval/derivation and actual citation-reading assessment remain parent-owned and incomplete here.
+support_parent_requests:
+  ko-nikl-07791: {lemma: 빗대다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Indirect/comparative expression; exact complete full-form source inspected.'}
+  ko-nikl-09126: {lemma: 상상하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Imagining the nonexistent or unexperienced; complete noun 09122 and verb compared.'}
+  ko-nikl-11237: {lemma: 인용하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Quoting others in one''s own discourse; protected noun 11233 supplies the compatible event family.'}
+  ko-nikl-18681: {lemma: 되짚다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 3, selected_positions: [2], rationale: 'Mental revisiting, not repeated pointing or route retracing; all original positions inspected.'}
+  ko-nikl-25599: {lemma: 가늠하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1, 2], rationale: 'Standard-fit checking and rough estimation; both complete noun/verb position lists compared.'}
+  ko-nikl-29603: {lemma: 곱씹다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [2], rationale: 'Repeated careful thought, not literal chewing; complete bilingual positions inspected.'}
+  ko-nikl-31011: {lemma: 구상하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1, 2], rationale: 'Task/artwork planning matches noun 31007; concrete-form noun 31006 explicitly excluded.'}
+  ko-nikl-31622: {lemma: 궁리하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Thinking through a solution; protected nominal event 31621 reused.'}
+  ko-nikl-43345: {lemma: 짐작하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Approximate situational judgment matches protected noun 43343.'}
+  ko-nikl-45571: {lemma: 추측하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Inference from facts or observations matches protected noun 45569; no certainty is added.'}
+  ko-nikl-47463: {lemma: 연상하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Active mental association matched to noun 47460, not older-age noun 47459; full homographs inspected.'}
+  ko-nikl-47946: {lemma: 예견하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Anticipating future events; complete noun 47944 and verb inspected without a truth guarantee.'}
+  ko-nikl-48074: {lemma: 예측하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Predicting future events matches protected noun 48072; no extra hada breadth.'}
+  ko-nikl-30332: {lemma: 관망하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1], rationale: 'Nonintervening observation; scenic viewing was inspected but not selected. Related noun 30329 inspected in full.'}
+  ko-nikl-30401: {lemma: 관찰하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Action counterpart of protected careful-observation noun 30397, not a synthesized predicate.'}
+  ko-nikl-30410: {lemma: 관측하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1], rationale: 'Natural-observation action; both verb meanings and both protected noun 30406 meanings were inspected.'}
+  ko-nikl-37591: {lemma: 목격하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Direct firsthand witnessing; noun 37587 and the full verb agree on the event perspective.'}
+  ko-nikl-41782: {lemma: 주시하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [2], rationale: 'Attentive examination of a matter; both noun 41781 and verb meanings inspected, not a first-position import.'}
+  ko-nikl-02103: {lemma: 숙달하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Skillful familiarity; complete matching noun 02101 inspected.'}
+  ko-nikl-02150: {lemma: 숙지하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Sufficient learning producing thorough familiarity; real standalone verb, no fabricated 숙지 noun.'}
+  ko-nikl-02578: {lemma: 습득하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Learning/acquisition homograph matched to noun 02574; picking-up homograph 02577 deliberately excluded.'}
+  ko-nikl-04659: {lemma: 암기하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Complete verb and protected memorization noun 04657 match.'}
+  ko-nikl-05999: {lemma: 복습하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Reviewing already-learned material; complete noun/verb pair inspected.'}
+  ko-nikl-21446: {lemma: 터득하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Self-discovered understanding from thought; complete noun 21445 inspected.'}
+  ko-nikl-24039: {lemma: 학습하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Studying and learning; protected noun 24033 supplies the compatible family.'}
+  ko-nikl-30721: {lemma: 교육하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Teaching to develop abilities; matches protected education noun 30700.'}
+  ko-nikl-42603: {lemma: 지도하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Guidance, not a map or judo penalty; all named 지도 noun homographs were inspected.'}
+  ko-nikl-47425: {lemma: 연마하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [2], rationale: 'Cultivation of body/mind/knowledge/skill, not material polishing; complete noun/verb pair inspected.'}
+  ko-nikl-47500: {lemma: 연습하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Repeated practice to become proficient; all four named rehearsal/practice noun/verb records compared.'}
+  ko-nikl-48031: {lemma: 예습하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Studying upcoming material; protected preparation noun 48030 is the compatible family.'}
+  ko-nikl-52340: {lemma: 훈련하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1, 2], rationale: 'Both self-training and teaching another are genuine source perspectives corresponding to protected noun 52334.'}
+  ko-nikl-09059: {lemma: 상기하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Past-event recall, not writing something above; complete 09055/09057/09058/09059 records compared.'}
+  ko-nikl-09057: {lemma: 상기시키다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Actually listed causative recall verb; one memory-event family with 09059, not invented noun-plus-sikida.'}
+  ko-nikl-18687: {lemma: 되풀이하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Repeating speech/action/task; complete noun 18685 and verb inspected.'}
+  ko-nikl-25116: {lemma: 헛갈리다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1], rationale: 'Complete ordered Korean definitions match 25192 헷갈리다; one variant family with separate source provenance.'}
+  ko-nikl-32967: {lemma: 기억하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Remembering action matches protected noun 32959; full active/passive counterparts inspected.'}
+  ko-nikl-32961: {lemma: 기억되다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Regular passive perspective shares the existing memory family; not another free lemma.'}
+  ko-nikl-33468: {lemma: 깜빡하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 3, selected_positions: [3], rationale: 'Forgetting/inattention matches 깜박하다 s003; full light/eye/memory definitions inspected, not a first-sense import.'}
+  ko-nikl-37288: {lemma: 명심하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Firm remembrance; exact-form 명심 nominal search returned none, so no unsupported nominal source is invented.'}
+  ko-nikl-39670: {lemma: 반복하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Repeated same activity; complete matching noun 39668 inspected.'}
+  ko-nikl-45528: {lemma: 추억하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Thinking back; exact protected noun family reused without adding a positive-memory requirement.'}
+  ko-nikl-51432: {lemma: 혼동하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Cognitive confusion matched to noun 51430 s001, not material intermixture.'}
+  ko-nikl-51431: {lemma: 혼동되다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1], rationale: 'Passive cognitive confusion; both original meanings retained, physical second position unselected.'}
+  ko-nikl-51814: {lemma: 환기하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Attention/opinion/thought arousal matches 51809; separate air-changing 51810/51815 homographs explicitly excluded.'}
+  ko-nikl-52021: {lemma: 회고하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Reflecting on past events; complete noun 52017 inspected.'}
+  ko-nikl-52052: {lemma: 회상하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Recalling past events; protected noun 52050 supplies the compatible identity.'}
+  ko-nikl-21292: {lemma: 탐구하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'In-depth study; complete protected noun and verb meanings compared.'}
+  ko-nikl-21307: {lemma: 탐방하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1], rationale: 'Fact/news-gathering visit, not the separately retained sightseeing sense; complete noun/verb pair inspected.'}
+  ko-nikl-21313: {lemma: 탐색하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Exploratory search directly corresponds to protected noun 21311.'}
+  ko-nikl-21332: {lemma: 탐험하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Exploration with endurance of danger; complete noun 21329 also inspected.'}
+  ko-nikl-22339: {lemma: 파악하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Understanding content/situation, not a physical grasp; protected nominal identity is reused.'}
+  ko-nikl-23076: {lemma: 포착하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 3, selected_positions: [2, 3], rationale: 'Key point/know-how and opportunity/situation recognition; all noun and verb positions inspected, literal grabbing omitted.'}
+  ko-nikl-26323: {lemma: 간파하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Discerning hidden aspects; exact nominal event 26322 inspected.'}
+  ko-nikl-26594: {lemma: 감지하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Knowing through sensation; complete noun 26589 and verb inspected.'}
+  ko-nikl-28107: {lemma: 견학하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Learning by a relevant visit; no ordinary-tour or unrelated adjective substitution.'}
+  ko-nikl-39644: {lemma: 반문하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'A question in response instead of an answer; exact nominal event 39643 inspected.'}
+  ko-nikl-43275: {lemma: 질문하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Information-seeking question; protected noun 43273 retains the shared identity.'}
+  ko-nikl-43298: {lemma: 질의하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Questioning doubtful or unknown points; complete noun 43297 inspected.'}
+  ko-nikl-45542: {lemma: 추적하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [2], rationale: 'Tracing an event/person rather than chasing a fugitive; both noun and verb positions inspected.'}
+  ko-nikl-02098: {lemma: 숙고하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Complete verb matches protected deep-careful-thought noun 02097.'}
+  ko-nikl-03630: {lemma: 심사숙고하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Deep consideration; exact noun 03629 and verb meanings inspected.'}
+  ko-nikl-05051: {lemma: 약속하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Agreement about action with another person; protected promise/agreement family reused.'}
+  ko-nikl-10121: {lemma: 선정하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Selection matched to noun 10116, not good-government homograph 10115.'}
+  ko-nikl-10162: {lemma: 선택하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Choosing needed options; protected noun 10157 and actual verb compared.'}
+  ko-nikl-12532: {lemma: 작정하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Deciding how to act; complete noun/verb pair inspected.'}
+  ko-nikl-13029: {lemma: 재고하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Reconsideration, not stock/inventory; all named 재고 noun records inspected.'}
+  ko-nikl-16272: {lemma: 다짐하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [2], rationale: 'Firm resolve, not the other strong-confirmation position; full noun/verb lists compared.'}
+  ko-nikl-28131: {lemma: 결단하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Final decision on an important matter; complete matching noun 28127 inspected.'}
+  ko-nikl-28194: {lemma: 결심하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Firm personal decision; protected noun 28193 retains the identity.'}
+  ko-nikl-28208: {lemma: 결의하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Firm resolve only; all three 결의 noun and all three corresponding verb homographs inspected.'}
+  ko-nikl-28227: {lemma: 결정하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Decision verb matches noun 28218; complete crystal/result homograph 28219 also inspected and excluded.'}
+  ko-nikl-28221: {lemma: 결정되다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Passive decision perspective shares the protected event identity, not extra free breadth.'}
+  ko-nikl-28948: {lemma: 고려하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Considering conditions matches noun 28941; historical Goryeo 28942 is excluded.'}
+  ko-nikl-29054: {lemma: 고민하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Distressed concern, not neutral decision-making; exact nominal 29051 inspected.'}
+  ko-nikl-29519: {lemma: 골라내다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'An actual full verb for distinguishing and picking out, not a synthesized resultative.'}
+  ko-nikl-36423: {lemma: 맘먹다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Exact complete Korean-definition match to retained 마음먹다; one shared family.'}
+  ko-nikl-41854: {lemma: 주저하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Hesitation before a decision/action; full matching noun 41848 inspected.'}
+  ko-nikl-10843: {lemma: 이야기하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 4, selected_positions: [1, 2], rationale: 'Talking about facts/experience and conversation; all full/short noun and verb meanings inspected, storytelling/rumor verb positions unselected.'}
+  ko-nikl-46272: {lemma: 얘기하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 4, selected_positions: [2], rationale: 'Actual shorter conversation verb shares the protected 이야기 family; complete Korean verb list matches 10843.'}
+  ko-nikl-16756: {lemma: 답하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 3, selected_positions: [2, 3], rationale: 'Problem answering and correspondence response; all noun 16720 and verb positions inspected.'}
+  ko-nikl-23267: {lemma: 표현하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Outward thought/feeling expression matches protected noun 23263.'}
+  ko-nikl-29066: {lemma: 고백하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Full honest disclosure; exact noun 29063 and verb meanings inspected.'}
+  ko-nikl-36384: {lemma: 말씀하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Explicit honorific of 말하다; preserve register and reuse protected speech identity.'}
+  ko-nikl-36559: {lemma: 맞장구치다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Agreement/positive response, not noun 36558 s002 paired drumming; both nominal positions inspected.'}
+  ko-nikl-40051: {lemma: 발언하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Expressing an opinion in speech; compatible protected event noun reused.'}
+  ko-nikl-43130: {lemma: 진술하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1], rationale: 'Detailed opinion on a matter; complete legal-testimony second position inspected but not selected.'}
+  ko-nikl-46647: {lemma: 언급하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Talking about a matter/problem; protected nominal event 46645 reused.'}
+  ko-nikl-51192: {lemma: 응답하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Answering calls/questions; complete matching noun 51189 inspected.'}
+  ko-nikl-51314: {lemma: 호응하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Answering or meeting demands; source meaning does not impose unconditional agreement.'}
+  ko-nikl-01558: {lemma: 수긍하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Accepting as right directly corresponds to protected noun 01556.'}
+  ko-nikl-04618: {lemma: 알아먹다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1], rationale: 'Slang auditory comprehension; both complete 알아먹다 homographs 04618/04619 compared, visual/recall family excluded.'}
+  ko-nikl-09327: {lemma: 새겨듣다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1, 2], rationale: 'Attentive listening to retain advice versus listening with understanding; the second English definition needs a scope clarification.'}
+  ko-nikl-18305: {lemma: 동감하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Agreement with an opinion; existing nominal family 18304 reused.'}
+  ko-nikl-29632: {lemma: 공감하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Shared emotions/thoughts match protected noun 29630.'}
+  ko-nikl-31751: {lemma: 귀담아듣다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Real attentive-listening compound, not a generated or assumed phrase spelling.'}
+  ko-nikl-46258: {lemma: 양해하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Understanding and broad-minded acceptance match protected noun 46257.'}
+  ko-nikl-07472: {lemma: 비난하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Negative speech about faults; protected noun 07471 reused.'}
+  ko-nikl-08188: {lemma: 사과하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Apology matched to noun 08184, not apple 08183; all named forms inspected.'}
+  ko-nikl-10215: {lemma: 응원하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 2, selected_positions: [1, 2], rationale: 'Sports cheering and supportive help; both noun and verb positions compared explicitly.'}
+  ko-nikl-20532: {lemma: 칭찬하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Verbal praise matched to complete noun 20531.'}
+  ko-nikl-27997: {lemma: 격려하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Encouraging courage/motivation matches protected noun 27993.'}
+  ko-nikl-40597: {lemma: 배려하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Considerate caring/helping matches protected noun 40596.'}
+  ko-nikl-41290: {lemma: 존중하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Valuing people/opinions matches protected noun 41288.'}
+  ko-nikl-46162: {lemma: 양보하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 3, selected_positions: [3], rationale: 'Yielding an opinion is verb s003 but noun s002; all positions inspected rather than paired mechanically.'}
+  ko-nikl-49154: {lemma: 용서하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Forgiving faults/sins corresponds to protected noun 49152; not legal-only terminology.'}
+  ko-nikl-49930: {lemma: 위로하다, source_part_of_speech: 동사, source_band: unbanded, complete_source_senses: 1, selected_positions: [1], rationale: 'Comfort through warm words/actions matches protected noun 49927.'}
+protected_exclusions:
+  ko-nikl-22209-s001: Parent-held 팀장; do not reintroduce, invent a reading, or research further.
+  ko-nikl-48419-s001: Parent-held 온실가스; do not reintroduce, substitute, invent a reading, or research further.
+source_correction_requests:
+  ko-nikl-47463-s001:
+    source_korean: 어떤 사물을 보거나 듣거나 생각할 때 그것과 관련 있는 사물을 머릿속에 떠올리다.
+    source_english: To be reminded of things related to an object when one sees, hears, or thinks of it.
+    authored_interpretation: to bring related things to mind
+    rationale: The Korean verb uses 떠올리다, bringing associated things to mind. Preserve that perspective rather than collapsing it into the English passive be reminded, and do not require another person to supply a reminder.
+  ko-nikl-36383-s002:
+    source_korean: (낮추는 말로) 자기의 말.
+    source_english: (impolite form) One's own words.
+    authored_interpretation: one's own words (humble)
+    rationale: >
+      The source marks self-humbling reference to one's own words, not
+      impoliteness toward the listener. Preserve this speaker perspective
+      separately from honorific reference to another person's words001.
+  ko-nikl-09327-s002:
+    source_korean: 다른 사람이 하는 말을 잘 이해하며 듣다.
+    source_english: To listen carefully to another person.
+    authored_interpretation: to listen with understanding to what someone says
+    rationale: The Korean explicitly includes understanding while listening. English carefully describes attention but loses comprehension; keep this distinct from merely careful listening and from listening so as to remember advice.
+  ko-nikl-21102-s001:
+    source_korean: 잘 알아듣도록 자상하고 조리 있게 말해 주다.
+    source_english: To say something kindly and logically in order to get someone to understand and agree.
+    authored_interpretation: to explain kindly and coherently to help someone understand
+    rationale: The Korean aims at comprehension through kind, coherent explanation. It does not explicitly require agreement; the added English and agree should not turn understanding into automatic acceptance or compliance.
+worker_source_issue_history:
+  ko-nikl-36383-s002:
+    source_korean: (낮추는 말로) 자기의 말.
+    source_english: (impolite form) One's own words.
+    issue: Self-humbling reference to one's own words, not impoliteness. This noun sense is not selected here; parent may review the translation separately.
+unsupported_requested_meanings:
+  말씀드리다: No exact full-form record found in the pinned CSV; do not fabricate a vocabulary sense from a noun-plus-verb or phrase realization.
+  풀어놓다:
+    inspected_parent: ko-nikl-23338
+    complete_source_senses: 1
+    issue: The only pinned position concerns gathering people to achieve a purpose. No telling-a-story position is available for this cohort, so that meaning is not invented.
+  오해받다: No exact full-form record found; no passive is synthesized from the protected 오해 family.
+  흘려듣다: No exact full-form record found; inattentive-listening vocabulary cannot be invented under a guessed source ID.
+reading_followup:
+  assessment: all127 selected parents now have actual official citation text; three inspected crosswalks integrated
+  owner: parent
+  policy: Parent measures actual selected-parent citation readings after approving support requests; no reading or empty-success claim is invented here.
+  selection: cognition-vocabulary.yaml
+  source: nikl-official-20260819
+  selected_parent_count: 127
+  exact_supported_parent_count: 124
+  actual_crosswalk_gaps: 3
+  missing_official_citation_text: 0
+  crosswalk_proposals:
+    ko-nikl-07472:
+      official_entry_id: '60910'
+      pronunciation: 비ː난하다
+      reason: The single negative-speech definition contracts 대하여 to 대해, without changing its faults/defects meaning.
+    ko-nikl-40597:
+      official_entry_id: '58817'
+      pronunciation: 배ː려하다
+      reason: The current single definition reverses helping/caring and omits the older explicit 관심을 가지고 modifier. Keep the original considerate-care meaning; use this same-spelling/POS entry only for its citation reading.
+    ko-nikl-49154:
+      official_entry_id: '26638'
+      pronunciation: 용서하다
+      reason: The single forgiving-without-scolding-or-punishment definition contracts 대하여 to 대해.
+parent_adjudication:
+  initial_basis: manifest through infrastructure-support; source512 frozen during infrastructure reading resolution
+  worker_source_check: >
+    All113 original verb parents and93 exact support requests passed the
+    parent's raw CSV metadata, complete bilingual-list and selected-position
+    comparison. There are no overlaps with currently selected senses and
+    all49 existing-family fragments retain compatible canonical lemmas/categories.
+  additional_speech_senses:
+    parent: ko-nikl-36383
+    positions: [1, 2]
+    placement: core8 communication
+    family: ko-lex-36211
+    reasoning: >
+      The noun was absent from current selections. Its honorific reference
+      to another person's words and humble reference to one's own words are
+      practical source-backed distinctions, not an automatic mastery of
+      Korean register. They extend the actual speech noun 말, while the
+      existing verb fragment 말씀하다 extends 말하다. The Bible-specific
+      third noun sense stays outside this cohort.
+    reading_evidence: >
+      Official27365 already matches all three original Korean definitions
+      and supplies 말ː씀. No source recovery, spelling-copy reading,
+      invented 말씀드리다 entry, or extra free identity is needed.
+  revised_counts:
+    selected_senses: 128
+    action_verb_senses: 126
+    speech_noun_senses: 2
+    source_parents: 114
+    distinct_spellings: 114
+    identity_fragments: 106
+    existing_family_fragments: 50
+    new_free_identities: 56
+    source_support_requests: 93
+    selected_source_corrections: 3
+  projected_composition_check: >
+    The real checksum-verifying source extractor was run in memory with the
+    exact512 existing plus93 requested support parents. All currently retained
+    source records remained identical. The actual selection loader and lexical
+    membership checks composed cognition128 and orientation12 with the current
+    manifest without modifying files: projected core6980 senses and4474
+    provisional free families, source support605. This is not generated output.
+parent_integration:
+  scope: >
+    Accepted the143-sense handback after the queued continuation and explicit
+    ownership acknowledgment. All prior rows and both parent-added speech
+    nouns were preserved. Every additional inference-verb position was
+    compared with the exact pinned Korean and English source before admission.
+  admitted_parents: 106
+  all_original_positions_in_admitted_parents: 139
+  selected_senses: 143
+  new_provisional_free_families: 62
+  correction_requests_integrated: 4
+  reading_method: official-text for every selected sense; no new authored readings
+  combined_with_representation:
+    status: 128 views generated;93 targeted real-data course/tourist/source tests passed
+    core_senses: 7027
+    core_dictionary_parents: 4892
+    core_distinct_spellings: 4608
+    core_spelling_pos_pairs: 4700
+    core_provisional_free_families: 4497
+    core_bound_forms: 39
+    core_function_items: 184
+    core_modules: 726
+    selected_pool_senses: 7153
+    selected_pool_free_families: 4556
+    retained_support_parents: 642
+    selected_support_parents: 640
+    reading_crosswalks: 381
+    authored_reading_decisions: 190
+    phase_senses: [453, 1738, 1327, 1141, 1189, 1179]
+    phase_modules: [72, 153, 134, 122, 121, 124]
+    gap_to_lower_free_lemma_guide: 1303
+  limits: >
+    Generated coverage remains the current authority after later cohorts.
+    Earlier source parents, source meanings, official entries, and reading
+    decisions were preserved. These checks do not establish qualified
+    linguistic review, productive competence, exam readiness, or completion
+    of the overall breadth and later-phase growth requirements.

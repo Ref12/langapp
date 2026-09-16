@@ -8,8 +8,8 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
+  unbanded-support: 642
   intermediate: 3981
-  unbanded-support: 512
 entries:
 - id: ko-nikl-00001
   target: 설
@@ -68,6 +68,23 @@ entries:
     english: An act of making plans regarding construction, civil engineering, machinery, etc., or to
       express the plan in a drawing, etc.
     korean: 건축, 토목, 기계 등에 관한 계획을 세우거나 그 계획을 그림 등으로 나타내는 것.
+- id: ko-nikl-00007
+  target: 설계도
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7
+  senses:
+  - id: ko-nikl-00007-s001
+    source_position: 1
+    english: A drawing made by planning the structure, shape, size, etc., of a construction project, civil
+      engineering project, machinery, etc.
+    korean: 건축, 토목, 기계 등의 구조, 모양, 치수 등을 계획하여 그린 그림.
+  - id: ko-nikl-00007-s002
+    source_position: 2
+    english: A plan or thought about a future project.
+    korean: 앞으로 할 일에 대한 계획이나 생각.
 - id: ko-nikl-00012
   target: 설교
   part_of_speech: noun
@@ -4840,6 +4857,18 @@ entries:
     source_position: 1
     english: The act of considering something as plausible and acknowledging it.
     korean: 옳다고 여겨 인정함.
+- id: ko-nikl-01558
+  target: 수긍하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1558
+  senses:
+  - id: ko-nikl-01558-s001
+    source_position: 1
+    english: To consider something to be right and accept it.
+    korean: 옳다고 여겨 인정하다.
 - id: ko-nikl-01569
   target: 수녀
   part_of_speech: noun
@@ -6444,6 +6473,18 @@ entries:
     source_position: 1
     english: The state of thinking about something deeply and carefully, or such a thought.
     korean: 깊고 신중히 잘 생각함. 또는 그런 생각.
+- id: ko-nikl-02098
+  target: 숙고하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2098
+  senses:
+  - id: ko-nikl-02098-s001
+    source_position: 1
+    english: To think about something deeply and carefully.
+    korean: 깊고 신중히 잘 생각하다.
 - id: ko-nikl-02099
   target: 숙녀
   part_of_speech: noun
@@ -6476,6 +6517,18 @@ entries:
     source_position: 1
     english: The state of being familiar with something and doing it well.
     korean: 익숙하게 잘 알고 솜씨 있게 잘함.
+- id: ko-nikl-02103
+  target: 숙달하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2103
+  senses:
+  - id: ko-nikl-02103-s001
+    source_position: 1
+    english: To know something well and do it skillfully.
+    korean: 익숙하게 잘 알고 솜씨 있게 잘하다.
 - id: ko-nikl-02111
   target: 숙련
   part_of_speech: noun
@@ -6592,6 +6645,18 @@ entries:
     source_position: 2
     english: A problem that needs to be contemplated or solved.
     korean: 깊이 생각해 보거나 해결해야 할 문제.
+- id: ko-nikl-02150
+  target: 숙지하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2150
+  senses:
+  - id: ko-nikl-02150-s001
+    source_position: 1
+    english: To be well-acquainted with something because one has learned it sufficiently.
+    korean: 충분히 익혀서 익숙하게 잘 알다.
 - id: ko-nikl-02164
   target: 순간
   part_of_speech: noun
@@ -7902,6 +7967,18 @@ entries:
     source_position: 1
     english: The act of learning a study, skill, etc., to make it one's own.
     korean: 학문이나 기술 등을 배워서 자기 것으로 만듦.
+- id: ko-nikl-02578
+  target: 습득하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2578
+  senses:
+  - id: ko-nikl-02578-s001
+    source_position: 1
+    english: To learn a study, technique, etc., and make it one's own.
+    korean: 학문이나 기술 등을 배워서 자기 것으로 만들다.
 - id: ko-nikl-02581
   target: 습성
   part_of_speech: noun
@@ -12324,6 +12401,18 @@ entries:
     source_position: 1
     english: Thinking deeply about a certain incident.
     korean: 어떤 일에 대해 깊이 생각함.
+- id: ko-nikl-03630
+  target: 심사숙고하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3630
+  senses:
+  - id: ko-nikl-03630-s001
+    source_position: 1
+    english: To think deeply about a certain incident.
+    korean: 어떤 일에 대해 깊이 생각하다.
 - id: ko-nikl-03634
   target: 심상
   part_of_speech: noun
@@ -16735,6 +16824,22 @@ entries:
     source_position: 1
     english: To be right because one knows the correct answer.
     korean: 알맞은 답을 알아서 맞게 하다.
+- id: ko-nikl-04618
+  target: 알아먹다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4618
+  senses:
+  - id: ko-nikl-04618-s001
+    source_position: 1
+    english: (slang) To hear what someone says and understand what it means.
+    korean: (속된 말로) 남의 말을 듣고 그 뜻을 이해하다.
+  - id: ko-nikl-04618-s002
+    source_position: 2
+    english: '(slang) To hear a certain sound and know what it is or who made it. '
+    korean: (속된 말로) 어떤 소리를 듣고 무슨 소리인지 또는 누구의 소리인지 알다.
 - id: ko-nikl-04620
   target: 알아보다
   part_of_speech: verb
@@ -16893,6 +16998,18 @@ entries:
     source_position: 1
     english: The ability to remember and not forget.
     korean: '외워서 잊지 않는 힘. '
+- id: ko-nikl-04659
+  target: 암기하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4659
+  senses:
+  - id: ko-nikl-04659-s001
+    source_position: 1
+    english: To memorize something in one's brain, not forgetting.
+    korean: 잊지 않고 머릿속으로 외우다.
 - id: ko-nikl-04675
   target: 암벽
   part_of_speech: noun
@@ -18162,6 +18279,18 @@ entries:
     source_position: 1
     english: 'An act of agreeing with someone to do a certain thing, or details of such an agreement. '
     korean: 다른 사람과 어떤 일을 하기로 미리 정함. 또는 그렇게 정한 내용.
+- id: ko-nikl-05051
+  target: 약속하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5051
+  senses:
+  - id: ko-nikl-05051-s001
+    source_position: 1
+    english: To agree with someone to do a certain thing.
+    korean: 다른 사람과 어떤 일을 하기로 미리 정하다.
 - id: ko-nikl-05062
   target: 약자
   part_of_speech: noun
@@ -21165,6 +21294,18 @@ entries:
     source_position: 1
     english: 'The act of going over what has been learned. '
     korean: 배운 것을 다시 공부함.
+- id: ko-nikl-05999
+  target: 복습하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5999
+  senses:
+  - id: ko-nikl-05999-s001
+    source_position: 1
+    english: 'To go over what has been learned. '
+    korean: 배운 것을 다시 공부하다.
 - id: ko-nikl-06007
   target: 복용
   part_of_speech: noun
@@ -26004,6 +26145,18 @@ entries:
     source_position: 1
     english: An act of speaking unfavorably about others' mistakes or flaws.
     korean: 다른 사람의 잘못이나 결점에 대하여 나쁘게 말함.
+- id: ko-nikl-07472
+  target: 비난하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7472
+  senses:
+  - id: ko-nikl-07472-s001
+    source_position: 1
+    english: To speak unfavorably about someone's mistake or flaw.
+    korean: 다른 사람의 잘못이나 결점에 대하여 나쁘게 말하다.
 - id: ko-nikl-07473
   target: 비누
   part_of_speech: noun
@@ -27431,6 +27584,19 @@ entries:
     source_position: 1
     english: To arrange hair, fur, etc., with a comb, hand, etc.
     korean: 머리카락이나 털을 빗이나 손 등으로 가지런히 정리하다.
+- id: ko-nikl-07791
+  target: 빗대다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7791
+  senses:
+  - id: ko-nikl-07791-s001
+    source_position: 1
+    english: 'To talk about someone or something in a roundabout way or by comparing him/her or it to
+      another. '
+    korean: 어떤 것을 직접 말하지 않고 비슷한 것을 끌어와 그것에 비유해서 말하거나 에둘러서 말하다.
 - id: ko-nikl-07792
   target: 빗물
   part_of_speech: noun
@@ -28979,6 +29145,18 @@ entries:
     source_position: 1
     english: 'An act of admitting one''s own mistakes and begging for forgiveness. '
     korean: 자신의 잘못을 인정하며 용서해 달라고 빎.
+- id: ko-nikl-08188
+  target: 사과하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8188
+  senses:
+  - id: ko-nikl-08188-s001
+    source_position: 1
+    english: To admit one's own mistakes and beg for forgiveness.
+    korean: 자신의 잘못을 인정하며 용서해 달라고 빌다.
 - id: ko-nikl-08193
   target: 사교
   part_of_speech: noun
@@ -31933,6 +32111,30 @@ entries:
     source_position: 1
     english: 'A sum of money given as a reward for making achievements, winning the championship, etc. '
     korean: 업적을 세우거나 우승을 하는 등의 일에 대하여 상으로 주는 돈.
+- id: ko-nikl-09057
+  target: 상기시키다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9057
+  senses:
+  - id: ko-nikl-09057-s001
+    source_position: 1
+    english: To make someone remember a past incident.
+    korean: 지난 일을 다시 생각나게 하다.
+- id: ko-nikl-09059
+  target: 상기하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9059
+  senses:
+  - id: ko-nikl-09059-s001
+    source_position: 1
+    english: To remember a past incident.
+    korean: 지난 일을 다시 생각해 내다.
 - id: ko-nikl-09063
   target: 상냥하다
   part_of_speech: descriptive verb
@@ -32238,6 +32440,18 @@ entries:
     source_position: 1
     english: 'An ability to come up with something that does not exist or one has never experienced. '
     korean: 실제로 경험하지 않거나 보지 않은 것을 생각해 내는 능력.
+- id: ko-nikl-09126
+  target: 상상하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9126
+  senses:
+  - id: ko-nikl-09126-s001
+    source_position: 1
+    english: To picture something in mind that does not exist or one has never experienced.
+    korean: 실제로 없는 것이나 경험하지 않은 것을 머릿속으로 그려 보다.
 - id: ko-nikl-09133
   target: 상세하다
   part_of_speech: descriptive verb
@@ -32915,6 +33129,22 @@ entries:
     source_position: 3
     english: 'Having recently been purchased or having just begun to be used.  '
     korean: 사용하거나 구입한 지 얼마 되지 않은.
+- id: ko-nikl-09327
+  target: 새겨듣다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9327
+  senses:
+  - id: ko-nikl-09327-s001
+    source_position: 1
+    english: To listen intently so that one will not forget good words, advice, etc.
+    korean: 좋은 말씀이나 충고 등을 잊지 않도록 집중해서 듣다.
+  - id: ko-nikl-09327-s002
+    source_position: 2
+    english: To listen carefully to another person.
+    korean: 다른 사람이 하는 말을 잘 이해하며 듣다.
 - id: ko-nikl-09332
   target: 새기다
   part_of_speech: verb
@@ -34900,6 +35130,26 @@ entries:
     source_position: 1
     english: One of the four geographic directions in which the sun sets.
     korean: 네 방위 중의 하나로, 해가 지는 쪽.
+- id: ko-nikl-09862
+  target: 서체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9862
+  senses:
+  - id: ko-nikl-09862-s001
+    source_position: 1
+    english: 'A style of writing something by hand. '
+    korean: 손으로 직접 쓴 글씨의 모양.
+  - id: ko-nikl-09862-s002
+    source_position: 2
+    english: 'A specific style of writing letters in calligraphy. '
+    korean: 붓글씨에서 글씨를 쓰는 일정한 양식.
+  - id: ko-nikl-09862-s003
+    source_position: 3
+    english: A style of characters used for writing a text using a computer.
+    korean: 컴퓨터로 문서를 작성할 때 사용하는 글씨의 모양.
 - id: ko-nikl-09866
   target: 서투르다
   part_of_speech: descriptive verb
@@ -35563,6 +35813,18 @@ entries:
     source_position: 1
     english: Provoking a stimulating, strong emotion such as sexual desire.
     korean: 성적인 욕망과 같은 자극적이고 강한 감정을 일으키는.
+- id: ko-nikl-10121
+  target: 선정하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10121
+  senses:
+  - id: ko-nikl-10121-s001
+    source_position: 1
+    english: To choose one appropriate thing among many.
+    korean: 여럿 가운데에서 목적에 맞는 것을 골라 정하다.
 - id: ko-nikl-10124
   target: 선조
   part_of_speech: noun
@@ -35659,6 +35921,18 @@ entries:
     source_position: 1
     english: The act of choosing what one needs among many.
     korean: 여럿 중에서 필요한 것을 골라 뽑음.
+- id: ko-nikl-10162
+  target: 선택하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10162
+  senses:
+  - id: ko-nikl-10162-s001
+    source_position: 1
+    english: To choose what one needs among many.
+    korean: 여럿 중에서 필요한 것을 골라 뽑다.
 - id: ko-nikl-10167
   target: 선풍기
   part_of_speech: noun
@@ -35887,6 +36161,22 @@ entries:
     source_position: 2
     english: An act of encouraging or helping someone better perform, next to him/her.
     korean: 잘하도록 옆에서 격려하거나 도와줌.
+- id: ko-nikl-10215
+  target: 응원하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10215
+  senses:
+  - id: ko-nikl-10215-s001
+    source_position: 1
+    english: In a sports game, etc., to encourage players by singing, clapping, etc.
+    korean: 운동 경기 등에서, 노래나 손뼉치기 등을 하면서 선수들을 격려하다.
+  - id: ko-nikl-10215-s002
+    source_position: 2
+    english: To encourage or help someone better perform, next to him/her.
+    korean: 잘하도록 옆에서 격려하거나 도와주다.
 - id: ko-nikl-10233
   target: 응하다
   part_of_speech: verb
@@ -38260,6 +38550,31 @@ entries:
     source_position: 4
     english: Words that are spoken to evaluate something or spread a rumor about something.
     korean: 어떠한 것에 대한 소문을 내거나 평을 하는 말.
+- id: ko-nikl-10843
+  target: 이야기하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10843
+  senses:
+  - id: ko-nikl-10843-s001
+    source_position: 1
+    english: To talk to someone about a certain fact, state, phenomenon, experience, thought, etc.
+    korean: 어떠한 사실이나 상태, 현상, 경험, 생각 등에 관해 누군가에게 말을 하다.
+  - id: ko-nikl-10843-s002
+    source_position: 2
+    english: To exchange words with someone.
+    korean: 다른 사람과 말을 주고받다.
+  - id: ko-nikl-10843-s003
+    source_position: 3
+    english: To talk about a certain fact amusingly or embellish something imaginary so that it is thought
+      to be real.
+    korean: 어떤 사실이나 있지 않은 일을 사실처럼 꾸며 재미있게 말을 하다.
+  - id: ko-nikl-10843-s004
+    source_position: 4
+    english: To spread a rumor about or comment on someone or something.
+    korean: 어떠한 것에 대한 소문을 내거나 평을 하다.
 - id: ko-nikl-10850
   target: 이어
   part_of_speech: adverb
@@ -39866,6 +40181,18 @@ entries:
     source_position: 1
     english: 'A sentence quoted from another person''s speech or text. '
     korean: 남의 말이나 글에서 따온 문장.
+- id: ko-nikl-11237
+  target: 인용하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11237
+  senses:
+  - id: ko-nikl-11237-s001
+    source_position: 1
+    english: To repeat another person's remark or text in one's own speech or writing.
+    korean: 남의 말이나 글을 자신의 말이나 글 속에 끌어 쓰다.
 - id: ko-nikl-11238
   target: 인원
   part_of_speech: noun
@@ -42296,6 +42623,22 @@ entries:
     source_position: 1
     english: Staying in a hospital for a certain period of time to have one's disease treated.
     korean: 병을 고치기 위해 일정 기간 병원에 들어가 지냄.
+- id: ko-nikl-11892
+  target: 입자
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11892
+  senses:
+  - id: ko-nikl-11892-s001
+    source_position: 1
+    english: A tiny body that constitutes a substance.
+    korean: 물질을 이루는 아주 작은 크기의 물체.
+  - id: ko-nikl-11892-s002
+    source_position: 2
+    english: A tiny body that constitutes a substance and has its own properties.
+    korean: 어떤 물질을 이루면서 그 물질의 성질을 지니고 있는 아주 작은 크기의 물체.
 - id: ko-nikl-11893
   target: 입장
   part_of_speech: noun
@@ -42376,6 +42719,19 @@ entries:
     source_position: 3
     english: A place where one chooses for his/her economic activities.
     korean: 인간이 경제 활동을 하기 위하여 선택하는 장소.
+- id: ko-nikl-11911
+  target: 입체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11911
+  senses:
+  - id: ko-nikl-11911-s001
+    source_position: 1
+    english: An object with volume, surrounded by multiple flat and curved surfaces in three-dimensional
+      space.
+    korean: 삼차원의 공간에서 여러 개의 평면이나 곡면으로 둘러싸여 부피를 가지는 물체.
 - id: ko-nikl-11920
   target: 입학
   part_of_speech: noun
@@ -44667,6 +45023,18 @@ entries:
     source_position: 1
     english: The act of deciding on how one will do something; such a decision.
     korean: 마음속으로 일을 어떻게 하기로 결정함. 또는 그런 결정.
+- id: ko-nikl-12532
+  target: 작정하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12532
+  senses:
+  - id: ko-nikl-12532-s001
+    source_position: 1
+    english: To decide on how one will do something.
+    korean: 마음속으로 일을 어떻게 하기로 결정하다.
 - id: ko-nikl-12536
   target: 작품
   part_of_speech: noun
@@ -46734,6 +47102,18 @@ entries:
     source_position: 2
     english: Products that have yet to be shelved or sold and are kept in storage.
     korean: 아직 팔지 않았거나 팔다가 남아서 창고에 쌓아 놓은 물건.
+- id: ko-nikl-13029
+  target: 재고하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13029
+  senses:
+  - id: ko-nikl-13029-s001
+    source_position: 1
+    english: To think about a matter, issue, etc., again.
+    korean: 어떤 일이나 문제 등에 대하여 다시 생각하다.
 - id: ko-nikl-13031
   target: 재구성
   part_of_speech: noun
@@ -56894,6 +57274,22 @@ entries:
     source_position: 2
     english: The act of making up one's mind to do something.
     korean: 마음을 굳게 먹거나 뜻을 정함.
+- id: ko-nikl-16272
+  target: 다짐하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16272
+  senses:
+  - id: ko-nikl-16272-s001
+    source_position: 1
+    english: To make certain that one has done or will do something.
+    korean: 이미 한 일이나 앞으로 할 일이 틀림이 없음을 단단히 확인하다.
+  - id: ko-nikl-16272-s002
+    source_position: 2
+    english: 'To make up one''s mind to do something. '
+    korean: 마음을 굳게 먹고 뜻을 정하다.
 - id: ko-nikl-16273
   target: 다짜고짜
   part_of_speech: adverb
@@ -57456,6 +57852,22 @@ entries:
     source_position: 2
     english: A feeling of pleasure and satisfaction.
     korean: 즐겁고 만족스러운 느낌.
+- id: ko-nikl-16384
+  target: 단면
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16384
+  senses:
+  - id: ko-nikl-16384-s001
+    source_position: 1
+    english: The cross section of something cut lengthwise.
+    korean: 물체를 잘랐을 때 나오는 면.
+  - id: ko-nikl-16384-s002
+    source_position: 2
+    english: A partial aspect of a phenomenon or situation.
+    korean: 일이나 사물의 현상 중 한 부분.
 - id: ko-nikl-16396
   target: 단발머리
   part_of_speech: noun
@@ -57818,6 +58230,18 @@ entries:
     source_position: 1
     english: The act of shortening time, distance, etc.
     korean: 시간, 거리 등을 줄임.
+- id: ko-nikl-16508
+  target: 단층
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16508
+  senses:
+  - id: ko-nikl-16508-s001
+    source_position: 1
+    english: A state in which a building has one floor.
+    korean: 건물이 하나의 층으로 된 것.
 - id: ko-nikl-16519
   target: 단풍
   part_of_speech: noun
@@ -58884,6 +59308,26 @@ entries:
     source_position: 1
     english: The letter sent in response to a former letter or a question.
     korean: 질문이나 편지에 대한 답으로 보내는 편지.
+- id: ko-nikl-16756
+  target: 답하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16756
+  senses:
+  - id: ko-nikl-16756-s001
+    source_position: 1
+    english: To reply to a call.
+    korean: 부르는 말에 대해 어떤 말을 하다.
+  - id: ko-nikl-16756-s002
+    source_position: 2
+    english: To figure out the answer of a question or problem and say it.
+    korean: 질문이나 문제가 요구하는 것을 밝혀 말하다.
+  - id: ko-nikl-16756-s003
+    source_position: 3
+    english: To react to a question, letter, etc.
+    korean: 물음이나 편지 등에 대하여 반응하다.
 - id: ko-nikl-16758
   target: 닷새
   part_of_speech: noun
@@ -62745,6 +63189,19 @@ entries:
     source_position: 1
     english: The act of selling a lot of objects at once rather than one at a time.
     korean: 물건을 낱개로 팔지 않고 여러 개를 한꺼번에 파는 것.
+- id: ko-nikl-17861
+  target: 도면
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17861
+  senses:
+  - id: ko-nikl-17861-s001
+    source_position: 1
+    english: A drawing that shows the structure or plan of civil engineering, architecture, machinery,
+      etc.
+    korean: 토목, 건축, 기계 등의 구조나 설계 등을 나타낸 그림.
 - id: ko-nikl-17862
   target: 도모
   part_of_speech: noun
@@ -62867,6 +63324,36 @@ entries:
     english: A place that is not a city becoming urban with the spread of urban culture, or a locale caused
       to become urban.
     korean: 도시의 문화가 전해져서 도시가 아닌 곳이 도시처럼 됨. 또는 그렇게 만듦.
+- id: ko-nikl-17921
+  target: 도식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17921
+  senses:
+  - id: ko-nikl-17921-s001
+    source_position: 1
+    english: A table or figure that shows the structure, state, relationship, etc., of something in an
+      easy way.
+    korean: 어떤 것의 구조나 상태, 관계 등을 쉽게 보이기 위하여 나타낸 표나 그림.
+  - id: ko-nikl-17921-s002
+    source_position: 2
+    english: An already established formula for resolving or promoting something.
+    korean: 어떤 일을 풀거나 진행시키는 미리 만들어진 공식.
+- id: ko-nikl-17924
+  target: 도식화
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17924
+  senses:
+  - id: ko-nikl-17924-s001
+    source_position: 1
+    english: The act of showing the structure, status, relationship, etc., of something on graphs or pictures
+      for an easy explanation.
+    korean: 무엇의 구조나 상태, 관계 등을 쉽게 보이기 위하여 표나 그림으로 나타냄.
 - id: ko-nikl-17927
   target: 도심
   part_of_speech: noun
@@ -64233,6 +64720,18 @@ entries:
     source_position: 1
     english: The state of thinking the same as others do, or such a thought.
     korean: 어떤 의견에 같은 생각을 가짐. 또는 그 생각.
+- id: ko-nikl-18305
+  target: 동감하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18305
+  senses:
+  - id: ko-nikl-18305-s001
+    source_position: 1
+    english: To think the same as others do.
+    korean: 어떤 의견에 같은 생각을 가지다.
 - id: ko-nikl-18312
   target: 동거
   part_of_speech: noun
@@ -65442,6 +65941,26 @@ entries:
     source_position: 3
     english: 'To recall something past to one''s mind and think it over. '
     korean: 지난 일을 다시 떠올려 곰곰이 생각하다.
+- id: ko-nikl-18681
+  target: 되짚다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18681
+  senses:
+  - id: ko-nikl-18681-s001
+    source_position: 1
+    english: To pinpoint one thing out of many and point it out again.
+    korean: 여럿 중에서 하나를 꼭 집어 다시 가리키다.
+  - id: ko-nikl-18681-s002
+    source_position: 2
+    english: To think about a past incident, thought, memory, remark, etc.
+    korean: 지난 일, 생각, 기억, 말 등을 다시 떠올려 생각하다.
+  - id: ko-nikl-18681-s003
+    source_position: 3
+    english: To trace back in the same path which one went along.
+    korean: 갔던 길을 그대로 따라 되돌아서 오다.
 - id: ko-nikl-18682
   target: 되찾다
   part_of_speech: verb
@@ -65466,6 +65985,18 @@ entries:
     source_position: 1
     english: The act of repeating the same words or event, or an event happening repetitively.
     korean: 같은 말이나 일을 자꾸 반복함. 또는 같은 일이 자꾸 일어남.
+- id: ko-nikl-18687
+  target: 되풀이하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18687
+  senses:
+  - id: ko-nikl-18687-s001
+    source_position: 1
+    english: 'To repeat the same words, behavior, or work. '
+    korean: 같은 말이나 행동, 일을 반복하다.
 - id: ko-nikl-18690
   target: 된소리
   part_of_speech: noun
@@ -72240,6 +72771,18 @@ entries:
     english: An act of expressing one’s appreciation of someone’s strength or achievement, etc., or such
       a remark.
     korean: 좋은 점이나 잘한 일 등을 매우 훌륭하게 여기는 마음을 말로 나타냄. 또는 그런 말.
+- id: ko-nikl-20532
+  target: 칭찬하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20532
+  senses:
+  - id: ko-nikl-20532-s001
+    source_position: 1
+    english: To express one’s appreciation of someone’s strength or achievement, etc.
+    korean: 좋은 점이나 잘한 일 등을 매우 훌륭하게 여기는 마음을 말로 나타내다.
 - id: ko-nikl-20534
   target: 칭하다
   part_of_speech: verb
@@ -74036,6 +74579,19 @@ entries:
     source_position: 2
     english: The launching of an institution, organization, a system, etc.
     korean: 기관이나 조직, 제도 등이 새로 생김.
+- id: ko-nikl-21181
+  target: 탄성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21181
+  senses:
+  - id: ko-nikl-21181-s001
+    source_position: 1
+    english: The characteristic of something changing in volume and shape when an external force is given,
+      and returning to its former state when the force is removed.
+    korean: 물체에 외부에서 힘을 가하면 부피와 모양이 바뀌었다가, 그 힘을 없애면 본디의 모양으로 되돌아가려 하는 성질.
 - id: ko-nikl-21182
   target: 탄성
   part_of_speech: noun
@@ -74264,6 +74820,34 @@ entries:
     source_position: 1
     english: 'An act of digging into and looking into a field of study, etc., deeply. '
     korean: 학문 등을 깊이 파고들어 연구함.
+- id: ko-nikl-21292
+  target: 탐구하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21292
+  senses:
+  - id: ko-nikl-21292-s001
+    source_position: 1
+    english: To dig into and look into a field of study, etc., deeply.
+    korean: 학문 등을 깊이 파고들어 연구하다.
+- id: ko-nikl-21307
+  target: 탐방하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21307
+  senses:
+  - id: ko-nikl-21307-s001
+    source_position: 1
+    english: To visit a place or a person to find out a certain fact or news.
+    korean: 어떤 사실이나 소식을 알아내기 위해 사람이나 장소를 찾아가다.
+  - id: ko-nikl-21307-s002
+    source_position: 2
+    english: To visit a tourist attraction or historic site to look around.
+    korean: 명승지나 유적지를 구경하기 위해 찾아가다.
 - id: ko-nikl-21311
   target: 탐색
   part_of_speech: noun
@@ -74277,6 +74861,19 @@ entries:
     english: 'An act of probing and looking around, in an attempt to discover an unknown object or reveal
       an unknown phenomenon. '
     korean: 알려지지 않은 사물이나 현상을 찾아내거나 밝히기 위해 살피어 찾음.
+- id: ko-nikl-21313
+  target: 탐색하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21313
+  senses:
+  - id: ko-nikl-21313-s001
+    source_position: 1
+    english: To probe and look around, in an attempt to discover an unknown object or reveal an unknown
+      phenomenon.
+    korean: 알려지지 않은 사물이나 현상을 찾아내거나 밝히기 위해 살피어 찾다.
 - id: ko-nikl-21329
   target: 탐험
   part_of_speech: noun
@@ -74290,6 +74887,19 @@ entries:
     english: An act of going to a location to observe and study its characteristics, often in dangerous
       conditions.
     korean: 위험을 참고 견디며 어떤 곳을 찾아가서 살펴보고 조사함.
+- id: ko-nikl-21332
+  target: 탐험하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21332
+  senses:
+  - id: ko-nikl-21332-s001
+    source_position: 1
+    english: An act of going to a location to observe and study its characteristics, often in dangerous
+      conditions.
+    korean: 위험을 참고 견디며 어떤 곳을 찾아가서 살펴보고 조사하다.
 - id: ko-nikl-21333
   target: 탑
   part_of_speech: noun
@@ -74682,6 +75292,18 @@ entries:
     english: The state of realizing and finding out the logic of something by oneself, after thinking
       about it deeply.
     korean: 깊이 생각하여 스스로 이치를 깨달아 알아냄.
+- id: ko-nikl-21446
+  target: 터득하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21446
+  senses:
+  - id: ko-nikl-21446-s001
+    source_position: 1
+    english: To realize and find out the logic of something by oneself, after thinking about it deeply.
+    korean: 깊이 생각하여 스스로 이치를 깨달아 알아내다.
 - id: ko-nikl-21447
   target: 터뜨리다
   part_of_speech: verb
@@ -77696,6 +78318,19 @@ entries:
     english: 'The state of getting to know something well, as one succeeds to understand the content or
       situation of a certain incident or subject. '
     korean: 어떤 일이나 대상의 내용이나 상황을 확실하게 이해하여 앎.
+- id: ko-nikl-22339
+  target: 파악하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22339
+  senses:
+  - id: ko-nikl-22339-s001
+    source_position: 1
+    english: 'To get to know something well, as one succeeds in understanding the content or situation
+      of a certain incident or subject. '
+    korean: 어떤 일이나 대상의 내용이나 상황을 확실하게 이해하여 알다.
 - id: ko-nikl-22342
   target: 파업
   part_of_speech: noun
@@ -79981,6 +80616,26 @@ entries:
     source_position: 1
     english: Paper or plastic paper that is used to wrap or pack something.
     korean: 물건을 싸거나 꾸리는 데 쓰는 종이나 비닐.
+- id: ko-nikl-23076
+  target: 포착하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23076
+  senses:
+  - id: ko-nikl-23076-s001
+    source_position: 1
+    english: To catch something tightly.
+    korean: 어떤 것을 꼭 붙잡다.
+  - id: ko-nikl-23076-s002
+    source_position: 2
+    english: To find out the most important thing, or learn the skill necessary to do a certain task.
+    korean: 가장 중요한 점을 알아내거나 일을 하는 데 필요한 요령을 얻다.
+  - id: ko-nikl-23076-s003
+    source_position: 3
+    english: To realize an opportunity or the circumstances of a certain incident.
+    korean: 어떤 기회나 일의 돌아가는 상황을 알아차리다.
 - id: ko-nikl-23077
   target: 포크
   part_of_speech: noun
@@ -80698,6 +81353,19 @@ entries:
     english: 'An ability to turn one''s feelings, thoughts, etc., into a speech, a piece of writing, a
       gesture, etc., and to show it. '
     korean: 느낌이나 생각 등을 말, 글, 몸짓 등으로 나타내어 겉으로 드러내는 능력.
+- id: ko-nikl-23267
+  target: 표현하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23267
+  senses:
+  - id: ko-nikl-23267-s001
+    source_position: 1
+    english: To turn one's  feelings, thoughts, etc., into a speech, a piece of writing, a gesture, etc.,
+      and show it.
+    korean: 느낌이나 생각 등을 말, 글, 몸짓 등으로 나타내어 겉으로 드러내다.
 - id: ko-nikl-23268
   target: 푯말
   part_of_speech: noun
@@ -83481,6 +84149,18 @@ entries:
     source_position: 1
     english: 'To study and learn something. '
     korean: 배워서 익힘.
+- id: ko-nikl-24039
+  target: 학습하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24039
+  senses:
+  - id: ko-nikl-24039-s001
+    source_position: 1
+    english: 'To learn by studying something. '
+    korean: 배워서 익히다.
 - id: ko-nikl-24040
   target: 학식
   part_of_speech: noun
@@ -84782,6 +85462,18 @@ entries:
     source_position: 2
     english: To share an idea or time, or be in accord with someone.
     korean: 생각이나 때를 똑같이 가지거나 맞추다.
+- id: ko-nikl-24375
+  target: 함량
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24375
+  senses:
+  - id: ko-nikl-24375-s001
+    source_position: 1
+    english: 'The amount of a certain element contained in substance. '
+    korean: 물질에 들어 있는 어떤 성분의 양.
 - id: ko-nikl-24381
   target: 함박눈
   part_of_speech: noun
@@ -87314,6 +88006,22 @@ entries:
     source_position: 7
     english: Extremely sad and terrible.
     korean: 매우 슬프고 끔찍하다.
+- id: ko-nikl-25116
+  target: 헛갈리다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25116
+  senses:
+  - id: ko-nikl-25116-s001
+    source_position: 1
+    english: To feel dizzy and confused.
+    korean: 정신이 어지럽고 혼란스럽게 되다.
+  - id: ko-nikl-25116-s002
+    source_position: 2
+    english: To fail to set a direction of a task as many things are mixed up.
+    korean: 여러 가지가 뒤섞여 일의 방향을 잡지 못하다.
 - id: ko-nikl-25117
   target: 헛걸음
   part_of_speech: noun
@@ -88488,6 +89196,18 @@ entries:
     source_position: 3
     english: A word used by Christians to address each other.
     korean: 기독교 신자들끼리 서로를 이르는 말.
+- id: ko-nikl-25475
+  target: 형체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25475
+  senses:
+  - id: ko-nikl-25475-s001
+    source_position: 1
+    english: 'The appearance of an object or the body that is the base of it. '
+    korean: 물체의 생긴 모양이나 그 바탕이 되는 몸체.
 - id: ko-nikl-25476
   target: 형태
   part_of_speech: noun
@@ -89057,6 +89777,22 @@ entries:
     source_position: 2
     english: The act of making a guess about the current state of a certain thing or situation.
     korean: 사물이나 상황의 상태를 대강 짐작으로 생각함.
+- id: ko-nikl-25599
+  target: 가늠하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25599
+  senses:
+  - id: ko-nikl-25599-s001
+    source_position: 1
+    english: To check if something meets a certain objective, standard, etc.
+    korean: 목표나 기준 등에 맞는지 안 맞는지를 살피다.
+  - id: ko-nikl-25599-s002
+    source_position: 2
+    english: To make a rough guess about the status of something or the development of a situation.
+    korean: 사물이나 상황의 상태를 대강 짐작으로 생각하다.
 - id: ko-nikl-25600
   target: 가능
   part_of_speech: noun
@@ -91548,6 +92284,18 @@ entries:
     english: A person who finds out or steals a secret, the situation, or information of one country or
       organization, and provides it to another country or organization.
     korean: 한 나라나 단체의 비밀 정보를 알아내어 다른 나라나 단체에 넘겨주는 일을 하는 사람.
+- id: ko-nikl-26323
+  target: 간파하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26323
+  senses:
+  - id: ko-nikl-26323-s001
+    source_position: 1
+    english: To find out something which has been unnoticed or hidden.
+    korean: 겉으로 드러나지 않은 점을 꿰뚫어 알아차리다.
 - id: ko-nikl-26324
   target: 간판
   part_of_speech: noun
@@ -92637,6 +93385,18 @@ entries:
     source_position: 1
     english: The act of detecting something through the senses.
     korean: 느끼어 앎.
+- id: ko-nikl-26594
+  target: 감지하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26594
+  senses:
+  - id: ko-nikl-26594-s001
+    source_position: 1
+    english: To detect something through the senses.
+    korean: 느끼어 알다.
 - id: ko-nikl-26597
   target: 감쪽같이
   part_of_speech: adverb
@@ -96980,6 +97740,18 @@ entries:
     source_position: 1
     english: 'Cheering or buoying up someone to grant courage or motivation. '
     korean: 용기나 의욕이 생기도록 기운을 북돋아 줌.
+- id: ko-nikl-27997
+  target: 격려하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27997
+  senses:
+  - id: ko-nikl-27997-s001
+    source_position: 1
+    english: To cheer or buoy up someone so that he/she gains courage or motivation.
+    korean: 용기나 의욕이 생기도록 기운을 북돋아 주다.
 - id: ko-nikl-27998
   target: 격렬하다
   part_of_speech: descriptive verb
@@ -97221,6 +97993,18 @@ entries:
     source_position: 1
     english: Learning by visiting the place related to a certain subject.
     korean: 어떤 일과 관련된 곳을 직접 찾아가서 보고 배움.
+- id: ko-nikl-28107
+  target: 견학하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28107
+  senses:
+  - id: ko-nikl-28107-s001
+    source_position: 1
+    english: To learn by visiting a place related to a certain subject.
+    korean: 어떤 일과 관련된 곳을 직접 찾아가서 보고 배우다.
 - id: ko-nikl-28108
   target: 견해
   part_of_speech: noun
@@ -97309,6 +98093,18 @@ entries:
     source_position: 1
     english: The ability to judge what is important and making a final decision.
     korean: 중요한 일을 판단하여 최종적으로 결정하는 능력.
+- id: ko-nikl-28131
+  target: 결단하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28131
+  senses:
+  - id: ko-nikl-28131-s001
+    source_position: 1
+    english: To judge what is important and make a final decision.
+    korean: 중요한 일을 판단하여 최종적으로 결정하다.
 - id: ko-nikl-28139
   target: 결론
   part_of_speech: noun
@@ -97487,6 +98283,18 @@ entries:
     source_position: 1
     english: Making up one's mind about something or this mindset.
     korean: 어떻게 하기로 굳게 마음을 정함. 또는 그런 마음.
+- id: ko-nikl-28194
+  target: 결심하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28194
+  senses:
+  - id: ko-nikl-28194-s001
+    source_position: 1
+    english: To firmly make up one's mind about something.
+    korean: 어떻게 하기로 굳게 마음을 정하다.
 - id: ko-nikl-28195
   target: 결여
   part_of_speech: noun
@@ -97523,6 +98331,18 @@ entries:
     source_position: 1
     english: 'Making a decision in a meeting after hearing various opinions. '
     korean: 회의에서 여러 사람의 의견을 모아 결정함.
+- id: ko-nikl-28208
+  target: 결의하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28208
+  senses:
+  - id: ko-nikl-28208-s001
+    source_position: 1
+    english: To definitely determine to do something
+    korean: 어떤 일을 하기로 굳게 마음을 정하다.
 - id: ko-nikl-28214
   target: 결재
   part_of_speech: noun
@@ -97559,6 +98379,18 @@ entries:
     source_position: 1
     english: Deciding a goal and the method of reaching it clearly or the decided content.
     korean: 무엇을 어떻게 하기로 분명하게 정함. 또는 그렇게 정해진 내용.
+- id: ko-nikl-28221
+  target: 결정되다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28221
+  senses:
+  - id: ko-nikl-28221-s001
+    source_position: 1
+    english: For what and how to do it to be fixed clearly.
+    korean: 무엇을 어떻게 할 것인지가 분명하게 정해지다.
 - id: ko-nikl-28222
   target: 결정적
   part_of_speech: noun
@@ -97603,6 +98435,18 @@ entries:
     source_position: 1
     english: To make something be fixed clearly.
     korean: 분명하게 정해지도록 만들다.
+- id: ko-nikl-28227
+  target: 결정하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28227
+  senses:
+  - id: ko-nikl-28227-s001
+    source_position: 1
+    english: To clearly make a decision about what and how to do it.
+    korean: 무엇을 어떻게 하기로 분명하게 정하다.
 - id: ko-nikl-28228
   target: 결제
   part_of_speech: noun
@@ -99744,6 +100588,18 @@ entries:
       was Gaeseong and Buddhist culture and Confucianism flourished; in 1392, it was brought down by Yi
       Seonggye, the founding father of the Joseon Dynasty.
     korean: 왕건이 후삼국을 통일하고 918년에 세운 나라. 개성을 수도로 하였고 불교 문화와 유학이 크게 발달하였다. 1392년 조선의 시조인 이성계에게 멸망하였다.
+- id: ko-nikl-28948
+  target: 고려하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28948
+  senses:
+  - id: ko-nikl-28948-s001
+    source_position: 1
+    english: To give careful thought to diverse situations or conditions in doing something.
+    korean: 어떤 일을 하는 데 여러 가지 상황이나 조건을 신중하게 생각하다.
 - id: ko-nikl-28949
   target: 고령
   part_of_speech: noun
@@ -99912,6 +100768,18 @@ entries:
     source_position: 1
     english: 'A state of being agonized and bothered due to a worry on your mind. '
     korean: 마음속에 걱정거리가 있어 괴로워하고 계속 신경 씀.
+- id: ko-nikl-29054
+  target: 고민하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29054
+  senses:
+  - id: ko-nikl-29054-s001
+    source_position: 1
+    english: To be in agony and distressed due to a worry on one's mind.
+    korean: 마음속에 걱정거리가 있어 괴로워하고 신경을 쓰다.
 - id: ko-nikl-29056
   target: 고발
   part_of_speech: noun
@@ -99941,6 +100809,18 @@ entries:
     source_position: 1
     english: The act of telling one's innermost thoughts or secrets truthfully.
     korean: 마음속의 생각이나 숨기고 있는 사실을 솔직하게 모두 다 말함.
+- id: ko-nikl-29066
+  target: 고백하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29066
+  senses:
+  - id: ko-nikl-29066-s001
+    source_position: 1
+    english: To tell one's innermost thoughts or secrets truthfully.
+    korean: 마음속의 생각이나 숨기고 있는 사실을 솔직하게 모두 다 말하다.
 - id: ko-nikl-29077
   target: 고비
   part_of_speech: noun
@@ -101044,6 +101924,18 @@ entries:
     source_position: 2
     english: '(figurative) An object with decreased value because it is old; or an outdated person. '
     korean: (비유적으로) 오래되어 가치가 떨어진 물건. 또는 시대에 뒤떨어진 사람.
+- id: ko-nikl-29519
+  target: 골라내다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29519
+  senses:
+  - id: ko-nikl-29519-s001
+    source_position: 1
+    english: To pick up something by distinguishing it from many other things.
+    korean: 여럿 가운데서 어떤 것을 구별해서 집어내다.
 - id: ko-nikl-29523
   target: 골머리
   part_of_speech: noun
@@ -101266,6 +102158,22 @@ entries:
     source_position: 1
     english: Curly hair or a person with such hair.
     korean: 둥글게 말려 있는 머리카락이나 그런 머리카락을 가진 사람.
+- id: ko-nikl-29603
+  target: 곱씹다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29603
+  senses:
+  - id: ko-nikl-29603-s001
+    source_position: 1
+    english: 'To chew food several times. '
+    korean: 음식을 여러 번 되풀이해서 씹다.
+  - id: ko-nikl-29603-s002
+    source_position: 2
+    english: To think carefully about a certain remark, idea, matter, etc., several times.
+    korean: 말이나 생각, 사건 등을 여러 번 곰곰이 생각하다.
 - id: ko-nikl-29609
   target: 곱하다
   part_of_speech: verb
@@ -101424,6 +102332,18 @@ entries:
     source_position: 1
     english: A part or area of interest of similar thoughts or feelings.
     korean: 같은 생각이나 느낌을 가지는 부분이나 관심 분야.
+- id: ko-nikl-29632
+  target: 공감하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29632
+  senses:
+  - id: ko-nikl-29632-s001
+    source_position: 1
+    english: To feel that one shares another person's emotions or thoughts.
+    korean: 다른 사람의 마음이나 생각에 대해 자신도 그렇다고 똑같이 느끼다.
 - id: ko-nikl-29633
   target: 공개
   part_of_speech: noun
@@ -103535,6 +104455,22 @@ entries:
     source_position: 1
     english: An office that maintains or renovates facilities or buildings.
     korean: 시설이나 건물을 유지하거나 개량하는 일을 맡아보는 사무실.
+- id: ko-nikl-30332
+  target: 관망하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30332
+  senses:
+  - id: ko-nikl-30332-s001
+    source_position: 1
+    english: To just watch from a distance, not intervening in the situation or circumstances.
+    korean: 형편이나 분위기 등에 간섭하지 않고 멀리서 보기만 하다.
+  - id: ko-nikl-30332-s002
+    source_position: 2
+    english: To see a landscape or other things from a distance.
+    korean: 풍경 등을 멀리서 바라보다.
 - id: ko-nikl-30349
   target: 관세
   part_of_speech: noun
@@ -103719,6 +104655,18 @@ entries:
     source_position: 1
     english: The act of watching an object or phenomenon carefully and in detail.
     korean: 사물이나 현상을 주의 깊게 자세히 살펴봄.
+- id: ko-nikl-30401
+  target: 관찰하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30401
+  senses:
+  - id: ko-nikl-30401-s001
+    source_position: 1
+    english: To watch an object or phenomenon carefully and in detail.
+    korean: 사물이나 현상을 주의 깊게 자세히 살펴보다.
 - id: ko-nikl-30405
   target: 관청
   part_of_speech: noun
@@ -103748,6 +104696,23 @@ entries:
     source_position: 2
     english: An act of guessing what will happen after observing in detail a certain fact or situation.
     korean: 어떤 일이나 상황을 자세히 살피어 이후의 일을 짐작함.
+- id: ko-nikl-30410
+  target: 관측하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30410
+  senses:
+  - id: ko-nikl-30410-s001
+    source_position: 1
+    english: To guess or find out a fact of natural phenomena by using a machine or observing in detail
+      with eyes.
+    korean: 자연 현상을 기계를 이용하거나 눈으로 자세히 살펴보아 어떤 사실을 짐작하거나 알아 내다.
+  - id: ko-nikl-30410-s002
+    source_position: 2
+    english: To guess what will happen after observing in detail a certain fact or situation.
+    korean: 어떤 일이나 상황의 상태를 자세히 살피어 이후의 일을 짐작하다.
 - id: ko-nikl-30417
   target: 관하다
   part_of_speech: verb
@@ -104411,6 +105376,18 @@ entries:
     source_position: 1
     english: Relating to education or being helpful to education.
     korean: 교육과 관련되거나 교육에 도움이 되는.
+- id: ko-nikl-30721
+  target: 교육하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30721
+  senses:
+  - id: ko-nikl-30721-s001
+    source_position: 1
+    english: To teach knowledge, culture, techniques, etc., in order to enhance a person's ability.
+    korean: 개인의 능력을 키우기 위해 지식, 교양, 기술 등을 가르치다.
 - id: ko-nikl-30725
   target: 교장
   part_of_speech: noun
@@ -105173,6 +106150,23 @@ entries:
     english: 'An act of thinking and determining in advance the content or expressions of a work in terms
       of creating a work of art; or such an idea. '
     korean: 예술 작품을 창작할 때, 작품의 내용이나 표현 형식 등을 미리 생각하여 정함. 또는 그 생각.
+- id: ko-nikl-31011
+  target: 구상하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31011
+  senses:
+  - id: ko-nikl-31011-s001
+    source_position: 1
+    english: To contemplate the content, scale and strategies of a future plan.
+    korean: 앞으로 할 일의 내용, 규모, 실현 방법 등을 곰곰이 생각하다.
+  - id: ko-nikl-31011-s002
+    source_position: 2
+    english: To think about and determine in advance the content or representation of an art work before
+      setting out to create it.
+    korean: 예술 작품을 창작할 때, 작품의 내용이나 표현 형식 등을 미리 생각하여 정하다.
 - id: ko-nikl-31019
   target: 구석
   part_of_speech: noun
@@ -105508,6 +106502,18 @@ entries:
     source_position: 2
     english: 'The part that serves as the frame of a building, etc. '
     korean: 건물 등의 뼈대가 되는 부분.
+- id: ko-nikl-31140
+  target: 구조물
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31140
+  senses:
+  - id: ko-nikl-31140-s001
+    source_position: 1
+    english: A large object designed and built systematically, such as buildings, bridges, tunnels, etc.
+    korean: 건물, 다리, 터널 등과 같이 설계에 따라 체계적으로 만든 큰 물건.
 - id: ko-nikl-31141
   target: 구조적
   part_of_speech: noun
@@ -105769,6 +106775,18 @@ entries:
     source_position: 2
     english: 'The act of looking after the sick or injured. '
     korean: 병이 들거나 다친 사람을 간호함.
+- id: ko-nikl-31212
+  target: 구획
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31212
+  senses:
+  - id: ko-nikl-31212-s001
+    source_position: 1
+    english: Dividing land or space with boundaries, or the divided land or space.
+    korean: 땅이나 공간을 경계를 지어 나눔. 또는 그런 구역.
 - id: ko-nikl-31215
   target: 국
   part_of_speech: noun
@@ -107029,6 +108047,18 @@ entries:
     source_position: 1
     english: The act of deeply thinking about a way to solve something, or the thought.
     korean: 어떤 일을 해결할 방법을 깊이 생각함. 또는 그 생각.
+- id: ko-nikl-31622
+  target: 궁리하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31622
+  senses:
+  - id: ko-nikl-31622-s001
+    source_position: 1
+    english: To deeply think about a way to solve something.
+    korean: 어떤 일을 해결할 방법을 깊이 생각하다.
 - id: ko-nikl-31635
   target: 궁중
   part_of_speech: noun
@@ -107435,6 +108465,18 @@ entries:
     source_position: 1
     english: Inducing a general conclusion or rule from concrete facts. 
     korean: 구체적 사실로부터 일반적인 결론이나 법칙을 이끌어 내는.
+- id: ko-nikl-31751
+  target: 귀담아듣다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31751
+  senses:
+  - id: ko-nikl-31751-s001
+    source_position: 1
+    english: To listen carefully.
+    korean: 주의하여 잘 듣다.
 - id: ko-nikl-31781
   target: 귀신
   part_of_speech: noun
@@ -109546,6 +110588,18 @@ entries:
     source_position: 3
     english: 'A symbol designed to indicate the sound or meaning of words; or a system of such symbols. '
     korean: 말의 소리나 뜻을 나타내기 위한 기호, 또는 그런 기호들의 체계.
+- id: ko-nikl-32345
+  target: 글꼴
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32345
+  senses:
+  - id: ko-nikl-32345-s001
+    source_position: 1
+    english: The shape of a letter.
+    korean: 글자의 모양.
 - id: ko-nikl-32361
   target: 글쎄
   part_of_speech: interjection
@@ -111627,6 +112681,18 @@ entries:
     source_position: 1
     english: To recall past figures, facts, knowledge or experiences in one's mind or thought.
     korean: 이전의 모습, 사실, 지식, 경험 등이 마음이나 생각 속에 떠오르다.
+- id: ko-nikl-32961
+  target: 기억되다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32961
+  senses:
+  - id: ko-nikl-32961-s001
+    source_position: 1
+    english: For past figures, facts, knowledge or experiences to be recalled or unforgotten.
+    korean: 이전의 모습, 사실, 지식, 경험 등이 잊히지 않거나 다시 생각나다.
 - id: ko-nikl-32962
   target: 기억력
   part_of_speech: noun
@@ -111640,6 +112706,18 @@ entries:
     english: The mental ability to retain and retrieve previous figures, facts, knowledge, experiences,
       etc.
     korean: 이전의 모습, 사실, 지식, 경험 등을 마음이나 생각 속에 간직해 두고 생각해 내는 능력.
+- id: ko-nikl-32967
+  target: 기억하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32967
+  senses:
+  - id: ko-nikl-32967-s001
+    source_position: 1
+    english: 'Not to forget or recall past figures, facts, knowledge or experiences. '
+    korean: 이전의 모습, 사실, 지식, 경험 등을 잊지 않거나 다시 생각해 내다.
 - id: ko-nikl-32968
   target: 기업
   part_of_speech: noun
@@ -113248,6 +114326,27 @@ entries:
     source_position: 1
     english: A device in a vehicle used to signal its turn to the right or to the left.
     korean: 달리는 차가 왼쪽이나 오른쪽으로 진행 방향을 바꿀 경우에 이를 알리는 장치.
+- id: ko-nikl-33468
+  target: 깜빡하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33468
+  senses:
+  - id: ko-nikl-33468-s001
+    source_position: 1
+    english: For light to brighten and then go dim, or dim and then go bright in quick succession; to
+      make something do in such a way.
+    korean: 불빛이 잠깐 밝았다가 어두워지거나 어두워졌다가 밝아지거나 하다. 또는 그렇게 되게 하다.
+  - id: ko-nikl-33468-s002
+    source_position: 2
+    english: 'For one''s eyes to be closed and open again and again; to make them become that way. '
+    korean: 눈이 잠깐 감겼다 뜨이다. 또는 그렇게 되게 하다.
+  - id: ko-nikl-33468-s003
+    source_position: 3
+    english: Not to remember or pay attention.
+    korean: 기억하지 못하거나 주의를 기울이지 못하다.
 - id: ko-nikl-33477
   target: 깜짝
   part_of_speech: adverb
@@ -118612,6 +119711,18 @@ entries:
     english: A field of medical science that treats diseases of internal organs usually with medicine,
       or the department of the hospital that is in charge of the field.
     korean: 주로 약물로 내장 기관의 질병을 치료하는 의학 분야. 또는 그 분야의 병원.
+- id: ko-nikl-34843
+  target: 내구성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34843
+  senses:
+  - id: ko-nikl-34843-s001
+    source_position: 1
+    english: The unchanging and long-lasting quality of a substance.
+    korean: 물질이 변하지 않고 오래 견디는 성질.
 - id: ko-nikl-34848
   target: 내기
   part_of_speech: noun
@@ -124436,6 +125547,18 @@ entries:
     source_position: 3
     english: The words of God in the Bible.
     korean: 성경에 있는 하느님의 말.
+- id: ko-nikl-36384
+  target: 말씀하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36384
+  senses:
+  - id: ko-nikl-36384-s001
+    source_position: 1
+    english: (honorific) To speak.
+    korean: (높임말로) 말하다.
 - id: ko-nikl-36387
   target: 말없이
   part_of_speech: adverb
@@ -124606,6 +125729,18 @@ entries:
     source_position: 1
     english: As one likes.
     korean: 자기가 원하는 대로.
+- id: ko-nikl-36423
+  target: 맘먹다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36423
+  senses:
+  - id: ko-nikl-36423-s001
+    source_position: 1
+    english: To make up one's mind or think that one would do a certain work.
+    korean: 마음속으로 어떤 일을 하겠다고 결심하거나 생각하다.
 - id: ko-nikl-36428
   target: 맛
   part_of_speech: noun
@@ -125020,6 +126155,18 @@ entries:
     english: The act of two persons facing each other while hitting the janggu, an hourglass-shaped drum,
       together.
     korean: 둘이 마주 서서 장구를 치는 일.
+- id: ko-nikl-36559
+  target: 맞장구치다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36559
+  senses:
+  - id: ko-nikl-36559-s001
+    source_position: 1
+    english: To agree or respond positively to another person's words.
+    korean: 남의 말에 옳다고 호응하거나 동의하다.
 - id: ko-nikl-36562
   target: 맞추다
   part_of_speech: verb
@@ -127653,6 +128800,18 @@ entries:
     source_position: 1
     english: To make something clear in a statement or an expression.
     korean: 글로 분명하게 드러내 보이다.
+- id: ko-nikl-37288
+  target: 명심하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37288
+  senses:
+  - id: ko-nikl-37288-s001
+    source_position: 1
+    english: To remember something in one's mind so that it never is forgotten.
+    korean: 잊지 않도록 마음속에 깊이 기억하다.
 - id: ko-nikl-37293
   target: 명예
   part_of_speech: noun
@@ -128692,6 +129851,18 @@ entries:
     source_position: 1
     english: A person who has seen an event or the scene of an incident in person.
     korean: 어떤 일이나 일이 벌어진 현장을 눈으로 직접 본 사람.
+- id: ko-nikl-37591
+  target: 목격하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37591
+  senses:
+  - id: ko-nikl-37591-s001
+    source_position: 1
+    english: To see in person an event or the scene of an incident.
+    korean: 어떤 일이나 일이 벌어진 현장 등을 눈으로 직접 보다.
 - id: ko-nikl-37596
   target: 목구멍
   part_of_speech: noun
@@ -135046,6 +136217,18 @@ entries:
     source_position: 1
     english: The act of asking back rather than answering the question that one received.
     korean: 물음에 대답하지 않고 질문을 한 상대방에게 도리어 물음.
+- id: ko-nikl-39644
+  target: 반문하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39644
+  senses:
+  - id: ko-nikl-39644-s001
+    source_position: 1
+    english: 'To ask back rather than answering the question that one received. '
+    korean: 물음에 대답하지 않고 질문을 한 상대방에게 도리어 묻다.
 - id: ko-nikl-39652
   target: 반바지
   part_of_speech: noun
@@ -135118,6 +136301,18 @@ entries:
     source_position: 1
     english: 'An act of doing the same work several times. '
     korean: 같은 일을 여러 번 계속함.
+- id: ko-nikl-39670
+  target: 반복하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39670
+  senses:
+  - id: ko-nikl-39670-s001
+    source_position: 1
+    english: To do the same work several times.
+    korean: 같은 일을 여러 번 계속하다.
 - id: ko-nikl-39691
   target: 반성
   part_of_speech: noun
@@ -136107,6 +137302,18 @@ entries:
     source_position: 1
     english: The act of saying something to express one's opinion, or a statement made for such a purpose.
     korean: 말을 하여 의견을 나타냄. 또는 그 말.
+- id: ko-nikl-40051
+  target: 발언하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40051
+  senses:
+  - id: ko-nikl-40051-s001
+    source_position: 1
+    english: To say something to express one's opinion.
+    korean: 말을 하여 의견을 나타내다.
 - id: ko-nikl-40061
   target: 발음
   part_of_speech: noun
@@ -137495,6 +138702,18 @@ entries:
     source_position: 1
     english: 'An act of being considerate about someone, caring for or helping him/her. '
     korean: 관심을 가지고 보살펴 주거나 도와줌.
+- id: ko-nikl-40597
+  target: 배려하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40597
+  senses:
+  - id: ko-nikl-40597-s001
+    source_position: 1
+    english: To be considerate about someone, caring for or helping him/her.
+    korean: 관심을 가지고 보살펴 주거나 도와주다.
 - id: ko-nikl-40606
   target: 배부르다
   part_of_speech: descriptive verb
@@ -139371,6 +140590,18 @@ entries:
     source_position: 1
     english: 'The act of thinking highly of and valuing an opinion or person. '
     korean: 의견이나 사람을 높이어 귀중하게 여김.
+- id: ko-nikl-41290
+  target: 존중하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41290
+  senses:
+  - id: ko-nikl-41290-s001
+    source_position: 1
+    english: To think highly of and value an opinion or person.
+    korean: 의견이나 사람을 높이어 귀중하게 여기다.
 - id: ko-nikl-41299
   target: 졸다
   part_of_speech: verb
@@ -140926,6 +142157,22 @@ entries:
     source_position: 1
     english: A liquid extracted from fruits or vegetables, or a drink made of such liquid.
     korean: 과일이나 채소에서 짜낸 즙. 또는 그것으로 만든 음료.
+- id: ko-nikl-41782
+  target: 주시하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41782
+  senses:
+  - id: ko-nikl-41782-s001
+    source_position: 1
+    english: To look at someone or something intently.
+    korean: 어떤 대상을 집중하여 보다.
+  - id: ko-nikl-41782-s002
+    source_position: 2
+    english: To examine something in detail and with attention.
+    korean: 어떤 일을 관심을 두고 자세히 살피다.
 - id: ko-nikl-41783
   target: 주식
   part_of_speech: noun
@@ -141243,6 +142490,18 @@ entries:
     source_position: 4
     english: To give up and stop in the middle of something since one finds it hard to go on.
     korean: 하던 일이 힘겨워서 도중에 포기하고 그만두다.
+- id: ko-nikl-41854
+  target: 주저하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41854
+  senses:
+  - id: ko-nikl-41854-s001
+    source_position: 1
+    english: To be hesitant and unable to make a decision and act on it.
+    korean: 선뜻 결정하여 행동하지 못하고 망설이다.
 - id: ko-nikl-41855
   target: 주전
   part_of_speech: noun
@@ -142212,6 +143471,18 @@ entries:
     source_position: 1
     english: The act of shortening the middle part of a passage or speech.
     korean: 글이나 말의 중간 부분을 줄임.
+- id: ko-nikl-42155
+  target: 중량
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42155
+  senses:
+  - id: ko-nikl-42155-s001
+    source_position: 1
+    english: The degree of an object's heaviness.
+    korean: 물건의 무거운 정도.
 - id: ko-nikl-42159
   target: 중력
   part_of_speech: noun
@@ -143681,6 +144952,18 @@ entries:
     source_position: 1
     english: 'A person who teaches and leads other people. '
     korean: 남을 가르쳐서 이끄는 사람.
+- id: ko-nikl-42603
+  target: 지도하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42603
+  senses:
+  - id: ko-nikl-42603-s001
+    source_position: 1
+    english: To teach and lead another person towards a certain purpose or direction.
+    korean: 어떤 목적이나 방향으로 다른 사람을 가르쳐 이끌다.
 - id: ko-nikl-42606
   target: 지독하다
   part_of_speech: descriptive verb
@@ -145422,6 +146705,23 @@ entries:
     english: The act of making a spoken or written statement or fact, given by a  person or party related
       to a certain case at an investigative agency or in court, or such an act.
     korean: 수사 기관이나 법정에서 사건의 당사자나 관련된 사람이 사실이나 의견을 말이나 글로 알리는 것. 또는 그러한 일.
+- id: ko-nikl-43130
+  target: 진술하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43130
+  senses:
+  - id: ko-nikl-43130-s001
+    source_position: 1
+    english: To give one's opinion on a certain topic or situation in a detailed manner.
+    korean: 일이나 상황에 대해 의견을 자세히 이야기하다.
+  - id: ko-nikl-43130-s002
+    source_position: 2
+    english: To make a spoken or written statement or fact given by a person or party related to a certain
+      case at an investigative agency or in court.
+    korean: 수사 기관이나 법정에서 사건의 당사자나 관련된 사람이 사실이나 의견을 말이나 글로 알리다.
 - id: ko-nikl-43131
   target: 진실
   part_of_speech: noun
@@ -145883,6 +147183,23 @@ entries:
     source_position: 2
     english: The fundamental qualities of a person such as integrity, personality, etc.
     korean: 됨됨이나 인격 등을 이루는 사람의 근본 바탕.
+- id: ko-nikl-43251
+  target: 질감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43251
+  senses:
+  - id: ko-nikl-43251-s001
+    source_position: 1
+    english: A distinctive quality one feels when touching something.
+    korean: 어떤 재료에서 느껴지는 독특한 느낌.
+  - id: ko-nikl-43251-s002
+    source_position: 2
+    english: A quality one feels from the surface of a work of art created by paint, canvas, painting
+      tools, etc.
+    korean: 물감, 캔버스, 화구 등이 만들어 내는 화면 대상의 느낌.
 - id: ko-nikl-43267
   target: 질기다
   part_of_speech: descriptive verb
@@ -145947,6 +147264,18 @@ entries:
     source_position: 1
     english: 'An act of asking something one does not know or wants to know. '
     korean: 모르는 것이나 알고 싶은 것을 물음.
+- id: ko-nikl-43275
+  target: 질문하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43275
+  senses:
+  - id: ko-nikl-43275-s001
+    source_position: 1
+    english: 'To ask about something one does not know or wants to know. '
+    korean: 모르는 것이나 알고 싶은 것을 묻다.
 - id: ko-nikl-43283
   target: 질병
   part_of_speech: noun
@@ -146012,6 +147341,18 @@ entries:
     source_position: 1
     english: An act of asking about something one doubts or does not know.
     korean: 의심이 되거나 모르는 점을 물음.
+- id: ko-nikl-43298
+  target: 질의하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43298
+  senses:
+  - id: ko-nikl-43298-s001
+    source_position: 1
+    english: 'To ask about something one doubts or does not know. '
+    korean: 의심이 되거나 모르는 점을 묻다.
 - id: ko-nikl-43299
   target: 질적
   part_of_speech: noun
@@ -146136,6 +147477,18 @@ entries:
     source_position: 1
     english: An act of estimating a situation, circumstances, etc.
     korean: 사정이나 형편 등을 어림잡아 생각함.
+- id: ko-nikl-43345
+  target: 짐작하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43345
+  senses:
+  - id: ko-nikl-43345-s001
+    source_position: 1
+    english: To estimate a situation, circumstances, etc.
+    korean: 사정이나 형편 등을 어림잡아 생각하다.
 - id: ko-nikl-43350
   target: 집
   part_of_speech: noun
@@ -151871,6 +153224,18 @@ entries:
     source_position: 1
     english: A sensation from an object touching the skin.
     korean: 사물이 피부에 닿아서 느껴지는 감각.
+- id: ko-nikl-45191
+  target: 촉감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45191
+  senses:
+  - id: ko-nikl-45191-s001
+    source_position: 1
+    english: A sensation from an object touching the skin.
+    korean: 어떤 것이 피부에 닿아서 생기는 느낌.
 - id: ko-nikl-45207
   target: 촉진
   part_of_speech: noun
@@ -152620,6 +153985,18 @@ entries:
     source_position: 1
     english: An act of looking back on a past incident, or such a thought or the incident itself.
     korean: 지나간 일을 생각함. 또는 그런 생각이나 일.
+- id: ko-nikl-45528
+  target: 추억하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45528
+  senses:
+  - id: ko-nikl-45528-s001
+    source_position: 1
+    english: To think of a past incident again.
+    korean: 지난 일을 다시 생각하다.
 - id: ko-nikl-45531
   target: 추월
   part_of_speech: noun
@@ -152672,6 +154049,22 @@ entries:
     source_position: 2
     english: An act of following and finding the trace of an incident or a person.
     korean: 일이나 사람의 자취를 따라가며 찾음.
+- id: ko-nikl-45542
+  target: 추적하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45542
+  senses:
+  - id: ko-nikl-45542-s001
+    source_position: 1
+    english: To follow someone who is running away.
+    korean: 도망하는 사람을 따라가며 쫓다.
+  - id: ko-nikl-45542-s002
+    source_position: 2
+    english: To follow and find the trace of an incident or a person.
+    korean: 일이나 사람의 자취를 따라가며 찾다.
 - id: ko-nikl-45543
   target: 추정
   part_of_speech: noun
@@ -152760,6 +154153,18 @@ entries:
     source_position: 1
     english: The state of making a guess based on a certain fact or what is seen.
     korean: 어떤 사실이나 보이는 것을 통해서 다른 무엇을 미루어 짐작함.
+- id: ko-nikl-45571
+  target: 추측하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45571
+  senses:
+  - id: ko-nikl-45571-s001
+    source_position: 1
+    english: To guess something based on a certain fact or what is seen.
+    korean: 어떤 사실이나 보이는 것을 통해서 다른 무엇을 미루어 짐작하다.
 - id: ko-nikl-45590
   target: 축구
   part_of_speech: noun
@@ -154672,6 +156077,26 @@ entries:
     source_position: 3
     english: An act of giving up one's interest for another person.
     korean: 다른 사람을 위해 자기 자신의 이익을 포기함.
+- id: ko-nikl-46162
+  target: 양보하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46162
+  senses:
+  - id: ko-nikl-46162-s001
+    source_position: 1
+    english: To give up one's seat, possession, etc., for another person.
+    korean: 다른 사람을 위해 자리나 물건 등을 내주거나 넘겨주다.
+  - id: ko-nikl-46162-s002
+    source_position: 2
+    english: To give up one's interest for another person.
+    korean: 다른 사람을 위해 자기 자신의 이익을 포기하다.
+  - id: ko-nikl-46162-s003
+    source_position: 3
+    english: To change one's thought or position, and follow another person's opinion.
+    korean: 자신의 생각이나 주장을 굽혀 남의 의견을 따르다.
 - id: ko-nikl-46163
   target: 양복
   part_of_speech: noun
@@ -154953,6 +156378,18 @@ entries:
     source_position: 1
     english: 'An act of understanding others'' situation or fault, and taking it broad-mindedly. '
     korean: 다른 사람의 사정이나 잘못을 이해하고 너그럽게 받아들임.
+- id: ko-nikl-46258
+  target: 양해하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46258
+  senses:
+  - id: ko-nikl-46258-s001
+    source_position: 1
+    english: To understand another's situation or fault, and accept it broad-mindedly.
+    korean: 다른 사람의 사정이나 잘못을 이해하고 너그럽게 받아들이다.
 - id: ko-nikl-46263
   target: 얕다
   part_of_speech: descriptive verb
@@ -155026,6 +156463,31 @@ entries:
     source_position: 4
     english: Words that are spoken to evaluate something or spread a rumor about something.
     korean: 어떠한 것에 대한 소문을 내거나 평을 하는 말.
+- id: ko-nikl-46272
+  target: 얘기하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46272
+  senses:
+  - id: ko-nikl-46272-s001
+    source_position: 1
+    english: To talk to someone about a certain fact, state, phenomenon, experience, thought, etc.
+    korean: 어떠한 사실이나 상태, 현상, 경험, 생각 등에 관해 누군가에게 말을 하다.
+  - id: ko-nikl-46272-s002
+    source_position: 2
+    english: To exchange words with someone.
+    korean: 다른 사람과 말을 주고받다.
+  - id: ko-nikl-46272-s003
+    source_position: 3
+    english: To talk about a certain fact amusingly or embellish something imaginary so that it is thought
+      to be real.
+    korean: 어떤 사실이나 있지 않은 일을 사실처럼 꾸며 재미있게 말을 하다.
+  - id: ko-nikl-46272-s004
+    source_position: 4
+    english: To spread a rumor about or evaluate someone or something.
+    korean: 어떠한 것에 대한 소문을 내거나 평을 하다.
 - id: ko-nikl-46276
   target: 어
   part_of_speech: interjection
@@ -156587,6 +158049,18 @@ entries:
     source_position: 1
     english: 'An act of talking about a certain matter or problem. '
     korean: 어떤 일이나 문제에 대해 말함.
+- id: ko-nikl-46647
+  target: 언급하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46647
+  senses:
+  - id: ko-nikl-46647-s001
+    source_position: 1
+    english: To talk about a certain matter or problem.
+    korean: 어떤 일이나 문제에 대해 말하다.
 - id: ko-nikl-46648
   target: 언니
   part_of_speech: noun
@@ -159689,6 +161163,22 @@ entries:
     source_position: 1
     english: 'A material that generates light, heat, or energy for operating a machine when it is burned. '
     korean: 태워서 빛이나 열을 내거나 기계를 움직이는 에너지를 얻을 수 있는 물질.
+- id: ko-nikl-47425
+  target: 연마하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47425
+  senses:
+  - id: ko-nikl-47425-s001
+    source_position: 1
+    english: To polish a metal, rock, etc., and smoothen the surface.
+    korean: 금속이나 돌 등을 갈고 닦아 표면을 반질반질하게 하다.
+  - id: ko-nikl-47425-s002
+    source_position: 2
+    english: To discipline one's body and mind or acquire knowledge, skills, etc.
+    korean: 몸, 마음, 지식, 기술 등을 힘써 다스리거나 익히다.
 - id: ko-nikl-47426
   target: 연말
   part_of_speech: noun
@@ -159786,6 +161276,18 @@ entries:
     english: 'The state of being reminded of things related to an object when one sees, hears, or thinks
       of the object. '
     korean: 어떤 사물을 보거나 듣거나 생각할 때 그것과 관련 있는 사물이 머릿속에 떠오름.
+- id: ko-nikl-47463
+  target: 연상하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47463
+  senses:
+  - id: ko-nikl-47463-s001
+    source_position: 1
+    english: To be reminded of things related to an object when one sees, hears, or thinks of it.
+    korean: 어떤 사물을 보거나 듣거나 생각할 때 그것과 관련 있는 사물을 머릿속에 떠올리다.
 - id: ko-nikl-47466
   target: 연설
   part_of_speech: noun
@@ -159846,6 +161348,18 @@ entries:
     source_position: 1
     english: 'The act of doing something repeatedly in order to be good at it. '
     korean: 무엇을 잘할 수 있도록 반복하여 익힘.
+- id: ko-nikl-47500
+  target: 연습하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47500
+  senses:
+  - id: ko-nikl-47500-s001
+    source_position: 1
+    english: To do something repeatedly in order to be good at it.
+    korean: 무엇을 잘할 수 있도록 반복하여 익히다.
 - id: ko-nikl-47507
   target: 연애
   part_of_speech: noun
@@ -161488,6 +163002,18 @@ entries:
     source_position: 1
     english: 'The state or act of knowing in advance or guessing what is going to happen. '
     korean: 앞으로 일어날 일을 미리 알거나 짐작함.
+- id: ko-nikl-47946
+  target: 예견하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47946
+  senses:
+  - id: ko-nikl-47946-s001
+    source_position: 1
+    english: To know or guess a future event in advance.
+    korean: 앞으로 일어날 일을 미리 알거나 짐작하다.
 - id: ko-nikl-47947
   target: 예고
   part_of_speech: noun
@@ -161915,6 +163441,18 @@ entries:
     source_position: 1
     english: The act of studying in advance for the next class.
     korean: 앞으로 배울 것을 미리 공부함.
+- id: ko-nikl-48031
+  target: 예습하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48031
+  senses:
+  - id: ko-nikl-48031-s001
+    source_position: 1
+    english: To study in advance for the next class.
+    korean: 앞으로 배울 것을 미리 공부하다.
 - id: ko-nikl-48032
   target: 예시
   part_of_speech: noun
@@ -162115,6 +163653,18 @@ entries:
     source_position: 1
     english: 'The act of guessing what will happen in the future. '
     korean: 앞으로의 일을 미리 추측함.
+- id: ko-nikl-48074
+  target: 예측하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48074
+  senses:
+  - id: ko-nikl-48074-s001
+    source_position: 1
+    english: To guess what will happen in the future.
+    korean: 앞으로의 일을 미리 추측하다.
 - id: ko-nikl-48078
   target: 예컨대
   part_of_speech: adverb
@@ -164445,6 +165995,18 @@ entries:
     english: A field of medical science that treats scars on a body or diseases of internal organs mainly
       through surgery, or the department of the hospital that is in charge of the field.
     korean: 주로 수술로 몸의 상처나 내장 기관의 질병을 치료하는 의학 분야. 또는 그 분야의 병원.
+- id: ko-nikl-48762
+  target: 외관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48762
+  senses:
+  - id: ko-nikl-48762-s001
+    source_position: 1
+    english: The outer appearance of something.
+    korean: 겉으로 보이는 모양.
 - id: ko-nikl-48764
   target: 외교
   part_of_speech: noun
@@ -165708,6 +167270,18 @@ entries:
     source_position: 1
     english: 'The act of granting pardon without punishing or scolding someone''s mistake or sin. '
     korean: 잘못이나 죄에 대하여 꾸중을 하거나 벌을 주지 않고 너그럽게 덮어 줌.
+- id: ko-nikl-49154
+  target: 용서하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49154
+  senses:
+  - id: ko-nikl-49154-s001
+    source_position: 1
+    english: To grant pardon generously without punishing or scolding someone's mistake or sin.
+    korean: 잘못이나 죄에 대하여 꾸중을 하거나 벌을 주지 않고 너그럽게 덮어 주다.
 - id: ko-nikl-49161
   target: 용액
   part_of_speech: noun
@@ -167493,6 +169067,35 @@ entries:
     source_position: 1
     english: A person who takes something or someone to court.
     korean: 법원에 재판을 신청한 사람.
+- id: ko-nikl-49682
+  target: 원근
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49682
+  senses:
+  - id: ko-nikl-49682-s001
+    source_position: 1
+    english: 'A compound noun meaning a state of being distant and near. '
+    korean: 멀고 가까움.
+  - id: ko-nikl-49682-s002
+    source_position: 2
+    english: A compound noun meaning a place far and near; or a person in such a place.
+    korean: 먼 곳과 가까운 곳. 또는 그곳에 있는 사람.
+- id: ko-nikl-49684
+  target: 원근법
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49684
+  senses:
+  - id: ko-nikl-49684-s001
+    source_position: 1
+    english: A way of expressing the distance of things in relation to each other in a picture or photo,
+      etc.
+    korean: 그림이나 사진 등에서, 멀고 가까움을 느낄 수 있도록 표현하는 방법.
 - id: ko-nikl-49685
   target: 원금
   part_of_speech: noun
@@ -168302,6 +169905,18 @@ entries:
     source_position: 1
     english: 'The act of easing someone''s pain or sadness through warm words or behavior, etc. '
     korean: 따뜻한 말이나 행동 등으로 괴로움을 덜어 주거나 슬픔을 달래 줌.
+- id: ko-nikl-49930
+  target: 위로하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49930
+  senses:
+  - id: ko-nikl-49930-s001
+    source_position: 1
+    english: 'To ease someone''s pain or sadness through warm words or behavior, etc. '
+    korean: 따뜻한 말이나 행동 등으로 괴로움을 덜어 주거나 슬픔을 달래 주다.
 - id: ko-nikl-49935
   target: 위반
   part_of_speech: noun
@@ -170482,6 +172097,27 @@ entries:
     source_position: 1
     english: A gathering organized so that people can listen to music being played live.
     korean: 음악을 연주하여 사람들이 음악을 들을 수 있게 마련한 모임.
+- id: ko-nikl-51132
+  target: 음영
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51132
+  senses:
+  - id: ko-nikl-51132-s001
+    source_position: 1
+    english: The dark area formed when the light is hidden by an object.
+    korean: 빛이 어떤 물체에 가려져 생긴 어두운 부분.
+  - id: ko-nikl-51132-s002
+    source_position: 2
+    english: A subtle difference revealed depending on how much a color is rich or pale; an impression
+      based on such a difference.
+    korean: 색깔의 짙거나 옅은 정도에 따라 나타나는 미묘한 차이. 또는 그런 차이에 의한 느낌.
+  - id: ko-nikl-51132-s003
+    source_position: 3
+    english: A dark air on one's face or appearance.
+    korean: 얼굴이나 모습 등에서 나타나는 어두운 분위기.
 - id: ko-nikl-51144
   target: 음주
   part_of_speech: noun
@@ -170620,6 +172256,18 @@ entries:
     source_position: 1
     english: A person who answers someone's call or question.
     korean: 부름이나 물음에 답하는 사람.
+- id: ko-nikl-51192
+  target: 응답하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51192
+  senses:
+  - id: ko-nikl-51192-s001
+    source_position: 1
+    english: To answer someone's call or question.
+    korean: 부름이나 물음에 답하다.
 - id: ko-nikl-51197
   target: 응모
   part_of_speech: noun
@@ -170791,6 +172439,18 @@ entries:
     source_position: 1
     english: 'An act of answering someone''s call or question, or meeting one''s demands, etc. '
     korean: 상대방의 부름이나 물음에 대답하거나 요구에 맞춰 행동함.
+- id: ko-nikl-51314
+  target: 호응하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51314
+  senses:
+  - id: ko-nikl-51314-s001
+    source_position: 1
+    english: 'To answer someone''s call or question, or meet one''s demands, etc. '
+    korean: 상대방의 부름이나 물음에 대답하거나 요구에 맞춰 행동하다.
 - id: ko-nikl-51315
   target: 호의
   part_of_speech: noun
@@ -171139,6 +172799,34 @@ entries:
     source_position: 2
     english: To be mixed up to become one.
     korean: 서로 뒤섞여 하나가 됨.
+- id: ko-nikl-51431
+  target: 혼동되다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51431
+  senses:
+  - id: ko-nikl-51431-s001
+    source_position: 1
+    english: For different things to be mixed up without a distinction being made between them.
+    korean: 서로 다른 것이 구별되지 못하고 뒤섞여서 생각되다.
+  - id: ko-nikl-51431-s002
+    source_position: 2
+    english: To be mixed up to become one.
+    korean: 서로 뒤섞여 하나가 되다.
+- id: ko-nikl-51432
+  target: 혼동하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51432
+  senses:
+  - id: ko-nikl-51432-s001
+    source_position: 1
+    english: To get mixed up about things, unable to differentiate them from one another.
+    korean: 서로 다른 사물들을 구별하지 못하고 뒤섞어서 생각하다.
 - id: ko-nikl-51433
   target: 혼란
   part_of_speech: noun
@@ -172121,6 +173809,19 @@ entries:
     source_position: 1
     english: 'An act of changing dirty, stuffy air into fresh air. '
     korean: 더럽고 탁한 공기를 맑은 공기로 바꿈.
+- id: ko-nikl-51814
+  target: 환기하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51814
+  senses:
+  - id: ko-nikl-51814-s001
+    source_position: 1
+    english: 'To bring a person''s attention to a certain matter, or stir up public opinion, thought,
+      etc. '
+    korean: 주의나 여론, 생각 등을 불러일으키다.
 - id: ko-nikl-51828
   target: 환불
   part_of_speech: noun
@@ -172854,6 +174555,18 @@ entries:
     source_position: 4
     english: A person whose job it is to calculate income and expenses.
     korean: 나가고 들어오는 돈을 계산하는 일을 직업으로 하는 사람.
+- id: ko-nikl-52021
+  target: 회고하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52021
+  senses:
+  - id: ko-nikl-52021-s001
+    source_position: 1
+    english: 'To look back on past events. '
+    korean: 지나간 일을 돌이켜 생각하다.
 - id: ko-nikl-52030
   target: 회담
   part_of_speech: noun
@@ -172947,6 +174660,18 @@ entries:
     source_position: 1
     english: 'An act of thinking about one''s past events; or such a thought. '
     korean: 지난 일을 다시 생각함. 또는 그런 생각.
+- id: ko-nikl-52052
+  target: 회상하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52052
+  senses:
+  - id: ko-nikl-52052-s001
+    source_position: 1
+    english: 'To think about one''s past events. '
+    korean: 지난 일을 다시 생각하다.
 - id: ko-nikl-52053
   target: 회색
   part_of_speech: noun
@@ -173256,6 +174981,18 @@ entries:
     source_position: 3
     english: An act of cutting off or breaking something transversely.
     korean: 가로 방향으로 끊거나 자름.
+- id: ko-nikl-52150
+  target: 횡단면
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52150
+  senses:
+  - id: ko-nikl-52150-s001
+    source_position: 1
+    english: 'A section formed by cutting an object transversely at a right angle to its length.  '
+    korean: 물체를 그 길이에 직각이 되게 가로로 잘라 생긴 면.
 - id: ko-nikl-52151
   target: 횡단보도
   part_of_speech: noun
@@ -173807,6 +175544,22 @@ entries:
     source_position: 2
     english: 'An act of teaching another to help him/her learn a skill, task, etc. '
     korean: 가르쳐서 익히게 함.
+- id: ko-nikl-52340
+  target: 훈련하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52340
+  senses:
+  - id: ko-nikl-52340-s001
+    source_position: 1
+    english: To learn basic postures or movements through repetition.
+    korean: 기본자세나 동작 등을 되풀이하여 익히다.
+  - id: ko-nikl-52340-s002
+    source_position: 2
+    english: To teach another to help him/her learn a skill, task, etc.
+    korean: 가르쳐서 익히게 하다.
 - id: ko-nikl-52357
   target: 훈훈하다
   part_of_speech: descriptive verb
