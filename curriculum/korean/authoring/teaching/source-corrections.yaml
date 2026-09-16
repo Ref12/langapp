@@ -5,6 +5,21 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-12978-s001:
+    source_korean: 내용이 길고 복잡한 소설, 시, 영화 등.
+    source_english: A novel, poem, movie, etc., with a long and complex story.
+    authored_interpretation: a long, complex work such as a novel, poem, or film
+    rationale: Content need not be a narrative plot. Preserve the original length and complexity without inventing a page or runtime threshold.
+  ko-nikl-24490-s001:
+    source_korean: 두 가지 이상의 악기로 동시에 연주함. 또는 그런 연주.
+    source_english: A musical performance done by two or more instruments, or such a piece of music.
+    authored_interpretation: playing two or more kinds of instruments simultaneously
+    rationale: The Korean specifies instrument kinds and simultaneous playing, not simply an instrument or performer count. Its result referent is that performance, not a newly composed piece.
+  ko-nikl-25926-s001:
+    source_korean: 많은 사람들이 즐겨 부르는 노래.
+    source_english: Songs many Koreans enjoy singing.
+    authored_interpretation: songs many people enjoy singing
+    rationale: The Korean supplies no nationality requirement or restriction to modern commercial Korean pop.
   ko-nikl-06362-s001:
     source_korean: 수표나 어음에 적힌 금액을 기한 안에 받지 못하는 일.
     source_english: "A state in which a company fails to receive a certain amount of money written on a check or note. "

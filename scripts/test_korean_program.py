@@ -776,6 +776,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "governance-notes.yaml",
             "governance-support-notes.yaml",
             "interaction-notes.yaml",
+            "culture-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename == "governance-notes.yaml"
@@ -1937,7 +1938,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
     def test_completed_support_cohorts_retain_every_requested_source_position(self):
         authoring = self.root / "authoring" / "teaching"
         parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
-        for name in ("cognition", "representation", "circumstance"):
+        for name in ("cognition", "representation", "circumstance", "culture"):
             notes = load_yaml(authoring / f"{name}-notes.yaml")
             rows = load_yaml(authoring / f"{name}-vocabulary.yaml")
             for parent, request in notes["support_parent_requests"].items():
@@ -2137,6 +2138,57 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         for filename in ("interaction-vocabulary.yaml", "governance-support-vocabulary.yaml"):
             for row in load_yaml(authoring / filename):
                 self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+
+    def test_culture_music_conditions_do_not_invent_nationality_or_performer_counts(self):
+        words = self.references.vocabulary
+        popular = "ko-nikl-25926-s001"
+        ensemble = "ko-nikl-24490-s001"
+        self.assertIn("Koreans", self.references.provenance[popular]["source_english"])
+        self.assertNotIn("Korean", words[popular]["ds"])
+        self.assertIn("kinds", words[ensemble]["ds"])
+        self.assertIn("simultaneously", words[ensemble]["ds"])
+        self.assertIn("두 가지 이상", self.references.provenance[ensemble]["source_korean"])
+        self.assertIn("professionally", words["ko-nikl-04339-s001"]["ds"])
+        self.assertIn("traditional Korean", words["ko-nikl-31322-s001"]["ds"])
+        self.assertIn("work", words["ko-nikl-12978-s001"]["ds"])
+        self.assertNotIn("story", words["ko-nikl-12978-s001"]["ds"])
+
+    def test_culture_audience_and_activity_names_deepen_conservative_families(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for members in (
+            ("ko-nikl-02961-s001", "ko-nikl-02958-s001"),
+            ("ko-nikl-09197-s001", "ko-nikl-29894-s001"),
+            ("ko-nikl-10089-s001", "ko-nikl-37097-s001"),
+            ("ko-nikl-13089-s001", "ko-nikl-40365-s001"),
+            ("ko-nikl-24499-s001", "ko-nikl-24497-s002"),
+            ("ko-nikl-39081-s001", "ko-nikl-35689-s002"),
+            ("ko-nikl-18476-s001", "ko-nikl-18606-s001"),
+            ("ko-nikl-44893-s001", "ko-nikl-44895-s001"),
+            ("ko-nikl-47522-s001", "ko-nikl-47524-s001"),
+        ):
+            self.assertEqual(len({identities[item] for item in members}), 1)
+        self.assertIn("television", words["ko-nikl-02961-s001"]["ds"])
+        self.assertIn("radio", words["ko-nikl-44895-s001"]["ds"])
+        self.assertIn("opinion", words["ko-nikl-44893-s001"]["ds"])
+        self.assertIn("professional", words["ko-nikl-47524-s001"]["ds"])
+        self.assertIn("buying", words["ko-nikl-47967-s001"]["ds"])
+
+    def test_culture_impressions_and_dramatic_work_retain_source_boundaries(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        impressions = "ko-nikl-26504-s001"
+        self.assertEqual(identities[impressions], identities["ko-nikl-26506-s001"])
+        self.assertNotEqual(identities[impressions], identities["ko-nikl-26503-s001"])
+        self.assertNotEqual(identities[impressions], identities["ko-nikl-26505-s001"])
+        self.assertIn("supporting role", words["ko-nikl-41120-s001"]["ds"])
+        self.assertIn("leading role", words["ko-nikl-41796-s001"]["ds"])
+        self.assertEqual(self.references.provenance["ko-nikl-27049-s002"]["source_position"], 2)
+        self.assertEqual(self.references.provenance["ko-nikl-16515-s002"]["source_position"], 2)
+        self.assertEqual(self.references.provenance["ko-nikl-52758-s002"]["source_position"], 2)
+        self.assertNotEqual(identities["ko-nikl-17081-s001"], identities["ko-nikl-52758-s002"])
+        rows = load_yaml(self.root / "authoring" / "teaching" / "culture-vocabulary.yaml")
+        selected = {row["id"] for row in rows}
+        self.assertNotIn("ko-nikl-04905-s001", selected)
+        self.assertNotIn("ko-nikl-47947-s001", selected)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

@@ -1,0 +1,670 @@
+schema_version: 1
+id: ko-cultural-participation-noun-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: integrated; qualified linguistic and pedagogical review remains
+scope:
+  - Choose and discuss performances, television programs, and ordinary cultural activities.
+  - Distinguish performers, viewing/listening roles, ensemble activities, and audience responses.
+  - Recognize a few common music and dramatic-work terms without collecting specialist genres or techniques.
+  - Participate through hobby groups, folk play, attendance planning, and health-conscious rest.
+ownership:
+  authored_files: [culture-vocabulary.yaml, culture-identities.yaml, culture-notes.yaml]
+  protected: all earlier files, source and reading ledgers, manifests, tests, and generated output
+  other_worker_scopes: >
+    No institution, right, regulation, economic-policy, or interaction-verb
+    selection is added. Advance purchase is limited to the actual travel/
+    admission-ticket meaning needed for attendance, not general financial
+    participation. No completed visual-material or physical-form item is repeated.
+  excluded_parent_ids: [ko-nikl-48419, ko-nikl-22209, ko-nikl-25822, ko-nikl-29719]
+selection_policy: >
+  First inspect live registered source positions and canonical identities,
+  then use bounded exact-form questions about attending, performing,
+  discussing music/media, and voluntary recreation. Compare complete original
+  bilingual lists and same-spelling source competitors before selecting.
+  This is not an exhaustive unselected-noun audit, a first-sense sweep,
+  an instrument/genre catalogue, or a quota-driven later-level bucket.
+  Every selected item is an actual source noun, not a generated verb,
+  person name, nominal compound, derivative, or pronunciation.
+counts:
+  selected_senses: 35
+  core_senses: 35
+  branch_senses: 0
+  source_parents: 35
+  distinct_selected_spellings: 35
+  parents_new_to_live_selected_pool: 35
+  previously_selected_parent_extensions: 0
+  identity_fragments: 31
+  new_provisional_free_families: 25
+  existing_identity_fragments: 6
+  senses_extending_existing_families: 6
+  additional_senses_within_new_families: 4
+  total_depth_beyond_new_free_families: 10
+  existing_branch_only_families_gaining_first_core_use: 0
+  new_bound_form_families: 0
+  new_function_item_families: 0
+  source_noun_senses: 35
+  nonfirst_source_positions: 3
+  retained_selected_parents: 19
+  selected_senses_from_retained_parents: 19
+  requested_unbanded_parents: 16
+  selected_senses_from_requested_parents: 16
+  all_original_positions_in_requested_parents: 20
+  selected_source_correction_requests: 3
+  source_bands: {beginner: 3, intermediate: 7, advanced: 9, unbanded: 16}
+  phases:
+    first-exchanges: 3
+    everyday-life: 13
+    stories-conversations: 19
+    explanation-problems: 0
+    analysis-argument: 0
+    nuance-interpretation: 0
+live_composition_snapshot:
+  basis: current manifest through circumstance, governance/support, and interaction, not the older adef2ac prompt snapshot
+  selected_senses_before: 7456
+  core_senses_before: 7330
+  identity_groups_before: 4976
+  provisional_free_families_before: 4742
+  core_provisional_free_families_before: 4685
+  retained_support_parents_before: 723
+  selected_support_parents_before: 719
+  unselected_support_parents_before: [ko-nikl-25822, ko-nikl-29719, ko-nikl-41731, ko-nikl-48777]
+  projected_selected_senses: 7491
+  projected_core_senses: 7365
+  projected_identity_groups: 5001
+  projected_provisional_free_families: 4767
+  projected_core_provisional_free_families: 4710
+  projected_support_parents_if_only_these_requests_are_admitted: 739
+  projected_selected_support_parents_if_only_these_requests_are_admitted: 735
+  limitation: >
+    Counts describe an in-memory composition of this handoff with the
+    inspected live manifest, not publication, verified true lexemes, achieved
+    knowledge, or a promise about subsequent parent changes.
+source_verification:
+  source_id: nikl-2024-mirror
+  source_revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  inspected_registry_sha256: 153b7ccf783cde50c9ae253c9045f2ce3e47e14cc72bdae1922b9161c5ff8589
+  inspected_support_sha256: 61e83ccdbdcd42b351690c1c4ef9db33bb0cd747b96478cbf0f4937b6cb83240
+  method: >
+    Read the retained January2024 CSV with its existing checksum verifier,
+    preserving record ordinals, full Korean/English lists, raw POS, bands,
+    categories, and English whitespace. Project IDs identify original CSV
+    records and definition positions, not official dictionary entry numbers.
+    For each request, source_entry is source_url plus #record=source_record.
+    Existing source extraction and identity helpers are used in memory only.
+  publication_boundary: >
+    No source usage examples, song lyrics, scripts, sheet music, pictures,
+    recordings, pronunciation models, or other media assets are imported.
+    Definition evidence is not evidence of learner comprehension or production.
+placement_rationale:
+  first_preferences: >
+    Songs for children, songs people enjoy singing, and professional performers
+    support elementary preference/person descriptions at4. They are not placed
+    early to meet a phase target, and their source bands remain unchanged.
+  attending_and_taking_part: >
+    First film showing, advance tickets, and rest for health fit arrangements
+    at7. Television/radio audience roles, previews and reruns, enthusiasts,
+    hobby groups, choir participation, and lyric/performance credit terms
+    support work/study and ordinary cultural participation at8.
+    A professional performer is not necessarily a celebrity; a club is not
+    automatically school-only, adult-only, or legally constituted.
+  describing_performance: >
+    Lead/supporting roles and joyful shouting support narration at9.
+    Stage presentation, professional musical groups, accompaniment, playing
+    different instrument kinds together, personal impressions, Korean
+    traditional music, and folk play support cultural discussion at10.
+    Source profession, radio/television, instrumental-kind, and emotional
+    conditions remain visible rather than being flattened into generic audience
+    or performance labels.
+  reporting_and_comparing: >
+    At12, name melodic flow, compare short and long works, discuss scripts
+    and direction, distinguish arranging existing music from lyric writing,
+    and report responses to something seen/heard. These are general-reader
+    distinctions, not instruction in scoring, production, or literary theory.
+    No new item is pushed to levels19-30 to improve the phase distribution.
+  existing_placements: >
+    Existing vocabulary stays at its current level or branch. In particular,
+    already selected literary-branch 수필 and 작곡 are not duplicated as
+    new core items. A new family member can be useful before an older one;
+    that does not change the older placement or confer knowledge of the
+    canonical base automatically.
+counting_policy: >
+  Report twenty-five new provisional free families and ten depth selections
+  separately. Six actual naming/derivative members extend protected families;
+  four further members deepen newly introduced families. Thirty-five source
+  spellings are not thirty-five verified independent free bases. Conversely,
+  different lexical bases are not universally merged because English labels
+  overlap. Every grouping below is an individual conservative proposal requiring
+  qualified lexical review, not a global suffix-stripping or synonym rule.
+existing_family_evidence:
+  television_viewing:
+    identity: ko-lex-02958
+    protected_id: ko-nikl-02958-s001
+    source_korean: 텔레비전 방송을 눈으로 보고 귀로 들음.
+    source_english: "The act of watching and listening to a television broadcast with one's eyes and ears."
+    new_id: ko-nikl-02961-s001
+    decision: The actual viewer name retains television scope and extends viewing, not city-hall02957 or generic internet audience.
+  staged_performance:
+    identity: ko-lex-29894
+    protected_id: ko-nikl-29894-s001
+    source_korean: 음악, 무용, 연극 등을 많은 사람들 앞에서 보이는 것.
+    source_english: Performing music, dance or a play in front of many people.
+    new_id: ko-nikl-09197-s001
+    decision: Conservatively share public-performance accounting while keeping the added stage/audience condition; screen showing 상영 is not substituted.
+  melodic_flow:
+    identity: ko-lex-37097
+    protected_id: ko-nikl-37097-s001
+    source_korean: 높낮이와 리듬이 있는 음의 흐름.
+    source_english: The flow of notes with highs and lows and a rhythm.
+    new_id: ko-nikl-10089-s001
+    decision: The actual pitch/duration-flow name is a useful conservative depth addition, not an automatically counted synonym-root or a transferred reading.
+  repeated_broadcasting:
+    identity: ko-lex-40365
+    protected_id: ko-nikl-40365-s001
+    source_korean: 텔레비전이나 라디오를 통하여 사람들이 보고 들을 수 있게 소리나 화면 등을 전파로 내보내는 것.
+    source_english: The act of transmitting sounds, visual images, etc., by television or radio in the form of radio waves so that people can watch or listen to them.
+    new_id: ko-nikl-13089-s001
+    decision: The actually listed repeat of the same broadcasting event supplies no new free base or unrecorded streaming-service sense.
+  choir:
+    identity: ko-lex-24497
+    protected_id: ko-nikl-24497-s002
+    source_korean: 여러 사람이 소리의 높낮이에 따라 음을 나누어 소리가 어울리도록 노래를 부름. 또는 그 노래.
+    source_english: Many people singing together in harmony with each being responsible for different voice parts; or a song sung in such a manner.
+    new_id: ko-nikl-24499-s001
+    decision: The actual organized group retains voice-part harmony and shares the singing family without another free dan-suffix identity.
+  folk_play:
+    identity: ko-lex-35689
+    protected_id: ko-nikl-35689-s002
+    source_korean: 명절이나 특별한 행사에서 여러 사람이 일정한 규칙에 따라 하는 전통 오락이나 공연.
+    source_english: A traditional Korean entertainment or performance played by a number of people according to a certain rule, on a festive day or special occasion.
+    new_id: ko-nikl-39081-s001
+    decision: >
+      The actual inherited-custom play name deepens the broad protected 놀이
+      family, whose other positions include enjoyment and rule-based games.
+      Do not transfer the protected position's special-occasion condition
+      or its English Korean-only wording into the broader new source meaning.
+new_family_evidence:
+  hobby_groups:
+    identity: ko-lex-18476
+    first_id: ko-nikl-18476-s001
+    first_korean: 취미나 뜻이 같은 사람들의 모임.
+    first_english: A group of people who have the same hobby or purpose.
+    second_id: ko-nikl-18606-s001
+    second_korean: 같은 취미를 가지고 함께 즐기는 사람들의 모임.
+    second_english: A gathering of people who enjoy the same hobby.
+    decision: >
+      Conservatively count one hobby-club family while preserving broader
+      purpose versus specifically shared hobby/enjoyment. No school/adult
+      distinction or complete interchangeability is invented.
+  impressions_and_response_text:
+    identity: ko-lex-26504
+    members: [ko-nikl-26504-s001, ko-nikl-26506-s001]
+    decision: >
+      General feelings/thoughts prompted by something are the appropriate
+      base for the actual text of feelings after seeing/hearing something.
+      Do not attach this to sad/lonely 감상26503 or aesthetic evaluation26505.
+      Written-response 문 contributes depth, not another independent base.
+  listening_and_radio_listener:
+    identity: ko-lex-44893
+    members: [ko-nikl-44893-s001, ko-nikl-44895-s001]
+    decision: >
+      The noun includes opinions, reports, and broadcasts; the source person
+      name specifically denotes a radio listener. Preserve that asymmetry
+      rather than broaden the person noun to every listener or narrow the base.
+  entertainment_and_professional_performer:
+    identity: ko-lex-47522
+    members: [ko-nikl-47522-s001, ko-nikl-47524-s001]
+    decision: >
+      The actual base includes public performing or talent; the person
+      derivative requires professional activity. Neither is a synonym for an
+      entertainment corporation, a famous celebrity, or an assessed skill level.
+canonical_base_evidence_not_additional_requests:
+  ko-nikl-04905:
+    source_record: 4905
+    lemma: 애호
+    source_part_of_speech: 명사
+    source_band: unbanded
+    source_korean: 사랑하고 좋아함.
+    source_english: 'An act of loving and liking something. '
+    identity: ko-lex-04905
+    selected_member: ko-nikl-04906-s001
+    rationale: >
+      This actual source base reserves one family for the enthusiast noun.
+      Do not admit or select04905 merely because it is canonical evidence.
+      The identity fragment lists only the selected04906 parent.
+  ko-nikl-47947:
+    source_record: 47947
+    lemma: 예고
+    source_part_of_speech: 명사
+    source_band: intermediate
+    source_korean: 어떤 일이 일어나기 전에 미리 알림.
+    source_english: The act of notifying someone of something before it happens.
+    identity: ko-lex-47947
+    selected_member: ko-nikl-47949-s001
+    rationale: >
+      The actual advance-notification base is already retained but unselected.
+      Its source-listed excerpt preview is the selected member; the family
+      label neither selects the base noun nor invents a pyeon-suffix word.
+protected_canonical_checks:
+  gratitude:
+    identity: ko-lex-26499
+    lemma: 감사하다
+    category: free-lemma
+    protected_members: [ko-nikl-26499-s001, ko-nikl-26491-s001]
+    policy: No new gratitude family, retired26491 identity, or audit26498 substitution.
+  actuality:
+    identity: ko-lex-03447
+    lemma: 실상
+    category: function-item
+    protected_members: [ko-nikl-03447-s001, ko-nikl-03445-s001]
+    policy: Preserve the merged function category; do not recreate a free03445 identity.
+  recent_families: >
+    All registered cognition, representation, circumstance, governance/support,
+    interaction, and orientation members/canonical categories remain unchanged.
+    New fragments contain only new selected members and their actual parents.
+homograph_and_source_boundaries:
+  - The complete 동요18495 lists shaking, wavering opinion, and instability; only children's-song18496 belongs here.
+  - Leading-role 주연41796 is not the drinking party41797; role/action/person alternatives stay one source position.
+  - Musical-support 반주39745 is not the meal-time-drinks parent39746.
+  - Work-length 단편16515 is not broken pieces/partial information16516; select literary/film s002 rather than automatic short-novel s001.
+  - Impressions 감상26504 is neither sadness26503 nor aesthetic enjoyment/evaluation26505, and none is gratitude 감사.
+  - Film-screening 개봉27049-s002 is not physical unsealing s001; the source does not establish release rights or a worldwide premiere.
+  - 시청자 retains television scope and 청취자 retains radio scope; neither is silently relabelled as every online audience.
+  - 악단001 explicitly requires professional performance; its second musical-theatre group position is not a generic music-world meaning.
+  - 합주 counts at least two instrument kinds in the retained Korean; do not substitute a performer count or claim a universal ensemble definition.
+  - 국악 explicitly concerns Korean traditional music, whereas 가요 has no nationality restriction in its Korean definition.
+  - Personal impressions and joyful shouting do not certify artistic quality, mutual agreement, or another person's inner state.
+bounded_exclusions:
+  already_covered:
+    - Existing concerts, stage venues, audiences, musical instruments, rhythms, melodies, dance, musicals, folk songs, exhibitions, outings, and basic recreation are not reselected.
+    - Applause39517-s001, poetry collection02947-s001, ordinary camping04993-s002, and leisure46993-s001 remain in their existing placements.
+    - Already selected branch-only 수필02045-s001 and 작곡12446-s001 are not duplicated or moved; any later parent placement review is outside this handoff.
+  near_names_not_automatically_added:
+    ko-nikl-26112: Actual detailed script and figurative prior-plan meanings were inspected; selected 대본 already supplies the production-text task without a second script-name insertion.
+    ko-nikl-32187: Another script-name lead spanning movies, plays, and dramas is not required in this bounded handoff; no source admission is requested.
+    ko-nikl-50342: Recreation facilities were compared with protected 놀이공원35690; another near facility name is not prioritized over the missing participation bases.
+    ko-nikl-47491: Simulated-real-situation practice is not the protected general-practice homograph47492; it is not narrowed to stage rehearsal merely to fill that label.
+  no_invented_cultural_senses:
+    ko-nikl-03584: 실황 means the actual situation, not a separately sourced live-concert recording; do not synthesize that narrower noun sense or merge it into protected 실상.
+    ko-nikl-04993: Existing holiday/travel camping s002 is protected; military camp/life s001 is not added as recreation.
+    ko-nikl-47576: Only script-based performance direction001 is selected; large-event management002 and creating/displaying situations003 remain outside this curation.
+    ko-nikl-17081: General prearranged-plan002 remains unselected rather than being retaught as another script meaning.
+    ko-nikl-12978: The narrower long-novel002 remains unselected; the selected broader001 includes poems and films as well.
+    ko-nikl-52758: The theatrical-script001 remains unselected; the actual thematic-work002 supplies the chosen distinction.
+  known_unsupported_retained_readings:
+    parents: [ko-nikl-02744, ko-nikl-20153, ko-nikl-20975, ko-nikl-22619, ko-nikl-48342]
+    forms: [시나리오, 레저, 클래식, 팬, 오페라]
+    policy: >
+      The existing citation_reading function reported no supported citation
+      reading for these inspected parents. They are not selected, not filled
+      from spelling or a homograph, and not asserted to lack all possible
+      official evidence. Parent may assess them separately; no reading research
+      or proposal is performed here.
+  further_loanword_candidates_not_admitted:
+    parents: [ko-nikl-13208, ko-nikl-17510, ko-nikl-20313, ko-nikl-20638, ko-nikl-39951, ko-nikl-40844]
+    forms: [재즈, 더빙, 리허설, 캠핑, 발레, 밴드]
+    policy: >
+      These are possible later common-reader leads, not an approved genre or
+      terminology catalogue. Do not import every supplied definition or presume
+      a Hangul-spelling reading. This handoff does not request them or invent
+      replacements. Ordinary camping is already available; other gaps remain
+      explicitly outside the chosen bounded set.
+  absence:
+    exact_form: 피크닉
+    result: No exact Form match in the pinned CSV; no source ID or approximate-spelling substitution is supplied.
+source_correction_policy: >
+  Requests preserve exact original Korean and English strings and provide
+  an authored compact interpretation identical to the proposed learner label.
+  These are interpretation proposals requiring qualified Korean-teacher and,
+  where appropriate, domain review. Parent owns the shared ledger; raw source
+  text and original positions are not replaced.
+source_correction_requests:
+  ko-nikl-12978-s001:
+    source_korean: 내용이 길고 복잡한 소설, 시, 영화 등.
+    source_english: A novel, poem, movie, etc., with a long and complex story.
+    authored_interpretation: a long, complex work such as a novel, poem, or film
+    rationale: >
+      내용 concerns content, not necessarily a narrative story. Preserve length
+      and complexity without requiring a poem to have a plot; no fixed page/
+      runtime threshold or assertion that every long work is complex is supplied.
+  ko-nikl-24490-s001:
+    source_korean: 두 가지 이상의 악기로 동시에 연주함. 또는 그런 연주.
+    source_english: A musical performance done by two or more instruments, or such a piece of music.
+    authored_interpretation: playing two or more kinds of instruments simultaneously
+    rationale: >
+      가지 distinguishes kinds of instruments, not merely a count of instruments
+      or performers. 동시에 requires simultaneous playing. 그런 연주 denotes
+      that performance, not a newly composed piece; retain the source's narrow
+      wording rather than silently substituting a broader modern ensemble definition.
+  ko-nikl-25926-s001:
+    source_korean: 많은 사람들이 즐겨 부르는 노래.
+    source_english: Songs many Koreans enjoy singing.
+    authored_interpretation: songs many people enjoy singing
+    rationale: >
+      The original Korean says people, not Koreans. Do not add a nationality
+      requirement or restrict the source to a modern commercial-pop industry.
+support_request_policy: >
+  Request only the following sixteen absent unbanded parents, retaining all
+  twenty original positions although sixteen are selected. Empty raw bands
+  and categories and original English whitespace are explicit. Do not add
+  TOPIK reference rows, truncate parents, infer pronunciations, or admit an
+  unselected canonical-base/comparison parent as a hidden request.
+support_parent_requests:
+  ko-nikl-04339:
+    source_record: 4339
+    lemma: 악단
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1]
+    rationale: Identify a professional music-performing group without importing the separate musical-theatre troupe position.
+    senses:
+      - {id: ko-nikl-04339-s001, source_position: 1, korean: '음악을 전문적으로나 직업적으로 연주하는 단체.', english: 'A group playing music professionally or for a living. '}
+      - {id: ko-nikl-04339-s002, source_position: 2, korean: '노래가 섞인 연극을 전문적이고 직업적으로 공연하는 집단.', english: 'A group performing a musical play professionally or for a living. '}
+  ko-nikl-04906:
+    source_record: 4906
+    lemma: 애호가
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The actual enthusiast noun supports discussing interests; its inspected nominal base is evidence, not an additional request.
+    senses:
+      - {id: ko-nikl-04906-s001, source_position: 1, korean: '어떤 사물이나 일을 사랑하고 좋아하는 사람.', english: 'A person who loves a certain object or work and is devoted to it. '}
+  ko-nikl-09197:
+    source_record: 9197
+    lemma: 상연
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Actual stage presentation provides a useful contrast with screen showing while conservatively deepening 공연.
+    senses:
+      - {id: ko-nikl-09197-s001, source_position: 1, korean: '연극, 무용, 음악 등의 공연을 무대에서 해서 관객에게 보이는 일.', english: 'The act of performing a show such as a play, dance, musical performance, etc., on a stage for an audience.'}
+  ko-nikl-10089:
+    source_record: 10089
+    lemma: 선율
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The actual melodic-flow name adds a useful way to discuss music without another free melody family.
+    senses:
+      - {id: ko-nikl-10089-s001, source_position: 1, korean: '길고 짧거나 높고 낮은 소리가 어우러진 음의 흐름.', english: 'The flow of long and short or high and low notes.'}
+  ko-nikl-12475:
+    source_record: 12475
+    lemma: 작사
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Distinguish writing lyrics from composing a tune or arranging an existing piece; no lyrics or verb is generated.
+    senses:
+      - {id: ko-nikl-12475-s001, source_position: 1, korean: '노랫말을 지음.', english: 'The act of creating a lyric. '}
+  ko-nikl-12978:
+    source_record: 12978
+    lemma: 장편
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [1]
+    rationale: A broad long-work term serves general reading and viewing choices; the narrower long-novel position is not automatically selected.
+    senses:
+      - {id: ko-nikl-12978-s001, source_position: 1, korean: '내용이 길고 복잡한 소설, 시, 영화 등.', english: 'A novel, poem, movie, etc., with a long and complex story.'}
+      - {id: ko-nikl-12978-s002, source_position: 2, korean: '구성이 복잡하고 다루는 내용이나 주제가 넓으며 등장인물도 다양한 긴 소설.', english: 'A long novel with a complex plot, comprehensive elements or theme and a variety of characters.'}
+  ko-nikl-13089:
+    source_record: 13089
+    lemma: 재방송
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Repeated airing helps interpret program schedules without adding a second broadcasting base.
+    senses:
+      - {id: ko-nikl-13089-s001, source_position: 1, korean: '라디오나 텔레비전 등에서 이미 방송했던 프로그램을 다시 방송함.', english: 'The act of airing again a show that has already been aired on radio, TV, etc.'}
+  ko-nikl-16515:
+    source_record: 16515
+    lemma: 단편
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [2]
+    rationale: Select the short literary/film work position; neither the separate fragment homograph nor an extra short-novel sense is inserted.
+    senses:
+      - {id: ko-nikl-16515-s001, source_position: 1, korean: '길이가 짧은 소설.', english: 'A short novel.'}
+      - {id: ko-nikl-16515-s002, source_position: 2, korean: '문학이나 영화에서 짧은 작품.', english: 'A short piece of work in literature or film.'}
+  ko-nikl-22723:
+    source_record: 22723
+    lemma: 편곡
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Existing music is reworked in form or instrumentation; the act and resulting arrangement remain one original position.
+    senses:
+      - {id: ko-nikl-22723-s001, source_position: 1, korean: '만들어 놓은 곡을 다른 형식으로 바꾸거나 다른 악기를 써서 연주 효과를 다르게 함. 또는 그렇게 만든 곡.', english: 'An act of changing a previously composed piece of music into another piece in a different format, or an act of differentiating the performance effect by playing another musical instrument; or a piece of music made such a way.'}
+  ko-nikl-24490:
+    source_record: 24490
+    lemma: 합주
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Preserve simultaneous playing and the original instrument-kind condition without assigning a performer count.
+    senses:
+      - {id: ko-nikl-24490-s001, source_position: 1, korean: '두 가지 이상의 악기로 동시에 연주함. 또는 그런 연주.', english: 'A musical performance done by two or more instruments, or such a piece of music.'}
+  ko-nikl-24499:
+    source_record: 24499
+    lemma: 합창단
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The actual organized part-harmony singing group extends protected 합창 without an extra free group-suffix headword.
+    senses:
+      - {id: ko-nikl-24499-s001, source_position: 1, korean: '여러 사람이 소리의 높낮이에 따라 음을 나누어 소리가 어울리도록 노래를 부르기 위해 모인 단체.', english: 'A group of people organized to sing together in harmony with each being responsible for different voice parts from low to high. '}
+  ko-nikl-26504:
+    source_record: 26504
+    lemma: 감상
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Ordinary impressions/thoughts support personal cultural responses without borrowing the sadness or aesthetic-evaluation homographs.
+    senses:
+      - {id: ko-nikl-26504-s001, source_position: 1, korean: '어떤 일에 대하여 마음속에 일어나는 느낌이나 생각.', english: 'Feelings or thoughts arising in the mind in response to an incident or thing.'}
+  ko-nikl-44893:
+    source_record: 44893
+    lemma: 청취
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The actual listening noun includes opinions and reports as well as broadcasts; the retained radio-listener derivative shares its family.
+    senses:
+      - {id: ko-nikl-44893-s001, source_position: 1, korean: '의견, 보고, 방송 등을 들음.', english: 'An act of listening to an opinion, report, broadcast, etc.'}
+  ko-nikl-47949:
+    source_record: 47949
+    lemma: 예고편
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Identify an advance excerpt preview, reserving the actual retained 예고 base rather than inventing a method or piece suffix.
+    senses:
+      - {id: ko-nikl-47949-s001, source_position: 1, korean: '영화나 텔레비전 프로그램 등의 내용을 미리 알리기 위해 그 내용의 일부를 뽑아 모은 것.', english: 'A video clip consisting of excerpts from a film or TV program, designed to publicize it in advance.'}
+  ko-nikl-52480:
+    source_record: 52480
+    lemma: 휴양
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Rest with health care is a useful recreation distinction, not a promised cure or an imposed prior-illness condition.
+    senses:
+      - {id: ko-nikl-52480-s001, source_position: 1, korean: '편안히 쉬면서 건강을 잘 돌봄.', english: "An act of taking care of one's health by relaxing."}
+  ko-nikl-52758:
+    source_record: 52758
+    lemma: 희곡
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 2
+    selected_positions: [2]
+    rationale: The selected dramatic-work position conveys a theme through action/dialogue; the separate script position is retained but not selected.
+    senses:
+      - {id: ko-nikl-52758-s001, source_position: 1, korean: '연극의 대본.', english: 'The script of a drama.'}
+      - {id: ko-nikl-52758-s002, source_position: 2, korean: '등장인물의 행동이나 대화를 통해 주제를 표현하는 예술 작품.', english: "A work of art that expresses a theme through characters' acts or dialogue."}
+reading_assessment:
+  method: Existing citation_reading availability checks only; no new archive search, crosswalk, reading decision, or pronunciation.
+  retained_supported_official_parents: 19
+  retained_supported_official_senses: 19
+  retained_selected_actual_reading_gap_parents: []
+  retained_selected_parent_ids: [ko-nikl-02961, ko-nikl-17081, ko-nikl-18476, ko-nikl-18496, ko-nikl-18606, ko-nikl-25926, ko-nikl-26506, ko-nikl-27049, ko-nikl-31322, ko-nikl-39081, ko-nikl-39745, ko-nikl-41120, ko-nikl-41796, ko-nikl-44895, ko-nikl-47522, ko-nikl-47524, ko-nikl-47576, ko-nikl-47967, ko-nikl-51879]
+  pending_source_admission_parents: 16
+  pending_source_admission_selected_senses: 16
+  status: >
+    The sixteen requests are an unassessed admission queue, not sixteen
+    confirmed pronunciation gaps. Parent must establish supported citation
+    readings before publication. Do not fill an unresolved reading from
+    spelling, another homograph, a related base, or a conjectured sound rule.
+remaining_work:
+  - Qualified Korean-teacher, lexical, pedagogical, and appropriate domain review; no achieved learner outcomes are claimed.
+parent_integration:
+  source_admission:
+    new_support_parents: 16
+    complete_original_positions: 20
+    retained_support_parents_after: 739
+    selected_support_parents_after: 735
+    previous_source_entries: unchanged
+  adjudication:
+    new_free_families: 25
+    depth_senses: 10
+    source_interpretations_accepted: 3
+    protected_families_and_reading_decisions: unchanged
+    homograph_check: The existing sadness and aesthetic-appreciation families remain separate from the new impressions family.
+  final_reading_assessment:
+    selected_senses: 35
+    official_text_senses: 35
+    new_crosswalks: 0
+    new_authored_decisions: 0
+    unresolved_selected_parents: []
+    distinction: The preceding19-supported/16-pending reading assessment is the worker handoff snapshot, not the final state.
+  generated_coverage:
+    core_dictionary_entries: 5148
+    core_selected_senses: 7365
+    core_distinct_spellings: 4851
+    core_spelling_pos_pairs: 4951
+    core_lexical_identities: 4944
+    core_provisional_free_families: 4710
+    core_bound_forms: 40
+    core_function_items: 194
+    actual_modules: 744
+    generated_views: 128
+    free_family_gap_to_lower_guide: 1090
+  boundaries: >
+    Official citation text is not phrase pronunciation, audio assessment, or
+    qualified review. Useful early/intermediate cultural participation is not
+    moved to later phases merely to reshape totals. Overall breadth expansion
+    and later-phase pedagogical reassessment remain unfinished; catalog
+    activation remains coordinated.
+validation:
+  status: passed bounded source, schema, identity, correction, count, and preservation checks
+  method: >
+    Python312 -B with the existing source extractor, sense index, lexical
+    membership validator, compact-label validator, source-correction validator,
+    and citation_reading helper. The proposed source admission and combined
+    identity/selection maps existed only in memory.
+  checks:
+    - Complete pinned CSV checksum and53172 source records verified.
+    - All16 requested parents match original POS, band, semantic category, and all20 ordered bilingual positions including English whitespace.
+    - Existing source-parent objects remain identical in the projected source admission.
+    - All35 labels have exact placement fields, valid existing levels/topics, and at most64 characters; every selected source POS is noun.
+    - All31 identity fragments compose with the full live manifest without duplicate senses or changed canonical lemmas/categories.
+    - The25 new free families, six existing-family members, and four additional new-family members yield exactly ten depth selections.
+    - Gratitude/audit separation and the merged 실상 function identity remain unchanged; no retired identity is recreated.
+    - The two unselected canonical bases are actual inspected source records and are neither hidden support requests nor learner selections.
+    - All three correction proposals pass the existing correction validator against exact source strings and selected labels.
+    - Nineteen retained selected parents have existing official readings; the sixteen absent parents remain an unassessed admission queue.
+    - Live and projected selected/core/family/support counts match the snapshot values above.
+    - All114 checked prior authoring/source/program/reading files remained byte-identical during validation.
+  publication_limit: >
+    No shared file, test, source or reading artifact, manifest, or generated
+    view was written. Passing structural checks is not linguistic approval,
+    validated true-lexeme status, supported pronunciation for the admission
+    queue, audio evidence, or a learner outcome.
+usage_and_assessment_limits: >
+  Genre labels are neither universal technical definitions nor judgments of
+  cultural value. Club membership does not establish legal status, expertise,
+  or inclusion; ticket vocabulary does not guarantee admission, refunds, or
+  accessibility. Health-conscious rest does not guarantee recovery. A model
+  label for joy, enthusiasm, or impressions does not diagnose another person's
+  feelings. Dictionary text, authored labels, supported citation readings,
+  actual audio, and learner performance remain distinct. Nothing here supplies
+  an audio/stroke/media asset, teaching certification, automatic mastery,
+  examination readiness, or professional cultural-production competence.

@@ -144345,6 +144345,707 @@ items:
       - 발켜내다
     lexical_identity: ko-lex-40176
     lexical_category: free-lemma
+  ko-nikl-18496-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18496
+    source_parent: ko-nikl-18496
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A song for children that they can sing along to.
+    source_korean: 어린이가 부를 수 있게 어린이 마음에 맞추어 만든 노래.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48605'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48605
+      pronunciations:
+      - 동ː요
+    lexical_identity: ko-lex-18496
+    lexical_category: free-lemma
+  ko-nikl-25926-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25926
+    source_parent: ko-nikl-25926
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: Songs many Koreans enjoy singing.
+    source_korean: 많은 사람들이 즐겨 부르는 노래.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63794'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63794
+      pronunciations:
+      - 가요
+    source_correction:
+      source_korean: 많은 사람들이 즐겨 부르는 노래.
+      source_english: Songs many Koreans enjoy singing.
+      authored_interpretation: songs many people enjoy singing
+      rationale: The Korean supplies no nationality requirement or restriction to modern commercial Korean
+        pop.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-25926
+    lexical_category: free-lemma
+  ko-nikl-47524-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47524
+    source_parent: ko-nikl-47524
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'A person who acts, sings, or dances professionally. '
+    source_korean: 연기나 노래, 춤 등의 연예 활동을 직업으로 삼고 있는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14021'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14021
+      pronunciations:
+      - 여ː녜인
+    lexical_identity: ko-lex-47522
+    lexical_category: free-lemma
+  ko-nikl-27049-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27049
+    source_parent: ko-nikl-27049
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The act of showing a new movie, for the first time.
+    source_korean: 새 영화를 처음으로 상영함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23510'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23510
+      pronunciations:
+      - 개봉
+    lexical_identity: ko-lex-27049
+    lexical_category: free-lemma
+  ko-nikl-47967-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47967
+    source_parent: ko-nikl-47967
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: 'The act of buying a passenger ticket, admission ticket, etc., in advance. '
+    source_korean: 차표나 입장권 등을 정해진 때가 되기 전에 미리 사 둠.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '22045'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22045
+      pronunciations:
+      - 예ː매
+    lexical_identity: ko-lex-47967
+    lexical_category: free-lemma
+  ko-nikl-52480-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52480
+    source_parent: ko-nikl-52480
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of taking care of one's health by relaxing.
+    source_korean: 편안히 쉬면서 건강을 잘 돌봄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88435'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88435
+      pronunciations:
+      - 휴양
+    lexical_identity: ko-lex-52480
+    lexical_category: free-lemma
+  ko-nikl-02961-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2961
+    source_parent: ko-nikl-02961
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A person who watches a certain program on television.
+    source_korean: 텔레비전의 방송 프로그램을 보는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65314'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65314
+      pronunciations:
+      - 시ː청자
+    lexical_identity: ko-lex-02958
+    lexical_category: free-lemma
+  ko-nikl-04906-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4906
+    source_parent: ko-nikl-04906
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A person who loves a certain object or work and is devoted to it. '
+    source_korean: 어떤 사물이나 일을 사랑하고 좋아하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91967'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91967
+      pronunciations:
+      - 애ː호가
+    lexical_identity: ko-lex-04905
+    lexical_category: free-lemma
+  ko-nikl-12475-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12475
+    source_parent: ko-nikl-12475
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of creating a lyric. '
+    source_korean: 노랫말을 지음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73728'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73728
+      pronunciations:
+      - 작싸
+    lexical_identity: ko-lex-12475
+    lexical_category: free-lemma
+  ko-nikl-13089-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13089
+    source_parent: ko-nikl-13089
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of airing again a show that has already been aired on radio, TV, etc.
+    source_korean: 라디오나 텔레비전 등에서 이미 방송했던 프로그램을 다시 방송함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74636'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74636
+      pronunciations:
+      - 재ː방송
+    lexical_identity: ko-lex-40365
+    lexical_category: free-lemma
+  ko-nikl-18476-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18476
+    source_parent: ko-nikl-18476
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A group of people who have the same hobby or purpose.
+    source_korean: 취미나 뜻이 같은 사람들의 모임.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48551'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48551
+      pronunciations:
+      - 동아리
+    lexical_identity: ko-lex-18476
+    lexical_category: free-lemma
+  ko-nikl-18606-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18606
+    source_parent: ko-nikl-18606
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A gathering of people who enjoy the same hobby.
+    source_korean: 같은 취미를 가지고 함께 즐기는 사람들의 모임.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48159'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48159
+      pronunciations:
+      - 동호회
+      - 동호훼
+    lexical_identity: ko-lex-18476
+    lexical_category: free-lemma
+  ko-nikl-24499-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24499
+    source_parent: ko-nikl-24499
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A group of people organized to sing together in harmony with each being responsible
+      for different voice parts from low to high. '
+    source_korean: 여러 사람이 소리의 높낮이에 따라 음을 나누어 소리가 어울리도록 노래를 부르기 위해 모인 단체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85616'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85616
+      pronunciations:
+      - 합창단
+    lexical_identity: ko-lex-24497
+    lexical_category: free-lemma
+  ko-nikl-44895-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44895
+    source_parent: ko-nikl-44895
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A person who listens to the radio.
+    source_korean: 라디오 방송을 듣는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79348'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79348
+      pronunciations:
+      - 청취자
+    lexical_identity: ko-lex-44893
+    lexical_category: free-lemma
+  ko-nikl-47522-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47522
+    source_parent: ko-nikl-47522
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'The act of singing, dancing, or performing in front of many people; such a talent. '
+    source_korean: 많은 사람들 앞에서 노래나 춤, 연기 등을 함. 또는 그런 재주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '20748'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=20748
+      pronunciations:
+      - 여ː녜
+    lexical_identity: ko-lex-47522
+    lexical_category: free-lemma
+  ko-nikl-47949-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47949
+    source_parent: ko-nikl-47949
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A video clip consisting of excerpts from a film or TV program, designed to publicize
+      it in advance.
+    source_korean: 영화나 텔레비전 프로그램 등의 내용을 미리 알리기 위해 그 내용의 일부를 뽑아 모은 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68582'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68582
+      pronunciations:
+      - 예ː고편
+    lexical_identity: ko-lex-47947
+    lexical_category: free-lemma
+  ko-nikl-41120-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41120
+    source_parent: ko-nikl-41120
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: In theater or film, the act of playing a supporting role to the lead character in
+      the unfolding story, or an actor/actress playing such a role.
+    source_korean: 연극이나 영화에서 주인공을 도와 이야기를 전개해 나가는 역할을 함. 또는 그런 역할을 맡은 배우.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75388'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75388
+      pronunciations:
+      - 조ː연
+    lexical_identity: ko-lex-41120
+    lexical_category: free-lemma
+  ko-nikl-41796-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41796
+    source_parent: ko-nikl-41796
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: In theater or film, the act of playing a protagonist or an actor or actress playing
+      a protagonist.
+    source_korean: 연극이나 영화, 드라마 등에서 주인공 역을 맡아 연기하는 일. 또는 주인공 역을 맡은 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76979'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76979
+      pronunciations:
+      - 주연
+    lexical_identity: ko-lex-41796
+    lexical_category: free-lemma
+  ko-nikl-51879-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51879
+    source_parent: ko-nikl-51879
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'An act of shouting loudly, feeling happy. '
+    source_korean: 기뻐서 큰 소리로 외침.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87072'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87072
+      pronunciations:
+      - 환호
+    lexical_identity: ko-lex-51879
+    lexical_category: free-lemma
+  ko-nikl-04339-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4339
+    source_parent: ko-nikl-04339
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A group playing music professionally or for a living. '
+    source_korean: 음악을 전문적으로나 직업적으로 연주하는 단체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66932'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66932
+      pronunciations:
+      - 악딴
+    lexical_identity: ko-lex-04339
+    lexical_category: free-lemma
+  ko-nikl-09197-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9197
+    source_parent: ko-nikl-09197
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of performing a show such as a play, dance, musical performance, etc., on
+      a stage for an audience.
+    source_korean: 연극, 무용, 음악 등의 공연을 무대에서 해서 관객에게 보이는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62722'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62722
+      pronunciations:
+      - 상ː연
+    lexical_identity: ko-lex-29894
+    lexical_category: free-lemma
+  ko-nikl-24490-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24490
+    source_parent: ko-nikl-24490
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A musical performance done by two or more instruments, or such a piece of music.
+    source_korean: 두 가지 이상의 악기로 동시에 연주함. 또는 그런 연주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84646'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84646
+      pronunciations:
+      - 합쭈
+    source_correction:
+      source_korean: 두 가지 이상의 악기로 동시에 연주함. 또는 그런 연주.
+      source_english: A musical performance done by two or more instruments, or such a piece of music.
+      authored_interpretation: playing two or more kinds of instruments simultaneously
+      rationale: The Korean specifies instrument kinds and simultaneous playing, not simply an instrument
+        or performer count. Its result referent is that performance, not a newly composed piece.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-24490
+    lexical_category: free-lemma
+  ko-nikl-26504-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26504
+    source_parent: ko-nikl-26504
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Feelings or thoughts arising in the mind in response to an incident or thing.
+    source_korean: 어떤 일에 대하여 마음속에 일어나는 느낌이나 생각.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14239'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14239
+      pronunciations:
+      - 감ː상
+    lexical_identity: ko-lex-26504
+    lexical_category: free-lemma
+  ko-nikl-31322-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31322
+    source_parent: ko-nikl-31322
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Traditional Korean music.
+    source_korean: 한국의 전통 음악.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38582'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38582
+      pronunciations:
+      - 구각
+    lexical_identity: ko-lex-31322
+    lexical_category: free-lemma
+  ko-nikl-39081-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39081
+    source_parent: ko-nikl-39081
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: Play conducted according to the customs formed among the lives of ordinary people
+      and handed down among the people.
+    source_korean: 일반인들의 생활 속에서 생겨난 풍속에 따라 행해지고 전해 내려오는 놀이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56461'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56461
+      pronunciations:
+      - 민송노리
+    lexical_identity: ko-lex-35689
+    lexical_category: free-lemma
+  ko-nikl-39745-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39745
+    source_parent: ko-nikl-39745
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The act of playing a musical instrument to assist a song or an instrumental performance,
+      or a performance done in such a way.
+    source_korean: 노래나 기악 연주를 돕기 위해 다른 악기를 연주함. 또는 그런 연주.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57671'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57671
+      pronunciations:
+      - 반ː주
+    lexical_identity: ko-lex-39745
+    lexical_category: free-lemma
+  ko-nikl-10089-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10089
+    source_parent: ko-nikl-10089
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The flow of long and short or high and low notes.
+    source_korean: 길고 짧거나 높고 낮은 소리가 어우러진 음의 흐름.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62609'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62609
+      pronunciations:
+      - 서뉼
+    lexical_identity: ko-lex-37097
+    lexical_category: free-lemma
+  ko-nikl-12978-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12978
+    source_parent: ko-nikl-12978
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A novel, poem, movie, etc., with a long and complex story.
+    source_korean: 내용이 길고 복잡한 소설, 시, 영화 등.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81739'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81739
+      pronunciations:
+      - 장편
+    source_correction:
+      source_korean: 내용이 길고 복잡한 소설, 시, 영화 등.
+      source_english: A novel, poem, movie, etc., with a long and complex story.
+      authored_interpretation: a long, complex work such as a novel, poem, or film
+      rationale: Content need not be a narrative plot. Preserve the original length and complexity without
+        inventing a page or runtime threshold.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-12978
+    lexical_category: free-lemma
+  ko-nikl-16515-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16515
+    source_parent: ko-nikl-16515
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A short piece of work in literature or film.
+    source_korean: 문학이나 영화에서 짧은 작품.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28376'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28376
+      pronunciations:
+      - 단ː편
+    lexical_identity: ko-lex-16515
+    lexical_category: free-lemma
+  ko-nikl-17081-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17081
+    source_parent: ko-nikl-17081
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: In a play or movie, the text that gives the actors' lines or describes the scenes,
+      etc.
+    source_korean: 연극이나 영화에서, 대사나 장면의 설명 등을 적어 놓은 글.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62326'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62326
+      pronunciations:
+      - 대본
+    lexical_identity: ko-lex-17081
+    lexical_category: free-lemma
+  ko-nikl-22723-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22723
+    source_parent: ko-nikl-22723
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of changing a previously composed piece of music into another piece in a different
+      format, or an act of differentiating the performance effect by playing another musical instrument;
+      or a piece of music made such a way.
+    source_korean: 만들어 놓은 곡을 다른 형식으로 바꾸거나 다른 악기를 써서 연주 효과를 다르게 함. 또는 그렇게 만든 곡.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82001'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82001
+      pronunciations:
+      - 편곡
+    lexical_identity: ko-lex-22723
+    lexical_category: free-lemma
+  ko-nikl-26506-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26506
+    source_parent: ko-nikl-26506
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A piece of writing about one's feelings from seeing or hearing an object or phenomenon.
+    source_korean: 어떤 물건이나 현상을 보거나 듣고 나서 느낀 것을 쓴 글.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14420'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14420
+      pronunciations:
+      - 감ː상문
+    lexical_identity: ko-lex-26504
+    lexical_category: free-lemma
+  ko-nikl-44893-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44893
+    source_parent: ko-nikl-44893
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of listening to an opinion, report, broadcast, etc.
+    source_korean: 의견, 보고, 방송 등을 들음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79345'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79345
+      pronunciations:
+      - 청취
+    lexical_identity: ko-lex-44893
+    lexical_category: free-lemma
+  ko-nikl-47576-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47576
+    source_parent: ko-nikl-47576
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: The process of producing a movie, drama, broadcast, etc., by directing and supervising
+      all things according to a script.
+    source_korean: 영화, 연극, 방송 등에서 각본에 따라 모든 일을 지시하고 감독하여 하나의 작품으로 만드는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14025'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14025
+      pronunciations:
+      - 연ː출
+    lexical_identity: ko-lex-47576
+    lexical_category: free-lemma
+  ko-nikl-52758-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52758
+    source_parent: ko-nikl-52758
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A work of art that expresses a theme through characters' acts or dialogue.
+    source_korean: 등장인물의 행동이나 대화를 통해 주제를 표현하는 예술 작품.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88467'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88467
+      pronunciations:
+      - 히곡
+    lexical_identity: ko-lex-52758
+    lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
     source_entry: topik-1/grammar.yaml#ko-topik1-g001
