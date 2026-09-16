@@ -31,14 +31,14 @@ units:
   - {id: ko-nikl-26344-s001, ch: 간호사, pr: 간호사, ds: a nurse}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-11948-s009, ch: 있다, pr: 읻따, ds: to be somewhere (people or animals)}
-  - {id: ko-nikl-04193-s001, ch: 아빠, pr: 아빠, ds: dad (familiar)}
-  - {id: ko-nikl-46789-s001, ch: 엄마, pr: 엄마, ds: mom (familiar)}
   - {id: ko-nikl-18448-s001, ch: 동생, pr: 동생, ds: a younger sibling or younger cousin}
   - {id: ko-nikl-04032-s001, ch: 아기, pr: 아기, ds: a baby; an infant}
   - {id: ko-nikl-06438-s001, ch: 부모, pr: 부모, ds: parents}
   - {id: ko-nikl-10879-s002, ch: 이웃, pr: 이욷, ds: a neighbor; a neighboring home}
   - {id: ko-nikl-08818-s001, ch: 살, pr: 살, ds: years of age; native-number age counter}
+  - {id: ko-nikl-01196-s001, ch: 손님, pr: 손님, ds: a guest or visitor (respectful)}
+  - {id: ko-nikl-41819-s004, ch: 주인, pr: 주인, ds: a host who invites or receives guests}
+  - {id: ko-nikl-28398-s002, ch: 경비, pr: 경ː비, ds: a guard watching over a building or area}
   review_grammar:
   - {id: ko-topik1-g004, ch: N이/가, ds: identify the grammatical subject}
   - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
@@ -50,14 +50,14 @@ units:
   - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-35277-s001, ch: 널다, pr: 널ː다, ds: to spread something out to dry in the sun or air}
-  - {id: ko-nikl-36340-s001, ch: 말리다, pr: 말리다, ds: to dry something by removing its moisture}
   - {id: ko-nikl-17913-s001, ch: 도시락, pr: 도시락, ds: a portable food container or lunchbox}
   - {id: ko-nikl-34001-s001, ch: 끈, pr: 끈, ds: a string or cord used for tying or threading}
   - {id: ko-nikl-42032-s001, ch: 줄, pr: 줄, ds: a cord or rope used for tying}
   - {id: ko-nikl-23326-s001, ch: 풀다, pr: 풀다, ds: 'to untie, unfasten, or untangle something'}
   - {id: ko-nikl-38348-s001, ch: 묶다, pr: 묵따, ds: to tie a knot in a cord or rope}
   - {id: ko-nikl-38348-s002, ch: 묶다, pr: 묵따, ds: to tie up an object with cord}
+  - {id: ko-nikl-00398-s001, ch: 세대, pr: 세ː대, ds: a household living together in one home}
+  - {id: ko-nikl-06848-s001, ch: 분리수거, pr: 불리수거, ds: separate collection of waste according to type}
   review_grammar:
   - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
   - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
@@ -220,9 +220,9 @@ units:
   - {id: ko-nikl-33114-s001, ch: 기침, pr: 기침, ds: a cough; coughing}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-23542-s001, ch: 피곤하다, pr: 피곤하다, ds: be physically or mentally tired; be worn out}
   - {id: ko-nikl-02389-s001, ch: 쉬다, pr: 쉬ː다, ds: to rest; to relax}
   - {id: ko-nikl-49456-s001, ch: 운동, pr: 운ː동, ds: physical exercise}
+  - {id: ko-nikl-52477-s001, ch: 휴식, pr: 휴식, ds: a brief rest from an activity}
   - {id: ko-nikl-07473-s001, ch: 비누, pr: 비누, ds: soap}
   - {id: ko-nikl-46092-s001, ch: 치약, pr: 치약, ds: toothpaste}
   - {id: ko-nikl-20523-s001, ch: 칫솔, pr: 치쏠 / 칟쏠, ds: a toothbrush}
@@ -277,6 +277,12 @@ units:
   - {id: ko-nikl-03759-s002, ch: 싸다, pr: 싸다, ds: to pee or poop}
   - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
   - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
+  - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
+  - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
+  - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
+  - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
+  - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
+  - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-21480-s001, ch: 털, pr: 털, ds: body hair or animal fur}
@@ -303,12 +309,44 @@ units:
   - {id: ko-nikl-39307-s001, ch: 바꾸다, pr: 바꾸다, ds: to replace something with another}
   - {id: ko-nikl-00360-s001, ch: 세, pr: 세ː, ds: years of age; Sino-Korean-number age counter}
   - {id: ko-nikl-23068-s001, ch: 포장지, pr: 포장지, ds: wrapping paper or plastic wrapping}
+  - {id: ko-nikl-28781-s001, ch: 고객, pr: 고객, ds: a customer who buys goods or uses services}
+  - {id: ko-nikl-14260-s001, ch: 점원, pr: 저ː뭔, ds: a paid shop assistant}
+  - {id: ko-nikl-41819-s001, ch: 주인, pr: 주인, ds: the owner of an object or property}
+  - {id: ko-nikl-36694-s001, ch: 매장, pr: 매ː장, ds: a shop or sales area}
+  - {id: ko-nikl-27094-s003, ch: 개업, pr: 개업, ds: opening a business for the day}
+  - {id: ko-nikl-52475-s001, ch: 휴무, pr: 휴무, ds: a day or period off from regular work}
+  - {id: ko-nikl-39796-s001, ch: 반품, pr: 반ː품, ds: returning purchased goods; the goods returned}
+  - {id: ko-nikl-01760-s001, ch: 수선, pr: 수선, ds: repairing an old or broken item so it can be used again}
+  - {id: ko-nikl-40582-s001, ch: 배달, pr: 배ː달, ds: 'delivery of mail, goods, or food'}
+  - {id: ko-nikl-07128-s003, ch: 불량, pr: 불량, ds: poor quality or a defective condition of an item}
+  - {id: ko-nikl-07133-s001, ch: 불량품, pr: 불량품, ds: a faulty or poor-quality product}
+  - {id: ko-nikl-23376-s001, ch: 품질, pr: 품ː질, ds: the quality and characteristics of goods}
+  - {id: ko-nikl-49724-s001, ch: 원산지, pr: 원산지, ds: the place where goods are produced}
+  - {id: ko-nikl-38448-s001, ch: 문의, pr: 무ː늬 / 무ː니, ds: an inquiry about something one wants to know}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-51680-s001, ch: 화장실, pr: 화장실, ds: toilet; restroom}
   - {id: ko-nikl-23722-s001, ch: 필요하다, pr: 피료하다, ds: be needed; be necessary}
   - {id: ko-nikl-25524-s001, ch: 가게, pr: 가ː게, ds: a shop; a store}
   - {id: ko-nikl-41718-s001, ch: 주문, pr: 주ː문, ds: an order for goods to be made or supplied}
+  - {id: ko-nikl-01196-s002, ch: 손님, pr: 손님, ds: a customer visiting a business (respectful)}
+  review_grammar:
+  - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
+- id: level-06-services-02
+  title: Services and transactions - 2
+  outcome: Clarify requirements and resolve a service problem politely.
+  vocabulary:
+  - {id: ko-nikl-49137-s001, ch: 용량, pr: 용냥, ds: the amount a space or container can hold}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-39796-s001, ch: 반품, pr: 반ː품, ds: returning purchased goods; the goods returned}
+  - {id: ko-nikl-01760-s001, ch: 수선, pr: 수선, ds: repairing an old or broken item so it can be used again}
+  - {id: ko-nikl-40582-s001, ch: 배달, pr: 배ː달, ds: 'delivery of mail, goods, or food'}
+  - {id: ko-nikl-07128-s003, ch: 불량, pr: 불량, ds: poor quality or a defective condition of an item}
+  - {id: ko-nikl-07133-s001, ch: 불량품, pr: 불량품, ds: a faulty or poor-quality product}
+  - {id: ko-nikl-23376-s001, ch: 품질, pr: 품ː질, ds: the quality and characteristics of goods}
+  - {id: ko-nikl-49724-s001, ch: 원산지, pr: 원산지, ds: the place where goods are produced}
+  - {id: ko-nikl-38448-s001, ch: 문의, pr: 무ː늬 / 무ː니, ds: an inquiry about something one wants to know}
   review_grammar:
   - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
 - id: level-06-money-01
@@ -317,16 +355,20 @@ units:
   vocabulary:
   - {id: ko-nikl-22489-s001, ch: 팔다, pr: 팔다, ds: 'to sell goods, rights, or services'}
   - {id: ko-nikl-24353-s001, ch: 할인, pr: 하린, ds: a discount}
+  - {id: ko-nikl-24343-s001, ch: 할부, pr: 할부, ds: payment in installments}
+  - {id: ko-nikl-11530-s001, ch: 일시불, pr: 일씨불, ds: paying the whole amount at once}
+  - {id: ko-nikl-10036-s001, ch: 선불, pr: 선불, ds: payment before work is completed or goods are received}
+  - {id: ko-nikl-01793-s001, ch: 수수료, pr: 수수료, ds: a fee for doing something on someone else's behalf}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-28668-s003, ch: 계산하다, pr: 계ː산하다 / 게ː산하다, ds: pay for a purchase or expense}
-  - {id: ko-nikl-08234-s001, ch: 사다, pr: 사다, ds: buy; acquire by paying}
-  - {id: ko-nikl-47617-s001, ch: 열, pr: 열ː, ds: ten (native Korean numeral)}
   - {id: ko-nikl-25242-s001, ch: 현금, pr: 현ː금, ds: cash; issued currency}
   - {id: ko-nikl-20539-s006, ch: 카드, pr: 카드, ds: payment card}
   - {id: ko-nikl-47846-s001, ch: 영수증, pr: 영수증, ds: receipt; written record of a transaction}
   - {id: ko-nikl-07564-s001, ch: 비싸다, pr: 비싸다, ds: to be expensive}
   - {id: ko-nikl-03760-s001, ch: 싸다, pr: 싸다, ds: to be inexpensive; to be cheap}
+  - {id: ko-nikl-12554-s001, ch: 잔돈, pr: 잔돈, ds: money in small denominations}
+  - {id: ko-nikl-12555-s002, ch: 잔돈, pr: 잔돈, ds: change given or received after payment}
+  - {id: ko-nikl-27467-s001, ch: 거스름돈, pr: 거스름똔, ds: change returned after subtracting the amount owed}
   review_grammar: []
 - id: level-06-description-01
   title: Description and comparison - 1
@@ -390,6 +432,7 @@ units:
   - {id: ko-nikl-02398-s001, ch: 쉰, pr: 쉰ː, ds: fifty; before a noun or counter}
   - {id: ko-nikl-48017-s001, ch: 예순, pr: 예순, ds: sixty (native Korean numeral)}
   - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
+  - {id: ko-nikl-37379-s001, ch: 모금, pr: 모금, ds: a counter for mouthfuls of liquid or gas}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-26023-s001, ch: 가지, pr: 가지, ds: a counter for kinds or types of things}
@@ -409,12 +452,12 @@ units:
   grammar:
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
   review_vocabulary:
-  - {id: ko-nikl-46789-s001, ch: 엄마, pr: 엄마, ds: mom (familiar)}
-  - {id: ko-nikl-18448-s001, ch: 동생, pr: 동생, ds: a younger sibling or younger cousin}
-  - {id: ko-nikl-04032-s001, ch: 아기, pr: 아기, ds: a baby; an infant}
   - {id: ko-nikl-06438-s001, ch: 부모, pr: 부모, ds: parents}
   - {id: ko-nikl-10879-s002, ch: 이웃, pr: 이욷, ds: a neighbor; a neighboring home}
   - {id: ko-nikl-08818-s001, ch: 살, pr: 살, ds: years of age; native-number age counter}
+  - {id: ko-nikl-01196-s001, ch: 손님, pr: 손님, ds: a guest or visitor (respectful)}
+  - {id: ko-nikl-41819-s004, ch: 주인, pr: 주인, ds: a host who invites or receives guests}
+  - {id: ko-nikl-28398-s002, ch: 경비, pr: 경ː비, ds: a guard watching over a building or area}
   - {id: ko-nikl-10319-s001, ch: 의사, pr: 의사, ds: a doctor; a physician}
   - {id: ko-nikl-26344-s001, ch: 간호사, pr: 간호사, ds: a nurse}
   review_grammar:
@@ -428,14 +471,14 @@ units:
   grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
   review_vocabulary:
-  - {id: ko-nikl-05424-s001, ch: 변비, pr: 변비, ds: constipation}
-  - {id: ko-nikl-00055-s001, ch: 설사, pr: 설싸, ds: 'diarrhea; loose, watery stools'}
-  - {id: ko-nikl-13217-s001, ch: 재채기, pr: 재채기, ds: a sneeze}
-  - {id: ko-nikl-20816-s001, ch: 콧물, pr: 콘물, ds: nasal mucus; a runny nose}
-  - {id: ko-nikl-35810-s002, ch: 마르다, pr: 마르다, ds: for the mouth or throat to become dry and thirsty}
-  - {id: ko-nikl-03759-s002, ch: 싸다, pr: 싸다, ds: to pee or poop}
   - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
   - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
+  - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
+  - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
+  - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
+  - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
+  - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
+  - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
   review_grammar: []
 - id: level-06-services-practice-01
   title: Services and transactions - sentence practice 1
@@ -446,14 +489,14 @@ units:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
   review_vocabulary:
-  - {id: ko-nikl-30809-s001, ch: 교환, pr: 교환, ds: an exchange; replacing one thing with another}
-  - {id: ko-nikl-02917-s001, ch: 시장, pr: 시ː장, ds: a market; a marketplace}
-  - {id: ko-nikl-35953-s001, ch: 마트, pr: 마트, ds: a large retail store; a supermarket}
-  - {id: ko-nikl-22759-s001, ch: 편의점, pr: 펴늬점 / 펴니점, ds: a convenience store}
-  - {id: ko-nikl-40841-s001, ch: 백화점, pr: 배콰점, ds: a department store}
-  - {id: ko-nikl-39307-s001, ch: 바꾸다, pr: 바꾸다, ds: to replace something with another}
-  - {id: ko-nikl-00360-s001, ch: 세, pr: 세ː, ds: years of age; Sino-Korean-number age counter}
-  - {id: ko-nikl-23068-s001, ch: 포장지, pr: 포장지, ds: wrapping paper or plastic wrapping}
+  - {id: ko-nikl-01760-s001, ch: 수선, pr: 수선, ds: repairing an old or broken item so it can be used again}
+  - {id: ko-nikl-40582-s001, ch: 배달, pr: 배ː달, ds: 'delivery of mail, goods, or food'}
+  - {id: ko-nikl-07128-s003, ch: 불량, pr: 불량, ds: poor quality or a defective condition of an item}
+  - {id: ko-nikl-07133-s001, ch: 불량품, pr: 불량품, ds: a faulty or poor-quality product}
+  - {id: ko-nikl-23376-s001, ch: 품질, pr: 품ː질, ds: the quality and characteristics of goods}
+  - {id: ko-nikl-49724-s001, ch: 원산지, pr: 원산지, ds: the place where goods are produced}
+  - {id: ko-nikl-38448-s001, ch: 문의, pr: 무ː늬 / 무ː니, ds: an inquiry about something one wants to know}
+  - {id: ko-nikl-49137-s001, ch: 용량, pr: 용냥, ds: the amount a space or container can hold}
   review_grammar:
   - {id: ko-topik1-g023, ch: V-(으)세요, ds: polite directive appropriate to the relationship}
 - id: level-06-services-practice-02
@@ -463,14 +506,14 @@ units:
   grammar:
   - {id: ko-topik2-g036, ch: V/A-지 않다, ds: negate a predicate with a final auxiliary}
   review_vocabulary:
-  - {id: ko-nikl-30809-s001, ch: 교환, pr: 교환, ds: an exchange; replacing one thing with another}
-  - {id: ko-nikl-02917-s001, ch: 시장, pr: 시ː장, ds: a market; a marketplace}
-  - {id: ko-nikl-35953-s001, ch: 마트, pr: 마트, ds: a large retail store; a supermarket}
-  - {id: ko-nikl-22759-s001, ch: 편의점, pr: 펴늬점 / 펴니점, ds: a convenience store}
-  - {id: ko-nikl-40841-s001, ch: 백화점, pr: 배콰점, ds: a department store}
-  - {id: ko-nikl-39307-s001, ch: 바꾸다, pr: 바꾸다, ds: to replace something with another}
-  - {id: ko-nikl-00360-s001, ch: 세, pr: 세ː, ds: years of age; Sino-Korean-number age counter}
-  - {id: ko-nikl-23068-s001, ch: 포장지, pr: 포장지, ds: wrapping paper or plastic wrapping}
+  - {id: ko-nikl-01760-s001, ch: 수선, pr: 수선, ds: repairing an old or broken item so it can be used again}
+  - {id: ko-nikl-40582-s001, ch: 배달, pr: 배ː달, ds: 'delivery of mail, goods, or food'}
+  - {id: ko-nikl-07128-s003, ch: 불량, pr: 불량, ds: poor quality or a defective condition of an item}
+  - {id: ko-nikl-07133-s001, ch: 불량품, pr: 불량품, ds: a faulty or poor-quality product}
+  - {id: ko-nikl-23376-s001, ch: 품질, pr: 품ː질, ds: the quality and characteristics of goods}
+  - {id: ko-nikl-49724-s001, ch: 원산지, pr: 원산지, ds: the place where goods are produced}
+  - {id: ko-nikl-38448-s001, ch: 문의, pr: 무ː늬 / 무ː니, ds: an inquiry about something one wants to know}
+  - {id: ko-nikl-49137-s001, ch: 용량, pr: 용냥, ds: the amount a space or container can hold}
   review_grammar:
   - {id: ko-topik2-g004, ch: V-아/어 보다, ds: try an action or describe trying it before}
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
@@ -499,14 +542,14 @@ units:
   grammar:
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
   review_vocabulary:
-  - {id: ko-nikl-05424-s001, ch: 변비, pr: 변비, ds: constipation}
-  - {id: ko-nikl-00055-s001, ch: 설사, pr: 설싸, ds: 'diarrhea; loose, watery stools'}
-  - {id: ko-nikl-13217-s001, ch: 재채기, pr: 재채기, ds: a sneeze}
-  - {id: ko-nikl-20816-s001, ch: 콧물, pr: 콘물, ds: nasal mucus; a runny nose}
-  - {id: ko-nikl-35810-s002, ch: 마르다, pr: 마르다, ds: for the mouth or throat to become dry and thirsty}
-  - {id: ko-nikl-03759-s002, ch: 싸다, pr: 싸다, ds: to pee or poop}
   - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
   - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
+  - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
+  - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
+  - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
+  - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
+  - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
+  - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
   review_grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
 - id: level-06-time-practice-01
@@ -516,13 +559,13 @@ units:
   grammar:
   - {id: ko-topik2-g014, ch: V-(으)ㄴ N, ds: modify a noun with a completed action}
   review_vocabulary:
-  - {id: ko-nikl-37110-s002, ch: 며칠, pr: 며칠, ds: how many days; a few days}
-  - {id: ko-nikl-34291-s001, ch: 나중, pr: 나ː중, ds: later; after some time}
-  - {id: ko-nikl-19621-s001, ch: 때, pr: 때, ds: a moment or part of time}
-  - {id: ko-nikl-38865-s001, ch: 미루다, pr: 미루다, ds: to postpone a task or planned time}
-  - {id: ko-nikl-16023-s002, ch: 다가오다, pr: 다가오다, ds: for an event or time to draw near}
   - {id: ko-nikl-16238-s001, ch: 다음, pr: 다음, ds: the one immediately following another in a sequence}
   - {id: ko-nikl-16238-s002, ch: 다음, pr: 다음, ds: the next turn after this one}
+  - {id: ko-nikl-30062-s001, ch: 공휴일, pr: 공휴일, ds: a public holiday designated by the state}
+  - {id: ko-nikl-32658-s001, ch: 기간, pr: 기간, ds: a period between specified starting and ending times}
+  - {id: ko-nikl-02703-s001, ch: 시간표, pr: 시간표, ds: a timetable listing activities by time}
+  - {id: ko-nikl-11590-s001, ch: 일정표, pr: 일쩡표, ds: a schedule listing planned activities by date}
+  - {id: ko-nikl-11590-s002, ch: 일정표, pr: 일쩡표, ds: a list of activities planned for a day}
   - {id: ko-nikl-34291-s002, ch: 나중, pr: 나ː중, ds: afterward; after another task is done first}
   review_grammar:
   - {id: ko-topik1-g019, ch: V-(으)ㄹ 거예요, ds: express a plan or expected future event}
@@ -535,14 +578,14 @@ units:
   grammar:
   - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
   review_vocabulary:
-  - {id: ko-nikl-05424-s001, ch: 변비, pr: 변비, ds: constipation}
-  - {id: ko-nikl-00055-s001, ch: 설사, pr: 설싸, ds: 'diarrhea; loose, watery stools'}
-  - {id: ko-nikl-13217-s001, ch: 재채기, pr: 재채기, ds: a sneeze}
-  - {id: ko-nikl-20816-s001, ch: 콧물, pr: 콘물, ds: nasal mucus; a runny nose}
-  - {id: ko-nikl-35810-s002, ch: 마르다, pr: 마르다, ds: for the mouth or throat to become dry and thirsty}
-  - {id: ko-nikl-03759-s002, ch: 싸다, pr: 싸다, ds: to pee or poop}
   - {id: ko-nikl-23326-s010, ch: 풀다, pr: 풀다, ds: to blow one's nose}
   - {id: ko-nikl-36023-s005, ch: 막히다, pr: 마키다, ds: for a bodily passage to become blocked}
+  - {id: ko-nikl-42436-s001, ch: 증상, pr: 증상, ds: symptoms or conditions appearing during an illness}
+  - {id: ko-nikl-43214-s001, ch: 진통제, pr: 진ː통제, ds: a pain-relieving medicine}
+  - {id: ko-nikl-06007-s001, ch: 복용, pr: 보굥, ds: taking medicine}
+  - {id: ko-nikl-18035-s001, ch: 독감, pr: 독깜, ds: influenza; flu}
+  - {id: ko-nikl-00986-s001, ch: 소화제, pr: 소화제, ds: a medicine taken to aid digestion}
+  - {id: ko-nikl-44953-s001, ch: 체온, pr: 체온, ds: body temperature}
   review_grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}

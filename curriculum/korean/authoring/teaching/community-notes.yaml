@@ -1,0 +1,471 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: substantive community and service selection; not complete-scale coverage
+
+scope:
+  - Only community-vocabulary.yaml, community-identities.yaml, and this file are authored here.
+  - All base, early, expansion, and breadth vocabulary and identities are protected.
+  - The cohort author left source records, readings, corrections, manifests, grammar, and runtime code unchanged.
+  - Every row and teaching location was manually chosen after inspecting bilingual source senses.
+  - Targeted searches discovered candidates; they did not assign levels or select first positions.
+  - Source bands, alphabetical order, module totals, and numerical targets never schedule vocabulary.
+  - No unsupported headwords or generated noun-plus-hada lexical predicates are added.
+
+integration:
+  selections: >
+    selection-files.yaml registers community-vocabulary.yaml and
+    community-identities.yaml after the prior four selection sets. Duplicate
+    source IDs are rejected; existing-key fragments must preserve their
+    canonical lemma and category and contain only new members.
+  corrections: >
+    The eight requests below are incorporated in the parent-owned correction
+    ledger with exact original bilingual text and unreviewed interpretations.
+    Other ledger entries and their evidence remain unchanged.
+  readings: >
+    Of 36 originally unsupported parents covering 45 senses, 25 parents and
+    31 senses now use official citation text; 10 parents and 13 senses use
+    individually authored, unreviewed readings. The resolved_reading_gaps list
+    preserves the original diagnostic messages as historical evidence.
+    One remaining sense is excluded below pending qualified pronunciation
+    review, leaving 399 active cohort senses with supported reading records.
+
+curation_rationales:
+  everyday_transactions: >
+    Distinguish a customer from a visiting guest, a branch shop from a location,
+    receiving an application from submitting it, a return from compensation,
+    small denominations from returned change, and service fees from public charges.
+    Basic payment choices stay early; formal document handling and overdue items
+    accompany unfamiliar service problems.
+  transport: >
+    Routes, transfers, boarding, alighting, daily first/last services, parking,
+    road crossings, and notices support actual arrangements. Delays and traffic
+    hold-ups receive their own source senses. A lane marking is not a lane,
+    lending is not borrowing, and passing through a place is not diesel fuel.
+  work_and_study: >
+    Select applications, attendance, shift work, qualifications, course enrollment,
+    lecture settings, academic credits, deadlines, copying, approvals, and notices.
+    Ordinary computer copying and printing belong in everyday work; their subject
+    matter does not automatically force them to a late technology level.
+  social_and_public_information: >
+    Cohorts, school-entry seniority, introductions, welfare support, public
+    facilities, gatherings, and elections support community participation.
+    Source-exact inference, authorization, public objection, and factual checking
+    deepen these uses later without counting extra senses as new headwords.
+  health_and_environment: >
+    Public-health offices, admission/discharge, symptoms, prescriptions, hygiene,
+    fatigue, weather alerts, outages, waste collection, pollution, and basic energy
+    vocabulary support ordinary information needs. Labels are not diagnoses,
+    treatment instructions, or advice about medication doses.
+  optional_senses: >
+    The first attested legal document, internal document routing, formal personnel
+    reporting, clinical internship, exceptional legal permission, reagent paper,
+    signal interference, electrical capacity, and momentum are optional.
+    Public understanding of energy sources and climate remains core.
+  inspected_traps: >
+    The selected 고장 is a locality, not equipment failure. 역 is an acting or
+    assigned role, not a station. 인사 is a prominent person, not greeting or
+    personnel administration. The inspected 성적 parents concern sexuality,
+    not grades, and are not selected. 일정 denotes fixedness, not a schedule.
+    습득 denotes learned knowledge, not finding property. 산소 was a respectful
+    grave reference, not oxygen, and is not selected. 용량 is capacity, not an
+    invented medicine-dose sense.
+  existing_counterparts: >
+    Existing core selections already retain oxygen at ko-nikl-08727-s001,
+    schedule at ko-nikl-11588-s001, and academic results at
+    ko-nikl-00281-s002. The discovery traps above do not mean those useful
+    meanings are missing or authorize replacing them with unrelated parents.
+
+identity_policy:
+  status: >
+    Identities are provisional, explicitly source-anchored teaching candidates,
+    not a claim that dictionary rows or spelling/POS pairs prove true lexemes.
+    Report source parents, senses, spellings, and free candidates separately.
+  identifiers: >
+    ko-nikl identifiers retain local pinned-CSV record ordinals and original
+    definition positions. ko-lex identifiers are stable local names, not official
+    NIKL identifiers.
+  retained_boundaries: >
+    Each selected parent was inspected as an independent content noun or, for
+    mouthful 모금, an explicit bound counter. Keep the selected meanings together
+    under that source boundary unless an authored group decision says otherwise.
+    Mechanical serialization enumerates these decisions; it does not curate.
+  concise_rationales: >
+    Group rationales name the selected semantic range and any relevant homograph
+    contrast. Full bilingual definitions are not repeated in identity records.
+  counters: >
+    The phone-call, household, school-year, and academic-credit uses remain with
+    their independently usable content nouns. They do not create extra headwords.
+    Mouthful 모금 is explicitly a bound noun and is not a free lemma.
+  synonymy_and_derivation: >
+    Equal English does not merge distinct Korean words. 세대/가구, 증상/증세,
+    담당/담당자, and 처방/처방전 retain individual provisional source candidates.
+    Related derived families remain reviewable; no automatic suffix-family or
+    spelling/POS identity rule is asserted.
+  function_items: >
+    No new closed reference or discourse operator is selected in this shard.
+    Relational people nouns and action/state nouns remain content-word candidates;
+    classification is based on the inspected uses, not on their topic.
+  bound_form_identity_ids: [ko-lex-37379]
+  function_identity_ids: []
+
+documented_group_decisions: {}
+
+homograph_rationales:
+  ko-nikl-00398: Household and household counting, not a generation.
+  ko-nikl-00978: Digestive organs, not fire-extinguishing equipment.
+  ko-nikl-00979: Fire-extinguishing equipment, not digestive organs.
+  ko-nikl-01680: Water surface, not sleep.
+  ko-nikl-01681: Sleeping, not a water surface.
+  ko-nikl-01943: Correction or refinement, not another 수정 source sense.
+  ko-nikl-02574: Acquisition through learning, not finding lost property.
+  ko-nikl-02747: The interior city area, not a stream.
+  ko-nikl-02957: Municipal administration, not television viewing.
+  ko-nikl-02958: Television viewing, not city administration.
+  ko-nikl-11109: A pedestrian path, not another 인도 homograph.
+  ko-nikl-11152: A prominent or publicly active person, not greeting or personnel administration.
+  ko-nikl-11587: Fixedness of a property or time, not a timetable or itinerary.
+  ko-nikl-12554: Small denominations or small sums, not money left or returned after spending.
+  ko-nikl-12555: Remaining money and returned change, distinct from the small-denomination source.
+  ko-nikl-14700: True identity or nature, not stagnation or a traffic hold-up.
+  ko-nikl-14701: Stagnation and blocked movement, not true identity.
+  ko-nikl-16937: The Earth's atmosphere, not waiting.
+  ko-nikl-16938: Waiting for a time or opportunity, not atmospheric air.
+  ko-nikl-18344: A corresponding period or shared intake cohort, not a motivating cause.
+  ko-nikl-18345: A motive or prompting occasion, not a cohort or corresponding period.
+  ko-nikl-21830: Currency, not a telephone conversation.
+  ko-nikl-21831: Telephone conversation and call counting, not currency.
+  ko-nikl-25561: Household and household counting, not furniture.
+  ko-nikl-28397: Expenses, not guarding.
+  ko-nikl-28398: Guarding and the person guarding, not expenses.
+  ko-nikl-28466: Transit through a place or department, not diesel fuel.
+  ko-nikl-29262: A locality or region, not a mechanical breakdown.
+  ko-nikl-36694: A shop or sales area, not burial or social exclusion.
+  ko-nikl-37379: A bound mouthful counter, not collecting donations.
+  ko-nikl-37380: Fundraising, not a mouthful.
+  ko-nikl-42503: Understanding and sensory perception, not tardiness.
+  ko-nikl-42504: Late attendance at school or work, not perception.
+  ko-nikl-42800: A branch outlet, not simply a geographical point.
+  ko-nikl-42801: A particular geographical point, not a branch outlet.
+  ko-nikl-43863: A roadway for vehicles, not improvement in an illness.
+  ko-nikl-47227: An acting or assigned role, not a transport station.
+  ko-nikl-50455: Harmfulness, not a person's remains.
+
+identity_rationale_overrides:
+  ko-nikl-01196: One guest/customer identity; retain explicitly marked respect in positions one and two.
+  ko-nikl-03314: Formal application and course registration remain one selected action-noun range.
+  ko-nikl-10025: Seniority is relative to entering a field or school earlier, not age or graduation order.
+  ko-nikl-14411: Retain the source's narrower full-time, age-secured employment definition pending review.
+  ko-nikl-16677: Assignment of responsibility and the responsible person share this source noun.
+  ko-nikl-16679: Person-in-charge noun; do not infer merger with broader assignment noun 담당.
+  ko-nikl-19352: Retain real-estate registration and registered-mail positions within the source group.
+  ko-nikl-21748: Interpretation and the interpreter share one source noun, without separate role counting.
+  ko-nikl-21831: Telephone conversation and its counter remain one free noun identity.
+  ko-nikl-23996: Academic-year and school-grade uses do not generate another identity for annual counting.
+  ko-nikl-24056: Coursework credit and academic grade are retained educational noun uses, not extra counter heads.
+  ko-nikl-25561: A free household noun includes its counting use; keep separate from furniture.
+  ko-nikl-00398: A free household noun includes its counting use; keep separate from generation.
+  ko-nikl-29676: Public charges and utility bills are the referents; the source's tax classification needs review.
+  ko-nikl-37379: The source explicitly marks this liquid/gas mouthful counter as a bound noun.
+  ko-nikl-44408: Medical formula and figurative problem remedy share this source noun.
+  ko-nikl-44409: Prescription-document noun; not automatically merged with broader formula/remedy 처방.
+  ko-nikl-49137: Container, data-storage, and physical capacity share a source noun; none means medicine dosage here.
+
+review_flags:
+  - >
+    Scholarship, employment, public-office, medical-training, and public-charge
+    definitions retain source-specific institutional assumptions. They are not
+    universal descriptions of employment law, scholarship eligibility, or tax law.
+    In particular, 공과금 groups utility bills under tax in both source languages.
+  - >
+    Health names are vocabulary, not independently validated clinical definitions.
+    The source's severe-cold description of 독감 and its descriptions of
+    dependence and disability require qualified review before instructional prose.
+    Disability labels use respectful person-centered wording without making
+    universal claims about a person's capabilities.
+  - >
+    The deferred greenhouse-gas label names the category without endorsing a claim
+    that every natural greenhouse effect is pollution. 태양열 is heat from the sun,
+    not a fabricated photovoltaic sense, and 해일 is not restricted to earthquakes.
+  - >
+    The two 잔돈 source boundaries remain provisional despite closely related
+    English labels. Do not merge them solely because both can translate as change.
+    Actor/act and action/result colexifications do not add multiple free identities.
+
+source_correction_requests:
+  ko-nikl-02601-s001:
+    source_korean: 정거장이나 역에서 버스나 기차 등을 타고 내리는 곳.
+    source_english: A place where one gets off from a bus, train, etc., at a station or stop.
+    authored_interpretation: a platform or area for boarding and alighting at a stop
+    rationale: The Korean explicitly includes both boarding and alighting; the English omits boarding.
+  ko-nikl-43894-s001:
+    source_korean: 자동차가 다니는 도로에 일정한 너비로 나누어 표시한 선.
+    source_english: A part of road of a certain width designated by parallel lines for the passage of vehicles
+    authored_interpretation: a line marking out lanes on a road
+    rationale: >
+      This position identifies the marked line, while the English describes
+      the road area. Keep it distinct from position two, the traffic lane itself.
+  ko-nikl-10193-s001:
+    source_korean: 시험에 응함.
+    source_english: An act of applying for a test.
+    authored_interpretation: sitting for an examination
+    rationale: The Korean describes taking the examination, not merely applying or registering for it.
+  ko-nikl-02639-s001:
+    source_korean: 어떤 일을 허락함.
+    source_english: The act of agreeing to do something.
+    authored_interpretation: approval or authorization of an action
+    rationale: >
+      The Korean describes allowing an action. The English can instead imply
+      personally undertaking it; the label preserves the authorization role.
+  ko-nikl-03281-s001:
+    source_korean: 어떤 모임이나 단체에 새로 들어옴.
+    source_english: A person who has newly joined a group or organization.
+    authored_interpretation: new entry into a group or organization
+    rationale: >
+      The Korean defines entry or joining, not a person. A newcomer use must not
+      be silently substituted for this retained position.
+  ko-nikl-10025-s002:
+    source_korean: 같은 학교를 자기보다 먼저 입학한 사람.
+    source_english: 'A person who graduated from the same school earlier than oneself. '
+    authored_interpretation: a person who entered the same school earlier
+    rationale: >
+      Entry to the school, not graduation from it, establishes the source
+      relationship. These can differ when enrollment paths or durations differ.
+  ko-nikl-23494-s002:
+    source_korean: 컴퓨터의 출력 결과를 종이에 인쇄하는 기계.
+    source_english: A machine used to print what is on the computer screen on paper.
+    authored_interpretation: a machine that prints computer output on paper
+    rationale: Computer output is not restricted to what is displayed on the screen.
+  ko-nikl-30681-s001:
+    source_korean: 사회적 경험이나 학식을 바탕으로 사회생활, 문화 등 여러 분야에 걸쳐 쌓은 지식이나 품위.
+    source_english: Knowledge or a dignified manner gained from many fields, such as culture, etc., and forming a basis for social experience or learning.
+    authored_interpretation: cultivated knowledge and refinement from learning and experience
+    rationale: >
+      Social experience and learning are the basis for the acquired cultivation
+      in Korean. The English reverses this relationship by making cultivation
+      the basis for that experience or learning.
+
+remaining_gaps:
+  - The broad free-lemma planning guide remains unmet; this is a bounded useful addition.
+  - Actual phase introductions must be recomputed after composition, not repaired by moving vocabulary.
+  - Further common predicates and conversational expression still need targeted selection.
+  - The excluded greenhouse-gas pronunciation, teacher review, and lexical-family review remain outstanding.
+  - No exhaustive review of the unselected source inventory is claimed.
+
+pending_reading_exclusions:
+  - id: ko-nikl-48419-s001
+    source_parent: ko-nikl-48419
+    lemma: 온실가스
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48419
+    source_korean: '지구 대기를 오염시켜  온실 효과를 일으키는 가스를 모두 이르는 말. 이산화 탄소, 메탄 등의 가스를 말한다.'
+    source_english: Gases that pollute the global atmosphere and cause the greenhouse effect, including carbon dioxide, methane, etc.
+    proposed_placement: {level: 21, topic: science, ds: 'greenhouse gases, including carbon dioxide and methane'}
+    provisional_identity: ko-lex-48419
+    status: excluded-pending-qualified-pronunciation-review
+    reason: >
+      Plain ㄱ versus lexical tensing to ㄲ at the compound 실-가 boundary
+      remains unresolved. Neither consulted dictionary entry supplies
+      pronunciation text. Spelling, general rules, and generated romanization
+      do not establish this word-specific choice.
+    decision: >
+      The Curriculum coordinator directed exclusion from active teaching
+      pending qualified pronunciation review. Do not substitute another sense,
+      choose either hypothesis as canonical, or block the other 399 cohort
+      senses. The original source record and its identity remain unchanged.
+    consulted_reading_sources:
+      - dictionary: NIKL Korean Learners' Dictionary
+        official_entry_id: '93471'
+        locator: https://krdict.korean.go.kr/kor/dicSearch/SearchView?ParaWordNo=93471
+        finding: No citation pronunciation text in the pinned archive or consulted entry.
+      - dictionary: NIKL Standard Korean Dictionary
+        official_entry_id: '515681'
+        locator: https://stdict.korean.go.kr/search/searchView.do?word_no=515681&searchKeywordTo=3
+        finding: Actual entry content was inspected; no pronunciation text is supplied.
+
+resolved_reading_gaps:
+- source_parent: ko-nikl-00673
+  lemma: 소독약
+  reason: 'ko-nikl-00673: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-00673-s001
+- source_parent: ko-nikl-00752
+  lemma: 소방서
+  reason: 'ko-nikl-00752: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-00752-s001
+- source_parent: ko-nikl-00986
+  lemma: 소화제
+  reason: 'ko-nikl-00986: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-00986-s001
+- source_parent: ko-nikl-01760
+  lemma: 수선
+  reason: 'ko-nikl-01760: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-01760-s001
+- source_parent: ko-nikl-02601
+  lemma: 승강장
+  reason: 'ko-nikl-02601: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-02601-s001
+- source_parent: ko-nikl-02748
+  lemma: 시내버스
+  reason: 'ko-nikl-02748: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-02748-s001
+- source_parent: ko-nikl-02901
+  lemma: 시위
+  reason: 'ko-nikl-02901: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-02901-s002
+  - ko-nikl-02901-s001
+- source_parent: ko-nikl-02957
+  lemma: 시청
+  reason: 'ko-nikl-02957: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-02957-s001
+- source_parent: ko-nikl-02958
+  lemma: 시청
+  reason: 'ko-nikl-02958: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-02958-s001
+- source_parent: ko-nikl-04510
+  lemma: 안전벨트
+  reason: 'ko-nikl-04510: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-04510-s001
+- source_parent: ko-nikl-05852
+  lemma: 보조금
+  reason: 'ko-nikl-05852: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-05852-s001
+- source_parent: ko-nikl-07128
+  lemma: 불량
+  reason: 'ko-nikl-07128: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-07128-s003
+- source_parent: ko-nikl-07424
+  lemma: 브레이크
+  reason: 'ko-nikl-07424: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-07424-s001
+  - ko-nikl-07424-s002
+- source_parent: ko-nikl-09068
+  lemma: 상담
+  reason: 'ko-nikl-09068: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-09068-s001
+- source_parent: ko-nikl-11152
+  lemma: 인사
+  reason: 'ko-nikl-11152: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-11152-s001
+- source_parent: ko-nikl-11307
+  lemma: 인턴
+  reason: 'ko-nikl-11307: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-11307-s002
+  - ko-nikl-11307-s001
+- source_parent: ko-nikl-12480
+  lemma: 작성
+  reason: 'ko-nikl-12480: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-12480-s001
+- source_parent: ko-nikl-14350
+  lemma: 접촉
+  reason: 'ko-nikl-14350: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-14350-s001
+  - ko-nikl-14350-s002
+- source_parent: ko-nikl-15000
+  lemma: 제출
+  reason: 'ko-nikl-15000: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-15000-s001
+- source_parent: ko-nikl-20161
+  lemma: 렌터카
+  reason: 'ko-nikl-20161: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-20161-s001
+- source_parent: ko-nikl-21452
+  lemma: 터미널
+  reason: 'ko-nikl-21452: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-21452-s001
+- source_parent: ko-nikl-23406
+  lemma: 풍력
+  reason: 'ko-nikl-23406: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-23406-s001
+  - ko-nikl-23406-s002
+- source_parent: ko-nikl-23494
+  lemma: 프린터
+  reason: 'ko-nikl-23494: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-23494-s002
+  - ko-nikl-23494-s001
+- source_parent: ko-nikl-28391
+  lemma: 경보
+  reason: 'ko-nikl-28391: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-28391-s001
+- source_parent: ko-nikl-29143
+  lemma: 고속버스
+  reason: 'ko-nikl-29143: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-29143-s001
+- source_parent: ko-nikl-29916
+  lemma: 공유
+  reason: 'ko-nikl-29916: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-29916-s001
+- source_parent: ko-nikl-30665
+  lemma: 교수
+  reason: 'ko-nikl-30665: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-30665-s002
+  - ko-nikl-30665-s001
+- source_parent: ko-nikl-31164
+  lemma: 구청
+  reason: 'ko-nikl-31164: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-31164-s001
+- source_parent: ko-nikl-32658
+  lemma: 기간
+  reason: 'ko-nikl-32658: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-32658-s001
+- source_parent: ko-nikl-35863
+  lemma: 마을
+  reason: 'ko-nikl-35863: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-35863-s001
+- source_parent: ko-nikl-37066
+  lemma: 메모
+  reason: 'ko-nikl-37066: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-37066-s001
+- source_parent: ko-nikl-37379
+  lemma: 모금
+  reason: 'ko-nikl-37379: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-37379-s001
+- source_parent: ko-nikl-40563
+  lemma: 배기가스
+  reason: 'ko-nikl-40563: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-40563-s001
+- source_parent: ko-nikl-49137
+  lemma: 용량
+  reason: 'ko-nikl-49137: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-49137-s001
+  - ko-nikl-49137-s003
+  - ko-nikl-49137-s002
+- source_parent: ko-nikl-52420
+  lemma: 휘발유
+  reason: 'ko-nikl-52420: selected entry has no supported citation reading'
+  selected_senses:
+  - ko-nikl-52420-s001

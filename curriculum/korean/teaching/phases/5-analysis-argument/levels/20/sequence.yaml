@@ -44,7 +44,7 @@ units:
   - {id: ko-nikl-13864-s001, ch: 전세, pr: 전세, ds: jeonse; a refundable lump-sum rental deposit}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-29247-s001, ch: 고이다, pr: 고이다, ds: 'for liquid, gas, or odor to collect in a confined space'}
+  - {id: ko-nikl-40425-s001, ch: 방음, pr: 방음, ds: soundproofing against sound entering or leaving}
   - {id: ko-nikl-41923-s001, ch: 주택, pr: 주ː택, ds: housing; a residential building}
   - {id: ko-nikl-31136-s002, ch: 구조, pr: 구조, ds: the framework of a building}
   - {id: ko-nikl-05780-s001, ch: 보수, pr: 보ː수, ds: repair of old or damaged buildings or facilities}
@@ -66,6 +66,7 @@ units:
   - {id: ko-nikl-05488-s001, ch: 변호사, pr: 변ː호사, ds: a lawyer qualified to represent people in legal matters}
   - {id: ko-nikl-22458-s001, ch: 판사, pr: 판사, ds: a judge in a court other than the Supreme Court}
   - {id: ko-nikl-27774-s001, ch: 검사, pr: 검ː사, ds: a prosecutor who investigates and brings criminal charges}
+  - {id: ko-nikl-14411-s001, ch: 정규직, pr: 정ː규직, ds: a full-time post secured to a set age (source definition)}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-15945-s001, ch: 능숙하다, pr: 능수카다, ds: to be skilled and experienced}
@@ -111,13 +112,13 @@ units:
   - {id: ko-nikl-34873-s007, ch: 내려가다, pr: 내려가다, ds: 'to fall (a price, temperature, or figure)'}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-49853-s001, ch: 월급, pr: 월급, ds: a monthly salary}
-  - {id: ko-nikl-03920-s005, ch: 쓰다, pr: 쓰다, ds: to spend time or money}
-  - {id: ko-nikl-21052-s001, ch: 타다, pr: 타다, ds: 'to receive a share, payment, or prize'}
-  - {id: ko-nikl-19195-s006, ch: 들다, pr: 들다, ds: to cost; to require time or effort}
-  - {id: ko-nikl-07399-s002, ch: 붓다, pr: 붇ː따, ds: to deposit money at regular intervals}
-  - {id: ko-nikl-05869-s002, ch: 보증금, pr: 보증금, ds: a security deposit for a contract}
-  - {id: ko-nikl-13472-s001, ch: 저축, pr: 저ː축, ds: saving money or assets}
+  - {id: ko-nikl-40615-s001, ch: 배상, pr: 배상, ds: compensating someone for damage one has caused}
+  - {id: ko-nikl-29316-s001, ch: 고지서, pr: 고ː지서, ds: a public-authority notice stating the amount due}
+  - {id: ko-nikl-41063-s001, ch: 벌금, pr: 벌금, ds: a monetary penalty for breaking a rule}
+  - {id: ko-nikl-01584-s001, ch: 수당, pr: 수당, ds: an allowance or payment in addition to regular wages}
+  - {id: ko-nikl-09196-s001, ch: 상여금, pr: 상여금, ds: a bonus awarded for achievement or contribution}
+  - {id: ko-nikl-47450-s001, ch: 연봉, pr: 연봉, ds: total regular pay received over a year}
+  - {id: ko-nikl-29676-s001, ch: 공과금, pr: 공과금, ds: 'public charges, including utility bills'}
   - {id: ko-nikl-48004-s001, ch: 예산, pr: 예ː산, ds: a budget; estimated costs}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
@@ -147,6 +148,9 @@ units:
   - {id: ko-nikl-27346-s006, ch: 거두다, pr: 거두다, ds: to collect money or goods from a number of people}
   - {id: ko-nikl-36569-s007, ch: 맡기다, pr: 맏끼다, ds: to put up a possession as collateral}
   - {id: ko-nikl-23326-s014, ch: 풀다, pr: 풀다, ds: to distribute money or goods held together in one place}
+  - {id: ko-nikl-05868-s002, ch: 보증, pr: 보증, ds: agreeing to repay a debt if the debtor cannot}
+  - {id: ko-nikl-21830-s001, ch: 통화, pr: 통화, ds: the currency used in a society}
+  - {id: ko-nikl-42779-s001, ch: 지원금, pr: 지원금, ds: financial support intended to help someone succeed or improve}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-10914-s001, ch: 이자, pr: 이ː자, ds: interest paid on borrowed money}
@@ -157,6 +161,23 @@ units:
   - {id: ko-nikl-00272-s003, ch: 성장, pr: 성장, ds: growth in scale or influence}
   - {id: ko-nikl-35340-s007, ch: 넣다, pr: 너ː타, ds: to deposit money in a bank}
   - {id: ko-nikl-34873-s007, ch: 내려가다, pr: 내려가다, ds: 'to fall (a price, temperature, or figure)'}
+  review_grammar:
+  - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
+- id: level-20-money-03
+  title: Money and commerce - 3
+  outcome: Confirm amounts in won and explain a financial choice without professional claims.
+  vocabulary:
+  - {id: ko-nikl-01865-s001, ch: 수요, pr: 수요, ds: consumer demand for a product}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-15289-s005, ch: 높이다, pr: 노피다, ds: to raise a price or rate}
+  - {id: ko-nikl-34855-s017, ch: 내다, pr: 내ː다, ds: to pay or contribute money or goods}
+  - {id: ko-nikl-27346-s006, ch: 거두다, pr: 거두다, ds: to collect money or goods from a number of people}
+  - {id: ko-nikl-36569-s007, ch: 맡기다, pr: 맏끼다, ds: to put up a possession as collateral}
+  - {id: ko-nikl-23326-s014, ch: 풀다, pr: 풀다, ds: to distribute money or goods held together in one place}
+  - {id: ko-nikl-05868-s002, ch: 보증, pr: 보증, ds: agreeing to repay a debt if the debtor cannot}
+  - {id: ko-nikl-21830-s001, ch: 통화, pr: 통화, ds: the currency used in a society}
+  - {id: ko-nikl-42779-s001, ch: 지원금, pr: 지원금, ds: financial support intended to help someone succeed or improve}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
 - id: level-20-society-01
@@ -173,12 +194,12 @@ units:
   - {id: ko-nikl-41184-s001, ch: 조직, pr: 조직, ds: an organized group formed to achieve a goal}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-29659-s001, ch: 공공, pr: 공공, ds: the public sphere; what concerns everyone in a society}
-  - {id: ko-nikl-13043-s001, ch: 재난, pr: 재난, ds: an unexpected disaster or serious misfortune}
-  - {id: ko-nikl-23649-s001, ch: 피해, pr: 피ː해, ds: 'harm or loss to life, health, property, or reputation'}
-  - {id: ko-nikl-52801-s002, ch: 희생, pr: 히생, ds: loss of life in an accident or natural disaster}
-  - {id: ko-nikl-35783-s002, ch: 마당, pr: 마당, ds: a place where an activity or event takes place}
-  - {id: ko-nikl-45987-s003, ch: 층, pr: 층, ds: 'a social group with similar status, resources, or interests'}
+  - {id: ko-nikl-52282-s001, ch: 후원, pr: 후ː원, ds: support or backing given to someone}
+  - {id: ko-nikl-43465-s001, ch: 집회, pr: 지푀 / 지풰, ds: a temporary gathering of people for a shared purpose}
+  - {id: ko-nikl-02901-s002, ch: 시위, pr: 시ː위, ds: a public rally or march expressing demands}
+  - {id: ko-nikl-25561-s001, ch: 가구, pr: 가구, ds: a group of people sharing one home; a household}
+  - {id: ko-nikl-40346-s001, ch: 방범, pr: 방범, ds: crime prevention}
+  - {id: ko-nikl-35602-s001, ch: 녹지, pr: 녹찌, ds: green space with natural or planted grass and trees}
   - {id: ko-nikl-16492-s001, ch: 단지, pr: 단지, ds: a complex of buildings or facilities with a shared purpose}
   - {id: ko-nikl-04038-s001, ch: 아끼다, pr: 아끼다, ds: to use something valued carefully rather than wastefully}
   review_grammar: []
@@ -213,14 +234,14 @@ units:
   - {id: ko-nikl-31349-s001, ch: 국적, pr: 국쩍, ds: nationality; membership in a country}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-04958-s001, ch: 야당, pr: 야ː당, ds: an opposition party; a party not in power}
-  - {id: ko-nikl-10370-s001, ch: 의원, pr: 의원, ds: a member of the national or a local assembly}
-  - {id: ko-nikl-14433-s001, ch: 정당, pr: 정당, ds: a political party seeking power to realize shared ideas}
-  - {id: ko-nikl-47038-s001, ch: 여당, pr: 여ː당, ds: the ruling party holding the presidency or most seats}
-  - {id: ko-nikl-52260-s001, ch: 후보, pr: 후보, ds: a candidate standing for election}
-  - {id: ko-nikl-17558-s012, ch: 던지다, pr: 던지다, ds: to cast a vote}
   - {id: ko-nikl-14547-s003, ch: 정상, pr: 정상, ds: a country's highest-ranking leader}
+  - {id: ko-nikl-16416-s002, ch: 단속, pr: 단속, ds: 'enforcement of laws, rules, or orders'}
+  - {id: ko-nikl-29766-s001, ch: 공무원, pr: 공무원, ds: a central or local government employee}
+  - {id: ko-nikl-31893-s001, ch: 규정, pr: 규정, ds: establishing a rule; the rule established}
+  - {id: ko-nikl-07193-s001, ch: 불법, pr: 불법 / 불뻡, ds: illegality; being contrary to law}
+  - {id: ko-nikl-52261-s001, ch: 후보자, pr: 후보자, ds: a qualified candidate standing in an election}
   - {id: ko-nikl-18509-s003, ch: 동의, pr: 동의 / 동이, ds: consent; approval of another person's action}
+  - {id: ko-nikl-41240-s001, ch: 조회, pr: 조ː회 / 조ː훼, ds: checking facts with a relevant organization}
   review_grammar: []
 - id: level-20-institutions-02
   title: Institutions and public life - 2
@@ -233,6 +254,10 @@ units:
   - {id: ko-nikl-22715-s006, ch: 펴다, pr: 펴다, ds: 'to put a policy, operation, or organized effort into action'}
   - {id: ko-nikl-38543-s002, ch: 묻다, pr: 묻ː따, ds: to hold someone accountable for something}
   - {id: ko-nikl-23326-s006, ch: 풀다, pr: 풀다, ds: to lift a ban or restriction}
+  - {id: ko-nikl-19352-s001, ch: 등기, pr: 등기, ds: official registration of real-estate rights; the record}
+  - {id: ko-nikl-24562-s002, ch: 항의, pr: 항ː의 / 항ː이, ds: an official protest by one country to another}
+  - {id: ko-nikl-41063-s002, ch: 벌금, pr: 벌금, ds: a monetary punishment for a criminal offense}
+  - {id: ko-nikl-05852-s001, ch: 보조금, pr: 보ː조금, ds: a public subsidy supporting a policy or industry}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-05762-s001, ch: 보상, pr: 보ː상, ds: compensation for loss or damage}
@@ -269,14 +294,14 @@ units:
   grammar:
   - {id: ko-topik4-g020, ch: V/A-(으)ㄴ/는 셈이다, ds: state what something effectively amounts to}
   review_vocabulary:
-  - {id: ko-nikl-51386-s002, ch: 호황, pr: 호ː황, ds: an economic boom; unusually strong economic activity}
-  - {id: ko-nikl-51865-s001, ch: 환율, pr: 화ː뉼, ds: the exchange rate between currencies}
-  - {id: ko-nikl-50267-s001, ch: 유산, pr: 유산, ds: an inheritance; property left after someone's death}
-  - {id: ko-nikl-15289-s005, ch: 높이다, pr: 노피다, ds: to raise a price or rate}
   - {id: ko-nikl-34855-s017, ch: 내다, pr: 내ː다, ds: to pay or contribute money or goods}
   - {id: ko-nikl-27346-s006, ch: 거두다, pr: 거두다, ds: to collect money or goods from a number of people}
   - {id: ko-nikl-36569-s007, ch: 맡기다, pr: 맏끼다, ds: to put up a possession as collateral}
   - {id: ko-nikl-23326-s014, ch: 풀다, pr: 풀다, ds: to distribute money or goods held together in one place}
+  - {id: ko-nikl-05868-s002, ch: 보증, pr: 보증, ds: agreeing to repay a debt if the debtor cannot}
+  - {id: ko-nikl-21830-s001, ch: 통화, pr: 통화, ds: the currency used in a society}
+  - {id: ko-nikl-42779-s001, ch: 지원금, pr: 지원금, ds: financial support intended to help someone succeed or improve}
+  - {id: ko-nikl-01865-s001, ch: 수요, pr: 수요, ds: consumer demand for a product}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
 - id: level-20-institutions-practice-01
@@ -288,14 +313,14 @@ units:
   - {id: ko-topik5-g012, ch: V/A-(으)므로, ds: give a reason in formal written language}
   - {id: ko-topik5-g013, ch: V-(으)ㅁ으로써, ds: name an action as the means of an outcome}
   review_vocabulary:
-  - {id: ko-nikl-31349-s001, ch: 국적, pr: 국쩍, ds: nationality; membership in a country}
-  - {id: ko-nikl-45283-s001, ch: 총리, pr: 총ː니, ds: prime minister; head of ministers assisting the president}
-  - {id: ko-nikl-32691-s002, ch: 기관, pr: 기관, ds: an institution established for a social role or purpose}
-  - {id: ko-nikl-17098-s001, ch: 대사, pr: 대ː사, ds: an ambassador representing a country abroad}
   - {id: ko-nikl-14909-s002, ch: 제시, pr: 제시, ds: presenting an item for inspection}
   - {id: ko-nikl-22715-s006, ch: 펴다, pr: 펴다, ds: 'to put a policy, operation, or organized effort into action'}
   - {id: ko-nikl-38543-s002, ch: 묻다, pr: 묻ː따, ds: to hold someone accountable for something}
   - {id: ko-nikl-23326-s006, ch: 풀다, pr: 풀다, ds: to lift a ban or restriction}
+  - {id: ko-nikl-19352-s001, ch: 등기, pr: 등기, ds: official registration of real-estate rights; the record}
+  - {id: ko-nikl-24562-s002, ch: 항의, pr: 항ː의 / 항ː이, ds: an official protest by one country to another}
+  - {id: ko-nikl-41063-s002, ch: 벌금, pr: 벌금, ds: a monetary punishment for a criminal offense}
+  - {id: ko-nikl-05852-s001, ch: 보조금, pr: 보ː조금, ds: a public subsidy supporting a policy or industry}
   review_grammar: []
 - id: level-20-institutions-practice-02
   title: Institutions and public life - sentence practice 2
@@ -304,14 +329,14 @@ units:
   grammar:
   - {id: ko-topik5-g035, ch: N을/를 비롯해, ds: introduce a representative member of a larger set}
   review_vocabulary:
-  - {id: ko-nikl-31349-s001, ch: 국적, pr: 국쩍, ds: nationality; membership in a country}
-  - {id: ko-nikl-45283-s001, ch: 총리, pr: 총ː니, ds: prime minister; head of ministers assisting the president}
-  - {id: ko-nikl-32691-s002, ch: 기관, pr: 기관, ds: an institution established for a social role or purpose}
-  - {id: ko-nikl-17098-s001, ch: 대사, pr: 대ː사, ds: an ambassador representing a country abroad}
   - {id: ko-nikl-14909-s002, ch: 제시, pr: 제시, ds: presenting an item for inspection}
   - {id: ko-nikl-22715-s006, ch: 펴다, pr: 펴다, ds: 'to put a policy, operation, or organized effort into action'}
   - {id: ko-nikl-38543-s002, ch: 묻다, pr: 묻ː따, ds: to hold someone accountable for something}
   - {id: ko-nikl-23326-s006, ch: 풀다, pr: 풀다, ds: to lift a ban or restriction}
+  - {id: ko-nikl-19352-s001, ch: 등기, pr: 등기, ds: official registration of real-estate rights; the record}
+  - {id: ko-nikl-24562-s002, ch: 항의, pr: 항ː의 / 항ː이, ds: an official protest by one country to another}
+  - {id: ko-nikl-41063-s002, ch: 벌금, pr: 벌금, ds: a monetary punishment for a criminal offense}
+  - {id: ko-nikl-05852-s001, ch: 보조금, pr: 보ː조금, ds: a public subsidy supporting a policy or industry}
   review_grammar:
   - {id: ko-topik4-g036, ch: V/A-(으)ㅁ, ds: nominalize a fact in concise written language}
   - {id: ko-topik5-g012, ch: V/A-(으)므로, ds: give a reason in formal written language}

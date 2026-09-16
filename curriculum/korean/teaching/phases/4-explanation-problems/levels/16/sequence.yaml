@@ -38,9 +38,9 @@ units:
   outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
   vocabulary:
   - {id: ko-nikl-11025-s001, ch: 이혼, pr: 이ː혼, ds: divorce}
+  - {id: ko-nikl-12936-s001, ch: 장애인, pr: 장애인, ds: a person with a disability affecting daily or social life}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-42858-s004, ch: 지키다, pr: 지키다, ds: to keep a promise or follow rules and etiquette}
   - {id: ko-nikl-46288-s001, ch: 어기다, pr: 어기다, ds: 'to break a rule, promise, or order'}
   - {id: ko-nikl-43874-s002, ch: 차례, pr: 차례, ds: a turn; an opportunity given in sequence}
   - {id: ko-nikl-39820-s003, ch: 받아들이다, pr: 바다드리다, ds: to grant a request or demand}
@@ -48,6 +48,7 @@ units:
   - {id: ko-nikl-06394-s005, ch: 부딪치다, pr: 부딛치다, ds: to clash with someone over differing opinions}
   - {id: ko-nikl-03841-s006, ch: 쌓다, pr: 싸타, ds: to build up honor or trust}
   - {id: ko-nikl-10209-s002, ch: 응원, pr: 응ː원, ds: encouragement or support to help someone do well}
+  - {id: ko-nikl-05850-s002, ch: 보조, pr: 보ː조, ds: assistance to a principal activity or person; an assistant}
   review_grammar:
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
   - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
@@ -59,18 +60,37 @@ units:
   - {id: ko-nikl-41923-s001, ch: 주택, pr: 주ː택, ds: housing; a residential building}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-06494-s002, ch: 부수다, pr: 부수다, ds: to damage an object or put it out of order}
-  - {id: ko-nikl-40912-s007, ch: 버리다, pr: 버리다, ds: to ruin something by damaging or dirtying it}
-  - {id: ko-nikl-46105-s003, ch: 치우다, pr: 치우다, ds: to clear out and empty a room}
   - {id: ko-nikl-19872-s002, ch: 뚫다, pr: 뚤타, ds: to unblock a passage or opening}
   - {id: ko-nikl-36023-s001, ch: 막히다, pr: 마키다, ds: for a passage or opening to become blocked}
   - {id: ko-nikl-09344-s001, ch: 새다, pr: 새다, ds: for gas or liquid to leak through a crack or hole}
   - {id: ko-nikl-09344-s003, ch: 새다, pr: 새다, ds: for sound to leak through or be heard outside}
   - {id: ko-nikl-29247-s001, ch: 고이다, pr: 고이다, ds: 'for liquid, gas, or odor to collect in a confined space'}
+  - {id: ko-nikl-14651-s001, ch: 정전, pr: 정전, ds: a power outage}
+  - {id: ko-nikl-40378-s001, ch: 방수, pr: 방수, ds: waterproofing; preventing water from leaking or seeping}
+  - {id: ko-nikl-40425-s001, ch: 방음, pr: 방음, ds: soundproofing against sound entering or leaving}
   review_grammar:
   - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
   - {id: ko-topik3-g027, ch: V-아/어 있다, ds: describe a resulting state rather than activity}
   - {id: ko-topik3-g009, ch: V-아/어 놓다, ds: do an action and leave its result in place}
+- id: level-16-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain an ordinary symptom or care need without clinical claims.
+  vocabulary:
+  - {id: ko-nikl-12933-s002, ch: 장애, pr: 장애, ds: a physical or mental impairment}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-44409-s001, ch: 처방전, pr: 처ː방전, ds: a written prescription for preparing medicine}
+  - {id: ko-nikl-00671-s001, ch: 소독, pr: 소독, ds: disinfection to destroy germs and prevent illness}
+  - {id: ko-nikl-00673-s001, ch: 소독약, pr: 소동냑, ds: a disinfectant that kills or weakens harmful germs}
+  - {id: ko-nikl-05091-s001, ch: 약효, pr: 야쿄, ds: the effect or efficacy of a medicine}
+  - {id: ko-nikl-49146-s001, ch: 용법, pr: 용ː뻡, ds: a method or manner of using something}
+  - {id: ko-nikl-03082-s001, ch: 식중독, pr: 식쭝독, ds: illness caused by toxic substances in food}
+  - {id: ko-nikl-25351-s001, ch: 혈압, pr: 혀랍, ds: blood pressure generated as the heart pumps}
+  - {id: ko-nikl-42147-s001, ch: 중독, pr: 중독, ds: poisoning by toxic substances in food or medicine}
+  review_grammar:
+  - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
+  - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
+  - {id: ko-topik3-g006, ch: V-아/어야겠다, ds: state a newly formed resolve or need}
 - id: level-16-services-01
   title: Services and transactions - 1
   outcome: Clarify requirements and resolve a service problem politely.
@@ -78,13 +98,13 @@ units:
   - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-05919-s001, ch: 보호, pr: 보ː호, ds: protection and care against danger or difficulty}
-  - {id: ko-nikl-17359-s001, ch: 대피, pr: 대ː피, ds: evacuation; moving temporarily to safety}
-  - {id: ko-nikl-42858-s001, ch: 지키다, pr: 지키다, ds: 'to protect possessions, interests, or safety'}
-  - {id: ko-nikl-32869-s001, ch: 기사, pr: 기사, ds: a professional driver or machine operator}
-  - {id: ko-nikl-36569-s003, ch: 맡기다, pr: 맏끼다, ds: to leave something somewhere or with someone for safekeeping}
-  - {id: ko-nikl-52650-s002, ch: 흘리다, pr: 흘리다, ds: to drop an object somewhere through carelessness}
-  - {id: ko-nikl-14545-s001, ch: 정상, pr: 정ː상, ds: a normal condition without irregularities or problems}
+  - {id: ko-nikl-22374-s001, ch: 파출소, pr: 파출쏘, ds: a local police post under a police station's jurisdiction}
+  - {id: ko-nikl-28398-s001, ch: 경비, pr: 경ː비, ds: 'guarding against theft, intrusion, or similar dangers'}
+  - {id: ko-nikl-02023-s001, ch: 수칙, pr: 수칙, ds: rules set to be observed}
+  - {id: ko-nikl-28391-s001, ch: 경보, pr: 경ː보, ds: 'an advance danger alert, announcement, or warning signal'}
+  - {id: ko-nikl-51687-s001, ch: 화재, pr: 화ː재, ds: a destructive fire affecting buildings or belongings}
+  - {id: ko-nikl-00979-s001, ch: 소화기, pr: 소화기, ds: a chemical fire extinguisher}
+  - {id: ko-nikl-00754-s001, ch: 소방차, pr: 소방차, ds: a fire engine equipped to fight fires}
   - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
   review_grammar:
   - {id: ko-topik4-g023, ch: V-(으)려면, ds: state a prerequisite for an intended outcome}
@@ -98,14 +118,14 @@ units:
   - {id: ko-nikl-46842-s001, ch: 업체, pr: 업체, ds: a business enterprise operating for profit}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-25377-s001, ch: 협동, pr: 협똥, ds: cooperation; joining efforts with a shared purpose}
-  - {id: ko-nikl-34855-s021, ch: 내다, pr: 내ː다, ds: to make time or create an opportunity}
-  - {id: ko-nikl-35308-s009, ch: 넘기다, pr: 넘기다, ds: to hand a task or duty over to someone else}
-  - {id: ko-nikl-19503-s004, ch: 따르다, pr: 따르다, ds: 'to follow rules, procedures, practices, or someone''s opinion'}
-  - {id: ko-nikl-27359-s001, ch: 거들다, pr: 거ː들다, ds: to help someone by sharing in their work}
-  - {id: ko-nikl-36569-s001, ch: 맡기다, pr: 맏끼다, ds: to entrust a task to someone to handle responsibly}
-  - {id: ko-nikl-38865-s002, ch: 미루다, pr: 미루다, ds: to shift a task or responsibility onto someone else}
-  - {id: ko-nikl-37016-s005, ch: 멈추다, pr: 멈추다, ds: to bring an activity or action to a stop}
+  - {id: ko-nikl-47227-s002, ch: 역, pr: 역, ds: a specially assigned role or responsibility}
+  - {id: ko-nikl-16416-s001, ch: 단속, pr: 단속, ds: careful supervision to prevent things from going wrong}
+  - {id: ko-nikl-04408-s001, ch: 안건, pr: 안ː껀, ds: an item for discussion or consideration at a meeting}
+  - {id: ko-nikl-30613-s001, ch: 교대, pr: 교대, ds: taking turns to carry out shared work}
+  - {id: ko-nikl-30613-s002, ch: 교대, pr: 교대, ds: a person taking a turn or shift at shared work}
+  - {id: ko-nikl-25399-s001, ch: 협의, pr: 혀븨 / 혀비, ds: consultation or discussion among several people}
+  - {id: ko-nikl-29916-s001, ch: 공유, pr: 공ː유, ds: shared possession; having something in common}
+  - {id: ko-nikl-05850-s001, ch: 보조, pr: 보ː조, ds: supplementary help that makes up a shortage}
   review_grammar:
   - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
   - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
@@ -177,12 +197,40 @@ units:
   - {id: ko-nikl-52801-s002, ch: 희생, pr: 히생, ds: loss of life in an accident or natural disaster}
   - {id: ko-nikl-35783-s002, ch: 마당, pr: 마당, ds: a place where an activity or event takes place}
   - {id: ko-nikl-45987-s003, ch: 층, pr: 층, ds: 'a social group with similar status, resources, or interests'}
+  - {id: ko-nikl-11152-s001, ch: 인사, pr: 인사, ds: a prominent or publicly active person}
   grammar: []
   review_vocabulary:
+  - {id: ko-nikl-18358-s001, ch: 동네, pr: 동ː네, ds: a residential neighborhood}
+  - {id: ko-nikl-29262-s001, ch: 고장, pr: 고장, ds: a locality or region where people live}
   - {id: ko-nikl-19195-s014, ch: 들다, pr: 들다, ds: to join a group or organization}
   - {id: ko-nikl-24831-s001, ch: 행사, pr: 행사, ds: an organized event or function}
   - {id: ko-nikl-12305-s001, ch: 자원봉사, pr: 자원봉사, ds: volunteering; freely helping without payment}
   - {id: ko-nikl-32860-s001, ch: 기부, pr: 기부, ds: a donation of money or property without repayment}
+  - {id: ko-nikl-21277-s001, ch: 탈퇴, pr: 탈퇴 / 탈퉤, ds: leaving an organization and ending one's membership}
+  - {id: ko-nikl-44132-s001, ch: 참여, pr: 차며, ds: joining others in a shared activity}
+  review_grammar: []
+- id: level-16-society-02
+  title: Society and community - 2
+  outcome: Explain an issue without generalizing all Korean speakers from one example.
+  vocabulary:
+  - {id: ko-nikl-29666-s001, ch: 공공시설, pr: 공공시설, ds: public facilities provided for convenience or welfare}
+  - {id: ko-nikl-37380-s001, ch: 모금, pr: 모금, ds: collecting donations or contributions}
+  - {id: ko-nikl-52282-s001, ch: 후원, pr: 후ː원, ds: support or backing given to someone}
+  - {id: ko-nikl-43465-s001, ch: 집회, pr: 지푀 / 지풰, ds: a temporary gathering of people for a shared purpose}
+  - {id: ko-nikl-02901-s002, ch: 시위, pr: 시ː위, ds: a public rally or march expressing demands}
+  - {id: ko-nikl-25561-s001, ch: 가구, pr: 가구, ds: a group of people sharing one home; a household}
+  - {id: ko-nikl-40346-s001, ch: 방범, pr: 방범, ds: crime prevention}
+  - {id: ko-nikl-35602-s001, ch: 녹지, pr: 녹찌, ds: green space with natural or planted grass and trees}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-17258-s002, ch: 대중, pr: 대ː중, ds: the general public; most members of society}
+  - {id: ko-nikl-29659-s001, ch: 공공, pr: 공공, ds: the public sphere; what concerns everyone in a society}
+  - {id: ko-nikl-13043-s001, ch: 재난, pr: 재난, ds: an unexpected disaster or serious misfortune}
+  - {id: ko-nikl-23649-s001, ch: 피해, pr: 피ː해, ds: 'harm or loss to life, health, property, or reputation'}
+  - {id: ko-nikl-52801-s002, ch: 희생, pr: 히생, ds: loss of life in an accident or natural disaster}
+  - {id: ko-nikl-35783-s002, ch: 마당, pr: 마당, ds: a place where an activity or event takes place}
+  - {id: ko-nikl-45987-s003, ch: 층, pr: 층, ds: 'a social group with similar status, resources, or interests'}
+  - {id: ko-nikl-11152-s001, ch: 인사, pr: 인사, ds: a prominent or publicly active person}
   review_grammar: []
 - id: level-16-institutions-01
   title: Institutions and public life - 1
@@ -205,8 +253,21 @@ units:
   - {id: ko-nikl-52260-s001, ch: 후보, pr: 후보, ds: a candidate standing for election}
   - {id: ko-nikl-17558-s012, ch: 던지다, pr: 던지다, ds: to cast a vote}
   - {id: ko-nikl-14547-s003, ch: 정상, pr: 정상, ds: a country's highest-ranking leader}
+  - {id: ko-nikl-16416-s002, ch: 단속, pr: 단속, ds: 'enforcement of laws, rules, or orders'}
+  - {id: ko-nikl-29766-s001, ch: 공무원, pr: 공무원, ds: a central or local government employee}
+  - {id: ko-nikl-31893-s001, ch: 규정, pr: 규정, ds: establishing a rule; the rule established}
+  - {id: ko-nikl-07193-s001, ch: 불법, pr: 불법 / 불뻡, ds: illegality; being contrary to law}
+  - {id: ko-nikl-52261-s001, ch: 후보자, pr: 후보자, ds: a qualified candidate standing in an election}
   grammar: []
-  review_vocabulary: []
+  review_vocabulary:
+  - {id: ko-nikl-42422-s001, ch: 증명서, pr: 증명서, ds: a document certifying a fact}
+  - {id: ko-nikl-39900-s001, ch: 발급, pr: 발급, ds: issuing a certificate or other document through an institution}
+  - {id: ko-nikl-01793-s002, ch: 수수료, pr: 수수료, ds: a fee charged for a government or public service}
+  - {id: ko-nikl-49935-s001, ch: 위반, pr: 위반, ds: 'violation of a law, order, or promise'}
+  - {id: ko-nikl-02639-s001, ch: 승인, pr: 승인, ds: approval or authorization of an action}
+  - {id: ko-nikl-03123-s001, ch: 신고, pr: 신고, ds: reporting a fact to a government office}
+  - {id: ko-nikl-31164-s001, ch: 구청, pr: 구청, ds: a district administrative office}
+  - {id: ko-nikl-02957-s001, ch: 시청, pr: 시ː청, ds: the city administration; city hall}
   review_grammar: []
 - id: level-16-media-01
   title: Media and sources - 1
@@ -233,8 +294,11 @@ units:
   - {id: ko-nikl-52650-s003, ch: 흘리다, pr: 흘리다, ds: to let a secret or information become known indirectly}
   - {id: ko-nikl-38542-s002, ch: 묻다, pr: 묻따, ds: to conceal an affair or cover it up}
   - {id: ko-nikl-09344-s005, ch: 새다, pr: 새다, ds: for a secret or rumor to become known outside}
+  - {id: ko-nikl-47986-s001, ch: 예보, pr: 예ː보, ds: a forecast or advance announcement of a future occurrence}
   grammar: []
-  review_vocabulary: []
+  review_vocabulary:
+  - {id: ko-nikl-27917-s002, ch: 게시판, pr: 게ː시판, ds: an online board where people post and read messages}
+  - {id: ko-nikl-02958-s001, ch: 시청, pr: 시ː청, ds: watching and listening to a television broadcast}
   review_grammar: []
 - id: level-16-history-01
   title: History and change - 1
@@ -252,12 +316,13 @@ units:
   - {id: ko-nikl-38524-s001, ch: 문화, pr: 문화, ds: culture; shared material and spiritual practices}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-39509-s001, ch: 박물관, pr: 방물관, ds: museum}
   - {id: ko-nikl-24211-s001, ch: 한복, pr: 한ː복, ds: hanbok; traditional Korean clothing}
   - {id: ko-nikl-45626-s001, ch: 축제, pr: 축쩨, ds: a festival}
   - {id: ko-nikl-37316-s001, ch: 명절, pr: 명절, ds: a traditional holiday}
   - {id: ko-nikl-00015-s001, ch: 설날, pr: 설ː랄, ds: Seollal; Korean Lunar New Year}
   - {id: ko-nikl-45509-s001, ch: 추석, pr: 추석, ds: Chuseok; Korean harvest holiday}
+  - {id: ko-nikl-01196-s003, ch: 손님, pr: 손님, ds: 'a guest at a wedding, funeral, or similar event'}
+  - {id: ko-nikl-29262-s002, ch: 고장, pr: 고장, ds: a region noted for a product or feature}
   - {id: ko-nikl-41101-s001, ch: 벌어지다, pr: 버ː러지다, ds: for a party or event to take place}
   review_grammar: []
 - id: level-16-arts-01
@@ -267,15 +332,32 @@ units:
   - {id: ko-nikl-26461-s003, ch: 감독, pr: 감독, ds: a director of a production; a sports coach}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-23616-s001, ch: 피아노, pr: 피아노, ds: a piano}
   - {id: ko-nikl-33118-s001, ch: 기타, pr: 기타, ds: a guitar}
   - {id: ko-nikl-20655-s002, ch: 커튼, pr: 커튼, ds: a curtain covering a stage}
   - {id: ko-nikl-29898-s001, ch: 공연장, pr: 공연장, ds: 'a venue for plays, concerts, dance, or other performances'}
   - {id: ko-nikl-27262-s001, ch: 객석, pr: 객썩, ds: seating for an audience or spectators}
+  - {id: ko-nikl-47227-s001, ch: 역, pr: 역, ds: a character played by an actor}
   - {id: ko-nikl-11893-s001, ch: 입장, pr: 입짱, ds: admission; entering an event or performance venue}
   - {id: ko-nikl-24497-s001, ch: 합창, pr: 합창, ds: singing together in harmony; a group song}
   - {id: ko-nikl-47555-s001, ch: 연주, pr: 연ː주, ds: an instrumental musical performance}
   review_grammar: []
+- id: level-16-quantities-01
+  title: Numbers and counters - 1
+  outcome: Choose native or Sino-Korean number forms for quantities, clock time, and payment.
+  vocabulary:
+  - {id: ko-nikl-25561-s002, ch: 가구, pr: 가구, ds: a counter for households}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-47057-s001, ch: 여든, pr: 여든, ds: eighty (native Korean numeral)}
+  - {id: ko-nikl-47058-s001, ch: 여든, pr: 여든, ds: eighty; before a noun or counter}
+  - {id: ko-nikl-04329-s001, ch: 아흔, pr: 아흔, ds: ninety (native Korean numeral)}
+  - {id: ko-nikl-04330-s001, ch: 아흔, pr: 아흔, ds: ninety; before a noun or counter}
+  - {id: ko-nikl-42032-s005, ch: 줄, pr: 줄, ds: a counter for lines of written text}
+  - {id: ko-nikl-21831-s002, ch: 통화, pr: 통화, ds: a counter for telephone calls}
+  - {id: ko-nikl-43874-s004, ch: 차례, pr: 차례, ds: a time or occasion as a unit for counting occurrences}
+  - {id: ko-nikl-00398-s002, ch: 세대, pr: 세ː대, ds: a counter for households living together in a home}
+  review_grammar:
+  - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-16-media-practice-01
   title: Media and sources - sentence practice 1
   outcome: Separate reported claims from observation and interpretation.
@@ -285,7 +367,6 @@ units:
   - {id: ko-topik4-g009, ch: V/A-(으)ㄴ/는 반면에, ds: contrast properties or situations analytically}
   - {id: ko-topik4-g015, ch: V-(으)ㄹ 뿐만 아니라, ds: add a further clause beyond the first claim}
   review_vocabulary:
-  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
   - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
   - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
   - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
@@ -293,6 +374,7 @@ units:
   - {id: ko-nikl-52650-s003, ch: 흘리다, pr: 흘리다, ds: to let a secret or information become known indirectly}
   - {id: ko-nikl-38542-s002, ch: 묻다, pr: 묻따, ds: to conceal an affair or cover it up}
   - {id: ko-nikl-09344-s005, ch: 새다, pr: 새다, ds: for a secret or rumor to become known outside}
+  - {id: ko-nikl-47986-s001, ch: 예보, pr: 예ː보, ds: a forecast or advance announcement of a future occurrence}
   review_grammar: []
 - id: level-16-media-practice-02
   title: Media and sources - sentence practice 2
@@ -303,7 +385,6 @@ units:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
   - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
   review_vocabulary:
-  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
   - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
   - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
   - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
@@ -311,6 +392,7 @@ units:
   - {id: ko-nikl-52650-s003, ch: 흘리다, pr: 흘리다, ds: to let a secret or information become known indirectly}
   - {id: ko-nikl-38542-s002, ch: 묻다, pr: 묻따, ds: to conceal an affair or cover it up}
   - {id: ko-nikl-09344-s005, ch: 새다, pr: 새다, ds: for a secret or rumor to become known outside}
+  - {id: ko-nikl-47986-s001, ch: 예보, pr: 예ː보, ds: a forecast or advance announcement of a future occurrence}
   review_grammar:
   - {id: ko-topik4-g004, ch: V/A-더니, ds: connect a remembered observation to a later change}
   - {id: ko-topik4-g009, ch: V/A-(으)ㄴ/는 반면에, ds: contrast properties or situations analytically}
@@ -322,7 +404,6 @@ units:
   grammar:
   - {id: ko-topik6-g021, ch: 'V/A-다면서요?', ds: check remembered or reported information}
   review_vocabulary:
-  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
   - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
   - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
   - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
@@ -330,6 +411,7 @@ units:
   - {id: ko-nikl-52650-s003, ch: 흘리다, pr: 흘리다, ds: to let a secret or information become known indirectly}
   - {id: ko-nikl-38542-s002, ch: 묻다, pr: 묻따, ds: to conceal an affair or cover it up}
   - {id: ko-nikl-09344-s005, ch: 새다, pr: 새다, ds: for a secret or rumor to become known outside}
+  - {id: ko-nikl-47986-s001, ch: 예보, pr: 예ː보, ds: a forecast or advance announcement of a future occurrence}
   review_grammar:
   - {id: ko-topik4-g030, ch: V/A-다고 하던데, ds: introduce remembered hearsay as background}
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}

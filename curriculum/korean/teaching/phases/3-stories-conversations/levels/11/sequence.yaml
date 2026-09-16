@@ -54,6 +54,25 @@ units:
   - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
   - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
   - {id: ko-topik1-g021, ch: 안 V/A, ds: negate an action or descriptive predicate}
+- id: level-11-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain an ordinary symptom or care need without clinical claims.
+  vocabulary:
+  - {id: ko-nikl-47854-s001, ch: 영양, pr: 영양, ds: nutrition; taking in what sustains life and growth}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-33521-s001, ch: 깨다, pr: 깨ː다, ds: to sober up}
+  - {id: ko-nikl-01681-s001, ch: 수면, pr: 수면, ds: sleep; the act of sleeping}
+  - {id: ko-nikl-32464-s002, ch: 금연, pr: 그ː면, ds: quitting smoking}
+  - {id: ko-nikl-52692-s001, ch: 흡연, pr: 흐변, ds: smoking tobacco}
+  - {id: ko-nikl-51144-s001, ch: 음주, pr: 음ː주, ds: drinking alcohol}
+  - {id: ko-nikl-03063-s001, ch: 식습관, pr: 식씁꽌, ds: eating habits}
+  - {id: ko-nikl-49462-s001, ch: 운동량, pr: 운ː동냥, ds: the amount of effort or energy used in exercise}
+  - {id: ko-nikl-23574-s001, ch: 피로, pr: 피로, ds: physical or mental fatigue}
+  review_grammar:
+  - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
+  - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
+  - {id: ko-topik3-g006, ch: V-아/어야겠다, ds: state a newly formed resolve or need}
 - id: level-11-travel-01
   title: Travel and transport - 1
   outcome: Clarify destinations and means and revise arrangements.
@@ -61,14 +80,14 @@ units:
   - {id: ko-nikl-27398-s001, ch: 거리, pr: 거ː리, ds: distance between places or objects}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-27528-s003, ch: 거치다, pr: 거치다, ds: to pass through or stop at a place on the way}
-  - {id: ko-nikl-13774-s001, ch: 전망, pr: 전ː망, ds: a view into the distance; a distant prospect}
   - {id: ko-nikl-38814-s002, ch: 미끄러지다, pr: 미끄러지다, ds: for a vehicle to glide smoothly along its route}
   - {id: ko-nikl-11672-s006, ch: 잃어버리다, pr: 이러버리다, ds: to lose sight of a companion and become separated}
   - {id: ko-nikl-08684-s001, ch: 산길, pr: 산낄, ds: a mountain path}
   - {id: ko-nikl-14547-s001, ch: 정상, pr: 정상, ds: the summit or highest point of a mountain}
   - {id: ko-nikl-42555-s006, ch: 지나가다, pr: 지나가다, ds: to go past something}
   - {id: ko-nikl-18830-s001, ch: 둘러보다, pr: 둘러보다, ds: to look around and inspect one's surroundings}
+  - {id: ko-nikl-42801-s001, ch: 지점, pr: 지점, ds: a particular point or place within an area}
+  - {id: ko-nikl-27592-s002, ch: 건널목, pr: 건ː널목, ds: 'an established crossing over a river, road, or stream'}
   review_grammar:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
   - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
@@ -103,14 +122,14 @@ units:
   - {id: ko-nikl-19269-s002, ch: 들여다보다, pr: 드려다보다, ds: to examine something closely}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-48030-s001, ch: 예습, pr: 예ː습, ds: studying ahead; preparing for a lesson}
-  - {id: ko-nikl-13519-s001, ch: 적다, pr: 적따, ds: to write down; to note}
-  - {id: ko-nikl-02402-s001, ch: 쉽다, pr: 쉽ː따, ds: to be easy to do}
-  - {id: ko-nikl-46370-s001, ch: 어렵다, pr: 어렵따, ds: to be difficult to do}
-  - {id: ko-nikl-42032-s004, ch: 줄, pr: 줄, ds: a line of written text}
-  - {id: ko-nikl-23326-s005, ch: 풀다, pr: 풀다, ds: to solve a difficult problem or find its answer}
+  - {id: ko-nikl-30665-s002, ch: 교수, pr: 교ː수, ds: a university teacher and researcher; a professorial post}
+  - {id: ko-nikl-26843-s002, ch: 강좌, pr: 강ː좌, ds: a university course taught by a professor}
+  - {id: ko-nikl-01511-s001, ch: 수강, pr: 수강, ds: taking a class or course}
+  - {id: ko-nikl-03014-s001, ch: 시험지, pr: 시험지, ds: an examination question paper or answer sheet}
+  - {id: ko-nikl-14431-s001, ch: 정답, pr: 정ː답, ds: the correct answer to a question or problem}
   - {id: ko-nikl-28570-s001, ch: 경험, pr: 경험, ds: experience; knowledge gained through experience}
   - {id: ko-nikl-11966-s001, ch: 잊다, pr: 읻따, ds: to forget something once known}
+  - {id: ko-nikl-24413-s001, ch: 합격, pr: 합껵, ds: 'passing an examination, inspection, or screening'}
   review_grammar:
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
   - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
@@ -121,16 +140,18 @@ units:
   vocabulary:
   - {id: ko-nikl-36023-s003, ch: 막히다, pr: 마키다, ds: to get stuck on a difficult or unfamiliar problem}
   - {id: ko-nikl-09728-s002, ch: 서두르다, pr: 서두르다, ds: to hurry to get something done ahead of schedule}
+  - {id: ko-nikl-14701-s001, ch: 정체, pr: 정체, ds: stagnation; failure to progress or develop}
+  - {id: ko-nikl-20330-s001, ch: 마감, pr: 마감, ds: bringing a task to completion}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-52077-s001, ch: 회의, pr: 회ː의 / 훼ː이, ds: a meeting; a conference}
-  - {id: ko-nikl-45685-s001, ch: 출근, pr: 출근, ds: going to work}
-  - {id: ko-nikl-21843-s001, ch: 퇴근, pr: 퇴ː근 / 퉤ː근, ds: leaving work; going home from work}
-  - {id: ko-nikl-52456-s001, ch: 휴가, pr: 휴가, ds: leave from work or duty; vacation}
-  - {id: ko-nikl-04133-s001, ch: 아르바이트, pr: 아르바이트, ds: a temporary side job; part-time work}
-  - {id: ko-nikl-19253-s008, ch: 들어가다, pr: 드러가다, ds: to join an organization}
-  - {id: ko-nikl-05002-s001, ch: 야유회, pr: 야ː유회 / 야ː유훼, ds: an outdoor gathering for socializing}
+  - {id: ko-nikl-16677-s002, ch: 담당, pr: 담당, ds: a person responsible for a task}
+  - {id: ko-nikl-06477-s001, ch: 부서, pr: 부서, ds: a department or work unit within an organization}
+  - {id: ko-nikl-11307-s002, ch: 인턴, pr: 인턴, ds: a trainee before regular appointment; the training period}
+  - {id: ko-nikl-03281-s001, ch: 신입, pr: 시닙, ds: new entry into a group or organization}
   - {id: ko-nikl-16057-s002, ch: 다녀오다, pr: 다녀오다, ds: to go somewhere for a task and come back}
+  - {id: ko-nikl-27094-s001, ch: 개업, pr: 개업, ds: starting a business or opening a shop}
+  - {id: ko-nikl-04945-s001, ch: 야근, pr: 야ː근, ds: working beyond normal hours into the night}
+  - {id: ko-nikl-30116-s001, ch: 과로, pr: 과ː로, ds: overwork; severe fatigue caused by excessive work}
   review_grammar:
   - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
   - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
@@ -143,16 +164,20 @@ units:
   - {id: ko-nikl-21052-s001, ch: 타다, pr: 타다, ds: 'to receive a share, payment, or prize'}
   - {id: ko-nikl-19195-s006, ch: 들다, pr: 들다, ds: to cost; to require time or effort}
   - {id: ko-nikl-07399-s002, ch: 붓다, pr: 붇ː따, ds: to deposit money at regular intervals}
+  - {id: ko-nikl-12555-s001, ch: 잔돈, pr: 잔돈, ds: money remaining after spending}
+  - {id: ko-nikl-28397-s001, ch: 경비, pr: 경비, ds: expenses necessary to carry out an activity}
+  - {id: ko-nikl-14182-s001, ch: 절약, pr: 저략, ds: economizing by using resources only where needed}
+  - {id: ko-nikl-34763-s001, ch: 낭비, pr: 낭ː비, ds: 'wasteful use of money, time, or things'}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-47846-s001, ch: 영수증, pr: 영수증, ds: receipt; written record of a transaction}
-  - {id: ko-nikl-07564-s001, ch: 비싸다, pr: 비싸다, ds: to be expensive}
-  - {id: ko-nikl-03760-s001, ch: 싸다, pr: 싸다, ds: to be inexpensive; to be cheap}
-  - {id: ko-nikl-22489-s001, ch: 팔다, pr: 팔다, ds: 'to sell goods, rights, or services'}
-  - {id: ko-nikl-24353-s001, ch: 할인, pr: 하린, ds: a discount}
   - {id: ko-nikl-48933-s001, ch: 요금, pr: 요ː금, ds: a charge; a fare; an admission fee}
   - {id: ko-nikl-50982-s001, ch: 은행, pr: 은행, ds: a bank (financial institution)}
+  - {id: ko-nikl-41886-s001, ch: 주차료, pr: 주ː차료, ds: a parking fee}
   - {id: ko-nikl-49853-s001, ch: 월급, pr: 월급, ds: a monthly salary}
+  - {id: ko-nikl-30779-s001, ch: 교통비, pr: 교통비, ds: transportation expenses}
+  - {id: ko-nikl-24016-s001, ch: 학비, pr: 학삐, ds: the cost of attending school and studying}
+  - {id: ko-nikl-19369-s001, ch: 등록금, pr: 등녹끔, ds: fees paid when enrolling at an educational institution}
+  - {id: ko-nikl-12554-s002, ch: 잔돈, pr: 잔돈, ds: a small amount of money}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
 - id: level-11-communication-01
@@ -162,8 +187,8 @@ units:
   - {id: ko-nikl-00038-s001, ch: 설명, pr: 설명, ds: an explanation}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-17402-s001, ch: 대화, pr: 대ː화, ds: conversation; a dialogue}
-  - {id: ko-nikl-06261-s001, ch: 봉투, pr: 봉투, ds: a paper envelope for letters or documents}
+  - {id: ko-nikl-37066-s001, ch: 메모, pr: 메모, ds: writing a brief reminder or message; the note itself}
+  - {id: ko-nikl-04422-s001, ch: 안내문, pr: 안ː내문, ds: a written notice explaining or introducing something}
   - {id: ko-nikl-25707-s001, ch: 가리키다, pr: 가리키다, ds: to point at something with a finger or object}
   - {id: ko-nikl-08184-s001, ch: 사과, pr: 사ː과, ds: an apology; asking forgiveness}
   - {id: ko-nikl-39517-s001, ch: 박수, pr: 박쑤, ds: applause; clapping}
@@ -224,6 +249,7 @@ units:
   - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
   - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
   - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
+  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-09728-s001, ch: 서두르다, pr: 서두르다, ds: to act hurriedly rather than calmly}
@@ -252,6 +278,9 @@ units:
   - {id: ko-nikl-25703-s001, ch: 가리다, pr: 가리다, ds: to be hidden or blocked from view or passage}
   - {id: ko-nikl-19744-s006, ch: 떨어뜨리다, pr: 떠러뜨리다, ds: to lower a numerical value such as a price or temperature}
   - {id: ko-nikl-39315-s002, ch: 바늘, pr: 바늘, ds: a hand or pointer on a clock or measuring scale}
+  - {id: ko-nikl-29141-s001, ch: 고속, pr: 고속, ds: very high speed}
+  - {id: ko-nikl-11587-s001, ch: 일정, pr: 일쩡, ds: 'being fixed in size, shape, range, or time'}
+  - {id: ko-nikl-42725-s001, ch: 지속, pr: 지속, ds: continuation of an activity or state over a long time}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-25600-s001, ch: 가능, pr: 가ː능, ds: possibility; being able to do something}
@@ -314,7 +343,6 @@ units:
   - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
   - {id: ko-topik3-g025, ch: V-게 하다, ds: make or allow another participant to act}
   review_vocabulary:
-  - {id: ko-nikl-15907-s001, ch: 늘어놓다, pr: 느러노타, ds: to lay objects out in a row}
   - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
   - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
   - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
@@ -322,6 +350,7 @@ units:
   - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
   - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
   - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
+  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
   review_grammar:
   - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
   - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
@@ -335,7 +364,6 @@ units:
   - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
   - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
   review_vocabulary:
-  - {id: ko-nikl-15907-s001, ch: 늘어놓다, pr: 느러노타, ds: to lay objects out in a row}
   - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
   - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
   - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
@@ -343,6 +371,7 @@ units:
   - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
   - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
   - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
+  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
   review_grammar:
   - {id: ko-topik3-g010, ch: V-아/어 두다, ds: act in advance and preserve a useful result}
   - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
@@ -354,7 +383,6 @@ units:
   grammar:
   - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
   review_vocabulary:
-  - {id: ko-nikl-15907-s001, ch: 늘어놓다, pr: 느러노타, ds: to lay objects out in a row}
   - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
   - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
   - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
@@ -362,6 +390,7 @@ units:
   - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
   - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
   - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
+  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
   review_grammar:
   - {id: ko-topik3-g030, ch: V-(으)려고, ds: give a purpose controlled by the actor}
   - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}

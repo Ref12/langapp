@@ -100,6 +100,7 @@ category_adjudication:
     ko-lex-35380: 년; year unit
     ko-lex-35824: 마리; counter for animals
     ko-lex-37199: 명; counter for people
+    ko-lex-37379: 모금; bound mouthful counter, not fundraising
     ko-lex-40947: 번; number, order, or occurrence counter
     ko-lex-43838: 차; bound order, occasion, or elapsed-period stage marker
     ko-lex-45013: 초; second unit
@@ -312,6 +313,14 @@ multi_parent_decisions:
       temporal lexeme, not separately counted homographs.
 
 additional_grouping_evidence:
+  consumer-community-and-public-information: >
+    community-identities.yaml and community-notes.yaml distinguish customer,
+    guest, document handling, transport, work/study, public-health, and
+    environmental-information senses. Content nouns keep their additional
+    counting or actor/action uses within one identity; the bound mouthful
+    counter remains distinct from fundraising. Institutional and clinical
+    definitions retain source-specific limitations rather than asserting
+    universal law, eligibility, diagnosis, or individual capabilities.
   concrete-everyday-and-narration: >
     breadth-identities.yaml and breadth-notes.yaml document concrete home,
     food, personal-care, transport, and ordinary-interaction senses. They

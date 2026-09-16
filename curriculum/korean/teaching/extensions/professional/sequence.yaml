@@ -33,16 +33,17 @@ units:
   outcome: Explain an ordinary symptom or care need without clinical claims.
   vocabulary:
   - {id: ko-nikl-14924-s001, ch: 제약, pr: 제ː약, ds: the manufacture of medicines}
+  - {id: ko-nikl-11307-s001, ch: 인턴, pr: 인턴, ds: a licensed medical graduate in clinical training}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-46850-s001, ch: 없이, pr: 업ː씨, ds: without an incident or symptom occurring}
-  - {id: ko-nikl-27536-s009, ch: 거칠다, pr: 거칠다, ds: for breathing or coughing to be harsh and irregular}
-  - {id: ko-nikl-06583-s002, ch: 부작용, pr: 부ː자굥, ds: an unwanted side effect of a medicine}
-  - {id: ko-nikl-52290-s001, ch: 후유증, pr: 후ː유쯩, ds: a symptom remaining after an illness}
-  - {id: ko-nikl-43170-s002, ch: 진정, pr: 진ː정, ds: calming intense feelings or easing pain}
-  - {id: ko-nikl-44379-s002, ch: 챙기다, pr: 챙기다, ds: to make sure not to miss or skip something}
-  - {id: ko-nikl-07419-s005, ch: 붙잡다, pr: 붇짭따, ds: to steady someone or something to prevent a fall}
-  - {id: ko-nikl-07998-s004, ch: 뻗다, pr: 뻗따, ds: to straighten or stretch a bent part of the body}
+  - {id: ko-nikl-49146-s001, ch: 용법, pr: 용ː뻡, ds: a method or manner of using something}
+  - {id: ko-nikl-03082-s001, ch: 식중독, pr: 식쭝독, ds: illness caused by toxic substances in food}
+  - {id: ko-nikl-25351-s001, ch: 혈압, pr: 혀랍, ds: blood pressure generated as the heart pumps}
+  - {id: ko-nikl-42147-s001, ch: 중독, pr: 중독, ds: poisoning by toxic substances in food or medicine}
+  - {id: ko-nikl-12933-s002, ch: 장애, pr: 장애, ds: a physical or mental impairment}
+  - {id: ko-nikl-13938-s001, ch: 전염, pr: 저념, ds: transmission of a disease to another person}
+  - {id: ko-nikl-13940-s001, ch: 전염병, pr: 저념뼝, ds: a disease easily transmitted to other people}
+  - {id: ko-nikl-50455-s001, ch: 유해, pr: 유ː해, ds: harmfulness; the presence of a hazard}
   review_grammar:
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
   - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
@@ -63,6 +64,8 @@ units:
   - {id: ko-nikl-24595-s001, ch: 해고, pr: 해ː고, ds: dismissal; firing an employee}
   - {id: ko-nikl-09279-s001, ch: 상표, pr: 상표, ds: a trademark; a brand mark}
   - {id: ko-nikl-38348-s006, ch: 묶다, pr: 묵따, ds: to combine several things under one system}
+  - {id: ko-nikl-28466-s002, ch: 경유, pr: 경유, ds: routing a matter through a department in an office procedure}
+  - {id: ko-nikl-03123-s002, ch: 신고, pr: 신고, ds: formally reporting an appointment or promotion to a superior}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-15945-s001, ch: 능숙하다, pr: 능수카다, ds: to be skilled and experienced}
@@ -94,13 +97,13 @@ units:
   - {id: ko-nikl-11678-s001, ch: 임금, pr: 임ː금, ds: wages; payment for work}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-49853-s001, ch: 월급, pr: 월급, ds: a monthly salary}
-  - {id: ko-nikl-03920-s005, ch: 쓰다, pr: 쓰다, ds: to spend time or money}
-  - {id: ko-nikl-21052-s001, ch: 타다, pr: 타다, ds: 'to receive a share, payment, or prize'}
-  - {id: ko-nikl-19195-s006, ch: 들다, pr: 들다, ds: to cost; to require time or effort}
-  - {id: ko-nikl-07399-s002, ch: 붓다, pr: 붇ː따, ds: to deposit money at regular intervals}
-  - {id: ko-nikl-05869-s002, ch: 보증금, pr: 보증금, ds: a security deposit for a contract}
-  - {id: ko-nikl-13472-s001, ch: 저축, pr: 저ː축, ds: saving money or assets}
+  - {id: ko-nikl-40615-s001, ch: 배상, pr: 배상, ds: compensating someone for damage one has caused}
+  - {id: ko-nikl-29316-s001, ch: 고지서, pr: 고ː지서, ds: a public-authority notice stating the amount due}
+  - {id: ko-nikl-41063-s001, ch: 벌금, pr: 벌금, ds: a monetary penalty for breaking a rule}
+  - {id: ko-nikl-01584-s001, ch: 수당, pr: 수당, ds: an allowance or payment in addition to regular wages}
+  - {id: ko-nikl-09196-s001, ch: 상여금, pr: 상여금, ds: a bonus awarded for achievement or contribution}
+  - {id: ko-nikl-47450-s001, ch: 연봉, pr: 연봉, ds: total regular pay received over a year}
+  - {id: ko-nikl-29676-s001, ch: 공과금, pr: 공과금, ds: 'public charges, including utility bills'}
   - {id: ko-nikl-48004-s001, ch: 예산, pr: 예ː산, ds: a budget; estimated costs}
   review_grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
@@ -113,15 +116,17 @@ units:
   - {id: ko-nikl-00800-s001, ch: 소송, pr: 소송, ds: a lawsuit; litigation}
   - {id: ko-nikl-22415-s002, ch: 판결, pr: 판결, ds: a court judgment}
   - {id: ko-nikl-22152-s002, ch: 특허, pr: 트커, ds: a patent; exclusive rights to an invention}
+  - {id: ko-nikl-49719-s004, ch: 원본, pr: 원본, ds: the first legal document attested by its author}
+  - {id: ko-nikl-24903-s002, ch: 허가, pr: 허가, ds: legal permission for an otherwise prohibited act in a set case}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-04958-s001, ch: 야당, pr: 야ː당, ds: an opposition party; a party not in power}
-  - {id: ko-nikl-10370-s001, ch: 의원, pr: 의원, ds: a member of the national or a local assembly}
-  - {id: ko-nikl-14433-s001, ch: 정당, pr: 정당, ds: a political party seeking power to realize shared ideas}
-  - {id: ko-nikl-47038-s001, ch: 여당, pr: 여ː당, ds: the ruling party holding the presidency or most seats}
-  - {id: ko-nikl-52260-s001, ch: 후보, pr: 후보, ds: a candidate standing for election}
   - {id: ko-nikl-17558-s012, ch: 던지다, pr: 던지다, ds: to cast a vote}
   - {id: ko-nikl-14547-s003, ch: 정상, pr: 정상, ds: a country's highest-ranking leader}
+  - {id: ko-nikl-16416-s002, ch: 단속, pr: 단속, ds: 'enforcement of laws, rules, or orders'}
+  - {id: ko-nikl-29766-s001, ch: 공무원, pr: 공무원, ds: a central or local government employee}
+  - {id: ko-nikl-31893-s001, ch: 규정, pr: 규정, ds: establishing a rule; the rule established}
+  - {id: ko-nikl-07193-s001, ch: 불법, pr: 불법 / 불뻡, ds: illegality; being contrary to law}
+  - {id: ko-nikl-52261-s001, ch: 후보자, pr: 후보자, ds: a qualified candidate standing in an election}
   - {id: ko-nikl-18509-s003, ch: 동의, pr: 동의 / 동이, ds: consent; approval of another person's action}
   review_grammar: []
 - id: extension-professional-media-01
@@ -131,11 +136,11 @@ units:
   - {id: ko-nikl-45801-s001, ch: 출판, pr: 출판, ds: publication; producing and releasing a book}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
   - {id: ko-nikl-43726-s001, ch: 쫓다, pr: 쫃따, ds: to chase someone or something in order to catch them}
   - {id: ko-nikl-52650-s003, ch: 흘리다, pr: 흘리다, ds: to let a secret or information become known indirectly}
   - {id: ko-nikl-38542-s002, ch: 묻다, pr: 묻따, ds: to conceal an affair or cover it up}
   - {id: ko-nikl-09344-s005, ch: 새다, pr: 새다, ds: for a secret or rumor to become known outside}
+  - {id: ko-nikl-47986-s001, ch: 예보, pr: 예ː보, ds: a forecast or advance announcement of a future occurrence}
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   - {id: ko-nikl-11303-s001, ch: 인터뷰, pr: 인터뷰, ds: an interview to gather information}
   - {id: ko-nikl-43229-s001, ch: 진행자, pr: 진ː행자, ds: a presenter who hosts an event or broadcast}
@@ -151,14 +156,14 @@ units:
   - {id: ko-topik5-g011, ch: V-고자 하다, ds: state a formal intention or purpose}
   - {id: ko-topik5-g014, ch: V-는 데 있어(서), ds: frame an area of relevance in formal prose}
   review_vocabulary:
-  - {id: ko-nikl-30197-s001, ch: 과장, pr: 과장, ds: a section chief; a section manager}
-  - {id: ko-nikl-44315-s001, ch: 채용, pr: 채ː용, ds: recruitment; hiring staff}
   - {id: ko-nikl-11155-s001, ch: 인사, pr: 인사, ds: personnel appointments; staffing}
   - {id: ko-nikl-47863-s001, ch: 영업, pr: 영업, ds: business operations; commercial activity}
   - {id: ko-nikl-13026-s002, ch: 재고, pr: 재ː고, ds: inventory; unsold stock}
   - {id: ko-nikl-24595-s001, ch: 해고, pr: 해ː고, ds: dismissal; firing an employee}
   - {id: ko-nikl-09279-s001, ch: 상표, pr: 상표, ds: a trademark; a brand mark}
   - {id: ko-nikl-38348-s006, ch: 묶다, pr: 묵따, ds: to combine several things under one system}
+  - {id: ko-nikl-28466-s002, ch: 경유, pr: 경유, ds: routing a matter through a department in an office procedure}
+  - {id: ko-nikl-03123-s002, ch: 신고, pr: 신고, ds: formally reporting an appointment or promotion to a superior}
   review_grammar:
   - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
   - {id: ko-topik5-g022, ch: V-(으)ㄴ 김에, ds: add an action while taking an existing opportunity}
@@ -172,14 +177,14 @@ units:
   - {id: ko-topik6-g030, ch: N(으)로 말미암아, ds: attribute a consequence with a formal causal chunk}
   - {id: ko-topik6-g032, ch: N에 입각하여, ds: ground a formal judgment in evidence or principles}
   review_vocabulary:
-  - {id: ko-nikl-17558-s012, ch: 던지다, pr: 던지다, ds: to cast a vote}
-  - {id: ko-nikl-14547-s003, ch: 정상, pr: 정상, ds: a country's highest-ranking leader}
   - {id: ko-nikl-18509-s003, ch: 동의, pr: 동의 / 동이, ds: consent; approval of another person's action}
   - {id: ko-nikl-07948-s003, ch: 빼앗기다, pr: 빼앋끼다, ds: to lose a right or qualification by law}
   - {id: ko-nikl-42404-s002, ch: 증거, pr: 증거, ds: evidence establishing facts in a trial}
   - {id: ko-nikl-00800-s001, ch: 소송, pr: 소송, ds: a lawsuit; litigation}
   - {id: ko-nikl-22415-s002, ch: 판결, pr: 판결, ds: a court judgment}
   - {id: ko-nikl-22152-s002, ch: 특허, pr: 트커, ds: a patent; exclusive rights to an invention}
+  - {id: ko-nikl-49719-s004, ch: 원본, pr: 원본, ds: the first legal document attested by its author}
+  - {id: ko-nikl-24903-s002, ch: 허가, pr: 허가, ds: legal permission for an otherwise prohibited act in a set case}
   review_grammar: []
 - id: extension-professional-register-practice-01
   title: Register and nuance - sentence practice 1

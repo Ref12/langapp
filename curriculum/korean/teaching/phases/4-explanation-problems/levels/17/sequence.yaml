@@ -46,18 +46,39 @@ units:
   - {id: ko-nikl-15410-s001, ch: 누출, pr: 누ː출, ds: leakage of a liquid or gas}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-40912-s007, ch: 버리다, pr: 버리다, ds: to ruin something by damaging or dirtying it}
-  - {id: ko-nikl-46105-s003, ch: 치우다, pr: 치우다, ds: to clear out and empty a room}
-  - {id: ko-nikl-19872-s002, ch: 뚫다, pr: 뚤타, ds: to unblock a passage or opening}
   - {id: ko-nikl-36023-s001, ch: 막히다, pr: 마키다, ds: for a passage or opening to become blocked}
   - {id: ko-nikl-09344-s001, ch: 새다, pr: 새다, ds: for gas or liquid to leak through a crack or hole}
   - {id: ko-nikl-09344-s003, ch: 새다, pr: 새다, ds: for sound to leak through or be heard outside}
   - {id: ko-nikl-29247-s001, ch: 고이다, pr: 고이다, ds: 'for liquid, gas, or odor to collect in a confined space'}
+  - {id: ko-nikl-14651-s001, ch: 정전, pr: 정전, ds: a power outage}
+  - {id: ko-nikl-40378-s001, ch: 방수, pr: 방수, ds: waterproofing; preventing water from leaking or seeping}
+  - {id: ko-nikl-40425-s001, ch: 방음, pr: 방음, ds: soundproofing against sound entering or leaving}
   - {id: ko-nikl-41923-s001, ch: 주택, pr: 주ː택, ds: housing; a residential building}
   review_grammar:
   - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
   - {id: ko-topik3-g027, ch: V-아/어 있다, ds: describe a resulting state rather than activity}
   - {id: ko-topik3-g009, ch: V-아/어 놓다, ds: do an action and leave its result in place}
+- id: level-17-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain an ordinary symptom or care need without clinical claims.
+  vocabulary:
+  - {id: ko-nikl-13938-s001, ch: 전염, pr: 저념, ds: transmission of a disease to another person}
+  - {id: ko-nikl-13940-s001, ch: 전염병, pr: 저념뼝, ds: a disease easily transmitted to other people}
+  - {id: ko-nikl-50455-s001, ch: 유해, pr: 유ː해, ds: harmfulness; the presence of a hazard}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-00671-s001, ch: 소독, pr: 소독, ds: disinfection to destroy germs and prevent illness}
+  - {id: ko-nikl-00673-s001, ch: 소독약, pr: 소동냑, ds: a disinfectant that kills or weakens harmful germs}
+  - {id: ko-nikl-05091-s001, ch: 약효, pr: 야쿄, ds: the effect or efficacy of a medicine}
+  - {id: ko-nikl-49146-s001, ch: 용법, pr: 용ː뻡, ds: a method or manner of using something}
+  - {id: ko-nikl-03082-s001, ch: 식중독, pr: 식쭝독, ds: illness caused by toxic substances in food}
+  - {id: ko-nikl-25351-s001, ch: 혈압, pr: 혀랍, ds: blood pressure generated as the heart pumps}
+  - {id: ko-nikl-42147-s001, ch: 중독, pr: 중독, ds: poisoning by toxic substances in food or medicine}
+  - {id: ko-nikl-12933-s002, ch: 장애, pr: 장애, ds: a physical or mental impairment}
+  review_grammar:
+  - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
+  - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
+  - {id: ko-topik3-g006, ch: V-아/어야겠다, ds: state a newly formed resolve or need}
 - id: level-17-services-01
   title: Services and transactions - 1
   outcome: Clarify requirements and resolve a service problem politely.
@@ -65,12 +86,12 @@ units:
   - {id: ko-nikl-29633-s002, ch: 공개, pr: 공개, ds: opening a place for public access}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-17359-s001, ch: 대피, pr: 대ː피, ds: evacuation; moving temporarily to safety}
-  - {id: ko-nikl-42858-s001, ch: 지키다, pr: 지키다, ds: 'to protect possessions, interests, or safety'}
-  - {id: ko-nikl-32869-s001, ch: 기사, pr: 기사, ds: a professional driver or machine operator}
-  - {id: ko-nikl-36569-s003, ch: 맡기다, pr: 맏끼다, ds: to leave something somewhere or with someone for safekeeping}
-  - {id: ko-nikl-52650-s002, ch: 흘리다, pr: 흘리다, ds: to drop an object somewhere through carelessness}
-  - {id: ko-nikl-14545-s001, ch: 정상, pr: 정ː상, ds: a normal condition without irregularities or problems}
+  - {id: ko-nikl-28398-s001, ch: 경비, pr: 경ː비, ds: 'guarding against theft, intrusion, or similar dangers'}
+  - {id: ko-nikl-02023-s001, ch: 수칙, pr: 수칙, ds: rules set to be observed}
+  - {id: ko-nikl-28391-s001, ch: 경보, pr: 경ː보, ds: 'an advance danger alert, announcement, or warning signal'}
+  - {id: ko-nikl-51687-s001, ch: 화재, pr: 화ː재, ds: a destructive fire affecting buildings or belongings}
+  - {id: ko-nikl-00979-s001, ch: 소화기, pr: 소화기, ds: a chemical fire extinguisher}
+  - {id: ko-nikl-00754-s001, ch: 소방차, pr: 소방차, ds: a fire engine equipped to fight fires}
   - {id: ko-nikl-04420-s002, ch: 안내, pr: 안ː내, ds: guiding or escorting someone to a place}
   - {id: ko-nikl-31204-s001, ch: 구호, pr: 구ː호, ds: relief and protection for disaster victims}
   review_grammar:
@@ -168,14 +189,14 @@ units:
   - {id: ko-nikl-04038-s001, ch: 아끼다, pr: 아끼다, ds: to use something valued carefully rather than wastefully}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-41101-s002, ch: 벌어지다, pr: 버ː러지다, ds: for a fight or other bad incident to occur}
-  - {id: ko-nikl-17258-s002, ch: 대중, pr: 대ː중, ds: the general public; most members of society}
-  - {id: ko-nikl-29659-s001, ch: 공공, pr: 공공, ds: the public sphere; what concerns everyone in a society}
-  - {id: ko-nikl-13043-s001, ch: 재난, pr: 재난, ds: an unexpected disaster or serious misfortune}
-  - {id: ko-nikl-23649-s001, ch: 피해, pr: 피ː해, ds: 'harm or loss to life, health, property, or reputation'}
-  - {id: ko-nikl-52801-s002, ch: 희생, pr: 히생, ds: loss of life in an accident or natural disaster}
-  - {id: ko-nikl-35783-s002, ch: 마당, pr: 마당, ds: a place where an activity or event takes place}
-  - {id: ko-nikl-45987-s003, ch: 층, pr: 층, ds: 'a social group with similar status, resources, or interests'}
+  - {id: ko-nikl-29666-s001, ch: 공공시설, pr: 공공시설, ds: public facilities provided for convenience or welfare}
+  - {id: ko-nikl-37380-s001, ch: 모금, pr: 모금, ds: collecting donations or contributions}
+  - {id: ko-nikl-52282-s001, ch: 후원, pr: 후ː원, ds: support or backing given to someone}
+  - {id: ko-nikl-43465-s001, ch: 집회, pr: 지푀 / 지풰, ds: a temporary gathering of people for a shared purpose}
+  - {id: ko-nikl-02901-s002, ch: 시위, pr: 시ː위, ds: a public rally or march expressing demands}
+  - {id: ko-nikl-25561-s001, ch: 가구, pr: 가구, ds: a group of people sharing one home; a household}
+  - {id: ko-nikl-40346-s001, ch: 방범, pr: 방범, ds: crime prevention}
+  - {id: ko-nikl-35602-s001, ch: 녹지, pr: 녹찌, ds: green space with natural or planted grass and trees}
   review_grammar: []
 - id: level-17-media-01
   title: Media and sources - 1
@@ -184,7 +205,6 @@ units:
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-25318-s002, ch: 현지, pr: 현ː지, ds: the scene where an event occurred or is taking place}
   - {id: ko-nikl-01072-s001, ch: 속보, pr: 속뽀, ds: breaking news; an urgent news report}
   - {id: ko-nikl-09551-s001, ch: 생방송, pr: 생방송, ds: a live broadcast produced as it is transmitted}
   - {id: ko-nikl-42102-s003, ch: 중계, pr: 중계 / 중게, ds: live coverage relayed from an event or other outside location}
@@ -192,6 +212,7 @@ units:
   - {id: ko-nikl-52650-s003, ch: 흘리다, pr: 흘리다, ds: to let a secret or information become known indirectly}
   - {id: ko-nikl-38542-s002, ch: 묻다, pr: 묻따, ds: to conceal an affair or cover it up}
   - {id: ko-nikl-09344-s005, ch: 새다, pr: 새다, ds: for a secret or rumor to become known outside}
+  - {id: ko-nikl-47986-s001, ch: 예보, pr: 예ː보, ds: a forecast or advance announcement of a future occurrence}
   review_grammar:
   - {id: ko-topik4-g034, ch: N에 비해, ds: compare against a contextual benchmark}
   - {id: ko-topik4-g035, ch: N에 따르면, ds: attribute information to a named source}
@@ -228,6 +249,8 @@ units:
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-20679-s001, ch: 컴퓨터, pr: 컴퓨터, ds: a computer}
+  - {id: ko-nikl-05980-s003, ch: 복사, pr: 복싸, ds: copying a computer file to another location}
+  - {id: ko-nikl-13118-s003, ch: 재생, pr: 재ː생, ds: playback of recorded audio or video}
   - {id: ko-nikl-13695-s001, ch: 전기, pr: 전ː기, ds: electricity}
   review_grammar: []
 - id: level-17-technology-02
@@ -242,6 +265,8 @@ units:
   - {id: ko-nikl-35367-s001, ch: 네트워크, pr: 네트워크, ds: a computer network connecting devices through communications}
   - {id: ko-nikl-43859-s001, ch: 차단, pr: 차ː단, ds: blocking or cutting off a flow of liquid or gas}
   - {id: ko-nikl-16125-s003, ch: 다루다, pr: 다루다, ds: to use a musical instrument or machine}
+  - {id: ko-nikl-49137-s003, ch: 용량, pr: 용냥, ds: computer data-storage capacity}
+  - {id: ko-nikl-40082-s001, ch: 발전소, pr: 발쩐소, ds: a power station generating electricity}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-45877-s001, ch: 충전, pr: 충전, ds: charging a battery}
@@ -284,14 +309,14 @@ units:
   - {id: ko-nikl-23329-s012, ch: 풀리다, pr: 풀리다, ds: for ice to thaw or cold weather to become warmer}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-33272-s003, ch: 김, pr: 김ː, ds: warm breath from the mouth}
-  - {id: ko-nikl-03885-s004, ch: 쏟아지다, pr: 쏘다지다, ds: 'for rain or snow to pour down, or sunlight to stream strongly'}
-  - {id: ko-nikl-52645-s001, ch: 흘러내리다, pr: 흘러내리다, ds: for water or a similar substance to flow downward}
-  - {id: ko-nikl-26989-s001, ch: 개다, pr: 개ː다, ds: 'for cloudy weather to clear as rain, snow, or fog passes'}
-  - {id: ko-nikl-28616-s001, ch: 계곡, pr: 계곡 / 게곡, ds: a valley with a stream}
   - {id: ko-nikl-23163-s001, ch: 폭포, pr: 폭포, ds: a waterfall}
   - {id: ko-nikl-37016-s002, ch: 멈추다, pr: 멈추다, ds: for rain or snow to stop falling}
+  - {id: ko-nikl-01680-s001, ch: 수면, pr: 수면, ds: the surface of water}
   - {id: ko-nikl-05501-s001, ch: 별, pr: 별ː, ds: a star; a bright heavenly body other than the moon}
+  - {id: ko-nikl-23146-s001, ch: 폭우, pr: 포구, ds: a sudden heavy downpour}
+  - {id: ko-nikl-23134-s001, ch: 폭설, pr: 폭썰, ds: sudden heavy snowfall}
+  - {id: ko-nikl-23145-s001, ch: 폭염, pr: 포겸, ds: extreme heat}
+  - {id: ko-nikl-24310-s001, ch: 한파, pr: 한파, ds: a sudden drop in temperature during winter}
   review_grammar: []
 - id: level-17-nature-02
   title: Nature and environment - 2
@@ -305,6 +330,20 @@ units:
   - {id: ko-nikl-03946-s004, ch: 쓸다, pr: 쓸다, ds: for a disease or disaster to sweep through an area}
   - {id: ko-nikl-35810-s004, ch: 마르다, pr: 마르다, ds: for flowing or standing water to dry up}
   - {id: ko-nikl-11660-s001, ch: 일회용품, pr: 일회용품 / 일훼용품, ds: a disposable item designed for one use}
+  - {id: ko-nikl-51966-s002, ch: 황사, pr: 황사, ds: windblown dust carried from the Chinese mainland}
+  - {id: ko-nikl-26782-s001, ch: 강수량, pr: 강ː수량, ds: the amount of precipitation in a place over a period}
+  - {id: ko-nikl-24717-s001, ch: 해일, pr: 해ː일, ds: a sudden surge of seawater flooding onto land}
+  - {id: ko-nikl-08713-s001, ch: 산불, pr: 산뿔, ds: a fire on a mountain}
+  - {id: ko-nikl-22938-s001, ch: 폐기물, pr: 폐ː기물 / 페ː기물, ds: waste material discarded as unusable}
+  - {id: ko-nikl-36632-s002, ch: 매립, pr: 매립, ds: disposal of waste by burial}
+  - {id: ko-nikl-22956-s001, ch: 폐수, pr: 폐ː수 / 페ː수, ds: dirty water discharged after use in a factory or mine}
+  - {id: ko-nikl-23954-s001, ch: 하천, pr: 하천, ds: rivers and streams}
+  - {id: ko-nikl-04979-s001, ch: 야생, pr: 야ː생, ds: growing naturally in the wild; a wild plant or animal}
+  - {id: ko-nikl-08699-s001, ch: 산림, pr: 살림, ds: mountains and forests; forest on a mountain}
+  - {id: ko-nikl-23406-s001, ch: 풍력, pr: 풍녁, ds: the strength or intensity of wind}
+  - {id: ko-nikl-40563-s001, ch: 배기가스, pr: 배기가스, ds: exhaust gas emitted after fuel burns in a machine}
+  - {id: ko-nikl-48399-s001, ch: 온난화, pr: 온난화, ds: global warming; a rise in the Earth's temperature}
+  - {id: ko-nikl-13118-s002, ch: 재생, pr: 재ː생, ds: making discarded materials into something usable again}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-25750-s001, ch: 가뭄, pr: 가뭄, ds: drought}
@@ -334,14 +373,14 @@ units:
   - {id: ko-nikl-37903-s001, ch: 무게, pr: 무게, ds: weight; how heavy an object is}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-11661-s001, ch: 일흔, pr: 일흔, ds: seventy (native Korean numeral)}
-  - {id: ko-nikl-11662-s001, ch: 일흔, pr: 일흔, ds: seventy; before a noun or counter}
-  - {id: ko-nikl-47057-s001, ch: 여든, pr: 여든, ds: eighty (native Korean numeral)}
   - {id: ko-nikl-47058-s001, ch: 여든, pr: 여든, ds: eighty; before a noun or counter}
   - {id: ko-nikl-04329-s001, ch: 아흔, pr: 아흔, ds: ninety (native Korean numeral)}
   - {id: ko-nikl-04330-s001, ch: 아흔, pr: 아흔, ds: ninety; before a noun or counter}
   - {id: ko-nikl-42032-s005, ch: 줄, pr: 줄, ds: a counter for lines of written text}
+  - {id: ko-nikl-21831-s002, ch: 통화, pr: 통화, ds: a counter for telephone calls}
   - {id: ko-nikl-43874-s004, ch: 차례, pr: 차례, ds: a time or occasion as a unit for counting occurrences}
+  - {id: ko-nikl-00398-s002, ch: 세대, pr: 세ː대, ds: a counter for households living together in a home}
+  - {id: ko-nikl-25561-s002, ch: 가구, pr: 가구, ds: a counter for households}
   review_grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-17-actions-practice-01
@@ -391,14 +430,14 @@ units:
   - {id: ko-topik4-g033, ch: V-느냐에 따라, ds: relate variation to an embedded question}
   - {id: ko-topik5-g003, ch: V/A-기 나름이다, ds: make an outcome depend on how something is done}
   review_vocabulary:
-  - {id: ko-nikl-01600-s001, ch: 수동, pr: 수동, ds: manual operation by hand rather than machine power}
-  - {id: ko-nikl-12096-s001, ch: 자동, pr: 자동, ds: automatic operation of a machine or device}
   - {id: ko-nikl-13881-s001, ch: 전송, pr: 전ː송, ds: electronic transmission of text or pictures}
   - {id: ko-nikl-16230-s001, ch: 다운로드, pr: 다운로드, ds: downloading internet data or files to one's computer}
   - {id: ko-nikl-20220-s001, ch: 로그인, pr: 로그인, ds: logging in with a registered username and password}
   - {id: ko-nikl-35367-s001, ch: 네트워크, pr: 네트워크, ds: a computer network connecting devices through communications}
   - {id: ko-nikl-43859-s001, ch: 차단, pr: 차ː단, ds: blocking or cutting off a flow of liquid or gas}
   - {id: ko-nikl-16125-s003, ch: 다루다, pr: 다루다, ds: to use a musical instrument or machine}
+  - {id: ko-nikl-49137-s003, ch: 용량, pr: 용냥, ds: computer data-storage capacity}
+  - {id: ko-nikl-40082-s001, ch: 발전소, pr: 발쩐소, ds: a power station generating electricity}
   review_grammar: []
 - id: level-17-nature-practice-01
   title: Nature and environment - sentence practice 1
@@ -407,12 +446,12 @@ units:
   grammar:
   - {id: ko-topik4-g008, ch: V/A-(으)ㄹ수록, ds: describe covarying degree without proving cause}
   review_vocabulary:
-  - {id: ko-nikl-52357-s001, ch: 훈훈하다, pr: 훈훈하다, ds: to be pleasantly warm in weather or temperature}
-  - {id: ko-nikl-09719-s001, ch: 서늘하다, pr: 서늘하다, ds: to be cool or slightly cold}
-  - {id: ko-nikl-10052-s001, ch: 선선하다, pr: 선선하다, ds: to be pleasantly cool}
-  - {id: ko-nikl-52556-s005, ch: 흐리다, pr: 흐리다, ds: for the weather to be cloudy or foggy}
-  - {id: ko-nikl-43726-s002, ch: 쫓다, pr: 쫃따, ds: to drive someone or something away}
-  - {id: ko-nikl-03946-s004, ch: 쓸다, pr: 쓸다, ds: for a disease or disaster to sweep through an area}
-  - {id: ko-nikl-35810-s004, ch: 마르다, pr: 마르다, ds: for flowing or standing water to dry up}
-  - {id: ko-nikl-11660-s001, ch: 일회용품, pr: 일회용품 / 일훼용품, ds: a disposable item designed for one use}
+  - {id: ko-nikl-22956-s001, ch: 폐수, pr: 폐ː수 / 페ː수, ds: dirty water discharged after use in a factory or mine}
+  - {id: ko-nikl-23954-s001, ch: 하천, pr: 하천, ds: rivers and streams}
+  - {id: ko-nikl-04979-s001, ch: 야생, pr: 야ː생, ds: growing naturally in the wild; a wild plant or animal}
+  - {id: ko-nikl-08699-s001, ch: 산림, pr: 살림, ds: mountains and forests; forest on a mountain}
+  - {id: ko-nikl-23406-s001, ch: 풍력, pr: 풍녁, ds: the strength or intensity of wind}
+  - {id: ko-nikl-40563-s001, ch: 배기가스, pr: 배기가스, ds: exhaust gas emitted after fuel burns in a machine}
+  - {id: ko-nikl-48399-s001, ch: 온난화, pr: 온난화, ds: global warming; a rise in the Earth's temperature}
+  - {id: ko-nikl-13118-s002, ch: 재생, pr: 재ː생, ds: making discarded materials into something usable again}
   review_grammar: []

@@ -35,13 +35,13 @@ units:
   - {id: ko-nikl-24459-s002, ch: 합성, pr: 합썽, ds: compounding; forming a word from lexical morphemes}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-29368-s003, ch: 고치다, pr: 고치다, ds: to correct a mistake}
-  - {id: ko-nikl-19269-s002, ch: 들여다보다, pr: 드려다보다, ds: to examine something closely}
-  - {id: ko-nikl-35308-s004, ch: 넘기다, pr: 넘기다, ds: to turn a sheet or page}
-  - {id: ko-nikl-22715-s001, ch: 펴다, pr: 펴다, ds: to unfold or unroll something}
   - {id: ko-nikl-03884-s002, ch: 쏟다, pr: 쏟따, ds: to pour one's care and concentration into a task}
   - {id: ko-nikl-03841-s005, ch: 쌓다, pr: 싸타, ds: 'to build up skills, experience, or knowledge over time'}
   - {id: ko-nikl-03843-s004, ch: 쌓이다, pr: 싸이다, ds: 'for skills, experience, or knowledge to accumulate over time'}
+  - {id: ko-nikl-02574-s001, ch: 습득, pr: 습뜩, ds: acquisition of knowledge or skills through learning}
+  - {id: ko-nikl-47488-s001, ch: 연수, pr: 연ː수, ds: training or study to acquire knowledge or skills}
+  - {id: ko-nikl-26843-s001, ch: 강좌, pr: 강ː좌, ds: a fixed-duration course outside regular schooling}
+  - {id: ko-nikl-12982-s001, ch: 장학금, pr: 장ː학끔, ds: a scholarship for high-achieving students in financial need}
   - {id: ko-nikl-11048-s001, ch: 익히다, pr: 이키다, ds: to master something through repeated practice}
   review_grammar:
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
@@ -97,14 +97,34 @@ units:
   - {id: ko-nikl-13715-s003, ch: 전달, pr: 전달, ds: transmission of a signal or stimulus}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-01600-s001, ch: 수동, pr: 수동, ds: manual operation by hand rather than machine power}
-  - {id: ko-nikl-12096-s001, ch: 자동, pr: 자동, ds: automatic operation of a machine or device}
   - {id: ko-nikl-13881-s001, ch: 전송, pr: 전ː송, ds: electronic transmission of text or pictures}
   - {id: ko-nikl-16230-s001, ch: 다운로드, pr: 다운로드, ds: downloading internet data or files to one's computer}
   - {id: ko-nikl-20220-s001, ch: 로그인, pr: 로그인, ds: logging in with a registered username and password}
   - {id: ko-nikl-35367-s001, ch: 네트워크, pr: 네트워크, ds: a computer network connecting devices through communications}
   - {id: ko-nikl-43859-s001, ch: 차단, pr: 차ː단, ds: blocking or cutting off a flow of liquid or gas}
   - {id: ko-nikl-16125-s003, ch: 다루다, pr: 다루다, ds: to use a musical instrument or machine}
+  - {id: ko-nikl-49137-s003, ch: 용량, pr: 용냥, ds: computer data-storage capacity}
+  - {id: ko-nikl-40082-s001, ch: 발전소, pr: 발쩐소, ds: a power station generating electricity}
+  review_grammar:
+  - {id: ko-topik4-g007, ch: V-다 보면, ds: predict an outcome of continued action}
+  - {id: ko-topik4-g033, ch: V-느냐에 따라, ds: relate variation to an embedded question}
+  - {id: ko-topik5-g003, ch: V/A-기 나름이다, ds: make an outcome depend on how something is done}
+- id: extension-technical-technology-02
+  title: Technology and systems - 2
+  outcome: Explain a system's use and limits for a general audience.
+  vocabulary:
+  - {id: ko-nikl-23494-s001, ch: 프린터, pr: 프린터, ds: a machine used for printing}
+  - {id: ko-nikl-12933-s003, ch: 장애, pr: 장애, ds: physical interference that disrupts signal transmission}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-25914-s001, ch: 가열, pr: 가열, ds: heating a material}
+  - {id: ko-nikl-39459-s002, ch: 바이러스, pr: 바이러스, ds: a computer virus}
+  - {id: ko-nikl-26558-s003, ch: 감염, pr: 가ː몀, ds: infection by a computer virus}
+  - {id: ko-nikl-32691-s001, ch: 기관, pr: 기관, ds: an engine converting energy into mechanical power}
+  - {id: ko-nikl-11667-s008, ch: 읽다, pr: 익따, ds: to read computer data}
+  - {id: ko-nikl-22162-s001, ch: 틀, pr: 틀, ds: a mold used to produce identical objects}
+  - {id: ko-nikl-18378-s001, ch: 동력, pr: 동ː녁, ds: mechanical power converted from another energy source}
+  - {id: ko-nikl-13715-s003, ch: 전달, pr: 전달, ds: transmission of a signal or stimulus}
   review_grammar:
   - {id: ko-topik4-g007, ch: V-다 보면, ds: predict an outcome of continued action}
   - {id: ko-topik4-g033, ch: V-느냐에 따라, ds: relate variation to an embedded question}

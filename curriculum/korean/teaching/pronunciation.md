@@ -60,6 +60,14 @@ each is an explicit authored decision, not a generic `reading or spelling`
 fallback. An unresolved **selected** word is an error; unselected dictionary
 gaps do not block an unrelated lesson.
 
+The proposed greenhouse-gas item 온실가스 (`ko-nikl-48419-s001`) is excluded
+from active teaching pending qualified review of plain ㄱ versus compound
+tensing at 실-가. Neither the pinned learner-dictionary entry nor the
+consulted Standard Korean Dictionary entry provides pronunciation text.
+Its exact source meaning, proposed placement, and both entry locators remain
+in `../authoring/teaching/community-notes.yaml`. This is a documented gap,
+not permission to choose a guess as the canonical reading.
+
 The authored genre reading 장르 [장느] applies the nasal-liquid environment
 of Standard Pronunciation Article 19, whose text was checked in the
 [Tokyo University of Foreign Studies mirror](https://www.tufs.ac.jp/ts/personal/choes/korean/nanboku/bareumbeop.html).

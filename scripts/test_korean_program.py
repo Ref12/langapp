@@ -752,7 +752,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(len(actual), 1)
 
     def test_expansion_corrections_are_explicit_unreviewed_overrides_not_source_replacements(self):
-        for filename in ("expansion-notes.yaml", "breadth-notes.yaml"):
+        for filename in ("expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml"):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
                 with self.subTest(sense=identifier):
@@ -777,6 +777,9 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             ("ko-nikl-03368-s001", "ko-nikl-03373-s001"),
             ("ko-nikl-26019-s001", "ko-nikl-26023-s001"),
             ("ko-nikl-00055-s001", "ko-nikl-00056-s001"),
+            ("ko-nikl-11587-s001", "ko-nikl-11588-s001"),
+            ("ko-nikl-21830-s001", "ko-nikl-21831-s001"),
+            ("ko-nikl-37379-s001", "ko-nikl-37380-s001"),
         ):
             with self.subTest(pair=(first, second)):
                 self.assertEqual(self.references.vocabulary[first]["ch"], self.references.vocabulary[second]["ch"])
@@ -784,8 +787,26 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(identities["ko-nikl-33523-s001"], identities["ko-nikl-33526-s001"])
         self.assertEqual(identities["ko-nikl-11672-s001"], "ko-lex-11671")
         self.assertEqual(identities["ko-nikl-11967-s001"], "ko-lex-11966")
-        for identifier in ("ko-nikl-03373-s001", "ko-nikl-26023-s001"):
+        for identifier in ("ko-nikl-03373-s001", "ko-nikl-26023-s001", "ko-nikl-37379-s001"):
             self.assertEqual(self.references.provenance[identifier]["lexical_category"], "bound-form")
+
+    def test_community_meaning_distinctions_preserve_source_roles_and_shared_counts(self):
+        words, source, identities = (
+            self.references.vocabulary, self.references.provenance, self.references.lexical_identity,
+        )
+        self.assertIn("line marking", words["ko-nikl-43894-s001"]["ds"])
+        self.assertIn("traffic lane", words["ko-nikl-43894-s002"]["ds"])
+        self.assertIn("being fixed", words["ko-nikl-11587-s001"]["ds"])
+        self.assertIn("schedule", words["ko-nikl-11588-s001"]["ds"])
+        self.assertEqual(identities["ko-nikl-43894-s001"], identities["ko-nikl-43894-s002"])
+        self.assertEqual(identities["ko-nikl-21831-s001"], identities["ko-nikl-21831-s002"])
+        self.assertEqual(source["ko-nikl-21831-s002"]["lexical_category"], "free-lemma")
+        self.assertIn("boarding and alighting", words["ko-nikl-02601-s001"]["ds"])
+        self.assertIn("sitting", words["ko-nikl-10193-s001"]["ds"])
+        self.assertIn("applying", source["ko-nikl-10193-s001"]["source_english"])
+        self.assertIn("entered", words["ko-nikl-10025-s002"]["ds"])
+        self.assertIn("graduated", source["ko-nikl-10025-s002"]["source_english"])
+        self.assertIn("입학", source["ko-nikl-10025-s002"]["source_korean"])
 
     def test_vapor_condensation_and_dissolved_gas_are_not_replaced_by_source_english_errors(self):
         words, source = self.references.vocabulary, self.references.provenance
@@ -796,6 +817,29 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         identities = {self.references.lexical_identity[f"ko-nikl-33272-s{number:03d}"]
                       for number in range(1, 5)}
         self.assertEqual(len(identities), 1)
+
+    def test_pending_community_reading_retains_source_without_a_canonical_guess(self):
+        notes = load_yaml(self.root / "authoring" / "teaching" / "community-notes.yaml")
+        pending = notes["pending_reading_exclusions"]
+        self.assertEqual([row["id"] for row in pending], ["ko-nikl-48419-s001"])
+        _, original = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        for row in pending:
+            parent, sense = original[row["id"]]
+            self.assertNotIn(row["id"], self.references.vocabulary)
+            self.assertNotIn(row["provisional_identity"], self.references.lexical_identity.values())
+            self.assertEqual(row["source_parent"], parent["id"])
+            self.assertEqual(row["lemma"], parent["target"])
+            self.assertEqual(row["source_position"], sense["source_position"])
+            for key in ("source_band", "reference_level", "source_entry"):
+                self.assertEqual(row[key], parent[key])
+            for language in ("korean", "english"):
+                self.assertEqual(row[f"source_{language}"], sense[language])
+            self.assertNotIn("pr", row)
+            self.assertEqual(row["status"], "excluded-pending-qualified-pronunciation-review")
+            self.assertEqual(
+                {entry["official_entry_id"] for entry in row["consulted_reading_sources"]},
+                {"93471", "515681"},
+            )
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
