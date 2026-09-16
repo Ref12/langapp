@@ -1,0 +1,112 @@
+schema_version: 1
+review_status: AI-authored; qualified Korean-teacher and lexicographic review outstanding
+completion_status: all12 source senses and official readings integrated; qualified review outstanding
+scope: >
+  A spelling-level coverage check found that cardinal direction words were
+  not already hidden under another canonical family. Supply the four everyday
+  direction names, their short map-label nouns, and actual direction/facing
+  nouns for maps, travel and lodging descriptions. All12 parents are already
+  retained banded references, so no source recovery or invented compound is needed.
+counts:
+  core_senses: 12
+  source_parents: 12
+  distinct_spellings: 12
+  new_provisional_free_families: 4
+  new_bound_or_function_families: 0
+  support_parent_requests: 0
+counting_policy: >
+  Twelve source spellings are not twelve new free bases. For each direction,
+  the long and short names refer to the same compass direction; the facing
+  source explicitly also includes that direction. Conservatively group each
+  three-record family while retaining its distinct forms and usage. This
+  is not proof of true lexeme boundaries, a general suffix-stripping rule,
+  a merger of different cardinal directions, or automatic per-item mastery.
+placement_rationale: >
+  Level7 supports map directions and comparing lodging or travel locations.
+  Housing-facing forms remain in that same level rather than preceding the
+  direction names or becoming advanced filler from their reference bands.
+  These words do not become mandatory anchors for every location construction
+  or for tourist phrases that do not actually contain them.
+source_boundaries:
+  - East18298-s001 is not district/office18300 or building counter18302.
+  - West09686-s001 is a direction noun, not a predicate ending or an institution-name suffix.
+  - South34596-s001 is neither other people34584 nor male person34594.
+  - North06746-s001 is not drum06745.
+  - East-facing18601 is neither same-hometown18600 nor movement/trend18602.
+  - North/South-Korea contextual positions under06791/34683 stay unselected here.
+  - Eastern-region18298-s002 and the metalinguistic compound use003 are not automatically selected.
+  - >
+    Sunrise/sunset wording in the source is an ordinary directional
+    description, not an exact seasonal bearing or navigation procedure.
+    Room direction does not guarantee sunlight, comfort, accessibility or views.
+source_correction_requests: {}
+reading_policy: >
+  Assess each actual selected parent independently. Do not transfer a
+  direction's reading to a compound, or infer a reading solely from spelling.
+  Source labels, dictionary citation text, actual spoken evidence and learner
+  knowledge remain separate; no audio or pronunciation mastery is inferred.
+reading_assessment:
+  status: all12 selected parents have official citation text; eight explicit crosswalks integrated
+  source: nikl-official-20260819
+  existing_supported_parents: 4
+  actual_crosswalk_gaps: 8
+  missing_official_citation_text: 0
+  crosswalk_proposals:
+    ko-nikl-06746:
+      official_entry_id: '59996'
+      pronunciation: 북
+      reason: The single north-direction definition adds Latin N after 엔. Drum59995 is a different complete definition despite its identical reading.
+    ko-nikl-06791:
+      official_entry_id: '59309'
+      pronunciation: 북쪽
+      reason: The first direction definition spells out 동서남북 and Latin N; the second North-Korea contextual position is unchanged and remains unselected.
+    ko-nikl-09686:
+      official_entry_id: '62528'
+      pronunciation: 서
+      reason: The west-direction definition removes 의 and adds a comma. Institution-office shorthand62529 instead has a different definition and long 서ː.
+    ko-nikl-09858:
+      official_entry_id: '65559'
+      pronunciation: 서쪽
+      reason: The same west-direction definition adds the explicit four-direction names 동서남북.
+    ko-nikl-18298:
+      official_entry_id: '65504'
+      pronunciation: 동
+      reason: Only a comma changes in the first of three ordered definitions. The other eastern-region and compound-use definitions remain unchanged. District54012 and copper48856 are different source lists.
+    ko-nikl-18568:
+      official_entry_id: '63642'
+      pronunciation: 동쪽
+      reason: The same east-direction definition adds the explicit four-direction names 동서남북.
+    ko-nikl-34596:
+      official_entry_id: '36849'
+      pronunciation: 남
+      reason: The south-direction definition removes 의 and adds a comma and Latin S. Other people28394 and male person36848 are different source meanings.
+    ko-nikl-34683:
+      official_entry_id: '63619'
+      pronunciation: 남쪽
+      reason: The first direction definition adds 동서남북 and Latin S; the second South-Korea contextual definition is unchanged and remains unselected.
+  existing_facing_readings:
+    ko-nikl-18601: {official_entry_id: '90485', pronunciation: 동향}
+    ko-nikl-09876: {official_entry_id: '78128', pronunciation: 서향}
+    ko-nikl-34709: {official_entry_id: '37993', pronunciation: 남향}
+    ko-nikl-06801: {official_entry_id: '59426', pronunciation: 부컁}
+persisted_integration_snapshot:
+  status: 128 views generated;87 targeted real-data course/tourist/source tests passed
+  core_senses: 6850
+  core_dictionary_parents: 4739
+  core_distinct_spellings: 4455
+  core_spelling_pos_pairs: 4547
+  core_provisional_free_families: 4416
+  core_modules: 720
+  selected_pool_senses: 6976
+  selected_pool_free_families: 4475
+  retained_support_parents: 512
+  selected_support_parents: 510
+  reading_crosswalks: 377
+  authored_reading_decisions: 190
+  gap_to_lower_free_lemma_guide: 1384
+  interpretation: >
+    Twelve senses add four free families and eight distinct spellings to
+    core; homographic spellings already existed. No new module was needed.
+    Earlier source records and official reading entries remain unchanged.
+    This fills a practical gap, not the outstanding breadth/later-growth
+    requirement or qualified linguistic review.

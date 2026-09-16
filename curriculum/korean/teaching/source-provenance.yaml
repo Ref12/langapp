@@ -134643,6 +134643,253 @@ items:
       - 충전기
     lexical_identity: ko-lex-45878
     lexical_category: free-lemma
+  ko-nikl-18568-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18568
+    source_parent: ko-nikl-18568
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: One of the four points of the compass, the direction in which the sun rises.
+    source_korean: 네 방위 중의 하나로, 해가 뜨는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '63642'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63642
+      pronunciations:
+      - 동쪽
+      match_reason: The same east-direction definition adds the explicit four-direction names 동서남북.
+    lexical_identity: ko-lex-18568
+    lexical_category: free-lemma
+  ko-nikl-18298-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18298
+    source_parent: ko-nikl-18298
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: One of the four directions consisting of north, east, south and west, in which the
+      sun rises.
+    source_korean: 동서남북 네 방위 중의 하나로 해가 뜨는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '65504'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65504
+      pronunciations:
+      - 동
+      match_reason: Only a comma changes in the first of three ordered definitions. The other eastern-region
+        and compound-use definitions remain unchanged. District54012 and copper48856 are different source
+        lists.
+    lexical_identity: ko-lex-18568
+    lexical_category: free-lemma
+  ko-nikl-18601-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18601
+    source_parent: ko-nikl-18601
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The state of facing the east, or the east direction.
+    source_korean: 동쪽으로 향함. 또는 동쪽 방향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90485'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90485
+      pronunciations:
+      - 동향
+    lexical_identity: ko-lex-18568
+    lexical_category: free-lemma
+  ko-nikl-09858-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9858
+    source_parent: ko-nikl-09858
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: One of the four geographic directions in which the sun sets.
+    source_korean: 네 방위 중의 하나로, 해가 지는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '65559'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65559
+      pronunciations:
+      - 서쪽
+      match_reason: The same west-direction definition adds the explicit four-direction names 동서남북.
+    lexical_identity: ko-lex-09858
+    lexical_category: free-lemma
+  ko-nikl-09686-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9686
+    source_parent: ko-nikl-09686
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: One of the four cardinal points, namely, north, south, east and west; the direction
+      where the sun sets.
+    source_korean: 동서남북의 네 방위 중의 하나로 해가 지는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '62528'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62528
+      pronunciations:
+      - 서
+      match_reason: The west-direction definition removes 의 and adds a comma. Institution-office shorthand62529
+        instead has a different definition and long 서ː.
+    lexical_identity: ko-lex-09858
+    lexical_category: free-lemma
+  ko-nikl-09876-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9876
+    source_parent: ko-nikl-09876
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Facing the west, or the western direction.
+    source_korean: 서쪽으로 향함. 또는 서쪽 방향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '78128'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=78128
+      pronunciations:
+      - 서향
+    lexical_identity: ko-lex-09858
+    lexical_category: free-lemma
+  ko-nikl-34683-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34683
+    source_parent: ko-nikl-34683
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'One of the four points of the compass, the direction which S points to. '
+    source_korean: 네 방위 중의 하나로, 나침반의 에스 극이 가리키는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '63619'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63619
+      pronunciations:
+      - 남쪽
+      match_reason: The first direction definition adds 동서남북 and Latin S; the second South-Korea contextual
+        definition is unchanged and remains unselected.
+    lexical_identity: ko-lex-34683
+    lexical_category: free-lemma
+  ko-nikl-34596-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34596
+    source_parent: ko-nikl-34596
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: One of four directions, east, west, south, and north, at which the S needle of a compass
+      points.
+    source_korean: 동서남북의 네 방위 중의 하나로 나침반의 에스 극이 가리키는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '36849'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36849
+      pronunciations:
+      - 남
+      match_reason: The south-direction definition removes 의 and adds a comma and Latin S. Other people28394
+        and male person36848 are different source meanings.
+    lexical_identity: ko-lex-34683
+    lexical_category: free-lemma
+  ko-nikl-34709-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34709
+    source_parent: ko-nikl-34709
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A state of facing south, or southward direction. '
+    source_korean: 남쪽으로 향함. 또는 남쪽 방향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37993'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37993
+      pronunciations:
+      - 남향
+    lexical_identity: ko-lex-34683
+    lexical_category: free-lemma
+  ko-nikl-06791-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6791
+    source_parent: ko-nikl-06791
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'One of the four points of the compass, the direction that N points to. '
+    source_korean: 네 방위 중의 하나로, 나침반의 엔 극이 가리키는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '59309'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59309
+      pronunciations:
+      - 북쪽
+      match_reason: The first direction definition spells out 동서남북 and Latin N; the second North-Korea
+        contextual position is unchanged and remains unselected.
+    lexical_identity: ko-lex-06791
+    lexical_category: free-lemma
+  ko-nikl-06746-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6746
+    source_parent: ko-nikl-06746
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: One of the four cardinal directions, namely north, south, east, and west, which is
+      the direction indicated by the needle of the compass.
+    source_korean: 동서남북 네 방위의 하나로, 나침반의 엔 극이 가리키는 쪽.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '59996'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59996
+      pronunciations:
+      - 북
+      match_reason: The single north-direction definition adds Latin N after 엔. Drum59995 is a different
+        complete definition despite its identical reading.
+    lexical_identity: ko-lex-06791
+    lexical_category: free-lemma
+  ko-nikl-06801-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6801
+    source_parent: ko-nikl-06801
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: A state of facing north; northward direction.
+    source_korean: 북쪽으로 향함. 또는 북쪽 방향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59426'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59426
+      pronunciations:
+      - 부컁
+    lexical_identity: ko-lex-06791
+    lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko
     source_entry: topik-1/grammar.yaml#ko-topik1-g001

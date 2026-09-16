@@ -1813,6 +1813,41 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("compatibility", notes["usage_and_assessment_limits"])
         self.assertEqual(notes["bounded_discovery_result"]["already_selected"], "ko-nikl-20288-s001")
 
+    def test_orientation_forms_share_four_bases_without_absorbing_homographs(self):
+        authoring = self.root / "authoring" / "teaching"
+        rows = load_yaml(authoring / "orientation-vocabulary.yaml")
+        identities = self.references.lexical_identity
+        self.assertEqual(len(rows), 12)
+        self.assertEqual(len({identities[row["id"]] for row in rows}), 4)
+        for parents in (("18568", "18298", "18601"), ("09858", "09686", "09876"),
+                        ("34683", "34596", "34709"), ("06791", "06746", "06801")):
+            self.assertEqual(len({identities[f"ko-nikl-{parent}-s001"] for parent in parents}), 1)
+        for first, other in (("18298", "18300"), ("18298", "18302"),
+                             ("34596", "34584"), ("06746", "06745")):
+            self.assertNotEqual(identities[f"ko-nikl-{first}-s001"], identities[f"ko-nikl-{other}-s001"])
+        for row in rows:
+            self.assertEqual(row["level"], 7)
+            self.assertEqual(self.references.provenance[row["id"]]["lexical_category"], "free-lemma")
+        for item in ("ko-nikl-06791-s002", "ko-nikl-34683-s002", "ko-nikl-18298-s003"):
+            self.assertNotIn(item, self.references.vocabulary)
+
+    def test_orientation_readings_preserve_citation_and_ordered_source_distinctions(self):
+        notes = load_yaml(self.root / "authoring" / "teaching" / "orientation-notes.yaml")
+        for parent, match in notes["reading_assessment"]["crosswalk_proposals"].items():
+            item = f"{parent}-s001"
+            reading = self.references.provenance[item]["reading"]
+            self.assertEqual(reading["official_entry_id"], match["official_entry_id"])
+            self.assertEqual(reading["method"], "official-text")
+            self.assertEqual(reading["match_method"], "explicit-crosswalk")
+            self.assertEqual(self.references.vocabulary[item]["pr"], match["pronunciation"])
+        self.assertEqual(self.references.vocabulary["ko-nikl-06801-s001"]["pr"], "부컁")
+        self.assertEqual(self.references.vocabulary["ko-nikl-18298-s001"]["pr"], "동")
+        self.assertEqual(self.references.vocabulary["ko-nikl-18300-s001"]["pr"], "동ː")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(len(parents["ko-nikl-18298"]["senses"]), 3)
+        self.assertNotIn("(N)", parents["ko-nikl-06746"]["senses"][0]["korean"])
+        self.assertEqual(parents["ko-nikl-34683"]["senses"][1]["korean"], "북한 지역에 상대하여, 남한 지역.")
+
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
         report = yaml.safe_load(self.data.source_outputs[self.root / "teaching" / "coverage.yaml"])
