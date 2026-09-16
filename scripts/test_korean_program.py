@@ -785,6 +785,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "argumentation-support-notes.yaml",
             "measurement-notes.yaml",
             "interpretive-actions-notes.yaml",
+            "practical-descriptors-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -2734,6 +2735,85 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("다른 사람의 말이나 글", sources["ko-nikl-34039-s008"]["source_korean"])
         self.assertIn("exaggerated", words["ko-nikl-06711-s005"]["ds"])
         self.assertIn("exaggerated", words["ko-nikl-06712-s003"]["ds"])
+
+    def test_practical_descriptors_do_not_substitute_same_spelling_homographs(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(words["ko-nikl-04857-s001"]["ch"], words["ko-nikl-04858-s001"]["ch"])
+        self.assertNotEqual(identities["ko-nikl-04857-s001"], identities["ko-nikl-04858-s001"])
+        self.assertIn("undeserved", words["ko-nikl-04857-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-04857-s001"]["pr"], "애ː매하다")
+        self.assertEqual(identities["ko-nikl-22112-s001"], identities["ko-nikl-22106-s001"])
+        self.assertIn("different", words["ko-nikl-22112-s001"]["ds"])
+        self.assertNotIn("ko-nikl-22111-s001", {
+            row["id"] for row in load_yaml(
+                self.root / "authoring" / "teaching" / "practical-descriptors-vocabulary.yaml"
+            )
+        })
+        self.assertNotEqual(identities["ko-nikl-10780-s001"], identities["ko-nikl-10769-s001"])
+        self.assertIn("normal state", words["ko-nikl-10780-s001"]["ds"])
+        self.assertIn("what one knew", words["ko-nikl-10780-s002"]["ds"])
+        self.assertIn("seem dubious", words["ko-nikl-10780-s003"]["ds"])
+
+    def test_practical_descriptors_preserve_specific_action_and_state_pos(self):
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-22127"]["source_part_of_speech"], "동사")
+        self.assertEqual(parents["ko-nikl-22128"]["source_part_of_speech"], "형용사")
+        identities, words = self.references.lexical_identity, self.references.vocabulary
+        self.assertEqual(identities["ko-nikl-22127-s001"], identities["ko-nikl-22128-s001"])
+        self.assertIn("designate", words["ko-nikl-22127-s001"]["ds"])
+        self.assertIn("identified and fixed", words["ko-nikl-22128-s001"]["ds"])
+        for item, official in (("ko-nikl-22127-s001", "93769"), ("ko-nikl-22128-s001", "83028")):
+            self.assertEqual(self.references.provenance[item]["reading"]["official_entry_id"], official)
+            self.assertEqual(words[item]["pr"], "특쩡하다")
+
+    def test_practical_descriptors_add_real_counterparts_without_extra_family_breadth(self):
+        identities = self.references.lexical_identity
+        for base, addition in (
+            ("ko-nikl-07380-s001", "ko-nikl-07381-s001"),
+            ("ko-nikl-25192-s002", "ko-nikl-25116-s002"),
+            ("ko-nikl-37029-s001", "ko-nikl-37027-s001"),
+            ("ko-nikl-51771-s001", "ko-nikl-51770-s001"),
+        ):
+            self.assertEqual(identities[base], identities[addition])
+        for suffix in ("001", "002", "003"):
+            self.assertEqual(identities["ko-nikl-09580-s004"], identities[f"ko-nikl-09580-s{suffix}"])
+        self.assertEqual(self.references.vocabulary["ko-nikl-51770-s001"]["pr"], "화견하다")
+        self.assertIn("wide gaps", self.references.vocabulary["ko-nikl-19119-s002"]["ds"])
+        self.assertEqual(identities["ko-nikl-19119-s002"], identities["ko-nikl-19119-s001"])
+
+    def test_practical_descriptor_admission_and_readings_use_complete_actual_sources(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "practical-descriptors-notes.yaml")
+        rows = load_yaml(authoring / "practical-descriptors-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["source"]["support_parent_ids"]
+        self.assertEqual(len(rows), 36)
+        self.assertEqual(len(requests), 18)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 23)
+        for identifier in requests:
+            parent = parents[identifier]
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertEqual(
+                [row["source_position"] for row in parent["senses"]],
+                list(range(1, len(parent["senses"]) + 1)),
+            )
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+
+    def test_practical_descriptors_preserve_ease_clarity_and_limited_suitability(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("few difficulties", words["ko-nikl-37946-s001"]["ds"])
+        self.assertIn("no conspicuous", words["ko-nikl-37946-s002"]["ds"])
+        self.assertIn("temperament", words["ko-nikl-37946-s003"]["ds"])
+        self.assertIn("very easy", words["ko-nikl-49171-s001"]["ds"])
+        self.assertEqual(sources["ko-nikl-49171-s001"]["source_english"], "Not difficult.")
+        self.assertNotIn("easy", words["ko-nikl-26183-s001"]["ds"])
+        self.assertIn("easy", sources["ko-nikl-26183-s001"]["source_english"])
+        self.assertEqual(words["ko-nikl-26217-s001"]["ds"], "to be simple and clear")
+        self.assertIn("Spoken or written", sources["ko-nikl-26217-s001"]["source_english"])
+        self.assertIn("words or actions", words["ko-nikl-46520-s001"]["ds"])
+        self.assertIn("between alternatives", words["ko-nikl-46520-s002"]["ds"])
+        self.assertIn("seems dubious", words["ko-nikl-46520-s003"]["ds"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

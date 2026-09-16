@@ -5,6 +5,31 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-04857-s001:
+    source_korean: "잘못한 것이 없이 꾸중을 듣거나 벌을 받게 되어 억울하다."
+    source_english: "Feeling mortified because one has been scolded or punished even though one did nothing wrong. "
+    authored_interpretation: to feel wronged by undeserved scolding or punishment
+    rationale: Preserve feeling unjustly treated rather than mere embarrassment, with the explicit undeserved scolding/punishment condition.
+  ko-nikl-26183-s001:
+    source_korean: "군더더기가 없이 단순하고 간단하다."
+    source_english: "Something that is simple and easy without anything superfluous."
+    authored_interpretation: to be simple and free of superfluous parts
+    rationale: Simplicity without extraneous parts does not necessarily imply the English's added ease requirement.
+  ko-nikl-26217-s001:
+    source_korean: "간단하고 분명하다."
+    source_english: "Spoken or written in a clear and concise manner. "
+    authored_interpretation: to be simple and clear
+    rationale: The Korean does not restrict simplicity and clarity to spoken/written language.
+  ko-nikl-37946-s002:
+    source_korean: "두드러지는 단점이나 흠이 없다."
+    source_english: "Having no recognizable shortcoming or defect."
+    authored_interpretation: to have no conspicuous flaw or shortcoming
+    rationale: No salient defect is not a promise that no detectable flaw exists.
+  ko-nikl-49171-s001:
+    source_korean: "어렵지 않고 매우 쉽다."
+    source_english: "Not difficult."
+    authored_interpretation: to be very easy, not difficult
+    rationale: Restore explicit 매우 쉽다 rather than weakening the meaning to merely not difficult.
   ko-nikl-07830-s004:
     source_korean: 어떤 일이나 결과를 만들다.
     source_english: For bring about a certain situation or result.

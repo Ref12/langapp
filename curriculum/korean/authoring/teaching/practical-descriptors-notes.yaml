@@ -1,0 +1,159 @@
+schema_version: 1
+review_status: original-ai-authored-unreviewed
+scope: >
+  Bounded practical suitability, clarity, familiarity, quality and ease
+  descriptors, plus useful actual nonfirst meanings. Existing fully selected
+  descriptors were not copied into a second cohort. This is neither an
+  adjective catalogue nor a new family for every negative/nominal counterpart.
+source:
+  source_id: nikl-2024-mirror
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  support_parent_ids:
+    - ko-nikl-04857
+    - ko-nikl-06627
+    - ko-nikl-07177
+    - ko-nikl-07381
+    - ko-nikl-09494
+    - ko-nikl-10780
+    - ko-nikl-22112
+    - ko-nikl-22122
+    - ko-nikl-22127
+    - ko-nikl-22128
+    - ko-nikl-26217
+    - ko-nikl-41014
+    - ko-nikl-46520
+    - ko-nikl-47663
+    - ko-nikl-49336
+    - ko-nikl-49379
+    - ko-nikl-49866
+    - ko-nikl-51770
+  complete_support_positions: 23
+  policy: >
+    Inspect actual paired definition arrays and every same-form POS/homograph
+    in the checksum-pinned CSV. Retain all23 positions of the18 admitted
+    parents in root source-senses.yaml. Original TOPIK references, source
+    spelling/bands/POS and project list-position IDs remain unchanged.
+    No official sense IDs, Hanja, frequency rating or examples are invented.
+selection:
+  senses: 36
+  dictionary_parents: 27
+  identity_fragments: 26
+  new_provisional_free_families: 17
+  existing_family_extensions: 9
+  new_bound_or_function_families: 0
+placement_rationale:
+  - Existing early repair/comparison needs receive actual 이상하다 meanings at10 and13, not a fabricated source for a comparative 이상 function.
+  - Freshness, strength, colour and physical spacing deepen description rather than counting more versions of an already selected word.
+  - Problem-solving at14 distinguishes few obstacles, unobtrusive faults, confused task direction and disorder without promising success or perfection.
+  - Explanation/evidence at17-19 uses uncertainty, clarity, specificity and criteria-based quality, preserving the action/state distinction of 특정하다.
+  - Levels25-29 address awkwardness, habitual manner, perceived style, innocent wrongedness, concise clarity and unpolished writing in their actual source contexts.
+  - No descriptor is moved later merely to increase phase size; these explicit placements do not assert source-band or examination alignment.
+family_adjudication:
+  uncertainty: Actual 불확실하다07381 directly matches the protected uncertainty-quality/state noun07380, not positive certainty or a newly counted abstract noun.
+  specialness: Actual marked-difference predicate22112 matches protected noun22106; superior predicate22111 is a different unselected source.
+  specificity: Actual specifying verb22127 and specified-state adjective22128 share one designation family while preserving different source POS and inflection/evidence needs.
+  confusion: Second-position 헛갈리다25116 joins the already documented whole-definition-list variant family25192; neither spelling is a new free root.
+  clarity: Actual 확연하다51770 joins protected 확연히51771. The earlier rationale now states separate source admission instead of implying an unattested predicate.
+  style: >
+    Actual 멋37023 position2 describes a high-quality, appealing impression
+    or atmosphere, directly corresponding to 멋스럽다37027. This same-base
+    source-attested descriptive formation conservatively joins protected
+    멋있다37029; the noun is not selected and no general compound-collapse
+    rule or automatic mastery transfer is introduced.
+  polarity: Incorrectness and unclear/certain states do not automatically merge with their positive predicates or prove that every uncertain proposition is false.
+reading_review:
+  official_text_senses: 36
+  official_text_parents: 27
+  new_crosswalks: 0
+  new_authored_decisions: 0
+  important_actual_matches:
+    ko-nikl-04857: {official_entry_id: '66618', pronunciation: 애ː매하다}
+    ko-nikl-22112: {official_entry_id: '83014', pronunciation: 특쑤하다}
+    ko-nikl-22127: {official_entry_id: '93769', pronunciation: 특쩡하다}
+    ko-nikl-22128: {official_entry_id: '83028', pronunciation: 특쩡하다}
+    ko-nikl-51770: {official_entry_id: '87241', pronunciation: 화견하다}
+  policy: >
+    Each exact original parent matches actual independently pinned official
+    citation text. Identical readings do not merge source POS; a family's
+    adverb reading is not borrowed for its new predicate. Preserve length
+    and source provenance without claiming audio assessment or teacher review.
+source_correction_requests:
+  ko-nikl-04857-s001:
+    source_korean: "잘못한 것이 없이 꾸중을 듣거나 벌을 받게 되어 억울하다."
+    source_english: "Feeling mortified because one has been scolded or punished even though one did nothing wrong. "
+    authored_interpretation: to feel wronged by undeserved scolding or punishment
+    rationale: Preserve feeling unjustly treated, not mere embarrassment from English mortified; keep undeserved scolding/punishment as the explicit source condition.
+  ko-nikl-26183-s001:
+    source_korean: "군더더기가 없이 단순하고 간단하다."
+    source_english: "Something that is simple and easy without anything superfluous."
+    authored_interpretation: to be simple and free of superfluous parts
+    rationale: Simplicity without extraneous parts does not necessarily make a task easy; avoid the added English ease requirement.
+  ko-nikl-26217-s001:
+    source_korean: "간단하고 분명하다."
+    source_english: "Spoken or written in a clear and concise manner. "
+    authored_interpretation: to be simple and clear
+    rationale: The Korean describes simplicity and clarity without restricting the subject to spoken/written language.
+  ko-nikl-37946-s002:
+    source_korean: "두드러지는 단점이나 흠이 없다."
+    source_english: "Having no recognizable shortcoming or defect."
+    authored_interpretation: to have no conspicuous flaw or shortcoming
+    rationale: No salient defect is not the same as no detectable flaw or a promise of perfection.
+  ko-nikl-49171-s001:
+    source_korean: "어렵지 않고 매우 쉽다."
+    source_english: "Not difficult."
+    authored_interpretation: to be very easy, not difficult
+    rationale: Preserve the explicit 매우 쉽다 degree rather than weakening the source to merely not difficult.
+source_boundaries:
+  애매하다: >
+    Unjustly-scolded/punished04857 is not ambiguous-attitude/situation04858.
+    Shared spelling does not permit first-candidate matching or transferring
+    another parent's reading, source meaning, or learner evidence.
+  이상하다: >
+    Normal-state difference, difference from prior experience, and resulting
+    suspicion are different actual positions. None is proof of illness,
+    wrongdoing, an incorrect belief or universal social norms. They are
+    not the independently taught inclusive/discourse/end-marker 이상10769.
+  quality_comparisons: >
+    Lower, higher, outstanding and far-superior levels require an explicit
+    task/object criterion in practice, not inherent human worth, group
+    stereotypes, moral prescriptions or diagnoses. Perceived style does not
+    establish substance; uncertainty does not prove falsity.
+  physical_polysemy: >
+    Sparse intervals differ from infrequent events and rare existence.
+    Fresh/lively, vigorous and clear-colour 생생하다 do not guarantee
+    food safety, health or reliable memory. Every source position remains
+    separate even when included in one provisional family.
+  무난하다: Few obstacles is not no obstacles; lack of conspicuous defects is not perfection; an easygoing temperament does not require obedience or agreement.
+  어정쩡하다: Indefinite expression, awkwardness between alternatives and uneasy doubt remain distinct; none supplies actual knowledge of another person's motives.
+bounded_deferrals:
+  - Source04856 애매모호하다 was inspected but not added simply as another ambiguity compound beside the protected ambiguity/vagueness vocabulary.
+  - Source22111 특수하다 means markedly outstanding rather than merely different and is not substituted for22112.
+  - Near-parallel exceptional 우수하다49337 is not counted as another excellent-family homograph without a clearer lexical reason.
+  - All named exact forms were found in the pin; absence from retained support is not absence from Korean or from the source.
+  - Related unselected nouns and other same-base adjective forms are not implicit source-admission requests or mastered forms.
+limitations: >
+  These are original, unreviewed source-selection and family judgments with
+  genuine dictionary citation evidence, not qualified linguistic/pragmatic
+  review. Structural correctness does not prove word frequency, naturalness,
+  listener interpretation, learner mastery or examination readiness.
+integration:
+  core_dictionary_parents: 5436
+  core_selected_senses: 7801
+  core_distinct_spellings: 5124
+  core_spelling_pos_pairs: 5233
+  core_lexical_identities: 5185
+  core_provisional_free_families: 4922
+  core_bound_forms: 40
+  core_function_items: 223
+  retained_support_parents: 903
+  selected_support_parents: 899
+  core_modules: 765
+  gap_to_lower_core_free_guide: 878
+  checks:
+    targeted_course_tourist_source_tests: 139
+    deterministic_views: 128
+    preservation: All prior retained parent objects and official reading entries remained unchanged; no authored decision or crosswalk was edited.
+  remaining_work: >
+    Useful breadth expansion and substantive early-load/later-phase
+    reassessment remain incomplete. These counts are not verified true
+    lexemes, learner attainment or approval to activate the catalog.
