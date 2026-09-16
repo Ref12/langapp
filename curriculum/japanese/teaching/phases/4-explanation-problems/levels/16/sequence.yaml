@@ -1,0 +1,199 @@
+schema_version: 3
+id: ja-level-16
+title: News and public information
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 16
+phase: explanation-problems
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+- ja-level-09
+- ja-level-10
+- ja-level-11
+- ja-level-12
+- ja-level-13
+- ja-level-14
+- ja-level-15
+goals: &id001
+- Summarize a general-interest report.
+- Separate events from a source's emphasis or opinion.
+- Explain who is affected without overgeneralizing.
+checkpoint:
+  task: Compare two reports of an event and explain a difference in emphasis.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-16-society-01
+  title: Public life and institutions - 1
+  outcome: Explain a public issue and compare different people's experiences.
+  vocabulary:
+  - {id: ja-n4-00014-s001, ch: アジア, pr: アジア, ds: Asia}
+  - {id: ja-n4-00020-s001, ch: アフリカ, pr: アフリカ, ds: Africa}
+  - {id: ja-n4-00021-s001, ch: アメリカ, pr: アメリカ, ds: (United States of) America}
+  - {id: ja-n4-00045-s001, ch: 田舎, pr: いなか, ds: rural area}
+  - {id: ja-n4-00210-s001, ch: 郊外, pr: こうがい, ds: suburb}
+  - {id: ja-n4-00221-s001, ch: 国際, pr: こくさい, ds: international}
+  - {id: ja-n4-00266-s001, ch: 市, pr: し, ds: city}
+  - {id: ja-n4-00283-s001, ch: 市民, pr: しみん, ds: citizen (of a country)}
+  - {id: ja-n4-00285-s001, ch: 社会, pr: しゃかい, ds: society}
+  - {id: ja-n4-00309-s001, ch: 人口, pr: じんこう, ds: population}
+  - {id: ja-n4-00339-s001, ch: 政治, pr: せいじ, ds: politics}
+  - {id: ja-n4-00340-s001, ch: 西洋, pr: せいよう, ds: the West}
+  - {id: ja-n4-00341-s001, ch: 世界, pr: せかい, ds: the world}
+  - {id: ja-n4-00429-s001, ch: 都, pr: と, ds: Metropolis (of Tokyo)}
+  - {id: ja-n4-00519-s001, ch: ビル, pr: ビル, ds: multi-floor building}
+  - {id: ja-n4-00547-s001, ch: 法律, pr: ほうりつ, ds: law}
+  - {id: ja-n3-00086-s001, ch: 市, pr: いち, ds: market}
+  - {id: ja-n3-00090-s001, ch: 市場, pr: いちば, ds: (town) market}
+  - {id: ja-n3-00180-s001, ch: 王, pr: おう, ds: king}
+  - {id: ja-n3-00182-s001, ch: 王様, pr: おうさま, ds: king}
+  - {id: ja-n3-00183-s001, ch: 王子, pr: おうじ, ds: prince}
+  - {id: ja-n3-00244-s001, ch: 外交, pr: がいこう, ds: diplomacy}
+  - {id: ja-n3-00476-s001, ch: 軍, pr: ぐん, ds: army}
+  - {id: ja-n3-00477-s001, ch: 軍隊, pr: ぐんたい, ds: armed forces}
+  - {id: ja-n3-00509-s001, ch: 県, pr: けん, ds: prefecture (of Japan)}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-16-society-02
+  title: Public life and institutions - 2
+  outcome: Explain a public issue and compare different people's experiences.
+  vocabulary:
+  - {id: ja-n3-00510-s001, ch: 軒, pr: けん, ds: counter for buildings (esp. houses)}
+  - {id: ja-n3-00545-s001, ch: 攻撃, pr: こうげき, ds: attack}
+  - {id: ja-n3-00550-s001, ch: 工場, pr: こうば, ds: factory}
+  - {id: ja-n3-00573-s001, ch: 国民, pr: こくみん, ds: people (of a country)}
+  - {id: ja-n3-00578-s001, ch: 国家, pr: こっか, ds: state}
+  - {id: ja-n3-00579-s001, ch: 国会, pr: こっかい, ds: National Diet}
+  - {id: ja-n3-00580-s001, ch: 国境, pr: こっきょう, ds: border (between countries)}
+  - {id: ja-n3-00595-s001, ch: 殺す, pr: ころす, ds: to kill}
+  - {id: ja-n3-00664-s001, ch: 式, pr: しき, ds: way}
+  - {id: ja-n3-00703-s001, ch: 支配, pr: しはい, ds: rule}
+  - {id: ja-n3-00709-s001, ch: 死亡, pr: しぼう, ds: death}
+  - {id: ja-n3-00710-s001, ch: 資本, pr: しほん, ds: funds}
+  - {id: ja-n3-00725-s001, ch: 州, pr: しゅう, ds: 'state (of the US, Australia, India, Germany, etc.)'}
+  - {id: ja-n3-00726-s001, ch: 銃, pr: じゅう, ds: gun}
+  - {id: ja-n3-00730-s001, ch: 宗教, pr: しゅうきょう, ds: religion}
+  - {id: ja-n3-00741-s001, ch: 住民, pr: じゅうみん, ds: inhabitant}
+  - {id: ja-n3-00747-s001, ch: 首相, pr: しゅしょう, ds: prime minister}
+  - {id: ja-n3-00751-s001, ch: 出版, pr: しゅっぱん, ds: publication}
+  - {id: ja-n3-00752-s001, ch: 首都, pr: しゅと, ds: (national) capital (city)}
+  - {id: ja-n3-00763-s001, ch: 章, pr: しょう, ds: chapter}
+  - {id: ja-n3-00793-s001, ch: 女王, pr: じょおう, ds: queen}
+  - {id: ja-n3-00819-s001, ch: 信仰, pr: しんこう, ds: (religious) faith}
+  - {id: ja-n3-00822-s001, ch: 深刻, pr: しんこく, ds: serious}
+  - {id: ja-n3-00824-s001, ch: 人種, pr: じんしゅ, ds: race (of people)}
+  - {id: ja-n3-00840-s001, ch: 人類, pr: じんるい, ds: mankind}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00090-s001, ch: 市場, pr: いちば, ds: (town) market}
+  - {id: ja-n3-00180-s001, ch: 王, pr: おう, ds: king}
+  - {id: ja-n3-00182-s001, ch: 王様, pr: おうさま, ds: king}
+  - {id: ja-n3-00183-s001, ch: 王子, pr: おうじ, ds: prince}
+  - {id: ja-n3-00244-s001, ch: 外交, pr: がいこう, ds: diplomacy}
+  - {id: ja-n3-00476-s001, ch: 軍, pr: ぐん, ds: army}
+  - {id: ja-n3-00477-s001, ch: 軍隊, pr: ぐんたい, ds: armed forces}
+  - {id: ja-n3-00509-s001, ch: 県, pr: けん, ds: prefecture (of Japan)}
+  review_grammar: []
+- id: level-16-society-03
+  title: Public life and institutions - 3
+  outcome: Explain a public issue and compare different people's experiences.
+  vocabulary:
+  - {id: ja-n3-00900-s001, ch: 制度, pr: せいど, ds: system}
+  - {id: ja-n3-00903-s001, ch: 政府, pr: せいふ, ds: government}
+  - {id: ja-n3-00926-s001, ch: 全国, pr: ぜんこく, ds: the whole country}
+  - {id: ja-n3-00979-s001, ch: 大使, pr: たいし, ds: ambassador}
+  - {id: ja-n3-00982-s001, ch: 大臣, pr: だいじん, ds: cabinet minister}
+  - {id: ja-n3-00984-s001, ch: 大戦, pr: たいせん, ds: great war}
+  - {id: ja-n3-00986-s001, ch: 大統領, pr: だいとうりょう, ds: president (of a country)}
+  - {id: ja-n3-01009-s001, ch: 戦い, pr: たたかい, ds: battle}
+  - {id: ja-n3-01010-s001, ch: 戦う, pr: たたかう, ds: to make war (on)}
+  - {id: ja-n3-01051-s001, ch: 地, pr: ち, ds: earth}
+  - {id: ja-n3-01053-s001, ch: 地域, pr: ちいき, ds: area}
+  - {id: ja-n3-01062-s001, ch: 地区, pr: ちく, ds: district}
+  - {id: ja-n3-01064-s001, ch: 知事, pr: ちじ, ds: prefectural governor}
+  - {id: ja-n3-01069-s001, ch: 地方, pr: ちほう, ds: district}
+  - {id: ja-n3-01131-s001, ch: 敵, pr: てき, ds: opponent}
+  - {id: ja-n3-01153-s001, ch: 伝統, pr: でんとう, ds: tradition}
+  - {id: ja-n3-01157-s001, ch: 党, pr: とう, ds: party (political)}
+  - {id: ja-n3-01289-s001, ch: 農家, pr: のうか, ds: farmer}
+  - {id: ja-n3-01290-s001, ch: 農業, pr: のうぎょう, ds: agriculture}
+  - {id: ja-n3-01291-s001, ch: 農民, pr: のうみん, ds: farmer}
+  - {id: ja-n3-01466-s001, ch: 文明, pr: ぶんめい, ds: civilization}
+  - {id: ja-n3-01502-s001, ch: 仏, pr: ほとけ, ds: Buddha}
+  - {id: ja-n3-01538-s001, ch: 祭り, pr: まつり, ds: festival}
+  - {id: ja-n3-01667-s001, ch: ヨーロッパ, pr: ヨーロッパ, ds: Europe}
+  - {id: ja-n3-01675-s001, ch: 世の中, pr: よのなか, ds: society}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00751-s001, ch: 出版, pr: しゅっぱん, ds: publication}
+  - {id: ja-n3-00752-s001, ch: 首都, pr: しゅと, ds: (national) capital (city)}
+  - {id: ja-n3-00763-s001, ch: 章, pr: しょう, ds: chapter}
+  - {id: ja-n3-00793-s001, ch: 女王, pr: じょおう, ds: queen}
+  - {id: ja-n3-00819-s001, ch: 信仰, pr: しんこう, ds: (religious) faith}
+  - {id: ja-n3-00822-s001, ch: 深刻, pr: しんこく, ds: serious}
+  - {id: ja-n3-00824-s001, ch: 人種, pr: じんしゅ, ds: race (of people)}
+  - {id: ja-n3-00840-s001, ch: 人類, pr: じんるい, ds: mankind}
+  review_grammar: []
+- id: level-16-society-04
+  title: Public life and institutions - 4
+  outcome: Explain a public issue and compare different people's experiences.
+  vocabulary:
+  - {id: ja-n3-01724-s001, ch: わた, pr: わた, ds: cotton plant (Gossypium spp.)}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-01289-s001, ch: 農家, pr: のうか, ds: farmer}
+  - {id: ja-n3-01290-s001, ch: 農業, pr: のうぎょう, ds: agriculture}
+  - {id: ja-n3-01291-s001, ch: 農民, pr: のうみん, ds: farmer}
+  - {id: ja-n3-01466-s001, ch: 文明, pr: ぶんめい, ds: civilization}
+  - {id: ja-n3-01502-s001, ch: 仏, pr: ほとけ, ds: Buddha}
+  - {id: ja-n3-01538-s001, ch: 祭り, pr: まつり, ds: festival}
+  - {id: ja-n3-01667-s001, ch: ヨーロッパ, pr: ヨーロッパ, ds: Europe}
+  - {id: ja-n3-01675-s001, ch: 世の中, pr: よのなか, ds: society}
+  review_grammar: []
+- id: level-16-media-practice-01
+  title: Public information - sentence practice 1
+  outcome: Summarize a report while separating events, attribution, and interpretation.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g024, ch: 動詞ずに, ds: without doing}
+  - {id: ja-n3-g032, ch: Nに対して, ds: toward; with regard to a target}
+  - {id: ja-n3-g034, ch: Nによって, ds: by an agent; by means of}
+  review_vocabulary: []
+  review_grammar: []
+- id: level-16-media-practice-02
+  title: Public information - sentence practice 2
+  outcome: Summarize a report while separating events, attribution, and interpretation.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g039, ch: Nさえ, ds: even; an extreme example}
+  - {id: ja-n3-g041, ch: 普通形ばかりでなく, ds: not only; additionally}
+  - {id: ja-n2-g014, ch: 普通形おそれがある, ds: there is a risk that}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n3-g024, ch: 動詞ずに, ds: without doing}
+  - {id: ja-n3-g032, ch: Nに対して, ds: toward; with regard to a target}
+  - {id: ja-n3-g034, ch: Nによって, ds: by an agent; by means of}
+- id: level-16-media-practice-03
+  title: Public information - sentence practice 3
+  outcome: Summarize a report while separating events, attribution, and interpretation.
+  vocabulary: []
+  grammar:
+  - {id: ja-n2-g027, ch: Nをはじめ, ds: starting with; including a representative example}
+  - {id: ja-n2-g028, ch: Nにわたって, ds: over; throughout an extent}
+  - {id: ja-n2-g029, ch: Nを通じて／を通して, ds: through; throughout; via}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n3-g039, ch: Nさえ, ds: even; an extreme example}
+  - {id: ja-n3-g041, ch: 普通形ばかりでなく, ds: not only; additionally}
+  - {id: ja-n2-g014, ch: 普通形おそれがある, ds: there is a risk that}

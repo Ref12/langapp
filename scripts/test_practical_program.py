@@ -1,0 +1,557 @@
+"""Source-neutral program and strict adapter-boundary regressions."""
+
+from contextlib import redirect_stderr, redirect_stdout
+from copy import deepcopy
+from dataclasses import replace
+import io
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+
+from curriculum_yaml import load_yaml, write_yaml
+from generate_practical_program import generate, normalized_surface, program_outputs, validate_references
+from practical_program_registry import get_adapter
+from practical_program_types import (
+    PhraseAnalysis, ProgramData, ProgramProfile, ReferenceBundle, SeedUnit, SurfaceSegment,
+)
+from validate_curriculum import LEVELS, Validator
+
+
+class ExampleAdapter:
+    profile = ProgramProfile("french", "fr")
+
+    def __init__(self, data):
+        self.data = data
+        self.calls = 0
+        self.forms = {"example-request": {
+            "ch": "changed", "pr": "changed-reading",
+            "items": ["local:item:001"], "grammar": ["construction:001"],
+            "form_id": "example-request",
+        }}
+
+    def load(self, root):
+        return self.data
+
+    def validate_phrase(self, phrase, context):
+        self.calls += 1
+        segments = []
+        for segment in phrase["realizations"]:
+            form_id = segment.get("form_id")
+            if form_id is not None and self.forms.get(form_id) != segment:
+                raise ValueError("Unlicensed adapter surface realization")
+            segments.append(SurfaceSegment(
+                segment["ch"], segment["pr"], tuple(segment["items"]),
+                tuple(segment["grammar"]), form_id,
+            ))
+        return PhraseAnalysis(tuple(phrase["items"]), tuple(phrase["grammar"]), tuple(segments))
+
+
+class NeutralProgramTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name) / "french"
+        baseline = Path(__file__).resolve().parents[1] / "curriculum" / "chinese" / "teaching"
+        program = load_yaml(baseline / "program.yaml")
+        program.update(id="fr-practical", language="french", title="Example practical curriculum")
+        mastery = load_yaml(baseline / "mastery.yaml")
+        mastery["id"] = "fr-item-mastery"
+        inputs = {"program": program, "mastery": mastery, "vocabulary": [], "grammar": [], "support": {}}
+        words, patterns, identities, provenance, senses, readings, spellings = {}, {}, {}, {}, {}, {}, {}
+        for number, destination in enumerate(
+            [*range(1, 31), "professional", "technical", "scientific", "literary"], 1,
+        ):
+            identifier, construction = f"local:item:{number:03d}", f"construction:{number:03d}"
+            lemma = "lemma:001" if number <= 2 else f"lemma:{number:03d}"
+            form = "base" if number <= 2 else f"form{number}"
+            words[identifier] = {"id": identifier, "ch": form, "pr": form + "-reading", "ds": f"meaning {number}"}
+            patterns[construction] = {"id": construction, "ch": f"V+form{number}", "ds": f"function {number}"}
+            identities[identifier] = lemma
+            senses[identifier] = f"source-entry/sense/{number}"
+            readings[identifier] = lemma + "/reading"
+            spellings[identifier] = lemma + "/spelling"
+            for item in (identifier, construction):
+                provenance[item] = {"source_id": "original-example", "source_entry": f"local:{item}"}
+            inputs["vocabulary"].append({
+                "id": identifier, "level": destination, "topic": "grammar", "ds": words[identifier]["ds"],
+            })
+            inputs["grammar"].append({
+                **patterns[construction], "level": destination, "topic": "grammar", "anchors": [identifier],
+            })
+        inputs["tourist"] = {
+            "schema_version": 1, "id": "fr-tourist", "title": "Example travel route", "language": "french",
+            "level_basis": "Independent travel material.", "review_policy": "Retrieve earlier material.",
+            "quick_start": ["contact"], "units": [{
+                "id": "contact", "title": "Contact", "outcome": "Make a request.",
+                "vocabulary": ["local:item:001"], "grammar": ["construction:001"],
+                "review_vocabulary": [], "review_grammar": [],
+                "phrases": [{
+                    "id": "fr-tourist-p001", "ch": "changed.", "pr": "changed-reading",
+                    "ds": "A changed request.", "items": ["local:item:001"], "grammar": ["construction:001"],
+                    "realizations": [{
+                        "ch": "changed", "pr": "changed-reading",
+                        "items": ["local:item:001"], "grammar": ["construction:001"],
+                        "form_id": "example-request",
+                    }],
+                }],
+            }],
+        }
+        self.data = ProgramData(
+            inputs, ReferenceBundle(words, patterns, identities, provenance, senses, readings, spellings),
+            source_outputs={self.root / "reference-senses.yaml": "[]\n"},
+        )
+        self.adapter = ExampleAdapter(self.data)
+
+    @property
+    def phrase(self):
+        return self.data.inputs["tourist"]["units"][0]["phrases"][0]
+
+    def outputs(self):
+        return program_outputs(self.root, self.data, self.adapter)
+
+    def document(self, relative):
+        import yaml
+        return yaml.safe_load(self.outputs()[self.root / relative])
+
+    def test_no_seed_profile_has_all_thirty_levels_in_nested_phase_paths(self):
+        outputs = self.outputs()
+        self.assertNotIn(self.root / "teaching" / "levels" / "01" / "sequence.yaml", outputs)
+        for index, phase in enumerate(self.data.inputs["program"]["phases"], 1):
+            for number in phase["levels"]:
+                directory = self.root / "teaching" / "phases" / f"{index}-{phase['id']}" / "levels" / f"{number:02d}"
+                self.assertIn(directory / "sequence.yaml", outputs)
+                self.assertIn(directory / "vocabulary.min.yaml", outputs)
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        self.assertEqual([level["number"] for phase in core["phases"] for level in phase["levels"]], list(range(1, 31)))
+
+    def test_explicit_identities_count_senses_readings_and_lemmas_without_id_parsing(self):
+        report = self.document(Path("teaching") / "inventory.yaml")
+        self.assertEqual(report["core"]["headwords"], 29)
+        self.assertEqual(report["core"]["vocabulary_senses"], 30)
+        self.assertEqual(report["core"]["source_senses"], 30)
+        self.assertEqual(report["core"]["readings"], 29)
+        self.assertEqual(report["core"]["spellings"], 29)
+        self.assertEqual(report["levels"][1]["new_headwords"], 0)
+        self.assertEqual(sum(phase["new_headwords"] for phase in report["phases"]), 29)
+
+    def test_configurable_seed_prefix_is_not_twelve_mandarin_units(self):
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        levels = core["phases"][0]["levels"][:2]
+        seeds = tuple(SeedUnit(level["number"], "grammar", unit) for level in levels for unit in level["units"])
+        for key in ("vocabulary", "grammar"):
+            self.data.inputs[key][:] = [row for row in self.data.inputs[key] if row["level"] not in (1, 2)]
+        self.data = replace(self.data, seeds=seeds)
+        self.assertTrue(self.outputs())
+        self.data = replace(self.data, seeds=(SeedUnit(2, "grammar", seeds[0].unit),))
+        with self.assertRaisesRegex(ValueError, "initial level prefix"):
+            self.outputs()
+
+    def test_extension_inherits_only_seeded_vocabulary_within_its_core_prerequisites(self):
+        professional = next(row for row in self.data.inputs["grammar"] if row["level"] == "professional")
+        professional["anchors"].append("local:item:020")
+        branch_path = Path("teaching") / "extensions" / "professional" / "vocabulary.min.yaml"
+        expected = self.document(branch_path)
+        self.assertIn("local:item:020", {entry["id"] for entry in expected})
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        levels = [level for phase in core["phases"] for level in phase["levels"] if level["number"] <= 20]
+        seeds = tuple(SeedUnit(level["number"], "grammar", unit) for level in levels for unit in level["units"])
+        for key in ("vocabulary", "grammar"):
+            self.data.inputs[key][:] = [
+                row for row in self.data.inputs[key] if type(row["level"]) is not int or row["level"] > 20
+            ]
+        self.data = replace(self.data, seeds=seeds)
+        self.assertEqual(self.document(branch_path), expected)
+        adjustments = self.document(Path("teaching") / "inventory.yaml")["prerequisite_adjustments"]
+        self.assertIn(
+            {"id": "local:item:020", "from": 20, "to": "professional", "required_by": "construction:031"},
+            adjustments,
+        )
+
+    def repeat_placement(self, number, destination):
+        for kind, prefix in (("vocabulary", "local:item"), ("grammar", "construction")):
+            source = next(row for row in self.data.inputs[kind] if row["id"] == f"{prefix}:{number:03d}")
+            self.data.inputs[kind].append({**deepcopy(source), "level": destination})
+
+    def test_core_and_independent_branches_can_select_the_same_canonical_ids(self):
+        for branch in ("professional", "technical", "scientific"):
+            self.repeat_placement(20, branch)
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        introductions = [(level["number"], entry["id"]) for phase in core["phases"]
+                         for level in phase["levels"] for unit in level["units"] for entry in unit["vocabulary"]]
+        self.assertEqual([number for number, item in introductions if item == "local:item:020"], [20])
+        for branch in ("professional", "technical", "scientific"):
+            sequence = self.document(Path("teaching") / "extensions" / branch / "sequence.yaml")
+            for kind, identifier in (("vocabulary", "local:item:020"), ("grammar", "construction:020")):
+                introduced = {entry["id"] for unit in sequence["units"] for entry in unit[kind]}
+                reviewed = {entry["id"] for unit in sequence["units"] for entry in unit[f"review_{kind}"]}
+                if branch == "scientific":
+                    self.assertNotIn(identifier, introduced)
+                    self.assertIn(identifier, reviewed)
+                else:
+                    self.assertIn(identifier, introduced)
+        self.assertEqual(self.document(Path("teaching") / "inventory.yaml")["core"]["vocabulary_senses"], 30)
+
+    def test_already_known_explicit_extension_material_becomes_review_not_an_empty_route(self):
+        for kind in ("vocabulary", "grammar"):
+            self.data.inputs[kind][:] = [row for row in self.data.inputs[kind] if row["level"] != "professional"]
+        self.repeat_placement(2, "professional")
+        branch = self.document(Path("teaching") / "extensions" / "professional" / "sequence.yaml")
+        self.assertTrue(branch["units"])
+        for kind, identifier in (("vocabulary", "local:item:002"), ("grammar", "construction:002")):
+            self.assertFalse([entry for unit in branch["units"] for entry in unit[kind]])
+            self.assertIn(identifier, {entry["id"] for unit in branch["units"] for entry in unit[f"review_{kind}"]})
+
+    def test_route_scoping_still_rejects_duplicate_core_or_same_branch_placements(self):
+        for number, destination in ((2, 3), (31, "professional")):
+            with self.subTest(number=number, destination=destination):
+                source = next(row for row in self.data.inputs["vocabulary"] if row["id"] == f"local:item:{number:03d}")
+                self.data.inputs["vocabulary"].append({**source, "level": destination})
+                with self.assertRaisesRegex(ValueError, "Duplicate placement ID"):
+                    self.outputs()
+                self.data.inputs["vocabulary"].pop()
+
+    def test_shared_sense_and_construction_annotations_cannot_differ_between_routes(self):
+        for kind, key, value in (
+            ("vocabulary", "ds", "a changed sense"),
+            ("grammar", "ch", "another form"),
+            ("grammar", "anchors", ["local:item:003"]),
+        ):
+            with self.subTest(kind=kind, key=key):
+                source = self.data.inputs[kind][1]
+                self.data.inputs[kind].append({**deepcopy(source), "level": "professional", key: value})
+                with self.assertRaisesRegex(ValueError, "conflicting canonical placement"):
+                    self.outputs()
+                self.data.inputs[kind].pop()
+
+    def test_seeded_senses_and_constructions_remain_route_scoped(self):
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        levels = [level for phase in core["phases"] for level in phase["levels"] if level["number"] <= 20]
+        seeds = tuple(SeedUnit(level["number"], "grammar", unit) for level in levels for unit in level["units"])
+        self.repeat_placement(2, "professional")
+        self.repeat_placement(20, "professional")
+        for kind in ("vocabulary", "grammar"):
+            self.data.inputs[kind][:] = [
+                row for row in self.data.inputs[kind] if type(row["level"]) is str or row["level"] > 20
+            ]
+        self.data = replace(self.data, seeds=seeds)
+        branch = self.document(Path("teaching") / "extensions" / "professional" / "sequence.yaml")
+        for kind, prefix in (("vocabulary", "local:item"), ("grammar", "construction")):
+            introduced = {entry["id"] for unit in branch["units"] for entry in unit[kind]}
+            reviewed = {entry["id"] for unit in branch["units"] for entry in unit[f"review_{kind}"]}
+            self.assertIn(f"{prefix}:020", introduced)
+            self.assertNotIn(f"{prefix}:002", introduced)
+            self.assertIn(f"{prefix}:002", reviewed)
+
+    def test_core_anchor_promotion_does_not_erase_explicit_branch_selection(self):
+        row = next(row for row in self.data.inputs["vocabulary"] if row["id"] == "local:item:005")
+        row["level"] = "professional"
+        core = self.document(Path("teaching") / "core" / "vocabulary.min.yaml")
+        self.assertIn("local:item:005", {entry["id"] for entry in core})
+        branch = self.document(Path("teaching") / "extensions" / "professional" / "sequence.yaml")
+        self.assertIn("local:item:005",
+                      {entry["id"] for unit in branch["units"] for entry in unit["review_vocabulary"]})
+
+    def test_cross_topic_prerequisites_schedule_ready_groups_and_keep_reviews_earlier(self):
+        metadata = self.data.inputs["program"]["topics"]["grammar"]
+        self.data.inputs["program"]["topics"] = {
+            "first": dict(metadata), "second": dict(metadata), "grammar": dict(metadata),
+        }
+        for number, topic in ((2, "first"), (3, "second"), (4, "first")):
+            row = self.data.inputs["grammar"][number - 1]
+            row.update(level=2, topic=topic, anchors=["local:item:002"])
+        self.data = replace(self.data, construction_dependencies={
+            "construction:002": ("construction:003",),
+            "construction:003": ("construction:004",),
+        })
+        core = self.document(Path("teaching") / "core" / "sequence.yaml")
+        level = core["phases"][0]["levels"][1]
+        practice = [unit for unit in level["units"] if unit["grammar"]]
+        self.assertEqual([entry["id"] for unit in practice for entry in unit["grammar"]],
+                         ["construction:004", "construction:003", "construction:002"])
+        self.assertIn("construction:004", {entry["id"] for entry in practice[-1]["review_grammar"]})
+        known_words, known_grammar = set(), set()
+        for phase in core["phases"]:
+            for level in phase["levels"]:
+                for unit in level["units"]:
+                    self.assertLessEqual(len(unit["grammar"]), 3)
+                    self.assertTrue({entry["id"] for entry in unit["review_vocabulary"]} <= known_words)
+                    self.assertTrue({entry["id"] for entry in unit["review_grammar"]} <= known_grammar)
+                    known_words.update(entry["id"] for entry in unit["vocabulary"])
+                    known_grammar.update(entry["id"] for entry in unit["grammar"])
+
+    def test_canonical_shapes_labels_and_complete_identity_provenance_are_required(self):
+        for mutation in ("identity", "provenance", "label", "grammar-reading", "index-key", "source-identity"):
+            with self.subTest(mutation=mutation):
+                references = deepcopy(self.data.references)
+                if mutation == "identity":
+                    references.lexical_identity.pop("local:item:001")
+                elif mutation == "provenance":
+                    references.provenance.pop("construction:001")
+                elif mutation == "label":
+                    references.vocabulary["local:item:001"]["ds"] = "x" * 65
+                elif mutation == "grammar-reading":
+                    references.grammar["construction:001"]["pr"] = "invalid"
+                elif mutation == "index-key":
+                    references.vocabulary["local:item:001"]["id"] = "different"
+                else:
+                    references.source_sense_identity["local:item:003"] = references.source_sense_identity["local:item:001"]
+                with self.assertRaises(ValueError):
+                    validate_references(references, self.adapter.profile)
+
+    def test_homographs_can_share_spelling_identity_without_sharing_lexical_identity(self):
+        references = deepcopy(self.data.references)
+        references.lexical_identity["local:item:002"] = "different-lemma"
+        validate_references(references, self.adapter.profile)
+        self.data = replace(self.data, references=references)
+        report = self.document(Path("teaching") / "inventory.yaml")
+        self.assertEqual(report["core"]["headwords"], 30)
+        self.assertEqual(report["core"]["spellings"], 29)
+
+    def test_phrase_callback_is_mandatory_and_cannot_return_success_without_analysis(self):
+        self.outputs()
+        self.assertGreater(self.adapter.calls, 0)
+        for result in (None, True, PhraseAnalysis((), ())):
+            with self.subTest(result=result), patch.object(self.adapter, "validate_phrase", return_value=result):
+                with self.assertRaisesRegex(ValueError, "invalid phrase analysis"):
+                    self.outputs()
+        with patch.object(self.adapter, "validate_phrase", None):
+            with self.assertRaisesRegex(ValueError, "validator is required"):
+                self.outputs()
+
+    def test_phrase_keeps_compact_fields_and_expanded_grammar_realizations(self):
+        route = self.document(Path("teaching") / "tourist" / "sequence.yaml")
+        unit = route["units"][0]
+        self.assertEqual(set(unit["phrases"][0]), {"id", "ch", "pr", "ds"})
+        components = unit["phrase_components"]["fr-tourist-p001"]
+        self.assertEqual(components["items"], ["local:item:001"])
+        self.assertEqual(components["grammar"], ["construction:001"])
+        self.assertEqual(components["realizations"], self.phrase["realizations"])
+        quick = self.document(Path("teaching") / "tourist" / "quick-start" / "sequence.yaml")
+        self.assertEqual(quick["units"], route["units"])
+
+    def test_phrase_reconstruction_does_not_accept_uncovered_text_or_reading(self):
+        for key, suffix in (("ch", "extra"), ("pr", "wrong")):
+            with self.subTest(key=key):
+                previous = self.phrase[key]
+                self.phrase[key] += suffix
+                with self.assertRaisesRegex(ValueError, "uncovered or mismatched"):
+                    self.outputs()
+                self.phrase[key] = previous
+
+    def test_inverted_sentence_punctuation_does_not_erase_lexical_marks(self):
+        for surface in ("\u00bfchanged?", "\u00a1changed!"):
+            self.phrase["ch"] = surface
+            self.outputs()
+        for left, right in (("l'ami", "lami"), ("porta-voz", "portavoz"), ("s\u00ed", "si")):
+            self.assertNotEqual(normalized_surface(left), normalized_surface(right))
+
+    def test_inflected_and_fixed_grammar_surfaces_require_licensed_form_annotations(self):
+        segment = self.phrase["realizations"][0]
+        segment["form_id"] = "invented"
+        with self.assertRaisesRegex(ValueError, "Unlicensed"):
+            self.outputs()
+        segment.pop("form_id")
+        with self.assertRaisesRegex(ValueError, "require a validated form_id"):
+            self.outputs()
+
+    def test_fixed_construction_can_supply_form_without_unrelated_lexical_credit(self):
+        segment = self.phrase["realizations"][0]
+        segment["items"] = []
+        self.phrase["items"] = []
+        self.adapter.forms["example-request"] = deepcopy(segment)
+        self.outputs()
+        segment["grammar"] = []
+        self.phrase["grammar"] = []
+        self.adapter.forms["example-request"] = deepcopy(segment)
+        with self.assertRaisesRegex(ValueError, "lexical or construction link"):
+            self.outputs()
+
+    def test_phrase_dependencies_must_be_taught_and_exactly_used(self):
+        self.phrase["grammar"].append("construction:002")
+        with self.assertRaisesRegex(ValueError, "unknown ID"):
+            self.outputs()
+        self.phrase["grammar"].pop()
+        self.phrase["items"].append("local:item:002")
+        with self.assertRaisesRegex(ValueError, "unknown ID"):
+            self.outputs()
+        self.data.inputs["tourist"]["units"][0]["vocabulary"].append("local:item:002")
+        with self.assertRaisesRegex(ValueError, "union of realization links"):
+            self.outputs()
+
+    def test_construction_dependency_graph_rejects_unknown_cycles_and_forward_edges(self):
+        for dependencies in (
+            {"construction:001": ("missing",)},
+            {"construction:001": ("construction:001",)},
+            {"construction:001": ("construction:002",), "construction:002": ("construction:001",)},
+            {"construction:001": ("construction:002",)},
+        ):
+            with self.subTest(dependencies=dependencies):
+                self.data = replace(self.data, construction_dependencies=dependencies)
+                with self.assertRaises(ValueError):
+                    self.outputs()
+        self.data = replace(self.data, construction_dependencies={"construction:002": ("construction:001",)})
+        self.outputs()
+
+    def test_tourist_and_branches_cannot_borrow_undeclared_construction_prerequisites(self):
+        self.data = replace(self.data, construction_dependencies={"construction:031": ("construction:032",)})
+        with self.assertRaisesRegex(ValueError, "prerequisites not introduced"):
+            self.outputs()
+        self.data = replace(self.data, construction_dependencies={"construction:002": ("construction:001",)})
+        self.data.inputs["tourist"]["units"][0]["grammar"] = ["construction:002"]
+        self.data.inputs["tourist"]["units"][0]["vocabulary"].append("local:item:002")
+        with self.assertRaisesRegex(ValueError, "prerequisites not introduced"):
+            self.outputs()
+
+    def test_acyclic_constructions_may_be_explicitly_cotaught_in_one_module(self):
+        row = self.data.inputs["grammar"][2]
+        row["level"] = 2
+        row["anchors"] = ["local:item:002"]
+        self.data = replace(self.data, construction_dependencies={"construction:002": ("construction:003",)})
+        self.outputs()
+
+    def test_program_rejects_the_wrong_phase_partition_even_if_levels_are_ordered(self):
+        phases = self.data.inputs["program"]["phases"]
+        phases[1]["levels"].append(phases[2]["levels"].pop(0))
+        with self.assertRaisesRegex(ValueError, "1-4, 5-8"):
+            self.outputs()
+
+    def test_source_outputs_are_checked_and_cannot_overwrite_views_or_escape_root(self):
+        original = self.data
+        for path in (
+            self.root.parent / "outside.yaml",
+            self.root / "teaching" / "core" / "sequence.yaml",
+            self.root,
+        ):
+            with self.subTest(path=path):
+                self.data = replace(original, source_outputs={path: "invalid"})
+                with self.assertRaisesRegex(ValueError, "out-of-root"):
+                    self.outputs()
+
+    def test_deterministic_generation_readonly_check_and_input_immutability(self):
+        before = deepcopy(self.data)
+        outputs = generate(self.root, self.adapter)
+        originals = {path: path.read_bytes() for path in outputs}
+        self.assertEqual(outputs, generate(self.root, self.adapter))
+        generate(self.root, self.adapter, check=True)
+        self.assertEqual(self.data, before)
+        self.assertEqual(originals, {path: path.read_bytes() for path in outputs})
+        source = self.root / "reference-senses.yaml"
+        source.write_text("stale\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "stale"):
+            generate(self.root, self.adapter, check=True)
+        self.assertEqual(source.read_text(encoding="utf-8"), "stale\n")
+
+    def test_invalid_adapter_data_writes_nothing(self):
+        self.phrase["ch"] += "unexpected"
+        with self.assertRaises(ValueError):
+            generate(self.root, self.adapter)
+        self.assertFalse(self.root.exists())
+
+    def test_output_file_ancestor_conflicts_are_rejected_before_any_writes(self):
+        for extra in (
+            {self.root / "teaching": "not a directory"},
+            {self.root / "sources": "a file", self.root / "sources" / "senses.yaml": "[]\n"},
+            {self.root / "sources" / "senses.yaml": "[]\n", self.root / "sources": "a file"},
+        ):
+            with self.subTest(paths=list(extra)):
+                self.adapter.data = replace(self.data, source_outputs=extra)
+                with self.assertRaisesRegex(ValueError, "ancestor conflict"):
+                    generate(self.root, self.adapter)
+                self.assertFalse(self.root.exists())
+
+
+class RegistryTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.catalog = {
+            "schema_version": 1,
+            "languages": [{"id": name, "standard": "Existing reference collection", "levels": levels}
+                          for name, levels in LEVELS.items()],
+        }
+
+    def validator(self):
+        write_yaml(self.root / "catalog.yaml", self.catalog)
+        validator = Validator(self.root)
+        validator.catalog()
+        return validator
+
+    def test_future_registrations_are_not_required_or_implicitly_activated(self):
+        validator = self.validator()
+        self.assertFalse(validator.errors)
+        self.assertEqual(validator.active_languages, list(LEVELS))
+        self.assertFalse(validator.teaching_programs)
+        with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            self.assertEqual(validator.run(["french"]), 1)
+        self.assertTrue(any("not enabled: french" in error for error in validator.errors))
+
+    def test_independent_inventory_does_not_require_artificial_exam_bands(self):
+        self.catalog["languages"].append({
+            "id": "french", "standard": "Independent teaching inventory",
+            "reference_inventory": "reference", "teaching_program": "fr-practical",
+        })
+        validator = self.validator()
+        self.assertFalse(validator.errors)
+        self.assertEqual(validator.reference_inventories, {"french": "reference"})
+        self.assertIn("french", validator.teaching_programs)
+        for path in ("../outside", "other"):
+            self.catalog["languages"][-1]["reference_inventory"] = path
+            self.assertTrue(self.validator().errors)
+        self.catalog["languages"][-1]["reference_inventory"] = "reference"
+        self.catalog["languages"][-1]["levels"] = ["a1", "a2"]
+        self.assertTrue(self.validator().errors)
+
+    def test_adapter_imports_use_registry_not_catalog_and_missing_enabled_adapter_fails(self):
+        self.assertEqual(get_adapter("chinese").profile.prefix, "zh")
+        with self.assertRaisesRegex(ValueError, "Unregistered"):
+            get_adapter("../untrusted")
+        error = ModuleNotFoundError("missing", name="french_program_adapter")
+        with patch("practical_program_registry.import_module", side_effect=error):
+            with self.assertRaisesRegex(ValueError, "Enabled french program requires"):
+                get_adapter("french")
+
+    def test_independent_inline_senses_are_rejected_without_enabling_a_program(self):
+        self.catalog["languages"].append({
+            "id": "french", "standard": "Independent teaching inventory", "reference_inventory": "reference",
+        })
+        language = self.root / "french"
+        reference = language / "reference"
+        reference.mkdir(parents=True)
+        for path in (self.root / "README.md", self.root / "TUTOR_GUIDE.md",
+                     language / "README.md", reference / "README.md"):
+            path.write_text("Independent reference documentation.\n", encoding="utf-8")
+        write_yaml(language / "sources.yaml", [{
+            "id": "original-example", "title": "Original test content", "url": "local:reference",
+            "license": "Original test content", "usage": "Test fixtures", "attribution": "Test authors",
+            "retrieved_on": "2026-09-15",
+        }])
+        vocabulary = {
+            "id": "word", "target": "forme", "reading": "reading", "english": "form",
+            "part_of_speech": "noun", "topic": "description", "source_id": "original-example",
+            "source_entry": "local:word", "level_basis": "Independent reference inventory",
+        }
+        write_yaml(reference / "grammar.yaml", [{
+            "id": "construction", "pattern": "N+N", "english": "a noun construction", "note": "A test pattern.",
+            "source_id": "original-example", "level_basis": "Independent original selection",
+            "examples": [{"target": "example one", "english": "First example."},
+                         {"target": "example two", "english": "Second example."}],
+        }])
+        write_yaml(reference / "vocabulary.yaml", [vocabulary])
+        write_yaml(self.root / "catalog.yaml", self.catalog)
+        with patch("validate_curriculum.get_adapter") as adapter:
+            with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                self.assertEqual(Validator(self.root).run(["french"]), 0)
+            for senses in (17, None, {}, [], [{"id": "source", "english": "meaning"}]):
+                with self.subTest(senses=senses):
+                    write_yaml(reference / "vocabulary.yaml", [{**vocabulary, "senses": senses}])
+                    validator = Validator(self.root)
+                    with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                        self.assertEqual(validator.run(["french"]), 1)
+                    self.assertTrue(any("fields must be" in error for error in validator.errors))
+            adapter.assert_not_called()
+
+
+if __name__ == "__main__":
+    unittest.main()

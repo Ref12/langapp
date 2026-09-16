@@ -1,0 +1,323 @@
+# Original AI-assisted route, French phrase combinations and English teaching text.
+# Not human-reviewed; offered under CC-BY-SA-4.0 to the extent rights exist.
+# Lexical segments retain their selected source senses, not new lexical claims.
+schema_version: 1
+id: fr-tourist
+title: French for a short visit
+language: french
+level_basis: >-
+  An independent original practical tourist route, not a CEFR inventory, a core-level
+  prerequisite, an examination syllabus, or a claim of demonstrated ability. The
+  first three units form an ordered quick start from empty vocabulary and grammar
+  context; later units extend that same route without relying on the core program.
+review_policy: >-
+  All phrase combinations, English labels, teaching choices and contextual
+  pronunciation guides are original, AI-assisted and not human-reviewed. A whole
+  phrase guide is never source-verified. Its slash-delimited chunks form a
+  SEGMENTED pronunciation guide, not a continuous narrow utterance, required
+  pauses, audio evidence or a spoken assessment. Lexical readings retain their
+  source status; construction readings are explicitly original. Targets omit
+  terminal punctuation. Use small lessons, retrieve earlier items in changed
+  situations, revisit them on later days and record modality, assistance and
+  delayed performance under the program mastery policy. Formula recall does not
+  establish independent component vocabulary or conjugation mastery. Listening
+  and spoken judgments require actual audio and suitable evaluation. Requests
+  here do not promise availability, safety, service or a particular response;
+  health examples communicate needs, not clinical advice.
+quick_start: [contact-politeness, communication-repair, essential-needs]
+units:
+- id: contact-politeness
+  title: Open an exchange politely
+  outcome: Greet someone, make a polite appeal and acknowledge a response.
+  vocabulary_words: [bonjour, merci]
+  grammar: [fr-g-travel-polite-request]
+  review_words: []
+  review_grammar: []
+  phrases:
+  - id: fr-tourist-p001
+    ds: Hello
+    segments:
+    - {form: fr-f-travel-bonjour-capital}
+  - id: fr-tourist-p002
+    ds: Please
+    segments:
+    - {form: fr-f-travel-please}
+  - id: fr-tourist-p003
+    ds: Thank you
+    segments:
+    - {form: fr-f-travel-merci-capital}
+- id: communication-repair
+  title: Repair a misunderstanding
+  outcome: Ask for slower speech or repetition and say when you do not understand.
+  vocabulary_words: []
+  grammar: [fr-g-travel-communication-repair, fr-g-travel-polite-assistance]
+  review_words: [bonjour, merci]
+  review_grammar: [fr-g-travel-polite-request]
+  phrases:
+  - id: fr-tourist-p004
+    ds: Please speak more slowly
+    segments:
+    - {form: fr-f-travel-speak-slowly}
+  - id: fr-tourist-p005
+    ds: Could you repeat that
+    segments:
+    - {form: fr-f-travel-repeat}
+  - id: fr-tourist-p006
+    ds: I do not understand
+    segments:
+    - {form: fr-f-travel-not-understand}
+- id: essential-needs
+  title: Ask for water, help and a location
+  outcome: Request water or help and find out where the railway station is.
+  vocabulary_words: [eau, gare, aide]
+  grammar: [fr-g-travel-would-like, fr-g-travel-location-question, fr-g-travel-need]
+  review_words: [merci]
+  review_grammar: [fr-g-travel-polite-request, fr-g-travel-polite-assistance, fr-g-travel-communication-repair]
+  phrases:
+  - id: fr-tourist-p007
+    ds: I would like some water
+    segments:
+    - {form: fr-f-travel-would-like-water}
+    - {word: eau}
+  - id: fr-tourist-p008
+    ds: Where is the railway station
+    segments:
+    - {form: fr-f-travel-where-feminine}
+    - {word: gare}
+  - id: fr-tourist-p009
+    ds: I need help
+    segments:
+    - {form: fr-f-travel-need-help}
+    - {word: aide}
+  - id: fr-tourist-p010
+    ds: Could you help me
+    segments:
+    - {form: fr-f-travel-help-me}
+- id: directions-toilets
+  title: Toilets and simple directions
+  outcome: Ask for the toilets and distinguish left from right in a short reply.
+  vocabulary_words: [toilette, gauche, droite]
+  grammar: [fr-g-travel-direction]
+  review_words: [gare, aide]
+  review_grammar: [fr-g-travel-location-question, fr-g-travel-polite-assistance]
+  phrases:
+  - id: fr-tourist-p011
+    ds: Where are the toilets
+    segments:
+    - {form: fr-f-travel-where-toilets}
+    - {form: fr-f-travel-toilettes-plural}
+  - id: fr-tourist-p012
+    ds: To the left
+    segments:
+    - {form: fr-f-travel-direction-prefix}
+    - {word: gauche}
+  - id: fr-tourist-p013
+    ds: To the right
+    segments:
+    - {form: fr-f-travel-direction-prefix}
+    - {word: droite}
+- id: transport-times
+  title: A ticket and a time
+  outcome: Request a ticket and ask the time of a journey already under discussion.
+  vocabulary_words: [billet, heure]
+  grammar: [fr-g-travel-time-question]
+  review_words: [gare, gauche, droite]
+  review_grammar: [fr-g-travel-would-like, fr-g-travel-communication-repair]
+  phrases:
+  - id: fr-tourist-p014
+    ds: I would like a ticket
+    segments:
+    - {form: fr-f-travel-would-like-masculine}
+    - {word: billet}
+  - id: fr-tourist-p015
+    ds: At what time
+    segments:
+    - {form: fr-f-travel-what-time}
+    - {word: heure}
+- id: accommodation
+  title: Find the hotel and explain a room need
+  outcome: Find a hotel, mention a reservation, request a room and report a key problem.
+  vocabulary_words: [réservation, chambre, clé, hôtel]
+  grammar: [fr-g-travel-have, fr-g-travel-not-working]
+  review_words: [eau, heure]
+  review_grammar: [fr-g-travel-would-like, fr-g-travel-location-question, fr-g-travel-time-question]
+  phrases:
+  - id: fr-tourist-p016
+    ds: I have a reservation
+    segments:
+    - {form: fr-f-travel-have-feminine}
+    - {word: réservation}
+  - id: fr-tourist-p017
+    ds: I would like a room
+    segments:
+    - {form: fr-f-travel-would-like-feminine}
+    - {word: chambre}
+  - id: fr-tourist-p018
+    ds: The key does not work
+    segments:
+    - {form: fr-f-travel-key-subject}
+    - {word: clé}
+    - {form: fr-f-travel-not-working}
+  - id: fr-tourist-p019
+    ds: Where is the hotel
+    segments:
+    - {form: fr-f-travel-where-hotel}
+    - {word: hôtel}
+- id: meals-allergens
+  title: Order and clarify milk ingredients
+  outcome: Request coffee or the bill and ask about milk rather than assume its absence.
+  vocabulary_words: [addition, café, lait]
+  grammar: [fr-g-travel-milk-check]
+  review_words: [eau, merci]
+  review_grammar: [fr-g-travel-would-like, fr-g-travel-polite-request]
+  phrases:
+  - id: fr-tourist-p020
+    ds: The bill, please
+    segments:
+    - {form: fr-f-travel-bill-article}
+    - {word: addition}
+    - {form: fr-f-travel-bill-please}
+  - id: fr-tourist-p021
+    ds: I would like a coffee
+    segments:
+    - {form: fr-f-travel-would-like-masculine}
+    - {word: café}
+  - id: fr-tourist-p022
+    ds: Without milk
+    segments:
+    - {form: fr-f-travel-without-milk}
+    - {word: lait}
+  - id: fr-tourist-p023
+    ds: Is there any milk in it
+    segments:
+    - {form: fr-f-travel-milk-question}
+    - {word: lait}
+- id: pharmacy-health
+  title: State a health need
+  outcome: Mention an allergy, ask for a doctor and locate a pharmacy without assuming treatment.
+  vocabulary_words: [allergie, médecin, pharmacie]
+  grammar: []
+  review_words: [aide, lait]
+  review_grammar: [fr-g-travel-have, fr-g-travel-need, fr-g-travel-location-question, fr-g-travel-milk-check]
+  phrases:
+  - id: fr-tourist-p024
+    ds: I have an allergy
+    segments:
+    - {form: fr-f-travel-have-feminine}
+    - {word: allergie}
+  - id: fr-tourist-p025
+    ds: I need a doctor
+    segments:
+    - {form: fr-f-travel-need-doctor}
+    - {word: médecin}
+  - id: fr-tourist-p026
+    ds: Where is the pharmacy
+    segments:
+    - {form: fr-f-travel-where-feminine}
+    - {word: pharmacie}
+- id: shopping-payment
+  title: Check the price and arrange payment
+  outcome: Ask a price, check whether card payment is possible and request an invoice.
+  vocabulary_words: [carte, facture, payer]
+  grammar: [fr-g-travel-price-question, fr-g-travel-card-payment]
+  review_words: [addition, merci]
+  review_grammar: [fr-g-travel-would-like, fr-g-travel-polite-request]
+  phrases:
+  - id: fr-tourist-p027
+    ds: How much does it cost
+    segments:
+    - {form: fr-f-travel-price-question}
+  - id: fr-tourist-p028
+    ds: Can I pay by card
+    segments:
+    - {form: fr-f-travel-pay-by-card}
+    - {word: carte}
+  - id: fr-tourist-p029
+    ds: I would like an invoice
+    segments:
+    - {form: fr-f-travel-would-like-feminine}
+    - {word: facture}
+  - id: fr-tourist-p030
+    ds: I would like to pay
+    segments:
+    - {form: fr-f-travel-would-like-pay}
+    - {word: payer}
+- id: belongings-disruptions
+  title: Missing luggage and a delayed train
+  outcome: Describe missing luggage, seek it, request a written address and report a delay.
+  vocabulary_words: [bagage, perdu, adresse, train, retard]
+  grammar: [fr-g-travel-lost-description, fr-g-travel-search-belonging, fr-g-travel-delay]
+  review_words: [billet, hôtel, aide]
+  review_grammar: [fr-g-travel-polite-assistance, fr-g-travel-communication-repair, fr-g-travel-need]
+  phrases:
+  - id: fr-tourist-p031
+    ds: My luggage is lost
+    segments:
+    - {form: fr-f-travel-my-bagage}
+    - {word: bagage}
+    - {form: fr-f-travel-bagage-is}
+    - {word: perdu}
+  - id: fr-tourist-p032
+    ds: I am looking for my luggage
+    segments:
+    - {form: fr-f-travel-search-bagage}
+    - {word: bagage}
+  - id: fr-tourist-p033
+    ds: Could you write down the address
+    segments:
+    - {form: fr-f-travel-write-address}
+    - {word: adresse}
+  - id: fr-tourist-p034
+    ds: The train is delayed
+    segments:
+    - {form: fr-f-travel-train-subject}
+    - {word: train}
+    - {form: fr-f-travel-is-delayed}
+    - {word: retard}
+- id: urgent-help-orientation
+  title: Signal urgency and being lost
+  outcome: State that help is urgent, ask someone to call a doctor and say you are lost.
+  vocabulary_words: [urgence]
+  grammar: [fr-g-travel-urgent-help]
+  review_words: [médecin, perdu, aide]
+  review_grammar: [fr-g-travel-lost-description, fr-g-travel-need, fr-g-travel-polite-assistance]
+  phrases:
+  - id: fr-tourist-p035
+    ds: This is an emergency
+    segments:
+    - {form: fr-f-travel-emergency}
+    - {word: urgence}
+  - id: fr-tourist-p036
+    ds: Call a doctor
+    segments:
+    - {form: fr-f-travel-call-doctor}
+    - {word: médecin}
+  - id: fr-tourist-p037
+    ds: I am lost (speaker using feminine agreement)
+    segments:
+    - {form: fr-f-travel-i-am-lost}
+    - {form: fr-f-travel-perdue-feminine}
+- id: departure
+  title: Check departure and say goodbye
+  outcome: Ask the departure time, explain that you are going to the airport and close the exchange.
+  vocabulary_words: [départ, aéroport, au revoir]
+  grammar: [fr-g-travel-destination]
+  review_words: [heure, gare, merci]
+  review_grammar: [fr-g-travel-time-question, fr-g-travel-communication-repair, fr-g-travel-polite-request]
+  phrases:
+  - id: fr-tourist-p038
+    ds: At what time is the departure
+    segments:
+    - {form: fr-f-travel-what-time}
+    - {word: heure}
+    - {form: fr-f-travel-departure-time}
+    - {word: départ}
+  - id: fr-tourist-p039
+    ds: I am going to the airport
+    segments:
+    - {form: fr-f-travel-to-airport}
+    - {word: aéroport}
+  - id: fr-tourist-p040
+    ds: Goodbye
+    segments:
+    - {form: fr-f-travel-au-revoir-capital}

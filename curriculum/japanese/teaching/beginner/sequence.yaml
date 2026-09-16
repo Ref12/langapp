@@ -1,0 +1,410 @@
+schema_version: 2
+id: ja-beginner
+title: Practical Japanese beginner
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+units:
+- id: first-contact
+  title: Meet someone and exchange names
+  outcome: Introduce yourself, identify a name, and check a simple statement.
+  vocabulary:
+  - {id: ja-n5-00679-s001, ch: 私, pr: わたし, ds: I}
+  - {id: ja-n5-00458-s001, ch: 名前, pr: なまえ, ds: name}
+  - {id: ja-n5-00149-s001, ch: 学生, pr: がくせい, ds: student (esp. a university student)}
+  - {id: ja-n5-00334-s001, ch: 先生, pr: せんせい, ds: teacher}
+  - {id: ja-n5-00527-s001, ch: 人, pr: ひと, ds: person}
+  - {id: ja-n5-00211-s001, ch: 国, pr: くに, ds: country}
+  - {id: ja-n5-00088-s001, ch: 英語, pr: えいご, ds: English (language)}
+  - {id: ja-n5-00663-s001, ch: 留学生, pr: りゅうがくせい, ds: overseas student}
+  - {id: ja-n5-00485-s001, ch: はい, pr: はい, ds: 'yes'}
+  - {id: ja-n5-00044-s001, ch: いいえ, pr: いいえ, ds: 'no'}
+  - {id: ja-n5-00676-s001, ch: わかる, pr: わかる, ds: to understand}
+  - {id: ja-n5-00645-s001, ch: ゆっくり, pr: ゆっくり, ds: slowly}
+  - {id: ja-n5-00622-s001, ch: もう一度, pr: もういちど, ds: once more}
+  - {id: ja-n5-00148-s001, ch: 書く, pr: かく, ds: to write}
+  - {id: ja-n5-00282-s001, ch: 質問, pr: しつもん, ds: question}
+  - {id: ja-n5-00066-s001, ch: 意味, pr: いみ, ds: meaning}
+  - {id: ja-n5-00507-s001, ch: 話す, pr: はなす, ds: to talk}
+  - {id: ja-n5-00180-s002, ch: 聞く, pr: きく, ds: listen to something}
+  - {id: ja-n5-00045-s001, ch: 言う, pr: いう, ds: to say}
+  - {id: ja-n5-00314-s001, ch: 少し, pr: すこし, ds: a little}
+  - {id: ja-n5-00385-s001, ch: ちょっと, pr: ちょっと, ds: a little}
+  - {id: ja-n3-00603-s001, ch: こんにちは, pr: こんにちは, ds: hello}
+  - {id: ja-n2-01337-s001, ch: はじめまして, pr: はじめまして, ds: nice to meet you}
+  grammar:
+  - {id: ja-n5-g001, ch: Nです, ds: be a noun; polite identification}
+  - {id: ja-n5-g004, ch: Nは, ds: topic; as for a noun}
+  - {id: ja-n5-g003, ch: 文＋か, ds: polite question}
+  review_vocabulary: []
+  review_grammar: []
+- id: a-drink-and-a-meal
+  title: Choose a drink and a simple meal
+  outcome: Identify a drink or meal and state a simple preference.
+  vocabulary:
+  - {id: ja-n5-00600-s001, ch: 水, pr: みず, ds: water (esp. cool or cold)}
+  - {id: ja-n5-00111-s001, ch: お茶, pr: おちゃ, ds: tea (esp. green or barley)}
+  - {id: ja-n5-00236-s001, ch: コーヒー, pr: コーヒー, ds: coffee}
+  - {id: ja-n5-00481-s001, ch: 飲む, pr: のむ, ds: to drink}
+  - {id: ja-n5-00369-s001, ch: 食べる, pr: たべる, ds: to eat}
+  - {id: ja-n5-00250-s001, ch: ご飯, pr: ごはん, ds: cooked rice}
+  - {id: ja-n5-00516-s001, ch: パン, pr: パン, ds: bread}
+  - {id: ja-n5-00370-s001, ch: 卵, pr: たまご, ds: eggs}
+  - {id: ja-n5-00260-s001, ch: 魚, pr: さかな, ds: fish}
+  - {id: ja-n5-00630-s001, ch: 野菜, pr: やさい, ds: vegetable}
+  - {id: ja-n5-00190-s001, ch: 牛肉, pr: ぎゅうにく, ds: beef}
+  - {id: ja-n5-00545-s001, ch: 豚肉, pr: ぶたにく, ds: pork}
+  - {id: ja-n5-00443-s001, ch: 鶏肉, pr: とりにく, ds: chicken meat}
+  - {id: ja-n5-00191-s001, ch: 牛乳, pr: ぎゅうにゅう, ds: (cow's) milk}
+  - {id: ja-n5-00093-s001, ch: おいしい, pr: おいしい, ds: good(-tasting)}
+  - {id: ja-n5-00311-s001, ch: 好き, pr: すき, ds: liking}
+  - {id: ja-n1-01115-s001, ch: これ, pr: これ, ds: this}
+  - {id: ja-n1-01785-s001, ch: それ, pr: それ, ds: that}
+  - {id: ja-n5-00421-s001, ch: どうぞ, pr: どうぞ, ds: please}
+  - {id: ja-n5-00206-s001, ch: ください, pr: ください, ds: please (give me)}
+  - {id: ja-n5-00467-s002, ch: 肉, pr: にく, ds: meat (food)}
+  - {id: ja-n2-00202-s001, ch: お願いします, pr: おねがいします, ds: please}
+  grammar:
+  - {id: ja-n5-g023, ch: 動詞ます, ds: polite nonpast verb}
+  - {id: ja-n5-g006, ch: Nを, ds: direct object}
+  - {id: ja-n5-g018, ch: これ／それ／あれ, ds: this; that; that over there}
+  - {id: ja-n5-g044, ch: Nが好き／上手, ds: like a thing; be good at a thing}
+  review_vocabulary: []
+  review_grammar: []
+- id: polite-repair
+  title: Repair a misunderstanding politely
+  outcome: Apologize, distinguish a word from its meaning, and request repetition.
+  vocabulary:
+  - {id: ja-n3-00876-s001, ch: すみません, pr: すみません, ds: excuse me; sorry (attention or apology)}
+  - {id: ja-n3-00043-s001, ch: ありがとう, pr: ありがとう, ds: thank you}
+  - {id: ja-n5-00610-s001, ch: 見る, pr: みる, ds: to see}
+  - {id: ja-n5-00653-s001, ch: 読む, pr: よむ, ds: to read}
+  - {id: ja-n5-00560-s001, ch: ペン, pr: ペン, ds: pen}
+  - {id: ja-n5-00163-s001, ch: 紙, pr: かみ, ds: paper}
+  - {id: ja-n5-00572-s001, ch: 本, pr: ほん, ds: book}
+  - {id: ja-n5-00277-s001, ch: 辞書, pr: じしょ, ds: dictionary}
+  - {id: ja-n5-00247-s001, ch: 言葉, pr: ことば, ds: language}
+  - {id: ja-n5-00675-s001, ch: 若い, pr: わかい, ds: young}
+  - {id: ja-n5-00055-s001, ch: 痛い, pr: いたい, ds: painful}
+  - {id: ja-n5-00352-s001, ch: 大丈夫, pr: だいじょうぶ, ds: safe}
+  - {id: ja-n5-00228-s001, ch: 元気, pr: げんき, ds: lively}
+  - {id: ja-n5-00652-s001, ch: 呼ぶ, pr: よぶ, ds: to call out (to)}
+  - {id: ja-n5-00180-s001, ch: 聞く, pr: きく, ds: hear a sound}
+  - {id: ja-n5-00371-s001, ch: 誰, pr: だれ, ds: who}
+  - {id: ja-n5-00464-s001, ch: 何, pr: なに, ds: what}
+  - {id: ja-n5-00435-s001, ch: どなた, pr: どなた, ds: who}
+  - {id: ja-n5-00112-s001, ch: お手洗い, pr: おてあらい, ds: toilet}
+  - {id: ja-n5-00428-s001, ch: どこ, pr: どこ, ds: where}
+  grammar:
+  - {id: ja-n5-g024, ch: 動詞ません, ds: polite negative nonpast verb}
+  - {id: ja-n5-g007, ch: NのN, ds: possession; noun modification}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g023, ch: 動詞ます, ds: polite nonpast verb}
+- id: nearby-places
+  title: Locate a person or belonging
+  outcome: Locate an object or person and distinguish existence from action location.
+  vocabulary:
+  - {id: ja-n5-00237-s001, ch: ここ, pr: ここ, ds: here}
+  - {id: ja-n5-00340-s001, ch: そこ, pr: そこ, ds: there (place relatively near listener)}
+  - {id: ja-n5-00016-s001, ch: あそこ, pr: あそこ, ds: there}
+  - {id: ja-n5-00090-s001, ch: 駅, pr: えき, ds: railway station}
+  - {id: ja-n5-00558-s001, ch: 部屋, pr: へや, ds: room}
+  - {id: ja-n5-00046-s001, ch: 家, pr: いえ, ds: house}
+  - {id: ja-n5-00147-s001, ch: 鍵, pr: かぎ, ds: key}
+  - {id: ja-n5-00259-s001, ch: 財布, pr: さいふ, ds: wallet}
+  - {id: ja-n5-00161-s001, ch: かばん, pr: かばん, ds: bag}
+  - {id: ja-n5-00624-s001, ch: 持つ, pr: もつ, ds: to hold (in one's hand)}
+  - {id: ja-n5-00075-s001, ch: 上, pr: うえ, ds: above}
+  - {id: ja-n5-00279-s001, ch: 下, pr: した, ds: below}
+  - {id: ja-n5-00448-s001, ch: 中, pr: なか, ds: inside}
+  - {id: ja-n5-00343-s001, ch: 外, pr: そと, ds: outside}
+  - {id: ja-n5-00436-s001, ch: 隣, pr: となり, ds: next (to)}
+  - {id: ja-n5-00076-s001, ch: 後ろ, pr: うしろ, ds: behind; the rear side}
+  - {id: ja-n5-00583-s001, ch: 前, pr: まえ, ds: in front (of)}
+  - {id: ja-n5-00070-s001, ch: いる, pr: いる, ds: to be (of animate objects)}
+  - {id: ja-n5-00039-s001, ch: ある, pr: ある, ds: to be}
+  - {id: ja-n5-00039-s003, ch: ある, pr: ある, ds: be located}
+  - {id: ja-n5-00476-s001, ch: 猫, pr: ねこ, ds: 'cat (esp. the domestic cat, Felis catus)'}
+  - {id: ja-n5-00064-s001, ch: 犬, pr: いぬ, ds: dog (Canis (lupus) familiaris)}
+  grammar:
+  - {id: ja-n5-g005, ch: Nが, ds: subject; newly identified information}
+  - {id: ja-n5-g010, ch: 場所にNがあります, ds: an inanimate thing exists at a place}
+  - {id: ja-n5-g011, ch: 場所にNがいます, ds: a person or animal exists at a place}
+  - {id: ja-n5-g009, ch: 場所で, ds: at a place where an action happens}
+  review_vocabulary: []
+  review_grammar: []
+- id: people-and-belongings
+  title: Talk about people and belongings
+  outcome: Identify familiar people and distinguish possession from a noun description.
+  vocabulary:
+  - {id: ja-n5-00155-s001, ch: 家族, pr: かぞく, ds: family}
+  - {id: ja-n5-00440-s001, ch: 友達, pr: ともだち, ds: friend}
+  - {id: ja-n5-00028-s001, ch: 兄, pr: あに, ds: older brother}
+  - {id: ja-n5-00029-s001, ch: 姉, pr: あね, ds: older sister}
+  - {id: ja-n5-00067-s001, ch: 妹, pr: いもうと, ds: younger sister}
+  - {id: ja-n5-00114-s001, ch: 弟, pr: おとうと, ds: younger brother}
+  - {id: ja-n5-00098-s001, ch: お母さん, pr: おかあさん, ds: mother}
+  - {id: ja-n5-00113-s001, ch: お父さん, pr: おとうさん, ds: father}
+  - {id: ja-n5-00664-s001, ch: 両親, pr: りょうしん, ds: parents}
+  - {id: ja-n5-00248-s001, ch: 子供, pr: こども, ds: child}
+  - {id: ja-n5-00119-s001, ch: 大人, pr: おとな, ds: adult}
+  - {id: ja-n5-00350-s001, ch: 大学, pr: だいがく, ds: university}
+  - {id: ja-n5-00157-s001, ch: 学校, pr: がっこう, ds: school}
+  - {id: ja-n5-00140-s001, ch: 会社, pr: かいしゃ, ds: company}
+  - {id: ja-n5-00276-s001, ch: 仕事, pr: しごと, ds: work}
+  - {id: ja-n5-00193-s001, ch: 教室, pr: きょうしつ, ds: classroom}
+  - {id: ja-n5-00391-s001, ch: 机, pr: つくえ, ds: desk}
+  - {id: ja-n5-00053-s001, ch: 椅子, pr: いす, ds: chair}
+  - {id: ja-n5-00249-s001, ch: この, pr: この, ds: this}
+  - {id: ja-n5-00344-s001, ch: その, pr: その, ds: that}
+  - {id: ja-n5-00030-s001, ch: あの, pr: あの, ds: say}
+  - {id: ja-n5-00446-s001, ch: どれ, pr: どれ, ds: which (of three or more)}
+  grammar:
+  - {id: ja-n5-g019, ch: この／その／あの＋N, ds: this noun; that noun; that noun over there}
+  - {id: ja-n5-g016, ch: NとN, ds: and; an exhaustive noun list}
+  - {id: ja-n5-g008, ch: Nも, ds: also; too}
+  review_vocabulary: []
+  review_grammar: []
+- id: choose-an-object
+  title: Choose an object by its features
+  outcome: Use an adjective contrast to identify the right object without pointing alone.
+  vocabulary:
+  - {id: ja-n5-00095-s001, ch: 大きい, pr: おおきい, ds: big}
+  - {id: ja-n5-00375-s001, ch: 小さい, pr: ちいさい, ds: small}
+  - {id: ja-n5-00020-s001, ch: 新しい, pr: あたらしい, ds: new}
+  - {id: ja-n5-00551-s001, ch: 古い, pr: ふるい, ds: old}
+  - {id: ja-n5-00005-s001, ch: 赤い, pr: あかい, ds: red}
+  - {id: ja-n5-00003-s001, ch: 青い, pr: あおい, ds: blue}
+  - {id: ja-n5-00306-s001, ch: 白い, pr: しろい, ds: white}
+  - {id: ja-n5-00220-s001, ch: 黒い, pr: くろい, ds: black}
+  - {id: ja-n5-00073-s001, ch: 色, pr: いろ, ds: colour}
+  - {id: ja-n5-00537-s001, ch: 広い, pr: ひろい, ds: spacious}
+  - {id: ja-n5-00329-s001, ch: 狭い, pr: せまい, ds: narrow}
+  - {id: ja-n5-00278-s001, ch: 静か, pr: しずか, ds: quiet}
+  - {id: ja-n5-00199-s001, ch: 綺麗, pr: きれい, ds: pretty}
+  - {id: ja-n5-00632-s001, ch: 安い, pr: やすい, ds: cheap}
+  - {id: ja-n5-00357-s001, ch: 高い, pr: たかい, ds: high}
+  - {id: ja-n5-00449-s001, ch: 長い, pr: ながい, ds: 'long (distance, length)'}
+  - {id: ja-n5-00599-s001, ch: 短い, pr: みじかい, ds: short}
+  - {id: ja-n5-00130-s001, ch: 重い, pr: おもい, ds: heavy}
+  - {id: ja-n5-00169-s001, ch: 軽い, pr: かるい, ds: light (i.e. not heavy)}
+  - {id: ja-n5-00006-s001, ch: 明るい, pr: あかるい, ds: bright; well-lit}
+  - {id: ja-n5-00214-s001, ch: 暗い, pr: くらい, ds: dark}
+  - {id: ja-n5-00042-s001, ch: いい, pr: いい, ds: good}
+  - {id: ja-n5-00682-s001, ch: 悪い, pr: わるい, ds: bad}
+  grammar:
+  - {id: ja-n5-g020, ch: い形容詞＋です, ds: polite i-adjective predicate}
+  - {id: ja-n5-g021, ch: な形容詞＋な＋N, ds: na-adjective modifying a noun}
+  - {id: ja-n5-g002, ch: Nではありません, ds: not be a noun; polite negation}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g001, ch: Nです, ds: be a noun; polite identification}
+- id: daily-routines
+  title: Describe a daily routine
+  outcome: Say when an ordinary activity happens and contrast nonpast with past.
+  vocabulary:
+  - {id: ja-n5-00192-s001, ch: 今日, pr: きょう, ds: today}
+  - {id: ja-n5-00187-s001, ch: 昨日, pr: きのう, ds: yesterday}
+  - {id: ja-n5-00015-s001, ch: 明日, pr: あした, ds: tomorrow}
+  - {id: ja-n5-00065-s001, ch: 今, pr: いま, ds: now}
+  - {id: ja-n5-00011-s001, ch: 朝, pr: あさ, ds: morning}
+  - {id: ja-n5-00535-s001, ch: 昼, pr: ひる, ds: noon}
+  - {id: ja-n5-00654-s001, ch: 夜, pr: よる, ds: night}
+  - {id: ja-n5-00638-s001, ch: 夕方, pr: ゆうがた, ds: early evening (usu. from 3pm to 6pm)}
+  - {id: ja-n5-00575-s001, ch: 毎朝, pr: まいあさ, ds: every morning}
+  - {id: ja-n5-00579-s001, ch: 毎日, pr: まいにち, ds: every day}
+  - {id: ja-n5-00426-s001, ch: 時々, pr: ときどき, ds: sometimes}
+  - {id: ja-n5-00101-s001, ch: 起きる, pr: おきる, ds: to get up}
+  - {id: ja-n5-00477-s001, ch: 寝る, pr: ねる, ds: to sleep (lying down)}
+  - {id: ja-n5-00038-s001, ch: 洗う, pr: あらう, ds: to wash}
+  - {id: ja-n5-00392-s001, ch: 作る, pr: つくる, ds: to make}
+  - {id: ja-n5-00322-s001, ch: する, pr: する, ds: to do}
+  - {id: ja-n5-00561-s001, ch: 勉強, pr: べんきょう, ds: study}
+  - {id: ja-n5-00501-s001, ch: 働く, pr: はたらく, ds: to work}
+  - {id: ja-n5-00255-s001, ch: 今週, pr: こんしゅう, ds: this week}
+  - {id: ja-n5-00226-s001, ch: 月曜日, pr: げつようび, ds: Monday}
+  - {id: ja-n5-00275-s001, ch: 時間, pr: じかん, ds: time}
+  - {id: ja-n5-00238-s001, ch: 午後, pr: ごご, ds: afternoon}
+  - {id: ja-n5-00241-s001, ch: 午前, pr: ごぜん, ds: morning}
+  grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g023, ch: 動詞ます, ds: polite nonpast verb}
+  - {id: ja-n5-g024, ch: 動詞ません, ds: polite negative nonpast verb}
+  - {id: ja-n5-g001, ch: Nです, ds: be a noun; polite identification}
+- id: quantities-and-payment
+  title: Specify a quantity and check a price
+  outcome: Order an ordinary quantity and confirm the amount in yen.
+  vocabulary:
+  - {id: ja-n3-00170-s001, ch: 円, pr: えん, ds: yen; Japanese currency}
+  - {id: ja-n5-00143-s001, ch: 買う, pr: かう, ds: to buy}
+  - {id: ja-n5-00100-s001, ch: お金, pr: おかね, ds: money}
+  - {id: ja-n5-00050-s001, ch: いくら, pr: いくら, ds: how much}
+  - {id: ja-n5-00049-s001, ch: いくつ, pr: いくつ, ds: how many}
+  - {id: ja-n5-00056-s001, ch: 一, pr: いち, ds: one}
+  - {id: ja-n5-00465-s001, ch: 二, pr: に, ds: two}
+  - {id: ja-n5-00269-s001, ch: 三, pr: さん, ds: three}
+  - {id: ja-n5-00272-s001, ch: 四, pr: よん, ds: four}
+  - {id: ja-n5-00229-s001, ch: 五, pr: ご, ds: five}
+  - {id: ja-n5-00673-s001, ch: 六, pr: ろく, ds: six}
+  - {id: ja-n5-00281-s001, ch: 七, pr: なな, ds: seven}
+  - {id: ja-n5-00502-s001, ch: 八, pr: はち, ds: eight}
+  - {id: ja-n5-00188-s001, ch: 九, pr: きゅう, ds: nine}
+  - {id: ja-n5-00296-s001, ch: 十, pr: じゅう, ds: ten}
+  - {id: ja-n5-00532-s001, ch: 百, pr: ひゃく, ds: hundred}
+  - {id: ja-n5-00331-s001, ch: 千, pr: せん, ds: thousand}
+  - {id: ja-n5-00595-s001, ch: 万, pr: まん, ds: ten thousand}
+  - {id: ja-n5-00528-s001, ch: 一つ, pr: ひとつ, ds: one}
+  - {id: ja-n5-00544-s001, ch: 二つ, pr: ふたつ, ds: two}
+  - {id: ja-n5-00605-s001, ch: 三つ, pr: みっつ, ds: three}
+  - {id: ja-n5-00546-s001, ch: 二人, pr: ふたり, ds: two persons}
+  - {id: ja-n5-00150-s004, ch: かける, pr: かける, ds: make a telephone call}
+  grammar:
+  - {id: ja-n5-g042, ch: 数＋助数詞, ds: number plus counter}
+  - {id: ja-n5-g032, ch: Nが欲しい, ds: want a thing}
+  review_vocabulary: []
+  review_grammar: []
+- id: activities-and-preferences
+  title: Compare everyday activities
+  outcome: Describe preferences and compare two practical choices.
+  vocabulary:
+  - {id: ja-n5-00135-s001, ch: 音楽, pr: おんがく, ds: music}
+  - {id: ja-n5-00086-s001, ch: 映画, pr: えいが, ds: movie}
+  - {id: ja-n5-00270-s001, ch: 散歩, pr: さんぽ, ds: walk}
+  - {id: ja-n5-00017-s001, ch: 遊ぶ, pr: あそぶ, ds: 'to play (games, sports)'}
+  - {id: ja-n5-00132-s001, ch: 泳ぐ, pr: およぐ, ds: to swim}
+  - {id: ja-n5-00318-s001, ch: スポーツ, pr: スポーツ, ds: sport}
+  - {id: ja-n5-00079-s001, ch: 歌う, pr: うたう, ds: to sing}
+  - {id: ja-n5-00196-s001, ch: 嫌い, pr: きらい, ds: disliking}
+  - {id: ja-n5-00353-s001, ch: 大好き, pr: だいすき, ds: liking very much}
+  - {id: ja-n5-00300-s001, ch: 上手, pr: じょうず, ds: skillful}
+  - {id: ja-n5-00555-s001, ch: 下手, pr: へた, ds: unskillful}
+  - {id: ja-n5-00363-s001, ch: 建物, pr: たてもの, ds: building}
+  - {id: ja-n5-00230-s001, ch: 公園, pr: こうえん, ds: (public) park}
+  - {id: ja-n5-00418-s001, ch: トイレ, pr: トイレ, ds: toilet}
+  - {id: ja-n5-00601-s001, ch: 店, pr: みせ, ds: shop; store; establishment}
+  - {id: ja-n5-00142-s001, ch: 買い物, pr: かいもの, ds: shopping}
+  - {id: ja-n5-00670-s001, ch: レストラン, pr: レストラン, ds: restaurant (esp. Western-style)}
+  - {id: ja-n5-00034-s001, ch: 甘い, pr: あまい, ds: sweet-tasting}
+  - {id: ja-n5-00166-s001, ch: 辛い, pr: からい, ds: spicy}
+  - {id: ja-n5-00396-s001, ch: 冷たい, pr: つめたい, ds: cold (to the touch)}
+  - {id: ja-n5-00058-s001, ch: 一番, pr: いちばん, ds: number one}
+  - {id: ja-n5-00357-s002, ch: 高い, pr: たかい, ds: expensive}
+  grammar:
+  - {id: ja-n5-g039, ch: AはBより形容詞, ds: A is more adjective than B}
+  - {id: ja-n5-g040, ch: Nの中で一番, ds: the most within a stated group}
+  - {id: ja-n5-g031, ch: 動詞たい, ds: want to do something}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g023, ch: 動詞ます, ds: polite nonpast verb}
+- id: a-short-journey
+  title: Arrange a short journey
+  outcome: Agree on a destination, means of transport, and meeting place.
+  vocabulary:
+  - {id: ja-n5-00048-s001, ch: 行く, pr: いく, ds: to go}
+  - {id: ja-n5-00217-s001, ch: 来る, pr: くる, ds: to come (spatially or temporally)}
+  - {id: ja-n5-00145-s001, ch: 帰る, pr: かえる, ds: to return}
+  - {id: ja-n5-00040-s001, ch: 歩く, pr: あるく, ds: to walk}
+  - {id: ja-n5-00414-s001, ch: 電車, pr: でんしゃ, ds: train; electric train}
+  - {id: ja-n5-00498-s001, ch: バス, pr: バス, ds: bus}
+  - {id: ja-n5-00218-s001, ch: 車, pr: くるま, ds: car}
+  - {id: ja-n5-00359-s001, ch: タクシー, pr: タクシー, ds: taxi}
+  - {id: ja-n5-00380-s001, ch: 地下鉄, pr: ちかてつ, ds: subway}
+  - {id: ja-n5-00186-s001, ch: 切符, pr: きっぷ, ds: ticket}
+  - {id: ja-n5-00381-s001, ch: 地図, pr: ちず, ds: map}
+  - {id: ja-n5-00603-s001, ch: 道, pr: みち, ds: road}
+  - {id: ja-n5-00598-s001, ch: 右, pr: みぎ, ds: right-hand side}
+  - {id: ja-n5-00526-s001, ch: 左, pr: ひだり, ds: left}
+  - {id: ja-n5-00584-s001, ch: 曲がる, pr: まがる, ds: to bend}
+  - {id: ja-n5-00590-s001, ch: まっすぐ, pr: まっすぐ, ds: straight (ahead)}
+  - {id: ja-n5-00389-s001, ch: 次, pr: つぎ, ds: next}
+  - {id: ja-n5-00482-s001, ch: 乗る, pr: のる, ds: 'to get on (train, plane, bus, ship, etc.)'}
+  - {id: ja-n5-00133-s001, ch: 降りる, pr: おりる, ds: to descend (e.g. a mountain)}
+  - {id: ja-n5-00133-s002, ch: 降りる, pr: おりる, ds: get off a vehicle; disembark}
+  - {id: ja-n5-00390-s001, ch: 着く, pr: つく, ds: to arrive at}
+  - {id: ja-n5-00424-s001, ch: 遠い, pr: とおい, ds: far}
+  - {id: ja-n5-00377-s001, ch: 近い, pr: ちかい, ds: near}
+  - {id: ja-n5-00001-s001, ch: 会う, pr: あう, ds: to meet}
+  grammar:
+  - {id: ja-n5-g012, ch: 場所に／へ行きます, ds: go to; move toward a destination}
+  - {id: ja-n5-g013, ch: Nで, ds: by; using a means or instrument}
+  - {id: ja-n5-g015, ch: NからNまで, ds: from a starting point to an endpoint}
+  - {id: ja-n5-g033, ch: 動詞ませんか, ds: would you like to do; invitation}
+  - {id: ja-n5-g034, ch: 動詞ましょう, ds: let's do; a polite proposal}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g023, ch: 動詞ます, ds: polite nonpast verb}
+  - {id: ja-n5-g024, ch: 動詞ません, ds: polite negative nonpast verb}
+- id: requests-and-permission
+  title: Make requests and ask permission
+  outcome: Form a short sequence, make a request, and distinguish permission from prohibition.
+  vocabulary:
+  - {id: ja-n5-00589-s001, ch: 待つ, pr: まつ, ds: to wait}
+  - {id: ja-n5-00009-s001, ch: 開ける, pr: あける, ds: 'to open (a door, etc.)'}
+  - {id: ja-n5-00289-s001, ch: 閉める, pr: しめる, ds: to close}
+  - {id: ja-n5-00387-s001, ch: 使う, pr: つかう, ds: 'to use (a tool, method, etc.)'}
+  - {id: ja-n5-00323-s001, ch: 座る, pr: すわる, ds: to sit (down)}
+  - {id: ja-n5-00621-s001, ch: もう, pr: もう, ds: already}
+  - {id: ja-n5-00587-s001, ch: まだ, pr: まだ, ds: still}
+  - {id: ja-n5-00150-s003, ch: かける, pr: かける, ds: wear glasses}
+  - {id: ja-n5-00620-s001, ch: めがね, pr: めがね, ds: glasses}
+  - {id: ja-n5-00089-s001, ch: ええ, pr: ええ, ds: 'yes'}
+  - {id: ja-n5-00033-s001, ch: 危ない, pr: あぶない, ds: dangerous}
+  - {id: ja-n5-00152-s001, ch: 貸す, pr: かす, ds: to lend}
+  - {id: ja-n5-00168-s001, ch: 借りる, pr: かりる, ds: to borrow}
+  - {id: ja-n5-00144-s001, ch: 返す, pr: かえす, ds: to return (something)}
+  - {id: ja-n5-00102-s001, ch: 置く, pr: おく, ds: to put}
+  grammar:
+  - {id: ja-n5-g041, ch: 動詞て、動詞, ds: do something and then do something}
+  - {id: ja-n5-g026, ch: 動詞てください, ds: please do something}
+  - {id: ja-n5-g027, ch: 動詞ています, ds: be doing; an ongoing action}
+  - {id: ja-n5-g028, ch: 動詞てもいい, ds: may do; it is acceptable to do}
+  - {id: ja-n5-g029, ch: 動詞てはいけない, ds: must not do; prohibition}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g023, ch: 動詞ます, ds: polite nonpast verb}
+- id: change-a-small-plan
+  title: Change a small plan considerately
+  outcome: Give a reason, make a negative request, and revise a meeting plan.
+  vocabulary:
+  - {id: ja-n5-00036-s001, ch: 雨, pr: あめ, ds: rain}
+  - {id: ja-n5-00267-s001, ch: 寒い, pr: さむい, ds: cold (e.g. weather)}
+  - {id: ja-n5-00022-s001, ch: 暑い, pr: あつい, ds: hot (weather or air temperature)}
+  - {id: ja-n5-00412-s001, ch: 天気, pr: てんき, ds: weather}
+  - {id: ja-n5-00643-s001, ch: 雪, pr: ゆき, ds: snow}
+  - {id: ja-n5-00054-s001, ch: 忙しい, pr: いそがしい, ds: busy}
+  - {id: ja-n5-00531-s001, ch: 暇, pr: ひま, ds: spare time}
+  - {id: ja-n5-00633-s001, ch: 休み, pr: やすみ, ds: rest}
+  - {id: ja-n5-00634-s001, ch: 休む, pr: やすむ, ds: to be absent}
+  - {id: ja-n5-00388-s001, ch: 疲れる, pr: つかれる, ds: to get tired}
+  - {id: ja-n5-00402-s001, ch: 出かける, pr: でかける, ds: to go out (e.g. on an excursion or outing)}
+  - {id: ja-n5-00657-s001, ch: 来週, pr: らいしゅう, ds: next week}
+  - {id: ja-n5-00656-s001, ch: 来月, pr: らいげつ, ds: next month}
+  - {id: ja-n5-00677-s001, ch: 忘れる, pr: わすれる, ds: to forget}
+  - {id: ja-n5-00180-s003, ch: 聞く, pr: きく, ds: ask; inquire}
+  - {id: ja-n5-00052-s001, ch: 医者, pr: いしゃ, ds: doctor}
+  - {id: ja-n5-00533-s001, ch: 病院, pr: びょういん, ds: hospital}
+  - {id: ja-n5-00415-s001, ch: 電話, pr: でんわ, ds: telephone call}
+  - {id: ja-n5-00293-s001, ch: 写真, pr: しゃしん, ds: photograph}
+  - {id: ja-n5-00445-s001, ch: 撮る, pr: とる, ds: to take (a photograph)}
+  - {id: ja-n5-00385-s002, ch: ちょっと, pr: ちょっと, ds: for a moment; briefly}
+  grammar:
+  - {id: ja-n4-g001, ch: 普通形, ds: plain-style predicates}
+  - {id: ja-n5-g030, ch: 動詞ないでください, ds: please do not do something}
+  - {id: ja-n5-g035, ch: 文から, ds: because; giving a reason}
+  - {id: ja-n5-g036, ch: 文が文, ds: but; linking contrasting clauses}
+  - {id: ja-n5-g037, ch: 動詞辞書形前に, ds: before doing something}
+  - {id: ja-n5-g038, ch: 動詞てから, ds: after doing; first do and then}
+  - {id: ja-n5-g043, ch: 動詞語幹に行く, ds: go in order to do something}
+  - {id: ja-n5-g045, ch: 文ね／文よ, ds: seeking agreement; presenting information}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ja-n5-g023, ch: 動詞ます, ds: polite nonpast verb}
+  - {id: ja-n5-g024, ch: 動詞ません, ds: polite negative nonpast verb}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g041, ch: 動詞て、動詞, ds: do something and then do something}
+  - {id: ja-n5-g012, ch: 場所に／へ行きます, ds: go to; move toward a destination}

@@ -1,0 +1,345 @@
+schema_version: 3
+id: ru-level-11
+title: Instructions and results
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 11
+phase: stories-conversations
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+goals: &id001
+- Choose an imperative suited to a routine or a desired result.
+- Distinguish a general prohibition from a warning about an unwanted event.
+- Explain purpose and how an action is performed.
+checkpoint:
+  task: Explain a new procedure and repair an instruction when the partner does not achieve the intended result.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-11-communication-01
+  title: Communication and repair - 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary:
+  - {id: ru-or-o00158-s901, ch: ясно, pr: я́сно, ds: clearly}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00163-s001, ch: плохо, pr: пло́хо, ds: it is bad}
+  - {id: ru-or-o00157-s001, ch: медленно, pr: ме́дленно, ds: slowly}
+  - {id: ru-or-n01923-s001, ch: переводчик, pr: перево́дчик, ds: translator or interpreter (person)}
+  - {id: ru-or-o00061-s001, ch: можно, pr: мо́жно, ds: it is permitted}
+  - {id: ru-or-o00111-s001, ch: нельзя, pr: нельзя́, ds: not allowed or not possible}
+  - {id: ru-or-v00295-s001, ch: подождать, pr: подожда́ть, ds: wait a while}
+  - {id: ru-or-o00196-s003, ch: пожалуйста, pr: пожа́луйста, ds: here you go}
+  - {id: ru-or-v00662-s001, ch: интересоваться, pr: интересова́ться, ds: be interested}
+  review_grammar:
+  - {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+  - {id: ru-g-indirect-li, ch: 'не знаю, [verb] ли [subject]', ds: Embed a yes/no question with ли}
+  - {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+- id: level-11-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-n00157-s001, ch: действие, pr: де́йствие, ds: action}
+  - {id: ru-or-n00197-s001, ch: процесс, pr: проце́сс, ds: process}
+  - {id: ru-or-n00177-s001, ch: результат, pr: результа́т, ds: result}
+  - {id: ru-or-n00423-s001, ch: способ, pr: спо́соб, ds: method}
+  - {id: ru-or-n00121-s001, ch: порядок, pr: поря́док, ds: order}
+  - {id: ru-or-n00102-s001, ch: шаг, pr: шаг, ds: step}
+  - {id: ru-or-n00046-s001, ch: часть, pr: часть, ds: part}
+  - {id: ru-or-n00395-s001, ch: кусок, pr: кусо́к, ds: piece}
+  - {id: ru-or-n00699-s001, ch: середина, pr: середи́на, ds: middle}
+  - {id: ru-or-n00162-s001, ch: край, pr: край, ds: edge}
+  - {id: ru-or-n00695-s001, ch: поверхность, pr: пове́рхность, ds: surface}
+  - {id: ru-or-n00018-s001, ch: сторона, pr: сторона́, ds: side}
+  - {id: ru-or-n00140-s001, ch: форма, pr: фо́рма, ds: shape}
+  - {id: ru-or-n01779-s001, ch: отверстие, pr: отве́рстие, ds: hole}
+  - {id: ru-or-n00338-s001, ch: круг, pr: круг, ds: circle}
+  - {id: ru-or-n00400-s001, ch: линия, pr: ли́ния, ds: line}
+  - {id: ru-or-n00130-s001, ch: угол, pr: у́гол, ds: angle}
+  - {id: ru-or-n00970-s001, ch: инструмент, pr: инструме́нт, ds: tool}
+  - {id: ru-or-n02544-s001, ch: молоток, pr: молото́к, ds: hammer}
+  - {id: ru-or-n09193-s001, ch: отвёртка, pr: отвёртка, ds: screwdriver}
+  - {id: ru-or-n01060-s001, ch: гвоздь, pr: гвоздь, ds: nail}
+  - {id: ru-or-n02376-s001, ch: винт, pr: винт, ds: screw}
+  - {id: ru-or-n02568-s001, ch: игла, pr: игла́, ds: needle}
+  - {id: ru-or-n01911-s001, ch: нитка, pr: ни́тка, ds: thread}
+  - {id: ru-or-n00852-s001, ch: верёвка, pr: верёвка, ds: rope}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00346-s001, ch: терять, pr: теря́ть, ds: lose}
+  - {id: ru-or-v00431-s001, ch: забывать, pr: забыва́ть, ds: forget}
+  - {id: ru-or-v00071-s001, ch: вспомнить, pr: вспо́мнить, ds: remember}
+  - {id: ru-or-v00170-s001, ch: вспоминать, pr: вспомина́ть, ds: remember}
+  - {id: ru-or-v00024-s001, ch: увидеть, pr: уви́деть, ds: see}
+  - {id: ru-or-v00111-s001, ch: услышать, pr: услы́шать, ds: hear}
+  - {id: ru-or-v00049-s001, ch: заметить, pr: заме́тить, ds: notice}
+  - {id: ru-or-v00280-s001, ch: замечать, pr: замеча́ть, ds: notice}
+  review_grammar:
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+- id: level-11-actions-02
+  title: Actions and results - 2
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-n03758-s001, ch: ножницы, pr: но́жницы, ds: scissors}
+  - {id: ru-or-n01546-s001, ch: кисть, pr: кисть, ds: brush}
+  - {id: ru-or-n02800-s001, ch: клей, pr: клей, ds: glue}
+  - {id: ru-or-n00720-s001, ch: краска, pr: кра́ска, ds: paint}
+  - {id: ru-or-n00418-s001, ch: материал, pr: материа́л, ds: material}
+  - {id: ru-or-n00921-s001, ch: ткань, pr: ткань, ds: fabric}
+  - {id: ru-or-n00134-s001, ch: дерево, pr: де́рево, ds: wood}
+  - {id: ru-or-n01318-s001, ch: металл, pr: мета́лл, ds: metal}
+  - {id: ru-or-n00282-s001, ch: стекло, pr: стекло́, ds: glass}
+  - {id: ru-or-n00182-s001, ch: бумага, pr: бума́га, ds: paper}
+  - {id: ru-or-v00074-s001, ch: держать, pr: держа́ть, ds: hold}
+  - {id: ru-or-v00078-s001, ch: поднять, pr: подня́ть, ds: lift}
+  - {id: ru-or-v00379-s001, ch: поднимать, pr: поднима́ть, ds: raise}
+  - {id: ru-or-v00282-s001, ch: опустить, pr: опусти́ть, ds: lower}
+  - {id: ru-or-v01231-s001, ch: опускать, pr: опуска́ть, ds: lower}
+  - {id: ru-or-v01529-s001, ch: двигать, pr: дви́гать, ds: move}
+  - {id: ru-or-v04185-s001, ch: передвинуть, pr: передви́нуть, ds: move}
+  - {id: ru-or-v00479-s001, ch: тащить, pr: тащи́ть, ds: Carry something heavy}
+  - {id: ru-or-v01217-s001, ch: толкать, pr: толка́ть, ds: push}
+  - {id: ru-or-v00661-s001, ch: потянуть, pr: потяну́ть, ds: pull}
+  - {id: ru-or-v00313-s001, ch: тянуть, pr: тяну́ть, ds: pull}
+  - {id: ru-or-v00087-s001, ch: бросить, pr: бро́сить, ds: throw}
+  - {id: ru-or-v00349-s001, ch: бросать, pr: броса́ть, ds: throw}
+  - {id: ru-or-v00331-s001, ch: поймать, pr: пойма́ть, ds: catch}
+  - {id: ru-or-v00459-s001, ch: ловить, pr: лови́ть, ds: catch}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00970-s001, ch: инструмент, pr: инструме́нт, ds: tool}
+  - {id: ru-or-n02544-s001, ch: молоток, pr: молото́к, ds: hammer}
+  - {id: ru-or-n09193-s001, ch: отвёртка, pr: отвёртка, ds: screwdriver}
+  - {id: ru-or-n01060-s001, ch: гвоздь, pr: гвоздь, ds: nail}
+  - {id: ru-or-n02376-s001, ch: винт, pr: винт, ds: screw}
+  - {id: ru-or-n02568-s001, ch: игла, pr: игла́, ds: needle}
+  - {id: ru-or-n01911-s001, ch: нитка, pr: ни́тка, ds: thread}
+  - {id: ru-or-n00852-s001, ch: верёвка, pr: верёвка, ds: rope}
+  review_grammar:
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+- id: level-11-actions-03
+  title: Actions and results - 3
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00241-s001, ch: ударить, pr: уда́рить, ds: hit}
+  - {id: ru-or-v02616-s001, ch: ударять, pr: ударя́ть, ds: strike}
+  - {id: ru-or-v00498-s001, ch: стучать, pr: стуча́ть, ds: knock}
+  - {id: ru-or-v00735-s001, ch: нажать, pr: нажа́ть, ds: press}
+  - {id: ru-or-v01724-s001, ch: нажимать, pr: нажима́ть, ds: press}
+  - {id: ru-or-v00844-s001, ch: резать, pr: ре́зать, ds: cut}
+  - {id: ru-or-v14602-s001, ch: разрезать, pr: разре́зать, ds: cut into sections (perfective)}
+  - {id: ru-or-v00715-s001, ch: отрезать, pr: отре́зать, ds: cut off}
+  - {id: ru-or-v03953-s001, ch: порезать, pr: поре́зать, ds: cut}
+  - {id: ru-or-v00798-s001, ch: соединить, pr: соедини́ть, ds: join}
+  - {id: ru-or-v02242-s001, ch: соединять, pr: соединя́ть, ds: connect}
+  - {id: ru-or-v00970-s001, ch: разделить, pr: раздели́ть, ds: divide}
+  - {id: ru-or-v01244-s001, ch: делить, pr: дели́ть, ds: divide}
+  - {id: ru-or-v03896-s001, ch: смешать, pr: смеша́ть, ds: mix}
+  - {id: ru-or-v02602-s001, ch: смешивать, pr: сме́шивать, ds: mix}
+  - {id: ru-or-v00203-s001, ch: добавить, pr: доба́вить, ds: add}
+  - {id: ru-or-v01063-s001, ch: добавлять, pr: добавля́ть, ds: add}
+  - {id: ru-or-v00557-s001, ch: налить, pr: нали́ть, ds: pour}
+  - {id: ru-or-v01311-s001, ch: наливать, pr: налива́ть, ds: pour}
+  - {id: ru-or-v01539-s001, ch: лить, pr: лить, ds: pour}
+  - {id: ru-or-v00867-s001, ch: наполнить, pr: напо́лнить, ds: fill}
+  - {id: ru-or-v01939-s001, ch: наполнять, pr: наполня́ть, ds: fill}
+  - {id: ru-or-v00861-s001, ch: вытереть, pr: вы́тереть, ds: wipe}
+  - {id: ru-or-v00951-s001, ch: вытирать, pr: вытира́ть, ds: wipe}
+  - {id: ru-or-v03702-s001, ch: сушить, pr: суши́ть, ds: dry}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00479-s001, ch: тащить, pr: тащи́ть, ds: Carry something heavy}
+  - {id: ru-or-v01217-s001, ch: толкать, pr: толка́ть, ds: push}
+  - {id: ru-or-v00661-s001, ch: потянуть, pr: потяну́ть, ds: pull}
+  - {id: ru-or-v00313-s001, ch: тянуть, pr: тяну́ть, ds: pull}
+  - {id: ru-or-v00087-s001, ch: бросить, pr: бро́сить, ds: throw}
+  - {id: ru-or-v00349-s001, ch: бросать, pr: броса́ть, ds: throw}
+  - {id: ru-or-v00331-s001, ch: поймать, pr: пойма́ть, ds: catch}
+  - {id: ru-or-v00459-s001, ch: ловить, pr: лови́ть, ds: catch}
+  review_grammar:
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+- id: level-11-actions-04
+  title: Actions and results - 4
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v02555-s001, ch: нагреть, pr: нагре́ть, ds: heat}
+  - {id: ru-or-v06112-s001, ch: нагревать, pr: нагрева́ть, ds: heat}
+  - {id: ru-or-v05089-s001, ch: охладить, pr: охлади́ть, ds: cool}
+  - {id: ru-or-v00440-s001, ch: варить, pr: вари́ть, ds: cook by boiling}
+  - {id: ru-or-v01725-s001, ch: сварить, pr: свари́ть, ds: cook}
+  - {id: ru-or-v02179-s001, ch: жарить, pr: жа́рить, ds: fry}
+  - {id: ru-or-v08936-s001, ch: пожарить, pr: пожа́рить, ds: fry}
+  - {id: ru-or-v00656-s001, ch: печь, pr: печь, ds: bake}
+  - {id: ru-or-v01234-s001, ch: кипеть, pr: кипе́ть, ds: boil}
+  - {id: ru-or-v04560-s001, ch: закипеть, pr: закипе́ть, ds: begin to boil}
+  - {id: ru-or-v04790-s001, ch: кипятить, pr: кипяти́ть, ds: boil}
+  - {id: ru-or-v00585-s001, ch: повесить, pr: пове́сить, ds: hang}
+  - {id: ru-or-v01508-s001, ch: вешать, pr: ве́шать, ds: hang}
+  - {id: ru-or-v00198-s001, ch: висеть, pr: висе́ть, ds: to be hanging}
+  - {id: ru-or-v01880-s001, ch: закрепить, pr: закрепи́ть, ds: fasten}
+  - {id: ru-or-v02277-s001, ch: прикрепить, pr: прикрепи́ть, ds: attach}
+  - {id: ru-or-v05736-s001, ch: крепить, pr: крепи́ть, ds: fasten securely}
+  - {id: ru-or-v01480-s001, ch: завязать, pr: завяза́ть, ds: tie}
+  - {id: ru-or-v01343-s001, ch: связать, pr: связа́ть, ds: tie}
+  - {id: ru-or-v03470-s001, ch: согнуть, pr: согну́ть, ds: bend}
+  - {id: ru-or-v03320-s001, ch: гнуть, pr: гнуть, ds: bend}
+  - {id: ru-or-v00736-s001, ch: сложить, pr: сложи́ть, ds: fold}
+  - {id: ru-or-v01761-s001, ch: складывать, pr: скла́дывать, ds: fold}
+  - {id: ru-or-v00667-s001, ch: разобрать, pr: разобра́ть, ds: disassemble}
+  - {id: ru-or-v01348-s001, ch: разбирать, pr: разбира́ть, ds: disassemble}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00557-s001, ch: налить, pr: нали́ть, ds: pour}
+  - {id: ru-or-v01311-s001, ch: наливать, pr: налива́ть, ds: pour}
+  - {id: ru-or-v01539-s001, ch: лить, pr: лить, ds: pour}
+  - {id: ru-or-v00867-s001, ch: наполнить, pr: напо́лнить, ds: fill}
+  - {id: ru-or-v01939-s001, ch: наполнять, pr: наполня́ть, ds: fill}
+  - {id: ru-or-v00861-s001, ch: вытереть, pr: вы́тереть, ds: wipe}
+  - {id: ru-or-v00951-s001, ch: вытирать, pr: вытира́ть, ds: wipe}
+  - {id: ru-or-v03702-s001, ch: сушить, pr: суши́ть, ds: dry}
+  review_grammar:
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+- id: level-11-actions-05
+  title: Actions and results - 5
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00304-s001, ch: собрать, pr: собра́ть, ds: assemble}
+  - {id: ru-or-v00311-s001, ch: собирать, pr: собира́ть, ds: collect}
+  - {id: ru-or-v00321-s001, ch: проверить, pr: прове́рить, ds: check}
+  - {id: ru-or-v00552-s001, ch: проверять, pr: проверя́ть, ds: check}
+  - {id: ru-or-v01620-s001, ch: исправить, pr: испра́вить, ds: correct}
+  - {id: ru-or-v04339-s001, ch: исправлять, pr: исправля́ть, ds: correct}
+  - {id: ru-or-v00166-s001, ch: получиться, pr: получи́ться, ds: turn out}
+  - {id: ru-or-v00226-s001, ch: получаться, pr: получа́ться, ds: be obtained as a result}
+  - {id: ru-or-o00209-s001, ch: осторожно, pr: осторо́жно, ds: carefully}
+  - {id: ru-or-o00341-s001, ch: аккуратно, pr: аккура́тно, ds: neatly}
+  - {id: ru-or-o00201-s001, ch: правильно, pr: пра́вильно, ds: correctly}
+  - {id: ru-or-o02058-s001, ch: неправильно, pr: непра́вильно, ds: incorrectly}
+  - {id: ru-or-o00908-s001, ch: последовательно, pr: после́довательно, ds: consecutively}
+  - {id: ru-or-o00881-s001, ch: поочерёдно, pr: поочерёдно, ds: in turn}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01480-s001, ch: завязать, pr: завяза́ть, ds: tie}
+  - {id: ru-or-v01343-s001, ch: связать, pr: связа́ть, ds: tie}
+  - {id: ru-or-v03470-s001, ch: согнуть, pr: согну́ть, ds: bend}
+  - {id: ru-or-v03320-s001, ch: гнуть, pr: гнуть, ds: bend}
+  - {id: ru-or-v00736-s001, ch: сложить, pr: сложи́ть, ds: fold}
+  - {id: ru-or-v01761-s001, ch: складывать, pr: скла́дывать, ds: fold}
+  - {id: ru-or-v00667-s001, ch: разобрать, pr: разобра́ть, ds: disassemble}
+  - {id: ru-or-v01348-s001, ch: разбирать, pr: разбира́ть, ds: disassemble}
+  review_grammar:
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+- id: level-11-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00148-s001, ch: сухой, pr: сухо́й, ds: dry}
+  - {id: ru-or-a00151-s001, ch: мокрый, pr: мо́крый, ds: wet}
+  - {id: ru-or-a00452-s001, ch: влажный, pr: вла́жный, ds: damp}
+  - {id: ru-or-a00540-s001, ch: гладкий, pr: гла́дкий, ds: smooth}
+  - {id: ru-or-a00327-s001, ch: ровный, pr: ро́вный, ds: even}
+  - {id: ru-or-a00185-s001, ch: круглый, pr: кру́глый, ds: round}
+  - {id: ru-or-a00587-s001, ch: квадратный, pr: квадра́тный, ds: square}
+  - {id: ru-or-a00428-s001, ch: плоский, pr: пло́ский, ds: flat}
+  - {id: ru-or-a00146-s001, ch: прямой, pr: прямо́й, ds: straight}
+  - {id: ru-or-a00385-s001, ch: кривой, pr: криво́й, ds: crooked}
+  - {id: ru-or-a00089-s001, ch: толстый, pr: то́лстый, ds: thick}
+  - {id: ru-or-a00116-s001, ch: тонкий, pr: то́нкий, ds: thin}
+  - {id: ru-or-a00077-s001, ch: широкий, pr: широ́кий, ds: wide}
+  - {id: ru-or-a00161-s001, ch: узкий, pr: у́зкий, ds: narrow}
+  - {id: ru-or-a00054-s001, ch: длинный, pr: дли́нный, ds: long}
+  - {id: ru-or-a00128-s001, ch: глубокий, pr: глубо́кий, ds: deep}
+  - {id: ru-or-a00135-s001, ch: мелкий, pr: ме́лкий, ds: shallow}
+  - {id: ru-or-a00750-s001, ch: прочный, pr: про́чный, ds: strong}
+  - {id: ru-or-a00133-s001, ch: слабый, pr: сла́бый, ds: weak}
+  - {id: ru-or-a00496-s001, ch: осторожный, pr: осторо́жный, ds: careful}
+  - {id: ru-or-a00853-s001, ch: безопасный, pr: безопа́сный, ds: safe}
+  - {id: ru-or-a00217-s001, ch: опасный, pr: опа́сный, ds: dangerous}
+  - {id: ru-or-a00211-s001, ch: ясный, pr: я́сный, ds: clear}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00818-s001, ch: вежливый, pr: ве́жливый, ds: polite}
+  - {id: ru-or-a00321-s001, ch: грубый, pr: гру́бый, ds: rude}
+  - {id: ru-or-a00710-s001, ch: внимательный, pr: внима́тельный, ds: attentive}
+  - {id: ru-or-a01723-s001, ch: заботливый, pr: забо́тливый, ds: considerate}
+  - {id: ru-or-a00340-s001, ch: скромный, pr: скро́мный, ds: modest}
+  - {id: ru-or-a00303-s001, ch: одинокий, pr: одино́кий, ds: lonely}
+  - {id: ru-or-a00083-s001, ch: близкий, pr: бли́зкий, ds: close}
+  - {id: ru-or-a00100-s001, ch: родной, pr: родно́й, ds: dear}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+  - {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+- id: level-11-actions-practice-01
+  title: Actions and results - sentence practice 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-imperative-aspect, ch: 'открывайте / откройте [object]', ds: Choose an imperative for a routine or one result}
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  review_vocabulary:
+  - {id: ru-or-v00277-s001, ch: открывать, pr: открыва́ть, ds: open}
+  - {id: ru-or-v00105-s001, ch: открыть, pr: откры́ть, ds: open}
+  - {id: ru-or-v00070-s001, ch: забыть, pr: забы́ть, ds: forget}
+  - {id: ru-or-v00166-s001, ch: получиться, pr: получи́ться, ds: turn out}
+  - {id: ru-or-v00226-s001, ch: получаться, pr: получа́ться, ds: be obtained as a result}
+  - {id: ru-or-o00209-s001, ch: осторожно, pr: осторо́жно, ds: carefully}
+  - {id: ru-or-o00341-s001, ch: аккуратно, pr: аккура́тно, ds: neatly}
+  - {id: ru-or-o00201-s001, ch: правильно, pr: пра́вильно, ds: correctly}
+  - {id: ru-or-o02058-s001, ch: неправильно, pr: непра́вильно, ds: incorrectly}
+  - {id: ru-or-o00908-s001, ch: последовательно, pr: после́довательно, ds: consecutively}
+  - {id: ru-or-o00881-s001, ch: поочерёдно, pr: поочерёдно, ds: in turn}
+  review_grammar:
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+- id: level-11-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-manner-adverb, ch: '[verb] быстро / ясно; [noun] быстрый / ясный', ds: Distinguish how an action happens from noun agreement}
+  review_vocabulary:
+  - {id: ru-or-o00158-s901, ch: ясно, pr: я́сно, ds: clearly}
+  - {id: ru-or-a00211-s001, ch: ясный, pr: я́сный, ds: clear}
+  - {id: ru-or-a00128-s001, ch: глубокий, pr: глубо́кий, ds: deep}
+  - {id: ru-or-a00135-s001, ch: мелкий, pr: ме́лкий, ds: shallow}
+  - {id: ru-or-a00750-s001, ch: прочный, pr: про́чный, ds: strong}
+  - {id: ru-or-a00133-s001, ch: слабый, pr: сла́бый, ds: weak}
+  - {id: ru-or-a00496-s001, ch: осторожный, pr: осторо́жный, ds: careful}
+  - {id: ru-or-a00853-s001, ch: безопасный, pr: безопа́сный, ds: safe}
+  - {id: ru-or-a00217-s001, ch: опасный, pr: опа́сный, ds: dangerous}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+  - {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+- id: level-11-reasoning-practice-01
+  title: Reasons and relationships - sentence practice 1
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-purpose-chtoby, ch: 'чтобы + [infinitive / subject and past-form verb]', ds: State the purpose of an action with чтобы}
+  review_vocabulary: []
+  review_grammar: []

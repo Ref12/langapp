@@ -1,0 +1,356 @@
+# Hand-maintained semantic expectations, not an export of selected output.
+# IDs identify retained meanings; topic and level identify the teaching purpose.
+# Review is AI-assisted and not native-speaker or human certification.
+
+# First exchanges, people, objects, and grammatical reference.
+- {word: bienvenue, source_sense_id: "en-bienvenue-fr-intj-50fXK1DX", pos: intj, ds: "welcome; greeting", level: 1, topic: communication, primary: true}
+- {word: nommer, source_sense_id: "en-nommer-fr-verb-e~xsvLhC", pos: verb, ds: "to name; to call by a name", level: 1, topic: communication, primary: true}
+- {word: français, source_sense_id: "en-français-fr-noun-fr:Q150", pos: noun, ds: "French language", level: 1, topic: communication, primary: true}
+- {word: langue, source_sense_id: "en-langue-fr-noun-SsSou5zl", pos: noun, ds: "language; system of communication", level: 1, topic: communication, primary: true}
+- {word: bonjour, source_sense_id: "en-bonjour-fr-intj-S9Xhkvkh", pos: intj, ds: "hello; good day", level: 1, topic: communication, primary: true}
+- {word: anglais, source_sense_id: "en-anglais-fr-noun-retsnzQD", pos: noun, ds: "English (language)", level: 1, topic: communication, primary: true}
+- {word: personne, source_sense_id: "en-personne-fr-noun-OKgeh-eW", pos: noun, ds: "person; human being", level: 1, topic: communication, primary: true}
+- {word: appeler, source_sense_id: "en-appeler-fr-verb-UG~Hts2y", pos: verb, ds: "to be called; reflexive use", level: 1, topic: communication, primary: true}
+- {word: place, source_sense_id: "en-place-fr-noun-zvH8HkkK", pos: noun, ds: "space; available room", level: 2, topic: description, primary: true}
+- {word: nouveau, source_sense_id: "en-nouveau-fr-adj-ksnpHM5K", pos: adj, ds: "new", level: 2, topic: description, primary: true}
+- {word: même, source_sense_id: "en-même-fr-adj-CWcRXygT", pos: adj, ds: "same", level: 2, topic: description, primary: true}
+- {word: devant, source_sense_id: "en-devant-fr-prep-jwtcZiHA", pos: prep, ds: "in front of", level: 2, topic: grammar, primary: true}
+- {word: leur, source_sense_id: "en-leur-fr-det-~ZY-T9RZ", pos: det, ds: "their; possessive determiner", level: 2, topic: grammar, primary: true}
+- {word: livre, source_sense_id: "en-livre-fr-noun-knGf4M-M", pos: noun, ds: "book", level: 2, topic: description, primary: true}
+- {word: table, source_sense_id: "en-table-fr-noun-7IF1wlIK", pos: noun, ds: "table; piece of furniture", level: 2, topic: description, primary: true}
+- {word: le, source_sense_id: "en-le-fr-article-C60SbeAQ", pos: article, ds: "the; definite article", level: 2, topic: grammar, primary: true}
+- {word: un, source_sense_id: "en-un-fr-article-pyDUpZbl", pos: article, ds: "an, a", level: 2, topic: grammar, primary: true}
+- {word: de, source_sense_id: "en-de-fr-prep-Bz9B5YdO", pos: prep, ds: "of; possession, association, or relationship", level: 2, topic: grammar, primary: true}
+
+# The complete basic-number sequence, including one separately from the article.
+# Zéro's existing noun sense explicitly names the number and remains valid.
+- {word: zéro, source_sense_id: "en-zéro-fr-noun-3fXZAql6", pos: noun, ds: "zero, nought, oh (in reading numbers)", level: 3, topic: services, primary: true}
+- {word: un, source_sense_id: "en-un-fr-num-dpLDrTVA", pos: num, ds: "one", level: 3, topic: services, primary: false}
+- {word: deux, source_sense_id: "en-deux-fr-num-P8TM~nRY", pos: num, ds: "two", level: 3, topic: services, primary: true}
+- {word: trois, source_sense_id: "en-trois-fr-num-i1udsME9", pos: num, ds: "three", level: 3, topic: services, primary: true}
+- {word: quatre, source_sense_id: "en-quatre-fr-num-BO-vCA9a", pos: num, ds: "four", level: 3, topic: services, primary: true}
+- {word: cinq, source_sense_id: "en-cinq-fr-num-IisL1R~O", pos: num, ds: "five", level: 3, topic: services, primary: true}
+- {word: six, source_sense_id: "en-six-fr-num-RHeNgjZe", pos: num, ds: "six", level: 3, topic: services, primary: true}
+- {word: sept, source_sense_id: "en-sept-fr-num-O6jQKxb9", pos: num, ds: "seven", level: 3, topic: services, primary: true}
+- {word: huit, source_sense_id: "en-huit-fr-num-wZXS2HVi", pos: num, ds: "eight", level: 3, topic: services, primary: true}
+- {word: neuf, source_sense_id: "en-neuf-fr-num-7c2OcBot", pos: num, ds: "nine", level: 3, topic: services, primary: true}
+- {word: dix, source_sense_id: "en-dix-fr-num-5EMrqpCB", pos: num, ds: "ten", level: 3, topic: services, primary: true}
+- {word: onze, source_sense_id: "en-onze-fr-num-6XkHTr1W", pos: num, ds: "eleven", level: 3, topic: services, primary: true}
+- {word: douze, source_sense_id: "en-douze-fr-num-0adJrYeb", pos: num, ds: "twelve", level: 3, topic: services, primary: true}
+- {word: treize, source_sense_id: "en-treize-fr-num-nsyB8KS2", pos: num, ds: "thirteen", level: 3, topic: services, primary: true}
+- {word: quatorze, source_sense_id: "en-quatorze-fr-num-~vj0HNzS", pos: num, ds: "fourteen", level: 3, topic: services, primary: true}
+- {word: quinze, source_sense_id: "en-quinze-fr-num-xGOWflcI", pos: num, ds: "fifteen", level: 3, topic: services, primary: true}
+- {word: seize, source_sense_id: "en-seize-fr-num-8s40H9qm", pos: num, ds: "sixteen", level: 3, topic: services, primary: true}
+- {word: dix-sept, source_sense_id: "en-dix-sept-fr-num-LFq97yoO", pos: num, ds: "seventeen", level: 3, topic: services, primary: true}
+- {word: dix-huit, source_sense_id: "en-dix-huit-fr-num-NDV7GKvd", pos: num, ds: "eighteen", level: 3, topic: services, primary: true}
+- {word: dix-neuf, source_sense_id: "en-dix-neuf-fr-num-zeThAO~S", pos: num, ds: "nineteen", level: 3, topic: services, primary: true}
+- {word: vingt, source_sense_id: "en-vingt-fr-num-fCxN90D3", pos: num, ds: "twenty", level: 3, topic: services, primary: true}
+- {word: trente, source_sense_id: "en-trente-fr-num-rKX7Wdtp", pos: num, ds: "thirty", level: 3, topic: services, primary: true}
+- {word: quarante, source_sense_id: "en-quarante-fr-num-nO4jBL1j", pos: num, ds: "forty", level: 3, topic: services, primary: true}
+- {word: cinquante, source_sense_id: "en-cinquante-fr-num--NgH7hXp", pos: num, ds: "fifty", level: 3, topic: services, primary: true}
+- {word: soixante, source_sense_id: "en-soixante-fr-num-30EWThUS", pos: num, ds: "sixty", level: 3, topic: services, primary: true}
+- {word: soixante-dix, source_sense_id: "en-soixante-dix-fr-num-qw5LGng5", pos: num, ds: "seventy", level: 3, topic: services, primary: true}
+- {word: quatre-vingts, source_sense_id: "en-quatre-vingts-fr-num-1KSWYxaF", pos: num, ds: "eighty, 80", level: 3, topic: services, primary: true}
+- {word: quatre-vingt-dix, source_sense_id: "en-quatre-vingt-dix-fr-num-Uhx0pNWC", pos: num, ds: "ninety", level: 3, topic: services, primary: true}
+- {word: cent, source_sense_id: "en-cent-fr-num-l~6KN0kG", pos: num, ds: "hundred", level: 3, topic: services, primary: true}
+- {word: mille, source_sense_id: "en-mille-fr-num-d~cvvUEJ", pos: num, ds: "thousand, one thousand, a thousand", level: 3, topic: services, primary: true}
+
+# Food, tableware, quantities, and money.
+- {word: peu, source_sense_id: "en-peu-fr-adv-u0lXIPqJ", pos: adv, ds: "little; not much or many", level: 3, topic: services, primary: true}
+- {word: pâte, source_sense_id: "en-pâte-fr-noun-GO226VY7", pos: noun, ds: "pasta; noodles; plural usage", level: 3, topic: food, primary: true}
+- {word: tomate, source_sense_id: "en-tomate-fr-noun-FZ-UhIWx", pos: noun, ds: "tomato; edible fruit", level: 3, topic: food, primary: true}
+- {word: menu, source_sense_id: "en-menu-fr-noun-HDb9KOl-", pos: noun, ds: "menu; set meal", level: 3, topic: food, primary: true}
+- {word: verre, source_sense_id: "en-verre-fr-noun-gyTdXvbq", pos: noun, ds: "drinking glass", level: 3, topic: food, primary: true}
+- {word: assiette, source_sense_id: "en-assiette-fr-noun-POkaqxZ7", pos: noun, ds: "plate; tableware", level: 3, topic: food, primary: true}
+- {word: commander, source_sense_id: "en-commander-fr-verb-MASy~qJG", pos: verb, ds: "to order food or goods", level: 3, topic: food, primary: true}
+- {word: prix, source_sense_id: "en-prix-fr-noun-aDtTH0Hs", pos: noun, ds: "price; amount to pay", level: 3, topic: services, primary: true}
+- {word: argent, source_sense_id: "en-argent-fr-noun-R6UWTbwf", pos: noun, ds: "money; cash", level: 3, topic: services, primary: true}
+- {word: pain, source_sense_id: "en-pain-fr-noun-mFYEwrYC", pos: noun, ds: "bread", level: 3, topic: food, primary: true}
+- {word: café, source_sense_id: "en-café-fr-noun-CgZ8YHjv", pos: noun, ds: "coffee (drink)", level: 3, topic: food, primary: true}
+- {word: eau, source_sense_id: "en-eau-fr-noun-GVipn50f", pos: noun, ds: "water", level: 3, topic: food, primary: true}
+- {word: prendre, source_sense_id: "en-prendre-fr-verb-8uCtsM6l", pos: verb, ds: "to have food or drink", level: 3, topic: food, primary: true}
+- {word: heure, source_sense_id: "en-heure-fr-noun-Te1ebPaZ", pos: noun, ds: "hour, time", level: 3, topic: time, primary: true}
+
+# Finding places and communicating practical needs.
+- {word: prévenir, source_sense_id: "en-prévenir-fr-verb-treSMQ5a", pos: verb, ds: "to notify; to warn", level: 4, topic: communication, primary: true}
+- {word: voiture, source_sense_id: "en-voiture-fr-noun-fq1Ljws7", pos: noun, ds: "car; motor vehicle", level: 4, topic: travel, primary: true}
+- {word: chambre, source_sense_id: "en-chambre-fr-noun-iQ6mGCNP", pos: noun, ds: "hotel room", level: 4, topic: travel, primary: true}
+- {word: arrêt, source_sense_id: "en-arrêt-fr-noun-5NOpqA-y", pos: noun, ds: "stop; stopping place", level: 4, topic: travel, primary: true}
+- {word: entrée, source_sense_id: "en-entrée-fr-noun-i-WjxhgK", pos: noun, ds: "entrance; way in", level: 4, topic: travel, primary: true}
+- {word: près, source_sense_id: "en-près-fr-adv-O1a02u4i", pos: adv, ds: "near; close by", level: 4, topic: travel, primary: true}
+- {word: tout droit, source_sense_id: "en-tout_droit-fr-adv-8bsTYcmD", pos: adv, ds: "straight ahead", level: 4, topic: travel, primary: true}
+- {word: retourner, source_sense_id: "en-retourner-fr-verb-pM7DeXZA", pos: verb, ds: "to go back; to return to a place", level: 4, topic: travel, primary: true}
+- {word: rendez-vous, source_sense_id: "en-rendez-vous-fr-noun-~Tf4da0p", pos: noun, ds: "appointment", level: 4, topic: communication, primary: true}
+- {word: accord, source_sense_id: "en-accord-fr-noun-RqgXOcbu", pos: noun, ds: "agreement", level: 4, topic: communication, primary: true}
+- {word: hôtel, source_sense_id: "en-hôtel-fr-noun-0k58YxE-", pos: noun, ds: "hotel; paid accommodation", level: 4, topic: travel, primary: true}
+- {word: billet, source_sense_id: "en-billet-fr-noun-FAaUKRUK", pos: noun, ds: "ticket", level: 4, topic: travel, primary: true}
+- {word: droite, source_sense_id: "en-droite-fr-noun-elOKo-sg", pos: noun, ds: "right-hand side", level: 4, topic: travel, primary: true}
+- {word: train, source_sense_id: "en-train-fr-noun-hQ7iEAf-", pos: noun, ds: "train (rail mounted vehicle)", level: 4, topic: travel, primary: true}
+- {word: carte, source_sense_id: "en-carte-fr-noun-g2fNZv3R", pos: noun, ds: "card", level: 4, topic: travel, primary: true}
+- {word: carte, source_sense_id: "en-carte-fr-noun-RoMy~GGt", pos: noun, ds: "map; chart", level: 4, topic: travel, primary: false}
+- {word: carte, source_sense_id: "en-carte-fr-noun-cJM8swAV", pos: noun, ds: "menu; list of dishes", level: 6, topic: food, primary: false}
+- {word: appeler, source_sense_id: "en-appeler-fr-verb-ESt41nz5", pos: verb, ds: "to telephone", level: 4, topic: communication, primary: false}
+- {word: prendre, source_sense_id: "en-prendre-fr-verb-TuaAS407", pos: verb, ds: "to take", level: 4, topic: actions, primary: false}
+
+# Home and daily routines.
+- {word: sol, source_sense_id: "en-sol-fr-noun-o-H0k1sJ", pos: noun, ds: "floor; indoor surface", level: 5, topic: home, primary: true}
+- {word: salle, source_sense_id: "en-salle-fr-noun-nnpBcHjz", pos: noun, ds: "room in a house", level: 5, topic: home, primary: true}
+- {word: éponge, source_sense_id: "en-éponge-fr-noun-sWn9nMVU", pos: noun, ds: "sponge for cleaning", level: 5, topic: home, primary: true}
+- {word: déménager, source_sense_id: "en-déménager-fr-verb-e2KVV044", pos: verb, ds: "to move house", level: 5, topic: actions, primary: true}
+- {word: normalement, source_sense_id: "en-normalement-fr-adv--987tqVe", pos: adv, ds: "usually", level: 5, topic: time, primary: true}
+- {word: puis, source_sense_id: "en-puis-fr-adv-uOccZeUc", pos: adv, ds: "then; next", level: 5, topic: time, primary: true}
+- {word: cuisine, source_sense_id: "en-cuisine-fr-noun-MXHYmtAF", pos: noun, ds: "kitchen", level: 5, topic: home, primary: true}
+- {word: bureau, source_sense_id: "en-bureau-fr-noun-Sb5BetdA", pos: noun, ds: "desk", level: 5, topic: home, primary: true}
+- {word: toilette, source_sense_id: "en-toilette-fr-noun-IqL15IXY", pos: noun, ds: "toilet; lavatory", level: 5, topic: home, primary: true}
+- {word: date, source_sense_id: "en-date-fr-noun-2XbYvAy8", pos: noun, ds: "date (point in time)", level: 5, topic: time, primary: true}
+
+# Clothing, shopping, and health.
+- {word: bouton, source_sense_id: "en-bouton-fr-noun-w-LXjz~z", pos: noun, ds: "button", level: 6, topic: clothing, primary: true}
+- {word: fermeture, source_sense_id: "en-fermeture-fr-noun-z-CkILdJ", pos: noun, ds: "fastener; clothing closure", level: 6, topic: clothing, primary: true}
+- {word: taille, source_sense_id: "en-taille-fr-noun-zNy-hG89", pos: noun, ds: "size; clothing size", level: 6, topic: clothing, primary: true}
+- {word: convenir, source_sense_id: "en-convenir-fr-verb-WnlRpzag", pos: verb, ds: "to suit; to be suitable for", level: 6, topic: clothing, primary: true}
+- {word: propre, source_sense_id: "en-propre-fr-adj-OwZoBPbR", pos: adj, ds: "clean; not dirty", level: 6, topic: clothing, primary: true}
+- {word: rose, source_sense_id: "en-rose-fr-adj-pnpByLx5", pos: adj, ds: "pink", level: 6, topic: clothing, primary: true}
+- {word: clair, source_sense_id: "en-clair-fr-adj-wqv9m~3w", pos: adj, ds: "light in colour", level: 6, topic: clothing, primary: true}
+- {word: rayure, source_sense_id: "en-rayure-fr-noun-fzVEyeMn", pos: noun, ds: "stripe; line in a pattern", level: 6, topic: clothing, primary: true}
+- {word: uni, source_sense_id: "en-uni-fr-adj-9oit8-9u", pos: adj, ds: "plain; one colour", level: 6, topic: clothing, primary: true}
+- {word: boucherie, source_sense_id: "en-boucherie-fr-noun-qnHV4FMD", pos: noun, ds: "butcher's shop", level: 6, topic: services, primary: true}
+- {word: caisse, source_sense_id: "en-caisse-fr-noun-AlGWW-2t", pos: noun, ds: "checkout; place to pay in a shop", level: 6, topic: services, primary: true}
+- {word: article, source_sense_id: "en-article-fr-noun-rIwDhrdn", pos: noun, ds: "item for sale", level: 6, topic: services, primary: true}
+- {word: reçu, source_sense_id: "en-reçu-fr-noun-bzKGCRDK", pos: noun, ds: "receipt; proof of payment", level: 6, topic: services, primary: true}
+- {word: espèce, source_sense_id: "en-espèce-fr-noun-DWHTe2uP", pos: noun, ds: "cash; plural usage", level: 6, topic: services, primary: true}
+- {word: promotion, source_sense_id: "en-promotion-fr-noun-K~DQ8c03", pos: noun, ds: "special offer; sale", level: 6, topic: services, primary: true}
+- {word: cher, source_sense_id: "en-cher-fr-adj-gKkg~kDn", pos: adj, ds: "expensive", level: 6, topic: services, primary: true}
+- {word: ordonnance, source_sense_id: "en-ordonnance-fr-noun-dYdow8om", pos: noun, ds: "medical prescription", level: 6, topic: health, primary: true}
+- {word: reposer, source_sense_id: "en-reposer-fr-verb-1TxAE3um", pos: verb, ds: "to rest; reflexive use", level: 6, topic: health, primary: true}
+- {word: sentir, source_sense_id: "en-sentir-fr-verb-5pH7JmJJ", pos: verb, ds: "to feel; physical sensation", level: 6, topic: health, primary: true}
+- {word: monnaie, source_sense_id: "en-monnaie-fr-noun-auJ8WeG3", pos: noun, ds: "change (money back after a transaction)", level: 6, topic: services, primary: true}
+- {word: médecin, source_sense_id: "en-médecin-fr-noun-HIhDohTd", pos: noun, ds: "physician; (medical) doctor", level: 6, topic: health, primary: true}
+
+# Transport, bookings, and practical descriptions.
+- {word: correspondance, source_sense_id: "en-correspondance-fr-noun-I6k4LUUU", pos: noun, ds: "connection; transfer between transport services", level: 7, topic: travel, primary: true}
+- {word: quai, source_sense_id: "en-quai-fr-noun-pCRh3v9Q", pos: noun, ds: "station platform", level: 7, topic: travel, primary: true}
+- {word: chauffeur, source_sense_id: "en-chauffeur-fr-noun-tN74IXyt", pos: noun, ds: "driver", level: 7, topic: travel, primary: true}
+- {word: réservation, source_sense_id: "en-réservation-fr-noun-AB0FfEmI", pos: noun, ds: "booking", level: 7, topic: travel, primary: true}
+- {word: réception, source_sense_id: "en-réception-fr-noun-v3ebnnIz", pos: noun, ds: "reception desk; place welcoming arrivals", level: 7, topic: travel, primary: true}
+- {word: pays, source_sense_id: "en-pays-fr-noun-hKBzBpHs", pos: noun, ds: "country; homeland", level: 7, topic: travel, primary: true}
+- {word: feu, source_sense_id: "en-feu-fr-noun-NNc5ljV3", pos: noun, ds: "traffic light", level: 7, topic: travel, primary: true}
+- {word: essence, source_sense_id: "en-essence-fr-noun-s-fHEX0u", pos: noun, ds: "petrol; gasoline", level: 7, topic: travel, primary: true}
+- {word: circulation, source_sense_id: "en-circulation-fr-noun-B19KuFTi", pos: noun, ds: "traffic", level: 7, topic: travel, primary: true}
+- {word: panne, source_sense_id: "en-panne-fr-noun-uU6FbO7o", pos: noun, ds: "breakdown; failure to function", level: 7, topic: travel, primary: true}
+- {word: garer, source_sense_id: "en-garer-fr-verb-rNKwNRF8", pos: verb, ds: "to park a vehicle", level: 7, topic: actions, primary: true}
+- {word: rouler, source_sense_id: "en-rouler-fr-verb-rj5iHeYj", pos: verb, ds: "to drive; to ride a vehicle", level: 7, topic: actions, primary: true}
+- {word: dépasser, source_sense_id: "en-dépasser-fr-verb-ggYmJv5I", pos: verb, ds: "to overtake; to go past", level: 7, topic: actions, primary: true}
+- {word: enregistrer, source_sense_id: "en-enregistrer-fr-verb-KZ592Mg1", pos: verb, ds: "to check in; reflexive use", level: 7, topic: actions, primary: true}
+- {word: pire, source_sense_id: "en-pire-fr-noun-js4ls-aD", pos: noun, ds: "the worst; nominal superlative", level: 7, topic: description, primary: true}
+- {word: meilleur, source_sense_id: "en-meilleur-fr-noun-j0N17GXC", pos: noun, ds: "the best; nominal superlative", level: 7, topic: description, primary: true}
+- {word: simple, source_sense_id: "en-simple-fr-adj-kiWVpn7R", pos: adj, ds: "simple; easy to understand or do", level: 7, topic: description, primary: true}
+- {word: sûr, source_sense_id: "en-sûr-fr-adj-izNplE3S", pos: adj, ds: "safe; not dangerous", level: 7, topic: description, primary: true}
+- {word: calme, source_sense_id: "en-calme-fr-adj-rVhFuE4p", pos: adj, ds: "quiet; peaceful", level: 7, topic: description, primary: true}
+- {word: vol, source_sense_id: "en-vol-fr-noun-A7az6RY9", pos: noun, ds: "flight", level: 7, topic: travel, primary: true}
+
+# Study, work, and leisure.
+- {word: collège, source_sense_id: "en-collège-fr-noun-Ad-XotLx", pos: noun, ds: "lower secondary school", level: 8, topic: learning, primary: true}
+- {word: classe, source_sense_id: "en-classe-fr-noun-CIkRPgTT", pos: noun, ds: "class; teaching group", level: 8, topic: learning, primary: true}
+- {word: cours, source_sense_id: "en-cours-fr-noun-~IICEhzo", pos: noun, ds: "class; lesson", level: 8, topic: learning, primary: true}
+- {word: exercice, source_sense_id: "en-exercice-fr-noun-ZiEJrw56", pos: noun, ds: "exercise; practice task", level: 8, topic: learning, primary: true}
+- {word: examen, source_sense_id: "en-examen-fr-noun-6wJFetlN", pos: noun, ds: "exam; test of learning", level: 8, topic: learning, primary: true}
+- {word: note, source_sense_id: "en-note-fr-noun-YjLvSpMz", pos: noun, ds: "grade; mark for schoolwork", level: 8, topic: learning, primary: true}
+- {word: formation, source_sense_id: "en-formation-fr-noun-DzPUb9Hk", pos: noun, ds: "training; education", level: 8, topic: learning, primary: true}
+- {word: gomme, source_sense_id: "en-gomme-fr-noun-ra~Z1gC8", pos: noun, ds: "eraser; pencil rubber", level: 8, topic: learning, primary: true}
+- {word: tableau, source_sense_id: "en-tableau-fr-noun-2QpQxPki", pos: noun, ds: "writing board", level: 8, topic: learning, primary: true}
+- {word: retenir, source_sense_id: "en-retenir-fr-verb-OC7Eux0Z", pos: verb, ds: "to remember; to retain in memory", level: 8, topic: learning, primary: true}
+- {word: profession, source_sense_id: "en-profession-fr-noun-ich0eghI", pos: noun, ds: "profession; occupation", level: 8, topic: work, primary: true}
+- {word: poste, source_sense_id: "en-poste-fr-noun-eEAQf25M", pos: noun, ds: "job; position at work", level: 8, topic: work, primary: true}
+- {word: entretien, source_sense_id: "en-entretien-fr-noun-hH2hfBZQ", pos: noun, ds: "interview", level: 8, topic: work, primary: true}
+- {word: expérience, source_sense_id: "en-expérience-fr-noun-VBz1dklw", pos: noun, ds: "experience; acquired knowledge and skills", level: 8, topic: work, primary: true}
+- {word: dossier, source_sense_id: "en-dossier-fr-noun-yOwD7Zzn", pos: noun, ds: "dossier; collection of documents", level: 8, topic: work, primary: true}
+- {word: lettre, source_sense_id: "en-lettre-fr-noun-JbLk0dW0", pos: noun, ds: "letter; written message", level: 8, topic: work, primary: true}
+- {word: gagner, source_sense_id: "en-gagner-fr-verb-ti9X~2-T", pos: verb, ds: "to earn", level: 8, topic: work, primary: true}
+- {word: discuter, source_sense_id: "en-discuter-fr-verb-ZDsWhDmn", pos: verb, ds: "to discuss", level: 8, topic: work, primary: true}
+- {word: fête, source_sense_id: "en-fête-fr-noun-HQ~qOewz", pos: noun, ds: "party; celebration", level: 8, topic: leisure, primary: true}
+- {word: cinéma, source_sense_id: "en-cinéma-fr-noun-BJ1~dBfZ", pos: noun, ds: "cinema; movie theatre", level: 8, topic: leisure, primary: true}
+- {word: exposition, source_sense_id: "en-exposition-fr-noun-g6K~-Esd", pos: noun, ds: "exhibition", level: 8, topic: leisure, primary: true}
+- {word: école, source_sense_id: "en-école-fr-noun-1k3r2ULX", pos: noun, ds: "school", level: 8, topic: learning, primary: true}
+- {word: emploi, source_sense_id: "en-emploi-fr-noun-XoyZAiB6", pos: noun, ds: "job", level: 8, topic: work, primary: true}
+- {word: leur, source_sense_id: "en-leur-fr-pron-4RMMe4Bv", pos: pron, ds: "to them; indirect-object clitic", level: 8, topic: grammar, primary: false}
+
+# Narrating events and describing relationships.
+- {word: récit, source_sense_id: "en-récit-fr-noun-gQ8rQsgO", pos: noun, ds: "narrative; account of events", level: 9, topic: time, primary: true}
+- {word: suite, source_sense_id: "en-suite-fr-noun--SBXp6uG", pos: noun, ds: "what follows; continuation", level: 9, topic: time, primary: true}
+- {word: rappeler, source_sense_id: "en-rappeler-fr-verb-lxJJ~Q5C", pos: verb, ds: "to remind", level: 9, topic: actions, primary: true}
+- {word: entraîner, source_sense_id: "en-entraîner-fr-verb-oRlI-bIR", pos: verb, ds: "to bring about; to lead to", level: 9, topic: actions, primary: true}
+- {word: reprendre, source_sense_id: "en-reprendre-fr-verb-V1sCTkMa", pos: verb, ds: "to resume; to carry on with", level: 9, topic: actions, primary: true}
+- {word: bonheur, source_sense_id: "en-bonheur-fr-noun-QvOMEld7", pos: noun, ds: "happiness", level: 10, topic: feelings, primary: true}
+- {word: passion, source_sense_id: "en-passion-fr-noun-lR9clzNL", pos: noun, ds: "passion; enthusiasm", level: 10, topic: feelings, primary: true}
+- {word: reconnaissance, source_sense_id: "en-reconnaissance-fr-noun-pq-xscN5", pos: noun, ds: "gratitude; thankfulness", level: 10, topic: feelings, primary: true}
+- {word: humeur, source_sense_id: "en-humeur-fr-noun-fPcH~u6D", pos: noun, ds: "mood; state of mind", level: 10, topic: feelings, primary: true}
+- {word: caractère, source_sense_id: "en-caractère-fr-noun-ZhPmXAa4", pos: noun, ds: "character; demeanour", level: 10, topic: feelings, primary: true}
+- {word: patient, source_sense_id: "en-patient-fr-adj-IpX~eovY", pos: adj, ds: "patient; able to wait calmly", level: 10, topic: feelings, primary: true}
+- {word: connaissance, source_sense_id: "en-connaissance-fr-noun-GV~CgcvE", pos: noun, ds: "acquaintance; someone one knows", level: 10, topic: people, primary: true}
+- {word: génération, source_sense_id: "en-génération-fr-noun-SO0r0cr7", pos: noun, ds: "generation; position in family descent", level: 10, topic: people, primary: true}
+- {word: entourage, source_sense_id: "en-entourage-fr-noun-E4CFnRCb", pos: noun, ds: "circle of acquaintances", level: 10, topic: people, primary: true}
+- {word: soutien, source_sense_id: "en-soutien-fr-noun-7iOYmy~p", pos: noun, ds: "emotional support", level: 10, topic: people, primary: true}
+
+# Tools, components, and repairs.
+- {word: pièce, source_sense_id: "en-pièce-fr-noun-NCNaLFAu", pos: noun, ds: "piece; part of a whole", level: 11, topic: actions, primary: true}
+- {word: détacher, source_sense_id: "en-détacher-fr-verb-SFIEf1zU", pos: verb, ds: "to detach; to untie", level: 11, topic: actions, primary: true}
+- {word: décoller, source_sense_id: "en-décoller-fr-verb-7JkSVAfm", pos: verb, ds: "to unstick", level: 11, topic: actions, primary: true}
+- {word: pince, source_sense_id: "en-pince-fr-noun-aPVrqbO0", pos: noun, ds: "pliers", level: 11, topic: home, primary: true}
+- {word: poêle, source_sense_id: "en-poêle-fr-noun-AON~-uBW", pos: noun, ds: "pan for cooking", level: 11, topic: home, primary: true}
+- {word: plateau, source_sense_id: "en-plateau-fr-noun-rZoMqxLu", pos: noun, ds: "tray", level: 11, topic: home, primary: true}
+- {word: fiche, source_sense_id: "en-fiche-fr-noun-Da8MnKN~", pos: noun, ds: "plug; electrical connector", level: 11, topic: home, primary: true}
+- {word: pile, source_sense_id: "en-pile-fr-noun-89FwHh1X", pos: noun, ds: "battery; electrical cell", level: 11, topic: home, primary: true}
+- {word: poignée, source_sense_id: "en-poignée-fr-noun-PSfidh7x", pos: noun, ds: "handle; part held to open or carry something", level: 11, topic: home, primary: true}
+- {word: fuite, source_sense_id: "en-fuite-fr-noun-OHHq~ju4", pos: noun, ds: "leak; escaping liquid or gas", level: 11, topic: home, primary: true}
+- {word: peinture, source_sense_id: "en-peinture-fr-noun-KX5hnbXu", pos: noun, ds: "paint; coating material", level: 11, topic: home, primary: true}
+- {word: mat, source_sense_id: "en-mat-fr-adj-TzH6UOW9", pos: adj, ds: "matt; not shiny", level: 11, topic: description, primary: true}
+- {word: manuel, source_sense_id: "en-manuel-fr-adj-NNotkHl3", pos: adj, ds: "manual; operated by a person rather than a machine", level: 11, topic: description, primary: true}
+
+# Written communication, classroom metalanguage, and news.
+- {word: démarche, source_sense_id: "en-démarche-fr-noun-z4K-ArzE", pos: noun, ds: "procedure; step taken to get something done", level: 12, topic: communication, primary: true}
+- {word: rapport, source_sense_id: "en-rapport-fr-noun-hF6RgxMZ", pos: noun, ds: "report", level: 12, topic: communication, primary: true}
+- {word: indiquer, source_sense_id: "en-indiquer-fr-verb-7GCPHImZ", pos: verb, ds: "to indicate; to show", level: 12, topic: communication, primary: true}
+- {word: sauvegarder, source_sense_id: "en-sauvegarder-fr-verb-vFbiU1oc", pos: verb, ds: "to save digital information", level: 12, topic: communication, primary: true}
+- {word: verbe, source_sense_id: "en-verbe-fr-noun-aAb4ahfw", pos: noun, ds: "verb; grammatical word class", level: 12, topic: learning, primary: true}
+- {word: sujet, source_sense_id: "en-sujet-fr-noun-qUkfTBv3", pos: noun, ds: "subject; grammatical role", level: 12, topic: learning, primary: true}
+- {word: temps, source_sense_id: "en-temps-fr-noun-3rjMJfAU", pos: noun, ds: "tense; grammatical time reference", level: 12, topic: learning, primary: true}
+- {word: mode, source_sense_id: "en-mode-fr-noun-Jdk95NHk", pos: noun, ds: "mood; grammatical verb category", level: 12, topic: learning, primary: true}
+- {word: journal, source_sense_id: "en-journal-fr-noun-8pxFEWcv", pos: noun, ds: "newspaper", level: 12, topic: media, primary: true}
+- {word: émission, source_sense_id: "en-émission-fr-noun-OTbkVcf1", pos: noun, ds: "programme; broadcast show", level: 12, topic: media, primary: true}
+- {word: auditeur, source_sense_id: "en-auditeur-fr-noun-eZBJDZZw", pos: noun, ds: "listener", level: 12, topic: media, primary: true}
+- {word: contenu, source_sense_id: "en-contenu-fr-noun-7LuXF~Ti", pos: noun, ds: "content; subject matter", level: 12, topic: media, primary: true}
+- {word: source, source_sense_id: "en-source-fr-noun-dIP5DIks", pos: noun, ds: "source; origin of information", level: 12, topic: media, primary: true}
+
+# Banking, customer service, housing, and work.
+- {word: assurance, source_sense_id: "en-assurance-fr-noun-ZOiTerxt", pos: noun, ds: "insurance", level: 14, topic: services, primary: true}
+- {word: dépôt, source_sense_id: "en-dépôt-fr-noun-w7n7eKRS", pos: noun, ds: "bank deposit", level: 14, topic: services, primary: true}
+- {word: retrait, source_sense_id: "en-retrait-fr-noun-t56MW2e8", pos: noun, ds: "withdrawal", level: 14, topic: services, primary: true}
+- {word: prélèvement, source_sense_id: "en-prélèvement-fr-noun-H5zxzfCJ", pos: noun, ds: "deduction; levy", level: 14, topic: services, primary: true}
+- {word: recette, source_sense_id: "en-recette-fr-noun-7vryXE4f", pos: noun, ds: "takings; income received", level: 14, topic: services, primary: true}
+- {word: guichet, source_sense_id: "en-guichet-fr-noun-AZt8bgrM", pos: noun, ds: "service counter; bank or post-office window", level: 14, topic: services, primary: true}
+- {word: duplex, source_sense_id: "en-duplex-fr-noun-LDl6WGwb", pos: noun, ds: "duplex; two-level dwelling", level: 14, topic: home, primary: true}
+- {word: volume, source_sense_id: "en-volume-fr-noun-MCvBv-v4", pos: noun, ds: "volume; amount of space occupied", level: 14, topic: home, primary: true}
+- {word: infiltration, source_sense_id: "en-infiltration-fr-noun-M9MHdspE", pos: noun, ds: "infiltration; seepage", level: 14, topic: home, primary: true}
+- {word: alimentation, source_sense_id: "en-alimentation-fr-noun-Tgve0YLJ", pos: noun, ds: "power supply", level: 14, topic: home, primary: true}
+- {word: expirer, source_sense_id: "en-expirer-fr-verb-gJZg0428", pos: verb, ds: "to expire; to run out", level: 14, topic: actions, primary: true}
+- {word: reporter, source_sense_id: "en-reporter-fr-verb-rmnuH044", pos: verb, ds: "to postpone", level: 14, topic: actions, primary: true}
+- {word: suspendre, source_sense_id: "en-suspendre-fr-verb-NlCgcXX2", pos: verb, ds: "to suspend; to cancel temporarily", level: 14, topic: actions, primary: true}
+- {word: débiter, source_sense_id: "en-débiter-fr-verb-vwcQ65ve", pos: verb, ds: "to debit an account", level: 14, topic: actions, primary: true}
+- {word: fuir, source_sense_id: "en-fuir-fr-verb-QI72GNIC", pos: verb, ds: "to leak", level: 14, topic: actions, primary: true}
+- {word: cadre, source_sense_id: "en-cadre-fr-noun-hFgfBblP", pos: noun, ds: "executive; manager", level: 15, topic: work, primary: true}
+- {word: mutation, source_sense_id: "en-mutation-fr-noun-ONYlIrcC", pos: noun, ds: "transfer; move to another post", level: 15, topic: work, primary: true}
+- {word: carrière, source_sense_id: "en-carrière-fr-noun-ibdQWtea", pos: noun, ds: "career", level: 15, topic: work, primary: true}
+- {word: ancienneté, source_sense_id: "en-ancienneté-fr-noun-qCOOfJTS", pos: noun, ds: "seniority", level: 15, topic: work, primary: true}
+- {word: encadrement, source_sense_id: "en-encadrement-fr-noun-xwnjgJ7J", pos: noun, ds: "supervision", level: 15, topic: work, primary: true}
+- {word: séminaire, source_sense_id: "en-séminaire-fr-noun-skbPif6C", pos: noun, ds: "seminar; training or discussion meeting", level: 15, topic: work, primary: true}
+- {word: affecter, source_sense_id: "en-affecter-fr-verb-v9SfLMXL", pos: verb, ds: "to assign someone to a post", level: 15, topic: actions, primary: true}
+- {word: encadrer, source_sense_id: "en-encadrer-fr-verb-2hPTTVNx", pos: verb, ds: "to supervise", level: 15, topic: actions, primary: true}
+- {word: former, source_sense_id: "en-former-fr-verb-EAOKQ6mW", pos: verb, ds: "to train; to educate", level: 15, topic: actions, primary: true}
+- {word: réaliser, source_sense_id: "en-réaliser-fr-verb-EliRxdAS", pos: verb, ds: "to perform a task", level: 15, topic: actions, primary: true}
+
+# News, civic life, and digital tools.
+- {word: manchette, source_sense_id: "en-manchette-fr-noun-JbHtlhWg", pos: noun, ds: "headline", level: 16, topic: media, primary: true}
+- {word: cliché, source_sense_id: "en-cliché-fr-noun-FqDusHkb", pos: noun, ds: "snapshot; photograph", level: 16, topic: media, primary: true}
+- {word: intoxication, source_sense_id: "en-intoxication-fr-noun-TexnpU6-", pos: noun, ds: "spreading false information", level: 16, topic: media, primary: true}
+- {word: biais, source_sense_id: "en-biais-fr-noun--kgk6DdG1", pos: noun, ds: "bias; distorted judgement", level: 16, topic: media, primary: true}
+- {word: tirage, source_sense_id: "en-tirage-fr-noun-Gc71ku2A", pos: noun, ds: "circulation; number of newspaper copies sold", level: 16, topic: media, primary: true}
+- {word: correspondant, source_sense_id: "en-correspondant-fr-noun-hBoKS8qB", pos: noun, ds: "correspondent; journalist reporting from a location", level: 16, topic: media, primary: true}
+- {word: chômage, source_sense_id: "en-chômage-fr-noun-CrN8jkou", pos: noun, ds: "unemployment", level: 16, topic: society, primary: true}
+- {word: syndicat, source_sense_id: "en-syndicat-fr-noun-gNan2KAf", pos: noun, ds: "trade union; workers' organization", level: 16, topic: society, primary: true}
+- {word: grève, source_sense_id: "en-grève-fr-noun-~xlD3XM8", pos: noun, ds: "strike; work stoppage", level: 16, topic: society, primary: true}
+- {word: avocat, source_sense_id: "en-avocat-fr-noun-sQbKhEcI", pos: noun, ds: "lawyer, attorney", level: 16, topic: institutions, primary: true}
+- {word: serveur, source_sense_id: "en-serveur-fr-noun-s-rNM0M7", pos: noun, ds: "computer server", level: 17, topic: technology, primary: true}
+- {word: souris, source_sense_id: "en-souris-fr-noun-azz6b0zF", pos: noun, ds: "computer mouse", level: 17, topic: technology, primary: true}
+- {word: scanner, source_sense_id: "en-scanner-fr-verb-4PBRDIei", pos: verb, ds: "to scan; to make a digital image", level: 17, topic: technology, primary: true}
+- {word: capteur, source_sense_id: "en-capteur-fr-noun-ynP2EDSv", pos: noun, ds: "sensor", level: 17, topic: technology, primary: true}
+- {word: lien, source_sense_id: "en-lien-fr-noun-sbG9tIDG", pos: noun, ds: "link", level: 17, topic: technology, primary: true}
+- {word: navigateur, source_sense_id: "en-navigateur-fr-noun-1MPooRJW", pos: noun, ds: "web browser", level: 17, topic: technology, primary: true}
+- {word: fichier, source_sense_id: "en-fichier-fr-noun-O5w1jzbw", pos: noun, ds: "computer file", level: 17, topic: technology, primary: true}
+- {word: traitement, source_sense_id: "en-traitement-fr-noun-CmPdmqCp", pos: noun, ds: "processing", level: 17, topic: technology, primary: true}
+- {word: calcul, source_sense_id: "en-calcul-fr-noun-ADk6DWb5", pos: noun, ds: "calculation; computation", level: 17, topic: technology, primary: true}
+- {word: sauvegarde, source_sense_id: "en-sauvegarde-fr-noun-0pZnpHbT", pos: noun, ds: "backup; saving information safely", level: 17, topic: technology, primary: true}
+- {word: faille, source_sense_id: "en-faille-fr-noun-AxoEJ7I3", pos: noun, ds: "flaw; weakness", level: 17, topic: technology, primary: true}
+- {word: traiter, source_sense_id: "en-traiter-fr-verb-yeGIMGIm", pos: verb, ds: "to process", level: 17, topic: technology, primary: true}
+- {word: taper, source_sense_id: "en-taper-fr-verb-5RTkqzfc", pos: verb, ds: "to type on a keyboard", level: 17, topic: technology, primary: true}
+- {word: sécheresse, source_sense_id: "en-sécheresse-fr-noun-yq7YxOuN", pos: noun, ds: "drought", level: 17, topic: nature, primary: true}
+- {word: canicule, source_sense_id: "en-canicule-fr-noun-QcFB~qQl", pos: noun, ds: "heat wave", level: 17, topic: nature, primary: true}
+- {word: plante, source_sense_id: "en-plante-fr-noun-lgRNlzS2", pos: noun, ds: "plant; living vegetation", level: 17, topic: nature, primary: true}
+- {word: côte, source_sense_id: "en-côte-fr-noun-I8B1oDXz", pos: noun, ds: "coast; land beside the sea", level: 17, topic: nature, primary: true}
+- {word: registre, source_sense_id: "en-registre-fr-noun-32IcFjrr", pos: noun, ds: "register; level or category", level: 18, topic: register, primary: true}
+- {word: courant, source_sense_id: "en-courant-fr-adj-kqXcBL1v", pos: adj, ds: "common; in ordinary use", level: 18, topic: register, primary: true}
+- {word: ferme, source_sense_id: "en-ferme-fr-adj-P2JVBzHZ", pos: adj, ds: "firm; resolute", level: 18, topic: register, primary: true}
+
+# Later destinations must not inherit an unrelated corrected primary meaning.
+- {word: commande, source_sense_id: "en-commande-fr-noun-V1RnmOdK", pos: noun, ds: "order for goods or services", level: 20, topic: money, primary: true}
+- {word: port, source_sense_id: "en-port-fr-noun-zJ5k9m0v", pos: noun, ds: "harbour; port", level: 30, topic: society, primary: true}
+- {word: langue, source_sense_id: "en-langue-fr-noun-snFSEtk5", pos: noun, ds: "tongue; body part", level: 21, topic: health, primary: false}
+- {word: commander, source_sense_id: "en-commander-fr-verb-1ycoSxp3", pos: verb, ds: "to command; to tell someone what to do", level: 26, topic: actions, primary: false}
+- {word: menu, source_sense_id: "en-menu-fr-noun-yCsdkrxP", pos: noun, ds: "menu; detailed list", level: 24, topic: technology, primary: false}
+- {word: accord, source_sense_id: "en-accord-fr-noun-JXNbqqW0", pos: noun, ds: "chord; musical combination", level: 27, topic: music, primary: false}
+- {word: arrêt, source_sense_id: "en-arrêt-fr-noun-BXcJG-W6", pos: noun, ds: "judgment; court ruling", level: 30, topic: institutions, primary: false}
+- {word: prévenir, source_sense_id: "en-prévenir-fr-verb-qghr5aky", pos: verb, ds: "to prevent; to avert", level: 17, topic: reasoning, primary: false}
+- {word: sol, source_sense_id: "en-sol-fr-noun-ZVwPNiEr", pos: noun, ds: "soil; earth", level: 17, topic: nature, primary: false}
+- {word: article, source_sense_id: "en-article-fr-noun-hDk63YxI", pos: noun, ds: "article; grammatical determiner", level: 12, topic: learning, primary: false}
+- {word: article, source_sense_id: "en-article-fr-noun-UdGB6qnB", pos: noun, ds: "article; nonfiction text", level: 12, topic: media, primary: false}
+- {word: article, source_sense_id: "en-article-fr-noun-KH7UON~Y", pos: noun, ds: "article; section of a law", level: 20, topic: institutions, primary: false}
+- {word: clair, source_sense_id: "en-clair-fr-adj-g3YHkSnn", pos: adj, ds: "clear; understandable", level: 18, topic: register, primary: false}
+- {word: convenir, source_sense_id: "en-convenir-fr-verb-ZM6g40G4", pos: verb, ds: "to agree; to acknowledge", level: 18, topic: argument, primary: false}
+- {word: espèce, source_sense_id: "en-espèce-fr-noun-FVnWqjw2", pos: noun, ds: "species", level: 17, topic: nature, primary: false}
+- {word: promotion, source_sense_id: "en-promotion-fr-noun-qSnsruTd", pos: noun, ds: "promotion; career advancement", level: 15, topic: work, primary: false}
+- {word: rose, source_sense_id: "en-rose-fr-noun-xDETYqUB", pos: noun, ds: "rose; flower", level: 29, topic: nature, primary: false}
+- {word: correspondance, source_sense_id: "en-correspondance-fr-noun-FGVL8rdz", pos: noun, ds: "correspondence; exchange of messages", level: 26, topic: register, primary: false}
+- {word: correspondance, source_sense_id: "en-correspondance-fr-noun-SUWnD6f5", pos: noun, ds: "match; correspondence between things", level: 28, topic: reasoning, primary: false}
+- {word: quai, source_sense_id: "en-quai-fr-noun-hcHCQaLr", pos: noun, ds: "quay; wharf", level: 30, topic: society, primary: false}
+- {word: réception, source_sense_id: "en-réception-fr-noun-z87Gmint", pos: noun, ds: "reception; act of receiving", level: 20, topic: money, primary: false}
+- {word: essence, source_sense_id: "en-essence-fr-noun-CSvYZGz1", pos: noun, ds: "essence; fundamental nature", level: 28, topic: description, primary: false}
+- {word: circulation, source_sense_id: "en-circulation-fr-noun-gZ9tvc2B", pos: noun, ds: "blood circulation", level: 21, topic: health, primary: false}
+- {word: enregistrer, source_sense_id: "en-enregistrer-fr-verb-qfMCMdvR", pos: verb, ds: "to record for later use or playback", level: 12, topic: communication, primary: false}
+- {word: simple, source_sense_id: "en-simple-fr-adj-FzlL4BI2", pos: adj, ds: "plain; unpretentious", level: 25, topic: description, primary: false}
+- {word: classe, source_sense_id: "en-classe-fr-noun-ZxUUjODK", pos: noun, ds: "class; category or group", level: 16, topic: society, primary: false}
+- {word: dossier, source_sense_id: "en-dossier-fr-noun-A0oAYkiC", pos: noun, ds: "computer folder", level: 17, topic: technology, primary: false}
+- {word: entretien, source_sense_id: "en-entretien-fr-noun-Alu0ZnmT", pos: noun, ds: "maintenance; upkeep", level: 11, topic: actions, primary: false}
+- {word: expérience, source_sense_id: "en-expérience-fr-noun-19L3f-Jk", pos: noun, ds: "experiment; test", level: 21, topic: science, primary: false}
+- {word: lettre, source_sense_id: "en-lettre-fr-noun-NhcpUfS~", pos: noun, ds: "letter; written character", level: 12, topic: learning, primary: false}
+- {word: note, source_sense_id: "en-note-fr-noun-pR7bkz4g", pos: noun, ds: "note; written or spoken message", level: 24, topic: communication, primary: false}
+- {word: note, source_sense_id: "en-note-fr-noun-7bRlYkKR", pos: noun, ds: "musical note", level: 27, topic: music, primary: false}
+- {word: tableau, source_sense_id: "en-tableau-fr-noun-3mILPi4O", pos: noun, ds: "table; arrangement of rows and columns", level: 24, topic: communication, primary: false}
+- {word: tableau, source_sense_id: "en-tableau-fr-noun-pU5WOLvD", pos: noun, ds: "painting; artwork", level: 27, topic: arts, primary: false}
+- {word: connaissance, source_sense_id: "en-connaissance-fr-noun-4PiVhy1l", pos: noun, ds: "knowledge", level: 12, topic: learning, primary: false}
+- {word: reconnaissance, source_sense_id: "en-reconnaissance-fr-noun-fBK9hKz8", pos: noun, ds: "recognition; acknowledgment", level: 22, topic: society, primary: false}
+- {word: pièce, source_sense_id: "en-pièce-fr-noun-VnNFuYdT", pos: noun, ds: "document; legal paper", level: 12, topic: communication, primary: false}
+- {word: pièce, source_sense_id: "en-pièce-fr-noun-q6TMm4r4", pos: noun, ds: "play; theatrical work", level: 27, topic: literature, primary: false}
+- {word: fiche, source_sense_id: "en-fiche-fr-noun-cM6HH4o9", pos: noun, ds: "record; information entry", level: 24, topic: work, primary: false}
+- {word: peinture, source_sense_id: "en-peinture-fr-noun-pU5WOLvD", pos: noun, ds: "painting; artistic activity", level: 27, topic: arts, primary: false}
+- {word: rapport, source_sense_id: "en-rapport-fr-noun-LwSnnvE7", pos: noun, ds: "ratio", level: 21, topic: science, primary: false}
+- {word: mode, source_sense_id: "en-mode-fr-noun-e6OQ5Gl7", pos: noun, ds: "mode; most frequent value", level: 21, topic: science, primary: false}
+- {word: journal, source_sense_id: "en-journal-fr-noun-kUwmda7Q", pos: noun, ds: "diary; personal journal", level: 27, topic: literature, primary: false}
+- {word: journal, source_sense_id: "en-journal-fr-noun-g2~xhOe0", pos: noun, ds: "computer log", level: technical, topic: technology, primary: false}
+- {word: émission, source_sense_id: "en-émission-fr-noun-BpZN0vrD", pos: noun, ds: "emission; release", level: 17, topic: nature, primary: false}
+- {word: alimentation, source_sense_id: "en-alimentation-fr-noun-wfAmWC~m", pos: noun, ds: "food; nourishment", level: 21, topic: health, primary: false}
+- {word: assurance, source_sense_id: "en-assurance-fr-noun-c5MUo9fp", pos: noun, ds: "assurance; guarantee", level: 18, topic: argument, primary: false}
+- {word: recette, source_sense_id: "en-recette-fr-noun-4djlUjMJ", pos: noun, ds: "recipe; cooking instructions", level: 30, topic: food, primary: false}
+- {word: reporter, source_sense_id: "en-reporter-fr-noun-u2pjqZPc", pos: noun, ds: "news reporter; journalist", level: 16, topic: media, primary: false}
+- {word: volume, source_sense_id: "en-volume-fr-noun-L-tj1Q3M", pos: noun, ds: "volume; amount or quantity", level: 24, topic: communication, primary: false}
+- {word: volume, source_sense_id: "en-volume-fr-noun-ECxVIntU", pos: noun, ds: "volume; sound level", level: 26, topic: communication, primary: false}
+- {word: volume, source_sense_id: "en-volume-fr-noun-t2HFbzEj", pos: noun, ds: "volume; book", level: 27, topic: literature, primary: false}
+- {word: cadre, source_sense_id: "en-cadre-fr-noun-KdGR5PML", pos: noun, ds: "context; defining circumstances", level: 25, topic: register, primary: false}
+- {word: cadre, source_sense_id: "en-cadre-fr-noun-TbLn888m", pos: noun, ds: "setting; environment", level: 27, topic: literature, primary: false}
+- {word: mutation, source_sense_id: "en-mutation-fr-noun-0zNqM0pe", pos: noun, ds: "mutation; change", level: 21, topic: nature, primary: false}
+- {word: réaliser, source_sense_id: "en-réaliser-fr-verb--ylmXByi", pos: verb, ds: "to make real", level: 28, topic: actions, primary: false}
+- {word: cliché, source_sense_id: "en-cliché-fr-noun-WucYjyJP", pos: noun, ds: "cliche; overused expression or stereotype", level: 22, topic: society, primary: false}
+- {word: intoxication, source_sense_id: "en-intoxication-fr-noun-vWJIlUAc", pos: noun, ds: "poisoning", level: 21, topic: health, primary: false}
+- {word: souris, source_sense_id: "en-souris-fr-noun-gZwb-DXD", pos: noun, ds: "mouse; rodent", level: 29, topic: nature, primary: false}
+- {word: faille, source_sense_id: "en-faille-fr-noun-8cVi6uMv", pos: noun, ds: "fault; geological fracture", level: 21, topic: nature, primary: false}
+- {word: sécheresse, source_sense_id: "en-sécheresse-fr-noun-zMgRGHwQ", pos: noun, ds: "dryness", level: 28, topic: description, primary: false}
+- {word: plante, source_sense_id: "en-plante-fr-noun-pvJgC7b9", pos: noun, ds: "sole of the foot", level: 21, topic: health, primary: false}
+- {word: côte, source_sense_id: "en-côte-fr-noun-NBHo1OHO", pos: noun, ds: "rib; bone", level: 21, topic: health, primary: false}
+- {word: traitement, source_sense_id: "en-traitement-fr-noun-YMQRsrrs", pos: noun, ds: "treatment; medical care", level: 21, topic: health, primary: false}
+- {word: courant, source_sense_id: "en-courant-fr-noun-ZfQFcbFg", pos: noun, ds: "current; movement of thought", level: 27, topic: arts, primary: false}
+- {word: grève, source_sense_id: "en-grève-fr-noun-Lr2OAmbK", pos: noun, ds: "shore; riverbank", level: literary, topic: literature, primary: false}
+- {word: ordonnance, source_sense_id: "en-ordonnance-fr-noun-qAQKO5QO", pos: noun, ds: "order; legal decree", level: 30, topic: institutions, primary: false}
+
+# Unchanged branch meanings remain attached to their corrected primary senses.
+- {word: mutation, source_sense_id: "en-mutation-fr-noun-ONYlIrcC", pos: noun, ds: "transfer; move to another post", level: professional, topic: work, primary: true}
+- {word: capteur, source_sense_id: "en-capteur-fr-noun-ynP2EDSv", pos: noun, ds: "sensor", level: scientific, topic: science, primary: true}
+- {word: sauvegarde, source_sense_id: "en-sauvegarde-fr-noun-0pZnpHbT", pos: noun, ds: "backup; saving information safely", level: technical, topic: technology, primary: true}

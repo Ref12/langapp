@@ -1,0 +1,203 @@
+schema_version: 3
+id: fr-extension-scientific
+title: Scientific French
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: extension
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+- fr-level-15
+- fr-level-16
+- fr-level-17
+- fr-level-18
+- fr-level-19
+- fr-level-20
+- fr-level-21
+- fr-level-22
+- fr-level-23
+- fr-level-24
+description: Optional methods, measurement, and research communication; not scientific or clinical qualification.
+mastery_profile: fr-item-mastery
+mastery_target: understand
+units:
+- id: extension-scientific-science-01
+  title: Science and investigation - 1
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary:
+  - {id: fr-v-27c5acf85addf9d8, ch: intervalle de confiance, pr: /ɛ̃.tɛʁ.val də kɔ̃.fjɑ̃s/, ds: confidence interval}
+  - {id: fr-v-8259d476642ea5ed, ch: variance, pr: /va.ʁjɑ̃s/, ds: variance}
+  - {id: fr-v-74e035ff6820b866, ch: covariance, pr: /kɔ.va.ʁjɑ̃s/, ds: covariance}
+  - {id: fr-v-8a92ca282faaaef6, ch: coefficient, pr: /kɔ.e.fi.sjɑ̃/, ds: coefficient}
+  - {id: fr-v-1dd5782a3d8ea42e, ch: régression linéaire, pr: /ʁe.ɡʁɛ.sjɔ̃ li.ne.ɛʁ/, ds: linear regression}
+  - {id: fr-v-d4f286c8e42f6cd4, ch: stratification, pr: /stʁatifikasjɔ̃/, ds: stratification}
+  - {id: fr-v-8715f8065b8b4853, ch: appariement, pr: /a.pa.ʁi.mɑ̃/, ds: matching}
+  - {id: fr-v-1eae5123ee4e9b7d, ch: ajustement, pr: /a.ʒys.tə.mɑ̃/, ds: 'adjustment, adjusting, tweak'}
+  - {id: fr-v-3be92f1eb33a374b, ch: variable indépendante, pr: /va.ʁja.bl‿ɛ̃.de.pɑ̃.dɑ̃t/, ds: independent variable in an equation}
+  - {id: fr-v-8ecfa26bff9b0fe2, ch: variable dépendante, pr: /va.ʁja.blə de.pɑ̃.dɑ̃t/, ds: dependent variable in an equation}
+  - {id: fr-v-20232760e2087fd1, ch: loi normale, pr: /lwa nɔʁ.mal/, ds: normal distribution}
+  - {id: fr-v-bb34d6e5ddc17b0c, ch: estimateur, pr: /ɛs.ti.ma.tœʁ/, ds: 'estimator, assessor'}
+  - {id: fr-v-380e9107009c2016, ch: spécificité, pr: /spe.si.fi.si.te/, ds: specificity}
+  - {id: fr-v-13d6330d49c8e14b, ch: faux positif, pr: /fo po.zi.tif/, ds: false positive}
+  - {id: fr-v-20e3096ee6def3c7, ch: faux négatif, pr: /fo ne.ɡa.tif/, ds: false negative}
+  - {id: fr-v-bcd54137b02e7eee, ch: réplication, pr: /ʁe.pli.ka.sjɔ̃/, ds: 'replication, duplication'}
+  - {id: fr-v-ab0c287d37cfe402, ch: cohorte, pr: /kɔ.ɔʁt/, ds: cohort}
+  - {id: fr-v-3f90e662261d008d, ch: étude de cas, pr: /e.tyd də ka/, ds: 'case study (in-depth, detailed examination of a particular case)'}
+  - {id: fr-v-d804b5779ab9816c, ch: comité de lecture, pr: /kɔ.mi.te d(ə) lɛk.tyʁ/, ds: 'selection panel, review panel, selection committee'}
+  - {id: fr-v-6690a8515f37425d, ch: falsifiable, pr: /fal.si.fjabl/, ds: falsifiable}
+  - {id: fr-v-c0e7e4cd46d47766, ch: réfutabilité, pr: /ʁe.fy.ta.bi.li.te/, ds: refutability}
+  - {id: fr-v-ca9143a36a61ca72, ch: parcimonie, pr: /paʁ.si.mɔ.ni/, ds: parsimony (great reluctance to spend money unnecessarily)}
+  - {id: fr-v-6d6d6025773a7004, ch: fidélité, pr: /fi.de.li.te/, ds: 'faithfulness, fidelity'}
+  - {id: fr-v-a8714b7d46eeb2a7, ch: étalonnage, pr: /e.ta.lɔ.naʒ/, ds: calibration}
+  - {id: fr-v-b8db150cd7dae4e2, ch: calibration, pr: /ka.li.bʁa.sjɔ̃/, ds: synonym of étalonnage (calibration) (act of calibrating)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-d5566741cfd94a6b, ch: gravité, pr: /ɡʁa.vi.te/, ds: gravity}
+  - {id: fr-v-1d31ef129f5edf3e, ch: pesanteur, pr: /pə.zɑ̃.tœʁ/, ds: gravity}
+  - {id: fr-v-8b2d57bfda39cccf, ch: attraction, pr: /a.tʁak.sjɔ̃/, ds: attraction (all senses)}
+  - {id: fr-v-6a814d0800d0e270, ch: répulsion, pr: /ʁe.pyl.sjɔ̃/, ds: repulsion}
+  - {id: fr-v-d4cf893636e9ab8a, ch: magnétisme, pr: /ma.ɲe.tism/, ds: magnetism (property of being magnetic)}
+  - {id: fr-v-53c6cfaa3e33626e, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experiment; test}
+  - {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+  - {id: fr-v-86ee26c13d0acd7c, ch: mode, pr: /mɔd/, ds: mode; most frequent value}
+  review_grammar:
+  - {id: fr-g-absolute-participle, ch: 'nom sujet + participe passé, proposition principale', ds: A detached participial clause has its own explicit subject}
+  - {id: fr-g-correlative-comparison, ch: 'plus / moins + proposition, plus / moins + proposition', ds: Describe covariation without automatically claiming causation}
+- id: extension-scientific-science-02
+  title: Science and investigation - 2
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary:
+  - {id: fr-v-65de84f97697d588, ch: instrument de mesure, pr: /ɛ̃s.tʁy.mɑ̃ də m(ə).zyʁ/, ds: 'measuring instrument, measuring tool'}
+  - {id: fr-v-bb8ab9ed93a89372, ch: spectromètre, pr: /spɛktʁomɛtʁ/, ds: spectrometer}
+  - {id: fr-v-ddbe56f0cf636a2b, ch: microscope, pr: /mi.kʁɔs.kɔp/, ds: microscope}
+  - {id: fr-v-1c6c60cb86457451, ch: centrifugeuse, pr: /sɑ̃.tʁi.fy.ʒøz/, ds: centrifuge}
+  - {id: fr-v-f3c6f40f5cbc7e0e, ch: pipette, pr: /pi.pɛt/, ds: pipette}
+  - {id: fr-v-4fe4d165eb4f0bc3, ch: éprouvette, pr: /e.pʁu.vɛt/, ds: test tube}
+  - {id: fr-v-8cd8ae4675d084f3, ch: bécher, pr: /be.ʃɛʁ/, ds: beaker (flat-bottomed vessel)}
+  - {id: fr-v-fbd0cd5ab9a9d55d, ch: fiole, pr: /fjɔl/, ds: 'vial, phial'}
+  - {id: fr-v-850fe3a76bfa98da, ch: solvant, pr: /sɔlvɑ̃/, ds: solvent}
+  - {id: fr-v-8cd9ebc16e6a8ed1, ch: soluté, pr: /solyte/, ds: solute}
+  - {id: fr-v-94da127819584d90, ch: dilution, pr: /di.ly.sjɔ̃/, ds: dilution}
+  - {id: fr-v-2b17ebdb85beea4b, ch: titrage, pr: /titʁaʒ/, ds: titration}
+  - {id: fr-v-ffa35cbf68690ec4, ch: chromatographie, pr: /kʁɔ.ma.tɔ.ɡʁa.fi/, ds: chromatography}
+  - {id: fr-v-aca30a2a8bc688d1, ch: spectroscopie, pr: /spɛk.tʁɔs.kɔ.pi/, ds: spectroscopy}
+  - {id: fr-v-4c65fe79551c4241, ch: diffraction, pr: /di.fʁak.sjɔ̃/, ds: diffraction}
+  - {id: fr-v-80585d2a2f14e5d6, ch: fluorescence, pr: /fly.ɔ.ʁɛ.sɑ̃s/, ds: fluorescence}
+  - {id: fr-v-7fe37b6c1fbec09a, ch: luminescence, pr: /ly.mi.nɛ.sɑ̃s/, ds: luminescence}
+  - {id: fr-v-9efbbf55b250a0d3, ch: absorbance, pr: /ap.sɔʁ.bɑ̃s/, ds: the fact of being absorbent}
+  - {id: fr-v-990ca0b25d743e22, ch: conductivité, pr: /kɔ̃.dyk.ti.vi.te/, ds: conductivity}
+  - {id: fr-v-4f8e36ad57645954, ch: résistivité, pr: /ʁe.zis.ti.vi.te/, ds: resistivity (capacity of resistance to electricity)}
+  - {id: fr-v-2d9be9f5744bf75c, ch: calorimétrie, pr: /ka.lɔ.ʁi.me.tʁi/, ds: calorimetry}
+  - {id: fr-v-2e840cfcf6fed4d3, ch: thermodynamique, pr: /tɛʁ.mo.di.na.mik/, ds: thermodynamics; science of heat and energy conversions}
+  - {id: fr-v-bcee9be79c650dc1, ch: cinétique, pr: /si.ne.tik/, ds: motion; kinetic}
+  - {id: fr-v-8951324a979adcd1, ch: catalyse, pr: /ka.ta.liz/, ds: catalysis}
+  - {id: fr-v-964701e4209b9a49, ch: catalyseur, pr: /ka.ta.li.zœʁ/, ds: catalyst}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-3f90e662261d008d, ch: étude de cas, pr: /e.tyd də ka/, ds: 'case study (in-depth, detailed examination of a particular case)'}
+  - {id: fr-v-d804b5779ab9816c, ch: comité de lecture, pr: /kɔ.mi.te d(ə) lɛk.tyʁ/, ds: 'selection panel, review panel, selection committee'}
+  - {id: fr-v-6690a8515f37425d, ch: falsifiable, pr: /fal.si.fjabl/, ds: falsifiable}
+  - {id: fr-v-c0e7e4cd46d47766, ch: réfutabilité, pr: /ʁe.fy.ta.bi.li.te/, ds: refutability}
+  - {id: fr-v-ca9143a36a61ca72, ch: parcimonie, pr: /paʁ.si.mɔ.ni/, ds: parsimony (great reluctance to spend money unnecessarily)}
+  - {id: fr-v-6d6d6025773a7004, ch: fidélité, pr: /fi.de.li.te/, ds: 'faithfulness, fidelity'}
+  - {id: fr-v-a8714b7d46eeb2a7, ch: étalonnage, pr: /e.ta.lɔ.naʒ/, ds: calibration}
+  - {id: fr-v-b8db150cd7dae4e2, ch: calibration, pr: /ka.li.bʁa.sjɔ̃/, ds: synonym of étalonnage (calibration) (act of calibrating)}
+  review_grammar:
+  - {id: fr-g-absolute-participle, ch: 'nom sujet + participe passé, proposition principale', ds: A detached participial clause has its own explicit subject}
+  - {id: fr-g-correlative-comparison, ch: 'plus / moins + proposition, plus / moins + proposition', ds: Describe covariation without automatically claiming causation}
+- id: extension-scientific-science-03
+  title: Science and investigation - 3
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary:
+  - {id: fr-v-4f4bcf1fbd66af7b, ch: substrat, pr: /syp.stʁa/, ds: substrate (the material or substance on which an enzyme acts)}
+  - {id: fr-v-191d0951f1dd485e, ch: covalent, pr: /kɔ.va.lɑ̃/, ds: covalent}
+  - {id: fr-v-1fcee91c642ead4d, ch: ionique, pr: /jɔ.nik/, ds: ionic}
+  - {id: fr-v-e1f34acdc008125c, ch: moléculaire, pr: /molekylɛʁ/, ds: molecular}
+  - {id: fr-v-fdec188bfc7f3003, ch: atomique, pr: /a.tɔ.mik/, ds: atomic}
+  - {id: fr-v-0cf28abe0740e87f, ch: isotopique, pr: /i.zɔ.tɔ.pik/, ds: isotopic}
+  - {id: fr-v-1cba2564934d0a24, ch: demi-vie, pr: /də.mi.vi/, ds: half-life}
+  - {id: fr-v-e473770a8fdcc1de, ch: radioactivité, pr: /ʁadjoaktivite/, ds: radioactivity}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-9efbbf55b250a0d3, ch: absorbance, pr: /ap.sɔʁ.bɑ̃s/, ds: the fact of being absorbent}
+  - {id: fr-v-990ca0b25d743e22, ch: conductivité, pr: /kɔ̃.dyk.ti.vi.te/, ds: conductivity}
+  - {id: fr-v-4f8e36ad57645954, ch: résistivité, pr: /ʁe.zis.ti.vi.te/, ds: resistivity (capacity of resistance to electricity)}
+  - {id: fr-v-2d9be9f5744bf75c, ch: calorimétrie, pr: /ka.lɔ.ʁi.me.tʁi/, ds: calorimetry}
+  - {id: fr-v-2e840cfcf6fed4d3, ch: thermodynamique, pr: /tɛʁ.mo.di.na.mik/, ds: thermodynamics; science of heat and energy conversions}
+  - {id: fr-v-bcee9be79c650dc1, ch: cinétique, pr: /si.ne.tik/, ds: motion; kinetic}
+  - {id: fr-v-8951324a979adcd1, ch: catalyse, pr: /ka.ta.liz/, ds: catalysis}
+  - {id: fr-v-964701e4209b9a49, ch: catalyseur, pr: /ka.ta.li.zœʁ/, ds: catalyst}
+  review_grammar:
+  - {id: fr-g-absolute-participle, ch: 'nom sujet + participe passé, proposition principale', ds: A detached participial clause has its own explicit subject}
+  - {id: fr-g-correlative-comparison, ch: 'plus / moins + proposition, plus / moins + proposition', ds: Describe covariation without automatically claiming causation}
+- id: extension-scientific-science-review-01
+  title: Science and investigation - vocabulary retrieval 1
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary: []
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-dd0fa83c35748717, ch: corrélation, pr: /kɔ.ʁe.la.sjɔ̃/, ds: correlation; relationship between comparable things}
+  - {id: fr-v-d9c6f59e5ab5692b, ch: échantillonnage, pr: /e.ʃɑ̃.ti.jɔ.naʒ/, ds: sampling}
+  - {id: fr-v-c6e69901183e48e3, ch: pondération, pr: /pɔ̃deʁasjɔ̃/, ds: weighting}
+  - {id: fr-v-4d7f4de2d05afcad, ch: confusion, pr: /kɔ̃.fy.zjɔ̃/, ds: confusion}
+  - {id: fr-v-ed99869de9c4bf1d, ch: vraisemblance, pr: /vʁɛ.sɑ̃.blɑ̃s/, ds: verisimilitude}
+  - {id: fr-v-9c4e69121cd09541, ch: estimation, pr: /ɛs.ti.ma.sjɔ̃/, ds: estimate; estimation (rough calculation or guess)}
+  - {id: fr-v-a064230490064a97, ch: précision, pr: /pʁe.si.zjɔ̃/, ds: precision}
+  - {id: fr-v-2898b6aa592409b7, ch: exactitude, pr: /ɛɡ.zak.ti.tyd/, ds: 'exactitude, accuracy'}
+  - {id: fr-v-c9ac3440a8f334d2, ch: sensibilité, pr: /sɑ̃.si.bi.li.te/, ds: sensitivity}
+  - {id: fr-v-7cf1268378efe859, ch: placebo, pr: /pla.se.bo/, ds: placebo}
+  - {id: fr-v-0227ffaaf5c14248, ch: résumé, pr: /ʁe.zy.me/, ds: 'summary, résumé'}
+  - {id: fr-v-30a5639caf38e700, ch: citation, pr: /si.ta.sjɔ̃/, ds: 'citation, quotation'}
+  - {id: fr-v-353136cb49a45792, ch: reproductible, pr: /ʁə.pʁɔ.dyk.tibl/, ds: reproducible by different people or in another setting}
+  - {id: fr-v-a8e1ae6543ac7b8d, ch: capteur, pr: /kap.tœʁ/, ds: sensor}
+  - {id: fr-v-3cfeb83296e2063e, ch: réactif, pr: /ʁe.ak.tif/, ds: reactive}
+  - {id: fr-v-db051b6ead474171, ch: dosage, pr: /do.zaʒ/, ds: dosage (measured amount of a medication)}
+  - {id: fr-v-a162dd46b83bbf01, ch: enzyme, pr: /ɑ̃zim/, ds: enzyme}
+  - {id: fr-v-4f4bcf1fbd66af7b, ch: substrat, pr: /syp.stʁa/, ds: substrate (the material or substance on which an enzyme acts)}
+  - {id: fr-v-191d0951f1dd485e, ch: covalent, pr: /kɔ.va.lɑ̃/, ds: covalent}
+  - {id: fr-v-1fcee91c642ead4d, ch: ionique, pr: /jɔ.nik/, ds: ionic}
+  - {id: fr-v-e1f34acdc008125c, ch: moléculaire, pr: /molekylɛʁ/, ds: molecular}
+  - {id: fr-v-fdec188bfc7f3003, ch: atomique, pr: /a.tɔ.mik/, ds: atomic}
+  - {id: fr-v-0cf28abe0740e87f, ch: isotopique, pr: /i.zɔ.tɔ.pik/, ds: isotopic}
+  - {id: fr-v-1cba2564934d0a24, ch: demi-vie, pr: /də.mi.vi/, ds: half-life}
+  - {id: fr-v-e473770a8fdcc1de, ch: radioactivité, pr: /ʁadjoaktivite/, ds: radioactivity}
+  review_grammar:
+  - {id: fr-g-absolute-participle, ch: 'nom sujet + participe passé, proposition principale', ds: A detached participial clause has its own explicit subject}
+  - {id: fr-g-correlative-comparison, ch: 'plus / moins + proposition, plus / moins + proposition', ds: Describe covariation without automatically claiming causation}
+- id: extension-scientific-science-practice-01
+  title: Science and investigation - sentence practice 1
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-scientific-association-limit, ch: 'association constatée, sans que + subjonctif', ds: Acknowledge an association without asserting a causal proof}
+  - {id: fr-g-scientific-ranges-bounds, ch: entre X et Y ; de X à Y ; au moins / au plus X, ds: State measurement ranges without confusing their bounds}
+  - {id: fr-g-scientific-inference-scope, ch: P ne signifie pas nécessairement que Q, ds: Reject a necessary inference without asserting its opposite}
+  review_vocabulary:
+  - {id: fr-v-7f3b1d55e0c26ab9, ch: résultat, pr: /ʁe.zyl.ta/, ds: outcome; result}
+  - {id: fr-v-dd0fa83c35748717, ch: corrélation, pr: /kɔ.ʁe.la.sjɔ̃/, ds: correlation; relationship between comparable things}
+  - {id: fr-v-37cf0a9311706785, ch: température, pr: /tɑ̃.pe.ʁa.tyʁ/, ds: temperature}
+  - {id: fr-v-e3451c3d3c8417b4, ch: observer, pr: /ɔp.sɛʁ.ve/, ds: 'to observe, watch'}
+  - {id: fr-v-4f4bcf1fbd66af7b, ch: substrat, pr: /syp.stʁa/, ds: substrate (the material or substance on which an enzyme acts)}
+  - {id: fr-v-191d0951f1dd485e, ch: covalent, pr: /kɔ.va.lɑ̃/, ds: covalent}
+  - {id: fr-v-1fcee91c642ead4d, ch: ionique, pr: /jɔ.nik/, ds: ionic}
+  - {id: fr-v-e1f34acdc008125c, ch: moléculaire, pr: /molekylɛʁ/, ds: molecular}
+  - {id: fr-v-fdec188bfc7f3003, ch: atomique, pr: /a.tɔ.mik/, ds: atomic}
+  - {id: fr-v-0cf28abe0740e87f, ch: isotopique, pr: /i.zɔ.tɔ.pik/, ds: isotopic}
+  - {id: fr-v-1cba2564934d0a24, ch: demi-vie, pr: /də.mi.vi/, ds: half-life}
+  - {id: fr-v-e473770a8fdcc1de, ch: radioactivité, pr: /ʁadjoaktivite/, ds: radioactivity}
+  review_grammar:
+  - {id: fr-g-absolute-participle, ch: 'nom sujet + participe passé, proposition principale', ds: A detached participial clause has its own explicit subject}
+  - {id: fr-g-correlative-comparison, ch: 'plus / moins + proposition, plus / moins + proposition', ds: Describe covariation without automatically claiming causation}

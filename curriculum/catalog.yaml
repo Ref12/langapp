@@ -30,3 +30,14 @@ languages:
   - jlpt-n3
   - jlpt-n2
   - jlpt-n1
+  teaching_tracks:
+  - beginner
+  teaching_program: ja-practical
+- id: russian
+  standard: Independent practical Russian inventory; not a CEFR or TORFL exam specification
+  reference_inventory: reference
+  teaching_program: ru-practical
+- id: french
+  standard: Independent practical French reference inventory; no official proficiency bands
+  reference_inventory: reference
+  teaching_program: fr-practical

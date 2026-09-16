@@ -1,0 +1,55 @@
+schema_version: 1
+id: ja-item-mastery
+applies_to: [vocabulary-sense, grammar-construct, phrase]
+scope: Observed performance for one Japanese sense, construction, or phrase in one modality; not an overall proficiency or examination score.
+unassessed: No suitable evidence has been recorded. A listed item, completed lesson, recognized kanji, or memorized phrase is not evidence of independent use.
+modalities: [reading, listening, typed-production, spoken-production, handwriting]
+stages:
+- id: recognize
+  title: Recognition
+  modalities: [reading, listening]
+  outcome: Distinguish the intended Japanese form and meaning from plausible alternatives.
+  evidence:
+  - Identify the intended sense without seeing its translation first.
+  - Distinguish a confusable form or reading in more than one example.
+  limitation: Recognizing a written form does not demonstrate listening or productive inflection.
+- id: understand
+  title: Contextual understanding
+  modalities: [reading, listening]
+  outcome: Interpret the intended sense, construction, or phrase in a new context.
+  evidence:
+  - Explain or respond appropriately to the item's contribution in two different contexts.
+  - Distinguish an applicable alternate sense, particle function, or register.
+  - Retrieve the meaning in a later session without an answer-revealing hint.
+  limitation: Understanding a sentence does not demonstrate the ability to produce its forms.
+- id: supported-use
+  title: Supported use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Produce an original appropriate response with a recorded task cue or scaffold.
+  evidence:
+  - Use the intended sense or construction in two meaningfully different tasks.
+  - Produce a new response rather than repeat a supplied sentence.
+  - Record kana support, vocabulary cues, conjugation tables, correction, and other assistance.
+  limitation: Successful use with help is not independent use; text input cannot establish pronunciation.
+- id: independent-use
+  title: Independent use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Select and use the item appropriately without an item-specific cue or answer model.
+  evidence:
+  - Select the intended item in a fresh task where it is useful but not explicitly requested.
+  - Adapt form, particle choice, and register to a changed situation.
+  - Demonstrate delayed retrieval and record repairs or assistance honestly.
+  limitation: Evidence remains specific to the sense, task, modality, and conditions observed.
+evidence_fields: [item_id, stage, modality, task_id, session_id, observed_at, context, response, outcome, assistance]
+evidence_outcomes: [successful, partial, unsuccessful]
+policy:
+- This is an original operational rubric, not a validated psychometric scale or stored learner state.
+- Assess each modality separately. Reading kana or selecting a kanji conversion does not demonstrate listening, spoken production, or handwriting.
+- Listening and spoken-production judgments require actual audio and suitable evaluation; these text files provide no audio.
+- A correct reading for one word does not establish other readings of its kanji or pitch accent.
+- Record evidence before assigning a stage; never infer mastery from source bands, exposure, or completed modules.
+- Do not award every sense of a lemma from success with one sense, or component mastery from repeating a memorized phrase.
+- Revisit a judgment when later evidence contradicts it while retaining the earlier conditions.
+- Level checkpoints sample the named goals with fresh details; carry fragile items into later retrieval rather than requiring perfection or declaring permanent mastery.
+- Separate introduced lemma identities, introduced senses, understood items, and independently usable items.
+- Polite, respectful, and humble forms have different viewpoint and audience constraints; one successful form is not a universal politeness license.

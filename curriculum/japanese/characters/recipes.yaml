@@ -1,0 +1,31 @@
+version: '1'
+modified_on: '2026-09-15'
+source_id: japanese-writing-recipes
+combining_marks:
+  ゙:
+    source_character: が
+    source_file: kanji/0304c.svg
+    path_ids: [kvg:0304c-s4, kvg:0304c-s5]
+    role: Contextual dakuten sample at the source kana's upper right; not a universal attachment rule
+  ゚:
+    source_character: ぱ
+    source_file: kanji/03071.svg
+    path_ids: [kvg:03071-s4]
+    role: Contextual handakuten sample at the source kana's upper right; not a universal attachment rule
+review_only:
+  鱝:
+    status: blocked-pending-exact-glyph-review
+    reason: No exact Japanese stroke asset in either pinned source; this donor composition is not approved
+    donors:
+    - source_character: 鱗
+      source_file: kanji/09c57.svg
+      group_id: kvg:09c57-g1
+      component: 魚
+      position: left
+      path_ids: [kvg:09c57-s1, kvg:09c57-s2, kvg:09c57-s3, kvg:09c57-s4, kvg:09c57-s5, kvg:09c57-s6, kvg:09c57-s7, kvg:09c57-s8, kvg:09c57-s9, kvg:09c57-s10, kvg:09c57-s11]
+    - source_character: 噴
+      source_file: kanji/05674.svg
+      group_id: kvg:05674-g2
+      component: 賁
+      position: right
+      path_ids: [kvg:05674-s4, kvg:05674-s5, kvg:05674-s6, kvg:05674-s7, kvg:05674-s8, kvg:05674-s9, kvg:05674-s10, kvg:05674-s11, kvg:05674-s12, kvg:05674-s13, kvg:05674-s14, kvg:05674-s15]

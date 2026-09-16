@@ -1,0 +1,293 @@
+schema_version: 1
+review_status: Original AI-authored selection and first-pass source audit; qualified human Japanese-language
+  pedagogy review pending.
+selection_policy: Explicit thematic choices are materialized in vocabulary.yaml. Source bands and common-form
+  flags are provenance and candidate-review aids, never runtime placement rules. Counts are descriptive,
+  not mastery or a quota.
+construction_dependencies:
+  ja-n5-g002:
+  - ja-n5-g001
+  ja-n5-g003:
+  - ja-n5-g001
+  ja-n5-g022:
+  - ja-n5-g001
+  ja-n5-g024:
+  - ja-n5-g023
+  ja-n5-g025:
+  - ja-n5-g023
+  - ja-n5-g024
+  ja-n5-g041:
+  - ja-n5-g023
+  ja-n5-g026:
+  - ja-n5-g041
+  ja-n5-g027:
+  - ja-n5-g041
+  ja-n5-g028:
+  - ja-n5-g041
+  ja-n5-g029:
+  - ja-n5-g041
+  ja-n5-g030:
+  - ja-n4-g001
+  ja-n5-g031:
+  - ja-n5-g023
+  ja-n5-g033:
+  - ja-n5-g023
+  - ja-n5-g024
+  ja-n5-g034:
+  - ja-n5-g023
+  ja-n5-g037:
+  - ja-n5-g023
+  ja-n5-g038:
+  - ja-n5-g041
+  ja-n5-g040:
+  - ja-n5-g039
+  ja-n5-g043:
+  - ja-n5-g023
+  - ja-n5-g012
+  ja-n4-g001:
+  - ja-n5-g023
+  - ja-n5-g024
+  - ja-n5-g025
+  ja-n4-g002:
+  - ja-n4-g001
+  ja-n4-g003:
+  - ja-n4-g001
+  ja-n4-g004:
+  - ja-n4-g001
+  ja-n4-g005:
+  - ja-n4-g001
+  ja-n4-g006:
+  - ja-n4-g001
+  ja-n4-g007:
+  - ja-n5-g031
+  ja-n4-g008:
+  - ja-n5-g020
+  - ja-n5-g021
+  - ja-n5-g023
+  ja-n4-g009:
+  - ja-n4-g001
+  ja-n4-g010:
+  - ja-n4-g001
+  ja-n4-g011:
+  - ja-n4-g001
+  ja-n4-g012:
+  - ja-n4-g011
+  ja-n4-g013:
+  - ja-n4-g001
+  ja-n4-g014:
+  - ja-n4-g001
+  ja-n4-g015:
+  - ja-n4-g001
+  - ja-n5-g020
+  ja-n4-g016:
+  - ja-n4-g001
+  ja-n4-g017:
+  - ja-n5-g041
+  - ja-n5-g020
+  - ja-n5-g021
+  ja-n4-g018:
+  - ja-n5-g023
+  ja-n4-g019:
+  - ja-n4-g001
+  ja-n4-g020:
+  - ja-n4-g001
+  ja-n4-g021:
+  - ja-n4-g001
+  ja-n4-g022:
+  - ja-n4-g001
+  ja-n4-g023:
+  - ja-n4-g001
+  ja-n4-g024:
+  - ja-n4-g001
+  ja-n4-g025:
+  - ja-n5-g041
+  ja-n4-g026:
+  - ja-n5-g041
+  ja-n4-g027:
+  - ja-n5-g041
+  ja-n4-g028:
+  - ja-n5-g041
+  ja-n4-g029:
+  - ja-n5-g041
+  ja-n4-g030:
+  - ja-n5-g041
+  ja-n4-g031:
+  - ja-n4-g012
+  ja-n4-g032:
+  - ja-n4-g001
+  ja-n4-g033:
+  - ja-n4-g001
+  ja-n4-g034:
+  - ja-n4-g001
+  ja-n4-g035:
+  - ja-n4-g001
+  ja-n4-g036:
+  - ja-n4-g001
+  ja-n4-g037:
+  - ja-n5-g023
+  ja-n4-g038:
+  - ja-n5-g023
+  ja-n4-g039:
+  - ja-n4-g001
+  ja-n4-g040:
+  - ja-n4-g001
+  ja-n4-g041:
+  - ja-n4-g001
+  ja-n4-g042:
+  - ja-n5-g027
+  ja-n4-g043:
+  - ja-n5-g041
+  ja-n4-g044:
+  - ja-n4-g001
+  ja-n4-g045:
+  - ja-n5-g023
+  ja-n3-g001:
+  - ja-n4-g001
+  ja-n3-g002:
+  - ja-n3-g001
+  - ja-n4-g044
+  ja-n3-g003:
+  - ja-n5-g023
+  - ja-n4-g045
+  ja-n3-g004:
+  - ja-n4-g030
+  - ja-n3-g003
+  ja-n3-g005:
+  - ja-n3-g001
+  ja-n3-g015:
+  - ja-n4-g001
+  ja-n3-g016:
+  - ja-n4-g012
+  ja-n3-g017:
+  - ja-n4-g001
+  ja-n3-g020:
+  - ja-n4-g001
+  ja-n3-g021:
+  - ja-n4-g001
+  ja-n3-g023:
+  - ja-n4-g001
+  ja-n3-g024:
+  - ja-n4-g001
+  ja-n3-g025:
+  - ja-n4-g001
+  ja-n3-g028:
+  - ja-n4-g015
+  ja-n3-g034:
+  - ja-n4-g044
+  ja-n3-g044:
+  - ja-n5-g041
+  ja-n3-g045:
+  - ja-n5-g041
+  ja-n2-g008:
+  - ja-n4-g001
+  ja-n2-g045:
+  - ja-n3-g024
+  ja-n1-g017:
+  - ja-n3-g024
+  ja-n1-g018:
+  - ja-n3-g024
+  ja-n1-g019:
+  - ja-n3-g024
+anchor_policy: Anchors are universal lexical prerequisites, not paradigmatic examples. Current Japanese
+  verb-pattern exemplars stay in explicit core selections and this sidecar; they do not become tourist
+  admission requirements.
+core_illustrative_lexemes:
+  ja-n5-g023:
+  - ja-n5-00369-s001
+  ja-n5-g024:
+  - ja-n5-00369-s001
+  ja-n5-g025:
+  - ja-n5-00369-s001
+  ja-n5-g041:
+  - ja-n5-00148-s001
+  - ja-n5-00369-s001
+  - ja-n5-00322-s001
+  ja-n5-g026:
+  - ja-n5-00148-s001
+  ja-n5-g027:
+  - ja-n5-00369-s001
+  ja-n5-g028:
+  - ja-n5-00387-s001
+  ja-n5-g029:
+  - ja-n5-00387-s001
+  ja-n5-g030:
+  - ja-n5-00009-s001
+  ja-n4-g001:
+  - ja-n5-00369-s001
+  - ja-n5-00148-s001
+  - ja-n5-00322-s001
+  - ja-n5-00217-s001
+  - ja-n5-00048-s001
+  ja-n4-g045:
+  - ja-n5-00145-s001
+  ja-n3-g003:
+  - ja-n5-00624-s001
+reference_only_grammar:
+  ja-n1-g020:
+    reason: Negative-connective variant of unavoidable accountability; use g019 for the selected contrast,
+      recognize this reference variant with an explicit context.
+    related_selected_id: ja-n1-g019
+source_mapping_cautions:
+- Mapped N5 kore/sore/are are interjections, not demonstratives. Core uses mapped N1 kore and sore; are
+  remains available as a grammar realization.
+- Mapped N5 koppu is rare slang for a police officer, not a drinking glass; it is not selected.
+- Mapped N5 botan is tree peony, not a button; it is not selected.
+- Mapped N5 dandan and N3 shibashiba/yaya are different dictionary entries from gradually/often/slightly;
+  use the explicitly mapped N1 entries.
+- Mapped N4 moshi is an attention call, not conditional if; conditional vocabulary uses the mapped N1
+  entry.
+- Restricted konnichi/asu senses do not license kyou/ashita. Sense IDs retain raw ordinals.
+reference_only_mapping_decisions:
+  ja-n5-00041: Mapped are is an interjection, not the demonstrative; fixed demonstrative use belongs to
+    ja-n5-g018.
+  ja-n5-00253: Mapped kore means hey; selected demonstrative is ja-n1-01115-s001.
+  ja-n5-00347: Mapped sore is an interjection; selected demonstrative is ja-n1-01785-s001.
+  ja-n5-00245: Mapped koppu is rare slang cop, not a drinking glass.
+  ja-n5-00374: Mapped dandan means thank you; gradually is ja-n1-01924-s001.
+  ja-n5-00570: Mapped botan is tree peony, not a button; no false button sense is created.
+  ja-n4-00228: Mapped koto is a sentence particle, not a thing; use ja-n3-00583-s001 and the original
+    nominalization construction.
+  ja-n4-00584: Mapped moshi is an attention call, not if; conditional if is ja-n1-03009-s001.
+  ja-n3-00705: Mapped shibashiba concerns repeated blinking; often is ja-n1-01328-s001.
+  ja-n3-01225: Archaic first sense is not selected as ordinary modern speech.
+  ja-n3-01636: Mapped yaya is an interjection; slightly is ja-n1-03070-s001.
+  ja-n2-00193: Mapped mitarashi is a shrine purification font, not a toilet.
+  ja-n1-00024: Mapped reading akima denotes vacancy, not general kuukan; no unverified reading is created.
+  ja-n1-00172: Mapped ichigen is a first visit without introduction, not ikken meaning at first glance.
+  ja-n1-00426: First sense does not license mapped omoyaku; retained as reference instead of guessing
+    another reading.
+  ja-n1-00564: Archaic first sense remains reference-only.
+  ja-n1-01071: Mapped kogorasu means freeze, not korasu meaning concentrate.
+  ja-n1-01072: Mapped kogoru means congeal, not koru meaning become absorbed.
+  ja-n1-01134: Mapped gougi is not tsuyoki meaning bullish or confident.
+  ja-n1-01284: Law-enforcement sense is incompatible with mapped shigyou; no shikou reading is invented.
+  ja-n1-01540: Mapped juuhou does not license chouhou meaning useful; the treasure sense is not quota-filled.
+inflection_scaffolding:
+  ja-n5-g023: Teach dictionary lookup, polite stems, and verb-group identification before productive polite
+    forms.
+  ja-n5-g020: Contrast i-adjective nonpast, negative, past, and negative-past; include the ii/yoi irregularity.
+  ja-n5-g041: Teach te-form sound changes and suru/kuru/iku exceptions before dependent request/aspect
+    patterns.
+  ja-n4-g001: 'Explicitly co-taught before ja-n5-g030 in the final beginner seed: plain negative, past
+    and negative-past in all verb groups.'
+  ja-n5-g042: Practice number-plus-counter combinations as actual words with their sound changes, not
+    a universal counter rule.
+limitations:
+- This is a broad first-pass authored sequence, not an externally evaluated or officially leveled curriculum.
+- Later topic pools need tutor selection for a learner's project and background; no learner should study
+  a whole 25-sense module in one sitting.
+- Some reference mappings select unusual readings; incompatible senses and misleading homographs are deliberately
+  excluded or corrected through other existing IDs.
+- No audio, pitch-accent measurements, handwriting assets, official exam questions, or fabricated learner
+  states are provided.
+selection_counts:
+  core_learning_senses: 6031
+  core_distinct_jmdict_entries: 5913
+  all_selected_learning_senses: 6094
+  route_placements: 6227
+  repeated_route_selections: 133
+  all_selected_distinct_jmdict_entries: 5975
+  additional_raw_ordinals: 84
+  original_grammar_selected: 224
+  grammar_route_placements: 236
+  original_grammar_reference_only: 1

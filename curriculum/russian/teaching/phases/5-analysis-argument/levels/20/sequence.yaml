@@ -1,0 +1,410 @@
+schema_version: 3
+id: ru-level-20
+title: Institutions, money, and public processes
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 20
+phase: analysis-argument
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+- ru-level-19
+goals: &id001
+- Explain a public or economic process with precise governed relations.
+- Unpack a formal noun phrase into an action with identifiable participants.
+- Contrast a stated purpose with a possible consequence.
+checkpoint:
+  task: Explain an institutional or economic change and compare plausible effects without claiming legal or financial expertise.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-20-money-01
+  title: Money and commercial choices - 1
+  outcome: Ask about costs or explain a commercial choice without assuming availability.
+  vocabulary:
+  - {id: ru-or-n00746-s001, ch: экономика, pr: эконо́мика, ds: economy}
+  - {id: ru-or-n02877-s001, ch: финансы, pr: фина́нсы, ds: finances}
+  - {id: ru-or-n01520-s001, ch: капитал, pr: капита́л, ds: capital}
+  - {id: ru-or-n01947-s001, ch: капитализм, pr: капитали́зм, ds: capitalism}
+  - {id: ru-or-n01387-s001, ch: доход, pr: дохо́д, ds: income}
+  - {id: ru-or-n01275-s001, ch: прибыль, pr: при́быль, ds: profit}
+  - {id: ru-or-n04278-s001, ch: убыток, pr: убы́ток, ds: loss}
+  - {id: ru-or-n11737-s001, ch: рентабельность, pr: рента́бельность, ds: profitability}
+  - {id: ru-or-n04047-s001, ch: выручка, pr: вы́ручка, ds: receipts}
+  - {id: ru-or-n01650-s001, ch: оборот, pr: оборо́т, ds: turnover}
+  - {id: ru-or-n02581-s001, ch: инвестиция, pr: инвести́ция, ds: Investment}
+  - {id: ru-or-n03445-s001, ch: инвестор, pr: инве́стор, ds: investor}
+  - {id: ru-or-n02137-s001, ch: кредит, pr: креди́т, ds: credit}
+  - {id: ru-or-n04317-s001, ch: заём, pr: заём, ds: loan}
+  - {id: ru-or-n06654-s001, ch: ссуда, pr: ссу́да, ds: loan}
+  - {id: ru-or-n14657-s001, ch: ипотека, pr: ипоте́ка, ds: mortgage}
+  - {id: ru-or-n00407-s001, ch: процент, pr: проце́нт, ds: percentage}
+  - {id: ru-or-n01548-s001, ch: ставка, pr: ста́вка, ds: rate}
+  - {id: ru-or-n02065-s001, ch: валюта, pr: валю́та, ds: currency}
+  - {id: ru-or-n00391-s002, ch: курс, pr: курс, ds: exchange}
+  - {id: ru-or-n04811-s001, ch: инфляция, pr: инфля́ция, ds: inflation}
+  - {id: ru-or-n17115-s001, ch: дефляция, pr: дефля́ция, ds: deflation}
+  - {id: ru-or-n09031-s001, ch: девальвация, pr: девальва́ция, ds: devaluation}
+  - {id: ru-or-n01339-s001, ch: налог, pr: нало́г, ds: tax}
+  - {id: ru-or-n07046-s001, ch: пошлина, pr: по́шлина, ds: duty}
+  grammar: []
+  review_vocabulary: []
+  review_grammar:
+  - {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+  - {id: ru-g-larger-quantities, ch: 'пять / много / мало / сколько + [genitive noun]', ds: Count larger or unspecified quantities}
+- id: level-20-money-02
+  title: Money and commercial choices - 2
+  outcome: Ask about costs or explain a commercial choice without assuming availability.
+  vocabulary:
+  - {id: ru-or-n01316-s001, ch: сбор, pr: сбор, ds: dues}
+  - {id: ru-or-n04728-s001, ch: тариф, pr: тари́ф, ds: tariff}
+  - {id: ru-or-n12605-s001, ch: субсидия, pr: субси́дия, ds: subsidy}
+  - {id: ru-or-n12772-s001, ch: дотация, pr: дота́ция, ds: subsidy}
+  - {id: ru-or-n02971-s001, ch: пособие, pr: посо́бие, ds: allowance}
+  - {id: ru-or-n01095-s001, ch: пенсия, pr: пе́нсия, ds: pension}
+  - {id: ru-or-n04402-s001, ch: стипендия, pr: стипе́ндия, ds: scholarship}
+  - {id: ru-or-n02554-s001, ch: оплата, pr: опла́та, ds: payment}
+  - {id: ru-or-n05738-s001, ch: вознаграждение, pr: вознагражде́ние, ds: reward}
+  - {id: ru-or-n01585-s001, ch: премия, pr: пре́мия, ds: bonus}
+  - {id: ru-or-n02521-s001, ch: гонорар, pr: гонора́р, ds: fee}
+  - {id: ru-or-n01032-s001, ch: собственность, pr: со́бственность, ds: property}
+  - {id: ru-or-n01453-s001, ch: имущество, pr: иму́щество, ds: property}
+  - {id: ru-or-n04302-s001, ch: актив, pr: акти́в, ds: assets}
+  - {id: ru-or-n02477-s001, ch: обязательство, pr: обяза́тельство, ds: obligation}
+  - {id: ru-or-n07363-s001, ch: банкротство, pr: банкро́тство, ds: bankruptcy}
+  - {id: ru-or-n04401-s001, ch: задолженность, pr: задо́лженность, ds: debts}
+  - {id: ru-or-n02660-s001, ch: спрос, pr: спрос, ds: demand}
+  - {id: ru-or-n02748-s001, ch: потребление, pr: потребле́ние, ds: consumption}
+  - {id: ru-or-n00413-s001, ch: производство, pr: произво́дство, ds: production}
+  - {id: ru-or-n01188-s001, ch: торговля, pr: торго́вля, ds: trade}
+  - {id: ru-or-n03178-s001, ch: поставка, pr: поста́вка, ds: delivery}
+  - {id: ru-or-n06099-s001, ch: закупка, pr: заку́пка, ds: purchase}
+  - {id: ru-or-n01172-s001, ch: продажа, pr: прода́жа, ds: sale}
+  - {id: ru-or-n05980-s001, ch: сбыт, pr: сбыт, ds: sale}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01548-s001, ch: ставка, pr: ста́вка, ds: rate}
+  - {id: ru-or-n02065-s001, ch: валюта, pr: валю́та, ds: currency}
+  - {id: ru-or-n00391-s002, ch: курс, pr: курс, ds: exchange}
+  - {id: ru-or-n04811-s001, ch: инфляция, pr: инфля́ция, ds: inflation}
+  - {id: ru-or-n17115-s001, ch: дефляция, pr: дефля́ция, ds: deflation}
+  - {id: ru-or-n09031-s001, ch: девальвация, pr: девальва́ция, ds: devaluation}
+  - {id: ru-or-n01339-s001, ch: налог, pr: нало́г, ds: tax}
+  - {id: ru-or-n07046-s001, ch: пошлина, pr: по́шлина, ds: duty}
+  review_grammar:
+  - {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+  - {id: ru-g-larger-quantities, ch: 'пять / много / мало / сколько + [genitive noun]', ds: Count larger or unspecified quantities}
+- id: level-20-money-03
+  title: Money and commercial choices - 3
+  outcome: Ask about costs or explain a commercial choice without assuming availability.
+  vocabulary:
+  - {id: ru-or-n02754-s001, ch: производитель, pr: производи́тель, ds: producer}
+  - {id: ru-or-n05264-s001, ch: поставщик, pr: поставщи́к, ds: supplier}
+  - {id: ru-or-n03018-s001, ch: потребитель, pr: потреби́тель, ds: consumer}
+  - {id: ru-or-n01051-s001, ch: клиент, pr: клие́нт, ds: client}
+  - {id: ru-or-n03235-s001, ch: заказчик, pr: зака́зчик, ds: customer}
+  - {id: ru-or-n03590-s001, ch: конкуренция, pr: конкуре́нция, ds: competition}
+  - {id: ru-or-n04233-s001, ch: монополия, pr: монопо́лия, ds: monopoly}
+  - {id: ru-or-n02650-s001, ch: предприниматель, pr: предпринима́тель, ds: entrepreneur}
+  - {id: ru-or-n07149-s001, ch: предпринимательство, pr: предпринима́тельство, ds: business undertakings}
+  - {id: ru-or-n01101-s001, ch: бизнес, pr: би́знес, ds: business}
+  - {id: ru-or-n02353-s001, ch: отрасль, pr: о́трасль, ds: field of industry}
+  - {id: ru-or-n01168-s001, ch: промышленность, pr: промы́шленность, ds: industry}
+  - {id: ru-or-n00649-s001, ch: хозяйство, pr: хозя́йство, ds: economy}
+  - {id: ru-or-n02891-s001, ch: сырьё, pr: сырьё, ds: raw materials}
+  - {id: ru-or-n01305-s001, ch: продукция, pr: проду́кция, ds: output}
+  - {id: ru-or-n00696-s001, ch: товар, pr: това́р, ds: goods}
+  - {id: ru-or-n03477-s001, ch: экспорт, pr: э́кспорт, ds: export}
+  - {id: ru-or-n06103-s001, ch: импорт, pr: и́мпорт, ds: import}
+  - {id: ru-or-v00608-s001, ch: приобрести, pr: приобрести́, ds: acquire or purchase}
+  - {id: ru-or-v01224-s001, ch: приобретать, pr: приобрета́ть, ds: acquire or purchase}
+  - {id: ru-or-v00692-s001, ch: заработать, pr: зарабо́тать, ds: earn}
+  - {id: ru-or-v01035-s001, ch: зарабатывать, pr: зараба́тывать, ds: earn}
+  - {id: ru-or-v00850-s001, ch: тратить, pr: тра́тить, ds: spend}
+  - {id: ru-or-v01471-s001, ch: потратить, pr: потра́тить, ds: spend}
+  - {id: ru-or-v01013-s001, ch: вложить, pr: вложи́ть, ds: Invest}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n02660-s001, ch: спрос, pr: спрос, ds: demand}
+  - {id: ru-or-n02748-s001, ch: потребление, pr: потребле́ние, ds: consumption}
+  - {id: ru-or-n00413-s001, ch: производство, pr: произво́дство, ds: production}
+  - {id: ru-or-n01188-s001, ch: торговля, pr: торго́вля, ds: trade}
+  - {id: ru-or-n03178-s001, ch: поставка, pr: поста́вка, ds: delivery}
+  - {id: ru-or-n06099-s001, ch: закупка, pr: заку́пка, ds: purchase}
+  - {id: ru-or-n01172-s001, ch: продажа, pr: прода́жа, ds: sale}
+  - {id: ru-or-n05980-s001, ch: сбыт, pr: сбыт, ds: sale}
+  review_grammar:
+  - {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+  - {id: ru-g-larger-quantities, ch: 'пять / много / мало / сколько + [genitive noun]', ds: Count larger or unspecified quantities}
+- id: level-20-money-04
+  title: Money and commercial choices - 4
+  outcome: Ask about costs or explain a commercial choice without assuming availability.
+  vocabulary:
+  - {id: ru-or-v01910-s001, ch: вкладывать, pr: вкла́дывать, ds: invest}
+  - {id: ru-or-v07108-s001, ch: инвестировать, pr: инвести́ровать, ds: invest}
+  - {id: ru-or-v00420-s001, ch: занять, pr: заня́ть, ds: borrow}
+  - {id: ru-or-v00328-s001, ch: занимать, pr: занима́ть, ds: occupy}
+  - {id: ru-or-v03289-s001, ch: одолжить, pr: одолжи́ть, ds: lend}
+  - {id: ru-or-v08648-s001, ch: одалживать, pr: ода́лживать, ds: Lend}
+  - {id: ru-or-v02378-s001, ch: возвратить, pr: возврати́ть, ds: return}
+  - {id: ru-or-v03073-s001, ch: выплатить, pr: вы́платить, ds: pay}
+  - {id: ru-or-v04183-s001, ch: выплачивать, pr: выпла́чивать, ds: pay}
+  - {id: ru-or-v02135-s001, ch: оплатить, pr: оплати́ть, ds: pay}
+  - {id: ru-or-v02850-s001, ch: оплачивать, pr: опла́чивать, ds: pay}
+  - {id: ru-or-v03638-s001, ch: уплатить, pr: уплати́ть, ds: pay}
+  - {id: ru-or-v09381-s001, ch: уплачивать, pr: упла́чивать, ds: pay}
+  - {id: ru-or-v02600-s001, ch: перечислить, pr: перечи́слить, ds: transfer}
+  - {id: ru-or-v03010-s001, ch: перечислять, pr: перечисля́ть, ds: transfer}
+  - {id: ru-or-v08846-s001, ch: начислить, pr: начи́слить, ds: charge extra}
+  - {id: ru-or-v10868-s001, ch: начислять, pr: начисля́ть, ds: accrue}
+  - {id: ru-or-v01145-s001, ch: удержать, pr: удержа́ть, ds: deduct}
+  - {id: ru-or-v01219-s001, ch: удерживать, pr: уде́рживать, ds: deduct}
+  - {id: ru-or-v10996-s001, ch: облагать, pr: облага́ть, ds: assess for taxation}
+  - {id: ru-or-v04027-s001, ch: финансировать, pr: финанси́ровать, ds: finance}
+  - {id: ru-or-v12747-s001, ch: субсидировать, pr: субсиди́ровать, ds: subsidize}
+  - {id: ru-or-v00966-s001, ch: торговать, pr: торгова́ть, ds: trade}
+  - {id: ru-or-v02829-s001, ch: поставлять, pr: поставля́ть, ds: supply}
+  - {id: ru-or-v05112-s001, ch: закупать, pr: закупа́ть, ds: buy}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n06103-s001, ch: импорт, pr: и́мпорт, ds: import}
+  - {id: ru-or-v00608-s001, ch: приобрести, pr: приобрести́, ds: acquire or purchase}
+  - {id: ru-or-v01224-s001, ch: приобретать, pr: приобрета́ть, ds: acquire or purchase}
+  - {id: ru-or-v00692-s001, ch: заработать, pr: зарабо́тать, ds: earn}
+  - {id: ru-or-v01035-s001, ch: зарабатывать, pr: зараба́тывать, ds: earn}
+  - {id: ru-or-v00850-s001, ch: тратить, pr: тра́тить, ds: spend}
+  - {id: ru-or-v01471-s001, ch: потратить, pr: потра́тить, ds: spend}
+  - {id: ru-or-v01013-s001, ch: вложить, pr: вложи́ть, ds: Invest}
+  review_grammar:
+  - {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+  - {id: ru-g-larger-quantities, ch: 'пять / много / мало / сколько + [genitive noun]', ds: Count larger or unspecified quantities}
+- id: level-20-money-05
+  title: Money and commercial choices - 5
+  outcome: Ask about costs or explain a commercial choice without assuming availability.
+  vocabulary:
+  - {id: ru-or-v03924-s001, ch: закупить, pr: закупи́ть, ds: buy}
+  - {id: ru-or-v03729-s001, ch: конкурировать, pr: конкури́ровать, ds: compete}
+  - {id: ru-or-v00714-s001, ch: владеть, pr: владе́ть, ds: own}
+  - {id: ru-or-v01964-s001, ch: распоряжаться, pr: распоряжа́ться, ds: dispose}
+  - {id: ru-or-v07902-s001, ch: наследовать, pr: насле́довать, ds: inherit}
+  - {id: ru-or-v08249-s001, ch: обанкротиться, pr: обанкро́титься, ds: become bankrupt or fail}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01145-s001, ch: удержать, pr: удержа́ть, ds: deduct}
+  - {id: ru-or-v01219-s001, ch: удерживать, pr: уде́рживать, ds: deduct}
+  - {id: ru-or-v10996-s001, ch: облагать, pr: облага́ть, ds: assess for taxation}
+  - {id: ru-or-v04027-s001, ch: финансировать, pr: финанси́ровать, ds: finance}
+  - {id: ru-or-v12747-s001, ch: субсидировать, pr: субсиди́ровать, ds: subsidize}
+  - {id: ru-or-v00966-s001, ch: торговать, pr: торгова́ть, ds: trade}
+  - {id: ru-or-v02829-s001, ch: поставлять, pr: поставля́ть, ds: supply}
+  - {id: ru-or-v05112-s001, ch: закупать, pr: закупа́ть, ds: buy}
+  review_grammar:
+  - {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+  - {id: ru-g-larger-quantities, ch: 'пять / много / мало / сколько + [genitive noun]', ds: Count larger or unspecified quantities}
+- id: level-20-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00183-s001, ch: экономический, pr: экономи́ческий, ds: economic}
+  - {id: ru-or-a00329-s001, ch: финансовый, pr: фина́нсовый, ds: financial}
+  - {id: ru-or-a00553-s001, ch: денежный, pr: де́нежный, ds: monetary}
+  - {id: ru-or-a01239-s001, ch: валютный, pr: валю́тный, ds: currency}
+  - {id: ru-or-a00624-s001, ch: налоговый, pr: нало́говый, ds: tax}
+  - {id: ru-or-a01251-s001, ch: бюджетный, pr: бюдже́тный, ds: budgetary}
+  - {id: ru-or-a00543-s001, ch: коммерческий, pr: комме́рческий, ds: commercial}
+  - {id: ru-or-a00399-s001, ch: торговый, pr: торго́вый, ds: commercial}
+  - {id: ru-or-a00524-s001, ch: промышленный, pr: промы́шленный, ds: industrial}
+  - {id: ru-or-a00689-s001, ch: производственный, pr: произво́дственный, ds: industrial}
+  - {id: ru-or-a01604-s001, ch: сельскохозяйственный, pr: сельскохозя́йственный, ds: agricultural}
+  - {id: ru-or-a02270-s001, ch: потребительский, pr: потреби́тельский, ds: consumer-related}
+  - {id: ru-or-a00271-s001, ch: частный, pr: ча́стный, ds: private}
+  - {id: ru-or-a01026-s001, ch: публичный, pr: публи́чный, ds: public}
+  - {id: ru-or-a01283-s001, ch: муниципальный, pr: муниципа́льный, ds: municipal}
+  - {id: ru-or-a00507-s001, ch: федеральный, pr: федера́льный, ds: federal}
+  - {id: ru-or-a01292-s001, ch: региональный, pr: региона́льный, ds: regional}
+  - {id: ru-or-a01201-s001, ch: законодательный, pr: законода́тельный, ds: legislative}
+  - {id: ru-or-a01159-s001, ch: исполнительный, pr: исполни́тельный, ds: executive}
+  - {id: ru-or-a00695-s001, ch: судебный, pr: суде́бный, ds: judicial}
+  - {id: ru-or-a00837-s001, ch: административный, pr: администрати́вный, ds: administrative}
+  - {id: ru-or-a00788-s001, ch: юридический, pr: юриди́ческий, ds: legal}
+  - {id: ru-or-a07717-s001, ch: договорный, pr: догово́рный, ds: contractual}
+  - {id: ru-or-a02619-s001, ch: оптовый, pr: опто́вый, ds: wholesale}
+  - {id: ru-or-a04202-s001, ch: розничный, pr: ро́зничный, ds: retail}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a01631-s001, ch: экспериментальный, pr: эксперимента́льный, ds: experimental}
+  - {id: ru-or-a00883-s001, ch: теоретический, pr: теорети́ческий, ds: theoretical}
+  - {id: ru-or-a05329-s001, ch: эмпирический, pr: эмпири́ческий, ds: empirical}
+  - {id: ru-or-a01080-s001, ch: логический, pr: логи́ческий, ds: logical}
+  - {id: ru-or-a01800-s001, ch: фактический, pr: факти́ческий, ds: actual}
+  - {id: ru-or-a02314-s001, ch: ошибочный, pr: оши́бочный, ds: erroneous}
+  - {id: ru-or-a00714-s001, ch: ложный, pr: ло́жный, ds: 'false'}
+  - {id: ru-or-a00298-s001, ch: истинный, pr: и́стинный, ds: 'true'}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-20-description-02
+  title: Description and comparison - 2
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a03359-s001, ch: прибыльный, pr: при́быльный, ds: profitable}
+  - {id: ru-or-a04952-s001, ch: убыточный, pr: убы́точный, ds: unprofitable}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a01201-s001, ch: законодательный, pr: законода́тельный, ds: legislative}
+  - {id: ru-or-a01159-s001, ch: исполнительный, pr: исполни́тельный, ds: executive}
+  - {id: ru-or-a00695-s001, ch: судебный, pr: суде́бный, ds: judicial}
+  - {id: ru-or-a00837-s001, ch: административный, pr: администрати́вный, ds: administrative}
+  - {id: ru-or-a00788-s001, ch: юридический, pr: юриди́ческий, ds: legal}
+  - {id: ru-or-a07717-s001, ch: договорный, pr: догово́рный, ds: contractual}
+  - {id: ru-or-a02619-s001, ch: оптовый, pr: опто́вый, ds: wholesale}
+  - {id: ru-or-a04202-s001, ch: розничный, pr: ро́зничный, ds: retail}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-20-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-n00397-s001, ch: миллион, pr: миллио́н, ds: million}
+  - {id: ru-or-n01724-s001, ch: миллиард, pr: миллиа́рд, ds: billion}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00127-s001, ch: особенно, pr: осо́бенно, ds: especially}
+  - {id: ru-or-o00115-s001, ch: совершенно, pr: соверше́нно, ds: totally}
+  - {id: ru-or-o00084-s001, ch: совсем, pr: совсе́м, ds: completely}
+  - {id: ru-or-o00248-s001, ch: примерно, pr: приме́рно, ds: approximately}
+  - {id: ru-or-o00187-s001, ch: поскольку, pr: поско́льку, ds: since}
+  - {id: ru-or-o00198-s001, ch: зато, pr: зато́, ds: but on the other hand}
+  - {id: ru-or-o00028-s001, ch: бы, pr: бы, ds: would}
+  - {id: ru-or-o00250-s001, ch: нечто, pr: не́что, ds: something}
+  review_grammar:
+  - {id: ru-g-numeral-case, ch: 'с двумя [instrumental plural]; о трёх [prepositional plural]', ds: Decline a numeral phrase for its governed role}
+  - {id: ru-g-simultaneous-gerund, ch: 'Читая [object], [same actor''s main action]', ds: Link simultaneous actions with one understood actor}
+  - {id: ru-g-prior-completed-gerund, ch: 'Прочитав [object], [same actor''s main action]', ds: Link a prior completed action to a following action}
+- id: level-20-institutions-01
+  title: Institutions and public processes - 1
+  outcome: Explain a process and separate its purpose from its effects.
+  vocabulary:
+  - {id: ru-or-n00297-s001, ch: управление, pr: управле́ние, ds: management}
+  - {id: ru-or-n04604-s001, ch: самоуправление, pr: самоуправле́ние, ds: self-government}
+  - {id: ru-or-n03329-s001, ch: законодательство, pr: законода́тельство, ds: legislation}
+  - {id: ru-or-n02722-s001, ch: конституция, pr: конститу́ция, ds: constitution}
+  - {id: ru-or-n02106-s001, ch: кодекс, pr: ко́декс, ds: code}
+  - {id: ru-or-n02003-s001, ch: устав, pr: уста́в, ds: charter}
+  - {id: ru-or-n09475-s001, ch: регламент, pr: регла́мент, ds: regulation}
+  - {id: ru-or-n01979-s001, ch: постановление, pr: постановле́ние, ds: resolution}
+  - {id: ru-or-n00987-s001, ch: распоряжение, pr: распоряже́ние, ds: order}
+  - {id: ru-or-n00333-s001, ch: приказ, pr: прика́з, ds: order}
+  - {id: ru-or-n01782-s001, ch: указ, pr: ука́з, ds: decree}
+  - {id: ru-or-n03747-s001, ch: лицензия, pr: лице́нзия, ds: licence}
+  - {id: ru-or-n06259-s001, ch: сертификат, pr: сертифика́т, ds: certificate}
+  - {id: ru-or-n07791-s001, ch: патент, pr: пате́нт, ds: patent}
+  - {id: ru-or-n06705-s001, ch: компетенция, pr: компете́нция, ds: competence}
+  - {id: ru-or-n14136-s001, ch: юрисдикция, pr: юрисди́кция, ds: jurisdiction}
+  - {id: ru-or-n03145-s001, ch: департамент, pr: департа́мент, ds: department}
+  - {id: ru-or-n02024-s001, ch: ведомство, pr: ве́домство, ds: department}
+  - {id: ru-or-n00706-s001, ch: комитет, pr: комите́т, ds: committee}
+  - {id: ru-or-n00609-s001, ch: комиссия, pr: коми́ссия, ds: commission}
+  - {id: ru-or-n05014-s001, ch: коллегия, pr: колле́гия, ds: board}
+  - {id: ru-or-n01011-s001, ch: палата, pr: пала́та, ds: chamber}
+  - {id: ru-or-n01097-s001, ch: фонд, pr: фонд, ds: fund}
+  - {id: ru-or-n02280-s001, ch: ассоциация, pr: ассоциа́ция, ds: association}
+  - {id: ru-or-n02330-s001, ch: объединение, pr: объедине́ние, ds: association}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01309-s001, ch: наказание, pr: наказа́ние, ds: punishment}
+  - {id: ru-or-n03055-s001, ch: штраф, pr: штраф, ds: fine}
+  - {id: ru-or-n00993-s001, ch: разрешение, pr: разреше́ние, ds: permission}
+  - {id: ru-or-n02369-s001, ch: запрет, pr: запре́т, ds: ban}
+  - {id: ru-or-n01384-s001, ch: реформа, pr: рефо́рма, ds: reform}
+  - {id: ru-or-n01951-s001, ch: протест, pr: проте́ст, ds: protest}
+  - {id: ru-or-n02449-s001, ch: демонстрация, pr: демонстра́ция, ds: demonstration}
+  - {id: ru-or-n02134-s001, ch: митинг, pr: ми́тинг, ds: rally}
+  review_grammar: []
+- id: level-20-institutions-02
+  title: Institutions and public processes - 2
+  outcome: Explain a process and separate its purpose from its effects.
+  vocabulary:
+  - {id: ru-or-n00241-s001, ch: союз, pr: сою́з, ds: union}
+  - {id: ru-or-n03596-s001, ch: профсоюз, pr: профсою́з, ds: trade union}
+  - {id: ru-or-n01949-s001, ch: корпорация, pr: корпора́ция, ds: corporation}
+  - {id: ru-or-n06841-s001, ch: акционер, pr: акционе́р, ds: shareholder}
+  - {id: ru-or-n00983-s001, ch: акция, pr: а́кция, ds: share}
+  - {id: ru-or-n06779-s001, ch: облигация, pr: облига́ция, ds: bond}
+  - {id: ru-or-n03919-s001, ch: биржа, pr: би́ржа, ds: stock or commodity exchange}
+  - {id: ru-or-n04097-s001, ch: аукцион, pr: аукцио́н, ds: auction}
+  - {id: ru-or-n01537-s001, ch: конкурс, pr: ко́нкурс, ds: competition}
+  - {id: ru-or-n05475-s001, ch: тендер, pr: те́ндер, ds: tender}
+  - {id: ru-or-n02002-s001, ch: контракт, pr: контра́кт, ds: contract}
+  - {id: ru-or-n02562-s001, ch: наследство, pr: насле́дство, ds: inheritance}
+  - {id: ru-or-n02726-s001, ch: наследник, pr: насле́дник, ds: heir}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n02024-s001, ch: ведомство, pr: ве́домство, ds: department}
+  - {id: ru-or-n00706-s001, ch: комитет, pr: комите́т, ds: committee}
+  - {id: ru-or-n00609-s001, ch: комиссия, pr: коми́ссия, ds: commission}
+  - {id: ru-or-n05014-s001, ch: коллегия, pr: колле́гия, ds: board}
+  - {id: ru-or-n01011-s001, ch: палата, pr: пала́та, ds: chamber}
+  - {id: ru-or-n01097-s001, ch: фонд, pr: фонд, ds: fund}
+  - {id: ru-or-n02280-s001, ch: ассоциация, pr: ассоциа́ция, ds: association}
+  - {id: ru-or-n02330-s001, ch: объединение, pr: объедине́ние, ds: association}
+  review_grammar: []
+- id: level-20-reasoning-practice-01
+  title: Reasons and relationships - sentence practice 1
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-purpose-cause-prepositions, ch: 'для / ради [genitive purpose]; из-за / вследствие [genitive cause]', ds: Separate a purpose from an attributed cause}
+  review_vocabulary:
+  - {id: ru-or-v00660-s001, ch: ошибиться, pr: ошиби́ться, ds: make a mistake}
+  - {id: ru-or-o01398-s001, ch: предположительно, pr: предположи́тельно, ds: presumably}
+  - {id: ru-or-o00663-s001, ch: приблизительно, pr: приблизи́тельно, ds: approximately}
+  - {id: ru-or-o00367-s001, ch: относительно, pr: относи́тельно, ds: relatively}
+  - {id: ru-or-o00667-s001, ch: частично, pr: части́чно, ds: partially}
+  - {id: ru-or-o00433-s001, ch: непосредственно, pr: непосре́дственно, ds: directly}
+  - {id: ru-or-o00346-s001, ch: якобы, pr: я́кобы, ds: supposedly}
+  - {id: ru-or-o00094-s001, ch: будто, pr: бу́дто, ds: as if}
+  review_grammar:
+  - {id: ru-g-real-condition, ch: 'если [condition], то [consequence]', ds: Propose a consequence under an open condition}
+  - {id: ru-g-epistemic-qualification, ch: 'возможно / вероятно / по-видимому, [claim]', ds: Qualify commitment to a claim}
+  - {id: ru-g-inference-from-evidence, ch: 'судя по [dative evidence], [inference]', ds: Mark the evidence used to make an inference}
+- id: level-20-institutions-practice-01
+  title: Institutions and public processes - sentence practice 1
+  outcome: Explain a process and separate its purpose from its effects.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-action-nominalization, ch: 'обсуждение [genitive object] [instrumental agent]', ds: Recover participants in a nominalized action}
+  - {id: ru-g-formal-dative-prepositions, ch: 'согласно / вопреки / благодаря + [dative]', ds: 'Interpret formal accordance, opposition, and enabling cause'}
+  - {id: ru-g-nested-genitives, ch: 'результаты [genitive modifier] [genitive modifier]', ds: Resolve a dense genitive chain without losing attachment}
+  review_vocabulary:
+  - {id: ru-or-n06779-s001, ch: облигация, pr: облига́ция, ds: bond}
+  - {id: ru-or-n03919-s001, ch: биржа, pr: би́ржа, ds: stock or commodity exchange}
+  - {id: ru-or-n04097-s001, ch: аукцион, pr: аукцио́н, ds: auction}
+  - {id: ru-or-n01537-s001, ch: конкурс, pr: ко́нкурс, ds: competition}
+  - {id: ru-or-n05475-s001, ch: тендер, pr: те́ндер, ds: tender}
+  - {id: ru-or-n02002-s001, ch: контракт, pr: контра́кт, ds: contract}
+  - {id: ru-or-n02562-s001, ch: наследство, pr: насле́дство, ds: inheritance}
+  - {id: ru-or-n02726-s001, ch: наследник, pr: насле́дник, ds: heir}
+  review_grammar: []

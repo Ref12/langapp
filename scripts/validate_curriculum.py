@@ -5,13 +5,17 @@ from datetime import date
 from pathlib import Path
 import re
 import sys
+import tarfile
+import zipfile
 
 import yaml
 
 from curriculum_yaml import load_yaml
+from character_assets import validate_bundle
 from generate_curriculum_tokens import PILOT_LEVEL, compact_outputs, vocabulary_pairs
 from generate_teaching_track import load_reference_index, teaching_outputs
-from generate_chinese_program import generate as generate_program
+from generate_practical_program import generate as generate_program
+from practical_program_registry import REGISTRATIONS, get_adapter
 
 
 LEVELS = {
@@ -37,6 +41,8 @@ class Validator:
         self.counts = []
         self.teaching_tracks = {}
         self.teaching_programs = set()
+        self.active_languages = []
+        self.reference_inventories = {}
 
     def error(self, location, message):
         self.errors.append(f"{location}: {message}")
@@ -91,6 +97,10 @@ class Validator:
             self.error(location, f"unknown source ID {value!r}")
 
     def catalog(self):
+        self.active_languages = []
+        self.reference_inventories = {}
+        self.teaching_tracks = {}
+        self.teaching_programs = set()
         catalog = self.yaml_file(self.root / "catalog.yaml", dict)
         if catalog is None:
             return
@@ -108,11 +118,20 @@ class Validator:
                 continue
             language = entry.get("id")
             self.identifier(language, seen, location)
-            if not isinstance(language, str) or language not in LEVELS:
+            if not isinstance(language, str) or language not in REGISTRATIONS:
                 self.error(location, f"unrecognized language {language!r}")
                 continue
-            if entry.get("levels") != LEVELS[language]:
-                self.error(location, "levels must match the reference level order")
+            self.active_languages.append(language)
+            registration = REGISTRATIONS[language]
+            if language in LEVELS:
+                if entry.get("levels") != LEVELS[language]:
+                    self.error(location, "levels must match the reference level order")
+                if "reference_inventory" in entry:
+                    self.error(location, "existing reference-level collections must not be reclassified")
+            elif ("levels" in entry or entry.get("reference_inventory") != registration.reference_inventory):
+                self.error(location, "independent inventories require reference_inventory: reference, not exam levels")
+            else:
+                self.reference_inventories[language] = registration.reference_inventory
             self.text(entry.get("standard"), f"{location}.standard")
             tracks = entry.get("teaching_tracks", [])
             if (not isinstance(tracks, list)
@@ -122,17 +141,15 @@ class Validator:
                 self.error(location, "teaching_tracks must contain kebab-case directory names")
             elif len(tracks) != len(set(tracks)):
                 self.error(location, "teaching_tracks must not repeat directory names")
-            elif tracks and language != "chinese":
-                self.error(location, "teaching tracks are currently supported only for Chinese")
             else:
                 self.teaching_tracks[language] = tracks
             if "teaching_program" in entry:
-                if language != "chinese" or entry["teaching_program"] != "zh-practical":
-                    self.error(location, "unsupported teaching_program; expected Chinese zh-practical")
+                if entry["teaching_program"] != registration.program_id:
+                    self.error(location, f"unsupported teaching_program; expected {registration.program_id}")
                 else:
                     self.teaching_programs.add(language)
-        if seen != set(LEVELS):
-            self.error("catalog.yaml", "must include all three languages exactly once")
+        if not set(LEVELS) <= seen:
+            self.error("catalog.yaml", "must include all three existing reference languages exactly once")
 
     def sources(self, language):
         path = self.root / language / "sources.yaml"
@@ -257,49 +274,70 @@ class Validator:
         self.document(directory / "README.md")
         sources = self.sources(language)
         seen = set()
-        for level in LEVELS[language]:
-            self.document(directory / level / "syllabus.md")
+        levels = LEVELS.get(language, [self.reference_inventories.get(language)])
+        for level in levels:
+            if not isinstance(level, str):
+                self.error(directory, "no valid independent reference inventory is configured")
+                continue
+            self.document(directory / level / ("syllabus.md" if language in LEVELS else "README.md"))
             vocabulary_count = self.vocabulary(language, level, sources, seen)
             grammar_count, example_count = self.grammar(language, level, sources, seen)
             if (language, level) == PILOT_LEVEL:
                 self.compact(language, level)
             self.counts.append((language, level, vocabulary_count, grammar_count, example_count))
+        characters = directory / "characters"
+        if characters.exists():
+            try:
+                validate_bundle(directory)
+            except (OSError, UnicodeError, ValueError, yaml.YAMLError,
+                    tarfile.TarError, zipfile.BadZipFile) as exc:
+                self.error(characters, str(exc))
         if self.teaching_tracks.get(language):
             try:
-                words, patterns = load_reference_index(directory)
+                if language == "chinese":
+                    words, patterns = load_reference_index(directory)
+                else:
+                    data = get_adapter(language).load(directory)
+                    words, patterns = data.references.vocabulary, data.references.grammar
             except (OSError, UnicodeError, ValueError, yaml.YAMLError) as exc:
                 self.error(directory, str(exc))
                 return
             for track in self.teaching_tracks[language]:
-                self.teaching_track(directory / "teaching" / track, words, patterns)
+                self.teaching_track(
+                    directory / "teaching" / track, words, patterns,
+                    language=language, prefix=REGISTRATIONS[language].prefix,
+                )
         if language in self.teaching_programs:
             self.document(directory / "teaching" / "README.md")
             self.document(directory / "teaching" / "grammar-notes.md")
             self.document(directory / "teaching" / "tourist" / "README.md")
             try:
-                generate_program(directory, check=True)
+                generate_program(directory, get_adapter(language), check=True)
             except (OSError, UnicodeError, ValueError, KeyError, yaml.YAMLError) as exc:
                 self.error(directory / "teaching", str(exc))
 
-    def teaching_track(self, directory, vocabulary, grammar):
+    def teaching_track(self, directory, vocabulary, grammar, *, language="chinese", prefix="zh"):
         self.document(directory / "README.md")
         sequence = self.yaml_file(directory / "sequence.yaml", dict)
         if sequence is None:
             return
         try:
-            outputs = teaching_outputs(directory, sequence, vocabulary, grammar)
+            outputs = teaching_outputs(directory, sequence, vocabulary, grammar, language=language, prefix=prefix)
             for path, expected in outputs.items():
                 if path.read_text(encoding="utf-8") != expected:
                     self.error(path, "stale teaching view; regenerate from references and sequence.yaml")
         except (OSError, UnicodeError, ValueError) as exc:
             self.error(directory, str(exc))
 
-    def run(self, languages):
+    def run(self, languages=None):
         self.document(self.root / "README.md")
         self.document(self.root / "TUTOR_GUIDE.md")
         self.catalog()
-        for language in languages:
-            self.language(language)
+        for language in self.active_languages if languages is None else languages:
+            if language not in self.active_languages:
+                self.error("catalog.yaml", f"language is not enabled: {language}")
+            else:
+                self.language(language)
         print(f"{'Language':<12} {'Level':<12} {'Vocabulary':>11} {'Grammar':>9} {'Examples':>10}")
         for language, level, vocabulary, grammar, examples in self.counts:
             print(f"{language:<12} {level:<12} {vocabulary:>11,} {grammar:>9,} {examples:>10,}")
@@ -316,14 +354,14 @@ class Validator:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--language", choices=list(LEVELS),
+    parser.add_argument("--language", choices=list(REGISTRATIONS),
                         help="Validate one language instead of the complete collection.")
     parser.add_argument("--root", type=Path,
                         default=Path(__file__).resolve().parents[1] / "curriculum",
                         help="Curriculum root (defaults to this repository's curriculum directory).")
     args = parser.parse_args()
     validator = Validator(args.root)
-    return validator.run([args.language] if args.language else list(LEVELS))
+    return validator.run([args.language] if args.language else None)
 
 
 if __name__ == "__main__":

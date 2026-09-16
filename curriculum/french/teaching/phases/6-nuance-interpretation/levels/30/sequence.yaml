@@ -1,0 +1,718 @@
+schema_version: 3
+id: fr-level-30
+title: Extended independent projects
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 30
+phase: nuance-interpretation
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+- fr-level-15
+- fr-level-16
+- fr-level-17
+- fr-level-18
+- fr-level-19
+- fr-level-20
+- fr-level-21
+- fr-level-22
+- fr-level-23
+- fr-level-24
+- fr-level-25
+- fr-level-26
+- fr-level-27
+- fr-level-28
+- fr-level-29
+goals: &id001
+- Synthesize demanding material for a chosen audience.
+- Sustain an evidence-based discussion or written project.
+- Revise the work after substantive criticism while preserving appropriate uncertainty.
+checkpoint:
+  task: Complete an extended project comparing sources, defend its conclusions in discussion, and submit a reasoned revision after critique.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-30-food-01
+  title: Food and meals - 1
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-efff99419b52cb17, ch: saveur, pr: /sa.vœʁ/, ds: 'taste, flavour'}
+  - {id: fr-v-7d7d4f2753fddf70, ch: goût, pr: /ɡu/, ds: 'taste, flavour'}
+  - {id: fr-v-3f2bd7f0a7e7a595, ch: arôme, pr: /a.ʁom/, ds: aroma}
+  - {id: fr-v-0444c907e7d81480, ch: parfum, pr: /paʁ.fœ̃/, ds: perfume (scented toiletry)}
+  - {id: fr-v-248141c50604533c, ch: senteur, pr: /sɑ̃.tœʁ/, ds: 'scent, perfume'}
+  - {id: fr-v-5711e611b5600452, ch: fragrance, pr: /fʁa.ɡʁɑ̃s/, ds: 'a fragrance, a pleasurable smell'}
+  - {id: fr-v-dc2b2c97bde0d016, ch: fumet, pr: /fy.mɛ/, ds: 'aroma, odor (of meat etc.); bouquet (of wine)'}
+  - {id: fr-v-b6a38c5049bf8d0d, ch: assaisonnement, pr: /a.sɛ.zɔn.mɑ̃/, ds: 'seasoning, flavouring'}
+  - {id: fr-v-95bfbdf8f2a62a2c, ch: condiment, pr: /kɔ̃.di.mɑ̃/, ds: condiment}
+  - {id: fr-v-018bbb667bfc1481, ch: épice, pr: /e.pis/, ds: spice}
+  - {id: fr-v-773a52c03d85ab49, ch: persil, pr: /pɛʁ.sil/, ds: parsley}
+  - {id: fr-v-ba7a852efd28705b, ch: coriandre, pr: /kɔ.ʁjɑ̃dʁ/, ds: coriander (the plant)}
+  - {id: fr-v-d4c1a8300f912a71, ch: basilic, pr: /ba.zi.lik/, ds: 'basilisk (lizard, mythological serpent)'}
+  - {id: fr-v-34f5908acb7d952e, ch: thym, pr: /tɛ̃/, ds: thyme (Thymus)}
+  - {id: fr-v-7e1f46d1fa98d55c, ch: romarin, pr: /ʁɔ.ma.ʁɛ̃/, ds: 'rosemary (Salvia rosmarinus, syn. Rosmarinus officinalis)'}
+  - {id: fr-v-d17c0dabd144490b, ch: sauge, pr: /soʒ/, ds: sage (Salvia officinalis)}
+  - {id: fr-v-7607ac1dcd4c5e72, ch: menthe, pr: /mɑ̃t/, ds: mint}
+  - {id: fr-v-c0a1edc6a0b61dd4, ch: estragon, pr: /ɛs.tʁa.ɡɔ̃/, ds: tarragon (the plant)}
+  - {id: fr-v-65fbc14ca55e6472, ch: aneth, pr: /a.nɛt/, ds: dill (herb)}
+  - {id: fr-v-e331915a2373c912, ch: ciboulette, pr: /si.bu.lɛt/, ds: chive (the plant)}
+  - {id: fr-v-09968f26b9e23f74, ch: laurier, pr: /lɔ.ʁje/, ds: laurel (Laurus nobilis)}
+  - {id: fr-v-e34e6a8921a0e5b3, ch: origan, pr: /ɔ.ʁi.ɡɑ̃/, ds: oregano (the plant)}
+  - {id: fr-v-e4007db8828eb48b, ch: marjolaine, pr: /maʁ.ʒɔ.lɛn/, ds: marjoram}
+  - {id: fr-v-6a9f2c4109e1c2a5, ch: cumin, pr: /ky.mɛ̃/, ds: the plant cumin}
+  - {id: fr-v-cb7e0251db8c7404, ch: cannelle, pr: /ka.nɛl/, ds: cinnamon (the spice)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-72f899689de74107, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to have food or drink}
+  - {id: fr-v-32b69e67f5d2fa92, ch: aimer, pr: /ɛ.me/, ds: to love; to like}
+  - {id: fr-v-794486ca61c84640, ch: commander, pr: /kɔ.mɑ̃.de/, ds: to order food or goods}
+  - {id: fr-v-6746733a972453d5, ch: chaud, pr: /ʃo/, ds: 'warm, hot'}
+  - {id: fr-v-fe3439b43195c5bf, ch: froid, pr: /fʁwa/, ds: cold (temperature)}
+  - {id: fr-v-429fa20a62c1cffc, ch: faim, pr: /fɛ̃/, ds: hunger (desire of food)}
+  - {id: fr-v-85b863e84d1cf52a, ch: soif, pr: /swaf/, ds: thirst}
+  - {id: fr-v-80721e3d185812d8, ch: carte, pr: /kaʁt/, ds: menu; list of dishes}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-food-02
+  title: Food and meals - 2
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-b90580799b6f1a29, ch: gingembre, pr: /ʒɛ̃.ʒɑ̃bʁ/, ds: ginger (spice)}
+  - {id: fr-v-f4ec72c94b080f08, ch: curcuma, pr: /kyʁ.ky.ma/, ds: 'turmeric (plant, spice)'}
+  - {id: fr-v-8eebc5ef91f30f62, ch: paprika, pr: /pa.pʁi.ka/, ds: paprika (powder used as a spice)}
+  - {id: fr-v-79803542945510ab, ch: safran, pr: /sa.fʁɑ̃/, ds: saffron}
+  - {id: fr-v-f6af39e59367d50d, ch: muscade, pr: /mys.kad/, ds: nutmeg}
+  - {id: fr-v-9a42921ecfbb9760, ch: girofle, pr: /ʒi.ʁɔfl/, ds: clove (tree)}
+  - {id: fr-v-3be566ffcba7f162, ch: cardamome, pr: /kaʁ.da.mɔm/, ds: cardamom}
+  - {id: fr-v-241f91c0176e4263, ch: vanille, pr: /va.nij/, ds: vanilla (plant)}
+  - {id: fr-v-fe1cec12291f17fb, ch: anis, pr: /a.nis/, ds: anise (plant and spice)}
+  - {id: fr-v-321e0c76dd5ff495, ch: fenouil, pr: /fə.nuj/, ds: fennel}
+  - {id: fr-v-b6ec7cf3948d3ded, ch: réglisse, pr: /ʁe.ɡlis/, ds: licorice (the plant)}
+  - {id: fr-v-9a72250db6b9b0e5, ch: moutarde, pr: /mu.taʁd/, ds: mustard}
+  - {id: fr-v-15e027c8ce081bf2, ch: vinaigre, pr: /vi.nɛɡʁ/, ds: vinegar}
+  - {id: fr-v-d8aea66c4f65a3ea, ch: mayonnaise, pr: /ma.jɔ.nɛz/, ds: mayonnaise}
+  - {id: fr-v-a6816b601db56bfa, ch: vinaigrette, pr: /vi.nɛ.ɡʁɛt/, ds: 'vinaigrette (sauce), French dressing'}
+  - {id: fr-v-29f050124d5b6248, ch: sauce, pr: /sos/, ds: sauce}
+  - {id: fr-v-5a36ae6f69b0f310, ch: bouillon, pr: /bu.jɔ̃/, ds: broth; liquid in which food has been boiled}
+  - {id: fr-v-d79d2a904412b2b2, ch: fond, pr: /fɔ̃/, ds: back}
+  - {id: fr-v-d8e8103dab2b8453, ch: yaourt, pr: /ja.uʁt/, ds: yoghurt}
+  - {id: fr-v-9e1e22f04918f10a, ch: fromage blanc, pr: /fʁɔ.maʒ blɑ̃/, ds: 'fromage blanc, sour cream, junket, cottage cheese, quark'}
+  - {id: fr-v-12ecd56789507240, ch: margarine, pr: /maʁ.ɡa.ʁin/, ds: margarine}
+  - {id: fr-v-15da1ee4ac896c84, ch: farine, pr: /fa.ʁin/, ds: 'flour, specifically wheat flour'}
+  - {id: fr-v-0edbc2700e7ffd4e, ch: amidon, pr: /a.mi.dɔ̃/, ds: starch}
+  - {id: fr-v-eaae12751a46567d, ch: fécule, pr: /fe.kyl/, ds: 'starch from potatoes, manioc etc.'}
+  - {id: fr-v-c8e647d9ed266f54, ch: semoule, pr: /sə.mul/, ds: semolina}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-c0a1edc6a0b61dd4, ch: estragon, pr: /ɛs.tʁa.ɡɔ̃/, ds: tarragon (the plant)}
+  - {id: fr-v-65fbc14ca55e6472, ch: aneth, pr: /a.nɛt/, ds: dill (herb)}
+  - {id: fr-v-e331915a2373c912, ch: ciboulette, pr: /si.bu.lɛt/, ds: chive (the plant)}
+  - {id: fr-v-09968f26b9e23f74, ch: laurier, pr: /lɔ.ʁje/, ds: laurel (Laurus nobilis)}
+  - {id: fr-v-e34e6a8921a0e5b3, ch: origan, pr: /ɔ.ʁi.ɡɑ̃/, ds: oregano (the plant)}
+  - {id: fr-v-e4007db8828eb48b, ch: marjolaine, pr: /maʁ.ʒɔ.lɛn/, ds: marjoram}
+  - {id: fr-v-6a9f2c4109e1c2a5, ch: cumin, pr: /ky.mɛ̃/, ds: the plant cumin}
+  - {id: fr-v-cb7e0251db8c7404, ch: cannelle, pr: /ka.nɛl/, ds: cinnamon (the spice)}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-food-03
+  title: Food and meals - 3
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-865c30d87a85f443, ch: avoine, pr: /a.vwan/, ds: oats}
+  - {id: fr-v-d974ffcc2b840e3f, ch: blé, pr: /ble/, ds: 'wheat, corn'}
+  - {id: fr-v-f3420fe6e029113a, ch: seigle, pr: /sɛɡl/, ds: rye (grass or its grains as food)}
+  - {id: fr-v-dbcff7b7164eddc1, ch: orge, pr: /ɔʁʒ/, ds: barley}
+  - {id: fr-v-4171c2457a7552da, ch: sarrasin, pr: /sa.ʁa.zɛ̃/, ds: Saracen}
+  - {id: fr-v-546692e1375e7e11, ch: maïs, pr: /ma.is/, ds: 'corn, maize'}
+  - {id: fr-v-44d69654ea2c05d7, ch: millet, pr: /mi.jɛ/, ds: millet (grain)}
+  - {id: fr-v-e5990c0c57b237d1, ch: quinoa, pr: /ki.nɔ.a/, ds: quinoa}
+  - {id: fr-v-51c8ffbee8227b84, ch: nouille, pr: /nuj/, ds: noodle (string or strip of pasta)}
+  - {id: fr-v-b88b781512a178a2, ch: vermicelle, pr: /vɛʁ.mi.sɛl/, ds: vermicelli}
+  - {id: fr-v-16edf789c8814f26, ch: couscous, pr: /kus.kus/, ds: couscous}
+  - {id: fr-v-d7d6ae237a70d645, ch: lentille, pr: /lɑ̃.tij/, ds: lens}
+  - {id: fr-v-56d128cf9a319490, ch: pois, pr: /pwa/, ds: pea}
+  - {id: fr-v-de2447eeec053a85, ch: haricot, pr: /a.ʁi.ko/, ds: A stew of lamb and vegetables.}
+  - {id: fr-v-3455b16aff96b3ce, ch: fève, pr: /fɛv/, ds: 'strictly, a fava bean (Vicia faba)'}
+  - {id: fr-v-7daadd588f999cd8, ch: pois chiche, pr: /pwa ʃiʃ/, ds: chickpea}
+  - {id: fr-v-2fa9ef0205868994, ch: soja, pr: /sɔ.ʒa/, ds: soy (sauce)}
+  - {id: fr-v-7b271f9a5d3d11c1, ch: betterave, pr: /bɛ.tʁav/, ds: beet}
+  - {id: fr-v-c92d76fe33611dc5, ch: carotte, pr: /ka.ʁɔt/, ds: carrot (vegetable)}
+  - {id: fr-v-44db87d1c593b47f, ch: navet, pr: /na.vɛ/, ds: turnip (white root of Brassica rapa)}
+  - {id: fr-v-ebc3db287d84626c, ch: radis, pr: /ʁa.di/, ds: radish}
+  - {id: fr-v-4f06ab27a7057a54, ch: panais, pr: /pa.nɛ/, ds: parsnip}
+  - {id: fr-v-d56b8d3e2edacaee, ch: rutabaga, pr: /ʁy.ta.ba.ɡa/, ds: 'swede, rutabaga (yellow root of Brassica napus)'}
+  - {id: fr-v-19ab2cb46b8d6563, ch: pomme de terre, pr: /pɔm də tɛʁ/, ds: potato (Solanum tuberosum)}
+  - {id: fr-v-beba8d8dd7707997, ch: patate douce, pr: /pa.tat dus/, ds: sweet potato}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-d79d2a904412b2b2, ch: fond, pr: /fɔ̃/, ds: back}
+  - {id: fr-v-d8e8103dab2b8453, ch: yaourt, pr: /ja.uʁt/, ds: yoghurt}
+  - {id: fr-v-9e1e22f04918f10a, ch: fromage blanc, pr: /fʁɔ.maʒ blɑ̃/, ds: 'fromage blanc, sour cream, junket, cottage cheese, quark'}
+  - {id: fr-v-12ecd56789507240, ch: margarine, pr: /maʁ.ɡa.ʁin/, ds: margarine}
+  - {id: fr-v-15da1ee4ac896c84, ch: farine, pr: /fa.ʁin/, ds: 'flour, specifically wheat flour'}
+  - {id: fr-v-0edbc2700e7ffd4e, ch: amidon, pr: /a.mi.dɔ̃/, ds: starch}
+  - {id: fr-v-eaae12751a46567d, ch: fécule, pr: /fe.kyl/, ds: 'starch from potatoes, manioc etc.'}
+  - {id: fr-v-c8e647d9ed266f54, ch: semoule, pr: /sə.mul/, ds: semolina}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-food-04
+  title: Food and meals - 4
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-e4e48f58dd5f9242, ch: topinambour, pr: /tɔ.pi.nɑ̃.buʁ/, ds: Jerusalem artichoke (Helianthus tuberosus)}
+  - {id: fr-v-b453409d21d02006, ch: céleri, pr: /sel.ʁi/, ds: celery}
+  - {id: fr-v-02feca365d03aedd, ch: poireau, pr: /pwa.ʁo/, ds: 'leek (Allium ampeloprasum, syn. Allium porrum)'}
+  - {id: fr-v-7de524916fbb9794, ch: oignon, pr: /ɔ.ɲɔ̃/, ds: onion (Allium cepa)}
+  - {id: fr-v-0066cd70f54177c5, ch: échalote, pr: /e.ʃa.lɔt/, ds: shallot (Allium cepa var. aggregatum)}
+  - {id: fr-v-f40830baa1d46547, ch: ail, pr: /aj/, ds: garlic}
+  - {id: fr-v-19f37b6c8175f8fb, ch: chou, pr: /ʃu/, ds: cabbage}
+  - {id: fr-v-3b17c06808770e34, ch: chou-fleur, pr: /ʃu.flœʁ/, ds: cauliflower}
+  - {id: fr-v-eb54beaa8ed3d941, ch: brocoli, pr: /bʁɔ.kɔ.li/, ds: broccoli}
+  - {id: fr-v-f8c3425866a590ee, ch: épinard, pr: /e.pi.naʁ/, ds: spinach plant (Spinacia oleracea)}
+  - {id: fr-v-33ce3f16f2c4a371, ch: laitue, pr: /lɛ.ty/, ds: lettuce (Lactuca)}
+  - {id: fr-v-8788595bbbe1637c, ch: endive, pr: /ɑ̃.div/, ds: Belgian endive (edible chicory bud of Cichorium intybus)}
+  - {id: fr-v-7ebdbb96d6717eda, ch: chicorée, pr: /ʃi.kɔ.ʁe/, ds: chicory; common chicory or endive}
+  - {id: fr-v-5d582caa3709fc0c, ch: cresson, pr: /kʁə.sɔ̃/, ds: watercress}
+  - {id: fr-v-e2c95135d82c080b, ch: mâche, pr: /maʃ/, ds: a plant used in salads}
+  - {id: fr-v-a8c0990671a7dc4e, ch: concombre, pr: /kɔ̃.kɔ̃bʁ/, ds: cucumber (plant)}
+  - {id: fr-v-444f82260f784825, ch: courgette, pr: /kuʁ.ʒɛt/, ds: 'courgette (UK), zucchini (Australia, Canada, US)'}
+  - {id: fr-v-d106bb358852c8ec, ch: aubergine, pr: /o.bɛʁ.ʒin/, ds: eggplant; aubergine}
+  - {id: fr-v-6967d8f6eccabf69, ch: poivron, pr: /pwa.vʁɔ̃/, ds: 'sweet pepper, bell pepper (Capsicum annuum)'}
+  - {id: fr-v-fe4568442a4f764d, ch: piment, pr: /pi.mɑ̃/, ds: 'chili, chili pepper'}
+  - {id: fr-v-3f3df6c2043c3463, ch: potiron, pr: /pɔ.ti.ʁɔ̃/, ds: pumpkin}
+  - {id: fr-v-38a715ab6e2a0d1e, ch: citrouille, pr: /si.tʁuj/, ds: pumpkin (fruit and plant)}
+  - {id: fr-v-84a49e13dc36e659, ch: courge, pr: /kuʁʒ/, ds: marrow (UK; vegetable)}
+  - {id: fr-v-731ce4ffb6d116a3, ch: artichaut, pr: /aʁ.ti.ʃo/, ds: 'artichoke (plant, vegetable)'}
+  - {id: fr-v-d99da1d067124238, ch: asperge, pr: /as.pɛʁʒ/, ds: asparagus}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-7b271f9a5d3d11c1, ch: betterave, pr: /bɛ.tʁav/, ds: beet}
+  - {id: fr-v-c92d76fe33611dc5, ch: carotte, pr: /ka.ʁɔt/, ds: carrot (vegetable)}
+  - {id: fr-v-44db87d1c593b47f, ch: navet, pr: /na.vɛ/, ds: turnip (white root of Brassica rapa)}
+  - {id: fr-v-ebc3db287d84626c, ch: radis, pr: /ʁa.di/, ds: radish}
+  - {id: fr-v-4f06ab27a7057a54, ch: panais, pr: /pa.nɛ/, ds: parsnip}
+  - {id: fr-v-d56b8d3e2edacaee, ch: rutabaga, pr: /ʁy.ta.ba.ɡa/, ds: 'swede, rutabaga (yellow root of Brassica napus)'}
+  - {id: fr-v-19ab2cb46b8d6563, ch: pomme de terre, pr: /pɔm də tɛʁ/, ds: potato (Solanum tuberosum)}
+  - {id: fr-v-beba8d8dd7707997, ch: patate douce, pr: /pa.tat dus/, ds: sweet potato}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-food-05
+  title: Food and meals - 5
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-fac5b46b02afbd61, ch: truffe, pr: /tʁyf/, ds: truffle (edible fungi)}
+  - {id: fr-v-8fd3d0ed4fc50a66, ch: poire, pr: /pwaʁ/, ds: pear}
+  - {id: fr-v-b9d482f734b8e71e, ch: pêche, pr: /pɛʃ/, ds: peach}
+  - {id: fr-v-2334c8fbf03f6d3f, ch: abricot, pr: /a.bʁi.ko/, ds: apricot (fruit)}
+  - {id: fr-v-58daaac04966e1c6, ch: nectarine, pr: /nɛktaʁin/, ds: nectarine}
+  - {id: fr-v-0f93101ee3ee0cad, ch: brugnon, pr: /bʁy.ɲɔ̃/, ds: nectarine (clingstone)}
+  - {id: fr-v-f4ba1fd9bae71711, ch: prune, pr: /pʁyn/, ds: plum}
+  - {id: fr-v-fea7186c0a39e4be, ch: mirabelle, pr: /miʁabɛl/, ds: mirabelle plum}
+  - {id: fr-v-b4004ef23234ce48, ch: quetsche, pr: /kwɛtʃ/, ds: damson (plum)}
+  - {id: fr-v-395cdbbb88225ec2, ch: cerise, pr: /sə.ʁiz/, ds: cherry (fruit)}
+  - {id: fr-v-2efb3134290ab3a7, ch: fraise, pr: /fʁɛz/, ds: strawberry}
+  - {id: fr-v-a34c62d78d22d052, ch: framboise, pr: /fʁɑ̃.bwaz/, ds: raspberry (fruit)}
+  - {id: fr-v-a83c399fddeb82c1, ch: mûre, pr: /myʁ/, ds: mulberry}
+  - {id: fr-v-16b881e96c226ef2, ch: myrtille, pr: /miʁ.tij/, ds: 'blueberry (fruit), bilberry'}
+  - {id: fr-v-fdaeb1222eef44e2, ch: groseille, pr: /ɡʁo.zɛj/, ds: redcurrant}
+  - {id: fr-v-f86fdaf767df09b5, ch: cassis, pr: /ka.sis/, ds: blackcurrant (fruit)}
+  - {id: fr-v-9164b784f6390e6e, ch: raisin, pr: /ʁɛ.zɛ̃/, ds: grape}
+  - {id: fr-v-d5f4376b62167899, ch: figue, pr: /fiɡ/, ds: fig (fruit)}
+  - {id: fr-v-80794583d50a3fbd, ch: datte, pr: /dat/, ds: date (fruit)}
+  - {id: fr-v-f19923bef5574c74, ch: kaki, pr: /ka.ki/, ds: 'persimmon, Sharon fruit'}
+  - {id: fr-v-8b59993203665858, ch: kiwi, pr: /ki.wi/, ds: kiwi; kiwifruit}
+  - {id: fr-v-d36563657d3f1728, ch: grenade, pr: /ɡʁə.nad/, ds: pomegranate}
+  - {id: fr-v-30b3f57721ef544b, ch: melon, pr: /mə.lɔ̃/, ds: melon (fruit)}
+  - {id: fr-v-eebe59b4c5a878c8, ch: pastèque, pr: /pas.tɛk/, ds: watermelon (plant)}
+  - {id: fr-v-afffa79239c9f15b, ch: ananas, pr: /a.na.nas/, ds: pineapple}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-d106bb358852c8ec, ch: aubergine, pr: /o.bɛʁ.ʒin/, ds: eggplant; aubergine}
+  - {id: fr-v-6967d8f6eccabf69, ch: poivron, pr: /pwa.vʁɔ̃/, ds: 'sweet pepper, bell pepper (Capsicum annuum)'}
+  - {id: fr-v-fe4568442a4f764d, ch: piment, pr: /pi.mɑ̃/, ds: 'chili, chili pepper'}
+  - {id: fr-v-3f3df6c2043c3463, ch: potiron, pr: /pɔ.ti.ʁɔ̃/, ds: pumpkin}
+  - {id: fr-v-38a715ab6e2a0d1e, ch: citrouille, pr: /si.tʁuj/, ds: pumpkin (fruit and plant)}
+  - {id: fr-v-84a49e13dc36e659, ch: courge, pr: /kuʁʒ/, ds: marrow (UK; vegetable)}
+  - {id: fr-v-731ce4ffb6d116a3, ch: artichaut, pr: /aʁ.ti.ʃo/, ds: 'artichoke (plant, vegetable)'}
+  - {id: fr-v-d99da1d067124238, ch: asperge, pr: /as.pɛʁʒ/, ds: asparagus}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-food-06
+  title: Food and meals - 6
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-1ea9f188502289b2, ch: mangue, pr: /mɑ̃ɡ/, ds: mango (fruit of the mango tree)}
+  - {id: fr-v-fe69d3424f0d433b, ch: papaye, pr: /pa.paj/, ds: papaya (fruit)}
+  - {id: fr-v-9bbfeb369de97571, ch: goyave, pr: /ɡɔ.jav/, ds: guava (fruit)}
+  - {id: fr-v-d562cfca6a95469d, ch: litchi, pr: /lit.ʃi/, ds: lychee (tree)}
+  - {id: fr-v-8736d8cc24293ddd, ch: citron vert, pr: /si.tʁɔ̃ vɛʁ/, ds: lime (citrus)}
+  - {id: fr-v-5368f1569ba6d23c, ch: pamplemousse, pr: /pɑ̃.plə.mus/, ds: pomelo}
+  - {id: fr-v-f40931860ca5072c, ch: mandarine, pr: /mɑ̃.da.ʁin/, ds: mandarin orange}
+  - {id: fr-v-da0dfff9bcf6fdf7, ch: clémentine, pr: /kle.mɑ̃.tin/, ds: clementine (fruit)}
+  - {id: fr-v-5aacf555fbc04415, ch: kumquat, pr: /kɔmkwat/, ds: kumquat}
+  - {id: fr-v-e1c64ce976546153, ch: noix, pr: /nwa/, ds: walnut}
+  - {id: fr-v-98098d4066cce21f, ch: noisette, pr: /nwa.zɛt/, ds: hazelnut}
+  - {id: fr-v-799e758777adb7d4, ch: amande, pr: /a.mɑ̃d/, ds: almond (the nut)}
+  - {id: fr-v-6450b6167783c781, ch: pistache, pr: /pis.taʃ/, ds: pistachio (nut)}
+  - {id: fr-v-406e71f53ca8f9ae, ch: cacahuète, pr: /ka.ka.ɥɛt/, ds: 'peanut, goober'}
+  - {id: fr-v-52d5f927ba642f7b, ch: noix de cajou, pr: /nwa d(ə) ka.ʒu/, ds: cashew nut (the seed of the cashew tree)}
+  - {id: fr-v-acbc8288664468c5, ch: noix de coco, pr: /nwa d(ə) ko.ko/, ds: coconut}
+  - {id: fr-v-41240d7e5db08d9e, ch: châtaigne, pr: /ʃa.tɛɲ/, ds: chestnut}
+  - {id: fr-v-46729353678dbf9b, ch: biscuit, pr: /bis.kɥi/, ds: biscuit (cookie)}
+  - {id: fr-v-a8d353f9ac12dccc, ch: gâteau, pr: /ɡa.to/, ds: a sponge cake}
+  - {id: fr-v-3044f0168b81eeaa, ch: tarte, pr: /taʁt/, ds: 'pie, tart'}
+  - {id: fr-v-b3d91c37951d9129, ch: tourte, pr: /tuʁt/, ds: 'passenger pigeon, Ectopistes migratorius'}
+  - {id: fr-v-ced56f9138d8e452, ch: brioche, pr: /bʁi.jɔʃ/, ds: brioche (a type of light sweet pastry or bun of French origin)}
+  - {id: fr-v-56665261bde6675f, ch: pain au chocolat, pr: /pɛ̃ o ʃɔ.kɔ.la/, ds: pain au chocolat (French pastry filled with chocolate)}
+  - {id: fr-v-ed45f7855fa9bf21, ch: chausson, pr: /ʃo.sɔ̃/, ds: slipper (footwear)}
+  - {id: fr-v-0766e7579509f0c0, ch: beignet, pr: /bɛ.ɲɛ/, ds: beignet (fritter filled with fruit etc)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-d5f4376b62167899, ch: figue, pr: /fiɡ/, ds: fig (fruit)}
+  - {id: fr-v-80794583d50a3fbd, ch: datte, pr: /dat/, ds: date (fruit)}
+  - {id: fr-v-f19923bef5574c74, ch: kaki, pr: /ka.ki/, ds: 'persimmon, Sharon fruit'}
+  - {id: fr-v-8b59993203665858, ch: kiwi, pr: /ki.wi/, ds: kiwi; kiwifruit}
+  - {id: fr-v-d36563657d3f1728, ch: grenade, pr: /ɡʁə.nad/, ds: pomegranate}
+  - {id: fr-v-30b3f57721ef544b, ch: melon, pr: /mə.lɔ̃/, ds: melon (fruit)}
+  - {id: fr-v-eebe59b4c5a878c8, ch: pastèque, pr: /pas.tɛk/, ds: watermelon (plant)}
+  - {id: fr-v-afffa79239c9f15b, ch: ananas, pr: /a.na.nas/, ds: pineapple}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-food-07
+  title: Food and meals - 7
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-ceb00f5d680c4a56, ch: crêpe, pr: /kʁɛp/, ds: crepe}
+  - {id: fr-v-57ec8d549c8c89f6, ch: gaufre, pr: /ɡofʁ/, ds: honeycomb}
+  - {id: fr-v-d3c4d60c1445089c, ch: flan, pr: /flɑ̃/, ds: baked custard tart}
+  - {id: fr-v-20137ce408ab9668, ch: crème brûlée, pr: /kʁɛm bʁy.le/, ds: crème brûlée}
+  - {id: fr-v-26a02afa70a634b5, ch: soufflé, pr: /su.fle/, ds: soufflé}
+  - {id: fr-v-4f86e20159dffdfe, ch: sorbet, pr: /sɔʁ.bɛ/, ds: 'sorbet, sherbet'}
+  - {id: fr-v-424fac9890e6adb1, ch: glace, pr: /ɡlas/, ds: ice}
+  - {id: fr-v-ceb20bb6f2e389b4, ch: chocolat, pr: /ʃɔ.kɔ.la/, ds: chocolate}
+  - {id: fr-v-9cf73834460f1562, ch: cacao, pr: /ka.ka.o/, ds: cocoa}
+  - {id: fr-v-fa8456507d7f5a4f, ch: caramel, pr: /ka.ʁa.mɛl/, ds: fudge; caramel (confection)}
+  - {id: fr-v-b28399b4122f331a, ch: miel, pr: /mjɛl/, ds: honey (sticky sweet substance)}
+  - {id: fr-v-492aaa210f7453ba, ch: confiture, pr: /kɔ̃.fi.tyʁ/, ds: 'jam (UK), jelly (US)'}
+  - {id: fr-v-71ecede63f68b54f, ch: marmelade, pr: /maʁməlad/, ds: marmalade}
+  - {id: fr-v-9722d2e459433540, ch: gelée, pr: /ʒə.le/, ds: frost}
+  - {id: fr-v-e660315e13d62499, ch: compote, pr: /kɔ̃.pɔt/, ds: 'stewed fruit or meat, compote'}
+  - {id: fr-v-4d8146264f7dfcfd, ch: édulcorant, pr: /e.dyl.kɔ.ʁɑ̃/, ds: sweetener}
+  - {id: fr-v-202becef7b092e8c, ch: bonbon, pr: /bɔ̃.bɔ̃/, ds: 'sweet, candy'}
+  - {id: fr-v-4721a482c87ebbea, ch: dégustation, pr: /de.ɡys.ta.sjɔ̃/, ds: 'tasting, act of tasting or trying out food'}
+  - {id: fr-v-ec3b5ed1a7730af6, ch: gourmandise, pr: /ɡuʁ.mɑ̃.diz/, ds: delicacy (a pleasing food)}
+  - {id: fr-v-7502bd01e3cb9dc8, ch: gourmand, pr: /ɡuʁ.mɑ̃/, ds: eating a lot}
+  - {id: fr-v-58ad665d1fe5d392, ch: gourmet, pr: /ɡuʁ.mɛ/, ds: a wine expert}
+  - {id: fr-v-60cfd14db9e879e1, ch: gastronome, pr: /ɡas.tʁɔ.nɔm/, ds: gastronome}
+  - {id: fr-v-f276696712a0060c, ch: gastronomie, pr: /ɡas.tʁɔ.nɔ.mi/, ds: gastronomy (study of the relationship between food and culture)}
+  - {id: fr-v-8402612168097f2f, ch: ingrédient, pr: /ɛ̃.ɡʁe.djɑ̃/, ds: ingredient}
+  - {id: fr-v-889172b32db8b8c9, ch: portion, pr: /pɔʁ.sjɔ̃/, ds: portion}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-46729353678dbf9b, ch: biscuit, pr: /bis.kɥi/, ds: biscuit (cookie)}
+  - {id: fr-v-a8d353f9ac12dccc, ch: gâteau, pr: /ɡa.to/, ds: a sponge cake}
+  - {id: fr-v-3044f0168b81eeaa, ch: tarte, pr: /taʁt/, ds: 'pie, tart'}
+  - {id: fr-v-b3d91c37951d9129, ch: tourte, pr: /tuʁt/, ds: 'passenger pigeon, Ectopistes migratorius'}
+  - {id: fr-v-ced56f9138d8e452, ch: brioche, pr: /bʁi.jɔʃ/, ds: brioche (a type of light sweet pastry or bun of French origin)}
+  - {id: fr-v-56665261bde6675f, ch: pain au chocolat, pr: /pɛ̃ o ʃɔ.kɔ.la/, ds: pain au chocolat (French pastry filled with chocolate)}
+  - {id: fr-v-ed45f7855fa9bf21, ch: chausson, pr: /ʃo.sɔ̃/, ds: slipper (footwear)}
+  - {id: fr-v-0766e7579509f0c0, ch: beignet, pr: /bɛ.ɲɛ/, ds: beignet (fritter filled with fruit etc)}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-food-08
+  title: Food and meals - 8
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: fr-v-cdce9fc6464bed97, ch: ration, pr: /ʁa.sjɔ̃/, ds: ration}
+  - {id: fr-v-bda4c0b2450ea61e, ch: recette, pr: /ʁə.sɛt/, ds: recipe; cooking instructions}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-4721a482c87ebbea, ch: dégustation, pr: /de.ɡys.ta.sjɔ̃/, ds: 'tasting, act of tasting or trying out food'}
+  - {id: fr-v-ec3b5ed1a7730af6, ch: gourmandise, pr: /ɡuʁ.mɑ̃.diz/, ds: delicacy (a pleasing food)}
+  - {id: fr-v-7502bd01e3cb9dc8, ch: gourmand, pr: /ɡuʁ.mɑ̃/, ds: eating a lot}
+  - {id: fr-v-58ad665d1fe5d392, ch: gourmet, pr: /ɡuʁ.mɛ/, ds: a wine expert}
+  - {id: fr-v-60cfd14db9e879e1, ch: gastronome, pr: /ɡas.tʁɔ.nɔm/, ds: gastronome}
+  - {id: fr-v-f276696712a0060c, ch: gastronomie, pr: /ɡas.tʁɔ.nɔ.mi/, ds: gastronomy (study of the relationship between food and culture)}
+  - {id: fr-v-8402612168097f2f, ch: ingrédient, pr: /ɛ̃.ɡʁe.djɑ̃/, ds: ingredient}
+  - {id: fr-v-889172b32db8b8c9, ch: portion, pr: /pɔʁ.sjɔ̃/, ds: portion}
+  review_grammar:
+  - {id: fr-g-partitives-quantities, ch: du / de la / de l' ; quantité + de / d' + nom, ds: Unspecified portions versus measured quantities}
+- id: level-30-description-01
+  title: Description and comparison - 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-64092a6b2b5cc01d, ch: savoureux, pr: /sa.vu.ʁø/, ds: tasty}
+  - {id: fr-v-c0dc7f9d9e23fb8c, ch: goûteux, pr: /ɡu.tø/, ds: tasty}
+  - {id: fr-v-4eec46329026d5c0, ch: délicieux, pr: /de.li.sjø/, ds: delicious}
+  - {id: fr-v-c4bc636e2040130a, ch: exquis, pr: /ɛk.ski/, ds: exquisite}
+  - {id: fr-v-a3cd50614742eeee, ch: succulent, pr: /sy.ky.lɑ̃/, ds: succulent (all senses)}
+  - {id: fr-v-8f70be844bd12924, ch: délectable, pr: /de.lɛk.tabl/, ds: 'delectable, delightful'}
+  - {id: fr-v-27c5fe261933c3a7, ch: appétissant, pr: /a.pe.ti.sɑ̃/, ds: appetizing}
+  - {id: fr-v-b476fe4e4f15612c, ch: alléchant, pr: /a.le.ʃɑ̃/, ds: enticing}
+  - {id: fr-v-359992fe1a7a9223, ch: tentant, pr: /tɑ̃.tɑ̃/, ds: tempting}
+  - {id: fr-v-dd8d1ff4541dce9b, ch: raffiné, pr: /ʁa.fi.ne/, ds: refined}
+  - {id: fr-v-266b368d91b221cc, ch: fade, pr: /fad/, ds: 'tasteless, insipid'}
+  - {id: fr-v-365a0a3d4bb9ed71, ch: insipide, pr: /ɛ̃.si.pid/, ds: 'insipid, bland, tasteless'}
+  - {id: fr-v-9b213a87af64a141, ch: écœurant, pr: /e.kœ.ʁɑ̃/, ds: an annoying person}
+  - {id: fr-v-27e2f62bd7085a85, ch: rance, pr: /ʁɑ̃s/, ds: rancid}
+  - {id: fr-v-c5ec7492837c59bc, ch: avarié, pr: /a.va.ʁje/, ds: damaged}
+  - {id: fr-v-8277eabb2086d540, ch: pourri, pr: /pu.ʁi/, ds: rotten; decayed}
+  - {id: fr-v-c05b97078f6c65f5, ch: mûr, pr: /myʁ/, ds: 'matured, ripe (of a fruit etc, ready to eat)'}
+  - {id: fr-v-04e7887b18bd25d0, ch: fondant, pr: /fɔ̃.dɑ̃/, ds: fondant (all senses)}
+  - {id: fr-v-f5988fbbb3996e57, ch: moelleux, pr: /mwa.lø/, ds: 'full of marrow, marrowy'}
+  - {id: fr-v-dce3517b5d165485, ch: croquant, pr: /kʁɔ.kɑ̃/, ds: crunchy}
+  - {id: fr-v-a14b4c2ec3372278, ch: croustillant, pr: /kʁus.ti.jɑ̃/, ds: 'crispy, crunchy'}
+  - {id: fr-v-d3e925ac61ff7979, ch: craquant, pr: /kʁa.kɑ̃/, ds: 'irresistible, adorable, cute'}
+  - {id: fr-v-d9aeff0b392d6b4e, ch: cassant, pr: /ka.sɑ̃/, ds: brittle}
+  - {id: fr-v-edaf18c050724416, ch: friable, pr: /fʁi.jabl/, ds: crumbly}
+  - {id: fr-v-677c491b10fe2f2b, ch: sablé, pr: /sa.ble/, ds: sandy}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-66d4f4d6ad43f95d, ch: inquiétant, pr: /ɛ̃.kje.tɑ̃/, ds: 'worrying, disturbing, disquieting'}
+  - {id: fr-v-84fc157e5c8e3734, ch: angoissant, pr: /ɑ̃.ɡwa.sɑ̃/, ds: 'scary, nerve-racking, creepy'}
+  - {id: fr-v-2a823ecf78cf6628, ch: oppressant, pr: /ɔ.pʁɛ.sɑ̃/, ds: oppressive}
+  - {id: fr-v-6ab29a30a417783a, ch: étouffant, pr: /e.tu.fɑ̃/, ds: 'oppressive, sultry, stifling, stuffy'}
+  - {id: fr-v-b3ad5f2636ab7629, ch: paisible, pr: /pe.zibl/, ds: peaceful}
+  - {id: fr-v-e73347a405a7adf7, ch: apaisant, pr: /a.pɛ.zɑ̃/, ds: 'soothing, mollifying'}
+  - {id: fr-v-8ef0a2956f86d9ce, ch: rassurant, pr: /ʁa.sy.ʁɑ̃/, ds: reassuring}
+  - {id: fr-v-a42c894761e2b29d, ch: réconfortant, pr: /ʁe.kɔ̃.fɔʁ.tɑ̃/, ds: comforting}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-30-description-02
+  title: Description and comparison - 2
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-c36e688641b071a3, ch: juteux, pr: /ʒy.tø/, ds: juicy (containing juice)}
+  - {id: fr-v-c1b251376f2c2c55, ch: charnu, pr: /ʃaʁ.ny/, ds: fleshy; plump}
+  - {id: fr-v-2853ab56d3087336, ch: pulpeux, pr: /pylpø/, ds: 'sexually attractive, gorgeous, ravishing'}
+  - {id: fr-v-4f6828c112f4fe9e, ch: aqueux, pr: /a.kø/, ds: 'water, aqueous, aquatic'}
+  - {id: fr-v-482e2fba5e6d94c6, ch: sucré, pr: /sy.kʁe/, ds: sugared; with sugar}
+  - {id: fr-v-12ea2f55aa365ca9, ch: salé, pr: /sa.le/, ds: salted; salty; saline}
+  - {id: fr-v-34d1117e4048205a, ch: aigre-doux, pr: /ɛ.ɡʁə.du/, ds: 'bittersweet, sweet and sour'}
+  - {id: fr-v-c1322ace4c2d3dd5, ch: acidulé, pr: /a.si.dy.le/, ds: slightly acid; tart}
+  - {id: fr-v-d10d28185025b7c2, ch: piquant, pr: /pi.kɑ̃/, ds: 'spiky, spiny'}
+  - {id: fr-v-c11904267609b94b, ch: épicé, pr: /e.pi.se/, ds: 'hot, spicy (having a spicy taste)'}
+  - {id: fr-v-5161a9975e715913, ch: parfumé, pr: /paʁfyme/, ds: perfumed}
+  - {id: fr-v-b2dad0178390eef8, ch: aromatique, pr: /a.ʁɔ.ma.tik/, ds: aromatic (all senses)}
+  - {id: fr-v-547887acdb1d2429, ch: odorant, pr: /ɔ.dɔ.ʁɑ̃/, ds: 'scented, aromatic'}
+  - {id: fr-v-15b931c6298ce596, ch: inodore, pr: /i.nɔ.dɔʁ/, ds: 'odourless, scentless'}
+  - {id: fr-v-482f9e04200cecb6, ch: fruité, pr: /fʁɥi.te/, ds: fruity (containing fruit or fruit flavoring)}
+  - {id: fr-v-1c8471e92accc898, ch: floral, pr: /flɔ.ʁal/, ds: floral}
+  - {id: fr-v-f6cb36bf89cacec4, ch: boisé, pr: /bwa.ze/, ds: wooded}
+  - {id: fr-v-bb907ba414d6bbf6, ch: herbacé, pr: /ɛʁ.ba.se/, ds: herbaceous}
+  - {id: fr-v-2409976d28a9b863, ch: terreux, pr: /tɛ.ʁø/, ds: earthy}
+  - {id: fr-v-88bdba4cac0a8b4e, ch: fumé, pr: /fy.me/, ds: smoked}
+  - {id: fr-v-b35294bbdbd75850, ch: grillé, pr: /ɡʁi.je/, ds: grilled (seared)}
+  - {id: fr-v-22fc31a203164e97, ch: confit, pr: /kɔ̃.fi/, ds: 'preserved, pickled'}
+  - {id: fr-v-123750b19e6885b0, ch: fermenté, pr: /fɛʁ.mɑ̃.te/, ds: fermented}
+  - {id: fr-v-4652d274c002c22c, ch: rôti, pr: /ʁo.ti/, ds: roast (roast meat)}
+  - {id: fr-v-ef77b1b2bd20f43a, ch: pané, pr: /pa.ne/, ds: breaded (covered in breadcrumbs)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-04e7887b18bd25d0, ch: fondant, pr: /fɔ̃.dɑ̃/, ds: fondant (all senses)}
+  - {id: fr-v-f5988fbbb3996e57, ch: moelleux, pr: /mwa.lø/, ds: 'full of marrow, marrowy'}
+  - {id: fr-v-dce3517b5d165485, ch: croquant, pr: /kʁɔ.kɑ̃/, ds: crunchy}
+  - {id: fr-v-a14b4c2ec3372278, ch: croustillant, pr: /kʁus.ti.jɑ̃/, ds: 'crispy, crunchy'}
+  - {id: fr-v-d3e925ac61ff7979, ch: craquant, pr: /kʁa.kɑ̃/, ds: 'irresistible, adorable, cute'}
+  - {id: fr-v-d9aeff0b392d6b4e, ch: cassant, pr: /ka.sɑ̃/, ds: brittle}
+  - {id: fr-v-edaf18c050724416, ch: friable, pr: /fʁi.jabl/, ds: crumbly}
+  - {id: fr-v-677c491b10fe2f2b, ch: sablé, pr: /sa.ble/, ds: sandy}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-30-description-03
+  title: Description and comparison - 3
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-84034c87b073da08, ch: givré, pr: /ʒi.vʁe/, ds: frosted}
+  - {id: fr-v-78e4f90b425dde16, ch: brut, pr: /bʁyt/, ds: gross}
+  - {id: fr-v-7d10b9de9b50cb53, ch: déshydraté, pr: /dezidʁate/, ds: dehydrated}
+  - {id: fr-v-7dbac51c512a63e8, ch: lyophilisé, pr: /ljɔfilize/, ds: 'lyophilized, freeze-dried'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-bb907ba414d6bbf6, ch: herbacé, pr: /ɛʁ.ba.se/, ds: herbaceous}
+  - {id: fr-v-2409976d28a9b863, ch: terreux, pr: /tɛ.ʁø/, ds: earthy}
+  - {id: fr-v-88bdba4cac0a8b4e, ch: fumé, pr: /fy.me/, ds: smoked}
+  - {id: fr-v-b35294bbdbd75850, ch: grillé, pr: /ɡʁi.je/, ds: grilled (seared)}
+  - {id: fr-v-22fc31a203164e97, ch: confit, pr: /kɔ̃.fi/, ds: 'preserved, pickled'}
+  - {id: fr-v-123750b19e6885b0, ch: fermenté, pr: /fɛʁ.mɑ̃.te/, ds: fermented}
+  - {id: fr-v-4652d274c002c22c, ch: rôti, pr: /ʁo.ti/, ds: roast (roast meat)}
+  - {id: fr-v-ef77b1b2bd20f43a, ch: pané, pr: /pa.ne/, ds: breaded (covered in breadcrumbs)}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-30-society-01
+  title: Society and community - 1
+  outcome: Explain a social issue without turning individual experiences into universal claims.
+  vocabulary:
+  - {id: fr-v-d1832dc45431bdba, ch: urbanisme, pr: /yʁ.ba.nism/, ds: 'urban planning, urbanism'}
+  - {id: fr-v-2a051e33eda76d76, ch: densification, pr: /dɑ̃.si.fi.ka.sjɔ̃/, ds: densification}
+  - {id: fr-v-87ec4c4dc68bce6b, ch: étalement, pr: /e.tal.mɑ̃/, ds: 'spreading, sprawling'}
+  - {id: fr-v-ef81dd629133e0eb, ch: périphérie, pr: /pe.ʁi.fe.ʁi/, ds: perimeter}
+  - {id: fr-v-be26e3f4b6024284, ch: banlieue, pr: /bɑ̃.ljø/, ds: suburb}
+  - {id: fr-v-202a3a48406d0f2c, ch: agglomération, pr: /a.ɡlɔ.me.ʁa.sjɔ̃/, ds: agglomeration}
+  - {id: fr-v-a9e663680c7d7ab4, ch: mégapole, pr: /meɡapɔl/, ds: megalopolis}
+  - {id: fr-v-1fb954eb72c543ca, ch: urbanisation, pr: /yʁ.ba.ni.za.sjɔ̃/, ds: urbanization}
+  - {id: fr-v-c43c9e1016951415, ch: ruralité, pr: /ʁy.ʁa.li.te/, ds: rurality}
+  - {id: fr-v-5f207cd75aec550c, ch: revitalisation, pr: /ʁəvitalizasjɔ̃/, ds: revitalization}
+  - {id: fr-v-5722a432737f3954, ch: reconversion, pr: /ʁə.kɔ̃.vɛʁ.sjɔ̃/, ds: 'reconversion, conversion'}
+  - {id: fr-v-9b45d51b113b7b77, ch: infrastructure, pr: /ɛ̃.fʁas.tʁyk.tyʁ/, ds: infrastructure; underlying support for a system}
+  - {id: fr-v-caafdb8da2cce282, ch: voirie, pr: /vwa.ʁi/, ds: 'road, rail and waterways network'}
+  - {id: fr-v-e32d4acab3811aad, ch: chaussée, pr: /ʃo.se/, ds: surface (of road)}
+  - {id: fr-v-c3b71eae2fb8597f, ch: autoroute, pr: /o.tɔ.ʁut/, ds: 'expressway, freeway, motorway, highway'}
+  - {id: fr-v-a250c0bd75b7408d, ch: boulevard, pr: /bul.vaʁ/, ds: 'bulwark, rampart'}
+  - {id: fr-v-5a7eb024fed36b95, ch: avenue, pr: /a.vny/, ds: 'avenue (broad street, especially bordered with trees)'}
+  - {id: fr-v-a67a5e114e8f2c56, ch: ruelle, pr: /ʁɥɛl/, ds: 'lane/laneway, alley/alleyway'}
+  - {id: fr-v-8149324f8f115203, ch: impasse, pr: /ɛ̃.pas/, ds: stalemate}
+  - {id: fr-v-bafec1029b007460, ch: allée, pr: /a.le/, ds: 'path, lane, allée'}
+  - {id: fr-v-57faab1eaddd4542, ch: passage, pr: /pa.saʒ/, ds: the act of going through a place or event}
+  - {id: fr-v-c29d686a2955765d, ch: esplanade, pr: /ɛs.pla.nad/, ds: 'esplanade, plaza, square, piazza'}
+  - {id: fr-v-b5027898832d8b0b, ch: parvis, pr: /paʁ.vi/, ds: 'forecourt, square'}
+  - {id: fr-v-7d686d491f6afa4f, ch: square, pr: /skwaʁ/, ds: square (public plaza)}
+  - {id: fr-v-20e9e67cac4bfafe, ch: giratoire, pr: /ʒi.ʁa.twaʁ/, ds: gyratory}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-0c786747620e4263, ch: maltraitance, pr: /mal.tʁɛ.tɑ̃s/, ds: 'maltreatment, ill-treatment'}
+  - {id: fr-v-1489c3bad9cf3be0, ch: négligence, pr: /ne.ɡli.ʒɑ̃s/, ds: negligence; carelessness}
+  - {id: fr-v-0c9889771d34b97c, ch: harcèlement, pr: /aʁ.sɛl.mɑ̃/, ds: harassment; bullying}
+  - {id: fr-v-288e4841f54c1046, ch: intimidation, pr: /ɛ̃.ti.mi.da.sjɔ̃/, ds: intimidation}
+  - {id: fr-v-63d287652fbfe7df, ch: emprise, pr: /ɑ̃.pʁiz/, ds: expropriation}
+  - {id: fr-v-a6010ae876bcb0be, ch: droit, pr: /dʁwa/, ds: right; entitlement}
+  - {id: fr-v-8eda843d24a3e393, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: recognition; acknowledgment}
+  - {id: fr-v-1a5d22746b115587, ch: cliché, pr: /kli.ʃe/, ds: cliche; overused expression or stereotype}
+  review_grammar: []
+- id: level-30-society-02
+  title: Society and community - 2
+  outcome: Explain a social issue without turning individual experiences into universal claims.
+  vocabulary:
+  - {id: fr-v-e8378dd16cf388fa, ch: échangeur, pr: /e.ʃɑ̃.ʒœʁ/, ds: interchange (on a motorway etc)}
+  - {id: fr-v-493d4225043608e1, ch: bretelle, pr: /bʁə.tɛl/, ds: strap}
+  - {id: fr-v-7f4a19951c7ff0e1, ch: viaduc, pr: /vja.dyk/, ds: viaduct}
+  - {id: fr-v-913905f06bc0ff13, ch: passerelle, pr: /pa.sʁɛl/, ds: footbridge}
+  - {id: fr-v-d6cfb2a242fe3494, ch: souterrain, pr: /su.tɛ.ʁɛ̃/, ds: underground}
+  - {id: fr-v-be4534b49581a8e1, ch: tranchée, pr: /tʁɑ̃.ʃe/, ds: trench}
+  - {id: fr-v-b390768c18662e39, ch: trémie, pr: /tʁe.mi/, ds: shaft; opening}
+  - {id: fr-v-6823d71e331aad51, ch: embarcadère, pr: /ɑ̃.baʁ.ka.dɛʁ/, ds: 'pier, wharf'}
+  - {id: fr-v-733cd30a6b2b6bc8, ch: débarcadère, pr: /de.baʁ.ka.dɛʁ/, ds: 'landing stage, jetty'}
+  - {id: fr-v-4ad6febaaeff2b5a, ch: jetée, pr: /ʒə.te/, ds: pier; jetty}
+  - {id: fr-v-c917ae0dc38774a4, ch: digue, pr: /diɡ/, ds: 'seawall, dyke, breakwater'}
+  - {id: fr-v-f8a65caeb3bbc6d8, ch: port, pr: /pɔʁ/, ds: harbour; port}
+  - {id: fr-v-42f3ea93cc0b2d5e, ch: aérodrome, pr: /a.e.ʁɔ.dʁom/, ds: aerodrome}
+  - {id: fr-v-ad138fc8be5b9704, ch: déplacement, pr: /de.plas.mɑ̃/, ds: 'trip, journey'}
+  - {id: fr-v-e5b9aba471d5f47a, ch: navette, pr: /na.vɛt/, ds: shuttle (in weaving)}
+  - {id: fr-v-fafffdab6513c784, ch: covoiturage, pr: /kɔ.vwa.ty.ʁaʒ/, ds: carpooling}
+  - {id: fr-v-a28787acfd0de30e, ch: autopartage, pr: /o.tɔ.paʁ.taʒ/, ds: carsharing}
+  - {id: fr-v-18a9e001fe895dc4, ch: piste cyclable, pr: /pis.t(ə) si.klabl/, ds: 'bicycle path, bike path, cycle path, cycle lane, bikeway'}
+  - {id: fr-v-8ea3311580414704, ch: voie verte, pr: /vwa vɛʁt/, ds: greenway; recreational path or corridor}
+  - {id: fr-v-2a35904d89a26ce7, ch: passage piéton, pr: /pa.saʒ pje.tɔ̃/, ds: pedestrian crossing}
+  - {id: fr-v-b925ceaf674e86e7, ch: transport en commun, pr: /tʁɑ̃s.pɔ.ʁ‿ɑ̃ kɔ.mœ̃/, ds: public transport}
+  - {id: fr-v-1fc7184d7c22b774, ch: tramway, pr: /tʁa.mwɛ/, ds: tram (passenger vehicle)}
+  - {id: fr-v-ffe99c9f473692ce, ch: funiculaire, pr: /fy.ni.ky.lɛʁ/, ds: funicular railway}
+  - {id: fr-v-92eaa9b56cb4c59e, ch: téléphérique, pr: /te.le.fe.ʁik/, ds: 'aerial tramway, cable car'}
+  - {id: fr-v-7f03355df4a656d1, ch: télécabine, pr: /te.le.ka.bin/, ds: cable car (or a gondola of such a system)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-a67a5e114e8f2c56, ch: ruelle, pr: /ʁɥɛl/, ds: 'lane/laneway, alley/alleyway'}
+  - {id: fr-v-8149324f8f115203, ch: impasse, pr: /ɛ̃.pas/, ds: stalemate}
+  - {id: fr-v-bafec1029b007460, ch: allée, pr: /a.le/, ds: 'path, lane, allée'}
+  - {id: fr-v-57faab1eaddd4542, ch: passage, pr: /pa.saʒ/, ds: the act of going through a place or event}
+  - {id: fr-v-c29d686a2955765d, ch: esplanade, pr: /ɛs.pla.nad/, ds: 'esplanade, plaza, square, piazza'}
+  - {id: fr-v-b5027898832d8b0b, ch: parvis, pr: /paʁ.vi/, ds: 'forecourt, square'}
+  - {id: fr-v-7d686d491f6afa4f, ch: square, pr: /skwaʁ/, ds: square (public plaza)}
+  - {id: fr-v-20e9e67cac4bfafe, ch: giratoire, pr: /ʒi.ʁa.twaʁ/, ds: gyratory}
+  review_grammar: []
+- id: level-30-society-03
+  title: Society and community - 3
+  outcome: Explain a social issue without turning individual experiences into universal claims.
+  vocabulary:
+  - {id: fr-v-e2321ba03ac0310d, ch: escalator, pr: /ɛs.ka.la.tɔʁ/, ds: escalator}
+  - {id: fr-v-4d75d246bff9db65, ch: insécurité, pr: /ɛ̃.se.ky.ʁi.te/, ds: insecurity}
+  - {id: fr-v-3ab3bb03e4cb2146, ch: délinquance, pr: /de.lɛ̃.kɑ̃s/, ds: delinquency}
+  - {id: fr-v-0d073dac1437d221, ch: criminalité, pr: /kʁi.mi.na.li.te/, ds: crime; criminal acts collectively}
+  - {id: fr-v-ec433e63a53e48e0, ch: insertion, pr: /ɛ̃.sɛʁ.sjɔ̃/, ds: insertion}
+  - {id: fr-v-383515bfc6f58dbb, ch: réinsertion, pr: /ʁeɛ̃sɛʁsjɔ̃/, ds: reinsertion}
+  - {id: fr-v-71dbd634869a296d, ch: bénévolat, pr: /be.ne.vɔ.la/, ds: volunteering}
+  - {id: fr-v-377ed0674165be6e, ch: volontariat, pr: /vɔ.lɔ̃.ta.ʁja/, ds: volunteering (action of volunteering)}
+  - {id: fr-v-cb47d455932c819b, ch: démocratie participative, pr: /de.mɔ.kʁa.si paʁ.ti.si.pa.tiv/, ds: participatory democracy (political system)}
+  - {id: fr-v-48060b3948149346, ch: développement durable, pr: /de.vlɔp.mɑ̃ dy.ʁabl/, ds: sustainable development}
+  - {id: fr-v-406c1350a8e8d827, ch: qualité de vie, pr: /ka.li.te d(ə) vi/, ds: quality of life}
+  - {id: fr-v-1b78cd5cc10934b4, ch: quai, pr: /ke/, ds: quay; wharf}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-18a9e001fe895dc4, ch: piste cyclable, pr: /pis.t(ə) si.klabl/, ds: 'bicycle path, bike path, cycle path, cycle lane, bikeway'}
+  - {id: fr-v-8ea3311580414704, ch: voie verte, pr: /vwa vɛʁt/, ds: greenway; recreational path or corridor}
+  - {id: fr-v-2a35904d89a26ce7, ch: passage piéton, pr: /pa.saʒ pje.tɔ̃/, ds: pedestrian crossing}
+  - {id: fr-v-b925ceaf674e86e7, ch: transport en commun, pr: /tʁɑ̃s.pɔ.ʁ‿ɑ̃ kɔ.mœ̃/, ds: public transport}
+  - {id: fr-v-1fc7184d7c22b774, ch: tramway, pr: /tʁa.mwɛ/, ds: tram (passenger vehicle)}
+  - {id: fr-v-ffe99c9f473692ce, ch: funiculaire, pr: /fy.ni.ky.lɛʁ/, ds: funicular railway}
+  - {id: fr-v-92eaa9b56cb4c59e, ch: téléphérique, pr: /te.le.fe.ʁik/, ds: 'aerial tramway, cable car'}
+  - {id: fr-v-7f03355df4a656d1, ch: télécabine, pr: /te.le.ka.bin/, ds: cable car (or a gondola of such a system)}
+  review_grammar: []
+- id: level-30-institutions-01
+  title: Institutions and public life - 1
+  outcome: Explain an institutional process and distinguish its purpose from its effects.
+  vocabulary:
+  - {id: fr-v-35e14896d19b915a, ch: jurisprudence, pr: /ʒy.ʁis.pʁy.dɑ̃s/, ds: case law}
+  - {id: fr-v-24b420044ee0c33e, ch: recours, pr: /ʁə.kuʁ/, ds: 'recourse, resort, way out'}
+  - {id: fr-v-566e2c16f1176740, ch: pourvoi, pr: /puʁ.vwa/, ds: appeal}
+  - {id: fr-v-aeee3f8149b34dde, ch: cassation, pr: /ka.sa.sjɔ̃/, ds: cassation}
+  - {id: fr-v-6c630cb2f4f7ae03, ch: signalement, pr: /si.ɲal.mɑ̃/, ds: 'physical description (BOLO, APB)'}
+  - {id: fr-v-92aeec5ab92ad23e, ch: poursuite, pr: /puʁ.sɥit/, ds: pursuit; chase}
+  - {id: fr-v-6165745bea921b75, ch: accusation, pr: /a.ky.za.sjɔ̃/, ds: accusation}
+  - {id: fr-v-4ed6ca29c8302e47, ch: inculpation, pr: /ɛ̃.kyl.pa.sjɔ̃/, ds: 'charge, indictment'}
+  - {id: fr-v-38057157864aa8a4, ch: mise en examen, pr: /mi.z‿ɑ̃.n‿ɛɡ.za.mɛ̃/, ds: indictment}
+  - {id: fr-v-eea34ea15d1ecc75, ch: prévenu, pr: /pʁɛvəny/, ds: accused}
+  - {id: fr-v-a5f727ae585243b5, ch: accusé, pr: /a.ky.ze/, ds: accused}
+  - {id: fr-v-ac3e5f98643d3fc9, ch: suspect, pr: /sys.pɛ/, ds: a suspect}
+  - {id: fr-v-19f887ab14c84140, ch: plaignant, pr: /plɛ.ɲɑ̃/, ds: plaintiff; prosecutor}
+  - {id: fr-v-dc33d8f1f5e3cfbe, ch: requérant, pr: /ʁəkeʁɑ̃/, ds: petitioner}
+  - {id: fr-v-0137a0621f4ff09e, ch: demandeur, pr: /də.mɑ̃.dœʁ/, ds: asker or requester (one who asks or requests something)}
+  - {id: fr-v-674a985cdc890353, ch: défendeur, pr: /de.fɑ̃.dœʁ/, ds: 'defendant, (the) accused'}
+  - {id: fr-v-351893ef1c550a60, ch: magistrat, pr: /ma.ʒis.tʁa/, ds: magistrate; judge}
+  - {id: fr-v-663b7582921a27c7, ch: greffier, pr: /ɡʁɛ.fje/, ds: 'clerk of the court; registrar of the court, or similar role'}
+  - {id: fr-v-de6d4dd77e318658, ch: notaire, pr: /nɔ.tɛʁ/, ds: notary}
+  - {id: fr-v-bb1eb7ea60c48554, ch: délibéré, pr: /de.li.be.ʁe/, ds: deliberate; planned; calculated}
+  - {id: fr-v-2858d0b3f5209bbd, ch: acquittement, pr: /a.kit.mɑ̃/, ds: 'acquittal of debt, discharge, settlement'}
+  - {id: fr-v-29fc55315c181e1b, ch: relaxe, pr: /ʁə.laks/, ds: relaxation}
+  - {id: fr-v-c2cd7feac8dc0f6f, ch: non-lieu, pr: /nɔ̃.ljø/, ds: dismissal}
+  - {id: fr-v-5936f0602a05df23, ch: sanction, pr: /sɑ̃k.sjɔ̃/, ds: sanction}
+  - {id: fr-v-1a374be9eef137e4, ch: peine, pr: /pɛn/, ds: punishment}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-904a505c089e2981, ch: fédération, pr: /fe.de.ʁa.sjɔ̃/, ds: federation}
+  - {id: fr-v-070c9a3b19afc142, ch: union, pr: /y.njɔ̃/, ds: union}
+  - {id: fr-v-b48fd40d2e66ad6d, ch: harmonisation, pr: /aʁ.mɔ.ni.za.sjɔ̃/, ds: harmonization}
+  - {id: fr-v-6880437e7ca74c0f, ch: ambassade, pr: /ɑ̃.ba.sad/, ds: an embassy}
+  - {id: fr-v-821225791eae0c1e, ch: consul, pr: /kɔ̃.syl/, ds: 'consul, in its various senses'}
+  - {id: fr-v-7461d31cdde8d7fc, ch: ambassadeur, pr: /ɑ̃.ba.sa.dœʁ/, ds: ambassador}
+  - {id: fr-v-a38e08f8f8e93994, ch: pouvoir, pr: /pu.vwaʁ/, ds: authority}
+  - {id: fr-v-b7f82af8d07cf0f3, ch: article, pr: /aʁ.tikl/, ds: article; section of a law}
+  review_grammar:
+  - {id: fr-g-action-nominalization, ch: nom d'action + de + participant, ds: Package an event as a noun while preserving its participants}
+- id: level-30-institutions-02
+  title: Institutions and public life - 2
+  outcome: Explain an institutional process and distinguish its purpose from its effects.
+  vocabulary:
+  - {id: fr-v-8825b3cc2bc725d2, ch: emprisonnement, pr: /ɑ̃.pʁi.zɔn.mɑ̃/, ds: imprisonment}
+  - {id: fr-v-0405aa974936d841, ch: prison, pr: /pʁi.zɔ̃/, ds: prison}
+  - {id: fr-v-a038031eea42d0cc, ch: sursis, pr: /syʁ.si/, ds: 'reprieve, respite'}
+  - {id: fr-v-a397f36d8f590630, ch: probation, pr: /pʁɔ.ba.sjɔ̃/, ds: probation (especially religious)}
+  - {id: fr-v-7c3209e26e4e283a, ch: tort, pr: /tɔʁ/, ds: fault}
+  - {id: fr-v-65d3970399040960, ch: présomption d'innocence, pr: /pʁe.zɔ̃p.sjɔ̃ d‿i.nɔ.sɑ̃s/, ds: presumption of innocence}
+  - {id: fr-v-d57c65f71309340a, ch: infraction, pr: /ɛ̃.fʁak.sjɔ̃/, ds: 'offense (US), departure'}
+  - {id: fr-v-fccfb7e53adaeb4b, ch: délit, pr: /de.li/, ds: misdemeanor (a crime of a less serious nature than a felony)}
+  - {id: fr-v-7ff87aa9d27acef0, ch: crime, pr: /kʁim/, ds: a category of severe offences within French law}
+  - {id: fr-v-7eef19f9c5107414, ch: contravention, pr: /kɔ̃.tʁa.vɑ̃.sjɔ̃/, ds: 'traffic ticket, traffic fine'}
+  - {id: fr-v-c05eb5372501d12f, ch: violation, pr: /vjɔ.la.sjɔ̃/, ds: violation}
+  - {id: fr-v-8604ab9f0f811f3b, ch: imprudence, pr: /ɛ̃.pʁy.dɑ̃s/, ds: 'imprudence, rashness'}
+  - {id: fr-v-3cc390f4dd5abeae, ch: omission, pr: /ɔ.mi.sjɔ̃/, ds: omission (act of omitting)}
+  - {id: fr-v-f21dde3846b50765, ch: manquement, pr: /mɑ̃k.mɑ̃/, ds: lack}
+  - {id: fr-v-457cf7161cfeeb9d, ch: préméditation, pr: /pʁe.me.di.ta.sjɔ̃/, ds: premeditation}
+  - {id: fr-v-9b8feb0523578fb6, ch: cambriolage, pr: /kɑ̃.bʁi.jɔ.laʒ/, ds: 'burglary, robbery'}
+  - {id: fr-v-24082495d93e2a6c, ch: braquage, pr: /bʁa.kaʒ/, ds: 'robbery (especially armed robbery), hold-up, stickup; raid'}
+  - {id: fr-v-e96765598d5e5568, ch: escroquerie, pr: /ɛs.kʁɔ.kʁi/, ds: 'swindle, swindling'}
+  - {id: fr-v-006b4305c05fb0e7, ch: détournement, pr: /de.tuʁ.nə.mɑ̃/, ds: 'rerouting, diversion'}
+  - {id: fr-v-524909dbad007cdd, ch: blanchiment, pr: /blɑ̃.ʃi.mɑ̃/, ds: bleaching}
+  - {id: fr-v-5405061aaae6e7ce, ch: extorsion, pr: /ɛk.stɔʁ.sjɔ̃/, ds: extortion (the practice of extorting money or other property)}
+  - {id: fr-v-2ef464a1e59e1e35, ch: agression, pr: /a.ɡʁɛ.sjɔ̃/, ds: aggression}
+  - {id: fr-v-9bfe57b19ce610d9, ch: diffamation, pr: /di.fa.ma.sjɔ̃/, ds: defamation}
+  - {id: fr-v-ad3d5df0ace9ac4a, ch: injure, pr: /ɛ̃.ʒyʁ/, ds: 'offense, insult'}
+  - {id: fr-v-6bfe0466aac2c2a3, ch: atteinte, pr: /a.tɛ̃t/, ds: attack (à on)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-663b7582921a27c7, ch: greffier, pr: /ɡʁɛ.fje/, ds: 'clerk of the court; registrar of the court, or similar role'}
+  - {id: fr-v-de6d4dd77e318658, ch: notaire, pr: /nɔ.tɛʁ/, ds: notary}
+  - {id: fr-v-bb1eb7ea60c48554, ch: délibéré, pr: /de.li.be.ʁe/, ds: deliberate; planned; calculated}
+  - {id: fr-v-2858d0b3f5209bbd, ch: acquittement, pr: /a.kit.mɑ̃/, ds: 'acquittal of debt, discharge, settlement'}
+  - {id: fr-v-29fc55315c181e1b, ch: relaxe, pr: /ʁə.laks/, ds: relaxation}
+  - {id: fr-v-c2cd7feac8dc0f6f, ch: non-lieu, pr: /nɔ̃.ljø/, ds: dismissal}
+  - {id: fr-v-5936f0602a05df23, ch: sanction, pr: /sɑ̃k.sjɔ̃/, ds: sanction}
+  - {id: fr-v-1a374be9eef137e4, ch: peine, pr: /pɛn/, ds: punishment}
+  review_grammar:
+  - {id: fr-g-action-nominalization, ch: nom d'action + de + participant, ds: Package an event as a noun while preserving its participants}
+- id: level-30-institutions-03
+  title: Institutions and public life - 3
+  outcome: Explain an institutional process and distinguish its purpose from its effects.
+  vocabulary:
+  - {id: fr-v-36de8199f5439ac5, ch: liberté d'expression, pr: /li.bɛʁ.te d‿ɛk.spʁɛ.sjɔ̃/, ds: 'freedom of speech, free speech'}
+  - {id: fr-v-d0fceb2382d90eb8, ch: vie privée, pr: /vi pʁi.ve/, ds: private life}
+  - {id: fr-v-38d03968b1e53af8, ch: droit, pr: /dʁwa/, ds: law; field of study}
+  - {id: fr-v-0509552be428de16, ch: arrêt, pr: /a.ʁɛ/, ds: judgment; court ruling}
+  - {id: fr-v-bc39743256dfd28c, ch: ordonnance, pr: /ɔʁ.dɔ.nɑ̃s/, ds: order; legal decree}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-e96765598d5e5568, ch: escroquerie, pr: /ɛs.kʁɔ.kʁi/, ds: 'swindle, swindling'}
+  - {id: fr-v-006b4305c05fb0e7, ch: détournement, pr: /de.tuʁ.nə.mɑ̃/, ds: 'rerouting, diversion'}
+  - {id: fr-v-524909dbad007cdd, ch: blanchiment, pr: /blɑ̃.ʃi.mɑ̃/, ds: bleaching}
+  - {id: fr-v-5405061aaae6e7ce, ch: extorsion, pr: /ɛk.stɔʁ.sjɔ̃/, ds: extortion (the practice of extorting money or other property)}
+  - {id: fr-v-2ef464a1e59e1e35, ch: agression, pr: /a.ɡʁɛ.sjɔ̃/, ds: aggression}
+  - {id: fr-v-9bfe57b19ce610d9, ch: diffamation, pr: /di.fa.ma.sjɔ̃/, ds: defamation}
+  - {id: fr-v-ad3d5df0ace9ac4a, ch: injure, pr: /ɛ̃.ʒyʁ/, ds: 'offense, insult'}
+  - {id: fr-v-6bfe0466aac2c2a3, ch: atteinte, pr: /a.tɛ̃t/, ds: attack (à on)}
+  review_grammar:
+  - {id: fr-g-action-nominalization, ch: nom d'action + de + participant, ds: Package an event as a noun while preserving its participants}
+- id: level-30-communication-practice-01
+  title: Contact and communication - sentence practice 1
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-discourse-clarification, ch: à savoir + précision ; autrement dit + reformulation, ds: Distinguish specifying content from paraphrasing a claim}
+  review_vocabulary:
+  - {id: fr-v-4c618d6414128672, ch: tâche, pr: /taʃ/, ds: task}
+  - {id: fr-v-9801f1a97266a8c4, ch: projet, pr: /pʁɔ.ʒɛ/, ds: project}
+  - {id: fr-v-99be55d47d6cc4fb, ch: clin d'œil, pr: /klɛ̃ d‿œj/, ds: a wink}
+  - {id: fr-v-31affc9ab34f443c, ch: haussement, pr: /os.mɑ̃/, ds: shrug}
+  - {id: fr-v-6546a5c3d50ee45f, ch: hochement, pr: /ɔʃəmɑ̃/, ds: 'nod, shake (of the head)'}
+  - {id: fr-v-19567916cd8efc6e, ch: acquiescement, pr: /a.kjɛs.mɑ̃/, ds: 'agreement, acquiescence'}
+  - {id: fr-v-97987345c3bbd1c3, ch: assentiment, pr: /a.sɑ̃.ti.mɑ̃/, ds: consent; approval}
+  - {id: fr-v-9fcef5e1232d4f5e, ch: dénégation, pr: /de.ne.ɡa.sjɔ̃/, ds: denial}
+  - {id: fr-v-b824e9052cae087b, ch: refus, pr: /ʁə.fy/, ds: 'refusal, act of refusing'}
+  - {id: fr-v-b2ddb080f2e61cdb, ch: volume, pr: /vɔ.lym/, ds: volume; sound level}
+  review_grammar:
+  - {id: fr-g-relative-qui-que, ch: nom + qui + verbe ; nom + que + sujet + verbe, ds: Relative qui is a subject and que a direct object}
+  - {id: fr-g-indirect-questions, ch: demander / savoir + si / où / ce que + sujet + verbe, ds: Embed a question without direct-question inversion}
+  - {id: fr-g-relative-dont, ch: antécédent + dont + proposition contenant une relation en de, ds: Relative dont replaces a complement introduced by de}
+- id: level-30-argument-practice-01
+  title: Argument and decisions - sentence practice 1
+  outcome: Defend a recommendation while addressing relevant qualifications and objections.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-concessive-si-inference, ch: 'si P, Q ne...pas pour autant', ds: Accept a premise while rejecting an unwarranted conclusion}
+  - {id: fr-g-extent-and-grounds, ch: dans la mesure où + indicatif, ds: Qualify a claim by its extent or by stated grounds}
+  - {id: fr-g-residual-concessive-assertion, ch: il n'en reste pas moins que + indicatif, ds: Preserve a claim after acknowledging a relevant objection}
+  review_vocabulary:
+  - {id: fr-v-9801f1a97266a8c4, ch: projet, pr: /pʁɔ.ʒɛ/, ds: project}
+  - {id: fr-v-26a1657b2305ce98, ch: problème, pr: /pʁɔ.blɛm/, ds: problem}
+  - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
+  - {id: fr-v-9b1059e266cc270e, ch: donnée, pr: /dɔ.ne/, ds: datum (item of data)}
+  - {id: fr-v-a2a401b7a718f6c5, ch: préjudice, pr: /pʁe.ʒy.dis/, ds: 'a harm, a damage'}
+  - {id: fr-v-26dc6864e246f65d, ch: sacrifice, pr: /sa.kʁi.fis/, ds: sacrifice}
+  - {id: fr-v-e89ab0150bdec875, ch: disproportion, pr: /dis.pʁɔ.pɔʁ.sjɔ̃/, ds: disproportion}
+  - {id: fr-v-12db3a62ab40571b, ch: asymétrie, pr: /a.si.me.tʁi/, ds: asymmetry}
+  - {id: fr-v-9d4895fbf46952dd, ch: symétrie, pr: /si.me.tʁi/, ds: symmetry}
+  - {id: fr-v-f9c0553fb267378b, ch: incompatibilité, pr: /ɛ̃.kɔ̃.pa.ti.bi.li.te/, ds: incompatibility}
+  - {id: fr-v-b35443d95d569485, ch: compatibilité, pr: /kɔ̃.pa.ti.bi.li.te/, ds: compatibility}
+  - {id: fr-v-0b8ec10d629cf90f, ch: complémentarité, pr: /kɔ̃.ple.mɑ̃.ta.ʁi.te/, ds: the act of working hand-in-hand}
+  review_grammar:
+  - {id: fr-g-paired-argument-structure, ch: 'd''une part P, d''autre part Q', ds: Organize two distinct considerations without forcing opposition}
+  - {id: fr-g-minimal-concessive-reason, ch: ne serait-ce que pour + infinitif, ds: Offer a minimal reason without excluding stronger reasons}
+  - {id: fr-g-concessive-tout-gerund, ch: tout en + participe présent, ds: Combine simultaneous action with a contextual concession}

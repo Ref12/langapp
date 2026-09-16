@@ -1,0 +1,60 @@
+schema_version: 1
+id: fr-item-mastery
+applies_to: [vocabulary-sense, grammar-construct, phrase]
+scope: Observed performance for one French item in one modality and task context; not overall proficiency.
+unassessed: No suitable evidence has been recorded. Exposure, source membership, and curriculum position do not establish understanding.
+modalities: [reading, listening, typed-production, spoken-production, handwriting]
+stages:
+- id: recognize
+  title: Recognition
+  modalities: [reading, listening]
+  outcome: Distinguish the intended French form and meaning from plausible alternatives.
+  evidence:
+  - Identify the intended sense or function without being shown its translation first.
+  - Distinguish a relevant confusable form or meaning in more than one example.
+  limitation: Recognition alone does not establish contextual understanding or production.
+- id: understand
+  title: Contextual understanding
+  modalities: [reading, listening]
+  outcome: Interpret the intended meaning or function in an unfamiliar context.
+  evidence:
+  - Explain or respond appropriately to the item's contribution in two different contexts.
+  - Distinguish a relevant alternate sense, referent, or construction.
+  - Retrieve the interpretation in a later session without an answer-revealing hint.
+  limitation: Comprehension does not establish productive control or every meaning of the headword.
+- id: supported-use
+  title: Supported use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Produce an original appropriate response when a task or scaffold makes the item relevant.
+  evidence:
+  - Produce an original response rather than repeat a supplied answer.
+  - Use the intended sense or construction appropriately in two different task contexts.
+  - Record lexical cues, structural scaffolds, corrections, and other assistance.
+  limitation: Success with assistance does not establish independent use.
+- id: independent-use
+  title: Independent use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Select and use the item appropriately without an item-specific cue or answer model.
+  evidence:
+  - Use the item in a fresh communicative task where it is relevant but not explicitly requested.
+  - Adapt its use to a different context or contrast with appropriate register.
+  - Demonstrate delayed retrieval in a later session and retain any required repair.
+  limitation: Evidence remains specific to the item, modality, and task conditions observed.
+evidence_fields: [item_id, stage, modality, task_id, session_id, observed_at, context, response, outcome, assistance]
+evidence_outcomes: [successful, partial, unsuccessful]
+policy:
+- This is an authored teaching rubric, not a calibrated psychometric scale or an examination crosswalk.
+- Record actual evidence before assigning a stage; do not infer it from source frequency, reference inventory, exposure, or a completed module.
+- Keep modality judgments separate. Typed or written responses cannot establish listening or spoken pronunciation.
+- Recognition and contextual understanding describe receptive evidence; supported and independent use describe productive evidence.
+- Listening and spoken-production judgments require actual audio and suitable evaluation, not an IPA transcription or pronunciation-code exercise.
+- Do not award all earlier stages from one successful task; preserve the evidence and its conditions.
+- Revisit a judgment when later observations contradict it without erasing earlier evidence.
+- Evidence applies to a precise vocabulary sense, construction, or phrase, not every meaning or inflected form of a headword.
+- A memorized travel phrase does not establish independent knowledge of every component or its conjugation.
+- Correct use of a fixed grammatical expression does not award an unrelated lexical sense.
+- Sample agreement, clitic reference, verb form, and register only when relevant to the named item and task; record consequential errors rather than treating a familiar spelling as complete control.
+- Level checkpoints use fresh combinations of material and assess the named goals rather than a dictionary count.
+- Advancement need not wait for perfect mastery of every introduction; carry fragile items into later review.
+- Distinguish introduced, contextually understood, and independently used items; count lemmas separately from senses, spellings, and inflections.
+- Shared sense IDs can carry relevant evidence between routes without completing an entire core level or an unrelated construction.

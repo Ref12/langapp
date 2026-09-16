@@ -1,0 +1,400 @@
+schema_version: 3
+id: ja-level-11
+title: Processes and conditions
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 11
+phase: stories-conversations
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+- ja-level-09
+- ja-level-10
+goals: &id001
+- Explain an ordinary multi-step procedure.
+- Distinguish predictable, hypothetical, and completed-event conditions.
+- Describe the result of a failed step.
+checkpoint:
+  task: Guide a partner through a task with an unexpected failed step.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-11-description-01
+  title: Description and comparison - 1
+  outcome: Identify a relevant contrast and choose an accurate description.
+  vocabulary:
+  - {id: ja-n4-00029-s001, ch: 以下, pr: いか, ds: not exceeding ...}
+  - {id: ja-n4-00030-s001, ch: 以外, pr: いがい, ds: excluding}
+  - {id: ja-n4-00036-s001, ch: 以上, pr: いじょう, ds: not less than ...}
+  - {id: ja-n4-00044-s001, ch: 以内, pr: いない, ds: within}
+  - {id: ja-n4-00061-s001, ch: 裏, pr: うら, ds: opposite side}
+  - {id: ja-n4-00103-s001, ch: 表, pr: おもて, ds: surface}
+  - {id: ja-n4-00135-s001, ch: 必ず, pr: かならず, ds: always}
+  - {id: ja-n4-00162-s001, ch: きっと, pr: きっと, ds: surely}
+  - {id: ja-n4-00172-s001, ch: 急, pr: きゅう, ds: sudden}
+  - {id: ja-n4-00200-s001, ch: 決して, pr: けっして, ds: (not) ever}
+  - {id: ja-n4-00201-s001, ch: けれど, pr: けれど, ds: but}
+  - {id: ja-n4-00202-s001, ch: けれども, pr: けれども, ds: but}
+  - {id: ja-n4-00209-s001, ch: こう, pr: こう, ds: in this way}
+  - {id: ja-n3-00583-s001, ch: こと, pr: こと, ds: thing}
+  - {id: ja-n4-00277-s001, ch: しっかり, pr: しっかり, ds: tightly (holding on)}
+  - {id: ja-n4-00316-s001, ch: ずいぶん, pr: ずいぶん, ds: very}
+  - {id: ja-n4-00321-s001, ch: 空く, pr: すく, ds: to become less crowded}
+  - {id: ja-n4-00323-s001, ch: すごい, pr: すごい, ds: terrible}
+  - {id: ja-n4-00325-s001, ch: すっかり, pr: すっかり, ds: all}
+  - {id: ja-n4-00326-s001, ch: すっと, pr: すっと, ds: straight}
+  - {id: ja-n4-00331-s001, ch: 素晴らしい, pr: すばらしい, ds: wonderful}
+  - {id: ja-n4-00333-s001, ch: 隅, pr: すみ, ds: corner}
+  - {id: ja-n4-00336-s001, ch: すると, pr: すると, ds: (and) then}
+  - {id: ja-n4-00347-s001, ch: 線, pr: せん, ds: line}
+  - {id: ja-n4-00348-s001, ch: 全然, pr: ぜんぜん, ds: (not) at all}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00382-s001, ch: 茶色, pr: ちゃいろ, ds: brown}
+  - {id: ja-n5-00606-s001, ch: 緑, pr: みどり, ds: green}
+  - {id: ja-n5-00178-s001, ch: 黄色い, pr: きいろい, ds: yellow}
+  - {id: ja-n5-00121-s001, ch: 同じ, pr: おなじ, ds: same}
+  - {id: ja-n5-00378-s001, ch: 違う, pr: ちがう, ds: to differ (from)}
+  - {id: ja-n5-00261-s001, ch: 先, pr: さき, ds: tip; pointed end}
+  - {id: ja-n5-00006-s003, ch: 明るい, pr: あかるい, ds: cheerful}
+  - {id: ja-n5-00003-s003, ch: 青い, pr: あおい, ds: pale (facial color)}
+  review_grammar:
+  - {id: ja-n5-g020, ch: い形容詞＋です, ds: polite i-adjective predicate}
+  - {id: ja-n5-g021, ch: な形容詞＋な＋N, ds: na-adjective modifying a noun}
+  - {id: ja-n5-g002, ch: Nではありません, ds: not be a noun; polite negation}
+- id: level-11-description-02
+  title: Description and comparison - 2
+  outcome: Identify a relevant contrast and choose an accurate description.
+  vocabulary:
+  - {id: ja-n4-00358-s001, ch: それで, pr: それで, ds: so}
+  - {id: ja-n4-00359-s001, ch: それに, pr: それに, ds: besides}
+  - {id: ja-n4-00360-s001, ch: それほど, pr: それほど, ds: to that degree}
+  - {id: ja-n4-00367-s001, ch: だいたい, pr: だいたい, ds: generally}
+  - {id: ja-n4-00368-s001, ch: たいてい, pr: たいてい, ds: mostly}
+  - {id: ja-n4-00369-s001, ch: タイプ, pr: タイプ, ds: type}
+  - {id: ja-n4-00370-s001, ch: だいぶ, pr: だいぶ, ds: considerably}
+  - {id: ja-n4-00374-s001, ch: 確か, pr: たしか, ds: sure}
+  - {id: ja-n4-00378-s001, ch: 正しい, pr: ただしい, ds: right; correct; accurate}
+  - {id: ja-n4-00394-s001, ch: 力, pr: ちから, ds: force}
+  - {id: ja-n4-00395-s001, ch: ちっとも, pr: ちっとも, ds: (not) at all}
+  - {id: ja-n4-00423-s001, ch: 点, pr: てん, ds: dot}
+  - {id: ja-n4-00435-s001, ch: 特に, pr: とくに, ds: particularly}
+  - {id: ja-n4-00436-s001, ch: 特別, pr: とくべつ, ds: special}
+  - {id: ja-n4-00445-s001, ch: どんどん, pr: どんどん, ds: drumming (noise)}
+  - {id: ja-n4-00449-s001, ch: なかなか, pr: なかなか, ds: very}
+  - {id: ja-n4-00466-s001, ch: 似る, pr: にる, ds: to resemble}
+  - {id: ja-n4-00484-s001, ch: 倍, pr: ばい, ds: double}
+  - {id: ja-n4-00494-s001, ch: はっきり, pr: はっきり, ds: clearly}
+  - {id: ja-n4-00513-s001, ch: 非常に, pr: ひじょうに, ds: very}
+  - {id: ja-n4-00517-s001, ch: ひどい, pr: ひどい, ds: cruel}
+  - {id: ja-n4-00526-s001, ch: 複雑, pr: ふくざつ, ds: complex}
+  - {id: ja-n4-00529-s001, ch: 普通, pr: ふつう, ds: normal}
+  - {id: ja-n4-00541-s001, ch: 別, pr: べつ, ds: distinction}
+  - {id: ja-n4-00543-s001, ch: 変, pr: へん, ds: strange}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00323-s001, ch: すごい, pr: すごい, ds: terrible}
+  - {id: ja-n4-00325-s001, ch: すっかり, pr: すっかり, ds: all}
+  - {id: ja-n4-00326-s001, ch: すっと, pr: すっと, ds: straight}
+  - {id: ja-n4-00331-s001, ch: 素晴らしい, pr: すばらしい, ds: wonderful}
+  - {id: ja-n4-00333-s001, ch: 隅, pr: すみ, ds: corner}
+  - {id: ja-n4-00336-s001, ch: すると, pr: すると, ds: (and) then}
+  - {id: ja-n4-00347-s001, ch: 線, pr: せん, ds: line}
+  - {id: ja-n4-00348-s001, ch: 全然, pr: ぜんぜん, ds: (not) at all}
+  review_grammar:
+  - {id: ja-n5-g020, ch: い形容詞＋です, ds: polite i-adjective predicate}
+  - {id: ja-n5-g021, ch: な形容詞＋な＋N, ds: na-adjective modifying a noun}
+  - {id: ja-n5-g002, ch: Nではありません, ds: not be a noun; polite negation}
+- id: level-11-description-03
+  title: Description and comparison - 3
+  outcome: Identify a relevant contrast and choose an accurate description.
+  vocabulary:
+  - {id: ja-n4-00551-s001, ch: ほとんど, pr: ほとんど, ds: almost}
+  - {id: ja-n4-00557-s001, ch: まず, pr: まず, ds: first (of all)}
+  - {id: ja-n4-00558-s001, ch: または, pr: または, ds: or}
+  - {id: ja-n4-00561-s001, ch: 周り, pr: まわり, ds: circumference}
+  - {id: ja-n4-00564-s001, ch: 真ん中, pr: まんなか, ds: middle}
+  - {id: ja-n4-00580-s001, ch: 珍しい, pr: めずらしい, ds: rare}
+  - {id: ja-n4-00585-s001, ch: もちろん, pr: もちろん, ds: of course}
+  - {id: ja-n4-00586-s001, ch: 最も, pr: もっとも, ds: most}
+  - {id: ja-n4-00598-s001, ch: やはり, pr: やはり, ds: as expected}
+  - {id: ja-n4-00599-s001, ch: やっぱり, pr: やっぱり, ds: as expected}
+  - {id: ja-n4-00622-s001, ch: 両方, pr: りょうほう, ds: both}
+  - {id: ja-n4-00638-s001, ch: 割合, pr: わりあい, ds: rate}
+  - {id: ja-n2-00951-s001, ch: そそっかしい, pr: そそっかしい, ds: careless}
+  - {id: ja-n2-01279-s001, ch: 鈍い, pr: にぶい, ds: dull; blunt (an edge)}
+  - {id: ja-n2-01802-s001, ch: 若々しい, pr: わかわかしい, ds: youthful}
+  - {id: ja-n3-00170-s002, ch: 円, pr: えん, ds: circle}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00484-s001, ch: 倍, pr: ばい, ds: double}
+  - {id: ja-n4-00494-s001, ch: はっきり, pr: はっきり, ds: clearly}
+  - {id: ja-n4-00513-s001, ch: 非常に, pr: ひじょうに, ds: very}
+  - {id: ja-n4-00517-s001, ch: ひどい, pr: ひどい, ds: cruel}
+  - {id: ja-n4-00526-s001, ch: 複雑, pr: ふくざつ, ds: complex}
+  - {id: ja-n4-00529-s001, ch: 普通, pr: ふつう, ds: normal}
+  - {id: ja-n4-00541-s001, ch: 別, pr: べつ, ds: distinction}
+  - {id: ja-n4-00543-s001, ch: 変, pr: へん, ds: strange}
+  review_grammar:
+  - {id: ja-n5-g020, ch: い形容詞＋です, ds: polite i-adjective predicate}
+  - {id: ja-n5-g021, ch: な形容詞＋な＋N, ds: na-adjective modifying a noun}
+  - {id: ja-n5-g002, ch: Nではありません, ds: not be a noun; polite negation}
+- id: level-11-processes-01
+  title: Processes and conditions - 1
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary:
+  - {id: ja-n4-00005-s001, ch: 合う, pr: あう, ds: to come together}
+  - {id: ja-n4-00083-s001, ch: 行う, pr: おこなう, ds: to perform}
+  - {id: ja-n4-00153-s001, ch: 簡単, pr: かんたん, ds: simple}
+  - {id: ja-n4-00186-s001, ch: 比べる, pr: くらべる, ds: to compare}
+  - {id: ja-n4-00224-s001, ch: 故障, pr: こしょう, ds: fault}
+  - {id: ja-n4-00239-s001, ch: 壊す, pr: こわす, ds: to break}
+  - {id: ja-n4-00240-s001, ch: 壊れる, pr: こわれる, ds: to be broken}
+  - {id: ja-n4-00250-s001, ch: 探す, pr: さがす, ds: to search for}
+  - {id: ja-n4-00261-s001, ch: 触る, pr: さわる, ds: to touch}
+  - {id: ja-n4-00269-s001, ch: 仕方, pr: しかた, ds: way}
+  - {id: ja-n4-00278-s001, ch: 失敗, pr: しっぱい, ds: failure}
+  - {id: ja-n4-00307-s001, ch: 知らせる, pr: しらせる, ds: to notify}
+  - {id: ja-n4-00308-s001, ch: 調べる, pr: しらべる, ds: to examine}
+  - {id: ja-n4-00375-s001, ch: 足す, pr: たす, ds: to add (numbers)}
+  - {id: ja-n4-00397-s001, ch: 注意, pr: ちゅうい, ds: attention}
+  - {id: ja-n4-00402-s001, ch: 捕まえる, pr: つかまえる, ds: to catch}
+  - {id: ja-n4-00407-s001, ch: 伝える, pr: つたえる, ds: to convey}
+  - {id: ja-n4-00419-s001, ch: 手伝う, pr: てつだう, ds: to help}
+  - {id: ja-n4-00430-s001, ch: 道具, pr: どうぐ, ds: tool}
+  - {id: ja-n4-00446-s001, ch: 直す, pr: なおす, ds: to repair}
+  - {id: ja-n4-00447-s001, ch: 直る, pr: なおる, ds: to get mended}
+  - {id: ja-n4-00469-s001, ch: 塗る, pr: ぬる, ds: to paint}
+  - {id: ja-n4-00518-s001, ch: 開く, pr: ひらく, ds: to open}
+  - {id: ja-n4-00601-s001, ch: 止める, pr: やめる, ds: to stop (an activity)}
+  - {id: ja-n3-00026-s001, ch: 扱う, pr: あつかう, ds: to deal with (a person)}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-11-processes-02
+  title: Processes and conditions - 2
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary:
+  - {id: ja-n3-00071-s001, ch: 維持, pr: いじ, ds: maintenance}
+  - {id: ja-n3-00099-s001, ch: 一致, pr: いっち, ds: agreement}
+  - {id: ja-n3-00101-s001, ch: 一般, pr: いっぱん, ds: general}
+  - {id: ja-n3-00160-s001, ch: 影響, pr: えいきょう, ds: influence}
+  - {id: ja-n3-00168-s001, ch: 得る, pr: える, ds: to get}
+  - {id: ja-n3-00184-s001, ch: 応じる, pr: おうじる, ds: to respond}
+  - {id: ja-n3-00222-s001, ch: 及ぼす, pr: およぼす, ds: to exert (influence)}
+  - {id: ja-n3-00231-s001, ch: 可, pr: か, ds: acceptable}
+  - {id: ja-n3-00237-s001, ch: 害, pr: がい, ds: injury}
+  - {id: ja-n3-00242-s001, ch: 解決, pr: かいけつ, ds: settlement}
+  - {id: ja-n3-00248-s001, ch: 改善, pr: かいぜん, ds: betterment}
+  - {id: ja-n3-00250-s001, ch: 回復, pr: かいふく, ds: restoration}
+  - {id: ja-n3-00262-s001, ch: 限る, pr: かぎる, ds: to restrict}
+  - {id: ja-n3-00266-s001, ch: 額, pr: がく, ds: (picture) frame}
+  - {id: ja-n3-00279-s001, ch: 加減, pr: かげん, ds: degree}
+  - {id: ja-n3-00292-s001, ch: 型, pr: かた, ds: type}
+  - {id: ja-n3-00302-s001, ch: 活動, pr: かつどう, ds: 'activity (of a person, organization, animal, volcano, etc.)'}
+  - {id: ja-n3-00303-s001, ch: 活用, pr: かつよう, ds: practical use}
+  - {id: ja-n3-00308-s001, ch: 可能, pr: かのう, ds: possible}
+  - {id: ja-n3-00333-s001, ch: 環境, pr: かんきょう, ds: environment}
+  - {id: ja-n3-00345-s001, ch: 関する, pr: かんする, ds: to concern}
+  - {id: ja-n3-00347-s001, ch: 完全, pr: かんぜん, ds: perfect}
+  - {id: ja-n3-00350-s001, ch: 管理, pr: かんり, ds: control}
+  - {id: ja-n3-00352-s001, ch: 関連, pr: かんれん, ds: relation}
+  - {id: ja-n3-00356-s001, ch: 機械, pr: きかい, ds: machine}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00419-s001, ch: 手伝う, pr: てつだう, ds: to help}
+  - {id: ja-n4-00430-s001, ch: 道具, pr: どうぐ, ds: tool}
+  - {id: ja-n4-00446-s001, ch: 直す, pr: なおす, ds: to repair}
+  - {id: ja-n4-00447-s001, ch: 直る, pr: なおる, ds: to get mended}
+  - {id: ja-n4-00469-s001, ch: 塗る, pr: ぬる, ds: to paint}
+  - {id: ja-n4-00518-s001, ch: 開く, pr: ひらく, ds: to open}
+  - {id: ja-n4-00601-s001, ch: 止める, pr: やめる, ds: to stop (an activity)}
+  - {id: ja-n3-00026-s001, ch: 扱う, pr: あつかう, ds: to deal with (a person)}
+  review_grammar: []
+- id: level-11-processes-03
+  title: Processes and conditions - 3
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary:
+  - {id: ja-n3-00380-s001, ch: 機能, pr: きのう, ds: function}
+  - {id: ja-n3-00385-s001, ch: 決まり, pr: きまり, ds: rule}
+  - {id: ja-n3-00388-s001, ch: 義務, pr: ぎむ, ds: duty}
+  - {id: ja-n3-00390-s001, ch: 逆, pr: ぎゃく, ds: reverse}
+  - {id: ja-n3-00398-s001, ch: 急激, pr: きゅうげき, ds: sudden}
+  - {id: ja-n3-00399-s001, ch: 吸収, pr: きゅうしゅう, ds: absorption}
+  - {id: ja-n3-00401-s001, ch: 急速, pr: きゅうそく, ds: rapid (e.g. progress)}
+  - {id: ja-n3-00404-s001, ch: 器用, pr: きよう, ds: skillful}
+  - {id: ja-n3-00408-s001, ch: 供給, pr: きょうきゅう, ds: supply}
+  - {id: ja-n3-00412-s001, ch: 共通, pr: きょうつう, ds: common}
+  - {id: ja-n3-00416-s001, ch: 強力, pr: きょうりょく, ds: powerful}
+  - {id: ja-n3-00419-s001, ch: 巨大, pr: きょだい, ds: huge}
+  - {id: ja-n3-00431-s001, ch: 禁止, pr: きんし, ds: prohibition}
+  - {id: ja-n3-00443-s001, ch: 鎖, pr: くさり, ds: chain}
+  - {id: ja-n3-00452-s001, ch: 区別, pr: くべつ, ds: distinction}
+  - {id: ja-n3-00455-s001, ch: 組む, pr: くむ, ds: to cross (legs or arms)}
+  - {id: ja-n3-00473-s001, ch: 詳しい, pr: くわしい, ds: detailed}
+  - {id: ja-n3-00480-s001, ch: 計, pr: けい, ds: plan}
+  - {id: ja-n3-00486-s001, ch: 計算, pr: けいさん, ds: calculation}
+  - {id: ja-n3-00499-s001, ch: 欠陥, pr: けっかん, ds: defect}
+  - {id: ja-n3-00504-s001, ch: 欠点, pr: けってん, ds: fault}
+  - {id: ja-n3-00512-s001, ch: 限界, pr: げんかい, ds: limit}
+  - {id: ja-n3-00516-s001, ch: 検査, pr: けんさ, ds: 'inspection (e.g. customs, factory)'}
+  - {id: ja-n3-00519-s001, ch: 現象, pr: げんしょう, ds: phenomenon}
+  - {id: ja-n3-00520-s001, ch: 現状, pr: げんじょう, ds: present condition}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00303-s001, ch: 活用, pr: かつよう, ds: practical use}
+  - {id: ja-n3-00308-s001, ch: 可能, pr: かのう, ds: possible}
+  - {id: ja-n3-00333-s001, ch: 環境, pr: かんきょう, ds: environment}
+  - {id: ja-n3-00345-s001, ch: 関する, pr: かんする, ds: to concern}
+  - {id: ja-n3-00347-s001, ch: 完全, pr: かんぜん, ds: perfect}
+  - {id: ja-n3-00350-s001, ch: 管理, pr: かんり, ds: control}
+  - {id: ja-n3-00352-s001, ch: 関連, pr: かんれん, ds: relation}
+  - {id: ja-n3-00356-s001, ch: 機械, pr: きかい, ds: machine}
+  review_grammar: []
+- id: level-11-processes-04
+  title: Processes and conditions - 4
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary:
+  - {id: ja-n3-00524-s001, ch: 見当, pr: けんとう, ds: estimate}
+  - {id: ja-n3-00536-s001, ch: 効果, pr: こうか, ds: effect}
+  - {id: ja-n3-00551-s001, ch: 構成, pr: こうせい, ds: composition}
+  - {id: ja-n3-00558-s001, ch: 考慮, pr: こうりょ, ds: consideration}
+  - {id: ja-n3-00569-s001, ch: ごく, pr: ごく, ds: quite}
+  - {id: ja-n3-00584-s001, ch: 異なる, pr: ことなる, ds: to differ}
+  - {id: ja-n3-00606-s001, ch: 差, pr: さ, ds: difference}
+  - {id: ja-n3-00619-s001, ch: 境, pr: さかい, ds: border}
+  - {id: ja-n3-00621-s001, ch: 盛り, pr: さかり, ds: height (e.g. of summer)}
+  - {id: ja-n3-00646-s001, ch: 左右, pr: さゆう, ds: left and right}
+  - {id: ja-n3-00648-s001, ch: さらに, pr: さらに, ds: furthermore}
+  - {id: ja-n3-00654-s001, ch: 賛成, pr: さんせい, ds: approval}
+  - {id: ja-n3-00674-s001, ch: 事実, pr: じじつ, ds: fact}
+  - {id: ja-n3-00676-s001, ch: 事情, pr: じじょう, ds: circumstances}
+  - {id: ja-n3-00684-s001, ch: 事態, pr: じたい, ds: situation}
+  - {id: ja-n3-00685-s001, ch: 従う, pr: したがう, ds: 'to obey (an order, law, etc.)'}
+  - {id: ja-n3-00686-s001, ch: したがって, pr: したがって, ds: therefore}
+  - {id: ja-n3-00688-s001, ch: 質, pr: しつ, ds: quality}
+  - {id: ja-n3-00693-s001, ch: 実際, pr: じっさい, ds: reality}
+  - {id: ja-n2-00848-s001, ch: スタート, pr: スタート, ds: start}
+  - {id: ja-n5-00048-s003, ch: 行く, pr: いく, ds: 'to go (well, badly, etc.)'}
+  - {id: ja-n5-00042-s002, ch: いい, pr: いい, ds: sufficient}
+  - {id: ja-n5-00150-s007, ch: かける, pr: かける, ds: 'to turn on (an engine, radio, etc.)'}
+  - {id: ja-n5-00610-s002, ch: 見る, pr: みる, ds: to examine}
+  - {id: ja-n5-00624-s003, ch: 持つ, pr: もつ, ds: to maintain}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00480-s001, ch: 計, pr: けい, ds: plan}
+  - {id: ja-n3-00486-s001, ch: 計算, pr: けいさん, ds: calculation}
+  - {id: ja-n3-00499-s001, ch: 欠陥, pr: けっかん, ds: defect}
+  - {id: ja-n3-00504-s001, ch: 欠点, pr: けってん, ds: fault}
+  - {id: ja-n3-00512-s001, ch: 限界, pr: げんかい, ds: limit}
+  - {id: ja-n3-00516-s001, ch: 検査, pr: けんさ, ds: 'inspection (e.g. customs, factory)'}
+  - {id: ja-n3-00519-s001, ch: 現象, pr: げんしょう, ds: phenomenon}
+  - {id: ja-n3-00520-s001, ch: 現状, pr: げんじょう, ds: present condition}
+  review_grammar: []
+- id: level-11-processes-05
+  title: Processes and conditions - 5
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary:
+  - {id: ja-n5-00624-s004, ch: 持つ, pr: もつ, ds: to last}
+  - {id: ja-n5-00676-s002, ch: わかる, pr: わかる, ds: to become clear}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00688-s001, ch: 質, pr: しつ, ds: quality}
+  - {id: ja-n3-00693-s001, ch: 実際, pr: じっさい, ds: reality}
+  - {id: ja-n2-00848-s001, ch: スタート, pr: スタート, ds: start}
+  - {id: ja-n5-00048-s003, ch: 行く, pr: いく, ds: 'to go (well, badly, etc.)'}
+  - {id: ja-n5-00042-s002, ch: いい, pr: いい, ds: sufficient}
+  - {id: ja-n5-00150-s007, ch: かける, pr: かける, ds: 'to turn on (an engine, radio, etc.)'}
+  - {id: ja-n5-00610-s002, ch: 見る, pr: みる, ds: to examine}
+  - {id: ja-n5-00624-s003, ch: 持つ, pr: もつ, ds: to maintain}
+  review_grammar: []
+- id: level-11-processes-practice-01
+  title: Processes and conditions - sentence practice 1
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g013, ch: 動詞たら, ds: if; when an event has happened}
+  - {id: ja-n4-g014, ch: 普通形と, ds: if; whenever; automatic consequence}
+  - {id: ja-n4-g015, ch: 動詞ば／形容詞ければ, ds: if; conditional}
+  review_vocabulary:
+  - {id: ja-n2-00848-s001, ch: スタート, pr: スタート, ds: start}
+  - {id: ja-n5-00048-s003, ch: 行く, pr: いく, ds: 'to go (well, badly, etc.)'}
+  - {id: ja-n5-00042-s002, ch: いい, pr: いい, ds: sufficient}
+  - {id: ja-n5-00150-s007, ch: かける, pr: かける, ds: 'to turn on (an engine, radio, etc.)'}
+  - {id: ja-n5-00610-s002, ch: 見る, pr: みる, ds: to examine}
+  - {id: ja-n5-00624-s003, ch: 持つ, pr: もつ, ds: to maintain}
+  - {id: ja-n5-00624-s004, ch: 持つ, pr: もつ, ds: to last}
+  - {id: ja-n5-00676-s002, ch: わかる, pr: わかる, ds: to become clear}
+  review_grammar: []
+- id: level-11-processes-practice-02
+  title: Processes and conditions - sentence practice 2
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g016, ch: N／普通形なら, ds: if that is the case; as for a proposed topic}
+  - {id: ja-n4-g017, ch: ～ても／～くても／～でも, ds: even if; even though}
+  - {id: ja-n4-g025, ch: 動詞てみる, ds: try doing; do as an experiment}
+  review_vocabulary:
+  - {id: ja-n2-00848-s001, ch: スタート, pr: スタート, ds: start}
+  - {id: ja-n5-00048-s003, ch: 行く, pr: いく, ds: 'to go (well, badly, etc.)'}
+  - {id: ja-n5-00042-s002, ch: いい, pr: いい, ds: sufficient}
+  - {id: ja-n5-00150-s007, ch: かける, pr: かける, ds: 'to turn on (an engine, radio, etc.)'}
+  - {id: ja-n5-00610-s002, ch: 見る, pr: みる, ds: to examine}
+  - {id: ja-n5-00624-s003, ch: 持つ, pr: もつ, ds: to maintain}
+  - {id: ja-n5-00624-s004, ch: 持つ, pr: もつ, ds: to last}
+  - {id: ja-n5-00676-s002, ch: わかる, pr: わかる, ds: to become clear}
+  review_grammar:
+  - {id: ja-n4-g013, ch: 動詞たら, ds: if; when an event has happened}
+  - {id: ja-n4-g014, ch: 普通形と, ds: if; whenever; automatic consequence}
+  - {id: ja-n4-g015, ch: 動詞ば／形容詞ければ, ds: if; conditional}
+- id: level-11-processes-practice-03
+  title: Processes and conditions - sentence practice 3
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g015, ch: 動詞ために, ds: in order to; for a purpose}
+  - {id: ja-n3-g016, ch: 動詞ように, ds: so that; in order that a state becomes possible}
+  - {id: ja-n3-g017, ch: 動詞ないうちに, ds: before something happens}
+  review_vocabulary:
+  - {id: ja-n2-00848-s001, ch: スタート, pr: スタート, ds: start}
+  - {id: ja-n5-00048-s003, ch: 行く, pr: いく, ds: 'to go (well, badly, etc.)'}
+  - {id: ja-n5-00042-s002, ch: いい, pr: いい, ds: sufficient}
+  - {id: ja-n5-00150-s007, ch: かける, pr: かける, ds: 'to turn on (an engine, radio, etc.)'}
+  - {id: ja-n5-00610-s002, ch: 見る, pr: みる, ds: to examine}
+  - {id: ja-n5-00624-s003, ch: 持つ, pr: もつ, ds: to maintain}
+  - {id: ja-n5-00624-s004, ch: 持つ, pr: もつ, ds: to last}
+  - {id: ja-n5-00676-s002, ch: わかる, pr: わかる, ds: to become clear}
+  review_grammar:
+  - {id: ja-n4-g016, ch: N／普通形なら, ds: if that is the case; as for a proposed topic}
+  - {id: ja-n4-g017, ch: ～ても／～くても／～でも, ds: even if; even though}
+  - {id: ja-n4-g025, ch: 動詞てみる, ds: try doing; do as an experiment}
+- id: level-11-processes-practice-04
+  title: Processes and conditions - sentence practice 4
+  outcome: Explain a procedure, condition, or failed step and its result.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g019, ch: 普通形うちに, ds: while a state lasts; before the opportunity passes}
+  - {id: ja-n3-g022, ch: 動詞ついでに, ds: while doing something else; taking the opportunity}
+  - {id: ja-n3-g025, ch: 動詞ないで, ds: without doing; do instead of}
+  review_vocabulary:
+  - {id: ja-n2-00848-s001, ch: スタート, pr: スタート, ds: start}
+  - {id: ja-n5-00048-s003, ch: 行く, pr: いく, ds: 'to go (well, badly, etc.)'}
+  - {id: ja-n5-00042-s002, ch: いい, pr: いい, ds: sufficient}
+  - {id: ja-n5-00150-s007, ch: かける, pr: かける, ds: 'to turn on (an engine, radio, etc.)'}
+  - {id: ja-n5-00610-s002, ch: 見る, pr: みる, ds: to examine}
+  - {id: ja-n5-00624-s003, ch: 持つ, pr: もつ, ds: to maintain}
+  - {id: ja-n5-00624-s004, ch: 持つ, pr: もつ, ds: to last}
+  - {id: ja-n5-00676-s002, ch: わかる, pr: わかる, ds: to become clear}
+  review_grammar:
+  - {id: ja-n3-g015, ch: 動詞ために, ds: in order to; for a purpose}
+  - {id: ja-n3-g016, ch: 動詞ように, ds: so that; in order that a state becomes possible}
+  - {id: ja-n3-g017, ch: 動詞ないうちに, ds: before something happens}

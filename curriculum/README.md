@@ -107,6 +107,17 @@ Upstream snapshots, download locks, TSV/PSV authoring inputs, and license files
 remain in their original formats. Historical filenames in preserved notices
 refer to the corresponding YAML outputs after this format-only migration.
 
+#### Character-writing assets
+
+The shared [character asset contract](CHARACTERS.md) defines exact Unicode keys,
+256-codepoint YAML chunks, locale/style variants, ordered logical stroke paths,
+same-path sampling, pinned sources/recipes, and separate drawable and visual
+review coverage. Language-local assets live under `characters`; they do not
+change word/sense identities or reference-level assignments. This milestone is
+offline assets, tooling and preview support, not a production writing activity.
+The contract also documents authoritative inventory extraction, modern kana and
+Hangul foundations, explicit gaps, and no-write generation/validation commands.
+
 ### Vocabulary
 
 Each vocabulary mapping contains these nine base fields:
@@ -197,6 +208,159 @@ understanding, supported use, and independent use are specified separately in
 competency scores. Use `generate_chinese_program.py` for the complete program
 and its generated inventories, including the tourist quick-start subset.
 
+### Source-neutral practical programs
+
+`scripts\generate_practical_program.py` supplies the common scheduling and
+view generation. The Mandarin compatibility wrapper retains its existing
+entry points, beginner order, inventory format, and flat level paths.
+New language profiles use `teaching\phases\N-slug\levels\NN`, with global
+level numbers 01-30. The six phase ranges are 1-4, 5-8, 9-13, 14-18,
+19-24, and 25-30.
+
+The learner-facing product remains the normalized vocabulary/construction
+lists, meaningful teaching order, and generated views. Expanded provenance,
+source snapshots, form annotations, and crosswalks are separate authoring or
+build inputs, not extra compact fields or a requirement to ship an exhaustive
+dictionary mirror.
+
+Language adapters export `ADAPTER` from their registered module:
+`japanese_program_adapter`, `korean_program_adapter`,
+`french_program_adapter`, `russian_program_adapter`, or
+`spanish_program_adapter`. The small static allowlist is in
+`scripts\practical_program_registry.py`; catalog YAML cannot import code.
+These registrations do not enable unfinished languages or programs.
+
+The types in `scripts\practical_program_types.py` define the build contract:
+
+| Type or method | Contract |
+| --- | --- |
+| `ProgramProfile(language, prefix, level_layout, phrase_mode, inventory_schema)` | New profiles default to `phase-nested`, `realizations`, and `identity-aware`; the Chinese wrapper retains its explicit legacy settings |
+| `ReferenceBundle(vocabulary, grammar, lexical_identity, provenance, source_sense_identity, reading_identity, spelling_identity)` | Canonical dictionaries and explicit counting/provenance identities |
+| `SeedUnit(level, topic, unit)` | An explicitly assigned, canonical-entry beginner module; seeds form an ordered initial level prefix |
+| `ProgramData(inputs, references, seeds=(), construction_dependencies={}, source_outputs={})` | Authored program data, validated indexes, optional seeds, construction prerequisites, and additional deterministic build artifacts |
+| `adapter.load(root)` | Return `ProgramData` after validating selected source records, readings, forms, and provenance |
+| `adapter.validate_phrase(phrase, context)` | Return a strict `PhraseAnalysis`; validate language-specific surface forms and their licensing, or raise `ValueError` |
+| `program_outputs(root, data, adapter)` | Build and validate the complete path-to-text output mapping without writing |
+| `generate(root, adapter, check=False)` | Generate views, or reject stale/missing views without writes when `check=True` |
+
+`inputs` has `program`, `mastery`, `vocabulary`, `grammar`, `support`, and
+`tourist` members, following the authored Mandarin model's field shapes but
+using the language's own IDs, content, and ordering. The optional `load_inputs`
+helper reads these conventional files. Empty seeds permit placements at every
+level from 1 through 30; no language must imitate twelve Mandarin modules.
+Adapters using seeds can include their beginner sequence/compact views in
+`source_outputs`, using `generate_teaching_track.teaching_outputs` with
+explicit `language` and `prefix` keyword arguments. All extra output paths
+must remain within the language root and cannot collide with generated views.
+
+A canonical ID may have one numbered-core placement and one placement in each
+optional extension. Duplicate placements within the same route are errors;
+labels, written construction forms, and universal lexical anchors must agree
+across routes. Keep the same sense ID when a branch needs material introduced
+later in the core. Only that branch's declared core prefix is inherited.
+Explicit branch selections already in its prefix become canonical review
+material rather than disappearing, including a branch containing only reviews.
+Adapters must preserve these route-scoped rows instead of deduplicating by ID.
+
+Vocabulary values contain exactly `{id, ch, pr, ds}` and construction values
+exactly `{id, ch, ds}`. Dictionary keys must equal embedded IDs. `ds` is a
+trimmed, one-line English hint of at most 64 characters, not an automatically
+truncated first gloss. Introductions and reviews embed identical full entries.
+Stable local IDs need not resemble an upstream identifier or end in `-sNNN`.
+Mandarin's existing stricter source-ID format remains local to its adapter.
+
+Each vocabulary ID has explicit lexical, source-sense, reading, and spelling
+identities. Headword breadth uses lexical identities, not ID parsing, written
+form strings, senses, or inflections. Identical spelling identities may span
+distinct homographs; identical reading identities must resolve to the same
+reading text. A source-sense identity belongs to one lexical identity.
+New inventories report the four measures separately; their interpretation
+depends on the adapter's documented identity policy, not an implied learner
+word count. Source-specific extra audits can be emitted via `source_outputs`
+without expanding this common schema.
+
+Expanded `provenance` covers every vocabulary and construction ID. Its records
+include nonempty `source_id` and `source_entry` fields and retain any needed
+source-specific locators, restrictions, or authoring notices. These locators
+are distinct from the stable local ID. The adapter validates them against its
+selected retained inputs; the engine does not parse dictionary glosses or
+invent sense boundaries. Original authored labels/constructions must be
+identified honestly, and copied/adapted content retains its applicable notices.
+
+`construction_dependencies` maps a construction ID to earlier or explicitly
+co-taught prerequisite IDs. The graph must have known IDs and no cycles.
+Lexical `anchors` and construction prerequisites are checked for the core,
+optional branches, and tourist route. No later or unrelated branch can satisfy
+a prerequisite. A construction may teach a fixed marker absent from the
+dictionary without fabricating lexical credit.
+
+Placement-driven destinations introduce their vocabulary first, then emit
+stable groups of at most three ready same-topic constructions. Blocked topics
+are revisited after their prerequisites; different levels need not share one
+global topic order. Review records use the actual emitted order and never refer
+forward. Missing or later-route prerequisites still fail, rather than moving
+construction goals between levels. Authored seed and tourist unit order remains
+explicit; the empty-dependency Mandarin path retains its existing output.
+
+#### Inflected phrases and fixed constructions
+
+New-language authored phrases retain the four compact fields plus `items`
+(vocabulary sense IDs), `grammar` (construction IDs), and ordered
+`realizations`. Each realization contains `ch`, `pr`, `items`, `grammar`, and,
+when not a canonical lexical form, an explicit adapter-validated `form_id`.
+An arbitrary string is not an approved inflection or grammatical fixed form.
+The adapter must resolve each `form_id` against its source-backed or honestly
+authored form annotations, check the intended sense and construction, and
+reject unlicensed forms. It owns morphology, lexical stress/IPA/kana policy,
+elision, contractions, and meaningful language-specific word boundaries.
+
+`PhraseContext` supplies `profile`, `references`, `introduced_vocabulary`,
+and `introduced_grammar`. Return
+`PhraseAnalysis(items, grammar, realizations)`, using tuples and
+`SurfaceSegment(ch, pr, items, grammar, form_id=None)`. The result must agree
+with the authored component IDs and realizations. The engine always invokes
+the adapter checker and independently checks introduction closure, exact
+component-link coverage, and complete phrase reconstruction. Returning `True`,
+`None`, or an empty successful-looking analysis cannot disable validation.
+
+Written reconstruction normalizes Unicode to NFC and ignores whitespace and
+ordinary sentence punctuation, but preserves apostrophes, hyphens and accents.
+Reading reconstruction normalizes NFC and ignores whitespace only; it does not
+strip lexical stress, IPA marks, or other pronunciation distinctions.
+Adapters must additionally reject language-specific boundary changes that this
+basic written normalization cannot distinguish. Grammar-only segments require
+licensed `form_id` links. The generated expanded `phrase_components` retain
+vocabulary IDs, grammar IDs, and realizations; the compact phrase stays four
+fields. Mandarin continues using its existing literal vocabulary validator.
+
+#### Independent reference inventories and activation
+
+Existing Chinese, Korean, and Japanese reference bands remain unchanged.
+A new independent language uses `reference_inventory: reference` rather than
+inventing exam bands, for example:
+
+```yaml
+- id: french
+  standard: Independent practical teaching inventory; not an exam specification
+  reference_inventory: reference
+  teaching_program: fr-practical
+```
+
+This is a schema example, not a declaration that the French program is enabled.
+Its `reference` directory contains bilingual `vocabulary.yaml`,
+`grammar.yaml`, and an explanatory `README.md`, not an artificial exam-level
+syllabus. Vocabulary uses exactly the nine shared reference fields. Inline
+`senses` are not accepted in these independent reference files: source-specific
+expanded senses belong in separate adapter/build inputs, not an unchecked
+extension of the normalized reference schema. This rule also applies when no
+teaching program is enabled; enabling an unfinished program is not a validation
+workaround. Source notices remain in the language's `sources.yaml`.
+
+The shared owner activates catalog entries only when their artifacts are
+present. Default validation visits active catalog languages. Explicitly
+requesting an inactive language fails, as does an enabled program with a
+missing adapter or stale/missing views; neither case passes an empty inventory.
+
 ### Grammar
 
 Every entry has `id`, `pattern`, `english`, `note`, `examples`, `source_id`,
@@ -270,6 +434,11 @@ The validator uses the pinned PyYAML dependency and checks required files,
 directory order metadata, YAML record structure, nonempty bilingual fields, IDs,
 source references, source dates,
 and grammar examples. It prints counts by level and fails on structural errors.
+If a language has a `characters` directory, its complete manifest, chunk and
+coverage set is also checked against the current expanded inventory and local
+source pins. Candidate assets may be mechanically valid without being visually
+approved; use `scripts\validate_characters.py --require-release` for the stricter
+release gate.
 For HSK-1 it also checks sense identities, token ambiguity, and exact agreement
 between expanded and compact files.
 Declared teaching tracks are also checked for valid sense references,

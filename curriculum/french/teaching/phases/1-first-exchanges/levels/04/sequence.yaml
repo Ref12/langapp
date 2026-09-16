@@ -1,0 +1,217 @@
+schema_version: 3
+id: fr-level-04
+title: Places, directions, and getting help
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 4
+phase: first-exchanges
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+goals: &id001
+- Ask where a place is and explain a destination.
+- Request help or permission politely.
+- Combine an introduction, a practical request, and a revised meeting arrangement.
+checkpoint:
+  task: In a new short-visit scenario, introduce yourself, request something needed, ask for directions, and revise a meeting plan after a misunderstanding.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-04-communication-01
+  title: Contact and communication - 1
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-311c524c92e8ee52, ch: devoir, pr: /də.vwaʁ/, ds: 'must, to have to, should (as a requirement)'}
+  - {id: fr-v-b6c71c2f6f21bfc2, ch: falloir, pr: /fa.lwaʁ/, ds: 'to need, have to, to be necessary (that)'}
+  - {id: fr-v-9c2e0fa594d789d1, ch: connaître, pr: /kɔ.nɛtʁ/, ds: 'to know (of), to be familiar with (a person, place, fact, event)'}
+  - {id: fr-v-f65a24ea817bd09b, ch: apporter, pr: /a.pɔʁ.te/, ds: to bring (something)}
+  - {id: fr-v-68ee1dcb283c64ae, ch: offrir, pr: /ɔ.fʁiʁ/, ds: to offer; to provide}
+  - {id: fr-v-fbaea30b3c0cb6ec, ch: prévenir, pr: /pʁev.niʁ/, ds: to notify; to warn}
+  - {id: fr-v-49bc81663759a40a, ch: secours, pr: /sə.kuʁ/, ds: aid; assistance; help}
+  - {id: fr-v-57ea8e93200fea91, ch: aide, pr: /ɛd/, ds: 'help, support'}
+  - {id: fr-v-26a1657b2305ce98, ch: problème, pr: /pʁɔ.blɛm/, ds: problem}
+  - {id: fr-v-59698bbf70abc161, ch: rendez-vous, pr: /ʁɑ̃.de.vu/, ds: appointment}
+  - {id: fr-v-c2747f81008e4c62, ch: besoin, pr: /bə.zwɛ̃/, ds: need}
+  - {id: fr-v-24e1299f952bb227, ch: accord, pr: /a.kɔʁ/, ds: agreement}
+  - {id: fr-v-a1a099edb53a0999, ch: attention, pr: /a.tɑ̃.sjɔ̃/, ds: look out! watch out! careful!}
+  - {id: fr-v-1bc5897f17aaef34, ch: possible, pr: /pɔ.sibl/, ds: possible}
+  - {id: fr-v-280b1dd2c60c1c9d, ch: impossible, pr: /ɛ̃.pɔ.sibl/, ds: impossible}
+  - {id: fr-v-f5c319f4efd79e7d, ch: ouvert, pr: /u.vɛʁ/, ds: open}
+  - {id: fr-v-20edce7a05551a67, ch: fermé, pr: /fɛʁ.me/, ds: closed}
+  - {id: fr-v-381eada425c55301, ch: libre, pr: /libʁ/, ds: 'free, at liberty'}
+  - {id: fr-v-92265d82a6f68081, ch: occupé, pr: /ɔ.ky.pe/, ds: busy}
+  - {id: fr-v-98a0cacf7c867a4d, ch: urgent, pr: /yʁ.ʒɑ̃/, ds: urgent}
+  - {id: fr-v-3406a2a676f0f284, ch: aider, pr: /ɛ.de/, ds: to help; to aid}
+  - {id: fr-v-1da6768154987e5a, ch: montrer, pr: /mɔ̃.tʁe/, ds: to show}
+  - {id: fr-v-82d372a542f98615, ch: expliquer, pr: /ɛks.pli.ke/, ds: to explain}
+  - {id: fr-v-bebd9d5ec00434f8, ch: ouvrir, pr: /u.vʁiʁ/, ds: to open}
+  - {id: fr-v-6394f8115a0b4b09, ch: fermer, pr: /fɛʁ.me/, ds: to shut}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-defa62282f2d9459, ch: lentement, pr: /lɑ̃t.mɑ̃/, ds: slowly}
+  - {id: fr-v-5a5dbb666cb40f20, ch: encore, pr: /ɑ̃.kɔʁ/, ds: still}
+  - {id: fr-v-73e609960c35f44a, ch: ici, pr: /i.si/, ds: here}
+  - {id: fr-v-386012f72198c83d, ch: maintenant, pr: /mɛ̃t.nɑ̃/, ds: 'now, currently'}
+  - {id: fr-v-23aed6f0aa7352ba, ch: faire, pr: /fɛʁ/, ds: to do}
+  - {id: fr-v-5c68a89f38d9b824, ch: voir, pr: /vwaʁ/, ds: to see (visually)}
+  - {id: fr-v-90e551d22bb952c9, ch: donner, pr: /dɔ.ne/, ds: to give}
+  - {id: fr-v-18caab3d7c690471, ch: nommer, pr: /nɔ.me/, ds: to name; to call by a name}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-04-communication-02
+  title: Contact and communication - 2
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-fdcd0fe51cfb5c01, ch: entrer, pr: /ɑ̃.tʁe/, ds: to enter}
+  - {id: fr-v-b31dd21959465f8a, ch: sortir, pr: /sɔʁ.tiʁ/, ds: 'to exit, go out, come out'}
+  - {id: fr-v-9ec8796247663536, ch: laisser, pr: /lɛ.se/, ds: 'to leave, to leave behind'}
+  - {id: fr-v-f0175a67e6a7b945, ch: suivre, pr: /sɥivʁ/, ds: to follow (literal sense)}
+  - {id: fr-v-9cf133b071d5a9ab, ch: perdre, pr: /pɛʁdʁ/, ds: to lose (be unable to find)}
+  - {id: fr-v-0c593014607eaf28, ch: oublier, pr: /u.bli.je/, ds: to forget}
+  - {id: fr-v-0bb4f8ff95fa2530, ch: retrouver, pr: /ʁə.tʁu.ve/, ds: to find (again); to rediscover}
+  - {id: fr-v-ef8e26d2359e08f8, ch: peut-être, pr: /pø.t‿ɛtʁ/, ds: 'maybe, perhaps'}
+  - {id: fr-v-d794bcb87a867dd1, ch: ensemble, pr: /ɑ̃.sɑ̃bl/, ds: together}
+  - {id: fr-v-adaf07044d3e4540, ch: là, pr: /la/, ds: there}
+  - {id: fr-v-01f171b1a510eed4, ch: où, pr: /u/, ds: where (interrogative)}
+  - {id: fr-v-f8d77a5600a4ad7a, ch: pourquoi, pr: /puʁ.kwa/, ds: why}
+  - {id: fr-v-a4edd8f69b99695d, ch: appeler, pr: /a.p(ə).le/, ds: to telephone}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-381eada425c55301, ch: libre, pr: /libʁ/, ds: 'free, at liberty'}
+  - {id: fr-v-92265d82a6f68081, ch: occupé, pr: /ɔ.ky.pe/, ds: busy}
+  - {id: fr-v-98a0cacf7c867a4d, ch: urgent, pr: /yʁ.ʒɑ̃/, ds: urgent}
+  - {id: fr-v-3406a2a676f0f284, ch: aider, pr: /ɛ.de/, ds: to help; to aid}
+  - {id: fr-v-1da6768154987e5a, ch: montrer, pr: /mɔ̃.tʁe/, ds: to show}
+  - {id: fr-v-82d372a542f98615, ch: expliquer, pr: /ɛks.pli.ke/, ds: to explain}
+  - {id: fr-v-bebd9d5ec00434f8, ch: ouvrir, pr: /u.vʁiʁ/, ds: to open}
+  - {id: fr-v-6394f8115a0b4b09, ch: fermer, pr: /fɛʁ.me/, ds: to shut}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-04-travel-01
+  title: Journeys and arrangements - 1
+  outcome: Explain travel needs and negotiate a transport or accommodation arrangement.
+  vocabulary:
+  - {id: fr-v-7f04a94ebed2f4e3, ch: ville, pr: /vil/, ds: 'town, city'}
+  - {id: fr-v-7daf4f0ccaf0b03a, ch: rue, pr: /ʁy/, ds: 'street, road'}
+  - {id: fr-v-c94283c7e941c9bf, ch: route, pr: /ʁut/, ds: road (sometimes route like "Route 66")}
+  - {id: fr-v-3b7e67dcc8c2a731, ch: adresse, pr: /a.dʁɛs/, ds: address; location details}
+  - {id: fr-v-eac03ce764e06171, ch: gare, pr: /ɡaʁ/, ds: railway station}
+  - {id: fr-v-88f6d7cc694e32a8, ch: train, pr: /tʁɛ̃/, ds: train (rail mounted vehicle)}
+  - {id: fr-v-049176dcb52dab60, ch: bus, pr: /bys/, ds: bus}
+  - {id: fr-v-7729f59216a4d6e0, ch: métro, pr: /me.tʁo/, ds: 'metro; subway (US), underground (UK), Tube (UK)'}
+  - {id: fr-v-710246ed5515ac42, ch: taxi, pr: /tak.si/, ds: taxi}
+  - {id: fr-v-f2ae151ce048f91c, ch: voiture, pr: /vwa.tyʁ/, ds: car; motor vehicle}
+  - {id: fr-v-36819c829fedec30, ch: avion, pr: /a.vjɔ̃/, ds: aeroplane}
+  - {id: fr-v-13a5672c70a750ba, ch: aéroport, pr: /a.e.ʁɔ.pɔʁ/, ds: 'airport (place, company managing such a place)'}
+  - {id: fr-v-7d4b1a3ec129806b, ch: hôtel, pr: /o.tɛl/, ds: hotel; paid accommodation}
+  - {id: fr-v-c22fc3483ea21daf, ch: chambre, pr: /ʃɑ̃bʁ/, ds: hotel room}
+  - {id: fr-v-bcd3a43850411ae2, ch: billet, pr: /bi.jɛ/, ds: ticket}
+  - {id: fr-v-af3b9aa259375c11, ch: voyage, pr: /vwa.jaʒ/, ds: 'trip, journey, voyage'}
+  - {id: fr-v-b73cbb16bfc51474, ch: carte, pr: /kaʁt/, ds: card}
+  - {id: fr-v-0eb4b169d661d99c, ch: plan, pr: /plɑ̃/, ds: 'map (schematic maps of streets, subways, etc.)'}
+  - {id: fr-v-ac514549469b27e0, ch: chemin, pr: /ʃə.mɛ̃/, ds: 'path, way, road'}
+  - {id: fr-v-b3d3165d893a973f, ch: arrêt, pr: /a.ʁɛ/, ds: stop; stopping place}
+  - {id: fr-v-aa510f7ac10470c7, ch: sortie, pr: /sɔʁ.ti/, ds: exit; way out}
+  - {id: fr-v-2dbdc68186ce2499, ch: entrée, pr: /ɑ̃.tʁe/, ds: entrance; way in}
+  - {id: fr-v-f65b1c1fbb3f942a, ch: gauche, pr: /ɡoʃ/, ds: 'the left, the left-hand side'}
+  - {id: fr-v-fd0ac678bbeb492d, ch: droite, pr: /dʁwat/, ds: right-hand side}
+  - {id: fr-v-ec10bcff5ba86d15, ch: nord, pr: /nɔʁ/, ds: north}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-04-travel-02
+  title: Journeys and arrangements - 2
+  outcome: Explain travel needs and negotiate a transport or accommodation arrangement.
+  vocabulary:
+  - {id: fr-v-21149ed5abd35c97, ch: sud, pr: /syd/, ds: south}
+  - {id: fr-v-9d13e5b232bf95ad, ch: est, pr: /ɛst/, ds: east}
+  - {id: fr-v-7b3a41f9e9f449d6, ch: ouest, pr: /wɛst/, ds: west}
+  - {id: fr-v-1132693274584f4f, ch: loin, pr: /lwɛ̃/, ds: 'far, distant'}
+  - {id: fr-v-27a89ec0f35e3d21, ch: près, pr: /pʁɛ/, ds: near; close by}
+  - {id: fr-v-b4b6f559cec59cd2, ch: tout droit, pr: /tu dʁwa/, ds: straight ahead}
+  - {id: fr-v-d25330c17e0381a1, ch: aller, pr: /a.le/, ds: to go}
+  - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
+  - {id: fr-v-9bd6afe04827273d, ch: partir, pr: /paʁ.tiʁ/, ds: 'to go away, leave, depart'}
+  - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
+  - {id: fr-v-adada4742558d18e, ch: retourner, pr: /ʁə.tuʁ.ne/, ds: to go back; to return to a place}
+  - {id: fr-v-cd70435b8e7ed4af, ch: marcher, pr: /maʁ.ʃe/, ds: to walk}
+  - {id: fr-v-909016573f8971be, ch: chercher, pr: /ʃɛʁ.ʃe/, ds: 'to look for, to seek'}
+  - {id: fr-v-e3939d1d2a7cb2dc, ch: trouver, pr: /tʁu.ve/, ds: to find}
+  - {id: fr-v-5ef380a8ea535028, ch: attendre, pr: /a.tɑ̃dʁ/, ds: 'to wait for, to await'}
+  - {id: fr-v-86a718fa5a1e8247, ch: rester, pr: /ʁɛs.te/, ds: to stay}
+  - {id: fr-v-ef7cb6763dc59608, ch: passer, pr: /pa.se/, ds: to go past}
+  - {id: fr-v-0c84044005b9b318, ch: monter, pr: /mɔ̃.te/, ds: 'to go up, to climb (go to a higher position)'}
+  - {id: fr-v-796e251d08d234c1, ch: descendre, pr: /de.sɑ̃dʁ/, ds: to go down}
+  - {id: fr-v-cc5263b267295dab, ch: traverser, pr: /tʁa.vɛʁ.se/, ds: 'to cross, to go across'}
+  - {id: fr-v-0d080607a4098425, ch: de, pr: /də/, ds: from; origin}
+  - {id: fr-v-cc14c85aea1ed1ce, ch: à, pr: /a/, ds: at or in a particular place}
+  - {id: fr-v-cf9d90d603f2e611, ch: carte, pr: /kaʁt/, ds: map; chart}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-0eb4b169d661d99c, ch: plan, pr: /plɑ̃/, ds: 'map (schematic maps of streets, subways, etc.)'}
+  - {id: fr-v-ac514549469b27e0, ch: chemin, pr: /ʃə.mɛ̃/, ds: 'path, way, road'}
+  - {id: fr-v-b3d3165d893a973f, ch: arrêt, pr: /a.ʁɛ/, ds: stop; stopping place}
+  - {id: fr-v-aa510f7ac10470c7, ch: sortie, pr: /sɔʁ.ti/, ds: exit; way out}
+  - {id: fr-v-2dbdc68186ce2499, ch: entrée, pr: /ɑ̃.tʁe/, ds: entrance; way in}
+  - {id: fr-v-f65b1c1fbb3f942a, ch: gauche, pr: /ɡoʃ/, ds: 'the left, the left-hand side'}
+  - {id: fr-v-fd0ac678bbeb492d, ch: droite, pr: /dʁwat/, ds: right-hand side}
+  - {id: fr-v-ec10bcff5ba86d15, ch: nord, pr: /nɔʁ/, ds: north}
+  review_grammar: []
+- id: level-04-actions-01
+  title: Actions and processes - 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-fdca617ec6b7904e, ch: prendre, pr: /pʁɑ̃.dʁə/, ds: to take}
+  grammar: []
+  review_vocabulary: []
+  review_grammar:
+  - {id: fr-g-prendre-faire-present, ch: je prends / nous prenons ; je fais / vous faites, ds: High-use irregular present forms for meals and actions}
+- id: level-04-travel-practice-01
+  title: Journeys and arrangements - sentence practice 1
+  outcome: Explain travel needs and negotiate a transport or accommodation arrangement.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-place-prepositions-contractions, ch: à / de + lieu ; au / aux / du / des ; chez + personne, ds: Mark destinations and origins with article contractions}
+  - {id: fr-g-existential-il-y-a, ch: 'il y a + nom ; est-ce qu''il y a + nom ?', ds: Introduce the existence of something at a location}
+  - {id: fr-g-imperative-directions, ch: verbe impératif sans sujet ; ne + impératif + pas, ds: Give directions and short positive or negative instructions}
+  review_vocabulary:
+  - {id: fr-v-d25330c17e0381a1, ch: aller, pr: /a.le/, ds: to go}
+  - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
+  - {id: fr-v-049176dcb52dab60, ch: bus, pr: /bys/, ds: bus}
+  - {id: fr-v-7d4b1a3ec129806b, ch: hôtel, pr: /o.tɛl/, ds: hotel; paid accommodation}
+  - {id: fr-v-f65b1c1fbb3f942a, ch: gauche, pr: /ɡoʃ/, ds: 'the left, the left-hand side'}
+  - {id: fr-v-cc5263b267295dab, ch: traverser, pr: /tʁa.vɛʁ.se/, ds: 'to cross, to go across'}
+  - {id: fr-v-86a718fa5a1e8247, ch: rester, pr: /ʁɛs.te/, ds: to stay}
+  - {id: fr-v-ef7cb6763dc59608, ch: passer, pr: /pa.se/, ds: to go past}
+  - {id: fr-v-0c84044005b9b318, ch: monter, pr: /mɔ̃.te/, ds: 'to go up, to climb (go to a higher position)'}
+  - {id: fr-v-796e251d08d234c1, ch: descendre, pr: /de.sɑ̃dʁ/, ds: to go down}
+  - {id: fr-v-0d080607a4098425, ch: de, pr: /də/, ds: from; origin}
+  - {id: fr-v-cc14c85aea1ed1ce, ch: à, pr: /a/, ds: at or in a particular place}
+  - {id: fr-v-cf9d90d603f2e611, ch: carte, pr: /kaʁt/, ds: map; chart}
+  review_grammar: []
+- id: level-04-grammar-practice-01
+  title: Sentence construction - sentence practice 1
+  outcome: Use a selected construction to communicate a new meaning and distinguish a relevant contrast.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-elision-h-boundaries, ch: l' / j' / n' devant voyelle ou h muet ; le h aspiré, ds: Elision and liaison have lexical boundary restrictions}
+  review_vocabulary:
+  - {id: fr-v-7d4b1a3ec129806b, ch: hôtel, pr: /o.tɛl/, ds: hotel; paid accommodation}
+  - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
+  - {id: fr-v-5ec809f61dd4f922, ch: à, pr: /a/, ds: to (destination)}
+  - {id: fr-v-8b08d0d1eb85ad1c, ch: dans, pr: /dɑ̃/, ds: 'in, inside (enclosed in a physical space, a group, a state)'}
+  - {id: fr-v-098e19a148c05266, ch: sur, pr: /syʁ/, ds: 'on, upon'}
+  - {id: fr-v-8cd331fbd521083e, ch: sous, pr: /su/, ds: 'below, under'}
+  - {id: fr-v-810ff3f01a4e6b01, ch: entre, pr: /ɑ̃tʁ/, ds: between}
+  - {id: fr-v-fd582a89df883fb0, ch: devant, pr: /də.vɑ̃/, ds: in front of}
+  - {id: fr-v-df1df27984b04cc8, ch: derrière, pr: /dɛ.ʁjɛʁ/, ds: behind}
+  - {id: fr-v-c1a655ae9925085a, ch: chez, pr: /ʃe/, ds: 'to, at, in or into the place of'}
+  review_grammar: []

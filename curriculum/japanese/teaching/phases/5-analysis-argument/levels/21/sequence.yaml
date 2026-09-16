@@ -1,0 +1,503 @@
+schema_version: 3
+id: ja-level-21
+title: Science and long-term change
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 21
+phase: analysis-argument
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+- ja-level-09
+- ja-level-10
+- ja-level-11
+- ja-level-12
+- ja-level-13
+- ja-level-14
+- ja-level-15
+- ja-level-16
+- ja-level-17
+- ja-level-18
+- ja-level-19
+- ja-level-20
+goals: &id001
+- Summarize a general-audience explanation.
+- Keep a method separate from its conclusion.
+- Identify an unanswered question.
+checkpoint:
+  task: Explain a source and identify a limitation without inventing technical certainty.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-21-science-01
+  title: Science and investigation - 1
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n4-00031-s001, ch: 医学, pr: いがく, ds: medicine}
+  - {id: ja-n4-00317-s001, ch: 数学, pr: すうがく, ds: mathematics}
+  - {id: ja-n4-00401-s001, ch: 地理, pr: ちり, ds: geography}
+  - {id: ja-n2-00734-s001, ch: 重量, pr: じゅうりょう, ds: weight}
+  - {id: ja-n2-00735-s001, ch: 重力, pr: じゅうりょく, ds: gravity}
+  - {id: ja-n2-00738-s001, ch: 縮小, pr: しゅくしょう, ds: reduction}
+  - {id: ja-n2-00747-s001, ch: 循環, pr: じゅんかん, ds: circulation}
+  - {id: ja-n2-00757-s001, ch: 蒸気, pr: じょうき, ds: steam}
+  - {id: ja-n2-00769-s001, ch: 小数, pr: しょうすう, ds: fraction (part of)}
+  - {id: ja-n2-00774-s001, ch: 蒸発, pr: じょうはつ, ds: evaporation}
+  - {id: ja-n2-00781-s001, ch: 消耗, pr: しょうもう, ds: exhaustion}
+  - {id: ja-n2-00786-s001, ch: 食塩, pr: しょくえん, ds: table salt}
+  - {id: ja-n2-00799-s001, ch: 汁, pr: しる, ds: juice}
+  - {id: ja-n2-00801-s001, ch: 芯, pr: しん, ds: wick}
+  - {id: ja-n2-00803-s001, ch: 真空, pr: しんくう, ds: vacuum}
+  - {id: ja-n2-00807-s001, ch: 人造, pr: じんぞう, ds: artificial}
+  - {id: ja-n2-00814-s001, ch: 森林, pr: しんりん, ds: forest}
+  - {id: ja-n2-00819-s001, ch: 水産, pr: すいさん, ds: aquatic products}
+  - {id: ja-n2-00821-s001, ch: 水蒸気, pr: すいじょうき, ds: water vapour}
+  - {id: ja-n2-00822-s001, ch: 水素, pr: すいそ, ds: hydrogen (H)}
+  - {id: ja-n2-00823-s001, ch: 垂直, pr: すいちょく, ds: vertical}
+  - {id: ja-n2-00824-s001, ch: 推定, pr: すいてい, ds: presumption}
+  - {id: ja-n2-00825-s001, ch: 水滴, pr: すいてき, ds: drop of water}
+  - {id: ja-n2-00829-s001, ch: 水平, pr: すいへい, ds: horizontal}
+  - {id: ja-n2-00830-s001, ch: 水平線, pr: すいへいせん, ds: horizon (related to bodies of water)}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-21-science-02
+  title: Science and investigation - 2
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-00836-s001, ch: 図鑑, pr: ずかん, ds: pictorial book}
+  - {id: ja-n2-00837-s001, ch: 杉, pr: すぎ, ds: Japanese cedar (Cryptomeria japonica)}
+  - {id: ja-n2-00840-s001, ch: 透き通る, pr: すきとおる, ds: to be transparent}
+  - {id: ja-n2-00844-s001, ch: 図形, pr: ずけい, ds: geometrical figure; shape; graphic}
+  - {id: ja-n2-00864-s001, ch: 澄む, pr: すむ, ds: 'to become clear (water, air, etc.)'}
+  - {id: ja-n2-00874-s001, ch: 寸法, pr: すんぽう, ds: measurement}
+  - {id: ja-n2-00879-s001, ch: 性質, pr: せいしつ, ds: nature (of a person)}
+  - {id: ja-n2-00882-s001, ch: 整数, pr: せいすう, ds: integer}
+  - {id: ja-n2-00884-s001, ch: 生存, pr: せいぞん, ds: existence}
+  - {id: ja-n2-00885-s001, ch: 生長, pr: せいちょう, ds: growth (of a plant)}
+  - {id: ja-n2-00888-s001, ch: 性能, pr: せいのう, ds: ability}
+  - {id: ja-n2-00890-s001, ch: 成分, pr: せいぶん, ds: ingredient}
+  - {id: ja-n2-00892-s001, ch: 正方形, pr: せいほうけい, ds: square}
+  - {id: ja-n2-00897-s001, ch: 赤道, pr: せきどう, ds: equator}
+  - {id: ja-n2-00898-s001, ch: せっかく, pr: せっかく, ds: with trouble}
+  - {id: ja-n2-00909-s001, ch: セメント, pr: セメント, ds: cement}
+  - {id: ja-n2-00920-s001, ch: 先端, pr: せんたん, ds: pointed end}
+  - {id: ja-n2-00921-s001, ch: センチ, pr: センチ, ds: centimeter}
+  - {id: ja-n2-00930-s001, ch: 増減, pr: ぞうげん, ds: increase and decrease}
+  - {id: ja-n2-00937-s001, ch: 増大, pr: ぞうだい, ds: enlargement}
+  - {id: ja-n2-00943-s001, ch: 属する, pr: ぞくする, ds: to belong to}
+  - {id: ja-n2-00946-s001, ch: 測定, pr: そくてい, ds: measurement}
+  - {id: ja-n2-00947-s001, ch: 測量, pr: そくりょう, ds: measurement}
+  - {id: ja-n2-00948-s001, ch: 速力, pr: そくりょく, ds: speed}
+  - {id: ja-n2-00968-s001, ch: 田んぼ, pr: たんぼ, ds: rice field}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00819-s001, ch: 水産, pr: すいさん, ds: aquatic products}
+  - {id: ja-n2-00821-s001, ch: 水蒸気, pr: すいじょうき, ds: water vapour}
+  - {id: ja-n2-00822-s001, ch: 水素, pr: すいそ, ds: hydrogen (H)}
+  - {id: ja-n2-00823-s001, ch: 垂直, pr: すいちょく, ds: vertical}
+  - {id: ja-n2-00824-s001, ch: 推定, pr: すいてい, ds: presumption}
+  - {id: ja-n2-00825-s001, ch: 水滴, pr: すいてき, ds: drop of water}
+  - {id: ja-n2-00829-s001, ch: 水平, pr: すいへい, ds: horizontal}
+  - {id: ja-n2-00830-s001, ch: 水平線, pr: すいへいせん, ds: horizon (related to bodies of water)}
+  review_grammar: []
+- id: level-21-science-03
+  title: Science and investigation - 3
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-00972-s001, ch: 体系, pr: たいけい, ds: system}
+  - {id: ja-n2-00976-s001, ch: 対照, pr: たいしょう, ds: contrast}
+  - {id: ja-n2-00979-s001, ch: 体積, pr: たいせき, ds: capacity}
+  - {id: ja-n2-00983-s001, ch: 大木, pr: たいぼく, ds: large tree}
+  - {id: ja-n2-00987-s001, ch: ダイヤグラム, pr: ダイヤグラム, ds: diagram}
+  - {id: ja-n2-00991-s001, ch: 田植え, pr: たうえ, ds: rice planting}
+  - {id: ja-n2-00993-s001, ch: 楕円, pr: だえん, ds: ellipse}
+  - {id: ja-n2-00994-s001, ch: 高める, pr: たかめる, ds: to raise}
+  - {id: ja-n2-00995-s001, ch: 耕す, pr: たがやす, ds: to till}
+  - {id: ja-n2-00996-s001, ch: 滝, pr: たき, ds: waterfall}
+  - {id: ja-n2-00997-s001, ch: 炊く, pr: たく, ds: 'to cook (grains, e.g. rice)'}
+  - {id: ja-n2-00998-s001, ch: 焚く, pr: たく, ds: to burn}
+  - {id: ja-n2-01000-s001, ch: 竹, pr: たけ, ds: bamboo (any grass of subfamily Bambusoideae)}
+  - {id: ja-n2-01015-s001, ch: たまる, pr: たまる, ds: to collect}
+  - {id: ja-n2-01016-s001, ch: ダム, pr: ダム, ds: dam}
+  - {id: ja-n2-01019-s001, ch: 溜める, pr: ためる, ds: to amass}
+  - {id: ja-n2-01024-s001, ch: 炭鉱, pr: たんこう, ds: coal mine}
+  - {id: ja-n2-01027-s001, ch: 淡水, pr: たんすい, ds: fresh water (i.e. not salt water)}
+  - {id: ja-n2-01034-s001, ch: 地下水, pr: ちかすい, ds: groundwater}
+  - {id: ja-n2-01036-s001, ch: 近づける, pr: ちかづける, ds: to bring near}
+  - {id: ja-n2-01037-s001, ch: 近寄る, pr: ちかよる, ds: to approach}
+  - {id: ja-n2-01039-s001, ch: ちぎる, pr: ちぎる, ds: to tear to pieces}
+  - {id: ja-n2-01040-s001, ch: 地質, pr: ちしつ, ds: geological features}
+  - {id: ja-n2-01042-s001, ch: 地帯, pr: ちたい, ds: zone}
+  - {id: ja-n2-01043-s001, ch: 縮む, pr: ちぢむ, ds: to shrink}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00921-s001, ch: センチ, pr: センチ, ds: centimeter}
+  - {id: ja-n2-00930-s001, ch: 増減, pr: ぞうげん, ds: increase and decrease}
+  - {id: ja-n2-00937-s001, ch: 増大, pr: ぞうだい, ds: enlargement}
+  - {id: ja-n2-00943-s001, ch: 属する, pr: ぞくする, ds: to belong to}
+  - {id: ja-n2-00946-s001, ch: 測定, pr: そくてい, ds: measurement}
+  - {id: ja-n2-00947-s001, ch: 測量, pr: そくりょう, ds: measurement}
+  - {id: ja-n2-00948-s001, ch: 速力, pr: そくりょく, ds: speed}
+  - {id: ja-n2-00968-s001, ch: 田んぼ, pr: たんぼ, ds: rice field}
+  review_grammar: []
+- id: level-21-science-04
+  title: Science and investigation - 4
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01044-s001, ch: 縮める, pr: ちぢめる, ds: to shorten}
+  - {id: ja-n2-01045-s001, ch: 縮れる, pr: ちぢれる, ds: to be wavy}
+  - {id: ja-n2-01047-s001, ch: 地点, pr: ちてん, ds: spot}
+  - {id: ja-n2-01048-s001, ch: 地名, pr: ちめい, ds: place name}
+  - {id: ja-n2-01052-s001, ch: 中間, pr: ちゅうかん, ds: middle}
+  - {id: ja-n2-01056-s001, ch: 中性, pr: ちゅうせい, ds: 'neutrality (incl. chemical, electrical, etc.)'}
+  - {id: ja-n2-01066-s001, ch: 頂点, pr: ちょうてん, ds: vertex}
+  - {id: ja-n2-01068-s001, ch: 長方形, pr: ちょうほうけい, ds: rectangle}
+  - {id: ja-n2-01070-s001, ch: チョーク, pr: チョーク, ds: chalk}
+  - {id: ja-n2-01072-s001, ch: 直線, pr: ちょくせん, ds: straight line}
+  - {id: ja-n2-01075-s001, ch: 直流, pr: ちょくりゅう, ds: direct current}
+  - {id: ja-n2-01077-s001, ch: 直角, pr: ちょっかく, ds: right angle}
+  - {id: ja-n2-01078-s001, ch: 直径, pr: ちょっけい, ds: diameter}
+  - {id: ja-n2-01081-s001, ch: 散らす, pr: ちらす, ds: to scatter}
+  - {id: ja-n2-01083-s001, ch: 散る, pr: ちる, ds: 'to fall (e.g. blossoms, leaves)'}
+  - {id: ja-n2-01085-s001, ch: ついで, pr: ついで, ds: opportunity}
+  - {id: ja-n2-01093-s001, ch: 通路, pr: つうろ, ds: passage}
+  - {id: ja-n2-01095-s001, ch: 突き当たり, pr: つきあたり, ds: 'end (of a street, hallway, etc.)'}
+  - {id: ja-n2-01096-s001, ch: 突き当たる, pr: つきあたる, ds: to run into}
+  - {id: ja-n2-01099-s001, ch: 突く, pr: つく, ds: to prick}
+  - {id: ja-n2-01100-s001, ch: 次ぐ, pr: つぐ, ds: to follow}
+  - {id: ja-n2-01106-s001, ch: 突っ込む, pr: つっこむ, ds: to thrust (something) into (something)}
+  - {id: ja-n2-01110-s001, ch: つながり, pr: つながり, ds: connection}
+  - {id: ja-n2-01111-s001, ch: つながる, pr: つながる, ds: to be connected (to)}
+  - {id: ja-n2-01112-s001, ch: つなげる, pr: つなげる, ds: to connect}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01027-s001, ch: 淡水, pr: たんすい, ds: fresh water (i.e. not salt water)}
+  - {id: ja-n2-01034-s001, ch: 地下水, pr: ちかすい, ds: groundwater}
+  - {id: ja-n2-01036-s001, ch: 近づける, pr: ちかづける, ds: to bring near}
+  - {id: ja-n2-01037-s001, ch: 近寄る, pr: ちかよる, ds: to approach}
+  - {id: ja-n2-01039-s001, ch: ちぎる, pr: ちぎる, ds: to tear to pieces}
+  - {id: ja-n2-01040-s001, ch: 地質, pr: ちしつ, ds: geological features}
+  - {id: ja-n2-01042-s001, ch: 地帯, pr: ちたい, ds: zone}
+  - {id: ja-n2-01043-s001, ch: 縮む, pr: ちぢむ, ds: to shrink}
+  review_grammar: []
+- id: level-21-science-05
+  title: Science and investigation - 5
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01113-s001, ch: 粒, pr: つぶ, ds: grain}
+  - {id: ja-n2-01114-s001, ch: 潰す, pr: つぶす, ds: to smash}
+  - {id: ja-n2-01115-s001, ch: 潰れる, pr: つぶれる, ds: to be crushed}
+  - {id: ja-n2-01117-s001, ch: 詰まる, pr: つまる, ds: to be packed (with)}
+  - {id: ja-n2-01120-s001, ch: 艶, pr: つや, ds: gloss}
+  - {id: ja-n2-01122-s001, ch: 釣り合う, pr: つりあう, ds: to balance}
+  - {id: ja-n2-01129-s001, ch: 低下, pr: ていか, ds: fall}
+  - {id: ja-n2-01132-s001, ch: 停止, pr: ていし, ds: stoppage}
+  - {id: ja-n2-01133-s001, ch: 停車, pr: ていしゃ, ds: 'stopping (of a train, car, etc.)'}
+  - {id: ja-n2-01135-s001, ch: 出入り, pr: でいり, ds: going in and out}
+  - {id: ja-n2-01145-s001, ch: 凸凹, pr: でこぼこ, ds: unevenness}
+  - {id: ja-n2-01149-s001, ch: 鉄橋, pr: てっきょう, ds: railway bridge}
+  - {id: ja-n2-01154-s001, ch: 手前, pr: てまえ, ds: before oneself}
+  - {id: ja-n2-01157-s001, ch: 照らす, pr: てらす, ds: to shine on}
+  - {id: ja-n2-01158-s001, ch: 照る, pr: てる, ds: to shine}
+  - {id: ja-n2-01159-s001, ch: 展開, pr: てんかい, ds: development}
+  - {id: ja-n2-01165-s001, ch: 点々, pr: てんてん, ds: here and there}
+  - {id: ja-n2-01166-s001, ch: 転々, pr: てんてん, ds: moving from place to place}
+  - {id: ja-n2-01167-s001, ch: 電柱, pr: でんちゅう, ds: utility pole}
+  - {id: ja-n2-01169-s001, ch: 電波, pr: でんぱ, ds: radio wave}
+  - {id: ja-n2-01171-s001, ch: 電流, pr: でんりゅう, ds: electric current}
+  - {id: ja-n2-01172-s001, ch: 電力, pr: でんりょく, ds: electric power}
+  - {id: ja-n2-01174-s001, ch: 銅, pr: どう, ds: copper (Cu)}
+  - {id: ja-n2-01177-s001, ch: 峠, pr: とうげ, ds: (mountain) pass}
+  - {id: ja-n2-01178-s001, ch: 統計, pr: とうけい, ds: statistics}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01095-s001, ch: 突き当たり, pr: つきあたり, ds: 'end (of a street, hallway, etc.)'}
+  - {id: ja-n2-01096-s001, ch: 突き当たる, pr: つきあたる, ds: to run into}
+  - {id: ja-n2-01099-s001, ch: 突く, pr: つく, ds: to prick}
+  - {id: ja-n2-01100-s001, ch: 次ぐ, pr: つぐ, ds: to follow}
+  - {id: ja-n2-01106-s001, ch: 突っ込む, pr: つっこむ, ds: to thrust (something) into (something)}
+  - {id: ja-n2-01110-s001, ch: つながり, pr: つながり, ds: connection}
+  - {id: ja-n2-01111-s001, ch: つながる, pr: つながる, ds: to be connected (to)}
+  - {id: ja-n2-01112-s001, ch: つなげる, pr: つなげる, ds: to connect}
+  review_grammar: []
+- id: level-21-science-06
+  title: Science and investigation - 6
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01179-s001, ch: 動作, pr: どうさ, ds: movement (of the body)}
+  - {id: ja-n2-01180-s001, ch: 東西, pr: とうざい, ds: east and west}
+  - {id: ja-n2-01186-s001, ch: 灯台, pr: とうだい, ds: lighthouse}
+  - {id: ja-n2-01189-s001, ch: 等分, pr: とうぶん, ds: division into equal parts}
+  - {id: ja-n2-01190-s001, ch: 透明, pr: とうめい, ds: transparent}
+  - {id: ja-n2-01194-s001, ch: 通り掛かる, pr: とおりかかる, ds: to happen to pass by}
+  - {id: ja-n2-01195-s001, ch: 溶かす, pr: とかす, ds: to melt}
+  - {id: ja-n2-01196-s001, ch: 尖る, pr: とがる, ds: to taper to a point}
+  - {id: ja-n2-01198-s001, ch: 溶く, pr: とく, ds: to mix (e.g. water with flour)}
+  - {id: ja-n2-01199-s001, ch: どく, pr: どく, ds: to step aside}
+  - {id: ja-n2-01200-s001, ch: 特殊, pr: とくしゅ, ds: special}
+  - {id: ja-n2-01201-s001, ch: 特色, pr: とくしょく, ds: characteristic}
+  - {id: ja-n2-01202-s001, ch: 特長, pr: とくちょう, ds: strong point}
+  - {id: ja-n2-01203-s001, ch: 特定, pr: とくてい, ds: specific}
+  - {id: ja-n2-01205-s001, ch: 溶け込む, pr: とけこむ, ds: to melt into}
+  - {id: ja-n2-01206-s001, ch: 溶ける, pr: とける, ds: to melt}
+  - {id: ja-n2-01207-s001, ch: 退ける, pr: どける, ds: to put something out of the way}
+  - {id: ja-n2-01210-s001, ch: ところどころ, pr: ところどころ, ds: here and there}
+  - {id: ja-n2-01211-s001, ch: 都心, pr: としん, ds: city centre (esp. of Tokyo)}
+  - {id: ja-n2-01216-s001, ch: とどまる, pr: とどまる, ds: to remain}
+  - {id: ja-n2-01218-s001, ch: 飛び込む, pr: とびこむ, ds: to jump in}
+  - {id: ja-n2-01223-s001, ch: 捉える, pr: とらえる, ds: to catch}
+  - {id: ja-n2-01228-s001, ch: 捕る, pr: とる, ds: 'to catch (a wild animal, fish, insect, baseball, etc.)'}
+  - {id: ja-n2-01237-s001, ch: 長引く, pr: ながびく, ds: to be prolonged}
+  - {id: ja-n2-01238-s001, ch: 中身, pr: なかみ, ds: contents}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01166-s001, ch: 転々, pr: てんてん, ds: moving from place to place}
+  - {id: ja-n2-01167-s001, ch: 電柱, pr: でんちゅう, ds: utility pole}
+  - {id: ja-n2-01169-s001, ch: 電波, pr: でんぱ, ds: radio wave}
+  - {id: ja-n2-01171-s001, ch: 電流, pr: でんりゅう, ds: electric current}
+  - {id: ja-n2-01172-s001, ch: 電力, pr: でんりょく, ds: electric power}
+  - {id: ja-n2-01174-s001, ch: 銅, pr: どう, ds: copper (Cu)}
+  - {id: ja-n2-01177-s001, ch: 峠, pr: とうげ, ds: (mountain) pass}
+  - {id: ja-n2-01178-s001, ch: 統計, pr: とうけい, ds: statistics}
+  review_grammar: []
+- id: level-21-science-07
+  title: Science and investigation - 7
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01247-s001, ch: なだらか, pr: なだらか, ds: gently sloping}
+  - {id: ja-n2-01250-s001, ch: 斜め, pr: ななめ, ds: slanting}
+  - {id: ja-n2-01257-s001, ch: 鳴らす, pr: ならす, ds: to ring}
+  - {id: ja-n2-01258-s001, ch: なる, pr: なる, ds: to bear fruit}
+  - {id: ja-n2-01260-s001, ch: 南極, pr: なんきょく, ds: South Pole}
+  - {id: ja-n2-01264-s001, ch: 南米, pr: なんべい, ds: South America}
+  - {id: ja-n2-01265-s001, ch: 南北, pr: なんぼく, ds: north and south}
+  - {id: ja-n2-01266-s001, ch: 煮える, pr: にえる, ds: to be boiled}
+  - {id: ja-n2-01267-s001, ch: 匂う, pr: におう, ds: to be fragrant}
+  - {id: ja-n2-01268-s001, ch: 逃がす, pr: にがす, ds: to set free}
+  - {id: ja-n2-01273-s001, ch: 濁る, pr: にごる, ds: to become muddy}
+  - {id: ja-n2-01274-s001, ch: 虹, pr: にじ, ds: rainbow}
+  - {id: ja-n2-01284-s001, ch: にわか, pr: にわか, ds: sudden}
+  - {id: ja-n2-01290-s001, ch: 熱する, pr: ねっする, ds: to heat}
+  - {id: ja-n2-01298-s001, ch: 濃度, pr: のうど, ds: concentration}
+  - {id: ja-n2-01299-s001, ch: 農薬, pr: のうやく, ds: agricultural chemical}
+  - {id: ja-n2-01302-s001, ch: 残らず, pr: のこらず, ds: all}
+  - {id: ja-n2-01307-s001, ch: 上り, pr: のぼり, ds: ascent}
+  - {id: ja-n2-01310-s001, ch: 乗り換え, pr: のりかえ, ds: 'transfer (trains, buses, etc.)'}
+  - {id: ja-n2-01311-s001, ch: 載る, pr: のる, ds: to be placed on}
+  - {id: ja-n2-01312-s001, ch: のろい, pr: のろい, ds: thickheaded}
+  - {id: ja-n2-01320-s001, ch: 這う, pr: はう, ds: to crawl}
+  - {id: ja-n2-01321-s001, ch: 生える, pr: はえる, ds: to grow}
+  - {id: ja-n2-01322-s001, ch: はがす, pr: はがす, ds: to tear off}
+  - {id: ja-n2-01324-s001, ch: 秤, pr: はかり, ds: scales}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01210-s001, ch: ところどころ, pr: ところどころ, ds: here and there}
+  - {id: ja-n2-01211-s001, ch: 都心, pr: としん, ds: city centre (esp. of Tokyo)}
+  - {id: ja-n2-01216-s001, ch: とどまる, pr: とどまる, ds: to remain}
+  - {id: ja-n2-01218-s001, ch: 飛び込む, pr: とびこむ, ds: to jump in}
+  - {id: ja-n2-01223-s001, ch: 捉える, pr: とらえる, ds: to catch}
+  - {id: ja-n2-01228-s001, ch: 捕る, pr: とる, ds: 'to catch (a wild animal, fish, insect, baseball, etc.)'}
+  - {id: ja-n2-01237-s001, ch: 長引く, pr: ながびく, ds: to be prolonged}
+  - {id: ja-n2-01238-s001, ch: 中身, pr: なかみ, ds: contents}
+  review_grammar: []
+- id: level-21-science-08
+  title: Science and investigation - 8
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01328-s001, ch: はきはき, pr: はきはき, ds: briskly}
+  - {id: ja-n2-01330-s001, ch: 歯車, pr: はぐるま, ds: gear}
+  - {id: ja-n2-01338-s001, ch: 斜, pr: はす, ds: diagonal}
+  - {id: ja-n2-01344-s001, ch: バツ, pr: バツ, ds: x (mark)}
+  - {id: ja-n2-01347-s001, ch: 発射, pr: はっしゃ, ds: firing (esp. a rocket or missile)}
+  - {id: ja-n2-01349-s001, ch: 発電, pr: はつでん, ds: generation of electricity}
+  - {id: ja-n2-01358-s001, ch: 放れる, pr: はなれる, ds: to get free (from)}
+  - {id: ja-n2-01361-s001, ch: 跳ねる, pr: はねる, ds: to jump}
+  - {id: ja-n2-01362-s001, ch: 破片, pr: はへん, ds: fragment}
+  - {id: ja-n2-01372-s001, ch: 反映, pr: はんえい, ds: reflection (of light)}
+  - {id: ja-n2-01381-s001, ch: 半島, pr: はんとう, ds: peninsula}
+  - {id: ja-n2-01384-s001, ch: 日帰り, pr: ひがえり, ds: day trip}
+  - {id: ja-n2-01385-s001, ch: 比較的, pr: ひかくてき, ds: comparatively}
+  - {id: ja-n2-01395-s001, ch: 日差し, pr: ひざし, ds: sunlight}
+  - {id: ja-n2-01399-s001, ch: ぴたり, pr: ぴたり, ds: tightly}
+  - {id: ja-n2-01400-s001, ch: 引っかかる, pr: ひっかかる, ds: to be caught in}
+  - {id: ja-n2-01405-s001, ch: 引っ込む, pr: ひっこむ, ds: to draw back}
+  - {id: ja-n2-01410-s001, ch: 人通り, pr: ひとどおり, ds: pedestrian traffic}
+  - {id: ja-n2-01415-s001, ch: ひとりでに, pr: ひとりでに, ds: by itself}
+  - {id: ja-n2-01418-s001, ch: 日にち, pr: ひにち, ds: 'date (of a planned event, act, etc.)'}
+  - {id: ja-n2-01419-s001, ch: ひねる, pr: ひねる, ds: to twist}
+  - {id: ja-n2-01420-s001, ch: 日の入り, pr: ひのいり, ds: sunset}
+  - {id: ja-n2-01421-s001, ch: 日の出, pr: ひので, ds: sunrise}
+  - {id: ja-n2-01422-s001, ch: 響き, pr: ひびき, ds: echo}
+  - {id: ja-n2-01423-s001, ch: 響く, pr: ひびく, ds: to resound}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01307-s001, ch: 上り, pr: のぼり, ds: ascent}
+  - {id: ja-n2-01310-s001, ch: 乗り換え, pr: のりかえ, ds: 'transfer (trains, buses, etc.)'}
+  - {id: ja-n2-01311-s001, ch: 載る, pr: のる, ds: to be placed on}
+  - {id: ja-n2-01312-s001, ch: のろい, pr: のろい, ds: thickheaded}
+  - {id: ja-n2-01320-s001, ch: 這う, pr: はう, ds: to crawl}
+  - {id: ja-n2-01321-s001, ch: 生える, pr: はえる, ds: to grow}
+  - {id: ja-n2-01322-s001, ch: はがす, pr: はがす, ds: to tear off}
+  - {id: ja-n2-01324-s001, ch: 秤, pr: はかり, ds: scales}
+  review_grammar: []
+- id: level-21-science-09
+  title: Science and investigation - 9
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01431-s001, ch: 標本, pr: ひょうほん, ds: specimen}
+  - {id: ja-n2-01448-s001, ch: 深まる, pr: ふかまる, ds: to deepen}
+  - {id: ja-n2-01449-s001, ch: 不規則, pr: ふきそく, ds: irregular}
+  - {id: ja-n2-01457-s001, ch: 膨らます, pr: ふくらます, ds: to swell}
+  - {id: ja-n2-01458-s001, ch: 膨らむ, pr: ふくらむ, ds: to expand}
+  - {id: ja-n2-01460-s001, ch: 更ける, pr: ふける, ds: to get late}
+  - {id: ja-n2-01463-s001, ch: ふさがる, pr: ふさがる, ds: to be closed}
+  - {id: ja-n2-01464-s001, ch: 塞ぐ, pr: ふさぐ, ds: to stop up}
+  - {id: ja-n2-01473-s001, ch: ぶつかる, pr: ぶつかる, ds: to bump into}
+  - {id: ja-n2-01474-s001, ch: ぶつける, pr: ぶつける, ds: to hit (e.g. one's head)}
+  - {id: ja-n2-01479-s001, ch: 吹雪, pr: ふぶき, ds: snow storm}
+  - {id: ja-n2-01481-s001, ch: 踏切, pr: ふみきり, ds: railway crossing}
+  - {id: ja-n2-01482-s001, ch: 麓, pr: ふもと, ds: foot (of a mountain or hill)}
+  - {id: ja-n2-01499-s001, ch: 噴火, pr: ふんか, ds: eruption}
+  - {id: ja-n2-01503-s001, ch: 噴水, pr: ふんすい, ds: water fountain}
+  - {id: ja-n2-01504-s001, ch: 分数, pr: ぶんすう, ds: fraction}
+  - {id: ja-n2-01506-s001, ch: 分布, pr: ぶんぷ, ds: distribution}
+  - {id: ja-n2-01513-s001, ch: 並行, pr: へいこう, ds: going side-by-side}
+  - {id: ja-n2-01517-s001, ch: 平野, pr: へいや, ds: plain; flat open land}
+  - {id: ja-n2-01520-s001, ch: 隔てる, pr: へだてる, ds: 'to separate (by distance, time, etc.)'}
+  - {id: ja-n2-01524-s001, ch: ヘリコプター, pr: ヘリコプター, ds: helicopter}
+  - {id: ja-n2-01528-s001, ch: 望遠鏡, pr: ぼうえんきょう, ds: telescope}
+  - {id: ja-n2-01529-s001, ch: 方角, pr: ほうがく, ds: direction}
+  - {id: ja-n2-01536-s001, ch: 法則, pr: ほうそく, ds: law}
+  - {id: ja-n2-01540-s001, ch: 方程式, pr: ほうていしき, ds: equation}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01410-s001, ch: 人通り, pr: ひとどおり, ds: pedestrian traffic}
+  - {id: ja-n2-01415-s001, ch: ひとりでに, pr: ひとりでに, ds: by itself}
+  - {id: ja-n2-01418-s001, ch: 日にち, pr: ひにち, ds: 'date (of a planned event, act, etc.)'}
+  - {id: ja-n2-01419-s001, ch: ひねる, pr: ひねる, ds: to twist}
+  - {id: ja-n2-01420-s001, ch: 日の入り, pr: ひのいり, ds: sunset}
+  - {id: ja-n2-01421-s001, ch: 日の出, pr: ひので, ds: sunrise}
+  - {id: ja-n2-01422-s001, ch: 響き, pr: ひびき, ds: echo}
+  - {id: ja-n2-01423-s001, ch: 響く, pr: ひびく, ds: to resound}
+  review_grammar: []
+- id: level-21-science-10
+  title: Science and investigation - 10
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01542-s001, ch: 方面, pr: ほうめん, ds: direction}
+  - {id: ja-n2-01547-s001, ch: 牧場, pr: ぼくじょう, ds: farm (livestock)}
+  - {id: ja-n2-01548-s001, ch: 牧畜, pr: ぼくちく, ds: stock-farming}
+  - {id: ja-n2-01553-s001, ch: 北極, pr: ほっきょく, ds: North Pole}
+  - {id: ja-n2-01561-s001, ch: 盆地, pr: ぼんち, ds: basin (e.g. between mountains)}
+  - {id: ja-n2-01569-s001, ch: まく, pr: まく, ds: to sow}
+  - {id: ja-n2-01570-s001, ch: まく, pr: まく, ds: to scatter}
+  - {id: ja-n2-01572-s001, ch: 曲げる, pr: まげる, ds: to bend}
+  - {id: ja-n2-01574-s001, ch: 摩擦, pr: まさつ, ds: friction}
+  - {id: ja-n2-01582-s001, ch: またぐ, pr: またぐ, ds: to step over}
+  - {id: ja-n2-01608-s001, ch: 見下ろす, pr: みおろす, ds: to overlook}
+  - {id: ja-n2-01610-s001, ch: 三日月, pr: みかづき, ds: crescent moon}
+  - {id: ja-n2-01611-s001, ch: 岬, pr: みさき, ds: cape (on coast)}
+  - {id: ja-n2-01623-s001, ch: 実る, pr: みのる, ds: to bear fruit}
+  - {id: ja-n2-01635-s001, ch: 無限, pr: むげん, ds: infinity}
+  - {id: ja-n2-01638-s001, ch: 矛盾, pr: むじゅん, ds: contradiction}
+  - {id: ja-n2-01640-s001, ch: 無数, pr: むすう, ds: innumerable}
+  - {id: ja-n2-01642-s001, ch: 群れ, pr: むれ, ds: group}
+  - {id: ja-n2-01654-s001, ch: 恵まれる, pr: めぐまれる, ds: to be blessed with}
+  - {id: ja-n2-01662-s001, ch: めっきり, pr: めっきり, ds: remarkably}
+  - {id: ja-n2-01668-s001, ch: 面積, pr: めんせき, ds: area (measurement)}
+  - {id: ja-n2-01674-s001, ch: モーター, pr: モーター, ds: motor}
+  - {id: ja-n2-01677-s001, ch: 潜る, pr: もぐる, ds: to dive (into or under water)}
+  - {id: ja-n2-01684-s001, ch: モデル, pr: モデル, ds: model}
+  - {id: ja-n2-01685-s001, ch: もともと, pr: もともと, ds: originally}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01513-s001, ch: 並行, pr: へいこう, ds: going side-by-side}
+  - {id: ja-n2-01517-s001, ch: 平野, pr: へいや, ds: plain; flat open land}
+  - {id: ja-n2-01520-s001, ch: 隔てる, pr: へだてる, ds: 'to separate (by distance, time, etc.)'}
+  - {id: ja-n2-01524-s001, ch: ヘリコプター, pr: ヘリコプター, ds: helicopter}
+  - {id: ja-n2-01528-s001, ch: 望遠鏡, pr: ぼうえんきょう, ds: telescope}
+  - {id: ja-n2-01529-s001, ch: 方角, pr: ほうがく, ds: direction}
+  - {id: ja-n2-01536-s001, ch: 法則, pr: ほうそく, ds: law}
+  - {id: ja-n2-01540-s001, ch: 方程式, pr: ほうていしき, ds: equation}
+  review_grammar: []
+- id: level-21-science-11
+  title: Science and investigation - 11
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary:
+  - {id: ja-n2-01690-s001, ch: モノレール, pr: モノレール, ds: monorail}
+  - {id: ja-n2-01691-s001, ch: 紅葉, pr: もみじ, ds: maple (tree)}
+  - {id: ja-n2-01693-s001, ch: 燃やす, pr: もやす, ds: to burn}
+  - {id: ja-n2-01696-s001, ch: 問答, pr: もんどう, ds: questions and answers}
+  - {id: ja-n2-01698-s001, ch: 夜間, pr: やかん, ds: night}
+  - {id: ja-n2-01711-s001, ch: やっつける, pr: やっつける, ds: to beat}
+  - {id: ja-n2-01721-s001, ch: 夕立, pr: ゆうだち, ds: '(sudden, heavy) shower (on a summer afternoon or evening)'}
+  - {id: ja-n2-01722-s001, ch: 夕日, pr: ゆうひ, ds: evening sun}
+  - {id: ja-n2-01733-s001, ch: 溶岩, pr: ようがん, ds: lava}
+  - {id: ja-n2-01738-s001, ch: 容積, pr: ようせき, ds: capacity}
+  - {id: ja-n2-01743-s001, ch: 養分, pr: ようぶん, ds: nutrient}
+  - {id: ja-n2-01758-s001, ch: 蘇る, pr: よみがえる, ds: to be resurrected}
+  - {id: ja-n2-01768-s001, ch: 理科, pr: りか, ds: science as a school subject}
+  - {id: ja-n2-01774-s001, ch: 流域, pr: りゅういき, ds: drainage basin}
+  - {id: ja-n2-01777-s001, ch: 漁師, pr: りょうし, ds: fisherman}
+  - {id: ja-n2-01788-s001, ch: 列島, pr: れっとう, ds: archipelago}
+  - {id: ja-n2-01792-s001, ch: レンズ, pr: レンズ, ds: lens}
+  - {id: ja-n2-01803-s001, ch: 湧く, pr: わく, ds: to well (up)}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-01642-s001, ch: 群れ, pr: むれ, ds: group}
+  - {id: ja-n2-01654-s001, ch: 恵まれる, pr: めぐまれる, ds: to be blessed with}
+  - {id: ja-n2-01662-s001, ch: めっきり, pr: めっきり, ds: remarkably}
+  - {id: ja-n2-01668-s001, ch: 面積, pr: めんせき, ds: area (measurement)}
+  - {id: ja-n2-01674-s001, ch: モーター, pr: モーター, ds: motor}
+  - {id: ja-n2-01677-s001, ch: 潜る, pr: もぐる, ds: to dive (into or under water)}
+  - {id: ja-n2-01684-s001, ch: モデル, pr: モデル, ds: model}
+  - {id: ja-n2-01685-s001, ch: もともと, pr: もともと, ds: originally}
+  review_grammar: []
+- id: level-21-science-practice-01
+  title: Science and investigation - sentence practice 1
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary: []
+  grammar:
+  - {id: ja-n2-g007, ch: 普通形限り, ds: as long as; while a condition holds}
+  - {id: ja-n2-g008, ch: 動詞ない限り, ds: unless; as long as not}
+  - {id: ja-n2-g026, ch: Nに加えて, ds: in addition to}
+  review_vocabulary:
+  - {id: ja-n2-01743-s001, ch: 養分, pr: ようぶん, ds: nutrient}
+  - {id: ja-n2-01758-s001, ch: 蘇る, pr: よみがえる, ds: to be resurrected}
+  - {id: ja-n2-01768-s001, ch: 理科, pr: りか, ds: science as a school subject}
+  - {id: ja-n2-01774-s001, ch: 流域, pr: りゅういき, ds: drainage basin}
+  - {id: ja-n2-01777-s001, ch: 漁師, pr: りょうし, ds: fisherman}
+  - {id: ja-n2-01788-s001, ch: 列島, pr: れっとう, ds: archipelago}
+  - {id: ja-n2-01792-s001, ch: レンズ, pr: レンズ, ds: lens}
+  - {id: ja-n2-01803-s001, ch: 湧く, pr: わく, ds: to well (up)}
+  review_grammar: []
+- id: level-21-science-practice-02
+  title: Science and investigation - sentence practice 2
+  outcome: Interpret an explanatory source and keep its method separate from its conclusion.
+  vocabulary: []
+  grammar:
+  - {id: ja-n2-g043, ch: Nに限らず, ds: not limited to}
+  - {id: ja-n2-g044, ch: Nを問わず, ds: regardless of; irrespective of}
+  review_vocabulary:
+  - {id: ja-n2-01743-s001, ch: 養分, pr: ようぶん, ds: nutrient}
+  - {id: ja-n2-01758-s001, ch: 蘇る, pr: よみがえる, ds: to be resurrected}
+  - {id: ja-n2-01768-s001, ch: 理科, pr: りか, ds: science as a school subject}
+  - {id: ja-n2-01774-s001, ch: 流域, pr: りゅういき, ds: drainage basin}
+  - {id: ja-n2-01777-s001, ch: 漁師, pr: りょうし, ds: fisherman}
+  - {id: ja-n2-01788-s001, ch: 列島, pr: れっとう, ds: archipelago}
+  - {id: ja-n2-01792-s001, ch: レンズ, pr: レンズ, ds: lens}
+  - {id: ja-n2-01803-s001, ch: 湧く, pr: わく, ds: to well (up)}
+  review_grammar:
+  - {id: ja-n2-g007, ch: 普通形限り, ds: as long as; while a condition holds}
+  - {id: ja-n2-g008, ch: 動詞ない限り, ds: unless; as long as not}
+  - {id: ja-n2-g026, ch: Nに加えて, ds: in addition to}

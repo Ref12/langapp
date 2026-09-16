@@ -1,0 +1,362 @@
+schema_version: 3
+id: ru-level-09
+title: What was happening and what happened
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 9
+phase: stories-conversations
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+goals: &id001
+- Separate ongoing background from completed outcomes through aspect.
+- Distinguish non-occurrence from an unachieved result under negation.
+- Contrast a current journey with habitual travel.
+checkpoint:
+  task: Narrate an unfamiliar event sequence and answer new questions about background, repeated actions, and achieved results.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-09-time-01
+  title: Time and event sequence - 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary:
+  - {id: ru-or-n00240-s001, ch: событие, pr: собы́тие, ds: event}
+  - {id: ru-or-n00030-s001, ch: случай, pr: слу́чай, ds: incident}
+  - {id: ru-or-n00064-s001, ch: история, pr: исто́рия, ds: story}
+  - {id: ru-or-n14492-s001, ch: прошлое, pr: про́шлое, ds: past}
+  - {id: ru-or-n00208-s001, ch: будущее, pr: бу́дущее, ds: future}
+  - {id: ru-or-n00118-s001, ch: момент, pr: моме́нт, ds: moment}
+  - {id: ru-or-n00975-s001, ch: эпоха, pr: эпо́ха, ds: epoch}
+  - {id: ru-or-n00458-s001, ch: период, pr: пери́од, ds: period}
+  - {id: ru-or-n00415-s001, ch: детство, pr: де́тство, ds: childhood}
+  - {id: ru-or-n00936-s001, ch: молодость, pr: мо́лодость, ds: youth}
+  - {id: ru-or-n00346-s001, ch: возраст, pr: во́зраст, ds: age}
+  - {id: ru-or-n00636-s001, ch: рождение, pr: рожде́ние, ds: birth}
+  - {id: ru-or-n00010-s001, ch: жизнь, pr: жизнь, ds: life}
+  - {id: ru-or-n00084-s001, ch: смерть, pr: смерть, ds: death}
+  - {id: ru-or-n00582-s001, ch: воспоминание, pr: воспомина́ние, ds: memory}
+  - {id: ru-or-n00199-s001, ch: память, pr: па́мять, ds: memory}
+  - {id: ru-or-n00144-s001, ch: сон, pr: сон, ds: dream}
+  - {id: ru-or-n01118-s001, ch: январь, pr: янва́рь, ds: January}
+  - {id: ru-or-n01519-s001, ch: февраль, pr: февра́ль, ds: February}
+  - {id: ru-or-n01033-s001, ch: март, pr: март, ds: March}
+  - {id: ru-or-n01406-s001, ch: апрель, pr: апре́ль, ds: April}
+  - {id: ru-or-n00988-s001, ch: май, pr: май, ds: May}
+  - {id: ru-or-n01018-s001, ch: июнь, pr: ию́нь, ds: June}
+  - {id: ru-or-n01096-s001, ch: июль, pr: ию́ль, ds: July}
+  - {id: ru-or-n00686-s001, ch: август, pr: а́вгуст, ds: August}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00382-s001, ch: начало, pr: нача́ло, ds: beginning}
+  - {id: ru-or-n00022-s001, ch: конец, pr: коне́ц, ds: end}
+  - {id: ru-or-o00159-s001, ch: вчера, pr: вчера́, ds: yesterday}
+  - {id: ru-or-o00272-s001, ch: рано, pr: ра́но, ds: early}
+  - {id: ru-or-o00235-s001, ch: поздно, pr: по́здно, ds: late}
+  - {id: ru-or-o00150-s001, ch: сначала, pr: снача́ла, ds: at first}
+  - {id: ru-or-o00309-s001, ch: заранее, pr: зара́нее, ds: beforehand}
+  - {id: ru-or-o00354-s001, ch: вовремя, pr: во́время, ds: on time}
+  review_grammar:
+  - {id: ru-g-past-agreement, ch: работал / работала / работало / работали, ds: Match a past-tense verb to gender or number}
+  - {id: ru-g-duration-deadline, ch: '[duration]; через [accusative time]; до [genitive endpoint]', ds: 'Distinguish duration, time until, and an endpoint'}
+  - {id: ru-g-calendar-frames, ch: 'в [accusative weekday]; [genitive ordinal date] [genitive month]', ds: Give a weekday or date with the appropriate frame}
+- id: level-09-time-02
+  title: Time and event sequence - 2
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary:
+  - {id: ru-or-n00772-s001, ch: сентябрь, pr: сентя́брь, ds: September}
+  - {id: ru-or-n00717-s001, ch: октябрь, pr: октя́брь, ds: October}
+  - {id: ru-or-n00974-s001, ch: ноябрь, pr: ноя́брь, ds: November}
+  - {id: ru-or-n01010-s001, ch: декабрь, pr: дека́брь, ds: December}
+  - {id: ru-or-n00500-s001, ch: весна, pr: весна́, ds: springtime}
+  - {id: ru-or-n00327-s001, ch: лето, pr: ле́то, ds: summer}
+  - {id: ru-or-n00597-s001, ch: осень, pr: о́сень, ds: autumn}
+  - {id: ru-or-n00365-s001, ch: зима, pr: зима́, ds: winter}
+  - {id: ru-or-o00206-s001, ch: недавно, pr: неда́вно, ds: recently}
+  - {id: ru-or-o00108-s001, ch: давно, pr: давно́, ds: long ago}
+  - {id: ru-or-o00168-s001, ch: однажды, pr: одна́жды, ds: one day}
+  - {id: ru-or-o00064-s001, ch: тогда, pr: тогда́, ds: then}
+  - {id: ru-or-o00057-s001, ch: теперь, pr: тепе́рь, ds: now}
+  - {id: ru-or-o00032-s001, ch: уже, pr: уже́, ds: already}
+  - {id: ru-or-o00027-s001, ch: ещё, pr: ещё, ds: still}
+  - {id: ru-or-o00105-s001, ch: наконец, pr: наконе́ц, ds: finally}
+  - {id: ru-or-o00070-s001, ch: вдруг, pr: вдруг, ds: suddenly}
+  - {id: ru-or-o00262-s001, ch: внезапно, pr: внеза́пно, ds: suddenly}
+  - {id: ru-or-o00083-s001, ch: сразу, pr: сра́зу, ds: immediately}
+  - {id: ru-or-o00086-s001, ch: снова, pr: сно́ва, ds: again}
+  - {id: ru-or-o00090-s001, ch: опять, pr: опя́ть, ds: again}
+  - {id: ru-or-o00212-s001, ch: вскоре, pr: вско́ре, ds: soon}
+  - {id: ru-or-o00243-s001, ch: постепенно, pr: постепе́нно, ds: gradually}
+  - {id: ru-or-o00228-s001, ch: одновременно, pr: одновре́менно, ds: at the same time}
+  - {id: ru-or-o00472-s001, ch: ежедневно, pr: ежедне́вно, ds: daily}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01118-s001, ch: январь, pr: янва́рь, ds: January}
+  - {id: ru-or-n01519-s001, ch: февраль, pr: февра́ль, ds: February}
+  - {id: ru-or-n01033-s001, ch: март, pr: март, ds: March}
+  - {id: ru-or-n01406-s001, ch: апрель, pr: апре́ль, ds: April}
+  - {id: ru-or-n00988-s001, ch: май, pr: май, ds: May}
+  - {id: ru-or-n01018-s001, ch: июнь, pr: ию́нь, ds: June}
+  - {id: ru-or-n01096-s001, ch: июль, pr: ию́ль, ds: July}
+  - {id: ru-or-n00686-s001, ch: август, pr: а́вгуст, ds: August}
+  review_grammar:
+  - {id: ru-g-past-agreement, ch: работал / работала / работало / работали, ds: Match a past-tense verb to gender or number}
+  - {id: ru-g-duration-deadline, ch: '[duration]; через [accusative time]; до [genitive endpoint]', ds: 'Distinguish duration, time until, and an endpoint'}
+  - {id: ru-g-calendar-frames, ch: 'в [accusative weekday]; [genitive ordinal date] [genitive month]', ds: Give a weekday or date with the appropriate frame}
+- id: level-09-time-03
+  title: Time and event sequence - 3
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary:
+  - {id: ru-or-o00817-s001, ch: ежегодно, pr: ежего́дно, ds: annually}
+  - {id: ru-or-o00252-s001, ch: постоянно, pr: постоя́нно, ds: constantly}
+  - {id: ru-or-o00164-s001, ch: обычно, pr: обы́чно, ds: usually}
+  - {id: ru-or-o00149-s001, ch: часто, pr: ча́сто, ds: often}
+  - {id: ru-or-o00291-s001, ch: редко, pr: ре́дко, ds: rarely}
+  - {id: ru-or-o00093-s001, ch: никогда, pr: никогда́, ds: never}
+  - {id: ru-or-o00110-s001, ch: долго, pr: до́лго, ds: long}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00262-s001, ch: внезапно, pr: внеза́пно, ds: suddenly}
+  - {id: ru-or-o00083-s001, ch: сразу, pr: сра́зу, ds: immediately}
+  - {id: ru-or-o00086-s001, ch: снова, pr: сно́ва, ds: again}
+  - {id: ru-or-o00090-s001, ch: опять, pr: опя́ть, ds: again}
+  - {id: ru-or-o00212-s001, ch: вскоре, pr: вско́ре, ds: soon}
+  - {id: ru-or-o00243-s001, ch: постепенно, pr: постепе́нно, ds: gradually}
+  - {id: ru-or-o00228-s001, ch: одновременно, pr: одновре́менно, ds: at the same time}
+  - {id: ru-or-o00472-s001, ch: ежедневно, pr: ежедне́вно, ds: daily}
+  review_grammar:
+  - {id: ru-g-past-agreement, ch: работал / работала / работало / работали, ds: Match a past-tense verb to gender or number}
+  - {id: ru-g-duration-deadline, ch: '[duration]; через [accusative time]; до [genitive endpoint]', ds: 'Distinguish duration, time until, and an endpoint'}
+  - {id: ru-g-calendar-frames, ch: 'в [accusative weekday]; [genitive ordinal date] [genitive month]', ds: Give a weekday or date with the appropriate frame}
+- id: level-09-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00116-s001, ch: случиться, pr: случи́ться, ds: happen}
+  - {id: ru-or-v00106-s001, ch: происходить, pr: происходи́ть, ds: happen}
+  - {id: ru-or-v00114-s001, ch: произойти, pr: произойти́, ds: happen}
+  - {id: ru-or-v00050-s001, ch: бывать, pr: быва́ть, ds: happen}
+  - {id: ru-or-v00069-s001, ch: появиться, pr: появи́ться, ds: appear}
+  - {id: ru-or-v00183-s001, ch: появляться, pr: появля́ться, ds: appear}
+  - {id: ru-or-v00165-s001, ch: исчезнуть, pr: исче́знуть, ds: disappear}
+  - {id: ru-or-v00542-s001, ch: исчезать, pr: исчеза́ть, ds: disappear}
+  - {id: ru-or-v00031-s001, ch: оказаться, pr: оказа́ться, ds: turn out}
+  - {id: ru-or-v00159-s001, ch: оказываться, pr: ока́зываться, ds: turn out}
+  - {id: ru-or-v00027-s001, ch: остаться, pr: оста́ться, ds: remain}
+  - {id: ru-or-v00057-s001, ch: оставаться, pr: остава́ться, ds: remain}
+  - {id: ru-or-v14827-s001, ch: стать, pr: стать, ds: become}
+  - {id: ru-or-v00100-s001, ch: становиться, pr: станови́ться, ds: become}
+  - {id: ru-or-v00299-s001, ch: родиться, pr: роди́ться, ds: be born}
+  - {id: ru-or-v01229-s001, ch: рождаться, pr: рожда́ться, ds: be born}
+  - {id: ru-or-v00134-s001, ch: умереть, pr: умере́ть, ds: die}
+  - {id: ru-or-v00448-s001, ch: умирать, pr: умира́ть, ds: die}
+  - {id: ru-or-v00418-s001, ch: вырасти, pr: вы́расти, ds: grow}
+  - {id: ru-or-v00370-s001, ch: расти, pr: расти́, ds: grow}
+  - {id: ru-or-v00288-s001, ch: проснуться, pr: просну́ться, ds: wake}
+  - {id: ru-or-v00871-s001, ch: просыпаться, pr: просыпа́ться, ds: wake}
+  - {id: ru-or-v00582-s001, ch: заснуть, pr: засну́ть, ds: fall asleep}
+  - {id: ru-or-v14534-s001, ch: засыпать, pr: засыпа́ть, ds: fall asleep}
+  - {id: ru-or-v00083-s001, ch: встать, pr: встать, ds: get up}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00036-s001, ch: ждать, pr: ждать, ds: wait}
+  - {id: ru-or-v00167-s001, ch: помочь, pr: помо́чь, ds: help}
+  - {id: ru-or-v00205-s001, ch: помогать, pr: помога́ть, ds: help}
+  - {id: ru-or-v00076-s001, ch: показать, pr: показа́ть, ds: show}
+  - {id: ru-or-v00029-s001, ch: дать, pr: дать, ds: give}
+  - {id: ru-or-v00020-s001, ch: взять, pr: взять, ds: take}
+  - {id: ru-or-v00047-s001, ch: прийти, pr: прийти́, ds: come}
+  - {id: ru-or-v02582-s901, ch: умываться, pr: умыва́ться, ds: wash oneself}
+  review_grammar:
+  - {id: ru-g-reflexive-routines, ch: '[verb]-ся / -сь', ds: Use reflexive verbs for familiar routines}
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+- id: level-09-actions-02
+  title: Actions and results - 2
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00056-s001, ch: сесть, pr: сесть, ds: sit down}
+  - {id: ru-or-v00017-s001, ch: сидеть, pr: сиде́ть, ds: sit}
+  - {id: ru-or-v00010-s001, ch: стоять, pr: стоя́ть, ds: stand}
+  - {id: ru-or-v00039-s001, ch: лежать, pr: лежа́ть, ds: be situated}
+  - {id: ru-or-v00115-s001, ch: подняться, pr: подня́ться, ds: to climb}
+  - {id: ru-or-v00272-s001, ch: подниматься, pr: поднима́ться, ds: rise}
+  - {id: ru-or-v00172-s001, ch: упасть, pr: упа́сть, ds: fall}
+  - {id: ru-or-v00258-s001, ch: падать, pr: па́дать, ds: fall}
+  - {id: ru-or-v00102-s001, ch: бежать, pr: бежа́ть, ds: run}
+  - {id: ru-or-v00316-s001, ch: бегать, pr: бе́гать, ds: run}
+  - {id: ru-or-v00265-s001, ch: побежать, pr: побежа́ть, ds: break into a run}
+  - {id: ru-or-v00026-s001, ch: пойти, pr: пойти́, ds: go}
+  - {id: ru-or-v00052-s001, ch: уйти, pr: уйти́, ds: leave}
+  - {id: ru-or-v00090-s001, ch: уходить, pr: уходи́ть, ds: leave}
+  - {id: ru-or-v00445-s001, ch: дойти, pr: дойти́, ds: reach}
+  - {id: ru-or-v00758-s001, ch: доходить, pr: доходи́ть, ds: reach}
+  - {id: ru-or-v00038-s001, ch: найти, pr: найти́, ds: find}
+  - {id: ru-or-v00309-s001, ch: находить, pr: находи́ть, ds: find}
+  - {id: ru-or-v00160-s001, ch: потерять, pr: потеря́ть, ds: lose}
+  - {id: ru-or-v00346-s001, ch: терять, pr: теря́ть, ds: lose}
+  - {id: ru-or-v00431-s001, ch: забывать, pr: забыва́ть, ds: forget}
+  - {id: ru-or-v00071-s001, ch: вспомнить, pr: вспо́мнить, ds: remember}
+  - {id: ru-or-v00170-s001, ch: вспоминать, pr: вспомина́ть, ds: remember}
+  - {id: ru-or-v00024-s001, ch: увидеть, pr: уви́деть, ds: see}
+  - {id: ru-or-v00111-s001, ch: услышать, pr: услы́шать, ds: hear}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00448-s001, ch: умирать, pr: умира́ть, ds: die}
+  - {id: ru-or-v00418-s001, ch: вырасти, pr: вы́расти, ds: grow}
+  - {id: ru-or-v00370-s001, ch: расти, pr: расти́, ds: grow}
+  - {id: ru-or-v00288-s001, ch: проснуться, pr: просну́ться, ds: wake}
+  - {id: ru-or-v00871-s001, ch: просыпаться, pr: просыпа́ться, ds: wake}
+  - {id: ru-or-v00582-s001, ch: заснуть, pr: засну́ть, ds: fall asleep}
+  - {id: ru-or-v14534-s001, ch: засыпать, pr: засыпа́ть, ds: fall asleep}
+  - {id: ru-or-v00083-s001, ch: встать, pr: встать, ds: get up}
+  review_grammar:
+  - {id: ru-g-reflexive-routines, ch: '[verb]-ся / -сь', ds: Use reflexive verbs for familiar routines}
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+- id: level-09-actions-03
+  title: Actions and results - 3
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00049-s001, ch: заметить, pr: заме́тить, ds: notice}
+  - {id: ru-or-v00280-s001, ch: замечать, pr: замеча́ть, ds: notice}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00309-s001, ch: находить, pr: находи́ть, ds: find}
+  - {id: ru-or-v00160-s001, ch: потерять, pr: потеря́ть, ds: lose}
+  - {id: ru-or-v00346-s001, ch: терять, pr: теря́ть, ds: lose}
+  - {id: ru-or-v00431-s001, ch: забывать, pr: забыва́ть, ds: forget}
+  - {id: ru-or-v00071-s001, ch: вспомнить, pr: вспо́мнить, ds: remember}
+  - {id: ru-or-v00170-s001, ch: вспоминать, pr: вспомина́ть, ds: remember}
+  - {id: ru-or-v00024-s001, ch: увидеть, pr: уви́деть, ds: see}
+  - {id: ru-or-v00111-s001, ch: услышать, pr: услы́шать, ds: hear}
+  review_grammar:
+  - {id: ru-g-reflexive-routines, ch: '[verb]-ся / -сь', ds: Use reflexive verbs for familiar routines}
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}
+- id: level-09-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00035-s001, ch: прошлый, pr: про́шлый, ds: last}
+  - {id: ru-or-a00039-s001, ch: ранний, pr: ра́нний, ds: early}
+  - {id: ru-or-a00112-s001, ch: поздний, pr: по́здний, ds: late}
+  - {id: ru-or-a00019-s001, ch: последний, pr: после́дний, ds: last}
+  - {id: ru-or-a00050-s001, ch: следующий, pr: сле́дующий, ds: next}
+  - {id: ru-or-a00486-s001, ch: давний, pr: да́вний, ds: old}
+  - {id: ru-or-a00078-s001, ch: прежний, pr: пре́жний, ds: former}
+  - {id: ru-or-a00445-s001, ch: будущий, pr: бу́дущий, ds: future}
+  - {id: ru-or-a00041-s001, ch: молодой, pr: молодо́й, ds: young}
+  - {id: ru-or-a00275-s001, ch: пожилой, pr: пожило́й, ds: elderly}
+  - {id: ru-or-a00238-s001, ch: взрослый, pr: взро́слый, ds: adult}
+  - {id: ru-or-a00248-s001, ch: неожиданный, pr: неожи́данный, ds: unexpected}
+  - {id: ru-or-a00483-s001, ch: внезапный, pr: внеза́пный, ds: sudden}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00249-s001, ch: занятый, pr: за́нятый, ds: busy}
+  - {id: ru-or-a00233-s001, ch: иностранный, pr: иностра́нный, ds: foreign}
+  - {id: ru-or-a00158-s001, ch: интересный, pr: интере́сный, ds: interesting}
+  - {id: ru-or-a00662-s001, ch: скучный, pr: ску́чный, ds: boring}
+  - {id: ru-or-a00227-s001, ch: трудный, pr: тру́дный, ds: difficult}
+  - {id: ru-or-a11753-s001, ch: лёгкий, pr: лёгкий, ds: easy (not difficult)}
+  - {id: ru-or-a00105-s001, ch: важный, pr: ва́жный, ds: important}
+  - {id: ru-or-a00052-s001, ch: готовый, pr: гото́вый, ds: ready}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+  - {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+- id: level-09-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-o00071-s001, ch: никто, pr: никто́, ds: nobody}
+  - {id: ru-or-o00050-s001, ch: ничто, pr: ничто́, ds: nothing}
+  - {id: ru-or-o01975-s001, ch: кто-то, pr: кто́-то, ds: somebody}
+  - {id: ru-or-o01972-s001, ch: что-то, pr: что́-то, ds: something}
+  - {id: ru-or-o01971-s001, ch: какой-то, pr: како́й-то, ds: some}
+  - {id: ru-or-o00077-s001, ch: пока, pr: пока́, ds: while}
+  - {id: ru-or-o00080-s001, ch: хотя, pr: хотя́, ds: although}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00844-s001, ch: шестьсот, pr: шестьсо́т, ds: six hundred}
+  - {id: ru-or-o00909-s001, ch: семьсот, pr: семьсо́т, ds: seven hundred}
+  - {id: ru-or-o00890-s001, ch: восемьсот, pr: восемьсо́т, ds: eight hundred}
+  - {id: ru-or-o00832-s001, ch: девятьсот, pr: девятьсо́т, ds: nine hundred}
+  - {id: ru-or-n00075-s001, ch: тысяча, pr: ты́сяча, ds: a thousand}
+  - {id: ru-or-o00037-s001, ch: если, pr: е́сли, ds: if}
+  - {id: ru-or-o00039-s001, ch: или, pr: и́ли, ds: or}
+  - {id: ru-or-o00045-s001, ch: чтобы, pr: что́бы, ds: in order to}
+  review_grammar:
+  - {id: ru-g-irregular-eat-give, ch: ем / ешь / ест / едим / едите / едят; дам / дашь / даст, ds: Distinguish irregular eating and giving forms}
+- id: level-09-travel-practice-01
+  title: Travel and transport - sentence practice 1
+  outcome: Explain an origin or destination and negotiate a changed journey.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-habitual-motion, ch: идти / ходить; ехать / ездить, ds: Contrast a directed journey with habitual travel}
+  review_vocabulary:
+  - {id: ru-or-v00048-s001, ch: ходить, pr: ходи́ть, ds: walk}
+  - {id: ru-or-v00306-s001, ch: ездить, pr: е́здить, ds: go}
+  - {id: ru-or-n01880-s001, ch: трасса, pr: тра́сса, ds: route}
+  - {id: ru-or-n18247-s001, ch: километраж, pr: километра́ж, ds: mileage}
+  - {id: ru-or-n05742-s001, ch: путеводитель, pr: путеводи́тель, ds: guide-book}
+  - {id: ru-or-n02797-s001, ch: экскурсия, pr: экску́рсия, ds: excursion}
+  - {id: ru-or-n05135-s001, ch: экскурсовод, pr: экскурсово́д, ds: guide}
+  - {id: ru-or-n01375-s001, ch: справка, pr: спра́вка, ds: information}
+  - {id: ru-or-n01705-s001, ch: бюро, pr: бюро́, ds: office}
+  - {id: ru-or-n06204-s001, ch: постоялец, pr: постоя́лец, ds: lodger}
+  review_grammar:
+  - {id: ru-g-place-direction-origin, ch: 'где / куда / откуда; в / на + [accusative destination]', ds: 'Distinguish location, destination, and origin'}
+  - {id: ru-g-current-motion, ch: 'иду / идёт; еду / едет + [destination]', ds: Distinguish current travel on foot and by vehicle}
+  - {id: ru-g-origins-and-people, ch: 'из / с / от + [genitive]; к + [dative]', ds: Name an origin or movement toward a person}
+- id: level-09-time-practice-01
+  title: Time and event sequence - sentence practice 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-narrative-aspect, ch: '[imperfective background], потом [perfective outcome]', ds: Separate narrative background from completed events}
+  - {id: ru-g-temporal-clauses, ch: 'когда / пока / после того как [clause]', ds: Link an event to a time or ongoing background}
+  - {id: ru-g-time-to-result, ch: 'читать [duration]; прочитать за [accusative duration]', ds: Distinguish activity duration from time to completion}
+  review_vocabulary:
+  - {id: ru-or-o00472-s001, ch: ежедневно, pr: ежедне́вно, ds: daily}
+  - {id: ru-or-o00817-s001, ch: ежегодно, pr: ежего́дно, ds: annually}
+  - {id: ru-or-o00252-s001, ch: постоянно, pr: постоя́нно, ds: constantly}
+  - {id: ru-or-o00164-s001, ch: обычно, pr: обы́чно, ds: usually}
+  - {id: ru-or-o00149-s001, ch: часто, pr: ча́сто, ds: often}
+  - {id: ru-or-o00291-s001, ch: редко, pr: ре́дко, ds: rarely}
+  - {id: ru-or-o00093-s001, ch: никогда, pr: никогда́, ds: never}
+  - {id: ru-or-o00110-s001, ch: долго, pr: до́лго, ds: long}
+  review_grammar:
+  - {id: ru-g-past-agreement, ch: работал / работала / работало / работали, ds: Match a past-tense verb to gender or number}
+  - {id: ru-g-duration-deadline, ch: '[duration]; через [accusative time]; до [genitive endpoint]', ds: 'Distinguish duration, time until, and an endpoint'}
+  - {id: ru-g-calendar-frames, ch: 'в [accusative weekday]; [genitive ordinal date] [genitive month]', ds: Give a weekday or date with the appropriate frame}
+- id: level-09-actions-practice-01
+  title: Actions and results - sentence practice 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-negated-aspect, ch: не читал / не прочитал, ds: Contrast a non-occurring action and an unmet result}
+  review_vocabulary:
+  - {id: ru-or-v00061-s001, ch: читать, pr: чита́ть, ds: read}
+  - {id: ru-or-v00352-s001, ch: прочитать, pr: прочита́ть, ds: read}
+  - {id: ru-or-v00346-s001, ch: терять, pr: теря́ть, ds: lose}
+  - {id: ru-or-v00431-s001, ch: забывать, pr: забыва́ть, ds: forget}
+  - {id: ru-or-v00071-s001, ch: вспомнить, pr: вспо́мнить, ds: remember}
+  - {id: ru-or-v00170-s001, ch: вспоминать, pr: вспомина́ть, ds: remember}
+  - {id: ru-or-v00024-s001, ch: увидеть, pr: уви́деть, ds: see}
+  - {id: ru-or-v00111-s001, ch: услышать, pr: услы́шать, ds: hear}
+  - {id: ru-or-v00049-s001, ch: заметить, pr: заме́тить, ds: notice}
+  - {id: ru-or-v00280-s001, ch: замечать, pr: замеча́ть, ds: notice}
+  review_grammar:
+  - {id: ru-g-reflexive-routines, ch: '[verb]-ся / -сь', ds: Use reflexive verbs for familiar routines}
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  - {id: ru-g-perfective-future, ch: '[perfective personal form] завтра', ds: Present a future event as a bounded outcome}

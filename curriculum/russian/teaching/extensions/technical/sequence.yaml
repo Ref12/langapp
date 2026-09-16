@@ -1,0 +1,149 @@
+schema_version: 3
+id: ru-extension-technical
+title: Understanding digital and technical material
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: extension
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+description: Interpret instructions, system descriptions, and limitations; not engineering competence or authorization to perform a procedure.
+mastery_profile: ru-item-mastery
+mastery_target: understand
+units:
+- id: extension-technical-technology-01
+  title: Technology and systems - 1
+  outcome: Explain a system's use and limitations for a stated audience.
+  vocabulary:
+  - {id: ru-or-n03073-s001, ch: приложение, pr: приложе́ние, ds: software application}
+  - {id: ru-or-n07006-s001, ch: программирование, pr: программи́рование, ds: programming}
+  - {id: ru-or-n04311-s001, ch: программист, pr: программи́ст, ds: programmer}
+  - {id: ru-or-n09311-s001, ch: алгоритм, pr: алгори́тм, ds: algorithm}
+  - {id: ru-or-n05104-s001, ch: код, pr: код, ds: code}
+  - {id: ru-or-n17043-s001, ch: декодирование, pr: декоди́рование, ds: decoding}
+  - {id: ru-or-n05449-s001, ch: шифр, pr: шифр, ds: cipher}
+  - {id: ru-or-n02762-s001, ch: сервер, pr: се́рвер, ds: server}
+  - {id: ru-or-n01352-s001, ch: протокол, pr: протоко́л, ds: protocol}
+  - {id: ru-or-n05301-s001, ch: транзистор, pr: транзи́стор, ds: transistor}
+  - {id: ru-or-n17157-s001, ch: диод, pr: дио́д, ds: diode}
+  - {id: ru-or-n18466-s001, ch: конденсатор, pr: конденса́тор, ds: capacitor}
+  - {id: ru-or-n09505-s001, ch: трансформатор, pr: трансформа́тор, ds: transformer}
+  - {id: ru-or-n11627-s001, ch: выпрямитель, pr: выпрями́тель, ds: rectifier}
+  - {id: ru-or-n04655-s001, ch: генератор, pr: генера́тор, ds: generator}
+  - {id: ru-or-n10871-s001, ch: стабилизатор, pr: стабилиза́тор, ds: stabilizer}
+  - {id: ru-or-n10508-s001, ch: коммутатор, pr: коммута́тор, ds: commutator}
+  - {id: ru-or-n06338-s001, ch: модем, pr: моде́м, ds: modem}
+  - {id: ru-or-n05421-s001, ch: терминал, pr: термина́л, ds: terminal}
+  - {id: ru-or-n01013-s001, ch: порт, pr: порт, ds: port}
+  - {id: ru-or-n00943-s002, ch: пакет, pr: паке́т, ds: packet}
+  - {id: ru-or-n05234-s001, ch: буфер, pr: бу́фер, ds: buffer}
+  - {id: ru-or-n07740-s001, ch: компилятор, pr: компиля́тор, ds: compiler}
+  - {id: ru-or-n14370-s001, ch: интерпретатор, pr: интерпрета́тор, ds: interpreter}
+  - {id: ru-or-n14588-s001, ch: переменная, pr: переме́нная, ds: variable}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v04210-s001, ch: измерять, pr: измеря́ть, ds: measure}
+  - {id: ru-or-v00618-s002, ch: передавать, pr: передава́ть, ds: transmit}
+  - {id: ru-or-v03081-s001, ch: потреблять, pr: потребля́ть, ds: consume}
+  - {id: ru-or-v13907-s001, ch: потребить, pr: потреби́ть, ds: consume}
+  - {id: ru-or-v02625-s001, ch: экономить, pr: эконо́мить, ds: save}
+  - {id: ru-or-v03468-s001, ch: сэкономить, pr: сэконо́мить, ds: save}
+  - {id: ru-or-v00576-s001, ch: производить, pr: производи́ть, ds: produce}
+  - {id: ru-or-v00480-s001, ch: произвести, pr: произвести́, ds: produce}
+  review_grammar:
+  - {id: ru-g-short-passive-result, ch: '[subject] открыт / открыта / открыто / открыты', ds: Describe a result with a short passive participle}
+- id: extension-technical-technology-02
+  title: Technology and systems - 2
+  outcome: Explain a system's use and limitations for a stated audience.
+  vocabulary:
+  - {id: ru-or-n10492-s001, ch: константа, pr: конста́нта, ds: constant}
+  - {id: ru-or-n00674-s001, ch: функция, pr: фу́нкция, ds: function}
+  - {id: ru-or-n02792-s002, ch: указатель, pr: указа́тель, ds: pointer}
+  - {id: ru-or-n00902-s001, ch: строка, pr: строка́, ds: line of text}
+  - {id: ru-or-n00708-s001, ch: поток, pr: пото́к, ds: stream}
+  - {id: ru-or-n14212-s001, ch: синхронизация, pr: синхрониза́ция, ds: synchronization}
+  - {id: ru-or-n09022-s001, ch: конфигурация, pr: конфигура́ция, ds: configuration}
+  - {id: ru-or-n05687-s001, ch: сбой, pr: сбой, ds: failure}
+  - {id: ru-or-v07749-s001, ch: программировать, pr: программи́ровать, ds: program}
+  - {id: ru-or-v05111-s001, ch: запрограммировать, pr: запрограмми́ровать, ds: program}
+  - {id: ru-or-v07829-s001, ch: кодировать, pr: коди́ровать, ds: encode}
+  - {id: ru-or-v07145-s001, ch: закодировать, pr: закоди́ровать, ds: encode}
+  - {id: ru-or-v07673-s001, ch: шифровать, pr: шифрова́ть, ds: encipher}
+  - {id: ru-or-v06641-s001, ch: зашифровать, pr: зашифрова́ть, ds: put into code}
+  - {id: ru-or-v03981-s001, ch: расшифровать, pr: расшифрова́ть, ds: decipher}
+  - {id: ru-or-v08051-s001, ch: расшифровывать, pr: расшифро́вывать, ds: decipher}
+  - {id: ru-or-v10508-s001, ch: компилировать, pr: компили́ровать, ds: compile}
+  - {id: ru-or-v12599-s001, ch: синхронизировать, pr: синхронизи́ровать, ds: synchronize}
+  - {id: ru-or-a05285-s001, ch: синхронный, pr: синхро́нный, ds: synchronous}
+  - {id: ru-or-a01301-s001, ch: параллельный, pr: паралле́льный, ds: parallel}
+  - {id: ru-or-a02366-s002, ch: последовательный, pr: после́довательный, ds: consecutive}
+  - {id: ru-or-a01691-s001, ch: программный, pr: програ́ммный, ds: program}
+  - {id: ru-or-a00649-s001, ch: информационный, pr: информацио́нный, ds: information-related}
+  - {id: ru-or-a02571-s001, ch: вычислительный, pr: вычисли́тельный, ds: computing}
+  - {id: ru-or-a08317-s001, ch: логарифмический, pr: логарифми́ческий, ds: logarithmic}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n06338-s001, ch: модем, pr: моде́м, ds: modem}
+  - {id: ru-or-n05421-s001, ch: терминал, pr: термина́л, ds: terminal}
+  - {id: ru-or-n01013-s001, ch: порт, pr: порт, ds: port}
+  - {id: ru-or-n00943-s002, ch: пакет, pr: паке́т, ds: packet}
+  - {id: ru-or-n05234-s001, ch: буфер, pr: бу́фер, ds: buffer}
+  - {id: ru-or-n07740-s001, ch: компилятор, pr: компиля́тор, ds: compiler}
+  - {id: ru-or-n14370-s001, ch: интерпретатор, pr: интерпрета́тор, ds: interpreter}
+  - {id: ru-or-n14588-s001, ch: переменная, pr: переме́нная, ds: variable}
+  review_grammar:
+  - {id: ru-g-short-passive-result, ch: '[subject] открыт / открыта / открыто / открыты', ds: Describe a result with a short passive participle}
+- id: extension-technical-technology-03
+  title: Technology and systems - 3
+  outcome: Explain a system's use and limitations for a stated audience.
+  vocabulary:
+  - {id: ru-or-a06921-s001, ch: алгоритмический, pr: алгоритми́ческий, ds: algorithmic}
+  - {id: ru-or-v00287-s001, ch: состоять, pr: состоя́ть, ds: consist}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v12599-s001, ch: синхронизировать, pr: синхронизи́ровать, ds: synchronize}
+  - {id: ru-or-a05285-s001, ch: синхронный, pr: синхро́нный, ds: synchronous}
+  - {id: ru-or-a01301-s001, ch: параллельный, pr: паралле́льный, ds: parallel}
+  - {id: ru-or-a02366-s002, ch: последовательный, pr: после́довательный, ds: consecutive}
+  - {id: ru-or-a01691-s001, ch: программный, pr: програ́ммный, ds: program}
+  - {id: ru-or-a00649-s001, ch: информационный, pr: информацио́нный, ds: information-related}
+  - {id: ru-or-a02571-s001, ch: вычислительный, pr: вычисли́тельный, ds: computing}
+  - {id: ru-or-a08317-s001, ch: логарифмический, pr: логарифми́ческий, ds: logarithmic}
+  review_grammar:
+  - {id: ru-g-short-passive-result, ch: '[subject] открыт / открыта / открыто / открыты', ds: Describe a result with a short passive participle}
+- id: extension-technical-technology-practice-01
+  title: Technology and systems - sentence practice 1
+  outcome: Explain a system's use and limitations for a stated audience.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-technical-operating-condition, ch: 'при [prepositional condition] [system behaviour]', ds: Interpret a condition on system behaviour}
+  - {id: ru-g-technical-contingency, ch: 'в случае [genitive event] [instruction]', ds: Read an instruction tied to a specified event}
+  - {id: ru-g-technical-composition-purpose, ch: 'состоит из [genitive]; предназначен для [genitive]', ds: Distinguish a system's components from its intended function}
+  review_vocabulary:
+  - {id: ru-or-v00287-s001, ch: состоять, pr: состоя́ть, ds: consist}
+  - {id: ru-or-a01301-s001, ch: параллельный, pr: паралле́льный, ds: parallel}
+  - {id: ru-or-a02366-s002, ch: последовательный, pr: после́довательный, ds: consecutive}
+  - {id: ru-or-a01691-s001, ch: программный, pr: програ́ммный, ds: program}
+  - {id: ru-or-a00649-s001, ch: информационный, pr: информацио́нный, ds: information-related}
+  - {id: ru-or-a02571-s001, ch: вычислительный, pr: вычисли́тельный, ds: computing}
+  - {id: ru-or-a08317-s001, ch: логарифмический, pr: логарифми́ческий, ds: logarithmic}
+  - {id: ru-or-a06921-s001, ch: алгоритмический, pr: алгоритми́ческий, ds: algorithmic}
+  review_grammar:
+  - {id: ru-g-short-passive-result, ch: '[subject] открыт / открыта / открыто / открыты', ds: Describe a result with a short passive participle}

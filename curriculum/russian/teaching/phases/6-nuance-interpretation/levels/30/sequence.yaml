@@ -1,0 +1,602 @@
+schema_version: 3
+id: ru-level-30
+title: Independent inquiry and sustained revision
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 30
+phase: nuance-interpretation
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+- ru-level-12
+- ru-level-13
+- ru-level-14
+- ru-level-15
+- ru-level-16
+- ru-level-17
+- ru-level-18
+- ru-level-19
+- ru-level-20
+- ru-level-21
+- ru-level-22
+- ru-level-23
+- ru-level-24
+- ru-level-25
+- ru-level-26
+- ru-level-27
+- ru-level-28
+- ru-level-29
+goals: &id001
+- Develop a sustained project for a declared audience using selected sources.
+- Keep causal, conditional, and concessive relations precise across an extended argument.
+- Revise meaning and register after substantive critique while reporting unresolved uncertainty.
+checkpoint:
+  task: Complete a sustained project, discuss sources and uncertainty, and submit a revised response explaining how critique changed the result.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-30-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning task and ask for useful feedback.
+  vocabulary:
+  - {id: ru-or-n09649-s001, ch: самооценка, pr: самооце́нка, ds: self-appraisal}
+  - {id: ru-or-n13206-s001, ch: самоконтроль, pr: самоконтро́ль, ds: self-control}
+  - {id: ru-or-n02775-s001, ch: совершенство, pr: соверше́нство, ds: perfection}
+  - {id: ru-or-n03052-s001, ch: мастерство, pr: мастерство́, ds: skill}
+  - {id: ru-or-n01654-s001, ch: умение, pr: уме́ние, ds: skill}
+  - {id: ru-or-n03578-s001, ch: навык, pr: на́вык, ds: skill}
+  - {id: ru-or-n12303-s001, ch: компетентность, pr: компете́нтность, ds: competence}
+  - {id: ru-or-n10828-s001, ch: грамотность, pr: гра́мотность, ds: literacy}
+  - {id: ru-or-n07655-s001, ch: осведомлённость, pr: осведомлённость, ds: being informed}
+  - {id: ru-or-n08268-s001, ch: эрудиция, pr: эруди́ция, ds: erudition}
+  - {id: ru-or-n08648-s001, ch: кругозор, pr: кругозо́р, ds: horizon}
+  - {id: ru-or-n08979-s001, ch: любознательность, pr: любозна́тельность, ds: curiosity}
+  - {id: ru-or-n08965-s001, ch: наблюдательность, pr: наблюда́тельность, ds: ability to notice things}
+  - {id: ru-or-n10079-s001, ch: изобретательность, pr: изобрета́тельность, ds: inventiveness}
+  - {id: ru-or-n08188-s001, ch: находчивость, pr: нахо́дчивость, ds: resourcefulness}
+  - {id: ru-or-n07991-s001, ch: сообразительность, pr: сообрази́тельность, ds: quick wits}
+  - {id: ru-or-n16242-s001, ch: внимательность, pr: внима́тельность, ds: attentiveness}
+  - {id: ru-or-n23928-s001, ch: усидчивость, pr: уси́дчивость, ds: diligence}
+  - {id: ru-or-n07234-s001, ch: работоспособность, pr: работоспосо́бность, ds: capacity for work}
+  - {id: ru-or-n13353-s001, ch: организованность, pr: организо́ванность, ds: organization}
+  - {id: ru-or-n22647-s001, ch: самодисциплина, pr: самодисципли́на, ds: self-discipline}
+  - {id: ru-or-n12481-s001, ch: целеустремлённость, pr: целеустремлённость, ds: purposefulness}
+  - {id: ru-or-n07609-s001, ch: мотивация, pr: мотива́ция, ds: motivation}
+  - {id: ru-or-n19609-s001, ch: мотивировка, pr: мотивиро́вка, ds: motivation}
+  - {id: ru-or-n06693-s001, ch: стимул, pr: сти́мул, ds: stimulus}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v01767-s001, ch: ссылаться, pr: ссыла́ться, ds: refer}
+  - {id: ru-or-v01345-s001, ch: сослаться, pr: сосла́ться, ds: refer}
+  - {id: ru-or-v00611-s001, ch: пояснить, pr: поясни́ть, ds: elaborate}
+  - {id: ru-or-v02798-s001, ch: пояснять, pr: поясня́ть, ds: explain}
+  - {id: ru-or-v02619-s001, ch: комментировать, pr: комменти́ровать, ds: comment}
+  - {id: ru-or-v12144-s001, ch: проиллюстрировать, pr: проиллюстри́ровать, ds: illustrate}
+  - {id: ru-or-v04353-s001, ch: иллюстрировать, pr: иллюстри́ровать, ds: illustrate}
+  - {id: ru-or-v07159-s001, ch: перестраивать, pr: перестра́ивать, ds: rebuild}
+  review_grammar:
+  - {id: ru-g-learned-skill, ch: 'уметь + [infinitive]; мочь + [infinitive]', ds: Distinguish a learned skill from situational ability}
+  - {id: ru-g-po-dative, ch: 'по [dative subject / route / recurring day]', ds: Interpret selected по plus dative frames}
+- id: level-30-learning-02
+  title: Learning and education - 2
+  outcome: Explain a learning task and ask for useful feedback.
+  vocabulary:
+  - {id: ru-or-n11255-s001, ch: стимуляция, pr: стимуля́ция, ds: stimulation}
+  - {id: ru-or-n06680-s001, ch: поощрение, pr: поощре́ние, ds: encouragement}
+  - {id: ru-or-n01402-s001, ch: признание, pr: призна́ние, ds: recognition}
+  - {id: ru-or-n01143-s001, ch: применение, pr: примене́ние, ds: application}
+  - {id: ru-or-n03060-s001, ch: осуществление, pr: осуществле́ние, ds: realization}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n23928-s001, ch: усидчивость, pr: уси́дчивость, ds: diligence}
+  - {id: ru-or-n07234-s001, ch: работоспособность, pr: работоспосо́бность, ds: capacity for work}
+  - {id: ru-or-n13353-s001, ch: организованность, pr: организо́ванность, ds: organization}
+  - {id: ru-or-n22647-s001, ch: самодисциплина, pr: самодисципли́на, ds: self-discipline}
+  - {id: ru-or-n12481-s001, ch: целеустремлённость, pr: целеустремлённость, ds: purposefulness}
+  - {id: ru-or-n07609-s001, ch: мотивация, pr: мотива́ция, ds: motivation}
+  - {id: ru-or-n19609-s001, ch: мотивировка, pr: мотивиро́вка, ds: motivation}
+  - {id: ru-or-n06693-s001, ch: стимул, pr: сти́мул, ds: stimulus}
+  review_grammar:
+  - {id: ru-g-learned-skill, ch: 'уметь + [infinitive]; мочь + [infinitive]', ds: Distinguish a learned skill from situational ability}
+  - {id: ru-g-po-dative, ch: 'по [dative subject / route / recurring day]', ds: Interpret selected по plus dative frames}
+- id: level-30-work-01
+  title: Work and cooperation - 1
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary:
+  - {id: ru-or-n02218-s001, ch: концепция, pr: конце́пция, ds: conception}
+  - {id: ru-or-n02910-s001, ch: стратегия, pr: страте́гия, ds: strategy}
+  - {id: ru-or-n05904-s001, ch: тактика, pr: та́ктика, ds: tactics}
+  - {id: ru-or-n01623-s001, ch: подход, pr: подхо́д, ds: approach to a problem}
+  - {id: ru-or-n01984-s001, ch: разработка, pr: разрабо́тка, ds: elaboration}
+  - {id: ru-or-n02179-s001, ch: реализация, pr: реализа́ция, ds: realization}
+  - {id: ru-or-n15357-s001, ch: апробация, pr: апроба́ция, ds: approbation}
+  - {id: ru-or-n01423-s001, ch: испытание, pr: испыта́ние, ds: test}
+  - {id: ru-or-n12004-s001, ch: тестирование, pr: тести́рование, ds: testing}
+  - {id: ru-or-n06929-s001, ch: модернизация, pr: модерниза́ция, ds: modernization}
+  - {id: ru-or-n03464-s001, ch: реконструкция, pr: реконстру́кция, ds: reconstruction}
+  - {id: ru-or-n02839-s001, ch: изобретение, pr: изобрете́ние, ds: invention}
+  - {id: ru-or-n00843-s001, ch: открытие, pr: откры́тие, ds: discovery}
+  - {id: ru-or-n07952-s001, ch: усовершенствование, pr: усоверше́нствование, ds: improvement}
+  - {id: ru-or-n08985-s001, ch: нововведение, pr: нововведе́ние, ds: innovation}
+  - {id: ru-or-n05935-s001, ch: адаптация, pr: адапта́ция, ds: adaptation}
+  - {id: ru-or-n07248-s001, ch: интеграция, pr: интегра́ция, ds: integration}
+  - {id: ru-or-n07199-s001, ch: кооперация, pr: коопера́ция, ds: co-operation}
+  - {id: ru-or-n06652-s001, ch: специализация, pr: специализа́ция, ds: specialization}
+  - {id: ru-or-n03779-s001, ch: квалификация, pr: квалифика́ция, ds: qualification}
+  - {id: ru-or-n11615-s001, ch: аттестация, pr: аттеста́ция, ds: attestation}
+  - {id: ru-or-n02384-s001, ch: обучение, pr: обуче́ние, ds: training}
+  - {id: ru-or-n22672-s001, ch: самообразование, pr: самообразова́ние, ds: self-education}
+  - {id: ru-or-n05516-s001, ch: совершенствование, pr: соверше́нствование, ds: improvement towards mastery}
+  - {id: ru-or-n02824-s001, ch: наставник, pr: наста́вник, ds: mentor}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00688-s001, ch: прервать, pr: прерва́ть, ds: interrupt}
+  - {id: ru-or-v02199-s001, ch: прерывать, pr: прерыва́ть, ds: interrupt}
+  - {id: ru-or-v03666-s001, ch: прерываться, pr: прерыва́ться, ds: be interrupted}
+  - {id: ru-or-v01435-s001, ch: вмешиваться, pr: вме́шиваться, ds: interfere}
+  - {id: ru-or-v00788-s001, ch: помешать, pr: помеша́ть, ds: prevent}
+  - {id: ru-or-v00225-s001, ch: мешать, pr: меша́ть, ds: disturb}
+  - {id: ru-or-v02641-s001, ch: препятствовать, pr: препя́тствовать, ds: hinder}
+  - {id: ru-or-v06525-s001, ch: воспрепятствовать, pr: воспрепя́тствовать, ds: prevent}
+  review_grammar:
+  - {id: ru-g-obligation-agreement, ch: 'должен / должна / должно / должны + [infinitive]', ds: Express a duty with subject agreement}
+  - {id: ru-g-managed-dative, ch: '[dative person] удалось / не удалось + [infinitive]', ds: Report an achieved or unachieved opportunity}
+  - {id: ru-g-dependency-government, ch: 'зависеть от [genitive]; отвечать за [accusative]', ds: State a dependency or responsibility precisely}
+- id: level-30-work-02
+  title: Work and cooperation - 2
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary:
+  - {id: ru-or-n19805-s001, ch: наставничество, pr: наста́вничество, ds: tutorship}
+  - {id: ru-or-n09092-s001, ch: стажировка, pr: стажиро́вка, ds: internship}
+  - {id: ru-or-n01437-s001, ch: практика, pr: пра́ктика, ds: practice}
+  - {id: ru-or-n08566-s001, ch: практикант, pr: практика́нт, ds: practical trainee}
+  - {id: ru-or-n05867-s001, ch: стажёр, pr: стажёр, ds: trainee}
+  - {id: ru-or-n03347-s001, ch: выпускник, pr: выпускни́к, ds: graduate}
+  - {id: ru-or-n09937-s001, ch: разработчик, pr: разрабо́тчик, ds: developer}
+  - {id: ru-or-n03362-s001, ch: изобретатель, pr: изобрета́тель, ds: inventor}
+  - {id: ru-or-n12071-s001, ch: новатор, pr: нова́тор, ds: innovator}
+  - {id: ru-or-n05366-s001, ch: реформатор, pr: реформа́тор, ds: reformer}
+  - {id: ru-or-n02268-s001, ch: организатор, pr: организа́тор, ds: organizer}
+  - {id: ru-or-n09172-s001, ch: координатор, pr: координа́тор, ds: co-ordinator}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n07199-s001, ch: кооперация, pr: коопера́ция, ds: co-operation}
+  - {id: ru-or-n06652-s001, ch: специализация, pr: специализа́ция, ds: specialization}
+  - {id: ru-or-n03779-s001, ch: квалификация, pr: квалифика́ция, ds: qualification}
+  - {id: ru-or-n11615-s001, ch: аттестация, pr: аттеста́ция, ds: attestation}
+  - {id: ru-or-n02384-s001, ch: обучение, pr: обуче́ние, ds: training}
+  - {id: ru-or-n22672-s001, ch: самообразование, pr: самообразова́ние, ds: self-education}
+  - {id: ru-or-n05516-s001, ch: совершенствование, pr: соверше́нствование, ds: improvement towards mastery}
+  - {id: ru-or-n02824-s001, ch: наставник, pr: наста́вник, ds: mentor}
+  review_grammar:
+  - {id: ru-g-obligation-agreement, ch: 'должен / должна / должно / должны + [infinitive]', ds: Express a duty with subject agreement}
+  - {id: ru-g-managed-dative, ch: '[dative person] удалось / не удалось + [infinitive]', ds: Report an achieved or unachieved opportunity}
+  - {id: ru-g-dependency-government, ch: 'зависеть от [genitive]; отвечать за [accusative]', ds: State a dependency or responsibility precisely}
+- id: level-30-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v01104-s001, ch: разработать, pr: разрабо́тать, ds: develop}
+  - {id: ru-or-v02686-s001, ch: разрабатывать, pr: разраба́тывать, ds: develop}
+  - {id: ru-or-v05051-s001, ch: внедрить, pr: внедри́ть, ds: instil}
+  - {id: ru-or-v06018-s001, ch: внедрять, pr: внедря́ть, ds: put into practice}
+  - {id: ru-or-v02120-s001, ch: реализовать, pr: реализова́ть, ds: realize}
+  - {id: ru-or-v01570-s001, ch: осуществляться, pr: осуществля́ться, ds: be put into effect}
+  - {id: ru-or-v09415-s001, ch: апробировать, pr: апроби́ровать, ds: approve}
+  - {id: ru-or-v00776-s001, ch: испытать, pr: испыта́ть, ds: test}
+  - {id: ru-or-v00347-s001, ch: испытывать, pr: испы́тывать, ds: test}
+  - {id: ru-or-v07666-s001, ch: моделировать, pr: модели́ровать, ds: model}
+  - {id: ru-or-v07378-s001, ch: смоделировать, pr: смодели́ровать, ds: model}
+  - {id: ru-or-v06598-s001, ch: проектировать, pr: проекти́ровать, ds: design}
+  - {id: ru-or-v08704-s001, ch: спроектировать, pr: спроекти́ровать, ds: design}
+  - {id: ru-or-v05081-s001, ch: сконструировать, pr: сконструи́ровать, ds: construct}
+  - {id: ru-or-v06549-s001, ch: конструировать, pr: конструи́ровать, ds: construct}
+  - {id: ru-or-v01779-s001, ch: изобрести, pr: изобрести́, ds: invent}
+  - {id: ru-or-v03867-s001, ch: изобретать, pr: изобрета́ть, ds: invent}
+  - {id: ru-or-v06396-s001, ch: усовершенствовать, pr: усоверше́нствовать, ds: perfect}
+  - {id: ru-or-v05768-s001, ch: совершенствовать, pr: соверше́нствовать, ds: perfect}
+  - {id: ru-or-v05992-s001, ch: совершенствоваться, pr: соверше́нствоваться, ds: perfect oneself}
+  - {id: ru-or-v09100-s001, ch: модернизировать, pr: модернизи́ровать, ds: modernize}
+  - {id: ru-or-v06860-s001, ch: реконструировать, pr: реконструи́ровать, ds: reconstruct}
+  - {id: ru-or-v12519-s001, ch: реорганизовать, pr: реорганизова́ть, ds: reorganize}
+  - {id: ru-or-v09347-s001, ch: адаптировать, pr: адапти́ровать, ds: adapt}
+  - {id: ru-or-v07013-s001, ch: адаптироваться, pr: адапти́роваться, ds: adapt}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v03766-s001, ch: сокращаться, pr: сокраща́ться, ds: decrease}
+  - {id: ru-or-v01394-s001, ch: увеличиваться, pr: увели́чиваться, ds: increase}
+  - {id: ru-or-v01928-s001, ch: уменьшаться, pr: уменьша́ться, ds: decrease}
+  - {id: ru-or-v06142-s001, ch: усложнять, pr: усложня́ть, ds: complicate}
+  - {id: ru-or-v07932-s001, ch: усложнить, pr: усложни́ть, ds: complicate}
+  - {id: ru-or-v07316-s001, ch: упростить, pr: упрости́ть, ds: simplify}
+  - {id: ru-or-v06711-s001, ch: упрощать, pr: упроща́ть, ds: simplify}
+  - {id: ru-or-v12860-s001, ch: упрощаться, pr: упроща́ться, ds: become simpler}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-30-actions-02
+  title: Actions and results - 2
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v02029-s001, ch: приспособить, pr: приспосо́бить, ds: adapt}
+  - {id: ru-or-v04901-s001, ch: приспосабливаться, pr: приспоса́бливаться, ds: to adapt}
+  - {id: ru-or-v07354-s001, ch: интегрировать, pr: интегри́ровать, ds: integrate}
+  - {id: ru-or-v01228-s001, ch: объединить, pr: объедини́ть, ds: unite}
+  - {id: ru-or-v02279-s001, ch: объединять, pr: объединя́ть, ds: unite}
+  - {id: ru-or-v04390-s001, ch: объединяться, pr: объединя́ться, ds: unite}
+  - {id: ru-or-v02700-s001, ch: обучать, pr: обуча́ть, ds: teach}
+  - {id: ru-or-v03509-s001, ch: обучить, pr: обучи́ть, ds: teach}
+  - {id: ru-or-v05054-s001, ch: обучаться, pr: обуча́ться, ds: learn}
+  - {id: ru-or-v00726-s001, ch: научить, pr: научи́ть, ds: teach}
+  - {id: ru-or-v00477-s001, ch: научиться, pr: научи́ться, ds: learn}
+  - {id: ru-or-v07256-s001, ch: обучиться, pr: обучи́ться, ds: learn}
+  - {id: ru-or-v02360-s001, ch: освоить, pr: осво́ить, ds: master}
+  - {id: ru-or-v03223-s001, ch: осваивать, pr: осва́ивать, ds: master}
+  - {id: ru-or-v02262-s001, ch: усвоить, pr: усво́ить, ds: assimilate}
+  - {id: ru-or-v05258-s001, ch: усваивать, pr: усва́ивать, ds: assimilate}
+  - {id: ru-or-v01438-s001, ch: овладеть, pr: овладе́ть, ds: master}
+  - {id: ru-or-v03619-s001, ch: овладевать, pr: овладева́ть, ds: master}
+  - {id: ru-or-v04355-s001, ch: постичь, pr: пости́чь, ds: comprehend}
+  - {id: ru-or-v03657-s001, ch: постигать, pr: постига́ть, ds: comprehend}
+  - {id: ru-or-v06962-s001, ch: поощрить, pr: поощри́ть, ds: encourage}
+  - {id: ru-or-v02933-s001, ch: поощрять, pr: поощря́ть, ds: encourage}
+  - {id: ru-or-v03454-s001, ch: стимулировать, pr: стимули́ровать, ds: stimulate}
+  - {id: ru-or-v06532-s001, ch: мотивировать, pr: мотиви́ровать, ds: motivate}
+  - {id: ru-or-v02215-s001, ch: возглавить, pr: возгла́вить, ds: head}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v06396-s001, ch: усовершенствовать, pr: усоверше́нствовать, ds: perfect}
+  - {id: ru-or-v05768-s001, ch: совершенствовать, pr: соверше́нствовать, ds: perfect}
+  - {id: ru-or-v05992-s001, ch: совершенствоваться, pr: соверше́нствоваться, ds: perfect oneself}
+  - {id: ru-or-v09100-s001, ch: модернизировать, pr: модернизи́ровать, ds: modernize}
+  - {id: ru-or-v06860-s001, ch: реконструировать, pr: реконструи́ровать, ds: reconstruct}
+  - {id: ru-or-v12519-s001, ch: реорганизовать, pr: реорганизова́ть, ds: reorganize}
+  - {id: ru-or-v09347-s001, ch: адаптировать, pr: адапти́ровать, ds: adapt}
+  - {id: ru-or-v07013-s001, ch: адаптироваться, pr: адапти́роваться, ds: adapt}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-30-actions-03
+  title: Actions and results - 3
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v01389-s001, ch: возглавлять, pr: возглавля́ть, ds: head}
+  - {id: ru-or-v05063-s001, ch: подытожить, pr: подыто́жить, ds: sum up}
+  - {id: ru-or-v04727-s001, ch: обнародовать, pr: обнаро́довать, ds: publish}
+  - {id: ru-or-v01733-s001, ch: продемонстрировать, pr: продемонстри́ровать, ds: demonstrate}
+  - {id: ru-or-v01317-s001, ch: демонстрировать, pr: демонстри́ровать, ds: demonstrate}
+  - {id: ru-or-v11938-s001, ch: презентовать, pr: презентова́ть, ds: present}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v03619-s001, ch: овладевать, pr: овладева́ть, ds: master}
+  - {id: ru-or-v04355-s001, ch: постичь, pr: пости́чь, ds: comprehend}
+  - {id: ru-or-v03657-s001, ch: постигать, pr: постига́ть, ds: comprehend}
+  - {id: ru-or-v06962-s001, ch: поощрить, pr: поощри́ть, ds: encourage}
+  - {id: ru-or-v02933-s001, ch: поощрять, pr: поощря́ть, ds: encourage}
+  - {id: ru-or-v03454-s001, ch: стимулировать, pr: стимули́ровать, ds: stimulate}
+  - {id: ru-or-v06532-s001, ch: мотивировать, pr: мотиви́ровать, ds: motivate}
+  - {id: ru-or-v02215-s001, ch: возглавить, pr: возгла́вить, ds: head}
+  review_grammar:
+  - {id: ru-g-negative-imperative, ch: не открывайте / не забудьте, ds: Distinguish prohibition from an unwanted-event warning}
+  - {id: ru-g-placement-result, ch: 'класть / положить; ставить / поставить + [object and destination]', ds: Distinguish laying or placing from the resulting position}
+  - {id: ru-g-phase-verb-aspect, ch: 'начать / продолжать / перестать + [imperfective infinitive]', ds: 'Place an activity inside a beginning, continuation, or end'}
+- id: level-30-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00607-s001, ch: практический, pr: практи́ческий, ds: practical}
+  - {id: ru-or-a03563-s001, ch: прикладной, pr: прикладно́й, ds: applied}
+  - {id: ru-or-a01764-s001, ch: фундаментальный, pr: фундамента́льный, ds: fundamental}
+  - {id: ru-or-a02126-s001, ch: комплексный, pr: ко́мплексный, ds: comprehensive or combined}
+  - {id: ru-or-a04043-s001, ch: интегральный, pr: интегра́льный, ds: integral}
+  - {id: ru-or-a06534-s001, ch: инновационный, pr: инновацио́нный, ds: innovative}
+  - {id: ru-or-a06845-s001, ch: новаторский, pr: нова́торский, ds: innovatory}
+  - {id: ru-or-a02623-s001, ch: пробный, pr: про́бный, ds: trial}
+  - {id: ru-or-a00380-s002, ch: опытный, pr: о́пытный, ds: experimental}
+  - {id: ru-or-a02677-s001, ch: масштабный, pr: масшта́бный, ds: large scale}
+  - {id: ru-or-a06482-s001, ch: жизнеспособный, pr: жизнеспосо́бный, ds: viable}
+  - {id: ru-or-a06786-s001, ch: долговечный, pr: долгове́чный, ds: durable}
+  - {id: ru-or-a03994-s001, ch: продуктивный, pr: продукти́вный, ds: productive}
+  - {id: ru-or-a00373-s001, ch: творческий, pr: тво́рческий, ds: creative}
+  - {id: ru-or-a04095-s001, ch: изобретательный, pr: изобрета́тельный, ds: inventive}
+  - {id: ru-or-a01701-s001, ch: находчивый, pr: нахо́дчивый, ds: resourceful}
+  - {id: ru-or-a02916-s001, ch: сообразительный, pr: сообрази́тельный, ds: quick-witted}
+  - {id: ru-or-a03335-s001, ch: целеустремлённый, pr: целеустремлённый, ds: purposeful}
+  - {id: ru-or-a03163-s001, ch: любознательный, pr: любозна́тельный, ds: inquisitive}
+  - {id: ru-or-a10485-s001, ch: усидчивый, pr: уси́дчивый, ds: assiduous}
+  - {id: ru-or-a02066-s001, ch: трудолюбивый, pr: трудолюби́вый, ds: hard-working}
+  - {id: ru-or-a09852-s001, ch: работоспособный, pr: работоспосо́бный, ds: capable of working}
+  - {id: ru-or-a00678-s001, ch: образованный, pr: образо́ванный, ds: educated}
+  - {id: ru-or-a01343-s001, ch: грамотный, pr: гра́мотный, ds: literate}
+  - {id: ru-or-a03062-s001, ch: всесторонний, pr: всесторо́нний, ds: comprehensive}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00956-s001, ch: романтический, pr: романти́ческий, ds: romantic}
+  - {id: ru-or-a04108-s001, ch: иррациональный, pr: иррациона́льный, ds: irrational}
+  - {id: ru-or-a01589-s001, ch: мистический, pr: мисти́ческий, ds: mystic}
+  - {id: ru-or-a01516-s001, ch: эстетический, pr: эстети́ческий, ds: aesthetic}
+  - {id: ru-or-a06740-s001, ch: композиционный, pr: композицио́нный, ds: compositional}
+  - {id: ru-or-a09473-s001, ch: повествовательный, pr: повествова́тельный, ds: narrative}
+  - {id: ru-or-a05754-s001, ch: автобиографический, pr: автобиографи́ческий, ds: autobiographic}
+  - {id: ru-or-a01911-s001, ch: документальный, pr: документа́льный, ds: documentary}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-30-description-02
+  title: Description and comparison - 2
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a03387-s001, ch: многообразный, pr: многообра́зный, ds: diverse}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a03335-s001, ch: целеустремлённый, pr: целеустремлённый, ds: purposeful}
+  - {id: ru-or-a03163-s001, ch: любознательный, pr: любозна́тельный, ds: inquisitive}
+  - {id: ru-or-a10485-s001, ch: усидчивый, pr: уси́дчивый, ds: assiduous}
+  - {id: ru-or-a02066-s001, ch: трудолюбивый, pr: трудолюби́вый, ds: hard-working}
+  - {id: ru-or-a09852-s001, ch: работоспособный, pr: работоспосо́бный, ds: capable of working}
+  - {id: ru-or-a00678-s001, ch: образованный, pr: образо́ванный, ds: educated}
+  - {id: ru-or-a01343-s001, ch: грамотный, pr: гра́мотный, ds: literate}
+  - {id: ru-or-a03062-s001, ch: всесторонний, pr: всесторо́нний, ds: comprehensive}
+  review_grammar:
+  - {id: ru-g-comparative-frames, ch: 'больше / лучше / дешевле, чем ...; [comparative] + [genitive]', ds: Compare alternatives with чем or a genitive standard}
+  - {id: ru-g-superlative-choice, ch: 'самый [agreeing adjective]; лучше всего', ds: Identify an extreme within a stated comparison set}
+  - {id: ru-g-short-adjective-predicate, ch: готов / готова / готовы; прав / права / правы, ds: Interpret a short adjective as an agreeing predicate}
+- id: level-30-society-01
+  title: Society and community - 1
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-n23909-s001, ch: урбанизация, pr: урбаниза́ция, ds: urbanization}
+  - {id: ru-or-n07832-s001, ch: инфраструктура, pr: инфраструкту́ра, ds: infrastructure}
+  - {id: ru-or-n17059-s001, ch: демография, pr: демогра́фия, ds: demography}
+  - {id: ru-or-n09442-s001, ch: рождаемость, pr: рожда́емость, ds: birth rate}
+  - {id: ru-or-n07357-s001, ch: смертность, pr: сме́ртность, ds: death-rate}
+  - {id: ru-or-n11577-s001, ch: долголетие, pr: долголе́тие, ds: longevity}
+  - {id: ru-or-n09535-s001, ch: старение, pr: старе́ние, ds: aging}
+  - {id: ru-or-n23910-s001, ch: урбанизм, pr: урбани́зм, ds: urbanism}
+  - {id: ru-or-n02708-s001, ch: эмиграция, pr: эмигра́ция, ds: emigration}
+  - {id: ru-or-n08286-s001, ch: иммиграция, pr: иммигра́ция, ds: immigration}
+  - {id: ru-or-n02951-s001, ch: эмигрант, pr: эмигра́нт, ds: emigrant}
+  - {id: ru-or-n04322-s001, ch: иммигрант, pr: иммигра́нт, ds: immigrant}
+  - {id: ru-or-n06488-s001, ch: переселение, pr: переселе́ние, ds: resettlement}
+  - {id: ru-or-n04940-s001, ch: занятость, pr: за́нятость, ds: employment}
+  - {id: ru-or-n07230-s001, ch: трудоустройство, pr: трудоустро́йство, ds: placing in a job}
+  - {id: ru-or-n21971-s001, ch: профориентация, pr: профориента́ция, ds: vocational guidance}
+  - {id: ru-or-n00106-s001, ch: труд, pr: труд, ds: labour}
+  - {id: ru-or-n05474-s001, ch: благосостояние, pr: благосостоя́ние, ds: welfare}
+  - {id: ru-or-n01959-s001, ch: обеспечение, pr: обеспе́чение, ds: provision}
+  - {id: ru-or-n12211-s001, ch: доступность, pr: досту́пность, ds: accessibility}
+  - {id: ru-or-n07711-s001, ch: инвалидность, pr: инвали́дность, ds: disability}
+  - {id: ru-or-n01703-s001, ch: инвалид, pr: инвали́д, ds: disabled person}
+  - {id: ru-or-n05136-s001, ch: реабилитация, pr: реабилита́ция, ds: rehabilitation}
+  - {id: ru-or-n03100-s001, ch: профилактика, pr: профила́ктика, ds: preventive measures}
+  - {id: ru-or-n22706-s001, ch: санитария, pr: санитари́я, ds: sanitation}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n03589-s001, ch: соблазн, pr: собла́зн, ds: temptation}
+  - {id: ru-or-n12884-s001, ch: дилемма, pr: диле́мма, ds: dilemma}
+  - {id: ru-or-n01792-s001, ch: противоречие, pr: противоре́чие, ds: contradiction}
+  - {id: ru-or-n06759-s001, ch: убеждённость, pr: убеждённость, ds: conviction}
+  - {id: ru-or-n04264-s001, ch: мировоззрение, pr: мировоззре́ние, ds: world outlook}
+  - {id: ru-or-n02331-s001, ch: восприятие, pr: восприя́тие, ds: perception}
+  - {id: ru-or-n06170-s001, ch: интерпретация, pr: интерпрета́ция, ds: interpretation}
+  - {id: ru-or-n00630-s001, ch: позиция, pr: пози́ция, ds: position}
+  review_grammar:
+  - {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+  - {id: ru-g-qualified-generalization, ch: не все / далеко не все / не всегда / в некоторых случаях, ds: Restrict a generalization without reversing it}
+- id: level-30-society-02
+  title: Society and community - 2
+  outcome: Compare experiences without treating one example as universal.
+  vocabulary:
+  - {id: ru-or-n06557-s001, ch: гигиена, pr: гигие́на, ds: hygiene}
+  - {id: ru-or-n01224-s001, ch: питание, pr: пита́ние, ds: nutrition}
+  - {id: ru-or-n11413-s001, ch: водоснабжение, pr: водоснабже́ние, ds: water-supply}
+  - {id: ru-or-n10392-s001, ch: утилизация, pr: утилиза́ция, ds: utilization}
+  - {id: ru-or-n11432-s001, ch: возобновление, pr: возобновле́ние, ds: renewal}
+  - {id: ru-or-n05390-s001, ch: устойчивость, pr: усто́йчивость, ds: stability}
+  - {id: ru-or-n04802-s001, ch: приспособление, pr: приспособле́ние, ds: adaptation}
+  - {id: ru-or-n02004-s001, ch: равновесие, pr: равнове́сие, ds: equilibrium}
+  - {id: ru-or-n26468-s001, ch: заповедник, pr: запове́дник, ds: nature reserve}
+  - {id: ru-or-n00559-s002, ch: охрана, pr: охра́на, ds: protection of natural resources}
+  - {id: ru-or-n06117-s001, ch: сохранность, pr: сохра́нность, ds: safety}
+  - {id: ru-or-n02110-s001, ch: восстановление, pr: восстановле́ние, ds: restoration}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n05474-s001, ch: благосостояние, pr: благосостоя́ние, ds: welfare}
+  - {id: ru-or-n01959-s001, ch: обеспечение, pr: обеспе́чение, ds: provision}
+  - {id: ru-or-n12211-s001, ch: доступность, pr: досту́пность, ds: accessibility}
+  - {id: ru-or-n07711-s001, ch: инвалидность, pr: инвали́дность, ds: disability}
+  - {id: ru-or-n01703-s001, ch: инвалид, pr: инвали́д, ds: disabled person}
+  - {id: ru-or-n05136-s001, ch: реабилитация, pr: реабилита́ция, ds: rehabilitation}
+  - {id: ru-or-n03100-s001, ch: профилактика, pr: профила́ктика, ds: preventive measures}
+  - {id: ru-or-n22706-s001, ch: санитария, pr: санитари́я, ds: sanitation}
+  review_grammar:
+  - {id: ru-g-unspecified-plural-agent, ch: здесь говорят / сообщили / открыли ..., ds: Interpret a plural verb with an unspecified agent}
+  - {id: ru-g-qualified-generalization, ch: не все / далеко не все / не всегда / в некоторых случаях, ds: Restrict a generalization without reversing it}
+- id: level-30-science-01
+  title: Investigation and explanation - 1
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-n16618-s001, ch: геофизика, pr: геофи́зика, ds: geophysics}
+  - {id: ru-or-n16620-s001, ch: геохимия, pr: геохи́мия, ds: geochemistry}
+  - {id: ru-or-n19369-s001, ch: метеорология, pr: метеороло́гия, ds: meteorology}
+  - {id: ru-or-n20793-s001, ch: палеонтология, pr: палеонтоло́гия, ds: paleontology}
+  - {id: ru-or-n14942-s001, ch: антропология, pr: антрополо́гия, ds: anthropology}
+  - {id: ru-or-n14150-s001, ch: этнография, pr: этногра́фия, ds: ethnography}
+  - {id: ru-or-n08371-s001, ch: минерал, pr: минера́л, ds: mineral}
+  - {id: ru-or-n04155-s001, ch: руда, pr: руда́, ds: ore}
+  - {id: ru-or-n04567-s001, ch: месторождение, pr: месторожде́ние, ds: deposit}
+  - {id: ru-or-n01663-s001, ch: добыча, pr: добы́ча, ds: extraction}
+  - {id: ru-or-n01984-s002, ch: разработка, pr: разрабо́тка, ds: exploitation}
+  - {id: ru-or-n02142-s001, ch: шахта, pr: ша́хта, ds: mine}
+  - {id: ru-or-n13344-s001, ch: карьер, pr: карье́р, ds: quarry}
+  - {id: ru-or-n04723-s001, ch: рудник, pr: рудни́к, ds: mine}
+  - {id: ru-or-n01658-s001, ch: нефть, pr: нефть, ds: oil}
+  - {id: ru-or-n01432-s001, ch: уголь, pr: у́голь, ds: coal}
+  - {id: ru-or-n11856-s001, ch: торф, pr: торф, ds: peat}
+  - {id: ru-or-n23096-s001, ch: сланец, pr: сла́нец, ds: slate}
+  - {id: ru-or-n02116-s001, ch: топливо, pr: то́пливо, ds: fuel}
+  - {id: ru-or-n14584-s001, ch: горючее, pr: горю́чее, ds: fuel}
+  - {id: ru-or-n14557-s001, ch: ископаемое, pr: ископа́емое, ds: fossil}
+  - {id: ru-or-n04830-s001, ch: водоём, pr: водоём, ds: reservoir}
+  - {id: ru-or-n10114-s001, ch: водохранилище, pr: водохрани́лище, ds: reservoir}
+  - {id: ru-or-n14343-s001, ch: водосток, pr: водосто́к, ds: drain}
+  - {id: ru-or-n16261-s001, ch: водоотвод, pr: водоотво́д, ds: drainage}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v04264-s001, ch: излучать, pr: излуча́ть, ds: radiate}
+  - {id: ru-or-v05520-s001, ch: испускать, pr: испуска́ть, ds: emit}
+  - {id: ru-or-v03193-s001, ch: притягивать, pr: притя́гивать, ds: attract}
+  - {id: ru-or-v03240-s001, ch: притянуть, pr: притяну́ть, ds: pull}
+  - {id: ru-or-v02864-s001, ch: отталкивать, pr: отта́лкивать, ds: repel}
+  - {id: ru-or-v03837-s001, ch: изолировать, pr: изоли́ровать, ds: isolate}
+  - {id: ru-or-v07404-s001, ch: синтезировать, pr: синтези́ровать, ds: synthesize}
+  - {id: ru-or-v08355-s001, ch: классифицировать, pr: классифици́ровать, ds: classify}
+  review_grammar:
+  - {id: ru-g-correlative-comparison, ch: 'чем [comparative], тем [comparative]', ds: Express a covarying comparison without proving causation}
+  - {id: ru-g-impersonal-evidence-clause, ch: 'известно / установлено / показано, что [claim]', ds: Examine a claim packaged as established information}
+  - {id: ru-g-participial-process-result, ch: измеряемый / измеренный; получаемый / полученный, ds: Distinguish a participial process from a completed result}
+- id: level-30-science-02
+  title: Investigation and explanation - 2
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-n07823-s001, ch: сток, pr: сток, ds: flow}
+  - {id: ru-or-n04438-s001, ch: плотина, pr: плоти́на, ds: dam}
+  - {id: ru-or-n07441-s001, ch: дамба, pr: да́мба, ds: dam}
+  - {id: ru-or-n00803-s002, ch: канал, pr: кана́л, ds: canal}
+  - {id: ru-or-n12993-s001, ch: орошение, pr: ороше́ние, ds: irrigation}
+  - {id: ru-or-n19316-s001, ch: мелиорация, pr: мелиора́ция, ds: land improvement}
+  - {id: ru-or-n05180-s001, ch: ледник, pr: ледни́к, ds: glacier}
+  - {id: ru-or-n04942-s001, ch: айсберг, pr: а́йсберг, ds: iceberg}
+  - {id: ru-or-n07903-s001, ch: мерзлота, pr: мерзлота́, ds: frozen condition of ground}
+  - {id: ru-or-n06866-s001, ch: эрозия, pr: эро́зия, ds: erosion}
+  - {id: ru-or-n16435-s001, ch: выветривание, pr: выве́тривание, ds: weathering}
+  - {id: ru-or-n05051-s001, ch: осадок, pr: оса́док, ds: sediment}
+  - {id: ru-or-n09228-s001, ch: отложение, pr: отложе́ние, ds: deposit}
+  - {id: ru-or-n04011-s001, ch: ил, pr: ил, ds: silt}
+  - {id: ru-or-n00539-s001, ch: песок, pr: песо́к, ds: sand}
+  - {id: ru-or-n02117-s001, ch: глина, pr: гли́на, ds: clay}
+  - {id: ru-or-n07167-s001, ch: гравий, pr: гра́вий, ds: gravel}
+  - {id: ru-or-n04000-s001, ch: галька, pr: га́лька, ds: pebbles}
+  - {id: ru-or-n07587-s001, ch: щебень, pr: ще́бень, ds: crushed stone}
+  - {id: ru-or-n00147-s001, ch: камень, pr: ка́мень, ds: stone}
+  - {id: ru-or-n00745-s001, ch: скала, pr: скала́, ds: rock}
+  - {id: ru-or-n13400-s001, ch: известняк, pr: известня́к, ds: limestone}
+  - {id: ru-or-n04434-s001, ch: гранит, pr: грани́т, ds: granite}
+  - {id: ru-or-n03480-s001, ch: мрамор, pr: мра́мор, ds: marble}
+  - {id: ru-or-n15489-s001, ch: базальт, pr: база́льт, ds: basalt}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n23096-s001, ch: сланец, pr: сла́нец, ds: slate}
+  - {id: ru-or-n02116-s001, ch: топливо, pr: то́пливо, ds: fuel}
+  - {id: ru-or-n14584-s001, ch: горючее, pr: горю́чее, ds: fuel}
+  - {id: ru-or-n14557-s001, ch: ископаемое, pr: ископа́емое, ds: fossil}
+  - {id: ru-or-n04830-s001, ch: водоём, pr: водоём, ds: reservoir}
+  - {id: ru-or-n10114-s001, ch: водохранилище, pr: водохрани́лище, ds: reservoir}
+  - {id: ru-or-n14343-s001, ch: водосток, pr: водосто́к, ds: drain}
+  - {id: ru-or-n16261-s001, ch: водоотвод, pr: водоотво́д, ds: drainage}
+  review_grammar:
+  - {id: ru-g-correlative-comparison, ch: 'чем [comparative], тем [comparative]', ds: Express a covarying comparison without proving causation}
+  - {id: ru-g-impersonal-evidence-clause, ch: 'известно / установлено / показано, что [claim]', ds: Examine a claim packaged as established information}
+  - {id: ru-g-participial-process-result, ch: измеряемый / измеренный; получаемый / полученный, ds: Distinguish a participial process from a completed result}
+- id: level-30-science-03
+  title: Investigation and explanation - 3
+  outcome: Distinguish a method and observation from an explanatory conclusion.
+  vocabulary:
+  - {id: ru-or-n13841-s001, ch: кварц, pr: кварц, ds: quartz}
+  - {id: ru-or-n14720-s001, ch: кремний, pr: кре́мний, ds: silicon}
+  - {id: ru-or-n00898-s001, ch: железо, pr: желе́зо, ds: iron}
+  - {id: ru-or-n03534-s001, ch: медь, pr: медь, ds: copper}
+  - {id: ru-or-n06895-s001, ch: алюминий, pr: алюми́ний, ds: aluminium}
+  - {id: ru-or-n06375-s001, ch: цинк, pr: цинк, ds: zinc}
+  - {id: ru-or-n09332-s001, ch: олово, pr: о́лово, ds: tin}
+  - {id: ru-or-n04424-s001, ch: свинец, pr: свине́ц, ds: lead}
+  - {id: ru-or-n02196-s001, ch: серебро, pr: серебро́, ds: silver}
+  - {id: ru-or-n00971-s001, ch: золото, pr: зо́лото, ds: gold}
+  - {id: ru-or-n09571-s001, ch: платина, pr: пла́тина, ds: platinum}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n04000-s001, ch: галька, pr: га́лька, ds: pebbles}
+  - {id: ru-or-n07587-s001, ch: щебень, pr: ще́бень, ds: crushed stone}
+  - {id: ru-or-n00147-s001, ch: камень, pr: ка́мень, ds: stone}
+  - {id: ru-or-n00745-s001, ch: скала, pr: скала́, ds: rock}
+  - {id: ru-or-n13400-s001, ch: известняк, pr: известня́к, ds: limestone}
+  - {id: ru-or-n04434-s001, ch: гранит, pr: грани́т, ds: granite}
+  - {id: ru-or-n03480-s001, ch: мрамор, pr: мра́мор, ds: marble}
+  - {id: ru-or-n15489-s001, ch: базальт, pr: база́льт, ds: basalt}
+  review_grammar:
+  - {id: ru-g-correlative-comparison, ch: 'чем [comparative], тем [comparative]', ds: Express a covarying comparison without proving causation}
+  - {id: ru-g-impersonal-evidence-clause, ch: 'известно / установлено / показано, что [claim]', ds: Examine a claim packaged as established information}
+  - {id: ru-g-participial-process-result, ch: измеряемый / измеренный; получаемый / полученный, ds: Distinguish a participial process from a completed result}
+- id: level-30-communication-practice-01
+  title: Communication and repair - sentence practice 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-explicit-self-repair, ch: 'точнее / вернее / иными словами [reformulation]', ds: Revise a claim openly instead of silently changing its scope}
+  review_vocabulary:
+  - {id: ru-or-v03543-s001, ch: разъяснять, pr: разъясня́ть, ds: explain}
+  - {id: ru-or-v05711-s001, ch: растолковать, pr: растолкова́ть, ds: explain}
+  - {id: ru-or-v12465-s001, ch: растолковывать, pr: растолко́вывать, ds: explain}
+  - {id: ru-or-v04316-s001, ch: поучать, pr: поуча́ть, ds: teach}
+  - {id: ru-or-v04211-s001, ch: наставлять, pr: наставля́ть, ds: mentor}
+  - {id: ru-or-v06618-s001, ch: увещевать, pr: увещева́ть, ds: exhort}
+  - {id: ru-or-v01744-s001, ch: поведать, pr: пове́дать, ds: tell}
+  - {id: ru-or-v04870-s001, ch: повествовать, pr: повествова́ть, ds: narrate}
+  review_grammar:
+  - {id: ru-g-reported-request, ch: 'попросил [person] [infinitive] / попросил, чтобы ...', ds: Relay a request while keeping the intended actor clear}
+  - {id: ru-g-conversational-ellipsis, ch: 'Я за. А вы? Мне тоже.', ds: Recover omitted material in a short contextual reply}
+  - {id: ru-g-explicit-clarification, ch: 'то есть / а именно [clarification]', ds: Restate a meaning or specify its members precisely}
+- id: level-30-reasoning-practice-01
+  title: Reasons and relationships - sentence practice 1
+  outcome: Explain a connection and qualify what follows from it.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-otherwise-consequence, ch: 'если не ..., то ...; иначе ...', ds: State what follows if a requirement is not met}
+  review_vocabulary:
+  - {id: ru-or-n14954-s001, ch: совместимость, pr: совмести́мость, ds: compatibility}
+  - {id: ru-or-n12824-s001, ch: несовместимость, pr: несовмести́мость, ds: incompatibility}
+  - {id: ru-or-n20451-s001, ch: однородность, pr: одноро́дность, ds: homogeneity}
+  - {id: ru-or-n14820-s001, ch: неоднородность, pr: неодноро́дность, ds: heterogeneity}
+  - {id: ru-or-n06368-s001, ch: целесообразность, pr: целесообра́зность, ds: expediency}
+  - {id: ru-or-n20371-s001, ch: обратимость, pr: обрати́мость, ds: reversibility}
+  - {id: ru-or-n19999-s001, ch: необратимость, pr: необрати́мость, ds: irreversibility}
+  - {id: ru-or-n05297-s001, ch: неизбежность, pr: неизбе́жность, ds: inevitability}
+  review_grammar:
+  - {id: ru-g-purpose-cause-prepositions, ch: 'для / ради [genitive purpose]; из-за / вследствие [genitive cause]', ds: Separate a purpose from an attributed cause}
+  - {id: ru-g-bounds-degree, ch: 'по крайней мере / не менее / не более [quantity]', ds: State a lower or upper bound rather than an exact amount}
+  - {id: ru-g-instead-of-action, ch: 'вместо того чтобы [infinitive / clause]', ds: Contrast a chosen action with a displaced alternative}
+- id: level-30-argument-practice-01
+  title: Arguments and decisions - sentence practice 1
+  outcome: Defend a position while addressing a relevant objection or qualification.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-even-if, ch: 'даже если [condition], [maintained claim]', ds: Keep a claim conditional while conceding a possibility}
+  - {id: ru-g-framed-claim, ch: 'речь идёт о [prepositional]; это не означает, что ...', ds: Define an argument's scope and block an unwarranted inference}
+  review_vocabulary:
+  - {id: ru-or-o00339-s001, ch: исключительно, pr: исключи́тельно, ds: exclusively}
+  - {id: ru-or-o00616-s001, ch: преимущественно, pr: преиму́щественно, ds: mainly}
+  - {id: ru-or-o00609-s001, ch: отчасти, pr: отча́сти, ds: partly}
+  - {id: ru-or-o00089-s001, ch: лишь, pr: лишь, ds: only}
+  - {id: ru-or-o00029-s001, ch: только, pr: то́лько, ds: only}
+  - {id: ru-or-o00095-s001, ch: именно, pr: и́менно, ds: exactly}
+  - {id: ru-or-o00179-s001, ch: вовсе, pr: во́все, ds: At all}
+  - {id: ru-or-o00152-s001, ch: вполне, pr: вполне́, ds: quite}
+  review_grammar:
+  - {id: ru-g-balanced-synthesis, ch: с одной стороны ... с другой стороны ..., ds: Organize two considerations without forcing equal weight}
+  - {id: ru-g-formal-conclusion, ch: таким образом / следовательно ...; однако ..., ds: Mark a conclusion and preserve a relevant limitation}
+  - {id: ru-g-rhetorical-questions, ch: 'Разве ...? Неужели ...?', ds: Interpret question particles without assuming neutrality}

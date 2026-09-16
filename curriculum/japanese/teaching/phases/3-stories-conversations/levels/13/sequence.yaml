@@ -1,0 +1,323 @@
+schema_version: 3
+id: ja-level-13
+title: Opinions and practical choices
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 13
+phase: stories-conversations
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+- ja-level-09
+- ja-level-10
+- ja-level-11
+- ja-level-12
+goals: &id001
+- Support a preference with reasons.
+- Compare alternatives without making an absolute claim.
+- Qualify disagreement and acknowledge a disadvantage.
+checkpoint:
+  task: Recommend an option while representing a partner's different preference fairly.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-13-choices-01
+  title: Opinions and choices - 1
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary:
+  - {id: ja-n4-00033-s001, ch: 意見, pr: いけん, ds: opinion}
+  - {id: ja-n4-00101-s001, ch: 思う, pr: おもう, ds: to think}
+  - {id: ja-n4-00150-s001, ch: 考える, pr: かんがえる, ds: 'to think (about, of)'}
+  - {id: ja-n4-00155-s001, ch: 機会, pr: きかい, ds: chance}
+  - {id: ja-n4-00289-s001, ch: 自由, pr: じゆう, ds: freedom}
+  - {id: ja-n4-00290-s001, ch: 習慣, pr: しゅうかん, ds: habit}
+  - {id: ja-n4-00352-s001, ch: 相談, pr: そうだん, ds: consultation}
+  - {id: ja-n4-00387-s001, ch: ため, pr: ため, ds: good}
+  - {id: ja-n4-00417-s001, ch: 適当, pr: てきとう, ds: suitable}
+  - {id: ja-n4-00473-s001, ch: 熱心, pr: ねっしん, ds: zealous}
+  - {id: ja-n4-00482-s001, ch: 場合, pr: ばあい, ds: case; situation; circumstances}
+  - {id: ja-n4-00490-s001, ch: はず, pr: はず, ds: should (be)}
+  - {id: ja-n4-00499-s001, ch: 反対, pr: はんたい, ds: opposition}
+  - {id: ja-n4-00550-s001, ch: ほど, pr: ほど, ds: extent}
+  - {id: ja-n1-03009-s001, ch: もし, pr: もし, ds: if}
+  - {id: ja-n4-00620-s001, ch: 理由, pr: りゆう, ds: reason}
+  - {id: ja-n3-00052-s001, ch: 安定, pr: あんてい, ds: stability}
+  - {id: ja-n3-00161-s001, ch: 営業, pr: えいぎょう, ds: business}
+  - {id: ja-n3-00206-s001, ch: 劣る, pr: おとる, ds: to be inferior to}
+  - {id: ja-n3-00268-s001, ch: 確実, pr: かくじつ, ds: certain}
+  - {id: ja-n3-00298-s001, ch: 価値, pr: かち, ds: value}
+  - {id: ja-n3-00307-s001, ch: 金, pr: かね, ds: money}
+  - {id: ja-n3-00309-s001, ch: 株, pr: かぶ, ds: stock}
+  - {id: ja-n3-00425-s001, ch: 議論, pr: ぎろん, ds: argument}
+  - {id: ja-n3-00482-s001, ch: 経営, pr: けいえい, ds: management}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-13-choices-02
+  title: Opinions and choices - 2
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary:
+  - {id: ja-n3-00483-s001, ch: 景気, pr: けいき, ds: business conditions}
+  - {id: ja-n3-00484-s001, ch: 傾向, pr: けいこう, ds: tendency}
+  - {id: ja-n3-00490-s001, ch: 契約, pr: けいやく, ds: contract}
+  - {id: ja-n3-00506-s001, ch: 結論, pr: けつろん, ds: 'conclusion (of an argument, discussion, study, etc.)'}
+  - {id: ja-n3-00527-s001, ch: 憲法, pr: けんぽう, ds: constitution}
+  - {id: ja-n3-00528-s001, ch: 権利, pr: けんり, ds: right; entitlement; privilege}
+  - {id: ja-n3-00539-s001, ch: 豪華, pr: ごうか, ds: extravagant}
+  - {id: ja-n3-00546-s001, ch: 貢献, pr: こうけん, ds: contribution (furthering a goal or cause)}
+  - {id: ja-n3-00547-s001, ch: 広告, pr: こうこく, ds: advertisement}
+  - {id: ja-n3-00556-s001, ch: 公平, pr: こうへい, ds: fairness}
+  - {id: ja-n3-00557-s001, ch: 候補, pr: こうほ, ds: candidate}
+  - {id: ja-n3-00601-s001, ch: 困難, pr: こんなん, ds: difficulty}
+  - {id: ja-n3-00610-s001, ch: 財産, pr: ざいさん, ds: property}
+  - {id: ja-n3-00641-s001, ch: 差別, pr: さべつ, ds: distinction}
+  - {id: ja-n3-00681-s001, ch: 思想, pr: しそう, ds: thought}
+  - {id: ja-n3-00731-s001, ch: 重視, pr: じゅうし, ds: regarding as important}
+  - {id: ja-n3-00736-s001, ch: 重大, pr: じゅうだい, ds: serious}
+  - {id: ja-n3-00744-s001, ch: 主義, pr: しゅぎ, ds: doctrine}
+  - {id: ja-n3-00749-s001, ch: 主張, pr: しゅちょう, ds: claim}
+  - {id: ja-n3-00767-s001, ch: 奨学金, pr: しょうがくきん, ds: scholarship}
+  - {id: ja-n3-00771-s001, ch: 条件, pr: じょうけん, ds: condition}
+  - {id: ja-n3-00782-s001, ch: 上等, pr: じょうとう, ds: superior}
+  - {id: ja-n3-00785-s001, ch: 承認, pr: しょうにん, ds: recognition}
+  - {id: ja-n3-00792-s001, ch: 証明, pr: しょうめい, ds: proof}
+  - {id: ja-n3-00832-s001, ch: 慎重, pr: しんちょう, ds: careful}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00161-s001, ch: 営業, pr: えいぎょう, ds: business}
+  - {id: ja-n3-00206-s001, ch: 劣る, pr: おとる, ds: to be inferior to}
+  - {id: ja-n3-00268-s001, ch: 確実, pr: かくじつ, ds: certain}
+  - {id: ja-n3-00298-s001, ch: 価値, pr: かち, ds: value}
+  - {id: ja-n3-00307-s001, ch: 金, pr: かね, ds: money}
+  - {id: ja-n3-00309-s001, ch: 株, pr: かぶ, ds: stock}
+  - {id: ja-n3-00425-s001, ch: 議論, pr: ぎろん, ds: argument}
+  - {id: ja-n3-00482-s001, ch: 経営, pr: けいえい, ds: management}
+  review_grammar: []
+- id: level-13-choices-03
+  title: Opinions and choices - 3
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary:
+  - {id: ja-n3-00854-s001, ch: 救う, pr: すくう, ds: to rescue (someone)}
+  - {id: ja-n3-00896-s001, ch: 成績, pr: せいせき, ds: results}
+  - {id: ja-n3-00898-s001, ch: 贅沢, pr: ぜいたく, ds: luxury}
+  - {id: ja-n3-00909-s001, ch: 責任, pr: せきにん, ds: duty}
+  - {id: ja-n3-00919-s001, ch: 節約, pr: せつやく, ds: 'saving (e.g. time, money, resources)'}
+  - {id: ja-n3-00922-s001, ch: 善, pr: ぜん, ds: good}
+  - {id: ja-n3-00929-s001, ch: 選手, pr: せんしゅ, ds: player (of a sport)}
+  - {id: ja-n3-00933-s001, ch: 選択, pr: せんたく, ds: choice}
+  - {id: ja-n3-00940-s001, ch: 相続, pr: そうぞく, ds: succession}
+  - {id: ja-n3-00961-s001, ch: 損, pr: そん, ds: loss}
+  - {id: ja-n3-00962-s001, ch: 損害, pr: そんがい, ds: damage}
+  - {id: ja-n3-00974-s001, ch: 大会, pr: たいかい, ds: mass meeting}
+  - {id: ja-n3-00988-s001, ch: 代表, pr: だいひょう, ds: representation}
+  - {id: ja-n3-00995-s001, ch: 代理, pr: だいり, ds: representation}
+  - {id: ja-n3-01001-s001, ch: 宝, pr: たから, ds: treasure}
+  - {id: ja-n3-01014-s001, ch: 立場, pr: たちば, ds: position}
+  - {id: ja-n3-01047-s001, ch: 団体, pr: だんたい, ds: group}
+  - {id: ja-n3-01052-s001, ch: 地位, pr: ちい, ds: (social) position}
+  - {id: ja-n3-01065-s001, ch: 知識, pr: ちしき, ds: knowledge}
+  - {id: ja-n3-01071-s001, ch: チャンス, pr: チャンス, ds: chance}
+  - {id: ja-n3-01119-s001, ch: 釣り, pr: つり, ds: fishing}
+  - {id: ja-n3-01124-s001, ch: 提案, pr: ていあん, ds: proposal}
+  - {id: ja-n3-01126-s001, ch: 抵抗, pr: ていこう, ds: resistance}
+  - {id: ja-n3-01148-s001, ch: デモ, pr: デモ, ds: demonstration}
+  - {id: ja-n3-01168-s001, ch: 道徳, pr: どうとく, ds: morals}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00744-s001, ch: 主義, pr: しゅぎ, ds: doctrine}
+  - {id: ja-n3-00749-s001, ch: 主張, pr: しゅちょう, ds: claim}
+  - {id: ja-n3-00767-s001, ch: 奨学金, pr: しょうがくきん, ds: scholarship}
+  - {id: ja-n3-00771-s001, ch: 条件, pr: じょうけん, ds: condition}
+  - {id: ja-n3-00782-s001, ch: 上等, pr: じょうとう, ds: superior}
+  - {id: ja-n3-00785-s001, ch: 承認, pr: しょうにん, ds: recognition}
+  - {id: ja-n3-00792-s001, ch: 証明, pr: しょうめい, ds: proof}
+  - {id: ja-n3-00832-s001, ch: 慎重, pr: しんちょう, ds: careful}
+  review_grammar: []
+- id: level-13-choices-04
+  title: Opinions and choices - 4
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary:
+  - {id: ja-n3-01169-s001, ch: 投票, pr: とうひょう, ds: voting}
+  - {id: ja-n3-01185-s001, ch: 独立, pr: どくりつ, ds: independence}
+  - {id: ja-n3-01199-s001, ch: トップ, pr: トップ, ds: top}
+  - {id: ja-n3-01288-s001, ch: 能, pr: のう, ds: talent}
+  - {id: ja-n3-01333-s001, ch: パス, pr: パス, ds: 'passing (an examination, inspection, etc.)'}
+  - {id: ja-n3-01343-s001, ch: 発見, pr: はっけん, ds: discovery}
+  - {id: ja-n3-01352-s001, ch: 話し合う, pr: はなしあう, ds: to discuss}
+  - {id: ja-n3-01368-s001, ch: 反抗, pr: はんこう, ds: opposition}
+  - {id: ja-n3-01371-s001, ch: 判断, pr: はんだん, ds: judgment}
+  - {id: ja-n3-01390-s001, ch: 否定, pr: ひてい, ds: denial}
+  - {id: ja-n3-01397-s001, ch: 批判, pr: ひはん, ds: criticism}
+  - {id: ja-n3-01398-s001, ch: 批評, pr: ひひょう, ds: criticism}
+  - {id: ja-n3-01405-s001, ch: 評価, pr: ひょうか, ds: valuation}
+  - {id: ja-n3-01408-s001, ch: 平等, pr: びょうどう, ds: equality}
+  - {id: ja-n3-01409-s001, ch: 評判, pr: ひょうばん, ds: reputation}
+  - {id: ja-n3-01436-s001, ch: 不正, pr: ふせい, ds: injustice}
+  - {id: ja-n3-01455-s001, ch: プラン, pr: プラン, ds: plan}
+  - {id: ja-n3-01456-s001, ch: 不利, pr: ふり, ds: disadvantage}
+  - {id: ja-n3-01461-s001, ch: プロ, pr: プロ, ds: professional}
+  - {id: ja-n3-01470-s001, ch: 平和, pr: へいわ, ds: peace}
+  - {id: ja-n3-01482-s001, ch: 冒険, pr: ぼうけん, ds: adventure}
+  - {id: ja-n3-01485-s001, ch: 宝石, pr: ほうせき, ds: gem}
+  - {id: ja-n3-01489-s001, ch: 訪問, pr: ほうもん, ds: call}
+  - {id: ja-n3-01499-s001, ch: 保証, pr: ほしょう, ds: guarantee}
+  - {id: ja-n3-01520-s001, ch: 任せる, pr: まかせる, ds: 'to leave (a matter, decision, etc. to someone)'}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-01052-s001, ch: 地位, pr: ちい, ds: (social) position}
+  - {id: ja-n3-01065-s001, ch: 知識, pr: ちしき, ds: knowledge}
+  - {id: ja-n3-01071-s001, ch: チャンス, pr: チャンス, ds: chance}
+  - {id: ja-n3-01119-s001, ch: 釣り, pr: つり, ds: fishing}
+  - {id: ja-n3-01124-s001, ch: 提案, pr: ていあん, ds: proposal}
+  - {id: ja-n3-01126-s001, ch: 抵抗, pr: ていこう, ds: resistance}
+  - {id: ja-n3-01148-s001, ch: デモ, pr: デモ, ds: demonstration}
+  - {id: ja-n3-01168-s001, ch: 道徳, pr: どうとく, ds: morals}
+  review_grammar: []
+- id: level-13-choices-05
+  title: Opinions and choices - 5
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary:
+  - {id: ja-n3-01522-s001, ch: 負け, pr: まけ, ds: defeat}
+  - {id: ja-n3-01550-s001, ch: 万一, pr: まんいち, ds: (unlikely event of) emergency}
+  - {id: ja-n3-01556-s001, ch: 見事, pr: みごと, ds: splendid}
+  - {id: ja-n3-01564-s001, ch: 都, pr: みやこ, ds: 'capital (esp. Kyoto, Japan''s former capital)'}
+  - {id: ja-n3-01577-s001, ch: むしろ, pr: むしろ, ds: rather}
+  - {id: ja-n3-01582-s001, ch: 無料, pr: むりょう, ds: free (of charge)}
+  - {id: ja-n3-01585-s001, ch: 命じる, pr: めいじる, ds: to order}
+  - {id: ja-n3-01586-s001, ch: 名人, pr: めいじん, ds: master}
+  - {id: ja-n3-01587-s001, ch: 命令, pr: めいれい, ds: order; command; directive}
+  - {id: ja-n3-01597-s001, ch: 申し込む, pr: もうしこむ, ds: to apply for}
+  - {id: ja-n3-01601-s001, ch: 目的, pr: もくてき, ds: purpose}
+  - {id: ja-n3-01602-s001, ch: 目標, pr: もくひょう, ds: goal}
+  - {id: ja-n3-01619-s001, ch: 物語, pr: ものがたり, ds: story}
+  - {id: ja-n3-01632-s001, ch: 雇う, pr: やとう, ds: to employ}
+  - {id: ja-n3-01635-s001, ch: 辞める, pr: やめる, ds: to resign}
+  - {id: ja-n3-01641-s001, ch: 優勝, pr: ゆうしょう, ds: overall victory}
+  - {id: ja-n3-01690-s001, ch: 利益, pr: りえき, ds: profit}
+  - {id: ja-n3-01697-s001, ch: 留学, pr: りゅうがく, ds: studying abroad}
+  - {id: ja-n3-01698-s001, ch: 流行, pr: りゅうこう, ds: fashion}
+  - {id: ja-n3-01711-s001, ch: 労働, pr: ろうどう, ds: labor}
+  - {id: ja-n3-01713-s001, ch: 論じる, pr: ろんじる, ds: to discuss}
+  - {id: ja-n3-01714-s001, ch: 論争, pr: ろんそう, ds: dispute}
+  - {id: ja-n3-01715-s001, ch: 論文, pr: ろんぶん, ds: thesis}
+  - {id: ja-n2-00002-s001, ch: アイデア, pr: アイデア, ds: idea}
+  - {id: ja-n5-00042-s004, ch: いい, pr: いい, ds: OK}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-01456-s001, ch: 不利, pr: ふり, ds: disadvantage}
+  - {id: ja-n3-01461-s001, ch: プロ, pr: プロ, ds: professional}
+  - {id: ja-n3-01470-s001, ch: 平和, pr: へいわ, ds: peace}
+  - {id: ja-n3-01482-s001, ch: 冒険, pr: ぼうけん, ds: adventure}
+  - {id: ja-n3-01485-s001, ch: 宝石, pr: ほうせき, ds: gem}
+  - {id: ja-n3-01489-s001, ch: 訪問, pr: ほうもん, ds: call}
+  - {id: ja-n3-01499-s001, ch: 保証, pr: ほしょう, ds: guarantee}
+  - {id: ja-n3-01520-s001, ch: 任せる, pr: まかせる, ds: 'to leave (a matter, decision, etc. to someone)'}
+  review_grammar: []
+- id: level-13-choices-06
+  title: Opinions and choices - 6
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary:
+  - {id: ja-n5-00357-s003, ch: 高い, pr: たかい, ds: high (level)}
+  - {id: ja-n5-00444-s003, ch: 取る, pr: とる, ds: to get}
+  - {id: ja-n4-00149-s003, ch: 変わる, pr: かわる, ds: to be different}
+  - {id: ja-n3-00330-s002, ch: 考え, pr: かんがえ, ds: idea}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-01697-s001, ch: 留学, pr: りゅうがく, ds: studying abroad}
+  - {id: ja-n3-01698-s001, ch: 流行, pr: りゅうこう, ds: fashion}
+  - {id: ja-n3-01711-s001, ch: 労働, pr: ろうどう, ds: labor}
+  - {id: ja-n3-01713-s001, ch: 論じる, pr: ろんじる, ds: to discuss}
+  - {id: ja-n3-01714-s001, ch: 論争, pr: ろんそう, ds: dispute}
+  - {id: ja-n3-01715-s001, ch: 論文, pr: ろんぶん, ds: thesis}
+  - {id: ja-n2-00002-s001, ch: アイデア, pr: アイデア, ds: idea}
+  - {id: ja-n5-00042-s004, ch: いい, pr: いい, ds: OK}
+  review_grammar: []
+- id: level-13-choices-practice-01
+  title: Opinions and choices - sentence practice 1
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g040, ch: 普通形と思う, ds: think that; express an opinion}
+  - {id: ja-n3-g006, ch: 普通形はずだ, ds: be expected to; should logically}
+  - {id: ja-n3-g007, ch: 普通形わけではない, ds: it does not follow that; not necessarily}
+  review_vocabulary:
+  - {id: ja-n3-01714-s001, ch: 論争, pr: ろんそう, ds: dispute}
+  - {id: ja-n3-01715-s001, ch: 論文, pr: ろんぶん, ds: thesis}
+  - {id: ja-n2-00002-s001, ch: アイデア, pr: アイデア, ds: idea}
+  - {id: ja-n5-00042-s004, ch: いい, pr: いい, ds: OK}
+  - {id: ja-n5-00357-s003, ch: 高い, pr: たかい, ds: high (level)}
+  - {id: ja-n5-00444-s003, ch: 取る, pr: とる, ds: to get}
+  - {id: ja-n4-00149-s003, ch: 変わる, pr: かわる, ds: to be different}
+  - {id: ja-n3-00330-s002, ch: 考え, pr: かんがえ, ds: idea}
+  review_grammar: []
+- id: level-13-choices-practice-02
+  title: Opinions and choices - sentence practice 2
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g011, ch: 普通形かもしれない, ds: may; might}
+  - {id: ja-n3-g026, ch: ～ほど…ない, ds: not as much as; not as adjective as}
+  - {id: ja-n3-g029, ch: 普通形だけでなく, ds: not only; but also}
+  review_vocabulary:
+  - {id: ja-n3-01714-s001, ch: 論争, pr: ろんそう, ds: dispute}
+  - {id: ja-n3-01715-s001, ch: 論文, pr: ろんぶん, ds: thesis}
+  - {id: ja-n2-00002-s001, ch: アイデア, pr: アイデア, ds: idea}
+  - {id: ja-n5-00042-s004, ch: いい, pr: いい, ds: OK}
+  - {id: ja-n5-00357-s003, ch: 高い, pr: たかい, ds: high (level)}
+  - {id: ja-n5-00444-s003, ch: 取る, pr: とる, ds: to get}
+  - {id: ja-n4-00149-s003, ch: 変わる, pr: かわる, ds: to be different}
+  - {id: ja-n3-00330-s002, ch: 考え, pr: かんがえ, ds: idea}
+  review_grammar:
+  - {id: ja-n4-g040, ch: 普通形と思う, ds: think that; express an opinion}
+  - {id: ja-n3-g006, ch: 普通形はずだ, ds: be expected to; should logically}
+  - {id: ja-n3-g007, ch: 普通形わけではない, ds: it does not follow that; not necessarily}
+- id: level-13-choices-practice-03
+  title: Opinions and choices - sentence practice 3
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g030, ch: Nに比べて, ds: compared with}
+  - {id: ja-n3-g033, ch: Nによって, ds: depending on; variation according to}
+  - {id: ja-n3-g038, ch: 普通形かわりに, ds: instead of; in exchange for}
+  review_vocabulary:
+  - {id: ja-n3-01714-s001, ch: 論争, pr: ろんそう, ds: dispute}
+  - {id: ja-n3-01715-s001, ch: 論文, pr: ろんぶん, ds: thesis}
+  - {id: ja-n2-00002-s001, ch: アイデア, pr: アイデア, ds: idea}
+  - {id: ja-n5-00042-s004, ch: いい, pr: いい, ds: OK}
+  - {id: ja-n5-00357-s003, ch: 高い, pr: たかい, ds: high (level)}
+  - {id: ja-n5-00444-s003, ch: 取る, pr: とる, ds: to get}
+  - {id: ja-n4-00149-s003, ch: 変わる, pr: かわる, ds: to be different}
+  - {id: ja-n3-00330-s002, ch: 考え, pr: かんがえ, ds: idea}
+  review_grammar:
+  - {id: ja-n3-g011, ch: 普通形かもしれない, ds: may; might}
+  - {id: ja-n3-g026, ch: ～ほど…ない, ds: not as much as; not as adjective as}
+  - {id: ja-n3-g029, ch: 普通形だけでなく, ds: not only; but also}
+- id: level-13-choices-practice-04
+  title: Opinions and choices - sentence practice 4
+  outcome: Recommend an option with reasons and acknowledge a disadvantage.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g040, ch: Nしか〜ない, ds: nothing but; only with a negative predicate}
+  - {id: ja-n3-g043, ch: 普通形ことはない, ds: there is no need to do}
+  review_vocabulary:
+  - {id: ja-n3-01714-s001, ch: 論争, pr: ろんそう, ds: dispute}
+  - {id: ja-n3-01715-s001, ch: 論文, pr: ろんぶん, ds: thesis}
+  - {id: ja-n2-00002-s001, ch: アイデア, pr: アイデア, ds: idea}
+  - {id: ja-n5-00042-s004, ch: いい, pr: いい, ds: OK}
+  - {id: ja-n5-00357-s003, ch: 高い, pr: たかい, ds: high (level)}
+  - {id: ja-n5-00444-s003, ch: 取る, pr: とる, ds: to get}
+  - {id: ja-n4-00149-s003, ch: 変わる, pr: かわる, ds: to be different}
+  - {id: ja-n3-00330-s002, ch: 考え, pr: かんがえ, ds: idea}
+  review_grammar:
+  - {id: ja-n3-g030, ch: Nに比べて, ds: compared with}
+  - {id: ja-n3-g033, ch: Nによって, ds: depending on; variation according to}
+  - {id: ja-n3-g038, ch: 普通形かわりに, ds: instead of; in exchange for}

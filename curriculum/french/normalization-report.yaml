@@ -1,0 +1,27 @@
+schema_version: 1
+source_hashes:
+  kaikki: efae9ffb69cb74e4376711c05df77b9571d76dff70bd14bd094562dc00cd81f7
+  lexique: 637ba37a767a66679c48371d673ece50cbf541b49a4e40e598963d4f3fbce52b
+all_selected:
+  selected_senses: 6233
+  source_senses: 6233
+  headword_identities: 6143
+  written_realizations: 6146
+  selected_readings: 6146
+core:
+  selected_senses: 5959
+  source_senses: 5959
+  headword_identities: 5871
+  written_realizations: 5874
+  selected_readings: 5874
+source_metadata:
+  attested_form_strings: 53818
+  noncanonical_gender_number_conjugation_forms: 42779
+  interpretation: Metadata only; these forms are not additional introduced lemmas or learner evidence.
+explicit_exclusions:
+- authoring/teaching/exclusions.yaml
+- authoring/teaching/source-gaps.yaml
+counting_policy: Conservative canonical headword identities; distinct source senses, written forms and
+  readings remain separate. Core and optional routes overlap and their inventories must not be added.
+editorial_limit: Source fidelity is not comprehensive human linguistic or pedagogical review. No learner
+  state, CEFR mapping or examination readiness is inferred.

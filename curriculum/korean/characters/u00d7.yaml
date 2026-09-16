@@ -1,0 +1,66 @@
+# Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.
+# Unreviewed: no qualified Korean handwriting approval. No font/diagram tracing or source-derived paths.
+# See licenses/ORIGINAL-WRITING-PILOT.md. No warranty; bulk scaling remains gated on review.
+흰:
+  aliases:
+  - kind: canonical-decomposition
+    policy: Orthographic conjoining sequence only; not pronunciation or a key redirect.
+    source_id: korean-writing-original-pilot
+    text: 흰
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - components:
+    - character: ᄒ
+      role: initial
+      source_id: korean-writing-original-pilot
+    - character: ᅴ
+      role: medial
+      source_id: korean-writing-original-pilot
+    - character: ᆫ
+      role: final
+      source_id: korean-writing-original-pilot
+    id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M31 3.44 L31 10.64
+    - path: M23.8 10.64 L38.2 10.64
+    - path: M31 16.88 C26.92 16.88 23.8 19.52 23.8 22.88 C23.8 26.24 26.92 28.88 31 28.88 C35.08 28.88
+        38.2 26.24 38.2 22.88 C38.2 19.52 35.08 16.88 31 16.88
+    - path: M19.76 41.04 L57.84 41.04
+    - path: M68.72 13.704 L68.72 56.136
+    - path: M25.2 70.1 L25.2 94.9 L74.8 94.9
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'

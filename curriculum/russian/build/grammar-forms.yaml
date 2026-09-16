@@ -1,0 +1,1027 @@
+- id: ru-fixed-polite-repair-o02191-accented
+  grammar_id: ru-g-polite-repair
+  target: здравствуйте
+  reading: здра́вствуйте
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=2191
+  source_field: accented
+  source_data:
+    bare: здравствуйте
+    accented: здра'вствуйте
+    translations_en: hello
+    translations_de: Hallo (formell), Guten Tag
+  source_record_sha256: 92b0ed4cf398125854e4a505e829aa9b4211de8fb87b34678110d17f5e2b3d7a
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-o03145-accented
+  grammar_id: ru-g-polite-repair
+  target: извините
+  reading: извини́те
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=3145
+  source_field: accented
+  source_data:
+    bare: извините
+    accented: извини'те
+    translations_en: sorry!
+    translations_de: Entschuldigen Sie!, Entschuldigung!
+  source_record_sha256: 5cbbc07fbe13d04bee33b10b1fa8de68e45c929f2cb0daa44870ae6f0ab3b570
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-basic-negation-o00003-accented
+  grammar_id: ru-g-basic-negation
+  target: не
+  reading: не
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=3
+  source_field: accented
+  source_data:
+    bare: не
+    accented: не
+    translations_en: not
+    translations_de: nicht
+  source_record_sha256: 4d792d88f57aa4ad7ff5de893a97d709561a684816884aec1620d81b8aafbd8e
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-v00206-imperative-pl
+  grammar_id: ru-g-polite-repair
+  target: повторите
+  reading: повтори́те
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=206
+  source_field: imperative_pl
+  source_data:
+    bare: повторить
+    accented: повтори'ть
+    translations_en: repeat, reiterate
+    translations_de: wiederholen
+    aspect: perfective
+    partner: повторять
+    imperative_sg: повтори'
+    imperative_pl: повтори'те
+    past_m: повтори'л
+    past_f: повтори'ла
+    past_n: повтори'ло
+    past_pl: повтори'ли
+    presfut_sg1: повторю'
+    presfut_sg2: повтори'шь
+    presfut_sg3: повтори'т
+    presfut_pl1: повтори'м
+    presfut_pl2: повтори'те
+    presfut_pl3: повторя'т
+  source_record_sha256: ca11ac9e76d44b6d8982d82a4ec7f001e2b331c1a65d6e8e92c3e40825b2c602
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-o00196-accented
+  grammar_id: ru-g-polite-repair
+  target: пожалуйста
+  reading: пожа́луйста
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=196
+  source_field: accented
+  source_data:
+    bare: пожалуйста
+    accented: пожа'луйста
+    translations_en: please; you are welcome; here you go
+    translations_de: bitte, bitte sehr, bitte schön
+  source_record_sha256: 4e1278750f2fe0bf5e139bc2b87e6465a7c0a9562f0c8f2343240ed438a0290c
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-v00005-imperative-pl
+  grammar_id: ru-g-polite-repair
+  target: говорите
+  reading: говори́те
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=5
+  source_field: imperative_pl
+  source_data:
+    bare: говорить
+    accented: говори'ть
+    translations_en: speak, talk gapirish
+    translations_de: sprechen, reden, sagen
+    aspect: imperfective
+    partner: сказать;поговорить
+    imperative_sg: говори'
+    imperative_pl: говори'те
+    past_m: говори'л
+    past_f: говори'ла
+    past_n: говори'ло
+    past_pl: говори'ли
+    presfut_sg1: говорю'
+    presfut_sg2: говори'шь
+    presfut_sg3: говори'т
+    presfut_pl1: говори'м
+    presfut_pl2: говори'те
+    presfut_pl3: говоря'т
+  source_record_sha256: ee9c7e4e403604db8c8d60bfe799e43b54c33d10817af9334a3aea9d150956f8
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-a00590-comparative
+  grammar_id: ru-g-polite-repair
+  target: медленнее
+  reading: ме́дленнее
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=590
+  source_field: comparative
+  source_data:
+    bare: медленный
+    accented: ме'дленный
+    translations_en: slow
+    translations_de: langsam
+    comparative: ме'дленнее
+    superlative: ме'дленнейший
+    short_m: ме'дленен,ме'длен
+    short_f: ме'дленна
+    short_n: ме'дленно
+    short_pl: ме'дленны
+    decl_m_nom: ме'дленный
+    decl_m_gen: ме'дленного
+    decl_m_dat: ме'дленному
+    decl_m_acc: ме'дленный,ме'дленного
+    decl_m_inst: ме'дленным
+    decl_m_prep: ме'дленном
+    decl_f_nom: ме'дленная
+    decl_f_gen: ме'дленной
+    decl_f_dat: ме'дленной
+    decl_f_acc: ме'дленную
+    decl_f_inst: ме'дленной,(ме'дленною)
+    decl_f_prep: ме'дленной
+    decl_n_nom: ме'дленное
+    decl_n_gen: ме'дленного
+    decl_n_dat: ме'дленному
+    decl_n_acc: ме'дленное
+    decl_n_inst: ме'дленным
+    decl_n_prep: ме'дленном
+    decl_pl_nom: ме'дленные
+    decl_pl_gen: ме'дленных
+    decl_pl_dat: ме'дленным
+    decl_pl_acc: ме'дленные,ме'дленных
+    decl_pl_inst: ме'дленными
+    decl_pl_prep: ме'дленных
+  source_record_sha256: 23013c676ab9c3e542215a88f4878948be90ebeef90d5d1183d1dfe4ba2833f5
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-v00059-imperative-pl
+  grammar_id: ru-g-polite-repair
+  target: напишите
+  reading: напиши́те
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=59
+  source_field: imperative_pl
+  source_data:
+    bare: написать
+    accented: написа'ть
+    translations_en: write; paint
+    translations_de: schreiben; malen
+    aspect: perfective
+    partner: писать
+    imperative_sg: напиши'
+    imperative_pl: напиши'те
+    past_m: написа'л
+    past_f: написа'ла
+    past_n: написа'ло
+    past_pl: написа'ли
+    presfut_sg1: напишу'
+    presfut_sg2: напи'шешь
+    presfut_sg3: напи'шет
+    presfut_pl1: напи'шем
+    presfut_pl2: напи'шете
+    presfut_pl3: напи'шут
+  source_record_sha256: 24040f42b8cafea53a5c79884ab584881447be366d2dc3284d9ee3d02e03c273
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-permission-request-o00061-accented
+  grammar_id: ru-g-permission-request
+  target: можно
+  reading: мо́жно
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=61
+  source_field: accented
+  source_data:
+    bare: можно
+    accented: мо'жно
+    translations_en: one can, it is possible; may I, can I
+    translations_de: man kann, es ist erlaubt, man darf
+  source_record_sha256: de8fc0fa8de14dbaa8390fc06a5603464e0610cf162ba4f6249faf9ec11da1c4
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-present-identity-o00010-accented
+  grammar_id: ru-g-present-identity
+  target: это
+  reading: э́то
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=10
+  source_field: accented
+  source_data:
+    bare: это
+    accented: э'то
+    translations_en: this is; that is; it
+    translations_de: das
+  source_record_sha256: b94e1d6098a33216abe39471dbf1cf3b53b41c075295fbbedf759b0744ba57fa
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-basic-questions-o00044-accented
+  grammar_id: ru-g-basic-questions
+  target: где
+  reading: где
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=44
+  source_field: accented
+  source_data:
+    bare: где
+    accented: где
+    translations_en: where
+    translations_de: wo
+  source_record_sha256: a4a13fd00f0fbe5d371823b9c578cbf219f70173051477bc7b4b6be4b246c7e5
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-place-direction-origin-a00002-accented
+  grammar_id: ru-g-place-direction-origin
+  target: как
+  reading: как
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=2
+  source_field: accented
+  source_data:
+    bare: как
+    accented: как
+    translations_en: how
+    translations_de: wie, als, was
+    comparative: ''
+    superlative: ''
+    short_m: ''
+    short_f: ''
+    short_n: ''
+    short_pl: ''
+    decl_m_nom: ''
+    decl_m_gen: ''
+    decl_m_dat: ''
+    decl_m_acc: ''
+    decl_m_inst: ''
+    decl_m_prep: ''
+    decl_f_nom: ''
+    decl_f_gen: ''
+    decl_f_dat: ''
+    decl_f_acc: ''
+    decl_f_inst: ''
+    decl_f_prep: ''
+    decl_n_nom: ''
+    decl_n_gen: ''
+    decl_n_dat: ''
+    decl_n_acc: ''
+    decl_n_inst: ''
+    decl_n_prep: ''
+    decl_pl_nom: ''
+    decl_pl_gen: ''
+    decl_pl_dat: ''
+    decl_pl_acc: ''
+    decl_pl_inst: ''
+    decl_pl_prep: ''
+  source_record_sha256: 0062a4706d2589ed1ae1d5b2f32e4abe084beff782c6d98464cdf188dd8f990a
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-place-direction-origin-v00067-accented
+  grammar_id: ru-g-place-direction-origin
+  target: пройти
+  reading: пройти́
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=67
+  source_field: accented
+  source_data:
+    bare: пройти
+    accented: пройти'
+    translations_en: pass; get to, go to, reach; make one's way
+    translations_de: vorübergehen / vorbeigehen, zurückliegen, vergehen, vorbei sein, aufhören; stattfinden,
+      verlaufen, durchnehmen, behandeln
+    aspect: perfective
+    partner: проходить
+    imperative_sg: пройди'
+    imperative_pl: пройди'те
+    past_m: прошёл
+    past_f: прошла'
+    past_n: прошло'
+    past_pl: прошли'
+    presfut_sg1: пройду'
+    presfut_sg2: пройдёшь
+    presfut_sg3: пройдёт
+    presfut_pl1: пройдём
+    presfut_pl2: пройдёте
+    presfut_pl3: пройду'т
+  source_record_sha256: a96eb229601bdc6a23ff9d85379a152b805c281ae5bfcf3777a3ba6979da5359
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-place-direction-origin-o00005-accented
+  grammar_id: ru-g-place-direction-origin
+  target: на
+  reading: на
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=5
+  source_field: accented
+  source_data:
+    bare: на
+    accented: на
+    translations_en: on (place); on (day/week); on (transport means); to; onto, upon; at
+    translations_de: auf (Objekt); in (Ort); auf (Bewegung dahin); dahin (Ort); für (Zeitdauer, Wert,
+      Sinn); für/am (Zeit)
+  source_record_sha256: ddd2720fceb2c1c9b2f1002f7ee14a638a72640a4709e31347939a31c8780498
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-help-imperative-v00076-imperative-pl
+  grammar_id: ru-g-polite-help-imperative
+  target: покажите
+  reading: покажи́те
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=76
+  source_field: imperative_pl
+  source_data:
+    bare: показать
+    accented: показа'ть
+    translations_en: show, display, point
+    translations_de: 'zeigen, herzeigen, vorführen; aufzeigen, aufweisen; vorzeigen, vorweisen (Leistung,
+      Fähigkeiten: sich auszeichnen)'
+    aspect: perfective
+    partner: показывать
+    imperative_sg: покажи'
+    imperative_pl: покажи'те
+    past_m: показа'л
+    past_f: показа'ла
+    past_n: показа'ло
+    past_pl: показа'ли
+    presfut_sg1: покажу'
+    presfut_sg2: пока'жешь
+    presfut_sg3: пока'жет
+    presfut_pl1: пока'жем
+    presfut_pl2: пока'жете
+    presfut_pl3: пока'жут
+  source_record_sha256: faae296f417e6bc544bd800fff1d32658496da737ac079f74cade52df849e9e1
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-location-prepositional-o00005-accented
+  grammar_id: ru-g-location-prepositional
+  target: на
+  reading: на
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=5
+  source_field: accented
+  source_data:
+    bare: на
+    accented: на
+    translations_en: on (place); on (day/week); on (transport means); to; onto, upon; at
+    translations_de: auf (Objekt); in (Ort); auf (Bewegung dahin); dahin (Ort); für (Zeitdauer, Wert,
+      Sinn); für/am (Zeit)
+  source_record_sha256: ddd2720fceb2c1c9b2f1002f7ee14a638a72640a4709e31347939a31c8780498
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-larger-quantities-o00101-accented
+  grammar_id: ru-g-larger-quantities
+  target: сколько
+  reading: ско́лько
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=101
+  source_field: accented
+  source_data:
+    bare: сколько
+    accented: ско'лько
+    translations_en: how much, how many
+    translations_de: wieviel, wie viel
+  source_record_sha256: b7876c4d0a6a7733a95f592f2982a26a673fbc958e403fa06bf8a94dfeb5be2b
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-vy-o00021-accented
+  grammar_id: ru-g-polite-vy
+  target: вы
+  reading: вы
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=21
+  source_field: accented
+  source_data:
+    bare: вы
+    accented: вы
+    translations_en: you (plural); you (formal)
+    translations_de: ihr (Plural); Sie (höfliches Du)
+  source_record_sha256: aea127601001a164fd02f5418a0540880f3483e5f6b61adb301df133ffaa22c7
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-small-quantities-o00047-accented
+  grammar_id: ru-g-small-quantities
+  target: два
+  reading: два
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=47
+  source_field: accented
+  source_data:
+    bare: два
+    accented: два
+    translations_en: two, 2
+    translations_de: zwei, 2
+  source_record_sha256: a69beb56f123f3c5cfe72957a3cd7a75ca9a5f8826141cc58924ee585b5d6e39
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-help-imperative-v00167-imperative-pl
+  grammar_id: ru-g-polite-help-imperative
+  target: помогите
+  reading: помоги́те
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=167
+  source_field: imperative_pl
+  source_data:
+    bare: помочь
+    accented: помо'чь
+    translations_en: help, assist, aid
+    translations_de: helfen
+    aspect: perfective
+    partner: помогать
+    imperative_sg: помоги'
+    imperative_pl: помоги'те
+    past_m: помо'г
+    past_f: помогла'
+    past_n: помогло'
+    past_pl: помогли'
+    presfut_sg1: помогу'
+    presfut_sg2: помо'жешь
+    presfut_sg3: помо'жет
+    presfut_pl1: помо'жем
+    presfut_pl2: помо'жете
+    presfut_pl3: помо'гут
+  source_record_sha256: 01a8b54dd93701beda5d058584ee5ee6555a53bf203beb8c3f8bed1e10a10472
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-dative-need-o04984-accented
+  grammar_id: ru-g-dative-need
+  target: мне
+  reading: мне
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4984
+  source_field: accented
+  source_data:
+    bare: мне
+    accented: мне
+    translations_en: dative of "I"
+    translations_de: Dativ von "я"; Präpositiv von "я"
+  source_record_sha256: 80d10cbd0dae6ef376df72decd1ca855f555cf5b9e4e739d8941be6bf12d3b95
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-dative-need-o01974-accented
+  grammar_id: ru-g-dative-need
+  target: нужно
+  reading: ну́жно
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=1974
+  source_field: accented
+  source_data:
+    bare: нужно
+    accented: ну'жно
+    translations_en: it is necessary, must, one should, one ought, you should, you ought, should
+    translations_de: brauchen, nötig sein; müssen, jemandem (Dativ) ein Bedürfnis sein
+  source_record_sha256: 90528582f386d9aecd86117d3413af5fb78705b7b184ad6ab217892286ec4486
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-basic-questions-o00033-accented
+  grammar_id: ru-g-basic-questions
+  target: когда
+  reading: когда́
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=33
+  source_field: accented
+  source_data:
+    bare: когда
+    accented: когда'
+    translations_en: when, while, as
+    translations_de: wann / wenn; als
+  source_record_sha256: 61a631fbe0d08ffc3f454aee59ee07a91fc6fd9afe305d8c45171a3c5b59de7d
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-needed-noun-a00018-short-n
+  grammar_id: ru-g-needed-noun
+  target: нужно
+  reading: ну́жно
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=18
+  source_field: short_n
+  source_data:
+    bare: нужный
+    accented: ну'жный
+    translations_en: necessary, needed
+    translations_de: brauchen; nötig sein (müssen), notwendig
+    comparative: ''
+    superlative: ''
+    short_m: ну'жен
+    short_f: нужна'
+    short_n: ну'жно
+    short_pl: нужны'
+    decl_m_nom: ну'жный
+    decl_m_gen: ну'жного
+    decl_m_dat: ну'жному
+    decl_m_acc: ну'жный,ну'жного
+    decl_m_inst: ну'жным
+    decl_m_prep: ну'жном
+    decl_f_nom: ну'жная
+    decl_f_gen: ну'жной
+    decl_f_dat: ну'жной
+    decl_f_acc: ну'жную
+    decl_f_inst: ну'жной,(ну'жною)
+    decl_f_prep: ну'жной
+    decl_n_nom: ну'жное
+    decl_n_gen: ну'жного
+    decl_n_dat: ну'жному
+    decl_n_acc: ну'жное
+    decl_n_inst: ну'жным
+    decl_n_prep: ну'жном
+    decl_pl_nom: ну'жные
+    decl_pl_gen: ну'жных
+    decl_pl_dat: ну'жным
+    decl_pl_acc: ну'жные,ну'жных
+    decl_pl_inst: ну'жными
+    decl_pl_prep: ну'жных
+  source_record_sha256: 8f67e26d801251b367f370aa72b9ae38f7440a2034d43b4fe59514f91b08b630
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-possession-existence-o00016-accented
+  grammar_id: ru-g-possession-existence
+  target: у
+  reading: у
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=16
+  source_field: accented
+  source_data:
+    bare: у
+    accented: у
+    translations_en: (possession); by, at (place); with; from (take, borrow)
+    translations_de: bei, neben
+  source_record_sha256: 337649c06f84bb1c1b02c987e67908eb1891f66fbcc5c0fed5cb1980e71ac65a
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-possession-existence-o04983-accented
+  grammar_id: ru-g-possession-existence
+  target: вас
+  reading: вас
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4983
+  source_field: accented
+  source_data:
+    bare: вас
+    accented: вас
+    translations_en: you; you
+    translations_de: Genitiv von "вы"
+  source_record_sha256: 9782123ba5b1e2dd156b9d44fceb7ea3855c1f749e5a6ac4c0ccb82fda2a643e
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-possession-existence-o04991-accented
+  grammar_id: ru-g-possession-existence
+  target: есть
+  reading: есть
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4991
+  source_field: accented
+  source_data:
+    bare: есть
+    accented: есть
+    translations_en: there is, there are
+    translations_de: es gibt
+  source_record_sha256: 1702992f26f7ccca55cf60c74c7b3c61c237b0e4c1912921b2a8ce6dd4bd8eb6
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-possession-existence-o04980-accented
+  grammar_id: ru-g-possession-existence
+  target: меня
+  reading: меня́
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4980
+  source_field: accented
+  source_data:
+    bare: меня
+    accented: меня'
+    translations_en: genitive of I
+    translations_de: Genitiv, Akkusativ von "я"
+  source_record_sha256: 745161b3b68a82328b054a907ec992963f7ee3c2e4c65b849b159c58b9c4f6bc
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-location-prepositional-o00002-accented
+  grammar_id: ru-g-location-prepositional
+  target: в
+  reading: в
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=2
+  source_field: accented
+  source_data:
+    bare: в
+    accented: в
+    translations_en: in; at; into; to; for; on; within
+    translations_de: in (Ort), im (Ort); zu (Ort), zum (Ort); um (Zeit); pro (mal)
+  source_record_sha256: 9f5891f62540393ac1603cccebe431e85aff41a54a700bb26ee36d023bd583a5
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-absence-genitive-o00040-accented
+  grammar_id: ru-g-absence-genitive
+  target: нет
+  reading: нет
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=40
+  source_field: accented
+  source_data:
+    bare: нет
+    accented: нет
+    translations_en: no; not
+    translations_de: nein; nicht
+  source_record_sha256: b44629d1e3d217fa5962367a30d9e09bc9ea33c42e9b1c0d188caa031ce98080
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-without-genitive-o00056-accented
+  grammar_id: ru-g-without-genitive
+  target: без
+  reading: без
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=56
+  source_field: accented
+  source_data:
+    bare: без
+    accented: без
+    translations_en: without; to (time)
+    translations_de: ohne
+  source_record_sha256: 1393fa5f162b906f08c2478cd0cddee62e69ebb12bf6f3c963a977addbcd3688
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-health-experiencer-o00016-accented
+  grammar_id: ru-g-health-experiencer
+  target: у
+  reading: у
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=16
+  source_field: accented
+  source_data:
+    bare: у
+    accented: у
+    translations_en: (possession); by, at (place); with; from (take, borrow)
+    translations_de: bei, neben
+  source_record_sha256: 337649c06f84bb1c1b02c987e67908eb1891f66fbcc5c0fed5cb1980e71ac65a
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-health-experiencer-o04980-accented
+  grammar_id: ru-g-health-experiencer
+  target: меня
+  reading: меня́
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4980
+  source_field: accented
+  source_data:
+    bare: меня
+    accented: меня'
+    translations_en: genitive of I
+    translations_de: Genitiv, Akkusativ von "я"
+  source_record_sha256: 745161b3b68a82328b054a907ec992963f7ee3c2e4c65b849b159c58b9c4f6bc
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-health-experiencer-o00005-accented
+  grammar_id: ru-g-health-experiencer
+  target: на
+  reading: на
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=5
+  source_field: accented
+  source_data:
+    bare: на
+    accented: на
+    translations_en: on (place); on (day/week); on (transport means); to; onto, upon; at
+    translations_de: auf (Objekt); in (Ort); auf (Bewegung dahin); dahin (Ort); für (Zeitdauer, Wert,
+      Sinn); für/am (Zeit)
+  source_record_sha256: ddd2720fceb2c1c9b2f1002f7ee14a638a72640a4709e31347939a31c8780498
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-health-experiencer-v14828-accented
+  grammar_id: ru-g-health-experiencer
+  target: болит
+  reading: боли́т
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=14828
+  source_field: accented
+  source_data:
+    bare: болит
+    accented: боли'т
+    translations_en: sore
+    translations_de: schmerzen, weh tun
+    aspect: imperfective
+    partner: ''
+    imperative_sg: ''
+    imperative_pl: ''
+    past_m: ''
+    past_f: ''
+    past_n: ''
+    past_pl: ''
+    presfut_sg1: ''
+    presfut_sg2: ''
+    presfut_sg3: болит
+    presfut_pl1: ''
+    presfut_pl2: ''
+    presfut_pl3: болят
+  source_record_sha256: 119ea9cda31865d18e6b4c6ed205e08bf1334b7f4e12a3248d2fd9355ec591c6
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-origins-and-people-o00015-accented
+  grammar_id: ru-g-origins-and-people
+  target: к
+  reading: к
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=15
+  source_field: accented
+  source_data:
+    bare: к
+    accented: к
+    translations_en: towards, to; visit someone
+    translations_de: zu, an, gegenüber, gegen, um, bis zu
+  source_record_sha256: 61a535a5cd21f8133faa11c921da3138a1313ad9dc918cc9f740cae61fdb4097
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-basic-questions-a00004-accented
+  grammar_id: ru-g-basic-questions
+  target: который
+  reading: кото́рый
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=4
+  source_field: accented
+  source_data:
+    bare: который
+    accented: кото'рый
+    translations_en: which, that; who
+    translations_de: welcher, der
+    comparative: ''
+    superlative: ''
+    short_m: ''
+    short_f: ''
+    short_n: ''
+    short_pl: ''
+    decl_m_nom: кото'рый
+    decl_m_gen: кото'рого
+    decl_m_dat: кото'рому
+    decl_m_acc: кото'рый, кото'рого
+    decl_m_inst: кото'рым
+    decl_m_prep: кото'ром
+    decl_f_nom: кото'рая
+    decl_f_gen: кото'рой
+    decl_f_dat: кото'рой
+    decl_f_acc: кото'рую
+    decl_f_inst: кото'рой
+    decl_f_prep: кото'рой
+    decl_n_nom: кото'рое
+    decl_n_gen: кото'рого
+    decl_n_dat: кото'рому
+    decl_n_acc: кото'рое
+    decl_n_inst: кото'рым
+    decl_n_prep: кото'ром
+    decl_pl_nom: кото'рые
+    decl_pl_gen: кото'рых
+    decl_pl_dat: кото'рым
+    decl_pl_acc: кото'рые, кото'рых
+    decl_pl_inst: кото'рыми
+    decl_pl_prep: кото'рых
+  source_record_sha256: cb1eb1cedbd1b5b21604fde05bcdfaeb79f2fd7beed3056e8b36a6784f9c01c7
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-basic-questions-n00025-sg-nom
+  grammar_id: ru-g-basic-questions
+  target: час
+  reading: ча́с
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=25
+  source_field: sg_nom
+  source_data:
+    bare: час
+    accented: час
+    translations_en: hour, time, hours
+    translations_de: Stunde; Uhr(zeit)
+    gender: m
+    partner: ''
+    animate: '0'
+    indeclinable: '0'
+    sg_only: '0'
+    pl_only: '0'
+    sg_nom: ча'с
+    sg_gen: ча'са,    часа'
+    sg_dat: ча'су
+    sg_acc: ча'с
+    sg_inst: ча'сом
+    sg_prep: часу', ча'се
+    pl_nom: часы'
+    pl_gen: часо'в
+    pl_dat: часа'м
+    pl_acc: часы'
+    pl_inst: часа'ми
+    pl_prep: часа'х
+  source_record_sha256: 725323f7ca6a1010b8277c15eeca568bc4795bcfe76a47cab9be726d7dd9199d
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-present-identity-a00002-accented
+  grammar_id: ru-g-present-identity
+  target: как
+  reading: как
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=2
+  source_field: accented
+  source_data:
+    bare: как
+    accented: как
+    translations_en: how
+    translations_de: wie, als, was
+    comparative: ''
+    superlative: ''
+    short_m: ''
+    short_f: ''
+    short_n: ''
+    short_pl: ''
+    decl_m_nom: ''
+    decl_m_gen: ''
+    decl_m_dat: ''
+    decl_m_acc: ''
+    decl_m_inst: ''
+    decl_m_prep: ''
+    decl_f_nom: ''
+    decl_f_gen: ''
+    decl_f_dat: ''
+    decl_f_acc: ''
+    decl_f_inst: ''
+    decl_f_prep: ''
+    decl_n_nom: ''
+    decl_n_gen: ''
+    decl_n_dat: ''
+    decl_n_acc: ''
+    decl_n_inst: ''
+    decl_n_prep: ''
+    decl_pl_nom: ''
+    decl_pl_gen: ''
+    decl_pl_dat: ''
+    decl_pl_acc: ''
+    decl_pl_inst: ''
+    decl_pl_prep: ''
+  source_record_sha256: 0062a4706d2589ed1ae1d5b2f32e4abe084beff782c6d98464cdf188dd8f990a
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-present-identity-o04983-accented
+  grammar_id: ru-g-present-identity
+  target: вас
+  reading: вас
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4983
+  source_field: accented
+  source_data:
+    bare: вас
+    accented: вас
+    translations_en: you; you
+    translations_de: Genitiv von "вы"
+  source_record_sha256: 9782123ba5b1e2dd156b9d44fceb7ea3855c1f749e5a6ac4c0ccb82fda2a643e
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-present-identity-v00123-presfut-pl3
+  grammar_id: ru-g-present-identity
+  target: зовут
+  reading: зову́т
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=123
+  source_field: presfut_pl3
+  source_data:
+    bare: звать
+    accented: звать
+    translations_en: call, call upon
+    translations_de: rufen, einladen, nennen
+    aspect: imperfective
+    partner: позвать
+    imperative_sg: зови'
+    imperative_pl: зови'те
+    past_m: зва'л
+    past_f: звала'
+    past_n: зва'ло
+    past_pl: зва'ли
+    presfut_sg1: зову'
+    presfut_sg2: зовёшь
+    presfut_sg3: зовёт
+    presfut_pl1: зовём
+    presfut_pl2: зовёте
+    presfut_pl3: зову'т
+  source_record_sha256: 180d566acaa87d0290307211cd5cbfdde20d366026fb91181ceff8a6c0e45ced
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-o00191-accented
+  grammar_id: ru-g-polite-repair
+  target: спасибо
+  reading: спаси́бо
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=191
+  source_field: accented
+  source_data:
+    bare: спасибо
+    accented: спаси'бо
+    translations_en: thanks, thank you
+    translations_de: danke
+  source_record_sha256: 451917cdfc8b0ba5173a30a2b6b8e3b1e3ce6dc7d93408e19ea0b1740f291b8e
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-o00019-accented
+  grammar_id: ru-g-polite-repair
+  target: за
+  reading: за
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=19
+  source_field: accented
+  source_data:
+    bare: за
+    accented: за
+    translations_en: behind; at (location); at (direction); for (in support of); for (mistake for); for
+      (reason); for (duration); following after, chasing after; over (a certain age); beyond, on the far
+      side of; out of (location)
+    translations_de: an / bei / hinter / nach + Dat.; an / gegen / hinter + Akk.; außerhalb / jenseits
+      + Gen.; bei(m) / im / hinter + Instr.; für / um + Akk.; im Laufe von / in (binnen) / (da)nach +
+      Dat.; um hinter + Gen.; während / wegen + Gen.
+  source_record_sha256: eec003cec7a7cdbf24ccb3368641ca37dd66cf45911b79ff0ebb99cd18c67f50
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-o00038-accented
+  grammar_id: ru-g-polite-repair
+  target: до
+  reading: до
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=38
+  source_field: accented
+  source_data:
+    bare: до
+    accented: до
+    translations_en: to (direction); to (distance); before; until; up to (limit)
+    translations_de: bis, bis an, bis zu, bis auf, gegen, ungerfähr, etwa, an die, vor, zu
+  source_record_sha256: b1adf8efd24e5cfa3820f28f5ca5504eb01fa67f0f276c69e8144493624f5d09
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.
+- id: ru-fixed-polite-repair-n01248-sg-gen
+  grammar_id: ru-g-polite-repair
+  target: свидания
+  reading: свида́ния
+  reading_kind: source-marked-stress
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=1248
+  source_field: sg_gen
+  source_data:
+    bare: свидание
+    accented: свида'ние
+    translations_en: meeting, appointment, rendezvous, date
+    translations_de: Verabredung, Rendezvous; Wiedersehen, Besuch
+    gender: n
+    partner: ''
+    animate: '0'
+    indeclinable: '0'
+    sg_only: '0'
+    pl_only: '0'
+    sg_nom: свида'ние
+    sg_gen: свида'ния
+    sg_dat: свида'нию
+    sg_acc: свида'ние
+    sg_inst: свида'нием
+    sg_prep: свида'нии
+    pl_nom: свида'ния
+    pl_gen: свида'ний
+    pl_dat: свида'ниям
+    pl_acc: свида'ния
+    pl_inst: свида'ниями
+    pl_prep: свида'ниях
+  source_record_sha256: 6bd93f2f8379d0c9ceb4aa2fa4e7b378b00f7ce393660c20b0506f6b146a584c
+  linkage_source_id: original-ru
+  limitation: Source-backed spelling/reading with original construction linkage; no lexical sense credit.

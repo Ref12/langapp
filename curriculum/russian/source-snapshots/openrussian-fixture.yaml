@@ -1,0 +1,286 @@
+schema_version: 1
+source_id: openrussian-backup
+revision: 50e210c4803237779cb562bc1abcea529066031c
+attribution: OpenRussian and upstream contributors; CC-BY-SA-4.0. See ../sources.yaml and ../licenses/CC-BY-SA-4.0.txt.
+purpose: Small real-source conformance fixture, not a vocabulary inventory or source-verified teaching
+  selection.
+records:
+- table: nouns
+  record: 29
+  row_sha256: 28fdea83bd70914592a1123f8bfd4ac9f69da6a6a624462f8a23fc0bd5eecf51
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=29
+  source_data:
+    bare: вода
+    accented: вода'
+    translations_en: water
+    translations_de: Wasser
+    gender: f
+    partner: ''
+    animate: '0'
+    indeclinable: '0'
+    sg_only: '0'
+    pl_only: '0'
+    sg_nom: вода'
+    sg_gen: воды'
+    sg_dat: воде'
+    sg_acc: во'ду
+    sg_inst: водо'й,  водо'ю
+    sg_prep: воде'
+    pl_nom: во'ды
+    pl_gen: во'д
+    pl_dat: во'дам
+    pl_acc: во'ды
+    pl_inst: во'дами
+    pl_prep: во'дах
+- table: nouns
+  record: 1154
+  row_sha256: 52abf1d0a9e17c5ae15ade0a4350206810a5facb5eebc803612b7f7d8ad53229
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=1154
+  source_data:
+    bare: мука
+    accented: му'ка
+    translations_en: torment, torture, pangs
+    translations_de: Qual, Plage, Pein
+    gender: f
+    partner: ''
+    animate: '0'
+    indeclinable: '0'
+    sg_only: '0'
+    pl_only: '0'
+    sg_nom: му'ка
+    sg_gen: му'ки
+    sg_dat: му'ке
+    sg_acc: му'ку
+    sg_inst: му'кой, му'кою
+    sg_prep: му'ке
+    pl_nom: му'ки
+    pl_gen: му'к
+    pl_dat: му'кам
+    pl_acc: му'ки
+    pl_inst: му'ками
+    pl_prep: му'ках
+- table: nouns
+  record: 26428
+  row_sha256: c9225971c3abd4c5577aed4b31899ab5ff9e2cb2de25cdf3e40167dd84f86470
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=26428
+  source_data:
+    bare: замок
+    accented: за'мок
+    translations_en: castle
+    translations_de: Schloss, Burg
+    gender: ''
+    partner: ''
+    animate: ''
+    indeclinable: '0'
+    sg_only: '0'
+    pl_only: '0'
+    sg_nom: за'мок
+    sg_gen: за'мка
+    sg_dat: за'мку
+    sg_acc: за'мок
+    sg_inst: за'мком
+    sg_prep: за'мке
+    pl_nom: за'мки
+    pl_gen: за'мков
+    pl_dat: за'мкам
+    pl_acc: за'мки
+    pl_inst: за'мками
+    pl_prep: за'мках
+- table: nouns
+  record: 26429
+  row_sha256: 4716c923a084b8e25c4028aa2385abae63bfe189ea305f6edd7e4296f28b05bc
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=26429
+  source_data:
+    bare: замок
+    accented: замо'к
+    translations_en: lock; keystone, clasp, fastener
+    translations_de: Schloss, Türschloss
+    gender: m
+    partner: ''
+    animate: '0'
+    indeclinable: '0'
+    sg_only: '0'
+    pl_only: '0'
+    sg_nom: замо'к
+    sg_gen: замка'
+    sg_dat: замку'
+    sg_acc: замо'к
+    sg_inst: замко'м
+    sg_prep: замке'
+    pl_nom: замки'
+    pl_gen: замко'в
+    pl_dat: замка'м
+    pl_acc: замки'
+    pl_inst: замка'ми
+    pl_prep: замка'х
+- table: nouns
+  record: 26432
+  row_sha256: 7ee50d68b5970a8ef05d4e5f1ae428171794294e19181e7871eddf680086708d
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=26432
+  source_data:
+    bare: мука
+    accented: мука'
+    translations_en: flour, meal
+    translations_de: Mehl
+    gender: f
+    partner: ''
+    animate: '0'
+    indeclinable: '0'
+    sg_only: '1'
+    pl_only: '0'
+    sg_nom: мука'
+    sg_gen: муки'
+    sg_dat: муке'
+    sg_acc: муку'
+    sg_inst: муко'й, муко'ю
+    sg_prep: муке'
+    pl_nom: ''
+    pl_gen: ''
+    pl_dat: ''
+    pl_acc: ''
+    pl_inst: ''
+    pl_prep: ''
+- table: verbs
+  record: 4
+  row_sha256: 5c67aaeb89879959865d912878c7f485e39c1ca20034c8fb0863f1839b970b6e
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=4
+  source_data:
+    bare: знать
+    accented: знать
+    translations_en: know, be aware, be acquainted, have a knowledge, aristocracy, nobility, the elite,
+      evidently, it seems
+    translations_de: wissen, kennen, sich auskennen, Bescheid wissen, können, verstehen, beherrschen
+    aspect: imperfective
+    partner: узнать
+    imperative_sg: зна'й
+    imperative_pl: зна'йте
+    past_m: зна'л
+    past_f: зна'ла
+    past_n: зна'ло
+    past_pl: зна'ли
+    presfut_sg1: зна'ю
+    presfut_sg2: зна'ешь
+    presfut_sg3: зна'ет
+    presfut_pl1: зна'ем
+    presfut_pl2: зна'ете
+    presfut_pl3: зна'ют
+- table: verbs
+  record: 6
+  row_sha256: 3766256b898194db3cdd25b0bf6869968cab5caa280458bfe6b5c2901c043347
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=6
+  source_data:
+    bare: есть
+    accented: есть
+    translations_en: eat
+    translations_de: essen, fressen
+    aspect: imperfective
+    partner: съесть;поесть
+    imperative_sg: е'шь
+    imperative_pl: е'шьте
+    past_m: е'л
+    past_f: е'ла
+    past_n: е'ло
+    past_pl: е'ли
+    presfut_sg1: е'м
+    presfut_sg2: е'шь
+    presfut_sg3: е'ст
+    presfut_pl1: еди'м
+    presfut_pl2: еди'те
+    presfut_pl3: едя'т
+- table: verbs
+  record: 9
+  row_sha256: 7141ae9d186fa89a1dd24d8b6af084558a07f69d090113969d7a009dceca6831
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=9
+  source_data:
+    bare: идти
+    accented: идти'
+    translations_en: go, walk
+    translations_de: gehen, kommen, folgen, fahren, abgehen, fuhren, vergehen, stattfinden, laufen, gezeigt
+      werden, stehen, passen
+    aspect: imperfective
+    partner: '-'
+    imperative_sg: иди'
+    imperative_pl: иди'те
+    past_m: шёл
+    past_f: шла'
+    past_n: шло'
+    past_pl: шли'
+    presfut_sg1: иду'
+    presfut_sg2: идёшь
+    presfut_sg3: идёт
+    presfut_pl1: идём
+    presfut_pl2: идёте
+    presfut_pl3: иду'т
+- table: verbs
+  record: 48
+  row_sha256: 4d941625a0740a631ec188ac8c9d3843c1f7b0699f783050b92bd310a6da4908
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=48
+  source_data:
+    bare: ходить
+    accented: ходи'ть
+    translations_en: go, walk, move, pass
+    translations_de: gehen, fahren, verkehren; etw. umgehen, zur Seite gehen
+    aspect: imperfective
+    partner: сходить
+    imperative_sg: ходи'
+    imperative_pl: ходи'те
+    past_m: ходи'л
+    past_f: ходи'ла
+    past_n: ходи'ло
+    past_pl: ходи'ли
+    presfut_sg1: хожу'
+    presfut_sg2: хо'дишь
+    presfut_sg3: хо'дит
+    presfut_pl1: хо'дим
+    presfut_pl2: хо'дите
+    presfut_pl3: хо'дят
+- table: verbs
+  record: 363
+  row_sha256: 820b7840b2d27b43d9e401ac4bdf7e073b3ed750031efb0ae8a6adec2f65e5af
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=363
+  source_data:
+    bare: стоить
+    accented: сто'ить
+    translations_en: cost, be worth, should be
+    translations_de: kosten; sich lohnen, es wert sein
+    aspect: imperfective
+    partner: '-'
+    imperative_sg: сто'й
+    imperative_pl: сто'йте
+    past_m: сто'ил
+    past_f: сто'ила
+    past_n: сто'ило
+    past_pl: сто'или
+    presfut_sg1: сто'ю
+    presfut_sg2: сто'ишь
+    presfut_sg3: сто'ит
+    presfut_pl1: сто'им
+    presfut_pl2: сто'ите
+    presfut_pl3: сто'ят
+- table: others
+  record: 1967
+  row_sha256: 10c752a79151be9f45e3e6388404f1865bdb056d587a0c08a6c20db98411e633
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=1967
+  source_data:
+    bare: всё
+    accented: всё
+    translations_en: always, all the time, the whole time, still, only, all, all the same, however, nevertheless
+    translations_de: alles; sämtlich; immer, die ganze Zeit, fortwährend, dauernd
+- table: others
+  record: 4978
+  row_sha256: 9e89b28a84b136662c87e4d47472aa19a0c5840fe7d30ead03afae019fae24ff
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4978
+  source_data:
+    bare: все
+    accented: все
+    translations_en: everybody
+    translations_de: jeder; alle
+- table: others
+  record: 4991
+  row_sha256: 1702992f26f7ccca55cf60c74c7b3c61c237b0e4c1912921b2a8ce6dd4bd8eb6
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4991
+  source_data:
+    bare: есть
+    accented: есть
+    translations_en: there is, there are
+    translations_de: es gibt

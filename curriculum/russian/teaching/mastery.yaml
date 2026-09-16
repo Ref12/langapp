@@ -1,0 +1,61 @@
+schema_version: 1
+id: ru-item-mastery
+applies_to: [vocabulary-sense, grammar-construct, phrase]
+scope: Observed performance for one Russian item in one modality, not overall proficiency or examination equivalence.
+unassessed: No suitable evidence has been recorded. Exposure, an inventory entry, and curriculum position do not establish understanding.
+modalities: [reading, listening, typed-production, spoken-production, handwriting]
+stages:
+- id: recognize
+  title: Recognition
+  modalities: [reading, listening]
+  outcome: Distinguish the intended form and meaning from plausible alternatives.
+  evidence:
+  - Identify the intended sense or function without seeing its English answer first.
+  - Distinguish a relevant confusable form or meaning in more than one example.
+  limitation: Recognition does not establish contextual understanding or production.
+- id: understand
+  title: Contextual understanding
+  modalities: [reading, listening]
+  outcome: Interpret the intended sense or construction in an unfamiliar context.
+  evidence:
+  - Explain or respond appropriately to the item's contribution in two different contexts.
+  - Distinguish a relevant alternate sense, governed case, aspect, or construction where applicable.
+  - Demonstrate retrieval in a later session without an answer-revealing hint.
+  limitation: Comprehension does not establish productive control.
+- id: supported-use
+  title: Supported use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Produce an original appropriate response when task support makes the item relevant.
+  evidence:
+  - Produce a new response rather than copy or repeat a supplied sentence.
+  - Use the intended item appropriately in two different task contexts.
+  - Record lexical cues, case or agreement scaffolds, corrections, and other assistance.
+  limitation: Assisted success does not establish independent use.
+- id: independent-use
+  title: Independent use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Select and use the item appropriately without an item-specific cue or answer model.
+  evidence:
+  - Use the item in a fresh communicative task where it is useful but not explicitly requested.
+  - Adapt its use to another context or relevant contrast rather than reproduce a memorized phrase.
+  - Demonstrate delayed retrieval in a later session and record any required repair.
+  limitation: Evidence remains specific to the item, task conditions, and observed modality.
+evidence_fields: [item_id, stage, modality, task_id, session_id, observed_at, context, response, outcome, assistance]
+evidence_outcomes: [successful, partial, unsuccessful]
+policy:
+- This authored rubric is not a calibrated psychometric scale or a CEFR/TORFL crosswalk.
+- Record actual evidence before assigning a stage; completed modules and exposure counts confer no mastery.
+- Keep modalities separate; typed Cyrillic cannot demonstrate listening, spoken stress, or handwriting.
+- Receptive stages are recognize and understand; supported-use and independent-use describe production.
+- Listening and spoken-production judgments require actual audio and suitable evaluation; lexical-stress text is not audio.
+- Handwriting judgments require an actual handwritten sample, not a font or keyboard response.
+- Do not infer every earlier stage from one successful task; retain the evidence and conditions.
+- Revisit judgments when later evidence contradicts them without erasing earlier observations.
+- Evidence belongs to the precise sense, construction, or phrase; do not transfer it to every meaning of a lemma.
+- Correct case or aspect in one fixed chunk does not establish control of a whole paradigm.
+- A memorized phrase does not grant independent mastery of its component vocabulary or grammar.
+- Fixed forms introduced by a construction give no credit for unrelated same-spelling lexical senses.
+- Assess level goals with fresh combinations of taught material; advancement need not await perfect mastery of every item.
+- Carry fragile senses and constructions into later review, including relevant agreement, governance, and aspect contrasts.
+- Count explicit lexical identities separately from senses, inflections, variants, constructions, and phrases.
+- Distinguish introduced inventory, observed contextual understanding, and independently usable items; invent no learner observations.
