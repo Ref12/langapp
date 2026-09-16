@@ -784,6 +784,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "argumentation-notes.yaml",
             "argumentation-support-notes.yaml",
             "measurement-notes.yaml",
+            "interpretive-actions-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -2662,6 +2663,77 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("hour", sources["ko-nikl-14377-s001"]["source_english"])
         self.assertIn("set", words["ko-nikl-15283-s003"]["ds"])
         self.assertIn("normal", sources["ko-nikl-15283-s003"]["source_english"])
+
+    def test_interpretive_actions_keep_complete_source_requests_and_actual_readings(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "interpretive-actions-notes.yaml")
+        rows = load_yaml(authoring / "interpretive-actions-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["support_parent_requests"]
+        self.assertEqual(len(rows), 25)
+        self.assertEqual(len(requests), 12)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 30)
+        for identifier, request in requests.items():
+            parent = parents[identifier]
+            self.assertEqual(parent["target"], request["lemma"])
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertEqual(parent["source_part_of_speech"], "동사")
+            self.assertEqual([row["korean"] for row in parent["senses"]], request["korean_definitions"])
+            self.assertEqual([row["english"] for row in parent["senses"]], request["english_definitions"])
+            self.assertEqual(
+                {self.references.provenance[row["id"]]["source_position"]
+                 for row in rows if row["id"].startswith(identifier + "-s")},
+                set(request["selected_positions"]),
+            )
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+
+    def test_interpretive_voice_and_compound_pairs_preserve_original_nonmatching_ordinals(self):
+        identities, sources = self.references.lexical_identity, self.references.provenance
+        for first, second in (
+            ("ko-nikl-07830-s004", "ko-nikl-07832-s003"),
+            ("ko-nikl-06711-s005", "ko-nikl-06712-s003"),
+            ("ko-nikl-33757-s002", "ko-nikl-33759-s002"),
+            ("ko-nikl-06295-s001", "ko-nikl-06294-s002"),
+        ):
+            self.assertEqual(identities[first], identities[second])
+            self.assertEqual(sources[first]["source_position"], int(first.rsplit("-s", 1)[1]))
+            self.assertEqual(sources[second]["source_position"], int(second.rsplit("-s", 1)[1]))
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertIn("손가락", parents["ko-nikl-33757"]["senses"][0]["korean"])
+        self.assertIn("범위나 순위", parents["ko-nikl-33759"]["senses"][0]["korean"])
+        self.assertTrue(parents["ko-nikl-06295"]["senses"][1]["korean"].endswith("나타나다."))
+        self.assertIn("make", self.references.vocabulary["ko-nikl-06295-s001"]["ds"])
+        self.assertIn("emerge", self.references.vocabulary["ko-nikl-06294-s002"]["ds"])
+
+    def test_interpretive_certainty_and_appearance_are_not_source_or_truth_substitutions(self):
+        words, identities, sources = (
+            self.references.vocabulary, self.references.lexical_identity, self.references.provenance,
+        )
+        self.assertEqual(identities["ko-nikl-16482-s001"], identities["ko-nikl-16479-s001"])
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-16482"]["source_part_of_speech"], "동사")
+        self.assertEqual(parents["ko-nikl-16483"]["source_part_of_speech"], "형용사")
+        self.assertIn("judge", words["ko-nikl-16482-s001"]["ds"])
+        self.assertIn("better than in reality", words["ko-nikl-18193-s001"]["ds"])
+        self.assertIn("훌륭하거나 뛰어나", sources["ko-nikl-18193-s002"]["source_korean"])
+        self.assertEqual(identities["ko-nikl-18193-s001"], identities["ko-nikl-18193-s002"])
+        self.assertIn("try hard", words["ko-nikl-22228-s005"]["ds"])
+        self.assertIn("achieve a goal", words["ko-nikl-30404-s001"]["ds"])
+        self.assertIn("flatly reject", words["ko-nikl-11629-s001"]["ds"])
+
+    def test_interpretive_summarizing_elicitation_and_textual_reuse_keep_distinct_scopes(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("roughly", words["ko-nikl-38760-s002"]["ds"])
+        self.assertEqual(sources["ko-nikl-38760-s002"]["source_korean"].count("대강"), 2)
+        self.assertIn("key points", words["ko-nikl-26316-s002"]["ds"])
+        self.assertIn("shorten", words["ko-nikl-04740-s002"]["ds"])
+        self.assertIn("elicit", words["ko-nikl-34031-s003"]["ds"])
+        self.assertNotIn("강제로", sources["ko-nikl-34031-s003"]["source_korean"])
+        self.assertEqual(sources["ko-nikl-34039-s008"]["source_position"], 8)
+        self.assertIn("다른 사람의 말이나 글", sources["ko-nikl-34039-s008"]["source_korean"])
+        self.assertIn("exaggerated", words["ko-nikl-06711-s005"]["ds"])
+        self.assertIn("exaggerated", words["ko-nikl-06712-s003"]["ds"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

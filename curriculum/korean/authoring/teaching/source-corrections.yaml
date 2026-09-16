@@ -5,6 +5,21 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-07830-s004:
+    source_korean: 어떤 일이나 결과를 만들다.
+    source_english: For bring about a certain situation or result.
+    authored_interpretation: to bring about a situation or result
+    rationale: Repair the malformed English infinitive without adding adverse intent, a necessary negative result or a physical-shaping condition.
+  ko-nikl-19048-s001:
+    source_korean: 뒤에서 지지하고 도와주다.
+    source_english: 'To support and help someone from behind him/her. '
+    authored_interpretation: to provide backing and support
+    rationale: Backing is not confined to physical position behind a person; no guaranteed proof or successful outcome is inferred.
+  ko-nikl-38760-s002:
+    source_korean: 여러 사실을 대강 하나로 묶거나 합쳐서 대강 요약하다.
+    source_english: To combine or mix several facts and summarize.
+    authored_interpretation: to roughly lump facts together and summarize them
+    rationale: Both instances of 대강 specify roughness; do not replace it with precise synthesis or key-point selection.
   ko-nikl-14377-s001:
     source_korean: "정확히 그 시각."
     source_english: "An exact hour."

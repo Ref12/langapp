@@ -1,0 +1,441 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: parent-integrated bounded cohort; qualified review remains pending
+scope:
+  - Only the three new interpretive-actions YAML files are authored here.
+  - All handed-back cohorts, manifests, source/reading files, tests, code, and generated output remain untouched.
+  - No noun placements, automatic noun-plus-hada generation, unlisted inflections, quota, or exhaustive unselected-source sweep.
+  - Argumentation and culture-loanword noun workers retain their scopes; their undeclared active files are not inspected.
+source_provenance:
+  source_id: nikl-2024-mirror
+  revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  ids: Source parents and sNNN positions are original one-based CSV record and definition-list ordinals, not official dictionary IDs.
+  method: >
+    Inspect the full paired Korean/English positions of the named leads and
+    their actual noun, adjective, voice, and native-compound competitors in
+    the checksum-verified pin. One bounded native-verb follow-up examined
+    summarizing, selecting, eliciting, textual reuse, and exaggeration.
+    No source cache, scratch file, or new test script is written.
+  array_contract: Complete bilingual arrays below preserve original one-based sense positions, wording, and whitespace; selected_positions names the actual selected indexes.
+  attribution: National Institute of Korean Language and Korean-English Learners' Dictionary contributors, via the unofficial binjang extraction.
+  license: CC-BY-SA-2.0-KR for dictionary text; not the mirror's MIT metadata.
+  license_url: https://creativecommons.org/licenses/by-sa/2.0/kr/
+  reuse_notice: >
+    Original definitions are retained as evidence. Labels, placements, and
+    provisional family decisions are adaptations. Preserve attribution,
+    source/license links, and share-alike terms; no NIKL endorsement,
+    multimedia, or usage-example redistribution is claimed.
+placement_rationale:
+  study_and_narration: Deep study at 8 and detailed depiction at 9 serve ordinary learning and narration, not an advanced jargon track.
+  processes_and_messages: >
+    Result-producing 빚다 enters at 11. Specific reference, length reduction,
+    rough aggregation, and selective key-point summarizing enter at 12.
+    Their operations are not treated as interchangeable.
+  choices_and_cooperation: >
+    Judging something certain, singling out a choice, and flatly rejecting
+    a request enter at 13. Backing a task and drawing out expression enter
+    at 15 without inventing coercion or evidential certainty.
+  reporting_and_presentation: >
+    Public assertions, denials, attention focus, reported selection, and
+    exaggerated transmission enter at 16. Deliberate feature-highlighting
+    and achieving a goal despite opposition enter at 18.
+  evidence_and_interpretation: >
+    Effortful inquiry, appearance versus reality, contained meaning,
+    using language/facts in one's account, and actively exaggerating a
+    report enter at 19. No ordinary predicate is relocated to 25-30 to
+    increase late-phase counts.
+  independence: Placements are explicit communicative judgments, not source-band or alphabetic assignments or proficiency/exam guarantees.
+identity_policy:
+  status: Source parents, spellings, senses, and explicit provisional families are separate counts; none is a verified true-lexeme census.
+  existing_fragments: Preserve protected canonical lemma/category and include only new sense members and their actual source parents.
+  no_retrospective_merges: >
+    Existing noun/하다 pairs sometimes have separate protected keys.
+    This cohort does not rewrite or consolidate those earlier families.
+    Newly added counterparts use the matching existing or explicitly
+    reserved nominal family instead of automatically adding a hada root.
+  new_nominal_family_reservations:
+    ko-lex-04737: {lemma: 압축, category: free-lemma, noun_parent: ko-nikl-04737, selected_verb_parent: ko-nikl-04740}
+    ko-lex-06293: {lemma: 부각, category: free-lemma, noun_parent: ko-nikl-06293, selected_verb_parents: [ko-nikl-06294, ko-nikl-06295]}
+    ko-lex-19046: {lemma: 뒷받침, category: free-lemma, noun_parent: ko-nikl-19046, selected_verb_parent: ko-nikl-19048}
+    ko-lex-30402: {lemma: 관철, category: free-lemma, noun_parent: ko-nikl-30402, selected_verb_parent: ko-nikl-30404}
+    ko-lex-35057: {lemma: 내포, category: free-lemma, noun_parent: ko-nikl-35057, selected_verb_parent: ko-nikl-35059}
+  reservation_policy: >
+    These are real inspected noun records, not generated stems or noun
+    placements. A noun worker may independently select their counterparts;
+    parent must compose compatible fragments and recompute new-versus-existing
+    breadth. Related-source evidence is not an implicit support request.
+  additional_noun_coordination: >
+    Inspected but unselected hinting noun02831 corresponds to protected
+    ko-lex-02834 (시사하다, free-lemma), not current-affairs02832.
+    Inspected but unselected 옹호 noun48540 corresponds to protected
+    ko-lex-48542 (옹호하다, free-lemma). Parent handles any future noun
+    additions; no noun or protected-family change is made here.
+  shared_native_families: >
+    빚다/빚어내다 share the actually matched result-producing meanings.
+    꼽다/꼽히다 share selected active/passive singling-out meanings.
+    부풀다/부풀리다 share becoming known in exaggerated form versus
+    causing that exaggerated presentation. Each counts once, not once per
+    spelling or voice.
+  lexicalized_compounds: >
+    끌어내다 has an explicit elicitation position and 끌어오다 an explicit
+    textual-reuse position beyond the full bare 끌다34024 inventory.
+    간추리다 explicitly selects important content and organizes it briefly,
+    unlike generic mixture-selection 추리다45481. These are source-backed
+    provisional candidates, not proof that every compound is independent.
+protected_leads:
+  already_usefully_covered: >
+    Mental 되짚다, relevant 짚다 positions, 덧붙이다, problem and
+    misunderstanding 풀어내다, all 드러내다 meanings, narrative/book
+    엮다, relevant 이끌다, and all 따지다 positions are already protected.
+    So are 비유하다, 규정하다, 시사하다, 옹호하다, 반박하다, 수긍하다,
+    함축하다, 치우치다, and unreasonable persistent 우기다.
+  no_duplicate_indirect_stance: >
+    Protected 내비치다34951-s004 expresses thoughts, feelings, or intention;
+    the source does not require covert expression. Its unselected public
+    appearance/action position is not repurposed as a new hidden-stance sense.
+  no_unsupported_embellishment: >
+    보태다 gives general filling/increasing meanings here, not a separately
+    specified exaggerating-a-story position. The selected 부풀다/부풀리다
+    positions explicitly support exaggerated reporting.
+homograph_and_role_checks:
+  단정하다:
+    compared_parents: [ko-nikl-16479, ko-nikl-16482, ko-nikl-16483]
+    selected_parent: ko-nikl-16482
+    decision: Certainty-judgment action16482 extends noun16479; neat/well-behaved adjective16483 is not this action or family.
+  시사:
+    compared_parents: [ko-nikl-02831, ko-nikl-02832, ko-nikl-02834]
+    selected_here: false
+    decision: Hinting verb02834 is already selected; matching hinting noun02831 is not current-affairs noun02832. No replacement noun or new sense is invented.
+  빚:
+    compared_parents: [ko-nikl-07829, ko-nikl-07830, ko-nikl-07832]
+    decision: Debt/owed-favor noun07829 is not the result-producing verb family; material shaping, food, and brewing positions remain unselected.
+  부각:
+    compared_parents: [ko-nikl-06293, ko-nikl-06294, ko-nikl-06295]
+    decision: >
+      Selected 하다-s001 causes a feature to stand out; selected 되다-s002
+      presents a person/thing/issue emerging as an attention focus.
+      Unselected 하다-s002 is itself intransitive 나타나다, not another
+      transitive cause-to-highlight position. No uniformly transitive
+      gloss is copied over all hada positions.
+  꼽다:
+    compared_parents: [ko-nikl-33757, ko-nikl-33759]
+    decision: Both selected positions are s002. The passive parent's s001 range/ranking meaning is not the active parent's s001 finger-counting meaning.
+  부풀다:
+    compared_parents: [ko-nikl-06711, ko-nikl-06712]
+    decision: Selected intransitive s005 matches causative s003, not an assumed same-position correspondence. No physical swelling, hope, or figurative anger is imported.
+meaning_boundaries:
+  - Strenuous inquiry is an effort, not guaranteed discovery. 관철하다, in contrast, explicitly achieves the goal despite opposition.
+  - A certainty judgment or public assertion describes the speaker's action; it does not certify that the content is true or the judgment justified.
+  - Appearance better than reality is not the already-selected genuinely outstanding-quality meaning of 돋보이다.
+  - Backing/support does not guarantee logical proof. Containing a meaning or attribute does not automatically entail a proposition or require deliberate authorial concealment.
+  - Flat refusal, firm denial, ending discussion, counterargument, and successful disproof are not interchangeable.
+  - Rough grouping, selecting only important messages, and shortening a text's length remain distinct; shortening does not promise complete information preservation.
+  - The elicitation sense of 끌어내다 does not inherit coercion from its separate physical person/animal extraction sense.
+  - Textual reuse is explicitly supported by 끌어오다-s008, not inferred from its physical movement senses; it does not guarantee accuracy or proper attribution.
+  - Selection or being singled out does not prove superiority. Reported exaggeration is not physical growth or necessarily conscious deception.
+source_limits:
+  absent_exact_forms: [따져보다, 일축, 엮어내다, 우겨대다, 이끌어내다]
+  policy: >
+    These are bounded exact-form results, not claims that Korean cannot
+    express the concepts. No fabricated parent, noun stripped from a hada
+    verb, or grammatical phrase is inserted as vocabulary.
+  existing_alternatives: Protected 따지다, 엮다, 우기다, and mental 되짚다 supply relevant actual meanings without invented additional entries.
+  elicit_not_derive: The selected 끌어내다 sense elicits expression; absence of 이끌어내다 does not license an invented formal-conclusion derivation position.
+  no_exhaustive_claim: Other general-reader words may remain unselected; this is a bounded coherent addition, not an exhaustive audit or completion of the overall planning scale.
+support_parent_requests:
+  ko-nikl-04740:
+    lemma: 압축하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 4
+    selected_positions: [2]
+    korean_definitions: ['물질 등에 압력을 가하여 부피를 줄이다.', '글이나 문장의 길이를 줄여 짧게 하다.', '범위나 거리를 줄이다.', '컴퓨터에서, 특수한 방법을 사용하여 데이터의 양을 줄이다.']
+    english_definitions: ['To reduce the volume of something by applying pressure to it.', 'To reduce the length of a piece of writing or sentence to be short.', 'To reduce a range or distance.', 'In a computer system, to reduce the amount of data by using a specific method.']
+  ko-nikl-06294:
+    lemma: 부각되다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [2]
+    korean_definitions: ['어떤 특징이 두드러지게 되다.', '주목받는 사람이나 사물, 문제 등으로 나타나게 되다.']
+    english_definitions: ['For a characteristic of something to be made to stand out.', 'For a person, thing, problem, etc., to come to appear as the focus of attention. ']
+  ko-nikl-06295:
+    lemma: 부각하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [1]
+    korean_definitions: ['어떤 특징을 두드러지게 하다.', '주목받는 사람이나 사물, 문제 등으로 나타나다.']
+    english_definitions: ['To make a characteristic of something stand out.', 'For a person, thing, problem, etc., to appear as the focus of attention.']
+  ko-nikl-07832:
+    lemma: 빚어내다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 3
+    selected_positions: [3]
+    korean_definitions: ['반죽한 재료를 주무르고 다듬어서 어떤 것을 만들어 내다.', '술을 담가 내다.', '어떤 일이나 결과를 만들어 내다.']
+    english_definitions: ['To make something by kneading dough, etc.', 'To brew liquor. ', 'To bring about a certain event or result. ']
+  ko-nikl-11629:
+    lemma: 일축하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 3
+    selected_positions: [1, 2]
+    korean_definitions: ['제안이나 부탁 등을 한 번에 거절하여 받아들이지 않다.', '소문이나 의혹, 주장 등을 강하게 부인하거나 더 이상 말하지 않다.', '운동 경기 등에서 상대를 손쉽게 이기다.']
+    english_definitions: ['To reject a proposal, request, etc., flatly and not accept it.', 'To deny a rumor, suspicion, claim, etc., strongly or not talk about it anymore.', 'To beat one''s competitor easily in a sports game.']
+  ko-nikl-19048:
+    lemma: 뒷받침하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['뒤에서 지지하고 도와주다.']
+    english_definitions: ['To support and help someone from behind him/her. ']
+  ko-nikl-26316:
+    lemma: 간추리다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [2]
+    korean_definitions: ['흐트러진 것을 가지런히 정리하다.', '글이나 말에서 중요한 내용만 골라 간단하게 정리하다.']
+    english_definitions: ['To arrange scattered things neatly.', 'To shorten a piece of writing or speech to include only important messages.']
+  ko-nikl-30404:
+    lemma: 관철하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['반대나 방해를 견뎌 내고 목적을 이루어 내다.']
+    english_definitions: ['To achieve a goal after enduring opposition or disturbance.']
+  ko-nikl-34039:
+    lemma: 끌어오다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 8
+    selected_positions: [8]
+    korean_definitions: ['바닥에 있는 물체를 잡아당겨서 이동시키다.', '사람이나 동물을 강제로 데려오다.', '멀리 있는 것을 구해서 필요한 곳으로 가져오다.', '돈을 여기저기에서 구해 오다.', '일이나 단체를 책임지고 이끌다.', '눈길이나 관심 등을 계속해서 가지게 하다.', '같은 상태를 유지하며 시간을 보내다.', '다른 사람의 말이나 글, 어떤 사실을 자기 것에 가져다 쓰다.']
+    english_definitions: ['To pull an object on the ground to move it.', 'To bring a person or animal by force.', 'To obtain and bring something that is far away to where it is needed.', 'To raise money from here and there.', 'To take charge of a task or group and lead it.', 'To keep on attracting people''s interest, attention, etc.', 'To maintain the same state and pass time.', 'To cite someone else''s words, writing, or certain facts in one''s own.']
+  ko-nikl-35059:
+    lemma: 내포하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['어떤 뜻이나 성질 등을 속에 가지다.']
+    english_definitions: ['To contain a meaning or attribute, etc. ']
+  ko-nikl-37878:
+    lemma: 묘사하다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 1
+    selected_positions: [1]
+    korean_definitions: ['어떤 대상을 있는 그대로 자세하게 말이나 글로 표현하거나 그림으로 그리다.']
+    english_definitions: ['To give a detailed account of a certain object in spoken or written words, or express it in painting as it stands.']
+  ko-nikl-38760:
+    lemma: 뭉뚱그리다
+    source_part_of_speech: 동사
+    source_band: unbanded
+    source_sense_count: 2
+    selected_positions: [2]
+    korean_definitions: ['되는 대로 대강 한 덩어리로 뭉쳐 싸다.', '여러 사실을 대강 하나로 묶거나 합쳐서 대강 요약하다.']
+    english_definitions: ['To gather things and wrap them in one package.', 'To combine or mix several facts and summarize.']
+related_source_evidence:
+  ko-nikl-04737:
+    lemma: 압축
+    source_part_of_speech: 명사
+    source_sense_count: 4
+    selected_here: false
+    korean_definitions: ['물질 등에 압력을 가하여 부피를 줄임.', '글이나 문장의 길이를 줄여 짧게 함.', '범위나 거리를 줄임.', '컴퓨터에서, 특수한 방법을 사용하여 데이터의 양을 줄임.']
+    english_definitions: ['The act of reducing the volume of something by applying pressure to it.', 'The process of reducing the length of a piece of writing or sentence to a short one.', 'The process of reducing a range or distance.', 'In a computer system, the process of reducing the amount of data by using a specific method.']
+  ko-nikl-06293:
+    lemma: 부각
+    source_part_of_speech: 명사
+    source_sense_count: 1
+    selected_here: false
+    korean_definitions: ['어떤 특징을 두드러지게 함.']
+    english_definitions: ['The act of making a characteristic of something stand out. ']
+  ko-nikl-19046:
+    lemma: 뒷받침
+    source_part_of_speech: 명사
+    source_sense_count: 1
+    selected_here: false
+    korean_definitions: ['뒤에서 지지하고 도와주는 일. 또는 그런 사람이나 물건.']
+    english_definitions: ['The act of supporting and helping someone or something, or such a person or object.']
+  ko-nikl-30402:
+    lemma: 관철
+    source_part_of_speech: 명사
+    source_sense_count: 1
+    selected_here: false
+    korean_definitions: ['반대나 방해를 견뎌 내고 목적을 이루어 냄.']
+    english_definitions: ['The act of achieving a goal after enduring opposition or disturbance.']
+  ko-nikl-35057:
+    lemma: 내포
+    source_part_of_speech: 명사
+    source_sense_count: 1
+    selected_here: false
+    korean_definitions: ['어떤 뜻이나 성질 등을 속에 가짐.']
+    english_definitions: ['A state in which a meaning or property, etc., are contained. ']
+source_correction_requests:
+  ko-nikl-07830-s004:
+    source_korean: 어떤 일이나 결과를 만들다.
+    source_english: For bring about a certain situation or result.
+    authored_interpretation: to bring about a situation or result
+    rationale: Repair the malformed English infinitive while preserving active result production; do not insert intentionality, adversity, or a physical shaping restriction.
+  ko-nikl-19048-s001:
+    source_korean: 뒤에서 지지하고 도와주다.
+    source_english: 'To support and help someone from behind him/her. '
+    authored_interpretation: to provide backing and support
+    rationale: Scope clarification; support/backing is not restricted to a physical location behind a person. The compared noun explicitly allows a person or object; this does not turn support into certified logical proof.
+  ko-nikl-38760-s002:
+    source_korean: 여러 사실을 대강 하나로 묶거나 합쳐서 대강 요약하다.
+    source_english: To combine or mix several facts and summarize.
+    authored_interpretation: to roughly lump facts together and summarize them
+    rationale: Restore the explicit roughness of both occurrences of 대강, omitted in English; do not label the operation precise synthesis or key-point selection.
+unselected_source_issue:
+  ko-nikl-07830-s003:
+    source_korean: 술을 담그다.
+    source_english: For liquid to be made.
+    issue: This describes brewing alcoholic drink, not generic liquid production. It remains unselected and is not an active correction request for this cohort.
+reading_availability:
+  assessment: Measured from the actual current retained registry, official-text overlay, and authored-decision mapping using citation_reading; not guessed from spelling.
+  available_official_text_parent_ids: [ko-nikl-06711, ko-nikl-06712, ko-nikl-07830, ko-nikl-16482, ko-nikl-18193, ko-nikl-22228, ko-nikl-25707, ko-nikl-33757, ko-nikl-33759, ko-nikl-34031, ko-nikl-34970]
+  available_unverified_authored_parent_ids: []
+  retained_without_supported_citation_parent_ids: []
+  pending_source_and_reading_parent_ids: [ko-nikl-04740, ko-nikl-06294, ko-nikl-06295, ko-nikl-07832, ko-nikl-11629, ko-nikl-19048, ko-nikl-26316, ko-nikl-30404, ko-nikl-34039, ko-nikl-35059, ko-nikl-37878, ko-nikl-38760]
+  pending_interpretation: These parents were absent from the retained registry, overlay entries, and authored decisions; this does not claim that the official dictionary has no pronunciation for them.
+  owner: Parent approves source admission and resolves actual readings; no reading or decision is added or borrowed across related forms here.
+  limits: Existing official text availability is not fresh teacher validation, audio assessment, or a substitute for investigating pending-source parents.
+protected_constraints:
+  held_source_ids: [ko-nikl-22209-s001, ko-nikl-48419-s001]
+  category_checks:
+    ko-lex-41331: function-item
+    ko-lex-03447: function-item
+    ko-lex-26499: free-lemma
+  retired_identity_keys: [ko-lex-26491, ko-lex-03445]
+integration:
+  owner: parent after handoff
+  vocabulary_file: interpretive-actions-vocabulary.yaml
+  identity_file: interpretive-actions-identities.yaml
+  notes_file: interpretive-actions-notes.yaml
+  compose: Add the two selection filenames to their respective manifest lists only after parent admission/reading/correction review; no shard assembly is needed.
+  support_scope: Only support_parent_requests keys are requested; compared nouns, excluded homographs, and unselected source issues are not additional admissions or placements.
+  stop_rule: Deliver one completed bounded cohort, then stop editing. Queued baseline notices do not reopen this or any earlier cohort.
+validation:
+  status: passed
+  counts:
+    selected_senses: 25
+    action_verb_senses: 25
+    core_senses: 25
+    branch_senses: 0
+    dictionary_source_parents: 23
+    distinct_spellings: 23
+    identity_fragments: 19
+    existing_family_extensions: 5
+    new_provisional_free_family_keys: 14
+    new_core_provisional_free_families: 14
+    new_function_items: 0
+    new_bound_forms: 0
+    requested_support_parents: 12
+    actually_missing_from_retained_registry: 12
+    complete_positions_in_requested_parents: 30
+    selected_positions_from_requested_parents: 13
+    selected_source_correction_requests: 3
+    maximum_label_characters: 63
+    parents_with_existing_official_citation_text: 11
+    parents_with_existing_unverified_authored_readings: 0
+    retained_parents_without_supported_citation: 0
+    parents_pending_source_and_reading: 12
+  existing_family_keys: [ko-lex-16479, ko-lex-18193, ko-lex-25707, ko-lex-34970, ko-lex-37875]
+  new_family_keys: [ko-lex-04737, ko-lex-06293, ko-lex-06711, ko-lex-07830, ko-lex-11629, ko-lex-19046, ko-lex-22228, ko-lex-26316, ko-lex-30402, ko-lex-33757, ko-lex-34031, ko-lex-34039, ko-lex-35057, ko-lex-38760]
+  selected_senses_by_level: {8: 1, 9: 1, 11: 1, 12: 4, 13: 3, 15: 2, 16: 6, 18: 2, 19: 5}
+  measured_protected_baseline:
+    manifest_vocabulary_files: 39
+    retained_unbanded_parents: 842
+    core_selected_senses: 7647
+    core_provisional_free_families: 4852
+    manifest_sha256: e61bb53b2bed26e8163208d8ce3083669cd72a9425c75e08251c080f5fb08a79
+    retained_registry_sha256: 9d3bffb508d0d673303dda413769d0b035b09ad5b86d6344e9a3d440ce303475
+    reading_overlay_sha256: c8846aea0bddc5ce7e889189afb828ba3ab124abbeea13b6ce82ecdd7353d5c4
+    reading_decisions_sha256: 1f628729f890a3eeb1a08e4a366f709de1625b7f2f3b9763b3398e0641d35627
+    snapshot_policy: Actual live composition at validation, not the earlier 776-support or 7411-core notice. Future noun admissions can change family-join accounting and remain parent-owned.
+  checks:
+    - Unique YAML keys and exact placement/identity schemas; labels fit 64 characters.
+    - Full pinned CSV hash and 53172 rows; all requested and related bilingual arrays match complete original positions, including whitespace.
+    - Full selected same-form homographs, real action-verb POS, actual nominal family anchors, and bounded exact-form absences were checked.
+    - Real extract_senses importer preserved all retained registry entries and original TOPIK reference records while adding proposals only in memory.
+    - Real load_selections, placement_rows, lexical_members, and source_corrections validators passed against every live manifest input plus this cohort.
+    - Zero selected-ID overlaps, conflicting family keys, repeated identity members, or parent-closure mismatches.
+    - Protected canonical/category values, held exclusions, retired-key absence, and global level/branch coverage remain unchanged.
+    - Real citation_reading calls found official-text availability for 11 retained parents; none required an authored or guessed reading.
+    - All 12 proposed parents were absent from retained source, overlay entries, and authored decisions; no claim was made about unavailable official archives.
+    - Protected input bytes stayed unchanged during validation; authored YAML has consistent line endings and no trailing file-line whitespace.
+  regressions:
+    result: All three existing read-only tests passed together.
+    tests:
+      - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+      - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+      - test_korean_program.KoreanSourceArtifactTests.test_figurative_spring_correction_matches_the_actual_pinned_definition
+    invocation: Python312 -B -m unittest with the three selectors from scripts; no installation or new test tooling.
+  planning_scale_snapshot:
+    projected_core_senses_with_cohort: 7672
+    projected_core_provisional_free_with_cohort: 4866
+    short_of_5800: 934
+    short_of_6000: 1134
+    interpretation: Projected explicit-family accounting, not source-approved publication, verified true-lexeme breadth, or mastery; the remaining shortfall is not a quota.
+remaining_limits:
+  - Parent must approve the 12 exact support requests, resolve their actual citation readings, and adjudicate three selected-source corrections.
+  - Nominal family reservations require live reconciliation when another worker's nouns are admitted; they do not authorize editing that worker's files.
+  - Qualified Korean-teacher and lexical-family review remain necessary, especially modality, transitivity, stance, and the provisional treatment of native compounds.
+  - Only 14 new provisional free families are added at this snapshot, not 25 new headwords; the overall aspirational scale remains unmet.
+  - All earlier files remain frozen; after handback no continuation follows from queued status or baseline updates.
+parent_integration:
+  historical_snapshot: >
+    Worker validation, pending-reading lists and projected coverage above
+    describe its handoff against the842-support baseline. Parent reconciled
+    with the completed measurement cohort instead; no worker reopened earlier
+    files. All12 source requests are now admitted with all30 raw positions.
+  selected_senses: 25
+  new_provisional_free_families: 14
+  existing_family_extensions: 5
+  admitted_support_parents: 12
+  retained_support_positions: 30
+  newly_selected_support_senses: 13
+  exact_source_interpretations: 3
+  actual_reading_review:
+    official_text_senses: 25
+    official_text_parents: 23
+    newly_authored_readings: 0
+    new_crosswalks: 0
+    evidence: All selected parents resolve through actual independently pinned official citation text, including each of the12 newly admitted parents.
+  native_compound_scope: >
+    The eliciting 끌어내다 source3 is parent-owned. A separate movement
+    cohort may add real physical positions to the same family, without
+    repeating this selection or transferring its mastery to coercive
+    physical removal. The analogous source8 textual-reuse 끌어오다 remains
+    distinct from its complete retained physical/leadership/time meanings.
+  limits: >
+    No reading is copied from a nominal family label, and no source stem,
+    causative/passive ordinal pairing, logical certainty or learner progress
+    is inferred merely from a corresponding word. Qualified linguistic,
+    pragmatic and pedagogical review remains required.
+  coverage_snapshot:
+    core_dictionary_parents: 5414
+    core_selected_senses: 7765
+    core_distinct_spellings: 5104
+    core_spelling_pos_pairs: 5212
+    core_lexical_identities: 5168
+    core_provisional_free_families: 4905
+    core_bound_forms: 40
+    core_function_items: 223
+    retained_support_parents: 885
+    selected_support_parents: 881
+    core_modules: 764
+    gap_to_lower_core_free_guide: 895
+  checks:
+    targeted_course_tourist_source_tests: 134
+    deterministic_views: 128
+    preservation: Every prior retained parent object and official overlay entry remained unchanged; no reading decision or crosswalk was modified.
+  completion_boundary: This is another useful bounded cohort, not complete curriculum breadth, qualified review, mastery or catalog activation.

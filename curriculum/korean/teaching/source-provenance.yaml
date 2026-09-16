@@ -40255,7 +40255,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '48609'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48609
-      pronunciations:
+      pronunciations: &id1444
       - 돋뽀이다
     lexical_identity: ko-lex-18193
     lexical_category: free-lemma
@@ -152505,6 +152505,503 @@ items:
       method: authored-interpretation
       review_status: unreviewed
     lexical_identity: ko-lex-47094
+    lexical_category: free-lemma
+  ko-nikl-07830-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7830
+    source_parent: ko-nikl-07830
+    source_position: 4
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: For bring about a certain situation or result.
+    source_korean: 어떤 일이나 결과를 만들다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60816'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60816
+      pronunciations:
+      - 빋따
+    source_correction:
+      source_korean: 어떤 일이나 결과를 만들다.
+      source_english: For bring about a certain situation or result.
+      authored_interpretation: to bring about a situation or result
+      rationale: Repair the malformed English infinitive without adding adverse intent, a necessary negative
+        result or a physical-shaping condition.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-07830
+    lexical_category: free-lemma
+  ko-nikl-07832-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7832
+    source_parent: ko-nikl-07832
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: 'To bring about a certain event or result. '
+    source_korean: 어떤 일이나 결과를 만들어 내다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60818'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60818
+      pronunciations:
+      - 비저내다
+    lexical_identity: ko-lex-07830
+    lexical_category: free-lemma
+  ko-nikl-22228-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22228
+    source_parent: ko-nikl-22228
+    source_position: 4
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To study one field deeply.
+    source_korean: 한 분야를 깊이 공부하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82704'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82704
+      pronunciations: &id1443
+      - 파고들다
+    lexical_identity: ko-lex-22228
+    lexical_category: free-lemma
+  ko-nikl-22228-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22228
+    source_parent: ko-nikl-22228
+    source_position: 5
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To try very hard to find out something.
+    source_korean: 어떤 것을 알아내려고 몹시 노력하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82704'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82704
+      pronunciations: *id1443
+    lexical_identity: ko-lex-22228
+    lexical_category: free-lemma
+  ko-nikl-19048-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19048
+    source_parent: ko-nikl-19048
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'To support and help someone from behind him/her. '
+    source_korean: 뒤에서 지지하고 도와주다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67393'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67393
+      pronunciations:
+      - 뒤ː빧침하다
+      - 뒫ː빧침하다
+    source_correction:
+      source_korean: 뒤에서 지지하고 도와주다.
+      source_english: 'To support and help someone from behind him/her. '
+      authored_interpretation: to provide backing and support
+      rationale: Backing is not confined to physical position behind a person; no guaranteed proof or
+        successful outcome is inferred.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-19046
+    lexical_category: free-lemma
+  ko-nikl-38760-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38760
+    source_parent: ko-nikl-38760
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To combine or mix several facts and summarize.
+    source_korean: 여러 사실을 대강 하나로 묶거나 합쳐서 대강 요약하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57118'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57118
+      pronunciations:
+      - 뭉뚱그리다
+    source_correction:
+      source_korean: 여러 사실을 대강 하나로 묶거나 합쳐서 대강 요약하다.
+      source_english: To combine or mix several facts and summarize.
+      authored_interpretation: to roughly lump facts together and summarize them
+      rationale: Both instances of 대강 specify roughness; do not replace it with precise synthesis or key-point
+        selection.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-38760
+    lexical_category: free-lemma
+  ko-nikl-18193-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18193
+    source_parent: ko-nikl-18193
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To look better than the reality.
+    source_korean: 실제보다 더 좋게 보이다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48609'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48609
+      pronunciations: *id1444
+    lexical_identity: ko-lex-18193
+    lexical_category: free-lemma
+  ko-nikl-25707-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25707
+    source_parent: ko-nikl-25707
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-2
+    source_english: To make reference to or mention something specifically.
+    source_korean: 어떤 대상을 특별히 지적해 말하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '17882'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=17882
+      pronunciations: *id346
+    lexical_identity: ko-lex-25707
+    lexical_category: free-lemma
+  ko-nikl-34970-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34970
+    source_parent: ko-nikl-34970
+    source_position: 4
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To insist or promote a certain fact in public.
+    source_korean: 어떤 사실을 공적으로 주장하거나 알리다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40287'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40287
+      pronunciations: *id351
+    lexical_identity: ko-lex-34970
+    lexical_category: free-lemma
+  ko-nikl-16482-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16482
+    source_parent: ko-nikl-16482
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To conclude that something is certain and decide on it.
+    source_korean: 어떤 일에 대해 확실하다고 판단하고 결정하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41978'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41978
+      pronunciations:
+      - 단ː정하다
+    lexical_identity: ko-lex-16479
+    lexical_category: free-lemma
+  ko-nikl-37878-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37878
+    source_parent: ko-nikl-37878
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To give a detailed account of a certain object in spoken or written words, or express
+      it in painting as it stands.
+    source_korean: 어떤 대상을 있는 그대로 자세하게 말이나 글로 표현하거나 그림으로 그리다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15314'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15314
+      pronunciations:
+      - 묘ː사하다
+    lexical_identity: ko-lex-37875
+    lexical_category: free-lemma
+  ko-nikl-30404-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30404
+    source_parent: ko-nikl-30404
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To achieve a goal after enduring opposition or disturbance.
+    source_korean: 반대나 방해를 견뎌 내고 목적을 이루어 내다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '30755'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30755
+      pronunciations:
+      - 관ː철하다
+    lexical_identity: ko-lex-30402
+    lexical_category: free-lemma
+  ko-nikl-35059-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35059
+    source_parent: ko-nikl-35059
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'To contain a meaning or attribute, etc. '
+    source_korean: 어떤 뜻이나 성질 등을 속에 가지다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41153'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41153
+      pronunciations:
+      - 내ː포하다
+    lexical_identity: ko-lex-35057
+    lexical_category: free-lemma
+  ko-nikl-04740-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4740
+    source_parent: ko-nikl-04740
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To reduce the length of a piece of writing or sentence to be short.
+    source_korean: 글이나 문장의 길이를 줄여 짧게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66863'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66863
+      pronunciations:
+      - 압추카다
+    lexical_identity: ko-lex-04737
+    lexical_category: free-lemma
+  ko-nikl-06295-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6295
+    source_parent: ko-nikl-06295
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To make a characteristic of something stand out.
+    source_korean: 어떤 특징을 두드러지게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60075'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60075
+      pronunciations:
+      - 부가카다
+    lexical_identity: ko-lex-06293
+    lexical_category: free-lemma
+  ko-nikl-06294-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6294
+    source_parent: ko-nikl-06294
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'For a person, thing, problem, etc., to come to appear as the focus of attention. '
+    source_korean: 주목받는 사람이나 사물, 문제 등으로 나타나게 되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59961'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59961
+      pronunciations:
+      - 부각뙤다
+      - 부각뛔다
+    lexical_identity: ko-lex-06293
+    lexical_category: free-lemma
+  ko-nikl-11629-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11629
+    source_parent: ko-nikl-11629
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To reject a proposal, request, etc., flatly and not accept it.
+    source_korean: 제안이나 부탁 등을 한 번에 거절하여 받아들이지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72621'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72621
+      pronunciations: &id1445
+      - 일추카다
+    lexical_identity: ko-lex-11629
+    lexical_category: free-lemma
+  ko-nikl-11629-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11629
+    source_parent: ko-nikl-11629
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To deny a rumor, suspicion, claim, etc., strongly or not talk about it anymore.
+    source_korean: 소문이나 의혹, 주장 등을 강하게 부인하거나 더 이상 말하지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72621'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72621
+      pronunciations: *id1445
+    lexical_identity: ko-lex-11629
+    lexical_category: free-lemma
+  ko-nikl-26316-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26316
+    source_parent: ko-nikl-26316
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: To shorten a piece of writing or speech to include only important messages.
+    source_korean: 글이나 말에서 중요한 내용만 골라 간단하게 정리하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14911'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14911
+      pronunciations:
+      - 간추리다
+    lexical_identity: ko-lex-26316
+    lexical_category: free-lemma
+  ko-nikl-33757-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33757
+    source_parent: ko-nikl-33757
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To select and point out.
+    source_korean: 골라서 지목하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38210'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38210
+      pronunciations:
+      - 꼽따
+    lexical_identity: ko-lex-33757
+    lexical_category: free-lemma
+  ko-nikl-33759-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33759
+    source_parent: ko-nikl-33759
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: To be selected and pointed out.
+    source_korean: 골라져 지목되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14411'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14411
+      pronunciations:
+      - 꼬피다
+    lexical_identity: ko-lex-33757
+    lexical_category: free-lemma
+  ko-nikl-34031-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34031
+    source_parent: ko-nikl-34031
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-6
+    source_english: To make someone express his/her thoughts, abilities, etc.
+    source_korean: 생각, 능력, 말 등을 표현하게 하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38025'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38025
+      pronunciations:
+      - 끄ː러내다
+    lexical_identity: ko-lex-34031
+    lexical_category: free-lemma
+  ko-nikl-34039-s008:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34039
+    source_parent: ko-nikl-34039
+    source_position: 8
+    source_band: unbanded
+    reference_level: null
+    source_english: To cite someone else's words, writing, or certain facts in one's own.
+    source_korean: 다른 사람의 말이나 글, 어떤 사실을 자기 것에 가져다 쓰다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38032'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38032
+      pronunciations:
+      - 끄ː러오다
+    lexical_identity: ko-lex-34039
+    lexical_category: free-lemma
+  ko-nikl-06711-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6711
+    source_parent: ko-nikl-06711
+    source_position: 5
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'For a matter, incident, etc., to become known in an exaggerated manner. '
+    source_korean: 일, 사건 등이 실제보다 크게 알려지게 되다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59965'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59965
+      pronunciations:
+      - 부풀다
+    lexical_identity: ko-lex-06711
+    lexical_category: free-lemma
+  ko-nikl-06712-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6712
+    source_parent: ko-nikl-06712
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-5
+    source_english: To make a matter, incident, etc., known in an exaggerated manner.
+    source_korean: 일, 사건 등을 실제보다 크게 알리다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59967'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59967
+      pronunciations:
+      - 부풀리다
+    lexical_identity: ko-lex-06711
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

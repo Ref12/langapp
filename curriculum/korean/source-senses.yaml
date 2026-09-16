@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 873
+  unbanded-support: 885
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -17370,6 +17370,30 @@ entries:
     source_position: 4
     english: In a computer system, the process of reducing the amount of data by using a specific method.
     korean: 컴퓨터에서, 특수한 방법을 사용하여 데이터의 양을 줄임.
+- id: ko-nikl-04740
+  target: 압축하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4740
+  senses:
+  - id: ko-nikl-04740-s001
+    source_position: 1
+    english: To reduce the volume of something by applying pressure to it.
+    korean: 물질 등에 압력을 가하여 부피를 줄이다.
+  - id: ko-nikl-04740-s002
+    source_position: 2
+    english: To reduce the length of a piece of writing or sentence to be short.
+    korean: 글이나 문장의 길이를 줄여 짧게 하다.
+  - id: ko-nikl-04740-s003
+    source_position: 3
+    english: To reduce a range or distance.
+    korean: 범위나 거리를 줄이다.
+  - id: ko-nikl-04740-s004
+    source_position: 4
+    english: In a computer system, to reduce the amount of data by using a specific method.
+    korean: 컴퓨터에서, 특수한 방법을 사용하여 데이터의 양을 줄이다.
 - id: ko-nikl-04741
   target: 앗
   part_of_speech: interjection
@@ -22397,6 +22421,38 @@ entries:
     source_position: 1
     english: 'The act of making a characteristic of something stand out. '
     korean: 어떤 특징을 두드러지게 함.
+- id: ko-nikl-06294
+  target: 부각되다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6294
+  senses:
+  - id: ko-nikl-06294-s001
+    source_position: 1
+    english: For a characteristic of something to be made to stand out.
+    korean: 어떤 특징이 두드러지게 되다.
+  - id: ko-nikl-06294-s002
+    source_position: 2
+    english: 'For a person, thing, problem, etc., to come to appear as the focus of attention. '
+    korean: 주목받는 사람이나 사물, 문제 등으로 나타나게 되다.
+- id: ko-nikl-06295
+  target: 부각하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6295
+  senses:
+  - id: ko-nikl-06295-s001
+    source_position: 1
+    english: To make a characteristic of something stand out.
+    korean: 어떤 특징을 두드러지게 하다.
+  - id: ko-nikl-06295-s002
+    source_position: 2
+    english: For a person, thing, problem, etc., to appear as the focus of attention.
+    korean: 주목받는 사람이나 사물, 문제 등으로 나타나다.
 - id: ko-nikl-06305
   target: 부고
   part_of_speech: noun
@@ -28051,6 +28107,26 @@ entries:
     source_position: 4
     english: For bring about a certain situation or result.
     korean: 어떤 일이나 결과를 만들다.
+- id: ko-nikl-07832
+  target: 빚어내다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7832
+  senses:
+  - id: ko-nikl-07832-s001
+    source_position: 1
+    english: To make something by kneading dough, etc.
+    korean: 반죽한 재료를 주무르고 다듬어서 어떤 것을 만들어 내다.
+  - id: ko-nikl-07832-s002
+    source_position: 2
+    english: 'To brew liquor. '
+    korean: 술을 담가 내다.
+  - id: ko-nikl-07832-s003
+    source_position: 3
+    english: 'To bring about a certain event or result. '
+    korean: 어떤 일이나 결과를 만들어 내다.
 - id: ko-nikl-07833
   target: 빚어지다
   part_of_speech: verb
@@ -42311,6 +42387,26 @@ entries:
     source_position: 1
     english: All of everything.
     korean: 모든 것을 전부 다.
+- id: ko-nikl-11629
+  target: 일축하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11629
+  senses:
+  - id: ko-nikl-11629-s001
+    source_position: 1
+    english: To reject a proposal, request, etc., flatly and not accept it.
+    korean: 제안이나 부탁 등을 한 번에 거절하여 받아들이지 않다.
+  - id: ko-nikl-11629-s002
+    source_position: 2
+    english: To deny a rumor, suspicion, claim, etc., strongly or not talk about it anymore.
+    korean: 소문이나 의혹, 주장 등을 강하게 부인하거나 더 이상 말하지 않다.
+  - id: ko-nikl-11629-s003
+    source_position: 3
+    english: To beat one's competitor easily in a sports game.
+    korean: 운동 경기 등에서 상대를 손쉽게 이기다.
 - id: ko-nikl-11630
   target: 일출
   part_of_speech: noun
@@ -68406,6 +68502,18 @@ entries:
     source_position: 1
     english: The act of supporting and helping someone or something, or such a person or object.
     korean: 뒤에서 지지하고 도와주는 일. 또는 그런 사람이나 물건.
+- id: ko-nikl-19048
+  target: 뒷받침하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19048
+  senses:
+  - id: ko-nikl-19048-s001
+    source_position: 1
+    english: 'To support and help someone from behind him/her. '
+    korean: 뒤에서 지지하고 도와주다.
 - id: ko-nikl-19056
   target: 뒷산
   part_of_speech: noun
@@ -93724,6 +93832,22 @@ entries:
     english: A person who finds out or steals a secret, the situation, or information of one country or
       organization, and provides it to another country or organization.
     korean: 한 나라나 단체의 비밀 정보를 알아내어 다른 나라나 단체에 넘겨주는 일을 하는 사람.
+- id: ko-nikl-26316
+  target: 간추리다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26316
+  senses:
+  - id: ko-nikl-26316-s001
+    source_position: 1
+    english: To arrange scattered things neatly.
+    korean: 흐트러진 것을 가지런히 정리하다.
+  - id: ko-nikl-26316-s002
+    source_position: 2
+    english: To shorten a piece of writing or speech to include only important messages.
+    korean: 글이나 말에서 중요한 내용만 골라 간단하게 정리하다.
 - id: ko-nikl-26323
   target: 간파하다
   part_of_speech: verb
@@ -106281,6 +106405,18 @@ entries:
     source_position: 1
     english: To watch an object or phenomenon carefully and in detail.
     korean: 사물이나 현상을 주의 깊게 자세히 살펴보다.
+- id: ko-nikl-30404
+  target: 관철하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30404
+  senses:
+  - id: ko-nikl-30404-s001
+    source_position: 1
+    english: To achieve a goal after enduring opposition or disturbance.
+    korean: 반대나 방해를 견뎌 내고 목적을 이루어 내다.
 - id: ko-nikl-30405
   target: 관청
   part_of_speech: noun
@@ -118370,6 +118506,46 @@ entries:
     source_position: 3
     english: To understand and embrace.
     korean: 이해하고 감싸 주다.
+- id: ko-nikl-34039
+  target: 끌어오다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34039
+  senses:
+  - id: ko-nikl-34039-s001
+    source_position: 1
+    english: To pull an object on the ground to move it.
+    korean: 바닥에 있는 물체를 잡아당겨서 이동시키다.
+  - id: ko-nikl-34039-s002
+    source_position: 2
+    english: To bring a person or animal by force.
+    korean: 사람이나 동물을 강제로 데려오다.
+  - id: ko-nikl-34039-s003
+    source_position: 3
+    english: To obtain and bring something that is far away to where it is needed.
+    korean: 멀리 있는 것을 구해서 필요한 곳으로 가져오다.
+  - id: ko-nikl-34039-s004
+    source_position: 4
+    english: To raise money from here and there.
+    korean: 돈을 여기저기에서 구해 오다.
+  - id: ko-nikl-34039-s005
+    source_position: 5
+    english: To take charge of a task or group and lead it.
+    korean: 일이나 단체를 책임지고 이끌다.
+  - id: ko-nikl-34039-s006
+    source_position: 6
+    english: To keep on attracting people's interest, attention, etc.
+    korean: 눈길이나 관심 등을 계속해서 가지게 하다.
+  - id: ko-nikl-34039-s007
+    source_position: 7
+    english: To maintain the same state and pass time.
+    korean: 같은 상태를 유지하며 시간을 보내다.
+  - id: ko-nikl-34039-s008
+    source_position: 8
+    english: To cite someone else's words, writing, or certain facts in one's own.
+    korean: 다른 사람의 말이나 글, 어떤 사실을 자기 것에 가져다 쓰다.
 - id: ko-nikl-34040
   target: 끌어올리다
   part_of_speech: verb
@@ -122820,6 +122996,18 @@ entries:
     source_position: 1
     english: 'To feel like doing something. '
     korean: 하고 싶은 마음이 생기다.
+- id: ko-nikl-35059
+  target: 내포하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35059
+  senses:
+  - id: ko-nikl-35059-s001
+    source_position: 1
+    english: 'To contain a meaning or attribute, etc. '
+    korean: 어떤 뜻이나 성질 등을 속에 가지다.
 - id: ko-nikl-35070
   target: 내후년
   part_of_speech: noun
@@ -132778,6 +132966,19 @@ entries:
     english: 'An act of giving a detailed account of a certain object in spoken or written words, or expressing
       it in paintings as it stands. '
     korean: 어떤 대상을 있는 그대로 자세하게 말이나 글로 표현하거나 그림으로 그림.
+- id: ko-nikl-37878
+  target: 묘사하다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37878
+  senses:
+  - id: ko-nikl-37878-s001
+    source_position: 1
+    english: To give a detailed account of a certain object in spoken or written words, or express it
+      in painting as it stands.
+    korean: 어떤 대상을 있는 그대로 자세하게 말이나 글로 표현하거나 그림으로 그리다.
 - id: ko-nikl-37886
   target: 묘지
   part_of_speech: noun
@@ -135489,6 +135690,22 @@ entries:
     source_position: 1
     english: A valuable object made to be useful.
     korean: 쓸모 있게 만들어진 가치 있는 물건.
+- id: ko-nikl-38760
+  target: 뭉뚱그리다
+  part_of_speech: verb
+  source_part_of_speech: 동사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38760
+  senses:
+  - id: ko-nikl-38760-s001
+    source_position: 1
+    english: To gather things and wrap them in one package.
+    korean: 되는 대로 대강 한 덩어리로 뭉쳐 싸다.
+  - id: ko-nikl-38760-s002
+    source_position: 2
+    english: To combine or mix several facts and summarize.
+    korean: 여러 사실을 대강 하나로 묶거나 합쳐서 대강 요약하다.
 - id: ko-nikl-38763
   target: 뭉치다
   part_of_speech: verb
