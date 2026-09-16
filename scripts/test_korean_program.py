@@ -779,6 +779,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "culture-notes.yaml",
             "pantry-notes.yaml",
             "stance-qualifiers-notes.yaml",
+            "demeanor-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename == "governance-notes.yaml"
@@ -2361,6 +2362,85 @@ class KoreanCourseArtifactTests(unittest.TestCase):
                 list(range(1, len(record["senses"]) + 1)),
             )
             self.assertTrue(all(item["korean"] and item["english"] for item in record["senses"]))
+        for row in rows:
+            self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+
+    def test_demeanor_substantiality_and_loyalty_are_separate_source_homographs(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-45865-s001"], "ko-lex-45863")
+        self.assertEqual(identities["ko-nikl-45865-s002"], "ko-lex-45863")
+        self.assertEqual(identities["ko-nikl-45866-s001"], "ko-lex-45864")
+        self.assertIn("content", words["ko-nikl-45865-s001"]["ds"])
+        self.assertIn("healthy", words["ko-nikl-45865-s002"]["ds"])
+        self.assertIn("loyal", words["ko-nikl-45866-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-45865-s001"]["ch"], words["ko-nikl-45866-s001"]["ch"])
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(len(parents["ko-nikl-45863"]["senses"]), 2)
+        self.assertEqual(len(parents["ko-nikl-45864"]["senses"]), 1)
+        self.assertIn("충성스럽고", parents["ko-nikl-45864"]["senses"][0]["korean"])
+
+    def test_demeanor_quietness_and_familiarity_do_not_imply_character_judgments(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for members in (
+            ("ko-nikl-03806-s001", "ko-nikl-03806-s002", "ko-nikl-03805-s001"),
+            ("ko-nikl-38325-s001", "ko-nikl-38326-s001"),
+            ("ko-nikl-20501-s001", "ko-nikl-20499-s001"),
+            ("ko-nikl-14392-s001", "ko-nikl-14371-s002"),
+            ("ko-nikl-29214-s001", "ko-nikl-29214-s003", "ko-nikl-29212-s001"),
+            ("ko-nikl-33325-s001", "ko-nikl-33404-s001", "ko-nikl-33404-s002"),
+            ("ko-nikl-39147-s001", "ko-nikl-39149-s001", "ko-nikl-39148-s001"),
+        ):
+            self.assertEqual(len({identities[item] for item in members}), 1)
+        self.assertNotEqual(identities["ko-nikl-19885-s001"], identities["ko-nikl-38325-s001"])
+        self.assertIn("not gentle or friendly", words["ko-nikl-19885-s001"]["ds"])
+        self.assertNotIn("friendly", words["ko-nikl-38325-s001"]["ds"])
+        self.assertIn("weather", words["ko-nikl-03806-s001"]["ds"])
+        self.assertIn("waves", words["ko-nikl-29214-s002"]["ds"])
+        self.assertIn("eye", words["ko-nikl-34805-s002"]["ds"])
+        self.assertIn("wronged", words["ko-nikl-09733-s001"]["ds"])
+        self.assertNotIn("depressed", words["ko-nikl-09733-s001"]["ds"])
+        self.assertNotIn("not normal", words["ko-nikl-33404-s002"]["ds"])
+
+    def test_demeanor_resource_texture_urgency_and_relief_keep_original_scope(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        for suffix, marker in ((1, "moisture"), (2, "spare"), (3, "inflexible"), (4, "move"), (5, "packed")):
+            item = f"ko-nikl-07868-s{suffix:03d}"
+            self.assertIn(marker, words[item]["ds"])
+            self.assertEqual(evidence[item]["source_position"], suffix)
+        self.assertIn("barely enough", words["ko-nikl-07854-s001"]["ds"])
+        self.assertIn("barely reaching", words["ko-nikl-07854-s002"]["ds"])
+        self.assertIn("household means", words["ko-nikl-35258-s002"]["ds"])
+        self.assertIn("income", evidence["ko-nikl-35258-s002"]["source_english"])
+        self.assertIn("or", words["ko-nikl-31640-s001"]["ds"])
+        self.assertIn("upon", words["ko-nikl-16046-s001"]["ds"])
+        self.assertIn("just before", evidence["ko-nikl-16046-s001"]["source_english"])
+        self.assertIn("as if", words["ko-nikl-32539-s001"]["ds"])
+        self.assertIn("legs", words["ko-nikl-22400-s004"]["ds"])
+        self.assertIn("windless", words["ko-nikl-23001-s003"]["ds"])
+        self.assertIn("physical", words["ko-nikl-52238-s001"]["ds"])
+        self.assertIn("heavier than it looks", words["ko-nikl-38345-s001"]["ds"])
+
+    def test_demeanor_admission_preserves_unselected_positions_and_official_readings(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "demeanor-notes.yaml")
+        rows = load_yaml(authoring / "demeanor-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["source"]["support_parent_ids"]
+        self.assertEqual(len(requests), 29)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 45)
+        for identifier in requests:
+            record = parents[identifier]
+            self.assertEqual(record["source_band"], "unbanded")
+            self.assertEqual(record["source_part_of_speech"], "형용사")
+            self.assertEqual(
+                [item["source_position"] for item in record["senses"]],
+                list(range(1, len(record["senses"]) + 1)),
+            )
+        selected = {row["id"] for row in rows}
+        self.assertNotIn("ko-nikl-07750-s002", selected)
+        self.assertNotIn("ko-nikl-33402-s001", selected)
+        self.assertIn("신체 부분", parents["ko-nikl-07750"]["senses"][1]["korean"])
+        self.assertIn("몸이 마르고", parents["ko-nikl-33402"]["senses"][0]["korean"])
         for row in rows:
             self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
 

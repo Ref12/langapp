@@ -53,14 +53,14 @@ units:
   - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-43841-s001, ch: 차고, pr: 차고, ds: a garage or depot for keeping vehicles}
-  - {id: ko-nikl-44258-s001, ch: 창틀, pr: 창틀, ds: a frame supporting a window}
   - {id: ko-nikl-45770-s001, ch: 출입문, pr: 추림문, ds: a door used for entering and leaving}
   - {id: ko-nikl-16508-s001, ch: 단층, pr: 단층, ds: a building having only one storey}
   - {id: ko-nikl-12606-s010, ch: 잘, pr: 잘, ds: sufficiently and satisfactorily}
   - {id: ko-nikl-26648-s002, ch: 갑갑하다, pr: 갑까파다, ds: to feel stifled by a cramped space}
   - {id: ko-nikl-50534-s001, ch: 육아, pr: 유가, ds: caring for and bringing up young children}
   - {id: ko-nikl-13864-s002, ch: 전세, pr: 전세, ds: a room leased for a set term against a fixed deposit}
+  - {id: ko-nikl-04054-s002, ch: 아늑하다, pr: 아느카다, ds: warm and cozy in feeling}
+  - {id: ko-nikl-29214-s001, ch: 고요하다, pr: 고요하다, ds: quiet; without noise or disorder}
   review_grammar:
   - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
   - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
@@ -521,6 +521,22 @@ units:
   - {id: ko-nikl-07936-s009, ch: 빼다, pr: 빼ː다, ds: to reduce body fat or weight}
   - {id: ko-nikl-34262-s001, ch: 나아지다, pr: 나아지다, ds: for a condition or situation to improve}
   review_grammar: []
+- id: level-06-health-06
+  title: Body and wellbeing - 6
+  outcome: Explain an ordinary symptom or care need without clinical claims.
+  vocabulary:
+  - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-03688-s001, ch: 심하다, pr: 심ː하다, ds: to be severe; excessive in degree}
+  - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
+  - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
+  - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
+  - {id: ko-nikl-36748-s005, ch: 맥, pr: 맥, ds: a pulse; arterial movement accompanying the heartbeat}
+  - {id: ko-nikl-04288-s001, ch: 아찔하다, pr: 아찔하다, ds: to feel suddenly faint and dizzy from shock}
+  - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
+  - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
+  review_grammar: []
 - id: level-06-services-01
   title: Services and transactions - 1
   outcome: Clarify requirements and resolve a service problem politely.
@@ -965,7 +981,6 @@ units:
   - {id: ko-nikl-33779-s001, ch: 꽃가루, pr: 꼳까루, ds: pollen from a flower's stamen}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-12882-s001, ch: 장미, pr: 장미, ds: a rose flower}
   - {id: ko-nikl-16950-s001, ch: 대나무, pr: 대나무, ds: bamboo}
   - {id: ko-nikl-16856-s001, ch: 대, pr: 대, ds: an upright hollow stalk of a tall plant}
   - {id: ko-nikl-09374-s001, ch: 새싹, pr: 새싹, ds: new leaves sprouting from seed or stem}
@@ -973,6 +988,7 @@ units:
   - {id: ko-nikl-16519-s002, ch: 단풍, pr: 단풍, ds: a maple tree}
   - {id: ko-nikl-24799-s001, ch: 햇볕, pr: 해뼏 / 핻뼏, ds: direct sunshine}
   - {id: ko-nikl-47646-s001, ch: 열기, pr: 열기, ds: hot air or heat}
+  - {id: ko-nikl-03806-s001, ch: 쌀쌀하다, pr: 쌀쌀하다, ds: chilly enough to feel a little cold (weather)}
   review_grammar: []
 - id: level-06-quantities-01
   title: Numbers and counters - 1
@@ -1037,7 +1053,6 @@ units:
   grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
   review_vocabulary:
-  - {id: ko-nikl-03688-s001, ch: 심하다, pr: 심ː하다, ds: to be severe; excessive in degree}
   - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
   - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
   - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
@@ -1045,6 +1060,7 @@ units:
   - {id: ko-nikl-04288-s001, ch: 아찔하다, pr: 아찔하다, ds: to feel suddenly faint and dizzy from shock}
   - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
   - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
+  - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
   review_grammar: []
 - id: level-06-services-practice-01
   title: Services and transactions - sentence practice 1
@@ -1108,7 +1124,6 @@ units:
   grammar:
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
   review_vocabulary:
-  - {id: ko-nikl-03688-s001, ch: 심하다, pr: 심ː하다, ds: to be severe; excessive in degree}
   - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
   - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
   - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
@@ -1116,6 +1131,7 @@ units:
   - {id: ko-nikl-04288-s001, ch: 아찔하다, pr: 아찔하다, ds: to feel suddenly faint and dizzy from shock}
   - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
   - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
+  - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
   review_grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
 - id: level-06-time-practice-01
@@ -1144,7 +1160,6 @@ units:
   grammar:
   - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
   review_vocabulary:
-  - {id: ko-nikl-03688-s001, ch: 심하다, pr: 심ː하다, ds: to be severe; excessive in degree}
   - {id: ko-nikl-02248-s003, ch: 순하다, pr: 순ː하다, ds: 'to be mild, not harsh or potent'}
   - {id: ko-nikl-27103-s001, ch: 개운하다, pr: 개운하다, ds: to feel refreshed and light in body or mind}
   - {id: ko-nikl-10199-s001, ch: 응어리, pr: 응어리, ds: a tight knot of muscle}
@@ -1152,6 +1167,7 @@ units:
   - {id: ko-nikl-04288-s001, ch: 아찔하다, pr: 아찔하다, ds: to feel suddenly faint and dizzy from shock}
   - {id: ko-nikl-26648-s004, ch: 갑갑하다, pr: 갑까파다, ds: to feel uncomfortably blocked in the chest or stomach}
   - {id: ko-nikl-46730-s002, ch: 얼떨떨하다, pr: 얼떨떨하다, ds: to feel dizzy with a strongly pounding head}
+  - {id: ko-nikl-52238-s001, ch: 후련하다, pr: 후련하다, ds: relieved as inner physical discomfort clears}
   review_grammar:
   - {id: ko-topik2-g003, ch: V-아/어야 하다 / 되다, ds: express necessity or an obligation}
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}

@@ -5,6 +5,36 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-03793-s001:
+    source_korean: 눈치가 빠르고 행동이나 성격이 상냥하고 시원스럽다.
+    source_english: Quick-witted, amiable, and open-hearted.
+    authored_interpretation: socially perceptive, friendly, and open in manner
+    rationale: Preserve social-cue sensitivity from 눈치 rather than generic intelligence, and the source behavior/character framing without claiming independent access to inner virtue.
+  ko-nikl-09733-s001:
+    source_korean: 억울하고 슬프다.
+    source_english: To be sad and depressed.
+    authored_interpretation: sad with a feeling of being wronged
+    rationale: Preserve omitted 억울; neither the source adjective nor ordinary sadness establishes clinical depression.
+  ko-nikl-16046-s001:
+    source_korean: 일이 닥쳐서 몹시 급하다.
+    source_english: Very hurried just before an incident.
+    authored_interpretation: very urgent as a situation is upon one
+    rationale: Preserve the pressing arrival/presence from 닥쳐서 rather than an obligatory just-before timing restriction.
+  ko-nikl-33404-s002:
+    source_korean: 사람의 성격이나 취향이 원만하지 않아서 마음에 들도록 행동하기 어렵다.
+    source_english: Difficult to satisfy someone because his/her character or taste is not normal.
+    authored_interpretation: hard to please because of exacting character or tastes
+    rationale: 원만하지 concerns not being easygoing/amenable, not abnormality or a medical condition; the complete Korean matches the protected 까다롭다 second position.
+  ko-nikl-31640-s001:
+    source_korean: 물질적으로나 정신적으로 가난하고 여유가 없다.
+    source_english: Materially and emotionally impoverished.
+    authored_interpretation: impoverished materially or in one's inner life
+    rationale: Retain alternative 나 and broad 정신 scope instead of requiring simultaneous material and emotional poverty or a diagnosis.
+  ko-nikl-35258-s002:
+    source_korean: 살림이 부족하지 않고 충분하다.
+    source_english: 'Well-off and having enough income. '
+    authored_interpretation: having ample household means
+    rationale: 살림 concerns household means/living circumstances rather than income alone; no objective affluence threshold is invented.
   ko-nikl-02549-s003:
     source_korean: 속으로 천천히 은밀하게.
     source_english: In a manner of being slow and secretive.

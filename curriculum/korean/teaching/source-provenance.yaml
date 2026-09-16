@@ -48728,7 +48728,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '41333'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41333
-      pronunciations:
+      pronunciations: &id1397
       - 난닉따
     lexical_identity: ko-lex-34805
     lexical_category: free-lemma
@@ -49439,7 +49439,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '49056'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49056
-      pronunciations:
+      pronunciations: &id1398
       - 섭써파다
     lexical_identity: ko-lex-00120
     lexical_category: free-lemma
@@ -49596,7 +49596,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '90526'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90526
-      pronunciations:
+      pronunciations: &id1412
       - 아느카다
     lexical_identity: ko-lex-04054
     lexical_category: free-lemma
@@ -122817,7 +122817,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '80059'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80059
-      pronunciations:
+      pronunciations: &id1408
       - 착씰하다
     lexical_identity: ko-lex-43972
     lexical_category: free-lemma
@@ -124485,7 +124485,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '88066'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88066
-      pronunciations:
+      pronunciations: &id1415
       - 후련하다
     lexical_identity: ko-lex-52238
     lexical_category: free-lemma
@@ -147708,6 +147708,1453 @@ items:
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=89186
       pronunciations: *id1393
     lexical_identity: ko-lex-52557
+    lexical_category: free-lemma
+  ko-nikl-03793-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3793
+    source_parent: ko-nikl-03793
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Quick-witted, amiable, and open-hearted.
+    source_korean: 눈치가 빠르고 행동이나 성격이 상냥하고 시원스럽다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66114'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66114
+      pronunciations:
+      - 싹싸카다
+    source_correction:
+      source_korean: 눈치가 빠르고 행동이나 성격이 상냥하고 시원스럽다.
+      source_english: Quick-witted, amiable, and open-hearted.
+      authored_interpretation: socially perceptive, friendly, and open in manner
+      rationale: Preserve social-cue sensitivity from 눈치 rather than generic intelligence, and the source
+        behavior/character framing without claiming independent access to inner virtue.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-03793
+    lexical_category: free-lemma
+  ko-nikl-03806-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3806
+    source_parent: ko-nikl-03806
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: The weather being cold to a degree that one feels a bit cold.
+    source_korean: 조금 춥게 느껴질 정도로 날씨가 차다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66104'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66104
+      pronunciations: &id1394
+      - 쌀쌀하다
+    lexical_identity: ko-lex-03806
+    lexical_category: free-lemma
+  ko-nikl-03806-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3806
+    source_parent: ko-nikl-03806
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-1
+    source_english: One's personality or attitude being cold and cold-hearted.
+    source_korean: 사람의 성격이나 태도가 차갑고 냉정하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66104'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66104
+      pronunciations: *id1394
+    lexical_identity: ko-lex-03806
+    lexical_category: free-lemma
+  ko-nikl-03805-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3805
+    source_parent: ko-nikl-03805
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: One's personality or attitude being cold, not kind.
+    source_korean: 사람의 성격이나 태도가 다정하지 않고 차갑다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66105'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66105
+      pronunciations:
+      - 쌀쌀맏따
+    lexical_identity: ko-lex-03806
+    lexical_category: free-lemma
+  ko-nikl-19885-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19885
+    source_parent: ko-nikl-19885
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Not talking much and being unkind and not gentle. '
+    source_korean: 말수가 적고 성격이 부드럽거나 상냥하지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '53202'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=53202
+      pronunciations: &id1395
+      - 뚱ː하다
+    lexical_identity: ko-lex-19885
+    lexical_category: free-lemma
+  ko-nikl-19885-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19885
+    source_parent: ko-nikl-19885
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Unpleasant or morose due to dissatisfaction with something or someone.
+    source_korean: 마음에 들지 않아 기분이 좋지 않거나 시무룩하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '53202'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=53202
+      pronunciations: *id1395
+    lexical_identity: ko-lex-19885
+    lexical_category: free-lemma
+  ko-nikl-38325-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38325
+    source_parent: ko-nikl-38325
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Quiet without saying a word.
+    source_korean: 말없이 조용하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57525'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57525
+      pronunciations:
+      - 뭉무카다
+    lexical_identity: ko-lex-38326
+    lexical_category: free-lemma
+  ko-nikl-20501-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20501
+    source_parent: ko-nikl-20501
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Acting carefully and calmly, not being excited easily.
+    source_korean: 쉽게 흥분하지 않고 행동이 조심스럽고 차분하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28138'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28138
+      pronunciations:
+      - 침차카다
+    lexical_identity: ko-lex-20499
+    lexical_category: free-lemma
+  ko-nikl-43184-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43184
+    source_parent: ko-nikl-43184
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Mature and careful in one's speech or attitude.
+    source_korean: 말이나 태도가 무게가 있고 의젓하며 신중하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76339'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76339
+      pronunciations:
+      - 진ː중하다
+    lexical_identity: ko-lex-43184
+    lexical_category: free-lemma
+  ko-nikl-08820-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8820
+    source_parent: ko-nikl-08820
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'One''s mind or attitude being warm and tender. '
+    source_korean: 마음씨나 태도가 다정하고 부드럽다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61656'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61656
+      pronunciations: &id1396
+      - 살갑따
+    lexical_identity: ko-lex-08820
+    lexical_category: free-lemma
+  ko-nikl-08820-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8820
+    source_parent: ko-nikl-08820
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A person or object feeling friendly and intimate.
+    source_korean: 사람이나 물건이 정답고 친근하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61656'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61656
+      pronunciations: *id1396
+    lexical_identity: ko-lex-08820
+    lexical_category: free-lemma
+  ko-nikl-08820-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8820
+    source_parent: ko-nikl-08820
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The wind, waves, etc., feeling light and soft. '
+    source_korean: 바람이나 물결 등이 닿는 느낌이 가볍고 부드럽다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '61656'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61656
+      pronunciations: *id1396
+    lexical_identity: ko-lex-08820
+    lexical_category: free-lemma
+  ko-nikl-14392-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14392
+    source_parent: ko-nikl-14392
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Very lovely to the point of evoking a feeling of strong bond.
+    source_korean: 정이 넘칠 만큼 매우 다정하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74974'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74974
+      pronunciations:
+      - 정겹따
+    lexical_identity: ko-lex-14371
+    lexical_category: free-lemma
+  ko-nikl-34805-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34805
+    source_parent: ko-nikl-34805
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'Well-acquainted and well-known to oneself because one has seen it before. '
+    source_korean: 전에 본 적이 있어 눈에 익거나 익숙하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41333'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41333
+      pronunciations: *id1397
+    lexical_identity: ko-lex-34805
+    lexical_category: free-lemma
+  ko-nikl-00120-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=120
+    source_parent: ko-nikl-00120
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: Sorry and feeling the lack of someone or something.
+    source_korean: 서운하고 아쉽다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49056'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49056
+      pronunciations: *id1398
+    lexical_identity: ko-lex-00120
+    lexical_category: free-lemma
+  ko-nikl-00120-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=120
+    source_parent: ko-nikl-00120
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: Sad and sorry about someone or something disappearing.
+    source_korean: 없어지는 것이 슬프고 아깝다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49056'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49056
+      pronunciations: *id1398
+    lexical_identity: ko-lex-00120
+    lexical_category: free-lemma
+  ko-nikl-09710-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9710
+    source_parent: ko-nikl-09710
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Sad and lonely.
+    source_korean: 슬프고 외롭다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62664'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62664
+      pronunciations: &id1399
+      - 서글프다
+    lexical_identity: ko-lex-09710
+    lexical_category: free-lemma
+  ko-nikl-09710-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9710
+    source_parent: ko-nikl-09710
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Dissatisfied and disappointed.
+    source_korean: 마음에 들지 않고 섭섭하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62664'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62664
+      pronunciations: *id1399
+    lexical_identity: ko-lex-09710
+    lexical_category: free-lemma
+  ko-nikl-09733-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9733
+    source_parent: ko-nikl-09733
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: To be sad and depressed.
+    source_korean: 억울하고 슬프다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '62679'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62679
+      pronunciations:
+      - 서ː럽따
+    source_correction:
+      source_korean: 억울하고 슬프다.
+      source_english: To be sad and depressed.
+      authored_interpretation: sad with a feeling of being wronged
+      rationale: Preserve omitted 억울; neither the source adjective nor ordinary sadness establishes clinical
+        depression.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-09733
+    lexical_category: free-lemma
+  ko-nikl-30543-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30543
+    source_parent: ko-nikl-30543
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being hated for doing things that go against the expectations or trust of others.
+    source_korean: 기대나 믿음에 어긋나는 못마땅한 행동을 하여 밉살스럽다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '30833'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30833
+      pronunciations:
+      - 괘씸하다
+    lexical_identity: ko-lex-30543
+    lexical_category: free-lemma
+  ko-nikl-04974-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4974
+    source_parent: ko-nikl-04974
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Having no mercy or generosity.
+    source_korean: 마음이 너그럽지 못하고 인정이 없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90049'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90049
+      pronunciations:
+      - 야ː바카다
+    lexical_identity: ko-lex-04974
+    lexical_category: free-lemma
+  ko-nikl-26107-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26107
+    source_parent: ko-nikl-26107
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Having no pity and being merciless.
+    source_korean: 인정이 없고 모질다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14305'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14305
+      pronunciations: &id1400
+      - 각빠카다
+    lexical_identity: ko-lex-26107
+    lexical_category: free-lemma
+  ko-nikl-26107-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=26107
+    source_parent: ko-nikl-26107
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'Land being tough and arid. '
+    source_korean: 땅이 거칠고 메마르다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '14305'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14305
+      pronunciations: *id1400
+    lexical_identity: ko-lex-26107
+    lexical_category: free-lemma
+  ko-nikl-11181-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11181
+    source_parent: ko-nikl-11181
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Not generous in spending things, money, etc.
+    source_korean: 물건이나 돈 등을 몹시 아껴 씀씀이가 너그럽지 못하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72978'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72978
+      pronunciations: &id1401
+      - 인새카다
+    lexical_identity: ko-lex-11181
+    lexical_category: free-lemma
+  ko-nikl-11181-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11181
+    source_parent: ko-nikl-11181
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Very cold-hearted and ungenerous in doing something.
+    source_korean: 어떤 일을 하는 데에 몹시 쌀쌀하고 너그럽지 못하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72978'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72978
+      pronunciations: *id1401
+    lexical_identity: ko-lex-11181
+    lexical_category: free-lemma
+  ko-nikl-33404-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33404
+    source_parent: ko-nikl-33404
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Not easy to handle something because the conditions or methods related to it are complex
+      and strict.
+    source_korean: 조건이나 방법이 복잡하고 엄격하여 다루기가 쉽지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64687'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64687
+      pronunciations: &id1402
+      - 까탈스럽다
+    lexical_identity: ko-lex-33325
+    lexical_category: free-lemma
+  ko-nikl-33404-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33404
+    source_parent: ko-nikl-33404
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Difficult to satisfy someone because his/her character or taste is not normal.
+    source_korean: 사람의 성격이나 취향이 원만하지 않아서 마음에 들도록 행동하기 어렵다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64687'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64687
+      pronunciations: *id1402
+    source_correction:
+      source_korean: 사람의 성격이나 취향이 원만하지 않아서 마음에 들도록 행동하기 어렵다.
+      source_english: Difficult to satisfy someone because his/her character or taste is not normal.
+      authored_interpretation: hard to please because of exacting character or tastes
+      rationale: 원만하지 concerns not being easygoing/amenable, not abnormality or a medical condition; the
+        complete Korean matches the protected 까다롭다 second position.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-33325
+    lexical_category: free-lemma
+  ko-nikl-33402-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33402
+    source_parent: ko-nikl-33402
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Lacking amiability and very fastidious.
+    source_korean: 성질이 부드럽지 못하고 매우 까다롭다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38414'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38414
+      pronunciations:
+      - 까칠하다
+    lexical_identity: ko-lex-33402
+    lexical_category: free-lemma
+  ko-nikl-38842-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38842
+    source_parent: ko-nikl-38842
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Having something about one that inspires trust or belief.
+    source_korean: 믿음이 가는 데가 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56245'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56245
+      pronunciations:
+      - 미덥따
+    lexical_identity: ko-lex-38842
+    lexical_category: free-lemma
+  ko-nikl-39149-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39149
+    source_parent: ko-nikl-39149
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being worthy of trusting or depending on a person by the looks of his/her actions
+      or appearance.
+    source_korean: 행동이나 모습을 보아 믿고 의지할 만하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57409'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57409
+      pronunciations:
+      - 미듬지카다
+    lexical_identity: ko-lex-39147
+    lexical_category: free-lemma
+  ko-nikl-39148-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39148
+    source_parent: ko-nikl-39148
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Being worthy of trusting or depending on a person by the looks of his/her actions
+      or appearance.
+    source_korean: 행동이나 모습을 보아 믿고 의지할 만한 데가 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57408'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57408
+      pronunciations:
+      - 미듬직쓰럽따
+    lexical_identity: ko-lex-39147
+    lexical_category: free-lemma
+  ko-nikl-19316-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19316
+    source_parent: ko-nikl-19316
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An appearance or personality being decent and reliable.
+    source_korean: 모습이나 성격이 점잖고 믿음직하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49978'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49978
+      pronunciations: &id1403
+      - 듬지카다
+    lexical_identity: ko-lex-19316
+    lexical_category: free-lemma
+  ko-nikl-19316-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19316
+    source_parent: ko-nikl-19316
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The outward appearance of something being big and stately.
+    source_korean: 사물의 겉모양이 크고 당당하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49978'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49978
+      pronunciations: *id1403
+    lexical_identity: ko-lex-19316
+    lexical_category: free-lemma
+  ko-nikl-38345-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38345
+    source_parent: ko-nikl-38345
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: For a rather big object to be heavier than what it looks like it will weigh.
+    source_korean: 다소 큰 물건이 보기보다 꽤 무겁다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57533'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57533
+      pronunciations: &id1404
+      - 묵찌카다
+    lexical_identity: ko-lex-38345
+    lexical_category: free-lemma
+  ko-nikl-38345-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38345
+    source_parent: ko-nikl-38345
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: For a person to be decent and reliable.
+    source_korean: 사람이 점잖고 믿음직하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57533'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57533
+      pronunciations: *id1404
+    lexical_identity: ko-lex-38345
+    lexical_category: free-lemma
+  ko-nikl-16831-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16831
+    source_parent: ko-nikl-16831
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A person's thinking or behavior being shrewd and vigorous for his/her age, build,
+      and appearance.
+    source_korean: 나이나 몸집, 외모에 비해 마음이나 행동이 빈틈이 없고 기운차다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49504'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49504
+      pronunciations:
+      - 당차다
+    lexical_identity: ko-lex-16831
+    lexical_category: free-lemma
+  ko-nikl-46642-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46642
+    source_parent: ko-nikl-46642
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Having a very rough and persistent attitude in doing something regardless of difficulties.
+    source_korean: 어려움에도 불구하고 어떤 일이든 몹시 억세고 끈덕지게 해 나가는 태도가 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67202'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67202
+      pronunciations:
+      - 억척쓰럽따
+    lexical_identity: ko-lex-46642
+    lexical_category: free-lemma
+  ko-nikl-31514-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31514
+    source_parent: ko-nikl-31514
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Not giving up one's goal and pushing ahead with it vigorously.
+    source_korean: 뜻한 바를 굽히지 않고 힘차게 밀고 나아감이 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37386'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37386
+      pronunciations: &id1405
+      - 굳쎄다
+    lexical_identity: ko-lex-31514
+    lexical_category: free-lemma
+  ko-nikl-31514-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31514
+    source_parent: ko-nikl-31514
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Powerful and healthy.
+    source_korean: 힘 있고 튼튼하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37386'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37386
+      pronunciations: *id1405
+    lexical_identity: ko-lex-31514
+    lexical_category: free-lemma
+  ko-nikl-31510-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31510
+    source_parent: ko-nikl-31510
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Strong and solid.
+    source_korean: 굳세고 튼튼하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37383'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37383
+      pronunciations:
+      - 굳껀하다
+    lexical_identity: ko-lex-31510
+    lexical_category: free-lemma
+  ko-nikl-28075-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28075
+    source_parent: ko-nikl-28075
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Hard and strong.
+    source_korean: 단단하고 튼튼하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '29679'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=29679
+      pronunciations: &id1406
+      - 견고하다
+    lexical_identity: ko-lex-28075
+    lexical_category: free-lemma
+  ko-nikl-28075-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28075
+    source_parent: ko-nikl-28075
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Firm and resolute without being shaken.
+    source_korean: 흔들림이 없이 굳세고 확고하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '29679'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=29679
+      pronunciations: *id1406
+    lexical_identity: ko-lex-28075
+    lexical_category: free-lemma
+  ko-nikl-45865-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45865
+    source_parent: ko-nikl-45865
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The contents of something being full and compact.
+    source_korean: 내용이 알차고 단단하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79530'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79530
+      pronunciations: &id1407
+      - 충실하다
+    lexical_identity: ko-lex-45863
+    lexical_category: free-lemma
+  ko-nikl-45865-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45865
+    source_parent: ko-nikl-45865
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: One’s body being well and strong.
+    source_korean: 몸이 건강하여 튼튼하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79530'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79530
+      pronunciations: *id1407
+    lexical_identity: ko-lex-45863
+    lexical_category: free-lemma
+  ko-nikl-45866-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45866
+    source_parent: ko-nikl-45866
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being loyal, honest, and sincere.
+    source_korean: 충성스럽고 정직하며 성실하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79531'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79531
+      pronunciations:
+      - 충실하다
+    lexical_identity: ko-lex-45864
+    lexical_category: free-lemma
+  ko-nikl-07750-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7750
+    source_parent: ko-nikl-07750
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The content or state of something being insufficient and worthless.
+    source_korean: 어떤 일의 내용이나 상태가 충분하지 못하고 보잘것없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60631'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60631
+      pronunciations:
+      - 비냐카다
+    lexical_identity: ko-lex-07750
+    lexical_category: free-lemma
+  ko-nikl-43972-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43972
+    source_parent: ko-nikl-43972
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Adequate in level or amount without lacking.
+    source_korean: 일정한 기준이나 정도에 모자람 없이 충분하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80059'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80059
+      pronunciations: *id1408
+    lexical_identity: ko-lex-43972
+    lexical_category: free-lemma
+  ko-nikl-35258-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35258
+    source_parent: ko-nikl-35258
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'Well-off and having enough income. '
+    source_korean: 살림이 부족하지 않고 충분하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28310'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28310
+      pronunciations: *id1207
+    source_correction:
+      source_korean: 살림이 부족하지 않고 충분하다.
+      source_english: 'Well-off and having enough income. '
+      authored_interpretation: having ample household means
+      rationale: 살림 concerns household means/living circumstances rather than income alone; no objective
+        affluence threshold is invented.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-35258
+    lexical_category: free-lemma
+  ko-nikl-23435-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23435
+    source_parent: ko-nikl-23435
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: There being enough of something, and therefore being plenty.
+    source_korean: 매우 많아서 넉넉함이 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84376'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84376
+      pronunciations:
+      - 풍요롭따
+    lexical_identity: ko-lex-23434
+    lexical_category: free-lemma
+  ko-nikl-31640-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31640
+    source_parent: ko-nikl-31640
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Materially and emotionally impoverished.
+    source_korean: 물질적으로나 정신적으로 가난하고 여유가 없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '37298'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37298
+      pronunciations:
+      - 궁피파다
+    source_correction:
+      source_korean: 물질적으로나 정신적으로 가난하고 여유가 없다.
+      source_english: Materially and emotionally impoverished.
+      authored_interpretation: impoverished materially or in one's inner life
+      rationale: Retain alternative 나 and broad 정신 scope instead of requiring simultaneous material and
+        emotional poverty or a diagnosis.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-31640
+    lexical_category: free-lemma
+  ko-nikl-07854-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7854
+    source_parent: ko-nikl-07854
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'Having barely enough money, strength, etc., to do something, and thus having no extra
+      money, power, etc. '
+    source_korean: 어떤 일을 하기에 재물이나 힘 등이 겨우 될 만해서 여유가 없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60808'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60808
+      pronunciations: &id1409
+      - 빠드타다
+    lexical_identity: ko-lex-07854
+    lexical_category: free-lemma
+  ko-nikl-07854-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7854
+    source_parent: ko-nikl-07854
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'Just reaching a certain degree. '
+    source_korean: 어떤 정도에 겨우 미칠 만하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60808'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60808
+      pronunciations: *id1409
+    lexical_identity: ko-lex-07854
+    lexical_category: free-lemma
+  ko-nikl-07868-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7868
+    source_parent: ko-nikl-07868
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Not soft due to little moisture.
+    source_korean: 물기가 적어서 부드럽지 못하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60925'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60925
+      pronunciations: &id1410
+      - 빡빠카다
+    lexical_identity: ko-lex-07868
+    lexical_category: free-lemma
+  ko-nikl-07868-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7868
+    source_parent: ko-nikl-07868
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Tight because there is no time, money, etc., to spare.
+    source_korean: 여유가 없어서 빠듯하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60925'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60925
+      pronunciations: *id1410
+    lexical_identity: ko-lex-07868
+    lexical_category: free-lemma
+  ko-nikl-07868-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7868
+    source_parent: ko-nikl-07868
+    source_position: 3
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Rigid and inflexible.
+    source_korean: 융통성이 없고 고지식하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60925'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60925
+      pronunciations: *id1410
+    lexical_identity: ko-lex-07868
+    lexical_category: free-lemma
+  ko-nikl-07868-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7868
+    source_parent: ko-nikl-07868
+    source_position: 4
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Something being hard to be moved because it is too tight.
+    source_korean: 무엇이 꼭 끼거나 맞아서 움직이기 어렵다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60925'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60925
+      pronunciations: *id1410
+    lexical_identity: ko-lex-07868
+    lexical_category: free-lemma
+  ko-nikl-07868-s005:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7868
+    source_parent: ko-nikl-07868
+    source_position: 5
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'So filled that it is hard to find an empty space. '
+    source_korean: 빈틈이 없을 만큼 가득 차 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '60925'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60925
+      pronunciations: *id1410
+    lexical_identity: ko-lex-07868
+    lexical_category: free-lemma
+  ko-nikl-22400-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22400
+    source_parent: ko-nikl-22400
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Dry and not soft due to the lack of moisture or stickiness.
+    source_korean: 물기나 끈기가 적어 메마르고 부드럽지 못하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80678'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80678
+      pronunciations: &id1411
+      - 팍파카다
+    lexical_identity: ko-lex-22400
+    lexical_category: free-lemma
+  ko-nikl-22400-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22400
+    source_parent: ko-nikl-22400
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: One’s situation being not rich and difficult.
+    source_korean: 생활에 여유가 없고 힘들다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80678'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80678
+      pronunciations: *id1411
+    lexical_identity: ko-lex-22400
+    lexical_category: free-lemma
+  ko-nikl-22400-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22400
+    source_parent: ko-nikl-22400
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: Stubborn or cold, not flexible.
+    source_korean: 융통성이 없고 고지식하거나 차갑다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80678'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80678
+      pronunciations: *id1411
+    lexical_identity: ko-lex-22400
+    lexical_category: free-lemma
+  ko-nikl-22400-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22400
+    source_parent: ko-nikl-22400
+    source_position: 4
+    source_band: unbanded
+    reference_level: null
+    source_english: One’s legs being heavy and weak as one is too exhausted to move.
+    source_korean: 지쳐서 움직이기 어려울 정도로 다리가 무겁고 힘이 없다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80678'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80678
+      pronunciations: *id1411
+    lexical_identity: ko-lex-22400
+    lexical_category: free-lemma
+  ko-nikl-16046-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16046
+    source_parent: ko-nikl-16046
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Very hurried just before an incident.
+    source_korean: 일이 닥쳐서 몹시 급하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41429'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41429
+      pronunciations:
+      - 다그파다
+    source_correction:
+      source_korean: 일이 닥쳐서 몹시 급하다.
+      source_english: Very hurried just before an incident.
+      authored_interpretation: very urgent as a situation is upon one
+      rationale: Preserve the pressing arrival/presence from 닥쳐서 rather than an obligatory just-before
+        timing restriction.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-16046
+    lexical_category: free-lemma
+  ko-nikl-32539-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32539
+    source_parent: ko-nikl-32539
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Imminent as if something is going to happen soon.
+    source_korean: 곧 큰 일이 벌어질 듯이 상황이 매우 급하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41251'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41251
+      pronunciations:
+      - 급빠카다
+    lexical_identity: ko-lex-32539
+    lexical_category: free-lemma
+  ko-nikl-33194-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33194
+    source_parent: ko-nikl-33194
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Too urgent to be casual or relaxed about.
+    source_korean: 마음을 놓을 수 없을 만큼 매우 다급하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '43859'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=43859
+      pronunciations:
+      - 긴바카다
+    lexical_identity: ko-lex-33194
+    lexical_category: free-lemma
+  ko-nikl-04054-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4054
+    source_parent: ko-nikl-04054
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'Having a warm and comfortable atmosphere. '
+    source_korean: 따뜻하고 포근한 느낌이 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90526'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90526
+      pronunciations: *id1412
+    lexical_identity: ko-lex-04054
+    lexical_category: free-lemma
+  ko-nikl-20873-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20873
+    source_parent: ko-nikl-20873
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: One's feeling being refreshed and good.
+    source_korean: 기분이 상쾌하고 아주 좋다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81564'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81564
+      pronunciations:
+      - 쾌저카다
+    lexical_identity: ko-lex-20873
+    lexical_category: free-lemma
+  ko-nikl-20875-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20875
+    source_parent: ko-nikl-20875
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Weather being clear with a clear sky.
+    source_korean: 하늘이 활짝 개어 날씨가 맑다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81566'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81566
+      pronunciations:
+      - 쾌청하다
+    lexical_identity: ko-lex-20875
+    lexical_category: free-lemma
+  ko-nikl-23001-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23001
+    source_parent: ko-nikl-23001
+    source_position: 3
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Weather being windless and warm.
+    source_korean: 날씨가 바람이 없고 따뜻하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83344'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83344
+      pronunciations: *id431
+    lexical_identity: ko-lex-23001
+    lexical_category: free-lemma
+  ko-nikl-24272-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24272
+    source_parent: ko-nikl-24272
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'Serene and quiet. '
+    source_korean: 한가하고 조용하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88981'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88981
+      pronunciations:
+      - 한저카다
+    lexical_identity: ko-lex-24272
+    lexical_category: free-lemma
+  ko-nikl-29214-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29214
+    source_parent: ko-nikl-29214
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being quiet, not noisy or messy.
+    source_korean: 시끄럽거나 어지럽지 않고 조용하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18788'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18788
+      pronunciations: &id1413
+      - 고요하다
+    lexical_identity: ko-lex-29212
+    lexical_category: free-lemma
+  ko-nikl-29214-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29214
+    source_parent: ko-nikl-29214
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: The waves of a river, sea, etc., being still.
+    source_korean: 강이나 바다 등의 물결이 잔잔하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18788'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18788
+      pronunciations: *id1413
+    lexical_identity: ko-lex-29212
+    lexical_category: free-lemma
+  ko-nikl-29214-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29214
+    source_parent: ko-nikl-29214
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: One's emotional or psychological state being quiet and peaceful.
+    source_korean: 마음이나 상태 등이 조용하고 평화롭다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18788'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18788
+      pronunciations: *id1413
+    lexical_identity: ko-lex-29212
+    lexical_category: free-lemma
+  ko-nikl-13544-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13544
+    source_parent: ko-nikl-13544
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Silent and lonesome with no sound being heard.
+    source_korean: 아무 소리 없이 조용하고 쓸쓸하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74593'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74593
+      pronunciations: &id1414
+      - 정마카다
+    lexical_identity: ko-lex-13544
+    lexical_category: free-lemma
+  ko-nikl-13544-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13544
+    source_parent: ko-nikl-13544
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: Lonely with no one to depend on.
+    source_korean: 의지할 곳 없이 외롭다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74593'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74593
+      pronunciations: *id1414
+    lexical_identity: ko-lex-13544
+    lexical_category: free-lemma
+  ko-nikl-52238-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52238
+    source_parent: ko-nikl-52238
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: Feeling refreshed because an uncomfortable feeling or heaviness in the stomach has
+      gone away.
+    source_korean: 거북하거나 좋지 않았던 속이 풀려서 시원하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '88066'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88066
+      pronunciations: *id1415
+    lexical_identity: ko-lex-52238
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

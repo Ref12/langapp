@@ -8,7 +8,7 @@ source_records: 53172
 band_counts:
   advanced: 5105
   beginner: 1942
-  unbanded-support: 803
+  unbanded-support: 832
   intermediate: 3981
 entries:
 - id: ko-nikl-00001
@@ -13100,6 +13100,18 @@ entries:
     source_position: 3
     english: All, without leaving anything behind.
     korean: 조금도 남기지 않고 모두.
+- id: ko-nikl-03793
+  target: 싹싹하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3793
+  senses:
+  - id: ko-nikl-03793-s001
+    source_position: 1
+    english: Quick-witted, amiable, and open-hearted.
+    korean: 눈치가 빠르고 행동이나 성격이 상냥하고 시원스럽다.
 - id: ko-nikl-03796
   target: 싹트다
   part_of_speech: verb
@@ -13136,6 +13148,18 @@ entries:
     source_position: 1
     english: The peeled grains of rice that are cooked for a meal.
     korean: 밥을 만들어 먹는, 벼의 껍질을 벗긴 알맹이.
+- id: ko-nikl-03805
+  target: 쌀쌀맞다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3805
+  senses:
+  - id: ko-nikl-03805-s001
+    source_position: 1
+    english: One's personality or attitude being cold, not kind.
+    korean: 사람의 성격이나 태도가 다정하지 않고 차갑다.
 - id: ko-nikl-03806
   target: 쌀쌀하다
   part_of_speech: descriptive verb
@@ -18201,6 +18225,18 @@ entries:
     source_position: 1
     english: One's appearance, personality, behavior, etc., being firm and flawless.
     korean: 사람의 생김새나 성격, 행동 등이 단단하고 빈틈이 없다.
+- id: ko-nikl-04974
+  target: 야박하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4974
+  senses:
+  - id: ko-nikl-04974-s001
+    source_position: 1
+    english: Having no mercy or generosity.
+    korean: 마음이 너그럽지 못하고 인정이 없다.
 - id: ko-nikl-04979
   target: 야생
   part_of_speech: noun
@@ -27630,6 +27666,22 @@ entries:
     source_position: 2
     english: A state in which a body part is poorly developed.
     korean: 신체 부분이 제대로 발달되어 있지 않음.
+- id: ko-nikl-07750
+  target: 빈약하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7750
+  senses:
+  - id: ko-nikl-07750-s001
+    source_position: 1
+    english: The content or state of something being insufficient and worthless.
+    korean: 어떤 일의 내용이나 상태가 충분하지 못하고 보잘것없다.
+  - id: ko-nikl-07750-s002
+    source_position: 2
+    english: A body part being poorly developed.
+    korean: 신체 부분이 제대로 발달되어 있지 않다.
 - id: ko-nikl-07752
   target: 빈자리
   part_of_speech: noun
@@ -31567,6 +31619,26 @@ entries:
     source_position: 1
     english: A bound noun that serves as a unit for counting years of age.
     korean: 나이를 세는 단위.
+- id: ko-nikl-08820
+  target: 살갑다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8820
+  senses:
+  - id: ko-nikl-08820-s001
+    source_position: 1
+    english: 'One''s mind or attitude being warm and tender. '
+    korean: 마음씨나 태도가 다정하고 부드럽다.
+  - id: ko-nikl-08820-s002
+    source_position: 2
+    english: A person or object feeling friendly and intimate.
+    korean: 사람이나 물건이 정답고 친근하다.
+  - id: ko-nikl-08820-s003
+    source_position: 3
+    english: 'The wind, waves, etc., feeling light and soft. '
+    korean: 바람이나 물결 등이 닿는 느낌이 가볍고 부드럽다.
 - id: ko-nikl-08824
   target: 살균
   part_of_speech: noun
@@ -40401,6 +40473,22 @@ entries:
     source_position: 2
     english: The quality of being very cold-hearted and ungenerous in doing something.
     korean: 어떤 일을 하는 데에 몹시 쌀쌀하고 너그럽지 못함.
+- id: ko-nikl-11181
+  target: 인색하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11181
+  senses:
+  - id: ko-nikl-11181-s001
+    source_position: 1
+    english: Not generous in spending things, money, etc.
+    korean: 물건이나 돈 등을 몹시 아껴 씀씀이가 너그럽지 못하다.
+  - id: ko-nikl-11181-s002
+    source_position: 2
+    english: Very cold-hearted and ungenerous in doing something.
+    korean: 어떤 일을 하는 데에 몹시 쌀쌀하고 너그럽지 못하다.
 - id: ko-nikl-11182
   target: 인생
   part_of_speech: noun
@@ -49219,6 +49307,22 @@ entries:
     source_position: 1
     english: The act of saving money, items, etc.
     korean: 돈이나 물건 등을 모아 둠.
+- id: ko-nikl-13544
+  target: 적막하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13544
+  senses:
+  - id: ko-nikl-13544-s001
+    source_position: 1
+    english: Silent and lonesome with no sound being heard.
+    korean: 아무 소리 없이 조용하고 쓸쓸하다.
+  - id: ko-nikl-13544-s002
+    source_position: 2
+    english: Lonely with no one to depend on.
+    korean: 의지할 곳 없이 외롭다.
 - id: ko-nikl-13546
   target: 적발
   part_of_speech: noun
@@ -60248,6 +60352,18 @@ entries:
     source_position: 3
     english: Here and now.
     korean: 이 자리에서 바로.
+- id: ko-nikl-16831
+  target: 당차다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16831
+  senses:
+  - id: ko-nikl-16831-s001
+    source_position: 1
+    english: A person's thinking or behavior being shrewd and vigorous for his/her age, build, and appearance.
+    korean: 나이나 몸집, 외모에 비해 마음이나 행동이 빈틈이 없고 기운차다.
 - id: ko-nikl-16833
   target: 당첨
   part_of_speech: noun
@@ -69462,6 +69578,22 @@ entries:
     source_position: 2
     english: A lot or enough.
     korean: 아주 많거나 넉넉한 모양.
+- id: ko-nikl-19316
+  target: 듬직하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19316
+  senses:
+  - id: ko-nikl-19316-s001
+    source_position: 1
+    english: An appearance or personality being decent and reliable.
+    korean: 모습이나 성격이 점잖고 믿음직하다.
+  - id: ko-nikl-19316-s002
+    source_position: 2
+    english: The outward appearance of something being big and stately.
+    korean: 사물의 겉모양이 크고 당당하다.
 - id: ko-nikl-19324
   target: 등
   part_of_speech: noun
@@ -71790,6 +71922,22 @@ entries:
     source_position: 2
     english: A part of something protruding as it has swelled up.
     korean: 어떤 것의 한 부분이 붓거나 부풀어서 튀어나와 있다.
+- id: ko-nikl-19885
+  target: 뚱하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19885
+  senses:
+  - id: ko-nikl-19885-s001
+    source_position: 1
+    english: 'Not talking much and being unkind and not gentle. '
+    korean: 말수가 적고 성격이 부드럽거나 상냥하지 않다.
+  - id: ko-nikl-19885-s002
+    source_position: 2
+    english: Unpleasant or morose due to dissatisfaction with something or someone.
+    korean: 마음에 들지 않아 기분이 좋지 않거나 시무룩하다.
 - id: ko-nikl-19887
   target: 뛰다
   part_of_speech: verb
@@ -73505,6 +73653,18 @@ entries:
     source_position: 1
     english: The state of acting carefully and calmly, not being excited easily.
     korean: 쉽게 흥분하지 않고 행동이 조심스럽고 차분함.
+- id: ko-nikl-20501
+  target: 침착하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20501
+  senses:
+  - id: ko-nikl-20501-s001
+    source_position: 1
+    english: Acting carefully and calmly, not being excited easily.
+    korean: 쉽게 흥분하지 않고 행동이 조심스럽고 차분하다.
 - id: ko-nikl-20503
   target: 침체
   part_of_speech: noun
@@ -74445,6 +74605,18 @@ entries:
     source_position: 1
     english: One's feeling being refreshed and good.
     korean: 기분이 상쾌하고 아주 좋다.
+- id: ko-nikl-20875
+  target: 쾌청하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20875
+  senses:
+  - id: ko-nikl-20875-s001
+    source_position: 1
+    english: Weather being clear with a clear sky.
+    korean: 하늘이 활짝 개어 날씨가 맑다.
 - id: ko-nikl-20876
   target: 쾌활하다
   part_of_speech: descriptive verb
@@ -79356,6 +79528,30 @@ entries:
     source_position: 2
     english: To investigate and disclose a hidden fact, identity of someone, etc.
     korean: 감추어진 사실이나 정체 등을 들추어 밝히다.
+- id: ko-nikl-22400
+  target: 팍팍하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22400
+  senses:
+  - id: ko-nikl-22400-s001
+    source_position: 1
+    english: Dry and not soft due to the lack of moisture or stickiness.
+    korean: 물기나 끈기가 적어 메마르고 부드럽지 못하다.
+  - id: ko-nikl-22400-s002
+    source_position: 2
+    english: One’s situation being not rich and difficult.
+    korean: 생활에 여유가 없고 힘들다.
+  - id: ko-nikl-22400-s003
+    source_position: 3
+    english: Stubborn or cold, not flexible.
+    korean: 융통성이 없고 고지식하거나 차갑다.
+  - id: ko-nikl-22400-s004
+    source_position: 4
+    english: One’s legs being heavy and weak as one is too exhausted to move.
+    korean: 지쳐서 움직이기 어려울 정도로 다리가 무겁고 힘이 없다.
 - id: ko-nikl-22406
   target: 판
   part_of_speech: noun
@@ -102142,6 +102338,26 @@ entries:
     source_position: 1
     english: 'A state of being quiet, neither noisy nor chaotic. '
     korean: 시끄럽거나 어지럽지 않고 조용한 상태.
+- id: ko-nikl-29214
+  target: 고요하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29214
+  senses:
+  - id: ko-nikl-29214-s001
+    source_position: 1
+    english: Being quiet, not noisy or messy.
+    korean: 시끄럽거나 어지럽지 않고 조용하다.
+  - id: ko-nikl-29214-s002
+    source_position: 2
+    english: The waves of a river, sea, etc., being still.
+    korean: 강이나 바다 등의 물결이 잔잔하다.
+  - id: ko-nikl-29214-s003
+    source_position: 3
+    english: One's emotional or psychological state being quiet and peaceful.
+    korean: 마음이나 상태 등이 조용하고 평화롭다.
 - id: ko-nikl-29215
   target: 고요히
   part_of_speech: adverb
@@ -106009,6 +106225,18 @@ entries:
     source_position: 1
     english: Very wide or spacious.
     korean: 아주 넓다.
+- id: ko-nikl-30543
+  target: 괘씸하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30543
+  senses:
+  - id: ko-nikl-30543-s001
+    source_position: 1
+    english: Being hated for doing things that go against the expectations or trust of others.
+    korean: 기대나 믿음에 어긋나는 못마땅한 행동을 하여 밉살스럽다.
 - id: ko-nikl-30548
   target: 괜찮다
   part_of_speech: descriptive verb
@@ -108703,6 +108931,18 @@ entries:
     source_position: 1
     english: A big group of people gathered in one place.
     korean: 한 곳에 모인 많은 사람들.
+- id: ko-nikl-31510
+  target: 굳건하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31510
+  senses:
+  - id: ko-nikl-31510-s001
+    source_position: 1
+    english: Strong and solid.
+    korean: 굳세고 튼튼하다.
 - id: ko-nikl-31512
   target: 굳다
   part_of_speech: verb
@@ -108731,6 +108971,22 @@ entries:
     source_position: 5
     english: For money, rice, etc., to not be spent or eaten wastefully so as to remain in one's possession.
     korean: 돈이나 쌀 등이 헤프게 없어지지 않고 자기의 것으로 계속 남다.
+- id: ko-nikl-31514
+  target: 굳세다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31514
+  senses:
+  - id: ko-nikl-31514-s001
+    source_position: 1
+    english: Not giving up one's goal and pushing ahead with it vigorously.
+    korean: 뜻한 바를 굽히지 않고 힘차게 밀고 나아감이 있다.
+  - id: ko-nikl-31514-s002
+    source_position: 2
+    english: Powerful and healthy.
+    korean: 힘 있고 튼튼하다.
 - id: ko-nikl-31515
   target: 굳어지다
   part_of_speech: verb
@@ -109186,6 +109442,18 @@ entries:
     source_position: 1
     english: The inside of a palace.
     korean: 대궐 안.
+- id: ko-nikl-31640
+  target: 궁핍하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31640
+  senses:
+  - id: ko-nikl-31640-s001
+    source_position: 1
+    english: Materially and emotionally impoverished.
+    korean: 물질적으로나 정신적으로 가난하고 여유가 없다.
 - id: ko-nikl-31643
   target: 궂다
   part_of_speech: descriptive verb
@@ -112266,6 +112534,18 @@ entries:
     source_position: 2
     english: (figurative) A flow of times which changes fast.
     korean: (비유적으로) 빠르게 변하는 시대의 흐름.
+- id: ko-nikl-32539
+  target: 급박하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32539
+  senses:
+  - id: ko-nikl-32539-s001
+    source_position: 1
+    english: Imminent as if something is going to happen soon.
+    korean: 곧 큰 일이 벌어질 듯이 상황이 매우 급하다.
 - id: ko-nikl-32541
   target: 급변
   part_of_speech: noun
@@ -114623,6 +114903,18 @@ entries:
     source_position: 1
     english: Being in very tight and familiar relations.
     korean: 서로의 관계가 매우 가깝고 맞닿아 있다.
+- id: ko-nikl-33194
+  target: 긴박하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33194
+  senses:
+  - id: ko-nikl-33194-s001
+    source_position: 1
+    english: Too urgent to be casual or relaxed about.
+    korean: 마음을 놓을 수 없을 만큼 매우 다급하다.
 - id: ko-nikl-33201
   target: 긴장
   part_of_speech: noun
@@ -115282,6 +115574,39 @@ entries:
     english: A bird which has a shiny black head and back and white shoulders and stomach, and lives near
       people.
     korean: 머리에서 등까지는 검고 윤이 나며 어깨와 배는 흰, 사람의 집 근처에 사는 새.
+- id: ko-nikl-33402
+  target: 까칠하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33402
+  senses:
+  - id: ko-nikl-33402-s001
+    source_position: 1
+    english: Having a lanky body with rough skin or hair.
+    korean: 몸이 마르고 피부나 털이 거칠다.
+  - id: ko-nikl-33402-s002
+    source_position: 2
+    english: Lacking amiability and very fastidious.
+    korean: 성질이 부드럽지 못하고 매우 까다롭다.
+- id: ko-nikl-33404
+  target: 까탈스럽다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33404
+  senses:
+  - id: ko-nikl-33404-s001
+    source_position: 1
+    english: Not easy to handle something because the conditions or methods related to it are complex
+      and strict.
+    korean: 조건이나 방법이 복잡하고 엄격하여 다루기가 쉽지 않다.
+  - id: ko-nikl-33404-s002
+    source_position: 2
+    english: Difficult to satisfy someone because his/her character or taste is not normal.
+    korean: 사람의 성격이나 취향이 원만하지 않아서 마음에 들도록 행동하기 어렵다.
 - id: ko-nikl-33408
   target: 깍두기
   part_of_speech: noun
@@ -133402,6 +133727,18 @@ entries:
     source_position: 1
     english: To stay in a place as a guest.
     korean: 어디에서 손님으로 머물다.
+- id: ko-nikl-38325
+  target: 묵묵하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38325
+  senses:
+  - id: ko-nikl-38325-s001
+    source_position: 1
+    english: Quiet without saying a word.
+    korean: 말없이 조용하다.
 - id: ko-nikl-38326
   target: 묵묵히
   part_of_speech: adverb
@@ -135044,6 +135381,18 @@ entries:
     source_position: 1
     english: An attitude or action which is good or respectable enough to merit praise.
     korean: 칭찬을 받을 만큼 아름답고 훌륭한 태도나 행위.
+- id: ko-nikl-38842
+  target: 미덥다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38842
+  senses:
+  - id: ko-nikl-38842-s001
+    source_position: 1
+    english: Having something about one that inspires trust or belief.
+    korean: 믿음이 가는 데가 있다.
 - id: ko-nikl-38847
   target: 미디어
   part_of_speech: noun
@@ -135923,6 +136272,18 @@ entries:
     source_position: 1
     english: Being worthy of trusting or depending on a person by the looks of his/her actions or appearance.
     korean: 행동이나 모습을 보아 믿고 의지할 만한 데가 있다.
+- id: ko-nikl-39149
+  target: 믿음직하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39149
+  senses:
+  - id: ko-nikl-39149-s001
+    source_position: 1
+    english: Being worthy of trusting or depending on a person by the looks of his/her actions or appearance.
+    korean: 행동이나 모습을 보아 믿고 의지할 만하다.
 - id: ko-nikl-39150
   target: 밀
   part_of_speech: noun
@@ -148524,6 +148885,18 @@ entries:
     source_position: 1
     english: Honest and sincere.
     korean: 거짓이 없고 올바르다.
+- id: ko-nikl-43184
+  target: 진중하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43184
+  senses:
+  - id: ko-nikl-43184-s001
+    source_position: 1
+    english: Mature and careful in one's speech or attitude.
+    korean: 말이나 태도가 무게가 있고 의젓하며 신중하다.
 - id: ko-nikl-43187
   target: 진지
   part_of_speech: noun
@@ -156709,6 +157082,34 @@ entries:
     source_position: 1
     english: The state of being loyal, honest, and sincere.
     korean: 충성스럽고 정직하며 성실함.
+- id: ko-nikl-45865
+  target: 충실하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45865
+  senses:
+  - id: ko-nikl-45865-s001
+    source_position: 1
+    english: The contents of something being full and compact.
+    korean: 내용이 알차고 단단하다.
+  - id: ko-nikl-45865-s002
+    source_position: 2
+    english: One’s body being well and strong.
+    korean: 몸이 건강하여 튼튼하다.
+- id: ko-nikl-45866
+  target: 충실하다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45866
+  senses:
+  - id: ko-nikl-45866-s001
+    source_position: 1
+    english: Being loyal, honest, and sincere.
+    korean: 충성스럽고 정직하며 성실하다.
 - id: ko-nikl-45868
   target: 충실히
   part_of_speech: adverb
@@ -159936,6 +160337,18 @@ entries:
     source_position: 1
     english: In an unreasonable and forcible way that does not meet common sense or the situation.
     korean: 이치나 조건에 맞지 않게 무리를 해서 강제로.
+- id: ko-nikl-46642
+  target: 억척스럽다
+  part_of_speech: descriptive verb
+  source_part_of_speech: 형용사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46642
+  senses:
+  - id: ko-nikl-46642-s001
+    source_position: 1
+    english: Having a very rough and persistent attitude in doing something regardless of difficulties.
+    korean: 어려움에도 불구하고 어떤 일이든 몹시 억세고 끈덕지게 해 나가는 태도가 있다.
 - id: ko-nikl-46645
   target: 언급
   part_of_speech: noun

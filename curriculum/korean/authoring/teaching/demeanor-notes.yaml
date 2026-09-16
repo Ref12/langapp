@@ -1,0 +1,205 @@
+schema_version: 1
+id: ko-demeanor-comfort-resources-and-urgency
+review_status: original-ai-authored-unreviewed
+completion_status: integrated; overall breadth and qualified review remain incomplete
+scope: >
+  Source-inspected descriptive predicates for interpersonal manner, feelings,
+  comfortable surroundings, adequate or constrained resources, and urgency.
+  This is a bounded communicative-domain expansion, not a personality
+  taxonomy, exhaustive adjective sweep, or attempt to fill a numerical quota.
+  Existing source positions, canonical families, and placements are preserved.
+source:
+  source_id: nikl-2024-mirror
+  revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  records: 53172
+  inspection: >
+    Compare the complete bilingual lists of the named practical predicates,
+    same-form competitors, and necessary noun/adverb counterparts. A narrow
+    additional comparison exposed missing beginner weather 쌀쌀하다, which
+    is selected alongside its actual interpersonal meaning and the related
+    쌀쌀맞다. No source usages, recordings, or media are imported.
+  evidence: >
+    ../../source-senses.yaml retains exact bilingual definitions, original
+    ordinal IDs, source POS/band, and record locators directly from the pin.
+    All45 positions of the29 added unbanded parents remain intact, including
+    two unselected body-description meanings. Do not reconstruct definitions
+    from joined reference English or mistake project IDs for official IDs.
+  support_parent_ids:
+    - ko-nikl-03793
+    - ko-nikl-03805
+    - ko-nikl-04974
+    - ko-nikl-07750
+    - ko-nikl-08820
+    - ko-nikl-11181
+    - ko-nikl-13544
+    - ko-nikl-16831
+    - ko-nikl-19316
+    - ko-nikl-19885
+    - ko-nikl-20501
+    - ko-nikl-20875
+    - ko-nikl-22400
+    - ko-nikl-29214
+    - ko-nikl-30543
+    - ko-nikl-31510
+    - ko-nikl-31514
+    - ko-nikl-31640
+    - ko-nikl-32539
+    - ko-nikl-33194
+    - ko-nikl-33402
+    - ko-nikl-33404
+    - ko-nikl-38325
+    - ko-nikl-38842
+    - ko-nikl-39149
+    - ko-nikl-43184
+    - ko-nikl-45865
+    - ko-nikl-45866
+    - ko-nikl-46642
+counts:
+  selected_senses: 75
+  selected_parents: 50
+  source_adjective_senses: 75
+  identity_fragments: 48
+  new_provisional_free_families: 35
+  existing_family_fragments: 13
+  new_function_or_bound_families: 0
+  newly_selected_parents: 43
+  new_unbanded_parents: 29
+  complete_new_source_positions: 45
+  selected_new_source_positions: 43
+reading_review:
+  archive: nikl-official-20260819
+  assessed_parents: 50
+  official_text_parents: 50
+  official_text_senses: 75
+  new_crosswalks: 0
+  new_authored_decisions: 0
+  unresolved_selected_parents: []
+  policy: >
+    Original parents were checked separately against the pinned official
+    archive, reusing existing explicit crosswalks when applicable. A family
+    grouping, similar meaning, or same spelling transfers no pronunciation.
+generated_coverage:
+  core_dictionary_entries: 5285
+  core_selected_senses: 7574
+  core_distinct_spellings: 4984
+  core_spelling_pos_pairs: 5086
+  core_lexical_identities: 5054
+  core_provisional_free_families: 4796
+  core_bound_forms: 40
+  core_function_items: 218
+  retained_support_parents: 832
+  selected_support_parents: 828
+  actual_modules: 755
+  generated_views: 128
+  free_family_gap_to_lower_guide: 1004
+  limits: Intermediate coverage only; later-phase growth, early load, qualified linguistic review, and coordinated catalog activation are not claimed complete.
+identity_evidence:
+  matching_categories:
+    ko-lex-20499: The complete 침착 noun and 침착하다 definitions differ only in nominal/predicate syntax; keep the original noun-based ID and lemma.
+    ko-lex-29212: 고요 noun matches the quiet-state predicate; calm water and mental peace are additional actual predicate positions, not another root.
+    ko-lex-38326: 묵묵히 and 묵묵하다 match apart from adverb/predicate syntax; keep the protected adverb canonical name.
+    ko-lex-33325: Both 까다롭다 and 까탈스럽다 Korean definitions match exactly and in order; conditions/methods and personality/taste remain separate targets.
+  transparent_actual_members:
+    ko-lex-14371: The source-listed 정겹다 explicitly expresses abundant affectionate 정; it does not silently teach every compound containing 정.
+    ko-lex-39147: Actually listed 믿음직하다/믿음직스럽다 deepen trust, with conduct/appearance grounds and the latter's having-aspects qualification intact.
+    ko-lex-03806: Actual 쌀쌀맞다 cold manner extends 쌀쌀하다, not another headword or a claim that chilly weather implies an unfriendly person.
+  reserved_retained_bases:
+    ko-nikl-23434:
+      target: 풍요
+      source_korean: 매우 많아서 넉넉함.
+      source_english: The state of something being enough, and therefore being plenty.
+      selected_member: ko-nikl-23435-s001
+      policy: Actual 풍요롭다 is selected; neither the noun nor inspected 풍요하다23436 is an implicit extra selection.
+    ko-nikl-45863:
+      target: 충실
+      source_korean: [내용이 알차고 단단함., 몸이 건강하여 튼튼함.]
+      selected_member_parent: ko-nikl-45865
+      policy: Content/physical substantiality and both original positions are distinct from loyal/honest conduct.
+    ko-nikl-45864:
+      target: 충실
+      source_korean: [충성스럽고 정직하며 성실함.]
+      selected_member_parent: ko-nikl-45866
+      policy: The loyalty/honesty family is a different actual source homograph; no noun introduction is hidden in the canonical family name.
+  nonautomatic_mergers: >
+    Preserve the separate existing 믿다 and 믿음 families rather than
+    revising all related words. 미덥다 has no explicit conduct/appearance
+    condition; no unverified historical derivation is asserted. 굳세다 is
+    not the protected change-of-state verb 굳다. Similar English reliable,
+    strong, warm, or tight glosses do not merge every predicate or collapse
+    distinct source positions.
+placement:
+  practical_early: >
+    Chilly weather and comfortable/quiet home conditions support5; physical
+    relief supports6 without treatment claims. Travel comfort and quiet
+    settings support7; friendly social manner supports8. Weather, visual
+    familiarity, quiet conduct, and calm water support narration9.
+  experience_and_choices: >
+    Affection, loneliness, feeling wronged, and dissatisfaction support10.
+    Physical weight/texture support11; departure, familiarity, and cold manner
+    support12. Resource constraints and spending judgments support13.
+    Tight fits/schedules, immediate urgency, composure, and ordinary bodily
+    states support practical-problem communication14.
+  responsibility_and_public_explanation: >
+    Reliability and faithful conduct support15. Physical versus resolute
+    strength, packed fullness, and dry land support17. Sufficiency against
+    a standard, difficult requirements, and impending urgency support18.
+    Trust judgments and pressing situations support19. Household means,
+    abundance, poverty, and difficult living support20 without inferring
+    financial facts about an actual person.
+  later_interpretation: >
+    Harshness and loneliness without support enter situated-values discussion22.
+    Resolute pursuit and meager content support23; substantial content and
+    unshaken positions support24. Subjective personality judgments and their
+    implications support25, with register-sensitive alternatives at26.
+    Stately objects and gentle wind/wave contact support figurative reading27;
+    close reliability-word comparison supports28. No old vocabulary is moved
+    simply to increase later-phase counts.
+source_correction_requests:
+  ko-nikl-03793-s001:
+    source_korean: 눈치가 빠르고 행동이나 성격이 상냥하고 시원스럽다.
+    source_english: Quick-witted, amiable, and open-hearted.
+    authored_interpretation: socially perceptive, friendly, and open in manner
+    rationale: Preserve social-cue sensitivity from 눈치 rather than generic intelligence, and the behavior/character framing without an independently observed inner virtue.
+  ko-nikl-09733-s001:
+    source_korean: 억울하고 슬프다.
+    source_english: To be sad and depressed.
+    authored_interpretation: sad with a feeling of being wronged
+    rationale: Preserve 억울, which English omits. Neither this source adjective nor ordinary sadness establishes clinical depression.
+  ko-nikl-16046-s001:
+    source_korean: 일이 닥쳐서 몹시 급하다.
+    source_english: Very hurried just before an incident.
+    authored_interpretation: very urgent as a situation is upon one
+    rationale: 닥쳐서 describes the pressing arrival/presence of a situation, not an obligatory just-before timing restriction.
+  ko-nikl-33404-s002:
+    source_korean: 사람의 성격이나 취향이 원만하지 않아서 마음에 들도록 행동하기 어렵다.
+    source_english: Difficult to satisfy someone because his/her character or taste is not normal.
+    authored_interpretation: hard to please because of exacting character or tastes
+    rationale: 원만하지 means not easygoing/amenable in this context, not abnormality or a medical condition. Its complete Korean definition matches protected 까다롭다-s002.
+  ko-nikl-31640-s001:
+    source_korean: 물질적으로나 정신적으로 가난하고 여유가 없다.
+    source_english: Materially and emotionally impoverished.
+    authored_interpretation: impoverished materially or in one's inner life
+    rationale: Retain the alternative 나 and broader 정신 scope rather than requiring simultaneous material and emotional poverty or a diagnosis.
+  ko-nikl-35258-s002:
+    source_korean: 살림이 부족하지 않고 충분하다.
+    source_english: 'Well-off and having enough income. '
+    authored_interpretation: having ample household means
+    rationale: 살림 concerns household means/living circumstances, not income alone. No threshold of affluence or actual financial assessment is inferred.
+bounded_exclusions:
+  ko-nikl-30283: Kindly treating someone is the verb 관대하다, not the already covered adjective or this predicate-state cohort.
+  ko-nikl-07750-s002: Underdeveloped body-part meaning is retained but not added to the content-quality selection.
+  ko-nikl-33402-s001: Thin body plus rough skin/hair is retained but not silently broadened into generic dry skin or used as a character inference.
+  ko-nikl-33403: Actual 까탈 problem/faultfinding noun is comparison evidence, not an automatic new noun selection.
+  ko-nikl-29215: Actual 고요히 adverb positions were compared but are not automatically selected as a full generated paradigm.
+review_limits: >
+  These are words for describing or interpreting a speaker's portrayal, not
+  validated personality tests, diagnoses, moral standards, financial advice,
+  weather forecasts, or guarantees of physical safety. Quiet speech alone
+  does not prove coldness. Age/build/appearance comparisons in 당차다 reflect
+  a source-described expectation, not an endorsed ability norm. Negative
+  judgments need relationship-sensitive teaching and can be recast around
+  specific conduct or conditions rather than a person's worth. Qualified
+  Korean-language, pragmatic, and pedagogical review remains outstanding.
+  No counts, written reading, or module completion award modality mastery.
