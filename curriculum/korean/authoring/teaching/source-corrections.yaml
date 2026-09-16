@@ -5,6 +5,81 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-01312-s001:
+    source_korean: 목화에서 나온 섬유로, 주로 이불 속이나 면직물의 재료가 되는 물질.
+    source_english: Fabric made of cotton that is mainly used as a material for blanket fillings or cotton cloth.
+    authored_interpretation: cotton fiber or wadding
+    rationale: >
+      Korean names fiber obtained from cotton and used as filling or textile
+      material; English incorrectly presents the raw material as finished fabric.
+  ko-nikl-01414-s002:
+    source_korean: 광물에서 얻을 수 있는 온갖 쇠붙이.
+    source_english: 'All kinds of iron extracted from minerals. '
+    authored_interpretation: metal in general
+    rationale: >
+      온갖 쇠붙이 is metals generally, whereas English narrows it to iron.
+      The iron-only meaning remains the separately selected first position.
+  ko-nikl-07477-s001:
+    source_korean: 주로 포장에 사용되는 물건을 만드는 데 쓰는, 불에 잘 타지 않으며 물과 공기가 통하지 않는 질긴 물질.
+    source_english: 'A durable substance that is non-flammable, airtight, and water-proof, usually used for making a packing material. '
+    authored_interpretation: vinyl; plastic used for wrapping
+    rationale: >
+      잘 타지 않으며 does not justify the absolute English non-flammable.
+      The local material label makes no combustion-safety guarantee; material
+      properties require appropriate factual review beyond this lexical task.
+  ko-nikl-50874-s001:
+    source_korean: 귀금속이나 그릇 등을 만드는 데 쓰는, 흰 광택이 나고 무른 성질이 있는 금속.
+    source_english: Metal that is used to make precious stones, kitchenware, etc., that is white and smooth.
+    authored_interpretation: silver; the metal
+    rationale: >
+      English changes precious-metal articles to precious stones and softness
+      to smoothness. Korean describes a lustrous white, soft metal used for
+      valuable metal articles or utensils; it does not describe manufacturing gems.
+  ko-nikl-05613-s001:
+    source_korean: 아직 다 자라지 못한 새끼 닭.
+    source_english: A young bird that has yet to grow fully.
+    authored_interpretation: a chick; a young chicken
+    rationale: >
+      Korean explicitly specifies a young chicken, not an arbitrary young bird.
+      The figurative inexperienced-person position is not selected.
+  ko-nikl-27432-s001:
+    source_korean: 몸에서 끈적끈적한 줄을 뽑아 그물을 쳐서 벌레를 잡아먹고 사는 작은 동물.
+    source_english: A small insect that eats bugs it catches with its web, woven with thin sticky material it releases from its body.
+    authored_interpretation: a spider
+    rationale: >
+      Korean says small animal, while English incorrectly classifies a spider
+      as an insect. The selected noun label does not reproduce that classification.
+  ko-nikl-33117-s001:
+    source_korean: 그 밖의 다른 것.
+    source_english: Something similar to the aforementioned.
+    authored_interpretation: other things; miscellaneous items
+    rationale: >
+      Korean says other things outside the preceding set, not things similar
+      to the preceding items. This is residual reference, not a guitar.
+  ko-nikl-42877-s001:
+    source_korean: 땅속이나 땅을 파고 그 아래에 만든 건물의 공간.
+    source_english: A story of a building that is made under the ground by digging.
+    authored_interpretation: underground; space below ground or in a basement
+    rationale: >
+      Korean includes general below-ground space as well as underground
+      building space. English loses the first alternative by limiting the
+      meaning to a building story.
+  ko-nikl-33258-s003:
+    source_korean: 책이나 글 등의 분량.
+    source_english: 'The number of pages in a book or writing. '
+    authored_interpretation: the length of a text
+    rationale: >
+      분량 describes textual extent, not exclusively a literal page count.
+      Spatial distance and elapsed time remain separate first and second senses.
+  ko-nikl-35972-s001:
+    source_korean: 연극에서 막이 올랐다가 다시 내려올 때까지의 장면인 단락을 세는 단위.
+    source_english: A bound noun that serves as a unit for counting the number of scenes from the rising to the falling of the curtain.
+    authored_interpretation: act; a unit for counting acts of a play
+    rationale: >
+      The Korean identifies the curtain-bounded division counted by 막.
+      English scenes can instead suggest smaller subdivisions within an act.
+      This act label remains an unreviewed interpretation requiring qualified
+      Korean and theater-terminology review, not an official correction.
   ko-nikl-02486-s001:
     source_korean: 얇고 잘 늘어나는, 목이 긴 여성용 양말.
     source_english: Thin, stretchy, long leggings for females.

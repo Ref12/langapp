@@ -1,0 +1,698 @@
+schema_version: 1
+id: ko-content-noun-cohort
+review_status: original-ai-authored-unreviewed
+review_requirement: >-
+  All selection, placement, grouping, English labels, and correction proposals
+  are original AI-authored work requiring qualified Korean linguistic and
+  pedagogical review. Passing structural checks is not linguistic approval.
+scope:
+  - Choose a film, performance, exhibition, or book and discuss its content.
+  - Arrange ordinary recreation and understand a competition's equipment and results.
+  - Describe an outing, a landscape, water, weather, and environmental news.
+  - Observe familiar animals and plants, then explain simple ecological relationships.
+  - Describe household materials, parts, dimensions, and defects.
+  - Explain quantities, procedures, categories, source context, and common imagery.
+selection_policy: >-
+  Domain questions guided targeted discovery, followed by inspection of each
+  selected source position's Korean and English definitions. All selections are
+  explicit. Neither source order, spelling, source band, part of speech, nor a
+  numerical target assigns a teaching level. Noun ownership only prevents
+  concurrent editing collisions; these file sections are not lesson batches.
+  There was no exhaustive unselected-source audit or round-number cutoff.
+counts:
+  selected_senses: 407
+  core_senses: 407
+  branch_senses: 0
+  source_parents: 310
+  distinct_selected_spellings: 301
+  identity_records_in_fragment: 307
+  existing_identity_fragments: 29
+  new_identity_groups: 278
+  new_provisional_free_lemma_groups: 275
+  new_bound_form_groups: 2
+  new_function_item_groups: 1
+  source_noun_senses: 403
+  source_bound_noun_senses: 4
+  source_parents_new_to_protected_selections: 281
+  source_parents_already_represented: 29
+count_interpretation: >-
+  These are different measurements, not interchangeable vocabulary-size claims.
+  A sense is one preserved source-definition position; a source parent is a
+  pinned local source record; spelling is visible Korean text; an identity is
+  an explicitly justified provisional lexical grouping. Polysemy adds senses,
+  not free lemmas. Identical spelling can name different homographs. Conversely,
+  related independent and bound forms can share one identity. The category on
+  such an identity does not assert that every member is an independent noun.
+placement_rationale:
+  first_exchanges: >-
+    Size, shape, and speech support observable identification and repair at
+    level 2; ice supports a food request at level 3. A label's concreteness
+    alone does not force every animal or material into the opening levels.
+  everyday_life: >-
+    Household parts, ordinary materials, familiar animals, and plant care enter
+    at level 5. Shopping quantities, clothing materials, and exercise enter
+    at 6; outings, venues, landforms, and weather at 7; shared hobbies, equipment,
+    and work or study reference at 8. The independent gap sense of 틈 enters
+    before its bound interval use, rather than letting a bound use alone count
+    as the first introduction of an independent lexical family.
+  stories_conversations: >-
+    Level 9 uses actual outing and competition narratives, wildlife observations,
+    and story characters. Level 10 distinguishes temperament, private thoughts,
+    joking, and mean pranks. Level 11 describes making and handling materials.
+    Level 12 interprets text, media, and performance content; level 13 compares
+    characteristics and discusses customs or suitable seasons.
+  explanation_problems: >-
+    Defects and unfamiliar circumstances enter at 14, actual work sites at 15,
+    reporting events and competition outcomes at 16, and environmental/material
+    explanations at 17. Resources and opportunities for action support
+    negotiation at 18. These placements do not inherit dictionary bands.
+  analysis_argument: >-
+    Evidence, noteworthy points, classification, and relative weight enter at
+    19; city government and retail trading at 20; observation, biology, and general dimensional
+    explanation at 21. Hidden hardship supports values discussion at 22;
+    loopholes and action principles at 23; full texts and edition references
+    support synthesis at 24.
+  nuance_interpretation: >-
+    Pretence, inflated appearance, and a decisive figurative card enter at 25.
+    Source-marked and selected common imagery enters mostly at 27. Depth,
+    mental image, and underlying basis support precision at 28; visual area,
+    staging effects, textual traces, and theatrical act reference support
+    interpretation at 29. No specialist branch was padded with marginal nouns.
+identity_decisions:
+  existing_fragments: >-
+    Established identities retain their exact keys, canonical lemma, and category.
+    The content fragment lists only new members. Examples include 소재's material
+    use, 장면's actual-event scene, 카드's greeting/game/strategy uses, 게임's
+    match and counting uses, and 효과's theatrical effects.
+  related_source_parents:
+    - identity: ko-lex-04573
+      parents: [ko-nikl-04573, ko-nikl-04575]
+      rationale: >-
+        Egg and individual round grain provide independent content uses; the
+        bound small-round-item counter is an explicitly related function.
+        All remain individually labeled and the counter adds no free lemma.
+    - identity: ko-lex-22178
+      parents: [ko-nikl-22178, ko-nikl-22179]
+      rationale: >-
+        Physical gap and opportunity connect to a short available interval.
+        The temporal bound form remains visibly bound in source provenance
+        while sharing one provisional gap/opportunity identity.
+    - identity: ko-lex-39480
+      parents: [ko-nikl-39480, ko-nikl-39482]
+      rationale: >-
+        Wheel and the bound count of turns or circuits share a provisional
+        rotation family. This is an explicit semantic decision, not a rule
+        merging every equal spelling or all counters.
+  noun_and_counting_roles:
+    - {identity: ko-lex-29407, independent: [ko-nikl-29407-s001, ko-nikl-29407-s002], counting: [ko-nikl-29407-s003]}
+    - {identity: ko-lex-27934, independent: [ko-nikl-27934-s002], counting: [ko-nikl-27934-s003]}
+    - {identity: ko-lex-41390, independent: [ko-nikl-41390-s001], counting: [ko-nikl-41390-s003]}
+    - {identity: ko-lex-09218, independent: [ko-nikl-09218-s001], counting: [ko-nikl-09218-s002]}
+    - {identity: ko-lex-21669, independent: [ko-nikl-21669-s001], counting: [ko-nikl-21669-s002]}
+  bound_only:
+    - >-
+      ko-lex-35972 is the bound theatrical act counter; no shelter, curtain,
+      or other independently usable 막 noun is claimed.
+    - >-
+      ko-lex-22407 selects only the edition-counting position s004 and is
+      bound-form despite source POS noun. The flat-object 판 group ko-lex-22406
+      is separate. Identical printing-plate definitions in unselected positions
+      are not used to manufacture an additional free printing lexeme.
+  function_only: >-
+    ko-lex-33117 기타 means the residual reference other items. It is a
+    function-item, not a guitar or another descriptive free lemma.
+  homographs: >-
+    Distinguish retail 소매00711 from sleeve 소매00709; speech 말36211 from horse 말36275; amount 양05111 from sheep
+    양05105; line/crack 금32389 from gold 금32393; surface/aspect 면37115
+    from cotton 면37116; acting 연기47373 from smoke 연기47372. Other inspected
+    traps include poetry-collection 시집02947 versus a husband's home02946,
+    drum 북06745 versus north06746, paragraph 문단38374 versus literary
+    world38375, full text 전문13800 versus specialization13801, dragonfly
+    잠자리12675 versus bedding12674, and group 무리38024 versus overexertion38025.
+  synonyms_and_compounds: >-
+    Different lexical forms are not merged just because they share English:
+    극장/영화관, 일출/해돋이, 햇빛/햇살, 쇠/철, 풍경/경치, 곡/멜로디,
+    and 보전/보존 remain separate provisional identities. No exclusive
+    collocation rule is claimed for the last pair. Supplied compounds such
+    as 나뭇잎 and 바깥쪽 are not automatically spelling variants of their
+    components; no unseen compounds or X하다 predicates were generated.
+  source_register: >-
+    All 15 selected source definitions beginning with an explicit figurative
+    marker retain figurative in ds. Other nonliteral senses retain their
+    actual meanings even where the source does not explicitly mark register.
+    Marked person insults, obsolete official titles, religious judgment,
+    geomancy, reproductive-fluid meanings, and unrelated homographs were not
+    neutralized into ordinary vocabulary.
+meaning_checks:
+  - >-
+    The coordinator's retail lead ko-nikl-00711-s001 was separately inspected
+    and added for level 20 economic explanation, not wardrobe instruction.
+    Its sole source position was chosen because of that meaning, not because
+    it was first or carried an advanced source band. Cotton ko-nikl-01312-s001
+    was already selected as fiber/wadding and already has an exact correction
+    request below; no duplicate cotton selection was added.
+  - >-
+    야영04993-s002 is recreational camping, not military encampment s001.
+    심판03683-s003 is sporting officiating, not Christian judgment s002.
+  - >-
+    토양21613-s002 is plant-growing soil and s003 explicitly figurative
+    foundation. 품종23374-s002 is an in-species breed/variety; 개체27177-s002
+    is an individual organism. An unsupplied technical species sense of 종
+    was not fabricated from its broad category or seed positions.
+  - >-
+    생물09547-s002 is biology and s003 fresh unfrozen goods, neither another
+    unspecified organism nor a source-based guarantee of food safety.
+  - >-
+    불꽃07103-s001 denotes flame light and s002 a struck spark. 섬유00109-s001
+    explicitly describes biological textile fiber; 고무29011-s001 is natural
+    rubber. Synthetic material varieties were not inferred as selected senses.
+  - >-
+    그림자32086 distinguishes cast shadow s001, reflection s002, and trace of
+    presence s003. 바람39374-s002 is inflated air, not the wish homograph.
+  - >-
+    The crab sense ko-nikl-27882-s001 and pouch sense ko-nikl-41685-s001 were
+    removed when the newly registered kitchen and personal cohorts supplied
+    them. Neither second placements nor duplicate identity members were retained.
+retail_source_evidence:
+  id: ko-nikl-00711-s001
+  source_korean: "물건을 생산자에게서 사서 직접 소비자에게 파는 일."
+  source_english: "The act of buying a product from the manufacturer and selling it directly to a consumer."
+  interpretation: retail; selling products directly to consumers
+protected_reservations:
+  policy: >-
+    These named parent-owned personal-item senses and the coordinator's excluded
+    ID must not be added to this cohort. Their absence was checked without
+    pronunciation research or inspection of in-progress personal files.
+    The parent retains all garment, accessory, toiletry, ingredient, condiment,
+    and prepared-dish additions; this cohort does not expand into those tasks.
+  parent_owned_ids:
+    - ko-nikl-13228-s002
+    - ko-nikl-05331-s002
+    - ko-nikl-20160-s001
+    - ko-nikl-41685-s004
+    - ko-nikl-35854-s001
+    - ko-nikl-35854-s002
+    - ko-nikl-35854-s003
+    - ko-nikl-35854-s004
+    - ko-nikl-35854-s006
+  excluded_ids: [ko-nikl-48419-s001]
+source_correction_policy: >-
+  The following ten exact-source proposals were checked and incorporated
+  into the parent-owned correction ledger as unreviewed interpretations,
+  not verified official corrections. Original whitespace remains in source
+  strings; authored_interpretation equals the selected ds. Korean definitions
+  govern these labels where the English narrows, broadens, or contradicts
+  them. The original cohort author did not edit the correction ledger.
+source_correction_requests:
+  ko-nikl-01312-s001:
+    source_korean: "목화에서 나온 섬유로, 주로 이불 속이나 면직물의 재료가 되는 물질."
+    source_english: "Fabric made of cotton that is mainly used as a material for blanket fillings or cotton cloth."
+    authored_interpretation: cotton fiber or wadding
+    rationale: >-
+      Korean names fiber obtained from cotton and used as filling or textile
+      material; English incorrectly presents the raw material as finished fabric.
+  ko-nikl-01414-s002:
+    source_korean: "광물에서 얻을 수 있는 온갖 쇠붙이."
+    source_english: "All kinds of iron extracted from minerals. "
+    authored_interpretation: metal in general
+    rationale: >-
+      온갖 쇠붙이 is metals generally, whereas English narrows it to iron.
+      The iron-only meaning remains the separately selected first position.
+  ko-nikl-07477-s001:
+    source_korean: "주로 포장에 사용되는 물건을 만드는 데 쓰는, 불에 잘 타지 않으며 물과 공기가 통하지 않는 질긴 물질."
+    source_english: "A durable substance that is non-flammable, airtight, and water-proof, usually used for making a packing material. "
+    authored_interpretation: vinyl; plastic used for wrapping
+    rationale: >-
+      잘 타지 않으며 does not justify the absolute English non-flammable.
+      The local material label makes no combustion-safety guarantee; material
+      properties require appropriate factual review beyond this lexical task.
+  ko-nikl-50874-s001:
+    source_korean: "귀금속이나 그릇 등을 만드는 데 쓰는, 흰 광택이 나고 무른 성질이 있는 금속."
+    source_english: "Metal that is used to make precious stones, kitchenware, etc., that is white and smooth."
+    authored_interpretation: silver; the metal
+    rationale: >-
+      English changes precious-metal articles to precious stones and softness
+      to smoothness. Korean describes a lustrous white, soft metal used for
+      valuable metal articles or utensils; it does not describe manufacturing gems.
+  ko-nikl-05613-s001:
+    source_korean: "아직 다 자라지 못한 새끼 닭."
+    source_english: "A young bird that has yet to grow fully."
+    authored_interpretation: a chick; a young chicken
+    rationale: >-
+      Korean explicitly specifies a young chicken, not an arbitrary young bird.
+      The figurative inexperienced-person position is not selected.
+  ko-nikl-27432-s001:
+    source_korean: "몸에서 끈적끈적한 줄을 뽑아 그물을 쳐서 벌레를 잡아먹고 사는 작은 동물."
+    source_english: "A small insect that eats bugs it catches with its web, woven with thin sticky material it releases from its body."
+    authored_interpretation: a spider
+    rationale: >-
+      Korean says small animal, while English incorrectly classifies a spider
+      as an insect. The selected noun label does not reproduce that classification.
+  ko-nikl-33117-s001:
+    source_korean: "그 밖의 다른 것."
+    source_english: "Something similar to the aforementioned."
+    authored_interpretation: other things; miscellaneous items
+    rationale: >-
+      Korean says other things outside the preceding set, not things similar
+      to the preceding items. This is residual reference, not a guitar.
+  ko-nikl-42877-s001:
+    source_korean: "땅속이나 땅을 파고 그 아래에 만든 건물의 공간."
+    source_english: "A story of a building that is made under the ground by digging."
+    authored_interpretation: underground; space below ground or in a basement
+    rationale: >-
+      Korean includes general below-ground space as well as underground
+      building space. English loses the first alternative by limiting the
+      meaning to a building story.
+  ko-nikl-33258-s003:
+    source_korean: "책이나 글 등의 분량."
+    source_english: "The number of pages in a book or writing. "
+    authored_interpretation: the length of a text
+    rationale: >-
+      분량 describes textual extent, not exclusively a literal page count.
+      Spatial distance and elapsed time remain separate first and second senses.
+  ko-nikl-35972-s001:
+    source_korean: "연극에서 막이 올랐다가 다시 내려올 때까지의 장면인 단락을 세는 단위."
+    source_english: "A bound noun that serves as a unit for counting the number of scenes from the rising to the falling of the curtain."
+    authored_interpretation: act; a unit for counting acts of a play
+    rationale: >-
+      Review theatrical terminology: the Korean identifies the curtain-bounded
+      division counted by 막. English scenes can instead suggest smaller
+      subdivisions within an act. The proposed act label requires qualified
+      Korean and theater-terminology review, not automatic approval.
+reading_review:
+  status: resolved-for-all-selected-senses
+  actual_gap_parents_before_resolution: 50
+  actual_gap_senses_before_resolution: 71
+  resolution:
+    official_text_parents: 32
+    official_text_senses: 48
+    authored_unreviewed_parents: 18
+    authored_unreviewed_senses: 23
+  policy: >-
+    Reading overlays and ledgers were outside the original cohort author's
+    scope. The parent checked all 310 selected parents against current reading
+    evidence and found 50 unsupported parents covering 71 senses. The following
+    281 new-parent IDs preserve the original verification queue, NOT a claim
+    that 281 readings are missing. Twenty-nine reused parents were checked too.
+    All actual gaps are now resolved with the separate methods counted above.
+    No homograph reading transfer or verified-reading status is presumed.
+    Goal-frame 골대 retains an authored, unreviewed reading supported by an
+    explicit community-editor tensing annotation, not by generated IPA alone;
+    its secondary source and licensing limits are documented in sources.yaml.
+  new_parent_ids:
+    - ko-nikl-00109
+    - ko-nikl-00295
+    - ko-nikl-00578
+    - ko-nikl-00711
+    - ko-nikl-00993
+    - ko-nikl-01287
+    - ko-nikl-01312
+    - ko-nikl-01414
+    - ko-nikl-01614
+    - ko-nikl-01742
+    - ko-nikl-02039
+    - ko-nikl-02461
+    - ko-nikl-02479
+    - ko-nikl-02523
+    - ko-nikl-02665
+    - ko-nikl-02751
+    - ko-nikl-02947
+    - ko-nikl-03683
+    - ko-nikl-03785
+    - ko-nikl-03869
+    - ko-nikl-03870
+    - ko-nikl-03989
+    - ko-nikl-04403
+    - ko-nikl-04541
+    - ko-nikl-04573
+    - ko-nikl-04575
+    - ko-nikl-04848
+    - ko-nikl-04940
+    - ko-nikl-04993
+    - ko-nikl-05105
+    - ko-nikl-05111
+    - ko-nikl-05326
+    - ko-nikl-05613
+    - ko-nikl-05844
+    - ko-nikl-05861
+    - ko-nikl-06449
+    - ko-nikl-06745
+    - ko-nikl-06749
+    - ko-nikl-06841
+    - ko-nikl-06919
+    - ko-nikl-07101
+    - ko-nikl-07103
+    - ko-nikl-07213
+    - ko-nikl-07394
+    - ko-nikl-07477
+    - ko-nikl-07489
+    - ko-nikl-07622
+    - ko-nikl-07792
+    - ko-nikl-07828
+    - ko-nikl-08082
+    - ko-nikl-08316
+    - ko-nikl-08415
+    - ko-nikl-08509
+    - ko-nikl-08702
+    - ko-nikl-08716
+    - ko-nikl-09017
+    - ko-nikl-09050
+    - ko-nikl-09078
+    - ko-nikl-09200
+    - ko-nikl-09218
+    - ko-nikl-09337
+    - ko-nikl-09851
+    - ko-nikl-09914
+    - ko-nikl-09919
+    - ko-nikl-10812
+    - ko-nikl-10836
+    - ko-nikl-11464
+    - ko-nikl-11490
+    - ko-nikl-11630
+    - ko-nikl-11989
+    - ko-nikl-12012
+    - ko-nikl-12159
+    - ko-nikl-12350
+    - ko-nikl-12447
+    - ko-nikl-12675
+    - ko-nikl-12748
+    - ko-nikl-12816
+    - ko-nikl-12868
+    - ko-nikl-13070
+    - ko-nikl-13777
+    - ko-nikl-13800
+    - ko-nikl-13907
+    - ko-nikl-14031
+    - ko-nikl-14172
+    - ko-nikl-14203
+    - ko-nikl-14870
+    - ko-nikl-15287
+    - ko-nikl-16280
+    - ko-nikl-16325
+    - ko-nikl-16367
+    - ko-nikl-16601
+    - ko-nikl-16613
+    - ko-nikl-16643
+    - ko-nikl-17027
+    - ko-nikl-17050
+    - ko-nikl-17104
+    - ko-nikl-17409
+    - ko-nikl-17952
+    - ko-nikl-18079
+    - ko-nikl-18199
+    - ko-nikl-18329
+    - ko-nikl-18617
+    - ko-nikl-18717
+    - ko-nikl-18839
+    - ko-nikl-18867
+    - ko-nikl-19309
+    - ko-nikl-19412
+    - ko-nikl-19594
+    - ko-nikl-19758
+    - ko-nikl-20055
+    - ko-nikl-20088
+    - ko-nikl-20730
+    - ko-nikl-20916
+    - ko-nikl-21534
+    - ko-nikl-21560
+    - ko-nikl-21613
+    - ko-nikl-21669
+    - ko-nikl-22140
+    - ko-nikl-22178
+    - ko-nikl-22179
+    - ko-nikl-22258
+    - ko-nikl-22406
+    - ko-nikl-22407
+    - ko-nikl-22877
+    - ko-nikl-23097
+    - ko-nikl-23166
+    - ko-nikl-23249
+    - ko-nikl-23374
+    - ko-nikl-23395
+    - ko-nikl-23432
+    - ko-nikl-23601
+    - ko-nikl-24622
+    - ko-nikl-24682
+    - ko-nikl-24696
+    - ko-nikl-24701
+    - ko-nikl-24801
+    - ko-nikl-24802
+    - ko-nikl-25305
+    - ko-nikl-25476
+    - ko-nikl-25693
+    - ko-nikl-25967
+    - ko-nikl-26009
+    - ko-nikl-26042
+    - ko-nikl-26794
+    - ko-nikl-27014
+    - ko-nikl-27177
+    - ko-nikl-27432
+    - ko-nikl-27542
+    - ko-nikl-27854
+    - ko-nikl-28186
+    - ko-nikl-28367
+    - ko-nikl-28407
+    - ko-nikl-28458
+    - ko-nikl-28554
+    - ko-nikl-28913
+    - ko-nikl-29011
+    - ko-nikl-29407
+    - ko-nikl-29419
+    - ko-nikl-29503
+    - ko-nikl-29514
+    - ko-nikl-29551
+    - ko-nikl-29571
+    - ko-nikl-29615
+    - ko-nikl-30290
+    - ko-nikl-30291
+    - ko-nikl-30393
+    - ko-nikl-30406
+    - ko-nikl-30897
+    - ko-nikl-30955
+    - ko-nikl-31019
+    - ko-nikl-31960
+    - ko-nikl-31964
+    - ko-nikl-32086
+    - ko-nikl-32091
+    - ko-nikl-32107
+    - ko-nikl-32219
+    - ko-nikl-32389
+    - ko-nikl-32393
+    - ko-nikl-32741
+    - ko-nikl-33117
+    - ko-nikl-33258
+    - ko-nikl-33311
+    - ko-nikl-33316
+    - ko-nikl-33398
+    - ko-nikl-33650
+    - ko-nikl-33817
+    - ko-nikl-34219
+    - ko-nikl-34223
+    - ko-nikl-34247
+    - ko-nikl-34522
+    - ko-nikl-34600
+    - ko-nikl-35004
+    - ko-nikl-35300
+    - ko-nikl-35766
+    - ko-nikl-35767
+    - ko-nikl-35798
+    - ko-nikl-35972
+    - ko-nikl-36189
+    - ko-nikl-36211
+    - ko-nikl-36275
+    - ko-nikl-36508
+    - ko-nikl-36965
+    - ko-nikl-37061
+    - ko-nikl-37097
+    - ko-nikl-37115
+    - ko-nikl-37116
+    - ko-nikl-37416
+    - ko-nikl-37463
+    - ko-nikl-37480
+    - ko-nikl-37610
+    - ko-nikl-37650
+    - ko-nikl-38024
+    - ko-nikl-38164
+    - ko-nikl-38245
+    - ko-nikl-38369
+    - ko-nikl-38374
+    - ko-nikl-38587
+    - ko-nikl-38660
+    - ko-nikl-38721
+    - ko-nikl-38782
+    - ko-nikl-39265
+    - ko-nikl-39298
+    - ko-nikl-39303
+    - ko-nikl-39341
+    - ko-nikl-39343
+    - ko-nikl-39453
+    - ko-nikl-39480
+    - ko-nikl-39482
+    - ko-nikl-39602
+    - ko-nikl-39783
+    - ko-nikl-40658
+    - ko-nikl-40850
+    - ko-nikl-40949
+    - ko-nikl-41053
+    - ko-nikl-41390
+    - ko-nikl-41438
+    - ko-nikl-42047
+    - ko-nikl-42214
+    - ko-nikl-42329
+    - ko-nikl-42635
+    - ko-nikl-42877
+    - ko-nikl-42897
+    - ko-nikl-43241
+    - ko-nikl-43759
+    - ko-nikl-43909
+    - ko-nikl-44121
+    - ko-nikl-44466
+    - ko-nikl-44494
+    - ko-nikl-44594
+    - ko-nikl-44958
+    - ko-nikl-44968
+    - ko-nikl-45120
+    - ko-nikl-45354
+    - ko-nikl-45805
+    - ko-nikl-46649
+    - ko-nikl-46758
+    - ko-nikl-46993
+    - ko-nikl-47149
+    - ko-nikl-47372
+    - ko-nikl-47373
+    - ko-nikl-47414
+    - ko-nikl-47435
+    - ko-nikl-47560
+    - ko-nikl-47751
+    - ko-nikl-47916
+    - ko-nikl-48010
+    - ko-nikl-48165
+    - ko-nikl-48207
+    - ko-nikl-48332
+    - ko-nikl-48920
+    - ko-nikl-49344
+    - ko-nikl-49745
+    - ko-nikl-50203
+    - ko-nikl-50378
+    - ko-nikl-50468
+    - ko-nikl-50542
+    - ko-nikl-50874
+    - ko-nikl-51236
+    - ko-nikl-51289
+    - ko-nikl-51643
+    - ko-nikl-52652
+  reused_parent_ids:
+    - ko-nikl-00903
+    - ko-nikl-03362
+    - ko-nikl-07002
+    - ko-nikl-09547
+    - ko-nikl-12536
+    - ko-nikl-12875
+    - ko-nikl-15045
+    - ko-nikl-20279
+    - ko-nikl-20539
+    - ko-nikl-21536
+    - ko-nikl-27934
+    - ko-nikl-28704
+    - ko-nikl-32805
+    - ko-nikl-34198
+    - ko-nikl-34403
+    - ko-nikl-35625
+    - ko-nikl-35689
+    - ko-nikl-37969
+    - ko-nikl-39326
+    - ko-nikl-39329
+    - ko-nikl-39374
+    - ko-nikl-41820
+    - ko-nikl-47303
+    - ko-nikl-47361
+    - ko-nikl-47829
+    - ko-nikl-48019
+    - ko-nikl-49707
+    - ko-nikl-51625
+    - ko-nikl-52171
+source_and_license_limits: >-
+  Exact local identities refer to the existing pinned source-senses.yaml:
+  ko-nikl-NNNNN is the preserved project CSV record and sNNN its original
+  definition-list position, not an official NIKL sense number. Source bands,
+  original Korean/English, provenance, and licensing metadata were not edited.
+  These new selection files do not relicense upstream definitions or imply
+  permission for uses beyond the repository's established source terms.
+  The quoted correction evidence retains upstream obligations. No official
+  dictionary endorsement, TOPIK qualification, proficiency certification,
+  complete native lexical inventory, or completed scale target is claimed.
+validation:
+  status: passed-for-authored-shard-contracts
+  strict_loader: curriculum_yaml.load_yaml
+  real_api_checks:
+    - sense_index validates the pinned registry and exact original source positions.
+    - load_selections composes the live registered shards plus this cohort using an in-memory explicit manifest.
+    - lexical_members validates standalone and composed identity membership and source-parent sets.
+    - source_corrections validates all ten proposed corrections against exact bilingual originals and selected labels.
+  other_checks:
+    - Exactly four fields per vocabulary row and five fields per identity record.
+    - Unique new IDs; no overlap with any currently registered protected selection.
+    - Existing canonical lemma and category preserved; existing members and placements unchanged.
+    - All levels are explicit integers from 1 through 30 and all topics are declared.
+    - Every ds is nonempty and at most 64 characters.
+    - Source POS is noun or bound noun; all 15 explicitly marked figurative definitions retain that qualifier.
+    - The three related independent/bound families introduce an independent use no later than their bound use.
+    - Counts and both reading-review parent lists exactly match the selected and protected data.
+    - Protected input hashes remain unchanged through validation.
+  existing_tests:
+    command: >-
+      python -B -m unittest
+      test_korean_program.KoreanSelectionFilesTests
+      test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+      test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+    tests_passed: 8
+    environment: Existing Python 3.12 and PyYAML with PYTHONPATH=scripts; no installs or temporary test files.
+  composition_snapshot:
+    protected_cohorts: [base, early, expansion, breadth, community, kitchen, personal]
+    protected_personal_senses: 54
+    protected_unique_senses: 3851
+    protected_identity_groups: 2835
+    protected_core_senses: 3726
+    protected_core_provisional_free_identities: 2629
+    composed_unique_senses: 4258
+    composed_identity_groups: 3113
+    composed_core_senses: 4133
+    composed_core_provisional_free_identities: 2905
+    new_distinct_spellings_relative_to_snapshot: 268
+    warning: >-
+      This is a live-input validation snapshot, not a claim that this workstream
+      registered the shards or completed pronunciation/full-generation validation.
+      Parent integration can legitimately change the protected totals.
+  core_coverage_change:
+    additional_core_provisional_free_identities: 276
+    globally_new_provisional_free_identities: 275
+    existing_branch_identity_entering_core:
+      identity: ko-lex-03362
+      lemma: 신화
+      added_core_member: ko-nikl-03362-s003
+      core_level: 27
+      unchanged_literary_members: [ko-nikl-03362-s001, ko-nikl-03362-s002]
+    interpretation: >-
+      The extra one is not another new lexical identity. The established
+      literary-only myth family acquires a selected common figurative core
+      sense. Its literal myth and sacred-tale senses keep their optional
+      literary placements; learning the core achievement sense does not award
+      mastery of those other senses. Global new-identity counts and additional
+      core coverage therefore differ legitimately.
+  source_selection_snapshot:
+    selected_nonfirst_positions: 136
+    source_band_counts_by_selected_sense: {beginner: 108, intermediate: 183, advanced: 116}
+    interpretation: These preserved dictionary annotations did not determine authored levels and are not exam-readiness evidence.
+parent_handoff:
+  files_to_register: [content-vocabulary.yaml, content-identities.yaml]
+  evidence_file: content-notes.yaml
+  remaining_actions:
+    - Register the two data shards explicitly after reviewing composition.
+    - Adjudicate the ten exact bilingual correction requests without changing original source definitions.
+    - Resolve actual reading coverage from the parent's permitted reading assets.
+    - Obtain qualified review of labels, level choices, category roles, and provisional identity families.
+  preserved_scope: >-
+    No manifest, protected cohort, source registry, correction ledger, reading
+    asset, expression file, grammar, runtime, or writing asset was edited.
+    Existing expression work was not inspected. No new agents or sessions,
+    dependency installations, commits, pushes, or pull requests were used.

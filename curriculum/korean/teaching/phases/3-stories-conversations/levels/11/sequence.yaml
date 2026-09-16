@@ -28,6 +28,26 @@ checkpoint:
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: level-11-home-01
+  title: Home and daily life - 1
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary:
+  - {id: ko-nikl-34522-s003, ch: 날개, pr: 날개, ds: a fan blade}
+  - {id: ko-nikl-34198-s003, ch: 나무, pr: 나무, ds: firewood}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-39329-s001, ch: 바닥, pr: 바닥, ds: a floor or broad bottom surface}
+  - {id: ko-nikl-00528-s001, ch: 세탁, pr: 세ː탁, ds: washing clothes; laundering}
+  - {id: ko-nikl-10758-s001, ch: 이사, pr: 이사, ds: moving home; relocation}
+  - {id: ko-nikl-25975-s001, ch: 가정, pr: 가정, ds: a family household or the home it lives in}
+  - {id: ko-nikl-15648-s002, ch: 눕히다, pr: 누피다, ds: to lay an object on its side}
+  - {id: ko-nikl-03843-s001, ch: 쌓이다, pr: 싸이다, ds: for things to be piled in layers}
+  - {id: ko-nikl-35810-s001, ch: 마르다, pr: 마르다, ds: to dry out as moisture evaporates}
+  - {id: ko-nikl-09344-s002, ch: 새다, pr: 새다, ds: for light to leak in or out through a gap}
+  review_grammar:
+  - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
+  - {id: ko-topik3-g027, ch: V-아/어 있다, ds: describe a resulting state rather than activity}
+  - {id: ko-topik3-g009, ch: V-아/어 놓다, ds: do an action and leave its result in place}
 - id: level-11-food-01
   title: Food and meals - 1
   outcome: Clarify ingredients and preferences and make an appropriate meal request.
@@ -63,7 +83,6 @@ units:
   - {id: ko-nikl-47854-s001, ch: 영양, pr: 영양, ds: nutrition; taking in what sustains life and growth}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-33521-s001, ch: 깨다, pr: 깨ː다, ds: to sober up}
   - {id: ko-nikl-01681-s001, ch: 수면, pr: 수면, ds: sleep; the act of sleeping}
   - {id: ko-nikl-32464-s002, ch: 금연, pr: 그ː면, ds: quitting smoking}
   - {id: ko-nikl-52692-s001, ch: 흡연, pr: 흐변, ds: smoking tobacco}
@@ -71,6 +90,7 @@ units:
   - {id: ko-nikl-03063-s001, ch: 식습관, pr: 식씁꽌, ds: eating habits}
   - {id: ko-nikl-49462-s001, ch: 운동량, pr: 운ː동냥, ds: the amount of effort or energy used in exercise}
   - {id: ko-nikl-23574-s001, ch: 피로, pr: 피로, ds: physical or mental fatigue}
+  - {id: ko-nikl-12012-s002, ch: 자국, pr: 자국, ds: a scar left by a healed wound}
   review_grammar:
   - {id: ko-topik2-g006, ch: V-기 전에, ds: locate an action before another}
   - {id: ko-topik2-g005, ch: V-(으)ㄴ 후에, ds: locate an action after another is completed}
@@ -124,11 +144,11 @@ units:
   - {id: ko-nikl-19269-s002, ch: 들여다보다, pr: 드려다보다, ds: to examine something closely}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-26843-s002, ch: 강좌, pr: 강ː좌, ds: a university course taught by a professor}
-  - {id: ko-nikl-01511-s001, ch: 수강, pr: 수강, ds: taking a class or course}
-  - {id: ko-nikl-03014-s001, ch: 시험지, pr: 시험지, ds: an examination question paper or answer sheet}
   - {id: ko-nikl-14431-s001, ch: 정답, pr: 정ː답, ds: the correct answer to a question or problem}
   - {id: ko-nikl-30648-s001, ch: 교복, pr: 교ː복, ds: a school uniform chosen by the school}
+  - {id: ko-nikl-23249-s001, ch: 표지, pr: 표지, ds: a book cover}
+  - {id: ko-nikl-37610-s001, ch: 목록, pr: 몽녹, ds: a list of names or titles}
+  - {id: ko-nikl-44958-s002, ch: 체육, pr: 체육, ds: physical education}
   - {id: ko-nikl-28570-s001, ch: 경험, pr: 경험, ds: experience; knowledge gained through experience}
   - {id: ko-nikl-11966-s001, ch: 잊다, pr: 읻따, ds: to forget something once known}
   - {id: ko-nikl-24413-s001, ch: 합격, pr: 합껵, ds: 'passing an examination, inspection, or screening'}
@@ -146,10 +166,10 @@ units:
   - {id: ko-nikl-20330-s001, ch: 마감, pr: 마감, ds: bringing a task to completion}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-16677-s002, ch: 담당, pr: 담당, ds: a person responsible for a task}
   - {id: ko-nikl-06477-s001, ch: 부서, pr: 부서, ds: a department or work unit within an organization}
   - {id: ko-nikl-11307-s002, ch: 인턴, pr: 인턴, ds: a trainee before regular appointment; the training period}
   - {id: ko-nikl-03281-s001, ch: 신입, pr: 시닙, ds: new entry into a group or organization}
+  - {id: ko-nikl-22179-s001, ch: 틈, pr: 틈, ds: a short interval available for doing something}
   - {id: ko-nikl-16057-s002, ch: 다녀오다, pr: 다녀오다, ds: to go somewhere for a task and come back}
   - {id: ko-nikl-27094-s001, ch: 개업, pr: 개업, ds: starting a business or opening a shop}
   - {id: ko-nikl-04945-s001, ch: 야근, pr: 야ː근, ds: working beyond normal hours into the night}
@@ -189,9 +209,9 @@ units:
   - {id: ko-nikl-00038-s001, ch: 설명, pr: 설명, ds: an explanation}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-37066-s001, ch: 메모, pr: 메모, ds: writing a brief reminder or message; the note itself}
-  - {id: ko-nikl-04422-s001, ch: 안내문, pr: 안ː내문, ds: a written notice explaining or introducing something}
+  - {id: ko-nikl-36211-s004, ch: 말, pr: 말ː, ds: a word or utterance}
   - {id: ko-nikl-25707-s001, ch: 가리키다, pr: 가리키다, ds: to point at something with a finger or object}
+  - {id: ko-nikl-10836-s001, ch: 이야기, pr: 이야기, ds: an account of a fact or experience}
   - {id: ko-nikl-08184-s001, ch: 사과, pr: 사ː과, ds: an apology; asking forgiveness}
   - {id: ko-nikl-39517-s001, ch: 박수, pr: 박쑤, ds: applause; clapping}
   - {id: ko-nikl-21504-s002, ch: 털어놓다, pr: 터러노타, ds: to confide a secret or reveal one's inner thoughts}
@@ -211,14 +231,14 @@ units:
   - {id: ko-nikl-12802-s001, ch: 장기, pr: 장기, ds: a long period; the long term}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-43874-s001, ch: 차례, pr: 차례, ds: the order or sequence of events or tasks}
-  - {id: ko-nikl-40169-s002, ch: 밝다, pr: 박따, ds: for day to break after the night}
-  - {id: ko-nikl-19621-s004, ch: 때, pr: 때, ds: the time when an event or phenomenon occurs}
   - {id: ko-nikl-09345-s001, ch: 새다, pr: 새ː다, ds: for day to break}
   - {id: ko-nikl-42555-s001, ch: 지나가다, pr: 지나가다, ds: for a period to end as time passes}
   - {id: ko-nikl-16238-s004, ch: 다음, pr: 다음, ds: the time after an activity has finished}
+  - {id: ko-nikl-12875-s001, ch: 장면, pr: 장면, ds: a scene of something actually happening}
+  - {id: ko-nikl-12012-s003, ch: 자국, pr: 자국, ds: a footprint or footmark}
   - {id: ko-nikl-10550-s001, ch: 이따금, pr: 이따금, ds: occasionally; once in a while}
   - {id: ko-nikl-41463-s001, ch: 종종, pr: 종ː종, ds: occasionally; from time to time}
+  - {id: ko-nikl-20279-s002, ch: 리듬, pr: 리듬, ds: a regularly repeating pattern of daily life}
   review_grammar:
   - {id: ko-topik3-g023, ch: V-(으)ㄹ 뻔하다, ds: describe an event that almost happened}
   - {id: ko-topik4-g002, ch: V/A-던 N, ds: recall a habitual or unfinished past modifier}
@@ -266,6 +286,36 @@ units:
   - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
   - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
   - {id: ko-topik3-g026, ch: V-이/히/리/기-, ds: present an event with a lexically selected passive}
+- id: level-11-actions-02
+  title: Actions and processes - 2
+  outcome: Distinguish intention, ongoing action, achieved result, and maintained state.
+  vocabulary:
+  - {id: ko-nikl-14203-s001, ch: 절차, pr: 절차, ds: a procedure; required order or method}
+  - {id: ko-nikl-16325-s001, ch: 단계, pr: 단계 / 단게, ds: a stage in a developing process}
+  - {id: ko-nikl-39374-s002, ch: 바람, pr: 바람, ds: air pumped into a ball or tube}
+  - {id: ko-nikl-43241-s002, ch: 진흙, pr: 진흑, ds: wet sticky mud or kneaded clay}
+  - {id: ko-nikl-00903-s001, ch: 소재, pr: 소재, ds: material used as the basis for making something}
+  - {id: ko-nikl-07103-s002, ch: 불꽃, pr: 불꼳, ds: a spark from striking metal or stone}
+  - {id: ko-nikl-13070-s001, ch: 재료, pr: 재료, ds: material used to make something}
+  - {id: ko-nikl-32389-s001, ch: 금, pr: 금, ds: a line or crease made on a surface}
+  - {id: ko-nikl-32805-s003, ch: 기름, pr: 기름, ds: lubricating oil}
+  - {id: ko-nikl-37650-s001, ch: 목재, pr: 목째, ds: timber for construction or furniture}
+  - {id: ko-nikl-43759-s001, ch: 찌꺼기, pr: 찌꺼기, ds: residue left after liquid drains away}
+  - {id: ko-nikl-22406-s001, ch: 판, pr: 판, ds: a flat wooden board}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
+  - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
+  - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
+  - {id: ko-nikl-25705-s001, ch: 가리다, pr: 가리다, ds: to hide or block something from view or passage}
+  - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
+  - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
+  - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
+  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
+  review_grammar:
+  - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
+  - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
+  - {id: ko-topik3-g026, ch: V-이/히/리/기-, ds: present an event with a lexically selected passive}
 - id: level-11-description-01
   title: Description and comparison - 1
   outcome: Use descriptive predicates and precise comparison standards.
@@ -283,12 +333,20 @@ units:
   - {id: ko-nikl-29141-s001, ch: 고속, pr: 고속, ds: very high speed}
   - {id: ko-nikl-11587-s001, ch: 일정, pr: 일쩡, ds: 'being fixed in size, shape, range, or time'}
   - {id: ko-nikl-42725-s001, ch: 지속, pr: 지속, ds: continuation of an activity or state over a long time}
+  - {id: ko-nikl-11989-s002, ch: 자갈, pr: 자갈, ds: small irregular stones; gravel}
+  - {id: ko-nikl-38660-s001, ch: 물방울, pr: 물빵울, ds: a drop of water}
+  - {id: ko-nikl-01414-s001, ch: 쇠, pr: 쇠 / 쉐, ds: iron}
+  - {id: ko-nikl-27542-s001, ch: 거품, pr: 거품, ds: a bubble or foam in liquid}
+  - {id: ko-nikl-29011-s001, ch: 고무, pr: 고무, ds: natural rubber}
+  - {id: ko-nikl-37115-s001, ch: 면, pr: 면ː, ds: a flat surface of an object}
+  - {id: ko-nikl-21536-s001, ch: 테두리, pr: 테두리, ds: a border or trim around an edge}
+  - {id: ko-nikl-39329-s002, ch: 바닥, pr: 바닥, ds: the bottom of an object}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-25600-s001, ch: 가능, pr: 가ː능, ds: possibility; being able to do something}
   - {id: ko-nikl-40170-s002, ch: 밝다, pr: 박따, ds: for a place to be brightly lit}
   - {id: ko-nikl-35079-s001, ch: 냄새, pr: 냄ː새, ds: a smell or odor}
   - {id: ko-nikl-38613-s001, ch: 물들다, pr: 물들다, ds: for color to spread into or stain something gradually}
+  - {id: ko-nikl-32086-s002, ch: 그림자, pr: 그ː림자, ds: an image reflected in water or a mirror}
   - {id: ko-nikl-04143-s001, ch: 아름답다, pr: 아름답따, ds: to be beautiful to see or hear}
   - {id: ko-nikl-37029-s001, ch: 멋있다, pr: 머딛따 / 머싣따, ds: to be stylish; to be impressive}
   - {id: ko-nikl-19976-s001, ch: 뜻밖에, pr: 뜯빠께, ds: unexpectedly; contrary to what one expected}
@@ -317,6 +375,23 @@ units:
   - {id: ko-topik2-g012, ch: N 때문에 / V/A-기 때문에, ds: state an explicit noun or clause cause}
   - {id: ko-topik2-g034, ch: V/A-(으)ㄴ/는 것 같다, ds: mark an impression or tentative inference}
   - {id: ko-topik3-g021, ch: V-나 보다 / A-(으)ㄴ가 보다, ds: infer a situation from available evidence}
+- id: level-11-arts-01
+  title: Arts and creative works - 1
+  outcome: Support an interpretation with specific details of a work.
+  vocabulary:
+  - {id: ko-nikl-12536-s001, ch: 작품, pr: 작품, ds: a made or crafted object}
+  - {id: ko-nikl-15045-s001, ch: 조각, pr: 조각, ds: carving or engraving a material into a shape}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-20780-s001, ch: 콘서트, pr: 콘서트, ds: a concert}
+  - {id: ko-nikl-04336-s001, ch: 악기, pr: 악끼, ds: a musical instrument}
+  - {id: ko-nikl-23616-s001, ch: 피아노, pr: 피아노, ds: a piano}
+  - {id: ko-nikl-33118-s001, ch: 기타, pr: 기타, ds: a guitar}
+  - {id: ko-nikl-20655-s002, ch: 커튼, pr: 커튼, ds: a curtain covering a stage}
+  - {id: ko-nikl-29898-s001, ch: 공연장, pr: 공연장, ds: 'a venue for plays, concerts, dance, or other performances'}
+  - {id: ko-nikl-27262-s001, ch: 객석, pr: 객썩, ds: seating for an audience or spectators}
+  - {id: ko-nikl-47227-s001, ch: 역, pr: 역, ds: a character played by an actor}
+  review_grammar: []
 - id: level-11-time-practice-01
   title: Time and events - sentence practice 1
   outcome: Distinguish time points and duration and relate events in sequence.
@@ -324,10 +399,10 @@ units:
   grammar:
   - {id: ko-topik3-g011, ch: V-는 동안, ds: locate an event during another activity}
   review_vocabulary:
-  - {id: ko-nikl-42555-s001, ch: 지나가다, pr: 지나가다, ds: for a period to end as time passes}
-  - {id: ko-nikl-16238-s004, ch: 다음, pr: 다음, ds: the time after an activity has finished}
+  - {id: ko-nikl-12012-s003, ch: 자국, pr: 자국, ds: a footprint or footmark}
   - {id: ko-nikl-10550-s001, ch: 이따금, pr: 이따금, ds: occasionally; once in a while}
   - {id: ko-nikl-41463-s001, ch: 종종, pr: 종ː종, ds: occasionally; from time to time}
+  - {id: ko-nikl-20279-s002, ch: 리듬, pr: 리듬, ds: a regularly repeating pattern of daily life}
   - {id: ko-nikl-45013-s001, ch: 초, pr: 초, ds: second (time unit)}
   - {id: ko-nikl-10854-s002, ch: 이어지다, pr: 이어지다, ds: for an event or activity to continue}
   - {id: ko-nikl-17977-s002, ch: 도중, pr: 도ː중, ds: in the middle of an ongoing activity}
@@ -345,14 +420,14 @@ units:
   - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
   - {id: ko-topik3-g025, ch: V-게 하다, ds: make or allow another participant to act}
   review_vocabulary:
-  - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
-  - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
-  - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
-  - {id: ko-nikl-25705-s001, ch: 가리다, pr: 가리다, ds: to hide or block something from view or passage}
-  - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
-  - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
-  - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
-  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
+  - {id: ko-nikl-00903-s001, ch: 소재, pr: 소재, ds: material used as the basis for making something}
+  - {id: ko-nikl-07103-s002, ch: 불꽃, pr: 불꼳, ds: a spark from striking metal or stone}
+  - {id: ko-nikl-13070-s001, ch: 재료, pr: 재료, ds: material used to make something}
+  - {id: ko-nikl-32389-s001, ch: 금, pr: 금, ds: a line or crease made on a surface}
+  - {id: ko-nikl-32805-s003, ch: 기름, pr: 기름, ds: lubricating oil}
+  - {id: ko-nikl-37650-s001, ch: 목재, pr: 목째, ds: timber for construction or furniture}
+  - {id: ko-nikl-43759-s001, ch: 찌꺼기, pr: 찌꺼기, ds: residue left after liquid drains away}
+  - {id: ko-nikl-22406-s001, ch: 판, pr: 판, ds: a flat wooden board}
   review_grammar:
   - {id: ko-topik1-g022, ch: 못 V, ds: inability or circumstances preventing an action}
   - {id: ko-topik3-g008, ch: V-아/어 버리다, ds: complete an action with contextual emotional force}
@@ -366,14 +441,14 @@ units:
   - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}
   - {id: ko-topik4-g006, ch: V-다 보니, ds: reach a realization through continued action}
   review_vocabulary:
-  - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
-  - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
-  - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
-  - {id: ko-nikl-25705-s001, ch: 가리다, pr: 가리다, ds: to hide or block something from view or passage}
-  - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
-  - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
-  - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
-  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
+  - {id: ko-nikl-00903-s001, ch: 소재, pr: 소재, ds: material used as the basis for making something}
+  - {id: ko-nikl-07103-s002, ch: 불꽃, pr: 불꼳, ds: a spark from striking metal or stone}
+  - {id: ko-nikl-13070-s001, ch: 재료, pr: 재료, ds: material used to make something}
+  - {id: ko-nikl-32389-s001, ch: 금, pr: 금, ds: a line or crease made on a surface}
+  - {id: ko-nikl-32805-s003, ch: 기름, pr: 기름, ds: lubricating oil}
+  - {id: ko-nikl-37650-s001, ch: 목재, pr: 목째, ds: timber for construction or furniture}
+  - {id: ko-nikl-43759-s001, ch: 찌꺼기, pr: 찌꺼기, ds: residue left after liquid drains away}
+  - {id: ko-nikl-22406-s001, ch: 판, pr: 판, ds: a flat wooden board}
   review_grammar:
   - {id: ko-topik3-g010, ch: V-아/어 두다, ds: act in advance and preserve a useful result}
   - {id: ko-topik3-g018, ch: V-느라고, ds: explain an unwanted result of being busy doing}
@@ -385,14 +460,14 @@ units:
   grammar:
   - {id: ko-topik4-g016, ch: V-(으)ㄴ 채로, ds: maintain one state while another action occurs}
   review_vocabulary:
-  - {id: ko-nikl-19100-s001, ch: 드러내다, pr: 드러내다, ds: to expose something that was hidden}
-  - {id: ko-nikl-22804-s002, ch: 펼치다, pr: 펼치다, ds: to spread out something folded or stacked}
-  - {id: ko-nikl-23329-s001, ch: 풀리다, pr: 풀리다, ds: for something tied or tangled to come loose}
-  - {id: ko-nikl-25705-s001, ch: 가리다, pr: 가리다, ds: to hide or block something from view or passage}
-  - {id: ko-nikl-26607-s001, ch: 감추다, pr: 감추다, ds: to hide something so it cannot be seen or found}
-  - {id: ko-nikl-38348-s005, ch: 묶다, pr: 묵따, ds: to bring several things together}
-  - {id: ko-nikl-27581-s003, ch: 건너다, pr: 건ː너다, ds: to skip a turn or step in a sequence}
-  - {id: ko-nikl-14350-s001, ch: 접촉, pr: 접촉, ds: physical contact; touching one another}
+  - {id: ko-nikl-00903-s001, ch: 소재, pr: 소재, ds: material used as the basis for making something}
+  - {id: ko-nikl-07103-s002, ch: 불꽃, pr: 불꼳, ds: a spark from striking metal or stone}
+  - {id: ko-nikl-13070-s001, ch: 재료, pr: 재료, ds: material used to make something}
+  - {id: ko-nikl-32389-s001, ch: 금, pr: 금, ds: a line or crease made on a surface}
+  - {id: ko-nikl-32805-s003, ch: 기름, pr: 기름, ds: lubricating oil}
+  - {id: ko-nikl-37650-s001, ch: 목재, pr: 목째, ds: timber for construction or furniture}
+  - {id: ko-nikl-43759-s001, ch: 찌꺼기, pr: 찌꺼기, ds: residue left after liquid drains away}
+  - {id: ko-nikl-22406-s001, ch: 판, pr: 판, ds: a flat wooden board}
   review_grammar:
   - {id: ko-topik3-g030, ch: V-(으)려고, ds: give a purpose controlled by the actor}
   - {id: ko-topik4-g005, ch: V-았/었더니, ds: discover an outcome after your completed action}

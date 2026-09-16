@@ -86,5 +86,14 @@ no article sentences or media are redistributed. The associated download
 reading is an explicitly provisional authored teaching choice, not an imported
 official pronunciation or a claim that the article carries an open-content license.
 
+The goalpost reading also consults a word-specific editor annotation in
+Wiktionary revision 90347175. Wiktionary text is available under CC BY-SA 4.0;
+the entry, documentation, license, and contributor attribution are linked in
+`sources.yaml`. Only the factual tensing annotation informs the original,
+unreviewed reading decision. No definitions, transcription tables, software,
+or media are redistributed. Generated pronunciation output is not an audio
+observation or official verification, and the separate NIKL-derived text
+retains its own license.
+
 No warranty of linguistic accuracy, exam completeness, fitness for a particular
 purpose, or availability of third-party services is provided.

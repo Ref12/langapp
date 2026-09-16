@@ -24,6 +24,25 @@ checkpoint:
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: level-07-people-01
+  title: People and relationships - 1
+  outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
+  vocabulary:
+  - {id: ko-nikl-30291-s001, ch: 관람객, pr: 괄람객, ds: a visitor or spectator attending an event or exhibition}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-06438-s001, ch: 부모, pr: 부모, ds: parents}
+  - {id: ko-nikl-10879-s002, ch: 이웃, pr: 이욷, ds: a neighbor; a neighboring home}
+  - {id: ko-nikl-08818-s001, ch: 살, pr: 살, ds: years of age; native-number age counter}
+  - {id: ko-nikl-01196-s001, ch: 손님, pr: 손님, ds: a guest or visitor (respectful)}
+  - {id: ko-nikl-41819-s004, ch: 주인, pr: 주인, ds: a host who invites or receives guests}
+  - {id: ko-nikl-28398-s002, ch: 경비, pr: 경ː비, ds: a guard watching over a building or area}
+  - {id: ko-nikl-10319-s001, ch: 의사, pr: 의사, ds: a doctor; a physician}
+  - {id: ko-nikl-26344-s001, ch: 간호사, pr: 간호사, ds: a nurse}
+  review_grammar:
+  - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
+  - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
+  - {id: ko-topik2-g013, ch: V-는 N, ds: modify a noun with a present action clause}
 - id: level-07-clothing-01
   title: Clothing and appearance - 1
   outcome: Describe clothing and distinguish putting it on from wearing it.
@@ -32,14 +51,14 @@ units:
   - {id: ko-nikl-09969-s001, ch: 선글라스, pr: 선글라스, ds: tinted glasses for sunlight or fashion}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-41685-s001, ch: 주머니, pr: 주머니, ds: a portable pouch for money or small things}
-  - {id: ko-nikl-48506-s002, ch: 옷깃, pr: 옫낃, ds: a collar attached around the neck of an upper garment}
-  - {id: ko-nikl-00709-s001, ch: 소매, pr: 소매, ds: a sleeve covering an arm}
   - {id: ko-nikl-37586-s001, ch: 목걸이, pr: 목꺼리, ds: a necklace}
   - {id: ko-nikl-31730-s001, ch: 귀걸이, pr: 귀거리, ds: an earring or ear ornament}
   - {id: ko-nikl-39754-s001, ch: 반지, pr: 반지, ds: a ring worn on a finger}
   - {id: ko-nikl-22542-s001, ch: 팔찌, pr: 팔찌, ds: a bracelet worn around the wrist}
   - {id: ko-nikl-36915-s001, ch: 머리핀, pr: 머리핀, ds: a hairpin for holding hair in place}
+  - {id: ko-nikl-26009-s002, ch: 가죽, pr: 가죽, ds: leather made from animal hide}
+  - {id: ko-nikl-37116-s001, ch: 면, pr: 면, ds: cotton thread or cloth}
+  - {id: ko-nikl-44466-s001, ch: 천, pr: 천ː, ds: woven cloth or fabric}
   review_grammar: []
 - id: level-07-food-01
   title: Food and meals - 1
@@ -50,14 +69,14 @@ units:
   - {id: ko-nikl-22364-s001, ch: 파전, pr: 파전, ds: green-onion pancake with additions such as seafood}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-28899-s001, ch: 고등어, pr: 고등어, ds: 'mackerel, a sea fish'}
-  - {id: ko-nikl-43803-s001, ch: 찜, pr: 찜, ds: seasoned food steamed or cooked in a little liquid}
-  - {id: ko-nikl-41952-s001, ch: 죽, pr: 죽, ds: porridge made by boiling grain until soft}
   - {id: ko-nikl-19729-s001, ch: 떡볶이, pr: 떡뽀끼, ds: rice cakes cooked with vegetables and seasoned sauce}
   - {id: ko-nikl-08927-s001, ch: 삼겹살, pr: 삼겹쌀, ds: pork belly with layers of fat and lean meat}
   - {id: ko-nikl-19185-s001, ch: 들기름, pr: 들기름, ds: perilla-seed oil}
   - {id: ko-nikl-25277-s001, ch: 현미, pr: 현미, ds: brown rice with only its outer husk removed}
   - {id: ko-nikl-38826-s001, ch: 미나리, pr: 미나리, ds: minari; aromatic edible water-dropwort greens}
+  - {id: ko-nikl-05111-s003, ch: 양, pr: 양, ds: the amount of food someone can eat}
+  - {id: ko-nikl-09547-s003, ch: 생물, pr: 생물, ds: fresh unfrozen goods}
+  - {id: ko-nikl-04573-s002, ch: 알, pr: 알, ds: a single small round fruit or grain}
   review_grammar:
   - {id: ko-topik1-g013, ch: N만, ds: restrict the focus to one item or set}
   - {id: ko-topik1-g020, ch: V-고 싶어요, ds: express your wish or ask another's wishes}
@@ -240,6 +259,25 @@ units:
   - {id: ko-nikl-41812-s001, ch: 주유소, pr: 주ː유소, ds: a filling station for vehicle fuel}
   - {id: ko-nikl-52420-s001, ch: 휘발유, pr: 휘발류, ds: gasoline; petrol}
   - {id: ko-nikl-28466-s001, ch: 경유, pr: 경유, ds: passing through or stopping somewhere en route}
+  - {id: ko-nikl-09851-s001, ch: 서점, pr: 서점, ds: a bookstore}
+  - {id: ko-nikl-13907-s001, ch: 전시장, pr: 전ː시장, ds: an exhibition venue}
+  - {id: ko-nikl-32219-s001, ch: 극장, pr: 극짱, ds: a theater for performances or films}
+  - {id: ko-nikl-47916-s001, ch: 영화관, pr: 영화관, ds: a cinema; a movie theater}
+  - {id: ko-nikl-28367-s001, ch: 경로, pr: 경노, ds: a route or path traveled}
+  - {id: ko-nikl-04940-s001, ch: 야경, pr: 야ː경, ds: a night view}
+  - {id: ko-nikl-12350-s001, ch: 자전거, pr: 자전거, ds: a bicycle}
+  - {id: ko-nikl-13777-s001, ch: 전망대, pr: 전ː망대, ds: a lookout or observation platform}
+  - {id: ko-nikl-23395-s001, ch: 풍경, pr: 풍경, ds: scenery; a view of a place}
+  - {id: ko-nikl-23601-s001, ch: 피서, pr: 피ː서, ds: going somewhere cool to escape summer heat}
+  - {id: ko-nikl-28554-s001, ch: 경치, pr: 경치, ds: beautiful scenery}
+  - {id: ko-nikl-04403-s001, ch: 안개, pr: 안ː개, ds: fog or mist}
+  - {id: ko-nikl-12868-s001, ch: 장마, pr: 장마, ds: the summer rainy spell; prolonged summer rain}
+  - {id: ko-nikl-14172-s001, ch: 절벽, pr: 절벽, ds: a steep rock cliff}
+  - {id: ko-nikl-18329-s001, ch: 동굴, pr: 동ː굴, ds: a natural cave}
+  - {id: ko-nikl-23166-s001, ch: 폭풍, pr: 폭풍, ds: a gale; very strong wind}
+  - {id: ko-nikl-24622-s001, ch: 해돋이, pr: 해도지, ds: the sun rising; sunrise}
+  - {id: ko-nikl-28407-s001, ch: 경사, pr: 경사, ds: a slope or incline; its steepness}
+  - {id: ko-nikl-29551-s001, ch: 골짜기, pr: 골짜기, ds: a valley between hills or mountains}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-43863-s001, ch: 차도, pr: 차도, ds: the roadway used by vehicles}
@@ -250,6 +288,37 @@ units:
   - {id: ko-nikl-27592-s001, ch: 건널목, pr: 건ː널목, ds: a level crossing where a road crosses railway tracks}
   - {id: ko-nikl-50509-s001, ch: 육교, pr: 육꾜, ds: a footbridge over a road or railway}
   - {id: ko-nikl-42878-s001, ch: 지하도, pr: 지하도, ds: an underground passage}
+  review_grammar:
+  - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
+  - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
+- id: level-07-travel-06
+  title: Travel and transport - 6
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary:
+  - {id: ko-nikl-31964-s001, ch: 그늘, pr: 그늘, ds: shade; an area sheltered from light}
+  - {id: ko-nikl-39341-s001, ch: 바닷가, pr: 바다까 / 바닫까, ds: the seaside or shore}
+  - {id: ko-nikl-40949-s001, ch: 번개, pr: 번개, ds: lightning}
+  - {id: ko-nikl-42635-s001, ch: 지리, pr: 지리, ds: local geography; the layout of roads or terrain}
+  - {id: ko-nikl-42877-s001, ch: 지하, pr: 지하, ds: underground; space below ground or in a basement}
+  - {id: ko-nikl-44494-s001, ch: 천둥, pr: 천둥, ds: thunder}
+  - {id: ko-nikl-46649-s001, ch: 언덕, pr: 언덕, ds: a hill or raised slope}
+  - {id: ko-nikl-47435-s001, ch: 연못, pr: 연몯, ds: a pond}
+  - {id: ko-nikl-50542-s001, ch: 육지, pr: 육찌, ds: dry land rather than water}
+  - {id: ko-nikl-51289-s001, ch: 호수, pr: 호수, ds: a lake}
+  - {id: ko-nikl-35767-s001, ch: 농장, pr: 농장, ds: a farm}
+  - {id: ko-nikl-47372-s001, ch: 연기, pr: 연기, ds: smoke from burning material}
+  - {id: ko-nikl-39298-s002, ch: 바깥, pr: 바깓, ds: outdoors; outside a building}
+  - {id: ko-nikl-39480-s001, ch: 바퀴, pr: 바퀴, ds: a wheel}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-04403-s001, ch: 안개, pr: 안ː개, ds: fog or mist}
+  - {id: ko-nikl-12868-s001, ch: 장마, pr: 장마, ds: the summer rainy spell; prolonged summer rain}
+  - {id: ko-nikl-14172-s001, ch: 절벽, pr: 절벽, ds: a steep rock cliff}
+  - {id: ko-nikl-18329-s001, ch: 동굴, pr: 동ː굴, ds: a natural cave}
+  - {id: ko-nikl-23166-s001, ch: 폭풍, pr: 폭풍, ds: a gale; very strong wind}
+  - {id: ko-nikl-24622-s001, ch: 해돋이, pr: 해도지, ds: the sun rising; sunrise}
+  - {id: ko-nikl-28407-s001, ch: 경사, pr: 경사, ds: a slope or incline; its steepness}
+  - {id: ko-nikl-29551-s001, ch: 골짜기, pr: 골짜기, ds: a valley between hills or mountains}
   review_grammar:
   - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
   - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -284,14 +353,14 @@ units:
   - {id: ko-nikl-16938-s001, ch: 대기, pr: 대ː기, ds: waiting for a time or opportunity}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-07128-s003, ch: 불량, pr: 불량, ds: poor quality or a defective condition of an item}
-  - {id: ko-nikl-07133-s001, ch: 불량품, pr: 불량품, ds: a faulty or poor-quality product}
-  - {id: ko-nikl-23376-s001, ch: 품질, pr: 품ː질, ds: the quality and characteristics of goods}
-  - {id: ko-nikl-49724-s001, ch: 원산지, pr: 원산지, ds: the place where goods are produced}
-  - {id: ko-nikl-38448-s001, ch: 문의, pr: 무ː늬 / 무ː니, ds: an inquiry about something one wants to know}
-  - {id: ko-nikl-49137-s001, ch: 용량, pr: 용냥, ds: the amount a space or container can hold}
-  - {id: ko-nikl-24885-s001, ch: 향수, pr: 향수, ds: perfume applied to the body or clothing}
   - {id: ko-nikl-20233-s001, ch: 로션, pr: 로션, ds: lotion applied to soften and moisten the skin}
+  - {id: ko-nikl-07477-s001, ch: 비닐, pr: 비닐, ds: vinyl; plastic used for wrapping}
+  - {id: ko-nikl-32393-s001, ch: 금, pr: 금, ds: gold; the precious metal}
+  - {id: ko-nikl-50203-s001, ch: 유리, pr: 유리, ds: glass; the breakable transparent material}
+  - {id: ko-nikl-50874-s001, ch: 은, pr: 은, ds: silver; the metal}
+  - {id: ko-nikl-01614-s001, ch: 수량, pr: 수ː량, ds: number and quantity}
+  - {id: ko-nikl-09218-s002, ch: 상자, pr: 상자, ds: boxful; a unit for boxed goods}
+  - {id: ko-nikl-21669-s002, ch: 통, pr: 통, ds: containerful; a unit of quantity}
   review_grammar:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -302,14 +371,25 @@ units:
   vocabulary:
   - {id: ko-nikl-29913-s001, ch: 공원, pr: 공원, ds: a park}
   - {id: ko-nikl-01858-s001, ch: 수영복, pr: 수영복, ds: swimwear}
+  - {id: ko-nikl-09200-s001, ch: 상영, pr: 상ː영, ds: screening a film}
+  - {id: ko-nikl-27014-s001, ch: 개막, pr: 개막, ds: the opening of a performance or event}
+  - {id: ko-nikl-30290-s001, ch: 관람, pr: 괄람, ds: viewing a performance or exhibition}
+  - {id: ko-nikl-02461-s001, ch: 스케이트, pr: 스케이트, ds: ice skates}
+  - {id: ko-nikl-02479-s001, ch: 스키, pr: 스키, ds: skis}
+  - {id: ko-nikl-03869-s001, ch: 썰매, pr: 썰매, ds: a sled for riding on snow or ice}
+  - {id: ko-nikl-04993-s002, ch: 야영, pr: 야ː영, ds: camping outdoors in a tent}
+  - {id: ko-nikl-32107-s001, ch: 그물, pr: 그물, ds: a net for catching fish or animals}
+  - {id: ko-nikl-34403-s002, ch: 낚시, pr: 낙씨, ds: a set of fishing equipment}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-05699-s002, ch: 보다, pr: 보다, ds: to watch or enjoy a sight or performance}
-  - {id: ko-nikl-45916-s001, ch: 취미, pr: 취ː미, ds: a hobby; a pastime}
   - {id: ko-nikl-13081-s001, ch: 재미있다, pr: 재미읻따, ds: to be interesting; to be fun}
   - {id: ko-nikl-13080-s001, ch: 재미없다, pr: 재미업따, ds: to be boring; not to be fun}
   - {id: ko-nikl-47912-s001, ch: 영화, pr: 영화, ds: a film; cinema}
   - {id: ko-nikl-08773-s001, ch: 산책, pr: 산ː책, ds: a stroll; walking for leisure or health}
+  - {id: ko-nikl-12816-s001, ch: 장난, pr: 장난, ds: children's playful activity}
+  - {id: ko-nikl-29615-s001, ch: 공, pr: 공ː, ds: a ball used in play or sport}
+  - {id: ko-nikl-31960-s001, ch: 그네, pr: 그ː네, ds: a playground swing}
+  - {id: ko-nikl-42047-s002, ch: 줄넘기, pr: 줄럼끼, ds: skipping rope; a jump rope}
   review_grammar: []
 - id: level-07-money-01
   title: Money and commerce - 1
@@ -341,7 +421,7 @@ units:
   - {id: ko-nikl-21748-s002, ch: 통역, pr: 통역, ds: an interpreter between speakers of different languages}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-14082-s001, ch: 전화번호, pr: 전ː화번호, ds: a telephone number}
+  - {id: ko-nikl-36211-s001, ch: 말, pr: 말ː, ds: speech expressing thoughts or feelings}
   - {id: ko-nikl-16978-s002, ch: 대답하다, pr: 대ː다파다, ds: answer a question or respond to a request}
   - {id: ko-nikl-32064-s001, ch: 그리고, pr: 그리고, ds: and; also (linking statements)}
   - {id: ko-nikl-23948-s001, ch: 하지만, pr: 하지만, ds: but; however}
@@ -400,16 +480,19 @@ units:
   outcome: Use descriptive predicates and precise comparison standards.
   vocabulary:
   - {id: ko-nikl-25600-s001, ch: 가능, pr: 가ː능, ds: possibility; being able to do something}
+  - {id: ko-nikl-18839-s001, ch: 둘레, pr: 둘레, ds: the perimeter or surrounding edge}
+  - {id: ko-nikl-33316-s001, ch: 깊이, pr: 기피, ds: depth below a surface}
+  - {id: ko-nikl-42214-s001, ch: 중심, pr: 중심, ds: the center of something}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-25765-s001, ch: 가볍다, pr: 가볍따, ds: to be light in weight}
-  - {id: ko-nikl-18716-s001, ch: 두껍다, pr: 두껍따, ds: to be thick}
-  - {id: ko-nikl-05097-s001, ch: 얇다, pr: 얄ː따, ds: to be thin}
-  - {id: ko-nikl-47995-s001, ch: 예쁘다, pr: 예ː쁘다, ds: to be pretty}
-  - {id: ko-nikl-22160-s001, ch: 튼튼하다, pr: 튼튼하다, ds: to be sturdy; to be strong}
-  - {id: ko-nikl-06377-s001, ch: 부드럽다, pr: 부드럽따, ds: to feel soft or smooth}
   - {id: ko-nikl-25966-s001, ch: 가장, pr: 가장, ds: most; to the greatest degree}
   - {id: ko-nikl-14944-s001, ch: 제일, pr: 제ː일, ds: most; best among several}
+  - {id: ko-nikl-05111-s001, ch: 양, pr: 양, ds: an amount or measurable quantity}
+  - {id: ko-nikl-06449-s001, ch: 부분, pr: 부분, ds: a part or portion of a whole}
+  - {id: ko-nikl-41390-s001, ch: 종류, pr: 종ː뉴, ds: a kind or category}
+  - {id: ko-nikl-43909-s001, ch: 차이, pr: 차이, ds: a difference; the degree of difference}
+  - {id: ko-nikl-18717-s001, ch: 두께, pr: 두께, ds: thickness}
+  - {id: ko-nikl-23097-s001, ch: 폭, pr: 폭, ds: width}
   review_grammar:
   - {id: ko-topik1-g034, ch: A-(으)ㄴ N, ds: modify a noun with a descriptive predicate}
   - {id: ko-topik2-g018, ch: N보다 더, ds: compare a quality against a stated standard}
@@ -437,15 +520,29 @@ units:
   - {id: ko-nikl-17633-s001, ch: 덥다, pr: 덥ː따, ds: to be hot (weather or how it feels)}
   - {id: ko-nikl-45832-s002, ch: 춥다, pr: 춥따, ds: to feel cold}
   - {id: ko-nikl-02897-s001, ch: 시원하다, pr: 시원하다, ds: to be pleasantly cool}
+  - {id: ko-nikl-19594-s001, ch: 땅, pr: 땅, ds: land rather than water}
+  - {id: ko-nikl-22258-s001, ch: 파도, pr: 파도, ds: sea waves}
+  - {id: ko-nikl-37416-s001, ch: 모래, pr: 모래, ds: sand}
+  - {id: ko-nikl-39453-s001, ch: 바위, pr: 바위, ds: a large rock}
+  - {id: ko-nikl-07489-s001, ch: 비둘기, pr: 비둘기, ds: a pigeon or dove}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-26905-s001, ch: 개, pr: 개ː, ds: a dog}
-  - {id: ko-nikl-34198-s001, ch: 나무, pr: 나무, ds: a tree}
-  - {id: ko-nikl-33777-s001, ch: 꽃, pr: 꼳, ds: a flower; a flowering plant}
-  - {id: ko-nikl-18406-s002, ch: 동물, pr: 동ː물, ds: an animal (other than a human)}
-  - {id: ko-nikl-09322-s001, ch: 새, pr: 새ː, ds: a bird}
-  - {id: ko-nikl-38592-s001, ch: 물고기, pr: 물꼬기, ds: a fish (living animal)}
-  - {id: ko-nikl-29196-s001, ch: 고양이, pr: 고양이, ds: a cat}
+  - {id: ko-nikl-00578-s001, ch: 소, pr: 소, ds: cattle; a cow or ox}
+  - {id: ko-nikl-05105-s001, ch: 양, pr: 양, ds: a sheep}
+  - {id: ko-nikl-05613-s001, ch: 병아리, pr: 병아리, ds: a chick; a young chicken}
+  - {id: ko-nikl-09337-s001, ch: 새끼, pr: 새끼, ds: a baby animal}
+  - {id: ko-nikl-16643-s001, ch: 닭, pr: 닥, ds: a chicken; a domestic fowl}
+  - {id: ko-nikl-18617-s001, ch: 돼지, pr: 돼ː지, ds: a pig}
+  - {id: ko-nikl-21560-s001, ch: 토끼, pr: 토끼, ds: a rabbit}
+  - {id: ko-nikl-26794-s001, ch: 강아지, pr: 강아지, ds: a puppy}
+  review_grammar: []
+- id: level-07-history-01
+  title: History and change - 1
+  outcome: Relate a development using explicit time and source context.
+  vocabulary:
+  - {id: ko-nikl-50378-s001, ch: 유적지, pr: 유적찌, ds: a site containing historical remains}
+  grammar: []
+  review_vocabulary: []
   review_grammar: []
 - id: level-07-culture-01
   title: Culture and customs - 1
@@ -463,7 +560,6 @@ units:
   - {id: ko-nikl-03373-s001, ch: 실, pr: 실, ds: a counter for rooms}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-35960-s001, ch: 마흔, pr: 마흔, ds: forty (native Korean numeral)}
   - {id: ko-nikl-35961-s001, ch: 마흔, pr: 마흔, ds: forty; before a noun or counter}
   - {id: ko-nikl-45987-s004, ch: 층, pr: 층, ds: a unit for numbering floors from the bottom of a building}
   - {id: ko-nikl-02397-s001, ch: 쉰, pr: 쉰ː, ds: fifty (native Korean numeral)}
@@ -471,6 +567,7 @@ units:
   - {id: ko-nikl-48017-s001, ch: 예순, pr: 예순, ds: sixty (native Korean numeral)}
   - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
   - {id: ko-nikl-37379-s001, ch: 모금, pr: 모금, ds: a counter for mouthfuls of liquid or gas}
+  - {id: ko-nikl-04575-s001, ch: 알, pr: 알, ds: a counter for small round objects}
   review_grammar:
   - {id: ko-topik1-g035, ch: 수량 + 단위 명사, ds: combine a suitable number form with a counter}
 - id: level-07-travel-practice-01
@@ -482,14 +579,14 @@ units:
   - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
   - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
   review_vocabulary:
-  - {id: ko-nikl-50509-s001, ch: 육교, pr: 육꾜, ds: a footbridge over a road or railway}
-  - {id: ko-nikl-42878-s001, ch: 지하도, pr: 지하도, ds: an underground passage}
-  - {id: ko-nikl-04510-s001, ch: 안전벨트, pr: 안전벨트, ds: a seat belt protecting a passenger in an accident}
-  - {id: ko-nikl-20161-s001, ch: 렌터카, pr: 렌터카, ds: a rental car}
-  - {id: ko-nikl-07424-s001, ch: 브레이크, pr: 브레이크, ds: a brake for slowing or stopping a vehicle or machine}
-  - {id: ko-nikl-41812-s001, ch: 주유소, pr: 주ː유소, ds: a filling station for vehicle fuel}
-  - {id: ko-nikl-52420-s001, ch: 휘발유, pr: 휘발류, ds: gasoline; petrol}
-  - {id: ko-nikl-28466-s001, ch: 경유, pr: 경유, ds: passing through or stopping somewhere en route}
+  - {id: ko-nikl-46649-s001, ch: 언덕, pr: 언덕, ds: a hill or raised slope}
+  - {id: ko-nikl-47435-s001, ch: 연못, pr: 연몯, ds: a pond}
+  - {id: ko-nikl-50542-s001, ch: 육지, pr: 육찌, ds: dry land rather than water}
+  - {id: ko-nikl-51289-s001, ch: 호수, pr: 호수, ds: a lake}
+  - {id: ko-nikl-35767-s001, ch: 농장, pr: 농장, ds: a farm}
+  - {id: ko-nikl-47372-s001, ch: 연기, pr: 연기, ds: smoke from burning material}
+  - {id: ko-nikl-39298-s002, ch: 바깥, pr: 바깓, ds: outdoors; outside a building}
+  - {id: ko-nikl-39480-s001, ch: 바퀴, pr: 바퀴, ds: a wheel}
   review_grammar:
   - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
   - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -501,14 +598,14 @@ units:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
   - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
   review_vocabulary:
-  - {id: ko-nikl-50509-s001, ch: 육교, pr: 육꾜, ds: a footbridge over a road or railway}
-  - {id: ko-nikl-42878-s001, ch: 지하도, pr: 지하도, ds: an underground passage}
-  - {id: ko-nikl-04510-s001, ch: 안전벨트, pr: 안전벨트, ds: a seat belt protecting a passenger in an accident}
-  - {id: ko-nikl-20161-s001, ch: 렌터카, pr: 렌터카, ds: a rental car}
-  - {id: ko-nikl-07424-s001, ch: 브레이크, pr: 브레이크, ds: a brake for slowing or stopping a vehicle or machine}
-  - {id: ko-nikl-41812-s001, ch: 주유소, pr: 주ː유소, ds: a filling station for vehicle fuel}
-  - {id: ko-nikl-52420-s001, ch: 휘발유, pr: 휘발류, ds: gasoline; petrol}
-  - {id: ko-nikl-28466-s001, ch: 경유, pr: 경유, ds: passing through or stopping somewhere en route}
+  - {id: ko-nikl-46649-s001, ch: 언덕, pr: 언덕, ds: a hill or raised slope}
+  - {id: ko-nikl-47435-s001, ch: 연못, pr: 연몯, ds: a pond}
+  - {id: ko-nikl-50542-s001, ch: 육지, pr: 육찌, ds: dry land rather than water}
+  - {id: ko-nikl-51289-s001, ch: 호수, pr: 호수, ds: a lake}
+  - {id: ko-nikl-35767-s001, ch: 농장, pr: 농장, ds: a farm}
+  - {id: ko-nikl-47372-s001, ch: 연기, pr: 연기, ds: smoke from burning material}
+  - {id: ko-nikl-39298-s002, ch: 바깥, pr: 바깓, ds: outdoors; outside a building}
+  - {id: ko-nikl-39480-s001, ch: 바퀴, pr: 바퀴, ds: a wheel}
   review_grammar:
   - {id: ko-topik1-g015, ch: N에서 N까지, ds: give a route's origin and endpoint}
   - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
@@ -586,14 +683,14 @@ units:
   grammar:
   - {id: ko-topik2-g002, ch: V-(으)면 안 되다, ds: prohibit an action by a rule or warning}
   review_vocabulary:
-  - {id: ko-nikl-50509-s001, ch: 육교, pr: 육꾜, ds: a footbridge over a road or railway}
-  - {id: ko-nikl-42878-s001, ch: 지하도, pr: 지하도, ds: an underground passage}
-  - {id: ko-nikl-04510-s001, ch: 안전벨트, pr: 안전벨트, ds: a seat belt protecting a passenger in an accident}
-  - {id: ko-nikl-20161-s001, ch: 렌터카, pr: 렌터카, ds: a rental car}
-  - {id: ko-nikl-07424-s001, ch: 브레이크, pr: 브레이크, ds: a brake for slowing or stopping a vehicle or machine}
-  - {id: ko-nikl-41812-s001, ch: 주유소, pr: 주ː유소, ds: a filling station for vehicle fuel}
-  - {id: ko-nikl-52420-s001, ch: 휘발유, pr: 휘발류, ds: gasoline; petrol}
-  - {id: ko-nikl-28466-s001, ch: 경유, pr: 경유, ds: passing through or stopping somewhere en route}
+  - {id: ko-nikl-46649-s001, ch: 언덕, pr: 언덕, ds: a hill or raised slope}
+  - {id: ko-nikl-47435-s001, ch: 연못, pr: 연몯, ds: a pond}
+  - {id: ko-nikl-50542-s001, ch: 육지, pr: 육찌, ds: dry land rather than water}
+  - {id: ko-nikl-51289-s001, ch: 호수, pr: 호수, ds: a lake}
+  - {id: ko-nikl-35767-s001, ch: 농장, pr: 농장, ds: a farm}
+  - {id: ko-nikl-47372-s001, ch: 연기, pr: 연기, ds: smoke from burning material}
+  - {id: ko-nikl-39298-s002, ch: 바깥, pr: 바깓, ds: outdoors; outside a building}
+  - {id: ko-nikl-39480-s001, ch: 바퀴, pr: 바퀴, ds: a wheel}
   review_grammar:
   - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}

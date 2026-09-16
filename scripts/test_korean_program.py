@@ -754,7 +754,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
     def test_expansion_corrections_are_explicit_unreviewed_overrides_not_source_replacements(self):
         for filename in (
             "expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml",
-            "kitchen-notes.yaml", "personal-notes.yaml",
+            "kitchen-notes.yaml", "personal-notes.yaml", "content-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -907,6 +907,53 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(words["ko-nikl-13228-s001"]["pr"], "재킫")
         self.assertEqual(evidence["ko-nikl-13228-s001"]["reading"]["method"], "authored-broad-hangul")
         self.assertEqual(evidence["ko-nikl-13228-s001"]["reading"]["review_status"], "unreviewed")
+
+    def test_content_counters_and_residual_reference_have_explicit_categories(self):
+        evidence, identities = self.references.provenance, self.references.lexical_identity
+        for independent, bound in (
+            ("ko-nikl-04573-s002", "ko-nikl-04575-s001"),
+            ("ko-nikl-22178-s001", "ko-nikl-22179-s001"),
+            ("ko-nikl-39480-s001", "ko-nikl-39482-s001"),
+        ):
+            self.assertEqual(identities[independent], identities[bound])
+            self.assertEqual(evidence[bound]["lexical_category"], "free-lemma")
+        for identifier in ("ko-nikl-22407-s004", "ko-nikl-35972-s001"):
+            self.assertEqual(evidence[identifier]["lexical_category"], "bound-form")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-22407"]["part_of_speech"], "noun")
+        other, guitar = "ko-nikl-33117-s001", "ko-nikl-33118-s001"
+        self.assertEqual(self.references.vocabulary[other]["ch"], self.references.vocabulary[guitar]["ch"])
+        self.assertNotEqual(identities[other], identities[guitar])
+        self.assertEqual(evidence[other]["lexical_category"], "function-item")
+        self.assertEqual(evidence[guitar]["lexical_category"], "free-lemma")
+
+    def test_content_interpretations_and_core_myth_do_not_replace_source_senses(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        self.assertIn("fiber", words["ko-nikl-01312-s001"]["ds"])
+        self.assertIn("Fabric", evidence["ko-nikl-01312-s001"]["source_english"])
+        self.assertEqual(words["ko-nikl-01414-s002"]["ds"], "metal in general")
+        self.assertIn("iron", evidence["ko-nikl-01414-s002"]["source_english"])
+        self.assertNotIn("non-flammable", words["ko-nikl-07477-s001"]["ds"])
+        self.assertIn("non-flammable", evidence["ko-nikl-07477-s001"]["source_english"])
+        self.assertIn("spider", words["ko-nikl-27432-s001"]["ds"])
+        self.assertIn("insect", evidence["ko-nikl-27432-s001"]["source_english"])
+        self.assertIn("act", words["ko-nikl-35972-s001"]["ds"])
+        self.assertIn("scenes", evidence["ko-nikl-35972-s001"]["source_english"])
+        self.assertEqual(words["ko-nikl-29514-s001"]["pr"], "골때")
+        goal_reading = evidence["ko-nikl-29514-s001"]["reading"]
+        self.assertEqual(goal_reading["method"], "authored-broad-hangul")
+        self.assertEqual(goal_reading["review_status"], "unreviewed")
+        self.assertIn("com=1", goal_reading["reason"])
+        rows, _ = load_selections(
+            self.root / "authoring" / "teaching",
+            load_yaml(self.root / "authoring" / "teaching" / "vocabulary.yaml"),
+        )
+        placements = {row["id"]: row["level"] for row in rows}
+        self.assertEqual(placements["ko-nikl-03362-s001"], "literary")
+        self.assertEqual(placements["ko-nikl-03362-s002"], "literary")
+        self.assertEqual(placements["ko-nikl-03362-s003"], 27)
+        self.assertEqual(len({self.references.lexical_identity[f"ko-nikl-03362-s{i:03d}"]
+                              for i in range(1, 4)}), 1)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

@@ -89,6 +89,15 @@ dictionary-verified pronunciations, native-speaker recordings, or evidence of
 learner ability. A changed source or new approved reading must update the
 canonical record and every embedded introduction and review together.
 
+The goal-frame reading 골대 [골때] additionally consults
+[Wiktionary revision 90347175](https://en.wiktionary.org/w/index.php?title=%EA%B3%A8%EB%8C%80&oldid=90347175).
+Its raw entry explicitly sets the pronunciation template's `com=1` parameter;
+the [template documentation](https://en.wiktionary.org/wiki/Template:ko-IPA/documentation)
+identifies that parameter as an editor-supplied tensing instruction. This is
+not an inference from spelling alone, but neither the annotation nor generated
+IPA is NIKL verification or observed audio. The reading remains authored and
+unreviewed; source attribution and licensing limits are in `../sources.yaml`.
+
 ## Original phrases and morphology
 
 Tourist phrases have individually authored broad-Hangul readings. A dictionary

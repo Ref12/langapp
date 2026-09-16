@@ -233,6 +233,21 @@ units:
   - {id: ko-nikl-48504-s001, ch: 옷걸이, pr: 옫꺼리, ds: an object for hanging clothes}
   - {id: ko-nikl-01240-s001, ch: 손수건, pr: 손쑤건, ds: a small handkerchief carried for everyday use}
   - {id: ko-nikl-04814-s001, ch: 앞치마, pr: 압치마, ds: an apron protecting the front of one's clothing}
+  - {id: ko-nikl-35004-s001, ch: 내용, pr: 내ː용, ds: the contents of a container}
+  - {id: ko-nikl-05326-s001, ch: 벤치, pr: 벤치, ds: a bench; a long shared seat}
+  - {id: ko-nikl-07792-s001, ch: 빗물, pr: 빈물, ds: rainwater}
+  - {id: ko-nikl-24801-s001, ch: 햇빛, pr: 해삗 / 핻삗, ds: sunlight}
+  - {id: ko-nikl-52652-s001, ch: 흙, pr: 흑, ds: soil; earth}
+  - {id: ko-nikl-12748-s001, ch: 잡초, pr: 잡초, ds: weeds; uncultivated plants}
+  - {id: ko-nikl-42329-s001, ch: 쥐, pr: 쥐, ds: a mouse or rat}
+  - {id: ko-nikl-01312-s001, ch: 솜, pr: 솜ː, ds: cotton fiber or wadding}
+  - {id: ko-nikl-07213-s002, ch: 불빛, pr: 불삗, ds: light from a lamp or switched-on light}
+  - {id: ko-nikl-25693-s001, ch: 가루, pr: 가루, ds: powder made by crushing or grinding}
+  - {id: ko-nikl-41438-s001, ch: 종이, pr: 종이, ds: paper}
+  - {id: ko-nikl-43759-s002, ch: 찌꺼기, pr: 찌꺼기, ds: leftovers after useful material is taken out}
+  - {id: ko-nikl-00993-s001, ch: 속, pr: 속ː, ds: the inside beneath an outer covering}
+  - {id: ko-nikl-01287-s001, ch: 솔, pr: 솔ː, ds: a brush for cleaning or applying paste}
+  - {id: ko-nikl-04541-s001, ch: 안쪽, pr: 안쪽, ds: the inner side or inside part}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-21485-s001, ch: 털다, pr: 털ː다, ds: to shake or beat off something that is stuck to a surface}
@@ -243,6 +258,34 @@ units:
   - {id: ko-nikl-36340-s001, ch: 말리다, pr: 말리다, ds: to dry something by removing its moisture}
   - {id: ko-nikl-17913-s001, ch: 도시락, pr: 도시락, ds: a portable food container or lunchbox}
   - {id: ko-nikl-34001-s001, ch: 끈, pr: 끈, ds: a string or cord used for tying or threading}
+  review_grammar:
+  - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
+  - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
+- id: level-05-home-06
+  title: Home and daily life - 6
+  outcome: Explain household needs and coordinate practical help.
+  vocabulary:
+  - {id: ko-nikl-09218-s001, ch: 상자, pr: 상자, ds: a box}
+  - {id: ko-nikl-21669-s001, ch: 통, pr: 통, ds: a deep container or tub}
+  - {id: ko-nikl-22178-s001, ch: 틈, pr: 틈, ds: a gap or opening between things}
+  - {id: ko-nikl-25967-s001, ch: 가장자리, pr: 가ː장자리, ds: an outer edge or rim}
+  - {id: ko-nikl-31019-s001, ch: 구석, pr: 구석, ds: an inner corner}
+  - {id: ko-nikl-36508-s001, ch: 망치, pr: 망치, ds: a hammer}
+  - {id: ko-nikl-37463-s001, ch: 모서리, pr: 모서리, ds: an edge or corner where sides meet}
+  - {id: ko-nikl-39265-s001, ch: 밑바닥, pr: 믿빠닥, ds: the bottom or underside}
+  - {id: ko-nikl-39298-s001, ch: 바깥, pr: 바깓, ds: the outside}
+  - {id: ko-nikl-39303-s001, ch: 바깥쪽, pr: 바깓쪽, ds: the outward-facing side}
+  - {id: ko-nikl-39329-s001, ch: 바닥, pr: 바닥, ds: a floor or broad bottom surface}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-01312-s001, ch: 솜, pr: 솜ː, ds: cotton fiber or wadding}
+  - {id: ko-nikl-07213-s002, ch: 불빛, pr: 불삗, ds: light from a lamp or switched-on light}
+  - {id: ko-nikl-25693-s001, ch: 가루, pr: 가루, ds: powder made by crushing or grinding}
+  - {id: ko-nikl-41438-s001, ch: 종이, pr: 종이, ds: paper}
+  - {id: ko-nikl-43759-s002, ch: 찌꺼기, pr: 찌꺼기, ds: leftovers after useful material is taken out}
+  - {id: ko-nikl-00993-s001, ch: 속, pr: 속ː, ds: the inside beneath an outer covering}
+  - {id: ko-nikl-01287-s001, ch: 솔, pr: 솔ː, ds: a brush for cleaning or applying paste}
+  - {id: ko-nikl-04541-s001, ch: 안쪽, pr: 안쪽, ds: the inner side or inside part}
   review_grammar:
   - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
   - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
@@ -288,10 +331,10 @@ units:
   - {id: ko-nikl-31215-s002, ch: 국, pr: 국, ds: the liquid part of soup or stew}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-30194-s001, ch: 과자, pr: 과자, ds: baked or fried flour-based snacks}
   - {id: ko-nikl-06063-s001, ch: 볶음밥, pr: 보끔밥, ds: rice stir-fried with vegetables or meat}
   - {id: ko-nikl-26388-s001, ch: 갈비, pr: 갈비, ds: rib meat or a dish made from it}
   - {id: ko-nikl-24789-s001, ch: 햄, pr: 햄, ds: 'ham made from salted, smoked, and dried pork'}
+  - {id: ko-nikl-46758-s001, ch: 얼음, pr: 어름, ds: ice}
   - {id: ko-nikl-40223-s002, ch: 밥, pr: 밥, ds: a meal}
   - {id: ko-nikl-04296-s002, ch: 아침, pr: 아침, ds: breakfast}
   - {id: ko-nikl-14255-s001, ch: 점심, pr: 점ː심, ds: lunch}
@@ -361,6 +404,22 @@ units:
   review_grammar:
   - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
   - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
+- id: level-05-leisure-01
+  title: Leisure and sport - 1
+  outcome: Explain participation and invite someone without assuming availability.
+  vocabulary:
+  - {id: ko-nikl-12816-s001, ch: 장난, pr: 장난, ds: children's playful activity}
+  - {id: ko-nikl-29615-s001, ch: 공, pr: 공ː, ds: a ball used in play or sport}
+  - {id: ko-nikl-31960-s001, ch: 그네, pr: 그ː네, ds: a playground swing}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-05699-s002, ch: 보다, pr: 보다, ds: to watch or enjoy a sight or performance}
+  - {id: ko-nikl-45916-s001, ch: 취미, pr: 취ː미, ds: a hobby; a pastime}
+  - {id: ko-nikl-13081-s001, ch: 재미있다, pr: 재미읻따, ds: to be interesting; to be fun}
+  - {id: ko-nikl-13080-s001, ch: 재미없다, pr: 재미업따, ds: to be boring; not to be fun}
+  - {id: ko-nikl-47912-s001, ch: 영화, pr: 영화, ds: a film; cinema}
+  - {id: ko-nikl-08773-s001, ch: 산책, pr: 산ː책, ds: a stroll; walking for leisure or health}
+  review_grammar: []
 - id: level-05-work-01
   title: Work and cooperation - 1
   outcome: Coordinate responsibilities and report progress for a specified relationship.
@@ -379,8 +438,8 @@ units:
   - {id: ko-nikl-06699-s001, ch: 부탁하다, pr: 부ː타카다, ds: ask someone a favor; entrust a task}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-19164-s001, ch: 듣다, pr: 듣따, ds: to hear; to perceive a sound}
   - {id: ko-nikl-14082-s001, ch: 전화번호, pr: 전ː화번호, ds: a telephone number}
+  - {id: ko-nikl-36211-s001, ch: 말, pr: 말ː, ds: speech expressing thoughts or feelings}
   - {id: ko-nikl-16978-s002, ch: 대답하다, pr: 대ː다파다, ds: answer a question or respond to a request}
   - {id: ko-nikl-32064-s001, ch: 그리고, pr: 그리고, ds: and; also (linking statements)}
   - {id: ko-nikl-23948-s001, ch: 하지만, pr: 하지만, ds: but; however}
@@ -448,10 +507,13 @@ units:
   - {id: ko-nikl-41340-s001, ch: 좁다, pr: 좁따, ds: to be cramped; to have little area}
   - {id: ko-nikl-19488-s001, ch: 따뜻하다, pr: 따뜨타다, ds: to be comfortably warm}
   - {id: ko-nikl-22792-s001, ch: 편하다, pr: 편하다, ds: to be comfortable; to be at ease}
+  - {id: ko-nikl-15287-s001, ch: 높이, pr: 노피, ds: height}
+  - {id: ko-nikl-27854-s001, ch: 겉, pr: 걷, ds: the exterior of an object}
+  - {id: ko-nikl-33258-s001, ch: 길이, pr: 기리, ds: length from one end to the other}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-36198-s001, ch: 많다, pr: 만ː타, ds: to be many; to be much}
-  - {id: ko-nikl-13520-s001, ch: 적다, pr: 적ː따, ds: to be few; to be little in amount}
+  - {id: ko-nikl-20916-s001, ch: 크기, pr: 크기, ds: size}
+  - {id: ko-nikl-37480-s001, ch: 모양, pr: 모양, ds: shape or outward appearance}
   - {id: ko-nikl-17430-s001, ch: 더, pr: 더, ds: more; further (adding or continuing)}
   - {id: ko-nikl-04272-s001, ch: 아주, pr: 아주, ds: very; extremely}
   - {id: ko-nikl-41331-s001, ch: 좀, pr: 좀, ds: a little; somewhat}
@@ -510,8 +572,31 @@ units:
   - {id: ko-nikl-09322-s001, ch: 새, pr: 새ː, ds: a bird}
   - {id: ko-nikl-38592-s001, ch: 물고기, pr: 물꼬기, ds: a fish (living animal)}
   - {id: ko-nikl-29196-s001, ch: 고양이, pr: 고양이, ds: a cat}
+  - {id: ko-nikl-18199-s001, ch: 돌, pr: 돌ː, ds: a stone}
+  - {id: ko-nikl-03785-s001, ch: 싹, pr: 싹, ds: a sprout; a new shoot}
+  - {id: ko-nikl-03989-s001, ch: 씨앗, pr: 씨앋, ds: a seed for growing a crop or flower}
+  - {id: ko-nikl-34223-s001, ch: 나뭇잎, pr: 나문닙, ds: a tree leaf}
+  - {id: ko-nikl-36965-s001, ch: 먹이, pr: 머기, ds: food or feed for animals}
+  - {id: ko-nikl-00578-s001, ch: 소, pr: 소, ds: cattle; a cow or ox}
+  - {id: ko-nikl-05105-s001, ch: 양, pr: 양, ds: a sheep}
+  - {id: ko-nikl-05613-s001, ch: 병아리, pr: 병아리, ds: a chick; a young chicken}
+  - {id: ko-nikl-09337-s001, ch: 새끼, pr: 새끼, ds: a baby animal}
+  - {id: ko-nikl-16643-s001, ch: 닭, pr: 닥, ds: a chicken; a domestic fowl}
+  - {id: ko-nikl-18617-s001, ch: 돼지, pr: 돼ː지, ds: a pig}
+  - {id: ko-nikl-21560-s001, ch: 토끼, pr: 토끼, ds: a rabbit}
+  - {id: ko-nikl-26794-s001, ch: 강아지, pr: 강아지, ds: a puppy}
   grammar: []
   review_vocabulary: []
+  review_grammar: []
+- id: level-05-arts-01
+  title: Arts and creative works - 1
+  outcome: Support an interpretation with specific details of a work.
+  vocabulary:
+  - {id: ko-nikl-32091-s001, ch: 그림책, pr: 그ː림책, ds: a children's picture book}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-51122-s001, ch: 음악, pr: 으막, ds: music}
+  - {id: ko-nikl-35426-s001, ch: 노래, pr: 노래, ds: a song; singing}
   review_grammar: []
 - id: level-05-quantities-01
   title: Numbers and counters - 1
@@ -545,14 +630,14 @@ units:
   - {id: ko-topik1-g027, ch: V/A-지만, ds: contrast two clauses}
   - {id: ko-topik1-g033, ch: V-고 있다, ds: describe an activity in progress}
   review_vocabulary:
-  - {id: ko-nikl-38348-s001, ch: 묶다, pr: 묵따, ds: to tie a knot in a cord or rope}
-  - {id: ko-nikl-38348-s002, ch: 묶다, pr: 묵따, ds: to tie up an object with cord}
-  - {id: ko-nikl-00398-s001, ch: 세대, pr: 세ː대, ds: a household living together in one home}
-  - {id: ko-nikl-06848-s001, ch: 분리수거, pr: 불리수거, ds: separate collection of waste according to type}
-  - {id: ko-nikl-12670-s001, ch: 잠옷, pr: 자몯, ds: comfortable clothes worn for sleeping}
-  - {id: ko-nikl-48504-s001, ch: 옷걸이, pr: 옫꺼리, ds: an object for hanging clothes}
-  - {id: ko-nikl-01240-s001, ch: 손수건, pr: 손쑤건, ds: a small handkerchief carried for everyday use}
-  - {id: ko-nikl-04814-s001, ch: 앞치마, pr: 압치마, ds: an apron protecting the front of one's clothing}
+  - {id: ko-nikl-25967-s001, ch: 가장자리, pr: 가ː장자리, ds: an outer edge or rim}
+  - {id: ko-nikl-31019-s001, ch: 구석, pr: 구석, ds: an inner corner}
+  - {id: ko-nikl-36508-s001, ch: 망치, pr: 망치, ds: a hammer}
+  - {id: ko-nikl-37463-s001, ch: 모서리, pr: 모서리, ds: an edge or corner where sides meet}
+  - {id: ko-nikl-39265-s001, ch: 밑바닥, pr: 믿빠닥, ds: the bottom or underside}
+  - {id: ko-nikl-39298-s001, ch: 바깥, pr: 바깓, ds: the outside}
+  - {id: ko-nikl-39303-s001, ch: 바깥쪽, pr: 바깓쪽, ds: the outward-facing side}
+  - {id: ko-nikl-39329-s001, ch: 바닥, pr: 바닥, ds: a floor or broad bottom surface}
   review_grammar:
   - {id: ko-topik1-g006, ch: N에 있다 / 없다, ds: locate something or state its absence}
   - {id: ko-topik1-g007, ch: N에서, ds: mark the place where an action occurs}
@@ -564,14 +649,14 @@ units:
   - {id: ko-topik2-g032, ch: V-고 나서, ds: finish one action before the next}
   - {id: ko-topik3-g028, ch: A-게, ds: use a descriptive predicate to express manner}
   review_vocabulary:
-  - {id: ko-nikl-38348-s001, ch: 묶다, pr: 묵따, ds: to tie a knot in a cord or rope}
-  - {id: ko-nikl-38348-s002, ch: 묶다, pr: 묵따, ds: to tie up an object with cord}
-  - {id: ko-nikl-00398-s001, ch: 세대, pr: 세ː대, ds: a household living together in one home}
-  - {id: ko-nikl-06848-s001, ch: 분리수거, pr: 불리수거, ds: separate collection of waste according to type}
-  - {id: ko-nikl-12670-s001, ch: 잠옷, pr: 자몯, ds: comfortable clothes worn for sleeping}
-  - {id: ko-nikl-48504-s001, ch: 옷걸이, pr: 옫꺼리, ds: an object for hanging clothes}
-  - {id: ko-nikl-01240-s001, ch: 손수건, pr: 손쑤건, ds: a small handkerchief carried for everyday use}
-  - {id: ko-nikl-04814-s001, ch: 앞치마, pr: 압치마, ds: an apron protecting the front of one's clothing}
+  - {id: ko-nikl-25967-s001, ch: 가장자리, pr: 가ː장자리, ds: an outer edge or rim}
+  - {id: ko-nikl-31019-s001, ch: 구석, pr: 구석, ds: an inner corner}
+  - {id: ko-nikl-36508-s001, ch: 망치, pr: 망치, ds: a hammer}
+  - {id: ko-nikl-37463-s001, ch: 모서리, pr: 모서리, ds: an edge or corner where sides meet}
+  - {id: ko-nikl-39265-s001, ch: 밑바닥, pr: 믿빠닥, ds: the bottom or underside}
+  - {id: ko-nikl-39298-s001, ch: 바깥, pr: 바깓, ds: the outside}
+  - {id: ko-nikl-39303-s001, ch: 바깥쪽, pr: 바깓쪽, ds: the outward-facing side}
+  - {id: ko-nikl-39329-s001, ch: 바닥, pr: 바닥, ds: a floor or broad bottom surface}
   review_grammar:
   - {id: ko-topik1-g025, ch: V-지 마세요, ds: ask someone not to do an action}
   - {id: ko-topik1-g027, ch: V/A-지만, ds: contrast two clauses}
@@ -583,14 +668,14 @@ units:
   grammar:
   - {id: ko-topik1-g034, ch: A-(으)ㄴ N, ds: modify a noun with a descriptive predicate}
   review_vocabulary:
-  - {id: ko-nikl-07856-s001, ch: 빠르다, pr: 빠르다, ds: to be quick in doing something}
-  - {id: ko-nikl-15725-s001, ch: 느리다, pr: 느리다, ds: to be slow in doing something}
-  - {id: ko-nikl-15283-s001, ch: 높다, pr: 놉따, ds: to be high; to be tall}
   - {id: ko-nikl-34783-s001, ch: 낮다, pr: 낟따, ds: to be low in height}
   - {id: ko-nikl-35297-s001, ch: 넓다, pr: 널따, ds: to be spacious; to cover a large area}
   - {id: ko-nikl-41340-s001, ch: 좁다, pr: 좁따, ds: to be cramped; to have little area}
   - {id: ko-nikl-19488-s001, ch: 따뜻하다, pr: 따뜨타다, ds: to be comfortably warm}
   - {id: ko-nikl-22792-s001, ch: 편하다, pr: 편하다, ds: to be comfortable; to be at ease}
+  - {id: ko-nikl-15287-s001, ch: 높이, pr: 노피, ds: height}
+  - {id: ko-nikl-27854-s001, ch: 겉, pr: 걷, ds: the exterior of an object}
+  - {id: ko-nikl-33258-s001, ch: 길이, pr: 기리, ds: length from one end to the other}
   review_grammar: []
 - id: level-05-reasoning-practice-01
   title: Reasons and connections - sentence practice 1

@@ -56,7 +56,6 @@ units:
   - {id: ko-nikl-18344-s002, ch: 동기, pr: 동기, ds: someone in the same intake at a school or organization}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-06438-s001, ch: 부모, pr: 부모, ds: parents}
   - {id: ko-nikl-10879-s002, ch: 이웃, pr: 이욷, ds: a neighbor; a neighboring home}
   - {id: ko-nikl-08818-s001, ch: 살, pr: 살, ds: years of age; native-number age counter}
   - {id: ko-nikl-01196-s001, ch: 손님, pr: 손님, ds: a guest or visitor (respectful)}
@@ -64,6 +63,7 @@ units:
   - {id: ko-nikl-28398-s002, ch: 경비, pr: 경ː비, ds: a guard watching over a building or area}
   - {id: ko-nikl-10319-s001, ch: 의사, pr: 의사, ds: a doctor; a physician}
   - {id: ko-nikl-26344-s001, ch: 간호사, pr: 간호사, ds: a nurse}
+  - {id: ko-nikl-30291-s001, ch: 관람객, pr: 괄람객, ds: a visitor or spectator attending an event or exhibition}
   review_grammar:
   - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
@@ -73,6 +73,8 @@ units:
   outcome: Describe relationships and identify participants without assuming that omitted subjects refer to the speaker.
   vocabulary:
   - {id: ko-nikl-35526-s001, ch: 노인, pr: 노ː인, ds: an older person}
+  - {id: ko-nikl-10836-s002, ch: 이야기, pr: 이야기, ds: conversation; an exchange of words}
+  - {id: ko-nikl-20539-s002, ch: 카드, pr: 카드, ds: a greeting or celebration card}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-10011-s001, ch: 선물, pr: 선ː물, ds: a gift; giving a present}
@@ -96,12 +98,12 @@ units:
   - {id: ko-nikl-35370-s001, ch: 넥타이, pr: 넥타이, ds: a necktie worn around a dress-shirt collar}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-00709-s001, ch: 소매, pr: 소매, ds: a sleeve covering an arm}
-  - {id: ko-nikl-37586-s001, ch: 목걸이, pr: 목꺼리, ds: a necklace}
-  - {id: ko-nikl-31730-s001, ch: 귀걸이, pr: 귀거리, ds: an earring or ear ornament}
   - {id: ko-nikl-39754-s001, ch: 반지, pr: 반지, ds: a ring worn on a finger}
   - {id: ko-nikl-22542-s001, ch: 팔찌, pr: 팔찌, ds: a bracelet worn around the wrist}
   - {id: ko-nikl-36915-s001, ch: 머리핀, pr: 머리핀, ds: a hairpin for holding hair in place}
+  - {id: ko-nikl-26009-s002, ch: 가죽, pr: 가죽, ds: leather made from animal hide}
+  - {id: ko-nikl-37116-s001, ch: 면, pr: 면, ds: cotton thread or cloth}
+  - {id: ko-nikl-44466-s001, ch: 천, pr: 천ː, ds: woven cloth or fabric}
   - {id: ko-nikl-09450-s001, ch: 샌들, pr: 샌들, ds: sandals held on the foot by straps}
   - {id: ko-nikl-09969-s001, ch: 선글라스, pr: 선글라스, ds: tinted glasses for sunlight or fashion}
   review_grammar: []
@@ -112,11 +114,11 @@ units:
   - {id: ko-nikl-03030-s001, ch: 식당, pr: 식땅, ds: a dining room; a cafeteria}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-19729-s001, ch: 떡볶이, pr: 떡뽀끼, ds: rice cakes cooked with vegetables and seasoned sauce}
-  - {id: ko-nikl-08927-s001, ch: 삼겹살, pr: 삼겹쌀, ds: pork belly with layers of fat and lean meat}
-  - {id: ko-nikl-19185-s001, ch: 들기름, pr: 들기름, ds: perilla-seed oil}
   - {id: ko-nikl-25277-s001, ch: 현미, pr: 현미, ds: brown rice with only its outer husk removed}
   - {id: ko-nikl-38826-s001, ch: 미나리, pr: 미나리, ds: minari; aromatic edible water-dropwort greens}
+  - {id: ko-nikl-05111-s003, ch: 양, pr: 양, ds: the amount of food someone can eat}
+  - {id: ko-nikl-09547-s003, ch: 생물, pr: 생물, ds: fresh unfrozen goods}
+  - {id: ko-nikl-04573-s002, ch: 알, pr: 알, ds: a single small round fruit or grain}
   - {id: ko-nikl-35116-s001, ch: 냉면, pr: 냉ː면, ds: cold noodles in broth or mixed with chili-paste seasoning}
   - {id: ko-nikl-08929-s001, ch: 삼계탕, pr: 삼계탕 / 삼게탕, ds: chicken soup with ginseng and glutinous-rice stuffing}
   - {id: ko-nikl-22364-s001, ch: 파전, pr: 파전, ds: green-onion pancake with additions such as seafood}
@@ -151,16 +153,37 @@ units:
   - {id: ko-nikl-44960-s001, ch: 체육관, pr: 체육꽌, ds: a gymnasium for indoor exercise}
   - {id: ko-nikl-49465-s001, ch: 운동복, pr: 운ː동복, ds: clothes worn for exercise}
   - {id: ko-nikl-35854-s006, ch: 마스크, pr: 마스크, ds: a protective face covering used in sports}
+  - {id: ko-nikl-45354-s001, ch: 촬영, pr: 촤령, ds: taking photographs or filming}
+  - {id: ko-nikl-47560-s001, ch: 연주회, pr: 연ː주회 / 연ː주훼, ds: a concert or recital}
+  - {id: ko-nikl-18079-s001, ch: 독서, pr: 독써, ds: reading books}
+  - {id: ko-nikl-02461-s002, ch: 스케이트, pr: 스케이트, ds: ice skating}
+  - {id: ko-nikl-02479-s002, ch: 스키, pr: 스키, ds: skiing}
+  - {id: ko-nikl-02523-s001, ch: 스포츠, pr: 스포츠, ds: sport; athletic competition}
+  - {id: ko-nikl-09017-s001, ch: 상, pr: 상, ds: an award or prize for achievement}
+  - {id: ko-nikl-17409-s002, ch: 대회, pr: 대ː회 / 대ː훼, ds: a competition or tournament}
+  - {id: ko-nikl-20088-s001, ch: 라켓, pr: 라켇, ds: a racket used in sport}
+  - {id: ko-nikl-20539-s004, ch: 카드, pr: 카드, ds: a playing card}
+  - {id: ko-nikl-21534-s001, ch: 테니스, pr: 테니스, ds: tennis}
+  - {id: ko-nikl-29503-s001, ch: 골, pr: 골, ds: a goal or scoring area in a ball game}
+  - {id: ko-nikl-29514-s001, ch: 골대, pr: 골때, ds: the frame of a goal}
+  - {id: ko-nikl-32107-s002, ch: 그물, pr: 그물, ds: a net used in sport}
+  - {id: ko-nikl-35689-s003, ch: 놀이, pr: 노리, ds: playing a game with rules}
+  - {id: ko-nikl-46993-s001, ch: 여가, pr: 여가, ds: leisure time; time free from work}
+  - {id: ko-nikl-48165-s001, ch: 오락, pr: 오ː락, ds: amusement; leisure games}
+  - {id: ko-nikl-48165-s002, ch: 오락, pr: 오ː락, ds: computer or electronic games}
+  - {id: ko-nikl-18199-s003, ch: 돌, pr: 돌ː, ds: a stone used in the game of go}
+  - {id: ko-nikl-22406-s002, ch: 판, pr: 판, ds: a board used for a board game}
+  - {id: ko-nikl-39482-s001, ch: 바퀴, pr: 바퀴, ds: lap or revolution; a count of circuits}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-05699-s002, ch: 보다, pr: 보다, ds: to watch or enjoy a sight or performance}
-  - {id: ko-nikl-45916-s001, ch: 취미, pr: 취ː미, ds: a hobby; a pastime}
-  - {id: ko-nikl-13081-s001, ch: 재미있다, pr: 재미읻따, ds: to be interesting; to be fun}
-  - {id: ko-nikl-13080-s001, ch: 재미없다, pr: 재미업따, ds: to be boring; not to be fun}
-  - {id: ko-nikl-47912-s001, ch: 영화, pr: 영화, ds: a film; cinema}
-  - {id: ko-nikl-08773-s001, ch: 산책, pr: 산ː책, ds: a stroll; walking for leisure or health}
-  - {id: ko-nikl-29913-s001, ch: 공원, pr: 공원, ds: a park}
-  - {id: ko-nikl-01858-s001, ch: 수영복, pr: 수영복, ds: swimwear}
+  - {id: ko-nikl-27014-s001, ch: 개막, pr: 개막, ds: the opening of a performance or event}
+  - {id: ko-nikl-30290-s001, ch: 관람, pr: 괄람, ds: viewing a performance or exhibition}
+  - {id: ko-nikl-02461-s001, ch: 스케이트, pr: 스케이트, ds: ice skates}
+  - {id: ko-nikl-02479-s001, ch: 스키, pr: 스키, ds: skis}
+  - {id: ko-nikl-03869-s001, ch: 썰매, pr: 썰매, ds: a sled for riding on snow or ice}
+  - {id: ko-nikl-04993-s002, ch: 야영, pr: 야ː영, ds: camping outdoors in a tent}
+  - {id: ko-nikl-32107-s001, ch: 그물, pr: 그물, ds: a net for catching fish or animals}
+  - {id: ko-nikl-34403-s002, ch: 낚시, pr: 낙씨, ds: a set of fishing equipment}
   review_grammar: []
 - id: level-08-learning-01
   title: Learning and education - 1
@@ -231,6 +254,9 @@ units:
   - {id: ko-nikl-03014-s001, ch: 시험지, pr: 시험지, ds: an examination question paper or answer sheet}
   - {id: ko-nikl-14431-s001, ch: 정답, pr: 정ː답, ds: the correct answer to a question or problem}
   - {id: ko-nikl-30648-s001, ch: 교복, pr: 교ː복, ds: a school uniform chosen by the school}
+  - {id: ko-nikl-23249-s001, ch: 표지, pr: 표지, ds: a book cover}
+  - {id: ko-nikl-37610-s001, ch: 목록, pr: 몽녹, ds: a list of names or titles}
+  - {id: ko-nikl-44958-s002, ch: 체육, pr: 체육, ds: physical education}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-08522-s001, ch: 사전, pr: 사전, ds: a dictionary}
@@ -293,6 +319,7 @@ units:
   - {id: ko-nikl-06477-s001, ch: 부서, pr: 부서, ds: a department or work unit within an organization}
   - {id: ko-nikl-11307-s002, ch: 인턴, pr: 인턴, ds: a trainee before regular appointment; the training period}
   - {id: ko-nikl-03281-s001, ch: 신입, pr: 시닙, ds: new entry into a group or organization}
+  - {id: ko-nikl-22179-s001, ch: 틈, pr: 틈, ds: a short interval available for doing something}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-05980-s002, ch: 복사, pr: 복싸, ds: making a machine-produced copy of a document or image}
@@ -343,6 +370,8 @@ units:
   - {id: ko-nikl-21831-s001, ch: 통화, pr: 통화, ds: a telephone conversation}
   - {id: ko-nikl-37066-s001, ch: 메모, pr: 메모, ds: writing a brief reminder or message; the note itself}
   - {id: ko-nikl-04422-s001, ch: 안내문, pr: 안ː내문, ds: a written notice explaining or introducing something}
+  - {id: ko-nikl-14870-s001, ch: 제목, pr: 제목, ds: a title of a text or performance}
+  - {id: ko-nikl-36211-s004, ch: 말, pr: 말ː, ds: a word or utterance}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-38543-s001, ch: 묻다, pr: 묻ː따, ds: to ask for an answer or explanation}
@@ -363,6 +392,7 @@ units:
   vocabulary:
   - {id: ko-nikl-02694-s003, ch: 시간, pr: 시간, ds: time to spare; available time}
   - {id: ko-nikl-11588-s001, ch: 일정, pr: 일쩡, ds: a schedule; a planned set of tasks}
+  - {id: ko-nikl-33258-s002, ch: 길이, pr: 기리, ds: duration; length of time}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-11590-s002, ch: 일정표, pr: 일쩡표, ds: a list of activities planned for a day}
@@ -398,8 +428,27 @@ units:
   - {id: ko-nikl-20679-s001, ch: 컴퓨터, pr: 컴퓨터, ds: a computer}
   - {id: ko-nikl-05980-s003, ch: 복사, pr: 복싸, ds: copying a computer file to another location}
   - {id: ko-nikl-16501-s002, ch: 단추, pr: 단추, ds: a button pressed to operate or control a machine}
+  - {id: ko-nikl-20055-s002, ch: 라디오, pr: 라디오, ds: a radio receiver}
   grammar: []
   review_vocabulary: []
+  review_grammar: []
+- id: level-08-arts-01
+  title: Arts and creative works - 1
+  outcome: Support an interpretation with specific details of a work.
+  vocabulary:
+  - {id: ko-nikl-04848-s001, ch: 애니메이션, pr: 애니메이션, ds: animation; an animated film}
+  - {id: ko-nikl-06745-s001, ch: 북, pr: 북, ds: a drum}
+  - {id: ko-nikl-29407-s001, ch: 곡, pr: 곡, ds: a composed piece of music}
+  - {id: ko-nikl-29407-s003, ch: 곡, pr: 곡, ds: piece; a unit for counting songs or musical works}
+  - {id: ko-nikl-36189-s001, ch: 만화, pr: 만ː화, ds: cartoons or comics; a comic book}
+  - {id: ko-nikl-38164-s001, ch: 무용, pr: 무ː용, ds: dance as a performing art}
+  - {id: ko-nikl-38782-s001, ch: 뮤지컬, pr: 뮤지컬, ds: a musical theater production}
+  - {id: ko-nikl-07394-s001, ch: 붓, pr: 붇, ds: a brush for writing or painting}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-51122-s001, ch: 음악, pr: 으막, ds: music}
+  - {id: ko-nikl-35426-s001, ch: 노래, pr: 노래, ds: a song; singing}
+  - {id: ko-nikl-32091-s001, ch: 그림책, pr: 그ː림책, ds: a children's picture book}
   review_grammar: []
 - id: level-08-register-01
   title: Register and nuance - 1
@@ -426,12 +475,12 @@ units:
   - {id: ko-nikl-21831-s002, ch: 통화, pr: 통화, ds: a counter for telephone calls}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-45987-s004, ch: 층, pr: 층, ds: a unit for numbering floors from the bottom of a building}
   - {id: ko-nikl-02397-s001, ch: 쉰, pr: 쉰ː, ds: fifty (native Korean numeral)}
   - {id: ko-nikl-02398-s001, ch: 쉰, pr: 쉰ː, ds: fifty; before a noun or counter}
   - {id: ko-nikl-48017-s001, ch: 예순, pr: 예순, ds: sixty (native Korean numeral)}
   - {id: ko-nikl-48018-s001, ch: 예순, pr: 예순, ds: sixty; before a noun or counter}
   - {id: ko-nikl-37379-s001, ch: 모금, pr: 모금, ds: a counter for mouthfuls of liquid or gas}
+  - {id: ko-nikl-04575-s001, ch: 알, pr: 알, ds: a counter for small round objects}
   - {id: ko-nikl-42032-s003, ch: 줄, pr: 줄, ds: a counter for rows or lines of people or things}
   - {id: ko-nikl-03373-s001, ch: 실, pr: 실, ds: a counter for rooms}
   review_grammar:
@@ -443,14 +492,14 @@ units:
   grammar:
   - {id: ko-topik2-g016, ch: V-는 것, ds: turn a clause into a nominal expression}
   review_vocabulary:
-  - {id: ko-nikl-26820-s001, ch: 강의실, pr: 강ː의실 / 강ː이실, ds: a lecture room}
-  - {id: ko-nikl-26767-s001, ch: 강사, pr: 강ː사, ds: an instructor teaching at a school or learning institute}
-  - {id: ko-nikl-30665-s002, ch: 교수, pr: 교ː수, ds: a university teacher and researcher; a professorial post}
   - {id: ko-nikl-26843-s002, ch: 강좌, pr: 강ː좌, ds: a university course taught by a professor}
   - {id: ko-nikl-01511-s001, ch: 수강, pr: 수강, ds: taking a class or course}
   - {id: ko-nikl-03014-s001, ch: 시험지, pr: 시험지, ds: an examination question paper or answer sheet}
   - {id: ko-nikl-14431-s001, ch: 정답, pr: 정ː답, ds: the correct answer to a question or problem}
   - {id: ko-nikl-30648-s001, ch: 교복, pr: 교ː복, ds: a school uniform chosen by the school}
+  - {id: ko-nikl-23249-s001, ch: 표지, pr: 표지, ds: a book cover}
+  - {id: ko-nikl-37610-s001, ch: 목록, pr: 몽녹, ds: a list of names or titles}
+  - {id: ko-nikl-44958-s002, ch: 체육, pr: 체육, ds: physical education}
   review_grammar:
   - {id: ko-topik1-g032, ch: V-(으)ㄹ 수 있다 / 없다, ds: express ability or situational possibility}
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
@@ -464,7 +513,6 @@ units:
   - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
   - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
   review_vocabulary:
-  - {id: ko-nikl-11197-s001, ch: 인쇄, pr: 인쇄, ds: machine printing of text or images on paper or fabric}
   - {id: ko-nikl-23494-s002, ch: 프린터, pr: 프린터, ds: a machine that prints computer output on paper}
   - {id: ko-nikl-20330-s002, ch: 마감, pr: 마감, ds: the end of the allotted time; a closing deadline}
   - {id: ko-nikl-16677-s001, ch: 담당, pr: 담당, ds: being responsible for a task}
@@ -472,6 +520,7 @@ units:
   - {id: ko-nikl-06477-s001, ch: 부서, pr: 부서, ds: a department or work unit within an organization}
   - {id: ko-nikl-11307-s002, ch: 인턴, pr: 인턴, ds: a trainee before regular appointment; the training period}
   - {id: ko-nikl-03281-s001, ch: 신입, pr: 시닙, ds: new entry into a group or organization}
+  - {id: ko-nikl-22179-s001, ch: 틈, pr: 틈, ds: a short interval available for doing something}
   review_grammar: []
 - id: level-08-communication-practice-01
   title: Communication and information - sentence practice 1
@@ -481,14 +530,14 @@ units:
   - {id: ko-topik2-g026, ch: 'V/A-지요? / -죠?', ds: check shared information or seek confirmation}
   - {id: ko-topik2-g033, ch: V-는데 / A-(으)ㄴ데, ds: offer background or a contextual contrast}
   review_vocabulary:
-  - {id: ko-nikl-12480-s001, ch: 작성, pr: 작썽, ds: preparing a manuscript or document}
-  - {id: ko-nikl-47406-s001, ch: 연락처, pr: 열락처, ds: a telephone number or address for making contact}
   - {id: ko-nikl-03353-s002, ch: 신호, pr: 신ː호, ds: a tone or ringing sound from a telephone or radio}
   - {id: ko-nikl-04476-s001, ch: 안부, pr: 안부, ds: news or an inquiry about how someone is doing}
   - {id: ko-nikl-27917-s001, ch: 게시판, pr: 게ː시판, ds: a board for displaying public notices}
   - {id: ko-nikl-21831-s001, ch: 통화, pr: 통화, ds: a telephone conversation}
   - {id: ko-nikl-37066-s001, ch: 메모, pr: 메모, ds: writing a brief reminder or message; the note itself}
   - {id: ko-nikl-04422-s001, ch: 안내문, pr: 안ː내문, ds: a written notice explaining or introducing something}
+  - {id: ko-nikl-14870-s001, ch: 제목, pr: 제목, ds: a title of a text or performance}
+  - {id: ko-nikl-36211-s004, ch: 말, pr: 말ː, ds: a word or utterance}
   review_grammar:
   - {id: ko-topik1-g002, ch: N이/가 아니에요, ds: deny a noun identification}
   - {id: ko-topik1-g016, ch: V/A-아요 / -어요 / -해요, ds: polite conversational statement or question}
@@ -526,7 +575,6 @@ units:
   grammar:
   - {id: ko-topik1-g031, ch: V-ㅂ시다 / -읍시다, ds: formal joint-action proposal with role constraints}
   review_vocabulary:
-  - {id: ko-nikl-11197-s001, ch: 인쇄, pr: 인쇄, ds: machine printing of text or images on paper or fabric}
   - {id: ko-nikl-23494-s002, ch: 프린터, pr: 프린터, ds: a machine that prints computer output on paper}
   - {id: ko-nikl-20330-s002, ch: 마감, pr: 마감, ds: the end of the allotted time; a closing deadline}
   - {id: ko-nikl-16677-s001, ch: 담당, pr: 담당, ds: being responsible for a task}
@@ -534,6 +582,7 @@ units:
   - {id: ko-nikl-06477-s001, ch: 부서, pr: 부서, ds: a department or work unit within an organization}
   - {id: ko-nikl-11307-s002, ch: 인턴, pr: 인턴, ds: a trainee before regular appointment; the training period}
   - {id: ko-nikl-03281-s001, ch: 신입, pr: 시닙, ds: new entry into a group or organization}
+  - {id: ko-nikl-22179-s001, ch: 틈, pr: 틈, ds: a short interval available for doing something}
   review_grammar:
   - {id: ko-topik2-g007, ch: V-(으)면서, ds: do two actions at the same time}
   - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}

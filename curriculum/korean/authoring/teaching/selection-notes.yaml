@@ -94,11 +94,13 @@ category_adjudication:
     ko-lex-11338: 일; day or date counter
     ko-lex-12779: 장; counter for thin flat objects
     ko-lex-16872: 대; vehicle, machine, or instrument counter
+    ko-lex-22407: 판; edition counter only, not an independent printing-plate sense
     ko-lex-26023: 가지; bound kinds counter, not a plant branch or eggplant
     ko-lex-26923: 개; counter for individual objects, not the dog noun
     ko-lex-27852: 것; bound noun for an unspecified thing or fact
     ko-lex-35380: 년; year unit
     ko-lex-35824: 마리; counter for animals
+    ko-lex-35972: 막; bound theatrical act counter
     ko-lex-37199: 명; counter for people
     ko-lex-37379: 모금; bound mouthful counter, not fundraising
     ko-lex-40947: 번; number, order, or occurrence counter
@@ -115,6 +117,7 @@ category_adjudication:
     count classification only; they never generate teaching placements.
   function_identities_by_role:
     reference_and_questions:
+      - ko-lex-33117
       - ko-lex-13297
       - ko-lex-47023
       - ko-lex-46352
@@ -313,6 +316,14 @@ multi_parent_decisions:
       temporal lexeme, not separately counted homographs.
 
 additional_grouping_evidence:
+  arts-recreation-and-public-explanation: >
+    content-identities.yaml and content-notes.yaml distinguish actual-event,
+    text, performance, recreation, nature, material, and explanation senses.
+    Related independent and counting uses of 알, 틈, and 바퀴 share explicit
+    identities; theatrical acts and edition counting remain bound, while
+    residual-reference 기타 is a function item. An existing literary 신화
+    identity gains its own figurative core meaning without duplicating
+    its literal literary placements or requiring the branch.
   wardrobe-and-personal-care: >
     personal-identities.yaml and personal-notes.yaml distinguish garments,
     accessories, care items, and useful related source meanings. Eight
