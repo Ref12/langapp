@@ -61,8 +61,8 @@ export function Settings({ workspace, busy, run }: PageProps) {
       <p className="small muted">Backups contain only this Mandarin workspace. v1 backups, recordings, credentials, and conversations are not imported here.</p>
     </section>
     {notice && <p className="notice success" role="status">{notice}</p>}
-    <section className="panel"><h2>About this checkpoint</h2><p>Two authored stories, three starter lessons, and shared reading-recognition practice. No live AI, pronunciation scoring, character-writing assessment, or official HSK certification is connected.</p>
-      <div className="button-row"><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
+    <section className="panel"><h2>About this checkpoint</h2><p>The real 30-level Mandarin course map, with beginner levels 1-4 available for small lessons, grammar reference, and reading-recognition practice. The original stories and starter lessons remain available. No communicative checkpoint assessment, live AI, pronunciation scoring, handwriting assessment, or official HSK certification is connected.</p>
+      <div className="button-row"><a href="#curriculum-sources" className="button secondary">Curriculum sources and licenses</a><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
     </section>
   </>
 }

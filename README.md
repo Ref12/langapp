@@ -25,8 +25,15 @@ Those design artifacts remain memory-only and never access either app's database
 - Read two original stories in English, annotated Mandarin, or a weave that
   substitutes only words you have added. Passage completion and reading position
   are saved explicitly; simply opening a page does not count as reading it.
-- Explore three authored starter lessons and 14 vocabulary senses. Reading,
-  lessons, Dictionary, and practice share a single learning set.
+- Explore the real six-phase, thirty-level Practical Mandarin course map.
+  Levels 1-4 are playable: twelve modules, 205 canonical vocabulary senses, and
+  25 grammar references. Later levels expose goals, prerequisites, module
+  outlines, and checkpoint tasks, but cannot be practiced or completed yet.
+- Beginner modules are divided, in source order, into parts of 5-8 new senses
+  and at most one new construction. Each practice session starts with up to
+  three already-introduced senses selected from the authored earlier reviews
+  and earlier parts of the module, prioritizing the earliest due dates.
+  The original three starter lessons and 14 local example items remain available.
 - Practice character-to-meaning and meaning-to-character recognition. Questions,
   answer choices, revealed answers, and feedback survive reload. Each checked
   answer is recorded once, before advancing.
@@ -39,21 +46,66 @@ Those design artifacts remain memory-only and never access either app's database
 - Hearing, speaking, and writing remain **Not studied**. Lesson completion records
   practice, not mastery or an official HSK result. This is the new mockup-based
   reading-state policy, separate from v1's Learning/Familiar/Mastered model.
+  Curriculum contextual understanding, productive use, grammar evidence, and
+  communicative checkpoints remain **unassessed**. A full recognition queue
+  does not pass a level's goals. Prerequisites are guidance, not enforced gates.
 - Save appearance and reading preferences; download or explicitly restore a
   versioned backup in Settings. Restore replaces only the new workspace, inside
   one transaction. Backups are bounded to 5 MiB and are not compatible with v1.
+  Content version 2 adds curriculum references; previous content-version-1
+  starter backups remain readable without rewriting their IDs or saved answers.
 
-Content in `src/data/mandarin.ts` is original authored material adapted from the
-design examples. Its local `zh:*` IDs identify this starter collection, not the
-imported curriculum's `zh-hsk*-*-s*` sense IDs. They must not award HSK/curriculum
-credit without an explicit reviewed mapping. In particular, the cup object
-(`杯子`) and cupful measure word (`杯`) are separate senses.
+The starter content in `src/data/mandarin.ts` is original material adapted from
+the design examples. Its local `zh:*` IDs and historical progress remain separate
+from the imported curriculum's canonical sense IDs, even when spelling matches.
+No heuristic migration awards curriculum evidence. The cup object (`杯子`) and
+cupful measure word (`杯`), and the greeting, approval, and adjective senses of
+`好`, remain distinct. New practice choices exclude duplicate written forms and
+shared English gloss alternatives; recognition still does not assess use in context.
 
-Not connected in this checkpoint: personal imports, curriculum-wide courses,
+Not connected in this checkpoint: personal imports, playable levels 5-30,
+tourist or specialist routes, contextual and productive exercises or level assessment,
 live Assistant/voice services, audio or handwriting assessment, other target
 languages, synchronization, and installation/offline shell caching for the new
 app. The Assistant and Library pages link to the original v1 tools rather than
 simulating those features.
+
+## Curriculum source integration
+
+`scripts/generate-app-curriculum.mjs` creates the deterministic
+`src/data/curriculum.generated.json` projection from the checked-in Chinese
+teaching program and reference grammar. No external service or runtime YAML
+parser is required. The app adapter is `src/data/curriculum.ts`.
+Canonical sense/construction IDs, disambiguators, pinyin, authored order, and
+review dependencies are retained. Small lesson IDs identify a level, module,
+and part; their introduction boundaries must remain stable in future revisions
+or receive an explicit content migration.
+
+Grammar notes and bilingual reference examples are displayed, not assessed.
+Examples can contain additional supporting vocabulary, with English translations;
+viewing them never introduces those words or awards grammar progress. The app
+does not fabricate vocabulary examples, parts of speech, or grammar pinyin.
+The six-phase progression is independently authored; reference HSK numbers are
+provenance, not teaching priorities or examination claims.
+
+```powershell
+npm run curriculum:generate
+npm run curriculum:check
+```
+
+Edit the original curriculum authoring sources and regenerate their source views
+using the existing curriculum tools before generating this projection. Do not
+repair generated app JSON or copied notices in isolation. The app generator
+operates offline; its check mode and source-integrity tests reject stale output.
+Production builds check the projection before bundling.
+
+The app's **Curriculum sources** page, also linked from Settings and Dictionary,
+attributes Complete HSK Vocabulary, Pleco/elkmovie HSK30, CC-CEDICT, and original
+AI-assisted teaching contributions. Exact source notices and CC-BY-SA/MIT license
+texts are generated into `public/curriculum/chinese` and shipped with the app.
+Adapted dictionary material retains its CC-BY-SA obligations; MIT wrapper notices
+do not supersede them. See `curriculum/chinese/sources.yaml` for pinned versions
+and limitations.
 
 ## Development
 

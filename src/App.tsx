@@ -5,6 +5,7 @@ import { initializeWorkspace, loadWorkspace } from './core/database'
 import { savePreferences } from './core/learning'
 import { useRoute } from './core/routing'
 import { lessons, stories } from './data/mandarin'
+import { curriculumLevels } from './data/curriculum'
 import { EmptyState, PageHeading, type PageProps } from './components/shared'
 import { Overview } from './pages/Overview'
 import { Library, Reader } from './pages/Reading'
@@ -12,6 +13,7 @@ import { LessonDetail, Lessons } from './pages/Lessons'
 import { Practice, PracticeSessionPage } from './pages/Practice'
 import { Dictionary } from './pages/Dictionary'
 import { Settings } from './pages/Settings'
+import { CurriculumSources, LevelDetail } from './pages/Curriculum'
 import './App.css'
 
 const navigation = [
@@ -36,6 +38,11 @@ function CurrentPage({ route, ...props }: PageProps & { route: string }) {
     return story ? <Reader key={story.id} {...props} story={story} /> : <NotFound />
   }
   if (page === 'lessons') return <Lessons {...props} />
+  if (page === 'level') {
+    const level = curriculumLevels.find(item => item.id === id)
+    return level ? <LevelDetail {...props} level={level} /> : <NotFound />
+  }
+  if (page === 'curriculum-sources') return <CurriculumSources />
   if (page === 'lesson') {
     const lesson = lessons.find(item => item.id === id)
     return lesson ? <LessonDetail {...props} lesson={lesson} /> : <NotFound />
@@ -76,7 +83,7 @@ function WorkspaceApp() {
     }
   }, [])
   const page = route.split('/')[0]
-  const section = page === 'reader' ? 'library' : page === 'lesson' ? 'lessons' : page === 'review' ? 'practice' : page
+  const section = page === 'reader' ? 'library' : ['lesson', 'level', 'curriculum-sources'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
   useEffect(() => {
     document.title = `${label} / LinguaWeave`

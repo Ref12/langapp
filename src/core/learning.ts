@@ -1,7 +1,8 @@
-import { getLesson, getStory, getWord, words } from '../data/mandarin'
+import { getLesson, getStory, getWord } from '../data/mandarin'
 import { db } from './database'
-import { LANGUAGE, type Activity, type Attempt, type PracticeSession, type Preferences, type Question } from './model'
+import { LANGUAGE, type Attempt, type Lesson, type PracticeSession, type Preferences, type WordState } from './model'
 import { applyAnswer } from './progress'
+import { makeQuestions } from './questions'
 
 export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 'language'>>): Promise<void> {
   await db.transaction('rw', db.preferences, async () => {
@@ -53,21 +54,11 @@ export async function moveReading(storyId: string, from: number, to: number, com
   })
 }
 
-function shuffled<T>(items: T[]): T[] {
-  const result = [...items]
-  for (let index = result.length - 1; index > 0; index--) {
-    const other = Math.floor(Math.random() * (index + 1))
-    ;[result[index], result[other]] = [result[other], result[index]]
-  }
-  return result
-}
-
-function makeQuestions(wordIds: string[]): Question[] {
-  const activities: Activity[] = ['meaning', 'form']
-  return activities.flatMap(activity => wordIds.map(wordId => ({
-    wordId, activity, revealed: false,
-    options: shuffled([wordId, ...shuffled(words.filter(word => word.id !== wordId).map(word => word.id)).slice(0, 3)]),
-  })))
+export function lessonReviewWords(lesson: Lesson, tracked: WordState[]): string[] {
+  const eligible = new Set(lesson.curriculum?.reviewWordIds ?? [])
+  return tracked.filter(word => eligible.has(word.wordId) && !lesson.wordIds.includes(word.wordId))
+    .sort((a, b) => a.dueAt - b.dueAt || a.wordId.localeCompare(b.wordId))
+    .slice(0, 3).map(word => word.wordId)
 }
 
 export async function startPractice(kind: PracticeSession['kind'], lessonId?: string): Promise<string> {
@@ -89,9 +80,12 @@ export async function startPractice(kind: PracticeSession['kind'], lessonId?: st
     if (lesson && !await db.lessons.get(lesson.id)) {
       await db.lessons.add({ lessonId: lesson.id, startedAt: now })
     }
+    const reviewIds = lesson ? lessonReviewWords(lesson, tracked) : []
+    const familiarIds = [...wordIds, ...tracked.map(word => word.wordId)]
     const id = crypto.randomUUID()
     await db.sessions.add({
-      id, kind, lessonId, questions: makeQuestions(wordIds), cursor: 0, status: 'active', createdAt: now,
+      id, kind, lessonId, questions: [...makeQuestions(reviewIds, familiarIds), ...makeQuestions(wordIds, familiarIds)],
+      cursor: 0, status: 'active', createdAt: now,
     })
     return id
   })

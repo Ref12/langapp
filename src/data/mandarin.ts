@@ -1,8 +1,9 @@
 import type { Lesson, Story, Word } from '../core/model'
+import { curriculumLessons, curriculumWords } from './curriculum'
 
 // Original authored examples adapted from the mockups, not an official HSK syllabus.
-export const CONTENT_VERSION = 1
-export const words: Word[] = [
+export const CONTENT_VERSION = 2
+export const starterWords: Word[] = [
   { id: 'zh:tea', native: '\u8336', pinyin: 'ch\u00e1', meaning: 'tea', kind: 'Noun', example: '\u6211\u60f3\u559d\u8336\u3002', translation: 'I would like to drink tea.' },
   { id: 'zh:rain', native: '\u96e8', pinyin: 'y\u01d4', meaning: 'rain', kind: 'Noun', example: '\u96e8\u505c\u4e86\u3002', translation: 'The rain has stopped.' },
   { id: 'zh:cup', native: '\u676f\u5b50', pinyin: 'b\u0113izi', meaning: 'cup', kind: 'Noun', example: '\u676f\u5b50\u662f\u6e29\u7684\u3002', translation: 'The cup is warm.' },
@@ -19,7 +20,7 @@ export const words: Word[] = [
   { id: 'zh:park', native: '\u516c\u56ed', pinyin: 'g\u014dngyu\u00e1n', meaning: 'park', kind: 'Noun', example: '\u516c\u56ed\u5f88\u5b89\u9759\u3002', translation: 'The park is very quiet.' },
 ]
 
-export const lessons: Lesson[] = [
+export const starterLessons: Lesson[] = [
   {
     id: 'zh:greetings', title: 'Greet someone and say thanks', objective: 'Begin a brief exchange politely.',
     native: '\u4f60\u597d\uff01\u8c22\u8c22\u4f60\u3002', pinyin: 'N\u01d0 h\u01ceo! Xi\u00e8xie n\u01d0.',
@@ -79,8 +80,13 @@ export const stories: Story[] = [
   },
 ]
 
+// Starter IDs remain separate: old recognition attempts are not curriculum evidence.
+export const words: Word[] = [...curriculumWords, ...starterWords]
+export const lessons: Lesson[] = [...curriculumLessons, ...starterLessons]
+const wordIndex = new Map(words.map(word => [word.id, word]))
+
 export function getWord(id: string): Word {
-  const word = words.find(item => item.id === id)
+  const word = wordIndex.get(id)
   if (!word) throw new Error(`Unknown Mandarin word: ${id}`)
   return word
 }

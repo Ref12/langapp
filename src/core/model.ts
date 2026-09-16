@@ -9,8 +9,9 @@ export interface Word {
   pinyin: string
   meaning: string
   kind: string
-  example: string
-  translation: string
+  example?: string
+  translation?: string
+  curriculum?: { levelId: string; moduleId: string }
 }
 
 export type Segment = string | { wordId: string; text?: string }
@@ -29,13 +30,21 @@ export interface Lesson {
   id: string
   title: string
   objective: string
-  native: string
-  pinyin: string
-  translation: string
-  pattern: string
-  note: string
+  native?: string
+  pinyin?: string
+  translation?: string
+  pattern?: string
+  note?: string
   wordIds: string[]
   storyId?: string
+  curriculum?: {
+    levelId: string
+    moduleId: string
+    number: number
+    grammarIds: string[]
+    reviewGrammarIds: string[]
+    reviewWordIds: string[]
+  }
 }
 
 export interface Preferences {

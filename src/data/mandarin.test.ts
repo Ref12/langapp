@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { getLesson, getStory, getWord, lessons, stories, words } from './mandarin'
+import { getLesson, getStory, getWord, lessons, starterWords, stories, words } from './mandarin'
 
 describe('authored Mandarin collection', () => {
   it('uses unique words and unambiguous answer choices', () => {
     expect(new Set(words.map(word => word.id)).size).toBe(words.length)
-    expect(new Set(words.map(word => word.native)).size).toBe(words.length)
-    expect(new Set(words.map(word => word.meaning)).size).toBe(words.length)
-    for (const word of words) {
+    expect(new Set(starterWords.map(word => word.native)).size).toBe(starterWords.length)
+    expect(new Set(starterWords.map(word => word.meaning)).size).toBe(starterWords.length)
+    for (const word of starterWords) {
       expect(word.id).toMatch(/^zh:/)
       expect(word.pinyin).not.toBe('')
       expect(word.native).toMatch(/\p{Script=Han}/u)

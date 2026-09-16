@@ -153,6 +153,25 @@ summary { cursor: pointer; min-height: 28px; }
 .lesson-card h2 { margin-bottom: 8px; }
 .lesson-card p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
 .lesson-native { font-size: clamp(25px, 4vw, 38px); line-height: 1.8; margin-bottom: 10px; }
+.level-card { display: flex; flex-direction: column; }
+.level-card > .text-link { margin-top: auto; }
+.level-card progress { margin-bottom: 12px; }
+.curriculum-goals { padding-left: 22px; line-height: 1.8; }
+.curriculum-goals li { margin-bottom: 10px; }
+.curriculum-lesson-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); }
+.curriculum-lesson-row > div { flex: 1; min-width: 0; }
+.curriculum-lesson-row .small { display: block; margin-top: 6px; }
+.curriculum-lesson-row:hover { color: var(--accent); }
+.curriculum-lesson-row .tag { white-space: normal; text-align: center; max-width: 110px; }
+.checkpoint-goal h2 { margin: 0; }
+.checkpoint-goal .card-topline { margin-bottom: 16px; }
+.grammar-pattern { font-size: 24px; line-height: 1.8; }
+.grammar-example { border-top: 1px solid var(--line); padding-top: 16px; }
+.grammar-example [lang="zh-Hans"] { font-size: 24px; margin-bottom: 8px; }
+.grammar-reference { margin-top: 22px; }
+.starter-lessons { margin-top: 32px; }
+.starter-lessons summary { font-size: 18px; }
+.starter-lessons[open] summary { margin-bottom: 18px; }
 .practice-invitation { display: flex; align-items: center; gap: 30px; justify-content: space-between; margin-top: 25px; }
 .practice-invitation p { color: var(--muted); margin-bottom: 0; }
 .practice-invitation > .button { flex-shrink: 0; }

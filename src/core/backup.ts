@@ -31,7 +31,7 @@ const workspaceSchema = z.object({
 }).strict()
 const backupSchema = z.object({
   format: z.literal('linguaweave-next-backup'), version: z.literal(1),
-  contentVersion: z.literal(CONTENT_VERSION), exportedAt: time, workspace: workspaceSchema,
+  contentVersion: z.union([z.literal(1), z.literal(CONTENT_VERSION)]), exportedAt: time, workspace: workspaceSchema,
 }).strict()
 
 function unique(values: unknown[], label: string) {

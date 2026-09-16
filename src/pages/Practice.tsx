@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, CheckCircle2, Eye, RotateCcw } from 'lucide-react'
 import { getWord, lessons } from '../data/mandarin'
+import { curriculumLevels, nextCurriculumLesson } from '../data/curriculum'
 import { advancePractice, revealAnswer, startPractice, submitAnswer } from '../core/learning'
 import type { Attempt, PracticeSession } from '../core/model'
 import { navigate } from '../core/routing'
@@ -31,11 +32,15 @@ function PracticeQuestion({ session, attempt, workspace, run, busy }: PageProps 
   const question = session.questions[session.cursor]
   const word = getWord(question.wordId)
   const meaning = question.activity === 'meaning'
+  const lesson = lessons.find(item => item.id === session.lessonId)
+  const reviewing = lesson?.curriculum && !lesson.wordIds.includes(word.id)
+  const module = word.curriculum && curriculumLevels.find(level => level.id === word.curriculum?.levelId)?.modules.find(item => item.id === word.curriculum?.moduleId)
   useEffect(() => { title.current?.focus() }, [])
   return <div className="practice-player panel">
     <div className="card-topline"><span className="eyebrow">READING / {meaning ? 'RECOGNIZE A MEANING' : 'RECOGNIZE A WORD'}</span><span className="small muted">Question {session.cursor + 1} of {session.questions.length}</span></div>
     <progress aria-label="Practice progress" value={session.cursor} max={session.questions.length} />
     <h2 ref={title} tabIndex={-1}>{meaning ? 'What does this word mean?' : 'Which Mandarin word matches?'}</h2>
+    {module && <p className="small muted">{reviewing ? 'EARLIER REVIEW' : 'CURRICULUM SENSE'} / {module.title}</p>}
     <p className={meaning ? 'practice-prompt native' : 'practice-prompt'} lang={meaning ? 'zh-Hans' : 'en'}>{meaning ? word.native : word.meaning}</p>
     <fieldset className="answer-options" disabled={busy || Boolean(attempt)}><legend className="visually-hidden">Choose an answer</legend>
       {question.options.map(id => {
@@ -67,6 +72,8 @@ export function PracticeSessionPage(props: PageProps & { session: PracticeSessio
   const title = lessons.find(lesson => lesson.id === session.lessonId)?.title ?? 'Your vocabulary review'
   const attempts = workspace.attempts.filter(attempt => attempt.sessionId === session.id)
   const independent = attempts.filter(attempt => attempt.correct && !attempt.assisted).length
+  const lesson = lessons.find(item => item.id === session.lessonId)
+  const next = lesson?.curriculum ? nextCurriculumLesson(workspace) : undefined
   return <>
     <a href="#practice" className="back-link"><ArrowLeft size={16} /> Practice</a>
     <PageHeading eyebrow="SMALL MOMENTS, REAL MOMENTUM" title={title}>Read, recall, and give yourself room to learn.</PageHeading>
@@ -75,7 +82,9 @@ export function PracticeSessionPage(props: PageProps & { session: PracticeSessio
       <p className="completion-count">{independent} / {session.questions.length}</p><p>correct answers without help</p>
       <p className="muted">{attempts.filter(attempt => attempt.assisted).length} assisted answers / {attempts.filter(attempt => !attempt.correct).length} incorrect answers</p>
       <p>You practiced {new Set(session.questions.map(question => question.wordId)).size} words. Completing a lesson records practice, not mastery.</p>
+      {lesson?.curriculum && <p className="small muted">Grammar, contextual understanding, production, and the level's communicative checkpoint remain unassessed.</p>}
       <div className="button-row"><a className="button primary" href="#dictionary">See your learning set <ArrowRight size={16} /></a><a className="button secondary" href={session.lessonId ? `#lesson/${session.lessonId}` : '#overview'}>{session.lessonId ? 'Back to lesson' : 'Back to overview'}</a></div>
+      {next && <div className="button-row"><a className="button secondary" href={`#lesson/${next.id}`}>Continue your path <ArrowRight size={16} /></a></div>}
     </section> : <PracticeQuestion key={`${session.id}:${session.cursor}`} {...props} attempt={attempts.find(attempt => attempt.question === session.cursor)} />}
   </>
 }
