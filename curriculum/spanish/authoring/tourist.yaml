@@ -1,0 +1,111 @@
+schema_version: 1
+quick_start: [polite-repair, food-basics, finding-your-way, paying, asking-for-help]
+units:
+- id: polite-repair
+  title: Greet and repair a misunderstanding
+  outcome: Greet someone and ask for repetition, slower speech, or a written version; pointing and English support remain available.
+  phrases:
+  - {id: es-tourist-p001, ch: 'Hola.', ds: 'Hello.', forms: [hola]}
+  - {id: es-tourist-p002, ch: 'Perdón, no entiendo.', ds: 'Sorry, I do not understand.', forms: [perdon, 'no', entiendo]}
+  - {id: es-tourist-p003, ch: '¿Puede repetir?', ds: 'Could you repeat that?', forms: [puede, repetir]}
+  - {id: es-tourist-p004, ch: 'Más despacio, por favor.', ds: 'More slowly, please.', forms: [mas, despacio, por-favor]}
+  - {id: es-tourist-p005, ch: '¿Puede escribirlo?', ds: 'Could you write it down?', forms: [puede, escribirlo]}
+- id: food-basics
+  title: Request a simple drink or meal
+  outcome: Request water or coffee, ask for a menu and bill, and state a simple ingredient preference without assuming dietary safety.
+  phrases:
+  - {id: es-tourist-p006, ch: 'Quiero agua, por favor.', ds: 'I would like water, please.', forms: [quiero, agua, por-favor]}
+  - {id: es-tourist-p007, ch: 'Un café, por favor.', ds: 'A coffee, please.', forms: [un, cafe, por-favor]}
+  - {id: es-tourist-p008, ch: 'Sin leche, por favor.', ds: 'Without milk, please.', forms: [sin, leche, por-favor]}
+  - {id: es-tourist-p009, ch: 'El menú, por favor.', ds: 'The menu, please.', forms: [el, menu, por-favor]}
+  - {id: es-tourist-p010, ch: 'La cuenta, por favor.', ds: 'The bill, please.', forms: [la, cuenta, por-favor]}
+- id: finding-your-way
+  title: Locate a place and clarify directions
+  outcome: Find a restroom, distinguish left and right, and request a location on a map.
+  phrases:
+  - {id: es-tourist-p011, ch: '¿Dónde está el baño?', ds: 'Where is the restroom?', forms: [donde, esta, el, bano]}
+  - {id: es-tourist-p012, ch: '¿Está cerca?', ds: 'Is it nearby?', forms: [esta, cerca]}
+  - {id: es-tourist-p013, ch: '¿A la izquierda?', ds: 'To the left?', forms: [a, la, izquierda]}
+  - {id: es-tourist-p014, ch: '¿A la derecha?', ds: 'To the right?', forms: [a, la, derecha]}
+  - {id: es-tourist-p015, ch: '¿Puede mostrarlo en el mapa?', ds: 'Could you show it on the map?', forms: [puede, mostrarlo, en, el, mapa]}
+- id: paying
+  title: Clarify price and payment
+  outcome: Ask the cost, ask which payment methods are accepted, and request a receipt; no payment method is presumed available.
+  phrases:
+  - {id: es-tourist-p016, ch: '¿Cuánto cuesta?', ds: 'How much does it cost?', forms: [cuanto, cuesta]}
+  - {id: es-tourist-p017, ch: '¿Puedo pagar con tarjeta?', ds: 'Can I pay by card?', forms: [puedo, pagar, con, tarjeta]}
+  - {id: es-tourist-p018, ch: '¿Puedo pagar en efectivo?', ds: 'Can I pay in cash?', forms: [puedo, pagar, en, efectivo]}
+  - {id: es-tourist-p019, ch: '¿Me da un recibo?', ds: 'Could you give me a receipt?', forms: [me, da, un, recibo]}
+  - {id: es-tourist-p020, ch: '¿Aceptan tarjeta?', ds: 'Do you accept cards?', forms: [aceptan, tarjeta]}
+- id: asking-for-help
+  title: State a need and request human help
+  outcome: Ask for help or a doctor, locate a pharmacy, and explain a missing passport; the phrases are not medical or legal advice.
+  phrases:
+  - {id: es-tourist-p021, ch: 'Necesito ayuda.', ds: 'I need help.', forms: [necesito, ayuda]}
+  - {id: es-tourist-p022, ch: 'Necesito un médico.', ds: 'I need a doctor.', forms: [necesito, un, medico]}
+  - {id: es-tourist-p023, ch: '¿Dónde hay una farmacia?', ds: 'Where is there a pharmacy?', forms: [donde, hay, una, farmacia]}
+  - {id: es-tourist-p024, ch: 'Llame a la policía, por favor.', ds: 'Please call the police.', forms: [llame, a, la, policia, por-favor]}
+  - {id: es-tourist-p025, ch: 'No tengo mi pasaporte.', ds: 'I do not have my passport.', forms: ['no', tengo, mi, pasaporte]}
+- id: transport
+  title: Buy a ticket and check a departure
+  outcome: Ask about departure time, destination and delay, allowing for different local transport terms.
+  phrases:
+  - {id: es-tourist-p026, ch: 'Un boleto, por favor.', ds: 'A ticket, please.', forms: [un, boleto, por-favor]}
+  - {id: es-tourist-p027, ch: '¿A qué hora sale?', ds: 'What time does it leave?', forms: [a, que, hora, sale]}
+  - {id: es-tourist-p028, ch: '¿Dónde está la estación?', ds: 'Where is the station?', forms: [donde, esta, la, estacion]}
+  - {id: es-tourist-p029, ch: '¿Este tren va al aeropuerto?', ds: 'Does this train go to the airport?', forms: [este, tren, va, al, aeropuerto]}
+  - {id: es-tourist-p030, ch: '¿Hay un retraso?', ds: 'Is there a delay?', forms: [hay, un, retraso]}
+- id: accommodation
+  title: Check a booking and report a room problem
+  outcome: State a reservation and room requirement, ask about checkout, and describe a key or hot-water problem.
+  phrases:
+  - {id: es-tourist-p031, ch: 'Tengo una reserva.', ds: 'I have a reservation.', forms: [tengo, una, reserva]}
+  - {id: es-tourist-p032, ch: 'Una habitación para dos, por favor.', ds: 'A room for two, please.', forms: [una, habitacion, para, dos, por-favor]}
+  - {id: es-tourist-p033, ch: '¿A qué hora es la salida?', ds: 'What time is checkout?', forms: [a, que, hora, es-event, la, salida]}
+  - {id: es-tourist-p034, ch: 'La llave no funciona.', ds: 'The key does not work.', forms: [la, llave, 'no', funciona]}
+  - {id: es-tourist-p035, ch: '¿Hay agua caliente?', ds: 'Is there hot water?', forms: [hay, agua, caliente]}
+- id: shopping
+  title: Compare and clarify a purchase
+  outcome: Ask about size and trying an item, explain a mismatch, and ask whether return is possible rather than asserting a right.
+  phrases:
+  - {id: es-tourist-p036, ch: '¿Tiene otra talla?', ds: 'Do you have another size?', forms: [tiene, otra, talla]}
+  - {id: es-tourist-p037, ch: '¿Puedo probarlo?', ds: 'Can I try it?', forms: [puedo, probarlo]}
+  - {id: es-tourist-p038, ch: 'Es demasiado grande.', ds: 'It is too large.', forms: [es-property, demasiado, grande]}
+  - {id: es-tourist-p039, ch: '¿Puedo devolverlo?', ds: 'Can I return it?', forms: [puedo, devolverlo]}
+  - {id: es-tourist-p040, ch: 'Necesito el recibo.', ds: 'I need the receipt.', forms: [necesito, el, recibo]}
+- id: scheduling
+  title: Arrange and change a time
+  outcome: Suggest another day, explain unavailability, and check opening or start time without assuming published information is current.
+  phrases:
+  - {id: es-tourist-p041, ch: '¿Podemos cambiar la hora?', ds: 'Can we change the time?', forms: [podemos, cambiar, la, hora]}
+  - {id: es-tourist-p042, ch: 'Mañana, por favor.', ds: 'Tomorrow, please.', forms: [manana, por-favor]}
+  - {id: es-tourist-p043, ch: 'Hoy no puedo.', ds: 'I cannot today.', forms: [hoy, 'no', puedo]}
+  - {id: es-tourist-p044, ch: '¿Está abierto ahora?', ds: 'Is it open now?', forms: [esta-state, abierto, ahora]}
+  - {id: es-tourist-p045, ch: '¿Cuándo empieza?', ds: 'When does it start?', forms: [cuando, empieza]}
+- id: health-and-access
+  title: Explain a health or access need
+  outcome: State an allergy or pain, request medicine or medical help, and ask about an elevator; confirm details with a suitable person.
+  phrases:
+  - {id: es-tourist-p046, ch: 'Tengo alergia a la leche.', ds: 'I am allergic to milk.', forms: [tengo-health, alergia, a, la, leche]}
+  - {id: es-tourist-p047, ch: 'Me duele la cabeza.', ds: 'My head hurts.', forms: [me-experiencer, duele, la, cabeza]}
+  - {id: es-tourist-p048, ch: 'Necesito mi medicina.', ds: 'I need my medicine.', forms: [necesito, mi, medicina]}
+  - {id: es-tourist-p049, ch: '¿Hay un ascensor?', ds: 'Is there an elevator?', forms: [hay, un, ascensor]}
+  - {id: es-tourist-p050, ch: '¿Puede llamar a un médico?', ds: 'Could you call a doctor?', forms: [puede, llamar, a, un, medico]}
+- id: lost-belongings
+  title: Describe a missing item and leave information
+  outcome: Describe a loss, ask where to inquire, and provide an address or written message without claiming a guaranteed recovery.
+  phrases:
+  - {id: es-tourist-p051, ch: 'He perdido mi maleta.', ds: 'I have lost my suitcase.', forms: [he, perdido, mi, maleta]}
+  - {id: es-tourist-p052, ch: 'Busco mi teléfono.', ds: 'I am looking for my phone.', forms: [busco, mi, telefono]}
+  - {id: es-tourist-p053, ch: '¿Dónde puedo preguntar?', ds: 'Where can I ask?', forms: [donde, puedo, preguntar]}
+  - {id: es-tourist-p054, ch: 'Esta es mi dirección.', ds: 'This is my address.', forms: [esta-demonstrative, es, mi, direccion]}
+  - {id: es-tourist-p055, ch: '¿Puede escribir un mensaje?', ds: 'Could you write a message?', forms: [puede, escribir, un, mensaje]}
+- id: changed-plans
+  title: Ask about alternatives when a plan fails
+  outcome: Ask whether a booking or ticket can be changed, explain that something is not working, and request another option.
+  phrases:
+  - {id: es-tourist-p056, ch: '¿Puedo cancelar la reserva?', ds: 'Can I cancel the reservation?', forms: [puedo, cancelar, la, reserva]}
+  - {id: es-tourist-p057, ch: 'Necesito cambiar el boleto.', ds: 'I need to change the ticket.', forms: [necesito, cambiar, el, boleto]}
+  - {id: es-tourist-p058, ch: 'No funciona.', ds: 'It does not work.', forms: ['no', funciona]}
+  - {id: es-tourist-p059, ch: '¿Hay otra opción?', ds: 'Is there another option?', forms: [hay, otra, opcion]}
+  - {id: es-tourist-p060, ch: '¿Puede ayudarme?', ds: 'Could you help me?', forms: [puede, ayudarme]}

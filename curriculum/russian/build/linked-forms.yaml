@@ -1,0 +1,275 @@
+- id: ru-or-o04980-linked-form
+  target: меня
+  reading: меня́
+  reading_kind: source-marked-stress
+  lexical_identity: ru-lex-or-o00006
+  sense_ids:
+  - ru-or-o00006-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4980
+  source_data:
+    bare: меня
+    accented: меня'
+    translations_en: genitive of I
+    translations_de: Genitiv, Akkusativ von "я"
+  source_record_sha256: 745161b3b68a82328b054a907ec992963f7ee3c2e4c65b849b159c58b9c4f6bc
+  features:
+    cases:
+    - genitive
+    - accusative
+  linkage_provenance:
+    source_id: original-ru
+    note: Original grammatical linkage of the source-marked pronoun form; source English explicitly mentions
+      genitive only.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04984-linked-form
+  target: мне
+  reading: мне
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00006
+  sense_ids:
+  - ru-or-o00006-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4984
+  source_data:
+    bare: мне
+    accented: мне
+    translations_en: dative of "I"
+    translations_de: Dativ von "я"; Präpositiv von "я"
+  source_record_sha256: 80d10cbd0dae6ef376df72decd1ca855f555cf5b9e4e739d8941be6bf12d3b95
+  features:
+    cases:
+    - dative
+  linkage_provenance:
+    source_id: original-ru
+    note: Source identifies this as the dative of I.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04982-linked-form
+  target: нас
+  reading: нас
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00018
+  sense_ids:
+  - ru-or-o00018-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4982
+  source_data:
+    bare: нас
+    accented: нас
+    translations_en: genetive of "we"
+    translations_de: Genitiv von "мы"
+  source_record_sha256: 9e05202eb2dc8fb1a537ddb613677ae307a2297afb48a69078bd1a232b4f6d92
+  features:
+    cases:
+    - genitive
+    - accusative
+    - prepositional
+  linkage_provenance:
+    source_id: original-ru
+    note: Original grammatical linkage; source English explicitly mentions genitive only.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04988-linked-form
+  target: нам
+  reading: нам
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00018
+  sense_ids:
+  - ru-or-o00018-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4988
+  source_data:
+    bare: нам
+    accented: нам
+    translations_en: dative of "we"
+    translations_de: Dativ von "мы"
+  source_record_sha256: dca4852fdea4c3455fe42ce1a0ea4cfad05dc1db7c042e69bac46eb50fd38af8
+  features:
+    cases:
+    - dative
+  linkage_provenance:
+    source_id: original-ru
+    note: Source identifies this as the dative of we.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04983-linked-form
+  target: вас
+  reading: вас
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00021
+  sense_ids:
+  - ru-or-o00021-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4983
+  source_data:
+    bare: вас
+    accented: вас
+    translations_en: you; you
+    translations_de: Genitiv von "вы"
+  source_record_sha256: 9782123ba5b1e2dd156b9d44fceb7ea3855c1f749e5a6ac4c0ccb82fda2a643e
+  features:
+    cases:
+    - genitive
+    - accusative
+    - prepositional
+  linkage_provenance:
+    source_id: original-ru
+    note: Original grammatical linkage to plural or polite you; the source translation does not specify
+      case.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04989-linked-form
+  target: вам
+  reading: вам
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00021
+  sense_ids:
+  - ru-or-o00021-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4989
+  source_data:
+    bare: вам
+    accented: вам
+    translations_en: dative of "you (plural)"; dative of "you (formal)"
+    translations_de: Dativ von "вы"
+  source_record_sha256: c4e25a95b821a02d4e6764ac32822bcaffce56cc7523f14f556479933638730d
+  features:
+    cases:
+    - dative
+  linkage_provenance:
+    source_id: original-ru
+    note: Source identifies dative plural and formal you.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o01968-linked-form
+  target: его
+  reading: его́
+  reading_kind: source-marked-stress
+  lexical_identity: ru-lex-or-o00004
+  sense_ids:
+  - ru-or-o00004-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=1968
+  source_data:
+    bare: его
+    accented: его'
+    translations_en: genetive of "he"; genetive of "it"
+    translations_de: Genitiv von "он"; Genitiv von "оно"
+  source_record_sha256: ba9a2324a154ac93a9a25cab219cbd3f2d71700f42922d35e954c35c8e219c53
+  features:
+    cases:
+    - genitive
+    - accusative
+  linkage_provenance:
+    source_id: original-ru
+    note: Original grammatical linkage; source English explicitly mentions genitive only.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04986-linked-form
+  target: ему
+  reading: ему́
+  reading_kind: source-marked-stress
+  lexical_identity: ru-lex-or-o00004
+  sense_ids:
+  - ru-or-o00004-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4986
+  source_data:
+    bare: ему
+    accented: ему'
+    translations_en: dative of "he"; dative of "it"
+    translations_de: Dativ von "он"; Dativ von "оно"
+  source_record_sha256: bb59ca1ec1f3e988c953b592a9d805639cda547f380996a30220b4350150ecd4
+  features:
+    cases:
+    - dative
+  linkage_provenance:
+    source_id: original-ru
+    note: Source identifies dative of he or it.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o01969-linked-form
+  target: её
+  reading: её
+  reading_kind: source-yo-reading
+  lexical_identity: ru-lex-or-o00004
+  sense_ids:
+  - ru-or-o00011-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=1969
+  source_data:
+    bare: её
+    accented: её
+    translations_en: genetive of "she"
+    translations_de: Genitiv von "она"
+  source_record_sha256: 538dabee453c855a7c9cdb60eb343549e593abddcc23ca783223bd7b9bece8ef
+  features:
+    cases:
+    - genitive
+    - accusative
+  linkage_provenance:
+    source_id: original-ru
+    note: Original grammatical linkage; source English explicitly mentions genitive only.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04987-linked-form
+  target: ей
+  reading: ей
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00004
+  sense_ids:
+  - ru-or-o00011-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4987
+  source_data:
+    bare: ей
+    accented: ей
+    translations_en: dative of "she"
+    translations_de: Dativ von "она"
+  source_record_sha256: 83081003b56aa5c4eee0d55c492fd6a5de70650f149bd05d7c25c114f4b45998
+  features:
+    cases:
+    - dative
+  linkage_provenance:
+    source_id: original-ru
+    note: Source identifies dative of she.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o01970-linked-form
+  target: их
+  reading: их
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00014
+  sense_ids:
+  - ru-or-o00014-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=1970
+  source_data:
+    bare: их
+    accented: их
+    translations_en: their, them
+    translations_de: 'Genitiv und Akkusativ von "они"; Präpositiv von "они": immer "них"; ihr, ihre'
+  source_record_sha256: d6eabfd2dfe65abff879709ed285bb66ab0f65210fcdad17345d669aa26ecc7f
+  features:
+    cases:
+    - genitive
+    - accusative
+  linkage_provenance:
+    source_id: original-ru
+    note: Original personal-pronoun linkage; invariant possessive use requires a separate intended-sense
+      decision.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.
+- id: ru-or-o04990-linked-form
+  target: им
+  reading: им
+  reading_kind: source-monosyllabic-or-nonsyllabic
+  lexical_identity: ru-lex-or-o00014
+  sense_ids:
+  - ru-or-o00014-s001
+  source_id: openrussian-backup
+  source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv#data-record=4990
+  source_data:
+    bare: им
+    accented: им
+    translations_en: dative of "they"
+    translations_de: Dativ von "они"
+  source_record_sha256: 8ab9293a6363c54cf5689ab3d5b7d3548b59d70f0f16b69542ee5066dce1ff55
+  features:
+    cases:
+    - dative
+  linkage_provenance:
+    source_id: original-ru
+    note: Source identifies dative of they.
+  limitation: Source spelling/reading with separately authored grammatical linkage; adds no lexical headword.

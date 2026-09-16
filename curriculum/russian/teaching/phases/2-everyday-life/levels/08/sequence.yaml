@@ -1,0 +1,342 @@
+schema_version: 3
+id: ru-level-08
+title: Work, study, and invitations
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 8
+phase: everyday-life
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+goals: &id001
+- Explain ability and familiar responsibilities using common irregular verbs.
+- Invite someone and respond to constraints politely.
+- Coordinate people and quantities in a work or study task.
+checkpoint:
+  task: Arrange a shared task or invitation around another person's constraints and explain who can do what.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-08-leisure-01
+  title: Leisure and participation - 1
+  outcome: Discuss an activity and coordinate participation.
+  vocabulary:
+  - {id: ru-or-n01733-s001, ch: приглашение, pr: приглаше́ние, ds: invitation}
+  - {id: ru-or-n00151-s001, ch: гость, pr: гость, ds: guest}
+  - {id: ru-or-n00547-s001, ch: праздник, pr: пра́здник, ds: holiday}
+  - {id: ru-or-n00684-s001, ch: подарок, pr: пода́рок, ds: gift}
+  - {id: ru-or-n00009-s002, ch: день, pr: день, ds: afternoon}
+  - {id: ru-or-n00627-s001, ch: кино, pr: кино́, ds: cinema}
+  - {id: ru-or-n00502-s001, ch: фильм, pr: фильм, ds: film}
+  - {id: ru-or-n00411-s001, ch: театр, pr: теа́тр, ds: theatre}
+  - {id: ru-or-n01039-s001, ch: концерт, pr: конце́рт, ds: concert}
+  - {id: ru-or-n00325-s001, ch: музыка, pr: му́зыка, ds: music}
+  - {id: ru-or-n00637-s001, ch: песня, pr: пе́сня, ds: song}
+  - {id: ru-or-n01113-s001, ch: танец, pr: та́нец, ds: dance}
+  - {id: ru-or-n01335-s001, ch: спорт, pr: спорт, ds: sport}
+  - {id: ru-or-n00223-s001, ch: игра, pr: игра́, ds: game}
+  - {id: ru-or-n00735-s001, ch: парк, pr: парк, ds: park}
+  - {id: ru-or-n01555-s001, ch: прогулка, pr: прогу́лка, ds: stroll}
+  - {id: ru-or-n00545-s001, ch: ресторан, pr: рестора́н, ds: restaurant}
+  - {id: ru-or-n01215-s001, ch: кафе, pr: кафе́, ds: café}
+  - {id: ru-or-n03397-s001, ch: меню, pr: меню́, ds: menu}
+  - {id: ru-or-v00356-s001, ch: пригласить, pr: пригласи́ть, ds: invite}
+  - {id: ru-or-v00658-s001, ch: приглашать, pr: приглаша́ть, ds: invite}
+  - {id: ru-or-v00192-s001, ch: встретить, pr: встре́тить, ds: meet}
+  - {id: ru-or-v00342-s001, ch: встречать, pr: встреча́ть, ds: meet}
+  - {id: ru-or-v00279-s001, ch: встретиться, pr: встре́титься, ds: meet}
+  - {id: ru-or-v00099-s001, ch: играть, pr: игра́ть, ds: play}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00261-s001, ch: встречаться, pr: встреча́ться, ds: meet}
+  review_grammar: []
+- id: level-08-leisure-02
+  title: Leisure and participation - 2
+  outcome: Discuss an activity and coordinate participation.
+  vocabulary:
+  - {id: ru-or-v00421-s001, ch: гулять, pr: гуля́ть, ds: walk}
+  - {id: ru-or-v00614-s001, ch: танцевать, pr: танцева́ть, ds: dance}
+  - {id: ru-or-v00178-s001, ch: петь, pr: петь, ds: sing}
+  - {id: ru-or-v00014-s001, ch: смотреть, pr: смотре́ть, ds: watch}
+  - {id: ru-or-v00037-s001, ch: посмотреть, pr: посмотре́ть, ds: watch}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01215-s001, ch: кафе, pr: кафе́, ds: café}
+  - {id: ru-or-n03397-s001, ch: меню, pr: меню́, ds: menu}
+  - {id: ru-or-v00356-s001, ch: пригласить, pr: пригласи́ть, ds: invite}
+  - {id: ru-or-v00658-s001, ch: приглашать, pr: приглаша́ть, ds: invite}
+  - {id: ru-or-v00192-s001, ch: встретить, pr: встре́тить, ds: meet}
+  - {id: ru-or-v00342-s001, ch: встречать, pr: встреча́ть, ds: meet}
+  - {id: ru-or-v00279-s001, ch: встретиться, pr: встре́титься, ds: meet}
+  - {id: ru-or-v00099-s001, ch: играть, pr: игра́ть, ds: play}
+  review_grammar: []
+- id: level-08-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning task and ask for useful feedback.
+  vocabulary:
+  - {id: ru-or-n07621-s001, ch: произношение, pr: произноше́ние, ds: pronunciation}
+  - {id: ru-or-n02193-s001, ch: учёба, pr: учёба, ds: studies}
+  - {id: ru-or-n00668-s001, ch: урок, pr: уро́к, ds: lesson}
+  - {id: ru-or-n00558-s001, ch: занятие, pr: заня́тие, ds: class or lesson}
+  - {id: ru-or-n00391-s001, ch: курс, pr: курс, ds: course}
+  - {id: ru-or-n00190-s001, ch: класс, pr: класс, ds: class}
+  - {id: ru-or-n00688-s001, ch: университет, pr: университе́т, ds: university}
+  - {id: ru-or-n00233-s001, ch: институт, pr: институ́т, ds: institute}
+  - {id: ru-or-n00434-s001, ch: студент, pr: студе́нт, ds: student}
+  - {id: ru-or-n03658-s001, ch: студентка, pr: студе́нтка, ds: female student}
+  - {id: ru-or-n00633-s001, ch: ученик, pr: учени́к, ds: pupil}
+  - {id: ru-or-n00368-s001, ch: учитель, pr: учи́тель, ds: teacher}
+  - {id: ru-or-n01609-s001, ch: преподаватель, pr: преподава́тель, ds: instructor}
+  - {id: ru-or-n01079-s001, ch: экзамен, pr: экза́мен, ds: exam}
+  - {id: ru-or-n01107-s001, ch: оценка, pr: оце́нка, ds: grade}
+  - {id: ru-or-n00445-s001, ch: ошибка, pr: оши́бка, ds: mistake}
+  - {id: ru-or-n02793-s001, ch: упражнение, pr: упражне́ние, ds: exercise}
+  - {id: ru-or-n00264-s001, ch: правило, pr: пра́вило, ds: rule}
+  - {id: ru-or-n01679-s001, ch: тетрадь, pr: тетра́дь, ds: exercise-book}
+  - {id: ru-or-n00621-s001, ch: ручка, pr: ру́чка, ds: pen}
+  - {id: ru-or-n01178-s001, ch: карандаш, pr: каранда́ш, ds: pencil}
+  - {id: ru-or-n02696-s001, ch: словарь, pr: слова́рь, ds: dictionary}
+  - {id: ru-or-n00475-s001, ch: страница, pr: страни́ца, ds: page}
+  - {id: ru-or-n00514-s001, ch: текст, pr: текст, ds: text}
+  - {id: ru-or-n00313-s001, ch: пример, pr: приме́р, ds: example}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00352-s001, ch: прочитать, pr: прочита́ть, ds: read}
+  review_grammar: []
+- id: level-08-learning-02
+  title: Learning and education - 2
+  outcome: Explain a learning task and ask for useful feedback.
+  vocabulary:
+  - {id: ru-or-v00463-s001, ch: записать, pr: записа́ть, ds: write down or record}
+  - {id: ru-or-v00875-s001, ch: записывать, pr: запи́сывать, ds: write down or record}
+  - {id: ru-or-v00305-s001, ch: учить, pr: учи́ть, ds: learn}
+  - {id: ru-or-v00208-s001, ch: учиться, pr: учи́ться, ds: study}
+  - {id: ru-or-v00640-s001, ch: изучать, pr: изуча́ть, ds: study}
+  - {id: ru-or-v01816-s001, ch: выучить, pr: вы́учить, ds: learn}
+  - {id: ru-or-v00059-s001, ch: написать, pr: написа́ть, ds: write}
+  - {id: ru-or-v01036-s001, ch: переводить, pr: переводи́ть, ds: translate}
+  - {id: ru-or-v00389-s001, ch: перевести, pr: перевести́, ds: Translate}
+  - {id: ru-or-v00456-s001, ch: запомнить, pr: запо́мнить, ds: memorize}
+  - {id: ru-or-v00045-s001, ch: помнить, pr: по́мнить, ds: remember}
+  - {id: ru-or-v00070-s001, ch: забыть, pr: забы́ть, ds: forget}
+  - {id: ru-or-n00919-s001, ch: библиотека, pr: библиоте́ка, ds: library}
+  - {id: ru-or-n00506-s001, ch: образование, pr: образова́ние, ds: education}
+  - {id: ru-or-v00119-s901, ch: уметь, pr: уме́ть, ds: know how to}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00264-s001, ch: правило, pr: пра́вило, ds: rule}
+  - {id: ru-or-n01679-s001, ch: тетрадь, pr: тетра́дь, ds: exercise-book}
+  - {id: ru-or-n00621-s001, ch: ручка, pr: ру́чка, ds: pen}
+  - {id: ru-or-n01178-s001, ch: карандаш, pr: каранда́ш, ds: pencil}
+  - {id: ru-or-n02696-s001, ch: словарь, pr: слова́рь, ds: dictionary}
+  - {id: ru-or-n00475-s001, ch: страница, pr: страни́ца, ds: page}
+  - {id: ru-or-n00514-s001, ch: текст, pr: текст, ds: text}
+  - {id: ru-or-n00313-s001, ch: пример, pr: приме́р, ds: example}
+  review_grammar: []
+- id: level-08-work-01
+  title: Work and cooperation - 1
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary:
+  - {id: ru-or-n00020-s001, ch: работа, pr: рабо́та, ds: job}
+  - {id: ru-or-n00887-s001, ch: профессия, pr: профе́ссия, ds: profession}
+  - {id: ru-or-n02016-s001, ch: офис, pr: о́фис, ds: office}
+  - {id: ru-or-n00396-s001, ch: фирма, pr: фи́рма, ds: firm}
+  - {id: ru-or-n00215-s001, ch: компания, pr: компа́ния, ds: company}
+  - {id: ru-or-n00759-s001, ch: коллега, pr: колле́га, ds: colleague}
+  - {id: ru-or-n00091-s001, ch: начальник, pr: нача́льник, ds: boss}
+  - {id: ru-or-n00456-s001, ch: сотрудник, pr: сотру́дник, ds: employee}
+  - {id: ru-or-n26805-s001, ch: рабочий, pr: рабо́чий, ds: worker}
+  - {id: ru-or-n00440-s001, ch: инженер, pr: инжене́р, ds: engineer}
+  - {id: ru-or-n00444-s001, ch: секретарь, pr: секрета́рь, ds: secretary}
+  - {id: ru-or-n00194-s001, ch: директор, pr: дире́ктор, ds: director}
+  - {id: ru-or-n00931-s001, ch: задание, pr: зада́ние, ds: task}
+  - {id: ru-or-n00352-s001, ch: задача, pr: зада́ча, ds: task}
+  - {id: ru-or-n00642-s001, ch: проект, pr: прое́кт, ds: project}
+  - {id: ru-or-n00386-s001, ch: срок, pr: срок, ds: term}
+  - {id: ru-or-n01605-s001, ch: перерыв, pr: переры́в, ds: break}
+  - {id: ru-or-n00831-s001, ch: зарплата, pr: зарпла́та, ds: salary}
+  - {id: ru-or-n01325-s001, ch: совещание, pr: совеща́ние, ds: meeting}
+  - {id: ru-or-n00913-s001, ch: договор, pr: догово́р, ds: contract}
+  - {id: ru-or-n26819-s001, ch: выходной, pr: выходно́й, ds: weekend}
+  - {id: ru-or-n00295-s001, ch: опыт, pr: о́пыт, ds: experience}
+  - {id: ru-or-v00023-s001, ch: начать, pr: нача́ть, ds: begin}
+  - {id: ru-or-v00068-s001, ch: начинать, pr: начина́ть, ds: begin}
+  - {id: ru-or-v00259-s001, ch: закончить, pr: зако́нчить, ds: finish}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-08-work-02
+  title: Work and cooperation - 2
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary:
+  - {id: ru-or-v01453-s001, ch: заканчивать, pr: зака́нчивать, ds: finish}
+  - {id: ru-or-v00019-s001, ch: сделать, pr: сде́лать, ds: do}
+  - {id: ru-or-v00064-s001, ch: продолжать, pr: продолжа́ть, ds: continue}
+  - {id: ru-or-v00628-s001, ch: продолжить, pr: продо́лжить, ds: continue}
+  - {id: ru-or-v00324-s001, ch: объяснять, pr: объясня́ть, ds: explain}
+  - {id: ru-or-v00130-s001, ch: объяснить, pr: объясни́ть, ds: explain}
+  - {id: ru-or-v00080-s001, ch: послать, pr: посла́ть, ds: send}
+  - {id: ru-or-v00322-s001, ch: отправить, pr: отпра́вить, ds: send}
+  - {id: ru-or-v01232-s001, ch: отправлять, pr: отправля́ть, ds: send}
+  - {id: ru-or-v00041-s001, ch: получить, pr: получи́ть, ds: receive}
+  - {id: ru-or-v00171-s001, ch: получать, pr: получа́ть, ds: receive}
+  - {id: ru-or-v00245-s001, ch: звонить, pr: звони́ть, ds: (phone)call}
+  - {id: ru-or-v00218-s001, ch: позвонить, pr: позвони́ть, ds: make a telephone call}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00831-s001, ch: зарплата, pr: зарпла́та, ds: salary}
+  - {id: ru-or-n01325-s001, ch: совещание, pr: совеща́ние, ds: meeting}
+  - {id: ru-or-n00913-s001, ch: договор, pr: догово́р, ds: contract}
+  - {id: ru-or-n26819-s001, ch: выходной, pr: выходно́й, ds: weekend}
+  - {id: ru-or-n00295-s001, ch: опыт, pr: о́пыт, ds: experience}
+  - {id: ru-or-v00023-s001, ch: начать, pr: нача́ть, ds: begin}
+  - {id: ru-or-v00068-s001, ch: начинать, pr: начина́ть, ds: begin}
+  - {id: ru-or-v00259-s001, ch: закончить, pr: зако́нчить, ds: finish}
+  review_grammar: []
+- id: level-08-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00158-s001, ch: интересный, pr: интере́сный, ds: interesting}
+  - {id: ru-or-a00662-s001, ch: скучный, pr: ску́чный, ds: boring}
+  - {id: ru-or-a00227-s001, ch: трудный, pr: тру́дный, ds: difficult}
+  - {id: ru-or-a11753-s001, ch: лёгкий, pr: лёгкий, ds: easy (not difficult)}
+  - {id: ru-or-a00105-s001, ch: важный, pr: ва́жный, ds: important}
+  - {id: ru-or-a00052-s001, ch: готовый, pr: гото́вый, ds: ready}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00091-s001, ch: больной, pr: больно́й, ds: sick}
+  - {id: ru-or-a00126-s001, ch: долгий, pr: до́лгий, ds: long}
+  - {id: ru-or-a00068-s001, ch: короткий, pr: коро́ткий, ds: short}
+  - {id: ru-or-a00124-s001, ch: быстрый, pr: бы́стрый, ds: fast}
+  - {id: ru-or-a00590-s001, ch: медленный, pr: ме́дленный, ds: slow}
+  - {id: ru-or-a00144-s001, ch: свободный, pr: свобо́дный, ds: free}
+  - {id: ru-or-a00249-s001, ch: занятый, pr: за́нятый, ds: busy}
+  - {id: ru-or-a00233-s001, ch: иностранный, pr: иностра́нный, ds: foreign}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+  - {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+- id: level-08-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-o00037-s001, ch: если, pr: е́сли, ds: if}
+  - {id: ru-or-o00039-s001, ch: или, pr: и́ли, ds: or}
+  - {id: ru-or-o00045-s001, ch: чтобы, pr: что́бы, ds: in order to}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00393-s001, ch: триста, pr: три́ста, ds: three hundred}
+  - {id: ru-or-o00717-s001, ch: четыреста, pr: четы́реста, ds: four hundred}
+  - {id: ru-or-o00539-s001, ch: пятьсот, pr: пятьсо́т, ds: five hundred}
+  - {id: ru-or-o00844-s001, ch: шестьсот, pr: шестьсо́т, ds: six hundred}
+  - {id: ru-or-o00909-s001, ch: семьсот, pr: семьсо́т, ds: seven hundred}
+  - {id: ru-or-o00890-s001, ch: восемьсот, pr: восемьсо́т, ds: eight hundred}
+  - {id: ru-or-o00832-s001, ch: девятьсот, pr: девятьсо́т, ds: nine hundred}
+  - {id: ru-or-n00075-s001, ch: тысяча, pr: ты́сяча, ds: a thousand}
+  review_grammar: []
+- id: level-08-communication-practice-01
+  title: Communication and repair - sentence practice 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+  review_vocabulary:
+  - {id: ru-or-o00079-s001, ch: хорошо, pr: хорошо́, ds: well}
+  - {id: ru-or-o00163-s001, ch: плохо, pr: пло́хо, ds: it is bad}
+  - {id: ru-or-o00157-s001, ch: медленно, pr: ме́дленно, ds: slowly}
+  - {id: ru-or-n01923-s001, ch: переводчик, pr: перево́дчик, ds: translator or interpreter (person)}
+  - {id: ru-or-o00061-s001, ch: можно, pr: мо́жно, ds: it is permitted}
+  - {id: ru-or-o00111-s001, ch: нельзя, pr: нельзя́, ds: not allowed or not possible}
+  - {id: ru-or-v00295-s001, ch: подождать, pr: подожда́ть, ds: wait a while}
+  - {id: ru-or-o00196-s003, ch: пожалуйста, pr: пожа́луйста, ds: here you go}
+  review_grammar:
+  - {id: ru-g-polite-repair, ch: 'Извините. Повторите, пожалуйста.', ds: Greet politely and ask for communication repair}
+  - {id: ru-g-basic-questions, ch: 'Кто это? Что это? Где [noun]? Когда [event]?', ds: 'Ask identity, location, or time without an auxiliary'}
+  - {id: ru-g-basic-negation, ch: 'Я не [verb]. Это не [noun].', ds: Negate a statement or correct identification}
+- id: level-08-leisure-practice-01
+  title: Leisure and participation - sentence practice 1
+  outcome: Discuss an activity and coordinate participation.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-joint-invitation, ch: 'Давай / Давайте + [imperfective infinitive / perfective plural form]', ds: Invite someone to do an activity together}
+  review_vocabulary:
+  - {id: ru-or-v00342-s001, ch: встречать, pr: встреча́ть, ds: meet}
+  - {id: ru-or-v00279-s001, ch: встретиться, pr: встре́титься, ds: meet}
+  - {id: ru-or-v00099-s001, ch: играть, pr: игра́ть, ds: play}
+  - {id: ru-or-v00421-s001, ch: гулять, pr: гуля́ть, ds: walk}
+  - {id: ru-or-v00614-s001, ch: танцевать, pr: танцева́ть, ds: dance}
+  - {id: ru-or-v00178-s001, ch: петь, pr: петь, ds: sing}
+  - {id: ru-or-v00014-s001, ch: смотреть, pr: смотре́ть, ds: watch}
+  - {id: ru-or-v00037-s001, ch: посмотреть, pr: посмотре́ть, ds: watch}
+  review_grammar: []
+- id: level-08-work-practice-01
+  title: Work and cooperation - sentence practice 1
+  outcome: Explain responsibilities and coordinate a shared outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-ability-moch, ch: 'могу / можешь / может / можем / можете / могут + [infinitive]', ds: Express ability with irregular мочь}
+  - {id: ru-g-occupation-instrumental, ch: 'работать [instrumental role]; быть [instrumental role]', ds: Describe a role with an instrumental complement}
+  review_vocabulary:
+  - {id: ru-or-v00003-s001, ch: мочь, pr: мочь, ds: can}
+  - {id: ru-or-v00030-s001, ch: работать, pr: рабо́тать, ds: work}
+  - {id: ru-or-v00130-s001, ch: объяснить, pr: объясни́ть, ds: explain}
+  - {id: ru-or-v00080-s001, ch: послать, pr: посла́ть, ds: send}
+  - {id: ru-or-v00322-s001, ch: отправить, pr: отпра́вить, ds: send}
+  - {id: ru-or-v01232-s001, ch: отправлять, pr: отправля́ть, ds: send}
+  - {id: ru-or-v00041-s001, ch: получить, pr: получи́ть, ds: receive}
+  - {id: ru-or-v00171-s001, ch: получать, pr: получа́ть, ds: receive}
+  - {id: ru-or-v00245-s001, ch: звонить, pr: звони́ть, ds: (phone)call}
+  - {id: ru-or-v00218-s001, ch: позвонить, pr: позвони́ть, ds: make a telephone call}
+  review_grammar: []
+- id: level-08-learning-practice-01
+  title: Learning and education - sentence practice 1
+  outcome: Explain a learning task and ask for useful feedback.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-learned-skill, ch: 'уметь + [infinitive]; мочь + [infinitive]', ds: Distinguish a learned skill from situational ability}
+  review_vocabulary:
+  - {id: ru-or-v00119-s901, ch: уметь, pr: уме́ть, ds: know how to}
+  - {id: ru-or-v01036-s001, ch: переводить, pr: переводи́ть, ds: translate}
+  - {id: ru-or-v00389-s001, ch: перевести, pr: перевести́, ds: Translate}
+  - {id: ru-or-v00456-s001, ch: запомнить, pr: запо́мнить, ds: memorize}
+  - {id: ru-or-v00045-s001, ch: помнить, pr: по́мнить, ds: remember}
+  - {id: ru-or-v00070-s001, ch: забыть, pr: забы́ть, ds: forget}
+  - {id: ru-or-n00919-s001, ch: библиотека, pr: библиоте́ка, ds: library}
+  - {id: ru-or-n00506-s001, ch: образование, pr: образова́ние, ds: education}
+  review_grammar: []
+- id: level-08-money-practice-01
+  title: Money and commercial choices - sentence practice 1
+  outcome: Ask about costs or explain a commercial choice without assuming availability.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-larger-quantities, ch: 'пять / много / мало / сколько + [genitive noun]', ds: Count larger or unspecified quantities}
+  review_vocabulary: []
+  review_grammar:
+  - {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+- id: level-08-grammar-practice-01
+  title: Sentence construction - sentence practice 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-irregular-eat-give, ch: ем / ешь / ест / едим / едите / едят; дам / дашь / даст, ds: Distinguish irregular eating and giving forms}
+  review_vocabulary:
+  - {id: ru-or-v00006-s001, ch: есть, pr: есть, ds: eat}
+  - {id: ru-or-v00029-s001, ch: дать, pr: дать, ds: give}
+  - {id: ru-or-o00844-s001, ch: шестьсот, pr: шестьсо́т, ds: six hundred}
+  - {id: ru-or-o00909-s001, ch: семьсот, pr: семьсо́т, ds: seven hundred}
+  - {id: ru-or-o00890-s001, ch: восемьсот, pr: восемьсо́т, ds: eight hundred}
+  - {id: ru-or-o00832-s001, ch: девятьсот, pr: девятьсо́т, ds: nine hundred}
+  - {id: ru-or-n00075-s001, ch: тысяча, pr: ты́сяча, ds: a thousand}
+  - {id: ru-or-o00037-s001, ch: если, pr: е́сли, ds: if}
+  - {id: ru-or-o00039-s001, ch: или, pr: и́ли, ds: or}
+  - {id: ru-or-o00045-s001, ch: чтобы, pr: что́бы, ds: in order to}
+  review_grammar: []

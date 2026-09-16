@@ -1,0 +1,113 @@
+schema_version: 1
+id: ru-tourist
+title: Russian for a short visit
+quick_start: [polite-repair, food-basics, finding-your-way, paying, asking-for-help]
+units:
+- id: polite-repair
+  title: Make contact and ask again
+  outcome: Greet politely, signal that a message was not understood, and request repetition, slower speech, or writing; pointing and reading are valid supported practice, not evidence of spontaneous speech.
+  phrases:
+  - {id: ru-tourist-p001, ch: 'Здравствуйте.', ds: 'Hello. (polite)', grammar_ids: [ru-g-polite-repair]}
+  - {id: ru-tourist-p002, ch: 'Извините, я не понимаю.', ds: 'Sorry, I do not understand.', grammar_ids: [ru-g-polite-repair, ru-g-basic-negation]}
+  - {id: ru-tourist-p003, ch: 'Повторите, пожалуйста.', ds: 'Please repeat that.', grammar_ids: [ru-g-polite-repair]}
+  - {id: ru-tourist-p004, ch: 'Говорите медленнее, пожалуйста.', ds: 'Please speak more slowly.', grammar_ids: [ru-g-polite-repair]}
+  - {id: ru-tourist-p005, ch: 'Напишите, пожалуйста.', ds: 'Please write it down.', grammar_ids: [ru-g-polite-repair]}
+- id: food-basics
+  title: Ask for water and a simple meal
+  outcome: Request water, tea, a menu, or soup and check a simple identification; the request does not establish availability, ingredients, or dietary safety.
+  phrases:
+  - {id: ru-tourist-p006, ch: 'Можно воду, пожалуйста?', ds: 'Could I have some water, please?', grammar_ids: [ru-g-permission-request], sense_hints: {воду: water}}
+  - {id: ru-tourist-p007, ch: 'Можно меню, пожалуйста?', ds: 'Could I have a menu, please?', grammar_ids: [ru-g-permission-request], sense_hints: {меню: menu}}
+  - {id: ru-tourist-p008, ch: 'Можно чай, пожалуйста?', ds: 'Could I have some tea, please?', grammar_ids: [ru-g-permission-request], sense_hints: {чай: tea}}
+  - {id: ru-tourist-p009, ch: 'Можно суп, пожалуйста?', ds: 'Could I have some soup, please?', grammar_ids: [ru-g-permission-request], sense_hints: {суп: soup}}
+  - {id: ru-tourist-p010, ch: 'Это вода?', ds: 'Is this water?', grammar_ids: [ru-g-present-identity, ru-g-basic-questions], sense_hints: {вода: water}}
+- id: finding-your-way
+  title: Locate a place and check the direction
+  outcome: Ask where a toilet or hotel is, request a walking route to a station, and ask someone to show a place on a map; verify the actual destination and response.
+  phrases:
+  - {id: ru-tourist-p011, ch: 'Где туалет?', ds: 'Where is the toilet?', grammar_ids: [ru-g-basic-questions], sense_hints: {туалет: toilet}}
+  - {id: ru-tourist-p012, ch: 'Где гостиница?', ds: 'Where is the hotel?', grammar_ids: [ru-g-basic-questions], sense_hints: {гостиница: hotel}}
+  - {id: ru-tourist-p013, ch: 'Как пройти на вокзал?', ds: 'How do I walk to the station?', grammar_ids: [ru-g-place-direction-origin], sense_hints: {вокзал: railway station}}
+  - {id: ru-tourist-p014, ch: 'Покажите на карте, пожалуйста.', ds: 'Please show me on the map.', grammar_ids: [ru-g-polite-help-imperative, ru-g-location-prepositional], sense_hints: {карте: map}}
+  - {id: ru-tourist-p015, ch: 'Это далеко?', ds: 'Is it far away?', grammar_ids: [ru-g-present-identity, ru-g-basic-questions], sense_hints: {далеко: far away}}
+- id: paying
+  title: Ask about a price, quantity, and payment
+  outcome: Ask a price, request two tickets or a receipt, and ask about card payment; these questions make no claim about local payment availability, currency, or transaction rules.
+  phrases:
+  - {id: ru-tourist-p016, ch: 'Сколько стоит билет?', ds: 'How much does a ticket cost?', grammar_ids: [ru-g-larger-quantities], sense_hints: {билет: ticket, стоит: costs}}
+  - {id: ru-tourist-p017, ch: 'Сколько это стоит?', ds: 'How much does this cost?', grammar_ids: [ru-g-larger-quantities, ru-g-present-identity], sense_hints: {стоит: costs}}
+  - {id: ru-tourist-p018, ch: 'Вы принимаете карты?', ds: 'Do you accept cards?', grammar_ids: [ru-g-polite-vy, ru-g-present-conjugation, ru-g-accusative-object], sense_hints: {принимаете: accept, карты: payment cards}}
+  - {id: ru-tourist-p019, ch: 'Можно чек, пожалуйста?', ds: 'Could I have a receipt, please?', grammar_ids: [ru-g-permission-request], sense_hints: {чек: receipt}}
+  - {id: ru-tourist-p020, ch: 'Два билета, пожалуйста.', ds: 'Two tickets, please.', grammar_ids: [ru-g-small-quantities], sense_hints: {билета: ticket}}
+- id: asking-for-help
+  title: Ask for help and a way to contact someone
+  outcome: Request help, explain a need to call, ask where a doctor is, or clarify an address; these are language exercises, not emergency procedures or assurance that help will be available.
+  phrases:
+  - {id: ru-tourist-p021, ch: 'Помогите, пожалуйста.', ds: 'Please help me.', grammar_ids: [ru-g-polite-help-imperative]}
+  - {id: ru-tourist-p022, ch: 'Мне нужно позвонить.', ds: 'I need to make a phone call.', grammar_ids: [ru-g-dative-need], sense_hints: {позвонить: make a phone call}}
+  - {id: ru-tourist-p023, ch: 'Где врач?', ds: 'Where is a doctor?', grammar_ids: [ru-g-basic-questions], sense_hints: {врач: doctor}}
+  - {id: ru-tourist-p024, ch: 'Я не понимаю адрес.', ds: 'I do not understand the address.', grammar_ids: [ru-g-basic-negation, ru-g-accusative-object], sense_hints: {адрес: address}}
+  - {id: ru-tourist-p025, ch: 'Можно здесь подождать?', ds: 'May I wait here?', grammar_ids: [ru-g-permission-request], sense_hints: {подождать: wait a while, здесь: here}}
+- id: transport
+  title: Check a bus, stop, or journey
+  outcome: Identify a vehicle or stop, ask when a train departs, and state a station destination; check names, times, and transport details with current local information.
+  phrases:
+  - {id: ru-tourist-p026, ch: 'Где остановка?', ds: 'Where is the stop?', grammar_ids: [ru-g-basic-questions], sense_hints: {остановка: transport stop}}
+  - {id: ru-tourist-p027, ch: 'Это автобус?', ds: 'Is this a bus?', grammar_ids: [ru-g-present-identity, ru-g-basic-questions], sense_hints: {автобус: bus}}
+  - {id: ru-tourist-p028, ch: 'Когда поезд отправляется?', ds: 'When does the train leave?', grammar_ids: [ru-g-basic-questions, ru-g-reflexive-routines], sense_hints: {поезд: train, отправляется: departs, Когда: when}}
+  - {id: ru-tourist-p029, ch: 'Я еду на вокзал.', ds: 'I am going to the station by vehicle.', grammar_ids: [ru-g-current-motion], sense_hints: {еду: travel by vehicle, вокзал: railway station}}
+  - {id: ru-tourist-p030, ch: 'Мне нужно такси.', ds: 'I need a taxi.', grammar_ids: [ru-g-needed-noun], sense_hints: {такси: taxi}}
+- id: accommodation
+  title: Ask about a room and a practical problem
+  outcome: Ask whether a room is available, identify a reservation, request a key, and describe a lack of water; ask about a proposed remedy instead of assuming a booking or facility guarantee.
+  phrases:
+  - {id: ru-tourist-p031, ch: 'У вас есть номер?', ds: 'Do you have a room available?', grammar_ids: [ru-g-possession-existence], sense_hints: {номер: hotel room}}
+  - {id: ru-tourist-p032, ch: 'У меня есть бронь.', ds: 'I have a reservation.', grammar_ids: [ru-g-possession-existence], sense_hints: {бронь: reservation}}
+  - {id: ru-tourist-p033, ch: 'Можно ключ, пожалуйста?', ds: 'Could I have the key, please?', grammar_ids: [ru-g-permission-request], sense_hints: {ключ: door key}}
+  - {id: ru-tourist-p034, ch: 'В номере нет воды.', ds: 'There is no water in the room.', grammar_ids: [ru-g-location-prepositional, ru-g-absence-genitive], sense_hints: {номере: hotel room, воды: water}}
+  - {id: ru-tourist-p035, ch: 'Когда завтрак?', ds: 'When is breakfast?', grammar_ids: [ru-g-basic-questions, ru-g-present-identity], sense_hints: {завтрак: breakfast, Когда: when}}
+- id: food-restrictions
+  title: Explain an ingredient restriction and ask for checking
+  outcome: Ask about milk or nuts, request no sugar, and state a milk allergy as a language exercise; important allergy information, severity, and cross-contact needs require a professionally verified written explanation and qualified human confirmation, not these phrases alone.
+  phrases:
+  - {id: ru-tourist-p036, ch: 'Чай без сахара, пожалуйста.', ds: 'Tea without sugar, please.', grammar_ids: [ru-g-without-genitive, ru-g-polite-repair], sense_hints: {сахара: sugar, Чай: tea}}
+  - {id: ru-tourist-p037, ch: 'Здесь есть молоко?', ds: 'Is there milk in this?', grammar_ids: [ru-g-possession-existence, ru-g-basic-questions], sense_hints: {молоко: milk, Здесь: here}}
+  - {id: ru-tourist-p038, ch: 'Здесь есть орехи?', ds: 'Are there nuts in this?', grammar_ids: [ru-g-possession-existence, ru-g-basic-questions], sense_hints: {орехи: nuts, Здесь: here}}
+  - {id: ru-tourist-p039, ch: 'У меня аллергия на молоко.', ds: 'I am allergic to milk.', grammar_ids: [ru-g-health-experiencer], sense_hints: {аллергия: allergy, молоко: milk}}
+  - {id: ru-tourist-p040, ch: 'Проверьте, пожалуйста.', ds: 'Please check.', grammar_ids: [ru-g-imperative-aspect, ru-g-polite-repair], sense_hints: {Проверьте: check}}
+- id: shops-services
+  title: Clarify a purchase or service
+  outcome: Locate a shop, ask to see an item, request a bag, and ask for repair or replacement; distinguish a request from an entitlement or assurance that the service exists.
+  phrases:
+  - {id: ru-tourist-p041, ch: 'Где магазин?', ds: 'Where is the shop?', grammar_ids: [ru-g-basic-questions], sense_hints: {магазин: shop}}
+  - {id: ru-tourist-p042, ch: 'Можно посмотреть?', ds: 'May I have a look?', grammar_ids: [ru-g-permission-request], sense_hints: {посмотреть: have a look}}
+  - {id: ru-tourist-p043, ch: 'Можно пакет, пожалуйста?', ds: 'Could I have a bag, please?', grammar_ids: [ru-g-permission-request], sense_hints: {пакет: shopping bag}}
+  - {id: ru-tourist-p044, ch: 'Можно это починить?', ds: 'Can this be repaired?', grammar_ids: [ru-g-permission-request, ru-g-accusative-object], sense_hints: {починить: repair}}
+  - {id: ru-tourist-p045, ch: 'Можно заменить билет?', ds: 'Can the ticket be replaced?', grammar_ids: [ru-g-permission-request, ru-g-accusative-object], sense_hints: {заменить: replace, билет: ticket}}
+- id: ordinary-health
+  title: Explain a need and seek qualified help
+  outcome: Locate a pharmacy, describe feeling unwell or a headache, ask to see a doctor, and request writing; these short learning phrases cannot convey a diagnosis, urgency, medication suitability, or complete medical history and require qualified verification for consequential use.
+  phrases:
+  - {id: ru-tourist-p046, ch: 'Где аптека?', ds: 'Where is the pharmacy?', grammar_ids: [ru-g-basic-questions], sense_hints: {аптека: pharmacy}}
+  - {id: ru-tourist-p047, ch: 'Мне плохо.', ds: 'I feel unwell.', grammar_ids: [ru-g-dative-need, ru-g-impersonal-time], sense_hints: {плохо: unwell}}
+  - {id: ru-tourist-p048, ch: 'У меня болит голова.', ds: 'I have a headache.', grammar_ids: [ru-g-health-experiencer], sense_hints: {болит: aches, голова: head}}
+  - {id: ru-tourist-p049, ch: 'Мне нужно к врачу.', ds: 'I need to see a doctor.', grammar_ids: [ru-g-dative-need, ru-g-origins-and-people], sense_hints: {врачу: doctor}}
+  - {id: ru-tourist-p050, ch: 'Напишите это, пожалуйста.', ds: 'Please write this down.', grammar_ids: [ru-g-polite-repair, ru-g-accusative-object]}
+- id: timing
+  title: Check a time and change an arrangement
+  outcome: Ask the time, propose tomorrow, request a wait, and check whether a place is open; practise unexpected answers and verify current hours rather than relying on a memorized timetable.
+  phrases:
+  - {id: ru-tourist-p051, ch: 'Который час?', ds: 'What time is it?', grammar_ids: [ru-g-basic-questions], sense_hints: {Который: which, час: hour}}
+  - {id: ru-tourist-p052, ch: 'Когда встреча?', ds: 'When is the meeting?', grammar_ids: [ru-g-basic-questions, ru-g-present-identity], sense_hints: {встреча: meeting, Когда: when}}
+  - {id: ru-tourist-p053, ch: 'Можно завтра?', ds: 'Would tomorrow be possible?', grammar_ids: [ru-g-permission-request], sense_hints: {завтра: tomorrow}}
+  - {id: ru-tourist-p054, ch: 'Подождите, пожалуйста.', ds: 'Please wait a moment.', grammar_ids: [ru-g-imperative-aspect, ru-g-polite-repair], sense_hints: {Подождите: wait a while}}
+  - {id: ru-tourist-p055, ch: 'Магазин открыт?', ds: 'Is the shop open?', grammar_ids: [ru-g-short-passive-result, ru-g-basic-questions], sense_hints: {Магазин: shop, открыт: open}}
+- id: social-contact
+  title: Meet someone and close a conversation politely
+  outcome: Introduce yourself, ask about an available shared language, and thank someone; use polite address unless a familiar relationship is established, without inferring a person's identity or preferred language.
+  phrases:
+  - {id: ru-tourist-p056, ch: 'Я турист.', ds: 'I am a tourist. (male speaker)', grammar_ids: [ru-g-present-identity], sense_hints: {турист: tourist}}
+  - {id: ru-tourist-p057, ch: 'Как вас зовут?', ds: 'What is your name? (polite)', grammar_ids: [ru-g-present-identity, ru-g-polite-vy, ru-g-basic-questions]}
+  - {id: ru-tourist-p058, ch: 'Вы говорите по-английски?', ds: 'Do you speak English? (polite)', grammar_ids: [ru-g-polite-vy, ru-g-present-conjugation], sense_hints: {говорите: speak, по-английски: in English}}
+  - {id: ru-tourist-p059, ch: 'Спасибо за помощь.', ds: 'Thank you for your help.', grammar_ids: [ru-g-polite-repair], sense_hints: {помощь: help}}
+  - {id: ru-tourist-p060, ch: 'До свидания.', ds: 'Goodbye.', grammar_ids: [ru-g-polite-repair]}

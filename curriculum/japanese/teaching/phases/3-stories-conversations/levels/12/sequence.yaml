@@ -1,0 +1,264 @@
+schema_version: 3
+id: ja-level-12
+title: Messages and explanations
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 12
+phase: stories-conversations
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+- ja-level-09
+- ja-level-10
+- ja-level-11
+goals: &id001
+- Relay reported information with its source.
+- Distinguish a report from personal inference.
+- Explain a notice and answer clarification questions.
+checkpoint:
+  task: Summarize a new message, identify its source, and repair a misunderstanding.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-12-time-01
+  title: Time and sequencing - 1
+  outcome: Explain when events occur and distinguish their sequence.
+  vocabulary:
+  - {id: ja-n3-00602-s002, ch: 今日, pr: こんにち, ds: nowadays; these days}
+  - {id: ja-n4-00015-s002, ch: 明日, pr: あす, ds: the near future}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-01603-s001, ch: 木曜, pr: もくよう, ds: Thursday}
+  - {id: ja-n3-01624-s001, ch: やがて, pr: やがて, ds: before long}
+  - {id: ja-n3-01646-s001, ch: 夕べ, pr: ゆうべ, ds: evening}
+  - {id: ja-n3-01654-s001, ch: 夜, pr: よ, ds: night}
+  - {id: ja-n3-01655-s001, ch: 夜明け, pr: よあけ, ds: dawn}
+  - {id: ja-n3-01666-s001, ch: 曜日, pr: ようび, ds: day of the week}
+  - {id: ja-n3-01674-s001, ch: 夜中, pr: よなか, ds: middle of the night}
+  - {id: ja-n3-01686-s001, ch: 来, pr: らい, ds: 'next (year, spring, etc.)'}
+  review_grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+- id: level-12-communication-01
+  title: Messages and explanations - 1
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary:
+  - {id: ja-n4-00003-s001, ch: 挨拶, pr: あいさつ, ds: greeting}
+  - {id: ja-n4-00019-s001, ch: アナウンサー, pr: アナウンサー, ds: announcer}
+  - {id: ja-n4-00027-s001, ch: あんな, pr: あんな, ds: that sort of}
+  - {id: ja-n4-00064-s001, ch: うん, pr: うん, ds: 'yes'}
+  - {id: ja-n4-00115-s001, ch: 会話, pr: かいわ, ds: conversation}
+  - {id: ja-n4-00157-s001, ch: 聞こえる, pr: きこえる, ds: to be heard}
+  - {id: ja-n4-00298-s001, ch: 紹介, pr: しょうかい, ds: introduction}
+  - {id: ja-n4-00302-s001, ch: 承知, pr: しょうち, ds: knowledge}
+  - {id: ja-n4-00313-s001, ch: 新聞社, pr: しんぶんしゃ, ds: newspaper company}
+  - {id: ja-n4-00343-s001, ch: 説明, pr: せつめい, ds: explanation}
+  - {id: ja-n4-00351-s001, ch: そう, pr: そう, ds: appearing that}
+  - {id: ja-n4-00362-s001, ch: そんな, pr: そんな, ds: such}
+  - {id: ja-n4-00363-s001, ch: そんなに, pr: そんなに, ds: so much}
+  - {id: ja-n4-00373-s001, ch: だから, pr: だから, ds: so}
+  - {id: ja-n4-00376-s001, ch: 訪ねる, pr: たずねる, ds: to visit}
+  - {id: ja-n4-00377-s001, ch: 尋ねる, pr: たずねる, ds: to ask}
+  - {id: ja-n4-00382-s001, ch: 例えば, pr: たとえば, ds: for example}
+  - {id: ja-n4-00415-s001, ch: 丁寧, pr: ていねい, ds: polite}
+  - {id: ja-n4-00457-s001, ch: なるほど, pr: なるほど, ds: I see}
+  - {id: ja-n4-00463-s001, ch: 日記, pr: にっき, ds: diary}
+  - {id: ja-n4-00498-s001, ch: 番組, pr: ばんぐみ, ds: program (e.g. TV)}
+  - {id: ja-n4-00544-s001, ch: 返事, pr: へんじ, ds: reply}
+  - {id: ja-n4-00546-s001, ch: 放送, pr: ほうそう, ds: broadcasting}
+  - {id: ja-n4-00553-s001, ch: 翻訳, pr: ほんやく, ds: translation}
+  - {id: ja-n4-00565-s001, ch: 見える, pr: みえる, ds: to be seen}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00256-s001, ch: こんな, pr: こんな, ds: this sort of}
+  - {id: ja-n5-00372-s001, ch: 誰か, pr: だれか, ds: someone}
+  - {id: ja-n5-00379-s001, ch: 近く, pr: ちかく, ds: near}
+  - {id: ja-n5-00429-s001, ch: 所, pr: ところ, ds: place}
+  - {id: ja-n5-00506-s001, ch: 話, pr: はなし, ds: talk}
+  - {id: ja-n5-00367-s001, ch: 多分, pr: たぶん, ds: probably}
+  - {id: ja-n5-00452-s001, ch: なぜ, pr: なぜ, ds: why}
+  - {id: ja-n5-00680-s001, ch: 渡す, pr: わたす, ds: to ferry across (e.g. a river)}
+  review_grammar: []
+- id: level-12-communication-02
+  title: Messages and explanations - 2
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary:
+  - {id: ja-n4-00630-s001, ch: 連絡, pr: れんらく, ds: contacting}
+  - {id: ja-n4-00635-s001, ch: 訳, pr: わけ, ds: reason}
+  - {id: ja-n3-00014-s001, ch: 明らか, pr: あきらか, ds: clear}
+  - {id: ja-n3-00038-s001, ch: あらゆる, pr: あらゆる, ds: all}
+  - {id: ja-n3-00044-s001, ch: ある, pr: ある, ds: a certain ...}
+  - {id: ja-n3-00045-s001, ch: あるいは, pr: あるいは, ds: or}
+  - {id: ja-n3-00056-s001, ch: いえ, pr: いえ, ds: 'no'}
+  - {id: ja-n3-00067-s001, ch: いけない, pr: いけない, ds: bad}
+  - {id: ja-n3-00073-s001, ch: 異常, pr: いじょう, ds: abnormal}
+  - {id: ja-n3-00076-s001, ch: いずれ, pr: いずれ, ds: which}
+  - {id: ja-n3-00094-s001, ch: 一種, pr: いっしゅ, ds: a kind}
+  - {id: ja-n3-00097-s001, ch: 一層, pr: いっそう, ds: even more}
+  - {id: ja-n3-00098-s001, ch: 一体, pr: いったい, ds: (what) the heck}
+  - {id: ja-n3-00102-s001, ch: 一方, pr: いっぽう, ds: one (esp. of two)}
+  - {id: ja-n3-00115-s001, ch: いや, pr: いや, ds: 'no'}
+  - {id: ja-n3-00124-s001, ch: いわば, pr: いわば, ds: so to speak}
+  - {id: ja-n3-00125-s001, ch: いわゆる, pr: いわゆる, ds: what is called}
+  - {id: ja-n3-00130-s001, ch: 引用, pr: いんよう, ds: quotation}
+  - {id: ja-n3-00175-s001, ch: 演説, pr: えんぜつ, ds: speech}
+  - {id: ja-n3-00187-s001, ch: 大いに, pr: おおいに, ds: very}
+  - {id: ja-n3-00189-s001, ch: オーバー, pr: オーバー, ds: overcoat}
+  - {id: ja-n3-00200-s001, ch: おそらく, pr: おそらく, ds: probably}
+  - {id: ja-n3-00217-s001, ch: 主に, pr: おもに, ds: mainly}
+  - {id: ja-n3-00221-s001, ch: およそ, pr: およそ, ds: about}
+  - {id: ja-n3-00236-s001, ch: 回, pr: かい, ds: counter for occurrences}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00415-s001, ch: 丁寧, pr: ていねい, ds: polite}
+  - {id: ja-n4-00457-s001, ch: なるほど, pr: なるほど, ds: I see}
+  - {id: ja-n4-00463-s001, ch: 日記, pr: にっき, ds: diary}
+  - {id: ja-n4-00498-s001, ch: 番組, pr: ばんぐみ, ds: program (e.g. TV)}
+  - {id: ja-n4-00544-s001, ch: 返事, pr: へんじ, ds: reply}
+  - {id: ja-n4-00546-s001, ch: 放送, pr: ほうそう, ds: broadcasting}
+  - {id: ja-n4-00553-s001, ch: 翻訳, pr: ほんやく, ds: translation}
+  - {id: ja-n4-00565-s001, ch: 見える, pr: みえる, ds: to be seen}
+  review_grammar: []
+- id: level-12-communication-03
+  title: Messages and explanations - 3
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary:
+  - {id: ja-n3-00265-s001, ch: 学, pr: がく, ds: learning}
+  - {id: ja-n3-00296-s001, ch: 語る, pr: かたる, ds: to talk about}
+  - {id: ja-n3-00305-s001, ch: 必ずしも, pr: かならずしも, ds: (not) always}
+  - {id: ja-n3-00306-s001, ch: かなり, pr: かなり, ds: considerably}
+  - {id: ja-n3-00318-s001, ch: かもしれない, pr: かもしれない, ds: may}
+  - {id: ja-n3-00366-s001, ch: 記事, pr: きじ, ds: article}
+  - {id: ja-n3-00368-s001, ch: 記者, pr: きしゃ, ds: reporter}
+  - {id: ja-n3-00374-s001, ch: きちんと, pr: きちんと, ds: properly}
+  - {id: ja-n3-00375-s001, ch: きつい, pr: きつい, ds: tough}
+  - {id: ja-n3-00389-s001, ch: 疑問, pr: ぎもん, ds: doubt}
+  - {id: ja-n3-00411-s001, ch: 強調, pr: きょうちょう, ds: emphasis}
+  - {id: ja-n3-00447-s001, ch: 具体, pr: ぐたい, ds: concreteness}
+  - {id: ja-n3-00457-s001, ch: 位, pr: くらい, ds: throne}
+  - {id: ja-n3-00487-s001, ch: 掲示, pr: けいじ, ds: notice}
+  - {id: ja-n3-00500-s001, ch: 結局, pr: けっきょく, ds: after all}
+  - {id: ja-n3-00511-s001, ch: 見解, pr: けんかい, ds: opinion}
+  - {id: ja-n3-00518-s001, ch: 現実, pr: げんじつ, ds: reality}
+  - {id: ja-n3-00525-s001, ch: 検討, pr: けんとう, ds: consideration}
+  - {id: ja-n3-00535-s001, ch: 講演, pr: こうえん, ds: lecture}
+  - {id: ja-n3-00549-s001, ch: 後者, pr: こうしゃ, ds: the latter}
+  - {id: ja-n3-00565-s001, ch: 誤解, pr: ごかい, ds: misunderstanding}
+  - {id: ja-n3-00585-s001, ch: ことわざ, pr: ことわざ, ds: proverb}
+  - {id: ja-n3-00593-s001, ch: これら, pr: これら, ds: these}
+  - {id: ja-n3-00600-s001, ch: こんなに, pr: こんなに, ds: so}
+  - {id: ja-n3-00609-s001, ch: 最高, pr: さいこう, ds: best}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00130-s001, ch: 引用, pr: いんよう, ds: quotation}
+  - {id: ja-n3-00175-s001, ch: 演説, pr: えんぜつ, ds: speech}
+  - {id: ja-n3-00187-s001, ch: 大いに, pr: おおいに, ds: very}
+  - {id: ja-n3-00189-s001, ch: オーバー, pr: オーバー, ds: overcoat}
+  - {id: ja-n3-00200-s001, ch: おそらく, pr: おそらく, ds: probably}
+  - {id: ja-n3-00217-s001, ch: 主に, pr: おもに, ds: mainly}
+  - {id: ja-n3-00221-s001, ch: およそ, pr: およそ, ds: about}
+  - {id: ja-n3-00236-s001, ch: 回, pr: かい, ds: counter for occurrences}
+  review_grammar: []
+- id: level-12-communication-04
+  title: Messages and explanations - 4
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary:
+  - {id: ja-n3-00613-s001, ch: 最低, pr: さいてい, ds: least}
+  - {id: ja-n3-00637-s001, ch: ざっと, pr: ざっと, ds: roughly}
+  - {id: ja-n3-00638-s001, ch: さっぱり, pr: さっぱり, ds: feeling refreshed}
+  - {id: ja-n3-00639-s001, ch: さて, pr: さて, ds: well; now; then (discourse transition)}
+  - {id: ja-n3-00643-s001, ch: 様々, pr: さまざま, ds: various}
+  - {id: ja-n3-00661-s001, ch: じかに, pr: じかに, ds: directly}
+  - {id: ja-n3-00662-s001, ch: しかも, pr: しかも, ds: moreover}
+  - {id: ja-n3-00665-s001, ch: 直, pr: じき, ds: soon}
+  - {id: ja-n3-00668-s001, ch: しきりに, pr: しきりに, ds: frequently}
+  - {id: ja-n3-00696-s001, ch: 実に, pr: じつに, ds: really}
+  - {id: ja-n3-00697-s001, ch: 実は, pr: じつは, ds: as a matter of fact}
+  - {id: ja-n3-00714-s001, ch: しまった, pr: しまった, ds: darn it!}
+  - {id: ja-n3-00722-s001, ch: しゃべる, pr: しゃべる, ds: to talk}
+  - {id: ja-n2-01365-s001, ch: 早口, pr: はやくち, ds: fast-talking}
+  - {id: ja-n5-00180-s004, ch: 聞く, pr: きく, ds: to hear about}
+  - {id: ja-n5-00393-s004, ch: つける, pr: つける, ds: to keep a diary}
+  - {id: ja-n5-00410-s006, ch: 出る, pr: でる, ds: to appear (in print)}
+  - {id: ja-n4-00635-s002, ch: 訳, pr: わけ, ds: meaning}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00525-s001, ch: 検討, pr: けんとう, ds: consideration}
+  - {id: ja-n3-00535-s001, ch: 講演, pr: こうえん, ds: lecture}
+  - {id: ja-n3-00549-s001, ch: 後者, pr: こうしゃ, ds: the latter}
+  - {id: ja-n3-00565-s001, ch: 誤解, pr: ごかい, ds: misunderstanding}
+  - {id: ja-n3-00585-s001, ch: ことわざ, pr: ことわざ, ds: proverb}
+  - {id: ja-n3-00593-s001, ch: これら, pr: これら, ds: these}
+  - {id: ja-n3-00600-s001, ch: こんなに, pr: こんなに, ds: so}
+  - {id: ja-n3-00609-s001, ch: 最高, pr: さいこう, ds: best}
+  review_grammar: []
+- id: level-12-communication-practice-01
+  title: Messages and explanations - sentence practice 1
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g009, ch: 普通形そうだ, ds: I hear that; reportedly}
+  - {id: ja-n4-g010, ch: 普通形ようだ／みたいだ, ds: seem; look like; infer from evidence}
+  - {id: ja-n4-g019, ch: 普通形ので, ds: because; explanatory reason}
+  review_vocabulary:
+  - {id: ja-n3-00697-s001, ch: 実は, pr: じつは, ds: as a matter of fact}
+  - {id: ja-n3-00714-s001, ch: しまった, pr: しまった, ds: darn it!}
+  - {id: ja-n3-00722-s001, ch: しゃべる, pr: しゃべる, ds: to talk}
+  - {id: ja-n2-01365-s001, ch: 早口, pr: はやくち, ds: fast-talking}
+  - {id: ja-n5-00180-s004, ch: 聞く, pr: きく, ds: to hear about}
+  - {id: ja-n5-00393-s004, ch: つける, pr: つける, ds: to keep a diary}
+  - {id: ja-n5-00410-s006, ch: 出る, pr: でる, ds: to appear (in print)}
+  - {id: ja-n4-00635-s002, ch: 訳, pr: わけ, ds: meaning}
+  review_grammar: []
+- id: level-12-communication-practice-02
+  title: Messages and explanations - sentence practice 2
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g020, ch: 普通形のに, ds: although; contrary to expectation}
+  - {id: ja-n4-g039, ch: 文かどうか, ds: whether or not; embedded yes-no question}
+  - {id: ja-n4-g041, ch: 普通形と言う, ds: say that; quotation}
+  review_vocabulary:
+  - {id: ja-n3-00697-s001, ch: 実は, pr: じつは, ds: as a matter of fact}
+  - {id: ja-n3-00714-s001, ch: しまった, pr: しまった, ds: darn it!}
+  - {id: ja-n3-00722-s001, ch: しゃべる, pr: しゃべる, ds: to talk}
+  - {id: ja-n2-01365-s001, ch: 早口, pr: はやくち, ds: fast-talking}
+  - {id: ja-n5-00180-s004, ch: 聞く, pr: きく, ds: to hear about}
+  - {id: ja-n5-00393-s004, ch: つける, pr: つける, ds: to keep a diary}
+  - {id: ja-n5-00410-s006, ch: 出る, pr: でる, ds: to appear (in print)}
+  - {id: ja-n4-00635-s002, ch: 訳, pr: わけ, ds: meaning}
+  review_grammar:
+  - {id: ja-n4-g009, ch: 普通形そうだ, ds: I hear that; reportedly}
+  - {id: ja-n4-g010, ch: 普通形ようだ／みたいだ, ds: seem; look like; infer from evidence}
+  - {id: ja-n4-g019, ch: 普通形ので, ds: because; explanatory reason}
+- id: level-12-communication-practice-03
+  title: Messages and explanations - sentence practice 3
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g013, ch: 普通形らしい, ds: apparently; according to indirect evidence}
+  - {id: ja-n3-g031, ch: Nについて, ds: about; concerning a topic}
+  - {id: ja-n3-g042, ch: 普通形ということだ, ds: that means; the reported fact is}
+  review_vocabulary:
+  - {id: ja-n3-00697-s001, ch: 実は, pr: じつは, ds: as a matter of fact}
+  - {id: ja-n3-00714-s001, ch: しまった, pr: しまった, ds: darn it!}
+  - {id: ja-n3-00722-s001, ch: しゃべる, pr: しゃべる, ds: to talk}
+  - {id: ja-n2-01365-s001, ch: 早口, pr: はやくち, ds: fast-talking}
+  - {id: ja-n5-00180-s004, ch: 聞く, pr: きく, ds: to hear about}
+  - {id: ja-n5-00393-s004, ch: つける, pr: つける, ds: to keep a diary}
+  - {id: ja-n5-00410-s006, ch: 出る, pr: でる, ds: to appear (in print)}
+  - {id: ja-n4-00635-s002, ch: 訳, pr: わけ, ds: meaning}
+  review_grammar:
+  - {id: ja-n4-g020, ch: 普通形のに, ds: although; contrary to expectation}
+  - {id: ja-n4-g039, ch: 文かどうか, ds: whether or not; embedded yes-no question}
+  - {id: ja-n4-g041, ch: 普通形と言う, ds: say that; quotation}

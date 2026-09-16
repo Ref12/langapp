@@ -1,0 +1,173 @@
+version: '2'
+source_id: korean-writing-original-pilot
+authorship: Original AI-assisted monoline coordinates; not traced from a font, source outline, or annotation arrow.
+reviewed: false
+frames:
+  isolated: [0, 0, 100, 100]
+  side: [0, 0, 70, 120]
+  wide: [0, 0, 100, 50]
+  hieuh-final: [0, 0, 100, 75]
+  hieuh-mixed: [0, 0, 100, 120]
+  paired-isolated: [0, 0, 50, 100]
+  paired-side: [0, 0, 35, 120]
+  paired-wide: [0, 0, 50, 50]
+  paired-hieuh-final: [0, 0, 50, 65]
+consonants:
+  ㄱ:
+    isolated: [M15 15 L85 15 L85 85]
+    side: [M10 10 L60 10 L60 110]
+    wide: [M10 5 L90 5 L90 45]
+    paired-isolated: [M8 15 L42 15 L42 85]
+    paired-side: [M5 10 L30 10 L30 110]
+    paired-wide: [M5 5 L45 5 L45 45]
+  ㄴ:
+    isolated: [M15 15 L15 85 L85 85]
+    side: [M10 10 L10 110 L60 110]
+    wide: [M10 5 L10 45 L90 45]
+    paired-isolated: [M8 15 L8 85 L42 85]
+    paired-wide: [M5 5 L5 45 L45 45]
+  ㄷ:
+    isolated: [M15 15 L85 15, M15 15 L15 85 L85 85]
+    side: [M10 10 L60 10, M10 10 L10 110 L60 110]
+    wide: [M10 5 L90 5, M10 5 L10 45 L90 45]
+    paired-isolated: [M8 15 L42 15, M8 15 L8 85 L42 85]
+    paired-side: [M5 10 L30 10, M5 10 L5 110 L30 110]
+    paired-wide: [M5 5 L45 5, M5 5 L5 45 L45 45]
+  ㄹ:
+    isolated: [M15 15 L85 15 L85 50, M15 50 L85 50, M15 50 L15 85 L85 85]
+    side: [M10 10 L60 10 L60 60, M10 60 L60 60, M10 60 L10 110 L60 110]
+    wide: [M10 5 L90 5 L90 25, M10 25 L90 25, M10 25 L10 45 L90 45]
+    paired-isolated: [M8 15 L42 15 L42 50, M8 50 L42 50, M8 50 L8 85 L42 85]
+    paired-wide: [M5 5 L45 5 L45 25, M5 25 L45 25, M5 25 L5 45 L45 45]
+  ㅁ:
+    isolated: [M15 15 L15 85, M15 15 L85 15 L85 85, M15 85 L85 85]
+    side: [M10 10 L10 110, M10 10 L60 10 L60 110, M10 110 L60 110]
+    wide: [M10 5 L10 45, M10 5 L90 5 L90 45, M10 45 L90 45]
+    paired-isolated: [M8 15 L8 85, M8 15 L42 15 L42 85, M8 85 L42 85]
+    paired-wide: [M5 5 L5 45, M5 5 L45 5 L45 45, M5 45 L45 45]
+  ㅂ:
+    isolated: [M15 15 L15 85, M85 15 L85 85, M15 50 L85 50, M15 85 L85 85]
+    side: [M10 10 L10 110, M60 10 L60 110, M10 60 L60 60, M10 110 L60 110]
+    wide: [M10 5 L10 45, M90 5 L90 45, M10 25 L90 25, M10 45 L90 45]
+    paired-isolated: [M8 15 L8 85, M42 15 L42 85, M8 50 L42 50, M8 85 L42 85]
+    paired-side: [M5 10 L5 110, M30 10 L30 110, M5 60 L30 60, M5 110 L30 110]
+    paired-wide: [M5 5 L5 45, M45 5 L45 45, M5 25 L45 25, M5 45 L45 45]
+  ㅅ:
+    isolated: [M50 15 Q48 35 42 48 Q31 71 15 85, M42 48 Q61 71 85 85]
+    side: [M36 10 Q35 35 29 55 Q21 90 10 110, M29 55 Q40 88 60 110]
+    wide: [M50 5 Q46 14 40 22 Q27 36 10 45, M40 22 Q62 37 90 45]
+    paired-isolated: [M25 15 Q24 35 21 48 Q16 71 8 85, M21 48 Q30 70 42 85]
+    paired-side: [M18 10 Q18 36 15 55 Q11 90 5 110, M15 55 Q21 88 30 110]
+    paired-wide: [M25 5 Q23 14 20 22 Q14 35 5 45, M20 22 Q31 37 45 45]
+  ㅇ:
+    isolated: [M50 15 C30 15 15 30 15 50 C15 70 30 85 50 85 C70 85 85 70 85 50 C85 30 70 15 50 15]
+    side: [M35 10 C20 10 10 32 10 60 C10 88 20 110 35 110 C50 110 60 88 60 60 C60 32 50 10 35 10]
+    wide: [M50 5 C28 5 10 14 10 25 C10 36 28 45 50 45 C72 45 90 36 90 25 C90 14 72 5 50 5]
+  ㅈ:
+    isolated: [M15 15 L85 15 Q75 38 52 55 Q35 73 15 85, M52 55 Q68 73 85 85]
+    side: [M10 10 L60 10 Q53 37 36 60 Q20 93 10 110, M36 60 Q48 90 60 110]
+    wide: [M10 5 L90 5 Q75 16 52 26 Q30 40 10 45, M52 26 Q72 39 90 45]
+    paired-isolated: [M7 15 L43 15 Q38 40 26 55 Q17 73 7 85, M26 55 Q35 73 43 85]
+    paired-side: [M5 10 L30 10 Q27 37 18 60 Q10 93 5 110, M18 60 Q24 90 30 110]
+    paired-wide: [M5 5 L45 5 Q37 16 26 26 Q15 40 5 45, M26 26 Q36 39 45 45]
+  ㅊ:
+    isolated: [M50 8 L50 30, M15 30 L85 30 Q73 48 52 63 Q32 80 15 90, M52 63 Q68 80 85 90]
+    side: [M35 8 L35 30, M10 30 L60 30 Q51 54 34 75 Q20 99 10 112, M34 75 Q48 98 60 112]
+    wide: [M50 3 L50 15, M10 15 L90 15 Q75 26 52 32 Q28 42 10 46, M52 32 Q72 41 90 46]
+  ㅋ:
+    isolated: [M15 15 L85 15 L85 85, M15 50 L85 50]
+    side: [M10 10 L60 10 L60 110, M10 60 L60 60]
+    wide: [M10 5 L90 5 L90 45, M10 25 L90 25]
+  ㅌ:
+    isolated: [M15 15 L85 15, M15 50 L85 50, M15 15 L15 85 L85 85]
+    side: [M10 10 L60 10, M10 60 L60 60, M10 10 L10 110 L60 110]
+    wide: [M10 5 L90 5, M10 25 L90 25, M10 5 L10 45 L90 45]
+    paired-isolated: [M8 15 L42 15, M8 50 L42 50, M8 15 L8 85 L42 85]
+    paired-wide: [M5 5 L45 5, M5 25 L45 25, M5 5 L5 45 L45 45]
+  ㅍ:
+    isolated: [M10 15 L90 15, M30 15 L30 85, M70 15 L70 85, M10 85 L90 85]
+    side: [M8 10 L62 10, M23 10 L23 110, M47 10 L47 110, M8 110 L62 110]
+    wide: [M8 5 L92 5, M30 5 L30 45, M70 5 L70 45, M8 45 L92 45]
+    paired-isolated: [M5 15 L45 15, M15 15 L15 85, M35 15 L35 85, M5 85 L45 85]
+    paired-wide: [M4 5 L46 5, M15 5 L15 45, M35 5 L35 45, M4 45 L46 45]
+  ㅎ:
+    isolated: [M50 8 L50 28, M20 28 L80 28, M50 43 C34 43 22 53 22 66 C22 79 34 89 50 89 C66 89 78 79 78 66 C78 53 66 43 50 43]
+    side: [M35 8 L35 30, M12 30 L58 30, M35 48 C21 48 12 61 12 80 C12 99 21 112 35 112 C49 112 58 99 58 80 C58 61 49 48 35 48]
+    wide: [M50 3 L50 14, M15 14 L85 14, M50 24 C31 24 16 29 16 35 C16 41 31 46 50 46 C69 46 84 41 84 35 C84 29 69 24 50 24]
+    hieuh-final: [M50 5 L50 23, M15 23 L85 23, M50 40 C31 40 16 47 16 55 C16 63 31 70 50 70 C69 70 84 63 84 55 C84 47 69 40 50 40]
+    hieuh-mixed: [M50 6 L50 36, M20 36 L80 36, M50 62 C33 62 20 73 20 87 C20 101 33 112 50 112 C67 112 80 101 80 87 C80 73 67 62 50 62]
+    paired-isolated: [M25 8 L25 28, M8 28 L42 28, M25 43 C16 43 10 53 10 66 C10 79 16 89 25 89 C34 89 40 79 40 66 C40 53 34 43 25 43]
+    paired-wide: [M25 3 L25 14, M5 14 L45 14, M25 24 C14 24 7 29 7 35 C7 41 14 46 25 46 C36 46 43 41 43 35 C43 29 36 24 25 24]
+    paired-hieuh-final: [M25 3 L25 16, M5 16 L45 16, M25 27 C14 27 7 34 7 43 C7 52 14 60 25 60 C36 60 43 52 43 43 C43 34 36 27 25 27]
+vowels:
+  ㅏ: [M40 10 L40 90, M40 50 L70 50]
+  ㅑ: [M40 10 L40 90, M40 35 L70 35, M40 65 L70 65]
+  ㅓ: [M10 50 L40 50, M40 10 L40 90]
+  ㅕ: [M10 35 L40 35, M10 65 L40 65, M40 10 L40 90]
+  ㅗ: [M50 35 L50 65, M10 65 L90 65]
+  ㅛ: [M35 35 L35 65, M65 35 L65 65, M10 65 L90 65]
+  ㅜ: [M10 35 L90 35, M50 35 L50 75]
+  ㅠ: [M10 35 L90 35, M35 35 L35 75, M65 35 L65 75]
+  ㅡ: [M10 50 L90 50]
+  ㅣ: [M50 10 L50 90]
+vowel_forms:
+  ㅏ:
+    joined: [M40 10 L40 90, M40 50 L95 50]
+  ㅑ:
+    joined: [M40 10 L40 90, M40 35 L95 35, M40 65 L95 65]
+  ㅓ:
+    lower-arm: [M10 70 L40 70, M40 10 L40 90]
+  ㅔ:
+    lower-arm: [M16 70 L40 70, M40 18 L40 82, M75 18 L75 82]
+  ㅗ:
+    before-ae: [M37 35 L37 65, M10 65 L64 65]
+  ㅜ:
+    before-e: [M10 35 L65 35, M37.5 35 L37.5 75]
+double_consonants:
+  ㄲ: ㄱ
+  ㄸ: ㄷ
+  ㅃ: ㅂ
+  ㅆ: ㅅ
+  ㅉ: ㅈ
+double_placements:
+  isolated: [[0.9, 3, 5], [0.9, 52, 5]]
+  side: [[0.82, 2, 8], [0.82, 39, 8]]
+  wide: [[0.9, 1, 2.5], [0.9, 51, 2.5]]
+compound_vowels:
+  ㅐ: [{character: ㅏ, form: joined, placement: [0.8, -4, 10]}, {character: ㅣ, placement: [0.8, 32, 10]}]
+  ㅒ: [{character: ㅑ, form: joined, placement: [0.8, -4, 10]}, {character: ㅣ, placement: [0.8, 32, 10]}]
+  ㅔ: [{character: ㅓ, placement: [0.8, 8, 10]}, {character: ㅣ, placement: [0.8, 35, 10]}]
+  ㅖ: [{character: ㅕ, placement: [0.8, 8, 10]}, {character: ㅣ, placement: [0.8, 35, 10]}]
+  ㅘ: [{character: ㅗ, placement: [0.6, 0, 18]}, {character: ㅏ, placement: [0.78, 34, 5]}]
+  ㅙ: [{character: ㅗ, form: before-ae, placement: [0.7, 0, 18]}, {character: ㅐ, placement: [0.72, 35, 5]}]
+  ㅚ: [{character: ㅗ, placement: [0.7, 0, 18]}, {character: ㅣ, placement: [0.78, 40, 5]}]
+  ㅝ: [{character: ㅜ, placement: [0.7, 0, 21]}, {character: ㅓ, form: lower-arm, placement: [0.78, 42, 5]}]
+  ㅞ: [{character: ㅜ, form: before-e, placement: [0.7, 0, 21]}, {character: ㅔ, form: lower-arm, placement: [0.72, 35, 5]}]
+  ㅟ: [{character: ㅜ, placement: [0.7, 0, 18]}, {character: ㅣ, placement: [0.78, 40, 5]}]
+  ㅢ: [{character: ㅡ, placement: [0.7, 0, 18]}, {character: ㅣ, placement: [0.78, 40, 5]}]
+final_clusters:
+  ㄳ: [ㄱ, ㅅ]
+  ㄵ: [ㄴ, ㅈ]
+  ㄶ: [ㄴ, ㅎ]
+  ㄺ: [ㄹ, ㄱ]
+  ㄻ: [ㄹ, ㅁ]
+  ㄼ: [ㄹ, ㅂ]
+  ㄽ: [ㄹ, ㅅ]
+  ㄾ: [ㄹ, ㅌ]
+  ㄿ: [ㄹ, ㅍ]
+  ㅀ: [ㄹ, ㅎ]
+  ㅄ: [ㅂ, ㅅ]
+cluster_placements:
+  isolated: [[0.9, 3, 5], [0.9, 52, 5]]
+  wide: [[0.9, 1, 2.5], [0.9, 51, 2.5]]
+signs:
+  '.': [M50 80 L50.5 80]
+  '?': [M25 28 C25 8 75 8 75 28 C75 43 50 43 50 62, M50 82 L50.5 82]
+review_notes:
+- All coordinates and pen-down groupings are original AI-assisted candidates, not qualified Korean instruction.
+- Compound and doubled letter placements preserve uniform component scale; no per-glyph bounding-box fitting occurs.
+- Wide HIEUH and doubled/cluster forms can become dense at fixed width 5.5; inspect explicit clearance warnings before scaling.
+- Short nonzero strokes approximate punctuation pen taps; no zero-length placeholder paths are used.
+- Revision 2 uses the requested vertical-tick HIEUH/CHIEUCH handwriting variant; horizontal-cap variants also exist.
+- Narrow paired masters retain component height instead of shrinking ordinary letters in both axes.
+- Joined and lower-arm vowel forms preserve crossbar topology and distinguish WEO/WE from a continuous horizontal bar.

@@ -1,0 +1,62 @@
+assessment_version: '2026-09-15.2'
+assessment_kind: original-reference-comparison
+source_id: korean-writing-source-audit
+recipe_revision: '2'
+reviewer_kind: ai-assisted-self-review
+qualified_review: false
+trigger: User identified unsuitable HIEUH/CHIEUCH forms and requested a broader handwriting audit.
+reference:
+  source_id: sejong-handwriting-reference
+  title: King Sejong Institute Foundation, Sejong Hakdang Korean Introduction
+  public_ebook: https://nuri.iksi.or.kr/e-book/ecatalog5.jsp?Dir=1122
+  page_convention: Printed page n is viewer image n+1, padded to three digits.
+  public_image_pattern: https://nuri.iksi.or.kr/e-book/catImage/1122/NNN.jpg
+  inspected_printed_pages: [29, 32, 33, 43, 44, 45, 46, 47, 48, 49, 50, 54, 56, 70, 71, 74, 75, 112, 114, 115, 126, 127, 129]
+  disposition: Visual reference only. No tracing, outline extraction, page artwork or fonts bundled.
+  limitations: Teaching diagrams include typographic and handwriting variants; they are not a universal penmanship standard or an ordered-centerline source.
+corrections:
+- family: HIEUH and CHIEUCH
+  kind: requested-style-selection
+  finding: Horizontal-cap and vertical-tick variants both exist; a horizontal cap is not universally invalid.
+  change: Use a downward vertical top tick meeting the horizontal bar throughout the requested handwriting pilot, retaining separate pen lifts and the two-stroke JIEUJ body.
+  comparison: Printed page 75 shows the horizontal-cap alternative and the three-stroke sequence. The vertical-tick form is the user's explicit requested style.
+- family: AE and YAE, including WAE
+  kind: topology-defect
+  finding: Revision 1 crossbars stopped before the right stem, so the result was a separated vowel sequence instead of a joined letter.
+  change: Named joined vowel forms terminate every crossbar on both stems; nested WAE inherits the corrected AE.
+  comparison: Printed pages 33 and 126 show the joined crossbar topology.
+- family: SIOS, JIEUJ and CHIEUCH, including doubled and final-cluster uses
+  kind: junction-defect
+  finding: Independently chosen branch start points could float, cross the first stroke or create an unintended spur.
+  change: Both branches meet at an explicit shared on-curve vertex. Stroke counts and the primary stroke directions are retained.
+  comparison: Printed pages 54 and 75 show two-stroke SIOS/JIEUJ and three-stroke CHIEUCH with joined branches.
+- family: THIEUTH, including final clusters
+  kind: stroke-order-defect
+  finding: Revision 1 drew the left-and-bottom stroke before the middle bar.
+  change: Top horizontal, middle horizontal, then the continuous left-and-bottom stroke.
+  comparison: Printed page 70 explicitly numbers these three strokes.
+- family: Doubled consonants and final clusters
+  kind: contextual-proportion-defect
+  finding: Uniformly halving ordinary letters to place them side by side also halved their height.
+  change: Named narrow paired masters retain appropriate height; all runtime placements remain uniform scale and translation.
+  comparison: The complete-letter and contextual diagrams on printed pages 44-50 and 54 distinguish side and wide proportions. The new paired coordinates are original design decisions, not copied geometry.
+- family: WA, WAE, WEO and WE
+  kind: composition-defect
+  finding: Crossbars touched unintended stems or lined up as one long bar; a shrunken U component hid rather than corrected the relative-height problem.
+  change: Authored lower-arm and shortened-left-bar forms preserve relative bar heights and separation. Mixed initials move above the left vowel component.
+  comparison: Printed pages 126-127 show the short EO/E arm below the U bar and the separation before the right-side stems.
+unchanged_conventions:
+- KIYEOK/NIEUN remain one stroke; TIKEUT two; RIEUL/MIEUM three; PIEUP/PHIEUPH four; KHIEUKH two.
+- IEUNG remains a closed counterclockwise single pen-down loop.
+- Basic vowel stroke order remains vertical-then-right-arm or left-arm-then-vertical as appropriate, with top-to-bottom and left-to-right sequencing.
+- Exact compatibility/conjoining identities, orthographic decomposition, 54 pilot syllables and absent vocabulary readings are unchanged.
+regression_scope:
+- Check vertical ticks and pen lifts across all HIEUH/CHIEUCH contextual forms.
+- Check joins at explicit curve vertices instead of treating close-looking samples as contact.
+- Check AE/YAE/WAE crossbars reach the right stem and WEO/WE bar heights remain distinct.
+- Check THIEUTH order in isolated and paired forms; check paired component height.
+- Render the complete foundation and syllable pilot without direction overlays; inspect individual strokes separately.
+limits:
+- These are corrected original candidates, not professionally reviewed Korean teaching assets.
+- Passing topology and path checks does not establish natural handwriting, correct proportions in every unexercised context, or readiness for curriculum release.
+- All variants remain reviewed=false; 1104 missing syllables and 94 unexercised contextual assignments remain visible.

@@ -1,0 +1,2273 @@
+# Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.
+# Unreviewed: no qualified Korean handwriting approval. No font/diagram tracing or source-derived paths.
+# See licenses/ORIGINAL-WRITING-PILOT.md. No warranty; bulk scaling remains gated on review.
+ㄱ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L81.5 18.5 L81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄲ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 78.35
+    - path: M58.28 21.65 L85.82 21.65 L85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄳ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 78.35
+    - path: M72.05 21.65 Q71.24 37.85 68.81 48.38 Q64.76 67.01 58.28 78.35
+    - path: M68.81 48.38 Q76.1 66.2 85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄴ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L18.5 81.5 L81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄵ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L14.18 78.35 L41.72 78.35
+    - path: M57.47 21.65 L86.63 21.65 Q82.58 41.9 72.86 54.05 Q65.57 68.63 57.47 78.35
+    - path: M72.86 54.05 Q80.15 68.63 86.63 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄶ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L14.18 78.35 L41.72 78.35
+    - path: M72.05 15.98 L72.05 32.18
+    - path: M58.28 32.18 L85.82 32.18
+    - path: M72.05 44.33 C64.76 44.33 59.9 52.43 59.9 62.96 C59.9 73.49 64.76 81.59 72.05 81.59 C79.34
+        81.59 84.2 73.49 84.2 62.96 C84.2 52.43 79.34 44.33 72.05 44.33
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄷ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L81.5 18.5
+    - path: M18.5 18.5 L18.5 81.5 L81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄸ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65
+    - path: M14.18 21.65 L14.18 78.35 L41.72 78.35
+    - path: M58.28 21.65 L85.82 21.65
+    - path: M58.28 21.65 L58.28 78.35 L85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄹ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L81.5 18.5 L81.5 50
+    - path: M18.5 50 L81.5 50
+    - path: M18.5 50 L18.5 81.5 L81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄺ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 50
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 50 L14.18 78.35 L41.72 78.35
+    - path: M58.28 21.65 L85.82 21.65 L85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄻ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 50
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 50 L14.18 78.35 L41.72 78.35
+    - path: M58.28 21.65 L58.28 78.35
+    - path: M58.28 21.65 L85.82 21.65 L85.82 78.35
+    - path: M58.28 78.35 L85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄼ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 50
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 50 L14.18 78.35 L41.72 78.35
+    - path: M58.28 21.65 L58.28 78.35
+    - path: M85.82 21.65 L85.82 78.35
+    - path: M58.28 50 L85.82 50
+    - path: M58.28 78.35 L85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄽ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 50
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 50 L14.18 78.35 L41.72 78.35
+    - path: M72.05 21.65 Q71.24 37.85 68.81 48.38 Q64.76 67.01 58.28 78.35
+    - path: M68.81 48.38 Q76.1 66.2 85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄾ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 50
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 50 L14.18 78.35 L41.72 78.35
+    - path: M58.28 21.65 L85.82 21.65
+    - path: M58.28 50 L85.82 50
+    - path: M58.28 21.65 L58.28 78.35 L85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㄿ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 50
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 50 L14.18 78.35 L41.72 78.35
+    - path: M55.85 21.65 L88.25 21.65
+    - path: M63.95 21.65 L63.95 78.35
+    - path: M80.15 21.65 L80.15 78.35
+    - path: M55.85 78.35 L88.25 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅀ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L41.72 21.65 L41.72 50
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 50 L14.18 78.35 L41.72 78.35
+    - path: M72.05 15.98 L72.05 32.18
+    - path: M58.28 32.18 L85.82 32.18
+    - path: M72.05 44.33 C64.76 44.33 59.9 52.43 59.9 62.96 C59.9 73.49 64.76 81.59 72.05 81.59 C79.34
+        81.59 84.2 73.49 84.2 62.96 C84.2 52.43 79.34 44.33 72.05 44.33
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅁ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L18.5 81.5
+    - path: M18.5 18.5 L81.5 18.5 L81.5 81.5
+    - path: M18.5 81.5 L81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅂ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L18.5 81.5
+    - path: M81.5 18.5 L81.5 81.5
+    - path: M18.5 50 L81.5 50
+    - path: M18.5 81.5 L81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅃ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L14.18 78.35
+    - path: M41.72 21.65 L41.72 78.35
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 78.35 L41.72 78.35
+    - path: M58.28 21.65 L58.28 78.35
+    - path: M85.82 21.65 L85.82 78.35
+    - path: M58.28 50 L85.82 50
+    - path: M58.28 78.35 L85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅄ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14.18 21.65 L14.18 78.35
+    - path: M41.72 21.65 L41.72 78.35
+    - path: M14.18 50 L41.72 50
+    - path: M14.18 78.35 L41.72 78.35
+    - path: M72.05 21.65 Q71.24 37.85 68.81 48.38 Q64.76 67.01 58.28 78.35
+    - path: M68.81 48.38 Q76.1 66.2 85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅅ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M50 18.5 Q48.2 36.5 42.8 48.2 Q32.9 68.9 18.5 81.5
+    - path: M42.8 48.2 Q59.9 68.9 81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅆ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M27.95 21.65 Q27.14 37.85 24.71 48.38 Q20.66 67.01 14.18 78.35
+    - path: M24.71 48.38 Q32 66.2 41.72 78.35
+    - path: M72.05 21.65 Q71.24 37.85 68.81 48.38 Q64.76 67.01 58.28 78.35
+    - path: M68.81 48.38 Q76.1 66.2 85.82 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅇ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M50 18.5 C32 18.5 18.5 32 18.5 50 C18.5 68 32 81.5 50 81.5 C68 81.5 81.5 68 81.5 50 C81.5
+        32 68 18.5 50 18.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅈ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L81.5 18.5 Q72.5 39.2 51.8 54.5 Q36.5 70.7 18.5 81.5
+    - path: M51.8 54.5 Q66.2 70.7 81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅉ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M13.37 21.65 L42.53 21.65 Q38.48 41.9 28.76 54.05 Q21.47 68.63 13.37 78.35
+    - path: M28.76 54.05 Q36.05 68.63 42.53 78.35
+    - path: M57.47 21.65 L86.63 21.65 Q82.58 41.9 72.86 54.05 Q65.57 68.63 57.47 78.35
+    - path: M72.86 54.05 Q80.15 68.63 86.63 78.35
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅊ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M50 12.2 L50 32
+    - path: M18.5 32 L81.5 32 Q70.7 48.2 51.8 61.7 Q33.8 77 18.5 86
+    - path: M51.8 61.7 Q66.2 77 81.5 86
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅋ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L81.5 18.5 L81.5 81.5
+    - path: M18.5 50 L81.5 50
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅌ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M18.5 18.5 L81.5 18.5
+    - path: M18.5 50 L81.5 50
+    - path: M18.5 18.5 L18.5 81.5 L81.5 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅍ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14 18.5 L86 18.5
+    - path: M32 18.5 L32 81.5
+    - path: M68 18.5 L68 81.5
+    - path: M14 81.5 L86 81.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅎ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M50 12.2 L50 30.2
+    - path: M23 30.2 L77 30.2
+    - path: M50 43.7 C35.6 43.7 24.8 52.7 24.8 64.4 C24.8 76.1 35.6 85.1 50 85.1 C64.4 85.1 75.2 76.1
+        75.2 64.4 C75.2 52.7 64.4 43.7 50 43.7
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅏ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M41 14 L41 86
+    - path: M41 50 L68 50
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅐ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M30.2 21.2 L30.2 78.8
+    - path: M30.2 50 L69.8 50
+    - path: M69.8 21.2 L69.8 78.8
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅑ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M41 14 L41 86
+    - path: M41 36.5 L68 36.5
+    - path: M41 63.5 L68 63.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅒ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M30.2 21.2 L30.2 78.8
+    - path: M30.2 39.2 L69.8 39.2
+    - path: M30.2 60.8 L69.8 60.8
+    - path: M69.8 21.2 L69.8 78.8
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅓ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14 50 L41 50
+    - path: M41 14 L41 86
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅔ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M19.4 50 L41 50
+    - path: M41 21.2 L41 78.8
+    - path: M72.5 21.2 L72.5 78.8
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅕ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14 36.5 L41 36.5
+    - path: M14 63.5 L41 63.5
+    - path: M41 14 L41 86
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅖ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M19.4 39.2 L41 39.2
+    - path: M19.4 60.8 L41 60.8
+    - path: M41 21.2 L41 78.8
+    - path: M72.5 21.2 L72.5 78.8
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅗ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M50 36.5 L50 63.5
+    - path: M14 63.5 L86 63.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅘ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M32 40.1 L32 56.3
+    - path: M10.4 56.3 L53.6 56.3
+    - path: M63.68 16.52 L63.68 72.68
+    - path: M63.68 44.6 L84.74 44.6
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅙ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M28.31 43.25 L28.31 62.15
+    - path: M11.3 62.15 L45.32 62.15
+    - path: M54.644 21.164 L54.644 62.636
+    - path: M54.644 41.9 L83.156 41.9
+    - path: M83.156 21.164 L83.156 62.636
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅚ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M36.5 43.25 L36.5 62.15
+    - path: M11.3 62.15 L61.7 62.15
+    - path: M76.1 16.52 L76.1 72.68
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅛ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M36.5 36.5 L36.5 63.5
+    - path: M63.5 36.5 L63.5 63.5
+    - path: M14 63.5 L86 63.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅜ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14 36.5 L86 36.5
+    - path: M50 36.5 L50 72.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅝ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M11.3 45.95 L61.7 45.95
+    - path: M36.5 45.95 L36.5 71.15
+    - path: M49.82 58.64 L70.88 58.64
+    - path: M70.88 16.52 L70.88 72.68
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅞ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M11.3 45.95 L45.95 45.95
+    - path: M28.625 45.95 L28.625 71.15
+    - path: M46.868 54.86 L62.42 54.86
+    - path: M62.42 21.164 L62.42 62.636
+    - path: M85.1 21.164 L85.1 62.636
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅟ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M11.3 43.25 L61.7 43.25
+    - path: M36.5 43.25 L36.5 68.45
+    - path: M76.1 16.52 L76.1 72.68
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅠ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14 36.5 L86 36.5
+    - path: M36.5 36.5 L36.5 72.5
+    - path: M63.5 36.5 L63.5 72.5
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅡ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M14 50 L86 50
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅢ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M11.3 52.7 L61.7 52.7
+    - path: M76.1 16.52 L76.1 72.68
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'
+ㅣ:
+  default_variant: original-monoline-pilot
+  kind: character
+  script: Hangul
+  variants:
+  - id: original-monoline-pilot
+    locale: ko-KR
+    provenance:
+    - input: characters/recipes/original-jamo.yaml
+      sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+      source_entry: characters/recipes/original-jamo.yaml
+      source_id: korean-writing-original-pilot
+    - input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      source_entry: characters/recipes/original-layouts.yaml
+      source_id: korean-writing-original-pilot
+    recipe:
+      id: original-korean-pilot
+      input: characters/recipes/original-layouts.yaml
+      sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+      version: '2'
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M50 14 L50 86
+    transform:
+      id: original-contextual-composer
+      matrix:
+      - 1
+      - 0
+      - 0
+      - 1
+      - 0
+      - 0
+      source_frame:
+      - 0
+      - 0
+      - 100
+      - 100
+      version: '2'

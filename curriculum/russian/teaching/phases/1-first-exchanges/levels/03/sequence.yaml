@@ -1,0 +1,199 @@
+schema_version: 3
+id: ru-level-03
+title: Meals and an ordinary day
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 3
+phase: first-exchanges
+prerequisites:
+- ru-level-01
+- ru-level-02
+goals: &id001
+- Describe a familiar routine with present-tense verbs.
+- Request food using a useful accusative form.
+- Adjust small quantities and times after a preference changes.
+checkpoint:
+  task: Arrange a meal and routine activity with changed quantities and preferences, including a new object rather than a memorized order.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-03-food-01
+  title: Meals and ingredients - 1
+  outcome: Explain a food request and verify the intended ingredients or preference.
+  vocabulary:
+  - {id: ru-or-n00029-s001, ch: вода, pr: вода́, ds: water}
+  - {id: ru-or-n00270-s001, ch: чай, pr: чай, ds: tea}
+  - {id: ru-or-n00658-s001, ch: кофе, pr: ко́фе, ds: coffee}
+  - {id: ru-or-n00692-s001, ch: молоко, pr: молоко́, ds: milk}
+  - {id: ru-or-n00227-s001, ch: хлеб, pr: хлеб, ds: bread}
+  - {id: ru-or-n01238-s001, ch: суп, pr: суп, ds: soup}
+  - {id: ru-or-n01484-s001, ch: рис, pr: рис, ds: rice}
+  - {id: ru-or-n00527-s001, ch: мясо, pr: мя́со, ds: meat}
+  - {id: ru-or-n00374-s001, ch: рыба, pr: ры́ба, ds: fish}
+  - {id: ru-or-n01043-s001, ch: яйцо, pr: яйцо́, ds: egg}
+  - {id: ru-or-n02223-s001, ch: сыр, pr: сыр, ds: cheese}
+  - {id: ru-or-n01089-s001, ch: яблоко, pr: я́блоко, ds: apple}
+  - {id: ru-or-n01221-s001, ch: сахар, pr: са́хар, ds: sugar}
+  - {id: ru-or-n01152-s001, ch: соль, pr: соль, ds: salt}
+  - {id: ru-or-n01158-s001, ch: завтрак, pr: за́втрак, ds: breakfast}
+  - {id: ru-or-n00468-s001, ch: обед, pr: обе́д, ds: lunch}
+  - {id: ru-or-n00948-s001, ch: ужин, pr: у́жин, ds: supper}
+  - {id: ru-or-v00006-s001, ch: есть, pr: есть, ds: eat}
+  - {id: ru-or-v00135-s001, ch: пить, pr: пить, ds: drink}
+  - {id: ru-or-v00373-s001, ch: готовить, pr: гото́вить, ds: cook}
+  - {id: ru-or-v00034-s001, ch: любить, pr: люби́ть, ds: like}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-03-time-01
+  title: Time and event sequence - 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary:
+  - {id: ru-or-n00009-s001, ch: день, pr: день, ds: day}
+  - {id: ru-or-n00056-s001, ch: утро, pr: у́тро, ds: morning}
+  - {id: ru-or-n00057-s001, ch: вечер, pr: ве́чер, ds: evening}
+  - {id: ru-or-n00034-s001, ch: ночь, pr: ночь, ds: night}
+  - {id: ru-or-n00025-s001, ch: час, pr: час, ds: hour}
+  - {id: ru-or-n00043-s001, ch: минута, pr: мину́та, ds: minute}
+  - {id: ru-or-n00265-s001, ch: секунда, pr: секу́нда, ds: second (unit of time)}
+  - {id: ru-or-o00097-s001, ch: сегодня, pr: сего́дня, ds: today}
+  - {id: ru-or-o00162-s001, ch: завтра, pr: за́втра, ds: tomorrow}
+  - {id: ru-or-o00058-s001, ch: сейчас, pr: сейча́с, ds: now}
+  - {id: ru-or-o00081-s001, ch: всегда, pr: всегда́, ds: always}
+  - {id: ru-or-o00122-s001, ch: иногда, pr: иногда́, ds: sometimes}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-03-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00018-s001, ch: делать, pr: де́лать, ds: do or make}
+  - {id: ru-or-v00030-s001, ch: работать, pr: рабо́тать, ds: work}
+  - {id: ru-or-v00094-s001, ch: спать, pr: спать, ds: sleep}
+  - {id: ru-or-v00254-s001, ch: вставать, pr: встава́ть, ds: get up}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00001-s001, ch: быть, pr: быть, ds: be}
+  - {id: ru-or-v00003-s001, ch: мочь, pr: мочь, ds: can}
+  - {id: ru-or-v00007-s001, ch: хотеть, pr: хоте́ть, ds: want}
+  - {id: ru-or-v00013-s001, ch: жить, pr: жить, ds: live}
+  - {id: ru-or-v00015-s001, ch: иметь, pr: име́ть, ds: have}
+  - {id: ru-or-v00008-s001, ch: видеть, pr: ви́деть, ds: see}
+  - {id: ru-or-v00096-s001, ch: искать, pr: иска́ть, ds: look for}
+  - {id: ru-or-v00073-s001, ch: находиться, pr: находи́ться, ds: be situated}
+  review_grammar: []
+- id: level-03-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00131-s001, ch: горячий, pr: горя́чий, ds: hot}
+  - {id: ru-or-a00098-s001, ch: холодный, pr: холо́дный, ds: cold}
+  - {id: ru-or-a00679-s001, ch: вкусный, pr: вку́сный, ds: tasty}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00023-s001, ch: белый, pr: бе́лый, ds: white}
+  - {id: ru-or-a00045-s001, ch: чёрный, pr: чёрный, ds: black}
+  - {id: ru-or-a00037-s001, ch: красный, pr: кра́сный, ds: red}
+  - {id: ru-or-a00108-s001, ch: синий, pr: си́ний, ds: dark blue}
+  - {id: ru-or-a00062-s001, ch: зелёный, pr: зелёный, ds: green}
+  - {id: ru-or-o00063-s001, ch: здесь, pr: здесь, ds: here}
+  - {id: ru-or-o00049-s001, ch: там, pr: там, ds: there}
+  - {id: ru-or-o01984-s001, ch: дома, pr: до́ма, ds: at home}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+- id: level-03-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-n01583-s001, ch: ноль, pr: ноль, ds: zero}
+  - {id: ru-or-o00026-s001, ch: один, pr: оди́н, ds: one}
+  - {id: ru-or-o00047-s001, ch: два, pr: два, ds: two}
+  - {id: ru-or-o00075-s001, ch: три, pr: три, ds: three}
+  - {id: ru-or-o00126-s001, ch: четыре, pr: четы́ре, ds: four}
+  - {id: ru-or-n00072-s001, ch: пять, pr: пять, ds: five}
+  - {id: ru-or-o00188-s001, ch: шесть, pr: шесть, ds: six}
+  - {id: ru-or-o00214-s001, ch: семь, pr: семь, ds: seven}
+  - {id: ru-or-o00231-s001, ch: восемь, pr: во́семь, ds: eight}
+  - {id: ru-or-o00306-s001, ch: девять, pr: де́вять, ds: nine}
+  - {id: ru-or-o00137-s001, ch: десять, pr: де́сять, ds: ten}
+  - {id: ru-or-o00101-s001, ch: сколько, pr: ско́лько, ds: how much}
+  - {id: ru-or-o00088-s001, ch: много, pr: мно́го, ds: a lot of}
+  - {id: ru-or-o00132-s001, ch: мало, pr: ма́ло, ds: little}
+  - {id: ru-or-n00243-s001, ch: половина, pr: полови́на, ds: half}
+  - {id: ru-or-v00044-s002, ch: считать, pr: счита́ть, ds: count (numbers or objects)}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00002-s001, ch: в, pr: в, ds: in}
+  - {id: ru-or-o00005-s001, ch: на, pr: на, ds: on (place)}
+  - {id: ru-or-o00017-s001, ch: из, pr: из, ds: from}
+  - {id: ru-or-o00008-s001, ch: с, pr: с, ds: with}
+  - {id: ru-or-o00025-s001, ch: о, pr: о, ds: about}
+  - {id: ru-or-o00009-s001, ch: а, pr: а, ds: whereas (contrast)}
+  - {id: ru-or-o00016-s001, ch: у, pr: у, ds: possession with the genitive}
+  - {id: ru-or-o00031-s001, ch: для, pr: для, ds: for}
+  review_grammar: []
+- id: level-03-money-practice-01
+  title: Money and commercial choices - sentence practice 1
+  outcome: Ask about costs or explain a commercial choice without assuming availability.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-small-quantities, ch: 'один / одна / одно; два / две; три / четыре + [noun]', ds: Request small quantities with the correct noun form}
+  review_vocabulary: []
+  review_grammar: []
+- id: level-03-actions-practice-01
+  title: Actions and results - sentence practice 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-present-conjugation, ch: я читаю / ты читаешь / они читают, ds: Match a present-tense verb to its subject}
+  review_vocabulary:
+  - {id: ru-or-v00061-s001, ch: читать, pr: чита́ть, ds: read}
+  - {id: ru-or-v00042-s001, ch: писать, pr: писа́ть, ds: write}
+  - {id: ru-or-v00015-s001, ch: иметь, pr: име́ть, ds: have}
+  - {id: ru-or-v00008-s001, ch: видеть, pr: ви́деть, ds: see}
+  - {id: ru-or-v00096-s001, ch: искать, pr: иска́ть, ds: look for}
+  - {id: ru-or-v00073-s001, ch: находиться, pr: находи́ться, ds: be situated}
+  - {id: ru-or-v00018-s001, ch: делать, pr: де́лать, ds: do or make}
+  - {id: ru-or-v00030-s001, ch: работать, pr: рабо́тать, ds: work}
+  - {id: ru-or-v00094-s001, ch: спать, pr: спать, ds: sleep}
+  - {id: ru-or-v00254-s001, ch: вставать, pr: встава́ть, ds: get up}
+  review_grammar: []
+- id: level-03-food-practice-01
+  title: Meals and ingredients - sentence practice 1
+  outcome: Explain a food request and verify the intended ingredients or preference.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-want-infinitive, ch: 'хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]', ds: Express a wish with irregular хотеть}
+  - {id: ru-g-accusative-object, ch: 'читать / пить + [accusative object]', ds: Mark a simple direct object in the accusative}
+  review_vocabulary:
+  - {id: ru-or-v00007-s001, ch: хотеть, pr: хоте́ть, ds: want}
+  - {id: ru-or-n01152-s001, ch: соль, pr: соль, ds: salt}
+  - {id: ru-or-n01158-s001, ch: завтрак, pr: за́втрак, ds: breakfast}
+  - {id: ru-or-n00468-s001, ch: обед, pr: обе́д, ds: lunch}
+  - {id: ru-or-n00948-s001, ch: ужин, pr: у́жин, ds: supper}
+  - {id: ru-or-v00006-s001, ch: есть, pr: есть, ds: eat}
+  - {id: ru-or-v00135-s001, ch: пить, pr: пить, ds: drink}
+  - {id: ru-or-v00373-s001, ch: готовить, pr: гото́вить, ds: cook}
+  - {id: ru-or-v00034-s001, ch: любить, pr: люби́ть, ds: like}
+  review_grammar: []
+- id: level-03-time-practice-01
+  title: Time and event sequence - sentence practice 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-routine-time, ch: 'утром / днём / вечером; в [clock time]', ds: Place a routine at a time of day}
+  review_vocabulary:
+  - {id: ru-or-n00025-s001, ch: час, pr: час, ds: hour}
+  - {id: ru-or-n00043-s001, ch: минута, pr: мину́та, ds: minute}
+  - {id: ru-or-n00265-s001, ch: секунда, pr: секу́нда, ds: second (unit of time)}
+  - {id: ru-or-o00097-s001, ch: сегодня, pr: сего́дня, ds: today}
+  - {id: ru-or-o00162-s001, ch: завтра, pr: за́втра, ds: tomorrow}
+  - {id: ru-or-o00058-s001, ch: сейчас, pr: сейча́с, ds: now}
+  - {id: ru-or-o00081-s001, ch: всегда, pr: всегда́, ds: always}
+  - {id: ru-or-o00122-s001, ch: иногда, pr: иногда́, ds: sometimes}
+  review_grammar: []

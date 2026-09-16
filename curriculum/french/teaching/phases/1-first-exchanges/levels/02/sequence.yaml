@@ -1,0 +1,213 @@
+schema_version: 3
+id: fr-level-02
+title: People, objects, and belongings
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 2
+phase: first-exchanges
+prerequisites:
+- fr-level-01
+goals: &id001
+- Identify people and familiar objects.
+- Explain whose an object is.
+- Choose articles and agreement appropriate to familiar descriptions.
+checkpoint:
+  task: Identify a missing object from several alternatives and explain its owner and distinguishing features.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-02-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary:
+  - {id: fr-v-6c4b0aae93d08caa, ch: moi, pr: /mwa/, ds: me (first-person singular disjunctive pronoun)}
+  - {id: fr-v-caa0b6171e404be8, ch: toi, pr: /twa/, ds: you; informal singular disjunctive pronoun}
+  - {id: fr-v-605e5db4331a18b3, ch: lui, pr: /lɥi/, ds: 'him, he, it'}
+  - {id: fr-v-b282b1f97f2d0202, ch: homme, pr: /ɔm/, ds: man (adult male human)}
+  - {id: fr-v-3e8302456d94ef2e, ch: femme, pr: /fam/, ds: woman}
+  - {id: fr-v-d104a66ae8263cce, ch: enfant, pr: /ɑ̃.fɑ̃/, ds: child (someone who is not yet an adult)}
+  - {id: fr-v-a41f5be670478346, ch: ami, pr: /a.mi/, ds: friend (one who is affectionately attached to another)}
+  - {id: fr-v-9063e939763dc72f, ch: famille, pr: /fa.mij/, ds: family (group of related people)}
+  - {id: fr-v-53ad3de60d3c8f0c, ch: mère, pr: /mɛʁ/, ds: mother}
+  - {id: fr-v-de40f3ce6769d486, ch: père, pr: /pɛʁ/, ds: father (parent)}
+  - {id: fr-v-e1b86f0066cf41e4, ch: frère, pr: /fʁɛʁ/, ds: brother (son of the same parents as another person)}
+  - {id: fr-v-4a1f08b539a704b3, ch: sœur, pr: /sœʁ/, ds: sister}
+  - {id: fr-v-88d5923762e92760, ch: fils, pr: /fis/, ds: son}
+  - {id: fr-v-295eb43a95033039, ch: fille, pr: /fij/, ds: girl}
+  - {id: fr-v-031dc89461fd0752, ch: parent, pr: /pa.ʁɑ̃/, ds: 'relative, relation, family member'}
+  - {id: fr-v-aed12fd7bf52d765, ch: bébé, pr: /be.be/, ds: baby}
+  - {id: fr-v-aeb9ec892aa03615, ch: voisin, pr: /vwa.zɛ̃/, ds: 'neighbour, neighbor'}
+  - {id: fr-v-68e5104dc026f854, ch: collègue, pr: /kɔ.lɛɡ/, ds: colleague}
+  - {id: fr-v-b90aa824f8761829, ch: étudiant, pr: /e.ty.djɑ̃/, ds: student}
+  - {id: fr-v-8a5d2d0ef2844ec7, ch: professeur, pr: /pʁɔ.fɛ.sœʁ/, ds: teacher}
+  - {id: fr-v-9a6c971371382aa8, ch: adulte, pr: /a.dylt/, ds: adult}
+  - {id: fr-v-cceb97ab0037f92b, ch: monsieur, pr: /mə.sjø/, ds: mister}
+  - {id: fr-v-b031dfbe6f20bdd6, ch: madame, pr: /ma.dam/, ds: a title or form of address for a woman}
+  - {id: fr-v-45b05a74a2c7a263, ch: couple, pr: /kupl/, ds: two partners in a romantic or sexual relationship}
+  - {id: fr-v-8c5048fb1edee2ab, ch: âge, pr: /aʒ/, ds: age}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-02-people-02
+  title: People and relationships - 2
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary:
+  - {id: fr-v-e1ed44623cdfc3df, ch: mari, pr: /ma.ʁi/, ds: husband}
+  - {id: fr-v-869a1782460e9523, ch: épouse, pr: /e.puz/, ds: 'female spouse, wife'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-68e5104dc026f854, ch: collègue, pr: /kɔ.lɛɡ/, ds: colleague}
+  - {id: fr-v-b90aa824f8761829, ch: étudiant, pr: /e.ty.djɑ̃/, ds: student}
+  - {id: fr-v-8a5d2d0ef2844ec7, ch: professeur, pr: /pʁɔ.fɛ.sœʁ/, ds: teacher}
+  - {id: fr-v-9a6c971371382aa8, ch: adulte, pr: /a.dylt/, ds: adult}
+  - {id: fr-v-cceb97ab0037f92b, ch: monsieur, pr: /mə.sjø/, ds: mister}
+  - {id: fr-v-b031dfbe6f20bdd6, ch: madame, pr: /ma.dam/, ds: a title or form of address for a woman}
+  - {id: fr-v-45b05a74a2c7a263, ch: couple, pr: /kupl/, ds: two partners in a romantic or sexual relationship}
+  - {id: fr-v-8c5048fb1edee2ab, ch: âge, pr: /aʒ/, ds: age}
+  review_grammar: []
+- id: level-02-description-01
+  title: Description and comparison - 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-00844f8611c61e3b, ch: chose, pr: /ʃoz/, ds: thing}
+  - {id: fr-v-92746b41a2a954f6, ch: objet, pr: /ɔb.ʒɛ/, ds: 'thing, object'}
+  - {id: fr-v-4b55c3a50fa474bf, ch: sac, pr: /sak/, ds: 'bag, sack'}
+  - {id: fr-v-580d8fe18b6303c4, ch: livre, pr: /livʁ/, ds: book}
+  - {id: fr-v-3b87bd6e1e16d389, ch: stylo, pr: /sti.lo/, ds: pen (for writing)}
+  - {id: fr-v-146fe2fdbe45d8b2, ch: papier, pr: /pa.pje/, ds: paper; writing material}
+  - {id: fr-v-bcd2d6db81d0f278, ch: téléphone, pr: /te.le.fɔn/, ds: telephone}
+  - {id: fr-v-5f205da766a8e659, ch: clé, pr: /kle/, ds: key (device for unlocking)}
+  - {id: fr-v-405e7736ab8e3c19, ch: porte, pr: /pɔʁt/, ds: door}
+  - {id: fr-v-f2771df010b4d956, ch: table, pr: /tabl/, ds: table; piece of furniture}
+  - {id: fr-v-33d059909d38fe5d, ch: chaise, pr: /ʃɛz/, ds: 'chair, seat'}
+  - {id: fr-v-8603a8b24d483724, ch: place, pr: /plas/, ds: space; available room}
+  - {id: fr-v-627d5e482176d163, ch: photo, pr: /fɔ.to/, ds: photo}
+  - {id: fr-v-b736bac02ea9efb2, ch: grand, pr: /ɡʁɑ̃/, ds: big}
+  - {id: fr-v-fff5cbc01133f140, ch: petit, pr: /pə.ti/, ds: small}
+  - {id: fr-v-51376bb19ca5a0c7, ch: nouveau, pr: /nu.vo/, ds: new}
+  - {id: fr-v-8332cdeadc9fd451, ch: vieux, pr: /vjø/, ds: old}
+  - {id: fr-v-2421d5e16ee85796, ch: jeune, pr: /ʒœn/, ds: young}
+  - {id: fr-v-f0273331a5e2c75c, ch: beau, pr: /bo/, ds: 'handsome, fine, attractive'}
+  - {id: fr-v-302bbbf7058ce22c, ch: bon, pr: /bɔ̃/, ds: good}
+  - {id: fr-v-65f5ab58a6489e05, ch: mauvais, pr: /mo.vɛ/, ds: bad}
+  - {id: fr-v-c24823ae63797a22, ch: rouge, pr: /ʁuʒ/, ds: red (of a red color)}
+  - {id: fr-v-7ce3600428958010, ch: bleu, pr: /blø/, ds: blue}
+  - {id: fr-v-3e3ab79ffe4091c5, ch: blanc, pr: /blɑ̃/, ds: white color}
+  - {id: fr-v-c28e71edd0b452c6, ch: noir, pr: /nwaʁ/, ds: black in colour}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-02-description-02
+  title: Description and comparison - 2
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-4c21d85fcc0322ee, ch: vert, pr: /vɛʁ/, ds: green}
+  - {id: fr-v-b2b0a4d3e600dc47, ch: jaune, pr: /ʒon/, ds: yellow}
+  - {id: fr-v-58ad292acdcaa334, ch: couleur, pr: /ku.lœʁ/, ds: color/colour}
+  - {id: fr-v-6b1b8caaff1de9be, ch: même, pr: /mɛm/, ds: same}
+  - {id: fr-v-3ec5d5479bdc6cff, ch: autre, pr: /otʁ/, ds: other}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-2421d5e16ee85796, ch: jeune, pr: /ʒœn/, ds: young}
+  - {id: fr-v-f0273331a5e2c75c, ch: beau, pr: /bo/, ds: 'handsome, fine, attractive'}
+  - {id: fr-v-302bbbf7058ce22c, ch: bon, pr: /bɔ̃/, ds: good}
+  - {id: fr-v-65f5ab58a6489e05, ch: mauvais, pr: /mo.vɛ/, ds: bad}
+  - {id: fr-v-c24823ae63797a22, ch: rouge, pr: /ʁuʒ/, ds: red (of a red color)}
+  - {id: fr-v-7ce3600428958010, ch: bleu, pr: /blø/, ds: blue}
+  - {id: fr-v-3e3ab79ffe4091c5, ch: blanc, pr: /blɑ̃/, ds: white color}
+  - {id: fr-v-c28e71edd0b452c6, ch: noir, pr: /nwaʁ/, ds: black in colour}
+  review_grammar: []
+- id: level-02-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a selected construction to communicate a new meaning and distinguish a relevant contrast.
+  vocabulary:
+  - {id: fr-v-3cd9eb8a99ac0682, ch: le, pr: /lə/, ds: the; definite article}
+  - {id: fr-v-eec2f795ebff342d, ch: un, pr: /œ̃/, ds: 'an, a'}
+  - {id: fr-v-476fbe5330399485, ch: ce, pr: /sə/, ds: 'it, this, that (see § Usage notes)'}
+  - {id: fr-v-17cd0f5dea9a873a, ch: mon, pr: /mɔ̃/, ds: my; possessive determiner}
+  - {id: fr-v-cc0bf486c09c0026, ch: ton, pr: /tɔ̃/, ds: your}
+  - {id: fr-v-38019a7825f51308, ch: son, pr: /sɔ̃/, ds: his}
+  - {id: fr-v-143aea7c7952a856, ch: notre, pr: /nɔtʁ/, ds: our}
+  - {id: fr-v-8f9fce34db0b90ff, ch: votre, pr: /vɔtʁ/, ds: 'your, belonging to you (plural or formal)'}
+  - {id: fr-v-631eeb660c5dd532, ch: leur, pr: /lœʁ/, ds: their; possessive determiner}
+  - {id: fr-v-a421908bf7011681, ch: de, pr: /də/, ds: 'of; possession, association, or relationship'}
+  - {id: fr-v-5ec809f61dd4f922, ch: à, pr: /a/, ds: to (destination)}
+  - {id: fr-v-8b08d0d1eb85ad1c, ch: dans, pr: /dɑ̃/, ds: 'in, inside (enclosed in a physical space, a group, a state)'}
+  - {id: fr-v-098e19a148c05266, ch: sur, pr: /syʁ/, ds: 'on, upon'}
+  - {id: fr-v-8cd331fbd521083e, ch: sous, pr: /su/, ds: 'below, under'}
+  - {id: fr-v-810ff3f01a4e6b01, ch: entre, pr: /ɑ̃tʁ/, ds: between}
+  - {id: fr-v-fd582a89df883fb0, ch: devant, pr: /də.vɑ̃/, ds: in front of}
+  - {id: fr-v-df1df27984b04cc8, ch: derrière, pr: /dɛ.ʁjɛʁ/, ds: behind}
+  - {id: fr-v-c1a655ae9925085a, ch: chez, pr: /ʃe/, ds: 'to, at, in or into the place of'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-7d53b711f1c49eed, ch: et, pr: /e/, ds: and}
+  - {id: fr-v-dc8662814b0419cd, ch: ou, pr: /u/, ds: or}
+  - {id: fr-v-2dad0531c36cfe6a, ch: mais, pr: /mɛ/, ds: 'but, although'}
+  - {id: fr-v-abbb6083d24c9661, ch: pas, pr: /pa/, ds: The most common adverb of negation in French}
+  - {id: fr-v-e4069d214a0ba5e0, ch: très, pr: /tʁɛ/, ds: very}
+  - {id: fr-v-504a496fa97eab7b, ch: aussi, pr: /o.si/, ds: 'too, also, as well'}
+  - {id: fr-v-979aac8cbba7844c, ch: avec, pr: /a.vɛk/, ds: with}
+  - {id: fr-v-8c7221840bd109c2, ch: sans, pr: /sɑ̃/, ds: without (not having)}
+  review_grammar: []
+- id: level-02-communication-practice-01
+  title: Contact and communication - sentence practice 1
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+  review_vocabulary:
+  - {id: fr-v-cecc5bedb850a554, ch: parler, pr: /paʁ.le/, ds: 'to speak, talk'}
+  - {id: fr-v-73e609960c35f44a, ch: ici, pr: /i.si/, ds: here}
+  - {id: fr-v-defa62282f2d9459, ch: lentement, pr: /lɑ̃t.mɑ̃/, ds: slowly}
+  - {id: fr-v-5a5dbb666cb40f20, ch: encore, pr: /ɑ̃.kɔʁ/, ds: still}
+  - {id: fr-v-386012f72198c83d, ch: maintenant, pr: /mɛ̃t.nɑ̃/, ds: 'now, currently'}
+  - {id: fr-v-23aed6f0aa7352ba, ch: faire, pr: /fɛʁ/, ds: to do}
+  - {id: fr-v-5c68a89f38d9b824, ch: voir, pr: /vwaʁ/, ds: to see (visually)}
+  - {id: fr-v-90e551d22bb952c9, ch: donner, pr: /dɔ.ne/, ds: to give}
+  - {id: fr-v-18caab3d7c690471, ch: nommer, pr: /nɔ.me/, ds: to name; to call by a name}
+  review_grammar:
+  - {id: fr-g-avoir-present, ch: sujet + ai / as / a / avons / avez / ont, ds: Present avoir for possession and an available question}
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+- id: level-02-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-articles-gender-number, ch: un / une / des ; le / la / les + nom, ds: Introduce a referent or identify a known one}
+  - {id: fr-g-possessive-determiners, ch: mon / ma / mes ; son / sa / ses + nom, ds: Possessive forms agree with the possessed noun}
+  review_vocabulary:
+  - {id: fr-v-580d8fe18b6303c4, ch: livre, pr: /livʁ/, ds: book}
+  - {id: fr-v-5f205da766a8e659, ch: clé, pr: /kle/, ds: key (device for unlocking)}
+  - {id: fr-v-4a1f08b539a704b3, ch: sœur, pr: /sœʁ/, ds: sister}
+  - {id: fr-v-8a5d2d0ef2844ec7, ch: professeur, pr: /pʁɔ.fɛ.sœʁ/, ds: teacher}
+  - {id: fr-v-9a6c971371382aa8, ch: adulte, pr: /a.dylt/, ds: adult}
+  - {id: fr-v-cceb97ab0037f92b, ch: monsieur, pr: /mə.sjø/, ds: mister}
+  - {id: fr-v-b031dfbe6f20bdd6, ch: madame, pr: /ma.dam/, ds: a title or form of address for a woman}
+  - {id: fr-v-45b05a74a2c7a263, ch: couple, pr: /kupl/, ds: two partners in a romantic or sexual relationship}
+  - {id: fr-v-8c5048fb1edee2ab, ch: âge, pr: /aʒ/, ds: age}
+  - {id: fr-v-e1ed44623cdfc3df, ch: mari, pr: /ma.ʁi/, ds: husband}
+  - {id: fr-v-869a1782460e9523, ch: épouse, pr: /e.puz/, ds: 'female spouse, wife'}
+  review_grammar: []
+- id: level-02-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  review_vocabulary:
+  - {id: fr-v-f2771df010b4d956, ch: table, pr: /tabl/, ds: table; piece of furniture}
+  - {id: fr-v-4b55c3a50fa474bf, ch: sac, pr: /sak/, ds: 'bag, sack'}
+  - {id: fr-v-7ce3600428958010, ch: bleu, pr: /blø/, ds: blue}
+  - {id: fr-v-3e3ab79ffe4091c5, ch: blanc, pr: /blɑ̃/, ds: white color}
+  - {id: fr-v-c28e71edd0b452c6, ch: noir, pr: /nwaʁ/, ds: black in colour}
+  - {id: fr-v-4c21d85fcc0322ee, ch: vert, pr: /vɛʁ/, ds: green}
+  - {id: fr-v-b2b0a4d3e600dc47, ch: jaune, pr: /ʒon/, ds: yellow}
+  - {id: fr-v-58ad292acdcaa334, ch: couleur, pr: /ku.lœʁ/, ds: color/colour}
+  - {id: fr-v-6b1b8caaff1de9be, ch: même, pr: /mɛm/, ds: same}
+  - {id: fr-v-3ec5d5479bdc6cff, ch: autre, pr: /otʁ/, ds: other}
+  review_grammar: []

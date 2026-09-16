@@ -1,0 +1,164 @@
+schema_version: 1
+description: Original task selections and transparent source-assisted candidate ordering. Frequency is a surface-form queue aid, not an official level or mastery measure.
+core_scale: 5900
+early:
+  1: hola adiós gracias perdón nombre persona hombre mujer amigo amiga español inglés hablar escuchar entender repetir escribir leer llamar ayudar necesitar poder querer ser estar bien mal sí no favor despacio claro palabra pregunta respuesta disculpar saludo aprender conversar
+  2: casa familia madre padre hijo hija hermano hermana abuelo abuela niño niña bebé pareja marido esposa vecino gente estudiante profesor médico llave puerta mesa silla libro papel teléfono bolso cartera mochila ropa zapato grande pequeño nuevo viejo bonito feo rojo azul verde blanco negro amarillo color tamaño aquí allí cerca lejos dentro fuera tener buscar encontrar ver mirar mostrar
+  3: agua café té leche pan arroz carne pollo pescado huevo fruta verdura manzana naranja plátano patata tomate ensalada sopa queso azúcar sal aceite vino cerveza zumo comida bebida desayuno almuerzo cena menú cuenta vaso taza plato botella cuchara tenedor cuchillo hambre sed comer beber comprar pagar costar precio dinero euro peso tarjeta efectivo número cero uno dos tres cuatro cinco seis siete ocho nueve diez veinte treinta cien mucho poco más menos caliente frío dulce
+  4: calle plaza parque estación aeropuerto autobús tren taxi coche hotel habitación baño tienda mercado banco hospital farmacia ciudad pueblo mapa dirección izquierda derecha recto norte sur este oeste esquina entrada salida centro lugar camino hora minuto día semana mes año hoy mañana ayer ahora tarde noche lunes martes miércoles jueves viernes sábado domingo tiempo ir venir salir llegar volver esperar caminar abrir cerrar subir bajar pasar quedar empezar terminar
+  5: hogar piso cocina dormitorio salón comedor ventana pared techo suelo escalera ascensor cama armario sofá lámpara espejo ducha jabón toalla sábana manta almohada lavadora nevera horno basura limpieza jardín vivir alquilar limpiar lavar cocinar descansar dormir despertar levantar acostar vestir llevar poner quitar gustar preferir amar recordar olvidar entender pensar sentir trabajo escuela oficina universidad clase curso horario tarea libre ocupado temprano siempre nunca veces durante juntos solo cansado contento triste feliz tranquilo preocupado
+  6: supermercado compra venta producto calidad cantidad oferta descuento recibo factura devolución cambio talla camisa camiseta pantalón vestido falda abrigo chaqueta calcetín sombrero guante cuerpo cabeza ojo oído nariz boca diente mano brazo pierna pie espalda piel corazón dolor fiebre tos alergia medicina salud enfermo enfermera cita urgente seguro explicar doler respirar tomar faltar elegir probar cambiar devolver reparar funcionar romper perder
+  7: viaje reserva billete boleto pasaje pasaporte documento equipaje maleta asiento andén parada salida llegada retraso destino origen ida vuelta conducir cruzar seguir recoger dejar permitir prohibir confirmar cancelar reservar viajar visitar alojar incluir disponible lleno vacío próximo último primero segundo tercero antes después mientras hasta desde entre hacia
+  8: estudiar enseñar trabajar empleo empresa compañero jefa jefe reunión mensaje correo llamada noticia información experiencia problema solución idea opinión razón ejemplo plan proyecto reunión invitación fiesta cumpleaños música película deporte juego jugar nadar correr bailar cantar conocer saber poder hacer decir dar pedir preguntar contestar responder contar decidir intentar lograr comenzar continuar acabar ayudar participar compartir prometer conocer
+essential_aliases:
+  ser-identity: {lemma: ser, pos: verb, contains: essentially, ds: 'to be (identity or defining description)'}
+  estar-location: {lemma: estar, pos: verb, contains: location in space, ds: 'to be located'}
+  haber-existential: {lemma: haber, pos: verb, contains: to exist, ds: 'there is or are (existential haber)'}
+  haber-auxiliary: {lemma: haber, pos: verb, contains: perfect aspect, ds: 'auxiliary have in perfect constructions'}
+  tener-possession: {lemma: tener, pos: verb, contains: to have, ds: 'to have or possess'}
+  ir-movement: {lemma: ir, pos: verb, contains: away from speaker, ds: 'to go'}
+  querer-want: {lemma: querer, pos: verb, contains: to desire, ds: 'to want'}
+  querer-love: {lemma: querer, pos: verb, contains: to love, ds: 'to love or be fond of a person'}
+  poder-ability: {lemma: poder, pos: verb, contains: to be able, ds: 'to be able to; can'}
+  hacer-do: {lemma: hacer, pos: verb, contains: to do, ds: 'to do or make'}
+  decir-say: {lemma: decir, pos: verb, contains: to say, ds: 'to say or tell'}
+  dar-give: {lemma: dar, pos: verb, contains: to give, ds: 'to give'}
+  saber-know: {lemma: saber, pos: verb, contains: to know, ds: 'to know or understand a fact'}
+  conocer-acquaintance: {lemma: conocer, pos: verb, contains: to know, ds: 'to know or be acquainted with'}
+  gustar-please: {lemma: gustar, pos: verb, contains: to like, ds: 'to be pleasing to; like'}
+  ver-see: {lemma: ver, pos: verb, contains: to see, ds: 'to see'}
+  pedir-request: {lemma: pedir, pos: verb, contains: to ask, ds: 'to ask for or request'}
+  hablar-speak: {lemma: hablar, pos: verb, contains: to speak, ds: 'to speak'}
+  comer-eat: {lemma: comer, pos: verb, contains: to eat, ds: 'to eat'}
+  vivir-live: {lemma: vivir, pos: verb, contains: to live, ds: 'to live'}
+  banco-financial: {lemma: banco, pos: noun, contains: financial institution, ds: 'bank (financial institution)'}
+  banco-bench: {lemma: banco, pos: noun, contains: bench, ds: 'bench (seat)'}
+  mujer-woman: {lemma: mujer, pos: noun, contains: woman, ds: 'woman'}
+  mujer-wife: {lemma: mujer, pos: noun, contains: wife, ds: 'wife'}
+  agua-water: {lemma: agua, pos: noun, contains: water, ds: 'water'}
+  orden-command: {lemma: orden, pos: noun, contains: command, ds: 'order or command (feminine)'}
+  gente-people: {lemma: gente, pos: noun, contains: people, ds: 'people (collective singular noun)'}
+  dinero-money: {lemma: dinero, pos: noun, contains: money, ds: 'money'}
+  ayuda-help: {lemma: ayuda, pos: noun, contains: help, ds: 'help or assistance'}
+  entender-understand: {lemma: entender, pos: verb, contains: understand, ds: 'to understand'}
+  repetir-repeat: {lemma: repetir, pos: verb, contains: repeat, ds: 'to repeat'}
+  escribir-write: {lemma: escribir, pos: verb, contains: write, ds: 'to write'}
+  necesitar-need: {lemma: necesitar, pos: verb, contains: need, ds: 'to need'}
+  pagar-pay: {lemma: pagar, pos: verb, contains: pay, ds: 'to pay'}
+  buscar-search: {lemma: buscar, pos: verb, contains: look for, ds: 'to look for'}
+  llegar-arrive: {lemma: llegar, pos: verb, contains: arrive, ds: 'to arrive'}
+  perder-lose: {lemma: perder, pos: verb, contains: lose, ds: 'to lose'}
+preferred_pos:
+  de: prep
+  a: prep
+  que: conj
+  por: prep
+  para: prep
+  como: adv
+  bajo: adj
+  sobre: prep
+  entre: prep
+  ser: verb
+  estar: verb
+  haber: verb
+  poder: verb
+  querer: verb
+  saber: verb
+  cerca: adv
+  favor: noun
+  claro: adj
+  español: adj
+  inglés: adj
+  no: intj
+  sí: adv
+  bien: adv
+  mal: adv
+  adiós: intj
+  bonito: adj
+  viejo: adj
+  negro: adj
+  blanco: adj
+  azul: adj
+  rojo: adj
+  verde: adj
+  amarillo: adj
+  médico: noun
+  estudiante: noun
+  caliente: adj
+  frío: adj
+  dulce: adj
+  primero: adj
+  segundo: adj
+  tercero: adj
+  último: adj
+  lleno: adj
+  vacío: adj
+  libre: adj
+  próximo: adj
+  temprano: adv
+  tarde: noun
+  siempre: adv
+  nunca: adv
+  solo: adj
+  cansado: adj
+  contento: adj
+  triste: adj
+  feliz: adj
+  tranquilo: adj
+  preocupado: adj
+  grande: adj
+  pequeño: adj
+  nuevo: adj
+  feo: adj
+  variable: noun
+topic_overrides:
+  people: hombre mujer nombre persona amigo familia madre padre hijo hija hermano hermana abuelo abuela niño niña bebé pareja marido esposa vecino gente estudiante profesor
+  communication: hola adiós gracias perdón saludo pregunta respuesta palabra hablar escuchar entender repetir escribir leer llamar conversar disculpar teléfono mirar ver
+  description: bien mal claro despacio bonito feo rojo azul verde blanco negro amarillo grande pequeño viejo nuevo color tamaño cerca lejos aquí allí dentro fuera
+  grammar: ser estar haber poder querer tener no sí
+  health: médico enfermero enfermera medicina dolor fiebre tos cuerpo cabeza ojo oído nariz boca diente mano brazo pierna pie espalda piel corazón salud
+  home: libro papel llave puerta mesa silla casa ventana pared techo suelo escalera ascensor cama armario sofá lámpara espejo ducha jabón toalla sábana manta almohada lavadora nevera horno basura limpieza jardín
+excluded_words: eme ene erre ese ye equis jota ka cu ce be ge hache eñe alfa beta gamma delta mu nu xi pi rho sigma tau phi psi omega sic versus ergo idem ídem etc amén
+topic_keywords:
+  people: family parent mother father brother sister wife husband child baby daughter son friend neighbor neighbour person people relationship wedding marriage relative
+  home: home house household room kitchen furniture bedroom bathroom door window floor roof wall garden furniture household bed chair table cupboard
+  clothing: clothing clothes dress shirt shoe fabric cotton wool trousers pants skirt jacket coat hat garment wear outfit fashion
+  food: food meal eat drink cook bread meat fish fruit vegetable cheese milk coffee tea wine beer restaurant ingredient taste flavour flavor soup dish kitchen
+  health: body health medical medicine hospital doctor nurse patient symptom pain disease injury wound blood heart skin muscle bone tooth tooth dental
+  travel: travel journey transport train bus car vehicle road street airport airplane aeroplane flight ticket tourism hotel accommodation route path direction
+  services: shop store service purchase sale customer client repair delivery package mail parcel transaction request appointment order
+  leisure: sport game play entertainment hobby swim dance exercise competition race football baseball basketball leisure
+  learning: school student teacher teach learn education university lesson class exam study knowledge skill language grammar mathematics
+  work: work job worker employee employer office business company management team task meeting project profession career
+  money: money bank finance financial economic economy trade commerce market price cost payment pay debt credit investment currency tax budget
+  communication: speak say tell talk listen hear write read word message communication telephone letter email conversation question answer text
+  time: time day week month year hour minute second duration period moment date past future present century season
+  feelings: feeling emotion love hate fear hope joy happy sad sorrow anger anxiety surprise worry feeling desire
+  reasoning: reason cause consequence purpose result logic argument evidence explanation conclusion because probability possibility truth
+  society: society social public community citizen population welfare equality inequality poverty rich poor collective
+  institutions: law legal court judge justice government political politics parliament election vote constitution state administration right duty institution
+  media: news newspaper journalist journalism media report broadcast television radio article magazine publication press audience
+  technology: computer software hardware digital internet network electronic electricity device machine engine equipment tool system mechanical
+  nature: nature natural environment climate weather rain snow wind storm sun moon earth sea ocean river lake mountain forest tree plant animal bird insect
+  science: science scientific research experiment analysis measurement physics chemical chemistry biology cell energy atom particle molecule laboratory
+  history: history historical tradition ancient past war battle revolution empire kingdom period civilization civil
+  culture: culture cultural custom tradition religious religion faith belief ceremony celebration festival language society
+  arts: art artistic artist music musical song painting drawing sculpture theatre theater cinema poetry creative design
+  argument: argument claim evidence debate proof criticism objection discussion conclusion analysis inference interpretation
+  register: formal informal colloquial polite politeness rhetorical nuance emphasis figurative idiomatic expression style
+  literature: literature literary novel story poem poetry author narrative metaphor fiction drama verse character plot
+topic_minimum:
+  society: 9
+  institutions: 14
+  media: 9
+  technology: 9
+  science: 14
+  history: 9
+  argument: 14
+  literature: 19
+  register: 9
+branch_words:
+  professional: negociación contrato presupuesto proveedor cliente facturación inventario logística contratación plantilla nómina auditoría cumplimiento coordinación asesoría consultoría licitación distribución productividad rentabilidad financiación contabilidad accionista directivo gerencia liderazgo emprendimiento supervisión estrategia objetivo indicador balance tesorería subsidio subvención corporativo laboral comercial mercantil solvencia reembolso amortización honorario incentivo rendimiento
+  technical: algoritmo interfaz servidor navegador archivo carpeta contraseña cifrado encriptación autenticar compilador depurador repositorio código programación variable función parámetro módulo componente protocolo procesador memoria almacenamiento conectividad voltaje resistencia circuito sensor señal diagnóstico compatibilidad redundancia latencia interfaz automatización infraestructura configuración actualización instalación dispositivo aplicación
+  scientific: hipótesis muestra muestreo sesgo correlación causalidad variable estadística incertidumbre estimación experimento observación replicación reproducibilidad medición magnitud unidad proporción frecuencia dispersión desviación intervalo evidencia metodología análisis síntesis microscopio molécula átomo célula enzima proteína organismo biodiversidad ecosistema metabolismo fotosíntesis gravitación radiación termodinámica
+  literary: narrador protagonista antagonista trama desenlace metáfora símil ironía aliteración hipérbole alegoría símbolo simbolismo estrofa verso rima métrica soneto ensayo crónica fábula cuento novela dramaturgia diálogo monólogo voz perspectiva ambigüedad interpretación intertextualidad alusión tono registro retórica poética lirismo sátira parodia prosodia

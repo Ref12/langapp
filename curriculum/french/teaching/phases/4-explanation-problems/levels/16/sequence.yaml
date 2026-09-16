@@ -1,0 +1,407 @@
+schema_version: 3
+id: fr-level-16
+title: News and society
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 16
+phase: explanation-problems
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+- fr-level-15
+goals: &id001
+- Summarize a general-interest report.
+- Distinguish events from attributed claims.
+- Compare what two reports emphasize or leave uncertain.
+checkpoint:
+  task: Explain the common facts and different emphases in two short reports without presenting unconfirmed claims as established facts.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-16-society-01
+  title: Society and community - 1
+  outcome: Explain a social issue without turning individual experiences into universal claims.
+  vocabulary:
+  - {id: fr-v-134cfe8fc8761ea1, ch: société, pr: /sɔ.sje.te/, ds: society}
+  - {id: fr-v-405a188fab4728cf, ch: communauté, pr: /kɔ.my.no.te/, ds: community}
+  - {id: fr-v-ab204660c5a7a6ea, ch: population, pr: /pɔ.py.la.sjɔ̃/, ds: population}
+  - {id: fr-v-e8a5c7c319454f4e, ch: habitant, pr: /a.bi.tɑ̃/, ds: an inhabitant of some place}
+  - {id: fr-v-29a8b84ceb0aa58f, ch: citoyen, pr: /si.twa.jɛ̃/, ds: citizen}
+  - {id: fr-v-8e8672e00c02a786, ch: résident, pr: /ʁe.zi.dɑ̃/, ds: resident}
+  - {id: fr-v-9b5a472626f9f87d, ch: minorité, pr: /mi.nɔ.ʁi.te/, ds: minority; group smaller than the majority}
+  - {id: fr-v-3626f87783e9bfe3, ch: majorité, pr: /ma.ʒɔ.ʁi.te/, ds: majority}
+  - {id: fr-v-a524e6a25278ad52, ch: milieu, pr: /mi.ljø/, ds: middle; center}
+  - {id: fr-v-8f0fc4728d55a842, ch: catégorie, pr: /ka.te.ɡɔ.ʁi/, ds: category}
+  - {id: fr-v-aa44c78c352ecdd7, ch: diversité, pr: /di.vɛʁ.si.te/, ds: diversity}
+  - {id: fr-v-c1c110b56c9f5c41, ch: égalité, pr: /e.ɡa.li.te/, ds: equality}
+  - {id: fr-v-7b4f45bb96db2260, ch: inégalité, pr: /i.ne.ɡa.li.te/, ds: 'inequality (an unfair, not equal, state)'}
+  - {id: fr-v-69e6315c4d17ca5d, ch: solidarité, pr: /sɔ.li.da.ʁi.te/, ds: solidarity}
+  - {id: fr-v-6ee34be90cb4f4df, ch: exclusion, pr: /ɛk.skly.zjɔ̃/, ds: exclusion}
+  - {id: fr-v-eec3f6c0d7e39464, ch: inclusion, pr: /ɛ̃.kly.zjɔ̃/, ds: inclusion}
+  - {id: fr-v-d435bf6d79de0c96, ch: intégration, pr: /ɛ̃.te.ɡʁa.sjɔ̃/, ds: integration}
+  - {id: fr-v-f44a7aa9f03ceaa8, ch: discrimination, pr: /dis.kʁi.mi.na.sjɔ̃/, ds: 'discrimination, distinction'}
+  - {id: fr-v-33a7e45edfcec123, ch: racisme, pr: /ʁa.sism/, ds: racism}
+  - {id: fr-v-451d60fe20e77a52, ch: sexisme, pr: /sɛk.sism/, ds: sexism}
+  - {id: fr-v-a8ba65518d406559, ch: préjugé, pr: /pʁe.ʒy.ʒe/, ds: 'a prejudice, a bias'}
+  - {id: fr-v-2a428071857a1e6f, ch: stéréotype, pr: /ste.ʁe.ɔ.tip/, ds: stereotype; oversimplified conventional view}
+  - {id: fr-v-873fd0bbcbc177e4, ch: tolérance, pr: /tɔ.le.ʁɑ̃s/, ds: tolerance}
+  - {id: fr-v-02e4dfc00caa206d, ch: respect, pr: /ʁɛs.pɛ/, ds: respect}
+  - {id: fr-v-56d333b8730eff81, ch: dignité, pr: /di.ɲi.te/, ds: dignity}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-16-society-02
+  title: Society and community - 2
+  outcome: Explain a social issue without turning individual experiences into universal claims.
+  vocabulary:
+  - {id: fr-v-40e8cf114534b0df, ch: liberté, pr: /li.bɛʁ.te/, ds: liberty}
+  - {id: fr-v-a02d94f6687b3c2d, ch: justice, pr: /ʒys.tis/, ds: justice}
+  - {id: fr-v-c58b68952fff6f5a, ch: injustice, pr: /ɛ̃.ʒys.tis/, ds: injustice}
+  - {id: fr-v-b74bb8ae9749ab97, ch: pauvreté, pr: /po.vʁə.te/, ds: poverty}
+  - {id: fr-v-9862c0c60a25cd72, ch: richesse, pr: /ʁi.ʃɛs/, ds: wealth}
+  - {id: fr-v-f768a0f405f9c867, ch: précarité, pr: /pʁekaʁite/, ds: 'precarity, existence without financial or social security'}
+  - {id: fr-v-9568b02353db737d, ch: chômage, pr: /ʃo.maʒ/, ds: unemployment}
+  - {id: fr-v-ba1b9e675ce30c87, ch: revenu, pr: /ʁə.v(ə).ny/, ds: revenue}
+  - {id: fr-v-bd6f556d07bbf39d, ch: protection, pr: /pʁɔ.tɛk.sjɔ̃/, ds: protection}
+  - {id: fr-v-5a52ec958ab29b81, ch: allocation, pr: /a.lɔ.ka.sjɔ̃/, ds: allocation}
+  - {id: fr-v-aa33a32624cef951, ch: retraite, pr: /ʁə.tʁɛt/, ds: retirement}
+  - {id: fr-v-459d8296b2f0ae1c, ch: pension, pr: /pɑ̃.sjɔ̃/, ds: 'a pension, regularly received payment'}
+  - {id: fr-v-12f2bf875f5a367d, ch: cotisation, pr: /kɔ.ti.za.sjɔ̃/, ds: 'subscription, dues (for organisation etc.)'}
+  - {id: fr-v-c68da9270b29bdbb, ch: syndicat, pr: /sɛ̃.di.ka/, ds: trade union; workers' organization}
+  - {id: fr-v-febc6d3f9e2290c3, ch: association, pr: /a.sɔ.sja.sjɔ̃/, ds: 'association, society, group'}
+  - {id: fr-v-c156c42ff4a3783c, ch: fondation, pr: /fɔ̃.da.sjɔ̃/, ds: foundation (act of founding)}
+  - {id: fr-v-edb1d2f2cd42db01, ch: mouvement, pr: /muv.mɑ̃/, ds: movement}
+  - {id: fr-v-76a4f9622be9a27c, ch: mobilisation, pr: /mɔ.bi.li.za.sjɔ̃/, ds: 'mobilisation, call-up, draft'}
+  - {id: fr-v-7bcdcfe981c0c016, ch: manifestation, pr: /ma.ni.fɛs.ta.sjɔ̃/, ds: 'protest, demonstration'}
+  - {id: fr-v-05faee382198e1b0, ch: rassemblement, pr: /ʁa.sɑ̃.blə.mɑ̃/, ds: gathering; assembly}
+  - {id: fr-v-92190c206e317735, ch: pétition, pr: /pe.ti.sjɔ̃/, ds: petition (a written request containing many signatures)}
+  - {id: fr-v-b441d34eb5ec9671, ch: revendication, pr: /ʁə.vɑ̃.di.ka.sjɔ̃/, ds: airing of one's demand; claiming of one's identity}
+  - {id: fr-v-c567111c230bf666, ch: protestation, pr: /pʁɔ.tɛs.ta.sjɔ̃/, ds: 'admission, exclamation, statement'}
+  - {id: fr-v-ec71de3be67e5ae2, ch: grève, pr: /ɡʁɛv/, ds: strike; work stoppage}
+  - {id: fr-v-bc8a24730bc5dd93, ch: négociation, pr: /ne.ɡɔ.sja.sjɔ̃/, ds: negotiation}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-f44a7aa9f03ceaa8, ch: discrimination, pr: /dis.kʁi.mi.na.sjɔ̃/, ds: 'discrimination, distinction'}
+  - {id: fr-v-33a7e45edfcec123, ch: racisme, pr: /ʁa.sism/, ds: racism}
+  - {id: fr-v-451d60fe20e77a52, ch: sexisme, pr: /sɛk.sism/, ds: sexism}
+  - {id: fr-v-a8ba65518d406559, ch: préjugé, pr: /pʁe.ʒy.ʒe/, ds: 'a prejudice, a bias'}
+  - {id: fr-v-2a428071857a1e6f, ch: stéréotype, pr: /ste.ʁe.ɔ.tip/, ds: stereotype; oversimplified conventional view}
+  - {id: fr-v-873fd0bbcbc177e4, ch: tolérance, pr: /tɔ.le.ʁɑ̃s/, ds: tolerance}
+  - {id: fr-v-02e4dfc00caa206d, ch: respect, pr: /ʁɛs.pɛ/, ds: respect}
+  - {id: fr-v-56d333b8730eff81, ch: dignité, pr: /di.ɲi.te/, ds: dignity}
+  review_grammar: []
+- id: level-16-society-03
+  title: Society and community - 3
+  outcome: Explain a social issue without turning individual experiences into universal claims.
+  vocabulary:
+  - {id: fr-v-83724f92b36fa32e, ch: réforme, pr: /ʁe.fɔʁm/, ds: reform (change)}
+  - {id: fr-v-9e198ce5e297a5ae, ch: recul, pr: /ʁə.kyl/, ds: 'retreat, climb-down'}
+  - {id: fr-v-7c9c0729fa45e1d8, ch: crise, pr: /kʁiz/, ds: crisis}
+  - {id: fr-v-a475c6579241e0f7, ch: tension, pr: /tɑ̃.sjɔ̃/, ds: tension}
+  - {id: fr-v-dac6c38c18df10d6, ch: violence, pr: /vjɔ.lɑ̃s/, ds: violence}
+  - {id: fr-v-b02a31b06c92c131, ch: paix, pr: /pɛ/, ds: peace}
+  - {id: fr-v-b495dff90a57fda7, ch: coexistence, pr: /kɔ.ɛɡ.zis.tɑ̃s/, ds: coexistence}
+  - {id: fr-v-edc128fcefa720b4, ch: cohésion, pr: /kɔ.e.zjɔ̃/, ds: 'cohesion (the state of cohering, or of sticking together)'}
+  - {id: fr-v-9465a5a3f055ba76, ch: classe, pr: /klas/, ds: class; category or group}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-76a4f9622be9a27c, ch: mobilisation, pr: /mɔ.bi.li.za.sjɔ̃/, ds: 'mobilisation, call-up, draft'}
+  - {id: fr-v-7bcdcfe981c0c016, ch: manifestation, pr: /ma.ni.fɛs.ta.sjɔ̃/, ds: 'protest, demonstration'}
+  - {id: fr-v-05faee382198e1b0, ch: rassemblement, pr: /ʁa.sɑ̃.blə.mɑ̃/, ds: gathering; assembly}
+  - {id: fr-v-92190c206e317735, ch: pétition, pr: /pe.ti.sjɔ̃/, ds: petition (a written request containing many signatures)}
+  - {id: fr-v-b441d34eb5ec9671, ch: revendication, pr: /ʁə.vɑ̃.di.ka.sjɔ̃/, ds: airing of one's demand; claiming of one's identity}
+  - {id: fr-v-c567111c230bf666, ch: protestation, pr: /pʁɔ.tɛs.ta.sjɔ̃/, ds: 'admission, exclamation, statement'}
+  - {id: fr-v-ec71de3be67e5ae2, ch: grève, pr: /ɡʁɛv/, ds: strike; work stoppage}
+  - {id: fr-v-bc8a24730bc5dd93, ch: négociation, pr: /ne.ɡɔ.sja.sjɔ̃/, ds: negotiation}
+  review_grammar: []
+- id: level-16-institutions-01
+  title: Institutions and public life - 1
+  outcome: Explain an institutional process and distinguish its purpose from its effects.
+  vocabulary:
+  - {id: fr-v-c45fde231c2f1409, ch: gouvernement, pr: /ɡu.vɛʁ.nə.mɑ̃/, ds: government}
+  - {id: fr-v-7945389f8716314c, ch: parlement, pr: /paʁ.lə.mɑ̃/, ds: parliament}
+  - {id: fr-v-706ad35334cc101c, ch: assemblée, pr: /a.sɑ̃.ble/, ds: assembly}
+  - {id: fr-v-3041907dc74e69db, ch: sénat, pr: /se.na/, ds: senate}
+  - {id: fr-v-f88fe0bb85a793d2, ch: ministère, pr: /mi.nis.tɛʁ/, ds: ministry}
+  - {id: fr-v-670bffd9c925e68e, ch: ministre, pr: /mi.nistʁ/, ds: minister}
+  - {id: fr-v-b9fe67acdc1597b9, ch: président, pr: /pʁe.zi.dɑ̃/, ds: president}
+  - {id: fr-v-cd01ac4bcca778c7, ch: premier ministre, pr: /pʁə.mje mi.nistʁ/, ds: prime minister; premier}
+  - {id: fr-v-a3adb8f9c5581014, ch: député, pr: /de.py.te/, ds: deputy (delegate)}
+  - {id: fr-v-749291b7e3505c1a, ch: sénateur, pr: /se.na.tœʁ/, ds: senator}
+  - {id: fr-v-672cd836375d4bb7, ch: maire, pr: /mɛʁ/, ds: mayor}
+  - {id: fr-v-45fac8abc333e8ba, ch: mairie, pr: /mɛ.ʁi/, ds: 'mayor’s office, mayoralty'}
+  - {id: fr-v-e3471bc675b74b6b, ch: municipalité, pr: /my.ni.si.pa.li.te/, ds: municipality}
+  - {id: fr-v-cf85be7c69b8dea8, ch: commune, pr: /kɔ.myn/, ds: commune (administrative subdivision)}
+  - {id: fr-v-ac8c9af13e5c00da, ch: préfecture, pr: /pʁe.fɛk.tyʁ/, ds: prefecture}
+  - {id: fr-v-f63a8083da5a6847, ch: élu, pr: /e.ly/, ds: elected official}
+  - {id: fr-v-78ccb8d94ee6beb7, ch: électeur, pr: /e.lɛk.tœʁ/, ds: 'voter, elector'}
+  - {id: fr-v-64d629c28ed77b49, ch: élection, pr: /e.lɛk.sjɔ̃/, ds: election}
+  - {id: fr-v-abfa410d257dfa77, ch: vote, pr: /vɔt/, ds: vote}
+  - {id: fr-v-5b6dd08e8418229a, ch: scrutin, pr: /skʁy.tɛ̃/, ds: ballot}
+  - {id: fr-v-cc4fe8e86ad10ef4, ch: campagne, pr: /kɑ̃.paɲ/, ds: campaign}
+  - {id: fr-v-9796c43b4c9e0a75, ch: parti, pr: /paʁ.ti/, ds: party}
+  - {id: fr-v-d0c2a229146dd1d2, ch: coalition, pr: /kɔ.a.li.sjɔ̃/, ds: coalition}
+  - {id: fr-v-6465b1a8c90c4603, ch: opposition, pr: /ɔ.po.zi.sjɔ̃/, ds: opposition}
+  - {id: fr-v-e292825b65ab11ec, ch: mandat, pr: /mɑ̃.da/, ds: mandate}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-16-institutions-02
+  title: Institutions and public life - 2
+  outcome: Explain an institutional process and distinguish its purpose from its effects.
+  vocabulary:
+  - {id: fr-v-cb26d438743c700b, ch: constitution, pr: /kɔ̃s.ti.ty.sjɔ̃/, ds: constitution; fundamental system of laws}
+  - {id: fr-v-e86ed42d7c75f2c9, ch: loi, pr: /lwa/, ds: law (legal code)}
+  - {id: fr-v-5fcade7e9d3a49cb, ch: décret, pr: /de.kʁɛ/, ds: statutory instrument}
+  - {id: fr-v-036d6eea14647549, ch: arrêté, pr: /a.ʁɛ.te/, ds: 'fixed, immovable, settled (ideas, opinion)'}
+  - {id: fr-v-e82ae48cdc18f824, ch: mesure, pr: /mə.zyʁ/, ds: measure}
+  - {id: fr-v-8b78e98267d45071, ch: disposition, pr: /dis.po.zi.sjɔ̃/, ds: arrangement; layout}
+  - {id: fr-v-86ef7dec0b54c363, ch: politique, pr: /pɔ.li.tik/, ds: politics}
+  - {id: fr-v-f02b709e2f7c3fd1, ch: autorité, pr: /o.tɔ.ʁi.te/, ds: authority (the power to enforce rules or give orders)}
+  - {id: fr-v-7f5de5c458f63203, ch: institution, pr: /ɛ̃s.ti.ty.sjɔ̃/, ds: institution}
+  - {id: fr-v-100d0b45481e2c51, ch: régime, pr: /ʁe.ʒim/, ds: regime}
+  - {id: fr-v-cc34f90f13a08959, ch: démocratie, pr: /de.mɔ.kʁa.si/, ds: democracy}
+  - {id: fr-v-cff79e8ef97ee5db, ch: république, pr: /ʁe.py.blik/, ds: republic}
+  - {id: fr-v-a037a5308b4b2b6f, ch: monarchie, pr: /mɔ.naʁ.ʃi/, ds: monarchy}
+  - {id: fr-v-97c0098256b35f71, ch: dictature, pr: /dik.ta.tyʁ/, ds: dictatorship}
+  - {id: fr-v-866f157babfdf42e, ch: fonctionnaire, pr: /fɔ̃k.sjɔ.nɛʁ/, ds: 'civil servant, official'}
+  - {id: fr-v-4a26cf4b569c655b, ch: fonction publique, pr: /fɔ̃k.sjɔ̃ py.blik/, ds: civil service}
+  - {id: fr-v-69c6b5e6829d43e6, ch: tribunal, pr: /tʁi.by.nal/, ds: tribunal}
+  - {id: fr-v-aef64a57b837e9be, ch: juge, pr: /ʒyʒ/, ds: judge}
+  - {id: fr-v-0f25d2793e10993c, ch: avocat, pr: /a.vɔ.ka/, ds: 'lawyer, attorney'}
+  - {id: fr-v-aca0dc6e83f4cd6b, ch: procureur, pr: /pʁɔ.ky.ʁœʁ/, ds: 'representative, agent'}
+  - {id: fr-v-6c3fd737b6ef5d82, ch: police, pr: /pɔ.lis/, ds: police}
+  - {id: fr-v-3dfa7bd52264cd57, ch: gendarmerie, pr: /ʒɑ̃.daʁ.mə.ʁi/, ds: the military branch of the French police service}
+  - {id: fr-v-3bcfe4d39e8265da, ch: procès, pr: /pʁɔ.sɛ/, ds: lawsuit}
+  - {id: fr-v-9d98000b294dd0f1, ch: verdict, pr: /vɛʁ.dikt/, ds: verdict}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-64d629c28ed77b49, ch: élection, pr: /e.lɛk.sjɔ̃/, ds: election}
+  - {id: fr-v-abfa410d257dfa77, ch: vote, pr: /vɔt/, ds: vote}
+  - {id: fr-v-5b6dd08e8418229a, ch: scrutin, pr: /skʁy.tɛ̃/, ds: ballot}
+  - {id: fr-v-cc4fe8e86ad10ef4, ch: campagne, pr: /kɑ̃.paɲ/, ds: campaign}
+  - {id: fr-v-9796c43b4c9e0a75, ch: parti, pr: /paʁ.ti/, ds: party}
+  - {id: fr-v-d0c2a229146dd1d2, ch: coalition, pr: /kɔ.a.li.sjɔ̃/, ds: coalition}
+  - {id: fr-v-6465b1a8c90c4603, ch: opposition, pr: /ɔ.po.zi.sjɔ̃/, ds: opposition}
+  - {id: fr-v-e292825b65ab11ec, ch: mandat, pr: /mɑ̃.da/, ds: mandate}
+  review_grammar: []
+- id: level-16-media-01
+  title: Media and information - 1
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary:
+  - {id: fr-v-50802e311bb6f815, ch: enquête, pr: /ɑ̃.kɛt/, ds: 'inquest, investigation, examination'}
+  - {id: fr-v-787078e63b712d39, ch: investigation, pr: /ɛ̃.vɛs.ti.ɡa.sjɔ̃/, ds: 'investigation, examination'}
+  - {id: fr-v-9fd0a30b6cf52ed0, ch: documentaire, pr: /dɔ.ky.mɑ̃.tɛʁ/, ds: 'documentary (production, publication etc.)'}
+  - {id: fr-v-2194f4435b580e67, ch: témoignage, pr: /te.mwa.ɲaʒ/, ds: testimony}
+  - {id: fr-v-e68e4bd30543df01, ch: déclaration, pr: /de.kla.ʁa.sjɔ̃/, ds: declaration; written or spoken statement}
+  - {id: fr-v-00d5670276961200, ch: communiqué, pr: /kɔ.my.ni.ke/, ds: 'communiqué, statement'}
+  - {id: fr-v-9eb56b288f4c56ee, ch: conférence de presse, pr: /kɔ̃.fe.ʁɑ̃s də pʁɛs/, ds: press conference}
+  - {id: fr-v-a2a36a4b0396336b, ch: dépêche, pr: /de.pɛʃ/, ds: dispatch (express private message)}
+  - {id: fr-v-0dd714d52f8185f6, ch: manchette, pr: /mɑ̃.ʃɛt/, ds: headline}
+  - {id: fr-v-b2abc2875954c14d, ch: légende, pr: /le.ʒɑ̃d/, ds: caption}
+  - {id: fr-v-6c77436b14a282b2, ch: cliché, pr: /kli.ʃe/, ds: snapshot; photograph}
+  - {id: fr-v-42a0a6cef3bdcffd, ch: prise de vue, pr: /pʁiz də vy/, ds: 'filming, shooting'}
+  - {id: fr-v-70d4ac6886f04c7b, ch: séquence, pr: /se.kɑ̃s/, ds: sequence (set of things in a set order)}
+  - {id: fr-v-fbe883befc9fd8d6, ch: extrait, pr: /ɛk.stʁɛ/, ds: an extract}
+  - {id: fr-v-30a5639caf38e700, ch: citation, pr: /si.ta.sjɔ̃/, ds: 'citation, quotation'}
+  - {id: fr-v-f5b3118bf5c9df34, ch: tribune, pr: /tʁi.byn/, ds: 'platform, rostrum, podium'}
+  - {id: fr-v-d813a4f1cc6bf1f7, ch: analyse, pr: /a.na.liz/, ds: analysis}
+  - {id: fr-v-55684f1e0c3770df, ch: critique, pr: /kʁi.tik/, ds: criticism}
+  - {id: fr-v-49be35ab2e3bbe8b, ch: rumeur, pr: /ʁy.mœʁ/, ds: rumour / rumor}
+  - {id: fr-v-5124a23e0afc4da2, ch: désinformation, pr: /de.zɛ̃.fɔʁ.ma.sjɔ̃/, ds: 'disinformation, misinformation'}
+  - {id: fr-v-cd94143d3ad9f2e5, ch: propagande, pr: /pʁɔ.pa.ɡɑ̃d/, ds: propaganda}
+  - {id: fr-v-9a76577aadee05e1, ch: censure, pr: /sɑ̃.syʁ/, ds: censorship}
+  - {id: fr-v-ee926a9c7741e292, ch: autocensure, pr: /o.tɔ.sɑ̃.syʁ/, ds: self-censorship}
+  - {id: fr-v-8e33e5bfda54e7f0, ch: intoxication, pr: /ɛ̃.tɔk.si.ka.sjɔ̃/, ds: spreading false information}
+  - {id: fr-v-4b7b746393687305, ch: démenti, pr: /de.mɑ̃.ti/, ds: denial (claim that a rumour or other statement is not true)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-911f7cfe5d807171, ch: publication, pr: /py.bli.ka.sjɔ̃/, ds: publication}
+  - {id: fr-v-3d0fcb18f7a22377, ch: abonnement, pr: /a.bɔn.mɑ̃/, ds: subscription}
+  - {id: fr-v-f3ad1582802cf0c3, ch: diffusion, pr: /di.fy.zjɔ̃/, ds: 'broadcasting, showing'}
+  - {id: fr-v-321ad92e468ed08b, ch: imprimerie, pr: /ɛ̃.pʁim.ʁi/, ds: printing}
+  - {id: fr-v-7988ea78dc411b32, ch: illustration, pr: /i.lys.tʁa.sjɔ̃/, ds: illustration}
+  - {id: fr-v-822b5134bcea5353, ch: photographie, pr: /fɔ.tɔ.ɡʁa.fi/, ds: photography}
+  - {id: fr-v-6fe9de990baa7e65, ch: image, pr: /i.maʒ/, ds: 'picture, image'}
+  - {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article; nonfiction text}
+  review_grammar:
+  - {id: fr-g-present-reporting, ch: dire / expliquer que + proposition, ds: Report a statement while tracking its speaker and reference}
+- id: level-16-media-02
+  title: Media and information - 2
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary:
+  - {id: fr-v-be096860acb8b61b, ch: rectification, pr: /ʁɛk.ti.fi.ka.sjɔ̃/, ds: rectification}
+  - {id: fr-v-9380d3f6b7292ffe, ch: vérification, pr: /ve.ʁi.fi.ka.sjɔ̃/, ds: verification}
+  - {id: fr-v-6c41cb60bba0bf74, ch: recoupement, pr: /ʁəkupəmɑ̃/, ds: overlap}
+  - {id: fr-v-f5257c2408546516, ch: fiabilité, pr: /fja.bi.li.te/, ds: reliability}
+  - {id: fr-v-d289bff68013a83c, ch: crédibilité, pr: /kʁe.di.bi.li.te/, ds: credibility}
+  - {id: fr-v-b04519231128c1fd, ch: authenticité, pr: /ɔ.tɑ̃.ti.si.te/, ds: authenticity}
+  - {id: fr-v-2898b6aa592409b7, ch: exactitude, pr: /ɛɡ.zak.ti.tyd/, ds: 'exactitude, accuracy'}
+  - {id: fr-v-4b8cc49dafeb886a, ch: objectivité, pr: /ɔb.ʒɛk.ti.vi.te/, ds: objectivity}
+  - {id: fr-v-d20591d90109901a, ch: subjectivité, pr: /sybʒɛktivite/, ds: subjectivity (stating of being subjective)}
+  - {id: fr-v-4e161ce11b446e40, ch: impartialité, pr: /ɛ̃.paʁ.sja.li.te/, ds: impartiality (the quality of being impartial; fairness)}
+  - {id: fr-v-a074be9fe05e489f, ch: partialité, pr: /paʁ.sja.li.te/, ds: 'partiality, bias'}
+  - {id: fr-v-a3a0798fa1a8e02c, ch: biais, pr: /bjɛ/, ds: bias; distorted judgement}
+  - {id: fr-v-4f1723c3515e474d, ch: neutralité, pr: /nøtʁalite/, ds: neutrality}
+  - {id: fr-v-5ed55d60a57f82e6, ch: indépendance, pr: /ɛ̃.de.pɑ̃.dɑ̃s/, ds: independence}
+  - {id: fr-v-da1e270a8a984d52, ch: influence, pr: /ɛ̃.fly.ɑ̃s/, ds: influence}
+  - {id: fr-v-1576991cec28bf9c, ch: pression, pr: /pʁɛ.sjɔ̃/, ds: pressure}
+  - {id: fr-v-07eccf7b628ce90a, ch: audience, pr: /o.djɑ̃s/, ds: 'audience, viewer'}
+  - {id: fr-v-1b50fdc721291025, ch: lectorat, pr: /lɛk.tɔ.ʁa/, ds: readership (the people who read a book)}
+  - {id: fr-v-123aa79e991700a2, ch: audimat, pr: /o.di.ma/, ds: ratings (TV)}
+  - {id: fr-v-a25314fa69f510d7, ch: tirage, pr: /ti.ʁaʒ/, ds: circulation; number of newspaper copies sold}
+  - {id: fr-v-324cfc6bb34d7edc, ch: rédaction, pr: /ʁe.dak.sjɔ̃/, ds: editing (act of editing e.g. a newspaper)}
+  - {id: fr-v-d9376fc8f00a3f9a, ch: correspondant, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃/, ds: correspondent; journalist reporting from a location}
+  - {id: fr-v-a0f4425abdc7ca27, ch: présentateur, pr: /pʁe.zɑ̃.ta.tœʁ/, ds: 'announcer, newscaster, anchor'}
+  - {id: fr-v-f6b28d0e471bd505, ch: animateur, pr: /a.ni.ma.tœʁ/, ds: presenter}
+  - {id: fr-v-2f38297e44c90559, ch: chroniqueur, pr: /kʁɔ.ni.kœʁ/, ds: chronicler}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-55684f1e0c3770df, ch: critique, pr: /kʁi.tik/, ds: criticism}
+  - {id: fr-v-49be35ab2e3bbe8b, ch: rumeur, pr: /ʁy.mœʁ/, ds: rumour / rumor}
+  - {id: fr-v-5124a23e0afc4da2, ch: désinformation, pr: /de.zɛ̃.fɔʁ.ma.sjɔ̃/, ds: 'disinformation, misinformation'}
+  - {id: fr-v-cd94143d3ad9f2e5, ch: propagande, pr: /pʁɔ.pa.ɡɑ̃d/, ds: propaganda}
+  - {id: fr-v-9a76577aadee05e1, ch: censure, pr: /sɑ̃.syʁ/, ds: censorship}
+  - {id: fr-v-ee926a9c7741e292, ch: autocensure, pr: /o.tɔ.sɑ̃.syʁ/, ds: self-censorship}
+  - {id: fr-v-8e33e5bfda54e7f0, ch: intoxication, pr: /ɛ̃.tɔk.si.ka.sjɔ̃/, ds: spreading false information}
+  - {id: fr-v-4b7b746393687305, ch: démenti, pr: /de.mɑ̃.ti/, ds: denial (claim that a rumour or other statement is not true)}
+  review_grammar:
+  - {id: fr-g-present-reporting, ch: dire / expliquer que + proposition, ds: Report a statement while tracking its speaker and reference}
+- id: level-16-media-03
+  title: Media and information - 3
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary:
+  - {id: fr-v-f2315351fb229a73, ch: photographe, pr: /fɔ.tɔ.ɡʁaf/, ds: photographer}
+  - {id: fr-v-a0eb27a97ad7f691, ch: caméraman, pr: /ka.me.ʁa.man/, ds: cameraman}
+  - {id: fr-v-ae17bd8b09c8f488, ch: observateur, pr: /ɔp.sɛʁ.va.tœʁ/, ds: observer}
+  - {id: fr-v-c62e1d4c8c9078f2, ch: expert, pr: /ɛk.spɛʁ/, ds: expert}
+  - {id: fr-v-c1324ba4d1ffc68e, ch: spécialiste, pr: /spe.sja.list/, ds: specialist}
+  - {id: fr-v-c7966ab121969ca5, ch: porte-parole, pr: /pɔʁ.t(ə).pa.ʁɔl/, ds: 'spokesperson; spokesman, spokeswoman'}
+  - {id: fr-v-334f2bb0b318f98e, ch: enquêter, pr: /ɑ̃.kɛ.te/, ds: to investigate}
+  - {id: fr-v-4e1b7bf8c494917d, ch: interviewer, pr: /ɛ̃.tɛʁ.vju.ve/, ds: to interview}
+  - {id: fr-v-ce794080a682f1f1, ch: interroger, pr: /ɛ̃.tɛ.ʁɔ.ʒe/, ds: 'to question, interrogate'}
+  - {id: fr-v-61342deb678b7e45, ch: témoigner, pr: /te.mwa.ɲe/, ds: 'to witness, to be a witness at or for'}
+  - {id: fr-v-4f39019ca8bc60dc, ch: relater, pr: /ʁə.la.te/, ds: 'to relate, to recount'}
+  - {id: fr-v-0953f8388c16ecf4, ch: commenter, pr: /kɔ.mɑ̃.te/, ds: to comment}
+  - {id: fr-v-a3d7ee429558b552, ch: analyser, pr: /a.na.li.ze/, ds: to analyse}
+  - {id: fr-v-fce982e543325a37, ch: prétendre, pr: /pʁe.tɑ̃dʁ/, ds: 'to claim, to allege'}
+  - {id: fr-v-20994377f22829be, ch: alléguer, pr: /a.le.ɡe/, ds: to allege; put forward as an argument}
+  - {id: fr-v-b64b6e4e74264111, ch: démentir, pr: /de.mɑ̃.tiʁ/, ds: 'to contradict, gainsay (someone)'}
+  - {id: fr-v-3bca99fcd46eff45, ch: rectifier, pr: /ʁɛk.ti.fje/, ds: to rectify}
+  - {id: fr-v-e91be32376c1e974, ch: infirmer, pr: /ɛ̃.fiʁ.me/, ds: 'to weaken, to undermine (a theory, a testimony, etc.)'}
+  - {id: fr-v-af3dc0ab430675ed, ch: divulguer, pr: /di.vyl.ɡe/, ds: to divulge}
+  - {id: fr-v-4221c137a341abcb, ch: révéler, pr: /ʁe.ve.le/, ds: 'to reveal, to give away'}
+  - {id: fr-v-1e21584f7405d98b, ch: censurer, pr: /sɑ̃.sy.ʁe/, ds: to formally rebuke; to censure}
+  - {id: fr-v-00b364a229ac2373, ch: manipuler, pr: /ma.ni.py.le/, ds: to manipulate}
+  - {id: fr-v-c45030bceeb94a7b, ch: déformer, pr: /de.fɔʁ.me/, ds: to distort}
+  - {id: fr-v-ef04f13206e7ac1c, ch: exagérer, pr: /ɛɡ.za.ʒe.ʁe/, ds: to exaggerate}
+  - {id: fr-v-48a1f6ff9213a5c5, ch: minimiser, pr: /mi.ni.mi.ze/, ds: To lessen the importance of in the mind of people}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-1b50fdc721291025, ch: lectorat, pr: /lɛk.tɔ.ʁa/, ds: readership (the people who read a book)}
+  - {id: fr-v-123aa79e991700a2, ch: audimat, pr: /o.di.ma/, ds: ratings (TV)}
+  - {id: fr-v-a25314fa69f510d7, ch: tirage, pr: /ti.ʁaʒ/, ds: circulation; number of newspaper copies sold}
+  - {id: fr-v-324cfc6bb34d7edc, ch: rédaction, pr: /ʁe.dak.sjɔ̃/, ds: editing (act of editing e.g. a newspaper)}
+  - {id: fr-v-d9376fc8f00a3f9a, ch: correspondant, pr: /kɔ.ʁɛs.pɔ̃.dɑ̃/, ds: correspondent; journalist reporting from a location}
+  - {id: fr-v-a0f4425abdc7ca27, ch: présentateur, pr: /pʁe.zɑ̃.ta.tœʁ/, ds: 'announcer, newscaster, anchor'}
+  - {id: fr-v-f6b28d0e471bd505, ch: animateur, pr: /a.ni.ma.tœʁ/, ds: presenter}
+  - {id: fr-v-2f38297e44c90559, ch: chroniqueur, pr: /kʁɔ.ni.kœʁ/, ds: chronicler}
+  review_grammar:
+  - {id: fr-g-present-reporting, ch: dire / expliquer que + proposition, ds: Report a statement while tracking its speaker and reference}
+- id: level-16-media-04
+  title: Media and information - 4
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary:
+  - {id: fr-v-81ff3feb8a7db410, ch: nuancer, pr: /nɥɑ̃.se/, ds: 'to moderate, to qualify (e.g., an opinion)'}
+  - {id: fr-v-acbcf538b8da0b0a, ch: reporter, pr: /ʁə.pɔʁ.tɛʁ/, ds: news reporter; journalist}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-e91be32376c1e974, ch: infirmer, pr: /ɛ̃.fiʁ.me/, ds: 'to weaken, to undermine (a theory, a testimony, etc.)'}
+  - {id: fr-v-af3dc0ab430675ed, ch: divulguer, pr: /di.vyl.ɡe/, ds: to divulge}
+  - {id: fr-v-4221c137a341abcb, ch: révéler, pr: /ʁe.ve.le/, ds: 'to reveal, to give away'}
+  - {id: fr-v-1e21584f7405d98b, ch: censurer, pr: /sɑ̃.sy.ʁe/, ds: to formally rebuke; to censure}
+  - {id: fr-v-00b364a229ac2373, ch: manipuler, pr: /ma.ni.py.le/, ds: to manipulate}
+  - {id: fr-v-c45030bceeb94a7b, ch: déformer, pr: /de.fɔʁ.me/, ds: to distort}
+  - {id: fr-v-ef04f13206e7ac1c, ch: exagérer, pr: /ɛɡ.za.ʒe.ʁe/, ds: to exaggerate}
+  - {id: fr-v-48a1f6ff9213a5c5, ch: minimiser, pr: /mi.ni.mi.ze/, ds: To lessen the importance of in the mind of people}
+  review_grammar:
+  - {id: fr-g-present-reporting, ch: dire / expliquer que + proposition, ds: Report a statement while tracking its speaker and reference}
+- id: level-16-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  review_vocabulary:
+  - {id: fr-v-c22fc3483ea21daf, ch: chambre, pr: /ʃɑ̃bʁ/, ds: hotel room}
+  - {id: fr-v-580d8fe18b6303c4, ch: livre, pr: /livʁ/, ds: book}
+  - {id: fr-v-a6634be325f50736, ch: initialement, pr: /i.ni.sjal.mɑ̃/, ds: initially}
+  - {id: fr-v-116591753d471aae, ch: ultérieurement, pr: /yl.te.ʁjœʁ.mɑ̃/, ds: eventually; later on}
+  - {id: fr-v-868ec67a3376c0ca, ch: préalablement, pr: /pʁe.a.la.blə.mɑ̃/, ds: 'beforehand, first'}
+  - {id: fr-v-47355ddfd26d5171, ch: parallèlement, pr: /pa.ʁa.lɛl.mɑ̃/, ds: parallelly}
+  - {id: fr-v-abbbd76f136b2b6d, ch: conjointement, pr: /kɔ̃.ʒwɛ̃t.mɑ̃/, ds: 'jointly, together'}
+  - {id: fr-v-47f0e14fa1fff938, ch: collectivement, pr: /kɔ.lɛk.tiv.mɑ̃/, ds: collectively}
+  - {id: fr-v-f4c2275a01510933, ch: individuellement, pr: /ɛ̃.di.vi.dɥɛl.mɑ̃/, ds: individually}
+  - {id: fr-v-f9360ecaa0fdf6e0, ch: séparément, pr: /sepaʁemɑ̃/, ds: separately}
+  review_grammar:
+  - {id: fr-g-adjective-agreement, ch: nom + adjectif accordé / nom + être + adjectif, ds: Match descriptive adjectives to gender and number}
+  - {id: fr-g-comparative-degree, ch: plus / moins / aussi + adjectif + que, ds: Compare the degree of a quality between alternatives}
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+- id: level-16-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+  review_vocabulary:
+  - {id: fr-v-405e7736ab8e3c19, ch: porte, pr: /pɔʁt/, ds: door}
+  - {id: fr-v-4d009d2ce7ceda36, ch: lire, pr: /liʁ/, ds: to read}
+  - {id: fr-v-9ab61318c0c13338, ch: réorganiser, pr: /ʁe.ɔʁ.ɡa.ni.ze/, ds: to reorganise}
+  - {id: fr-v-06ea62a79bcafda6, ch: actualiser, pr: /ak.tɥa.li.ze/, ds: to update (to make something up to date); to refresh}
+  - {id: fr-v-c7d1d3f95a0b9d58, ch: mettre à jour, pr: /mɛ.tʁ‿a ʒuʁ/, ds: to update}
+  - {id: fr-v-6db6273e65a5b30a, ch: responsabiliser, pr: /ʁɛs.pɔ̃.sa.bi.li.ze/, ds: to responsibilize}
+  - {id: fr-v-b9bfddd8f5e83bb9, ch: centraliser, pr: /sɑ̃.tʁa.li.ze/, ds: to centralise}
+  - {id: fr-v-9c24c4bf874f8fe8, ch: décentraliser, pr: /de.sɑ̃.tʁa.li.ze/, ds: 'to decentralise, to decentralize'}
+  - {id: fr-v-a3ea007631a571f1, ch: externaliser, pr: /ɛk.stɛʁ.na.li.ze/, ds: to outsource}
+  - {id: fr-v-180c08817dff17fb, ch: sous-traiter, pr: /su.tʁɛ.te/, ds: to subcontract}
+  review_grammar:
+  - {id: fr-g-imperative-clitic-order, ch: donne-le-moi ; ne me le donne pas, ds: Affirmative commands move clitics after the verb}
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+- id: level-16-media-practice-01
+  title: Media and information - sentence practice 1
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-past-reporting-perspective, ch: a dit que + imparfait / conditionnel présent, ds: Locate reported states and later events from a past viewpoint}
+  - {id: fr-g-source-attribution, ch: 'selon / d''après + source, proposition', ds: Attribute information without silently endorsing it}
+  review_vocabulary:
+  - {id: fr-v-97cb4542cadc0b6b, ch: dire, pr: /diʁ/, ds: 'to say, to tell (to express through speech)'}
+  - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
+  - {id: fr-v-da5f3df909a3be91, ch: message, pr: /mɛ.saʒ/, ds: message}
+  - {id: fr-v-d3e3c83b4f1bea3b, ch: auteur, pr: /o.tœʁ/, ds: author}
+  - {id: fr-v-4221c137a341abcb, ch: révéler, pr: /ʁe.ve.le/, ds: 'to reveal, to give away'}
+  - {id: fr-v-1e21584f7405d98b, ch: censurer, pr: /sɑ̃.sy.ʁe/, ds: to formally rebuke; to censure}
+  - {id: fr-v-00b364a229ac2373, ch: manipuler, pr: /ma.ni.py.le/, ds: to manipulate}
+  - {id: fr-v-c45030bceeb94a7b, ch: déformer, pr: /de.fɔʁ.me/, ds: to distort}
+  - {id: fr-v-ef04f13206e7ac1c, ch: exagérer, pr: /ɛɡ.za.ʒe.ʁe/, ds: to exaggerate}
+  - {id: fr-v-48a1f6ff9213a5c5, ch: minimiser, pr: /mi.ni.mi.ze/, ds: To lessen the importance of in the mind of people}
+  - {id: fr-v-81ff3feb8a7db410, ch: nuancer, pr: /nɥɑ̃.se/, ds: 'to moderate, to qualify (e.g., an opinion)'}
+  - {id: fr-v-acbcf538b8da0b0a, ch: reporter, pr: /ʁə.pɔʁ.tɛʁ/, ds: news reporter; journalist}
+  review_grammar:
+  - {id: fr-g-present-reporting, ch: dire / expliquer que + proposition, ds: Report a statement while tracking its speaker and reference}

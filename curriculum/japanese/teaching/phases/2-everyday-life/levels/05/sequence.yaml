@@ -1,0 +1,379 @@
+schema_version: 3
+id: ja-level-05
+title: Living arrangements and personal needs
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 5
+phase: everyday-life
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+goals: &id001
+- Describe household and clothing needs.
+- Contrast noun, na-adjective, and i-adjective predicates.
+- Use plain forms for embedding without assuming intimate register is appropriate.
+checkpoint:
+  task: Negotiate a household arrangement using new needs and constraints.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-05-description-01
+  title: Description and comparison - 1
+  outcome: Identify a relevant contrast and choose an accurate description.
+  vocabulary:
+  - {id: ja-n5-00018-s001, ch: 暖かい, pr: あたたかい, ds: warm}
+  - {id: ja-n5-00023-s001, ch: 熱い, pr: あつい, ds: hot (to the touch)}
+  - {id: ja-n5-00074-s001, ch: いろいろ, pr: いろいろ, ds: various}
+  - {id: ja-n5-00094-s001, ch: 多い, pr: おおい, ds: many}
+  - {id: ja-n5-00097-s001, ch: 大勢, pr: おおぜい, ds: crowd of people}
+  - {id: ja-n5-00096-s001, ch: 大きな, pr: おおきな, ds: big}
+  - {id: ja-n5-00376-s001, ch: 小さな, pr: ちいさな, ds: small}
+  - {id: ja-n5-00174-s001, ch: かわいい, pr: かわいい, ds: cute}
+  - {id: ja-n5-00183-s001, ch: 汚い, pr: きたない, ds: dirty}
+  - {id: ja-n5-00083-s001, ch: うるさい, pr: うるさい, ds: noisy}
+  - {id: ja-n5-00301-s001, ch: 丈夫, pr: じょうぶ, ds: healthy}
+  - {id: ja-n5-00354-s001, ch: 大切, pr: たいせつ, ds: important}
+  - {id: ja-n5-00356-s001, ch: 大変, pr: たいへん, ds: very}
+  - {id: ja-n5-00364-s001, ch: 楽しい, pr: たのしい, ds: enjoyable}
+  - {id: ja-n5-00395-s001, ch: つまらない, pr: つまらない, ds: dull}
+  - {id: ja-n5-00434-s001, ch: とても, pr: とても, ds: very}
+  - {id: ja-n5-00655-s001, ch: 弱い, pr: よわい, ds: weak}
+  - {id: ja-n5-00397-s001, ch: 強い, pr: つよい, ds: strong}
+  - {id: ja-n5-00593-s001, ch: 丸い, pr: まるい, ds: round}
+  - {id: ja-n5-00177-s001, ch: 黄色, pr: きいろ, ds: yellow}
+  - {id: ja-n5-00219-s001, ch: 黒, pr: くろ, ds: black}
+  - {id: ja-n5-00305-s001, ch: 白, pr: しろ, ds: white}
+  - {id: ja-n5-00004-s001, ch: 赤, pr: あか, ds: red}
+  - {id: ja-n5-00002-s001, ch: 青, pr: あお, ds: blue}
+  - {id: ja-n5-00382-s001, ch: 茶色, pr: ちゃいろ, ds: brown}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00449-s001, ch: 長い, pr: ながい, ds: 'long (distance, length)'}
+  - {id: ja-n5-00599-s001, ch: 短い, pr: みじかい, ds: short}
+  - {id: ja-n5-00130-s001, ch: 重い, pr: おもい, ds: heavy}
+  - {id: ja-n5-00169-s001, ch: 軽い, pr: かるい, ds: light (i.e. not heavy)}
+  - {id: ja-n5-00006-s001, ch: 明るい, pr: あかるい, ds: bright; well-lit}
+  - {id: ja-n5-00214-s001, ch: 暗い, pr: くらい, ds: dark}
+  - {id: ja-n5-00042-s001, ch: いい, pr: いい, ds: good}
+  - {id: ja-n5-00682-s001, ch: 悪い, pr: わるい, ds: bad}
+  review_grammar:
+  - {id: ja-n5-g020, ch: い形容詞＋です, ds: polite i-adjective predicate}
+  - {id: ja-n5-g021, ch: な形容詞＋な＋N, ds: na-adjective modifying a noun}
+  - {id: ja-n5-g002, ch: Nではありません, ds: not be a noun; polite negation}
+- id: level-05-description-02
+  title: Description and comparison - 2
+  outcome: Identify a relevant contrast and choose an accurate description.
+  vocabulary:
+  - {id: ja-n5-00606-s001, ch: 緑, pr: みどり, ds: green}
+  - {id: ja-n5-00178-s001, ch: 黄色い, pr: きいろい, ds: yellow}
+  - {id: ja-n5-00121-s001, ch: 同じ, pr: おなじ, ds: same}
+  - {id: ja-n5-00378-s001, ch: 違う, pr: ちがう, ds: to differ (from)}
+  - {id: ja-n5-00261-s001, ch: 先, pr: さき, ds: tip; pointed end}
+  - {id: ja-n5-00006-s003, ch: 明るい, pr: あかるい, ds: cheerful}
+  - {id: ja-n5-00003-s003, ch: 青い, pr: あおい, ds: pale (facial color)}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00397-s001, ch: 強い, pr: つよい, ds: strong}
+  - {id: ja-n5-00593-s001, ch: 丸い, pr: まるい, ds: round}
+  - {id: ja-n5-00177-s001, ch: 黄色, pr: きいろ, ds: yellow}
+  - {id: ja-n5-00219-s001, ch: 黒, pr: くろ, ds: black}
+  - {id: ja-n5-00305-s001, ch: 白, pr: しろ, ds: white}
+  - {id: ja-n5-00004-s001, ch: 赤, pr: あか, ds: red}
+  - {id: ja-n5-00002-s001, ch: 青, pr: あお, ds: blue}
+  - {id: ja-n5-00382-s001, ch: 茶色, pr: ちゃいろ, ds: brown}
+  review_grammar:
+  - {id: ja-n5-g020, ch: い形容詞＋です, ds: polite i-adjective predicate}
+  - {id: ja-n5-g021, ch: な形容詞＋な＋N, ds: na-adjective modifying a noun}
+  - {id: ja-n5-g002, ch: Nではありません, ds: not be a noun; polite negation}
+- id: level-05-home-01
+  title: Living arrangements - 1
+  outcome: Explain a household need and negotiate an arrangement.
+  vocabulary:
+  - {id: ja-n5-00031-s001, ch: アパート, pr: アパート, ds: apartment building}
+  - {id: ja-n5-00159-s001, ch: 家庭, pr: かてい, ds: home}
+  - {id: ja-n5-00227-s001, ch: 玄関, pr: げんかん, ds: entrance}
+  - {id: ja-n5-00355-s001, ch: 台所, pr: だいどころ, ds: kitchen}
+  - {id: ja-n5-00472-s001, ch: 庭, pr: にわ, ds: garden}
+  - {id: ja-n5-00672-s001, ch: 廊下, pr: ろうか, ds: corridor}
+  - {id: ja-n5-00592-s001, ch: 窓, pr: まど, ds: window}
+  - {id: ja-n5-00417-s001, ch: ドア, pr: ドア, ds: door}
+  - {id: ja-n5-00416-s001, ch: 戸, pr: と, ds: door (esp. Japanese-style)}
+  - {id: ja-n5-00400-s001, ch: テーブル, pr: テーブル, ds: table}
+  - {id: ja-n5-00556-s001, ch: ベッド, pr: ベッド, ds: bed}
+  - {id: ja-n5-00573-s001, ch: 本棚, pr: ほんだな, ds: bookshelves}
+  - {id: ja-n5-00668-s001, ch: 冷蔵庫, pr: れいぞうこ, ds: refrigerator}
+  - {id: ja-n5-00413-s001, ch: 電気, pr: でんき, ds: electricity}
+  - {id: ja-n5-00126-s001, ch: お風呂, pr: おふろ, ds: bath}
+  - {id: ja-n5-00552-s001, ch: 風呂, pr: ふろ, ds: bath}
+  - {id: ja-n5-00295-s001, ch: シャワー, pr: シャワー, ds: shower}
+  - {id: ja-n5-00327-s001, ch: 石鹸, pr: せっけん, ds: soap}
+  - {id: ja-n5-00335-s001, ch: 洗濯, pr: せんたく, ds: washing}
+  - {id: ja-n5-00337-s001, ch: 掃除, pr: そうじ, ds: cleaning}
+  - {id: ja-n5-00223-s001, ch: 消す, pr: けす, ds: to erase}
+  - {id: ja-n5-00393-s001, ch: つける, pr: つける, ds: to attach}
+  - {id: ja-n5-00179-s001, ch: 消える, pr: きえる, ds: to disappear}
+  - {id: ja-n5-00008-s001, ch: 開く, pr: あく, ds: to open (e.g. doors)}
+  - {id: ja-n5-00288-s001, ch: 閉まる, pr: しまる, ds: to be shut}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00601-s001, ch: 店, pr: みせ, ds: shop; store; establishment}
+  - {id: ja-n5-00142-s001, ch: 買い物, pr: かいもの, ds: shopping}
+  - {id: ja-n5-00670-s001, ch: レストラン, pr: レストラン, ds: restaurant (esp. Western-style)}
+  - {id: ja-n5-00034-s001, ch: 甘い, pr: あまい, ds: sweet-tasting}
+  - {id: ja-n5-00166-s001, ch: 辛い, pr: からい, ds: spicy}
+  - {id: ja-n5-00396-s001, ch: 冷たい, pr: つめたい, ds: cold (to the touch)}
+  - {id: ja-n5-00058-s001, ch: 一番, pr: いちばん, ds: number one}
+  - {id: ja-n5-00357-s002, ch: 高い, pr: たかい, ds: expensive}
+  review_grammar:
+  - {id: ja-n5-g039, ch: AはBより形容詞, ds: A is more adjective than B}
+  - {id: ja-n5-g040, ch: Nの中で一番, ds: the most within a stated group}
+  - {id: ja-n5-g031, ch: 動詞たい, ds: want to do something}
+- id: level-05-home-02
+  title: Living arrangements - 2
+  outcome: Explain a household need and negotiate an arrangement.
+  vocabulary:
+  - {id: ja-n5-00487-s001, ch: 入る, pr: はいる, ds: to enter}
+  - {id: ja-n5-00410-s001, ch: 出る, pr: でる, ds: to leave}
+  - {id: ja-n5-00360-s001, ch: 出す, pr: だす, ds: to take out}
+  - {id: ja-n5-00451-s001, ch: なくす, pr: なくす, ds: to lose (something)}
+  - {id: ja-n5-00490-s001, ch: 箱, pr: はこ, ds: box}
+  - {id: ja-n5-00062-s001, ch: 五つ, pr: いつつ, ds: five}
+  - {id: ja-n5-00651-s001, ch: 四つ, pr: よっつ, ds: four}
+  - {id: ja-n5-00616-s001, ch: 六つ, pr: むっつ, ds: six}
+  - {id: ja-n5-00456-s001, ch: 七つ, pr: ななつ, ds: seven}
+  - {id: ja-n5-00635-s001, ch: 八つ, pr: やっつ, ds: eight}
+  - {id: ja-n5-00240-s001, ch: 九つ, pr: ここのつ, ds: nine}
+  - {id: ja-n4-00337-s001, ch: 生活, pr: せいかつ, ds: life}
+  - {id: ja-n4-00054-s001, ch: 内, pr: うち, ds: inside}
+  - {id: ja-n4-00085-s001, ch: 押入れ, pr: おしいれ, ds: 'closet (built into the wall, usu. with sliding doors)'}
+  - {id: ja-n4-00110-s001, ch: カーテン, pr: カーテン, ds: curtain}
+  - {id: ja-n4-00119-s001, ch: 鏡, pr: かがみ, ds: mirror}
+  - {id: ja-n4-00120-s001, ch: 飾る, pr: かざる, ds: to decorate}
+  - {id: ja-n4-00129-s001, ch: 片付ける, pr: かたづける, ds: to put in order}
+  - {id: ja-n4-00139-s001, ch: 壁, pr: かべ, ds: wall}
+  - {id: ja-n4-00144-s001, ch: ガラス, pr: ガラス, ds: glass}
+  - {id: ja-n4-00178-s001, ch: 近所, pr: きんじょ, ds: neighbourhood}
+  - {id: ja-n4-00379-s001, ch: 畳, pr: たたみ, ds: tatami mat}
+  - {id: ja-n4-00383-s001, ch: 棚, pr: たな, ds: shelf}
+  - {id: ja-n4-00532-s001, ch: 布団, pr: ふとん, ds: futon}
+  - {id: ja-n4-00507-s001, ch: 引き出し, pr: ひきだし, ds: drawer}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00327-s001, ch: 石鹸, pr: せっけん, ds: soap}
+  - {id: ja-n5-00335-s001, ch: 洗濯, pr: せんたく, ds: washing}
+  - {id: ja-n5-00337-s001, ch: 掃除, pr: そうじ, ds: cleaning}
+  - {id: ja-n5-00223-s001, ch: 消す, pr: けす, ds: to erase}
+  - {id: ja-n5-00393-s001, ch: つける, pr: つける, ds: to attach}
+  - {id: ja-n5-00179-s001, ch: 消える, pr: きえる, ds: to disappear}
+  - {id: ja-n5-00008-s001, ch: 開く, pr: あく, ds: to open (e.g. doors)}
+  - {id: ja-n5-00288-s001, ch: 閉まる, pr: しまる, ds: to be shut}
+  review_grammar:
+  - {id: ja-n5-g039, ch: AはBより形容詞, ds: A is more adjective than B}
+  - {id: ja-n5-g040, ch: Nの中で一番, ds: the most within a stated group}
+  - {id: ja-n5-g031, ch: 動詞たい, ds: want to do something}
+- id: level-05-home-03
+  title: Living arrangements - 3
+  outcome: Explain a household need and negotiate an arrangement.
+  vocabulary:
+  - {id: ja-n4-00391-s001, ch: 暖房, pr: だんぼう, ds: (indoor) heating}
+  - {id: ja-n4-00625-s001, ch: 冷房, pr: れいぼう, ds: air conditioning}
+  - {id: ja-n4-00315-s001, ch: 水道, pr: すいどう, ds: water supply}
+  - {id: ja-n4-00122-s001, ch: ガス, pr: ガス, ds: gas (as a fuel)}
+  - {id: ja-n4-00426-s001, ch: 電灯, pr: でんとう, ds: electric light}
+  - {id: ja-n4-00233-s001, ch: ごみ, pr: ごみ, ds: rubbish}
+  - {id: ja-n4-00328-s001, ch: 捨てる, pr: すてる, ds: to throw away}
+  - {id: ja-n4-00147-s001, ch: 乾く, pr: かわく, ds: to get dry}
+  - {id: ja-n4-00613-s001, ch: 汚れる, pr: よごれる, ds: to get dirty}
+  - {id: ja-n4-00470-s001, ch: 濡れる, pr: ぬれる, ds: to get wet}
+  - {id: ja-n4-00632-s001, ch: 沸かす, pr: わかす, ds: to boil}
+  - {id: ja-n4-00634-s001, ch: 沸く, pr: わく, ds: to grow hot (e.g. water)}
+  - {id: ja-n4-00603-s001, ch: 湯, pr: ゆ, ds: hot water}
+  - {id: ja-n4-00534-s001, ch: 不便, pr: ふべん, ds: inconvenience}
+  - {id: ja-n4-00381-s001, ch: 建てる, pr: たてる, ds: to build}
+  - {id: ja-n4-00461-s001, ch: 二階建て, pr: にかいだて, ds: two-storied building}
+  - {id: ja-n4-00515-s001, ch: 引っ越す, pr: ひっこす, ds: to move (house)}
+  - {id: ja-n4-00624-s001, ch: 留守, pr: るす, ds: absence}
+  - {id: ja-n4-00511-s001, ch: 久しぶり, pr: ひさしぶり, ds: a long time (since the last time)}
+  - {id: ja-n3-00010-s001, ch: アイロン, pr: アイロン, ds: iron (for pressing clothes)}
+  - {id: ja-n3-00012-s001, ch: 明かり, pr: あかり, ds: light; illumination; glow}
+  - {id: ja-n3-00020-s001, ch: 預ける, pr: あずける, ds: to leave (in someone's keeping)}
+  - {id: ja-n3-00078-s001, ch: 板, pr: いた, ds: board; plank (material)}
+  - {id: ja-n3-00112-s001, ch: 居間, pr: いま, ds: living room (Western style)}
+  - {id: ja-n3-00190-s001, ch: 大家, pr: おおや, ds: landlord}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00129-s001, ch: 片付ける, pr: かたづける, ds: to put in order}
+  - {id: ja-n4-00139-s001, ch: 壁, pr: かべ, ds: wall}
+  - {id: ja-n4-00144-s001, ch: ガラス, pr: ガラス, ds: glass}
+  - {id: ja-n4-00178-s001, ch: 近所, pr: きんじょ, ds: neighbourhood}
+  - {id: ja-n4-00379-s001, ch: 畳, pr: たたみ, ds: tatami mat}
+  - {id: ja-n4-00383-s001, ch: 棚, pr: たな, ds: shelf}
+  - {id: ja-n4-00532-s001, ch: 布団, pr: ふとん, ds: futon}
+  - {id: ja-n4-00507-s001, ch: 引き出し, pr: ひきだし, ds: drawer}
+  review_grammar:
+  - {id: ja-n5-g039, ch: AはBより形容詞, ds: A is more adjective than B}
+  - {id: ja-n5-g040, ch: Nの中で一番, ds: the most within a stated group}
+  - {id: ja-n5-g031, ch: 動詞たい, ds: want to do something}
+- id: level-05-home-04
+  title: Living arrangements - 4
+  outcome: Explain a household need and negotiate an arrangement.
+  vocabulary:
+  - {id: ja-n3-00264-s001, ch: 家具, pr: かぐ, ds: furniture}
+  - {id: ja-n3-00281-s001, ch: かご, pr: かご, ds: 'basket (shopping, etc.)'}
+  - {id: ja-n3-00286-s001, ch: 家事, pr: かじ, ds: housework}
+  - {id: ja-n3-00371-s001, ch: 帰宅, pr: きたく, ds: returning home}
+  - {id: ja-n3-00458-s001, ch: 暮らし, pr: くらし, ds: (way of) life}
+  - {id: ja-n3-00460-s001, ch: 暮らす, pr: くらす, ds: 'to live (on, by, etc.)'}
+  - {id: ja-n3-00592-s001, ch: 小屋, pr: こや, ds: hut}
+  - {id: ja-n3-00706-s001, ch: 芝生, pr: しばふ, ds: lawn}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00624-s001, ch: 留守, pr: るす, ds: absence}
+  - {id: ja-n4-00511-s001, ch: 久しぶり, pr: ひさしぶり, ds: a long time (since the last time)}
+  - {id: ja-n3-00010-s001, ch: アイロン, pr: アイロン, ds: iron (for pressing clothes)}
+  - {id: ja-n3-00012-s001, ch: 明かり, pr: あかり, ds: light; illumination; glow}
+  - {id: ja-n3-00020-s001, ch: 預ける, pr: あずける, ds: to leave (in someone's keeping)}
+  - {id: ja-n3-00078-s001, ch: 板, pr: いた, ds: board; plank (material)}
+  - {id: ja-n3-00112-s001, ch: 居間, pr: いま, ds: living room (Western style)}
+  - {id: ja-n3-00190-s001, ch: 大家, pr: おおや, ds: landlord}
+  review_grammar:
+  - {id: ja-n5-g039, ch: AはBより形容詞, ds: A is more adjective than B}
+  - {id: ja-n5-g040, ch: Nの中で一番, ds: the most within a stated group}
+  - {id: ja-n5-g031, ch: 動詞たい, ds: want to do something}
+- id: level-05-clothing-01
+  title: Clothing and appearance - 1
+  outcome: Compare clothing or appearance for a specified situation.
+  vocabulary:
+  - {id: ja-n5-00543-s001, ch: 服, pr: ふく, ds: clothes (esp. Western clothes)}
+  - {id: ja-n5-00647-s001, ch: 洋服, pr: ようふく, ds: Western-style clothes (cf. traditional Japanese clothes)}
+  - {id: ja-n5-00198-s001, ch: 着る, pr: きる, ds: to wear (from the shoulders down)}
+  - {id: ja-n5-00489-s001, ch: 履く, pr: はく, ds: 'to put on (lower-body clothing, e.g. pants, skirt, footwear)'}
+  - {id: ja-n5-00473-s001, ch: 脱ぐ, pr: ぬぐ, ds: 'to take off (clothes, shoes, etc.)'}
+  - {id: ja-n5-00209-s001, ch: 靴, pr: くつ, ds: shoe}
+  - {id: ja-n5-00210-s001, ch: 靴下, pr: くつした, ds: socks}
+  - {id: ja-n5-00294-s001, ch: シャツ, pr: シャツ, ds: shirt (undergarment)}
+  - {id: ja-n5-00674-s001, ch: ワイシャツ, pr: ワイシャツ, ds: (formal) shirt}
+  - {id: ja-n5-00235-s001, ch: コート, pr: コート, ds: coat}
+  - {id: ja-n5-00319-s001, ch: ズボン, pr: ズボン, ds: trousers}
+  - {id: ja-n5-00310-s001, ch: スカート, pr: スカート, ds: skirt}
+  - {id: ja-n5-00326-s001, ch: セーター, pr: セーター, ds: sweater}
+  - {id: ja-n5-00084-s001, ch: 上着, pr: うわぎ, ds: coat}
+  - {id: ja-n5-00563-s001, ch: 帽子, pr: ぼうし, ds: hat}
+  - {id: ja-n5-00475-s001, ch: ネクタイ, pr: ネクタイ, ds: tie}
+  - {id: ja-n5-00517-s001, ch: ハンカチ, pr: ハンカチ, ds: handkerchief}
+  - {id: ja-n5-00566-s001, ch: ポケット, pr: ポケット, ds: pocket}
+  - {id: ja-n5-00077-s001, ch: 薄い, pr: うすい, ds: thin (of an object)}
+  - {id: ja-n5-00024-s001, ch: 厚い, pr: あつい, ds: thick}
+  - {id: ja-n5-00569-s001, ch: 細い, pr: ほそい, ds: thin}
+  - {id: ja-n5-00548-s001, ch: 太い, pr: ふとい, ds: fat}
+  - {id: ja-n5-00150-s001, ch: かける, pr: かける, ds: 'to hang up (e.g. a coat, a picture on the wall)'}
+  - {id: ja-n5-00150-s002, ch: かける, pr: かける, ds: to put on (e.g. a blanket)}
+  - {id: ja-n4-00010-s001, ch: アクセサリー, pr: アクセサリー, ds: accessory (fashion)}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-05-clothing-02
+  title: Clothing and appearance - 2
+  outcome: Compare clothing or appearance for a specified situation.
+  vocabulary:
+  - {id: ja-n4-00132-s001, ch: 格好, pr: かっこう, ds: shape}
+  - {id: ja-n4-00141-s001, ch: 髪, pr: かみ, ds: hair (on the head)}
+  - {id: ja-n4-00170-s001, ch: 着物, pr: きもの, ds: kimono}
+  - {id: ja-n4-00275-s001, ch: 下着, pr: したぎ, ds: underwear}
+  - {id: ja-n4-00263-s001, ch: サンダル, pr: サンダル, ds: sandal}
+  - {id: ja-n4-00318-s001, ch: スーツ, pr: スーツ, ds: suit (clothing)}
+  - {id: ja-n4-00421-s001, ch: 手袋, pr: てぶくろ, ds: glove}
+  - {id: ja-n4-00500-s001, ch: ハンドバッグ, pr: ハンドバッグ, ds: handbag}
+  - {id: ja-n4-00509-s001, ch: ひげ, pr: ひげ, ds: moustache}
+  - {id: ja-n4-00588-s001, ch: 木綿, pr: もめん, ds: cotton (material)}
+  - {id: ja-n4-00163-s001, ch: 絹, pr: きぬ, ds: silk}
+  - {id: ja-n4-00607-s001, ch: 指輪, pr: ゆびわ, ds: (finger) ring}
+  - {id: ja-n4-00125-s001, ch: 硬い, pr: かたい, ds: hard; rigid; solid}
+  - {id: ja-n4-00602-s001, ch: 柔らかい, pr: やわらかい, ds: soft}
+  - {id: ja-n4-00232-s001, ch: 細かい, pr: こまかい, ds: small}
+  - {id: ja-n4-00128-s001, ch: 形, pr: かたち, ds: (physical) form}
+  - {id: ja-n4-00056-s001, ch: 美しい, pr: うつくしい, ds: beautiful}
+  - {id: ja-n4-00525-s001, ch: 深い, pr: ふかい, ds: deep}
+  - {id: ja-n4-00012-s001, ch: 浅い, pr: あさい, ds: shallow}
+  - {id: ja-n3-00111-s001, ch: 衣服, pr: いふく, ds: clothes}
+  - {id: ja-n3-00157-s001, ch: 柄, pr: え, ds: handle}
+  - {id: ja-n3-00209-s001, ch: 帯, pr: おび, ds: obi (kimono sash)}
+  - {id: ja-n3-00316-s001, ch: 髪の毛, pr: かみのけ, ds: hair (on the head)}
+  - {id: ja-n3-00321-s001, ch: 柄, pr: がら, ds: pattern}
+  - {id: ja-n3-00324-s001, ch: 皮, pr: かわ, ds: skin}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00566-s001, ch: ポケット, pr: ポケット, ds: pocket}
+  - {id: ja-n5-00077-s001, ch: 薄い, pr: うすい, ds: thin (of an object)}
+  - {id: ja-n5-00024-s001, ch: 厚い, pr: あつい, ds: thick}
+  - {id: ja-n5-00569-s001, ch: 細い, pr: ほそい, ds: thin}
+  - {id: ja-n5-00548-s001, ch: 太い, pr: ふとい, ds: fat}
+  - {id: ja-n5-00150-s001, ch: かける, pr: かける, ds: 'to hang up (e.g. a coat, a picture on the wall)'}
+  - {id: ja-n5-00150-s002, ch: かける, pr: かける, ds: to put on (e.g. a blanket)}
+  - {id: ja-n4-00010-s001, ch: アクセサリー, pr: アクセサリー, ds: accessory (fashion)}
+  review_grammar: []
+- id: level-05-clothing-03
+  title: Clothing and appearance - 3
+  outcome: Compare clothing or appearance for a specified situation.
+  vocabulary:
+  - {id: ja-n3-00325-s001, ch: 革, pr: かわ, ds: leather}
+  - {id: ja-n3-00365-s001, ch: 生地, pr: きじ, ds: cloth}
+  - {id: ja-n3-00496-s001, ch: 化粧, pr: けしょう, ds: make-up}
+  - {id: ja-n3-00659-s001, ch: ジーンズ, pr: ジーンズ, ds: jeans}
+  - {id: ja-n4-00005-s002, ch: 合う, pr: あう, ds: to fit}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00525-s001, ch: 深い, pr: ふかい, ds: deep}
+  - {id: ja-n4-00012-s001, ch: 浅い, pr: あさい, ds: shallow}
+  - {id: ja-n3-00111-s001, ch: 衣服, pr: いふく, ds: clothes}
+  - {id: ja-n3-00157-s001, ch: 柄, pr: え, ds: handle}
+  - {id: ja-n3-00209-s001, ch: 帯, pr: おび, ds: obi (kimono sash)}
+  - {id: ja-n3-00316-s001, ch: 髪の毛, pr: かみのけ, ds: hair (on the head)}
+  - {id: ja-n3-00321-s001, ch: 柄, pr: がら, ds: pattern}
+  - {id: ja-n3-00324-s001, ch: 皮, pr: かわ, ds: skin}
+  review_grammar: []
+- id: level-05-home-practice-01
+  title: Living arrangements - sentence practice 1
+  outcome: Explain a household need and negotiate an arrangement.
+  vocabulary: []
+  grammar:
+  - {id: ja-n5-g017, ch: NやNなど, ds: such things as; a non-exhaustive list}
+  - {id: ja-n4-g002, ch: 動詞こと／の, ds: nominalizing an action or event}
+  - {id: ja-n4-g037, ch: 動詞語幹すぎる, ds: do too much; be excessively}
+  review_vocabulary:
+  - {id: ja-n3-00264-s001, ch: 家具, pr: かぐ, ds: furniture}
+  - {id: ja-n3-00281-s001, ch: かご, pr: かご, ds: 'basket (shopping, etc.)'}
+  - {id: ja-n3-00286-s001, ch: 家事, pr: かじ, ds: housework}
+  - {id: ja-n3-00371-s001, ch: 帰宅, pr: きたく, ds: returning home}
+  - {id: ja-n3-00458-s001, ch: 暮らし, pr: くらし, ds: (way of) life}
+  - {id: ja-n3-00460-s001, ch: 暮らす, pr: くらす, ds: 'to live (on, by, etc.)'}
+  - {id: ja-n3-00592-s001, ch: 小屋, pr: こや, ds: hut}
+  - {id: ja-n3-00706-s001, ch: 芝生, pr: しばふ, ds: lawn}
+  review_grammar:
+  - {id: ja-n5-g039, ch: AはBより形容詞, ds: A is more adjective than B}
+  - {id: ja-n5-g040, ch: Nの中で一番, ds: the most within a stated group}
+  - {id: ja-n5-g031, ch: 動詞たい, ds: want to do something}
+- id: level-05-home-practice-02
+  title: Living arrangements - sentence practice 2
+  outcome: Explain a household need and negotiate an arrangement.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g038, ch: 動詞語幹やすい／にくい, ds: easy to do; hard to do}
+  review_vocabulary:
+  - {id: ja-n3-00264-s001, ch: 家具, pr: かぐ, ds: furniture}
+  - {id: ja-n3-00281-s001, ch: かご, pr: かご, ds: 'basket (shopping, etc.)'}
+  - {id: ja-n3-00286-s001, ch: 家事, pr: かじ, ds: housework}
+  - {id: ja-n3-00371-s001, ch: 帰宅, pr: きたく, ds: returning home}
+  - {id: ja-n3-00458-s001, ch: 暮らし, pr: くらし, ds: (way of) life}
+  - {id: ja-n3-00460-s001, ch: 暮らす, pr: くらす, ds: 'to live (on, by, etc.)'}
+  - {id: ja-n3-00592-s001, ch: 小屋, pr: こや, ds: hut}
+  - {id: ja-n3-00706-s001, ch: 芝生, pr: しばふ, ds: lawn}
+  review_grammar:
+  - {id: ja-n5-g017, ch: NやNなど, ds: such things as; a non-exhaustive list}
+  - {id: ja-n4-g002, ch: 動詞こと／の, ds: nominalizing an action or event}
+  - {id: ja-n4-g037, ch: 動詞語幹すぎる, ds: do too much; be excessively}

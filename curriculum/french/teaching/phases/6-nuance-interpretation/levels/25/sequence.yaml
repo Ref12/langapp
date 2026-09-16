@@ -1,0 +1,576 @@
+schema_version: 3
+id: fr-level-25
+title: Stance and implication
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 25
+phase: nuance-interpretation
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+- fr-level-15
+- fr-level-16
+- fr-level-17
+- fr-level-18
+- fr-level-19
+- fr-level-20
+- fr-level-21
+- fr-level-22
+- fr-level-23
+- fr-level-24
+goals: &id001
+- Distinguish literal content from implied evaluation.
+- Express different degrees of commitment.
+- Explain why context supports one interpretation more than another.
+checkpoint:
+  task: Compare plausible readings of an indirect message and defend the interpretation best supported by the situation.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-25-description-01
+  title: Description and comparison - 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-598bd7578c382729, ch: ironique, pr: /i.ʁɔ.nik/, ds: ironic}
+  - {id: fr-v-40205ba29ed06a89, ch: sarcastique, pr: /saʁ.kas.tik/, ds: sarcastic}
+  - {id: fr-v-640271b87f47e5ad, ch: humoristique, pr: /y.mɔ.ʁis.tik/, ds: 'funny, humorous'}
+  - {id: fr-v-92e483818dd51b07, ch: satirique, pr: /sa.ti.ʁik/, ds: satirical}
+  - {id: fr-v-c9d6aa3a80ed6cee, ch: parodique, pr: /paʁodik/, ds: parodic}
+  - {id: fr-v-9a7737bb2ad426e2, ch: moqueur, pr: /mɔ.kœʁ/, ds: 'mocking; that mocks, that pokes fun'}
+  - {id: fr-v-669a8cb06d7d493b, ch: railleur, pr: /ʁa.jœʁ/, ds: 'mocker, scoffer'}
+  - {id: fr-v-416470a9e2129de7, ch: narquois, pr: /naʁ.kwa/, ds: ironic}
+  - {id: fr-v-3450fefaf333769b, ch: goguenard, pr: /ɡɔɡ.naʁ/, ds: mocking}
+  - {id: fr-v-e49b0468e3d3d547, ch: malicieux, pr: /malisjø/, ds: mischievous}
+  - {id: fr-v-c8887b5afc6516ed, ch: taquin, pr: /ta.kɛ̃/, ds: teasing; playful}
+  - {id: fr-v-431f9debade1ddbb, ch: badin, pr: /ba.dɛ̃/, ds: 'playful, light-hearted, frolicsome'}
+  - {id: fr-v-1d71f8875be6cfb0, ch: facétieux, pr: /fa.se.sjø/, ds: facetious}
+  - {id: fr-v-a90d4947cf89170a, ch: espiègle, pr: /ɛs.pjɛɡl/, ds: 'playful, frolicsome'}
+  - {id: fr-v-717a53b685ae7e6c, ch: habile, pr: /a.bil/, ds: 'adroit, skillful'}
+  - {id: fr-v-dde2ed3e74c9b877, ch: suggestif, pr: /syɡ.ʒɛs.tif/, ds: suggestive}
+  - {id: fr-v-1656ad2fde0a8956, ch: évocateur, pr: /e.vɔ.ka.tœʁ/, ds: 'evocative, suggestive'}
+  - {id: fr-v-70b0bb2b2407a951, ch: sous-jacent, pr: /su.ʒa.sɑ̃/, ds: underlying}
+  - {id: fr-v-58e8d262b85fb9b5, ch: latent, pr: /latɑ̃/, ds: latent}
+  - {id: fr-v-c695e50ff8f345f9, ch: manifeste, pr: /ma.ni.fɛst/, ds: manifesto}
+  - {id: fr-v-593563c0decc8a02, ch: apparent, pr: /a.pa.ʁɑ̃/, ds: apparent (all senses)}
+  - {id: fr-v-784bdd304bebe54c, ch: caché, pr: /ka.ʃe/, ds: hidden}
+  - {id: fr-v-51df58be045ac939, ch: voilé, pr: /vwale/, ds: veiled (wearing a veil)}
+  - {id: fr-v-e464b47699c260ca, ch: masqué, pr: /maske/, ds: masked}
+  - {id: fr-v-b2e95b5081357aae, ch: polysémique, pr: /pɔ.li.se.mik/, ds: polysemous; having several meanings}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-39c68ce9c4219ae3, ch: uniforme, pr: /y.ni.fɔʁm/, ds: a uniform}
+  - {id: fr-v-03797a27566f27d9, ch: distinct, pr: /dis.tɛ̃/, ds: 'distinct; discrete (separate, distinguished, different)'}
+  - {id: fr-v-80b0a24e45f94c3b, ch: multidisciplinaire, pr: /myltidisiplinɛʁ/, ds: multidisciplinary}
+  - {id: fr-v-39e299bf6d658db4, ch: interdisciplinaire, pr: /ɛ̃.tɛʁ.di.si.pli.nɛʁ/, ds: interdisciplinary}
+  - {id: fr-v-6b740e2476972e81, ch: pluridisciplinaire, pr: /plyʁidisiplinɛʁ/, ds: multidisciplinary}
+  - {id: fr-v-00eb714fd4204e64, ch: holistique, pr: /ɔ.lis.tik/, ds: holistic}
+  - {id: fr-v-9c03c092aeeed6e7, ch: systémique, pr: /sis.te.mik/, ds: system; systemic}
+  - {id: fr-v-cda06cd3b48a8536, ch: thématique, pr: /te.ma.tik/, ds: structured group of themes}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-25-description-02
+  title: Description and comparison - 2
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-1f01354806f951ee, ch: ambivalent, pr: /ɑ̃.bi.va.lɑ̃/, ds: ambivalent}
+  - {id: fr-v-7989ab22258a1c6c, ch: distant, pr: /dis.tɑ̃/, ds: distant}
+  - {id: fr-v-7b1a30dbdb909014, ch: détaché, pr: /de.ta.ʃe/, ds: tongued (from portato to staccato).}
+  - {id: fr-v-4448d72606081abb, ch: réservé, pr: /ʁe.zɛʁ.ve/, ds: 'reserved, booked'}
+  - {id: fr-v-895c392956844b49, ch: retenu, pr: /ʁə.t(ə).ny/, ds: 'cautious, moderate, reserved'}
+  - {id: fr-v-222605ff95c628ca, ch: pudique, pr: /py.dik/, ds: 'modest, chaste'}
+  - {id: fr-v-6ff6bf6acfc3dc37, ch: indiscret, pr: /ɛ̃.dis.kʁɛ/, ds: indiscreet}
+  - {id: fr-v-d833eb2d530610b9, ch: brutal, pr: /bʁy.tal/, ds: brutal}
+  - {id: fr-v-937d30f78c2088e1, ch: aimable, pr: /ɛ.mabl/, ds: 'likeable, amiable'}
+  - {id: fr-v-35d14006544e50a9, ch: affable, pr: /a.fabl/, ds: 'affable, amicable, sociable'}
+  - {id: fr-v-d94124f4b2614950, ch: cordial, pr: /kɔʁ.djal/, ds: coming from the heart; sincere}
+  - {id: fr-v-6c7358db8e48f41e, ch: chaleureux, pr: /ʃa.lœ.ʁø/, ds: agreeable for its own qualities.}
+  - {id: fr-v-45c909bcc83467b8, ch: hostile, pr: /ɔs.til/, ds: hostile}
+  - {id: fr-v-87dc1cc353b12ec9, ch: agressif, pr: /a.ɡʁɛ.sif/, ds: aggressive}
+  - {id: fr-v-a7c00324358bdaa1, ch: amer, pr: /a.mɛʁ/, ds: bitter}
+  - {id: fr-v-b34335241bf4ab92, ch: aigre, pr: /ɛɡʁ/, ds: 'sharp, sour, acid'}
+  - {id: fr-v-832b44bb709d1567, ch: dépité, pr: /de.pi.te/, ds: 'greatly vexed, greatly frustrated'}
+  - {id: fr-v-3db3df61df2a9293, ch: dédaigneux, pr: /de.dɛ.ɲø/, ds: 'scornful, disdainful, contemptuous'}
+  - {id: fr-v-052e9f1f441ef1af, ch: condescendant, pr: /kɔ̃.dɛ.sɑ̃.dɑ̃/, ds: condescending; patronizing}
+  - {id: fr-v-23ba3e9435f511a5, ch: arrogant, pr: /a.ʁɔ.ɡɑ̃/, ds: arrogant}
+  - {id: fr-v-ecba7a875bc64c95, ch: vaniteux, pr: /va.ni.tø/, ds: 'conceited, frivolous, vain'}
+  - {id: fr-v-a6d25bf9329ad7bb, ch: modeste, pr: /mɔ.dɛst/, ds: 'modest, humble'}
+  - {id: fr-v-19ee34924992488d, ch: humble, pr: /œ̃bl/, ds: humble}
+  - {id: fr-v-27428af1574b9dcb, ch: spontané, pr: /spɔ̃.ta.ne/, ds: spontaneous}
+  - {id: fr-v-2c4f98c4438bce9d, ch: hypocrite, pr: /i.pɔ.kʁit/, ds: hypocrite}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-70b0bb2b2407a951, ch: sous-jacent, pr: /su.ʒa.sɑ̃/, ds: underlying}
+  - {id: fr-v-58e8d262b85fb9b5, ch: latent, pr: /latɑ̃/, ds: latent}
+  - {id: fr-v-c695e50ff8f345f9, ch: manifeste, pr: /ma.ni.fɛst/, ds: manifesto}
+  - {id: fr-v-593563c0decc8a02, ch: apparent, pr: /a.pa.ʁɑ̃/, ds: apparent (all senses)}
+  - {id: fr-v-784bdd304bebe54c, ch: caché, pr: /ka.ʃe/, ds: hidden}
+  - {id: fr-v-51df58be045ac939, ch: voilé, pr: /vwale/, ds: veiled (wearing a veil)}
+  - {id: fr-v-e464b47699c260ca, ch: masqué, pr: /maske/, ds: masked}
+  - {id: fr-v-b2e95b5081357aae, ch: polysémique, pr: /pɔ.li.se.mik/, ds: polysemous; having several meanings}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-25-description-03
+  title: Description and comparison - 3
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-5e67df2f6ef945a4, ch: flatteur, pr: /fla.tœʁ/, ds: flattering}
+  - {id: fr-v-980d4496016f211b, ch: complaisant, pr: /kɔ̃.plɛ.zɑ̃/, ds: 'complaisant, obliging, eager to please'}
+  - {id: fr-v-dbe4f297e381c9ac, ch: servile, pr: /sɛʁ.vil/, ds: 'servile, slavish, subservient'}
+  - {id: fr-v-7b34e4f2c8e6934a, ch: obséquieux, pr: /ɔp.se.kjø/, ds: obsequious}
+  - {id: fr-v-09b1e23d9947fbac, ch: désinvolte, pr: /de.zɛ̃.vɔlt/, ds: overly casual or familiar; cavalier}
+  - {id: fr-v-0b3cbe1f8bcad31e, ch: nonchalant, pr: /nɔ̃.ʃa.lɑ̃/, ds: 'Marked by a lack of vivacity, vigour, liveliness'}
+  - {id: fr-v-17de210d08bbb196, ch: indolent, pr: /ɛ̃.dɔ.lɑ̃/, ds: indolent (all senses)}
+  - {id: fr-v-7f098b731ffce81e, ch: impassible, pr: /ɛ̃.pa.sibl/, ds: impassible}
+  - {id: fr-v-42a77e31b91690e5, ch: imperturbable, pr: /ɛ̃.pɛʁ.tyʁ.babl/, ds: imperturbable; unflappable}
+  - {id: fr-v-1f64bdcfff21bc68, ch: stoïque, pr: /stɔ.ik/, ds: 'stoic, stoical'}
+  - {id: fr-v-0df93f3a90de8f3e, ch: résigné, pr: /ʁe.zi.ɲe/, ds: 'resigned (to a fate, a situation, etc.)'}
+  - {id: fr-v-11dcaaca386fe7f3, ch: fataliste, pr: /fa.ta.list/, ds: fatalist}
+  - {id: fr-v-97886b699c1dc464, ch: lucide, pr: /ly.sid/, ds: lucid}
+  - {id: fr-v-ccc75556fc002874, ch: candide, pr: /kɑ̃.did/, ds: 'candid, frank'}
+  - {id: fr-v-caac8d5542dca34b, ch: naïf, pr: /na.if/, ds: 'naive, dewy-eyed; gullible'}
+  - {id: fr-v-d3502dce9fa8c58a, ch: ingénu, pr: /ɛ̃.ʒe.ny/, ds: ingenuous; guileless}
+  - {id: fr-v-361bc6a8cb1f54d3, ch: crédule, pr: /kʁe.dyl/, ds: gullible; credulous}
+  - {id: fr-v-e773c2b9c13a26a7, ch: circonspect, pr: /siʁ.kɔ̃s.pɛ/, ds: 'circumspect, cautious, prudent'}
+  - {id: fr-v-754285156a956031, ch: perspicace, pr: /pɛʁ.spi.kas/, ds: perspicacious}
+  - {id: fr-v-4c26b2c97c122222, ch: simple, pr: /sɛ̃pl/, ds: plain; unpretentious}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-3db3df61df2a9293, ch: dédaigneux, pr: /de.dɛ.ɲø/, ds: 'scornful, disdainful, contemptuous'}
+  - {id: fr-v-052e9f1f441ef1af, ch: condescendant, pr: /kɔ̃.dɛ.sɑ̃.dɑ̃/, ds: condescending; patronizing}
+  - {id: fr-v-23ba3e9435f511a5, ch: arrogant, pr: /a.ʁɔ.ɡɑ̃/, ds: arrogant}
+  - {id: fr-v-ecba7a875bc64c95, ch: vaniteux, pr: /va.ni.tø/, ds: 'conceited, frivolous, vain'}
+  - {id: fr-v-a6d25bf9329ad7bb, ch: modeste, pr: /mɔ.dɛst/, ds: 'modest, humble'}
+  - {id: fr-v-19ee34924992488d, ch: humble, pr: /œ̃bl/, ds: humble}
+  - {id: fr-v-27428af1574b9dcb, ch: spontané, pr: /spɔ̃.ta.ne/, ds: spontaneous}
+  - {id: fr-v-2c4f98c4438bce9d, ch: hypocrite, pr: /i.pɔ.kʁit/, ds: hypocrite}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-25-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary:
+  - {id: fr-v-23d36e2a5d5956f2, ch: étonnement, pr: /e.tɔn.mɑ̃/, ds: 'astonishment, amazement'}
+  - {id: fr-v-4f3e58cbed744a94, ch: stupéfaction, pr: /sty.pe.fak.sjɔ̃/, ds: amazement}
+  - {id: fr-v-e29c1c6e53999ce7, ch: stupeur, pr: /sty.pœʁ/, ds: 'stupor, amazement, astonishment, stupefaction, wonder'}
+  - {id: fr-v-c7e3defdd89b439e, ch: sidération, pr: /si.de.ʁa.sjɔ̃/, ds: consternation}
+  - {id: fr-v-653fe0136f99b97e, ch: émerveillement, pr: /e.mɛʁ.vɛj.mɑ̃/, ds: 'wonder, wonderment'}
+  - {id: fr-v-8f1126fe5073d07f, ch: ravissement, pr: /ʁa.vis.mɑ̃/, ds: ravishment}
+  - {id: fr-v-d1a2fafdeba94fdc, ch: enchantement, pr: /ɑ̃.ʃɑ̃t.mɑ̃/, ds: enchantment}
+  - {id: fr-v-181c61bf529d5ba1, ch: éblouissement, pr: /e.blu.is.mɑ̃/, ds: 'glare, dazzle'}
+  - {id: fr-v-dd94caec7b309cc3, ch: extase, pr: /ɛk.staz/, ds: ecstasy (sentiment)}
+  - {id: fr-v-f97f35c4178d2c51, ch: allégresse, pr: /a.le.ɡʁɛs/, ds: 'elation, joy, gladness'}
+  - {id: fr-v-4eff9a4f0620660e, ch: jubilation, pr: /ʒy.bi.la.sjɔ̃/, ds: jubilation}
+  - {id: fr-v-110150922667d341, ch: euphorie, pr: /ø.fɔ.ʁi/, ds: euphoria (an excited state of joy)}
+  - {id: fr-v-45321df12b3221cb, ch: exaltation, pr: /ɛɡ.zal.ta.sjɔ̃/, ds: exaltation}
+  - {id: fr-v-fe3e31eb8401e304, ch: mélancolie, pr: /me.lɑ̃.kɔ.li/, ds: melancholy (sadness or depression)}
+  - {id: fr-v-dbecf243441a692b, ch: morosité, pr: /moʁozite/, ds: gloom; gloom and doom; gloominess; morosity}
+  - {id: fr-v-a99988320c19a01d, ch: abattement, pr: /a.bat.mɑ̃/, ds: a diminution of physical or moral strength}
+  - {id: fr-v-136c76deda8b7061, ch: accablement, pr: /a.ka.blə.mɑ̃/, ds: 'consternation, overwhelming despondency'}
+  - {id: fr-v-e5726582b546b8ef, ch: désarroi, pr: /de.za.ʁwa/, ds: dismay}
+  - {id: fr-v-22a2bf9f686ed60e, ch: détresse, pr: /de.tʁɛs/, ds: 'distress, despair, anguish'}
+  - {id: fr-v-763de58c8d232ebc, ch: désespoir, pr: /de.zɛs.pwaʁ/, ds: despair}
+  - {id: fr-v-38f823c4b653f5ab, ch: désolation, pr: /de.zɔ.la.sjɔ̃/, ds: desolation}
+  - {id: fr-v-412f0ec0120e77a8, ch: affliction, pr: /a.flik.sjɔ̃/, ds: affliction}
+  - {id: fr-v-a270b4c488d8b6db, ch: consternation, pr: /kɔ̃s.tɛʁ.na.sjɔ̃/, ds: consternation}
+  - {id: fr-v-fc3e13c1d6c76454, ch: appréhension, pr: /a.pʁe.ɑ̃.sjɔ̃/, ds: apprehension; fearful anticipation}
+  - {id: fr-v-01e088563e460a32, ch: crainte, pr: /kʁɛ̃t/, ds: 'fear, fright'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-fc290efccf6faea2, ch: reconnaissant, pr: /ʁə.kɔ.nɛ.sɑ̃/, ds: 'grateful, thankful'}
+  - {id: fr-v-8bf01ef442a837d2, ch: déprimé, pr: /de.pʁi.me/, ds: 'depressed, dejected'}
+  - {id: fr-v-a012a8c08e4191a0, ch: optimiste, pr: /ɔp.ti.mist/, ds: optimistic}
+  - {id: fr-v-e4f7e9ea74be3f7e, ch: pessimiste, pr: /pe.si.mist/, ds: pessimistic}
+  - {id: fr-v-4d6dc1d63fd414ee, ch: serein, pr: /sə.ʁɛ̃/, ds: 'unclouded, clear'}
+  - {id: fr-v-4dcd0faf12fad6e0, ch: nostalgique, pr: /nɔs.tal.ʒik/, ds: nostalgic}
+  - {id: fr-v-326083256c1f891f, ch: indifférent, pr: /ɛ̃.di.fe.ʁɑ̃/, ds: indifferent}
+  - {id: fr-v-97063143c05dc15e, ch: tenir, pr: /tə.niʁ/, ds: to be attached to; hold dear}
+  review_grammar:
+  - {id: fr-g-past-subjunctive, ch: avoir / être au subjonctif présent + participe passé, ds: Place an evaluated or nonasserted event before its reference}
+  - {id: fr-g-conditional-past, ch: avoir / être au conditionnel + participe passé, ds: Present a past action as unrealized or tentatively evaluated}
+- id: level-25-feelings-02
+  title: Feelings and attitudes - 2
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary:
+  - {id: fr-v-404a8a2a4716636c, ch: frayeur, pr: /fʁɛ.jœʁ/, ds: 'fright, fear, dread'}
+  - {id: fr-v-caec34e25361dda9, ch: effroi, pr: /e.fʁwa/, ds: 'terror, dread'}
+  - {id: fr-v-459dbe813696594d, ch: terreur, pr: /tɛ.ʁœʁ/, ds: terror}
+  - {id: fr-v-93adf5a3967ac020, ch: épouvante, pr: /e.pu.vɑ̃t/, ds: terror}
+  - {id: fr-v-5a6a29c8814dd682, ch: panique, pr: /pa.nik/, ds: panic}
+  - {id: fr-v-865f9e1610e980fa, ch: effarement, pr: /e.faʁ.mɑ̃/, ds: alarm}
+  - {id: fr-v-0a5e087d8b837794, ch: agitation, pr: /a.ʒi.ta.sjɔ̃/, ds: choppiness (of water)}
+  - {id: fr-v-297202444077a101, ch: fébrilité, pr: /fe.bʁi.li.te/, ds: febrility}
+  - {id: fr-v-5eb196553cdb3106, ch: exaspération, pr: /ɛɡ.zas.pe.ʁa.sjɔ̃/, ds: 'exasperation, an exasperated feeling of annoyance, aggravation'}
+  - {id: fr-v-a21909511396f0c4, ch: irritation, pr: /i.ʁi.ta.sjɔ̃/, ds: irritation}
+  - {id: fr-v-0d494bfd8f3a7acc, ch: énervement, pr: /e.nɛʁ.və.mɑ̃/, ds: annoyance}
+  - {id: fr-v-5e61d4345f451e77, ch: fureur, pr: /fy.ʁœʁ/, ds: wrath (great anger)}
+  - {id: fr-v-bd80d6099fdba3eb, ch: rage, pr: /ʁaʒ/, ds: 'rage (fury, anger)'}
+  - {id: fr-v-cbb2f0bba8f2ad9a, ch: indignation, pr: /ɛ̃.di.ɲa.sjɔ̃/, ds: Indignation}
+  - {id: fr-v-d603bace17e5c9cb, ch: révolte, pr: /ʁe.vɔlt/, ds: 'rebellion, mutiny'}
+  - {id: fr-v-c286087cdf7de572, ch: aversion, pr: /a.vɛʁ.sjɔ̃/, ds: aversion}
+  - {id: fr-v-8647d47596f75937, ch: répugnance, pr: /ʁepyɲɑ̃s/, ds: repugnance}
+  - {id: fr-v-de4adeccea9e91d9, ch: attachement, pr: /a.taʃ.mɑ̃/, ds: attachment}
+  - {id: fr-v-866ba59f58f7e2c0, ch: dévouement, pr: /de.vu.mɑ̃/, ds: 'dedication, commitment (to duty); self-sacrifice'}
+  - {id: fr-v-6d6d6025773a7004, ch: fidélité, pr: /fi.de.li.te/, ds: 'faithfulness, fidelity'}
+  - {id: fr-v-33dc71953da00845, ch: loyauté, pr: /lwa.jo.te/, ds: loyalty}
+  - {id: fr-v-be33c7280dce7905, ch: ferveur, pr: /fɛʁ.vœʁ/, ds: 'ardour, zeal, fervor'}
+  - {id: fr-v-233d5f839397db22, ch: ardeur, pr: /aʁ.dœʁ/, ds: intense heat}
+  - {id: fr-v-13d4a10862cf2179, ch: élan, pr: /e.lɑ̃/, ds: 'spirit, verve'}
+  - {id: fr-v-f74a765f89104cbe, ch: impulsion, pr: /ɛ̃.pyl.sjɔ̃/, ds: impulse}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-e5726582b546b8ef, ch: désarroi, pr: /de.za.ʁwa/, ds: dismay}
+  - {id: fr-v-22a2bf9f686ed60e, ch: détresse, pr: /de.tʁɛs/, ds: 'distress, despair, anguish'}
+  - {id: fr-v-763de58c8d232ebc, ch: désespoir, pr: /de.zɛs.pwaʁ/, ds: despair}
+  - {id: fr-v-38f823c4b653f5ab, ch: désolation, pr: /de.zɔ.la.sjɔ̃/, ds: desolation}
+  - {id: fr-v-412f0ec0120e77a8, ch: affliction, pr: /a.flik.sjɔ̃/, ds: affliction}
+  - {id: fr-v-a270b4c488d8b6db, ch: consternation, pr: /kɔ̃s.tɛʁ.na.sjɔ̃/, ds: consternation}
+  - {id: fr-v-fc3e13c1d6c76454, ch: appréhension, pr: /a.pʁe.ɑ̃.sjɔ̃/, ds: apprehension; fearful anticipation}
+  - {id: fr-v-01e088563e460a32, ch: crainte, pr: /kʁɛ̃t/, ds: 'fear, fright'}
+  review_grammar:
+  - {id: fr-g-past-subjunctive, ch: avoir / être au subjonctif présent + participe passé, ds: Place an evaluated or nonasserted event before its reference}
+  - {id: fr-g-conditional-past, ch: avoir / être au conditionnel + participe passé, ds: Present a past action as unrealized or tentatively evaluated}
+- id: level-25-feelings-03
+  title: Feelings and attitudes - 3
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary:
+  - {id: fr-v-ebaa669ebc5b5eaf, ch: pulsion, pr: /pyl.sjɔ̃/, ds: 'drive, urge'}
+  - {id: fr-v-4e141a07ab02e85e, ch: inclination, pr: /ɛ̃.kli.na.sjɔ̃/, ds: inclination (all senses)}
+  - {id: fr-v-224000b80be1698a, ch: attirance, pr: /a.ti.ʁɑ̃s/, ds: attraction (the state of feeling attraction)}
+  - {id: fr-v-bb8c2fbdc00c72c2, ch: séduction, pr: /se.dyk.sjɔ̃/, ds: seduction}
+  - {id: fr-v-20bfcee0e88b2b68, ch: fascination, pr: /fa.si.na.sjɔ̃/, ds: fascination}
+  - {id: fr-v-193be93b8eb65b43, ch: obsession, pr: /ɔp.sɛ.sjɔ̃/, ds: obsession}
+  - {id: fr-v-68dbf87ba7f9dc26, ch: lassitude, pr: /la.si.tyd/, ds: lassitude}
+  - {id: fr-v-f216e6dac9674277, ch: désillusion, pr: /de.zi.ly.zjɔ̃/, ds: 'disillusion, disenchantment'}
+  - {id: fr-v-92864a9434487bd7, ch: sérénité, pr: /seʁenite/, ds: serenity}
+  - {id: fr-v-6fcafeeff6da7ccc, ch: quiétude, pr: /kje.tyd/, ds: tranquility}
+  - {id: fr-v-844de498a6fa697c, ch: tranquillité, pr: /tʁɑ̃.ki.li.te/, ds: 'tranquility, peace, calm, calmness, quietness'}
+  - {id: fr-v-4ce44ea379a76faa, ch: contentement, pr: /kɔ̃.tɑ̃t.mɑ̃/, ds: happiness; joyfulness; joyousness}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-de4adeccea9e91d9, ch: attachement, pr: /a.taʃ.mɑ̃/, ds: attachment}
+  - {id: fr-v-866ba59f58f7e2c0, ch: dévouement, pr: /de.vu.mɑ̃/, ds: 'dedication, commitment (to duty); self-sacrifice'}
+  - {id: fr-v-6d6d6025773a7004, ch: fidélité, pr: /fi.de.li.te/, ds: 'faithfulness, fidelity'}
+  - {id: fr-v-33dc71953da00845, ch: loyauté, pr: /lwa.jo.te/, ds: loyalty}
+  - {id: fr-v-be33c7280dce7905, ch: ferveur, pr: /fɛʁ.vœʁ/, ds: 'ardour, zeal, fervor'}
+  - {id: fr-v-233d5f839397db22, ch: ardeur, pr: /aʁ.dœʁ/, ds: intense heat}
+  - {id: fr-v-13d4a10862cf2179, ch: élan, pr: /e.lɑ̃/, ds: 'spirit, verve'}
+  - {id: fr-v-f74a765f89104cbe, ch: impulsion, pr: /ɛ̃.pyl.sjɔ̃/, ds: impulse}
+  review_grammar:
+  - {id: fr-g-past-subjunctive, ch: avoir / être au subjonctif présent + participe passé, ds: Place an evaluated or nonasserted event before its reference}
+  - {id: fr-g-conditional-past, ch: avoir / être au conditionnel + participe passé, ds: Present a past action as unrealized or tentatively evaluated}
+- id: level-25-actions-01
+  title: Actions and processes - 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-9d4bcc64a6f13c30, ch: insinuer, pr: /ɛ̃.si.nɥe/, ds: insinuate (make way for by subtle means)}
+  - {id: fr-v-53faf050d225d1cb, ch: sous-entendre, pr: /su.zɑ̃.tɑ̃dʁ/, ds: to imply}
+  - {id: fr-v-a5d2a291f249020e, ch: présupposer, pr: /pʁe.sy.po.ze/, ds: presuppose (to assume some truth without proof)}
+  - {id: fr-v-6f1a5276b4f9b62f, ch: faire allusion, pr: /fɛʁ a.ly.zjɔ̃/, ds: to allude}
+  - {id: fr-v-c3f5ffd1996c2e49, ch: laisser entendre, pr: /lɛ.se ɑ̃.tɑ̃dʁ/, ds: 'insinuate, hint'}
+  - {id: fr-v-3c77e59bd80b70f8, ch: ironiser, pr: /i.ʁɔ.ni.ze/, ds: to be ironic}
+  - {id: fr-v-c1940aa209a3926e, ch: railler, pr: /ʁa.je/, ds: 'to mock, taunt, jeer at'}
+  - {id: fr-v-1125a2a4ba9d2da5, ch: brocarder, pr: /bʁɔ.kaʁ.de/, ds: 'to mock, ridicule'}
+  - {id: fr-v-746fb52ae0a439ac, ch: persifler, pr: /pɛʁ.si.fle/, ds: to mock with ironic politeness or veiled insults}
+  - {id: fr-v-87ea25033f3d12f6, ch: tourner en dérision, pr: /tuʁ.ne.ʁ‿ɑ̃ de.ʁi.zjɔ̃/, ds: 'to ridicule, to make mock of'}
+  - {id: fr-v-eb4d17deace8a026, ch: ridiculiser, pr: /ʁi.di.ky.li.ze/, ds: to ridicule}
+  - {id: fr-v-f6fd3664838f8b20, ch: caricaturer, pr: /ka.ʁi.ka.ty.ʁe/, ds: to caricature}
+  - {id: fr-v-a749a750cd6823dd, ch: parodier, pr: /paʁodje/, ds: to parody}
+  - {id: fr-v-cac690820c1871de, ch: badiner, pr: /ba.di.ne/, ds: 'to jest, joke'}
+  - {id: fr-v-9cfed5dd7cc28f87, ch: chahuter, pr: /ʃa.y.te/, ds: 'to playfight, to horseplay, to mess around'}
+  - {id: fr-v-9a8842724b695062, ch: blaguer, pr: /bla.ɡe/, ds: 'to joke, to joke about'}
+  - {id: fr-v-ac8d3c7df8b170cf, ch: ricaner, pr: /ʁi.ka.ne/, ds: to giggle}
+  - {id: fr-v-bb8cf0948bfee4ae, ch: pouffer, pr: /pu.fe/, ds: to burst out (with laughter); to crack up}
+  - {id: fr-v-681f2657eb7bebe4, ch: glousser, pr: /ɡlu.se/, ds: to cluck (make the noise of a chicken)}
+  - {id: fr-v-8a411862f3a9cd1a, ch: soupirer, pr: /su.pi.ʁe/, ds: to sigh}
+  - {id: fr-v-dc27a3ff342c6841, ch: gémir, pr: /ʒe.miʁ/, ds: to moan; to groan}
+  - {id: fr-v-609a8eea8c680f48, ch: grogner, pr: /ɡʁɔ.ɲe/, ds: 'to grunt (for a pig, make the sound of a pig)'}
+  - {id: fr-v-fe1cde98ea435311, ch: marmonner, pr: /maʁ.mɔ.ne/, ds: 'to murmur, mumble'}
+  - {id: fr-v-3d6ca543b323fa35, ch: murmurer, pr: /myʁ.my.ʁe/, ds: to murmur}
+  - {id: fr-v-dd7cb2bdb7c947f2, ch: chuchoter, pr: /ʃy.ʃɔ.te/, ds: to whisper}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-be617e8afeddd9f1, ch: requérir, pr: /ʁə.ke.ʁiʁ/, ds: 'to call for, to require'}
+  - {id: fr-v-6143e9e7acd49043, ch: engendrer, pr: /ɑ̃.ʒɑ̃.dʁe/, ds: 'to generate, spawn, beget'}
+  - {id: fr-v-8cb1cdebf1f209bb, ch: susciter, pr: /sy.si.te/, ds: 'to stir up, fuel, evoke, suscitate'}
+  - {id: fr-v-f9b710f326837b3a, ch: générer, pr: /ʒe.ne.ʁe/, ds: to generate}
+  - {id: fr-v-1cdf4a4e35b44202, ch: occasionner, pr: /ɔ.ka.zjɔ.ne/, ds: 'to provoke, to cause'}
+  - {id: fr-v-87c48a1a56548886, ch: compromettre, pr: /kɔ̃.pʁɔ.mɛtʁ/, ds: 'to compromise, jeopardise'}
+  - {id: fr-v-ca509c726036ee81, ch: favoriser, pr: /fa.vɔ.ʁi.ze/, ds: 'to favour, to show a preference to something'}
+  - {id: fr-v-a51e76b7f4bb3d67, ch: décourager, pr: /de.ku.ʁa.ʒe/, ds: to discourage}
+  review_grammar:
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+  - {id: fr-g-perfect-infinitive, ch: après avoir / être + participe passé, ds: Order completed actions with a shared-subject infinitive}
+- id: level-25-actions-02
+  title: Actions and processes - 2
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-43c641579be1d77f, ch: susurrer, pr: /sy.sy.ʁe/, ds: to whisper (talk quietly)}
+  - {id: fr-v-48cfa32439dfc4bf, ch: bredouiller, pr: /bʁə.du.je/, ds: 'to stammer, to mumble'}
+  - {id: fr-v-e49919a5d6ecfd17, ch: balbutier, pr: /bal.by.sje/, ds: to stammer; to stutter}
+  - {id: fr-v-a4dbad0ff285ca9c, ch: bégayer, pr: /be.ɡɛ.je/, ds: to stammer}
+  - {id: fr-v-4abbac6d9de3ee4a, ch: bafouiller, pr: /ba.fu.je/, ds: 'to babble, splutter, stammer'}
+  - {id: fr-v-6ec9af30cae82c4e, ch: tergiverser, pr: /tɛʁʒivɛʁse/, ds: to delay answering or deciding with excuses}
+  - {id: fr-v-1a9340bfaf1d86cd, ch: éluder, pr: /e.ly.de/, ds: 'to elude (avoid, with cunning)'}
+  - {id: fr-v-84b83394cdad94a5, ch: esquiver, pr: /ɛs.ki.ve/, ds: 'to dodge (a blow), duck'}
+  - {id: fr-v-502f20609140d8c1, ch: contourner, pr: /kɔ̃.tuʁ.ne/, ds: 'to circumvent, to bypass, to skirt around'}
+  - {id: fr-v-4043870af4572d94, ch: détourner, pr: /de.tuʁ.ne/, ds: 'to divert, to redirect'}
+  - {id: fr-v-ef0a4f264a72b321, ch: dissimuler, pr: /di.si.my.le/, ds: 'to hide, to conceal'}
+  - {id: fr-v-c2fadea841f8a550, ch: masquer, pr: /maske/, ds: to mask; to hide}
+  - {id: fr-v-42c5d24c1e23502f, ch: cacher, pr: /ka.ʃe/, ds: to hide}
+  - {id: fr-v-3aa82c2dc8fd4370, ch: voiler, pr: /vwa.le/, ds: to veil (cover with a veil)}
+  - {id: fr-v-166e710750133b9c, ch: occulter, pr: /ɔ.kyl.te/, ds: to occult}
+  - {id: fr-v-df949563047caf85, ch: taire, pr: /tɛʁ/, ds: 'to be quiet, to be silent'}
+  - {id: fr-v-1232425fab717bcd, ch: dévoiler, pr: /de.vwa.le/, ds: to unveil (remove a veil from)}
+  - {id: fr-v-ddb91a140a06a9d1, ch: confesser, pr: /kɔ̃.fɛ.se/, ds: 'to acknowledge, admit'}
+  - {id: fr-v-b70fe10f502cd79e, ch: déplorer, pr: /de.plɔ.ʁe/, ds: 'to deplore, to rue, to lament'}
+  - {id: fr-v-0206c59a9b3eafca, ch: désavouer, pr: /de.za.vwe/, ds: to take back (something that has been said)}
+  - {id: fr-v-d30182729730a427, ch: réprouver, pr: /ʁe.pʁu.ve/, ds: 'to reprove, condemn'}
+  - {id: fr-v-300d229db707535e, ch: condamner, pr: /kɔ̃.da.ne/, ds: to condemn}
+  - {id: fr-v-89eee225c74e12fa, ch: dénoncer, pr: /de.nɔ̃.se/, ds: to denounce}
+  - {id: fr-v-cfe86f165635b715, ch: applaudir, pr: /a.plo.diʁ/, ds: to applaud (express approval by clapping)}
+  - {id: fr-v-bee6ad5be69dff82, ch: louer, pr: /lwe/, ds: to rent}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-bb8cf0948bfee4ae, ch: pouffer, pr: /pu.fe/, ds: to burst out (with laughter); to crack up}
+  - {id: fr-v-681f2657eb7bebe4, ch: glousser, pr: /ɡlu.se/, ds: to cluck (make the noise of a chicken)}
+  - {id: fr-v-8a411862f3a9cd1a, ch: soupirer, pr: /su.pi.ʁe/, ds: to sigh}
+  - {id: fr-v-dc27a3ff342c6841, ch: gémir, pr: /ʒe.miʁ/, ds: to moan; to groan}
+  - {id: fr-v-609a8eea8c680f48, ch: grogner, pr: /ɡʁɔ.ɲe/, ds: 'to grunt (for a pig, make the sound of a pig)'}
+  - {id: fr-v-fe1cde98ea435311, ch: marmonner, pr: /maʁ.mɔ.ne/, ds: 'to murmur, mumble'}
+  - {id: fr-v-3d6ca543b323fa35, ch: murmurer, pr: /myʁ.my.ʁe/, ds: to murmur}
+  - {id: fr-v-dd7cb2bdb7c947f2, ch: chuchoter, pr: /ʃy.ʃɔ.te/, ds: to whisper}
+  review_grammar:
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+  - {id: fr-g-perfect-infinitive, ch: après avoir / être + participe passé, ds: Order completed actions with a shared-subject infinitive}
+- id: level-25-actions-03
+  title: Actions and processes - 3
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary:
+  - {id: fr-v-189a8d782cfb0adb, ch: vanter, pr: /vɑ̃.te/, ds: 'to praise, to vaunt'}
+  - {id: fr-v-dfb60a903f959113, ch: flatter, pr: /fla.te/, ds: to flatter}
+  - {id: fr-v-596a28c30b20b2d0, ch: complimenter, pr: /kɔ̃.pli.mɑ̃.te/, ds: to compliment}
+  - {id: fr-v-95bf3f5d96729c95, ch: encenser, pr: /ɑ̃.sɑ̃.se/, ds: 'to cense, to incense'}
+  - {id: fr-v-c6806fcf288346ea, ch: glorifier, pr: /ɡlɔ.ʁi.fje/, ds: 'laud, glorify'}
+  - {id: fr-v-216dbf00a4f09c8a, ch: magnifier, pr: /ma.ɲi.fje/, ds: to exalt with praise; usually in reference to God}
+  - {id: fr-v-26d06883858cc61f, ch: exalter, pr: /ɛɡ.zal.te/, ds: 'to elate, thrill'}
+  - {id: fr-v-0211ac8ad5ffbe27, ch: célébrer, pr: /se.le.bʁe/, ds: to celebrate}
+  - {id: fr-v-e458dc56f4579743, ch: commémorer, pr: /kɔ.me.mɔ.ʁe/, ds: to commemorate}
+  - {id: fr-v-a6ece1d886a96f28, ch: honorer, pr: /ɔ.nɔ.ʁe/, ds: 'to honor, to honour'}
+  - {id: fr-v-1977444726cb6ab5, ch: mépriser, pr: /me.pʁi.ze/, ds: 'to hate, despise, scorn, disdain'}
+  - {id: fr-v-4315c6eacc7ccf3c, ch: dédaigner, pr: /de.dɛ.ɲe/, ds: 'to scorn, to despise, to disdain'}
+  - {id: fr-v-625507af0e7ccca6, ch: dénigrer, pr: /de.ni.ɡʁe/, ds: to denigrate (to criticize so as to besmirch)}
+  - {id: fr-v-e3dbe1f563c87357, ch: rabaisser, pr: /ʁa.bɛ.se/, ds: 'to humiliate, belittle'}
+  - {id: fr-v-41beeedc5839154f, ch: humilier, pr: /y.mi.lje/, ds: to humiliate}
+  - {id: fr-v-f4f589c28de802f6, ch: insulter, pr: /ɛ̃.syl.te/, ds: to insult}
+  - {id: fr-v-4bffc7c5495aba3e, ch: outrager, pr: /u.tʁa.ʒe/, ds: 'to offend greatly, insult'}
+  - {id: fr-v-cc9ee7c277959d66, ch: injurier, pr: /ɛ̃.ʒy.ʁje/, ds: 'to abuse, howl abuse at'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-ddb91a140a06a9d1, ch: confesser, pr: /kɔ̃.fɛ.se/, ds: 'to acknowledge, admit'}
+  - {id: fr-v-b70fe10f502cd79e, ch: déplorer, pr: /de.plɔ.ʁe/, ds: 'to deplore, to rue, to lament'}
+  - {id: fr-v-0206c59a9b3eafca, ch: désavouer, pr: /de.za.vwe/, ds: to take back (something that has been said)}
+  - {id: fr-v-d30182729730a427, ch: réprouver, pr: /ʁe.pʁu.ve/, ds: 'to reprove, condemn'}
+  - {id: fr-v-300d229db707535e, ch: condamner, pr: /kɔ̃.da.ne/, ds: to condemn}
+  - {id: fr-v-89eee225c74e12fa, ch: dénoncer, pr: /de.nɔ̃.se/, ds: to denounce}
+  - {id: fr-v-cfe86f165635b715, ch: applaudir, pr: /a.plo.diʁ/, ds: to applaud (express approval by clapping)}
+  - {id: fr-v-bee6ad5be69dff82, ch: louer, pr: /lwe/, ds: to rent}
+  review_grammar:
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+  - {id: fr-g-perfect-infinitive, ch: après avoir / être + participe passé, ds: Order completed actions with a shared-subject infinitive}
+- id: level-25-register-01
+  title: Audience and nuance - 1
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: fr-v-67d3ff834094a65b, ch: attitude, pr: /a.ti.tyd/, ds: 'attitude, position'}
+  - {id: fr-v-b1e39e0a1b00efea, ch: posture, pr: /pɔs.tyʁ/, ds: 'posture, attitude'}
+  - {id: fr-v-e537c922a7596be1, ch: positionnement, pr: /po.zi.sjɔn.mɑ̃/, ds: positioning}
+  - {id: fr-v-d4e54d07c37cb93a, ch: aspiration, pr: /as.pi.ʁa.sjɔ̃/, ds: aspiration}
+  - {id: fr-v-bc0535992174c481, ch: désapprobation, pr: /de.za.pʁɔ.ba.sjɔ̃/, ds: 'disapproval, disapprobation'}
+  - {id: fr-v-4678b93eb6ec2c58, ch: réprobation, pr: /ʁepʁobasjɔ̃/, ds: 'reprobation, disapproval'}
+  - {id: fr-v-88e2acd947e4b585, ch: condamnation, pr: /kɔ̃.da.na.sjɔ̃/, ds: sentencing}
+  - {id: fr-v-37e39414a7019bc7, ch: encouragement, pr: /ɑ̃.ku.ʁaʒ.mɑ̃/, ds: an encouragement}
+  - {id: fr-v-6be83a144a4fe03e, ch: découragement, pr: /de.ku.ʁaʒ.mɑ̃/, ds: discouragement}
+  - {id: fr-v-50e5cfd70fde0383, ch: incrédulité, pr: /ɛ̃kʁedylite/, ds: incredulity; unwillingness to believe}
+  - {id: fr-v-45947635f689a5f9, ch: ironie, pr: /i.ʁɔ.ni/, ds: irony}
+  - {id: fr-v-c46e824250f57f6c, ch: sarcasme, pr: /saʁ.kasm/, ds: sarcasm}
+  - {id: fr-v-3ed6174487641c8b, ch: humour, pr: /y.muʁ/, ds: humor; comic effect in a communication or performance}
+  - {id: fr-v-100bbcf425b01339, ch: dérision, pr: /de.ʁi.zjɔ̃/, ds: derision}
+  - {id: fr-v-80c8dd0452d38c8f, ch: autodérision, pr: /o.tɔ.de.ʁi.zjɔ̃/, ds: 'self-mockery, self-deprecation'}
+  - {id: fr-v-73d167d0ceca854f, ch: moquerie, pr: /mɔ.kʁi/, ds: mockery; joking; jesting}
+  - {id: fr-v-c5f9dbcbe63764f6, ch: raillerie, pr: /ʁaj.ʁi/, ds: 'mockery, ridicule'}
+  - {id: fr-v-329fb4cc7a9c7ff1, ch: taquinerie, pr: /ta.kin.ʁi/, ds: teasing}
+  - {id: fr-v-60c10c22974130ea, ch: plaisanterie, pr: /plɛ.zɑ̃.tʁi/, ds: joke}
+  - {id: fr-v-150e8c178318fc18, ch: antiphrase, pr: /ɑ̃.ti.fʁaz/, ds: antiphrasis}
+  - {id: fr-v-4e81f28dd2eb2409, ch: sous-entendu, pr: /su.z‿ɑ̃.tɑ̃.dy/, ds: 'insinuation, implication, innuendo'}
+  - {id: fr-v-2213dabe8fea2c15, ch: présupposition, pr: /pʁe.sy.po.zi.sjɔ̃/, ds: presupposition}
+  - {id: fr-v-1a08fd1acb6f80f2, ch: insinuation, pr: /ɛ̃.si.nɥa.sjɔ̃/, ds: insinuation}
+  - {id: fr-v-836c5e797d9e56dd, ch: allusion, pr: /a.ly.zjɔ̃/, ds: 'allusion, innuendo'}
+  - {id: fr-v-06325f942af3a34e, ch: évocation, pr: /e.vɔ.ka.sjɔ̃/, ds: evocation}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-d4162c6a44cd44bd, ch: respectueusement, pr: /ʁɛspɛktɥøzəmɑ̃/, ds: respectfully}
+  - {id: fr-v-f0831cff393615e9, ch: cordialement, pr: /kɔʁ.djal.mɑ̃/, ds: cordially}
+  - {id: fr-v-8c25bb1ffac8d819, ch: sincèrement, pr: /sɛ̃.sɛʁ.mɑ̃/, ds: 'sincerely, truly'}
+  - {id: fr-v-61b4fa9474ee12cb, ch: volontiers, pr: /vɔ.lɔ̃.tje/, ds: willingly; gladly; with pleasure}
+  - {id: fr-v-a665dfcd5c857b8c, ch: éventuellement, pr: /e.vɑ̃.tɥɛl.mɑ̃/, ds: 'possibly, maybe, perhaps; if you want'}
+  - {id: fr-v-24c249b4048b8899, ch: assurément, pr: /a.sy.ʁe.mɑ̃/, ds: 'assuredly, in an assured fashion'}
+  - {id: fr-v-5dee6fce7590b37f, ch: incontestablement, pr: /ɛ̃.kɔ̃.tɛs.ta.blə.mɑ̃/, ds: undeniably}
+  - {id: fr-v-8245d60f21bd4ac4, ch: clair, pr: /klɛʁ/, ds: clear; understandable}
+  review_grammar: []
+- id: level-25-register-02
+  title: Audience and nuance - 2
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: fr-v-08e032e4fcf5e36a, ch: connotation, pr: /kɔ.nɔ.ta.sjɔ̃/, ds: connotation}
+  - {id: fr-v-4e19060d5972f043, ch: dénotation, pr: /de.nɔ.ta.sjɔ̃/, ds: denotation}
+  - {id: fr-v-3e9c3897fda70e1d, ch: sens, pr: /sɑ̃s/, ds: 'meaning, sense'}
+  - {id: fr-v-e0acf3ee60c0fa80, ch: acception, pr: /ak.sɛp.sjɔ̃/, ds: 'meaning, sense (of a word), acceptation'}
+  - {id: fr-v-357c870ed18d2f8e, ch: contexte, pr: /kɔ̃.tɛkst/, ds: context}
+  - {id: fr-v-03960f04eb35c2ef, ch: circonstance, pr: /siʁ.kɔ̃s.tɑ̃s/, ds: 'circumstance, situation'}
+  - {id: fr-v-1b77c30d268543ed, ch: perception, pr: /pɛʁ.sɛp.sjɔ̃/, ds: perception}
+  - {id: fr-v-26f28907c841a011, ch: intentionnalité, pr: /ɛ̃.tɑ̃.sjɔ.na.li.te/, ds: intentionality}
+  - {id: fr-v-fdad9ead40d67cc8, ch: ambiguïté, pr: /ɑ̃.bi.ɡɥi.te/, ds: ambiguity (something liable to more than one interpretation)}
+  - {id: fr-v-621be1cf3866fe62, ch: malice, pr: /ma.lis/, ds: mischief}
+  - {id: fr-v-749970fd0329f649, ch: finesse, pr: /fi.nɛs/, ds: 'fineness (of hair, writing etc.)'}
+  - {id: fr-v-d0dbf1af343520fe, ch: détachement, pr: /de.taʃ.mɑ̃/, ds: detachment}
+  - {id: fr-v-8a3a352b23c462c5, ch: pudeur, pr: /py.dœʁ/, ds: sense of modesty or reserve; shame}
+  - {id: fr-v-95f2dccf1362b0a4, ch: discrétion, pr: /dis.kʁe.sjɔ̃/, ds: discretion}
+  - {id: fr-v-d2b24a2d520ee4af, ch: indiscrétion, pr: /ɛ̃.dis.kʁe.sjɔ̃/, ds: indiscretion}
+  - {id: fr-v-ddf058233089cff2, ch: brutalité, pr: /bʁy.ta.li.te/, ds: brutality}
+  - {id: fr-v-dbcca23e42154a59, ch: douceur, pr: /du.sœʁ/, ds: 'softness, tenderness'}
+  - {id: fr-v-d249f60b89e2ed76, ch: gentillesse, pr: /ʒɑ̃.ti.jɛs/, ds: kindness; niceness}
+  - {id: fr-v-ddf59d44f5d454da, ch: amabilité, pr: /a.ma.bi.li.te/, ds: kindness}
+  - {id: fr-v-ed3f392f82c1ae30, ch: cordialité, pr: /kɔʁ.dja.li.te/, ds: 'cordiality, geniality'}
+  - {id: fr-v-49fd1f0487439821, ch: froideur, pr: /fʁwa.dœʁ/, ds: 'coldness, cold'}
+  - {id: fr-v-c845022f106369af, ch: hostilité, pr: /ɔs.ti.li.te/, ds: hostility}
+  - {id: fr-v-feed373df58a5065, ch: animosité, pr: /a.ni.mo.zi.te/, ds: animosity}
+  - {id: fr-v-694e0ac0b3bdfdd9, ch: ressentiment, pr: /ʁə.sɑ̃.ti.mɑ̃/, ds: 'ressentiment, resentment'}
+  - {id: fr-v-5df7e35646cf26e8, ch: amertume, pr: /a.mɛʁ.tym/, ds: bitterness}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-329fb4cc7a9c7ff1, ch: taquinerie, pr: /ta.kin.ʁi/, ds: teasing}
+  - {id: fr-v-60c10c22974130ea, ch: plaisanterie, pr: /plɛ.zɑ̃.tʁi/, ds: joke}
+  - {id: fr-v-150e8c178318fc18, ch: antiphrase, pr: /ɑ̃.ti.fʁaz/, ds: antiphrasis}
+  - {id: fr-v-4e81f28dd2eb2409, ch: sous-entendu, pr: /su.z‿ɑ̃.tɑ̃.dy/, ds: 'insinuation, implication, innuendo'}
+  - {id: fr-v-2213dabe8fea2c15, ch: présupposition, pr: /pʁe.sy.po.zi.sjɔ̃/, ds: presupposition}
+  - {id: fr-v-1a08fd1acb6f80f2, ch: insinuation, pr: /ɛ̃.si.nɥa.sjɔ̃/, ds: insinuation}
+  - {id: fr-v-836c5e797d9e56dd, ch: allusion, pr: /a.ly.zjɔ̃/, ds: 'allusion, innuendo'}
+  - {id: fr-v-06325f942af3a34e, ch: évocation, pr: /e.vɔ.ka.sjɔ̃/, ds: evocation}
+  review_grammar: []
+- id: level-25-register-03
+  title: Audience and nuance - 3
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: fr-v-6fc877b4444951ff, ch: aigreur, pr: /ɛ.ɡʁœʁ/, ds: sourness (sour flavor)}
+  - {id: fr-v-c50d4ab467f9e406, ch: dépit, pr: /de.pi/, ds: scorn}
+  - {id: fr-v-44344b2405edb239, ch: dédain, pr: /de.dɛ̃/, ds: 'contempt, scorn, disdain'}
+  - {id: fr-v-4a1e03e5004b6ddb, ch: condescendance, pr: /kɔ̃desɑ̃dɑ̃s/, ds: condescension}
+  - {id: fr-v-dba22256b37f75e6, ch: arrogance, pr: /a.ʁɔ.ɡɑ̃s/, ds: arrogance}
+  - {id: fr-v-18c29a5ecd88a106, ch: suffisance, pr: /sy.fi.zɑ̃s/, ds: sufficiency (quality or condition of being sufficient)}
+  - {id: fr-v-7b22ed68dfb10ffd, ch: vanité, pr: /va.ni.te/, ds: 'futility, pointlessness'}
+  - {id: fr-v-8f27987c406c43a4, ch: modestie, pr: /mɔ.dɛs.ti/, ds: modesty}
+  - {id: fr-v-cb260ba602b77d91, ch: humilité, pr: /y.mi.li.te/, ds: humility}
+  - {id: fr-v-bfa2ea7a6a119117, ch: simplicité, pr: /sɛ̃.pli.si.te/, ds: simplicity}
+  - {id: fr-v-21eefe442ce9894b, ch: spontanéité, pr: /spɔ̃.ta.ne.i.te/, ds: spontaneity}
+  - {id: fr-v-ba8596a7b618a91c, ch: duplicité, pr: /dy.pli.si.te/, ds: duplicity (intentional deceptiveness)}
+  - {id: fr-v-1a9c08082ae926f7, ch: hypocrisie, pr: /i.pɔ.kʁi.zi/, ds: hypocrisy}
+  - {id: fr-v-813e3e3bb17caf1a, ch: fausseté, pr: /fos.te/, ds: 'falseness, falsity, falsehood (property of being false)'}
+  - {id: fr-v-38e58bdef43f319e, ch: flatterie, pr: /fla.tʁi/, ds: flattery}
+  - {id: fr-v-a4faa31ad6be431f, ch: complaisance, pr: /kɔ̃.plɛ.zɑ̃s/, ds: kindness}
+  - {id: fr-v-ad271207a5c71ef6, ch: flagornerie, pr: /flaɡɔʁnəʁi/, ds: coarse flattery}
+  - {id: fr-v-cf527ed857251f34, ch: servilité, pr: /sɛʁvilite/, ds: servility}
+  - {id: fr-v-775e2873c98d3fc1, ch: cadre, pr: /kadʁ/, ds: context; defining circumstances}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-d249f60b89e2ed76, ch: gentillesse, pr: /ʒɑ̃.ti.jɛs/, ds: kindness; niceness}
+  - {id: fr-v-ddf59d44f5d454da, ch: amabilité, pr: /a.ma.bi.li.te/, ds: kindness}
+  - {id: fr-v-ed3f392f82c1ae30, ch: cordialité, pr: /kɔʁ.dja.li.te/, ds: 'cordiality, geniality'}
+  - {id: fr-v-49fd1f0487439821, ch: froideur, pr: /fʁwa.dœʁ/, ds: 'coldness, cold'}
+  - {id: fr-v-c845022f106369af, ch: hostilité, pr: /ɔs.ti.li.te/, ds: hostility}
+  - {id: fr-v-feed373df58a5065, ch: animosité, pr: /a.ni.mo.zi.te/, ds: animosity}
+  - {id: fr-v-694e0ac0b3bdfdd9, ch: ressentiment, pr: /ʁə.sɑ̃.ti.mɑ̃/, ds: 'ressentiment, resentment'}
+  - {id: fr-v-5df7e35646cf26e8, ch: amertume, pr: /a.mɛʁ.tym/, ds: bitterness}
+  review_grammar: []
+- id: level-25-feelings-practice-01
+  title: Feelings and attitudes - sentence practice 1
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-rejected-motive, ch: 'ce n''est pas que + subjonctif, mais + explication', ds: Reject an inferred reason before giving the actual explanation}
+  review_vocabulary:
+  - {id: fr-v-9801f1a97266a8c4, ch: projet, pr: /pʁɔ.ʒɛ/, ds: project}
+  - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
+  - {id: fr-v-20bfcee0e88b2b68, ch: fascination, pr: /fa.si.na.sjɔ̃/, ds: fascination}
+  - {id: fr-v-193be93b8eb65b43, ch: obsession, pr: /ɔp.sɛ.sjɔ̃/, ds: obsession}
+  - {id: fr-v-68dbf87ba7f9dc26, ch: lassitude, pr: /la.si.tyd/, ds: lassitude}
+  - {id: fr-v-f216e6dac9674277, ch: désillusion, pr: /de.zi.ly.zjɔ̃/, ds: 'disillusion, disenchantment'}
+  - {id: fr-v-92864a9434487bd7, ch: sérénité, pr: /seʁenite/, ds: serenity}
+  - {id: fr-v-6fcafeeff6da7ccc, ch: quiétude, pr: /kje.tyd/, ds: tranquility}
+  - {id: fr-v-844de498a6fa697c, ch: tranquillité, pr: /tʁɑ̃.ki.li.te/, ds: 'tranquility, peace, calm, calmness, quietness'}
+  - {id: fr-v-4ce44ea379a76faa, ch: contentement, pr: /kɔ̃.tɑ̃t.mɑ̃/, ds: happiness; joyfulness; joyousness}
+  review_grammar:
+  - {id: fr-g-past-subjunctive, ch: avoir / être au subjonctif présent + participe passé, ds: Place an evaluated or nonasserted event before its reference}
+  - {id: fr-g-conditional-past, ch: avoir / être au conditionnel + participe passé, ds: Present a past action as unrealized or tentatively evaluated}
+- id: level-25-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-negation-quantifier-scope, ch: ne...pas tous / toutes ; aucun / aucune...ne, ds: Distinguish not all members from no members}
+  review_vocabulary:
+  - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
+  - {id: fr-v-37ed43b346a25e52, ch: portée, pr: /pɔʁ.te/, ds: 'reach, range, scope'}
+  - {id: fr-v-39fb5a40e9176a96, ch: restriction, pr: /ʁɛs.tʁik.sjɔ̃/, ds: restriction (limitation; constraint)}
+  - {id: fr-v-fc70e00686086826, ch: généralisation, pr: /ʒe.ne.ʁa.li.za.sjɔ̃/, ds: generalisation}
+  - {id: fr-v-463f7fbb79fa54db, ch: extrapolation, pr: /ɛk.stʁa.pɔ.la.sjɔ̃/, ds: extrapolation}
+  - {id: fr-v-a6f89cade94b9373, ch: interprétation, pr: /ɛ̃.tɛʁ.pʁe.ta.sjɔ̃/, ds: 'interpretation, rendition'}
+  - {id: fr-v-f8582ca641199460, ch: prédiction, pr: /pʁe.dik.sjɔ̃/, ds: prediction (act of predicting; statement about the future)}
+  - {id: fr-v-8457243dfc486763, ch: prévision, pr: /pʁe.vi.zjɔ̃/, ds: forecast}
+  - {id: fr-v-05670f33939183f9, ch: savoir, pr: /sa.vwaʁ/, ds: knowledge}
+  review_grammar:
+  - {id: fr-g-threshold-infinitive, ch: assez / trop + adjectif ou adverbe + pour + infinitif, ds: Evaluate whether a degree permits an intended action}
+  - {id: fr-g-universal-concessive-relatives, ch: quoi que / où que / qui que + subjonctif, ds: Make a statement independent of an unspecified alternative}
+  - {id: fr-g-propositional-relatives, ch: ce qui / ce que / ce dont + proposition, ds: Refer to a proposition or an unspecified thing by its role}
+- id: level-25-register-practice-01
+  title: Audience and nuance - sentence practice 1
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-cleft-focus, ch: c'est X qui / que + proposition, ds: Focus one constituent while keeping its grammatical role}
+  - {id: fr-g-dislocated-topics, ch: 'thème, pronom + proposition ; proposition, thème', ds: Detach a topic and resume it inside the clause}
+  review_vocabulary:
+  - {id: fr-v-580d8fe18b6303c4, ch: livre, pr: /livʁ/, ds: book}
+  - {id: fr-v-b0e16a71f8dbfc68, ch: utile, pr: /y.til/, ds: useful}
+  - {id: fr-v-ba8596a7b618a91c, ch: duplicité, pr: /dy.pli.si.te/, ds: duplicity (intentional deceptiveness)}
+  - {id: fr-v-1a9c08082ae926f7, ch: hypocrisie, pr: /i.pɔ.kʁi.zi/, ds: hypocrisy}
+  - {id: fr-v-813e3e3bb17caf1a, ch: fausseté, pr: /fos.te/, ds: 'falseness, falsity, falsehood (property of being false)'}
+  - {id: fr-v-38e58bdef43f319e, ch: flatterie, pr: /fla.tʁi/, ds: flattery}
+  - {id: fr-v-a4faa31ad6be431f, ch: complaisance, pr: /kɔ̃.plɛ.zɑ̃s/, ds: kindness}
+  - {id: fr-v-ad271207a5c71ef6, ch: flagornerie, pr: /flaɡɔʁnəʁi/, ds: coarse flattery}
+  - {id: fr-v-cf527ed857251f34, ch: servilité, pr: /sɛʁvilite/, ds: servility}
+  - {id: fr-v-775e2873c98d3fc1, ch: cadre, pr: /kadʁ/, ds: context; defining circumstances}
+  review_grammar: []

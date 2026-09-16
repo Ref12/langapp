@@ -1,0 +1,59 @@
+schema_version: 1
+id: es-item-mastery
+applies_to: [vocabulary-sense, grammar-construct, phrase]
+scope: Evidence for one Spanish sense, construction, or phrase in one observed modality and task; not overall proficiency or an examination result.
+unassessed: No suitable evidence has been recorded. Reading an example, completing a module, or reaching a level does not supply an observation.
+modalities: [reading, listening, typed-production, spoken-production, handwriting]
+stages:
+- id: recognize
+  title: Recognition
+  modalities: [reading, listening]
+  outcome: Identify the intended Spanish form and function among plausible alternatives.
+  evidence:
+  - Identify the intended sense without first receiving its English answer.
+  - Distinguish a relevant contrast such as hay versus está or an object clitic versus a subject pronoun in more than one example.
+  limitation: Recognizing a form does not establish comprehension of a new message or productive control.
+- id: understand
+  title: Contextual understanding
+  modalities: [reading, listening]
+  outcome: Interpret the item's contribution to an unfamiliar message with appropriate contextual limits.
+  evidence:
+  - Explain or respond appropriately to the item's meaning in two changed contexts.
+  - Distinguish a competing sense or construction such as background imperfect versus bounded preterite.
+  - Retrieve the meaning in a later session without an answer-revealing translation or hint.
+  limitation: Contextual comprehension is not evidence of speaking or writing the item independently.
+- id: supported-use
+  title: Supported use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Create an appropriate Spanish response when the task or a scaffold makes the item available.
+  evidence:
+  - Produce a new response rather than recite a supplied bilingual example.
+  - Use the intended function in two different practical contexts while maintaining relevant agreement and reference.
+  - Record lexical glosses, conjugation cues, model phrases, corrections, and other assistance.
+  limitation: A response built with scaffolding is not independent use; success on a phrase does not establish all its component senses.
+- id: independent-use
+  title: Independent use
+  modalities: [typed-production, spoken-production, handwriting]
+  outcome: Select an appropriate form and sense for a fresh task without an item-specific cue or answer model.
+  evidence:
+  - Use the item where it is relevant but not explicitly requested, with suitable address and register.
+  - Adapt the item to a changed participant, time frame, or meaning contrast rather than reuse one memorized sentence.
+  - Demonstrate delayed retrieval in a later session and record any self-repair or assistance actually needed.
+  limitation: The judgment remains limited to the sense or construction, observed modality, and recorded conditions.
+evidence_fields: [item_id, stage, modality, task_id, session_id, observed_at, context, response, outcome, assistance]
+evidence_outcomes: [successful, partial, unsuccessful]
+policy:
+- This is an original assessment rubric requiring human language and pedagogy review, not a calibrated scale.
+- These curriculum files contain no learner observations or assigned mastery; record real evidence before making a judgment.
+- Keep reading and listening separate and keep typed production, spoken production, and handwriting separate.
+- Listening judgments require actual audio heard by the learner; spoken-production and pronunciation judgments require actual learner audio and suitable evaluation.
+- Written accents, IPA, a transcript, or a typed answer cannot demonstrate listening or spoken pronunciation.
+- Record receptive evidence under recognize or understand and productive evidence under supported-use or independent-use; do not infer one modality from another.
+- Do not infer every earlier stage from a single success, and do not erase an earlier observation when later evidence prompts reassessment.
+- Assess the intended lexical sense rather than every meaning of a spelling; knowing ser for identity does not establish every ser construction.
+- Conjugated forms, agreement variants, and clitic attachments are not new headwords. Correct construction use does not award vocabulary mastery for English-supported example content.
+- Accept contextually appropriate labelled regional forms; do not penalize seseo, yeísmo, voseo, or vosotros merely for differing from an instructional model.
+- Record the actual misunderstanding if variation impedes a task, distinguish it from unfamiliarity with a variety, and adapt recognition practice respectfully.
+- Use fresh material for each level checkpoint; advance with review of fragile items rather than demanding perfect mastery of every introduced item.
+- Count headwords, selected senses, constructions, and phrases separately, and distinguish introduction from demonstrated understanding or independent use.
+- No level, branch, exposure count, or completed project guarantees CEFR alignment, an examination result, or specialist expertise.

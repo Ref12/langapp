@@ -1,0 +1,418 @@
+schema_version: 3
+id: fr-level-10
+title: Feelings and relationships
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 10
+phase: stories-conversations
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+goals: &id001
+- Explain an emotional response with relevant circumstances.
+- Clarify who did something to whom.
+- Respond considerately to a different interpretation of a social exchange.
+checkpoint:
+  task: Explain a fictional misunderstanding from two perspectives and propose an appropriate repair.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-10-communication-01
+  title: Contact and communication - 1
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-cc8fe47111c03677, ch: adorer, pr: /a.dɔ.ʁe/, ds: 'to love, to adore'}
+  - {id: fr-v-e939ece31f641957, ch: détester, pr: /de.tɛs.te/, ds: 'to hate, to detest (to thoroughly dislike)'}
+  - {id: fr-v-69573034205e6dd3, ch: apprécier, pr: /a.pʁe.sje/, ds: to appreciate}
+  - {id: fr-v-c34de9b1a099d16f, ch: admirer, pr: /ad.mi.ʁe/, ds: to admire}
+  - {id: fr-v-9c0913818c3f6124, ch: respecter, pr: /ʁɛs.pɛk.te/, ds: to respect}
+  - {id: fr-v-cc96e46aceaa92c6, ch: rassurer, pr: /ʁa.sy.ʁe/, ds: to reassure}
+  - {id: fr-v-8e8e6ccffcaf81b2, ch: consoler, pr: /kɔ̃.sɔ.le/, ds: 'to comfort, console'}
+  - {id: fr-v-7155ab60e58eccbb, ch: encourager, pr: /ɑ̃.ku.ʁa.ʒe/, ds: to encourage}
+  - {id: fr-v-98b9553832220a06, ch: soutenir, pr: /sut.niʁ/, ds: to support}
+  - {id: fr-v-761c94043ad82e00, ch: féliciter, pr: /fe.li.si.te/, ds: to congratulate}
+  - {id: fr-v-b5d2beaa91cc1de3, ch: défendre, pr: /de.fɑ̃dʁ/, ds: to defend}
+  - {id: fr-v-80160997e68925ac, ch: protéger, pr: /pʁɔ.te.ʒe/, ds: to protect}
+  - {id: fr-v-e551fa45750c96bb, ch: réconforter, pr: /ʁe.kɔ̃.fɔʁ.te/, ds: to comfort}
+  - {id: fr-v-e88ec3fd83235745, ch: accueillir, pr: /a.kœ.jiʁ/, ds: 'to welcome, to accommodate'}
+  - {id: fr-v-650dc80104f0cb8e, ch: saluer, pr: /sa.lɥe/, ds: to greet}
+  - {id: fr-v-6d513c36a8401054, ch: embrasser, pr: /ɑ̃.bʁa.se/, ds: to kiss (to touch with the lips)}
+  - {id: fr-v-d9846216ec2a9d91, ch: serrer, pr: /sɛ.ʁe/, ds: 'to tighten (a screw, a knot)'}
+  - {id: fr-v-8630f81c404a501a, ch: mériter, pr: /me.ʁi.te/, ds: 'to deserve, merit'}
+  - {id: fr-v-d4323ea120a39050, ch: plaire, pr: /plɛʁ/, ds: to please}
+  - {id: fr-v-e1b7b29a2a7a5f15, ch: déplaire, pr: /de.plɛʁ/, ds: to be displeasing or disliked}
+  - {id: fr-v-44b385f681d55021, ch: inquiéter, pr: /ɛ̃.kje.te/, ds: to worry}
+  - {id: fr-v-4b44867c33e6d1cc, ch: effrayer, pr: /e.fʁɛ.je/, ds: 'to frighten, to scare, to affray'}
+  - {id: fr-v-04222ffb6865556d, ch: irriter, pr: /i.ʁi.te/, ds: 'to annoy, to irritate'}
+  - {id: fr-v-904f69c527a42b6f, ch: agacer, pr: /a.ɡa.se/, ds: to irritate}
+  - {id: fr-v-70d8dd0612ec8ac6, ch: vexer, pr: /vɛk.se/, ds: to irritate; to annoy}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-0c593014607eaf28, ch: oublier, pr: /u.bli.je/, ds: to forget}
+  - {id: fr-v-0bb4f8ff95fa2530, ch: retrouver, pr: /ʁə.tʁu.ve/, ds: to find (again); to rediscover}
+  - {id: fr-v-ef8e26d2359e08f8, ch: peut-être, pr: /pø.t‿ɛtʁ/, ds: 'maybe, perhaps'}
+  - {id: fr-v-d794bcb87a867dd1, ch: ensemble, pr: /ɑ̃.sɑ̃bl/, ds: together}
+  - {id: fr-v-adaf07044d3e4540, ch: là, pr: /la/, ds: there}
+  - {id: fr-v-01f171b1a510eed4, ch: où, pr: /u/, ds: where (interrogative)}
+  - {id: fr-v-f8d77a5600a4ad7a, ch: pourquoi, pr: /puʁ.kwa/, ds: why}
+  - {id: fr-v-a4edd8f69b99695d, ch: appeler, pr: /a.p(ə).le/, ds: to telephone}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-10-communication-02
+  title: Contact and communication - 2
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-81a7c55159c77e4f, ch: blesser, pr: /blɛ.se/, ds: 'to wound, to injure'}
+  - {id: fr-v-13fb85a259edb0fb, ch: offenser, pr: /ɔ.fɑ̃.se/, ds: 'to offend (to insult, to cause offence)'}
+  - {id: fr-v-0604077fb79f686b, ch: décevoir, pr: /de.sə.vwaʁ/, ds: to disappoint}
+  - {id: fr-v-c9924d323466620f, ch: regretter, pr: /ʁə.ɡʁɛ.te/, ds: to regret}
+  - {id: fr-v-d72878d80fe74206, ch: pardonner, pr: /paʁ.dɔ.ne/, ds: 'to pardon, forgive'}
+  - {id: fr-v-d0c6dccaa6f00537, ch: excuser, pr: /ɛk.sky.ze/, ds: 'to excuse (to forgive, to pardon)'}
+  - {id: fr-v-6b11072987578573, ch: accuser, pr: /a.ky.ze/, ds: to accuse}
+  - {id: fr-v-b893b92227cacf3a, ch: reprocher, pr: /ʁə.pʁɔ.ʃe/, ds: to blame somebody for something (place blame upon)}
+  - {id: fr-v-a7db15ef4c685893, ch: critiquer, pr: /kʁi.ti.ke/, ds: to criticise}
+  - {id: fr-v-484f8035a69bc8c0, ch: juger, pr: /ʒy.ʒe/, ds: 'to judge, to try'}
+  - {id: fr-v-225427f8cf01d9d6, ch: avouer, pr: /a.vwe/, ds: to avow}
+  - {id: fr-v-6a48d39da4fe24b7, ch: confier, pr: /kɔ̃.fje/, ds: to confide}
+  - {id: fr-v-e62428aa98d5221c, ch: promettre, pr: /pʁɔ.mɛtʁ/, ds: to promise}
+  - {id: fr-v-1f4a9a7b5e9b0a1b, ch: mentir, pr: /mɑ̃.tiʁ/, ds: to lie (say something untrue)}
+  - {id: fr-v-c8174fcbf7db6dff, ch: tromper, pr: /tʁɔ̃.pe/, ds: 'to trick, dupe'}
+  - {id: fr-v-456a08bac2215ffe, ch: trahir, pr: /tʁa.iʁ/, ds: to betray}
+  - {id: fr-v-2c8cadeb52ebd263, ch: convaincre, pr: /kɔ̃.vɛ̃kʁ/, ds: 'to convince, to persuade'}
+  - {id: fr-v-7c5b184eb4cf3837, ch: persuader, pr: /pɛʁ.sɥa.de/, ds: to persuade}
+  - {id: fr-v-18d125384e940c75, ch: réconcilier, pr: /ʁe.kɔ̃.si.lje/, ds: to reconcile}
+  - {id: fr-v-3dc552d6109352fc, ch: plaisanter, pr: /plɛ.zɑ̃.te/, ds: to joke (make a joke)}
+  - {id: fr-v-dc308f7dea7bdc27, ch: taquiner, pr: /ta.ki.ne/, ds: to tease}
+  - {id: fr-v-877f9ded6e692e76, ch: moquer, pr: /mɔ.ke/, ds: to mock}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-8630f81c404a501a, ch: mériter, pr: /me.ʁi.te/, ds: 'to deserve, merit'}
+  - {id: fr-v-d4323ea120a39050, ch: plaire, pr: /plɛʁ/, ds: to please}
+  - {id: fr-v-e1b7b29a2a7a5f15, ch: déplaire, pr: /de.plɛʁ/, ds: to be displeasing or disliked}
+  - {id: fr-v-44b385f681d55021, ch: inquiéter, pr: /ɛ̃.kje.te/, ds: to worry}
+  - {id: fr-v-4b44867c33e6d1cc, ch: effrayer, pr: /e.fʁɛ.je/, ds: 'to frighten, to scare, to affray'}
+  - {id: fr-v-04222ffb6865556d, ch: irriter, pr: /i.ʁi.te/, ds: 'to annoy, to irritate'}
+  - {id: fr-v-904f69c527a42b6f, ch: agacer, pr: /a.ɡa.se/, ds: to irritate}
+  - {id: fr-v-70d8dd0612ec8ac6, ch: vexer, pr: /vɛk.se/, ds: to irritate; to annoy}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-10-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary:
+  - {id: fr-v-fc4efa883ca168ab, ch: relation, pr: /ʁə.la.sjɔ̃/, ds: relation}
+  - {id: fr-v-f96baf9a3a6bd23f, ch: rencontre, pr: /ʁɑ̃.kɔ̃tʁ/, ds: encounter}
+  - {id: fr-v-c2c55efe03a98b86, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: acquaintance; someone one knows}
+  - {id: fr-v-2fa15d9121da475b, ch: partenaire, pr: /paʁ.tə.nɛʁ/, ds: partner}
+  - {id: fr-v-9ba88e734f2a36f5, ch: compagnon, pr: /kɔ̃.pa.ɲɔ̃/, ds: 'lifelong partner, significant other'}
+  - {id: fr-v-340d7057c588b749, ch: conjoint, pr: /kɔ̃.ʒwɛ̃/, ds: 'spouse or unmarried, spouse-like partner'}
+  - {id: fr-v-0edff6dbb8453092, ch: fiancé, pr: /fjɑ̃.se/, ds: fiancé}
+  - {id: fr-v-9479491b65c7cafe, ch: mariage, pr: /ma.ʁjaʒ/, ds: marriage}
+  - {id: fr-v-4a6ec2e2586fc6e4, ch: divorce, pr: /di.vɔʁs/, ds: divorce}
+  - {id: fr-v-e8c154625999aed6, ch: séparation, pr: /se.pa.ʁa.sjɔ̃/, ds: separation}
+  - {id: fr-v-3e883a241dac2cfa, ch: naissance, pr: /nɛ.sɑ̃s/, ds: birth}
+  - {id: fr-v-786bf39334ac8e6b, ch: enfance, pr: /ɑ̃.fɑ̃s/, ds: childhood}
+  - {id: fr-v-7bcae2f3039af3d8, ch: adolescence, pr: /a.dɔ.lɛ.sɑ̃s/, ds: 'adolescence, teenage years, teenagehood'}
+  - {id: fr-v-c3c17741f1bf055e, ch: jeunesse, pr: /ʒœ.nɛs/, ds: youth}
+  - {id: fr-v-c85c759b23234c2e, ch: vieillesse, pr: /vjɛ.jɛs/, ds: old age}
+  - {id: fr-v-54f2071a3f776e07, ch: génération, pr: /ʒe.ne.ʁa.sjɔ̃/, ds: generation; position in family descent}
+  - {id: fr-v-a7cb84a54219edb4, ch: grand-parent, pr: /ɡʁɑ̃.pa.ʁɑ̃/, ds: grandparent (parent of someone’s parent)}
+  - {id: fr-v-952462a13fef649d, ch: grand-mère, pr: /ɡʁɑ̃.mɛʁ/, ds: grandmother}
+  - {id: fr-v-56ee39d8b048a7a2, ch: grand-père, pr: /ɡʁɑ̃.pɛʁ/, ds: grandfather}
+  - {id: fr-v-1d0421da1f516651, ch: petit-fils, pr: /pə.ti.fis/, ds: grandson}
+  - {id: fr-v-3fdc2be632b7c7ab, ch: petite-fille, pr: /pə.tit.fij/, ds: granddaughter (daughter of one's child)}
+  - {id: fr-v-229ecec775456d2b, ch: oncle, pr: /ɔ̃kl/, ds: uncle}
+  - {id: fr-v-5350fc29589e0175, ch: tante, pr: /tɑ̃t/, ds: aunt}
+  - {id: fr-v-10e5809f4514fe7a, ch: cousin, pr: /ku.zɛ̃/, ds: cousin (male)}
+  - {id: fr-v-8095b0236dd85017, ch: neveu, pr: /nə.vø/, ds: nephew}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-8a5d2d0ef2844ec7, ch: professeur, pr: /pʁɔ.fɛ.sœʁ/, ds: teacher}
+  - {id: fr-v-9a6c971371382aa8, ch: adulte, pr: /a.dylt/, ds: adult}
+  - {id: fr-v-cceb97ab0037f92b, ch: monsieur, pr: /mə.sjø/, ds: mister}
+  - {id: fr-v-b031dfbe6f20bdd6, ch: madame, pr: /ma.dam/, ds: a title or form of address for a woman}
+  - {id: fr-v-45b05a74a2c7a263, ch: couple, pr: /kupl/, ds: two partners in a romantic or sexual relationship}
+  - {id: fr-v-8c5048fb1edee2ab, ch: âge, pr: /aʒ/, ds: age}
+  - {id: fr-v-e1ed44623cdfc3df, ch: mari, pr: /ma.ʁi/, ds: husband}
+  - {id: fr-v-869a1782460e9523, ch: épouse, pr: /e.puz/, ds: 'female spouse, wife'}
+  review_grammar:
+  - {id: fr-g-articles-gender-number, ch: un / une / des ; le / la / les + nom, ds: Introduce a referent or identify a known one}
+  - {id: fr-g-possessive-determiners, ch: mon / ma / mes ; son / sa / ses + nom, ds: Possessive forms agree with the possessed noun}
+  - {id: fr-g-direct-object-clitics, ch: sujet + me / te / le / la / nous / vous / les + verbe, ds: Replace a recoverable direct object before the verb}
+- id: level-10-people-02
+  title: People and relationships - 2
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary:
+  - {id: fr-v-c3542397a0b01dd1, ch: nièce, pr: /njɛs/, ds: niece}
+  - {id: fr-v-299a029b77f7fea8, ch: beau-frère, pr: /bo.fʁɛʁ/, ds: brother-in-law (brother of one's wife)}
+  - {id: fr-v-d064637e0b06e660, ch: belle-sœur, pr: /bɛl.sœʁ/, ds: sister-in-law (wife's or husband's sister)}
+  - {id: fr-v-32ad639b1ca2d890, ch: beau-père, pr: /bo.pɛʁ/, ds: 'a father-in-law, the father of one''s spouse'}
+  - {id: fr-v-f73d7a4efcd1118c, ch: belle-mère, pr: /bɛl.mɛʁ/, ds: mother-in-law}
+  - {id: fr-v-31dab367b33ff449, ch: belle-fille, pr: /bɛl.fij/, ds: daughter-in-law (wife of one's child)}
+  - {id: fr-v-c9bfc2e4f6985b12, ch: jumeau, pr: /ʒy.mo/, ds: twin}
+  - {id: fr-v-4083e2f07b8948b5, ch: célibataire, pr: /se.li.ba.tɛʁ/, ds: single (without a life partner)}
+  - {id: fr-v-be8c128deb7212eb, ch: veuf, pr: /vœf/, ds: widower (a man whose wife has died and who has not remarried)}
+  - {id: fr-v-58ce53f5be03a245, ch: veuve, pr: /vœv/, ds: widow}
+  - {id: fr-v-abb0ca29caa3bdd2, ch: orphelin, pr: /ɔʁ.fə.lɛ̃/, ds: orphaned}
+  - {id: fr-v-2fe7535e6e29d4c0, ch: parenté, pr: /pa.ʁɑ̃.te/, ds: kinship}
+  - {id: fr-v-dc36eb194757edfb, ch: entourage, pr: /ɑ̃.tu.ʁaʒ/, ds: circle of acquaintances}
+  - {id: fr-v-7b4c61e1eb41e7ca, ch: amant, pr: /a.mɑ̃/, ds: lover; partner in an affair}
+  - {id: fr-v-6984542a6aac56c9, ch: camarade, pr: /ka.ma.ʁad/, ds: 'buddy, mate'}
+  - {id: fr-v-96e239f3eef4cef1, ch: copain, pr: /kɔ.pɛ̃/, ds: 'friend, chum, mate (UK), pal, buddy'}
+  - {id: fr-v-9867310721a93341, ch: invité, pr: /ɛ̃.vi.te/, ds: guest (person who is invited)}
+  - {id: fr-v-b61cba36df456593, ch: hôte, pr: /ot/, ds: guest (one who is received)}
+  - {id: fr-v-6534d3e59988e6c9, ch: visiteur, pr: /vi.zi.tœʁ/, ds: visitor}
+  - {id: fr-v-595ac4960a395157, ch: inconnu, pr: /ɛ̃.kɔ.ny/, ds: 'an unknown person, place, or thing; a stranger'}
+  - {id: fr-v-3dbfe352089c1356, ch: étranger, pr: /e.tʁɑ̃.ʒe/, ds: foreigner}
+  - {id: fr-v-0f0a8b107afaf7e4, ch: confident, pr: /kɔ̃.fi.dɑ̃/, ds: confidant}
+  - {id: fr-v-bf1bf7f017b967d0, ch: rival, pr: /ʁi.val/, ds: rival}
+  - {id: fr-v-a4cb79a6f0cdf910, ch: adversaire, pr: /ad.vɛʁ.sɛʁ/, ds: 'adversary, opponent, opposition, antagonist'}
+  - {id: fr-v-a125661978e898ac, ch: ennemi, pr: /ɛn.mi/, ds: enemy}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-952462a13fef649d, ch: grand-mère, pr: /ɡʁɑ̃.mɛʁ/, ds: grandmother}
+  - {id: fr-v-56ee39d8b048a7a2, ch: grand-père, pr: /ɡʁɑ̃.pɛʁ/, ds: grandfather}
+  - {id: fr-v-1d0421da1f516651, ch: petit-fils, pr: /pə.ti.fis/, ds: grandson}
+  - {id: fr-v-3fdc2be632b7c7ab, ch: petite-fille, pr: /pə.tit.fij/, ds: granddaughter (daughter of one's child)}
+  - {id: fr-v-229ecec775456d2b, ch: oncle, pr: /ɔ̃kl/, ds: uncle}
+  - {id: fr-v-5350fc29589e0175, ch: tante, pr: /tɑ̃t/, ds: aunt}
+  - {id: fr-v-10e5809f4514fe7a, ch: cousin, pr: /ku.zɛ̃/, ds: cousin (male)}
+  - {id: fr-v-8095b0236dd85017, ch: neveu, pr: /nə.vø/, ds: nephew}
+  review_grammar:
+  - {id: fr-g-articles-gender-number, ch: un / une / des ; le / la / les + nom, ds: Introduce a referent or identify a known one}
+  - {id: fr-g-possessive-determiners, ch: mon / ma / mes ; son / sa / ses + nom, ds: Possessive forms agree with the possessed noun}
+  - {id: fr-g-direct-object-clitics, ch: sujet + me / te / le / la / nous / vous / les + verbe, ds: Replace a recoverable direct object before the verb}
+- id: level-10-people-03
+  title: People and relationships - 3
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary:
+  - {id: fr-v-e9947849cbaef8e7, ch: allié, pr: /a.lje/, ds: ally}
+  - {id: fr-v-20fdc76410c4bcb8, ch: témoin, pr: /te.mwɛ̃/, ds: witness}
+  - {id: fr-v-5eb4b1b7155b34f0, ch: victime, pr: /vik.tim/, ds: victim}
+  - {id: fr-v-4dad68733a05ce7c, ch: soutien, pr: /su.tjɛ̃/, ds: emotional support}
+  - {id: fr-v-5195990b0671c7c9, ch: dispute, pr: /dis.pyt/, ds: dispute}
+  - {id: fr-v-91f8ae9bdb7ca615, ch: conflit, pr: /kɔ̃.fli/, ds: conflict (clash or disagreement)}
+  - {id: fr-v-f514a72b06f5de22, ch: malentendu, pr: /ma.lɑ̃.tɑ̃.dy/, ds: misunderstanding}
+  - {id: fr-v-c209d72655545734, ch: désaccord, pr: /de.za.kɔʁ/, ds: 'disagreement, discord'}
+  - {id: fr-v-8fb0896709c0960a, ch: réconciliation, pr: /ʁe.kɔ̃.si.lja.sjɔ̃/, ds: reconciliation}
+  - {id: fr-v-01152727eb0f555d, ch: reproche, pr: /ʁə.pʁɔʃ/, ds: 'blame, the act of blaming'}
+  - {id: fr-v-9e34757aabd392ad, ch: insulte, pr: /ɛ̃.sylt/, ds: insult}
+  - {id: fr-v-548317a9787eb212, ch: compliment, pr: /kɔ̃.pli.mɑ̃/, ds: compliment (positive comment)}
+  - {id: fr-v-286e5de04d681077, ch: promesse, pr: /pʁɔ.mɛs/, ds: promise (all meanings)}
+  - {id: fr-v-800f19f0e4aefa51, ch: secret, pr: /sə.kʁɛ/, ds: secret}
+  - {id: fr-v-d880db547eb53b0b, ch: confidence, pr: /kɔ̃.fi.dɑ̃s/, ds: 'confidence, secret'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-b61cba36df456593, ch: hôte, pr: /ot/, ds: guest (one who is received)}
+  - {id: fr-v-6534d3e59988e6c9, ch: visiteur, pr: /vi.zi.tœʁ/, ds: visitor}
+  - {id: fr-v-595ac4960a395157, ch: inconnu, pr: /ɛ̃.kɔ.ny/, ds: 'an unknown person, place, or thing; a stranger'}
+  - {id: fr-v-3dbfe352089c1356, ch: étranger, pr: /e.tʁɑ̃.ʒe/, ds: foreigner}
+  - {id: fr-v-0f0a8b107afaf7e4, ch: confident, pr: /kɔ̃.fi.dɑ̃/, ds: confidant}
+  - {id: fr-v-bf1bf7f017b967d0, ch: rival, pr: /ʁi.val/, ds: rival}
+  - {id: fr-v-a4cb79a6f0cdf910, ch: adversaire, pr: /ad.vɛʁ.sɛʁ/, ds: 'adversary, opponent, opposition, antagonist'}
+  - {id: fr-v-a125661978e898ac, ch: ennemi, pr: /ɛn.mi/, ds: enemy}
+  review_grammar:
+  - {id: fr-g-articles-gender-number, ch: un / une / des ; le / la / les + nom, ds: Introduce a referent or identify a known one}
+  - {id: fr-g-possessive-determiners, ch: mon / ma / mes ; son / sa / ses + nom, ds: Possessive forms agree with the possessed noun}
+  - {id: fr-g-direct-object-clitics, ch: sujet + me / te / le / la / nous / vous / les + verbe, ds: Replace a recoverable direct object before the verb}
+- id: level-10-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary:
+  - {id: fr-v-206c7e0311f4e1a0, ch: émotion, pr: /e.mo.sjɔ̃/, ds: emotion}
+  - {id: fr-v-b536d42dc250e2c7, ch: sentiment, pr: /sɑ̃.ti.mɑ̃/, ds: 'a sentiment, general thought, sense or feeling'}
+  - {id: fr-v-c9431e3f732c63f4, ch: joie, pr: /ʒwa/, ds: joy (feeling of happiness or elation)}
+  - {id: fr-v-cf3019ca1d791dff, ch: bonheur, pr: /bɔ.nœʁ/, ds: happiness}
+  - {id: fr-v-c86335eb9383799e, ch: tristesse, pr: /tʁis.tɛs/, ds: sadness}
+  - {id: fr-v-020e84f53cf77db6, ch: peur, pr: /pœʁ/, ds: fear}
+  - {id: fr-v-aaa273b863983f99, ch: colère, pr: /kɔ.lɛʁ/, ds: 'anger, rage'}
+  - {id: fr-v-ea4c6d9d24e375d2, ch: amour, pr: /a.muʁ/, ds: love}
+  - {id: fr-v-6bec374203ed8ade, ch: amitié, pr: /a.mi.tje/, ds: 'friendship, amity'}
+  - {id: fr-v-92da5c7f7408b089, ch: affection, pr: /a.fɛk.sjɔ̃/, ds: 'affection, love, fondness'}
+  - {id: fr-v-7a485410888b763a, ch: tendresse, pr: /tɑ̃.dʁɛs/, ds: 'Tenderness, state of being tender.'}
+  - {id: fr-v-2d48bc5ac01888d1, ch: sympathie, pr: /sɛ̃.pa.ti/, ds: sympathy}
+  - {id: fr-v-c7f62c836e970292, ch: antipathie, pr: /ɑ̃.ti.pa.ti/, ds: 'antipathy, dislike'}
+  - {id: fr-v-6c72d157015fd759, ch: confiance, pr: /kɔ̃.fjɑ̃s/, ds: confidence}
+  - {id: fr-v-1a7e4c410562b8b1, ch: méfiance, pr: /me.fjɑ̃s/, ds: distrust (lack of trust or confidence)}
+  - {id: fr-v-c9f1d5211fb7d058, ch: espoir, pr: /ɛs.pwaʁ/, ds: hope}
+  - {id: fr-v-8828f11cff3c95bf, ch: déception, pr: /de.sɛp.sjɔ̃/, ds: disappointment}
+  - {id: fr-v-e67c8ba245c88da7, ch: fierté, pr: /fjɛʁ.te/, ds: 'pride (positive emotion), self-esteem'}
+  - {id: fr-v-27ee4fa3d3e1e8c9, ch: honte, pr: /ɔ̃t/, ds: shame (feeling)}
+  - {id: fr-v-a31b635fbd5a7982, ch: gêne, pr: /ʒɛn/, ds: embarrassment}
+  - {id: fr-v-20457bd6b227db3f, ch: inquiétude, pr: /ɛ̃.kje.tyd/, ds: 'worry, concern, trepidation'}
+  - {id: fr-v-efc5991fa1d2770e, ch: angoisse, pr: /ɑ̃.ɡwas/, ds: 'anguish, distress'}
+  - {id: fr-v-6b55a5874597fd02, ch: stress, pr: /stʁɛs/, ds: stress (emotional pressure)}
+  - {id: fr-v-5ff245b92941adba, ch: soulagement, pr: /su.laʒ.mɑ̃/, ds: relief (removal of stress or discomfort)}
+  - {id: fr-v-378d6563a4dd32a9, ch: courage, pr: /ku.ʁaʒ/, ds: courage}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-10-feelings-02
+  title: Feelings and attitudes - 2
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary:
+  - {id: fr-v-dafedf5a47e4c03c, ch: patience, pr: /pa.sjɑ̃s/, ds: patience (the quality of being patient)}
+  - {id: fr-v-7c7db7fd36b3aea3, ch: impatience, pr: /ɛ̃.pa.sjɑ̃s/, ds: impatience; intolerance of waiting}
+  - {id: fr-v-7956a375c49df34c, ch: enthousiasme, pr: /ɑ̃.tu.zjasm/, ds: 'enthusiasm, keenness'}
+  - {id: fr-v-127519ba9677228a, ch: curiosité, pr: /ky.ʁjo.zi.te/, ds: curiosity}
+  - {id: fr-v-6a1a087bab247a49, ch: ennui, pr: /ɑ̃.nɥi/, ds: boredom; lassitude}
+  - {id: fr-v-533c6f54208ae3c7, ch: solitude, pr: /sɔ.li.tyd/, ds: solitude}
+  - {id: fr-v-2be88ecb2f0b3bd7, ch: regret, pr: /ʁə.ɡʁɛ/, ds: regret}
+  - {id: fr-v-149cd617e5d741e3, ch: remords, pr: /ʁə.mɔʁ/, ds: 'remorse, feeling of remorse'}
+  - {id: fr-v-eabb16237ef2317c, ch: jalousie, pr: /ʒa.lu.zi/, ds: jealousy}
+  - {id: fr-v-c6c4da2b7046a4b3, ch: envie, pr: /ɑ̃.vi/, ds: 'desire, lust, urge'}
+  - {id: fr-v-44fa9676ec5e7433, ch: désir, pr: /de.ziʁ/, ds: desire}
+  - {id: fr-v-a87869e448483e0e, ch: passion, pr: /pa.sjɔ̃/, ds: passion; enthusiasm}
+  - {id: fr-v-622edd64ee746d21, ch: dégoût, pr: /de.ɡu/, ds: disgust}
+  - {id: fr-v-179518cede5a5dae, ch: admiration, pr: /ad.mi.ʁa.sjɔ̃/, ds: admiration}
+  - {id: fr-v-5d6ac0294c64e0ff, ch: reconnaissance, pr: /ʁə.kɔ.nɛ.sɑ̃s/, ds: gratitude; thankfulness}
+  - {id: fr-v-8286281cd5c20c65, ch: compassion, pr: /kɔ̃.pa.sjɔ̃/, ds: 'compassion, pity'}
+  - {id: fr-v-66faf167db70cd76, ch: pitié, pr: /pi.tje/, ds: 'pity, mercy'}
+  - {id: fr-v-4f858df908621f5c, ch: mépris, pr: /me.pʁi/, ds: scorn}
+  - {id: fr-v-fda95ccfc0676f87, ch: rancune, pr: /ʁɑ̃.kyn/, ds: 'resentment, grudge; rancour'}
+  - {id: fr-v-9a5411e875c90ccb, ch: rancœur, pr: /ʁɑ̃.kœʁ/, ds: 'resentment, rancor'}
+  - {id: fr-v-8648a46ca3baa6c2, ch: frustration, pr: /fʁys.tʁa.sjɔ̃/, ds: frustration}
+  - {id: fr-v-01220994b39d4665, ch: satisfaction, pr: /sa.tis.fak.sjɔ̃/, ds: satisfaction}
+  - {id: fr-v-b16a5eaa07eac3b9, ch: mécontentement, pr: /me.kɔ̃.tɑ̃t.mɑ̃/, ds: 'discontent, displeasure, dissatisfaction'}
+  - {id: fr-v-4a9948da2782df09, ch: chagrin, pr: /ʃa.ɡʁɛ̃/, ds: 'sorrow, grief, chagrin'}
+  - {id: fr-v-f85dcfc572070615, ch: humeur, pr: /y.mœʁ/, ds: mood; state of mind}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-e67c8ba245c88da7, ch: fierté, pr: /fjɛʁ.te/, ds: 'pride (positive emotion), self-esteem'}
+  - {id: fr-v-27ee4fa3d3e1e8c9, ch: honte, pr: /ɔ̃t/, ds: shame (feeling)}
+  - {id: fr-v-a31b635fbd5a7982, ch: gêne, pr: /ʒɛn/, ds: embarrassment}
+  - {id: fr-v-20457bd6b227db3f, ch: inquiétude, pr: /ɛ̃.kje.tyd/, ds: 'worry, concern, trepidation'}
+  - {id: fr-v-efc5991fa1d2770e, ch: angoisse, pr: /ɑ̃.ɡwas/, ds: 'anguish, distress'}
+  - {id: fr-v-6b55a5874597fd02, ch: stress, pr: /stʁɛs/, ds: stress (emotional pressure)}
+  - {id: fr-v-5ff245b92941adba, ch: soulagement, pr: /su.laʒ.mɑ̃/, ds: relief (removal of stress or discomfort)}
+  - {id: fr-v-378d6563a4dd32a9, ch: courage, pr: /ku.ʁaʒ/, ds: courage}
+  review_grammar: []
+- id: level-10-feelings-03
+  title: Feelings and attitudes - 3
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary:
+  - {id: fr-v-b84b83379f1eab52, ch: caractère, pr: /ka.ʁak.tɛʁ/, ds: character; demeanour}
+  - {id: fr-v-8bb1c3bdf92d166b, ch: personnalité, pr: /pɛʁ.sɔ.na.li.te/, ds: personality}
+  - {id: fr-v-c9ac3440a8f334d2, ch: sensibilité, pr: /sɑ̃.si.bi.li.te/, ds: sensitivity}
+  - {id: fr-v-4f1a633dacac1d1b, ch: tempérament, pr: /tɑ̃.pe.ʁa.mɑ̃/, ds: 'temperament, character'}
+  - {id: fr-v-8be782cb2701b909, ch: heureux, pr: /œ.ʁø/, ds: happy}
+  - {id: fr-v-5489cb17276ac7e7, ch: triste, pr: /tʁist/, ds: sad}
+  - {id: fr-v-268f02c3d7294ab7, ch: content, pr: /kɔ̃.tɑ̃/, ds: 'content, satisfied, pleased'}
+  - {id: fr-v-5f4e71d611d8c73e, ch: mécontent, pr: /me.kɔ̃.tɑ̃/, ds: malcontent}
+  - {id: fr-v-8e1765283bccc7fa, ch: joyeux, pr: /ʒwa.jø/, ds: 'joyful, happy'}
+  - {id: fr-v-3214c8a88d29fc5b, ch: inquiet, pr: /ɛ̃.kjɛ/, ds: worried}
+  - {id: fr-v-4fee3abf9f3dae74, ch: anxieux, pr: /ɑ̃k.sjø/, ds: anxious}
+  - {id: fr-v-c251677b1c3a2390, ch: nerveux, pr: /nɛʁ.vø/, ds: nerve; nervous}
+  - {id: fr-v-7648cb888d4e7ead, ch: fier, pr: /fjɛʁ/, ds: 'proud, gratified, honoured'}
+  - {id: fr-v-3a907319a05b7d63, ch: honteux, pr: /ɔ̃.tø/, ds: ashamed (feeling shame)}
+  - {id: fr-v-a8626821db16fe45, ch: gêné, pr: /ʒɛ.ne/, ds: in financial difficulty}
+  - {id: fr-v-41a3a4dff9e5a388, ch: déçu, pr: /de.sy/, ds: disappointed}
+  - {id: fr-v-c8388a8a9ee939ee, ch: jaloux, pr: /ʒa.lu/, ds: jealous}
+  - {id: fr-v-6d97815b5870d5ca, ch: curieux, pr: /ky.ʁjø/, ds: 'curious, inquisitive, intrigued, wondering; possessing curiosity'}
+  - {id: fr-v-01cbd03f15f9b606, ch: enthousiaste, pr: /ɑ̃.tu.zjast/, ds: 'inspired, passionate (religiously or artistically)'}
+  - {id: fr-v-ae429b41cf07277b, ch: impatient, pr: /ɛ̃.pa.sjɑ̃/, ds: impatient}
+  - {id: fr-v-fe79d5771cfc54a5, ch: patient, pr: /pa.sjɑ̃/, ds: patient; able to wait calmly}
+  - {id: fr-v-a7ffe569895e0ff2, ch: courageux, pr: /ku.ʁa.ʒø/, ds: 'courageous, brave, daring'}
+  - {id: fr-v-60f557fa0defd1b1, ch: timide, pr: /ti.mid/, ds: 'shy, timid'}
+  - {id: fr-v-547dc12a2abfe939, ch: solitaire, pr: /sɔ.li.tɛʁ/, ds: 'solitary, alone (living alone or being by oneself)'}
+  - {id: fr-v-0390d8253f2ecdf5, ch: amoureux, pr: /a.mu.ʁø/, ds: love}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-4f858df908621f5c, ch: mépris, pr: /me.pʁi/, ds: scorn}
+  - {id: fr-v-fda95ccfc0676f87, ch: rancune, pr: /ʁɑ̃.kyn/, ds: 'resentment, grudge; rancour'}
+  - {id: fr-v-9a5411e875c90ccb, ch: rancœur, pr: /ʁɑ̃.kœʁ/, ds: 'resentment, rancor'}
+  - {id: fr-v-8648a46ca3baa6c2, ch: frustration, pr: /fʁys.tʁa.sjɔ̃/, ds: frustration}
+  - {id: fr-v-01220994b39d4665, ch: satisfaction, pr: /sa.tis.fak.sjɔ̃/, ds: satisfaction}
+  - {id: fr-v-b16a5eaa07eac3b9, ch: mécontentement, pr: /me.kɔ̃.tɑ̃t.mɑ̃/, ds: 'discontent, displeasure, dissatisfaction'}
+  - {id: fr-v-4a9948da2782df09, ch: chagrin, pr: /ʃa.ɡʁɛ̃/, ds: 'sorrow, grief, chagrin'}
+  - {id: fr-v-f85dcfc572070615, ch: humeur, pr: /y.mœʁ/, ds: mood; state of mind}
+  review_grammar: []
+- id: level-10-feelings-04
+  title: Feelings and attitudes - 4
+  outcome: Explain an emotional response with relevant circumstances and suitable register.
+  vocabulary:
+  - {id: fr-v-378fc0dc05ee57f2, ch: sensible, pr: /sɑ̃.sibl/, ds: sensitive}
+  - {id: fr-v-1cc39feb8df875f7, ch: ému, pr: /e.my/, ds: 'touched, moved'}
+  - {id: fr-v-33262821849ff2cd, ch: furieux, pr: /fy.ʁjø/, ds: furious}
+  - {id: fr-v-0613b7906592aed8, ch: fâché, pr: /fa.ʃe/, ds: angry}
+  - {id: fr-v-0353f31d75aa54eb, ch: vexé, pr: /vɛkse/, ds: 'vexed, annoyed'}
+  - {id: fr-v-ef73c47364e1effe, ch: frustré, pr: /fʁys.tʁe/, ds: frustrated}
+  - {id: fr-v-26551baf05dde41d, ch: satisfait, pr: /sa.tis.fɛ/, ds: satisfied}
+  - {id: fr-v-fc290efccf6faea2, ch: reconnaissant, pr: /ʁə.kɔ.nɛ.sɑ̃/, ds: 'grateful, thankful'}
+  - {id: fr-v-8bf01ef442a837d2, ch: déprimé, pr: /de.pʁi.me/, ds: 'depressed, dejected'}
+  - {id: fr-v-a012a8c08e4191a0, ch: optimiste, pr: /ɔp.ti.mist/, ds: optimistic}
+  - {id: fr-v-e4f7e9ea74be3f7e, ch: pessimiste, pr: /pe.si.mist/, ds: pessimistic}
+  - {id: fr-v-4d6dc1d63fd414ee, ch: serein, pr: /sə.ʁɛ̃/, ds: 'unclouded, clear'}
+  - {id: fr-v-4dcd0faf12fad6e0, ch: nostalgique, pr: /nɔs.tal.ʒik/, ds: nostalgic}
+  - {id: fr-v-326083256c1f891f, ch: indifférent, pr: /ɛ̃.di.fe.ʁɑ̃/, ds: indifferent}
+  - {id: fr-v-97063143c05dc15e, ch: tenir, pr: /tə.niʁ/, ds: to be attached to; hold dear}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-6d97815b5870d5ca, ch: curieux, pr: /ky.ʁjø/, ds: 'curious, inquisitive, intrigued, wondering; possessing curiosity'}
+  - {id: fr-v-01cbd03f15f9b606, ch: enthousiaste, pr: /ɑ̃.tu.zjast/, ds: 'inspired, passionate (religiously or artistically)'}
+  - {id: fr-v-ae429b41cf07277b, ch: impatient, pr: /ɛ̃.pa.sjɑ̃/, ds: impatient}
+  - {id: fr-v-fe79d5771cfc54a5, ch: patient, pr: /pa.sjɑ̃/, ds: patient; able to wait calmly}
+  - {id: fr-v-a7ffe569895e0ff2, ch: courageux, pr: /ku.ʁa.ʒø/, ds: 'courageous, brave, daring'}
+  - {id: fr-v-60f557fa0defd1b1, ch: timide, pr: /ti.mid/, ds: 'shy, timid'}
+  - {id: fr-v-547dc12a2abfe939, ch: solitaire, pr: /sɔ.li.tɛʁ/, ds: 'solitary, alone (living alone or being by oneself)'}
+  - {id: fr-v-0390d8253f2ecdf5, ch: amoureux, pr: /a.mu.ʁø/, ds: love}
+  review_grammar: []
+- id: level-10-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-indirect-object-clitics, ch: sujet + lui / leur + verbe, ds: Replace a personal à complement with lui or leur}
+  - {id: fr-g-stressed-pronouns, ch: préposition + moi / toi / lui / elle / nous / vous / eux / elles, ds: Personal reference after prepositions and in contrast}
+  - {id: fr-g-reciprocal-pronominals, ch: sujet pluriel + se / nous / vous + verbe réciproque, ds: Distinguish mutual actions from self-directed actions}
+  review_vocabulary:
+  - {id: fr-v-cecc5bedb850a554, ch: parler, pr: /paʁ.le/, ds: 'to speak, talk'}
+  - {id: fr-v-90e551d22bb952c9, ch: donner, pr: /dɔ.ne/, ds: to give}
+  - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
+  - {id: fr-v-540751bc063d9539, ch: cadeau, pr: /ka.do/, ds: 'present, gift'}
+  - {id: fr-v-2dba9f88fd442914, ch: écrire, pr: /e.kʁiʁ/, ds: to write}
+  - {id: fr-v-8e868ad0bea54eee, ch: regarder, pr: /ʁə.ɡaʁ.de/, ds: to look at}
+  - {id: fr-v-c209d72655545734, ch: désaccord, pr: /de.za.kɔʁ/, ds: 'disagreement, discord'}
+  - {id: fr-v-8fb0896709c0960a, ch: réconciliation, pr: /ʁe.kɔ̃.si.lja.sjɔ̃/, ds: reconciliation}
+  - {id: fr-v-01152727eb0f555d, ch: reproche, pr: /ʁə.pʁɔʃ/, ds: 'blame, the act of blaming'}
+  - {id: fr-v-9e34757aabd392ad, ch: insulte, pr: /ɛ̃.sylt/, ds: insult}
+  - {id: fr-v-548317a9787eb212, ch: compliment, pr: /kɔ̃.pli.mɑ̃/, ds: compliment (positive comment)}
+  - {id: fr-v-286e5de04d681077, ch: promesse, pr: /pʁɔ.mɛs/, ds: promise (all meanings)}
+  - {id: fr-v-800f19f0e4aefa51, ch: secret, pr: /sə.kʁɛ/, ds: secret}
+  - {id: fr-v-d880db547eb53b0b, ch: confidence, pr: /kɔ̃.fi.dɑ̃s/, ds: 'confidence, secret'}
+  review_grammar:
+  - {id: fr-g-articles-gender-number, ch: un / une / des ; le / la / les + nom, ds: Introduce a referent or identify a known one}
+  - {id: fr-g-possessive-determiners, ch: mon / ma / mes ; son / sa / ses + nom, ds: Possessive forms agree with the possessed noun}
+  - {id: fr-g-direct-object-clitics, ch: sujet + me / te / le / la / nous / vous / les + verbe, ds: Replace a recoverable direct object before the verb}
+- id: level-10-health-practice-01
+  title: Body and wellbeing - sentence practice 1
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+  review_vocabulary:
+  - {id: fr-v-fb8b0181daf7c01e, ch: laver, pr: /la.ve/, ds: to wash}
+  - {id: fr-v-3c544b8d39c1e564, ch: fatigué, pr: /fa.ti.ɡe/, ds: tired}
+  - {id: fr-v-683b8a86726616a7, ch: souffrir, pr: /su.fʁiʁ/, ds: to suffer}
+  - {id: fr-v-f727be7977b7a0a5, ch: tousser, pr: /tu.se/, ds: to cough}
+  - {id: fr-v-23abd133e667fe88, ch: respirer, pr: /ʁɛs.pi.ʁe/, ds: to breathe}
+  - {id: fr-v-0a7cf8ed3cf2c6cd, ch: reposer, pr: /ʁə.po.ze/, ds: to rest; reflexive use}
+  - {id: fr-v-88887749bd9d1b51, ch: soigner, pr: /swa.ɲe/, ds: to treat; to nurse}
+  - {id: fr-v-5ddae89baff4c017, ch: tomber, pr: /tɔ̃.be/, ds: to fall}
+  - {id: fr-v-b03ca1b453349362, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to feel; physical sensation}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}

@@ -1,0 +1,421 @@
+schema_version: 3
+id: fr-level-12
+title: Messages and connected information
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 12
+phase: stories-conversations
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+goals: &id001
+- Relay useful information from a short notice or message.
+- Link descriptions without losing their referents.
+- Ask an indirect clarification question.
+checkpoint:
+  task: Explain a notice to someone who cannot consult it and resolve questions about people, places, and requirements.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-12-communication-01
+  title: Contact and communication - 1
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-c05f3766e3eb95c3, ch: information, pr: /ɛ̃.fɔʁ.ma.sjɔ̃/, ds: 'piece of information]'}
+  - {id: fr-v-05bedc57e13672fb, ch: renseignement, pr: /ʁɑ̃.sɛɲ.mɑ̃/, ds: piece of information}
+  - {id: fr-v-961dd2dc179fa37d, ch: nouvelle, pr: /nu.vɛl/, ds: 'news, a piece of information'}
+  - {id: fr-v-30e3600e4331afac, ch: annonce, pr: /a.nɔ̃s/, ds: advertisement}
+  - {id: fr-v-60770324cdf74874, ch: avis, pr: /a.vi/, ds: opinion}
+  - {id: fr-v-6e38acfbfc33acff, ch: notice, pr: /nɔ.tis/, ds: A set of instructions for that the assembling}
+  - {id: fr-v-f4cd1c146fc34d88, ch: affiche, pr: /a.fiʃ/, ds: poster}
+  - {id: fr-v-29361d97fa7ce1f3, ch: panneau, pr: /pa.no/, ds: sign; signpost}
+  - {id: fr-v-3192658052e5cae6, ch: signal, pr: /si.ɲal/, ds: signal}
+  - {id: fr-v-3440078960191106, ch: indication, pr: /ɛ̃.di.ka.sjɔ̃/, ds: 'direction, instruction'}
+  - {id: fr-v-f401a7d7e9c20f92, ch: inscription, pr: /ɛ̃s.kʁip.sjɔ̃/, ds: 'registration, enrolment'}
+  - {id: fr-v-593b84c595c165ab, ch: demande, pr: /də.mɑ̃d/, ds: request (act of requesting)}
+  - {id: fr-v-889ed79558fb6610, ch: requête, pr: /ʁə.kɛt/, ds: request}
+  - {id: fr-v-bb5df4cd1a5d947b, ch: proposition, pr: /pʁɔ.po.zi.sjɔ̃/, ds: 'proposition, suggestion'}
+  - {id: fr-v-a064230490064a97, ch: précision, pr: /pʁe.si.zjɔ̃/, ds: precision}
+  - {id: fr-v-ca590902d777715f, ch: clarification, pr: /kla.ʁi.fi.ka.sjɔ̃/, ds: clarification}
+  - {id: fr-v-ec733d5f2ab7091d, ch: confirmation, pr: /kɔ̃.fiʁ.ma.sjɔ̃/, ds: confirmation (all senses)}
+  - {id: fr-v-3927097fd124ab14, ch: rappel, pr: /ʁa.pɛl/, ds: reminder}
+  - {id: fr-v-847ddb312cb9691b, ch: avertissement, pr: /a.vɛʁ.tis.mɑ̃/, ds: warning}
+  - {id: fr-v-5e350212d9d79282, ch: convocation, pr: /kɔ̃.vɔ.ka.sjɔ̃/, ds: 'summons (formal request to come, formal order to appear)'}
+  - {id: fr-v-0b13554aa7145d11, ch: attestation, pr: /a.tɛs.ta.sjɔ̃/, ds: certificate}
+  - {id: fr-v-be4ae60d777df621, ch: certificat, pr: /sɛʁ.ti.fi.ka/, ds: 'certificate, certification, credentials'}
+  - {id: fr-v-e13a0f303cc546f7, ch: autorisation, pr: /o.tɔ.ʁi.za.sjɔ̃/, ds: authorization (act of authorizing)}
+  - {id: fr-v-087a71537b15d148, ch: permission, pr: /pɛʁ.mi.sjɔ̃/, ds: permission}
+  - {id: fr-v-45de889b9cf6e82a, ch: interdiction, pr: /ɛ̃.tɛʁ.dik.sjɔ̃/, ds: 'ban, interdiction'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-c8174fcbf7db6dff, ch: tromper, pr: /tʁɔ̃.pe/, ds: 'to trick, dupe'}
+  - {id: fr-v-456a08bac2215ffe, ch: trahir, pr: /tʁa.iʁ/, ds: to betray}
+  - {id: fr-v-2c8cadeb52ebd263, ch: convaincre, pr: /kɔ̃.vɛ̃kʁ/, ds: 'to convince, to persuade'}
+  - {id: fr-v-7c5b184eb4cf3837, ch: persuader, pr: /pɛʁ.sɥa.de/, ds: to persuade}
+  - {id: fr-v-18d125384e940c75, ch: réconcilier, pr: /ʁe.kɔ̃.si.lje/, ds: to reconcile}
+  - {id: fr-v-3dc552d6109352fc, ch: plaisanter, pr: /plɛ.zɑ̃.te/, ds: to joke (make a joke)}
+  - {id: fr-v-dc308f7dea7bdc27, ch: taquiner, pr: /ta.ki.ne/, ds: to tease}
+  - {id: fr-v-877f9ded6e692e76, ch: moquer, pr: /mɔ.ke/, ds: to mock}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-12-communication-02
+  title: Contact and communication - 2
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-a6b5da37dbb72f3a, ch: obligation, pr: /ɔ.bli.ɡa.sjɔ̃/, ds: obligation}
+  - {id: fr-v-34e605dfb78a67d1, ch: condition, pr: /kɔ̃.di.sjɔ̃/, ds: 'term, condition'}
+  - {id: fr-v-9864198b04cb8a05, ch: exigence, pr: /ɛɡ.zi.ʒɑ̃s/, ds: demand}
+  - {id: fr-v-953d4fd18918a188, ch: règlement, pr: /ʁɛ.ɡlə.mɑ̃/, ds: 'rules, regulations'}
+  - {id: fr-v-1fb53d8964255371, ch: démarche, pr: /de.maʁʃ/, ds: procedure; step taken to get something done}
+  - {id: fr-v-04045261d99ed365, ch: formalité, pr: /fɔʁ.ma.li.te/, ds: formality (all meanings)}
+  - {id: fr-v-7f58b29d072fd667, ch: justificatif, pr: /ʒystifikatif/, ds: proof}
+  - {id: fr-v-57592d282c5d7c6d, ch: copie, pr: /kɔ.pi/, ds: copying}
+  - {id: fr-v-ff8f893bf1e7d6d6, ch: original, pr: /ɔ.ʁi.ʒi.nal/, ds: original}
+  - {id: fr-v-3aa0c8edec4fcb2e, ch: exemplaire, pr: /ɛɡ.zɑ̃.plɛʁ/, ds: copy; facsimile}
+  - {id: fr-v-b8f9191e3b4d0cde, ch: version, pr: /vɛʁ.sjɔ̃/, ds: 'version; model (a specific state, variant, or form of something)'}
+  - {id: fr-v-0d5c782d3cef447e, ch: brouillon, pr: /bʁu.jɔ̃/, ds: draft (early version of a written work)}
+  - {id: fr-v-0227ffaaf5c14248, ch: résumé, pr: /ʁe.zy.me/, ds: 'summary, résumé'}
+  - {id: fr-v-e6d806faf2d54d4d, ch: synthèse, pr: /sɛ̃.tɛz/, ds: synthesis}
+  - {id: fr-v-dd7b337ec5e90f9b, ch: compte rendu, pr: /kɔ̃t ʁɑ̃.dy/, ds: 'proceedings (published record), see usage notes'}
+  - {id: fr-v-62c45261703fa8a6, ch: rapport, pr: /ʁa.pɔʁ/, ds: report}
+  - {id: fr-v-3a7a5c9c444c1295, ch: description, pr: /dɛs.kʁip.sjɔ̃/, ds: description}
+  - {id: fr-v-84cad7e34180feff, ch: commentaire, pr: /kɔ.mɑ̃.tɛʁ/, ds: 'comment, remark'}
+  - {id: fr-v-0d0c9fabe0c55a6c, ch: remarque, pr: /ʁə.maʁk/, ds: 'remark (comment, something said)'}
+  - {id: fr-v-0329de00f2738f7c, ch: suggestion, pr: /syɡ.ʒɛs.tjɔ̃/, ds: suggestion; proposal}
+  - {id: fr-v-acb17d09c4b92405, ch: conseil, pr: /kɔ̃.sɛj/, ds: piece of advice}
+  - {id: fr-v-aa3911aea234c5de, ch: recommandation, pr: /ʁə.kɔ.mɑ̃.da.sjɔ̃/, ds: recommendation}
+  - {id: fr-v-984d50fe7a5afebe, ch: informer, pr: /ɛ̃.fɔʁ.me/, ds: to inform; to enlighten; to impart knowledge (upon)}
+  - {id: fr-v-849d7e27cf36f882, ch: renseigner, pr: /ʁɑ̃.sɛ.ɲe/, ds: to advise; to inform}
+  - {id: fr-v-4f7c21e11755df90, ch: annoncer, pr: /a.nɔ̃.se/, ds: to announce}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-3927097fd124ab14, ch: rappel, pr: /ʁa.pɛl/, ds: reminder}
+  - {id: fr-v-847ddb312cb9691b, ch: avertissement, pr: /a.vɛʁ.tis.mɑ̃/, ds: warning}
+  - {id: fr-v-5e350212d9d79282, ch: convocation, pr: /kɔ̃.vɔ.ka.sjɔ̃/, ds: 'summons (formal request to come, formal order to appear)'}
+  - {id: fr-v-0b13554aa7145d11, ch: attestation, pr: /a.tɛs.ta.sjɔ̃/, ds: certificate}
+  - {id: fr-v-be4ae60d777df621, ch: certificat, pr: /sɛʁ.ti.fi.ka/, ds: 'certificate, certification, credentials'}
+  - {id: fr-v-e13a0f303cc546f7, ch: autorisation, pr: /o.tɔ.ʁi.za.sjɔ̃/, ds: authorization (act of authorizing)}
+  - {id: fr-v-087a71537b15d148, ch: permission, pr: /pɛʁ.mi.sjɔ̃/, ds: permission}
+  - {id: fr-v-45de889b9cf6e82a, ch: interdiction, pr: /ɛ̃.tɛʁ.dik.sjɔ̃/, ds: 'ban, interdiction'}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-12-communication-03
+  title: Contact and communication - 3
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-dad5db1090ece80a, ch: avertir, pr: /a.vɛʁ.tiʁ/, ds: to warn}
+  - {id: fr-v-66ce6d9aed8e7456, ch: signaler, pr: /si.ɲa.le/, ds: to signal}
+  - {id: fr-v-59b16fab37aa1be6, ch: indiquer, pr: /ɛ̃.di.ke/, ds: to indicate; to show}
+  - {id: fr-v-11152b5d3cabd668, ch: préciser, pr: /pʁe.si.ze/, ds: to specify}
+  - {id: fr-v-6dd87ee861df5107, ch: clarifier, pr: /kla.ʁi.fje/, ds: to clarify}
+  - {id: fr-v-0978a65f250be971, ch: mentionner, pr: /mɑ̃.sjɔ.ne/, ds: to mention}
+  - {id: fr-v-d2a2e0cb6c3aebac, ch: citer, pr: /si.te/, ds: 'to cite, quote'}
+  - {id: fr-v-497e3f6dfda1516c, ch: transmettre, pr: /tʁɑ̃s.mɛtʁ/, ds: to transmit}
+  - {id: fr-v-5a562e653c69aae2, ch: communiquer, pr: /kɔ.my.ni.ke/, ds: to communicate}
+  - {id: fr-v-c7c0999e6708b90c, ch: diffuser, pr: /di.fy.ze/, ds: to diffuse}
+  - {id: fr-v-672ca00335e92931, ch: publier, pr: /py.bli.je/, ds: 'to publish, to release, to issue'}
+  - {id: fr-v-57bccc477a06de05, ch: afficher, pr: /a.fi.ʃe/, ds: to put up (a notice etc)}
+  - {id: fr-v-b8c8a755b4dc4ed0, ch: distribuer, pr: /dis.tʁi.bɥe/, ds: to distribute}
+  - {id: fr-v-d6ee3eae547cb3ae, ch: imprimer, pr: /ɛ̃.pʁi.me/, ds: 'to print, to print out'}
+  - {id: fr-v-a68fedeceeb5a63a, ch: recopier, pr: /ʁə.kɔ.pje/, ds: to copy (again)}
+  - {id: fr-v-289cff5ef6e8e5d3, ch: copier, pr: /kɔ.pje/, ds: to copy}
+  - {id: fr-v-61517335dede66cd, ch: reproduire, pr: /ʁə.pʁɔ.dɥiʁ/, ds: to reproduce}
+  - {id: fr-v-8843c46a8cf3c46f, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to save digital information}
+  - {id: fr-v-9da3733fc32b3728, ch: supprimer, pr: /sy.pʁi.me/, ds: to delete}
+  - {id: fr-v-360f53ddec7184be, ch: effacer, pr: /e.fa.se/, ds: to erase}
+  - {id: fr-v-ae8ec47ecc8acd37, ch: rédiger, pr: /ʁe.di.ʒe/, ds: to compose}
+  - {id: fr-v-22a62f82e1709fc1, ch: résumer, pr: /ʁe.zy.me/, ds: 'to summarize, to sum up'}
+  - {id: fr-v-d25185b0a097f9be, ch: reformuler, pr: /ʁə.fɔʁ.my.le/, ds: 'to reword, to rephrase'}
+  - {id: fr-v-b4839745c2668dd9, ch: compléter, pr: /kɔ̃.ple.te/, ds: to complete}
+  - {id: fr-v-1ef8babf62b0e628, ch: joindre, pr: /ʒwɛ̃dʁ/, ds: to join}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-84cad7e34180feff, ch: commentaire, pr: /kɔ.mɑ̃.tɛʁ/, ds: 'comment, remark'}
+  - {id: fr-v-0d0c9fabe0c55a6c, ch: remarque, pr: /ʁə.maʁk/, ds: 'remark (comment, something said)'}
+  - {id: fr-v-0329de00f2738f7c, ch: suggestion, pr: /syɡ.ʒɛs.tjɔ̃/, ds: suggestion; proposal}
+  - {id: fr-v-acb17d09c4b92405, ch: conseil, pr: /kɔ̃.sɛj/, ds: piece of advice}
+  - {id: fr-v-aa3911aea234c5de, ch: recommandation, pr: /ʁə.kɔ.mɑ̃.da.sjɔ̃/, ds: recommendation}
+  - {id: fr-v-984d50fe7a5afebe, ch: informer, pr: /ɛ̃.fɔʁ.me/, ds: to inform; to enlighten; to impart knowledge (upon)}
+  - {id: fr-v-849d7e27cf36f882, ch: renseigner, pr: /ʁɑ̃.sɛ.ɲe/, ds: to advise; to inform}
+  - {id: fr-v-4f7c21e11755df90, ch: annoncer, pr: /a.nɔ̃.se/, ds: to announce}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-12-communication-04
+  title: Contact and communication - 4
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary:
+  - {id: fr-v-ea3e73cdec574806, ch: inclure, pr: /ɛ̃.klyʁ/, ds: to include}
+  - {id: fr-v-21a8e6807b123303, ch: omettre, pr: /ɔ.mɛtʁ/, ds: to omit}
+  - {id: fr-v-cc9c88061fa7fb9b, ch: distinguer, pr: /dis.tɛ̃.ɡe/, ds: to distinguish}
+  - {id: fr-v-d18e8a93a8e9668e, ch: identifier, pr: /i.dɑ̃.ti.fje/, ds: to identify}
+  - {id: fr-v-9b1c6dc28037fa3f, ch: désigner, pr: /de.zi.ɲe/, ds: to designate}
+  - {id: fr-v-c746ce0320c3b2a5, ch: référer, pr: /ʁe.fe.ʁe/, ds: to refer (someone)}
+  - {id: fr-v-7fccfdef01c7c6b8, ch: concerner, pr: /kɔ̃.sɛʁ.ne/, ds: 'to concern (be concerned with, be associated with)'}
+  - {id: fr-v-afe7ae71d73cf0bf, ch: règle, pr: /ʁɛɡl/, ds: rule; regulation}
+  - {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to record for later use or playback}
+  - {id: fr-v-aab93c744b03ab11, ch: pièce, pr: /pjɛs/, ds: document; legal paper}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-8843c46a8cf3c46f, ch: sauvegarder, pr: /sov.ɡaʁ.de/, ds: to save digital information}
+  - {id: fr-v-9da3733fc32b3728, ch: supprimer, pr: /sy.pʁi.me/, ds: to delete}
+  - {id: fr-v-360f53ddec7184be, ch: effacer, pr: /e.fa.se/, ds: to erase}
+  - {id: fr-v-ae8ec47ecc8acd37, ch: rédiger, pr: /ʁe.di.ʒe/, ds: to compose}
+  - {id: fr-v-22a62f82e1709fc1, ch: résumer, pr: /ʁe.zy.me/, ds: 'to summarize, to sum up'}
+  - {id: fr-v-d25185b0a097f9be, ch: reformuler, pr: /ʁə.fɔʁ.my.le/, ds: 'to reword, to rephrase'}
+  - {id: fr-v-b4839745c2668dd9, ch: compléter, pr: /kɔ̃.ple.te/, ds: to complete}
+  - {id: fr-v-1ef8babf62b0e628, ch: joindre, pr: /ʒwɛ̃dʁ/, ds: to join}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-12-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning experience or approach and respond to clarification questions.
+  vocabulary:
+  - {id: fr-v-e060358778c119e8, ch: apprentissage, pr: /a.pʁɑ̃.ti.saʒ/, ds: apprenticeship}
+  - {id: fr-v-d1735709d2cdf728, ch: enseignement, pr: /ɑ̃.sɛ.ɲ(ə).mɑ̃/, ds: 'education, teaching'}
+  - {id: fr-v-8c76da0d6a0b337c, ch: éducation, pr: /e.dy.ka.sjɔ̃/, ds: education (all meanings)}
+  - {id: fr-v-2727781f8cf5973b, ch: pédagogie, pr: /pe.da.ɡɔ.ʒi/, ds: pedagogy; education}
+  - {id: fr-v-ed4856793a5b1f64, ch: compréhension, pr: /kɔ̃.pʁe.ɑ̃.sjɔ̃/, ds: 'comprehension, understanding'}
+  - {id: fr-v-a5d9188ae7415742, ch: mémoire, pr: /me.mwaʁ/, ds: memory}
+  - {id: fr-v-07f7de628393c0f2, ch: concentration, pr: /kɔ̃.sɑ̃.tʁa.sjɔ̃/, ds: concentration (mental state of being concentrated)}
+  - {id: fr-v-24e54158efe2738f, ch: effort, pr: /e.fɔʁ/, ds: effort}
+  - {id: fr-v-a220d0c0ce9b100c, ch: progrès, pr: /pʁɔ.ɡʁɛ/, ds: progress}
+  - {id: fr-v-a90462e4b2444177, ch: difficulté, pr: /di.fi.kyl.te/, ds: difficulty}
+  - {id: fr-v-3ce907ab6d217fd9, ch: capacité, pr: /ka.pa.si.te/, ds: skill (capacity to do something well)}
+  - {id: fr-v-18fa11d64a65ce4c, ch: aptitude, pr: /ap.ti.tyd/, ds: aptitude}
+  - {id: fr-v-09c2de863dfe6138, ch: niveau, pr: /ni.vo/, ds: level (general)}
+  - {id: fr-v-20c02725a3d45d5b, ch: débutant, pr: /de.by.tɑ̃/, ds: 'debutant, newbie, beginner'}
+  - {id: fr-v-f91ee7194d4f772f, ch: intermédiaire, pr: /ɛ̃.tɛʁ.me.djɛʁ/, ds: intermediary}
+  - {id: fr-v-ef215a263e37a6a8, ch: avancé, pr: /a.vɑ̃.se/, ds: advanced (well developed)}
+  - {id: fr-v-9079abdb4a808032, ch: autonomie, pr: /o.tɔ.nɔ.mi/, ds: autonomy}
+  - {id: fr-v-0be89db1d55f7b10, ch: accompagnement, pr: /a.kɔ̃.paɲ.mɑ̃/, ds: accompaniment}
+  - {id: fr-v-99603aed8c51cb1c, ch: évaluation, pr: /e.va.lɥa.sjɔ̃/, ds: assessment}
+  - {id: fr-v-c083542113c23414, ch: activité, pr: /ak.ti.vi.te/, ds: activity; something to do}
+  - {id: fr-v-ba741ece38c0e693, ch: entraînement, pr: /ɑ̃.tʁɛn.mɑ̃/, ds: training}
+  - {id: fr-v-f28c073da96dc046, ch: révision, pr: /ʁe.vi.zjɔ̃/, ds: revision}
+  - {id: fr-v-ac27714311701c53, ch: oral, pr: /ɔ.ʁal/, ds: oral}
+  - {id: fr-v-e1f246fd047fe22c, ch: écrit, pr: /e.kʁi/, ds: writing}
+  - {id: fr-v-882b58dd948b7fc5, ch: écoute, pr: /e.kut/, ds: the act of listening}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-cafa3ea50fa7463b, ch: enseigner, pr: /ɑ̃.sɛ.ɲe/, ds: 'to teach, to instruct, to educate'}
+  - {id: fr-v-6ad7cb2e1184a5e9, ch: pratiquer, pr: /pʁa.ti.ke/, ds: to do; to practise}
+  - {id: fr-v-f391eefcd70057cf, ch: réviser, pr: /ʁe.vi.ze/, ds: 'to revise, review'}
+  - {id: fr-v-01e523f0c386c3d3, ch: traduire, pr: /tʁa.dɥiʁ/, ds: to translate}
+  - {id: fr-v-25c8f7f5e9f31e73, ch: prononcer, pr: /pʁɔ.nɔ̃.se/, ds: to pronounce}
+  - {id: fr-v-7d5daa535cad4fae, ch: corriger, pr: /kɔ.ʁi.ʒe/, ds: to correct}
+  - {id: fr-v-2d10953f981d143f, ch: retenir, pr: /ʁə.t(ə).niʁ/, ds: to remember; to retain in memory}
+  - {id: fr-v-f213384880166813, ch: savoir, pr: /sa.vwaʁ/, ds: to know how to do something}
+  review_grammar: []
+- id: level-12-learning-02
+  title: Learning and education - 2
+  outcome: Explain a learning experience or approach and respond to clarification questions.
+  vocabulary:
+  - {id: fr-v-de9564b3a7ad90b2, ch: expression, pr: /ɛk.spʁɛ.sjɔ̃/, ds: expression}
+  - {id: fr-v-a06434c82faea7f7, ch: dialogue, pr: /dja.lɔɡ/, ds: dialogue}
+  - {id: fr-v-36a868804d34c7f7, ch: conversation, pr: /kɔ̃.vɛʁ.sa.sjɔ̃/, ds: conversation}
+  - {id: fr-v-7d4815683f974f3a, ch: débat, pr: /de.ba/, ds: debate}
+  - {id: fr-v-a9a8e92d147a5c31, ch: présentation, pr: /pʁe.zɑ̃.ta.sjɔ̃/, ds: the act of presenting}
+  - {id: fr-v-6e87baa00506eaea, ch: exposé, pr: /ɛk.spo.ze/, ds: presentation}
+  - {id: fr-v-8ccee649028fa44b, ch: dissertation, pr: /di.sɛʁ.ta.sjɔ̃/, ds: 'dissertation, essay'}
+  - {id: fr-v-ddd0ba92247f26d7, ch: paragraphe, pr: /pa.ʁa.ɡʁaf/, ds: paragraph}
+  - {id: fr-v-c4a8100b1fac4914, ch: texte, pr: /tɛkst/, ds: text (piece of writing)}
+  - {id: fr-v-f19a628a5ab89d73, ch: titre, pr: /titʁ/, ds: 'heading, title (name of a piece of work)'}
+  - {id: fr-v-945624bbd10769f2, ch: sous-titre, pr: /su.titʁ/, ds: subtitle (a heading below or after a title)}
+  - {id: fr-v-7559253023174895, ch: chapitre, pr: /ʃa.pitʁ/, ds: chapter}
+  - {id: fr-v-4564b1a74858b6ad, ch: page, pr: /paʒ/, ds: 'page (of a book, etc.)'}
+  - {id: fr-v-496052787a3b522f, ch: ligne, pr: /liɲ/, ds: line}
+  - {id: fr-v-25b89e043583428c, ch: alphabet, pr: /al.fa.bɛ/, ds: alphabet (set of letters considered as a group)}
+  - {id: fr-v-516387c4a32ee08a, ch: syllabe, pr: /si.lab/, ds: syllable}
+  - {id: fr-v-6053d3cba38dc914, ch: accent, pr: /ak.sɑ̃/, ds: 'accent, manner or tone of speech'}
+  - {id: fr-v-9a6a47124d6c23ff, ch: ponctuation, pr: /pɔ̃k.tɥa.sjɔ̃/, ds: punctuation}
+  - {id: fr-v-1417cdab74dd9240, ch: virgule, pr: /viʁ.ɡyl/, ds: comma (punctuation mark)}
+  - {id: fr-v-6fcf380f7dd9a19a, ch: point, pr: /pwɛ̃/, ds: point (small mark)}
+  - {id: fr-v-bd08e0000eee75e2, ch: parenthèse, pr: /pa.ʁɑ̃.tɛz/, ds: 'parenthesis, digression'}
+  - {id: fr-v-320d1889061fbacf, ch: guillemet, pr: /ɡij.mɛ/, ds: quotation mark}
+  - {id: fr-v-7591cd6e656dc78b, ch: trait, pr: /tʁɛ/, ds: line}
+  - {id: fr-v-647cc16f3490d097, ch: orthographe, pr: /ɔʁ.to.ɡʁaf/, ds: orthography; spelling}
+  - {id: fr-v-ba866e271b716db3, ch: conjugaison, pr: /kɔ̃.ʒy.ɡɛ.zɔ̃/, ds: conjugation}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-0be89db1d55f7b10, ch: accompagnement, pr: /a.kɔ̃.paɲ.mɑ̃/, ds: accompaniment}
+  - {id: fr-v-99603aed8c51cb1c, ch: évaluation, pr: /e.va.lɥa.sjɔ̃/, ds: assessment}
+  - {id: fr-v-c083542113c23414, ch: activité, pr: /ak.ti.vi.te/, ds: activity; something to do}
+  - {id: fr-v-ba741ece38c0e693, ch: entraînement, pr: /ɑ̃.tʁɛn.mɑ̃/, ds: training}
+  - {id: fr-v-f28c073da96dc046, ch: révision, pr: /ʁe.vi.zjɔ̃/, ds: revision}
+  - {id: fr-v-ac27714311701c53, ch: oral, pr: /ɔ.ʁal/, ds: oral}
+  - {id: fr-v-e1f246fd047fe22c, ch: écrit, pr: /e.kʁi/, ds: writing}
+  - {id: fr-v-882b58dd948b7fc5, ch: écoute, pr: /e.kut/, ds: the act of listening}
+  review_grammar: []
+- id: level-12-learning-03
+  title: Learning and education - 3
+  outcome: Explain a learning experience or approach and respond to clarification questions.
+  vocabulary:
+  - {id: fr-v-b3f45778cb99df55, ch: verbe, pr: /vɛʁb/, ds: verb; grammatical word class}
+  - {id: fr-v-49fbfdf990f8dc0b, ch: adjectif, pr: /a.dʒɛk.tif/, ds: adjective}
+  - {id: fr-v-8dbed7f7371283a7, ch: adverbe, pr: /ad.vɛʁb/, ds: adverb (lexical category)}
+  - {id: fr-v-e719f556947f924f, ch: pronom, pr: /pʁɔ.nɔ̃/, ds: pronoun}
+  - {id: fr-v-34579cbd6d9e3bfd, ch: préposition, pr: /pʁe.po.zi.sjɔ̃/, ds: preposition}
+  - {id: fr-v-95d95cf5d1d2623c, ch: sujet, pr: /sy.ʒɛ/, ds: subject; grammatical role}
+  - {id: fr-v-b773afea339d9a06, ch: féminin, pr: /fe.mi.nɛ̃/, ds: female}
+  - {id: fr-v-82e002348a2184d8, ch: masculin, pr: /mas.ky.lɛ̃/, ds: male}
+  - {id: fr-v-f67ee188d56ea6da, ch: singulier, pr: /sɛ̃.ɡy.lje/, ds: singular}
+  - {id: fr-v-4f65aa18afdc0581, ch: pluriel, pr: /ply.ʁjɛl/, ds: plural}
+  - {id: fr-v-8837ed2da96b5874, ch: infinitif, pr: /ɛ̃.fi.ni.tif/, ds: infinitive (uninflected verb form)}
+  - {id: fr-v-c719b620c176ba58, ch: participe, pr: /paʁ.ti.sip/, ds: participle}
+  - {id: fr-v-e77451f587529369, ch: temps, pr: /tɑ̃/, ds: tense; grammatical time reference}
+  - {id: fr-v-7281e8a386e96536, ch: mode, pr: /mɔd/, ds: mood; grammatical verb category}
+  - {id: fr-v-8f599235856cd4b5, ch: article, pr: /aʁ.tikl/, ds: article; grammatical determiner}
+  - {id: fr-v-282ea9944dc1ba81, ch: lettre, pr: /lɛtʁ/, ds: letter; written character}
+  - {id: fr-v-d7a72d4eb9550edc, ch: connaissance, pr: /kɔ.nɛ.sɑ̃s/, ds: knowledge}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-9a6a47124d6c23ff, ch: ponctuation, pr: /pɔ̃k.tɥa.sjɔ̃/, ds: punctuation}
+  - {id: fr-v-1417cdab74dd9240, ch: virgule, pr: /viʁ.ɡyl/, ds: comma (punctuation mark)}
+  - {id: fr-v-6fcf380f7dd9a19a, ch: point, pr: /pwɛ̃/, ds: point (small mark)}
+  - {id: fr-v-bd08e0000eee75e2, ch: parenthèse, pr: /pa.ʁɑ̃.tɛz/, ds: 'parenthesis, digression'}
+  - {id: fr-v-320d1889061fbacf, ch: guillemet, pr: /ɡij.mɛ/, ds: quotation mark}
+  - {id: fr-v-7591cd6e656dc78b, ch: trait, pr: /tʁɛ/, ds: line}
+  - {id: fr-v-647cc16f3490d097, ch: orthographe, pr: /ɔʁ.to.ɡʁaf/, ds: orthography; spelling}
+  - {id: fr-v-ba866e271b716db3, ch: conjugaison, pr: /kɔ̃.ʒy.ɡɛ.zɔ̃/, ds: conjugation}
+  review_grammar: []
+- id: level-12-media-01
+  title: Media and information - 1
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary:
+  - {id: fr-v-320068d7720a833d, ch: journal, pr: /ʒuʁ.nal/, ds: newspaper}
+  - {id: fr-v-be9b2b424eb45aab, ch: magazine, pr: /ma.ɡa.zin/, ds: magazine (periodical publication)}
+  - {id: fr-v-5bf1e41cf0030a3c, ch: revue, pr: /ʁə.vy/, ds: 'magazine, journal'}
+  - {id: fr-v-07bec40f6d4d4bc5, ch: hebdomadaire, pr: /ɛb.dɔ.ma.dɛʁ/, ds: weekly}
+  - {id: fr-v-6917548c517a958d, ch: presse, pr: /pʁɛs/, ds: 'press, papers (the media)'}
+  - {id: fr-v-7d87ed8525a3b47e, ch: radio, pr: /ʁa.djo/, ds: 'radio, tuner'}
+  - {id: fr-v-03cb12a47bd7ce21, ch: télévision, pr: /te.le.vi.zjɔ̃/, ds: television}
+  - {id: fr-v-a79c74b3753affb5, ch: émission, pr: /e.mi.sjɔ̃/, ds: programme; broadcast show}
+  - {id: fr-v-433118b12e4621ab, ch: programme, pr: /pʁɔ.ɡʁam/, ds: a program (set of structured activities)}
+  - {id: fr-v-63a59871fbbf33f9, ch: reportage, pr: /ʁə.pɔʁ.taʒ/, ds: reportage}
+  - {id: fr-v-370312eed12bcbbb, ch: interview, pr: /ɛ̃.tɛʁ.vju/, ds: interview (by a journalist)}
+  - {id: fr-v-d207bf410a088bdd, ch: journaliste, pr: /ʒuʁ.na.list/, ds: a journalist}
+  - {id: fr-v-aea0efad3f973b0f, ch: rédacteur, pr: /ʁedaktœʁ/, ds: editor (main writer of e.g. a newspaper)}
+  - {id: fr-v-dd6bcb90fc093f01, ch: lecteur, pr: /lɛk.tœʁ/, ds: reader}
+  - {id: fr-v-84e196ffc57448ab, ch: auditeur, pr: /o.di.tœʁ/, ds: listener}
+  - {id: fr-v-9b58ad6933e1ebb6, ch: public, pr: /py.blik/, ds: public (people in general)}
+  - {id: fr-v-7b935a9eac148d90, ch: contenu, pr: /kɔ̃t.ny/, ds: content; subject matter}
+  - {id: fr-v-099bc03d9438f618, ch: rubrique, pr: /ʁy.bʁik/, ds: 'category, heading'}
+  - {id: fr-v-744d767728f63886, ch: éditorial, pr: /e.di.tɔ.ʁjal/, ds: editorial}
+  - {id: fr-v-c9b324e06bad3c0c, ch: chronique, pr: /kʁɔ.nik/, ds: chronicle}
+  - {id: fr-v-fd626dc8d7f28493, ch: actualité, pr: /ak.tɥa.li.te/, ds: topic; topicality}
+  - {id: fr-v-6e1fb054411039d2, ch: source, pr: /suʁs/, ds: source; origin of information}
+  - {id: fr-v-d3e3c83b4f1bea3b, ch: auteur, pr: /o.tœʁ/, ds: author}
+  - {id: fr-v-b1907a120c53b7aa, ch: destinataire, pr: /dɛs.ti.na.tɛʁ/, ds: 'recipient, addressee'}
+  - {id: fr-v-8915b88e3dab9a65, ch: expéditeur, pr: /ɛk.spe.di.tœʁ/, ds: 'sender, transmitter'}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-12-media-02
+  title: Media and information - 2
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary:
+  - {id: fr-v-74690db75a1f0896, ch: interlocuteur, pr: /ɛ̃.tɛʁ.lɔ.ky.tœʁ/, ds: 'interlocutor, person with whom one speaks'}
+  - {id: fr-v-91253cf2c3e65d46, ch: annonceur, pr: /a.nɔ̃.sœʁ/, ds: 'announcer, commentator'}
+  - {id: fr-v-56395aa232e337c4, ch: éditeur, pr: /e.di.tœʁ/, ds: editor; publisher}
+  - {id: fr-v-911f7cfe5d807171, ch: publication, pr: /py.bli.ka.sjɔ̃/, ds: publication}
+  - {id: fr-v-3d0fcb18f7a22377, ch: abonnement, pr: /a.bɔn.mɑ̃/, ds: subscription}
+  - {id: fr-v-f3ad1582802cf0c3, ch: diffusion, pr: /di.fy.zjɔ̃/, ds: 'broadcasting, showing'}
+  - {id: fr-v-321ad92e468ed08b, ch: imprimerie, pr: /ɛ̃.pʁim.ʁi/, ds: printing}
+  - {id: fr-v-7988ea78dc411b32, ch: illustration, pr: /i.lys.tʁa.sjɔ̃/, ds: illustration}
+  - {id: fr-v-822b5134bcea5353, ch: photographie, pr: /fɔ.tɔ.ɡʁa.fi/, ds: photography}
+  - {id: fr-v-6fe9de990baa7e65, ch: image, pr: /i.maʒ/, ds: 'picture, image'}
+  - {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article; nonfiction text}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-099bc03d9438f618, ch: rubrique, pr: /ʁy.bʁik/, ds: 'category, heading'}
+  - {id: fr-v-744d767728f63886, ch: éditorial, pr: /e.di.tɔ.ʁjal/, ds: editorial}
+  - {id: fr-v-c9b324e06bad3c0c, ch: chronique, pr: /kʁɔ.nik/, ds: chronicle}
+  - {id: fr-v-fd626dc8d7f28493, ch: actualité, pr: /ak.tɥa.li.te/, ds: topic; topicality}
+  - {id: fr-v-6e1fb054411039d2, ch: source, pr: /suʁs/, ds: source; origin of information}
+  - {id: fr-v-d3e3c83b4f1bea3b, ch: auteur, pr: /o.tœʁ/, ds: author}
+  - {id: fr-v-b1907a120c53b7aa, ch: destinataire, pr: /dɛs.ti.na.tɛʁ/, ds: 'recipient, addressee'}
+  - {id: fr-v-8915b88e3dab9a65, ch: expéditeur, pr: /ɛk.spe.di.tœʁ/, ds: 'sender, transmitter'}
+  review_grammar: []
+- id: level-12-communication-practice-01
+  title: Contact and communication - sentence practice 1
+  outcome: Convey relevant information and repair a misunderstanding with suitable politeness.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-relative-qui-que, ch: nom + qui + verbe ; nom + que + sujet + verbe, ds: Relative qui is a subject and que a direct object}
+  - {id: fr-g-indirect-questions, ch: demander / savoir + si / où / ce que + sujet + verbe, ds: Embed a question without direct-question inversion}
+  review_vocabulary:
+  - {id: fr-v-cecc5bedb850a554, ch: parler, pr: /paʁ.le/, ds: 'to speak, talk'}
+  - {id: fr-v-2dba9f88fd442914, ch: écrire, pr: /e.kʁiʁ/, ds: to write}
+  - {id: fr-v-4dcfce5510fbc326, ch: savoir, pr: /sa.vwaʁ/, ds: to know (something)}
+  - {id: fr-v-79dc1d8bf443d63f, ch: demander, pr: /də.mɑ̃.de/, ds: to ask}
+  - {id: fr-v-cc9c88061fa7fb9b, ch: distinguer, pr: /dis.tɛ̃.ɡe/, ds: to distinguish}
+  - {id: fr-v-d18e8a93a8e9668e, ch: identifier, pr: /i.dɑ̃.ti.fje/, ds: to identify}
+  - {id: fr-v-9b1c6dc28037fa3f, ch: désigner, pr: /de.zi.ɲe/, ds: to designate}
+  - {id: fr-v-c746ce0320c3b2a5, ch: référer, pr: /ʁe.fe.ʁe/, ds: to refer (someone)}
+  - {id: fr-v-7fccfdef01c7c6b8, ch: concerner, pr: /kɔ̃.sɛʁ.ne/, ds: 'to concern (be concerned with, be associated with)'}
+  - {id: fr-v-afe7ae71d73cf0bf, ch: règle, pr: /ʁɛɡl/, ds: rule; regulation}
+  - {id: fr-v-c5403dcd7eabc4be, ch: enregistrer, pr: /ɑ̃.ʁ(ə).ʒis.tʁe/, ds: to record for later use or playback}
+  - {id: fr-v-aab93c744b03ab11, ch: pièce, pr: /pjɛs/, ds: document; legal paper}
+  review_grammar:
+  - {id: fr-g-present-er, ch: radical + -e / -es / -e / -ons / -ez / -ent, ds: Regular -er present forms for speaking and listening}
+  - {id: fr-g-basic-questions, ch: énoncé interrogatif / est-ce que + sujet + verbe, ds: Ask a yes-no question without changing statement order}
+  - {id: fr-g-negative-pas, ch: sujet + ne / n' + verbe + pas, ds: Standard two-part negation around a finite verb}
+- id: level-12-time-practice-01
+  title: Time and events - sentence practice 1
+  outcome: Relate events and clarify their sequence and circumstances.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-relative-ou, ch: lieu / moment + où + proposition, ds: Link a place or time with relative où}
+  review_vocabulary:
+  - {id: fr-v-23e5dda7dc9a9361, ch: maison, pr: /mɛ.zɔ̃/, ds: house}
+  - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
+  - {id: fr-v-669e4e1140b37756, ch: momentanément, pr: /mɔ.mɑ̃.ta.ne.mɑ̃/, ds: momentarily}
+  - {id: fr-v-e4c25499d4b01229, ch: jadis, pr: /ʒa.dis/, ds: 'long ago, once, yesteryear, in times past, yore'}
+  - {id: fr-v-a408d8636bc27053, ch: lorsque, pr: /lɔʁsk/, ds: when (at a time when)}
+  - {id: fr-v-458da529b651ef7b, ch: tandis que, pr: /tɑ̃.di kə/, ds: 'whereas, while, whilst'}
+  - {id: fr-v-ff1bda20639ba4ef, ch: dès que, pr: /dɛ k(ə)/, ds: 'once, as soon as'}
+  - {id: fr-v-af18b8696211117c, ch: jusqu'à, pr: /ʒys.k‿a/, ds: until}
+  - {id: fr-v-c5f25df993eb61cc, ch: pendant que, pr: /pɑ̃.dɑ̃ kə/, ds: 'while, whilst, as'}
+  - {id: fr-v-f746294ad9691b38, ch: d'abord, pr: /d‿a.bɔʁ/, ds: 'first, at first, right away'}
+  review_grammar:
+  - {id: fr-g-past-aspect-contrast, ch: imparfait de fond + passé composé d'événement, ds: Contrast an unfolding situation with a bounded event}
+  - {id: fr-g-temporal-clause-sequence, ch: quand / pendant que + proposition ; puis + événement, ds: Organize event order and overlapping circumstances}
+  - {id: fr-g-compound-negation-adverbs, ch: ne + auxiliaire + pas / jamais / plus + participe, ds: Negate or qualify a compound event around its auxiliary}
+- id: level-12-media-practice-01
+  title: Media and information - sentence practice 1
+  outcome: Summarize a source while distinguishing events, attributed claims, and interpretation.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-present-reporting, ch: dire / expliquer que + proposition, ds: Report a statement while tracking its speaker and reference}
+  review_vocabulary:
+  - {id: fr-v-97cb4542cadc0b6b, ch: dire, pr: /diʁ/, ds: 'to say, to tell (to express through speech)'}
+  - {id: fr-v-82d372a542f98615, ch: expliquer, pr: /ɛks.pli.ke/, ds: to explain}
+  - {id: fr-v-911f7cfe5d807171, ch: publication, pr: /py.bli.ka.sjɔ̃/, ds: publication}
+  - {id: fr-v-3d0fcb18f7a22377, ch: abonnement, pr: /a.bɔn.mɑ̃/, ds: subscription}
+  - {id: fr-v-f3ad1582802cf0c3, ch: diffusion, pr: /di.fy.zjɔ̃/, ds: 'broadcasting, showing'}
+  - {id: fr-v-321ad92e468ed08b, ch: imprimerie, pr: /ɛ̃.pʁim.ʁi/, ds: printing}
+  - {id: fr-v-7988ea78dc411b32, ch: illustration, pr: /i.lys.tʁa.sjɔ̃/, ds: illustration}
+  - {id: fr-v-822b5134bcea5353, ch: photographie, pr: /fɔ.tɔ.ɡʁa.fi/, ds: photography}
+  - {id: fr-v-6fe9de990baa7e65, ch: image, pr: /i.maʒ/, ds: 'picture, image'}
+  - {id: fr-v-e6eadccb7699889f, ch: article, pr: /aʁ.tikl/, ds: article; nonfiction text}
+  review_grammar: []

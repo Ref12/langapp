@@ -1,0 +1,158 @@
+# MODIFIED 2026-09-15: Selected current Chinese curriculum characters from pinned
+# Hanzi Writer Data; retained original source bytes in the selected archive.
+# Derived 100-unit padded source-median paths, conservative terminal candidates,
+# and exact paths for five previously reviewed prototype recipes. No new visual
+# approval is implied. Stroke order and original em-box proportions are retained.
+# Copyright (C) 1999 Arphic Technology Co., Ltd.; via Make Me a Hanzi by Shaunak
+# Kishore and contributors and Hanzi Writer Data by David Chanin.
+# Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS,
+# without warranty. Retain licenses/hanzi-writer-ARPHICPL.TXT and modification
+# notices with redistributed source and derived artwork. Independent code is separate.
+id: zh-reviewed-prototype
+version: '1'
+notice: 'MODIFIED 2026-09-15: Selected current Chinese curriculum characters from pinned
+
+  Hanzi Writer Data; retained original source bytes in the selected archive.
+
+  Derived 100-unit padded source-median paths, conservative terminal candidates,
+
+  and exact paths for five previously reviewed prototype recipes. No new visual
+
+  approval is implied. Stroke order and original em-box proportions are retained.
+
+  Copyright (C) 1999 Arphic Technology Co., Ltd.; via Make Me a Hanzi by Shaunak
+
+  Kishore and contributors and Hanzi Writer Data by David Chanin.
+
+  Derived artwork is freely available under the ARPHIC PUBLIC LICENSE, AS IS,
+
+  without warranty. Retain licenses/hanzi-writer-ARPHICPL.TXT and modification
+
+  notices with redistributed source and derived artwork. Independent code is separate.'
+source_revision: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
+prototype_files_sha256:
+  character-data.js: 43ab771e98c45d15f4163826dbca9ed5768391ee8bf66f8800ee62fd9fd0225a
+  character-geometry.js: 639e36f2276aeb9008cd87dff50f59a942700036c46618d9554cbe5965e11fca
+  character-monoline.js: 3223c4e1242bad72743fff0a64277ab0d4066fc67c7ce6d488babf7867128238
+review:
+  reviewer: prior user approval, carried forward by coordinating agent
+  date: '2026-09-15'
+  note: Coordinator carry-forward attestation, not the unknown original review date. Original user approval
+    is recorded in the writing-study conversation; no original date is inferred. Exact ordered numeric
+    geometry, original path hashes and prototype file hashes are retained in this recipe input. This is
+    not a new professional-language review.
+characters:
+  茶:
+    source_member_sha256: a9bf01e1c90c9a153d7200beb3530730fe1af14266f709d32460f1a171be004e
+    strokes:
+    - shape: line
+      from: 1
+      to: 4
+    - shape: line
+      from: 2
+    - shape: line
+      from: 2
+    - shape: curve
+      from: 1
+    - shape: curve
+    - shape: line
+      from: 1
+      to: 3
+    - shape: bend
+      from: 1
+    - shape: curve
+    - shape: curve
+    paths:
+    - M23.868 27.053 L76.986 20.16
+    - M37.688 15.116 L40.859 31.631
+    - M62.972 12.315 L55.977 31.104
+    - M48.783 32.31 Q35.957 51.851 15.107 62.217
+    - M51.318 35.322 Q66.033 55.147 90.342 55.01
+    - M32.96 60.788 L64.175 55.292
+    - M50.3 45.906 L50.015 77.06 Q50 78.74 49.249 80.243 L49.082 80.577 Q48.33 82.08 46.759 81.483 L44.814
+      80.744
+    - M34.707 68.896 Q31.811 75.673 26.885 81.201
+    - M61.914 68.667 L72.171 76.764
+    paths_sha256: 9b0d7c58913d05eeae22b447d223b49c892441a5d635b976af0e098342aa255a
+  雨:
+    source_member_sha256: 0e249bab348c40874b194b2ba75aa185961bd190ca2e09c9a4c303aa34f62e2c
+    strokes:
+    - shape: line
+      from: 2
+      to: 4
+    - shape: line
+      from: 2
+      to: 4
+    - shape: bend
+      from: 2
+    - shape: line
+      from: 2
+      to: 4
+    - shape: curve
+    - shape: curve
+    - shape: curve
+    - shape: curve
+    paths:
+    - M32.757 25.104 L70.508 19.032
+    - M23.277 39.503 L24.42 76.309
+    - M25.133 42.463 L46.869 38.653 Q49.824 38.135 52.806 37.8 L75.031 35.306 Q76.455 35.146 77.721 35.819
+      L78.774 36.378 Q79.268 36.641 79.663 37.036 L79.751 37.124 Q80.146 37.52 80.234 38.072 L80.292 38.438
+      Q80.41 39.189 80.353 39.948 L79.052 57.292 Q78.828 60.283 78.4 63.252 L78.006 65.979 Q77.598 68.809
+      76.886 71.577 L76.457 73.244 Q76.016 74.961 74.908 76.345 L74.662 76.653 Q73.555 78.037 71.906 77.384
+      L65.516 74.854 Q64.678 74.521 63.966 73.968 L63.096 73.291
+    - M50.076 25.321 L48.9 72.143
+    - M35.53 49.896 L38.327 50.936
+    - M34.729 61.641 L37.665 63.039
+    - M60.218 46.659 L63.815 47.608
+    - M60.112 59.459 L63.143 60.671
+    paths_sha256: 2d57c89fccf48d5563097f3a717568c14272705ceaec8ab63bb5dfbafa870fc2
+  杯:
+    source_member_sha256: 6bb07f43f8043a1b36e7e292651e6348092e0777d44815831e01a9d5694da491
+    strokes:
+    - shape: line
+      from: 1
+      to: 4
+    - shape: line
+      from: 1
+      to: 3
+    - shape: curve
+    - shape: curve
+      from: 1
+    - shape: line
+      from: 1
+      to: 3
+    - shape: curve
+      from: 2
+    - shape: line
+      from: 2
+      to: 4
+    - shape: curve
+    paths:
+    - M14.534 40.589 L41.874 34.219
+    - M33.099 11.146 L30.598 82.081
+    - M29.697 39.98 Q24.525 57.51 10.449 69.863
+    - M36.865 47.477 L41.097 49.926
+    - M46.345 31.387 L84.724 23.812
+    - M65.246 31.828 Q57.388 54.823 38.574 70.039
+    - M61.677 42.238 L60.171 84.082
+    - M72.679 55.305 L85.444 63.815
+    paths_sha256: 57fdfd9157921ead3ff3fd4fe9ed86dbebdaf385dd193640e1103b8e662254b9
+  人:
+    source_member_sha256: 18ffb9fb727576b0c3e7dc44914be7ffd43164de9ba121710824b83f27bd3bb1
+    strokes:
+    - shape: curve
+      from: 2
+    - shape: curve
+    paths:
+    - M51.116 20.519 Q43.561 57.211 11.328 75.752
+    - M46.66 42.178 Q59.966 73.335 91.66 76.191
+    paths_sha256: 172f4ed8f5eb2bc364e9c8c5c485530d01f7bc3a43ba89588e1ea93a595d0c01
+  一:
+    source_member_sha256: ed728673d86fb9aa559c5b150e59ffbee666b085d4a55597c524079a91ebc8ce
+    strokes:
+    - shape: line
+      from: 1
+      to: 3
+    paths:
+    - M15.838 51.693 L85.496 45.049
+    paths_sha256: e143b665573032c9af4b6ca21210ebf296d47323c0e19d35dd07a6e9da002185

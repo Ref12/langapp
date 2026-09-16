@@ -1,0 +1,533 @@
+schema_version: 3
+id: ru-level-06
+title: Buying, eating, and everyday care
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 6
+phase: everyday-life
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+goals: &id001
+- Clarify a purchase or ingredient need with the appropriate governed case.
+- Distinguish animate and inanimate direct objects.
+- Explain an ordinary care need while checking the other person's response.
+checkpoint:
+  task: Explain a changed purchase, ingredient, or care need and clarify a proposed response without making a medical or dietary-safety claim.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-06-communication-01
+  title: Communication and repair - 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary:
+  - {id: ru-or-o00196-s003, ch: пожалуйста, pr: пожа́луйста, ds: here you go}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00044-s001, ch: где, pr: где, ds: where}
+  - {id: ru-or-o00079-s001, ch: хорошо, pr: хорошо́, ds: well}
+  - {id: ru-or-o00163-s001, ch: плохо, pr: пло́хо, ds: it is bad}
+  - {id: ru-or-o00157-s001, ch: медленно, pr: ме́дленно, ds: slowly}
+  - {id: ru-or-n01923-s001, ch: переводчик, pr: перево́дчик, ds: translator or interpreter (person)}
+  - {id: ru-or-o00061-s001, ch: можно, pr: мо́жно, ds: it is permitted}
+  - {id: ru-or-o00111-s001, ch: нельзя, pr: нельзя́, ds: not allowed or not possible}
+  - {id: ru-or-v00295-s001, ch: подождать, pr: подожда́ть, ds: wait a while}
+  review_grammar:
+  - {id: ru-g-polite-repair, ch: 'Извините. Повторите, пожалуйста.', ds: Greet politely and ask for communication repair}
+  - {id: ru-g-basic-questions, ch: 'Кто это? Что это? Где [noun]? Когда [event]?', ds: 'Ask identity, location, or time without an auxiliary'}
+  - {id: ru-g-basic-negation, ch: 'Я не [verb]. Это не [noun].', ds: Negate a statement or correct identification}
+- id: level-06-clothing-01
+  title: Clothing and appearance - 1
+  outcome: Describe clothing and compare choices appropriate to a situation.
+  vocabulary:
+  - {id: ru-or-n00387-s001, ch: одежда, pr: оде́жда, ds: clothes}
+  - {id: ru-or-n02041-s001, ch: обувь, pr: о́бувь, ds: footwear}
+  - {id: ru-or-n00685-s001, ch: рубашка, pr: руба́шка, ds: shirt}
+  - {id: ru-or-n08930-s001, ch: футболка, pr: футбо́лка, ds: T-Shirt}
+  - {id: ru-or-n00799-s001, ch: брюки, pr: брю́ки, ds: trousers}
+  - {id: ru-or-n03330-s001, ch: джинсы, pr: джи́нсы, ds: jeans}
+  - {id: ru-or-n01564-s001, ch: юбка, pr: ю́бка, ds: skirt}
+  - {id: ru-or-n00648-s001, ch: платье, pr: пла́тье, ds: dress}
+  - {id: ru-or-n00743-s001, ch: куртка, pr: ку́ртка, ds: jacket}
+  - {id: ru-or-n00826-s001, ch: пальто, pr: пальто́, ds: coat}
+  - {id: ru-or-n00677-s001, ch: шапка, pr: ша́пка, ds: warm hat or cap}
+  - {id: ru-or-n03733-s001, ch: шарф, pr: шарф, ds: scarf}
+  - {id: ru-or-n01674-s001, ch: перчатка, pr: перча́тка, ds: glove}
+  - {id: ru-or-n01334-s001, ch: носок, pr: носо́к, ds: sock}
+  - {id: ru-or-n00920-s001, ch: ботинок, pr: боти́нок, ds: shoe}
+  - {id: ru-or-n00287-s001, ch: сапог, pr: сапо́г, ds: boot}
+  - {id: ru-or-n01472-s001, ch: туфля, pr: ту́фля, ds: shoe (high heels)}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-06-food-01
+  title: Meals and ingredients - 1
+  outcome: Explain a food request and verify the intended ingredients or preference.
+  vocabulary:
+  - {id: ru-or-n02307-s001, ch: овощ, pr: о́вощ, ds: vegetable}
+  - {id: ru-or-n01827-s001, ch: фрукт, pr: фрукт, ds: fruit}
+  - {id: ru-or-n04008-s001, ch: картофель, pr: карто́фель, ds: potato}
+  - {id: ru-or-n02852-s001, ch: помидор, pr: помидо́р, ds: tomato}
+  - {id: ru-or-n02063-s001, ch: огурец, pr: огуре́ц, ds: cucumber}
+  - {id: ru-or-n05726-s001, ch: морковь, pr: морко́вь, ds: carrot}
+  - {id: ru-or-n01024-s001, ch: лук, pr: лук, ds: onion}
+  - {id: ru-or-n04801-s001, ch: чеснок, pr: чесно́к, ds: garlic}
+  - {id: ru-or-n01813-s001, ch: капуста, pr: капу́ста, ds: cabbage}
+  - {id: ru-or-n03273-s001, ch: салат, pr: сала́т, ds: salad}
+  - {id: ru-or-n00560-s001, ch: масло, pr: ма́сло, ds: butter}
+  - {id: ru-or-n03920-s001, ch: сметана, pr: смета́на, ds: sour cream}
+  - {id: ru-or-n12222-s001, ch: йогурт, pr: йо́гурт, ds: yoghurt}
+  - {id: ru-or-n05910-s001, ch: творог, pr: творо́г, ds: cottage cheese}
+  - {id: ru-or-n02068-s001, ch: курица, pr: ку́рица, ds: chicken}
+  - {id: ru-or-n07114-s001, ch: говядина, pr: говя́дина, ds: beef}
+  - {id: ru-or-n05708-s001, ch: свинина, pr: свини́на, ds: pork meat}
+  - {id: ru-or-n01418-s001, ch: колбаса, pr: колбаса́, ds: sausage}
+  - {id: ru-or-n01413-s001, ch: сок, pr: сок, ds: juice}
+  - {id: ru-or-n02511-s001, ch: лимон, pr: лимо́н, ds: lemon}
+  - {id: ru-or-n03285-s001, ch: апельсин, pr: апельси́н, ds: orange (fruit)}
+  - {id: ru-or-n04836-s001, ch: банан, pr: бана́н, ds: banana}
+  - {id: ru-or-n02441-s001, ch: груша, pr: гру́ша, ds: pear}
+  - {id: ru-or-n01774-s001, ch: ягода, pr: я́года, ds: berry}
+  - {id: ru-or-n02938-s001, ch: виноград, pr: виногра́д, ds: grapes}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01152-s001, ch: соль, pr: соль, ds: salt}
+  - {id: ru-or-n01158-s001, ch: завтрак, pr: за́втрак, ds: breakfast}
+  - {id: ru-or-n00468-s001, ch: обед, pr: обе́д, ds: lunch}
+  - {id: ru-or-n00948-s001, ch: ужин, pr: у́жин, ds: supper}
+  - {id: ru-or-v00006-s001, ch: есть, pr: есть, ds: eat}
+  - {id: ru-or-v00135-s001, ch: пить, pr: пить, ds: drink}
+  - {id: ru-or-v00373-s001, ch: готовить, pr: гото́вить, ds: cook}
+  - {id: ru-or-v00034-s001, ch: любить, pr: люби́ть, ds: like}
+  review_grammar:
+  - {id: ru-g-want-infinitive, ch: 'хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]', ds: Express a wish with irregular хотеть}
+  - {id: ru-g-accusative-object, ch: 'читать / пить + [accusative object]', ds: Mark a simple direct object in the accusative}
+- id: level-06-food-02
+  title: Meals and ingredients - 2
+  outcome: Explain a food request and verify the intended ingredients or preference.
+  vocabulary:
+  - {id: ru-or-n00774-s001, ch: гриб, pr: гриб, ds: mushroom}
+  - {id: ru-or-n04404-s001, ch: печенье, pr: пече́нье, ds: cookie}
+  - {id: ru-or-n02201-s001, ch: конфета, pr: конфе́та, ds: candy}
+  - {id: ru-or-n03301-s001, ch: шоколад, pr: шокола́д, ds: chocolate}
+  - {id: ru-or-n14521-s001, ch: мороженое, pr: моро́женое, ds: ice-cream}
+  - {id: ru-or-n03773-s001, ch: торт, pr: торт, ds: cake}
+  - {id: ru-or-n26432-s001, ch: мука, pr: мука́, ds: flour}
+  - {id: ru-or-n02082-s001, ch: перец, pr: пе́рец, ds: pepper}
+  - {id: ru-or-n03183-s001, ch: пшеница, pr: пшени́ца, ds: wheat}
+  - {id: ru-or-n09389-s001, ch: рожь, pr: рожь, ds: rye}
+  - {id: ru-or-n05348-s001, ch: овёс, pr: овёс, ds: oats}
+  - {id: ru-or-n04693-s001, ch: крупа, pr: крупа́, ds: cereals}
+  - {id: ru-or-n01210-s001, ch: каша, pr: ка́ша, ds: porridge}
+  - {id: ru-or-n05023-s001, ch: макароны, pr: макаро́ны, ds: macaroni}
+  - {id: ru-or-n06207-s001, ch: лапша, pr: лапша́, ds: noodles}
+  - {id: ru-or-n02059-s001, ch: орех, pr: оре́х, ds: nut}
+  - {id: ru-or-n15366-s001, ch: арахис, pr: ара́хис, ds: peanut}
+  - {id: ru-or-n11699-s001, ch: миндаль, pr: минда́ль, ds: almond}
+  - {id: ru-or-n02099-s001, ch: мёд, pr: мёд, ds: honey}
+  - {id: ru-or-n02902-s001, ch: варенье, pr: варе́нье, ds: jam}
+  - {id: ru-or-n09843-s001, ch: джем, pr: джем, ds: jam}
+  - {id: ru-or-n06206-s001, ch: булочка, pr: бу́лочка, ds: roll}
+  - {id: ru-or-n03508-s001, ch: пирог, pr: пиро́г, ds: pie}
+  - {id: ru-or-n02174-s001, ch: блин, pr: блин, ds: pancake}
+  - {id: ru-or-n05647-s001, ch: пельмень, pr: пельме́нь, ds: meat dumpling}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n01418-s001, ch: колбаса, pr: колбаса́, ds: sausage}
+  - {id: ru-or-n01413-s001, ch: сок, pr: сок, ds: juice}
+  - {id: ru-or-n02511-s001, ch: лимон, pr: лимо́н, ds: lemon}
+  - {id: ru-or-n03285-s001, ch: апельсин, pr: апельси́н, ds: orange (fruit)}
+  - {id: ru-or-n04836-s001, ch: банан, pr: бана́н, ds: banana}
+  - {id: ru-or-n02441-s001, ch: груша, pr: гру́ша, ds: pear}
+  - {id: ru-or-n01774-s001, ch: ягода, pr: я́года, ds: berry}
+  - {id: ru-or-n02938-s001, ch: виноград, pr: виногра́д, ds: grapes}
+  review_grammar:
+  - {id: ru-g-want-infinitive, ch: 'хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]', ds: Express a wish with irregular хотеть}
+  - {id: ru-g-accusative-object, ch: 'читать / пить + [accusative object]', ds: Mark a simple direct object in the accusative}
+- id: level-06-food-03
+  title: Meals and ingredients - 3
+  outcome: Explain a food request and verify the intended ingredients or preference.
+  vocabulary:
+  - {id: ru-or-n04204-s001, ch: сосиска, pr: соси́ска, ds: sausage}
+  - {id: ru-or-n05338-s001, ch: ветчина, pr: ветчина́, ds: ham}
+  - {id: ru-or-n10788-s001, ch: индейка, pr: инде́йка, ds: turkey}
+  - {id: ru-or-n14542-s001, ch: утка, pr: у́тка, ds: duck}
+  - {id: ru-or-n06048-s001, ch: баранина, pr: бара́нина, ds: mutton}
+  - {id: ru-or-n06996-s001, ch: креветка, pr: креве́тка, ds: shrimp}
+  - {id: ru-or-n05487-s001, ch: краб, pr: краб, ds: crab}
+  - {id: ru-or-n02203-s001, ch: икра, pr: икра́, ds: caviar}
+  - {id: ru-or-n12217-s001, ch: сельдь, pr: сельдь, ds: herring}
+  - {id: ru-or-n10389-s001, ch: лосось, pr: лосо́сь, ds: salmon}
+  - {id: ru-or-n26890-s001, ch: тунец, pr: туне́ц, ds: tuna}
+  - {id: ru-or-n09171-s001, ch: фасоль, pr: фасо́ль, ds: haricot}
+  - {id: ru-or-n03797-s001, ch: горох, pr: горо́х, ds: peas}
+  - {id: ru-or-n26469-s001, ch: свёкла, pr: свёкла, ds: beet}
+  - {id: ru-or-n06072-s001, ch: кабачок, pr: кабачо́к, ds: marrow}
+  - {id: ru-or-n11896-s001, ch: баклажан, pr: баклажа́н, ds: aubergine}
+  - {id: ru-or-n04956-s001, ch: тыква, pr: ты́ква, ds: pumpkin}
+  - {id: ru-or-n07137-s001, ch: петрушка, pr: петру́шка, ds: Parsley}
+  - {id: ru-or-n09511-s001, ch: укроп, pr: укро́п, ds: dill}
+  - {id: ru-or-n22407-s001, ch: редис, pr: реди́с, ds: radish}
+  - {id: ru-or-n05428-s001, ch: вишня, pr: ви́шня, ds: cherry}
+  - {id: ru-or-n12412-s001, ch: черешня, pr: чере́шня, ds: sweet cherry}
+  - {id: ru-or-n05709-s001, ch: слива, pr: слива́, ds: plum}
+  - {id: ru-or-n05392-s001, ch: персик, pr: пе́рсик, ds: peach}
+  - {id: ru-or-n07592-s001, ch: абрикос, pr: абрико́с, ds: apricot}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n11699-s001, ch: миндаль, pr: минда́ль, ds: almond}
+  - {id: ru-or-n02099-s001, ch: мёд, pr: мёд, ds: honey}
+  - {id: ru-or-n02902-s001, ch: варенье, pr: варе́нье, ds: jam}
+  - {id: ru-or-n09843-s001, ch: джем, pr: джем, ds: jam}
+  - {id: ru-or-n06206-s001, ch: булочка, pr: бу́лочка, ds: roll}
+  - {id: ru-or-n03508-s001, ch: пирог, pr: пиро́г, ds: pie}
+  - {id: ru-or-n02174-s001, ch: блин, pr: блин, ds: pancake}
+  - {id: ru-or-n05647-s001, ch: пельмень, pr: пельме́нь, ds: meat dumpling}
+  review_grammar:
+  - {id: ru-g-want-infinitive, ch: 'хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]', ds: Express a wish with irregular хотеть}
+  - {id: ru-g-accusative-object, ch: 'читать / пить + [accusative object]', ds: Mark a simple direct object in the accusative}
+- id: level-06-food-04
+  title: Meals and ingredients - 4
+  outcome: Explain a food request and verify the intended ingredients or preference.
+  vocabulary:
+  - {id: ru-or-n07682-s001, ch: клубника, pr: клубни́ка, ds: strawberry}
+  - {id: ru-or-n04901-s001, ch: малина, pr: мали́на, ds: raspberry}
+  - {id: ru-or-n03955-s001, ch: арбуз, pr: арбу́з, ds: water-melon}
+  - {id: ru-or-n05167-s001, ch: дыня, pr: ды́ня, ds: melon}
+  - {id: ru-or-n07570-s001, ch: ананас, pr: анана́с, ds: pineapple}
+  - {id: ru-or-n02917-s001, ch: гранат, pr: грана́т, ds: pomegranate}
+  - {id: ru-or-n09555-s001, ch: изюм, pr: изю́м, ds: raisins}
+  - {id: ru-or-n11339-s001, ch: финик, pr: фи́ник, ds: date}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n07137-s001, ch: петрушка, pr: петру́шка, ds: Parsley}
+  - {id: ru-or-n09511-s001, ch: укроп, pr: укро́п, ds: dill}
+  - {id: ru-or-n22407-s001, ch: редис, pr: реди́с, ds: radish}
+  - {id: ru-or-n05428-s001, ch: вишня, pr: ви́шня, ds: cherry}
+  - {id: ru-or-n12412-s001, ch: черешня, pr: чере́шня, ds: sweet cherry}
+  - {id: ru-or-n05709-s001, ch: слива, pr: слива́, ds: plum}
+  - {id: ru-or-n05392-s001, ch: персик, pr: пе́рсик, ds: peach}
+  - {id: ru-or-n07592-s001, ch: абрикос, pr: абрико́с, ds: apricot}
+  review_grammar:
+  - {id: ru-g-want-infinitive, ch: 'хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]', ds: Express a wish with irregular хотеть}
+  - {id: ru-g-accusative-object, ch: 'читать / пить + [accusative object]', ds: Mark a simple direct object in the accusative}
+- id: level-06-health-01
+  title: Body and wellbeing - 1
+  outcome: Describe a need and seek clarification without making a clinical claim.
+  vocabulary:
+  - {id: ru-or-n00521-s001, ch: здоровье, pr: здоро́вье, ds: health}
+  - {id: ru-or-n00174-s001, ch: боль, pr: боль, ds: pain}
+  - {id: ru-or-n00012-s001, ch: голова, pr: голова́, ds: head}
+  - {id: ru-or-n00412-s001, ch: живот, pr: живо́т, ds: abdomen}
+  - {id: ru-or-n00152-s001, ch: зуб, pr: зуб, ds: tooth}
+  - {id: ru-or-n00544-s001, ch: горло, pr: го́рло, ds: throat}
+  - {id: ru-or-n00768-s001, ch: температура, pr: температу́ра, ds: temperature}
+  - {id: ru-or-n02326-s001, ch: кашель, pr: ка́шель, ds: cough}
+  - {id: ru-or-n05190-s001, ch: насморк, pr: на́сморк, ds: runny nose}
+  - {id: ru-or-n05865-s001, ch: простуда, pr: просту́да, ds: a cold (illness)}
+  - {id: ru-or-n01059-s001, ch: лекарство, pr: лека́рство, ds: medicine}
+  - {id: ru-or-n00503-s001, ch: больница, pr: больни́ца, ds: hospital}
+  - {id: ru-or-n03615-s001, ch: поликлиника, pr: поликли́ника, ds: polyclinic}
+  - {id: ru-or-n02896-s001, ch: рецепт, pr: реце́пт, ds: prescription}
+  - {id: ru-or-n07164-s001, ch: аллергия, pr: аллерги́я, ds: allergy}
+  - {id: ru-or-n01003-s001, ch: симптом, pr: симпто́м, ds: symptom}
+  - {id: ru-or-n01184-s001, ch: анализ, pr: ана́лиз, ds: analysis}
+  - {id: ru-or-v00355-s001, ch: болеть, pr: боле́ть, ds: be ill}
+  - {id: ru-or-v00860-s001, ch: лечить, pr: лечи́ть, ds: treat}
+  - {id: ru-or-v00536-s001, ch: отдыхать, pr: отдыха́ть, ds: rest}
+  - {id: ru-or-v00644-s001, ch: отдохнуть, pr: отдохну́ть, ds: rest}
+  - {id: ru-or-v00062-s001, ch: чувствовать, pr: чу́вствовать, ds: feel}
+  - {id: ru-or-v00355-s901, ch: болеть, pr: боле́ть, ds: ache}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00116-s001, ch: помощь, pr: по́мощь, ds: help}
+  - {id: ru-or-n00172-s001, ch: врач, pr: врач, ds: doctor}
+  - {id: ru-or-n02735-s001, ch: аптека, pr: апте́ка, ds: pharmacy}
+  review_grammar: []
+- id: level-06-services-01
+  title: Services and transactions - 1
+  outcome: Clarify a requirement and respond to an ordinary service problem.
+  vocabulary:
+  - {id: ru-or-n00274-s001, ch: магазин, pr: магази́н, ds: shop}
+  - {id: ru-or-n00432-s001, ch: рынок, pr: ры́нок, ds: market}
+  - {id: ru-or-n05763-s001, ch: супермаркет, pr: суперма́ркет, ds: supermarket}
+  - {id: ru-or-n01985-s001, ch: касса, pr: ка́сса, ds: cash-desk}
+  - {id: ru-or-n04871-s001, ch: кассир, pr: касси́р, ds: cashier}
+  - {id: ru-or-n01834-s001, ch: продавец, pr: продаве́ц, ds: shop assistant}
+  - {id: ru-or-n01656-s001, ch: покупатель, pr: покупа́тель, ds: buyer}
+  - {id: ru-or-n01759-s001, ch: покупка, pr: поку́пка, ds: purchase}
+  - {id: ru-or-n00318-s001, ch: цена, pr: цена́, ds: price}
+  - {id: ru-or-n04173-s001, ch: скидка, pr: ски́дка, ds: discount}
+  - {id: ru-or-n05855-s001, ch: чек, pr: чек, ds: receipt}
+  - {id: ru-or-n02401-s001, ch: сдача, pr: сда́ча, ds: change}
+  - {id: ru-or-n00220-s001, ch: счёт, pr: счёт, ds: bill (amount to pay)}
+  - {id: ru-or-n10057-s001, ch: деньги, pr: де́ньги, ds: money}
+  - {id: ru-or-n00195-s001, ch: рубль, pr: рубль, ds: rouble (Russian currency)}
+  - {id: ru-or-n01308-s001, ch: копейка, pr: копе́йка, ds: copeck}
+  - {id: ru-or-n14753-s001, ch: наличные, pr: нали́чные, ds: cash}
+  - {id: ru-or-n00139-s001, ch: очередь, pr: о́чередь, ds: queue}
+  - {id: ru-or-n00477-s001, ch: размер, pr: разме́р, ds: size}
+  - {id: ru-or-n11045-s001, ch: примерка, pr: приме́рка, ds: trying on}
+  - {id: ru-or-v00066-s001, ch: брать, pr: брать, ds: take}
+  - {id: ru-or-v00675-s001, ch: пробовать, pr: про́бовать, ds: try or sample (imperfective)}
+  - {id: ru-or-v00132-s001, ch: купить, pr: купи́ть, ds: buy}
+  - {id: ru-or-v00485-s001, ch: покупать, pr: покупа́ть, ds: buy}
+  - {id: ru-or-v00412-s001, ch: продать, pr: прода́ть, ds: sell}
+  grammar: []
+  review_vocabulary: []
+  review_grammar:
+  - {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+  - {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+- id: level-06-services-02
+  title: Services and transactions - 2
+  outcome: Clarify a requirement and respond to an ordinary service problem.
+  vocabulary:
+  - {id: ru-or-v00554-s001, ch: продавать, pr: продава́ть, ds: sell}
+  - {id: ru-or-v00363-s001, ch: стоить, pr: сто́ить, ds: cost}
+  - {id: ru-or-v00646-s001, ch: заплатить, pr: заплати́ть, ds: pay}
+  - {id: ru-or-v02307-s001, ch: заказывать, pr: зака́зывать, ds: order}
+  - {id: ru-or-v00817-s001, ch: заказать, pr: заказа́ть, ds: order}
+  - {id: ru-or-v00302-s001, ch: выбрать, pr: вы́брать, ds: choose}
+  - {id: ru-or-v00486-s001, ch: выбирать, pr: выбира́ть, ds: choose}
+  - {id: ru-or-v00221-s001, ch: попробовать, pr: попро́бовать, ds: try}
+  - {id: ru-or-v00494-s001, ch: менять, pr: меня́ть, ds: change}
+  - {id: ru-or-v02913-s001, ch: обменять, pr: обменя́ть, ds: exchange}
+  - {id: ru-or-n00320-s002, ch: карта, pr: ка́рта, ds: card}
+  - {id: ru-or-v00037-s002, ch: посмотреть, pr: посмотре́ть, ds: have a look}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n00139-s001, ch: очередь, pr: о́чередь, ds: queue}
+  - {id: ru-or-n00477-s001, ch: размер, pr: разме́р, ds: size}
+  - {id: ru-or-n11045-s001, ch: примерка, pr: приме́рка, ds: trying on}
+  - {id: ru-or-v00066-s001, ch: брать, pr: брать, ds: take}
+  - {id: ru-or-v00675-s001, ch: пробовать, pr: про́бовать, ds: try or sample (imperfective)}
+  - {id: ru-or-v00132-s001, ch: купить, pr: купи́ть, ds: buy}
+  - {id: ru-or-v00485-s001, ch: покупать, pr: покупа́ть, ds: buy}
+  - {id: ru-or-v00412-s001, ch: продать, pr: прода́ть, ds: sell}
+  review_grammar:
+  - {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+  - {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+- id: level-06-time-01
+  title: Time and event sequence - 1
+  outcome: Distinguish a time point from duration and relate events in order.
+  vocabulary:
+  - {id: ru-or-n01372-s001, ch: четверть, pr: че́тверть, ds: quarter (one fourth)}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00122-s001, ch: иногда, pr: иногда́, ds: sometimes}
+  - {id: ru-or-n00003-s001, ch: время, pr: вре́мя, ds: time}
+  - {id: ru-or-n00193-s001, ch: встреча, pr: встре́ча, ds: meeting}
+  - {id: ru-or-n00183-s001, ch: план, pr: план, ds: plan}
+  - {id: ru-or-o00033-s001, ch: когда, pr: когда́, ds: when}
+  - {id: ru-or-o00051-s001, ch: потом, pr: пото́м, ds: then}
+  - {id: ru-or-o00166-s001, ch: скоро, pr: ско́ро, ds: soon}
+  - {id: ru-or-a00097-s001, ch: открытый, pr: откры́тый, ds: open (not closed)}
+  review_grammar:
+  - {id: ru-g-routine-time, ch: 'утром / днём / вечером; в [clock time]', ds: Place a routine at a time of day}
+  - {id: ru-g-imperfective-future, ch: 'буду / будешь / будет / будем / будете / будут + [imperfective infinitive]', ds: Describe a future activity or repeated action}
+- id: level-06-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00156-s001, ch: дорогой, pr: дорого́й, ds: expensive}
+  - {id: ru-or-a00354-s001, ch: дешёвый, pr: дешёвый, ds: cheap}
+  - {id: ru-or-a00150-s001, ch: свежий, pr: све́жий, ds: fresh}
+  - {id: ru-or-a00350-s001, ch: сладкий, pr: сла́дкий, ds: sweet}
+  - {id: ru-or-a00897-s001, ch: кислый, pr: ки́слый, ds: sour}
+  - {id: ru-or-a00827-s001, ch: солёный, pr: солёный, ds: salty}
+  - {id: ru-or-a00143-s001, ch: острый, pr: о́стрый, ds: sharp}
+  - {id: ru-or-a00355-s001, ch: голодный, pr: голо́дный, ds: hungry}
+  - {id: ru-or-a00154-s001, ch: здоровый, pr: здоро́вый, ds: healthy}
+  - {id: ru-or-a00091-s001, ch: больной, pr: больно́й, ds: sick}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00257-s001, ch: домашний, pr: дома́шний, ds: domestic}
+  - {id: ru-or-o00241-s001, ch: внутри, pr: внутри́, ds: inside}
+  - {id: ru-or-o00529-s001, ch: снаружи, pr: снару́жи, ds: outside}
+  - {id: ru-or-o00255-s001, ch: сверху, pr: све́рху, ds: from above}
+  - {id: ru-or-o00357-s001, ch: снизу, pr: сни́зу, ds: from below}
+  - {id: ru-or-o01976-s001, ch: рядом, pr: ря́дом, ds: near}
+  - {id: ru-or-o00098-s001, ch: вместе, pr: вме́сте, ds: together}
+  - {id: ru-or-o00457-s001, ch: отдельно, pr: отде́льно, ds: separately}
+  review_grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+  - {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+- id: level-06-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-a11866-s001, ch: весь, pr: весь, ds: all or the whole of}
+  - {id: ru-or-a00016-s001, ch: каждый, pr: ка́ждый, ds: each}
+  - {id: ru-or-a00032-s001, ch: любой, pr: любо́й, ds: any}
+  - {id: ru-or-a00026-s001, ch: некоторый, pr: не́который, ds: some}
+  - {id: ru-or-o00076-s001, ch: несколько, pr: не́сколько, ds: a few}
+  - {id: ru-or-n01531-s001, ch: одиннадцать, pr: оди́ннадцать, ds: eleven}
+  - {id: ru-or-o00301-s001, ch: двенадцать, pr: двена́дцать, ds: twelve}
+  - {id: ru-or-o00601-s001, ch: четырнадцать, pr: четы́рнадцать, ds: fourteen}
+  - {id: ru-or-n00577-s001, ch: пятнадцать, pr: пятна́дцать, ds: fifteen}
+  - {id: ru-or-o00499-s001, ch: шестнадцать, pr: шестна́дцать, ds: sixteen}
+  - {id: ru-or-o00571-s001, ch: семнадцать, pr: семна́дцать, ds: seventeen}
+  - {id: ru-or-o00542-s001, ch: восемнадцать, pr: восемна́дцать, ds: eighteen}
+  - {id: ru-or-n03812-s001, ch: девятнадцать, pr: девятна́дцать, ds: nineteen}
+  - {id: ru-or-o00138-s001, ch: двадцать, pr: два́дцать, ds: twenty}
+  - {id: ru-or-n00258-s001, ch: тридцать, pr: три́дцать, ds: thirty}
+  - {id: ru-or-o00186-s001, ch: сорок, pr: со́рок, ds: forty}
+  - {id: ru-or-o00236-s001, ch: пятьдесят, pr: пятьдеся́т, ds: fifty}
+  - {id: ru-or-o00385-s001, ch: шестьдесят, pr: шестьдеся́т, ds: sixty}
+  - {id: ru-or-o00427-s001, ch: семьдесят, pr: се́мьдесят, ds: seventy}
+  - {id: ru-or-o00496-s001, ch: восемьдесят, pr: во́семьдесят, ds: eighty}
+  - {id: ru-or-o00587-s001, ch: девяносто, pr: девяно́сто, ds: ninety}
+  - {id: ru-or-o00177-s001, ch: сто, pr: сто, ds: hundred}
+  - {id: ru-or-n00854-s001, ch: двести, pr: две́сти, ds: two hundred}
+  - {id: ru-or-o00393-s001, ch: триста, pr: три́ста, ds: three hundred}
+  - {id: ru-or-o00717-s001, ch: четыреста, pr: четы́реста, ds: four hundred}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00012-s001, ch: по, pr: по, ds: along}
+  - {id: ru-or-o00043-s001, ch: под, pr: под, ds: under}
+  - {id: ru-or-o00073-s001, ch: над, pr: над, ds: above}
+  - {id: ru-or-o00072-s001, ch: перед, pr: пе́ред, ds: in front of}
+  - {id: ru-or-o00087-s001, ch: между, pr: ме́жду, ds: between}
+  - {id: ru-or-o00056-s001, ch: без, pr: без, ds: without}
+  - {id: ru-or-o00019-s001, ch: за, pr: за, ds: behind}
+  - {id: ru-or-o00059-s001, ch: тоже, pr: то́же, ds: also}
+  review_grammar: []
+- id: level-06-grammar-02
+  title: Sentence construction - 2
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-o00539-s001, ch: пятьсот, pr: пятьсо́т, ds: five hundred}
+  - {id: ru-or-o00844-s001, ch: шестьсот, pr: шестьсо́т, ds: six hundred}
+  - {id: ru-or-o00909-s001, ch: семьсот, pr: семьсо́т, ds: seven hundred}
+  - {id: ru-or-o00890-s001, ch: восемьсот, pr: восемьсо́т, ds: eight hundred}
+  - {id: ru-or-o00832-s001, ch: девятьсот, pr: девятьсо́т, ds: nine hundred}
+  - {id: ru-or-n00075-s001, ch: тысяча, pr: ты́сяча, ds: a thousand}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00385-s001, ch: шестьдесят, pr: шестьдеся́т, ds: sixty}
+  - {id: ru-or-o00427-s001, ch: семьдесят, pr: се́мьдесят, ds: seventy}
+  - {id: ru-or-o00496-s001, ch: восемьдесят, pr: во́семьдесят, ds: eighty}
+  - {id: ru-or-o00587-s001, ch: девяносто, pr: девяно́сто, ds: ninety}
+  - {id: ru-or-o00177-s001, ch: сто, pr: сто, ds: hundred}
+  - {id: ru-or-n00854-s001, ch: двести, pr: две́сти, ds: two hundred}
+  - {id: ru-or-o00393-s001, ch: триста, pr: три́ста, ds: three hundred}
+  - {id: ru-or-o00717-s001, ch: четыреста, pr: четы́реста, ds: four hundred}
+  review_grammar: []
+- id: level-06-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-animate-accusative, ch: 'вижу [animate accusative] / вижу [inanimate accusative]', ds: Apply animacy to direct-object forms}
+  review_vocabulary:
+  - {id: ru-or-v00008-s001, ch: видеть, pr: ви́деть, ds: see}
+  - {id: ru-or-n00049-s001, ch: жена, pr: жена́, ds: wife}
+  - {id: ru-or-n00402-s001, ch: бабушка, pr: ба́бушка, ds: grandmother}
+  - {id: ru-or-n00672-s001, ch: дедушка, pr: де́душка, ds: grandfather}
+  - {id: ru-or-n00082-s001, ch: мама, pr: ма́ма, ds: mom}
+  - {id: ru-or-n00377-s001, ch: папа, pr: па́па, ds: dad}
+  - {id: ru-or-o00030-s001, ch: себя, pr: себя́, ds: oneself (reflexive pronoun)}
+  - {id: ru-or-a00011-s001, ch: свой, pr: свой, ds: one's own (referring to the subject)}
+  - {id: ru-or-a00012-s001, ch: сам, pr: сам, ds: oneself (emphatic pronoun)}
+  review_grammar:
+  - {id: ru-g-possessive-agreement, ch: 'мой / моя / моё [noun]; его / её [noun]', ds: Match a possessive to the thing possessed}
+  - {id: ru-g-whose-question, ch: 'Чей / чья / чьё / чьи [noun]?', ds: Ask whose with gender and number agreement}
+  - {id: ru-g-reflexive-reference, ch: 'себя / себе; свой / своя / своё [noun]', ds: Refer back to the subject without changing the possessor}
+- id: level-06-food-practice-01
+  title: Meals and ingredients - sentence practice 1
+  outcome: Explain a food request and verify the intended ingredients or preference.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-without-genitive, ch: 'без + [genitive noun]', ds: Request or describe something without an ingredient}
+  review_vocabulary:
+  - {id: ru-or-n07682-s001, ch: клубника, pr: клубни́ка, ds: strawberry}
+  - {id: ru-or-n04901-s001, ch: малина, pr: мали́на, ds: raspberry}
+  - {id: ru-or-n03955-s001, ch: арбуз, pr: арбу́з, ds: water-melon}
+  - {id: ru-or-n05167-s001, ch: дыня, pr: ды́ня, ds: melon}
+  - {id: ru-or-n07570-s001, ch: ананас, pr: анана́с, ds: pineapple}
+  - {id: ru-or-n02917-s001, ch: гранат, pr: грана́т, ds: pomegranate}
+  - {id: ru-or-n09555-s001, ch: изюм, pr: изю́м, ds: raisins}
+  - {id: ru-or-n11339-s001, ch: финик, pr: фи́ник, ds: date}
+  review_grammar:
+  - {id: ru-g-want-infinitive, ch: 'хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]', ds: Express a wish with irregular хотеть}
+  - {id: ru-g-accusative-object, ch: 'читать / пить + [accusative object]', ds: Mark a simple direct object in the accusative}
+- id: level-06-health-practice-01
+  title: Body and wellbeing - sentence practice 1
+  outcome: Describe a need and seek clarification without making a clinical claim.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-health-experiencer, ch: 'У меня болит / болят [body part]. У меня аллергия на [accusative].', ds: Describe pain or state an allergy without diagnosing}
+  review_vocabulary:
+  - {id: ru-or-v00355-s901, ch: болеть, pr: боле́ть, ds: ache}
+  - {id: ru-or-n07164-s001, ch: аллергия, pr: аллерги́я, ds: allergy}
+  - {id: ru-or-n01003-s001, ch: симптом, pr: симпто́м, ds: symptom}
+  - {id: ru-or-n01184-s001, ch: анализ, pr: ана́лиз, ds: analysis}
+  - {id: ru-or-v00355-s001, ch: болеть, pr: боле́ть, ds: be ill}
+  - {id: ru-or-v00860-s001, ch: лечить, pr: лечи́ть, ds: treat}
+  - {id: ru-or-v00536-s001, ch: отдыхать, pr: отдыха́ть, ds: rest}
+  - {id: ru-or-v00644-s001, ch: отдохнуть, pr: отдохну́ть, ds: rest}
+  - {id: ru-or-v00062-s001, ch: чувствовать, pr: чу́вствовать, ds: feel}
+  review_grammar: []
+- id: level-06-services-practice-01
+  title: Services and transactions - sentence practice 1
+  outcome: Clarify a requirement and respond to an ordinary service problem.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-dative-recipient, ch: 'дать / показать [accusative thing] [dative recipient]', ds: Mark the recipient of giving or showing}
+  review_vocabulary:
+  - {id: ru-or-v00817-s001, ch: заказать, pr: заказа́ть, ds: order}
+  - {id: ru-or-v00302-s001, ch: выбрать, pr: вы́брать, ds: choose}
+  - {id: ru-or-v00486-s001, ch: выбирать, pr: выбира́ть, ds: choose}
+  - {id: ru-or-v00221-s001, ch: попробовать, pr: попро́бовать, ds: try}
+  - {id: ru-or-v00494-s001, ch: менять, pr: меня́ть, ds: change}
+  - {id: ru-or-v02913-s001, ch: обменять, pr: обменя́ть, ds: exchange}
+  - {id: ru-or-n00320-s002, ch: карта, pr: ка́рта, ds: card}
+  - {id: ru-or-v00037-s002, ch: посмотреть, pr: посмотре́ть, ds: have a look}
+  review_grammar:
+  - {id: ru-g-permission-request, ch: 'Можно [infinitive / requested item]?', ds: Ask permission or politely request an item}
+  - {id: ru-g-polite-help-imperative, ch: 'Помогите / Покажите / Скажите, пожалуйста.', ds: Request a helpful action with a polite imperative}
+- id: level-06-actions-practice-01
+  title: Actions and results - sentence practice 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-instrumental-means, ch: '[verb] + [instrumental means]; с + [instrumental companion]', ds: Distinguish a means from an accompanying person}
+  review_vocabulary:
+  - {id: ru-or-v00036-s001, ch: ждать, pr: ждать, ds: wait}
+  - {id: ru-or-v00167-s001, ch: помочь, pr: помо́чь, ds: help}
+  - {id: ru-or-v00205-s001, ch: помогать, pr: помога́ть, ds: help}
+  - {id: ru-or-v00076-s001, ch: показать, pr: показа́ть, ds: show}
+  - {id: ru-or-v00029-s001, ch: дать, pr: дать, ds: give}
+  - {id: ru-or-v00020-s001, ch: взять, pr: взять, ds: take}
+  - {id: ru-or-v00047-s001, ch: прийти, pr: прийти́, ds: come}
+  - {id: ru-or-v02582-s901, ch: умываться, pr: умыва́ться, ds: wash oneself}
+  review_grammar:
+  - {id: ru-g-present-conjugation, ch: я читаю / ты читаешь / они читают, ds: Match a present-tense verb to its subject}
+  - {id: ru-g-dative-need, ch: 'мне / вам нужно + [infinitive]', ds: Say who needs to perform an action}
+  - {id: ru-g-reflexive-routines, ch: '[verb]-ся / -сь', ds: Use reflexive verbs for familiar routines}
+- id: level-06-people-practice-02
+  title: People and relationships - sentence practice 2
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-pronouns-after-prepositions, ch: у него / у неё / у них; с ним / с ней / с ними, ds: Use governed personal-pronoun forms after prepositions}
+  review_vocabulary:
+  - {id: ru-or-n00049-s001, ch: жена, pr: жена́, ds: wife}
+  - {id: ru-or-n00402-s001, ch: бабушка, pr: ба́бушка, ds: grandmother}
+  - {id: ru-or-n00672-s001, ch: дедушка, pr: де́душка, ds: grandfather}
+  - {id: ru-or-n00082-s001, ch: мама, pr: ма́ма, ds: mom}
+  - {id: ru-or-n00377-s001, ch: папа, pr: па́па, ds: dad}
+  - {id: ru-or-o00030-s001, ch: себя, pr: себя́, ds: oneself (reflexive pronoun)}
+  - {id: ru-or-a00011-s001, ch: свой, pr: свой, ds: one's own (referring to the subject)}
+  - {id: ru-or-a00012-s001, ch: сам, pr: сам, ds: oneself (emphatic pronoun)}
+  review_grammar:
+  - {id: ru-g-whose-question, ch: 'Чей / чья / чьё / чьи [noun]?', ds: Ask whose with gender and number agreement}
+  - {id: ru-g-reflexive-reference, ch: 'себя / себе; свой / своя / своё [noun]', ds: Refer back to the subject without changing the possessor}
+  - {id: ru-g-animate-accusative, ch: 'вижу [animate accusative] / вижу [inanimate accusative]', ds: Apply animacy to direct-object forms}

@@ -1,0 +1,241 @@
+schema_version: 1
+source: openrussian-backup
+revision: 50e210c4803237779cb562bc1abcea529066031c
+source_rows:
+  nouns: 26982
+  verbs: 14871
+  adjectives: 11941
+  others: 5031
+selected_source_records: 4940
+selected_vocabulary_senses: 4997
+selected_source_sense_spans: 4997
+selected_lexical_headwords: 4942
+selected_canonical_spellings: 4938
+selected_canonical_readings: 4940
+selected_orthographic_aliases: 0
+retained_source_form_records: 68545
+linked_pronoun_form_records: 12
+distinct_noncanonical_lexical_forms: 48568
+fixed_construction_form_records: 45
+reading_kinds:
+  source-marked-stress: 4612
+  source-monosyllabic-or-nonsyllabic: 301
+  source-yo-reading: 80
+  source-wordwise-reading: 4
+excluded_source_form_reading_count: 819
+excluded_source_form_reading_examples:
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=190
+  field: decl_f_inst
+  value: (англи'йскою)
+  reason: 'Unsupported source reading notation: "(англи''йскою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=15
+  field: short_pl
+  value: но'вы / новы'
+  reason: 'Unsupported source reading notation: "но''вы / новы''"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=17
+  field: superlative
+  value: лу'чший;наилу'чший
+  reason: 'Unsupported source reading notation: "лу''чший;наилу''чший"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=9
+  field: comparative
+  value: бо'льше;бо'льший
+  reason: 'Unsupported source reading notation: "бо''льше;бо''льший"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=28
+  field: comparative
+  value: ме'ньше;ме'ньший
+  reason: 'Unsupported source reading notation: "ме''ньше;ме''ньший"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=28
+  field: decl_f_inst
+  value: (ма'ленькою)
+  reason: 'Unsupported source reading notation: "(ма''ленькою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=21
+  field: comparative
+  value: ста'рше;старе'е
+  reason: 'Unsupported source reading notation: "ста''рше;старе''е"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=21
+  field: superlative
+  value: старе'йший;ста'рший
+  reason: 'Unsupported source reading notation: "старе''йший;ста''рший"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=37
+  field: decl_f_inst
+  value: (кра'сною)
+  reason: 'Unsupported source reading notation: "(кра''сною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=679
+  field: decl_f_inst
+  value: (вку'сною)
+  reason: 'Unsupported source reading notation: "(вку''сною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=72
+  field: sg_gen
+  value: пяти
+  reason: 'Unresolved multisyllabic source stress: ''пяти'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=72
+  field: pl_nom
+  value: пяти
+  reason: 'Unresolved multisyllabic source stress: ''пяти'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=18
+  field: decl_f_inst
+  value: (ну'жною)
+  reason: 'Unsupported source reading notation: "(ну''жною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=90
+  field: decl_f_inst
+  value: (пра'вою)
+  reason: 'Unsupported source reading notation: "(пра''вою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=61
+  field: source morphology
+  value: пол
+  reason: Several lexical homographs share this source row; inflections need an explicit sense-specific
+    linkage.
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=48
+  field: pl_nom
+  value: '*све''ты'
+  reason: 'Unsupported source reading notation: "*све''ты"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=48
+  field: pl_gen
+  value: '*све''тов'
+  reason: 'Unsupported source reading notation: "*све''тов"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=48
+  field: pl_dat
+  value: '*све''там'
+  reason: 'Unsupported source reading notation: "*све''там"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=48
+  field: pl_acc
+  value: '*све''ты'
+  reason: 'Unsupported source reading notation: "*све''ты"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=48
+  field: pl_inst
+  value: '*све''тами'
+  reason: 'Unsupported source reading notation: "*све''тами"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=48
+  field: pl_prep
+  value: '*све''тах'
+  reason: 'Unsupported source reading notation: "*све''тах"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=680
+  field: imperative_pl
+  value: Кладите
+  reason: 'Unresolved multisyllabic source stress: ''Кладите'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=680
+  field: past_f
+  value: клала
+  reason: 'Unresolved multisyllabic source stress: ''клала'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=680
+  field: past_n
+  value: клало
+  reason: 'Unresolved multisyllabic source stress: ''клало'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=680
+  field: past_pl
+  value: клали
+  reason: 'Unresolved multisyllabic source stress: ''клали'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=84
+  field: decl_f_inst
+  value: (чи'стою)
+  reason: 'Unsupported source reading notation: "(чи''стою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=186
+  field: decl_f_inst
+  value: (гря'зною)
+  reason: 'Unsupported source reading notation: "(гря''зною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=31
+  field: decl_f_inst
+  value: (по'лною)
+  reason: 'Unsupported source reading notation: "(по''лною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=325
+  field: decl_f_inst
+  value: (удо'бною)
+  reason: 'Unsupported source reading notation: "(удо''бною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=177
+  field: superlative
+  value: мягча'йший;наимягча'йший
+  reason: 'Unsupported source reading notation: "мягча''йший;наимягча''йший"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=177
+  field: decl_f_inst
+  value: (мя'гкою)
+  reason: 'Unsupported source reading notation: "(мя''гкою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=252
+  field: decl_f_inst
+  value: (твёрдою)
+  reason: 'Unsupported source reading notation: ''(твёрдою)'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=187
+  field: decl_f_inst
+  value: (све'тлою)
+  reason: 'Unsupported source reading notation: "(све''тлою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=72
+  field: decl_f_inst
+  value: (тёмною)
+  reason: 'Unsupported source reading notation: ''(тёмною)'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=127
+  field: decl_f_inst
+  value: (ти'хою)
+  reason: 'Unsupported source reading notation: "(ти''хою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=302
+  field: decl_f_inst
+  value: (гро'мкою)
+  reason: 'Unsupported source reading notation: "(гро''мкою)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=721
+  field: decl_f_inst
+  value: (ую'тною)
+  reason: 'Unsupported source reading notation: "(ую''тною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=46
+  field: decl_f_inst
+  value: (со'бственною)
+  reason: 'Unsupported source reading notation: "(со''бственною)"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv#data-record=257
+  field: short_m
+  value: '*дома''шен'
+  reason: 'Unsupported source reading notation: "*дома''шен"'
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=491
+  field: imperative_sg
+  value: заведи
+  reason: 'Unresolved multisyllabic source stress: ''заведи'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=491
+  field: imperative_pl
+  value: заведите
+  reason: 'Unresolved multisyllabic source stress: ''заведите'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=491
+  field: past_f
+  value: завела
+  reason: 'Unresolved multisyllabic source stress: ''завела'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=491
+  field: past_n
+  value: завело
+  reason: 'Unresolved multisyllabic source stress: ''завело'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=491
+  field: past_pl
+  value: завели
+  reason: 'Unresolved multisyllabic source stress: ''завели'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=491
+  field: presfut_sg1
+  value: заведу
+  reason: 'Unresolved multisyllabic source stress: ''заведу'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv#data-record=491
+  field: presfut_pl3
+  value: заведут
+  reason: 'Unresolved multisyllabic source stress: ''заведут'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=14521
+  field: sg_nom
+  value: мороженое
+  reason: 'Unresolved multisyllabic source stress: ''мороженое'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=14521
+  field: sg_gen
+  value: мороженого
+  reason: 'Unresolved multisyllabic source stress: ''мороженого'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=14521
+  field: sg_dat
+  value: мороженому
+  reason: 'Unresolved multisyllabic source stress: ''мороженому'''
+- source_entry: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv#data-record=14521
+  field: sg_acc
+  value: мороженое
+  reason: 'Unresolved multisyllabic source stress: ''мороженое'''
+form_gap_reporting: At most fifty examples are retained here; rerunning the source adapter reproduces
+  every exclusion.
+interpretation: Selected reference coverage, not learner knowledge. Source forms and aliases add no headwords.
+form_counting: Source form records count column/alternative attestations. Distinct noncanonical lexical
+  forms count lexical-identity/spelling/reading triples, exclude canonical readings, and include linked
+  pronoun forms; these are reference morphology, not separate taught words.
+source_limitations:
+- The old composite source has incomplete metadata and mixed senses; source fidelity is not linguistic
+  certification.
+- Part of speech, selected meanings, concise hints and teaching placement are separately authored judgments.
+- No source word/sense IDs, corpus frequency ranks or underlying Wiktionary revision are supplied by this
+  export.
+- TSV quotes are literal. The known extra tab in others data-record 2676 is retained within its final
+  German field; no source records are reordered.

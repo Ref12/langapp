@@ -1,0 +1,57 @@
+schema_version: 1
+id: ja-kana-preparation
+title: Read meaningful Japanese words alongside the first exchanges
+numbered_level: false
+admission_requirement: none
+counting_policy: Preparation is not a vocabulary quota, numbered level, or handwriting assessment. Its examples illustrate written forms and timing without creating new lexical identities.
+review_status: Original AI-authored preparation; qualified Japanese-language pedagogy and native-speaker review pending.
+usage: Work in short sessions alongside the beginner or tourist route. Pointing and readable support are acceptable initially. Fade kana aids only when reading evidence supports it; do not infer listening or speech from text.
+units:
+- id: hiragana-in-words
+  title: Recognize hiragana in useful words
+  goal: Read a small set of useful word forms and locate their kana rather than memorizing an entire chart before speaking.
+  examples:
+  - {ch: すし, pr: すし, note: Two morae; recognize each full kana.}
+  - {ch: ねこ, pr: ねこ, note: Read in a new font and distinguish the shapes rather than a memorized position.}
+  task: Match a shown kana word to a supplied picture; then find it in a short label.
+- id: voicing
+  title: Notice voicing and small marks
+  goal: Distinguish kana with dakuten or handakuten without guessing from a similar-looking word.
+  examples:
+  - {ch: かぎ, pr: かぎ, note: The marks on ぎ change its sound.}
+  - {ch: パン, pr: パン, note: The circle marks p; katakana follows later in this route.}
+  task: Compare marked and unmarked kana with a verified audio model; record listening and reading separately.
+- id: small-kana
+  title: Distinguish small kana and separate morae
+  goal: Recognize that a small kana combines with the preceding kana rather than behaving like a full-size one.
+  examples:
+  - {ch: きゃく, pr: きゃく, note: きゃ is one mora and く is another.}
+  - {ch: びょういん, pr: びょういん, note: Read the contracted sound and the long vowel deliberately.}
+  task: Find small kana in known words, then verify the whole pronunciation with reliable audio.
+- id: timing
+  title: Long vowels, small tsu, and final n
+  goal: Preserve timing contrasts in recognition and supported speech without inventing pitch accent.
+  examples:
+  - {ch: きって, pr: きって, note: Small っ occupies a mora of closure before the consonant.}
+  - {ch: おばあさん, pr: おばあさん, note: The long vowel distinguishes this from a shorter word.}
+  - {ch: ほん, pr: ほん, note: Final ん is a mora; its phonetic realization depends on context.}
+  task: Compare whole words with verified recordings; text alone cannot score timing or pronunciation.
+- id: katakana
+  title: Read everyday katakana
+  goal: Recognize common katakana words and the vowel-length mark without assuming English pronunciation.
+  examples:
+  - {ch: コーヒー, pr: コーヒー, note: Both long-vowel marks belong to the written word.}
+  - {ch: ホテル, pr: ホテル, note: Learn the Japanese word rather than imposing the English sound.}
+  task: Find katakana in a new menu or sign and identify only the words actually taught.
+- id: particles-and-input
+  title: Read particles and type known words
+  goal: Recognize context-sensitive particle pronunciation and check an input-method conversion.
+  examples:
+  - {ch: 私は, pr: わたしわ, note: Topic particle は is pronounced わ; the construction licenses this fixed form.}
+  - {ch: 駅へ, pr: えきえ, note: Directional particle へ is pronounced え.}
+  - {ch: 水を, pr: みずお, note: Object particle を is represented phonetically as お.}
+  task: Type a known kana word and choose the intended kanji conversion from context. Record any lookup help; conversion selection is not handwriting.
+limitations:
+- These examples are original illustrations, not imported phrasebook material or a kanji stroke resource.
+- No pitch-accent, automatic pronunciation, audio, or handwriting guarantee is made.
+- Recognition of an example does not award a vocabulary or grammar mastery state.

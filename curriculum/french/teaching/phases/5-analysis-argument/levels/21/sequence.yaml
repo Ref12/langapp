@@ -1,0 +1,753 @@
+schema_version: 3
+id: fr-level-21
+title: Science and long-term change
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 21
+phase: analysis-argument
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+- fr-level-15
+- fr-level-16
+- fr-level-17
+- fr-level-18
+- fr-level-19
+- fr-level-20
+goals: &id001
+- Summarize a general-audience scientific explanation.
+- Keep methods and conclusions distinct.
+- Compare explanations for a change and identify a limitation.
+checkpoint:
+  task: Explain an accessible scientific account, identify what its method can establish, and state an unanswered question.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-21-description-01
+  title: Description and comparison - 1
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-f2c939baead3c276, ch: physique, pr: /fi.zik/, ds: 'physical, sportive'}
+  - {id: fr-v-6f6d6715e3e897fd, ch: chimique, pr: /ʃi.mik/, ds: 'chemistry, chemical'}
+  - {id: fr-v-8ea466b2bf5f216d, ch: géologique, pr: /ʒe.ɔ.lɔ.ʒik/, ds: geological}
+  - {id: fr-v-d0f107ca3978becc, ch: astronomique, pr: /as.tʁɔ.nɔ.mik/, ds: astronomy; astronomical}
+  - {id: fr-v-86a93a8d92507fe8, ch: mathématique, pr: /ma.te.ma.tik/, ds: mathematical}
+  - {id: fr-v-af7fab786bf2065e, ch: clinique, pr: /kli.nik/, ds: clinic (small hospital)}
+  - {id: fr-v-342c330cff6c6a1e, ch: fondamental, pr: /fɔ̃.da.mɑ̃.tal/, ds: fundamental}
+  - {id: fr-v-51c35e563322a158, ch: descriptif, pr: /dɛs.kʁip.tif/, ds: descriptive}
+  - {id: fr-v-76ec1b2379507fa8, ch: analytique, pr: /a.na.li.tik/, ds: 'analytic, analytical'}
+  - {id: fr-v-73c687e085a858f5, ch: explicatif, pr: /ɛk.spli.ka.tif/, ds: explanatory}
+  - {id: fr-v-bf0fc4adf6321ff9, ch: prédictif, pr: /pʁe.dik.tif/, ds: predictive}
+  - {id: fr-v-66c9b69558576247, ch: exploratoire, pr: /ɛk.splɔ.ʁa.twaʁ/, ds: exploratory}
+  - {id: fr-v-c508eb701b8c856b, ch: longitudinal, pr: /lɔ̃.ʒi.ty.di.nal/, ds: longitudinal; running lengthwise}
+  - {id: fr-v-da361ff352c0db69, ch: transversal, pr: /tʁɑ̃s.vɛʁ.sal/, ds: transversal}
+  - {id: fr-v-e87510bb5d7e58a9, ch: comparatif, pr: /kɔ̃.pa.ʁa.tif/, ds: comparative}
+  - {id: fr-v-6b6b883259f5d789, ch: discret, pr: /dis.kʁɛ/, ds: discreet}
+  - {id: fr-v-05f539e1f39de48d, ch: constant, pr: /kɔ̃s.tɑ̃/, ds: constant}
+  - {id: fr-v-016cba9e8f4d9523, ch: fluctuant, pr: /flyktɥɑ̃/, ds: fluctuant}
+  - {id: fr-v-82addfa11d9bdbb3, ch: périodique, pr: /peʁjodik/, ds: periodic}
+  - {id: fr-v-44bdeb17b1670f64, ch: cyclique, pr: /si.klik/, ds: 'cyclic, cyclical'}
+  - {id: fr-v-b597b0b17a0cad4c, ch: linéaire, pr: /li.ne.ɛʁ/, ds: linear}
+  - {id: fr-v-f1ad6dcd01957ed9, ch: proportionnel, pr: /pʁɔ.pɔʁ.sjɔ.nɛl/, ds: proportional}
+  - {id: fr-v-7fe190d18b9b6b5b, ch: inverse, pr: /ɛ̃.vɛʁs/, ds: 'the inverse, the contrary'}
+  - {id: fr-v-d6a358b2e3a34f9e, ch: exponentiel, pr: /ɛk.spɔ.nɑ̃.sjɛl/, ds: exponential}
+  - {id: fr-v-580a6506003c801b, ch: croissant, pr: /kʁwa.sɑ̃/, ds: crescent}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-004bfe56ef3f66f2, ch: erroné, pr: /e.ʁɔ.ne/, ds: wrong; erroneous}
+  - {id: fr-v-867e4ae1e9fcc039, ch: faux, pr: /fo/, ds: false; untrue}
+  - {id: fr-v-8ea28785ec0e78a6, ch: vrai, pr: /vʁɛ/, ds: 'true'}
+  - {id: fr-v-9fb9e09631b64739, ch: inexact, pr: /i.nɛɡ.zakt/, ds: inexact (not exact)}
+  - {id: fr-v-356571f53f1629f4, ch: robuste, pr: /ʁɔ.byst/, ds: 'robust, hardy'}
+  - {id: fr-v-353136cb49a45792, ch: reproductible, pr: /ʁə.pʁɔ.dyk.tibl/, ds: reproducible by different people or in another setting}
+  - {id: fr-v-5e4cc0910b406b11, ch: authentique, pr: /ɔ.tɑ̃.tik/, ds: 'authentic, real, genuine'}
+  - {id: fr-v-5d1ddc3b0da7f9ac, ch: fictif, pr: /fik.tif/, ds: fictional}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-21-description-02
+  title: Description and comparison - 2
+  outcome: Identify meaningful differences with appropriate agreement and precise descriptions.
+  vocabulary:
+  - {id: fr-v-1b0a9e0cc3be5a6d, ch: décroissant, pr: /de.kʁwa.sɑ̃/, ds: descending}
+  - {id: fr-v-f0e5941356dd2ece, ch: minimal, pr: /mi.ni.mal/, ds: minimal}
+  - {id: fr-v-c25a69d01761f4aa, ch: maximal, pr: /mak.si.mal/, ds: maximal}
+  - {id: fr-v-a800cbc8e7c1e803, ch: optimal, pr: /ɔp.ti.mal/, ds: optimal}
+  - {id: fr-v-1f9a8b34504c9243, ch: médian, pr: /medjɑ̃/, ds: 'median, medial'}
+  - {id: fr-v-cc913e4d14e6dcce, ch: dense, pr: /dɑ̃s/, ds: dense}
+  - {id: fr-v-828398bb54b7fbe0, ch: concentré, pr: /kɔ̃.sɑ̃.tʁe/, ds: a concentrate}
+  - {id: fr-v-3617bb43f54d4ae5, ch: soluble, pr: /sɔ.lybl/, ds: soluble (that can be dissolved)}
+  - {id: fr-v-0e61231baeac2a10, ch: insoluble, pr: /ɛ̃.sɔ.lybl/, ds: insoluble}
+  - {id: fr-v-77a6696656d8aea7, ch: acide, pr: /a.sid/, ds: acid}
+  - {id: fr-v-5050684408a951a1, ch: basique, pr: /ba.zik/, ds: 'basic, elementary'}
+  - {id: fr-v-254364ba62e28396, ch: inflammable, pr: /ɛ̃.fla.mabl/, ds: 'flammable, inflammable'}
+  - {id: fr-v-5cb6b14e5134965b, ch: toxique, pr: /tɔk.sik/, ds: toxic (having a harmful chemical nature)}
+  - {id: fr-v-4e2c20baee3eb2d1, ch: radioactif, pr: /ʁa.djɔ.ak.tif/, ds: radioactive}
+  - {id: fr-v-b12588c4d91e761f, ch: isolant, pr: /i.zɔ.lɑ̃/, ds: insulator}
+  - {id: fr-v-a6554b8a788b651b, ch: compressible, pr: /kɔ̃.pʁɛ.sibl/, ds: compressible}
+  - {id: fr-v-14d40ab1f3a5ef09, ch: élastique, pr: /e.las.tik/, ds: rubber band}
+  - {id: fr-v-4164fa7948fdc82f, ch: résistant, pr: /ʁe.zis.tɑ̃/, ds: resistant}
+  - {id: fr-v-8c08959d9cf43d4c, ch: vulnérable, pr: /vyl.ne.ʁabl/, ds: vulnerable}
+  - {id: fr-v-dea7ead9466814c5, ch: réversible, pr: /ʁe.vɛʁ.sibl/, ds: reversible (capable of being reversed or inverted)}
+  - {id: fr-v-3f4814a0d00e7eb9, ch: irréversible, pr: /i.ʁe.vɛʁ.sibl/, ds: irreversible}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-016cba9e8f4d9523, ch: fluctuant, pr: /flyktɥɑ̃/, ds: fluctuant}
+  - {id: fr-v-82addfa11d9bdbb3, ch: périodique, pr: /peʁjodik/, ds: periodic}
+  - {id: fr-v-44bdeb17b1670f64, ch: cyclique, pr: /si.klik/, ds: 'cyclic, cyclical'}
+  - {id: fr-v-b597b0b17a0cad4c, ch: linéaire, pr: /li.ne.ɛʁ/, ds: linear}
+  - {id: fr-v-f1ad6dcd01957ed9, ch: proportionnel, pr: /pʁɔ.pɔʁ.sjɔ.nɛl/, ds: proportional}
+  - {id: fr-v-7fe190d18b9b6b5b, ch: inverse, pr: /ɛ̃.vɛʁs/, ds: 'the inverse, the contrary'}
+  - {id: fr-v-d6a358b2e3a34f9e, ch: exponentiel, pr: /ɛk.spɔ.nɑ̃.sjɛl/, ds: exponential}
+  - {id: fr-v-580a6506003c801b, ch: croissant, pr: /kʁwa.sɑ̃/, ds: crescent}
+  review_grammar:
+  - {id: fr-g-superlative-comparison-set, ch: le / la / les plus / moins + adjectif ; le meilleur, ds: Identify an extreme within an explicit comparison set}
+  - {id: fr-g-demonstrative-pronouns, ch: celui / celle / ceux / celles + complément ou -ci / -là, ds: Replace a noun while distinguishing its referent}
+  - {id: fr-g-participle-versus-adjective, ch: nom + participe présent invariable / adjectif verbal accordé, ds: Separate a verbal participle from an agreeing adjective}
+- id: level-21-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: fr-v-45718e352a354ca6, ch: bien-être, pr: /bjɛ̃.n‿ɛtʁ/, ds: wellbeing}
+  - {id: fr-v-f59fedb681181ef0, ch: hygiène, pr: /i.ʒjɛn/, ds: hygiene}
+  - {id: fr-v-90ef70ca33b16b1d, ch: nutrition, pr: /ny.tʁi.sjɔ̃/, ds: nutrition}
+  - {id: fr-v-cc49c205f5dc71c7, ch: nutriment, pr: /ny.tʁi.mɑ̃/, ds: nutrient (something providing nourishment)}
+  - {id: fr-v-6ccf76a112916286, ch: vitamine, pr: /vi.ta.min/, ds: vitamin}
+  - {id: fr-v-22ae0c4b1e4aceea, ch: calorie, pr: /ka.lɔ.ʁi/, ds: calorie}
+  - {id: fr-v-e1fc0ada111dcbb2, ch: glucide, pr: /ɡly.sid/, ds: 'carbohydrate, saccharide'}
+  - {id: fr-v-175449aed9f42a0a, ch: lipide, pr: /li.pid/, ds: lipid}
+  - {id: fr-v-b307eadc277a6e9f, ch: fibre, pr: /fibʁ/, ds: fibre}
+  - {id: fr-v-774b399cb1a36a71, ch: graisse, pr: /ɡʁɛs/, ds: grease}
+  - {id: fr-v-da593befa30e6b1d, ch: cholestérol, pr: /kɔ.lɛs.te.ʁɔl/, ds: cholesterol (an essential component of mammalian cell membranes)}
+  - {id: fr-v-86b79707c45e6ad3, ch: glycémie, pr: /ɡli.se.mi/, ds: glycemia; blood sugar level; blood sugar}
+  - {id: fr-v-631bdbe305bd7459, ch: tension artérielle, pr: /tɑ̃.sjɔ̃ aʁ.te.ʁjɛl/, ds: blood pressure}
+  - {id: fr-v-c9918a8b43cc1353, ch: pouls, pr: /pu/, ds: pulse (regular beat caused by the heart)}
+  - {id: fr-v-c14c0fcd3c374cd2, ch: respiration, pr: /ʁɛs.pi.ʁa.sjɔ̃/, ds: respiration}
+  - {id: fr-v-93679375f4070d9c, ch: digestion, pr: /di.ʒɛs.tjɔ̃/, ds: digestion}
+  - {id: fr-v-4165b8b3e8d46efc, ch: immunité, pr: /i.my.ni.te/, ds: immunity}
+  - {id: fr-v-51daa797af9d1631, ch: défense, pr: /de.fɑ̃s/, ds: defence; protection against attack or danger}
+  - {id: fr-v-c4742a0c45b1517d, ch: anticorps, pr: /ɑ̃.ti.kɔʁ/, ds: antibody}
+  - {id: fr-v-e4be072290753efb, ch: antigène, pr: /ɑ̃.ti.ʒɛn/, ds: antigen}
+  - {id: fr-v-5063a8bd16d8c186, ch: vaccin, pr: /vak.sɛ̃/, ds: vaccine (substance that stimulates production of antibodies)}
+  - {id: fr-v-36e7c6953798d43d, ch: vaccination, pr: /vak.si.na.sjɔ̃/, ds: vaccination}
+  - {id: fr-v-62a7821993033696, ch: dépistage, pr: /depistaʒ/, ds: tracking}
+  - {id: fr-v-efccdb01eecbe047, ch: diagnostic, pr: /djaɡ.nɔs.tik/, ds: diagnosis}
+  - {id: fr-v-4100570843a0c58f, ch: pronostic, pr: /pʁɔ.nɔs.tik/, ds: prognosis (all meanings)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-3c544b8d39c1e564, ch: fatigué, pr: /fa.ti.ɡe/, ds: tired}
+  - {id: fr-v-683b8a86726616a7, ch: souffrir, pr: /su.fʁiʁ/, ds: to suffer}
+  - {id: fr-v-f727be7977b7a0a5, ch: tousser, pr: /tu.se/, ds: to cough}
+  - {id: fr-v-23abd133e667fe88, ch: respirer, pr: /ʁɛs.pi.ʁe/, ds: to breathe}
+  - {id: fr-v-0a7cf8ed3cf2c6cd, ch: reposer, pr: /ʁə.po.ze/, ds: to rest; reflexive use}
+  - {id: fr-v-88887749bd9d1b51, ch: soigner, pr: /swa.ɲe/, ds: to treat; to nurse}
+  - {id: fr-v-5ddae89baff4c017, ch: tomber, pr: /tɔ̃.be/, ds: to fall}
+  - {id: fr-v-b03ca1b453349362, ch: sentir, pr: /sɑ̃.tiʁ/, ds: to feel; physical sensation}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+- id: level-21-health-02
+  title: Body and wellbeing - 2
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: fr-v-5ef39860d83120a1, ch: syndrome, pr: /sɛ̃.dʁom/, ds: syndrome}
+  - {id: fr-v-e2d1820ec4a7e722, ch: trouble, pr: /tʁubl/, ds: trouble}
+  - {id: fr-v-c077649799010e87, ch: pathologie, pr: /pa.tɔ.lɔ.ʒi/, ds: pathology}
+  - {id: fr-v-460abb073908b60e, ch: infection, pr: /ɛ̃.fɛk.sjɔ̃/, ds: infection}
+  - {id: fr-v-b0559caf68e59db3, ch: inflammation, pr: /ɛ̃.fla.ma.sjɔ̃/, ds: inflammation}
+  - {id: fr-v-f4f6e34a3c134bba, ch: intolérance, pr: /ɛ̃.tɔ.le.ʁɑ̃s/, ds: intolerance}
+  - {id: fr-v-f5f3d8a3776855ec, ch: contamination, pr: /kɔ̃.ta.mi.na.sjɔ̃/, ds: contamination (act or process of contaminating)}
+  - {id: fr-v-c493b272000a51b6, ch: contagion, pr: /kɔ̃.ta.ʒjɔ̃/, ds: contagion}
+  - {id: fr-v-ad0646c0446101bd, ch: transmission, pr: /tʁɑ̃s.mi.sjɔ̃/, ds: transmission}
+  - {id: fr-v-4efe922584b5b7dc, ch: épidémie, pr: /e.pi.de.mi/, ds: epidemic (widespread disease)}
+  - {id: fr-v-dd24785fdd52643f, ch: pandémie, pr: /pɑ̃.de.mi/, ds: pandemic}
+  - {id: fr-v-28b95855c005781b, ch: endémie, pr: /ɑ̃.de.mi/, ds: endemic}
+  - {id: fr-v-71823202e6b33272, ch: foyer, pr: /fwa.je/, ds: hearth}
+  - {id: fr-v-ab73cbab4a5b33d2, ch: propagation, pr: /pʁopaɡasjɔ̃/, ds: propagation}
+  - {id: fr-v-b7a2470300c04261, ch: guérison, pr: /ɡe.ʁi.zɔ̃/, ds: 'recovery, healing'}
+  - {id: fr-v-76516fdc20ec25b9, ch: rémission, pr: /ʁe.mi.sjɔ̃/, ds: remission}
+  - {id: fr-v-03f73f73b02da6dd, ch: rechute, pr: /ʁə.ʃyt/, ds: 'relapse, recurrence'}
+  - {id: fr-v-1f348d2ad9861ca5, ch: récidive, pr: /ʁe.si.div/, ds: 'relapse, reoccurrence'}
+  - {id: fr-v-436c5c33e7787f10, ch: séquelle, pr: /se.kɛl/, ds: sequela}
+  - {id: fr-v-738b7aa71d3b9c29, ch: complication, pr: /kɔ̃.pli.ka.sjɔ̃/, ds: complication}
+  - {id: fr-v-e099ef3c24ebeac1, ch: aggravation, pr: /a.ɡʁa.va.sjɔ̃/, ds: aggravation}
+  - {id: fr-v-16572dab3879b1f3, ch: stabilisation, pr: /stabilizasjɔ̃/, ds: stabilisation/stabilization}
+  - {id: fr-v-2ed82c95d3918ba0, ch: thérapie, pr: /te.ʁa.pi/, ds: therapy}
+  - {id: fr-v-5a4a8177817353ff, ch: soin, pr: /swɛ̃/, ds: care}
+  - {id: fr-v-86f2f4a8dbaf5bd9, ch: chirurgie, pr: /ʃi.ʁyʁ.ʒi/, ds: 'surgery, medical operation'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-51daa797af9d1631, ch: défense, pr: /de.fɑ̃s/, ds: defence; protection against attack or danger}
+  - {id: fr-v-c4742a0c45b1517d, ch: anticorps, pr: /ɑ̃.ti.kɔʁ/, ds: antibody}
+  - {id: fr-v-e4be072290753efb, ch: antigène, pr: /ɑ̃.ti.ʒɛn/, ds: antigen}
+  - {id: fr-v-5063a8bd16d8c186, ch: vaccin, pr: /vak.sɛ̃/, ds: vaccine (substance that stimulates production of antibodies)}
+  - {id: fr-v-36e7c6953798d43d, ch: vaccination, pr: /vak.si.na.sjɔ̃/, ds: vaccination}
+  - {id: fr-v-62a7821993033696, ch: dépistage, pr: /depistaʒ/, ds: tracking}
+  - {id: fr-v-efccdb01eecbe047, ch: diagnostic, pr: /djaɡ.nɔs.tik/, ds: diagnosis}
+  - {id: fr-v-4100570843a0c58f, ch: pronostic, pr: /pʁɔ.nɔs.tik/, ds: prognosis (all meanings)}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+- id: level-21-health-03
+  title: Body and wellbeing - 3
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: fr-v-e440127db2324c3a, ch: rééducation, pr: /ʁe.e.dy.ka.sjɔ̃/, ds: re-education}
+  - {id: fr-v-90b46631a713070c, ch: réadaptation, pr: /ʁeadaptasjɔ̃/, ds: rehabilitation}
+  - {id: fr-v-3f079d19b949e76b, ch: réhabilitation, pr: /ʁe.a.bi.li.ta.sjɔ̃/, ds: rehabilitation}
+  - {id: fr-v-abc230a6a5eb09ad, ch: remède, pr: /ʁə.mɛd/, ds: remedy}
+  - {id: fr-v-c2df282f2112a6f0, ch: dose, pr: /doz/, ds: proportion}
+  - {id: fr-v-dfdcd4b01d742431, ch: posologie, pr: /po.zɔ.lɔ.ʒi/, ds: posology}
+  - {id: fr-v-db051b6ead474171, ch: dosage, pr: /do.zaʒ/, ds: dosage (measured amount of a medication)}
+  - {id: fr-v-5063611c5e5d541b, ch: prescription, pr: /pʁɛs.kʁip.sjɔ̃/, ds: medical prescription}
+  - {id: fr-v-33ac7f68da1b32a3, ch: délivrance, pr: /de.li.vʁɑ̃s/, ds: 'deliverance, relief, liberation'}
+  - {id: fr-v-bbc026e2f37f2a4e, ch: comprimé, pr: /kɔ̃pʁime/, ds: 'pill, tablet'}
+  - {id: fr-v-92b60cbec94226b6, ch: gélule, pr: /ʒe.lyl/, ds: capsule}
+  - {id: fr-v-97d276b2a409e597, ch: capsule, pr: /kap.syl/, ds: capsule}
+  - {id: fr-v-572ec5927f0e0bf3, ch: sirop, pr: /si.ʁo/, ds: syrup}
+  - {id: fr-v-91afebc70de87c92, ch: pommade, pr: /pɔ.mad/, ds: ointment for application to skin}
+  - {id: fr-v-aceb4e21d413b737, ch: crème, pr: /kʁɛm/, ds: cream}
+  - {id: fr-v-f910320855cc3496, ch: collyre, pr: /kɔ.liʁ/, ds: 'eyewash, collyrium'}
+  - {id: fr-v-d6fc73312349e9bc, ch: goutte, pr: /ɡut/, ds: 'drop, droplet'}
+  - {id: fr-v-20cd42445988a3ab, ch: injection, pr: /ɛ̃.ʒɛk.sjɔ̃/, ds: injection}
+  - {id: fr-v-072665c2fbe1224a, ch: perfusion, pr: /pɛʁfyzjɔ̃/, ds: 'perfusion, drip, intravenous injection'}
+  - {id: fr-v-3faf99441a501dad, ch: pansement, pr: /pɑ̃s.mɑ̃/, ds: 'bandage, dressing, sticking plaster'}
+  - {id: fr-v-1bd67ccdf3a2413f, ch: bandage, pr: /bɑ̃.daʒ/, ds: bandage}
+  - {id: fr-v-12f9cbb2cb278ce1, ch: compresse, pr: /kɔ̃.pʁɛs/, ds: compress (cloth used to dress or apply pressure to wounds)}
+  - {id: fr-v-9b56d70f79a54bd1, ch: désinfectant, pr: /de.zɛ̃.fɛk.tɑ̃/, ds: 'disinfectant, sanitizer'}
+  - {id: fr-v-a55b35173b781d58, ch: antiseptique, pr: /ɑ̃.ti.sɛp.tik/, ds: antiseptic (capable of preventing microbial infection)}
+  - {id: fr-v-96a797483e2b032c, ch: antibiotique, pr: /ɑ̃.ti.bjɔ.tik/, ds: antibiotic}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-1f348d2ad9861ca5, ch: récidive, pr: /ʁe.si.div/, ds: 'relapse, reoccurrence'}
+  - {id: fr-v-436c5c33e7787f10, ch: séquelle, pr: /se.kɛl/, ds: sequela}
+  - {id: fr-v-738b7aa71d3b9c29, ch: complication, pr: /kɔ̃.pli.ka.sjɔ̃/, ds: complication}
+  - {id: fr-v-e099ef3c24ebeac1, ch: aggravation, pr: /a.ɡʁa.va.sjɔ̃/, ds: aggravation}
+  - {id: fr-v-16572dab3879b1f3, ch: stabilisation, pr: /stabilizasjɔ̃/, ds: stabilisation/stabilization}
+  - {id: fr-v-2ed82c95d3918ba0, ch: thérapie, pr: /te.ʁa.pi/, ds: therapy}
+  - {id: fr-v-5a4a8177817353ff, ch: soin, pr: /swɛ̃/, ds: care}
+  - {id: fr-v-86f2f4a8dbaf5bd9, ch: chirurgie, pr: /ʃi.ʁyʁ.ʒi/, ds: 'surgery, medical operation'}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+- id: level-21-health-04
+  title: Body and wellbeing - 4
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: fr-v-ebe0fc2ffb89a832, ch: antiviral, pr: /ɑ̃.ti.vi.ʁal/, ds: antiviral}
+  - {id: fr-v-3679451dc71b247b, ch: antalgique, pr: /ɑ̃.tal.ʒik/, ds: 'analgesic, painkiller'}
+  - {id: fr-v-dfea1004992d8243, ch: analgésique, pr: /a.nal.ʒe.zik/, ds: 'analgesic, painkiller'}
+  - {id: fr-v-dad40efba76ced96, ch: anesthésique, pr: /a.nɛs.te.zik/, ds: anesthetic}
+  - {id: fr-v-33a4e6b07d19b8e2, ch: anti-inflammatoire, pr: /ɑ̃.ti.ɛ̃.fla.ma.twaʁ/, ds: anti-inflammatory drug or agent}
+  - {id: fr-v-45b6f4ca67602eeb, ch: antihistaminique, pr: /ɑ̃.ti.is.ta.mi.nik/, ds: antihistamine}
+  - {id: fr-v-7cf1268378efe859, ch: placebo, pr: /pla.se.bo/, ds: placebo}
+  - {id: fr-v-b9048792a76e68ef, ch: effet secondaire, pr: /e.fɛ s(ə).ɡɔ̃.dɛʁ/, ds: side effect}
+  - {id: fr-v-fef1478226d05e2a, ch: contre-indication, pr: /kɔ̃.tʁɛ̃.di.ka.sjɔ̃/, ds: a contraindication}
+  - {id: fr-v-4538ca76e3c65ce6, ch: surdosage, pr: /syʁdozaʒ/, ds: overdose}
+  - {id: fr-v-0d2bb6e57b8370e8, ch: addiction, pr: /a.dik.sjɔ̃/, ds: addiction}
+  - {id: fr-v-662353ad84c3a73f, ch: sevrage, pr: /sə.vʁaʒ/, ds: 'ablactation, weaning'}
+  - {id: fr-v-e121e18e97b346f0, ch: tabac, pr: /ta.ba/, ds: tobacco (any plant of the genus Nicotiana)}
+  - {id: fr-v-a7d4f94f19433ac6, ch: cigarette, pr: /si.ɡa.ʁɛt/, ds: cigarette}
+  - {id: fr-v-8edca4bccbcc10d3, ch: alcool, pr: /al.kɔl/, ds: 'alcohol, especially domestic, medical, methylated spirits'}
+  - {id: fr-v-8251341ec93e442b, ch: toxicomanie, pr: /tɔk.si.kɔ.ma.ni/, ds: drug addiction}
+  - {id: fr-v-4fca3ec9d34f0d37, ch: obésité, pr: /ɔ.be.zi.te/, ds: obesity (act or state of being obese)}
+  - {id: fr-v-3f285e5d70d37453, ch: diabète, pr: /dja.bɛt/, ds: diabetes}
+  - {id: fr-v-29a65f03b4c50b25, ch: hypertension, pr: /i.pɛʁ.tɑ̃.sjɔ̃/, ds: hypertension}
+  - {id: fr-v-744d0a372f328e73, ch: asthme, pr: /asm/, ds: asthma (chronic respiratory disease)}
+  - {id: fr-v-e674d4b64b3c7c5e, ch: bronchite, pr: /bʁɔ̃.ʃit/, ds: bronchitis}
+  - {id: fr-v-55a3e2705e606924, ch: pneumonie, pr: /pnømoni/, ds: pneumonia}
+  - {id: fr-v-95c73b43b561bb5c, ch: grippe, pr: /ɡʁip/, ds: influenza; flu}
+  - {id: fr-v-0536e46cb1fae656, ch: gastro-entérite, pr: /ɡas.tʁo.ɑ̃.te.ʁit/, ds: gastroenteritis}
+  - {id: fr-v-8b2c54015e4d036d, ch: angine, pr: /ɑ̃.ʒin/, ds: tonsillitis}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-20cd42445988a3ab, ch: injection, pr: /ɛ̃.ʒɛk.sjɔ̃/, ds: injection}
+  - {id: fr-v-072665c2fbe1224a, ch: perfusion, pr: /pɛʁfyzjɔ̃/, ds: 'perfusion, drip, intravenous injection'}
+  - {id: fr-v-3faf99441a501dad, ch: pansement, pr: /pɑ̃s.mɑ̃/, ds: 'bandage, dressing, sticking plaster'}
+  - {id: fr-v-1bd67ccdf3a2413f, ch: bandage, pr: /bɑ̃.daʒ/, ds: bandage}
+  - {id: fr-v-12f9cbb2cb278ce1, ch: compresse, pr: /kɔ̃.pʁɛs/, ds: compress (cloth used to dress or apply pressure to wounds)}
+  - {id: fr-v-9b56d70f79a54bd1, ch: désinfectant, pr: /de.zɛ̃.fɛk.tɑ̃/, ds: 'disinfectant, sanitizer'}
+  - {id: fr-v-a55b35173b781d58, ch: antiseptique, pr: /ɑ̃.ti.sɛp.tik/, ds: antiseptic (capable of preventing microbial infection)}
+  - {id: fr-v-96a797483e2b032c, ch: antibiotique, pr: /ɑ̃.ti.bjɔ.tik/, ds: antibiotic}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+- id: level-21-health-05
+  title: Body and wellbeing - 5
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: fr-v-8eab3dd0dcad1905, ch: migraine, pr: /mi.ɡʁɛn/, ds: migraine}
+  - {id: fr-v-eddc8a26363714c5, ch: insomnie, pr: /ɛ̃.sɔm.ni/, ds: insomnia (sleeping disorder)}
+  - {id: fr-v-0e5ed645410d7698, ch: dépression, pr: /de.pʁɛ.sjɔ̃/, ds: depression (area that is lower than its surroundings)}
+  - {id: fr-v-76f1b44bea00aa8a, ch: anxiété, pr: /ɑ̃k.sje.te/, ds: anxiety}
+  - {id: fr-v-957b96a802b9b286, ch: démence, pr: /de.mɑ̃s/, ds: dementia}
+  - {id: fr-v-12ded7fcdc3564a2, ch: cancer, pr: /kɑ̃.sɛʁ/, ds: cancer}
+  - {id: fr-v-61d1d56bfb893dd9, ch: tumeur, pr: /ty.mœʁ/, ds: tumor}
+  - {id: fr-v-a2d5fc42b8508f53, ch: poumon, pr: /pu.mɔ̃/, ds: lung}
+  - {id: fr-v-52799b3663ae709a, ch: foie, pr: /fwa/, ds: liver}
+  - {id: fr-v-3b389cad8d1b9b3f, ch: rein, pr: /ʁɛ̃/, ds: kidney}
+  - {id: fr-v-c5b0bb819232169d, ch: intestin, pr: /ɛ̃.tɛs.tɛ̃/, ds: intestine}
+  - {id: fr-v-85678a7fc152a77a, ch: estomac, pr: /ɛs.tɔ.ma/, ds: stomach}
+  - {id: fr-v-2bb45f16c0fe92b4, ch: vessie, pr: /vɛ.si/, ds: bladder}
+  - {id: fr-v-5e33b3de0621f7ca, ch: pancréas, pr: /pɑ̃.kʁe.as/, ds: the pancreas}
+  - {id: fr-v-1047be4ec3b612d5, ch: rate, pr: /ʁat/, ds: spleen}
+  - {id: fr-v-2b04abeea2543d25, ch: vésicule, pr: /ve.zi.kyl/, ds: bladder; small sac containing fluid or gas}
+  - {id: fr-v-3a96a0aae266feb7, ch: cerveau, pr: /sɛʁ.vo/, ds: brain (organ of thought)}
+  - {id: fr-v-f30fc07921deb926, ch: moelle, pr: /mwal/, ds: marrow (substance inside bones)}
+  - {id: fr-v-59491a5df761e9f4, ch: nerf, pr: /nɛʁ/, ds: nerve}
+  - {id: fr-v-5bcff61f01846d11, ch: artère, pr: /aʁ.tɛʁ/, ds: artery (“blood vessel”)}
+  - {id: fr-v-684ed64dd6a039f9, ch: veine, pr: /vɛn/, ds: vein}
+  - {id: fr-v-5900ab2c15ac05a1, ch: capillaire, pr: /ka.pi.lɛʁ/, ds: capillary}
+  - {id: fr-v-b6624e2b17874427, ch: muscle, pr: /myskl/, ds: 'muscle (contractile tissue, strength)'}
+  - {id: fr-v-269b3edabdc10f50, ch: tendon, pr: /tɑ̃.dɔ̃/, ds: tendon}
+  - {id: fr-v-0ff409ec19550a30, ch: ligament, pr: /li.ɡa.mɑ̃/, ds: ligament}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-3f285e5d70d37453, ch: diabète, pr: /dja.bɛt/, ds: diabetes}
+  - {id: fr-v-29a65f03b4c50b25, ch: hypertension, pr: /i.pɛʁ.tɑ̃.sjɔ̃/, ds: hypertension}
+  - {id: fr-v-744d0a372f328e73, ch: asthme, pr: /asm/, ds: asthma (chronic respiratory disease)}
+  - {id: fr-v-e674d4b64b3c7c5e, ch: bronchite, pr: /bʁɔ̃.ʃit/, ds: bronchitis}
+  - {id: fr-v-55a3e2705e606924, ch: pneumonie, pr: /pnømoni/, ds: pneumonia}
+  - {id: fr-v-95c73b43b561bb5c, ch: grippe, pr: /ɡʁip/, ds: influenza; flu}
+  - {id: fr-v-0536e46cb1fae656, ch: gastro-entérite, pr: /ɡas.tʁo.ɑ̃.te.ʁit/, ds: gastroenteritis}
+  - {id: fr-v-8b2c54015e4d036d, ch: angine, pr: /ɑ̃.ʒin/, ds: tonsillitis}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+- id: level-21-health-06
+  title: Body and wellbeing - 6
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: fr-v-ae9354e9db7b3af4, ch: articulation, pr: /aʁ.ti.ky.la.sjɔ̃/, ds: joint (joint with freedom to rotate)}
+  - {id: fr-v-1f73974a05b6d53d, ch: cartilage, pr: /kaʁ.ti.laʒ/, ds: cartilage}
+  - {id: fr-v-ca5241ff0621d268, ch: os, pr: /ɔs/, ds: bone}
+  - {id: fr-v-942353e7b8a1af76, ch: squelette, pr: /skə.lɛt/, ds: skeleton}
+  - {id: fr-v-2638b1bf930264b9, ch: vertèbre, pr: /vɛʁ.tɛbʁ/, ds: vertebra}
+  - {id: fr-v-ed05aa73f844aa29, ch: crâne, pr: /kʁan/, ds: 'skull, cranium'}
+  - {id: fr-v-2c5c4a87cc35c35e, ch: bassin, pr: /ba.sɛ̃/, ds: 'pond, ornamental lake, basin'}
+  - {id: fr-v-25212fd970909196, ch: hanche, pr: /ɑ̃ʃ/, ds: hip}
+  - {id: fr-v-a2045f2b584809e4, ch: cheville, pr: /ʃə.vij/, ds: ankle}
+  - {id: fr-v-1771ff84741c8bb7, ch: poignet, pr: /pwa.ɲɛ/, ds: wrist}
+  - {id: fr-v-78b06d683482b152, ch: coude, pr: /kud/, ds: elbow}
+  - {id: fr-v-8aef8337130f19eb, ch: paume, pr: /pom/, ds: palm (of the hand)}
+  - {id: fr-v-6028ec6c74122534, ch: talon, pr: /ta.lɔ̃/, ds: heel (part of the foot)}
+  - {id: fr-v-0d2c7f6a3a737caa, ch: orteil, pr: /ɔʁ.tɛj/, ds: toe}
+  - {id: fr-v-2ba9d0609244a5ce, ch: ongle, pr: /ɔ̃ɡl/, ds: 'nail, fingernail'}
+  - {id: fr-v-132f4941d10846ca, ch: front, pr: /fʁɔ̃/, ds: forehead}
+  - {id: fr-v-7c4f2c9264c1c02a, ch: tempe, pr: /tɑ̃p/, ds: temple}
+  - {id: fr-v-7657d76bac85f8a6, ch: joue, pr: /ʒu/, ds: cheek}
+  - {id: fr-v-61215d723f3358f0, ch: menton, pr: /mɑ̃.tɔ̃/, ds: chin}
+  - {id: fr-v-cdf1bbfa2b7dd5f0, ch: mâchoire, pr: /ma.ʃwaʁ/, ds: jaw; jawbone}
+  - {id: fr-v-9c9ce2ec64bbfbfd, ch: lèvre, pr: /lɛvʁ/, ds: lip}
+  - {id: fr-v-f8cce12dc83058e0, ch: palais, pr: /pa.lɛ/, ds: palace}
+  - {id: fr-v-8dd5a8315f19bf34, ch: gencive, pr: /ʒɑ̃.siv/, ds: gum}
+  - {id: fr-v-884a16115fe7b445, ch: pupille, pr: /py.pij/, ds: pupil (of the eye)}
+  - {id: fr-v-fbae101a17e90239, ch: rétine, pr: /ʁe.tin/, ds: retina (thin layer of cells at the back of the eyeball)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-f30fc07921deb926, ch: moelle, pr: /mwal/, ds: marrow (substance inside bones)}
+  - {id: fr-v-59491a5df761e9f4, ch: nerf, pr: /nɛʁ/, ds: nerve}
+  - {id: fr-v-5bcff61f01846d11, ch: artère, pr: /aʁ.tɛʁ/, ds: artery (“blood vessel”)}
+  - {id: fr-v-684ed64dd6a039f9, ch: veine, pr: /vɛn/, ds: vein}
+  - {id: fr-v-5900ab2c15ac05a1, ch: capillaire, pr: /ka.pi.lɛʁ/, ds: capillary}
+  - {id: fr-v-b6624e2b17874427, ch: muscle, pr: /myskl/, ds: 'muscle (contractile tissue, strength)'}
+  - {id: fr-v-269b3edabdc10f50, ch: tendon, pr: /tɑ̃.dɔ̃/, ds: tendon}
+  - {id: fr-v-0ff409ec19550a30, ch: ligament, pr: /li.ɡa.mɑ̃/, ds: ligament}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+- id: level-21-health-07
+  title: Body and wellbeing - 7
+  outcome: Explain a familiar health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: fr-v-2368d854033a1f33, ch: cornée, pr: /kɔʁ.ne/, ds: cornea}
+  - {id: fr-v-0dbc740823178a5f, ch: tympan, pr: /tɛ̃.pɑ̃/, ds: eardrum}
+  - {id: fr-v-de7f91533251b521, ch: larynx, pr: /la.ʁɛ̃ks/, ds: larynx}
+  - {id: fr-v-874c4d96fe40c4cf, ch: trachée, pr: /tʁa.ʃe/, ds: trachea}
+  - {id: fr-v-87472db5bce31239, ch: langue, pr: /lɑ̃ɡ/, ds: tongue; body part}
+  - {id: fr-v-ec9d43f284dc0e8b, ch: circulation, pr: /siʁ.ky.la.sjɔ̃/, ds: blood circulation}
+  - {id: fr-v-93c3d117ad5e91ea, ch: alimentation, pr: /a.li.mɑ̃.ta.sjɔ̃/, ds: food; nourishment}
+  - {id: fr-v-68985b464290040c, ch: intoxication, pr: /ɛ̃.tɔk.si.ka.sjɔ̃/, ds: poisoning}
+  - {id: fr-v-7d67bf14d1312095, ch: plante, pr: /plɑ̃t/, ds: sole of the foot}
+  - {id: fr-v-fbdaa0ea5d067cf4, ch: côte, pr: /kot/, ds: rib; bone}
+  - {id: fr-v-41d02ffe3d31378c, ch: traitement, pr: /tʁɛt.mɑ̃/, ds: treatment; medical care}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-7657d76bac85f8a6, ch: joue, pr: /ʒu/, ds: cheek}
+  - {id: fr-v-61215d723f3358f0, ch: menton, pr: /mɑ̃.tɔ̃/, ds: chin}
+  - {id: fr-v-cdf1bbfa2b7dd5f0, ch: mâchoire, pr: /ma.ʃwaʁ/, ds: jaw; jawbone}
+  - {id: fr-v-9c9ce2ec64bbfbfd, ch: lèvre, pr: /lɛvʁ/, ds: lip}
+  - {id: fr-v-f8cce12dc83058e0, ch: palais, pr: /pa.lɛ/, ds: palace}
+  - {id: fr-v-8dd5a8315f19bf34, ch: gencive, pr: /ʒɑ̃.siv/, ds: gum}
+  - {id: fr-v-884a16115fe7b445, ch: pupille, pr: /py.pij/, ds: pupil (of the eye)}
+  - {id: fr-v-fbae101a17e90239, ch: rétine, pr: /ʁe.tin/, ds: retina (thin layer of cells at the back of the eyeball)}
+  review_grammar:
+  - {id: fr-g-avoir-body-states, ch: avoir mal à + partie du corps ; avoir faim / soif, ds: Describe bodily states with fixed avoir frames}
+  - {id: fr-g-pronominal-past-agreement, ch: 'sujet + se + être + participe : objet direct ou indirect', ds: Pronominal participles do not always agree with the subject}
+- id: level-21-nature-01
+  title: Nature and environment - 1
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: fr-v-4062e555e7a4a932, ch: biologique, pr: /bjɔ.lɔ.ʒik/, ds: biological}
+  - {id: fr-v-12d8d580ab07b503, ch: naturel, pr: /na.ty.ʁɛl/, ds: natural}
+  - {id: fr-v-62b4d1408bf02c76, ch: artificiel, pr: /aʁ.ti.fi.sjɛl/, ds: artificial}
+  - {id: fr-v-53fbdaac485d225a, ch: organique, pr: /ɔʁ.ɡa.nik/, ds: organic (all meanings)}
+  - {id: fr-v-95a9abbcabc9b007, ch: minéral, pr: /mi.ne.ʁal/, ds: mineral}
+  - {id: fr-v-514233ba08ab9a60, ch: végétal, pr: /ve.ʒe.tal/, ds: plant}
+  - {id: fr-v-6a6c81a28a963736, ch: humain, pr: /y.mɛ̃/, ds: human}
+  - {id: fr-v-52a21f77e9896992, ch: microbien, pr: /mi.kʁɔ.bjɛ̃/, ds: microbial}
+  - {id: fr-v-af97ccb81e8c1696, ch: viral, pr: /vi.ʁal/, ds: viral}
+  - {id: fr-v-05e12dc77ee526ab, ch: bactérien, pr: /bak.te.ʁjɛ̃/, ds: bacterial}
+  - {id: fr-v-3c3817ef8dc82b7e, ch: microbe, pr: /mi.kʁɔb/, ds: microbe}
+  - {id: fr-v-bdc4f30340bad714, ch: bactérie, pr: /bak.te.ʁi/, ds: bacterium}
+  - {id: fr-v-0059ddcf412993ce, ch: champignon, pr: /ʃɑ̃.pi.ɲɔ̃/, ds: mushroom}
+  - {id: fr-v-4e139ee30f5970fe, ch: parasite, pr: /pa.ʁa.zit/, ds: parasite}
+  - {id: fr-v-15892d2ba80efb33, ch: levure, pr: /lə.vyʁ/, ds: yeast}
+  - {id: fr-v-f490db9f1d7d1c4a, ch: algue, pr: /alɡ/, ds: alga (any of many aquatic photosynthetic organisms)}
+  - {id: fr-v-4f7e69e16c72196b, ch: mousse, pr: /mus/, ds: moss (the plant)}
+  - {id: fr-v-a03352f04aabe029, ch: fougère, pr: /fu.ʒɛʁ/, ds: fern}
+  - {id: fr-v-bea19729ffc6384e, ch: arbuste, pr: /aʁ.byst/, ds: 'bush, shrub'}
+  - {id: fr-v-1978ada02fa9809b, ch: écorce, pr: /e.kɔʁs/, ds: bark (of a tree)}
+  - {id: fr-v-2e5ff2081734b1e3, ch: tige, pr: /tiʒ/, ds: stem (of a plant etc.)}
+  - {id: fr-v-bbac7f1e0e0e4950, ch: rameau, pr: /ʁa.mo/, ds: small tree branch}
+  - {id: fr-v-cf5529417f484b3e, ch: pétale, pr: /pe.tal/, ds: petal}
+  - {id: fr-v-56df79c487d55962, ch: pollen, pr: /pɔ.lɛn/, ds: pollen}
+  - {id: fr-v-8bcd25246a3323bb, ch: nectar, pr: /nɛk.taʁ/, ds: nectar (all meanings)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-9f94eaa7e74ac42c, ch: extinction, pr: /ɛk.stɛ̃k.sjɔ̃/, ds: extinction}
+  - {id: fr-v-d62648c048151f3f, ch: disparition, pr: /dis.pa.ʁi.sjɔ̃/, ds: disappearance}
+  - {id: fr-v-92e08c6048fe68e7, ch: conservation, pr: /kɔ̃.sɛʁ.va.sjɔ̃/, ds: conservation}
+  - {id: fr-v-d64fe538d0d98cb3, ch: restauration, pr: /ʁɛs.tɔ.ʁa.sjɔ̃/, ds: restoration}
+  - {id: fr-v-ba256256135713ac, ch: campagne, pr: /kɑ̃.paɲ/, ds: countryside; rural area}
+  - {id: fr-v-d9723a0f4fe7135b, ch: sol, pr: /sɔl/, ds: soil; earth}
+  - {id: fr-v-4bb28d74d4b2564d, ch: espèce, pr: /ɛs.pɛs/, ds: species}
+  - {id: fr-v-6e83fe88790a7ed8, ch: émission, pr: /e.mi.sjɔ̃/, ds: emission; release}
+  review_grammar:
+  - {id: fr-g-nominal-cause, ch: à cause de / grâce à + nom, ds: Present a cause with a negative or favorable framing}
+- id: level-21-nature-02
+  title: Nature and environment - 2
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: fr-v-9760967ceb0ce900, ch: noyau, pr: /nwa.jo/, ds: 'stone (of a fruit), pit (of a fruit)'}
+  - {id: fr-v-4975315481e45aac, ch: pépin, pr: /pe.pɛ̃/, ds: pip (the seed from fruit)}
+  - {id: fr-v-219b8891110a54c4, ch: bulbe, pr: /bylb/, ds: bulb (bulb-shaped root)}
+  - {id: fr-v-1cb74edf3b71f704, ch: bourgeon, pr: /buʁ.ʒɔ̃/, ds: bud (of plant)}
+  - {id: fr-v-289e18d6e59e29d4, ch: germe, pr: /ʒɛʁm/, ds: germ (small mass of cells)}
+  - {id: fr-v-80293f5f316ff38d, ch: végétation, pr: /ve.ʒe.ta.sjɔ̃/, ds: vegetation}
+  - {id: fr-v-308f6a28c72857bf, ch: flore, pr: /flɔʁ/, ds: flora; plants of a region or period}
+  - {id: fr-v-ea447d09218d480b, ch: faune, pr: /fon/, ds: faun}
+  - {id: fr-v-7b50bc3ea0a93451, ch: bois, pr: /bwa/, ds: wood; substance of tree trunks and branches}
+  - {id: fr-v-ae20e51f494bbef5, ch: prairie, pr: /pʁɛ.ʁi/, ds: 'meadow, grassland, pasture, prairie'}
+  - {id: fr-v-febd3725c79275e3, ch: pâturage, pr: /pa.ty.ʁaʒ/, ds: pasture; meadow}
+  - {id: fr-v-0bc53581c673dedb, ch: champ, pr: /ʃɑ̃/, ds: a wide open space}
+  - {id: fr-v-b3e45cd76263b051, ch: culture, pr: /kyl.tyʁ/, ds: 'farming, cultivation, crop growing'}
+  - {id: fr-v-46071eacb97936b8, ch: récolte, pr: /ʁe.kɔlt/, ds: harvest}
+  - {id: fr-v-73ad07074a15db89, ch: semence, pr: /sə.mɑ̃s/, ds: seed (fertilized grain)}
+  - {id: fr-v-d8e8ca67df3cc7b9, ch: engrais, pr: /ɑ̃.ɡʁɛ/, ds: fertilizer}
+  - {id: fr-v-106a797602a51a24, ch: pesticide, pr: /pɛs.ti.sid/, ds: pesticide}
+  - {id: fr-v-15afae33d4ab165f, ch: insecticide, pr: /ɛ̃.sɛk.ti.sid/, ds: insecticide}
+  - {id: fr-v-ddb28ef8af722130, ch: fertilité, pr: /fɛʁ.ti.li.te/, ds: fertility}
+  - {id: fr-v-da7b39ac044d822c, ch: érosion, pr: /e.ʁo.zjɔ̃/, ds: 'erosion, weathering'}
+  - {id: fr-v-eb55c1e387dfbf57, ch: désertification, pr: /de.zɛʁ.ti.fi.ka.sjɔ̃/, ds: desertification}
+  - {id: fr-v-f82f423580d1af13, ch: déforestation, pr: /de.fɔ.ʁɛs.ta.sjɔ̃/, ds: deforestation}
+  - {id: fr-v-6a771fb9464d503c, ch: reforestation, pr: /ʁə.fɔ.ʁɛs.ta.sjɔ̃/, ds: reforestation}
+  - {id: fr-v-b2537227f772f2b3, ch: sélection, pr: /se.lɛk.sjɔ̃/, ds: selection}
+  - {id: fr-v-4174c372d7221174, ch: migration, pr: /miɡʁasjɔ̃/, ds: migration (of animals)}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-a03352f04aabe029, ch: fougère, pr: /fu.ʒɛʁ/, ds: fern}
+  - {id: fr-v-bea19729ffc6384e, ch: arbuste, pr: /aʁ.byst/, ds: 'bush, shrub'}
+  - {id: fr-v-1978ada02fa9809b, ch: écorce, pr: /e.kɔʁs/, ds: bark (of a tree)}
+  - {id: fr-v-2e5ff2081734b1e3, ch: tige, pr: /tiʒ/, ds: stem (of a plant etc.)}
+  - {id: fr-v-bbac7f1e0e0e4950, ch: rameau, pr: /ʁa.mo/, ds: small tree branch}
+  - {id: fr-v-cf5529417f484b3e, ch: pétale, pr: /pe.tal/, ds: petal}
+  - {id: fr-v-56df79c487d55962, ch: pollen, pr: /pɔ.lɛn/, ds: pollen}
+  - {id: fr-v-8bcd25246a3323bb, ch: nectar, pr: /nɛk.taʁ/, ds: nectar (all meanings)}
+  review_grammar:
+  - {id: fr-g-nominal-cause, ch: à cause de / grâce à + nom, ds: Present a cause with a negative or favorable framing}
+- id: level-21-nature-03
+  title: Nature and environment - 3
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: fr-v-c284d266c01e1363, ch: survie, pr: /syʁ.vi/, ds: survival}
+  - {id: fr-v-f1bc6eb4cc647055, ch: mortalité, pr: /mɔʁtalite/, ds: mortality}
+  - {id: fr-v-3fcf704f4721ab01, ch: natalité, pr: /na.ta.li.te/, ds: birthrate}
+  - {id: fr-v-61505f195e30d8d7, ch: fécondité, pr: /fe.kɔ̃.di.te/, ds: fertility (state of being fertile)}
+  - {id: fr-v-b19f89f47bc05ad7, ch: longévité, pr: /lɔ̃.ʒe.vi.te/, ds: longevity}
+  - {id: fr-v-e8547402332795ae, ch: chaîne alimentaire, pr: /ʃɛ.n‿a.li.mɑ̃.tɛʁ/, ds: food chain}
+  - {id: fr-v-5346eabbfb61ba4e, ch: prédateur, pr: /pʁe.da.tœʁ/, ds: predator}
+  - {id: fr-v-522d88c06c2022df, ch: proie, pr: /pʁwa/, ds: prey}
+  - {id: fr-v-efbfb3dcf1bee67b, ch: symbiose, pr: /sɛ̃.bjoz/, ds: symbiosis (relationship of mutual benefit)}
+  - {id: fr-v-21037a58e164b1e9, ch: compétition, pr: /kɔ̃.pe.ti.sjɔ̃/, ds: competition}
+  - {id: fr-v-4e24c97331f873be, ch: niche, pr: /niʃ/, ds: niche}
+  - {id: fr-v-f69e5dd1a4a8ea6c, ch: biosphère, pr: /bjɔs.fɛʁ/, ds: biosphere}
+  - {id: fr-v-6d091df2a29eac96, ch: continent, pr: /kɔ̃.ti.nɑ̃/, ds: continent}
+  - {id: fr-v-67f096544b064f86, ch: croûte, pr: /kʁut/, ds: crust (of e.g. bread)}
+  - {id: fr-v-0f3c2e15e57f2224, ch: minerai, pr: /min.ʁɛ/, ds: ore (rocklike material)}
+  - {id: fr-v-1e03704323d30b65, ch: métal, pr: /me.tal/, ds: metal}
+  - {id: fr-v-19c1224473b67d85, ch: cristal, pr: /kʁis.tal/, ds: crystal}
+  - {id: fr-v-aba0cee6792e4e38, ch: volcan, pr: /vɔl.kɑ̃/, ds: volcano}
+  - {id: fr-v-1652b40c1db08058, ch: séisme, pr: /se.ism/, ds: earthquake}
+  - {id: fr-v-c32da4542f6b0e54, ch: tremblement de terre, pr: /tʁɑ̃.blə.mɑ̃ d(ə) tɛʁ/, ds: earthquake}
+  - {id: fr-v-1f77be52f774cbb9, ch: plaque, pr: /plak/, ds: 'sheet, plate (of metal)'}
+  - {id: fr-v-7e30c9539545a5d0, ch: relief, pr: /ʁə.ljɛf/, ds: 'projection, relief'}
+  - {id: fr-v-5368112d4ba8e3f4, ch: falaise, pr: /fa.lɛz/, ds: cliff (steep rock face)}
+  - {id: fr-v-5cb5744ff5c60a61, ch: ravin, pr: /ʁa.vɛ̃/, ds: ravine}
+  - {id: fr-v-f1304236a09c9cb3, ch: canyon, pr: /ka.ɲɔn/, ds: canyon}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-15afae33d4ab165f, ch: insecticide, pr: /ɛ̃.sɛk.ti.sid/, ds: insecticide}
+  - {id: fr-v-ddb28ef8af722130, ch: fertilité, pr: /fɛʁ.ti.li.te/, ds: fertility}
+  - {id: fr-v-da7b39ac044d822c, ch: érosion, pr: /e.ʁo.zjɔ̃/, ds: 'erosion, weathering'}
+  - {id: fr-v-eb55c1e387dfbf57, ch: désertification, pr: /de.zɛʁ.ti.fi.ka.sjɔ̃/, ds: desertification}
+  - {id: fr-v-f82f423580d1af13, ch: déforestation, pr: /de.fɔ.ʁɛs.ta.sjɔ̃/, ds: deforestation}
+  - {id: fr-v-6a771fb9464d503c, ch: reforestation, pr: /ʁə.fɔ.ʁɛs.ta.sjɔ̃/, ds: reforestation}
+  - {id: fr-v-b2537227f772f2b3, ch: sélection, pr: /se.lɛk.sjɔ̃/, ds: selection}
+  - {id: fr-v-4174c372d7221174, ch: migration, pr: /miɡʁasjɔ̃/, ds: migration (of animals)}
+  review_grammar:
+  - {id: fr-g-nominal-cause, ch: à cause de / grâce à + nom, ds: Present a cause with a negative or favorable framing}
+- id: level-21-nature-04
+  title: Nature and environment - 4
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: fr-v-51fa2e99491952a4, ch: delta, pr: /dɛl.ta/, ds: delta (Greek letter)}
+  - {id: fr-v-46fbac24d44d25dd, ch: estuaire, pr: /ɛs.tɥɛʁ/, ds: estuary}
+  - {id: fr-v-2e55cc72fe06068f, ch: glacier, pr: /ɡla.sje/, ds: glacier}
+  - {id: fr-v-54932a83a59de296, ch: banquise, pr: /bɑ̃.kiz/, ds: 'sea ice, pack ice, ice floe; ice field'}
+  - {id: fr-v-0b88c83d40a33e37, ch: iceberg, pr: /ajs.bɛʁɡ/, ds: iceberg}
+  - {id: fr-v-2bb183bcbf53591a, ch: fonte, pr: /fɔ̃t/, ds: 'melting, smelting, thawing'}
+  - {id: fr-v-a9adad30e8413fe0, ch: marée, pr: /ma.ʁe/, ds: tide}
+  - {id: fr-v-a1f1934920464b08, ch: mutation, pr: /my.ta.sjɔ̃/, ds: mutation; change}
+  - {id: fr-v-7c49a4693aa01291, ch: faille, pr: /faj/, ds: fault; geological fracture}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-aba0cee6792e4e38, ch: volcan, pr: /vɔl.kɑ̃/, ds: volcano}
+  - {id: fr-v-1652b40c1db08058, ch: séisme, pr: /se.ism/, ds: earthquake}
+  - {id: fr-v-c32da4542f6b0e54, ch: tremblement de terre, pr: /tʁɑ̃.blə.mɑ̃ d(ə) tɛʁ/, ds: earthquake}
+  - {id: fr-v-1f77be52f774cbb9, ch: plaque, pr: /plak/, ds: 'sheet, plate (of metal)'}
+  - {id: fr-v-7e30c9539545a5d0, ch: relief, pr: /ʁə.ljɛf/, ds: 'projection, relief'}
+  - {id: fr-v-5368112d4ba8e3f4, ch: falaise, pr: /fa.lɛz/, ds: cliff (steep rock face)}
+  - {id: fr-v-5cb5744ff5c60a61, ch: ravin, pr: /ʁa.vɛ̃/, ds: ravine}
+  - {id: fr-v-f1304236a09c9cb3, ch: canyon, pr: /ka.ɲɔn/, ds: canyon}
+  review_grammar:
+  - {id: fr-g-nominal-cause, ch: à cause de / grâce à + nom, ds: Present a cause with a negative or favorable framing}
+- id: level-21-science-01
+  title: Science and investigation - 1
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary:
+  - {id: fr-v-8f4689d4887b06a1, ch: science, pr: /sjɑ̃s/, ds: 'science (field of study, etc.)'}
+  - {id: fr-v-b74b955ef9e5644d, ch: chercheur, pr: /ʃɛʁ.ʃœʁ/, ds: searcher (one who searches)}
+  - {id: fr-v-751bfd29233bfb5c, ch: scientifique, pr: /sjɑ̃.ti.fik/, ds: scientific}
+  - {id: fr-v-288e05c476fac302, ch: laboratoire, pr: /la.bɔ.ʁa.twaʁ/, ds: laboratory}
+  - {id: fr-v-e3fcf27d5b316815, ch: expérimentation, pr: /ɛk.spe.ʁi.mɑ̃.ta.sjɔ̃/, ds: experimentation}
+  - {id: fr-v-6002a04aaf2164a9, ch: protocole, pr: /pʁɔ.tɔ.kɔl/, ds: protocol}
+  - {id: fr-v-5541c0124245db24, ch: méthodologie, pr: /me.tɔ.dɔ.lɔ.ʒi/, ds: methodology}
+  - {id: fr-v-7fe9efad7dac265e, ch: échantillon, pr: /e.ʃɑ̃.ti.jɔ̃/, ds: 'sample, extract'}
+  - {id: fr-v-d9c6f59e5ab5692b, ch: échantillonnage, pr: /e.ʃɑ̃.ti.jɔ.naʒ/, ds: sampling}
+  - {id: fr-v-3425b655f9ac3c09, ch: variable, pr: /va.ʁjabl/, ds: variable (quantity that may assume any one of a set of values)}
+  - {id: fr-v-e788e188b8484026, ch: facteur, pr: /fak.tœʁ/, ds: factor; element}
+  - {id: fr-v-5fdbcf4f2db25a7a, ch: constante, pr: /kɔ̃s.tɑ̃t/, ds: constant; quantity with a fixed value}
+  - {id: fr-v-773499356f4cc981, ch: unité, pr: /y.ni.te/, ds: unity}
+  - {id: fr-v-a25bd0be7a90f8e3, ch: échelle, pr: /e.ʃɛl/, ds: ladder}
+  - {id: fr-v-4d5469e2ac64aad8, ch: degré, pr: /də.ɡʁe/, ds: degree}
+  - {id: fr-v-b23a7a395e4407f1, ch: proportion, pr: /pʁɔ.pɔʁ.sjɔ̃/, ds: proportion}
+  - {id: fr-v-46e2fbc64fb77f58, ch: pourcentage, pr: /puʁ.sɑ̃.taʒ/, ds: percentage}
+  - {id: fr-v-6090fa755849729a, ch: fraction, pr: /fʁak.sjɔ̃/, ds: fraction (small amount)}
+  - {id: fr-v-bef64a86e12ec095, ch: quotient, pr: /kɔ.sjɑ̃/, ds: quotient (result of a division)}
+  - {id: fr-v-51380cd5d4618183, ch: ratio, pr: /ʁa.sjo/, ds: ratio}
+  - {id: fr-v-f3e11f49931cbedb, ch: moyenne, pr: /mwa.jɛn/, ds: 'average, mean'}
+  - {id: fr-v-b92c71460384b014, ch: dispersion, pr: /dis.pɛʁ.sjɔ̃/, ds: dispersion}
+  - {id: fr-v-23b207a6b2956dd4, ch: variation, pr: /va.ʁja.sjɔ̃/, ds: variation}
+  - {id: fr-v-5a53e9ef3ee08d32, ch: écart, pr: /e.kaʁ/, ds: 'space, gap, interval, distance'}
+  - {id: fr-v-719763ed7000f9c1, ch: amplitude, pr: /ɑ̃.pli.tyd/, ds: amplitude}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-21-science-02
+  title: Science and investigation - 2
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary:
+  - {id: fr-v-6863a86bc3d49932, ch: étendue, pr: /e.tɑ̃.dy/, ds: 'expanse, area (of land, water etc.)'}
+  - {id: fr-v-7e6f0a6eaf18e212, ch: valeur, pr: /va.lœʁ/, ds: 'value, worth'}
+  - {id: fr-v-7dc431e2b7b26305, ch: seuil, pr: /sœj/, ds: threshold (of a doorway); doorstep}
+  - {id: fr-v-cfe8acfe6282567e, ch: maximum, pr: /mak.si.mɔm/, ds: maximum}
+  - {id: fr-v-5a47dc74f9999bda, ch: minimum, pr: /mi.ni.mɔm/, ds: minimum}
+  - {id: fr-v-7358e1fe208d16f4, ch: optimum, pr: /ɔptimɔm/, ds: optimum}
+  - {id: fr-v-3b179014510a80d6, ch: tendance, pr: /tɑ̃.dɑ̃s/, ds: 'tendency, propensity'}
+  - {id: fr-v-190b130f5f3401b3, ch: fluctuation, pr: /flyk.tɥa.sjɔ̃/, ds: fluctuation}
+  - {id: fr-v-a9e41c135085b646, ch: oscillation, pr: /ɔ.si.la.sjɔ̃/, ds: oscillation}
+  - {id: fr-v-6689743ef3087bcf, ch: périodicité, pr: /peʁjodisite/, ds: periodicity}
+  - {id: fr-v-fde81cc05b575276, ch: régression, pr: /ʁe.ɡʁɛ.sjɔ̃/, ds: regression}
+  - {id: fr-v-9a483782af22868e, ch: classification, pr: /kla.si.fi.ka.sjɔ̃/, ds: classification}
+  - {id: fr-v-274698916b661b31, ch: type, pr: /tip/, ds: 'type; sort, kind'}
+  - {id: fr-v-fafadf7ad9ec666c, ch: genre, pr: /ʒɑ̃ʁ/, ds: kind}
+  - {id: fr-v-4f36d61afcf020d4, ch: variété, pr: /va.ʁje.te/, ds: variety}
+  - {id: fr-v-5ab0dd254802efc3, ch: souche, pr: /suʃ/, ds: stump (of a tree)}
+  - {id: fr-v-446219635a4e6b3c, ch: lignée, pr: /liɲe/, ds: lineage; line (descent)}
+  - {id: fr-v-1366d9acabb6ebb5, ch: être vivant, pr: /ɛ.tʁə vi.vɑ̃/, ds: living being}
+  - {id: fr-v-7b08b43bfbca07f7, ch: cellule, pr: /sɛ.lyl/, ds: cell}
+  - {id: fr-v-67dbd7e465ab5dba, ch: organe, pr: /ɔʁ.ɡan/, ds: organ (any part of the body)}
+  - {id: fr-v-fb00629d2db1a5b0, ch: mécanisme, pr: /me.ka.nism/, ds: mechanism}
+  - {id: fr-v-a6ba757eb690e1fa, ch: métabolisme, pr: /me.ta.bɔ.lism/, ds: metabolism; chemical reactions in living cells}
+  - {id: fr-v-ea03dad77d3305dc, ch: reproduction, pr: /ʁə.pʁɔ.dyk.sjɔ̃/, ds: reproduction}
+  - {id: fr-v-ba49fd69a78e0cdb, ch: développement, pr: /de.vlɔp.mɑ̃/, ds: development}
+  - {id: fr-v-5f25fa28df6fca48, ch: vieillissement, pr: /vjɛ.jis.mɑ̃/, ds: 'aging, the action of getting older'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-6090fa755849729a, ch: fraction, pr: /fʁak.sjɔ̃/, ds: fraction (small amount)}
+  - {id: fr-v-bef64a86e12ec095, ch: quotient, pr: /kɔ.sjɑ̃/, ds: quotient (result of a division)}
+  - {id: fr-v-51380cd5d4618183, ch: ratio, pr: /ʁa.sjo/, ds: ratio}
+  - {id: fr-v-f3e11f49931cbedb, ch: moyenne, pr: /mwa.jɛn/, ds: 'average, mean'}
+  - {id: fr-v-b92c71460384b014, ch: dispersion, pr: /dis.pɛʁ.sjɔ̃/, ds: dispersion}
+  - {id: fr-v-23b207a6b2956dd4, ch: variation, pr: /va.ʁja.sjɔ̃/, ds: variation}
+  - {id: fr-v-5a53e9ef3ee08d32, ch: écart, pr: /e.kaʁ/, ds: 'space, gap, interval, distance'}
+  - {id: fr-v-719763ed7000f9c1, ch: amplitude, pr: /ɑ̃.pli.tyd/, ds: amplitude}
+  review_grammar: []
+- id: level-21-science-03
+  title: Science and investigation - 3
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary:
+  - {id: fr-v-974d8ac5ddf04cb4, ch: hérédité, pr: /e.ʁe.di.te/, ds: heredity (transmission of genetic features)}
+  - {id: fr-v-75b9790843577b8c, ch: génétique, pr: /ʒe.ne.tik/, ds: genetic}
+  - {id: fr-v-64d214279882b175, ch: gène, pr: /ʒɛn/, ds: gene (unit of heredity)}
+  - {id: fr-v-ff8d48303484e6b2, ch: chromosome, pr: /kʁɔ.mo.zom/, ds: chromosome}
+  - {id: fr-v-1fb219ef88d5e39e, ch: protéine, pr: /pʁɔ.te.in/, ds: protein}
+  - {id: fr-v-a162dd46b83bbf01, ch: enzyme, pr: /ɑ̃zim/, ds: enzyme}
+  - {id: fr-v-a46d24f2abe4f353, ch: hormone, pr: /ɔʁ.mɔn/, ds: hormone}
+  - {id: fr-v-b4ecb1c23e63c18e, ch: molécule, pr: /mɔ.le.kyl/, ds: molecule}
+  - {id: fr-v-bf805106e144467e, ch: atome, pr: /a.tom/, ds: atom (particle)}
+  - {id: fr-v-7122584795d7b7a7, ch: composé, pr: /kɔ̃.po.ze/, ds: compound}
+  - {id: fr-v-a11266f4aef6586c, ch: substance, pr: /syp.stɑ̃s/, ds: substance}
+  - {id: fr-v-d3e25197c071799a, ch: matière, pr: /ma.tjɛʁ/, ds: material (substance of which something is made)}
+  - {id: fr-v-2cfa6b18c79518b2, ch: matériau, pr: /ma.te.ʁjo/, ds: material}
+  - {id: fr-v-eee3163130829745, ch: force, pr: /fɔʁs/, ds: force}
+  - {id: fr-v-dc8f58220434a563, ch: puissance, pr: /pɥi.sɑ̃s/, ds: power (physical or figuratively)}
+  - {id: fr-v-caef5d154a848823, ch: accélération, pr: /ak.se.le.ʁa.sjɔ̃/, ds: acceleration}
+  - {id: fr-v-2a3e22c5ffdb751d, ch: masse, pr: /mas/, ds: 'a paste, a dough'}
+  - {id: fr-v-92a49a0db3fe8675, ch: poids, pr: /pwa/, ds: weight}
+  - {id: fr-v-21fc475251dc4866, ch: densité, pr: /dɑ̃.si.te/, ds: density}
+  - {id: fr-v-d5e42b82b0b42b4e, ch: longueur, pr: /lɔ̃.ɡœʁ/, ds: length}
+  - {id: fr-v-43ad75d99e773be1, ch: largeur, pr: /laʁ.ʒœʁ/, ds: width}
+  - {id: fr-v-95d5deb5e50fec2c, ch: hauteur, pr: /o.tœʁ/, ds: 'height, altitude'}
+  - {id: fr-v-a59e544dbe428dcb, ch: profondeur, pr: /pʁɔ.fɔ̃.dœʁ/, ds: depth}
+  - {id: fr-v-e062cac2e033bbd9, ch: longueur d'onde, pr: /lɔ̃.ɡœʁ d‿ɔ̃d/, ds: wavelength}
+  - {id: fr-v-5144dba44e2e41ea, ch: onde, pr: /ɔ̃d/, ds: wave}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-1366d9acabb6ebb5, ch: être vivant, pr: /ɛ.tʁə vi.vɑ̃/, ds: living being}
+  - {id: fr-v-7b08b43bfbca07f7, ch: cellule, pr: /sɛ.lyl/, ds: cell}
+  - {id: fr-v-67dbd7e465ab5dba, ch: organe, pr: /ɔʁ.ɡan/, ds: organ (any part of the body)}
+  - {id: fr-v-fb00629d2db1a5b0, ch: mécanisme, pr: /me.ka.nism/, ds: mechanism}
+  - {id: fr-v-a6ba757eb690e1fa, ch: métabolisme, pr: /me.ta.bɔ.lism/, ds: metabolism; chemical reactions in living cells}
+  - {id: fr-v-ea03dad77d3305dc, ch: reproduction, pr: /ʁə.pʁɔ.dyk.sjɔ̃/, ds: reproduction}
+  - {id: fr-v-ba49fd69a78e0cdb, ch: développement, pr: /de.vlɔp.mɑ̃/, ds: development}
+  - {id: fr-v-5f25fa28df6fca48, ch: vieillissement, pr: /vjɛ.jis.mɑ̃/, ds: 'aging, the action of getting older'}
+  review_grammar: []
+- id: level-21-science-04
+  title: Science and investigation - 4
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary:
+  - {id: fr-v-d7a53d21afb55d9e, ch: vibration, pr: /vi.bʁa.sjɔ̃/, ds: vibration}
+  - {id: fr-v-b35ad1e1cb38379b, ch: rayonnement, pr: /ʁɛ.jɔn.mɑ̃/, ds: 'radiation, spread'}
+  - {id: fr-v-46ca8683b45e5d81, ch: réflexion, pr: /ʁe.flɛk.sjɔ̃/, ds: reflection (in mirror)}
+  - {id: fr-v-6467eb1446e7da63, ch: réfraction, pr: /ʁefʁaksjɔ̃/, ds: refraction (bending of any wave)}
+  - {id: fr-v-80a97f1c103c14a4, ch: conduction, pr: /kɔ̃.dyk.sjɔ̃/, ds: conduction}
+  - {id: fr-v-d5566741cfd94a6b, ch: gravité, pr: /ɡʁa.vi.te/, ds: gravity}
+  - {id: fr-v-1d31ef129f5edf3e, ch: pesanteur, pr: /pə.zɑ̃.tœʁ/, ds: gravity}
+  - {id: fr-v-8b2d57bfda39cccf, ch: attraction, pr: /a.tʁak.sjɔ̃/, ds: attraction (all senses)}
+  - {id: fr-v-6a814d0800d0e270, ch: répulsion, pr: /ʁe.pyl.sjɔ̃/, ds: repulsion}
+  - {id: fr-v-d4cf893636e9ab8a, ch: magnétisme, pr: /ma.ɲe.tism/, ds: magnetism (property of being magnetic)}
+  - {id: fr-v-53c6cfaa3e33626e, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experiment; test}
+  - {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+  - {id: fr-v-86ee26c13d0acd7c, ch: mode, pr: /mɔd/, ds: mode; most frequent value}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-92a49a0db3fe8675, ch: poids, pr: /pwa/, ds: weight}
+  - {id: fr-v-21fc475251dc4866, ch: densité, pr: /dɑ̃.si.te/, ds: density}
+  - {id: fr-v-d5e42b82b0b42b4e, ch: longueur, pr: /lɔ̃.ɡœʁ/, ds: length}
+  - {id: fr-v-43ad75d99e773be1, ch: largeur, pr: /laʁ.ʒœʁ/, ds: width}
+  - {id: fr-v-95d5deb5e50fec2c, ch: hauteur, pr: /o.tœʁ/, ds: 'height, altitude'}
+  - {id: fr-v-a59e544dbe428dcb, ch: profondeur, pr: /pʁɔ.fɔ̃.dœʁ/, ds: depth}
+  - {id: fr-v-e062cac2e033bbd9, ch: longueur d'onde, pr: /lɔ̃.ɡœʁ d‿ɔ̃d/, ds: wavelength}
+  - {id: fr-v-5144dba44e2e41ea, ch: onde, pr: /ɔ̃d/, ds: wave}
+  review_grammar: []
+- id: level-21-actions-practice-01
+  title: Actions and processes - sentence practice 1
+  outcome: Explain a process and distinguish its intention, circumstances, and result.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-perfect-infinitive, ch: après avoir / être + participe passé, ds: Order completed actions with a shared-subject infinitive}
+  review_vocabulary:
+  - {id: fr-v-4d009d2ce7ceda36, ch: lire, pr: /liʁ/, ds: to read}
+  - {id: fr-v-c5a005f25a240fb7, ch: arriver, pr: /a.ʁi.ve/, ds: to arrive (often followed by a location)}
+  - {id: fr-v-b53bb7d6b4c600c6, ch: interdire, pr: /ɛ̃.tɛʁ.diʁ/, ds: 'to forbid, ban, prohibit'}
+  - {id: fr-v-5df24b8b815a4d44, ch: libéraliser, pr: /li.be.ʁa.li.ze/, ds: to liberalize (to make liberal)}
+  - {id: fr-v-0170f5cb56e78a87, ch: privatiser, pr: /pʁivatize/, ds: to privatize}
+  - {id: fr-v-6017db4e183b63ab, ch: nationaliser, pr: /nasjonalize/, ds: to nationalize}
+  - {id: fr-v-57ac91768fd1d764, ch: fédérer, pr: /fe.de.ʁe/, ds: to federate}
+  - {id: fr-v-34282dc2799e1c2a, ch: harmoniser, pr: /aʁ.mɔ.ni.ze/, ds: to harmonize}
+  - {id: fr-v-7f155cbf7972c496, ch: appliquer, pr: /a.pli.ke/, ds: 'to apply, to put something on something else'}
+  - {id: fr-v-dc191e342645757f, ch: mettre en œuvre, pr: /mɛ.tʁ‿ɑ̃.n‿œvʁ/, ds: 'to carry out, to set in motion, to do; to make use of'}
+  review_grammar:
+  - {id: fr-g-gerund-shared-subject, ch: en + participe présent, ds: Link manner or simultaneous action to the same subject}
+  - {id: fr-g-causative-faire, ch: faire + infinitif + participants, ds: Arrange or cause an action rather than perform it oneself}
+  - {id: fr-g-middle-se, ch: chose + se + verbe actif, ds: Describe a process or property without a self-acting agent}
+- id: level-21-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-threshold-infinitive, ch: assez / trop + adjectif ou adverbe + pour + infinitif, ds: Evaluate whether a degree permits an intended action}
+  review_vocabulary:
+  - {id: fr-v-c4a8100b1fac4914, ch: texte, pr: /tɛkst/, ds: text (piece of writing)}
+  - {id: fr-v-4d009d2ce7ceda36, ch: lire, pr: /liʁ/, ds: to read}
+  - {id: fr-v-37ed43b346a25e52, ch: portée, pr: /pɔʁ.te/, ds: 'reach, range, scope'}
+  - {id: fr-v-39fb5a40e9176a96, ch: restriction, pr: /ʁɛs.tʁik.sjɔ̃/, ds: restriction (limitation; constraint)}
+  - {id: fr-v-fc70e00686086826, ch: généralisation, pr: /ʒe.ne.ʁa.li.za.sjɔ̃/, ds: generalisation}
+  - {id: fr-v-463f7fbb79fa54db, ch: extrapolation, pr: /ɛk.stʁa.pɔ.la.sjɔ̃/, ds: extrapolation}
+  - {id: fr-v-a6f89cade94b9373, ch: interprétation, pr: /ɛ̃.tɛʁ.pʁe.ta.sjɔ̃/, ds: 'interpretation, rendition'}
+  - {id: fr-v-f8582ca641199460, ch: prédiction, pr: /pʁe.dik.sjɔ̃/, ds: prediction (act of predicting; statement about the future)}
+  - {id: fr-v-8457243dfc486763, ch: prévision, pr: /pʁe.vi.zjɔ̃/, ds: forecast}
+  - {id: fr-v-05670f33939183f9, ch: savoir, pr: /sa.vwaʁ/, ds: knowledge}
+  review_grammar:
+  - {id: fr-g-epistemic-modals, ch: devoir / pouvoir + infinitif de situation, ds: Mark an inference or possibility rather than an obligation}
+  - {id: fr-g-evidential-seeming, ch: il semble que / il me semble que + proposition, ds: Qualify a judgment and identify its perspective}
+  - {id: fr-g-compound-relatives, ch: préposition + lequel / laquelle / lesquels / lesquelles, ds: Retain a preposition in a gendered relative construction}
+- id: level-21-science-practice-01
+  title: Science and investigation - sentence practice 1
+  outcome: Explain an investigation while keeping observations, methods, and conclusions distinct.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-absolute-participle, ch: 'nom sujet + participe passé, proposition principale', ds: A detached participial clause has its own explicit subject}
+  - {id: fr-g-correlative-comparison, ch: 'plus / moins + proposition, plus / moins + proposition', ds: Describe covariation without automatically claiming causation}
+  review_vocabulary:
+  - {id: fr-v-754e3041937fd5ff, ch: travail, pr: /tʁa.vaj/, ds: work; labor}
+  - {id: fr-v-9b1059e266cc270e, ch: donnée, pr: /dɔ.ne/, ds: datum (item of data)}
+  - {id: fr-v-e3451c3d3c8417b4, ch: observer, pr: /ɔp.sɛʁ.ve/, ds: 'to observe, watch'}
+  - {id: fr-v-4b9b8f3a97c165aa, ch: dormir, pr: /dɔʁ.miʁ/, ds: to sleep}
+  - {id: fr-v-d5566741cfd94a6b, ch: gravité, pr: /ɡʁa.vi.te/, ds: gravity}
+  - {id: fr-v-1d31ef129f5edf3e, ch: pesanteur, pr: /pə.zɑ̃.tœʁ/, ds: gravity}
+  - {id: fr-v-8b2d57bfda39cccf, ch: attraction, pr: /a.tʁak.sjɔ̃/, ds: attraction (all senses)}
+  - {id: fr-v-6a814d0800d0e270, ch: répulsion, pr: /ʁe.pyl.sjɔ̃/, ds: repulsion}
+  - {id: fr-v-d4cf893636e9ab8a, ch: magnétisme, pr: /ma.ɲe.tism/, ds: magnetism (property of being magnetic)}
+  - {id: fr-v-53c6cfaa3e33626e, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experiment; test}
+  - {id: fr-v-2845edc963c71a56, ch: rapport, pr: /ʁa.pɔʁ/, ds: ratio}
+  - {id: fr-v-86ee26c13d0acd7c, ch: mode, pr: /mɔd/, ds: mode; most frequent value}
+  review_grammar: []

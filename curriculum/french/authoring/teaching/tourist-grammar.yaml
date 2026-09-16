@@ -1,0 +1,309 @@
+# Original AI-assisted French frames, English explanations and bilingual examples.
+# Not human-reviewed; offered under CC-BY-SA-4.0 to the extent rights exist.
+# Every construction IPA fragment in realizations.yaml is an ORIGINAL contextual
+# teaching guide, NOT source-verified. None establishes audio or spoken mastery.
+# The examples illustrate narrow formula learning, not complete conjugation systems.
+- id: fr-g-travel-polite-request
+  level: tourist
+  topic: communication
+  ch: S'il vous plaît
+  ds: Make a polite request
+  note: >-
+    Learn this fixed polite appeal to one unfamiliar person or several people.
+    Later, attach the same appeal to the one taught noun request L'addition,
+    s'il vous plaît. The contracted L' is licensed here only before addition.
+    These are narrow formulae, not a lesson on conditional si, object clitics,
+    all articles or the verb plaire; no unrelated plaire sense is awarded.
+  examples:
+  - {target: "S'il vous plaît.", english: "Please."}
+  - {target: "L'addition, s'il vous plaît.", english: "The bill, please."}
+  anchor_words: []
+  requires: []
+- id: fr-g-travel-communication-repair
+  level: tourist
+  topic: communication
+  ch: Parlez plus lentement / Je ne comprends pas
+  ds: Ask for slower speech and signal misunderstanding
+  note: >-
+    Learn two fixed repair moves, not the full imperative or negative system.
+    Parlez plus lentement, s'il vous plaît asks for slower speech; Je ne comprends
+    pas reports a present comprehension problem without blaming the other person.
+    Keep ne in this careful model. The original reading uses plus as /ply/ before
+    lentement, not a universal pronunciation of plus. These whole formulae do not
+    award generic parler, comprendre or an unrelated sense of plus.
+  examples:
+  - {target: "Parlez plus lentement, s'il vous plaît.", english: "Please speak more slowly."}
+  - {target: "Je ne comprends pas.", english: "I do not understand."}
+  anchor_words: []
+  requires: [fr-g-travel-polite-request]
+- id: fr-g-travel-polite-assistance
+  level: tourist
+  topic: communication
+  ch: Pouvez-vous répéter / m'aider / écrire l'adresse
+  ds: Ask someone to repeat, help or write an address
+  note: >-
+    Learn only these three polite Pouvez-vous requests, not the pouvoir paradigm
+    or unrestricted infinitive substitution. Répéter refers to what was just
+    said; m'aider asks for help without promising its availability. The writing
+    fragment accepts only adresse and keeps l'. Its original contextual reading
+    includes the /z/ liaison in vous écrire inside the construction chunk.
+    The fixed parts do not grant independent pouvoir, aider or écrire mastery.
+  examples:
+  - {target: "Pouvez-vous répéter ?", english: "Could you repeat that?"}
+  - {target: "Pouvez-vous m'aider ?", english: "Could you help me?"}
+  anchor_words: []
+  requires: []
+- id: fr-g-travel-would-like
+  level: tourist
+  topic: services
+  ch: Je voudrais de l'eau / un billet / une chambre / payer
+  ds: Make a limited polite request
+  note: >-
+    Learn the fixed request Je voudrais, not the conditional conjugation of
+    vouloir or its separate lexical senses. Licensed continuations are de l'eau,
+    un billet, un café, une chambre, une facture and the infinitive payer.
+    De l' is the water expression here, not the selected relational sense of de;
+    un and une are construction material, not extra lexical entries.
+    Keep each article with its constrained noun; do not transfer un to a
+    vowel-initial noun without a new contextual realization.
+  examples:
+  - {target: "Je voudrais de l'eau.", english: "I would like some water."}
+  - {target: "Je voudrais un billet.", english: "I would like a ticket."}
+  anchor_words: [eau]
+  requires: []
+- id: fr-g-travel-location-question
+  level: tourist
+  topic: travel
+  ch: Où est la gare / l'hôtel / Où sont les toilettes
+  ds: Ask where a taught place or the toilets are
+  note: >-
+    Learn these limited location questions, not all être forms or noun genders.
+    Où est la accepts gare or pharmacie; Où est l' accepts hôtel, whose mute h
+    permits elision. The plural question is limited to Où sont les toilettes.
+    Source toilette has a region-labeled singular lavatory sense; the original
+    France-centered formula here deliberately uses the attested plural toilettes,
+    not a claim that singular toilette is the usual France request.
+    The source-supported plural retains its own realization evidence.
+  examples:
+  - {target: "Où est la gare ?", english: "Where is the railway station?"}
+  - {target: "Où sont les toilettes ?", english: "Where are the toilets?"}
+  anchor_words: [gare]
+  requires: []
+- id: fr-g-travel-need
+  level: tourist
+  topic: health
+  ch: J'ai besoin d'aide / d'un médecin
+  ds: State a need for help or a doctor
+  note: >-
+    Learn only J'ai besoin d'aide and J'ai besoin d'un médecin, not all avoir,
+    besoin or de constructions. D' is retained in each constrained fragment.
+    These requests communicate a need; they neither diagnose a condition nor
+    guarantee that a doctor or help is available. Keep médecin distinct from a
+    pharmacy location request. The fixed frame does not award a generic avoir
+    sense or the unrelated selected relational sense of de.
+  examples:
+  - {target: "J'ai besoin d'aide.", english: "I need help."}
+  - {target: "J'ai besoin d'un médecin.", english: "I need a doctor."}
+  anchor_words: [aide]
+  requires: []
+- id: fr-g-travel-direction
+  level: tourist
+  topic: travel
+  ch: À gauche / À droite
+  ds: Indicate left or right
+  note: >-
+    Learn these two short directional replies, not all uses of à. They may point
+    out a side or the direction of a turn once the place or movement is clear.
+    Gauche and droite are the selected noun senses for the two sides, not
+    political affiliation, a straight line or adjective agreement. The fragment
+    accepts only these two taught words.
+  examples:
+  - {target: "À gauche.", english: "To the left."}
+  - {target: "À droite.", english: "To the right."}
+  anchor_words: [gauche, droite]
+  requires: []
+- id: fr-g-travel-time-question
+  level: tourist
+  topic: time
+  ch: À quelle heure / À quelle heure est le départ
+  ds: Ask the time of an understood event or departure
+  note: >-
+    Learn this narrow time question, not the whole question-word or être system.
+    À quelle heure relies on an event already under discussion; the later
+    departure variant names it explicitly. Quelle is fixed with feminine heure.
+    The departure bridge is allowed only between heure and départ. This route
+    teaches asking for a time, not decoding all numbers or timetables; use the
+    earlier repetition request when an answer is unclear. The segmented guide
+    does not prescribe a pause between quelle and heure.
+  examples:
+  - {target: "À quelle heure ?", english: "At what time?"}
+  - {target: "À quelle heure est le départ ?", english: "At what time is the departure?"}
+  anchor_words: [heure]
+  requires: []
+- id: fr-g-travel-have
+  level: tourist
+  topic: services
+  ch: J'ai une réservation / une allergie
+  ds: State a reservation or an allergy
+  note: >-
+    Learn only these two J'ai une statements, not all possession meanings or
+    avoir conjugations. Une is fixed feminine construction material, never a
+    separate lexical entry. Une allergie states that an allergy exists without
+    identifying its trigger, severity or treatment; further clarification is
+    necessary. The already pronounced /n/ before allergie may resyllabify in
+    connected speech; the separate chunks do not require a pause.
+  examples:
+  - {target: "J'ai une réservation.", english: "I have a reservation."}
+  - {target: "J'ai une allergie.", english: "I have an allergy."}
+  anchor_words: [réservation]
+  requires: []
+- id: fr-g-travel-not-working
+  level: tourist
+  topic: services
+  ch: La clé ne fonctionne pas
+  ds: Report that the key does not work
+  note: >-
+    Learn this one negative service-problem report, not every ne...pas sentence
+    or fonctionner form. La and the negative predicate are constrained to clé,
+    the selected unlocking-device sense. The statement reports what you
+    encounter; it does not identify the cause or promise a replacement.
+    The careful original pronunciation keeps ne.
+  examples:
+  - {target: "La clé ne fonctionne pas.", english: "The key does not work."}
+  - {target: "La clé ne fonctionne pas. Pouvez-vous m'aider ?", english: "The key does not work. Could you help me?"}
+  anchor_words: [clé]
+  requires: [fr-g-travel-polite-assistance]
+- id: fr-g-travel-milk-check
+  level: tourist
+  topic: food
+  ch: Sans lait / Est-ce qu'il y a du lait
+  ds: Request no milk and check whether milk is present
+  note: >-
+    Learn this pair of milk-specific request and checking formulae, not all sans,
+    partitives or il y a questions. Sans lait is a short instruction for an order;
+    Est-ce qu'il y a du lait asks about the item currently being discussed.
+    Both fragments accept only lait. They do not cover every allergen, establish
+    absence of traces, or make a meal safe; an answer may require clarification.
+    Do not treat these fixed chunks as separate mastery of their function words.
+  examples:
+  - {target: "Sans lait, s'il vous plaît.", english: "Without milk, please."}
+  - {target: "Est-ce qu'il y a du lait ?", english: "Is there any milk in it?"}
+  anchor_words: [lait]
+  requires: [fr-g-travel-polite-request]
+- id: fr-g-travel-price-question
+  level: tourist
+  topic: money
+  ch: Combien ça coûte
+  ds: Ask the price of the item under discussion
+  note: >-
+    Learn this fixed price question, not the conjugation of coûter or all uses of
+    combien and ça. Point to or establish the item first; the phrase alone does
+    not specify a quantity, currency or what is included. Recognizing the
+    question does not demonstrate understanding an unfamiliar spoken price.
+  examples:
+  - {target: "Combien ça coûte ?", english: "How much does it cost?"}
+  - {target: "Combien ça coûte, s'il vous plaît ?", english: "How much does it cost, please?"}
+  anchor_words: []
+  requires: [fr-g-travel-polite-request]
+- id: fr-g-travel-card-payment
+  level: tourist
+  topic: money
+  ch: Est-ce que je peux payer par carte
+  ds: Ask whether you can pay by card
+  note: >-
+    Learn this limited permission question, not all pouvoir or est-ce que
+    questions. The fragment accepts only carte in its selected card sense,
+    not its map or menu senses. Par carte is the fixed payment-method expression
+    here, without an article. This asks whether payment is possible; it does
+    not claim a particular card will be accepted or describe any current rule.
+  examples:
+  - {target: "Est-ce que je peux payer par carte ?", english: "Can I pay by card?"}
+  - {target: "Est-ce que je peux payer par carte, s'il vous plaît ?", english: "Can I pay by card, please?"}
+  anchor_words: [carte]
+  requires: [fr-g-travel-polite-request]
+- id: fr-g-travel-lost-description
+  level: tourist
+  topic: travel
+  ch: Mon bagage est perdu / Je suis perdu ou perdue
+  ds: Describe lost luggage or being lost yourself
+  note: >-
+    Learn only these subject-plus-lost descriptions, not the être paradigm or a
+    past tense. Perdu is the selected adjective lost, not a credited participle
+    of perdre. It agrees with masculine singular bagage. A speaker uses Je suis
+    perdu or Je suis perdue according to the agreement they use for themselves;
+    the attested feminine perdue is not another headword and has the same
+    reference reading here. The luggage bridge accepts only bagage before it
+    and perdu after it; no new adjective may be substituted.
+  examples:
+  - {target: "Mon bagage est perdu.", english: "My luggage is lost."}
+  - {target: "Je suis perdue.", english: "I am lost (speaker using feminine agreement)."}
+  anchor_words: [bagage, perdu]
+  requires: []
+- id: fr-g-travel-search-belonging
+  level: tourist
+  topic: travel
+  ch: Je cherche mon bagage
+  ds: Say you are looking for your luggage
+  note: >-
+    Learn this single search statement, not the chercher conjugation or all
+    possessive determiners. Mon is fixed with masculine singular bagage, using
+    its luggage sense. It identifies what you seek but does not identify the
+    bag for someone else; use a follow-up exchange rather than assume recovery.
+    The prefix accepts only bagage.
+  examples:
+  - {target: "Je cherche mon bagage.", english: "I am looking for my luggage."}
+  - {target: "Je cherche mon bagage. Pouvez-vous m'aider ?", english: "I am looking for my luggage. Could you help me?"}
+  anchor_words: [bagage]
+  requires: [fr-g-travel-polite-assistance]
+- id: fr-g-travel-delay
+  level: tourist
+  topic: travel
+  ch: Le train est en retard
+  ds: Report or check that the train is delayed
+  note: >-
+    Learn this one current-state report and its confirmation-question use, not
+    all être forms or time prepositions. En retard is a fixed predicate here;
+    en does not award the selected indefinite-quantity clitic sense.
+    The original est en chunk includes /t/ liaison internally. There is no
+    added liaison after the singular subject train. This reports a delay
+    without predicting a departure time or stating a passenger entitlement.
+  examples:
+  - {target: "Le train est en retard.", english: "The train is delayed."}
+  - {target: "Le train est en retard ? Pouvez-vous répéter ?", english: "The train is delayed? Could you repeat that?"}
+  anchor_words: [train, retard]
+  requires: [fr-g-travel-polite-assistance]
+- id: fr-g-travel-urgent-help
+  level: tourist
+  topic: health
+  ch: C'est une urgence / Appelez un médecin
+  ds: State urgency and ask someone to call a doctor
+  note: >-
+    Learn these two fixed urgent-help moves, not a general imperative or être
+    conjugation lesson. C'est une accepts only urgence; Appelez un accepts only
+    médecin. The latter asks one unfamiliar person or several people to call
+    a doctor, not to diagnose or perform a treatment. The source word médecin
+    was introduced earlier. The original C'est une chunk includes /t/ liaison;
+    the careful Appelez un model does not add optional postverbal liaison.
+    These formulae supply no emergency number, guarantee of response, service
+    availability or clinical advice.
+  examples:
+  - {target: "C'est une urgence.", english: "This is an emergency."}
+  - {target: "Appelez un médecin.", english: "Call a doctor."}
+  anchor_words: [urgence]
+  requires: []
+- id: fr-g-travel-destination
+  level: tourist
+  topic: travel
+  ch: Je vais à l'aéroport
+  ds: State that you are going to the airport
+  note: >-
+    Learn this fixed destination statement, not every aller form or the near
+    future construction. À l' is retained before the vowel-initial aéroport,
+    the only allowed slot. Vais names movement toward that place, not a
+    promised transport service, route or arrival time. A memorized statement
+    does not demonstrate independent choice of destination prepositions.
+  examples:
+  - {target: "Je vais à l'aéroport.", english: "I am going to the airport."}
+  - {target: "Je vais à l'aéroport. J'ai besoin d'aide.", english: "I am going to the airport. I need help."}
+  anchor_words: [aéroport]
+  requires: [fr-g-travel-need]

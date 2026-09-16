@@ -1,0 +1,692 @@
+schema_version: 3
+id: ja-level-09
+title: Relating events and changes
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 9
+phase: stories-conversations
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+goals: &id001
+- Sequence events with background.
+- Distinguish ongoing actions from resulting states.
+- Explain what happened before an unexpected result.
+checkpoint:
+  task: Recount an unfamiliar picture sequence and answer questions about what changed.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-09-time-01
+  title: Time and sequencing - 1
+  outcome: Explain when events occur and distinguish their sequence.
+  vocabulary:
+  - {id: ja-n5-00026-s001, ch: 後, pr: あと, ds: behind}
+  - {id: ja-n5-00059-s001, ch: いつ, pr: いつ, ds: when}
+  - {id: ja-n5-00576-s001, ch: 毎月, pr: まいげつ, ds: every month}
+  - {id: ja-n5-00577-s001, ch: 毎月, pr: まいつき, ds: every month}
+  - {id: ja-n5-00578-s001, ch: 毎週, pr: まいしゅう, ds: every week}
+  - {id: ja-n5-00580-s001, ch: 毎年, pr: まいねん, ds: every year}
+  - {id: ja-n5-00581-s001, ch: 毎年, pr: まいとし, ds: every year}
+  - {id: ja-n5-00582-s001, ch: 毎晩, pr: まいばん, ds: every night}
+  - {id: ja-n5-00254-s001, ch: 今月, pr: こんげつ, ds: this month}
+  - {id: ja-n5-00332-s001, ch: 先月, pr: せんげつ, ds: last month}
+  - {id: ja-n5-00333-s001, ch: 先週, pr: せんしゅう, ds: last week}
+  - {id: ja-n5-00529-s001, ch: 一月, pr: ひとつき, ds: one month}
+  - {id: ja-n5-00134-s001, ch: 終わる, pr: おわる, ds: to end}
+  - {id: ja-n5-00493-s001, ch: 始まる, pr: はじまる, ds: to begin}
+  - {id: ja-n5-00304-s001, ch: 知る, pr: しる, ds: to know}
+  - {id: ja-n5-00462-s001, ch: なる, pr: なる, ds: to become}
+  - {id: ja-n1-01924-s001, ch: だんだん, pr: だんだん, ds: gradually}
+  - {id: ja-n5-00313-s001, ch: すぐに, pr: すぐに, ds: immediately}
+  - {id: ja-n5-00348-s001, ch: それから, pr: それから, ds: and then}
+  - {id: ja-n5-00339-s001, ch: そして, pr: そして, ds: and}
+  - {id: ja-n5-00338-s001, ch: そうして, pr: そうして, ds: and}
+  - {id: ja-n5-00586-s001, ch: また, pr: また, ds: again}
+  - {id: ja-n5-00648-s001, ch: よく, pr: よく, ds: nicely}
+  - {id: ja-n4-00004-s001, ch: 間, pr: あいだ, ds: space (between)}
+  - {id: ja-n4-00015-s001, ch: 明日, pr: あす, ds: tomorrow}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00308-s001, ch: 水曜日, pr: すいようび, ds: Wednesday}
+  - {id: ja-n5-00623-s001, ch: 木曜日, pr: もくようび, ds: Thursday}
+  - {id: ja-n5-00204-s001, ch: 金曜日, pr: きんようび, ds: Friday}
+  - {id: ja-n5-00441-s001, ch: 土曜日, pr: どようび, ds: Saturday}
+  - {id: ja-n5-00469-s001, ch: 日曜日, pr: にちようび, ds: Sunday}
+  - {id: ja-n5-00171-s001, ch: カレンダー, pr: カレンダー, ds: calendar}
+  - {id: ja-n5-00427-s001, ch: 時計, pr: とけい, ds: clock}
+  - {id: ja-n5-00514-s001, ch: 半, pr: はん, ds: half}
+  review_grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+- id: level-09-time-02
+  title: Time and sequencing - 2
+  outcome: Explain when events occur and distinguish their sequence.
+  vocabulary:
+  - {id: ja-n4-00040-s001, ch: 一度, pr: いちど, ds: once}
+  - {id: ja-n4-00109-s001, ch: 終わり, pr: おわり, ds: end}
+  - {id: ja-n4-00160-s001, ch: 季節, pr: きせつ, ds: season}
+  - {id: ja-n4-00188-s001, ch: 暮れる, pr: くれる, ds: to get dark}
+  - {id: ja-n4-00230-s001, ch: この間, pr: このあいだ, ds: the other day}
+  - {id: ja-n4-00231-s001, ch: この頃, pr: このごろ, ds: these days}
+  - {id: ja-n4-00237-s001, ch: これから, pr: これから, ds: from now on}
+  - {id: ja-n4-00242-s001, ch: 今度, pr: こんど, ds: this time}
+  - {id: ja-n4-00245-s001, ch: 今夜, pr: こんや, ds: this evening}
+  - {id: ja-n4-00246-s001, ch: 最近, pr: さいきん, ds: recently}
+  - {id: ja-n4-00247-s001, ch: 最後, pr: さいご, ds: end}
+  - {id: ja-n4-00248-s001, ch: 最初, pr: さいしょ, ds: beginning}
+  - {id: ja-n4-00255-s001, ch: さっき, pr: さっき, ds: a short while ago}
+  - {id: ja-n4-00257-s001, ch: 再来月, pr: さらいげつ, ds: month after next}
+  - {id: ja-n4-00258-s001, ch: 再来週, pr: さらいしゅう, ds: week after next}
+  - {id: ja-n4-00281-s001, ch: しばらく, pr: しばらく, ds: for a moment}
+  - {id: ja-n4-00320-s001, ch: 過ぎる, pr: すぎる, ds: to pass through}
+  - {id: ja-n4-00361-s001, ch: そろそろ, pr: そろそろ, ds: soon}
+  - {id: ja-n4-00386-s001, ch: たまに, pr: たまに, ds: occasionally}
+  - {id: ja-n4-00408-s001, ch: 続く, pr: つづく, ds: to continue}
+  - {id: ja-n4-00409-s001, ch: 続ける, pr: つづける, ds: to continue}
+  - {id: ja-n4-00431-s001, ch: とうとう, pr: とうとう, ds: finally}
+  - {id: ja-n4-00488-s001, ch: 始める, pr: はじめる, ds: to start}
+  - {id: ja-n4-00501-s001, ch: 日, pr: ひ, ds: day}
+  - {id: ja-n4-00520-s001, ch: 昼間, pr: ひるま, ds: daytime}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00313-s001, ch: すぐに, pr: すぐに, ds: immediately}
+  - {id: ja-n5-00348-s001, ch: それから, pr: それから, ds: and then}
+  - {id: ja-n5-00339-s001, ch: そして, pr: そして, ds: and}
+  - {id: ja-n5-00338-s001, ch: そうして, pr: そうして, ds: and}
+  - {id: ja-n5-00586-s001, ch: また, pr: また, ds: again}
+  - {id: ja-n5-00648-s001, ch: よく, pr: よく, ds: nicely}
+  - {id: ja-n4-00004-s001, ch: 間, pr: あいだ, ds: space (between)}
+  - {id: ja-n4-00015-s001, ch: 明日, pr: あす, ds: tomorrow}
+  review_grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+- id: level-09-time-03
+  title: Time and sequencing - 3
+  outcome: Explain when events occur and distinguish their sequence.
+  vocabulary:
+  - {id: ja-n4-00521-s001, ch: 昼休み, pr: ひるやすみ, ds: lunch break}
+  - {id: ja-n4-00536-s001, ch: 降り出す, pr: ふりだす, ds: to begin to rain}
+  - {id: ja-n4-00574-s001, ch: 昔, pr: むかし, ds: the old days}
+  - {id: ja-n4-00583-s001, ch: もうすぐ, pr: もうすぐ, ds: soon}
+  - {id: ja-n4-00597-s001, ch: やっと, pr: やっと, ds: at last}
+  - {id: ja-n4-00600-s001, ch: 止む, pr: やむ, ds: to cease}
+  - {id: ja-n3-00077-s001, ch: 以前, pr: いぜん, ds: before}
+  - {id: ja-n3-00088-s001, ch: 一時, pr: いちじ, ds: one o'clock}
+  - {id: ja-n3-00089-s001, ch: 一度に, pr: いちどに, ds: all at once}
+  - {id: ja-n3-00092-s001, ch: いつか, pr: いつか, ds: sometime}
+  - {id: ja-n3-00096-s001, ch: 一生, pr: いっしょう, ds: whole life}
+  - {id: ja-n3-00100-s001, ch: いつでも, pr: いつでも, ds: always}
+  - {id: ja-n3-00103-s001, ch: いつまでも, pr: いつまでも, ds: forever}
+  - {id: ja-n3-00116-s001, ch: 以来, pr: いらい, ds: since}
+  - {id: ja-n3-00132-s001, ch: 上, pr: うわ, ds: upper}
+  - {id: ja-n3-00158-s001, ch: 永遠, pr: えいえん, ds: eternity}
+  - {id: ja-n3-00159-s001, ch: 永久, pr: えいきゅう, ds: eternity}
+  - {id: ja-n3-00178-s001, ch: 老い, pr: おい, ds: old age}
+  - {id: ja-n3-00210-s001, ch: お昼, pr: おひる, ds: lunch}
+  - {id: ja-n3-00227-s001, ch: 音, pr: おん, ds: sound; noise (on reading)}
+  - {id: ja-n3-00280-s001, ch: 過去, pr: かこ, ds: the past}
+  - {id: ja-n3-00319-s001, ch: 火曜, pr: かよう, ds: Tuesday}
+  - {id: ja-n3-00358-s001, ch: 期間, pr: きかん, ds: period}
+  - {id: ja-n3-00393-s001, ch: 旧, pr: きゅう, ds: old}
+  - {id: ja-n3-00434-s001, ch: 近代, pr: きんだい, ds: present day}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00361-s001, ch: そろそろ, pr: そろそろ, ds: soon}
+  - {id: ja-n4-00386-s001, ch: たまに, pr: たまに, ds: occasionally}
+  - {id: ja-n4-00408-s001, ch: 続く, pr: つづく, ds: to continue}
+  - {id: ja-n4-00409-s001, ch: 続ける, pr: つづける, ds: to continue}
+  - {id: ja-n4-00431-s001, ch: とうとう, pr: とうとう, ds: finally}
+  - {id: ja-n4-00488-s001, ch: 始める, pr: はじめる, ds: to start}
+  - {id: ja-n4-00501-s001, ch: 日, pr: ひ, ds: day}
+  - {id: ja-n4-00520-s001, ch: 昼間, pr: ひるま, ds: daytime}
+  review_grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+- id: level-09-time-04
+  title: Time and sequencing - 4
+  outcome: Explain when events occur and distinguish their sequence.
+  vocabulary:
+  - {id: ja-n3-00438-s001, ch: 金曜, pr: きんよう, ds: Friday}
+  - {id: ja-n3-00470-s001, ch: 暮れ, pr: くれ, ds: sunset}
+  - {id: ja-n3-00505-s001, ch: 月曜, pr: げつよう, ds: Monday}
+  - {id: ja-n3-00517-s001, ch: 現在, pr: げんざい, ds: the present}
+  - {id: ja-n3-00522-s001, ch: 現代, pr: げんだい, ds: present age}
+  - {id: ja-n3-00529-s001, ch: 後, pr: ご, ds: after}
+  - {id: ja-n3-00594-s001, ch: ころ, pr: ころ, ds: (approximate) time}
+  - {id: ja-n3-00597-s001, ch: 今回, pr: こんかい, ds: this time}
+  - {id: ja-n3-00598-s001, ch: 今後, pr: こんご, ds: from now on}
+  - {id: ja-n3-00602-s001, ch: 今日, pr: こんにち, ds: today}
+  - {id: ja-n3-00608-s001, ch: 際, pr: さい, ds: occasion}
+  - {id: ja-n3-00611-s001, ch: 最終, pr: さいしゅう, ds: last}
+  - {id: ja-n3-00612-s001, ch: 最中, pr: さいちゅう, ds: (in) the middle of}
+  - {id: ja-n3-00623-s001, ch: 昨, pr: さく, ds: last (year)}
+  - {id: ja-n3-00666-s001, ch: 時期, pr: じき, ds: time}
+  - {id: ja-n3-00683-s001, ch: 次第, pr: しだい, ds: depending on}
+  - {id: ja-n1-01328-s001, ch: しばしば, pr: しばしば, ds: often}
+  - {id: ja-n3-00724-s001, ch: 週, pr: しゅう, ds: week}
+  - {id: ja-n3-00729-s001, ch: 週間, pr: しゅうかん, ds: week}
+  - {id: ja-n3-00772-s001, ch: 正午, pr: しょうご, ds: noon}
+  - {id: ja-n3-00851-s001, ch: 末, pr: すえ, ds: end}
+  - {id: ja-n3-00867-s001, ch: ずっと, pr: ずっと, ds: continuously}
+  - {id: ja-n3-00869-s001, ch: すでに, pr: すでに, ds: already}
+  - {id: ja-n3-00886-s001, ch: 世紀, pr: せいき, ds: century}
+  - {id: ja-n3-00927-s001, ch: 先日, pr: せんじつ, ds: the other day}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00178-s001, ch: 老い, pr: おい, ds: old age}
+  - {id: ja-n3-00210-s001, ch: お昼, pr: おひる, ds: lunch}
+  - {id: ja-n3-00227-s001, ch: 音, pr: おん, ds: sound; noise (on reading)}
+  - {id: ja-n3-00280-s001, ch: 過去, pr: かこ, ds: the past}
+  - {id: ja-n3-00319-s001, ch: 火曜, pr: かよう, ds: Tuesday}
+  - {id: ja-n3-00358-s001, ch: 期間, pr: きかん, ds: period}
+  - {id: ja-n3-00393-s001, ch: 旧, pr: きゅう, ds: old}
+  - {id: ja-n3-00434-s001, ch: 近代, pr: きんだい, ds: present day}
+  review_grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+- id: level-09-time-05
+  title: Time and sequencing - 5
+  outcome: Explain when events occur and distinguish their sequence.
+  vocabulary:
+  - {id: ja-n3-00953-s001, ch: そのうち, pr: そのうち, ds: before very long}
+  - {id: ja-n3-01012-s001, ch: 直ちに, pr: ただちに, ds: at once}
+  - {id: ja-n3-01017-s001, ch: たった, pr: たった, ds: only}
+  - {id: ja-n3-01025-s001, ch: 度, pr: たび, ds: 'time (three times, each time, etc.)'}
+  - {id: ja-n3-01027-s001, ch: たびたび, pr: たびたび, ds: often}
+  - {id: ja-n3-01031-s001, ch: たま, pr: たま, ds: occasional}
+  - {id: ja-n3-01032-s001, ch: たまたま, pr: たまたま, ds: by chance}
+  - {id: ja-n3-01060-s001, ch: 近頃, pr: ちかごろ, ds: lately}
+  - {id: ja-n3-01084-s001, ch: 長期, pr: ちょうき, ds: long-term}
+  - {id: ja-n3-01111-s001, ch: 常に, pr: つねに, ds: always}
+  - {id: ja-n3-01125-s001, ch: 定期, pr: ていき, ds: fixed period}
+  - {id: ja-n3-01155-s001, ch: 度, pr: ど, ds: 'degree (angle, temperature, scale, etc.)'}
+  - {id: ja-n3-01177-s001, ch: 時, pr: とき, ds: time}
+  - {id: ja-n3-01192-s001, ch: 年月, pr: としつき, ds: months and years}
+  - {id: ja-n3-01207-s001, ch: 土曜, pr: どよう, ds: Saturday}
+  - {id: ja-n3-01229-s001, ch: 半ば, pr: なかば, ds: middle}
+  - {id: ja-n3-01258-s001, ch: 日, pr: にち, ds: Sunday}
+  - {id: ja-n3-01259-s001, ch: 日常, pr: にちじょう, ds: everyday}
+  - {id: ja-n3-01260-s001, ch: 日曜, pr: にちよう, ds: Sunday}
+  - {id: ja-n3-01262-s001, ch: 日中, pr: にっちゅう, ds: daytime}
+  - {id: ja-n3-01282-s001, ch: 年間, pr: ねんかん, ds: (period of) a year}
+  - {id: ja-n3-01283-s001, ch: 年月, pr: ねんげつ, ds: months and years}
+  - {id: ja-n3-01284-s001, ch: 年中, pr: ねんじゅう, ds: whole year}
+  - {id: ja-n3-01285-s001, ch: 年代, pr: ねんだい, ds: age}
+  - {id: ja-n3-01286-s001, ch: 年齢, pr: ねんれい, ds: age}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00724-s001, ch: 週, pr: しゅう, ds: week}
+  - {id: ja-n3-00729-s001, ch: 週間, pr: しゅうかん, ds: week}
+  - {id: ja-n3-00772-s001, ch: 正午, pr: しょうご, ds: noon}
+  - {id: ja-n3-00851-s001, ch: 末, pr: すえ, ds: end}
+  - {id: ja-n3-00867-s001, ch: ずっと, pr: ずっと, ds: continuously}
+  - {id: ja-n3-00869-s001, ch: すでに, pr: すでに, ds: already}
+  - {id: ja-n3-00886-s001, ch: 世紀, pr: せいき, ds: century}
+  - {id: ja-n3-00927-s001, ch: 先日, pr: せんじつ, ds: the other day}
+  review_grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+- id: level-09-time-06
+  title: Time and sequencing - 6
+  outcome: Explain when events occur and distinguish their sequence.
+  vocabulary:
+  - {id: ja-n3-01301-s001, ch: のち, pr: のち, ds: later}
+  - {id: ja-n3-01312-s001, ch: 梅雨, pr: ばいう, ds: East Asian rainy season (baiu)}
+  - {id: ja-n3-01386-s001, ch: 日付, pr: ひづけ, ds: date on a calendar or document}
+  - {id: ja-n3-01404-s001, ch: 秒, pr: びょう, ds: second (unit of time)}
+  - {id: ja-n3-01442-s001, ch: 普段, pr: ふだん, ds: usual}
+  - {id: ja-n3-01462-s001, ch: 分, pr: ぶん, ds: part}
+  - {id: ja-n3-01515-s001, ch: 間, pr: ま, ds: time}
+  - {id: ja-n3-01566-s001, ch: 明後日, pr: みょうごにち, ds: day after tomorrow}
+  - {id: ja-n3-01567-s001, ch: 未来, pr: みらい, ds: (distant) future}
+  - {id: ja-n3-01603-s001, ch: 木曜, pr: もくよう, ds: Thursday}
+  - {id: ja-n3-01624-s001, ch: やがて, pr: やがて, ds: before long}
+  - {id: ja-n3-01646-s001, ch: 夕べ, pr: ゆうべ, ds: evening}
+  - {id: ja-n3-01654-s001, ch: 夜, pr: よ, ds: night}
+  - {id: ja-n3-01655-s001, ch: 夜明け, pr: よあけ, ds: dawn}
+  - {id: ja-n3-01666-s001, ch: 曜日, pr: ようび, ds: day of the week}
+  - {id: ja-n3-01674-s001, ch: 夜中, pr: よなか, ds: middle of the night}
+  - {id: ja-n3-01686-s001, ch: 来, pr: らい, ds: 'next (year, spring, etc.)'}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-01259-s001, ch: 日常, pr: にちじょう, ds: everyday}
+  - {id: ja-n3-01260-s001, ch: 日曜, pr: にちよう, ds: Sunday}
+  - {id: ja-n3-01262-s001, ch: 日中, pr: にっちゅう, ds: daytime}
+  - {id: ja-n3-01282-s001, ch: 年間, pr: ねんかん, ds: (period of) a year}
+  - {id: ja-n3-01283-s001, ch: 年月, pr: ねんげつ, ds: months and years}
+  - {id: ja-n3-01284-s001, ch: 年中, pr: ねんじゅう, ds: whole year}
+  - {id: ja-n3-01285-s001, ch: 年代, pr: ねんだい, ds: age}
+  - {id: ja-n3-01286-s001, ch: 年齢, pr: ねんれい, ds: age}
+  review_grammar:
+  - {id: ja-n5-g014, ch: 時点に, ds: at a specific time}
+  - {id: ja-n5-g025, ch: 動詞ました／ませんでした, ds: polite past verb; polite negative past verb}
+  - {id: ja-n5-g022, ch: Nでした／ではありませんでした, ds: was a noun; was not a noun}
+- id: level-09-home-01
+  title: Living arrangements - 1
+  outcome: Explain a household need and negotiate an arrangement.
+  vocabulary:
+  - {id: ja-n3-00737-s001, ch: 住宅, pr: じゅうたく, ds: residence}
+  - {id: ja-n3-00753-s001, ch: 主婦, pr: しゅふ, ds: housewife}
+  - {id: ja-n3-00796-s001, ch: 食卓, pr: しょくたく, ds: dining table}
+  - {id: ja-n3-00803-s001, ch: 書斎, pr: しょさい, ds: study}
+  - {id: ja-n3-00889-s001, ch: 清潔, pr: せいけつ, ds: clean}
+  - {id: ja-n3-00955-s001, ch: ソファー, pr: ソファー, ds: sofa}
+  - {id: ja-n3-00998-s001, ch: タオル, pr: タオル, ds: towel}
+  - {id: ja-n3-01002-s001, ch: 宅, pr: たく, ds: house}
+  - {id: ja-n3-01242-s001, ch: 鍋, pr: なべ, ds: pan}
+  - {id: ja-n3-01271-s001, ch: 布, pr: ぬの, ds: cloth}
+  - {id: ja-n3-01329-s001, ch: はさみ, pr: はさみ, ds: scissors}
+  - {id: ja-n3-01342-s001, ch: バッグ, pr: バッグ, ds: bag}
+  - {id: ja-n3-01413-s001, ch: 瓶, pr: びん, ds: bottle}
+  - {id: ja-n3-01428-s001, ch: 袋, pr: ふくろ, ds: bag}
+  - {id: ja-n3-01468-s001, ch: 塀, pr: へい, ds: wall}
+  - {id: ja-n3-01476-s001, ch: ペンキ, pr: ペンキ, ds: paint}
+  - {id: ja-n3-01478-s001, ch: ベンチ, pr: ベンチ, ds: bench}
+  - {id: ja-n3-01481-s001, ch: 棒, pr: ぼう, ds: pole}
+  - {id: ja-n3-01498-s001, ch: ほこり, pr: ほこり, ds: dust}
+  - {id: ja-n3-01599-s001, ch: 毛布, pr: もうふ, ds: blanket}
+  - {id: ja-n3-01629-s001, ch: 家賃, pr: やちん, ds: rent}
+  - {id: ja-n3-01633-s001, ch: 屋根, pr: やね, ds: roof}
+  - {id: ja-n3-01649-s001, ch: 床, pr: ゆか, ds: floor}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00264-s001, ch: 家具, pr: かぐ, ds: furniture}
+  - {id: ja-n3-00281-s001, ch: かご, pr: かご, ds: 'basket (shopping, etc.)'}
+  - {id: ja-n3-00286-s001, ch: 家事, pr: かじ, ds: housework}
+  - {id: ja-n3-00371-s001, ch: 帰宅, pr: きたく, ds: returning home}
+  - {id: ja-n3-00458-s001, ch: 暮らし, pr: くらし, ds: (way of) life}
+  - {id: ja-n3-00460-s001, ch: 暮らす, pr: くらす, ds: 'to live (on, by, etc.)'}
+  - {id: ja-n3-00592-s001, ch: 小屋, pr: こや, ds: hut}
+  - {id: ja-n3-00706-s001, ch: 芝生, pr: しばふ, ds: lawn}
+  review_grammar:
+  - {id: ja-n4-g002, ch: 動詞こと／の, ds: nominalizing an action or event}
+  - {id: ja-n4-g037, ch: 動詞語幹すぎる, ds: do too much; be excessively}
+  - {id: ja-n4-g038, ch: 動詞語幹やすい／にくい, ds: easy to do; hard to do}
+- id: level-09-food-01
+  title: Meals and ingredients - 1
+  outcome: Discuss preparation, preferences, and ingredients without promising dietary safety.
+  vocabulary:
+  - {id: ja-n3-00733-s001, ch: ジュース, pr: ジュース, ds: juice}
+  - {id: ja-n3-00797-s001, ch: 食品, pr: しょくひん, ds: food}
+  - {id: ja-n3-00799-s001, ch: 食物, pr: しょくもつ, ds: food}
+  - {id: ja-n3-00800-s001, ch: 食欲, pr: しょくよく, ds: appetite (for food)}
+  - {id: ja-n3-00801-s001, ch: 食料, pr: しょくりょう, ds: food}
+  - {id: ja-n3-00828-s001, ch: 新鮮, pr: しんせん, ds: fresh}
+  - {id: ja-n3-00850-s001, ch: スープ, pr: スープ, ds: (Western) soup}
+  - {id: ja-n3-00947-s001, ch: 注ぐ, pr: そそぐ, ds: to pour (into)}
+  - {id: ja-n3-01019-s001, ch: たっぷり, pr: たっぷり, ds: plentifully}
+  - {id: ja-n3-01054-s001, ch: チーズ, pr: チーズ, ds: cheese}
+  - {id: ja-n3-01070-s001, ch: 茶, pr: ちゃ, ds: tea}
+  - {id: ja-n3-01080-s001, ch: 昼食, pr: ちゅうしょく, ds: lunch}
+  - {id: ja-n3-01104-s001, ch: つぐ, pr: つぐ, ds: to pour (into a vessel)}
+  - {id: ja-n3-01243-s001, ch: 生, pr: なま, ds: raw}
+  - {id: ja-n3-01375-s001, ch: ビール, pr: ビール, ds: beer}
+  - {id: ja-n3-01479-s001, ch: 弁当, pr: べんとう, ds: bento}
+  - {id: ja-n3-01543-s001, ch: 豆, pr: まめ, ds: beans; edible legumes}
+  - {id: ja-n3-01569-s001, ch: ミルク, pr: ミルク, ds: milk}
+  - {id: ja-n3-01589-s001, ch: 飯, pr: めし, ds: cooked rice}
+  - {id: ja-n3-01657-s001, ch: 酔う, pr: よう, ds: to get drunk}
+  - {id: ja-n3-01717-s001, ch: ワイン, pr: ワイン, ds: wine}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00574-s001, ch: 穀物, pr: こくもつ, ds: grain}
+  - {id: ja-n3-00587-s001, ch: 粉, pr: こな, ds: flour}
+  - {id: ja-n3-00590-s001, ch: 小麦, pr: こむぎ, ds: wheat}
+  - {id: ja-n3-00616-s001, ch: 材料, pr: ざいりょう, ds: materials}
+  - {id: ja-n3-00647-s001, ch: 皿, pr: さら, ds: plate}
+  - {id: ja-n5-00150-s006, ch: かける, pr: かける, ds: to pour (liquid) onto}
+  - {id: ja-n5-00392-s002, ch: 作る, pr: つくる, ds: to prepare (food)}
+  - {id: ja-n5-00487-s003, ch: 入る, pr: はいる, ds: be contained; be included}
+  review_grammar: []
+- id: level-09-events-01
+  title: Events and resulting states - 1
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary:
+  - {id: ja-n4-00007-s001, ch: 上がる, pr: あがる, ds: to rise}
+  - {id: ja-n4-00017-s001, ch: 集まる, pr: あつまる, ds: to gather}
+  - {id: ja-n4-00018-s001, ch: 集める, pr: あつめる, ds: to collect}
+  - {id: ja-n4-00032-s001, ch: 生きる, pr: いきる, ds: to live}
+  - {id: ja-n4-00052-s001, ch: 動く, pr: うごく, ds: to move}
+  - {id: ja-n4-00055-s001, ch: 打つ, pr: うつ, ds: to hit}
+  - {id: ja-n4-00057-s001, ch: 写す, pr: うつす, ds: to copy}
+  - {id: ja-n4-00058-s001, ch: 移る, pr: うつる, ds: to move (to another place or state)}
+  - {id: ja-n4-00080-s001, ch: 送る, pr: おくる, ds: to send}
+  - {id: ja-n4-00082-s001, ch: 起こす, pr: おこす, ds: to raise}
+  - {id: ja-n4-00088-s001, ch: 落ちる, pr: おちる, ds: to fall}
+  - {id: ja-n4-00093-s001, ch: 落とす, pr: おとす, ds: to drop}
+  - {id: ja-n4-00096-s001, ch: 驚く, pr: おどろく, ds: to be surprised}
+  - {id: ja-n4-00100-s001, ch: 思い出す, pr: おもいだす, ds: to recall}
+  - {id: ja-n4-00106-s001, ch: 折る, pr: おる, ds: to break}
+  - {id: ja-n4-00108-s001, ch: 折れる, pr: おれる, ds: to break}
+  - {id: ja-n4-00117-s001, ch: 変える, pr: かえる, ds: to change}
+  - {id: ja-n4-00149-s001, ch: 変わる, pr: かわる, ds: to change}
+  - {id: ja-n4-00166-s001, ch: 決まる, pr: きまる, ds: to be decided}
+  - {id: ja-n4-00168-s001, ch: 決める, pr: きめる, ds: to decide}
+  - {id: ja-n4-00251-s001, ch: 下がる, pr: さがる, ds: to come down}
+  - {id: ja-n4-00253-s001, ch: 下げる, pr: さげる, ds: to hang}
+  - {id: ja-n4-00324-s001, ch: 進む, pr: すすむ, ds: to advance}
+  - {id: ja-n4-00332-s001, ch: 滑る, pr: すべる, ds: to slide}
+  - {id: ja-n4-00334-s001, ch: 済む, pr: すむ, ds: to finish}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-09-events-02
+  title: Events and resulting states - 2
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary:
+  - {id: ja-n4-00372-s001, ch: 倒れる, pr: たおれる, ds: 'to fall (over, down)'}
+  - {id: ja-n4-00380-s001, ch: 立てる, pr: たてる, ds: to stand (something) up}
+  - {id: ja-n4-00404-s001, ch: 付く, pr: つく, ds: to be attached}
+  - {id: ja-n4-00414-s001, ch: 連れる, pr: つれる, ds: to take (someone) with one}
+  - {id: ja-n4-00442-s001, ch: 止める, pr: とめる, ds: to stop}
+  - {id: ja-n4-00451-s001, ch: なくなる, pr: なくなる, ds: to be lost (e.g. luggage)}
+  - {id: ja-n4-00452-s001, ch: 亡くなる, pr: なくなる, ds: to die}
+  - {id: ja-n4-00455-s001, ch: 鳴る, pr: なる, ds: to sound}
+  - {id: ja-n4-00477-s001, ch: 残る, pr: のこる, ds: to remain}
+  - {id: ja-n4-00487-s001, ch: 運ぶ, pr: はこぶ, ds: to carry}
+  - {id: ja-n4-00508-s001, ch: 引き出す, pr: ひきだす, ds: to pull out}
+  - {id: ja-n4-00522-s001, ch: 拾う, pr: ひろう, ds: to pick up}
+  - {id: ja-n4-00524-s001, ch: 増える, pr: ふえる, ds: to increase}
+  - {id: ja-n4-00535-s001, ch: 踏む, pr: ふむ, ds: to step on}
+  - {id: ja-n4-00562-s001, ch: 回る, pr: まわる, ds: to turn}
+  - {id: ja-n4-00568-s001, ch: 見つかる, pr: みつかる, ds: to be found}
+  - {id: ja-n4-00569-s001, ch: 見つける, pr: みつける, ds: to find}
+  - {id: ja-n4-00609-s001, ch: 揺れる, pr: ゆれる, ds: to shake}
+  - {id: ja-n4-00639-s001, ch: 割れる, pr: われる, ds: to break}
+  - {id: ja-n3-00005-s001, ch: 合図, pr: あいず, ds: sign}
+  - {id: ja-n3-00013-s001, ch: 空き, pr: あき, ds: space}
+  - {id: ja-n3-00023-s001, ch: 辺り, pr: あたり, ds: (in the) neighbourhood}
+  - {id: ja-n3-00024-s001, ch: 当たる, pr: あたる, ds: to be hit}
+  - {id: ja-n3-00025-s001, ch: あちこち, pr: あちこち, ds: here and there}
+  - {id: ja-n3-00027-s001, ch: 集まり, pr: あつまり, ds: gathering}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00149-s001, ch: 変わる, pr: かわる, ds: to change}
+  - {id: ja-n4-00166-s001, ch: 決まる, pr: きまる, ds: to be decided}
+  - {id: ja-n4-00168-s001, ch: 決める, pr: きめる, ds: to decide}
+  - {id: ja-n4-00251-s001, ch: 下がる, pr: さがる, ds: to come down}
+  - {id: ja-n4-00253-s001, ch: 下げる, pr: さげる, ds: to hang}
+  - {id: ja-n4-00324-s001, ch: 進む, pr: すすむ, ds: to advance}
+  - {id: ja-n4-00332-s001, ch: 滑る, pr: すべる, ds: to slide}
+  - {id: ja-n4-00334-s001, ch: 済む, pr: すむ, ds: to finish}
+  review_grammar: []
+- id: level-09-events-03
+  title: Events and resulting states - 3
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary:
+  - {id: ja-n3-00028-s001, ch: 当てる, pr: あてる, ds: to hit}
+  - {id: ja-n3-00029-s001, ch: 跡, pr: あと, ds: trace}
+  - {id: ja-n3-00030-s001, ch: 穴, pr: あな, ds: hole}
+  - {id: ja-n3-00034-s001, ch: 誤り, pr: あやまり, ds: error}
+  - {id: ja-n3-00037-s001, ch: 新た, pr: あらた, ds: new}
+  - {id: ja-n3-00039-s001, ch: 表す, pr: あらわす, ds: to represent}
+  - {id: ja-n3-00041-s001, ch: 現れ, pr: あらわれ, ds: embodiment}
+  - {id: ja-n3-00042-s001, ch: 現れる, pr: あらわれる, ds: to appear}
+  - {id: ja-n3-00048-s001, ch: 合わせる, pr: あわせる, ds: 'to match (rhythm, speed, etc.)'}
+  - {id: ja-n3-00058-s001, ch: 言う, pr: ゆう, ds: to say}
+  - {id: ja-n3-00063-s001, ch: 勢い, pr: いきおい, ds: force}
+  - {id: ja-n3-00080-s001, ch: 抱く, pr: いだく, ds: to hold in one's arms (e.g. a baby)}
+  - {id: ja-n3-00085-s001, ch: 至る, pr: いたる, ds: to arrive at (e.g. a decision)}
+  - {id: ja-n3-00095-s001, ch: 一瞬, pr: いっしゅん, ds: instant}
+  - {id: ja-n3-00108-s001, ch: 居眠り, pr: いねむり, ds: nodding off (while sitting)}
+  - {id: ja-n3-00113-s001, ch: 今に, pr: いまに, ds: before long}
+  - {id: ja-n3-00114-s001, ch: 今にも, pr: いまにも, ds: at any moment (now)}
+  - {id: ja-n3-00127-s001, ch: 印刷, pr: いんさつ, ds: printing}
+  - {id: ja-n3-00136-s001, ch: 動かす, pr: うごかす, ds: to move}
+  - {id: ja-n3-00139-s001, ch: 失う, pr: うしなう, ds: to lose}
+  - {id: ja-n3-00144-s001, ch: 移す, pr: うつす, ds: 'to transfer (to a different place, group, etc.)'}
+  - {id: ja-n3-00149-s001, ch: 生まれ, pr: うまれ, ds: birth}
+  - {id: ja-n3-00179-s001, ch: 追いつく, pr: おいつく, ds: to catch up (with)}
+  - {id: ja-n3-00181-s001, ch: 追う, pr: おう, ds: to chase}
+  - {id: ja-n3-00186-s001, ch: 終える, pr: おえる, ds: to finish}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00609-s001, ch: 揺れる, pr: ゆれる, ds: to shake}
+  - {id: ja-n4-00639-s001, ch: 割れる, pr: われる, ds: to break}
+  - {id: ja-n3-00005-s001, ch: 合図, pr: あいず, ds: sign}
+  - {id: ja-n3-00013-s001, ch: 空き, pr: あき, ds: space}
+  - {id: ja-n3-00023-s001, ch: 辺り, pr: あたり, ds: (in the) neighbourhood}
+  - {id: ja-n3-00024-s001, ch: 当たる, pr: あたる, ds: to be hit}
+  - {id: ja-n3-00025-s001, ch: あちこち, pr: あちこち, ds: here and there}
+  - {id: ja-n3-00027-s001, ch: 集まり, pr: あつまり, ds: gathering}
+  review_grammar: []
+- id: level-09-events-04
+  title: Events and resulting states - 4
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary:
+  - {id: ja-n3-00188-s001, ch: 覆う, pr: おおう, ds: to cover}
+  - {id: ja-n3-00195-s001, ch: 起こる, pr: おこる, ds: to occur}
+  - {id: ja-n3-00197-s001, ch: 収める, pr: おさめる, ds: to put (into)}
+  - {id: ja-n3-00224-s001, ch: 下ろす, pr: おろす, ds: to take down}
+  - {id: ja-n3-00245-s001, ch: 開始, pr: かいし, ds: start}
+  - {id: ja-n3-00256-s001, ch: 抱える, pr: かかえる, ds: to hold in one's arms}
+  - {id: ja-n3-00259-s001, ch: 輝く, pr: かがやく, ds: to shine}
+  - {id: ja-n3-00271-s001, ch: 隠す, pr: かくす, ds: to hide}
+  - {id: ja-n3-00272-s001, ch: 拡大, pr: かくだい, ds: expansion}
+  - {id: ja-n3-00275-s001, ch: 隠れる, pr: かくれる, ds: to hide}
+  - {id: ja-n3-00276-s001, ch: 影, pr: かげ, ds: shadow}
+  - {id: ja-n3-00277-s001, ch: 陰, pr: かげ, ds: shade}
+  - {id: ja-n3-00278-s001, ch: 欠ける, pr: かける, ds: to chip}
+  - {id: ja-n3-00282-s001, ch: 囲む, pr: かこむ, ds: to surround}
+  - {id: ja-n3-00310-s001, ch: かぶる, pr: かぶる, ds: to put on (one's head)}
+  - {id: ja-n3-00346-s001, ch: 完成, pr: かんせい, ds: completion}
+  - {id: ja-n3-00351-s001, ch: 完了, pr: かんりょう, ds: completion}
+  - {id: ja-n3-00376-s001, ch: 気づく, pr: きづく, ds: to notice}
+  - {id: ja-n3-00402-s001, ch: 急に, pr: きゅうに, ds: swiftly}
+  - {id: ja-n3-00422-s001, ch: 切れ, pr: きれ, ds: piece}
+  - {id: ja-n3-00423-s001, ch: 切れる, pr: きれる, ds: to break}
+  - {id: ja-n3-00441-s001, ch: 偶然, pr: ぐうぜん, ds: coincidence}
+  - {id: ja-n3-00472-s001, ch: 加える, pr: くわえる, ds: to add}
+  - {id: ja-n3-00474-s001, ch: 加わる, pr: くわわる, ds: to be added to}
+  - {id: ja-n3-00498-s001, ch: 結果, pr: けっか, ds: result}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00127-s001, ch: 印刷, pr: いんさつ, ds: printing}
+  - {id: ja-n3-00136-s001, ch: 動かす, pr: うごかす, ds: to move}
+  - {id: ja-n3-00139-s001, ch: 失う, pr: うしなう, ds: to lose}
+  - {id: ja-n3-00144-s001, ch: 移す, pr: うつす, ds: 'to transfer (to a different place, group, etc.)'}
+  - {id: ja-n3-00149-s001, ch: 生まれ, pr: うまれ, ds: birth}
+  - {id: ja-n3-00179-s001, ch: 追いつく, pr: おいつく, ds: to catch up (with)}
+  - {id: ja-n3-00181-s001, ch: 追う, pr: おう, ds: to chase}
+  - {id: ja-n3-00186-s001, ch: 終える, pr: おえる, ds: to finish}
+  review_grammar: []
+- id: level-09-events-05
+  title: Events and resulting states - 5
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary:
+  - {id: ja-n3-00507-s001, ch: 煙, pr: けむり, ds: smoke}
+  - {id: ja-n3-00521-s001, ch: 建設, pr: けんせつ, ds: construction}
+  - {id: ja-n3-00523-s001, ch: 建築, pr: けんちく, ds: construction}
+  - {id: ja-n3-00526-s001, ch: 現場, pr: げんば, ds: actual spot}
+  - {id: ja-n3-00553-s001, ch: 行動, pr: こうどう, ds: action}
+  - {id: ja-n3-00596-s001, ch: 転ぶ, pr: ころぶ, ds: to fall down}
+  - {id: ja-n3-00605-s001, ch: 混乱, pr: こんらん, ds: disorder}
+  - {id: ja-n3-00622-s001, ch: 作業, pr: さぎょう, ds: work}
+  - {id: ja-n3-00628-s001, ch: 叫ぶ, pr: さけぶ, ds: to shout}
+  - {id: ja-n3-00630-s001, ch: 支える, pr: ささえる, ds: to support}
+  - {id: ja-n3-00631-s001, ch: 指す, pr: さす, ds: to point}
+  - {id: ja-n3-00644-s001, ch: 覚ます, pr: さます, ds: to awaken}
+  - {id: ja-n3-00645-s001, ch: 覚める, pr: さめる, ds: to wake}
+  - {id: ja-n3-00649-s001, ch: 去る, pr: さる, ds: to leave}
+  - {id: ja-n3-00651-s001, ch: 騒ぎ, pr: さわぎ, ds: uproar}
+  - {id: ja-n3-00679-s001, ch: 沈む, pr: しずむ, ds: to sink}
+  - {id: ja-n3-00691-s001, ch: 実現, pr: じつげん, ds: implementation (e.g. of a system)}
+  - {id: ja-n3-00692-s001, ch: 実行, pr: じっこう, ds: execution (e.g. of a plan)}
+  - {id: ja-n3-00694-s001, ch: 実施, pr: じっし, ds: enforcement}
+  - {id: ja-n3-00711-s001, ch: 仕舞い, pr: しまい, ds: end}
+  - {id: ja-n3-00713-s001, ch: しまう, pr: しまう, ds: to finish}
+  - {id: ja-n3-00717-s001, ch: 示す, pr: しめす, ds: to (take out and) show}
+  - {id: ja-n3-00718-s001, ch: 占める, pr: しめる, ds: to account for}
+  - {id: ja-n5-00039-s005, ch: ある, pr: ある, ds: to happen}
+  - {id: ja-n5-00410-s005, ch: 出る, pr: でる, ds: to appear}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00376-s001, ch: 気づく, pr: きづく, ds: to notice}
+  - {id: ja-n3-00402-s001, ch: 急に, pr: きゅうに, ds: swiftly}
+  - {id: ja-n3-00422-s001, ch: 切れ, pr: きれ, ds: piece}
+  - {id: ja-n3-00423-s001, ch: 切れる, pr: きれる, ds: to break}
+  - {id: ja-n3-00441-s001, ch: 偶然, pr: ぐうぜん, ds: coincidence}
+  - {id: ja-n3-00472-s001, ch: 加える, pr: くわえる, ds: to add}
+  - {id: ja-n3-00474-s001, ch: 加わる, pr: くわわる, ds: to be added to}
+  - {id: ja-n3-00498-s001, ch: 結果, pr: けっか, ds: result}
+  review_grammar: []
+- id: level-09-events-06
+  title: Events and resulting states - 6
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary:
+  - {id: ja-n5-00487-s002, ch: 入る, pr: はいる, ds: 'to join (a club, company, etc.)'}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00692-s001, ch: 実行, pr: じっこう, ds: execution (e.g. of a plan)}
+  - {id: ja-n3-00694-s001, ch: 実施, pr: じっし, ds: enforcement}
+  - {id: ja-n3-00711-s001, ch: 仕舞い, pr: しまい, ds: end}
+  - {id: ja-n3-00713-s001, ch: しまう, pr: しまう, ds: to finish}
+  - {id: ja-n3-00717-s001, ch: 示す, pr: しめす, ds: to (take out and) show}
+  - {id: ja-n3-00718-s001, ch: 占める, pr: しめる, ds: to account for}
+  - {id: ja-n5-00039-s005, ch: ある, pr: ある, ds: to happen}
+  - {id: ja-n5-00410-s005, ch: 出る, pr: でる, ds: to appear}
+  review_grammar: []
+- id: level-09-communication-01
+  title: Messages and explanations - 1
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary:
+  - {id: ja-n5-00035-s001, ch: あまり, pr: あまり, ds: remainder}
+  - {id: ja-n5-00258-s001, ch: さあ, pr: さあ, ds: come (on)}
+  - {id: ja-n5-00274-s001, ch: しかし, pr: しかし, ds: however}
+  - {id: ja-n5-00291-s001, ch: じゃ, pr: じゃ, ds: then}
+  - {id: ja-n5-00292-s001, ch: じゃあ, pr: じゃあ, ds: then}
+  - {id: ja-n5-00407-s001, ch: では, pr: では, ds: then}
+  - {id: ja-n5-00419-s001, ch: どう, pr: どう, ds: how}
+  - {id: ja-n5-00420-s001, ch: どうして, pr: どうして, ds: how}
+  - {id: ja-n5-00432-s001, ch: どちら, pr: どちら, ds: which way}
+  - {id: ja-n5-00433-s001, ch: どっち, pr: どっち, ds: which way}
+  - {id: ja-n5-00437-s001, ch: どの, pr: どの, ds: which}
+  - {id: ja-n5-00349-s001, ch: それでは, pr: それでは, ds: 'well, ...'}
+  - {id: ja-n5-00341-s001, ch: そちら, pr: そちら, ds: that way}
+  - {id: ja-n5-00342-s001, ch: そっち, pr: そっち, ds: that way}
+  - {id: ja-n5-00243-s001, ch: こちら, pr: こちら, ds: this way}
+  - {id: ja-n5-00244-s001, ch: こっち, pr: こっち, ds: this way}
+  - {id: ja-n5-00025-s001, ch: あっち, pr: あっち, ds: that way}
+  - {id: ja-n5-00021-s001, ch: あちら, pr: あちら, ds: that way}
+  - {id: ja-n5-00256-s001, ch: こんな, pr: こんな, ds: this sort of}
+  - {id: ja-n5-00372-s001, ch: 誰か, pr: だれか, ds: someone}
+  - {id: ja-n5-00379-s001, ch: 近く, pr: ちかく, ds: near}
+  - {id: ja-n5-00429-s001, ch: 所, pr: ところ, ds: place}
+  - {id: ja-n5-00506-s001, ch: 話, pr: はなし, ds: talk}
+  - {id: ja-n5-00367-s001, ch: 多分, pr: たぶん, ds: probably}
+  - {id: ja-n5-00452-s001, ch: なぜ, pr: なぜ, ds: why}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00876-s002, ch: すみません, pr: すみません, ds: thank you (for another person's trouble)}
+  review_grammar: []
+- id: level-09-communication-02
+  title: Messages and explanations - 2
+  outcome: Relay relevant information and distinguish a report from an inference.
+  vocabulary:
+  - {id: ja-n5-00680-s001, ch: 渡す, pr: わたす, ds: to ferry across (e.g. a river)}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n5-00021-s001, ch: あちら, pr: あちら, ds: that way}
+  - {id: ja-n5-00256-s001, ch: こんな, pr: こんな, ds: this sort of}
+  - {id: ja-n5-00372-s001, ch: 誰か, pr: だれか, ds: someone}
+  - {id: ja-n5-00379-s001, ch: 近く, pr: ちかく, ds: near}
+  - {id: ja-n5-00429-s001, ch: 所, pr: ところ, ds: place}
+  - {id: ja-n5-00506-s001, ch: 話, pr: はなし, ds: talk}
+  - {id: ja-n5-00367-s001, ch: 多分, pr: たぶん, ds: probably}
+  - {id: ja-n5-00452-s001, ch: なぜ, pr: なぜ, ds: why}
+  review_grammar: []
+- id: level-09-events-practice-01
+  title: Events and resulting states - sentence practice 1
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g004, ch: 動詞たり動詞たりする, ds: do things such as; representative actions}
+  - {id: ja-n4-g018, ch: 動詞語幹ながら, ds: while doing another action}
+  - {id: ja-n4-g026, ch: 動詞てしまう, ds: finish completely; regrettably do}
+  review_vocabulary:
+  - {id: ja-n3-00694-s001, ch: 実施, pr: じっし, ds: enforcement}
+  - {id: ja-n3-00711-s001, ch: 仕舞い, pr: しまい, ds: end}
+  - {id: ja-n3-00713-s001, ch: しまう, pr: しまう, ds: to finish}
+  - {id: ja-n3-00717-s001, ch: 示す, pr: しめす, ds: to (take out and) show}
+  - {id: ja-n3-00718-s001, ch: 占める, pr: しめる, ds: to account for}
+  - {id: ja-n5-00039-s005, ch: ある, pr: ある, ds: to happen}
+  - {id: ja-n5-00410-s005, ch: 出る, pr: でる, ds: to appear}
+  - {id: ja-n5-00487-s002, ch: 入る, pr: はいる, ds: 'to join (a club, company, etc.)'}
+  review_grammar: []
+- id: level-09-events-practice-02
+  title: Events and resulting states - sentence practice 2
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary: []
+  grammar:
+  - {id: ja-n4-g035, ch: 動詞辞書形ところだ, ds: be just about to do}
+  - {id: ja-n4-g042, ch: 動詞ている, ds: resulting state; continuing habit}
+  - {id: ja-n4-g043, ch: 動詞てある, ds: a state resulting from deliberate action}
+  review_vocabulary:
+  - {id: ja-n3-00694-s001, ch: 実施, pr: じっし, ds: enforcement}
+  - {id: ja-n3-00711-s001, ch: 仕舞い, pr: しまい, ds: end}
+  - {id: ja-n3-00713-s001, ch: しまう, pr: しまう, ds: to finish}
+  - {id: ja-n3-00717-s001, ch: 示す, pr: しめす, ds: to (take out and) show}
+  - {id: ja-n3-00718-s001, ch: 占める, pr: しめる, ds: to account for}
+  - {id: ja-n5-00039-s005, ch: ある, pr: ある, ds: to happen}
+  - {id: ja-n5-00410-s005, ch: 出る, pr: でる, ds: to appear}
+  - {id: ja-n5-00487-s002, ch: 入る, pr: はいる, ds: 'to join (a club, company, etc.)'}
+  review_grammar:
+  - {id: ja-n4-g004, ch: 動詞たり動詞たりする, ds: do things such as; representative actions}
+  - {id: ja-n4-g018, ch: 動詞語幹ながら, ds: while doing another action}
+  - {id: ja-n4-g026, ch: 動詞てしまう, ds: finish completely; regrettably do}
+- id: level-09-events-practice-03
+  title: Events and resulting states - sentence practice 3
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g018, ch: 普通形間に, ds: during; at some point while}
+  - {id: ja-n3-g020, ch: 動詞たとたんに, ds: the instant; just as}
+  - {id: ja-n3-g021, ch: 動詞たびに, ds: every time; whenever}
+  review_vocabulary:
+  - {id: ja-n3-00694-s001, ch: 実施, pr: じっし, ds: enforcement}
+  - {id: ja-n3-00711-s001, ch: 仕舞い, pr: しまい, ds: end}
+  - {id: ja-n3-00713-s001, ch: しまう, pr: しまう, ds: to finish}
+  - {id: ja-n3-00717-s001, ch: 示す, pr: しめす, ds: to (take out and) show}
+  - {id: ja-n3-00718-s001, ch: 占める, pr: しめる, ds: to account for}
+  - {id: ja-n5-00039-s005, ch: ある, pr: ある, ds: to happen}
+  - {id: ja-n5-00410-s005, ch: 出る, pr: でる, ds: to appear}
+  - {id: ja-n5-00487-s002, ch: 入る, pr: はいる, ds: 'to join (a club, company, etc.)'}
+  review_grammar:
+  - {id: ja-n4-g035, ch: 動詞辞書形ところだ, ds: be just about to do}
+  - {id: ja-n4-g042, ch: 動詞ている, ds: resulting state; continuing habit}
+  - {id: ja-n4-g043, ch: 動詞てある, ds: a state resulting from deliberate action}
+- id: level-09-events-practice-04
+  title: Events and resulting states - sentence practice 4
+  outcome: Recount a change and distinguish an ongoing action from its resulting state.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g023, ch: 動詞たまま, ds: leave or remain in a state}
+  - {id: ja-n4-g031, ch: ～ようになる, ds: come to do; become able to do}
+  review_vocabulary:
+  - {id: ja-n3-00694-s001, ch: 実施, pr: じっし, ds: enforcement}
+  - {id: ja-n3-00711-s001, ch: 仕舞い, pr: しまい, ds: end}
+  - {id: ja-n3-00713-s001, ch: しまう, pr: しまう, ds: to finish}
+  - {id: ja-n3-00717-s001, ch: 示す, pr: しめす, ds: to (take out and) show}
+  - {id: ja-n3-00718-s001, ch: 占める, pr: しめる, ds: to account for}
+  - {id: ja-n5-00039-s005, ch: ある, pr: ある, ds: to happen}
+  - {id: ja-n5-00410-s005, ch: 出る, pr: でる, ds: to appear}
+  - {id: ja-n5-00487-s002, ch: 入る, pr: はいる, ds: 'to join (a club, company, etc.)'}
+  review_grammar:
+  - {id: ja-n3-g018, ch: 普通形間に, ds: during; at some point while}
+  - {id: ja-n3-g020, ch: 動詞たとたんに, ds: the instant; just as}
+  - {id: ja-n3-g021, ch: 動詞たびに, ds: every time; whenever}

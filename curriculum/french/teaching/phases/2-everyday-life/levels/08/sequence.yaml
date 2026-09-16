@@ -1,0 +1,292 @@
+schema_version: 3
+id: fr-level-08
+title: Work, study, and invitations
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 8
+phase: everyday-life
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+goals: &id001
+- Explain a familiar work or study routine.
+- Invite someone and accept or decline considerately.
+- Coordinate a shared activity while accounting for a recent change and a practical constraint.
+checkpoint:
+  task: Arrange a shared activity, explain a recent change, and resolve a household or service constraint affecting the plan.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-08-leisure-01
+  title: Leisure and participation - 1
+  outcome: Discuss an activity and coordinate participation or preferences.
+  vocabulary:
+  - {id: fr-v-d28cffab5c6fe04d, ch: loisir, pr: /lwa.ziʁ/, ds: 'leisure, hobby'}
+  - {id: fr-v-b4f8ada5ea42193d, ch: fête, pr: /fɛt/, ds: party; celebration}
+  - {id: fr-v-05453eb6ef4e7ca8, ch: invitation, pr: /ɛ̃.vi.ta.sjɔ̃/, ds: invitation}
+  - {id: fr-v-540751bc063d9539, ch: cadeau, pr: /ka.do/, ds: 'present, gift'}
+  - {id: fr-v-695662f89a05f8b9, ch: anniversaire, pr: /a.ni.vɛʁ.sɛʁ/, ds: birthday}
+  - {id: fr-v-969cc734aaadef85, ch: vacances, pr: /va.kɑ̃s/, ds: holidays; vacation; plural usage}
+  - {id: fr-v-d8ecfdc0c2c3e0df, ch: weekend, pr: /wi.kɛnd/, ds: post-1990 spelling of week-end}
+  - {id: fr-v-ab77e8e11319ea68, ch: cinéma, pr: /si.ne.ma/, ds: cinema; movie theatre}
+  - {id: fr-v-6fb43b21930d7d00, ch: film, pr: /film/, ds: 'movie, film'}
+  - {id: fr-v-bd480c149a6b7e23, ch: musique, pr: /my.zik/, ds: music}
+  - {id: fr-v-0b7f2aa80899ed2c, ch: chanson, pr: /ʃɑ̃.sɔ̃/, ds: song}
+  - {id: fr-v-92d8925a6bab2bb2, ch: concert, pr: /kɔ̃.sɛʁ/, ds: concert (musical entertainment)}
+  - {id: fr-v-6eaf7004cdb34dbd, ch: théâtre, pr: /te.ɑtʁ/, ds: theatre; venue or dramatic art}
+  - {id: fr-v-ce472e7a93af8ead, ch: spectacle, pr: /spɛk.takl/, ds: 'a show, a spectacle, a performance, a concert'}
+  - {id: fr-v-c8e1b3319caaef50, ch: musée, pr: /my.ze/, ds: museum}
+  - {id: fr-v-16050f9f8f3c7c52, ch: exposition, pr: /ɛk.spo.zi.sjɔ̃/, ds: exhibition}
+  - {id: fr-v-2b8d7f147e35eddd, ch: promenade, pr: /pʁɔm.nad/, ds: walk; stroll (walk for enjoyment)}
+  - {id: fr-v-93c3b88ecb90d0c5, ch: sport, pr: /spɔʁ/, ds: sport}
+  - {id: fr-v-961f38a5787f8b16, ch: jeu, pr: /ʒø/, ds: game (activity performed for amusement)}
+  - {id: fr-v-9f99cf19fa0f446f, ch: ballon, pr: /ba.lɔ̃/, ds: ball}
+  - {id: fr-v-ead807afab34a024, ch: football, pr: /fut.bol/, ds: 'association football, soccer'}
+  - {id: fr-v-ec57e6745de086cd, ch: tennis, pr: /tɛ.nis/, ds: tennis}
+  - {id: fr-v-fe87fdb8357e38ce, ch: natation, pr: /na.ta.sjɔ̃/, ds: 'swimming, natation'}
+  - {id: fr-v-7a6cc3ac3350b1b8, ch: course, pr: /kuʁs/, ds: 'run, running'}
+  - {id: fr-v-48cdb52ee4b0e940, ch: randonnée, pr: /ʁɑ̃.dɔ.ne/, ds: 'walk, ramble, trek (for pleasure)'}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-08-leisure-02
+  title: Leisure and participation - 2
+  outcome: Discuss an activity and coordinate participation or preferences.
+  vocabulary:
+  - {id: fr-v-764fa8ac0d9bfd1a, ch: danse, pr: /dɑ̃s/, ds: dance}
+  - {id: fr-v-1e385c2f96689fe9, ch: piscine, pr: /pi.sin/, ds: swimming pool}
+  - {id: fr-v-15fb7a6aa58757fc, ch: parc, pr: /paʁk/, ds: park}
+  - {id: fr-v-7ce87292145c0093, ch: plaisir, pr: /plɛ.ziʁ/, ds: pleasure}
+  - {id: fr-v-f852906b1fd83a86, ch: intérêt, pr: /ɛ̃.te.ʁɛ/, ds: interest (great attention and concern from someone)}
+  - {id: fr-v-2804370b28a75b49, ch: choix, pr: /ʃwa/, ds: choice}
+  - {id: fr-v-cb1e916ec0a26f32, ch: préférer, pr: /pʁe.fe.ʁe/, ds: to prefer}
+  - {id: fr-v-3206ae0b62d25d4f, ch: souhaiter, pr: /swɛ.te/, ds: to wish (for); to hope (for)}
+  - {id: fr-v-7c1d7167d5b2c658, ch: jouer, pr: /ʒwe/, ds: to play (engage in games or play)}
+  - {id: fr-v-19015e35cc40c93b, ch: courir, pr: /ku.ʁiʁ/, ds: to run}
+  - {id: fr-v-fa480fbd3eee12a1, ch: nager, pr: /na.ʒe/, ds: to swim}
+  - {id: fr-v-a46e636b701519f2, ch: danser, pr: /dɑ̃.se/, ds: to dance}
+  - {id: fr-v-deb137d03a7e5ab8, ch: chanter, pr: /ʃɑ̃.te/, ds: to sing}
+  - {id: fr-v-853544204c424f7b, ch: dessiner, pr: /de.si.ne/, ds: 'to draw, to sketch'}
+  - {id: fr-v-8e868ad0bea54eee, ch: regarder, pr: /ʁə.ɡaʁ.de/, ds: to look at}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-93c3b88ecb90d0c5, ch: sport, pr: /spɔʁ/, ds: sport}
+  - {id: fr-v-961f38a5787f8b16, ch: jeu, pr: /ʒø/, ds: game (activity performed for amusement)}
+  - {id: fr-v-9f99cf19fa0f446f, ch: ballon, pr: /ba.lɔ̃/, ds: ball}
+  - {id: fr-v-ead807afab34a024, ch: football, pr: /fut.bol/, ds: 'association football, soccer'}
+  - {id: fr-v-ec57e6745de086cd, ch: tennis, pr: /tɛ.nis/, ds: tennis}
+  - {id: fr-v-fe87fdb8357e38ce, ch: natation, pr: /na.ta.sjɔ̃/, ds: 'swimming, natation'}
+  - {id: fr-v-7a6cc3ac3350b1b8, ch: course, pr: /kuʁs/, ds: 'run, running'}
+  - {id: fr-v-48cdb52ee4b0e940, ch: randonnée, pr: /ʁɑ̃.dɔ.ne/, ds: 'walk, ramble, trek (for pleasure)'}
+  review_grammar: []
+- id: level-08-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning experience or approach and respond to clarification questions.
+  vocabulary:
+  - {id: fr-v-7bf3d973e01373bf, ch: école, pr: /e.kɔl/, ds: school}
+  - {id: fr-v-d6517a80195d50a4, ch: collège, pr: /kɔ.lɛʒ/, ds: lower secondary school}
+  - {id: fr-v-fe13d04aa4851bc9, ch: lycée, pr: /li.se/, ds: a public secondary school}
+  - {id: fr-v-dbd19542545ab62e, ch: université, pr: /y.ni.vɛʁ.si.te/, ds: university (institution of higher education)}
+  - {id: fr-v-2ab50d00b8d10e1b, ch: classe, pr: /klas/, ds: class; teaching group}
+  - {id: fr-v-ac146fc46226421d, ch: cours, pr: /kuʁ/, ds: class; lesson}
+  - {id: fr-v-f6bbb1280804925f, ch: leçon, pr: /lə.sɔ̃/, ds: lesson}
+  - {id: fr-v-7ef1bb4fc85f4f92, ch: étude, pr: /e.tyd/, ds: study (act of studying or examining)}
+  - {id: fr-v-f34abb1db284a3fb, ch: exercice, pr: /ɛɡ.zɛʁ.sis/, ds: exercise; practice task}
+  - {id: fr-v-411aa35dd697867e, ch: examen, pr: /ɛɡ.za.mɛ̃/, ds: exam; test of learning}
+  - {id: fr-v-5e333271c36891d8, ch: note, pr: /nɔt/, ds: grade; mark for schoolwork}
+  - {id: fr-v-7f3b1d55e0c26ab9, ch: résultat, pr: /ʁe.zyl.ta/, ds: outcome; result}
+  - {id: fr-v-bb8f01eda60b8645, ch: diplôme, pr: /di.plom/, ds: diploma; qualification document}
+  - {id: fr-v-042c38a7607905d3, ch: formation, pr: /fɔʁ.ma.sjɔ̃/, ds: training; education}
+  - {id: fr-v-0b466bc85bb8b2dc, ch: enseignant, pr: /ɑ̃.sɛ.ɲɑ̃/, ds: teacher}
+  - {id: fr-v-aba499209db66587, ch: élève, pr: /e.lɛv/, ds: 'schoolboy, pupil, student'}
+  - {id: fr-v-c510b57d28cfc9b8, ch: cahier, pr: /ka.je/, ds: 'notebook, exercise book'}
+  - {id: fr-v-6bc8beb19ef8bc6b, ch: crayon, pr: /kʁɛ.jɔ̃/, ds: pencil}
+  - {id: fr-v-a2c7d45fe539fe68, ch: gomme, pr: /ɡɔm/, ds: eraser; pencil rubber}
+  - {id: fr-v-8ea8cfc77a6bcdc1, ch: règle, pr: /ʁɛɡl/, ds: ruler; measuring tool}
+  - {id: fr-v-f28b152594876f67, ch: tableau, pr: /ta.blo/, ds: writing board}
+  - {id: fr-v-89a9e4672e19a2e5, ch: bibliothèque, pr: /bi.bli.jɔ.tɛk/, ds: library}
+  - {id: fr-v-63529b1b7341739e, ch: dictionnaire, pr: /dik.sjɔ.nɛʁ/, ds: dictionary}
+  - {id: fr-v-040c67b36982ed6b, ch: grammaire, pr: /ɡʁa.mɛʁ/, ds: grammar; language structure}
+  - {id: fr-v-9523582c149332f1, ch: vocabulaire, pr: /vɔ.ka.by.lɛʁ/, ds: vocabulary}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-08-learning-02
+  title: Learning and education - 2
+  outcome: Explain a learning experience or approach and respond to clarification questions.
+  vocabulary:
+  - {id: fr-v-4768ce16bf5d7940, ch: lecture, pr: /lɛk.tyʁ/, ds: reading; the act or material}
+  - {id: fr-v-b48673a82ac4bf9a, ch: écriture, pr: /e.kʁi.tyʁ/, ds: writing}
+  - {id: fr-v-3caeac8716c08273, ch: prononciation, pr: /pʁo.nɔ̃.sja.sjɔ̃/, ds: pronunciation}
+  - {id: fr-v-ec8bf57c50a94166, ch: traduction, pr: /tʁa.dyk.sjɔ̃/, ds: translation between languages}
+  - {id: fr-v-5e587ba73b7f1051, ch: explication, pr: /ɛk.spli.ka.sjɔ̃/, ds: explanation}
+  - {id: fr-v-990796f613ba792d, ch: exemple, pr: /ɛɡ.zɑ̃pl/, ds: example}
+  - {id: fr-v-d7e380bb4787ea24, ch: erreur, pr: /e.ʁœʁ/, ds: error; mistaken thinking}
+  - {id: fr-v-190561a54f352ad9, ch: faute, pr: /fot/, ds: 'error, mistake'}
+  - {id: fr-v-0fb4ac2daf75cf8b, ch: correction, pr: /kɔ.ʁɛk.sjɔ̃/, ds: correction (all senses)}
+  - {id: fr-v-a223e5f2d31191f6, ch: apprendre, pr: /a.pʁɑ̃dʁ/, ds: to learn}
+  - {id: fr-v-6d8ab304fb972102, ch: étudier, pr: /e.ty.dje/, ds: to study}
+  - {id: fr-v-cafa3ea50fa7463b, ch: enseigner, pr: /ɑ̃.sɛ.ɲe/, ds: 'to teach, to instruct, to educate'}
+  - {id: fr-v-6ad7cb2e1184a5e9, ch: pratiquer, pr: /pʁa.ti.ke/, ds: to do; to practise}
+  - {id: fr-v-f391eefcd70057cf, ch: réviser, pr: /ʁe.vi.ze/, ds: 'to revise, review'}
+  - {id: fr-v-01e523f0c386c3d3, ch: traduire, pr: /tʁa.dɥiʁ/, ds: to translate}
+  - {id: fr-v-25c8f7f5e9f31e73, ch: prononcer, pr: /pʁɔ.nɔ̃.se/, ds: to pronounce}
+  - {id: fr-v-7d5daa535cad4fae, ch: corriger, pr: /kɔ.ʁi.ʒe/, ds: to correct}
+  - {id: fr-v-2d10953f981d143f, ch: retenir, pr: /ʁə.t(ə).niʁ/, ds: to remember; to retain in memory}
+  - {id: fr-v-f213384880166813, ch: savoir, pr: /sa.vwaʁ/, ds: to know how to do something}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-6bc8beb19ef8bc6b, ch: crayon, pr: /kʁɛ.jɔ̃/, ds: pencil}
+  - {id: fr-v-a2c7d45fe539fe68, ch: gomme, pr: /ɡɔm/, ds: eraser; pencil rubber}
+  - {id: fr-v-8ea8cfc77a6bcdc1, ch: règle, pr: /ʁɛɡl/, ds: ruler; measuring tool}
+  - {id: fr-v-f28b152594876f67, ch: tableau, pr: /ta.blo/, ds: writing board}
+  - {id: fr-v-89a9e4672e19a2e5, ch: bibliothèque, pr: /bi.bli.jɔ.tɛk/, ds: library}
+  - {id: fr-v-63529b1b7341739e, ch: dictionnaire, pr: /dik.sjɔ.nɛʁ/, ds: dictionary}
+  - {id: fr-v-040c67b36982ed6b, ch: grammaire, pr: /ɡʁa.mɛʁ/, ds: grammar; language structure}
+  - {id: fr-v-9523582c149332f1, ch: vocabulaire, pr: /vɔ.ka.by.lɛʁ/, ds: vocabulary}
+  review_grammar: []
+- id: level-08-work-01
+  title: Work and cooperation - 1
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary:
+  - {id: fr-v-754e3041937fd5ff, ch: travail, pr: /tʁa.vaj/, ds: work; labor}
+  - {id: fr-v-f592dcbf88de9879, ch: emploi, pr: /ɑ̃.plwa/, ds: job}
+  - {id: fr-v-bfb152264f3adb4a, ch: métier, pr: /me.tje/, ds: 'job, profession, trade'}
+  - {id: fr-v-5d0e46f32fe87979, ch: profession, pr: /pʁɔ.fɛ.sjɔ̃/, ds: profession; occupation}
+  - {id: fr-v-7a60a791d5ce1c66, ch: entreprise, pr: /ɑ̃.tʁə.pʁiz/, ds: 'company, business'}
+  - {id: fr-v-5cd21e0c662c50ef, ch: équipe, pr: /e.kip/, ds: team}
+  - {id: fr-v-7f9cfe5ccdc7ce5d, ch: poste, pr: /pɔst/, ds: job; position at work}
+  - {id: fr-v-1c85d36fa60cd1f3, ch: patron, pr: /pa.tʁɔ̃/, ds: 'a boss, employer,'}
+  - {id: fr-v-465e25b368cb506d, ch: responsable, pr: /ʁɛs.pɔ̃.sabl/, ds: responsible}
+  - {id: fr-v-2609c22ee15dd944, ch: réunion, pr: /ʁe.y.njɔ̃/, ds: meeting}
+  - {id: fr-v-9801f1a97266a8c4, ch: projet, pr: /pʁɔ.ʒɛ/, ds: project}
+  - {id: fr-v-4c618d6414128672, ch: tâche, pr: /taʃ/, ds: task}
+  - {id: fr-v-69f6100beb7a8542, ch: horaire, pr: /ɔ.ʁɛʁ/, ds: schedule}
+  - {id: fr-v-84331f529afdf7e9, ch: pause, pr: /poz/, ds: 'pause, break'}
+  - {id: fr-v-95ffc4d607664753, ch: congé, pr: /kɔ̃.ʒe/, ds: 'leave (time off, absence from work, etc.)'}
+  - {id: fr-v-f6cc450c830577db, ch: salaire, pr: /sa.lɛʁ/, ds: 'salary, wage'}
+  - {id: fr-v-50ab76bb273c227d, ch: contrat, pr: /kɔ̃.tʁa/, ds: contract}
+  - {id: fr-v-5bd12a54c3d88e57, ch: candidature, pr: /kɑ̃.di.da.tyʁ/, ds: application; candidacy}
+  - {id: fr-v-c683dd06636f1a8f, ch: entretien, pr: /ɑ̃.tʁə.tjɛ̃/, ds: interview}
+  - {id: fr-v-505dc04cfa8e2868, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experience; acquired knowledge and skills}
+  - {id: fr-v-0ba27304c252a3a1, ch: compétence, pr: /kɔ̃.pe.tɑ̃s/, ds: 'competence, ability, skill'}
+  - {id: fr-v-4650647986a74a14, ch: objectif, pr: /ɔb.ʒɛk.tif/, ds: 'objective, goal, aim'}
+  - {id: fr-v-84fe42a029fd0e91, ch: délai, pr: /de.lɛ/, ds: time limit}
+  - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
+  - {id: fr-v-fae14417e58ec847, ch: dossier, pr: /do.sje/, ds: dossier; collection of documents}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-08-work-02
+  title: Work and cooperation - 2
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary:
+  - {id: fr-v-b27ae6d97cdcbe0d, ch: formulaire, pr: /fɔʁ.my.lɛʁ/, ds: form (document to be filled in)}
+  - {id: fr-v-da5f3df909a3be91, ch: message, pr: /mɛ.saʒ/, ds: message}
+  - {id: fr-v-91c8b7efdb544403, ch: courriel, pr: /ku.ʁjɛl/, ds: email (message)}
+  - {id: fr-v-353ab117aaa507be, ch: lettre, pr: /lɛtʁ/, ds: letter; written message}
+  - {id: fr-v-3b43a02beed8fa40, ch: signature, pr: /si.ɲa.tyʁ/, ds: signature (a person's name written in their own handwriting)}
+  - {id: fr-v-ac0bcd0974d58c38, ch: appel, pr: /a.pɛl/, ds: call}
+  - {id: fr-v-6593090b9a9f5875, ch: travailler, pr: /tʁa.va.je/, ds: to work}
+  - {id: fr-v-b95c93ac0fd8760f, ch: discuter, pr: /dis.ky.te/, ds: to discuss}
+  - {id: fr-v-09f138c9d1a7ba04, ch: participer, pr: /paʁ.ti.si.pe/, ds: to participate}
+  - {id: fr-v-15d9984b24a3b44a, ch: proposer, pr: /pʁɔ.po.ze/, ds: 'to propose, suggest'}
+  - {id: fr-v-6c0e9cbd80f22214, ch: accepter, pr: /ak.sɛp.te/, ds: to accept}
+  - {id: fr-v-0000b59663f07a54, ch: refuser, pr: /ʁə.fy.ze/, ds: to refuse}
+  - {id: fr-v-009c389b7c973916, ch: envoyer, pr: /ɑ̃.vwa.je/, ds: to send}
+  - {id: fr-v-3b6520b3ca90d3c0, ch: signer, pr: /si.ɲe/, ds: to sign (put a signature on)}
+  - {id: fr-v-17646b0b66772308, ch: contacter, pr: /kɔ̃.tak.te/, ds: to contact (all senses)}
+  - {id: fr-v-dd8b321d26fc3b37, ch: remercier, pr: /ʁə.mɛʁ.sje/, ds: to thank (someone)}
+  - {id: fr-v-788a2fdb298da6aa, ch: gagner, pr: /ɡa.ɲe/, ds: to earn}
+  - {id: fr-v-c68bb07d29dbc737, ch: terminer, pr: /tɛʁ.mi.ne/, ds: to end; to finish; to terminate}
+  - {id: fr-v-c4d2fd64dfd14c21, ch: vérifier, pr: /ve.ʁi.fje/, ds: to confirm}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-5bd12a54c3d88e57, ch: candidature, pr: /kɑ̃.di.da.tyʁ/, ds: application; candidacy}
+  - {id: fr-v-c683dd06636f1a8f, ch: entretien, pr: /ɑ̃.tʁə.tjɛ̃/, ds: interview}
+  - {id: fr-v-505dc04cfa8e2868, ch: expérience, pr: /ɛk.spe.ʁjɑ̃s/, ds: experience; acquired knowledge and skills}
+  - {id: fr-v-0ba27304c252a3a1, ch: compétence, pr: /kɔ̃.pe.tɑ̃s/, ds: 'competence, ability, skill'}
+  - {id: fr-v-4650647986a74a14, ch: objectif, pr: /ɔb.ʒɛk.tif/, ds: 'objective, goal, aim'}
+  - {id: fr-v-84fe42a029fd0e91, ch: délai, pr: /de.lɛ/, ds: time limit}
+  - {id: fr-v-26c6f60461140377, ch: document, pr: /dɔ.ky.mɑ̃/, ds: document}
+  - {id: fr-v-fae14417e58ec847, ch: dossier, pr: /do.sje/, ds: dossier; collection of documents}
+  review_grammar: []
+- id: level-08-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a selected construction to communicate a new meaning and distinguish a relevant contrast.
+  vocabulary:
+  - {id: fr-v-eab0c80edc723bb2, ch: se, pr: /sə/, ds: himself}
+  - {id: fr-v-4f53448b7fe6a72d, ch: me, pr: /mə/, ds: me (direct object)}
+  - {id: fr-v-0f43d5639e8a89a8, ch: te, pr: /tə/, ds: you}
+  - {id: fr-v-325147ea043e2d09, ch: que, pr: /kə/, ds: that; introduces a subordinate noun clause}
+  - {id: fr-v-fbf60a681af7aaca, ch: leur, pr: /lœʁ/, ds: to them; indirect-object clitic}
+  - {id: fr-v-f76c90b02db72913, ch: le, pr: /lə/, ds: him or it; masculine direct-object clitic}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-5ec809f61dd4f922, ch: à, pr: /a/, ds: to (destination)}
+  - {id: fr-v-8b08d0d1eb85ad1c, ch: dans, pr: /dɑ̃/, ds: 'in, inside (enclosed in a physical space, a group, a state)'}
+  - {id: fr-v-098e19a148c05266, ch: sur, pr: /syʁ/, ds: 'on, upon'}
+  - {id: fr-v-8cd331fbd521083e, ch: sous, pr: /su/, ds: 'below, under'}
+  - {id: fr-v-810ff3f01a4e6b01, ch: entre, pr: /ɑ̃tʁ/, ds: between}
+  - {id: fr-v-fd582a89df883fb0, ch: devant, pr: /də.vɑ̃/, ds: in front of}
+  - {id: fr-v-df1df27984b04cc8, ch: derrière, pr: /dɛ.ʁjɛʁ/, ds: behind}
+  - {id: fr-v-c1a655ae9925085a, ch: chez, pr: /ʃe/, ds: 'to, at, in or into the place of'}
+  review_grammar:
+  - {id: fr-g-elision-h-boundaries, ch: l' / j' / n' devant voyelle ou h muet ; le h aspiré, ds: Elision and liaison have lexical boundary restrictions}
+- id: level-08-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe people and relationships and respond to a different perspective.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-direct-object-clitics, ch: sujet + me / te / le / la / nous / vous / les + verbe, ds: Replace a recoverable direct object before the verb}
+  review_vocabulary:
+  - {id: fr-v-580d8fe18b6303c4, ch: livre, pr: /livʁ/, ds: book}
+  - {id: fr-v-5c68a89f38d9b824, ch: voir, pr: /vwaʁ/, ds: to see (visually)}
+  - {id: fr-v-8a5d2d0ef2844ec7, ch: professeur, pr: /pʁɔ.fɛ.sœʁ/, ds: teacher}
+  - {id: fr-v-9a6c971371382aa8, ch: adulte, pr: /a.dylt/, ds: adult}
+  - {id: fr-v-cceb97ab0037f92b, ch: monsieur, pr: /mə.sjø/, ds: mister}
+  - {id: fr-v-b031dfbe6f20bdd6, ch: madame, pr: /ma.dam/, ds: a title or form of address for a woman}
+  - {id: fr-v-45b05a74a2c7a263, ch: couple, pr: /kupl/, ds: two partners in a romantic or sexual relationship}
+  - {id: fr-v-8c5048fb1edee2ab, ch: âge, pr: /aʒ/, ds: age}
+  - {id: fr-v-e1ed44623cdfc3df, ch: mari, pr: /ma.ʁi/, ds: husband}
+  - {id: fr-v-869a1782460e9523, ch: épouse, pr: /e.puz/, ds: 'female spouse, wife'}
+  review_grammar:
+  - {id: fr-g-articles-gender-number, ch: un / une / des ; le / la / les + nom, ds: Introduce a referent or identify a known one}
+  - {id: fr-g-possessive-determiners, ch: mon / ma / mes ; son / sa / ses + nom, ds: Possessive forms agree with the possessed noun}
+- id: level-08-work-practice-01
+  title: Work and cooperation - sentence practice 1
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-recent-past, ch: venir de + infinitif, ds: Relate a just-completed event to the current moment}
+  - {id: fr-g-modal-infinitives, ch: devoir / pouvoir / savoir + infinitif, ds: 'Distinguish obligation, available ability, and learned skill'}
+  review_vocabulary:
+  - {id: fr-v-c68bb07d29dbc737, ch: terminer, pr: /tɛʁ.mi.ne/, ds: to end; to finish; to terminate}
+  - {id: fr-v-009c389b7c973916, ch: envoyer, pr: /ɑ̃.vwa.je/, ds: to send}
+  - {id: fr-v-754e3041937fd5ff, ch: travail, pr: /tʁa.vaj/, ds: work; labor}
+  - {id: fr-v-fa480fbd3eee12a1, ch: nager, pr: /na.ʒe/, ds: to swim}
+  - {id: fr-v-0000b59663f07a54, ch: refuser, pr: /ʁə.fy.ze/, ds: to refuse}
+  - {id: fr-v-3b6520b3ca90d3c0, ch: signer, pr: /si.ɲe/, ds: to sign (put a signature on)}
+  - {id: fr-v-17646b0b66772308, ch: contacter, pr: /kɔ̃.tak.te/, ds: to contact (all senses)}
+  - {id: fr-v-dd8b321d26fc3b37, ch: remercier, pr: /ʁə.mɛʁ.sje/, ds: to thank (someone)}
+  - {id: fr-v-788a2fdb298da6aa, ch: gagner, pr: /ɡa.ɲe/, ds: to earn}
+  - {id: fr-v-c4d2fd64dfd14c21, ch: vérifier, pr: /ve.ʁi.fje/, ds: to confirm}
+  review_grammar: []
+- id: level-08-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-cause-and-objection, ch: proposition parce que cause ; proposition mais objection, ds: Connect a reason or practical objection to a statement}
+  review_vocabulary:
+  - {id: fr-v-6593090b9a9f5875, ch: travailler, pr: /tʁa.va.je/, ds: to work}
+  - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
+  review_grammar: []

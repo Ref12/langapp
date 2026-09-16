@@ -1,0 +1,627 @@
+- id: fr-f-travel-bonjour-capital
+  kind: sentence-case
+  ch: Bonjour
+  pr: /bɔ̃.ʒuʁ/
+  items:
+  - fr-v-10ad6bebc867671d
+  grammar: []
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: kaikki-enwiktionary-french-20260902
+  status: Capitalization only; source reading unchanged.
+- id: fr-f-travel-merci-capital
+  kind: sentence-case
+  ch: Merci
+  pr: /mɛʁ.si/
+  items:
+  - fr-v-c3a6c08e3b04aad2
+  grammar: []
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: kaikki-enwiktionary-french-20260902
+  status: Capitalization only; source reading unchanged.
+- id: fr-f-travel-au-revoir-capital
+  kind: sentence-case
+  ch: Au revoir
+  pr: /o ʁə.vwaʁ/
+  items:
+  - fr-v-bd5fce6e0788c23a
+  grammar: []
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: kaikki-enwiktionary-french-20260902
+  status: Capitalization only; source reading unchanged.
+- id: fr-f-travel-toilettes-plural
+  kind: source-inflection
+  ch: toilettes
+  pr: /twa.lɛt/
+  items:
+  - fr-v-9bb102ee78354498
+  grammar:
+  - fr-g-travel-location-question
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: lexique-3.83
+  source_record: 129119
+  canonical_record: 129117
+  lemma: toilette
+  part_of_speech: NOM
+  gender: f
+  number: p
+  requested_tags:
+  - plural
+  source_phonetic_code: twalEt
+  status: Selected lemma/POS-aligned canonical and inflected Lexique evidence; requested and unchanged
+    morphology checked.
+- id: fr-f-travel-perdue-feminine
+  kind: source-inflection
+  ch: perdue
+  pr: /pɛʁ.dy/
+  items:
+  - fr-v-4114e2f226cbbf44
+  grammar:
+  - fr-g-travel-lost-description
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: lexique-3.83
+  source_record: 94292
+  canonical_record: 94289
+  lemma: perdu
+  part_of_speech: ADJ
+  gender: f
+  number: s
+  requested_tags:
+  - feminine
+  source_phonetic_code: pERdy
+  status: Selected lemma/POS-aligned canonical and inflected Lexique evidence; requested and unchanged
+    morphology checked.
+- id: fr-f-travel-please
+  kind: construction
+  ch: S'il vous plaît
+  pr: /sil vu plɛ/
+  items: []
+  grammar:
+  - fr-g-travel-polite-request
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-speak-slowly
+  kind: construction
+  ch: Parlez plus lentement, s'il vous plaît
+  pr: /paʁ.le ply lɑ̃.tə.mɑ̃ sil vu plɛ/
+  items: []
+  grammar:
+  - fr-g-travel-communication-repair
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-repeat
+  kind: construction
+  ch: Pouvez-vous répéter
+  pr: /pu.ve vu ʁe.pe.te/
+  items: []
+  grammar:
+  - fr-g-travel-polite-assistance
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-not-understand
+  kind: construction
+  ch: Je ne comprends pas
+  pr: /ʒə nə kɔ̃.pʁɑ̃ pa/
+  items: []
+  grammar:
+  - fr-g-travel-communication-repair
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-would-like-water
+  kind: construction
+  ch: Je voudrais de l'
+  pr: /ʒə vu.dʁɛ də l/
+  items: []
+  grammar:
+  - fr-g-travel-would-like
+  next_words:
+  - fr-v-dffaea6b9559b478
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-where-feminine
+  kind: construction
+  ch: Où est la
+  pr: /u ɛ la/
+  items: []
+  grammar:
+  - fr-g-travel-location-question
+  next_words:
+  - fr-v-eac03ce764e06171
+  - fr-v-42aa0b38bfb05999
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-need-help
+  kind: construction
+  ch: J'ai besoin d'
+  pr: /ʒe bə.zwɛ̃ d/
+  items: []
+  grammar:
+  - fr-g-travel-need
+  next_words:
+  - fr-v-57ea8e93200fea91
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-help-me
+  kind: construction
+  ch: Pouvez-vous m'aider
+  pr: /pu.ve vu mɛ.de/
+  items: []
+  grammar:
+  - fr-g-travel-polite-assistance
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-where-toilets
+  kind: construction
+  ch: Où sont les
+  pr: /u sɔ̃ le/
+  items: []
+  grammar:
+  - fr-g-travel-location-question
+  next_words:
+  - fr-v-9bb102ee78354498
+  previous_words: []
+  next_realizations:
+  - fr-f-travel-toilettes-plural
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-direction-prefix
+  kind: construction
+  ch: À
+  pr: /a/
+  items: []
+  grammar:
+  - fr-g-travel-direction
+  next_words:
+  - fr-v-f65b1c1fbb3f942a
+  - fr-v-fd0ac678bbeb492d
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-would-like-masculine
+  kind: construction
+  ch: Je voudrais un
+  pr: /ʒə vu.dʁɛ œ̃/
+  items: []
+  grammar:
+  - fr-g-travel-would-like
+  next_words:
+  - fr-v-bcd3a43850411ae2
+  - fr-v-cf885c120677b5e5
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-what-time
+  kind: construction
+  ch: À quelle
+  pr: /a kɛl/
+  items: []
+  grammar:
+  - fr-g-travel-time-question
+  next_words:
+  - fr-v-dbe191f8ffd62105
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-have-feminine
+  kind: construction
+  ch: J'ai une
+  pr: /ʒe yn/
+  items: []
+  grammar:
+  - fr-g-travel-have
+  next_words:
+  - fr-v-ed399ab172229ca9
+  - fr-v-37b2c6a82f8ca9ce
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-would-like-feminine
+  kind: construction
+  ch: Je voudrais une
+  pr: /ʒə vu.dʁɛ yn/
+  items: []
+  grammar:
+  - fr-g-travel-would-like
+  next_words:
+  - fr-v-c22fc3483ea21daf
+  - fr-v-2acd436a33e93a82
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-key-subject
+  kind: construction
+  ch: La
+  pr: /la/
+  items: []
+  grammar:
+  - fr-g-travel-not-working
+  next_words:
+  - fr-v-5f205da766a8e659
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-not-working
+  kind: construction
+  ch: ne fonctionne pas
+  pr: /nə fɔ̃k.sjɔn pa/
+  items: []
+  grammar:
+  - fr-g-travel-not-working
+  next_words: []
+  previous_words:
+  - fr-v-5f205da766a8e659
+  next_realizations: []
+  previous_realizations:
+  - canonical
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-where-hotel
+  kind: construction
+  ch: Où est l'
+  pr: /u ɛ l/
+  items: []
+  grammar:
+  - fr-g-travel-location-question
+  next_words:
+  - fr-v-7d4b1a3ec129806b
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-bill-article
+  kind: construction
+  ch: L'
+  pr: /l/
+  items: []
+  grammar:
+  - fr-g-travel-polite-request
+  next_words:
+  - fr-v-cc5b9e82c78eacc1
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-bill-please
+  kind: construction
+  ch: ', s''il vous plaît'
+  pr: /sil vu plɛ/
+  items: []
+  grammar:
+  - fr-g-travel-polite-request
+  next_words: []
+  previous_words:
+  - fr-v-cc5b9e82c78eacc1
+  next_realizations: []
+  previous_realizations:
+  - canonical
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-without-milk
+  kind: construction
+  ch: Sans
+  pr: /sɑ̃/
+  items: []
+  grammar:
+  - fr-g-travel-milk-check
+  next_words:
+  - fr-v-bae1a6711c01eb14
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-milk-question
+  kind: construction
+  ch: Est-ce qu'il y a du
+  pr: /ɛs kil i a dy/
+  items: []
+  grammar:
+  - fr-g-travel-milk-check
+  next_words:
+  - fr-v-bae1a6711c01eb14
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-need-doctor
+  kind: construction
+  ch: J'ai besoin d'un
+  pr: /ʒe bə.zwɛ̃ dœ̃/
+  items: []
+  grammar:
+  - fr-g-travel-need
+  next_words:
+  - fr-v-8881f8fb0e7e7879
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-price-question
+  kind: construction
+  ch: Combien ça coûte
+  pr: /kɔ̃.bjɛ̃ sa kut/
+  items: []
+  grammar:
+  - fr-g-travel-price-question
+  next_words: []
+  previous_words: []
+  next_realizations: []
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-pay-by-card
+  kind: construction
+  ch: Est-ce que je peux payer par
+  pr: /ɛs kə ʒə pø pɛ.je paʁ/
+  items: []
+  grammar:
+  - fr-g-travel-card-payment
+  next_words:
+  - fr-v-b73cbb16bfc51474
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-would-like-pay
+  kind: construction
+  ch: Je voudrais
+  pr: /ʒə vu.dʁɛ/
+  items: []
+  grammar:
+  - fr-g-travel-would-like
+  next_words:
+  - fr-v-87f49d1132e9bfcb
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-my-bagage
+  kind: construction
+  ch: Mon
+  pr: /mɔ̃/
+  items: []
+  grammar:
+  - fr-g-travel-lost-description
+  next_words:
+  - fr-v-dec241166f52ccc7
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-bagage-is
+  kind: construction
+  ch: est
+  pr: /ɛ/
+  items: []
+  grammar:
+  - fr-g-travel-lost-description
+  next_words:
+  - fr-v-4114e2f226cbbf44
+  previous_words:
+  - fr-v-dec241166f52ccc7
+  next_realizations:
+  - canonical
+  previous_realizations:
+  - canonical
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-search-bagage
+  kind: construction
+  ch: Je cherche mon
+  pr: /ʒə ʃɛʁʃ mɔ̃/
+  items: []
+  grammar:
+  - fr-g-travel-search-belonging
+  next_words:
+  - fr-v-dec241166f52ccc7
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-write-address
+  kind: construction
+  ch: Pouvez-vous écrire l'
+  pr: /pu.ve vu.ze.kʁiʁ l/
+  items: []
+  grammar:
+  - fr-g-travel-polite-assistance
+  next_words:
+  - fr-v-3b7e67dcc8c2a731
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-train-subject
+  kind: construction
+  ch: Le
+  pr: /lə/
+  items: []
+  grammar:
+  - fr-g-travel-delay
+  next_words:
+  - fr-v-88f6d7cc694e32a8
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-is-delayed
+  kind: construction
+  ch: est en
+  pr: /ɛ.tɑ̃/
+  items: []
+  grammar:
+  - fr-g-travel-delay
+  next_words:
+  - fr-v-ff2f50c27c3c9f55
+  previous_words:
+  - fr-v-88f6d7cc694e32a8
+  next_realizations:
+  - canonical
+  previous_realizations:
+  - canonical
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-emergency
+  kind: construction
+  ch: C'est une
+  pr: /sɛ.tyn/
+  items: []
+  grammar:
+  - fr-g-travel-urgent-help
+  next_words:
+  - fr-v-175249b08ac5de3a
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-call-doctor
+  kind: construction
+  ch: Appelez un
+  pr: /a.pə.le œ̃/
+  items: []
+  grammar:
+  - fr-g-travel-urgent-help
+  next_words:
+  - fr-v-8881f8fb0e7e7879
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-i-am-lost
+  kind: construction
+  ch: Je suis
+  pr: /ʒə sɥi/
+  items: []
+  grammar:
+  - fr-g-travel-lost-description
+  next_words:
+  - fr-v-4114e2f226cbbf44
+  previous_words: []
+  next_realizations:
+  - canonical
+  - fr-f-travel-perdue-feminine
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-departure-time
+  kind: construction
+  ch: est le
+  pr: /ɛ lə/
+  items: []
+  grammar:
+  - fr-g-travel-time-question
+  next_words:
+  - fr-v-a8acf51df67e6d44
+  previous_words:
+  - fr-v-dbe191f8ffd62105
+  next_realizations:
+  - canonical
+  previous_realizations:
+  - canonical
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.
+- id: fr-f-travel-to-airport
+  kind: construction
+  ch: Je vais à l'
+  pr: /ʒə vɛ a l/
+  items: []
+  grammar:
+  - fr-g-travel-destination
+  next_words:
+  - fr-v-13a5672c70a750ba
+  previous_words: []
+  next_realizations:
+  - canonical
+  previous_realizations: []
+  source_id: original-fr
+  status: Original contextual/formula pronunciation; not source-verified or observed audio.

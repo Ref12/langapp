@@ -1,0 +1,172 @@
+schema_version: 1
+id: fr-practical
+title: Practical French
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+module_size: 25
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+phases:
+- {id: first-exchanges, title: First exchanges, levels: [1, 2, 3, 4], target_new_headwords: 200}
+- {id: everyday-life, title: Everyday life, levels: [5, 6, 7, 8], target_new_headwords: 500}
+- {id: stories-conversations, title: Stories and conversations, levels: [9, 10, 11, 12, 13], target_new_headwords: 800}
+- {id: explanation-problems, title: Explanation and problem-solving, levels: [14, 15, 16, 17, 18], target_new_headwords: 1100}
+- {id: analysis-argument, title: Analysis and argument, levels: [19, 20, 21, 22, 23, 24], target_new_headwords: 1400}
+- {id: nuance-interpretation, title: Nuance and interpretation, levels: [25, 26, 27, 28, 29, 30], target_new_headwords: 1800}
+levels:
+- number: 1
+  title: Contact and communication repair
+  goals: [Greet someone and introduce yourself with suitable politeness., Ask for repetition or slower speech., Distinguish a short question from a statement and give a relevant reply.]
+  checkpoint: Introduce yourself to an unfamiliar partner, respond to a changed question, and repair one misunderstanding without copying a supplied dialogue.
+- number: 2
+  title: People, objects, and belongings
+  goals: [Identify people and familiar objects., Explain whose an object is., Choose articles and agreement appropriate to familiar descriptions.]
+  checkpoint: Identify a missing object from several alternatives and explain its owner and distinguishing features.
+- number: 3
+  title: Food, quantities, and daily schedules
+  goals: [Request a drink or meal and clarify quantities., State a familiar routine and a meeting time., Ask a relevant question about a price or preference.]
+  checkpoint: Arrange a simple meal and activity using a changed time, quantity, and preference.
+- number: 4
+  title: Places, directions, and getting help
+  goals: [Ask where a place is and explain a destination., Request help or permission politely., 'Combine an introduction, a practical request, and a revised meeting arrangement.']
+  checkpoint: In a new short-visit scenario, introduce yourself, request something needed, ask for directions, and revise a meeting plan after a misunderstanding.
+- number: 5
+  title: Home, routines, and preferences
+  goals: [Describe a home and ordinary household needs., Explain a routine and how often something happens., Negotiate a considerate everyday arrangement.]
+  checkpoint: Agree on a household arrangement with a person whose schedule and preferences differ from yours.
+- number: 6
+  title: Purchases, services, and wellbeing
+  goals: [Describe the desired item or service and clarify a quantity., Explain a simple purchase problem., State a familiar symptom or care need without claiming medical expertise.]
+  checkpoint: Explain a purchase or service problem and answer clarification questions about what is needed and what is not wanted.
+- number: 7
+  title: Journeys and changed arrangements
+  goals: [Describe a recent journey or booking., Distinguish a completed event from an upcoming plan., Compare practical alternatives after an arrangement changes.]
+  checkpoint: Explain what changed in a journey and negotiate a revised itinerary with new times or destinations.
+- number: 8
+  title: Work, study, and invitations
+  goals: [Explain a familiar work or study routine., Invite someone and accept or decline considerately., Coordinate a shared activity while accounting for a recent change and a practical constraint.]
+  checkpoint: Arrange a shared activity, explain a recent change, and resolve a household or service constraint affecting the plan.
+- number: 9
+  title: Events and background
+  goals: [Relate events in a clear sequence., Distinguish background circumstances from completed events., Explain what interrupted or changed an ongoing situation.]
+  checkpoint: Recount an unfamiliar picture sequence and answer questions about the background and the events that changed it.
+- number: 10
+  title: Feelings and relationships
+  goals: [Explain an emotional response with relevant circumstances., Clarify who did something to whom., Respond considerately to a different interpretation of a social exchange.]
+  checkpoint: Explain a fictional misunderstanding from two perspectives and propose an appropriate repair.
+- number: 11
+  title: Instructions and processes
+  goals: [Explain an ordinary multi-step process., Give a clear instruction and clarify its object., Adapt instructions when an unexpected problem occurs.]
+  checkpoint: Guide someone through a familiar procedure after an unfamiliar difficulty interrupts it.
+- number: 12
+  title: Messages and connected information
+  goals: [Relay useful information from a short notice or message., Link descriptions without losing their referents., Ask an indirect clarification question.]
+  checkpoint: Explain a notice to someone who cannot consult it and resolve questions about people, places, and requirements.
+- number: 13
+  title: Opinions and practical choices
+  goals: [Compare alternatives and support a recommendation., Acknowledge a drawback or another person's preference., 'Combine a connected account, a clarification, and a reasoned choice.']
+  checkpoint: Summarize how a practical situation developed, clarify missing information, and recommend an option while acknowledging its disadvantage.
+- number: 14
+  title: Unfamiliar practical problems
+  goals: [Explain a less predictable housing or service problem., 'Clarify references to places, quantities, and earlier information.', Negotiate a response when the initial explanation is incomplete.]
+  checkpoint: Resolve a simulated practical problem after new details change what can reasonably be requested.
+- number: 15
+  title: Cooperation and responsibility
+  goals: [Explain responsibilities and a task's current state., Describe a future arrangement with suitable certainty., Renegotiate a shared task without blaming or overstating commitments.]
+  checkpoint: Give a task update and redistribute responsibilities after a change in resources or availability.
+- number: 16
+  title: News and society
+  goals: [Summarize a general-interest report., Distinguish events from attributed claims., Compare what two reports emphasize or leave uncertain.]
+  checkpoint: Explain the common facts and different emphases in two short reports without presenting unconfirmed claims as established facts.
+- number: 17
+  title: Technology and environment
+  goals: [Explain a system or technology to a nonspecialist., Describe an environmental change and a plausible consequence., Explain the purpose and limitations of a proposed response.]
+  checkpoint: Explain a technical or environmental problem and compare two responses using explicit limitations rather than specialist assumptions.
+- number: 18
+  title: Proposals and negotiation
+  goals: [Present a structured proposal addressing a practical problem., 'Express wishes, necessity, and concessions with appropriate constructions.', Revise a recommendation after objections or newly revealed constraints.]
+  checkpoint: Present a proposal using information from a short source, negotiate competing needs, and revise the proposal after unexpected questions.
+- number: 19
+  title: Evidence and uncertainty
+  goals: [Distinguish an observation from an inference., Explain what supports a claim., Express uncertainty without erasing a meaningful conclusion.]
+  checkpoint: Evaluate a short argument and explain which conclusion the available evidence supports and which remains uncertain.
+- number: 20
+  title: Institutions and economic choices
+  goals: [Explain an ordinary institutional or economic process., Compare stated aims with possible consequences., Discuss different stakeholders without assuming professional expertise.]
+  checkpoint: Explain a fictional policy or commercial change and compare its plausible consequences for two groups.
+- number: 21
+  title: Science and long-term change
+  goals: [Summarize a general-audience scientific explanation., Keep methods and conclusions distinct., Compare explanations for a change and identify a limitation.]
+  checkpoint: Explain an accessible scientific account, identify what its method can establish, and state an unanswered question.
+- number: 22
+  title: Values and perspectives
+  goals: [Represent competing considerations fairly., Explain a hypothetical situation without confusing it with a fact., Distinguish a personal perspective from a generalization.]
+  checkpoint: Discuss a dilemma while accurately representing two conflicting values and the limits of each argument.
+- number: 23
+  title: Qualified argument
+  goals: [Build a recommendation from explicit reasons., Consider an objection or counterfactual alternative., Narrow or revise a claim when counterevidence appears.]
+  checkpoint: Defend a recommendation, answer a substantive objection, and revise its scope after new evidence is introduced.
+- number: 24
+  title: Structured synthesis
+  goals: [Combine relevant information from more than one source., Compare options using explicit criteria., 'Preserve attribution, uncertainty, and tense relationships in a sustained explanation.']
+  checkpoint: Produce a proposal that reconciles partially conflicting sources, states its criteria, and explains how uncertainty affects the recommendation.
+- number: 25
+  title: Stance and implication
+  goals: [Distinguish literal content from implied evaluation., Express different degrees of commitment., Explain why context supports one interpretation more than another.]
+  checkpoint: Compare plausible readings of an indirect message and defend the interpretation best supported by the situation.
+- number: 26
+  title: Audience and register
+  goals: [Adapt a request or disagreement to the relationship and setting., Recognize common conversational reductions without applying them indiscriminately., Preserve the intended meaning while changing formality.]
+  checkpoint: Recast the same difficult request for a friend and a formal recipient and explain the effects of the changes.
+- number: 27
+  title: Idiom and imagery
+  goals: [Interpret a commonly encountered figurative expression in context., Paraphrase imagery without treating it literally., Use an idiomatic expression only where its meaning and register fit.]
+  checkpoint: Explain an idiomatic passage and compare its effect with a literal paraphrase for a different audience.
+- number: 28
+  title: Precision and abstraction
+  goals: [Choose words and constructions that preserve a subtle distinction., Explain relationships among abstract ideas., Revise ambiguous scope or reference in an explanation.]
+  checkpoint: Improve an imprecise explanation and justify each consequential change in meaning, emphasis, or scope.
+- number: 29
+  title: Critical interpretation
+  goals: [Support an interpretation with specific textual evidence., Recognize marked narrative or formal constructions in context., Acknowledge a credible alternative interpretation.]
+  checkpoint: Present an interpretation of a short text, explain the effect of a marked construction, and respond to a competing reading.
+- number: 30
+  title: Extended independent projects
+  goals: [Synthesize demanding material for a chosen audience., Sustain an evidence-based discussion or written project., Revise the work after substantive criticism while preserving appropriate uncertainty.]
+  checkpoint: Complete an extended project comparing sources, defend its conclusions in discussion, and submit a reasoned revision after critique.
+topics:
+  communication: {title: Contact and communication, task: Convey relevant information and repair a misunderstanding with suitable politeness.}
+  people: {title: People and relationships, task: Describe people and relationships and respond to a different perspective.}
+  home: {title: Home and routines, task: Explain needs and negotiate arrangements in a familiar everyday setting.}
+  clothing: {title: Clothing and appearance, task: Describe appearance and compare choices appropriate to a situation.}
+  food: {title: Food and meals, task: Discuss ingredients and preferences and clarify a food-related request.}
+  services: {title: Services and transactions, task: Clarify requirements and resolve an ordinary transaction or service problem.}
+  description: {title: Description and comparison, task: Identify meaningful differences with appropriate agreement and precise descriptions.}
+  time: {title: Time and events, task: Relate events and clarify their sequence and circumstances.}
+  leisure: {title: Leisure and participation, task: Discuss an activity and coordinate participation or preferences.}
+  travel: {title: Journeys and arrangements, task: Explain travel needs and negotiate a transport or accommodation arrangement.}
+  health: {title: Body and wellbeing, task: Explain a familiar health-related experience or need without claiming clinical expertise.}
+  learning: {title: Learning and education, task: Explain a learning experience or approach and respond to clarification questions.}
+  work: {title: Work and cooperation, task: Explain responsibilities and coordinate a shared task constructively.}
+  feelings: {title: Feelings and attitudes, task: Explain an emotional response with relevant circumstances and suitable register.}
+  actions: {title: Actions and processes, task: 'Explain a process and distinguish its intention, circumstances, and result.'}
+  money: {title: Money and commerce, task: Explain a financial or commercial choice and its practical implications.}
+  grammar: {title: Sentence construction, task: Use a selected construction to communicate a new meaning and distinguish a relevant contrast.}
+  reasoning: {title: Reasons and connections, task: Explain relationships between ideas while qualifying the conclusion appropriately.}
+  society: {title: Society and community, task: Explain a social issue without turning individual experiences into universal claims.}
+  institutions: {title: Institutions and public life, task: Explain an institutional process and distinguish its purpose from its effects.}
+  media: {title: Media and information, task: 'Summarize a source while distinguishing events, attributed claims, and interpretation.'}
+  technology: {title: Technology and systems, task: Explain a system or technical problem with explicit scope and limitations.}
+  nature: {title: Nature and environment, task: Describe the natural world and explain a relevant change or relationship.}
+  science: {title: Science and investigation, task: 'Explain an investigation while keeping observations, methods, and conclusions distinct.'}
+  history: {title: History and change, task: Relate a development and explain its significance without assuming one inevitable interpretation.}
+  culture: {title: Culture and practices, task: Explain a cultural practice while identifying the limits of the example.}
+  arts: {title: Arts and creative works, task: Discuss a work and support an interpretation with specific details.}
+  music: {title: Music and performance, task: Describe a performance and explain how musical choices contribute to an interpretation.}
+  argument: {title: Argument and decisions, task: Defend a recommendation while addressing relevant qualifications and objections.}
+  register: {title: Audience and nuance, task: Adapt an expression to audience and context and explain its implied stance.}
+  literature: {title: Literary and historical expression, task: Interpret selected expressions in context and paraphrase them in contemporary ordinary language.}
+extensions:
+- {id: professional, title: Professional and organizational French, after_level: 18, mastery_target: independent-use, description: 'Optional correspondence, meetings, and task coordination; not a professional qualification.'}
+- {id: technical, title: Digital and technical French, after_level: 18, mastery_target: understand, description: 'Optional terminology for devices, software, systems, and troubleshooting; not evidence of engineering competence.'}
+- {id: scientific, title: Scientific French, after_level: 24, mastery_target: understand, description: 'Optional methods, measurement, and research communication; not scientific or clinical qualification.'}
+- {id: literary, title: Literary and historical French, after_level: 24, mastery_target: understand, description: 'Optional contextual reading of literary and older expression; not a requirement to speak in an archaic register.'}

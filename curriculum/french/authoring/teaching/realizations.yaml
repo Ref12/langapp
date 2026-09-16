@@ -1,0 +1,263 @@
+# Construction ch/pr are ORIGINAL AI-assisted contextual teaching fragments,
+# NOT human-reviewed or source-verified; CC-BY-SA-4.0 to the extent rights exist.
+# Sentence-case readings are unchanged selected lexical readings. The two
+# inflections below use actual primary-record forms and retained Lexique rows.
+# Whole phrase readings are SEGMENTED guides: slashes delimit independent chunks,
+# not narrow connected-speech utterances or mandatory pauses. Existing consonants
+# may resyllabify across chunk boundaries; required contextual liaison is included
+# inside the relevant construction fragment. Terminal punctuation is omitted.
+# Slots require canonical written forms unless an explicit realization list
+# licenses a particular inflection; lexical identity alone is not agreement.
+- id: fr-f-travel-bonjour-capital
+  kind: sentence-case
+  ch: Bonjour
+  pr: /bɔ̃.ʒuʁ/
+  grammar: []
+  word: bonjour
+- id: fr-f-travel-merci-capital
+  kind: sentence-case
+  ch: Merci
+  pr: /mɛʁ.si/
+  grammar: []
+  word: merci
+- id: fr-f-travel-au-revoir-capital
+  kind: sentence-case
+  ch: Au revoir
+  pr: /o ʁə.vwaʁ/
+  grammar: []
+  word: au revoir
+# Kaikki record 22174: toilettes [plural].
+# Lexique record 129119: ortho=toilettes, lemme=toilette, NOM, f, p, phon=twalEt.
+# Documented E -> ɛ conversion; syllable dots only are editorial segmentation.
+- id: fr-f-travel-toilettes-plural
+  kind: source-inflection
+  ch: toilettes
+  pr: /twa.lɛt/
+  grammar: [fr-g-travel-location-question]
+  word: toilette
+  tags: [plural]
+# Kaikki adjective record 7336: perdue [feminine], not the perdre verb record.
+# Lexique record 94292: ortho=perdue, lemme=perdu, ADJ, f, s, phon=pERdy.
+# Documented E -> ɛ and R -> ʁ conversion; dots are editorial segmentation.
+- id: fr-f-travel-perdue-feminine
+  kind: source-inflection
+  ch: perdue
+  pr: /pɛʁ.dy/
+  grammar: [fr-g-travel-lost-description]
+  word: perdu
+  tags: [feminine]
+- id: fr-f-travel-please
+  kind: construction
+  ch: S'il vous plaît
+  pr: /sil vu plɛ/
+  grammar: [fr-g-travel-polite-request]
+- id: fr-f-travel-speak-slowly
+  kind: construction
+  ch: Parlez plus lentement, s'il vous plaît
+  pr: /paʁ.le ply lɑ̃.tə.mɑ̃ sil vu plɛ/
+  grammar: [fr-g-travel-communication-repair]
+- id: fr-f-travel-repeat
+  kind: construction
+  ch: Pouvez-vous répéter
+  pr: /pu.ve vu ʁe.pe.te/
+  grammar: [fr-g-travel-polite-assistance]
+- id: fr-f-travel-not-understand
+  kind: construction
+  ch: Je ne comprends pas
+  pr: /ʒə nə kɔ̃.pʁɑ̃ pa/
+  grammar: [fr-g-travel-communication-repair]
+- id: fr-f-travel-would-like-water
+  kind: construction
+  ch: "Je voudrais de l'"
+  pr: /ʒə vu.dʁɛ də l/
+  grammar: [fr-g-travel-would-like]
+  next_words: [eau]
+- id: fr-f-travel-where-feminine
+  kind: construction
+  ch: "Où est la "
+  pr: /u ɛ la/
+  grammar: [fr-g-travel-location-question]
+  next_words: [gare, pharmacie]
+- id: fr-f-travel-need-help
+  kind: construction
+  ch: "J'ai besoin d'"
+  pr: /ʒe bə.zwɛ̃ d/
+  grammar: [fr-g-travel-need]
+  next_words: [aide]
+- id: fr-f-travel-help-me
+  kind: construction
+  ch: Pouvez-vous m'aider
+  pr: /pu.ve vu mɛ.de/
+  grammar: [fr-g-travel-polite-assistance]
+- id: fr-f-travel-where-toilets
+  kind: construction
+  ch: "Où sont les "
+  pr: /u sɔ̃ le/
+  grammar: [fr-g-travel-location-question]
+  next_words: [toilette]
+  next_realizations: [fr-f-travel-toilettes-plural]
+- id: fr-f-travel-direction-prefix
+  kind: construction
+  ch: "À "
+  pr: /a/
+  grammar: [fr-g-travel-direction]
+  next_words: [gauche, droite]
+- id: fr-f-travel-would-like-masculine
+  kind: construction
+  ch: "Je voudrais un "
+  pr: /ʒə vu.dʁɛ œ̃/
+  grammar: [fr-g-travel-would-like]
+  next_words: [billet, café]
+- id: fr-f-travel-what-time
+  kind: construction
+  ch: "À quelle "
+  pr: /a kɛl/
+  grammar: [fr-g-travel-time-question]
+  next_words: [heure]
+- id: fr-f-travel-have-feminine
+  kind: construction
+  ch: "J'ai une "
+  pr: /ʒe yn/
+  grammar: [fr-g-travel-have]
+  next_words: [réservation, allergie]
+- id: fr-f-travel-would-like-feminine
+  kind: construction
+  ch: "Je voudrais une "
+  pr: /ʒə vu.dʁɛ yn/
+  grammar: [fr-g-travel-would-like]
+  next_words: [chambre, facture]
+- id: fr-f-travel-key-subject
+  kind: construction
+  ch: "La "
+  pr: /la/
+  grammar: [fr-g-travel-not-working]
+  next_words: [clé]
+- id: fr-f-travel-not-working
+  kind: construction
+  ch: " ne fonctionne pas"
+  pr: /nə fɔ̃k.sjɔn pa/
+  grammar: [fr-g-travel-not-working]
+  previous_words: [clé]
+- id: fr-f-travel-where-hotel
+  kind: construction
+  ch: "Où est l'"
+  pr: /u ɛ l/
+  grammar: [fr-g-travel-location-question]
+  next_words: [hôtel]
+- id: fr-f-travel-bill-article
+  kind: construction
+  ch: "L'"
+  pr: /l/
+  grammar: [fr-g-travel-polite-request]
+  next_words: [addition]
+- id: fr-f-travel-bill-please
+  kind: construction
+  ch: ", s'il vous plaît"
+  pr: /sil vu plɛ/
+  grammar: [fr-g-travel-polite-request]
+  previous_words: [addition]
+- id: fr-f-travel-without-milk
+  kind: construction
+  ch: "Sans "
+  pr: /sɑ̃/
+  grammar: [fr-g-travel-milk-check]
+  next_words: [lait]
+- id: fr-f-travel-milk-question
+  kind: construction
+  ch: "Est-ce qu'il y a du "
+  pr: /ɛs kil i a dy/
+  grammar: [fr-g-travel-milk-check]
+  next_words: [lait]
+- id: fr-f-travel-need-doctor
+  kind: construction
+  ch: "J'ai besoin d'un "
+  pr: /ʒe bə.zwɛ̃ dœ̃/
+  grammar: [fr-g-travel-need]
+  next_words: [médecin]
+- id: fr-f-travel-price-question
+  kind: construction
+  ch: Combien ça coûte
+  pr: /kɔ̃.bjɛ̃ sa kut/
+  grammar: [fr-g-travel-price-question]
+- id: fr-f-travel-pay-by-card
+  kind: construction
+  ch: "Est-ce que je peux payer par "
+  pr: /ɛs kə ʒə pø pɛ.je paʁ/
+  grammar: [fr-g-travel-card-payment]
+  next_words: [carte]
+- id: fr-f-travel-would-like-pay
+  kind: construction
+  ch: "Je voudrais "
+  pr: /ʒə vu.dʁɛ/
+  grammar: [fr-g-travel-would-like]
+  next_words: [payer]
+- id: fr-f-travel-my-bagage
+  kind: construction
+  ch: "Mon "
+  pr: /mɔ̃/
+  grammar: [fr-g-travel-lost-description]
+  next_words: [bagage]
+- id: fr-f-travel-bagage-is
+  kind: construction
+  ch: " est "
+  pr: /ɛ/
+  grammar: [fr-g-travel-lost-description]
+  previous_words: [bagage]
+  next_words: [perdu]
+- id: fr-f-travel-search-bagage
+  kind: construction
+  ch: "Je cherche mon "
+  pr: /ʒə ʃɛʁʃ mɔ̃/
+  grammar: [fr-g-travel-search-belonging]
+  next_words: [bagage]
+- id: fr-f-travel-write-address
+  kind: construction
+  ch: "Pouvez-vous écrire l'"
+  pr: /pu.ve vu.ze.kʁiʁ l/
+  grammar: [fr-g-travel-polite-assistance]
+  next_words: [adresse]
+- id: fr-f-travel-train-subject
+  kind: construction
+  ch: "Le "
+  pr: /lə/
+  grammar: [fr-g-travel-delay]
+  next_words: [train]
+- id: fr-f-travel-is-delayed
+  kind: construction
+  ch: " est en "
+  pr: /ɛ.tɑ̃/
+  grammar: [fr-g-travel-delay]
+  previous_words: [train]
+  next_words: [retard]
+- id: fr-f-travel-emergency
+  kind: construction
+  ch: "C'est une "
+  pr: /sɛ.tyn/
+  grammar: [fr-g-travel-urgent-help]
+  next_words: [urgence]
+- id: fr-f-travel-call-doctor
+  kind: construction
+  ch: "Appelez un "
+  pr: /a.pə.le œ̃/
+  grammar: [fr-g-travel-urgent-help]
+  next_words: [médecin]
+- id: fr-f-travel-i-am-lost
+  kind: construction
+  ch: "Je suis "
+  pr: /ʒə sɥi/
+  grammar: [fr-g-travel-lost-description]
+  next_words: [perdu]
+  next_realizations: [canonical, fr-f-travel-perdue-feminine]
+- id: fr-f-travel-departure-time
+  kind: construction
+  ch: " est le "
+  pr: /ɛ lə/
+  grammar: [fr-g-travel-time-question]
+  previous_words: [heure]
+  next_words: [départ]
+- id: fr-f-travel-to-airport
+  kind: construction
+  ch: "Je vais à l'"
+  pr: /ʒə vɛ a l/
+  grammar: [fr-g-travel-destination]
+  next_words: [aéroport]

@@ -1,0 +1,325 @@
+schema_version: 3
+id: ru-level-12
+title: Passing on useful information
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 12
+phase: stories-conversations
+prerequisites:
+- ru-level-01
+- ru-level-02
+- ru-level-03
+- ru-level-04
+- ru-level-05
+- ru-level-06
+- ru-level-07
+- ru-level-08
+- ru-level-09
+- ru-level-10
+- ru-level-11
+goals: &id001
+- Relay a statement or request without confusing the speaker's role.
+- Link a description with an appropriately declined relative pronoun.
+- Explain a familiar notice or procedure using its governed case frame.
+checkpoint:
+  task: Relay a short notice in your own words and answer questions about whom it concerns and what action it requests.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-12-communication-01
+  title: Communication and repair - 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary:
+  - {id: ru-or-n00253-s001, ch: информация, pr: информа́ция, ds: information}
+  - {id: ru-or-n00732-s001, ch: сообщение, pr: сообще́ние, ds: message}
+  - {id: ru-or-n01772-s001, ch: известие, pr: изве́стие, ds: news}
+  - {id: ru-or-n00901-s001, ch: новость, pr: но́вость, ds: news}
+  - {id: ru-or-n01760-s001, ch: объявление, pr: объявле́ние, ds: announcement}
+  - {id: ru-or-n10354-s001, ch: уведомление, pr: уведомле́ние, ds: notification}
+  - {id: ru-or-n02221-s001, ch: предупреждение, pr: предупрежде́ние, ds: warning}
+  - {id: ru-or-n00760-s001, ch: просьба, pr: про́сьба, ds: request}
+  - {id: ru-or-n00230-s001, ch: совет, pr: сове́т, ds: advice}
+  - {id: ru-or-n01241-s001, ch: указание, pr: указа́ние, ds: instructions}
+  - {id: ru-or-n01523-s001, ch: инструкция, pr: инстру́кция, ds: instructions}
+  - {id: ru-or-n01047-s001, ch: объяснение, pr: объясне́ние, ds: explanation}
+  - {id: ru-or-n05638-s001, ch: уточнение, pr: уточне́ние, ds: specification}
+  - {id: ru-or-n02474-s001, ch: подтверждение, pr: подтвержде́ние, ds: confirmation}
+  - {id: ru-or-n00088-s001, ch: письмо, pr: письмо́, ds: letter}
+  - {id: ru-or-n00711-s001, ch: записка, pr: запи́ска, ds: note}
+  - {id: ru-or-n00836-s001, ch: запись, pr: за́пись, ds: record}
+  - {id: ru-or-n02216-s001, ch: заметка, pr: заме́тка, ds: note}
+  - {id: ru-or-n01365-s001, ch: почта, pr: по́чта, ds: post}
+  - {id: ru-or-n01500-s001, ch: конверт, pr: конве́рт, ds: envelope}
+  - {id: ru-or-n00992-s001, ch: марка, pr: ма́рка, ds: stamp}
+  - {id: ru-or-n03081-s001, ch: посылка, pr: посы́лка, ds: parcel}
+  - {id: ru-or-n02947-s001, ch: переписка, pr: перепи́ска, ds: correspondence}
+  - {id: ru-or-n00606-s001, ch: беседа, pr: бесе́да, ds: conversation}
+  - {id: ru-or-n00166-s001, ch: речь, pr: речь, ds: speech}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00157-s001, ch: медленно, pr: ме́дленно, ds: slowly}
+  - {id: ru-or-n01923-s001, ch: переводчик, pr: перево́дчик, ds: translator or interpreter (person)}
+  - {id: ru-or-o00061-s001, ch: можно, pr: мо́жно, ds: it is permitted}
+  - {id: ru-or-o00111-s001, ch: нельзя, pr: нельзя́, ds: not allowed or not possible}
+  - {id: ru-or-v00295-s001, ch: подождать, pr: подожда́ть, ds: wait a while}
+  - {id: ru-or-o00196-s003, ch: пожалуйста, pr: пожа́луйста, ds: here you go}
+  - {id: ru-or-v00662-s001, ch: интересоваться, pr: интересова́ться, ds: be interested}
+  - {id: ru-or-o00158-s901, ch: ясно, pr: я́сно, ds: clearly}
+  review_grammar:
+  - {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+  - {id: ru-g-indirect-li, ch: 'не знаю, [verb] ли [subject]', ds: Embed a yes/no question with ли}
+  - {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+- id: level-12-communication-02
+  title: Communication and repair - 2
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary:
+  - {id: ru-or-n00024-s001, ch: голос, pr: го́лос, ds: voice}
+  - {id: ru-or-n00268-s001, ch: звук, pr: звук, ds: sound}
+  - {id: ru-or-n00498-s001, ch: фраза, pr: фра́за, ds: phrase}
+  - {id: ru-or-n00541-s001, ch: предложение, pr: предложе́ние, ds: sentence}
+  - {id: ru-or-n00420-s001, ch: значение, pr: значе́ние, ds: meaning}
+  - {id: ru-or-n00131-s001, ch: смысл, pr: смысл, ds: meaning}
+  - {id: ru-or-n01214-s001, ch: перевод, pr: перево́д, ds: translation}
+  - {id: ru-or-n05784-s001, ch: ударение, pr: ударе́ние, ds: stress}
+  - {id: ru-or-n00693-s001, ch: буква, pr: бу́ква, ds: letter}
+  - {id: ru-or-n06867-s001, ch: алфавит, pr: алфави́т, ds: alphabet}
+  - {id: ru-or-n00355-s001, ch: название, pr: назва́ние, ds: name}
+  - {id: ru-or-v00002-s001, ch: сказать, pr: сказа́ть, ds: say}
+  - {id: ru-or-v00092-s001, ch: рассказывать, pr: расска́зывать, ds: tell}
+  - {id: ru-or-v00082-s001, ch: рассказать, pr: рассказа́ть, ds: tell}
+  - {id: ru-or-v00136-s001, ch: сообщить, pr: сообщи́ть, ds: inform}
+  - {id: ru-or-v00503-s001, ch: сообщать, pr: сообща́ть, ds: inform}
+  - {id: ru-or-v00212-s001, ch: передать, pr: переда́ть, ds: pass}
+  - {id: ru-or-v00618-s001, ch: передавать, pr: передава́ть, ds: pass}
+  - {id: ru-or-v00046-s001, ch: узнать, pr: узна́ть, ds: find out}
+  - {id: ru-or-v01170-s001, ch: узнавать, pr: узнава́ть, ds: recognize}
+  - {id: ru-or-v00084-s001, ch: спрашивать, pr: спра́шивать, ds: ask}
+  - {id: ru-or-v00089-s001, ch: отвечать, pr: отвеча́ть, ds: answer}
+  - {id: ru-or-v00075-s001, ch: просить, pr: проси́ть, ds: request}
+  - {id: ru-or-v00154-s001, ch: попросить, pr: попроси́ть, ds: ask}
+  - {id: ru-or-v00821-s001, ch: советовать, pr: сове́товать, ds: advise}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-n02216-s001, ch: заметка, pr: заме́тка, ds: note}
+  - {id: ru-or-n01365-s001, ch: почта, pr: по́чта, ds: post}
+  - {id: ru-or-n01500-s001, ch: конверт, pr: конве́рт, ds: envelope}
+  - {id: ru-or-n00992-s001, ch: марка, pr: ма́рка, ds: stamp}
+  - {id: ru-or-n03081-s001, ch: посылка, pr: посы́лка, ds: parcel}
+  - {id: ru-or-n02947-s001, ch: переписка, pr: перепи́ска, ds: correspondence}
+  - {id: ru-or-n00606-s001, ch: беседа, pr: бесе́да, ds: conversation}
+  - {id: ru-or-n00166-s001, ch: речь, pr: речь, ds: speech}
+  review_grammar:
+  - {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+  - {id: ru-g-indirect-li, ch: 'не знаю, [verb] ли [subject]', ds: Embed a yes/no question with ли}
+  - {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+- id: level-12-communication-03
+  title: Communication and repair - 3
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary:
+  - {id: ru-or-v00759-s001, ch: посоветовать, pr: посове́товать, ds: advise}
+  - {id: ru-or-v00515-s001, ch: предупредить, pr: предупреди́ть, ds: warn}
+  - {id: ru-or-v00779-s001, ch: предупреждать, pr: предупрежда́ть, ds: warn}
+  - {id: ru-or-v00442-s001, ch: напомнить, pr: напо́мнить, ds: remind}
+  - {id: ru-or-v00242-s001, ch: напоминать, pr: напомина́ть, ds: remind}
+  - {id: ru-or-v01052-s001, ch: уточнить, pr: уточни́ть, ds: clarify}
+  - {id: ru-or-v02614-s001, ch: уточнять, pr: уточня́ть, ds: specify}
+  - {id: ru-or-v00451-s001, ch: подтвердить, pr: подтверди́ть, ds: confirm}
+  - {id: ru-or-v01092-s001, ch: подтверждать, pr: подтвержда́ть, ds: confirm}
+  - {id: ru-or-v00230-s001, ch: обещать, pr: обеща́ть, ds: promise}
+  - {id: ru-or-v00832-s001, ch: пообещать, pr: пообеща́ть, ds: promise}
+  - {id: ru-or-v00238-s001, ch: заявить, pr: заяви́ть, ds: declare}
+  - {id: ru-or-v01242-s001, ch: заявлять, pr: заявля́ть, ds: declare}
+  - {id: ru-or-v01048-s001, ch: упомянуть, pr: упомяну́ть, ds: mention}
+  - {id: ru-or-v01592-s001, ch: упоминать, pr: упомина́ть, ds: mention}
+  - {id: ru-or-v01487-s001, ch: обсудить, pr: обсуди́ть, ds: discuss}
+  - {id: ru-or-v00739-s001, ch: обсуждать, pr: обсужда́ть, ds: discuss}
+  - {id: ru-or-v00193-s001, ch: разговаривать, pr: разгова́ривать, ds: talk}
+  - {id: ru-or-v00808-s001, ch: беседовать, pr: бесе́довать, ds: converse}
+  - {id: ru-or-v00093-s001, ch: молчать, pr: молча́ть, ds: be silent}
+  - {id: ru-or-v00113-s001, ch: кричать, pr: крича́ть, ds: shout}
+  - {id: ru-or-v00153-s001, ch: крикнуть, pr: кри́кнуть, ds: shout}
+  - {id: ru-or-v00932-s001, ch: шептать, pr: шепта́ть, ds: whisper}
+  - {id: ru-or-v01100-s001, ch: шепнуть, pr: шепну́ть, ds: whisper}
+  - {id: ru-or-v00129-s001, ch: произнести, pr: произнести́, ds: pronounce}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00618-s001, ch: передавать, pr: передава́ть, ds: pass}
+  - {id: ru-or-v00046-s001, ch: узнать, pr: узна́ть, ds: find out}
+  - {id: ru-or-v01170-s001, ch: узнавать, pr: узнава́ть, ds: recognize}
+  - {id: ru-or-v00084-s001, ch: спрашивать, pr: спра́шивать, ds: ask}
+  - {id: ru-or-v00089-s001, ch: отвечать, pr: отвеча́ть, ds: answer}
+  - {id: ru-or-v00075-s001, ch: просить, pr: проси́ть, ds: request}
+  - {id: ru-or-v00154-s001, ch: попросить, pr: попроси́ть, ds: ask}
+  - {id: ru-or-v00821-s001, ch: советовать, pr: сове́товать, ds: advise}
+  review_grammar:
+  - {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+  - {id: ru-g-indirect-li, ch: 'не знаю, [verb] ли [subject]', ds: Embed a yes/no question with ли}
+  - {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+- id: level-12-communication-04
+  title: Communication and repair - 4
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary:
+  - {id: ru-or-v00588-s001, ch: произносить, pr: произноси́ть, ds: pronounce}
+  - {id: ru-or-v00137-s001, ch: назвать, pr: назва́ть, ds: name}
+  - {id: ru-or-v00079-s001, ch: называть, pr: называ́ть, ds: name}
+  - {id: ru-or-v00317-s001, ch: означать, pr: означа́ть, ds: mean}
+  - {id: ru-or-v02166-s001, ch: обозначать, pr: обознача́ть, ds: designate}
+  - {id: ru-or-v01765-s001, ch: обозначить, pr: обозна́чить, ds: designate}
+  - {id: ru-or-v01212-s001, ch: печатать, pr: печа́тать, ds: print}
+  - {id: ru-or-v01050-s001, ch: напечатать, pr: напеча́тать, ds: print}
+  - {id: ru-or-v01010-s001, ch: опубликовать, pr: опубликова́ть, ds: publish}
+  - {id: ru-or-v02983-s001, ch: публиковать, pr: публикова́ть, ds: publish}
+  - {id: ru-or-v00246-s001, ch: объявить, pr: объяви́ть, ds: announce}
+  - {id: ru-or-v01310-s001, ch: объявлять, pr: объявля́ть, ds: declare}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00193-s001, ch: разговаривать, pr: разгова́ривать, ds: talk}
+  - {id: ru-or-v00808-s001, ch: беседовать, pr: бесе́довать, ds: converse}
+  - {id: ru-or-v00093-s001, ch: молчать, pr: молча́ть, ds: be silent}
+  - {id: ru-or-v00113-s001, ch: кричать, pr: крича́ть, ds: shout}
+  - {id: ru-or-v00153-s001, ch: крикнуть, pr: кри́кнуть, ds: shout}
+  - {id: ru-or-v00932-s001, ch: шептать, pr: шепта́ть, ds: whisper}
+  - {id: ru-or-v01100-s001, ch: шепнуть, pr: шепну́ть, ds: whisper}
+  - {id: ru-or-v00129-s001, ch: произнести, pr: произнести́, ds: pronounce}
+  review_grammar:
+  - {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+  - {id: ru-g-indirect-li, ch: 'не знаю, [verb] ли [subject]', ds: Embed a yes/no question with ли}
+  - {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+- id: level-12-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00390-s001, ch: понятный, pr: поня́тный, ds: clear}
+  - {id: ru-or-a00281-s001, ch: непонятный, pr: непоня́тный, ds: incomprehensible}
+  - {id: ru-or-a00168-s001, ch: точный, pr: то́чный, ds: exact}
+  - {id: ru-or-a00797-s001, ch: краткий, pr: кра́ткий, ds: brief}
+  - {id: ru-or-a00719-s001, ch: подробный, pr: подро́бный, ds: detailed}
+  - {id: ru-or-a01709-s001, ch: устный, pr: у́стный, ds: oral}
+  - {id: ru-or-a00457-s001, ch: письменный, pr: пи́сьменный, ds: written}
+  - {id: ru-or-a00272-s001, ch: официальный, pr: официа́льный, ds: official}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00128-s001, ch: глубокий, pr: глубо́кий, ds: deep}
+  - {id: ru-or-a00135-s001, ch: мелкий, pr: ме́лкий, ds: shallow}
+  - {id: ru-or-a00750-s001, ch: прочный, pr: про́чный, ds: strong}
+  - {id: ru-or-a00133-s001, ch: слабый, pr: сла́бый, ds: weak}
+  - {id: ru-or-a00496-s001, ch: осторожный, pr: осторо́жный, ds: careful}
+  - {id: ru-or-a00853-s001, ch: безопасный, pr: безопа́сный, ds: safe}
+  - {id: ru-or-a00217-s001, ch: опасный, pr: опа́сный, ds: dangerous}
+  - {id: ru-or-a00211-s001, ch: ясный, pr: я́сный, ds: clear}
+  review_grammar:
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+  - {id: ru-g-plural-agreement, ch: 'эти / мои / новые [plural noun] + [plural verb]', ds: 'Coordinate plural nouns, modifiers, and verbs'}
+  - {id: ru-g-manner-adverb, ch: '[verb] быстро / ясно; [noun] быстрый / ясный', ds: Distinguish how an action happens from noun agreement}
+- id: level-12-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-a00004-s001, ch: который, pr: кото́рый, ds: which}
+  - {id: ru-or-a00005-s001, ch: такой, pr: тако́й, ds: such}
+  - {id: ru-or-o00119-s001, ch: также, pr: та́кже, ds: also}
+  - {id: ru-or-o00066-s001, ch: почему, pr: почему́, ds: why}
+  - {id: ru-or-o00116-s001, ch: поэтому, pr: поэ́тому, ds: therefore}
+  - {id: ru-or-o00171-s001, ch: возможно, pr: возмо́жно, ds: possibly}
+  - {id: ru-or-o00145-s001, ch: наверное, pr: наве́рное, ds: Probably}
+  - {id: ru-or-o00131-s001, ch: действительно, pr: действи́тельно, ds: really}
+  - {id: ru-or-o00068-s001, ch: просто, pr: про́сто, ds: simply}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00045-s001, ch: чтобы, pr: что́бы, ds: in order to}
+  - {id: ru-or-o00071-s001, ch: никто, pr: никто́, ds: nobody}
+  - {id: ru-or-o00050-s001, ch: ничто, pr: ничто́, ds: nothing}
+  - {id: ru-or-o01975-s001, ch: кто-то, pr: кто́-то, ds: somebody}
+  - {id: ru-or-o01972-s001, ch: что-то, pr: что́-то, ds: something}
+  - {id: ru-or-o01971-s001, ch: какой-то, pr: како́й-то, ds: some}
+  - {id: ru-or-o00077-s001, ch: пока, pr: пока́, ds: while}
+  - {id: ru-or-o00080-s001, ch: хотя, pr: хотя́, ds: although}
+  review_grammar:
+  - {id: ru-g-irregular-eat-give, ch: ем / ешь / ест / едим / едите / едят; дам / дашь / даст, ds: Distinguish irregular eating and giving forms}
+- id: level-12-media-01
+  title: Reports and sources - 1
+  outcome: Distinguish events, attributed claims, and interpretation in a report.
+  vocabulary:
+  - {id: ru-or-n00119-s001, ch: газета, pr: газе́та, ds: newspaper}
+  - {id: ru-or-n00453-s001, ch: журнал, pr: журна́л, ds: magazine}
+  - {id: ru-or-n00337-s001, ch: статья, pr: статья́, ds: article}
+  - {id: ru-or-n03499-s001, ch: заголовок, pr: заголо́вок, ds: headline}
+  - {id: ru-or-n00926-s001, ch: радио, pr: ра́дио, ds: radio}
+  - {id: ru-or-n01530-s001, ch: телевидение, pr: телеви́дение, ds: television broadcasting}
+  - {id: ru-or-n00977-s001, ch: передача, pr: переда́ча, ds: broadcast}
+  - {id: ru-or-n00266-s001, ch: программа, pr: програ́мма, ds: program}
+  - {id: ru-or-n00676-s001, ch: экран, pr: экра́н, ds: screen}
+  - {id: ru-or-n00803-s001, ch: канал, pr: кана́л, ds: channel}
+  - {id: ru-or-n05534-s001, ch: репортаж, pr: репорта́ж, ds: reporting}
+  - {id: ru-or-n01496-s001, ch: интервью, pr: интервью́, ds: interview}
+  - {id: ru-or-n00480-s001, ch: фотография, pr: фотогра́фия, ds: photograph}
+  - {id: ru-or-n01862-s001, ch: снимок, pr: сни́мок, ds: photo}
+  - {id: ru-or-n00495-s001, ch: камера, pr: ка́мера, ds: camera}
+  - {id: ru-or-n01551-s001, ch: реклама, pr: рекла́ма, ds: advertising}
+  - {id: ru-or-n00623-s001, ch: журналист, pr: журнали́ст, ds: journalist}
+  - {id: ru-or-n00962-s001, ch: редактор, pr: реда́ктор, ds: editor}
+  - {id: ru-or-n00528-s001, ch: читатель, pr: чита́тель, ds: reader}
+  - {id: ru-or-n01135-s001, ch: зритель, pr: зри́тель, ds: audience}
+  - {id: ru-or-n02105-s001, ch: слушатель, pr: слу́шатель, ds: listener}
+  - {id: ru-or-n00217-s001, ch: автор, pr: а́втор, ds: author}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-12-communication-practice-01
+  title: Communication and repair - sentence practice 1
+  outcome: Convey a relevant message and clarify what another person means.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-reported-statement, ch: '[speaker] сказал, что [clause]', ds: Report a statement without automatic tense backshift}
+  - {id: ru-g-reported-request, ch: 'попросил [person] [infinitive] / попросил, чтобы ...', ds: Relay a request while keeping the intended actor clear}
+  review_vocabulary:
+  - {id: ru-or-v00154-s001, ch: попросить, pr: попроси́ть, ds: ask}
+  - {id: ru-or-v02166-s001, ch: обозначать, pr: обознача́ть, ds: designate}
+  - {id: ru-or-v01765-s001, ch: обозначить, pr: обозна́чить, ds: designate}
+  - {id: ru-or-v01212-s001, ch: печатать, pr: печа́тать, ds: print}
+  - {id: ru-or-v01050-s001, ch: напечатать, pr: напеча́тать, ds: print}
+  - {id: ru-or-v01010-s001, ch: опубликовать, pr: опубликова́ть, ds: publish}
+  - {id: ru-or-v02983-s001, ch: публиковать, pr: публикова́ть, ds: publish}
+  - {id: ru-or-v00246-s001, ch: объявить, pr: объяви́ть, ds: announce}
+  - {id: ru-or-v01310-s001, ch: объявлять, pr: объявля́ть, ds: declare}
+  review_grammar:
+  - {id: ru-g-topic-prepositional, ch: 'говорить / думать о [prepositional topic]', ds: State the topic of speech or thought}
+  - {id: ru-g-indirect-li, ch: 'не знаю, [verb] ли [subject]', ds: Embed a yes/no question with ли}
+  - {id: ru-g-negative-pronouns, ch: никто / ничего не ...; ни с кем не ..., ds: 'Coordinate negative pronouns, не, and prepositions'}
+- id: level-12-learning-practice-01
+  title: Learning and education - sentence practice 1
+  outcome: Explain a learning task and ask for useful feedback.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-po-dative, ch: 'по [dative subject / route / recurring day]', ds: Interpret selected по plus dative frames}
+  review_vocabulary:
+  - {id: ru-or-v01036-s001, ch: переводить, pr: переводи́ть, ds: translate}
+  - {id: ru-or-v00389-s001, ch: перевести, pr: перевести́, ds: Translate}
+  - {id: ru-or-v00456-s001, ch: запомнить, pr: запо́мнить, ds: memorize}
+  - {id: ru-or-v00045-s001, ch: помнить, pr: по́мнить, ds: remember}
+  - {id: ru-or-v00070-s001, ch: забыть, pr: забы́ть, ds: forget}
+  - {id: ru-or-n00919-s001, ch: библиотека, pr: библиоте́ка, ds: library}
+  - {id: ru-or-n00506-s001, ch: образование, pr: образова́ние, ds: education}
+  - {id: ru-or-v00119-s901, ch: уметь, pr: уме́ть, ds: know how to}
+  review_grammar:
+  - {id: ru-g-learned-skill, ch: 'уметь + [infinitive]; мочь + [infinitive]', ds: Distinguish a learned skill from situational ability}
+- id: level-12-grammar-practice-01
+  title: Sentence construction - sentence practice 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-relative-kotory, ch: '[noun], который / которую / которому ...', ds: Decline a relative pronoun for its clause role}
+  review_vocabulary:
+  - {id: ru-or-a00005-s001, ch: такой, pr: тако́й, ds: such}
+  - {id: ru-or-o00119-s001, ch: также, pr: та́кже, ds: also}
+  - {id: ru-or-o00066-s001, ch: почему, pr: почему́, ds: why}
+  - {id: ru-or-o00116-s001, ch: поэтому, pr: поэ́тому, ds: therefore}
+  - {id: ru-or-o00171-s001, ch: возможно, pr: возмо́жно, ds: possibly}
+  - {id: ru-or-o00145-s001, ch: наверное, pr: наве́рное, ds: Probably}
+  - {id: ru-or-o00131-s001, ch: действительно, pr: действи́тельно, ds: really}
+  - {id: ru-or-o00068-s001, ch: просто, pr: про́сто, ds: simply}
+  review_grammar:
+  - {id: ru-g-irregular-eat-give, ch: ем / ешь / ест / едим / едите / едят; дам / дашь / даст, ds: Distinguish irregular eating and giving forms}

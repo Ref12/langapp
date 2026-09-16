@@ -1,0 +1,171 @@
+schema_version: 1
+id: es-practical
+title: Practical Spanish
+language: spanish
+level_basis: Independent Spanish communicative progression, not a CEFR mapping or examination guarantee. Phase headword figures are planning estimates, not admission quotas. Core prerequisites are cumulative through the preceding level; optional branches require only their declared core threshold.
+module_size: 25
+review_policy: A module contains at most 25 new senses and spans adaptive lessons starting around 5-8 new senses. Practice at most three new constructions together, retaining their prerequisite order. Reduce load when retrieval or the task requires it; revisit earlier fragile items on later days in changed contexts. Record assistance and modality, require actual audio for listening or spoken judgments, and never equate coverage with mastery.
+phases:
+- {id: first-exchanges, title: First exchanges, levels: [1, 2, 3, 4], target_new_headwords: 200}
+- {id: everyday-life, title: Everyday life, levels: [5, 6, 7, 8], target_new_headwords: 500}
+- {id: stories-conversations, title: Stories and conversations, levels: [9, 10, 11, 12, 13], target_new_headwords: 800}
+- {id: explanation-problems, title: Explanation and problem-solving, levels: [14, 15, 16, 17, 18], target_new_headwords: 1100}
+- {id: analysis-argument, title: Analysis and argument, levels: [19, 20, 21, 22, 23, 24], target_new_headwords: 1450}
+- {id: nuance-interpretation, title: Nuance and interpretation, levels: [25, 26, 27, 28, 29, 30], target_new_headwords: 1850}
+levels:
+- number: 1
+  title: Names and repair
+  goals: [Greet a new partner and exchange names using an appropriate form of address., Ask for repetition or a slower version rather than pretending to understand., Confirm or correct one personal detail.]
+  checkpoint: Exchange introductions with a new partner who changes a name or detail; repair the misunderstanding without copying an answer model.
+- number: 2
+  title: People and belongings
+  goals: [Identify a person or object using gender and number agreement., Explain whose belongings are being discussed., Distinguish a nearby object from another using a demonstrative.]
+  checkpoint: Find the correct object among unfamiliar descriptions and explain whose it is after the owner or number changes.
+- number: 3
+  title: Ordering and choosing
+  goals: [Request a drink or small meal and specify a quantity., Ask a price and clarify an ingredient or preference., Distinguish what is available from what a person wants.]
+  checkpoint: Complete a new café order when an item is unavailable and the quantity changes; check rather than assume the replacement meets the request.
+- number: 4
+  title: Places and meeting plans
+  goals: [Locate a person or meeting place using estar and distinguish an event location., Ask how to reach a destination and clarify a route., Agree on a time and revise an intended activity.]
+  checkpoint: Arrange a meeting using an unfamiliar map and schedule, then explain the revised place and time after one route becomes unavailable.
+- number: 5
+  title: Living together
+  goals: [Describe a household routine and what someone is doing now., Explain likes and obligations without confusing the experiencer with the grammatical subject., Negotiate shared chores around different schedules.]
+  checkpoint: Agree on a household arrangement for a new set of people, explaining a current interruption and a recurring responsibility.
+- number: 6
+  title: Purchases and care needs
+  goals: [Compare suitable purchases with agreement and clear object reference., Describe a symptom or care need and identify the affected person., Explain the purpose or reason for a service request.]
+  checkpoint: Explain a new purchase or appointment problem, compare two remedies, and answer a clarification about who needs what.
+- number: 7
+  title: Journeys and instructions
+  goals: [Request permission or assistance using an appropriate level of directness., Follow and give short instructions with affirmative and negative commands., Revise a transport or accommodation arrangement.]
+  checkpoint: Respond to a changed journey or booking by asking for help and relaying a new instruction; keep address forms and attached pronouns consistent.
+- number: 8
+  title: Recent experience and commitments
+  goals: [Explain a recent experience without treating one region's tense preference as universal., Say how long an activity has continued., Arrange a shared activity while distinguishing an agreement from staying somewhere.]
+  checkpoint: Explain a fictional recent update and negotiate a work or study commitment with a partner whose availability has changed.
+- number: 9
+  title: Events and their background
+  goals: [Narrate a bounded sequence with the preterite., Use the imperfect to supply a scene or recurring background., Mark an event that preceded another past event.]
+  checkpoint: Tell an unseen picture story, then explain how a changed background detail affects the interpretation of a completed event.
+- number: 10
+  title: Relationships and change
+  goals: [Distinguish doing something to oneself from doing it to one another., Explain a change or departure without reading every se as reflexive., Describe a feeling and respond considerately to another person's experience.]
+  checkpoint: Explain a new fictional misunderstanding, clarify who acted on whom, and propose a response without turning an adjective contrast into a permanent-versus-temporary rule.
+- number: 11
+  title: Procedures and reference
+  goals: [Guide another person through a process using clear clitic reference., Explain an ordinary practice without naming an agent., Distinguish an impersonal instruction from a passive statement about several things.]
+  checkpoint: Guide a partner through an unfamiliar everyday procedure and repair a pronoun ambiguity when a new obstacle appears.
+- number: 12
+  title: Notices and relayed messages
+  goals: [Identify the intended person or thing in a relative clause., Relay a question or message without treating it as a direct quotation., Distinguish a wish or uncertain belief from an asserted fact.]
+  checkpoint: Summarize a new community notice, relay someone's unanswered question, and clarify which action is requested rather than already confirmed.
+- number: 13
+  title: Preferences with reasons
+  goals: [Recommend an option with a reason and a polite qualification., Contrast an identified option with one being sought., Acknowledge a drawback without automatically asserting that a hypothetical condition is true.]
+  checkpoint: Recommend a course or activity from unfamiliar options, respond to a different preference, and distinguish a known drawback from a possible one.
+- number: 14
+  title: Negotiating an unfamiliar problem
+  goals: [Explain an unexpected housing or service problem and its affected person., Clarify what must happen before or after a remedy., Distinguish a future time clause from an ordinary future assertion.]
+  checkpoint: Resolve a service simulation with initially incomplete requirements; revise the remedy after a new condition and an accidental loss are revealed.
+- number: 15
+  title: Progress and responsibility
+  goals: [Report what has been completed and what is still under way., Distinguish a process from its resulting condition., Renegotiate responsibilities around interrupted or resumed work.]
+  checkpoint: Give a new task update and reassign work after a deadline change, making clear what is finished, pending, and restarting.
+- number: 16
+  title: Accounts and attributed claims
+  goals: [Compare reports without presenting attributed claims as observed facts., Relay a past request with appropriate tense relationships., Distinguish singular existential haber from a plural auxiliary.]
+  checkpoint: Compare two unfamiliar accounts of one event and explain their timing, sources, and one request that was reported rather than fulfilled.
+- number: 17
+  title: Systems and possible responses
+  goals: [Explain a technology or environmental issue for a non-specialist., Contrast a feasible condition with an imagined alternative., Explain a consequence while qualifying what is possible or evident.]
+  checkpoint: Explain an unfamiliar system failure or environmental scenario, compare a feasible response with an imagined one, and state a limitation.
+- number: 18
+  title: Proposals and objections
+  goals: [Make a structured proposal and invite changes., Express a condition or concession without blurring its scope., Correct a misunderstanding while preserving the other person's concern.]
+  checkpoint: Present a new proposal, answer an objection, and revise the plan after an undisclosed constraint appears; distinguish a correction from an additional contrast.
+- number: 19
+  title: Evidence and conjecture
+  goals: [Separate observation from conjecture expressed through modal or tense choices., Attribute an unconfirmed report without endorsing it., Explain the confidence warranted by a short piece of evidence.]
+  checkpoint: Evaluate a new short argument and rewrite an overconfident conclusion, identifying what is known, inferred, or only reported.
+- number: 20
+  title: Institutions and consequences
+  goals: [Explain a public or economic process with clear reference across clauses., Identify whose resources or responsibilities are involved., Describe how a change affects individuals without hiding them inside a collective label.]
+  checkpoint: Explain an unfamiliar process change and two plausible stakeholder effects, resolving a possessive or whole-clause reference ambiguity.
+- number: 21
+  title: Scientific explanations for general readers
+  goals: [Separate a described method from its result and a prediction., Explain a trend without turning correlation into a universal causal rule., Paraphrase agentless reporting while preserving what was actually measured.]
+  checkpoint: Summarize a new general-audience scientific account, explain a trend and time horizon, and identify an unanswered question without claiming expertise.
+- number: 22
+  title: Perspectives and generalizations
+  goals: [Represent competing values without generalizing from one person., Explain a comparison framed as imagined rather than factual., Control the scope of universal and negative expressions.]
+  checkpoint: Discuss a new dilemma fairly, identify an overgeneralization, and clarify whether a comparison describes reality or only a way of viewing it.
+- number: 23
+  title: Counterfactual arguments
+  goals: [Explain an unrealized past alternative and its consequence., Distinguish past causes from present hypothetical effects., Test whether an objection changes a recommendation or only its scope.]
+  checkpoint: Defend a recommendation in a new scenario, then revise a counterfactual explanation after counterevidence changes one assumption.
+- number: 24
+  title: Synthesis with precise reference
+  goals: [Combine partially conflicting sources without losing attribution., Use prepositions and relative clauses to identify relationships precisely., Maintain clear reference through an extended explanation.]
+  checkpoint: Produce a new proposal from two partly conflicting accounts and revise a passage whose relative or demonstrative reference could mislead a reader.
+- number: 25
+  title: Implied stance
+  goals: [Distinguish an assertion from a rejected explanation or implied judgment., Interpret the scope of a focus word or negative belief., Compare literal and rhetorical readings using contextual evidence.]
+  checkpoint: Compare plausible readings of a new indirect message and justify a reading while acknowledging what the wording alone cannot establish.
+- number: 26
+  title: Address and social distance
+  goals: [Adapt a request to a relationship without equating usted with respect in every setting., Recognize labelled vosotros and voseo forms without correcting them to a single standard., Soften a request while preserving its practical content.]
+  checkpoint: Recast an unfamiliar disagreement for two relationships and interpret a labelled regional response, asking about local preference rather than inventing it.
+- number: 27
+  title: Figurative talk
+  goals: [Interpret an idiomatic expression in context rather than word by word., Distinguish a literal action from an interpersonal or evaluative meaning., Replace a figurative phrase with a suitable plain-language explanation.]
+  checkpoint: Explain the effect of an unfamiliar short passage containing taught idioms and choose a paraphrase suitable for a different relationship.
+- number: 28
+  title: Meaning-preserving revision
+  goals: [Preserve restrictive scope when revising an explanation., Distinguish an abstract quality from a particular person or object., Explain how adjective placement or a spelling distinction changes meaning.]
+  checkpoint: Revise a new imprecise explanation and justify changes involving restriction, adjective placement, and sino versus si no.
+- number: 29
+  title: Reading a narrative voice
+  goals: [Support an interpretation with textual details rather than assumed author intent., Distinguish narrator time from a character's viewpoint., Compare an asserted fact with information presented as background.]
+  checkpoint: Defend a reading of a new short narrative, identify a tense or viewpoint cue, and respond to a credible alternative interpretation.
+- number: 30
+  title: Independent synthesis and revision
+  goals: [Sustain a sourced project for a chosen audience., Separate an inference from the evidence offered for it., Reformulate and revise a conclusion after substantive critique.]
+  checkpoint: Complete an independent source-comparison project, defend its scoped conclusion, and submit a revised response to an objection not provided in advance.
+topics:
+  people: {title: People and relationships, task: Identify people and belongings and clarify who acted on whom.}
+  home: {title: Household life, task: Negotiate routines and responsibilities among people with different needs.}
+  clothing: {title: Clothing and appearance, task: Describe fit and appearance and compare context-appropriate choices.}
+  food: {title: Food and ordering, task: Clarify quantities and ingredients without assuming a dietary request has been understood.}
+  health: {title: Wellbeing and care needs, task: Describe a symptom or access need and request clarification without giving a clinical diagnosis.}
+  travel: {title: Journeys and stays, task: Ask for a route or arrangement and revise it after a change.}
+  services: {title: Services and remedies, task: Explain an ordinary transaction problem and negotiate a workable remedy.}
+  leisure: {title: Activities and interests, task: Invite participation and accommodate different preferences or abilities.}
+  learning: {title: Study and learning, task: Explain an approach or difficulty and ask for useful feedback.}
+  work: {title: Shared work, task: Report progress and agree on responsibilities without implying a professional qualification.}
+  money: {title: Prices and economic choices, task: Clarify a price or condition and explain a practical tradeoff.}
+  communication: {title: Messages and repair, task: Relay a message accurately and repair uncertainty about its meaning or source.}
+  time: {title: Time and aspect, task: Distinguish an event from its background and explain temporal relationships.}
+  actions: {title: Actions and procedures, task: Explain a process and identify its agents and affected participants.}
+  description: {title: Description and contrast, task: Make agreement and word-order choices that preserve the intended comparison.}
+  feelings: {title: Feelings and evaluations, task: Respond to another person's experience without assuming shared judgments.}
+  reasoning: {title: Reasons and conditions, task: Separate a cause or condition from a purpose or inferred consequence.}
+  grammar: {title: Form and meaning, task: Use a construction in a changed task and explain the relevant meaning contrast.}
+  society: {title: Community and perspectives, task: Compare experiences without making an individual stand for a whole community.}
+  institutions: {title: Institutions and processes, task: Explain a process and identify who is affected by its stated conditions.}
+  media: {title: Reports and sources, task: Distinguish reported information from confirmed events and personal interpretation.}
+  technology: {title: Technology and systems, task: Explain a system's function and limitations for a general reader.}
+  nature: {title: Environment and change, task: Describe an environmental relationship and qualify a proposed explanation.}
+  science: {title: Investigation and evidence, task: Separate method and observation from prediction and interpretation.}
+  history: {title: Historical developments, task: Relate changes while preserving sequence and source perspective.}
+  culture: {title: Practices in context, task: Explain a practice with appropriate local scope rather than a universal cultural claim.}
+  arts: {title: Creative work, task: Support an interpretation with specific features of a work.}
+  argument: {title: Claims and objections, task: Defend a qualified position and revise it when a relevant premise changes.}
+  register: {title: Address and stance, task: Adapt expression to a relationship and recognize labelled regional alternatives.}
+  literature: {title: Narrative and literary reading, task: Interpret voice and imagery in context and paraphrase without requiring imitation of older forms.}
+extensions:
+- {id: professional, title: Workplace coordination and correspondence, after_level: 18, mastery_target: independent-use, description: 'Optional application to requests, agreements, and procedures in selected workplace tasks; not professional or legal qualification.'}
+- {id: technical, title: Systems and troubleshooting, after_level: 18, mastery_target: understand, description: 'Optional contextual reading of functions, conditions, and recovery instructions; not evidence of engineering competence.'}
+- {id: scientific, title: Research reports and limitations, after_level: 24, mastery_target: understand, description: 'Optional contextual reading of observations, inference limits, and quantities; not scientific or clinical qualification.'}
+- {id: literary, title: Literary voice and older forms, after_level: 24, mastery_target: understand, description: 'Optional interpretation of marked or older forms in supplied contexts; not a demand to use them in ordinary conversation.'}

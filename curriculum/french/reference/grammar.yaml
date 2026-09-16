@@ -1,0 +1,2119 @@
+- id: fr-g-subjects-etre-register
+  pattern: je suis / tu es / vous êtes + description ou lieu
+  english: Subject reference and present être in first exchanges
+  note: Ordinary finite statements normally express a subject. Learn être as suis, es, est, sommes, êtes,
+    sont, not as regular endings attached to être. Tu addresses one familiar person; vous can address
+    several people or one person with respectful distance. Relationship and setting matter, not age alone.
+    French and other nationality adjectives are lowercase.
+  examples:
+  - target: Je suis ici.
+    english: I am here.
+  - target: Vous êtes français ?
+    english: Are you French?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-avoir-present
+  pattern: sujet + ai / as / a / avons / avez / ont
+  english: Present avoir for possession and an available question
+  note: Avoir has the irregular present forms ai, as, a, avons, avez, ont. Je becomes j' before ai. Treat
+    une question and une réponse as supported noun frames here; the article system is developed at level
+    2. Possessing a question or an answer is distinct from being a person or being somewhere.
+  examples:
+  - target: J'ai une question.
+    english: I have a question.
+  - target: Vous avez une réponse ?
+    english: Do you have an answer?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-present-er
+  pattern: radical + -e / -es / -e / -ons / -ez / -ent
+  english: Regular -er present forms for speaking and listening
+  note: For regular -er verbs, remove -er and select the ending for the subject. Je parle, tu parles and
+    ils parlent share a spoken ending despite different spelling; verbal -ent is silent here. Nous parlons
+    and vous parlez differ. This pattern does not cover aller, and spelling-changing verbs need additional
+    form support. Written endings are not a listening assessment.
+  examples:
+  - target: Je parle lentement.
+    english: I speak slowly.
+  - target: Nous écoutons.
+    english: We are listening.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-basic-questions
+  pattern: énoncé interrogatif / est-ce que + sujet + verbe
+  english: Ask a yes-no question without changing statement order
+  note: A spoken statement-shaped question uses context and an appropriate question contour; punctuation
+    alone supplies no audio evidence. Est-ce que introduces an explicit question without subject inversion.
+    Learn comprenez as the vous form of irregular comprendre. Question strategies vary with interaction
+    and register rather than mapping to identical levels of politeness.
+  examples:
+  - target: Vous comprenez ?
+    english: Do you understand?
+  - target: Est-ce que je parle bien ?
+    english: Do I speak well?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-articles-gender-number
+  pattern: un / une / des ; le / la / les + nom
+  english: Introduce a referent or identify a known one
+  note: Indefinite articles introduce a countable referent; definite articles identify one recoverable
+    in context and can also express a general class. Une is the feminine form of un in the article/numeral
+    system, not another lexical headword. Context distinguishes an indefinite item from the explicitly
+    counted quantity one. Learn a noun's gender with it rather than infer it from the object. Des and
+    les mark plural without distinguishing gender. A final plural -s is usually silent; determiner-noun
+    liaison is possible in its licensed environment, not at every written word boundary.
+  examples:
+  - target: J'ai un livre.
+    english: I have a book.
+  - target: Les clés sont sur la table.
+    english: The keys are on the table.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-adjective-agreement
+  pattern: nom + adjectif accordé / nom + être + adjectif
+  english: Match descriptive adjectives to gender and number
+  note: An adjective normally agrees with its noun, including after être. Adding feminine -e and plural
+    -s is a useful pattern, not a complete rule. Grand becomes grande and petit becomes petite; beau has
+    the irregular feminine belle. Many adjectives follow the noun, while common size adjectives often
+    precede it. Silent written endings can conceal an agreement distinction, and grande makes a consonant
+    audible.
+  examples:
+  - target: La table est petite.
+    english: The table is small.
+  - target: Les sacs sont grands.
+    english: The bags are big.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-possessive-determiners
+  pattern: mon / ma / mes ; son / sa / ses + nom
+  english: Possessive forms agree with the possessed noun
+  note: Choose mon, ma or mes by the noun, not the owner's gender. Son livre can therefore mean his book
+    or her book; clarify the owner in context. Notre and votre have plural nos and vos; leur contrasts
+    with leurs. Before a feminine vowel-initial or mute-h noun, mon, ton and son replace ma, ta and sa,
+    as in mon amie. This does not change the noun's gender.
+  examples:
+  - target: C'est mon livre.
+    english: That is my book.
+  - target: Sa sœur est ici.
+    english: His or her sister is here.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-negative-pas
+  pattern: sujet + ne / n' + verbe + pas
+  english: Standard two-part negation around a finite verb
+  note: In conventional written French, ne precedes the finite verb and pas follows it. Ne elides to n'
+    before a vowel or mute h. A stressed contrast can preserve a definite noun phrase under negation.
+    This item does not yet generalize the special de used with negative indefinite quantities. Conversational
+    omission of ne is a register choice, not the written rule.
+  examples:
+  - target: Je ne parle pas anglais.
+    english: I do not speak English.
+  - target: Elle n'est pas ici.
+    english: She is not here.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-partitives-quantities
+  pattern: du / de la / de l' ; quantité + de / d' + nom
+  english: Unspecified portions versus measured quantities
+  note: Use a partitive for an unspecified amount of a substance, but de after an amount such as beaucoup
+    or a container measure. De elides in d'eau. Du pain contrasts with un pain, a countable loaf, and
+    le pain when referring to bread generally or to identified bread. A substance noun can become countable
+    when ordering servings, as in deux cafés.
+  examples:
+  - target: Je mange du pain.
+    english: I am eating some bread.
+  - target: J'ai une bouteille d'eau.
+    english: I have a bottle of water.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-clock-calendar-prepositions
+  pattern: à + heure ; lundi / le lundi ; avant / après + repère
+  english: Locate a meeting or routine in clock and calendar time
+  note: À introduces a clock time. Lundi can identify a particular Monday, whereas le lundi commonly describes
+    a weekly habit. Avant and après locate an event relative to another time without specifying its duration.
+    French uses the present for familiar schedules as well as current activity. Context must identify
+    which day a bare weekday means. Mangeons inserts e to preserve the soft consonant of manger.
+  examples:
+  - target: Nous mangeons à midi.
+    english: We eat at noon.
+  - target: Le lundi, je parle avec ma sœur après le déjeuner.
+    english: On Mondays, I talk with my sister after lunch.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-prendre-faire-present
+  pattern: je prends / nous prenons ; je fais / vous faites
+  english: High-use irregular present forms for meals and actions
+  note: Prendre changes stems in prends, prenons, prenez and prennent; here it means having food or drink.
+    Faire has fais, fait, faisons, faites and font rather than regular -er forms. In a conversational
+    content question, quoi can stay after the verb, unlike a preceding est-ce que frame. Infinitive recognition
+    alone does not establish retrieval of these forms.
+  examples:
+  - target: Nous prenons un café.
+    english: We are having a coffee.
+  - target: Vous faites quoi après le repas ?
+    english: What are you doing after the meal?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-polite-modal-request
+  pattern: je voudrais + nom ; vous pouvez + infinitif ?
+  english: Soften a request with a learned conditional or modal
+  note: Je voudrais is a supported conditional form of vouloir, useful before the full conditional system.
+    Je veux is more direct and can sound insistent in a transaction. Pouvez is an irregular present form
+    of pouvoir; keep a following verb in the infinitive. Vous does not by itself guarantee that a request
+    sounds considerate.
+  examples:
+  - target: Je voudrais un café, merci.
+    english: I would like a coffee, thank you.
+  - target: Vous pouvez répéter le prix ?
+    english: Can you repeat the price?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-place-prepositions-contractions
+  pattern: à / de + lieu ; au / aux / du / des ; chez + personne
+  english: Mark destinations and origins with article contractions
+  note: À plus le contracts to au, à plus les to aux, de plus le to du, and de plus les to des. Do not
+    contract with la or l'. Chez locates an activity at someone's home or professional premises, not simply
+    inside any building. Aller has vais, vas, va, allons, allez, vont; venir has viens, vient, venons,
+    venez, viennent. Their motion forms need practice. Ask Où est la gare ? to locate a place; où marks
+    location, and this short question permits the noun subject after est.
+  examples:
+  - target: Je vais au restaurant.
+    english: I am going to the restaurant.
+  - target: Nous venons de la gare.
+    english: We are coming from the station.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-existential-il-y-a
+  pattern: il y a + nom ; est-ce qu'il y a + nom ?
+  english: Introduce the existence of something at a location
+  note: Il y a introduces an available or existing referent; il is an impersonal subject and a remains
+    singular even before a plural noun. Contrast this with le bus est ici, which locates an already identified
+    bus. Learn the entire fixed frame rather than assign a separate literal meaning to y here. Est-ce
+    que elides to est-ce qu' before il.
+  examples:
+  - target: Il y a un bus devant la gare.
+    english: There is a bus in front of the station.
+  - target: Est-ce qu'il y a un hôtel ici ?
+    english: Is there a hotel here?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-imperative-directions
+  pattern: verbe impératif sans sujet ; ne + impératif + pas
+  english: Give directions and short positive or negative instructions
+  note: The imperative omits the subject and has tu, nous and vous forms. Regular -er verbs drop the written
+    tu -s, as in regarde; aller has va, allons and allez. An imperative can guide or invite as well as
+    command, but context and tone affect its force. In a negative instruction, ne and pas still surround
+    the verb.
+  examples:
+  - target: Allez à gauche.
+    english: Go left.
+  - target: Ne traversez pas ici.
+    english: Do not cross here.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-elision-h-boundaries
+  pattern: l' / j' / n' devant voyelle ou h muet ; le h aspiré
+  english: Elision and liaison have lexical boundary restrictions
+  note: 'Le and la become l'' before a vowel or mute h, as in l''hôtel. A so-called aspirated h blocks
+    elision and liaison although the h itself is not pronounced; le héros is a supported contrast meaning
+    the hero. Do not infer h behavior from its spelling. Liaison is not universal: determiners commonly
+    link to a following vowel, but et does not. Une has an oral vowel followed by a consonant, unlike
+    nasal un; written similarity is not evidence of a learner''s pronunciation.'
+  examples:
+  - target: L'hôtel est près de la gare.
+    english: The hotel is near the station.
+  - target: Le héros arrive.
+    english: The hero arrives.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-demonstrative-determiners
+  pattern: ce / cet / cette / ces + nom ; nom-ci / nom-là
+  english: Point out a noun and distinguish contextual alternatives
+  note: Ce is masculine singular, cette feminine singular, and ces plural. Cet replaces ce before a masculine
+    vowel-initial or mute-h noun, not before every written h. The optional suffixes -ci and -là distinguish
+    referents in context; their contrast need not be literal distance. Do not confuse ces, pointing things
+    out, with possessive ses.
+  examples:
+  - target: Cet appartement est grand.
+    english: This apartment is large.
+  - target: Cette chaise-là est petite.
+    english: That chair is small.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-reflexive-routines
+  pattern: sujet + me / te / se / nous / vous + verbe
+  english: A pronominal routine refers back to its own subject
+  note: Match the reflexive clitic to the subject and place it before the finite verb. Se laver contrasts
+    with laver quelque chose; not every pronominal verb has a predictable reflexive meaning. Se lever
+    has je me lève but nous nous levons. These clitic and stem forms are introduced through this construction,
+    not through separate headword credit.
+  examples:
+  - target: Je me lève à sept heures.
+    english: I get up at seven o'clock.
+  - target: Nous nous lavons.
+    english: We wash ourselves.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-frequency-adverbs
+  pattern: verbe + souvent / toujours ; ne + verbe + jamais
+  english: State a routine's frequency without treating it as a rule
+  note: Short frequency adverbs often follow a simple finite verb. Ne...jamais means never and replaces
+    ne...pas rather than requiring an extra pas. Toujours can mean always or still, so use the surrounding
+    situation to distinguish habit from continuation. A frequency statement does not claim every instance
+    follows the same routine.
+  examples:
+  - target: Je cuisine souvent.
+    english: I often cook.
+  - target: Je ne cuisine jamais le dimanche.
+    english: I never cook on Sundays.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-duration-depuis-pendant
+  pattern: présent + depuis ; pendant + durée ; dans + délai
+  english: Distinguish ongoing duration, bounded duration, and delay
+  note: Present plus depuis describes a situation that began earlier and continues now, where English
+    often uses have been. Pendant supplies a bounded duration without itself saying when it occurs. Dans
+    plus a duration normally gives a delay before an event, not how long it lasts. In the schedule example,
+    the present situates the planned departure. Vivre has je vis and nous vivons; partir has je pars and
+    nous partons.
+  examples:
+  - target: Je vis ici depuis deux mois.
+    english: I have lived here for two months.
+  - target: Je pars dans une heure.
+    english: I leave in an hour.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-present-ir-iss
+  pattern: '-ir : -is / -is / -it / -issons / -issez / -issent'
+  english: The productive -ir family with plural -iss- forms
+  note: 'Choisir illustrates the -ir family with an -iss- expansion in plural present forms. The infinitive
+    ending alone is insufficient: partir, dormir and venir do not follow this pattern. In choisissent
+    the written -ent is silent, but the stem''s final consonant is heard.'
+  examples:
+  - target: Je choisis cette chemise.
+    english: I choose this shirt.
+  - target: Nous choisissons une robe.
+    english: We are choosing a dress.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-present-re
+  pattern: '-re : -s / -s / radical / -ons / -ez / -ent'
+  english: Present forms of the attendre and vendre family
+  note: 'Remove -re in attendre or vendre to form attends, attend, attendons and vends, vend, vendons.
+    The third-person singular has no extra ending. This is a family pattern, not a rule for every -re
+    verb: prendre and faire have their own stems. Final written consonants are often silent, so compare
+    forms with a plural stem rather than sound out each letter.'
+  examples:
+  - target: Nous attendons le vendeur.
+    english: We are waiting for the salesperson.
+  - target: Elle vend des vêtements.
+    english: She sells clothes.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-negative-quantities-de
+  pattern: ne + verbe + pas de / d' + nom
+  english: Negate an indefinite amount without negating its identity
+  note: 'In ordinary absence or refusal, un, une, des and partitives usually become de after negation.
+    Definite articles remain, and être normally preserves the article, as in ce n''est pas du café. An
+    explicit contrast can also preserve it: pas un café, mais deux. This is not a rule to replace every
+    article after any negative word.'
+  examples:
+  - target: Je ne veux pas de sucre.
+    english: I do not want any sugar.
+  - target: Je n'ai pas de billet.
+    english: I do not have a ticket.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-avoir-body-states
+  pattern: avoir mal à + partie du corps ; avoir faim / soif
+  english: Describe bodily states with fixed avoir frames
+  note: French uses avoir rather than être in avoir mal, avoir faim and avoir soif. A body part normally
+    takes the definite article when its owner is clear; apply au and aux after à. These are conventional
+    constructions, not literal claims of possessing pain or a diagnosis. J'ai froid describes feeling
+    cold; je suis froid can describe demeanor.
+  examples:
+  - target: J'ai mal à la tête.
+    english: I have a headache.
+  - target: Elle a mal aux pieds.
+    english: Her feet hurt.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-passe-compose-avoir
+  pattern: avoir au présent + participe passé
+  english: Present a completed event using an avoir compound
+  note: Combine a present avoir form with a participle, not an infinitive. Regular families give parlé,
+    choisi and attendu; prendre has pris and faire has fait. Other frequent irregular participles include
+    lu from lire, vu from voir, eu from avoir and été from être. With avoir, the participle does not agree
+    merely with the subject. Preceding direct-object agreement is a separate later construction. English
+    may use either a simple past or a present perfect.
+  examples:
+  - target: J'ai attendu le train.
+    english: I waited for the train.
+  - target: Nous avons pris un café.
+    english: We had a coffee.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-passe-compose-etre
+  pattern: être au présent + participe accordé
+  english: Selected intransitive verbs take être and subject agreement
+  note: 'Arriver and partir take être in these intransitive uses; the participle agrees with the subject
+    in gender and number. Not every motion verb takes être: marcher takes avoir. Some verbs switch auxiliary
+    with their construction, as in elle est sortie versus elle a sorti le sac. Pronominal verbs also take
+    être but need their own agreement analysis.'
+  examples:
+  - target: Elle est arrivée hier.
+    english: She arrived yesterday.
+  - target: Ils sont partis tôt.
+    english: They left early.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-near-future
+  pattern: aller au présent + infinitif
+  english: Express a prospective event or current intention
+  note: Conjugate aller and leave the following verb in the infinitive. This prospective construction
+    often links a plan or prediction to the present situation; it does not promise that the event is seconds
+    away. Distinguish je vais partir from literal motion in je vais à la gare. Negation surrounds aller,
+    not the following infinitive.
+  examples:
+  - target: Nous allons partir demain.
+    english: We are going to leave tomorrow.
+  - target: Je ne vais pas annuler le voyage.
+    english: I am not going to cancel the trip.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-comparative-degree
+  pattern: plus / moins / aussi + adjectif + que
+  english: Compare the degree of a quality between alternatives
+  note: Plus and moins establish unequal degree; aussi...que expresses equality. The adjective still agrees
+    with its own noun. Bon normally has the comparative meilleur, not plus bon; mieux compares how something
+    is done rather than replacing every adjective meaning better. A comparison needs an identifiable dimension
+    and comparison partner.
+  examples:
+  - target: Ce train est plus rapide que le bus.
+    english: This train is faster than the bus.
+  - target: Cette chambre est aussi calme que la maison.
+    english: This room is as quiet as the house.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-recent-past
+  pattern: venir de + infinitif
+  english: Relate a just-completed event to the current moment
+  note: Present venir plus de and an infinitive presents an event as recent. It is not literal arrival
+    from a place, and de becomes d' before a vowel. Recency is relative to the conversational situation
+    rather than a fixed number of minutes. Contrast this with passé composé, which reports an event without
+    necessarily saying it has just happened.
+  examples:
+  - target: Je viens de terminer le travail.
+    english: I have just finished the work.
+  - target: Nous venons d'envoyer le message.
+    english: We have just sent the message.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-modal-infinitives
+  pattern: devoir / pouvoir / savoir + infinitif
+  english: Distinguish obligation, available ability, and learned skill
+  note: Devoir can impose a requirement, pouvoir can express circumstances or permission, and savoir plus
+    infinitive expresses knowing how. Learn dois, doit, devons; peux, peut, pouvons; sais, sait, savons
+    as irregular forms. Do not insert à before the infinitive in these frames. Je ne dois pas can mean
+    a prohibition, not simply lack of necessity.
+  examples:
+  - target: Je dois terminer ce travail.
+    english: I must finish this work.
+  - target: Elle sait nager, mais elle ne peut pas nager ici.
+    english: She knows how to swim, but she cannot swim here.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-direct-object-clitics
+  pattern: sujet + me / te / le / la / nous / vous / les + verbe
+  english: Replace a recoverable direct object before the verb
+  note: A direct-object clitic stands before a simple finite verb, unlike the full noun object that usually
+    follows it. Le and la elide to l' before a vowel; les does not. These are pronouns, not articles before
+    a hidden noun. Use the verb's French object construction rather than copy an English preposition.
+    Voir has vois, voit, voyons, voyez and voient; lire has lis, lit, lisons, lisez and lisent.
+  examples:
+  - target: J'ai ce livre. Je le lis maintenant.
+    english: I have this book. I am reading it now.
+  - target: Mes amis sont ici ; je les vois.
+    english: My friends are here; I can see them.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-cause-and-objection
+  pattern: proposition parce que cause ; proposition mais objection
+  english: Connect a reason or practical objection to a statement
+  note: Parce que introduces a clause giving a reason, whereas mais introduces a contrast or obstacle
+    and need not cancel the first statement. Parce que becomes parce qu' before il or elle. The speaker
+    supplies a causal explanation; the conjunction itself is not evidence that the proposed cause is correct.
+  examples:
+  - target: Je reste ici parce que je dois travailler.
+    english: I am staying here because I have to work.
+  - target: Je veux venir, mais je travaille lundi.
+    english: I want to come, but I work on Monday.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-imparfait-background
+  pattern: radical de nous + -ais / -ait / -ions / -iez / -aient
+  english: View a past situation from within or as a habit
+  note: Form the imparfait from the present nous stem without -ons, with -ais, -ais, -ait, -ions, -iez
+    and -aient. Être instead uses ét-. The tense presents background, a habit, or an unfolding situation
+    without marking its boundaries. It does not mean that the situation lasted a long time or necessarily
+    remained unfinished forever.
+  examples:
+  - target: Il faisait froid dans la chambre.
+    english: It was cold in the room.
+  - target: Nous prenions le train chaque lundi.
+    english: We used to take the train every Monday.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-past-aspect-contrast
+  pattern: imparfait de fond + passé composé d'événement
+  english: Contrast an unfolding situation with a bounded event
+  note: Use the imparfait to put the listener inside a situation and passé composé to present a bounded
+    event or change. A short state can take the imparfait, and a long activity can take passé composé
+    if viewed as a whole. The contrast depends on narrative viewpoint, not a mechanical list of time expressions.
+  examples:
+  - target: Je dormais quand le téléphone a sonné.
+    english: I was sleeping when the phone rang.
+  - target: Il pleuvait, mais nous avons marché deux heures.
+    english: It was raining, but we walked for two hours.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-temporal-clause-sequence
+  pattern: quand / pendant que + proposition ; puis + événement
+  english: Organize event order and overlapping circumstances
+  note: Quand locates one event relative to another; pendant que emphasizes overlap and takes a finite
+    clause, unlike pendant plus a duration. Puis advances the narrated sequence. A sequence of events
+    does not by itself establish a causal relation. Each clause still chooses its tense according to the
+    viewpoint on that event.
+  examples:
+  - target: Quand le train est arrivé, nous sommes montés.
+    english: When the train arrived, we got on.
+  - target: Pendant que je cuisinais, elle lisait.
+    english: While I was cooking, she was reading.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-compound-negation-adverbs
+  pattern: ne + auxiliaire + pas / jamais / plus + participe
+  english: Negate or qualify a compound event around its auxiliary
+  note: Ne precedes the finite auxiliary and pas, jamais or plus normally follows it, before the participle.
+    Common short adverbs such as déjà also occur between auxiliary and participle. Pas encore means not
+    yet, while ne...plus means no longer or no more; neither is equivalent to never. Longer adverbial
+    phrases have more flexible placement.
+  examples:
+  - target: Je n'ai pas encore envoyé le message.
+    english: I have not sent the message yet.
+  - target: Elle n'est jamais venue ici.
+    english: She has never come here.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-indirect-object-clitics
+  pattern: sujet + lui / leur + verbe
+  english: Replace a personal à complement with lui or leur
+  note: 'With verbs such as parler à or donner à, lui replaces a singular recipient and leur a plural
+    recipient, regardless of gender. Distinguish direct je la vois from indirect je lui parle. Not every
+    à plus person permits these clitics: penser à elle keeps a stressed pronoun. Verbal leur has no plural
+    -s, unlike possessive leurs.'
+  examples:
+  - target: Ma sœur est ici ; je lui parle.
+    english: My sister is here; I am talking to her.
+  - target: Mes amis arrivent ; je leur donne les clés.
+    english: My friends are arriving; I am giving them the keys.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-stressed-pronouns
+  pattern: préposition + moi / toi / lui / elle / nous / vous / eux / elles
+  english: Personal reference after prepositions and in contrast
+  note: Stressed pronouns follow prepositions such as avec, pour and chez and can stand alone in a contrastive
+    answer. They are not interchangeable with preverbal object clitics. Avec lui identifies a male person,
+    but preverbal lui can mean to him or to her. A detached moi or toi does not replace the ordinary subject
+    pronoun in a full finite clause.
+  examples:
+  - target: Je viens avec elle.
+    english: I am coming with her.
+  - target: Ce cadeau est pour toi.
+    english: This gift is for you.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-reciprocal-pronominals
+  pattern: sujet pluriel + se / nous / vous + verbe réciproque
+  english: Distinguish mutual actions from self-directed actions
+  note: 'A plural pronominal construction can mean each other rather than themselves. Context decides
+    whether ils se regardent means looking at one another or at themselves; l''un l''autre can clarify
+    reciprocity. Mutual action retains the verb''s object structure: écrire à makes the reciprocal pronoun
+    indirect. Écrivons is the irregular nous form of écrire.'
+  examples:
+  - target: Nous nous écrivons chaque semaine.
+    english: We write to each other every week.
+  - target: Ils se regardent l'un l'autre.
+    english: They look at each other.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-pronominal-past-agreement
+  pattern: 'sujet + se + être + participe : objet direct ou indirect'
+  english: Pronominal participles do not always agree with the subject
+  note: Pronominal verbs use être in compound tenses, but agreement requires attention to the construction.
+    In elles se sont lavées, se is the preceding direct object. In elles se sont lavé les mains, les mains
+    is the following direct object and se is indirect, so lavé stays unchanged. Lexically pronominal verbs
+    need individual treatment; do not extend this analysis blindly to all se verbs.
+  examples:
+  - target: Elles se sont lavées.
+    english: They washed themselves.
+  - target: Elles se sont lavé les mains.
+    english: They washed their hands.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-infinitive-clitic-placement
+  pattern: verbe conjugué + pronom objet + infinitif
+  english: Place an object clitic with the infinitive that governs it
+  note: In ordinary modal and near-future frames, place an object's clitic immediately before the infinitive
+    it belongs to, not before the finite modal. Negation of the whole proposition surrounds the finite
+    verb; negation of the infinitive itself uses ne pas before its clitic and infinitive. Causatives and
+    perception verbs have additional constructions, so this is not a universal rule for every two-verb
+    chain.
+  examples:
+  - target: Je vais le réparer.
+    english: I am going to repair it.
+  - target: Vous pouvez lui expliquer le problème.
+    english: You can explain the problem to him or her.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-imperative-clitic-order
+  pattern: donne-le-moi ; ne me le donne pas
+  english: Affirmative commands move clitics after the verb
+  note: 'Affirmative imperatives attach clitics with hyphens: donne-le-moi. Me and te normally become
+    moi and toi there, but before en they elide, as in donne-m''en. Negative imperatives restore preverbal
+    order: ne me le donne pas. The tu imperative regains a linking -s before directly attached y or en
+    in vas-y and parles-en; this is not a general plural ending.'
+  examples:
+  - target: Donnez-le-moi, s'il vous plaît.
+    english: Please give it to me.
+  - target: Ne me le donnez pas maintenant.
+    english: Do not give it to me now.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-gerund-shared-subject
+  pattern: en + participe présent
+  english: Link manner or simultaneous action to the same subject
+  note: En plus the present participle can express how an action happens, an accompanying action, or a
+    contextual condition. Its understood subject normally matches the main clause's subject. Form the
+    participle from the present nous stem plus -ant; avoir, être and savoir have ayant, étant and sachant.
+    The gerund is invariable and is not the ordinary French equivalent of every English progressive.
+  examples:
+  - target: Elle parle en marchant.
+    english: She talks while walking.
+  - target: Vous apprenez en écoutant.
+    english: You learn by listening.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-avoir-preceding-object-agreement
+  pattern: objet direct antéposé + avoir + participe accordé
+  english: Agree an avoir participle with an earlier direct object
+  note: In standard writing, an avoir participle agrees with a preceding direct object, not with its subject
+    or an indirect recipient. Thus la gives écrite for a feminine réponse, while lui does not make écrit
+    agree. Écrit is the irregular participle of écrire. Infinitive complements and en create special cases;
+    do not apply this short pattern without checking those constructions.
+  examples:
+  - target: La réponse, je l'ai écrite hier.
+    english: The answer, I wrote it yesterday.
+  - target: Je lui ai écrit hier.
+    english: I wrote to him or her yesterday.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-relative-qui-que
+  pattern: nom + qui + verbe ; nom + que + sujet + verbe
+  english: Relative qui is a subject and que a direct object
+  note: Qui fills the subject role in its relative clause; que fills a direct-object role and elides before
+    a vowel. The choice depends on grammatical role, not whether the antecedent is a person. A relative
+    object que can trigger preceding direct-object participle agreement. Unlike some English relatives,
+    que is not normally omitted.
+  examples:
+  - target: La personne qui parle est mon professeur.
+    english: The person who is speaking is my teacher.
+  - target: La réponse que tu as écrite est ici.
+    english: The answer that you wrote is here.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-relative-ou
+  pattern: lieu / moment + où + proposition
+  english: Link a place or time with relative où
+  note: Relative où can identify either a location or a time. It has a written accent, unlike ou meaning
+    or. Do not add a redundant y for the same location inside a simple relative clause. For an object's
+    other relationships, choose the relative by its grammatical role rather than substitute où for any
+    English where.
+  examples:
+  - target: C'est la maison où elle habite.
+    english: That is the house where she lives.
+  - target: C'est le jour où tu es arrivé.
+    english: That is the day you arrived.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-indirect-questions
+  pattern: demander / savoir + si / où / ce que + sujet + verbe
+  english: Embed a question without direct-question inversion
+  note: An indirect yes-no question uses si; a content question retains its appropriate interrogative
+    expression. Replace direct qu'est-ce que by ce que, and keep ordinary subject-verb order rather than
+    est-ce que or pronoun inversion inside the embedded clause. Si here means whether, not the if of a
+    hypothetical condition.
+  examples:
+  - target: Je voudrais savoir où elle travaille.
+    english: I would like to know where she works.
+  - target: Elle demande si nous avons compris.
+    english: She asks whether we understood.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-present-reporting
+  pattern: dire / expliquer que + proposition
+  english: Report a statement while tracking its speaker and reference
+  note: Que embeds a reported statement, not a yes-no question. Pronouns and time or place expressions
+    must fit the reporting situation rather than mechanically preserve the original speaker's je, ici
+    or demain. A present reporting verb does not force a past tense in its complement. Dire has dis, dit,
+    disons, dites and disent. Reporting a claim is distinct from endorsing it.
+  examples:
+  - target: Elle dit qu'elle travaille ici.
+    english: She says that she works here.
+  - target: Il explique que le train est arrivé.
+    english: He explains that the train has arrived.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-superlative-comparison-set
+  pattern: le / la / les plus / moins + adjectif ; le meilleur
+  english: Identify an extreme within an explicit comparison set
+  note: A superlative ranks something within a stated or recoverable set, unlike a comparison between
+    two named items. The article and adjective agree with the noun in these noun-based comparisons. Bon
+    gives meilleur; adverbial bien gives le mieux. The placement differs between le plus petit sac and
+    le sac le plus pratique.
+  examples:
+  - target: C'est la chambre la plus calme de l'hôtel.
+    english: It is the quietest room in the hotel.
+  - target: C'est le meilleur choix pour nous.
+    english: It is the best choice for us.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-conditional-present
+  pattern: radical du futur + -ais / -ait / -ions / -iez / -aient
+  english: Conditional forms soften advice and a proposed choice
+  note: Add imparfait endings, including -ais for both je and tu, to the complete infinitive of regular
+    -er and -ir verbs; remove final e from regular -re infinitives first. These stems also appear in the
+    future simple, taught later. Learn irregular stems ser-, aur-, ir-, viendr-, fer-, pourr-, voudr-
+    and devr- explicitly. In a request or recommendation, the conditional creates distance; it is not
+    always a condition missing its si clause.
+  examples:
+  - target: Vous pourriez choisir une autre date.
+    english: You could choose another date.
+  - target: Je voudrais parler au responsable.
+    english: I would like to speak to the person in charge.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-relative-dont
+  pattern: antécédent + dont + proposition contenant une relation en de
+  english: Relative dont replaces a complement introduced by de
+  note: Dont can represent the de relation in parler de, avoir besoin de, or a possessed noun. Do not
+    add a second de or a possessive marking the same relation. Dont is not a general replacement for every
+    preposition; a compound preposition such as à côté de calls for another relative construction.
+  examples:
+  - target: C'est le livre dont je parle.
+    english: That is the book I am talking about.
+  - target: C'est le collègue dont la sœur travaille ici.
+    english: That is the colleague whose sister works here.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-nominal-concession
+  pattern: malgré + nom ; proposition, pourtant proposition
+  english: Acknowledge an obstacle without denying the outcome
+  note: Malgré introduces a noun phrase, not an ordinary finite clause with que. Pourtant connects a statement
+    to an outcome contrary to expectation. Both can acknowledge a real drawback without making it decisive.
+    Contrast causal à cause de, which presents the circumstance as an explanation rather than an overcome
+    obstacle.
+  examples:
+  - target: Malgré le retard, nous avons terminé le travail.
+    english: Despite the delay, we finished the work.
+  - target: Ce choix est cher ; pourtant, il reste utile.
+    english: This choice is expensive; nevertheless, it remains useful.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-locative-y
+  pattern: y + verbe ; verbe modal + y + infinitif
+  english: Refer back to a place or a suitable nonpersonal à complement
+  note: Y commonly replaces a location introduced by à, dans, chez or another place expression. With suitable
+    verbs it can also replace à plus a thing or idea, as in j'y pense. A person governed by penser à normally
+    keeps a stressed pronoun instead. Place y with its governing verb; it is not the literal meaning of
+    the fixed il y a.
+  examples:
+  - target: La gare est ouverte ; nous pouvons y attendre.
+    english: The station is open; we can wait there.
+  - target: Ce problème est important ; j'y pense souvent.
+    english: This problem is important; I often think about it.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-partitive-en
+  pattern: en + verbe + quantité ; en + verbe construit avec de
+  english: Refer back to an amount or a suitable de complement
+  note: En can replace an indefinite or partitive noun phrase, retaining a specified quantity, or a suitable
+    de complement. With a person, check the verb and register rather than automatically replacing de lui
+    or d'elle. A participle whose object is partitive en is normally invariable; this differs from preceding
+    le, la or les.
+  examples:
+  - target: Des billets ? J'en ai deux.
+    english: Tickets? I have two.
+  - target: Ce problème, nous en parlons demain.
+    english: That problem, we will talk about it tomorrow.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-declarative-clitic-order
+  pattern: me/te/se/nous/vous → le/la/les → lui/leur → y → en
+  english: Order compatible clitics before their governing verb
+  note: The sequence gives slots for compatible preverbal clitics, not a command to fill every slot. Me,
+    te, se, nous and vous precede le, la and les; third-person lui and leur follow them. Y precedes en.
+    Meaning and a verb's argument structure rule out many theoretical combinations. Affirmative imperatives
+    use a different order.
+  examples:
+  - target: Le livre, je le lui donne.
+    english: The book, I am giving it to him or her.
+  - target: Des clés, elle m'en a donné deux.
+    english: Keys, she gave me two.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-restrictive-ne-que
+  pattern: ne + verbe + que + élément restreint
+  english: Restrict a statement to only the focused element
+  note: Ne...que means only, not ordinary negation. Que stands immediately before the element being restricted,
+    so moving it changes the focus. Do not automatically change an article to de as with absence under
+    ne...pas. Ne...pas que means not only and reverses the exclusion.
+  examples:
+  - target: Je n'ai que deux billets.
+    english: I have only two tickets.
+  - target: Elle ne travaille que le lundi.
+    english: She works only on Mondays.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-future-simple
+  pattern: radical du futur + -ai / -as / -a / -ons / -ez / -ont
+  english: State a future arrangement, expectation, or commitment
+  note: Add the future endings to the infinitive, dropping final e for regular -re verbs, or use an irregular
+    future stem. Je serai contrasts with conditional je serais in spelling and function; some speakers
+    distinguish their final vowels and others do not. Future forms do not guarantee that a plan will happen.
+    French may use the future after quand for a future event, unlike English.
+  examples:
+  - target: Nous terminerons le travail demain.
+    english: We will finish the work tomorrow.
+  - target: Quand elle arrivera, nous parlerons du projet.
+    english: When she arrives, we will talk about the project.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-open-si-condition
+  pattern: si + présent, présent / futur / impératif
+  english: Set an open practical condition without future in its si clause
+  note: An open condition uses the present after conditional si, even when the situation concerns the
+    future. The result can be a present generalization, a future commitment, or an imperative. This restriction
+    concerns conditional si, not indirect-question si meaning whether. An offered condition does not establish
+    that the condition is true.
+  examples:
+  - target: Si vous êtes d'accord, nous commencerons lundi.
+    english: If you agree, we will start on Monday.
+  - target: Si le message arrive, contactez-moi.
+    english: If the message arrives, contact me.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-passive-voice
+  pattern: patient + être au temps voulu + participe + par agent
+  english: Make the affected participant the grammatical subject
+  note: 'A passive uses être and a participle agreeing with the affected subject. Par can introduce the
+    agent, but leaving it out can obscure responsibility. The tense belongs to être: est envoyé differs
+    from a été envoyé. A state such as la porte est fermée can also be an adjectival description rather
+    than an event with an implied agent.'
+  examples:
+  - target: La réponse sera envoyée par ma collègue.
+    english: The answer will be sent by my colleague.
+  - target: Les documents ont été signés hier.
+    english: The documents were signed yesterday.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-causative-faire
+  pattern: faire + infinitif + participants
+  english: Arrange or cause an action rather than perform it oneself
+  note: Faire plus infinitive attributes causation or arrangement, not necessarily direct performance.
+    With a transitive infinitive, à can identify the person made to act, distinct from the object acted
+    on. The participle fait before an infinitive is invariable in this causative construction. Clitics
+    belong to the causative unit rather than follow the ordinary modal-placement pattern.
+  examples:
+  - target: Je fais réparer la voiture.
+    english: I am having the car repaired.
+  - target: Elle fait lire le message à son collègue.
+    english: She has her colleague read the message.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-past-reporting-perspective
+  pattern: a dit que + imparfait / conditionnel présent
+  english: Locate reported states and later events from a past viewpoint
+  note: 'After a past reporting verb, an imparfait can express a state simultaneous with the original
+    speech; a conditional can express what was then future. This future-in-the-past use is not automatically
+    hypothetical. Backshift is not purely mechanical: a present form can retain a claim presented as still
+    valid, and quotations keep their own viewpoint.'
+  examples:
+  - target: Elle a dit qu'elle travaillait à la maison.
+    english: She said that she was working at home.
+  - target: Il a annoncé qu'il viendrait lundi.
+    english: He announced that he would come on Monday.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-source-attribution
+  pattern: selon / d'après + source, proposition
+  english: Attribute information without silently endorsing it
+  note: Selon and d'après locate a claim in a source or viewpoint. They do not independently verify it
+    or necessarily signal disbelief. Keep the attribution's scope clear when adding your own conclusion;
+    otherwise the reader may mistake your inference for the source's words. A noun phrase after these
+    expressions differs from a reported que clause with a named reporting verb.
+  examples:
+  - target: D'après ce message, la réunion commence à midi.
+    english: According to this message, the meeting starts at noon.
+  - target: Selon l'auteur, cette décision est nécessaire.
+    english: According to the author, this decision is necessary.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-demonstrative-pronouns
+  pattern: celui / celle / ceux / celles + complément ou -ci / -là
+  english: Replace a noun while distinguishing its referent
+  note: Demonstrative pronouns agree with the replaced noun and generally need a relative, a de complement,
+    or -ci or -là to identify it. They differ from demonstrative determiners, which accompany a noun.
+    Ceci and cela refer more neutrally to a thing or proposition and do not select a masculine or feminine
+    noun in the same way.
+  examples:
+  - target: Je choisis la chambre qui est libre, pas celle qui est occupée.
+    english: I choose the room that is free, not the one that is occupied.
+  - target: Mon livre est ici ; celui de ma sœur est là.
+    english: My book is here; my sister's is there.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-middle-se
+  pattern: chose + se + verbe actif
+  english: Describe a process or property without a self-acting agent
+  note: A se construction can describe how something works, is used, or undergoes a process without meaning
+    that it acts on itself. Une porte s'ouvre may describe an occurrence or an opening mechanism; a passive
+    with par names an external agent more directly. Generic middle statements often leave the human user
+    understood and must not be read as proof of a specific completed event.
+  examples:
+  - target: Cette porte s'ouvre facilement.
+    english: This door opens easily.
+  - target: Ce livre se lit en deux heures.
+    english: This book can be read in two hours.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-nominal-cause
+  pattern: à cause de / grâce à + nom
+  english: Present a cause with a negative or favorable framing
+  note: À cause de commonly frames an unwelcome cause; grâce à commonly credits a favorable one. Irony
+    can reverse that evaluation, so interpretation still depends on context. Contract de or à with the
+    following article as appropriate. These noun-based frames differ from parce que plus a finite clause
+    and do not prove causality.
+  examples:
+  - target: Le train est en retard à cause de la neige.
+    english: The train is late because of the snow.
+  - target: Grâce à votre aide, le système fonctionne.
+    english: Thanks to your help, the system works.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-purpose-infinitive
+  pattern: pour / afin de + infinitif
+  english: Express an intended purpose with a controlled infinitive
+  note: Pour and the more formal afin de introduce an intended goal. The infinitive's understood subject
+    normally matches the main actor; a different intended actor needs a finite purpose clause. Purpose
+    does not assert success. An instrument can also be described as pour plus infinitive, but its intended
+    user must remain recoverable.
+  examples:
+  - target: Je ferme la porte pour travailler au calme.
+    english: I close the door to work in peace.
+  - target: Nous vérifions le système afin de comprendre le problème.
+    english: We check the system in order to understand the problem.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-degree-consequence
+  pattern: si + adjectif / tellement + verbe ou adjectif + que
+  english: Link an asserted result to the degree of a cause
+  note: Si plus adjective and tellement plus adjective or verb introduce a degree whose result is stated
+    in a que clause. Tellement de precedes a noun quantity. This si is a degree marker, not conditional
+    if. The ordinary indicative result is presented as occurring, unlike an intended result introduced
+    by pour que.
+  examples:
+  - target: Le bruit est si fort que je n'entends rien.
+    english: The noise is so loud that I cannot hear anything.
+  - target: Elle a tellement travaillé qu'elle est fatiguée.
+    english: She worked so much that she is tired.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-participle-versus-adjective
+  pattern: nom + participe présent invariable / adjectif verbal accordé
+  english: Separate a verbal participle from an agreeing adjective
+  note: A present participle retains verbal complements and is invariable, as in les personnes travaillant
+    ici. A verbal adjective describes a property and agrees; some spellings differ, as in fatiguant from
+    fatiguer versus the adjective fatigant. A detached participial phrase normally refers to the main
+    subject unless it has its own explicit subject. Do not create a dangling phrase about the wrong participant.
+  examples:
+  - target: Les personnes travaillant ici connaissent le système.
+    english: The people working here know the system.
+  - target: Ces tâches sont fatigantes.
+    english: These tasks are tiring.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-subjunctive-will-necessity
+  pattern: vouloir que / il faut que + subjonctif présent
+  english: Express a desired or required action with its own subject
+  note: Vouloir que and il faut que select the subjunctive; a shared actor usually permits vouloir or
+    il faut plus infinitive instead. Regular present subjunctive endings are -e, -es, -e, -ions, -iez,
+    -ent. Many forms use the present ils stem; nous and vous can use a different stem, as in vienne but
+    venions. Learn sois, ait, fasse, puisse and aille explicitly. Il faut is impersonal and does not become
+    plural before a plural subordinate subject.
+  examples:
+  - target: Je veux que tu viennes à la réunion.
+    english: I want you to come to the meeting.
+  - target: Il faut que nous terminions le travail.
+    english: We need to finish the work.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-subjunctive-assertion-contrast
+  pattern: penser que + indicatif ; ne pas penser que + subjonctif
+  english: Contrast asserted belief with a nonasserted complement
+  note: Affirmative penser que normally takes the indicative; negated or interrogative belief often permits
+    or favors the subjunctive when the complement is not asserted. Mood is sensitive to stance and construction,
+    not a universal fact-versus-uncertainty code. Je pense qu'il est contrasts with je ne pense pas qu'il
+    soit; sois, soit, soyons, soyez and soient belong to irregular être.
+  examples:
+  - target: Je pense que cette solution est possible.
+    english: I think this solution is possible.
+  - target: Je ne pense pas que cette solution soit possible.
+    english: I do not think this solution is possible.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-subjunctive-concession
+  pattern: bien que + subjonctif, proposition
+  english: Acknowledge a circumstance despite an unexpected outcome
+  note: Bien que conventionally selects the subjunctive even when the acknowledged circumstance is accepted
+    as real. It therefore illustrates why subjunctive does not simply mean unreal. Contrast malgré plus
+    a noun and pourtant between independent statements. Keep each clause's subject explicit where it differs.
+  examples:
+  - target: Bien que la chambre soit petite, elle est confortable.
+    english: Although the room is small, it is comfortable.
+  - target: Bien qu'il fasse froid, nous allons marcher.
+    english: Although it is cold, we are going to walk.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-hypothetical-present
+  pattern: si + imparfait, conditionnel présent
+  english: Imagine a present or future alternative with distance
+  note: The imparfait after conditional si marks hypothetical distance here, not necessarily past time.
+    The conditional presents the result under that imagined circumstance. Do not put the conditional in
+    the ordinary si clause. Whether the situation is unlikely or contrary to current facts comes from
+    context.
+  examples:
+  - target: Si nous avions plus de temps, nous lirions ce livre.
+    english: If we had more time, we would read this book.
+  - target: Si j'étais à ta place, je choisirais cette solution.
+    english: If I were in your position, I would choose this solution.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-epistemic-modals
+  pattern: devoir / pouvoir + infinitif de situation
+  english: Mark an inference or possibility rather than an obligation
+  note: 'Devoir can express a strong inference and pouvoir a possibility, distinct from their requirement
+    and ability readings. The situation must make the intended reading clear; devoir does not supply proof.
+    Negation changes scope: il ne peut pas être ici rejects a possibility, while il peut ne pas être ici
+    leaves absence possible.'
+  examples:
+  - target: La lumière est allumée ; elle doit être à la maison.
+    english: The light is on; she must be at home.
+  - target: Il peut ne pas comprendre la question.
+    english: He may not understand the question.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-evidential-seeming
+  pattern: il semble que / il me semble que + proposition
+  english: Qualify a judgment and identify its perspective
+  note: The impersonal il semble que often favors a subjunctive complement, whereas personal il me semble
+    que commonly introduces an indicative judgment presented as the speaker's view. Indicative and subjunctive
+    choices can vary with commitment and context; this is not an absolute transformation rule. The seeming
+    frame is introduced as a construction, not a claim that its every component has a selected lexical
+    sense.
+  examples:
+  - target: Il semble que la porte soit fermée.
+    english: It seems that the door is closed.
+  - target: Il me semble que la porte est fermée.
+    english: It seems to me that the door is closed.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-past-subjunctive
+  pattern: avoir / être au subjonctif présent + participe passé
+  english: Place an evaluated or nonasserted event before its reference
+  note: The past subjunctive combines aie, aies, ait, ayons, ayez, aient or the subjunctive of être with
+    a participle. It marks anteriority or completion under a subjunctive-selecting frame; it is not simply
+    the mood for any past uncertainty. Preserve auxiliary choice and the relevant participle-agreement
+    rule.
+  examples:
+  - target: Je suis content que tu aies lu ce livre.
+    english: I am glad that you have read this book.
+  - target: Bien qu'elle soit arrivée tôt, elle a attendu.
+    english: Although she arrived early, she waited.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-purpose-finite-subject
+  pattern: pour que / afin que + subjonctif
+  english: Give an intended purpose with a separately expressed actor
+  note: Pour que and the more formal afin que take the subjunctive and allow a different subject for the
+    intended action. The purpose is a goal, not an asserted result. With the same actor, a pour or afin
+    de infinitive is generally lighter; do not copy English for plus person plus infinitive directly.
+  examples:
+  - target: Je parle lentement pour que vous compreniez.
+    english: I speak slowly so that you can understand.
+  - target: Nous envoyons le document afin qu'elle puisse le lire.
+    english: We are sending the document so that she can read it.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-plus-que-parfait
+  pattern: avoir / être à l'imparfait + participe passé
+  english: Establish an event anterior to another past reference point
+  note: The plus-que-parfait uses an imparfait auxiliary to place an event before a past reference point.
+    It is not selected merely because the event happened a very long time ago. Retain the same auxiliary
+    and agreement principles as in the corresponding passé composé. The reference point can be supplied
+    by an earlier sentence.
+  examples:
+  - target: Quand je suis arrivé, elle avait déjà terminé le travail.
+    english: When I arrived, she had already finished the work.
+  - target: Le train était parti avant notre arrivée.
+    english: The train had left before our arrival.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-future-perfect
+  pattern: avoir / être au futur + participe passé
+  english: Locate completion before a future reference point
+  note: The future perfect presents an action as completed by a future moment or before another future
+    action. French uses it after quand when anteriority is relevant, where English commonly uses a present
+    perfect. Context can also give a conjectural reading to a future perfect, but these examples use temporal
+    completion, not inference.
+  examples:
+  - target: D'ici demain, nous aurons terminé le travail.
+    english: By tomorrow, we will have finished the work.
+  - target: Quand elle sera arrivée, nous commencerons la réunion.
+    english: When she has arrived, we will start the meeting.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-action-nominalization
+  pattern: nom d'action + de + participant
+  english: Package an event as a noun while preserving its participants
+  note: An action noun can make an event the subject of another statement, but de may identify an actor,
+    a thing affected, or another relation. Name the actor separately when omission would hide responsibility.
+    Nominalizations are lexical choices, not forms made by one universal suffix. A verb-based paraphrase
+    is often clearer for a less formal audience and must preserve who did what.
+  examples:
+  - target: Le départ du train est prévu pour lundi.
+    english: The train's departure is scheduled for Monday.
+  - target: La vente de la maison a été annoncée.
+    english: The sale of the house was announced.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-compound-relatives
+  pattern: préposition + lequel / laquelle / lesquels / lesquelles
+  english: Retain a preposition in a gendered relative construction
+  note: Lequel forms agree with the antecedent and preserve its preposition. À plus lequel gives auquel,
+    and de plus lequel gives duquel, with plural auxquels, auxquelles, desquels and desquelles. Laquelle
+    remains uncontracted. A compound preposition such as à côté de requires à côté duquel rather than
+    dont. For a person, preposition plus qui is often a lighter alternative.
+  examples:
+  - target: Le problème auquel je pense est différent.
+    english: The problem I am thinking about is different.
+  - target: La maison à côté de laquelle j'habite est vide.
+    english: The house next to which I live is empty.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-perfect-infinitive
+  pattern: après avoir / être + participe passé
+  english: Order completed actions with a shared-subject infinitive
+  note: Après plus a perfect infinitive presents an action completed before the main action. Its understood
+    subject normally matches the main clause's subject. Use avoir or être according to the verb, with
+    the corresponding agreement. Contrast avant de plus a simple infinitive; do not put an ordinary simple
+    infinitive after après to express this completed-action relationship.
+  examples:
+  - target: Après avoir lu le document, elle a posé une question.
+    english: After reading the document, she asked a question.
+  - target: Après être arrivées, elles ont contacté leur collègue.
+    english: After arriving, they contacted their colleague.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-absolute-participle
+  pattern: nom sujet + participe passé, proposition principale
+  english: A detached participial clause has its own explicit subject
+  note: A participial clause can name its own subject, which need not be the main clause's subject. The
+    participle agrees with that named subject. This concise written construction often supplies prior
+    completion or a circumstance; make the relationship explicit if temporal or causal readings could
+    be confused. It differs from a gerund whose unexpressed subject is normally shared.
+  examples:
+  - target: Le travail terminé, nous avons fermé la porte.
+    english: Once the work was finished, we closed the door.
+  - target: Les données vérifiées, l'équipe a commencé l'analyse.
+    english: Once the data had been checked, the team began the analysis.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-correlative-comparison
+  pattern: plus / moins + proposition, plus / moins + proposition
+  english: Describe covariation without automatically claiming causation
+  note: Paired comparatives relate changes in two quantities or degrees. Each half may use plus or moins
+    according to the direction of change. The construction can state a tendency or a conditional relationship;
+    its grammar does not establish a causal mechanism or guarantee the relation outside the specified
+    circumstances.
+  examples:
+  - target: Plus nous observons, plus nous avons de questions.
+    english: The more we observe, the more questions we have.
+  - target: Moins elle dort, plus elle est fatiguée.
+    english: The less she sleeps, the more tired she is.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-threshold-infinitive
+  pattern: assez / trop + adjectif ou adverbe + pour + infinitif
+  english: Evaluate whether a degree permits an intended action
+  note: Assez...pour marks a sufficient degree and trop...pour a degree that prevents the intended action
+    in context. Unlike a consequence clause, neither construction necessarily asserts that the action
+    happened. With a noun use assez de or trop de, and keep the infinitive's actor clear. The threshold
+    is relative to a purpose.
+  examples:
+  - target: Le texte est assez clair pour être compris.
+    english: The text is clear enough to be understood.
+  - target: Je suis trop fatigué pour lire ce document.
+    english: I am too tired to read this document.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-conditional-past
+  pattern: avoir / être au conditionnel + participe passé
+  english: Present a past action as unrealized or tentatively evaluated
+  note: The conditional past combines aurais or serais forms with a participle. It can express an unrealized
+    preference, regret, or an action dependent on an understood condition; not every use proves that the
+    event failed to happen. Auxiliaries and agreement follow the usual compound-tense construction. A
+    reported-claim reading requires separate attention to the source context.
+  examples:
+  - target: J'aurais aimé venir à la réunion.
+    english: I would have liked to come to the meeting.
+  - target: À ta place, je serais partie plus tôt.
+    english: In your position, I would have left earlier.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-past-counterfactual
+  pattern: si + plus-que-parfait, conditionnel passé ou présent
+  english: Explore a different past and its past or present consequence
+  note: A past counterfactual uses plus-que-parfait after si and conditional past for an imagined past
+    result. A conditional present result can describe an imagined consequence now. Keep that time contrast
+    explicit rather than force identical time reference in both halves. Ordinary conditional si still
+    does not take the conditional itself.
+  examples:
+  - target: Si j'avais reçu le message, je serais venu.
+    english: If I had received the message, I would have come.
+  - target: Si nous avions dormi, nous serions moins fatigués maintenant.
+    english: If we had slept, we would be less tired now.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-even-if-concession
+  pattern: même si + indicatif ; quand bien même + conditionnel
+  english: Keep a conclusion despite an actual or imagined obstacle
+  note: Même si follows ordinary si tense patterns, not bien que plus subjunctive. Its obstacle may be
+    accepted as real or merely imagined. The more formal quand bien même conventionally allows a conditional
+    and makes a strong concessive hypothesis. That exception must not be generalized to ordinary si clauses.
+  examples:
+  - target: Même si le travail est difficile, nous continuerons.
+    english: Even if the work is difficult, we will continue.
+  - target: Quand bien même nous aurions le temps, ce choix resterait difficile.
+    english: Even if we had the time, this choice would remain difficult.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-universal-concessive-relatives
+  pattern: quoi que / où que / qui que + subjonctif
+  english: Make a statement independent of an unspecified alternative
+  note: Quoi que, où que and qui que introduce unrestricted alternatives with the subjunctive. Separate
+    quoi que, whatever, from quoique, although. Quoi que takes the role of the thing done or said; it
+    is not simply a stylistic replacement for bien que. A finite main clause states what remains true
+    across the alternatives.
+  examples:
+  - target: Quoi que vous décidiez, expliquez votre choix.
+    english: Whatever you decide, explain your choice.
+  - target: Où que tu ailles, garde ce numéro.
+    english: Wherever you go, keep this number.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-exception-unless
+  pattern: à moins que + subjonctif ; sauf si + indicatif
+  english: State an exception that would defeat a proposed conclusion
+  note: À moins que introduces an exception with the subjunctive, while sauf si follows indicative si
+    patterns. Do not add pas merely because English uses unless. A formal optional ne after à moins que
+    can be expletive rather than negative; these examples omit it. Distinguish an exception from a condition
+    required for success.
+  examples:
+  - target: Nous partirons, à moins que le train soit annulé.
+    english: We will leave unless the train is cancelled.
+  - target: Je viendrai, sauf si la réunion commence trop tôt.
+    english: I will come unless the meeting starts too early.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-explicit-conditional-requirement
+  pattern: à condition que / pourvu que + subjonctif
+  english: Make acceptance depend on a stated requirement
+  note: À condition que states an explicit condition; pourvu que can mean provided that or, when independent,
+    express a wish. Both take the subjunctive, unlike si plus indicative. A stipulated requirement is
+    not evidence that it has been met. Use an infinitive after à condition de when the intended actor
+    is shared and clear.
+  examples:
+  - target: J'accepte, à condition que chacun ait le document.
+    english: I agree, on condition that everyone has the document.
+  - target: Nous pouvons commencer, pourvu que le système fonctionne.
+    english: We can start, provided that the system works.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-corrective-focus
+  pattern: non pas X, mais Y
+  english: Replace a mistaken characterization rather than add an objection
+  note: Non pas...mais rejects one identification or explanation and substitutes another of a comparable
+    grammatical type. Unlike ordinary mais, it does not leave the first alternative asserted. Keep the
+    contrast parallel and restrict the correction to what is actually being replaced, not every detail
+    of an earlier claim.
+  examples:
+  - target: Il faut modifier non pas le résultat, mais la méthode.
+    english: We need to change not the result, but the method.
+  - target: Je parle non pas de votre travail, mais de notre délai.
+    english: I am talking not about your work, but about our deadline.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-reserved-qualification
+  pattern: proposition ; encore faut-il que + subjonctif
+  english: Add a necessary qualification to an apparent solution
+  note: Encore faut-il que means that an additional requirement still needs to hold, not that an action
+    must happen again. This formal declarative frame uses fixed subject inversion. Write faut-il, not
+    faut-t-il, because faut already ends in t. Its subjunctive complement identifies the remaining condition
+    without asserting that it is satisfied.
+  examples:
+  - target: Le projet est utile ; encore faut-il que nous ayons le temps.
+    english: The project is useful; we still need to have the time.
+  - target: Cette solution est possible ; encore faut-il que chacun l'accepte.
+    english: This solution is possible; everyone still has to accept it.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-reported-anteriority
+  pattern: a dit que + plus-que-parfait / conditionnel passé
+  english: Preserve earlier events and future completion in past reporting
+  note: A plus-que-parfait complement can locate an event before a past report. A conditional past can
+    represent a future completion viewed from that past report, not necessarily an unrealized event. Re-anchor
+    demain as le lendemain when the reporting date has shifted. Do not backshift direct quotations or
+    erase a source's distinction between completed and merely planned actions.
+  examples:
+  - target: Elle a dit qu'elle avait déjà lu le document.
+    english: She said that she had already read the document.
+  - target: Il a dit qu'il aurait terminé le lendemain.
+    english: He said that he would have finished by the following day.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-reportive-conditional
+  pattern: selon une source, conditionnel présent / passé
+  english: Mark an attributed claim as unconfirmed by the reporter
+  note: In reporting, the conditional can distance the writer from an unconfirmed claim, including a completed
+    event with the conditional past. It does not mean that the claim is false, and it is not automatically
+    a polite or counterfactual conditional. Name the source and keep the degree of confirmation explicit
+    rather than using morphology to imply anonymous authority.
+  examples:
+  - target: Selon ce message, la réunion aurait été annulée.
+    english: According to this message, the meeting was reportedly cancelled.
+  - target: Selon l'auteur, cette méthode donnerait de meilleurs résultats.
+    english: According to the author, this method would reportedly give better results.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-propositional-relatives
+  pattern: ce qui / ce que / ce dont + proposition
+  english: Refer to a proposition or an unspecified thing by its role
+  note: Ce qui, ce que and ce dont supply an antecedent meaning what or that which and choose the relative
+    by its role in the clause. After a comma, ce qui can refer back to an entire preceding proposition
+    rather than its nearest noun. Distinguish this from an indirect question; the same surface ce que
+    can serve different functions according to the governing expression.
+  examples:
+  - target: Il explique ce dont nous avons besoin.
+    english: He explains what we need.
+  - target: Elle a expliqué son choix, ce qui nous a aidés.
+    english: She explained her choice, which helped us.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-paired-argument-structure
+  pattern: d'une part P, d'autre part Q
+  english: Organize two distinct considerations without forcing opposition
+  note: D'une part and d'autre part balance two considerations in a structured explanation. They may support
+    the same conclusion or pull in different directions; opposition is not built into the pair. Keep their
+    grammatical and argumentative scope parallel, and state the resulting recommendation separately when
+    the relationship between the considerations is not obvious.
+  examples:
+  - target: D'une part, ce choix coûte cher ; d'autre part, il prend du temps.
+    english: For one thing, this choice is expensive; for another, it takes time.
+  - target: D'une part, le projet est utile ; d'autre part, le délai est court.
+    english: On the one hand, the project is useful; on the other, the deadline is tight.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-cleft-focus
+  pattern: c'est X qui / que + proposition
+  english: Focus one constituent while keeping its grammatical role
+  note: A cleft highlights the person, thing, time or other constituent that answers a contextual contrast.
+    Qui introduces a subject gap and que an object or other appropriate gap. In c'est moi qui ai choisi,
+    the relative verb agrees with moi as first person, not with the impersonal-looking c'est. Focus can
+    suggest a contrast without automatically asserting that every other alternative is false.
+  examples:
+  - target: C'est moi qui ai choisi ce livre.
+    english: I am the one who chose this book.
+  - target: C'est ce livre que je voudrais lire.
+    english: It is this book that I would like to read.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-dislocated-topics
+  pattern: thème, pronom + proposition ; proposition, thème
+  english: Detach a topic and resume it inside the clause
+  note: Left dislocation sets up a topic before the clause; right dislocation adds or clarifies it afterward.
+    A subject or object pronoun resumes the topic according to its role. This is common in conversation
+    but is not a neutral substitute for every compact written sentence. Unlike a cleft, dislocation generally
+    establishes what is being discussed rather than selecting a focused answer.
+  examples:
+  - target: Ce livre, je l'ai déjà lu.
+    english: That book, I have already read it.
+  - target: Elle est utile, cette méthode.
+    english: It is useful, this method.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-negation-quantifier-scope
+  pattern: ne...pas tous / toutes ; aucun / aucune...ne
+  english: Distinguish not all members from no members
+  note: Ne...pas tous denies completeness while leaving open that some members satisfy the description.
+    Aucun...ne excludes every member and normally has a singular noun and verb. An initial tous with negation
+    can be read ambiguously; rewrite when the distinction matters. Do not add pas after subject aucun
+    in the ordinary negative pattern.
+  examples:
+  - target: Les documents ne sont pas tous signés.
+    english: Not all the documents are signed.
+  - target: Aucun document n'est signé.
+    english: No document is signed.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-rejected-motive
+  pattern: ce n'est pas que + subjonctif, mais + explication
+  english: Reject an inferred reason before giving the actual explanation
+  note: Ce n'est pas que places a proposed explanation at a distance and normally uses the subjunctive.
+    The following mais clause supplies the speaker's alternative reason, rather than merely reversing
+    a factual adjective. A negative inside the subjunctive clause retains its own meaning. Veuille is
+    an irregular subjunctive form of vouloir, not a regular -er form.
+  examples:
+  - target: Ce n'est pas que le projet soit inutile, mais il coûte cher.
+    english: It is not that the project is useless, but it is expensive.
+  - target: Ce n'est pas que je ne veuille pas venir, mais je travaille.
+    english: It is not that I do not want to come, but I am working.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-spoken-reductions
+  pattern: '[conversation familière] je sais pas ; y a ; t''es'
+  english: Recognize common reductions without universalizing them
+  note: 'Informal speech often omits negative ne and can reduce il y a to y a or tu es to t''es. These
+    written representations are recognition aids, not a pronunciation transcription or a rule for formal
+    writing. Preserve the remaining negative word: pas, jamais and plus are not interchangeable. Reduction
+    varies across speakers and settings, and does not license arbitrary elision or liaison at every boundary.
+    The café example intends the negative reading; without audio or context, written plus can also mean
+    more.'
+  examples:
+  - target: Je sais pas où elle est.
+    english: I do not know where she is.
+  - target: Y a plus de café.
+    english: There is no coffee left.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-formal-question-inversion
+  pattern: verbe-pronom ? ; a-t-il / elle + participe ?
+  english: Form a compact question in a more formal register
+  note: Pronoun inversion attaches the subject with a hyphen to the finite verb or auxiliary. Insert -t-
+    in a-t-elle or va-t-il, but not after an existing t or d, as in vient-il or prend-il. With a noun
+    subject, formal complex inversion can repeat it with a pronoun. Puis-je is a special form of pouvoir;
+    inversion does not mechanically produce a natural form for every je verb.
+  examples:
+  - target: Avez-vous reçu mon message ?
+    english: Have you received my message?
+  - target: A-t-elle compris la question ?
+    english: Has she understood the question?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-expletive-ne
+  pattern: craindre que ne ; avant que ne ; plus...que ne
+  english: Recognize optional formal ne that does not negate its clause
+  note: Formal French can add a nonnegative ne after certain affirmative fear expressions, avant que,
+    à moins que, and comparisons of inequality. It is optional in these uses and is not licensed after
+    every subjunctive trigger. Actual negative ne...pas keeps its negative meaning. Fear and avant que
+    select the subjunctive, but a comparison with expletive ne need not do so. Crains is the irregular
+    present je form of craindre.
+  examples:
+  - target: Je crains qu'elle ne parte.
+    english: I fear that she will leave.
+  - target: Il travaille plus que je ne pensais.
+    english: He works more than I thought.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-formal-directive-frames
+  pattern: veuillez + infinitif ; merci de + infinitif
+  english: Adapt an instruction without disguising its requested action
+  note: Veuillez is a conventional imperative form of vouloir used in formal requests and instructions.
+    Merci de can anticipate compliance rather than thank someone for a completed action. Neither frame
+    automatically makes a demand considerate; authority, burden and the possibility of refusal still matter.
+    Compare a conditional request when genuine choice is intended.
+  examples:
+  - target: Veuillez lire le document avant la réunion.
+    english: Please read the document before the meeting.
+  - target: Merci de fermer la porte.
+    english: Please close the door.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-as-if-comparison
+  pattern: comme si + imparfait / plus-que-parfait
+  english: Compare an appearance or behavior with an imagined situation
+  note: Comme si uses the imparfait for an imagined simultaneous situation and plus-que-parfait for an
+    imagined earlier event. It does not normally take the conditional. The comparison may suggest that
+    the imagined situation is false, but can also describe an impression without deciding its truth. Interpret
+    imagery through the context, not by treating the comparison as a literal assertion.
+  examples:
+  - target: Elle parle comme si elle connaissait la réponse.
+    english: She speaks as if she knew the answer.
+  - target: Il regarde la photo comme s'il ne l'avait jamais vue.
+    english: He looks at the photo as if he had never seen it.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-frustrated-effort-avoir-beau
+  pattern: avoir beau + infinitif, résultat contraire
+  english: Present an effort or circumstance as unable to change an outcome
+  note: Avoir beau is a fixed concessive frame, unrelated to describing something as beautiful. It presents
+    an effort, repeated action, or admitted circumstance as insufficient to change the result. The verb
+    after beau stays infinitive, and the second clause supplies the contrary outcome; no literal possessive
+    reading explains the construction.
+  examples:
+  - target: J'ai beau expliquer, il ne comprend pas.
+    english: No matter how much I explain, he does not understand.
+  - target: Elle a eu beau chercher, elle n'a pas trouvé les clés.
+    english: However hard she looked, she did not find the keys.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-literal-interpretation-frame
+  pattern: prendre des propos au pied de la lettre
+  english: Contrast a literal reading with intended nonliteral meaning
+  note: Prendre au pied de la lettre means interpreting wording literally; it does not refer to a physical
+    foot or necessarily to a mailed letter. This idiomatic use of prendre is supported by the construction,
+    not by its selected food-and-drink sense. Context must justify a figurative or ironic interpretation;
+    an unfamiliar expression is not automatically nonliteral.
+  examples:
+  - target: Il ne faut pas prendre sa réponse au pied de la lettre.
+    english: You should not take his or her answer literally.
+  - target: Elle a pris mon message au pied de la lettre.
+    english: She took my message literally.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-minimal-concessive-reason
+  pattern: ne serait-ce que pour + infinitif
+  english: Offer a minimal reason without excluding stronger reasons
+  note: Ne serait-ce que introduces a minimal sufficient consideration, often translated if only or even
+    just. Unlike an ordinary ne...que restriction, it does not assert that the stated reason is the only
+    one. Treat serait-ce as part of this fixed conditional inversion frame, not as a question demanding
+    a yes-no answer.
+  examples:
+  - target: Il faut venir, ne serait-ce que pour écouter.
+    english: You should come, if only to listen.
+  - target: Relisons le document, ne serait-ce que pour vérifier la date.
+    english: Let us reread the document, if only to check the date.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-nonspecific-relative-mood
+  pattern: chercher un nom qui + subjonctif / identifier le nom qui + indicatif
+  english: Contrast a sought property with an identified referent
+  note: A subjunctive relative can describe a desired or nonidentified referent without asserting that
+    one exists. An indicative relative commonly describes an identified or asserted referent. The article
+    alone does not determine mood, and indefinite un can introduce a real known item. Preserve the speaker's
+    intended existence claim instead of mechanically changing every indefinite relative.
+  examples:
+  - target: Je connais une personne qui peut expliquer ce problème.
+    english: I know someone who can explain this problem.
+  - target: Je cherche une personne qui puisse expliquer ce problème.
+    english: I am looking for someone who can explain this problem.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-concessive-tout-gerund
+  pattern: tout en + participe présent
+  english: Combine simultaneous action with a contextual concession
+  note: Tout en can emphasize simultaneous actions or, in context, an apparent contrast between them.
+    It does not invariably mean although. The gerund remains invariable and normally shares the main subject;
+    its compactness does not license an unclear change of actor. Use a finite concessive clause when different
+    subjects would otherwise be confused.
+  examples:
+  - target: Elle répond tout en lisant le document.
+    english: She answers while reading the document.
+  - target: Tout en comprenant votre choix, je préfère attendre.
+    english: Although I understand your choice, I prefer to wait.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-respective-pairing
+  pattern: A et B + respectivement + X et Y
+  english: Map two ordered lists without merging their properties
+  note: Respectivement pairs the first member of one list with the first of the other, and so on. It does
+    not mean that all properties apply to every member. Keep list lengths and order clear; repeat complete
+    clauses if the pairing would be hard to recover. Agreement still follows the participants actually
+    described.
+  examples:
+  - target: Les trains A et B partent respectivement à huit et neuf heures.
+    english: Trains A and B leave at eight and nine o'clock respectively.
+  - target: Les livres A et B coûtent respectivement dix et vingt euros.
+    english: Books A and B cost ten and twenty euros respectively.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-domain-framing
+  pattern: quant à / en ce qui concerne + domaine, proposition
+  english: Limit an evaluation to a named domain or participant
+  note: Quant à and en ce qui concerne introduce the domain of a following comment, often shifting from
+    an earlier topic. They do not by themselves express a cause or an objection. Quant à keeps the accent
+    on à and contracts to quant au or quant aux before the appropriate article. A judgment about one domain
+    should not silently become a judgment about the whole proposal.
+  examples:
+  - target: Quant au délai, nous pouvons attendre.
+    english: As for the deadline, we can wait.
+  - target: En ce qui concerne le coût, ce choix reste possible.
+    english: As far as cost is concerned, this choice remains possible.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-passe-simple-recognition
+  pattern: '[lecture narrative] entra / prit / partit'
+  english: Recognize bounded narrative events in the passé simple
+  note: In literary and historical narrative, the passé simple presents bounded events that ordinary conversation
+    usually gives in passé composé. Recognize regular -er forms such as entra and fermèrent alongside
+    irregular prit, vit, fut and eut. Do not infer those forms merely from a known infinitive. This item
+    supports contextual reading and paraphrase, not an ordinary requirement to speak in the passé simple.
+  examples:
+  - target: Il entra, puis ferma la porte.
+    english: He entered, then closed the door.
+  - target: Elle prit le livre et partit.
+    english: She took the book and left.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-narrative-present
+  pattern: repère passé + présent de narration
+  english: Shift to present forms inside a clearly past narrative
+  note: A narrative present brings past events into a vivid telling without moving their actual date to
+    now. A past time anchor or established narrative frame keeps the chronology recoverable. Distinguish
+    it from a genuinely current report and from a timeless generalization. Shifting tense can change viewpoint
+    or emphasis, but unexplained switches may simply confuse the reader.
+  examples:
+  - target: Ce jour-là, elle entre et voit le livre.
+    english: That day, she comes in and sees the book.
+  - target: En 1910, la famille quitte la ville.
+    english: In 1910, the family leaves the town.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-free-indirect-discourse
+  pattern: récit à la troisième personne + pensée sans verbe introducteur
+  english: Recognize a character's viewpoint inside narrative wording
+  note: Free indirect discourse can retain third-person narrative tenses while echoing a character's questions,
+    evaluations or deictic words such as demain. Without a reporting verb, context is needed to attribute
+    the thought; not every question belongs to a character. Paraphrase with an explicit reporting frame
+    when clarifying who thinks what, while preserving the original time relationships.
+  examples:
+  - target: Elle regarda la porte. Pourquoi était-elle fermée ?
+    english: She looked at the door. Why was it closed?
+  - target: Il lisait le message. Demain, il partirait !
+    english: He was reading the message. Tomorrow he would leave!
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-relative-information-status
+  pattern: nom qui restreint ; nom, qui ajoute, proposition
+  english: Distinguish identifying relatives from added commentary
+  note: A restrictive relative selects a subset needed to identify the referent. A comma-delimited relative
+    adds a comment about an already identified referent and may change which people the statement covers.
+    Punctuation helps signal this written contrast but context still establishes the relevant group. Removing
+    commas is therefore not always a harmless stylistic edit.
+  examples:
+  - target: Les collègues qui ont lu le texte sont prêts.
+    english: The colleagues who have read the text are ready.
+  - target: Les collègues, qui ont lu le texte, sont prêts.
+    english: The colleagues, who have read the text, are ready.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-concessive-si-inference
+  pattern: si P, Q ne...pas pour autant
+  english: Accept a premise while rejecting an unwarranted conclusion
+  note: In a concessive reading, si can acknowledge a premise rather than leave it hypothetical. Ne...pas
+    pour autant rejects the inference that the premise alone would justify. Context must distinguish that
+    reading from a genuine open condition. Explain the missing reasoning instead of treating the connector
+    itself as a refutation of the other person's evidence.
+  examples:
+  - target: Si le projet est utile, il n'est pas pour autant urgent.
+    english: Although the project is useful, that does not make it urgent.
+  - target: Si elle connaît le problème, elle n'a pas pour autant la solution.
+    english: Although she knows the problem, that does not mean she has the solution.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-extent-and-grounds
+  pattern: dans la mesure où + indicatif
+  english: Qualify a claim by its extent or by stated grounds
+  note: Dans la mesure où can mean to the extent that or, in context, insofar as or since. The extent
+    reading limits the conclusion; the causal reading supplies grounds presented as holding. Do not switch
+    between them invisibly when summarizing a source. Use an explicit condition or a degree phrase if
+    the intended limitation would otherwise be ambiguous.
+  examples:
+  - target: Dans la mesure où le document est clair, nous pouvons le comprendre.
+    english: Insofar as the document is clear, we can understand it.
+  - target: Cette conclusion est valable dans la mesure où les données sont fiables.
+    english: This conclusion is valid to the extent that the data are reliable.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-discourse-clarification
+  pattern: à savoir + précision ; autrement dit + reformulation
+  english: Distinguish specifying content from paraphrasing a claim
+  note: À savoir identifies the content of a previously announced category or list, whereas autrement
+    dit offers a reformulation. A paraphrase should preserve the claim's strength and scope; a new inference
+    is not automatically an equivalent restatement. If the earlier wording was wrong rather than merely
+    unclear, a repair such as ou plutôt makes the correction explicit.
+  examples:
+  - target: Il reste une tâche, à savoir vérifier les données.
+    english: One task remains, namely checking the data.
+  - target: Nous devons revoir le projet ; autrement dit, le travail n'est pas terminé.
+    english: We need to revisit the project; in other words, the work is not finished.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-residual-concessive-assertion
+  pattern: il n'en reste pas moins que + indicatif
+  english: Preserve a claim after acknowledging a relevant objection
+  note: This fixed concessive frame means it nevertheless remains true that. Despite ne and pas, it positively
+    maintains the following indicative claim. En points back to the acknowledged circumstances as part
+    of the frame, not to a newly countable noun. The construction does not erase the objection; explain
+    why the retained claim still matters to the final conclusion.
+  examples:
+  - target: Le projet est utile. Il n'en reste pas moins qu'il coûte cher.
+    english: The project is useful. Nevertheless, it remains expensive.
+  - target: Nous avons avancé. Il n'en reste pas moins que le problème existe.
+    english: We have made progress. Nevertheless, the problem still exists.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-professional-considerate-request
+  pattern: je vous serais reconnaissant de + infinitif
+  english: Frame a correspondence request as prospective gratitude
+  note: The conditional serais plus reconnaissant de is a formal request frame, not a report that the
+    action has already happened. Reconnaissant agrees with the requester, not with vous; a woman writes
+    reconnaissante. Keep the requested action and any deadline explicit, and do not mistake elaborate
+    wording for permission to impose an unreasonable burden.
+  examples:
+  - target: Je vous serais reconnaissant de m'envoyer le document.
+    english: I would be grateful if you could send me the document.
+  - target: Nous vous serions reconnaissants de confirmer la date.
+    english: We would be grateful if you could confirm the date.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-professional-default-proposal
+  pattern: sauf objection, proposition au futur
+  english: Propose a default while explicitly leaving room for objection
+  note: Sauf objection presents a proposed default, not a completed group decision. Name whose response
+    is needed and by when in the surrounding correspondence; silence does not universally establish consent.
+    This noun-based exception frame differs from si plus a finite condition and is useful only where the
+    group accepts this way of coordinating.
+  examples:
+  - target: Sauf objection, nous commencerons la réunion à neuf heures.
+    english: Unless anyone objects, we will start the meeting at nine o'clock.
+  - target: Sauf objection, j'enverrai le document demain.
+    english: Unless anyone objects, I will send the document tomorrow.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-professional-explicit-commitment
+  pattern: personne + s'engager à + infinitif
+  english: Attribute a stated commitment to a named responsible actor
+  note: S'engager à plus infinitive states a commitment by its subject. The infinitive's understood actor
+    is that same person or group; changing the actor requires a different clause. Distinguish a commitment
+    from a wish, a forecast, and a completed task. The wording records an undertaking in context, not
+    evidence of delivery or a conclusion about legal enforceability.
+  examples:
+  - target: Je m'engage à envoyer le document lundi.
+    english: I commit to sending the document on Monday.
+  - target: Nous nous engageons à vérifier les dates.
+    english: We commit to checking the dates.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-technical-infinitive-directives
+  pattern: infinitif de consigne ; ne pas + infinitif
+  english: Read impersonal procedural and prohibitive instructions
+  note: Labels and procedures can use an infinitive without a finite subject to direct an understood operator.
+    Negative infinitive instructions place ne pas before the verb, unlike a finite imperative's surrounding
+    negation. Avant de plus infinitive orders an action by the same operator. A concise instruction must
+    not omit a safety condition required by the real procedure.
+  examples:
+  - target: Ne pas ouvrir l'appareil.
+    english: Do not open the device.
+  - target: Vérifier le câble avant de commencer.
+    english: Check the cable before starting.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-technical-nominal-preconditions
+  pattern: en cas de / en l'absence de + nom, consigne
+  english: Attach a procedural response to a named condition
+  note: En cas de introduces a possible event requiring a response; en l'absence de specifies that a relevant
+    item or signal is missing. They take noun phrases rather than finite clauses and do not assert that
+    a fault currently exists. Keep the response limited to the described procedure; absence of a message
+    alone does not establish a general diagnosis.
+  examples:
+  - target: En cas de panne, éteindre l'appareil.
+    english: In the event of a fault, switch off the device.
+  - target: En l'absence de message, vérifiez le câble.
+    english: If there is no message, check the cable.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-technical-necessary-condition
+  pattern: P ne...que si Q ; si Q, alors P
+  english: Distinguish a necessary condition from a sufficient trigger
+  note: P only if Q makes Q necessary for P; it does not assert that Q alone is enough. If Q then P presents
+    Q as sufficient within the stated system description. Keep that direction explicit in troubleshooting
+    and do not reverse a dependency. These examples describe an illustrative system, not universal behavior
+    of every device.
+  examples:
+  - target: Le système ne fonctionne que si le câble est branché.
+    english: The system works only if the cable is connected.
+  - target: Si le câble est débranché, le système s'arrête.
+    english: If the cable is disconnected, the system stops.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-scientific-association-limit
+  pattern: association constatée, sans que + subjonctif
+  english: Acknowledge an association without asserting a causal proof
+  note: Sans que plus subjunctive denies an accompanying conclusion or circumstance while leaving the
+    main observation in place. Do not add pas merely to translate without. Naming an observed association
+    does not establish its causal direction or remove alternative explanations. The examples illustrate
+    reporting syntax, not actual research findings.
+  examples:
+  - target: Les résultats sont associés à la durée, sans que cela prouve un effet.
+    english: The results are associated with duration, without this proving an effect.
+  - target: Une corrélation est observée, sans que cela établisse une cause.
+    english: A correlation is observed, without this establishing a cause.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-scientific-ranges-bounds
+  pattern: entre X et Y ; de X à Y ; au moins / au plus X
+  english: State measurement ranges without confusing their bounds
+  note: Pair entre with et and de with à; do not mix the two frames. Au moins sets an inclusive lower
+    bound and au plus an inclusive upper bound. State units and the measured quantity rather than let
+    bare numbers suggest precision. Ordinary entre may leave endpoint inclusion unclear, so specify it
+    when a method depends on that distinction.
+  examples:
+  - target: La température reste entre vingt et trente degrés Celsius.
+    english: The temperature stays between twenty and thirty degrees Celsius.
+  - target: Nous avons observé au moins trois cas.
+    english: We observed at least three cases.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-scientific-inference-scope
+  pattern: P ne signifie pas nécessairement que Q
+  english: Reject a necessary inference without asserting its opposite
+  note: Pas nécessairement rejects the claim that a conclusion must follow; it does not establish that
+    the conclusion is false. A subjunctive complement can keep the proposition nonasserted, while an indicative
+    may retain it as a proposition under discussion. Explain the missing evidence or limited sampling
+    context instead of allowing a hedge to conceal the scope of the argument.
+  examples:
+  - target: Ce résultat ne signifie pas nécessairement que l'hypothèse soit fausse.
+    english: This result does not necessarily mean that the hypothesis is false.
+  - target: Un résultat stable ne signifie pas nécessairement que la méthode soit exacte.
+    english: A stable result does not necessarily mean that the method is accurate.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-literary-past-anterior-recognition
+  pattern: '[lecture] dès que + eut / fut + participe passé'
+  english: Recognize completion before a literary narrative event
+  note: The passé antérieur uses passé simple auxiliaries, including eut from avoir and fut from être,
+    plus a participle. It often marks completion before another bounded past event after dès que or lorsque.
+    Partit and ferma in the examples are passé simple forms of partir and fermer. These forms are introduced
+    here for contextual reading independently of the later core narrative survey. Paraphrase the sequence
+    in contemporary French; ordinary speech need not adopt either literary tense.
+  examples:
+  - target: Dès qu'il eut lu le message, il partit.
+    english: As soon as he had read the message, he left.
+  - target: Dès qu'elle fut arrivée, la porte se ferma.
+    english: As soon as she had arrived, the door closed.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-literary-imperfect-subjunctive-recognition
+  pattern: '[lecture] verbe passé + que + fût / vînt / parlât'
+  english: Recognize a literary subjunctive under a past viewpoint
+  note: Literary sequence of tenses can use the imperfect subjunctive where contemporary ordinary French
+    commonly keeps the present subjunctive. Fût, vînt and parlât are forms of être, venir and parler;
+    their circumflex distinguishes some forms from passé simple spellings. Do not generate them by adding
+    an accent to every past form. The goal is contextual recognition and paraphrase, not an expectation
+    of ordinary conversational production.
+  examples:
+  - target: Elle voulait qu'il vînt avant la nuit.
+    english: She wanted him to come before nightfall.
+  - target: Il fallait que la porte fût ouverte.
+    english: The door had to be open.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-literary-pluperfect-subjunctive-recognition
+  pattern: '[lecture] eût / fût + participe sous un cadre subjonctif'
+  english: Recognize anteriority in a literary subjunctive compound
+  note: 'The literary pluperfect subjunctive combines an imperfect subjunctive auxiliary with a participle:
+    eût lu or fût partie. It marks an earlier event within a subjunctive-selecting frame; distinguish
+    eût and fût from passé antérieur eut and fut. Preserve auxiliary choice and agreement. Interpret the
+    temporal relationship and recast it in ordinary French rather than require this marked compound in
+    everyday speech.'
+  examples:
+  - target: Elle regrettait qu'il eût lu le message.
+    english: She regretted that he had read the message.
+  - target: Bien qu'elle fût partie tôt, elle arriva après lui.
+    english: Although she had left early, she arrived after him.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-polite-request
+  pattern: S'il vous plaît
+  english: Make a polite request
+  note: Learn this fixed polite appeal to one unfamiliar person or several people. Later, attach the same
+    appeal to the one taught noun request L'addition, s'il vous plaît. The contracted L' is licensed here
+    only before addition. These are narrow formulae, not a lesson on conditional si, object clitics, all
+    articles or the verb plaire; no unrelated plaire sense is awarded.
+  examples:
+  - target: S'il vous plaît.
+    english: Please.
+  - target: L'addition, s'il vous plaît.
+    english: The bill, please.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-communication-repair
+  pattern: Parlez plus lentement / Je ne comprends pas
+  english: Ask for slower speech and signal misunderstanding
+  note: Learn two fixed repair moves, not the full imperative or negative system. Parlez plus lentement,
+    s'il vous plaît asks for slower speech; Je ne comprends pas reports a present comprehension problem
+    without blaming the other person. Keep ne in this careful model. The original reading uses plus as
+    /ply/ before lentement, not a universal pronunciation of plus. These whole formulae do not award generic
+    parler, comprendre or an unrelated sense of plus.
+  examples:
+  - target: Parlez plus lentement, s'il vous plaît.
+    english: Please speak more slowly.
+  - target: Je ne comprends pas.
+    english: I do not understand.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-polite-assistance
+  pattern: Pouvez-vous répéter / m'aider / écrire l'adresse
+  english: Ask someone to repeat, help or write an address
+  note: Learn only these three polite Pouvez-vous requests, not the pouvoir paradigm or unrestricted infinitive
+    substitution. Répéter refers to what was just said; m'aider asks for help without promising its availability.
+    The writing fragment accepts only adresse and keeps l'. Its original contextual reading includes the
+    /z/ liaison in vous écrire inside the construction chunk. The fixed parts do not grant independent
+    pouvoir, aider or écrire mastery.
+  examples:
+  - target: Pouvez-vous répéter ?
+    english: Could you repeat that?
+  - target: Pouvez-vous m'aider ?
+    english: Could you help me?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-would-like
+  pattern: Je voudrais de l'eau / un billet / une chambre / payer
+  english: Make a limited polite request
+  note: Learn the fixed request Je voudrais, not the conditional conjugation of vouloir or its separate
+    lexical senses. Licensed continuations are de l'eau, un billet, un café, une chambre, une facture
+    and the infinitive payer. De l' is the water expression here, not the selected relational sense of
+    de; un and une are construction material, not extra lexical entries. Keep each article with its constrained
+    noun; do not transfer un to a vowel-initial noun without a new contextual realization.
+  examples:
+  - target: Je voudrais de l'eau.
+    english: I would like some water.
+  - target: Je voudrais un billet.
+    english: I would like a ticket.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-location-question
+  pattern: Où est la gare / l'hôtel / Où sont les toilettes
+  english: Ask where a taught place or the toilets are
+  note: Learn these limited location questions, not all être forms or noun genders. Où est la accepts
+    gare or pharmacie; Où est l' accepts hôtel, whose mute h permits elision. The plural question is limited
+    to Où sont les toilettes. Source toilette has a region-labeled singular lavatory sense; the original
+    France-centered formula here deliberately uses the attested plural toilettes, not a claim that singular
+    toilette is the usual France request. The source-supported plural retains its own realization evidence.
+  examples:
+  - target: Où est la gare ?
+    english: Where is the railway station?
+  - target: Où sont les toilettes ?
+    english: Where are the toilets?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-need
+  pattern: J'ai besoin d'aide / d'un médecin
+  english: State a need for help or a doctor
+  note: Learn only J'ai besoin d'aide and J'ai besoin d'un médecin, not all avoir, besoin or de constructions.
+    D' is retained in each constrained fragment. These requests communicate a need; they neither diagnose
+    a condition nor guarantee that a doctor or help is available. Keep médecin distinct from a pharmacy
+    location request. The fixed frame does not award a generic avoir sense or the unrelated selected relational
+    sense of de.
+  examples:
+  - target: J'ai besoin d'aide.
+    english: I need help.
+  - target: J'ai besoin d'un médecin.
+    english: I need a doctor.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-direction
+  pattern: À gauche / À droite
+  english: Indicate left or right
+  note: Learn these two short directional replies, not all uses of à. They may point out a side or the
+    direction of a turn once the place or movement is clear. Gauche and droite are the selected noun senses
+    for the two sides, not political affiliation, a straight line or adjective agreement. The fragment
+    accepts only these two taught words.
+  examples:
+  - target: À gauche.
+    english: To the left.
+  - target: À droite.
+    english: To the right.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-time-question
+  pattern: À quelle heure / À quelle heure est le départ
+  english: Ask the time of an understood event or departure
+  note: Learn this narrow time question, not the whole question-word or être system. À quelle heure relies
+    on an event already under discussion; the later departure variant names it explicitly. Quelle is fixed
+    with feminine heure. The departure bridge is allowed only between heure and départ. This route teaches
+    asking for a time, not decoding all numbers or timetables; use the earlier repetition request when
+    an answer is unclear. The segmented guide does not prescribe a pause between quelle and heure.
+  examples:
+  - target: À quelle heure ?
+    english: At what time?
+  - target: À quelle heure est le départ ?
+    english: At what time is the departure?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-have
+  pattern: J'ai une réservation / une allergie
+  english: State a reservation or an allergy
+  note: Learn only these two J'ai une statements, not all possession meanings or avoir conjugations. Une
+    is fixed feminine construction material, never a separate lexical entry. Une allergie states that
+    an allergy exists without identifying its trigger, severity or treatment; further clarification is
+    necessary. The already pronounced /n/ before allergie may resyllabify in connected speech; the separate
+    chunks do not require a pause.
+  examples:
+  - target: J'ai une réservation.
+    english: I have a reservation.
+  - target: J'ai une allergie.
+    english: I have an allergy.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-not-working
+  pattern: La clé ne fonctionne pas
+  english: Report that the key does not work
+  note: Learn this one negative service-problem report, not every ne...pas sentence or fonctionner form.
+    La and the negative predicate are constrained to clé, the selected unlocking-device sense. The statement
+    reports what you encounter; it does not identify the cause or promise a replacement. The careful original
+    pronunciation keeps ne.
+  examples:
+  - target: La clé ne fonctionne pas.
+    english: The key does not work.
+  - target: La clé ne fonctionne pas. Pouvez-vous m'aider ?
+    english: The key does not work. Could you help me?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-milk-check
+  pattern: Sans lait / Est-ce qu'il y a du lait
+  english: Request no milk and check whether milk is present
+  note: Learn this pair of milk-specific request and checking formulae, not all sans, partitives or il
+    y a questions. Sans lait is a short instruction for an order; Est-ce qu'il y a du lait asks about
+    the item currently being discussed. Both fragments accept only lait. They do not cover every allergen,
+    establish absence of traces, or make a meal safe; an answer may require clarification. Do not treat
+    these fixed chunks as separate mastery of their function words.
+  examples:
+  - target: Sans lait, s'il vous plaît.
+    english: Without milk, please.
+  - target: Est-ce qu'il y a du lait ?
+    english: Is there any milk in it?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-price-question
+  pattern: Combien ça coûte
+  english: Ask the price of the item under discussion
+  note: Learn this fixed price question, not the conjugation of coûter or all uses of combien and ça.
+    Point to or establish the item first; the phrase alone does not specify a quantity, currency or what
+    is included. Recognizing the question does not demonstrate understanding an unfamiliar spoken price.
+  examples:
+  - target: Combien ça coûte ?
+    english: How much does it cost?
+  - target: Combien ça coûte, s'il vous plaît ?
+    english: How much does it cost, please?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-card-payment
+  pattern: Est-ce que je peux payer par carte
+  english: Ask whether you can pay by card
+  note: Learn this limited permission question, not all pouvoir or est-ce que questions. The fragment
+    accepts only carte in its selected card sense, not its map or menu senses. Par carte is the fixed
+    payment-method expression here, without an article. This asks whether payment is possible; it does
+    not claim a particular card will be accepted or describe any current rule.
+  examples:
+  - target: Est-ce que je peux payer par carte ?
+    english: Can I pay by card?
+  - target: Est-ce que je peux payer par carte, s'il vous plaît ?
+    english: Can I pay by card, please?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-lost-description
+  pattern: Mon bagage est perdu / Je suis perdu ou perdue
+  english: Describe lost luggage or being lost yourself
+  note: Learn only these subject-plus-lost descriptions, not the être paradigm or a past tense. Perdu
+    is the selected adjective lost, not a credited participle of perdre. It agrees with masculine singular
+    bagage. A speaker uses Je suis perdu or Je suis perdue according to the agreement they use for themselves;
+    the attested feminine perdue is not another headword and has the same reference reading here. The
+    luggage bridge accepts only bagage before it and perdu after it; no new adjective may be substituted.
+  examples:
+  - target: Mon bagage est perdu.
+    english: My luggage is lost.
+  - target: Je suis perdue.
+    english: I am lost (speaker using feminine agreement).
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-search-belonging
+  pattern: Je cherche mon bagage
+  english: Say you are looking for your luggage
+  note: Learn this single search statement, not the chercher conjugation or all possessive determiners.
+    Mon is fixed with masculine singular bagage, using its luggage sense. It identifies what you seek
+    but does not identify the bag for someone else; use a follow-up exchange rather than assume recovery.
+    The prefix accepts only bagage.
+  examples:
+  - target: Je cherche mon bagage.
+    english: I am looking for my luggage.
+  - target: Je cherche mon bagage. Pouvez-vous m'aider ?
+    english: I am looking for my luggage. Could you help me?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-delay
+  pattern: Le train est en retard
+  english: Report or check that the train is delayed
+  note: Learn this one current-state report and its confirmation-question use, not all être forms or time
+    prepositions. En retard is a fixed predicate here; en does not award the selected indefinite-quantity
+    clitic sense. The original est en chunk includes /t/ liaison internally. There is no added liaison
+    after the singular subject train. This reports a delay without predicting a departure time or stating
+    a passenger entitlement.
+  examples:
+  - target: Le train est en retard.
+    english: The train is delayed.
+  - target: Le train est en retard ? Pouvez-vous répéter ?
+    english: The train is delayed? Could you repeat that?
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-urgent-help
+  pattern: C'est une urgence / Appelez un médecin
+  english: State urgency and ask someone to call a doctor
+  note: Learn these two fixed urgent-help moves, not a general imperative or être conjugation lesson.
+    C'est une accepts only urgence; Appelez un accepts only médecin. The latter asks one unfamiliar person
+    or several people to call a doctor, not to diagnose or perform a treatment. The source word médecin
+    was introduced earlier. The original C'est une chunk includes /t/ liaison; the careful Appelez un
+    model does not add optional postverbal liaison. These formulae supply no emergency number, guarantee
+    of response, service availability or clinical advice.
+  examples:
+  - target: C'est une urgence.
+    english: This is an emergency.
+  - target: Appelez un médecin.
+    english: Call a doctor.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.
+- id: fr-g-travel-destination
+  pattern: Je vais à l'aéroport
+  english: State that you are going to the airport
+  note: Learn this fixed destination statement, not every aller form or the near future construction.
+    À l' is retained before the vowel-initial aéroport, the only allowed slot. Vais names movement toward
+    that place, not a promised transport service, route or arrival time. A memorized statement does not
+    demonstrate independent choice of destination prepositions.
+  examples:
+  - target: Je vais à l'aéroport.
+    english: I am going to the airport.
+  - target: Je vais à l'aéroport. J'ai besoin d'aide.
+    english: I am going to the airport. I need help.
+  source_id: original-fr
+  level_basis: Independent original teaching construction; no official proficiency band.

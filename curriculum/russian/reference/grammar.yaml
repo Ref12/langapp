@@ -1,0 +1,1951 @@
+- id: ru-g-polite-repair
+  pattern: Извините. Повторите, пожалуйста.
+  english: Greet politely and ask for communication repair
+  note: Learn polite attention, repair, thanks, and closing chunks as usable wholes before analyzing the
+    imperative. Please does not remove the need for appropriate tone. Здравствуйте is a polite greeting;
+    привет is familiar. Спасибо за names what the thanks concern with an accusative object. До свидания
+    is a fixed goodbye, not a claim about a date or appointment.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Здравствуйте. Повторите, пожалуйста.
+    english: Hello. Please repeat that.
+  - target: Извините. Говорите медленнее, пожалуйста.
+    english: Excuse me. Please speak more slowly.
+  - target: Напишите, пожалуйста.
+    english: Please write it down.
+  source_id: original-ru
+- id: ru-g-present-identity
+  pattern: Я [name]. Это [noun].
+  english: State identity without a present-tense copula
+  note: Ordinary present-tense identity sentences normally omit a verb equivalent to am or is. Это can
+    introduce or identify something without agreeing with the following noun. Меня зовут and the polite
+    question Как вас зовут are naming chunks, not word-for-word English name sentences. Names in examples
+    are replaceable support, not automatically mastered vocabulary.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я Анна. Это Игорь.
+    english: I am Anna. This is Igor.
+  - target: Меня зовут Олег. Я студент.
+    english: My name is Oleg. I am a student.
+  source_id: original-ru
+- id: ru-g-polite-vy
+  pattern: Вы [verb]? Ты [verb]?
+  english: Choose polite or familiar personal address
+  note: Вы addresses several people or one person politely and takes plural verb forms. Ты addresses one
+    familiar person. Do not change to ты merely because English has only you. Capital Вы is possible in
+    personal correspondence but is not required in every polite text.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Вы понимаете?
+    english: Do you understand? (polite or plural)
+  - target: Ты понимаешь?
+    english: Do you understand? (familiar singular)
+  source_id: original-ru
+- id: ru-g-basic-questions
+  pattern: Кто это? Что это? Где [noun]? Когда [event]?
+  english: Ask identity, location, or time without an auxiliary
+  note: Кто asks about a person, что about a thing or identification, где about location, and когда about
+    time. Который час is a useful fixed clock-time question. Russian does not insert English do into these
+    questions. A yes/no question may retain statement word order; text punctuation cannot assess its spoken
+    intonation.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Кто это? Это Анна.
+    english: Who is this? This is Anna.
+  - target: Где туалет?
+    english: Where is the toilet?
+  source_id: original-ru
+- id: ru-g-basic-negation
+  pattern: Я не [verb]. Это не [noun].
+  english: Negate a statement or correct identification
+  note: Не normally precedes the element it negates. Нет can answer no; it is not interchangeable with
+    не before a verb. Start with simple corrections and an explicit repair phrase, then revisit negated
+    objects and negative pronouns in later constructions.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я не понимаю.
+    english: I do not understand.
+  - target: Нет, это не мой билет.
+    english: No, this is not my ticket.
+  source_id: original-ru
+- id: ru-g-gender-agreement
+  pattern: новый [masculine] / новая [feminine] / новое [neuter]
+  english: Match an adjective to a noun's gender
+  note: Learn noun gender together with useful agreement, not as a claim about the object itself. Many
+    consonant-final nouns are masculine, many in -а or -я feminine, and many in -о or -е neuter, but exceptions
+    and soft-sign nouns need checking. Adjectives also change for case and number.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Это новый стол.
+    english: This is a new table.
+  - target: Это новая книга. Это новое окно.
+    english: This is a new book. This is a new window.
+  source_id: original-ru
+- id: ru-g-demonstrative-agreement
+  pattern: этот / эта / это [noun]
+  english: Distinguish identifying это from agreeing this
+  note: Identifying Это книга uses invariant это. Before a noun meaning this particular item, the demonstrative
+    agrees with it, as in эта книга. These functions should not be merged merely because neuter это looks
+    identical.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Это книга. Эта книга новая.
+    english: This is a book. This book is new.
+  - target: Этот стол здесь.
+    english: This table is here.
+  source_id: original-ru
+- id: ru-g-possessive-agreement
+  pattern: мой / моя / моё [noun]; его / её [noun]
+  english: Match a possessive to the thing possessed
+  note: Мой, твой, наш, and ваш agree with the possessed noun, not the possessor's gender. Possessive
+    его, её, and их do not decline. Preserve ё in моё and её rather than treating it as decorative spelling.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Это моя сумка и моё пальто.
+    english: This is my bag and my coat.
+  - target: Его книга здесь, а её билет там.
+    english: His book is here, and her ticket is there.
+  source_id: original-ru
+- id: ru-g-location-prepositional
+  pattern: в / на [prepositional noun]
+  english: Locate something with в or на plus prepositional
+  note: For a static location, useful в and на frames take the prepositional case. Learn the preposition
+    with the place because English in or at does not predict it reliably. Introduce common forms such
+    as в школе and на столе without claiming every noun has the same ending.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна в школе.
+    english: Anna is at school.
+  - target: Книга на столе.
+    english: The book is on the table.
+  source_id: original-ru
+- id: ru-g-whose-question
+  pattern: Чей / чья / чьё / чьи [noun]?
+  english: Ask whose with gender and number agreement
+  note: The interrogative agrees with the item whose owner is unknown. Чья сумка asks about a feminine
+    noun regardless of the owner's gender. A short answer may omit the repeated noun while retaining agreement.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Чья это сумка? Моя.
+    english: Whose bag is this? Mine.
+  - target: Чьё это пальто? Его.
+    english: Whose coat is this? His.
+  source_id: original-ru
+- id: ru-g-present-conjugation
+  pattern: я читаю / ты читаешь / они читают
+  english: Match a present-tense verb to its subject
+  note: Present-tense endings distinguish person and number. Introduce common first- and second-conjugation
+    patterns with real verbs, but check stem changes and stress rather than generating forms from spelling
+    alone. Present forms of imperfective verbs describe ongoing or habitual actions according to context.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я читаю, а Анна пишет.
+    english: I am reading, and Anna is writing.
+  - target: Мы работаем утром.
+    english: We work in the morning.
+  source_id: original-ru
+- id: ru-g-want-infinitive
+  pattern: хочу / хочешь / хочет; хотим / хотите / хотят + [infinitive]
+  english: Express a wish with irregular хотеть
+  note: Хотеть has a mixed conjugation; do not infer мы хочем from я хочу. An infinitive names the desired
+    action. A bare хочу request can sound direct, so combine appropriate polite wording or use the permission/request
+    frame when needed.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я хочу пить.
+    english: I want something to drink.
+  - target: Вы хотите есть?
+    english: Do you want to eat?
+  source_id: original-ru
+- id: ru-g-accusative-object
+  pattern: читать / пить + [accusative object]
+  english: Mark a simple direct object in the accusative
+  note: Useful direct objects take the accusative, for example воду from вода. Feminine -а commonly becomes
+    -у and -я becomes -ю. Many inanimate masculine and neuter singular objects look like the nominative;
+    do not infer that case has disappeared. Animacy and other patterns are developed later.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я пью воду.
+    english: I drink water.
+  - target: Анна читает книгу.
+    english: Anna is reading a book.
+  source_id: original-ru
+- id: ru-g-small-quantities
+  pattern: один / одна / одно; два / две; три / четыре + [noun]
+  english: Request small quantities with the correct noun form
+  note: One agrees with gender; two distinguishes два and две. In the basic nominative or inanimate accusative
+    counting frame, two through four take a genitive-singular noun, unlike five and above. Learn short
+    useful quantities before adding full numeral declension.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Один билет, пожалуйста.
+    english: One ticket, please.
+  - target: Две чашки чая, пожалуйста.
+    english: Two cups of tea, please.
+  source_id: original-ru
+- id: ru-g-routine-time
+  pattern: утром / днём / вечером; в [clock time]
+  english: Place a routine at a time of day
+  note: Утром, днём, and вечером locate a routine within a day. A clock time uses в with an appropriate
+    numeral expression. Keep the distinction between at a time and for a duration, and preserve ё in днём.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Утром я работаю.
+    english: I work in the morning.
+  - target: Мы встречаемся в три часа.
+    english: We are meeting at three o'clock.
+  source_id: original-ru
+- id: ru-g-permission-request
+  pattern: Можно [infinitive / requested item]?
+  english: Ask permission or politely request an item
+  note: Можно with an infinitive asks whether an action is allowed or possible. In a service context,
+    Можно воду? is an elliptical request with an accusative item. It asks rather than asserts availability.
+    It is not the same as personal ability expressed by могу.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Можно воду, пожалуйста?
+    english: Could I have some water, please?
+  - target: Можно здесь сидеть?
+    english: May I sit here?
+  source_id: original-ru
+- id: ru-g-dative-need
+  pattern: мне / вам нужно + [infinitive]
+  english: Say who needs to perform an action
+  note: The person experiencing a need is in the dative, as in мне or вам, while нужно remains impersonal
+    before an infinitive. A destination can be supplied in an elliptical travel need, but this does not
+    make нужно an agreeing adjective.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мне нужно идти.
+    english: I need to go.
+  - target: Вам нужно подождать.
+    english: You need to wait a little.
+  source_id: original-ru
+- id: ru-g-place-direction-origin
+  pattern: где / куда / откуда; в / на + [accusative destination]
+  english: Distinguish location, destination, and origin
+  note: Где asks where something is, куда where it is going, and откуда where it comes from. A destination
+    with в or на takes the accusative rather than the static prepositional. Learn Как пройти ...? as a
+    useful direction request; detailed motion contrasts follow later.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я иду в школу. Анна в школе.
+    english: I am going to school. Anna is at school.
+  - target: Как пройти на вокзал?
+    english: How do I get to the station on foot?
+  source_id: original-ru
+- id: ru-g-imperfective-future
+  pattern: буду / будешь / будет / будем / будете / будут + [imperfective infinitive]
+  english: Describe a future activity or repeated action
+  note: Буду plus an imperfective infinitive presents a future activity, process, or repeated event. The
+    auxiliary agrees with the subject and the infinitive does not. Do not add буду to a perfective future
+    form or infer that this frame promises a completed result.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Завтра я буду работать дома.
+    english: Tomorrow I will be working at home.
+  - target: Мы будем читать вечером.
+    english: We will read in the evening.
+  source_id: original-ru
+- id: ru-g-polite-help-imperative
+  pattern: Помогите / Покажите / Скажите, пожалуйста.
+  english: Request a helpful action with a polite imperative
+  note: These -те imperatives address one person politely or several people. Teach their stems as verified
+    forms, not as a rule that simply attaches -те to an infinitive. Пожалуйста softens a request but tone
+    and circumstances still matter; later work distinguishes imperative aspect.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Помогите, пожалуйста.
+    english: Please help me.
+  - target: Покажите на карте, пожалуйста.
+    english: Please show me on the map.
+  source_id: original-ru
+- id: ru-g-possession-existence
+  pattern: У [genitive possessor] есть [noun].
+  english: State possession or availability with у ... есть
+  note: У plus the genitive identifies the possessor, and есть asserts existence or availability. У меня
+    есть means I have, not I eat; the homographic eating verb is a different function. Есть is often absent
+    when an adjective characterizes an already established possession.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: У меня есть ключ.
+    english: I have a key.
+  - target: У вас есть вода?
+    english: Do you have any water?
+  source_id: original-ru
+- id: ru-g-absence-genitive
+  pattern: У [genitive possessor] нет [genitive noun].
+  english: Express absence with нет and the genitive
+  note: Нет meaning there is no governs the genitive of what is absent, unlike a simple negative answer
+    Нет. У меня нет ключа denies possession. Learn useful genitive patterns and irregular forms without
+    adding each inflection as a separate lexical headword.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: У меня нет ключа.
+    english: I do not have a key.
+  - target: Здесь нет воды.
+    english: There is no water here.
+  source_id: original-ru
+- id: ru-g-static-spatial-cases
+  pattern: под / над / перед / за + [instrumental]; около + [genitive]
+  english: Locate things using governed spatial cases
+  note: Static под, над, перед, and за take the instrumental in the spatial frames taught here. Около
+    takes the genitive. Do not transfer the в or на prepositional-case rule to every expression of location;
+    movement into a position can select a different case.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Сумка под столом.
+    english: The bag is under the table.
+  - target: Магазин около дома.
+    english: The shop is near the house.
+  source_id: original-ru
+- id: ru-g-plural-agreement
+  pattern: эти / мои / новые [plural noun] + [plural verb]
+  english: Coordinate plural nouns, modifiers, and verbs
+  note: Plural agreement generally stops distinguishing gender. Learn ordinary plural endings alongside
+    frequent irregulars such as люди and дети, checking stress independently. A numeral phrase is not
+    always interchangeable with an ordinary plural noun phrase.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Эти новые книги здесь.
+    english: These new books are here.
+  - target: Мои друзья работают дома.
+    english: My friends work at home.
+  source_id: original-ru
+- id: ru-g-reflexive-routines
+  pattern: '[verb]-ся / -сь'
+  english: Use reflexive verbs for familiar routines
+  note: -ся and -сь are related reflexive endings, but not every such verb literally means do something
+    to oneself. Learn умываться as a routine and встречаться as meeting or meeting each other in context.
+    Removing the ending can change the verb's meaning and object requirements.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Утром я умываюсь.
+    english: I wash my face in the morning.
+  - target: Мы встречаемся вечером.
+    english: We are meeting in the evening.
+  source_id: original-ru
+- id: ru-g-reflexive-reference
+  pattern: себя / себе; свой / своя / своё [noun]
+  english: Refer back to the subject without changing the possessor
+  note: Себя refers back to a clause's subject and has case forms but no nominative. Свой normally identifies
+    the subject as possessor and agrees with the possessed noun. Compare a subject's own item with another
+    person's item; in complex clauses, make the intended reference explicit when it could be ambiguous.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна читает свою книгу.
+    english: Anna is reading her own book.
+  - target: Я вижу себя на фотографии.
+    english: I see myself in the photograph.
+  source_id: original-ru
+- id: ru-g-dative-recipient
+  pattern: дать / показать [accusative thing] [dative recipient]
+  english: Mark the recipient of giving or showing
+  note: The thing given or shown is a direct object; the recipient takes the dative. Dative pronouns such
+    as мне and вам remain different from accusative меня and вас. Learn Дайте as an irregular polite imperative
+    rather than deriving it from an assumed regular stem.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Дайте мне чек, пожалуйста.
+    english: Please give me the receipt.
+  - target: Я показываю Анне фотографию.
+    english: I am showing Anna a photograph.
+  source_id: original-ru
+- id: ru-g-instrumental-means
+  pattern: '[verb] + [instrumental means]; с + [instrumental companion]'
+  english: Distinguish a means from an accompanying person
+  note: An instrumental without с can name an instrument or method. С with the instrumental marks accompaniment
+    or an included ingredient. Карточкой or картой in a payment question names a method, not a guarantee
+    that it is accepted.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я пишу ручкой.
+    english: I write with a pen.
+  - target: Я пью чай с молоком.
+    english: I drink tea with milk.
+  - target: Можно платить картой?
+    english: Can I pay by card?
+  source_id: original-ru
+- id: ru-g-without-genitive
+  pattern: без + [genitive noun]
+  english: Request or describe something without an ingredient
+  note: Без always governs the genitive in this frame. A request without an ingredient does not communicate
+    every allergy or cross-contact requirement. Important dietary restrictions require a professionally
+    verified explanation and confirmation by a qualified person, not confidence based on a memorized chunk.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Чай без сахара, пожалуйста.
+    english: Tea without sugar, please.
+  - target: Можно суп без мяса?
+    english: Could I have soup without meat?
+  source_id: original-ru
+- id: ru-g-animate-accusative
+  pattern: вижу [animate accusative] / вижу [inanimate accusative]
+  english: Apply animacy to direct-object forms
+  note: Animate masculine singular accusatives and animate plurals typically match the genitive; corresponding
+    inanimate forms match the nominative. This does not replace the feminine singular -у pattern. Grammatical
+    animacy must be learned for the noun and is not a general claim about biological life.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я вижу брата и стол.
+    english: I see my brother and a table.
+  - target: Я вижу студентов и книги.
+    english: I see the students and the books.
+  source_id: original-ru
+- id: ru-g-health-experiencer
+  pattern: У меня болит / болят [body part]. У меня аллергия на [accusative].
+  english: Describe pain or state an allergy without diagnosing
+  note: With болеть, the body part is the grammatical subject and controls singular болит or plural болят.
+    These explicitly taught forms belong to the pain construction; a source row labelled болит is not
+    automatically a new lexical headword. У меня identifies the person affected. Аллергия на takes the
+    accusative trigger; this introductory frame cannot convey severity, treatment, or cross-contact needs
+    reliably without qualified verification.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: У меня болит голова.
+    english: I have a headache.
+  - target: У меня аллергия на молоко.
+    english: I am allergic to milk.
+  source_id: original-ru
+- id: ru-g-pronouns-after-prepositions
+  pattern: у него / у неё / у них; с ним / с ней / с ними
+  english: Use governed personal-pronoun forms after prepositions
+  note: Third-person personal pronouns commonly gain initial н after simple prepositions, as у него and
+    с ней. This is not added to invariant possessives, as у его брата. The preposition selects case; some
+    derived prepositions have different patterns, so do not turn initial н into an exceptionless rule.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: У неё есть билет.
+    english: She has a ticket.
+  - target: Я иду с ним, а не с его братом.
+    english: I am going with him, not with his brother.
+  source_id: original-ru
+- id: ru-g-past-agreement
+  pattern: работал / работала / работало / работали
+  english: Match a past-tense verb to gender or number
+  note: The ordinary past distinguishes gender in the singular and number, not grammatical person. Я работала
+    and я работал depend on the speaker's agreement choice. Learn irregular past stems such as шёл, шла,
+    and шли separately with their verified stress and spelling.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Вчера Анна работала дома.
+    english: Anna worked at home yesterday.
+  - target: Мы ждали автобус.
+    english: We were waiting for the bus.
+  source_id: original-ru
+- id: ru-g-perfective-future
+  pattern: '[perfective personal form] завтра'
+  english: Present a future event as a bounded outcome
+  note: Perfective personal forms refer to the future rather than an ongoing present. Compare буду читать
+    with прочитаю for an activity versus a bounded reading outcome in a suitable context. A listed aspect
+    partner is not automatically interchangeable in every meaning, and not every prefix creates only aspect.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Завтра я прочитаю письмо.
+    english: Tomorrow I will read the letter through.
+  - target: Мы купим билеты вечером.
+    english: We will buy the tickets in the evening.
+  source_id: original-ru
+- id: ru-g-current-motion
+  pattern: иду / идёт; еду / едет + [destination]
+  english: Distinguish current travel on foot and by vehicle
+  note: Идти and ехать commonly describe directed motion on foot and by vehicle respectively. Both are
+    imperfective; the contrast is not past versus future or imperfective versus perfective. Their personal
+    and past forms need explicit attention, and actual usage extends beyond these introductory travel
+    situations.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я иду в магазин.
+    english: I am walking to the shop.
+  - target: Мы едем на вокзал.
+    english: We are going to the station by vehicle.
+  source_id: original-ru
+- id: ru-g-origins-and-people
+  pattern: из / с / от + [genitive]; к + [dative]
+  english: Name an origin or movement toward a person
+  note: Many place pairs use в ... из and на ... с, with the origin in the genitive. К plus dative indicates
+    movement toward a person or endpoint; от plus genitive marks movement away. Learn each place expression
+    rather than choosing a preposition only from an English translation.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я еду из города.
+    english: I am travelling from the city.
+  - target: Анна идёт к врачу, а Игорь идёт от врача.
+    english: Anna is going to the doctor, and Igor is coming from the doctor.
+  source_id: original-ru
+- id: ru-g-duration-deadline
+  pattern: '[duration]; через [accusative time]; до [genitive endpoint]'
+  english: Distinguish duration, time until, and an endpoint
+  note: An unprepositioned time expression can give duration. Через names the interval until a future
+    event; до gives an endpoint. English in two hours is ambiguous, so distinguish two hours from now
+    from time required to finish, developed later with aspect.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я ждал два часа.
+    english: I waited for two hours.
+  - target: Автобус будет здесь через час.
+    english: The bus will be here in an hour.
+  - target: Мы работаем до вечера.
+    english: We work until evening.
+  source_id: original-ru
+- id: ru-g-calendar-frames
+  pattern: в [accusative weekday]; [genitive ordinal date] [genitive month]
+  english: Give a weekday or date with the appropriate frame
+  note: A scheduled weekday commonly uses в plus accusative. A date answering when commonly uses a genitive
+    ordinal and a genitive month, unlike a date stated with сегодня and a nominative ordinal. Learn useful
+    full dates with verified forms and stress rather than treating ordinal numbers as indeclinable labels.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мы встретимся в среду.
+    english: We will meet on Wednesday.
+  - target: Встреча будет пятого мая.
+    english: The meeting will be on the fifth of May.
+  source_id: original-ru
+- id: ru-g-ability-moch
+  pattern: могу / можешь / может / можем / можете / могут + [infinitive]
+  english: Express ability with irregular мочь
+  note: Мочь takes an infinitive and changes its stem across personal forms. Distinguish someone's capacity
+    or circumstances from impersonal permission with можно. Не могу does not by itself tell whether the
+    obstacle is skill, time, or another condition; clarify it.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я могу помочь вечером.
+    english: I can help in the evening.
+  - target: Вы можете повторить?
+    english: Could you repeat that?
+  source_id: original-ru
+- id: ru-g-irregular-eat-give
+  pattern: ем / ешь / ест / едим / едите / едят; дам / дашь / даст
+  english: Distinguish irregular eating and giving forms
+  note: Есть meaning eat has irregular present forms and is not existential есть. Дать is perfective,
+    with дам, дашь, даст, дадим, дадите, дадут referring to a future giving event; давать has its own
+    imperfective forms such as даю. Do not treat a shared ending or spelling as shared lexical identity.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я ем суп, а дети едят хлеб.
+    english: I am eating soup, and the children are eating bread.
+  - target: Завтра я дам вам книгу.
+    english: Tomorrow I will give you the book.
+  source_id: original-ru
+- id: ru-g-joint-invitation
+  pattern: Давай / Давайте + [imperfective infinitive / perfective plural form]
+  english: Invite someone to do an activity together
+  note: Давай addresses one familiar person; давайте is polite or plural. Compare давайте работать for
+    engaging in an activity with давайте обсудим for a bounded joint discussion. These proposal uses are
+    constructions, not evidence of mastering all senses of давать.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Давайте обсудим план.
+    english: Let's discuss the plan.
+  - target: Давай готовить вместе.
+    english: Let's cook together.
+  source_id: original-ru
+- id: ru-g-larger-quantities
+  pattern: пять / много / мало / сколько + [genitive noun]
+  english: Count larger or unspecified quantities
+  note: In basic counting frames, five and higher take a genitive plural count noun; много, мало, and
+    сколько also govern genitive quantity expressions. Compound numerals depend on the final part, except
+    eleven through fourteen. Uncountable substances commonly use singular forms; numeral phrases in other
+    cases need further work.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Здесь пять студентов.
+    english: There are five students here.
+  - target: Сколько стоит билет?
+    english: How much does a ticket cost?
+  - target: У нас мало времени.
+    english: We have little time.
+  source_id: original-ru
+- id: ru-g-occupation-instrumental
+  pattern: работать [instrumental role]; быть [instrumental role]
+  english: Describe a role with an instrumental complement
+  note: Работать takes an instrumental role, and past or future быть often does so too. Compare present
+    Я учитель with Я работаю учителем. This is a role description, not the instrumental of a physical
+    tool, and it does not confer a professional qualification.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна работает учителем.
+    english: Anna works as a teacher.
+  - target: Игорь был инженером.
+    english: Igor was an engineer.
+  source_id: original-ru
+- id: ru-g-learned-skill
+  pattern: уметь + [infinitive]; мочь + [infinitive]
+  english: Distinguish a learned skill from situational ability
+  note: Уметь describes knowing how to perform a skill. Мочь describes ability or possibility in the circumstances
+    and need not establish a learned skill. A person can know how to do something but be unable to do
+    it now; languages and other domains also have conventional verbs that should be learned in context.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я умею плавать.
+    english: I know how to swim.
+  - target: Я умею водить, но сегодня не могу вести машину.
+    english: I know how to drive, but today I cannot drive a car.
+  source_id: original-ru
+- id: ru-g-topic-prepositional
+  pattern: говорить / думать о [prepositional topic]
+  english: State the topic of speech or thought
+  note: О with a prepositional noun or pronoun marks the topic in these frames. Об and обо are related
+    forms in appropriate sound or fixed-pronoun contexts, not new meanings. Compare a topic with a direct
+    object, a recipient, or a physical location rather than treating every prepositional form as a place.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мы говорим о работе.
+    english: We are talking about work.
+  - target: Анна думает об этом вопросе.
+    english: Anna is thinking about this question.
+  source_id: original-ru
+- id: ru-g-narrative-aspect
+  pattern: '[imperfective background], потом [perfective outcome]'
+  english: Separate narrative background from completed events
+  note: Imperfective commonly presents ongoing background, habit, or the fact of an activity; perfective
+    presents a bounded event in a suitable context. Neither aspect is simply an English tense. Sequence
+    alone does not force perfective, and imperfective does not always mean an action was unfinished.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я читал письмо, когда Анна пришла.
+    english: I was reading the letter when Anna arrived.
+  - target: Мы обсуждали план, потом приняли решение.
+    english: We were discussing the plan, then made a decision.
+  source_id: original-ru
+- id: ru-g-negated-aspect
+  pattern: не читал / не прочитал
+  english: Contrast a non-occurring action and an unmet result
+  note: Не читал normally denies the reading activity or its occurrence; не прочитал can deny achieving
+    the bounded reading result. Context still matters, including whether an attempt is implied. Negation
+    does not automatically select one aspect or establish the speaker's intention.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Вчера я не читал эту статью.
+    english: I did not read this article yesterday.
+  - target: Я читал статью, но не прочитал её до конца.
+    english: I was reading the article but did not finish it.
+  source_id: original-ru
+- id: ru-g-habitual-motion
+  pattern: идти / ходить; ехать / ездить
+  english: Contrast a directed journey with habitual travel
+  note: Идти and ехать often describe a particular directed journey, whereas ходить and ездить describe
+    habitual, multidirectional, or round-trip motion according to context. All four are imperfective.
+    A past ходил can report having gone somewhere and returned, without becoming a perfective verb.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Сейчас я иду в школу, а обычно езжу на автобусе.
+    english: I am walking to school now, but I usually go by bus.
+  - target: Вчера я ходил в магазин.
+    english: Yesterday I went to the shop and back.
+  source_id: original-ru
+- id: ru-g-temporal-clauses
+  pattern: когда / пока / после того как [clause]
+  english: Link an event to a time or ongoing background
+  note: Когда introduces a time relation; пока can frame an interval of simultaneous activity; после того
+    как explicitly places an event after another. Select aspect for the intended events rather than copying
+    the English verb tense. Пока не meaning until is a later, distinct construction.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Пока Анна готовила, я читал.
+    english: While Anna was cooking, I was reading.
+  - target: После того как автобус приехал, мы вышли из кафе.
+    english: After the bus arrived, we left the café.
+  source_id: original-ru
+- id: ru-g-time-to-result
+  pattern: читать [duration]; прочитать за [accusative duration]
+  english: Distinguish activity duration from time to completion
+  note: An imperfective activity with an unprepositioned duration describes time spent. За with a duration
+    and a suitable perfective describes the time required to reach a result. Contrast both with через
+    for how long until a future event; English in an hour can conceal this distinction.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я читал статью час.
+    english: I spent an hour reading the article.
+  - target: Я прочитал статью за час.
+    english: I finished reading the article in an hour.
+  source_id: original-ru
+- id: ru-g-feeling-government
+  pattern: интересоваться [instrumental]; бояться [genitive]
+  english: Use the case required by a feeling or interest verb
+  note: A verb's lexical government matters more than translating an English preposition. Интересоваться
+    governs instrumental, while бояться commonly governs genitive. Their -ся ending does not identify
+    a single shared meaning or an automatic direct-object pattern.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна интересуется историей.
+    english: Anna is interested in history.
+  - target: Ребёнок боится темноты.
+    english: The child is afraid of the dark.
+  source_id: original-ru
+- id: ru-g-dative-liking
+  pattern: мне нравится [singular] / нравятся [plural]
+  english: Describe liking with a dative experiencer
+  note: The person who likes something is dative; the liked thing is the grammatical subject. It controls
+    нравится or нравятся. This is not a literal I like sentence with an accusative object, and liking
+    an activity can instead use an infinitive.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мне нравится эта книга.
+    english: I like this book.
+  - target: Анне нравятся эти песни.
+    english: Anna likes these songs.
+  source_id: original-ru
+- id: ru-g-indirect-li
+  pattern: не знаю, [verb] ли [subject]
+  english: Embed a yes/no question with ли
+  note: Ли introduces an embedded yes/no question and normally follows the focused element, often the
+    verb. It does not substitute for an interrogative word in a question such as where someone lives.
+    Keep reported uncertainty distinct from a statement that the event happened.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я не знаю, придёт ли Анна.
+    english: I do not know whether Anna will come.
+  - target: Скажите, открыт ли магазин.
+    english: Please tell me whether the shop is open.
+  source_id: original-ru
+- id: ru-g-negative-pronouns
+  pattern: никто / ничего не ...; ни с кем не ...
+  english: Coordinate negative pronouns, не, and prepositions
+  note: Negative pronouns commonly occur with не on the predicate, unlike the standard English avoidance
+    of double negation. Decline the pronoun for its role. With a preposition, write the relevant negative
+    expression separately, as ни с кем; do not equate никто with every negative-pronoun form.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Никто не ответил.
+    english: Nobody answered.
+  - target: Я ни с кем не разговаривал.
+    english: I did not talk to anyone.
+  source_id: original-ru
+- id: ru-g-imperative-aspect
+  pattern: открывайте / откройте [object]
+  english: Choose an imperative for a routine or one result
+  note: Perfective imperatives often request a single result; imperfective imperatives can invite starting,
+    continuing, or performing a routine. This is a contextual contrast, not an absolute polite-versus-rude
+    rule. Teach verified imperative stems and the singular versus -те address distinction.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Откройте окно, пожалуйста.
+    english: Please open the window.
+  - target: Каждый день открывайте окно утром.
+    english: Open the window every morning.
+  source_id: original-ru
+- id: ru-g-negative-imperative
+  pattern: не открывайте / не забудьте
+  english: Distinguish prohibition from an unwanted-event warning
+  note: A general instruction not to do something commonly uses an imperfective imperative. Perfective
+    negative imperatives occur in warnings against an unwanted outcome, as не забудьте. Do not mechanically
+    make every prohibition perfective or every negative imperative imperfective.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Не открывайте эту дверь.
+    english: Do not open this door.
+  - target: Не забудьте ключ.
+    english: Do not forget the key.
+  source_id: original-ru
+- id: ru-g-purpose-chtoby
+  pattern: чтобы + [infinitive / subject and past-form verb]
+  english: State the purpose of an action with чтобы
+  note: With the same understood actor, purpose often uses чтобы plus an infinitive. When the purpose
+    has a different explicit subject, use чтобы with a past-form verb whose meaning is intended, not necessarily
+    past in time. Do not confuse purpose with a claim that the result actually occurred.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я пришёл, чтобы помочь.
+    english: I came in order to help.
+  - target: Я говорю медленно, чтобы вы поняли.
+    english: I am speaking slowly so that you understand.
+  source_id: original-ru
+- id: ru-g-manner-adverb
+  pattern: '[verb] быстро / ясно; [noun] быстрый / ясный'
+  english: Distinguish how an action happens from noun agreement
+  note: A manner adverb such as быстро modifies an action without gender agreement. An adjective agrees
+    with a noun, as быстрый ответ. Do not produce an adjective solely because the English word can describe
+    both an action and a thing; some apparent -о forms also have predicative functions in context.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна отвечает ясно.
+    english: Anna answers clearly.
+  - target: Это ясный ответ.
+    english: This is a clear answer.
+  source_id: original-ru
+- id: ru-g-reported-statement
+  pattern: '[speaker] сказал, что [clause]'
+  english: Report a statement without automatic tense backshift
+  note: Что embeds a reported statement. Russian does not mechanically apply English-style tense backshift;
+    select tense relative to the intended event and reporting context. Adjust person and deictic words
+    carefully, preserving who made the claim rather than endorsing it as fact.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна сказала, что работает дома.
+    english: Anna said that she works at home.
+  - target: Игорь сообщил, что поезд уже приехал.
+    english: Igor reported that the train had already arrived.
+  source_id: original-ru
+- id: ru-g-relative-kotory
+  pattern: '[noun], который / которую / которому ...'
+  english: Decline a relative pronoun for its clause role
+  note: Который agrees in gender and number with its antecedent, but its case comes from its job inside
+    the relative clause. A feminine antecedent does not always require которую; for example, a recipient
+    can require которой. Keep the clause's verb or preposition government visible.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Это книга, которую я читаю.
+    english: This is the book that I am reading.
+  - target: Это человек, которому я написал.
+    english: This is the person to whom I wrote.
+  source_id: original-ru
+- id: ru-g-po-dative
+  pattern: по [dative subject / route / recurring day]
+  english: Interpret selected по plus dative frames
+  note: По with the dative appears in distinct useful frames, including a subject area, movement along
+    a route, and recurring days. Learn the whole relation rather than assigning по a single English meaning.
+    Other по constructions can govern another case and are not licensed by this introductory pattern.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: У нас урок по истории.
+    english: We have a history lesson.
+  - target: По понедельникам я работаю дома.
+    english: I work at home on Mondays.
+  source_id: original-ru
+- id: ru-g-reported-request
+  pattern: попросил [person] [infinitive] / попросил, чтобы ...
+  english: Relay a request while keeping the intended actor clear
+  note: Попросить can take an accusative person plus an infinitive, or a clause with чтобы and a past-form
+    verb. The person asked is the understood performer of the infinitive. This is a requested event, not
+    proof that it happened.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна попросила меня подождать.
+    english: Anna asked me to wait.
+  - target: Я попросил, чтобы они написали ответ.
+    english: I asked them to write a reply.
+  source_id: original-ru
+- id: ru-g-comparative-frames
+  pattern: больше / лучше / дешевле, чем ...; [comparative] + [genitive]
+  english: Compare alternatives with чем or a genitive standard
+  note: A simple comparative can introduce its standard with чем or a genitive noun. Learn irregular лучше,
+    хуже, больше, and меньше with their meanings. Do not stack более onto a simple comparative or assume
+    a short comparative agrees like a full adjective.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Этот билет дешевле, чем тот.
+    english: This ticket is cheaper than that one.
+  - target: Анна старше Игоря.
+    english: Anna is older than Igor.
+  source_id: original-ru
+- id: ru-g-superlative-choice
+  pattern: самый [agreeing adjective]; лучше всего
+  english: Identify an extreme within a stated comparison set
+  note: Самый and the following adjective agree with the noun; irregular or adverbial frames such as лучше
+    всего behave differently. State the relevant comparison set instead of making an unrestricted best
+    claim. Do not combine самый with a simple comparative such as лучше in ordinary standard usage.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Это самый короткий путь из трёх.
+    english: This is the shortest of the three routes.
+  - target: Здесь лучше всего видно реку.
+    english: The river is best seen from here.
+  source_id: original-ru
+- id: ru-g-advice-preference
+  pattern: лучше [infinitive]; предпочитаю [object / infinitive]
+  english: Recommend an option without making it an obligation
+  note: Лучше with an infinitive recommends an action, whereas предпочитать presents a preference. Neither
+    inherently imposes a duty on the listener. Supply a reason and allow for another person's constraints
+    rather than treating the recommendation as an objective universal.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Лучше поехать утром.
+    english: It is better to go in the morning.
+  - target: Я предпочитаю читать дома.
+    english: I prefer reading at home.
+  source_id: original-ru
+- id: ru-g-cause-consequence
+  pattern: потому что [reason]; поэтому [consequence]
+  english: Distinguish a reason from the consequence it explains
+  note: Потому что introduces a reason, while поэтому points forward to a consequence. Reversing them
+    can reverse the explanation. A grammatically causal sentence remains a claim that may need evidence,
+    not an automatic demonstration of a causal relationship.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я остался дома, потому что устал.
+    english: I stayed at home because I was tired.
+  - target: Автобус опоздал, поэтому мы пришли позже.
+    english: The bus was late, so we arrived later.
+  source_id: original-ru
+- id: ru-g-short-adjective-predicate
+  pattern: готов / готова / готовы; прав / права / правы
+  english: Interpret a short adjective as an agreeing predicate
+  note: Short adjectives agree in gender and number when used as predicates but do not serve as ordinary
+    declined noun modifiers. Not every adjective has a useful short form, and full versus short forms
+    can differ lexically or stylistically rather than simply permanent versus temporary. Check each selected
+    adjective's forms, stress, and complements.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна готова, а Игорь ещё не готов.
+    english: Anna is ready, but Igor is not ready yet.
+  - target: Вы правы в этом вопросе.
+    english: You are right about this issue.
+  source_id: original-ru
+- id: ru-g-needed-noun
+  pattern: мне нужен / нужна / нужно / нужны [noun]
+  english: Agree a needed item while distinguishing нужно to act
+  note: With a needed noun as subject, нужен agrees in gender and number. Contrast Мне нужно письмо with
+    Мне нужно написать письмо, where impersonal нужно precedes an infinitive. A feminine person does not
+    automatically require нужна; agreement follows the thing needed.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мне нужна новая карта.
+    english: I need a new map.
+  - target: Нам нужны билеты, но сначала нужно узнать время.
+    english: We need tickets, but first we need to find out the time.
+  source_id: original-ru
+- id: ru-g-impersonal-time
+  pattern: мне было / будет [state]; не было / не будет [genitive]
+  english: Place an impersonal state or absence in time
+  note: Past and future impersonal states commonly use neuter было or impersonal будет without agreeing
+    with a dative experiencer. Existential absence uses не было or не будет with a genitive noun. Distinguish
+    this from a personal subject such as Анна была дома.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: В комнате было холодно.
+    english: It was cold in the room.
+  - target: Вчера у нас не было воды.
+    english: Yesterday we had no water.
+  source_id: original-ru
+- id: ru-g-nelzya-aspect
+  pattern: нельзя [imperfective / perfective infinitive]
+  english: Clarify prohibition versus practical impossibility
+  note: Нельзя with an imperfective often prohibits an activity; with a perfective it often expresses
+    inability to achieve a result. Context can override a simple contrast, so ask what prevents the action.
+    Нельзя here is an impersonal construction, not a statement that the person lacks a learned skill.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Здесь нельзя курить.
+    english: Smoking is not allowed here.
+  - target: Эту дверь нельзя открыть без ключа.
+    english: This door cannot be opened without a key.
+  source_id: original-ru
+- id: ru-g-negated-object-case
+  pattern: не [verb] [accusative / genitive object]
+  english: Interpret case choice for an object under negation
+  note: Negated direct objects can take accusative or genitive, with lexical, semantic, and register influences.
+    A specific established object often retains accusative; genitive is common in nonexistence or nonavailability
+    readings. Do not teach an absolute rule that every не forces a genitive object.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я не прочитал эту книгу.
+    english: I did not finish reading this book.
+  - target: Я не получил ответа.
+    english: I received no reply.
+  source_id: original-ru
+- id: ru-g-numeral-case
+  pattern: с двумя [instrumental plural]; о трёх [prepositional plural]
+  english: Decline a numeral phrase for its governed role
+  note: Outside basic nominative or accusative counting, the numeral and its noun must take the case required
+    by the sentence. The genitive-singular pattern after два in a simple count is not preserved after
+    every preposition. Introduce common governed phrases first; complex compound numerals and collective
+    numerals require additional verified forms.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я говорил с двумя студентами.
+    english: I spoke with two students.
+  - target: В отчёте говорится о трёх случаях.
+    english: The report discusses three cases.
+  source_id: original-ru
+- id: ru-g-obligation-agreement
+  pattern: должен / должна / должно / должны + [infinitive]
+  english: Express a duty with subject agreement
+  note: Должен agrees with the subject and expresses an obligation or contextually an expectation. Contrast
+    personal Мы должны with impersonal Нам нужно. The grammar does not establish that an alleged duty
+    is legally binding; clarify who set the requirement.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна должна отправить ответ сегодня.
+    english: Anna must send the reply today.
+  - target: Мы должны уточнить срок.
+    english: We need to clarify the deadline.
+  source_id: original-ru
+- id: ru-g-managed-dative
+  pattern: '[dative person] удалось / не удалось + [infinitive]'
+  english: Report an achieved or unachieved opportunity
+  note: Удалось is an impersonal past form with the successful actor in the dative. It reports managing
+    to do something, not merely intending or being obligated to do it. Не удалось focuses on an unachieved
+    outcome without specifying the cause by itself.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Нам удалось закончить работу.
+    english: We managed to finish the work.
+  - target: Мне не удалось связаться с Анной.
+    english: I did not manage to contact Anna.
+  source_id: original-ru
+- id: ru-g-dependency-government
+  pattern: зависеть от [genitive]; отвечать за [accusative]
+  english: State a dependency or responsibility precisely
+  note: Зависеть от takes a genitive condition or factor. Отвечать за names responsibility with the accusative
+    and is distinct from answering a question. The pinned lexical row has only answering meanings, so
+    this original construction owns the responsibility frame without awarding that unrelated lexical sense.
+    Learn the complete governed frame; the preposition alone does not supply its meaning.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Срок зависит от объёма работы.
+    english: The deadline depends on the amount of work.
+  - target: Анна отвечает за расписание.
+    english: Anna is responsible for the schedule.
+  source_id: original-ru
+- id: ru-g-simultaneous-gerund
+  pattern: Читая [object], [same actor's main action]
+  english: Link simultaneous actions with one understood actor
+  note: An imperfective adverbial participle often supplies simultaneous background and normally shares
+    the actor of the main clause. This condensed style is common in writing; an explicit пока clause may
+    be clearer in conversation. Reject dangling combinations whose main subject cannot perform the background
+    action.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Читая письмо, Анна делала заметки.
+    english: While reading the letter, Anna took notes.
+  - target: Обсуждая план, мы сравнивали варианты.
+    english: While discussing the plan, we compared the options.
+  source_id: original-ru
+- id: ru-g-source-attribution
+  pattern: по словам [genitive source]; по данным [genitive source]
+  english: Attribute a report without endorsing it as fact
+  note: По словам attributes what someone says, while по данным attributes information to a data source.
+    Both require clear source identification. These phrases report provenance rather than certify reliability,
+    and a speaker's statement should not be silently upgraded to independently observed evidence.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: По словам Анны, встреча начнётся позже.
+    english: According to Anna, the meeting will start later.
+  - target: По данным отчёта, число заявок выросло.
+    english: According to the report's data, the number of applications increased.
+  source_id: original-ru
+- id: ru-g-reflexive-passive
+  pattern: '[subject] обсуждается / проверяется [agent instrumental]'
+  english: Interpret a process-focused reflexive passive
+  note: Some imperfective -ся forms function as passives, foregrounding what is being processed rather
+    than the actor. They are not literally reflexive self-actions. An expressed agent can take the instrumental;
+    compare an active paraphrase to check who is doing what.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: План обсуждается группой.
+    english: The plan is being discussed by the group.
+  - target: Эти данные проверяются каждый день.
+    english: These data are checked every day.
+  source_id: original-ru
+- id: ru-g-full-participial-description
+  pattern: книга, написанная [instrumental agent]
+  english: Read a participial phrase as a reduced description
+  note: A full participle agrees with its noun in gender, number, and case while retaining verbal relationships
+    inside the phrase. Compare a который clause to recover its meaning. Form and aspect distinguish active,
+    passive, present, and past readings; do not derive every form by one suffix rule.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Люди, ожидающие автобус, стоят у входа.
+    english: The people waiting for the bus are standing by the entrance.
+  - target: Мы прочитали письмо, написанное Анной.
+    english: We read the letter written by Anna.
+  source_id: original-ru
+- id: ru-g-unspecified-plural-agent
+  pattern: здесь говорят / сообщили / открыли ...
+  english: Interpret a plural verb with an unspecified agent
+  note: Russian can use a third-person plural verb without an overt subject when the actor is unspecified,
+    generalized, or unimportant. Do not invent a named they in a report. Compare an active named-source
+    sentence and a passive paraphrase, preserving any difference in certainty.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Нам сообщили, что встреча отменена.
+    english: We were told that the meeting had been cancelled.
+  - target: Здесь продают книги.
+    english: Books are sold here.
+  source_id: original-ru
+- id: ru-g-prefixed-motion
+  pattern: входить / войти; выходить / выйти; приезжать / приехать
+  english: Track direction and aspect in prefixed motion verbs
+  note: Motion prefixes contribute meanings such as entering, leaving, or arriving, not merely a generic
+    perfective label. Many prefixed verbs form aspect pairs whose imperfective may be based on a nondirected
+    stem. Learn each pair and its destination government; transport mode and figurative uses still matter.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Когда автобус приехал, Анна вышла из дома.
+    english: When the bus arrived, Anna left the house.
+  - target: Каждый день он входит через эту дверь.
+    english: Every day he enters through this door.
+  source_id: original-ru
+- id: ru-g-short-passive-result
+  pattern: '[subject] открыт / открыта / открыто / открыты'
+  english: Describe a result with a short passive participle
+  note: Short passive participles can present a resulting state or a completed passive event and agree
+    with the subject. Compare дверь открыта with дверь открывается for a state versus a process. Use context
+    and any time or agent expression instead of assuming every short form is timeless.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Дверь открыта.
+    english: The door is open.
+  - target: Все файлы были сохранены.
+    english: All the files were saved.
+  source_id: original-ru
+- id: ru-g-placement-result
+  pattern: класть / положить; ставить / поставить + [object and destination]
+  english: Distinguish laying or placing from the resulting position
+  note: Класть and положить form a common irregular lexical aspect relation; ставить and поставить present
+    setting something in a standing or functional position. Compare destination accusative with the static
+    location after placement. Do not use a nonexistent regular perfective built merely by adding an ending
+    to класть.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Положите книгу на стол. Теперь книга на столе.
+    english: Put the book on the table. Now the book is on the table.
+  - target: Мы поставили стул у окна.
+    english: We placed the chair by the window.
+  source_id: original-ru
+- id: ru-g-change-of-state
+  pattern: стало [comparative / state]; стать [instrumental role]
+  english: Describe a change of state rather than an action alone
+  note: Impersonal стало can describe a changed condition, whereas a personal стать sentence agrees with
+    its subject and may take an instrumental role. Distinguish the change itself from evidence explaining
+    its cause. Стать with an infinitive can also mark beginning an activity, introduced separately in
+    later aspectual work.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: После дождя стало прохладнее.
+    english: After the rain it became cooler.
+  - target: Анна стала руководителем проекта.
+    english: Anna became the project leader.
+  source_id: original-ru
+- id: ru-g-real-condition
+  pattern: если [condition], то [consequence]
+  english: Propose a consequence under an open condition
+  note: Если frames an open condition; то can make its consequence explicit but is not always needed.
+    Russian may use a future verb in the condition where English uses a present form. A conditional offer
+    does not assert that the condition will be met.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Если поезд опоздает, мы изменим план.
+    english: If the train is late, we will change the plan.
+  - target: Если вам удобно, давайте встретимся утром.
+    english: If it suits you, let's meet in the morning.
+  source_id: original-ru
+- id: ru-g-hypothetical-by
+  pattern: если бы [past-form condition], [past-form consequence] бы
+  english: Express a hypothetical or unreal condition
+  note: Бы with past-form verbs can express a hypothetical situation in the present, future, or past;
+    the form alone is not a past-time claim. The particle is written separately and can appear in different
+    positions. Use context to clarify whether a possibility is remote or contrary to fact.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Если бы у нас было больше времени, мы обсудили бы детали.
+    english: If we had more time, we would discuss the details.
+  - target: Я помог бы вам, если бы мог.
+    english: I would help you if I could.
+  source_id: original-ru
+- id: ru-g-tentative-polite-request
+  pattern: Я хотел / хотела бы ...; Не могли бы вы ...?
+  english: Soften a preference or request without implying inability
+  note: Хотел бы or хотела бы can express a present polite wish rather than a past desire. Не могли бы
+    вы is a conventional tentative request, not normally an accusation that the listener cannot act. Match
+    agreement and address to the speaker and relationship.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я хотела бы уточнить время.
+    english: I would like to clarify the time.
+  - target: Не могли бы вы прислать ответ завтра?
+    english: Could you send the reply tomorrow?
+  source_id: original-ru
+- id: ru-g-prior-completed-gerund
+  pattern: Прочитав [object], [same actor's main action]
+  english: Link a prior completed action to a following action
+  note: A perfective adverbial participle commonly presents an action completed before the main event,
+    with the same understood actor. This is a useful written condensation, not an instruction to compress
+    every spoken account. Check irregular forms and replace a dangling phrase with an explicit clause.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Прочитав письмо, Анна позвонила Игорю.
+    english: After reading the letter, Anna called Igor.
+  - target: Проверив данные, мы изменили вывод.
+    english: Having checked the data, we changed the conclusion.
+  source_id: original-ru
+- id: ru-g-epistemic-qualification
+  pattern: возможно / вероятно / по-видимому, [claim]
+  english: Qualify commitment to a claim
+  note: Introductory возможно, вероятно, and по-видимому mark different degrees or bases of uncertainty
+    in context. They do not provide numerical probabilities or replace evidence. Distinguish introductory
+    возможно from a predicate such as Это возможно meaning it is possible.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Возможно, данные изменятся.
+    english: The data may change.
+  - target: По-видимому, автор использовал другой источник.
+    english: Apparently, the author used a different source.
+  source_id: original-ru
+- id: ru-g-inference-from-evidence
+  pattern: судя по [dative evidence], [inference]
+  english: Mark the evidence used to make an inference
+  note: Судя по explicitly marks a basis for inference and governs the dative. It does not mean the conclusion
+    has been directly observed. Contrast the data description with what the speaker infers from it, and
+    state plausible limitations or alternatives.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Судя по письму, встреча состоится завтра.
+    english: Judging by the letter, the meeting will take place tomorrow.
+  - target: Судя по этим данным, спрос растёт.
+    english: Judging by these data, demand is growing.
+  source_id: original-ru
+- id: ru-g-alleged-report
+  pattern: '[source] якобы [claim]'
+  english: Report an allegation with explicit distance
+  note: Якобы attributes or distances a claim and can imply skepticism; it is not a neutral synonym for
+    что. Use it only when that stance is intended, while identifying the actual source. It does not by
+    itself show that the claim is false.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Автор якобы проверил все данные, но проверки не описал.
+    english: The author supposedly checked all the data but did not describe the checks.
+  - target: В письме говорится, что встречу якобы отменили.
+    english: The letter says that the meeting was allegedly cancelled.
+  source_id: original-ru
+- id: ru-g-only-if
+  pattern: только если [necessary condition]
+  english: State a necessary condition rather than a guarantee
+  note: Только если marks a condition required for a claim or action; it does not say that satisfying
+    the condition guarantees the outcome. Keep only if distinct from if and from an actual observation.
+    Test the intended direction of the dependency in a paraphrase.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мы примем предложение, только если сроки подходят.
+    english: We will accept the proposal only if the timing works.
+  - target: Этот вывод верен, только если данные полны.
+    english: This conclusion is valid only if the data are complete.
+  source_id: original-ru
+- id: ru-g-action-nominalization
+  pattern: обсуждение [genitive object] [instrumental agent]
+  english: Recover participants in a nominalized action
+  note: An action noun can encode the affected object as a genitive and the actor as an instrumental,
+    but actual noun government varies. A genitive alone may be ambiguous between actor and object. Expand
+    dense nominal phrasing into a finite clause to check responsibility and meaning.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Обсуждение проекта группой заняло час.
+    english: The group's discussion of the project took an hour.
+  - target: Проверка данных Анной изменила вывод.
+    english: Anna's checking of the data changed the conclusion.
+  source_id: original-ru
+- id: ru-g-formal-dative-prepositions
+  pattern: согласно / вопреки / благодаря + [dative]
+  english: Interpret formal accordance, opposition, and enabling cause
+  note: Согласно, вопреки, and благодаря govern dative in standard usage. They express different relations
+    of accordance, opposition, and an enabling cause often evaluated positively. A sentence using согласно
+    a rule reports an asserted basis; it is not advice about a law's validity or applicability.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Согласно плану, работа начнётся завтра.
+    english: According to the plan, work will begin tomorrow.
+  - target: Благодаря помощи коллег мы закончили раньше.
+    english: Thanks to our colleagues' help, we finished earlier.
+  - target: Вопреки прогнозу, спрос снизился.
+    english: Contrary to the forecast, demand decreased.
+  source_id: original-ru
+- id: ru-g-purpose-cause-prepositions
+  pattern: для / ради [genitive purpose]; из-за / вследствие [genitive cause]
+  english: Separate a purpose from an attributed cause
+  note: Для and ради introduce purposes or beneficiaries with different contextual emphasis; из-за and
+    formal вследствие introduce causes. Shared genitive government does not make them synonyms. Ради can
+    emphasize what motivates or justifies a sacrifice, while из-за often accompanies an unwelcome effect.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мы изменили расписание для удобства участников.
+    english: We changed the schedule for the participants' convenience.
+  - target: Из-за ошибки отчёт пришлось исправить.
+    english: Because of an error, the report had to be corrected.
+  source_id: original-ru
+- id: ru-g-nested-genitives
+  pattern: результаты [genitive modifier] [genitive modifier]
+  english: Resolve a dense genitive chain without losing attachment
+  note: Several genitives can nest inside a noun phrase, but their attachment can be unclear. Identify
+    the head noun and each relation before paraphrasing. Prefer a clause or prepositional alternative
+    when a chain obscures who did what; grammatical density is not itself precision.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Изменение срока подачи заявок вызвало вопросы.
+    english: The change to the application submission deadline raised questions.
+  - target: Мы обсудили результаты проверки качества воды.
+    english: We discussed the results of the water quality test.
+  source_id: original-ru
+- id: ru-g-method-nominal-frames
+  pattern: путём / посредством + [genitive method]
+  english: Interpret a formally stated method or means
+  note: Путём and посредством take the genitive and often package a method as a noun phrase. Путём in
+    this function is not a literal route description. Expand the action noun when the method's actor or
+    procedure is unclear; formal phrasing does not certify a method's adequacy.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Ошибку нашли путём сравнения двух списков.
+    english: The error was found by comparing two lists.
+  - target: Данные передаются посредством сети.
+    english: The data are transmitted through a network.
+  source_id: original-ru
+- id: ru-g-correlative-comparison
+  pattern: чем [comparative], тем [comparative]
+  english: Express a covarying comparison without proving causation
+  note: Чем ... тем connects two comparative changes. It can describe an asserted dependency or observed
+    tendency, not automatically a causal mechanism or universal law. Keep the comparison conditions and
+    any limitations explicit.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Чем точнее данные, тем надёжнее вывод.
+    english: The more accurate the data, the more reliable the conclusion.
+  - target: Чем дольше мы наблюдаем, тем больше замечаем различий.
+    english: The longer we observe, the more differences we notice.
+  source_id: original-ru
+- id: ru-g-impersonal-evidence-clause
+  pattern: известно / установлено / показано, что [claim]
+  english: Examine a claim packaged as established information
+  note: Impersonal predicates can present a claim as known, established, or shown. Recover who established
+    it and by what method rather than accepting the grammatical packaging as proof. Distinguish a source's
+    reported result from the tutor's own assessment of the evidence.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: В отчёте показано, что результаты различаются.
+    english: The report shows that the results differ.
+  - target: Пока не установлено, что вызвало изменение.
+    english: It has not yet been established what caused the change.
+  source_id: original-ru
+- id: ru-g-participial-process-result
+  pattern: измеряемый / измеренный; получаемый / полученный
+  english: Distinguish a participial process from a completed result
+  note: Full passive participles can contrast an ongoing, habitual, or intended process with an already
+    completed result according to tense, aspect, and context. Both agree with their head noun. Do not
+    assign completion merely because a phrase is passive, and do not mechanically generate unsupported
+    participles.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Измеряемая величина зависит от температуры.
+    english: The quantity being measured depends on temperature.
+  - target: Мы сравнили значения, полученные вчера.
+    english: We compared the values obtained yesterday.
+  source_id: original-ru
+- id: ru-g-concession
+  pattern: хотя [clause]; несмотря на [accusative noun]
+  english: Acknowledge a fact while resisting its expected implication
+  note: Хотя introduces a concessive clause; несмотря на introduces a noun phrase in the accusative. Despite
+    its historical appearance, this preposition is not the ordinary negative adverbial phrase не смотря
+    meaning not looking. Concession acknowledges a fact while resisting an expected implication.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Хотя план полезен, он требует времени.
+    english: Although the plan is useful, it requires time.
+  - target: Несмотря на различия, мы нашли общую цель.
+    english: Despite our differences, we found a shared goal.
+  source_id: original-ru
+- id: ru-g-concessive-ni
+  pattern: как бы ни / кто бы ни / где бы ни ...
+  english: Generalize across alternatives in a concessive clause
+  note: These concessive clauses say that a result holds across possible people, places, or degrees. Ни
+    reinforces the generalization rather than negating the verb in the way не would. Do not infer that
+    every бы clause describes an unreal past event.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Как бы ни различались мнения, вопрос стоит обсудить.
+    english: However much opinions differ, the issue is worth discussing.
+  - target: Кто бы ни предложил идею, её нужно проверить.
+    english: Whoever proposed the idea, it needs to be checked.
+  source_id: original-ru
+- id: ru-g-qualified-generalization
+  pattern: не все / далеко не все / не всегда / в некоторых случаях
+  english: Restrict a generalization without reversing it
+  note: Не все means not all, not none; не всегда means not always, not never. Далеко не strengthens the
+    restriction but supplies no numeric proportion. Name a relevant group or circumstance rather than
+    converting one person's experience into a claim about everyone.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Не все участники согласились с выводом.
+    english: Not all participants agreed with the conclusion.
+  - target: В некоторых случаях этот подход не помогает.
+    english: In some cases, this approach does not help.
+  source_id: original-ru
+- id: ru-g-viewpoint-frame
+  pattern: с точки зрения [genitive perspective]; для [genitive experiencer]
+  english: Attribute an evaluation to a particular perspective
+  note: С точки зрения identifies a viewpoint or evaluative framework, while для can restrict an evaluation
+    to a person or group. Neither makes the viewpoint universal or immune to evidence. Clarify whether
+    a perspective is attributed to an actual source or proposed hypothetically.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: С точки зрения автора, перемены необходимы.
+    english: From the author's perspective, the changes are necessary.
+  - target: Для Анны этот обычай новый.
+    english: For Anna, this custom is new.
+  source_id: original-ru
+- id: ru-g-sufficient-necessary
+  pattern: достаточно / недостаточно [genitive or infinitive], чтобы ...
+  english: Distinguish enough for an outcome from merely required
+  note: Достаточно and недостаточно assess whether an amount or action is enough for a stated result.
+    Contrast sufficiency with the necessary-condition frame только если. Specify the criterion and avoid
+    claiming that the construction itself proves a conclusion logically follows.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Одного примера недостаточно, чтобы подтвердить правило.
+    english: One example is not enough to confirm the rule.
+  - target: Достаточно изменить один параметр, чтобы получить другой результат.
+    english: Changing one parameter is enough to obtain a different result.
+  source_id: original-ru
+- id: ru-g-not-so-much
+  pattern: не столько [A], сколько [B]
+  english: Rebalance an explanation rather than deny its first part
+  note: Не столько ... сколько shifts emphasis from the first characterization to the second without necessarily
+    denying the first. Keep the paired parts structurally comparable. It is an argumentative framing choice,
+    not a measurement of how much each cause contributes.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Проблема не столько в цене, сколько в сроках.
+    english: The problem is not so much the price as the timing.
+  - target: Он не столько спорил, сколько уточнял условия.
+    english: He was not so much arguing as clarifying the conditions.
+  source_id: original-ru
+- id: ru-g-exception-inclusion
+  pattern: кроме [genitive]; за исключением [genitive]
+  english: Clarify an exception versus an additional member
+  note: Кроме can exclude an item or add one depending on context. За исключением explicitly signals exclusion.
+    State enough context to prevent an excluding except from being misread as an including besides, especially
+    when qualifying a general claim.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Все ответили, кроме Игоря.
+    english: Everyone answered except Igor.
+  - target: Кроме отчёта, мы подготовили краткое письмо.
+    english: Besides the report, we prepared a short letter.
+  source_id: original-ru
+- id: ru-g-phase-verb-aspect
+  pattern: начать / продолжать / перестать + [imperfective infinitive]
+  english: Place an activity inside a beginning, continuation, or end
+  note: Verbs of beginning, continuing, and ceasing normally take an imperfective infinitive for the activity
+    whose phase is described. The phase verb itself may be perfective or imperfective. Перестал читать
+    reports stopping reading, not necessarily finishing the text.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Анна начала проверять данные.
+    english: Anna began checking the data.
+  - target: Он перестал читать, но не дочитал статью.
+    english: He stopped reading but did not finish the article.
+  source_id: original-ru
+- id: ru-g-balanced-synthesis
+  pattern: с одной стороны ... с другой стороны ...
+  english: Organize two considerations without forcing equal weight
+  note: This pair structures contrasting considerations, not a claim that they have equal evidential weight.
+    Make both sides relevant to the same decision and then state how they affect the conclusion. Avoid
+    presenting a weak unsupported claim as equivalent to documented evidence merely for symmetry.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: С одной стороны, план прост. С другой стороны, он не учитывает сроки.
+    english: On the one hand, the plan is simple. On the other hand, it does not account for the timing.
+  - target: С одной стороны, данных мало; с другой стороны, они согласуются.
+    english: On the one hand, there are few data; on the other hand, they are consistent.
+  source_id: original-ru
+- id: ru-g-correlative-reference
+  pattern: тот, кто ...; то, что ...; о том, что ...
+  english: Track reference across a correlative clause boundary
+  note: A demonstrative in the main clause and a relative or content clause can carry different case requirements.
+    Compare о том, что for discussing a fact with то, что as a clause-linked object or subject. Identify
+    each element's role rather than making all related words the same case.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Тот, кто проверял данные, объяснил метод.
+    english: The person who checked the data explained the method.
+  - target: Мы говорили о том, что изменилось.
+    english: We talked about what had changed.
+  source_id: original-ru
+- id: ru-g-contrast-sources
+  pattern: '[source] утверждает, что ...; тогда как [other source] ...'
+  english: Keep conflicting sources and their claims distinct
+  note: Тогда как can contrast claims or circumstances rather than describe their timing. Attribute each
+    proposition explicitly and preserve differences in scope or uncertainty. A contrastive sentence does
+    not by itself establish that either source is correct or that the claims truly contradict one another.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Первый отчёт описывает рост, тогда как второй отмечает спад.
+    english: The first report describes growth, whereas the second notes a decline.
+  - target: Автор говорит об отдельных случаях, тогда как критик обсуждает общее правило.
+    english: The author discusses individual cases, whereas the critic discusses a general rule.
+  source_id: original-ru
+- id: ru-g-formal-conclusion
+  pattern: таким образом / следовательно ...; однако ...
+  english: Mark a conclusion and preserve a relevant limitation
+  note: Таким образом can summarize a reasoning sequence, and следовательно explicitly presents an inference.
+    Однако introduces a contrast or limitation. These connectors label a proposed relation; the argument
+    must still support it. Distinguish concluding thus from a literal manner use of таким образом.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Таким образом, оба источника описывают одно изменение.
+    english: Thus, both sources describe the same change.
+  - target: Следовательно, вывод нужно уточнить. Однако новых данных пока нет.
+    english: Consequently, the conclusion needs qualification. However, there are no new data yet.
+  source_id: original-ru
+- id: ru-g-information-focus
+  pattern: Анна прочитала письмо. Письмо прочитала Анна.
+  english: Interpret focus shifts without discarding case marking
+  note: Russian word order is flexible but not arbitrary; context and spoken emphasis help distinguish
+    known information from focus. Case still identifies roles. Compare a neutral event report with an
+    answer emphasizing who acted, and do not claim text alone reveals the speaker's actual intonation.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Что сделала Анна? Анна прочитала письмо.
+    english: What did Anna do? Anna read the letter.
+  - target: Кто прочитал письмо? Письмо прочитала Анна.
+    english: Who read the letter? Anna was the one who read the letter.
+  source_id: original-ru
+- id: ru-g-shared-ground-particles
+  pattern: ведь / же [contextual proposition]
+  english: Interpret an appeal to shared knowledge or contrast
+  note: Ведь can present something as shared knowledge or a reason; же can emphasize a reminder or contrast,
+    with other uses in context. Neither has one fixed English translation. An appeal to what everyone
+    supposedly knows may be contestable rather than evidence that it is true.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Возьмите карту, ведь дорога незнакомая.
+    english: Take a map, since the route is unfamiliar.
+  - target: Я же просил уточнить время.
+    english: But I did ask you to clarify the time.
+  source_id: original-ru
+- id: ru-g-seeming-comparison
+  pattern: будто / как будто [clause]
+  english: Interpret seeming or resemblance without asserting reality
+  note: Будто and как будто can frame resemblance, appearance, or a distanced report depending on context.
+    An as-if comparison does not assert that its imagined situation is real. Compare a source-attributed
+    allegation rather than treating every будто as equivalent to skeptical якобы.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Он говорил так, будто знал ответ.
+    english: He spoke as if he knew the answer.
+  - target: Мне кажется, будто мы уже обсуждали этот вопрос.
+    english: It seems to me as though we have already discussed this issue.
+  source_id: original-ru
+- id: ru-g-focus-particle-scope
+  pattern: только [focused element]; даже [focused element]
+  english: Identify what only or even places in focus
+  note: The position and context of только and даже help determine their scope. Only Anna read the letter
+    differs from Anna read only the letter. Даже marks something presented as noteworthy or unexpected,
+    not an objective scale known independently of the speaker.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Только Анна прочитала письмо.
+    english: Only Anna read the letter.
+  - target: Анна прочитала только письмо.
+    english: Anna read only the letter.
+  - target: Даже Игорь согласился.
+    english: Even Igor agreed.
+  source_id: original-ru
+- id: ru-g-request-register
+  pattern: Давай ... / Пожалуйста, ... / Прошу вас ...
+  english: Recast the same request for a different relationship
+  note: Familiar joint invitations, polite imperatives, and formal прошу вас requests signal different
+    relationships and task roles. A formally grammatical request can still sound brusque or bureaucratic.
+    Keep the intended action constant while changing wording and explaining the likely social effect.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Давай обсудим сроки.
+    english: Let's discuss the timing. (familiar)
+  - target: Прошу вас уточнить сроки.
+    english: Please clarify the timing. (formal)
+  source_id: original-ru
+- id: ru-g-softened-disagreement
+  pattern: не совсем ...; боюсь, что ...; мне кажется, ...
+  english: Soften disagreement while retaining its actual content
+  note: Не совсем can limit a disagreement; боюсь, что can conventionally introduce unwelcome information
+    without describing literal fear. Softening should not conceal a consequential objection. Contrast
+    the polite frame with the underlying proposition and avoid overusing hedges where clarity matters.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я не совсем согласен с этим выводом.
+    english: I do not entirely agree with this conclusion.
+  - target: Боюсь, что этот срок нам не подходит.
+    english: I am afraid that this deadline does not work for us.
+  source_id: original-ru
+- id: ru-g-diminutive-register
+  pattern: минута / минутка; вопрос / вопросик
+  english: Interpret a diminutive's contextual social effect
+  note: Diminutives can suggest smallness, affection, informality, irony, or an attempt to minimize a
+    request. They are not automatically kinder, and suffix formation and stress are lexical matters. Treat
+    the example forms as construction-owned contrasts unless separately sourced lexical identities are
+    deliberately selected.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: У вас есть минутка?
+    english: Do you have a little moment? (informal softening)
+  - target: У меня один вопросик, но ответ требует времени.
+    english: I have one little question, but the answer takes time.
+  source_id: original-ru
+- id: ru-g-impersonal-preference
+  pattern: хотелось бы / представляется, что ...
+  english: Recognize distancing that leaves the viewpoint implicit
+  note: Хотелось бы can soften a wish without an overt first-person subject; представляется, что presents
+    an assessment impersonally. Such phrasing can obscure who wants or judges something. Recover or name
+    the perspective when accountability matters rather than equating impersonal style with objectivity.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Хотелось бы уточнить один вопрос.
+    english: I would like to clarify one issue.
+  - target: Представляется, что вывод требует уточнения.
+    english: It appears that the conclusion needs qualification.
+  source_id: original-ru
+- id: ru-g-hands-time-idiom
+  pattern: у [person] руки не доходят до [genitive task]
+  english: Say someone has not got around to a task
+  note: This conversational idiom means not getting around to a task, often because of competing demands.
+    It is not literal hand movement and does not prove the task is impossible. Use a neutral paraphrase
+    in a formal explanation and avoid treating the whole idiom as mastery of every component sense.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: У меня руки не доходят до этого письма.
+    english: I have not got around to this letter.
+  - target: До ремонта у нас пока руки не доходят.
+    english: We have not got around to the repairs yet.
+  source_id: original-ru
+- id: ru-g-conversational-ellipsis
+  pattern: Я за. А вы? Мне тоже.
+  english: Recover omitted material in a short contextual reply
+  note: Short replies can omit material recoverable from the preceding turn. Retained case or a preposition
+    may reveal the missing relation, as Мне тоже following a dative-experiencer sentence. Do not reconstruct
+    a unique meaning without sufficient context, and expand the reply when ambiguity matters.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Давайте начнём утром. Я за.
+    english: Let's start in the morning. I am in favour.
+  - target: Мне нравится этот план. Мне тоже.
+    english: I like this plan. So do I.
+  source_id: original-ru
+- id: ru-g-despite-expectation-particle
+  pattern: всё-таки [clause]
+  english: Mark persistence or an outcome contrary to expectation
+  note: Всё-таки can signal an outcome despite an obstacle, renewed insistence, or a conclusion after
+    doubt. Preserve the hyphen and ё. It is a fixed particle use, not an automatic vocabulary credit for
+    an unrelated interpretation of всё as everything.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Было поздно, но Анна всё-таки позвонила.
+    english: It was late, but Anna called after all.
+  - target: И всё-таки этот вопрос стоит обсудить.
+    english: Even so, this issue is worth discussing.
+  source_id: original-ru
+- id: ru-g-preoccupied-ne-do
+  pattern: '[dative person] не до [genitive activity]'
+  english: Say circumstances leave no attention for an activity
+  note: Не до with a dative experiencer expresses being in no position or mood to attend to something.
+    It is not the ordinary spatial or temporal до meaning up to. Depending on tone, it can sound dismissive,
+    so choose a fuller explanation for a sensitive interaction.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Сейчас мне не до споров.
+    english: I cannot concern myself with arguments right now.
+  - target: После такой новости нам было не до шуток.
+    english: After that news, we were in no mood for jokes.
+  source_id: original-ru
+- id: ru-g-bounds-degree
+  pattern: по крайней мере / не менее / не более [quantity]
+  english: State a lower or upper bound rather than an exact amount
+  note: Не менее states a lower bound and не более an upper bound in quantity contexts. По крайней мере
+    can mean at least quantitatively or introduce a limited concession. Distinguish a bound from an estimate
+    or exact count, and make the comparison set explicit when needed.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Нам нужно не менее трёх примеров.
+    english: We need at least three examples.
+  - target: Ответ займёт не более двух страниц.
+    english: The answer will take no more than two pages.
+  source_id: original-ru
+- id: ru-g-until-before
+  pattern: пока не [endpoint]; прежде чем [action]
+  english: Distinguish an until endpoint from a before relation
+  note: Пока не with an event often marks the endpoint until it happens; its не need not mean the endpoint
+    never occurs. Прежде чем places one action before another and can take an infinitive when the actor
+    is shared. Compare these with simultaneous пока and retain appropriate aspect.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Я подожду, пока вы не закончите.
+    english: I will wait until you finish.
+  - target: Прежде чем ответить, я проверю источник.
+    english: Before answering, I will check the source.
+  source_id: original-ru
+- id: ru-g-instead-of-action
+  pattern: вместо того чтобы [infinitive / clause]
+  english: Contrast a chosen action with a displaced alternative
+  note: Вместо того чтобы contrasts an actual or proposed action with one not taken or not preferred.
+    An infinitive often has the main clause's understood actor. Do not infer that the displaced alternative
+    was impossible; the construction can convey criticism depending on context.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Вместо того чтобы спорить, мы уточнили условия.
+    english: Instead of arguing, we clarified the conditions.
+  - target: Вместо того чтобы повторять вывод, объясните метод.
+    english: Instead of repeating the conclusion, explain the method.
+  source_id: original-ru
+- id: ru-g-explicit-clarification
+  pattern: то есть / а именно [clarification]
+  english: Restate a meaning or specify its members precisely
+  note: То есть offers an equivalent restatement or correction, while а именно specifies what a preceding
+    expression refers to. An example introduced by например is not necessarily an exhaustive definition.
+    Make sure the clarification preserves rather than silently strengthens the original claim.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Нужен письменный ответ, то есть письмо или сообщение.
+    english: A written reply is needed, that is, a letter or message.
+  - target: Мы проверили два параметра, а именно время и объём.
+    english: We checked two parameters, namely time and volume.
+  source_id: original-ru
+- id: ru-g-rhetorical-questions
+  pattern: Разве ...? Неужели ...?
+  english: Interpret question particles without assuming neutrality
+  note: Разве often challenges an expectation or invites confirmation of a contrary view; неужели commonly
+    signals surprise or disbelief. They can still occur in genuine questions. Infer stance cautiously
+    from context and do not claim that a question proves the implied answer.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Разве одного примера достаточно?
+    english: Is one example really enough?
+  - target: Неужели оба источника ошиблись?
+    english: Could both sources really have been mistaken?
+  source_id: original-ru
+- id: ru-g-labelled-distance
+  pattern: так называемый [agreeing noun phrase]
+  english: Interpret a reported label and possible skeptical distance
+  note: Так называемый can introduce a recognized term or distance the speaker from a label, depending
+    on context. Agreement follows the noun. Quotation marks likewise do not always mean irony; distinguish
+    a term being discussed from a claim that its referent is fraudulent.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Автор описывает так называемый эффект новизны.
+    english: The author describes the so-called novelty effect.
+  - target: Так называемое решение оставило главный вопрос открытым.
+    english: The so-called solution left the main question unresolved.
+  source_id: original-ru
+- id: ru-g-narrative-present
+  pattern: Вчера [present-tense narrative events]
+  english: Interpret a narrative present within a past setting
+  note: A speaker or narrator may shift to present tense to make a past scene vivid. The established time
+    frame, not the isolated present ending, controls its temporal interpretation. Distinguish deliberate
+    storytelling from an accidental tense inconsistency and offer a neutral past-tense paraphrase.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Вчера иду домой и вижу знакомого.
+    english: Yesterday I am walking home and see someone I know. (vivid narrative)
+  - target: В тот вечер Анна открывает письмо и сразу звонит другу.
+    english: That evening Anna opens the letter and immediately calls a friend. (narrative present)
+  source_id: original-ru
+- id: ru-g-figurative-comparison
+  pattern: словно [image]; как [comparison]
+  english: Interpret an image without converting it into a factual claim
+  note: Словно and comparative как can create imagery, but как also has other grammatical functions. Identify
+    the shared quality inferred in context and contrast the image with a literal paraphrase. Original
+    examples here are teaching illustrations, not quotations from a literary source.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Город словно уснул под снегом.
+    english: The city seemed to fall asleep under the snow.
+  - target: Её слова звучали как приглашение к разговору.
+    english: Her words sounded like an invitation to talk.
+  source_id: original-ru
+- id: ru-g-even-if
+  pattern: даже если [condition], [maintained claim]
+  english: Keep a claim conditional while conceding a possibility
+  note: Даже если concedes a possible condition while maintaining the main claim. Contrast factual хотя
+    with a condition not asserted to hold. A hypothetical counterexample should remain hypothetical throughout
+    an extended explanation, rather than becoming an assumed fact in the conclusion.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Даже если данные верны, вывод требует уточнения.
+    english: Even if the data are correct, the conclusion needs qualification.
+  - target: Даже если сроки изменятся, мы сохраним порядок проверки.
+    english: Even if the timing changes, we will keep the review procedure.
+  source_id: original-ru
+- id: ru-g-otherwise-consequence
+  pattern: если не ..., то ...; иначе ...
+  english: State what follows if a requirement is not met
+  note: Иначе can mean otherwise in a conditional consequence or differently as a manner word. Make the
+    relevant unmet condition explicit, especially in a sustained argument. Do not confuse an alternative
+    outcome with a logically inevitable one unless the premises support that strength.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Нужно назвать источник, иначе вывод нельзя проверить.
+    english: The source must be named; otherwise the conclusion cannot be checked.
+  - target: Если условия не совпадают, то результаты нельзя сравнивать напрямую.
+    english: If the conditions do not match, the results cannot be compared directly.
+  source_id: original-ru
+- id: ru-g-explicit-self-repair
+  pattern: точнее / вернее / иными словами [reformulation]
+  english: Revise a claim openly instead of silently changing its scope
+  note: Точнее narrows or improves precision, вернее can correct a previous formulation, and иными словами
+    paraphrases. State whether a revision changes the claim or only its wording. Keep the corrected proposition
+    recoverable for a reader following an extended argument.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Все участники ответили, точнее, все присутствовавшие.
+    english: All participants answered; more precisely, all those present did.
+  - target: Данных недостаточно; иными словами, вывод пока предварительный.
+    english: The data are insufficient; in other words, the conclusion is still provisional.
+  source_id: original-ru
+- id: ru-g-framed-claim
+  pattern: речь идёт о [prepositional]; это не означает, что ...
+  english: Define an argument's scope and block an unwarranted inference
+  note: Речь идёт о identifies the subject under discussion, not literal motion of speech. Это не означает,
+    что explicitly rejects an inference while leaving the previous claim intact. Use these frames to keep
+    an extended project's scope and limitations stable through revision.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Речь идёт о двух случаях, а не об общем правиле.
+    english: We are discussing two cases, not a general rule.
+  - target: Результаты совпали, но это не означает, что методы одинаковы.
+    english: The results matched, but this does not mean that the methods are identical.
+  source_id: original-ru
+- id: ru-g-professional-request
+  pattern: Прошу вас [infinitive]. Просим [infinitive].
+  english: Write a clear formal request with a stated action
+  note: Прошу or institutional просим can make a professional request explicit, usually with an infinitive
+    and any necessary object, reason, or timing. It can sound directive, so choose a tentative alternative
+    when the relationship calls for it. This productive branch practices language, not authority to impose
+    a requirement.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Прошу вас подтвердить время встречи.
+    english: Please confirm the meeting time. (formal)
+  - target: Просим прислать ответ до пятницы.
+    english: Please send your reply by Friday. (organizational request)
+  source_id: original-ru
+- id: ru-g-professional-agreement
+  pattern: договорились о [prepositional] / о том, что ...
+  english: Record a negotiated commitment without implying a contract
+  note: Договориться о names what participants agreed on; о том, что introduces its explicit content.
+    Distinguish a proposed action from an agreement actually reached and identify who accepted it. This
+    language exercise makes no claim about a statement's legal enforceability.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Мы договорились о новой встрече.
+    english: We agreed on another meeting.
+  - target: Мы договорились о том, что Анна подготовит список.
+    english: We agreed that Anna would prepare the list.
+  source_id: original-ru
+- id: ru-g-professional-status
+  pattern: готов / готова / готовы к [dative]; остаётся [infinitive]
+  english: Give a task status and identify the remaining action
+  note: Готов agrees with the thing or person ready and к takes the dative of the next stage. Остаётся
+    with an infinitive identifies what remains to be done. Separate work completed from readiness to proceed
+    and specify unresolved dependencies rather than presenting a vague assurance.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Отчёт готов к обсуждению.
+    english: The report is ready for discussion.
+  - target: Нам остаётся проверить даты.
+    english: We still need to check the dates.
+  source_id: original-ru
+- id: ru-g-technical-operating-condition
+  pattern: при [prepositional condition] [system behaviour]
+  english: Interpret a condition on system behaviour
+  note: При with the prepositional can specify an operating condition or concurrent event in technical
+    descriptions. It is not a promise that a system always behaves that way beyond the stated scope. Paraphrase
+    with если or когда and check the source's actual conditions before acting.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: При низкой температуре прибор работает медленнее.
+    english: At a low temperature, the device operates more slowly.
+  - target: При запуске программа проверяет файл.
+    english: On startup, the program checks the file.
+  source_id: original-ru
+- id: ru-g-technical-contingency
+  pattern: в случае [genitive event] [instruction]
+  english: Read an instruction tied to a specified event
+  note: В случае with a genitive event establishes a contingency. It introduces what an instruction applies
+    to, not proof that the event occurred. Original examples are text-practice scenarios, not authoritative
+    procedures for real equipment, data recovery, or safety-critical systems.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: В случае ошибки программа показывает сообщение.
+    english: If an error occurs, the program displays a message.
+  - target: В случае изменения настроек проверьте результат.
+    english: If the settings change, check the result.
+  source_id: original-ru
+- id: ru-g-technical-composition-purpose
+  pattern: состоит из [genitive]; предназначен для [genitive]
+  english: Distinguish a system's components from its intended function
+  note: Состоять из names composition, while предназначен для states intended use with agreement in the
+    short passive form. A stated purpose does not guarantee suitability, compatibility, or successful
+    performance. Keep the example's narrow function separate from professional operating advice.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Система состоит из трёх частей.
+    english: The system consists of three parts.
+  - target: Этот файл предназначен для проверки программы.
+    english: This file is intended for testing the program.
+  source_id: original-ru
+- id: ru-g-scientific-assumption
+  pattern: при условии, что ...; если предположить, что ...
+  english: Identify an assumption that limits a scientific claim
+  note: These frames declare a condition or assumption under which reasoning proceeds. An assumption is
+    not an observed result, and its truth must not be inferred from a valid conditional argument. Compare
+    the claim with and without its stated limitation.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Вывод верен при условии, что измерения точны.
+    english: The conclusion is valid provided that the measurements are accurate.
+  - target: Если предположить, что скорость постоянна, расчёт упрощается.
+    english: If we assume that the speed is constant, the calculation becomes simpler.
+  source_id: original-ru
+- id: ru-g-scientific-relation
+  pattern: связан с [instrumental]; обусловлен [instrumental]
+  english: Distinguish a stated association from causal attribution
+  note: Связан с can state an association; обусловлен presents something as determined or caused by a
+    factor. The stronger causal wording needs stronger support and may be only the author's claim. Agreement
+    follows the phenomenon described, and a grammatical distinction does not validate the science.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Изменение связано с температурой.
+    english: The change is associated with temperature.
+  - target: По мнению автора, различие обусловлено методом измерения.
+    english: In the author's view, the difference is caused by the measurement method.
+  source_id: original-ru
+- id: ru-g-scientific-ceteris-paribus
+  pattern: при прочих равных условиях; в пределах [genitive]
+  english: Read a restricted comparison or a stated measurement range
+  note: При прочих равных условиях holds other relevant conditions constant as an assumption. В пределах
+    specifies bounds and takes the genitive. Identify which variables or range the source actually names;
+    these fixed frames do not establish that real conditions were controlled or measurement uncertainty
+    is negligible.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: При прочих равных условиях сравним два метода.
+    english: With other conditions held equal, let us compare two methods.
+  - target: Различие остаётся в пределах погрешности.
+    english: The difference remains within the margin of error.
+  source_id: original-ru
+- id: ru-g-literary-kol
+  pattern: коль / коли [condition], [consequence]
+  english: Read literary or colloquial alternatives to если
+  note: Коль and коли can introduce a condition in older, literary, proverbial, or colloquial styles.
+    They are not default replacements for если in neutral professional speech. The original examples illustrate
+    a register contrast without quoting a literary work or claiming all historical usage is uniform.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Коль обещал, сдержи слово.
+    english: If you gave your word, keep it. (marked style)
+  - target: Коли есть время, посиди со мной.
+    english: If you have time, sit with me a while. (marked style)
+  source_id: original-ru
+- id: ru-g-literary-negative-infinitive
+  pattern: не [dative person] [perfective infinitive]
+  english: Interpret an infinitival prediction of unattainability
+  note: A negative independent infinitive with a dative person can suggest that an outcome is not to be
+    attained. It may sound fatalistic, literary, or expressive rather than like a neutral factual inability
+    statement. Paraphrase with не сможет in context and do not mistake the rhetoric for certainty.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Не забыть мне этот вечер.
+    english: I shall never forget this evening. (expressive)
+  - target: Не вернуть ему прошедший день.
+    english: He cannot bring back the day that has passed. (expressive)
+  source_id: original-ru
+- id: ru-g-literary-bookish-connectors
+  pattern: ибо [reason]; дабы [purpose]
+  english: Read bookish reason and purpose connectors
+  note: Ибо introduces a reason in bookish or rhetorically elevated style; дабы introduces a purpose in
+    older, literary, or deliberately formal style. Compare потому что and чтобы as less marked alternatives
+    without assuming identical tone. These original sentences illustrate context, not a recommendation
+    to imitate an older voice in ordinary conversation.
+  level_basis: Original independently placed Russian construction; not an examination mapping.
+  examples:
+  - target: Он сохранил письмо, ибо боялся забыть обещание.
+    english: He kept the letter, for he feared forgetting the promise. (bookish)
+  - target: Она записала имена, дабы никто не был забыт.
+    english: She wrote down the names so that no one would be forgotten. (bookish)
+  source_id: original-ru

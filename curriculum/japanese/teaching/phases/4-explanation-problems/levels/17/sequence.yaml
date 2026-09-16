@@ -1,0 +1,403 @@
+schema_version: 3
+id: ja-level-17
+title: Technology and the environment
+language: japanese
+level_basis: Independent communicative teaching progression; JLPT reference labels identify provenance, not admission requirements, competence, or guaranteed examination coverage.
+review_policy: A topic module is a pool for several adaptive lessons, not a single sitting. Start with 5-8 new senses and one construction; retrieve relevant earlier items after a delay. Record the task, assistance, sense, and modality. Teach distinctions in meaningful exchanges rather than reciting source order. Exposure and module completion are not mastery.
+kind: level
+number: 17
+phase: explanation-problems
+prerequisites:
+- ja-level-01
+- ja-level-02
+- ja-level-03
+- ja-level-04
+- ja-level-05
+- ja-level-06
+- ja-level-07
+- ja-level-08
+- ja-level-09
+- ja-level-10
+- ja-level-11
+- ja-level-12
+- ja-level-13
+- ja-level-14
+- ja-level-15
+- ja-level-16
+goals: &id001
+- Explain a general-audience process.
+- Describe a change and its possible consequences.
+- State a limitation rather than claim specialist authority.
+checkpoint:
+  task: Explain a technical or environmental issue to a nonspecialist with follow-up questions.
+  criteria: *id001
+mastery_profile: ja-item-mastery
+mastery_target: independent-use
+units:
+- id: level-17-nature-01
+  title: Environment and change - 1
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary:
+  - {id: ja-n4-00034-s001, ch: 石, pr: いし, ds: stone}
+  - {id: ja-n4-00048-s001, ch: 植える, pr: うえる, ds: to plant}
+  - {id: ja-n4-00069-s001, ch: 枝, pr: えだ, ds: branch}
+  - {id: ja-n4-00111-s001, ch: 海岸, pr: かいがん, ds: seashore}
+  - {id: ja-n4-00180-s001, ch: 空気, pr: くうき, ds: air}
+  - {id: ja-n4-00182-s001, ch: 草, pr: くさ, ds: grass}
+  - {id: ja-n4-00185-s001, ch: 雲, pr: くも, ds: cloud}
+  - {id: ja-n4-00197-s001, ch: 景色, pr: けしき, ds: scenery}
+  - {id: ja-n4-00229-s001, ch: 小鳥, pr: ことり, ds: small bird}
+  - {id: ja-n4-00282-s001, ch: 島, pr: しま, ds: island}
+  - {id: ja-n4-00330-s001, ch: 砂, pr: すな, ds: sand}
+  - {id: ja-n4-00371-s001, ch: 台風, pr: たいふう, ds: typhoon}
+  - {id: ja-n4-00403-s001, ch: 月, pr: つき, ds: Moon}
+  - {id: ja-n4-00425-s001, ch: 天気予報, pr: てんきよほう, ds: weather forecast}
+  - {id: ja-n4-00481-s001, ch: 葉, pr: は, ds: leaf}
+  - {id: ja-n4-00496-s001, ch: 林, pr: はやし, ds: wood}
+  - {id: ja-n4-00502-s001, ch: 火, pr: ひ, ds: fire}
+  - {id: ja-n4-00505-s001, ch: 光, pr: ひかり, ds: light; illumination}
+  - {id: ja-n4-00506-s001, ch: 光る, pr: ひかる, ds: to shine}
+  - {id: ja-n4-00549-s001, ch: 星, pr: ほし, ds: star (usu. excluding the Sun)}
+  - {id: ja-n4-00566-s001, ch: 湖, pr: みずうみ, ds: lake}
+  - {id: ja-n4-00575-s001, ch: 虫, pr: むし, ds: insect}
+  - {id: ja-n4-00590-s001, ch: 森, pr: もり, ds: forest}
+  - {id: ja-n3-00036-s001, ch: 嵐, pr: あらし, ds: storm}
+  - {id: ja-n3-00047-s001, ch: 泡, pr: あわ, ds: bubble}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-17-nature-02
+  title: Environment and change - 2
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary:
+  - {id: ja-n3-00064-s001, ch: 生き物, pr: いきもの, ds: living thing}
+  - {id: ja-n3-00075-s001, ch: 泉, pr: いずみ, ds: spring; source of water}
+  - {id: ja-n3-00107-s001, ch: 稲, pr: いね, ds: rice plant (Oryza sativa)}
+  - {id: ja-n3-00121-s001, ch: 岩, pr: いわ, ds: rock}
+  - {id: ja-n3-00133-s001, ch: 魚, pr: うお, ds: fish}
+  - {id: ja-n3-00137-s001, ch: うさぎ, pr: うさぎ, ds: rabbit}
+  - {id: ja-n3-00138-s001, ch: 牛, pr: うし, ds: cattle (Bos taurus)}
+  - {id: ja-n3-00148-s001, ch: 馬, pr: うま, ds: horse}
+  - {id: ja-n3-00150-s001, ch: 梅, pr: うめ, ds: Japanese apricot (Prunus mume)}
+  - {id: ja-n3-00162-s001, ch: 衛星, pr: えいせい, ds: (natural) satellite}
+  - {id: ja-n3-00191-s001, ch: 丘, pr: おか, ds: hill}
+  - {id: ja-n3-00192-s001, ch: 沖, pr: おき, ds: open sea}
+  - {id: ja-n3-00229-s001, ch: 温暖, pr: おんだん, ds: warm}
+  - {id: ja-n3-00230-s001, ch: 温度, pr: おんど, ds: temperature}
+  - {id: ja-n3-00251-s001, ch: 飼う, pr: かう, ds: to keep (a pet or other animal)}
+  - {id: ja-n3-00314-s001, ch: 神, pr: かみ, ds: god}
+  - {id: ja-n3-00315-s001, ch: 雷, pr: かみなり, ds: lightning}
+  - {id: ja-n3-00320-s001, ch: 空, pr: から, ds: emptiness}
+  - {id: ja-n3-00322-s001, ch: 刈る, pr: かる, ds: 'to cut (grass, hair, etc.)'}
+  - {id: ja-n3-00336-s001, ch: 観察, pr: かんさつ, ds: observation}
+  - {id: ja-n3-00355-s001, ch: 気温, pr: きおん, ds: (air) temperature}
+  - {id: ja-n3-00363-s001, ch: 気候, pr: きこう, ds: climate}
+  - {id: ja-n3-00364-s001, ch: 岸, pr: きし, ds: riverbank; shore; coast}
+  - {id: ja-n3-00421-s001, ch: 霧, pr: きり, ds: fog}
+  - {id: ja-n3-00433-s001, ch: 金属, pr: きんぞく, ds: metal}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n4-00505-s001, ch: 光, pr: ひかり, ds: light; illumination}
+  - {id: ja-n4-00506-s001, ch: 光る, pr: ひかる, ds: to shine}
+  - {id: ja-n4-00549-s001, ch: 星, pr: ほし, ds: star (usu. excluding the Sun)}
+  - {id: ja-n4-00566-s001, ch: 湖, pr: みずうみ, ds: lake}
+  - {id: ja-n4-00575-s001, ch: 虫, pr: むし, ds: insect}
+  - {id: ja-n4-00590-s001, ch: 森, pr: もり, ds: forest}
+  - {id: ja-n3-00036-s001, ch: 嵐, pr: あらし, ds: storm}
+  - {id: ja-n3-00047-s001, ch: 泡, pr: あわ, ds: bubble}
+  review_grammar: []
+- id: level-17-nature-03
+  title: Environment and change - 3
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary:
+  - {id: ja-n3-00543-s001, ch: 光景, pr: こうけい, ds: scene}
+  - {id: ja-n3-00625-s001, ch: 作物, pr: さくもつ, ds: crop}
+  - {id: ja-n3-00626-s001, ch: 桜, pr: さくら, ds: cherry tree}
+  - {id: ja-n3-00640-s001, ch: 砂漠, pr: さばく, ds: desert}
+  - {id: ja-n3-00650-s001, ch: さる, pr: さる, ds: 'monkey (esp. the Japanese macaque, Macaca fuscata)'}
+  - {id: ja-n3-00655-s001, ch: 酸素, pr: さんそ, ds: oxygen (O)}
+  - {id: ja-n3-00670-s001, ch: 資源, pr: しげん, ds: resources}
+  - {id: ja-n3-00680-s001, ch: 自然, pr: しぜん, ds: nature}
+  - {id: ja-n3-00690-s001, ch: 実験, pr: じっけん, ds: experiment}
+  - {id: ja-n3-00720-s001, ch: 霜, pr: しも, ds: frost}
+  - {id: ja-n3-00728-s001, ch: 収穫, pr: しゅうかく, ds: harvest}
+  - {id: ja-n3-00798-s001, ch: 植物, pr: しょくぶつ, ds: plant}
+  - {id: ja-n3-00841-s001, ch: 巣, pr: す, ds: nest}
+  - {id: ja-n3-00904-s001, ch: 生物, pr: せいぶつ, ds: living thing}
+  - {id: ja-n3-00905-s001, ch: 生命, pr: せいめい, ds: life}
+  - {id: ja-n3-00908-s001, ch: 石炭, pr: せきたん, ds: coal}
+  - {id: ja-n3-00910-s001, ch: 石油, pr: せきゆ, ds: oil}
+  - {id: ja-n3-00918-s001, ch: 絶滅, pr: ぜつめつ, ds: extinction}
+  - {id: ja-n3-00935-s001, ch: 象, pr: ぞう, ds: elephant (Elephantidae spp.)}
+  - {id: ja-n3-00944-s001, ch: 底, pr: そこ, ds: bottom}
+  - {id: ja-n3-00966-s001, ch: 田, pr: た, ds: rice field}
+  - {id: ja-n3-00975-s001, ch: 大気, pr: たいき, ds: atmosphere}
+  - {id: ja-n3-00993-s001, ch: 太陽, pr: たいよう, ds: Sun}
+  - {id: ja-n3-00996-s001, ch: 大陸, pr: たいりく, ds: continent}
+  - {id: ja-n3-01021-s001, ch: 谷, pr: たに, ds: valley}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00320-s001, ch: 空, pr: から, ds: emptiness}
+  - {id: ja-n3-00322-s001, ch: 刈る, pr: かる, ds: 'to cut (grass, hair, etc.)'}
+  - {id: ja-n3-00336-s001, ch: 観察, pr: かんさつ, ds: observation}
+  - {id: ja-n3-00355-s001, ch: 気温, pr: きおん, ds: (air) temperature}
+  - {id: ja-n3-00363-s001, ch: 気候, pr: きこう, ds: climate}
+  - {id: ja-n3-00364-s001, ch: 岸, pr: きし, ds: riverbank; shore; coast}
+  - {id: ja-n3-00421-s001, ch: 霧, pr: きり, ds: fog}
+  - {id: ja-n3-00433-s001, ch: 金属, pr: きんぞく, ds: metal}
+  review_grammar: []
+- id: level-17-nature-04
+  title: Environment and change - 4
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary:
+  - {id: ja-n3-01023-s001, ch: 種, pr: たね, ds: seed (e.g. of a plant)}
+  - {id: ja-n3-01028-s001, ch: 玉, pr: たま, ds: ball}
+  - {id: ja-n3-01061-s001, ch: 地球, pr: ちきゅう, ds: Earth}
+  - {id: ja-n3-01068-s001, ch: 地平線, pr: ちへいせん, ds: horizon (related to land)}
+  - {id: ja-n3-01085-s001, ch: 調査, pr: ちょうさ, ds: investigation}
+  - {id: ja-n3-01105-s001, ch: 土, pr: つち, ds: earth}
+  - {id: ja-n3-01112-s001, ch: 翼, pr: つばさ, ds: wing}
+  - {id: ja-n3-01117-s001, ch: 梅雨, pr: つゆ, ds: East Asian rainy season (tsuyu)}
+  - {id: ja-n3-01150-s001, ch: 天候, pr: てんこう, ds: weather}
+  - {id: ja-n3-01154-s001, ch: 天然, pr: てんねん, ds: nature}
+  - {id: ja-n3-01245-s001, ch: 波, pr: なみ, ds: wave}
+  - {id: ja-n3-01261-s001, ch: 日光, pr: にっこう, ds: sunlight}
+  - {id: ja-n3-01274-s001, ch: 根, pr: ね, ds: root (of a plant)}
+  - {id: ja-n3-01277-s001, ch: ねずみ, pr: ねずみ, ds: mouse}
+  - {id: ja-n3-01280-s001, ch: 熱帯, pr: ねったい, ds: tropics}
+  - {id: ja-n3-01287-s001, ch: 野, pr: の, ds: field}
+  - {id: ja-n3-01311-s001, ch: 灰, pr: はい, ds: ash}
+  - {id: ja-n3-01316-s001, ch: パイプ, pr: パイプ, ds: pipe}
+  - {id: ja-n3-01339-s001, ch: 畑, pr: はたけ, ds: 'field (for growing wheat, fruit, vegetables, etc.)'}
+  - {id: ja-n3-01356-s001, ch: 羽, pr: はね, ds: feather}
+  - {id: ja-n3-01374-s001, ch: 灯, pr: ひ, ds: light; lamp (hi reading)}
+  - {id: ja-n3-01446-s001, ch: 物質, pr: ぶっしつ, ds: material}
+  - {id: ja-n3-01447-s001, ch: 物理, pr: ぶつり, ds: laws of nature}
+  - {id: ja-n3-01490-s001, ch: 吠える, pr: ほえる, ds: to bark}
+  - {id: ja-n3-01553-s001, ch: 実, pr: み, ds: fruit}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-00918-s001, ch: 絶滅, pr: ぜつめつ, ds: extinction}
+  - {id: ja-n3-00935-s001, ch: 象, pr: ぞう, ds: elephant (Elephantidae spp.)}
+  - {id: ja-n3-00944-s001, ch: 底, pr: そこ, ds: bottom}
+  - {id: ja-n3-00966-s001, ch: 田, pr: た, ds: rice field}
+  - {id: ja-n3-00975-s001, ch: 大気, pr: たいき, ds: atmosphere}
+  - {id: ja-n3-00993-s001, ch: 太陽, pr: たいよう, ds: Sun}
+  - {id: ja-n3-00996-s001, ch: 大陸, pr: たいりく, ds: continent}
+  - {id: ja-n3-01021-s001, ch: 谷, pr: たに, ds: valley}
+  review_grammar: []
+- id: level-17-nature-05
+  title: Environment and change - 5
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary:
+  - {id: ja-n3-01593-s001, ch: 綿, pr: めん, ds: cotton}
+  - {id: ja-n3-01672-s001, ch: 予測, pr: よそく, ds: prediction}
+  - {id: ja-n3-01673-s001, ch: ヨット, pr: ヨット, ds: yacht (esp. a sailing boat with one mast)}
+  - {id: ja-n3-01677-s001, ch: 予報, pr: よほう, ds: forecast}
+  - {id: ja-n3-01712-s001, ch: ロケット, pr: ロケット, ds: rocket}
+  - {id: ja-n3-01730-s001, ch: 湾, pr: わん, ds: bay}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n3-01316-s001, ch: パイプ, pr: パイプ, ds: pipe}
+  - {id: ja-n3-01339-s001, ch: 畑, pr: はたけ, ds: 'field (for growing wheat, fruit, vegetables, etc.)'}
+  - {id: ja-n3-01356-s001, ch: 羽, pr: はね, ds: feather}
+  - {id: ja-n3-01374-s001, ch: 灯, pr: ひ, ds: light; lamp (hi reading)}
+  - {id: ja-n3-01446-s001, ch: 物質, pr: ぶっしつ, ds: material}
+  - {id: ja-n3-01447-s001, ch: 物理, pr: ぶつり, ds: laws of nature}
+  - {id: ja-n3-01490-s001, ch: 吠える, pr: ほえる, ds: to bark}
+  - {id: ja-n3-01553-s001, ch: 実, pr: み, ds: fruit}
+  review_grammar: []
+- id: level-17-technology-01
+  title: Technology and systems - 1
+  outcome: Explain how a system works and identify a practical limitation.
+  vocabulary:
+  - {id: ja-n4-00123-s001, ch: ガソリン, pr: ガソリン, ds: gasoline}
+  - {id: ja-n4-00124-s001, ch: ガソリンスタンド, pr: ガソリンスタンド, ds: gas station}
+  - {id: ja-n4-00159-s001, ch: 技術, pr: ぎじゅつ, ds: technology}
+  - {id: ja-n4-00212-s001, ch: 工業, pr: こうぎょう, ds: (manufacturing) industry}
+  - {id: ja-n4-00215-s001, ch: 工場, pr: こうじょう, ds: factory}
+  - {id: ja-n4-00243-s001, ch: コンピュータ, pr: コンピュータ, ds: computer}
+  - {id: ja-n4-00262-s001, ch: 産業, pr: さんぎょう, ds: industry}
+  - {id: ja-n4-00338-s001, ch: 生産, pr: せいさん, ds: production}
+  - {id: ja-n4-00356-s001, ch: ソフト, pr: ソフト, ds: soft}
+  - {id: ja-n4-00492-s001, ch: パソコン, pr: パソコン, ds: personal computer}
+  - {id: ja-n3-00142-s001, ch: 宇宙, pr: うちゅう, ds: universe}
+  - {id: ja-n3-00167-s001, ch: エネルギー, pr: エネルギー, ds: energy}
+  - {id: ja-n3-00174-s001, ch: エンジン, pr: エンジン, ds: engine}
+  - {id: ja-n3-00258-s001, ch: 化学, pr: かがく, ds: chemistry}
+  - {id: ja-n3-00561-s001, ch: コード, pr: コード, ds: code}
+  - {id: ja-n3-00701-s001, ch: 自動, pr: じどう, ds: automatic}
+  - {id: ja-n2-00026-s001, ch: 圧縮, pr: あっしゅく, ds: compression}
+  - {id: ja-n2-00055-s001, ch: アンテナ, pr: アンテナ, ds: antenna}
+  - {id: ja-n2-00085-s001, ch: 緯度, pr: いど, ds: latitude}
+  - {id: ja-n2-00095-s001, ch: 引力, pr: いんりょく, ds: 'attraction (e.g. magnetic, gravitation)'}
+  - {id: ja-n2-00132-s001, ch: 運河, pr: うんが, ds: (navigable) canal}
+  - {id: ja-n2-00137-s001, ch: 液体, pr: えきたい, ds: liquid}
+  - {id: ja-n2-00143-s001, ch: 園芸, pr: えんげい, ds: horticulture}
+  - {id: ja-n2-00145-s001, ch: 円周, pr: えんしゅう, ds: circumference}
+  - {id: ja-n2-00221-s001, ch: 温室, pr: おんしつ, ds: greenhouse}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-17-technology-02
+  title: Technology and systems - 2
+  outcome: Explain how a system works and identify a practical limitation.
+  vocabulary:
+  - {id: ja-n2-00223-s001, ch: 温帯, pr: おんたい, ds: temperate zone}
+  - {id: ja-n2-00226-s001, ch: 蚊, pr: か, ds: mosquito}
+  - {id: ja-n2-00228-s001, ch: 貝, pr: かい, ds: shellfish}
+  - {id: ja-n2-00239-s001, ch: 改造, pr: かいぞう, ds: remodeling}
+  - {id: ja-n2-00241-s001, ch: 回転, pr: かいてん, ds: rotation}
+  - {id: ja-n2-00247-s001, ch: 海洋, pr: かいよう, ds: ocean}
+  - {id: ja-n2-00274-s001, ch: 火口, pr: かこう, ds: (volcanic) crater}
+  - {id: ja-n2-00279-s001, ch: 火山, pr: かざん, ds: volcano}
+  - {id: ja-n2-00292-s001, ch: 加速, pr: かそく, ds: acceleration}
+  - {id: ja-n2-00293-s001, ch: 加速度, pr: かそくど, ds: acceleration}
+  - {id: ja-n2-00296-s001, ch: 塊, pr: かたまり, ds: lump}
+  - {id: ja-n2-00297-s001, ch: 固まる, pr: かたまる, ds: to harden}
+  - {id: ja-n2-00305-s001, ch: 担ぐ, pr: かつぐ, ds: to shoulder}
+  - {id: ja-n2-00318-s001, ch: カバー, pr: カバー, ds: cover}
+  - {id: ja-n2-00320-s001, ch: かぶせる, pr: かぶせる, ds: to cover (with something)}
+  - {id: ja-n2-00334-s001, ch: 枯れる, pr: かれる, ds: to wither (of a plant)}
+  - {id: ja-n2-00349-s001, ch: 乾燥, pr: かんそう, ds: dryness}
+  - {id: ja-n2-00351-s001, ch: 観測, pr: かんそく, ds: observation}
+  - {id: ja-n2-00352-s001, ch: 寒帯, pr: かんたい, ds: frigid zone}
+  - {id: ja-n2-00364-s001, ch: 気圧, pr: きあつ, ds: atmospheric pressure}
+  - {id: ja-n2-00368-s001, ch: 飢饉, pr: ききん, ds: famine}
+  - {id: ja-n2-00380-s001, ch: 基地, pr: きち, ds: 'base (military, expedition, etc.)'}
+  - {id: ja-n2-00400-s001, ch: 漁業, pr: ぎょぎょう, ds: fishing industry}
+  - {id: ja-n2-00405-s001, ch: 金魚, pr: きんぎょ, ds: goldfish (Carassius auratus)}
+  - {id: ja-n2-00418-s001, ch: 崩す, pr: くずす, ds: to destroy}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00055-s001, ch: アンテナ, pr: アンテナ, ds: antenna}
+  - {id: ja-n2-00085-s001, ch: 緯度, pr: いど, ds: latitude}
+  - {id: ja-n2-00095-s001, ch: 引力, pr: いんりょく, ds: 'attraction (e.g. magnetic, gravitation)'}
+  - {id: ja-n2-00132-s001, ch: 運河, pr: うんが, ds: (navigable) canal}
+  - {id: ja-n2-00137-s001, ch: 液体, pr: えきたい, ds: liquid}
+  - {id: ja-n2-00143-s001, ch: 園芸, pr: えんげい, ds: horticulture}
+  - {id: ja-n2-00145-s001, ch: 円周, pr: えんしゅう, ds: circumference}
+  - {id: ja-n2-00221-s001, ch: 温室, pr: おんしつ, ds: greenhouse}
+  review_grammar: []
+- id: level-17-technology-03
+  title: Technology and systems - 3
+  outcome: Explain how a system works and identify a practical limitation.
+  vocabulary:
+  - {id: ja-n2-00420-s001, ch: 崩れる, pr: くずれる, ds: to collapse}
+  - {id: ja-n2-00421-s001, ch: 砕く, pr: くだく, ds: to break (into pieces)}
+  - {id: ja-n2-00422-s001, ch: 砕ける, pr: くだける, ds: to break (into pieces)}
+  - {id: ja-n2-00428-s001, ch: くっつく, pr: くっつく, ds: to adhere to}
+  - {id: ja-n2-00429-s001, ch: くっつける, pr: くっつける, ds: to attach}
+  - {id: ja-n2-00442-s001, ch: くるむ, pr: くるむ, ds: to wrap up (in)}
+  - {id: ja-n2-00465-s001, ch: 削る, pr: けずる, ds: 'to shave (wood, leather, etc.)'}
+  - {id: ja-n2-00489-s001, ch: 顕微鏡, pr: けんびきょう, ds: microscope}
+  - {id: ja-n2-00497-s001, ch: 公害, pr: こうがい, ds: pollution}
+  - {id: ja-n2-00517-s001, ch: 耕地, pr: こうち, ds: arable land}
+  - {id: ja-n2-00526-s001, ch: 鉱物, pr: こうぶつ, ds: mineral}
+  - {id: ja-n2-00576-s001, ch: 転がす, pr: ころがす, ds: to roll}
+  - {id: ja-n2-00577-s001, ch: 転がる, pr: ころがる, ds: to roll}
+  - {id: ja-n2-00602-s001, ch: 裂く, pr: さく, ds: to tear}
+  - {id: ja-n2-00610-s001, ch: 刺さる, pr: ささる, ds: to stick into (of something with a sharp point)}
+  - {id: ja-n2-00616-s001, ch: 刺す, pr: さす, ds: to pierce}
+  - {id: ja-n2-00617-s001, ch: 挿す, pr: さす, ds: to insert}
+  - {id: ja-n2-00618-s001, ch: さす, pr: さす, ds: to pour}
+  - {id: ja-n2-00625-s001, ch: 錆, pr: さび, ds: rust}
+  - {id: ja-n2-00626-s001, ch: 錆びる, pr: さびる, ds: to rust}
+  - {id: ja-n2-00640-s001, ch: 酸性, pr: さんせい, ds: acidity}
+  - {id: ja-n2-00641-s001, ch: 産地, pr: さんち, ds: producing area}
+  - {id: ja-n2-00643-s001, ch: 山林, pr: さんりん, ds: mountain forest}
+  - {id: ja-n2-00656-s001, ch: 四季, pr: しき, ds: the four seasons}
+  - {id: ja-n2-00660-s001, ch: 茂る, pr: しげる, ds: to grow thickly}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00351-s001, ch: 観測, pr: かんそく, ds: observation}
+  - {id: ja-n2-00352-s001, ch: 寒帯, pr: かんたい, ds: frigid zone}
+  - {id: ja-n2-00364-s001, ch: 気圧, pr: きあつ, ds: atmospheric pressure}
+  - {id: ja-n2-00368-s001, ch: 飢饉, pr: ききん, ds: famine}
+  - {id: ja-n2-00380-s001, ch: 基地, pr: きち, ds: 'base (military, expedition, etc.)'}
+  - {id: ja-n2-00400-s001, ch: 漁業, pr: ぎょぎょう, ds: fishing industry}
+  - {id: ja-n2-00405-s001, ch: 金魚, pr: きんぎょ, ds: goldfish (Carassius auratus)}
+  - {id: ja-n2-00418-s001, ch: 崩す, pr: くずす, ds: to destroy}
+  review_grammar: []
+- id: level-17-technology-04
+  title: Technology and systems - 4
+  outcome: Explain how a system works and identify a practical limitation.
+  vocabulary:
+  - {id: ja-n2-00662-s001, ch: 磁石, pr: じしゃく, ds: magnet}
+  - {id: ja-n2-00663-s001, ch: 四捨五入, pr: ししゃごにゅう, ds: rounding (off; a number)}
+  - {id: ja-n2-00668-s001, ch: 自然科学, pr: しぜんかがく, ds: natural science}
+  - {id: ja-n2-00684-s001, ch: 尻尾, pr: しっぽ, ds: tail (of an animal)}
+  - {id: ja-n2-00692-s001, ch: 縛る, pr: しばる, ds: to tie}
+  - {id: ja-n2-00696-s001, ch: しぼむ, pr: しぼむ, ds: 'to wither (of flowers, dreams, etc.)'}
+  - {id: ja-n2-00697-s001, ch: 絞る, pr: しぼる, ds: 'to wring (towel, rag)'}
+  - {id: ja-n2-00889-s001, ch: 整備, pr: せいび, ds: maintenance}
+  grammar: []
+  review_vocabulary:
+  - {id: ja-n2-00618-s001, ch: さす, pr: さす, ds: to pour}
+  - {id: ja-n2-00625-s001, ch: 錆, pr: さび, ds: rust}
+  - {id: ja-n2-00626-s001, ch: 錆びる, pr: さびる, ds: to rust}
+  - {id: ja-n2-00640-s001, ch: 酸性, pr: さんせい, ds: acidity}
+  - {id: ja-n2-00641-s001, ch: 産地, pr: さんち, ds: producing area}
+  - {id: ja-n2-00643-s001, ch: 山林, pr: さんりん, ds: mountain forest}
+  - {id: ja-n2-00656-s001, ch: 四季, pr: しき, ds: the four seasons}
+  - {id: ja-n2-00660-s001, ch: 茂る, pr: しげる, ds: to grow thickly}
+  review_grammar: []
+- id: level-17-nature-practice-01
+  title: Environment and change - sentence practice 1
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g027, ch: 普通形ほど, ds: to the extent that; so much that}
+  - {id: ja-n3-g028, ch: 動詞ば動詞ほど, ds: 'the more one does, the more'}
+  - {id: ja-n3-g044, ch: 動詞ていく, ds: change continuing from now; movement away}
+  review_vocabulary:
+  - {id: ja-n3-01490-s001, ch: 吠える, pr: ほえる, ds: to bark}
+  - {id: ja-n3-01553-s001, ch: 実, pr: み, ds: fruit}
+  - {id: ja-n3-01593-s001, ch: 綿, pr: めん, ds: cotton}
+  - {id: ja-n3-01672-s001, ch: 予測, pr: よそく, ds: prediction}
+  - {id: ja-n3-01673-s001, ch: ヨット, pr: ヨット, ds: yacht (esp. a sailing boat with one mast)}
+  - {id: ja-n3-01677-s001, ch: 予報, pr: よほう, ds: forecast}
+  - {id: ja-n3-01712-s001, ch: ロケット, pr: ロケット, ds: rocket}
+  - {id: ja-n3-01730-s001, ch: 湾, pr: わん, ds: bay}
+  review_grammar: []
+- id: level-17-nature-practice-02
+  title: Environment and change - sentence practice 2
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary: []
+  grammar:
+  - {id: ja-n3-g045, ch: 動詞てくる, ds: change up to now; movement toward}
+  - {id: ja-n2-g009, ch: 動詞つつある, ds: be in the process of changing}
+  - {id: ja-n2-g030, ch: Nに伴って, ds: along with; accompanying change}
+  review_vocabulary:
+  - {id: ja-n3-01490-s001, ch: 吠える, pr: ほえる, ds: to bark}
+  - {id: ja-n3-01553-s001, ch: 実, pr: み, ds: fruit}
+  - {id: ja-n3-01593-s001, ch: 綿, pr: めん, ds: cotton}
+  - {id: ja-n3-01672-s001, ch: 予測, pr: よそく, ds: prediction}
+  - {id: ja-n3-01673-s001, ch: ヨット, pr: ヨット, ds: yacht (esp. a sailing boat with one mast)}
+  - {id: ja-n3-01677-s001, ch: 予報, pr: よほう, ds: forecast}
+  - {id: ja-n3-01712-s001, ch: ロケット, pr: ロケット, ds: rocket}
+  - {id: ja-n3-01730-s001, ch: 湾, pr: わん, ds: bay}
+  review_grammar:
+  - {id: ja-n3-g027, ch: 普通形ほど, ds: to the extent that; so much that}
+  - {id: ja-n3-g028, ch: 動詞ば動詞ほど, ds: 'the more one does, the more'}
+  - {id: ja-n3-g044, ch: 動詞ていく, ds: change continuing from now; movement away}
+- id: level-17-nature-practice-03
+  title: Environment and change - sentence practice 3
+  outcome: Explain a natural or environmental change for a general audience.
+  vocabulary: []
+  grammar:
+  - {id: ja-n2-g031, ch: 動詞につれて, ds: as; progressively along with}
+  - {id: ja-n2-g032, ch: N／動詞に従って, ds: in accordance with; as a change proceeds}
+  review_vocabulary:
+  - {id: ja-n3-01490-s001, ch: 吠える, pr: ほえる, ds: to bark}
+  - {id: ja-n3-01553-s001, ch: 実, pr: み, ds: fruit}
+  - {id: ja-n3-01593-s001, ch: 綿, pr: めん, ds: cotton}
+  - {id: ja-n3-01672-s001, ch: 予測, pr: よそく, ds: prediction}
+  - {id: ja-n3-01673-s001, ch: ヨット, pr: ヨット, ds: yacht (esp. a sailing boat with one mast)}
+  - {id: ja-n3-01677-s001, ch: 予報, pr: よほう, ds: forecast}
+  - {id: ja-n3-01712-s001, ch: ロケット, pr: ロケット, ds: rocket}
+  - {id: ja-n3-01730-s001, ch: 湾, pr: わん, ds: bay}
+  review_grammar:
+  - {id: ja-n3-g045, ch: 動詞てくる, ds: change up to now; movement toward}
+  - {id: ja-n2-g009, ch: 動詞つつある, ds: be in the process of changing}
+  - {id: ja-n2-g030, ch: Nに伴って, ds: along with; accompanying change}

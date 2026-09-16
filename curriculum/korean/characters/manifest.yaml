@@ -1,0 +1,163 @@
+schema_version: 1
+language: korean
+adapter:
+  id: original-korean-pilot
+  version: '2'
+style:
+  id: source-em-box-monoline
+  version: 1
+  view_box:
+  - 0
+  - 0
+  - 100
+  - 100
+  width: 5.5
+  linecap: round
+  linejoin: round
+  axis: y-down
+sampling:
+  id: explicit-bezier-polyline-arclength
+  version: 1
+  curve_subdivisions: 32
+  spacing: 2.0
+  precision: 6
+identity: exact-unicode-scalar-no-normalization
+inputs:
+- path: characters/recipes/original-jamo.yaml
+  sha256: 1092c03a484785f1d8fdcf4e8bfcf9ee12d0b89885b45b457dbe4267e6e669ac
+  source_id: korean-writing-original-pilot
+  source_version: '2'
+- path: characters/recipes/original-layouts.yaml
+  sha256: cd0980b36f0e6ae11a885030ca327ca0dfd56fd4824793176c36d7c1a809581a
+  source_id: korean-writing-original-pilot
+  source_version: '2'
+- path: licenses/ORIGINAL-WRITING-PILOT.md
+  sha256: 1bbe3cf71e8ce3e5407adc038211c06caedc6a6a4c56bacbed1cbdc926c29a76
+  source_id: korean-writing-original-pilot
+  source_version: '2'
+- path: licenses/WRITING-NOTICE.md
+  sha256: 2a1e8c97a2727494d9401e6a3a40749974d8c74e6beaea1de234a2ffdb40ea04
+  source_id: korean-writing-source-audit
+  source_version: 2026-09-15.2
+- path: licenses/hangeul-stroke-order-CC-BY-SA-4.0.txt
+  sha256: b33c50a56ba8eee79789357bfe45d6e8067171830fb718e4c68988b3eeeea90a
+  source_id: hangeul-stroke-order-reference
+  source_version: 935483f7e93d24aa2ec990bca1b43664307768d2
+- path: upstream/writing/handwriting-review.yaml
+  sha256: 387fd0225578c3f92f36c92352ed29061ce1580199962ad1a4a2d11d41670695
+  source_id: korean-writing-source-audit
+  source_version: 2026-09-15.2
+- path: upstream/writing/hangeul-stroke-order-README.md
+  sha256: fd088366e6603c5244796f9b3f94f0f330ae24b4740553de1f0bf4b12c846935
+  source_id: hangeul-stroke-order-reference
+  source_version: 935483f7e93d24aa2ec990bca1b43664307768d2
+- path: upstream/writing/source-assessment.yaml
+  sha256: c8db959e4194af85f1355b907193909e6f98516a31f39e04eb4dbabaf1c273dd
+  source_id: korean-writing-source-audit
+  source_version: 2026-09-15.2
+sources_sha256: 3cb6d56b4468bd10f2a6c99964fce710dea58862f6fa3b804e72f8de006b317a
+inventory_sha256: 42179f9258907b5a70af85d1f29a5c993ec6347fb19bbd10f134be0c425ec186
+chunks:
+- file: u0000.yaml
+  sha256: fdfb8ad0c381ec3ef5d44ae1605519ece7d676f1ed4db09b74e3a6cd29bf21b8
+  characters: 2
+- file: u0011.yaml
+  sha256: 03975db7f299896d9ac8cf8078e454e1e1dc5a43122a9511a85b33c8f45475a6
+  characters: 67
+- file: u0031.yaml
+  sha256: 63c337a56554a3ccb7aebcabd049b4d6bc10ba15cac89f3aab7dfe96e439b8b1
+  characters: 51
+- file: u00ac.yaml
+  sha256: fed365eb495f9796a51996a688815beb2932b2293ebf066aa3709b88bf54b276
+  characters: 13
+- file: u00ad.yaml
+  sha256: 2bc09bf317986dd9cdbbfece09a9789308db03f47f6602a47a06dff78cbc13e8
+  characters: 8
+- file: u00ae.yaml
+  sha256: 944ebb7874de36e48e1cce5f0c972ca80a74b53190560048774d6bee25bed8c1
+  characters: 2
+- file: u00b0.yaml
+  sha256: 973e7cf182d8ada56fba85517e00d27e0f09fe9b48555a049da8ce39f17a880b
+  characters: 2
+- file: u00b1.yaml
+  sha256: f4ae59fdd14a2bf361e21144bc2ef8a9703c03a0f51d5e69e91e04e7d43bf0d4
+  characters: 1
+- file: u00b2.yaml
+  sha256: 5e32dfd61a824991672ef6bb18cc6bbcfc96e5d6bd22a4b4aa7388384e9e5ad6
+  characters: 1
+- file: u00b3.yaml
+  sha256: 5f4917347a4b8e55c68f16f84632c2ca1da8a2ddceb3ceb12d21e14f85150f71
+  characters: 1
+- file: u00b6.yaml
+  sha256: 9570336bab4deac927464d11d4267942fe6ec773730f16b21bd2a29fb2eb69ba
+  characters: 1
+- file: u00b8.yaml
+  sha256: fec47b4be9d620ca247fc6653b1aae42551452940b56481e57e3d9bbb6179c8e
+  characters: 2
+- file: u00ba.yaml
+  sha256: d81408351ec1337b3752b6bde49de2313ae9b155473f1cd30446c0c7b4c48675
+  characters: 1
+- file: u00bb.yaml
+  sha256: c4742a5787616a8418878d2f04a77e010e85fcb2c744f4e1212e81a8577ae96e
+  characters: 2
+- file: u00bd.yaml
+  sha256: 5204af9b04c4d7b44747c89db4f853f0c959722d8ae62af5eff41c4e720cc87d
+  characters: 1
+- file: u00bf.yaml
+  sha256: bb8f8e2e438ce4298dd89ce10d43e6337387cd0d483e7b267ccb7205daba5630
+  characters: 1
+- file: u00c2.yaml
+  sha256: de33ad821cf2d4c6713422c55ec975e9b147aed67e6c029ebd49a63b4bd32282
+  characters: 1
+- file: u00c4.yaml
+  sha256: 409cbe1da70be1894d88cc706f18ada15d340296779572ae48111e7dd837cc03
+  characters: 1
+- file: u00c5.yaml
+  sha256: ccf62ccf1681eb91860993699ed27507b361fcfcf52a6a50fde418d07bd3472a
+  characters: 3
+- file: u00c6.yaml
+  sha256: 7a1bb7aa00eb597f71ed67a3b03c613d2619576140e3c6356ebc56456f244a0f
+  characters: 2
+- file: u00c7.yaml
+  sha256: 9950c76c92df45f8341461c1855a1c24057bc7cbfd9566ccb53f4ed37a975933
+  characters: 2
+- file: u00c9.yaml
+  sha256: 835743c6326abae1875ebd1b3e3ac884f14f329ecfb9a70fd7267f62fd8dd223
+  characters: 1
+- file: u00cc.yaml
+  sha256: 82e2db2f48b017def99921733b336a992379150c59553a98427d8ba85d6e699a
+  characters: 2
+- file: u00cf.yaml
+  sha256: 6bda5b9435578bb7e73215920a10cb53d3b90c9d6e07c156718aafc9c34b30aa
+  characters: 1
+- file: u00d0.yaml
+  sha256: 4a55fc71990c11952c09ae8a9990dd9ad66ca3fdf3e11274f4f5247a0e1fe8aa
+  characters: 1
+- file: u00d3.yaml
+  sha256: 325e9ade7992e390690f1c811eee33cbcc37b0e54e92a0e411fcfdca485d883d
+  characters: 1
+- file: u00d5.yaml
+  sha256: 14863885fdb5808fa2d96c045df0a44676bb79342b7fb5fd29b1ced8007b034f
+  characters: 1
+- file: u00d6.yaml
+  sha256: 670c06f1707b54fd24d9af6ab545e6db87254a956804395388403c12b2e49a84
+  characters: 1
+- file: u00d7.yaml
+  sha256: 27ecb735f4dc9cc9c6b51be93910cd6154b50e50a629cd0ed9507e062b295e50
+  characters: 1
+coverage_sha256: 50f423d0b5788e511b03df0d574982260ad6de4d5b7c1b145f1fe0bb2a275bc5
+shared_tools:
+- file: character_assets.py
+  sha256: b4fe490b8d0adb384b88b7cb7758b649b7c1d05d54ff0e8e7ac76b2e3e86b781
+- file: character_geometry.py
+  sha256: 6d1a2ebedce419454b69acac1f0dbf6fef4ad6ef0faae6a5683914f0d4e50669
+- file: character_inventory.py
+  sha256: 245b86aee9efab9c91356abefcb7164d968104da935d37092c1e065124b396fe
+- file: curriculum_yaml.py
+  sha256: 000ad9af5564135da9ad5bb21908065d59aee9cb402b2c30711aa87fcad9bd73
+release_ready: false
+notice: 'Original AI-assisted Korean monoline pilot, 2026-09-15; CC0-1.0 to the extent rights apply.
+
+  Unreviewed: no qualified Korean handwriting approval. No font/diagram tracing or source-derived paths.
+
+  See licenses/ORIGINAL-WRITING-PILOT.md. No warranty; bulk scaling remains gated on review.'

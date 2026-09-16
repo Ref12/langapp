@@ -1,0 +1,38 @@
+- id: openrussian-backup
+  title: OpenRussian public dictionary backup
+  url: https://github.com/Badestrand/russian-dictionary
+  license: CC-BY-SA-4.0
+  usage: Selected Russian lexical readings, English source spans, grammatical metadata and inflection fields from the four pinned TSV tables named with .csv extensions. No sentence or audio corpus is imported.
+  attribution: OpenRussian team and contributors, including upstream Wiktionary contributors. Retain source links, this notice, CC-BY-SA-4.0 and identification of adaptations when redistributing derived records and compact views.
+  retrieved_on: '2026-09-15'
+  revision: 50e210c4803237779cb562bc1abcea529066031c
+  snapshot_note: Repository revision dated 2021-08-09; inspected noun and verb files last changed on 2020-09-09. Not a current completeness claim. The exact underlying Wiktionary revision is not supplied.
+  license_url: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/LICENSE
+  license_sha256: 7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297
+  local_license_files: [licenses/CC-BY-SA-4.0.txt]
+  source_entry_convention: Pinned table URL plus one-based data-record ordinal, excluding the header. Local ru-or IDs and sense slots are repository identifiers, not official dictionary IDs. Expanded records retain exact source fields and a canonical JSON row SHA-256.
+  downloads:
+    nouns:
+      url: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/nouns.csv
+      bytes: 8378501
+      sha256: c388f9e6dde51932832be8d7e9afdbe9f0acee72fcf70677f0fe25ea61293c84
+    verbs:
+      url: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/verbs.csv
+      bytes: 5650332
+      sha256: 8659de6799b949fb35f080b08088fb7d347ed300490954ebb380a31642646e1d
+    adjectives:
+      url: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/adjectives.csv
+      bytes: 8343334
+      sha256: 89ab5d10dcd2f21f6b485de704aef372f32251468e3aa96f18b21e259f26b80a
+    others:
+      url: https://raw.githubusercontent.com/Badestrand/russian-dictionary/50e210c4803237779cb562bc1abcea529066031c/others.csv
+      bytes: 344444
+      sha256: 9f22a16b17fc9a564298112168b667fced11aafb254ccebf5b7544fc37cdaa92
+- id: original-ru
+  title: Original Russian teaching selections and instructional material
+  url: local:curriculum/russian/authoring
+  license: Original AI-assisted contributions offered under CC-BY-SA-4.0 to the extent copyright or related rights exist; no ownership claim over ordinary language facts
+  usage: Sense selections, concise English hints, lexical identity decisions, level and module placements, original grammar explanations and examples, tourist phrases, Cyrillic preparation, assessment rubrics and teaching guidance.
+  attribution: Original AI-assisted Russian curriculum contributions for Ref12/langapp, 2026. Human linguistic and pedagogical review required. No dictionary, examination-board or qualification endorsement.
+  retrieved_on: '2026-09-15'
+  limitation: Source-backed lexical readings are traceable reading aids, not full phonetic transcriptions or observed pronunciation. Original phrase readings are assembled from documented component readings, not copied or independently source-verified phrase pronunciations.

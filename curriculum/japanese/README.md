@@ -2,6 +2,10 @@
 
 This is a broad, reusable teaching collection, **not an official or exhaustive JLPT word/grammar specification**. Modern JLPT does not publish such a list. Official information describes receptive competence; the vocabulary placement here is an older community estimate, and grammar placement is an original pedagogical estimate. An N1 label does not make every dictionary sense an N1 requirement, nor does an N5 label make advanced senses beginner material.
 
+## Practical teaching route
+
+Start with [`teaching/README.md`](teaching/README.md) for the separate thirty-level practical route, optional kana preparation, twelve beginner modules, and an independent tourist route. Its explicit sense selections and original ordering do not alter the preserved JLPT references below. Teaching uses raw-compatible spelling and reading choices, including documented corrections for misleading source homographs. Human Japanese-language and pedagogy review remains pending; neither route certifies proficiency.
+
 ## Inventory
 
 | Directory | New vocabulary entries | Cumulative vocabulary | Grammar constructs | Original bilingual examples |
@@ -72,3 +76,179 @@ For a release refresh, review the latest English-only JMdict release and license
 - Practical kana/kanji progression is supplied in the syllabi; there is no separately sourced exhaustive kanji/counter/onomatopoeia inventory. Pronunciation variants, pitch accent, collocations, dialects, honorific exceptions and specialist register need additional reviewed instruction.
 - The source dictionary contains rare, archaic, sensitive and specialist senses. Preserve labels, select age-appropriate modern meanings for instruction, and never treat an old or offensive sense as neutral everyday usage.
 - Data integrity is machine-validated; native-speaker accuracy, pragmatic naturalness, topic assignments and educational level placements still need human review. The collection is a substantial tutor curriculum foundation, not an endorsement or guarantee of exam readiness.
+
+## Character-writing candidates
+
+`characters` implements the [shared character contract](../CHARACTERS.md), not
+a handwriting recognizer or production exercise. It contains a
+source-backed **2,212-key prepared candidate set**, all **unreviewed**. The full
+native scope is **2,211 required characters/signs plus two component-only
+combining marks** across 82 nonempty 256-codepoint ranges. `coverage.yaml`
+retains that complete scope: only `鱝` has no native drawable record, and four
+literal fullwidth Latin targets remain separate cross-script gaps. A successful
+mechanical check is not a complete or approved release.
+
+The representative 34-key first batch used for the bulk-preparation gate was:
+
+```text
+あ ぁ き ぎ さ ざ ぬ ね の ぱ ぷ つ っ シ ツ ソ ン
+ヴ ゔ ヵ ヶ ー ゛ ゜ 、 。 〇 秭 一 勉 辻 鬱 U+3099 U+309A
+```
+
+The shared inventory includes every Japanese scalar in all five levels'
+vocabulary target/readings and grammar patterns/example targets, with
+per-field evidence and input hashes. The 2,189 literal Japanese scalars include
+2,035 unified ideographs, 151 kana-block characters (including `ー`) and
+`、。々`. Foundations add 24 keys. No existing word ID, spelling, reading or
+meaning is changed by this importer; word readings are not split into isolated
+kanji readings.
+
+### Exact foundations and exclusions
+
+The approved foundation is **168 letters**: 84 hiragana (U+3041..U+3096 except
+`ゐゑ`) and 84 katakana (U+30A1..U+30FA except `ヰヱヷヸヹヺ`). Each script
+includes 46 basic kana, 20 ordinary voiced forms, five semi-voiced forms,
+`ゔ`/`ヴ`, and 12 small forms:
+
+```text
+ぁぃぅぇぉっゃゅょゎゕゖ
+ァィゥェォッャュョヮヵヶ
+```
+
+The nine additional foundation keys are `、。〇゛゜・ー` and U+3099/U+309A.
+`〇` is an explicitly selected modern number/date prerequisite, not an
+automatic import from the English zero gloss. The composing marks are
+`Inherited` components; their spacing counterparts are distinct `Common`
+signs. `々` is required by actual words, not a kana or a character with one
+universal reading. Multi-kana spellings such as `きゃ` and `ヴァ` are sequences,
+not multi-character record keys. No automatic normalization or alias redirect
+collapses precomposed/combining forms, regional forms or compatibility scalars.
+
+Do not extend this foundation automatically to historical kana, Ainu/phonetic
+extension blocks, an unrelated kanji database, or whole Unicode blocks.
+Grammar-only `〜／＋` and Latin slot notation are excluded as notation.
+Gloss-only `〓` is not an authoritative Japanese target.
+
+The exact fullwidth Latin targets **`ＧＫＯｘ`** remain visible cross-script
+exceptions: `Ｇパン` (ja-n1-03292), `ＯＫ` (ja-n1-03247), and `ｘ`
+(ja-n2-01344). They have no drawable artwork here and are not folded to ASCII.
+Do not claim all target text is covered while these exceptions remain.
+
+### Source selection, geometry and rights
+
+KanjiVG is primary, pinned to
+`422b5538595676da918c288a4230cb5e22a1ee7e`. Its pinned inventory has 6,704 default
+SVGs and 4,957 variants; it directly covers 2,208 of the 2,213 expected native
+keys, including all 168 modern kana. The first batch retained 30 direct KVG
+glyphs. The full prepared set retains all 2,208 direct KVG glyphs, two KVG-derived
+contextual marks, and two selective animCJK glyphs. These are 2,210 direct-source
+and two recipe-derived candidates, not visual approvals.
+
+animCJK is pinned to `ec5e17cca76c87587790bcbce5ea0b4d4fb753d6`, with 7,007
+`svgsJa` and 177 `svgsJaKana` files. Only exact Japanese `秭` and `〇` supplement
+KVG. Its per-file licenses differ: **`秭` is ARPHIC PUBLIC LICENSE; `〇` is
+LGPL-3.0-or-later**, despite both residing in `svgsJa`. Do not infer licenses
+from directory names or a tool's code license. The graphics-prefixed text
+exports are not used.
+
+All KVG derivatives remain **CC BY-SA 3.0** with Ulrich Apel/KanjiVG credit,
+original notices and modification statements. Retain the unmodified ARPHIC
+license and freely available derivative source for `秭`; retain FM-SH credit,
+LGPL and its incorporated GPLv3 text, replaceable artwork and reproducible
+source for `〇`. Sources, complete licenses and dated modification notices
+are under `upstream\writing` and `licenses\writing-*`. A mixed-license page is a
+collection of separately attributed records, not one blanket Japanese-data
+license, and does not relicense unrelated application code.
+
+The importer keeps original source-em proportions: KVG's 109-unit frame and
+animCJK's 1024-unit frame map uniformly to the shared 100-unit y-down frame,
+width 5.5 and round caps/joins. Native small kana stay reduced and offset.
+It retains curved loops and continuous logical pen-downs, expands relative/
+reflected SVG segments through the shared normalizer, and never applies the
+Chinese prototype's short-fall/hook corrections or tight bounding-box fitting.
+Matching samples derive from these same final paths using the shared sampler.
+
+The distinction between logical strokes and SVG pieces is essential:
+KVG `あ/ぬ/ね/の` have 3/2/2/1 strokes. animCJK's overlapping kana can have
+duplicated clipped medians and off-frame animation helpers; those are not extra
+pen lifts and are not concatenated by this adapter. The selected `秭` has nine
+ordered medians and `〇` one. `〇` retains its **actual open source median**,
+including its entry/exit; no unmarked closed-circle correction is applied.
+
+U+3099 selects the two upper-right dakuten paths from KVG `が`; U+309A selects
+the single upper-right handakuten path from `ぱ`, with exact source/recipe hashes.
+These are contextual component samples, not a universal attachment algorithm.
+Spacing `゛゜` retain their separate source placement rather than being enlarged
+or silently substituted for combining marks. Donor glyphs belong in extraction
+provenance and recipes: the whole `が` glyph is not a structural component of
+dakuten, and is not recorded as one.
+
+### Remaining glyph and style decisions
+
+**`鱝` U+9C5D** (ja-n1-00294, `えい`, JMdict:1001130) is absent from both
+pinned sources. Its usual-kana label does not authorize changing its target to
+kana, a simplified form, a different fish or another locale's glyph.
+It remains `source_blocked`, with no fake drawable/default variant.
+
+`recipes.yaml` describes a separate **review-only** 23-stroke proposal:
+fish-left paths s1..s11 from KVG `鱗` (`09c57.svg`) followed by right-hand `賁`
+paths s4..s15 from `噴` (`05674.svg`), in the original shared em box. Both
+donors and the recipe are pinned and attributed. This is newly composed
+CC-BY-SA-3.0 artwork, not an upstream `鱝` asset; generating its review fixture
+does not close the blocker or set review flags. The creator found the
+composition visually plausible but did not grant qualified Japanese form or
+stroke-order approval. A deliberate recipe-acceptance decision is still needed.
+
+The creator's 2026-09-15 contact-sheet inspection authorized **bulk preparation
+only**, without promoting any review flags. Two visible style cautions remain:
+
+* **`〇` is open and visibly angular/polygonal.** The exact source median is the
+  baseline. Smoothing or closure requires a separate explicit decision and a
+  reproducible, licensed modification recipe; it is not silently applied.
+* **`鬱` has tight or merged counters at the shared width 5.5.** Dense-glyph
+  legibility needs a separate style decision. The importer neither changes
+  widths per glyph nor treats the current rendering as release-approved.
+
+These cautions are not missing source assets: both baseline candidates remain
+drawable and unreviewed. The exact `ＧＫＯｘ` targets also still need properly
+sourced writing assets; ASCII folding does not resolve their coverage.
+
+### Offline generation and review
+
+Use the existing Python 3.10+ runtime and pinned PyYAML dependency. On this
+Windows environment `py -3.12` avoids the Store `python` alias:
+
+```powershell
+py -3.12 -B scripts\import_japanese_characters.py --check
+py -3.12 -B scripts\import_japanese_characters.py --validate-only
+py -3.12 -B scripts\test_japanese_characters.py
+py -3.12 -B scripts\validate_characters.py --language japanese --check
+```
+
+Running the importer without options rebuilds **the batch recorded in the
+source lock**, currently `full`, offline. `--check` regenerates expected
+outputs in memory and reports stale files without writes or network access.
+`--validate-only` uses the shared committed-bundle checker, including inventory,
+source/recipe/license hashes and cross-script accounting.
+
+`--download --batch full` explicitly refreshes the fixed source subset from
+SHA-256-pinned archives, never from a changing branch HEAD. Only selected
+original members/notices are retained, not whole archives or extra databases.
+`--archive-directory <path>` may supply the two checksum-verified cached
+`kanjivg-pinned.tar.gz` and `animcjk-pinned.tar.gz` files. Downloads are assembled
+and verified before any source output is replaced.
+
+`--review-directory <path>` writes a separate selected-batch HTML comparison with
+original-source thumbnails, numbered normalized paths, same-path animation,
+candidate JSON, and copied original sources/recipes/licenses. It includes the
+blocked fish fixture with independent recipe/provenance. Every new asset is
+unreviewed; neither agent inspection nor a numerical pass is professional
+Japanese approval.
+
+The initial visual batch gate has authorized the committed bulk preparation;
+the importer still never fetches inputs silently. An explicit `--batch first`
+rebuilds only the initial subset, not the complete prepared set; restore `full`
+before comparing with the committed full-batch outputs. Unresolved `鱝`,
+cross-script targets and unreviewed states prevent a release-ready claim.
+Preserve exact review evidence and regenerate after changing sources, recipes,
+adapter version or shared geometry utilities.

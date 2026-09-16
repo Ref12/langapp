@@ -1,0 +1,380 @@
+schema_version: 3
+id: fr-level-18
+title: Proposals and negotiation
+language: french
+level_basis: Independently authored communicative progression. Dictionary sources identify provenance, not CEFR levels, examination readiness, or demonstrated ability.
+review_policy: A module spans several small lessons, usually about 5-8 new senses at a time. Adjust the load to retrieval and relevance. Retrieve earlier material in new contexts and revisit fragile items on later days. Record modality, assistance, and delayed performance; completing an inventory is not mastery.
+kind: level
+number: 18
+phase: explanation-problems
+prerequisites:
+- fr-level-01
+- fr-level-02
+- fr-level-03
+- fr-level-04
+- fr-level-05
+- fr-level-06
+- fr-level-07
+- fr-level-08
+- fr-level-09
+- fr-level-10
+- fr-level-11
+- fr-level-12
+- fr-level-13
+- fr-level-14
+- fr-level-15
+- fr-level-16
+- fr-level-17
+goals: &id001
+- Present a structured proposal addressing a practical problem.
+- Express wishes, necessity, and concessions with appropriate constructions.
+- Revise a recommendation after objections or newly revealed constraints.
+checkpoint:
+  task: Present a proposal using information from a short source, negotiate competing needs, and revise the proposal after unexpected questions.
+  criteria: *id001
+mastery_profile: fr-item-mastery
+mastery_target: independent-use
+units:
+- id: level-18-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a selected construction to communicate a new meaning and distinguish a relevant contrast.
+  vocabulary:
+  - {id: fr-v-25dd152774e69a4f, ch: afin de, pr: /a.fɛ̃ də/, ds: 'in order to, so, so that'}
+  - {id: fr-v-a26d40a2af3ab096, ch: afin que, pr: /a.fɛ̃ kə/, ds: so that}
+  - {id: fr-v-83aa14d129ba70c6, ch: pour que, pr: /puʁ kə/, ds: 'so that, in order that'}
+  - {id: fr-v-3ad9b6ee782abcf0, ch: bien que, pr: /bjɛ̃ kə/, ds: although}
+  - {id: fr-v-72d633169e53612e, ch: quoique, pr: /kwa.kə/, ds: 'though, although'}
+  - {id: fr-v-742c0a40faed6f9a, ch: même si, pr: /mɛm si/, ds: even if}
+  - {id: fr-v-22432206bb94dc39, ch: à condition que, pr: /a kɔ̃.di.sjɔ̃ kə/, ds: provided that; on the condition that}
+  - {id: fr-v-cb8da294e431139c, ch: pourvu que, pr: /puʁ.vy kə/, ds: let's hope (that)}
+  - {id: fr-v-7e2435e986158b1d, ch: à moins que, pr: /a mwɛ̃ kə/, ds: unless}
+  - {id: fr-v-cc536f9b0a00c7aa, ch: avant que, pr: /a.vɑ̃ kə/, ds: before}
+  - {id: fr-v-9ba66297ccaddf6d, ch: après que, pr: /a.pʁɛ kə/, ds: after}
+  - {id: fr-v-f15e981dce2b33c8, ch: jusqu'à ce que, pr: /ʒys.k‿a s(ə) kə/, ds: until (up to a given moment in time)}
+  - {id: fr-v-083918a26e088c8a, ch: en attendant, pr: /ɑ̃.n‿a.tɑ̃.dɑ̃/, ds: 'meanwhile, in the meantime'}
+  - {id: fr-v-4b17db0caffd2978, ch: autrement, pr: /o.tʁə.mɑ̃/, ds: 'differently, in another way or manner'}
+  - {id: fr-v-bbd83b986f5f5333, ch: autrement dit, pr: /o.tʁə.mɑ̃ di/, ds: in other words}
+  - {id: fr-v-b4655d1bd2cb8cab, ch: c'est-à-dire, pr: /s‿ɛ.t‿a.diʁ/, ds: that is to say}
+  - {id: fr-v-0a69de54a2606c35, ch: en somme, pr: /ɑ̃ sɔm/, ds: in summary}
+  - {id: fr-v-159b1750a5ebfade, ch: en bref, pr: /ɑ̃ bʁɛf/, ds: 'in short, in brief, in a nutshell'}
+  - {id: fr-v-3a101ca8315fdfad, ch: en conclusion, pr: /ɑ̃ kɔ̃.kly.zjɔ̃/, ds: in conclusion; in summary}
+  - {id: fr-v-4ec555675b203788, ch: d'une part, pr: /d‿yn paʁ/, ds: on one hand}
+  - {id: fr-v-1617ebe7d984b591, ch: d'autre part, pr: /d‿o.tʁə paʁ/, ds: 'besides, additionally, furthermore, what''s more'}
+  - {id: fr-v-e3e80fcb0f1bd6aa, ch: en outre, pr: /ɑ̃.n‿utʁ/, ds: 'besides, moreover, furthermore'}
+  - {id: fr-v-4eed04634ee52091, ch: de plus, pr: /də plys/, ds: 'moreover, furthermore'}
+  - {id: fr-v-f9eb15d2ed8ca593, ch: par ailleurs, pr: /pa.ʁ‿a.jœʁ/, ds: 'besides, additionally, furthermore, what''s more'}
+  - {id: fr-v-7eef9330dacdf1fe, ch: au contraire, pr: /o kɔ̃.tʁɛːʁ/, ds: 'on the contrary, quite the contrary, quite the opposite'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-0fce1849acb1b687, ch: en, pr: /ɑ̃/, ds: of it or them; indefinite-quantity clitic}
+  - {id: fr-v-43addfd7051f44ab, ch: rien, pr: /ʁjɛ̃/, ds: nothing}
+  - {id: fr-v-eed31b86b5916ceb, ch: aucun, pr: /o.kœ̃/, ds: 'no, none, not any'}
+  - {id: fr-v-7f886912f3bbf5c5, ch: chacun, pr: /ʃa.kœ̃/, ds: 'each, each one'}
+  - {id: fr-v-f206f5018bad4ff6, ch: quelque, pr: /kɛlk/, ds: some (singular)}
+  - {id: fr-v-ecd603600401f616, ch: plusieurs, pr: /ply.zjœʁ/, ds: 'several, many, a lot'}
+  - {id: fr-v-79c7c2dd74fd747b, ch: personne, pr: /pɛʁ.sɔn/, ds: no one; nobody}
+  - {id: fr-v-051cb5ccb29d556c, ch: plus, pr: /ply/, ds: no longer; not any more}
+  review_grammar:
+  - {id: fr-g-elision-h-boundaries, ch: l' / j' / n' devant voyelle ou h muet ; le h aspiré, ds: Elision and liaison have lexical boundary restrictions}
+  - {id: fr-g-avoir-preceding-object-agreement, ch: objet direct antéposé + avoir + participe accordé, ds: Agree an avoir participle with an earlier direct object}
+  - {id: fr-g-declarative-clitic-order, ch: me/te/se/nous/vous → le/la/les → lui/leur → y → en, ds: Order compatible clitics before their governing verb}
+- id: level-18-grammar-02
+  title: Sentence construction - 2
+  outcome: Use a selected construction to communicate a new meaning and distinguish a relevant contrast.
+  vocabulary:
+  - {id: fr-v-7bd1601dd2c5f15d, ch: en particulier, pr: /ɑ̃ paʁ.ti.ky.lje/, ds: 'in particular, especially, particularly'}
+  - {id: fr-v-67f61cb3356a2fc2, ch: en général, pr: /ɑ̃ ʒe.ne.ʁal/, ds: 'in general, on the whole'}
+  - {id: fr-v-2d619bb382694dc5, ch: du moins, pr: /dy mwɛ̃/, ds: at least}
+  - {id: fr-v-f1d497a928b8eab7, ch: au moins, pr: /o mwɛ̃/, ds: 'at least, at a minimum'}
+  - {id: fr-v-40cd86cac6a9546e, ch: tout au plus, pr: /tu.t‿o plys/, ds: 'at most, tops, at the very most, at the outside'}
+  - {id: fr-v-949f260df4f4f777, ch: en principe, pr: /ɑ̃ pʁɛ̃.sip/, ds: 'in principle, in theory, theoretically'}
+  - {id: fr-v-2981258545866bda, ch: en pratique, pr: /ɑ̃ pʁa.tik/, ds: in practice}
+  - {id: fr-v-aa20a8a31e2570ff, ch: à cet égard, pr: /a sɛ.t‿e.ɡaʁ/, ds: in this regard}
+  - {id: fr-v-75f6a757d858f2ee, ch: quant à, pr: /kɑ̃.t‿a/, ds: as for}
+  - {id: fr-v-c67227088edcd070, ch: concernant, pr: /kɔ̃.sɛʁ.nɑ̃/, ds: 'concerning, regarding'}
+  - {id: fr-v-875372ac628fdb24, ch: suivant, pr: /sɥi.vɑ̃/, ds: 'next, following'}
+  - {id: fr-v-35c6c15a82e0a66d, ch: compte tenu de, pr: /kɔ̃t tə.ny də/, ds: 'given, considering, in light of, in view of'}
+  - {id: fr-v-a9f1b2c06e9b83d6, ch: étant donné, pr: /e.tɑ̃ dɔ.ne/, ds: 'given, in view of, in light of'}
+  - {id: fr-v-a7907cd9abd3cf64, ch: faute de, pr: /fot də/, ds: through lack of; for want of; because of a lack of}
+  - {id: fr-v-e7103d97cc75e3d1, ch: à défaut de, pr: /a de.fo də/, ds: for want of}
+  - {id: fr-v-9369f742b195c212, ch: au cas où, pr: /o ka u/, ds: just in case}
+  - {id: fr-v-8baf8cdba14881d5, ch: si jamais, pr: /si ʒa.mɛ/, ds: 'just in case, just so you know'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-159b1750a5ebfade, ch: en bref, pr: /ɑ̃ bʁɛf/, ds: 'in short, in brief, in a nutshell'}
+  - {id: fr-v-3a101ca8315fdfad, ch: en conclusion, pr: /ɑ̃ kɔ̃.kly.zjɔ̃/, ds: in conclusion; in summary}
+  - {id: fr-v-4ec555675b203788, ch: d'une part, pr: /d‿yn paʁ/, ds: on one hand}
+  - {id: fr-v-1617ebe7d984b591, ch: d'autre part, pr: /d‿o.tʁə paʁ/, ds: 'besides, additionally, furthermore, what''s more'}
+  - {id: fr-v-e3e80fcb0f1bd6aa, ch: en outre, pr: /ɑ̃.n‿utʁ/, ds: 'besides, moreover, furthermore'}
+  - {id: fr-v-4eed04634ee52091, ch: de plus, pr: /də plys/, ds: 'moreover, furthermore'}
+  - {id: fr-v-f9eb15d2ed8ca593, ch: par ailleurs, pr: /pa.ʁ‿a.jœʁ/, ds: 'besides, additionally, furthermore, what''s more'}
+  - {id: fr-v-7eef9330dacdf1fe, ch: au contraire, pr: /o kɔ̃.tʁɛːʁ/, ds: 'on the contrary, quite the contrary, quite the opposite'}
+  review_grammar:
+  - {id: fr-g-elision-h-boundaries, ch: l' / j' / n' devant voyelle ou h muet ; le h aspiré, ds: Elision and liaison have lexical boundary restrictions}
+  - {id: fr-g-avoir-preceding-object-agreement, ch: objet direct antéposé + avoir + participe accordé, ds: Agree an avoir participle with an earlier direct object}
+  - {id: fr-g-declarative-clitic-order, ch: me/te/se/nous/vous → le/la/les → lui/leur → y → en, ds: Order compatible clitics before their governing verb}
+- id: level-18-argument-01
+  title: Argument and decisions - 1
+  outcome: Defend a recommendation while addressing relevant qualifications and objections.
+  vocabulary:
+  - {id: fr-v-cf5f72d12cc92f82, ch: initiative, pr: /i.ni.sja.tiv/, ds: initiative}
+  - {id: fr-v-b8fdf324e9d291aa, ch: approche, pr: /a.pʁɔʃ/, ds: approach}
+  - {id: fr-v-f7fe309d21abb7aa, ch: dispositif, pr: /dis.po.zi.tif/, ds: 'arrangement, lay-out'}
+  - {id: fr-v-cf0fb9513ab55300, ch: scénario, pr: /se.na.ʁjo/, ds: script}
+  - {id: fr-v-41b0d7d558756d64, ch: perspective, pr: /pɛʁ.spɛk.tiv/, ds: perspective}
+  - {id: fr-v-4da2a22763092e0e, ch: orientation, pr: /ɔ.ʁjɑ̃.ta.sjɔ̃/, ds: orientation}
+  - {id: fr-v-e2d09d51c22e95f7, ch: intention, pr: /ɛ̃.tɑ̃.sjɔ̃/, ds: intention}
+  - {id: fr-v-1e1ef0d65fa6d298, ch: ambition, pr: /ɑ̃.bi.sjɔ̃/, ds: ambition}
+  - {id: fr-v-211a8a8c79e02900, ch: finalité, pr: /fi.na.li.te/, ds: 'purpose, end result'}
+  - {id: fr-v-11e5ac3d26419917, ch: but, pr: /byt/, ds: aim}
+  - {id: fr-v-bfcc7c5656918435, ch: enjeu, pr: /ɑ̃.ʒø/, ds: stake (what is at stake)}
+  - {id: fr-v-d15ec6abde0e2e1a, ch: nécessité, pr: /ne.se.si.te/, ds: necessity; need}
+  - {id: fr-v-b5b7ddac7e9c7684, ch: opportunité, pr: /ɔ.pɔʁ.ty.ni.te/, ds: a state of opportuneness; fortuity}
+  - {id: fr-v-bb586419b861a15d, ch: faisabilité, pr: /fə.za.bi.li.te/, ds: 'feasibility, doability'}
+  - {id: fr-v-c09225a0a689dbdc, ch: viabilité, pr: /vjabilite/, ds: viability}
+  - {id: fr-v-88584cc4d71f2597, ch: utilité, pr: /y.ti.li.te/, ds: 'usefulness, use'}
+  - {id: fr-v-96d7635ba5b41378, ch: pertinence, pr: /pɛʁ.ti.nɑ̃s/, ds: pertinence; relevance}
+  - {id: fr-v-ae89f97727af98da, ch: limite, pr: /li.mit/, ds: limit}
+  - {id: fr-v-444fc654d862f0fe, ch: prérequis, pr: /pʁe.ʁ(ə).ki/, ds: prerequisite}
+  - {id: fr-v-1b52c8978e605474, ch: préalable, pr: /pʁe.a.labl/, ds: 'preliminary condition, prerequisite'}
+  - {id: fr-v-142875b707285271, ch: indicateur, pr: /ɛ̃.di.ka.tœʁ/, ds: 'indicator, measure, index'}
+  - {id: fr-v-478d00b334d43a71, ch: contrepartie, pr: /kɔ̃.tʁə.paʁ.ti/, ds: 'equivalent, counterpart'}
+  - {id: fr-v-a4c0c0955f240d06, ch: arbitrage, pr: /aʁ.bi.tʁaʒ/, ds: arbitration (the act or process of arbitrating)}
+  - {id: fr-v-f21080315b3f10c2, ch: consensus, pr: /kɔ̃.sɛ̃.sys/, ds: consensus}
+  - {id: fr-v-0ebc4b7755e41376, ch: divergence, pr: /di.vɛʁ.ʒɑ̃s/, ds: divergence}
+  grammar: []
+  review_vocabulary: []
+  review_grammar:
+  - {id: fr-g-nominal-concession, ch: 'malgré + nom ; proposition, pourtant proposition', ds: Acknowledge an obstacle without denying the outcome}
+- id: level-18-argument-02
+  title: Argument and decisions - 2
+  outcome: Defend a recommendation while addressing relevant qualifications and objections.
+  vocabulary:
+  - {id: fr-v-8b6b603ce914b591, ch: convergence, pr: /kɔ̃.vɛʁ.ʒɑ̃s/, ds: convergence}
+  - {id: fr-v-c4d9b2e8fb8ed1db, ch: objection, pr: /ɔb.ʒɛk.sjɔ̃/, ds: objection (all meanings)}
+  - {id: fr-v-18695d046aaf390e, ch: réserve, pr: /ʁe.zɛʁv/, ds: reservation}
+  - {id: fr-v-c13d2ee76e412bb1, ch: réticence, pr: /ʁe.ti.sɑ̃s/, ds: 'tight-lippedness, reticence'}
+  - {id: fr-v-51f2a13f94d003c8, ch: résistance, pr: /ʁe.zis.tɑ̃s/, ds: resistance (all meanings)}
+  - {id: fr-v-8dad6855d9a327cb, ch: adhésion, pr: /a.de.zjɔ̃/, ds: 'adhesion, adherence'}
+  - {id: fr-v-186e694cf635094f, ch: consultation, pr: /kɔ̃.syl.ta.sjɔ̃/, ds: 'consultation, consulting'}
+  - {id: fr-v-f1c9639be7e9578c, ch: concertation, pr: /kɔ̃.sɛʁ.ta.sjɔ̃/, ds: consultation}
+  - {id: fr-v-8c090602908f8f84, ch: délibération, pr: /de.li.be.ʁa.sjɔ̃/, ds: deliberation; contemplation}
+  - {id: fr-v-80af31a4819f0356, ch: résolution, pr: /ʁe.zɔ.ly.sjɔ̃/, ds: resolution}
+  - {id: fr-v-a8bfffc1992ba199, ch: argumenter, pr: /aʁ.ɡy.mɑ̃.te/, ds: 'to present one''s arguments, to set out one''s arguments, to argue'}
+  - {id: fr-v-ae955a62aa84d5a9, ch: plaider, pr: /plɛ.de/, ds: to plead}
+  - {id: fr-v-a23ebe583c82abfc, ch: préconiser, pr: /pʁe.kɔ.ni.ze/, ds: 'to recommend, advocate'}
+  - {id: fr-v-0833c29307d8ac33, ch: soumettre, pr: /su.mɛtʁ/, ds: to submit}
+  - {id: fr-v-ea921c27b9bc70bf, ch: exposer, pr: /ɛk.spo.ze/, ds: to expose}
+  - {id: fr-v-831f7de628766873, ch: structurer, pr: /stʁyk.ty.ʁe/, ds: to structure}
+  - {id: fr-v-dc1d9a844e8e0f69, ch: illustrer, pr: /i.lys.tʁe/, ds: to illustrate}
+  - {id: fr-v-4b87f5d3f5a7906d, ch: motiver, pr: /mɔ.ti.ve/, ds: to motivate}
+  - {id: fr-v-87fa2f17b30c9333, ch: étayer, pr: /e.tɛ.je/, ds: to prop up; to support}
+  - {id: fr-v-9f69d3289a082fce, ch: marchander, pr: /maʁ.ʃɑ̃.de/, ds: 'to bargain over, to haggle over'}
+  - {id: fr-v-afed280e940a5df6, ch: concilier, pr: /kɔ̃.si.lje/, ds: to reconcile}
+  - {id: fr-v-4edbd2c7eeda8646, ch: arbitrer, pr: /aʁ.bi.tʁe/, ds: to arbitrate}
+  - {id: fr-v-648316bab3e622ee, ch: trancher, pr: /tʁɑ̃.ʃe/, ds: 'to slice, cut into slices'}
+  - {id: fr-v-26748de6a4d39cc2, ch: consentir, pr: /kɔ̃.sɑ̃.tiʁ/, ds: to consent}
+  - {id: fr-v-1d725ca98d1ac779, ch: céder, pr: /se.de/, ds: to yield}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-ae89f97727af98da, ch: limite, pr: /li.mit/, ds: limit}
+  - {id: fr-v-444fc654d862f0fe, ch: prérequis, pr: /pʁe.ʁ(ə).ki/, ds: prerequisite}
+  - {id: fr-v-1b52c8978e605474, ch: préalable, pr: /pʁe.a.labl/, ds: 'preliminary condition, prerequisite'}
+  - {id: fr-v-142875b707285271, ch: indicateur, pr: /ɛ̃.di.ka.tœʁ/, ds: 'indicator, measure, index'}
+  - {id: fr-v-478d00b334d43a71, ch: contrepartie, pr: /kɔ̃.tʁə.paʁ.ti/, ds: 'equivalent, counterpart'}
+  - {id: fr-v-a4c0c0955f240d06, ch: arbitrage, pr: /aʁ.bi.tʁaʒ/, ds: arbitration (the act or process of arbitrating)}
+  - {id: fr-v-f21080315b3f10c2, ch: consensus, pr: /kɔ̃.sɛ̃.sys/, ds: consensus}
+  - {id: fr-v-0ebc4b7755e41376, ch: divergence, pr: /di.vɛʁ.ʒɑ̃s/, ds: divergence}
+  review_grammar:
+  - {id: fr-g-nominal-concession, ch: 'malgré + nom ; proposition, pourtant proposition', ds: Acknowledge an obstacle without denying the outcome}
+- id: level-18-argument-03
+  title: Argument and decisions - 3
+  outcome: Defend a recommendation while addressing relevant qualifications and objections.
+  vocabulary:
+  - {id: fr-v-682bc57e2ea95a83, ch: rejeter, pr: /ʁə.ʒ(ə).te/, ds: 'to throw back (a fish, etc.)'}
+  - {id: fr-v-09c171c39ab1d911, ch: résister, pr: /ʁe.zis.te/, ds: to resist}
+  - {id: fr-v-2e4622c34693aade, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to agree; to acknowledge}
+  - {id: fr-v-4be472830053ad9d, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: assurance; guarantee}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-4b87f5d3f5a7906d, ch: motiver, pr: /mɔ.ti.ve/, ds: to motivate}
+  - {id: fr-v-87fa2f17b30c9333, ch: étayer, pr: /e.tɛ.je/, ds: to prop up; to support}
+  - {id: fr-v-9f69d3289a082fce, ch: marchander, pr: /maʁ.ʃɑ̃.de/, ds: 'to bargain over, to haggle over'}
+  - {id: fr-v-afed280e940a5df6, ch: concilier, pr: /kɔ̃.si.lje/, ds: to reconcile}
+  - {id: fr-v-4edbd2c7eeda8646, ch: arbitrer, pr: /aʁ.bi.tʁe/, ds: to arbitrate}
+  - {id: fr-v-648316bab3e622ee, ch: trancher, pr: /tʁɑ̃.ʃe/, ds: 'to slice, cut into slices'}
+  - {id: fr-v-26748de6a4d39cc2, ch: consentir, pr: /kɔ̃.sɑ̃.tiʁ/, ds: to consent}
+  - {id: fr-v-1d725ca98d1ac779, ch: céder, pr: /se.de/, ds: to yield}
+  review_grammar:
+  - {id: fr-g-nominal-concession, ch: 'malgré + nom ; proposition, pourtant proposition', ds: Acknowledge an obstacle without denying the outcome}
+- id: level-18-register-01
+  title: Audience and nuance - 1
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: fr-v-1959d039ac110d61, ch: politesse, pr: /pɔ.li.tɛs/, ds: 'politeness, courtesy'}
+  - {id: fr-v-d5ae6ebce9e50be0, ch: courtoisie, pr: /kuʁ.twa.zi/, ds: courtesy}
+  - {id: fr-v-a74c55c329e34b70, ch: délicatesse, pr: /de.li.ka.tɛs/, ds: delicacy; delicateness}
+  - {id: fr-v-3327d97ba5a0a8a1, ch: tact, pr: /takt/, ds: tact}
+  - {id: fr-v-7c505aef80d1a5c0, ch: diplomatie, pr: /di.plɔ.ma.si/, ds: the profession and study of diplomacy}
+  - {id: fr-v-f542f0019a74fe3f, ch: considération, pr: /kɔ̃.si.de.ʁa.sjɔ̃/, ds: consideration (the process of considering)}
+  - {id: fr-v-71aff5d652e0233f, ch: égard, pr: /e.ɡaʁ/, ds: consideration}
+  - {id: fr-v-8a114a43cdd6a341, ch: bienveillance, pr: /bjɛ̃.vɛ.jɑ̃s/, ds: 'benevolence, goodwill'}
+  - {id: fr-v-b229aff666018d01, ch: fermeté, pr: /fɛʁ.mə.te/, ds: firmness}
+  - {id: fr-v-0ecf8b165d7f7f49, ch: franchise, pr: /fʁɑ̃.ʃiz/, ds: 'frankness, honesty'}
+  - {id: fr-v-a6406c1c33496577, ch: sincérité, pr: /sɛ̃.se.ʁi.te/, ds: 'sincerity, earnestness'}
+  - {id: fr-v-854af0eda67f3de3, ch: honnêteté, pr: /ɔ.nɛt.te/, ds: honesty}
+  - {id: fr-v-7e152053c8866061, ch: transparence, pr: /tʁɑ̃s.pa.ʁɑ̃s/, ds: 'transparence, transparency'}
+  - {id: fr-v-ab835ad95dda6a8d, ch: ouverture, pr: /u.vɛʁ.tyʁ/, ds: opening}
+  - {id: fr-v-d72341582112eb12, ch: souplesse, pr: /su.plɛs/, ds: suppleness}
+  - {id: fr-v-d3cdd8a487b44512, ch: rigidité, pr: /ʁi.ʒi.di.te/, ds: 'rigidity, stiffness'}
+  - {id: fr-v-276abd5810415972, ch: intransigeance, pr: /ɛ̃.tʁɑ̃.zi.ʒɑ̃s/, ds: intransigence}
+  - {id: fr-v-84b1dadd0a0c856b, ch: obstination, pr: /ɔp.sti.na.sjɔ̃/, ds: obstinacy; stubbornness; obstination}
+  - {id: fr-v-995febf90afe57d1, ch: agressivité, pr: /a.ɡʁɛ.si.vi.te/, ds: 'aggression, aggressiveness'}
+  - {id: fr-v-d6b83ea879ab09f6, ch: persuasion, pr: /pɛʁ.sɥa.zjɔ̃/, ds: persuasion}
+  - {id: fr-v-5e45840ef78278c0, ch: aisance, pr: /ɛ.zɑ̃s/, ds: ease}
+  - {id: fr-v-28ffa38b7cd44415, ch: retenue, pr: /ʁə.t(ə).ny/, ds: restraint}
+  - {id: fr-v-bd17700ac137ac93, ch: prudence, pr: /pʁy.dɑ̃s/, ds: 'prudence, caution, care'}
+  - {id: fr-v-9ddbe3671ce78ec3, ch: modération, pr: /mɔ.de.ʁa.sjɔ̃/, ds: moderation}
+  - {id: fr-v-6456485e3f15e0b7, ch: subtilité, pr: /syp.ti.li.te/, ds: subtlety}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-18-register-02
+  title: Audience and nuance - 2
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: fr-v-6b16140246b23192, ch: nuance, pr: /nɥɑ̃s/, ds: 'nuance:'}
+  - {id: fr-v-cab17cc639975547, ch: insistance, pr: /ɛ̃sistɑ̃s/, ds: insistence}
+  - {id: fr-v-2b77315b03de1ab8, ch: emphase, pr: /ɑ̃.faz/, ds: 'bombast, pomposity, grandiloquence'}
+  - {id: fr-v-0dba033b102c6b8b, ch: formulation, pr: /fɔʁ.my.la.sjɔ̃/, ds: 'wording, phrasing'}
+  - {id: fr-v-90acb430485e0aaa, ch: tournure, pr: /tuʁ.nyʁ/, ds: 'appearance, shape, figure; bearing'}
+  - {id: fr-v-b5eec00220bd40d5, ch: registre, pr: /ʁə.ʒistʁ/, ds: register; level or category}
+  - {id: fr-v-1e718efc9f7ad899, ch: style, pr: /stil/, ds: style (manner of doing something)}
+  - {id: fr-v-b736c816c435317a, ch: formel, pr: /fɔʁ.mɛl/, ds: formal; official}
+  - {id: fr-v-ef59e92704bf0182, ch: informel, pr: /ɛ̃.fɔʁ.mɛl/, ds: informal}
+  - {id: fr-v-a11e4c993f150fa1, ch: familier, pr: /fa.mi.lje/, ds: familiar (known to one)}
+  - {id: fr-v-3b12111bc5b594b1, ch: soutenu, pr: /sut.ny/, ds: 'sustained, maintained, concerted'}
+  - {id: fr-v-b9196f00660223c0, ch: courant, pr: /ku.ʁɑ̃/, ds: common; in ordinary use}
+  - {id: fr-v-6d00f7511e58a8ac, ch: poli, pr: /pɔ.li/, ds: polite}
+  - {id: fr-v-f5092321b7218e9d, ch: impoli, pr: /ɛ̃.pɔ.li/, ds: rude; impolite (bad-mannered)}
+  - {id: fr-v-22313bc96c705704, ch: courtois, pr: /kuʁ.twa/, ds: courtly}
+  - {id: fr-v-73e90256706cd188, ch: respectueux, pr: /ʁɛs.pɛk.tɥø/, ds: respectful}
+  - {id: fr-v-14d2d15bc9f4bfbd, ch: irrespectueux, pr: /i.ʁɛs.pɛk.tɥø/, ds: disrespectful}
+  - {id: fr-v-362fb95277e1ee70, ch: délicat, pr: /de.li.ka/, ds: delicate}
+  - {id: fr-v-570091ec1f0d79e7, ch: attentionné, pr: /atɑ̃sjone/, ds: 'thoughtful, considerate'}
+  - {id: fr-v-2c71f3515ff3e8e0, ch: diplomatique, pr: /di.plɔ.ma.tik/, ds: diplomatic}
+  - {id: fr-v-e68be75a26fc055a, ch: ferme, pr: /fɛʁm/, ds: firm; resolute}
+  - {id: fr-v-aba157e4cf1c245e, ch: indirect, pr: /ɛ̃.di.ʁɛkt/, ds: indirect}
+  - {id: fr-v-308ee23fc85dc6d6, ch: sincère, pr: /sɛ̃.sɛʁ/, ds: sincere}
+  - {id: fr-v-981f86f47016a238, ch: honnête, pr: /ɔ.nɛt/, ds: honest (scrupulous with regard to telling the truth)}
+  - {id: fr-v-cdda49948a8f90bb, ch: franc, pr: /fʁɑ̃/, ds: 'Frankish, Franconian'}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-84b1dadd0a0c856b, ch: obstination, pr: /ɔp.sti.na.sjɔ̃/, ds: obstinacy; stubbornness; obstination}
+  - {id: fr-v-995febf90afe57d1, ch: agressivité, pr: /a.ɡʁɛ.si.vi.te/, ds: 'aggression, aggressiveness'}
+  - {id: fr-v-d6b83ea879ab09f6, ch: persuasion, pr: /pɛʁ.sɥa.zjɔ̃/, ds: persuasion}
+  - {id: fr-v-5e45840ef78278c0, ch: aisance, pr: /ɛ.zɑ̃s/, ds: ease}
+  - {id: fr-v-28ffa38b7cd44415, ch: retenue, pr: /ʁə.t(ə).ny/, ds: restraint}
+  - {id: fr-v-bd17700ac137ac93, ch: prudence, pr: /pʁy.dɑ̃s/, ds: 'prudence, caution, care'}
+  - {id: fr-v-9ddbe3671ce78ec3, ch: modération, pr: /mɔ.de.ʁa.sjɔ̃/, ds: moderation}
+  - {id: fr-v-6456485e3f15e0b7, ch: subtilité, pr: /syp.ti.li.te/, ds: subtlety}
+  review_grammar: []
+- id: level-18-register-03
+  title: Audience and nuance - 3
+  outcome: Adapt an expression to audience and context and explain its implied stance.
+  vocabulary:
+  - {id: fr-v-cc916ac867f842e3, ch: prudent, pr: /pʁy.dɑ̃/, ds: prudent}
+  - {id: fr-v-da2949a2ef31b80a, ch: mesuré, pr: /mə.zy.ʁe/, ds: measured}
+  - {id: fr-v-cddc23962b09e9ec, ch: nuancé, pr: /nɥɑ̃se/, ds: nuanced}
+  - {id: fr-v-c410261c057f747a, ch: catégorique, pr: /ka.te.ɡɔ.ʁik/, ds: 'categorical, clear-cut, unequivocal'}
+  - {id: fr-v-d82a8fbbf08ce103, ch: péremptoire, pr: /pe.ʁɑ̃p.twaʁ/, ds: peremptory}
+  - {id: fr-v-951090a7fa19c87c, ch: concis, pr: /kɔ̃.si/, ds: concise}
+  - {id: fr-v-fde2241e49ef86e8, ch: bref, pr: /bʁɛf/, ds: 'in short, in brief, briefly'}
+  - {id: fr-v-8b1b5debeb82bb89, ch: détaillé, pr: /detaje/, ds: 'detailed, itemized, elaborate'}
+  - {id: fr-v-9ea7e87159dc7e4f, ch: explicite, pr: /ɛk.spli.sit/, ds: 'explicit, unequivocal, overt'}
+  - {id: fr-v-a3215de8e9c99e76, ch: implicite, pr: /ɛ̃.pli.sit/, ds: implicit}
+  - {id: fr-v-e7321ac9a272d967, ch: ambigu, pr: /ɑ̃.bi.ɡy/, ds: ambiguous (open to multiple interpretations)}
+  - {id: fr-v-77862371c8a6180f, ch: équivoque, pr: /e.ki.vɔk/, ds: equivocal}
+  - {id: fr-v-b8e6d019d4672bd4, ch: univoque, pr: /y.ni.vɔk/, ds: unambiguous}
+  - {id: fr-v-d4162c6a44cd44bd, ch: respectueusement, pr: /ʁɛspɛktɥøzəmɑ̃/, ds: respectfully}
+  - {id: fr-v-f0831cff393615e9, ch: cordialement, pr: /kɔʁ.djal.mɑ̃/, ds: cordially}
+  - {id: fr-v-8c25bb1ffac8d819, ch: sincèrement, pr: /sɛ̃.sɛʁ.mɑ̃/, ds: 'sincerely, truly'}
+  - {id: fr-v-61b4fa9474ee12cb, ch: volontiers, pr: /vɔ.lɔ̃.tje/, ds: willingly; gladly; with pleasure}
+  - {id: fr-v-a665dfcd5c857b8c, ch: éventuellement, pr: /e.vɑ̃.tɥɛl.mɑ̃/, ds: 'possibly, maybe, perhaps; if you want'}
+  - {id: fr-v-24c249b4048b8899, ch: assurément, pr: /a.sy.ʁe.mɑ̃/, ds: 'assuredly, in an assured fashion'}
+  - {id: fr-v-5dee6fce7590b37f, ch: incontestablement, pr: /ɛ̃.kɔ̃.tɛs.ta.blə.mɑ̃/, ds: undeniably}
+  - {id: fr-v-8245d60f21bd4ac4, ch: clair, pr: /klɛʁ/, ds: clear; understandable}
+  grammar: []
+  review_vocabulary:
+  - {id: fr-v-362fb95277e1ee70, ch: délicat, pr: /de.li.ka/, ds: delicate}
+  - {id: fr-v-570091ec1f0d79e7, ch: attentionné, pr: /atɑ̃sjone/, ds: 'thoughtful, considerate'}
+  - {id: fr-v-2c71f3515ff3e8e0, ch: diplomatique, pr: /di.plɔ.ma.tik/, ds: diplomatic}
+  - {id: fr-v-e68be75a26fc055a, ch: ferme, pr: /fɛʁm/, ds: firm; resolute}
+  - {id: fr-v-aba157e4cf1c245e, ch: indirect, pr: /ɛ̃.di.ʁɛkt/, ds: indirect}
+  - {id: fr-v-308ee23fc85dc6d6, ch: sincère, pr: /sɛ̃.sɛʁ/, ds: sincere}
+  - {id: fr-v-981f86f47016a238, ch: honnête, pr: /ɔ.nɛt/, ds: honest (scrupulous with regard to telling the truth)}
+  - {id: fr-v-cdda49948a8f90bb, ch: franc, pr: /fʁɑ̃/, ds: 'Frankish, Franconian'}
+  review_grammar: []
+- id: level-18-work-practice-01
+  title: Work and cooperation - sentence practice 1
+  outcome: Explain responsibilities and coordinate a shared task constructively.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-subjunctive-will-necessity, ch: vouloir que / il faut que + subjonctif présent, ds: Express a desired or required action with its own subject}
+  review_vocabulary:
+  - {id: fr-v-a1d9a9fe7504848f, ch: venir, pr: /və.niʁ/, ds: to come}
+  - {id: fr-v-c68bb07d29dbc737, ch: terminer, pr: /tɛʁ.mi.ne/, ds: to end; to finish; to terminate}
+  - {id: fr-v-6a4d4ff963103d3b, ch: avancement, pr: /a.vɑ̃s.mɑ̃/, ds: 'the state of advancing, progress'}
+  - {id: fr-v-e555768ee848e354, ch: progression, pr: /pʁɔ.ɡʁɛ.sjɔ̃/, ds: progression}
+  - {id: fr-v-2037cf79ac0828a1, ch: accomplissement, pr: /a.kɔ̃.plis.mɑ̃/, ds: 'accomplishment, achievement, fulfillment'}
+  - {id: fr-v-eb1e6fdee6b37e87, ch: réalisation, pr: /ʁe.a.li.za.sjɔ̃/, ds: 'realization, fulfilment'}
+  - {id: fr-v-14ea8b6b2df89c1f, ch: livraison, pr: /li.vʁɛ.zɔ̃/, ds: delivery}
+  - {id: fr-v-07bde498070c511c, ch: validation, pr: /va.li.da.sjɔ̃/, ds: validation}
+  - {id: fr-v-7d8b802e495088d2, ch: approbation, pr: /a.pʁɔ.ba.sjɔ̃/, ds: approval (permission)}
+  - {id: fr-v-eaf6c59ac2b26183, ch: promotion, pr: /pʁɔ.mɔ.sjɔ̃/, ds: promotion; career advancement}
+  review_grammar:
+  - {id: fr-g-future-simple, ch: radical du futur + -ai / -as / -a / -ons / -ez / -ont, ds: 'State a future arrangement, expectation, or commitment'}
+  - {id: fr-g-open-si-condition, ch: 'si + présent, présent / futur / impératif', ds: Set an open practical condition without future in its si clause}
+  - {id: fr-g-passive-voice, ch: patient + être au temps voulu + participe + par agent, ds: Make the affected participant the grammatical subject}
+- id: level-18-reasoning-practice-01
+  title: Reasons and connections - sentence practice 1
+  outcome: Explain relationships between ideas while qualifying the conclusion appropriately.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-subjunctive-assertion-contrast, ch: penser que + indicatif ; ne pas penser que + subjonctif, ds: Contrast asserted belief with a nonasserted complement}
+  review_vocabulary:
+  - {id: fr-v-1bc5897f17aaef34, ch: possible, pr: /pɔ.sibl/, ds: possible}
+  - {id: fr-v-7ccf6b3903a109eb, ch: polluer, pr: /pɔ.lɥe/, ds: to pollute (create pollution)}
+  - {id: fr-v-5650bc94ec00a76d, ch: contaminer, pr: /kɔ̃.ta.mi.ne/, ds: to contaminate}
+  - {id: fr-v-ce41e34843042b66, ch: détruire, pr: /de.tʁɥiʁ/, ds: to destroy}
+  - {id: fr-v-c41740657c0ec9fc, ch: menacer, pr: /mə.na.se/, ds: to threaten}
+  - {id: fr-v-78f53e5d69ad8189, ch: survivre, pr: /syʁ.vivʁ/, ds: to survive}
+  - {id: fr-v-372d1f7c4a17f74e, ch: atténuer, pr: /a.te.nɥe/, ds: to attenuate; to mitigate}
+  - {id: fr-v-fd120a190653ff9f, ch: sensibiliser, pr: /sɑ̃.si.bi.li.ze/, ds: to make sensitive}
+  - {id: fr-v-22afdd0b327e4284, ch: prévenir, pr: /pʁev.niʁ/, ds: to prevent; to avert}
+  review_grammar:
+  - {id: fr-g-cause-and-objection, ch: proposition parce que cause ; proposition mais objection, ds: Connect a reason or practical objection to a statement}
+  - {id: fr-g-restrictive-ne-que, ch: ne + verbe + que + élément restreint, ds: Restrict a statement to only the focused element}
+  - {id: fr-g-degree-consequence, ch: si + adjectif / tellement + verbe ou adjectif + que, ds: Link an asserted result to the degree of a cause}
+- id: level-18-argument-practice-01
+  title: Argument and decisions - sentence practice 1
+  outcome: Defend a recommendation while addressing relevant qualifications and objections.
+  vocabulary: []
+  grammar:
+  - {id: fr-g-subjunctive-concession, ch: 'bien que + subjonctif, proposition', ds: Acknowledge a circumstance despite an unexpected outcome}
+  - {id: fr-g-hypothetical-present, ch: 'si + imparfait, conditionnel présent', ds: Imagine a present or future alternative with distance}
+  review_vocabulary:
+  - {id: fr-v-c22fc3483ea21daf, ch: chambre, pr: /ʃɑ̃bʁ/, ds: hotel room}
+  - {id: fr-v-cd70435b8e7ed4af, ch: marcher, pr: /maʁ.ʃe/, ds: to walk}
+  - {id: fr-v-580d8fe18b6303c4, ch: livre, pr: /livʁ/, ds: book}
+  - {id: fr-v-3b58e2412fe564d3, ch: choisir, pr: /ʃwa.ziʁ/, ds: to choose}
+  - {id: fr-v-4edbd2c7eeda8646, ch: arbitrer, pr: /aʁ.bi.tʁe/, ds: to arbitrate}
+  - {id: fr-v-648316bab3e622ee, ch: trancher, pr: /tʁɑ̃.ʃe/, ds: 'to slice, cut into slices'}
+  - {id: fr-v-26748de6a4d39cc2, ch: consentir, pr: /kɔ̃.sɑ̃.tiʁ/, ds: to consent}
+  - {id: fr-v-1d725ca98d1ac779, ch: céder, pr: /se.de/, ds: to yield}
+  - {id: fr-v-682bc57e2ea95a83, ch: rejeter, pr: /ʁə.ʒ(ə).te/, ds: 'to throw back (a fish, etc.)'}
+  - {id: fr-v-09c171c39ab1d911, ch: résister, pr: /ʁe.zis.te/, ds: to resist}
+  - {id: fr-v-2e4622c34693aade, ch: convenir, pr: /kɔ̃v.niʁ/, ds: to agree; to acknowledge}
+  - {id: fr-v-4be472830053ad9d, ch: assurance, pr: /a.sy.ʁɑ̃s/, ds: assurance; guarantee}
+  review_grammar:
+  - {id: fr-g-nominal-concession, ch: 'malgré + nom ; proposition, pourtant proposition', ds: Acknowledge an obstacle without denying the outcome}

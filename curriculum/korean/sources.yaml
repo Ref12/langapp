@@ -134,3 +134,52 @@
     original practical selections, goals, mastery guidance, phrases, supplementary constructions, and
     individual unverified broad-Hangul reading decisions. These do not relicense adapted NIKL dictionary text.
   license_url: https://creativecommons.org/publicdomain/zero/1.0/
+- id: hangeul-stroke-order-reference
+  title: Hangeul Stroke Order Diagrams, reference README and license only
+  url: https://github.com/MagisterAdamus/hangeul-stroke-order
+  license: CC-BY-SA-4.0 for retained project README; no grant inferred for excluded font-derived artwork
+  usage: Unchanged README and license retained for the source-feasibility audit. All 35 SVG diagrams
+    were inspected but no SVGs, fonts, glyph outlines, annotation polygons, or inferred centerlines
+    are imported. The source does not supply ordered letter centerlines or contextual composition recipes.
+  attribution: Adam Stone, Hangeul Stroke Order Diagrams. README credits UnPen and Inter; their unpinned
+    provenance is not treated as rights clearance for glyph geometry. No author endorsement.
+  retrieved_on: '2026-09-15'
+  revision: 935483f7e93d24aa2ec990bca1b43664307768d2
+  license_url: https://creativecommons.org/licenses/by-sa/4.0/
+  local_notice: licenses/WRITING-NOTICE.md
+- id: korean-writing-original-pilot
+  title: Original unreviewed Korean monoline foundation and representative syllable pilot
+  url: ./characters/recipes/original-jamo.yaml
+  license: CC0-1.0 for original coordinates, recipes, signs, and generated candidate paths to the extent rights apply
+  usage: Original AI-assisted 24 core letter masters with named contextual forms, 16 composite alphabet
+    recipes, 11 final-cluster recipes, 54 representative syllables, and two literal punctuation signs.
+    All 118 modern jamo representations are retained as exact keys. No font tracing, source-arrow
+    extraction, neural model output, or qualified review. Bulk curriculum generation remains gated.
+  attribution: Original langapp contribution, AI-assisted, 2026-09-15. User approval covers authoring a
+    bounded pilot with review before scaling, not approval of these geometry candidates.
+  retrieved_on: '2026-09-15'
+  revision: '2'
+  license_url: https://creativecommons.org/publicdomain/zero/1.0/
+  local_notice: licenses/ORIGINAL-WRITING-PILOT.md
+- id: korean-writing-source-audit
+  title: Original Korean writing inventory and source-feasibility audit
+  url: ./upstream/writing/source-assessment.yaml
+  license: CC0-1.0 for original audit, processing, and source-gap preview to the extent rights apply
+  usage: Exact curriculum and modern-jamo coverage accounting, two cited phonetic-display supplements,
+    original source-feasibility findings, and reproducible offline reporting. No original or imported
+    pen-stroke geometry and no professional Korean handwriting review.
+  attribution: Original langapp contribution, AI-assisted; primary sources are identified in the
+    assessment. Dictionary and retained third-party reference text keep their separate licenses.
+  retrieved_on: '2026-09-15'
+  revision: '2026-09-15.2'
+  license_url: https://creativecommons.org/publicdomain/zero/1.0/
+  local_notice: licenses/WRITING-NOTICE.md
+- id: sejong-handwriting-reference
+  title: King Sejong Institute Foundation, Sejong Hakdang Korean Introduction
+  url: https://nuri.iksi.or.kr/front/cms/contents/layout2/learningsejong/detail.do?menuSn=647&csCmsMastrSeq=15258
+  license: Reference-only reading; no textbook artwork, font geometry, or page images redistributed
+  usage: Public ebook diagrams compared for stroke sequence, joins, vowel topology and contextual
+    proportions. Original comparison notes are retained in upstream/writing/handwriting-review.yaml;
+    no paths or coordinates were extracted from the textbook.
+  attribution: King Sejong Institute Foundation. No endorsement or qualified review of the pilot.
+  retrieved_on: '2026-09-15'

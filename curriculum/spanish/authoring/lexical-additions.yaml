@@ -1,0 +1,54 @@
+- {alias: cafe-drink, lemma: café, pos: noun, contains: coffee, ds: 'coffee (drink)', level: 3, topic: food}
+- {alias: cuenta-bill, lemma: cuenta, pos: noun, contains: bill, ds: 'bill or check to pay', level: 3, topic: services}
+- {alias: bano-room, lemma: baño, pos: noun, contains: bathroom, ds: 'bathroom or restroom', level: 4, topic: travel}
+- {alias: efectivo-cash, lemma: efectivo, pos: noun, contains: cash, ds: 'cash (money)', level: 3, topic: money}
+- {alias: billete-ticket, lemma: billete, pos: noun, contains: ticket, ds: 'ticket (transport or admission)', level: 7, topic: travel}
+- {alias: direccion-address, lemma: dirección, pos: noun, contains: address, ds: 'address (location)', level: 4, topic: travel}
+- {alias: hablar-english, lemma: inglés, pos: noun, contains: English, ds: 'English language', level: 1, topic: communication}
+- {alias: encontrar-find, lemma: encontrar, pos: verb, contains: find, ds: 'to find', level: 2, topic: actions}
+- {alias: escuchar-listen, lemma: escuchar, pos: verb, contains: listen, ds: 'to listen', level: 1, topic: communication}
+- {alias: llamar-name, lemma: llamar, pos: verb, contains: to be called, ds: 'to be called (pronominal llamarse)', level: 1, topic: communication}
+- {alias: llamar-summon, lemma: llamar, pos: verb, contains: to summon, ds: 'to call or summon someone', level: 1, topic: communication}
+- {alias: saber-how, lemma: saber, pos: verb, contains: to know how to, ds: 'to know how to do something', level: 5, topic: learning}
+- {alias: saber-flavor, lemma: saber, pos: verb, contains: to taste, ds: 'to taste or have a flavor', level: 6, topic: food}
+- {alias: estar-state, lemma: estar, pos: verb, contains: denotes a copula, ds: 'to be in a state or condition', level: 2, topic: description}
+- {alias: ser-passive, lemma: ser, pos: verb, contains: passive voice, ds: 'to be (passive auxiliary)', level: 14, topic: grammar}
+- {alias: tiempo-weather, lemma: tiempo, pos: noun, contains: weather, ds: 'weather', level: 5, topic: nature}
+- {alias: llevar-carry, lemma: llevar, pos: verb, contains: to carry, ds: 'to carry', level: 5, topic: actions}
+- {alias: llevar-wear, lemma: llevar, pos: verb, contains: to wear, ds: 'to wear clothing', level: 5, topic: clothing}
+- {alias: llevar-duration, lemma: llevar, pos: verb, contains: to have spent time, ds: 'to have spent time doing something', level: 10, topic: time}
+- {alias: quedar-meeting, lemma: quedar, pos: verb, contains: to agree to meet, ds: 'to arrange to meet someone', level: 4, topic: communication}
+- {alias: quedar-remain, lemma: quedar, pos: verb, contains: to be left, ds: 'to be left or remain', level: 6, topic: actions}
+- {alias: quedarse-stay, lemma: quedar, pos: verb, contains: to stay, ds: 'to stay (pronominal quedarse)', level: 7, topic: travel}
+- {alias: dejar-allow, lemma: dejar, pos: verb, contains: 'to let, allow', ds: 'to let or allow', level: 7, topic: actions}
+- {alias: pasar-happen, lemma: pasar, pos: verb, contains: to happen, ds: 'to happen', level: 6, topic: time}
+- {alias: pasar-spend-time, lemma: pasar, pos: verb, contains: to spend, ds: 'to spend time', level: 9, topic: time}
+- {alias: tomar-drink, lemma: tomar, pos: verb, contains: 'consume, drink', ds: 'to drink or take food or medicine', level: 6, topic: food}
+- {alias: orden-arrangement, lemma: orden, pos: noun, contains: arrangement, ds: 'order or sequence (masculine)', level: 11, topic: reasoning}
+- {alias: ser-occurrence, lemma: ser, pos: verb, contains: 'to exist; to occur', ds: 'to occur or take place', level: 7, topic: time}
+- {alias: salida-departure, lemma: salida, pos: noun, contains: departure, ds: departure, level: 7, topic: travel}
+- {alias: talla-clothing, lemma: talla, pos: noun, contains: clothing size, ds: clothing size, level: 6, topic: clothing}
+- {alias: probar-try, lemma: probar, pos: verb, contains: 'to try, to try out', ds: 'to try out or sample something', level: 6, topic: actions}
+- {alias: demasiado-degree, lemma: demasiado, pos: adv, contains: modifying an adjective, ds: 'too or overly (before an adjective or adverb)', level: 6, topic: description}
+- {alias: devolver-return, lemma: devolver, pos: verb, contains: to return, ds: 'to return or give back something', level: 6, topic: services}
+- {alias: tienda-shop, lemma: tienda, pos: noun, contains: 'shop, store', ds: 'shop or store', level: 3, topic: services}
+- {alias: carne-meat, lemma: carne, pos: noun, contains: meat, ds: 'meat; edible flesh', level: 3, topic: food}
+- {alias: perro-dog, lemma: perro, pos: noun, contains: 'dog (the species', ds: dog, level: 2, topic: nature}
+- {alias: carta-letter, lemma: carta, pos: noun, contains: 'letter (document)', ds: 'letter (written message)', level: 8, topic: communication}
+- {alias: gasolinera-station, lemma: gasolinera, pos: noun, contains: petrol station, ds: 'petrol or gas station', level: 7, topic: travel}
+- {alias: reparar-fix, lemma: reparar, pos: verb, contains: to repair, ds: 'to repair, mend or fix something', level: 6, topic: services}
+- {alias: horario-schedule, lemma: horario, pos: noun, contains: timetable, ds: 'timetable or schedule', level: 4, topic: time}
+- {alias: tamano-size, lemma: tamaño, pos: noun, contains: size, ds: 'size (noun)', level: 6, topic: description}
+- {alias: batido-drink, lemma: batido, pos: noun, contains: smoothie, ds: 'smoothie or milkshake', level: 6, topic: food}
+- {alias: dificil-difficult, lemma: difícil, pos: adj, contains: 'difficult, hard', ds: 'difficult, hard or challenging', level: 2, topic: description}
+- {alias: si-yes, lemma: sí, pos: particle, contains: 'yes, yeah', ds: 'yes (affirmative response)', level: 1, topic: communication}
+- {alias: el-he, lemma: él, pos: pron, contains: 'he, him', ds: 'he or him (subject or after a preposition)', level: 2, topic: grammar}
+- {alias: profesor-teacher, lemma: profesor, pos: noun, contains: teacher, ds: 'teacher (especially Spain)', level: 2, topic: learning}
+- {alias: maestro-teacher, lemma: maestro, pos: noun, contains: male teacher, ds: 'male teacher (especially Latin America)', level: 2, topic: learning}
+- {alias: tio-uncle, lemma: tío, pos: noun, contains: 'uncle (the brother', ds: uncle, level: 2, topic: people}
+- {alias: chico-boy, lemma: chico, pos: noun, contains: 'boy; kid', ds: 'boy or kid', level: 2, topic: people}
+- {alias: novio-boyfriend, lemma: novio, pos: noun, contains: boyfriend, ds: 'boyfriend (romantic partner)', level: 2, topic: people}
+- {alias: significado-meaning, lemma: significado, pos: noun, contains: meaning, ds: 'meaning (of a word or message)', level: 1, topic: learning}
+- {alias: interruptor-switch, lemma: interruptor, pos: noun, contains: light switch, ds: 'switch or light switch', level: 5, topic: home}
+- {alias: placer-pleasure, lemma: placer, pos: noun, contains: pleasure, ds: pleasure, level: 8, topic: feelings}
+- {alias: guapo-appearance, lemma: guapo, pos: adj, contains: good-looking, ds: 'good-looking; handsome or pretty', level: 2, topic: description}

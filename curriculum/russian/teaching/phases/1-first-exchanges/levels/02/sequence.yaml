@@ -1,0 +1,191 @@
+schema_version: 3
+id: ru-level-02
+title: Whose things are where?
+language: russian
+level_basis: Independently curated Russian vocabulary and constructions ordered by communicative purpose and prerequisites, never by source row order, an arbitrary frequency proxy, or default first senses. Not a CEFR or TORFL syllabus, equivalence, or examination-readiness claim.
+review_policy: Modules span several lessons of about 5-8 new senses, fewer for demanding inflection or confusable forms. Retrieve relevant earlier and fragile items on later days and record modality and assistance. Headword targets are planning guides, not quotas; inflections and additional senses do not inflate breadth. Inventory coverage is not demonstrated mastery.
+kind: level
+number: 2
+phase: first-exchanges
+prerequisites:
+- ru-level-01
+goals: &id001
+- Identify people and objects with appropriate gender agreement.
+- Ask whose item it is and match a possessive to the item.
+- Locate an item using a familiar prepositional frame.
+checkpoint:
+  task: Identify a newly described missing object, establish its owner, and suggest a location using appropriate agreement and case.
+  criteria: *id001
+mastery_profile: ru-item-mastery
+mastery_target: independent-use
+units:
+- id: level-02-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary:
+  - {id: ru-or-n00001-s001, ch: человек, pr: челове́к, ds: person}
+  - {id: ru-or-n00013-s001, ch: друг, pr: друг, ds: friend}
+  - {id: ru-or-n00122-s001, ch: семья, pr: семья́, ds: family}
+  - {id: ru-or-n00052-s001, ch: мать, pr: мать, ds: mother}
+  - {id: ru-or-n00038-s001, ch: отец, pr: оте́ц, ds: father}
+  - {id: ru-or-n00073-s001, ch: сын, pr: сын, ds: son}
+  - {id: ru-or-n00293-s001, ch: дочь, pr: дочь, ds: daughter}
+  - {id: ru-or-n00098-s001, ch: брат, pr: брат, ds: brother}
+  - {id: ru-or-n00306-s001, ch: сестра, pr: сестра́, ds: sister}
+  - {id: ru-or-n00036-s001, ch: ребёнок, pr: ребёнок, ds: child}
+  - {id: ru-or-n00035-s001, ch: женщина, pr: же́нщина, ds: woman}
+  - {id: ru-or-n00117-s001, ch: мужчина, pr: мужчи́на, ds: man}
+  - {id: ru-or-n01230-s001, ch: иностранец, pr: иностра́нец, ds: person from another country}
+  - {id: ru-or-a00122-s001, ch: чей, pr: чей, ds: whose}
+  - {id: ru-or-n00519-s001, ch: кот, pr: кот, ds: cat}
+  - {id: ru-or-n00142-s001, ch: собака, pr: соба́ка, ds: dog}
+  - {id: ru-or-n00573-s001, ch: кошка, pr: ко́шка, ds: cat}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00014-s001, ch: они, pr: они́, ds: they}
+  - {id: ru-or-o00034-s001, ch: кто, pr: кто, ds: who}
+  - {id: ru-or-o00007-s001, ch: что, pr: что, ds: what}
+  - {id: ru-or-a00007-s001, ch: мой, pr: мой, ds: my}
+  - {id: ru-or-a00022-s001, ch: твой, pr: твой, ds: your (one familiar person's)}
+  - {id: ru-or-a00003-s001, ch: этот, pr: э́тот, ds: this}
+  - {id: ru-or-a00006-s001, ch: какой, pr: како́й, ds: what kind of}
+  - {id: ru-or-o02067-s001, ch: по-английски, pr: по-англи́йски, ds: in English}
+  review_grammar:
+  - {id: ru-g-present-identity, ch: 'Я [name]. Это [noun].', ds: State identity without a present-tense copula}
+- id: level-02-home-01
+  title: Home and shared routines - 1
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary:
+  - {id: ru-or-n00014-s001, ch: дом, pr: дом, ds: house}
+  - {id: ru-or-n00099-s001, ch: квартира, pr: кварти́ра, ds: apartment}
+  - {id: ru-or-n00055-s001, ch: комната, pr: ко́мната, ds: room}
+  - {id: ru-or-n00021-s001, ch: дверь, pr: дверь, ds: door}
+  - {id: ru-or-n00050-s001, ch: окно, pr: окно́, ds: window}
+  - {id: ru-or-n00031-s001, ch: стол, pr: стол, ds: table}
+  - {id: ru-or-n00341-s001, ch: стул, pr: стул, ds: chair}
+  - {id: ru-or-n00059-s001, ch: книга, pr: кни́га, ds: book}
+  - {id: ru-or-n00214-s001, ch: телефон, pr: телефо́н, ds: telephone}
+  - {id: ru-or-n00626-s001, ch: сумка, pr: су́мка, ds: bag}
+  - {id: ru-or-n00406-s001, ch: ключ, pr: ключ, ds: key}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-02-travel-01
+  title: Travel and transport - 1
+  outcome: Explain an origin or destination and negotiate a changed journey.
+  vocabulary:
+  - {id: ru-or-n00023-s001, ch: город, pr: го́род, ds: town}
+  - {id: ru-or-n00054-s001, ch: улица, pr: у́лица, ds: street}
+  - {id: ru-or-n00016-s001, ch: место, pr: ме́сто, ds: place}
+  - {id: ru-or-n00041-s001, ch: страна, pr: страна́, ds: country}
+  - {id: ru-or-n00105-s001, ch: школа, pr: шко́ла, ds: school}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-02-actions-01
+  title: Actions and results - 1
+  outcome: Distinguish a repeated or ongoing action from a completed outcome.
+  vocabulary:
+  - {id: ru-or-v00013-s001, ch: жить, pr: жить, ds: live}
+  - {id: ru-or-v00015-s001, ch: иметь, pr: име́ть, ds: have}
+  - {id: ru-or-v00008-s001, ch: видеть, pr: ви́деть, ds: see}
+  - {id: ru-or-v00096-s001, ch: искать, pr: иска́ть, ds: look for}
+  - {id: ru-or-v00073-s001, ch: находиться, pr: находи́ться, ds: be situated}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-v00001-s001, ch: быть, pr: быть, ds: be}
+  - {id: ru-or-v00003-s001, ch: мочь, pr: мочь, ds: can}
+  - {id: ru-or-v00007-s001, ch: хотеть, pr: хоте́ть, ds: want}
+  review_grammar: []
+- id: level-02-description-01
+  title: Description and comparison - 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary:
+  - {id: ru-or-a00009-s001, ch: большой, pr: большо́й, ds: big}
+  - {id: ru-or-a00028-s001, ch: маленький, pr: ма́ленький, ds: small}
+  - {id: ru-or-a00021-s001, ch: старый, pr: ста́рый, ds: old}
+  - {id: ru-or-a00023-s001, ch: белый, pr: бе́лый, ds: white}
+  - {id: ru-or-a00045-s001, ch: чёрный, pr: чёрный, ds: black}
+  - {id: ru-or-a00037-s001, ch: красный, pr: кра́сный, ds: red}
+  - {id: ru-or-a00108-s001, ch: синий, pr: си́ний, ds: dark blue}
+  - {id: ru-or-a00062-s001, ch: зелёный, pr: зелёный, ds: green}
+  - {id: ru-or-o00063-s001, ch: здесь, pr: здесь, ds: here}
+  - {id: ru-or-o00049-s001, ch: там, pr: там, ds: there}
+  - {id: ru-or-o01984-s001, ch: дома, pr: до́ма, ds: at home}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-a00030-s001, ch: русский, pr: ру́сский, ds: Russian}
+  - {id: ru-or-a00190-s001, ch: английский, pr: англи́йский, ds: English}
+  - {id: ru-or-a00015-s001, ch: новый, pr: но́вый, ds: new}
+  - {id: ru-or-a00017-s001, ch: хороший, pr: хоро́ший, ds: good}
+  review_grammar: []
+- id: level-02-grammar-01
+  title: Sentence construction - 1
+  outcome: Use a construction for a new meaning and explain a relevant contrast.
+  vocabulary:
+  - {id: ru-or-o00009-s001, ch: а, pr: а, ds: whereas (contrast)}
+  - {id: ru-or-o00016-s001, ch: у, pr: у, ds: possession with the genitive}
+  - {id: ru-or-o00031-s001, ch: для, pr: для, ds: for}
+  grammar: []
+  review_vocabulary:
+  - {id: ru-or-o00001-s001, ch: и, pr: и, ds: and}
+  - {id: ru-or-o00013-s001, ch: но, pr: но, ds: but}
+  - {id: ru-or-o00003-s001, ch: не, pr: не, ds: not}
+  - {id: ru-or-o00002-s001, ch: в, pr: в, ds: in}
+  - {id: ru-or-o00005-s001, ch: на, pr: на, ds: on (place)}
+  - {id: ru-or-o00017-s001, ch: из, pr: из, ds: from}
+  - {id: ru-or-o00008-s001, ch: с, pr: с, ds: with}
+  - {id: ru-or-o00025-s001, ch: о, pr: о, ds: about}
+  review_grammar: []
+- id: level-02-home-practice-01
+  title: Home and shared routines - sentence practice 1
+  outcome: Explain belongings and practical arrangements in a home.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-location-prepositional, ch: 'в / на [prepositional noun]', ds: Locate something with в or на plus prepositional}
+  review_vocabulary:
+  - {id: ru-or-n00021-s001, ch: дверь, pr: дверь, ds: door}
+  - {id: ru-or-n00050-s001, ch: окно, pr: окно́, ds: window}
+  - {id: ru-or-n00031-s001, ch: стол, pr: стол, ds: table}
+  - {id: ru-or-n00341-s001, ch: стул, pr: стул, ds: chair}
+  - {id: ru-or-n00059-s001, ch: книга, pr: кни́га, ds: book}
+  - {id: ru-or-n00214-s001, ch: телефон, pr: телефо́н, ds: telephone}
+  - {id: ru-or-n00626-s001, ch: сумка, pr: су́мка, ds: bag}
+  - {id: ru-or-n00406-s001, ch: ключ, pr: ключ, ds: key}
+  review_grammar: []
+- id: level-02-description-practice-01
+  title: Description and comparison - sentence practice 1
+  outcome: Make a precise description or comparison with suitable agreement.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-gender-agreement, ch: 'новый [masculine] / новая [feminine] / новое [neuter]', ds: Match an adjective to a noun's gender}
+  - {id: ru-g-demonstrative-agreement, ch: 'этот / эта / это [noun]', ds: Distinguish identifying это from agreeing this}
+  review_vocabulary:
+  - {id: ru-or-a00015-s001, ch: новый, pr: но́вый, ds: new}
+  - {id: ru-or-a00023-s001, ch: белый, pr: бе́лый, ds: white}
+  - {id: ru-or-a00045-s001, ch: чёрный, pr: чёрный, ds: black}
+  - {id: ru-or-a00037-s001, ch: красный, pr: кра́сный, ds: red}
+  - {id: ru-or-a00108-s001, ch: синий, pr: си́ний, ds: dark blue}
+  - {id: ru-or-a00062-s001, ch: зелёный, pr: зелёный, ds: green}
+  - {id: ru-or-o00063-s001, ch: здесь, pr: здесь, ds: here}
+  - {id: ru-or-o00049-s001, ch: там, pr: там, ds: there}
+  - {id: ru-or-o01984-s001, ch: дома, pr: до́ма, ds: at home}
+  review_grammar: []
+- id: level-02-people-practice-01
+  title: People and relationships - sentence practice 1
+  outcome: Describe people and relationships without confusing reference or agreement.
+  vocabulary: []
+  grammar:
+  - {id: ru-g-possessive-agreement, ch: 'мой / моя / моё [noun]; его / её [noun]', ds: Match a possessive to the thing possessed}
+  - {id: ru-g-whose-question, ch: 'Чей / чья / чьё / чьи [noun]?', ds: Ask whose with gender and number agreement}
+  review_vocabulary:
+  - {id: ru-or-n00036-s001, ch: ребёнок, pr: ребёнок, ds: child}
+  - {id: ru-or-n00035-s001, ch: женщина, pr: же́нщина, ds: woman}
+  - {id: ru-or-n00117-s001, ch: мужчина, pr: мужчи́на, ds: man}
+  - {id: ru-or-n01230-s001, ch: иностранец, pr: иностра́нец, ds: person from another country}
+  - {id: ru-or-a00122-s001, ch: чей, pr: чей, ds: whose}
+  - {id: ru-or-n00519-s001, ch: кот, pr: кот, ds: cat}
+  - {id: ru-or-n00142-s001, ch: собака, pr: соба́ка, ds: dog}
+  - {id: ru-or-n00573-s001, ch: кошка, pr: ко́шка, ds: cat}
+  review_grammar:
+  - {id: ru-g-present-identity, ch: 'Я [name]. Это [noun].', ds: State identity without a present-tense copula}

@@ -100,3 +100,67 @@
   retrieved_on: '2026-09-07'
   local_source: teaching/grammar.tsv
   review_status: AI-authored; human language-pedagogy review pending
+- id: kanjivg-writing
+  title: KanjiVG ordered Japanese centerlines and component metadata
+  url: https://github.com/KanjiVG/kanjivg/tree/422b5538595676da918c288a4230cb5e22a1ee7e
+  license: CC-BY-SA-3.0 for original and adapted KanjiVG artwork; not a license for unrelated application code
+  usage: Selected exact Japanese curriculum and modern kana SVGs, contextual combining-mark samples,
+    and explicitly review-only component donors. Retain source em-box proportions and logical pen order.
+    No isolated kanji readings are supplied.
+  attribution: Copyright 2009/2010/2011 Ulrich Apel; KanjiVG, https://kanjivg.tagaini.net/.
+    Adapted to the shared 100-unit monoline frame. Preserve attribution, modification notices,
+    CC BY-SA 3.0 and its disclaimer; no upstream endorsement or professional review is asserted.
+  retrieved_on: '2026-09-15'
+  commit: 422b5538595676da918c288a4230cb5e22a1ee7e
+  local_license: licenses/writing-kanjivg-COPYING.txt
+  provenance_lock: upstream/writing/download-lock.yaml
+- id: animcjk-writing-arphic
+  title: AnimCJK exact Japanese 秭 artwork
+  url: https://github.com/parsimonhi/animCJK/blob/ec5e17cca76c87587790bcbce5ea0b4d4fb753d6/svgsJa/31213.svg
+  license: ARPHIC PUBLIC LICENSE for this source-derived artwork
+  usage: The nine ordered median paths of the exact Japanese 秭 SVG, not another locale or a copied
+    dictionary definition. Original outlines remain provenance and review inputs.
+  attribution: AnimCJK copyright 2016-2026 FM-SH; derived from Make Me a Hanzi and Arphic PL KaitiM
+    GB/Big5 fonts, copyright 1999 Arphic Technology Co., Ltd. Preserve the unmodified ARPHIC license,
+    dated modification notice and freely available derivative source. No professional review asserted.
+  retrieved_on: '2026-09-15'
+  commit: ec5e17cca76c87587790bcbce5ea0b4d4fb753d6
+  local_license: licenses/writing-ARPHICPL.txt
+  provenance_lock: upstream/writing/download-lock.yaml
+- id: animcjk-writing-lgpl
+  title: AnimCJK exact 〇 source artwork
+  url: https://github.com/parsimonhi/animCJK/blob/ec5e17cca76c87587790bcbce5ea0b4d4fb753d6/svgsJa/12295.svg
+  license: LGPL-3.0-or-later, explicitly stated in this SVG's header despite its svgsJa folder
+  usage: One ordered source median for the modern numeric-zero prerequisite. The uncorrected
+    entry/exit remains a candidate requiring visual review; do not describe it as an approved closed circle.
+    The graphics-prefixed text exports are not used.
+  attribution: AnimCJK copyright 2016-2026 FM-SH, https://github.com/parsimonhi/animCJK.
+    Retain its LGPL notice, the LGPL and incorporated GPLv3 text, original source and reproducible
+    modifications. Keep this artwork separately identifiable and replaceable; no professional review asserted.
+  retrieved_on: '2026-09-15'
+  commit: ec5e17cca76c87587790bcbce5ea0b4d4fb753d6
+  local_license: licenses/writing-LGPL-3.0.txt
+  local_gpl: licenses/writing-GPL-3.0.txt
+  provenance_lock: upstream/writing/download-lock.yaml
+- id: japanese-writing-recipes
+  title: Explicit Japanese writing component-selection recipes
+  url: local:curriculum/japanese/characters/recipes.yaml
+  license: CC-BY-SA-3.0 for these KanjiVG-derived selection recipes and resulting artwork
+  usage: Contextual combining-mark path selections and a separately blocked, review-only 鱝 donor
+    composition. These recipes do not claim a directly imported 鱝 glyph or universal mark attachment.
+  attribution: Original selection recipes prepared with GitHub Copilot, 2026-09-15, from attributed
+    KanjiVG inputs. Retain Ulrich Apel/KanjiVG attribution and CC BY-SA 3.0. All new geometry remains
+    unreviewed until there is explicit exact-output review evidence.
+  retrieved_on: '2026-09-15'
+  local_source: characters/recipes.yaml
+  local_license: licenses/writing-recipes-NOTICE.txt
+  review_status: Generated candidates only; exact-glyph visual and professional review not asserted
+- id: original-ja-practical
+  title: Original practical Japanese teaching order, tasks, and surface realizations
+  url: local:curriculum/japanese/authoring/teaching/vocabulary.yaml
+  license: CC-BY-SA-4.0 for original contributions to the extent copyright applies; upstream dictionary rights and attribution remain in force
+  usage: Independent thirty-level teaching placements, adaptive task pools, beginner and tourist plans, kana preparation, and exact authored inflection or fixed-form realizations. Dictionary-derived senses retain JMdict, scriptin, Waller, and stephenmk provenance. No phrasebook, textbook, exam items, or audio corpus copied.
+  attribution: Original curriculum contributions generated with GitHub Copilot for this project, September 2026. Not endorsed by JLPT, EDRDG, or the other source contributors.
+  retrieved_on: '2026-09-15'
+  local_source: authoring/teaching/vocabulary.yaml
+  review_status: AI-authored first-pass selection and source audit; qualified Japanese-language pedagogy and native-speaker review pending
