@@ -9380,7 +9380,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '75803'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75803
-      pronunciations:
+      pronunciations: &id691
       - 주머니
     lexical_identity: ko-lex-41685
     lexical_category: free-lemma
@@ -9399,7 +9399,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '28375'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28375
-      pronunciations:
+      pronunciations: &id692
       - 단추
     lexical_identity: ko-lex-16501
     lexical_category: free-lemma
@@ -73306,6 +73306,1120 @@ items:
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88221
       pronunciations: *id688
     lexical_identity: ko-lex-52831
+    lexical_category: free-lemma
+  ko-nikl-48564-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48564
+    source_parent: ko-nikl-48564
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'A shirt with a collar and sleeves, which is worn under a suit jacket. '
+    source_korean: 양복 윗옷 안에 입는 칼라와 소매가 달린 셔츠.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 와이셔츠
+      method: authored-broad-hangul
+      reason: Individually authored for the collared, sleeved shirt worn under a suit jacket, whose complete
+        definition exactly matches official 22146. Retain 와-이-셔-츠 as four open syllables, including the
+        와 and 셔 glides, separate vowel-initial 이, and aspirated ㅊ. Do not restore English shirt consonant
+        clusters or an r; there is no coda to neutralize. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-48564
+    lexical_category: free-lemma
+  ko-nikl-07427-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7427
+    source_parent: ko-nikl-07427
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'A billowy shirt worn by women with a smooth texture. '
+    source_korean: 여자들이 입는, 촉감이 매끄럽고 하늘하늘한 셔츠.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 블라우스
+      method: authored-broad-hangul
+      reason: Individually authored for the smooth, light women's shirt, whose complete definition exactly
+        matches official 71059. Preserve the ㄹ-ㄹ lateral boundary in 블-라, separate vowel-initial 우 after
+        라, and open final 스. No nasal-liquid conversion or English initial bl cluster is supplied; all
+        other syllables are open. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-07427
+    lexical_category: free-lemma
+  ko-nikl-49828-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49828
+    source_parent: ko-nikl-49828
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'A woman''s outer garment made of one piece. '
+    source_korean: 윗옷과 치마가 하나로 붙어 있는 여자 겉옷.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 원피스
+      method: authored-broad-hangul
+      reason: Individually authored for the dress joining an upper garment and skirt, whose complete definition
+        exactly matches official 26721. Retain 원-피-스 with the ㅝ glide and nasal ㄴ before already aspirated
+        ㅍ; keep final 스 open. No stop-triggered tensing, nasal-liquid assimilation, or English final consonant
+        cluster is imposed. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-49828
+    lexical_category: free-lemma
+  ko-nikl-39652-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39652
+    source_parent: ko-nikl-39652
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Short trousers that end at the knee or above.
+    source_korean: 길이가 무릎 위나 무릎 정도까지 내려오는 짧은 바지.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57585'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57585
+      pronunciations:
+      - 반ː바지
+    lexical_identity: ko-lex-39652
+    lexical_category: free-lemma
+  ko-nikl-44827-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44827
+    source_parent: ko-nikl-44827
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A pair of blue pants made of strong cotton.
+    source_korean: 질긴 무명으로 만든 푸른색 바지.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '30117'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30117
+      pronunciations:
+      - 청바지
+    lexical_identity: ko-lex-44827
+    lexical_category: free-lemma
+  ko-nikl-02486-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2486
+    source_parent: ko-nikl-02486
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Thin, stretchy, long leggings for females.
+    source_korean: 얇고 잘 늘어나는, 목이 긴 여성용 양말.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 스타킹
+      method: authored-broad-hangul
+      reason: Individually authored for thin, stretchy, long women's hosiery, whose complete definition
+        exactly matches official 65069. Retain open 스-타 before 킹, aspirated ㅌ and ㅋ, and citation-final
+        velar nasal ㅇ. There is no internal coda to trigger an added tense consonant, and no final English
+        consonant beyond that nasal is introduced. Official pronunciation text is absent.
+      review_status: unreviewed
+    source_correction:
+      source_korean: 얇고 잘 늘어나는, 목이 긴 여성용 양말.
+      source_english: Thin, stretchy, long leggings for females.
+      authored_interpretation: thin, stretchy long stockings
+      rationale: 'The Korean explicitly identifies long, thin, stretchy hosiery as 양말, not the trouser-like
+        garment normally called leggings in English. Preserve the source''s wearer convention in evidence
+        without turning that convention into a restriction on who can wear the item.
+
+        '
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-02486
+    lexical_category: free-lemma
+  ko-nikl-34942-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34942
+    source_parent: ko-nikl-34942
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'Long underwear worn under clothes to keep out the cold in winter. '
+    source_korean: 겨울철에 추위를 막기 위해 겉옷 속에 입는 옷.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19532'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19532
+      pronunciations:
+      - 내ː복
+    lexical_identity: ko-lex-34942
+    lexical_category: free-lemma
+  ko-nikl-20766-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20766
+    source_parent: ko-nikl-20766
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'An outer garment that one wears over other clothes to protect oneself from the cold. '
+    source_korean: 추위를 막기 위해 겉에 입는 옷.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 코트
+      method: authored-broad-hangul
+      reason: Individually authored for the outer garment worn against cold, whose complete definition
+        exactly identifies official 81219, not the tennis/basketball/volleyball venue homograph 28163.
+        Retain open 코-트 with aspirated ㅋ and ㅌ; there is no coda to neutralize and no English final consonant
+        or court r is restored. Both official candidates lack pronunciation text.
+      review_status: unreviewed
+    lexical_identity: ko-lex-20766
+    lexical_category: free-lemma
+  ko-nikl-13228-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13228
+    source_parent: ko-nikl-13228
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A short upper garment with a parted front and sleeves.
+    source_korean: 앞이 갈라져 있고 소매가 달린 짧은 윗옷.
+    reading:
+      source_id: original-ko
+      pronunciations: &id689
+      - 재킫
+      method: authored-broad-hangul
+      reason: Individually authored after both ordered short outer-garment and record-cover definitions
+        exactly match official 74375. At citation end, neutralize the written ㅅ coda in 킷 to unreleased
+        ㄷ, yielding 재킫, while retaining aspirated onset ㅋ. This is the final-consonant environment of
+        Standard Pronunciation Rule 9; it does not prescribe vowel-following inflected forms. Official
+        pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-13228
+    lexical_category: free-lemma
+  ko-nikl-13228-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13228
+    source_parent: ko-nikl-13228
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: An item that covers the surface of a record.
+    source_korean: 음반의 겉을 싸고 있는 물건.
+    reading:
+      source_id: original-ko
+      pronunciations: *id689
+      method: authored-broad-hangul
+      reason: Individually authored after both ordered short outer-garment and record-cover definitions
+        exactly match official 74375. At citation end, neutralize the written ㅅ coda in 킷 to unreleased
+        ㄷ, yielding 재킫, while retaining aspirated onset ㅋ. This is the final-consonant environment of
+        Standard Pronunciation Rule 9; it does not prescribe vowel-following inflected forms. Official
+        pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-13228
+    lexical_category: free-lemma
+  ko-nikl-14284-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14284
+    source_parent: ko-nikl-14284
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A comfortable upper garment that is appropriate for leisure or sporting activities.
+    source_korean: 놀이나 운동하기에 적당한 활동적인 웃옷.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 점퍼
+      method: authored-broad-hangul
+      reason: Individually authored for an active outer garment suitable for recreation or exercise, whose
+        complete definition exactly matches official 91572. Preserve bilabial nasal ㅁ before already aspirated
+        ㅍ across 점-퍼 and retain the open final syllable. No further place assimilation, tensing, or English
+        final r is supplied. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-14284
+    lexical_category: free-lemma
+  ko-nikl-15101-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15101
+    source_parent: ko-nikl-15101
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A sleeveless garment worn over an upper garment.
+    source_korean: 윗옷에 덧입는, 소매가 없는 옷.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 조끼
+      method: authored-broad-hangul
+      reason: Individually authored for the sleeveless garment worn over an upper garment, whose complete
+        definition exactly matches official 75590. Retain open 조-끼 with the explicitly tense ㄲ already
+        present in the lexical form; do not reduce it to plain ㄱ or describe it as newly triggered by
+        a coda. Neither syllable has a final consonant to neutralize. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-15101
+    lexical_category: free-lemma
+  ko-nikl-14644-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14644
+    source_parent: ko-nikl-14644
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Formal clothes worn primarily on official occasions.
+    source_korean: 공식적인 자리에서 주로 입는 격식을 차린 옷.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '31763'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=31763
+      pronunciations:
+      - 정ː장
+    lexical_identity: ko-lex-14644
+    lexical_category: free-lemma
+  ko-nikl-30648-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30648
+    source_parent: ko-nikl-30648
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Clothing specially chosen for students to wear at school.
+    source_korean: 각 학교에서 학생들이 입도록 특별히 정한 옷.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24034'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24034
+      pronunciations:
+      - 교ː복
+    lexical_identity: ko-lex-30648
+    lexical_category: free-lemma
+  ko-nikl-49465-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49465
+    source_parent: ko-nikl-49465
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'The clothes worn when doing an exercise. '
+    source_korean: 운동할 때 입는 옷.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26683'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26683
+      pronunciations:
+      - 운ː동복
+    lexical_identity: ko-lex-49465
+    lexical_category: free-lemma
+  ko-nikl-01858-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1858
+    source_parent: ko-nikl-01858
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Clothes worn when swimming.
+    source_korean: 수영할 때 입는 옷.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64612'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64612
+      pronunciations:
+      - 수영복
+    lexical_identity: ko-lex-01858
+    lexical_category: free-lemma
+  ko-nikl-12670-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12670
+    source_parent: ko-nikl-12670
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'Comfortable garments that one wears in bed. '
+    source_korean: 잠잘 때 입고 자는 편안한 옷.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24852'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24852
+      pronunciations:
+      - 자몯
+    lexical_identity: ko-lex-12670
+    lexical_category: free-lemma
+  ko-nikl-02548-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2548
+    source_parent: ko-nikl-02548
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A shoe made without the part that touches the heel, so that it covers only the front
+      part of the foot.
+    source_korean: 발의 뒤꿈치에 닿는 부분이 없이 발끝만 꿰게 되어 있는 신발.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 슬리퍼
+      method: authored-broad-hangul
+      reason: Individually authored for the heel-open shoe into which the toes slip, whose complete definition
+        exactly matches official 65251. Keep the already lateral ㄹ-ㄹ sequence across 슬-리 and aspirated
+        ㅍ in open 퍼. Do not turn this lateral boundary into a nasal sequence or reconstruct an English
+        initial sl cluster. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-02548
+    lexical_category: free-lemma
+  ko-nikl-09450-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9450
+    source_parent: ko-nikl-09450
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Shoes with a sole made of wood, leather, plastic, etc., which is held to one's feet
+      by straps passing over the instep or around the ankle.
+    source_korean: 나무, 가죽, 비닐 등으로 바닥을 만들고 거기에 가느다란 끈을 연결하여 발등과 발목에 매어 신게 만든 신발.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 샌들
+      method: authored-broad-hangul
+      reason: Individually authored for footwear fastened by thin straps over the foot and ankle, whose
+        complete definition exactly matches official 62927. Keep 샌-들 with nasal ㄴ before plain ㄷ and final
+        lateral ㄹ. The ㄴ and ㄹ are not adjacent across the syllable boundary, so no nasal-liquid assimilation
+        is imposed; no English final cluster is reconstructed. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-09450
+    lexical_category: free-lemma
+  ko-nikl-02457-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2457
+    source_parent: ko-nikl-02457
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A long, thin piece of fabric put on the head or wrapped around the neck for warmth
+      or fashion.
+    source_korean: 추위를 막거나 장식을 하기 위해 머리에 쓰거나 목에 감는 얇고 긴 천.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 스카프
+      method: authored-broad-hangul
+      reason: Individually authored for the long, thin head/neck cloth used for warmth or decoration,
+        whose complete definition exactly matches official 65057. Retain open 스-카-프 with aspirated ㅋ and
+        ㅍ; do not restore an English initial sk cluster, final f, or an r. No syllable has a coda requiring
+        neutralization or assimilation. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-02457
+    lexical_category: free-lemma
+  ko-nikl-35370-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35370
+    source_parent: ko-nikl-35370
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A long, narrow cloth tied around the collar of a dress shirt, when a man puts on a
+      suit.
+    source_korean: 남자가 양복을 입을 때 와이셔츠 목둘레에 매는 가늘고 긴 천.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 넥타이
+      method: authored-broad-hangul
+      reason: Individually authored for the long cloth tied around a dress-shirt collar, crosswalked to
+        official 17258 after full definition comparison. Retain unreleased coda ㄱ in 넥 before already
+        aspirated ㅌ, followed by separate open 타-이. Do not replace ㅌ with a tense ㄸ or invent liaison
+        across the consonant boundary. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-35370
+    lexical_category: free-lemma
+  ko-nikl-24955-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24955
+    source_parent: ko-nikl-24955
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A strap worn around the waist to prevent the pants, etc., from falling down.
+    source_korean: 바지 등이 흘러내리지 않도록 옷의 허리 부분에 둘러매는 띠.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87687'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87687
+      pronunciations:
+      - 허리띠
+    lexical_identity: ko-lex-24955
+    lexical_category: free-lemma
+  ko-nikl-05331-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5331
+    source_parent: ko-nikl-05331
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A strip worn around the waist of a garment. '
+    source_korean: 옷의 허리 부분에 둘러매는 띠.
+    reading:
+      source_id: original-ko
+      pronunciations: &id690
+      - 벨트
+      method: authored-broad-hangul
+      reason: Individually authored after both ordered waist-belt and mechanical power-transmission belt
+        definitions exactly match official 58792. Retain lateral coda ㄹ in 벨 before already aspirated
+        ㅌ, with open final 트; neither nasal assimilation nor an additional aspiration step is needed.
+        The Korean final vowel is retained rather than replacing it with an English lt cluster. Official
+        pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-05331
+    lexical_category: free-lemma
+  ko-nikl-05331-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5331
+    source_parent: ko-nikl-05331
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'A strip-shaped device hung on two wheels to deliver power. '
+    source_korean: 두 개의 바퀴에 걸어 동력을 전달하는 띠 모양의 장치.
+    reading:
+      source_id: original-ko
+      pronunciations: *id690
+      method: authored-broad-hangul
+      reason: Individually authored after both ordered waist-belt and mechanical power-transmission belt
+        definitions exactly match official 58792. Retain lateral coda ㄹ in 벨 before already aspirated
+        ㅌ, with open final 트; neither nasal assimilation nor an additional aspiration step is needed.
+        The Korean final vowel is retained rather than replacing it with an English lt cluster. Official
+        pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-05331
+    lexical_category: free-lemma
+  ko-nikl-41685-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41685
+    source_parent: ko-nikl-41685
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-2
+    source_english: An item, usually made of fabric or leather, for keeping money and small things that
+      one can carry around.
+    source_korean: 돈이나 물건 등을 넣어 가지고 다닐 수 있도록 천이나 가죽 등으로 만든 물건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75803'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75803
+      pronunciations: *id691
+    lexical_identity: ko-lex-41685
+    lexical_category: free-lemma
+  ko-nikl-41685-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41685
+    source_parent: ko-nikl-41685
+    source_position: 4
+    source_band: beginner
+    reference_level: topik-2
+    source_english: (figurative) A place where one stashed his/her belongings.
+    source_korean: (비유적으로) 이익을 차려 넣어 두는 곳.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75803'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75803
+      pronunciations: *id691
+    source_correction:
+      source_korean: (비유적으로) 이익을 차려 넣어 두는 곳.
+      source_english: (figurative) A place where one stashed his/her belongings.
+      authored_interpretation: a pocket for one's gains or profit (figurative)
+      rationale: 'The Korean identifies a figurative receptacle for secured gains or profit, not simply
+        a physical place to stash belongings. Keep this meaning distinct from the portable pouch and clothing-pocket
+        positions.
+
+        '
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-41685
+    lexical_category: free-lemma
+  ko-nikl-16501-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16501
+    source_parent: ko-nikl-16501
+    source_position: 2
+    source_band: beginner
+    reference_level: topik-2
+    source_english: An object on a machine that is pressed in order to operate or control it.
+    source_korean: 기계를 움직이거나 조절하기 위해 누르는 장치.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28375'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28375
+      pronunciations: *id692
+    lexical_identity: ko-lex-16501
+    lexical_category: free-lemma
+  ko-nikl-48506-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48506
+    source_parent: ko-nikl-48506
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'collar: The loop-shaped part of a jeogori, a Korean upper garment, or a durumagi,
+      a Korean outer garment, that encircles the neck and is closed at the front.'
+    source_korean: 저고리나 두루마기의 목에 둘러대어 앞에서 여미도록 된 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68487
+      pronunciations: &id693
+      - 옫낃
+    lexical_identity: ko-lex-48506
+    lexical_category: free-lemma
+  ko-nikl-48506-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48506
+    source_parent: ko-nikl-48506
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The long, attached part of an upper garment that encircles the neck.
+    source_korean: 윗옷에서 목둘레에 길게 덧붙여 있는 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68487
+      pronunciations: *id693
+    lexical_identity: ko-lex-48506
+    lexical_category: free-lemma
+  ko-nikl-00709-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=709
+    source_parent: ko-nikl-00709
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: A part of the upper garment that covers the two arms.
+    source_korean: 윗옷의 양 팔을 덮는 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49236'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49236
+      pronunciations:
+      - 소매
+    lexical_identity: ko-lex-00709
+    lexical_category: free-lemma
+  ko-nikl-48504-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48504
+    source_parent: ko-nikl-48504
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: 'An object on which clothes can be hung. '
+    source_korean: 옷을 걸어 둘 수 있게 만든 물건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68485'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68485
+      pronunciations:
+      - 옫꺼리
+    lexical_identity: ko-lex-48504
+    lexical_category: free-lemma
+  ko-nikl-37586-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37586
+    source_parent: ko-nikl-37586
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A piece of jewelry with a string of jewels, etc., worn around the neck.
+    source_korean: 보석 등을 줄에 꿰어서 목에 거는 장식품.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '16150'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16150
+      pronunciations:
+      - 목꺼리
+    lexical_identity: ko-lex-37586
+    lexical_category: free-lemma
+  ko-nikl-31730-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31730
+    source_parent: ko-nikl-31730
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: Accessories for the ears.
+    source_korean: 귀에 다는 장식품.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38146'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38146
+      pronunciations:
+      - 귀거리
+    lexical_identity: ko-lex-31730
+    lexical_category: free-lemma
+  ko-nikl-39754-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39754
+    source_parent: ko-nikl-39754
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A round accessory for wearing on one's finger.
+    source_korean: 손가락에 끼는 동그란 장신구.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57661'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57661
+      pronunciations:
+      - 반지
+    lexical_identity: ko-lex-39754
+    lexical_category: free-lemma
+  ko-nikl-01240-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1240
+    source_parent: ko-nikl-01240
+    source_position: 1
+    source_band: beginner
+    reference_level: topik-1
+    source_english: A small, thin towel that one carries to use.
+    source_korean: 평소에 가지고 다니며 쓰는 작고 얇은 수건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65102'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65102
+      pronunciations:
+      - 손쑤건
+    lexical_identity: ko-lex-01240
+    lexical_category: free-lemma
+  ko-nikl-09969-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9969
+    source_parent: ko-nikl-09969
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Colored glasses worn to protect one's eyes from strong sunlight or dress oneself up.
+    source_korean: 강렬한 햇빛으로부터 눈을 보호하거나 멋을 부리기 위해 쓰는, 색깔이 있는 안경.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 선글라스
+      method: authored-broad-hangul
+      reason: Individually authored for tinted eyewear used against strong sunlight or for appearance,
+        whose complete definition exactly matches official 63421. Retain nasal ㄴ before plain ㄱ across
+        선-글, the already lateral ㄹ-ㄹ boundary across 글-라, and open final 스. A nasal coda does not supply
+        automatic stop-triggered tensification; no colloquial tense variant is inferred. Official pronunciation
+        text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-09969
+    lexical_category: free-lemma
+  ko-nikl-20160-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20160
+    source_parent: ko-nikl-20160
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: A product designed to make an object look larger or smaller by cutting a glass or
+      crystal concave or convex.
+    source_korean: 유리나 수정을 볼록하거나 오목하게 깎아서 물체가 크거나 작게 보이도록 만든 물건.
+    reading:
+      source_id: original-ko
+      pronunciations: &id694
+      - 렌즈
+      method: authored-broad-hangul
+      reason: Individually authored after both ordered shaped optical lens and thin corneal contact-lens
+        definitions exactly match official 52537. Retain initial ㄹ, nasal ㄴ before plain ㅈ across 렌-즈,
+        and vowel-bearing final 즈. There is no nasal-liquid boundary or stop coda requiring assimilation
+        or tensification, and no English final z is substituted. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-20160
+    lexical_category: free-lemma
+  ko-nikl-20160-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20160
+    source_parent: ko-nikl-20160
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A thinly layered product directly attached to the cornea of eyes instead of glasses. '
+    source_korean: 안경 대신에 눈의 각막에 직접 붙이는 얇은 물건.
+    reading:
+      source_id: original-ko
+      pronunciations: *id694
+      method: authored-broad-hangul
+      reason: Individually authored after both ordered shaped optical lens and thin corneal contact-lens
+        definitions exactly match official 52537. Retain initial ㄹ, nasal ㄴ before plain ㅈ across 렌-즈,
+        and vowel-bearing final 즈. There is no nasal-liquid boundary or stop coda requiring assimilation
+        or tensification, and no English final z is substituted. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-20160
+    lexical_category: free-lemma
+  ko-nikl-24885-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24885
+    source_parent: ko-nikl-24885
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: 'Scented liquid that one applies over the body or clothing, etc. '
+    source_korean: 몸이나 옷 등에 뿌리는, 향기가 나는 액체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73067'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73067
+      pronunciations:
+      - 향수
+    lexical_identity: ko-lex-24885
+    lexical_category: free-lemma
+  ko-nikl-07405-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7405
+    source_parent: ko-nikl-07405
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: 'A sterilized cloth used to cover the wound. '
+    source_korean: 다친 데를 감는 소독한 헝겊.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '61046'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61046
+      pronunciations:
+      - 붕대
+      match_reason: Compared the single bandage definition. The source's 다친 데 becomes 몸의 다친 자리; disinfected
+        cloth wrapped around an injured area is unchanged. The added body reference makes the original
+        referent explicit.
+    lexical_identity: ko-lex-07405
+    lexical_category: free-lemma
+  ko-nikl-39776-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39776
+    source_parent: ko-nikl-39776
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-3
+    source_english: Cloth or tape lined on one side with an adhesive substance, to attach ointment, bandage,
+      etc., to the skin.
+    source_korean: 연고, 붕대 등을 피부에 붙이기 위해 한쪽 면에 끈끈한 물질을 발라 만든 헝겊이나 테이프.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57639'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57639
+      pronunciations:
+      - 반창고
+    lexical_identity: ko-lex-39776
+    lexical_category: free-lemma
+  ko-nikl-33054-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33054
+    source_parent: ko-nikl-33054
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The soft cloth or paper that is put between legs to hold the excrement and urine of
+      a baby, elderly person, patient, etc., who cannot control their bowels.
+    source_korean: 대소변을 조절하지 못하는 어린아이나 노인, 환자 등의 똥과 오줌을 받아 내기 위하여 다리 사이에 채우는 부드러운 천이나 종이.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '38057'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=38057
+      pronunciations:
+      - 기저귀
+    lexical_identity: ko-lex-33054
+    lexical_category: free-lemma
+  ko-nikl-04814-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4814
+    source_parent: ko-nikl-04814
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A garment covering the front of the body, usually worn in the kitchen to protect
+      clothes from being dirty. '
+    source_korean: 주로 부엌일을 할 때 옷이 더러워지지 않도록 몸 앞에 두르는 치마.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '66350'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66350
+      pronunciations:
+      - 압치마
+    lexical_identity: ko-lex-04814
+    lexical_category: free-lemma
+  ko-nikl-09530-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9530
+    source_parent: ko-nikl-09530
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An object to attach to one's underwear so that menstruation blood will be absorbed
+      and not leak.
+    source_korean: 생리할 때 나오는 피를 흡수하여 밖으로 새지 않도록 속옷 안에 덧대는 물건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63073'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63073
+      pronunciations:
+      - 생니대
+    lexical_identity: ko-lex-09530
+    lexical_category: free-lemma
+  ko-nikl-20233-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20233
+    source_parent: ko-nikl-20233
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A thick liquid cosmetic which is applied to make the skin soft and moist.
+    source_korean: 피부를 부드럽고 촉촉하게 하기 위해 바르는, 걸쭉한 액체 상태의 화장품.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 로션
+      method: authored-broad-hangul
+      reason: Individually authored for the thick moisturizing cosmetic crosswalked to official 52519
+        after full definition comparison. Retain initial ㄹ, open 로, the 션 syllable with ㅕ after ㅅ, and
+        final nasal ㄴ. There is no internal coda boundary to assimilate, and no Sino-Korean initial-sound
+        replacement is applied to the loanword. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-20233
+    lexical_category: free-lemma
+  ko-nikl-22542-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22542
+    source_parent: ko-nikl-22542
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A decoration item made of gold, silver, leather, etc., which is worn around one's
+      wrist.
+    source_korean: 팔목에 끼는, 금, 은, 가죽 등으로 만든 장식품.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '82830'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82830
+      pronunciations:
+      - 팔찌
+    lexical_identity: ko-lex-22542
+    lexical_category: free-lemma
+  ko-nikl-35854-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35854
+    source_parent: ko-nikl-35854
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A thing that one wears over one's face, made with paper, wood, clay, etc., to conceal
+      or adorn oneself.
+    source_korean: 얼굴을 감추거나 다르게 꾸미기 위하여 종이, 나무, 흙 등으로 만들어 얼굴에 쓰는 물건.
+    reading:
+      source_id: original-ko
+      pronunciations: &id695
+      - 마스크
+      method: authored-broad-hangul
+      reason: 'Individually authored after comparing all six ordered source definitions with official
+        54330: disguise, mouth/nose covering, facial appearance, welding protection, gas protection, and
+        sports protection. Retain open 마-스-크 with plain ㅅ and aspirated ㅋ; the Korean adaptation separates
+        these consonants with vowels rather than an English sk cluster. No coda sound change or efficacy
+        claim is inferred. Official pronunciation text is absent.'
+      review_status: unreviewed
+    lexical_identity: ko-lex-35854
+    lexical_category: free-lemma
+  ko-nikl-35854-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35854
+    source_parent: ko-nikl-35854
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A thing that covers one's nose and mouth to keep off germs, dust, cold air, etc.
+    source_korean: 병균이나 먼지, 찬 공기 등을 막기 위하여 입과 코를 가리는 물건.
+    reading:
+      source_id: original-ko
+      pronunciations: *id695
+      method: authored-broad-hangul
+      reason: 'Individually authored after comparing all six ordered source definitions with official
+        54330: disguise, mouth/nose covering, facial appearance, welding protection, gas protection, and
+        sports protection. Retain open 마-스-크 with plain ㅅ and aspirated ㅋ; the Korean adaptation separates
+        these consonants with vowels rather than an English sk cluster. No coda sound change or efficacy
+        claim is inferred. Official pronunciation text is absent.'
+      review_status: unreviewed
+    lexical_identity: ko-lex-35854
+    lexical_category: free-lemma
+  ko-nikl-35854-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35854
+    source_parent: ko-nikl-35854
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: Appearance or facial features.
+    source_korean: 얼굴 생김새.
+    reading:
+      source_id: original-ko
+      pronunciations: *id695
+      method: authored-broad-hangul
+      reason: 'Individually authored after comparing all six ordered source definitions with official
+        54330: disguise, mouth/nose covering, facial appearance, welding protection, gas protection, and
+        sports protection. Retain open 마-스-크 with plain ㅅ and aspirated ㅋ; the Korean adaptation separates
+        these consonants with vowels rather than an English sk cluster. No coda sound change or efficacy
+        claim is inferred. Official pronunciation text is absent.'
+      review_status: unreviewed
+    lexical_identity: ko-lex-35854
+    lexical_category: free-lemma
+  ko-nikl-35854-s004:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35854
+    source_parent: ko-nikl-35854
+    source_position: 4
+    source_band: unbanded
+    reference_level: null
+    source_english: A protective covering worn over the face to shield it from sparks in welding.
+    source_korean: 용접을 할 때 불꽃이 얼굴에 튀는 것을 막기 위해 쓰는 물건.
+    reading:
+      source_id: original-ko
+      pronunciations: *id695
+      method: authored-broad-hangul
+      reason: 'Individually authored after comparing all six ordered source definitions with official
+        54330: disguise, mouth/nose covering, facial appearance, welding protection, gas protection, and
+        sports protection. Retain open 마-스-크 with plain ㅅ and aspirated ㅋ; the Korean adaptation separates
+        these consonants with vowels rather than an English sk cluster. No coda sound change or efficacy
+        claim is inferred. Official pronunciation text is absent.'
+      review_status: unreviewed
+    lexical_identity: ko-lex-35854
+    lexical_category: free-lemma
+  ko-nikl-35854-s006:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35854
+    source_parent: ko-nikl-35854
+    source_position: 6
+    source_band: unbanded
+    reference_level: null
+    source_english: Protective covering worn over the face when playing a sport such as baseball, fencing,
+      boxing, etc.
+    source_korean: 야구나 펜싱, 권투 등과 같은 운동을 할 때 얼굴을 보호하기 위해 쓰는 물건.
+    reading:
+      source_id: original-ko
+      pronunciations: *id695
+      method: authored-broad-hangul
+      reason: 'Individually authored after comparing all six ordered source definitions with official
+        54330: disguise, mouth/nose covering, facial appearance, welding protection, gas protection, and
+        sports protection. Retain open 마-스-크 with plain ㅅ and aspirated ㅋ; the Korean adaptation separates
+        these consonants with vowels rather than an English sk cluster. No coda sound change or efficacy
+        claim is inferred. Official pronunciation text is absent.'
+      review_status: unreviewed
+    lexical_identity: ko-lex-35854
+    lexical_category: free-lemma
+  ko-nikl-36915-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36915
+    source_parent: ko-nikl-36915
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A pin that fixes hair.
+    source_korean: 머리카락을 고정시키는 핀.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 머리핀
+      method: authored-broad-hangul
+      reason: Individually authored for the pin holding hair in place, whose complete definition exactly
+        matches official 55378. Retain open 머-리 before aspirated ㅍ in 핀 and keep citation-final nasal
+        ㄴ. The vowel-ending 머리 supplies no coda to trigger assimilation or additional aspiration at the
+        compound boundary. Official pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-36915
+    lexical_category: free-lemma
+  ko-nikl-37141-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37141
+    source_parent: ko-nikl-37141
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A narrow stick, to whose end cotton is attached.
+    source_korean: 끝에 솜을 말아 붙인 가느다란 막대.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '54832'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=54832
+      pronunciations:
+      - 면봉
+    lexical_identity: ko-lex-37141
+    lexical_category: free-lemma
+  ko-nikl-44954-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44954
+    source_parent: ko-nikl-44954
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An instrument used to measure the temperature of one''s body. '
+    source_korean: 몸의 온도를 재는 데 쓰는 온도계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '79149'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=79149
+      pronunciations:
+      - 체온계
+    lexical_identity: ko-lex-44954
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

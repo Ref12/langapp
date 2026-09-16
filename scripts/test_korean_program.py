@@ -752,7 +752,10 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(len(actual), 1)
 
     def test_expansion_corrections_are_explicit_unreviewed_overrides_not_source_replacements(self):
-        for filename in ("expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml", "kitchen-notes.yaml"):
+        for filename in (
+            "expansion-notes.yaml", "breadth-notes.yaml", "community-notes.yaml",
+            "kitchen-notes.yaml", "personal-notes.yaml",
+        ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
                 with self.subTest(sense=identifier):
@@ -868,6 +871,42 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("starch powder", words["ko-nikl-35581-s001"]["ds"])
         self.assertIn("Flour", evidence["ko-nikl-35581-s001"]["source_english"])
         self.assertIn("photosynthesis", words["ko-nikl-35581-s002"]["ds"])
+
+    def test_personal_items_preserve_source_roles_and_mask_sense_identity(self):
+        words, evidence, identities = (
+            self.references.vocabulary, self.references.provenance, self.references.lexical_identity,
+        )
+        for parent, spelling in (
+            ("04814", "앞치마"), ("09530", "생리대"), ("20233", "로션"),
+            ("22542", "팔찌"), ("35854", "마스크"), ("36915", "머리핀"),
+            ("37141", "면봉"), ("44954", "체온계"),
+        ):
+            identifier = f"ko-nikl-{parent}-s001"
+            with self.subTest(sense=identifier):
+                self.assertEqual(words[identifier]["ch"], spelling)
+                self.assertEqual(evidence[identifier]["source_band"], "unbanded")
+                self.assertIsNone(evidence[identifier]["reference_level"])
+        for parent in ("13228", "05331", "16501", "48506", "20160"):
+            self.assertEqual(identities[f"ko-nikl-{parent}-s001"],
+                             identities[f"ko-nikl-{parent}-s002"])
+        mask_ids = [f"ko-nikl-35854-s{position:03d}" for position in (1, 2, 3, 4, 6)]
+        self.assertEqual(len({identities[identifier] for identifier in mask_ids}), 1)
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual([row["source_position"] for row in parents["ko-nikl-35854"]["senses"]],
+                         list(range(1, 7)))
+        rows = load_yaml(self.root / "authoring" / "teaching" / "personal-vocabulary.yaml")
+        self.assertEqual([row["level"] for row in rows if row["id"] == mask_ids[3]], ["technical"])
+        self.assertIn("stockings", words["ko-nikl-02486-s001"]["ds"])
+        self.assertIn("leggings", evidence["ko-nikl-02486-s001"]["source_english"])
+        self.assertIn("profit", words["ko-nikl-41685-s004"]["ds"])
+        self.assertIn("belongings", evidence["ko-nikl-41685-s004"]["source_english"])
+        self.assertEqual(identities["ko-nikl-41685-s004"], identities["ko-nikl-41685-s002"])
+        self.assertIn("sleeve", words["ko-nikl-00709-s001"]["ds"])
+        self.assertIn("coat", words["ko-nikl-20766-s001"]["ds"])
+        self.assertIn("perfume", words["ko-nikl-24885-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-13228-s001"]["pr"], "재킫")
+        self.assertEqual(evidence["ko-nikl-13228-s001"]["reading"]["method"], "authored-broad-hangul")
+        self.assertEqual(evidence["ko-nikl-13228-s001"]["reading"]["review_status"], "unreviewed")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

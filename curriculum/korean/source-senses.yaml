@@ -9,7 +9,7 @@ band_counts:
   advanced: 5105
   beginner: 1942
   intermediate: 3981
-  unbanded-support: 36
+  unbanded-support: 44
 entries:
 - id: ko-nikl-00001
   target: 설
@@ -16759,6 +16759,19 @@ entries:
     source_position: 1
     english: 'A direction toward the front. '
     korean: 앞을 향한 방향.
+- id: ko-nikl-04814
+  target: 앞치마
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4814
+  senses:
+  - id: ko-nikl-04814-s001
+    source_position: 1
+    english: 'A garment covering the front of the body, usually worn in the kitchen to protect clothes
+      from being dirty. '
+    korean: 주로 부엌일을 할 때 옷이 더러워지지 않도록 몸 앞에 두르는 치마.
 - id: ko-nikl-04817
   target: 애
   part_of_speech: noun
@@ -32543,6 +32556,19 @@ entries:
     source_position: 1
     english: The act of reducing or removing a part of a whole to make it short or simple.
     korean: 전체에서 일부분을 줄이거나 빼어 짧게 또는 간단하게 만듦.
+- id: ko-nikl-09530
+  target: 생리대
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9530
+  senses:
+  - id: ko-nikl-09530-s001
+    source_position: 1
+    english: An object to attach to one's underwear so that menstruation blood will be absorbed and not
+      leak.
+    korean: 생리할 때 나오는 피를 흡수하여 밖으로 새지 않도록 속옷 안에 덧대는 물건.
 - id: ko-nikl-09537
   target: 생머리
   part_of_speech: noun
@@ -68994,6 +69020,18 @@ entries:
     source_position: 2
     english: (figurative) A person who acts only as told to by others instead of acting on his own will.
     korean: (비유적으로) 줏대 없이 남이 시키는 대로 움직이는 사람.
+- id: ko-nikl-20233
+  target: 로션
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20233
+  senses:
+  - id: ko-nikl-20233-s001
+    source_position: 1
+    english: A thick liquid cosmetic which is applied to make the skin soft and moist.
+    korean: 피부를 부드럽고 촉촉하게 하기 위해 바르는, 걸쭉한 액체 상태의 화장품.
 - id: ko-nikl-20240
   target: -론
   part_of_speech: affix
@@ -75728,6 +75766,18 @@ entries:
     english: Of two persons being side by side, the act of one person interwining his/her arm with the
       other person's arm.
     korean: 나란히 있는 두 사람 중 한 사람이 다른 사람의 팔에 자신의 팔을 끼는 일.
+- id: ko-nikl-22542
+  target: 팔찌
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22542
+  senses:
+  - id: ko-nikl-22542-s001
+    source_position: 1
+    english: A decoration item made of gold, silver, leather, etc., which is worn around one's wrist.
+    korean: 팔목에 끼는, 금, 은, 가죽 등으로 만든 장식품.
 - id: ko-nikl-22554
   target: 팥
   part_of_speech: noun
@@ -118515,6 +118565,41 @@ entries:
     english: 'The act of rubbing a cream or oil, etc., over the skin in order to make it beautiful and
       healthy. '
     korean: 크림이나 오일 등을 발라 가볍게 문질러서 피부를 예쁘고 건강하게 하는 일.
+- id: ko-nikl-35854
+  target: 마스크
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35854
+  senses:
+  - id: ko-nikl-35854-s001
+    source_position: 1
+    english: A thing that one wears over one's face, made with paper, wood, clay, etc., to conceal or
+      adorn oneself.
+    korean: 얼굴을 감추거나 다르게 꾸미기 위하여 종이, 나무, 흙 등으로 만들어 얼굴에 쓰는 물건.
+  - id: ko-nikl-35854-s002
+    source_position: 2
+    english: A thing that covers one's nose and mouth to keep off germs, dust, cold air, etc.
+    korean: 병균이나 먼지, 찬 공기 등을 막기 위하여 입과 코를 가리는 물건.
+  - id: ko-nikl-35854-s003
+    source_position: 3
+    english: Appearance or facial features.
+    korean: 얼굴 생김새.
+  - id: ko-nikl-35854-s004
+    source_position: 4
+    english: A protective covering worn over the face to shield it from sparks in welding.
+    korean: 용접을 할 때 불꽃이 얼굴에 튀는 것을 막기 위해 쓰는 물건.
+  - id: ko-nikl-35854-s005
+    source_position: 5
+    english: A protective covering worn over the face to protect eyes, nose, or respiratory organs from
+      poisonous gas or germs, etc.
+    korean: 독가스나 세균 등으로부터 눈이나 코, 호흡 기관을 보호하기 위해 얼굴에 쓰는 물건.
+  - id: ko-nikl-35854-s006
+    source_position: 6
+    english: Protective covering worn over the face when playing a sport such as baseball, fencing, boxing,
+      etc.
+    korean: 야구나 펜싱, 권투 등과 같은 운동을 할 때 얼굴을 보호하기 위해 쓰는 물건.
 - id: ko-nikl-35856
   target: 마시다
   part_of_speech: verb
@@ -121824,6 +121909,18 @@ entries:
     source_position: 1
     english: Each strand of hair.
     korean: 머리털 하나하나.
+- id: ko-nikl-36915
+  target: 머리핀
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=36915
+  senses:
+  - id: ko-nikl-36915-s001
+    source_position: 1
+    english: A pin that fixes hair.
+    korean: 머리카락을 고정시키는 핀.
 - id: ko-nikl-36920
   target: 머릿속
   part_of_speech: noun
@@ -122790,6 +122887,18 @@ entries:
     source_position: 2
     english: 'A person or thing''s state, or character or nature. '
     korean: 사람이나 사물의 상태나 됨됨이.
+- id: ko-nikl-37141
+  target: 면봉
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37141
+  senses:
+  - id: ko-nikl-37141-s001
+    source_position: 1
+    english: A narrow stick, to whose end cotton is attached.
+    korean: 끝에 솜을 말아 붙인 가느다란 막대.
 - id: ko-nikl-37148
   target: 면세점
   part_of_speech: noun
@@ -145743,6 +145852,18 @@ entries:
     source_position: 1
     english: 'The temperature of one''s body. '
     korean: 몸의 온도.
+- id: ko-nikl-44954
+  target: 체온계
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=44954
+  senses:
+  - id: ko-nikl-44954-s001
+    source_position: 1
+    english: 'An instrument used to measure the temperature of one''s body. '
+    korean: 몸의 온도를 재는 데 쓰는 온도계.
 - id: ko-nikl-44958
   target: 체육
   part_of_speech: noun

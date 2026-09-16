@@ -1,0 +1,153 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: bounded wardrobe and personal-care selection; not complete-scale coverage
+scope:
+  - Inspect named garments, accessories, toiletries, and care items against exact retained source positions.
+  - Retain eight specifically inspected unbanded parents for ordinary personal needs, not an exhaustive source sweep.
+  - Preserve every earlier active selection and the explicit pending greenhouse-gas exclusion.
+  - Add real related source meanings where useful; do not derive dictionary entries from garment combinations.
+  - Source bands and numeric planning targets never schedule these selections.
+
+curation_rationales:
+  household_and_service_needs: >
+    Sleepwear, warm underlayers, slippers, hangers, handkerchiefs, and aprons
+    support household routines. Clothing styles, fastenings, jewelry, and
+    personal-care supplies support concrete shopping or care requests at
+    level six rather than being delayed merely because some names are loans.
+  travel_and_relationships: >
+    Sandals, sunglasses, and swimwear support travel choices. Formal clothes,
+    neckties, school uniforms, exercise clothes, and sports face coverings
+    accompany work/study routines, activities, and situated dress expectations.
+    No school or workplace convention is presented as universal.
+  common_polysemy: >
+    Clothing and record jackets, clothing and drive belts, optical and contact
+    lenses, and clothing and machine-control buttons have separate source
+    senses but shared identities. Pouch and figurative profit-pocket deepen
+    the already selected clothing-pocket sense.
+  culture_and_register: >
+    General and traditional front-closing collars remain distinct source
+    positions. Disguise masks and the facial-appearance use of 마스크 belong
+    in their respective culture and register contexts, not the medical-mask
+    sense. These additions do not generate extra free heads.
+  optional_technical_sense: >
+    The welding-shield meaning of 마스크 is optional technical vocabulary.
+    It shares a parent with core mask senses but has its own source position;
+    a word's presence does not certify protective equipment or professional skill.
+  traps_left_out: >
+    The unselected 코트 parent names a sports court, not an outer coat.
+    The remaining 모자 parent means mother and son, not a hat. Retail 소매
+    and homesickness 향수 are not relabeled as sleeves or perfume. Raw cotton
+    솜 is left to the separate content-noun cohort, not treated as a care item.
+
+identity_policy:
+  status: Provisional explicit identities, not verified etymology or proof of general lexical competence.
+  selected_senses: 54
+  core_senses: 53
+  technical_senses: 1
+  source_parents: 45
+  distinct_spellings: 45
+  net_new_core_free_identities: 43
+  bound_form_identity_ids: []
+  function_identity_ids: []
+  existing_fragments: >
+    주머니 and 단추 receive new members only, preserving their existing
+    canonical lemmas and categories. Their additional meanings add no breadth.
+  shared_families: >
+    Each selected multi-sense parent remains one provisional family. In
+    particular, the five selected mask positions do not become five words
+    or add another headword to the technical branch's unique core breadth.
+  synonym_boundaries: >
+    Similar English does not prove that 허리띠 and 벨트, 스카프 and 목도리,
+    or 와이셔츠 and the broader shirt category are spelling variants.
+    Preserve their separately attested forms and scopes pending qualified
+    review rather than merging every synonymous translation.
+
+documented_group_decisions: {}
+
+unbanded_support:
+  policy: >
+    The original CSV contains all eight specifically queried missing personal
+    items. Their original record and sense positions are retained unchanged;
+    the full six-position mask parent is preserved although only five
+    positions are selected. All remain outside the original TOPIK folders.
+  source_parents:
+    ko-nikl-04814: apron
+    ko-nikl-09530: menstrual pad
+    ko-nikl-20233: cosmetic lotion
+    ko-nikl-22542: bracelet
+    ko-nikl-35854: mask, face covering, and facial-appearance uses
+    ko-nikl-36915: hairpin
+    ko-nikl-37141: cotton-tipped stick
+    ko-nikl-44954: body thermometer
+
+source_correction_requests:
+  ko-nikl-02486-s001:
+    source_korean: 얇고 잘 늘어나는, 목이 긴 여성용 양말.
+    source_english: Thin, stretchy, long leggings for females.
+    authored_interpretation: thin, stretchy long stockings
+    rationale: >
+      The Korean explicitly identifies long, thin, stretchy hosiery as 양말,
+      not the trouser-like garment normally called leggings in English.
+      Preserve the source's wearer convention in evidence without turning
+      that convention into a restriction on who can wear the item.
+  ko-nikl-41685-s004:
+    source_korean: (비유적으로) 이익을 차려 넣어 두는 곳.
+    source_english: (figurative) A place where one stashed his/her belongings.
+    authored_interpretation: a pocket for one's gains or profit (figurative)
+    rationale: >
+      The Korean identifies a figurative receptacle for secured gains or
+      profit, not simply a physical place to stash belongings. Keep this
+      meaning distinct from the portable pouch and clothing-pocket positions.
+
+reading_status: >
+  All nineteen formerly unsupported parents are resolved. One parent and
+  one selected sense use official citation text; eighteen parents covering
+  twenty-five selected senses have individually authored, unreviewed readings.
+  All fifty-four cohort senses now have explicit reading records. The list
+  below is a historical audit, not a current unresolved-selection inventory.
+original_reading_gaps:
+  ko-nikl-02457: 스카프
+  ko-nikl-02486: 스타킹
+  ko-nikl-02548: 슬리퍼
+  ko-nikl-05331: 벨트
+  ko-nikl-07405: 붕대
+  ko-nikl-07427: 블라우스
+  ko-nikl-09450: 샌들
+  ko-nikl-09969: 선글라스
+  ko-nikl-13228: 재킷
+  ko-nikl-14284: 점퍼
+  ko-nikl-15101: 조끼
+  ko-nikl-20160: 렌즈
+  ko-nikl-20233: 로션
+  ko-nikl-20766: 코트
+  ko-nikl-35370: 넥타이
+  ko-nikl-35854: 마스크
+  ko-nikl-36915: 머리핀
+  ko-nikl-48564: 와이셔츠
+  ko-nikl-49828: 원피스
+
+review_flags:
+  - >
+    Gendered wearer descriptions in the original clothing definitions are
+    source conventions, not universal requirements or judgments about a
+    learner. Source-specific colors, cuts, and fabrics do not define every
+    modern product sold under those names.
+  - >
+    Bandage sterility, mask protection, lotion effects, absorbency, and
+    thermometer measurement are source descriptions of purposes or designs,
+    not independently demonstrated product performance or medical advice.
+    A vocabulary label cannot determine whether equipment is adequate.
+  - >
+    Cotton-tipped sticks are named, not recommended for insertion into ears or
+    other body parts. Diaper descriptions do not imply that all members of an
+    age or patient group are incontinent. Menstrual supplies are ordinary
+    personal-care vocabulary, not diagnostic or treatment claims.
+  - >
+    The adhesive-tape/cloth source meaning of 반창고 is retained without
+    inventing an absorbent pad. Formal dress and school-uniform definitions
+    must not be converted into claims about a particular institution's rules.
+
+remaining_gaps:
+  - The broader useful core vocabulary planning scale is still substantially unfilled.
+  - Other named absent wardrobe and care items have not been exhaustively researched or fabricated.
+  - Qualified review remains necessary for pronunciation, source corrections, usage, and lexical boundaries.

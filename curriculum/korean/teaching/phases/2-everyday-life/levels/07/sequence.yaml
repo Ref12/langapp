@@ -24,6 +24,23 @@ checkpoint:
 mastery_profile: ko-item-mastery
 mastery_target: independent-use
 units:
+- id: level-07-clothing-01
+  title: Clothing and appearance - 1
+  outcome: Describe clothing and distinguish putting it on from wearing it.
+  vocabulary:
+  - {id: ko-nikl-09450-s001, ch: 샌들, pr: 샌들, ds: sandals held on the foot by straps}
+  - {id: ko-nikl-09969-s001, ch: 선글라스, pr: 선글라스, ds: tinted glasses for sunlight or fashion}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-41685-s001, ch: 주머니, pr: 주머니, ds: a portable pouch for money or small things}
+  - {id: ko-nikl-48506-s002, ch: 옷깃, pr: 옫낃, ds: a collar attached around the neck of an upper garment}
+  - {id: ko-nikl-00709-s001, ch: 소매, pr: 소매, ds: a sleeve covering an arm}
+  - {id: ko-nikl-37586-s001, ch: 목걸이, pr: 목꺼리, ds: a necklace}
+  - {id: ko-nikl-31730-s001, ch: 귀걸이, pr: 귀거리, ds: an earring or ear ornament}
+  - {id: ko-nikl-39754-s001, ch: 반지, pr: 반지, ds: a ring worn on a finger}
+  - {id: ko-nikl-22542-s001, ch: 팔찌, pr: 팔찌, ds: a bracelet worn around the wrist}
+  - {id: ko-nikl-36915-s001, ch: 머리핀, pr: 머리핀, ds: a hairpin for holding hair in place}
+  review_grammar: []
 - id: level-07-food-01
   title: Food and meals - 1
   outcome: Clarify ingredients and preferences and make an appropriate meal request.
@@ -267,14 +284,14 @@ units:
   - {id: ko-nikl-16938-s001, ch: 대기, pr: 대ː기, ds: waiting for a time or opportunity}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-01760-s001, ch: 수선, pr: 수선, ds: repairing an old or broken item so it can be used again}
-  - {id: ko-nikl-40582-s001, ch: 배달, pr: 배ː달, ds: 'delivery of mail, goods, or food'}
   - {id: ko-nikl-07128-s003, ch: 불량, pr: 불량, ds: poor quality or a defective condition of an item}
   - {id: ko-nikl-07133-s001, ch: 불량품, pr: 불량품, ds: a faulty or poor-quality product}
   - {id: ko-nikl-23376-s001, ch: 품질, pr: 품ː질, ds: the quality and characteristics of goods}
   - {id: ko-nikl-49724-s001, ch: 원산지, pr: 원산지, ds: the place where goods are produced}
   - {id: ko-nikl-38448-s001, ch: 문의, pr: 무ː늬 / 무ː니, ds: an inquiry about something one wants to know}
   - {id: ko-nikl-49137-s001, ch: 용량, pr: 용냥, ds: the amount a space or container can hold}
+  - {id: ko-nikl-24885-s001, ch: 향수, pr: 향수, ds: perfume applied to the body or clothing}
+  - {id: ko-nikl-20233-s001, ch: 로션, pr: 로션, ds: lotion applied to soften and moisten the skin}
   review_grammar:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -284,6 +301,7 @@ units:
   outcome: Explain participation and invite someone without assuming availability.
   vocabulary:
   - {id: ko-nikl-29913-s001, ch: 공원, pr: 공원, ds: a park}
+  - {id: ko-nikl-01858-s001, ch: 수영복, pr: 수영복, ds: swimwear}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-05699-s002, ch: 보다, pr: 보다, ds: to watch or enjoy a sight or performance}
