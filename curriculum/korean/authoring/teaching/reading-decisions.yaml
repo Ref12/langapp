@@ -777,3 +777,15 @@ ko-nikl-51292:
 # tensification to ㅉ at 팀-장 was not established by reliable word-specific
 # evidence. A nasal coda alone does not settle that lexical choice, so neither
 # reading is silently asserted; see society-notes.yaml's pending-reading record.
+# Interpretation selected readings: individual broad-Hangul citation proposals
+# for complete-definition matches lacking official pronunciation text.
+ko-nikl-15651:
+  pronunciations: [뉘앙스]
+  method: authored-broad-hangul
+  reason: "Individually authored for the subtle difference in tone/expression or its resulting feeling/atmosphere, whose complete definition exactly matches official 41682. Retain 뉘-앙-스 with the ㅟ vowel, separate vowel-initial 앙, and velar nasal ㅇ before plain ㅅ. That nasal is not an oral stop triggering mandatory tensification; no French nasalized vowel or extra citation length is imported. Official pronunciation text is absent."
+  review_status: unreviewed
+ko-nikl-29280:
+  pronunciations: ["고정 관념"]
+  method: authored-broad-hangul
+  reason: "Individually authored for an already fixed idea resistant to change, whose complete definition, internal space, and empty POS exactly match official 27142. Preserve the two-word citation boundary, velar nasal ㅇ before plain ㄱ across 정-관, the already nasal ㄴ-ㄴ sequence across 관-념, and final ㅁ. No oral stop licenses automatic tensification and no extra ㄴ insertion is required. Do not merge the source spelling or invent a POS; this is not verified connected-speech audio. Official pronunciation text is absent."
+  review_status: unreviewed

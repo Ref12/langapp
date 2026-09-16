@@ -5,6 +5,31 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-39751-s001:
+    source_korean: 반대되는 근거를 들어 어떤 사실이나 주장이 옳지 않음을 증명함. 또는 그런 증거.
+    source_english: The act of refuting that a fact or argument is wrong through counterevidence, or such an evidence.
+    authored_interpretation: disproof by contrary evidence; such counterevidence
+    rationale: >
+      Korean proves that a claim is not correct by contrary evidence.
+      English refuting that it is wrong reverses that direction. Keep
+      the disproving act and evidence alternatives without that reversal.
+  ko-nikl-39751-s002:
+    source_korean: 어떤 사실과 모순되는 것 같지만, 오히려 그것을 증명한다고 볼 수 있는 사실.
+    source_english: A fact that seems to contradict a certain fact, but instead proves that it is right.
+    authored_interpretation: an apparently contrary fact that may instead confirm a claim
+    rationale: >
+      Korean 볼 수 있는 frames apparent contradiction as something that
+      can be regarded as confirmation. Retain that interpretive qualification
+      rather than asserting every apparently contrary fact proves a claim.
+      This original second position is not erased to enforce a one-gloss rule.
+  ko-nikl-50562-s001:
+    source_korean: 일이나 사건의 전체적인 줄거리.
+    source_english: The overall summary of an incident or accident.
+    authored_interpretation: the overall outline of a matter or event
+    rationale: >
+      Korean includes a general matter or event. English incident or accident
+      unnecessarily narrows the range; a work proposal can have an outline
+      without being an accident.
   ko-nikl-34899-s007:
     source_korean: 위에 있는 것을 낮은 곳이나 아래로 끌어당기거나 늘어지게 하다.
     source_english: To pull something up to a lower place or downward, or to hang it loose.

@@ -758,6 +758,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "expression-notes.yaml",
             "society-notes.yaml",
             "predicate-notes.yaml",
+            "interpretation-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1159,6 +1160,63 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("plot of a novel", evidence["ko-nikl-47309-s003"]["source_english"])
         self.assertIn("unreasonably", words["ko-nikl-49217-s001"]["ds"])
         self.assertNotIn("ko-nikl-39007-s001", words)
+
+    def test_everyday_predicates_are_retained_source_entries_not_guessed_derivatives(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "everyday-predicates-notes.yaml")
+        _, senses = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        rows = load_yaml(authoring / "everyday-predicates-vocabulary.yaml")
+        self.assertEqual(
+            {senses[row["id"]][0]["id"] for row in rows},
+            set(notes["source_support_requests"]),
+        )
+        for row in rows:
+            parent, sense = senses[row["id"]]
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertEqual(self.references.vocabulary[row["id"]]["ch"], parent["target"])
+            self.assertEqual(self.references.provenance[row["id"]]["source_korean"], sense["korean"])
+        advantage = notes["homograph_boundary"]
+        self.assertEqual(advantage["selected"], "ko-nikl-50214-s001")
+        self.assertEqual(
+            self.references.provenance[advantage["selected"]]["source_korean"], "이익이 있다.",
+        )
+        self.assertNotIn(advantage["rejected_unrelated_parent"], notes["source_support_requests"])
+        self.assertEqual(self.references.vocabulary["ko-nikl-07156-s001"]["ds"], "to be disadvantageous")
+        self.assertEqual(self.references.vocabulary["ko-nikl-50214-s001"]["ds"], "to be advantageous")
+
+    def test_interpretation_homographs_and_source_nominal_spacing_remain_distinct(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(words["ko-nikl-47262-s001"]["ch"], words["ko-nikl-47263-s001"]["ch"])
+        self.assertNotEqual(identities["ko-nikl-47262-s001"], identities["ko-nikl-47263-s001"])
+        self.assertEqual(identities["ko-nikl-47263-s001"], identities["ko-nikl-47263-s002"])
+        self.assertIn("forceful assertion", words["ko-nikl-47262-s001"]["ds"])
+        self.assertIn("opposing", words["ko-nikl-47263-s001"]["ds"])
+        self.assertIn("seemingly inconsistent", words["ko-nikl-47263-s002"]["ds"])
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(words["ko-nikl-29280-s001"]["ch"], "고정 관념")
+        self.assertEqual(parents["ko-nikl-29280"]["source_part_of_speech"], "")
+        self.assertEqual(parents["ko-nikl-29280"]["part_of_speech"], "unspecified")
+        for identifier in ("ko-nikl-15651-s001", "ko-nikl-29280-s001"):
+            reading = self.references.provenance[identifier]["reading"]
+            self.assertEqual(reading["method"], "authored-broad-hangul")
+            self.assertEqual(reading["review_status"], "unreviewed")
+        self.assertEqual(words["ko-nikl-12325-s001"]["pr"], "자율썽")
+        self.assertEqual(
+            self.references.provenance["ko-nikl-12325-s001"]["reading"]["method"], "official-text",
+        )
+        self.assertEqual(identities["ko-nikl-16410-s001"], identities["ko-nikl-16410-s002"])
+        self.assertEqual(identities["ko-nikl-24405-s001"], identities["ko-nikl-24405-s002"])
+
+    def test_counterevidence_interpretations_retain_source_errors_and_qualification(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        first, second = "ko-nikl-39751-s001", "ko-nikl-39751-s002"
+        self.assertEqual(self.references.lexical_identity[first], self.references.lexical_identity[second])
+        self.assertIn("disproof", words[first]["ds"])
+        self.assertIn("refuting that a fact or argument is wrong", evidence[first]["source_english"])
+        self.assertIn("may instead confirm", words[second]["ds"])
+        self.assertIn("볼 수 있는", evidence[second]["source_korean"])
+        self.assertIn("matter or event", words["ko-nikl-50562-s001"]["ds"])
+        self.assertIn("incident or accident", evidence["ko-nikl-50562-s001"]["source_english"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

@@ -101,11 +101,11 @@ units:
   - {id: ko-nikl-19500-s002, ch: 따로, pr: 따로, ds: specially; differently from the ordinary}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-16938-s001, ch: 대기, pr: 대ː기, ds: waiting for a time or opportunity}
   - {id: ko-nikl-36570-s007, ch: 맡다, pr: 맏따, ds: to obtain official permission or approval}
   - {id: ko-nikl-02611-s001, ch: 승낙, pr: 승낙, ds: consent to another person's request}
   - {id: ko-nikl-05833-s001, ch: 보이다, pr: 보이다, ds: to show someone a person or object}
   - {id: ko-nikl-16537-s002, ch: 닫히다, pr: 다치다, ds: for work or business operations to cease}
+  - {id: ko-nikl-51776-s001, ch: 확인하다, pr: 화긴하다, ds: to check or acknowledge that something is so}
   - {id: ko-nikl-19368-s001, ch: 등록, pr: 등녹, ds: registration of a name or details for permission or recognition}
   - {id: ko-nikl-25955-s001, ch: 가입, pr: 가입, ds: joining a group or signing up for goods or services}
   - {id: ko-nikl-42072-s002, ch: 줍다, pr: 줍ː따, ds: to find and pick up someone else's lost property}
@@ -199,7 +199,6 @@ units:
   - {id: ko-nikl-07861-s011, ch: 빠지다, pr: 빠ː지다, ds: to turn off a route or digress from a subject}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34882-s005, ch: 내려오다, pr: 내려오다, ds: 'for plans, news, or orders to come from a higher authority'}
   - {id: ko-nikl-18211-s002, ch: 돌다, pr: 돌ː다, ds: to circulate or be passed around in turn}
   - {id: ko-nikl-18224-s015, ch: 돌리다, pr: 돌리다, ds: to turn the conversation to another subject}
   - {id: ko-nikl-19745-s007, ch: 떨어지다, pr: 떠러지다, ds: for an order or permission to be issued}
@@ -207,6 +206,7 @@ units:
   - {id: ko-nikl-16537-s004, ch: 닫히다, pr: 다치다, ds: 'for one''s mouth to close, leaving one unable to speak'}
   - {id: ko-nikl-34017-s008, ch: 끊다, pr: 끈타, ds: to pause speaking or briefly interrupt someone}
   - {id: ko-nikl-34016-s007, ch: 끊기다, pr: 끈키다, ds: for speech to pause temporarily}
+  - {id: ko-nikl-16949-s001, ch: 대꾸하다, pr: 대ː꾸하다, ds: to give a short spoken response}
   review_grammar:
   - {id: ko-topik3-g003, ch: V/A-냐고 하다, ds: report the content of a question}
   - {id: ko-topik3-g004, ch: V-(으)라고 하다, ds: report an instruction and identify its actor}
@@ -290,13 +290,13 @@ units:
   - {id: ko-nikl-27709-s002, ch: 걸레, pr: 걸레, ds: an old and dirty item}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34613-s007, ch: 남다, pr: 남ː따, ds: to remain as an effect or result}
   - {id: ko-nikl-34604-s007, ch: 남기다, pr: 남기다, ds: to leave an effect or result}
   - {id: ko-nikl-43854-s004, ch: 차다, pr: 차다, ds: to reach a given height or limit}
   - {id: ko-nikl-05832-s003, ch: 보이다, pr: 보이다, ds: for a result to become apparent}
   - {id: ko-nikl-39309-s004, ch: 바뀌다, pr: 바뀌다, ds: for content or a state to change}
   - {id: ko-nikl-48191-s004, ch: 오르다, pr: 오르다, ds: to reach a certain degree or level}
   - {id: ko-nikl-42585-s002, ch: 지다, pr: 지다, ds: for a pattern or shape to appear on a surface}
+  - {id: ko-nikl-14754-s001, ch: 정확하다, pr: 정ː화카다, ds: to be correct and precise}
   - {id: ko-nikl-47182-s001, ch: 여전히, pr: 여전히, ds: still; in the same state as before}
   review_grammar:
   - {id: ko-topik2-g019, ch: N 중에서 가장/제일, ds: identify the highest degree within a set}
@@ -353,7 +353,6 @@ units:
   - {id: ko-nikl-34017-s017, ch: 끊다, pr: 끈타, ds: to cut off a feeling or interest}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-07862-s005, ch: 빠지다, pr: 빠ː지다, ds: to become excessively absorbed in something}
   - {id: ko-nikl-48191-s013, ch: 오르다, pr: 오르다, ds: for a feeling or sensation to spread}
   - {id: ko-nikl-48451-s012, ch: 올라오다, pr: 올라오다, ds: for something deep in one's mind to emerge}
   - {id: ko-nikl-39007-s003, ch: 미치다, pr: 미치다, ds: to be beside oneself with intense distress}
@@ -361,6 +360,7 @@ units:
   - {id: ko-nikl-19203-s001, ch: 들뜨다, pr: 들뜨다, ds: to be excited and unsettled in mood or atmosphere}
   - {id: ko-nikl-19927-s003, ch: 뜨다, pr: 뜨다, ds: to become excited and unsettled (figurative)}
   - {id: ko-nikl-16537-s003, ch: 닫히다, pr: 다치다, ds: to become closed off or unreceptive in one's heart}
+  - {id: ko-nikl-47153-s001, ch: 여운, pr: 여운, ds: a feeling or mood that lingers after an event}
   review_grammar:
   - {id: ko-topik4-g001, ch: V/A-더라고요, ds: report a personal observation or discovery}
   - {id: ko-topik5-g032, ch: V/A-(으)ㄹ 줄 알았다 / 몰랐다, ds: recall an expectation rather than a learned skill}
@@ -468,6 +468,9 @@ units:
   - {id: ko-nikl-18211-s013, ch: 돌다, pr: 돌ː다, ds: to change a view or attitude}
   - {id: ko-nikl-18224-s011, ch: 돌리다, pr: 돌리다, ds: to change or redirect a thought or opinion}
   - {id: ko-nikl-19745-s008, ch: 떨어지다, pr: 떠러지다, ds: to be inferior to something else in level or quality}
+  - {id: ko-nikl-07156-s001, ch: 불리하다, pr: 불리하다, ds: to be disadvantageous}
+  - {id: ko-nikl-50214-s001, ch: 유리하다, pr: 유ː리하다, ds: to be advantageous}
+  - {id: ko-nikl-43343-s001, ch: 짐작, pr: 짐작, ds: an estimate or supposition about circumstances}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-01283-s002, ch: 손해, pr: 손ː해, ds: harm or disadvantage}
@@ -614,14 +617,14 @@ units:
   - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
   - {id: ko-topik3-g020, ch: V/A-(으)ㄴ/는 탓에, ds: attribute an unfavorable result to a cause}
   review_vocabulary:
-  - {id: ko-nikl-48485-s002, ch: 옳다, pr: 올타, ds: to be the better alternative}
-  - {id: ko-nikl-15670-s004, ch: 느끼다, pr: 느끼다, ds: to perceive a subject or situation in a certain way}
-  - {id: ko-nikl-07861-s013, ch: 빠지다, pr: 빠ː지다, ds: to fall behind someone or something else}
   - {id: ko-nikl-07934-s002, ch: 빼내다, pr: 빼ː내다, ds: to pick something out from among many}
   - {id: ko-nikl-34899-s008, ch: 내리다, pr: 내리다, ds: to make a judgment or decision}
   - {id: ko-nikl-18211-s013, ch: 돌다, pr: 돌ː다, ds: to change a view or attitude}
   - {id: ko-nikl-18224-s011, ch: 돌리다, pr: 돌리다, ds: to change or redirect a thought or opinion}
   - {id: ko-nikl-19745-s008, ch: 떨어지다, pr: 떠러지다, ds: to be inferior to something else in level or quality}
+  - {id: ko-nikl-07156-s001, ch: 불리하다, pr: 불리하다, ds: to be disadvantageous}
+  - {id: ko-nikl-50214-s001, ch: 유리하다, pr: 유ː리하다, ds: to be advantageous}
+  - {id: ko-nikl-43343-s001, ch: 짐작, pr: 짐작, ds: an estimate or supposition about circumstances}
   review_grammar:
   - {id: ko-topik2-g012, ch: N 때문에 / V/A-기 때문에, ds: state an explicit noun or clause cause}
   - {id: ko-topik2-g034, ch: V/A-(으)ㄴ/는 것 같다, ds: mark an impression or tentative inference}
@@ -635,14 +638,14 @@ units:
   - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}
   - {id: ko-topik4-g011, ch: V/A-(으)ㄴ/는 데다가, ds: add a factor in the same evaluative direction}
   review_vocabulary:
-  - {id: ko-nikl-48485-s002, ch: 옳다, pr: 올타, ds: to be the better alternative}
-  - {id: ko-nikl-15670-s004, ch: 느끼다, pr: 느끼다, ds: to perceive a subject or situation in a certain way}
-  - {id: ko-nikl-07861-s013, ch: 빠지다, pr: 빠ː지다, ds: to fall behind someone or something else}
   - {id: ko-nikl-07934-s002, ch: 빼내다, pr: 빼ː내다, ds: to pick something out from among many}
   - {id: ko-nikl-34899-s008, ch: 내리다, pr: 내리다, ds: to make a judgment or decision}
   - {id: ko-nikl-18211-s013, ch: 돌다, pr: 돌ː다, ds: to change a view or attitude}
   - {id: ko-nikl-18224-s011, ch: 돌리다, pr: 돌리다, ds: to change or redirect a thought or opinion}
   - {id: ko-nikl-19745-s008, ch: 떨어지다, pr: 떠러지다, ds: to be inferior to something else in level or quality}
+  - {id: ko-nikl-07156-s001, ch: 불리하다, pr: 불리하다, ds: to be disadvantageous}
+  - {id: ko-nikl-50214-s001, ch: 유리하다, pr: 유ː리하다, ds: to be advantageous}
+  - {id: ko-nikl-43343-s001, ch: 짐작, pr: 짐작, ds: an estimate or supposition about circumstances}
   review_grammar:
   - {id: ko-topik3-g015, ch: V/A-아/어도, ds: keep a conclusion despite a circumstance}
   - {id: ko-topik3-g019, ch: V/A-(으)ㄴ/는 덕분에, ds: attribute a beneficial result to a cause}
@@ -655,14 +658,14 @@ units:
   - {id: ko-topik4-g012, ch: V/A-기는 하지만, ds: concede a fact before qualifying it}
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
   review_vocabulary:
-  - {id: ko-nikl-48485-s002, ch: 옳다, pr: 올타, ds: to be the better alternative}
-  - {id: ko-nikl-15670-s004, ch: 느끼다, pr: 느끼다, ds: to perceive a subject or situation in a certain way}
-  - {id: ko-nikl-07861-s013, ch: 빠지다, pr: 빠ː지다, ds: to fall behind someone or something else}
   - {id: ko-nikl-07934-s002, ch: 빼내다, pr: 빼ː내다, ds: to pick something out from among many}
   - {id: ko-nikl-34899-s008, ch: 내리다, pr: 내리다, ds: to make a judgment or decision}
   - {id: ko-nikl-18211-s013, ch: 돌다, pr: 돌ː다, ds: to change a view or attitude}
   - {id: ko-nikl-18224-s011, ch: 돌리다, pr: 돌리다, ds: to change or redirect a thought or opinion}
   - {id: ko-nikl-19745-s008, ch: 떨어지다, pr: 떠러지다, ds: to be inferior to something else in level or quality}
+  - {id: ko-nikl-07156-s001, ch: 불리하다, pr: 불리하다, ds: to be disadvantageous}
+  - {id: ko-nikl-50214-s001, ch: 유리하다, pr: 유ː리하다, ds: to be advantageous}
+  - {id: ko-nikl-43343-s001, ch: 짐작, pr: 짐작, ds: an estimate or supposition about circumstances}
   review_grammar:
   - {id: ko-topik3-g022, ch: V/A-(으)ㄹ지도 모르다, ds: acknowledge an uncertain possibility}
   - {id: ko-topik3-g035, ch: N뿐만 아니라, ds: include another noun beyond the first}

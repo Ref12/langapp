@@ -14356,7 +14356,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '15708'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15708
-      pronunciations:
+      pronunciations: &id1125
       - 문뻡
     lexical_identity: ko-lex-38413
     lexical_category: free-lemma
@@ -18793,7 +18793,7 @@ items:
       match_method: explicit-crosswalk
       official_entry_id: '37163'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37163
-      pronunciations:
+      pronunciations: &id1124
       - 근거
       match_reason: 'Compared both foundation/evidence definitions: the base of life or activities in
         sense 1 is unchanged; sense 2 replaces 까닭 with 이유.'
@@ -22321,7 +22321,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '30064'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30064
-      pronunciations:
+      pronunciations: &id1123
       - 검ː증
     lexical_identity: ko-lex-27818
     lexical_category: free-lemma
@@ -22398,7 +22398,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '85605'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85605
-      pronunciations:
+      pronunciations: &id1122
       - 함축
     lexical_identity: ko-lex-24405
     lexical_category: free-lemma
@@ -32922,7 +32922,7 @@ items:
       match_method: exact-ordered-korean-definitions
       official_entry_id: '42202'
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=42202
-      pronunciations:
+      pronunciations: &id1121
       - 단서
     lexical_identity: ko-lex-16410
     lexical_category: free-lemma
@@ -113011,6 +113011,1621 @@ items:
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24748
       pronunciations: *id243
     lexical_identity: ko-lex-11939
+    lexical_category: free-lemma
+  ko-nikl-00239-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=239
+    source_parent: ko-nikl-00239
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Sincere and genuine in one's attitude or behavior.
+    source_korean: 태도나 행동이 진실하고 올바르며 정성스럽다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '49067'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=49067
+      pronunciations:
+      - 성실하다
+    lexical_identity: ko-lex-00239
+    lexical_category: free-lemma
+  ko-nikl-07156-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7156
+    source_parent: ko-nikl-07156
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A condition, position, etc., being not advantageous.
+    source_korean: 조건이나 입장 등이 이익이 되지 않다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '28239'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28239
+      pronunciations:
+      - 불리하다
+    lexical_identity: ko-lex-07156
+    lexical_category: free-lemma
+  ko-nikl-14754-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14754
+    source_parent: ko-nikl-14754
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Right and certain
+    source_korean: 바르고 확실하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '70894'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70894
+      pronunciations:
+      - 정ː화카다
+    lexical_identity: ko-lex-14754
+    lexical_category: free-lemma
+  ko-nikl-16949-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16949
+    source_parent: ko-nikl-16949
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To remark in response to what others say; to give a short answer.
+    source_korean: 남의 말을 듣고 반응하여 말을 하다. 짧게 대답하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '44504'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=44504
+      pronunciations:
+      - 대ː꾸하다
+    lexical_identity: ko-lex-16949
+    lexical_category: free-lemma
+  ko-nikl-22427-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22427
+    source_parent: ko-nikl-22427
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: To fix a thought on something, according to a certain logic or standard.
+    source_korean: 논리나 기준에 따라 어떠한 것에 대한 생각을 정하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80716'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80716
+      pronunciations:
+      - 판단하다
+    lexical_identity: ko-lex-22427
+    lexical_category: free-lemma
+  ko-nikl-22737-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22737
+    source_parent: ko-nikl-22737
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Easy and comfortable to use.
+    source_korean: 이용하기 쉽고 편하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71329'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71329
+      pronunciations:
+      - 펼리하다
+    lexical_identity: ko-lex-22737
+    lexical_category: free-lemma
+  ko-nikl-29964-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29964
+    source_parent: ko-nikl-29964
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being objective and right, not being one-sided.
+    source_korean: 한쪽으로 치우치지 않고 객관적이고 올바르다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23561'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23561
+      pronunciations:
+      - 공정하다
+    lexical_identity: ko-lex-29964
+    lexical_category: free-lemma
+  ko-nikl-46782-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46782
+    source_parent: ko-nikl-46782
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Being very strict and thorough in one's speech, attitude, rules, etc.
+    source_korean: 말, 태도, 규칙 등이 매우 엄하고 철저하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15114'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15114
+      pronunciations:
+      - 엄껴카다
+    lexical_identity: ko-lex-46782
+    lexical_category: free-lemma
+  ko-nikl-50214-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50214
+    source_parent: ko-nikl-50214
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Having an advantage.
+    source_korean: 이익이 있다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '27102'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=27102
+      pronunciations:
+      - 유ː리하다
+    lexical_identity: ko-lex-50214
+    lexical_category: free-lemma
+  ko-nikl-51776-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=51776
+    source_parent: ko-nikl-51776
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'To find out if something is true or admit that it is true. '
+    source_korean: 틀림없이 그러한지를 알아보거나 인정하다.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73237'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73237
+      pronunciations:
+      - 화긴하다
+    lexical_identity: ko-lex-51776
+    lexical_category: free-lemma
+  ko-nikl-00830-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=830
+    source_parent: ko-nikl-00830
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A firm belief.
+    source_korean: 굳게 믿는 생각.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63742'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63742
+      pronunciations:
+      - 소ː신
+    lexical_identity: ko-lex-00830
+    lexical_category: free-lemma
+  ko-nikl-03424-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3424
+    source_parent: ko-nikl-03424
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'Something with which one starts to resolve a case or problem. '
+    source_korean: 일이나 사건을 해결해 나갈 수 있는 시작이 되는 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '78476'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=78476
+      pronunciations:
+      - '실ː마리 '
+      display_normalization: trim-surrounding-whitespace-only
+      display_pronunciations:
+      - 실ː마리
+    lexical_identity: ko-lex-03424
+    lexical_category: free-lemma
+  ko-nikl-03445-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3445
+    source_parent: ko-nikl-03445
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The real state or content of something.
+    source_korean: 실제의 상태나 내용.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '78660'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=78660
+      pronunciations:
+      - '실쌍 '
+      display_normalization: trim-surrounding-whitespace-only
+      display_pronunciations:
+      - 실쌍
+    lexical_identity: ko-lex-03445
+    lexical_category: free-lemma
+  ko-nikl-10982-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10982
+    source_parent: ko-nikl-10982
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A right principle consistent with reason, or underlying purpose or significant meaning. '
+    source_korean: 정당하고 도리에 맞는 원리. 또는 근본이 되는 목적이나 중요한 뜻.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '72854'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72854
+      pronunciations:
+      - 이ː치
+    lexical_identity: ko-lex-10982
+    lexical_category: free-lemma
+  ko-nikl-12325-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12325
+    source_parent: ko-nikl-12325
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: The quality of controlling oneself according to one's own principles without being
+      governed or restricted by others.
+    source_korean: 남의 지배나 구속을 받지 않고 스스로의 원칙에 따라 자신의 행동을 통제하는 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '73141'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73141
+      pronunciations:
+      - 자율썽
+      match_reason: Compared the single autonomy definition with the sole exact-spelling/POS candidate.
+        Freedom from another's domination or constraint and following one's own principles are identical;
+        자신의 행동을 통제하는 becomes 자신을 통제하는, generalizing control of one's actions to self-control. Retain the
+        original action-specific wording and preserve official 자율썽 rather than deriving pronunciation
+        from spelling.
+    lexical_identity: ko-lex-12325
+    lexical_category: free-lemma
+  ko-nikl-34915-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34915
+    source_parent: ko-nikl-34915
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'The details or background of something that is not disclosed. '
+    source_korean: 겉으로 드러나지 않은 내용이나 사정.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83306'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83306
+      pronunciations:
+      - 내ː막
+    lexical_identity: ko-lex-34915
+    lexical_category: free-lemma
+  ko-nikl-34984-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34984
+    source_parent: ko-nikl-34984
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-5
+    source_english: One's real intentions that do not show.
+    source_korean: 겉으로 드러나지 않은 실제의 마음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '39943'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=39943
+      pronunciations:
+      - 내ː심
+    lexical_identity: ko-lex-34984
+    lexical_category: free-lemma
+  ko-nikl-43343-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43343
+    source_parent: ko-nikl-43343
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: An act of estimating a situation, circumstances, etc.
+    source_korean: 사정이나 형편 등을 어림잡아 생각함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '29021'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=29021
+      pronunciations:
+      - 짐작
+    lexical_identity: ko-lex-43343
+    lexical_category: free-lemma
+  ko-nikl-46281-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46281
+    source_parent: ko-nikl-46281
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'A feeling felt from one''s voice or way of talking. '
+    source_korean: 말소리나 말투에서 느껴지는 느낌.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26855'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26855
+      pronunciations:
+      - 어ː감
+    lexical_identity: ko-lex-46281
+    lexical_category: free-lemma
+  ko-nikl-46601-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46601
+    source_parent: ko-nikl-46601
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'The number of words used within a particular scope; or the aggregate of such words. '
+    source_korean: 일정한 범위에서 쓰이는 낱말의 수. 또는 그런 낱말 전체.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67144'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67144
+      pronunciations:
+      - 어ː휘
+    lexical_identity: ko-lex-46601
+    lexical_category: free-lemma
+  ko-nikl-16410-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16410
+    source_parent: ko-nikl-16410
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: The starting point of something.
+    source_korean: 어떤 일이 일어나게 되는 출발점.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '42202'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=42202
+      pronunciations: *id1121
+    lexical_identity: ko-lex-16410
+    lexical_category: free-lemma
+  ko-nikl-24405-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24405
+    source_parent: ko-nikl-24405
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A meaning or message hidden behind a certain behavior, text, etc., without being revealed
+      outwardly.
+    source_korean: 겉으로 드러내지 않고 속에 간직함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85605'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85605
+      pronunciations: *id1122
+    lexical_identity: ko-lex-24405
+    lexical_category: free-lemma
+  ko-nikl-27818-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27818
+    source_parent: ko-nikl-27818
+    source_position: 2
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A judicial officer or investigator examining evidence.
+    source_korean: 법관이나 수사관이 증거를 조사하는 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '30064'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30064
+      pronunciations: *id1123
+    lexical_identity: ko-lex-27818
+    lexical_category: free-lemma
+  ko-nikl-32246-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=32246
+    source_parent: ko-nikl-32246
+    source_position: 1
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A place that serves as the base of one''s life or activity. '
+    source_korean: 생활이나 활동 등의 근본이 되는 곳.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: explicit-crosswalk
+      official_entry_id: '37163'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=37163
+      pronunciations: *id1124
+      match_reason: 'Compared both foundation/evidence definitions: the base of life or activities in
+        sense 1 is unchanged; sense 2 replaces 까닭 with 이유.'
+    lexical_identity: ko-lex-32246
+    lexical_category: free-lemma
+  ko-nikl-38413-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38413
+    source_parent: ko-nikl-38413
+    source_position: 2
+    source_band: intermediate
+    reference_level: topik-4
+    source_english: 'A system that describes certain rules of speech academically or educationally. '
+    source_korean: 말의 일정한 규칙을 학문적 또는 교육적으로 기술한 체계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '15708'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=15708
+      pronunciations: *id1125
+    lexical_identity: ko-lex-38413
+    lexical_category: free-lemma
+  ko-nikl-00300-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=300
+    source_parent: ko-nikl-00300
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of reflecting on oneself.
+    source_korean: 스스로를 반성하고 살핌.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85187'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85187
+      pronunciations:
+      - 성찰
+    lexical_identity: ko-lex-00300
+    lexical_category: free-lemma
+  ko-nikl-00609-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=609
+    source_parent: ko-nikl-00609
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A thought or opinion on something.
+    source_korean: 어떤 일이나 사물을 보고 느낀 생각이나 의견.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64311'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64311
+      pronunciations:
+      - 소ː견
+    lexical_identity: ko-lex-00609
+    lexical_category: free-lemma
+  ko-nikl-01073-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1073
+    source_parent: ko-nikl-01073
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Matters or affairs that are hidden or unclear.
+    source_korean: 겉으로 드러나지 않거나 감추어진 일이나 사정.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64255'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64255
+      pronunciations:
+      - 속ː싸정
+    lexical_identity: ko-lex-01073
+    lexical_category: free-lemma
+  ko-nikl-01731-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1731
+    source_parent: ko-nikl-01731
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The method of decorating words and phrases for an effective delivery and beautiful
+      expression.
+    source_korean: 효과적인 전달과 아름다운 표현을 위해 문장과 언어를 꾸미는 방법.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65523'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65523
+      pronunciations:
+      - 수사뻡
+    lexical_identity: ko-lex-01731
+    lexical_category: free-lemma
+  ko-nikl-02097-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2097
+    source_parent: ko-nikl-02097
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of thinking about something deeply and carefully, or such a thought.
+    source_korean: 깊고 신중히 잘 생각함. 또는 그런 생각.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '64866'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64866
+      pronunciations:
+      - 숙꼬
+    lexical_identity: ko-lex-02097
+    lexical_category: free-lemma
+  ko-nikl-03166-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3166
+    source_parent: ko-nikl-03166
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The quality of being reliable and dependable.
+    source_korean: 굳게 믿고 의지할 수 있는 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65739'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65739
+      pronunciations:
+      - 실ː뢰썽
+      - 실ː뤠썽
+    lexical_identity: ko-lex-03166
+    lexical_category: free-lemma
+  ko-nikl-03212-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3212
+    source_parent: ko-nikl-03212
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The quality something has when one can believe in it and use it as proof or evidence.
+    source_korean: 믿어서 근거나 증거로 삼을 수 있는 정도나 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '65583'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=65583
+      pronunciations:
+      - 신ː빙썽
+    lexical_identity: ko-lex-03212
+    lexical_category: free-lemma
+  ko-nikl-05896-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=5896
+    source_parent: ko-nikl-05896
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A quality that is commonly applied or pervasively understood.
+    source_korean: 모든 것에 두루 미치거나 통하는 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59636'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59636
+      pronunciations:
+      - 보ː편썽
+    lexical_identity: ko-lex-05896
+    lexical_category: free-lemma
+  ko-nikl-09272-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9272
+    source_parent: ko-nikl-09272
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Phrases that are used habitually due to frequent use.
+    source_korean: 자주 사용해서 버릇처럼 쓰게 되는 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63012'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63012
+      pronunciations:
+      - 상투어
+    lexical_identity: ko-lex-09272
+    lexical_category: free-lemma
+  ko-nikl-10729-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10729
+    source_parent: ko-nikl-10729
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An event that is very strange or unexpected. '
+    source_korean: 미리 생각하지 못한 일이나 매우 이상한 일.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71977'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71977
+      pronunciations:
+      - 이ː변
+    lexical_identity: ko-lex-10729
+    lexical_category: free-lemma
+  ko-nikl-13434-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=13434
+    source_parent: ko-nikl-13434
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A thought that is kept inside and not revealed.
+    source_korean: 겉으로 드러나지 않은, 속에 품고 있는 생각.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '74609'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=74609
+      pronunciations:
+      - 저ː의
+      - 저ː이
+    lexical_identity: ko-lex-13434
+    lexical_category: free-lemma
+  ko-nikl-14435-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14435
+    source_parent: ko-nikl-14435
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The quality of standing to reason and being right.
+    source_korean: 이치에 맞아 올바른 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76047'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76047
+      pronunciations:
+      - 정ː당썽
+    lexical_identity: ko-lex-14435
+    lexical_category: free-lemma
+  ko-nikl-14563-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14563
+    source_parent: ko-nikl-14563
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An opinion or claim that is widely accepted as true in general.
+    source_korean: 일반적으로 옳다고 널리 인정된 견해나 주장.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76546'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76546
+      pronunciations:
+      - 정ː설
+    lexical_identity: ko-lex-14563
+    lexical_category: free-lemma
+  ko-nikl-14571-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14571
+    source_parent: ko-nikl-14571
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An important element that is at the center of a thing or event.
+    source_korean: 사물이나 사건의 중심이 되는 중요한 요소.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76552'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76552
+      pronunciations:
+      - 정수
+    lexical_identity: ko-lex-14571
+    lexical_category: free-lemma
+  ko-nikl-14756-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14756
+    source_parent: ko-nikl-14756
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A variety of situations and circumstances that relate to an incident.
+    source_korean: 어떤 일에 관련된 여러 가지 사정과 상황.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '75455'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75455
+      pronunciations:
+      - 정황
+    lexical_identity: ko-lex-14756
+    lexical_category: free-lemma
+  ko-nikl-15651-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15651
+    source_parent: ko-nikl-15651
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A subtle difference in ways of talking, expression, etc., or the feeling or atmosphere
+      caused by this difference.
+    source_korean: 말투, 표현 등의 미묘한 차이. 또는 그런 차이에 의한 느낌이나 분위기.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 뉘앙스
+      method: authored-broad-hangul
+      reason: Individually authored for the subtle difference in tone/expression or its resulting feeling/atmosphere,
+        whose complete definition exactly matches official 41682. Retain 뉘-앙-스 with the ㅟ vowel, separate
+        vowel-initial 앙, and velar nasal ㅇ before plain ㅅ. That nasal is not an oral stop triggering mandatory
+        tensification; no French nasalized vowel or extra citation length is imported. Official pronunciation
+        text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-15651
+    lexical_category: free-lemma
+  ko-nikl-16821-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16821
+    source_parent: ko-nikl-16821
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The quality of what should be done.
+    source_korean: 마땅히 해야 하거나 되어야 하는 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18479'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18479
+      pronunciations:
+      - 당위썽
+    lexical_identity: ko-lex-16821
+    lexical_category: free-lemma
+  ko-nikl-18109-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18109
+    source_parent: ko-nikl-18109
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The special quality that is unique to oneself which is distinctive from others. '
+    source_korean: 다른 것과 구별되도록 혼자만 갖고 있는 특별한 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '48503'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=48503
+      pronunciations:
+      - 독짜썽
+    lexical_identity: ko-lex-18109
+    lexical_category: free-lemma
+  ko-nikl-21728-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21728
+    source_parent: ko-nikl-21728
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An opinion or theory that is widely known to the public, or that is generally recognized.
+    source_korean: 세상에 널리 알려져 있거나 일반적으로 인정되고 있는 의견이나 학설.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '85990'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85990
+      pronunciations:
+      - 통설
+    lexical_identity: ko-lex-21728
+    lexical_category: free-lemma
+  ko-nikl-21787-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21787
+    source_parent: ko-nikl-21787
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The state of accurately and sharply seeing through an object, phenomenon, etc.
+    source_korean: 사물이나 현상 등을 정확하고 날카롭게 꿰뚫어 봄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81322'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81322
+      pronunciations:
+      - 통ː찰
+    lexical_identity: ko-lex-21787
+    lexical_category: free-lemma
+  ko-nikl-23711-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23711
+    source_parent: ko-nikl-23711
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An element or quality in which the outcome of an event or the relationship among certain
+      things is predetermined to be in a certain way.
+    source_korean: 어떤 일의 결과나 사물의 관계가 반드시 그렇게 될 수밖에 없는 요소나 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '86214'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86214
+      pronunciations:
+      - 피련썽
+    lexical_identity: ko-lex-23711
+    lexical_category: free-lemma
+  ko-nikl-24025-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24025
+    source_parent: ko-nikl-24025
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A theory one introduces and supports regarding an academic issue. '
+    source_korean: 학술적 문제에 대하여 주장하고 내세우는 이론.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '83826'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=83826
+      pronunciations:
+      - 학썰
+    lexical_identity: ko-lex-24025
+    lexical_category: free-lemma
+  ko-nikl-24396-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24396
+    source_parent: ko-nikl-24396
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A state in which a certain meaning is contained in words or a text; or such a meaning. '
+    source_korean: 말이나 글 속에 어떠한 뜻이 들어 있음. 또는 그 뜻.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84296'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84296
+      pronunciations:
+      - 하믜
+      - 하미
+    lexical_identity: ko-lex-24396
+    lexical_category: free-lemma
+  ko-nikl-24764-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24764
+    source_parent: ko-nikl-24764
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'Words or actions that are funny and entertaining yet refined. '
+    source_korean: 우습고 재미있으면서도 품위가 있는 말이나 행동.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '84929'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84929
+      pronunciations:
+      - 해학
+    lexical_identity: ko-lex-24764
+    lexical_category: free-lemma
+  ko-nikl-27099-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27099
+    source_parent: ko-nikl-27099
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A likelihood in general of something happening.
+    source_korean: 일반적으로 그 일이 생길 수 있는 가능성.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26667'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26667
+      pronunciations:
+      - 개ː연썽
+    lexical_identity: ko-lex-27099
+    lexical_category: free-lemma
+  ko-nikl-29280-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29280
+    source_parent: ko-nikl-29280
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An idea that has become fixed and does not change easily.
+    source_korean: 이미 굳어져서 쉽게 바뀌지 않는 생각.
+    reading:
+      source_id: original-ko
+      pronunciations:
+      - 고정 관념
+      method: authored-broad-hangul
+      reason: Individually authored for an already fixed idea resistant to change, whose complete definition,
+        internal space, and empty POS exactly match official 27142. Preserve the two-word citation boundary,
+        velar nasal ㅇ before plain ㄱ across 정-관, the already nasal ㄴ-ㄴ sequence across 관-념, and final
+        ㅁ. No oral stop licenses automatic tensification and no extra ㄴ insertion is required. Do not
+        merge the source spelling or invent a POS; this is not verified connected-speech audio. Official
+        pronunciation text is absent.
+      review_status: unreviewed
+    lexical_identity: ko-lex-29280
+    lexical_category: free-lemma
+  ko-nikl-30368-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=30368
+    source_parent: ko-nikl-30368
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A short phrase of two or more words with a special meaning, used customarily for a
+      long time.
+    source_korean: 오랫동안 관습적으로 쓰이며 특별한 의미를 가지게 된 두 개 이상의 단어로 이루어진 짧은 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '41005'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=41005
+      pronunciations:
+      - 과뇽꾸
+    lexical_identity: ko-lex-30368
+    lexical_category: free-lemma
+  ko-nikl-31878-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31878
+    source_parent: ko-nikl-31878
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of finding out the truth by researching in detail.
+    source_korean: 자세히 따져 사실을 밝힘.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '35227'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35227
+      pronunciations:
+      - 규명
+    lexical_identity: ko-lex-31878
+    lexical_category: free-lemma
+  ko-nikl-33066-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33066
+    source_parent: ko-nikl-33066
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A basic tendency or direction that is consistent throughout a certain idea, work,
+      theory, etc. '
+    source_korean: 사상, 작품, 학설 등에 일관해서 흐르는 기본적인 경향이나 방향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90240'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90240
+      pronunciations: &id1126
+      - 기조
+    lexical_identity: ko-lex-33066
+    lexical_category: free-lemma
+  ko-nikl-33066-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=33066
+    source_parent: ko-nikl-33066
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The basic movement of market prices or economic conditions. '
+    source_korean: 시세나 경제 정세의 기본적인 움직임.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90240'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90240
+      pronunciations: *id1126
+    lexical_identity: ko-lex-33066
+    lexical_category: free-lemma
+  ko-nikl-35614-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35614
+    source_parent: ko-nikl-35614
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The basis of a theory or argument.
+    source_korean: 이론이나 주장의 근거.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40731'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40731
+      pronunciations:
+      - 논거
+    lexical_identity: ko-lex-35614
+    lexical_category: free-lemma
+  ko-nikl-35641-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35641
+    source_parent: ko-nikl-35641
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of logically explaining one's opinion on a certain subject.
+    source_korean: 어떤 주제에 관해 자신의 의견과 주장을 논리적으로 설명함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24327'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24327
+      pronunciations: &id1127
+      - 논설
+    lexical_identity: ko-lex-35641
+    lexical_category: free-lemma
+  ko-nikl-35641-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35641
+    source_parent: ko-nikl-35641
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A piece of writing that logically explains one's opinion on a certain subject.
+    source_korean: 어떤 주제에 관해 자신의 의견과 주장을 논리적으로 설명하는 글.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '24327'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24327
+      pronunciations: *id1127
+    lexical_identity: ko-lex-35641
+    lexical_category: free-lemma
+  ko-nikl-35659-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35659
+    source_parent: ko-nikl-35659
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A method of expressing one''s thoughts or feelings in persuasive speech or writing. '
+    source_korean: 의견을 주장하는 말이나 글에서 감정이나 생각을 드러내는 방식.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40818'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40818
+      pronunciations: &id1128
+      - 논조
+    lexical_identity: ko-lex-35659
+    lexical_category: free-lemma
+  ko-nikl-35659-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35659
+    source_parent: ko-nikl-35659
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A certain trend or tendency in a piece of rhetorical writing or critical essay. '
+    source_korean: 논설이나 평론의 일정한 흐름이나 경향.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40818'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40818
+      pronunciations: *id1128
+    lexical_identity: ko-lex-35659
+    lexical_category: free-lemma
+  ko-nikl-35663-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35663
+    source_parent: ko-nikl-35663
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The purpose or intention of a statement or a piece of writing, which becomes the grounds
+      for a certain discussion.
+    source_korean: 어떤 문제에 대해 논하는 말이나 글에서 근본이 되는 목적이나 뜻.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '40809'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=40809
+      pronunciations:
+      - 논지
+    lexical_identity: ko-lex-35663
+    lexical_category: free-lemma
+  ko-nikl-37318-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37318
+    source_parent: ko-nikl-37318
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A short sentence that presents logical judgment and claims about a certain problem. '
+    source_korean: 어떤 문제에 대한 논리적 판단 내용과 주장을 나타낸 짧은 문장.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '55438'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=55438
+      pronunciations:
+      - 명ː제
+    lexical_identity: ko-lex-37318
+    lexical_category: free-lemma
+  ko-nikl-38391-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38391
+    source_parent: ko-nikl-38391
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The semantic relationship between adjacent sentences.
+    source_korean: 서로 이어져 있는 문장의 앞뒤 의미 관계.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '55910'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=55910
+      pronunciations:
+      - 문맥
+    lexical_identity: ko-lex-38391
+    lexical_category: free-lemma
+  ko-nikl-39709-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39709
+    source_parent: ko-nikl-39709
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of expression that implies the opposite of its original meaning so as to deliver
+      a speech or writing more effectively. '
+    source_korean: 말이나 글을 효과적으로 표현하기 위하여 본래의 의도와 반대로 표현하는 것.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57160'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57160
+      pronunciations:
+      - 바ː너
+    lexical_identity: ko-lex-39709
+    lexical_category: free-lemma
+  ko-nikl-39735-s003:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39735
+    source_parent: ko-nikl-39735
+    source_position: 3
+    source_band: unbanded
+    reference_level: null
+    source_english: A twist of the flow or situation of an incident, matter, etc.
+    source_korean: 사건, 일 등의 흐름이나 형세가 뒤바뀜.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57683'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57683
+      pronunciations:
+      - 반ː전
+    lexical_identity: ko-lex-39735
+    lexical_category: free-lemma
+  ko-nikl-39751-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39751
+    source_parent: ko-nikl-39751
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of refuting that a fact or argument is wrong through counterevidence, or such
+      an evidence.
+    source_korean: 반대되는 근거를 들어 어떤 사실이나 주장이 옳지 않음을 증명함. 또는 그런 증거.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57665'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57665
+      pronunciations: &id1129
+      - 반ː증
+    source_correction:
+      source_korean: 반대되는 근거를 들어 어떤 사실이나 주장이 옳지 않음을 증명함. 또는 그런 증거.
+      source_english: The act of refuting that a fact or argument is wrong through counterevidence, or
+        such an evidence.
+      authored_interpretation: disproof by contrary evidence; such counterevidence
+      rationale: 'Korean proves that a claim is not correct by contrary evidence. English refuting that
+        it is wrong reverses that direction. Keep the disproving act and evidence alternatives without
+        that reversal.
+
+        '
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-39751
+    lexical_category: free-lemma
+  ko-nikl-39751-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39751
+    source_parent: ko-nikl-39751
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A fact that seems to contradict a certain fact, but instead proves that it is right.
+    source_korean: 어떤 사실과 모순되는 것 같지만, 오히려 그것을 증명한다고 볼 수 있는 사실.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57665'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57665
+      pronunciations: *id1129
+    source_correction:
+      source_korean: 어떤 사실과 모순되는 것 같지만, 오히려 그것을 증명한다고 볼 수 있는 사실.
+      source_english: A fact that seems to contradict a certain fact, but instead proves that it is right.
+      authored_interpretation: an apparently contrary fact that may instead confirm a claim
+      rationale: 'Korean 볼 수 있는 frames apparent contradiction as something that can be regarded as confirmation.
+        Retain that interpretive qualification rather than asserting every apparently contrary fact proves
+        a claim. This original second position is not erased to enforce a one-gloss rule.
+
+        '
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-39751
+    lexical_category: free-lemma
+  ko-nikl-41903-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41903
+    source_parent: ko-nikl-41903
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The attitude of taking care of things by one's own will.
+    source_korean: 어떤 일을 하는 데 스스로의 의지에 따라 처리하는 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '77103'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77103
+      pronunciations:
+      - 주체썽
+    lexical_identity: ko-lex-41903
+    lexical_category: free-lemma
+  ko-nikl-42624-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42624
+    source_parent: ko-nikl-42624
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'One''s thought or theory that one has argued from a while ago. '
+    source_korean: 전부터 늘 주장해 온 생각이나 이론.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76728'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76728
+      pronunciations:
+      - 지론
+    lexical_identity: ko-lex-42624
+    lexical_category: free-lemma
+  ko-nikl-43125-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43125
+    source_parent: ko-nikl-43125
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The most important and fundamental part of an object or phenomenon. '
+    source_korean: 사물이나 현상의 가장 중요하고 근본적인 부분.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76822'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76822
+      pronunciations:
+      - 진수
+    lexical_identity: ko-lex-43125
+    lexical_category: free-lemma
+  ko-nikl-45478-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45478
+    source_parent: ko-nikl-45478
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of judging what is right or wrong after thinking about something, with a consideration
+      of some factors. '
+    source_korean: 미루어 생각하여 옳고 그름을 따짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '80372'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80372
+      pronunciations:
+      - 추론
+    lexical_identity: ko-lex-45478
+    lexical_category: free-lemma
+  ko-nikl-46152-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46152
+    source_parent: ko-nikl-46152
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A state in which one object has two opposing qualities.  '
+    source_korean: 한 가지 사물에 속하여 있으며 서로 맞서는 두 가지의 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '90561'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90561
+      pronunciations:
+      - 양ː면썽
+    lexical_identity: ko-lex-46152
+    lexical_category: free-lemma
+  ko-nikl-46443-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46443
+    source_parent: ko-nikl-46443
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A set of rules in speech. '
+    source_korean: 말의 일정한 법칙.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '26870'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=26870
+      pronunciations:
+      - 어ː뻡
+    lexical_identity: ko-lex-46443
+    lexical_category: free-lemma
+  ko-nikl-46587-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46587
+    source_parent: ko-nikl-46587
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A misunderstanding or mistake that occurs due to improper use of words. '
+    source_korean: 말을 적절하지 않게 써서 일어나는 오해나 잘못.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67104'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67104
+      pronunciations: &id1130
+      - 어ː폐
+      - 어ː페
+    lexical_identity: ko-lex-46587
+    lexical_category: free-lemma
+  ko-nikl-46587-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46587
+    source_parent: ko-nikl-46587
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A remark prone to misunderstanding. '
+    source_korean: 오해를 받기 쉬운 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67104'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67104
+      pronunciations: *id1130
+    lexical_identity: ko-lex-46587
+    lexical_category: free-lemma
+  ko-nikl-47153-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47153
+    source_parent: ko-nikl-47153
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A feeling or mood that lasts even after a certain event ends. '
+    source_korean: 어떤 일이 끝난 다음에도 남아 있는 느낌이나 분위기.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67765'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67765
+      pronunciations:
+      - 여운
+    lexical_identity: ko-lex-47153
+    lexical_category: free-lemma
+  ko-nikl-47262-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47262
+    source_parent: ko-nikl-47262
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of stating one's idea strongly, or such words.
+    source_korean: 자신의 생각을 힘주어 말함. 또는 그런 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67363'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67363
+      pronunciations:
+      - 역썰
+    lexical_identity: ko-lex-47262
+    lexical_category: free-lemma
+  ko-nikl-47263-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47263
+    source_parent: ko-nikl-47263
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: A theory or statement contrary to a certain idea or argument.
+    source_korean: 어떤 사상이나 주장에 반대되는 이론이나 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67364'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67364
+      pronunciations: &id1131
+      - 역썰
+    lexical_identity: ko-lex-47263
+    lexical_category: free-lemma
+  ko-nikl-47263-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47263
+    source_parent: ko-nikl-47263
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A seemingly incoherent statement that represents truth in substance. '
+    source_korean: 표면적으로는 앞뒤가 맞지 않지만, 실질적인 내용은 진리를 나타내고 있는 말.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67364'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67364
+      pronunciations: *id1131
+    lexical_identity: ko-lex-47263
+    lexical_category: free-lemma
+  ko-nikl-49061-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49061
+    source_parent: ko-nikl-49061
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The important parts that are key to a remark or writing. '
+    source_korean: 말이나 글에서 핵심이 되는 중요한 내용.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '68889'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68889
+      pronunciations:
+      - 요지
+    lexical_identity: ko-lex-49061
+    lexical_category: free-lemma
+  ko-nikl-49360-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49360
+    source_parent: ko-nikl-49360
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The quality of happening by chance without a proper cause. '
+    source_korean: 어떤 일이 마땅한 이유 없이 어쩌다가 일어나는 성질.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '69344'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=69344
+      pronunciations:
+      - 우연썽
+    lexical_identity: ko-lex-49360
+    lexical_category: free-lemma
+  ko-nikl-50562-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50562
+    source_parent: ko-nikl-50562
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The overall summary of an incident or accident.
+    source_korean: 일이나 사건의 전체적인 줄거리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71075'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71075
+      pronunciations:
+      - 윤곽
+    source_correction:
+      source_korean: 일이나 사건의 전체적인 줄거리.
+      source_english: The overall summary of an incident or accident.
+      authored_interpretation: the overall outline of a matter or event
+      rationale: 'Korean includes a general matter or event. English incident or accident unnecessarily
+        narrows the range; a work proposal can have an outline without being an accident.
+
+        '
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-50562
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

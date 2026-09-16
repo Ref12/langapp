@@ -1,0 +1,127 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: source-backed selections integrated; linguistic review pending
+scope: >
+  Useful language for evaluating claims, describing hidden intent, comparing
+  stated and implied meaning, and discussing expressive or argumentative
+  writing. Bounded communicative questions guided source inspection. This
+  is not an alphabetical, source-band, first-sense, or numerical-quota slice.
+placement_policy: >
+  Routine vocabulary discussion, lingering feelings, rough supposition,
+  problem-solving clues, news reversals, and outlining work stay at their
+  actual earlier task levels. Evidence and claims support levels 19-24;
+  implication, register, rhetorical contrast, and precise conceptual
+  distinctions support 25-29. No arbitrary new level-30 pile is created.
+identity_policy: >
+  Five fragments add meanings to existing 단서, 함축, 검증, 근거, and 문법
+  without new free lemmas. New identities are explicit source-backed
+  candidates, not verified lexicographic units. Similar English does not
+  merge 신뢰성/신빙성 or 정설/통설/학설. The two 역설 parents retain their
+  distinct forceful-assertion and counterargument/paradox meanings.
+  고정 관념 remains an actual source nominal compound with its original
+  space and empty POS, not an arbitrary phrase promoted to a headword.
+composition_cautions:
+  - Future 실상/내심 adverb counterparts need explicit identity-family composition, not a second automatic free identity.
+  - The near-overlapping 실상 parent 03446 is not selected merely to add a dictionary entry.
+  - Already-selected bound 여지47192-s001 is not duplicated.
+  - Possession 소지00918 and small-finger/toe 소지00917 do not supply the desired potential/ground meaning.
+  - Physical 윤곽s002, 반전s001/s002, acoustic 여운s002, and purification 정수14570 are not selected here.
+  - Source concepts about correctness, necessity, or universality are not endorsements of particular claims or theories.
+source_correction_requests:
+  ko-nikl-39751-s001:
+    source_korean: 반대되는 근거를 들어 어떤 사실이나 주장이 옳지 않음을 증명함. 또는 그런 증거.
+    source_english: The act of refuting that a fact or argument is wrong through counterevidence, or such an evidence.
+    authored_interpretation: disproof by contrary evidence; such counterevidence
+    rationale: >
+      Korean proves that a claim is not correct by contrary evidence.
+      English refuting that it is wrong reverses that direction. Keep
+      the disproving act and evidence alternatives without that reversal.
+  ko-nikl-39751-s002:
+    source_korean: 어떤 사실과 모순되는 것 같지만, 오히려 그것을 증명한다고 볼 수 있는 사실.
+    source_english: A fact that seems to contradict a certain fact, but instead proves that it is right.
+    authored_interpretation: an apparently contrary fact that may instead confirm a claim
+    rationale: >
+      Korean 볼 수 있는 frames apparent contradiction as something that
+      can be regarded as confirmation. Retain that interpretive qualification
+      rather than asserting every apparently contrary fact proves a claim.
+      This original second position is not erased to enforce a one-gloss rule.
+  ko-nikl-50562-s001:
+    source_korean: 일이나 사건의 전체적인 줄거리.
+    source_english: The overall summary of an incident or accident.
+    authored_interpretation: the overall outline of a matter or event
+    rationale: >
+      Korean includes a general matter or event. English incident or accident
+      unnecessarily narrows the range; a work proposal can have an outline
+      without being an accident.
+source_support_requests:
+  - ko-nikl-00300
+  - ko-nikl-00609
+  - ko-nikl-01073
+  - ko-nikl-01731
+  - ko-nikl-02097
+  - ko-nikl-03166
+  - ko-nikl-03212
+  - ko-nikl-05896
+  - ko-nikl-09272
+  - ko-nikl-10729
+  - ko-nikl-13434
+  - ko-nikl-14435
+  - ko-nikl-14563
+  - ko-nikl-14571
+  - ko-nikl-14756
+  - ko-nikl-15651
+  - ko-nikl-16821
+  - ko-nikl-18109
+  - ko-nikl-21728
+  - ko-nikl-21787
+  - ko-nikl-23711
+  - ko-nikl-24025
+  - ko-nikl-24396
+  - ko-nikl-24764
+  - ko-nikl-27099
+  - ko-nikl-29280
+  - ko-nikl-30368
+  - ko-nikl-31878
+  - ko-nikl-33066
+  - ko-nikl-35614
+  - ko-nikl-35641
+  - ko-nikl-35659
+  - ko-nikl-35663
+  - ko-nikl-37318
+  - ko-nikl-38391
+  - ko-nikl-39709
+  - ko-nikl-39735
+  - ko-nikl-39751
+  - ko-nikl-41903
+  - ko-nikl-42624
+  - ko-nikl-43125
+  - ko-nikl-45478
+  - ko-nikl-46152
+  - ko-nikl-46443
+  - ko-nikl-46587
+  - ko-nikl-47153
+  - ko-nikl-47262
+  - ko-nikl-47263
+  - ko-nikl-49061
+  - ko-nikl-49360
+  - ko-nikl-50562
+unfilled_source_gaps:
+  words: [비약, 속내, 진정성]
+  status: No exact or space-normalized match found in the pinned January 2024 CSV.
+reading_policy: >
+  Seventy selected senses use official citation text, including 자율성
+  자율썽 after complete-definition comparison with official 73141.
+  뉘앙스 and 고정 관념 have individually authored broad-Hangul proposals,
+  explicitly unreviewed rather than dictionary-verified. Their official
+  complete-definition matches lack pronunciation text; spelling and sound
+  are not treated as interchangeable by default. Both held source senses
+  48419-s001 and 22209-s001 remain excluded without further research.
+reading_review:
+  official_text_senses: 70
+  authored_reading_senses: 2
+  remaining_selected_gaps: []
+limitations: >
+  These lexical concepts do not certify sound reasoning, medical findings,
+  legal justification, factual reliability, numerical probability, or mastery
+  of rhetoric. Register, usage, source interpretations, and lexical-family
+  judgments remain unreviewed. No source examples or media are reproduced.

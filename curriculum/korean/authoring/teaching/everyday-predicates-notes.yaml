@@ -1,0 +1,52 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: source-backed selections integrated; linguistic review pending
+purpose: >
+  Resolve the ten specifically named ordinary-predicate gaps reported in
+  predicate-notes.yaml. Each exists as an actual unbanded January 2024 source
+  parent with one original bilingual sense. None is assembled from a noun,
+  suffix, spelling pattern, or English antonym.
+selection_policy: >
+  Practical needs determine placement: convenience in services, confirming
+  details, study and work attitudes, clear instructions, short responses,
+  comparing advantages, fair cooperation, and evidence-based judgment.
+  No source-band, first-sense, alphabetical, or numerical-capacity bucket
+  selects or schedules these words.
+identity_policy: >
+  These are source-backed provisional free predicate candidates. Existing
+  nouns or adverbs do not automatically license an unattested hada form,
+  and a shared derivational ending alone does not establish an identity
+  merger. Their lexical-family relationships remain reviewable.
+homograph_boundary:
+  selected: ko-nikl-50214-s001
+  target: 유리하다
+  source_korean: 이익이 있다.
+  source_english: Having an advantage.
+  rejected_unrelated_parent: ko-nikl-50213
+  rejected_korean: 따로 떨어지다.
+  rejected_english: To separate.
+  rationale: The beneficial adjective is not the separation verb; do not take the first same-spelling row.
+source_support_requests:
+  - ko-nikl-00239
+  - ko-nikl-07156
+  - ko-nikl-14754
+  - ko-nikl-16949
+  - ko-nikl-22427
+  - ko-nikl-22737
+  - ko-nikl-29964
+  - ko-nikl-46782
+  - ko-nikl-50214
+  - ko-nikl-51776
+reading_policy: >
+  All ten selected predicates now have official-text citation readings
+  after exact source-parent recovery. None required a new crosswalk or
+  authored pronunciation decision. Spelling alone never supplies pronunciation.
+reading_review:
+  official_text_senses: 10
+  authored_reading_senses: 0
+  remaining_selected_gaps: []
+usage_review:
+  - A short 대꾸 can be curt in context; the source does not make every response insolent or polite.
+  - Strictness, fairness, and conscientious conduct require situated interpersonal interpretation.
+  - 판단하다 describes forming a judgment; 확인하다 describes checking or acknowledging, not infallibility.
+  - Convenience and advantage depend on circumstances; these labels imply no legal, clinical, or accessibility guarantee.
