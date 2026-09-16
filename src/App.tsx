@@ -13,7 +13,7 @@ import { LessonDetail, Lessons } from './pages/Lessons'
 import { Practice, PracticeSessionPage } from './pages/Practice'
 import { Dictionary } from './pages/Dictionary'
 import { Settings } from './pages/Settings'
-import { CurriculumSources, LevelDetail } from './pages/Curriculum'
+import { LevelDetail } from './pages/Curriculum'
 import './App.css'
 
 const navigation = [
@@ -42,7 +42,6 @@ function CurrentPage({ route, ...props }: PageProps & { route: string }) {
     const level = curriculumLevels.find(item => item.id === id)
     return level ? <LevelDetail {...props} level={level} /> : <NotFound />
   }
-  if (page === 'curriculum-sources') return <CurriculumSources />
   if (page === 'lesson') {
     const lesson = lessons.find(item => item.id === id)
     return lesson ? <LessonDetail {...props} lesson={lesson} /> : <NotFound />
@@ -83,7 +82,7 @@ function WorkspaceApp() {
     }
   }, [])
   const page = route.split('/')[0]
-  const section = page === 'reader' ? 'library' : ['lesson', 'level', 'curriculum-sources'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page
+  const section = page === 'reader' ? 'library' : ['lesson', 'level'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
   useEffect(() => {
     document.title = `${label} / LinguaWeave`

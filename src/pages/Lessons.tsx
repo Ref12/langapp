@@ -47,6 +47,5 @@ export function LessonDetail({ lesson, workspace, busy, run }: PageProps & { les
       <button className="button primary" disabled={busy} onClick={() => void run(async () => navigate(`practice/${await startPractice('lesson', lesson.id)}`))}>
         {active ? 'Resume lesson practice' : completed !== undefined ? 'Practice this lesson again' : 'Start lesson practice'} <ArrowRight size={16} /></button>
     </section>
-    <p className="page-footnote">Source meanings, pinyin, and IDs are preserved from the Chinese curriculum. <a href="#curriculum-sources">Attribution and licenses</a>.</p>
   </>
 }

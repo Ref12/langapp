@@ -102,10 +102,9 @@ repair generated app JSON or copied notices in isolation. The app generator
 operates offline; its check mode and source-integrity tests reject stale output.
 Production builds check the projection before bundling.
 
-The app's **Curriculum sources** page, also linked from Settings and Dictionary,
-attributes Complete HSK Vocabulary, Pleco/elkmovie HSK30, CC-CEDICT, and original
-AI-assisted teaching contributions. Exact source notices and CC-BY-SA/MIT license
-texts are generated into `public/curriculum/chinese` and shipped with the app.
+The learning interface has no curriculum-sources page or attribution navigation.
+Exact source notices and CC-BY-SA/MIT license texts are generated into
+`public/curriculum/chinese` and shipped with the app.
 Adapted dictionary material retains its CC-BY-SA obligations; MIT wrapper notices
 do not supersede them. See `curriculum/chinese/sources.yaml` for pinned versions
 and limitations.

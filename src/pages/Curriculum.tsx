@@ -6,7 +6,7 @@ import { PageHeading, type PageProps } from '../components/shared'
 export function CurriculumMap({ workspace }: PageProps) {
   const next = nextCurriculumLesson(workspace)
   return <>
-    <PageHeading eyebrow="A REAL CURRICULUM. YOUR OWN PACE." title="Your Mandarin path." action={<a href="#curriculum-sources" className="button secondary">Curriculum sources</a>}>
+    <PageHeading eyebrow="A REAL CURRICULUM. YOUR OWN PACE." title="Your Mandarin path.">
       Six phases, thirty levels. Begin with levels 1-4: 205 vocabulary senses, 25 grammar references, and small reading-practice lessons.
     </PageHeading>
     <section className="panel feature-panel">
@@ -75,30 +75,4 @@ export function GrammarReference({ grammar }: { grammar: CurriculumGrammar }) {
     <p className="small muted">Reference examples include English support and may use words beyond this lesson. They do not introduce extra learning items. S, N, V, and similar letters are pattern placeholders, not Mandarin to pronounce.</p>
     <p className="small muted">Construction ID: {grammar.id} / Original curriculum explanation</p>
   </article>
-}
-
-export function CurriculumSources() {
-  return <>
-    <a className="back-link" href="#lessons"><ArrowLeft size={16} /> Mandarin path</a>
-    <PageHeading eyebrow="CONTENT AND ATTRIBUTION" title="Mandarin curriculum sources.">The checked-in Practical Mandarin teaching program, not an official HSK exam course.</PageHeading>
-    <section className="panel"><h2>What is included</h2><p>The course map preserves six authored phases and thirty numbered levels. Beginner lessons use the original 205 sense IDs, 25 construction IDs, introduction order, and earlier-review references from levels 1-4.</p>
-      <p>Modules are divided into small reading-practice parts for this app. The source meanings and sense-specific pinyin are preserved. Grammar explanations and bilingual examples come from the curriculum; no vocabulary examples, grammatical categories, or pronunciation assessments are invented.</p>
-      <p>HSK identifiers retain source provenance from the 2021 educational framework. They do not determine teaching order or claim coverage of the 2025/2026 examination syllabus. This AI-assisted curriculum still requires human linguistic and teaching review.</p>
-    </section>
-    <section className="panel"><h2>Dictionary attribution</h2><p>Derived from <a href="https://github.com/drkameleon/complete-hsk-vocabulary" className="text-link">Complete HSK Vocabulary</a> by Yanis Zafiropulos, the Pleco/elkmovie HSK30 wordlist, and <a href="https://www.mdbg.net/chinese/dictionary?page=cedict" className="text-link">CC-CEDICT contributors</a>, continuing the CEDICT project initiated by Paul Denisowski.</p>
-      <p>Adapted dictionary material is distributed under CC-BY-SA-4.0, with historic CC-BY-SA-3.0 provenance and upstream MIT notices retained. The pinned dictionary revision, normalization changes, and known limitations are recorded in the source notices. Original AI-assisted Chinese teaching contributions for this repository (2026) are offered under CC-BY-SA-4.0 to the extent rights exist.</p>
-      <div className="button-row">
-        <a className="text-link" href="./curriculum/chinese/licenses/CC-BY-SA-4.0.txt">CC-BY-SA-4.0</a>
-        <a className="text-link" href="./curriculum/chinese/licenses/CC-BY-SA-3.0.txt">CC-BY-SA-3.0</a>
-        <a className="text-link" href="./curriculum/chinese/licenses/complete-hsk-MIT.txt">Complete HSK MIT notice</a>
-        <a className="text-link" href="./curriculum/chinese/licenses/hsk30-MIT.txt">Pleco HSK30 MIT notice</a>
-      </div>
-    </section>
-    <section className="panel"><h2>Original source documentation</h2><div className="button-row">
-      <a className="button secondary" href="./curriculum/chinese/README.md" download>Chinese inventory README</a>
-      <a className="button secondary" href="./curriculum/chinese/sources.yaml" download>Source metadata</a>
-      <a className="button secondary" href="./curriculum/chinese/teaching/README.md" download>Teaching program README</a>
-      <a className="button secondary" href="./curriculum/chinese/teaching/beginner/README.md" download>Beginner guidance</a>
-    </div></section>
-  </>
 }

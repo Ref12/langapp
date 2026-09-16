@@ -18,6 +18,25 @@ async function go(route: string) {
 }
 
 describe('curriculum experience', () => {
+  it('removes the sources page and all links to it from the learning interface', async () => {
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    for (const [route, title] of [
+      ['lessons', 'Your Mandarin path.'],
+      [`lesson/${curriculumLessons[0].id}`, curriculumLessons[0].title],
+      ['dictionary', 'Your learning set.'],
+      ['settings', 'Your workspace.'],
+    ]) {
+      await go(route)
+      await screen.findByRole('heading', { name: title })
+      expect(document.querySelector('a[href="#curriculum-sources"]')).toBeNull()
+      expect(screen.queryByRole('link', { name: 'Curriculum sources' })).not.toBeInTheDocument()
+    }
+    await go('curriculum-sources')
+    await screen.findByRole('heading', { name: 'This page is not available' })
+    expect(await db.words.count()).toBe(0)
+  })
+
   it('shows all thirty levels and previews later goals without starting or awarding anything', async () => {
     const user = userEvent.setup()
     render(<App />)

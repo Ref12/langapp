@@ -62,7 +62,7 @@ export function Settings({ workspace, busy, run }: PageProps) {
     </section>
     {notice && <p className="notice success" role="status">{notice}</p>}
     <section className="panel"><h2>About this checkpoint</h2><p>The real 30-level Mandarin course map, with beginner levels 1-4 available for small lessons, grammar reference, and reading-recognition practice. The original stories remain available. No communicative checkpoint assessment, live AI, pronunciation scoring, handwriting assessment, or official HSK certification is connected.</p>
-      <div className="button-row"><a href="#curriculum-sources" className="button secondary">Curriculum sources and licenses</a><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
+      <div className="button-row"><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
     </section>
   </>
 }
