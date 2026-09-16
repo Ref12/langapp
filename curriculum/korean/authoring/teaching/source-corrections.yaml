@@ -5,6 +5,15 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-30276-s001:
+    source_korean: 현실적이지 않고 추상적인 경향을 가지는 것.
+    source_english: Work that tends to be abstract or surreal, such as a conceptual poem or work of philosophy.
+    authored_interpretation: something abstract rather than grounded in reality
+    rationale: >
+      The Korean nominal definition describes a general abstract/non-realistic
+      tendency, not only a work of art, poem or philosophy. Preserve the
+      general scope without importing the English artwork examples or
+      equating non-realistic with a particular surrealist genre.
   ko-nikl-07734-s001:
     source_korean: 마음에 없으면서 겉으로만 하는 말.
     source_english: 'An insincere word that will not be put into action. '

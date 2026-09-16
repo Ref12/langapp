@@ -767,6 +767,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "analysis-notes.yaml",
             "stance-notes.yaml",
             "rapport-notes.yaml",
+            "evaluation-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1405,7 +1406,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
     def test_recovered_source_parents_keep_original_unselected_positions(self):
         parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
         authoring = self.root / "authoring" / "teaching"
-        for name in ("natural-support", "quality-support", "analysis", "stance", "rapport"):
+        for name in ("natural-support", "quality-support", "analysis", "stance", "rapport", "evaluation"):
             notes = load_yaml(authoring / f"{name}-notes.yaml")
             for parent in notes["source_support_requests"]:
                 self.assertEqual(parents[parent]["source_band"], "unbanded")
@@ -1640,6 +1641,77 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(len(groups["ko-lex-04883"]["members"]), 2)
         self.assertEqual(len(groups["ko-lex-11255"]["members"]), 3)
         self.assertEqual(len(groups["ko-lex-39691"]["members"]), 2)
+
+    def test_evaluation_mental_state_and_examination_remain_distinct_homographs(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        mental, examination = "ko-nikl-03625-s001", "ko-nikl-03628-s001"
+        self.assertEqual(words[mental]["ch"], words[examination]["ch"])
+        self.assertNotEqual(identities[mental], identities[examination])
+        self.assertEqual(
+            self.references.provenance[mental]["reading"]["official_entry_id"], "66024",
+        )
+        self.assertEqual(
+            self.references.provenance[examination]["reading"]["official_entry_id"], "16442",
+        )
+        for position in ("002", "003"):
+            self.assertEqual(identities[mental], identities[f"ko-nikl-03625-s{position}"])
+        self.assertIn("serenity", words["ko-nikl-22892-s001"]["ds"])
+        self.assertIn("declaration", words["ko-nikl-44509-s001"]["ds"])
+
+    def test_evaluation_feeling_subtype_does_not_absorb_expert_appraisal(self):
+        identities = self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-26576-s001"], identities["ko-nikl-26579-s001"])
+        self.assertNotEqual(identities["ko-nikl-26579-s001"], identities["ko-nikl-26581-s001"])
+        notes = load_yaml(self.root / "authoring" / "teaching" / "evaluation-notes.yaml")
+        evidence = notes["family_adjudications"]["feelings_and_appraisal"]["official_evidence"]
+        self.assertEqual(
+            [evidence[parent]["origin"] for parent in ("ko-nikl-26576", "ko-nikl-26579", "ko-nikl-26581")],
+            ["感情", "憾情", "鑑定"],
+        )
+        for parent, value in evidence.items():
+            self.assertEqual(
+                self.references.provenance[f"{parent}-s001"]["reading"]["official_entry_id"],
+                value["official_entry_id"],
+            )
+        self.assertIn("do not award any of the four mastery stages", " ".join(notes["usage_limits"]))
+
+    def test_evaluation_modifiers_preserve_pos_and_the_original_domain(self):
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        for noun, modifier in (("26424", "26425"), ("30276", "30277")):
+            self.assertEqual(
+                self.references.lexical_identity[f"ko-nikl-{noun}-s001"],
+                self.references.lexical_identity[f"ko-nikl-{modifier}-s001"],
+            )
+            self.assertEqual(parents[f"ko-nikl-{noun}"]["source_part_of_speech"], "명사")
+            self.assertEqual(parents[f"ko-nikl-{modifier}"]["source_part_of_speech"], "관형사")
+        noun = self.references.provenance["ko-nikl-30276-s001"]
+        self.assertIn("conceptual poem", noun["source_english"])
+        self.assertFalse(noun["source_korean"].startswith("철학에서"))
+        self.assertEqual(
+            self.references.vocabulary["ko-nikl-30276-s001"]["ds"],
+            "something abstract rather than grounded in reality",
+        )
+        for parent, official in (("30276", "22435"), ("30277", "22454")):
+            self.assertEqual(
+                self.references.provenance[f"ko-nikl-{parent}-s001"]["reading"]["official_entry_id"],
+                official,
+            )
+
+    def test_evaluation_core_and_technical_meanings_keep_their_original_route_scope(self):
+        authoring = self.root / "authoring" / "teaching"
+        placements, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        for item, level in (
+            ("ko-nikl-00006-s001", 30), ("ko-nikl-00006-s002", "technical"),
+            ("ko-nikl-35564-s001", "technical"), ("ko-nikl-35564-s002", 15),
+        ):
+            self.assertEqual([row["level"] for row in placements if row["id"] == item], [level])
+        for item in ("ko-nikl-35564-s001", "ko-nikl-35564-s002"):
+            self.assertEqual(self.references.provenance[item]["reading"]["method"], "authored-broad-hangul")
+            self.assertEqual(self.references.provenance[item]["reading"]["review_status"], "unreviewed")
+        self.assertEqual(len(groups["ko-lex-37406"]["members"]), 5)
+        self.assertEqual(len(groups["ko-lex-21675"]["members"]), 2)
+        self.assertIn("rough", self.references.vocabulary["ko-nikl-21675-s001"]["ds"])
+        self.assertIn("statistics", self.references.vocabulary["ko-nikl-21675-s002"]["ds"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

@@ -52,6 +52,8 @@ units:
   - {id: ko-nikl-24028-s001, ch: 학술, pr: 학쑬, ds: scholarly knowledge and techniques}
   - {id: ko-nikl-35631-s001, ch: 논문, pr: 논문, ds: an academic paper reporting research}
   - {id: ko-nikl-24025-s001, ch: 학설, pr: 학썰, ds: a theory advanced on an academic issue}
+  - {id: ko-nikl-02101-s001, ch: 숙달, pr: 숙딸, ds: familiarity and skillful proficiency}
+  - {id: ko-nikl-44931-s001, ch: 체득, pr: 체득, ds: learning through firsthand experience}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-02051-s001, ch: 수학, pr: 수ː학, ds: mathematics}
@@ -75,15 +77,20 @@ units:
   - {id: ko-nikl-41163-s001, ch: 조정, pr: 조정, ds: adjustment to fit a standard or situation}
   - {id: ko-nikl-03579-s001, ch: 실현성, pr: 실현썽, ds: feasibility; possibility of actual realization}
   - {id: ko-nikl-25291-s001, ch: 현실성, pr: 현ː실썽, ds: realistic character; actuality or realizability}
+  - {id: ko-nikl-02111-s001, ch: 숙련, pr: 숭년, ds: proficiency acquired in a skill or task}
+  - {id: ko-nikl-13806-s001, ch: 전문성, pr: 전문썽, ds: expertise in a particular field}
+  - {id: ko-nikl-40349-s002, ch: 방법론, pr: 방범논, ds: the reasoning behind methods or procedures}
+  - {id: ko-nikl-45262-s001, ch: 총괄, pr: 총ː괄, ds: gathering separate things into a combined whole}
+  - {id: ko-nikl-47293-s001, ch: 역점, pr: 역쩜, ds: the central focus receiving the most attention and effort}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-49704-s001, ch: 원료, pr: 월료, ds: input material for making a product}
   - {id: ko-nikl-30248-s002, ch: 관계, pr: 관계 / 관게, ds: connection with a field; that field}
   - {id: ko-nikl-48191-s002, ch: 오르다, pr: 오르다, ds: to attain a position or status}
   - {id: ko-nikl-34882-s003, ch: 내려오다, pr: 내려오다, ds: to move to a lower position or rank}
   - {id: ko-nikl-18211-s014, ch: 돌다, pr: 돌ː다, ds: to rotate through workplaces or positions}
   - {id: ko-nikl-18224-s012, ch: 돌리다, pr: 돌리다, ds: to move people between workplaces or positions}
   - {id: ko-nikl-11134-s001, ch: 인맥, pr: 인맥, ds: personal connections in social or professional fields}
+  - {id: ko-nikl-13755-s002, ch: 전략, pr: 절ː략, ds: 'strategy for political, economic, or other social activity'}
   - {id: ko-nikl-35417-s002, ch: 노동자, pr: 노동자, ds: a manual laborer}
   review_grammar:
   - {id: ko-topik4-g032, ch: V-도록 하다, ds: arrange an action or undertake to ensure it}
@@ -96,12 +103,12 @@ units:
   - {id: ko-nikl-02259-s002, ch: 순환, pr: 순환, ds: the release and circulation of money in a market}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-15906-s002, ch: 늘어나다, pr: 느러나다, ds: to become gradually better off financially}
   - {id: ko-nikl-18211-s004, ch: 돌다, pr: 돌ː다, ds: for money or goods to circulate}
   - {id: ko-nikl-42586-s005, ch: 지다, pr: 지다, ds: to owe money or feel indebted for a favor}
   - {id: ko-nikl-34017-s014, ch: 끊다, pr: 끈타, ds: to settle a transaction or calculation}
   - {id: ko-nikl-33066-s002, ch: 기조, pr: 기조, ds: the basic trend of market prices or economic conditions}
   - {id: ko-nikl-30113-s001, ch: 과도하다, pr: 과ː도하다, ds: to be excessive; to go beyond a reasonable degree}
+  - {id: ko-nikl-08472-s001, ch: 사유, pr: 사유, ds: 'private ownership, or a privately owned possession'}
   - {id: ko-nikl-06866-s001, ch: 분배, pr: 분배, ds: distribution into shares}
   - {id: ko-nikl-18118-s002, ch: 독점, pr: 독쩜, ds: monopoly; control of production and a market}
   review_grammar:
@@ -131,16 +138,40 @@ units:
   - {id: ko-nikl-13031-s001, ch: 재구성, pr: 재ː구성, ds: reorganizing something into a new structure}
   - {id: ko-nikl-48188-s002, ch: 오류, pr: 오ː류, ds: a fault or mistake}
   - {id: ko-nikl-17193-s001, ch: 대의, pr: 대ː의 / 대ː이, ds: the gist or broad meaning of speech or writing}
+  - {id: ko-nikl-10076-s001, ch: 선언문, pr: 서넌문, ds: a written public declaration of a position or policy}
+  - {id: ko-nikl-26946-s001, ch: 개관, pr: 개ː관, ds: a broad overview of the whole content}
+  - {id: ko-nikl-26951-s001, ch: 개괄, pr: 개ː괄, ds: drawing out a broad outline of important content}
+  - {id: ko-nikl-29504-s002, ch: 골격, pr: 골격, ds: the basic framework of an undertaking or piece of writing}
+  - {id: ko-nikl-29546-s001, ch: 골자, pr: 골짜, ds: the central point or substance of words or a matter}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-44010-s001, ch: 찬반, pr: 찬ː반, ds: support and opposition; views for and against}
   - {id: ko-nikl-52030-s001, ch: 회담, pr: 회ː담 / 훼ː담, ds: talks between parties concerned with a matter}
   - {id: ko-nikl-16531-s001, ch: 단호하다, pr: 단ː호하다, ds: to be firm and clear in resolve or stance}
   - {id: ko-nikl-16428-s001, ch: 단순화, pr: 단순화, ds: simplification; making something less complicated}
+  - {id: ko-nikl-41801-s001, ch: 주요, pr: 주요, ds: being principal or important}
   - {id: ko-nikl-15352-s001, ch: 누락, pr: 누ː락, ds: omission from a list or record}
   - {id: ko-nikl-19100-s002, ch: 드러내다, pr: 드러내다, ds: to reveal a hidden or unknown fact}
   - {id: ko-nikl-39401-s002, ch: 바로, pr: 바로, ds: truthfully; exactly as the facts are}
   - {id: ko-nikl-34813-s001, ch: 낱낱이, pr: 난ː나치, ds: 'every single one, without omission'}
+  review_grammar:
+  - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
+  - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
+  - {id: ko-topik5-g021, ch: V/A-길래, ds: explain your reaction to an observed circumstance}
+- id: level-24-communication-02
+  title: Communication and information - 2
+  outcome: Repair ambiguity and relay information with clear attribution.
+  vocabulary:
+  - {id: ko-nikl-42269-s001, ch: 중점, pr: 중ː쩜, ds: the point of greatest importance or emphasis}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-13031-s001, ch: 재구성, pr: 재ː구성, ds: reorganizing something into a new structure}
+  - {id: ko-nikl-48188-s002, ch: 오류, pr: 오ː류, ds: a fault or mistake}
+  - {id: ko-nikl-17193-s001, ch: 대의, pr: 대ː의 / 대ː이, ds: the gist or broad meaning of speech or writing}
+  - {id: ko-nikl-10076-s001, ch: 선언문, pr: 서넌문, ds: a written public declaration of a position or policy}
+  - {id: ko-nikl-26946-s001, ch: 개관, pr: 개ː관, ds: a broad overview of the whole content}
+  - {id: ko-nikl-26951-s001, ch: 개괄, pr: 개ː괄, ds: drawing out a broad outline of important content}
+  - {id: ko-nikl-29504-s002, ch: 골격, pr: 골격, ds: the basic framework of an undertaking or piece of writing}
+  - {id: ko-nikl-29546-s001, ch: 골자, pr: 골짜, ds: the central point or substance of words or a matter}
   review_grammar:
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
   - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
@@ -209,16 +240,18 @@ units:
   - {id: ko-nikl-37318-s001, ch: 명제, pr: 명ː제, ds: a statement expressing a logical judgment or claim}
   - {id: ko-nikl-42423-s002, ch: 증명하다, pr: 증명하다, ds: to determine truth or falsity from fundamental principles}
   - {id: ko-nikl-42887-s001, ch: 지향, pr: 지향, ds: 'movement toward a chosen direction, or that direction'}
+  - {id: ko-nikl-13792-s001, ch: 전모, pr: 전모, ds: the full picture or details of an event or thing}
+  - {id: ko-nikl-41790-s001, ch: 주안점, pr: 주안쩜, ds: the main focus or primary objective}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-14005-s001, ch: 전제하다, pr: 전제하다, ds: to set a prior condition or premise for something}
-  - {id: ko-nikl-22638-s002, ch: 팽창, pr: 팽창, ds: 'growth in quantity, scale, or influence'}
-  - {id: ko-nikl-29857-s002, ch: 공식, pr: 공식, ds: a fixed conventional way of doing something}
-  - {id: ko-nikl-26100-s002, ch: 각도, pr: 각또, ds: a perspective or way of thinking}
-  - {id: ko-nikl-48424-s002, ch: 온전하다, pr: 온ː전하다, ds: 'to be perfect or correct, without flaws'}
-  - {id: ko-nikl-06719-s001, ch: 부합, pr: 부ː합, ds: correspondence or agreement between things or phenomena}
-  - {id: ko-nikl-24432-s001, ch: 합리성, pr: 함니썽, ds: rationality; accordance with logic or reason}
   - {id: ko-nikl-35626-s001, ch: 논리성, pr: 놀리썽, ds: logical character; conformity to logic}
+  - {id: ko-nikl-03629-s001, ch: 심사숙고, pr: 심ː사숙꼬, ds: deep and careful deliberation}
+  - {id: ko-nikl-22412-s001, ch: 판가름, pr: 판가름, ds: 'deciding rightness, wrongness, or relative superiority'}
+  - {id: ko-nikl-22454-s001, ch: 판별, pr: 판별, ds: 'discrimination by judging right or wrong, good or bad'}
+  - {id: ko-nikl-28527-s002, ch: 경중, pr: 경중, ds: relative importance or unimportance}
+  - {id: ko-nikl-29174-s001, ch: 고심, pr: 고심, ds: painstaking thought about a difficult problem}
+  - {id: ko-nikl-30246-s001, ch: 관건, pr: 관건 / 관껀, ds: the crucial factor in solving a problem}
+  - {id: ko-nikl-41995-s001, ch: 준거, pr: 준ː거, ds: a basis or criterion for understanding degree or character}
   review_grammar:
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
   - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
@@ -284,10 +317,10 @@ units:
   - {id: ko-nikl-22407-s004, ch: 판, pr: 판, ds: edition; a unit for revised publications}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-40132-s001, ch: 발표하다, pr: 발표하다, ds: to publicly announce a fact or result or creative work}
-  - {id: ko-nikl-22362-s002, ch: 파장, pr: 파장, ds: repercussions of a shocking event (figurative)}
   - {id: ko-nikl-16717-s002, ch: 담화, pr: 담화, ds: an official-position statement of opinion or attitude}
   - {id: ko-nikl-29734-s002, ch: 공론, pr: 공논, ds: a shared public opinion about an issue}
+  - {id: ko-nikl-10074-s002, ch: 선언, pr: 서넌, ds: an official public declaration of a position or policy}
+  - {id: ko-nikl-22412-s002, ch: 판가름, pr: 판가름, ds: 'deciding victory, defeat, or survival'}
   - {id: ko-nikl-18494-s001, ch: 동영상, pr: 동ː녕상, ds: video; moving images viewed on a computer}
   - {id: ko-nikl-11303-s001, ch: 인터뷰, pr: 인터뷰, ds: an interview to gather information}
   - {id: ko-nikl-43229-s001, ch: 진행자, pr: 진ː행자, ds: a presenter who hosts an event or broadcast}
@@ -422,10 +455,10 @@ units:
   - {id: ko-nikl-35042-s001, ch: 내지, pr: 내ː지, ds: to; indicating an approximate range between amounts}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34792-s002, ch: 낮추다, pr: 낟추다, ds: to lower a figure below a reference level}
-  - {id: ko-nikl-37156-s001, ch: 면적, pr: 면ː적, ds: area; the size of a flat or curved surface}
-  - {id: ko-nikl-11969-s002, ch: 잎, pr: 입, ds: a counter for leaves or petals}
-  - {id: ko-nikl-17730-s004, ch: 도, pr: 도ː, ds: degree of latitude or longitude}
+  - {id: ko-nikl-43368-s001, ch: 집계, pr: 집꼐 / 집께, ds: aggregation of previously calculated results}
+  - {id: ko-nikl-44454-s001, ch: 척도, pr: 척또, ds: a standard for measuring length with a ruler}
+  - {id: ko-nikl-45278-s001, ch: 총량, pr: 총ː냥, ds: the total quantity or weight}
+  - {id: ko-nikl-45351-s001, ch: 총합, pr: 총ː합, ds: adding everything together}
   - {id: ko-nikl-09076-s002, ch: 상당하다, pr: 상당하다, ds: to be equivalent to a particular amount or figure}
   - {id: ko-nikl-00807-s001, ch: 소수, pr: 소ː수, ds: a small number; a few}
   - {id: ko-nikl-16200-s001, ch: 다수, pr: 다수, ds: a large number; many}
