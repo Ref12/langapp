@@ -222,7 +222,6 @@ units:
   - {id: ko-nikl-34256-s004, ch: 나서다, pr: 나서다, ds: to leave a place and set out for somewhere}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-34875-s001, ch: 내려다보다, pr: 내려다보다, ds: to look downward from above}
   - {id: ko-nikl-48454-s001, ch: 올려다보다, pr: 올려다보다, ds: to lift one's head and look upward}
   - {id: ko-nikl-17100-s001, ch: 대사관, pr: 대ː사관, ds: a country's embassy in another country}
   - {id: ko-nikl-27035-s001, ch: 개방, pr: 개방, ds: opening a place for people to enter or use freely}
@@ -230,6 +229,7 @@ units:
   - {id: ko-nikl-46852-s001, ch: 엇갈리다, pr: 얻깔리다, ds: to miss each other because timing or direction differs}
   - {id: ko-nikl-20873-s001, ch: 쾌적하다, pr: 쾌저카다, ds: pleasant and refreshing}
   - {id: ko-nikl-24272-s001, ch: 한적하다, pr: 한저카다, ds: leisurely and quiet}
+  - {id: ko-nikl-40494-s001, ch: 방향, pr: 방향, ds: a direction toward a place or compass point}
   review_grammar:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
   - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
@@ -329,14 +329,14 @@ units:
   - {id: ko-nikl-32967-s001, ch: 기억하다, pr: 기어카다, ds: to remember or recall past facts and experiences}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-28107-s001, ch: 견학하다, pr: 견ː하카다, ds: to learn by visiting a relevant place in person}
-  - {id: ko-nikl-43275-s001, ch: 질문하다, pr: 질문하다, ds: to ask about what one does not know or wants to know}
-  - {id: ko-nikl-16756-s002, ch: 답하다, pr: 다파다, ds: to state the answer to a question or problem}
-  - {id: ko-nikl-09327-s001, ch: 새겨듣다, pr: 새겨듣따, ds: to listen closely to advice so as not to forget it}
-  - {id: ko-nikl-32345-s001, ch: 글꼴, pr: 글꼴, ds: the shape of a written character}
-  - {id: ko-nikl-37556-s002, ch: 모형, pr: 모형, ds: a physical copy of an object's actual shape}
   - {id: ko-nikl-09588-s002, ch: 생소하다, pr: 생소하다, ds: to be inexperienced and unaccustomed to a task}
   - {id: ko-nikl-12606-s002, ch: 잘, pr: 잘, ds: excellently; in a way worthy of praise}
+  - {id: ko-nikl-05695-s001, ch: 보기, pr: 보기, ds: a representative example used to explain or demonstrate}
+  - {id: ko-nikl-22613-s001, ch: 패턴, pr: 패턴, ds: 'a consistent framework, form or type'}
+  - {id: ko-nikl-32851-s001, ch: 기본, pr: 기본, ds: what must first be done or be in place for a task}
+  - {id: ko-nikl-32851-s002, ch: 기본, pr: 기본, ds: the central and most important element}
+  - {id: ko-nikl-33105-s001, ch: 기초, pr: 기초, ds: the groundwork underlying a subject or task}
+  - {id: ko-nikl-48983-s001, ch: 요령, pr: 요령, ds: the central gist or main point}
   review_grammar:
   - {id: ko-topik2-g017, ch: V-기, ds: nominalize an action for a label or evaluation}
   - {id: ko-topik3-g024, ch: V-(으)ㄹ 줄 알다 / 모르다, ds: know or not know how to perform an action}
@@ -350,16 +350,18 @@ units:
   - {id: ko-nikl-04945-s001, ch: 야근, pr: 야ː근, ds: working beyond normal hours into the night}
   - {id: ko-nikl-00281-s001, ch: 성적, pr: 성적, ds: a performance record from work or competition}
   - {id: ko-nikl-10957-s001, ch: 이직, pr: 이직, ds: changing jobs or workplaces}
+  - {id: ko-nikl-28191-s002, ch: 결실, pr: 결씰, ds: a worthwhile result achieved through effort}
+  - {id: ko-nikl-29779-s003, ch: 공백, pr: 공백, ds: a gap in one's history without activity or achievement}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-43009-s001, ch: 직종, pr: 직쫑, ds: a type of occupation}
-  - {id: ko-nikl-52014-s004, ch: 회계, pr: 회ː계 / 훼ː게, ds: a person employed to calculate income and expenditure}
   - {id: ko-nikl-46660-s001, ch: 언론인, pr: 얼로닌, ds: a person working professionally in a media organisation}
   - {id: ko-nikl-02726-s001, ch: 시급, pr: 시급, ds: pay calculated according to hours worked}
   - {id: ko-nikl-07611-s001, ch: 비정규직, pr: 비ː정규직, ds: nonregular work with insecure tenure or benefits (source)}
   - {id: ko-nikl-35418-s001, ch: 노동조합, pr: 노동조합, ds: a workers' organisation improving conditions and status}
   - {id: ko-nikl-37931-s001, ch: 무급, pr: 무급, ds: receiving no pay for work}
   - {id: ko-nikl-50129-s001, ch: 유급, pr: 유ː급, ds: receiving pay for work}
+  - {id: ko-nikl-08606-s001, ch: 사항, pr: 사ː항, ds: an item or detail constituting a matter or fact}
+  - {id: ko-nikl-10617-s001, ch: 이력, pr: 이ː력, ds: 'one''s history of education, work and experience'}
   review_grammar:
   - {id: ko-topik2-g028, ch: V/A-겠어요, ds: express willingness or a contextual conjecture}
   - {id: ko-topik2-g029, ch: V-기로 하다, ds: state a decision or agreed arrangement}
@@ -394,6 +396,7 @@ units:
   - {id: ko-nikl-52052-s001, ch: 회상하다, pr: 회상하다 / 훼상하다, ds: to recollect past events}
   - {id: ko-nikl-10843-s001, ch: 이야기하다, pr: 이야기하다, ds: 'to talk about facts, experiences, or thoughts'}
   - {id: ko-nikl-38325-s001, ch: 묵묵하다, pr: 뭉무카다, ds: 'quiet, without saying a word'}
+  - {id: ko-nikl-12395-s001, ch: 자초지종, pr: 자초지종, ds: the entire course of events from beginning to end}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-37089-s001, ch: 메일, pr: 메일, ds: an email sent through a computer network}
@@ -763,6 +766,7 @@ units:
   - {id: ko-nikl-25116-s001, ch: 헛갈리다, pr: 헏깔리다, ds: to become mentally disoriented and confused}
   - {id: ko-nikl-23879-s001, ch: 하마터면, pr: 하마터면, ds: almost; had things gone even slightly wrong}
   - {id: ko-nikl-51408-s002, ch: 혹시, pr: 혹씨, ds: by chance; accidentally}
+  - {id: ko-nikl-33333-s001, ch: 까닭, pr: 까닥, ds: the reason or circumstances behind an event or action}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-48724-s001, ch: 왜, pr: 왜ː, ds: 'why?'}
@@ -781,6 +785,7 @@ units:
   outcome: Explain an issue without generalizing all Korean speakers from one example.
   vocabulary:
   - {id: ko-nikl-29262-s001, ch: 고장, pr: 고장, ds: a locality or region where people live}
+  - {id: ko-nikl-33215-s004, ch: 길, pr: 길, ds: the course of life or social development over time}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-35863-s001, ch: 마을, pr: 마을, ds: a village or cluster of homes}

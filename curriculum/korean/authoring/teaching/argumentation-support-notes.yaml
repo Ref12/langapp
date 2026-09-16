@@ -1,0 +1,57 @@
+schema_version: 1
+review_status: original-ai-authored-unreviewed
+scope: >
+  Admit the ten exact source-inspected proposals from argumentation-notes.yaml,
+  preserving all13 original positions. Separately add the genuine missing
+  travel-direction sense of the retained 방향 parent; its goal-directed
+  abstract meaning is in the main cohort. This is not a first-position sweep
+  or a new source inventory inferred from English labels.
+source_evidence:
+  source_id: nikl-2024-mirror
+  request_location: argumentation-notes.yaml pending_support.requests
+  preserved_positions: 13
+  admitted_parents: 10
+  selected_request_senses: 10
+  extra_retained_parent_senses: 1
+  source_registry: ../../source-senses.yaml
+  policy: >
+    The requests' metadata and all ordered bilingual evidence were compared
+    with the existing checksum-pinned extractor before admission. Stable
+    project parent/sense ordinals are not official dictionary identifiers.
+    Empty source bands remain unbanded; original TOPIK records do not change.
+identity_accounting:
+  new_free_families: 10
+  existing_family_fragments: 1
+  new_bound_or_function_families: 0
+  comparison: >
+    Own-intention and arbitrary/self-willed 자의 are separate original
+    parents with different definitions, not a spelling-only collapse.
+    타의 position2 is another person's thoughts,
+    not obligatory coercion. No source noun implies a legal right, verified
+    theory, or actual knowledge of someone else's mind.
+  spelling_boundary: Two 자의 parents do not equal two distinct spellings.
+reading_review:
+  official_text_senses: 11
+  new_authored_decisions: 0
+  direction_crosswalk: ko-nikl-40494 to official65533
+  policy: Use actual independent citation text for each parent, not a related noun's reading or the shared family's canonical label.
+source_correction_requests:
+  ko-nikl-12331-s001:
+    source_korean: 자기 멋대로 하는 생각.
+    source_english: One's subjective thought.
+    authored_interpretation: a self-willed or arbitrary thought
+    rationale: Preserve 자기 멋대로, not a claim that every subjective thought is arbitrary.
+  ko-nikl-25017-s001:
+    source_korean: 실속이 없는 겉모습.
+    source_english: The deceptive outward appearance of something that lacks substance.
+    authored_interpretation: outward appearance without real substance
+    rationale: The Korean specifies lack of substance without the English's added requirement of deception.
+unselected_positions:
+  ko-nikl-21099-s001: A different thought/intention remains distinct from selected another-person position2.
+  ko-nikl-24986-s002: The raw optics definition is preserved but is not taught as a complete scientific explanation.
+  ko-nikl-39807-s002: Physical echo stays unselected; its sound-meeting-an-obstacle Korean must not later be replaced by the English impact-produced-sound account.
+limits: >
+  Indirect evidence, analogy, wider response and personal discretion do not
+  prove truth, logical validity, approval, legal authority or learner mastery.
+  Qualified Korean linguistic, pragmatic and pedagogical review remains
+  necessary; no audio or professional/scientific certification is supplied.

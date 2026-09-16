@@ -5,6 +5,31 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-01091-s001:
+    source_korean: 마음속으로 세우는 계획.
+    source_english: Secretly harbored plans.
+    authored_interpretation: a plan formed in one's mind
+    rationale: The Korean locates a plan in the mind without requiring deliberate secrecy or malicious intent.
+  ko-nikl-48983-s001:
+    source_korean: 가장 중요하고 핵심이 되는 줄거리.
+    source_english: The most important and central plot.
+    authored_interpretation: the central gist or main point
+    rationale: Preserve general central content/gist rather than restricting 줄거리 to a fictional plot.
+  ko-nikl-47942-s001:
+    source_korean: 무슨 일이 생길 것 같은 느낌.
+    source_english: 'A feeling that something is about to happen. '
+    authored_interpretation: a feeling that something may happen
+    rationale: Preserve anticipation without the English's implied imminence, timing certainty, or verified predictive ability.
+  ko-nikl-12331-s001:
+    source_korean: 자기 멋대로 하는 생각.
+    source_english: One's subjective thought.
+    authored_interpretation: a self-willed or arbitrary thought
+    rationale: Preserve 자기 멋대로 without treating all subjective thought as arbitrary.
+  ko-nikl-25017-s001:
+    source_korean: 실속이 없는 겉모습.
+    source_english: The deceptive outward appearance of something that lacks substance.
+    authored_interpretation: outward appearance without real substance
+    rationale: The Korean specifies lack of substance, not an obligatory deceptive intention or effect.
   ko-nikl-03793-s001:
     source_korean: 눈치가 빠르고 행동이나 성격이 상냥하고 시원스럽다.
     source_english: Quick-witted, amiable, and open-hearted.

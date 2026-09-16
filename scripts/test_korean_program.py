@@ -1,5 +1,6 @@
 """Strict Korean adapter and checked-in curriculum regressions."""
 
+from collections import Counter
 from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
@@ -780,9 +781,13 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "pantry-notes.yaml",
             "stance-qualifiers-notes.yaml",
             "demeanor-notes.yaml",
+            "argumentation-notes.yaml",
+            "argumentation-support-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
-            field = ("source_correction_proposals" if filename == "governance-notes.yaml"
+            field = ("source_correction_proposals" if filename in {
+                "governance-notes.yaml", "argumentation-notes.yaml",
+            }
                      else "source_correction_requests")
             for identifier, request in notes[field].items():
                 with self.subTest(sense=identifier):
@@ -2443,6 +2448,100 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("몸이 마르고", parents["ko-nikl-33402"]["senses"][0]["korean"])
         for row in rows:
             self.assertEqual(self.references.provenance[row["id"]]["reading"]["method"], "official-text")
+
+    def test_argumentation_support_preserves_all_requested_source_positions(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "argumentation-notes.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["pending_support"]["requests"]
+        selected = {row["id"] for row in load_yaml(authoring / "argumentation-support-vocabulary.yaml")}
+        self.assertEqual(len(requests), 10)
+        self.assertEqual(sum(len(parents[row["source_parent"]]["senses"]) for row in requests), 13)
+        for request in requests:
+            parent = parents[request["source_parent"]]
+            with self.subTest(parent=parent["id"]):
+                self.assertEqual(parent["target"], request["target"])
+                self.assertEqual(parent["source_band"], "unbanded")
+                self.assertEqual(parent["source_part_of_speech"], request["source_part_of_speech"])
+                self.assertEqual(
+                    [(row["source_position"], row["korean"], row["english"]) for row in parent["senses"]],
+                    [(row["position"], row["source_korean"], row["source_english"]) for row in request["evidence"]],
+                )
+                self.assertTrue({row["id"] for row in request["placements"]} <= selected)
+        for identifier in ("ko-nikl-21099-s001", "ko-nikl-24986-s002", "ko-nikl-39807-s002"):
+            self.assertNotIn(identifier, selected)
+            self.assertNotIn(identifier, self.references.vocabulary)
+
+    def test_argumentation_homographs_and_evidence_are_not_interchangeable(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        own, arbitrary = "ko-nikl-12330-s001", "ko-nikl-12331-s001"
+        self.assertEqual(words[own]["ch"], words[arbitrary]["ch"])
+        self.assertNotEqual(identities[own], identities[arbitrary])
+        self.assertIn("own thoughts", words[own]["ds"])
+        self.assertIn("arbitrary", words[arbitrary]["ds"])
+        self.assertIn("another person", words["ko-nikl-21099-s002"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-27398-s003"], identities["ko-nikl-27395-s001"])
+        self.assertIn("indirect", words["ko-nikl-40446-s001"]["ds"])
+        self.assertIn("disproof", words["ko-nikl-39751-s001"]["ds"])
+        self.assertIn("may instead confirm", words["ko-nikl-39751-s002"]["ds"])
+        self.assertEqual(identities["ko-nikl-39751-s001"], identities["ko-nikl-39751-s002"])
+        self.assertNotEqual(identities["ko-nikl-40446-s001"], identities["ko-nikl-39751-s001"])
+
+    def test_argumentation_core_model_and_direction_do_not_move_branch_senses(self):
+        rows = {row["id"]: row for row in self.data.inputs["vocabulary"]}
+        identities = self.references.lexical_identity
+        self.assertEqual(rows["ko-nikl-23221-s001"]["level"], 13)
+        for suffix in ("002", "003"):
+            identifier = f"ko-nikl-23221-s{suffix}"
+            self.assertEqual(rows[identifier]["level"], "scientific")
+            self.assertEqual(identities[identifier], identities["ko-nikl-23221-s001"])
+        self.assertEqual(rows["ko-nikl-40494-s001"]["level"], 7)
+        self.assertLess(rows["ko-nikl-40494-s001"]["level"], rows["ko-nikl-40494-s002"]["level"])
+        self.assertEqual(identities["ko-nikl-40494-s001"], identities["ko-nikl-40494-s002"])
+        self.assertEqual(identities["ko-nikl-27398-s003"], identities["ko-nikl-27398-s004"])
+        self.assertEqual(identities["ko-nikl-33215-s004"], identities["ko-nikl-33215-s006"])
+
+    def test_argumentation_readings_keep_actual_text_and_explicit_unreviewed_exceptions(self):
+        authoring = self.root / "authoring" / "teaching"
+        overlay = load_yaml(self.root / "reading-overlay.yaml")
+        decisions = load_yaml(authoring / "reading-decisions.yaml")
+        rows = load_yaml(authoring / "argumentation-vocabulary.yaml")
+        rows += load_yaml(authoring / "argumentation-support-vocabulary.yaml")
+        self.assertEqual(len(rows), 73)
+        authored = {"ko-nikl-02744", "ko-nikl-22613"}
+        methods = Counter()
+        for row in rows:
+            parent = row["id"].rsplit("-s", 1)[0]
+            reading = self.references.provenance[row["id"]]["reading"]
+            methods[reading["method"]] += 1
+            if parent in authored:
+                self.assertEqual(overlay["entries"][parent]["pronunciations"], [])
+                self.assertEqual(reading["method"], "authored-broad-hangul")
+                self.assertEqual(decisions[parent]["review_status"], "unreviewed")
+            else:
+                self.assertEqual(reading["method"], "official-text")
+        self.assertEqual(methods, {"official-text": 71, "authored-broad-hangul": 2})
+        for item, text, official in (
+            ("ko-nikl-05695-s001", "보기", "58787"),
+            ("ko-nikl-10617-s002", "이ː력", "71710"),
+            ("ko-nikl-25729-s002", "가ː면", "14887"),
+            ("ko-nikl-40494-s001", "방향", "65533"),
+        ):
+            self.assertEqual(self.references.vocabulary[item]["pr"], text)
+            self.assertEqual(self.references.provenance[item]["reading"]["official_entry_id"], official)
+
+    def test_argumentation_interpretations_do_not_add_secrecy_imminence_or_deception(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        for item, raw_marker, authored_label in (
+            ("ko-nikl-01091-s001", "Secretly", "a plan formed in one's mind"),
+            ("ko-nikl-48983-s001", "plot", "the central gist or main point"),
+            ("ko-nikl-47942-s001", "about to", "a feeling that something may happen"),
+            ("ko-nikl-12331-s001", "subjective", "a self-willed or arbitrary thought"),
+            ("ko-nikl-25017-s001", "deceptive", "outward appearance without real substance"),
+        ):
+            self.assertIn(raw_marker, evidence[item]["source_english"])
+            self.assertEqual(words[item]["ds"], authored_label)
+            self.assertEqual(evidence[item]["source_correction"]["review_status"], "unreviewed")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

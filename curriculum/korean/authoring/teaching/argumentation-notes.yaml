@@ -1,0 +1,722 @@
+schema_version: 1
+id: ko-argumentation-noun-cohort
+review_status: original-ai-authored-unreviewed
+completion_status: parent-integrated-qualified-review-pending
+review_requirement: >-
+  All selections, placements, labels, family decisions and correction proposals
+  are original AI-authored work requiring qualified Korean linguistic and
+  pedagogical review. Source descriptions of reasoning and perception are
+  not scientific findings, proof of an argument's validity, mental-health
+  diagnoses or evidence of learner competence. Structural validation is not
+  linguistic approval, verified pronunciation, audio assessment or exam readiness.
+scope:
+  - Identify reasons, examples, essentials, methods and the course of an explanation.
+  - Distinguish circumstances, intentions, experience and traces of action.
+  - Read common nonliteral nouns for links, outcomes, trajectories and stance.
+  - Distinguish substantive content, outward presentation, conjecture and evidence.
+selection_policy: >-
+  Targeted communicative gaps were checked against live selections and complete
+  bilingual source positions. No source-band, alphabetical, first-sense or
+  numeric-quota rule assigns a level. Neither a catalogue of noun/predicate
+  counterparts nor systematic actor, 성, 적, philosophical or mathematical
+  terminology is added. Actual nominal meanings are selected, not invented
+  meanings for plausible spellings. Concrete arts, performance, recreation,
+  food and material-object positions remain outside this cohort. This is a
+  bounded addition, not an exhaustive audit of unselected source material.
+counts:
+  selected_senses: 62
+  core_senses: 62
+  branch_senses: 0
+  source_parents: 51
+  distinct_selected_spellings: 51
+  identity_records_in_fragment: 51
+  existing_identity_fragments: 6
+  new_independent_family_candidates: 45
+  new_provisional_free_lemma_groups: 45
+  new_bound_form_groups: 0
+  new_function_item_groups: 0
+  senses_in_new_families: 54
+  additional_senses_within_new_families: 9
+  senses_added_to_existing_families: 8
+  additional_sense_depth_total: 17
+  existing_free_families_gaining_first_core_use: 1
+  additional_core_free_coverage: 46
+  source_noun_senses: 62
+  source_bound_noun_senses: 0
+  source_unspecified_pos_senses: 0
+  nonfirst_source_positions: 29
+  source_parents_new_to_protected_selections: 45
+  source_parents_already_represented: 6
+  source_bands: {beginner: 8, intermediate: 11, advanced: 42, unbanded: 1}
+  phases:
+    first-exchanges: 0
+    everyday-life: 8
+    stories-conversations: 30
+    explanation-problems: 6
+    analysis-argument: 16
+    nuance-interpretation: 2
+count_interpretation: >-
+  There are 45 proposed new independent families, not 62 new words.
+  Their 54 senses include nine additional meanings beyond one per family.
+  Another eight senses extend six already protected families. Thus 17 of the
+  additions are sense depth rather than globally new families. This arithmetic
+  does not choose a first dictionary position or assign teaching order.
+  The protected 표본 family previously appeared only in the scientific branch;
+  its actual general model/example position now supplies a first core use,
+  making additional core free coverage 46. No protected row moves. Pending
+  support requests contribute to none of these active counts. All family
+  counts remain provisional, not verified true-lexeme or mastery totals.
+composition_snapshot:
+  last_registered_cohort_at_check: pantry
+  source_support_parents_at_check: 776
+  protected_selected_senses: 7537
+  protected_core_senses: 7411
+  protected_core_free_identities: 4748
+  proposed_selected_senses: 7599
+  proposed_core_senses: 7473
+  proposed_core_free_identities: 4794
+  active_sense_overlaps: 0
+  pending_support_sense_overlaps: 0
+  pending_support_parents_already_registered: 0
+  status: >-
+    Actual in-memory composition through the repository selection and identity
+    helpers against the complete live manifest. Parent additions are observed
+    read-only, rather than relying on the assignment's earlier baseline.
+    Registration, source expansion, pronunciation integration and generated
+    teaching views remain parent work.
+placement_rationale:
+  study_and_ordinary_explanation: >-
+    Examples, regular forms, basics, groundwork, main points, listed details
+    and personal background support study/work at 8. Ordinary causes, achieved
+    results, gaps in an activity history and a complete course of events
+    support narration at 9. These common meanings are not deferred solely
+    because their source band is advanced.
+  feelings_processes_and_choices: >-
+    Felt interpersonal distance, outward expression and anticipatory feelings
+    support 10. Methods, experienced know-how, ordinary work progress, elapsed
+    time, example-giving and task mindset support 11. Origins and a matter's
+    progress support reported explanation at 12. Imagined scenarios, intentions,
+    surrounding conditions, practical means, some merit in a point, comparison
+    and unobvious benefits support choices and reasons at 13.
+  problems_and_cooperation: >-
+    A developing situation and its crucial/difficult point support unfamiliar
+    problems at 14. Figurative links and a central leading role support
+    cooperative explanation at 15. A figurative product of a process supports
+    accessible public explanation at 17; handling/planning skill supports
+    negotiation at 18.
+  evidence_and_interpretation: >-
+    Prototypes, substantive content, a pre-established task formula, comparative
+    gaps, omissions, hidden aspects, outward circumstances, action traces and
+    intuitive or suggestive impressions support evidence assessment at 19.
+    Role-appropriate duty and firm convictions support discussion of values at
+    22 without establishing legal obligations or truth. Surface-only presentation
+    and unrealistic thinking support qualified argument at 23. The source's
+    negatively characterised careless shortcut and deliberately deceptive
+    personal front warrant stance/register work at 25. No extra 26-30 items
+    are added just to enlarge a late-level bucket.
+identity_policy: >-
+  Preserve every protected canonical name, category, ID, member and placement.
+  Existing fragments contain only new members and their exact parents.
+  In particular, retain 감사하다26499/free-lemma, 실상03447/function-item,
+  좀41331/function-item including its 조금 variants, and 중재하다42264/free-lemma.
+  Do not recreate retired keys26491,03445 or42260. Parent owns cross-scope
+  family adjudication. Same spelling is not enough to merge homographs, and
+  similar English is not enough to merge different lexical forms.
+existing_fragments:
+  - {identity: ko-lex-06935, lemma: 분위기, category: free-lemma, members: [ko-nikl-06935-s002], reason: Add surrounding conditions without replacing mood/atmosphere meanings.}
+  - {identity: ko-lex-17921, lemma: 도식, category: free-lemma, members: [ko-nikl-17921-s002], reason: Add the ready-made task formula without duplicating the diagram or diagramming positions.}
+  - {identity: ko-lex-23221, lemma: 표본, category: free-lemma, members: [ko-nikl-23221-s001], reason: Add a general model/example rather than another specimen or statistical-data position.}
+  - {identity: ko-lex-27398, lemma: 거리, category: free-lemma, members: [ko-nikl-27398-s003, ko-nikl-27398-s004], reason: Add felt interpersonal distance and comparative difference.}
+  - {identity: ko-lex-33215, lemma: 길, category: free-lemma, members: [ko-nikl-33215-s004, ko-nikl-33215-s006], reason: Add development/life course and role-appropriate duty.}
+  - {identity: ko-lex-42214, lemma: 중심, category: free-lemma, members: [ko-nikl-42214-s003], reason: Add firmly held personal opinions without replacing physical centre or essential core.}
+first_core_family_evidence:
+  identity: ko-lex-23221
+  protected:
+    - id: ko-nikl-23221-s002
+      level: scientific
+      source_korean: "생물의 몸 전체나 일부에 적당한 처리를 하여 보존할 수 있게 한 것."
+      source_english: "The entirety or part of a creature’s body being processed for preservation."
+    - id: ko-nikl-23221-s003
+      level: scientific
+      source_korean: "통계에서, 어느 집단의 일부를 조사한 결과로 그 집단 전체의 성질을 짐작할 수 있는 통계 자료."
+      source_english: "In statistics, the statistical data, the surveyed result of a part of a certain group, through which the characteristics of the entire group can be guessed."
+  new:
+    id: ko-nikl-23221-s001
+    level: 13
+    source_korean: "본보기로 삼을 만한 것."
+    source_english: "Something one can take as a model."
+  rationale: >-
+    A general model/example is a distinct actual source meaning, not a move
+    of either scientific placement into core. Aptness as an example does not
+    establish statistical representativeness, correctness or moral approval.
+source_correction_proposals:
+  ko-nikl-01091-s001:
+    source_korean: "마음속으로 세우는 계획."
+    source_english: "Secretly harbored plans."
+    authored_interpretation: a plan formed in one's mind
+    rationale: >-
+      Korean locates the plan in the mind; it does not explicitly require
+      deliberate secrecy. Avoid adding concealed or malicious intent to every
+      instance. This conservative interpretation requires qualified Korean review.
+  ko-nikl-48983-s001:
+    source_korean: "가장 중요하고 핵심이 되는 줄거리."
+    source_english: "The most important and central plot."
+    authored_interpretation: the central gist or main point
+    rationale: >-
+      줄거리 here supplies central content or gist. English plot can
+      misleadingly confine the definition to a fictional narrative; retain
+      the general explanatory main point, subject to qualified Korean review.
+  ko-nikl-47942-s001:
+    source_korean: "무슨 일이 생길 것 같은 느낌."
+    source_english: "A feeling that something is about to happen. "
+    authored_interpretation: a feeling that something may happen
+    rationale: >-
+      Korean does not specify the imminence suggested by about to. Preserve
+      anticipatory feeling rather than timing certainty, verified prediction
+      or supernatural knowledge. Qualified review remains required.
+source_boundaries:
+  - ids: [ko-nikl-02744-s002, ko-nikl-51834-s001]
+    issue: >-
+      A hypothetical scenario is not an observed event or a forecast. 환상
+      explicitly describes an unrealistic or impossible fancy in this source;
+      it is not every imaginative exercise, a fantasy-fiction genre or a
+      clinical hallucination diagnosis.
+  - ids: [ko-nikl-05695-s001, ko-nikl-14076-s001, ko-nikl-23221-s001, ko-nikl-48032-s001]
+    issue: >-
+      An illustrative example, a type's best representative case, something
+      usable as a model, and the act of giving an example have different roles.
+      None automatically constitutes a representative statistical sample or
+      proves a general claim. 예시 is an act, not an invented source position
+      for a particular printed example object.
+  - ids: [ko-nikl-01709-s001, ko-nikl-01864-s001, ko-nikl-48983-s002, ko-nikl-48983-s003]
+    issue: >-
+      A method is not inherently criminal. Planning/handling skill is not a
+      certification. Experience-derived know-how differs from the explicitly
+      shallow, careless shortcut in 요령 position3; do not present the latter
+      as unqualified efficiency or professional best practice.
+  - ids: [ko-nikl-08305-s001, ko-nikl-11453-s001, ko-nikl-17830-s001, ko-nikl-33215-s006]
+    issue: >-
+      A coherent account, some merit in a point, ethical conduct and duty
+      appropriate to a role are not interchangeable with formal proof or
+      current law. 일리 expressly allows limited, qualified reasonableness;
+      it is not complete agreement or certainty.
+  - ids: [ko-nikl-03455-s001, ko-nikl-03455-s002, ko-nikl-23061-s002, ko-nikl-48899-s002]
+    issue: >-
+      Core substance, actual unobvious benefits, surface-only presentation and
+      apparent circumstances are distinct. Benefits need not be financial.
+      Outward circumstances are not automatically company turnover, and
+      superficial presentation is not by itself proof of criminal deception.
+  - ids: [ko-nikl-06935-s002, ko-nikl-08591-s001, ko-nikl-40733-s002, ko-nikl-43118-s001]
+    issue: >-
+      Surrounding conditions need not be a felt mood. 사태 is not inherently
+      a catastrophe. An unexposed aspect does not establish a mastermind or
+      conspiracy. Naming the true state 진상 does not verify an account,
+      and this source does not supply a slang difficult-customer sense.
+  - ids: [ko-nikl-10415-s001, ko-nikl-10617-s001, ko-nikl-10617-s002, ko-nikl-24850-s001]
+    issue: >-
+      An inclination is not a commitment or outcome. Personal history and
+      accumulated practical wisdom do not establish expertise or credibility.
+      A trace of an action is not automatically a trace of misconduct; the
+      separate bad-behaviour position of 행적 is not selected.
+  - ids: [ko-nikl-27398-s003, ko-nikl-27398-s004, ko-nikl-32893-s001, ko-nikl-32893-s002, ko-nikl-42929-s001]
+    issue: >-
+      Felt closeness and comparative difference are not physical distances
+      with implied numerical units. Outward expression is not mind-reading.
+      Suggestive cues and immediate intuitive grasp are not guaranteed truth
+      or validated predictions, regardless of a speaker's confidence.
+  - ids: [ko-nikl-28191-s002, ko-nikl-08707-s002, ko-nikl-28963-s002, ko-nikl-42214-s003]
+    issue: >-
+      결실 characterises an achieved result as worthwhile; a figurative 산물
+      need not be beneficial. A linking 고리 does not prove a causal chain.
+      Firmness of a personal opinion does not make it correct or justified.
+  - ids: [ko-nikl-29779-s003, ko-nikl-29779-s004, ko-nikl-31698-s002, ko-nikl-28338-s003]
+    issue: >-
+      A gap in a person's history need not be unemployment or evidence of
+      misconduct. A gap in a matter is not a physical chasm. A normal course
+      of work does not imply a physical orbit or guarantee success; a
+      progress account need not show that progress was good.
+cross_scope_source_boundaries:
+  policy: >-
+    Only the listed nominal meanings are selected. Literal/concrete positions
+    remain available to their owners, and all original positions remain intact
+    in the registry. If another returned cohort introduces one of these
+    parents, use its established compatible family or report a real conflict;
+    do not create a second free family for the same source parent.
+  selected_with_unselected_concrete_positions:
+    - {parent: ko-nikl-01709, selected_positions: [1], other_positions: [2], boundary: Artistic technique is outside this selection.}
+    - {parent: ko-nikl-02744, selected_positions: [2], other_positions: [1], boundary: The film screenplay remains with the culture scope.}
+    - {parent: ko-nikl-08707, selected_positions: [2], other_positions: [1], boundary: Locally produced physical goods are not selected.}
+    - {parent: ko-nikl-23061, selected_positions: [2], other_positions: [1], boundary: Physical wrapping and its materials are not selected.}
+    - {parent: ko-nikl-25729, selected_positions: [2], other_positions: [1], boundary: Performance or other physical masks remain outside this scope.}
+    - {parent: ko-nikl-28191, selected_positions: [2], other_positions: [1], boundary: Literal fruiting or ripening remains outside this scope.}
+    - {parent: ko-nikl-28963, selected_positions: [2], other_positions: [1], boundary: The physical loop or ring is not selected.}
+    - {parent: ko-nikl-31698, selected_positions: [2], other_positions: [1], boundary: The designated physical path is not selected.}
+    - {parent: ko-nikl-32313, selected_positions: [2], other_positions: [1], boundary: The physical source of a stream is not selected.}
+    - {parent: ko-nikl-33105, selected_positions: [1], other_positions: [2], boundary: Building and bridge supports remain outside this selection.}
+    - {parent: ko-nikl-37131, selected_positions: [2], other_positions: [1], boundary: Outer physical appearance is not selected.}
+    - {parent: ko-nikl-40494, selected_positions: [2], other_positions: [1], boundary: Compass-facing direction remains outside this selection.}
+    - {parent: ko-nikl-40733, selected_positions: [2], other_positions: [1], boundary: Physical position behind something is not selected.}
+    - {parent: ko-nikl-48899, selected_positions: [2], other_positions: [1], boundary: Physical outer shape is not selected.}
+  mask_naming_review:
+    selected: ko-nikl-25729-s002
+    selected_identity: ko-lex-25729
+    selected_lemma: 가면
+    unselected: ko-nikl-21204-s002
+    unselected_lemma: 탈
+    shared_source_korean: "속뜻을 감추고 겉으로 거짓을 꾸미는 엉큼한 얼굴. 또는 그런 태도나 모습."
+    shared_source_english: "The assumed face of a wily person who hides his/her ultimate motive, or such attitude or appearance."
+    rationale: >-
+      The equivalent 탈 meaning is not added as another variant. If the
+      culture owner establishes a shared literal-mask family using these
+      names, parent should adjudicate the compatible canonical family across
+      scopes. No other cohort or literal-mask placement is changed here.
+deferred_nominal_and_family_cases:
+  - id: ko-nikl-03534-s001
+    target: 실질
+    source_korean: "실제의 내용을 이루는 것."
+    source_english: "Something which makes the actual content."
+    protected_id: ko-nikl-03536-s001
+    protected_identity: ko-lex-03536
+    protected_lemma: 실질적
+    protected_category: free-lemma
+    reason: >-
+      The matching substantive-content modifier is already protected. Do not
+      create a competing independent family merely for the nominal base;
+      parent may adjudicate any future nominal exposure. Actual substance is
+      still addressed through the distinct selected 실속 meanings.
+  - id: ko-nikl-32287-s001
+    target: 근본
+    source_korean: "어떤 것의 본질이나 바탕."
+    source_english: "The essence or foundation of something. "
+    protected_id: ko-nikl-32289-s001
+    protected_identity: ko-lex-32289
+    protected_lemma: 근본적
+    protected_category: free-lemma
+    reason: The nominal base overlaps the protected fundamental/underlying modifier; no extra free family is created for that counterpart.
+  - id: ko-nikl-07765-s002
+    target: 빈틈
+    source_korean: "부족하거나 허술한 점."
+    source_english: "An incomplete or weak point."
+    protected_id: ko-nikl-07766-s002
+    protected_identity: ko-lex-07766
+    protected_lemma: 빈틈없다
+    protected_category: free-lemma
+    reason: >-
+      The protected predicate explicitly negates this weak-point meaning.
+      Opposite polarity is not synonymy, but a root/family decision belongs
+      to parent. Rather than silently count the base as independent, leave
+      it out; the selected 공백 omission meaning covers the current gap-analysis task.
+  - id: ko-nikl-09122-s001
+    target: 상상
+    protected_id: ko-nikl-09126-s001
+    protected_identity: ko-lex-09122
+    protected_lemma: 상상
+    protected_category: free-lemma
+    reason: The corresponding picturing-in-mind verb is already in this family; no extra nominal counterpart is added to inflate breadth.
+  - id: ko-nikl-26589-s001
+    target: 감지
+    protected_id: ko-nikl-26594-s001
+    protected_identity: ko-lex-26589
+    protected_lemma: 감지
+    protected_category: free-lemma
+    reason: The corresponding sensory-detection verb already supplies this family; no nominal/predicate catalogue is added.
+  - id: ko-nikl-22183-s003
+    target: 틈새
+    protected_id: ko-nikl-22178-s003
+    protected_identity: ko-lex-22178
+    protected_lemma: 틈
+    protected_category: free-lemma
+    shared_source_korean: "어떤 행동을 할 만한 기회."
+    reason: The opportunity meaning repeats the protected shorter form's Korean definition; no extra naming variant or free count is added.
+  - id: ko-nikl-12262-s001
+    target: 자신
+    source_korean: "어떤 일을 해낼 수 있다거나 어떤 일이 꼭 그렇게 될 것이라고 스스로 굳게 믿음. 또는 그런 믿음."
+    source_english: "A state in which one believes firmly that one can do something or something will be realized; such belief."
+    protected_id: ko-nikl-12263-s001
+    protected_identity: ko-lex-12263
+    protected_lemma: 자신감
+    protected_category: free-lemma
+    reason: >-
+      Ability-confidence overlaps the protected 자신감 meaning, but the
+      broader outcome-certainty component must not be silently equated with
+      it. No competing confidence family or self-reference/function-category
+      promotion is made. Parent owns any future adjudication.
+  - id: ko-nikl-03446-s001
+    target: 실상
+    source_korean: "실제의 모양이나 상태."
+    source_english: "The real appearance or state of affairs."
+    protected_identity: ko-lex-03447
+    protected_lemma: 실상
+    protected_category: function-item
+    reason: >-
+      This unselected homograph is not automatically merged by spelling or
+      used to recreate a free actual-state family beside the protected
+      noun/adverb family. Keep parent-adjudicated category boundaries intact.
+  - >-
+    Discourse-only 사실 positions, adverb 사실08422, reference-only 자기/자신,
+    bound 거리 productive uses and an 일반/일반적 or 전형/전형적 catalogue
+    are not added. Source noun POS is not a reason to promote a function
+    item or to manufacture independent breadth.
+covered_during_live_reconciliation:
+  parent: ko-nikl-39751
+  target: 반증
+  identity: ko-lex-39751
+  protected_rows:
+    - {id: ko-nikl-39751-s001, level: 23, ds: "disproof by contrary evidence; such counterevidence"}
+    - {id: ko-nikl-39751-s002, level: 29, ds: an apparently contrary fact that may instead confirm a claim}
+  rationale: >-
+    This parent was inspected as a possible unbanded request, but live
+    reconciliation found both positions already selected. The first protected
+    label addresses the source English's misleading double-negative polarity;
+    the second preserves the Korean interpretive hedge. Neither position is
+    requested, duplicated, relabelled or counted here. This observation concerns
+    the inspected labels, not a claim to have edited or audited parent's ledger.
+pending_support:
+  status: source-inspected-not-registered-or-selected
+  requested_parents: 10
+  proposed_senses: 10
+  preserved_original_source_positions: 13
+  source_noun_parents: 10
+  source_unspecified_pos_nominal_compounds: 0
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  cached_source_basename: nikl-202401.csv
+  evidence_method: >-
+    Inspect the pinned CSV and verify against the existing session-cached
+    nikl-202401.csv by its full SHA-256. Enumerate every original CSV record
+    before filtering. Target exact forms across all POS, preserving raw forms,
+    POS, empty source vocabulary level and complete original definition lists.
+    Existing registry data is read-only; no source or cache file is written.
+    IDs are project CSV record/list ordinals, not official dictionary sense IDs.
+  integration_boundary: >-
+    Parent owns source admission, readings, final cross-scope family decisions
+    and activation. None of these proposed senses or identities occurs in the
+    active argumentation shards. The two 자의 parents have different definitions;
+    same spelling is not permission to collapse them. Proposed free families
+    are unreviewed and do not contribute to the active 45-family count.
+  requests:
+    - source_parent: ko-nikl-12330
+      target: 자의
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-12330, lemma: 자의, category: free-lemma}
+      placements: [{id: ko-nikl-12330-s001, level: 13, topic: reasoning, ds: one's own thoughts or intentions}]
+      rationale: Own intention is not necessarily arbitrary, coercive or a philosophical free-will claim.
+      evidence:
+        - {position: 1, source_korean: "자기 생각이나 뜻.", source_english: "One's own thought or opinion."}
+    - source_parent: ko-nikl-12331
+      target: 자의
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-12331, lemma: 자의, category: free-lemma}
+      placements: [{id: ko-nikl-12331-s001, level: 23, topic: argument, ds: a self-willed or arbitrary thought}]
+      rationale: Distinguish doing/thinking as one pleases from merely having one's own thoughts in parent12330.
+      correction_rationale: 자기 멋대로 specifies arbitrariness or self-will; English subjective alone can erase that qualification.
+      evidence:
+        - {position: 1, source_korean: "자기 멋대로 하는 생각.", source_english: "One's subjective thought."}
+    - source_parent: ko-nikl-13062
+      target: 재량
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-13062, lemma: 재량, category: free-lemma}
+      placements: [{id: ko-nikl-13062-s001, level: 13, topic: work, ds: handling a matter using one's own judgement}]
+      rationale: The source describes self-directed handling; it does not itself grant legal discretion or unlimited authority.
+      evidence:
+        - {position: 1, source_korean: "자신의 생각과 판단에 따라 일을 처리함.", source_english: "The act of dealing with something based on one's own thoughts and judgement."}
+    - source_parent: ko-nikl-21099
+      target: 타의
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-21099, lemma: 타의, category: free-lemma}
+      placements: [{id: ko-nikl-21099-s002, level: 13, topic: reasoning, ds: another person's thoughts or opinions}]
+      rationale: Another person's view is not inherently coercion. The separate other/different-intention position is retained as source evidence but not selected.
+      evidence:
+        - {position: 1, source_korean: "다른 생각이나 마음.", source_english: "A thought or intention that is different from the original one."}
+        - {position: 2, source_korean: "다른 사람의 생각이나 의견.", source_english: "A thought or opinion that is not one's own."}
+    - source_parent: ko-nikl-24986
+      target: 허상
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-24986, lemma: 허상, category: free-lemma}
+      placements: [{id: ko-nikl-24986-s001, level: 23, topic: reasoning, ds: an appearance of something unreal or unlike reality}]
+      rationale: Interpret appearance versus reality without diagnosing hallucinations or selecting a technical virtual-image definition.
+      domain_review: The unselected optics position is preserved as raw source evidence, not endorsed as a complete account of mirror or lens image formation.
+      evidence:
+        - {position: 1, source_korean: "실제로 없는 것이 있는 것처럼 보이거나 실제와 다르게 보이는 모습.", source_english: "An object that seems to exist although it is not real, or an image that looks different than it actually is."}
+        - {position: 2, source_korean: "빛이 거울이나 렌즈로 인해 반사될 때, 반사되는 방향과 반대 방향으로 생기는 상.", source_english: "When light is reflected from a mirror or lens, an image forming in the opposite direction from where it is reflected."}
+    - source_parent: ko-nikl-25017
+      target: 허울
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-25017, lemma: 허울, category: free-lemma}
+      placements: [{id: ko-nikl-25017-s001, level: 19, topic: reasoning, ds: outward appearance without real substance}]
+      rationale: Lack of substance is the explicit source qualification; no real person's deceit is inferred.
+      correction_rationale: Retain the Korean lack-of-substance description without adding deceptive to every instance.
+      evidence:
+        - {position: 1, source_korean: "실속이 없는 겉모습.", source_english: "The deceptive outward appearance of something that lacks substance."}
+    - source_parent: ko-nikl-35638
+      target: 논법
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-35638, lemma: 논법, category: free-lemma}
+      placements: [{id: ko-nikl-35638-s001, level: 19, topic: argument, ds: a method of developing thoughts or speech logically}]
+      rationale: A named way of developing reasoning does not prove that a particular argument is valid or sound; no specialist logical-system catalogue is added.
+      evidence:
+        - {position: 1, source_korean: "말이나 생각을 논리적으로 전개하는 방법.", source_english: "A method for developing utterances or thoughts in a logical manner."}
+    - source_parent: ko-nikl-39807
+      target: 반향
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-39807, lemma: 반향, category: free-lemma}
+      placements: [{id: ko-nikl-39807-s001, level: 16, topic: media, ds: a response to an event's or phenomenon's wider influence}]
+      rationale: The wider response need not be approval or benefit; the separate physical echo is not selected.
+      evidence:
+        - {position: 1, source_korean: "어떤 사건이나 현상이 세상에 영향을 미치어 생겨나는 반응.", source_english: "A reaction to a certain event or a phenomenon's influence on the world. "}
+        - {position: 2, source_korean: "장애물에 부딪친 소리가 반사하여 다시 들리는 현상.", source_english: "A phenomenon in which the sound of an object hitting an obstacle is reflected and heard again."}
+    - source_parent: ko-nikl-40446
+      target: 방증
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-40446, lemma: 방증, category: free-lemma}
+      placements: [{id: ko-nikl-40446-s001, level: 19, topic: argument, ds: indirect and peripheral evidence concerning a fact}]
+      rationale: Indirect evidence is not automatically conclusive and is not substituted for the two already protected 반증 positions.
+      evidence:
+        - {position: 1, source_korean: "어떤 사실에 대한 간접적이고 주변적인 증거.", source_english: "An evidence that is indirect and peripheral."}
+    - source_parent: ko-nikl-50416
+      target: 유추
+      source_part_of_speech: 명사
+      source_vocabulary_level: ""
+      identity: {key: ko-lex-50416, lemma: 유추, category: free-lemma}
+      placements: [{id: ko-nikl-50416-s001, level: 19, topic: reasoning, ds: inference by analogy from shared or similar features}]
+      rationale: The Korean describes an inference or conjecture from similarity, not a guarantee of equivalence, causation or a necessary conclusion.
+      evidence:
+        - {position: 1, source_korean: "같거나 비슷한 성질을 가진 것을 통해 다른 사물이나 현상을 미루어 짐작함.", source_english: "An act of guessing about a certain object or phenomenon, using the knowledge of its identical or similar object or phenomenon."}
+pending_source_correction_proposals:
+  ko-nikl-12331-s001:
+    source_korean: "자기 멋대로 하는 생각."
+    source_english: "One's subjective thought."
+    authored_interpretation: a self-willed or arbitrary thought
+    rationale: >-
+      자기 멋대로 adds self-will or arbitrariness beyond mere subjectivity.
+      Preserve that qualification without declaring all subjective opinions
+      arbitrary. Qualified Korean review is required before activation.
+  ko-nikl-25017-s001:
+    source_korean: "실속이 없는 겉모습."
+    source_english: "The deceptive outward appearance of something that lacks substance."
+    authored_interpretation: outward appearance without real substance
+    rationale: >-
+      Korean explicitly supplies lack of substance, while English adds
+      deceptive. Keep the narrower stated content rather than characterising
+      every instance as deceptive. This interpretation remains unreviewed.
+unselected_pending_source_issue:
+  id: ko-nikl-39807-s002
+  source_korean: "장애물에 부딪친 소리가 반사하여 다시 들리는 현상."
+  source_english: "A phenomenon in which the sound of an object hitting an obstacle is reflected and heard again."
+  reason: >-
+    Korean describes sound meeting an obstacle and reflecting; English instead
+    specifies sound produced by an object hitting it. No impact-generated
+    source is required by the Korean definition. This physical echo position
+    is not selected or proposed for correction-ledger activation here; flag
+    it for its domain owner if it is later selected.
+other_inspected_support_deferrals:
+  - parent: ko-nikl-06137
+    target: 본의
+    protected_parent: ko-nikl-06128
+    protected_identity: ko-lex-06128
+    protected_lemma: 본심
+    protected_category: free-lemma
+    identical_source_positions:
+      - {position: 1, source_korean: "처음부터 변함없이 가지고 있는 마음.", source_english: "A mind that remains unchanged from start to finish."}
+      - {position: 2, source_korean: "꾸밈이나 거짓이 없는 마음.", source_english: "A mind that is straightforward and honest."}
+    reason: >-
+      Both complete bilingual positions repeat protected 본심. Do not request
+      another independent family for this naming alternative. Parent may
+      adjudicate any later compatible exposure without changing old keys.
+  - parent: ko-nikl-42912
+    target: 직감
+    source_korean: "어떤 일을 접했을 때 설명하지 않아도 거짓 없는 모습이나 내용을 곧바로 느껴 앎. 또는 그런 감각."
+    source_english: "The state of sensing and knowing something instantly, without conscious thought, or such an insight."
+    reason: >-
+      Registered 직관42929 supplies the selected immediate-grasp concept.
+      This additional name is not requested for the bounded scope. Do not
+      declare the definitions identical: 직감 Korean says without explanation,
+      whereas its English introduces absence of conscious thought; 직관's own
+      Korean explicitly mentions no prior thinking process. Neither label
+      establishes that intuition is infallible.
+remaining_omissions:
+  - >-
+    No exact whitespace-normalised Form match was found across all POS for
+    the targeted 반례 or 접점 in the pinned CSV. No approximate form,
+    mathematical/contact-point sense or source ID is invented. This does
+    not claim those terms are absent from every dictionary.
+  - >-
+    The ordinary example, counterevidence already protected by parent, and
+    proposed indirect-evidence/analogy concepts are not expanded into a
+    systematic catalogue of philosophical or mathematical inference methods.
+  - >-
+    Literal harvest, physical gap/shape, performance mask, screenplay and
+    packaging positions remain outside this scope. Extra same-meaning names,
+    broad first positions and lightly differentiated senses were not added
+    merely because they were available.
+reading_review:
+  status: unassessed-parent-owned
+  policy: >-
+    A parent new to selected vocabulary is not necessarily missing a reading.
+    No overlay, reading ledger, official entry pronunciation or audio was
+    researched. Parent must measure actual coverage and review compatibility
+    of additional meanings. Pending source parents need a separate assessment
+    after admission; no invented pronunciation-gap count is attached to them.
+  new_parent_count: 45
+  new_parent_queue:
+    - ko-nikl-01091
+    - ko-nikl-01709
+    - ko-nikl-01864
+    - ko-nikl-02744
+    - ko-nikl-03455
+    - ko-nikl-05695
+    - ko-nikl-08305
+    - ko-nikl-08591
+    - ko-nikl-08606
+    - ko-nikl-08707
+    - ko-nikl-10415
+    - ko-nikl-10617
+    - ko-nikl-11453
+    - ko-nikl-12395
+    - ko-nikl-14076
+    - ko-nikl-17091
+    - ko-nikl-17830
+    - ko-nikl-22613
+    - ko-nikl-23061
+    - ko-nikl-24850
+    - ko-nikl-25729
+    - ko-nikl-28191
+    - ko-nikl-28338
+    - ko-nikl-28963
+    - ko-nikl-29077
+    - ko-nikl-29779
+    - ko-nikl-31698
+    - ko-nikl-32313
+    - ko-nikl-32851
+    - ko-nikl-32893
+    - ko-nikl-33105
+    - ko-nikl-33333
+    - ko-nikl-35903
+    - ko-nikl-37131
+    - ko-nikl-40494
+    - ko-nikl-40733
+    - ko-nikl-41637
+    - ko-nikl-42929
+    - ko-nikl-43118
+    - ko-nikl-47942
+    - ko-nikl-48032
+    - ko-nikl-48899
+    - ko-nikl-48983
+    - ko-nikl-50183
+    - ko-nikl-51834
+  reused_parent_count: 6
+  reused_parent_queue: [ko-nikl-06935, ko-nikl-17921, ko-nikl-23221, ko-nikl-27398, ko-nikl-33215, ko-nikl-42214]
+protected_boundaries:
+  - All live-manifest selections and identities through pantry are preserved.
+  - Returned governance, infrastructure, cognition, representation, interaction and other prior cohorts remain untouched.
+  - Held IDs ko-nikl-48419-s001, ko-nikl-22209-s001, ko-nikl-41731-s001 and ko-nikl-48777-s001 remain excluded without reading research.
+  - No source, support, reading, manifest, test, generated-output or shared-code file is edited.
+  - No new agent, session, factory, commit, push or pull request is created.
+validation:
+  status: structural-and-exact-source-checks-passed
+  checks:
+    - Strict curriculum_yaml.load_yaml parsing of all three authored files.
+    - Exact known source IDs, noun POS, fields, declared levels/topics and labels no longer than 64 characters.
+    - Complete unique membership, exact parent sets and preservation of every protected canonical/category/member/placement.
+    - Actual in-memory full-manifest composition and independent-family versus sense-depth counts.
+    - Exact active correction, first-core, deferral and shared-family evidence.
+    - Cached pinned CSV checksum and complete original positions for every proposed support parent.
+    - Honest unassessed reading queues and exclusion of pending/held IDs.
+  existing_tests:
+    - test_korean_program.KoreanSelectionFilesTests
+    - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+    - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+  existing_test_count: 8
+  existing_test_result: passed
+  active_source_correction_count: 3
+  pending_source_correction_count: 2
+  limitation: Parent must admit any requested source support and integrate readings, corrections and manifest selections before validating generated teaching views.
+source_and_license_limits: >-
+  Source quotations are limited to identification and review evidence.
+  Existing pinned-source attribution and licensing declarations remain intact.
+  No raw source spelling, POS, definition or original list position is
+  rewritten. Reference bands remain separate from teaching goals. Original
+  authored material remains openly unreviewed; no official sense numbering,
+  approved linguistic status or learner mastery is asserted.
+parent_integration:
+  history_policy: >
+    The handoff counts, pending request section and unassessed reading queue
+    above describe the worker's historical handoff, not current publication
+    status. The ten pending requests are now admitted and selected in the
+    separately registered argumentation-support files. Generated coverage
+    remains authoritative; no completion of the entire curriculum is claimed.
+  main_senses: 62
+  admitted_request_senses: 10
+  parent_added_practical_senses: 1
+  combined_senses: 73
+  new_global_free_families: 55
+  first_core_existing_families: 1
+  core_free_family_gain: 56
+  admitted_support_parents: 10
+  preserved_support_positions: 13
+  actual_readings:
+    official_text_senses: 71
+    authored_unreviewed_senses: 2
+    new_crosswalks: 5
+    source_of_readings: Independently pinned official JSON; no audio imported or assessed.
+    authored:
+      ko-nikl-02744:
+        basic_entry: '15963'
+        basic_citation_text: absent
+        policy: Four-open-syllable proposal is individually authored, not dictionary verification.
+      ko-nikl-22613:
+        basic_entry: '81003'
+        basic_citation_text: absent
+        standard_entry: '355006'
+        standard_locator: https://stdict.korean.go.kr/search/searchView.do?word_no=355006
+        standard_evidence: Actual contentViewOne.do content contains no pronunciation text.
+        boundary: Only the pinned regular-form/type sense is selected; Standard example and sewing senses are not imported.
+  exact_source_interpretations: 5
+  coverage_snapshot:
+    core_dictionary_parents: 5341
+    core_selected_senses: 7647
+    core_distinct_spellings: 5039
+    core_spelling_pos_pairs: 5141
+    core_lexical_identities: 5110
+    core_provisional_free_families: 4852
+    core_bound_forms: 40
+    core_function_items: 218
+    retained_support_parents: 842
+    selected_support_parents: 838
+    core_modules: 759
+    core_free_gap_to_lower_guide: 948
+    limits: Counts measure selected material, not linguistic review, mastery or completion.
+  integration_checks:
+    deterministic_views: 128
+    original_reference_parents: 11028
+    original_reference_constructs: 216
+    original_reference_examples: 432
+    preservation: All prior retained parent objects, official reading entries and authored reading decisions are unchanged.
+    regressions: >
+      Five new argumentation cases cover full source arrays, distinct
+      homographs/evidence, core versus scientific positions, actual versus
+      authored readings, and source-interpretation boundaries. Existing
+      course/tourist/source coverage and exact correction integration apply.
+  substantive_choices: >
+    Preserve the two scientific 표본 positions while introducing its distinct
+    general model/example sense in core. Travel-facing 방향 adds an actually
+    useful earlier literal meaning of the same family, not another free
+    headword. Original distance/street homographs remain distinct. Inspect
+    existing canonical and member-parent names for noun/predicate/modifier
+    counterparts; no mechanically suffix-stripped family or extra bound/
+    function breadth is introduced. Apparent truth, intuitive grasp, analogy
+    and anticipation do not verify a claim or another person's intent.
+  cultural_boundary: >
+    Parent owns 시나리오 position2 and its root family; the separately owned
+    culture-loanword work may add genuine screenplay position1 to that same
+    family. Its bounded Standard reading research is not duplicated here.
+  review_limit: Source, identity, reading, pragmatic and pedagogical adjudications remain unreviewed.

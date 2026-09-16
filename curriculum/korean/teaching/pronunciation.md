@@ -75,6 +75,14 @@ final consonant. These are not English pronunciation transcriptions, automatic
 spelling copies, or dictionary-verified readings. They confer no dietary or
 food-safety assurance.
 
+The interpretive nouns 시나리오 and 패턴 likewise use individually authored,
+unreviewed aids, [시나리오] and [패턴]. Their matched learner-dictionary
+entries lack citation text; the consulted Standard 패턴 content also lacks it.
+The decisions explain the open syllables, aspirated consonants and final nasal
+as applicable. They do not reconstruct English stress or claim that a
+spelling-equal aid is dictionary-verified. Actual sentence-level realization
+and audio assessment remain separate.
+
 The source-listed compounds 주민 등록증 and 외국인 등록증 remain unselected.
 Their learner-dictionary records have no whole-term citation text; the
 consulted Standard Dictionary resident-ID entry also lacks it, and the
