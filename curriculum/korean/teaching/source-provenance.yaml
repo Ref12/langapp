@@ -35684,6 +35684,15 @@ items:
       source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70998
       pronunciations:
       - 여ː당
+    source_correction:
+      source_korean: 정당 정치에서, 대통령을 내거나 의회에서 의석을 가장 많이 차지하고 있는 당.
+      source_english: 'In party politics, a party that has produced the president or holds the majority
+        of seats in the parliament. '
+      authored_interpretation: the ruling party holding the presidency or most seats
+      rationale: Document the unchanged selected label following 가장 많이, most seats, rather than necessarily
+        more than half. This does not identify a current party or impose a universal legal definition.
+      method: authored-interpretation
+      review_status: unreviewed
     lexical_identity: ko-lex-47038
     lexical_category: free-lemma
   ko-nikl-52260-s001:
@@ -158924,6 +158933,437 @@ items:
       pronunciations:
       - 배수
     lexical_identity: ko-lex-40636
+    lexical_category: free-lemma
+  ko-nikl-09944-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9944
+    source_parent: ko-nikl-09944
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Territorial subdivisions of a residential area in order to elect a member of a legislative
+      body or the representative of an organization.
+    source_korean: 의원이나 단체의 대표를 선출하기 위하여 거주 지역을 일정한 단위로 나눈 구역.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '63330'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63330
+      pronunciations:
+      - 선ː거구
+    lexical_identity: ko-lex-09944
+    lexical_category: free-lemma
+  ko-nikl-11935-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11935
+    source_parent: ko-nikl-11935
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of coming forward as a candidate for or putting up someone as a candidate
+      for an election.
+    source_korean: 선거에서 후보자로 나서거나 내세움.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '73611'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=73611
+      pronunciations:
+      - 이푸보
+    lexical_identity: ko-lex-11935
+    lexical_category: free-lemma
+  ko-nikl-19151-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=19151
+    source_parent: ko-nikl-19151
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of receiving approval votes in an election, or such a vote.
+    source_korean: 투표에서 찬성표를 얻음. 또는 얻은 찬성표.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '50541'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=50541
+      pronunciations:
+      - 득표
+    source_correction:
+      source_korean: 투표에서 찬성표를 얻음. 또는 얻은 찬성표.
+      source_english: The act of receiving approval votes in an election, or such a vote.
+      authored_interpretation: receiving votes in favor, or the votes received
+      rationale: Korean covers favorable votes in voting, not only elections; retain receiving and votes
+        received without implying victory or a majority.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-19151
+    lexical_category: free-lemma
+  ko-nikl-27209-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27209
+    source_parent: ko-nikl-27209
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: 'Opening the ballot boxes and finding out the results of a vote. '
+    source_korean: 투표함을 열고 투표의 결과를 알아봄.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '23635'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23635
+      pronunciations:
+      - 개표
+    lexical_identity: ko-lex-27209
+    lexical_category: free-lemma
+  ko-nikl-34345-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34345
+    source_parent: ko-nikl-34345
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of losing an election.
+    source_korean: 선거에서 떨어짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '36844'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36844
+      pronunciations: &id1501
+      - 낙썬
+    lexical_identity: ko-lex-34345
+    lexical_category: free-lemma
+  ko-nikl-34345-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34345
+    source_parent: ko-nikl-34345
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A state of failing to pass a test or to be selected.
+    source_korean: 심사나 선발에서 떨어짐.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '36844'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36844
+      pronunciations: *id1501
+    source_correction:
+      source_korean: 심사나 선발에서 떨어짐.
+      source_english: A state of failing to pass a test or to be selected.
+      authored_interpretation: failure to pass screening or be selected
+      rationale: 심사 and 선발 specify screening/review or selection, not arbitrary examination failure, withdrawal
+        or misconduct.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-34345
+    lexical_category: free-lemma
+  ko-nikl-39094-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39094
+    source_parent: ko-nikl-39094
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The thoughts and feelings of the public.
+    source_korean: 일반 국민의 생각과 마음.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '56487'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=56487
+      pronunciations:
+      - 민심
+    lexical_identity: ko-lex-39094
+    lexical_category: free-lemma
+  ko-nikl-47133-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47133
+    source_parent: ko-nikl-47133
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: A compound word for the ruling party and opposition party.
+    source_korean: 여당과 야당.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '67747'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=67747
+      pronunciations:
+      - 여ː야
+    lexical_identity: ko-lex-47133
+    lexical_category: free-lemma
+  ko-nikl-29867-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29867
+    source_parent: ko-nikl-29867
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An empty promise that one cannot keep, or an act of making an empty promise.
+    source_korean: 지키지 못할 헛된 약속. 또는 그런 약속을 함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '19429'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=19429
+      pronunciations:
+      - 공약
+    lexical_identity: ko-lex-29867
+    lexical_category: free-lemma
+  ko-nikl-06300-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6300
+    source_parent: ko-nikl-06300
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'The act of deciding to oppose and reject an agenda discussed in a meeting, or such
+      a decision. '
+    source_korean: 회의에서 의논한 안건을 반대하여 받아들이지 않기로 결정함. 또는 그런 결정.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '59394'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=59394
+      pronunciations:
+      - 부ː결
+    lexical_identity: ko-lex-06300
+    lexical_category: free-lemma
+  ko-nikl-10244-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10244
+    source_parent: ko-nikl-10244
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of making a decision about something through discussion, or such a decision.
+    source_korean: 어떤 일에 대해 의논하여 결정함. 또는 그런 결정.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71636'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71636
+      pronunciations:
+      - 의결
+    lexical_identity: ko-lex-10244
+    lexical_category: free-lemma
+  ko-nikl-10327-s002:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10327
+    source_parent: ko-nikl-10327
+    source_position: 2
+    source_band: unbanded
+    reference_level: null
+    source_english: A seat on which a member sits in the National Assembly or a local assembly.
+    source_korean: 국회나 지방 의회에서 의원이 앉는 자리.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71883'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71883
+      pronunciations:
+      - 의석
+    lexical_identity: ko-lex-10327
+    lexical_category: free-lemma
+  ko-nikl-10378-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10378
+    source_parent: ko-nikl-10378
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'A person who presides over a conference on behalf of the organization or group that
+      holds the conference. '
+    source_korean: 회의를 연 기관이나 단체를 대표하며, 중심이 되어 회의를 맡아 진행하는 사람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '71861'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71861
+      pronunciations:
+      - 의장
+    lexical_identity: ko-lex-10378
+    lexical_category: free-lemma
+  ko-nikl-11824-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11824
+    source_parent: ko-nikl-11824
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of making and enacting laws at the National Assembly. '
+    source_korean: 주로 국회에서 법률을 만들어 정함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '91533'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=91533
+      pronunciations:
+      - 입뻡
+    source_correction:
+      source_korean: 주로 국회에서 법률을 만들어 정함.
+      source_english: 'An act of making and enacting laws at the National Assembly. '
+      authored_interpretation: lawmaking, chiefly in the National Assembly
+      rationale: Retain 주로, chiefly, omitted in English. The source description does not establish exclusive
+        or current legal authority.
+      method: authored-interpretation
+      review_status: unreviewed
+    lexical_identity: ko-lex-11824
+    lexical_category: free-lemma
+  ko-nikl-14568-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14568
+    source_parent: ko-nikl-14568
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The direction or state of political developments.
+    source_korean: 정치에 관한 일이 되어 가는 방향이나 형편.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '76550'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76550
+      pronunciations:
+      - 정세
+    lexical_identity: ko-lex-14568
+    lexical_category: free-lemma
+  ko-nikl-21191-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=21191
+    source_parent: ko-nikl-21191
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: 'An act of informing someone of one''s unfair or pitiful situation, earnestly seeking
+      help. '
+    source_korean: 억울하거나 딱한 사정을 남에게 알려 도와주기를 간절히 바람.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '81470'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=81470
+      pronunciations:
+      - 타ː눤
+    lexical_identity: ko-lex-21191
+    lexical_category: free-lemma
+  ko-nikl-23190-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23190
+    source_parent: ko-nikl-23190
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: An act of making a decision with a vote.
+    source_korean: 투표를 해서 결정함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '87555'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=87555
+      pronunciations:
+      - 표결
+    lexical_identity: ko-lex-23190
+    lexical_category: free-lemma
+  ko-nikl-25533-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25533
+    source_parent: ko-nikl-25533
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of deciding to approve an agenda item that was submitted to a meeting because
+      it is deemed good.
+    source_korean: 회의에 제출된 안건을 좋다고 인정하여 결정함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '27869'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=27869
+      pronunciations:
+      - 가ː결
+    lexical_identity: ko-lex-25533
+    lexical_category: free-lemma
+  ko-nikl-27142-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27142
+    source_parent: ko-nikl-27142
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: Changing and resetting things that are already determined.
+    source_korean: 이미 정해진 것을 바꾸어 다시 정함.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '18573'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18573
+      pronunciations:
+      - 개ː정
+    lexical_identity: ko-lex-27142
+    lexical_category: free-lemma
+  ko-nikl-28202-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28202
+    source_parent: ko-nikl-28202
+    source_position: 1
+    source_band: advanced
+    reference_level: topik-6
+    source_english: Making up one's mind firmly about something or this mindset.
+    source_korean: 어떤 일을 하기로 굳게 마음을 정함. 또는 그런 마음의 상태.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '32115'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=32115
+      pronunciations:
+      - 겨릐
+      - 겨리
+    lexical_identity: ko-lex-28202
+    lexical_category: free-lemma
+  ko-nikl-40065-s001:
+    source_id: nikl-2024-mirror
+    source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40065
+    source_parent: ko-nikl-40065
+    source_position: 1
+    source_band: unbanded
+    reference_level: null
+    source_english: The act of proposing an item that should be deliberated and discussed in a meeting,
+      or such an item.
+    source_korean: 회의에서, 심의하고 의논해야 할 안건을 내놓음. 또는 그 안건.
+    reading:
+      source_id: nikl-official-20260819
+      method: official-text
+      match_method: exact-ordered-korean-definitions
+      official_entry_id: '57215'
+      source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57215
+      pronunciations:
+      - 바릐
+      - 바리
+    lexical_identity: ko-lex-40065
     lexical_category: free-lemma
   ko-topik1-g001:
     source_id: original-ko

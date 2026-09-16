@@ -795,6 +795,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "capacity-motivation-notes.yaml",
             "text-interpretation-notes.yaml",
             "maintenance-condition-notes.yaml",
+            "civic-decisions-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -3457,6 +3458,69 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             self.assertEqual(self.references.vocabulary[item]["pr"],
                              " / ".join(evidence["pronunciations"]))
         self.assertEqual(self.references.vocabulary["ko-nikl-39228-s001"]["pr"], "밀폐 / 밀페")
+
+    def test_civic_source_homographs_and_resolve_family_remain_distinct(self):
+        identities = self.references.lexical_identity
+        self.assertEqual(identities["ko-nikl-28202-s001"], identities["ko-nikl-28208-s001"])
+        self.assertNotEqual(identities["ko-nikl-28202-s001"], identities["ko-nikl-28203-s001"])
+        self.assertNotEqual(identities["ko-nikl-29866-s001"], identities["ko-nikl-29867-s001"])
+        self.assertNotEqual(identities["ko-nikl-27141-s001"], identities["ko-nikl-27142-s001"])
+        self.assertEqual(identities["ko-nikl-34345-s001"], identities["ko-nikl-34345-s002"])
+        notes = load_yaml(self.root / "authoring" / "teaching" / "civic-decisions-notes.yaml")
+        origins = notes["parent_integration"]["actual_official_origin_evidence"]
+        for parent, origin in (
+            ("27141", "改正"), ("27142", "改定"), ("27143", "改訂"),
+            ("27208", "改票"), ("27209", "開票"), ("28202", "決意"),
+            ("28203", "決議"), ("28204", "結義"), ("29866", "公約"),
+            ("29867", "空約"), ("14568", "政勢"), ("14569", "情勢"),
+        ):
+            self.assertEqual(origins[f"ko-nikl-{parent}"]["origin"], origin)
+
+    def test_civic_process_stages_do_not_imply_fulfillment_or_legal_effect(self):
+        words = self.references.vocabulary
+        for item, required in (
+            ("11935-s001", "putting forward"), ("19151-s001", "votes received"),
+            ("27209-s001", "counting ballots"), ("29867-s001", "cannot keep"),
+            ("10244-s001", "through discussion"), ("23190-s001", "by voting"),
+            ("25533-s001", "approval"), ("06300-s001", "reject"),
+            ("40065-s001", "proposing"), ("11824-s001", "chiefly"),
+            ("10327-s002", "local assembly"), ("34345-s002", "screening"),
+            ("47038-s001", "most seats"),
+        ):
+            self.assertIn(required, words[f"ko-nikl-{item}"]["ds"])
+        self.assertIn("majority", self.references.provenance["ko-nikl-47038-s001"]["source_english"])
+        self.assertEqual(self.references.provenance["ko-nikl-47038-s001"][
+            "source_correction"]["review_status"], "unreviewed")
+        self.assertNotIn("ko-nikl-10327-s001", words)
+        self.assertNotIn("ko-nikl-11935-s002", words)
+
+    def test_civic_complete_source_admission_and_actual_citation_evidence(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "civic-decisions-notes.yaml")
+        rows = load_yaml(authoring / "civic-decisions-vocabulary.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["support_parent_requests"]
+        self.assertEqual(len(rows), 21)
+        self.assertEqual(len({row["id"].rsplit("-s", 1)[0] for row in rows}), 20)
+        self.assertEqual(len(requests), 17)
+        self.assertEqual(sum(len(parents[item]["senses"]) for item in requests), 20)
+        for item, request in requests.items():
+            parent = parents[item]
+            self.assertEqual(parent["target"], request["target"])
+            self.assertEqual(parent["source_band"], "unbanded")
+            self.assertIsNone(parent["reference_level"])
+            self.assertEqual([x["korean"] for x in parent["senses"]], request["korean_definitions"])
+            self.assertEqual([x["english"] for x in parent["senses"]], request["english_definitions"])
+        for row in rows:
+            item = row["id"]
+            evidence = notes["official_reading_evidence"][item.rsplit("-s", 1)[0]]
+            source = self.references.provenance[item]
+            self.assertEqual(source["reading"]["method"], "official-text")
+            self.assertEqual(source["reading"]["official_entry_id"], evidence["official_entry_id"])
+            self.assertEqual(self.references.vocabulary[item]["pr"], " / ".join(evidence["pronunciations"]))
+        self.assertEqual(self.references.vocabulary["ko-nikl-28202-s001"]["pr"], "겨릐 / 겨리")
+        self.assertEqual(self.references.vocabulary["ko-nikl-40065-s001"]["pr"], "바릐 / 바리")
+        self.assertEqual(self.references.vocabulary["ko-nikl-27209-s001"]["pr"], "개표")
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

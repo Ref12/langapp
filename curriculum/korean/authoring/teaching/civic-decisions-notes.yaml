@@ -1,0 +1,438 @@
+schema_version: 1
+review_status: 'AI-authored selection and interpretation; requires qualified Korean-teacher review'
+scope: 'Bounded general-reader election, public-decision, and policy-process nouns. Only the civic-decisions vocabulary, identity, and notes files are authored here.'
+admission_status: 'Pending parent review and admission; this cohort does not edit the manifest, sources, readings, corrections ledger, tests, or generated curriculum.'
+parent_integration:
+  baseline: a9b0a78
+  status: source admission and registration complete; generated validation pending
+  selected: All twenty-one returned noun senses; nineteen new provisional free families and the protected firm-resolve family extension.
+  support: Seventeen complete unbanded parents retain twenty original positions, eighteen selected.
+  readings: Twenty unique actual official full-entry matches, with no new crosswalk or authored decisions.
+  interpretations: >
+    The three returned source interpretations are accepted. A fourth ledger
+    entry documents the already-correct, unchanged ruling-party label using
+    most seats rather than the English majority claim. No old compact record,
+    placement or family changes; no current political facts are asserted.
+  complete_original_semantic_categories:
+    all_seventeen_support_parents: ''
+    ko-nikl-28202: ''
+    ko-nikl-27209: 정치와 행정 > 정치 및 행정 행위
+    ko-nikl-47133: 정치와 행정 > 정치 및 행정 주체
+  actual_official_origin_evidence:
+    ko-nikl-27141: {official_entry_id: '18571', origin: 改正}
+    ko-nikl-27142: {official_entry_id: '18573', origin: 改定}
+    ko-nikl-27143: {official_entry_id: '18575', origin: 改訂}
+    ko-nikl-27208: {official_entry_id: '23634', origin: 改票}
+    ko-nikl-27209: {official_entry_id: '23635', origin: 開票}
+    ko-nikl-28202: {official_entry_id: '32115', origin: 決意}
+    ko-nikl-28203: {official_entry_id: '32116', origin: 決議}
+    ko-nikl-28204: {official_entry_id: '32117', origin: 結義}
+    ko-nikl-29866: {official_entry_id: '19428', origin: 公約}
+    ko-nikl-29867: {official_entry_id: '19429', origin: 空約}
+    ko-nikl-14568: {official_entry_id: '76550', origin: 政勢}
+    ko-nikl-14569: {official_entry_id: '91858', origin: 情勢}
+  evidence_boundary: >
+    Parent inspected the actual origin features in the pinned official archive
+    rather than inferring them from spelling or readings. Full original
+    bilingual arrays, ordinals, forms, POS and bands match the pinned CSV.
+    Historical handback status below is retained, not a repeat admission task.
+  overall_limit: Core breadth, phase-load reassessment and qualified review remain outstanding; catalog stays inactive.
+
+source_provenance:
+  source_id: nikl-2024-mirror
+  revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  source_records: 53172
+  id_policy: 'Project parent IDs are one-based CSV record ordinals; sNNN is the original one-based bilingual definition-list position. Neither is an invented official NIKL identifier.'
+  metadata_policy: 'source_entry below is the original record ordinal. source_band is the exact CSV Vocabulary Level string: empty means unbanded, not an assigned teaching level. Original list order and internal/trailing whitespace are preserved.'
+  cache_use: 'Existing nikl-202401.csv and nikl-20260819-json.zip in the declared persistent session files were read and checksum-verified. No download, archive refresh, external Standard Dictionary search, archive extraction, or temporary file was used.'
+  attribution: 'National Institute of Korean Language and Korean-English Learners Dictionary contributors; January 2024 bilingual definitions via the unofficial binjang extraction.'
+  license: CC-BY-SA-2.0-KR
+  license_url: https://creativecommons.org/licenses/by-sa/2.0/kr/
+  change_notice: 'Selections, English teaching labels, placement decisions, identity analyses, and correction proposals are authored adaptations. Source definitions are reproduced unchanged as evidence; retain attribution and applicable share-alike terms. The mirror metadata license does not replace the dictionary text license.'
+  exclusions: 'No dictionary endorsement, audio, illustrations, or usage-example redistribution is claimed.'
+
+counts:
+  selected_senses: 21
+  selected_source_parents: 20
+  distinct_selected_spellings: 20
+  newly_selected_source_parents: 20
+  new_global_spellings: 17
+  identity_fragments: 20
+  new_provisional_free_families: 19
+  senses_in_new_families: 20
+  existing_free_family_extensions: 1
+  senses_extending_existing_families: 1
+  new_function_families: 0
+  new_bound_families: 0
+  support_parent_requests: 17
+  complete_positions_in_support_requests: 20
+  selected_positions_in_support_requests: 18
+  already_retained_selected_parents: 3
+  complete_positions_in_all_selected_parents: 23
+  official_full_entry_matches_with_citation_text: 20
+  reading_crosswalk_requests: 0
+  authored_reading_requests: 0
+  reading_holds: 0
+  selected_source_correction_requests: 3
+  count_limit: 'These are provisional documented lexical families, not 19 proven unrelated etymological or morphemic roots. Dictionary parents, written forms, senses, and family breadth are separate measures. The second 낙선 position deepens one new family; the 결의 noun deepens a protected family.'
+
+placement_rationale:
+  13: 'Firm personal resolve belongs with interpreting choices and intentions; its source high band does not force it into a late phase.'
+  14: '탄원 describes an earnest request for help with hardship or a grievance, without requiring a court procedure or legal finding.'
+  16: 'Read election and political-situation reports: districts, candidacy, votes received, counting, election defeat, public sentiment, and ruling/opposition party reference.'
+  18: 'Understand a meeting chair, agenda proposals, decisions by voting, and nonselection in work-related screening or selection.'
+  19: 'Distinguish the evaluative claim that a promise cannot be kept from a public pledge that simply has not yet been fulfilled.'
+  20: 'Compare deliberative decisions, approval/rejection, lawmaking, revision of established matters, and assembly seats without deriving current legal powers or thresholds.'
+
+identity_and_boundary_decisions:
+  existing_family_join:
+    identity: ko-lex-28202
+    canonical_lemma: 결의
+    category: free-lemma
+    existing_member: ko-nikl-28208-s001
+    added_member: ko-nikl-28202-s001
+    existing_predicate_source:
+      target: 결의하다
+      source_part_of_speech: 동사
+      source_band: ''
+      korean_definitions: ['어떤 일을 하기로 굳게 마음을 정하다.']
+      english_definitions: ['To definitely determine to do something']
+    rationale: 'The actual noun names firmly making up one''s mind or that mindset; the actual protected predicate names firmly making that decision. This specific full-definition correspondence supports the existing family, not a universal noun-plus-하다 merger. Its old member is not repeated in this fragment.'
+  independent_source_boundaries:
+    - '개정27142 resets something already determined; protected27141 corrects unsuitable or wrong document content, and unselected27143 corrects errors in lettering/writing. Keep these reviewed source boundaries without asserting an uninspected origin or automatically merging the spelling.'
+    - '개표27209 opens/counts ballots to discover voting results;27208 checks transportation/entrance tickets. Counting is not casting a vote, winning, certification, or making a decision by vote.'
+    - '공약29867 denotes an empty promise that cannot be kept. Protected29866 denotes a government, party, or candidate''s public promise; that definition neither guarantees fulfillment nor declares the promise hollow.'
+    - '결의28202 is firm resolve; protected28203 is a meeting''s collective decision;28204 is a family-like relationship between otherwise unrelated people. None is merged merely because English says resolution or agreement.'
+    - '정세14568 concerns political developments;14569 concerns the way affairs unfold generally. Only the political parent is added.'
+  category_reasoning:
+    - '여야 is a conventional lexical collective for political-party roles, not an unrestricted both-sides operator. It is treated provisionally as free lexical content, not a new morphemic root or evidence of an exactly two-party system. The protected 여당 and 야당 families remain separate.'
+    - '의석 names an assembly seat, not a bound numerical counter; no separate count-unit or legal-mandate sense is invented. 득표 names obtaining favorable votes or the votes obtained, not a generic quantity operator.'
+    - '선거구 denotes a source-listed territorial electoral unit distinct from the election event; 입후보 denotes self-candidacy or putting someone forward. These are context-bearing lexical items, not automatic counts for every transparent suffix, compound, or candidate-role expression.'
+    - 'Protected 과반수 remains free-lemma exactly as composed. Its source means strictly more than half, not half or more; no competing 과반 quantity family is added here.'
+    - 'The other proposed nouns name independently usable institutions, people, stances, events, or event/results. Category decisions depend on these lexical uses, not the source noun POS alone.'
+  actual_predicate_comparisons_not_admissions:
+    ko-nikl-06300: ko-nikl-06302
+    ko-nikl-10244: ko-nikl-10246
+    ko-nikl-11824: ko-nikl-11829
+    ko-nikl-11935: ko-nikl-11937
+    ko-nikl-19151: ko-nikl-19154
+    ko-nikl-21191: ko-nikl-21193
+    ko-nikl-23190: ko-nikl-23191
+    ko-nikl-25533: ko-nikl-25535
+    ko-nikl-27142: ko-nikl-27150
+    ko-nikl-27209: ko-nikl-27213
+    ko-nikl-28202: ko-nikl-28208
+    ko-nikl-29867: ko-nikl-29870
+    ko-nikl-34345: ko-nikl-34348
+    ko-nikl-40065: ko-nikl-40066
+  predicate_policy: 'These actual pinned predicates were compared, not generated from noun spelling or selected as extra vocabulary. Only28208 already belonged to an established matching family. Other unselected predicates are neither support requests nor source_parents in these noun fragments.'
+
+support_parent_requests:
+  ko-nikl-06300:
+    target: 부결
+    source_entry: 6300
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['회의에서 의논한 안건을 반대하여 받아들이지 않기로 결정함. 또는 그런 결정.']
+    english_definitions: ["The act of deciding to oppose and reject an agenda discussed in a meeting, or such a decision. "]
+  ko-nikl-09944:
+    target: 선거구
+    source_entry: 9944
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['의원이나 단체의 대표를 선출하기 위하여 거주 지역을 일정한 단위로 나눈 구역.']
+    english_definitions: ['Territorial subdivisions of a residential area in order to elect a member of a legislative body or the representative of an organization.']
+  ko-nikl-10244:
+    target: 의결
+    source_entry: 10244
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['어떤 일에 대해 의논하여 결정함. 또는 그런 결정.']
+    english_definitions: ['An act of making a decision about something through discussion, or such a decision.']
+  ko-nikl-10327:
+    target: 의석
+    source_entry: 10327
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 2
+    selected_positions: [2]
+    korean_definitions: ['회의하는 자리.', '국회나 지방 의회에서 의원이 앉는 자리.']
+    english_definitions: ['A seat prepared for a meeting.', 'A seat on which a member sits in the National Assembly or a local assembly.']
+  ko-nikl-10378:
+    target: 의장
+    source_entry: 10378
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['회의를 연 기관이나 단체를 대표하며, 중심이 되어 회의를 맡아 진행하는 사람.']
+    english_definitions: ["A person who presides over a conference on behalf of the organization or group that holds the conference. "]
+  ko-nikl-11824:
+    target: 입법
+    source_entry: 11824
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['주로 국회에서 법률을 만들어 정함.']
+    english_definitions: ["An act of making and enacting laws at the National Assembly. "]
+  ko-nikl-11935:
+    target: 입후보
+    source_entry: 11935
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 2
+    selected_positions: [1]
+    korean_definitions: ['선거에서 후보자로 나서거나 내세움.', '선거에서 후보자로 나선 사람.']
+    english_definitions: ['The act of coming forward as a candidate for or putting up someone as a candidate for an election.', 'A person who runs for an election.']
+  ko-nikl-14568:
+    target: 정세
+    source_entry: 14568
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['정치에 관한 일이 되어 가는 방향이나 형편.']
+    english_definitions: ['The direction or state of political developments.']
+  ko-nikl-19151:
+    target: 득표
+    source_entry: 19151
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['투표에서 찬성표를 얻음. 또는 얻은 찬성표.']
+    english_definitions: ['The act of receiving approval votes in an election, or such a vote.']
+  ko-nikl-21191:
+    target: 탄원
+    source_entry: 21191
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['억울하거나 딱한 사정을 남에게 알려 도와주기를 간절히 바람.']
+    english_definitions: ["An act of informing someone of one's unfair or pitiful situation, earnestly seeking help. "]
+  ko-nikl-23190:
+    target: 표결
+    source_entry: 23190
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['투표를 해서 결정함.']
+    english_definitions: ['An act of making a decision with a vote.']
+  ko-nikl-25533:
+    target: 가결
+    source_entry: 25533
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['회의에 제출된 안건을 좋다고 인정하여 결정함.']
+    english_definitions: ['The act of deciding to approve an agenda item that was submitted to a meeting because it is deemed good.']
+  ko-nikl-27142:
+    target: 개정
+    source_entry: 27142
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['이미 정해진 것을 바꾸어 다시 정함.']
+    english_definitions: ['Changing and resetting things that are already determined.']
+  ko-nikl-29867:
+    target: 공약
+    source_entry: 29867
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['지키지 못할 헛된 약속. 또는 그런 약속을 함.']
+    english_definitions: ['An empty promise that one cannot keep, or an act of making an empty promise.']
+  ko-nikl-34345:
+    target: 낙선
+    source_entry: 34345
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 2
+    selected_positions: [1, 2]
+    korean_definitions: ['선거에서 떨어짐.', '심사나 선발에서 떨어짐.']
+    english_definitions: ['The act of losing an election.', 'A state of failing to pass a test or to be selected.']
+  ko-nikl-39094:
+    target: 민심
+    source_entry: 39094
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['일반 국민의 생각과 마음.']
+    english_definitions: ['The thoughts and feelings of the public.']
+  ko-nikl-40065:
+    target: 발의
+    source_entry: 40065
+    source_part_of_speech: 명사
+    source_band: ''
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['회의에서, 심의하고 의논해야 할 안건을 내놓음. 또는 그 안건.']
+    english_definitions: ['The act of proposing an item that should be deliberated and discussed in a meeting, or such an item.']
+
+already_retained_source_evidence:
+  ko-nikl-27209:
+    target: 개표
+    source_entry: 27209
+    source_part_of_speech: 명사
+    source_band: 고급
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['투표함을 열고 투표의 결과를 알아봄.']
+    english_definitions: ["Opening the ballot boxes and finding out the results of a vote. "]
+  ko-nikl-28202:
+    target: 결의
+    source_entry: 28202
+    source_part_of_speech: 명사
+    source_band: 고급
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['어떤 일을 하기로 굳게 마음을 정함. 또는 그런 마음의 상태.']
+    english_definitions: ["Making up one's mind firmly about something or this mindset."]
+  ko-nikl-47133:
+    target: 여야
+    source_entry: 47133
+    source_part_of_speech: 명사
+    source_band: 고급
+    source_definition_count: 1
+    selected_positions: [1]
+    korean_definitions: ['여당과 야당.']
+    english_definitions: ['A compound word for the ruling party and opposition party.']
+
+source_correction_requests:
+  ko-nikl-47038-s001:
+    source_korean: '정당 정치에서, 대통령을 내거나 의회에서 의석을 가장 많이 차지하고 있는 당.'
+    source_english: 'In party politics, a party that has produced the president or holds the majority of seats in the parliament. '
+    authored_interpretation: 'the ruling party holding the presidency or most seats'
+    rationale: Document the unchanged label retaining most seats, not necessarily more than half, without a claim about a current government.
+  ko-nikl-11824-s001:
+    source_korean: '주로 국회에서 법률을 만들어 정함.'
+    source_english: "An act of making and enacting laws at the National Assembly. "
+    authored_interpretation: 'lawmaking, chiefly in the National Assembly'
+    rationale: 'Retain 주로, chiefly, which the English omits. This is the source description, not a claim of exclusive or current legal authority.'
+  ko-nikl-19151-s001:
+    source_korean: '투표에서 찬성표를 얻음. 또는 얻은 찬성표.'
+    source_english: 'The act of receiving approval votes in an election, or such a vote.'
+    authored_interpretation: 'receiving votes in favor, or the votes received'
+    rationale: 'The Korean specifies favorable votes in voting, not elections alone. Preserve receiving and the votes received, without making this ballot counting, all votes cast, winning, or a guaranteed majority.'
+  ko-nikl-34345-s002:
+    source_korean: '심사나 선발에서 떨어짐.'
+    source_english: 'A state of failing to pass a test or to be selected.'
+    authored_interpretation: 'failure to pass screening or be selected'
+    rationale: '심사 and 선발 specify screening/review or selection. The English test can misleadingly suggest arbitrary examination failure; preserve nonselection without inventing withdrawal, disqualification, or misconduct.'
+
+official_reading_provenance:
+  source_id: nikl-official-20260819
+  source_url: https://krdict.korean.go.kr/dicBatchDownload?seq=214
+  source_sha256: 7cf41e62a2a36158a8be2b6d2f84c086221e9b29d4345c44e5497eebf21c8c40
+  official_archive_entries: 56555
+  method: official-text
+  match_method: exact-ordered-korean-definitions
+  match_policy: 'Each complete ordered Korean source list was compared against all exact written-form/POS archive candidates. All20 parents have one full-list match and actual citation pronunciation text, including the two-position parents whose other positions are not selected. This is not a spelling-to-pronunciation guess or a manual crosswalk.'
+  display_policy: 'Preserve actual alternatives and length marks; do not copy a different homograph''s reading. No inflected-form pronunciation is inferred.'
+
+official_reading_evidence:
+  ko-nikl-06300: {official_entry_id: '59394', pronunciations: ['부ː결'], complete_official_korean_definitions: ['회의에서 의논한 안건을 반대하여 받아들이지 않기로 결정함. 또는 그런 결정.']}
+  ko-nikl-09944: {official_entry_id: '63330', pronunciations: ['선ː거구'], complete_official_korean_definitions: ['의원이나 단체의 대표를 선출하기 위하여 거주 지역을 일정한 단위로 나눈 구역.']}
+  ko-nikl-10244: {official_entry_id: '71636', pronunciations: ['의결'], complete_official_korean_definitions: ['어떤 일에 대해 의논하여 결정함. 또는 그런 결정.']}
+  ko-nikl-10327: {official_entry_id: '71883', pronunciations: ['의석'], complete_official_korean_definitions: ['회의하는 자리.', '국회나 지방 의회에서 의원이 앉는 자리.']}
+  ko-nikl-10378: {official_entry_id: '71861', pronunciations: ['의장'], complete_official_korean_definitions: ['회의를 연 기관이나 단체를 대표하며, 중심이 되어 회의를 맡아 진행하는 사람.']}
+  ko-nikl-11824: {official_entry_id: '91533', pronunciations: ['입뻡'], complete_official_korean_definitions: ['주로 국회에서 법률을 만들어 정함.']}
+  ko-nikl-11935: {official_entry_id: '73611', pronunciations: ['이푸보'], complete_official_korean_definitions: ['선거에서 후보자로 나서거나 내세움.', '선거에서 후보자로 나선 사람.']}
+  ko-nikl-14568: {official_entry_id: '76550', pronunciations: ['정세'], complete_official_korean_definitions: ['정치에 관한 일이 되어 가는 방향이나 형편.']}
+  ko-nikl-19151: {official_entry_id: '50541', pronunciations: ['득표'], complete_official_korean_definitions: ['투표에서 찬성표를 얻음. 또는 얻은 찬성표.']}
+  ko-nikl-21191: {official_entry_id: '81470', pronunciations: ['타ː눤'], complete_official_korean_definitions: ['억울하거나 딱한 사정을 남에게 알려 도와주기를 간절히 바람.']}
+  ko-nikl-23190: {official_entry_id: '87555', pronunciations: ['표결'], complete_official_korean_definitions: ['투표를 해서 결정함.']}
+  ko-nikl-25533: {official_entry_id: '27869', pronunciations: ['가ː결'], complete_official_korean_definitions: ['회의에 제출된 안건을 좋다고 인정하여 결정함.']}
+  ko-nikl-27142: {official_entry_id: '18573', pronunciations: ['개ː정'], complete_official_korean_definitions: ['이미 정해진 것을 바꾸어 다시 정함.']}
+  ko-nikl-27209: {official_entry_id: '23635', pronunciations: ['개표'], complete_official_korean_definitions: ['투표함을 열고 투표의 결과를 알아봄.']}
+  ko-nikl-28202: {official_entry_id: '32115', pronunciations: ['겨릐', '겨리'], complete_official_korean_definitions: ['어떤 일을 하기로 굳게 마음을 정함. 또는 그런 마음의 상태.']}
+  ko-nikl-29867: {official_entry_id: '19429', pronunciations: ['공약'], complete_official_korean_definitions: ['지키지 못할 헛된 약속. 또는 그런 약속을 함.']}
+  ko-nikl-34345: {official_entry_id: '36844', pronunciations: ['낙썬'], complete_official_korean_definitions: ['선거에서 떨어짐.', '심사나 선발에서 떨어짐.']}
+  ko-nikl-39094: {official_entry_id: '56487', pronunciations: ['민심'], complete_official_korean_definitions: ['일반 국민의 생각과 마음.']}
+  ko-nikl-40065: {official_entry_id: '57215', pronunciations: ['바릐', '바리'], complete_official_korean_definitions: ['회의에서, 심의하고 의논해야 할 안건을 내놓음. 또는 그 안건.']}
+  ko-nikl-47133: {official_entry_id: '67747', pronunciations: ['여ː야'], complete_official_korean_definitions: ['여당과 야당.']}
+
+same_form_official_candidates_compared:
+  ko-nikl-14568: ['76550', '91858']
+  ko-nikl-27142: ['18571', '18573', '18575']
+  ko-nikl-27209: ['23634', '23635']
+  ko-nikl-28202: ['32115', '32116', '32117']
+  ko-nikl-29867: ['19428', '19429']
+reading_crosswalk_requests: {}
+authored_reading_requests: {}
+reading_holds: {}
+reading_admission_note: 'All20 are supported by actual cached official text. Seventeen parents still require source admission; they are not missing dictionary text. Automatic full-entry matching after admission requires no extra manual crosswalk. In particular, voted-result 개표 matches23635 with 개표, not candidate23634 with 개ː표.'
+
+already_selected_leads_not_repeated:
+  - '여론47065, 선거09942, 선출10151, 당선16804 positions1/2, 투표21988, 공론29734 positions1/2 and29735, 유권자50128 position1, 후보52260 positions1/2/3, 후보자52261, 출마45711.'
+  - 'Public-promise 공약29866, 여당47038, 야당04958, 정당14433, 의원10370, 의회10419, 국회31398 positions1/2, 과반수30133.'
+  - 'Collective meeting 결의28203, 안건04408, 법안05222, 법령05204, 조례15141, 헌법25058, document-correction 개정27141, 제정14972, 폐지22968, 시행02999 positions1/2, promulgation 공포30032.'
+  - '공청회30010, 청원44868, 민원39103, national-administration 국정31351, 정권14405, 정계14395.'
+
+bounded_exclusions_and_gaps:
+  absent_exact_source_forms: ['여론조사', '여론 조사']
+  absent_form_policy: 'Neither exact form was present in the pinned CSV. No survey compound or ID is fabricated, and no unrelated 조사 is substituted. This is a bounded source gap, not a claim that Korean lacks the expression.'
+  unselected_positions:
+    ko-nikl-10327-s001: 'The general meeting seat is outside the focused assembly-seat use.'
+    ko-nikl-11935-s002: 'Candidate-person use is already served by protected 후보/후보자; preserve the source position without adding another person-label solely for breadth.'
+    ko-nikl-50128-s002: 'Generic holder of a right/power is not needed to teach an eligible voter; do not turn eligibility into actual voting or add a power-holder rank catalogue.'
+  unselected_competitors:
+    ko-nikl-27208: 'Ticket inspection, not vote counting.'
+    ko-nikl-03000: 'A line of poetry, not policy implementation.'
+    ko-nikl-10369: 'Medical clinic, not legislator.'
+    ko-nikl-15142: 'School morning assembly, not an ordinance.'
+    ko-nikl-28204: 'Family-like ties between otherwise unrelated people, not the resolve or meeting-resolution senses.'
+    ko-nikl-27143: 'Correcting lettering/writing; not needed to extend this policy-process cohort.'
+    ko-nikl-14569: 'General unfolding circumstances; the selected source specifically covers political developments.'
+    ko-nikl-31350: 'State setting/determination or what the state sets; deferred rather than broadening the protected national-administration word by spelling.'
+    ko-nikl-31352: 'National conditions; deferred rather than adding a general or awkwardly broad same-spelling sense.'
+    ko-nikl-30132: '과반 is not added as a separate quantity family or automatically merged into protected 과반수 without a documented variant decision.'
+  scope_limit: 'No criminal-procedure expansion, uninspected political theory, government-rank list, obsolete-rule inventory, or exhaustive unselected-source sweep.'
+
+protected_source_observation_not_a_new_selection:
+  id: ko-nikl-47038-s001
+  source_korean: '정당 정치에서, 대통령을 내거나 의회에서 의석을 가장 많이 차지하고 있는 당.'
+  source_english: "In party politics, a party that has produced the president or holds the majority of seats in the parliament. "
+  existing_selected_label: 'the ruling party holding the presidency or most seats'
+  observation: 'The Korean says most seats, not necessarily more than half. The protected label already preserves most seats correctly. No old row or correction ledger was changed; this observation is separate from this cohort''s three selected correction requests.'
+
+limitations:
+  - 'Dictionary descriptions are dated language evidence, not current election rules, legal advice, campaigning advice, a democratic-competence certification, or claims about actual parties, people, motives, grievances, or institutional legitimacy.'
+  - 'Institutional roles, candidacy, districting, thresholds, and lawmaking powers vary. No current registration requirement, electoral boundary, voting denominator, certified result, or exclusive legal authority is inferred.'
+  - '발의 is proposal; 의결 is deliberative decision; 표결 is deciding by vote; 가결/부결 are approval/rejection outcomes. Passage is not automatically promulgation, implementation, or legal effectiveness. These are semantic contrasts, not a universal legally required sequence.'
+  - '민심 is thoughts and feelings, not representative measurement or consensus. 여야 does not certify how many parties exist or which parties currently govern.'
+  - 'Normative or evaluative wording, including an agenda being deemed good or a promise being unkeepable, is source evidence, not endorsement or a finding about a real case.'
+  - 'Placements are practical instructional judgments, not frequency facts, source-band conversions, exam alignment, proficiency guarantees, or a quota. Lexical identities and English nuances remain provisional pending qualified review.'
+
+validation:
+  status: passed-local-read-only-validation
+  checks: 'Duplicate-key-safe YAML; exact row/family fields; label bounds; full pinned source metadata and bilingual positions including whitespace; in-memory source importer with all retained entries unchanged; live manifest/family composition without old canonical/member changes; global source-placement uniqueness; correction-label equality; actual complete official archive matches; all cohort counts.'
+  maximum_label_length: 58
+  selected_levels: {13: 1, 14: 1, 16: 8, 18: 4, 19: 1, 20: 6}
+  focused_existing_regressions:
+    - test_korean_program.KoreanAdapterTests.test_polysemy_counts_once_and_bound_forms_are_separate
+    - test_korean_program.KoreanAdapterTests.test_authored_corrections_preserve_bilingual_source_and_selected_label
+    - test_korean_program.KoreanSourceArtifactTests.test_figurative_spring_correction_matches_the_actual_pinned_definition
+  regression_result: 'All three passed using Python312 -B; no new tests, fixtures, dependencies, or shared files were written.'
+  single_live_composition_snapshot:
+    baseline_core_senses: 8059
+    baseline_core_free_families: 5082
+    with_this_cohort_core_senses: 8080
+    with_this_cohort_core_free_families: 5101
+    status: 'A local composition check, not a published/generated result. Other parent integrations can advance this snapshot; it will not be refreshed after handback.'
+  handoff: 'The parent may review the17 complete support requests, compose the vocabulary and identity fragments into their corresponding manifest lists, derive actual official readings, and review the three correction requests. No manual reading crosswalk or authored pronunciation addition is needed. All three cohort files freeze at handback.'

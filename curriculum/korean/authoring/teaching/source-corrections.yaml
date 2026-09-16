@@ -5,6 +5,26 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-11824-s001:
+    source_korean: 주로 국회에서 법률을 만들어 정함.
+    source_english: 'An act of making and enacting laws at the National Assembly. '
+    authored_interpretation: lawmaking, chiefly in the National Assembly
+    rationale: Retain 주로, chiefly, omitted in English. The source description does not establish exclusive or current legal authority.
+  ko-nikl-19151-s001:
+    source_korean: 투표에서 찬성표를 얻음. 또는 얻은 찬성표.
+    source_english: The act of receiving approval votes in an election, or such a vote.
+    authored_interpretation: receiving votes in favor, or the votes received
+    rationale: Korean covers favorable votes in voting, not only elections; retain receiving and votes received without implying victory or a majority.
+  ko-nikl-34345-s002:
+    source_korean: 심사나 선발에서 떨어짐.
+    source_english: A state of failing to pass a test or to be selected.
+    authored_interpretation: failure to pass screening or be selected
+    rationale: 심사 and 선발 specify screening/review or selection, not arbitrary examination failure, withdrawal or misconduct.
+  ko-nikl-47038-s001:
+    source_korean: 정당 정치에서, 대통령을 내거나 의회에서 의석을 가장 많이 차지하고 있는 당.
+    source_english: 'In party politics, a party that has produced the president or holds the majority of seats in the parliament. '
+    authored_interpretation: the ruling party holding the presidency or most seats
+    rationale: Document the unchanged selected label following 가장 많이, most seats, rather than necessarily more than half. This does not identify a current party or impose a universal legal definition.
   ko-nikl-30169-s002:
     source_korean: 지나치게 심해지거나 활발해짐.
     source_english: A state of being intensified or overly active.
