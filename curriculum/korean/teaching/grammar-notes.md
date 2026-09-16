@@ -204,9 +204,12 @@ forms do not create fictitious additional free-lemma mastery.
 
 At level 8, explicitly separate:
 
-1. **Listener politeness:** 해요 versus 합니다 addresses the listener.
-2. **Subject honorification:** -(으)시- honors the grammatical subject.
-3. **Humble reference:** 드리다 or 뵙다 lowers the actor's action in
+1. **Listener politeness:** 해요 and 합니다 are both polite listener-facing
+   forms; familiar 해 requires a suitable relationship and context.
+2. **Formality:** 합니다 is formal and 해요 is informal, despite both being
+   polite. Formality is not a higher/lower politeness score.
+3. **Subject honorification:** -(으)시- honors the grammatical subject.
+4. **Humble reference:** 드리다 or 뵙다 lowers the actor's action in
    relation to a respected recipient or referent; it does not honor the actor.
 
 Compare 선생님이 오셨어요 with 제가 선생님께 설명해 드렸어요.
@@ -225,6 +228,18 @@ form 읽다 is not the ordinary present action declaration. For a familiar
 proposal, explicitly gloss -자 when comparing the report -자고 하다.
 Source quotation constructs introduce their own question and directive
 quoted forms; they do not license blunt direct speech to strangers.
+
+At level 26, connect these distinctions to the sourced labels 격식체,
+경어 and 존대. Formal 하십시오체 and formal plain 해라체 do not express
+the same listener relationship; everyday polite 해요체 is informal.
+The short dictionary account of 격식체 must not become a rule that every
+formal style raises the listener. Its teaching qualification is recorded
+separately from the unchanged source definition.
+
+Also distinguish speech levels from written style. 구어체 is writing
+resembling everyday conversation, not necessarily a transcript; 문어체
+names a written rather than conversational style. Neither label by itself
+establishes a speaker's politeness, subject honorification or learner mastery.
 
 ### Time, aspect, clause roles, and reported evidence
 

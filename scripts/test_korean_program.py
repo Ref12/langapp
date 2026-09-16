@@ -765,6 +765,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "natural-support-notes.yaml",
             "quality-support-notes.yaml",
             "analysis-notes.yaml",
+            "stance-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1403,7 +1404,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
     def test_recovered_source_parents_keep_original_unselected_positions(self):
         parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
         authoring = self.root / "authoring" / "teaching"
-        for name in ("natural-support", "quality-support", "analysis"):
+        for name in ("natural-support", "quality-support", "analysis", "stance"):
             notes = load_yaml(authoring / f"{name}-notes.yaml")
             for parent in notes["source_support_requests"]:
                 self.assertEqual(parents[parent]["source_band"], "unbanded")
@@ -1484,6 +1485,84 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertEqual(official["method"], "official-text")
         self.assertEqual(official["official_entry_id"], "62014")
         self.assertEqual(self.references.vocabulary["ko-nikl-08177-s001"]["pr"], "사고력")
+
+    def test_stance_homographs_keep_calling_gist_and_concrete_representation_distinct(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for left, right in (("00726", "00727"), ("17193", "17194"), ("31006", "31007")):
+            left, right = f"ko-nikl-{left}-s001", f"ko-nikl-{right}-s001"
+            self.assertEqual(words[left]["ch"], words[right]["ch"])
+            self.assertNotEqual(identities[left], identities[right])
+        self.assertIn("mental image", words["ko-nikl-03634-s001"]["ds"])
+        self.assertIn("Christianity", words["ko-nikl-00726-s002"]["ds"])
+        for position in ("001", "002"):
+            self.assertEqual(
+                self.references.provenance[f"ko-nikl-31006-s{position}"]["reading"]["official_entry_id"],
+                "36556",
+            )
+        stance = {
+            row["id"] for row in load_yaml(
+                self.root / "authoring" / "teaching" / "stance-vocabulary.yaml",
+            )
+        }
+        self.assertNotIn("ko-nikl-00727-s002", stance)
+        self.assertNotIn("ko-nikl-03633-s001", stance)
+        self.assertNotIn("ko-nikl-23359-s001", stance)
+
+    def test_stance_nominal_modifiers_and_opposing_response_have_conservative_families(self):
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        for nominal, modifier in (("07594", "07595"), ("09245", "09246")):
+            first, second = f"ko-nikl-{nominal}-s001", f"ko-nikl-{modifier}-s001"
+            self.assertEqual(self.references.lexical_identity[first], self.references.lexical_identity[second])
+            self.assertEqual(parents[f"ko-nikl-{nominal}"]["source_part_of_speech"], "명사")
+            self.assertEqual(parents[f"ko-nikl-{modifier}"]["source_part_of_speech"], "관형사")
+        for parent, official in (("07594", "60998"), ("07595", "60997"), ("17771", "47796")):
+            self.assertEqual(
+                self.references.provenance[f"ko-nikl-{parent}-s001"]["reading"]["official_entry_id"],
+                official,
+            )
+        notes = load_yaml(self.root / "authoring" / "teaching" / "stance-notes.yaml")
+        decision = notes["family_adjudications"]["opposing_response"]
+        evidence = decision["official_evidence"]
+        self.assertEqual(evidence["ko-nikl-24543"]["origin"], "抗卞")
+        self.assertEqual(evidence["ko-nikl-24544"]["origin"], "抗辯")
+        for parent in ("ko-nikl-24543", "ko-nikl-24544"):
+            identifier = f"{parent}-s001"
+            self.assertEqual(self.references.lexical_identity[identifier], decision["lexical_id"])
+            self.assertEqual(
+                self.references.provenance[identifier]["reading"]["official_entry_id"],
+                evidence[parent]["official_entry_id"],
+            )
+        self.assertNotEqual(
+            self.references.vocabulary["ko-nikl-24543-s001"]["ds"],
+            self.references.vocabulary["ko-nikl-24544-s001"]["ds"],
+        )
+
+    def test_stance_core_satire_does_not_move_the_optional_literary_meaning(self):
+        authoring = self.root / "authoring" / "teaching"
+        placements, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        self.assertEqual(
+            [row["level"] for row in placements if row["id"] == "ko-nikl-23441-s001"], [25],
+        )
+        self.assertEqual(
+            [row["level"] for row in placements if row["id"] == "ko-nikl-23441-s002"], ["literary"],
+        )
+        self.assertEqual(
+            self.references.lexical_identity["ko-nikl-23441-s001"],
+            self.references.lexical_identity["ko-nikl-23441-s002"],
+        )
+        self.assertEqual(len(groups["ko-lex-37081"]["members"]), 3)
+        self.assertEqual(len(groups["ko-lex-14102"]["members"]), 3)
+
+    def test_stance_register_interpretations_keep_source_and_teaching_qualification_separate(self):
+        source = self.references.provenance
+        words = self.references.vocabulary
+        self.assertEqual(words["ko-nikl-28018-s001"]["ds"], "a formal addressee speech style in Korean")
+        self.assertIn("raises the addressee", source["ko-nikl-28018-s001"]["source_english"])
+        self.assertEqual(words["ko-nikl-31087-s001"]["ds"], "a conversational style of writing")
+        self.assertIn("conversations are written down", source["ko-nikl-31087-s001"]["source_english"])
+        notes = (self.root / "teaching" / "grammar-notes.md").read_text(encoding="utf-8")
+        self.assertIn("Formality is not a higher/lower politeness score", notes)
+        self.assertIn("not necessarily a transcript", notes)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

@@ -753,6 +753,13 @@ entries:
     pronunciations:
     - 세ː련되다
     - 세ː련뒈다
+  ko-nikl-00412:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '64354'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=64354
+    pronunciations:
+    - 세ː련미
   ko-nikl-00416:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -1217,6 +1224,20 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63475
     pronunciations:
     - 소멸
+  ko-nikl-00726:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '63479'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63479
+    pronunciations:
+    - 소명
+  ko-nikl-00727:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '63480'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=63480
+    pronunciations:
+    - 소명
   ko-nikl-00729:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -4190,6 +4211,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85242
     pronunciations:
     - 시사
+  ko-nikl-02833:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '85243'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85243
+    pronunciations:
+    - 시ː사쩜
   ko-nikl-02834:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -5754,6 +5782,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14136
     pronunciations:
     - 실현
+  ko-nikl-03579:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '66259'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66259
+    pronunciations:
+    - 실현썽
   ko-nikl-03583:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -5865,6 +5900,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66025
     pronunciations:
     - 심ː사숙꼬
+  ko-nikl-03634:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '66136'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=66136
+    pronunciations:
+    - 심상
   ko-nikl-03635:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -12136,6 +12178,28 @@ entries:
     - 비ː유
     match_reason: 'Compared the single analogy definition: 위하여 is shortened to 위해; explaining something
       by comparison to a similar thing is otherwise unchanged.'
+  ko-nikl-07594:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '60998'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60998
+    pronunciations:
+    - 비ː유적
+    match_reason: Compared the complete single noun definition with the exact-spelling noun candidate.
+      Only 위하여 becomes 위해 in likening something to a similar thing for effective explanation. The nominal
+      ending 빗대는 것 identifies noun 60998, not adnominal 60997; preserve official 비ː유적 and the independent
+      original noun sense.
+  ko-nikl-07595:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '60997'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=60997
+    pronunciations:
+    - 비ː유적
+    match_reason: Compared the complete single adnominal definition with the exact-spelling 관형사 candidate.
+      Only 위하여 becomes 위해; the modifying ending 빗대는 remains unchanged. Select adnominal 60997 rather than
+      noun 60998 despite equal spelling and citation reading, preserving this source POS and official
+      비ː유적.
   ko-nikl-07596:
     method: official-text
     match_method: explicit-crosswalk
@@ -13504,6 +13568,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=61506
     pronunciations:
     - 사ː업체
+  ko-nikl-08448:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '93749'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=93749
+    pronunciations:
+    - 사ː연
   ko-nikl-08449:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -14426,6 +14497,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71096
     pronunciations:
     - 상대방
+  ko-nikl-09081:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '16220'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16220
+    pronunciations:
+    - 상대썽
   ko-nikl-09082:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -14672,6 +14750,27 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62644
     pronunciations:
     - 상징
+  ko-nikl-09243:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '62649'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62649
+    pronunciations:
+    - 상징썽
+  ko-nikl-09245:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '16225'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16225
+    pronunciations:
+    - 상징적
+  ko-nikl-09246:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '16224'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=16224
+    pronunciations:
+    - 상징적
   ko-nikl-09249:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -17486,6 +17585,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72830
     pronunciations:
     - 이징뉼
+  ko-nikl-10963:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '72837'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72837
+    pronunciations:
+    - 이ː질썽
   ko-nikl-10967:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -18366,6 +18472,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72788
     pronunciations:
     - 일리
+  ko-nikl-11458:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '72796'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72796
+    pronunciations:
+    - 일맥쌍통
   ko-nikl-11464:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -18387,6 +18500,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72719
     pronunciations:
     - 일반석
+  ko-nikl-11471:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '72720'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72720
+    pronunciations:
+    - 일반썽
   ko-nikl-11473:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -23739,6 +23859,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75649
     pronunciations:
     - 정ː통
+  ko-nikl-14729:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '75652'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=75652
+    pronunciations:
+    - 정ː통썽
   ko-nikl-14737:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -25374,6 +25501,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=23370
     pronunciations:
     - 다ː만
+  ko-nikl-16153:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '90597'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90597
+    pronunciations:
+    - 다면
   ko-nikl-16164:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -27182,6 +27316,22 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14346
     pronunciations:
     - 대ː응하다
+  ko-nikl-17193:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '90422'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90422
+    pronunciations:
+    - 대ː의
+    - 대ː이
+  ko-nikl-17194:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '47030'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=47030
+    pronunciations:
+    - 대ː의
+    - 대ː이
   ko-nikl-17198:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -27951,6 +28101,17 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=14386
     pronunciations:
     - 도ː덕
+  ko-nikl-17771:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '47796'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=47796
+    pronunciations:
+    - 도ː덕꽌
+    match_reason: Compared the complete single moral-viewpoint definition, including both sentence fragments,
+      with the sole exact-spelling/POS candidate. The official wording adds 또는 before 도덕적 인식, explicitly
+      connecting the same viewpoint and awareness alternatives. No extra source sense is created; preserve
+      the official length and tensification in 도ː덕꽌.
   ko-nikl-17774:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -34865,6 +35026,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84587
     pronunciations:
     - 포ː용
+  ko-nikl-23053:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '84589'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84589
+    pronunciations:
+    - 포ː용썽
   ko-nikl-23061:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -35144,6 +35312,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88629
     pronunciations:
     - 표본
+  ko-nikl-23222:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '88631'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=88631
+    pronunciations:
+    - 표상
   ko-nikl-23224:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -35854,6 +36029,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86427
     pronunciations:
     - 필짜
+  ko-nikl-23727:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '84658'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=84658
+    pronunciations:
+    - 필체
   ko-nikl-23730:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -37050,6 +37232,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85605
     pronunciations:
     - 함축
+  ko-nikl-24407:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '85607'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85607
+    pronunciations:
+    - 함축썽
   ko-nikl-24410:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -37256,6 +37445,20 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85363
     pronunciations:
     - 항문
+  ko-nikl-24543:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '85888'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85888
+    pronunciations:
+    - 항ː변
+  ko-nikl-24544:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '85891'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=85891
+    pronunciations:
+    - 항ː변
   ko-nikl-24549:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -38787,6 +38990,14 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86393
     pronunciations:
     - 형평썽
+  ko-nikl-25490:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '86396'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86396
+    pronunciations:
+    - 혜ː안
+    - 헤ː안
   ko-nikl-25491:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -41177,6 +41388,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18541
     pronunciations:
     - 개장
+  ko-nikl-27135:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '18549'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18549
+    pronunciations:
+    - 개ː재
   ko-nikl-27141:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -42282,6 +42500,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=33038
     pronunciations:
     - 격씩
+  ko-nikl-28018:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '33039'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=33039
+    pronunciations:
+    - 격씩체
   ko-nikl-28024:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -42847,6 +43072,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30764
     pronunciations:
     - 경악
+  ko-nikl-28441:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '30774'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=30774
+    pronunciations:
+    - 경ː어
   ko-nikl-28443:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -43824,6 +44056,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18809
     pronunciations:
     - 고유
+  ko-nikl-29234:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '18840'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=18840
+    pronunciations:
+    - 고유썽
   ko-nikl-29242:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -46142,6 +46381,18 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36559
     pronunciations:
     - 구사일쌩
+  ko-nikl-31006:
+    method: official-text
+    match_method: explicit-crosswalk
+    official_entry_id: '36556'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=36556
+    pronunciations:
+    - 구상
+    match_reason: Compared both ordered concrete/representational definitions with both noun candidates
+      and all their senses. A concrete thing with a definite form and qualities is identical to 36556
+      sense 1; recognizable form in visual art in sense 2 only adds a comma after 미술에서. Reject 36555's
+      planning of future work and preplanning of artistic content or expression, even though it has the
+      same 구상 reading. Both original concrete/art-representational positions remain intact.
   ko-nikl-31007:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -46236,6 +46487,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35680
     pronunciations:
     - 구ː어
+  ko-nikl-31087:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '35684'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=35684
+    pronunciations:
+    - 구ː어체
   ko-nikl-31088:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -52937,6 +53195,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=17281
     pronunciations:
     - 논문
+  ko-nikl-35634:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '24323'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=24323
+    pronunciations:
+    - 논박
   ko-nikl-35637:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -56888,6 +57153,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57092
     pronunciations:
     - '무너 '
+  ko-nikl-38441:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '57094'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=57094
+    pronunciations:
+    - 무너체
   ko-nikl-38448:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -60383,6 +60655,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76215
     pronunciations:
     - 존경
+  ko-nikl-41268:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '76221'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76221
+    pronunciations:
+    - 존대
   ko-nikl-41270:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -62781,6 +63060,13 @@ entries:
     official_entry_id: '77807'
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77807
     pronunciations: &id457 []
+  ko-nikl-42867:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '77808'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=77808
+    pronunciations:
+    - 지평
   ko-nikl-42868:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -63109,6 +63395,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=28989
     pronunciations:
     - 질리
+  ko-nikl-43099:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '76258'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=76258
+    pronunciations:
+    - 진면목
   ko-nikl-43107:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -66052,6 +66345,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=72130
     pronunciations:
     - 총ː장
+  ko-nikl-45330:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '82494'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=82494
+    pronunciations:
+    - 총ː체
   ko-nikl-45332:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -66319,6 +66619,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=80379
     pronunciations:
     - 추모
+  ko-nikl-45499:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '86959'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=86959
+    pronunciations:
+    - 추상
   ko-nikl-45503:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -67238,6 +67545,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=62513
     pronunciations:
     - 양말
+  ko-nikl-46151:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '90559'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=90559
+    pronunciations:
+    - 양ː면
   ko-nikl-46152:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -69138,6 +69452,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=70732
     pronunciations:
     - 역싸가
+  ko-nikl-47253:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '22831'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=22831
+    pronunciations:
+    - 역싸관
   ko-nikl-47254:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -72650,6 +72971,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68977
     pronunciations:
     - 우ː호적
+  ko-nikl-49433:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '68979'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=68979
+    pronunciations:
+    - 우ː화
   ko-nikl-49435:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -74300,6 +74628,13 @@ entries:
     source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71082
     pronunciations:
     - 율리
+  ko-nikl-50569:
+    method: official-text
+    match_method: exact-ordered-korean-definitions
+    official_entry_id: '71083'
+    source_entry: https://krdict.korean.go.kr/eng/dicSearch/SearchView?ParaWordNo=71083
+    pronunciations:
+    - 율리관
   ko-nikl-50570:
     method: official-text
     match_method: exact-ordered-korean-definitions
@@ -77763,16 +78098,6 @@ unresolved:
   status: no-exact-match
   candidate_ids:
   - '60742'
-- id: ko-nikl-07594
-  target: 비유적
-  status: no-exact-match
-  candidate_ids:
-  - '60998'
-- id: ko-nikl-07595
-  target: 비유적
-  status: no-exact-match
-  candidate_ids:
-  - '60997'
 - id: ko-nikl-07603
   target: 비자
   status: official-text-missing
@@ -83892,24 +84217,6 @@ candidates:
     senses:
     - id: '1'
       korean: 상대를 얕보거나 놀리거나 흉을 보듯이 웃는 행위. 또는 그런 웃음.
-  ko-nikl-07594:
-  - official_entry_id: '60998'
-    target: 비유적
-    source_part_of_speech: 명사
-    pronunciations:
-    - 비ː유적
-    senses:
-    - id: '1'
-      korean: 효과적인 설명을 위해 어떤 것을 그것과 비슷한 다른 것에 빗대는 것.
-  ko-nikl-07595:
-  - official_entry_id: '60997'
-    target: 비유적
-    source_part_of_speech: 관형사
-    pronunciations:
-    - 비ː유적
-    senses:
-    - id: '1'
-      korean: 효과적인 설명을 위해 어떤 것을 그것과 비슷한 다른 것에 빗대는.
   ko-nikl-07603:
   - official_entry_id: '60707'
     target: 비자

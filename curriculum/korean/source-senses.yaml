@@ -9,7 +9,7 @@ band_counts:
   advanced: 5105
   beginner: 1942
   intermediate: 3981
-  unbanded-support: 328
+  unbanded-support: 371
 entries:
 - id: ko-nikl-00001
   target: 설
@@ -1575,6 +1575,18 @@ entries:
     source_position: 2
     english: One's appearance, personality, etc., being graceful and dignified.
     korean: 모습이나 인격 등이 우아하고 품위가 있다.
+- id: ko-nikl-00412
+  target: 세련미
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=412
+  senses:
+  - id: ko-nikl-00412-s001
+    source_position: 1
+    english: The beauty found in skillfulness and cleverness, without being awkward or clumsy.
+    korean: 어떤 것이 서투르거나 어색한 느낌 없이 훌륭하고 능숙한 데서 느껴지는 맛.
 - id: ko-nikl-00416
   target: 세로
   part_of_speech: noun
@@ -2605,6 +2617,39 @@ entries:
     source_position: 1
     english: The state of being extinguished and gone.
     korean: 사라져 없어짐.
+- id: ko-nikl-00726
+  target: 소명
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=726
+  senses:
+  - id: ko-nikl-00726-s001
+    source_position: 1
+    english: 'A social request for taking charge of a certain task. '
+    korean: 어떤 일에 대해 책임을 맡으라고 하는 사회적 요청.
+  - id: ko-nikl-00726-s002
+    source_position: 2
+    english: 'In Christianity, an order from God that humans are expected to follow. '
+    korean: 기독교에서, 사람이 따르도록 되어 있는 하나님의 명령.
+- id: ko-nikl-00727
+  target: 소명
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=727
+  senses:
+  - id: ko-nikl-00727-s001
+    source_position: 1
+    english: An act of finding out and explaining the situation or reason for an incident.
+    korean: 사정이나 이유를 알아내 설명함.
+  - id: ko-nikl-00727-s002
+    source_position: 2
+    english: In a trial, the state in which a judge assumes that someone's statement is true, or someone's
+      effort to reach this state by submitting evidence.
+    korean: 재판에서, 법관이 당사자의 말이 사실이라고 추측하는 상태. 또는 그 상태에 이르도록 당사자가 증거를 제출하려고 노력함.
 - id: ko-nikl-00729
   target: 소모
   part_of_speech: noun
@@ -8784,6 +8829,18 @@ entries:
     source_position: 1
     english: The different events that occur in a society at the present time.
     korean: 그 당시에 일어난 여러 가지 사회적 사건.
+- id: ko-nikl-02833
+  target: 시사점
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2833
+  senses:
+  - id: ko-nikl-02833-s001
+    source_position: 1
+    english: A content that shows or informs indirectly so that one can realize something in advance.
+    korean: 어떤 것에 대해 미리 알아차릴 수 있도록 간접적으로 나타내거나 일러 주는 내용.
 - id: ko-nikl-02834
   target: 시사하다
   part_of_speech: verb
@@ -11864,6 +11921,18 @@ entries:
     source_position: 1
     english: Making one's dream, plan, etc. come true.
     korean: 꿈이나 계획 등을 실제로 이룸.
+- id: ko-nikl-03579
+  target: 실현성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3579
+  senses:
+  - id: ko-nikl-03579-s001
+    source_position: 1
+    english: The possibility of something being actually realized.
+    korean: 실제로 이루어질 가능성.
 - id: ko-nikl-03583
   target: 실화
   part_of_speech: noun
@@ -12082,6 +12151,18 @@ entries:
     source_position: 1
     english: Thinking deeply about a certain incident.
     korean: 어떤 일에 대해 깊이 생각함.
+- id: ko-nikl-03634
+  target: 심상
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3634
+  senses:
+  - id: ko-nikl-03634-s001
+    source_position: 1
+    english: An impression or feeling just crossing one's mind without the action of sensory organs.
+    korean: 감각 기관의 작용 없이 마음속에 떠오르는 인상이나 느낌.
 - id: ko-nikl-03635
   target: 심성
   part_of_speech: noun
@@ -29662,6 +29743,18 @@ entries:
     source_position: 1
     english: 'A systematic organization that manages a business. '
     korean: 사업을 경영하는 체계적인 조직.
+- id: ko-nikl-08448
+  target: 사연
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8448
+  senses:
+  - id: ko-nikl-08448-s001
+    source_position: 1
+    english: The situation and cause of an event or action.
+    korean: 일어난 일의 앞뒤 사정과 까닭.
 - id: ko-nikl-08449
   target: 사연
   part_of_speech: noun
@@ -31699,6 +31792,18 @@ entries:
     source_position: 1
     english: 'A person partnered with another in work or conversation. '
     korean: 일을 하거나 말을 할 때 짝을 이루는 사람.
+- id: ko-nikl-09081
+  target: 상대성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9081
+  senses:
+  - id: ko-nikl-09081-s001
+    source_position: 1
+    english: 'A quality of a certain fact or object being interdependent on another fact or object. '
+    korean: 어떤 사실이나 사물이 다른 사실이나 사물과 서로 기대어 존재하는 성질.
 - id: ko-nikl-09082
   target: 상대적
   part_of_speech: noun
@@ -32160,6 +32265,42 @@ entries:
     english: The act of expressing an abstract matter or concept as a concrete thing, or a concrete thing
       expressed such a way.
     korean: 추상적인 사물이나 개념을 구체적인 사물로 나타냄. 또는 그렇게 나타낸 구체적인 사물.
+- id: ko-nikl-09243
+  target: 상징성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9243
+  senses:
+  - id: ko-nikl-09243-s001
+    source_position: 1
+    english: The quality of expressing an abstract matter or concept as a concrete thing.
+    korean: 추상적인 사물이나 개념을 구체적인 사물로 나타내는 성질.
+- id: ko-nikl-09245
+  target: 상징적
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9245
+  senses:
+  - id: ko-nikl-09245-s001
+    source_position: 1
+    english: Expressing an abstract matter or concept as a concrete thing.
+    korean: 추상적인 사물이나 개념을 구체적인 사물로 나타내는 것.
+- id: ko-nikl-09246
+  target: 상징적
+  part_of_speech: determiner
+  source_part_of_speech: 관형사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=9246
+  senses:
+  - id: ko-nikl-09246-s001
+    source_position: 1
+    english: Expressing an abstract matter or concept as a concrete thing.
+    korean: 추상적인 사물이나 개념을 구체적인 사물로 나타내는.
 - id: ko-nikl-09249
   target: 상차림
   part_of_speech: noun
@@ -38215,6 +38356,18 @@ entries:
     source_position: 1
     english: 'A ratio of people who quit a company for a job in a different company. '
     korean: 다니던 직장을 옮기거나 직업을 바꾸는 사람들의 비율.
+- id: ko-nikl-10963
+  target: 이질성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10963
+  senses:
+  - id: ko-nikl-10963-s001
+    source_position: 1
+    english: 'A quality or characteristic of being different from one another. '
+    korean: 서로 다른 성질이나 특성.
 - id: ko-nikl-10967
   target: 이쪽
   part_of_speech: pronoun
@@ -40069,6 +40222,18 @@ entries:
     source_position: 1
     english: 'A state in which a certain logic or principle is considered right in some way. '
     korean: 어떤 면에서 그런대로 옳다고 생각되는 이치.
+- id: ko-nikl-11458
+  target: 일맥상통
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11458
+  senses:
+  - id: ko-nikl-11458-s001
+    source_position: 1
+    english: 'A state in which one shares a certain thought, condition, quality, etc. with another. '
+    korean: 생각, 상태, 성질 등이 서로 통하거나 비슷해짐.
 - id: ko-nikl-11464
   target: 일몰
   part_of_speech: noun
@@ -40113,6 +40278,18 @@ entries:
     source_position: 1
     english: 'A seat for average people, not for special or distinguished people. '
     korean: 귀하거나 중요한 사람이 아닌 보통 사람들이 앉는 자리.
+- id: ko-nikl-11471
+  target: 일반성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11471
+  senses:
+  - id: ko-nikl-11471-s001
+    source_position: 1
+    english: 'A quality or tendency generally shown across a certain area or field. '
+    korean: 어떤 범위나 분야에 전체적으로 나타나는 성질이나 성향.
 - id: ko-nikl-11473
   target: 일반인
   part_of_speech: noun
@@ -51709,6 +51886,18 @@ entries:
     source_position: 4
     english: Directly without missing the target a bit.
     korean: 조금의 빗나감도 없이 바로.
+- id: ko-nikl-14729
+  target: 정통성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14729
+  senses:
+  - id: ko-nikl-14729-s001
+    source_position: 1
+    english: The qualifications and credentials of an authority or system that is acceptable to people.
+    korean: 사람들이 받아들일 수 있는 권력이나 계통의 자격이나 근거.
 - id: ko-nikl-14737
   target: 정하다
   part_of_speech: verb
@@ -55610,6 +55799,22 @@ entries:
     english: 'An adverb used at the beginning of a sentence, when it includes an exception or condition
       different from the content of the preceding sentence. '
     korean: 앞에 말한 내용과 다른 조건이나 예외가 있을 때 뒤 문장의 시작 부분에 쓰는 말.
+- id: ko-nikl-16153
+  target: 다면
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=16153
+  senses:
+  - id: ko-nikl-16153-s001
+    source_position: 1
+    english: 'Several sides. '
+    korean: 여러 개의 면.
+  - id: ko-nikl-16153-s002
+    source_position: 2
+    english: Several aspects.
+    korean: 여러 방면.
 - id: ko-nikl-16164
   target: 다물다
   part_of_speech: verb
@@ -59877,6 +60082,30 @@ entries:
     source_position: 2
     english: For two things to be equivalent to each other.
     korean: 어떤 두 대상이 서로 짝을 이루다.
+- id: ko-nikl-17193
+  target: 대의
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17193
+  senses:
+  - id: ko-nikl-17193-s001
+    source_position: 1
+    english: 'The rough meaning of a text or speech. '
+    korean: 글이나 말의 대강의 뜻.
+- id: ko-nikl-17194
+  target: 대의
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17194
+  senses:
+  - id: ko-nikl-17194-s001
+    source_position: 1
+    english: 'A right value that one is supposed to maintain as a human. '
+    korean: 사람으로서 당연히 지켜야 할 옳은 뜻.
 - id: ko-nikl-17198
   target: 대인
   part_of_speech: noun
@@ -61632,6 +61861,18 @@ entries:
     source_position: 2
     english: A subject that teaches the value system of a society.
     korean: 학교에서 한 사회의 가치 체계를 가르치는 과목.
+- id: ko-nikl-17771
+  target: 도덕관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17771
+  senses:
+  - id: ko-nikl-17771-s001
+    source_position: 1
+    english: A perspective on morality or moral awareness.
+    korean: 도덕에 대한 관점. 도덕적 인식.
 - id: ko-nikl-17774
   target: 도덕성
   part_of_speech: noun
@@ -78834,6 +79075,18 @@ entries:
     source_position: 1
     english: 'The state of understanding or accepting someone with an open heart. '
     korean: 남을 넓은 마음으로 감싸 주거나 받아들임.
+- id: ko-nikl-23053
+  target: 포용성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23053
+  senses:
+  - id: ko-nikl-23053-s001
+    source_position: 1
+    english: The trait with which one understands or accepts someone with an open heart.
+    korean: 남을 넓은 마음으로 감싸 주거나 받아들이는 성질.
 - id: ko-nikl-23061
   target: 포장
   part_of_speech: noun
@@ -79423,6 +79676,22 @@ entries:
     english: In statistics, the statistical data, the surveyed result of a part of a certain group, through
       which the characteristics of the entire group can be guessed.
     korean: 통계에서, 어느 집단의 일부를 조사한 결과로 그 집단 전체의 성질을 짐작할 수 있는 통계 자료.
+- id: ko-nikl-23222
+  target: 표상
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23222
+  senses:
+  - id: ko-nikl-23222-s001
+    source_position: 1
+    english: A person or an object worthy of following or taking lessons from.
+    korean: 보고 배워서 본을 받을 만한 대상.
+  - id: ko-nikl-23222-s002
+    source_position: 2
+    english: Expressing something abstract or unrevealed in a concrete form.
+    korean: 추상적이거나 드러나지 않은 것을 구체적인 모양으로 나타냄.
 - id: ko-nikl-23224
   target: 표시
   part_of_speech: noun
@@ -81161,6 +81430,18 @@ entries:
     english: 'The person who wrote a text or book; or the person who is currently working on a writing
       or going to write a certain text.  '
     korean: 글을 쓴 사람. 또는 글을 쓰고 있거나 쓸 사람.
+- id: ko-nikl-23727
+  target: 필체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23727
+  senses:
+  - id: ko-nikl-23727-s001
+    source_position: 1
+    english: 'A style of writing something by hand. '
+    korean: 손으로 직접 쓴 글씨의 모양.
 - id: ko-nikl-23730
   target: 필통
   part_of_speech: noun
@@ -83714,6 +83995,18 @@ entries:
     source_position: 2
     english: A state in which many hidden meanings or messages are contained in a speech or text.
     korean: 말이나 글이 속에 많은 뜻을 담고 있음.
+- id: ko-nikl-24407
+  target: 함축성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24407
+  senses:
+  - id: ko-nikl-24407-s001
+    source_position: 1
+    english: 'A characteristic of a speech or text containing many hidden messages or meanings. '
+    korean: 말이나 글이 속에 많은 뜻을 담고 있는 성질.
 - id: ko-nikl-24410
   target: 함축하다
   part_of_speech: verb
@@ -84107,6 +84400,31 @@ entries:
     source_position: 1
     english: 'A hole at the bottom of the digestive organs that discharges excretions from the body. '
     korean: 배설물을 몸 밖으로 내보내는 소화 기관의 가장 아래쪽에 있는 구멍.
+- id: ko-nikl-24543
+  target: 항변
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24543
+  senses:
+  - id: ko-nikl-24543-s001
+    source_position: 1
+    english: 'An act of raising an objection to something because one thinks it is not right or is not
+      satisfied with it. '
+    korean: 어떤 일이 올바르지 않거나 마음에 들지 않아 반대하는 뜻을 주장함.
+- id: ko-nikl-24544
+  target: 항변
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24544
+  senses:
+  - id: ko-nikl-24544-s001
+    source_position: 1
+    english: 'An act of arguing over what is right and wrong against another''s opinion. '
+    korean: 다른 사람의 주장에 맞서 옳고 그름을 따짐.
 - id: ko-nikl-24549
   target: 항상
   part_of_speech: adverb
@@ -87270,6 +87588,19 @@ entries:
     source_position: 1
     english: 'A quality of keeping balance without leaning or tilting to one side. '
     korean: 어느 한쪽으로 기울거나 치우치지 않고 균형을 이루는 성질.
+- id: ko-nikl-25490
+  target: 혜안
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25490
+  senses:
+  - id: ko-nikl-25490-s001
+    source_position: 1
+    english: 'One''s wisdom and ability to clearly understand the content or essence of a certain object
+      and make a judgment based on such knowledge. '
+    korean: 어떤 대상의 내용이나 본질을 잘 알고 판단하는 지혜와 능력.
 - id: ko-nikl-25491
   target: 혜택
   part_of_speech: noun
@@ -92835,6 +93166,18 @@ entries:
     source_position: 1
     english: The opening of a place, for people to use it.
     korean: 어떤 장소를 이용할 수 있도록 엶.
+- id: ko-nikl-27135
+  target: 개재
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27135
+  senses:
+  - id: ko-nikl-27135-s001
+    source_position: 1
+    english: The act of stepping in between two or more things.
+    korean: 어떤 것들 사이에 끼어듦.
 - id: ko-nikl-27141
   target: 개정
   part_of_speech: noun
@@ -95566,6 +95909,19 @@ entries:
     source_position: 1
     english: A predetermined method that is fitting for the level or atmosphere of a certain social gathering.
     korean: 사회적 모임 등에서 수준이나 분위기에 맞는 일정한 방식.
+- id: ko-nikl-28018
+  target: 격식체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28018
+  senses:
+  - id: ko-nikl-28018-s001
+    source_position: 1
+    english: As one of the addressee honorifications, a level of speech, which raises the addressee in
+      the Korean language.
+    korean: 한국어에서 대화를 나누는 상대에게 예의를 갖춰 말하는 상대 높임법 중 하나.
 - id: ko-nikl-28024
   target: 격언
   part_of_speech: noun
@@ -96672,6 +97028,18 @@ entries:
     source_position: 1
     english: The state of being very surprised at a bad incident.
     korean: 좋지 않은 일로 깜짝 놀람.
+- id: ko-nikl-28441
+  target: 경어
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28441
+  senses:
+  - id: ko-nikl-28441-s001
+    source_position: 1
+    english: Language used to show respect to another person.
+    korean: 상대를 높이는 말.
 - id: ko-nikl-28443
   target: 경연
   part_of_speech: noun
@@ -98653,6 +99021,18 @@ entries:
     source_position: 1
     english: A distinctive quality that an object or a group has inherently.
     korean: 한 사물이나 집단 등이 본래부터 지니고 있는 특별한 것.
+- id: ko-nikl-29234
+  target: 고유성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=29234
+  senses:
+  - id: ko-nikl-29234-s001
+    source_position: 1
+    english: 'Properties characteristic of an object, a person, a culture, etc. '
+    korean: 어떤 사물이나 사람, 문화 등이 가지고 있는 특유한 성질.
 - id: ko-nikl-29242
   target: 고의
   part_of_speech: noun
@@ -103399,6 +103779,23 @@ entries:
     source_position: 1
     english: The act of escaping death several times and barely surviving.
     korean: 죽을 뻔한 상황을 여러 번 넘기고 겨우 살아남.
+- id: ko-nikl-31006
+  target: 구상
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31006
+  senses:
+  - id: ko-nikl-31006-s001
+    source_position: 1
+    english: A state in which things have fixed shapes and qualities.
+    korean: 일정한 형태와 성질을 갖춘 구체적인 것.
+  - id: ko-nikl-31006-s002
+    source_position: 2
+    english: 'In art, a state in which the objects of painting or sculpture are described in concrete,
+      recognizable forms. '
+    korean: 미술에서 그림이나 조각의 대상이 구체적으로 알아볼 수 있는 모양을 갖춘 것.
 - id: ko-nikl-31007
   target: 구상
   part_of_speech: noun
@@ -103612,6 +104009,18 @@ entries:
     source_position: 2
     english: The language expressed in voices.
     korean: 음성으로 나타내는 언어.
+- id: ko-nikl-31087
+  target: 구어체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=31087
+  senses:
+  - id: ko-nikl-31087-s001
+    source_position: 1
+    english: 'The style of a piece of writing where everyday conversations are written down. '
+    korean: 사람들이 일상적인 대화에서 쓰는 말처럼 적은 문체.
 - id: ko-nikl-31088
   target: 구역
   part_of_speech: noun
@@ -120097,6 +120506,18 @@ entries:
     english: An article in which the author has written the results of academic research on a subject
       systematically following established research norms.
     korean: 어떠한 주제에 대한 학술적인 연구 결과를 일정한 형식에 맞추어 체계적으로 쓴 글.
+- id: ko-nikl-35634
+  target: 논박
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35634
+  senses:
+  - id: ko-nikl-35634-s001
+    source_position: 1
+    english: An act of pointing out or attacking the fallacy of an opinion or argument in a logical manner.
+    korean: 어떤 주장이나 의견의 잘못된 점을 논리적으로 지적하거나 공격함.
 - id: ko-nikl-35637
   target: 논밭
   part_of_speech: noun
@@ -129276,6 +129697,18 @@ entries:
     source_position: 2
     english: A language expressed in text.
     korean: 문자로 표현되어 있는 언어.
+- id: ko-nikl-38441
+  target: 문어체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38441
+  senses:
+  - id: ko-nikl-38441-s001
+    source_position: 1
+    english: A style of writing used in texts rather than daily conversations.
+    korean: 일상적인 대화가 아닌 글에서 쓰이는 문체.
 - id: ko-nikl-38448
   target: 문의
   part_of_speech: noun
@@ -137320,6 +137753,22 @@ entries:
     source_position: 1
     english: The act of thinking highly of and revering the respectable character or behavior of a person.
     korean: 어떤 사람의 훌륭한 인격이나 행위를 높이고 받듦.
+- id: ko-nikl-41268
+  target: 존대
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=41268
+  senses:
+  - id: ko-nikl-41268-s001
+    source_position: 1
+    english: The act of treating or interacting with someone with respect and reverence.
+    korean: 존경하여 받들어 대접하거나 대함.
+  - id: ko-nikl-41268-s002
+    source_position: 2
+    english: The act of interacting with someone with a respectful manner of speaking.
+    korean: 존경하는 말투로 대함. 또는 그러한 말투.
 - id: ko-nikl-41270
   target: 존댓말
   part_of_speech: noun
@@ -142652,6 +143101,26 @@ entries:
       manner that can be interlocked, attaching the cloth to pants, jackets, bags, etc., which are interlocked
       or separated by the pulling of a slide between them.
     korean: 금속이나 플라스틱 등의 조각을 서로 이가 맞물리도록 긴 헝겊에 나란히 박은 다음 바지, 점퍼, 가방 등에 달아서 고리를 밀고 당겨 여닫을 수 있게 만든 것.
+- id: ko-nikl-42867
+  target: 지평
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=42867
+  senses:
+  - id: ko-nikl-42867-s001
+    source_position: 1
+    english: 'An extensive, flat area of land. '
+    korean: 넓고 평평한 땅.
+  - id: ko-nikl-42867-s002
+    source_position: 2
+    english: The line at which the earth and sky appear to meet.
+    korean: 평평한 땅의 끝과 하늘이 맞닿은 것처럼 보이는 선.
+  - id: ko-nikl-42867-s003
+    source_position: 3
+    english: '(figurative) The outlook or potential for something. '
+    korean: (비유적으로) 어떤 것의 전망이나 가능성.
 - id: ko-nikl-42868
   target: 지평선
   part_of_speech: noun
@@ -143273,6 +143742,18 @@ entries:
     source_position: 1
     english: 'True logic, or true reason. '
     korean: 참된 이치. 또는 참된 도리.
+- id: ko-nikl-43099
+  target: 진면목
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43099
+  senses:
+  - id: ko-nikl-43099-s001
+    source_position: 1
+    english: The state of something as it is.
+    korean: 본디 그대로의 상태.
 - id: ko-nikl-43107
   target: 진보
   part_of_speech: noun
@@ -149822,6 +150303,18 @@ entries:
     english: A person in the highest position at a university or college, who represents the institution,
       oversees its overall affairs, and supervises students and faculty members.
     korean: 대학교를 대표하고 전체 일을 관리하며 학생과 교직원을 감독하는 최고 책임자.
+- id: ko-nikl-45330
+  target: 총체
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45330
+  senses:
+  - id: ko-nikl-45330-s001
+    source_position: 1
+    english: Whole or all, being added or bound into one.
+    korean: 모두 하나로 합친 전부 또는 전체.
 - id: ko-nikl-45332
   target: 총체적
   part_of_speech: noun
@@ -150259,6 +150752,19 @@ entries:
     source_position: 1
     english: 'The state of thinking about and missing the deceased. '
     korean: 죽은 사람을 생각하고 그리워함.
+- id: ko-nikl-45499
+  target: 추상
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=45499
+  senses:
+  - id: ko-nikl-45499-s001
+    source_position: 1
+    english: An act of pulling out and identifying a common characteristic, trait, etc., out of multiple
+      objects or ideas.
+    korean: 여러 가지 사물이나 개념에서 공통되는 특성이나 속성 등을 뽑아내어 파악하는 것.
 - id: ko-nikl-45503
   target: 추상적
   part_of_speech: noun
@@ -152290,6 +152796,26 @@ entries:
     source_position: 1
     english: 'A thing made of thread or cloth, worn on the foot to cover it or protect it from cold. '
     korean: 발을 보호하거나 추위를 막기 위해 실이나 천으로 만들어 발에 신는 물건.
+- id: ko-nikl-46151
+  target: 양면
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=46151
+  senses:
+  - id: ko-nikl-46151-s001
+    source_position: 1
+    english: Two sides of an object; outside and inside.
+    korean: 사물의 두 면. 또는 겉과 안.
+  - id: ko-nikl-46151-s002
+    source_position: 2
+    english: Things that have been exposed and things that have not been exposed.
+    korean: 겉으로 드러난 점과 드러나지 않은 점.
+  - id: ko-nikl-46151-s003
+    source_position: 3
+    english: Two directions or fields.
+    korean: 두 가지 방향이나 분야.
 - id: ko-nikl-46152
   target: 양면성
   part_of_speech: noun
@@ -156753,6 +157279,18 @@ entries:
     source_position: 1
     english: 'A person who studies history professionally. '
     korean: 역사를 전문적으로 연구하는 사람.
+- id: ko-nikl-47253
+  target: 역사관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47253
+  senses:
+  - id: ko-nikl-47253-s001
+    source_position: 1
+    english: 'A perspective from which one views history or an opinion about history. '
+    korean: 역사를 바라보는 관점이나 역사에 대한 생각.
 - id: ko-nikl-47254
   target: 역사상
   part_of_speech: noun
@@ -164162,6 +164700,19 @@ entries:
     source_position: 1
     english: Individuals or countries being on good terms with each other.
     korean: 개인이나 나라가 서로 사이가 좋은.
+- id: ko-nikl-49433
+  target: 우화
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49433
+  senses:
+  - id: ko-nikl-49433-s001
+    source_position: 1
+    english: 'A story that conveys lessons and satire to the readers by featuring animals, plants, or
+      other objects as the protagonist. '
+    korean: 동식물이나 사물을 주인공으로 하여 교훈과 풍자의 뜻을 나타내는 이야기.
 - id: ko-nikl-49435
   target: 우회
   part_of_speech: noun
@@ -167560,6 +168111,18 @@ entries:
     source_position: 1
     english: The code of conduct that is desired as a person.
     korean: 사람으로서 마땅히 지켜야 할 바람직한 행동 기준.
+- id: ko-nikl-50569
+  target: 윤리관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=50569
+  senses:
+  - id: ko-nikl-50569-s001
+    source_position: 1
+    english: One's thought or attitude toward ethics.
+    korean: 윤리에 대해 갖고 있는 생각이나 태도.
 - id: ko-nikl-50570
   target: 윤리적
   part_of_speech: noun

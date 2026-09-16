@@ -128,14 +128,14 @@ units:
   - {id: ko-nikl-16717-s003, ch: 담화, pr: 담화, ds: discourse; a unit of language composed of sentences}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-07592-s001, ch: 비유, pr: 비ː유, ds: figurative comparison; explaining by analogy}
-  - {id: ko-nikl-30369-s001, ch: 관용어, pr: 과뇽어, ds: an idiom; an established expression with a special meaning}
-  - {id: ko-nikl-18640-s001, ch: 되뇌다, pr: 되뇌다 / 뒈눼다, ds: to repeat the same words over and over}
-  - {id: ko-nikl-30368-s001, ch: 관용구, pr: 과뇽꾸, ds: a customary multiword phrase with a special meaning}
   - {id: ko-nikl-07596-s001, ch: 비유하다, pr: 비ː유하다, ds: to explain something by comparison with a similar thing}
   - {id: ko-nikl-00647-s002, ch: 소나기, pr: 소나기, ds: a sudden continuous outpouring (figurative)}
   - {id: ko-nikl-05335-s002, ch: 벼락, pr: 벼락, ds: a very severe scolding (figurative)}
   - {id: ko-nikl-35098-s002, ch: 냉기, pr: 냉ː기, ds: a subdued or cold atmosphere (figurative)}
+  - {id: ko-nikl-07594-s001, ch: 비유적, pr: 비ː유적, ds: figurative comparison for explanation (nominal use)}
+  - {id: ko-nikl-07595-s001, ch: 비유적, pr: 비ː유적, ds: figurative; comparing to explain (before a noun)}
+  - {id: ko-nikl-09245-s001, ch: 상징적, pr: 상징적, ds: symbolic representation (nominal use)}
+  - {id: ko-nikl-09246-s001, ch: 상징적, pr: 상징적, ds: symbolic; representing an abstract concept (before a noun)}
   review_grammar:
   - {id: ko-topik3-g036, ch: V/A-잖아요, ds: invoke shared knowledge with possible reproach}
   - {id: ko-topik4-g027, ch: V/A-거든요, ds: supply explanatory background to a listener}
@@ -227,14 +227,14 @@ units:
   - {id: ko-nikl-00214-s001, ch: 성분, pr: 성분, ds: a component of an organized whole}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-42580-s002, ch: 지니다, pr: 지니다, ds: to keep something in mind without forgetting it}
-  - {id: ko-nikl-35454-s002, ch: 노른자, pr: 노른자, ds: the most important or valuable part (figurative)}
   - {id: ko-nikl-21613-s003, ch: 토양, pr: 토양, ds: a foundation enabling activity (figurative)}
   - {id: ko-nikl-03785-s002, ch: 싹, pr: 싹, ds: the earliest beginning of a phenomenon (figurative)}
   - {id: ko-nikl-03989-s002, ch: 씨앗, pr: 씨앋, ds: the seed or origin of an event (figurative)}
   - {id: ko-nikl-43856-s006, ch: 차다, pr: 차다, ds: to turn down a good opportunity (figurative)}
   - {id: ko-nikl-13500-s002, ch: 적, pr: 적, ds: a harmful factor or enemy (figurative)}
   - {id: ko-nikl-14547-s002, ch: 정상, pr: 정상, ds: the highest or best possible state}
+  - {id: ko-nikl-11458-s001, ch: 일맥상통, pr: 일맥쌍통, ds: 'a common thread in thought, state, or character'}
+  - {id: ko-nikl-42867-s003, ch: 지평, pr: 지평, ds: a horizon of prospects or possibilities (figurative)}
   review_grammar:
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
   - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}
@@ -335,6 +335,21 @@ units:
   - {id: ko-nikl-06023-s001, ch: 복잡성, pr: 복짭썽, ds: complexity of intertwined matters or feelings}
   - {id: ko-nikl-31265-s001, ch: 국면, pr: 궁면, ds: a developing situation or stage of affairs}
   - {id: ko-nikl-50261-s001, ch: 유사성, pr: 유ː사썽, ds: similarity; a shared likeness}
+  - {id: ko-nikl-06869-s001, ch: 분별, pr: 분별, ds: distinguishing things of different kinds or qualities}
+  - {id: ko-nikl-09081-s001, ch: 상대성, pr: 상대썽, ds: relativity; interdependence of facts or things}
+  - {id: ko-nikl-10963-s001, ch: 이질성, pr: 이ː질썽, ds: heterogeneity; differing qualities or characteristics}
+  - {id: ko-nikl-11471-s001, ch: 일반성, pr: 일반썽, ds: a general quality or tendency across a field}
+  - {id: ko-nikl-12266-s002, ch: 자아, pr: 자아, ds: the self as the subject of perception and action}
+  - {id: ko-nikl-16153-s002, ch: 다면, pr: 다면, ds: multiple aspects or areas}
+  - {id: ko-nikl-18562-s001, ch: 동질성, pr: 동질썽, ds: homogeneity; a shared quality or characteristic}
+  - {id: ko-nikl-22110-s001, ch: 특수성, pr: 특쑤썽, ds: particularity; a quality differing from the general case}
+  - {id: ko-nikl-23222-s002, ch: 표상, pr: 표상, ds: concrete representation of something abstract or hidden}
+  - {id: ko-nikl-27135-s001, ch: 개재, pr: 개ː재, ds: something intervening between other things}
+  - {id: ko-nikl-29234-s001, ch: 고유성, pr: 고유썽, ds: 'a distinctive quality of a person, thing, or culture'}
+  - {id: ko-nikl-31006-s001, ch: 구상, pr: 구상, ds: something concrete with a definite form and qualities}
+  - {id: ko-nikl-45330-s001, ch: 총체, pr: 총ː체, ds: the totality or whole combined into one}
+  - {id: ko-nikl-45499-s001, ch: 추상, pr: 추상, ds: abstraction; identifying common properties across things}
+  - {id: ko-nikl-46151-s003, ch: 양면, pr: 양ː면, ds: two directions or fields}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-18109-s001, ch: 독자성, pr: 독짜썽, ds: a distinctive quality unique to something}
@@ -460,7 +475,6 @@ units:
   - {id: ko-nikl-46196-s002, ch: 양식, pr: 양식, ds: a shared pattern established over a long time}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-44939-s001, ch: 체면, pr: 체면, ds: face; one's dignity in the eyes of others}
   - {id: ko-nikl-48061-s001, ch: 예절, pr: 예절, ds: etiquette; proper and courteous social behavior}
   - {id: ko-nikl-30305-s001, ch: 관례, pr: 괄례, ds: a customary practice established through repetition}
   - {id: ko-nikl-23425-s002, ch: 풍속, pr: 풍속, ds: customs or fashions of a particular time}
@@ -468,6 +482,7 @@ units:
   - {id: ko-nikl-39044-s001, ch: 민간, pr: 민간, ds: ordinary people; the sphere of popular life}
   - {id: ko-nikl-05136-s002, ch: 양념, pr: 양념, ds: a little extra that adds fun or excitement (figurative)}
   - {id: ko-nikl-31349-s003, ch: 국적, pr: 국쩍, ds: a thing's national cultural character}
+  - {id: ko-nikl-23359-s002, ch: 품격, pr: 품ː껵, ds: distinction or dignity felt in something}
   review_grammar: []
 - id: level-28-arts-01
   title: Arts and creative works - 1
@@ -476,7 +491,6 @@ units:
   - {id: ko-nikl-47829-s002, ch: 영상, pr: 영상, ds: a mental image of something}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-13044-s001, ch: 재능, pr: 재능, ds: talent; aptitude for doing something well}
   - {id: ko-nikl-47704-s001, ch: 열정, pr: 열쩡, ds: passion; enthusiastic commitment to an activity}
   - {id: ko-nikl-00106-s001, ch: 섬세하다, pr: 섬세하다, ds: to be fine and delicate in form}
   - {id: ko-nikl-10006-s001, ch: 선명하다, pr: 선명하다, ds: to be vivid and clearly defined}
@@ -484,6 +498,7 @@ units:
   - {id: ko-nikl-45756-s001, ch: 출연, pr: 추련, ds: 'an appearance as a performer on stage, film, or television'}
   - {id: ko-nikl-39892-s002, ch: 발굴, pr: 발굴, ds: discovery of outstanding or little-known talent or work}
   - {id: ko-nikl-37969-s002, ch: 무대, pr: 무ː대, ds: an arena of activity (figurative)}
+  - {id: ko-nikl-00412-s001, ch: 세련미, pr: 세ː련미, ds: refinement or polish without awkwardness}
   review_grammar: []
 - id: level-28-argument-01
   title: Argument and decisions - 1
@@ -563,14 +578,14 @@ units:
   grammar:
   - {id: ko-topik6-g017, ch: V/A-(으)ㄴ/는 셈 치다, ds: adopt an as-if framing rather than assert a fact}
   review_vocabulary:
-  - {id: ko-nikl-17192-s002, ch: 대응하다, pr: 대ː응하다, ds: for two things to correspond or form a pair}
-  - {id: ko-nikl-31896-s002, ch: 규정하다, pr: 규정하다, ds: to clearly define content or character or meaning}
-  - {id: ko-nikl-42707-s002, ch: 지상, pr: 지상, ds: the real world}
-  - {id: ko-nikl-02876-s002, ch: 시야, pr: 시ː야, ds: scope of understanding}
-  - {id: ko-nikl-28762-s003, ch: 고갈, pr: 고갈, ds: 'depletion of feeling, ideas, or strength'}
-  - {id: ko-nikl-06023-s001, ch: 복잡성, pr: 복짭썽, ds: complexity of intertwined matters or feelings}
-  - {id: ko-nikl-31265-s001, ch: 국면, pr: 궁면, ds: a developing situation or stage of affairs}
-  - {id: ko-nikl-50261-s001, ch: 유사성, pr: 유ː사썽, ds: similarity; a shared likeness}
+  - {id: ko-nikl-22110-s001, ch: 특수성, pr: 특쑤썽, ds: particularity; a quality differing from the general case}
+  - {id: ko-nikl-23222-s002, ch: 표상, pr: 표상, ds: concrete representation of something abstract or hidden}
+  - {id: ko-nikl-27135-s001, ch: 개재, pr: 개ː재, ds: something intervening between other things}
+  - {id: ko-nikl-29234-s001, ch: 고유성, pr: 고유썽, ds: 'a distinctive quality of a person, thing, or culture'}
+  - {id: ko-nikl-31006-s001, ch: 구상, pr: 구상, ds: something concrete with a definite form and qualities}
+  - {id: ko-nikl-45330-s001, ch: 총체, pr: 총ː체, ds: the totality or whole combined into one}
+  - {id: ko-nikl-45499-s001, ch: 추상, pr: 추상, ds: abstraction; identifying common properties across things}
+  - {id: ko-nikl-46151-s003, ch: 양면, pr: 양ː면, ds: two directions or fields}
   review_grammar:
   - {id: ko-topik4-g026, ch: V/A-(으)ㄹ 수도 있다, ds: identify one possible outcome among alternatives}
   - {id: ko-topik4-g018, ch: V/A-(으)ㄴ/는 만큼, ds: relate a degree or use a fact as grounds}

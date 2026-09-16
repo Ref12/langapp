@@ -57,7 +57,6 @@ units:
   - {id: ko-nikl-32804-s002, ch: 기르다, pr: 기르다, ds: to raise a child}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-19929-s001, ch: 뜨다, pr: 뜨다, ds: to leave a place for another}
   - {id: ko-nikl-42586-s003, ch: 지다, pr: 지다, ds: to receive another person's help or favor}
   - {id: ko-nikl-00239-s001, ch: 성실하다, pr: 성실하다, ds: to be sincere and conscientious in attitude or conduct}
   - {id: ko-nikl-03319-s002, ch: 신청하다, pr: 신청하다, ds: to ask someone to go on a date}
@@ -65,6 +64,7 @@ units:
   - {id: ko-nikl-40909-s001, ch: 버릇없다, pr: 버르덥따, ds: to be ill-mannered toward elders}
   - {id: ko-nikl-02248-s001, ch: 순하다, pr: 순ː하다, ds: to be gentle and kind in character or attitude}
   - {id: ko-nikl-32713-s001, ch: 기꺼이, pr: 기꺼이, ds: willingly; with pleasure}
+  - {id: ko-nikl-41268-s001, ch: 존대, pr: 존대, ds: treating someone with respect and reverence}
   review_grammar:
   - {id: ko-topik1-g010, ch: N의, ds: relate a possessor or associated noun}
   - {id: ko-topik1-g030, ch: 'V-(으)ㄹ까요?', ds: offer an action or tentatively propose one}
@@ -221,7 +221,6 @@ units:
   - {id: ko-nikl-34256-s004, ch: 나서다, pr: 나서다, ds: to leave a place and set out for somewhere}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-27580-s002, ch: 건너가다, pr: 건ː너가다, ds: to go from this side to the other}
   - {id: ko-nikl-34017-s010, ch: 끊다, pr: 끈타, ds: to buy a ticket or fabric}
   - {id: ko-nikl-34016-s006, ch: 끊기다, pr: 끈키다, ds: for a route to become blocked to people or goods}
   - {id: ko-nikl-34016-s011, ch: 끊기다, pr: 끈키다, ds: for a transport service to stop running}
@@ -229,6 +228,7 @@ units:
   - {id: ko-nikl-28336-s001, ch: 경고하다, pr: 경ː고하다, ds: to warn someone in advance about danger}
   - {id: ko-nikl-48046-s001, ch: 예약하다, pr: 예ː야카다, ds: to reserve a place or room or item for later use}
   - {id: ko-nikl-08685-s001, ch: 산꼭대기, pr: 산꼭때기, ds: the top of a mountain}
+  - {id: ko-nikl-14102-s001, ch: 전후, pr: 전후, ds: front and back}
   review_grammar:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
   - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
@@ -386,9 +386,9 @@ units:
   - {id: ko-nikl-04616-s002, ch: 알아듣다, pr: 아라듣따, ds: to recognize a sound or identify who made it}
   - {id: ko-nikl-32026-s001, ch: 그런데, pr: 그런데, ds: by the way; moving to a related but different point}
   - {id: ko-nikl-09580-s004, ch: 생생하다, pr: 생생하다, ds: for memories or thoughts to be vividly clear}
+  - {id: ko-nikl-08448-s001, ch: 사연, pr: 사ː연, ds: the surrounding story and reasons behind an event}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-27706-s013, ch: 걸다, pr: 걸ː다, ds: to initiate an action toward another person}
   - {id: ko-nikl-32026-s003, ch: 그런데, pr: 그런데, ds: well; opening a conversation}
   - {id: ko-nikl-08501-s002, ch: 사인, pr: 사인, ds: a gesture or signal conveying an intention}
   - {id: ko-nikl-10258-s001, ch: 의논, pr: 의논, ds: discussing a matter and sharing opinions}
@@ -396,6 +396,7 @@ units:
   - {id: ko-nikl-04599-s002, ch: 알리다, pr: 알리다, ds: to introduce something so another person knows about it}
   - {id: ko-nikl-29835-s001, ch: 공손하다, pr: 공손하다, ds: to be courteous and humble in speech or conduct}
   - {id: ko-nikl-12288-s001, ch: 자연스럽다, pr: 자연스럽따, ds: 'to be natural and unaffected, without artificiality'}
+  - {id: ko-nikl-37081-s001, ch: 메시지, pr: 메시지, ds: 'a message intended to announce, assert, or warn'}
   review_grammar:
   - {id: ko-topik1-g024, ch: V-아/어 주세요, ds: ask someone to do a helpful action}
   - {id: ko-topik2-g026, ch: 'V/A-지요? / -죠?', ds: check shared information or seek confirmation}
@@ -500,6 +501,7 @@ units:
   - {id: ko-nikl-11939-s004, ch: 잇다, pr: 읻ː따, ds: to follow immediately after}
   - {id: ko-nikl-40217-s001, ch: 밤중, pr: 밤쭝, ds: the middle of the night}
   - {id: ko-nikl-19119-s001, ch: 드물다, pr: 드물다, ds: to occur infrequently}
+  - {id: ko-nikl-14102-s002, ch: 전후, pr: 전후, ds: before and after; earlier and later}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-29485-s002, ch: 곧장, pr: 곧짱, ds: immediately afterward; straight on to the next thing}
@@ -905,7 +907,6 @@ units:
   - {id: ko-topik3-g012, ch: V-다가, ds: interrupt or switch from an ongoing action}
   - {id: ko-topik3-g013, ch: V-았/었다가, ds: complete an action then reverse or change course}
   review_vocabulary:
-  - {id: ko-nikl-34101-s006, ch: 끼다, pr: 끼다, ds: for a period to include a certain date or time}
   - {id: ko-nikl-39309-s005, ch: 바뀌다, pr: 바뀌다, ds: 'for time to pass into the next day, month, year, or season'}
   - {id: ko-nikl-09385-s001, ch: 새우다, pr: 새우다, ds: to stay up all night without sleeping}
   - {id: ko-nikl-15962-s002, ch: 늦다, pr: 늗따, ds: to be past the right or peak time}
@@ -913,6 +914,7 @@ units:
   - {id: ko-nikl-11939-s004, ch: 잇다, pr: 읻ː따, ds: to follow immediately after}
   - {id: ko-nikl-40217-s001, ch: 밤중, pr: 밤쭝, ds: the middle of the night}
   - {id: ko-nikl-19119-s001, ch: 드물다, pr: 드물다, ds: to occur infrequently}
+  - {id: ko-nikl-14102-s002, ch: 전후, pr: 전후, ds: before and after; earlier and later}
   review_grammar:
   - {id: ko-topik2-g024, ch: N마다, ds: distribute an event over each interval or member}
   - {id: ko-topik2-g014, ch: V-(으)ㄴ N, ds: modify a noun with a completed action}
@@ -926,7 +928,6 @@ units:
   - {id: ko-topik3-g017, ch: V-(으)ㄴ 지, ds: measure elapsed time since an event}
   - {id: ko-topik3-g023, ch: V-(으)ㄹ 뻔하다, ds: describe an event that almost happened}
   review_vocabulary:
-  - {id: ko-nikl-34101-s006, ch: 끼다, pr: 끼다, ds: for a period to include a certain date or time}
   - {id: ko-nikl-39309-s005, ch: 바뀌다, pr: 바뀌다, ds: 'for time to pass into the next day, month, year, or season'}
   - {id: ko-nikl-09385-s001, ch: 새우다, pr: 새우다, ds: to stay up all night without sleeping}
   - {id: ko-nikl-15962-s002, ch: 늦다, pr: 늗따, ds: to be past the right or peak time}
@@ -934,6 +935,7 @@ units:
   - {id: ko-nikl-11939-s004, ch: 잇다, pr: 읻ː따, ds: to follow immediately after}
   - {id: ko-nikl-40217-s001, ch: 밤중, pr: 밤쭝, ds: the middle of the night}
   - {id: ko-nikl-19119-s001, ch: 드물다, pr: 드물다, ds: to occur infrequently}
+  - {id: ko-nikl-14102-s002, ch: 전후, pr: 전후, ds: before and after; earlier and later}
   review_grammar:
   - {id: ko-topik2-g031, ch: V-게 되다, ds: come to act through changed circumstances}
   - {id: ko-topik3-g012, ch: V-다가, ds: interrupt or switch from an ongoing action}

@@ -1,0 +1,196 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: selected support and readings resolved; linguistic review remains outstanding
+scope: >
+  Nuanced viewpoints, narrative interpretation, abstract comparison, social
+  perspective and register. A bounded exact/space-normalized lookup of named
+  communicative concepts across the pinned CSV preceded bilingual inspection.
+  Noun/adnominal pairs received a second all-POS comparison. No alphabetical
+  buckets, automatic suffix products, first-sense imports or numerical quota.
+composition_snapshot:
+  basis: committed manifest through analysis216190c; not a live coverage report
+  selected_senses: 67
+  source_parents: 57
+  identity_fragments: 54
+  new_pool_free_identities: 52
+  existing_pool_fragments: 2
+  new_core_free_identities: 53
+  exact_additional_support_parents: 43
+  explanation: >
+    풍자 already has an optional literary meaning, so its first selected
+    core meaning increases core breadth but not pool-wide breadth. 메시지
+    deepens an existing core family. Separate route counts cannot be summed.
+placement_policy: >
+  Common social form, respectful treatment and delivered messages serve
+  level8; event background and temporal order serve9; approximation serves13.
+  Horizon supports17. Evidence, values, reasoned objections and synthesis
+  support19-24. Most new interpretation, abstraction and register vocabulary
+  serves25-29 because it supports those tasks, not because its source band or
+  ordinal dictates a phase. Earlier useful senses are not shifted later.
+family_adjudications:
+  nominal_adnominal_pairs:
+    - >
+      비유적07594/07595 has the same comparison-for-explanation definition,
+      differing in the nominal 것 and modifying ending. One provisional
+      free family retains both actual source parents and POS values.
+    - >
+      상징적09245/09246 similarly differs by nominal versus modifying use
+      of concrete symbolic representation. One family, not two headwords.
+  opposing_response:
+    lexical_id: ko-lex-24543
+    category: free-lemma
+    source_parents: [ko-nikl-24543, ko-nikl-24544]
+    official_evidence:
+      ko-nikl-24543: {official_entry_id: '85888', origin: 抗卞, homonym_number: '1', pronunciation: '항ː변'}
+      ko-nikl-24544: {official_entry_id: '85891', origin: 抗辯, homonym_number: '2', pronunciation: '항ː변'}
+    reasoning: >
+      Both complete one-definition lists match the respective official
+      record. Protest and arguing right/wrong against a claim remain
+      separately labelled source meanings. Conservatively count the
+      overlapping opposing-response family once without claiming the
+      distinct origin strings or official homograph division are wrong.
+      This is an unreviewed accounting judgment, not a merger of source IDs.
+  spatial_temporal_reference: >
+    전후 contains physical front/back, before/after and approximation.
+    Retain one free spatial-temporal family consistently with existing
+    앞/뒤 and 이전/이후 noun families; the approximate use adds neither a
+    counter nor another free lemma.
+homograph_boundaries:
+  - Social/Christian calling 소명00726 is not explanation00727.
+  - Mental image 심상03634 is not mental/emotional state03633.
+  - Gist 대의17193 is not moral cause/principle17194.
+  - Concrete representation 구상31006 is not existing planning/conceiving31007.
+  - The appraisal and ejaculation homographs 사정08528/08529 do not supply event background.
+usage_limits:
+  - >
+    격식체 concerns formal speech style, not a universal promise of high
+    listener politeness. Formal/plain written uses, listener politeness,
+    subject honorification, humble reference and personal respect remain
+    distinct. 경어 or 존대 vocabulary knowledge does not license an
+    arbitrary morphology or guarantee suitability in a relationship.
+  - >
+    구어체 is writing resembling conversation, not necessarily a real
+    transcript. 문어체 names a written style, not all writing. 필체 is
+    handwriting-style vocabulary only; no writing assets are duplicated
+    and no handwriting mastery or motor-skill evidence is awarded.
+  - >
+    상대성 is sourced interdependence, not an inserted physics theory or
+    moral-relativism claim. 일반성 does not establish universal application;
+    동질성 is a shared characteristic, not complete identity or a group ranking.
+  - >
+    풍자001 targets another person's shortcomings and can be hurtful or
+    confrontational; it is not neutral disagreement or recommended conduct.
+    Literature's separate satire sense remains optional in the literary route.
+  - >
+    소명002 is explicitly a Christian sense, not an assertion of belief.
+    정통성, 대의, 도덕관, 윤리관 and 역사관 name contested perspectives or
+    grounds without endorsing a particular authority, cause or doctrine.
+  - >
+    Discernment, insight, self-awareness and inclusive disposition are not
+    assessed from recognition of their labels. The mental-image definition
+    supplies no medical diagnosis or universal theory of perception.
+  - >
+    The source English for 분별002 adds objective wording; do not turn
+    sound judgment into a measured objectivity criterion. Implication,
+    symbolic interpretation and rich meaning still need contextual support;
+    an inferred message is not automatically its author's intention.
+  - >
+    Feasibility, realistic character and horizons of possibility do not
+    promise achieved outcomes. Distinction/dignity is not a moral ranking
+    of people or an innate, unchangeable psychological trait.
+intentionally_unselected:
+  - 소명00727-s002; specialized trial-evidence procedure remains outside this cohort.
+  - 심상03633; the state-of-mind homograph does not replace the mental-image sense.
+  - 품격23359-s001; no automatic import of the innate-personality position.
+  - 다면16153-s001 and 지평42867-s001; no physical-sense padding of science/nature modules.
+  - 서체09862 and 다층16278; left entirely to the independent infrastructure cohort.
+  - 양면46151-s001; physical surfaces left to infrastructure, with one shared family if selected.
+source_support_requests:
+  - ko-nikl-00412
+  - ko-nikl-00726
+  - ko-nikl-00727
+  - ko-nikl-02833
+  - ko-nikl-03579
+  - ko-nikl-03634
+  - ko-nikl-08448
+  - ko-nikl-09081
+  - ko-nikl-09243
+  - ko-nikl-09245
+  - ko-nikl-09246
+  - ko-nikl-10963
+  - ko-nikl-11458
+  - ko-nikl-11471
+  - ko-nikl-14729
+  - ko-nikl-16153
+  - ko-nikl-17193
+  - ko-nikl-17194
+  - ko-nikl-17771
+  - ko-nikl-23053
+  - ko-nikl-23222
+  - ko-nikl-23727
+  - ko-nikl-24407
+  - ko-nikl-24543
+  - ko-nikl-24544
+  - ko-nikl-25490
+  - ko-nikl-27135
+  - ko-nikl-28018
+  - ko-nikl-28441
+  - ko-nikl-29234
+  - ko-nikl-31006
+  - ko-nikl-31087
+  - ko-nikl-35634
+  - ko-nikl-38441
+  - ko-nikl-41268
+  - ko-nikl-42867
+  - ko-nikl-43099
+  - ko-nikl-45330
+  - ko-nikl-45499
+  - ko-nikl-46151
+  - ko-nikl-47253
+  - ko-nikl-49433
+  - ko-nikl-50569
+source_correction_requests:
+  ko-nikl-28018-s001:
+    source_korean: 한국어에서 대화를 나누는 상대에게 예의를 갖춰 말하는 상대 높임법 중 하나.
+    source_english: As one of the addressee honorifications, a level of speech, which raises the addressee in the Korean language.
+    authored_interpretation: a formal addressee speech style in Korean
+    rationale: >
+      The label names the formal-style category without promising that every
+      formal style raises the listener. Relative speech-level classification
+      and polite/high address must not be collapsed by the brief source wording.
+      This is an authored pedagogical qualification, not a replacement
+      official definition or evidence of professional grammar review.
+  ko-nikl-31087-s001:
+    source_korean: 사람들이 일상적인 대화에서 쓰는 말처럼 적은 문체.
+    source_english: 'The style of a piece of writing where everyday conversations are written down. '
+    authored_interpretation: a conversational style of writing
+    rationale: >
+      Korean 처럼 describes resemblance to everyday conversation, not a
+      requirement to transcribe an actual conversation as the English can
+      imply. Keep the writing-style meaning and both original source strings.
+unfilled_source_gaps:
+  targets: [감식안, 개별성, 내재성, 다원, 비격식체, 석명, 실현가능성, 외재성, 입론, 자기반성, 절대성, 직유, 차별성, 평어, 환유]
+  status: No exact or space-normalized form found in the bounded all-POS CSV lookup; no source ID invented.
+reading_review:
+  selected_senses: 67
+  official_text_senses: 66
+  existing_authored_unreviewed_senses: 1
+  unresolved_selected_senses: 0
+  decisions:
+    - >
+      Nominal 비유적07594 maps to official60998 and adnominal07595 to60997.
+      Complete single definitions differ only by 위하여 becoming 위해;
+      retain their different POS and actual citation 비ː유적.
+    - >
+      도덕관17771 maps to47796 after the whole two-fragment definition
+      comparison: the official account adds 또는 between viewpoint and
+      moral awareness. Preserve 도ː덕꽌, including length and tensing.
+    - >
+      Concrete/representational 구상31006 maps to36556 after both ordered
+      senses were compared. Planning 구상36555 is rejected despite its
+      identical citation spelling; art meaning002 differs only by a comma.
+    - The existing authored/unreviewed 메시지 decision remains unchanged.
+reading_policy: >
+  No new authored readings were needed for this cohort. Official citation
+  text does not assess actual speech or establish pragmatic mastery.
+  Protected 팀장 and 온실가스 exclusions are unchanged.
