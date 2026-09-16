@@ -25,6 +25,8 @@ Those design artifacts remain memory-only and never access either app's database
 
 ## Mandarin foundation
 
+- Overview centers on the next curriculum lesson, beginner lesson progress, and
+  practice. Stories and their saved reading positions remain in the Library.
 - Read two original stories in English, annotated Mandarin, or a weave that
   substitutes only words you have added. Passage completion and reading position
   are saved explicitly; simply opening a page does not count as reading it.

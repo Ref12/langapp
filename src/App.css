@@ -66,18 +66,19 @@ main { max-width: 1500px; margin: 0 auto; padding: 36px 38px 36px; overflow-wrap
 .feature-panel { background: var(--surface-feature); border-color: var(--accent-line); }
 .feature-panel > svg { margin-bottom: 20px; }
 .overview-feature { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(240px, 1fr); gap: 20px; }
-.continue-card { display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden; border: 1px solid var(--accent-line); border-radius: 12px; background: var(--surface-feature); min-height: 359px; }
-.continue-copy { padding: 28px 0 25px 28px; z-index: 1; }
-.continue-copy h2 { font: 38px/1.12 Georgia, "Times New Roman", serif; letter-spacing: -1px; margin: 15px 0; }
-.continue-copy > p:not(.eyebrow) { color: var(--text-secondary); font-size: 13px; }
+.course-card { display: flex; flex-direction: column; min-width: 0; min-height: 359px; margin: 0; }
+.course-card h2 { font-size: clamp(24px, 2.5vw, 32px); line-height: 1.3; letter-spacing: -.6px; margin-bottom: 16px; }
+.course-card > p:not(.eyebrow) { color: var(--text-secondary); font-size: 14px; margin-bottom: 0; }
+.course-card > .button { align-self: flex-start; margin-top: 20px; }
+.course-card .inline-meta { margin-bottom: 0; }
+.course-progress { margin-top: auto; padding-top: 24px; font-size: 12px; color: var(--text-secondary); }
+.course-progress progress { margin-top: 12px; }
+.course-progress p { margin: 12px 0 0; }
 .inline-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 10px; color: var(--text-secondary); margin: 20px 0; }
-.reading-progress { max-width: 240px; margin-top: 20px; font-size: 11px; color: var(--text-secondary); display: grid; gap: 10px; }
 progress { display: block; width: 100%; height: 5px; border: 0; appearance: none; border-radius: 5px; overflow: hidden; background: var(--surface-raised); color: var(--accent); }
 progress::-webkit-progress-bar { background: var(--surface-raised); }
 progress::-webkit-progress-value { background: var(--accent); }
 progress::-moz-progress-bar { background: var(--accent); }
-.tea-art { align-self: end; margin-left: -12px; }
-.tea-art svg { display: block; width: 100%; height: auto; }
 .daily-card { display: flex; flex-direction: column; padding: 25px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
 .daily-card .button { margin-top: auto; }
 .daily-card > .small { margin: 12px 0 0; text-align: center; }
@@ -235,11 +236,6 @@ select { padding: 10px; }
   main { padding: 25px 18px; }
   .page-heading { align-items: flex-start; flex-direction: column; gap: 16px; margin-bottom: 24px; }
   .page-heading > .button { align-self: stretch; }
-  .continue-copy { padding: 22px 0 24px 22px; }
-  .continue-copy h2 { font-size: 31px; }
-  .continue-card { grid-template-columns: 1.3fr .8fr; min-height: 340px; }
-  .tea-art { margin-left: -45px; }
-  .continue-copy > p { max-width: 230px; }
   .daily-card { display: flex; align-items: stretch; padding: 22px; gap: 15px; }
   .review-count { font-size: 52px; }
   .stats-strip { gap: 10px; }
