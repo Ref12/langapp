@@ -109,6 +109,11 @@ number and the intended counter sense under `ja-n5-g042`. **千円／せんえ�
 is an explicitly checked route example; dictionary-backed whole words such
 as **二つ／ふたつ** remain canonical. These examples are a bounded inventory,
 not a general Japanese number-pronunciation algorithm.
+Counter surfaces are identified from all compatible counter senses in the
+retained dictionary, not only the caller's selected sense. Substituting the
+ordinary book sense of **本** therefore cannot license **一本／いちほん** or
+claim counter credit for **いっぽん**. Ordinary noun phrases such as **この本**
+and explicitly punctuated word lists are not quantity compounds.
 
 ## Connected speech and viewpoint
 

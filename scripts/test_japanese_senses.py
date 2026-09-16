@@ -11,7 +11,7 @@ from curriculum_yaml import load_yaml, write_yaml
 from generate_practical_program import analyze_phrase
 from japanese_program_adapter import (
     JapaneseAdapter, LEVELS, PROFILE, ROOT, entry_number, original_paths, selected_sense,
-    source_manifest, validate_form_annotations, verify_sources, word_inflections,
+    source_counter_surfaces, source_manifest, validate_form_annotations, verify_sources, word_inflections,
 )
 from practical_program_types import PhraseContext, ReferenceBundle
 
@@ -149,6 +149,22 @@ class JapaneseSenseTests(unittest.TestCase):
         self.assertEqual(sense["source_sense"], raw)
         self.assertTrue(sense["reading_restrictions"])
         self.assertEqual(sense["source_snapshot"], "pinned-test-snapshot")
+
+    def test_counter_surface_discovery_respects_raw_spelling_and_reading_restrictions(self):
+        word = deepcopy(self.dictionary[entry_number(self.parents["ja-n5-00572"])])
+        word["kanji"] = [{"text": "\u672c"}, {"text": "\u4eee"}]
+        word["kana"] = [
+            {"text": "\u307b\u3093", "appliesToKanji": ["\u672c"]},
+            {"text": "\u3082\u3068", "appliesToKanji": ["*"]},
+        ]
+        word["sense"] = [{
+            **word["sense"][4], "appliesToKanji": ["\u672c"], "appliesToKana": ["\u307b\u3093"],
+        }]
+        surfaces = source_counter_surfaces({"words": [word]})
+        self.assertIn("\u672c", surfaces)
+        self.assertFalse(surfaces & {"\u4eee", "\u3082\u3068", "\u307b\u3093"})
+        word["kana"][0]["appliesToKanji"] = ["\u4eee"]
+        self.assertNotIn("\u672c", source_counter_surfaces({"words": [word]}))
 
     def test_attested_verb_groups_control_full_word_readings(self):
         for identifier, written, reading in (
@@ -288,9 +304,11 @@ class JapaneseQuantityReadingTests(unittest.TestCase):
     def setUpClass(cls):
         adapter = JapaneseAdapter()
         cls.references = adapter.load(ROOT).references
+        cls.counter_surfaces = adapter.counter_surfaces
 
     def setUp(self):
         self.adapter = JapaneseAdapter()
+        self.adapter.counter_surfaces = self.counter_surfaces
         self.context = PhraseContext(
             PROFILE, self.references, frozenset(self.references.vocabulary),
             frozenset(self.references.grammar),
@@ -334,6 +352,73 @@ class JapaneseQuantityReadingTests(unittest.TestCase):
                 phrase["ch"] = "\u4e00 \u672c"
             with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
                 analyze_phrase(phrase, self.context, self.adapter)
+
+    def test_book_sense_cannot_hide_a_known_counter_surface(self):
+        for grammar in (True, False):
+            for spaced in (True, False):
+                with self.subTest(grammar=grammar, spaced=spaced):
+                    phrase = self.canonical_phrase("ja-n5-00056-s001", "ja-n5-00572-s001", grammar=grammar)
+                    if spaced:
+                        phrase["ch"] = "\u4e00 \u672c"
+                    with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+                        analyze_phrase(phrase, self.context, self.adapter)
+        phrase = self.canonical_phrase("ja-n5-00056-s001", "ja-n5-00572-s001")
+        phrase["realizations"][0]["grammar"] = []
+        phrase["realizations"][1]["grammar"] = ["ja-n5-g042"]
+        with self.assertRaisesRegex(ValueError, "canonical construction link"):
+            analyze_phrase(phrase, self.context, self.adapter)
+
+    def test_source_counter_detection_does_not_require_selecting_its_counter_sense(self):
+        items = ("ja-n5-00056-s001", "ja-n5-00572-s001")
+        original = self.references
+        vocabulary = {item: original.vocabulary[item] for item in items}
+        selected = ReferenceBundle(
+            vocabulary, original.grammar,
+            {item: original.lexical_identity[item] for item in items},
+            {item: original.provenance[item] for item in (*items, *original.grammar)},
+            {item: original.source_sense_identity[item] for item in items},
+            {item: original.reading_identity[item] for item in items},
+            {item: original.spelling_identity[item] for item in items},
+        )
+        context = PhraseContext(PROFILE, selected, frozenset(items), frozenset(original.grammar))
+        self.assertIn("\u672c", self.adapter.counter_surfaces)
+        with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+            analyze_phrase(self.canonical_phrase(*items), context, self.adapter)
+
+    def test_other_noun_counter_homographs_require_quantity_evidence(self):
+        for item in ("ja-n5-00490-s001", "ja-n5-00543-s001", "ja-n3-01294-s001"):
+            with self.subTest(item=item):
+                phrase = self.canonical_phrase("ja-n5-00056-s001", item)
+                with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+                    analyze_phrase(phrase, self.context, self.adapter)
+                items = ("ja-n5-00249-s001", item)
+                noun_phrase = self.canonical_phrase(*items, grammar=False)
+                self.assertEqual(analyze_phrase(noun_phrase, self.context, self.adapter).items, items)
+
+    def test_correct_pronunciation_does_not_license_the_wrong_book_sense_tuple(self):
+        phrase = self.canonical_phrase("ja-n5-00056-s001", "ja-n5-00572-s001")
+        form = {
+            "ch": phrase["ch"], "pr": "\u3044\u3063\u307d\u3093",
+            "items": phrase["items"], "grammar": ["ja-n5-g042"],
+            "source_id": "original-ja-practical", "note": "Incorrect book-sense substitution.",
+        }
+        self.adapter.forms = {"ja-form-wrong-book-sense": form}
+        phrase["pr"] = form["pr"]
+        phrase["realizations"] = [{
+            **{key: form[key] for key in ("ch", "pr", "items", "grammar")},
+            "form_id": "ja-form-wrong-book-sense",
+        }]
+        with self.assertRaisesRegex(ValueError, "whole-word counter/number reading"):
+            analyze_phrase(phrase, self.context, self.adapter)
+
+    def test_book_noun_phrases_and_punctuated_word_lists_remain_valid(self):
+        items = ("ja-n5-00249-s001", "ja-n5-00572-s001")
+        phrase = self.canonical_phrase(*items, grammar=False)
+        self.assertEqual(analyze_phrase(phrase, self.context, self.adapter).items, items)
+        items = ("ja-n5-00056-s001", "ja-n5-00572-s001")
+        phrase = self.canonical_phrase(*items, grammar=False)
+        phrase["ch"] = "\u4e00\u3001\u672c"
+        self.assertEqual(analyze_phrase(phrase, self.context, self.adapter).items, items)
 
     def test_documented_whole_word_counter_form_licenses_ippon_not_ichihon(self):
         phrase = self.canonical_phrase("ja-n5-00056-s001", "ja-n5-00572-s005")

@@ -225,6 +225,24 @@ def source_pos(identifier: str, references: ReferenceBundle) -> set[str]:
     return set(values)
 
 
+def source_counter_surfaces(dictionary: dict) -> frozenset[str]:
+    surfaces = set(COUNTED_NOUN_SURFACES)
+    for word in dictionary["words"]:
+        for sense in word["sense"]:
+            if "ctr" not in sense["partOfSpeech"]:
+                continue
+            readings = [row for row in word["kana"] if applies(sense["appliesToKana"], row["text"])]
+            for spelling in word["kanji"]:
+                form = spelling["text"]
+                if applies(sense["appliesToKanji"], form) and any(
+                        applies(row["appliesToKanji"], form) for row in readings):
+                    surfaces.add(unicodedata.normalize("NFC", form))
+            for row in readings:
+                if applies(sense["appliesToKanji"], row["text"]):
+                    surfaces.add(unicodedata.normalize("NFC", row["text"]))
+    return frozenset(surfaces)
+
+
 def validate_counted_reading(identifier: str, items: tuple[str, ...], written: str,
                              reading: str, references: ReferenceBundle) -> None:
     expected = COUNTED_READINGS.get(items)
@@ -235,7 +253,12 @@ def validate_counted_reading(identifier: str, items: tuple[str, ...], written: s
 
 
 def validate_quantity_boundaries(identifier: str, written: str, segments: list[SurfaceSegment],
-                                 references: ReferenceBundle) -> None:
+                                 references: ReferenceBundle, counter_surfaces: frozenset[str]) -> None:
+    known_surfaces = counter_surfaces | {
+        unicodedata.normalize("NFC", entry["ch"])
+        for item, entry in references.vocabulary.items()
+        if "ctr" in references.provenance.get(item, {}).get("source_sense", {}).get("partOfSpeech", ())
+    }
     surface = unicodedata.normalize("NFC", written)
     forms = [normalized_surface(segment.ch) for segment in segments]
     if normalized_surface(surface) != "".join(forms):
@@ -264,7 +287,7 @@ def validate_quantity_boundaries(identifier: str, written: str, segments: list[S
         parts = [source_pos(item, references) for item in segment.items]
         if segment.items and (pending or any("num" in part for part in parts)) and all(
             part & {"num", "ctr"}
-            or references.vocabulary[item]["ch"] in COUNTED_NOUN_SURFACES
+            or unicodedata.normalize("NFC", references.vocabulary[item]["ch"]) in known_surfaces
             for item, part in zip(segment.items, parts)
         ):
             pending.append(segment)
@@ -395,9 +418,11 @@ class JapaneseAdapter:
 
     def __init__(self):
         self.forms = {}
+        self.counter_surfaces = frozenset(COUNTED_NOUN_SURFACES)
 
     def load(self, root: Path) -> ProgramData:
         dictionary = verify_sources(root)
+        self.counter_surfaces = source_counter_surfaces(dictionary)
         inputs = load_inputs(root)
         validate_model(inputs["program"], inputs["mastery"], PROFILE)
         authoring = root / "authoring" / "teaching"
@@ -494,7 +519,9 @@ class JapaneseAdapter:
                 segment["ch"], segment["pr"], tuple(segment["items"]),
                 tuple(segment["grammar"]), form_id,
             ))
-        validate_quantity_boundaries(phrase["id"], phrase["ch"], segments, context.references)
+        validate_quantity_boundaries(
+            phrase["id"], phrase["ch"], segments, context.references, self.counter_surfaces,
+        )
         return PhraseAnalysis(tuple(phrase["items"]), tuple(phrase["grammar"]), tuple(segments))
 
 
