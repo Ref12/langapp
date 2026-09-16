@@ -1,0 +1,98 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: integrated selections; linguistic and lexical review remains pending
+scope: >
+  Concrete transport, route-finding, ticketing, and vehicle-equipment gaps
+  discovered through practical tasks. Human roles and institutional/economic
+  explanation remain in the society cohort. The unrelated 도로 adverb is
+  reserved for the predicate cohort, not substituted for a road noun.
+selection_policy: >
+  Inspect exact retained bilingual positions before writing each label.
+  The original CSV was queried for specifically missing spellings; no
+  first-sense, source-band, alphabetical, or numerical-quota rule selected
+  entries. Necessary ordinary transport words remain early even though this
+  does not manufacture later-phase growth.
+identity_policy: >
+  Each declared identity is a provisional free lexical candidate. Polysemy
+  of 차량, 차로, 트렁크, 핸들, and 길목 adds senses, not headwords.
+  Similar English glosses do not turn unrelated Korean words into spelling
+  variants. Actual source parents and their original ordinals remain authoritative.
+source_spelling:
+  ko-nikl-30790: >
+    Exact concatenated 교통카드 was not found, but a targeted check of source
+    word spacing located the genuine headword 교통 카드 at record 30790.
+    Retain its space and empty POS. Its nominal-compound identity is an
+    explicit reviewable judgment, not a claim that every phrase is a lemma.
+source_boundaries:
+  ko-nikl-21105: Rubber tire, not Thai-language homograph ko-nikl-21104.
+  ko-nikl-23503: Railway platform only; no computing sense exists in this source position.
+  ko-nikl-52299: Only position 2 backward motion is selected here; other positions remain unaltered.
+  ko-nikl-14416: Specified period, route, and trips do not imply unlimited travel.
+  ko-nikl-27166: Ticket checking is not restricted to automated railway turnstiles.
+  ko-nikl-51632: Both road and rail freight vehicles remain within the original meaning.
+  ko-nikl-14853: No unsourced figurative policy-obstruction sense is added.
+  ko-nikl-41885: Permission to park is not a parking fine.
+  ko-nikl-33248: Literal route senses precede the separately marked figurative period transition.
+source_integration: >
+  All twenty-seven specifically inspected unbanded parents below are retained
+  with every original position in source-senses.yaml. The source registry now
+  has seventy-one support parents; original TOPIK references are unchanged.
+  Full-manifest composition found no repeated sense IDs or existing-key
+  conflicts. No extra English correction is required for these short labels.
+retained_unbanded_support:
+  - ko-nikl-14416
+  - ko-nikl-14684
+  - ko-nikl-14853
+  - ko-nikl-21105
+  - ko-nikl-21828
+  - ko-nikl-22050
+  - ko-nikl-22693
+  - ko-nikl-22726
+  - ko-nikl-23268
+  - ko-nikl-23503
+  - ko-nikl-24785
+  - ko-nikl-27166
+  - ko-nikl-28538
+  - ko-nikl-30760
+  - ko-nikl-30790
+  - ko-nikl-32589
+  - ko-nikl-33248
+  - ko-nikl-33466
+  - ko-nikl-40764
+  - ko-nikl-43156
+  - ko-nikl-45531
+  - ko-nikl-48566
+  - ko-nikl-49435
+  - ko-nikl-49516
+  - ko-nikl-49519
+  - ko-nikl-51632
+  - ko-nikl-51850
+unfilled_source_gaps:
+  - word: 발권기
+    status: No exact or space-normalized match found in the pinned January 2024 CSV.
+  - word: 사이드미러
+    status: No exact or space-normalized match found in the pinned January 2024 CSV.
+reading_policy: >
+  Thirty-six selected senses have official citation text. Eight parents
+  covering ten senses have individually documented authored readings because
+  their exact complete-definition matches contain no pronunciation text.
+  These proposals remain unreviewed. 플랫폼 explicitly becomes 플랟폼
+  through final-stop neutralization; 백미러 becomes 뱅미러 through nasal
+  assimilation. 교통 카드 retains its source word boundary. Neither
+  unchanged spelling nor these rule applications imply dictionary or audio
+  verification. There are no remaining selected reading gaps.
+selected_reading_gaps: []
+resolved_authored_reading_parents:
+  - ko-nikl-21105
+  - ko-nikl-22050
+  - ko-nikl-22693
+  - ko-nikl-23503
+  - ko-nikl-24785
+  - ko-nikl-30790
+  - ko-nikl-40764
+  - ko-nikl-48566
+limitations: >
+  These labels teach communication, not driving skill, legal vehicle
+  classifications, current ticket entitlements, accessibility guarantees,
+  or transport safety. All language and lexicalization choices remain
+  unreviewed. No source examples or media are redistributed.

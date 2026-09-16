@@ -1005,6 +1005,42 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         self.assertIn("no matter", words["ko-nikl-04170-s001"]["ds"])
         self.assertNotIn("ko-nikl-16773-s007", words)
 
+    def test_mobility_support_preserves_real_headwords_and_source_limits(self):
+        words, evidence = self.references.vocabulary, self.references.provenance
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        tyre = "ko-nikl-21105-s001"
+        self.assertEqual(words[tyre]["ch"], "타이어")
+        self.assertIn("rubber", evidence[tyre]["source_english"])
+        self.assertIn("rubber", words[tyre]["ds"])
+        card = "ko-nikl-30790-s001"
+        self.assertEqual(words[card]["ch"], "교통 카드")
+        self.assertEqual(parents["ko-nikl-30790"]["source_part_of_speech"], "")
+        self.assertEqual(parents["ko-nikl-30790"]["source_band"], "unbanded")
+        self.assertIn("public transport", words[card]["ds"])
+        self.assertEqual(len(parents["ko-nikl-23503"]["senses"]), 1)
+        self.assertIn("railway", words["ko-nikl-23503-s001"]["ds"])
+        self.assertIn("specified trips", words["ko-nikl-14416-s001"]["ds"])
+        self.assertIn("road or rail", words["ko-nikl-51632-s001"]["ds"])
+        self.assertIn("authorizing parking", words["ko-nikl-41885-s001"]["ds"])
+        for key, reading in (
+            ("ko-nikl-23503-s001", "플랟폼"),
+            ("ko-nikl-40764-s001", "뱅미러"),
+            (card, "교통 카드"),
+        ):
+            self.assertEqual(words[key]["pr"], reading)
+            self.assertEqual(evidence[key]["reading"]["method"], "authored-broad-hangul")
+            self.assertEqual(evidence[key]["reading"]["review_status"], "unreviewed")
+
+    def test_mobility_polysemy_adds_senses_without_duplicate_lemmas(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for parent, count in (("43870", 2), ("43877", 2), ("22050", 2), ("24785", 2), ("33248", 3)):
+            selected = [f"ko-nikl-{parent}-s{number:03d}" for number in range(1, count + 1)]
+            self.assertTrue(all(key in words for key in selected))
+            self.assertEqual(len({identities[key] for key in selected}), 1)
+        self.assertIn("figurative", words["ko-nikl-33248-s003"]["ds"])
+        self.assertIn("reversing", words["ko-nikl-52299-s002"]["ds"])
+        self.assertNotEqual(identities["ko-nikl-24785-s002"], identities["ko-nikl-49519-s001"])
+
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml
         report = yaml.safe_load(self.data.source_outputs[self.root / "teaching" / "coverage.yaml"])

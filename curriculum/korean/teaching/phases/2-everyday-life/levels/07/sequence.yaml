@@ -113,11 +113,11 @@ units:
   - {id: ko-nikl-27395-s001, ch: 거리, pr: 거리, ds: a street}
   grammar: []
   review_vocabulary:
-  - {id: ko-nikl-47023-s001, ch: 여기, pr: 여기, ds: here; a place near the speaker}
   - {id: ko-nikl-46352-s001, ch: 어디, pr: 어디, ds: where; an unknown place}
   - {id: ko-nikl-24126-s001, ch: 한국, pr: 한ː국, ds: South Korea; the Republic of Korea}
   - {id: ko-nikl-27326-s001, ch: 거기, pr: 거기, ds: there (near the listener)}
   - {id: ko-nikl-13326-s001, ch: 저기, pr: 저기, ds: over there (away from both speakers)}
+  - {id: ko-nikl-45768-s001, ch: 출입구, pr: 추립꾸, ds: an entrance or exit}
   - {id: ko-nikl-04763-s001, ch: 앞, pr: 압, ds: the front; ahead}
   - {id: ko-nikl-18870-s001, ch: 뒤, pr: 뒤ː, ds: the back; behind}
   - {id: ko-nikl-08489-s001, ch: 사이, pr: 사이, ds: between; the space between things}
@@ -346,6 +346,23 @@ units:
   - {id: ko-nikl-21815-s009, ch: 통하다, pr: 통하다, ds: to pass through a space}
   - {id: ko-nikl-35310-s002, ch: 넘다, pr: 넘ː따, ds: to go over a high place}
   - {id: ko-nikl-35310-s003, ch: 넘다, pr: 넘ː따, ds: to cross a boundary}
+  - {id: ko-nikl-02638-s001, ch: 승용차, pr: 승용차, ds: a passenger car}
+  - {id: ko-nikl-02660-s001, ch: 승합차, pr: 승합차, ds: a passenger van or similar large motor vehicle}
+  - {id: ko-nikl-21826-s001, ch: 통행, pr: 통행, ds: passing through a place}
+  - {id: ko-nikl-25679-s001, ch: 가로등, pr: 가로등, ds: a streetlight}
+  - {id: ko-nikl-29526-s001, ch: 골목길, pr: 골ː목낄, ds: a narrow lane between houses}
+  - {id: ko-nikl-33231-s001, ch: 길가, pr: 길까, ds: the edge or side of a road}
+  - {id: ko-nikl-41885-s001, ch: 주차권, pr: 주ː차꿘, ds: a ticket authorizing parking at a designated place}
+  - {id: ko-nikl-43870-s001, ch: 차량, pr: 차량, ds: a road or rail vehicle}
+  - {id: ko-nikl-43877-s001, ch: 차로, pr: 차로, ds: a roadway for motor vehicles}
+  - {id: ko-nikl-43930-s001, ch: 차창, pr: 차창, ds: a window in a car or train}
+  - {id: ko-nikl-14416-s001, ch: 정기권, pr: 정ː기꿘, ds: a period pass for specified trips on a set route}
+  - {id: ko-nikl-22050-s001, ch: 트렁크, pr: 트렁크, ds: a large travel bag or trunk}
+  - {id: ko-nikl-22050-s002, ch: 트렁크, pr: 트렁크, ds: a rear luggage compartment in a car}
+  - {id: ko-nikl-22726-s001, ch: 편도, pr: 편도, ds: one direction or leg of a return journey; one-way}
+  - {id: ko-nikl-23268-s001, ch: 푯말, pr: 푠말, ds: a marker post or signpost}
+  - {id: ko-nikl-23503-s001, ch: 플랫폼, pr: 플랟폼, ds: a railway platform for boarding and leaving trains}
+  - {id: ko-nikl-27166-s001, ch: 개찰구, pr: 개ː찰구, ds: a gate or checkpoint where boarding or entry tickets are checked}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-16963-s005, ch: 대다, pr: 대ː다, ds: to bring a vehicle to a stop}
@@ -356,6 +373,29 @@ units:
   - {id: ko-nikl-07657-s001, ch: 비키다, pr: 비ː키다, ds: to move aside to avoid a collision}
   - {id: ko-nikl-07657-s002, ch: 비키다, pr: 비ː키다, ds: to change direction slightly to avoid a collision}
   - {id: ko-nikl-34024-s002, ch: 끌다, pr: 끌ː다, ds: to move or drive a vehicle}
+  review_grammar:
+  - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
+  - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
+- id: level-07-travel-08
+  title: Travel and transport - 8
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary:
+  - {id: ko-nikl-28538-s001, ch: 경차, pr: 경차, ds: a small and light passenger car}
+  - {id: ko-nikl-30760-s001, ch: 교차로, pr: 교차로, ds: an intersection where roads cross}
+  - {id: ko-nikl-30790-s001, ch: 교통 카드, pr: 교통 카드, ds: a fare card for public transport}
+  - {id: ko-nikl-33248-s001, ch: 길목, pr: 길목, ds: an entrance to a narrow street off a main road}
+  - {id: ko-nikl-43156-s001, ch: 진입로, pr: 지ː님노, ds: an access road leading to a destination}
+  - {id: ko-nikl-51850-s001, ch: 환승, pr: 환ː승, ds: transferring to another route or means of transport}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-43930-s001, ch: 차창, pr: 차창, ds: a window in a car or train}
+  - {id: ko-nikl-14416-s001, ch: 정기권, pr: 정ː기꿘, ds: a period pass for specified trips on a set route}
+  - {id: ko-nikl-22050-s001, ch: 트렁크, pr: 트렁크, ds: a large travel bag or trunk}
+  - {id: ko-nikl-22050-s002, ch: 트렁크, pr: 트렁크, ds: a rear luggage compartment in a car}
+  - {id: ko-nikl-22726-s001, ch: 편도, pr: 편도, ds: one direction or leg of a return journey; one-way}
+  - {id: ko-nikl-23268-s001, ch: 푯말, pr: 푠말, ds: a marker post or signpost}
+  - {id: ko-nikl-23503-s001, ch: 플랫폼, pr: 플랟폼, ds: a railway platform for boarding and leaving trains}
+  - {id: ko-nikl-27166-s001, ch: 개찰구, pr: 개ː찰구, ds: a gate or checkpoint where boarding or entry tickets are checked}
   review_grammar:
   - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
   - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -454,6 +494,8 @@ units:
   - {id: ko-nikl-48933-s001, ch: 요금, pr: 요ː금, ds: a charge; a fare; an admission fee}
   - {id: ko-nikl-50982-s001, ch: 은행, pr: 은행, ds: a bank (financial institution)}
   - {id: ko-nikl-41886-s001, ch: 주차료, pr: 주ː차료, ds: a parking fee}
+  - {id: ko-nikl-43892-s001, ch: 차비, pr: 차비, ds: fare money for a bus or other vehicle}
+  - {id: ko-nikl-21828-s001, ch: 통행료, pr: 통행뇨, ds: a toll or charge for passing through a place}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-12555-s002, ch: 잔돈, pr: 잔돈, ds: change given or received after payment}
@@ -637,14 +679,14 @@ units:
   - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
   - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
   review_vocabulary:
-  - {id: ko-nikl-34024-s006, ch: 끌다, pr: 끌ː다, ds: to lead someone along to a destination}
-  - {id: ko-nikl-49601-s002, ch: 움직이다, pr: 움지기다, ds: to move from one place to another}
-  - {id: ko-nikl-34613-s004, ch: 남다, pr: 남ː따, ds: to stay where one is instead of leaving}
-  - {id: ko-nikl-34604-s008, ch: 남기다, pr: 남기다, ds: to leave time or distance still to go}
-  - {id: ko-nikl-21815-s007, ch: 통하다, pr: 통하다, ds: to connect to or lead to a place}
-  - {id: ko-nikl-21815-s009, ch: 통하다, pr: 통하다, ds: to pass through a space}
-  - {id: ko-nikl-35310-s002, ch: 넘다, pr: 넘ː따, ds: to go over a high place}
-  - {id: ko-nikl-35310-s003, ch: 넘다, pr: 넘ː따, ds: to cross a boundary}
+  - {id: ko-nikl-23503-s001, ch: 플랫폼, pr: 플랟폼, ds: a railway platform for boarding and leaving trains}
+  - {id: ko-nikl-27166-s001, ch: 개찰구, pr: 개ː찰구, ds: a gate or checkpoint where boarding or entry tickets are checked}
+  - {id: ko-nikl-28538-s001, ch: 경차, pr: 경차, ds: a small and light passenger car}
+  - {id: ko-nikl-30760-s001, ch: 교차로, pr: 교차로, ds: an intersection where roads cross}
+  - {id: ko-nikl-30790-s001, ch: 교통 카드, pr: 교통 카드, ds: a fare card for public transport}
+  - {id: ko-nikl-33248-s001, ch: 길목, pr: 길목, ds: an entrance to a narrow street off a main road}
+  - {id: ko-nikl-43156-s001, ch: 진입로, pr: 지ː님노, ds: an access road leading to a destination}
+  - {id: ko-nikl-51850-s001, ch: 환승, pr: 환ː승, ds: transferring to another route or means of transport}
   review_grammar:
   - {id: ko-topik1-g008, ch: N에 가다 / 오다, ds: go or come to a destination}
   - {id: ko-topik1-g029, ch: V-(으)러 가다 / 오다, ds: state the purpose of going or coming}
@@ -656,14 +698,14 @@ units:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
   - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
   review_vocabulary:
-  - {id: ko-nikl-34024-s006, ch: 끌다, pr: 끌ː다, ds: to lead someone along to a destination}
-  - {id: ko-nikl-49601-s002, ch: 움직이다, pr: 움지기다, ds: to move from one place to another}
-  - {id: ko-nikl-34613-s004, ch: 남다, pr: 남ː따, ds: to stay where one is instead of leaving}
-  - {id: ko-nikl-34604-s008, ch: 남기다, pr: 남기다, ds: to leave time or distance still to go}
-  - {id: ko-nikl-21815-s007, ch: 통하다, pr: 통하다, ds: to connect to or lead to a place}
-  - {id: ko-nikl-21815-s009, ch: 통하다, pr: 통하다, ds: to pass through a space}
-  - {id: ko-nikl-35310-s002, ch: 넘다, pr: 넘ː따, ds: to go over a high place}
-  - {id: ko-nikl-35310-s003, ch: 넘다, pr: 넘ː따, ds: to cross a boundary}
+  - {id: ko-nikl-23503-s001, ch: 플랫폼, pr: 플랟폼, ds: a railway platform for boarding and leaving trains}
+  - {id: ko-nikl-27166-s001, ch: 개찰구, pr: 개ː찰구, ds: a gate or checkpoint where boarding or entry tickets are checked}
+  - {id: ko-nikl-28538-s001, ch: 경차, pr: 경차, ds: a small and light passenger car}
+  - {id: ko-nikl-30760-s001, ch: 교차로, pr: 교차로, ds: an intersection where roads cross}
+  - {id: ko-nikl-30790-s001, ch: 교통 카드, pr: 교통 카드, ds: a fare card for public transport}
+  - {id: ko-nikl-33248-s001, ch: 길목, pr: 길목, ds: an entrance to a narrow street off a main road}
+  - {id: ko-nikl-43156-s001, ch: 진입로, pr: 지ː님노, ds: an access road leading to a destination}
+  - {id: ko-nikl-51850-s001, ch: 환승, pr: 환ː승, ds: transferring to another route or means of transport}
   review_grammar:
   - {id: ko-topik1-g015, ch: N에서 N까지, ds: give a route's origin and endpoint}
   - {id: ko-topik2-g001, ch: V-아/어도 되다, ds: ask or state permission}
@@ -693,14 +735,14 @@ units:
   grammar:
   - {id: ko-topik2-g023, ch: N밖에 + 부정, ds: limit a quantity with a negative predicate}
   review_vocabulary:
-  - {id: ko-nikl-24353-s001, ch: 할인, pr: 하린, ds: a discount}
-  - {id: ko-nikl-24343-s001, ch: 할부, pr: 할부, ds: payment in installments}
   - {id: ko-nikl-11530-s001, ch: 일시불, pr: 일씨불, ds: paying the whole amount at once}
   - {id: ko-nikl-10036-s001, ch: 선불, pr: 선불, ds: payment before work is completed or goods are received}
   - {id: ko-nikl-01793-s001, ch: 수수료, pr: 수수료, ds: a fee for doing something on someone else's behalf}
   - {id: ko-nikl-48933-s001, ch: 요금, pr: 요ː금, ds: a charge; a fare; an admission fee}
   - {id: ko-nikl-50982-s001, ch: 은행, pr: 은행, ds: a bank (financial institution)}
   - {id: ko-nikl-41886-s001, ch: 주차료, pr: 주ː차료, ds: a parking fee}
+  - {id: ko-nikl-43892-s001, ch: 차비, pr: 차비, ds: fare money for a bus or other vehicle}
+  - {id: ko-nikl-21828-s001, ch: 통행료, pr: 통행뇨, ds: a toll or charge for passing through a place}
   review_grammar: []
 - id: level-07-time-practice-01
   title: Time and events - sentence practice 1
@@ -744,14 +786,14 @@ units:
   grammar:
   - {id: ko-topik2-g002, ch: V-(으)면 안 되다, ds: prohibit an action by a rule or warning}
   review_vocabulary:
-  - {id: ko-nikl-34024-s006, ch: 끌다, pr: 끌ː다, ds: to lead someone along to a destination}
-  - {id: ko-nikl-49601-s002, ch: 움직이다, pr: 움지기다, ds: to move from one place to another}
-  - {id: ko-nikl-34613-s004, ch: 남다, pr: 남ː따, ds: to stay where one is instead of leaving}
-  - {id: ko-nikl-34604-s008, ch: 남기다, pr: 남기다, ds: to leave time or distance still to go}
-  - {id: ko-nikl-21815-s007, ch: 통하다, pr: 통하다, ds: to connect to or lead to a place}
-  - {id: ko-nikl-21815-s009, ch: 통하다, pr: 통하다, ds: to pass through a space}
-  - {id: ko-nikl-35310-s002, ch: 넘다, pr: 넘ː따, ds: to go over a high place}
-  - {id: ko-nikl-35310-s003, ch: 넘다, pr: 넘ː따, ds: to cross a boundary}
+  - {id: ko-nikl-23503-s001, ch: 플랫폼, pr: 플랟폼, ds: a railway platform for boarding and leaving trains}
+  - {id: ko-nikl-27166-s001, ch: 개찰구, pr: 개ː찰구, ds: a gate or checkpoint where boarding or entry tickets are checked}
+  - {id: ko-nikl-28538-s001, ch: 경차, pr: 경차, ds: a small and light passenger car}
+  - {id: ko-nikl-30760-s001, ch: 교차로, pr: 교차로, ds: an intersection where roads cross}
+  - {id: ko-nikl-30790-s001, ch: 교통 카드, pr: 교통 카드, ds: a fare card for public transport}
+  - {id: ko-nikl-33248-s001, ch: 길목, pr: 길목, ds: an entrance to a narrow street off a main road}
+  - {id: ko-nikl-43156-s001, ch: 진입로, pr: 지ː님노, ds: an access road leading to a destination}
+  - {id: ko-nikl-51850-s001, ch: 환승, pr: 환ː승, ds: transferring to another route or means of transport}
   review_grammar:
   - {id: ko-topik2-g010, ch: V-(으)려고 하다, ds: state an intention or developing plan}
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}

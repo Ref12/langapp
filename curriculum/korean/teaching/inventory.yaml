@@ -3,53 +3,53 @@ program: ko-practical
 interpretation: Inventory coverage only, not learner mastery or examination readiness. Routes can overlap;
   their counts must not be summed as unique vocabulary.
 core:
-  modules: 605
-  vocabulary_senses: 4656
-  headwords: 3260
+  modules: 609
+  vocabulary_senses: 4702
+  headwords: 3300
   grammar_constructs: 204
-  source_senses: 4656
-  readings: 3154
-  spellings: 3113
+  source_senses: 4702
+  readings: 3194
+  spellings: 3153
 phases:
 - id: first-exchanges
   modules: 69
-  vocabulary_senses: 393
-  headwords: 347
+  vocabulary_senses: 394
+  headwords: 348
   grammar_constructs: 32
-  source_senses: 393
-  readings: 349
-  spellings: 347
-  new_headwords: 347
+  source_senses: 394
+  readings: 350
+  spellings: 348
+  new_headwords: 348
   target_new_headwords: 200
 - id: everyday-life
-  modules: 121
-  vocabulary_senses: 1042
-  headwords: 914
+  modules: 122
+  vocabulary_senses: 1068
+  headwords: 939
   grammar_constructs: 46
-  source_senses: 1042
-  readings: 904
-  spellings: 902
-  new_headwords: 866
+  source_senses: 1068
+  readings: 929
+  spellings: 927
+  new_headwords: 891
   target_new_headwords: 500
 - id: stories-conversations
-  modules: 113
-  vocabulary_senses: 875
-  headwords: 693
+  modules: 114
+  vocabulary_senses: 876
+  headwords: 694
   grammar_constructs: 48
-  source_senses: 875
-  readings: 680
-  spellings: 679
-  new_headwords: 530
+  source_senses: 876
+  readings: 681
+  spellings: 680
+  new_headwords: 531
   target_new_headwords: 800
 - id: explanation-problems
-  modules: 97
-  vocabulary_senses: 711
-  headwords: 656
+  modules: 99
+  vocabulary_senses: 728
+  headwords: 673
   grammar_constructs: 38
-  source_senses: 711
-  readings: 647
-  spellings: 646
-  new_headwords: 510
+  source_senses: 728
+  readings: 664
+  spellings: 663
+  new_headwords: 523
   target_new_headwords: 1100
 - id: analysis-argument
   modules: 98
@@ -63,12 +63,12 @@ phases:
   target_new_headwords: 1400
 - id: nuance-interpretation
   modules: 107
-  vocabulary_senses: 900
-  headwords: 787
+  vocabulary_senses: 901
+  headwords: 788
   grammar_constructs: 12
-  source_senses: 900
-  readings: 777
-  spellings: 772
+  source_senses: 901
+  readings: 778
+  spellings: 773
   new_headwords: 490
   target_new_headwords: 1800
 levels:
@@ -86,14 +86,14 @@ levels:
 - number: 2
   title: People, places, and particles
   modules: 17
-  vocabulary_senses: 68
-  headwords: 64
+  vocabulary_senses: 69
+  headwords: 65
   grammar_constructs: 7
-  source_senses: 68
-  readings: 64
-  spellings: 64
-  new_headwords: 61
-  cumulative_headwords: 98
+  source_senses: 69
+  readings: 65
+  spellings: 65
+  new_headwords: 62
+  cumulative_headwords: 99
 - number: 3
   title: Food, numbers, and payment
   modules: 13
@@ -104,7 +104,7 @@ levels:
   readings: 126
   spellings: 126
   new_headwords: 122
-  cumulative_headwords: 220
+  cumulative_headwords: 221
 - number: 4
   title: Routines and plans
   modules: 26
@@ -115,18 +115,18 @@ levels:
   readings: 136
   spellings: 135
   new_headwords: 127
-  cumulative_headwords: 347
+  cumulative_headwords: 348
 - number: 5
   title: Household help
   modules: 30
-  vocabulary_senses: 276
-  headwords: 261
+  vocabulary_senses: 277
+  headwords: 262
   grammar_constructs: 9
-  source_senses: 276
-  readings: 260
-  spellings: 260
-  new_headwords: 245
-  cumulative_headwords: 592
+  source_senses: 277
+  readings: 261
+  spellings: 261
+  new_headwords: 246
+  cumulative_headwords: 594
 - number: 6
   title: Services and everyday care
   modules: 33
@@ -137,18 +137,18 @@ levels:
   readings: 275
   spellings: 275
   new_headwords: 250
-  cumulative_headwords: 842
+  cumulative_headwords: 844
 - number: 7
   title: Travel, permission, and arrangements
-  modules: 29
-  vocabulary_senses: 252
-  headwords: 239
+  modules: 30
+  vocabulary_senses: 277
+  headwords: 263
   grammar_constructs: 10
-  source_senses: 252
-  readings: 240
-  spellings: 240
-  new_headwords: 213
-  cumulative_headwords: 1055
+  source_senses: 277
+  readings: 264
+  spellings: 264
+  new_headwords: 237
+  cumulative_headwords: 1081
 - number: 8
   title: Work, study, and relationships
   modules: 29
@@ -159,7 +159,7 @@ levels:
   readings: 203
   spellings: 203
   new_headwords: 158
-  cumulative_headwords: 1213
+  cumulative_headwords: 1239
 - number: 9
   title: Narration and resulting states
   modules: 31
@@ -170,7 +170,7 @@ levels:
   readings: 274
   spellings: 274
   new_headwords: 218
-  cumulative_headwords: 1431
+  cumulative_headwords: 1457
 - number: 10
   title: Feelings and experience
   modules: 25
@@ -181,18 +181,18 @@ levels:
   readings: 193
   spellings: 193
   new_headwords: 130
-  cumulative_headwords: 1561
+  cumulative_headwords: 1587
 - number: 11
   title: Procedures and outcomes
-  modules: 21
-  vocabulary_senses: 139
-  headwords: 128
+  modules: 22
+  vocabulary_senses: 140
+  headwords: 129
   grammar_constructs: 8
-  source_senses: 139
-  readings: 127
-  spellings: 127
-  new_headwords: 74
-  cumulative_headwords: 1635
+  source_senses: 140
+  readings: 128
+  spellings: 128
+  new_headwords: 75
+  cumulative_headwords: 1662
 - number: 12
   title: Relaying information
   modules: 16
@@ -203,7 +203,7 @@ levels:
   readings: 97
   spellings: 97
   new_headwords: 47
-  cumulative_headwords: 1682
+  cumulative_headwords: 1709
 - number: 13
   title: Reasons and choices
   modules: 20
@@ -214,18 +214,18 @@ levels:
   readings: 125
   spellings: 125
   new_headwords: 61
-  cumulative_headwords: 1743
+  cumulative_headwords: 1770
 - number: 14
   title: Unfamiliar everyday problems
-  modules: 29
-  vocabulary_senses: 262
-  headwords: 251
+  modules: 31
+  vocabulary_senses: 278
+  headwords: 267
   grammar_constructs: 12
-  source_senses: 262
-  readings: 251
-  spellings: 252
-  new_headwords: 184
-  cumulative_headwords: 1927
+  source_senses: 278
+  readings: 267
+  spellings: 268
+  new_headwords: 196
+  cumulative_headwords: 1966
 - number: 15
   title: Cooperation and responsibility
   modules: 16
@@ -236,7 +236,7 @@ levels:
   readings: 89
   spellings: 89
   new_headwords: 49
-  cumulative_headwords: 1976
+  cumulative_headwords: 2015
 - number: 16
   title: News and attribution
   modules: 20
@@ -247,18 +247,18 @@ levels:
   readings: 114
   spellings: 114
   new_headwords: 84
-  cumulative_headwords: 2060
+  cumulative_headwords: 2099
 - number: 17
   title: Technology and environment
   modules: 19
-  vocabulary_senses: 170
-  headwords: 170
+  vocabulary_senses: 171
+  headwords: 171
   grammar_constructs: 6
-  source_senses: 170
-  readings: 170
-  spellings: 170
-  new_headwords: 140
-  cumulative_headwords: 2200
+  source_senses: 171
+  readings: 171
+  spellings: 171
+  new_headwords: 141
+  cumulative_headwords: 2240
 - number: 18
   title: Presenting and negotiating
   modules: 13
@@ -269,7 +269,7 @@ levels:
   readings: 69
   spellings: 69
   new_headwords: 53
-  cumulative_headwords: 2253
+  cumulative_headwords: 2293
 - number: 19
   title: Evidence and explanation
   modules: 19
@@ -280,7 +280,7 @@ levels:
   readings: 111
   spellings: 111
   new_headwords: 65
-  cumulative_headwords: 2318
+  cumulative_headwords: 2358
 - number: 20
   title: Institutions and economics
   modules: 12
@@ -291,7 +291,7 @@ levels:
   readings: 110
   spellings: 110
   new_headwords: 78
-  cumulative_headwords: 2396
+  cumulative_headwords: 2436
 - number: 21
   title: General science
   modules: 17
@@ -302,7 +302,7 @@ levels:
   readings: 134
   spellings: 134
   new_headwords: 97
-  cumulative_headwords: 2493
+  cumulative_headwords: 2533
 - number: 22
   title: Values and perspectives
   modules: 18
@@ -313,7 +313,7 @@ levels:
   readings: 148
   spellings: 147
   new_headwords: 114
-  cumulative_headwords: 2607
+  cumulative_headwords: 2647
 - number: 23
   title: Qualified argument
   modules: 14
@@ -324,7 +324,7 @@ levels:
   readings: 115
   spellings: 115
   new_headwords: 86
-  cumulative_headwords: 2693
+  cumulative_headwords: 2733
 - number: 24
   title: Formal synthesis
   modules: 18
@@ -335,7 +335,7 @@ levels:
   readings: 100
   spellings: 100
   new_headwords: 77
-  cumulative_headwords: 2770
+  cumulative_headwords: 2810
 - number: 25
   title: Stance and implication
   modules: 20
@@ -346,7 +346,7 @@ levels:
   readings: 223
   spellings: 223
   new_headwords: 145
-  cumulative_headwords: 2915
+  cumulative_headwords: 2955
 - number: 26
   title: Speech and written register
   modules: 17
@@ -357,18 +357,18 @@ levels:
   readings: 138
   spellings: 138
   new_headwords: 88
-  cumulative_headwords: 3003
+  cumulative_headwords: 3043
 - number: 27
   title: Common imagery
   modules: 21
-  vocabulary_senses: 143
-  headwords: 138
+  vocabulary_senses: 144
+  headwords: 139
   grammar_constructs: 2
-  source_senses: 143
-  readings: 136
-  spellings: 137
+  source_senses: 144
+  readings: 137
+  spellings: 138
   new_headwords: 36
-  cumulative_headwords: 3039
+  cumulative_headwords: 3079
 - number: 28
   title: Precision and abstraction
   modules: 20
@@ -379,7 +379,7 @@ levels:
   readings: 118
   spellings: 118
   new_headwords: 71
-  cumulative_headwords: 3110
+  cumulative_headwords: 3150
 - number: 29
   title: Critical interpretation
   modules: 17
@@ -390,7 +390,7 @@ levels:
   readings: 164
   spellings: 164
   new_headwords: 92
-  cumulative_headwords: 3202
+  cumulative_headwords: 3242
 - number: 30
   title: Independent projects
   modules: 12
@@ -401,7 +401,7 @@ levels:
   readings: 90
   spellings: 90
   new_headwords: 58
-  cumulative_headwords: 3260
+  cumulative_headwords: 3300
 extensions:
 - id: professional
   modules: 8

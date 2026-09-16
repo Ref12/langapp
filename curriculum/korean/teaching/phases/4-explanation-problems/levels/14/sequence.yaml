@@ -272,6 +272,13 @@ units:
   - {id: ko-nikl-43894-s001, ch: 차선, pr: 차선, ds: a line marking out lanes on a road}
   - {id: ko-nikl-43155-s001, ch: 진입, pr: 지ː닙, ds: entry into a destination or a particular state}
   - {id: ko-nikl-30149-s001, ch: 과속, pr: 과ː속, ds: driving over the speed limit; excessive driving speed}
+  - {id: ko-nikl-43870-s002, ch: 차량, pr: 차량, ds: a single train car or carriage}
+  - {id: ko-nikl-43877-s002, ch: 차로, pr: 차로, ds: a marked lane for a single line of vehicles}
+  - {id: ko-nikl-52299-s002, ch: 후진, pr: 후ː진, ds: backward movement; reversing}
+  - {id: ko-nikl-14684-s001, ch: 정차, pr: 정차, ds: briefly stopping a vehicle; a temporary vehicle stop}
+  - {id: ko-nikl-32589-s001, ch: 급정거, pr: 급쩡거, ds: a vehicle stopping abruptly or being stopped abruptly}
+  - {id: ko-nikl-33248-s002, ch: 길목, pr: 길목, ds: a key passage along a route}
+  - {id: ko-nikl-33466-s001, ch: 깜빡이, pr: 깜빠기, ds: a vehicle's turn signal or indicator}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-14547-s001, ch: 정상, pr: 정상, ds: the summit or highest point of a mountain}
@@ -282,6 +289,29 @@ units:
   - {id: ko-nikl-25158-s001, ch: 헤매다, pr: 헤매다, ds: to wander from place to place}
   - {id: ko-nikl-34256-s004, ch: 나서다, pr: 나서다, ds: to leave a place and set out for somewhere}
   - {id: ko-nikl-27398-s001, ch: 거리, pr: 거ː리, ds: distance between places or objects}
+  review_grammar:
+  - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
+  - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
+  - {id: ko-topik2-g002, ch: V-(으)면 안 되다, ds: prohibit an action by a rule or warning}
+- id: level-14-travel-02
+  title: Travel and transport - 2
+  outcome: Clarify destinations and means and revise arrangements.
+  vocabulary:
+  - {id: ko-nikl-40764-s001, ch: 백미러, pr: 뱅미러, ds: a rear-view mirror on a car or bicycle}
+  - {id: ko-nikl-45531-s001, ch: 추월, pr: 추월, ds: overtaking and moving ahead of someone or something}
+  - {id: ko-nikl-49435-s001, ch: 우회, pr: 우회 / 우훼, ds: taking an indirect route or detour}
+  - {id: ko-nikl-49519-s001, ch: 운전대, pr: 운ː전때, ds: a steering wheel or steering handle}
+  - {id: ko-nikl-51632-s001, ch: 화물차, pr: 화ː물차, ds: a road or rail vehicle carrying freight}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-30149-s001, ch: 과속, pr: 과ː속, ds: driving over the speed limit; excessive driving speed}
+  - {id: ko-nikl-43870-s002, ch: 차량, pr: 차량, ds: a single train car or carriage}
+  - {id: ko-nikl-43877-s002, ch: 차로, pr: 차로, ds: a marked lane for a single line of vehicles}
+  - {id: ko-nikl-52299-s002, ch: 후진, pr: 후ː진, ds: backward movement; reversing}
+  - {id: ko-nikl-14684-s001, ch: 정차, pr: 정차, ds: briefly stopping a vehicle; a temporary vehicle stop}
+  - {id: ko-nikl-32589-s001, ch: 급정거, pr: 급쩡거, ds: a vehicle stopping abruptly or being stopped abruptly}
+  - {id: ko-nikl-33248-s002, ch: 길목, pr: 길목, ds: a key passage along a route}
+  - {id: ko-nikl-33466-s001, ch: 깜빡이, pr: 깜빠기, ds: a vehicle's turn signal or indicator}
   review_grammar:
   - {id: ko-topik2-g015, ch: V-(으)ㄹ N, ds: modify a noun with a prospective action}
   - {id: ko-topik2-g020, ch: N(으)로, ds: mark means or direction; later a material}
@@ -400,6 +430,7 @@ units:
   - {id: ko-nikl-21815-s004, ch: 통하다, pr: 통하다, ds: to be accepted or have effect}
   - {id: ko-nikl-35988-s005, ch: 막다, pr: 막따, ds: to prevent an event or phenomenon from occurring}
   - {id: ko-nikl-19873-s002, ch: 뚫리다, pr: 뚤리다, ds: for a blocked passage to open up}
+  - {id: ko-nikl-21105-s001, ch: 타이어, pr: 타이어, ds: a rubber tire around a wheel}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-01231-s001, ch: 손상, pr: 손ː상, ds: physical damage to an object}
@@ -410,6 +441,25 @@ units:
   - {id: ko-nikl-05735-s001, ch: 보류, pr: 보ː류, ds: putting a matter on hold instead of dealing with it immediately}
   - {id: ko-nikl-05674-s001, ch: 보관, pr: 보ː관, ds: keeping something entrusted to one for safekeeping}
   - {id: ko-nikl-04423-s001, ch: 안내서, pr: 안ː내서, ds: an informative guidebook or guide text}
+  review_grammar:
+  - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
+  - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
+  - {id: ko-topik2-g036, ch: V/A-지 않다, ds: negate a predicate with a final auxiliary}
+- id: level-14-services-04
+  title: Services and transactions - 4
+  outcome: Clarify requirements and resolve a service problem politely.
+  vocabulary:
+  - {id: ko-nikl-48566-s001, ch: 와이퍼, pr: 와이퍼, ds: a windshield wiper}
+  grammar: []
+  review_vocabulary:
+  - {id: ko-nikl-27706-s006, ch: 걸다, pr: 걸ː다, ds: 'to start a vehicle, machine, or device operating'}
+  - {id: ko-nikl-27714-s006, ch: 걸리다, pr: 걸리다, ds: for a vehicle or device to start operating}
+  - {id: ko-nikl-00495-s007, ch: 세우다, pr: 세우다, ds: to stop a machine from operating}
+  - {id: ko-nikl-34024-s007, ch: 끌다, pr: 끌ː다, ds: to connect water or electricity to a place}
+  - {id: ko-nikl-21815-s004, ch: 통하다, pr: 통하다, ds: to be accepted or have effect}
+  - {id: ko-nikl-35988-s005, ch: 막다, pr: 막따, ds: to prevent an event or phenomenon from occurring}
+  - {id: ko-nikl-19873-s002, ch: 뚫리다, pr: 뚤리다, ds: for a blocked passage to open up}
+  - {id: ko-nikl-21105-s001, ch: 타이어, pr: 타이어, ds: a rubber tire around a wheel}
   review_grammar:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -453,6 +503,7 @@ units:
   - {id: ko-nikl-52894-s003, ch: 힘들다, pr: 힘들다, ds: for circumstances to be difficult or resources insufficient}
   - {id: ko-nikl-16567-s005, ch: 달다, pr: 달다, ds: to enter something in an account book}
   - {id: ko-nikl-07479-s010, ch: 비다, pr: 비ː다, ds: to be short of the original amount}
+  - {id: ko-nikl-49516-s001, ch: 운임, pr: 우ː님, ds: a charge for transporting passengers or goods}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-21052-s001, ch: 타다, pr: 타다, ds: 'to receive a share, payment, or prize'}
@@ -635,12 +686,14 @@ units:
   vocabulary:
   - {id: ko-nikl-13695-s001, ch: 전기, pr: 전ː기, ds: electricity}
   - {id: ko-nikl-49601-s006, ch: 움직이다, pr: 움지기다, ds: to operate or be operated (a machine or factory)}
+  - {id: ko-nikl-24785-s002, ch: 핸들, pr: 핸들, ds: a hand control for steering a vehicle or machine}
   grammar: []
   review_vocabulary:
   - {id: ko-nikl-20679-s001, ch: 컴퓨터, pr: 컴퓨터, ds: a computer}
   - {id: ko-nikl-05980-s003, ch: 복사, pr: 복싸, ds: copying a computer file to another location}
   - {id: ko-nikl-16501-s002, ch: 단추, pr: 단추, ds: a button pressed to operate or control a machine}
   - {id: ko-nikl-20055-s002, ch: 라디오, pr: 라디오, ds: a radio receiver}
+  - {id: ko-nikl-22693-s001, ch: 페달, pr: 페달, ds: a foot-operated control for a machine or instrument}
   - {id: ko-nikl-13118-s003, ch: 재생, pr: 재ː생, ds: playback of recorded audio or video}
   review_grammar: []
 - id: level-14-nature-01
@@ -704,14 +757,14 @@ units:
   - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}
   - {id: ko-topik4-g022, ch: V-(으)려다가, ds: change course from an intended action}
   review_vocabulary:
-  - {id: ko-nikl-36570-s004, ch: 맡다, pr: 맏따, ds: to receive an item and keep it safe}
-  - {id: ko-nikl-27706-s006, ch: 걸다, pr: 걸ː다, ds: 'to start a vehicle, machine, or device operating'}
   - {id: ko-nikl-27714-s006, ch: 걸리다, pr: 걸리다, ds: for a vehicle or device to start operating}
   - {id: ko-nikl-00495-s007, ch: 세우다, pr: 세우다, ds: to stop a machine from operating}
   - {id: ko-nikl-34024-s007, ch: 끌다, pr: 끌ː다, ds: to connect water or electricity to a place}
   - {id: ko-nikl-21815-s004, ch: 통하다, pr: 통하다, ds: to be accepted or have effect}
   - {id: ko-nikl-35988-s005, ch: 막다, pr: 막따, ds: to prevent an event or phenomenon from occurring}
   - {id: ko-nikl-19873-s002, ch: 뚫리다, pr: 뚤리다, ds: for a blocked passage to open up}
+  - {id: ko-nikl-21105-s001, ch: 타이어, pr: 타이어, ds: a rubber tire around a wheel}
+  - {id: ko-nikl-48566-s001, ch: 와이퍼, pr: 와이퍼, ds: a windshield wiper}
   review_grammar:
   - {id: ko-topik2-g025, ch: N(이)나 / V-거나, ds: offer noun alternatives or alternative actions}
   - {id: ko-topik2-g035, ch: V-지 못하다, ds: express inability with long-form negation}
@@ -725,14 +778,14 @@ units:
   - {id: ko-topik5-g001, ch: V/A-(으)ㄹ 수밖에 없다, ds: have no alternative under the circumstances}
   - {id: ko-topik6-g022, ch: V/A-다가는, ds: warn of an unwanted result if a course continues}
   review_vocabulary:
-  - {id: ko-nikl-36570-s004, ch: 맡다, pr: 맏따, ds: to receive an item and keep it safe}
-  - {id: ko-nikl-27706-s006, ch: 걸다, pr: 걸ː다, ds: 'to start a vehicle, machine, or device operating'}
   - {id: ko-nikl-27714-s006, ch: 걸리다, pr: 걸리다, ds: for a vehicle or device to start operating}
   - {id: ko-nikl-00495-s007, ch: 세우다, pr: 세우다, ds: to stop a machine from operating}
   - {id: ko-nikl-34024-s007, ch: 끌다, pr: 끌ː다, ds: to connect water or electricity to a place}
   - {id: ko-nikl-21815-s004, ch: 통하다, pr: 통하다, ds: to be accepted or have effect}
   - {id: ko-nikl-35988-s005, ch: 막다, pr: 막따, ds: to prevent an event or phenomenon from occurring}
   - {id: ko-nikl-19873-s002, ch: 뚫리다, pr: 뚤리다, ds: for a blocked passage to open up}
+  - {id: ko-nikl-21105-s001, ch: 타이어, pr: 타이어, ds: a rubber tire around a wheel}
+  - {id: ko-nikl-48566-s001, ch: 와이퍼, pr: 와이퍼, ds: a windshield wiper}
   review_grammar:
   - {id: ko-topik3-g034, ch: N에 따라, ds: describe variation or compliance with a standard}
   - {id: ko-topik4-g017, ch: V-는 바람에, ds: explain an unwanted result of an unexpected event}
