@@ -5,6 +5,16 @@ policy: >
   semantic interpretation only, not verified teacher review or a new official
   dictionary definition.
 corrections:
+  ko-nikl-39951-s001:
+    source_korean: 일정한 이야기 줄거리가 있고 주로 고전 음악 반주에 맞추어 무대에서 추는, 유럽에서 발생한 무용.
+    source_english: A dance that originated in Europe, which has a certain plot and is performed on the stage to classical music.
+    authored_interpretation: 'ballet; source: narrative dance mainly to classical music'
+    rationale: >
+      Restore 주로 (mainly), omitted in English, while retaining the
+      source's narrative frame. Attribute this description to the source:
+      it is not a universal modern ballet taxonomy. The complete unchanged
+      definitions retain European origin and stage performance. Qualified
+      Korean-language and dance-domain review remain outstanding.
   ko-nikl-12547-s001:
     source_korean: "남은 돈의 액수."
     source_english: "The amount of money left unspent."

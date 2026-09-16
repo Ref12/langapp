@@ -83,6 +83,17 @@ as applicable. They do not reconstruct English stress or claim that a
 spelling-equal aid is dictionary-verified. Actual sentence-level realization
 and audio assessment remain separate.
 
+The cultural loanwords 레저, 리허설, 팬, 밴드, 재즈, 클래식, 발레,
+오페라, and 더빙 also use individual authored, unreviewed aids. All nine
+matched learner-dictionary entries lack citation text. Eight consulted
+Standard Dictionary bodies likewise lack it; the opera search did not yield
+a usable lexical result, so its Standard Dictionary status is **unknown**.
+The decisions explain open syllables, nasal or lateral boundaries, aspiration,
+and isolation-dependent codas individually. Spelling-equal outputs are not
+automatic copies, foreign-language transcriptions, or verified pronunciations.
+The cultural notes also distinguish bounded source genre descriptions from
+universal definitions of modern ballet, opera, or musical ensembles.
+
 The source-listed compounds 주민 등록증 and 외국인 등록증 remain unselected.
 Their learner-dictionary records have no whole-term citation text; the
 consulted Standard Dictionary resident-ID entry also lacks it, and the

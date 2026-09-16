@@ -787,6 +787,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "interpretive-actions-notes.yaml",
             "practical-descriptors-notes.yaml",
             "financial-exchanges-notes.yaml",
+            "culture-loanwords-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             field = ("source_correction_proposals" if filename in {
@@ -2882,6 +2883,90 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "ko-nikl-06665", "ko-nikl-10913", "ko-nikl-12549", "ko-nikl-12893",
             "ko-nikl-13589", "ko-nikl-29966", "ko-nikl-31148", "ko-nikl-48903", "ko-nikl-48904",
         })
+
+    def test_cultural_loanword_synonyms_do_not_silently_become_spelling_variants(self):
+        identities = self.references.lexical_identity
+        for new, related, expected in (
+            ("20153", "46993", "ko-lex-20153"),
+            ("20313", "47492", "ko-lex-20313"),
+            ("22619", "04906", "ko-lex-22619"),
+        ):
+            self.assertEqual(identities[f"ko-nikl-{new}-s001"], expected)
+            self.assertNotEqual(identities[f"ko-nikl-{new}-s001"], identities[f"ko-nikl-{related}-s001"])
+        rows = load_yaml(self.root / "authoring" / "teaching" / "culture-loanwords-vocabulary.yaml")
+        self.assertEqual(len(rows), 9)
+        self.assertEqual(len({identities[row["id"]] for row in rows}), 9)
+        self.assertEqual(Counter(row["level"] for row in rows), {8: 4, 10: 4, 12: 1})
+
+    def test_cultural_source_frames_and_foreign_film_dubbing_remain_explicit(self):
+        words, sources = self.references.vocabulary, self.references.provenance
+        self.assertIn("work or study", words["ko-nikl-20153-s001"]["ds"])
+        self.assertIn("held beforehand", words["ko-nikl-20313-s001"]["ds"])
+        self.assertIn("sports, arts", words["ko-nikl-22619-s001"]["ds"])
+        for parent in ("40844", "39951", "48342"):
+            self.assertIn("source", words[f"ko-nikl-{parent}-s001"]["ds"])
+        self.assertIn("instrumental", words["ko-nikl-40844-s001"]["ds"])
+        self.assertIn("African American", words["ko-nikl-13208-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-20975-s001"]["ds"], "Western classical music")
+        self.assertIn("mainly", words["ko-nikl-39951-s001"]["ds"])
+        self.assertIn("주로", sources["ko-nikl-39951-s001"]["source_korean"])
+        self.assertNotIn("mainly", sources["ko-nikl-39951-s001"]["source_english"])
+        self.assertIn("all-sung", words["ko-nikl-48342-s001"]["ds"])
+        self.assertIn("전부", sources["ko-nikl-48342-s001"]["source_korean"])
+        self.assertIn("voice actors recording translated dialogue", words["ko-nikl-17510-s001"]["ds"])
+        self.assertIn("foreign film", words["ko-nikl-17510-s001"]["ds"])
+
+    def test_cultural_source_admission_preserves_complete_positions_and_exclusions(self):
+        authoring = self.root / "authoring" / "teaching"
+        notes = load_yaml(authoring / "culture-loanwords-notes.yaml")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        requests = notes["support_parent_requests"]
+        self.assertEqual(set(requests), {f"ko-nikl-{item}" for item in (
+            "13208", "17510", "20313", "39951", "40844",
+        )})
+        for identifier, request in {
+            **notes["retained_selected_source_records"], **requests,
+        }.items():
+            parent = parents[identifier]
+            self.assertEqual(parent["target"], request["lemma"])
+            self.assertEqual(parent["source_part_of_speech"], "명사")
+            self.assertEqual(parent["source_band"], request["source_band"])
+            self.assertEqual(parent["senses"], request["senses"])
+            if identifier in requests:
+                self.assertEqual(parent["source_band"], "unbanded")
+                self.assertIsNone(parent["reference_level"])
+        for parent in ("22620", "22621", "40845", "20638"):
+            self.assertNotIn(f"ko-nikl-{parent}-s001", self.references.vocabulary)
+        self.assertNotIn("ko-nikl-02744-s001", self.references.vocabulary)
+        self.assertIn("ko-nikl-02744-s002", self.references.vocabulary)
+
+    def test_cultural_readings_are_explicit_unreviewed_proposals_not_official_text(self):
+        authoring = self.root / "authoring" / "teaching"
+        decisions = load_yaml(authoring / "reading-decisions.yaml")
+        overlay = load_yaml(self.root / "reading-overlay.yaml")["entries"]
+        expected = {
+            "13208": ("재즈", "24962"), "17510": ("더빙", "47393"),
+            "20153": ("레저", "15537"), "20313": ("리허설", "50155"),
+            "20975": ("클래식", "49262"), "22619": ("팬", "71314"),
+            "39951": ("발레", "15454"), "40844": ("밴드", "58620"),
+            "48342": ("오페라", "22019"),
+        }
+        for parent, (pronunciation, official) in expected.items():
+            identifier = f"ko-nikl-{parent}"
+            self.assertEqual(overlay[identifier]["official_entry_id"], official)
+            self.assertEqual(overlay[identifier]["pronunciations"], [])
+            decision = decisions[identifier]
+            self.assertEqual(decision["pronunciations"], [pronunciation])
+            self.assertEqual(decision["method"], "authored-broad-hangul")
+            self.assertEqual(decision["review_status"], "unreviewed")
+            source = self.references.provenance[f"{identifier}-s001"]["reading"]
+            self.assertEqual(source["method"], "authored-broad-hangul")
+            self.assertEqual(source["review_status"], "unreviewed")
+            self.assertEqual(self.references.vocabulary[f"{identifier}-s001"]["pr"], pronunciation)
+        self.assertEqual(overlay["ko-nikl-20153"]["match_method"], "explicit-crosswalk")
+        self.assertIn("unassessed", decisions["ko-nikl-48342"]["reason"])
+        self.assertIn("ㄹ+ㄹ", decisions["ko-nikl-39951"]["reason"])
+        self.assertIn("unreleased", decisions["ko-nikl-20975"]["reason"])
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

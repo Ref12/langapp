@@ -1,0 +1,662 @@
+schema_version: 1
+id: ko-cultural-loanword-followup
+review_status: original-ai-authored-unreviewed
+completion_status: bounded parent integration complete; overall curriculum remains incomplete
+publication_status: registered with explicit unreviewed authored readings; catalog activation remains coordinated
+parent_integration:
+  baseline: 950184d
+  accepted_senses: 9
+  new_provisional_free_families: 9
+  existing_family_extensions: 0
+  admitted_support_parents: 5
+  admitted_original_positions: 5
+  new_official_identity_crosswalks: 1
+  new_authored_unreviewed_reading_decisions: 9
+  new_official_text_readings: 0
+  new_exact_source_interpretations: 1
+  identity_adjudication: >
+    Reject the three proposed synonym-only mergers. The established
+    selection-notes variant policy does not equate a shared concept with a
+    lexical family. 레저 is not an inflection or contraction of 여가;
+    리허설 is not a category alternation of 연습; 팬 is not derived from
+    애호 or 애호가. Their respective activity, realistic pre-performance,
+    and enthusiastic sports/arts conditions remain distinct. Keep three
+    separately attested provisional lexical names, alongside the other six
+    real nouns. No existing canonical family is renamed or widened.
+    This is an explicit identity adjudication, not automatic counting of
+    every spelling or a quota adjustment; all nine families remain unreviewed.
+  source_and_genre_scope: >
+    Five complete unbanded parents and all nine selected positions were
+    compared against the pinned source. Keep raw strings, including the
+    band's two trailing English spaces. Band, ballet, and opera labels
+    explicitly attribute their narrower descriptions to this source rather
+    than assert a universal contemporary genre taxonomy. Restore ballet's
+    chiefly-classical qualifier separately from those shared source limits.
+    Jazz's roots are not an exclusive historical account. Dubbing retains
+    translated foreign-film dialogue and voice actors, not every audio edit.
+  reading_adjudication: >
+    Rechecked all nine actual archive identities: none has pronunciation
+    text. Approved nine separately reasoned authored-broad-hangul proposals
+    under the existing exception policy, all with review_status unreviewed.
+    They document their own syllable structure and consonant boundaries;
+    no official citation, English sound system, stress, length, or actual
+    audio assessment is inferred from spelling. The leisure crosswalk is
+    identity evidence only. Six pre-existing pronunciation holds remain.
+  opera_followup:
+    url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EC%98%A4%ED%8E%98%EB%9D%BC
+    result: A bounded alternative public-page fetch exposed selection controls only, with no lexical result ID or pronunciation.
+    limit: The earlier incomplete response and this shell establish neither absence nor presence of Standard citation text; its lexical content remains unassessed.
+  excluded_additions: >
+    Film-script 시나리오001 and 캠핑 remain outside this cohort; the
+    already selected hypothetical-course 시나리오002 is preserved. No
+    machine-fan, cooking-pan, strap, extra dubbing sense, or subgenre is added.
+  resulting_coverage:
+    core_dictionary_parents: 5471
+    core_senses: 7840
+    core_distinct_spellings: 5159
+    core_spelling_pos_pairs: 5268
+    core_lexical_identities: 5220
+    core_provisional_free_families: 4957
+    core_bound_forms: 40
+    core_function_items: 223
+    core_official_text_senses: 7584
+    core_authored_unreviewed_reading_senses: 256
+    pool_senses_including_branches: 7966
+    pool_provisional_free_families: 5013
+    retained_support_parents: 925
+    selected_support_parents: 921
+    reading_crosswalks: 405
+    authored_reading_decisions: 210
+    exact_source_interpretations: 182
+    core_modules: 768
+    free_family_gap_to_lower_planning_guide: 843
+  validation:
+    combined_course_tourist_source_tests: 147
+    deterministic_teaching_views: 128
+    source_pins: Original CSV and official archive derivation check passed.
+    original_references: 11028 dictionary parents, 216 grammar constructs and 432 examples remain intact.
+    prior_objects: Every earlier raw parent, official overlay entry, reading decision and crosswalk equals its baseline object.
+    qualification: Structural/source checks do not establish linguistic, pronunciation, genre, pedagogical, or learner mastery accuracy.
+  overall_limit: Useful core breadth, later-phase pedagogical reassessment, and qualified linguistic review remain incomplete.
+ownership:
+  authored_files: [culture-loanwords-vocabulary.yaml, culture-loanwords-identities.yaml, culture-loanwords-notes.yaml]
+  frozen_parent_handoff: culture cohort committed as64acc75
+  protected: every prior file, source/reading ledger, manifest, test, and generated output
+  excluded_parent_ids: [ko-nikl-48419, ko-nikl-22209, ko-nikl-25822, ko-nikl-29719]
+  parent_only_scope: The seven food-loanword reading assessments were not investigated.
+historical_handoff_scope: >
+  Inspect only the eleven named cultural loanwords, their original
+  same-spelling competitors, relevant protected families, and the corresponding
+  official archive entries. Select ordinary culture/media/leisure meanings,
+  not a genre catalogue or taxonomic sweep. Existing film-script and tent-
+  camping coverage make those two duplicate additions unnecessary here.
+  All nine authored placements are source-backed proposals awaiting supported
+  readings, not approval to generate learner items with guessed pronunciation.
+historical_handoff_counts:
+  named_candidate_parents: 11
+  original_positions_in_named_candidates: 12
+  other_same_spelling_source_parents_compared: 3
+  selected_senses: 9
+  proposed_core_senses: 9
+  branch_senses: 0
+  selected_source_parents: 9
+  distinct_selected_spellings: 9
+  identity_fragments: 9
+  new_provisional_free_families: 6
+  existing_identity_fragments: 3
+  depth_senses: 3
+  new_bound_form_families: 0
+  new_function_item_families: 0
+  existing_branch_only_families_gaining_first_core_use: 0
+  retained_selected_parents: 4
+  unbanded_support_requests: 5
+  original_positions_in_support_requests: 5
+  selected_source_correction_requests: 1
+  excluded_named_candidate_parents: 2
+  supplied_or_authored_pronunciations: 0
+  selected_pronunciation_blockers: 9
+  standard_dictionary_main_form_inspections: 1
+  standard_dictionary_searches: 9
+  standard_dictionary_content_bodies_inspected: 8
+  inspected_standard_bodies_without_pronunciation: 8
+  standard_search_failures_without_retry: 1
+  source_bands: {beginner: 0, intermediate: 3, advanced: 1, unbanded: 5}
+  phases:
+    first-exchanges: 0
+    everyday-life: 4
+    stories-conversations: 5
+    explanation-problems: 0
+    analysis-argument: 0
+    nuance-interpretation: 0
+historical_handoff_composition_snapshot:
+  basis: live manifest through argumentation and argumentation-support
+  selected_senses_before: 7773
+  core_senses_before: 7647
+  identity_groups_before: 5166
+  provisional_free_families_before: 4908
+  core_provisional_free_families_before: 4852
+  retained_support_parents_before: 842
+  selected_support_parents_before: 838
+  projected_selected_senses: 7782
+  projected_core_senses: 7656
+  projected_identity_groups: 5172
+  projected_provisional_free_families: 4914
+  projected_core_provisional_free_families: 4858
+  projected_support_parents_if_only_these_requests_are_admitted: 847
+  projected_selected_support_parents_if_only_these_requests_are_admitted: 843
+  limitation: >
+    This is conditional in-memory arithmetic, not publication or learner
+    knowledge. Parent-owned source/reading files advanced during this task;
+    counts use the later live snapshot rather than the older739-support prompt.
+    No parent change was reverted or incorporated by editing its files.
+source_verification:
+  source_id: nikl-2024-mirror
+  source_revision: 3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9
+  source_sha256: 3250b7b0620eee814aadb4ad5611f1e209792e2aebfd57017bcfe3f1d7b92aa0
+  source_records: 53172
+  source_url: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv
+  official_archive_source_id: nikl-official-20260819
+  official_archive_sha256: 7cf41e62a2a36158a8be2b6d2f84c086221e9b29d4345c44e5497eebf21c8c40
+  official_archive_entries: 56555
+  method: >
+    Existing Python312 -B helpers verify the retained CSV/archive hashes.
+    Inspect complete ordered Korean/English lists, raw POS and bands, and
+    every exact-spelling/POS archive competitor for the eleven named forms.
+    Source IDs retain original CSV record/sense ordinals, not official IDs.
+    Full source English strings below retain their original whitespace.
+    A source record's provenance URL is source_url plus #record=source_record.
+  namespace_policy: >
+    Project parent/sense IDs, Korean-English Learners' Dictionary entry IDs,
+    and Standard Dictionary word_no values identify different namespaces.
+    Neither current dictionary's extra definitions replace the pinned source,
+    supply fictional source positions, or establish a whole-word pronunciation
+    from the mere presence of an identical headword.
+frozen_culture_hashes:
+  culture-vocabulary.yaml: 73fc3194b81dc86338f1607d68e99daf865815c5b096e93bb93ff4a135d81072
+  culture-identities.yaml: 4b65aa7e8d89e82a2d1ae20631f87110d3bfa9e24a631d5697c45ad5670ba70a
+  culture-notes.yaml: 3cb9b09fa0ef96c641d2082f65c242320f6d3a43687f138c97df4d487e73c818
+selection_and_placement:
+  ordinary_participation: >
+    Leisure, fandom, a realistic pre-performance run, and a small instrumental
+    group support leisure/participation discussions at8. These are actual noun
+    records, not new verbs, derived source forms, or assumptions that a person
+    can perform a task merely because they recognize its name.
+  common_genres: >
+    Classical music, jazz, ballet, and opera support general-reader preferences,
+    event descriptions, and cultural discussion at10. No subgenre, instrument,
+    score, dance-technique, or historical-period catalogue is added.
+  media_versions: >
+    Translated foreign-film dialogue rerecorded by voice actors supports
+    comparing media versions at12. This source position is not broadened to
+    every audio edit, domestic animation, game, or sound-recording process.
+  source_domain_limits: >
+    Opera's all-dialogue-sung framing and ballet's story frame are present
+    in the original Korean as well as English. The labels preserve those
+    source-framed descriptions, not a verified universal modern genre taxonomy.
+    Qualified domain review may be needed before broadening them. Ballet's
+    mainly-classical qualifier, unlike those shared source limitations, was
+    lost specifically in English and has a correction proposal below.
+    Jazz's historical-root description is not an exhaustive or exclusive
+    history; light music in the band source is not a judgment of cultural value.
+superseded_handoff_identity_policy: >
+  Six provisional new free families and three depth members are separate
+  counts, not nine verified new roots. Preserve every existing canonical
+  lemma/category/member. Leisure, fan/enthusiast naming, and a performance-
+  specific practice run use individual conservative family groupings.
+  Named cultural genres and translated-dialogue rerecording are not automatically
+  collapsed into generic music, dance, or recording. All lexical boundaries
+  remain subject to qualified review; no base reading is transferred.
+historical_family_comparisons:
+  leisure:
+    identity: ko-lex-46993
+    protected_id: ko-nikl-46993-s001
+    source_korean: 일을 하지 않는 시간. 또는 일을 하는 중간에 생기는 여유로운 시간.
+    source_english: 'The time when one is not working; or the time for relaxation in the middle of working. '
+    new_id: ko-nikl-20153-s001
+    rationale: Retain both free time and relaxing play in the new loanword's single position without another free leisure base.
+  admirer:
+    identity: ko-lex-04905
+    protected_id: ko-nikl-04906-s001
+    source_korean: 어떤 사물이나 일을 사랑하고 좋아하는 사람.
+    source_english: 'A person who loves a certain object or work and is devoted to it. '
+    new_id: ko-nikl-22619-s001
+    rationale: The fan source narrows the domain and emphasizes enthusiasm; preserve those conditions while using the protected enthusiast family.
+  rehearsal:
+    identity: ko-lex-47492
+    protected_id: ko-nikl-47492-s001
+    source_korean: 무엇을 잘할 수 있도록 반복하여 익힘.
+    source_english: 'The act of doing something repeatedly in order to be good at it. '
+    new_id: ko-nikl-20313-s001
+    rationale: >
+      Count this actual performance-specific practice name conservatively as
+      depth, preserving realistic execution before a performance. Full
+      simulated-practice homograph47491 was also compared and remains unselected;
+      neither that homograph nor the related word 총연습 supplies a reading.
+  ensemble_distinction:
+    protected_id: ko-nikl-04339-s001
+    source_korean: 음악을 전문적으로나 직업적으로 연주하는 단체.
+    source_english: 'A group playing music professionally or for a living. '
+    new_id: ko-nikl-40844-s001
+    rationale: >
+      The source band is small and plays the named light-music range, but
+      does not require employment. Its scope is not identical to professional
+      악단; retain a separate provisional base instead of erasing conditions
+      to justify a blanket synonym merger.
+official_archive_assessment:
+  status: every intended archive entry lacks pronunciation text
+  named_parents_assessed: 11
+  exact_ordered_definition_matches: 9
+  editorial_wording_matches: 2
+  entries_with_pronunciation_text: 0
+  selected_exact_matches: 8
+  selected_editorial_matches: 1
+  entries:
+    ko-nikl-02744:
+      official_entry_id: '15963'
+      pronunciations: []
+      selected: false
+      comparison: Both source positions compared; film script is identical and the second position replaces the comma-linked 과정이나 with a sentence boundary and 또는. Hypothetical sequence/result remains the meaning.
+    ko-nikl-20153:
+      official_entry_id: '15537'
+      pronunciations: []
+      selected: true
+      comparison: The full single time/activity definition changes only 이용하여 to 이용해. Both alternatives remain intact.
+    ko-nikl-20975: {official_entry_id: '49262', pronunciations: [], selected: true, comparison: Exact complete Western traditional composition/performance music definition.}
+    ko-nikl-22619:
+      official_entry_id: '71314'
+      pronunciations: []
+      selected: true
+      comparison: Exact complete enthusiastic sports/arts/performer admirer definition; reject ventilation81020 and cooking-pan71315 after comparing their full definitions.
+    ko-nikl-48342: {official_entry_id: '22019', pronunciations: [], selected: true, comparison: Exact complete music/drama/dance stage-art definition with all dialogue sung.}
+    ko-nikl-13208: {official_entry_id: '24962', pronunciations: [], selected: true, comparison: Exact complete popular-music definition with African American folk-music roots.}
+    ko-nikl-17510: {official_entry_id: '47393', pronunciations: [], selected: true, comparison: Exact complete foreign-film translated dialogue rerecorded by voice actors.}
+    ko-nikl-20313: {official_entry_id: '50155', pronunciations: [], selected: true, comparison: Exact complete realistic practice before a play/music/broadcast performance.}
+    ko-nikl-20638: {official_entry_id: '83129', pronunciations: [], selected: false, comparison: Exact complete tent-living/staying definition with mountain/field/seashore settings.}
+    ko-nikl-39951: {official_entry_id: '15454', pronunciations: [], selected: true, comparison: Exact complete European-origin story-based stage-dance definition with chiefly classical accompaniment.}
+    ko-nikl-40844:
+      official_entry_id: '58620'
+      pronunciations: []
+      selected: true
+      comparison: Exact complete small instrumental light-music group definition; reject the material-strip definition at91295 rather than borrowing its identity or reading.
+  selected_identity_crosswalk_proposal:
+    ko-nikl-20153:
+      official_entry_id: '15537'
+      reason: Compared the entire single free-time/relaxing-activity definition; only 이용하여 becomes 이용해. This identity crosswalk does not itself supply any pronunciation text.
+  boundary: Parent owns any crosswalk integration; no reading-matches or overlay change was made, including for the unselected scenario entry.
+standard_dictionary_assessment:
+  accessed_on: '2026-09-16'
+  status: bounded assessment closed; no further requests or retries
+  method: >
+    Observe the public searchResult.do endpoint and searchKeyword field in the
+    dictionary's actual main-page form. Make one exact-name search for each
+    selected term. Read contentViewOne.do?word_no= only with an intended
+    exact-result ID observed in that response. Verify the genuine word_<id>
+    lexical body and its definitions, not an empty searchView shell. Ignore
+    download controls, spelling/origin labels, related-word links, and generic
+    pronunciation controls as evidence of pronunciation.
+  budget: >
+    Nine exact-name searches and eight content-body requests; at most one of
+    each per selected term. Opera's search failed once and was not retried.
+    The excluded script and camping terms received no Standard Dictionary search.
+    No audio, download/export, alternative-dictionary, or related-word lookup followed.
+  entries:
+    ko-nikl-20153:
+      term: 레저
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EB%A0%88%EC%A0%80
+      observed_word_no: '103122'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=103122
+      search_count: 1
+      content_count: 1
+      status: genuine matching body inspected; no displayed pronunciation
+      displayed_pronunciations: []
+      evidence: The leisure noun includes free time and using it to rest/play. The entry's header information list was empty; spelling and the English origin were not readings.
+    ko-nikl-20975:
+      term: 클래식
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%ED%81%B4%EB%9E%98%EC%8B%9D
+      observed_word_no: '345327'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=345327
+      search_count: 1
+      content_count: 1
+      status: genuine matching body inspected; no displayed pronunciation
+      displayed_pronunciations: []
+      evidence: The Western traditional-method music noun and its classical-music synonym were present. The lexical header had no reading; the foreign origin label was not a pronunciation.
+    ko-nikl-22619:
+      term: 팬
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%ED%8C%AC
+      observed_word_no: '351868'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=351868
+      search_count: 1
+      content_count: 1
+      status: genuine matching body inspected; no displayed pronunciation
+      displayed_pronunciations: []
+      rejected_search_result_ids: ['351869', '498174', '351870']
+      evidence: >
+        The selected body was the enthusiastic sports/performing-arts admirer.
+        Search previews distinguished ventilation, cooking pan, and camera
+        panning; none supplied a substitute identity. The genuine admirer
+        entry contained no displayed pronunciation.
+    ko-nikl-48342:
+      term: 오페라
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EC%98%A4%ED%8E%98%EB%9D%BC
+      observed_word_no: null
+      content_url: null
+      search_count: 1
+      content_count: 0
+      status: search response incomplete; Standard Dictionary pronunciation remains unassessed
+      displayed_pronunciations: null
+      error: IncompleteRead(37136 bytes read)
+      evidence: >
+        No result ID was observed from the failed request. No ID was guessed
+        and no content body was fetched or search retried. This is not evidence
+        that the Standard Dictionary has no opera entry or no pronunciation.
+        The separately verified archive22019 still has no citation text.
+    ko-nikl-13208:
+      term: 재즈
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EC%9E%AC%EC%A6%88
+      observed_word_no: '283429'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=283429
+      search_count: 1
+      content_count: 1
+      status: genuine matching body inspected; no displayed pronunciation
+      displayed_pronunciations: []
+      evidence: >
+        The jazz music-genre body supplied historical context and improvisation
+        characteristics, with an empty lexical header information list and no
+        pronunciation. Those extra definitions/history are not new source senses.
+    ko-nikl-17510:
+      term: 더빙
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EB%8D%94%EB%B9%99
+      observed_word_no: '414957'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=414957
+      search_count: 1
+      content_count: 1
+      status: genuine related body inspected in full; no displayed pronunciation
+      displayed_pronunciations: []
+      evidence: >
+        The first displayed meaning adds music/effects to a dialogue recording.
+        The second rerecords translated foreign-film dialogue and corresponds
+        to the intended source scope, without importing the first meaning.
+        Header text 부표제어 더빙-하다 is a derived-entry link, not a reading.
+    ko-nikl-20313:
+      term: 리허설
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EB%A6%AC%ED%97%88%EC%84%A4
+      observed_word_no: '419597'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=419597
+      search_count: 1
+      content_count: 1
+      status: genuine matching body inspected; no displayed pronunciation
+      displayed_pronunciations: []
+      evidence: >
+        The definition is realistic practice before performance. Header text
+        참고 어휘 총연습 is a reference word, not a pronunciation of 리허설;
+        it was not followed or used as a reading substitute.
+    ko-nikl-39951:
+      term: 발레
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EB%B0%9C%EB%A0%88
+      observed_word_no: '134325'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=134325
+      search_count: 1
+      content_count: 1
+      status: genuine matching body inspected; no displayed pronunciation
+      displayed_pronunciations: []
+      evidence: >
+        The body describes ballet as dance-theatre and includes classical and
+        modern forms. Its lexical header contains no reading. The broader
+        description does not replace the original one-position source or
+        authorize another ballet taxonomy/terminology search.
+    ko-nikl-40844:
+      term: 밴드
+      search_url: https://stdict.korean.go.kr/search/searchResult.do?searchKeyword=%EB%B0%B4%EB%93%9C
+      observed_word_no: '146149'
+      content_url: https://stdict.korean.go.kr/search/contentViewOne.do?word_no=146149
+      search_count: 1
+      content_count: 1
+      status: genuine musical body inspected in full; no displayed pronunciation
+      displayed_pronunciations: []
+      rejected_search_result_ids: ['431125', '146150']
+      evidence: >
+        The intended musical entry first describes an instrumental ensemble,
+        mainly playing light music; its second meaning specifies a three-to-eight
+        member performing/singing group. Neither extra member-count nor vocal
+        condition is imported into the source. Material-strip and social-
+        organization search results were rejected. No displayed reading exists
+        in the inspected musical body.
+  excluded_terms_not_searched:
+    ko-nikl-02744: {term: 시나리오, search_count: 0, content_count: 0, reason: Duplicate film-script addition omitted; archive/source assessment already recorded.}
+    ko-nikl-20638: {term: 캠핑, search_count: 0, content_count: 0, reason: Recreational tent camping already covered; archive/source assessment already recorded.}
+retained_selected_source_records:
+  ko-nikl-20153:
+    source_record: 20153
+    lemma: 레저
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: advanced
+    raw_vocabulary_level: 고급
+    raw_semantic_category: '삶 > 여가 활동'
+    reference_level: topik-5
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-20153-s001, source_position: 1, korean: '일이나 공부를 하지 않아도 되는 자유롭고 한가한 때. 또는 그 시간을 이용하여 편안하게 노는 일.', english: 'Time free from work or duties, or using that time to relax comfortably.'}
+  ko-nikl-20975:
+    source_record: 20975
+    lemma: 클래식
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: intermediate
+    raw_vocabulary_level: 중급
+    raw_semantic_category: '문화 > 음악'
+    reference_level: topik-3
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-20975-s001, source_position: 1, korean: '서양의 전통적인 작곡법과 연주법에 의한 음악.', english: 'Music that depends on the traditional composition and performance methods of the west.'}
+  ko-nikl-22619:
+    source_record: 22619
+    lemma: 팬
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: intermediate
+    raw_vocabulary_level: 중급
+    raw_semantic_category: ''
+    reference_level: topik-4
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-22619-s001, source_position: 1, korean: '운동 경기나 특정 예술 장르, 또는 운동선수나 배우, 가수 등을 열광적으로 좋아하는 사람.', english: 'A person who passionately loves a sport, specific art genre, or an athlete, actor, singer, etc.'}
+  ko-nikl-48342:
+    source_record: 48342
+    lemma: 오페라
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: intermediate
+    raw_vocabulary_level: 중급
+    raw_semantic_category: '문화 > 대중 문화'
+    reference_level: topik-3
+    selected_positions: [1]
+    senses:
+      - {id: ko-nikl-48342-s001, source_position: 1, korean: '배우가 대사의 전부를 노래로 부르는, 음악과 연극과 춤 등을 종합한 무대 예술.', english: 'A play combined with music and dance, in which actors and actresses sing their all lines.'}
+historical_support_request_policy: >
+  Only these five actual absent unbanded parents are requested. Each has one
+  complete original position. Preserve raw POS, empty band/category fields,
+  all original text/whitespace, and null reference levels. Source recovery is
+  not pronunciation approval; no new source or reading artifact was written.
+support_parent_requests:
+  ko-nikl-13208:
+    source_record: 13208
+    lemma: 재즈
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: A common music-genre noun; official24962 and observed Standard283429 both provide identity evidence but no pronunciation text.
+    senses:
+      - {id: ko-nikl-13208-s001, source_position: 1, korean: '미국 흑인들의 민속 음악을 바탕으로 만들어진 대중음악.', english: 'A genre of popular music that originated from the folk music of African Americans.'}
+  ko-nikl-17510:
+    source_record: 17510
+    lemma: 더빙
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Preserve the foreign-film translation/voice-actor condition, not every sense of sound rerecording in another dictionary.
+    senses:
+      - {id: ko-nikl-17510-s001, source_position: 1, korean: '외국 영화의 대사를 해당 언어로 바꾸어 성우의 목소리로 다시 녹음하는 일.', english: "Voice actors' recording of a foreign movie's translated lines."}
+  ko-nikl-20313:
+    source_record: 20313
+    lemma: 리허설
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The real performance-rehearsal noun has its own provisional family; a shared practice concept does not establish a variant of protected 연습.
+    senses:
+      - {id: ko-nikl-20313-s001, source_position: 1, korean: '연극, 음악, 방송 등에서 공연을 하기 전에 실제 공연처럼 미리 해 보는 연습.', english: 'Practice of a play, musical performance, broadcast, etc., before the actual performance.'}
+  ko-nikl-39951:
+    source_record: 39951
+    lemma: 발레
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: The bounded ballet source position retains its story/stage/European frame and chiefly-classical qualifier; no technique or subgenre sweep follows.
+    senses:
+      - {id: ko-nikl-39951-s001, source_position: 1, korean: '일정한 이야기 줄거리가 있고 주로 고전 음악 반주에 맞추어 무대에서 추는, 유럽에서 발생한 무용.', english: 'A dance that originated in Europe, which has a certain plot and is performed on the stage to classical music.'}
+  ko-nikl-40844:
+    source_record: 40844
+    lemma: 밴드
+    source_part_of_speech: 명사
+    part_of_speech: noun
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    reference_level: null
+    complete_source_senses: 1
+    selected_positions: [1]
+    rationale: Select only the small instrumental light-music group, not the material-strip homograph or extra Standard Dictionary member-count meaning.
+    senses:
+      - {id: ko-nikl-40844-s001, source_position: 1, korean: '여러 가지 악기로 재즈나 팝송 등과 같이 가벼운 음악을 연주하는 소규모의 단체.', english: 'A small group that plays light music such as jazz, pop songs, etc. by using a variety of instruments.  '}
+source_correction_requests:
+  ko-nikl-39951-s001:
+    source_korean: 일정한 이야기 줄거리가 있고 주로 고전 음악 반주에 맞추어 무대에서 추는, 유럽에서 발생한 무용.
+    source_english: A dance that originated in Europe, which has a certain plot and is performed on the stage to classical music.
+    authored_interpretation: 'ballet; source: narrative dance mainly to classical music'
+    rationale: >
+      주로 means mainly, not an absolute requirement for classical
+      accompaniment. Restore that qualifier while retaining the source's
+      narrative framing; stage performance and European origin remain in the
+      complete evidence above. Attribute the description to the source, not a
+      universal classification of every modern ballet. Parent owns integration;
+      qualified Korean-teacher and dance-domain review remain outstanding.
+excluded_named_source_records:
+  ko-nikl-02744:
+    source_record: 2744
+    lemma: 시나리오
+    source_part_of_speech: 명사
+    source_band: advanced
+    raw_vocabulary_level: 고급
+    raw_semantic_category: '문화 > 대중 문화'
+    selected_positions: []
+    decision: >
+      Film-script001 duplicates the current 대본 task and is not added just
+      for another spelling. Hypothetical sequence/result002 is a genuine
+      separate source use, not declared synonymous with every actual plan;
+      it is outside this focused cultural follow-up. No extra identity,
+      source recovery, or external pronunciation search is requested.
+    senses:
+      - {id: ko-nikl-02744-s001, source_position: 1, korean: '영화의 대본.', english: 'The script of a film. '}
+      - {id: ko-nikl-02744-s002, source_position: 2, korean: '가상으로 꾸며 보는 어떤 사건의 구체적인 과정이나, 그 과정으로 인한 결과.', english: 'The detailed process of a certain imaginative event unfolding; or the result of such a process. '}
+  ko-nikl-20638:
+    source_record: 20638
+    lemma: 캠핑
+    source_part_of_speech: 명사
+    source_band: unbanded
+    raw_vocabulary_level: ''
+    raw_semantic_category: ''
+    selected_positions: []
+    decision: >
+      The intended recreational tent-staying task is already supplied by
+      protected 야영04993-s002 at7. Do not add duplicate camping depth by
+      default, equate it with military 야영001, or assert that every possible
+      tent lifestyle is identical. No source admission or Standard search follows.
+    senses:
+      - {id: ko-nikl-20638-s001, source_position: 1, korean: '산이나 들 또는 바닷가 등에서 텐트를 치고 생활함. 또는 그런 생활.', english: 'An act of staying in a tent on a mountain or field or on the seashore, etc., or such a lifestyle.'}
+rejected_source_homographs:
+  ko-nikl-22620:
+    lemma: 팬
+    source_part_of_speech: 명사
+    source_band: unbanded
+    korean: 날개가 빙글빙글 돌아가면서 공기를 안에서 밖으로 내보내어 탁한 공기를 맑게 바꾸거나 열을 식히는 기계 장치.
+    english: 'A machine with spinning blades, used to freshen the air and to cool a room by sending the inside air out. '
+    decision: Ventilation/cooling mechanism, not an admirer; not selected or requested.
+  ko-nikl-22621:
+    lemma: 팬
+    source_part_of_speech: 명사
+    source_band: unbanded
+    korean: 음식물을 볶거나 지지는 데 쓰는, 자루가 달린 접시 모양의 얕은 냄비.
+    english: A shallow pot with a handle, used to stir-fry or panfry food.
+    decision: Cooking pan, not an admirer; comparison only, with no food-loanword reading assessment.
+  ko-nikl-40845:
+    lemma: 밴드
+    source_part_of_speech: 명사
+    source_band: unbanded
+    korean: 가죽이나 천이나 고무 등으로 좁고 길게 만든 띠.
+    english: A narrow, long strip of leather, fabric, rubber, etc.
+    decision: Material strip, not a musical group; no source admission or pronunciation transfer.
+historical_handoff_pronunciation_blockers:
+  selected_ids: [ko-nikl-13208-s001, ko-nikl-17510-s001, ko-nikl-20153-s001, ko-nikl-20313-s001, ko-nikl-20975-s001, ko-nikl-22619-s001, ko-nikl-39951-s001, ko-nikl-40844-s001, ko-nikl-48342-s001]
+  observed_support: No pronunciation text was established for any selected item; zero authored pronunciations were supplied.
+  eight_body_assessments: >
+    Matching archive entries and genuine Standard Dictionary lexical bodies
+    were inspected, but neither supplied displayed pronunciation text. This
+    does not authorize copying headword spelling or inferring the absence
+    of all evidence outside the bounded sources.
+  opera: >
+    Archive22019 lacks text; the single Standard search failed with an
+    incomplete response. Its Standard Dictionary state remains unknown,
+    rather than being falsely counted as another inspected empty body.
+  parent_decision: >
+    Establish supported readings under the parent's policy or keep these
+    proposals held. The five source requests can preserve source identity
+    without publishing learner vocabulary, but do not solve pronunciation.
+    No generation, audio verification, media asset, automatic mastery, or
+    examination/professional-readiness claim is made.
+historical_handoff_validation:
+  status: passed bounded data/evidence checks; pronunciation blockers deliberately remain unresolved
+  method: >
+    Existing Python312 -B source extraction, sense-index, lexical-membership,
+    compact-label, source-correction, official-index, and citation-reading
+    helpers. Source admission and combined identities were projected only
+    in memory. No new test/tool/dependency, network retry, or generated view
+    was introduced by validation.
+  checks:
+    - All eleven named source parents and twelve original positions match the pinned CSV, including English whitespace.
+    - Three irrelevant same-spelling source parents retain their distinct original definitions and remain outside the requests.
+    - The five support requests have exact original metadata and complete positions; all existing source-parent objects are preserved in projection.
+    - All nine placements have valid existing levels/topics and compact labels; six new provisional families and three depth members compose without overlap.
+    - Every prior canonical category/member remains intact, including gratitude/audit separation, 실상, and 좀.
+    - The single ballet correction passes the existing correction validator against unchanged original strings.
+    - Pinned 56,555-entry archive identities were rechecked locally; nine exact and two editorial matches still contain no pronunciation text.
+    - Authored Standard Dictionary IDs match the actually observed search results; the session ledger confirms nine searches, eight bodies, and maxima of one per term.
+    - Opera remains a failed-search case with unknown Standard Dictionary state, not a ninth inspected no-reading body.
+    - Four currently retained selected parents lack supported citations and five selected parents await admission; all nine reading blockers remain explicit.
+    - The live/proposed source, core, and family counts match the snapshot above.
+    - Frozen culture artifact hashes match the initial handoff; all 133 checked prior files remained byte-identical during final validation.
+  handoff_limit: >
+    These checks validate the bounded curation and evidence record, not
+    pronunciation, learner readiness, or permission to register unresolved
+    entries. Research is closed; subsequent source/reading decisions belong
+    to the parent.
