@@ -4,7 +4,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 import { db } from './core/database'
 import { getWord } from './data/mandarin'
-import { trackWord } from './core/learning'
+import { advancePractice, submitAnswer, trackWord } from './core/learning'
+import { curriculumLessons } from './data/curriculum'
+import { seedRetiredLesson } from './test/retired-lesson'
 
 beforeEach(async () => {
   window.location.hash = ''
@@ -45,8 +47,8 @@ describe('Mandarin learning loop', () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('heading', { name: 'Make the language yours.' })
-    await go('lesson/zh:greetings')
-    await screen.findByRole('heading', { name: 'Greet someone and say thanks' })
+    await go(`lesson/${curriculumLessons[0].id}`)
+    await screen.findByRole('heading', { name: curriculumLessons[0].title })
     await user.click(screen.getByRole('button', { name: 'Start lesson practice' }))
     await screen.findByRole('heading', { name: 'What does this word mean?' })
     const session = (await db.sessions.toArray())[0]
@@ -97,5 +99,38 @@ describe('Mandarin learning loop', () => {
     render(<App />)
     await screen.findByRole('heading', { name: 'Your learning set.' })
     expect(document.documentElement.dataset.theme).toBe('light')
+  })
+
+  it('removes starter lesson routes and links while keeping saved vocabulary practice usable', async () => {
+    const id = await seedRetiredLesson()
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Make the language yours.' })
+    await go('lessons')
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    expect(screen.queryByText('Original starter lessons')).not.toBeInTheDocument()
+    expect(document.querySelector('a[href^="#lesson/zh:"]')).toBeNull()
+    await go('reader/zh:tea-house')
+    await screen.findByRole('button', { name: 'Word help: rain' })
+    expect(screen.getByRole('link', { name: 'Explore Mandarin lessons' })).toHaveAttribute('href', '#lessons')
+    expect(screen.queryByRole('link', { name: 'Open companion lesson' })).not.toBeInTheDocument()
+    await go('lesson/zh:greetings')
+    await screen.findByRole('heading', { name: 'This page is not available' })
+    await go(`practice/${id}`)
+    await screen.findByRole('heading', { name: 'Your vocabulary review' })
+    const saved = (await db.sessions.get(id))!
+    await act(async () => {
+      for (const [index, question] of saved.questions.entries()) {
+        await submitAnswer(id, index, question.wordId)
+        await advancePractice(id, index)
+      }
+    })
+    await screen.findByRole('heading', { name: 'One more step forward.' })
+    expect(screen.queryByRole('link', { name: 'Back to lesson' })).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Back to overview' })).toHaveAttribute('href', '#overview')
+    expect(await db.words.count()).toBe(2)
+    expect((await db.words.get('zh:hello'))?.attempts).toBe(2)
+    await go('overview')
+    await screen.findByRole('heading', { name: 'Make the language yours.' })
+    expect(screen.getByText('reading lessons practiced').closest('strong')?.textContent).toMatch(/^0/)
   })
 })

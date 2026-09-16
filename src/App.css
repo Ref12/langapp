@@ -146,13 +146,6 @@ summary { cursor: pointer; min-height: 28px; }
 .skill-profile dt { color: var(--muted); margin-bottom: 6px; }
 .skill-profile dd { margin: 0; color: var(--text-secondary); }
 .lesson-list { display: grid; gap: 16px; }
-.lesson-card { display: flex; align-items: center; gap: 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 25px; }
-.lesson-card > div { flex: 1; }
-.lesson-card:hover { border-color: var(--accent-line); }
-.lesson-number { display: grid; place-items: center; width: 60px; height: 60px; flex-shrink: 0; font-size: 26px; color: var(--accent); background: var(--accent-soft); border-radius: 10px; }
-.lesson-card h2 { margin-bottom: 8px; }
-.lesson-card p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
-.lesson-native { font-size: clamp(25px, 4vw, 38px); line-height: 1.8; margin-bottom: 10px; }
 .level-card { display: flex; flex-direction: column; }
 .level-card > .text-link { margin-top: auto; }
 .level-card progress { margin-bottom: 12px; }
@@ -169,9 +162,6 @@ summary { cursor: pointer; min-height: 28px; }
 .grammar-example { border-top: 1px solid var(--line); padding-top: 16px; }
 .grammar-example [lang="zh-Hans"] { font-size: 24px; margin-bottom: 8px; }
 .grammar-reference { margin-top: 22px; }
-.starter-lessons { margin-top: 32px; }
-.starter-lessons summary { font-size: 18px; }
-.starter-lessons[open] summary { margin-bottom: 18px; }
 .practice-invitation { display: flex; align-items: center; gap: 30px; justify-content: space-between; margin-top: 25px; }
 .practice-invitation p { color: var(--muted); margin-bottom: 0; }
 .practice-invitation > .button { flex-shrink: 0; }
@@ -267,10 +257,6 @@ select { padding: 10px; }
   .reading-surface, .panel, .practice-player { padding: 22px; }
   .reading-text { font-size: 21px; }
   .reader-navigation { flex-direction: column-reverse; align-items: stretch; }
-  .lesson-card { padding: 20px 16px; gap: 14px; }
-  .lesson-number { width: 40px; height: 48px; font-size: 21px; }
-  .lesson-card h2 { font-size: 19px; }
-  .lesson-card > svg { display: none; }
   .practice-invitation { align-items: stretch; flex-direction: column; gap: 20px; }
   .answer-options { grid-template-columns: 1fr; }
   .answer-option { min-height: 58px; }

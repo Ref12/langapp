@@ -33,7 +33,10 @@ Those design artifacts remain memory-only and never access either app's database
   and at most one new construction. Each practice session starts with up to
   three already-introduced senses selected from the authored earlier reviews
   and earlier parts of the module, prioritizing the earliest due dates.
-  The original three starter lessons and 14 local example items remain available.
+  The original starter lessons have been removed. The two stories and 14 local
+  example items remain available, with their existing vocabulary progress.
+  Old lesson backups retain saved answers, and unfinished sessions can continue
+  as vocabulary practice without restoring the removed lessons or their links.
 - Practice character-to-meaning and meaning-to-character recognition. Questions,
   answer choices, revealed answers, and feedback survive reload. Each checked
   answer is recorded once, before advancing.

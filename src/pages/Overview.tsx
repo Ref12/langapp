@@ -1,5 +1,5 @@
 import { ArrowRight, BookOpen, CheckCircle2, Sprout, Sparkles } from 'lucide-react'
-import { stories } from '../data/mandarin'
+import { lessons, stories } from '../data/mandarin'
 import { curriculumWords, nextCurriculumLesson } from '../data/curriculum'
 import { readingStage } from '../core/progress'
 import { startPractice } from '../core/learning'
@@ -12,7 +12,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
   const reading = workspace.readings.find(item => item.storyId === story.id)
   const due = workspace.words.filter(word => word.dueAt <= now).length
   const learned = workspace.words.filter(word => readingStage(word) === 'Learned').length
-  const completedLessons = workspace.lessons.filter(lesson => lesson.completedAt).length
+  const completedLessons = workspace.lessons.filter(state => state.completedAt !== undefined && lessons.some(lesson => lesson.id === state.lessonId)).length
   const nextLesson = nextCurriculumLesson(workspace)
   const active = [...workspace.sessions].filter(session => session.status === 'active').sort((a, b) => b.createdAt - a.createdAt)[0]
   return <>

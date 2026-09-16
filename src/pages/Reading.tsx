@@ -69,7 +69,7 @@ export function Reader(props: PageProps & { story: Story }) {
   useEffect(() => { void run(() => openStory(story.id)) }, [run, story.id])
   return <>
     <a className="back-link" href="#library"><ArrowLeft size={16} /> Library</a>
-    <PageHeading eyebrow={story.topic} title={story.title} action={<a className="button secondary" href={`#lesson/${story.lessonId}`}>Open companion lesson <ArrowRight size={16} /></a>}>{story.description}</PageHeading>
+    <PageHeading eyebrow={story.topic} title={story.title} action={<a className="button secondary" href="#lessons">Explore Mandarin lessons <ArrowRight size={16} /></a>}>{story.description}</PageHeading>
     <div className="reader-toolbar">
       <div className="segmented" role="group" aria-label="Reading mode">{(['source', 'weave', 'target'] as ReadingMode[]).map(mode => <button key={mode} disabled={busy} aria-pressed={workspace.preferences.readingMode === mode}
         onClick={() => void run(() => savePreferences({ readingMode: mode }))}>{mode === 'source' ? 'English' : mode === 'target' ? 'Mandarin' : 'Weave'}</button>)}</div>
@@ -78,7 +78,7 @@ export function Reader(props: PageProps & { story: Story }) {
     </div>
     {progress ? <Passage key={`${story.id}:${progress.passage}`} {...props} index={progress.passage} />
       : <div className="panel"><p>Opening your saved reading place...</p><button className="button secondary" disabled={busy} onClick={() => void run(() => openStory(story.id))}>Retry opening story</button></div>}
-    {progress?.completed.length === story.passages.length && <div className="notice success" role="status"><strong>Story read.</strong> Your place is saved. Explore the <a href={`#lesson/${story.lessonId}`}>companion lesson</a> or revisit any passage.</div>}
+    {progress?.completed.length === story.passages.length && <div className="notice success" role="status"><strong>Story read.</strong> Your place is saved. Explore the <a href="#lessons">Mandarin curriculum</a> or revisit any passage.</div>}
     <p className="page-footnote">{story.attribution}</p>
   </>
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getLesson, getStory, getWord, lessons, starterWords, stories, words } from './mandarin'
+import { getLesson, getStory, getWord, lessons, retiredLessonIds, starterWords, stories, words } from './mandarin'
 
 describe('authored Mandarin collection', () => {
   it('uses unique words and unambiguous answer choices', () => {
@@ -15,9 +15,9 @@ describe('authored Mandarin collection', () => {
     expect(getWord('zh:cupful').native).toBe('\u676f')
   })
 
-  it('aligns story annotations and lesson references without inferred translations', () => {
+  it('aligns story annotations and curriculum references without inferred translations', () => {
     for (const story of stories) {
-      expect(getLesson(story.lessonId)).toBeDefined()
+      expect(getStory(story.id)).toBe(story)
       expect(story.attribution).toContain('Original LinguaWeave')
       for (const passage of story.passages) {
         const ids = (segments: typeof passage.source) => segments.flatMap(segment => typeof segment === 'string' ? [] : [segment.wordId])
@@ -27,7 +27,14 @@ describe('authored Mandarin collection', () => {
     }
     for (const lesson of lessons) {
       lesson.wordIds.forEach(id => expect(getWord(id)).toBeDefined())
-      if (lesson.storyId) expect(getStory(lesson.storyId)).toBeDefined()
+    }
+  })
+
+  it('contains curriculum lessons only and cannot reopen the removed starters', () => {
+    expect(lessons).toHaveLength(32)
+    for (const id of retiredLessonIds) {
+      expect(() => getLesson(id)).toThrow('not available')
+      expect(lessons.some(lesson => lesson.id === id)).toBe(false)
     }
   })
 })

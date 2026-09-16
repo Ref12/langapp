@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { curriculumLessons, curriculumLevels, curriculumProgress, curriculumWords, nextCurriculumLesson } from '../data/curriculum'
-import { getWord, starterWords, words } from '../data/mandarin'
+import { getWord, retiredLessonIds, starterWords, words } from '../data/mandarin'
+import { seedRetiredLesson } from '../test/retired-lesson'
 import { db, initializeWorkspace, loadWorkspace } from './database'
 import { advancePractice, lessonReviewWords, revealAnswer, startPractice, submitAnswer, trackWord } from './learning'
 import { makeQuestions } from './questions'
@@ -113,10 +114,8 @@ describe('bounded curriculum learning', () => {
 
 describe('content-version compatible backups', () => {
   it('restores previous starter-only backups without changing IDs or their saved choices', async () => {
-    const id = await startPractice('lesson', 'zh:greetings')
+    const id = await seedRetiredLesson()
     const session = (await db.sessions.get(id))!
-    session.questions.forEach(question => { question.options = ['zh:hello', 'zh:thanks', 'zh:tea', 'zh:rain'] })
-    await db.sessions.put(session)
     await revealAnswer(id, 0)
     await submitAnswer(id, 0, session.questions[0].wordId)
     const original = await loadWorkspace()
@@ -125,6 +124,13 @@ describe('content-version compatible backups', () => {
     await restoreBackup(JSON.stringify(old))
     expect(await loadWorkspace()).toEqual(original)
     expect((await db.words.toArray()).every(word => starterWords.some(item => item.id === word.wordId))).toBe(true)
+    for (const lessonId of retiredLessonIds) {
+      await expect(startPractice('lesson', lessonId)).rejects.toThrow('not available')
+    }
+    const invalid = structuredClone(old)
+    invalid.workspace.lessons[0].lessonId = 'zh:unknown'
+    await expect(restoreBackup(JSON.stringify(invalid))).rejects.toThrow('not available')
+    expect(await loadWorkspace()).toEqual(original)
   })
 
   it('round-trips curriculum sessions and rejects future content versions before replacing data', async () => {

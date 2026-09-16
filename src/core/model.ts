@@ -22,7 +22,6 @@ export interface Story {
   topic: string
   glyph: string
   attribution: string
-  lessonId: string
   passages: { source: Segment[]; target: Segment[] }[]
 }
 
@@ -30,14 +29,8 @@ export interface Lesson {
   id: string
   title: string
   objective: string
-  native?: string
-  pinyin?: string
-  translation?: string
-  pattern?: string
-  note?: string
   wordIds: string[]
-  storyId?: string
-  curriculum?: {
+  curriculum: {
     levelId: string
     moduleId: string
     number: number

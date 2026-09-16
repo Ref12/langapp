@@ -20,38 +20,14 @@ export const starterWords: Word[] = [
   { id: 'zh:park', native: '\u516c\u56ed', pinyin: 'g\u014dngyu\u00e1n', meaning: 'park', kind: 'Noun', example: '\u516c\u56ed\u5f88\u5b89\u9759\u3002', translation: 'The park is very quiet.' },
 ]
 
-export const starterLessons: Lesson[] = [
-  {
-    id: 'zh:greetings', title: 'Greet someone and say thanks', objective: 'Begin a brief exchange politely.',
-    native: '\u4f60\u597d\uff01\u8c22\u8c22\u4f60\u3002', pinyin: 'N\u01d0 h\u01ceo! Xi\u00e8xie n\u01d0.',
-    translation: 'Hello! Thank you.',
-    pattern: 'Use \u4f60\u597d to greet someone. \u8c22\u8c22\u4f60 directly thanks the person you are speaking to.',
-    note: 'In natural speech the first third tone in n\u01d0 h\u01ceo changes to a rising tone. Pinyin here keeps the dictionary tone marks.',
-    wordIds: ['zh:hello', 'zh:thanks'],
-  },
-  {
-    id: 'zh:request', title: 'Build a simple request', objective: 'Say what you would like, then add a little more detail.',
-    native: '\u6211\u60f3\u559d\u4e00\u676f\u8336\u3002', pinyin: 'W\u01d2 xi\u01ceng h\u0113 y\u00ec b\u0113i ch\u00e1.',
-    translation: 'I would like to drink a cup of tea.',
-    pattern: '\u6211\u60f3 + action means I would like to do something. Add a quantity before the drink: \u4e00\u676f\u8336 is a cup of tea.',
-    note: '\u676f measures a cupful; \u676f\u5b50 names the cup itself. This is a companion lesson, not a quotation from the story. The pinyin y\u00ec reflects the spoken tone of \u4e00 before b\u0113i.',
-    wordIds: ['zh:want', 'zh:drink', 'zh:cupful', 'zh:tea'], storyId: 'zh:tea-house',
-  },
-  {
-    id: 'zh:plans', title: 'Talk about tomorrow', objective: 'Combine a time and a place into a useful plan.',
-    native: '\u6211\u660e\u5929\u53bb\u516c\u56ed\u3002', pinyin: 'W\u01d2 m\u00edngti\u0101n q\u00f9 g\u014dngyu\u00e1n.',
-    translation: 'I am going to the park tomorrow.',
-    pattern: 'Person + time + action: \u6211 + \u660e\u5929 + \u53bb\u516c\u56ed. Put the time before the main action.',
-    note: 'The time word gives this sentence its future context. The verb does not need a future ending.',
-    wordIds: ['zh:tomorrow', 'zh:go', 'zh:park'], storyId: 'zh:after-rain',
-  },
-]
+// Only IDs remain, so older backups can retain saved answers without restoring lessons.
+export const retiredLessonIds: readonly string[] = ['zh:greetings', 'zh:request', 'zh:plans']
 
 export const stories: Story[] = [
   {
     id: 'zh:tea-house', title: 'A morning at the tea house',
     description: 'A quiet street. A warm cup. A few new words to make your own.',
-    topic: 'Everyday life', glyph: '\u8336', lessonId: 'zh:request',
+    topic: 'Everyday life', glyph: '\u8336',
     attribution: 'Original LinguaWeave story and Mandarin translation, adapted from the experience mockups.',
     passages: [
       {
@@ -71,7 +47,7 @@ export const stories: Story[] = [
   {
     id: 'zh:after-rain', title: 'After the rain',
     description: 'Put your phone away and take the longer path home.',
-    topic: 'Nature', glyph: '\u96e8', lessonId: 'zh:plans',
+    topic: 'Nature', glyph: '\u96e8',
     attribution: 'Original LinguaWeave micro-story from the experience mockups; authored Mandarin sample translation.',
     passages: [{
       source: ['The ', { wordId: 'zh:park' }, ' is quiet after the ', { wordId: 'zh:rain' }, '. A small bird shakes the water from its wings. I put my phone away and take the longer path home.'],
@@ -82,7 +58,7 @@ export const stories: Story[] = [
 
 // Starter IDs remain separate: old recognition attempts are not curriculum evidence.
 export const words: Word[] = [...curriculumWords, ...starterWords]
-export const lessons: Lesson[] = [...curriculumLessons, ...starterLessons]
+export const lessons: Lesson[] = curriculumLessons
 const wordIndex = new Map(words.map(word => [word.id, word]))
 
 export function getWord(id: string): Word {

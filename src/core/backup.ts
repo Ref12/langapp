@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { CONTENT_VERSION, getLesson, getStory, getWord } from '../data/mandarin'
+import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from '../data/mandarin'
 import { db } from './database'
 import type { Workspace } from './model'
 
@@ -38,6 +38,10 @@ function unique(values: unknown[], label: string) {
   if (new Set(values).size !== values.length) throw new Error(`Backup contains duplicate ${label}.`)
 }
 
+function validateLessonReference(id: string) {
+  if (!retiredLessonIds.includes(id)) getLesson(id)
+}
+
 export function readBackup(text: string): Workspace {
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('The backup exceeds the 5 MiB limit.')
   const { workspace } = backupSchema.parse(JSON.parse(text))
@@ -52,7 +56,7 @@ export function readBackup(text: string): Workspace {
     unique(reading.completed, 'completed passages')
     if ([reading.passage, ...reading.completed].some(index => index >= story.passages.length)) throw new Error('Backup refers to a missing passage.')
   }
-  workspace.lessons.forEach(lesson => getLesson(lesson.lessonId))
+  workspace.lessons.forEach(lesson => validateLessonReference(lesson.lessonId))
   unique(workspace.words.map(word => word.wordId), 'words')
   unique(workspace.readings.map(reading => reading.storyId), 'stories')
   unique(workspace.lessons.map(lesson => lesson.lessonId), 'lessons')
@@ -65,7 +69,7 @@ export function readBackup(text: string): Workspace {
     if (session.cursor >= session.questions.length) throw new Error('Backup has an invalid practice position.')
     if (session.kind === 'lesson') {
       if (!session.lessonId || !workspace.lessons.some(lesson => lesson.lessonId === session.lessonId)) throw new Error('Backup is missing a lesson for its practice session.')
-      getLesson(session.lessonId)
+      validateLessonReference(session.lessonId)
     } else if (session.lessonId) throw new Error('A vocabulary review cannot claim lesson completion.')
     for (const [index, item] of session.questions.entries()) {
       getWord(item.wordId)

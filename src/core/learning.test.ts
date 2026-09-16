@@ -4,6 +4,9 @@ import { advancePractice, moveReading, openStory, revealAnswer, savePreferences,
 import { applyAnswer, DAY, readingStage } from './progress'
 import { exportBackup, readBackup, restoreBackup } from './backup'
 import type { PracticeSession } from './model'
+import { curriculumLessons } from '../data/curriculum'
+
+const firstLesson = curriculumLessons[0]
 
 beforeEach(async () => {
   await db.delete()
@@ -36,13 +39,14 @@ describe('isolated local workspace', () => {
     expect((await loadWorkspace()).preferences).toMatchObject({ name: 'Mei', theme: 'light', pinyin: false })
   })
 
-  it('preserves shared word state when reading and lessons introduce the same word', async () => {
-    await trackWord('zh:tea', 'story:zh:tea-house')
-    const original = await db.words.get('zh:tea')
-    await startPractice('lesson', 'zh:request')
-    await trackWord('zh:tea', 'dictionary')
-    expect(await db.words.get('zh:tea')).toEqual(original)
-    expect(await db.words.count()).toBe(4)
+  it('preserves shared word state when Dictionary and lessons introduce the same sense', async () => {
+    const wordId = firstLesson.wordIds[0]
+    await trackWord(wordId, 'dictionary')
+    const original = await db.words.get(wordId)
+    await startPractice('lesson', firstLesson.id)
+    await trackWord(wordId, 'dictionary')
+    expect(await db.words.get(wordId)).toEqual(original)
+    expect(await db.words.count()).toBe(firstLesson.wordIds.length)
   })
 
   it('saves actual completed passages and does not overwrite a newer reading place', async () => {
@@ -58,11 +62,11 @@ describe('isolated local workspace', () => {
 
 describe('durable practice', () => {
   it('resumes an existing session with the same shuffled choices and no duplicated word introductions', async () => {
-    const ids = await Promise.all([startPractice('lesson', 'zh:request'), startPractice('lesson', 'zh:request')])
+    const ids = await Promise.all([startPractice('lesson', firstLesson.id), startPractice('lesson', firstLesson.id)])
     expect(ids[0]).toBe(ids[1])
     const saved = await session(ids[0])
-    expect(saved.questions).toHaveLength(8)
-    expect((await session(await startPractice('lesson', 'zh:request'))).questions).toEqual(saved.questions)
+    expect(saved.questions).toHaveLength(firstLesson.wordIds.length * 2)
+    expect((await session(await startPractice('lesson', firstLesson.id))).questions).toEqual(saved.questions)
     for (const question of saved.questions) {
       expect(question.options).toHaveLength(4)
       expect(new Set(question.options).size).toBe(4)
@@ -71,7 +75,7 @@ describe('durable practice', () => {
   })
 
   it('records one immutable attempt for duplicate Check clicks and resumes feedback before Next', async () => {
-    const id = await startPractice('lesson', 'zh:greetings')
+    const id = await startPractice('lesson', firstLesson.id)
     const saved = await session(id)
     const correct = saved.questions[0].wordId
     await Promise.all([submitAnswer(id, 0, correct), submitAnswer(id, 0, correct)])
@@ -87,7 +91,7 @@ describe('durable practice', () => {
   it('persists revealed answers and does not treat them as independent success', async () => {
     const now = new Date(2026, 0, 1, 12).getTime()
     vi.spyOn(Date, 'now').mockReturnValue(now)
-    const id = await startPractice('lesson', 'zh:greetings')
+    const id = await startPractice('lesson', firstLesson.id)
     const wordId = (await session(id)).questions[0].wordId
     await revealAnswer(id, 0)
     expect((await session(id)).questions[0].revealed).toBe(true)
@@ -98,19 +102,19 @@ describe('durable practice', () => {
   })
 
   it('atomically completes a practiced lesson, not a mastered skill', async () => {
-    const id = await startPractice('lesson', 'zh:greetings')
+    const id = await startPractice('lesson', firstLesson.id)
     const saved = await session(id)
     for (const [index, question] of saved.questions.entries()) {
       await submitAnswer(id, index, question.wordId)
       await advancePractice(id, index)
     }
     expect((await session(id)).status).toBe('completed')
-    expect((await db.lessons.get('zh:greetings'))?.completedAt).toBeDefined()
-    expect(readingStage(await db.words.get('zh:hello'))).toBe('Practicing')
+    expect((await db.lessons.get(firstLesson.id))?.completedAt).toBeDefined()
+    expect(readingStage(await db.words.get(firstLesson.wordIds[0]))).toBe('Practicing')
   })
 
   it('rejects unknown choices and never commits partial attempts when saving fails', async () => {
-    const id = await startPractice('lesson', 'zh:greetings')
+    const id = await startPractice('lesson', firstLesson.id)
     await expect(submitAnswer(id, 0, 'invalid')).rejects.toThrow('available answers')
     const saved = await session(id)
     vi.spyOn(db.words, 'put').mockRejectedValueOnce(new Error('Storage full'))
@@ -126,7 +130,7 @@ describe('durable practice', () => {
     await db.words.update('zh:rain', { dueAt: Date.now() + DAY })
     const review = await session(await startPractice('due'))
     expect(review.questions.map(question => question.wordId)).toEqual(['zh:tea', 'zh:tea'])
-    await expect(startPractice('all', 'zh:greetings')).rejects.toThrow('cannot be attached')
+    await expect(startPractice('all', firstLesson.id)).rejects.toThrow('cannot be attached')
   })
 })
 
@@ -158,7 +162,7 @@ describe('reading-specific evidence', () => {
 
 describe('workspace backups', () => {
   it('round-trips an unfinished, assisted session and its exact resume position', async () => {
-    const id = await startPractice('lesson', 'zh:greetings')
+    const id = await startPractice('lesson', firstLesson.id)
     await revealAnswer(id, 0)
     const wordId = (await session(id)).questions[0].wordId
     await submitAnswer(id, 0, wordId)
@@ -185,7 +189,7 @@ describe('workspace backups', () => {
   })
 
   it('rejects inconsistent recorded answers and rolls back a failed restore', async () => {
-    const id = await startPractice('lesson', 'zh:greetings')
+    const id = await startPractice('lesson', firstLesson.id)
     await submitAnswer(id, 0, (await session(id)).questions[0].wordId)
     const before = await loadWorkspace()
     const backup = exportBackup(before)
