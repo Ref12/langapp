@@ -766,6 +766,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
             "quality-support-notes.yaml",
             "analysis-notes.yaml",
             "stance-notes.yaml",
+            "rapport-notes.yaml",
         ):
             notes = load_yaml(self.root / "authoring" / "teaching" / filename)
             for identifier, request in notes["source_correction_requests"].items():
@@ -1404,7 +1405,7 @@ class KoreanCourseArtifactTests(unittest.TestCase):
     def test_recovered_source_parents_keep_original_unselected_positions(self):
         parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
         authoring = self.root / "authoring" / "teaching"
-        for name in ("natural-support", "quality-support", "analysis", "stance"):
+        for name in ("natural-support", "quality-support", "analysis", "stance", "rapport"):
             notes = load_yaml(authoring / f"{name}-notes.yaml")
             for parent in notes["source_support_requests"]:
                 self.assertEqual(parents[parent]["source_band"], "unbanded")
@@ -1563,6 +1564,82 @@ class KoreanCourseArtifactTests(unittest.TestCase):
         notes = (self.root / "teaching" / "grammar-notes.md").read_text(encoding="utf-8")
         self.assertIn("Formality is not a higher/lower politeness score", notes)
         self.assertIn("not necessarily a transcript", notes)
+
+    def test_rapport_gratitude_noun_preserves_the_predicate_family_and_excludes_audit(self):
+        noun, predicate, audit = "ko-nikl-26491-s001", "ko-nikl-26499-s001", "ko-nikl-26493-s001"
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        self.assertEqual(identities[noun], identities[predicate])
+        self.assertNotEqual(identities[noun], identities[audit])
+        self.assertEqual(words[noun]["ch"], words[audit]["ch"])
+        self.assertEqual(words[noun]["pr"], "감ː사")
+        self.assertEqual(words[audit]["pr"], "감사")
+        parents, _ = sense_index(load_yaml(self.root / "source-senses.yaml"))
+        self.assertEqual(parents["ko-nikl-26491"]["source_part_of_speech"], "명사")
+        self.assertEqual(parents["ko-nikl-26499"]["source_part_of_speech"], "형용사")
+        labels = load_yaml(self.root / "authoring" / "teaching" / "support.yaml")
+        self.assertEqual(words[predicate]["ds"], labels[predicate])
+        self.assertNotIn(audit, labels)
+
+    def test_rapport_polysemy_preserves_cues_attitudes_and_critical_uses(self):
+        words, identities = self.references.vocabulary, self.references.lexical_identity
+        for parent, first, second in (
+            ("15622", "001", "002"), ("27118", "001", "002"), ("30154", "001", "002"),
+            ("18910", "002", "003"), ("27403", "001", "002"),
+        ):
+            left, right = f"ko-nikl-{parent}-s{first}", f"ko-nikl-{parent}-s{second}"
+            self.assertEqual(identities[left], identities[right])
+            self.assertNotEqual(words[left]["ds"], words[right]["ds"])
+        self.assertIn("critical use", words["ko-nikl-27118-s002"]["ds"])
+        self.assertIn("ability", words["ko-nikl-15622-s001"]["ds"])
+        self.assertIn("expression", words["ko-nikl-15622-s002"]["ds"])
+        self.assertNotIn("exaggerated", words["ko-nikl-30154-s001"]["ds"])
+        self.assertIn("exaggerated", words["ko-nikl-30154-s002"]["ds"])
+        notes = load_yaml(self.root / "authoring" / "teaching" / "rapport-notes.yaml")
+        self.assertIn("need not admit fault or constitute an apology", " ".join(notes["pragmatic_limits"]))
+
+    def test_rapport_compound_and_hostile_regard_keep_independent_source_evidence(self):
+        item = "ko-nikl-17199-s001"
+        self.assertEqual(self.references.vocabulary[item]["ch"], "대인 관계")
+        self.assertEqual(self.references.vocabulary[item]["pr"], "대ː인 관계 / 대ː인 관게")
+        reading = self.references.provenance[item]["reading"]
+        self.assertEqual(reading["method"], "authored-broad-hangul")
+        self.assertEqual(reading["review_status"], "unreviewed")
+        for parent, reading in (("29631", "공ː감대"), ("34799", "낟까림")):
+            self.assertEqual(self.references.vocabulary[f"ko-nikl-{parent}-s001"]["pr"], reading)
+        notes = load_yaml(self.root / "authoring" / "teaching" / "rapport-notes.yaml")
+        evidence = notes["family_adjudications"]["hostile_regard"]["official_evidence"]
+        self.assertEqual(evidence["ko-nikl-43289"]["origin"], "疾視")
+        self.assertEqual(evidence["ko-nikl-43290"]["origin"], "嫉視")
+        self.assertEqual(
+            self.references.lexical_identity["ko-nikl-43289-s001"],
+            self.references.lexical_identity["ko-nikl-43290-s001"],
+        )
+        for parent, value in evidence.items():
+            self.assertEqual(
+                self.references.provenance[f"{parent}-s001"]["reading"]["official_entry_id"],
+                value["official_entry_id"],
+            )
+
+    def test_rapport_meanings_do_not_substitute_distractors_or_forecast_future_behavior(self):
+        words = self.references.vocabulary
+        self.assertIn("yearning", words["ko-nikl-18320-s001"]["ds"])
+        self.assertIn("attachment", words["ko-nikl-38859-s001"]["ds"])
+        self.assertIn("earnestness", words["ko-nikl-47686-s001"]["ds"])
+        self.assertEqual(words["ko-nikl-07734-s001"]["ds"], "insincere remarks not reflecting inward feelings")
+        self.assertIn(
+            "will not be put into action",
+            self.references.provenance["ko-nikl-07734-s001"]["source_english"],
+        )
+        authoring = self.root / "authoring" / "teaching"
+        selected = {row["id"] for row in load_yaml(authoring / "rapport-vocabulary.yaml")}
+        for parent in ("01876", "06234", "18319", "26492", "30195", "30365", "30366", "38858", "47388", "47685"):
+            self.assertNotIn(f"ko-nikl-{parent}-s001", selected)
+        self.assertNotIn("ko-nikl-10199-s003", selected)
+        self.assertNotIn("ko-nikl-10199-s004", selected)
+        _, groups = load_selections(authoring, load_yaml(authoring / "vocabulary.yaml"))
+        self.assertEqual(len(groups["ko-lex-04883"]["members"]), 2)
+        self.assertEqual(len(groups["ko-lex-11255"]["members"]), 3)
+        self.assertEqual(len(groups["ko-lex-39691"]["members"]), 2)
 
     def test_coverage_does_not_confuse_parent_sense_spelling_or_free_lemma_counts(self):
         import yaml

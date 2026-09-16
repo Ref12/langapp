@@ -1,0 +1,224 @@
+schema_version: 1
+review_status: AI-authored; requires qualified Korean-teacher and lexicographic review
+completion_status: selected support and readings resolved; linguistic review remains outstanding
+scope: >
+  Practical rapport, feelings, reciprocal conduct and interpersonal stance.
+  Targeted exact/space-normalized CSV lookups were followed by inspection of
+  actual bilingual definition positions, including contrasting homographs.
+  Selections are individually labelled and placed, not an automatic import
+  of feeling/ability suffixes or a quota-filled advanced word list.
+composition_snapshot:
+  basis: composed manifest through the stance draft; not published coverage
+  selected_senses: 118
+  source_parents: 101
+  identity_fragments: 100
+  existing_fragments: 4
+  new_provisional_free_identities: 96
+  additional_support_requests: 59
+  status: >
+    Row schemas, label length, original CSV positions, current/tourist
+    non-overlap and composed identity compatibility checked. This snapshot
+    predates integration; current reading coverage is recorded separately.
+placement_policy: >
+  Gratitude is available at1, practical health at6, relationships and
+  responsibilities at8, stories and feelings at9-10, and endurance at13.
+  Cooperation, negotiation and common ground serve15-18. Public institutions
+  and ethical perspectives serve20-22. Indirect intentions, social stance
+  and register distinctions support25-29; worthwhile work supports30.
+  Ordinary early needs are not moved into later phases to change their size.
+family_adjudications:
+  gratitude:
+    lexical_id: ko-lex-26499
+    retained_lemma: 감사하다
+    new_member: ko-nikl-26491-s001
+    protected_member: ko-nikl-26499-s001
+    official_evidence:
+      ko-nikl-26491: {official_entry_id: '46944', origin: 感謝, source_pos: 명사, pronunciation: '감ː사'}
+      ko-nikl-26499: {official_entry_id: '63820', origin: 感謝하다, source_pos: 형용사, pronunciation: '감ː사하다'}
+      ko-nikl-26493: {official_entry_id: '14210', origin: 監査, source_pos: 명사, pronunciation: 감사}
+    reasoning: >
+      The noun's feeling thankful or such a feeling closely matches the
+      protected descriptive predicate's grateful feeling. Conservatively
+      extend that existing family while preserving the original canonical
+      lemma, item IDs, source POS and separate mastery evidence. This
+      specific analysis is not a universal noun/hada merger or an
+      inflection claim. Audit26493 remains a separate family and cannot
+      satisfy a gratitude phrase. The corporate auditor role26492 is not
+      selected here. Neither the tourist label nor realization is changed.
+    related_source_not_added: >
+      Official grateful action-verb71728 (感謝하다) and audit-verb14229
+      (監査하다) were inspected as contrasts; this noun cohort adds neither.
+  hostile_regard:
+    lexical_id: ko-lex-43289
+    source_parents: [ko-nikl-43289, ko-nikl-43290]
+    official_evidence:
+      ko-nikl-43289: {official_entry_id: '89296', origin: 疾視, homonym_number: '1', pronunciation: 질씨}
+      ko-nikl-43290: {official_entry_id: '83776', origin: 嫉視, homonym_number: '2', pronunciation: 질씨}
+    reasoning: >
+      Each complete one-definition list matches its official record.
+      The broader hostile regard and specifically jealous hostile regard
+      remain separately labelled. Count the closely overlapping family
+      once conservatively, without negating the different origin strings
+      or official homograph division. This is unreviewed lexical accounting.
+  existing_polysemy:
+    - Romantic 애정04883 joins existing general affection; no new family.
+    - Human disposition and societal feeling 인정11255 join existing warmth, not acknowledgment11256.
+    - Repentance 반성39691 joins existing reflection without awarding either from the other.
+source_boundaries:
+  - Solubility 수용성01876 does not supply interpersonal receptivity.
+  - Disparaging blindness 봉사06234 does not supply volunteer service.
+  - Yearning 동경18320 is not Tokyo-name18319.
+  - Self-respect 자존12367 is not own-existence/survival12366.
+  - Lingering attachment 미련38859 is not dullness/stupidity38858.
+  - Earnestness 열성47686 is not genetic recessivity47685.
+  - Department-head 과장30195 and regiment 연대47388 do not supply exaggeration or solidarity.
+  - Government use 관용30365 and customary usage30366 do not supply tolerance.
+  - Opponent negotiation 절충14207 does not replace the selected blending/compromise14206.
+  - >
+    Physical 소통00952-s001 and stream/current 교류30627-s001/s003 remain
+    outside this cohort and available to infrastructure. Cultural exchange
+    교류30627-s002 shares its actual family if another position is selected.
+  - >
+    응어리 uses muscle knot001, held feeling002 and coagulated lump005.
+    Embedded object003 and fruit-core004 are retained but unselected.
+    It is not a sourced generic tumor diagnosis.
+  - >
+    면목001 appearance remains unselected. 눈칫밥's sole source position
+    is a meal received while attending to the giver's reaction, not an
+    invented general workplace-dependency sense.
+pragmatic_limits:
+  - >
+    눈치 names both ability to interpret unspoken cues and observable cues.
+    It does not establish accurate mind-reading or a universal cultural
+    trait. Inferred intent, hidden meaning and sincerity require context;
+    the curriculum does not score a person's character from wording.
+  - >
+    Flattery, pretense, empty formalities and coarse 인정머리 can be
+    critical or offensive. Recognition is useful, but these are not neutral
+    labels for every compliment, polite convention or unfamiliar style.
+    Teaching fictional repair/interpretation does not recommend insults.
+  - >
+    Individual-rights priority 개인주의001 and its pejorative self-centered
+    position002 remain separate. Do not equate all individualism with
+    selfishness, all altruism with compulsory sacrifice, or either with
+    a demographic group.
+  - >
+    Source 애정002 specifically names a man and woman; source 우애 names
+    brothers or friends. Preserve those wordings, but do not teach them
+    as exhaustive restrictions on affection or valid relationships.
+    The existing general 애정001 remains separately available.
+  - >
+    Feelings of guilt, shame, mistrust, exclusion, affinity or social distance
+    are not proof of external facts or wrongdoing. Self-reproach is not
+    advice. Infant stranger distress, sensitivity and social discomfort
+    are not diagnoses; ability nouns do not establish learner competence.
+  - >
+    Patience and acceptance do not oblige a person to endure harm. Gratitude,
+    reciprocal gifts and humble deference do not impose universal social
+    obligations. Understanding 양해 is not automatic permission.
+  - >
+    유감 expresses regret, disappointment or dissatisfaction; it need not
+    admit fault or constitute an apology. 냉정 composure is not 냉담
+    unfriendly indifference. Genuine intent and unchanged intent are
+    distinct 본심 positions, not interchangeable evidence.
+  - >
+    Proud display 과시001 does not entail exaggeration under002. A sense
+    of responsibility, mission or worthwhile work does not prove completion
+    or proficiency. Keep all per-item modalities and stages separate.
+source_support_requests:
+  - ko-nikl-00241
+  - ko-nikl-01057
+  - ko-nikl-02022
+  - ko-nikl-02731
+  - ko-nikl-03164
+  - ko-nikl-04121
+  - ko-nikl-04291
+  - ko-nikl-06128
+  - ko-nikl-07734
+  - ko-nikl-08329
+  - ko-nikl-10002
+  - ko-nikl-10099
+  - ko-nikl-10199
+  - ko-nikl-10962
+  - ko-nikl-10988
+  - ko-nikl-11016
+  - ko-nikl-11134
+  - ko-nikl-11258
+  - ko-nikl-11259
+  - ko-nikl-12232
+  - ko-nikl-12358
+  - ko-nikl-12367
+  - ko-nikl-12385
+  - ko-nikl-14206
+  - ko-nikl-15633
+  - ko-nikl-17199
+  - ko-nikl-18085
+  - ko-nikl-18543
+  - ko-nikl-18561
+  - ko-nikl-18910
+  - ko-nikl-20372
+  - ko-nikl-22951
+  - ko-nikl-23052
+  - ko-nikl-24941
+  - ko-nikl-24987
+  - ko-nikl-25004
+  - ko-nikl-25035
+  - ko-nikl-25396
+  - ko-nikl-25904
+  - ko-nikl-27403
+  - ko-nikl-27876
+  - ko-nikl-28281
+  - ko-nikl-28332
+  - ko-nikl-28454
+  - ko-nikl-28472
+  - ko-nikl-34799
+  - ko-nikl-35101
+  - ko-nikl-37132
+  - ko-nikl-38126
+  - ko-nikl-39051
+  - ko-nikl-40711
+  - ko-nikl-43152
+  - ko-nikl-43289
+  - ko-nikl-43290
+  - ko-nikl-47389
+  - ko-nikl-47438
+  - ko-nikl-48427
+  - ko-nikl-49354
+  - ko-nikl-52114
+source_correction_requests:
+  ko-nikl-07734-s001:
+    source_korean: 마음에 없으면서 겉으로만 하는 말.
+    source_english: 'An insincere word that will not be put into action. '
+    authored_interpretation: insincere remarks not reflecting inward feelings
+    rationale: >
+      Korean describes outward words without matching inward feeling.
+      It does not establish future nonperformance or a promise that will
+      be broken. Retain the insincerity distinction without inventing a
+      guaranteed future outcome or labelling every courtesy dishonest.
+unfilled_source_gaps:
+  targets: [개방성, 공동체의식, 교우관계, 너그러움, 둔감함, 비호감, 상생, 소명의식, 속내, 솔직성, 솔직함, 아집, 앙금, 애증, 예민함, 온화함, 자존감, 절제력, 진정성, 집단주의]
+  status: No exact or space-normalized form found in the bounded all-POS CSV lookup; no source entry fabricated.
+reading_review:
+  selected_senses: 118
+  official_text_senses: 117
+  authored_unreviewed_senses: 1
+  unresolved_selected_senses: 0
+  decisions:
+    - >
+      공감대29631 maps to19502 after a complete single-definition comparison;
+      only the thought/feeling order changes. Preserve 공ː감대 without
+      adding lexical tensing.
+    - >
+      낯가림34799 maps to26295 after both ordered meanings were compared;
+      nominal 싫어하는 것 becomes 싫어함 in both. Retain 낟까림.
+    - >
+      Exact official interpersonal-compound47033 lacks citation text.
+      Individually authored 대ː인 관계 / 대ː인 관게 uses the relevant
+      dealing-with-others 대인47035 and relational 관계21898 component
+      citations, not adult47034 or government-service88319. The full
+      compound is authored/unreviewed, not dictionary-verified.
+reading_policy: >
+  Exactly59 named support parents were recovered, increasing371 to430;
+  every original source position remains retained. No spelling fallback,
+  orthographic romanization claim or audio assessment is introduced.
+  Protected 팀장 and 온실가스 exclusions remain untouched.

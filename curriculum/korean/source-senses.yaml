@@ -9,7 +9,7 @@ band_counts:
   advanced: 5105
   beginner: 1942
   intermediate: 3981
-  unbanded-support: 371
+  unbanded-support: 430
 entries:
 - id: ko-nikl-00001
   target: 설
@@ -927,6 +927,18 @@ entries:
     source_position: 1
     english: Sincerely and genuinely in one's attitude or behavior.
     korean: 태도나 행동이 진실하고 정성스럽게.
+- id: ko-nikl-00241
+  target: 성심
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=241
+  senses:
+  - id: ko-nikl-00241-s001
+    source_position: 1
+    english: A sincere heart.
+    korean: 정성스러운 마음.
 - id: ko-nikl-00263
   target: 성의
   part_of_speech: noun
@@ -3574,6 +3586,22 @@ entries:
     source_position: 1
     english: The speed of either an object's movement or the process of things.
     korean: 물체가 움직이거나 일이 진행되는 빠르기.
+- id: ko-nikl-01057
+  target: 속뜻
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=1057
+  senses:
+  - id: ko-nikl-01057-s001
+    source_position: 1
+    english: One's real intentions.
+    korean: 마음속에 품고 있는 뜻.
+  - id: ko-nikl-01057-s002
+    source_position: 2
+    english: The intended meanings of words or writing that are not revealed outwardly.
+    korean: 말이나 글의 겉으로 직접 드러나지 않고 그 속에 담겨 있는 뜻.
 - id: ko-nikl-01058
   target: 속력
   part_of_speech: noun
@@ -6149,6 +6177,18 @@ entries:
     source_position: 1
     english: The value or number resulting from calculation.
     korean: 계산한 결과로 얻은 값이나 수.
+- id: ko-nikl-02022
+  target: 수치심
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2022
+  senses:
+  - id: ko-nikl-02022-s001
+    source_position: 1
+    english: A feeling of being extremely shameful and embarrassed.
+    korean: 매우 창피하고 부끄러운 마음.
 - id: ko-nikl-02023
   target: 수칙
   part_of_speech: noun
@@ -8415,6 +8455,18 @@ entries:
     source_position: 1
     english: The right time or appropriate opportunity of doing something.
     korean: 어떤 일을 하는 데에 알맞은 때나 적당한 기회.
+- id: ko-nikl-02731
+  target: 시기
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=2731
+  senses:
+  - id: ko-nikl-02731-s001
+    source_position: 1
+    english: A feeling of not liking another's success.
+    korean: 남이 잘되는 것을 싫어하여 미워함.
 - id: ko-nikl-02732
   target: 시기상조
   part_of_speech: noun
@@ -10351,6 +10403,18 @@ entries:
     source_position: 1
     english: The trait of relying on and believing in something firmly.
     korean: 굳게 믿고 의지함.
+- id: ko-nikl-03164
+  target: 신뢰감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=3164
+  senses:
+  - id: ko-nikl-03164-s001
+    source_position: 1
+    english: The trait of relying on and believing in something firmly.
+    korean: 굳게 믿고 의지하는 마음.
 - id: ko-nikl-03165
   target: 신뢰도
   part_of_speech: noun
@@ -14400,6 +14464,18 @@ entries:
     english: The house, apartment unit, etc. which is below one's own place or which is the next door
       down the street.
     korean: 아래쪽에 이웃해 있거나 낮은 곳에 있는 집.
+- id: ko-nikl-04121
+  target: 아량
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4121
+  senses:
+  - id: ko-nikl-04121-s001
+    source_position: 1
+    english: A generous heart.
+    korean: 너그러운 마음씨.
 - id: ko-nikl-04133
   target: 아르바이트
   part_of_speech: noun
@@ -15035,6 +15111,18 @@ entries:
     source_position: 1
     english: Feeling faint and light-headed suddenly in surprise.
     korean: 놀라거나 해서 갑자기 정신이 흐려지고 어지럽다.
+- id: ko-nikl-04291
+  target: 아첨
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=4291
+  senses:
+  - id: ko-nikl-04291-s001
+    source_position: 1
+    english: Speaking or acting differently to please someone, or such a remark or behavior.
+    korean: 남에게 잘 보이려고 꾸며 말하거나 행동함. 또는 그런 말이나 행동.
 - id: ko-nikl-04296
   target: 아침
   part_of_speech: noun
@@ -21397,6 +21485,22 @@ entries:
     source_position: 2
     english: The original quality of a thing or phenomenon.
     korean: 사물이나 현상에 원래부터 있는 특성.
+- id: ko-nikl-06128
+  target: 본심
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=6128
+  senses:
+  - id: ko-nikl-06128-s001
+    source_position: 1
+    english: A mind that remains unchanged from start to finish.
+    korean: 처음부터 변함없이 가지고 있는 마음.
+  - id: ko-nikl-06128-s002
+    source_position: 2
+    english: A mind that is straightforward and honest.
+    korean: 꾸밈이나 거짓이 없는 마음.
 - id: ko-nikl-06138
   target: 본인
   part_of_speech: noun
@@ -26887,6 +26991,18 @@ entries:
     source_position: 1
     english: To idle and enjoy one's free time, instead of working.
     korean: 아무 일도 하지 않고 자꾸 게으름을 피우며 놀기만 하다.
+- id: ko-nikl-07734
+  target: 빈말
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=7734
+  senses:
+  - id: ko-nikl-07734-s001
+    source_position: 1
+    english: 'An insincere word that will not be put into action. '
+    korean: 마음에 없으면서 겉으로만 하는 말.
 - id: ko-nikl-07735
   target: 빈민
   part_of_speech: noun
@@ -29196,6 +29312,18 @@ entries:
     source_position: 1
     english: 'A difficult situation or circumstance where one is not able to get help from anyone. '
     korean: 아무에게도 도움을 받지 못하는 어려운 상황이나 형편.
+- id: ko-nikl-08329
+  target: 사명감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=8329
+  senses:
+  - id: ko-nikl-08329-s001
+    source_position: 1
+    english: 'One''s will to perform a given work. '
+    korean: 맡겨진 일을 잘 해내고자 하는 마음.
 - id: ko-nikl-08332
   target: 사무
   part_of_speech: noun
@@ -34931,6 +35059,18 @@ entries:
     source_position: 1
     english: Promptly without hesitation or difficulties.
     korean: 아무 망설임이나 어려움 없이 쉽게.
+- id: ko-nikl-10002
+  target: 선망
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10002
+  senses:
+  - id: ko-nikl-10002-s001
+    source_position: 1
+    english: A feeling of envying and wanting to be likewise.
+    korean: 부러워하며 그렇게 되기를 바람.
 - id: ko-nikl-10006
   target: 선명하다
   part_of_speech: descriptive verb
@@ -35177,6 +35317,18 @@ entries:
   source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10098
   senses:
   - id: ko-nikl-10098-s001
+    source_position: 1
+    english: A preconceived idea that one has before actually knowing an object.
+    korean: 어떤 대상에 대하여 겪어 보지 않고 미리 짐작하여 가지는 생각.
+- id: ko-nikl-10099
+  target: 선입관
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10099
+  senses:
+  - id: ko-nikl-10099-s001
     source_position: 1
     english: A preconceived idea that one has before actually knowing an object.
     korean: 어떤 대상에 대하여 겪어 보지 않고 미리 짐작하여 가지는 생각.
@@ -35496,6 +35648,34 @@ entries:
     source_position: 1
     english: An act of applying for a test.
     korean: 시험에 응함.
+- id: ko-nikl-10199
+  target: 응어리
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10199
+  senses:
+  - id: ko-nikl-10199-s001
+    source_position: 1
+    english: A muscle that has knotted hard.
+    korean: 근육이 뭉쳐 땅기는 덩어리.
+  - id: ko-nikl-10199-s002
+    source_position: 2
+    english: An unresolved bad feeling that remains in one's mind.
+    korean: 풀지 못하고 마음에 쌓아 둔 나쁜 감정.
+  - id: ko-nikl-10199-s003
+    source_position: 3
+    english: Something that is deeply embedded in something.
+    korean: 무엇에 깊숙이 박힌 것.
+  - id: ko-nikl-10199-s004
+    source_position: 4
+    english: A part of a fruit where there is or are a stone or seeds.
+    korean: 과일의 씨가 박힌 부분.
+  - id: ko-nikl-10199-s005
+    source_position: 5
+    english: A sticky lump formed as liquid has coagulated.
+    korean: 액체가 끈적끈적하게 뭉쳐진 덩어리.
 - id: ko-nikl-10205
   target: 응용
   part_of_speech: noun
@@ -38356,6 +38536,18 @@ entries:
     source_position: 1
     english: 'A ratio of people who quit a company for a job in a different company. '
     korean: 다니던 직장을 옮기거나 직업을 바꾸는 사람들의 비율.
+- id: ko-nikl-10962
+  target: 이질감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10962
+  senses:
+  - id: ko-nikl-10962-s001
+    source_position: 1
+    english: 'A feeling that one is strange or does not fit in with others due to different qualities. '
+    korean: 서로 성질이 달라서 낯설거나 잘 어울리지 않는 느낌.
 - id: ko-nikl-10963
   target: 이질성
   part_of_speech: noun
@@ -38405,6 +38597,18 @@ entries:
     source_position: 1
     english: 'A right principle consistent with reason, or underlying purpose or significant meaning. '
     korean: 정당하고 도리에 맞는 원리. 또는 근본이 되는 목적이나 중요한 뜻.
+- id: ko-nikl-10988
+  target: 이타주의
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=10988
+  senses:
+  - id: ko-nikl-10988-s001
+    source_position: 1
+    english: 'A mindset that regards others'' interests and happiness as more important than one''s self-interest. '
+    korean: 자기의 이익보다는 다른 사람의 이익과 행복을 더 중요하게 생각하는 태도.
 - id: ko-nikl-10989
   target: 이탈
   part_of_speech: noun
@@ -38508,6 +38712,18 @@ entries:
     source_position: 1
     english: 'A relationship involving gains and losses. '
     korean: 서로 이익과 손해가 걸려 있는 관계.
+- id: ko-nikl-11016
+  target: 이해심
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11016
+  senses:
+  - id: ko-nikl-11016-s001
+    source_position: 1
+    english: 'A mindset that knows and accepts someone''s situation or circumstances. '
+    korean: 사정이나 형편을 알고 받아들이는 마음.
 - id: ko-nikl-11018
   target: 이해하다
   part_of_speech: verb
@@ -39058,6 +39274,19 @@ entries:
     source_position: 2
     english: People as distinguished from other animals.
     korean: 다른 동물과 구별하여 말할 때의 사람.
+- id: ko-nikl-11134
+  target: 인맥
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11134
+  senses:
+  - id: ko-nikl-11134-s001
+    source_position: 1
+    english: 'A social relationship or ties that a person establishes with people around him/her in the
+      areas of politics, economy, academia, etc. '
+    korean: 정치, 경제, 학문 등의 분야에서 이루어진 사람들의 유대 관계.
 - id: ko-nikl-11140
   target: 인명
   part_of_speech: noun
@@ -39571,6 +39800,30 @@ entries:
     source_position: 1
     english: For something to be considered to be certain or be accepted as certain.
     korean: 어떤 것이 확실하다고 여겨지거나 받아들여지다.
+- id: ko-nikl-11258
+  target: 인정머리
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11258
+  senses:
+  - id: ko-nikl-11258-s001
+    source_position: 1
+    english: '(slang) A warm heart to consider and help others. '
+    korean: (속된 말로) 남을 생각하고 도와주는 따뜻한 마음.
+- id: ko-nikl-11259
+  target: 인정미
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=11259
+  senses:
+  - id: ko-nikl-11259-s001
+    source_position: 1
+    english: 'A feeling of warm-heartedness to consider and help others '
+    korean: 남을 생각하고 도와주는 마음이 담긴 따뜻한 느낌.
 - id: ko-nikl-11260
   target: 인정받다
   part_of_speech: verb
@@ -43136,6 +43389,18 @@ entries:
     source_position: 1
     english: 'The act of feeling pity for underprivileged people and helping them. '
     korean: 형편이 어려운 사람을 불쌍히 여겨 도와줌.
+- id: ko-nikl-12232
+  target: 자성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12232
+  senses:
+  - id: ko-nikl-12232-s001
+    source_position: 1
+    english: The act of reflecting on one's own attitude or behavior.
+    korean: 자신의 태도나 행동을 반성함.
 - id: ko-nikl-12234
   target: 자세
   part_of_speech: noun
@@ -43722,6 +43987,34 @@ entries:
     source_position: 1
     english: The act of restraining and controlling one's own desire or feeling.
     korean: 자신의 욕구나 감정을 스스로 억누르고 다스림.
+- id: ko-nikl-12358
+  target: 자제력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12358
+  senses:
+  - id: ko-nikl-12358-s001
+    source_position: 1
+    english: The power of restraining and controlling one's own desire or feeling.
+    korean: 자신의 욕구나 감정을 스스로 억누르고 다스리는 힘.
+- id: ko-nikl-12367
+  target: 자존
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12367
+  senses:
+  - id: ko-nikl-12367-s001
+    source_position: 1
+    english: The act of respecting one's individuality and maintaining one's own dignity.
+    korean: 자기의 인격을 존중하여 스스로 품위를 지킴.
+  - id: ko-nikl-12367-s002
+    source_position: 2
+    english: The act of speaking highly of oneself and assuming an air of importance.
+    korean: 스스로 자기를 높이며 잘난 체함.
 - id: ko-nikl-12368
   target: 자존심
   part_of_speech: noun
@@ -43778,6 +44071,18 @@ entries:
     source_position: 3
     english: One's health or physical characteristics that one was born with.
     korean: 몸이나 건강의 타고난 성질.
+- id: ko-nikl-12385
+  target: 자책
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=12385
+  senses:
+  - id: ko-nikl-12385-s001
+    source_position: 1
+    english: The act of scolding and rebuking oneself for one's own wrongdoing.
+    korean: 스스로 잘못했다고 생각하여 자신을 꾸짖고 나무람.
 - id: ko-nikl-12391
   target: 자체
   part_of_speech: noun
@@ -49858,6 +50163,19 @@ entries:
     source_position: 1
     english: An order or method that one should go through in doing something.
     korean: 일을 해 나갈 때 거쳐야 하는 순서나 방법.
+- id: ko-nikl-14206
+  target: 절충
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=14206
+  senses:
+  - id: ko-nikl-14206-s001
+    source_position: 1
+    english: The act of adjusting well different things, opinions, perspectives, etc., and bringing them
+      into a harmonious state
+    korean: 서로 다른 사물이나 의견, 관점 등을 알맞게 조절하여 서로 잘 어울리게 함.
 - id: ko-nikl-14216
   target: 절친하다
   part_of_speech: descriptive verb
@@ -54574,6 +54892,18 @@ entries:
     source_position: 1
     english: To see and realize a situation, another person's feelings or secret, etc.
     korean: 상황, 형편이나 다른 사람의 마음, 비밀 등을 살펴 알아채다.
+- id: ko-nikl-15633
+  target: 눈칫밥
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=15633
+  senses:
+  - id: ko-nikl-15633-s001
+    source_position: 1
+    english: A meal that one eats self-consciously under the scrutiny of someone who has offered it.
+    korean: 남의 눈치를 보아 가며 얻어먹는 밥.
 - id: ko-nikl-15639
   target: 눌리다
   part_of_speech: verb
@@ -60118,6 +60448,18 @@ entries:
     source_position: 1
     english: 'An act of dealing with other people. '
     korean: 다른 사람을 상대함.
+- id: ko-nikl-17199
+  target: 대인 관계
+  part_of_speech: unspecified
+  source_part_of_speech: ''
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=17199
+  senses:
+  - id: ko-nikl-17199-s001
+    source_position: 1
+    english: One's relationship with someone.
+    korean: 다른 사람과의 관계.
 - id: ko-nikl-17202
   target: 대입
   part_of_speech: unspecified
@@ -62564,6 +62906,19 @@ entries:
     source_position: 1
     english: The act of a person who reads a book.
     korean: 책을 읽음.
+- id: ko-nikl-18085
+  target: 독선
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18085
+  senses:
+  - id: ko-nikl-18085-s001
+    source_position: 1
+    english: A state or display of believing oneself to be the only person who is right and acting on
+      this belief.
+    korean: 자기 혼자만이 옳다고 믿고 행동하는 일.
 - id: ko-nikl-18087
   target: 독선적
   part_of_speech: noun
@@ -64220,6 +64575,18 @@ entries:
     source_position: 2
     english: The act of taking pity on and helping a person in a difficult situation.
     korean: 처지가 어려운 사람을 가엾게 여겨 도와줌.
+- id: ko-nikl-18543
+  target: 동정심
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18543
+  senses:
+  - id: ko-nikl-18543-s001
+    source_position: 1
+    english: ' A feeling of heartfelt pity or sympathy for a person in a difficult situation.'
+    korean: 어려운 처지에 있는 사람을 딱하고 가엾게 여기는 마음.
 - id: ko-nikl-18558
   target: 동지
   part_of_speech: noun
@@ -64232,6 +64599,19 @@ entries:
     source_position: 1
     english: A person who has the same goals or convictions.
     korean: 뜻이나 목적이 서로 같은 사람.
+- id: ko-nikl-18561
+  target: 동질감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18561
+  senses:
+  - id: ko-nikl-18561-s001
+    source_position: 1
+    english: A feeling of familiarity or suitability because the situations or qualities are similar to
+      each other.
+    korean: 상황이나 성질 등이 서로 비슷해서 익숙하거나 잘 맞는 느낌.
 - id: ko-nikl-18562
   target: 동질성
   part_of_speech: noun
@@ -65567,6 +65947,26 @@ entries:
     source_position: 10
     english: (euphemism) A butt.
     korean: (완곡한 말로) 엉덩이.
+- id: ko-nikl-18910
+  target: 뒤끝
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=18910
+  senses:
+  - id: ko-nikl-18910-s001
+    source_position: 1
+    english: The last or final part of a job or act.
+    korean: 일이나 행동의 맨 나중이나 끝.
+  - id: ko-nikl-18910-s002
+    source_position: 2
+    english: The time right after something happened.
+    korean: 어떤 일이 있은 바로 뒤.
+  - id: ko-nikl-18910-s003
+    source_position: 3
+    english: Hard feelings that still remain after a certain affair has been wrapped up.
+    korean: 일이 마무리 된 다음에도 여전히 남아 있는 좋지 않은 감정.
 - id: ko-nikl-18912
   target: 뒤늦다
   part_of_speech: descriptive verb
@@ -70993,6 +71393,18 @@ entries:
     source_position: 1
     english: The daughter to whom one gave birth.
     korean: 자기가 낳은 딸.
+- id: ko-nikl-20372
+  target: 친목
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=20372
+  senses:
+  - id: ko-nikl-20372-s001
+    source_position: 1
+    english: The state of getting along and being harmonious.
+    korean: 서로 친하여 화목함.
 - id: ko-nikl-20375
   target: 친밀
   part_of_speech: noun
@@ -78860,6 +79272,19 @@ entries:
     english: An act of disconnecting or banning the exchange of cultures, ideas, substance, etc., with
       an external party.
     korean: 외부와 문화나 사상, 물질 등을 주고받는 것을 끊거나 막음.
+- id: ko-nikl-22951
+  target: 폐쇄성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=22951
+  senses:
+  - id: ko-nikl-22951-s001
+    source_position: 1
+    english: One's characteristic of neither exchanging cultures, ideas, materials, etc., with external
+      parties, nor forming any relations with them.
+    korean: 외부와 문화나 사상, 물질 등을 주고받지 않거나 관계를 맺지 않으려는 성질.
 - id: ko-nikl-22953
   target: 폐쇄적
   part_of_speech: noun
@@ -79075,6 +79500,18 @@ entries:
     source_position: 1
     english: 'The state of understanding or accepting someone with an open heart. '
     korean: 남을 넓은 마음으로 감싸 주거나 받아들임.
+- id: ko-nikl-23052
+  target: 포용력
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=23052
+  senses:
+  - id: ko-nikl-23052-s001
+    source_position: 1
+    english: The ability to understand or accept someone with an open heart.
+    korean: 남을 넓은 마음으로 감싸 주거나 받아들이는 힘.
 - id: ko-nikl-23053
   target: 포용성
   part_of_speech: noun
@@ -85840,6 +86277,18 @@ entries:
     source_position: 1
     english: 'The act of accepting another''s request. '
     korean: 요청하는 일을 하도록 들어줌.
+- id: ko-nikl-24941
+  target: 허례허식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24941
+  senses:
+  - id: ko-nikl-24941-s001
+    source_position: 1
+    english: 'An act of making something outwardly showy beyond one''s means; or such a practice. '
+    korean: 형편에 맞지 않게 겉만 화려하게 꾸밈. 또는 그런 예절.
 - id: ko-nikl-24943
   target: 허름하다
   part_of_speech: descriptive verb
@@ -85965,6 +86414,18 @@ entries:
     source_position: 1
     english: 'An act of spending time, money, etc., lavishly without any result or gain. '
     korean: 아무 보람이나 이득이 없이 씀.
+- id: ko-nikl-24987
+  target: 허세
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=24987
+  senses:
+  - id: ko-nikl-24987-s001
+    source_position: 1
+    english: 'One''s spirit that looks higher than it actually is, without substance. '
+    korean: 실속이 없이 겉으로만 부풀려 보이는 기세.
 - id: ko-nikl-24992
   target: 허술하다
   part_of_speech: descriptive verb
@@ -85997,6 +86458,18 @@ entries:
     source_position: 1
     english: Being honest without hesitation to the extent of disclosing all of one's thoughts openly.
     korean: 마음에 품은 생각을 숨김없이 말할 수 있을 만큼 아무 거리낌이 없고 솔직하다.
+- id: ko-nikl-25004
+  target: 허영
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25004
+  senses:
+  - id: ko-nikl-25004-s001
+    source_position: 1
+    english: 'An act of making something outwardly showy beyond one''s means without any substance. '
+    korean: 자기의 분수에 넘치고 실속이 없이 겉을 화려하게 꾸미는 것.
 - id: ko-nikl-25006
   target: 허옇다
   part_of_speech: descriptive verb
@@ -86123,6 +86596,18 @@ entries:
     source_position: 1
     english: The respiratory organs that are located in both sides of the human or animal chest.
     korean: 동물과 사람의 가슴 속 양쪽에 있는, 숨을 쉬게 하는 기관.
+- id: ko-nikl-25035
+  target: 허풍
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25035
+  senses:
+  - id: ko-nikl-25035-s001
+    source_position: 1
+    english: 'Excessively exaggerated words or action that is hard to believe. '
+    korean: 실제보다 지나치게 부풀려 믿기 어려운 말이나 행동.
 - id: ko-nikl-25041
   target: 허허
   part_of_speech: adverb
@@ -87223,6 +87708,18 @@ entries:
     english: A state in which many people reach an agreement through discussion to accomplish a common
       goal; or the agreement.
     korean: 공동의 목적을 이루기 위해 여러 사람이 의논하여 약속을 맺음. 또는 그 약속.
+- id: ko-nikl-25396
+  target: 협업
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25396
+  senses:
+  - id: ko-nikl-25396-s001
+    source_position: 1
+    english: 'An act of many people joining forces to get things done. '
+    korean: 많은 사람들이 힘을 합해서 하는 일.
 - id: ko-nikl-25399
   target: 협의
   part_of_speech: noun
@@ -89239,6 +89736,18 @@ entries:
     source_position: 2
     english: To wash something clean with water, etc.
     korean: 물 등으로 깨끗이 씻다.
+- id: ko-nikl-25904
+  target: 가식
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=25904
+  senses:
+  - id: ko-nikl-25904-s001
+    source_position: 1
+    english: Fabrication of words or action.
+    korean: 말이나 행동을 거짓으로 꾸밈.
 - id: ko-nikl-25905
   target: 가식적
   part_of_speech: noun
@@ -93802,6 +94311,22 @@ entries:
     english: A bound noun used to refer to something that one can handle or achieve within a given time
       or quantity.
     korean: 그 시간이나 수로 충분히 해낼 만한 것.
+- id: ko-nikl-27403
+  target: 거리감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27403
+  senses:
+  - id: ko-nikl-27403-s001
+    source_position: 1
+    english: An emotion or sense felt about being distant from a certain object.
+    korean: 어떤 대상과 일정한 거리로 떨어져 있다고 느끼는 감정이나 감각.
+  - id: ko-nikl-27403-s002
+    source_position: 2
+    english: 'An emotion felt about a person who is not close and therefore awkward to be with. '
+    korean: 서먹하거나 별로 친하지 않다고 느끼는 감정.
 - id: ko-nikl-27406
   target: 거리낌
   part_of_speech: noun
@@ -95593,6 +96118,18 @@ entries:
     source_position: 2
     english: Clothes worn over other clothes to keep one's body warm when it is cold outside.
     korean: 추위를 막기 위해 겉에 걸쳐 입는 옷.
+- id: ko-nikl-27876
+  target: 겉치레
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=27876
+  senses:
+  - id: ko-nikl-27876-s001
+    source_position: 1
+    english: The state of being made to look good only on the outside.
+    korean: 겉으로만 보기 좋게 꾸밈.
 - id: ko-nikl-27882
   target: 게
   part_of_speech: noun
@@ -96590,6 +97127,18 @@ entries:
     source_position: 1
     english: A mindset or attitude wherein the person respects others and acts humbly.
     korean: 남을 존중하고 자기를 낮추는 마음이나 태도.
+- id: ko-nikl-28281
+  target: 겸양
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28281
+  senses:
+  - id: ko-nikl-28281-s001
+    source_position: 1
+    english: Acts humbly and gives way to others.
+    korean: 자기를 낮추면서 남에게 양보함.
 - id: ko-nikl-28297
   target: 겸하다
   part_of_speech: verb
@@ -96729,6 +97278,19 @@ entries:
     english: An act of taking precaution not to do something wrong, act improperly, or think improper
       thoughts.
     korean: 옳지 않은 일 또는 잘못된 행동이나 생각을 하지 않도록 주의함.
+- id: ko-nikl-28332
+  target: 경계심
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28332
+  senses:
+  - id: ko-nikl-28332-s001
+    source_position: 1
+    english: A state of mind where he or she is careful to prevent an accident or danger, or being suspicious
+      of others.
+    korean: 남을 의심하거나 사고 또는 위험이 일어나지 않도록 조심하는 마음.
 - id: ko-nikl-28334
   target: 경고
   part_of_speech: noun
@@ -97088,6 +97650,18 @@ entries:
     source_position: 1
     english: A field of study focusing on the management and operation of business or companies.
     korean: 기업이나 사업을 관리하고 운영하는 방법을 연구하는 학문.
+- id: ko-nikl-28454
+  target: 경외
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28454
+  senses:
+  - id: ko-nikl-28454-s001
+    source_position: 1
+    english: The act of fearing and admiring a certain object.
+    korean: 어떤 대상을 두려워하며 우러러 봄.
 - id: ko-nikl-28458
   target: 경우
   part_of_speech: noun
@@ -97132,6 +97706,18 @@ entries:
     source_position: 2
     english: 'The act of passing through a certain department as part of a business process. '
     korean: 사무의 절차에서 어떤 부서를 거쳐 감.
+- id: ko-nikl-28472
+  target: 경의
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=28472
+  senses:
+  - id: ko-nikl-28472-s001
+    source_position: 1
+    english: A feeling of respect.
+    korean: 존경하는 마음.
 - id: ko-nikl-28475
   target: 경이롭다
   part_of_speech: descriptive verb
@@ -117102,6 +117688,22 @@ entries:
     source_position: 2
     english: One's dignity when dealing with others.
     korean: 남을 대할 체면.
+- id: ko-nikl-34799
+  target: 낯가림
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=34799
+  senses:
+  - id: ko-nikl-34799-s001
+    source_position: 1
+    english: 'A state in which a baby cries or does not like it when seeing a stranger. '
+    korean: 아기가 낯선 사람을 보고 울거나 싫어하는 것.
+  - id: ko-nikl-34799-s002
+    source_position: 2
+    english: He act of finding it difficult to meet a stranger or not enjoying doing so.
+    korean: 낯선 사람을 대하기 어려워하거나 싫어하는 것.
 - id: ko-nikl-34804
   target: 낯설다
   part_of_speech: descriptive verb
@@ -118536,6 +119138,18 @@ entries:
     source_position: 2
     english: (figurative) An atmosphere that has become quiet or cold.
     korean: (비유적으로) 가라앉거나 차가워진 분위기.
+- id: ko-nikl-35101
+  target: 냉담
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=35101
+  senses:
+  - id: ko-nikl-35101-s001
+    source_position: 1
+    english: Indifferent and unfriendly mindset or attitude.
+    korean: 태도나 마음씨 등이 무관심하고 쌀쌀맞음.
 - id: ko-nikl-35102
   target: 냉담하다
   part_of_speech: descriptive verb
@@ -125764,6 +126378,22 @@ entries:
     source_position: 2
     english: 'A person or thing''s state, or character or nature. '
     korean: 사람이나 사물의 상태나 됨됨이.
+- id: ko-nikl-37132
+  target: 면목
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=37132
+  senses:
+  - id: ko-nikl-37132-s001
+    source_position: 1
+    english: The appearance of a person or thing.
+    korean: 사람이나 사물의 겉모습.
+  - id: ko-nikl-37132-s002
+    source_position: 2
+    english: A state of mind or position to deal with others without the sting of embarrassment.
+    korean: 남을 대하기에 떳떳한 마음이나 처지.
 - id: ko-nikl-37141
   target: 면봉
   part_of_speech: noun
@@ -129020,6 +129650,22 @@ entries:
     source_position: 1
     english: Lack of knowledge because one has not learned, heard or seen.
     korean: 배우거나 보고 들은 것이 없어 아는 것이 부족함.
+- id: ko-nikl-38126
+  target: 무심
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=38126
+  senses:
+  - id: ko-nikl-38126-s001
+    source_position: 1
+    english: Lack of thought or emotion.
+    korean: 아무런 생각이나 감정이 없음.
+  - id: ko-nikl-38126-s002
+    source_position: 2
+    english: Lack of concern or interest towards a matter or person.
+    korean: 어떤 일이나 사람에 대하여 걱정하는 마음이나 관심이 없음.
 - id: ko-nikl-38129
   target: 무심코
   part_of_speech: adverb
@@ -131545,6 +132191,18 @@ entries:
     source_position: 1
     english: A group that consists of ordinary people who are not associated with any governmental agency.
     korean: 정부 기관에 속하지 않는 일반인들로 이루어진 단체.
+- id: ko-nikl-39051
+  target: 민감성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=39051
+  senses:
+  - id: ko-nikl-39051-s001
+    source_position: 1
+    english: 'A quality of responding to a certain stimulus sharply and quickly.  '
+    korean: 어떤 자극에 대한 반응이 매우 날카롭고 빠른 성질.
 - id: ko-nikl-39052
   target: 민감하다
   part_of_speech: descriptive verb
@@ -136207,6 +136865,18 @@ entries:
     source_position: 1
     english: The act of placing persons, objects, etc., in a certain order or spacing.
     korean: 사람이나 물건 등을 일정한 순서나 간격에 따라 벌여 놓음.
+- id: ko-nikl-40711
+  target: 배타성
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=40711
+  senses:
+  - id: ko-nikl-40711-s001
+    source_position: 1
+    english: 'The tendency or nature of rejecting and keeping out others out of hatred. '
+    korean: 남을 싫어하여 거부하고 따돌리는 경향 또는 성질.
 - id: ko-nikl-40712
   target: 배타적
   part_of_speech: noun
@@ -143904,6 +144574,18 @@ entries:
     source_position: 2
     english: A place where the military stays.
     korean: 군대가 진을 치고 있는 곳.
+- id: ko-nikl-43152
+  target: 진의
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43152
+  senses:
+  - id: ko-nikl-43152-s001
+    source_position: 1
+    english: 'The original will or thoughts that one has in one''s mind. '
+    korean: 속에 품고 있는 본래의 뜻이나 생각.
 - id: ko-nikl-43155
   target: 진입
   part_of_speech: noun
@@ -144390,6 +145072,30 @@ entries:
     english: A state in which people or things are well organized without any confusion, or rules to be
       kept in order to avoid confusion.
     korean: 사람들이나 물건들이 혼란스럽지 않게 정돈되어 있는 모습. 또는 그러기 위하여 지켜야 하는 규칙.
+- id: ko-nikl-43289
+  target: 질시
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43289
+  senses:
+  - id: ko-nikl-43289-s001
+    source_position: 1
+    english: A feeling of dislike.
+    korean: 밉게 봄.
+- id: ko-nikl-43290
+  target: 질시
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=43290
+  senses:
+  - id: ko-nikl-43290-s001
+    source_position: 1
+    english: A feeling of envying and dislike someone or something.
+    korean: 질투하고 미워하는 마음으로 봄.
 - id: ko-nikl-43297
   target: 질의
   part_of_speech: noun
@@ -157797,6 +158503,18 @@ entries:
     source_position: 2
     english: The state of being closely related to each other with the same goal or purpose.
     korean: 같은 목표나 뜻으로 서로가 밀접하게 연결되어 있음.
+- id: ko-nikl-47389
+  target: 연대감
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47389
+  senses:
+  - id: ko-nikl-47389-s001
+    source_position: 1
+    english: 'A feeling of being connected to each other with the same goal or idea. '
+    korean: 같은 목표나 뜻으로 서로가 밀접하게 연결되어 있다고 느끼는 마음.
 - id: ko-nikl-47395
   target: 연도
   part_of_speech: noun
@@ -157918,6 +158636,18 @@ entries:
     source_position: 1
     english: 'A deep and wide depression with water in it. '
     korean: 깊고 넓게 파인 땅에 물이 고여 있는 곳.
+- id: ko-nikl-47438
+  target: 연민
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=47438
+  senses:
+  - id: ko-nikl-47438-s001
+    source_position: 1
+    english: A feeling of pity for someone.
+    korean: 불쌍하고 가엾게 여김.
 - id: ko-nikl-47450
   target: 연봉
   part_of_speech: noun
@@ -161523,6 +162253,18 @@ entries:
     source_position: 2
     english: In a perfect or accurate manner without any flaw.
     korean: 잘못된 것이 없이 완벽하거나 올바르게.
+- id: ko-nikl-48427
+  target: 온정
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=48427
+  senses:
+  - id: ko-nikl-48427-s001
+    source_position: 1
+    english: 'Warm love or generosity. '
+    korean: 따뜻한 사랑이나 남에게 베푸는 마음.
 - id: ko-nikl-48429
   target: 온종일
   part_of_speech: noun
@@ -164401,6 +165143,18 @@ entries:
     source_position: 1
     english: Refined and beautiful.
     korean: 품위가 있고 아름답다.
+- id: ko-nikl-49354
+  target: 우애
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=49354
+  senses:
+  - id: ko-nikl-49354-s001
+    source_position: 1
+    english: 'Affection and love between brothers or friends. '
+    korean: 형제 또는 친구 사이의 정과 사랑.
 - id: ko-nikl-49358
   target: 우여곡절
   part_of_speech: noun
@@ -171279,6 +172033,18 @@ entries:
     source_position: 3
     english: An act of disliking and avoiding doing a certain task.
     korean: 어떠한 일을 하기 싫어서 나서지 않고 피함.
+- id: ko-nikl-52114
+  target: 회한
+  part_of_speech: noun
+  source_part_of_speech: 명사
+  source_band: unbanded
+  reference_level: null
+  source_entry: https://huggingface.co/datasets/binjang/NIKL-korean-english-dictionary/resolve/3b4cfd2126debfd5440cade3ef6c2a3c20cf7cf9/2024_01.csv#record=52114
+  senses:
+  - id: ko-nikl-52114-s001
+    source_position: 1
+    english: 'An act of letting out a sigh and grieving while regretting one''s wrongdoings. '
+    korean: 잘못 등을 뉘우치고 한숨을 쉬며 탄식함.
 - id: ko-nikl-52120
   target: 회화
   part_of_speech: noun
