@@ -34,6 +34,9 @@ describe('read-only tutor catalog tools', () => {
     }
     expect(lookupWords('zzyy-unknown-12345')).toEqual([])
     expect(lookupWords('', 900)).toHaveLength(8)
+    expect(lookupWords('xue2-sheng5--student')[0]).toMatchObject({
+      id: 'zh-hsk1-00423-s001', label: 'xue2-sheng5--student', meaning: 'student',
+    })
   })
 
   it('looks up lessons through canonical IDs, objectives, Chinese and accented/bare pinyin', () => {

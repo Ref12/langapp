@@ -7,6 +7,8 @@ import { navigate } from '../core/routing'
 import { PageHeading, WordCard, type PageProps } from '../components/shared'
 import { CurriculumMap, GrammarReference } from './Curriculum'
 import { SnippetActions } from '../components/assistant/SnippetActions'
+import { lessonDefinitions } from '../data/learning-content'
+import { LessonStudy } from '../components/learning/LessonStudy'
 
 export function Lessons(props: PageProps) {
   return <CurriculumMap {...props} />
@@ -14,6 +16,7 @@ export function Lessons(props: PageProps) {
 
 export function LessonDetail({ lesson, workspace, busy, run }: PageProps & { lesson: Lesson }) {
   const plan = lesson.curriculum
+  const definition = lessonDefinitions.get(lesson.id)
   const level = curriculumLevels.find(item => item.id === plan.levelId)
   const active = workspace.sessions.find(session => session.status === 'active' && session.lessonId === lesson.id)
   const completed = workspace.lessons.find(item => item.lessonId === lesson.id)?.completedAt
@@ -22,8 +25,11 @@ export function LessonDetail({ lesson, workspace, busy, run }: PageProps & { les
     : lessonReviewWords(lesson, workspace.words)
   return <>
     <a className="back-link" href={`#level/${plan.levelId}`}><ArrowLeft size={16} /> Level {level?.number}: {level?.title}</a>
-    <PageHeading eyebrow={`LEVEL ${level?.number} / PART ${plan.number}`} title={lesson.title}>{lesson.objective}</PageHeading>
-    <SnippetActions source={{ title: lesson.title, route: `lesson/${lesson.id}`, text: `${lesson.title}\n${lesson.objective}\nVocabulary:\n${lesson.wordIds.map(id => { const word = getWord(id); return `${word.native} (${word.pinyin}): ${word.meaning} [${word.id}]` }).join('\n')}` }} />
+    <PageHeading eyebrow={`LEVEL ${level?.number} / PART ${plan.number}`} title={lesson.title}>
+      {definition ? 'Explore the complete lesson visually or listen to its guided audio presentation.' : lesson.objective}
+    </PageHeading>
+    {definition ? <LessonStudy key={definition.label} definition={definition} lessonId={lesson.id} workspace={workspace} busy={busy} run={run} /> : <>
+    <SnippetActions source={{ title: lesson.title, route: `lesson/${lesson.id}`, text: `${lesson.title}\n${lesson.objective}\nVocabulary:\n${lesson.wordIds.map(id => { const word = getWord(id); return `${word.native} (${word.pinyin}): ${word.meaning}` }).join('\n')}` }} />
     <section className="panel feature-panel"><h2>A small step toward the module goal</h2><p>{lesson.wordIds.length} selected vocabulary senses, {plan.grammarIds.length} new grammar references, and {reviewIds.length} earlier senses to revisit. The practice session checks reading recognition only.</p>
       <p className="small muted">Pinyin keeps each source sense's dictionary pronunciation. Tone changes in connected speech and spoken accuracy need separate instruction and assessment.</p>
     </section>
@@ -45,6 +51,7 @@ export function LessonDetail({ lesson, workspace, busy, run }: PageProps & { les
         return <GrammarReference key={id} grammar={grammar} />
       })}
     </details>}
+    </>}
     <section className="panel practice-invitation"><div><h2>{completed !== undefined ? 'Revisit this part.' : 'Try the reading practice.'}</h2><p>Starting adds only this part's new senses. Grammar references, sibling meanings, and level goals are not marked mastered.</p></div>
       <button className="button primary" disabled={busy} onClick={() => void run(async () => navigate(`practice/${await startPractice('lesson', lesson.id)}`))}>
         {active ? 'Resume lesson practice' : completed !== undefined ? 'Practice this lesson again' : 'Start lesson practice'} <ArrowRight size={16} /></button>

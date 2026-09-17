@@ -18,7 +18,7 @@ const intentPrompts: Partial<Record<AssistantIntent, string>> = { repeat: repeat
 const wordIndex = new Map(words.map(word => [word.id, word]))
 const grammarIndex = new Map(curriculum.grammar.map(grammar => [grammar.id, grammar]))
 const searchableWords = words.map(word => ({
-  word, fields: [word.id, word.native, word.pinyin, word.meaning].map(normalizeSearch),
+  word, fields: [word.id, word.label ?? '', word.native, word.pinyin, word.meaning].map(normalizeSearch),
 }))
 const searchableLessons = lessons.map(lesson => ({
   lesson,
@@ -26,7 +26,7 @@ const searchableLessons = lessons.map(lesson => ({
     lesson.id, lesson.title, lesson.objective,
     ...lesson.wordIds.flatMap(id => {
       const word = wordIndex.get(id)
-      return word ? [id, word.native, word.pinyin, word.meaning] : [id]
+      return word ? [id, word.label ?? '', word.native, word.pinyin, word.meaning] : [id]
     }),
     ...lesson.curriculum.grammarIds.flatMap(id => {
       const grammar = grammarIndex.get(id)
@@ -50,6 +50,7 @@ export function lookupWords(query: string, limit = 8) {
     .filter(entry => entry.score > 0).sort((a, b) => b.score - a.score).slice(0, Math.min(8, Math.max(0, limit)))
     .map(({ word }) => ({
       id: word.id, spelling: word.native, pinyin: word.pinyin, meaning: word.meaning,
+      ...(word.label ? { label: word.label } : {}),
       kind: word.kind, ...(word.example ? { example: word.example, translation: word.translation } : {}),
     }))
 }

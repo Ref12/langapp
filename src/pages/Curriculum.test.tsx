@@ -5,6 +5,8 @@ import App from '../App'
 import { db } from '../core/database'
 import { curriculum, curriculumLessons, curriculumLevels } from '../data/curriculum'
 import { getWord } from '../data/mandarin'
+import { contentWords, learningContent, lessonDefinitions } from '../data/learning-content'
+import { resolveUtterance, spokenProse } from '../core/learning-content'
 
 beforeEach(async () => {
   window.location.hash = '#lessons'
@@ -18,6 +20,28 @@ async function go(route: string) {
 }
 
 describe('curriculum experience', () => {
+  it('opens the whole lesson from its unit and keeps self-check and audio separate from progress', async () => {
+    const user = userEvent.setup()
+    const model = learningContent.models.find(model => model.kind === 'exercise')!
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    await go('level/zh-level-01')
+    await screen.findByRole('heading', { name: curriculumLevels[0].title })
+    const definition = learningContent.lessons[0]
+    await user.click(screen.getByText(`Part 1: ${definition.title}`).closest('a')!)
+    await screen.findByRole('heading', { name: 'About this lesson' })
+    const heading = await screen.findByRole('heading', { name: model.title })
+    const article = heading.closest('article')!
+    await user.click(within(article).getByRole('button', { name: 'Reveal model answer' }))
+    expect(within(article).getByText('ONE POSSIBLE ANSWER / SELF-CHECK')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Guided audio lesson' }))
+    expect(screen.getByRole('button', { name: 'Start guided audio' })).toBeInTheDocument()
+    expect(await db.words.count()).toBe(0)
+    expect(await db.lessons.count()).toBe(0)
+    expect(await db.sessions.count()).toBe(0)
+    expect(await db.attempts.count()).toBe(0)
+  })
+
   it('removes the sources page and all links to it from the learning interface', async () => {
     render(<App />)
     await screen.findByRole('heading', { name: 'Your Mandarin path.' })
@@ -87,9 +111,11 @@ describe('curriculum experience', () => {
     await user.click(screen.getByRole('link', { name: 'Continue your path' }))
     const lesson = curriculumLessons[0]
     await screen.findByRole('heading', { name: lesson.title })
-    const grammar = curriculum.grammar.find(item => item.id === lesson.curriculum!.grammarIds[0])!
-    expect(screen.getByText(grammar.note)).toBeInTheDocument()
-    expect(screen.getByText(grammar.examples[0].target)).toBeInTheDocument()
+    const grammar = lessonDefinitions.get(lesson.id)!.sections.find(section => section.kind === 'grammar')!
+    const definition = lessonDefinitions.get(lesson.id)!
+    expect(document.getElementById(`lesson-section-${definition.sections.indexOf(grammar)}`)).toHaveTextContent(spokenProse(grammar.description))
+    const example = resolveUtterance(grammar.examples[0], contentWords).text
+    expect(within(document.querySelector('article.grammar-reference')!).getByText(example)).toBeInTheDocument()
     expect(await db.words.count()).toBe(0)
     await user.click(screen.getByRole('button', { name: 'Start lesson practice' }))
     await screen.findByRole('heading', { name: 'What does this word mean?' })
@@ -127,10 +153,16 @@ describe('curriculum experience', () => {
     await user.type(search, 'kafei')
     expect(screen.getByRole('heading', { name: getWord('zh-hsk3-00396-s001').native })).toBeInTheDocument()
     await user.clear(search)
+    await user.type(search, 'xue2-sheng5--student')
+    expect(screen.getAllByRole('article')).toHaveLength(1)
+    expect(screen.getByRole('heading', { name: getWord('zh-hsk1-00423-s001').native })).toBeInTheDocument()
+    expect(screen.getByRole('article').textContent).not.toContain('xue2-sheng5--student')
+    await user.clear(search)
     await user.type(search, 'zh-hsk1-00140-')
     const cards = screen.getAllByRole('article')
     expect(cards).toHaveLength(3)
     const greeting = cards.find(card => within(card).queryByText('hello (after a pronoun)'))!
+    expect(greeting.textContent).not.toContain('hao3--greeting')
     await user.click(within(greeting).getByRole('button', { name: 'Add to learning set' }))
     await within(greeting).findByRole('button', { name: 'In your learning set' })
     expect((await db.words.toArray()).map(word => word.wordId)).toEqual(['zh-hsk1-00140-s009'])

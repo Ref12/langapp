@@ -7,6 +7,7 @@ export type ReadingStage = 'Introduced' | 'Practicing' | 'Learned'
 
 export interface Word {
   id: string
+  label?: string
   native: string
   pinyin: string
   meaning: string

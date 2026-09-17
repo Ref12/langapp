@@ -14,7 +14,7 @@ export function Dictionary({ workspace, run, busy }: PageProps) {
     const state = workspace.words.find(item => item.wordId === word.id)
     return (collection === 'learning' ? state : collection === 'curriculum' ? word.curriculum : !word.curriculum)
       && (stage === 'all' || readingStage(state) === stage)
-      && normalizeSearch(`${word.native} ${word.pinyin} ${word.meaning} ${word.id}`).includes(normalizeSearch(query))
+      && normalizeSearch(`${word.native} ${word.pinyin} ${word.meaning} ${word.label ?? ''} ${word.id}`).includes(normalizeSearch(query))
   })
   return <>
     <PageHeading eyebrow="YOUR WORDS, TOGETHER" title="Your learning set.">Precise vocabulary senses, with saved reading recognition. Different meanings of the same word keep separate evidence.</PageHeading>

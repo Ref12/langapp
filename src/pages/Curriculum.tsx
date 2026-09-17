@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { curriculum, curriculumLevels, curriculumProgress, nextCurriculumLesson, type CurriculumGrammar, type CurriculumLevel } from '../data/curriculum'
 import { getLesson } from '../data/mandarin'
 import { PageHeading, type PageProps } from '../components/shared'
+import { lessonDefinitions } from '../data/learning-content'
 
 export function CurriculumMap({ workspace }: PageProps) {
   const next = nextCurriculumLesson(workspace)
@@ -88,11 +89,12 @@ export function LevelDetail({ level, workspace }: PageProps & { level: Curriculu
     {level.modules.map((module, index) => <section className="panel" key={module.id}>
       <p className="eyebrow accent">MODULE {index + 1} / {module.wordCount} NEW SENSES / {module.grammarCount} CONSTRUCTIONS</p>
       <h2>{module.title}</h2><p className="muted">{module.outcome}</p>
+      {module.lessonIds.some(id => lessonDefinitions.has(id)) && <p className="small">Each lesson includes its description, vocabulary, grammar, concepts, conversations, and exercises. Choose a visual or guided audio lesson from the top of its page.</p>}
       {level.available && <div className="lesson-list">{module.lessonIds.map(id => {
         const lesson = getLesson(id)
         const state = workspace.lessons.find(item => item.lessonId === id)
         return <a className="curriculum-lesson-row" href={`#lesson/${id}`} key={id}>
-          <div><strong>Part {lesson.curriculum?.number}</strong><span className="small muted">{lesson.wordIds.length} new senses / {lesson.curriculum?.grammarIds.length ?? 0} new grammar references</span></div>
+          <div><strong>Part {lesson.curriculum?.number}{lessonDefinitions.has(id) ? `: ${lesson.title}` : ''}</strong><span className="small muted">{lessonDefinitions.get(id)?.description ?? `${lesson.wordIds.length} new senses / ${lesson.curriculum?.grammarIds.length ?? 0} new grammar references`}</span></div>
           <span className="tag">{state?.completedAt !== undefined ? 'Reading practiced' : state ? 'In progress' : 'Not started'}</span><ArrowRight size={16} />
         </a>
       })}</div>}
@@ -109,6 +111,6 @@ export function GrammarReference({ grammar }: { grammar: CurriculumGrammar }) {
     <p className="grammar-pattern">{grammar.pattern}</p><p>{grammar.english}</p><p className="muted">{grammar.note}</p>
     {grammar.examples.map(example => <div className="grammar-example" key={example.target}><p lang="zh-Hans">{example.target}</p><p className="small muted">{example.english}</p></div>)}
     <p className="small muted">Reference examples include English support and may use words beyond this lesson. They do not introduce extra learning items. S, N, V, and similar letters are pattern placeholders, not Mandarin to pronounce.</p>
-    <p className="small muted">Construction ID: {grammar.id} / Original curriculum explanation</p>
+    <p className="small muted">Original curriculum explanation</p>
   </article>
 }

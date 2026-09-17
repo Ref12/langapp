@@ -66,6 +66,26 @@ afterEach(() => {
 })
 
 describe('installed-local-voice language matching', () => {
+  it('reports completion, cancellation, and errors distinctly and only once', () => {
+    const completed = vi.fn()
+    playBrowserSpeech('finished', 'Tea.', 'en-US', 1, completed)
+    const ended = synthesis.speak.mock.calls[0][0].onend
+    ended?.()
+    ended?.()
+    stopBrowserSpeech()
+    expect(completed.mock.calls).toEqual([[{ kind: 'ended' }]])
+    const cancelled = vi.fn()
+    playBrowserSpeech('cancelled', 'Tea.', 'en-US', 1, cancelled)
+    const lateEnd = synthesis.speak.mock.calls[1][0].onend
+    playBrowserSpeech('replacement', 'Coffee.', 'en-US')
+    lateEnd?.()
+    expect(cancelled.mock.calls).toEqual([[{ kind: 'cancelled' }]])
+    const failed = vi.fn()
+    playBrowserSpeech('invalid', '', 'en-US', 1, failed)
+    expect(failed).toHaveBeenCalledOnce()
+    expect(failed.mock.calls[0][0]).toMatchObject({ kind: 'error', message: expect.any(String) })
+  })
+
   it.each([
     'zh', 'zh-CN', 'zh-SG', 'zh-Hans', 'zh-Hans-CN', ' ZH_hans_sg ',
     'cmn', 'cmn-CN', 'cmn-Hans-CN', 'zh-cmn-Hans-CN',

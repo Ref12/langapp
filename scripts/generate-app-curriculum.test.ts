@@ -430,6 +430,20 @@ describe('source validation failures', () => {
 })
 
 describe('deterministic offline generation', () => {
+  it.each(['missing', 'stale'])('rejects %s instructional models without writing', async mode => {
+    const contentPath = resolve('src', 'data', 'learning-content.generated.json')
+    vi.mocked(fs.readFile).mockImplementation(async (...args) => {
+      if (String(args[0]) === contentPath) {
+        if (mode === 'missing') throw Object.assign(new Error('missing'), { code: 'ENOENT' })
+        return 'stale content'
+      }
+      return originalFs.readFile(...args)
+    })
+    vi.mocked(fs.writeFile).mockClear()
+    await expect(generateCurriculum({ check: true })).rejects.toThrow(/learning-content.generated.json; run npm run curriculum:generate/)
+    expect(fs.writeFile).not.toHaveBeenCalled()
+  }, 30_000)
+
   it('reproduces the committed JSON and exact attribution/license bytes without writing in check mode', async () => {
     const fetch = vi.fn(() => { throw new Error('No network is permitted') })
     vi.stubGlobal('fetch', fetch)

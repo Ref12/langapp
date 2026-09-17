@@ -49,7 +49,6 @@ export function WordCard({ word, state, pinyin, source, run, busy }: {
     </button>
     <details><summary>Skill progress</summary><SkillState state={state} />
       {word.curriculum && <p className="small">Reading recognition only. Contextual understanding and production are not assessed.</p>}
-      <p className="small">Item ID: {word.id}</p>
     </details>
   </article>
 }

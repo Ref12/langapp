@@ -57,6 +57,122 @@ order; the HSK overlay appends required vocabulary to those modules in the
 generated core. No reference headword has been moved to another HSK folder or
 renumbered.
 
+## Level 1 whole-lesson model pilot
+
+`content/level-01.yaml` defines the **whole lesson**, not a practice supplement.
+Its thirteen lessons cover the three course-level-1 units, not the entire HSK 1
+band. Each lesson has a readable label, unit and part number, title, Markdown
+description, learning objectives, and an ordered list of sections. The app uses
+these definitions for lesson titles, descriptions, content, and both views.
+The source remains `reviewStatus: draft`; some supplemental vocabulary has
+inventory instruction but not yet rich contextual examples.
+
+Sections contain **vocabulary**, **grammar**, or reusable instructional models.
+Vocabulary sections list readable word labels and distinguish `new` from
+`review`. Grammar sections reference a readable construction label, give an
+authored explanation, and supply grounded examples rather than importing
+reference examples that may contain future vocabulary. Model sections reference
+**concepts**, **phrases**, **conversations**, and **exercises** in teaching order.
+Concepts cover sound-system knowledge, pragmatics, culture, and learning
+strategies outside ordinary lexical senses and grammatical constructions.
+
+### Readable labels, stable internal identity
+
+`content/labels.yaml` is the registry connecting readable labels to existing
+canonical sense and grammar IDs. **Readable labels are authoring references,
+not learner-facing text. Opaque IDs belong in this registry, not in lesson
+authoring.** Vocabulary cards and lesson, grammar, and concept details display
+natural titles, Chinese, pinyin, and meanings rather than either identifier.
+Existing IDs continue to key
+progress, backups, and source attribution; adding a label does not create a new
+word or migrate evidence. Vocabulary labels are also searchable in the
+dictionary and Assistant catalog.
+
+Use `syllableTone-syllableTone--sense` for vocabulary, for example:
+`ni3--you`, `xue2-sheng5--student`, `hao3--greeting`, and `hao3--acceptance`.
+Keep the disambiguator to one meaningful word where practical; use hyphens only
+when needed to distinguish senses. Choose it deliberately, not by truncating
+the first dictionary definition or appending an opaque sequence number.
+Treat published labels as stable authoring references; do not silently rename
+them when an English explanation changes or reassign them to another sense.
+
+Pronunciation follows the **canonical dictionary form**, not tone sandhi.
+Numbers 1-4 mark tones; 5 marks an unmarked/neutral source segment. Use lowercase
+ASCII, `v` for the umlaut vowel, and a hyphen between source pinyin segments.
+The source's isolated rhotic `r` is represented as `r5` (for example
+`na4-r5--there`); this encodes the source segmentation, not an instruction to
+pronounce a separate neutral-tone syllable. The generator verifies the
+pronunciation portion against the canonical sense. The sense disambiguator
+still needs human review. Grammar, lesson, concept, and other content labels
+use meaningful kebab-case names, not pinyin.
+
+Mandarin utterances contain `{ word: readable-label }` segments, punctuation,
+and an English translation. Characters and dictionary pinyin are resolved from
+the registry, so display and audio use the same sense. A schematic phrase entry
+looks like this (its `lesson` must match a real lesson label):
+
+```yaml
+label: greeting-example
+kind: phrase
+lesson: first-introductions
+title: A greeting
+description: Address someone and greet them.
+requires:
+  grammar: []
+  concepts: []
+utterance:
+  segments:
+    - word: ni3--you
+    - word: hao3--greeting
+    - punctuation: "!"
+  translation: Hello!
+```
+
+The enclosing version-2 source contains `level: 1`, `title`, `source: original-zh`,
+`reviewStatus: draft`, `lessons`, and `models`. Author English explanations using
+the safe Markdown subset: paragraphs, headings, unordered lists, emphasis, and
+inline/fenced code. Raw HTML is not supported. Keep Mandarin in referenced
+utterances instead of untracked prose.
+
+### One definition, different views
+
+**Visual lesson** and **Guided audio lesson** are selected near the top, alongside
+the lesson description and goals. The visual view follows the authored section
+order and offers an outline, vocabulary, grammar explanations, concepts,
+dialogues, and revealable exercise answers. The audio view narrates the same
+description, goals, vocabulary meanings, grammar explanations and examples,
+concepts, conversations, response gaps, and model answers in the same order.
+Readable labels are references, not words to pronounce, so audio does not read
+them aloud. The separate reading-recognition session remains available below
+the lesson and is not the lesson definition.
+
+Guided audio uses the existing saved English/Mandarin browser voices and offers
+Start, Pause/Resume, Stop, Repeat section, and Next segment controls. No reading
+is required during playback. Resume repeats the current segment. Online browser
+voices may send spoken text to their provider. **Interactive audio** remains a
+separate planned mode: microphone capture, privacy, and feedback semantics need
+an explicit design before implementation.
+
+`src/core/learning-content-schema.mjs` shares the strict authoring/runtime schema.
+`scripts/generate-learning-content.mjs` verifies label uniqueness, canonical
+resolution, pronunciation, all thirteen lessons in order, and exact preservation
+of each lesson's new vocabulary/grammar inventory. Review material must be
+earlier, all utterances must respect cumulative lesson cutoffs, and every model
+must occur in its introduction lesson. Concepts must appear before dependent
+models, including within the same lesson. Authors still need to review grammar
+completeness, sense choice, idiomatic usage, translations, and teaching quality.
+Definition order in the reusable model library does not establish teaching order;
+the lesson's ordered sections do. Mechanical containment does not establish
+these qualities or predict an exam pass.
+
+Run `npm run curriculum:generate` to create
+`src/data/learning-content.generated.json`; `npm run curriculum:check` verifies
+it alongside the unchanged curriculum projection. Do not edit generated JSON.
+Viewing, listening, or revealing an exercise answer does not award progress.
+Explicit **Add to learning set** and the separate reading-practice controls keep
+their existing behavior and canonical IDs. No pilot view marks concepts mastered,
+assesses speech, or changes the HSK readiness verdict.
+
 ## Six phases, thirty visible levels
 
 | Phase | Levels | Planned new headwords | Focus |

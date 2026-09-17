@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { isDeepStrictEqual } from 'node:util'
 import { parse } from 'yaml'
 import { z } from 'zod'
+import { generateLearningContent } from './generate-learning-content.mjs'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const sourceRoot = resolve(root, 'curriculum', 'chinese')
@@ -607,6 +608,7 @@ export async function buildCurriculum() {
 
 export async function generateCurriculum({ check = false } = {}) {
   const curriculum = await buildCurriculum()
+  await generateLearningContent(curriculum, { check })
   const outputs = [
     [projectionPath, Buffer.from(`${JSON.stringify(curriculum, null, 2)}\n`)],
     ...await Promise.all(noticeFiles.map(async name => [

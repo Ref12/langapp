@@ -1,5 +1,6 @@
 import generated from './curriculum.generated.json'
 import type { Lesson, Word, Workspace } from '../core/model'
+import { contentWordLabels, lessonDefinitions } from './learning-content'
 
 export const curriculum = generated
 export const curriculumLevels = curriculum.phases.flatMap(phase => phase.levels)
@@ -8,11 +9,13 @@ export type CurriculumGrammar = typeof curriculum.grammar[number]
 
 export const curriculumWords: Word[] = curriculum.words.map(word => ({
   id: word.id, native: word.ch, pinyin: word.pr, meaning: word.ds, kind: 'Curriculum sense',
+  label: contentWordLabels.get(word.id),
   curriculum: { levelId: word.levelId, moduleId: word.moduleId },
 }))
 
 export const curriculumLessons: Lesson[] = curriculum.lessons.map(lesson => ({
-  id: lesson.id, title: lesson.title, objective: lesson.objective, wordIds: lesson.wordIds,
+  id: lesson.id, title: lessonDefinitions.get(lesson.id)?.title ?? lesson.title,
+  objective: lessonDefinitions.get(lesson.id)?.objectives.join(' ') ?? lesson.objective, wordIds: lesson.wordIds,
   curriculum: {
     levelId: lesson.levelId, moduleId: lesson.moduleId, number: lesson.number,
     grammarIds: lesson.grammarIds, reviewGrammarIds: lesson.reviewGrammarIds, reviewWordIds: lesson.reviewWordIds,

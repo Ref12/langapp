@@ -13,7 +13,10 @@ interface PlaybackRequest {
   utterance?: SpeechSynthesisUtterance
   clearDiscovery?: () => void
   playbackTimer?: ReturnType<typeof setTimeout>
+  onFinished?: (result: SpeechResult) => void
 }
+
+export type SpeechResult = { kind: 'ended' | 'cancelled' } | { kind: 'error'; message: string }
 
 const voiceWaitMs = 3000
 const voiceRecheckMs = 100
@@ -22,6 +25,7 @@ let state: PlaybackState = {}
 let current: PlaybackRequest | undefined
 let generation = 0
 const listeners = new Set<() => void>()
+const interruptionListeners = new Set<(nextId?: string) => void>()
 let voiceCache = new WeakMap<SpeechSynthesis, Map<SpeechLocale, string>>()
 let voicePreferences: SpeechVoicePreferences = {}
 
@@ -49,7 +53,7 @@ export function setSpeechVoicePreferences(preferences: SpeechVoicePreferences = 
   if (!changed) return
   voicePreferences = next
   clearVoiceCache()
-  if (current) stopBrowserSpeech()
+  stopBrowserSpeech()
 }
 
 function publish(next: PlaybackState) {
@@ -63,6 +67,12 @@ export function subscribePlayback(listener: () => void) {
 }
 
 export function getPlaybackState() { return state }
+
+// Also notifies between utterances, while a guided response timer owns no speech.
+export function subscribeSpeechInterruption(listener: (nextId?: string) => void) {
+  interruptionListeners.add(listener)
+  return () => { interruptionListeners.delete(listener) }
+}
 
 function voiceLocale(language: string) {
   const normalized = language.trim().replace(/_/g, '-').toLowerCase()
@@ -182,10 +192,13 @@ function cancelCurrent() {
   const request = current
   current = undefined
   if (request) clearRequest(request)
-  return cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined))
+  const error = cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined))
+  request?.onFinished?.(error ? { kind: 'error', message: error } : { kind: 'cancelled' })
+  return error
 }
 
 export function stopBrowserSpeech() {
+  interruptionListeners.forEach(listener => listener())
   const version = ++generation
   const error = cancelCurrent()
   if (version === generation) publish(error ? { error } : {})
@@ -198,7 +211,9 @@ function fail(request: PlaybackRequest, error: string) {
   current = undefined
   clearRequest(request)
   const cancelError = cancelSynthesis(request.synthesis)
-  if (version === generation) publish({ error: cancelError ? `${error} ${cancelError}` : error })
+  const message = cancelError ? `${error} ${cancelError}` : error
+  if (version === generation) publish({ error: message })
+  request.onFinished?.({ kind: 'error', message })
 }
 
 function missingVoiceMessage(voices: SpeechSynthesisVoice[], locale: SpeechLocale) {
@@ -238,6 +253,7 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
     current = undefined
     clearRequest(request)
     publish({})
+    request.onFinished?.({ kind: 'ended' })
   }
   utterance.onerror = () => {
     fail(request, voiceKind === 'online'
@@ -256,24 +272,34 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
   }
 }
 
-export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate = 1) {
+export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate = 1,
+  onFinished?: (result: SpeechResult) => void) {
+  interruptionListeners.forEach(listener => listener(id))
   const version = ++generation
   const cancelError = cancelCurrent()
-  if (version !== generation) return
+  if (version !== generation) {
+    onFinished?.({ kind: 'cancelled' })
+    return
+  }
   if (cancelError) {
     publish({ error: cancelError })
+    onFinished?.({ kind: 'error', message: cancelError })
     return
   }
   if (!text.trim() || text.length > 8000) {
-    publish({ error: 'Choose a non-empty passage of at most 8,000 characters to hear.' })
+    const message = 'Choose a non-empty passage of at most 8,000 characters to hear.'
+    publish({ error: message })
+    onFinished?.({ kind: 'error', message })
     return
   }
   const synthesis = typeof window !== 'undefined' ? window.speechSynthesis : undefined
   if (!synthesis || typeof SpeechSynthesisUtterance === 'undefined') {
-    publish({ error: 'Speech playback is not available in this browser.' })
+    const message = 'Speech playback is not available in this browser.'
+    publish({ error: message })
+    onFinished?.({ kind: 'error', message })
     return
   }
-  const request: PlaybackRequest = { id, locale, synthesis }
+  const request: PlaybackRequest = { id, locale, synthesis, onFinished }
   current = request
   const deadline = performance.now() + voiceWaitMs
   let expired = false
