@@ -47,21 +47,21 @@ afterEach(() => {
 })
 
 describe('checked-in Practical Mandarin projection', () => {
-  it('ships six phases, thirty levels, and only the original four beginner levels', () => {
+  it('ships six phases, thirty levels, and four available beginner levels', () => {
     const levels = projection.phases.flatMap(phase => phase.levels)
     const available = levels.filter(level => level.available)
-    expect(projection.schemaVersion).toBe(1)
+    expect(projection.schemaVersion).toBe(2)
     expect(projection.phases).toHaveLength(6)
     expect(levels).toHaveLength(30)
     expect(levels.map(level => level.number)).toEqual(Array.from({ length: 30 }, (_, index) => index + 1))
     expect(available.map(level => level.number)).toEqual([1, 2, 3, 4])
     expect(available.flatMap(level => level.modules)).toHaveLength(12)
-    expect(projection.words).toHaveLength(205)
-    expect(new Set(ids(projection.words)).size).toBe(205)
+    expect(projection.words).toHaveLength(357)
+    expect(new Set(ids(projection.words)).size).toBe(357)
     expect(projection.grammar).toHaveLength(25)
     expect(new Set(ids(projection.grammar)).size).toBe(25)
-    expect(projection.lessons).toHaveLength(32)
-    expect(new Set(ids(projection.lessons)).size).toBe(32)
+    expect(projection.lessons).toHaveLength(50)
+    expect(new Set(ids(projection.lessons)).size).toBe(50)
 
     expect(projection.id).toBe(sources.core.id)
     expect(projection.title).toBe(sources.core.title)
@@ -104,7 +104,8 @@ describe('checked-in Practical Mandarin projection', () => {
 
   it('uses the exact projection contract without fabricated POS, pronunciations, or mastery fields', () => {
     exactKeys(projection, [
-      'schemaVersion', 'id', 'title', 'levelBasis', 'reviewPolicy', 'phases', 'words', 'grammar', 'lessons',
+      'schemaVersion', 'id', 'title', 'levelBasis', 'reviewPolicy', 'hskReadiness',
+      'phases', 'words', 'grammar', 'lessons',
     ])
     for (const phase of projection.phases) {
       exactKeys(phase, ['id', 'title', 'levels'])
@@ -134,6 +135,41 @@ describe('checked-in Practical Mandarin projection', () => {
     }
   })
 
+  it('projects a complete HSK 1-6 readiness path without claiming unsupported HSK 7-9 assessment', () => {
+    const readiness = projection.hskReadiness
+    expect(readiness.id).toBe('zh-hsk-readiness')
+    expect(readiness.sections.map(section => section.hskLevel)).toEqual([1, 2, 3, 4, 5, 6])
+    expect(readiness.sections.flatMap(section => section.courseLevels))
+      .toEqual(Array.from({ length: 30 }, (_, index) => index + 1))
+    expect(readiness.sections.every(section => section.modules.length === 4)).toBe(true)
+    expect(readiness.sections.every(section =>
+      section.modules.every(module => module.lessons.length === 2))).toBe(true)
+    expect(readiness.sections.map(section => section.exam.skills)).toEqual([
+      ['listening', 'reading'],
+      ['listening', 'reading'],
+      ['listening', 'reading', 'writing'],
+      ['listening', 'reading', 'writing'],
+      ['listening', 'reading', 'writing'],
+      ['listening', 'reading', 'writing'],
+    ])
+    expect(readiness.sections.map(section => [
+      section.exam.questions, section.exam.minutes,
+    ])).toEqual([[40, 40], [60, 55], [80, 90], [100, 105], [100, 125], [101, 140]])
+    expect(readiness.sections.every(section =>
+      section.mockTest.resourceIds.join(',') ===
+        'digmandarin-hsk-practice,mandarinmania-hsk-practice' &&
+      section.mockTest.availableSets === 10)).toBe(true)
+    expect(readiness.resources.map(resource => resource.id)).toEqual([
+      'chinesetest-hsk-format', 'digmandarin-hsk-practice',
+      'mandarinmania-hsk-practice', 'hsk-mock-platform', 'goeast-hsk-library',
+    ])
+    expect(readiness.advanced).toMatchObject({
+      id: 'hsk-7-9-orientation',
+      status: 'reference-only',
+      skills: ['listening', 'reading', 'writing', 'translation', 'speaking'],
+    })
+  })
+
   it('preserves canonical sense IDs and exact Chinese, individual readings, and disambiguators', () => {
     const canonical = new Map(
       [...sources.vocabulary, ...sources.referenceSenses].flatMap(row =>
@@ -142,9 +178,18 @@ describe('checked-in Practical Mandarin projection', () => {
         }] as const),
       ),
     )
+    for (const row of sources.hskReferenceVocabulary) {
+      canonical.set(row.id, {
+        id: row.id, ch: row.ch, pr: row.pr, ds: row.ds,
+      })
+    }
     const entries = projection.words.map(({ id, ch, pr, ds }) => ({ id, ch, pr, ds }))
-    expect(entries).toEqual(sources.beginner.units.flatMap(unit => unit.vocabulary))
-    expect(entries).toEqual(sources.beginnerVocabulary)
+    expect(entries).toEqual(sources.core.phases[0].levels.flatMap(
+      level => level.units.flatMap(unit => unit.vocabulary),
+    ))
+    expect(sources.beginnerVocabulary).toEqual(
+      sources.beginner.units.flatMap(unit => unit.vocabulary),
+    )
     for (const entry of entries) expect(entry).toEqual(canonical.get(entry.id))
     expect(projection.words.find(word => word.ch === '咖啡')).toEqual({
       id: 'zh-hsk3-00396-s001', ch: '咖啡', pr: 'kā fēi', ds: 'coffee',
@@ -183,7 +228,7 @@ describe('checked-in Practical Mandarin projection', () => {
     const earlierWords = new Set<string>()
     const earlierGrammar = new Set<string>()
     const levels = projection.phases.flatMap(phase => phase.levels)
-    for (const unit of sources.beginner.units) {
+    for (const unit of sources.core.phases[0].levels.flatMap(level => level.units)) {
       const lessons = projection.lessons.filter(lesson => lesson.moduleId === unit.id)
       const level = levels.find(candidate => candidate.modules.some(module => module.id === unit.id))!
       expect(lessons).toHaveLength(Math.max(Math.ceil(unit.vocabulary.length / 8), unit.grammar.length))
@@ -347,12 +392,25 @@ describe('source validation failures', () => {
     {
       name: 'reordered original beginner units',
       mutate: input => { input.beginner.units[0].title = 'Different title' },
-      error: /preserved beginner units: source\/reference mismatch/,
+      error: /preserved beginner unit: source\/reference mismatch/,
     },
     {
       name: 'stale compact vocabulary',
       mutate: input => { input.beginnerVocabulary.reverse() },
       error: /Beginner compact vocabulary: source\/reference mismatch/,
+    },
+    {
+      name: 'missing HSK readiness resource',
+      mutate: input => { input.readiness.sections[0].mock_test.resource_ids[0] = 'missing' },
+      error: /unknown mock-test resource/,
+    },
+    {
+      name: 'duplicate HSK readiness lesson',
+      mutate: input => {
+        input.readiness.sections[1].modules[0].lessons[0].id =
+          input.readiness.sections[0].modules[0].lessons[0].id
+      },
+      error: /HSK readiness lessons: duplicate ID/,
     },
   ]
 
@@ -380,7 +438,10 @@ describe('deterministic offline generation', () => {
     expect(checked).toEqual(projection)
     expect(await fs.readFile(projectionFile, 'utf8')).toBe(`${JSON.stringify(projection, null, 2)}\n`)
     expect(noticeFiles).toEqual([
-      'README.md', 'sources.yaml', 'teaching/README.md', 'teaching/beginner/README.md',
+      'README.md', 'sources.yaml', 'teaching/README.md', 'teaching/hsk-audit.yaml',
+      'teaching/hsk-grammar-crosswalk.yaml',
+      'teaching/hsk-readiness.yaml',
+      'teaching/beginner/README.md',
       'licenses/CC-BY-SA-4.0.txt', 'licenses/CC-BY-SA-3.0.txt',
       'licenses/complete-hsk-MIT.txt', 'licenses/hsk30-MIT.txt',
     ])

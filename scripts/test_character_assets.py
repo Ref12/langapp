@@ -469,7 +469,7 @@ class InventoryTests(unittest.TestCase):
 
     def test_real_curriculum_snapshot_counts(self):
         root = Path(__file__).resolve().parents[1] / "curriculum"
-        expected = {"chinese": (2971, 0, 0, 0), "japanese": (2235, 2, 4, 22), "korean": (1276, 67, 0, 0)}
+        expected = {"chinese": (3001, 0, 0, 30), "japanese": (2235, 2, 4, 22), "korean": (1276, 67, 0, 0)}
         for language, (writing, components, cross_script, teaching_only) in expected.items():
             with self.subTest(language=language):
                 inventory = extract_inventory(root, language)

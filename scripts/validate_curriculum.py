@@ -11,6 +11,7 @@ import zipfile
 import yaml
 
 from curriculum_yaml import load_yaml
+from audit_hsk_readiness import validate_checked_in_audit
 from character_assets import validate_bundle
 from generate_curriculum_tokens import PILOT_LEVEL, compact_outputs, vocabulary_pairs
 from generate_teaching_track import load_reference_index, teaching_outputs
@@ -311,6 +312,9 @@ class Validator:
             self.document(directory / "teaching" / "README.md")
             self.document(directory / "teaching" / "grammar-notes.md")
             self.document(directory / "teaching" / "tourist" / "README.md")
+            if language == "chinese":
+                for message in validate_checked_in_audit(directory):
+                    self.error(directory / "teaching" / "hsk-audit.yaml", message)
             try:
                 generate_program(directory, get_adapter(language), check=True)
             except (OSError, UnicodeError, ValueError, KeyError, yaml.YAMLError) as exc:

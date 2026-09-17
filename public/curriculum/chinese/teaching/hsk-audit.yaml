@@ -1,0 +1,1518 @@
+schema_version: 2
+id: zh-hsk-curriculum-audit
+audited_on: '2026-09-16'
+claim: HSK exams can be passed using only knowledge available in the Chinese curriculum.
+conclusion: unsupported
+reason: The cumulative curriculum now contains every official HSK 1-6 vocabulary row and every recognized
+  legacy-list headword in the audited papers by its cutoff, but the official grammar crosswalk and learner
+  performance gates are not complete.
+cutoff_semantics: For HSK level N, knowledge available by the cutoff is the union of all vocabulary and
+  grammar introduced in the mapped course levels through that section. Official vocabulary rows and recognized
+  practice-paper headwords must be present by that cutoff; later levels and optional branches do not count.
+method:
+  official_vocabulary: Read all 5,400 numbered vocabulary rows from the official November 2025 syllabus
+    PDF, effective July 2026, using page coordinates and verify the published 300/200/500/1000/1600/1800
+    incremental counts.
+  legacy_vocabulary: Use old-1 through old-6 labels from the pinned Complete HSK Vocabulary dataset as
+    a normalized legacy six-level reference.
+  practice_papers: Extract question, option, listening-transcript, and writing-source text from five DigMandarin
+    PDFs and five additional Mandarin Mania PDFs per level. Longest-match segmentation uses only the cumulative
+    legacy reference lexicon. No paper or transcript is checked in.
+  grammar: Count locally authored HSK-labelled constructs and compare the explicit crosswalk status with
+    the 459 official HSK 1-6 grammar items. Candidate similarity is not counted as coverage without reviewed
+    item mappings.
+  skills_and_performance: Verify that readiness sections name the tested skills and explicit external
+    performance gates. Curriculum inventory coverage never substitutes for timed listening, reading, writing,
+    scoring, or learner evidence.
+sources:
+  official_syllabus:
+    id: ct-exam-syllabus
+    url: https://hsk.cn-bj.ufileos.com/3.0/%E6%96%B0%E7%89%88HSK%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B21219.pdf
+    sha256: ec74ce0439e837bbb15154be13e747ae798903b2fd3a331629df6c3b45504941
+    published: 2025-11
+    effective: 2026-07
+  legacy_vocabulary:
+    id: complete-hsk-vocabulary
+    url: https://raw.githubusercontent.com/drkameleon/complete-hsk-vocabulary/7ac65bf1a6387d35f1ade478906172a19311c7f9/complete.json
+    sha256: c869a0ce353279c9333d9b42c31fc3549785e8b40673dab57ee42bc99cd14131
+  grammar_crosswalk:
+    path: teaching/hsk-grammar-crosswalk.yaml
+    official_incremental_items:
+    - 70
+    - 78
+    - 96
+    - 95
+    - 70
+    - 50
+    status: not-reviewed
+  practice_collections:
+  - id: digmandarin
+    url: https://www.digmandarin.com/hsk-practice-test
+    retrieved_on: '2026-09-16'
+    license_status: no-open-redistribution-license-identified
+    paper_ids:
+    - H10901
+    - H10902
+    - H11003
+    - H11004
+    - H11005
+    - H20901
+    - H20902
+    - H21003
+    - H21004
+    - H21005
+    - H31001
+    - H31002
+    - H31003
+    - H31004
+    - H31005
+    - H41001
+    - H41002
+    - H41003
+    - H41004
+    - H41005
+    - H51001
+    - H51002
+    - H51003
+    - H51004
+    - H51005
+    - H61001
+    - H61002
+    - H61003
+    - H61004
+    - H61005
+  - id: mandarinmania-additional
+    url: https://mandarinmania.com/hsk-sample-tests/
+    institutional_mirror: https://www.confuciusinstitute.manchester.ac.uk/study/testing/hsk/hsk-learning-resources/
+    retrieved_on: '2026-09-16'
+    license_status: no-open-redistribution-license-identified
+    paper_ids:
+    - H11329
+    - H11330
+    - H11331
+    - H11332
+    - H11334
+    - H21329
+    - H21330
+    - H21331
+    - H21332
+    - H21334
+    - H31327
+    - H31328
+    - H31329
+    - H31330
+    - H31332
+    - H41327
+    - H41328
+    - H41329
+    - H41330
+    - H41332
+    - H51327
+    - H51328
+    - H51329
+    - H51330
+    - H51332
+    - H61327
+    - H61328
+    - H61329
+    - H61330
+    - H61332
+  practice_papers:
+    papers:
+    - id: H10901
+      hsk_level: 1
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H10901.pdf
+      sha256: 68e4e3323c36cf7abbb33b2de23ff5e77e7823975a87bcd7d1a481d65f79f572
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 14
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H10902
+      hsk_level: 1
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H10902.pdf
+      sha256: a6b5768704dd9a6fb00089d9b9ec51272638b9676e14c217d3907b7dded14e50
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 14
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11003
+      hsk_level: 1
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H11003.pdf
+      sha256: 545db964df7983d9033e2adf7d87db8b876269f2a14676bb1fc898bccd985563
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 14
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11004
+      hsk_level: 1
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H11004.pdf
+      sha256: 5b51bde9c9df652d7aa681313aee49dcda92aaa8e1b2f64682246c2a70bc6a07
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 14
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11005
+      hsk_level: 1
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H11005.pdf
+      sha256: 25caf242ea1454e06a088a35b98f63bf1a3427418212c952a487df97cb5a97d7
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 14
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H20901
+      hsk_level: 2
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H20901.pdf
+      sha256: 4be2c8d34ba2f871027ed8fff14b8b56223eb4ce91e2f2f7b8627e89163a8730
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H20902
+      hsk_level: 2
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H20902.pdf
+      sha256: d521dcc882d9d9bfbd75d3668f9393f6be029ed849d775ba23f1ee86530fddbe
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21003
+      hsk_level: 2
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H21003.pdf
+      sha256: 1ca3c171a64d41ab14f590141cb332499140b7a70d0f179ebc640c0076f3a0e5
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21004
+      hsk_level: 2
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H21004.pdf
+      sha256: b59f585ca747051ea9bab1a17e117066d6472e8719162cc3ca362b2d556f86d0
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21005
+      hsk_level: 2
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H21005.pdf
+      sha256: cc14d36e39f94f4461ea50b0727b61db29df6fa836a9c77e6f5ee5fa9c004af5
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31001
+      hsk_level: 3
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H31001.pdf
+      sha256: f6583e8218bcf85be5ffd6031736742f89d2f30647255552921fa27dff730e91
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 22
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31002
+      hsk_level: 3
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H31002.pdf
+      sha256: dabdffaa230696ede19ec7fe2e529b2cc972b818918a7b8cf39787a99741820c
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 22
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31003
+      hsk_level: 3
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H31003.pdf
+      sha256: 6cec3066b6f350417a71f047644f46519a6edee0f44eb9aa719d0a7a4ffb6a2f
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 22
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31004
+      hsk_level: 3
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H31004.pdf
+      sha256: 3a718f54277c99d516060a451b3ba9c74161b2dc6ddf528480eb205d19c883fd
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 22
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31005
+      hsk_level: 3
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H31005.pdf
+      sha256: 0dc8e5a2524319a6bb8367d018544fb5c097761b91cce7de8c9d58c1c9f57591
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 22
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41001
+      hsk_level: 4
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H41001.pdf
+      sha256: 042755fa1b306652cb3cd598f8ab07ecabc0927a5947d8529920491e7fbb5610
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 24
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41002
+      hsk_level: 4
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H41002.pdf
+      sha256: e165085a6e2deb861f37a426eee259f5f6ad27682b388a7f7ee8ab2a92ba7a99
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 24
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41003
+      hsk_level: 4
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H41003.pdf
+      sha256: c3b5dd23c0c34f3524b059a13be9c5197ea937b8675c27d3af96c8e238cf9204
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 24
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41004
+      hsk_level: 4
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H41004.pdf
+      sha256: 9e8b719a53f77f3941f8ba1b46fec4216a8c939ac62662efca65257f41c3644c
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 24
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41005
+      hsk_level: 4
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H41005.pdf
+      sha256: 7679ee28ddfc5134d13bf9b5ce6388b60c551dda645798bf9356aae3774fea49
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 24
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51001
+      hsk_level: 5
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H51001.pdf
+      sha256: fdd839fdbc7b9e15d5d9147790780ede869cd3eb0467ab9b9e2e62ea8c15e803
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 25
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51002
+      hsk_level: 5
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H51002.pdf
+      sha256: a2714c3fa5b84cb976b714c98e7f885b04835c47815650869abc45d10d566e35
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 25
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51003
+      hsk_level: 5
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H51003.pdf
+      sha256: d90264d9980655784a1213f916599eb6d8345e6f696777c2430485f0f7d37894
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 25
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51004
+      hsk_level: 5
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H51004.pdf
+      sha256: 99b608258adf67a56953b1f999c6c11f9ab5f16f106c91678a7515c8be833067
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 25
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51005
+      hsk_level: 5
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H51005.pdf
+      sha256: 7dce96ac0f6488c84dd8842ae0bf1dc36b45559faa06abaa77eed6a446d978d5
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 25
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61001
+      hsk_level: 6
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H61001.pdf
+      sha256: f9b01d031867bcd1bc3ad568f17ba8e66368b4e50f60e80ec62c63debc9a0c36
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 30
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61002
+      hsk_level: 6
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H61002.pdf
+      sha256: da9bccc61d5674ada7a476a8b2b9606f4474fc28a8e6eb7289a3580af058f032
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 30
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61003
+      hsk_level: 6
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/04/H61003.pdf
+      sha256: 409064b01fe9a81cc05f1f7e95b45f0fa47f07a001b276f31c2d1e203829d904
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 31
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61004
+      hsk_level: 6
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H61004.pdf
+      sha256: 1d5e53cdbfe9da04068f1c424cb72202c15cbf2ec08a71f5f0b6a5641aa263e1
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 30
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61005
+      hsk_level: 6
+      collection_id: digmandarin
+      url: https://www.digmandarin.com/wp-content/uploads/2022/05/H61005.pdf
+      sha256: e74efaf782a52f28a643a1402ead2f712a739261a6009619df310df2a2c2adaa
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 30
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11329
+      hsk_level: 1
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-1/H11329.pdf
+      sha256: f7ad5a5fe70c5366f2bc67015f9929fd70b1b1e24d890d6ff29687356357204e
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 11
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11330
+      hsk_level: 1
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-1/H11330.pdf
+      sha256: db356ea22313e6abe3ff4e8ad9dc76195dd2ddb5d218819bedf34c7fe96e8c00
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 11
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11331
+      hsk_level: 1
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-1/H11331.pdf
+      sha256: 5733b0487cf91a6d417b926d2ffc5c37afba687dabf876d0052206d37e073351
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 11
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11332
+      hsk_level: 1
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-1/H11332.pdf
+      sha256: 4d8225117110a934bfffb23912bd6af5ddb25e423d6894ac2732d5c9718245e2
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 11
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H11334
+      hsk_level: 1
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-1/H11334.pdf
+      sha256: 6159b5d7355592a427a6a6233d75a9b58ea4b20f374075e4fa7b2e36eddbdb16
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 11
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21329
+      hsk_level: 2
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-2/H21329.pdf
+      sha256: 9a977c19b88449602b6ac787143c23abc16e58a0b9d88e40312f7ea62bf9dd92
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 15
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21330
+      hsk_level: 2
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-2/H21330.pdf
+      sha256: 20fd89fc35dadc26f0b664b2438b78e870f2fb1479f95b41d9f62badff3d400e
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 15
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21331
+      hsk_level: 2
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-2/H21331.pdf
+      sha256: 2d88ceb145645e62b999bb18c6f715dda063bf294fb030c51c32dc526bdaae9b
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 15
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21332
+      hsk_level: 2
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-2/H21332.pdf
+      sha256: 3a16d3537b7ac15e03247c06648a2c1dacdb795e551f690ca443e8cadd367fed
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 15
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H21334
+      hsk_level: 2
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-2/H21334.pdf
+      sha256: b51c3cb3ea05d623119d6685e9e6cf69037d39728335c3c11ec90a27f3630f9a
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 15
+      sections:
+      - listening
+      - reading
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31327
+      hsk_level: 3
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-3/H31327.pdf
+      sha256: 0cfe003a43c0a823c07c9ca9719d4daf77c4a2731606d8c14eb3c30f1e2ba209
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 16
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31328
+      hsk_level: 3
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-3/H31328.pdf
+      sha256: bb2539bbeb2733479c8e36458d0ab781262d8dff2f35d4588122cc00528bc07a
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 16
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31329
+      hsk_level: 3
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-3/H31329.pdf
+      sha256: c086b922c2b25f06e3d8bcbea744a7557fcbfbce91e98913ff07eeb40f311a62
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 16
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31330
+      hsk_level: 3
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-3/H31330.pdf
+      sha256: e7581a6566d5094126c0f975991a1edb04f32d78d3ed1a23f50e65d536a7c9ae
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 16
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H31332
+      hsk_level: 3
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-3/H31332.pdf
+      sha256: 76d51bdf3d0737fb2bfb874fe98b8c2cf0800d5ad915f0d14474da09d989dec8
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 16
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41327
+      hsk_level: 4
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-4/H41327.pdf
+      sha256: 20c0832ddacf505fa4ea8d5db6e601ba9717e274b4cf93ad1b126f8e54543e85
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41328
+      hsk_level: 4
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-4/H41328.pdf
+      sha256: 43838b9f9e2542ad4d738da6b4afd9d1c39e0b6d579cb1ce9d33b396ea822d03
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41329
+      hsk_level: 4
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-4/H41329.pdf
+      sha256: c394a70c5176720361ce905f65930ffaed232c0612819bfb4eee85868227bb01
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41330
+      hsk_level: 4
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-4/H41330.pdf
+      sha256: 3a64fc90a0a24d15351a1d71a69e972d98b9b642048c3e05e008746490c85398
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H41332
+      hsk_level: 4
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-4/H41332.pdf
+      sha256: 954d3f20cb83e38c334012d6eea21ddd5b087a87d6325e1454037232ea2d1eaa
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 18
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51327
+      hsk_level: 5
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-5/H51327.pdf
+      sha256: d50ca3c9fa6028a2b86767c6409c74e1579c02d399531a20bd982b1e460d6942
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 20
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51328
+      hsk_level: 5
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-5/H51328.pdf
+      sha256: c83e6156801abdc21d9d7f49638d1efcd2398d4b5527e6da8079217b3ba67fd7
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 20
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51329
+      hsk_level: 5
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-5/H51329.pdf
+      sha256: 4beb8f43ac86c512e56eb9ce54128cc2a8313d17c09becea40e5a14ad66da39a
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 20
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51330
+      hsk_level: 5
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-5/H51330.pdf
+      sha256: 33f026c11b4f668750cc32ebcff6a803084e46e4edaf254687135a15c898cef3
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 20
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H51332
+      hsk_level: 5
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-5/H51332.pdf
+      sha256: 673a3c1b3c0bb35035680c9075b776f7c522c6309119d7e28bb92cdadff78365
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 20
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61327
+      hsk_level: 6
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-6/H61327.pdf
+      sha256: 26770b22808b2c5963113444d53a943bc222b7888bc7c4e22c073e5d19b3b2c5
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 23
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61328
+      hsk_level: 6
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-6/H61328.pdf
+      sha256: be744ff7be1e842a80aa5199e8610e06176fd5b255f896fa0994cb39b26017b4
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 23
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61329
+      hsk_level: 6
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-6/H61329.pdf
+      sha256: 89acbe012312933f40845fe1e1915ecf56d1fa24ec4038187065b744c0df8984
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 23
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61330
+      hsk_level: 6
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-6/H61330.pdf
+      sha256: 5f8cac4df1614bf97df342d4ab4192bc36e4c32ac8b3bcdf7bfc2a3778ce1666
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 23
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+    - id: H61332
+      hsk_level: 6
+      collection_id: mandarinmania-additional
+      url: https://downloads.mandarinmania.com/hsk-6/H61332.pdf
+      sha256: 355b20837ba96ff07d471ec3eec9f6a7b3a2aed8548cf8388e2fce1ca1540b74
+      format: pdf
+      format_generation: legacy-six-level
+      pages: 23
+      sections:
+      - listening
+      - reading
+      - writing
+      license_status: no-open-redistribution-license-identified
+      retained: metadata-and-non-substitutive-coverage-summary-only
+  official_mock_platform:
+    id: hsk-mock
+    url: https://hskmock.com/
+    retrieved_on: '2026-09-16'
+    use: External timed performance evidence only; no test content retained.
+results:
+- hsk_level: 1
+  course_levels:
+  - 1
+  - 2
+  - 3
+  - 4
+  curriculum:
+    cumulative_headwords: 352
+    headword_sha256: 14075ddea0e000700c80b5398998233aaba48f65c0fc9e3b00ab8c6edd6ea161
+    cumulative_grammar_constructs: 25
+    grammar_sha256: e458f116e58d88a106812091bc2e71d206b3ac96bd8ab2f938bbdf633b9452a1
+  official_2026_vocabulary:
+    audited_rows: 300
+    mapped_covered_rows: 300
+    full_curriculum_covered_rows: 300
+    expected_rows: 300
+    unresolved_extraction_rows: 0
+    mapped_coverage_lower_percent: 100.0
+    mapped_coverage_upper_percent: 100.0
+    full_curriculum_coverage_lower_percent: 100.0
+    full_curriculum_coverage_upper_percent: 100.0
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  legacy_six_level_vocabulary:
+    mapped_covered_rows: 150
+    full_curriculum_covered_rows: 150
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    normalized_reference_headwords: 150
+  practice_exam_vocabulary:
+    mapped_covered_rows: 150
+    full_curriculum_covered_rows: 150
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    paper_ids:
+    - H10901
+    - H10902
+    - H11003
+    - H11004
+    - H11005
+    - H11329
+    - H11330
+    - H11331
+    - H11332
+    - H11334
+    paper_count: 10
+    collection_ids:
+    - digmandarin
+    - mandarinmania-additional
+    observed_unique_legacy_headwords: 150
+    recognized_headword_occurrences: 2602
+    unmatched_han_character_occurrences: 932
+    unmatched_unique_han_characters: 60
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  grammar:
+    authored_reference_constructs: 25
+    available_by_mapped_cutoff: 25
+    missing_by_mapped_cutoff: 0
+    official_cumulative_items: 70
+    reviewed_crosswalk_items: 0
+    remaining_unmapped_official_items: 70
+    official_crosswalk_status: not-reviewed
+  skills_and_performance:
+    declared_exam_skills:
+    - listening
+    - reading
+    skill_crosswalk:
+      listening:
+        module_id: hsk-1-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      reading:
+        module_id: hsk-1-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+    skill_crosswalk_status: complete-for-curriculum-support
+    performance_gates_declared: 4
+    performance_status: not-assessed
+  gates:
+    official_vocabulary: passed
+    practice_vocabulary: passed
+    grammar_crosswalk: blocked
+    timed_unseen_mock_performance: not-assessed
+    listening_audio_performance: not-assessed
+    writing_performance: not-applicable
+  verdict: not-demonstrated
+- hsk_level: 2
+  course_levels:
+  - 5
+  - 6
+  - 7
+  - 8
+  curriculum:
+    cumulative_headwords: 941
+    headword_sha256: 26d90761dc83cb14165aeb735f1d053298d03f361a8198aba9d0e7f916bae365
+    cumulative_grammar_constructs: 65
+    grammar_sha256: 76cb2f1af6d1244c71ef423bba150b75bdc4678339f8c061b1191edd8c3f655f
+  official_2026_vocabulary:
+    audited_rows: 500
+    mapped_covered_rows: 500
+    full_curriculum_covered_rows: 500
+    expected_rows: 500
+    unresolved_extraction_rows: 0
+    mapped_coverage_lower_percent: 100.0
+    mapped_coverage_upper_percent: 100.0
+    full_curriculum_coverage_lower_percent: 100.0
+    full_curriculum_coverage_upper_percent: 100.0
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  legacy_six_level_vocabulary:
+    mapped_covered_rows: 297
+    full_curriculum_covered_rows: 297
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    normalized_reference_headwords: 297
+  practice_exam_vocabulary:
+    mapped_covered_rows: 295
+    full_curriculum_covered_rows: 295
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    paper_ids:
+    - H20901
+    - H20902
+    - H21003
+    - H21004
+    - H21005
+    - H21329
+    - H21330
+    - H21331
+    - H21332
+    - H21334
+    paper_count: 10
+    collection_ids:
+    - digmandarin
+    - mandarinmania-additional
+    observed_unique_legacy_headwords: 295
+    recognized_headword_occurrences: 8714
+    unmatched_han_character_occurrences: 1745
+    unmatched_unique_han_characters: 106
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  grammar:
+    authored_reference_constructs: 50
+    available_by_mapped_cutoff: 50
+    missing_by_mapped_cutoff: 0
+    official_cumulative_items: 148
+    reviewed_crosswalk_items: 0
+    remaining_unmapped_official_items: 148
+    official_crosswalk_status: not-reviewed
+  skills_and_performance:
+    declared_exam_skills:
+    - listening
+    - reading
+    skill_crosswalk:
+      listening:
+        module_id: hsk-2-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      reading:
+        module_id: hsk-2-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+    skill_crosswalk_status: complete-for-curriculum-support
+    performance_gates_declared: 4
+    performance_status: not-assessed
+  gates:
+    official_vocabulary: passed
+    practice_vocabulary: passed
+    grammar_crosswalk: blocked
+    timed_unseen_mock_performance: not-assessed
+    listening_audio_performance: not-assessed
+    writing_performance: not-applicable
+  verdict: not-demonstrated
+- hsk_level: 3
+  course_levels:
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  curriculum:
+    cumulative_headwords: 1854
+    headword_sha256: 9fe1d92cf4a8fa4c9e2b8a0cddc26eede20d64dd9c3b3d146a42816a3671d32c
+    cumulative_grammar_constructs: 104
+    grammar_sha256: 3a94cdf6ed7f8f0de6cb2287d80e1da2d34f1eb2fb1a596b631082f61134e54a
+  official_2026_vocabulary:
+    audited_rows: 1000
+    mapped_covered_rows: 1000
+    full_curriculum_covered_rows: 1000
+    expected_rows: 1000
+    unresolved_extraction_rows: 0
+    mapped_coverage_lower_percent: 100.0
+    mapped_coverage_upper_percent: 100.0
+    full_curriculum_coverage_lower_percent: 100.0
+    full_curriculum_coverage_upper_percent: 100.0
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  legacy_six_level_vocabulary:
+    mapped_covered_rows: 595
+    full_curriculum_covered_rows: 595
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    normalized_reference_headwords: 595
+  practice_exam_vocabulary:
+    mapped_covered_rows: 593
+    full_curriculum_covered_rows: 593
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    paper_ids:
+    - H31001
+    - H31002
+    - H31003
+    - H31004
+    - H31005
+    - H31327
+    - H31328
+    - H31329
+    - H31330
+    - H31332
+    paper_count: 10
+    collection_ids:
+    - digmandarin
+    - mandarinmania-additional
+    observed_unique_legacy_headwords: 593
+    recognized_headword_occurrences: 18792
+    unmatched_han_character_occurrences: 2842
+    unmatched_unique_han_characters: 229
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  grammar:
+    authored_reference_constructs: 75
+    available_by_mapped_cutoff: 75
+    missing_by_mapped_cutoff: 0
+    official_cumulative_items: 244
+    reviewed_crosswalk_items: 0
+    remaining_unmapped_official_items: 244
+    official_crosswalk_status: not-reviewed
+  skills_and_performance:
+    declared_exam_skills:
+    - listening
+    - reading
+    - writing
+    skill_crosswalk:
+      listening:
+        module_id: hsk-3-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      reading:
+        module_id: hsk-3-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      writing:
+        module_id: hsk-3-writing
+        status: curriculum-support-declared
+        performance: external-evidence-required
+    skill_crosswalk_status: complete-for-curriculum-support
+    performance_gates_declared: 5
+    performance_status: not-assessed
+  gates:
+    official_vocabulary: passed
+    practice_vocabulary: passed
+    grammar_crosswalk: blocked
+    timed_unseen_mock_performance: not-assessed
+    listening_audio_performance: not-assessed
+    writing_performance: not-assessed
+  verdict: not-demonstrated
+- hsk_level: 4
+  course_levels:
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  curriculum:
+    cumulative_headwords: 3299
+    headword_sha256: 25e68d43a0bbca16a2426a7030fddc4c232d84328354f8e8db3c4cccd5d1c77c
+    cumulative_grammar_constructs: 130
+    grammar_sha256: e475fed3c214b3bcf232fbe9fa9b096d026cf40c92f0cc0856445062c05d4ec0
+  official_2026_vocabulary:
+    audited_rows: 2000
+    mapped_covered_rows: 2000
+    full_curriculum_covered_rows: 2000
+    expected_rows: 2000
+    unresolved_extraction_rows: 0
+    mapped_coverage_lower_percent: 100.0
+    mapped_coverage_upper_percent: 100.0
+    full_curriculum_coverage_lower_percent: 100.0
+    full_curriculum_coverage_upper_percent: 100.0
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  legacy_six_level_vocabulary:
+    mapped_covered_rows: 1191
+    full_curriculum_covered_rows: 1193
+    mapped_coverage_percent: 99.83
+    full_curriculum_coverage_percent: 100.0
+    normalized_reference_headwords: 1193
+  practice_exam_vocabulary:
+    mapped_covered_rows: 1178
+    full_curriculum_covered_rows: 1178
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    paper_ids:
+    - H41001
+    - H41002
+    - H41003
+    - H41004
+    - H41005
+    - H41327
+    - H41328
+    - H41329
+    - H41330
+    - H41332
+    paper_count: 10
+    collection_ids:
+    - digmandarin
+    - mandarinmania-additional
+    observed_unique_legacy_headwords: 1178
+    recognized_headword_occurrences: 28879
+    unmatched_han_character_occurrences: 4536
+    unmatched_unique_han_characters: 454
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  grammar:
+    authored_reference_constructs: 100
+    available_by_mapped_cutoff: 99
+    missing_by_mapped_cutoff: 1
+    official_cumulative_items: 339
+    reviewed_crosswalk_items: 0
+    remaining_unmapped_official_items: 339
+    official_crosswalk_status: not-reviewed
+  skills_and_performance:
+    declared_exam_skills:
+    - listening
+    - reading
+    - writing
+    skill_crosswalk:
+      listening:
+        module_id: hsk-4-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      reading:
+        module_id: hsk-4-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      writing:
+        module_id: hsk-4-writing
+        status: curriculum-support-declared
+        performance: external-evidence-required
+    skill_crosswalk_status: complete-for-curriculum-support
+    performance_gates_declared: 5
+    performance_status: not-assessed
+  gates:
+    official_vocabulary: passed
+    practice_vocabulary: passed
+    grammar_crosswalk: blocked
+    timed_unseen_mock_performance: not-assessed
+    listening_audio_performance: not-assessed
+    writing_performance: not-assessed
+  verdict: not-demonstrated
+- hsk_level: 5
+  course_levels:
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  curriculum:
+    cumulative_headwords: 5423
+    headword_sha256: 4016022666aa237412e904dcb65fb8f005350677dd662582e813b231d667e5a2
+    cumulative_grammar_constructs: 157
+    grammar_sha256: 2ecd66e56c3738869064059873976347bb3d3f64c57ea04219fbfc4c1fbd451d
+  official_2026_vocabulary:
+    audited_rows: 3600
+    mapped_covered_rows: 3600
+    full_curriculum_covered_rows: 3600
+    expected_rows: 3600
+    unresolved_extraction_rows: 0
+    mapped_coverage_lower_percent: 100.0
+    mapped_coverage_upper_percent: 100.0
+    full_curriculum_coverage_lower_percent: 100.0
+    full_curriculum_coverage_upper_percent: 100.0
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  legacy_six_level_vocabulary:
+    mapped_covered_rows: 2412
+    full_curriculum_covered_rows: 2467
+    mapped_coverage_percent: 96.83
+    full_curriculum_coverage_percent: 99.04
+    normalized_reference_headwords: 2491
+  practice_exam_vocabulary:
+    mapped_covered_rows: 2220
+    full_curriculum_covered_rows: 2220
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    paper_ids:
+    - H51001
+    - H51002
+    - H51003
+    - H51004
+    - H51005
+    - H51327
+    - H51328
+    - H51329
+    - H51330
+    - H51332
+    paper_count: 10
+    collection_ids:
+    - digmandarin
+    - mandarinmania-additional
+    observed_unique_legacy_headwords: 2220
+    recognized_headword_occurrences: 44611
+    unmatched_han_character_occurrences: 13027
+    unmatched_unique_han_characters: 1332
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  grammar:
+    authored_reference_constructs: 125
+    available_by_mapped_cutoff: 121
+    missing_by_mapped_cutoff: 4
+    official_cumulative_items: 409
+    reviewed_crosswalk_items: 0
+    remaining_unmapped_official_items: 409
+    official_crosswalk_status: not-reviewed
+  skills_and_performance:
+    declared_exam_skills:
+    - listening
+    - reading
+    - writing
+    skill_crosswalk:
+      listening:
+        module_id: hsk-5-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      reading:
+        module_id: hsk-5-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      writing:
+        module_id: hsk-5-writing
+        status: curriculum-support-declared
+        performance: external-evidence-required
+    skill_crosswalk_status: complete-for-curriculum-support
+    performance_gates_declared: 5
+    performance_status: not-assessed
+  gates:
+    official_vocabulary: passed
+    practice_vocabulary: passed
+    grammar_crosswalk: blocked
+    timed_unseen_mock_performance: not-assessed
+    listening_audio_performance: not-assessed
+    writing_performance: not-assessed
+  verdict: not-demonstrated
+- hsk_level: 6
+  course_levels:
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  curriculum:
+    cumulative_headwords: 8104
+    headword_sha256: 658dcf72a360a7dd2d61089011844318c1a3c5cfb7a3ef5de8c55ca2ed0551df
+    cumulative_grammar_constructs: 175
+    grammar_sha256: c36b02fae15ce84f63307b5d16c95c4ac62cf3fe86d727e401bd187b34639a27
+  official_2026_vocabulary:
+    audited_rows: 5400
+    mapped_covered_rows: 5400
+    full_curriculum_covered_rows: 5400
+    expected_rows: 5400
+    unresolved_extraction_rows: 0
+    mapped_coverage_lower_percent: 100.0
+    mapped_coverage_upper_percent: 100.0
+    full_curriculum_coverage_lower_percent: 100.0
+    full_curriculum_coverage_upper_percent: 100.0
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  legacy_six_level_vocabulary:
+    mapped_covered_rows: 4380
+    full_curriculum_covered_rows: 4380
+    mapped_coverage_percent: 87.76
+    full_curriculum_coverage_percent: 87.76
+    normalized_reference_headwords: 4991
+  practice_exam_vocabulary:
+    mapped_covered_rows: 3449
+    full_curriculum_covered_rows: 3449
+    mapped_coverage_percent: 100.0
+    full_curriculum_coverage_percent: 100.0
+    paper_ids:
+    - H61001
+    - H61002
+    - H61003
+    - H61004
+    - H61005
+    - H61327
+    - H61328
+    - H61329
+    - H61330
+    - H61332
+    paper_count: 10
+    collection_ids:
+    - digmandarin
+    - mandarinmania-additional
+    observed_unique_legacy_headwords: 3449
+    recognized_headword_occurrences: 64861
+    unmatched_han_character_occurrences: 23602
+    unmatched_unique_han_characters: 1850
+    missing_by_mapped_cutoff_examples: []
+    missing_from_full_curriculum_examples: []
+  grammar:
+    authored_reference_constructs: 150
+    available_by_mapped_cutoff: 147
+    missing_by_mapped_cutoff: 3
+    official_cumulative_items: 459
+    reviewed_crosswalk_items: 0
+    remaining_unmapped_official_items: 459
+    official_crosswalk_status: not-reviewed
+  skills_and_performance:
+    declared_exam_skills:
+    - listening
+    - reading
+    - writing
+    skill_crosswalk:
+      listening:
+        module_id: hsk-6-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      reading:
+        module_id: hsk-6-receptive-skills
+        status: curriculum-support-declared
+        performance: external-evidence-required
+      writing:
+        module_id: hsk-6-writing
+        status: curriculum-support-declared
+        performance: external-evidence-required
+    skill_crosswalk_status: complete-for-curriculum-support
+    performance_gates_declared: 5
+    performance_status: not-assessed
+  gates:
+    official_vocabulary: passed
+    practice_vocabulary: passed
+    grammar_crosswalk: blocked
+    timed_unseen_mock_performance: not-assessed
+    listening_audio_performance: not-assessed
+    writing_performance: not-assessed
+  verdict: not-demonstrated
+overall_gates:
+  source_integrity: passed
+  official_vocabulary_at_every_cutoff: passed
+  practice_vocabulary_at_every_cutoff: passed
+  official_grammar_crosswalk: blocked
+  timed_unseen_mock_performance: not-assessed
+  listening_audio_performance: not-assessed
+  writing_performance: not-assessed
+  current_format_confirmation_before_exam: required
+limitations:
+- Coverage is inventory containment, not evidence that a learner has mastered the material.
+- The official vocabulary extraction verifies all 5,400 numbered rows, but matching a headword cannot
+  prove control of every listed part of speech or sense.
+- All 60 practice papers use the legacy six-level format, not the July 2026 syllabus.
+- Longest-match segmentation can miss unknown compounds or proper names and cannot determine the intended
+  sense.
+- PDF transcripts cover linguistic content but not audio speed, accent, noise, or listening performance.
+- No automatic surface-text method can prove grammar coverage; reviewed item-level official grammar mappings
+  remain incomplete.
+- Passing also depends on task strategy, timing, comprehension, writing, and the learner's demonstrated
+  performance.
+- The external papers have no identified open redistribution license, so only URLs, retrieval dates, hashes,
+  metadata, and aggregate non-substitutive coverage summaries are retained.

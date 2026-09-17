@@ -185,8 +185,8 @@ TypeScript, and replies and tool calls are still validated regardless of prompts
 
 `scripts/generate-app-curriculum.mjs` creates the deterministic
 `src/data/curriculum.generated.json` projection from the checked-in Chinese
-teaching program and reference grammar. No external service or runtime YAML
-parser is required. The app adapter is `src/data/curriculum.ts`.
+teaching program, HSK readiness plan, and reference grammar. No external service
+or runtime YAML parser is required. The app adapter is `src/data/curriculum.ts`.
 Canonical sense/construction IDs, disambiguators, pinyin, authored order, and
 review dependencies are retained. Small lesson IDs identify a level, module,
 and part; their introduction boundaries must remain stable in future revisions
@@ -197,11 +197,23 @@ Examples can contain additional supporting vocabulary, with English translations
 viewing them never introduces those words or awards grammar progress. The app
 does not fabricate vocabulary examples, parts of speech, or grammar pinyin.
 The six-phase progression is independently authored; reference HSK numbers are
-provenance, not teaching priorities or examination claims.
+provenance, not teaching priorities or examination claims. The separate
+`curriculum/chinese/teaching/hsk-readiness.yaml` overlay maps the thirty course
+levels into HSK 1-6 preparation sections with skill work and mock-test cycles.
+It does not convert course progress into an official HSK result. The companion
+`hsk-audit.yaml`, checked by `scripts/audit_hsk_readiness.py`, verifies complete
+cumulative headword coverage for all 5,400 official July 2026 vocabulary rows
+and recognized legacy-list vocabulary in ten hash-pinned papers per level.
+The pass claim remains unsupported until the official grammar crosswalk and
+external timed listening, reading, and writing performance gates are complete.
+No copyrighted paper or transcript is checked in.
+HSK 7-9 is orientation-only until translation, speaking, source-based writing,
+and an audited current-syllabus split are supported.
 
 ```powershell
 npm run curriculum:generate
 npm run curriculum:check
+python scripts\audit_hsk_readiness.py --check
 ```
 
 Edit the original curriculum authoring sources and regenerate their source views

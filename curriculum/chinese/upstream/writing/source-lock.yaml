@@ -3,7 +3,7 @@ revision: 68d10a4b21150cae5e1ebbd223eed289cf32d90c
 upstream_url: https://codeload.github.com/chanind/hanzi-writer-data/tar.gz/68d10a4b21150cae5e1ebbd223eed289cf32d90c
 upstream_sha256: 6596f675e58dafb5b6bd58d003e0f407d88e4bbccf8477c1ee2039a6faefab55
 archive: upstream/writing/hanzi-writer-selected.zip
-archive_sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+archive_sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
 license: licenses/hanzi-writer-ARPHICPL.TXT
 license_sha256: 5590533436c70f10f2f524ee61456238c290175c6662fbe1c700b5f038a6d328
 members:
@@ -472,6 +472,9 @@ members:
   data/侃.json:
     sha256: 100a22850aa17fbd1b3ad9a484863a56098f7275cc99db2864837c095a6142c7
     bytes: 2437
+  data/侄.json:
+    sha256: 7733f113cb3b704f8f8404e95fb7af87a4689ee1f6a2f28e3a75197cc14414a1
+    bytes: 2333
   data/侈.json:
     sha256: c3212c108a5f2245cc47bb4238d96c633fe604fe4e8b37dfe9648aab34d0ddb3
     bytes: 2441
@@ -1597,6 +1600,9 @@ members:
   data/啤.json:
     sha256: 5d83816ca0120828b49c860831ee895a8d406ea6c7b6fed80281579ac2e432e1
     bytes: 3317
+  data/啥.json:
+    sha256: 32fc4bf5c928fd61b28607d3a397722a08982be42cd04ed89c2977d2e7b2e2cf
+    bytes: 2902
   data/啦.json:
     sha256: b0020531431b4ba19a3d0ea4ff296784a9d662badb23d6ca92daa58118bb4ccb
     bytes: 2859
@@ -1648,9 +1654,15 @@ members:
   data/嗦.json:
     sha256: efda6288f497ec19c0d0d2148429288c5821c1ff0cb28bb9d6bb0d0019d0f00d
     bytes: 3753
+  data/嗯.json:
+    sha256: e60b222cd48aa40735e098256608067eb983c93667f40bccf9e4fdc4a2b7ad58
+    bytes: 3442
   data/嗽.json:
     sha256: 92a82a52f3ad4b28989ade394b6882a6a1b409d3058e534a6fa0174694e7edd1
     bytes: 3939
+  data/嘈.json:
+    sha256: f3bf44b34d8c37cac3fbd6edb5c986f69f9169dc64c5fe18e3f1d9035593eb84
+    bytes: 4309
   data/嘉.json:
     sha256: 42090484f0f96a45a56511bc0f9918051ec1d3170724ddd9baa8faa5b5129e68
     bytes: 3820
@@ -1675,6 +1687,9 @@ members:
   data/噪.json:
     sha256: 1d450ace9d08b34baeb8ae2ad2e3f19313ae2d9430cb638cc2eb909cf0ac0ecc
     bytes: 4157
+  data/嚏.json:
+    sha256: f833a36909cfc7d549d600ed88b5982d9b683c883ed8ffa4083c21cc55553b5b
+    bytes: 4592
   data/嚷.json:
     sha256: f841ee315aa9bdebaf846aef29355fb6cf74133ce5225565f7a03a2ec634eb3e
     bytes: 5399
@@ -2164,6 +2179,9 @@ members:
   data/子.json:
     sha256: f5b7ff9aa3de64ec676e3f06e7c22795aa834eb11eec43b9423f355db5f46474
     bytes: 1366
+  data/孔.json:
+    sha256: 00db90319ce5b9ba2c0e21a74ee1272756746733a8a2bbbcd08093ef13621449
+    bytes: 1694
   data/孕.json:
     sha256: b73d7f98d91b6b8e173fff1ee0d07af1db93c6f0d2b986031604c4b2e7a31e4f
     bytes: 2235
@@ -2494,6 +2512,9 @@ members:
   data/峡.json:
     sha256: 5feb2b4e29f968eb850f2e7e00fa7ae38a684403852963c7192b012a7f969c77
     bytes: 2505
+  data/峭.json:
+    sha256: d59ec683a617eca3ab7347f05873e14e0c3fb17481e1114b60a24692e259629e
+    bytes: 2715
   data/峰.json:
     sha256: bc830470871ca7aeab7aa0f73299b30382e529a3877313ad41bd99c13aa1f46d
     bytes: 3164
@@ -2524,6 +2545,9 @@ members:
   data/川.json:
     sha256: 7c282516c7a4502cbf4b32cde50b5a7b678163fb6e047a3c4654ddd80a08f6d5
     bytes: 902
+  data/州.json:
+    sha256: 008171a553c3f91cbc15c9d681582fe8c6108dcfb944a65c4f7409e6197d2fd8
+    bytes: 1573
   data/巡.json:
     sha256: 35280a23c78dd035b3548a9ea85aa83348c930d68d3be542c9dac6f7b7d9cdea
     bytes: 2330
@@ -2662,6 +2686,9 @@ members:
   data/庆.json:
     sha256: bbea7a94d4c04c03b117342dbb12f4a35d15f26e4ce62b20aa4730f26a090350
     bytes: 1722
+  data/庇.json:
+    sha256: e3956850310348467533d41a238fcd0d0e82a89868938d515ff4613be6e2cbda
+    bytes: 2209
   data/床.json:
     sha256: 61e32987825856552772bfaf429cc5ef9a9f4b7a7a61b415b749670c07cb1954
     bytes: 1982
@@ -2851,6 +2878,9 @@ members:
   data/徘.json:
     sha256: b85c650639a1a2bd752025343e1c2a9e93cfddcbd8bc4eea9777a35c59f50638
     bytes: 2811
+  data/徙.json:
+    sha256: 25386a713ee4a418dff6c3fe6faa9db753bdf8cf7894d51e45d0de00bc569276
+    bytes: 2792
   data/御.json:
     sha256: 8e09eb7a45c767d80ca1dbc34cd1d3a179f72656e9550da4d8dda618d4c73e81
     bytes: 3208
@@ -4006,6 +4036,9 @@ members:
   data/智.json:
     sha256: 7c59946de007142a2329207ec4fb26cc1da976e0dcdeadfe65c45cc8e66f64a7
     bytes: 3278
+  data/晾.json:
+    sha256: b7026fc14ccaf6af88d500a1283aa303704fd72836af62bc7c374ff0e40bcfac
+    bytes: 3189
   data/暂.json:
     sha256: f761e348cf217834e3a0d01527250ac8017f3ac4f82fb0d5d9715239bbd34472
     bytes: 3678
@@ -4294,6 +4327,9 @@ members:
   data/桑.json:
     sha256: 4df39919212b62882a690f2d7a3cb499486a07e734f1c2e2ec280390c10b2363
     bytes: 3204
+  data/桔.json:
+    sha256: 70f83ffc6d7da215d82fcd692f036fa32c2a7cd587b8b33f6a6f49d2a367a621
+    bytes: 2612
   data/档.json:
     sha256: 4456a38b679d963c0490f757973d95746db264ac3555aaea0d6344bb5fa6e995
     bytes: 2429
@@ -4348,12 +4384,18 @@ members:
   data/棒.json:
     sha256: ed10ee2e7936cf4904e219d3217dad5a0d19cfb5e217e27170df7cf0903721ec
     bytes: 3541
+  data/棕.json:
+    sha256: 7769f6a010bebbb4f86cb5a0b222718d14041010b1c54ddf95ed5495d4f0fea6
+    bytes: 3092
   data/棘.json:
     sha256: 1f741e9da82bec7f997e0de12b3d1ee9332833ec2aae86b93bac6a0d204ccafd
     bytes: 3658
   data/棚.json:
     sha256: e54a71cc96c19379663e831caa810d63f280cbeefda3e109993ccc6f92578b6b
     bytes: 3470
+  data/森.json:
+    sha256: 7d70d82003fb9a09090a8bff2947e75a071e96cbf967adca535665c59b5e98db
+    bytes: 3035
   data/棱.json:
     sha256: c2e200fc794652995466ee13130e0938afe56ae23e52e0cfcd99f8be85a2ff25
     bytes: 3296
@@ -4369,6 +4411,9 @@ members:
   data/植.json:
     sha256: cdc587f97d37ffbe4a88e187f96c8002a501373ef2bb2752a09202eadf2ff2ad
     bytes: 3141
+  data/椎.json:
+    sha256: 31d8680a28d46c9de934579d4f2bbdba6b6c520b8568c2f2734d2a5bca43c13a
+    bytes: 3053
   data/椒.json:
     sha256: 9f7d886c767337d01dccb37017a6d015599ef8bffa78bd2e36e17cfe0cc6e387
     bytes: 3284
@@ -4432,6 +4477,9 @@ members:
   data/欣.json:
     sha256: 602be8ad2906fee80c5221326b1524c91693fe337b38e40aa887036e9de698b4
     bytes: 2467
+  data/欧.json:
+    sha256: 4a9551981cd06dfd74c1d901c7b97c53f47a4bac631a8bbf3c6b5e1435f693ef
+    bytes: 2516
   data/欲.json:
     sha256: afd18ca5983f54e6b3ed95251c1e15a48cd005e5ee4f5794d86002fda8e4af55
     bytes: 3020
@@ -4735,6 +4783,9 @@ members:
   data/洪.json:
     sha256: 701a8db4f9834696ce02f7f27c2270eb3c4170bbc70613257496056fd7d533f0
     bytes: 2224
+  data/洲.json:
+    sha256: 6f9971cb366146250c8ed34dd98915ccd0cd2e71b2bb30b2ccfc0d6d3b4f873c
+    bytes: 2107
   data/活.json:
     sha256: 2811661ce4181912ae1aee51420e1c0778bd54509af9a886f632ceb1b84365b1
     bytes: 2303
@@ -4993,6 +5044,9 @@ members:
   data/漫.json:
     sha256: 124597f1068d94c536af870fc4431ac33eef27bf46c9cce9a36de333f9283932
     bytes: 3875
+  data/漱.json:
+    sha256: 766146ed2f3aea012b951b3a59a5f2038425d632d4b4b6eb4ed537cc86115673
+    bytes: 3722
   data/漾.json:
     sha256: 3d346f8dff8701f598b164911997a71d9877eedb38aa432ef64528e9093c7e31
     bytes: 3528
@@ -5014,6 +5068,9 @@ members:
   data/澄.json:
     sha256: 9ffd41a1a584ea0c13a24c5e9b0430105d809de34b0bd31c0f2b422865d18132
     bytes: 3717
+  data/澈.json:
+    sha256: 3adaac779c74837054b94ced12b72fa7453ffd30be1973eab61cf3c8ddeeb85a
+    bytes: 4041
   data/澜.json:
     sha256: 3aad57788fac6123991c07b30ebdea82094c7076f8be6982d48117b35b0c9af8
     bytes: 3923
@@ -5023,6 +5080,9 @@ members:
   data/激.json:
     sha256: 98ef314590b142767f09f2b126949cd4a7cc20b2feaffe8387bbd91d0b85c384
     bytes: 4246
+  data/濒.json:
+    sha256: 13c8ece58c6f164d8df74bf15849c027ac2bace8271f2265ebca39be15f9298e
+    bytes: 3953
   data/瀑.json:
     sha256: 5c88bca2b60d9552c269fa41b69f31d48e37ff62cd029010226ae8f2b1879642
     bytes: 4542
@@ -5422,6 +5482,9 @@ members:
   data/生.json:
     sha256: dbe556919f5c0a95448c40997dfce35ad56ebf26d874218e7076d8c12374cfd8
     bytes: 1431
+  data/甥.json:
+    sha256: b5846ec3024e0dffabba94dec76a53fe7625e7c3809c2fec94ebadea8b3bd1b9
+    bytes: 3721
   data/用.json:
     sha256: a6e1dbddb1d80001248a0f332d0be070fd7d42353771bd90e10fa01872812bf9
     bytes: 1704
@@ -5659,6 +5722,9 @@ members:
   data/眨.json:
     sha256: 2b96b773f46f2417ddbe7dcb1563f38e63d14688f54aceb0b7d9c9b14a7d06ba
     bytes: 2558
+  data/眶.json:
+    sha256: 4cf797c5b5a6a5a2abf8b771a377da3957e9eb8c58baf1f8bb921a607972534f
+    bytes: 3098
   data/眼.json:
     sha256: 9abb21d5ba61a27f7850a223bdce134cf23d8a8a82b42b17967a70b84f0ee9f8
     bytes: 3093
@@ -6895,6 +6961,9 @@ members:
   data/苛.json:
     sha256: 3ef117e403af4572bdac0812ef29cc7d51195a8b35d680f529d007ecc951abc8
     bytes: 2283
+  data/苟.json:
+    sha256: c62820b16e77f804ae182063aa63c5f2aa21f88e5eb284ea7e14436b8ea049c1
+    bytes: 2460
   data/若.json:
     sha256: 23aa8b079e22d98ace0002e25ce5c9e8cbff55cd44161e9861b88b946c701d1e
     bytes: 2283
@@ -7132,6 +7201,12 @@ members:
   data/蚀.json:
     sha256: 2b027ea3bc93eddf155cc7a3c2755987bf445477da5b93bff2d1bb749842a3a1
     bytes: 2810
+  data/蚁.json:
+    sha256: 4246e843b839cc13fd7e2cfc1a4a19defcdd172fbc6636bbb0f0a14caba699ad
+    bytes: 2652
+  data/蚂.json:
+    sha256: d1a3b104c3f496c9d5ecf237173099987eebec0a03563d6669f879c25f3269e4
+    bytes: 3172
   data/蚊.json:
     sha256: d46c4d17e5940cbb9d99145ce265eb1e3a9231bd46c85810d20c66bfae314428
     bytes: 2916
@@ -7159,6 +7234,12 @@ members:
   data/蝇.json:
     sha256: a8209f52a6e9a8aea300c3217287e55dd91377279aad509a7b58956d57216892
     bytes: 4347
+  data/蝴.json:
+    sha256: ae04949e460d7021194c352fef1f76500dc53a27ccf121fb5aba199fa1848b51
+    bytes: 4188
+  data/蝶.json:
+    sha256: fa6405bba0c59d96d6b9e9d0db0e093298d36ff82e1cfc9a295ec592f36dbd47
+    bytes: 4517
   data/融.json:
     sha256: 846c0d688d0cf87d4f09e998e46ed53692567248e89a87492d44ece08e2c0b97
     bytes: 4233
@@ -8308,6 +8389,9 @@ members:
   data/锯.json:
     sha256: 846d3664eedb3fe8b5068d33efc73212e42b28302ef153fca167a0a3b22a23f3
     bytes: 3738
+  data/锲.json:
+    sha256: e860243cf616298b6fdcef7233434a7c1c8537ac67e56e2ccd2c1a83ad62af36
+    bytes: 4232
   data/锻.json:
     sha256: 717c11387577d70489224860a372768e042d9c67e891f6a5ae55d84edd0c373f
     bytes: 4324
@@ -8524,6 +8608,9 @@ members:
   data/雷.json:
     sha256: a8a23498daa78b0e608750c119ece9c85ba6c207fa18f0f75668b9a0d6a5e915
     bytes: 3384
+  data/雹.json:
+    sha256: 5e2aec5cfbc6de9bedfc60e18630862c6ebc8040a38f5a70b025109fb7ddecd8
+    bytes: 3716
   data/雾.json:
     sha256: 486d56ff7efea14c9e2cb5e31e48acb4cdbc6186a6e9991b2ce9cff5b443df85
     bytes: 3787
@@ -8689,6 +8776,9 @@ members:
   data/饥.json:
     sha256: d6f6aeb5853b4e066deadb5fcb71bf1debb9f9aa6791588d1cefc00ca6b2539b
     bytes: 2100
+  data/饪.json:
+    sha256: 32f616b2d3793f7e7ee013704efed1f50289523042a491f2deacdf0a7653acc8
+    bytes: 2211
   data/饭.json:
     sha256: cc1fa66270ac4250e36825e9c45d7af0b43a5ae271483fc15dfc14fd95a60026
     bytes: 2442

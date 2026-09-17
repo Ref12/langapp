@@ -15,6 +15,9 @@ export const noticeFiles = [
   'README.md',
   'sources.yaml',
   'teaching/README.md',
+  'teaching/hsk-audit.yaml',
+  'teaching/hsk-grammar-crosswalk.yaml',
+  'teaching/hsk-readiness.yaml',
   'teaching/beginner/README.md',
   'licenses/CC-BY-SA-4.0.txt',
   'licenses/CC-BY-SA-3.0.txt',
@@ -24,7 +27,9 @@ export const noticeFiles = [
 
 const text = z.string().min(1).regex(/\S/, 'Expected nonempty text')
 const headwordId = text.regex(/^zh-hsk(?:[1-6]|7-9)-\d{5}$/)
-const senseId = text.regex(/^zh-hsk(?:[1-6]|7-9)-\d{5}-s\d{3}$/)
+const senseId = text.regex(
+  /^zh-(?:hsk(?:[1-6]|7-9)-\d{5}|hsk2026-\d{5}|hsklegacy-\d{5}|hskpractice-\d{6})-s\d{3}$/,
+)
 const grammarId = text.regex(/^zh-hsk(?:[1-6]|7-9)-g\d{3}$/)
 const wordEntry = z.object({ id: senseId, ch: text, pr: text, ds: text }).strict()
 const grammarEntry = z.object({ id: grammarId, ch: text, ds: text }).strict()
@@ -93,6 +98,16 @@ const vocabularySchema = z.object({
   level_basis: text,
   senses: z.array(senseSchema).min(1).optional(),
 }).strict()
+const hskReferenceVocabularySchema = z.object({
+  id: senseId,
+  ch: text,
+  pr: text,
+  ds: text,
+  hsk_level: z.number().int().min(1).max(6),
+  official_syllabus_row: z.number().int().min(0).max(5400),
+  source_id: z.enum(['zh-vocab-adapted', 'cc-cedict']),
+  source_entry: text,
+}).strict()
 const expandedGrammarSchema = z.object({
   id: grammarId,
   pattern: text,
@@ -104,11 +119,97 @@ const expandedGrammarSchema = z.object({
   token_form: text,
   disambiguator: text,
 }).strict()
+const readinessLessonSchema = z.object({
+  id: text,
+  title: text,
+  objective: text,
+  success_criteria: z.array(text).min(1),
+}).strict()
+const readinessModuleSchema = z.object({
+  id: text,
+  title: text,
+  outcome: text,
+  lessons: z.array(readinessLessonSchema).min(1),
+}).strict()
+const readinessResourceSchema = z.object({
+  id: text,
+  title: text,
+  url: text.url(),
+  kind: z.enum([
+    'official-format', 'official-external-assessment',
+    'downloadable-practice', 'supplementary-practice',
+  ]),
+  levels: z.array(z.union([z.number().int().min(1).max(6), z.literal('7-9')])).min(1),
+  note: text,
+}).strict()
+const readinessSchema = z.object({
+  schema_version: z.literal(1),
+  id: z.literal('zh-hsk-readiness'),
+  title: text,
+  alignment_note: text,
+  cutoff_semantics: z.object({
+    rule: text,
+    vocabulary: text,
+    grammar: text,
+    performance: text,
+  }).strict(),
+  app_practice: z.object({
+    supported: z.array(text).min(1),
+    external_required: z.array(text).min(1),
+  }).strict(),
+  resources: z.array(readinessResourceSchema).min(1),
+  sections: z.array(z.object({
+    id: text,
+    title: text,
+    hsk_level: z.number().int().min(1).max(6),
+    course_levels: z.array(z.number().int().min(1).max(30)).min(1),
+    outcome: text,
+    exam: z.object({
+      official_url: text.url(),
+      questions: z.number().int().positive(),
+      minutes: z.number().int().positive(),
+      skills: z.array(z.enum(['listening', 'reading', 'writing'])).min(1),
+    }).strict(),
+    knowledge_cutoff: z.object({
+      through_course_level: z.number().int().min(1).max(30),
+      official_vocabulary: text,
+      practice_vocabulary: text,
+      official_grammar: text,
+    }).strict(),
+    skill_crosswalk: z.record(z.enum(['listening', 'reading', 'writing']), z.object({
+      module_id: text,
+      status: z.literal('curriculum-support-declared'),
+      performance: z.literal('external-evidence-required'),
+    }).strict()),
+    modules: z.array(readinessModuleSchema).min(1),
+    performance_gates: z.array(z.object({
+      id: text,
+      requirement: text,
+      status: z.enum(['external-required', 'learner-evidence-required']),
+    }).strict()).min(4),
+    mock_test: z.object({
+      resource_ids: z.array(text).min(2),
+      available_sets: z.number().int().positive(),
+      sequence: z.array(text).min(1),
+    }).strict(),
+  }).strict()).length(6),
+  advanced: z.object({
+    id: z.literal('hsk-7-9-orientation'),
+    title: text,
+    status: z.literal('reference-only'),
+    official_url: text.url(),
+    skills: z.array(z.enum(['listening', 'reading', 'writing', 'translation', 'speaking'])).min(1),
+    reason: text,
+    recommendation: text,
+  }).strict(),
+}).strict()
 const sourcesSchema = z.object({
   core: programSchema,
   beginner: beginnerSchema,
+  readiness: readinessSchema,
   vocabulary: z.array(vocabularySchema).min(1),
   referenceSenses: z.array(vocabularySchema.required({ senses: true })).min(1),
+  hskReferenceVocabulary: z.array(hskReferenceVocabularySchema),
   grammar: z.array(expandedGrammarSchema).length(25),
   beginnerVocabulary: z.array(wordEntry),
   beginnerGrammar: z.array(grammarEntry),
@@ -125,19 +226,22 @@ async function readYaml(...parts) {
 }
 
 export async function loadCurriculumSources() {
-  const [core, beginner, vocabulary, referenceSenses, grammar,
+  const [core, beginner, readiness, vocabulary, referenceSenses, hskReferenceVocabulary, grammar,
     beginnerVocabulary, beginnerGrammar, coreGrammar] = await Promise.all([
     readYaml('teaching', 'core', 'sequence.yaml'),
     readYaml('teaching', 'beginner', 'sequence.yaml'),
+    readYaml('teaching', 'hsk-readiness.yaml'),
     Promise.all(bands.map(band => readYaml(`hsk-${band}`, 'vocabulary.yaml'))),
     readYaml('reference-senses.yaml'),
+    readYaml('authoring', 'hsk-reference-vocabulary.yaml'),
     readYaml('hsk-1', 'grammar.yaml'),
     readYaml('teaching', 'beginner', 'vocabulary.min.yaml'),
     readYaml('teaching', 'beginner', 'grammar.min.yaml'),
     readYaml('teaching', 'core', 'grammar.min.yaml'),
   ])
   return {
-    core, beginner, vocabulary: vocabulary.flat(), referenceSenses, grammar,
+    core, beginner, readiness, vocabulary: vocabulary.flat(), referenceSenses,
+    hskReferenceVocabulary, grammar,
     beginnerVocabulary, beginnerGrammar, coreGrammar,
   }
 }
@@ -191,7 +295,10 @@ export function validateCurriculumSources(input) {
     throw new Error(`Invalid curriculum source schema:\n${details.join('\n')}`)
   }
   const sources = result.data
-  const { core, beginner, vocabulary, referenceSenses, grammar } = sources
+  const {
+    core, beginner, readiness, vocabulary, referenceSenses,
+    hskReferenceVocabulary, grammar,
+  } = sources
   const parents = uniqueIndex(vocabulary, 'Reference vocabulary')
   uniqueIndex(referenceSenses, 'Additional reference headwords')
   const annotated = vocabulary.filter(row => row.senses)
@@ -215,6 +322,9 @@ export function validateCurriculumSources(input) {
       })
     }
   }
+  canonicalWords.push(...hskReferenceVocabulary.map(
+    ({ id, ch, pr, ds }) => ({ id, ch, pr, ds }),
+  ))
   const words = uniqueIndex(canonicalWords, 'Reference senses')
   const grammarIndex = uniqueIndex(sources.coreGrammar, 'Core grammar inventory')
   uniqueIndex(grammar, 'Expanded grammar')
@@ -246,10 +356,72 @@ export function validateCurriculumSources(input) {
     }
   }
   const units = levels.flatMap(level => level.units)
+  const resources = uniqueIndex(readiness.resources, 'HSK readiness resources')
+  const sectionIds = uniqueIndex(readiness.sections, 'HSK readiness sections')
+  if (sectionIds.size !== 6 ||
+      readiness.sections.map(section => section.hsk_level).join(',') !== '1,2,3,4,5,6') {
+    throw new Error('HSK readiness sections must cover HSK 1 through HSK 6 in order')
+  }
+  if (!isDeepStrictEqual(
+    readiness.sections.flatMap(section => section.course_levels),
+    levels.map(level => level.number),
+  )) {
+    throw new Error('HSK readiness sections must partition course levels 1 through 30 in order')
+  }
+  const lessonIds = new Map()
+  for (const [index, section] of readiness.sections.entries()) {
+    if (!isDeepStrictEqual(section.course_levels, core.phases[index].levels.map(level => level.number))) {
+      throw new Error(`${section.id}: course levels must match the corresponding curriculum phase`)
+    }
+    for (const resourceId of section.mock_test.resource_ids) {
+      if (!resources.has(resourceId)) {
+        throw new Error(`${section.id}: unknown mock-test resource ${resourceId}`)
+      }
+    }
+    if (section.knowledge_cutoff.through_course_level !== Math.max(...section.course_levels)) {
+      throw new Error(`${section.id}: stale knowledge cutoff`)
+    }
+    if (!isDeepStrictEqual(
+      Object.keys(section.skill_crosswalk).sort(),
+      [...section.exam.skills].sort(),
+    )) {
+      throw new Error(`${section.id}: skill crosswalk must cover every tested skill`)
+    }
+    const moduleIds = new Set(section.modules.map(module => module.id))
+    for (const [skill, mapping] of Object.entries(section.skill_crosswalk)) {
+      if (!moduleIds.has(mapping.module_id)) {
+        throw new Error(`${section.id}: ${skill} maps to unknown module ${mapping.module_id}`)
+      }
+    }
+    uniqueIndex(section.modules, `${section.id} modules`)
+    for (const module of section.modules) {
+      for (const lesson of module.lessons) {
+        if (lessonIds.has(lesson.id)) {
+          throw new Error(`HSK readiness lessons: duplicate ID ${lesson.id}`)
+        }
+        lessonIds.set(lesson.id, lesson)
+      }
+    }
+  }
   validateUnits(units, words, grammarIndex, 'Core')
   validateUnits(beginner.units, words, grammarIndex, 'Beginner')
   const availableUnits = levels.filter(level => level.number <= 4).flatMap(level => level.units)
-  assertEqual(availableUnits, beginner.units, 'Core levels 1-4 / preserved beginner units')
+  if (!isDeepStrictEqual(
+    availableUnits.map(unit => unit.id), beginner.units.map(unit => unit.id),
+  )) {
+    throw new Error('Core levels 1-4 must preserve beginner module order')
+  }
+  for (const [index, sourceUnit] of beginner.units.entries()) {
+    const coreUnit = availableUnits[index]
+    assertEqual(
+      {
+        ...coreUnit,
+        vocabulary: coreUnit.vocabulary.slice(0, sourceUnit.vocabulary.length),
+      },
+      sourceUnit,
+      `${sourceUnit.id}: preserved beginner unit`,
+    )
+  }
   const beginnerWords = beginner.units.flatMap(unit => unit.vocabulary)
   const beginnerGrammar = beginner.units.flatMap(unit => unit.grammar)
   if (beginnerWords.length !== 205 || beginnerGrammar.length !== 25) {
@@ -269,6 +441,72 @@ export function validateCurriculumSources(input) {
 
 const ids = entries => entries.map(entry => entry.id)
 const unique = entries => [...new Set(entries)]
+
+function projectReadiness(readiness) {
+  return {
+    id: readiness.id,
+    title: readiness.title,
+    alignmentNote: readiness.alignment_note,
+    cutoffSemantics: readiness.cutoff_semantics,
+    appPractice: {
+      supported: readiness.app_practice.supported,
+      externalRequired: readiness.app_practice.external_required,
+    },
+    resources: readiness.resources.map(resource => ({
+      id: resource.id,
+      title: resource.title,
+      url: resource.url,
+      kind: resource.kind,
+      levels: resource.levels,
+      note: resource.note,
+    })),
+    sections: readiness.sections.map(section => ({
+      id: section.id,
+      title: section.title,
+      hskLevel: section.hsk_level,
+      courseLevels: section.course_levels,
+      outcome: section.outcome,
+      exam: {
+        officialUrl: section.exam.official_url,
+        questions: section.exam.questions,
+        minutes: section.exam.minutes,
+        skills: section.exam.skills,
+      },
+      knowledgeCutoff: section.knowledge_cutoff,
+      skillCrosswalk: section.skill_crosswalk,
+      modules: section.modules.map(module => ({
+        id: module.id,
+        title: module.title,
+        outcome: module.outcome,
+        lessons: module.lessons.map(lesson => ({
+          id: lesson.id,
+          title: lesson.title,
+          objective: lesson.objective,
+          successCriteria: lesson.success_criteria,
+        })),
+      })),
+      performanceGates: section.performance_gates.map(gate => ({
+        id: gate.id,
+        requirement: gate.requirement,
+        status: gate.status,
+      })),
+      mockTest: {
+        resourceIds: section.mock_test.resource_ids,
+        availableSets: section.mock_test.available_sets,
+        sequence: section.mock_test.sequence,
+      },
+    })),
+    advanced: {
+      id: readiness.advanced.id,
+      title: readiness.advanced.title,
+      status: readiness.advanced.status,
+      officialUrl: readiness.advanced.official_url,
+      skills: readiness.advanced.skills,
+      reason: readiness.advanced.reason,
+      recommendation: readiness.advanced.recommendation,
+    },
+  }
+}
 
 function makeLessons(level, unit) {
   const count = Math.max(Math.ceil(unit.vocabulary.length / 8), unit.grammar.length)
@@ -299,7 +537,7 @@ function makeLessons(level, unit) {
 }
 
 export async function buildCurriculum() {
-  const { core, grammar } = validateCurriculumSources(await loadCurriculumSources())
+  const { core, readiness, grammar } = validateCurriculumSources(await loadCurriculumSources())
   const expandedGrammar = new Map(grammar.map(entry => [entry.id, entry]))
   const words = []
   const constructs = []
@@ -354,11 +592,12 @@ export async function buildCurriculum() {
     }),
   }))
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     id: core.id,
     title: core.title,
     levelBasis: core.level_basis,
     reviewPolicy: core.review_policy,
+    hskReadiness: projectReadiness(readiness),
     phases,
     words,
     grammar: constructs,

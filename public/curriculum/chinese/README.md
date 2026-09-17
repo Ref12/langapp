@@ -4,6 +4,10 @@ For practical learning, use the independent
 [six-phase, thirty-level Mandarin program](teaching/README.md), or its
 [standalone tourist route](teaching/tourist/README.md) for vacation preparation.
 The [beginner track](teaching/beginner/README.md) is preserved as levels 1-4.
+The [HSK readiness path](teaching/hsk-readiness.yaml) maps those thirty course
+levels into six preparation sections for HSK 1-6. It adds listening, reading,
+writing, format-familiarization, and mock-test objectives without relabeling
+the underlying reference vocabulary or claiming certification.
 The HSK folders below are reference assignments, **not a mandatory teaching
 order or a requirement to learn every dictionary sense**. The beginner track
 introduces practical senses such as coffee and basic colors early without
@@ -26,11 +30,27 @@ depth, independence, register and precision, as described in the advanced syllab
 **Important mapping limitation:** imported `new-*` labels in the pinned
 Complete HSK Vocabulary source trace to elkmovie's OCR of the 2021 standard.
 The same file also contains distinct `old-*` and `newest-*` labels. Neither is
-imported. The `newest-*` subset has only 10,057 entries in this revision, with
-incomplete exam coverage and no completed audit here; its existence must not
-silently change the meaning of `new-*`. Consult the directly verified
+imported wholesale. The `newest-*` subset has only 10,057 entries in this
+revision and must not silently change the meaning of `new-*`.
+
+The separate `authoring/teaching/hsk-vocabulary.yaml` overlay controls only
+teaching placement for exam evidence. It does not relabel source bands.
+`authoring/hsk-reference-vocabulary.yaml` contains the 390 canonical senses
+needed by that overlay but absent from the imported `new-*` reference bands:
+237 selectively adapted from the pinned Complete HSK Vocabulary source and 153
+from the hash-pinned current CC-CEDICT download.
+
+`teaching/hsk-audit.yaml` records a reproducible comparison with the official
+November 2025 exam syllabus (effective July 2026), the normalized legacy
+six-level vocabulary, and ten hash-pinned practice papers per level from two
+collections. The authored HSK overlay now covers all 5,400 official vocabulary
+rows and all recognized legacy-list headwords in those papers by each
+cumulative cutoff. The claim that this curriculum alone can support passing
+HSK 1-6 remains **unsupported** because the 459-item official grammar
+crosswalk is not reviewed and learner performance has not been demonstrated.
+Consult the directly verified
 [official exam syllabus page](https://www.chinesetest.cn/syllabus) for a learner's
-specific examination. We assert no worldwide rollout date or score equivalence.
+specific examination. No score equivalence is asserted.
 
 ## What is actually present
 
@@ -64,7 +84,7 @@ Chinese/English examples. Examples may include necessary supporting vocabulary
 from another band; gloss it before practice and do not silently alter the word
 inventory. Human review by an experienced Mandarin teacher remains necessary.
 
-The separate [Chinese writing assets](characters/README.md) cover the 2,971
+The separate [Chinese writing assets](characters/README.md) cover the 3,001
 literal Han required by this current curriculum with pinned source artwork,
 source-median baselines and separately identified refinement candidates.
 Only five exact inherited prototype shapes carry visual-review evidence;
@@ -74,8 +94,19 @@ Four literal punctuation signs remain explicit unsupported targets.
 Not supplied: audio recordings, licensed exam questions, a complete professionally
 reviewed character/stroke-order or syllable inventory, full official grammar-table mapping,
 individually verified translations of every dictionary sense, and a complete
-2025/2026 examination-wordlist migration. This is a substantial teachable text
-corpus, not an assertion that those omissions have been solved.
+learner performance record. This is a substantial teachable text corpus, not
+an assertion that those omissions have been solved.
+
+The readiness path links rather than copies external practice material. The
+official ChineseTest level pages provide the current section, question-count,
+and duration references. DigMandarin supplied five legacy-format papers per
+level, and Mandarin Mania supplied five additional unique papers per level,
+when checked on 2026-09-16. All sixty PDFs were hash-pinned and their included
+transcripts were analyzed transiently; the papers and transcripts are not
+redistributed because no open license was identified. The University of
+Manchester Confucius Institute independently lists the added paper family.
+Audio delivery, pronunciation, timing, and learner performance were not
+measured. HSK Mock is linked only as an external official performance option.
 
 ## Files and tutor use
 
@@ -92,6 +123,13 @@ Every level has:
 
 `sources.yaml` supplies attribution and version metadata.
 `normalization-report.yaml` records corpus-wide sense filtering and repair counts.
+`authoring/hsk-reference-vocabulary.yaml` and
+`authoring/teaching/hsk-vocabulary.yaml` hold the source-attributed supplemental
+senses and cumulative cutoff placements. `teaching/hsk-grammar-crosswalk.yaml`
+records the official grammar review state. `teaching/hsk-audit.yaml` records
+the HSK evidence, per-level results, gates, and limitations;
+`scripts/audit_hsk_readiness.py` checks it against the current course or
+recreates it from hash-pinned external files.
 `authoring/grammar.psv`
 is the editable original grammar source; the importer regenerates YAML from it.
 Do not edit generated vocabulary or grammar YAML as the sole record of a repair.
@@ -162,6 +200,7 @@ python scripts\generate_teaching_track.py
 python scripts\generate_teaching_track.py --check
 python scripts\generate_chinese_program.py
 python scripts\generate_chinese_program.py --check
+python scripts\audit_hsk_readiness.py --check
 ```
 
 ### Compact HSK-1 pilot

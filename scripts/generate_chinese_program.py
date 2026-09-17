@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 from pathlib import Path
 import sys
 
@@ -24,6 +25,12 @@ BEGINNER_TOPICS = (
     "communication", "food", "services", "description", "people", "home",
     "time", "leisure", "food", "travel", "communication", "communication",
 )
+HSK_VOCABULARY_FIELDS = {"id", "hsk_level", "course_level", "topic", "ds"}
+HSK_BEGINNER_VOCABULARY_FIELDS = HSK_VOCABULARY_FIELDS | {"unit_id"}
+HSK_REFERENCE_FIELDS = {
+    "id", "ch", "pr", "ds", "hsk_level", "official_syllabus_row",
+    "source_id", "source_entry",
+}
 
 
 def configured(root: Path) -> bool:
@@ -53,9 +60,120 @@ def placement_rows(value, program: dict, *, grammar: bool = False) -> list[dict]
     return engine.placement_rows(value, program, grammar=grammar, first_level=5)
 
 
-def vocabulary_labels(inputs: dict, vocabulary: dict[str, list[dict]], baseline: dict) -> dict:
+def load_hsk_vocabulary(root: Path) -> list[dict]:
+    path = root / "authoring" / "teaching" / "hsk-vocabulary.yaml"
+    if not path.exists():
+        return []
+    rows = load_yaml(path)
+    if not isinstance(rows, list):
+        raise ValueError(f"{path}: expected a list")
+    seen = set()
+    topics = load_yaml(root / "teaching" / "program.yaml")["topics"]
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError(f"{path}: every HSK vocabulary entry must be a mapping")
+        expected = (
+            HSK_BEGINNER_VOCABULARY_FIELDS
+            if row.get("course_level") in range(1, 5)
+            else HSK_VOCABULARY_FIELDS
+        )
+        if set(row) != expected:
+            raise ValueError(
+                f"{path}: HSK vocabulary fields must be {', '.join(sorted(expected))}"
+            )
+        identifier = text(row["id"], "hsk vocabulary.id")
+        if identifier in seen:
+            raise ValueError(f"{path}: duplicate HSK vocabulary ID {identifier}")
+        seen.add(identifier)
+        if type(row["hsk_level"]) is not int or not 1 <= row["hsk_level"] <= 6:
+            raise ValueError(f"{identifier}: invalid HSK level")
+        if type(row["course_level"]) is not int or not 1 <= row["course_level"] <= 30:
+            raise ValueError(f"{identifier}: invalid course level")
+        if row["course_level"] > max(engine.PHASE_LEVELS[row["hsk_level"] - 1]):
+            raise ValueError(f"{identifier}: placed after its HSK cutoff")
+        if row["topic"] not in topics:
+            raise ValueError(f"{identifier}: unknown topic {row['topic']!r}")
+        label(row["ds"], identifier)
+        if row["course_level"] <= 4:
+            text(row["unit_id"], f"{identifier}.unit_id")
+    return rows
+
+
+def load_hsk_references(root: Path) -> dict[str, dict]:
+    path = root / "authoring" / "hsk-reference-vocabulary.yaml"
+    if not path.exists():
+        return {}
+    rows = load_yaml(path)
+    if not isinstance(rows, list):
+        raise ValueError(f"{path}: expected a list")
+    result = {}
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != HSK_REFERENCE_FIELDS:
+            raise ValueError(
+                f"{path}: HSK reference vocabulary fields must be "
+                f"{', '.join(sorted(HSK_REFERENCE_FIELDS))}"
+            )
+        identifier = text(row["id"], "HSK reference vocabulary.id")
+        if identifier in result:
+            raise ValueError(f"{path}: duplicate official vocabulary ID {identifier}")
+        for key in ("ch", "pr", "ds", "source_id", "source_entry"):
+            text(row[key], f"{identifier}.{key}")
+        label(row["ds"], identifier)
+        if (type(row["hsk_level"]) is not int
+                or not 1 <= row["hsk_level"] <= 6
+                or type(row["official_syllabus_row"]) is not int
+                or not 0 <= row["official_syllabus_row"] <= 5400):
+            raise ValueError(f"{identifier}: invalid HSK evidence coordinates")
+        result[identifier] = {
+            "id": identifier, "ch": row["ch"], "pr": row["pr"], "ds": row["ds"],
+        }
+    return result
+
+
+def apply_hsk_vocabulary(
+    inputs: dict, rows: list[dict], *, include_beginner: bool = False,
+) -> dict:
+    result = deepcopy(inputs)
+    overrides = {row["id"]: row for row in rows}
+    result["vocabulary"] = [
+        row for row in result["vocabulary"]
+        if row["id"] not in overrides or isinstance(row["level"], str)
+    ]
+    result["vocabulary"].extend({
+        "id": row["id"], "level": row["course_level"],
+        "topic": row["topic"], "ds": row["ds"],
+    } for row in rows if include_beginner or row["course_level"] >= 5)
+    return result
+
+
+def augment_beginner(beginner: dict, rows: list[dict], words: dict) -> dict:
+    result = deepcopy(beginner)
+    units = {unit["id"]: unit for unit in result["units"]}
+    existing = {
+        entry["id"] for unit in result["units"] for entry in unit["vocabulary"]
+    }
+    for row in rows:
+        if row["course_level"] > 4:
+            continue
+        unit = units.get(row["unit_id"])
+        if unit is None:
+            raise ValueError(f"{row['id']}: unknown beginner unit {row['unit_id']}")
+        if row["id"] not in words:
+            raise ValueError(f"{row['id']}: unknown HSK vocabulary reference")
+        if row["id"] not in existing:
+            unit["vocabulary"].append(dict(words[row["id"]]))
+            existing.add(row["id"])
+    return result
+
+
+def vocabulary_labels(
+    inputs: dict, vocabulary: dict[str, list[dict]], baseline: dict, *,
+    first_level: int = 5,
+) -> dict:
     validate_model(inputs["program"], inputs["mastery"])
-    placements = placement_rows(inputs["vocabulary"], inputs["program"])
+    placements = engine.placement_rows(
+        inputs["vocabulary"], inputs["program"], first_level=first_level,
+    )
     placement_rows(inputs["grammar"], inputs["program"], grammar=True)
     annotated = {
         sense["id"]: sense["disambiguator"]
@@ -104,10 +222,16 @@ def load_references(root: Path, inputs: dict) -> tuple[dict, dict]:
         if directory.is_dir():
             vocabulary[directory.name] = load_yaml(directory / "vocabulary.yaml")
             grammar[directory.name] = load_yaml(directory / "grammar.yaml")
-    return reference_index(
+    words, patterns = reference_index(
         vocabulary, annotated_grammar(grammar, inputs["grammar"]),
         load_yaml(root / "reference-senses.yaml"),
     )
+    hsk_references = load_hsk_references(root)
+    overlap = set(words) & set(hsk_references)
+    if overlap:
+        raise ValueError(f"HSK vocabulary duplicates canonical IDs: {sorted(overlap)}")
+    words.update(hsk_references)
+    return words, patterns
 
 
 def _references(words: dict, patterns: dict) -> ReferenceBundle:
@@ -133,11 +257,16 @@ class ChineseAdapter:
 
     def load(self, root: Path) -> ProgramData:
         inputs = load_inputs(root)
+        hsk_vocabulary = load_hsk_vocabulary(root)
+        inputs = apply_hsk_vocabulary(inputs, hsk_vocabulary)
         validate_model(inputs["program"], inputs["mastery"])
         placement_rows(inputs["grammar"], inputs["program"], grammar=True)
         words, patterns = load_references(root, inputs)
         return _data(
-            inputs, words, patterns, load_yaml(root / "teaching" / "beginner" / "sequence.yaml"),
+            inputs, words, patterns, augment_beginner(
+                load_yaml(root / "teaching" / "beginner" / "sequence.yaml"),
+                hsk_vocabulary, words,
+            ),
         )
 
     def validate_phrase(self, phrase: dict, context: PhraseContext) -> PhraseAnalysis:

@@ -12,9 +12,50 @@ numbered level documents under `levels/`. For a short trip, use the independent
 completion of the core curriculum. Optional specialist branches are under
 `extensions/`, with explicit core prerequisites.
 
-The original [beginner track](beginner/README.md) remains available unchanged.
-Its twelve modules form levels 1-4, in their original order. No reference
-headword has been moved to another HSK folder or renumbered.
+For examination preparation, `hsk-readiness.yaml` overlays six HSK 1-6
+readiness sections on the existing phases. Each section contains four modules,
+eight lesson outlines, an explicit skill crosswalk, and external performance
+gates. The mapping is preparation scaffolding, not a claim that course level
+numbers are official HSK bands.
+
+The authored `../../authoring/teaching/hsk-vocabulary.yaml` overlay moves or
+adds evidence-required words without changing upstream IDs or source bands.
+Its 2,762 entries make vocabulary cumulative at each HSK cutoff. The 390
+canonical senses absent from the imported 2021-standard bands are recorded in
+`../../authoring/hsk-reference-vocabulary.yaml`; 237 come from the pinned
+Complete HSK Vocabulary source and 153 are attributed CC-CEDICT adaptations.
+
+The checked-in `hsk-audit.yaml` now verifies all 5,400 official July 2026
+vocabulary rows and all recognized legacy-list headwords in ten papers per
+level at their mapped cutoffs. It still records the pass claim as unsupported:
+the 459-item official grammar crosswalk is not reviewed, and no curriculum
+inventory can establish timed learner performance.
+HSK 7-9 remains orientation-only because the app cannot assess translation,
+speaking, or source-faithful timed writing and the reference inventory is not
+audited into separate levels 7, 8, and 9.
+
+| HSK | Mapped course levels | Cumulative headwords | Official 2026 rows | Ten legacy papers: observed list words |
+| --- | --- | ---: | ---: | ---: |
+| 1 | 1-4 | 352 | 300/300 (100%) | 150/150 (100%) |
+| 2 | 5-8 | 941 | 500/500 (100%) | 295/295 (100%) |
+| 3 | 9-13 | 1,854 | 1,000/1,000 (100%) | 593/593 (100%) |
+| 4 | 14-18 | 3,299 | 2,000/2,000 (100%) | 1,178/1,178 (100%) |
+| 5 | 19-24 | 5,423 | 3,600/3,600 (100%) | 2,220/2,220 (100%) |
+| 6 | 25-30 | 8,104 | 5,400/5,400 (100%) | 3,449/3,449 (100%) |
+
+The official extraction uses PDF coordinates and verifies the numbered row
+sequence and published incremental counts. Practice percentages cover only
+legacy-list headwords recognized by deterministic longest matching; they are
+not whole-paper comprehension scores. The 60 external papers and transcripts
+are not redistributed because no open license was identified. The audit keeps
+only URLs, retrieval dates, hashes, format/section metadata, and aggregate
+non-substitutive coverage results.
+
+The original [beginner track](beginner/README.md) remains available unchanged
+as its standalone source. Its twelve modules form levels 1-4 in their original
+order; the HSK overlay appends required vocabulary to those modules in the
+generated core. No reference headword has been moved to another HSK folder or
+renumbered.
 
 ## Six phases, thirty visible levels
 
@@ -104,6 +145,9 @@ course requirement or an automatic assignment to an advanced tier.
 | Path | Role |
 | --- | --- |
 | `program.yaml` | Authored phases, level goals, checkpoint tasks, topics, and branch prerequisites |
+| `hsk-readiness.yaml` | HSK 1-6 sections, skill modules, lesson objectives, official format links, and mock-test sequence |
+| `hsk-audit.yaml` | Hash-pinned official/legacy vocabulary and practice-paper comparison, verdict, and limitations |
+| `hsk-grammar-crosswalk.yaml` | Official grammar counts, reviewed mapping status, and conservative coverage policy |
 | `mastery.yaml` | Item-level evidence rubric and modality boundaries |
 | `core/sequence.yaml` | Generated phase/level/module hierarchy |
 | `levels/01/sequence.yaml` through `levels/30/sequence.yaml` | Individual levels with goals and prerequisites |
@@ -141,6 +185,12 @@ related constructions.
 a branch name selects an optional extension. These are authored pedagogical
 placements, not translations of upstream HSK numbers.
 
+`../authoring/teaching/hsk-vocabulary.yaml` is a second authored placement
+layer used only where current official or practice evidence requires an item by
+an earlier HSK cutoff. `../authoring/hsk-reference-vocabulary.yaml` supplies
+the small set of canonical senses absent from the imported reference bands.
+These files do not rewrite or relabel upstream HSK assignments.
+
 `../authoring/teaching/grammar.yaml` adds `ch` and `anchors` to the same
 placement fields. Anchors are precise vocabulary sense IDs needed for the
 construction, not every incidental word in its reference examples.
@@ -171,9 +221,17 @@ From the repository root:
 python scripts\import_chinese_curriculum.py
 python scripts\generate_chinese_program.py
 python scripts\generate_chinese_program.py --check
+python scripts\audit_hsk_readiness.py --check
 python scripts\validate_curriculum.py --language chinese
 python -m unittest discover -s scripts -p "test_*.py"
 ```
+
+To reproduce the external-material portion, install the pinned Python
+requirements and Xpdf/Poppler's `pdftotext`, then
+run `python scripts\audit_hsk_readiness.py --refresh --materials-dir <folder>
+--download`. Add `--write` only after reviewing source hashes, extraction
+warnings, and the generated differences. The command downloads source files to
+the supplied folder; copyrighted practice papers are never committed.
 
 The full importer verifies its pinned source before producing any output.
 The program-only generator works offline from checked-in references and

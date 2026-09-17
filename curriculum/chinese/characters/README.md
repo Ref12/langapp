@@ -7,12 +7,12 @@ professional language review. They implement the shared
 
 ## Scope and identity
 
-The current required union is **2,971 Han characters in 80 Unicode pages**:
-2,970 from all 10,969 expanded HSK vocabulary targets, plus U+6BCB from
-`zh-hsk7-9-g026` and its examples. Grammar patterns, literal example targets and
-authored token forms are included. The beginner track uses 223 vocabulary Han,
-227 with resolved grammar/examples, and adds none outside the reference union.
-Its sense IDs, teaching order and reference assignments remain unchanged.
+The current required union is **3,001 Han characters in 80 Unicode pages**:
+2,971 from the expanded reference and grammar inventory plus 30 teaching-only
+characters introduced by the HSK evidence overlay. Grammar patterns, literal
+example targets and authored token forms are included. The available four-level
+path now includes the cumulative HSK 1 vocabulary additions while retaining the
+original beginner module order and canonical IDs.
 
 Keys are exact single Unicode scalars, with no NFC/NFKC folding or automatic
 simplified/traditional conversion. The current union contains no compatibility
@@ -43,10 +43,11 @@ Chinese variant; it is neither an artwork-style name nor a teacher certification
 | `refined-candidate` | Generic conservative terminal corrections for review; visually unreviewed | Never |
 | `reviewed-monoline` | Exact inherited approved prototype paths | U+8336, U+96E8, U+676F, U+4EBA, U+4E00 only |
 
-The source audit contains 28,084 ordered logical strokes and 164,454 median
-points. Generic detectors flag 405 compact-hook and 3,270 short-fall strokes in
-2,000 characters. Three of those characters already have reviewed recipes;
-the other 1,997 receive a separately identified candidate variant. Unmatched,
+The source audit contains 28,418 ordered logical strokes and 166,294 median
+points. Generic detectors flag 408 compact-hook and 3,306 short-fall strokes
+in 2,019 characters. Three
+of those characters already have reviewed recipes; the other 2,016 receive a
+separately identified candidate variant. Unmatched,
 compound, ambiguous and long-fall geometry retains the source-median renderer.
 Detector hits are not semantic labels for dots or evidence of visual approval.
 
@@ -102,8 +103,8 @@ points to `ad1a9905cada18d07630acc27d438b070d753ec0`; the retained commit follow
 that tag and remains upstream master at audit time. All required JSON bytes
 are identical between the two revisions. No update or gap-fill import is needed.
 
-The selected ZIP in `../upstream/writing` preserves all 2,971 original
-`data/{character}.json` members: **8,279,016 uncompressed data bytes**, plus
+The selected ZIP in `../upstream/writing` preserves all 3,001 original
+`data/{character}.json` members: **8,372,864 uncompressed data bytes**, plus
 original README/license and a separate selection notice. Member order,
 timestamps and file metadata are deterministic. Normal rebuilds consume this
 archive directly without extraction or network access.

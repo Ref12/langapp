@@ -53,6 +53,33 @@ describe('curriculum experience', () => {
     expect(await db.lessons.count()).toBe(0)
   })
 
+  it('shows the complete HSK 1-6 readiness structure and keeps HSK 7-9 orientation-only', async () => {
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    expect(document.querySelectorAll('details.readiness-section')).toHaveLength(6)
+    expect(document.querySelectorAll('.readiness-module')).toHaveLength(24)
+    expect(document.querySelectorAll('.readiness-module li')).toHaveLength(48)
+    const readinessSections = [...document.querySelectorAll('details.readiness-section')]
+    for (const [index, section] of curriculum.hskReadiness.sections.entries()) {
+      ;(readinessSections[index] as HTMLDetailsElement).open = true
+      expect(screen.getByText(section.title, { exact: true })).toBeInTheDocument()
+      expect(within(readinessSections[index] as HTMLElement)
+        .getByRole('link', { name: `Official HSK ${section.hskLevel} format` }))
+        .toHaveAttribute('href', section.exam.officialUrl)
+      expect(within(readinessSections[index] as HTMLElement)
+        .getByRole('link', { name: 'DigMandarin HSK practice-test collection' }))
+        .toHaveAttribute('href', 'https://www.digmandarin.com/hsk-practice-test')
+      expect(within(readinessSections[index] as HTMLElement)
+        .getByRole('link', { name: 'Mandarin Mania HSK sample and past-paper collection' }))
+        .toHaveAttribute('href', 'https://mandarinmania.com/hsk-sample-tests/')
+      expect(within(readinessSections[index] as HTMLElement)
+        .getByText(/10 audited practice sets/)).toBeInTheDocument()
+    }
+    expect(screen.getByRole('heading', { name: 'HSK 7-9 orientation' })).toBeInTheDocument()
+    expect(screen.getByText(/no translation assessment, speaking capture/)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /HSK 7-9/ })).not.toBeInTheDocument()
+  })
+
   it('opens real grammar and finishes a persisted small lesson without passing the level checkpoint', async () => {
     const user = userEvent.setup()
     const view = render(<App />)
@@ -95,7 +122,7 @@ describe('curriculum experience', () => {
     await screen.findByRole('heading', { name: 'Your Mandarin path.' })
     await go('dictionary')
     await screen.findByRole('heading', { name: 'Your learning set.' })
-    await user.click(screen.getByRole('button', { name: 'Curriculum (205)' }))
+    await user.click(screen.getByRole('button', { name: 'Curriculum (357)' }))
     const search = screen.getByRole('searchbox', { name: 'Search dictionary' })
     await user.type(search, 'kafei')
     expect(screen.getByRole('heading', { name: getWord('zh-hsk3-00396-s001').native })).toBeInTheDocument()

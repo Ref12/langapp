@@ -29,11 +29,68 @@ checkpoint:
 mastery_profile: zh-item-mastery
 mastery_target: independent-use
 units:
+- id: level-12-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships and respond to another person's perspective.
+  vocabulary:
+  - {id: zh-hsk3-00648-s001, ch: 室, pr: Shì, ds: surname Shi}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00548-s013, ch: 亲, pr: qīn, ds: to kiss}
+  - {id: zh-hsk3-00549-s001, ch: 亲切, pr: qīn qiè, ds: amiable}
+  - {id: zh-hsk4-00023-s001, ch: 宝宝, pr: bǎo bao, ds: darling; baby}
+  - {id: zh-hsk4-00391-s001, ch: 姐妹, pr: jiě mèi, ds: sisters}
+  - {id: zh-hsk4-00418-s001, ch: 看望, pr: kàn wàng, ds: to pay a visit to; to see (sb)}
+  - {id: zh-hsk4-00440-s001, ch: 老公, pr: lǎo gōng, ds: (coll.) husband}
+  - {id: zh-hsk4-00442-s001, ch: 老婆, pr: lǎo pó, ds: (coll.) wife}
+  - {id: zh-hsk4-00889-s003, ch: 约会, pr: yuē huì, ds: date}
+  review_grammar:
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+  - {id: zh-hsk2-g024, ch: 给+Person+VP, ds: action directed to or done for someone}
+  - {id: zh-hsk3-g020, ch: 让+Person+VP, ds: let or have someone do something}
+- id: level-12-health-01
+  title: Body and wellbeing - 1
+  outcome: Explain a health-related experience or need without claiming clinical expertise.
+  vocabulary:
+  - {id: zh-hsk4-00195-s003, ch: 锻炼, pr: duàn liàn, ds: to engage in physical exercise}
+  - {id: zh-hsk4-00812-s001, ch: 牙, pr: yá, ds: tooth}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk4-00193-s003, ch: 肚子, pr: dù zi, ds: stomach}
+  - {id: zh-hsk4-00211-s002, ch: 发烧, pr: fā shāo, ds: to have a fever}
+  - {id: zh-hsk5-00309-s003, ch: 过敏, pr: guò mǐn, ds: allergy}
+  - {id: zh-hsk2-00650-s002, ch: 应该, pr: yīng gāi, ds: should}
+  - {id: zh-hsk7-9-00033-s001, ch: 熬夜, pr: áo yè, ds: to stay up late or all night}
+  - {id: zh-hsk2-00610-s001, ch: 眼, pr: yǎn, ds: eye}
+  - {id: zh-hsk2-00071-s001, ch: 出院, pr: chū yuàn, ds: to leave hospital}
+  - {id: zh-hsk2-00726-s001, ch: 住院, pr: zhù yuàn, ds: to be in hospital}
+  review_grammar:
+  - {id: zh-hsk3-g018, ch: 应该+VP, ds: advice or expectation rather than guaranteed fact}
+- id: level-12-travel-01
+  title: Travel and transport - 1
+  outcome: Explain a journey and negotiate a transport or accommodation arrangement.
+  vocabulary:
+  - {id: zh-hsk2-00016-s001, ch: 北方, pr: běi fāng, ds: north}
+  - {id: zh-hsk4-00244-s001, ch: 附近, pr: fù jìn, ds: nearby; neighboring}
+  - {id: zh-hsk4-00718-s001, ch: 晚点, pr: wǎn diǎn, ds: (of trains etc) late}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk3-00782-s001, ch: 行李, pr: xíng li, ds: luggage}
+  - {id: zh-hsk4-00587-s001, ch: 伞, pr: sǎn, ds: umbrella}
+  - {id: zh-hsk1-00427-s003, ch: 要, pr: yào, ds: will or be about to}
+  - {id: zh-hsk2-00349-s001, ch: 路边, pr: lù biān, ds: curb; roadside; wayside}
+  - {id: zh-hsk2-00565-s001, ch: 西南, pr: xī nán, ds: southwest}
+  - {id: zh-hsk1-00067-s001, ch: 地点, pr: dì diǎn, ds: place or location}
+  - {id: zh-hsk2-00533-s001, ch: 外地, pr: wài dì, ds: parts of the country other than where one is}
+  - {id: zh-hsk2-00657-s002, ch: 游客, pr: yóu kè, ds: tourist}
+  review_grammar:
+  - {id: zh-hsk2-g023, ch: 从+A+到+B, ds: endpoints of a journey or time interval}
+  - {id: zh-hsk3-g019, ch: 得+VP, ds: have to; obligation rather than a complement particle}
+  - {id: zh-hsk4-g016, ch: (来得及|来不及)+VP, ds: enough or insufficient time before a deadline}
 - id: level-12-leisure-01
   title: Leisure and sport - 1
   outcome: Discuss an activity and explain participation or preferences.
   vocabulary:
-  - {id: zh-hsk3-00695-s001, ch: 跳舞, pr: tiào wǔ, ds: to dance}
   - {id: zh-hsk3-00729-s002, ch: 玩具, pr: wán jù, ds: toy}
   - {id: zh-hsk3-00830-s002, ch: 赢, pr: yíng, ds: to win}
   - {id: zh-hsk3-00138-s001, ch: 得分, pr: dé fēn, ds: to score}
@@ -62,7 +119,6 @@ units:
   title: Learning and education - 1
   outcome: Explain a learning experience or approach and respond to questions.
   vocabulary:
-  - {id: zh-hsk1-00488-s001, ch: 中学生, pr: zhōng xué shēng, ds: secondary-school student}
   - {id: zh-hsk2-00007-s001, ch: 班长, pr: bān zhǎng, ds: class monitor}
   - {id: zh-hsk2-00080-s001, ch: 词语, pr: cí yǔ, ds: word or expression}
   - {id: zh-hsk2-00265-s002, ch: 教学, pr: jiào xué, ds: teaching}
@@ -87,12 +143,13 @@ units:
   - {id: zh-hsk4-00630-s001, ch: 试卷, pr: shì juàn, ds: examination paper}
   - {id: zh-hsk4-00891-s001, ch: 阅读, pr: yuè dú, ds: to read}
   - {id: zh-hsk2-00063-s003, ch: 成绩, pr: chéng jì, ds: grades}
+  - {id: zh-hsk2-00157-s001, ch: 分数, pr: fēn shù, ds: (exam) grade}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00264-s001, ch: 教室, pr: jiào shì, ds: classroom}
-  - {id: zh-hsk2-00337-s001, ch: 练习, pr: liàn xí, ds: to practice}
   - {id: zh-hsk2-00406-s001, ch: 普通话, pr: pǔ tōng huà, ds: Mandarin (common language)}
   - {id: zh-hsk2-00651-s001, ch: 英文, pr: Yīng wén, ds: English (language)}
+  - {id: zh-hsk2-00176-s001, ch: 高中, pr: gāo zhōng, ds: senior high school}
+  - {id: zh-hsk3-00009-s001, ch: 班级, pr: bān jí, ds: class (group of students)}
   - {id: zh-hsk2-00053-s007, ch: 查, pr: chá, ds: to look up (e.g. a word in a dictionary)}
   - {id: zh-hsk2-00017-s006, ch: 背, pr: bèi, ds: to learn by heart}
   - {id: zh-hsk2-00645-s001, ch: 音节, pr: yīn jié, ds: syllable}
@@ -102,16 +159,13 @@ units:
   title: Learning and education - 2
   outcome: Explain a learning experience or approach and respond to questions.
   vocabulary:
-  - {id: zh-hsk2-00157-s001, ch: 分数, pr: fēn shù, ds: (exam) grade}
   - {id: zh-hsk2-00266-s003, ch: 教育, pr: jiào yù, ds: education}
   - {id: zh-hsk2-00344-s001, ch: 流利, pr: liú lì, ds: fluent}
-  - {id: zh-hsk2-00508-s004, ch: 题, pr: tí, ds: exam question}
   - {id: zh-hsk3-00031-s001, ch: 本领, pr: běn lǐng, ds: skill}
   - {id: zh-hsk3-00349-s001, ch: 教材, pr: jiào cái, ds: teaching material}
   - {id: zh-hsk3-00369-s001, ch: 进步, pr: jìn bù, ds: progress; improvement}
   - {id: zh-hsk3-00725-s001, ch: 外文, pr: wài wén, ds: foreign language (written)}
   - {id: zh-hsk3-00801-s001, ch: 训练, pr: xùn liàn, ds: to train}
-  - {id: zh-hsk2-00176-s001, ch: 高中, pr: gāo zhōng, ds: senior high school}
   - {id: zh-hsk2-00293-s001, ch: 句子, pr: jù zi, ds: sentence}
   - {id: zh-hsk2-00299-s001, ch: 考生, pr: kǎo shēng, ds: exam candidate}
   - {id: zh-hsk2-00482-s001, ch: 水平, pr: shuǐ píng, ds: level (of achievement etc)}
@@ -120,9 +174,10 @@ units:
   - {id: zh-hsk3-00452-s001, ch: 留学, pr: liú xué, ds: to study abroad}
   - {id: zh-hsk4-00548-s001, ch: 期末, pr: qī mò, ds: end of term}
   - {id: zh-hsk5-00291-s001, ch: 鼓励, pr: gǔ lì, ds: to encourage}
+  - {id: zh-hsk2026-00595-s001, ch: 电子书, pr: diàn zǐ shū, ds: electronic book}
+  - {id: zh-hsk1-00285-s001, ch: 女生, pr: nǚ shēng, ds: student (female)}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk4-00036-s002, ch: 毕业, pr: bì yè, ds: to graduate}
   - {id: zh-hsk4-00115-s001, ch: 词汇, pr: cí huì, ds: vocabulary}
   - {id: zh-hsk4-00339-s001, ch: 及格, pr: jí gé, ds: to pass an exam or a test}
   - {id: zh-hsk4-00382-s001, ch: 教授, pr: jiào shòu, ds: professor}
@@ -130,6 +185,7 @@ units:
   - {id: zh-hsk4-00630-s001, ch: 试卷, pr: shì juàn, ds: examination paper}
   - {id: zh-hsk4-00891-s001, ch: 阅读, pr: yuè dú, ds: to read}
   - {id: zh-hsk2-00063-s003, ch: 成绩, pr: chéng jì, ds: grades}
+  - {id: zh-hsk2-00157-s001, ch: 分数, pr: fēn shù, ds: (exam) grade}
   review_grammar: []
 - id: level-12-work-01
   title: Work and cooperation - 1
@@ -138,14 +194,14 @@ units:
   - {id: zh-hsk2-00583-s001, ch: 小组, pr: xiǎo zǔ, ds: group}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk3-00421-s002, ch: 老板, pr: lǎo bǎn, ds: boss}
   - {id: zh-hsk1-00125-s001, ch: 工人, pr: gōng rén, ds: worker}
   - {id: zh-hsk2-00010-s001, ch: 办公室, pr: bàn gōng shì, ds: office}
   - {id: zh-hsk2-00083-s001, ch: 打工, pr: dǎ gōng, ds: to work a temporary or casual job}
-  - {id: zh-hsk2-00185-s001, ch: 公司, pr: gōng sī, ds: company; firm; corporation}
   - {id: zh-hsk2-00285-s001, ch: 经理, pr: jīng lǐ, ds: manager}
   - {id: zh-hsk2-00526-s001, ch: 同事, pr: tóng shì, ds: colleague; co-worker}
   - {id: zh-hsk2-00737-s004, ch: 组, pr: zǔ, ds: group}
+  - {id: zh-hsk5-00279-s003, ch: 工作日, pr: gōng zuò rì, ds: weekday}
+  - {id: zh-hsk2-00604-s001, ch: 休假, pr: xiū jià, ds: to go on vacation; to have a holiday; to take leave}
   review_grammar: []
 - id: level-12-communication-01
   title: Communication and information - 1
@@ -153,7 +209,6 @@ units:
   vocabulary:
   - {id: zh-hsk1-00057-s006, ch: 打, pr: dǎ, ds: to type}
   - {id: zh-hsk1-00136-s001, ch: 还有, pr: hái yǒu, ds: furthermore}
-  - {id: zh-hsk1-00338-s001, ch: 事, pr: shì, ds: matter or affair}
   - {id: zh-hsk2-00262-s002, ch: 叫作, pr: jiào zuò, ds: to be called}
   - {id: zh-hsk2-00363-s001, ch: 名称, pr: míng chēng, ds: name (of a thing)}
   - {id: zh-hsk2-00364-s001, ch: 名单, pr: míng dān, ds: list of names}
@@ -176,6 +231,7 @@ units:
   - {id: zh-hsk2-00445-s001, ch: 人数, pr: rén shù, ds: number of people}
   - {id: zh-hsk2-00666-s001, ch: 语言, pr: yǔ yán, ds: language}
   - {id: zh-hsk3-00042-s001, ch: 表达, pr: biǎo dá, ds: to express; to convey}
+  - {id: zh-hsk3-00081-s001, ch: 称为, pr: chēng wéi, ds: to be called; to be known as; to call it "..."}
   grammar: []
   review_vocabulary:
   - {id: zh-hsk3-00217-s001, ch: 干吗, pr: gàn má, ds: why; what for; what are you doing}
@@ -194,18 +250,15 @@ units:
   title: Communication and information - 2
   outcome: Convey relevant information and repair ambiguity or misunderstanding.
   vocabulary:
-  - {id: zh-hsk3-00081-s001, ch: 称为, pr: chēng wéi, ds: to be called; to be known as; to call it "..."}
   - {id: zh-hsk3-00295-s002, ch: 话题, pr: huà tí, ds: topic}
   - {id: zh-hsk3-00345-s003, ch: 交流, pr: jiāo liú, ds: communication}
   - {id: zh-hsk3-00495-s001, ch: 内容, pr: nèi róng, ds: content}
   - {id: zh-hsk4-00217-s001, ch: 翻译, pr: fān yì, ds: to translate}
   - {id: zh-hsk1-00310-s002, ch: 认识, pr: rèn shi, ds: to recognize}
   - {id: zh-hsk2-00252-s002, ch: 讲, pr: jiǎng, ds: to explain}
-  - {id: zh-hsk2-00641-s003, ch: 意思, pr: yì si, ds: meaning}
   - {id: zh-hsk4-00279-s004, ch: 关于, pr: guān yú, ds: about}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00524-s003, ch: 通知, pr: tōng zhī, ds: notice}
   - {id: zh-hsk2-00593-s001, ch: 信, pr: xìn, ds: letter}
   - {id: zh-hsk2-00595-s001, ch: 信息, pr: xìn xī, ds: information}
   - {id: zh-hsk4-00949-s001, ch: 转告, pr: zhuǎn gào, ds: to pass on}
@@ -213,6 +266,7 @@ units:
   - {id: zh-hsk2-00445-s001, ch: 人数, pr: rén shù, ds: number of people}
   - {id: zh-hsk2-00666-s001, ch: 语言, pr: yǔ yán, ds: language}
   - {id: zh-hsk3-00042-s001, ch: 表达, pr: biǎo dá, ds: to express; to convey}
+  - {id: zh-hsk3-00081-s001, ch: 称为, pr: chēng wéi, ds: to be called; to be known as; to call it "..."}
   review_grammar:
   - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
   - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
@@ -223,16 +277,17 @@ units:
   vocabulary:
   - {id: zh-hsk3-00501-s001, ch: 年底, pr: nián dǐ, ds: the end of the year}
   - {id: zh-hsk3-00531-s006, ch: 期, pr: qī, ds: 'classifier for issues of a periodical, courses of study'}
+  - {id: zh-hsk4-00304-s001, ch: 号码, pr: hào mǎ, ds: number}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00684-s001, ch: 早就, pr: zǎo jiù, ds: already at an earlier time}
-  - {id: zh-hsk3-00342-s001, ch: 将来, pr: jiāng lái, ds: in the future}
-  - {id: zh-hsk3-00382-s001, ch: 久, pr: jiǔ, ds: (long) time}
   - {id: zh-hsk3-00818-s001, ch: 以来, pr: yǐ lái, ds: since (a previous event)}
   - {id: zh-hsk4-00200-s002, ch: 多年, pr: duō nián, ds: for many years}
   - {id: zh-hsk1-00431-s004, ch: 一, pr: yī, ds: as soon as}
   - {id: zh-hsk1-00340-s004, ch: 是, pr: shì, ds: emphatic assertion (adverb)}
+  - {id: zh-hsk3-00288-s001, ch: 后年, pr: hòu nián, ds: the year after next}
+  - {id: zh-hsk4-00349-s001, ch: 季, pr: Jì, ds: surname Ji}
   - {id: zh-hsk1-00207-s005, ch: 来, pr: lái, ds: for the past (time period)}
+  - {id: zh-hsk4-00351-s001, ch: 季节, pr: jì jié, ds: time}
   review_grammar:
   - {id: zh-hsk5-g007, ch: 趁+Opportunity+VP, ds: act while a favorable opportunity lasts}
   - {id: zh-hsk5-g008, ch: 自从+StartingPoint+以来+P, ds: continuing situation since a past starting point}
@@ -247,18 +302,30 @@ units:
   - {id: zh-hsk2-00056-s001, ch: 常用, pr: cháng yòng, ds: in common usage}
   - {id: zh-hsk2-00055-s002, ch: 常见, pr: cháng jiàn, ds: common}
   - {id: zh-hsk2-00237-s001, ch: 级, pr: jí, ds: level}
+  - {id: zh-hsk6-00063-s001, ch: 不见, pr: bù jiàn, ds: not to see}
+  - {id: zh-hsk6-00531-s001, ch: 聊天儿, pr: liáo tiān r, ds: to chat}
+  - {id: zh-hsklegacy-07734-s001, ch: 数学, pr: shù xué, ds: mathematics}
+  - {id: zh-hsk2-00562-s001, ch: 西北, pr: Xī běi, ds: 'Northwest China (Shaanxi, Gansu, Qinghai, Ningxia, Xinjiang)'}
+  - {id: zh-hsk4-00775-s001, ch: 箱子, pr: xiāng zi, ds: suitcase}
+  - {id: zh-hsk6-00975-s001, ch: 有关, pr: yǒu guān, ds: to have sth to do with}
+  - {id: zh-hsk3-00849-s001, ch: 员, pr: yuán, ds: person}
+  - {id: zh-hsk2-00695-s001, ch: 照相, pr: zhào xiàng, ds: to take a photograph}
+  - {id: zh-hsk3-00944-s001, ch: 总, pr: zǒng, ds: general}
+  - {id: zh-hsk3-00922-s001, ch: 祝, pr: Zhù, ds: surname Zhu}
+  - {id: zh-hsklegacy-10645-s001, ch: 照相机, pr: zhào xiàng jī, ds: camera}
+  - {id: zh-hsklegacy-05753-s001, ch: 面条, pr: miàn tiáo, ds: noodles}
   - {id: zh-hsk1-00331-s002, ch: 什么, pr: shén me, ds: something or anything}
   - {id: zh-hsk1-00255-s002, ch: 哪儿, pr: nǎ r, ds: 'somewhere, anywhere or wherever'}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk4-00009-s001, ch: 暗, pr: àn, ds: dark}
-  - {id: zh-hsk1-00154-s004, ch: 坏, pr: huài, ds: to break down}
-  - {id: zh-hsk2-00481-s003, ch: 数字, pr: shù zì, ds: number}
-  - {id: zh-hsk2-00701-s002, ch: 正常, pr: zhèng cháng, ds: normal}
-  - {id: zh-hsk2-00714-s001, ch: 中心, pr: zhōng xīn, ds: center}
-  - {id: zh-hsk3-00334-s001, ch: 简单, pr: jiǎn dān, ds: simple}
-  - {id: zh-hsk3-00411-s001, ch: 空, pr: kōng, ds: empty}
-  - {id: zh-hsk3-00601-s001, ch: 上面, pr: shàng miàn, ds: on top of}
+  - {id: zh-hsk3-00504-s001, ch: 牛, pr: Niú, ds: surname Niu}
+  - {id: zh-hsk3-00746-s001, ch: 屋子, pr: wū zi, ds: house}
+  - {id: zh-hsk3-00773-s001, ch: 香蕉, pr: xiāng jiāo, ds: banana}
+  - {id: zh-hsk2-00634-s003, ch: 以上, pr: yǐ shàng, ds: the above-mentioned}
+  - {id: zh-hsk3-00866-s001, ch: 照, pr: zhào, ds: to shine}
+  - {id: zh-hsk5-00562-s001, ch: 葡萄, pr: pú tao, ds: grape}
+  - {id: zh-hsklegacy-01314-s001, ch: 春, pr: Chūn, ds: surname Chun}
+  - {id: zh-hsklegacy-09325-s001, ch: 行李箱, pr: xíng li xiāng, ds: suitcase}
   review_grammar:
   - {id: zh-hsk3-g016, ch: 一点儿+也+(不|没)+P, ds: emphatic absence of even the slightest amount}
   - {id: zh-hsk4-g018, ch: 就+V+Quantity, ds: only this much; limited quantity}
@@ -270,6 +337,9 @@ units:
   - {id: zh-hsk7-9-05553-s002, ch: 总的来说, pr: zǒng de lái shuō, ds: to sum up}
   - {id: zh-hsk2-00031-s001, ch: 不但, pr: bù dàn, ds: not only (... but also ...)}
   - {id: zh-hsk6-00467-s001, ch: 据, pr: jù, ds: according to}
+  - {id: zh-hsk4-00279-s002, ch: 关于, pr: guān yú, ds: concerning}
+  - {id: zh-hsk4-00417-s002, ch: 看来, pr: kàn lai, ds: it seems that}
+  - {id: zh-hsk2-00637-s003, ch: 以下, pr: yǐ xià, ds: the following}
   - {id: zh-hsk2-00145-s001, ch: 而且, pr: ér qiě, ds: (not only ...) but also}
   grammar: []
   review_vocabulary:
@@ -298,16 +368,17 @@ units:
   - {id: zh-hsk3-00230-s001, ch: 各自, pr: gè zì, ds: each}
   - {id: zh-hsk1-00071-s003, ch: 的, pr: de, ds: nominalizing particle}
   - {id: zh-hsk1-00242-s019, ch: 门, pr: mén, ds: 'lesson, subject, technical-field classifier'}
+  - {id: zh-hsk3-00099-s004, ch: 除了, pr: chú le, ds: except (for)}
   - {id: zh-hsk3-00895-s003, ch: 只有, pr: zhǐ yǒu, ds: it is only if one ... (that one can ...)}
   grammar: []
   review_vocabulary:
+  - {id: zh-hsk4-00352-s003, ch: 既, pr: jì, ds: both... (and...)}
+  - {id: zh-hsk3-00062-s006, ch: 步, pr: bù, ds: stages in a process}
   - {id: zh-hsk1-00050-s004, ch: 出来, pr: chu lai, ds: 'verb complement: emergence, completion, or detection'}
   - {id: zh-hsk1-00495-s012, ch: 子, pr: zi, ds: noun suffix}
   - {id: zh-hsk2-00023-s002, ch: 必须, pr: bì xū, ds: must}
   - {id: zh-hsk2-00687-s001, ch: 怎样, pr: zěn yàng, ds: how}
-  - {id: zh-hsk2-00696-s005, ch: 这么, pr: zhè me, ds: like this}
   - {id: zh-hsk3-00290-s001, ch: 互相, pr: hù xiāng, ds: each other}
-  - {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: to continue}
   - {id: zh-hsk3-00678-s012, ch: 台, pr: tái, ds: classifier for vehicles or machines}
   review_grammar: []
 - id: level-12-society-01
@@ -328,6 +399,12 @@ units:
   grammar: []
   review_vocabulary:
   - {id: zh-hsk1-00131-s001, ch: 国家, pr: guó jiā, ds: country}
+  - {id: zh-hsk2-00654-s004, ch: 影响, pr: yǐng xiǎng, ds: to affect (usually adversely)}
+  - {id: zh-hsk3-00090-s001, ch: 城市, pr: chéng shì, ds: city; town}
+  - {id: zh-hsk3-00172-s003, ch: 发展, pr: fā zhǎn, ds: to develop}
+  - {id: zh-hsk4-00385-s002, ch: 街道, pr: jiē dào, ds: subdistrict}
+  - {id: zh-hsk2-00470-s002, ch: 市, pr: shì, ds: city}
+  - {id: zh-hsk6-00986-s001, ch: 园, pr: Yuán, ds: surname Yuan}
   review_grammar: []
 - id: level-12-media-01
   title: Media and sources - 1
@@ -345,8 +422,6 @@ units:
   - {id: zh-hsk3-00838-s004, ch: 邮箱, pr: yóu xiāng, ds: email inbox}
   - {id: zh-hsk3-00854-s001, ch: 杂志, pr: zá zhì, ds: magazine}
   - {id: zh-hsk6-01023-s002, ch: 章, pr: zhāng, ds: chapter}
-  - {id: zh-hsk1-00082-s001, ch: 电视, pr: diàn shì, ds: television}
-  - {id: zh-hsk2-00015-s001, ch: 报纸, pr: bào zhǐ, ds: newspaper}
   - {id: zh-hsk2-00592-s001, ch: 新闻, pr: xīn wén, ds: news}
   - {id: zh-hsk2-00716-s003, ch: 重点, pr: zhòng diǎn, ds: important point; main point; focus}
   - {id: zh-hsk3-00655-s001, ch: 收音机, pr: shōu yīn jī, ds: radio}
@@ -358,25 +433,27 @@ units:
   - {id: zh-hsk3-00141-s001, ch: 电视剧, pr: diàn shì jù, ds: TV series}
   - {id: zh-hsk3-00143-s003, ch: 电台, pr: diàn tái, ds: radio station}
   - {id: zh-hsk3-00153-s001, ch: 读者, pr: dú zhě, ds: reader}
+  - {id: zh-hsk3-00653-s001, ch: 收看, pr: shōu kàn, ds: to watch (a TV program)}
+  - {id: zh-hsk3-00700-s001, ch: 听众, pr: tīng zhòng, ds: audience}
   grammar: []
-  review_vocabulary: []
+  review_vocabulary:
+  - {id: zh-hsk2-00015-s001, ch: 报纸, pr: bào zhǐ, ds: newspaper}
   review_grammar: []
 - id: level-12-media-02
   title: Media and sources - 2
   outcome: Summarize a source while distinguishing events, claims, and interpretation.
   vocabulary:
-  - {id: zh-hsk3-00653-s001, ch: 收看, pr: shōu kàn, ds: to watch (a TV program)}
-  - {id: zh-hsk3-00700-s001, ch: 听众, pr: tīng zhòng, ds: audience}
+  - {id: zh-hsk4-00506-s002, ch: 名人, pr: míng rén, ds: celebrity}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk3-00391-s001, ch: 据说, pr: jù shuō, ds: it is said that; reportedly}
-  - {id: zh-hsk2-00196-s003, ch: 广告, pr: guǎng gào, ds: advertisement}
   - {id: zh-hsk2-00581-s001, ch: 小说, pr: xiǎo shuō, ds: novel}
   - {id: zh-hsk2-00653-s002, ch: 影片, pr: yǐng piàn, ds: film; motion picture; movie}
   - {id: zh-hsk3-00050-s001, ch: 播出, pr: bō chū, ds: to broadcast}
   - {id: zh-hsk3-00141-s001, ch: 电视剧, pr: diàn shì jù, ds: TV series}
   - {id: zh-hsk3-00143-s003, ch: 电台, pr: diàn tái, ds: radio station}
   - {id: zh-hsk3-00153-s001, ch: 读者, pr: dú zhě, ds: reader}
+  - {id: zh-hsk3-00653-s001, ch: 收看, pr: shōu kàn, ds: to watch (a TV program)}
+  - {id: zh-hsk3-00700-s001, ch: 听众, pr: tīng zhòng, ds: audience}
   review_grammar: []
 - id: level-12-technology-01
   title: Technology and systems - 1
@@ -399,18 +476,19 @@ units:
   outcome: Describe the natural world and explain a relevant change or relationship.
   vocabulary:
   - {id: zh-hsk2-00130-s001, ch: 动物, pr: dòng wù, ds: animal}
-  - {id: zh-hsk2-00643-s002, ch: 阴, pr: yīn, ds: overcast (weather)}
   - {id: zh-hsk2-00674-s001, ch: 月亮, pr: yuè liang, ds: the moon}
+  - {id: zh-hsk3-00298-s001, ch: 环境, pr: huán jìng, ds: environment}
+  - {id: zh-hsk1-00316-s002, ch: 山, pr: shān, ds: mountain or hill}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00144-s001, ch: 多云, pr: duō yún, ds: cloudy (meteorology)}
-  - {id: zh-hsk2-00567-s001, ch: 下雪, pr: xià xuě, ds: to snow}
-  - {id: zh-hsk1-00363-s002, ch: 天, pr: tiān, ds: sky}
-  - {id: zh-hsk1-00364-s001, ch: 天气, pr: tiān qì, ds: weather}
-  - {id: zh-hsk1-00455-s001, ch: 雨, pr: yǔ, ds: rain}
-  - {id: zh-hsk2-00423-s002, ch: 晴天, pr: qíng tiān, ds: sunny day}
-  - {id: zh-hsk2-00497-s001, ch: 太阳, pr: tài yang, ds: sun}
-  - {id: zh-hsk2-00677-s003, ch: 云, pr: yún, ds: cloud}
+  - {id: zh-hsk3-00911-s001, ch: 种, pr: zhǒng, ds: seed}
+  - {id: zh-hsk4-00045-s001, ch: 冰, pr: bīng, ds: ice}
+  - {id: zh-hsk2-00201-s002, ch: 海, pr: hǎi, ds: ocean}
+  - {id: zh-hsk1-00112-s001, ch: 风, pr: fēng, ds: wind}
+  - {id: zh-hsk6-00329-s001, ch: 刮, pr: guā, ds: to scrape}
+  - {id: zh-hsk4-00414-s001, ch: 开花, pr: kāi huā, ds: to bloom; to blossom; to flower}
+  - {id: zh-hsk2-00426-s001, ch: 秋天, pr: qiū tiān, ds: autumn}
+  - {id: zh-hsk1-00347-s001, ch: 树, pr: shù, ds: tree}
   review_grammar: []
 - id: level-12-culture-01
   title: Culture and customs - 1
@@ -424,6 +502,7 @@ units:
   - {id: zh-hsk1-00416-s001, ch: 新年, pr: xīn nián, ds: New Year}
   - {id: zh-hsk2-00170-s002, ch: 干杯, pr: gān bēi, ds: Cheers! (proposing a toast)}
   - {id: zh-hsk2-00199-s001, ch: 过年, pr: guò nián, ds: to celebrate the Chinese New Year}
+  - {id: zh-hsk3-00739-s001, ch: 文化, pr: wén huà, ds: culture}
   review_grammar: []
 - id: level-12-arts-01
   title: Arts and creative works - 1
@@ -443,6 +522,14 @@ units:
   grammar: []
   review_vocabulary: []
   review_grammar: []
+- id: level-12-argument-01
+  title: Argument and decisions - 1
+  outcome: Defend a position while addressing relevant qualifications or objections.
+  vocabulary:
+  - {id: zh-hsk3-00331-s003, ch: 坚持, pr: jiān chí, ds: to insist on}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
 - id: level-12-communication-practice-01
   title: Communication and information - sentence practice 1
   outcome: Convey relevant information and repair ambiguity or misunderstanding.
@@ -453,13 +540,13 @@ units:
   review_vocabulary:
   - {id: zh-hsk4-00279-s004, ch: 关于, pr: guān yú, ds: about}
   - {id: zh-hsk7-9-05553-s002, ch: 总的来说, pr: zǒng de lái shuō, ds: to sum up}
+  - {id: zh-hsk3-00081-s001, ch: 称为, pr: chēng wéi, ds: to be called; to be known as; to call it "..."}
   - {id: zh-hsk3-00295-s002, ch: 话题, pr: huà tí, ds: topic}
   - {id: zh-hsk3-00345-s003, ch: 交流, pr: jiāo liú, ds: communication}
   - {id: zh-hsk3-00495-s001, ch: 内容, pr: nèi róng, ds: content}
   - {id: zh-hsk4-00217-s001, ch: 翻译, pr: fān yì, ds: to translate}
   - {id: zh-hsk1-00310-s002, ch: 认识, pr: rèn shi, ds: to recognize}
   - {id: zh-hsk2-00252-s002, ch: 讲, pr: jiǎng, ds: to explain}
-  - {id: zh-hsk2-00641-s003, ch: 意思, pr: yì si, ds: meaning}
   review_grammar:
   - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
   - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
@@ -474,12 +561,12 @@ units:
   - {id: zh-hsk1-00331-s002, ch: 什么, pr: shén me, ds: something or anything}
   - {id: zh-hsk1-00255-s002, ch: 哪儿, pr: nǎ r, ds: 'somewhere, anywhere or wherever'}
   - {id: zh-hsk1-00091-s002, ch: 都, pr: dōu, ds: all or both}
-  - {id: zh-hsk1-00134-s004, ch: 还, pr: hái, ds: still more}
-  - {id: zh-hsk2-00086-s003, ch: 大部分, pr: dà bù fen, ds: the majority}
-  - {id: zh-hsk2-00091-s002, ch: 大量, pr: dà liàng, ds: large quantity}
-  - {id: zh-hsk2-00056-s001, ch: 常用, pr: cháng yòng, ds: in common usage}
-  - {id: zh-hsk2-00055-s002, ch: 常见, pr: cháng jiàn, ds: common}
-  - {id: zh-hsk2-00237-s001, ch: 级, pr: jí, ds: level}
+  - {id: zh-hsk3-00849-s001, ch: 员, pr: yuán, ds: person}
+  - {id: zh-hsk2-00695-s001, ch: 照相, pr: zhào xiàng, ds: to take a photograph}
+  - {id: zh-hsk3-00944-s001, ch: 总, pr: zǒng, ds: general}
+  - {id: zh-hsk3-00922-s001, ch: 祝, pr: Zhù, ds: surname Zhu}
+  - {id: zh-hsklegacy-10645-s001, ch: 照相机, pr: zhào xiàng jī, ds: camera}
+  - {id: zh-hsklegacy-05753-s001, ch: 面条, pr: miàn tiáo, ds: noodles}
   review_grammar:
   - {id: zh-hsk3-g016, ch: 一点儿+也+(不|没)+P, ds: emphatic absence of even the slightest amount}
   - {id: zh-hsk4-g018, ch: 就+V+Quantity, ds: only this much; limited quantity}
@@ -496,12 +583,12 @@ units:
   - {id: zh-hsk2-00046-s004, ch: 才, pr: cái, ds: then and only then}
   - {id: zh-hsk2-00031-s001, ch: 不但, pr: bù dàn, ds: not only (... but also ...)}
   - {id: zh-hsk2-00145-s001, ch: 而且, pr: ér qiě, ds: (not only ...) but also}
-  - {id: zh-hsk2-00151-s001, ch: 方法, pr: fāng fǎ, ds: method}
-  - {id: zh-hsk2-00276-s002, ch: 结果, pr: jié guǒ, ds: outcome}
-  - {id: zh-hsk2-00708-s002, ch: 只要, pr: zhǐ yào, ds: so long as}
   - {id: zh-hsk4-00551-s001, ch: 其余, pr: qí yú, ds: the rest}
   - {id: zh-hsk7-9-05553-s002, ch: 总的来说, pr: zǒng de lái shuō, ds: to sum up}
   - {id: zh-hsk6-00467-s001, ch: 据, pr: jù, ds: according to}
+  - {id: zh-hsk4-00279-s002, ch: 关于, pr: guān yú, ds: concerning}
+  - {id: zh-hsk4-00417-s002, ch: 看来, pr: kàn lai, ds: it seems that}
+  - {id: zh-hsk2-00637-s003, ch: 以下, pr: yǐ xià, ds: the following}
   review_grammar:
   - {id: zh-hsk2-g012, ch: 如果+P+就+Q, ds: hypothetical condition and consequence}
   - {id: zh-hsk2-g011, ch: 虽然+P+但是+Q, ds: acknowledged fact with a contrasting outcome}
@@ -515,7 +602,6 @@ units:
   review_vocabulary:
   - {id: zh-hsk6-00467-s001, ch: 据, pr: jù, ds: according to}
   - {id: zh-hsk3-00391-s001, ch: 据说, pr: jù shuō, ds: it is said that; reportedly}
-  - {id: zh-hsk2-00581-s001, ch: 小说, pr: xiǎo shuō, ds: novel}
   - {id: zh-hsk2-00653-s002, ch: 影片, pr: yǐng piàn, ds: film; motion picture; movie}
   - {id: zh-hsk3-00050-s001, ch: 播出, pr: bō chū, ds: to broadcast}
   - {id: zh-hsk3-00141-s001, ch: 电视剧, pr: diàn shì jù, ds: TV series}
@@ -523,4 +609,5 @@ units:
   - {id: zh-hsk3-00153-s001, ch: 读者, pr: dú zhě, ds: reader}
   - {id: zh-hsk3-00653-s001, ch: 收看, pr: shōu kàn, ds: to watch (a TV program)}
   - {id: zh-hsk3-00700-s001, ch: 听众, pr: tīng zhòng, ds: audience}
+  - {id: zh-hsk4-00506-s002, ch: 名人, pr: míng rén, ds: celebrity}
   review_grammar: []

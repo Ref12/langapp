@@ -19,7 +19,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/餐.json
       member_sha256: d634cbe263e77ea2774367aa07214c0ce1e12e190f806eecf771cdd80b85fb01
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/餐.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -108,7 +108,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饥.json
       member_sha256: d6f6aeb5853b4e066deadb5fcb71bf1debb9f9aa6791588d1cefc00ca6b2539b
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饥.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -162,6 +162,69 @@
       - 1024
       - 1024
       version: '1'
+饪:
+  default_variant: source-median
+  kind: character
+  script: Han
+  variants:
+  - id: source-median
+    locale: zh-Hans-CN
+    provenance:
+    - input: upstream/writing/hanzi-writer-selected.zip
+      member: data/饪.json
+      member_sha256: 32f616b2d3793f7e7ee013704efed1f50289523042a491f2deacdf0a7653acc8
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
+      source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饪.json
+      source_id: zh-writing-hanzi-writer
+    status:
+      generated: true
+      reviewed: false
+      validated: true
+    strokes:
+    - path: M29.697266 14.140625 C30.253906 14.667969 32.788086 15.693359 33.037109 17.304688 C33.286133
+        18.916016 32.084961 21.420898 31.191406 23.808594 C30.297852 26.196289 29.448242 28.4375 27.675781
+        31.630859 C25.90332 34.824219 22.885742 39.790039 20.556641 42.96875 C18.227539 46.147461 15.50293
+        48.87207 13.701172 50.703125 C11.899414 52.53418 10.405273 53.413086 9.746094 53.955078
+    - path: M29.257813 33.652344 C31.103516 33.139648 38.149414 31.103516 40.332031 30.576172 C42.514648
+        30.048828 41.635742 30.341797 42.353516 30.488281 C43.071289 30.634766 44.755859 30.297852 44.638672
+        31.455078 C44.521484 32.612305 42.851563 35.439453 41.650391 37.431641 C40.449219 39.423828 38.134766
+        42.412109 37.431641 43.408203
+    - path: M28.730469 44.023438 C29.052734 44.360352 30.136719 45.297852 30.664063 46.044922 C31.191406
+        46.791992 31.689453 46.469727 31.894531 48.505859 C32.099609 50.541992 32.143555 54.570313 31.894531
+        58.261719 C31.645508 61.953125 30.605469 68.076172 30.400391 70.654297 C30.195313 73.232422 30.078125
+        73.320313 30.664063 73.730469 C31.25 74.140625 31.557617 74.448242 33.916016 73.115234 C36.274414
+        71.782227 42.998047 66.962891 44.814453 65.732422
+    - path: M77.949219 26.357422 C77.421875 26.28418 75.927734 25.947266 74.785156 25.917969 C73.642578
+        25.888672 72.910156 25.229492 71.09375 26.181641 C69.277344 27.133789 66.362305 30.004883 63.886719
+        31.630859 C61.411133 33.256836 58.100586 35.014648 56.240234 35.9375 C54.379883 36.860352 53.442383
+        36.831055 52.724609 37.167969 C52.006836 37.504883 52.299805 37.8125 51.933594 37.958984 C51.567383
+        38.105469 50.908203 37.900391 50.527344 38.046875 C50.146484 38.193359 49.794922 38.706055 49.648438
+        38.837891
+    - path: M44.902344 53.164063 C45.708008 53.251953 46.865234 53.999023 49.736328 53.691406 C52.607422
+        53.383789 57.294922 52.094727 62.128906 51.318359 C66.962891 50.541992 75.356445 49.370117 78.740234
+        49.033203 C82.124023 48.696289 81.142578 49.0625 82.431641 49.296875 C83.720703 49.53125 85.800781
+        50.249023 86.474609 50.439453
+    - path: M60.371094 35.849609 C60.825195 36.113281 62.553711 36.494141 63.095703 37.431641 C63.637695
+        38.369141 63.549805 36.450195 63.623047 41.474609 C63.696289 46.499023 63.842773 62.875977 63.535156
+        67.578125 C63.227539 72.280273 62.070313 69.335938 61.777344 69.6875
+    - path: M47.978516 73.203125 C48.78418 73.305664 48.344727 74.228516 52.8125 73.818359 C57.280273
+        73.408203 69.995117 71.020508 74.785156 70.742188 C79.575195 70.463867 80.424805 71.914063 81.552734
+        72.148438
+    transform:
+      id: hanzi-prototype-padded-em-box
+      matrix:
+      - 0.087890625
+      - 0
+      - 0
+      - -0.087890625
+      - 5
+      - 84.1015625
+      source_frame:
+      - 0
+      - -124
+      - 1024
+      - 1024
+      version: '1'
 饭:
   default_variant: source-median
   kind: character
@@ -173,7 +236,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饭.json
       member_sha256: cc1fa66270ac4250e36825e9c45d7af0b43a5ae271483fc15dfc14fd95a60026
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饭.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -239,7 +302,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饮.json
       member_sha256: 9a3d9e89527b02c9d29c913fb22762dae6665c95eb8778f023790ffe167bc7b1
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饮.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -303,7 +366,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饰.json
       member_sha256: 3655a5d4c5ed88f1d859c20fb189031edfae7dfd0a8d9eab859d9867fa48d824
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饰.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -370,7 +433,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饱.json
       member_sha256: 57be70aec8a1834a475432db6b764f22386faa78357464cce29689bc757bd2b4
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饱.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -445,7 +508,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饲.json
       member_sha256: 5039af73f7aed6d300290847d348ac50d2bbef63408d7bef890b883ccfbe216a
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饲.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -514,7 +577,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饵.json
       member_sha256: 0502fa2fce2835c2bbc6c1bcd9ec7f35dbafac5a733fbbf732b424c8cd633b5f
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饵.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -578,7 +641,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饶.json
       member_sha256: e595fd2426161d4c57fbf17226818addc0140796c6935b7746b124cdc70bd46b
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饶.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -656,7 +719,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饺.json
       member_sha256: be8cc405325dbbe0b0b95d2b556f4027f67bd8dfdf9faf947cc8167e0e02312f
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饺.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -721,7 +784,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饺.json
       member_sha256: be8cc405325dbbe0b0b95d2b556f4027f67bd8dfdf9faf947cc8167e0e02312f
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饺.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -789,7 +852,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饼.json
       member_sha256: 4abcb3a37367215dc9c804a371e82578b12d993b26a9df8f6adcadce59115205
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饼.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -852,7 +915,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饼.json
       member_sha256: 4abcb3a37367215dc9c804a371e82578b12d993b26a9df8f6adcadce59115205
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饼.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -919,7 +982,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饿.json
       member_sha256: 5f7b99d242a4b95593888f50113ee00fb46c289226fc13d60c9088ac3ab36601
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饿.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -987,7 +1050,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/饿.json
       member_sha256: 5f7b99d242a4b95593888f50113ee00fb46c289226fc13d60c9088ac3ab36601
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/饿.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1059,7 +1122,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馁.json
       member_sha256: 1d97ac8e8a63d0d7aa6b0eb5a9e788939092ed0bd60e7fd6c0aa1de60ddebf4a
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馁.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1126,7 +1189,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馁.json
       member_sha256: 1d97ac8e8a63d0d7aa6b0eb5a9e788939092ed0bd60e7fd6c0aa1de60ddebf4a
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馁.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1196,7 +1259,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馅.json
       member_sha256: 2841c20b4198b0421752c49c4daf7ab36e6287f849eaf2fd851f08e12bc049d6
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馅.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1269,7 +1332,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馆.json
       member_sha256: 966fc0537daae4e2ddde299b174f30bff69f7c5d88d5dd7d0046372cc297803c
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馆.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1338,7 +1401,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馆.json
       member_sha256: 966fc0537daae4e2ddde299b174f30bff69f7c5d88d5dd7d0046372cc297803c
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馆.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1411,7 +1474,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馈.json
       member_sha256: 99985ab734aa4b05ee8eb38f3aac2c1d1df7bcd7e0283cc44f9c390bcf9cb4cc
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馈.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1487,7 +1550,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馈.json
       member_sha256: 99985ab734aa4b05ee8eb38f3aac2c1d1df7bcd7e0283cc44f9c390bcf9cb4cc
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馈.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1566,7 +1629,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馋.json
       member_sha256: e47fe816ab3aeac1df4512b8f78d32914013f13a287fad22c0af365932c9539f
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馋.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1649,7 +1712,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馋.json
       member_sha256: e47fe816ab3aeac1df4512b8f78d32914013f13a287fad22c0af365932c9539f
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馋.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1734,7 +1797,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馒.json
       member_sha256: 9b1832af447e8a867f00705d70cc0c933fbfc9e95d49921a208be083fd6ed44d
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馒.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1818,7 +1881,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馒.json
       member_sha256: 9b1832af447e8a867f00705d70cc0c933fbfc9e95d49921a208be083fd6ed44d
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馒.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1905,7 +1968,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/首.json
       member_sha256: 197fefd85084b496c38c447e80652d2a290534319ff6c46e02baee52ee1e720a
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/首.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -1965,7 +2028,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/首.json
       member_sha256: 197fefd85084b496c38c447e80652d2a290534319ff6c46e02baee52ee1e720a
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/首.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -2029,7 +2092,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/香.json
       member_sha256: dcde03c089100ff6bfb6ef4b2ee8b234c2b2fc54cbc511a449fc61ebd50db24b
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/香.json
       source_id: zh-writing-hanzi-writer
     status:
@@ -2095,7 +2158,7 @@
     - input: upstream/writing/hanzi-writer-selected.zip
       member: data/馨.json
       member_sha256: ecf7eb09ee8369456e80d746a08e55dc9b7fe1a10f2df2c88d89a27baba25e1e
-      sha256: e4953bbef8d7e33a1f5af77fd76c7d7ef54a4b888fb5d0ae5a02416ac88c003d
+      sha256: bd98c77053c374fee3b024c444b0e804186721e2fb4b83a68ce4ff211eeeaa68
       source_entry: https://raw.githubusercontent.com/chanind/hanzi-writer-data/68d10a4b21150cae5e1ebbd223eed289cf32d90c/data/馨.json
       source_id: zh-writing-hanzi-writer
     status:

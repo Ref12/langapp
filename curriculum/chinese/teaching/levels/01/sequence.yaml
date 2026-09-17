@@ -40,6 +40,19 @@ units:
   - {id: zh-hsk1-00414-s002, ch: 谢谢, pr: xiè xie, ds: thanks}
   - {id: zh-hsk1-00460-s001, ch: 再见, pr: zài jiàn, ds: goodbye}
   - {id: zh-hsk1-00273-s001, ch: 呢, pr: ne, ds: what-about question particle}
+  - {id: zh-hsk1-00006-s004, ch: 吧, pr: ba, ds: suggestion or surmise particle}
+  - {id: zh-hsk1-00064-s001, ch: 大学生, pr: dà xué shēng, ds: university or college student}
+  - {id: zh-hsk1-00110-s001, ch: 非常, pr: fēi cháng, ds: very}
+  - {id: zh-hsk1-00172-s001, ch: 家人, pr: jiā rén, ds: family member}
+  - {id: zh-hsk1-00214-s002, ch: 冷, pr: lěng, ds: cold}
+  - {id: zh-hsk1-00260-s001, ch: 那儿, pr: nà r, ds: there}
+  - {id: zh-hsk2-00414-s001, ch: 千, pr: qiān, ds: thousand}
+  - {id: zh-hsk1-00346-s001, ch: 书店, pr: shū diàn, ds: bookstore}
+  - {id: zh-hsk1-00369-s002, ch: 同学, pr: tóng xué, ds: fellow student}
+  - {id: zh-hsk1-00408-s001, ch: 小朋友, pr: xiǎo péng yǒu, ds: child}
+  - {id: zh-hsk2-00638-s001, ch: 椅子, pr: yǐ zi, ds: chair}
+  - {id: zh-hsk1-00471-s001, ch: 这边, pr: zhè biān, ds: this side}
+  - {id: zh-hsk2-00750-s001, ch: 做饭, pr: zuò fàn, ds: to prepare a meal}
   grammar:
   - {id: zh-hsk1-g001, ch: S+是+N, ds: noun-predicate identity}
   - {id: zh-hsk1-g003, ch: S+不+P, ds: predicate negation}
@@ -65,6 +78,19 @@ units:
   - {id: zh-hsk1-00427-s002, ch: 要, pr: yào, ds: to want or need}
   - {id: zh-hsk1-00434-s001, ch: 一点儿, pr: yī diǎn r, ds: a bit}
   - {id: zh-hsk1-00123-s004, ch: 给, pr: gěi, ds: to give}
+  - {id: zh-hsk1-00008-s001, ch: 白天, pr: bái tiān, ds: daytime}
+  - {id: zh-hsk1-00065-s001, ch: 到, pr: dào, ds: to reach or arrive}
+  - {id: zh-hsk1-00109-s001, ch: 飞机, pr: fēi jī, ds: airplane}
+  - {id: zh-hsk1-00174-s001, ch: 见, pr: jiàn, ds: to see}
+  - {id: zh-hsk1-00215-s002, ch: 里, pr: lǐ, ds: interior or inside}
+  - {id: zh-hsk1-00262-s001, ch: 那些, pr: nà xiē, ds: those}
+  - {id: zh-hsk1-00295-s008, ch: 前, pr: qián, ds: before}
+  - {id: zh-hsk1-00351-s001, ch: 睡, pr: shuì, ds: to sleep}
+  - {id: zh-hsk1-00371-s001, ch: 外, pr: wài, ds: outside}
+  - {id: zh-hsk1-00409-s001, ch: 小时, pr: xiǎo shí, ds: hour}
+  - {id: zh-hsk1-00439-s001, ch: 一些, pr: yī xiē, ds: some}
+  - {id: zh-hsk2026-00281-s001, ch: 这个, pr: zhè ge, ds: (pronoun) this}
+  - {id: zh-hsk2-00148-s001, ch: 饭馆, pr: fàn guǎn, ds: restaurant}
   grammar:
   - {id: zh-hsk1-g006, ch: S+吗, ds: yes-no question particle}
   - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
@@ -101,6 +127,19 @@ units:
   - {id: zh-hsk1-00231-s001, ch: 买, pr: mǎi, ds: to buy}
   - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how much or how many}
   - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how much or how many?'}
+  - {id: zh-hsk2-00024-s001, ch: 边, pr: biān, ds: side}
+  - {id: zh-hsk1-00076-s001, ch: 第, pr: dì, ds: imperial examination grades (literary)}
+  - {id: zh-hsk2-00158-s001, ch: 分钟, pr: fēn zhōng, ds: minute}
+  - {id: zh-hsk2-00250-s003, ch: 件, pr: jiàn, ds: 'classifier for events, things, clothes etc'}
+  - {id: zh-hsk2-00355-s001, ch: 卖, pr: mài, ds: to sell}
+  - {id: zh-hsk1-00265-s001, ch: 男, pr: nán, ds: male}
+  - {id: zh-hsk1-00303-s001, ch: 请问, pr: qǐng wèn, ds: 'excuse me, may I ask?'}
+  - {id: zh-hsk1-00354-s001, ch: 说话, pr: shuō huà, ds: to speak or talk}
+  - {id: zh-hsklegacy-08528-s001, ch: 玩, pr: wán, ds: to play}
+  - {id: zh-hsk1-00410-s001, ch: 小学, pr: xiǎo xué, ds: elementary school}
+  - {id: zh-hsk1-00446-s001, ch: 有的, pr: yǒu de, ds: some (of a group)}
+  - {id: zh-hsk1-00472-s001, ch: 这儿, pr: zhè r, ds: here}
+  - {id: zh-hsk3-00287-s003, ch: 后面, pr: hòu mian, ds: later; afterwards}
   grammar:
   - {id: zh-hsk1-g010, ch: Num+Cl+N, ds: counting with classifiers}
   - {id: zh-hsk1-g023, ch: 几+Cl|多少+N, ds: asking quantity}

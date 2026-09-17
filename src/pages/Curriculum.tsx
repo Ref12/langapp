@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { curriculum, curriculumLevels, curriculumProgress, nextCurriculumLesson, type CurriculumGrammar, type CurriculumLevel } from '../data/curriculum'
 import { getLesson } from '../data/mandarin'
 import { PageHeading, type PageProps } from '../components/shared'
@@ -6,8 +6,8 @@ import { PageHeading, type PageProps } from '../components/shared'
 export function CurriculumMap({ workspace }: PageProps) {
   const next = nextCurriculumLesson(workspace)
   return <>
-    <PageHeading eyebrow="A REAL CURRICULUM. YOUR OWN PACE." title="Your Mandarin path.">
-      Six phases, thirty levels. Begin with levels 1-4: 205 vocabulary senses, 25 grammar references, and small reading-practice lessons.
+    <PageHeading eyebrow="HSK READINESS. YOUR OWN PACE." title="Your Mandarin path.">
+      A cumulative HSK 1-6 preparation route mapped onto thirty communicative course levels, with explicit evidence gaps and mock-test checkpoints.
     </PageHeading>
     <section className="panel feature-panel">
       <p className="eyebrow accent">{next ? 'YOUR NEXT SMALL LESSON' : 'KEEP YOUR BEGINNER WORDS FRESH'}</p>
@@ -15,7 +15,43 @@ export function CurriculumMap({ workspace }: PageProps) {
       <p>{next ? 'About 5-8 new senses at a time, with a short review of earlier words already in your learning set.' : 'Later retrieval still matters. Recognition practice does not demonstrate the course goals on its own.'}</p>
       <a className="button primary" href={next ? `#lesson/${next.id}` : '#practice'}>{next ? 'Continue your path' : 'Review your learning set'} <ArrowRight size={16} /></a>
     </section>
-    <p className="page-footnote">Levels 5-30 are a curriculum preview, not playable lessons yet. You may explore any available beginner level; prerequisites are guidance, not an exam gate.</p>
+    <section className="curriculum-phase" aria-labelledby="hsk-readiness">
+      <div className="section-heading"><div><p className="eyebrow accent">EXAM PREPARATION</p><h2 id="hsk-readiness">{curriculum.hskReadiness.title}</h2></div>
+        <span className="tag">HSK 1-6</span></div>
+      <p>{curriculum.hskReadiness.alignmentNote}</p>
+      <p className="page-footnote">{curriculum.hskReadiness.cutoffSemantics.rule}</p>
+      <p className="page-footnote">This app currently practices {curriculum.hskReadiness.appPractice.supported.join(', ')}. Full readiness also requires {curriculum.hskReadiness.appPractice.externalRequired.join(', ')}.</p>
+      <div className="experience-grid">{curriculum.hskReadiness.sections.map(section => {
+        const mocks = curriculum.hskReadiness.resources.filter(
+          resource => section.mockTest.resourceIds.includes(resource.id),
+        )
+        return <details className="panel readiness-section" key={section.id}>
+          <summary><span><span className="eyebrow accent">HSK {section.hskLevel}</span><strong>{section.title}</strong></span>
+            <span className="tag">{section.exam.questions} questions / about {section.exam.minutes} min</span></summary>
+          <p>{section.outcome}</p>
+          <p className="small muted">Course levels {section.courseLevels[0]}-{section.courseLevels[section.courseLevels.length - 1]} / Tested skills: {section.exam.skills.join(', ')}</p>
+          <p className="small muted">Vocabulary cutoff: {section.knowledgeCutoff.official_vocabulary}. Grammar: {section.knowledgeCutoff.official_grammar}.</p>
+          {section.modules.map(module => <article key={module.id} className="readiness-module">
+            <h3>{module.title}</h3><p className="muted">{module.outcome}</p>
+            <ol>{module.lessons.map(lesson => <li key={lesson.id}><strong>{lesson.title}</strong><span>{lesson.objective}</span></li>)}</ol>
+          </article>)}
+          <div className="button-row">
+            <a className="text-link" href={section.exam.officialUrl} target="_blank" rel="noreferrer">Official HSK {section.hskLevel} format <ExternalLink size={14} /></a>
+            {mocks.map(mock => <a className="text-link" href={mock.url} target="_blank" rel="noreferrer" key={mock.id}>{mock.title} <ExternalLink size={14} /></a>)}
+          </div>
+          <p className="small muted">{section.mockTest.availableSets} audited practice sets. Mock sequence: {section.mockTest.sequence.join(' → ')}.</p>
+          <p className="small muted">Readiness still requires: {section.performanceGates.map(gate => gate.requirement).join(' ')}</p>
+        </details>
+      })}</div>
+      <div className="notice"><h3>{curriculum.hskReadiness.advanced.title}</h3><p>{curriculum.hskReadiness.advanced.reason}</p>
+        <p>{curriculum.hskReadiness.advanced.recommendation}</p>
+        <a className="text-link" href={curriculum.hskReadiness.advanced.officialUrl} target="_blank" rel="noreferrer">Official HSK 7-9 overview <ExternalLink size={14} /></a>
+      </div>
+      <div className="button-row">{curriculum.hskReadiness.resources.map(resource =>
+        <a className="text-link" href={resource.url} target="_blank" rel="noreferrer" key={resource.id}>{resource.title} <ExternalLink size={14} /></a>)}</div>
+    </section>
+    <div className="section-heading"><div><p className="eyebrow accent">COURSE SEQUENCE</p><h2>Thirty communicative levels</h2></div><span className="tag">Levels 1-30</span></div>
+    <p className="page-footnote">Levels 5-30 are mapped curriculum previews, not playable lessons yet. The readiness lesson outlines identify work to complete with a tutor and current external test materials; they do not award progress in this app.</p>
     {curriculum.phases.map((phase, index) => <section key={phase.id} className="curriculum-phase" aria-labelledby={`phase-${phase.id}`}>
       <div className="section-heading"><div><p className="eyebrow accent">PHASE {index + 1}</p><h2 id={`phase-${phase.id}`}>{phase.title}</h2></div>
         <span className="tag">Levels {phase.levels[0].number}-{phase.levels[phase.levels.length - 1].number}</span></div>

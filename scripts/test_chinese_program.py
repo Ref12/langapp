@@ -9,9 +9,10 @@ import yaml
 
 from curriculum_yaml import dump_entries, load_yaml, write_yaml
 from generate_chinese_program import (
-    annotated_grammar, configured, generate, load_inputs, load_references,
-    phrase_is_covered, program_outputs, schedule_vocabulary, tourist_outputs,
-    validate_model, vocabulary_labels,
+    annotated_grammar, apply_hsk_vocabulary, augment_beginner, configured, generate,
+    load_hsk_references, load_hsk_vocabulary, load_inputs, load_references, phrase_is_covered,
+    program_outputs, schedule_vocabulary, tourist_outputs, validate_model,
+    vocabulary_labels,
 )
 
 
@@ -367,9 +368,13 @@ class CheckedInProgramTests(unittest.TestCase):
     def setUpClass(cls):
         cls.root = Path(__file__).resolve().parents[1] / "curriculum" / "chinese"
         cls.teaching = cls.root / "teaching"
-        cls.inputs = load_inputs(cls.root)
+        cls.hsk_vocabulary = load_hsk_vocabulary(cls.root)
+        cls.inputs = apply_hsk_vocabulary(load_inputs(cls.root), cls.hsk_vocabulary)
         cls.words, cls.patterns = load_references(cls.root, cls.inputs)
-        cls.beginner = load_yaml(cls.teaching / "beginner" / "sequence.yaml")
+        cls.source_beginner = load_yaml(cls.teaching / "beginner" / "sequence.yaml")
+        cls.beginner = augment_beginner(
+            cls.source_beginner, cls.hsk_vocabulary, cls.words,
+        )
         cls.outputs = program_outputs(
             cls.root, cls.inputs, cls.words, cls.patterns, cls.beginner,
         )
@@ -410,6 +415,13 @@ class CheckedInProgramTests(unittest.TestCase):
         self.assertEqual([level["number"] for level in self.levels], list(range(1, 31)))
         self.assertEqual([unit for level in self.levels[:4] for unit in level["units"]],
                          self.beginner["units"])
+        for source, expanded in zip(
+            self.source_beginner["units"], self.beginner["units"],
+        ):
+            self.assertEqual(
+                expanded["vocabulary"][:len(source["vocabulary"])],
+                source["vocabulary"],
+            )
         for level in self.levels:
             self.assertTrue(level["units"])
             self.assertTrue(2 <= len(level["goals"]) <= 4)
@@ -437,6 +449,20 @@ class CheckedInProgramTests(unittest.TestCase):
         self.assertGreater(report["phases"][-1]["modules"], report["phases"][1]["modules"])
         self.assertNotIn("competency", report)
         self.assertNotIn("learner_mastery", report)
+
+    def test_hsk_evidence_overlay_is_cumulative_and_source_attributed(self):
+        self.assertEqual(len(self.hsk_vocabulary), 2762)
+        self.assertEqual(
+            sum(row["course_level"] <= 4 for row in self.hsk_vocabulary), 152,
+        )
+        cutoffs = [4, 8, 13, 18, 24, 30]
+        self.assertTrue(all(
+            row["course_level"] <= cutoffs[row["hsk_level"] - 1]
+            for row in self.hsk_vocabulary
+        ))
+        supplemental = load_hsk_references(self.root)
+        self.assertEqual(len(supplemental), 390)
+        self.assertTrue(set(supplemental) <= self.words.keys())
 
     def test_phase_folders_sort_in_curriculum_order(self):
         directory = self.teaching / "phases"

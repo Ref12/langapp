@@ -111,9 +111,9 @@ class ChineseAssetTests(unittest.TestCase):
                 for path in root.rglob("*") if path.is_file()}
 
     def test_exact_inventory_and_explicit_non_han_sign_gaps(self):
-        self.assertEqual(len(self.inventory["required"]), 2971)
+        self.assertEqual(len(self.inventory["required"]), 3001)
         self.assertEqual(sha256("".join(self.inventory["required"]).encode("utf-8")),
-                         "4eda494815a7315fde471f1b12930eabfc6abad73407c87099998e9dbdb96b82")
+                         "51f1a0decf3b4c1fe1d717894bb2892136bcda64320ca7670a3a104fc7772809")
         self.assertEqual(set(self.inventory["literal_signs"]), set("\u3002\uff0c\uff1b\uff1f"))
         self.assertEqual(self.inventory["literal_cross_script"], [])
         self.assertEqual(self.inventory["components"], [])
@@ -121,10 +121,10 @@ class ChineseAssetTests(unittest.TestCase):
         self.assertEqual(len({ord(c) >> 8 for c in self.inventory["required"]}), 80)
 
     def test_selected_original_counts_and_immutable_license(self):
-        self.assertEqual(len(self.source), 2971)
-        self.assertEqual(sum(len(row["strokes"]) for row in self.source.values()), 28084)
+        self.assertEqual(len(self.source), 3001)
+        self.assertEqual(sum(len(row["strokes"]) for row in self.source.values()), 28418)
         self.assertEqual(sum(value["bytes"] for name, value in self.lock["members"].items()
-                             if name.startswith("data/")), 8279016)
+                             if name.startswith("data/")), 8372864)
         self.assertEqual(sha256(importer.local(importer.ROOT, importer.LICENSE).read_bytes()),
                          importer.LICENSE_SHA256)
 
@@ -267,18 +267,18 @@ class ChineseAssetTests(unittest.TestCase):
     def test_complete_corpus_preserves_stroke_counts_and_review_boundaries(self):
         records, queue = importer.make_records(self.source, self.lock, self.recipes, self.recipe_pin)
         self.assertEqual(set(records), set(self.inventory["required"]))
-        self.assertEqual(len(queue), 2000)
-        self.assertEqual(sum(len(record["variants"]) for record in records.values()), 4973)
+        self.assertEqual(len(queue), 2019)
+        self.assertEqual(sum(len(record["variants"]) for record in records.values()), 5022)
         rules = [flag["rule"] for entry in queue.values() for flag in entry["rules"]]
-        self.assertEqual(rules.count("compact-hook"), 405)
-        self.assertEqual(rules.count("short-fall"), 3270)
+        self.assertEqual(rules.count("compact-hook"), 408)
+        self.assertEqual(rules.count("short-fall"), 3306)
         for character, record in records.items():
             self.assertEqual(record["default_variant"],
                              "reviewed-monoline" if character in importer.APPROVED else "source-median")
             for variant in record["variants"]:
                 self.assertEqual(len(variant["strokes"]), len(self.source[character]["strokes"]))
                 self.assertEqual(variant["status"]["reviewed"], variant["id"] == "reviewed-monoline")
-        self.assertEqual(sum(len(points) for row in self.source.values() for points in row["medians"]), 164454)
+        self.assertEqual(sum(len(points) for row in self.source.values() for points in row["medians"]), 166294)
 
     def test_dense_style_cautions_do_not_change_geometry_or_approval(self):
         self.assertEqual(set(importer.STYLE_CAUTIONS), set("\u56ca\u8b66\u8d62\u5668"))

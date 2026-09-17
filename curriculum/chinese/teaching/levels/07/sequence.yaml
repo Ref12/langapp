@@ -24,6 +24,44 @@ checkpoint:
 mastery_profile: zh-item-mastery
 mastery_target: independent-use
 units:
+- id: level-07-people-01
+  title: People and relationships - 1
+  outcome: Describe people and relationships and respond to another person's perspective.
+  vocabulary:
+  - {id: zh-hsk1-00179-s001, ch: 介绍, pr: jiè shào, ds: to introduce people}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00436-s001, ch: 全家, pr: quán jiā, ds: whole family}
+  - {id: zh-hsk1-00209-s002, ch: 老, pr: lǎo, ds: old (of people)}
+  - {id: zh-hsk1-00282-s001, ch: 女孩儿, pr: nǚ hái r, ds: girl}
+  - {id: zh-hsk1-00284-s001, ch: 女人, pr: nǚ rén, ds: woman}
+  - {id: zh-hsk4-00545-s002, ch: 妻子, pr: qī zi, ds: wife}
+  - {id: zh-hsk2-00602-s001, ch: 姓, pr: xìng, ds: family name}
+  - {id: zh-hsk1-00123-s001, ch: 给, pr: gěi, ds: to}
+  - {id: zh-hsk1-00123-s002, ch: 给, pr: gěi, ds: for}
+  review_grammar:
+  - {id: zh-hsk1-g005, ch: S+没有+N, ds: lack of possession}
+  - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
+  - {id: zh-hsk2-g024, ch: 给+Person+VP, ds: action directed to or done for someone}
+- id: level-07-food-01
+  title: Food and meals - 1
+  outcome: Discuss ingredients and preferences and clarify a food-related request.
+  vocabulary:
+  - {id: zh-hsk3-00489-s001, ch: 奶茶, pr: nǎi chá, ds: milk tea}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00279-s002, ch: 斤, pr: jīn, ds: (PRC) weight equal to 500 g}
+  - {id: zh-hsk2-00542-s001, ch: 碗, pr: wǎn, ds: bowl}
+  - {id: zh-hsk2-00710-s003, ch: 中餐, pr: zhōng cān, ds: Chinese food}
+  - {id: zh-hsk3-00284-s001, ch: 红茶, pr: hóng chá, ds: black tea}
+  - {id: zh-hsk4-00187-s001, ch: 豆腐, pr: dòu fu, ds: tofu}
+  - {id: zh-hsk4-00561-s001, ch: 切, pr: qiē, ds: to cut; to slice; to carve}
+  - {id: zh-hsk4-00767-s008, ch: 咸, pr: xián, ds: salty}
+  - {id: zh-hsk2-00422-s002, ch: 晴, pr: qíng, ds: fine (weather)}
+  review_grammar:
+  - {id: zh-hsk1-g019, ch: S+想+V, ds: desire or intention}
+  - {id: zh-hsk1-g021, ch: 请+VP, ds: polite request}
+  - {id: zh-hsk1-g017, ch: S+都+P, ds: all members of a group}
 - id: level-07-travel-01
   title: Travel and transport - 1
   outcome: Explain a journey and negotiate a transport or accommodation arrangement.
@@ -34,12 +72,9 @@ units:
   - {id: zh-hsk1-00020-s001, ch: 北, pr: běi, ds: north}
   - {id: zh-hsk1-00045-s001, ch: 车上, pr: chē shàng, ds: in or on a vehicle}
   - {id: zh-hsk1-00046-s002, ch: 车站, pr: chē zhàn, ds: bus stop}
-  - {id: zh-hsk1-00065-s001, ch: 到, pr: dào, ds: to reach or arrive}
   - {id: zh-hsk1-00068-s004, ch: 地方, pr: dì fang, ds: area or place}
   - {id: zh-hsk1-00086-s002, ch: 东, pr: dōng, ds: east}
-  - {id: zh-hsk1-00109-s001, ch: 飞机, pr: fēi jī, ds: airplane}
   - {id: zh-hsk1-00224-s001, ch: 路口, pr: lù kǒu, ds: road intersection}
-  - {id: zh-hsk1-00259-s001, ch: 那边, pr: nà bian, ds: over there}
   - {id: zh-hsk1-00294-s001, ch: 汽车, pr: qì chē, ds: car}
   - {id: zh-hsk1-00373-s001, ch: 外国, pr: wài guó, ds: foreign country}
   - {id: zh-hsk1-00392-s001, ch: 西边, pr: xī biān, ds: west}
@@ -53,25 +88,25 @@ units:
   - {id: zh-hsk2-00287-s003, ch: 酒店, pr: jiǔ diàn, ds: hotel}
   - {id: zh-hsk2-00341-s001, ch: 辆, pr: liàng, ds: classifier for vehicles}
   - {id: zh-hsk2-00350-s001, ch: 旅客, pr: lǚ kè, ds: traveler; tourist}
+  - {id: zh-hsk2-00409-s004, ch: 骑, pr: qí, ds: 'to ride (a horse, bike etc)'}
+  - {id: zh-hsk2-00555-s001, ch: 问路, pr: wèn lù, ds: to ask for directions}
+  - {id: zh-hsk2-00736-s002, ch: 租, pr: zū, ds: to rent}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk1-00150-s002, ch: 后边, pr: hòu bian, ds: behind}
-  - {id: zh-hsk1-00286-s001, ch: 旁边, pr: páng biān, ds: side; adjacent place}
-  - {id: zh-hsk1-00216-s001, ch: 里边, pr: lǐ bian, ds: inside}
-  - {id: zh-hsk1-00372-s001, ch: 外边, pr: wài bian, ds: outside}
-  - {id: zh-hsk1-00046-s001, ch: 车站, pr: chē zhàn, ds: rail station}
-  - {id: zh-hsk1-00162-s001, ch: 火车, pr: huǒ chē, ds: train}
-  - {id: zh-hsk1-00044-s001, ch: 车票, pr: chē piào, ds: bus or train ticket}
-  - {id: zh-hsk1-00058-s001, ch: 打车, pr: dǎ chē, ds: to take a taxi}
+  - {id: zh-hsk4-00524-s001, ch: 女士, pr: nǚ shì, ds: lady}
+  - {id: zh-hsk1-00328-s003, ch: 少, pr: shǎo, ds: to lack or be missing}
+  - {id: zh-hsk1-00363-s002, ch: 天, pr: tiān, ds: sky}
+  - {id: zh-hsk1-00400-s001, ch: 下雨, pr: xià yǔ, ds: to rain}
+  - {id: zh-hsk1-00441-s001, ch: 衣服, pr: yī fu, ds: clothes}
+  - {id: zh-hsk1-00465-s001, ch: 早上, pr: zǎo shang, ds: early morning}
+  - {id: zh-hsk1-00488-s001, ch: 中学生, pr: zhōng xué shēng, ds: secondary-school student}
+  - {id: zh-hsk3-00839-s001, ch: 游, pr: Yóu, ds: surname You}
   review_grammar:
   - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}
 - id: level-07-travel-02
   title: Travel and transport - 2
   outcome: Explain a journey and negotiate a transport or accommodation arrangement.
   vocabulary:
-  - {id: zh-hsk2-00409-s004, ch: 骑, pr: qí, ds: 'to ride (a horse, bike etc)'}
-  - {id: zh-hsk2-00555-s001, ch: 问路, pr: wèn lù, ds: to ask for directions}
-  - {id: zh-hsk2-00736-s002, ch: 租, pr: zū, ds: to rent}
   - {id: zh-hsk2-00747-s001, ch: 座位, pr: zuò wèi, ds: seat}
   - {id: zh-hsk4-00437-s001, ch: 来不及, pr: lái bu jí, ds: there's not enough time (to do sth)}
   - {id: zh-hsk4-00881-s002, ch: 预订, pr: yù dìng, ds: to book ahead}
@@ -94,28 +129,26 @@ units:
   - {id: zh-hsk2-00519-s001, ch: 停车场, pr: tíng chē chǎng, ds: parking lot}
   - {id: zh-hsk3-00135-s001, ch: 到达, pr: dào dá, ds: to reach; to arrive}
   - {id: zh-hsk3-00148-s005, ch: 订, pr: dìng, ds: to order}
+  - {id: zh-hsk3-00457-s001, ch: 旅馆, pr: lǚ guǎn, ds: hotel}
+  - {id: zh-hsk4-00179-s001, ch: 电梯, pr: diàn tī, ds: elevator}
+  - {id: zh-hsk4-00192-s001, ch: 堵车, pr: dǔ chē, ds: traffic jam}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00067-s001, ch: 出口, pr: chū kǒu, ds: an exit}
-  - {id: zh-hsk2-00068-s001, ch: 出门, pr: chū mén, ds: to go out}
-  - {id: zh-hsk2-00072-s001, ch: 出租, pr: chū zū, ds: to rent}
   - {id: zh-hsk2-00149-s001, ch: 方便, pr: fāng biàn, ds: convenient}
   - {id: zh-hsk2-00267-s003, ch: 接, pr: jiē, ds: to meet or welcome sb}
   - {id: zh-hsk2-00287-s003, ch: 酒店, pr: jiǔ diàn, ds: hotel}
   - {id: zh-hsk2-00341-s001, ch: 辆, pr: liàng, ds: classifier for vehicles}
   - {id: zh-hsk2-00350-s001, ch: 旅客, pr: lǚ kè, ds: traveler; tourist}
+  - {id: zh-hsk2-00409-s004, ch: 骑, pr: qí, ds: 'to ride (a horse, bike etc)'}
+  - {id: zh-hsk2-00555-s001, ch: 问路, pr: wèn lù, ds: to ask for directions}
+  - {id: zh-hsk2-00736-s002, ch: 租, pr: zū, ds: to rent}
   review_grammar:
   - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}
 - id: level-07-travel-03
   title: Travel and transport - 3
   outcome: Explain a journey and negotiate a transport or accommodation arrangement.
   vocabulary:
-  - {id: zh-hsk3-00457-s001, ch: 旅馆, pr: lǚ guǎn, ds: hotel}
-  - {id: zh-hsk4-00179-s001, ch: 电梯, pr: diàn tī, ds: elevator}
-  - {id: zh-hsk4-00192-s001, ch: 堵车, pr: dǔ chē, ds: traffic jam}
   - {id: zh-hsk4-00257-s001, ch: 高铁, pr: gāo tiě, ds: high speed rail}
-  - {id: zh-hsk1-00043-s002, ch: 车, pr: chē, ds: car}
-  - {id: zh-hsk1-00191-s001, ch: 开车, pr: kāi chē, ds: to drive a car}
   - {id: zh-hsk1-00228-s001, ch: 马路, pr: mǎ lù, ds: road or street}
   - {id: zh-hsk1-00244-s001, ch: 门票, pr: mén piào, ds: admission ticket}
   - {id: zh-hsk1-00270-s002, ch: 南, pr: nán, ds: south}
@@ -135,28 +168,27 @@ units:
   - {id: zh-hsk1-00108-s001, ch: 飞, pr: fēi, ds: to fly}
   - {id: zh-hsk1-00087-s001, ch: 东边, pr: dōng bian, ds: east or east side}
   - {id: zh-hsk1-00271-s001, ch: 南边, pr: nán bian, ds: south or southern side}
+  - {id: zh-hsk1-00322-s001, ch: 上车, pr: shàng chē, ds: to board a vehicle}
+  - {id: zh-hsk1-00396-s001, ch: 下车, pr: xià chē, ds: to exit a vehicle}
+  - {id: zh-hsk1-00457-s001, ch: 远, pr: yuǎn, ds: far}
+  - {id: zh-hsk1-00467-s001, ch: 站, pr: zhàn, ds: station}
+  - {id: zh-hsk2-00065-s001, ch: 出发, pr: chū fā, ds: to set off}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00180-s002, ch: 公交车, pr: gōng jiāo chē, ds: town bus}
-  - {id: zh-hsk2-00220-s001, ch: 护照, pr: hù zhào, ds: passport}
-  - {id: zh-hsk2-00329-s001, ch: 离开, pr: lí kāi, ds: to depart; to leave}
   - {id: zh-hsk2-00450-s001, ch: 入口, pr: rù kǒu, ds: entrance}
   - {id: zh-hsk2-00485-s001, ch: 司机, pr: sī jī, ds: chauffeur; driver}
   - {id: zh-hsk2-00519-s001, ch: 停车场, pr: tíng chē chǎng, ds: parking lot}
   - {id: zh-hsk3-00135-s001, ch: 到达, pr: dào dá, ds: to reach; to arrive}
   - {id: zh-hsk3-00148-s005, ch: 订, pr: dìng, ds: to order}
+  - {id: zh-hsk3-00457-s001, ch: 旅馆, pr: lǚ guǎn, ds: hotel}
+  - {id: zh-hsk4-00179-s001, ch: 电梯, pr: diàn tī, ds: elevator}
+  - {id: zh-hsk4-00192-s001, ch: 堵车, pr: dǔ chē, ds: traffic jam}
   review_grammar:
   - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}
 - id: level-07-travel-04
   title: Travel and transport - 4
   outcome: Explain a journey and negotiate a transport or accommodation arrangement.
   vocabulary:
-  - {id: zh-hsk1-00322-s001, ch: 上车, pr: shàng chē, ds: to board a vehicle}
-  - {id: zh-hsk1-00396-s001, ch: 下车, pr: xià chē, ds: to exit a vehicle}
-  - {id: zh-hsk1-00457-s001, ch: 远, pr: yuǎn, ds: far}
-  - {id: zh-hsk1-00467-s001, ch: 站, pr: zhàn, ds: station}
-  - {id: zh-hsk2-00065-s001, ch: 出发, pr: chū fā, ds: to set off}
-  - {id: zh-hsk2-00073-s001, ch: 出租车, pr: chū zū chē, ds: taxi}
   - {id: zh-hsk2-00074-s001, ch: 船, pr: chuán, ds: boat}
   - {id: zh-hsk2-00113-s001, ch: 地铁站, pr: dì tiě zhàn, ds: subway station}
   - {id: zh-hsk2-00140-s002, ch: 对面, pr: duì miàn, ds: across (the street)}
@@ -172,14 +204,14 @@ units:
   - {id: zh-hsk1-00427-s003, ch: 要, pr: yào, ds: will or be about to}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00547-s003, ch: 往, pr: wǎng, ds: towards}
-  - {id: zh-hsk2-00731-s001, ch: 自行车, pr: zì xíng chē, ds: bicycle; bike}
-  - {id: zh-hsk3-00524-s001, ch: 票价, pr: piào jià, ds: ticket price; fare; admission fee}
-  - {id: zh-hsk4-00951-s001, ch: 转弯, pr: zhuǎn wān, ds: to turn}
-  - {id: zh-hsk4-00165-s001, ch: 地址, pr: dì zhǐ, ds: address}
   - {id: zh-hsk1-00108-s001, ch: 飞, pr: fēi, ds: to fly}
   - {id: zh-hsk1-00087-s001, ch: 东边, pr: dōng bian, ds: east or east side}
   - {id: zh-hsk1-00271-s001, ch: 南边, pr: nán bian, ds: south or southern side}
+  - {id: zh-hsk1-00322-s001, ch: 上车, pr: shàng chē, ds: to board a vehicle}
+  - {id: zh-hsk1-00396-s001, ch: 下车, pr: xià chē, ds: to exit a vehicle}
+  - {id: zh-hsk1-00457-s001, ch: 远, pr: yuǎn, ds: far}
+  - {id: zh-hsk1-00467-s001, ch: 站, pr: zhàn, ds: station}
+  - {id: zh-hsk2-00065-s001, ch: 出发, pr: chū fā, ds: to set off}
   review_grammar:
   - {id: zh-hsk1-g024, ch: (去|来)+Place+V, ds: movement with purpose}
 - id: level-07-services-01
@@ -191,25 +223,51 @@ units:
   - {id: zh-hsk3-00380-s001, ch: 警察, pr: jǐng chá, ds: police; police officer}
   grammar: []
   review_vocabulary:
+  - {id: zh-hsk2-00649-s001, ch: 银行卡, pr: yín háng kǎ, ds: bank card}
   - {id: zh-hsk4-00131-s001, ch: 打折, pr: dǎ zhé, ds: to give a discount}
   - {id: zh-hsk1-00299-s001, ch: 钱包, pr: qián bāo, ds: money purse or wallet}
   - {id: zh-hsk1-00339-s002, ch: 试, pr: shì, ds: to try}
   - {id: zh-hsk1-00078-s010, ch: 点, pr: diǎn, ds: to order food}
   - {id: zh-hsk2-00161-s002, ch: 服务, pr: fú wù, ds: service}
-  - {id: zh-hsk2-00355-s001, ch: 卖, pr: mài, ds: to sell}
   - {id: zh-hsk2-00294-s004, ch: 卡, pr: kǎ, ds: (loanword) card}
   - {id: zh-hsk3-00196-s001, ch: 服务员, pr: fú wù yuán, ds: waiter}
   review_grammar:
   - {id: zh-hsk2-g017, ch: Adj+一点儿, ds: a little more adjective in requests or comparisons}
   - {id: zh-hsk2-g025, ch: (可以|能)+V, ds: permission versus ability allowed by circumstances}
   - {id: zh-hsk3-g017, ch: Question+A还是B|Statement+A或者B, ds: question alternatives versus statement alternatives}
+- id: level-07-learning-01
+  title: Learning and education - 1
+  outcome: Explain a learning experience or approach and respond to questions.
+  vocabulary:
+  - {id: zh-hsk2-00508-s004, ch: 题, pr: tí, ds: exam question}
+  grammar: []
+  review_vocabulary: []
+  review_grammar: []
+- id: level-07-communication-01
+  title: Communication and information - 1
+  outcome: Convey relevant information and repair ambiguity or misunderstanding.
+  vocabulary:
+  - {id: zh-hsk2-00641-s003, ch: 意思, pr: yì si, ds: meaning}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2026-00259-s001, ch: 一下, pr: yī xià, ds: (after a verb) a bit}
+  - {id: zh-hsk2-00686-s001, ch: 怎么样, pr: zěn me yàng, ds: 'how?'}
+  - {id: zh-hsk1-00506-s003, ch: 做, pr: zuò, ds: to do or engage in}
+  - {id: zh-hsk2-00001-s016, ch: 啊, pr: a, ds: 'sentence-final particle of affirmation, approval, or consent'}
+  - {id: zh-hsk3-00753-s002, ch: 下来, pr: xià lai, ds: (completed action marker)}
+  - {id: zh-hsk1-00156-s001, ch: 回答, pr: huí dá, ds: to reply}
+  - {id: zh-hsk1-00250-s004, ch: 明白, pr: míng bai, ds: to understand or realize}
+  - {id: zh-hsk2-00603-s002, ch: 姓名, pr: xìng míng, ds: full name}
+  review_grammar:
+  - {id: zh-hsk1-g022, ch: P+不+P, ds: A-not-A question}
+  - {id: zh-hsk4-g013, ch: V+下来, ds: record or preserve something as an action's result}
+  - {id: zh-hsk3-g004, ch: V+(得|不)+Result, ds: whether an action can attain a result}
 - id: level-07-time-01
   title: Time and events - 1
   outcome: Relate events and clarify their sequence and circumstances.
   vocabulary:
   - {id: zh-hsk1-00319-s001, ch: 上, pr: shàng, ds: up or previous (bound form)}
   - {id: zh-hsk1-00133-s010, ch: 过, pr: guo, ds: experiential aspect marker}
-  - {id: zh-hsk1-00149-s010, ch: 后, pr: hòu, ds: after}
   - {id: zh-hsk1-00229-s001, ch: 马上, pr: mǎ shàng, ds: at once}
   - {id: zh-hsk2-00011-s002, ch: 半夜, pr: bàn yè, ds: in the middle of the night}
   - {id: zh-hsk2-00127-s001, ch: 冬天, pr: dōng tiān, ds: winter}
@@ -217,31 +275,32 @@ units:
   - {id: zh-hsk2-00453-s001, ch: 上周, pr: shàng zhōu, ds: last week}
   - {id: zh-hsk1-00054-s013, ch: 次, pr: cì, ds: classifier for occurrences}
   - {id: zh-hsk1-00151-s001, ch: 后天, pr: hòu tiān, ds: the day after tomorrow}
-  - {id: zh-hsk1-00307-s001, ch: 去年, pr: qù nián, ds: last year}
   - {id: zh-hsk1-00313-s001, ch: 日期, pr: rì qī, ds: date}
-  - {id: zh-hsk1-00376-s003, ch: 晚, pr: wǎn, ds: late}
   - {id: zh-hsk2-00568-s001, ch: 下周, pr: xià zhōu, ds: next week}
   - {id: zh-hsk2-00633-s001, ch: 以前, pr: yǐ qián, ds: before}
   - {id: zh-hsk2-00702-s001, ch: 正好, pr: zhèng hǎo, ds: just (in time)}
   - {id: zh-hsk2-00104-s007, ch: 当, pr: dāng, ds: when}
-  - {id: zh-hsk1-00418-s001, ch: 星期日, pr: Xīng qī rì, ds: Sunday}
-  - {id: zh-hsk1-00357-s002, ch: 岁, pr: suì, ds: years old (age measure)}
   - {id: zh-hsk1-00393-s006, ch: 下, pr: xià, ds: next (week etc)}
-  - {id: zh-hsk2-00158-s001, ch: 分钟, pr: fēn zhōng, ds: minute}
   - {id: zh-hsk2-00173-s001, ch: 刚才, pr: gāng cái, ds: just now}
   - {id: zh-hsk2-00288-s003, ch: 就要, pr: jiù yào, ds: to be going to}
   - {id: zh-hsk2-00310-s001, ch: 刻, pr: kè, ds: quarter (hour)}
   - {id: zh-hsk2-00673-s001, ch: 月份, pr: yuè fèn, ds: month}
+  - {id: zh-hsk1-00077-s001, ch: 第二, pr: dì èr, ds: second}
+  - {id: zh-hsk1-00297-s001, ch: 前天, pr: qián tiān, ds: the day before yesterday}
+  - {id: zh-hsk1-00323-s001, ch: 上次, pr: shàng cì, ds: last time}
+  - {id: zh-hsk1-00397-s001, ch: 下次, pr: xià cì, ds: next time}
+  - {id: zh-hsk1-00435-s001, ch: 一会儿, pr: yī huì r, ds: a short while}
+  - {id: zh-hsk2-00077-s001, ch: 春天, pr: chūn tiān, ds: spring (season)}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk1-00251-s001, ch: 明年, pr: míng nián, ds: next year}
-  - {id: zh-hsk1-00449-s001, ch: 有时候, pr: yǒu shí hou, ds: sometimes}
-  - {id: zh-hsk1-00465-s001, ch: 早上, pr: zǎo shang, ds: early morning}
   - {id: zh-hsk1-00401-s005, ch: 先, pr: xiān, ds: first}
-  - {id: zh-hsk1-00008-s001, ch: 白天, pr: bái tiān, ds: daytime}
   - {id: zh-hsk1-00448-s001, ch: 有时, pr: yǒu shí, ds: sometimes}
-  - {id: zh-hsk1-00463-s001, ch: 早, pr: zǎo, ds: early}
+  - {id: zh-hsk2-00081-s001, ch: 从小, pr: cóng xiǎo, ds: from childhood}
+  - {id: zh-hsk3-00399-s001, ch: 开始, pr: kāi shǐ, ds: to begin}
+  - {id: zh-hsk1-00478-s001, ch: 正, pr: zhēng, ds: first lunar month}
   - {id: zh-hsk1-00212-s002, ch: 了, pr: le, ds: change-of-state modal particle}
+  - {id: zh-hsk2-00200-s001, ch: 过去, pr: guò qù, ds: (in the) past}
+  - {id: zh-hsk2-00631-s001, ch: 已经, pr: yǐ jīng, ds: already}
   review_grammar:
   - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
   - {id: zh-hsk1-g015, ch: S+在+Place+V, ds: preverbal location phrase}
@@ -250,30 +309,25 @@ units:
   title: Time and events - 2
   outcome: Relate events and clarify their sequence and circumstances.
   vocabulary:
+  - {id: zh-hsk2-00141-s001, ch: 多久, pr: duō jiǔ, ds: '(of time) how long?'}
+  - {id: zh-hsk2-00246-s001, ch: 假期, pr: jià qī, ds: vacation}
+  - {id: zh-hsk2-00569-s001, ch: 夏天, pr: xià tiān, ds: summer}
+  - {id: zh-hsk2-00720-s014, ch: 周, pr: zhōu, ds: week}
+  - {id: zh-hsk4-00438-s001, ch: 来得及, pr: lái de jí, ds: to have enough time; can do it in time; can still make it}
+  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
+  - {id: zh-hsk3-00626-s004, ch: 时, pr: shí, ds: when}
+  - {id: zh-hsk2-00580-s001, ch: 小时候, pr: xiǎo shí hou, ds: in one's childhood}
+  - {id: zh-hsk1-00134-s002, ch: 还, pr: hái, ds: still or yet}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00310-s001, ch: 刻, pr: kè, ds: quarter (hour)}
+  - {id: zh-hsk2-00673-s001, ch: 月份, pr: yuè fèn, ds: month}
   - {id: zh-hsk1-00077-s001, ch: 第二, pr: dì èr, ds: second}
   - {id: zh-hsk1-00297-s001, ch: 前天, pr: qián tiān, ds: the day before yesterday}
   - {id: zh-hsk1-00323-s001, ch: 上次, pr: shàng cì, ds: last time}
   - {id: zh-hsk1-00397-s001, ch: 下次, pr: xià cì, ds: next time}
-  - {id: zh-hsk1-00409-s001, ch: 小时, pr: xiǎo shí, ds: hour}
   - {id: zh-hsk1-00435-s001, ch: 一会儿, pr: yī huì r, ds: a short while}
   - {id: zh-hsk2-00077-s001, ch: 春天, pr: chūn tiān, ds: spring (season)}
-  - {id: zh-hsk2-00141-s001, ch: 多久, pr: duō jiǔ, ds: '(of time) how long?'}
-  - {id: zh-hsk2-00246-s001, ch: 假期, pr: jià qī, ds: vacation}
-  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
-  - {id: zh-hsk2-00569-s001, ch: 夏天, pr: xià tiān, ds: summer}
-  - {id: zh-hsk2-00720-s014, ch: 周, pr: zhōu, ds: week}
-  - {id: zh-hsk4-00438-s001, ch: 来得及, pr: lái de jí, ds: to have enough time; can do it in time; can still make it}
-  - {id: zh-hsk1-00134-s002, ch: 还, pr: hái, ds: still or yet}
-  grammar: []
-  review_vocabulary:
-  - {id: zh-hsk1-00418-s001, ch: 星期日, pr: Xīng qī rì, ds: Sunday}
-  - {id: zh-hsk1-00357-s002, ch: 岁, pr: suì, ds: years old (age measure)}
-  - {id: zh-hsk1-00393-s006, ch: 下, pr: xià, ds: next (week etc)}
-  - {id: zh-hsk2-00158-s001, ch: 分钟, pr: fēn zhōng, ds: minute}
-  - {id: zh-hsk2-00173-s001, ch: 刚才, pr: gāng cái, ds: just now}
-  - {id: zh-hsk2-00288-s003, ch: 就要, pr: jiù yào, ds: to be going to}
-  - {id: zh-hsk2-00310-s001, ch: 刻, pr: kè, ds: quarter (hour)}
-  - {id: zh-hsk2-00673-s001, ch: 月份, pr: yuè fèn, ds: month}
   review_grammar:
   - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
   - {id: zh-hsk1-g015, ch: S+在+Place+V, ds: preverbal location phrase}
@@ -287,14 +341,14 @@ units:
   - {id: zh-hsk1-00208-s001, ch: 来到, pr: lái dào, ds: to arrive}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk1-00469-s001, ch: 找到, pr: zhǎo dào, ds: to find}
-  - {id: zh-hsk1-00505-s001, ch: 坐下, pr: zuò xia, ds: to sit down}
+  - {id: zh-hsk1-00381-s001, ch: 忘, pr: wàng, ds: to forget}
   - {id: zh-hsk1-00459-s003, ch: 再, pr: zài, ds: only then}
   - {id: zh-hsk1-00207-s003, ch: 来, pr: lái, ds: hither}
   - {id: zh-hsk1-00057-s002, ch: 打, pr: dǎ, ds: to beat or strike}
-  - {id: zh-hsk2-00535-s001, ch: 完, pr: wán, ds: to finish}
   - {id: zh-hsk1-00089-s001, ch: 动, pr: dòng, ds: to move (intransitive)}
-  - {id: zh-hsk1-00328-s003, ch: 少, pr: shǎo, ds: to lack or be missing}
+  - {id: zh-hsk1-00168-s001, ch: 记得, pr: jì de, ds: to remember}
+  - {id: zh-hsk3-00602-s001, ch: 上去, pr: shàng qù, ds: to go up}
+  - {id: zh-hsk2-00535-s001, ch: 完, pr: wán, ds: to finish}
   review_grammar:
   - {id: zh-hsk2-g008, ch: 先+VP1+再+VP2, ds: first do one thing and then another}
   - {id: zh-hsk2-g021, ch: V+(来|去), ds: motion toward or away from the viewpoint}
@@ -303,16 +357,19 @@ units:
   title: Description and comparison - 1
   outcome: Choose precise descriptions and explain meaningful differences.
   vocabulary:
-  - {id: zh-hsk1-00110-s001, ch: 非常, pr: fēi cháng, ds: very}
   - {id: zh-hsk2-00005-s001, ch: 安全, pr: ān quán, ds: safe; secure}
   - {id: zh-hsk2-00339-s002, ch: 凉快, pr: liáng kuai, ds: pleasantly cool}
+  - {id: zh-hsk2-00216-s001, ch: 红色, pr: hóng sè, ds: red (color)}
+  - {id: zh-hsk2-00360-s008, ch: 面, pr: miàn, ds: noodles}
+  - {id: zh-hsk3-00841-s001, ch: 游泳, pr: yóu yǒng, ds: swimming}
+  - {id: zh-hsk3-00862-s005, ch: 张, pr: zhāng, ds: 'classifier for flat objects, sheet'}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00095-s003, ch: 大小, pr: dà xiǎo, ds: size}
-  - {id: zh-hsk2-00658-s001, ch: 有点儿, pr: yǒu diǎn r, ds: slightly}
-  - {id: zh-hsk1-00440-s001, ch: 一样, pr: yī yàng, ds: same}
-  - {id: zh-hsk1-00498-s001, ch: 最, pr: zuì, ds: most (superlative)}
-  - {id: zh-hsk2-00040-s001, ch: 不同, pr: bù tóng, ds: different}
+  - {id: zh-hsk6-00777-s001, ch: 踢, pr: tī, ds: to kick}
+  - {id: zh-hsk3-00724-s001, ch: 外面, pr: wài miàn, ds: outside (also pr. for this sense)}
+  - {id: zh-hsk2-00678-s001, ch: 运动, pr: yùn dòng, ds: to move}
+  - {id: zh-hsk3-00948-s001, ch: 足球, pr: zú qiú, ds: soccer ball}
+  - {id: zh-hsklegacy-09656-s001, ch: 羊肉, pr: yáng ròu, ds: mutton}
   - {id: zh-hsk1-00239-s005, ch: 没有, pr: méi yǒu, ds: to not be}
   - {id: zh-hsk2-00663-s003, ch: 又, pr: yòu, ds: both... and...}
   - {id: zh-hsk1-00124-s006, ch: 跟, pr: gēn, ds: compared with}
@@ -320,6 +377,28 @@ units:
   - {id: zh-hsk2-g015, ch: 最+Adj, ds: highest degree within a comparison set}
   - {id: zh-hsk3-g009, ch: 又+P+又+Q, ds: two compatible qualities or abilities}
   - {id: zh-hsk3-g022, ch: A+跟+B+(不)+一样, ds: similarity or difference relative to a target}
+- id: level-07-feelings-01
+  title: Feelings and attitudes - 1
+  outcome: Explain an attitude or emotional response with appropriate context.
+  vocabulary:
+  - {id: zh-hsk2-00034-s003, ch: 不好意思, pr: bù hǎo yì si, ds: to be sorry (for inconveniencing sb)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00317-s001, ch: 快乐, pr: kuài lè, ds: happy; joyful}
+  review_grammar:
+  - {id: zh-hsk2-g016, ch: 有点儿+Adj, ds: slightly adjective; often a mild complaint}
+- id: level-07-reasoning-01
+  title: Reasons and connections - 1
+  outcome: Explain a relationship between ideas and qualify the conclusion.
+  vocabulary:
+  - {id: zh-hsk2-00549-s001, ch: 为什么, pr: wèi shén me, ds: 'why?'}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00489-s001, ch: 虽然, pr: suī rán, ds: although; even though}
+  - {id: zh-hsk2-00642-s001, ch: 因为, pr: yīn wèi, ds: because}
+  - {id: zh-hsk2-00492-s001, ch: 所以, pr: suǒ yǐ, ds: therefore}
+  review_grammar:
+  - {id: zh-hsk2-g010, ch: 因为+Cause+所以+Result, ds: cause followed by its consequence}
 - id: level-07-grammar-01
   title: Sentence construction - 1
   outcome: Use the selected constructions to communicate a new meaning and explain a relevant contrast.
@@ -329,26 +408,34 @@ units:
   - {id: zh-hsk1-00188-s002, ch: 就, pr: jiù, ds: as soon as}
   - {id: zh-hsk1-00499-s002, ch: 最好, pr: zuì hǎo, ds: had better}
   - {id: zh-hsk1-00188-s001, ch: 就, pr: jiù, ds: in that case}
-  - {id: zh-hsk2-00115-s014, ch: 得, pr: děi, ds: to have to}
   - {id: zh-hsk1-00065-s004, ch: 到, pr: dào, ds: arrival or attainment verb complement}
   - {id: zh-hsk2-00449-s001, ch: 如果, pr: rú guǒ, ds: if}
-  - {id: zh-hsk1-00362-s003, ch: 太, pr: tài, ds: too (much)}
   - {id: zh-hsk1-00124-s005, ch: 跟, pr: gēn, ds: with}
-  - {id: zh-hsk1-00006-s004, ch: 吧, pr: ba, ds: suggestion or surmise particle}
   - {id: zh-hsk1-00066-s001, ch: 地, pr: de, ds: adverbial marker (-ly)}
   - {id: zh-hsk1-00161-s002, ch: 会, pr: huì, ds: to be likely or certain to}
   - {id: zh-hsk1-00239-s001, ch: 没有, pr: méi yǒu, ds: have not (auxiliary negation)}
   - {id: zh-hsk2-00663-s001, ch: 又, pr: yòu, ds: (once) again}
+  - {id: zh-hsk2-00115-s014, ch: 得, pr: děi, ds: to have to}
+  - {id: zh-hsk2-00441-s003, ch: 让, pr: ràng, ds: to let sb do sth}
+  - {id: zh-hsk2-00696-s005, ch: 这么, pr: zhè me, ds: like this}
   grammar: []
   review_vocabulary:
+  - {id: zh-hsk2-00370-s007, ch: 那么, pr: nà me, ds: in that case}
+  - {id: zh-hsk3-00754-s004, ch: 下面, pr: xià miàn, ds: the following}
+  - {id: zh-hsk1-00393-s011, ch: 下, pr: xià, ds: action-frequency measure word}
   - {id: zh-hsk1-00427-s004, ch: 要, pr: yào, ds: need to or should}
   - {id: zh-hsk1-00341-s001, ch: 是不是, pr: shì bù shì, ds: is or isn't}
-  - {id: zh-hsk1-00466-s001, ch: 怎么, pr: zěn me, ds: 'how?'}
-  - {id: zh-hsk1-00506-s003, ch: 做, pr: zuò, ds: to do or engage in}
   - {id: zh-hsk2-00115-s013, ch: 得, pr: de, ds: complement-linking structural particle}
-  - {id: zh-hsk1-00235-s001, ch: 没, pr: méi, ds: not (verb-negating prefix)}
-  - {id: zh-hsk1-00212-s001, ch: 了, pr: le, ds: completed-action marker}
-  - {id: zh-hsk1-00096-s004, ch: 多, pr: duō, ds: how (to what extent)}
+  - {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: to continue}
+  - {id: zh-hsk2-00577-s002, ch: 向, pr: xiàng, ds: towards}
+  review_grammar: []
+- id: level-07-media-01
+  title: Media and sources - 1
+  outcome: Summarize a source while distinguishing events, claims, and interpretation.
+  vocabulary:
+  - {id: zh-hsk2-00015-s001, ch: 报纸, pr: bào zhǐ, ds: newspaper}
+  grammar: []
+  review_vocabulary: []
   review_grammar: []
 - id: level-07-nature-01
   title: Nature and environment - 1
@@ -357,9 +444,6 @@ units:
   - {id: zh-hsk1-00308-s003, ch: 热, pr: rè, ds: hot (of weather)}
   - {id: zh-hsk2-00144-s001, ch: 多云, pr: duō yún, ds: cloudy (meteorology)}
   - {id: zh-hsk2-00567-s001, ch: 下雪, pr: xià xuě, ds: to snow}
-  - {id: zh-hsk1-00363-s002, ch: 天, pr: tiān, ds: sky}
-  - {id: zh-hsk1-00364-s001, ch: 天气, pr: tiān qì, ds: weather}
-  - {id: zh-hsk1-00455-s001, ch: 雨, pr: yǔ, ds: rain}
   - {id: zh-hsk2-00423-s002, ch: 晴天, pr: qíng tiān, ds: sunny day}
   - {id: zh-hsk2-00497-s001, ch: 太阳, pr: tài yang, ds: sun}
   - {id: zh-hsk2-00677-s003, ch: 云, pr: yún, ds: cloud}
@@ -426,13 +510,13 @@ units:
   - {id: zh-hsk1-00235-s001, ch: 没, pr: méi, ds: not (verb-negating prefix)}
   - {id: zh-hsk1-00134-s002, ch: 还, pr: hái, ds: still or yet}
   - {id: zh-hsk1-00273-s004, ch: 呢, pr: ne, ds: continuing-state or action particle}
-  - {id: zh-hsk2-00077-s001, ch: 春天, pr: chūn tiān, ds: spring (season)}
-  - {id: zh-hsk2-00141-s001, ch: 多久, pr: duō jiǔ, ds: '(of time) how long?'}
   - {id: zh-hsk2-00246-s001, ch: 假期, pr: jià qī, ds: vacation}
-  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
   - {id: zh-hsk2-00569-s001, ch: 夏天, pr: xià tiān, ds: summer}
   - {id: zh-hsk2-00720-s014, ch: 周, pr: zhōu, ds: week}
   - {id: zh-hsk4-00438-s001, ch: 来得及, pr: lái de jí, ds: to have enough time; can do it in time; can still make it}
+  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
+  - {id: zh-hsk3-00626-s004, ch: 时, pr: shí, ds: when}
+  - {id: zh-hsk2-00580-s001, ch: 小时候, pr: xiǎo shí hou, ds: in one's childhood}
   review_grammar:
   - {id: zh-hsk1-g014, ch: Time+S+V|S+Time+V, ds: preverbal time phrase}
   - {id: zh-hsk1-g015, ch: S+在+Place+V, ds: preverbal location phrase}
@@ -446,13 +530,13 @@ units:
   review_vocabulary:
   - {id: zh-hsk1-00459-s001, ch: 再, pr: zài, ds: again}
   - {id: zh-hsk2-00663-s001, ch: 又, pr: yòu, ds: (once) again}
-  - {id: zh-hsk2-00077-s001, ch: 春天, pr: chūn tiān, ds: spring (season)}
-  - {id: zh-hsk2-00141-s001, ch: 多久, pr: duō jiǔ, ds: '(of time) how long?'}
   - {id: zh-hsk2-00246-s001, ch: 假期, pr: jià qī, ds: vacation}
-  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
   - {id: zh-hsk2-00569-s001, ch: 夏天, pr: xià tiān, ds: summer}
   - {id: zh-hsk2-00720-s014, ch: 周, pr: zhōu, ds: week}
   - {id: zh-hsk4-00438-s001, ch: 来得及, pr: lái de jí, ds: to have enough time; can do it in time; can still make it}
+  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
+  - {id: zh-hsk3-00626-s004, ch: 时, pr: shí, ds: when}
+  - {id: zh-hsk2-00580-s001, ch: 小时候, pr: xiǎo shí hou, ds: in one's childhood}
   - {id: zh-hsk1-00134-s002, ch: 还, pr: hái, ds: still or yet}
   review_grammar:
   - {id: zh-hsk2-g001, ch: V+了+O, ds: completed event}
@@ -467,11 +551,11 @@ units:
   - {id: zh-hsk2-g020, ch: V+到, ds: an action attains its intended result}
   review_vocabulary:
   - {id: zh-hsk1-00065-s004, ch: 到, pr: dào, ds: arrival or attainment verb complement}
-  - {id: zh-hsk1-00207-s003, ch: 来, pr: lái, ds: hither}
   - {id: zh-hsk1-00057-s002, ch: 打, pr: dǎ, ds: to beat or strike}
-  - {id: zh-hsk2-00535-s001, ch: 完, pr: wán, ds: to finish}
   - {id: zh-hsk1-00089-s001, ch: 动, pr: dòng, ds: to move (intransitive)}
-  - {id: zh-hsk1-00328-s003, ch: 少, pr: shǎo, ds: to lack or be missing}
+  - {id: zh-hsk1-00168-s001, ch: 记得, pr: jì de, ds: to remember}
+  - {id: zh-hsk3-00602-s001, ch: 上去, pr: shàng qù, ds: to go up}
+  - {id: zh-hsk2-00535-s001, ch: 完, pr: wán, ds: to finish}
   - {id: zh-hsk1-00051-s001, ch: 出去, pr: chū qù, ds: to go out}
   - {id: zh-hsk1-00160-s001, ch: 回去, pr: huí qu, ds: to return}
   - {id: zh-hsk1-00208-s001, ch: 来到, pr: lái dào, ds: to arrive}
@@ -488,7 +572,9 @@ units:
   review_vocabulary:
   - {id: zh-hsk2-00449-s001, ch: 如果, pr: rú guǒ, ds: if}
   - {id: zh-hsk1-00188-s001, ch: 就, pr: jiù, ds: in that case}
+  - {id: zh-hsk2-00489-s001, ch: 虽然, pr: suī rán, ds: although; even though}
   - {id: zh-hsk2-00642-s001, ch: 因为, pr: yīn wèi, ds: because}
   - {id: zh-hsk2-00492-s001, ch: 所以, pr: suǒ yǐ, ds: therefore}
+  - {id: zh-hsk2-00549-s001, ch: 为什么, pr: wèi shén me, ds: 'why?'}
   review_grammar:
   - {id: zh-hsk2-g010, ch: 因为+Cause+所以+Result, ds: cause followed by its consequence}

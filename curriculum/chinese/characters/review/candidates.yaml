@@ -183,6 +183,7 @@ scope_characters:
 - 佳
 - 使
 - 侃
+- 侄
 - 侈
 - 例
 - 侍
@@ -558,6 +559,7 @@ scope_characters:
 - 啊
 - 啡
 - 啤
+- 啥
 - 啦
 - 啸
 - 喂
@@ -575,7 +577,9 @@ scope_characters:
 - 嗓
 - 嗜
 - 嗦
+- 嗯
 - 嗽
+- 嘈
 - 嘉
 - 嘛
 - 嘱
@@ -584,6 +588,7 @@ scope_characters:
 - 嘿
 - 器
 - 噪
+- 嚏
 - 嚷
 - 嚼
 - 囊
@@ -747,6 +752,7 @@ scope_characters:
 - 嫩
 - 嬉
 - 子
+- 孔
 - 孕
 - 字
 - 存
@@ -857,6 +863,7 @@ scope_characters:
 - 岸
 - 峙
 - 峡
+- 峭
 - 峰
 - 峻
 - 崇
@@ -867,6 +874,7 @@ scope_characters:
 - 嵌
 - 巅
 - 川
+- 州
 - 巡
 - 巢
 - 工
@@ -913,6 +921,7 @@ scope_characters:
 - 广
 - 庄
 - 庆
+- 庇
 - 床
 - 序
 - 库
@@ -976,6 +985,7 @@ scope_characters:
 - 徒
 - 得
 - 徘
+- 徙
 - 御
 - 循
 - 微
@@ -1361,6 +1371,7 @@ scope_characters:
 - 晴
 - 晶
 - 智
+- 晾
 - 暂
 - 暑
 - 暖
@@ -1457,6 +1468,7 @@ scope_characters:
 - 案
 - 桌
 - 桑
+- 桔
 - 档
 - 桥
 - 桨
@@ -1475,13 +1487,16 @@ scope_characters:
 - 棋
 - 棍
 - 棒
+- 棕
 - 棘
 - 棚
+- 森
 - 棱
 - 棵
 - 棺
 - 椅
 - 植
+- 椎
 - 椒
 - 椰
 - 楚
@@ -1503,6 +1518,7 @@ scope_characters:
 - 次
 - 欢
 - 欣
+- 欧
 - 欲
 - 欺
 - 款
@@ -1604,6 +1620,7 @@ scope_characters:
 - 洞
 - 津
 - 洪
+- 洲
 - 活
 - 洽
 - 派
@@ -1690,6 +1707,7 @@ scope_characters:
 - 演
 - 漠
 - 漫
+- 漱
 - 漾
 - 潇
 - 潜
@@ -1697,9 +1715,11 @@ scope_characters:
 - 潭
 - 潮
 - 澄
+- 澈
 - 澜
 - 澡
 - 激
+- 濒
 - 瀑
 - 灌
 - 火
@@ -1833,6 +1853,7 @@ scope_characters:
 - 甚
 - 甜
 - 生
+- 甥
 - 用
 - 甩
 - 田
@@ -1912,6 +1933,7 @@ scope_characters:
 - 真
 - 眠
 - 眨
+- 眶
 - 眼
 - 着
 - 睁
@@ -2324,6 +2346,7 @@ scope_characters:
 - 苏
 - 苗
 - 苛
+- 苟
 - 若
 - 苦
 - 英
@@ -2403,6 +2426,8 @@ scope_characters:
 - 虽
 - 虾
 - 蚀
+- 蚁
+- 蚂
 - 蚊
 - 蛇
 - 蛋
@@ -2412,6 +2437,8 @@ scope_characters:
 - 蜜
 - 蜡
 - 蝇
+- 蝴
+- 蝶
 - 融
 - 螺
 - 蠢
@@ -2795,6 +2822,7 @@ scope_characters:
 - 锦
 - 键
 - 锯
+- 锲
 - 锻
 - 镇
 - 镑
@@ -2867,6 +2895,7 @@ scope_characters:
 - 雪
 - 零
 - 雷
+- 雹
 - 雾
 - 需
 - 震
@@ -2922,6 +2951,7 @@ scope_characters:
 - 食
 - 餐
 - 饥
+- 饪
 - 饭
 - 饮
 - 饰
@@ -3002,14 +3032,14 @@ scope_characters:
 - 龄
 - 龙
 - 龟
-detector_flagged_glyphs: 2000
+detector_flagged_glyphs: 2019
 stroke_rule_counts:
-  compact-hook: 405
-  short-fall: 3270
+  compact-hook: 408
+  short-fall: 3306
 variant_counts:
-  refined-candidate: 1997
+  refined-candidate: 2016
   reviewed-monoline: 5
-  source-median: 2971
+  source-median: 3001
 style_cautions:
   器: Coordinator batch review noted heavy strokes/tight counters at width 5.5. Retain as a style/legibility
     review caution; no thinner pen or new visual approval.
@@ -3478,6 +3508,12 @@ characters:
     - stroke: 5
       rule: compact-hook
     - stroke: 7
+      rule: short-fall
+    reviewed_prototype: false
+  侄:
+    source_member_sha256: 7733f113cb3b704f8f8404e95fb7af87a4689ee1f6a2f28e3a75197cc14414a1
+    rules:
+    - stroke: 5
       rule: short-fall
     reviewed_prototype: false
   侈:
@@ -4864,6 +4900,16 @@ characters:
     - stroke: 13
       rule: short-fall
     reviewed_prototype: false
+  嗯:
+    source_member_sha256: e60b222cd48aa40735e098256608067eb983c93667f40bccf9e4fdc4a2b7ad58
+    rules:
+    - stroke: 8
+      rule: short-fall
+    - stroke: 12
+      rule: short-fall
+    - stroke: 13
+      rule: short-fall
+    reviewed_prototype: false
   嗽:
     source_member_sha256: 92a82a52f3ad4b28989ade394b6882a6a1b409d3058e534a6fa0174694e7edd1
     rules:
@@ -5484,6 +5530,12 @@ characters:
     - stroke: 2
       rule: compact-hook
     reviewed_prototype: false
+  孔:
+    source_member_sha256: 00db90319ce5b9ba2c0e21a74ee1272756746733a8a2bbbcd08093ef13621449
+    rules:
+    - stroke: 2
+      rule: compact-hook
+    reviewed_prototype: false
   字:
     source_member_sha256: d4e20f90c64acc1427d41e693c7151f3ea389eb10d8ce7f2c98613b01c6d1baf
     rules:
@@ -6090,6 +6142,12 @@ characters:
     - stroke: 5
       rule: short-fall
     reviewed_prototype: false
+  峭:
+    source_member_sha256: d59ec683a617eca3ab7347f05873e14e0c3fb17481e1114b60a24692e259629e
+    rules:
+    - stroke: 5
+      rule: short-fall
+    reviewed_prototype: false
   峻:
     source_member_sha256: 6c6c2409c20ef71ab748bc75224175a1f0e4fdfc548d826aed893dc7258ba654
     rules:
@@ -6112,6 +6170,12 @@ characters:
     - stroke: 13
       rule: short-fall
     - stroke: 19
+      rule: short-fall
+    reviewed_prototype: false
+  州:
+    source_member_sha256: 008171a553c3f91cbc15c9d681582fe8c6108dcfb944a65c4f7409e6197d2fd8
+    rules:
+    - stroke: 5
       rule: short-fall
     reviewed_prototype: false
   巡:
@@ -6240,6 +6304,12 @@ characters:
     reviewed_prototype: false
   庆:
     source_member_sha256: bbea7a94d4c04c03b117342dbb12f4a35d15f26e4ce62b20aa4730f26a090350
+    rules:
+    - stroke: 1
+      rule: short-fall
+    reviewed_prototype: false
+  庇:
+    source_member_sha256: e3956850310348467533d41a238fcd0d0e82a89868938d515ff4613be6e2cbda
     rules:
     - stroke: 1
       rule: short-fall
@@ -8818,6 +8888,16 @@ characters:
     - stroke: 5
       rule: short-fall
     reviewed_prototype: false
+  晾:
+    source_member_sha256: b7026fc14ccaf6af88d500a1283aa303704fd72836af62bc7c374ff0e40bcfac
+    rules:
+    - stroke: 5
+      rule: short-fall
+    - stroke: 10
+      rule: compact-hook
+    - stroke: 12
+      rule: short-fall
+    reviewed_prototype: false
   暖:
     source_member_sha256: 391e53a5a39779f5db954a17c50a21b18252d358553b4bdcf2e0e6e01d300432
     rules:
@@ -9296,6 +9376,12 @@ characters:
     - stroke: 6
       rule: short-fall
     reviewed_prototype: false
+  桔:
+    source_member_sha256: 70f83ffc6d7da215d82fcd692f036fa32c2a7cd587b8b33f6a6f49d2a367a621
+    rules:
+    - stroke: 4
+      rule: short-fall
+    reviewed_prototype: false
   档:
     source_member_sha256: 4456a38b679d963c0490f757973d95746db264ac3555aaea0d6344bb5fa6e995
     rules:
@@ -9440,6 +9526,18 @@ characters:
     - stroke: 4
       rule: short-fall
     reviewed_prototype: false
+  棕:
+    source_member_sha256: 7769f6a010bebbb4f86cb5a0b222718d14041010b1c54ddf95ed5495d4f0fea6
+    rules:
+    - stroke: 4
+      rule: short-fall
+    - stroke: 5
+      rule: short-fall
+    - stroke: 10
+      rule: compact-hook
+    - stroke: 12
+      rule: short-fall
+    reviewed_prototype: false
   棘:
     source_member_sha256: 1f741e9da82bec7f997e0de12b3d1ee9332833ec2aae86b93bac6a0d204ccafd
     rules:
@@ -9450,6 +9548,12 @@ characters:
     source_member_sha256: e54a71cc96c19379663e831caa810d63f280cbeefda3e109993ccc6f92578b6b
     rules:
     - stroke: 4
+      rule: short-fall
+    reviewed_prototype: false
+  森:
+    source_member_sha256: 7d70d82003fb9a09090a8bff2947e75a071e96cbf967adca535665c59b5e98db
+    rules:
+    - stroke: 8
       rule: short-fall
     reviewed_prototype: false
   棱:
@@ -9488,6 +9592,14 @@ characters:
     source_member_sha256: cdc587f97d37ffbe4a88e187f96c8002a501373ef2bb2752a09202eadf2ff2ad
     rules:
     - stroke: 4
+      rule: short-fall
+    reviewed_prototype: false
+  椎:
+    source_member_sha256: 31d8680a28d46c9de934579d4f2bbdba6b6c520b8568c2f2734d2a5bca43c13a
+    rules:
+    - stroke: 4
+      rule: short-fall
+    - stroke: 7
       rule: short-fall
     reviewed_prototype: false
   椒:
@@ -10294,6 +10406,18 @@ characters:
     - stroke: 1
       rule: short-fall
     - stroke: 2
+      rule: short-fall
+    reviewed_prototype: false
+  洲:
+    source_member_sha256: 6f9971cb366146250c8ed34dd98915ccd0cd2e71b2bb30b2ccfc0d6d3b4f873c
+    rules:
+    - stroke: 1
+      rule: short-fall
+    - stroke: 2
+      rule: short-fall
+    - stroke: 6
+      rule: short-fall
+    - stroke: 8
       rule: short-fall
     reviewed_prototype: false
   活:
@@ -11174,6 +11298,16 @@ characters:
     - stroke: 2
       rule: short-fall
     reviewed_prototype: false
+  漱:
+    source_member_sha256: 766146ed2f3aea012b951b3a59a5f2038425d632d4b4b6eb4ed537cc86115673
+    rules:
+    - stroke: 1
+      rule: short-fall
+    - stroke: 2
+      rule: short-fall
+    - stroke: 10
+      rule: short-fall
+    reviewed_prototype: false
   漾:
     source_member_sha256: 3d346f8dff8701f598b164911997a71d9877eedb38aa432ef64528e9093c7e31
     rules:
@@ -11248,6 +11382,18 @@ characters:
     - stroke: 13
       rule: short-fall
     reviewed_prototype: false
+  澈:
+    source_member_sha256: 3adaac779c74837054b94ced12b72fa7453ffd30be1973eab61cf3c8ddeeb85a
+    rules:
+    - stroke: 1
+      rule: short-fall
+    - stroke: 2
+      rule: short-fall
+    - stroke: 4
+      rule: short-fall
+    - stroke: 7
+      rule: short-fall
+    reviewed_prototype: false
   澜:
     source_member_sha256: 3aad57788fac6123991c07b30ebdea82094c7076f8be6982d48117b35b0c9af8
     rules:
@@ -11276,6 +11422,16 @@ characters:
     - stroke: 2
       rule: short-fall
     - stroke: 9
+      rule: short-fall
+    reviewed_prototype: false
+  濒:
+    source_member_sha256: 13c8ece58c6f164d8df74bf15849c027ac2bace8271f2265ebca39be15f9298e
+    rules:
+    - stroke: 1
+      rule: short-fall
+    - stroke: 2
+      rule: short-fall
+    - stroke: 16
       rule: short-fall
     reviewed_prototype: false
   瀑:
@@ -15022,6 +15178,14 @@ characters:
     - stroke: 6
       rule: short-fall
     reviewed_prototype: false
+  蚁:
+    source_member_sha256: 4246e843b839cc13fd7e2cfc1a4a19defcdd172fbc6636bbb0f0a14caba699ad
+    rules:
+    - stroke: 6
+      rule: short-fall
+    - stroke: 7
+      rule: short-fall
+    reviewed_prototype: false
   蚊:
     source_member_sha256: d46c4d17e5940cbb9d99145ce265eb1e3a9231bd46c85810d20c66bfae314428
     rules:
@@ -15080,6 +15244,18 @@ characters:
     reviewed_prototype: false
   蜡:
     source_member_sha256: dcb42356a36ebb5103a22b092290db19399c318bad6d5358a2d4017cdda29152
+    rules:
+    - stroke: 6
+      rule: short-fall
+    reviewed_prototype: false
+  蝴:
+    source_member_sha256: ae04949e460d7021194c352fef1f76500dc53a27ccf121fb5aba199fa1848b51
+    rules:
+    - stroke: 6
+      rule: short-fall
+    reviewed_prototype: false
+  蝶:
+    source_member_sha256: fa6405bba0c59d96d6b9e9d0db0e093298d36ff82e1cfc9a295ec592f36dbd47
     rules:
     - stroke: 6
       rule: short-fall
@@ -17664,6 +17840,14 @@ characters:
     - stroke: 5
       rule: short-fall
     - stroke: 7
+      rule: short-fall
+    - stroke: 8
+      rule: short-fall
+    reviewed_prototype: false
+  雹:
+    source_member_sha256: 5e2aec5cfbc6de9bedfc60e18630862c6ebc8040a38f5a70b025109fb7ddecd8
+    rules:
+    - stroke: 6
       rule: short-fall
     - stroke: 8
       rule: short-fall

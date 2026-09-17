@@ -18,7 +18,9 @@ from curriculum_yaml import dump_yaml, load_yaml
 from generate_curriculum_tokens import compact_outputs, vocabulary_entries
 from generate_teaching_track import reference_index, teaching_outputs
 from generate_chinese_program import (
-    annotated_grammar, configured, load_inputs, program_outputs, vocabulary_labels,
+    annotated_grammar, apply_hsk_vocabulary, augment_beginner, configured,
+    load_hsk_references, load_hsk_vocabulary, load_inputs, program_outputs,
+    vocabulary_labels,
 )
 
 
@@ -52,6 +54,7 @@ GLOSS_CORRECTIONS = {
     "下功夫": "to put in effort; to work hard at something",
     "效仿": "to imitate; to follow the example of",
     "抑扬顿挫": "rhythmic variations in pitch and cadence",
+    "做主": "to decide; to take responsibility for a decision",
     "做证": "to testify; to bear witness",
     "呀": "sentence particle expressing surprise, emphasis or a softened tone",
     "一块儿": "together; in the same place; at the same time",
@@ -429,9 +432,19 @@ def main() -> None:
     patterns = grammar()
     add_hsk1_token_metadata(words["1"], patterns["1"], ROOT / "authoring" / "hsk-1")
     program = load_inputs(ROOT) if configured(ROOT) else None
+    hsk_vocabulary = load_hsk_vocabulary(ROOT) if program is not None else []
+    hsk_references = load_hsk_references(ROOT) if program is not None else {}
     labels = load_yaml(ROOT / "authoring" / "reference-senses.yaml")
     if program is not None:
-        labels = vocabulary_labels(program, words, labels)
+        source_hsk_vocabulary = [
+            row for row in hsk_vocabulary if row["id"] not in hsk_references
+        ]
+        labels = vocabulary_labels(
+            apply_hsk_vocabulary(
+                program, source_hsk_vocabulary, include_beginner=True,
+            ),
+            words, labels, first_level=1,
+        )
     additional = additional_reference_senses(data, words, labels)
     report = normalization_report(data)
     outputs = {
@@ -451,9 +464,14 @@ def main() -> None:
         program_words, program_grammar = reference_index(
             words, annotated_grammar(patterns, program["grammar"]), additional,
         )
+        program_words.update(hsk_references)
+        program = apply_hsk_vocabulary(program, hsk_vocabulary)
         outputs.update(program_outputs(
             ROOT, program, program_words, program_grammar,
-            load_yaml(track_directory / "sequence.yaml"),
+            augment_beginner(
+                load_yaml(track_directory / "sequence.yaml"),
+                hsk_vocabulary, program_words,
+            ),
         ))
     for path, content in outputs.items():
         if args.check:

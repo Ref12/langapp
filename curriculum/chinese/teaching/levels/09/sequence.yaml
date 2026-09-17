@@ -33,11 +33,11 @@ units:
   - {id: zh-hsk3-00199-s001, ch: 父母, pr: fù mǔ, ds: father and mother; parents}
   grammar: []
   review_vocabulary:
+  - {id: zh-hsk1-00123-s002, ch: 给, pr: gěi, ds: for}
+  - {id: zh-hsk1-00179-s001, ch: 介绍, pr: jiè shào, ds: to introduce people}
+  - {id: zh-hsk2-00330-s001, ch: 礼物, pr: lǐ wù, ds: gift; present}
   - {id: zh-hsk2-00382-s001, ch: 年轻, pr: nián qīng, ds: young}
-  - {id: zh-hsk1-00359-s001, ch: 他们, pr: tā men, ds: they}
-  - {id: zh-hsk2-00090-s001, ch: 大家, pr: dà jiā, ds: everyone}
   - {id: zh-hsk2-00256-s001, ch: 交朋友, pr: jiāo péng you, ds: to make friends}
-  - {id: zh-hsk2-00494-s001, ch: 它, pr: tā, ds: it}
   - {id: zh-hsk2-00664-s002, ch: 友好, pr: yǒu hǎo, ds: friendly; amicable}
   - {id: zh-hsk3-00953-s001, ch: 做客, pr: zuò kè, ds: to be a guest or visitor}
   - {id: zh-hsk2-00441-s004, ch: 让, pr: ràng, ds: to have sb do sth}
@@ -45,6 +45,67 @@ units:
   - {id: zh-hsk1-g009, ch: N+的+N, ds: possession and noun modification}
   - {id: zh-hsk2-g024, ch: 给+Person+VP, ds: action directed to or done for someone}
   - {id: zh-hsk3-g020, ch: 让+Person+VP, ds: let or have someone do something}
+- id: level-09-home-01
+  title: Home and daily life - 1
+  outcome: Explain needs and arrangements in a home or familiar daily setting.
+  vocabulary:
+  - {id: zh-hsk4-00530-s002, ch: 盘子, pr: pán zi, ds: plate}
+  - {id: zh-hsk7-9-04530-s001, ch: 小区, pr: xiǎo qū, ds: neighborhood}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00185-s001, ch: 进来, pr: jìn lái, ds: to come in}
+  - {id: zh-hsk1-00462-s001, ch: 在家, pr: zài jiā, ds: to be at home}
+  - {id: zh-hsk2-00725-s001, ch: 住房, pr: zhù fáng, ds: housing}
+  - {id: zh-hsk3-00662-s001, ch: 书架, pr: shū jià, ds: bookshelf}
+  - {id: zh-hsk3-00816-s001, ch: 衣架, pr: yī jià, ds: clothes hanger}
+  - {id: zh-hsk4-00177-s001, ch: 电灯, pr: diàn dēng, ds: electric light}
+  - {id: zh-hsk4-00483-s001, ch: 毛巾, pr: máo jīn, ds: towel}
+  - {id: zh-hsk4-00651-s001, ch: 刷, pr: shuā, ds: to brush}
+  review_grammar:
+  - {id: zh-hsk1-g018, ch: N+和+N, ds: noun-phrase coordination}
+  - {id: zh-hsk2-g004, ch: 正在+V+(呢), ds: activity in progress}
+  - {id: zh-hsk3-g003, ch: V+着, ds: maintained state rather than a new event}
+- id: level-09-travel-01
+  title: Travel and transport - 1
+  outcome: Explain a journey and negotiate a transport or accommodation arrangement.
+  vocabulary:
+  - {id: zh-hsk2-00349-s001, ch: 路边, pr: lù biān, ds: curb; roadside; wayside}
+  - {id: zh-hsk2-00565-s001, ch: 西南, pr: xī nán, ds: southwest}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00231-s001, ch: 回国, pr: huí guó, ds: to return to one's home country}
+  - {id: zh-hsk2-00272-s001, ch: 街, pr: jiē, ds: street}
+  - {id: zh-hsk2-00352-s006, ch: 旅游, pr: lǚ yóu, ds: to travel}
+  - {id: zh-hsk2-00411-s001, ch: 起飞, pr: qǐ fēi, ds: (of an aircraft) to take off}
+  - {id: zh-hsk2-00518-s002, ch: 停车, pr: tíng chē, ds: to park}
+  - {id: zh-hsk3-00782-s001, ch: 行李, pr: xíng li, ds: luggage}
+  - {id: zh-hsk4-00587-s001, ch: 伞, pr: sǎn, ds: umbrella}
+  - {id: zh-hsk1-00427-s003, ch: 要, pr: yào, ds: will or be about to}
+  review_grammar:
+  - {id: zh-hsk2-g023, ch: 从+A+到+B, ds: endpoints of a journey or time interval}
+  - {id: zh-hsk3-g019, ch: 得+VP, ds: have to; obligation rather than a complement particle}
+  - {id: zh-hsk4-g016, ch: (来得及|来不及)+VP, ds: enough or insufficient time before a deadline}
+- id: level-09-services-01
+  title: Services and transactions - 1
+  outcome: Clarify requirements and resolve an ordinary transaction or service problem.
+  vocabulary:
+  - {id: zh-hsk5-00041-s003, ch: 宾馆, pr: bīn guǎn, ds: hotel}
+  - {id: zh-hsk2-00378-s001, ch: 难题, pr: nán tí, ds: difficult problem}
+  - {id: zh-hsk2-00618-s003, ch: 要求, pr: yāo qiú, ds: requirement}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00339-s002, ch: 试, pr: shì, ds: to try}
+  - {id: zh-hsk1-00078-s010, ch: 点, pr: diǎn, ds: to order food}
+  - {id: zh-hsk2-00161-s002, ch: 服务, pr: fú wù, ds: service}
+  - {id: zh-hsk2-00294-s004, ch: 卡, pr: kǎ, ds: (loanword) card}
+  - {id: zh-hsk3-00196-s001, ch: 服务员, pr: fú wù yuán, ds: waiter}
+  - {id: zh-hsk3-00609-s001, ch: 身份证, pr: shēn fèn zhèng, ds: identity card}
+  - {id: zh-hsk7-9-05450-s001, ch: 住址, pr: zhù zhǐ, ds: address}
+  - {id: zh-hsk3-00380-s001, ch: 警察, pr: jǐng chá, ds: police; police officer}
+  review_grammar:
+  - {id: zh-hsk2-g017, ch: Adj+一点儿, ds: a little more adjective in requests or comparisons}
+  - {id: zh-hsk2-g025, ch: (可以|能)+V, ds: permission versus ability allowed by circumstances}
+  - {id: zh-hsk3-g017, ch: Question+A还是B|Statement+A或者B, ds: question alternatives versus statement alternatives}
 - id: level-09-communication-01
   title: Communication and information - 1
   outcome: Convey relevant information and repair ambiguity or misunderstanding.
@@ -53,11 +114,11 @@ units:
   - {id: zh-hsk2-00203-s001, ch: 喊, pr: hǎn, ds: to yell}
   grammar: []
   review_vocabulary:
+  - {id: zh-hsk2-00135-s001, ch: 短信, pr: duǎn xìn, ds: text message}
+  - {id: zh-hsk2-00094-s002, ch: 大声, pr: dà shēng, ds: in a loud voice}
   - {id: zh-hsk5-00865-s001, ch: 邀请, pr: yāo qǐng, ds: to invite}
   - {id: zh-hsk1-00014-s001, ch: 帮, pr: bāng, ds: to help}
   - {id: zh-hsk1-00080-s002, ch: 电话, pr: diàn huà, ds: phone call}
-  - {id: zh-hsk1-00354-s001, ch: 说话, pr: shuō huà, ds: to speak or talk}
-  - {id: zh-hsk1-00367-s001, ch: 听见, pr: tīng jiàn, ds: to hear}
   - {id: zh-hsk1-00379-s001, ch: 网上, pr: wǎng shàng, ds: online}
   - {id: zh-hsk2-00169-s001, ch: 感谢, pr: gǎn xiè, ds: (express) thanks}
   - {id: zh-hsk2-00228-s001, ch: 欢迎, pr: huān yíng, ds: to welcome}
@@ -76,34 +137,34 @@ units:
   - {id: zh-hsk2-00369-s001, ch: 那会儿, pr: nà huì r, ds: at that time (in the past or the future)}
   - {id: zh-hsk2-00440-s001, ch: 然后, pr: rán hòu, ds: then; after that; afterwards}
   - {id: zh-hsk2-00630-s002, ch: 一直, pr: yī zhí, ds: continuously; always; all the way through}
-  - {id: zh-hsk2-00631-s001, ch: 已经, pr: yǐ jīng, ds: already}
   - {id: zh-hsk2-00741-s001, ch: 最近, pr: zuì jìn, ds: recently}
   - {id: zh-hsk3-00129-s001, ch: 当初, pr: dāng chū, ds: at that time}
   - {id: zh-hsk3-00169-s001, ch: 发生, pr: fā shēng, ds: to happen; to occur; to take place; to break out}
-  - {id: zh-hsk3-00287-s003, ch: 后面, pr: hòu mian, ds: later; afterwards}
   - {id: zh-hsk3-00538-s001, ch: 前后, pr: qián hòu, ds: around}
-  - {id: zh-hsk3-00626-s004, ch: 时, pr: shí, ds: when}
   - {id: zh-hsk3-00888-s001, ch: 直到, pr: zhí dào, ds: until}
   - {id: zh-hsk3-00946-s001, ch: 总是, pr: zǒng shì, ds: always}
   - {id: zh-hsk2-00069-s001, ch: 出生, pr: chū shēng, ds: to be born}
   - {id: zh-hsk2-00105-s002, ch: 当时, pr: dāng shí, ds: at that time}
   - {id: zh-hsk2-00118-s001, ch: 等到, pr: děng dào, ds: to wait until}
-  - {id: zh-hsk2-00200-s001, ch: 过去, pr: guò qù, ds: (in the) past}
   - {id: zh-hsk2-00206-s001, ch: 好久, pr: hǎo jiǔ, ds: quite a while}
   - {id: zh-hsk2-00218-s001, ch: 忽然, pr: hū rán, ds: suddenly; all of a sudden}
   - {id: zh-hsk2-00371-s002, ch: 那时, pr: nà shí, ds: at that time}
   - {id: zh-hsk2-00402-s001, ch: 平时, pr: píng shí, ds: ordinarily}
   - {id: zh-hsk2-00416-s001, ch: 前年, pr: qián nián, ds: the year before last}
+  - {id: zh-hsk2-00621-s001, ch: 夜里, pr: yè li, ds: during the night}
+  - {id: zh-hsk2-00697-s002, ch: 这时, pr: zhè shí, ds: at this moment}
+  - {id: zh-hsk3-00070-s004, ch: 曾经, pr: céng jīng, ds: previously}
+  - {id: zh-hsk3-00109-s003, ch: 从来, pr: cóng lái, ds: never (if used in negative sentence)}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00246-s001, ch: 假期, pr: jià qī, ds: vacation}
-  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
-  - {id: zh-hsk2-00569-s001, ch: 夏天, pr: xià tiān, ds: summer}
-  - {id: zh-hsk2-00720-s014, ch: 周, pr: zhōu, ds: week}
   - {id: zh-hsk4-00438-s001, ch: 来得及, pr: lái de jí, ds: to have enough time; can do it in time; can still make it}
+  - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: nearly at the point of (doing sth); about to (do sth)}
+  - {id: zh-hsk3-00626-s004, ch: 时, pr: shí, ds: when}
+  - {id: zh-hsk2-00580-s001, ch: 小时候, pr: xiǎo shí hou, ds: in one's childhood}
   - {id: zh-hsk1-00134-s002, ch: 还, pr: hái, ds: still or yet}
   - {id: zh-hsk4-00090-s001, ch: 迟到, pr: chí dào, ds: to arrive late}
   - {id: zh-hsk2-00721-s001, ch: 周末, pr: zhōu mò, ds: weekend}
+  - {id: zh-hsk2-00283-s001, ch: 经常, pr: jīng cháng, ds: frequently}
   review_grammar:
   - {id: zh-hsk2-g005, ch: V+过, ds: experience on a previous occasion}
   - {id: zh-hsk3-g023, ch: V+了+Duration+O, ds: duration of an activity rather than clock time}
@@ -112,13 +173,7 @@ units:
   title: Time and events - 2
   outcome: Relate events and clarify their sequence and circumstances.
   vocabulary:
-  - {id: zh-hsk2-00580-s001, ch: 小时候, pr: xiǎo shí hou, ds: in one's childhood}
-  - {id: zh-hsk2-00621-s001, ch: 夜里, pr: yè li, ds: during the night}
-  - {id: zh-hsk2-00697-s002, ch: 这时, pr: zhè shí, ds: at this moment}
-  - {id: zh-hsk3-00070-s004, ch: 曾经, pr: céng jīng, ds: previously}
-  - {id: zh-hsk3-00109-s003, ch: 从来, pr: cóng lái, ds: never (if used in negative sentence)}
   - {id: zh-hsk3-00110-s003, ch: 从前, pr: cóng qián, ds: once upon a time}
-  - {id: zh-hsk3-00399-s001, ch: 开始, pr: kāi shǐ, ds: to begin}
   - {id: zh-hsk3-00685-s003, ch: 提前, pr: tí qián, ds: in advance}
   - {id: zh-hsk3-00876-s001, ch: 整天, pr: zhěng tiān, ds: all day long}
   - {id: zh-hsk4-00120-s002, ch: 从此, pr: cóng cǐ, ds: since then}
@@ -137,16 +192,22 @@ units:
   - {id: zh-hsk3-00909-s001, ch: 终于, pr: zhōng yú, ds: at last}
   - {id: zh-hsk3-00937-s001, ch: 自从, pr: zì cóng, ds: since (a time)}
   - {id: zh-hsk4-00367-s001, ch: 渐渐, pr: jiàn jiàn, ds: gradually}
+  - {id: zh-hsk1-00500-s003, ch: 最后, pr: zuì hòu, ds: finally}
+  - {id: zh-hsk2-00035-s001, ch: 不久, pr: bù jiǔ, ds: not long (after)}
+  - {id: zh-hsk2-00174-s001, ch: 刚刚, pr: gāng gang, ds: just recently}
+  - {id: zh-hsk2-00217-s001, ch: 后来, pr: hòu lái, ds: afterwards; later}
+  - {id: zh-hsk2-00278-s003, ch: 今后, pr: jīn hòu, ds: in the future}
+  - {id: zh-hsk2-00525-s001, ch: 同时, pr: tóng shí, ds: at the same time}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00105-s002, ch: 当时, pr: dāng shí, ds: at that time}
-  - {id: zh-hsk2-00118-s001, ch: 等到, pr: děng dào, ds: to wait until}
-  - {id: zh-hsk2-00200-s001, ch: 过去, pr: guò qù, ds: (in the) past}
-  - {id: zh-hsk2-00206-s001, ch: 好久, pr: hǎo jiǔ, ds: quite a while}
   - {id: zh-hsk2-00218-s001, ch: 忽然, pr: hū rán, ds: suddenly; all of a sudden}
   - {id: zh-hsk2-00371-s002, ch: 那时, pr: nà shí, ds: at that time}
   - {id: zh-hsk2-00402-s001, ch: 平时, pr: píng shí, ds: ordinarily}
   - {id: zh-hsk2-00416-s001, ch: 前年, pr: qián nián, ds: the year before last}
+  - {id: zh-hsk2-00621-s001, ch: 夜里, pr: yè li, ds: during the night}
+  - {id: zh-hsk2-00697-s002, ch: 这时, pr: zhè shí, ds: at this moment}
+  - {id: zh-hsk3-00070-s004, ch: 曾经, pr: céng jīng, ds: previously}
+  - {id: zh-hsk3-00109-s003, ch: 从来, pr: cóng lái, ds: never (if used in negative sentence)}
   review_grammar:
   - {id: zh-hsk2-g005, ch: V+过, ds: experience on a previous occasion}
   - {id: zh-hsk3-g023, ch: V+了+Duration+O, ds: duration of an activity rather than clock time}
@@ -155,14 +216,6 @@ units:
   title: Time and events - 3
   outcome: Relate events and clarify their sequence and circumstances.
   vocabulary:
-  - {id: zh-hsk1-00295-s008, ch: 前, pr: qián, ds: before}
-  - {id: zh-hsk1-00500-s003, ch: 最后, pr: zuì hòu, ds: finally}
-  - {id: zh-hsk2-00035-s001, ch: 不久, pr: bù jiǔ, ds: not long (after)}
-  - {id: zh-hsk2-00081-s001, ch: 从小, pr: cóng xiǎo, ds: from childhood}
-  - {id: zh-hsk2-00174-s001, ch: 刚刚, pr: gāng gang, ds: just recently}
-  - {id: zh-hsk2-00217-s001, ch: 后来, pr: hòu lái, ds: afterwards; later}
-  - {id: zh-hsk2-00278-s003, ch: 今后, pr: jīn hòu, ds: in the future}
-  - {id: zh-hsk2-00525-s001, ch: 同时, pr: tóng shí, ds: at the same time}
   - {id: zh-hsk2-00632-s001, ch: 以后, pr: yǐ hòu, ds: after}
   - {id: zh-hsk2-00683-s001, ch: 早晨, pr: zǎo chén, ds: early morning}
   - {id: zh-hsk2-00684-s001, ch: 早就, pr: zǎo jiù, ds: already at an earlier time}
@@ -174,14 +227,14 @@ units:
   - {id: zh-hsk1-00340-s004, ch: 是, pr: shì, ds: emphatic assertion (adverb)}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00448-s003, ch: 日子, pr: rì zi, ds: days of one's life}
-  - {id: zh-hsk2-00491-s001, ch: 随时, pr: suí shí, ds: at any time; at all times}
-  - {id: zh-hsk3-00094-s002, ch: 初, pr: chū, ds: (at the) beginning}
-  - {id: zh-hsk3-00341-s001, ch: 将近, pr: jiāng jìn, ds: almost}
-  - {id: zh-hsk3-00855-s001, ch: 早已, pr: zǎo yǐ, ds: for a long time; long since}
-  - {id: zh-hsk3-00909-s001, ch: 终于, pr: zhōng yú, ds: at last}
   - {id: zh-hsk3-00937-s001, ch: 自从, pr: zì cóng, ds: since (a time)}
   - {id: zh-hsk4-00367-s001, ch: 渐渐, pr: jiàn jiàn, ds: gradually}
+  - {id: zh-hsk1-00500-s003, ch: 最后, pr: zuì hòu, ds: finally}
+  - {id: zh-hsk2-00035-s001, ch: 不久, pr: bù jiǔ, ds: not long (after)}
+  - {id: zh-hsk2-00174-s001, ch: 刚刚, pr: gāng gang, ds: just recently}
+  - {id: zh-hsk2-00217-s001, ch: 后来, pr: hòu lái, ds: afterwards; later}
+  - {id: zh-hsk2-00278-s003, ch: 今后, pr: jīn hòu, ds: in the future}
+  - {id: zh-hsk2-00525-s001, ch: 同时, pr: tóng shí, ds: at the same time}
   review_grammar:
   - {id: zh-hsk2-g005, ch: V+过, ds: experience on a previous occasion}
   - {id: zh-hsk3-g023, ch: V+了+Duration+O, ds: duration of an activity rather than clock time}
@@ -192,8 +245,6 @@ units:
   vocabulary:
   - {id: zh-hsk1-00072-s001, ch: 得到, pr: dé dào, ds: to get}
   - {id: zh-hsk1-00105-s003, ch: 放, pr: fàng, ds: to release}
-  - {id: zh-hsk1-00159-s001, ch: 回来, pr: huí lai, ds: to come back}
-  - {id: zh-hsk1-00381-s001, ch: 忘, pr: wàng, ds: to forget}
   - {id: zh-hsk2-00025-s001, ch: 变, pr: biàn, ds: to change}
   - {id: zh-hsk2-00062-s002, ch: 成, pr: chéng, ds: to succeed}
   - {id: zh-hsk2-00098-s011, ch: 带, pr: dài, ds: to take along}
@@ -212,19 +263,21 @@ units:
   - {id: zh-hsk3-00539-s001, ch: 前进, pr: qián jìn, ds: to go forward}
   - {id: zh-hsk3-00923-s001, ch: 抓, pr: zhuā, ds: to grab}
   - {id: zh-hsk4-00194-s002, ch: 度过, pr: dù guò, ds: to spend (time)}
-  - {id: zh-hsk7-9-00437-s002, ch: 趁, pr: chèn, ds: to take advantage of}
   - {id: zh-hsk1-00090-s001, ch: 动作, pr: dòng zuò, ds: movement or action}
   - {id: zh-hsk2-00070-s001, ch: 出现, pr: chū xiàn, ds: to appear}
+  - {id: zh-hsk2-00099-s001, ch: 带来, pr: dài lái, ds: to bring}
+  - {id: zh-hsk2-00154-s002, ch: 放下, pr: fàng xià, ds: to put down}
+  - {id: zh-hsk2-00165-s001, ch: 改变, pr: gǎi biàn, ds: to change}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk1-00328-s003, ch: 少, pr: shǎo, ds: to lack or be missing}
-  - {id: zh-hsk1-00051-s001, ch: 出去, pr: chū qù, ds: to go out}
-  - {id: zh-hsk1-00160-s001, ch: 回去, pr: huí qu, ds: to return}
   - {id: zh-hsk1-00208-s001, ch: 来到, pr: lái dào, ds: to arrive}
   - {id: zh-hsk1-00196-s001, ch: 看到, pr: kàn dào, ds: to see}
-  - {id: zh-hsk1-00197-s001, ch: 看见, pr: kàn jiàn, ds: to see}
   - {id: zh-hsk1-00366-s001, ch: 听到, pr: tīng dào, ds: to hear}
   - {id: zh-hsk1-00356-s002, ch: 送, pr: sòng, ds: to give as a present}
+  - {id: zh-hsk1-00050-s001, ch: 出来, pr: chū lái, ds: to come out}
+  - {id: zh-hsk3-00600-s001, ch: 上来, pr: shàng lái, ds: to come up}
+  - {id: zh-hsk3-00753-s001, ch: 下来, pr: xià lai, ds: to come down}
+  - {id: zh-hsklegacy-01473-s001, ch: 打篮球, pr: dǎ lán qiú, ds: to play basketball}
   review_grammar:
   - {id: zh-hsk3-g001, ch: S+把+O+V+Result, ds: disposal construction affecting an identifiable object}
   - {id: zh-hsk2-g020, ch: V+到, ds: an action attains its intended result}
@@ -233,9 +286,6 @@ units:
   title: Actions and processes - 2
   outcome: Explain an action or process and distinguish intention from result.
   vocabulary:
-  - {id: zh-hsk2-00099-s001, ch: 带来, pr: dài lái, ds: to bring}
-  - {id: zh-hsk2-00154-s002, ch: 放下, pr: fàng xià, ds: to put down}
-  - {id: zh-hsk2-00165-s001, ch: 改变, pr: gǎi biàn, ds: to change}
   - {id: zh-hsk2-00268-s001, ch: 接到, pr: jiē dào, ds: to receive (letter etc)}
   - {id: zh-hsk2-00346-s003, ch: 留, pr: liú, ds: to stay}
   - {id: zh-hsk2-00368-s001, ch: 拿到, pr: ná dào, ds: to get}
@@ -258,16 +308,19 @@ units:
   - {id: zh-hsk6-00085-s002, ch: 藏, pr: cáng, ds: to conceal}
   - {id: zh-hsk2-00026-s001, ch: 变成, pr: biàn chéng, ds: to change into}
   - {id: zh-hsk2-00123-s001, ch: 掉, pr: diào, ds: to fall}
+  - {id: zh-hsk2-00164-s001, ch: 改, pr: gǎi, ds: to change}
+  - {id: zh-hsk2-00248-s001, ch: 见到, pr: jiàn dào, ds: to see}
+  - {id: zh-hsk2-00367-s001, ch: 拿出, pr: ná chū, ds: to take out}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk3-00359-s001, ch: 解开, pr: jiě kāi, ds: to untie}
-  - {id: zh-hsk3-00437-s007, ch: 立刻, pr: lì kè, ds: at once}
   - {id: zh-hsk3-00539-s001, ch: 前进, pr: qián jìn, ds: to go forward}
   - {id: zh-hsk3-00923-s001, ch: 抓, pr: zhuā, ds: to grab}
   - {id: zh-hsk4-00194-s002, ch: 度过, pr: dù guò, ds: to spend (time)}
-  - {id: zh-hsk7-9-00437-s002, ch: 趁, pr: chèn, ds: to take advantage of}
   - {id: zh-hsk1-00090-s001, ch: 动作, pr: dòng zuò, ds: movement or action}
   - {id: zh-hsk2-00070-s001, ch: 出现, pr: chū xiàn, ds: to appear}
+  - {id: zh-hsk2-00099-s001, ch: 带来, pr: dài lái, ds: to bring}
+  - {id: zh-hsk2-00154-s002, ch: 放下, pr: fàng xià, ds: to put down}
+  - {id: zh-hsk2-00165-s001, ch: 改变, pr: gǎi biàn, ds: to change}
   review_grammar:
   - {id: zh-hsk3-g001, ch: S+把+O+V+Result, ds: disposal construction affecting an identifiable object}
   - {id: zh-hsk2-g020, ch: V+到, ds: an action attains its intended result}
@@ -276,9 +329,6 @@ units:
   title: Actions and processes - 3
   outcome: Explain an action or process and distinguish intention from result.
   vocabulary:
-  - {id: zh-hsk2-00164-s001, ch: 改, pr: gǎi, ds: to change}
-  - {id: zh-hsk2-00248-s001, ch: 见到, pr: jiàn dào, ds: to see}
-  - {id: zh-hsk2-00367-s001, ch: 拿出, pr: ná chū, ds: to take out}
   - {id: zh-hsk2-00458-s001, ch: 生, pr: shēng, ds: to be born}
   - {id: zh-hsk2-00531-s001, ch: 推, pr: tuī, ds: to push}
   - {id: zh-hsk2-00599-s002, ch: 行动, pr: xíng dòng, ds: action}
@@ -294,23 +344,26 @@ units:
   - {id: zh-hsk3-00693-s001, ch: 跳, pr: tiào, ds: to jump}
   - {id: zh-hsk4-00693-s001, ch: 停下, pr: tíng xià, ds: to stop}
   - {id: zh-hsk4-00656-s001, ch: 睡着, pr: shuì zháo, ds: to fall asleep}
-  - {id: zh-hsk1-00050-s001, ch: 出来, pr: chū lái, ds: to come out}
   - {id: zh-hsk1-00111-s001, ch: 分, pr: fēn, ds: to divide}
   - {id: zh-hsk1-00291-s005, ch: 起, pr: qǐ, ds: to start or initiate}
   - {id: zh-hsk1-00356-s001, ch: 送, pr: sòng, ds: to send or deliver}
   - {id: zh-hsk1-00496-s006, ch: 走, pr: zǒu, ds: to leave}
   - {id: zh-hsk2-00017-s002, ch: 背, pr: bēi, ds: to carry on the back or shoulder}
   - {id: zh-hsk2-00064-s001, ch: 成为, pr: chéng wéi, ds: to become; to turn into}
+  - {id: zh-hsk2-00107-s001, ch: 倒, pr: dǎo, ds: to fall; to collapse; to lie horizontally}
+  - {id: zh-hsk2-00147-s001, ch: 发现, pr: fā xiàn, ds: to notice; to become aware of}
+  - {id: zh-hsk2-00347-s001, ch: 留下, pr: liú xià, ds: to leave behind}
+  - {id: zh-hsk2-00392-s003, ch: 碰, pr: pèng, ds: to bump}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk3-00775-s001, ch: 消失, pr: xiāo shī, ds: to disappear; to fade away}
-  - {id: zh-hsk4-00356-s002, ch: 加入, pr: jiā rù, ds: to join}
-  - {id: zh-hsk4-00797-s001, ch: 醒, pr: xǐng, ds: to wake up}
   - {id: zh-hsk4-00883-s001, ch: 遇到, pr: yù dào, ds: to meet; to run into; to come across}
   - {id: zh-hsk5-00093-s001, ch: 尝试, pr: cháng shì, ds: to try; to attempt}
   - {id: zh-hsk6-00085-s002, ch: 藏, pr: cáng, ds: to conceal}
   - {id: zh-hsk2-00026-s001, ch: 变成, pr: biàn chéng, ds: to change into}
   - {id: zh-hsk2-00123-s001, ch: 掉, pr: diào, ds: to fall}
+  - {id: zh-hsk2-00164-s001, ch: 改, pr: gǎi, ds: to change}
+  - {id: zh-hsk2-00248-s001, ch: 见到, pr: jiàn dào, ds: to see}
+  - {id: zh-hsk2-00367-s001, ch: 拿出, pr: ná chū, ds: to take out}
   review_grammar:
   - {id: zh-hsk3-g001, ch: S+把+O+V+Result, ds: disposal construction affecting an identifiable object}
   - {id: zh-hsk2-g020, ch: V+到, ds: an action attains its intended result}
@@ -319,11 +372,6 @@ units:
   title: Actions and processes - 4
   outcome: Explain an action or process and distinguish intention from result.
   vocabulary:
-  - {id: zh-hsk2-00107-s001, ch: 倒, pr: dǎo, ds: to fall; to collapse; to lie horizontally}
-  - {id: zh-hsk2-00147-s001, ch: 发现, pr: fā xiàn, ds: to notice; to become aware of}
-  - {id: zh-hsk2-00198-s001, ch: 过来, pr: guò lái, ds: to come over}
-  - {id: zh-hsk2-00347-s001, ch: 留下, pr: liú xià, ds: to leave behind}
-  - {id: zh-hsk2-00392-s003, ch: 碰, pr: pèng, ds: to bump}
   - {id: zh-hsk2-00504-s001, ch: 提, pr: tí, ds: to carry (hanging down from the hand)}
   - {id: zh-hsk2-00536-s001, ch: 完成, pr: wán chéng, ds: to complete; to accomplish}
   - {id: zh-hsk2-00574-s001, ch: 想到, pr: xiǎng dào, ds: to think of}
@@ -332,10 +380,7 @@ units:
   - {id: zh-hsk3-00211-s002, ch: 赶紧, pr: gǎn jǐn, ds: without delay}
   - {id: zh-hsk3-00320-s001, ch: 继续, pr: jì xù, ds: to continue}
   - {id: zh-hsk3-00440-s001, ch: 连忙, pr: lián máng, ds: promptly}
-  - {id: zh-hsk3-00600-s001, ch: 上来, pr: shàng lái, ds: to come up}
-  - {id: zh-hsk3-00602-s001, ch: 上去, pr: shàng qù, ds: to go up}
   - {id: zh-hsk3-00719-s001, ch: 推开, pr: tuī kāi, ds: to push open (a gate etc)}
-  - {id: zh-hsk3-00753-s001, ch: 下来, pr: xià lai, ds: to come down}
   - {id: zh-hsk3-00924-s001, ch: 抓住, pr: zhuā zhù, ds: to grab hold of; to capture}
   - {id: zh-hsk3-00933-s004, ch: 追, pr: zhuī, ds: to chase}
   - {id: zh-hsk4-00284-s001, ch: 逛, pr: guàng, ds: to stroll}
@@ -343,36 +388,19 @@ units:
   - {id: zh-hsk4-00810-s001, ch: 寻找, pr: xún zhǎo, ds: to seek; to look for}
   - {id: zh-hsk4-00833-s002, ch: 摇, pr: yáo, ds: to shake}
   - {id: zh-hsk5-00205-s001, ch: 丢, pr: diū, ds: to lose}
+  - {id: zh-hsk7-9-00437-s002, ch: 趁, pr: chèn, ds: to take advantage of}
   - {id: zh-hsk1-00293-s005, ch: 起来, pr: qi lai, ds: upward-movement complement}
+  - {id: zh-hsk1-00293-s004, ch: 起来, pr: qi lai, ds: onset-and-continuation verb complement}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk4-00656-s001, ch: 睡着, pr: shuì zháo, ds: to fall asleep}
-  - {id: zh-hsk1-00050-s001, ch: 出来, pr: chū lái, ds: to come out}
-  - {id: zh-hsk1-00111-s001, ch: 分, pr: fēn, ds: to divide}
-  - {id: zh-hsk1-00291-s005, ch: 起, pr: qǐ, ds: to start or initiate}
   - {id: zh-hsk1-00356-s001, ch: 送, pr: sòng, ds: to send or deliver}
   - {id: zh-hsk1-00496-s006, ch: 走, pr: zǒu, ds: to leave}
   - {id: zh-hsk2-00017-s002, ch: 背, pr: bēi, ds: to carry on the back or shoulder}
   - {id: zh-hsk2-00064-s001, ch: 成为, pr: chéng wéi, ds: to become; to turn into}
-  review_grammar:
-  - {id: zh-hsk3-g001, ch: S+把+O+V+Result, ds: disposal construction affecting an identifiable object}
-  - {id: zh-hsk2-g020, ch: V+到, ds: an action attains its intended result}
-  - {id: zh-hsk2-g009, ch: 一边+VP1+一边+VP2, ds: two activities taking place together}
-- id: level-09-actions-05
-  title: Actions and processes - 5
-  outcome: Explain an action or process and distinguish intention from result.
-  vocabulary:
-  - {id: zh-hsk1-00293-s004, ch: 起来, pr: qi lai, ds: onset-and-continuation verb complement}
-  grammar: []
-  review_vocabulary:
-  - {id: zh-hsk3-00924-s001, ch: 抓住, pr: zhuā zhù, ds: to grab hold of; to capture}
-  - {id: zh-hsk3-00933-s004, ch: 追, pr: zhuī, ds: to chase}
-  - {id: zh-hsk4-00284-s001, ch: 逛, pr: guàng, ds: to stroll}
-  - {id: zh-hsk4-00477-s003, ch: 轮, pr: lún, ds: to take turns; to rotate}
-  - {id: zh-hsk4-00810-s001, ch: 寻找, pr: xún zhǎo, ds: to seek; to look for}
-  - {id: zh-hsk4-00833-s002, ch: 摇, pr: yáo, ds: to shake}
-  - {id: zh-hsk5-00205-s001, ch: 丢, pr: diū, ds: to lose}
-  - {id: zh-hsk1-00293-s005, ch: 起来, pr: qi lai, ds: upward-movement complement}
+  - {id: zh-hsk2-00107-s001, ch: 倒, pr: dǎo, ds: to fall; to collapse; to lie horizontally}
+  - {id: zh-hsk2-00147-s001, ch: 发现, pr: fā xiàn, ds: to notice; to become aware of}
+  - {id: zh-hsk2-00347-s001, ch: 留下, pr: liú xià, ds: to leave behind}
+  - {id: zh-hsk2-00392-s003, ch: 碰, pr: pèng, ds: to bump}
   review_grammar:
   - {id: zh-hsk3-g001, ch: S+把+O+V+Result, ds: disposal construction affecting an identifiable object}
   - {id: zh-hsk2-g020, ch: V+到, ds: an action attains its intended result}
@@ -394,16 +422,51 @@ units:
   - {id: zh-hsk2-00361-s001, ch: 面前, pr: miàn qián, ds: in front of}
   - {id: zh-hsk3-00027-s001, ch: 背后, pr: bèi hòu, ds: behind}
   - {id: zh-hsk3-00535-s001, ch: 奇怪, pr: qí guài, ds: strange}
+  - {id: zh-hsk4-00002-s001, ch: 矮, pr: ǎi, ds: low}
+  - {id: zh-hsk2-00051-s001, ch: 草地, pr: cǎo dì, ds: lawn}
+  - {id: zh-hsk5-00164-s001, ch: 大熊猫, pr: dà xióng māo, ds: giant panda (Ailuropoda melanoleuca)}
+  - {id: zh-hsk2-00125-s001, ch: 东方, pr: Dōng fāng, ds: the East}
+  - {id: zh-hsk2-00146-s001, ch: 发, pr: fā, ds: to send out}
+  - {id: zh-hsk7-9-01523-s001, ch: 过节, pr: guò jié, ds: to celebrate a festival}
+  - {id: zh-hsk2026-00670-s001, ch: 红绿灯, pr: hóng lǜ dēng, ds: traffic light}
+  - {id: zh-hsk4-00341-s001, ch: 极, pr: jí, ds: extremely}
+  - {id: zh-hsk2-00258-s001, ch: 角, pr: Jué, ds: surname Jue}
+  - {id: zh-hsk4-00430-s001, ch: 矿泉水, pr: kuàng quán shuǐ, ds: mineral water}
+  - {id: zh-hsk4-00609-s001, ch: 身高, pr: shēn gāo, ds: (a person's) height}
+  - {id: zh-hsk7-9-03893-s001, ch: 四季, pr: sì jì, ds: 'four seasons, namely: spring, summer, autumn and winter'}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00005-s001, ch: 安全, pr: ān quán, ds: safe; secure}
-  - {id: zh-hsk2-00339-s002, ch: 凉快, pr: liáng kuai, ds: pleasantly cool}
-  - {id: zh-hsk1-00452-s001, ch: 有用, pr: yǒu yòng, ds: useful}
-  - {id: zh-hsk2-00210-s001, ch: 合适, pr: hé shì, ds: suitable}
   - {id: zh-hsk1-00272-s001, ch: 难, pr: nán, ds: difficult or hard to do}
   - {id: zh-hsk1-00490-s001, ch: 重要, pr: zhòng yào, ds: important}
+  - {id: zh-hsk3-00430-s001, ch: 里面, pr: lǐ miàn, ds: inside}
+  - {id: zh-hsk2-00362-s001, ch: 名, pr: míng, ds: name}
+  - {id: zh-hsk2-00472-s001, ch: 事情, pr: shì qing, ds: affair}
+  - {id: zh-hsk2-00662-s001, ch: 有意思, pr: yǒu yì si, ds: interesting}
   - {id: zh-hsk3-00099-s002, ch: 除了, pr: chú le, ds: apart from (... also...)}
   - {id: zh-hsk1-00134-s007, ch: 还, pr: hái, ds: in addition or also}
+  review_grammar:
+  - {id: zh-hsk3-g022, ch: A+跟+B+(不)+一样, ds: similarity or difference relative to a target}
+  - {id: zh-hsk2-g018, ch: V+得+Degree, ds: describe how well or to what degree an action is done}
+  - {id: zh-hsk3-g010, ch: 除了+A+以外+还+P, ds: add something alongside an included item}
+- id: level-09-description-02
+  title: Description and comparison - 2
+  outcome: Choose precise descriptions and explain meaningful differences.
+  vocabulary:
+  - {id: zh-hsk3-00736-s001, ch: 卫生间, pr: wèi shēng jiān, ds: bathroom}
+  - {id: zh-hsk6-00983-s001, ch: 雨衣, pr: yǔ yī, ds: raincoat}
+  - {id: zh-hsk4-00893-s001, ch: 运动员, pr: yùn dòng yuán, ds: athlete}
+  - {id: zh-hsklegacy-01972-s001, ch: 冬, pr: dōng, ds: winter}
+  - {id: zh-hsklegacy-01886-s001, ch: 电子, pr: diàn zǐ, ds: electronic}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00146-s001, ch: 发, pr: fā, ds: to send out}
+  - {id: zh-hsk7-9-01523-s001, ch: 过节, pr: guò jié, ds: to celebrate a festival}
+  - {id: zh-hsk2026-00670-s001, ch: 红绿灯, pr: hóng lǜ dēng, ds: traffic light}
+  - {id: zh-hsk4-00341-s001, ch: 极, pr: jí, ds: extremely}
+  - {id: zh-hsk2-00258-s001, ch: 角, pr: Jué, ds: surname Jue}
+  - {id: zh-hsk4-00430-s001, ch: 矿泉水, pr: kuàng quán shuǐ, ds: mineral water}
+  - {id: zh-hsk4-00609-s001, ch: 身高, pr: shēn gāo, ds: (a person's) height}
+  - {id: zh-hsk7-9-03893-s001, ch: 四季, pr: sì jì, ds: 'four seasons, namely: spring, summer, autumn and winter'}
   review_grammar:
   - {id: zh-hsk3-g022, ch: A+跟+B+(不)+一样, ds: similarity or difference relative to a target}
   - {id: zh-hsk2-g018, ch: V+得+Degree, ds: describe how well or to what degree an action is done}
@@ -416,10 +479,12 @@ units:
   - {id: zh-hsk4-00492-s001, ch: 梦见, pr: mèng jiàn, ds: to dream about (sth or sb)}
   grammar: []
   review_vocabulary:
+  - {id: zh-hsk2-00317-s001, ch: 快乐, pr: kuài lè, ds: happy; joyful}
+  - {id: zh-hsk2-00034-s003, ch: 不好意思, pr: bù hǎo yì si, ds: to be sorry (for inconveniencing sb)}
   - {id: zh-hsk3-00750-s001, ch: 希望, pr: xī wàng, ds: to hope}
   - {id: zh-hsk2-00296-s001, ch: 开心, pr: kāi xīn, ds: to feel happy}
   - {id: zh-hsk4-00799-s001, ch: 兴趣, pr: xìng qù, ds: interest (desire to know about sth)}
-  - {id: zh-hsk1-00189-s001, ch: 觉得, pr: jué de, ds: to think or feel that}
+  - {id: zh-hsk1-00412-s001, ch: 笑, pr: xiào, ds: to laugh or smile}
   review_grammar:
   - {id: zh-hsk2-g016, ch: 有点儿+Adj, ds: slightly adjective; often a mild complaint}
 - id: level-09-reasoning-01
@@ -431,12 +496,15 @@ units:
   - {id: zh-hsk3-00270-s003, ch: 果然, pr: guǒ rán, ds: as expected}
   - {id: zh-hsk3-00286-s001, ch: 后果, pr: hòu guǒ, ds: consequences}
   - {id: zh-hsk3-00635-s002, ch: 使, pr: shǐ, ds: to cause}
+  - {id: zh-hsk4-00265-s002, ch: 根据, pr: gēn jù, ds: based on}
   grammar: []
   review_vocabulary:
+  - {id: zh-hsk2-00489-s001, ch: 虽然, pr: suī rán, ds: although; even though}
   - {id: zh-hsk2-00642-s001, ch: 因为, pr: yīn wèi, ds: because}
   - {id: zh-hsk2-00492-s001, ch: 所以, pr: suǒ yǐ, ds: therefore}
-  - {id: zh-hsk2-00489-s001, ch: 虽然, pr: suī rán, ds: although; even though}
+  - {id: zh-hsk2-00549-s001, ch: 为什么, pr: wèi shén me, ds: 'why?'}
   - {id: zh-hsk2-00635-s001, ch: 以外, pr: yǐ wài, ds: apart from}
+  - {id: zh-hsk2-00548-s011, ch: 为, pr: wèi, ds: for}
   review_grammar:
   - {id: zh-hsk2-g010, ch: 因为+Cause+所以+Result, ds: cause followed by its consequence}
   - {id: zh-hsk2-g012, ch: 如果+P+就+Q, ds: hypothetical condition and consequence}
@@ -453,11 +521,9 @@ units:
   - {id: zh-hsk2-00114-s001, ch: 的话, pr: de huà, ds: if (coming after a conditional clause)}
   - {id: zh-hsk2-00136-s006, ch: 段, pr: duàn, ds: 'classifier for stories, periods of time, lengths of thread etc'}
   - {id: zh-hsk2-00163-s001, ch: 该, pr: gāi, ds: should}
-  - {id: zh-hsk2-00577-s002, ch: 向, pr: xiàng, ds: towards}
   - {id: zh-hsk4-00918-s007, ch: 阵, pr: zhèn, ds: classifier for events or states of short duration}
   - {id: zh-hsk2-00046-s006, ch: 才, pr: cái, ds: (before an expression of quantity) only}
   - {id: zh-hsk2-00321-s001, ch: 来自, pr: lái zì, ds: to come from (a place)}
-  - {id: zh-hsk2-00370-s007, ch: 那么, pr: nà me, ds: in that case}
   - {id: zh-hsk2-00676-s001, ch: 越来越, pr: yuè lái yuè, ds: more and more}
   - {id: zh-hsk2-00690-s009, ch: 长, pr: zhǎng, ds: to grow}
   - {id: zh-hsk3-00028-s004, ch: 被, pr: bèi, ds: passive marker before the agent or verb}
@@ -465,16 +531,43 @@ units:
   - {id: zh-hsk1-00435-s003, ch: 一会儿, pr: yī huì r, ds: in a moment}
   - {id: zh-hsk1-00258-s005, ch: 那, pr: nà, ds: then (in that case)}
   - {id: zh-hsk2-00706-s001, ch: 只, pr: zhǐ, ds: only}
+  - {id: zh-hsk3-00660-s008, ch: 受, pr: shòu, ds: (passive marker)}
+  - {id: zh-hsk2-00142-s001, ch: 多么, pr: duō me, ds: how (wonderful etc)}
   grammar: []
   review_vocabulary:
-  - {id: zh-hsk2-00680-s001, ch: 咱们, pr: zán men, ds: we or us (including the speaker and those addressed)}
-  - {id: zh-hsk1-00433-s005, ch: 一边, pr: yī biān, ds: while doing something else}
   - {id: zh-hsk1-00293-s001, ch: 起来, pr: qǐ lai, ds: to stand or get up}
   - {id: zh-hsk1-00436-s001, ch: 一块儿, pr: yī kuài r, ds: together}
   - {id: zh-hsk2-00033-s004, ch: 不过, pr: bù guò, ds: but}
   - {id: zh-hsk1-00032-s001, ch: 不大, pr: bù dà, ds: not very}
   - {id: zh-hsk1-00040-s001, ch: 常常, pr: cháng cháng, ds: frequently}
-  - {id: zh-hsk1-00472-s001, ch: 这儿, pr: zhè r, ds: here}
+  - {id: zh-hsk2-00513-s005, ch: 条, pr: tiáo, ds: 'classifier for long thin things (rivers, roads, trousers etc)'}
+  - {id: zh-hsk2-00543-s002, ch: 万, pr: wàn, ds: ten thousand}
+  - {id: zh-hsk2-00699-s004, ch: 这样, pr: zhè yàng, ds: like this}
+  review_grammar: []
+- id: level-09-society-01
+  title: Society and community - 1
+  outcome: Explain a social issue and compare different people's experiences.
+  vocabulary:
+  - {id: zh-hsk2-00654-s004, ch: 影响, pr: yǐng xiǎng, ds: to affect (usually adversely)}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk1-00131-s001, ch: 国家, pr: guó jiā, ds: country}
+  review_grammar: []
+- id: level-09-nature-01
+  title: Nature and environment - 1
+  outcome: Describe the natural world and explain a relevant change or relationship.
+  vocabulary:
+  - {id: zh-hsk3-00911-s001, ch: 种, pr: zhǒng, ds: seed}
+  grammar: []
+  review_vocabulary:
+  - {id: zh-hsk2-00144-s001, ch: 多云, pr: duō yún, ds: cloudy (meteorology)}
+  - {id: zh-hsk2-00567-s001, ch: 下雪, pr: xià xuě, ds: to snow}
+  - {id: zh-hsk2-00423-s002, ch: 晴天, pr: qíng tiān, ds: sunny day}
+  - {id: zh-hsk2-00497-s001, ch: 太阳, pr: tài yang, ds: sun}
+  - {id: zh-hsk2-00677-s003, ch: 云, pr: yún, ds: cloud}
+  - {id: zh-hsk1-00152-s002, ch: 花, pr: huā, ds: flower}
+  - {id: zh-hsk2-00383-s002, ch: 鸟, pr: niǎo, ds: bird}
+  - {id: zh-hsk2-00643-s002, ch: 阴, pr: yīn, ds: overcast (weather)}
   review_grammar: []
 - id: level-09-register-01
   title: Register and nuance - 1
@@ -483,7 +576,8 @@ units:
   - {id: zh-hsk1-00071-s004, ch: 的, pr: de, ds: sentence-final emphasis particle}
   - {id: zh-hsk5-00085-s001, ch: 差点儿, pr: chà diǎn r, ds: almost}
   grammar: []
-  review_vocabulary: []
+  review_vocabulary:
+  - {id: zh-hsk2-00550-s005, ch: 位, pr: wèi, ds: classifier for people (honorific)}
   review_grammar: []
 - id: level-09-time-practice-01
   title: Time and events - sentence practice 1
@@ -569,12 +663,12 @@ units:
   - {id: zh-hsk3-00028-s004, ch: 被, pr: bèi, ds: passive marker before the agent or verb}
   - {id: zh-hsk1-00293-s005, ch: 起来, pr: qi lai, ds: upward-movement complement}
   - {id: zh-hsk1-00293-s004, ch: 起来, pr: qi lai, ds: onset-and-continuation verb complement}
-  - {id: zh-hsk3-00933-s004, ch: 追, pr: zhuī, ds: to chase}
   - {id: zh-hsk4-00284-s001, ch: 逛, pr: guàng, ds: to stroll}
   - {id: zh-hsk4-00477-s003, ch: 轮, pr: lún, ds: to take turns; to rotate}
   - {id: zh-hsk4-00810-s001, ch: 寻找, pr: xún zhǎo, ds: to seek; to look for}
   - {id: zh-hsk4-00833-s002, ch: 摇, pr: yáo, ds: to shake}
   - {id: zh-hsk5-00205-s001, ch: 丢, pr: diū, ds: to lose}
+  - {id: zh-hsk7-9-00437-s002, ch: 趁, pr: chèn, ds: to take advantage of}
   review_grammar:
   - {id: zh-hsk3-g001, ch: S+把+O+V+Result, ds: disposal construction affecting an identifiable object}
   - {id: zh-hsk2-g020, ch: V+到, ds: an action attains its intended result}
@@ -587,14 +681,14 @@ units:
   - {id: zh-hsk3-g007, ch: 越来越+Adj, ds: a quality increases over time}
   review_vocabulary:
   - {id: zh-hsk2-00676-s001, ch: 越来越, pr: yuè lái yuè, ds: more and more}
-  - {id: zh-hsk2-00483-s001, ch: 顺利, pr: shùn lì, ds: smoothly; without a hitch}
-  - {id: zh-hsk3-00038-s002, ch: 变化, pr: biàn huà, ds: change; variation}
-  - {id: zh-hsk3-00093-s001, ch: 充满, pr: chōng mǎn, ds: full of}
-  - {id: zh-hsk3-00820-s002, ch: 意外, pr: yì wài, ds: accident}
-  - {id: zh-hsk3-00914-s001, ch: 周围, pr: zhōu wéi, ds: environs; surroundings; periphery}
-  - {id: zh-hsk2-00361-s001, ch: 面前, pr: miàn qián, ds: in front of}
-  - {id: zh-hsk3-00027-s001, ch: 背后, pr: bèi hòu, ds: behind}
-  - {id: zh-hsk3-00535-s001, ch: 奇怪, pr: qí guài, ds: strange}
+  - {id: zh-hsk4-00430-s001, ch: 矿泉水, pr: kuàng quán shuǐ, ds: mineral water}
+  - {id: zh-hsk4-00609-s001, ch: 身高, pr: shēn gāo, ds: (a person's) height}
+  - {id: zh-hsk7-9-03893-s001, ch: 四季, pr: sì jì, ds: 'four seasons, namely: spring, summer, autumn and winter'}
+  - {id: zh-hsk3-00736-s001, ch: 卫生间, pr: wèi shēng jiān, ds: bathroom}
+  - {id: zh-hsk6-00983-s001, ch: 雨衣, pr: yǔ yī, ds: raincoat}
+  - {id: zh-hsk4-00893-s001, ch: 运动员, pr: yùn dòng yuán, ds: athlete}
+  - {id: zh-hsklegacy-01972-s001, ch: 冬, pr: dōng, ds: winter}
+  - {id: zh-hsklegacy-01886-s001, ch: 电子, pr: diàn zǐ, ds: electronic}
   review_grammar:
   - {id: zh-hsk3-g022, ch: A+跟+B+(不)+一样, ds: similarity or difference relative to a target}
   - {id: zh-hsk2-g018, ch: V+得+Degree, ds: describe how well or to what degree an action is done}

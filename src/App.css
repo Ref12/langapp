@@ -147,6 +147,16 @@ summary { cursor: pointer; min-height: 28px; }
 .skill-profile dt { color: var(--muted); margin-bottom: 6px; }
 .skill-profile dd { margin: 0; color: var(--text-secondary); }
 .lesson-list { display: grid; gap: 16px; }
+.readiness-section { padding: 20px; }
+.readiness-section summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; list-style: none; }
+.readiness-section summary::-webkit-details-marker { display: none; }
+.readiness-section summary > span:first-child { display: grid; gap: 5px; }
+.readiness-section[open] summary { padding-bottom: 16px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.readiness-module { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; }
+.readiness-module:first-of-type { border-top: 0; }
+.readiness-module ol { padding-left: 22px; }
+.readiness-module li { margin-bottom: 12px; }
+.readiness-module li span { display: block; color: var(--muted); margin-top: 4px; }
 .level-card { display: flex; flex-direction: column; }
 .level-card > .text-link { margin-top: auto; }
 .level-card progress { margin-bottom: 12px; }
