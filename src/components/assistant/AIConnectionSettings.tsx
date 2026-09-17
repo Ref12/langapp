@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../../core/database'
-import { aiConnectionInputSchema, type AIConnection } from '../../core/assistant/contracts'
+import { aiApiTypeSchema, aiConnectionInputSchema, type AIAPIType, type AIConnection } from '../../core/assistant/contracts'
+import { LOCAL_SETTINGS_FILE } from '../../core/local-settings-contracts'
 import { removeAIConnection, saveAIConnection } from '../../core/assistant/store'
 import { testAIConnection } from '../../core/ai/provider'
 
 function ConnectionForm({ connection }: { connection?: AIConnection }) {
+  const [apiType, setApiType] = useState<AIAPIType>(connection?.apiType ?? 'chat-completions')
   const [baseUrl, setBaseUrl] = useState(connection?.baseUrl ?? 'https://api.openai.com/v1')
   const [apiKey, setApiKey] = useState(connection?.apiKey ?? '')
   const [model, setModel] = useState(connection?.model ?? '')
@@ -18,7 +20,7 @@ function ConnectionForm({ connection }: { connection?: AIConnection }) {
   const [removing, setRemoving] = useState(false)
   const controller = useRef<AbortController>()
   useEffect(() => () => controller.current?.abort(), [])
-  const input = () => aiConnectionInputSchema.parse({ baseUrl, apiKey, model, nativeTools, structuredOutput, storageAcknowledged: acknowledged })
+  const input = () => aiConnectionInputSchema.parse({ apiType, baseUrl, apiKey, model, nativeTools, structuredOutput, storageAcknowledged: acknowledged })
   const perform = async (action: 'test' | 'save' | 'remove') => {
     setPending(true)
     setNotice('')
@@ -49,6 +51,11 @@ function ConnectionForm({ connection }: { connection?: AIConnection }) {
     <h2>Assistant AI connection</h2>
     <p className="small muted">Your conversations stay on this device. Sending a turn shares its relevant conversation, learning context, and selected text with your configured provider. Requests may incur provider charges.</p>
     <fieldset className="connection-fields" disabled={pending}>
+      <label>API protocol<select value={apiType} onChange={event => setApiType(aiApiTypeSchema.parse(event.target.value))}>
+        <option value="chat-completions">Chat Completions</option>
+        <option value="responses">Responses API</option>
+      </select></label>
+      <p className="small muted">Select the API your endpoint supports. The app never silently switches protocols.</p>
       <label>API base URL<input type="url" required value={baseUrl} onChange={event => setBaseUrl(event.target.value)} placeholder="https://your-provider.example/v1" autoComplete="off" /></label>
       <label>API key<input type="password" required value={apiKey} onChange={event => setApiKey(event.target.value)} autoComplete="off" spellCheck={false} /></label>
       <label>Model<input required value={model} onChange={event => setModel(event.target.value)} placeholder="Model identifier from your provider" autoComplete="off" /></label>
@@ -80,6 +87,7 @@ export function AIConnectionSettings() {
   const connection = connections.find(item => item.id === 'assistant')
   return <section aria-label="AI connection settings">
     <p className="small muted" role="status">{connection ? `Saved AI connection: ${connection.model}` : 'No AI connection is saved on this device.'}</p>
+    {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && <p className="small muted">Local development can load aiConnection from {LOCAL_SETTINGS_FILE} on startup when no connection is saved. To apply changed file settings, remove the saved connection and reload. Remove aiConnection from the file too if you want AI to stay unconfigured.</p>}
     <ConnectionForm key={connection?.revision ?? 'unconfigured'} connection={connection} />
   </section>
 }

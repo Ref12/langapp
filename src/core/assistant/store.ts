@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { db } from '../database'
-import { discardUnsavedDraft } from './drafts'
+import { appendContextText, discardUnsavedDraft } from './drafts'
 import {
   aiConnectionInputSchema, aiConnectionSchema, assistantMessageSchema, assistantRunSchema,
   assistantSourceSchema, assistantThreadSchema, MAX_DRAFT_LENGTH,
@@ -57,6 +57,17 @@ export async function saveDraft(threadId: string, draft: string, source?: Assist
     else if (context !== undefined) next.source = context
     assistantThreadSchema.parse(next)
     await db.assistantThreads.put(next)
+  })
+}
+
+export async function appendAssistantContext(threadId: string, source: AssistantSource): Promise<void> {
+  const context = exactSource(source)
+  await db.transaction('rw', db.assistantThreads, async () => {
+    const thread = await requireThread(threadId)
+    await db.assistantThreads.put(assistantThreadSchema.parse({
+      ...thread, draft: appendContextText(thread.draft, context),
+      source: thread.source ?? context, updatedAt: Date.now(),
+    }))
   })
 }
 

@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from '../data/mandarin'
 import { db, loadWorkspace } from './database'
 import type { Workspace } from './model'
-import { assistantBackupSchema, type AssistantBackup } from './assistant/contracts'
+import { assistantBackupSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
 import { clearUnsavedDrafts } from './assistant/drafts'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
@@ -14,6 +14,7 @@ const workspaceSchema = z.object({
   preferences: z.object({
     id: z.literal('workspace'), language: z.literal('zh-Hans'), name: z.string().trim().min(1).max(80),
     theme: z.enum(['dark', 'light']), pinyin: z.boolean(), readingMode: z.enum(['source', 'weave', 'target']), sidebarCollapsed: z.boolean(),
+    speechVoices: speechVoicePreferencesSchema.optional(),
   }).strict(),
   words: z.array(z.object({
     wordId: z.string(), language: z.literal('zh-Hans'), introducedAt: time, introducedFrom: z.string().max(200),

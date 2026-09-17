@@ -3,6 +3,7 @@ import { db } from './database'
 import { LANGUAGE, type Attempt, type Lesson, type PracticeSession, type Preferences, type WordState } from './model'
 import { applyAnswer } from './progress'
 import { makeQuestions } from './questions'
+import { speechVoicePreferencesSchema } from './assistant/contracts'
 
 export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 'language'>>): Promise<void> {
   await db.transaction('rw', db.preferences, async () => {
@@ -10,6 +11,8 @@ export async function savePreferences(changes: Partial<Omit<Preferences, 'id' | 
     if (!current) throw new Error('Workspace not found. Reload before saving preferences.')
     const next = { ...current, ...changes, name: (changes.name ?? current.name).trim() }
     if (!next.name || next.name.length > 80) throw new Error('Use a workspace name between 1 and 80 characters.')
+    if (changes.speechVoices !== undefined) next.speechVoices = { ...current.speechVoices, ...changes.speechVoices }
+    if (next.speechVoices !== undefined) next.speechVoices = speechVoicePreferencesSchema.parse(next.speechVoices)
     await db.preferences.put(next)
   })
 }

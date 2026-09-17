@@ -1,0 +1,34 @@
+{
+  // Copy to app.settings.jsonc in this directory; that file is git-ignored.
+  // Used only by npm run dev on localhost. Loading settings never calls the AI.
+  // Sections are optional. Remove aiConnection to leave AI setup manual.
+  "aiConnection": {
+    // "responses" uses /responses; "chat-completions" uses /chat/completions.
+    // If omitted, existing settings continue to use Chat Completions.
+    "apiType": "responses",
+
+    // API root, not the full operation URL. Usually ends in /v1.
+    // HTTPS is required except for a service running on localhost.
+    "baseUrl": "https://api.openai.com/v1",
+
+    // Provider credential. Use a restricted development key; never commit it.
+    // The browser sends it only to the configured provider.
+    "apiKey": "",
+
+    // Model identifier recognized by your endpoint, not a display name.
+    "model": "",
+
+    // Enable only if the model supports native function calling.
+    // App tools can look up words/lessons/progress but cannot change scores.
+    "nativeTools": false,
+
+    // Enable only if the endpoint supports strict JSON-schema output.
+    // Otherwise the model is asked for JSON and replies are validated locally.
+    "structuredOutput": false,
+
+    // Set true to opt into saving this key in plaintext browser storage.
+    // Same-origin code can access it; workspace backups exclude credentials.
+    // Saved connections win: remove the saved connection and reload to reimport.
+    "storageAcknowledged": false
+  }
+}

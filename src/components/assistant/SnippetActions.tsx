@@ -1,8 +1,8 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
-import { MessageCircle, Square, Volume2, X } from 'lucide-react'
-import { createConversation } from '../../core/assistant/store'
+import { MessageCircle, Repeat2, Square, Volume2, X } from 'lucide-react'
+import { prepareAssistantDraft } from '../../core/assistant/draft-actions'
 import { type AssistantSource, type SpeechLocale } from '../../core/assistant/contracts'
-import { getPlaybackState, playLocalSpeech, stopLocalSpeech, subscribePlayback } from '../../core/assistant/speech'
+import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayback } from '../../core/assistant/speech'
 import { selectedSnippet, snippetLocale } from '../../core/assistant/selection'
 import { navigate } from '../../core/routing'
 
@@ -10,14 +10,17 @@ export function HearButton({ text, locale, rate = 1 }: { text: string; locale: S
   const id = useId()
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const active = playback.activeId === id
-  useEffect(() => () => { if (getPlaybackState().activeId === id) stopLocalSpeech() }, [id])
-  return <button className="button secondary snippet-button" type="button" title={active ? 'Stop playback' : 'Hear with an installed local voice'}
-    aria-label={active ? 'Stop playback' : 'Hear'} onClick={() => active ? stopLocalSpeech() : playLocalSpeech(id, text, locale, rate)}>
+  const stopLabel = playback.phase === 'loading-voices' ? 'Cancel voice discovery' : 'Stop playback'
+  useEffect(() => () => { if (getPlaybackState().activeId === id) stopBrowserSpeech() }, [id])
+  return <button className="button secondary snippet-button" type="button" title={active ? stopLabel : 'Hear with your selected voice; Automatic prefers local voices before online voices'}
+    aria-label={active ? stopLabel : 'Hear'} onClick={() => active ? stopBrowserSpeech() : playBrowserSpeech(id, text, locale, rate)}>
     {active ? <Square size={15} /> : <Volume2 size={15} />}{active ? 'Stop' : 'Hear'}
   </button>
 }
 
-export function SnippetActions({ source, rate = 1, onPrepared }: { source: AssistantSource; rate?: number; onPrepared?: () => void }) {
+export function SnippetActions({ source, rate = 1, onPrepared, onPractice }: {
+  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void
+}) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState<string>()
@@ -27,12 +30,16 @@ export function SnippetActions({ source, rate = 1, onPrepared }: { source: Assis
       <button type="button" className="button secondary snippet-button" disabled={pending} onClick={() => {
         setPending(true)
         setError('')
-        void createConversation(source).then(id => {
+        const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
+        void prepareAssistantDraft(source, page === 'conversation' ? currentId : undefined).then(id => {
           if (document.querySelector('dialog[open], [role="dialog"][aria-modal="true"]')) setPrepared(id)
           else { onPrepared?.(); navigate(`conversation/${id}`) }
         }, reason => { setError(reason instanceof Error ? reason.message : 'The Assistant draft could not be saved.') })
           .finally(() => setPending(false))
-      }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask Assistant'}</button>
+      }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask'}</button>
+      {onPractice && <button type="button" className="button secondary snippet-button" title="Practice repeating this phrase" onClick={onPractice}>
+        <Repeat2 size={15} />Practice
+      </button>}
     </div>
     {error && <p className="small" role="alert">{error}</p>}
     {prepared && <p className="small" role="status">Your draft is saved. <a className="text-link" href={`#conversation/${prepared}`}>Open Assistant</a> after finishing this dialog.</p>}
@@ -42,20 +49,22 @@ export function SnippetActions({ source, rate = 1, onPrepared }: { source: Assis
 export function PlaybackStatus() {
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   useEffect(() => {
-    const hidden = () => { if (document.hidden) stopLocalSpeech() }
-    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') stopLocalSpeech() }
+    const hidden = () => { if (document.hidden) stopBrowserSpeech() }
+    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') stopBrowserSpeech() }
     document.addEventListener('visibilitychange', hidden)
     document.addEventListener('keydown', escape)
     return () => {
       document.removeEventListener('visibilitychange', hidden)
       document.removeEventListener('keydown', escape)
-      stopLocalSpeech()
+      stopBrowserSpeech()
     }
   }, [])
   if (!playback.activeId && !playback.error) return null
   return <div className="playback-status" data-assistant-exclude role={playback.error ? 'alert' : 'status'}>
-    <span>{playback.error ?? 'Playing with an installed local voice'}</span>
-    <button className="icon-button" type="button" aria-label={playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stopLocalSpeech}>
+    <span>{playback.error ?? (playback.phase === 'loading-voices' ? 'Looking for a voice...'
+      : playback.phase === 'starting' ? `Starting ${playback.voiceKind === 'online' ? 'online' : 'local'} speech...`
+        : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>
+    <button className="icon-button" type="button" aria-label={playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stopBrowserSpeech}>
       {playback.error ? <X size={18} /> : <Square size={18} />}
     </button>
   </div>
@@ -83,7 +92,7 @@ export function SelectionActions({ route, title }: { route: string; title: strin
   }, [])
   useEffect(() => { setText(undefined) }, [route])
   return text ? <div className="selection-actions" ref={toolbar} role="toolbar" aria-label="Selected text actions" data-assistant-exclude
-    onPointerDown={event => { if (event.pointerType === 'mouse') event.preventDefault() }}>
+    onMouseDown={event => event.preventDefault()}>
     <SnippetActions key={`${route}:${text}`} source={{ text, title: `Selection from ${title}`, route, locale: snippetLocale(text) }} onPrepared={() => setText(undefined)} />
     <button type="button" className="icon-button" aria-label="Dismiss selected text actions" onClick={() => setText(undefined)}><X size={18} /></button>
   </div> : null

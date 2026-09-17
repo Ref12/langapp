@@ -6,7 +6,7 @@ import { db, initializeWorkspace } from '../core/database'
 import { createConversation, saveAIConnection, saveDraft } from '../core/assistant/store'
 import { getWord } from '../data/mandarin'
 import { savePreferences, startPractice, trackWord } from '../core/learning'
-import type { AssistantBlock } from '../core/assistant/contracts'
+import type { AIAPIType, AssistantBlock } from '../core/assistant/contracts'
 import { clearUnsavedDrafts } from '../core/assistant/drafts'
 
 const connection = { baseUrl: 'https://example.test/v1', apiKey: 'test-key-not-a-secret', model: 'test-model', nativeTools: false, structuredOutput: false, storageAcknowledged: true as const }
@@ -18,19 +18,57 @@ beforeEach(async () => {
   await db.open()
   await initializeWorkspace()
 })
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks() })
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.unstubAllEnvs(); vi.restoreAllMocks() })
 
 async function go(route: string) {
   await act(async () => { window.location.hash = route; window.dispatchEvent(new HashChangeEvent('hashchange')) })
 }
 
-function respond(blocks: AssistantBlock[]) {
-  vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
-    choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify({ blocks }) } }],
-  }), { status: 200 })))
+function respond(blocks: AssistantBlock[], apiType: AIAPIType = 'chat-completions') {
+  const text = JSON.stringify({ blocks })
+  const body = apiType === 'responses' ? {
+    object: 'response', id: 'resp_test', status: 'completed', error: null, incomplete_details: null,
+    output: [{ type: 'message', id: 'msg_test', role: 'assistant', status: 'completed', content: [{ type: 'output_text', text, annotations: [] }] }],
+  } : { choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: text } }] }
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(body), { status: 200 })))
 }
 
 describe('first usable Assistant', () => {
+  it('automatically loads development settings before showing the editable connection form', async () => {
+    vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ aiConnection: connection }))))
+    window.location.hash = 'settings'
+    render(<App />)
+    await screen.findByText('Saved AI connection: test-model')
+    expect(screen.getByLabelText('API key')).toHaveValue(connection.apiKey)
+    expect(screen.getByText(/Loaded the AI connection from app.settings.jsonc/)).toBeInTheDocument()
+    expect(fetch).toHaveBeenCalledTimes(1)
+    await go('conversation')
+    await go('settings')
+    expect(fetch).toHaveBeenCalledTimes(1)
+    expect(await db.assistantRuns.count()).toBe(0)
+    const user = userEvent.setup()
+    await user.click(await screen.findByRole('button', { name: 'Remove connection' }))
+    await user.click(screen.getByRole('button', { name: 'Confirm removal' }))
+    await screen.findByText('No AI connection is saved on this device.')
+    expect(fetch).toHaveBeenCalledTimes(1)
+    cleanup()
+    render(<App />)
+    await screen.findByText('Saved AI connection: test-model')
+    expect(fetch).toHaveBeenCalledTimes(2)
+  })
+
+  it('keeps manual setup available and reports local setup errors without displaying secrets', async () => {
+    vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
+    vi.stubGlobal('fetch', vi.fn(async () => { throw new Error(`Failed request with ${connection.apiKey}`) }))
+    window.location.hash = 'settings'
+    render(<App />)
+    await screen.findByLabelText('API key')
+    expect(screen.getByText(/Local AI setup could not be completed/)).toHaveAttribute('role', 'alert')
+    expect(document.body).not.toHaveTextContent(connection.apiKey)
+    expect(await db.aiConnections.count()).toBe(0)
+  })
+
   it('expands the compact conversation picker before focusing search', async () => {
     const id = await createConversation()
     await savePreferences({ sidebarCollapsed: true })
@@ -90,7 +128,8 @@ describe('first usable Assistant', () => {
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     await go('reader/zh:tea-house')
     const card = (await screen.findByRole('heading', { name: getWord('zh:rain').native })).closest('article')!
-    await userEvent.setup().click(within(card).getAllByRole('button', { name: 'Ask Assistant' })[0])
+    expect(within(card).getAllByRole('button', { name: 'Ask' })).toHaveLength(1)
+    await userEvent.setup().click(within(card).getByRole('button', { name: 'Ask' }))
     await screen.findByRole('textbox', { name: 'Message Assistant' })
     const prepared = (await db.assistantThreads.toArray()).find(thread => thread.id !== old)!
     expect(prepared.source).toMatchObject({ text: getWord('zh:rain').native, meaning: 'rain', route: 'reader/zh:tea-house' })
@@ -101,6 +140,124 @@ describe('first usable Assistant', () => {
     await userEvent.setup().click(screen.getByRole('button', { name: 'Remove context' }))
     await waitFor(async () => expect((await db.assistantThreads.get(prepared.id))?.source).toBeUndefined())
     expect((await db.assistantThreads.get(prepared.id))?.draft).toContain(getWord('zh:rain').native)
+  })
+
+  it('puts Hear/Ask under each Mandarin phrase and appends phrase or selection context to the current chat', async () => {
+    const originalSource = { text: 'Original reference', title: 'Original source', route: 'dictionary' }
+    const id = await createConversation(originalSource)
+    await saveDraft(id, 'Keep my question')
+    const other = await createConversation()
+    await saveDraft(other, 'Other chat draft')
+    await db.assistantMessages.add({
+      id: 'multi-block-reply', threadId: id, role: 'assistant', text: '', sequence: 0,
+      mode: 'conversation', intent: 'message', status: 'completed', createdAt: Date.now(),
+      blocks: [
+        { type: 'text', markdown: 'First explanation.' },
+        { type: 'speech', text: '\u8336', locale: 'zh-Hans', romanization: 'cha', meaning: 'tea' },
+        { type: 'text', markdown: 'Another explanation.' },
+        { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', romanization: 'ni hao', meaning: 'hello' },
+      ],
+    })
+    const fetch = vi.fn()
+    vi.stubGlobal('fetch', fetch)
+    window.location.hash = `/conversation/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
+    const reply = await screen.findByRole('article', { name: 'Assistant reply' })
+    expect(within(reply).getAllByRole('button', { name: 'Ask' })).toHaveLength(2)
+    expect(within(reply).getAllByRole('button', { name: 'Hear' })).toHaveLength(2)
+    for (const phrase of ['\u8336', '\u4f60\u597d']) {
+      const block = within(reply).getByText(phrase).closest<HTMLDivElement>('.speech-block')!
+      expect(within(block).getByRole('button', { name: 'Hear' })).toBeInTheDocument()
+      expect(within(block).getByRole('button', { name: 'Ask' })).toBeInTheDocument()
+      expect(within(block).getByRole('button', { name: 'Practice' })).toBeInTheDocument()
+    }
+    for (const block of reply.querySelectorAll('.assistant-markdown')) {
+      expect(block.querySelector('button')).toBeNull()
+    }
+    expect(within(reply).getByRole('button', { name: 'Copy full message' })).toBeInTheDocument()
+    fireEvent.change(input, { target: { value: 'Keep my question and this last keystroke' } })
+    fireEvent.click(within(reply).getAllByRole('button', { name: 'Ask' })[0])
+    const fullDraft = 'Keep my question and this last keystroke\n\nPlease explain this passage:\n\n\u8336\n\nMeaning: tea'
+    await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe(fullDraft))
+    expect(input).toHaveValue(fullDraft)
+    expect(input).toHaveFocus()
+    expect(window.location.hash).toBe(`#conversation/${id}`)
+    expect((await db.assistantThreads.get(id))?.source).toEqual(originalSource)
+    expect((await db.assistantThreads.get(other))?.draft).toBe('Other chat draft')
+
+    act(() => screen.getByLabelText('Conversation history').focus())
+    const range = document.createRange()
+    range.selectNodeContents(within(reply).getByText('Another explanation.'))
+    const selection = window.getSelection()!
+    selection.removeAllRanges()
+    selection.addRange(range)
+    fireEvent(document, new Event('selectionchange'))
+    const toolbar = await screen.findByRole('toolbar', { name: 'Selected text actions' })
+    await user.click(within(toolbar).getByRole('button', { name: 'Ask' }))
+    expect(screen.queryAllByRole('alert').map(element => element.textContent)).toEqual([])
+    const selectedDraft = `${fullDraft}\n\nPlease explain this passage:\n\nAnother explanation.`
+    await waitFor(async () => expect((await db.assistantThreads.get(id))?.draft).toBe(selectedDraft))
+    expect(input).toHaveValue(selectedDraft)
+    expect(await db.assistantThreads.count()).toBe(2)
+    expect(await db.assistantMessages.count()).toBe(1)
+    expect(await db.assistantRuns.count()).toBe(0)
+    expect(fetch).not.toHaveBeenCalled()
+    selection.removeAllRanges()
+    cleanup()
+    render(<App />)
+    expect(await screen.findByRole('textbox', { name: 'Message Assistant' })).toHaveValue(selectedDraft)
+  })
+
+  it('starts repeat practice from either mode without sending, replacing drafts, or rewriting earlier replies', async () => {
+    const id = await createConversation()
+    await saveDraft(id, 'Keep my unfinished question')
+    const tea = { type: 'speech', text: '\u8336', locale: 'zh-Hans', romanization: 'cha', meaning: 'tea' } as const
+    const greeting = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', romanization: 'ni hao', meaning: 'hello' } as const
+    await db.assistantMessages.add({
+      id: 'practice-reply', threadId: id, role: 'assistant', text: '', sequence: 0,
+      mode: 'conversation', intent: 'message', status: 'completed', createdAt: Date.now(),
+      blocks: [{ type: 'text', markdown: 'Try a phrase.' }, tea, greeting,
+        { type: 'speech', text: 'Hello', locale: 'en-US' }],
+    })
+    const fetch = vi.fn()
+    vi.stubGlobal('fetch', fetch)
+    window.location.hash = `conversation/${id}`
+    const user = userEvent.setup()
+    render(<App />)
+    const input = await screen.findByRole('textbox', { name: 'Message Assistant' })
+    const reply = await screen.findByRole('article', { name: 'Assistant reply' })
+    expect(within(reply).getAllByRole('button', { name: 'Practice' })).toHaveLength(2)
+    const english = within(reply).getByText('Hello').closest<HTMLDivElement>('.speech-block')!
+    expect(within(english).queryByRole('button', { name: 'Practice' })).not.toBeInTheDocument()
+
+    await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[1])
+    const reference = await screen.findByLabelText('Phrase to repeat')
+    expect(within(reference).getByText(greeting.text)).toBeInTheDocument()
+    expect(within(reference).getByText(greeting.romanization)).toBeInTheDocument()
+    expect(within(reference).getByText(greeting.meaning)).toBeInTheDocument()
+    expect(await db.assistantThreads.get(id)).toMatchObject({
+      mode: 'shadow', shadowIntent: 'repeat', shadowPhrase: greeting, draft: 'Keep my unfinished question',
+    })
+    expect(input).toHaveValue('Keep my unfinished question')
+    await waitFor(() => expect(input).toHaveFocus())
+    expect(window.location.hash).toBe(`#conversation/${id}`)
+    expect((await db.assistantMessages.get('practice-reply'))?.mode).toBe('conversation')
+
+    await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[0])
+    await waitFor(async () => expect((await db.assistantThreads.get(id))?.shadowPhrase).toEqual(tea))
+    expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.role === 'event').count()).toBe(1)
+    expect(await db.assistantThreads.count()).toBe(1)
+    expect(await db.assistantRuns.count()).toBe(0)
+    expect(await db.words.count()).toBe(0)
+    expect(await db.attempts.count()).toBe(0)
+    expect(fetch).not.toHaveBeenCalled()
+
+    cleanup()
+    render(<App />)
+    expect(within(await screen.findByLabelText('Phrase to repeat')).getByText(tea.text)).toBeInTheDocument()
+    expect(await screen.findByRole('textbox', { name: 'Message Assistant' })).toHaveValue('Keep my unfinished question')
   })
 
   it('keeps drafts separate across conversations, mode changes, and reload', async () => {
@@ -128,11 +285,11 @@ describe('first usable Assistant', () => {
     expect((await db.assistantMessages.where('threadId').equals(first).toArray()).filter(message => message.role === 'event')).toHaveLength(1)
   })
 
-  it('sends a real validated turn, persists it, and waits without awarding progress', async () => {
-    await saveAIConnection(connection)
+  it.each(['chat-completions', 'responses'] as const)('sends a validated %s turn, persists it, and waits without awarding progress', async apiType => {
+    await saveAIConnection({ ...connection, apiType })
     const id = await createConversation()
     window.location.hash = `conversation/${id}`
-    respond([{ type: 'text', markdown: 'Let us explore **tea**.' }, { type: 'speech', text: '\u8336', locale: 'zh-Hans', romanization: 'cha', meaning: 'tea' }])
+    respond([{ type: 'text', markdown: 'Let us explore **tea**.' }, { type: 'speech', text: '\u8336', locale: 'zh-Hans', romanization: 'cha', meaning: 'tea' }], apiType)
     const user = userEvent.setup()
     render(<App />)
     await user.type(await screen.findByRole('textbox', { name: 'Message Assistant' }), 'Tell me about tea')
@@ -146,6 +303,7 @@ describe('first usable Assistant', () => {
     await screen.findByText('Let us explore', { exact: false })
     await waitFor(async () => expect((await db.assistantRuns.toArray())[0]?.status).toBe('awaiting-learner'))
     expect(fetch).toHaveBeenCalledTimes(1)
+    expect(fetch).toHaveBeenCalledWith(`${connection.baseUrl}/${apiType === 'responses' ? 'responses' : 'chat/completions'}`, expect.objectContaining({ method: 'POST' }))
     expect(await db.words.count()).toBe(0)
     expect(await db.attempts.count()).toBe(0)
     expect(screen.getByRole('textbox', { name: 'Message Assistant' })).toHaveValue('')
@@ -163,12 +321,12 @@ describe('first usable Assistant', () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('button', { name: 'Show answer' })
-    expect(screen.queryByRole('button', { name: 'Ask Assistant' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Ask' })).not.toBeInTheDocument()
     expect(document.querySelector('[data-assistant-protected="true"]')).not.toBeNull()
     await user.click(screen.getByRole('button', { name: 'Show answer' }))
-    await screen.findByRole('button', { name: 'Ask Assistant' })
+    await screen.findByRole('button', { name: 'Ask' })
     expect(document.querySelector('[data-assistant-protected="true"]')).toBeNull()
-    await user.click(screen.getByRole('button', { name: 'Ask Assistant' }))
+    await user.click(screen.getByRole('button', { name: 'Ask' }))
     await screen.findByRole('textbox', { name: 'Message Assistant' })
     expect((await db.sessions.get(id))?.questions[0].revealed).toBe(true)
     expect(await db.attempts.count()).toBe(0)
@@ -181,12 +339,30 @@ describe('first usable Assistant', () => {
     const user = userEvent.setup()
     render(<App />)
     await user.type(await screen.findByLabelText('API key'), connection.apiKey)
+    expect(screen.getByRole('combobox', { name: 'API protocol' })).toHaveValue('chat-completions')
+    await user.selectOptions(screen.getByRole('combobox', { name: 'API protocol' }), 'responses')
     await user.type(screen.getByLabelText('Model'), connection.model)
     await user.click(screen.getByRole('checkbox', { name: /I understand that the key/ }))
     await user.click(screen.getByRole('button', { name: 'Save AI connection' }))
     await screen.findByText('Saved AI connection: test-model')
     expect((await db.aiConnections.get('assistant'))?.apiKey).toBe(connection.apiKey)
+    expect((await db.aiConnections.get('assistant'))?.apiType).toBe('responses')
+    cleanup()
+    render(<App />)
+    expect(await screen.findByRole('combobox', { name: 'API protocol' })).toHaveValue('responses')
     expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('uses the selected Responses protocol for the explicit connection test', async () => {
+    await saveAIConnection({ ...connection, apiType: 'responses' })
+    window.location.hash = 'settings'
+    respond([{ type: 'text', markdown: 'Connection ready.' }], 'responses')
+    render(<App />)
+    await userEvent.setup().click(await screen.findByRole('button', { name: 'Test connection' }))
+    await screen.findByText('Connection test succeeded with the selected capabilities. Save to use these settings.')
+    expect(fetch).toHaveBeenCalledTimes(1)
+    expect(fetch).toHaveBeenCalledWith(`${connection.baseUrl}/responses`, expect.objectContaining({ method: 'POST' }))
+    expect(await db.assistantRuns.count()).toBe(0)
   })
 
   it('deletes a conversation only after confirmation and leaves learning alone', async () => {

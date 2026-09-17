@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { webcrypto } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
+import { localSettings } from '../../scripts/local-settings'
 
 if (!globalThis.crypto) {
   Object.defineProperty(globalThis, 'crypto', { value: webcrypto })
@@ -20,6 +21,7 @@ export default defineConfig(async ({ command, isPreview }) => {
     },
     plugins: [
       react(),
+      localSettings({ exposeSettings: false }),
       VitePWA({
         registerType: 'prompt',
         injectRegister: null,

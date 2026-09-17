@@ -3,6 +3,7 @@ import { z } from 'zod'
 export const MAX_DRAFT_LENGTH = 8000
 export const MAX_TOOL_ROUNDS = 4
 export const RUN_TIMEOUT_MS = 120_000
+export const LOOPBACK_HOSTNAMES: readonly string[] = ['localhost', '127.0.0.1', '[::1]']
 
 const id = z.string().min(1).max(200)
 const timestamp = z.number().int().nonnegative()
@@ -10,11 +11,24 @@ export const assistantModeSchema = z.enum(['conversation', 'shadow'])
 export const assistantIntentSchema = z.enum(['message', 'shadow', 'repeat', 'explain'])
 export const speechLocaleSchema = z.enum(['en-US', 'zh-Hans'])
 
+export const browserVoicePreferenceSchema = z.object({
+  voiceURI: z.string().max(2048),
+  name: z.string().max(512),
+  lang: z.string().min(1).max(100),
+  localService: z.boolean(),
+}).strict()
+export const speechVoicePreferencesSchema = z.object({
+  'zh-Hans': browserVoicePreferenceSchema.optional(),
+  'en-US': browserVoicePreferenceSchema.optional(),
+}).strict()
+export type BrowserVoicePreference = z.infer<typeof browserVoicePreferenceSchema>
+export type SpeechVoicePreferences = z.infer<typeof speechVoicePreferencesSchema>
+
 export const assistantSourceSchema = z.object({
   text: z.string().min(1).max(MAX_DRAFT_LENGTH).refine(value => value.trim().length > 0, 'Source text must not be blank.'),
   title: z.string().min(1).max(200),
   route: z.string().min(1).max(300).regex(/^[\w:/.-]+$/),
-  meaning: z.string().max(2000).optional(),
+  meaning: z.string().max(3000).optional(),
   locale: speechLocaleSchema.optional(),
 }).strict()
 
@@ -87,11 +101,13 @@ export const assistantRunSchema = z.object({
   expiresAt: timestamp,
 }).strict()
 
+export const aiApiTypeSchema = z.enum(['chat-completions', 'responses'])
 export const aiConnectionInputSchema = z.object({
+  apiType: aiApiTypeSchema.optional(),
   baseUrl: z.string().trim().url().max(2000).refine(value => {
     const url = new URL(value)
     return !url.username && !url.password && !url.search && !url.hash
-      && (url.protocol === 'https:' || (url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)))
+      && (url.protocol === 'https:' || (url.protocol === 'http:' && LOOPBACK_HOSTNAMES.includes(url.hostname)))
   }, 'Use HTTPS, or HTTP on localhost, without embedded credentials, query parameters, or fragments.'),
   apiKey: z.string().trim().min(1).max(4000),
   model: z.string().trim().min(1).max(200),
@@ -124,5 +140,6 @@ export type AssistantRun = z.infer<typeof assistantRunSchema>
 export type AssistantToolStep = z.infer<typeof assistantToolStepSchema>
 export type AssistantToolName = z.infer<typeof assistantToolNameSchema>
 export type AIConnectionInput = z.infer<typeof aiConnectionInputSchema>
+export type AIAPIType = z.infer<typeof aiApiTypeSchema>
 export type AIConnection = z.infer<typeof aiConnectionSchema>
 export type AssistantBackup = z.infer<typeof assistantBackupSchema>

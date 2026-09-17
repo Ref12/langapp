@@ -49,6 +49,21 @@ async function saveConnection() {
 }
 
 describe('compatible Assistant workspace backups', () => {
+  it('round-trips optional voice preferences while older backups retain automatic voice selection', async () => {
+    const old = await exportWorkspaceBackup()
+    const speechVoices = { 'zh-Hans': { voiceURI: 'chosen-zh', name: 'Mandarin', lang: 'zh-CN', localService: true } }
+    await savePreferences({ speechVoices })
+    const text = await exportWorkspaceBackup()
+    expect(readBackup(text).preferences.speechVoices).toEqual(speechVoices)
+    await restoreBackup(old)
+    expect((await loadWorkspace()).preferences.speechVoices).toBeUndefined()
+    await restoreBackup(text)
+    expect((await loadWorkspace()).preferences.speechVoices).toEqual(speechVoices)
+    const invalid = JSON.parse(text)
+    invalid.workspace.preferences.speechVoices['zh-Hans'].localService = 'yes'
+    expect(() => readBackup(JSON.stringify(invalid))).toThrow()
+  })
+
   it('captures current learning and Assistant state, not stale UI state, without device secrets or settings', async () => {
     const stale = await loadWorkspace()
     await savePreferences({ name: 'Current workspace' })

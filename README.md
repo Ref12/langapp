@@ -84,10 +84,17 @@ imports. V1's voice tutor remains available independently.
 ## Assistant
 
 Assistant provides persistent English/Mandarin text conversations and **Shadow**
-practice. Configure an OpenAI-compatible API base URL, key, and model in
+practice. Configure an OpenAI-compatible API protocol, base URL, key, and model in
 **Settings -> Assistant AI connection**. Saving is local and does not send a
 request. **Test connection** sends a synthetic request with the selected
 capabilities; it does not send your conversations or learning data.
+
+Choose **Chat Completions** or **Responses API** to match your endpoint.
+Existing connections without an `apiType` continue to use Chat Completions.
+Both protocols use the same bounded tutor loop and validated teaching blocks;
+protocol selection never silently falls back to a different API.
+Provider transport is kept separate from the tutor loop so a future central
+service can replace the direct provider calls. No central service is used today.
 
 Enable native tool calling or strict JSON-schema responses only if your endpoint
 supports them. Without schema support, the app requests JSON and validates the
@@ -107,21 +114,47 @@ preference, and Mandarin playback speed. New conversations are named after the
 first sent message. Failed draft saves are visibly reported, and the unsaved
 text remains in memory across in-app navigation so you can retry; it is not safe
 to close or reload until saved. Switching Conversation/Shadow affects subsequent turns and
-preserves previous messages. Shadow supports a new phrase, **Repeat after me**,
+preserves previous messages. Shadow supports a new phrase, repeat-after-me practice,
 and **Explain more** without treating text repetition as pronunciation scoring.
-**Stop reply** cancels generation; retry is explicit. Reloading never sends a
-request. Interrupted work can be stopped and retried.
+**Stop reply** cancels generation; retry is explicit. Reloading never sends an
+AI request. Interrupted work can be stopped and retried.
 
-**Ask Assistant** on a word, example, lesson, reading passage, or reply prepares a
-fresh editable draft without sending, replacing another draft, or adding
-learning evidence. Selected text offers the same actions; **Alt+Enter** focuses
+**Ask** stays in the current conversation when used inside a chat,
+appending to the existing draft without sending or replacing its text. Elsewhere,
+it starts a new conversation with an editable draft and exact source context.
+Each Mandarin speech snippet in an Assistant reply has its own **Hear / Ask / Practice**
+buttons; ordinary explanation blocks do not. Word cards have one action row.
+**Practice** selects that phrase for repetition in Shadow mode and focuses the
+composer, preserving the current draft without sending a message. It is available
+on phrases from either mode, and the selected practice phrase survives reload.
+A small **Copy full message** button below each
+message copies its complete text, including speech, romanization, and meanings.
+Neither action adds learning evidence. Selected text offers contextual actions;
+**Alt+Enter** focuses
 them and Escape dismisses them. Source context excludes pronunciation annotations
 and controls. During recognition practice, help is available only after checking
 or revealing the answer, so it cannot bypass the existing assistance policy.
 
-**Hear** uses only a matching installed local browser voice. It never requests
-microphone access or falls back to remote/wrong-language voices. Missing voices
-and playback failures are reported visibly. English plays at normal speed;
+**Hear** uses the Mandarin and English selections in **Settings -> Hear voices**.
+Selections save automatically, survive reload, and apply to every Hear button.
+The default **Automatic (local first)** prefers a matching installed local voice.
+After a brief discovery window, it uses a matching online browser voice if no
+local voice is available. The discovered voice is cached for the page session,
+so later Hear clicks reuse it without another discovery wait. Cached voices are
+checked against the current browser list before reuse. Changed selections,
+playback failures, and **Refresh voice list** invalidate cached choices.
+An explicitly selected available voice plays without the discovery wait.
+A missing saved voice remains selected and is labeled unavailable: choose another
+voice or Automatic, or enable the saved voice and refresh. It never silently
+switches from a selected local voice to an online voice.
+Online playback sends the chosen text to the browser's speech service; the
+settings and playback status identify online voices. Viewing or changing voice
+settings never starts playback or sends an AI request. Hear never requests
+microphone access or falls back to a wrong-language voice. Missing voices and
+playback failures are reported visibly. Discovery handles delayed and partial
+lists. Mandarin locale aliases and Taiwanese Mandarin are supported, with
+Simplified/mainland voices preferred in Automatic mode.
+English plays at normal speed;
 Mandarin phrases in a conversation use that conversation's chosen rate.
 Navigation, page hiding, and Escape stop playback.
 
@@ -132,6 +165,21 @@ Version-1 root-app backups remain readable and restore with no conversations.
 Restoring replaces learning and conversation data, preserves the device's AI
 connection, and never resumes a request automatically. V1 data and settings
 remain isolated.
+
+### Assistant system prompts
+
+Mode instructions live in `settings/system-prompts/conversation.md` and
+`settings/system-prompts/shadow.md`. The `repeat.md` and `explain.md` files add
+instructions for those explicit turn intents. Edit these ordinary Markdown files
+to tune teaching behavior; the selected mode and intent are assembled anew for
+each turn, not saved as historical system messages.
+
+These are tracked, public application files, bundled into development and
+production builds with no runtime settings fetch. Rebuild/redeploy to publish
+prompt changes; do not put credentials or private information in them. They are
+independent of the ignored `app.settings.jsonc` connection settings. Mandatory
+response-format, read-only-tool, and untrusted-data rules remain app-owned in
+TypeScript, and replies and tool calls are still validated regardless of prompts.
 
 ## Curriculum source integration
 
@@ -185,6 +233,79 @@ For standalone v1 development with hot module replacement, use `npm run dev:v1`.
 Open `http://localhost:5173/dev/#lessons` to review the real curriculum in desktop
 and phone-sized layouts. The same `/dev/` route is included in the built site
 and works beneath a Pages prefix such as `/langapp/dev/`.
+
+### Local app settings
+
+To avoid entering the connection again in each fresh browser profile, copy the
+commented template into the git-ignored JSONC file in the `settings` directory:
+
+```powershell
+Copy-Item settings\app.settings.template.jsonc settings\app.settings.jsonc
+```
+
+Both files use the `app.settings` prefix and the `.jsonc` format extension.
+If `settings\app.settings.jsonc` already exists, edit it rather than replacing it.
+Existing plain JSON settings can be renamed from `.json` to `.jsonc` unchanged.
+
+Settings are grouped by section so other app settings can be added later.
+Currently, the optional `aiConnection` section is supported. Within it, fill in
+`baseUrl`, `apiKey`, and `model`. Choose `"apiType": "responses"` or
+`"apiType": "chat-completions"`; omitting it retains Chat Completions.
+The template explains every field. Set `nativeTools` and
+`structuredOutput` to `true` only when supported. Set
+`"storageAcknowledged": true` to opt into saving the key in plaintext browser
+storage. These flags are JSON booleans, not strings. Use a restricted development
+key; never commit `settings\app.settings.jsonc` or put it in `public`.
+The file must be valid JSONC, no larger than 32 KiB. Line/block comments and
+trailing commas are supported; malformed syntax is rejected, not repaired.
+The earlier `.env.local` /
+`ASSISTANT_AI_` shortcut is no longer read.
+
+During `npm run dev`, the app automatically queries a localhost-only endpoint
+on startup **only when no AI connection is already saved**. It validates and
+saves `aiConnection`, then makes it available in Settings and Assistant.
+Loading configuration does not test the provider, send a message, or alter
+learning progress. Missing configuration is optional; invalid configuration
+shows an error and leaves manual setup available.
+
+Saved settings always win, including a save in another tab while the file is
+loading. To apply changes to the file, remove the saved connection in Settings
+and reload. To leave AI unconfigured, also remove `aiConnection` from the local
+JSONC file (an empty `{}` is valid), or remove the file altogether. Only this
+file is read; environment variables do not override its settings.
+
+This shortcut is unavailable on LAN addresses, in `npm run preview`, and in
+production. Credentials are not embedded in bundles, cached by the endpoint,
+or included in workspace backups. The dev endpoint accepts only same-origin
+app requests on localhost, and both development servers block direct access to
+the credential file.
+Normal browser-to-provider CORS requirements still apply.
+
+### Standalone structured-output probe
+
+`scripts\Test-StructuredOutput.ps1` requires PowerShell 7 and sends **one
+potentially billable synthetic request**. Supply the URL, model, and API key
+(or set `OPENAI_API_KEY`). Use a variable for the key rather than entering a
+literal secret in shell history:
+
+```powershell
+.\scripts\Test-StructuredOutput.ps1 -Url $url -ApiKey $key -Model $model -ApiType responses
+.\scripts\Test-StructuredOutput.ps1 -Url $url -ApiKey $key -Model $model -ApiType chat-completions
+```
+
+The URL can be an API root or a full operation URL. A full URL selects its
+protocol; a root defaults to Responses unless `-ApiType` is supplied.
+The probe asks for plain text but supplies a strict schema containing a random
+proof value **only in the schema**. It checks actual field names, types, enum
+values, and additional properties rather than treating HTTP 200 as success.
+Passing demonstrates observed compliance, not a universal enforcement guarantee.
+
+It prints a JSON report and exits with **0** for a conforming reply, **1** for
+a completed but nonconforming reply, or **2** for inconclusive results such as
+authentication/quota errors, refusal, truncation, or timeout. Use
+`-MaxOutputTokens` or `-TimeoutSeconds` to adjust the limits. It never retries,
+follows redirects, switches protocols, or changes the app's settings. Unlike the
+browser app, this script does not test browser CORS permissions.
 
 Run the same quality gates as deployment:
 

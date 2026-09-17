@@ -22,7 +22,7 @@ describe('context selection', () => {
 
   it('keeps exact visible text without romanization or action controls', () => {
     const root = document.createElement('main')
-    root.innerHTML = '<p><ruby>\u8336<rt>cha</rt></ruby>\u3002<span data-assistant-exclude>Ask Assistant</span></p>'
+    root.innerHTML = '<p><ruby>\u8336<rt>cha</rt></ruby>\u3002<span data-assistant-exclude>Ask</span></p>'
     document.body.append(root)
     expect(select(root)).toBe('\u8336\u3002')
   })

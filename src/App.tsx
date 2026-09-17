@@ -17,7 +17,8 @@ import { LevelDetail } from './pages/Curriculum'
 import { Assistant, AssistantSidebar } from './pages/Assistant'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
 import { DraftStatus } from './components/assistant/DraftStatus'
-import { stopLocalSpeech } from './core/assistant/speech'
+import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnectionSetup'
+import { setSpeechVoicePreferences, stopBrowserSpeech } from './core/assistant/speech'
 import './App.css'
 import './components/assistant/assistant.css'
 
@@ -89,7 +90,7 @@ function WorkspaceApp() {
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
   useEffect(() => {
     if (!assistant) returnRoute.current = route
-    stopLocalSpeech()
+    stopBrowserSpeech()
     document.title = `${label} / LinguaWeave`
     main.current?.focus({ preventScroll: true })
     window.scrollTo(0, 0)
@@ -109,6 +110,9 @@ function WorkspaceApp() {
     if (workspace) document.documentElement.dataset.theme = workspace.preferences.theme
   }, [workspace])
   useEffect(() => {
+    setSpeechVoicePreferences(workspace?.preferences.speechVoices)
+  }, [workspace?.preferences.speechVoices])
+  useEffect(() => {
     const timer = window.setInterval(() => setNow(Date.now()), 60_000)
     return () => window.clearInterval(timer)
   }, [])
@@ -117,6 +121,7 @@ function WorkspaceApp() {
   const collapsed = preferences.sidebarCollapsed
   const due = workspace.words.filter(word => word.dueAt <= now).length
   const busy = pending > 0
+  const currentPage = <CurrentPage key={route} route={route} returnRoute={returnRoute.current} workspace={workspace} busy={busy} now={now} run={run} />
   return <>
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
     <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
@@ -144,7 +149,9 @@ function WorkspaceApp() {
         </div></header>
         <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
-          <CurrentPage key={route} route={route} returnRoute={returnRoute.current} workspace={workspace} busy={busy} now={now} run={run} />
+          {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true'
+            ? <LocalAIConnectionSetup>{currentPage}</LocalAIConnectionSetup>
+            : currentPage}
         </main>
       </div>
       <PlaybackStatus />

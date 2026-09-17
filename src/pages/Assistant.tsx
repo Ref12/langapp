@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, MessageCircle, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, Trash2, X } from 'lucide-react'
 import { db } from '../core/database'
@@ -8,8 +8,10 @@ import { MAX_DRAFT_LENGTH, type AssistantMessage, type AssistantThread, type Spe
 import { createConversation, deleteThread, expireAssistantRuns, saveDraft, updateThread } from '../core/assistant/store'
 import { cancelAssistantRun, sendAssistantTurn } from '../core/assistant/runtime'
 import { AssistantText } from '../components/assistant/AssistantText'
-import { SnippetActions } from '../components/assistant/SnippetActions'
-import { finishDraftSave, getDraftFailures, getUnsavedDraft, rememberDraft } from '../core/assistant/drafts'
+import { MessageActions } from '../components/assistant/MessageActions'
+import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
+import { registerDraftEditor } from '../core/assistant/draft-actions'
+import { appendContextText, finishDraftSave, getDraftFailures, getUnsavedDraft, rememberDraft } from '../core/assistant/drafts'
 
 function ConversationList({ selectedId, collapsed = false, expand, returnRoute = 'overview' }: {
   selectedId?: string; collapsed?: boolean; expand?: () => void; returnRoute?: string
@@ -70,21 +72,22 @@ function Message({ message, thread, onExplain, onRepeat }: {
       <a className="text-link" href={`#${message.source.route}`}>Open source</a></details>}
     {message.role === 'user' && <p className="user-message-text">{message.text}</p>}
     {message.blocks.map((block, index) => block.type === 'text'
-      ? <div key={index}><AssistantText markdown={block.markdown} />{block.markdown.length <= MAX_DRAFT_LENGTH
-        ? <SnippetActions source={{ text: block.markdown, title: 'Assistant explanation', route: `conversation/${thread.id}` }} />
-        : <p className="small muted">Select an excerpt of this explanation to ask about it.</p>}</div>
+      ? <div key={index}><AssistantText markdown={block.markdown} /></div>
       : <div className="speech-block" key={index}>
         <p lang={block.locale} className={block.locale === 'zh-Hans' ? 'speech-native' : ''}>{block.text}</p>
         {thread.romanization && block.romanization && <p className="pinyin" data-assistant-exclude>{block.romanization}</p>}
         {block.meaning && <p className="small muted">{block.meaning}</p>}
-        <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }} rate={thread.speechRate} />
+        {block.locale === 'zh-Hans'
+          ? <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
+            rate={thread.speechRate} onPractice={() => onRepeat(block)} />
+          : <HearButton text={block.text} locale={block.locale} />}
         {message.mode === 'shadow' && block.locale === 'zh-Hans' && <div className="button-row shadow-actions" data-assistant-exclude>
-          <button className="button secondary" onClick={() => onRepeat(block)}>Repeat after me</button>
           <button className="button secondary" onClick={() => onExplain(block)}>Explain more</button>
         </div>}
       </div>)}
     {message.status === 'pending' && <p className="small muted" role="status">Working on your reply...</p>}
     {message.error && <p className="small connection-error">{message.error}</p>}
+    <MessageActions message={message} />
   </article>
 }
 
@@ -112,10 +115,10 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const retryUser = lastFailed && lastMessage?.id === lastFailed.id
     ? messages?.find(message => message.role === 'user' && message.runId === lastFailed.runId) : undefined
 
-  const save = (value: string) => {
+  const save = useCallback((value: string, source?: AssistantThread['source']) => {
     rememberDraft(thread.id, value)
     setSaving(true)
-    const write = () => saveDraft(thread.id, value)
+    const write = () => saveDraft(thread.id, value, source)
     const pending = writes.current.then(write, write)
     writes.current = pending
     void pending.then(() => {
@@ -127,7 +130,15 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       setError(`Draft not saved. ${reason instanceof Error ? reason.message : 'Browser storage is unavailable.'}`)
     })
     return pending
-  }
+  }, [thread.id])
+  useEffect(() => registerDraftEditor(thread.id, async source => {
+    if (deleting || (sending && !active)) throw new Error('Wait for the current action to finish before adding context.')
+    const value = appendContextText(latestDraft.current, source)
+    latestDraft.current = value
+    setDraft(value)
+    await save(value, thread.source ?? source)
+    if (!document.querySelector('dialog[open], [role="dialog"][aria-modal="true"]')) input.current?.focus()
+  }), [thread.id, thread.source, deleting, sending, active, save])
   useEffect(() => {
     const expire = () => { void expireAssistantRuns().catch(reason => setError(reason instanceof Error ? reason.message : 'Unable to recover interrupted replies.')) }
     expire()
@@ -192,7 +203,10 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {!messages?.length && <div className="assistant-welcome"><MessageCircle size={32} className="accent" /><h2>A partner in your learning.</h2>
         <p>Ask about a word, explore a lesson, or switch to Shadow to practice expressing a thought in Mandarin.</p><p className="small muted">Conversation is practice, not proof of mastery. AI explanations can be mistaken.</p></div>}
       {messages?.map(message => <Message key={message.id} message={message} thread={thread}
-        onRepeat={phrase => void action(() => updateThread(thread.id, { mode: 'shadow', shadowIntent: 'repeat', shadowPhrase: phrase }))}
+        onRepeat={phrase => void action(async () => {
+          await updateThread(thread.id, { mode: 'shadow', shadowIntent: 'repeat', shadowPhrase: phrase })
+          input.current?.focus()
+        })}
         onExplain={phrase => {
           if (busy) { setError('Stop or finish the current reply before requesting an explanation.'); return }
           setSending(true)
@@ -249,7 +263,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
                 if (rate === 0.5 || rate === 0.75 || rate === 1 || rate === 1.25) void action(() => updateThread(thread.id, { speechRate: rate }))
               }}>{[0.5, 0.75, 1, 1.25].map(rate => <option key={rate} value={rate}>{rate}x</option>)}</select></label>
               <label className="toggle"><input type="checkbox" checked={thread.romanization} onChange={event => { const romanization = event.target.checked; void action(() => updateThread(thread.id, { romanization })) }} /> Show romanization</label>
-              <a className="text-link" href="#settings">AI connection and appearance</a>
+              <a className="text-link" href="#settings">Voices, AI connection, and appearance</a>
               <button type="button" className="button secondary" onClick={() => setSettingsOpen(false)}>Close settings</button>
             </div>}
           </div>
@@ -264,7 +278,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {error && <div className="composer-error" role="alert"><p>{error}</p>
         {error.startsWith('Draft not saved') && <button className="button secondary" onClick={() => { void save(draft) }}>Retry saving draft</button>}
       </div>}
-      <p className="composer-footnote">Send shares relevant context with your provider. Ctrl+Enter to send. Microphone and generated exercises are not connected.</p>
+      <p className="composer-footnote">Send shares relevant context with your provider. Ctrl+Enter to send. Hear follows your voice settings; online voices receive the spoken text. Microphone and generated exercises are not connected.</p>
       {thread.mode === 'shadow' && thread.shadowIntent === 'repeat' && <p className="small muted">Type the phrase to practice recalling it. This is not a pronunciation assessment.</p>}
     </div>
   </section>

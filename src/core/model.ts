@@ -1,3 +1,5 @@
+import type { SpeechVoicePreferences } from './assistant/contracts'
+
 export const LANGUAGE = 'zh-Hans' as const
 export type ReadingMode = 'source' | 'weave' | 'target'
 export type Activity = 'meaning' | 'form'
@@ -48,6 +50,7 @@ export interface Preferences {
   pinyin: boolean
   readingMode: ReadingMode
   sidebarCollapsed: boolean
+  speechVoices?: SpeechVoicePreferences
 }
 
 export interface WordState {

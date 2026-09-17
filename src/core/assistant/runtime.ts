@@ -1,5 +1,6 @@
 import {
-  abortable, AITransportError, AssistantCancelledError, completeAssistantChat, validateAssistantReply,
+  abortable, AITransportError, AssistantCancelledError, createAssistantModelClient, validateAssistantReply,
+  type ToolResult,
 } from '../ai/provider'
 import { db } from '../database'
 import {
@@ -202,10 +203,12 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
       .limit(24).toArray()
     const context = await abortable(getLearningContext((turn.user.source?.text ?? turn.user.text).slice(0, 200)), controller.signal)
     const messages = buildTutorMessages(turn.thread, turn.user, history, context)
+    const client = createAssistantModelClient(turn.connection, messages)
     const callIds = new Set<string>()
+    let results: ToolResult[] = []
     for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
       await checkTurn(turn, controller.signal)
-      const completion = await completeAssistantChat(turn.connection, messages, { signal: controller.signal })
+      const completion = await client.complete(results, { signal: controller.signal })
       if (completion.kind === 'reply') {
         if (controller.signal.aborted) throw new AssistantCancelledError()
         await publishReply(turn, completion.reply)
@@ -213,13 +216,13 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
       }
       if (round === MAX_TOOL_ROUNDS - 1) throw new AssistantRunError('The AI reached the four-round lookup limit without a final reply. Ask a narrower question or try another model.')
       if (completion.calls.some(call => callIds.has(call.id))) throw new AssistantRunError('The AI reused a tool-call ID. No duplicate tool was run; try again.')
-      messages.push(completion.message)
+      results = []
       for (const call of completion.calls) {
         await checkTurn(turn, controller.signal)
         callIds.add(call.id)
         const result = await abortable(executeAssistantTool(call.name, call.arguments), controller.signal)
         await appendStep(turn, { callId: call.id, name: call.name, arguments: call.arguments, result })
-        messages.push({ role: 'tool', tool_call_id: call.id, content: result })
+        results.push({ callId: call.id, output: result })
       }
     }
   } catch (error) {

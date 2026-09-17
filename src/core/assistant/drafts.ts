@@ -1,3 +1,5 @@
+import { MAX_DRAFT_LENGTH, type AssistantSource } from './contracts'
+
 const drafts = new Map<string, { text: string; failed: boolean }>()
 const listeners = new Set<() => void>()
 let failures: readonly string[] = []
@@ -15,6 +17,14 @@ export function subscribeDraftFailures(listener: () => void) {
 export function getDraftFailures() { return failures }
 export function hasUnsavedDrafts() { return drafts.size > 0 }
 export function getUnsavedDraft(threadId: string) { return drafts.get(threadId)?.text }
+
+export function appendContextText(draft: string, source: AssistantSource): string {
+  const explanation = `Please explain this passage:\n\n${source.text}${source.meaning ? `\n\nMeaning: ${source.meaning}` : ''}`
+  const addition = !draft && explanation.length > MAX_DRAFT_LENGTH ? source.text : explanation
+  const next = draft ? `${draft}\n\n${addition}` : addition
+  if (next.length > MAX_DRAFT_LENGTH) throw new Error('There is not enough room in this draft. Shorten the draft or select a smaller excerpt before using Ask.')
+  return next
+}
 
 export function rememberDraft(threadId: string, text: string) {
   drafts.set(threadId, { text, failed: false })

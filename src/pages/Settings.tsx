@@ -4,6 +4,7 @@ import { exportWorkspaceBackup, MAX_BACKUP_BYTES, readBackup, restoreBackup } fr
 import { savePreferences } from '../core/learning'
 import { PageHeading, type PageProps } from '../components/shared'
 import { AIConnectionSettings } from '../components/assistant/AIConnectionSettings'
+import { VoiceSettings } from '../components/assistant/VoiceSettings'
 
 export function Settings({ workspace, busy, run }: PageProps) {
   const [name, setName] = useState(workspace.preferences.name)
@@ -26,6 +27,7 @@ export function Settings({ workspace, busy, run }: PageProps) {
       <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Show pinyin in reading and lessons</label>
       <p className="small muted">Practice hides pronunciation until you reveal the answer. Revealing is recorded as assistance.</p>
     </section>
+    <VoiceSettings workspace={workspace} busy={busy} run={run} />
     <AIConnectionSettings />
     <section className="panel"><h2>Keep your learning safe</h2><p>Your progress is saved in this browser, not synced to an account. Clearing site data or using private browsing can remove it. Download a backup regularly.</p>
       <div className="button-row">
@@ -63,7 +65,7 @@ export function Settings({ workspace, busy, run }: PageProps) {
       <p className="small muted">Backups contain this Mandarin workspace and Assistant conversations, not credentials or audio. v1 backups are not compatible. Restored requests never send automatically.</p>
     </section>
     {notice && <p className="notice success" role="status">{notice}</p>}
-    <section className="panel"><h2>About this checkpoint</h2><p>The real 30-level Mandarin course map, with beginner levels 1-4 available for small lessons, grammar reference, and reading-recognition practice. Assistant supports connected text conversation and Shadow with local Hear playback. Microphone input, generated activities, pronunciation scoring, handwriting assessment, and official HSK certification are not connected.</p>
+    <section className="panel"><h2>About this checkpoint</h2><p>The real 30-level Mandarin course map, with beginner levels 1-4 available for small lessons, grammar reference, and reading-recognition practice. Assistant supports connected text conversation and Shadow with browser Hear playback. Hear uses your saved voice selections; Automatic prefers local voices and uses online browser voices when needed, sharing the spoken text with that voice service. Microphone input, generated activities, pronunciation scoring, handwriting assessment, and official HSK certification are not connected.</p>
       <div className="button-row"><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
     </section>
   </>

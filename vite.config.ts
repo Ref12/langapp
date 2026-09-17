@@ -2,6 +2,7 @@ import { fileURLToPath } from 'node:url'
 import { createServer, defineConfig, type Plugin, type UserConfig, type ViteDevServer } from 'vite'
 import react from '@vitejs/plugin-react'
 import { mockupFiles } from './scripts/mockup-files.mjs'
+import { localSettings } from './scripts/local-settings'
 
 function mountDevicePreview(server: Pick<ViteDevServer, 'config' | 'middlewares'>) {
   const base = server.config.base.startsWith('/') ? server.config.base : '/'
@@ -62,6 +63,6 @@ export default defineConfig(async (): Promise<UserConfig> => ({
   publicDir: fileURLToPath(new URL('./public/', import.meta.url)),
   base: './',
   appType: 'mpa',
-  plugins: [react(), versionedSite(new Set(await mockupFiles()))],
+  plugins: [react(), localSettings(), versionedSite(new Set(await mockupFiles()))],
   build: { outDir: 'dist' },
 }))

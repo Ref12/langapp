@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { AIConnectionInput } from '../assistant/contracts'
 import {
-  AssistantCancelledError, completeAssistantChat, MAX_RESPONSE_BYTES, REQUEST_TIMEOUT_MS,
-  testAIConnection, validateAssistantReply,
+  AssistantCancelledError, createAssistantModelClient, MAX_RESPONSE_BYTES, REQUEST_TIMEOUT_MS,
+  testAIConnection, validateAssistantReply, type CompletionOptions, type TutorMessage,
 } from './provider'
 
 const connection: AIConnectionInput = {
@@ -11,6 +11,9 @@ const connection: AIConnectionInput = {
 }
 const reply = { blocks: [{ type: 'text', markdown: 'Hello' }, { type: 'speech', text: '你好', locale: 'zh-Hans', romanization: 'nǐ hǎo', meaning: 'hello' }] }
 const messages = [{ role: 'user' as const, content: 'hello' }]
+async function completeAssistantChat(input: AIConnectionInput, history: TutorMessage[], options?: CompletionOptions) {
+  return createAssistantModelClient(input, history).complete([], options)
+}
 function response(content: unknown = reply) {
   return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify(content) } }] }))
 }
@@ -40,6 +43,7 @@ describe('OpenAI-compatible transport', () => {
     expect(body(fetcher)).not.toHaveProperty('tools')
     expect(body(fetcher)).not.toHaveProperty('tool_choice')
     expect(body(fetcher)).not.toHaveProperty('response_format')
+    expect(body(fetcher).store).toBe(false)
     expect(fetcher).toHaveBeenCalledTimes(1)
   })
 
@@ -141,6 +145,22 @@ describe('OpenAI-compatible transport', () => {
     await expect(completeAssistantChat({ ...connection, nativeTools: true }, messages)).resolves.toMatchObject({ kind: 'tools' })
     expect(body(fetcher).tools[0].function).not.toHaveProperty('strict')
     expect(body(fetcher)).not.toHaveProperty('response_format')
+  })
+
+  it('uses explicit Chat Completions without protocol fallback and retains commentary with calls', async () => {
+    const fetcher = installFetch(new Response(JSON.stringify({ choices: [{
+      finish_reason: 'tool_calls', message: {
+        role: 'assistant', content: 'Intermediate lookup commentary',
+        tool_calls: [{ id: 'call-1', type: 'function', function: { name: 'lookup_words', arguments: '{"query":"茶"}' } }],
+      },
+    }] })), response())
+    const model = createAssistantModelClient({ ...connection, apiType: 'chat-completions', nativeTools: true }, messages)
+    expect(await model.complete()).toEqual({ kind: 'tools', calls: [{ id: 'call-1', name: 'lookup_words', arguments: { query: '茶' } }] })
+    await model.complete([{ callId: 'call-1', output: '{}' }])
+    expect(body(fetcher, 1).messages[1]).toMatchObject({ role: 'assistant', content: 'Intermediate lookup commentary' })
+    expect(fetcher.mock.calls[0][0]).toBe('https://example.test/v1/chat/completions')
+    expect(body(fetcher, 1).store).toBe(false)
+    expect(body(fetcher, 1)).not.toHaveProperty('input')
   })
 
   it('aborts a stalled response body, not only the initial fetch', async () => {

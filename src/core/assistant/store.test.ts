@@ -224,6 +224,17 @@ describe('durable independent conversations', () => {
 })
 
 describe('device-only AI connection', () => {
+  it('preserves explicit protocols, accepts older records, and rejects unknown APIs', async () => {
+    await saveAIConnection(connection)
+    expect((await db.aiConnections.get('assistant'))?.apiType).toBeUndefined()
+    for (const apiType of ['chat-completions', 'responses'] as const) {
+      await saveAIConnection({ ...connection, apiType })
+      expect((await db.aiConnections.get('assistant'))?.apiType).toBe(apiType)
+    }
+    await expect(saveAIConnection({ ...connection, apiType: 'unsupported' } as never)).rejects.toThrow()
+    expect((await db.aiConnections.get('assistant'))?.apiType).toBe('responses')
+  })
+
   it('normalizes URLs, requires acknowledgement and rotates the revision on every save', async () => {
     await expect(saveAIConnection({ ...connection, storageAcknowledged: false } as never)).rejects.toThrow()
     await expect(saveAIConnection({ ...connection, apiKey: '  ' })).rejects.toThrow()

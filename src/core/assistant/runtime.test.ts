@@ -471,3 +471,151 @@ describe('event-driven durable tutor', () => {
     expect((await db.assistantMessages.get('external-pending'))?.status).toBe('cancelled')
   })
 })
+
+describe('Responses durable tutor', () => {
+  const message = () => ({
+    type: 'message', id: 'msg-final', role: 'assistant', status: 'completed',
+    content: [{ type: 'output_text', text: JSON.stringify({ blocks }), annotations: [] }],
+  })
+  const reasoning = (id = 'rs-1') => ({
+    type: 'reasoning', id, summary: [{ type: 'summary_text', text: 'PRIVATE-REASONING-SUMMARY' }],
+    encrypted_content: 'PRIVATE-OPAQUE-CONTINUATION',
+  })
+  const call = (id = 'lookup-1', name = 'lookup_words') => ({
+    type: 'function_call', id: `fc-${id}`, call_id: id, name, arguments: '{"query":"茶"}', status: 'completed',
+  })
+  function restResponse(output: unknown[] = [message()], extra: Record<string, unknown> = {}) {
+    return new Response(JSON.stringify({
+      id: 'resp-real', status: 'completed', output, error: null, incomplete_details: null, ...extra,
+    }))
+  }
+  beforeEach(async () => { await saveAIConnection({ ...settings, apiType: 'responses', nativeTools: true }) })
+
+  it('uses the selected API through a real tool loop, persists only app evidence, and yields until another explicit send', async () => {
+    const id = await createThread()
+    const before = await loadWorkspace()
+    const commentary = {
+      ...message(), id: 'msg-commentary', phase: 'commentary',
+      content: [{ type: 'output_text', text: 'PRIVATE-INTERMEDIATE-COMMENTARY', annotations: [] }],
+    }
+    const output = [reasoning(), commentary, call()]
+    const fetcher = mockFetch(restResponse(output), restResponse())
+    await sendAssistantTurn(id)
+    const [run] = await db.assistantRuns.toArray()
+    expect(run).toMatchObject({
+      status: 'awaiting-learner',
+      steps: [{ callId: 'lookup-1', name: 'lookup_words', arguments: { query: '茶' } }],
+    })
+    expect(JSON.parse(run.steps[0].result).words).toContainEqual(expect.objectContaining({ id: 'zh:tea', meaning: 'tea' }))
+    expect((await messagesFor(id))[1]).toMatchObject({ status: 'completed', blocks })
+    expect(await loadWorkspace()).toEqual(before)
+    const first = JSON.parse(fetcher.mock.calls[0][1].body)
+    const second = JSON.parse(fetcher.mock.calls[1][1].body)
+    expect(fetcher.mock.calls.map(args => args[0])).toEqual(['https://example.test/v1/responses', 'https://example.test/v1/responses'])
+    expect(second.input).toEqual([
+      ...first.input, ...output, { type: 'function_call_output', call_id: 'lookup-1', output: run.steps[0].result },
+    ])
+    expect(second.store).toBe(false)
+    expect(second).not.toHaveProperty('previous_response_id')
+    expect(second).not.toHaveProperty('conversation')
+    expect(JSON.stringify(await exportWorkspaceBackup())).not.toMatch(/PRIVATE-OPAQUE|PRIVATE-REASONING|PRIVATE-INTERMEDIATE|fc-lookup-1|resp-real/)
+    db.close()
+    await db.open()
+    await initializeWorkspace()
+    await expireAssistantRuns()
+    expect((await db.assistantRuns.get(run.id))?.status).toBe('awaiting-learner')
+    expect(fetcher).toHaveBeenCalledTimes(2)
+
+    fetcher.mockResolvedValueOnce(restResponse())
+    await saveDraft(id, 'next explicit learner turn')
+    await sendAssistantTurn(id)
+    const next = JSON.parse(fetcher.mock.calls[2][1].body)
+    expect(JSON.stringify(next)).not.toMatch(/PRIVATE-OPAQUE|PRIVATE-REASONING|PRIVATE-INTERMEDIATE|function_call_output|resp-real/)
+    expect(next.input.filter((item: { role: string }) => item.role === 'assistant')).toEqual([
+      { role: 'assistant', content: JSON.stringify({ blocks }) },
+    ])
+    expect(fetcher).toHaveBeenCalledTimes(3)
+  })
+
+  it('supports plain Responses replies without enabling unselected capabilities', async () => {
+    await saveAIConnection({ ...settings, apiType: 'responses' })
+    const id = await createThread()
+    const fetcher = mockFetch(restResponse())
+    await sendAssistantTurn(id)
+    const body = JSON.parse(fetcher.mock.calls[0][1].body)
+    expect(body).not.toHaveProperty('tools')
+    expect(body).not.toHaveProperty('text')
+    expect((await messagesFor(id))[1]).toMatchObject({ status: 'completed', blocks })
+    expect(fetcher).toHaveBeenCalledTimes(1)
+  })
+
+  it.each([
+    { output: [message(), call()], status: 'incomplete', error: 'could not complete' },
+    { output: [message(), call()], status: 'failed', error: 'could not complete' },
+    { output: [{ ...message(), content: [{ type: 'refusal', refusal: 'PRIVATE refusal' }] }, call()], status: 'completed', error: 'refused' },
+    { output: [message(), { type: 'web_search_call', status: 'completed' }], status: 'completed', error: 'unsupported output item' },
+    { output: [message(), call('bad', 'write_progress')], status: 'completed', error: 'unsupported tool' },
+  ])('publishes no partial text or tool evidence for invalid output: $error', async ({ output, status, error }) => {
+    const id = await createThread()
+    const before = await loadWorkspace()
+    const fetcher = mockFetch(restResponse(output, { status }))
+    await expect(sendAssistantTurn(id)).rejects.toThrow(error)
+    expect((await messagesFor(id))[1]).toMatchObject({ status: 'failed', blocks: [] })
+    expect((await db.assistantRuns.toArray())[0]).toMatchObject({ status: 'failed', steps: [] })
+    expect(await loadWorkspace()).toEqual(before)
+    expect(fetcher).toHaveBeenCalledTimes(1)
+  })
+
+  it('rejects duplicate call IDs across rounds before running another lookup', async () => {
+    const id = await createThread()
+    const fetcher = mockFetch(restResponse([reasoning(), call()]), restResponse([reasoning('rs-2'), call()]))
+    await expect(sendAssistantTurn(id)).rejects.toThrow('reused a tool-call ID')
+    expect((await db.assistantRuns.toArray())[0].steps).toHaveLength(1)
+    expect((await messagesFor(id))[1]).toMatchObject({ status: 'failed', blocks: [] })
+    expect(fetcher).toHaveBeenCalledTimes(2)
+  })
+
+  it('enforces the existing four-round cap with all actual ordered continuation retained', async () => {
+    const id = await createThread()
+    const fetcher = mockFetch(...Array.from({ length: 4 }, (_, index) => restResponse([reasoning(`rs-${index}`), call(`call-${index}`)])))
+    await expect(sendAssistantTurn(id)).rejects.toThrow('four-round')
+    const [run] = await db.assistantRuns.toArray()
+    expect(run).toMatchObject({ status: 'failed' })
+    expect(run.steps).toHaveLength(3)
+    expect((await messagesFor(id))[1]).toMatchObject({ status: 'failed', blocks: [] })
+    expect(fetcher).toHaveBeenCalledTimes(4)
+    const finalInput = JSON.parse(fetcher.mock.calls[3][1].body).input
+    expect(finalInput.filter((item: { type: string }) => item.type === 'reasoning')).toEqual([
+      reasoning('rs-0'), reasoning('rs-1'), reasoning('rs-2'),
+    ])
+    expect(JSON.stringify(run)).not.toContain('PRIVATE-OPAQUE')
+  })
+
+  it('aborts the second request without saving late teaching content or opaque continuation', async () => {
+    const id = await createThread()
+    const fetcher = mockFetch(restResponse([reasoning(), call()]))
+    let finish!: (response: Response) => void
+    fetcher.mockImplementationOnce(() => new Promise<Response>(resolve => { finish = resolve }))
+    const outcome = sendAssistantTurn(id).catch((error: Error) => error)
+    await vi.waitFor(() => expect(fetcher).toHaveBeenCalledTimes(2))
+    await cancelAssistantRun(id)
+    expect(await outcome).toMatchObject({ name: 'AssistantCancelledError' })
+    expect(fetcher.mock.calls[1][1].signal.aborted).toBe(true)
+    finish(restResponse())
+    expect((await db.assistantRuns.toArray())[0]).toMatchObject({ status: 'cancelled', steps: [{ callId: 'lookup-1' }] })
+    expect((await messagesFor(id))[1]).toMatchObject({ status: 'cancelled', blocks: [] })
+    expect(JSON.stringify(await exportWorkspaceBackup())).not.toMatch(/PRIVATE-OPAQUE|PRIVATE-REASONING/)
+  })
+
+  it('retains app-owned revision checks when the API protocol changes in flight', async () => {
+    const id = await createThread()
+    const held = deferredFetch()
+    const outcome = sendAssistantTurn(id).catch((error: Error) => error)
+    await waitForFetch(held.fetcher)
+    await saveAIConnection(settings)
+    held.finish(restResponse())
+    expect(await outcome).toMatchObject({ message: expect.stringContaining('connection changed') })
+    expect((await messagesFor(id))[1]).toMatchObject({ status: 'failed', blocks: [] })
+    expect(held.fetcher).toHaveBeenCalledTimes(1)
+  })
+})

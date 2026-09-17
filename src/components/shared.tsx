@@ -40,7 +40,6 @@ export function WordCard({ word, state, pinyin, source, run, busy }: {
     <p className="word-meaning">{word.meaning}</p>
     {word.example && <><p lang="zh-Hans" className="example">{word.example}</p><p className="small muted">{word.translation}</p></>}
     <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: 'zh-Hans', title: `Word: ${word.meaning}`, route }} />
-    {word.example && <SnippetActions source={{ text: word.example, meaning: word.translation, locale: 'zh-Hans', title: `Example: ${word.meaning}`, route }} />}
     {word.curriculum
       ? <p className="small muted"><a className="text-link" href={`#level/${word.curriculum.levelId}`}>View curriculum level</a></p>
       : <p className="small muted">Starter example / separate from curriculum evidence</p>}

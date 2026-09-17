@@ -39,6 +39,28 @@ describe('isolated local workspace', () => {
     expect((await loadWorkspace()).preferences).toMatchObject({ name: 'Mei', theme: 'light', pinyin: false })
   })
 
+  it('saves bounded voice metadata independently of other preferences and rejects malformed values', async () => {
+    const voice = { voiceURI: 'local-zh', name: 'Mandarin', lang: 'zh-CN', localService: true }
+    await savePreferences({ speechVoices: { 'zh-Hans': voice } })
+    await savePreferences({ theme: 'light' })
+    expect((await loadWorkspace()).preferences).toMatchObject({ theme: 'light', speechVoices: { 'zh-Hans': voice } })
+    await expect(savePreferences({ speechVoices: { 'zh-Hans': { ...voice, name: 'x'.repeat(513) } } })).rejects.toThrow()
+    expect((await loadWorkspace()).preferences.speechVoices).toEqual({ 'zh-Hans': voice })
+    await savePreferences({ speechVoices: { 'zh-Hans': undefined } })
+    expect((await loadWorkspace()).preferences.speechVoices?.['zh-Hans']).toBeUndefined()
+  })
+
+  it('merges concurrent per-language voice changes against saved preferences', async () => {
+    const mandarin = { voiceURI: 'local-zh', name: 'Mandarin', lang: 'zh-CN', localService: true }
+    const english = { voiceURI: 'local-en', name: 'English', lang: 'en-US', localService: true }
+    await Promise.all([
+      savePreferences({ speechVoices: { 'zh-Hans': mandarin } }),
+      savePreferences({ speechVoices: { 'en-US': english } }),
+    ])
+    await savePreferences({ speechVoices: { 'zh-Hans': undefined } })
+    expect((await loadWorkspace()).preferences.speechVoices).toEqual({ 'zh-Hans': undefined, 'en-US': english })
+  })
+
   it('preserves shared word state when Dictionary and lessons introduce the same sense', async () => {
     const wordId = firstLesson.wordIds[0]
     await trackWord(wordId, 'dictionary')
