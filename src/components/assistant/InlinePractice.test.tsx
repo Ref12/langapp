@@ -9,6 +9,7 @@ import * as azure from '../../core/assistant/speech-assessment'
 import type { SpeechAssessmentCaptureState } from '../../core/assistant/speech-assessment'
 import type { SpeechAssessment } from '../../core/assistant/speech-contracts'
 import * as playback from '../../core/assistant/speech'
+import * as cues from '../../core/assistant/recording-cue'
 import { exportWorkspaceBackup, restoreBackup } from '../../core/backup'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', meaning: 'hello' } as const
@@ -18,6 +19,8 @@ const handles: { stop: ReturnType<typeof vi.fn>; cancel: ReturnType<typeof vi.fn
 const speechConnection = { id: 'assistant-speech', provider: 'azure', region: 'eastus', apiKey: 'test-key',
   storageAcknowledged: true, revision: 'speech-revision', updatedAt: 1 } as const
 const assessment: SpeechAssessment = { status: 'assessed', accuracy: 93, fluency: 82, completeness: 100, words: [] }
+const playCue = vi.fn<() => Promise<void>>()
+const cancelCue = vi.fn<() => Promise<void>>()
 
 beforeEach(async () => {
   clearUnsavedDrafts()
@@ -26,6 +29,13 @@ beforeEach(async () => {
     choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify({ blocks: [{ type: 'text', markdown: 'Normal reply.' }] }) } }],
   }))))
   handles.length = 0
+  vi.spyOn(playback, 'playBrowserSpeechToEnd').mockResolvedValue({ status: 'completed' })
+  vi.stubGlobal('AudioContext', class {})
+  playCue.mockReset().mockResolvedValue()
+  cancelCue.mockReset().mockResolvedValue()
+  vi.spyOn(cues, 'prepareRecordingCue').mockImplementation(() => ({
+    play: playCue, cancel: cancelCue, takeContext: () => new AudioContext(),
+  }))
   await db.delete(); await db.open(); await initializeWorkspace()
   threadId = await createConversation()
   await updateThread(threadId, { practiceInput: 'spoken-feedback' })
@@ -51,14 +61,15 @@ beforeEach(async () => {
     listener({ phase: 'listening', transcript: '' })
     return handle
   })
-  vi.spyOn(azure, 'startAzurePracticeCapture').mockImplementation((_connection, _reference, listener) => {
+  vi.spyOn(azure, 'startAzurePracticeCapture').mockImplementation((_connection, _reference, listener, options) => {
     report = listener
     const handle = {
       stop: vi.fn(() => listener({ phase: 'finished', transcript: phrase.text, assessment })),
       cancel: vi.fn(() => listener({ phase: 'finished', transcript: '', cancelled: true })),
     }
     handles.push(handle)
-    listener({ phase: 'listening', transcript: '' })
+    listener({ phase: 'starting', transcript: '' })
+    void options?.beforeListening?.().then(() => listener({ phase: 'listening', transcript: '' }))
     return handle
   })
   window.location.hash = `conversation/${threadId}`
@@ -72,18 +83,154 @@ async function blocks() {
 async function begin(index = 0) {
   const block = (await blocks())[index]
   await waitFor(() => expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled())
-  fireEvent.click(within(block).getByRole('button', { name: 'Practice' }))
+  await act(async () => { fireEvent.click(within(block).getByRole('button', { name: 'Practice' })) })
   return block
 }
 async function submit(block: HTMLElement) {
   fireEvent.click(within(block).getByRole('button', { name: 'Submit' }))
   await within(block).findByLabelText('Practice feedback')
 }
+function deferred<T>() {
+  let resolve!: (value: T) => void
+  const promise = new Promise<T>(done => { resolve = done })
+  return { promise, resolve }
+}
 
 describe('inline Conversation practice', () => {
-  it('starts recording from Practice, replaces just that row, and saves feedback without a new message', async () => {
+  it('connects actual speech end/cancel events to the practice sequence without cancelling its own reference', async () => {
+    vi.mocked(playback.playBrowserSpeechToEnd).mockRestore()
+    class Utterance {
+      voice?: SpeechSynthesisVoice
+      lang = ''; rate = 1
+      onstart?: (() => void) | null
+      onend?: (() => void) | null
+      onerror?: (() => void) | null
+      constructor(public text: string) {}
+    }
+    const synthesis = Object.assign(new EventTarget(), {
+      getVoices: () => [{ name: 'Mandarin', lang: 'zh-CN', voiceURI: 'local-zh', localService: true, default: false }],
+      speak: vi.fn<(utterance: Utterance) => void>(), cancel: vi.fn(),
+    })
+    vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
+    vi.stubGlobal('speechSynthesis', synthesis)
+    render(<App />)
+    const block = await begin()
+    expect(synthesis.speak).toHaveBeenCalledTimes(1)
+    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ text: phrase.text, rate: 1 })
+    expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    act(() => synthesis.speak.mock.calls[0][0].onstart?.())
+    expect(within(block).getByRole('status')).toHaveTextContent('Listen...')
+    await act(async () => synthesis.speak.mock.calls[0][0].onend?.())
+    expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
+    expect(playCue).toHaveBeenCalledTimes(1)
+    fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
+    await begin()
+    const lateEnd = synthesis.speak.mock.calls[1][0].onend
+    synthesis.cancel.mockClear()
+    fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
+    await act(async () => lateEnd?.())
+    expect(synthesis.cancel).toHaveBeenCalled()
+    expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
+    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+  })
+
+  it('waits for the phrase to finish and the microphone to start, then cues before enabling Submit', async () => {
+    const voice = deferred<playback.PlaybackOutcome>()
+    const tone = deferred<void>()
+    vi.mocked(playback.playBrowserSpeechToEnd).mockReturnValue(voice.promise)
+    playCue.mockReturnValue(tone.promise)
+    render(<App />)
+    const block = await begin()
+    expect(within(block).getByRole('status')).toHaveTextContent('Listen...')
+    expect(within(block).getByRole('button', { name: 'Submit' })).toBeDisabled()
+    expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    expect(playCue).not.toHaveBeenCalled()
+    expect(cues.prepareRecordingCue).toHaveBeenCalledTimes(1)
+    await act(async () => { voice.resolve({ status: 'completed' }) })
+    expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
+    expect(playCue).toHaveBeenCalledTimes(1)
+    expect(within(block).getByRole('status')).toHaveTextContent('Get ready...')
+    expect(within(block).getByRole('button', { name: 'Submit' })).toBeDisabled()
+    await act(async () => { tone.resolve() })
+    expect(within(block).getByRole('status')).toHaveTextContent('Listening...')
+    expect(within(block).getByRole('button', { name: 'Submit' })).toBeEnabled()
+    expect(await db.assistantMessages.count()).toBe(1)
+  })
+
+  it('does not cue until browser recognition actually reports microphone readiness', async () => {
+    const original = vi.mocked(capture.startSpeechCapture).getMockImplementation()!
+    vi.mocked(capture.startSpeechCapture).mockImplementation(listener => original(state =>
+      listener(state.phase === 'listening' ? { ...state, phase: 'starting' } : state)))
+    render(<App />)
+    const block = await begin()
+    expect(within(block).getByRole('status')).toHaveTextContent('Starting microphone...')
+    expect(playCue).not.toHaveBeenCalled()
+    expect(within(block).getByRole('button', { name: 'Submit' })).toBeDisabled()
+    fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
+    expect(cancelCue).toHaveBeenCalled()
+    expect(handles[0].cancel).toHaveBeenCalled()
+  })
+
+  it.each(['phrase', 'cue'])('cancels during the %s and ignores late completion', async phase => {
+    const voice = deferred<playback.PlaybackOutcome>()
+    const tone = deferred<void>()
+    if (phase === 'phrase') vi.mocked(playback.playBrowserSpeechToEnd).mockReturnValue(voice.promise)
+    else playCue.mockReturnValue(tone.promise)
+    render(<App />)
+    const block = await begin()
+    fireEvent.click(within(block).getByRole('button', { name: 'Cancel' }))
+    await act(async () => { voice.resolve({ status: 'completed' }); tone.resolve() })
+    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(cancelCue).toHaveBeenCalled()
+    if (phase === 'phrase') expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    else expect(handles[0].cancel).toHaveBeenCalled()
+    expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
+  })
+
+  it('does not capture or cue when reference speech fails or is interrupted', async () => {
+    vi.mocked(playback.playBrowserSpeechToEnd).mockResolvedValueOnce({ status: 'error', error: 'The selected voice is unavailable.' })
+    render(<App />)
+    let block = await begin()
+    expect(within(block).getByRole('alert')).toHaveTextContent('selected voice is unavailable')
+    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    vi.mocked(playback.playBrowserSpeechToEnd).mockResolvedValueOnce({ status: 'cancelled' })
+    block = await begin()
+    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    expect(playCue).not.toHaveBeenCalled()
+    expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    expect(await db.assistantMessages.count()).toBe(1)
+  })
+
+  it.each(['prepare', 'play'])('shows cue %s failures and cancels instead of silently recording without a cue', async phase => {
+    if (phase === 'prepare') vi.mocked(cues.prepareRecordingCue).mockImplementation(() => { throw new Error('Audio unavailable.') })
+    else playCue.mockRejectedValueOnce(new Error('Audio unavailable.'))
+    render(<App />)
+    const block = await begin()
+    expect(within(block).getByRole('alert')).toHaveTextContent('Audio unavailable.')
+    expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
+    if (phase === 'prepare') expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    else expect(handles[0].cancel).toHaveBeenCalled()
+    expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
+  })
+
+  it('never begins recording after navigation while the phrase is still playing', async () => {
+    const voice = deferred<playback.PlaybackOutcome>()
+    vi.mocked(playback.playBrowserSpeechToEnd).mockReturnValueOnce(voice.promise)
+    render(<App />)
+    await begin()
+    await act(async () => { window.location.hash = 'dictionary'; window.dispatchEvent(new HashChangeEvent('hashchange')) })
+    await act(async () => { voice.resolve({ status: 'completed' }) })
+    expect(cancelCue).toHaveBeenCalled()
+    expect(playCue).not.toHaveBeenCalled()
+    expect(capture.startSpeechCapture).not.toHaveBeenCalled()
+    expect(await db.assistantMessages.count()).toBe(1)
+  })
+
+  it('plays the phrase from Practice, replaces just that row, and saves feedback without a new message', async () => {
     render(<App />)
     const block = await begin(1)
+    expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledWith(expect.any(String), phrase.text, phrase.locale, 1)
+    expect(playCue).toHaveBeenCalledTimes(1)
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
     expect(within(block).queryByRole('button', { name: 'Hear' })).not.toBeInTheDocument()
     expect(within(block).queryByRole('button', { name: 'Ask' })).not.toBeInTheDocument()
@@ -119,7 +266,8 @@ describe('inline Conversation practice', () => {
     await db.speechConnections.put(speechConnection)
     render(<App />)
     const block = await begin()
-    expect(azure.startAzurePracticeCapture).toHaveBeenCalledWith(speechConnection, phrase.text, expect.any(Function), { automaticAssessment: false })
+    expect(azure.startAzurePracticeCapture).toHaveBeenCalledWith(speechConnection, phrase.text, expect.any(Function),
+      { automaticAssessment: false, audioContext: expect.any(AudioContext), beforeListening: expect.any(Function) })
     expect(capture.startSpeechCapture).not.toHaveBeenCalled()
     act(() => report({ phase: 'ready', transcript: '' }))
     expect((await db.assistantMessages.get('source-reply'))?.practiceResults).toBeUndefined()
@@ -152,6 +300,8 @@ describe('inline Conversation practice', () => {
     expect(within(block).getByRole('button', { name: 'Practice' })).toBeEnabled()
     expect(capture.startSpeechCapture).not.toHaveBeenCalled()
     expect(azure.startAzurePracticeCapture).not.toHaveBeenCalled()
+    expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledTimes(1)
+    expect(cues.prepareRecordingCue).not.toHaveBeenCalled()
     expect(await db.assistantMessages.count()).toBe(1)
   })
 
@@ -251,6 +401,8 @@ describe('inline Conversation practice', () => {
     await submit(block)
     expect(capture.startSpeechCapture).toHaveBeenCalledTimes(1)
     expect(handles[0].stop).toHaveBeenCalledTimes(1)
+    expect(playback.playBrowserSpeechToEnd).toHaveBeenCalledTimes(1)
+    expect(playCue).toHaveBeenCalledTimes(1)
     await begin()
     act(() => report({ phase: 'finished', transcript: '\u4f60' }))
     await submit(block)

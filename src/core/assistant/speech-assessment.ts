@@ -62,7 +62,7 @@ function invoke<T>(operation: () => Promise<T>): Promise<T> {
 /** A gesture starts local PCM capture; manual mode waits for Stop even after the cap. */
 export function startAzurePracticeCapture(
   connection: SpeechConnection, referenceText: string, listener: (state: SpeechAssessmentCaptureState) => void,
-  options: { automaticAssessment?: boolean } = {},
+  options: { automaticAssessment?: boolean; audioContext?: AudioContext; beforeListening?: () => Promise<void> } = {},
 ): CaptureHandle {
   activeCapture?.cancel()
   const controller = new AbortController()
@@ -78,7 +78,7 @@ export function startAzurePracticeCapture(
   let recording: Uint8Array | undefined
   let byteCount = 0
   let stream: MediaStream | undefined
-  let context: AudioContext | undefined
+  let context: AudioContext | undefined = options.audioContext
   let source: MediaStreamAudioSourceNode | undefined
   let node: AudioWorkletNode | undefined
   let silence: GainNode | undefined
@@ -346,10 +346,10 @@ export function startAzurePracticeCapture(
       notify({ phase, transcript })
       if (!live() || phase !== 'starting') return
       recording = new Uint8Array(LIMIT_BYTES)
-      context = new AudioContext()
+      context ??= new AudioContext()
       if (!context.audioWorklet) throw new Error(CAPTURE_ERROR)
       const resampler = new MonoResampler(context.sampleRate)
-      // Start resume/permission synchronously inside the user's activation.
+      // Practice can supply a context already resumed by the initiating click.
       const resume = invoke(() => context!.resume())
       const permission = invoke(() => navigator.mediaDevices.getUserMedia({
         audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
@@ -369,6 +369,12 @@ export function startAzurePracticeCapture(
       if (document.hidden || context.state !== 'running' || !stream ||
         !stream.getAudioTracks().length || stream.getAudioTracks().some(track => track.readyState === 'ended')) {
         throw new Error(CAPTURE_ERROR)
+      }
+      stream.getTracks().forEach(track => { track.onended = interrupt; track.onmute = interrupt })
+      context.onstatechange = () => { if (context?.state !== 'running') interrupt() }
+      if (options.beforeListening) {
+        await bounded(invoke(options.beforeListening), 5_000, CAPTURE_ERROR, setupController.signal)
+        if (!live() || phase !== 'starting') return
       }
       source = context.createMediaStreamSource(stream)
       node = new AudioWorkletNode(context, 'linguaweave-mono-capture')
@@ -391,8 +397,6 @@ export function startAzurePracticeCapture(
       source.connect(node)
       node.connect(silence)
       silence.connect(context.destination)
-      stream.getTracks().forEach(track => { track.onended = interrupt; track.onmute = interrupt })
-      context.onstatechange = () => { if (context?.state !== 'running') interrupt() }
       phase = 'listening'
       capTimer = setTimeout(stopRecording, CAPTURE_LIMITS.practice * 1000)
       notify({ phase, transcript })

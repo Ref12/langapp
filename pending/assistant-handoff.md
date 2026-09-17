@@ -3,7 +3,56 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
-## Latest refinement: inline practice and JSON speaking speed (complete)
+## Latest refinement: reference playback and recording cue (complete)
+
+User: Practice should say the phrase first and have an indicator sound marking
+the start of recording. The user authorized committing this refinement on
+2026-09-17; it is included in the accompanying commit. No push was requested.
+The preceding work was committed as `1272492`.
+
+Parent implementation:
+
+- `playBrowserSpeechToEnd` reports completed/cancelled/error outcomes from the
+  real speech lifecycle, retaining the existing fire-and-forget Hear API.
+- Inline Practice now plays the phrase before activating either microphone
+  engine, using the existing selected voice and per-conversation speech speed.
+  No-recording practice plays the phrase without preparing a cue or microphone.
+- `PhrasePractice` has concise Listen/Get ready/Listening phases; Submit stays
+  disabled during the lead-in and permission/startup wait. Cancel handles the
+  entire sequence. Stale completion and cue errors cannot restart recording.
+- Browser recognition cues on its actual listening callback. Azure accepts
+  a gesture-prepared AudioContext and an async `beforeListening` hook, which
+  completes the cue before microphone nodes are connected or PCM is captured.
+- Shadow Practice previews its phrase; its Start speaking sequence also plays
+  the phrase then sounds the cue. Mount/reload never starts either sequence.
+- README and Settings describe the behavior.
+
+Agent `740aef39-e3f2-4dec-856f-6703d3316b9e` completed new `recording-cue.ts`
+and its tests. API: `prepareRecordingCue()` synchronously prepares
+AudioContext/resume without sound, returns `play(): Promise<void>`,
+`cancel(): Promise<void>`, and `takeContext(): AudioContext` for Azure ownership.
+The helper closes only contexts it still owns, bounds failure paths, waits
+for real oscillator completion, and suppresses late/cancelled tones.
+The cue is a gentle 880 Hz sine tone, 140 ms long, with an attack/release envelope.
+Resume, missing-end and cleanup timeouts are 5 s, 1.5 s and 1 s respectively.
+Both agent responses were retrieved; it is idle with no remaining work.
+
+Final verification: **455 tests across 11 targeted files passed**, including
+41 cue-helper tests, core speech/completion, Azure lifecycle, actual browser TTS
+end/cancel events connected to App, and both practice modes. UI tests cover
+phrase/tone gating, permission readiness, cancellation, stale completion,
+errors, no-recording and storage-only retry. Existing Hear/voice settings,
+native recognition, persistence and tutor-privacy regressions also pass.
+Root production build, TypeScript, scoped ESLint and whitespace checks passed.
+The existing large-bundle warning remains. No actual microphone, paid provider
+call, or real audio playback was performed; tests use controlled browser APIs.
+Parent reviewed the helper and stabilized cleanup hook callbacks. A cue is
+stopped before cancelling an Azure session that owns its shared context.
+
+No implementation remains pending. The unrelated MobileNavigation.test.tsx edit
+and private app.settings.jsonc are excluded from this commit and preserved.
+
+## Previous refinement: inline practice and JSON speaking speed (complete)
 
 The user refined Conversation practice: no new message or separate panel. The
 selected phrase's **Hear / Ask / Practice** row becomes **Submit / Cancel**, with

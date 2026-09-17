@@ -137,18 +137,21 @@ Each Mandarin speech snippet in an Assistant reply has its own **Hear / Ask / Pr
 buttons; ordinary explanation blocks do not. Word cards have one action row.
 **Practice** opens just the practice step for that selected translation. It does
 not change Conversation/Shadow mode, replace the composer draft, generate a new
-translation, or send a message. In Conversation, practice stays under the original
+translation, or send a message. It first plays the phrase using the selected
+Mandarin voice and conversation speed. In Conversation, practice stays under the original
 phrase: **Submit / Cancel** temporarily replaces that phrase's action row.
 Shadow keeps a separate practice panel and its selected translation survives reload.
 The conversation settings gear has a separate **Practice input** dropdown:
 
 - **Listen and repeat (no recording)** is the default, including for older chats.
   Hear the translation and repeat aloud at your own pace; the microphone stays off.
-- **Listen and record** starts recording when you click **Practice** in
-  Conversation. **Submit** finishes recording and shows feedback under that same
+- **Listen and record** plays the phrase when you click **Practice** in
+  Conversation, then prepares the microphone and sounds a short start cue.
+  Wait for **Listening...** before repeating the phrase. **Submit** finishes recording and shows feedback under that same
   phrase, without adding a message. **Cancel** discards the attempt.
-  Shadow uses **Start speaking / Stop capture** in its practice panel and
-  automatically adds the result as a separate bubble. Neither flow sends to the LLM.
+  Shadow uses **Start speaking / Stop capture** in its practice panel, with the
+  same phrase-first playback and recording cue, and automatically adds the
+  result as a separate bubble. Neither flow sends to the LLM.
 
 The conversation's **Speech feedback** toggle defaults on. With an Azure Speech
 connection configured and feedback enabled, the app records up to 30 seconds of
@@ -159,6 +162,12 @@ Shadow submits automatically when recording finishes. Configure the
 region and key separately under **Settings -> Practice speech connection** or through the
 local-settings file below. Saving settings does not contact Azure or request a
 microphone. Only explicitly starting a recording activates capture.
+The reference finishes before microphone activation; the start cue waits for
+microphone readiness, not a fixed delay. Azure recording excludes both the
+reference playback and the cue. Browser recognition owns its microphone and
+sounds the cue when it reports readiness. No-recording practice plays only the
+phrase, without a cue or microphone. Playback/cue failures stop the sequence
+visibly instead of silently starting a recording.
 
 When feedback is off or no speech connection exists, browser speech recognition
 provides a transcript, and the app compares it with the expected translation
@@ -179,7 +188,7 @@ Raw audio and provider credentials are never stored in messages or sent to the
 language model. Practice results are also excluded from **future** model history;
 legacy transcript-feedback turns cannot be retried or resubmitted through that
 old path. Conversation mode, the main draft, and learning evidence stay unchanged.
-Recording or assessment is cancelled on navigation, closing practice, changing
+Reference playback, the start cue, recording, or assessment is cancelled on navigation, closing practice, changing
 the input/translation/feedback/provider connection, playback, Escape, or page
 hiding. Cancelled attempts do not create results. No recording resumes after
 reload. Storage failures let you retry **Submit** (or **Retry saving result** in

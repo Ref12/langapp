@@ -198,6 +198,48 @@ afterEach(async () => {
 })
 
 describe('local microphone assessment lifecycle', () => {
+  it('uses a gesture-prepared context and waits for the cue before connecting microphone capture', async () => {
+    const context = new AudioContext()
+    await context.resume()
+    const cue = deferred<void>()
+    const beforeListening = vi.fn(() => cue.promise)
+    const listener = vi.fn()
+    const handle = startAzurePracticeCapture(connection, '\u4f60\u597d', listener, { audioContext: context, beforeListening })
+    handles.push(handle)
+    await vi.waitFor(() => expect(beforeListening).toHaveBeenCalledTimes(1))
+    expect(mock.contexts).toHaveLength(1)
+    expect(mock.contexts[0].source.connect).not.toHaveBeenCalled()
+    expect(listener.mock.calls.at(-1)?.[0].phase).toBe('starting')
+    expect(mock.write).not.toHaveBeenCalled()
+    cue.resolve()
+    await vi.waitFor(() => expect(listener.mock.calls.at(-1)?.[0].phase).toBe('listening'))
+    expect(mock.contexts[0].source.connect).toHaveBeenCalledTimes(1)
+    handle.cancel()
+    await flush()
+    expect(context.close).toHaveBeenCalledTimes(1)
+  })
+
+  it.each(['cancel', 'failure', 'timeout'])('cleans up microphone setup without recording when the cue ends in %s', async action => {
+    const cue = deferred<void>()
+    const beforeListening = vi.fn(() => cue.promise)
+    const listener = vi.fn()
+    const handle = startAzurePracticeCapture(connection, '\u4f60\u597d', listener, { beforeListening })
+    handles.push(handle)
+    await vi.waitFor(() => expect(beforeListening).toHaveBeenCalledTimes(1))
+    if (action === 'cancel') handle.cancel()
+    else if (action === 'failure') cue.reject(new Error('tone failed'))
+    else await vi.advanceTimersByTimeAsync(5000)
+    await vi.waitFor(() => expect(['finished', 'error']).toContain(listener.mock.calls.at(-1)?.[0].phase))
+    cue.resolve()
+    await flush()
+    expect(mock.contexts[0].source.connect).not.toHaveBeenCalled()
+    expect(mock.contexts[0].close).toHaveBeenCalled()
+    const stream = await mock.mic.mock.results[0].value
+    expect(stream.track.stop).toHaveBeenCalled()
+    expect(mock.write).not.toHaveBeenCalled()
+    expect(listener.mock.calls.some(([state]) => state.phase === 'listening')).toBe(false)
+  })
+
   it('runs the actual shared worklet, mixing microphone channels and acknowledging the final PCM queue', () => {
     interface Processor {
       port: { onmessage(event: { data: string }): void }

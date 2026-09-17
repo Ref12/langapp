@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, playBrowserSpeech, setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech, subscribePlayback, watchBrowserVoices } from './speech'
+import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, playBrowserSpeech, playBrowserSpeechToEnd, setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech, subscribePlayback, watchBrowserVoices } from './speech'
 import type { SpeechRate } from './contracts'
 
 class Utterance {
@@ -69,6 +69,42 @@ afterEach(() => {
 })
 
 describe('default Mandarin playback speed', () => {
+  it('waits for real playback completion, distinguishing it from cancellation and errors', async () => {
+    const result = playBrowserSpeechToEnd('practice', '\u8336', 'zh-Hans', 0.75)
+    const finished = vi.fn()
+    void result.then(finished)
+    await Promise.resolve()
+    expect(finished).not.toHaveBeenCalled()
+    synthesis.speak.mock.calls[0][0].onstart?.()
+    await Promise.resolve()
+    expect(finished).not.toHaveBeenCalled()
+    synthesis.speak.mock.calls[0][0].onend?.()
+    await expect(result).resolves.toEqual({ status: 'completed' })
+    const cancelled = playBrowserSpeechToEnd('cancelled', '\u8336', 'zh-Hans')
+    const lateEnd = synthesis.speak.mock.calls[1][0].onend
+    stopBrowserSpeech()
+    lateEnd?.()
+    await expect(cancelled).resolves.toEqual({ status: 'cancelled' })
+    const failed = playBrowserSpeechToEnd('failed', '\u8336', 'zh-Hans')
+    synthesis.speak.mock.calls[2][0].onerror?.()
+    await expect(failed).resolves.toMatchObject({ status: 'error', error: expect.stringContaining('could not be played') })
+  })
+
+  it('settles playback promises for missing voices, unsupported browsers, replacement and timeouts', async () => {
+    synthesis.getVoices.mockReturnValue([])
+    const missing = playBrowserSpeechToEnd('missing', '\u8336', 'zh-Hans')
+    vi.advanceTimersByTime(3000)
+    await expect(missing).resolves.toMatchObject({ status: 'error' })
+    voicesChanged([localMandarin])
+    const replaced = playBrowserSpeechToEnd('first', '\u8336', 'zh-Hans')
+    const timeout = playBrowserSpeechToEnd('second', '\u8336', 'zh-Hans')
+    await expect(replaced).resolves.toEqual({ status: 'cancelled' })
+    vi.advanceTimersByTime(10_000)
+    await expect(timeout).resolves.toMatchObject({ status: 'error' })
+    vi.stubGlobal('SpeechSynthesisUtterance', undefined)
+    await expect(playBrowserSpeechToEnd('unsupported', '\u8336', 'zh-Hans')).resolves.toMatchObject({ status: 'error' })
+  })
+
   it.each([0.5, 0.75, 1, 1.25] as const)('uses the configured default %s only for Mandarin, without playing on configuration', rate => {
     setDefaultSpeechRate(rate)
     expect(synthesis.getVoices).not.toHaveBeenCalled()

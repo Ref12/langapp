@@ -12,6 +12,7 @@ import { MessageActions } from '../components/assistant/MessageActions'
 import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
 import { PhrasePractice } from '../components/assistant/PhrasePractice'
 import { PracticeResultBubble } from '../components/assistant/PracticeResultBubble'
+import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech } from '../core/assistant/speech'
 import { LocalSpeechSetupContext, LocalSpeechRateSetupContext } from '../components/assistant/local-ai-setup-context'
 import type { SpeechConnection } from '../core/assistant/speech-contracts'
 import { registerDraftEditor } from '../core/assistant/draft-actions'
@@ -137,6 +138,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [inlinePracticeId, setInlinePracticeId] = useState<string>()
+  const previewPlaybackId = `practice-preview-${thread.id}`
   const writes = useRef<Promise<void>>(Promise.resolve())
   const sendVersion = useRef(0)
   const latestDraft = useRef(draft)
@@ -150,6 +152,10 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const lastMessage = messages?.[messages.length - 1]
   const retryUser = lastFailed && lastMessage?.id === lastFailed.id
     ? messages?.find(message => message.role === 'user' && message.runId === lastFailed.runId && message.intent !== 'repeat' && !message.practice) : undefined
+
+  useEffect(() => () => {
+    if (getPlaybackState().activeId === previewPlaybackId) stopBrowserSpeech()
+  }, [previewPlaybackId, thread.mode])
 
   const save = useCallback((value: string, source?: AssistantThread['source']) => {
     rememberDraft(thread.id, value)
@@ -245,7 +251,11 @@ function Conversation({ thread }: { thread: AssistantThread }) {
           close: async id => setInlinePracticeId(current => current === id ? undefined : current),
           busy: busy || deleting, connection: speechSetup?.connection, loading: !speechSetup || localSpeechSetup === 'loading',
         }}
-        onPractice={phrase => void action(() => selectPracticePhrase(thread.id, phrase))}
+        onPractice={phrase => {
+          if (busy) { setError('Stop or finish the current reply before practicing.'); return }
+          playBrowserSpeech(previewPlaybackId, phrase.text, phrase.locale, thread.speechRate)
+          void action(() => selectPracticePhrase(thread.id, phrase))
+        }}
         onExplain={phrase => {
           if (busy) { setError('Stop or finish the current reply before requesting an explanation.'); return }
           setSending(true)
@@ -256,7 +266,11 @@ function Conversation({ thread }: { thread: AssistantThread }) {
         }} />)}
       {thread.mode === 'shadow' && practicePhrase && <PhrasePractice key={JSON.stringify([practicePhrase, thread.practiceInput ?? 'listen-repeat', thread.speechFeedback ?? true, speechSetup?.connection?.revision ?? 'missing'])}
         thread={thread} phrase={practicePhrase} busy={busy || deleting} speechConnection={speechSetup?.connection} connectionLoading={!speechSetup || localSpeechSetup === 'loading'}
-        onClose={async () => { await selectPracticePhrase(thread.id); input.current?.focus() }} />}
+        onClose={async () => {
+          if (getPlaybackState().activeId === previewPlaybackId) stopBrowserSpeech()
+          await selectPracticePhrase(thread.id)
+          input.current?.focus()
+        }} />}
       {retryUser && !busy && <button className="button secondary" onClick={() => {
         setSending(true)
         void action(() => sendAssistantTurn(thread.id, { text: retryUser.text, source: retryUser.source, intent: retryUser.intent, preserveDraft: true }))

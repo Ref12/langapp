@@ -13,7 +13,9 @@ interface PlaybackRequest {
   utterance?: SpeechSynthesisUtterance
   clearDiscovery?: () => void
   playbackTimer?: ReturnType<typeof setTimeout>
+  finish?: (outcome: PlaybackOutcome) => void
 }
+export type PlaybackOutcome = { status: 'completed' | 'cancelled' } | { status: 'error'; error: string }
 
 const voiceWaitMs = 3000
 const voiceRecheckMs = 100
@@ -187,7 +189,9 @@ function cancelCurrent() {
   const request = current
   current = undefined
   if (request) clearRequest(request)
-  return cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined))
+  const error = cancelSynthesis(request?.synthesis ?? (typeof window !== 'undefined' ? window.speechSynthesis : undefined))
+  request?.finish?.(error ? { status: 'error', error } : { status: 'cancelled' })
+  return error
 }
 
 export function stopBrowserSpeech() {
@@ -203,7 +207,9 @@ function fail(request: PlaybackRequest, error: string) {
   current = undefined
   clearRequest(request)
   const cancelError = cancelSynthesis(request.synthesis)
-  if (version === generation) publish({ error: cancelError ? `${error} ${cancelError}` : error })
+  const detail = cancelError ? `${error} ${cancelError}` : error
+  if (version === generation) publish({ error: detail })
+  request.finish?.({ status: 'error', error: detail })
 }
 
 function missingVoiceMessage(voices: SpeechSynthesisVoice[], locale: SpeechLocale) {
@@ -243,6 +249,7 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
     current = undefined
     clearRequest(request)
     publish({})
+    request.finish?.({ status: 'completed' })
   }
   utterance.onerror = () => {
     fail(request, voiceKind === 'online'
@@ -261,24 +268,39 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
   }
 }
 
-export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate: number = defaultSpeechRate ?? 1) {
+export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate?: number) {
+  beginBrowserSpeech(id, text, locale, rate)
+}
+
+export function playBrowserSpeechToEnd(id: string, text: string, locale: SpeechLocale, rate?: number): Promise<PlaybackOutcome> {
+  return new Promise(resolve => beginBrowserSpeech(id, text, locale, rate, resolve))
+}
+
+function beginBrowserSpeech(
+  id: string, text: string, locale: SpeechLocale, rate: number = defaultSpeechRate ?? 1,
+  finish?: (outcome: PlaybackOutcome) => void,
+) {
+  const rejectPlayback = (error: string) => {
+    publish({ error })
+    finish?.({ status: 'error', error })
+  }
   const version = ++generation
   const cancelError = cancelCurrent()
-  if (version !== generation) return
+  if (version !== generation) { finish?.({ status: 'cancelled' }); return }
   if (cancelError) {
-    publish({ error: cancelError })
+    rejectPlayback(cancelError)
     return
   }
   if (!text.trim() || text.length > 8000) {
-    publish({ error: 'Choose a non-empty passage of at most 8,000 characters to hear.' })
+    rejectPlayback('Choose a non-empty passage of at most 8,000 characters to hear.')
     return
   }
   const synthesis = typeof window !== 'undefined' ? window.speechSynthesis : undefined
   if (!synthesis || typeof SpeechSynthesisUtterance === 'undefined') {
-    publish({ error: 'Speech playback is not available in this browser.' })
+    rejectPlayback('Speech playback is not available in this browser.')
     return
   }
-  const request: PlaybackRequest = { id, locale, synthesis }
+  const request: PlaybackRequest = { id, locale, synthesis, finish }
   current = request
   const deadline = performance.now() + voiceWaitMs
   let expired = false

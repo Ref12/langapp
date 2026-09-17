@@ -5,7 +5,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 
 | Handoff | State |
 | --- | --- |
-| [Assistant and browser voices](assistant-handoff.md) | Complete, included in the accompanying commit: compact inline Conversation practice with Submit/Cancel and persistent phrase-level feedback; configurable defaultSpeechRate JSONC import, playback, and new-chat defaults. All agents finished; 581 targeted tests and root build passed. |
+| [Assistant and browser voices](assistant-handoff.md) | Complete, included in the accompanying commit: Practice plays its reference phrase first and sounds a short recording-start cue. All agents finished; 455 targeted tests and root build passed. Earlier inline practice, Azure/local feedback, and configurable speech speed are committed as 1272492. |
 
 ## Maintaining this folder
 

@@ -9,6 +9,8 @@ import * as assessment from '../../core/assistant/speech-assessment'
 import type { SpeechConnection } from '../../core/assistant/speech-contracts'
 import { clearUnsavedDrafts } from '../../core/assistant/drafts'
 import { stopBrowserSpeech } from '../../core/assistant/speech'
+import * as playback from '../../core/assistant/speech'
+import * as cues from '../../core/assistant/recording-cue'
 
 const phrase = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', romanization: 'ni hao', meaning: 'hello' } as const
 const connection: SpeechConnection = { id: 'assistant-speech', provider: 'azure', region: 'eastus', apiKey: 'fake-speech-key',
@@ -19,8 +21,21 @@ const azureStart = vi.fn<typeof assessment.startAzurePracticeCapture>()
 const cancel = vi.fn()
 const stop = vi.fn()
 let threadId: string
+const playCue = vi.fn<() => Promise<void>>()
+const cancelCue = vi.fn<() => Promise<void>>()
+
+function mockPracticePlayback() {
+  vi.spyOn(playback, 'playBrowserSpeechToEnd').mockResolvedValue({ status: 'completed' })
+  vi.stubGlobal('AudioContext', class {})
+  playCue.mockReset().mockResolvedValue()
+  cancelCue.mockReset().mockResolvedValue()
+  vi.spyOn(cues, 'prepareRecordingCue').mockImplementation(() => ({
+    play: playCue, cancel: cancelCue, takeContext: () => new AudioContext(),
+  }))
+}
 
 beforeEach(async () => {
+  mockPracticePlayback()
   clearUnsavedDrafts()
   vi.stubEnv('DEV_LOCAL_SETTINGS', 'false')
   vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
@@ -48,9 +63,10 @@ beforeEach(async () => {
     listener({ phase: 'starting', transcript: '' })
     return { cancel, stop }
   })
-  azureStart.mockReset().mockImplementation((_connection, _reference, listener) => {
+  azureStart.mockReset().mockImplementation((_connection, _reference, listener, options) => {
     report = listener
     listener({ phase: 'starting', transcript: '' })
+    void options?.beforeListening?.().then(() => listener({ phase: 'listening', transcript: '' }))
     return { cancel, stop }
   })
   vi.spyOn(capture, 'startSpeechCapture').mockImplementation(start)
@@ -60,12 +76,28 @@ afterEach(() => { cleanup(); stopBrowserSpeech(); vi.restoreAllMocks(); vi.unstu
 
 async function begin(name = 'Start speaking') {
   await waitFor(() => expect(screen.getByRole('button', { name })).toBeEnabled())
-  fireEvent.click(screen.getByRole('button', { name }))
+  await act(async () => { fireEvent.click(screen.getByRole('button', { name })) })
 }
 
 describe('automatic translation practice', () => {
+  it('previews a Shadow phrase when Practice is clicked, without starting a recording on panel mount', async () => {
+    await updateThread(threadId, { practiceInput: 'listen-repeat' })
+    await db.assistantMessages.add({ id: 'shadow-reply', threadId, role: 'assistant', sequence: 0, text: '', blocks: [phrase],
+      mode: 'shadow', intent: 'shadow', status: 'completed', createdAt: 1 })
+    const preview = vi.spyOn(playback, 'playBrowserSpeech').mockImplementation(() => {})
+    render(<App />)
+    const reply = await screen.findByRole('article', { name: 'Assistant reply' })
+    expect(preview).not.toHaveBeenCalled()
+    fireEvent.click(within(reply).getByRole('button', { name: 'Practice' }))
+    expect(preview).toHaveBeenCalledWith(`practice-preview-${threadId}`, phrase.text, phrase.locale, 1)
+    expect(start).not.toHaveBeenCalled()
+    expect(azureStart).not.toHaveBeenCalled()
+    expect(playCue).not.toHaveBeenCalled()
+  })
+
   it('connects actual browser recognition callbacks to one automatic local comparison', async () => {
     vi.restoreAllMocks()
+    mockPracticePlayback()
     type NativeRecognition = InstanceType<NonNullable<Window['SpeechRecognition']>>
     const instances: NativeRecognition[] = []
     class Recognition implements NativeRecognition {
@@ -88,7 +120,7 @@ describe('automatic translation practice', () => {
     await begin()
     expect(instances).toHaveLength(1)
     expect(instances[0]).toMatchObject({ lang: 'zh-CN', interimResults: true, continuous: false, maxAlternatives: 1 })
-    act(() => instances[0].onstart?.())
+    await act(async () => instances[0].onstart?.())
     expect(screen.getByText('Listening...')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Stop capture' }))
     const bubble = await screen.findByRole('article', { name: 'Practice result' })
@@ -142,7 +174,8 @@ describe('automatic translation practice', () => {
     await db.speechConnections.put(connection)
     render(<App />)
     await begin()
-    expect(azureStart).toHaveBeenCalledWith(connection, phrase.text, expect.any(Function))
+    expect(azureStart).toHaveBeenCalledWith(connection, phrase.text, expect.any(Function),
+      { automaticAssessment: true, audioContext: expect.any(AudioContext), beforeListening: expect.any(Function) })
     expect(start).not.toHaveBeenCalled()
     act(() => report({ phase: 'assessing', transcript: phrase.text }))
     expect(screen.getByText('Assessing...')).toBeInTheDocument()
