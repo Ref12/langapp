@@ -5,6 +5,7 @@ import { moveReading, openStory, savePreferences } from '../core/learning'
 import type { ReadingMode, Segment, Story } from '../core/model'
 import { EmptyState, PageHeading, WordCard, type PageProps } from '../components/shared'
 import { SnippetActions } from '../components/assistant/SnippetActions'
+import { MandarinWord } from '../components/MandarinWord'
 
 export function Library({ workspace }: PageProps) {
   const [query, setQuery] = useState('')
@@ -47,7 +48,7 @@ function Passage({ story, index, ...props }: PageProps & { story: Story; index: 
         setSelected(item.id)
         if (window.innerWidth <= 760) requestAnimationFrame(() => help.current?.scrollIntoView({ block: 'nearest' }))
       }}>
-      {target ? <ruby lang="zh-Hans">{segment.text ?? item.native}{workspace.preferences.pinyin && <rt>{item.pinyin}</rt>}</ruby> : segment.text ?? item.meaning}
+      {target ? <MandarinWord word={item} text={segment.text} state={workspace.words.find(state => state.wordId === item.id)} pinyin={workspace.preferences.pinyin} /> : segment.text ?? item.meaning}
     </button>
   }
   return <div className="reader-layout">
@@ -76,7 +77,7 @@ export function Reader(props: PageProps & { story: Story }) {
     <div className="reader-toolbar">
       <div className="segmented" role="group" aria-label="Reading mode">{(['source', 'weave', 'target'] as ReadingMode[]).map(mode => <button key={mode} disabled={busy} aria-pressed={workspace.preferences.readingMode === mode}
         onClick={() => void run(() => savePreferences({ readingMode: mode }))}>{mode === 'source' ? 'English' : mode === 'target' ? 'Mandarin' : 'Weave'}</button>)}</div>
-      <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Show pinyin</label>
+      <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Pinyin for unfamiliar words</label>
       <span className="small muted">{progress?.completed.length ?? 0} of {story.passages.length} passages read</span>
     </div>
     {progress ? <Passage key={`${story.id}:${progress.passage}`} {...props} index={progress.passage} />

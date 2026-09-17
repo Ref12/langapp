@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../../core/database'
 import { aiApiTypeSchema, aiConnectionInputSchema, type AIAPIType, type AIConnection } from '../../core/assistant/contracts'
 import { LOCAL_SETTINGS_FILE } from '../../core/local-settings-contracts'
 import { removeAIConnection, saveAIConnection } from '../../core/assistant/store'
 import { testAIConnection } from '../../core/ai/provider'
+import { LocalAISetupContext } from './local-ai-setup-context'
 
 function ConnectionForm({ connection }: { connection?: AIConnection }) {
   const [apiType, setApiType] = useState<AIAPIType>(connection?.apiType ?? 'chat-completions')
@@ -82,10 +83,17 @@ function ConnectionForm({ connection }: { connection?: AIConnection }) {
 }
 
 export function AIConnectionSettings() {
-  const connections = useLiveQuery(() => db.aiConnections.toArray(), [])
+  const localSetup = useContext(LocalAISetupContext)
+  const connections = useLiveQuery<AIConnection[] | undefined>(() => localSetup === 'loading' ? undefined : db.aiConnections.toArray(), [localSetup])
+  if (localSetup === 'loading') return <section aria-label="AI connection settings"><p role="status">Loading local Assistant configuration...</p></section>
   if (!connections) return <p role="status">Loading AI connection settings...</p>
   const connection = connections.find(item => item.id === 'assistant')
   return <section aria-label="AI connection settings">
+    {(localSetup === 'loaded' || localSetup === 'error') && <p className={localSetup === 'error' ? 'small connection-error' : 'small muted'} role={localSetup === 'error' ? 'alert' : 'status'}>
+      {localSetup === 'loaded'
+        ? `Loaded the AI connection from ${LOCAL_SETTINGS_FILE} and saved it on this device. No AI request was sent.`
+        : `Local AI setup could not be completed. Check ${LOCAL_SETTINGS_FILE} and browser storage, then reload, or configure the connection below.`}
+    </p>}
     <p className="small muted" role="status">{connection ? `Saved AI connection: ${connection.model}` : 'No AI connection is saved on this device.'}</p>
     {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true' && <p className="small muted">Local development can load aiConnection from {LOCAL_SETTINGS_FILE} on startup when no connection is saved. To apply changed file settings, remove the saved connection and reload. Remove aiConnection from the file too if you want AI to stay unconfigured.</p>}
     <ConnectionForm key={connection?.revision ?? 'unconfigured'} connection={connection} />

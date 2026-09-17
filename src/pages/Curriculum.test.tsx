@@ -61,9 +61,19 @@ describe('curriculum experience', () => {
     const lesson = curriculumLessons[0]
     await screen.findByRole('heading', { name: lesson.title })
     const grammar = curriculum.grammar.find(item => item.id === lesson.curriculum!.grammarIds[0])!
+    await go(`lesson/${lesson.id}/${lesson.wordIds.length + 1}`)
+    await screen.findByRole('heading', { name: grammar.ds })
     expect(screen.getByText(grammar.note)).toBeInTheDocument()
+    expect(screen.queryByText(grammar.examples[0].target)).not.toBeInTheDocument()
+    await user.click(screen.getByRole('link', { name: 'Next' }))
+    await screen.findByText(grammar.examples[0].target)
     expect(screen.getByText(grammar.examples[0].target)).toBeInTheDocument()
+    expect(screen.queryByText(grammar.examples[1].target)).not.toBeInTheDocument()
+    await user.click(screen.getByRole('link', { name: 'Next' }))
+    await screen.findByText(grammar.examples[1].target)
+    expect(screen.queryByText(grammar.examples[0].target)).not.toBeInTheDocument()
     expect(await db.words.count()).toBe(0)
+    await user.click(screen.getByText('Lesson overview and references'))
     await user.click(screen.getByRole('button', { name: 'Start lesson practice' }))
     await screen.findByRole('heading', { name: 'What does this word mean?' })
     const session = (await db.sessions.toArray())[0]
@@ -88,6 +98,45 @@ describe('curriculum experience', () => {
     expect(screen.getByText('Not assessed', { exact: true })).toBeInTheDocument()
     await waitFor(async () => expect((await db.lessons.get(lesson.id))?.completedAt).toBeDefined())
   }, 15000)
+
+  it('introduces one word per page, supports previous and reload, and does not award progress', async () => {
+    const user = userEvent.setup()
+    const lesson = curriculumLessons[0]
+    const view = render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    await go(`lesson/${lesson.id}`)
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[0]).native })
+    expect(document.querySelectorAll('.word-card')).toHaveLength(1)
+    expect(document.querySelector('.word-card rt')).toHaveTextContent(getWord(lesson.wordIds[0]).pinyin)
+    expect(screen.getByRole('button', { name: 'Previous' })).toBeDisabled()
+    await user.click(screen.getByRole('link', { name: 'Next word' }))
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[1]).native })
+    expect(window.location.hash).toBe(`#lesson/${lesson.id}/2`)
+    expect(document.querySelectorAll('.word-card')).toHaveLength(1)
+    view.unmount()
+    render(<App />)
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[1]).native })
+    await user.click(screen.getByRole('link', { name: 'Previous' }))
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[0]).native })
+    expect(await db.words.count()).toBe(0)
+    expect(await db.lessons.count()).toBe(0)
+    const grammarPages = lesson.curriculum.grammarIds.reduce((count, id) => count + 1 + curriculum.grammar.find(grammar => grammar.id === id)!.examples.length, 0)
+    await go(`lesson/${lesson.id}/${lesson.wordIds.length + grammarPages + 1}`)
+    await screen.findByRole('heading', { name: 'Try the reading practice.' })
+    expect(document.querySelector('.word-card')).toBeNull()
+    expect(screen.getByRole('button', { name: 'Start lesson practice' })).toBeEnabled()
+  })
+
+  it('rejects invalid lesson page links instead of silently showing the wrong word', async () => {
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    for (const page of ['0', '-1', '999', '1.5', 'word']) {
+      await go(`lesson/${curriculumLessons[0].id}/${page}`)
+      await screen.findByRole('heading', { name: 'This lesson page is not available' })
+      expect(document.querySelector('.word-card')).toBeNull()
+    }
+    expect(await db.words.count()).toBe(0)
+  })
 
   it('searches spaced pinyin and keeps same-form curriculum senses separate from starter examples', async () => {
     const user = userEvent.setup()

@@ -7,6 +7,7 @@ import { useRoute } from './core/routing'
 import { lessons, stories } from './data/mandarin'
 import { curriculumLevels } from './data/curriculum'
 import { EmptyState, type PageProps } from './components/shared'
+import { MobileNavigation } from './components/MobileNavigation'
 import { Overview } from './pages/Overview'
 import { Library, Reader } from './pages/Reading'
 import { LessonDetail, Lessons } from './pages/Lessons'
@@ -36,7 +37,7 @@ function NotFound() {
 }
 
 function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: string; returnRoute: string }) {
-  const [page, id] = route.split('/')
+  const [page, id, lessonPage] = route.split('/')
   if (page === 'overview') return <Overview {...props} />
   if (page === 'library') return <Library {...props} />
   if (page === 'reader') {
@@ -50,7 +51,7 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
   }
   if (page === 'lesson') {
     const lesson = lessons.find(item => item.id === id)
-    return lesson ? <LessonDetail {...props} lesson={lesson} /> : <NotFound />
+    return lesson ? <LessonDetail {...props} lesson={lesson} page={lessonPage} /> : <NotFound />
   }
   if (page === 'practice' && id) {
     const session = props.workspace.sessions.find(item => item.id === id)
@@ -122,16 +123,8 @@ function WorkspaceApp() {
   const due = workspace.words.filter(word => word.dueAt <= now).length
   const busy = pending > 0
   const currentPage = <CurrentPage key={route} route={route} returnRoute={returnRoute.current} workspace={workspace} busy={busy} now={now} run={run} />
-  return <>
-    <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
-    <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
-      <aside className="sidebar" aria-label="Workspace navigation">
-        {assistant && <AssistantSidebar selectedId={route.split('/')[1]} collapsed={collapsed}
-          toggle={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))} returnRoute={returnRoute.current} />}
-        <div className="workspace-navigation">
-        <div className="sidebar-header"><a className="brand" href="#overview" aria-label="LinguaWeave home"><span className="brand-mark">lw.</span><span className="brand-name">linguaweave</span></a>
-          <button className="icon-button sidebar-toggle" disabled={busy} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'} aria-expanded={!collapsed}
-            onClick={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))}>{collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button></div>
+  const practicing = page === 'practice' && workspace.sessions.some(session => session.id === route.split('/')[1] && session.status === 'active')
+  const workspaceNavigation = <>
         <p className="workspace-label">YOUR WORKSPACE</p>
         <nav className="primary-nav" aria-label="Main navigation">{navigation.map(item => <a href={`#${item.id}`} key={item.id} aria-current={section === item.id ? 'page' : undefined} title={item.label}>
           <item.icon size={19} aria-hidden="true" /><span>{item.label}</span>{item.id === 'practice' && due > 0 && <small className="nav-count">{due}</small>}
@@ -139,15 +132,29 @@ function WorkspaceApp() {
         <div className="sidebar-bottom"><div className="workspace-note"><ShieldCheck size={18} /><p>Your own pace.<br />Your own space.<small>Saved on this device.</small></p></div>
           <a className="profile" href="#settings"><span className="avatar">{preferences.name.slice(0, 1).toUpperCase()}</span><span><strong>{preferences.name}</strong><small>English / Mandarin</small></span></a>
           <a className="legacy-link" href="./v1/">Original app / v1</a></div>
+        </>
+  return <>
+    <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); main.current?.focus() }}>Skip to content</a>
+    <div className={`app-shell ${collapsed ? 'sidebar-collapsed' : ''} ${assistant ? 'assistant-shell' : ''}`}>
+      <aside className="sidebar" aria-label="Workspace navigation">
+        {assistant && <AssistantSidebar selectedId={route.split('/')[1]} collapsed={collapsed}
+          toggle={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))} returnRoute={returnRoute.current} />}
+        <div className="workspace-navigation">
+          <div className="sidebar-header"><a className="brand" href="#overview" aria-label="LinguaWeave home"><span className="brand-mark">lw.</span><span className="brand-name">linguaweave</span></a>
+            <button className="icon-button sidebar-toggle" disabled={busy} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'} aria-expanded={!collapsed}
+              onClick={() => void run(() => savePreferences({ sidebarCollapsed: !collapsed }))}>{collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button></div>
+          {workspaceNavigation}
         </div>
       </aside>
-      <div className="workspace"><header className="topbar"><div className="breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>{label}</strong></div>
+      <div className="workspace"><header className="topbar"><div className="topbar-leading">
+        <MobileNavigation route={route}>{workspaceNavigation}</MobileNavigation>
+        <div className="breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>{label}</strong></div></div>
         <div className="topbar-actions"><span className="language-pill"><span lang="zh-Hans">&#x4E2D;</span> Mandarin</span>
           <button className="icon-button" disabled={busy} aria-label={`Switch to ${preferences.theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={() => void run(() => savePreferences({ theme: preferences.theme === 'dark' ? 'light' : 'dark' }))}>{preferences.theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}</button>
           <a href="#settings" className="icon-button" aria-label="Workspace settings" aria-current={page === 'settings' ? 'page' : undefined}><SettingsIcon size={20} /></a>
         </div></header>
-        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : undefined}>
+        <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
           {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true'
             ? <LocalAIConnectionSetup>{currentPage}</LocalAIConnectionSetup>

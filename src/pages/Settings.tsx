@@ -24,8 +24,8 @@ export function Settings({ workspace, busy, run }: PageProps) {
         const theme = event.target.value === 'light' ? 'light' : 'dark'
         void run(() => savePreferences({ theme }))
       }}><option value="dark">Dark</option><option value="light">Light</option></select></label>
-      <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Show pinyin in reading and lessons</label>
-      <p className="small muted">Practice hides pronunciation until you reveal the answer. Revealing is recorded as assistance.</p>
+      <label className="toggle"><input type="checkbox" disabled={busy} checked={workspace.preferences.pinyin} onChange={event => void run(() => savePreferences({ pinyin: event.target.checked }))} /> Pinyin for unfamiliar words</label>
+      <p className="small muted">Vocabulary in lessons, meaning practice, reading, and the dictionary shows pinyin until it reaches Learned: unaided correct answers on three separate days across both recognition activities. Character-selection questions hide pinyin until the answer is revealed or checked. A miss or revealed answer brings pronunciation support back. Revealing an answer is still recorded as assistance.</p>
     </section>
     <VoiceSettings workspace={workspace} busy={busy} run={run} />
     <AIConnectionSettings />
