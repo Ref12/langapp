@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Check, Copy } from 'lucide-react'
 import type { AssistantMessage } from '../../core/assistant/contracts'
 import { messageText } from '../../core/assistant/message-text'
@@ -8,7 +8,7 @@ export function MessageActions({ message }: { message: AssistantMessage }) {
   const [error, setError] = useState('')
   const timer = useRef<ReturnType<typeof setTimeout>>()
   useEffect(() => () => clearTimeout(timer.current), [])
-  const text = messageText(message)
+  const text = useMemo(() => messageText(message), [message])
   if (message.status !== 'completed' || !text) return null
   return <div className="message-action-area" data-assistant-exclude>
     <div className="message-actions">

@@ -1,4 +1,4 @@
-import { speechVoicePreferencesSchema, type BrowserVoicePreference, type SpeechLocale, type SpeechVoicePreferences } from './contracts'
+import { speechRateSchema, speechVoicePreferencesSchema, type BrowserVoicePreference, type SpeechLocale, type SpeechRate, type SpeechVoicePreferences } from './contracts'
 
 interface PlaybackState {
   activeId?: string
@@ -24,6 +24,11 @@ let generation = 0
 const listeners = new Set<() => void>()
 let voiceCache = new WeakMap<SpeechSynthesis, Map<SpeechLocale, string>>()
 let voicePreferences: SpeechVoicePreferences = {}
+let defaultSpeechRate: SpeechRate | undefined
+
+export function setDefaultSpeechRate(rate?: SpeechRate) {
+  defaultSpeechRate = speechRateSchema.optional().parse(rate)
+}
 
 export interface BrowserVoiceState {
   voices: SpeechSynthesisVoice[]
@@ -256,7 +261,7 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
   }
 }
 
-export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate = 1) {
+export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate: number = defaultSpeechRate ?? 1) {
   const version = ++generation
   const cancelError = cancelCurrent()
   if (version !== generation) return

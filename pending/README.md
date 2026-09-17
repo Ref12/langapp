@@ -5,7 +5,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 
 | Handoff | State |
 | --- | --- |
-| [Assistant and browser voices](assistant-handoff.md) | Assistant improvements, voice caching, and persistent voice selectors are complete. This handoff accompanies the user-authorized implementation commit. No implementation agent is still working. |
+| [Assistant and browser voices](assistant-handoff.md) | Complete, included in the accompanying commit: compact inline Conversation practice with Submit/Cancel and persistent phrase-level feedback; configurable defaultSpeechRate JSONC import, playback, and new-chat defaults. All agents finished; 581 targeted tests and root build passed. |
 
 ## Maintaining this folder
 

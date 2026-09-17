@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, playBrowserSpeech, setSpeechVoicePreferences, stopBrowserSpeech, subscribePlayback, watchBrowserVoices } from './speech'
+import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, playBrowserSpeech, setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech, subscribePlayback, watchBrowserVoices } from './speech'
+import type { SpeechRate } from './contracts'
 
 class Utterance {
   constructor(public text: string) {}
@@ -53,16 +54,78 @@ beforeEach(() => {
   })
   stopBrowserSpeech()
   setSpeechVoicePreferences()
+  setDefaultSpeechRate()
   clearVoiceCache()
   synthesis.cancel.mockClear()
 })
 
 afterEach(() => {
   stopBrowserSpeech()
+  setDefaultSpeechRate()
   expectClean()
   vi.unstubAllGlobals()
   vi.restoreAllMocks()
   vi.useRealTimers()
+})
+
+describe('default Mandarin playback speed', () => {
+  it.each([0.5, 0.75, 1, 1.25] as const)('uses the configured default %s only for Mandarin, without playing on configuration', rate => {
+    setDefaultSpeechRate(rate)
+    expect(synthesis.getVoices).not.toHaveBeenCalled()
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    expect(synthesis.cancel).not.toHaveBeenCalled()
+    playBrowserSpeech('mandarin', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(rate)
+    playBrowserSpeech('english', 'Tea', 'en-US')
+    expect(synthesis.speak.mock.calls[1][0].rate).toBe(1)
+  })
+
+  it('keeps the normal unconfigured fallback and restores it when the preference is removed', () => {
+    playBrowserSpeech('unconfigured', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(1)
+    setDefaultSpeechRate(0.5)
+    setDefaultSpeechRate()
+    playBrowserSpeech('cleared', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[1][0].rate).toBe(1)
+  })
+
+  it('honors explicit conversation rates and leaves English normal even with an explicit slower rate', () => {
+    setDefaultSpeechRate(0.75)
+    playBrowserSpeech('conversation', '茶', 'zh-Hans', 1.25)
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(1.25)
+    playBrowserSpeech('normal-conversation', '茶', 'zh-Hans', 1)
+    expect(synthesis.speak.mock.calls[1][0].rate).toBe(1)
+    playBrowserSpeech('english-conversation', 'Tea', 'en-US', 0.5)
+    expect(synthesis.speak.mock.calls[2][0].rate).toBe(1)
+  })
+
+  it('applies the same configured default to online browser voices', () => {
+    synthesis.getVoices.mockReturnValue([onlineMandarin, onlineEnglish])
+    setDefaultSpeechRate(0.75)
+    playBrowserSpeech('mandarin', '茶', 'zh-Hans')
+    vi.advanceTimersByTime(3000)
+    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ voice: onlineMandarin, rate: 0.75 })
+    playBrowserSpeech('english', 'Tea', 'en-US')
+    vi.advanceTimersByTime(3000)
+    expect(synthesis.speak.mock.calls[1][0]).toMatchObject({ voice: onlineEnglish, rate: 1 })
+  })
+
+  it('does not restart, cancel, or change active playback when the default changes', () => {
+    playBrowserSpeech('active', '茶', 'zh-Hans', 1.25)
+    synthesis.cancel.mockClear()
+    setDefaultSpeechRate(0.5)
+    expect(synthesis.speak).toHaveBeenCalledTimes(1)
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(1.25)
+    expect(synthesis.cancel).not.toHaveBeenCalled()
+  })
+
+  it.each([0, 0.6, NaN, Infinity, -1, 2, '0.75', null])('rejects invalid default rates without clamping (case %#)', rate => {
+    setDefaultSpeechRate(0.75)
+    expect(() => setDefaultSpeechRate(rate as SpeechRate)).toThrow()
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    playBrowserSpeech('unchanged', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(0.75)
+  })
 })
 
 describe('installed-local-voice language matching', () => {

@@ -1,15 +1,19 @@
-import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState, type FormEvent } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowLeft, MessageCircle, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, Trash2, X } from 'lucide-react'
 import { db } from '../core/database'
 import { normalizeSearch } from '../core/search'
 import { navigate } from '../core/routing'
-import { MAX_DRAFT_LENGTH, type AssistantMessage, type AssistantThread, type SpeechBlock } from '../core/assistant/contracts'
-import { createConversation, deleteThread, expireAssistantRuns, saveDraft, updateThread } from '../core/assistant/store'
+import { MAX_DRAFT_LENGTH, practiceInputSchema, type AssistantMessage, type AssistantThread, type SpeechBlock } from '../core/assistant/contracts'
+import { createConversation, deleteThread, expireAssistantRuns, saveDraft, selectPracticePhrase, updateThread } from '../core/assistant/store'
 import { cancelAssistantRun, sendAssistantTurn } from '../core/assistant/runtime'
 import { AssistantText } from '../components/assistant/AssistantText'
 import { MessageActions } from '../components/assistant/MessageActions'
 import { HearButton, SnippetActions } from '../components/assistant/SnippetActions'
+import { PhrasePractice } from '../components/assistant/PhrasePractice'
+import { PracticeResultBubble } from '../components/assistant/PracticeResultBubble'
+import { LocalSpeechSetupContext, LocalSpeechRateSetupContext } from '../components/assistant/local-ai-setup-context'
+import type { SpeechConnection } from '../core/assistant/speech-contracts'
 import { registerDraftEditor } from '../core/assistant/draft-actions'
 import { appendContextText, finishDraftSave, getDraftFailures, getUnsavedDraft, rememberDraft } from '../core/assistant/drafts'
 
@@ -19,6 +23,7 @@ function ConversationList({ selectedId, collapsed = false, expand, returnRoute =
   const threads = useLiveQuery(() => db.assistantThreads.orderBy('updatedAt').reverse().toArray(), [])
   const [query, setQuery] = useState('')
   const [pending, setPending] = useState(false)
+  const speedSetup = useContext(LocalSpeechRateSetupContext)
   const [error, setError] = useState('')
   const search = useRef<HTMLInputElement>(null)
   const focusSearch = useRef(false)
@@ -30,11 +35,10 @@ function ConversationList({ selectedId, collapsed = false, expand, returnRoute =
     }
   }, [collapsed])
   return <div className={`conversation-picker ${collapsed ? 'picker-collapsed' : ''}`}>
-    <a href={`#${returnRoute.startsWith('conversation') ? 'overview' : returnRoute}`} className="back-link" title="Back to workspace"><ArrowLeft size={18} /><span>Back to workspace</span></a>
     <div className="conversation-picker-heading"><h2>Assistant</h2>{expand && <button className="icon-button" title={collapsed ? 'Expand conversations' : 'Collapse conversations'} aria-label={collapsed ? 'Expand conversations' : 'Collapse conversations'} onClick={expand}>
       {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
     </button>}</div>
-    <button className="button primary" disabled={pending} title="New conversation" aria-label="New conversation" onClick={() => {
+    <button className="button primary" disabled={pending || speedSetup === 'loading'} title="New conversation" aria-label="New conversation" onClick={() => {
       setPending(true)
       setError('')
       void createConversation(undefined, returnRoute).then(id => navigate(`conversation/${id}`),
@@ -62,15 +66,41 @@ export function AssistantSidebar({ selectedId, collapsed, toggle, returnRoute }:
   return <div className="assistant-desktop-picker"><ConversationList selectedId={selectedId} collapsed={collapsed} expand={toggle} returnRoute={thread?.returnRoute ?? returnRoute} /></div>
 }
 
-function Message({ message, thread, onExplain, onRepeat }: {
-  message: AssistantMessage; thread: AssistantThread; onExplain: (phrase: SpeechBlock) => void; onRepeat: (phrase: SpeechBlock) => void
+interface InlinePracticeControls {
+  activeId?: string
+  activate: (id: string) => void
+  close: (id: string) => Promise<void>
+  busy: boolean
+  connection?: SpeechConnection
+  loading: boolean
+}
+
+function ConversationPhraseActions({ message, blockIndex, phrase, thread, controls }: {
+  message: AssistantMessage; blockIndex: number; phrase: SpeechBlock; thread: AssistantThread; controls: InlinePracticeControls
+}) {
+  const key = JSON.stringify([message.id, blockIndex, phrase, thread.practiceInput ?? 'listen-repeat',
+    thread.speechFeedback ?? true, controls.connection?.revision])
+  return <PhrasePractice key={key} thread={thread} phrase={phrase} busy={controls.busy}
+    speechConnection={controls.connection} connectionLoading={controls.loading}
+    inline={{ message, blockIndex, active: controls.activeId === key, activate: () => controls.activate(key) }}
+    onClose={() => controls.close(key)} />
+}
+
+function Message({ message, thread, onExplain, onPractice, inlinePractice }: {
+  message: AssistantMessage; thread: AssistantThread; onExplain: (phrase: SpeechBlock) => void; onPractice: (phrase: SpeechBlock) => void
+  inlinePractice: InlinePracticeControls
 }) {
   if (message.role === 'event') return <p className="assistant-mode-marker">{message.text}</p>
+  if (message.role === 'practice') return <PracticeResultBubble message={message} rate={thread.speechRate} romanization={thread.romanization} />
   return <article className={`assistant-message message-${message.role}`} aria-label={message.role === 'user' ? 'Your message' : 'Assistant reply'}>
     <p className="eyebrow">{message.role === 'user' ? 'YOU' : 'ASSISTANT'}{message.mode === 'shadow' ? ' / SHADOW' : ''}</p>
     {message.source && <details className="message-source"><summary>{message.source.title}</summary><blockquote>{message.source.text}</blockquote>
       <a className="text-link" href={`#${message.source.route}`}>Open source</a></details>}
     {message.role === 'user' && <p className="user-message-text">{message.text}</p>}
+    {message.practice && <details className="message-source"><summary>Translation practice / reviewed speech transcript</summary>
+      <blockquote lang="zh-Hans">{message.practice.phrase.text}</blockquote>
+      <p className="small">Feedback compares wording, not pronunciation.</p>
+    </details>}
     {message.blocks.map((block, index) => block.type === 'text'
       ? <div key={index}><AssistantText markdown={block.markdown} /></div>
       : <div className="speech-block" key={index}>
@@ -78,10 +108,12 @@ function Message({ message, thread, onExplain, onRepeat }: {
         {thread.romanization && block.romanization && <p className="pinyin" data-assistant-exclude>{block.romanization}</p>}
         {block.meaning && <p className="small muted">{block.meaning}</p>}
         {block.locale === 'zh-Hans'
-          ? <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
-            rate={thread.speechRate} onPractice={() => onRepeat(block)} />
+          ? thread.mode === 'conversation' && message.role === 'assistant' && message.status === 'completed'
+            ? <ConversationPhraseActions message={message} blockIndex={index} phrase={block} thread={thread} controls={inlinePractice} />
+            : <SnippetActions source={{ text: block.text, meaning: block.meaning, locale: block.locale, title: 'Assistant phrase', route: `conversation/${thread.id}` }}
+            rate={thread.speechRate} onPractice={() => onPractice(block)} />
           : <HearButton text={block.text} locale={block.locale} />}
-        {message.mode === 'shadow' && block.locale === 'zh-Hans' && <div className="button-row shadow-actions" data-assistant-exclude>
+        {thread.mode === 'shadow' && message.mode === 'shadow' && block.locale === 'zh-Hans' && <div className="button-row shadow-actions" data-assistant-exclude>
           <button className="button secondary" onClick={() => onExplain(block)}>Explain more</button>
         </div>}
       </div>)}
@@ -95,6 +127,8 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const messages = useLiveQuery(() => db.assistantMessages.where('threadId').equals(thread.id).sortBy('sequence'), [thread.id])
   const runs = useLiveQuery(() => db.assistantRuns.where('threadId').equals(thread.id).toArray(), [thread.id])
   const connection = useLiveQuery(() => db.aiConnections.get('assistant'), [])
+  const speechSetup = useLiveQuery(async () => ({ connection: await db.speechConnections.get('assistant-speech') }), [])
+  const localSpeechSetup = useContext(LocalSpeechSetupContext)
   const [draft, setDraft] = useState(() => getUnsavedDraft(thread.id) ?? thread.draft)
   const [error, setError] = useState(() => getDraftFailures().includes(thread.id) ? 'Draft not saved. Your unsaved text was retained in memory.' : '')
   const [saving, setSaving] = useState(false)
@@ -102,6 +136,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [inlinePracticeId, setInlinePracticeId] = useState<string>()
   const writes = useRef<Promise<void>>(Promise.resolve())
   const sendVersion = useRef(0)
   const latestDraft = useRef(draft)
@@ -110,10 +145,11 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const settings = useRef<HTMLDivElement>(null)
   const active = runs?.some(run => run.status === 'running') ?? false
   const busy = sending || active
+  const practicePhrase = thread.practicePhrase ?? (thread.shadowIntent === 'repeat' ? thread.shadowPhrase : undefined)
   const lastFailed = [...(messages ?? [])].reverse().find(message => message.role === 'assistant' && ['failed', 'cancelled'].includes(message.status))
   const lastMessage = messages?.[messages.length - 1]
   const retryUser = lastFailed && lastMessage?.id === lastFailed.id
-    ? messages?.find(message => message.role === 'user' && message.runId === lastFailed.runId) : undefined
+    ? messages?.find(message => message.role === 'user' && message.runId === lastFailed.runId && message.intent !== 'repeat' && !message.practice) : undefined
 
   const save = useCallback((value: string, source?: AssistantThread['source']) => {
     rememberDraft(thread.id, value)
@@ -146,8 +182,9 @@ function Conversation({ thread }: { thread: AssistantThread }) {
     return () => window.clearInterval(timer)
   }, [])
   useEffect(() => {
-    history.current?.scrollTo?.({ top: history.current.scrollHeight })
-  }, [messages?.length, busy, thread.shadowIntent, thread.shadowPhrase?.text])
+    if (lastMessage?.role === 'practice') document.getElementById(`practice-result-${lastMessage.id}`)?.scrollIntoView?.({ block: 'start' })
+    else history.current?.scrollTo?.({ top: history.current.scrollHeight })
+  }, [lastMessage?.id, lastMessage?.role, lastMessage?.status, busy, practicePhrase?.text])
   useEffect(() => {
     if (!settingsOpen) return
     const close = (event: KeyboardEvent) => { if (event.key === 'Escape') { setSettingsOpen(false); input.current?.focus() } }
@@ -203,23 +240,23 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {!messages?.length && <div className="assistant-welcome"><MessageCircle size={32} className="accent" /><h2>A partner in your learning.</h2>
         <p>Ask about a word, explore a lesson, or switch to Shadow to practice expressing a thought in Mandarin.</p><p className="small muted">Conversation is practice, not proof of mastery. AI explanations can be mistaken.</p></div>}
       {messages?.map(message => <Message key={message.id} message={message} thread={thread}
-        onRepeat={phrase => void action(async () => {
-          await updateThread(thread.id, { mode: 'shadow', shadowIntent: 'repeat', shadowPhrase: phrase })
-          input.current?.focus()
-        })}
+        inlinePractice={{
+          activeId: inlinePracticeId, activate: setInlinePracticeId,
+          close: async id => setInlinePracticeId(current => current === id ? undefined : current),
+          busy: busy || deleting, connection: speechSetup?.connection, loading: !speechSetup || localSpeechSetup === 'loading',
+        }}
+        onPractice={phrase => void action(() => selectPracticePhrase(thread.id, phrase))}
         onExplain={phrase => {
           if (busy) { setError('Stop or finish the current reply before requesting an explanation.'); return }
           setSending(true)
           void action(() => sendAssistantTurn(thread.id, {
             text: `Please explain this Mandarin phrase: ${phrase.text}`, intent: 'explain', preserveDraft: true,
-            source: { text: phrase.text, title: 'Shadow phrase', route: `conversation/${thread.id}`, locale: phrase.locale, meaning: phrase.meaning },
+            source: { text: phrase.text, title: 'Mandarin translation', route: `conversation/${thread.id}`, locale: phrase.locale, meaning: phrase.meaning },
           })).finally(() => setSending(false))
         }} />)}
-      {thread.mode === 'shadow' && thread.shadowIntent === 'repeat' && thread.shadowPhrase && <aside className="panel shadow-reference" aria-label="Phrase to repeat">
-        <p className="eyebrow">PHRASE TO REPEAT</p><p lang={thread.shadowPhrase.locale} className="speech-native">{thread.shadowPhrase.text}</p>
-        {thread.romanization && thread.shadowPhrase.romanization && <p className="pinyin" data-assistant-exclude>{thread.shadowPhrase.romanization}</p>}
-        {thread.shadowPhrase.meaning && <p className="small muted">{thread.shadowPhrase.meaning}</p>}
-      </aside>}
+      {thread.mode === 'shadow' && practicePhrase && <PhrasePractice key={JSON.stringify([practicePhrase, thread.practiceInput ?? 'listen-repeat', thread.speechFeedback ?? true, speechSetup?.connection?.revision ?? 'missing'])}
+        thread={thread} phrase={practicePhrase} busy={busy || deleting} speechConnection={speechSetup?.connection} connectionLoading={!speechSetup || localSpeechSetup === 'loading'}
+        onClose={async () => { await selectPracticePhrase(thread.id); input.current?.focus() }} />}
       {retryUser && !busy && <button className="button secondary" onClick={() => {
         setSending(true)
         void action(() => sendAssistantTurn(thread.id, { text: retryUser.text, source: retryUser.source, intent: retryUser.intent, preserveDraft: true }))
@@ -243,9 +280,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {thread.source && <div className="draft-context"><details><summary>Context: {thread.source.title}</summary><blockquote>{thread.source.text}</blockquote>
         {thread.source.meaning && <p className="small">{thread.source.meaning}</p>}</details>
         <button className="icon-button" aria-label="Remove context" title="Remove context" onClick={() => void action(async () => { await writes.current; await saveDraft(thread.id, draft, null) })}><X size={16} /></button></div>}
-      {thread.mode === 'shadow' && <div className="shadow-intent"><span className="small">{thread.shadowIntent === 'repeat' && thread.shadowPhrase ? 'Next turn: repeat the selected phrase' : 'Next turn: a new phrase to shadow'}</span>
-        {thread.shadowIntent === 'repeat' && <button className="text-link" onClick={() => void action(() => updateThread(thread.id, { shadowIntent: 'new-phrase' }))}>New phrase</button>}
-      </div>}
+      {thread.mode === 'shadow' && <p className="small muted">Share a thought in English for a Mandarin translation and explanation. Use Practice on the translation when ready.</p>}
       <form onSubmit={event => void send(event)}>
         <label className="visually-hidden" htmlFor={`draft-${thread.id}`}>Message Assistant</label>
         <textarea id={`draft-${thread.id}`} ref={input} rows={3} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting}
@@ -258,12 +293,24 @@ function Conversation({ thread }: { thread: AssistantThread }) {
             {settingsOpen && <div className="assistant-settings-popup" aria-label="Assistant settings">
               <label>Mode<select value={thread.mode} onChange={event => { const mode = event.target.value === 'shadow' ? 'shadow' : 'conversation'; void action(() => updateThread(thread.id, { mode })) }}>
                 <option value="conversation">Conversation</option><option value="shadow">Shadow</option></select></label>
+              <label>Practice input<select value={thread.practiceInput ?? 'listen-repeat'} onChange={event => {
+                const value = event.target.value
+                void action(() => updateThread(thread.id, { practiceInput: practiceInputSchema.parse(value) }))
+              }}>
+                <option value="listen-repeat">Listen and repeat (no recording)</option>
+                <option value="spoken-feedback">Listen and record</option>
+              </select></label>
+              <label className="toggle"><input type="checkbox" checked={thread.speechFeedback ?? true} onChange={event => {
+                const speechFeedback = event.target.checked
+                void action(() => updateThread(thread.id, { speechFeedback }))
+              }} /> Speech feedback</label>
+              <p className="small muted">Azure pronunciation scores when configured; otherwise a local transcript comparison.</p>
               <label>Mandarin speech speed<select value={thread.speechRate} onChange={event => {
                 const rate = Number(event.target.value)
                 if (rate === 0.5 || rate === 0.75 || rate === 1 || rate === 1.25) void action(() => updateThread(thread.id, { speechRate: rate }))
               }}>{[0.5, 0.75, 1, 1.25].map(rate => <option key={rate} value={rate}>{rate}x</option>)}</select></label>
               <label className="toggle"><input type="checkbox" checked={thread.romanization} onChange={event => { const romanization = event.target.checked; void action(() => updateThread(thread.id, { romanization })) }} /> Show romanization</label>
-              <a className="text-link" href="#settings">Voices, AI connection, and appearance</a>
+              <a className="text-link" href="#settings">Voices, AI and speech connections, and appearance</a>
               <button type="button" className="button secondary" onClick={() => setSettingsOpen(false)}>Close settings</button>
             </div>}
           </div>
@@ -278,8 +325,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {error && <div className="composer-error" role="alert"><p>{error}</p>
         {error.startsWith('Draft not saved') && <button className="button secondary" onClick={() => { void save(draft) }}>Retry saving draft</button>}
       </div>}
-      <p className="composer-footnote">Send shares relevant context with your provider. Ctrl+Enter to send. Hear follows your voice settings; online voices receive the spoken text. Microphone and generated exercises are not connected.</p>
-      {thread.mode === 'shadow' && thread.shadowIntent === 'repeat' && <p className="small muted">Type the phrase to practice recalling it. This is not a pronunciation assessment.</p>}
+      <p className="composer-footnote">Ctrl+Enter to send. AI can make mistakes. Practice feedback is not sent to the AI tutor.</p>
     </div>
   </section>
 }

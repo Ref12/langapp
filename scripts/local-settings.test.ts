@@ -1,8 +1,7 @@
 // @vitest-environment node
 import { webcrypto } from 'node:crypto'
 import { request as httpRequest } from 'node:http'
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
-import { tmpdir } from 'node:os'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { build, createServer, normalizePath, preview, type ViteDevServer } from 'vite'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -19,12 +18,16 @@ const settings = {
     nativeTools: false, structuredOutput: false, storageAcknowledged: true,
   },
 }
+const speechConnection = {
+  provider: 'azure', region: 'eastus', apiKey: 'synthetic-local-speech-test-key', storageAcknowledged: true,
+}
 let directory: string
 let server: ViteDevServer | undefined
 
 beforeEach(async () => {
   if (!globalThis.crypto) vi.stubGlobal('crypto', webcrypto)
-  directory = await mkdtemp(join(tmpdir(), 'langapp-settings-'))
+  directory = join(process.cwd(), `.local-settings-test-${crypto.randomUUID()}`)
+  await mkdir(directory)
   await mkdir(join(directory, LOCAL_SETTINGS_DIRECTORY))
 })
 afterEach(async () => {
@@ -56,21 +59,55 @@ function headers(origin: string) {
 }
 
 describe('development-only local app settings', () => {
-  it('provides a commented JSONC template explaining every field and requiring storage opt-in', async () => {
+  it('provides a commented JSONC template explaining every field and validating storage consent', async () => {
     const source = await readFile(new URL('../settings/app.settings.template.jsonc', import.meta.url), 'utf8')
     const errors: ParseError[] = []
     const template: unknown = parse(source, errors)
     expect(errors).toEqual([])
     expect(template).toMatchObject({ aiConnection: {
-      apiType: 'responses', apiKey: '', model: '', nativeTools: false, structuredOutput: false, storageAcknowledged: false,
+      apiType: 'responses', apiKey: '', model: '', nativeTools: false, structuredOutput: false, storageAcknowledged: expect.any(Boolean),
     } })
-    for (const field of ['aiConnection', 'apiType', 'baseUrl', 'apiKey', 'model', 'nativeTools', 'structuredOutput', 'storageAcknowledged']) {
+    expect(template).toHaveProperty('defaultSpeechRate', 0.75)
+    for (const field of ['aiConnection', 'apiType', 'baseUrl', 'apiKey', 'model', 'nativeTools', 'structuredOutput', 'storageAcknowledged', 'defaultSpeechRate']) {
       expect(source).toMatch(new RegExp(`//[^\\n]*\\n\\s*"${field}":`))
     }
     const filled = source.replace('"apiKey": ""', `"apiKey": "${key}"`)
       .replace('"model": ""', '"model": "test-model"')
       .replace('"storageAcknowledged": false', '"storageAcknowledged": true')
     expect(localSettingsSchema.safeParse(parse(filled)).success).toBe(true)
+    const unacknowledged: { aiConnection: { storageAcknowledged: boolean } } = parse(filled)
+    unacknowledged.aiConnection.storageAcknowledged = false
+    expect(localSettingsSchema.safeParse(unacknowledged).success).toBe(false)
+    expect(template).not.toHaveProperty('speechConnection')
+    expect(source).toContain('// , "speechConnection": {')
+    expect(source).toContain('//   "provider": "azure"')
+    expect(source).toContain('//   "region": "eastus"')
+    expect(source).toContain('Connections import independently')
+    const withSpeech = filled.replace(/^ {2}\/\/ (, "speechConnection": \{[\s\S]*?^ {2}\/\/ \})/m, (_match, section: string) => section.replace(/^ {2}\/\/ /gm, ''))
+      .replace('"apiKey": ""', `"apiKey": "${speechConnection.apiKey}"`)
+      .replace('"storageAcknowledged": false', '"storageAcknowledged": true')
+    const speechErrors: ParseError[] = []
+    const speechTemplate: unknown = parse(withSpeech, speechErrors)
+    expect(speechErrors).toEqual([])
+    expect(localSettingsSchema.safeParse(speechTemplate).success).toBe(true)
+    expect(speechTemplate).toMatchObject({ speechConnection })
+  })
+
+  it.each([
+    { speechConnection }, { ...settings, speechConnection }, { aiConnection: settings.aiConnection },
+    { defaultSpeechRate: 0.5 }, { defaultSpeechRate: 0.75 }, { defaultSpeechRate: 1 }, { defaultSpeechRate: 1.25 },
+    { ...settings, speechConnection, defaultSpeechRate: 0.75 },
+  ])('serves each optional connection independently without calling a live provider (case %#)', async configured => {
+    await writeFile(configFile(), JSON.stringify(configured))
+    const base = await start()
+    const fetcher = vi.spyOn(globalThis, 'fetch')
+    const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
+    expect(response.status).toBe(200)
+    expect(await response.json()).toEqual(configured)
+    expect(fetcher).toHaveBeenCalledTimes(1)
+    expect(JSON.stringify(server?.config.env)).not.toContain(speechConnection.apiKey)
+    expect(JSON.stringify(server?.config.define)).not.toContain(speechConnection.apiKey)
+    fetcher.mockRestore()
   })
 
   it('reads settings from the settings folder without caching, interpolation, or environment overrides', async () => {
@@ -138,6 +175,11 @@ describe('development-only local app settings', () => {
     JSON.stringify({ aiConnection: { ...settings.aiConnection, model: '' } }),
     JSON.stringify({ aiConnection: settings.aiConnection, unknownSection: {} }),
     JSON.stringify({ aiConnection: { ...settings.aiConnection, apiType: 'unsupported' } }),
+    JSON.stringify({ speechConnection: { ...speechConnection, provider: 'other' } }),
+    JSON.stringify({ speechConnection: { ...speechConnection, region: 'invalid/region' } }),
+    JSON.stringify({ speechConnection: { ...speechConnection, storageAcknowledged: false } }),
+    JSON.stringify({ speechConnection: { ...speechConnection, apiKey: '' } }),
+    ...[0, 0.6, 2, -1, '0.75', null, true, {}, []].map(defaultSpeechRate => JSON.stringify({ defaultSpeechRate })),
     `${JSON.stringify(settings)} trailing-junk`,
     `${JSON.stringify(settings)} /* unterminated`,
     `{"aiConnection": {"apiKey": "${key}",`,
@@ -151,6 +193,19 @@ describe('development-only local app settings', () => {
     const message = await response.text()
     expect(message).toContain('Invalid local settings')
     expect(message).not.toContain(key)
+    expect(message).not.toContain(speechConnection.apiKey)
+  })
+
+  it('names both connection acknowledgements without leaking invalid values', async () => {
+    await writeFile(configFile(), JSON.stringify({ speechConnection: { ...speechConnection, storageAcknowledged: false } }))
+    const base = await start()
+    const response = await fetch(base + LOCAL_SETTINGS_PATH, { headers: headers(base) })
+    expect(response.status).toBe(400)
+    const message = await response.text()
+    expect(message).toContain('storageAcknowledged')
+    expect(message).toContain('aiConnection')
+    expect(message).toContain('speechConnection')
+    expect(message).not.toContain(speechConnection.apiKey)
   })
 
   it('reports file access failures rather than pretending settings are missing', async () => {

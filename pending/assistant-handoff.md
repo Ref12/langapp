@@ -1,7 +1,263 @@
 # Assistant and browser voices: continuation handoff
 
-Snapshot: 2026-09-16, updated after the UI agent finished and final integration
-was confirmed.
+Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
+The latest section supersedes older Practice/Shadow behavior described later.
+
+## Latest refinement: inline practice and JSON speaking speed (complete)
+
+The user refined Conversation practice: no new message or separate panel. The
+selected phrase's **Hear / Ask / Practice** row becomes **Submit / Cancel**, with
+less explanatory text. They explicitly confirmed that Practice starts recording
+immediately when **Listen and record** is selected; Submit finishes capture and
+shows inline feedback. The no-recording default remains microphone-free.
+Shadow retains the separate panel and automatic result-message flow below.
+
+Implemented inline behavior:
+
+- `PhrasePractice.tsx` starts capture only from the explicit click, never from
+  mount, reload, or settings changes. Only one phrase is active at a time.
+  Recognition ending on its own retains an unsent attempt until Submit.
+  Cancel, Escape, navigation, hidden pages, playback, new AI turns, and relevant
+  settings/provider changes discard active attempts and ignore late callbacks.
+- `startAzurePracticeCapture(..., { automaticAssessment: false })` releases the
+  microphone at the 30-second limit and enters `ready`, retaining bounded PCM
+  only in memory. Submit uploads it; Cancel discards it. Default adapter behavior
+  is still automatic for Shadow. Repeated Stop cannot submit twice.
+- Optional `AssistantMessage.practiceResults` holds the latest feedback per
+  exact speech-block index on a completed assistant reply. The saver validates
+  thread/message ownership and an unchanged phrase, replaces just that block's
+  feedback, and adds no message, sequence, run, or learning evidence.
+- `PracticeFeedback.tsx` is shared between compact inline feedback and existing
+  standalone practice bubbles. Explanations and word details are collapsed.
+- Inline feedback survives backups/reload and appears in full-message Copy.
+  The original assistant blocks remain in tutor history, but transcripts and
+  result metadata are excluded from Chat Completions and Responses payloads.
+- Submit retries a failed storage write without another recording or assessment.
+  Keep the attempt open until saved. No audio survives navigation or reload.
+- Switching modes/settings away and back cannot reopen a stale attempt; keyed
+  component cleanup clears its active-row identity without closing another row.
+  The history does not scroll to the bottom merely because feedback was saved.
+
+The user then requested a default speaking speed definable in app settings JSON.
+Implementation agent `0f1e12bd-f296-45e2-9685-ab9fcc4d5b19` completed that work:
+optional top-level `defaultSpeechRate`, allowed values `0.5/0.75/1/1.25`,
+workspace preference persistence, new-conversation default, Mandarin Hear
+fallback, strict JSONC import and template. Explicit JSON values reapply on
+startup; omitted keys preserve preferences. Existing per-chat rates and saved
+AI/speech credentials are never overwritten; English remains normal speed.
+The agent also completed a contracts refinement rejecting inline metadata
+(including an empty array) on anything but a completed assistant reply.
+All four agent responses were retrieved; it is idle with no remaining work.
+
+Final integration and verification:
+
+- **581 tests passed across 15 targeted files**: settings server/import,
+  default speed, browser voices, store/backups, local result ownership, root
+  App/inline/Shadow UI, Azure/browser capture, runtime and tutor context.
+- Root production build, TypeScript, scoped ESLint and whitespace checks passed.
+  Only the existing large-chunk build warning remains. No new shared/V1 changes
+  were needed for this refinement.
+- Parent removed the forced `rate = 1` defaults in both HearButton and
+  SnippetActions. App applies saved preferences through `setDefaultSpeechRate`.
+  Explicit conversation rates still take precedence, and English stays at `1`.
+- Verified actual pre-existing fallback in the source is `1`, NOT `0.75`.
+  With no saved/configured default, both new chats and other Hear use `1`.
+  The tracked template explicitly demonstrates `defaultSpeechRate: 0.75`.
+- Startup reports an independent default-speed status through
+  `LocalSpeechRateSetupContext`; errors appear in Settings -> Hear voices, even
+  when both saved connections already exist. Provider wraps the whole workspace
+  so the sidebar and selection controls also see configuration loading.
+  New conversation creation waits for configuration; Ask in an existing chat
+  remains available and does not create a new conversation.
+- Initial integration caught a sidebar outside the startup provider; moving the
+  provider to the ready workspace boundary resolved the default-import race.
+  No lessons are blocked while local settings load.
+- The tracked template already had storageAcknowledged set true before this
+  refinement. It was preserved. The template test now accepts its existing
+  boolean and separately proves that false is rejected for credential import.
+- The visible dev terminal `practice-dev-server` remains responsive at
+  `http://localhost:5173/`; browser canvas `linguaweave-app` is already open.
+  No real microphone, paid LLM/Azure, or private-settings tool request was made.
+
+No implementation remains pending in this refinement. The private JSONC file
+was not edited: add or change its top-level `defaultSpeechRate` and reload the
+development app to apply it. Later imports update only the default, not existing
+conversation overrides. Omitting the key preserves the saved default.
+
+The user authorized committing the completed Assistant refinements on 2026-09-17;
+they are included in the accompanying commit. No push was requested. Unrelated
+`src/components/MobileNavigation.test.tsx` changes and the private JSONC file
+are excluded and preserved. Older uncommitted-state notes below are historical.
+
+## Previous refinement: automatic recorded-practice results (complete, uncommitted)
+
+The user rejected manual **Send for feedback**. **Listen and record** must
+automatically assess actual audio with a configured speech provider; if no
+provider is configured or the conversation's **Speech feedback** toggle is off,
+compare the recognized transcript with the expected translation locally.
+Results are saved as conversation bubbles but must NOT reach the LLM, including
+in future conversation history. The user confirmed **Azure Speech** and adding
+its connection to the automatic JSONC settings import. The existing LLM
+`aiConnection` section is retained, not replaced.
+
+Implemented behavior:
+
+- Root `speech-contracts.ts` defines independent Azure credentials and bounded,
+  honest assessment metrics. Credentials never belong in practice messages.
+- Conversation `speechFeedback` defaults true; recording still defaults OFF
+  (`practiceInput: listen-repeat`). The old `spoken-feedback` stored value now
+  displays as **Listen and record** for compatibility.
+- New local-only message role `practice`, strict discriminated result metadata,
+  and `practice-results.ts` for transactional, idempotent persistence. No AI run,
+  source/draft replacement, mode change, or learning evidence is created.
+- `transcript-diff.ts` uses bounded, character-level Hirschberg alignment with
+  Unicode compatibility normalization and punctuation/space/case handling.
+  It does not claim to assess pronunciation.
+- `PhrasePractice.tsx` automatically publishes completion/error results,
+  suppresses cancelled/stale callbacks, and offers storage-only result retry.
+  `PracticeResultBubble.tsx` renders expected/recognized text, the diff or
+  actual Azure metrics, Hear, and full-message Copy. No raw audio is persisted.
+- `speech-capture.ts` now marks cancellation explicitly, including native
+  failures after a cancellation, so cancelled attempts cannot auto-publish.
+- Runtime rejects the obsolete LLM repetition path; tutor history excludes
+  new result bubbles and legacy repetition/feedback turns. Legacy records and
+  optional practice drafts remain readable in backups, but are not resubmitted.
+- `repeat.md` is reserved, no longer loaded by the tutor. README, Settings
+  privacy text, template instructions, and this handoff describe the new behavior.
+
+Implementation agents:
+
+- `1cd30e78-5650-4e20-88e4-5962328e6e70` / `azure-practice-assessment`:
+  root `speech-assessment.ts` and tests, plus necessary pure shared PCM,
+  assessment/alignment helpers and narrow V1 refactors. Implements
+  `azureSpeechCaptureSupported()` and synchronous
+  `startAzurePracticeCapture(connection, referenceText, listener)` returning
+  `{ stop, cancel }`. State includes an `assessing` phase, actual transcript,
+  optional assessment, visible errors, and `cancelled: true` on cancellation.
+  Records bounded real audio locally, then sends to Azure automatically.
+  Completed and idle; all four responses retrieved. Parent reviewed the full
+  adapter, shared PCM/parser/alignment/worklet files, and narrow V1 changes.
+  Shared modules contain no V1 database, profile, or runtime imports.
+  Transcript extraction precedes reference alignment; omissions never become
+  invented recognized text. Multi-utterance results remain incomplete rather
+  than averaging acoustic metrics. Parent tightened transcript bounds to match
+  the 8,000-character persistence schema, including separator characters.
+- `73c820a8-9219-4037-adca-55a80ea1ca07` / `speech-connection-settings`:
+  schema-3 speech credential table; `speech-connection.ts`; speech settings UI;
+  independent AI/speech JSONC import and startup status contexts; template and
+  local-server tests. Saved connections independently win over imported ones.
+  Completed and idle; all three responses retrieved. Parent reviewed the new
+  schema/storage/import/context/form/template/server files after completion.
+  Agent's 89 focused tests and owned-file lint passed. Settings prose now explains
+  audio/reference transfer and preserved speech credentials on backup restore.
+
+There is no unfinished implementation or active agent in this refinement.
+No new provider credential was supplied or inserted into the private settings
+file. Fill the optional Azure section in local JSONC, or use Settings ->
+Practice speech connection, to enable real provider assessment. Without a
+connection, Listen and record uses the browser transcript comparison.
+
+Final integration:
+
+- **540 tests passed across 20 targeted files**, including 56 Azure adapter
+  cases, 33 V1 speech regressions, native capture, App/practice/settings UI,
+  independent import, schema migration, backups, and existing Hear controls.
+- Actual Chat Completions and Responses request-body tests confirm that local
+  results and legacy practice transcripts/replies never enter LLM context.
+- Root and V1 production builds, TypeScript, scoped ESLint, and whitespace
+  checks passed. The existing large-chunk warnings remain.
+- Initial UI integration exposed a loading-phase remount; root now avoids
+  unnecessary remounts while still cancelling on provider revision changes.
+  Start stays disabled until startup speech configuration loading finishes.
+- The existing voice-list test now waits for populated async voice options.
+  Cancellation fixture updates explicitly assert `cancelled`, including native
+  errors after cancellation.
+- Unicode-normalization expansion is bounded before local alignment. Azure
+  transcript length is bounded before successful result publication, so a
+  too-large provider response cannot become a permanently unsavable result.
+- No live Azure/LLM call or real microphone recording was made. The SDK,
+  microphone, worklet lifecycle, and service responses are simulated in tests;
+  the actual worklet processor is executed in an isolated test VM.
+- Storage failures retain the result in the current practice panel with a
+  storage-only retry. Keep that panel open until saved; unsaved results are not
+  guaranteed across navigation or reload. Recording itself never resumes.
+
+Preserve unrelated `src/components/MobileNavigation.test.tsx` edits. No new
+commit or push is authorized. Never read or print the private
+`settings/app.settings.jsonc` contents or perform live paid provider calls.
+
+## Previous refinement: translation practice (manual feedback superseded)
+
+User clarified that Shadow is the full flow: express a thought in the native
+language, receive a Mandarin translation and explanation, then practice the
+translation. Practice is ONLY the translation-practice step, not a mode switch.
+The user requested a per-conversation setting and selected listen-and-repeat
+without recording as the default. Optional capturing of a spoken attempt for
+feedback is the other setting.
+
+Current uncommitted implementation:
+
+- `AssistantThread.practiceInput`: optional `listen-repeat` or `spoken-feedback`.
+  New threads explicitly default to `listen-repeat`; older threads use the same
+  fallback without a migration or database version change.
+- `practicePhrase` and `practiceDraft` are independent of conversation mode and
+  the normal composer draft. Store helpers `selectPracticePhrase` and
+  `savePracticeDraft` protect against late writes to another selected phrase.
+- `PhrasePractice.tsx` renders Hear plus self-paced repetition by default,
+  with no microphone or provider calls. Capture mode requires explicit Start,
+  Stop, transcript review, and Send for feedback.
+- Speech recognition is browser-provided, may send audio to its service, and
+  never saves raw audio. General native-language dictation in Shadow's composer
+  is not part of this slice; that composer still accepts typed English.
+- Repeat feedback requests carry an immutable `practice` snapshot with the
+  selected phrase and `input: speech-transcript`, separate from source context.
+  Retry uses the original snapshot, not a subsequently selected phrase.
+- Normal composer intent is Conversation/message or Shadow/shadow, never an
+  implicit repetition just because Practice is open.
+- Repeat feedback compares only reviewed wording, acknowledges recognition
+  errors, and must never score pronunciation, tones, fluency, or mastery.
+- Legacy `shadowIntent: repeat` references reopen as no-recording practice.
+  Selecting/closing a new practice target clears that legacy pending intent
+  without changing mode or rewriting previous history.
+- Practice configuration/drafts/attempt targets round-trip through optional
+  strict backup fields.
+- Root README and Shadow/Repeat system prompt files were updated.
+
+Completed state at this snapshot:
+
+- Final combined run: 341 tests passed across ten files, including 64 speech
+  capture cases, nine practice UI cases, 19 Assistant cases, 100 core
+  store/runtime/tools/backup cases, and existing Hear/voice-selection coverage.
+- One fixture initially collided with the existing unique message-sequence
+  index after creating a Shadow mode marker. Its reply now uses the next
+  sequence; no production persistence behavior was weakened.
+- Focused ESLint, TypeScript, and `npm run build:next` passed. The existing
+  large-bundle warning remains. No real microphone or paid AI call was used.
+- Parent reviewed the capture module and validated the real capture module
+  connected to App/pane lifecycle with mocked native recognition callbacks,
+  in addition to isolated module and UI tests.
+- Speech capture agent `ef51dcb9-5e95-45c9-ad9a-51db2790f581`
+  (`practice-speech-capture`) completed ONLY new
+  `src\core\assistant\speech-capture.ts` and its test file. It was asked to
+  inspect V1 speech patterns but did not modify/import the V1 runtime. Its final
+  result was retrieved; it is idle with no remaining work.
+- Its APIs: `speechCaptureSupported()`, `startSpeechCapture(listener)`
+  returning `{ stop, cancel }`; state contains phase
+  starting/listening/stopping/finished/error, transcript, and optional error.
+  Capture language is Mandarin `zh-CN`; it is bounded, explicit, cancellable,
+  and cannot auto-send or auto-restart.
+- There is no unfinished implementation in this refinement. Preserve unrelated
+  changes since `eaa0b75`;
+  `86741e4` introduced mobile/pagination improvements before this work.
+- This new refinement is NOT authorized for commit or push.
+
+Focused practice command:
+
+```powershell
+npm test -- src\core\assistant\speech-capture.test.ts src\components\assistant\PhrasePractice.test.tsx src\pages\Assistant.test.tsx src\core\assistant\store.test.ts src\core\assistant\runtime.test.ts src\core\assistant\tools.test.ts src\core\backup.test.ts src\core\assistant\speech.test.ts src\components\assistant\SnippetActions.test.tsx src\components\assistant\VoiceSettings.test.tsx
+```
+
+## Completed foundation (2026-09-16)
 
 ## Start here
 

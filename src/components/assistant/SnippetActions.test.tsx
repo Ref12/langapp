@@ -1,7 +1,7 @@
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { getPlaybackState, stopBrowserSpeech } from '../../core/assistant/speech'
-import { HearButton, PlaybackStatus } from './SnippetActions'
+import { getPlaybackState, setDefaultSpeechRate, stopBrowserSpeech } from '../../core/assistant/speech'
+import { HearButton, PlaybackStatus, SnippetActions } from './SnippetActions'
 
 class Utterance {
   constructor(public text: string) {}
@@ -26,10 +26,27 @@ beforeEach(() => {
   vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
   vi.stubGlobal('speechSynthesis', synthesis)
   stopBrowserSpeech()
+  setDefaultSpeechRate()
 })
-afterEach(() => { cleanup(); stopBrowserSpeech(); vi.useRealTimers(); vi.unstubAllGlobals() })
+afterEach(() => { cleanup(); stopBrowserSpeech(); setDefaultSpeechRate(); vi.useRealTimers(); vi.unstubAllGlobals() })
 
 describe('browser speech controls', () => {
+  it('uses the configured Mandarin default through both controls, preserving explicit rates and normal English', () => {
+    setDefaultSpeechRate(0.5)
+    voices = [mandarin, { ...mandarin, name: 'Local English', lang: 'en-US', voiceURI: 'local-en' }]
+    render(<>
+      <HearButton text={'\u8336'} locale="zh-Hans" />
+      <SnippetActions source={{ text: '\u8336', locale: 'zh-Hans', title: 'Tea', route: 'dictionary' }} />
+      <HearButton text={'\u8336'} locale="zh-Hans" rate={1.25} />
+      <HearButton text="tea" locale="en-US" />
+    </>)
+    for (const [index, rate] of [0.5, 0.5, 1.25, 1].entries()) {
+      fireEvent.click(screen.getAllByRole('button', { name: 'Hear' })[index])
+      expect(synthesis.speak.mock.calls[index][0].rate).toBe(rate)
+      act(() => synthesis.speak.mock.calls[index][0].onend?.())
+    }
+  })
+
   it('labels discovery, startup, and speaking separately and stops on Escape', () => {
     render(<><HearButton text={'\u8336'} locale="zh-Hans" /><PlaybackStatus /></>)
     fireEvent.click(screen.getByRole('button', { name: 'Hear' }))

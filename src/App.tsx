@@ -19,7 +19,7 @@ import { Assistant, AssistantSidebar } from './pages/Assistant'
 import { PlaybackStatus, SelectionActions } from './components/assistant/SnippetActions'
 import { DraftStatus } from './components/assistant/DraftStatus'
 import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnectionSetup'
-import { setSpeechVoicePreferences, stopBrowserSpeech } from './core/assistant/speech'
+import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } from './core/assistant/speech'
 import './App.css'
 import './components/assistant/assistant.css'
 
@@ -114,6 +114,10 @@ function WorkspaceApp() {
     setSpeechVoicePreferences(workspace?.preferences.speechVoices)
   }, [workspace?.preferences.speechVoices])
   useEffect(() => {
+    setDefaultSpeechRate(workspace?.preferences.defaultSpeechRate)
+    return () => setDefaultSpeechRate()
+  }, [workspace?.preferences.defaultSpeechRate])
+  useEffect(() => {
     const timer = window.setInterval(() => setNow(Date.now()), 60_000)
     return () => window.clearInterval(timer)
   }, [])
@@ -156,9 +160,7 @@ function WorkspaceApp() {
         </div></header>
         <main id="main" ref={main} tabIndex={-1} className={assistant ? 'assistant-main' : practicing ? 'practice-main' : page === 'lesson' ? 'lesson-main' : undefined}>
           {error && <div role="alert" className="notice error"><p>{error}</p><button className="icon-button" aria-label="Dismiss error" onClick={() => setError('')}><X size={18} /></button></div>}
-          {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true'
-            ? <LocalAIConnectionSetup>{currentPage}</LocalAIConnectionSetup>
-            : currentPage}
+          {currentPage}
         </main>
       </div>
       <PlaybackStatus />
@@ -196,5 +198,9 @@ export default function App() {
     return () => { disposed = true }
   }, [])
   if (error) return <StorageFailure error={error} />
-  return ready ? <WorkspaceBoundary><WorkspaceApp /></WorkspaceBoundary> : <div className="opening-workspace" role="status">Opening your Mandarin workspace...</div>
+  return ready ? <WorkspaceBoundary>
+    {import.meta.env.DEV && import.meta.env.DEV_LOCAL_SETTINGS === 'true'
+      ? <LocalAIConnectionSetup><WorkspaceApp /></LocalAIConnectionSetup>
+      : <WorkspaceApp />}
+  </WorkspaceBoundary> : <div className="opening-workspace" role="status">Opening your Mandarin workspace...</div>
 }

@@ -1,6 +1,7 @@
 import Dexie, { type EntityTable } from 'dexie'
 import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type Preferences, type ReadingProgress, type WordState, type Workspace } from './model'
 import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread } from './assistant/contracts'
+import type { SpeechConnection } from './assistant/speech-contracts'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -13,6 +14,7 @@ export class LearningDatabase extends Dexie {
   assistantMessages!: EntityTable<AssistantMessage, 'id'>
   assistantRuns!: EntityTable<AssistantRun, 'id'>
   aiConnections!: EntityTable<AIConnection, 'id'>
+  speechConnections!: EntityTable<SpeechConnection, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -29,6 +31,9 @@ export class LearningDatabase extends Dexie {
       assistantMessages: '&id, threadId, &[threadId+sequence], runId',
       assistantRuns: '&id, threadId, status, expiresAt, [threadId+status]',
       aiConnections: '&id',
+    })
+    this.version(3).stores({
+      speechConnections: '&id',
     })
   }
 }

@@ -1,12 +1,13 @@
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import { MessageCircle, Repeat2, Square, Volume2, X } from 'lucide-react'
 import { prepareAssistantDraft } from '../../core/assistant/draft-actions'
 import { type AssistantSource, type SpeechLocale } from '../../core/assistant/contracts'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayback } from '../../core/assistant/speech'
 import { selectedSnippet, snippetLocale } from '../../core/assistant/selection'
 import { navigate } from '../../core/routing'
+import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
 
-export function HearButton({ text, locale, rate = 1 }: { text: string; locale: SpeechLocale; rate?: number }) {
+export function HearButton({ text, locale, rate }: { text: string; locale: SpeechLocale; rate?: number }) {
   const id = useId()
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const active = playback.activeId === id
@@ -18,16 +19,19 @@ export function HearButton({ text, locale, rate = 1 }: { text: string; locale: S
   </button>
 }
 
-export function SnippetActions({ source, rate = 1, onPrepared, onPractice }: {
-  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void
+export function SnippetActions({ source, rate, onPrepared, onPractice, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase' }: {
+  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; practiceDisabled?: boolean; practiceTitle?: string
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState<string>()
+  const speedSetup = useContext(LocalSpeechRateSetupContext)
+  const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
+  const createsConversation = page !== 'conversation' || !currentId
   return <div className="snippet-actions" data-assistant-exclude>
     <div className="button-row">
       {source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} />}
-      <button type="button" className="button secondary snippet-button" disabled={pending} onClick={() => {
+      <button type="button" className="button secondary snippet-button" disabled={pending || (createsConversation && speedSetup === 'loading')} onClick={() => {
         setPending(true)
         setError('')
         const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
@@ -37,7 +41,7 @@ export function SnippetActions({ source, rate = 1, onPrepared, onPractice }: {
         }, reason => { setError(reason instanceof Error ? reason.message : 'The Assistant draft could not be saved.') })
           .finally(() => setPending(false))
       }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask'}</button>
-      {onPractice && <button type="button" className="button secondary snippet-button" title="Practice repeating this phrase" onClick={onPractice}>
+      {onPractice && <button type="button" className="button secondary snippet-button" title={practiceTitle} disabled={practiceDisabled} onClick={onPractice}>
         <Repeat2 size={15} />Practice
       </button>}
     </div>

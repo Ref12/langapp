@@ -79,7 +79,7 @@ export function localSettings({ exposeSettings = true } = {}): Plugin {
         try {
           const settings = localSettingsSchema.safeParse(await readConfiguration(server.config.root))
           if (!settings.success) {
-            send(400, { error: `Invalid local settings. Check ${LOCAL_SETTINGS_FILE}, including aiConnection.storageAcknowledged.` })
+            send(400, { error: `Invalid local settings. Check ${LOCAL_SETTINGS_FILE}, including storageAcknowledged in each configured aiConnection or speechConnection section.` })
             return
           }
           send(200, settings.data)

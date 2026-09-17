@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { speechAssessmentSchema } from './speech-contracts'
 
 export const MAX_DRAFT_LENGTH = 8000
 export const MAX_TOOL_ROUNDS = 4
@@ -10,6 +11,8 @@ const timestamp = z.number().int().nonnegative()
 export const assistantModeSchema = z.enum(['conversation', 'shadow'])
 export const assistantIntentSchema = z.enum(['message', 'shadow', 'repeat', 'explain'])
 export const speechLocaleSchema = z.enum(['en-US', 'zh-Hans'])
+export const speechRateSchema = z.union([z.literal(0.5), z.literal(0.75), z.literal(1), z.literal(1.25)])
+export type SpeechRate = z.infer<typeof speechRateSchema>
 
 export const browserVoicePreferenceSchema = z.object({
   voiceURI: z.string().max(2048),
@@ -43,6 +46,21 @@ export const speechBlockSchema = z.object({
   romanization: z.string().max(3000).optional(),
   meaning: z.string().max(3000).optional(),
 }).strict()
+export const practiceInputSchema = z.enum(['listen-repeat', 'spoken-feedback'])
+export const practicePhraseSchema = speechBlockSchema.extend({ locale: z.literal('zh-Hans') })
+export const practiceAttemptSchema = z.object({
+  phrase: practicePhraseSchema,
+  input: z.literal('speech-transcript'),
+}).strict()
+const practiceResultBase = z.object({
+  phrase: practicePhraseSchema,
+  transcript: z.string().max(MAX_DRAFT_LENGTH),
+})
+export const practiceResultSchema = z.discriminatedUnion('kind', [
+  practiceResultBase.extend({ kind: z.literal('transcript-diff'), reason: z.enum(['not-configured', 'disabled']) }).strict(),
+  practiceResultBase.extend({ kind: z.literal('azure'), assessment: speechAssessmentSchema }).strict(),
+  practiceResultBase.extend({ kind: z.literal('error'), service: z.enum(['azure', 'browser']), error: z.string().min(1).max(1000) }).strict(),
+])
 export const assistantBlockSchema = z.discriminatedUnion('type', [textBlockSchema, speechBlockSchema])
 export const assistantReplySchema = z.object({
   blocks: z.array(assistantBlockSchema).min(1).max(12),
@@ -56,8 +74,12 @@ export const assistantThreadSchema = z.object({
   mode: assistantModeSchema,
   shadowIntent: z.enum(['new-phrase', 'repeat']),
   shadowPhrase: speechBlockSchema.optional(),
+  practiceInput: practiceInputSchema.optional(),
+  speechFeedback: z.boolean().optional(),
+  practicePhrase: practicePhraseSchema.optional(),
+  practiceDraft: z.string().max(MAX_DRAFT_LENGTH).optional(),
   romanization: z.boolean(),
-  speechRate: z.union([z.literal(0.5), z.literal(0.75), z.literal(1), z.literal(1.25)]),
+  speechRate: speechRateSchema,
   returnRoute: z.string().min(1).max(300).regex(/^[\w:/.-]+$/),
   createdAt: timestamp,
   updatedAt: timestamp,
@@ -67,17 +89,46 @@ export const assistantMessageSchema = z.object({
   id,
   threadId: id,
   sequence: z.number().int().nonnegative(),
-  role: z.enum(['user', 'assistant', 'event']),
+  role: z.enum(['user', 'assistant', 'event', 'practice']),
   text: z.string().max(MAX_DRAFT_LENGTH),
   blocks: z.array(assistantBlockSchema).max(12),
   source: assistantSourceSchema.optional(),
+  practice: practiceAttemptSchema.optional(),
+  practiceResult: practiceResultSchema.optional(),
+  practiceResults: z.array(z.object({
+    blockIndex: z.number().int().min(0).max(11),
+    result: practiceResultSchema,
+  }).strict()).max(12).optional(),
   mode: assistantModeSchema,
   intent: assistantIntentSchema,
   status: z.enum(['pending', 'completed', 'failed', 'cancelled']),
   runId: id.optional(),
   error: z.string().max(1000).optional(),
   createdAt: timestamp,
-}).strict()
+}).strict().superRefine((message, context) => {
+  if (message.practiceResults) {
+    if (message.role !== 'assistant' || message.status !== 'completed') {
+      context.addIssue({ code: 'custom', message: 'Inline practice feedback is only allowed in completed assistant replies.' })
+    }
+    const indices = new Set<number>()
+    for (const entry of message.practiceResults) {
+      const block = message.blocks[entry.blockIndex]
+      if (indices.has(entry.blockIndex)
+        || block?.type !== 'speech' || JSON.stringify(block) !== JSON.stringify(entry.result.phrase)) {
+        context.addIssue({ code: 'custom', message: 'Inline practice feedback must belong to a unique, unchanged speech block in a completed reply.' })
+      }
+      indices.add(entry.blockIndex)
+    }
+  }
+  if (message.role === 'practice') {
+    if (!message.practiceResult || message.runId || message.practice || message.source
+      || message.text || message.blocks.length || message.status !== 'completed' || message.intent !== 'repeat') {
+      context.addIssue({ code: 'custom', message: 'Practice results must be completed local-only messages, separate from model replies.' })
+    }
+  } else if (message.practiceResult) {
+    context.addIssue({ code: 'custom', message: 'Only local practice messages may contain practice results.' })
+  }
+})
 
 export const assistantToolNameSchema = z.enum(['lookup_words', 'lookup_lessons', 'get_learning_context'])
 export const assistantToolArgumentsSchema = z.object({ query: z.string().max(200) }).strict()
@@ -132,6 +183,9 @@ export type AssistantIntent = z.infer<typeof assistantIntentSchema>
 export type SpeechLocale = z.infer<typeof speechLocaleSchema>
 export type AssistantSource = z.infer<typeof assistantSourceSchema>
 export type SpeechBlock = z.infer<typeof speechBlockSchema>
+export type PracticeInput = z.infer<typeof practiceInputSchema>
+export type PracticeAttempt = z.infer<typeof practiceAttemptSchema>
+export type PracticeResult = z.infer<typeof practiceResultSchema>
 export type AssistantBlock = z.infer<typeof assistantBlockSchema>
 export type AssistantReply = z.infer<typeof assistantReplySchema>
 export type AssistantThread = z.infer<typeof assistantThreadSchema>

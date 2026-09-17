@@ -5,7 +5,7 @@ import { openStory, startPractice, submitAnswer, trackWord } from '../learning'
 import { curriculumLessons } from '../../data/curriculum'
 import type { Workspace } from '../model'
 import {
-  createConversation, deleteThread, expireAssistantRuns, removeAIConnection, saveAIConnection, saveDraft, updateThread,
+  createConversation, deleteThread, expireAssistantRuns, removeAIConnection, saveAIConnection, saveDraft, savePracticeDraft, selectPracticePhrase, updateThread,
 } from './store'
 import { MAX_DRAFT_LENGTH, type AIConnectionInput, type AssistantMessage, type AssistantRun, type AssistantSource } from './contracts'
 
@@ -45,7 +45,7 @@ async function addRun(threadId: string, expiresAt: number, status: AssistantRun[
 }
 
 describe('Assistant database migration', () => {
-  it('adds indexed schema 2 tables without changing schema 1 learning records or another database', async () => {
+  it('adds Assistant and speech settings tables without changing schema 1 learning records or another database', async () => {
     await trackWord('zh:tea', 'dictionary')
     await openStory('zh:tea-house')
     const id = await startPractice('lesson', curriculumLessons[0].id)
@@ -69,7 +69,7 @@ describe('Assistant database migration', () => {
       }
       old.close()
       await migrated.open()
-      expect(migrated.verno).toBe(2)
+      expect(migrated.verno).toBe(3)
       expect(await migrated.preferences.get('workspace')).toEqual(workspace.preferences)
       for (const table of ['words', 'readings', 'lessons', 'sessions', 'attempts'] as const) {
         expect(await migrated.table(table).toArray()).toEqual(workspace[table])
@@ -78,6 +78,7 @@ describe('Assistant database migration', () => {
       expect(await migrated.assistantMessages.count()).toBe(0)
       expect(await migrated.assistantRuns.count()).toBe(0)
       expect(await migrated.aiConnections.count()).toBe(0)
+      expect(await migrated.speechConnections.count()).toBe(0)
       expect(migrated.assistantMessages.schema.idxByName['[threadId+sequence]'].unique).toBe(true)
       expect(migrated.assistantThreads.schema.idxByName.updatedAt).toBeDefined()
       expect(migrated.assistantRuns.schema.idxByName['[threadId+status]']).toBeDefined()
@@ -104,6 +105,41 @@ describe('Assistant database migration', () => {
 })
 
 describe('durable independent conversations', () => {
+  it('persists independent practice input and phrases without changing mode or the composer', async () => {
+    const id = await createConversation(source)
+    const other = await createConversation()
+    const before = await db.assistantThreads.get(id)
+    expect(before?.practiceInput).toBe('listen-repeat')
+    const phrase = { type: 'speech', text: '\u8336', locale: 'zh-Hans', meaning: 'tea' } as const
+    await updateThread(id, { practiceInput: 'spoken-feedback' })
+    await selectPracticePhrase(id, phrase)
+    await savePracticeDraft(id, phrase, '  reviewed transcript  ')
+    await selectPracticePhrase(id, phrase)
+    expect(await db.assistantThreads.get(id)).toMatchObject({
+      practiceInput: 'spoken-feedback', practicePhrase: phrase, practiceDraft: '  reviewed transcript  ',
+      mode: before?.mode, draft: before?.draft, source: before?.source,
+    })
+    expect((await db.assistantThreads.get(other))?.practiceInput).toBe('listen-repeat')
+    expect(await db.assistantMessages.count()).toBe(0)
+    await selectPracticePhrase(id)
+    expect((await db.assistantThreads.get(id))?.practicePhrase).toBeUndefined()
+    expect((await db.assistantThreads.get(id))?.practiceDraft).toBeUndefined()
+    await expect(savePracticeDraft(id, phrase, 'late')).rejects.toThrow('translation changed')
+    expect((await db.assistantThreads.get(id))?.draft).toBe(before?.draft)
+  })
+
+  it('validates practice choices and protects a replacement phrase from stale transcript saves', async () => {
+    const id = await createConversation()
+    const phrase = { type: 'speech', text: '\u8336', locale: 'zh-Hans' } as const
+    await expect(updateThread(id, { practiceInput: 'automatic-recording' } as never)).rejects.toThrow()
+    await expect(selectPracticePhrase(id, { ...phrase, locale: 'en-US' })).rejects.toThrow()
+    await selectPracticePhrase(id, phrase)
+    await expect(savePracticeDraft(id, phrase, 'x'.repeat(MAX_DRAFT_LENGTH + 1))).rejects.toThrow()
+    await selectPracticePhrase(id, { ...phrase, text: '\u4f60\u597d' })
+    await expect(savePracticeDraft(id, phrase, 'old attempt')).rejects.toThrow('translation changed')
+    expect((await db.assistantThreads.get(id))?.practiceDraft).toBeUndefined()
+  })
+
   it('preserves a maximum-length source without silently truncating its draft', async () => {
     const text = 'x'.repeat(MAX_DRAFT_LENGTH)
     const id = await createConversation({ ...source, text })
