@@ -31,7 +31,7 @@ describe('authored Mandarin collection', () => {
   })
 
   it('contains curriculum lessons only and cannot reopen the removed starters', () => {
-    expect(lessons).toHaveLength(32)
+    expect(lessons).toHaveLength(50)
     for (const id of retiredLessonIds) {
       expect(() => getLesson(id)).toThrow('not available')
       expect(lessons.some(lesson => lesson.id === id)).toBe(false)

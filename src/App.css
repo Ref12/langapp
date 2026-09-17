@@ -44,6 +44,14 @@ p { line-height: 1.7; }
 .workspace { min-width: 0; }
 .topbar { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 38px; border-bottom: 1px solid var(--line); }
 .breadcrumb, .topbar-actions { display: flex; align-items: center; gap: 14px; }
+.topbar-leading { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.mobile-nav-trigger { display: none; padding: 0; }
+.mobile-drawer { position: fixed; inset: 0 auto 0 0; margin: 0; width: min(310px, calc(100vw - 48px)); height: 100dvh; max-height: none; max-width: none; padding: calc(6px + env(safe-area-inset-top)) 12px calc(16px + env(safe-area-inset-bottom)); border: 0; border-right: 1px solid var(--line); background: var(--sidebar); color: var(--text); overflow-y: auto; overscroll-behavior: contain; box-shadow: 12px 0 40px #0004; }
+.mobile-drawer::backdrop { background: #0008; }
+.mobile-drawer[open] { display: flex; flex-direction: column; }
+.mobile-drawer-header { display: flex; align-items: center; gap: 8px; min-height: 44px; margin-bottom: 30px; flex-shrink: 0; }
+.mobile-drawer-close { padding: 0; }
+.mobile-drawer-content { display: flex; flex: 1 0 auto; }
 .breadcrumb { font-size: 12px; color: var(--muted); }
 .breadcrumb strong { color: var(--text); font-weight: 500; }
 .language-pill { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 6px; padding: 7px 11px; font-size: 12px; }
@@ -134,6 +142,9 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); width
 .target-token, .reading-token[aria-pressed="true"] { color: var(--accent); background: var(--accent-wash); }
 .reading-token ruby { font-family: "Segoe UI", sans-serif; }
 rt { font-size: 11px; line-height: 1.5; color: var(--muted); }
+.mandarin-word { ruby-align: center; }
+.mandarin-word rt { font-family: "Segoe UI", sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0; color: var(--accent); }
+.word-native .mandarin-word rt, .practice-prompt .mandarin-word rt { font-size: 15px; }
 .reader-navigation { justify-content: space-between; margin-top: 24px; }
 .word-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .word-card { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 23px; }
@@ -157,6 +168,24 @@ summary { cursor: pointer; min-height: 28px; }
 .readiness-module ol { padding-left: 22px; }
 .readiness-module li { margin-bottom: 12px; }
 .readiness-module li span { display: block; color: var(--muted); margin-top: 4px; }
+.lesson-player { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.lesson-heading .back-link { margin-bottom: 12px; }
+.lesson-heading h1 { font-size: 25px; margin-bottom: 12px; }
+.lesson-heading progress { margin-top: 10px; }
+.lesson-word-card .word-native { margin: 20px 0 12px; text-align: center; font-size: 44px; line-height: 1.5; }
+.lesson-word-card .word-meaning { text-align: center; margin-bottom: 12px; }
+.lesson-word-card .snippet-actions { margin: 10px 0; }
+.lesson-word-card .snippet-actions .button-row { justify-content: center; }
+.lesson-word-card details { margin-top: 10px; }
+.lesson-pagination { display: flex; justify-content: space-between; gap: 10px; }
+.lesson-pagination .button { flex: 1; }
+.lesson-overview { font-size: 13px; color: var(--muted); }
+.lesson-overview > summary { min-height: 44px; display: list-item; align-content: center; }
+.lesson-overview > p { margin-top: 12px; }
+.lesson-player > .panel { margin: 0; }
+.lesson-player > .grammar-reference { margin: 0; }
+.lesson-grammar-card .grammar-notes { margin-top: 12px; }
+.lesson-grammar-card .grammar-notes summary { min-height: 44px; align-content: center; font-size: 12px; color: var(--muted); }
 .level-card { display: flex; flex-direction: column; }
 .level-card > .text-link { margin-top: auto; }
 .level-card progress { margin-bottom: 12px; }
@@ -179,6 +208,7 @@ summary { cursor: pointer; min-height: 28px; }
 .resume-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; border-top: 1px solid var(--line); }
 .resume-row .small { display: block; margin-top: 6px; }
 .practice-player { max-width: 760px; margin: 0 auto; padding: 30px; }
+.practice-question-content { display: contents; }
 .practice-player progress { margin: 18px 0 30px; }
 .practice-player h2 { font-size: 24px; }
 .practice-prompt { font-size: 28px; padding: 25px 10px; text-align: center; }
@@ -230,9 +260,9 @@ select { padding: 10px; }
 .opening-workspace { padding: 50px 24px; max-width: 760px; margin: 10vh auto; }
 .sidebar-collapsed { grid-template-columns: 82px minmax(0, 1fr); }
 .sidebar-collapsed .sidebar { padding-inline: 12px; }
-.sidebar-collapsed .sidebar-header { flex-direction: column; }
-.sidebar-collapsed :is(.brand-name, .workspace-label, .primary-nav a > span, .nav-count, .sidebar-bottom) { display: none; }
-.sidebar-collapsed .primary-nav a { justify-content: center; padding-inline: 12px; }
+.sidebar-collapsed .sidebar .sidebar-header { flex-direction: column; }
+.sidebar-collapsed .sidebar :is(.brand-name, .workspace-label, .primary-nav a > span, .nav-count, .sidebar-bottom) { display: none; }
+.sidebar-collapsed .sidebar .primary-nav a { justify-content: center; padding-inline: 12px; }
 @media (max-width: 1150px) {
   main { padding: 28px 24px; }
   .topbar { padding-inline: 24px; }
@@ -246,19 +276,15 @@ select { padding: 10px; }
   .word-help { max-width: 500px; }
 }
 @media (max-width: 760px) {
-  .app-shell, .sidebar-collapsed { display: block; padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
-  .sidebar { position: fixed; top: auto; bottom: 0; left: 0; right: 0; height: auto; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); border-right: 0; border-top: 1px solid var(--line); }
-  .sidebar-collapsed .sidebar { padding-inline: 4px; }
-  .sidebar-header, .sidebar-collapsed .sidebar-header, .workspace-label, .sidebar-bottom { display: none; }
-  .primary-nav { flex-direction: row; gap: 0; }
-  .primary-nav a, .sidebar-collapsed .primary-nav a { flex: 1; min-width: 0; flex-direction: column; justify-content: center; gap: 6px; padding: 7px 1px; font-size: 10px; position: relative; }
-  .sidebar-collapsed .primary-nav a > span { display: inline; }
-  .nav-count { position: absolute; right: 5px; top: 0; font-size: 8px; padding: 1px 3px; }
-  .topbar { min-height: 68px; padding: 10px 16px; gap: 10px; }
+  .app-shell, .sidebar-collapsed { display: block; }
+  .sidebar { display: none; }
+  .mobile-nav-trigger { display: inline-flex; }
+  .topbar { min-height: 56px; padding: calc(6px + env(safe-area-inset-top)) 12px 6px; gap: 8px; }
+  .topbar-leading { gap: 8px; }
   .breadcrumb > span, .breadcrumb > svg { display: none; }
   .topbar-actions { gap: 3px; }
-  .language-pill { border: 0; padding: 4px; font-size: 11px; }
-  main { padding: 25px 18px; }
+  .language-pill { display: none; }
+  main { padding: 25px 18px calc(25px + env(safe-area-inset-bottom)); }
   .page-heading { align-items: flex-start; flex-direction: column; gap: 16px; margin-bottom: 24px; }
   .page-heading > .button { align-self: stretch; }
   .daily-card { display: flex; align-items: stretch; padding: 22px; gap: 15px; }
@@ -279,11 +305,80 @@ select { padding: 10px; }
   .reading-text { font-size: 21px; }
   .reader-navigation { flex-direction: column-reverse; align-items: stretch; }
   .practice-invitation { align-items: stretch; flex-direction: column; gap: 20px; }
-  .answer-options { grid-template-columns: 1fr; }
-  .answer-option { min-height: 58px; }
+  .practice-main { padding: 12px 12px calc(12px + env(safe-area-inset-bottom)); }
+  .lesson-main { padding: 12px 12px calc(12px + env(safe-area-inset-bottom)); }
+  .lesson-player { gap: 10px; }
+  .lesson-heading h1 { font-size: 20px; margin-bottom: 8px; }
+  .lesson-heading .back-link { margin-bottom: 8px; }
+  .lesson-heading progress { margin-top: 8px; }
+  .lesson-word-card { padding: 16px; }
+  .lesson-word-card .word-native { margin: 12px 0 8px; font-size: 38px; }
+  .lesson-word-card .word-meaning { font-size: 16px; margin-bottom: 8px; line-height: 1.4; }
+  .lesson-word-card .card-topline { flex-wrap: nowrap; }
+  .lesson-word-card .card-topline .eyebrow { font-size: 9px; letter-spacing: .7px; }
+  .lesson-pagination .button { padding-inline: 8px; gap: 6px; }
+  .lesson-grammar-card { padding: 16px; }
+  .lesson-grammar-card > .eyebrow { font-size: 9px; letter-spacing: .7px; margin-bottom: 8px; }
+  .lesson-grammar-card h3 { margin-bottom: 8px; }
+  .lesson-grammar-card .grammar-pattern { font-size: 22px; margin-bottom: 8px; line-height: 1.4; }
+  .lesson-grammar-card > p:not(.grammar-pattern, .eyebrow) { font-size: 13px; line-height: 1.5; margin-bottom: 8px; }
+  .lesson-grammar-card .grammar-example { padding-top: 10px; }
+  .lesson-grammar-card .grammar-example p { margin-bottom: 8px; line-height: 1.5; }
+  .lesson-practice-overview { padding: 16px; }
+  .lesson-practice-overview h2 { font-size: 20px; margin-bottom: 10px; }
+  .lesson-practice-overview p { font-size: 13px; line-height: 1.5; margin-bottom: 8px; }
+  .practice-player { display: flex; flex-direction: column; gap: 10px; padding: 16px; }
+  .practice-player .card-topline { gap: 4px 8px; }
+  .practice-player .card-topline .eyebrow { font-size: 9px; letter-spacing: .6px; }
+  .practice-player .card-topline .small { font-size: 11px; }
+  .practice-player progress { margin: 0; flex-shrink: 0; }
+  .practice-player h2 { font-size: 19px; line-height: 1.3; margin: 0; }
+  .practice-player .practice-context { margin: 0; font-size: 11px; line-height: 1.4; }
+  .practice-prompt { font-size: 23px; line-height: 1.3; padding: 6px 0; margin: 0; }
+  .practice-prompt.native { font-size: 38px; }
+  .answer-options { gap: 8px; margin: 0; min-width: 0; }
+  .answer-option { min-width: 0; min-height: 48px; padding: 8px; gap: 6px; font-size: 13px; line-height: 1.35; }
+  .answer-option input { margin: 0; }
+  .answer-option [lang="zh-Hans"] { font-size: 22px; }
+  .practice-player .notice { margin: 0; padding: 10px; font-size: 13px; line-height: 1.4; }
+  .practice-player .notice p { margin-top: 4px; line-height: 1.4; }
+  .practice-player .practice-save-note { display: none; }
+  .practice-player > .button-row { gap: 8px; }
+  .practice-player > .button-row > .button { padding-inline: 8px; font-size: 12px; gap: 6px; }
   .practice-player > .button-row { justify-content: stretch; }
   .practice-player > .button-row > .button { flex: 1; }
   .card-topline { flex-wrap: wrap; }
+}
+@media (max-width: 760px) and (max-height: 700px) {
+  .practice-main { padding-top: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+  .practice-player { padding: 12px; gap: 8px; }
+  .practice-player .practice-context, .practice-player .practice-feedback-detail { display: none; }
+  .practice-prompt { padding: 0; }
+}
+@media (max-width: 760px) and (max-height: 600px) {
+  .practice-player { padding: 10px; gap: 4px; }
+  .practice-prompt.native { font-size: 32px; }
+  .answer-option { min-height: 44px; padding: 6px; line-height: 1.3; }
+  .lesson-main { padding-block: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+  .lesson-player { gap: 6px; }
+  .lesson-word-card { padding: 8px; }
+  .lesson-word-card .word-native { margin: 8px 0 4px; font-size: 32px; line-height: 1.25; }
+  .lesson-word-card .snippet-actions { margin: 6px 0; }
+  .lesson-word-card details { margin-top: 6px; }
+  .lesson-grammar-card { padding: 10px; }
+  .lesson-grammar-card .grammar-notes { margin-top: 6px; }
+  .lesson-practice-overview { padding: 10px; }
+}
+@media (min-width: 540px) and (max-width: 760px) and (max-height: 500px) {
+  .practice-player { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; padding: 8px; gap: 4px 12px; }
+  .practice-player > .card-topline, .practice-player > progress { grid-column: 1 / -1; }
+  .practice-question-content { display: block; grid-column: 1; grid-row: 3; }
+  .practice-player h2 { font-size: 17px; }
+  .practice-prompt { font-size: 19px; margin-top: 6px; }
+  .practice-player > .answer-options { grid-column: 2; grid-row: 3; }
+  .practice-player .answer-option { font-size: 12px; }
+  .practice-player > .notice { grid-column: 1; grid-row: 4; padding: 8px; font-size: 12px; }
+  .practice-player > .button-row { grid-column: 2; grid-row: 4; align-self: end; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }

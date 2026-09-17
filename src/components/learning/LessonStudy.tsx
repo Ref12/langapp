@@ -1,63 +1,82 @@
-import { useState } from 'react'
-import type { LessonDefinition } from '../../core/learning-content'
+import { useState, type ReactNode } from 'react'
+import { buildLessonPages, type LessonDefinition, type LessonPage } from '../../core/learning-content'
 import { contentGrammar, contentModels, contentWords } from '../../data/learning-content'
 import { getWord } from '../../data/mandarin'
 import { MarkdownText } from '../MarkdownText'
-import { WordCard, type PageProps } from '../shared'
+import { EmptyState, WordCard, type PageProps } from '../shared'
 import { GuidedAudio } from './GuidedAudio'
 import { LearningModelView, UtteranceView } from './LearningModels'
+import { LessonPagination } from './LessonPagination'
 
-export function LessonStudy({ definition, lessonId, workspace, busy, run }: {
-  definition: LessonDefinition; lessonId: string
+function ContentPage({ item, definition, lessonId, current, workspace, busy, run }: {
+  item: Exclude<LessonPage, { kind: 'overview' | 'practice' }>; definition: LessonDefinition; lessonId: string; current: number
+} & Pick<PageProps, 'workspace' | 'busy' | 'run'>) {
+  const section = item.section
+  const pinyin = workspace.preferences.pinyin
+  const first = item.kind === 'vocabulary' ? item.word === item.section.words[0]
+    : item.kind === 'grammar' ? !item.example : item.model === item.section.models[0]
+  const word = item.kind === 'vocabulary' ? contentWords.get(item.word) : undefined
+  const model = item.kind === 'model' ? contentModels.get(item.model) : undefined
+  if (item.kind === 'vocabulary' && !word) throw new Error(`Unknown lesson vocabulary: ${item.word}`)
+  if (item.kind === 'model' && !model) throw new Error(`Unknown lesson content label: ${item.model}`)
+  return <section className="lesson-section" aria-labelledby="lesson-section-title">
+    <div className="section-heading"><h2 id="lesson-section-title">{section.title}</h2>
+      <span className="tag">{section.kind === 'models' ? 'Lesson content' : section.role === 'new' ? 'New in this lesson' : 'Review'}</span></div>
+    {first ? <MarkdownText markdown={section.description} />
+      : <details className="lesson-overview"><summary>Section explanation</summary><MarkdownText markdown={section.description} /></details>}
+    {word && <WordCard key={word.id} word={getWord(word.id)} pinyin={pinyin}
+      state={workspace.words.find(state => state.wordId === word.id)} source={`lesson:${lessonId}`} returnRoute={`lesson/${lessonId}/${current}`} compact busy={busy} run={run} />}
+    {item.kind === 'grammar' && <article className="panel grammar-reference lesson-grammar-card">
+      <p className="eyebrow accent">{item.example ? 'GRAMMAR EXAMPLE' : 'GRAMMAR RULE'}</p>
+      <h3>{contentGrammar.get(item.section.grammar)!.ds}</h3>
+      {item.example && <UtteranceView utterance={item.example} pinyin={pinyin} />}
+    </article>}
+    {model && <LearningModelView key={model.label} model={model} lessonLabel={definition.label} pinyin={pinyin} />}
+  </section>
+}
+
+export function LessonStudy({ definition, lessonId, page, practice, workspace, busy, run }: {
+  definition: LessonDefinition; lessonId: string; page?: string; practice: ReactNode
 } & Pick<PageProps, 'workspace' | 'busy' | 'run'>) {
   const [mode, setMode] = useState<'visual' | 'guided-audio'>('visual')
-  const pinyin = workspace.preferences.pinyin
+  const pages = buildLessonPages(definition)
+  const current = page === undefined ? 1 : Number(page)
+  if (!Number.isInteger(current) || current < 1 || current > pages.length || (page !== undefined && !/^\d+$/.test(page))) {
+    return <EmptyState title="This lesson page is not available"><a className="button primary" href={`#lesson/${lessonId}`}>Back to the lesson</a></EmptyState>
+  }
+  const item = pages[current - 1]
   return <div className="lesson-study">
-    <section className="panel feature-panel lesson-description" aria-labelledby="lesson-description-title">
-      <p className="eyebrow accent">WHOLE LESSON / LEVEL 1 PILOT</p>
-      <h2 id="lesson-description-title">About this lesson</h2>
-      <div className="button-row" role="group" aria-label="Lesson mode">
-        <button type="button" className="button secondary" aria-pressed={mode === 'visual'} onClick={() => setMode('visual')}>Visual lesson</button>
-        <button type="button" className="button secondary" aria-pressed={mode === 'guided-audio'} onClick={() => setMode('guided-audio')}>Guided audio lesson</button>
-        <button type="button" className="button secondary" disabled aria-describedby="microphone-mode-note">Interactive audio (planned)</button>
-      </div>
-      <p id="microphone-mode-note" className="small muted">Two views of this entire lesson. Guided audio includes time to answer aloud; microphone recording and automated feedback are not enabled.</p>
-      {mode === 'visual' && <>
-        <MarkdownText markdown={definition.description} />
-        <h3>What you will learn</h3>
-        <ul>{definition.objectives.map(objective => <li key={objective}><MarkdownText markdown={objective} /></li>)}</ul>
-      </>}
-    </section>
+    <div className="button-row" role="group" aria-label="Lesson mode">
+      <button type="button" className="button secondary" aria-pressed={mode === 'visual'} onClick={() => setMode('visual')}>Visual lesson</button>
+      <button type="button" className="button secondary" aria-pressed={mode === 'guided-audio'} onClick={() => setMode('guided-audio')}>Guided audio lesson</button>
+      <button type="button" className="button secondary" disabled aria-describedby="microphone-mode-note">Interactive audio (planned)</button>
+    </div>
+    <p id="microphone-mode-note" className="small muted">Visual pages and guided audio use the same complete lesson. Guided audio includes time to answer aloud; microphone recording and automated feedback are not enabled.</p>
     {mode === 'guided-audio' ? <GuidedAudio lesson={definition} /> : <>
-      <nav className="panel lesson-outline" aria-label="Lesson sections">
-        <h2>In this lesson</h2>
-        <ol>{definition.sections.map((section, index) => <li key={index}><a className="text-link" href={`#lesson/${lessonId}`} onClick={event => {
-          event.preventDefault()
-          document.getElementById(`lesson-section-${index}`)?.scrollIntoView({ block: 'start' })
-          document.getElementById(`lesson-section-title-${index}`)?.focus({ preventScroll: true })
-        }}>{section.title}</a></li>)}</ol>
-      </nav>
-      {definition.sections.map((section, index) => <section className="lesson-section" id={`lesson-section-${index}`} key={index} aria-labelledby={`lesson-section-title-${index}`}>
-        <div className="section-heading"><h2 id={`lesson-section-title-${index}`} tabIndex={-1}>{section.title}</h2>
-          <span className="tag">{section.kind === 'models' ? 'Lesson content' : section.role === 'new' ? 'New in this lesson' : 'Review'}</span></div>
-        <MarkdownText markdown={section.description} />
-        {section.kind === 'vocabulary' && <div className="word-grid">{section.words.map(label => {
-          const word = contentWords.get(label)
-          if (!word) throw new Error(`Unknown lesson vocabulary: ${label}`)
-          return <WordCard key={label} word={getWord(word.id)} pinyin={pinyin}
-            state={workspace.words.find(state => state.wordId === word.id)} source={`lesson:${lessonId}`} busy={busy} run={run} />
-        })}</div>}
-        {section.kind === 'grammar' && <article className="panel grammar-reference">
-          <h3>{contentGrammar.get(section.grammar)!.ds}</h3>
-          {section.examples.map((example, exampleIndex) => <UtteranceView key={exampleIndex} utterance={example} pinyin={pinyin} />)}
-        </article>}
-        {section.kind === 'models' && section.models.map(label => {
-          const model = contentModels.get(label)
-          if (!model) throw new Error(`Unknown lesson content label: ${label}`)
-          return <LearningModelView key={label} model={model} lessonLabel={definition.label} pinyin={pinyin} />
-        })}
-      </section>)}
+      <div className="card-topline"><span className="eyebrow">PART {definition.part}</span><span className="small muted">Page {current} of {pages.length}</span></div>
+      <progress aria-label="Lesson pages" value={current} max={pages.length} />
+      {item.kind === 'overview' ? <>
+        <section className="panel lesson-description" aria-labelledby="lesson-description-title">
+          <h2 id="lesson-description-title">About this lesson</h2>
+          <MarkdownText markdown={definition.description} />
+          <h3>What you will learn</h3>
+          <ul>{definition.objectives.map(objective => <li key={objective}><MarkdownText markdown={objective} /></li>)}</ul>
+        </section>
+        <nav className="panel lesson-outline" aria-label="Lesson sections">
+          <h2>In this lesson</h2>
+          <ol>{definition.sections.map((section, index) => <li key={index}>
+            <a className="text-link" href={`#lesson/${lessonId}/${pages.findIndex(entry => 'section' in entry && entry.section === section) + 1}`}>{section.title}</a>
+          </li>)}</ol>
+        </nav>
+      </> : item.kind === 'practice' ? practice
+        : <ContentPage key={current} item={item} definition={definition} lessonId={lessonId} current={current} workspace={workspace} busy={busy} run={run} />}
+      <LessonPagination lessonId={lessonId} current={current} total={pages.length}
+        nextLabel={item.kind === 'vocabulary' && pages[current]?.kind === 'vocabulary' ? 'Next word' : 'Next'} />
     </>}
+    <div className="button-row">
+      {current !== 1 && <a className="text-link" href={`#lesson/${lessonId}`}>Lesson overview</a>}
+      {(current !== pages.length || mode === 'guided-audio') && <a className="text-link" href={`#lesson/${lessonId}/${pages.length}`}>Go to reading practice</a>}
+    </div>
     <p className="page-footnote">Reading or listening to this lesson does not award mastery or complete a practice session. This authored pilot is not an HSK-readiness assessment.</p>
   </div>
 }

@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 import { db } from './core/database'
 import { getWord } from './data/mandarin'
-import { advancePractice, submitAnswer, trackWord } from './core/learning'
+import { advancePractice, startPractice, submitAnswer, trackWord } from './core/learning'
 import { curriculumLessons } from './data/curriculum'
 import { seedRetiredLesson } from './test/retired-lesson'
 
@@ -21,6 +21,28 @@ async function go(route: string) {
 }
 
 describe('Mandarin learning loop', () => {
+  it('supports unfamiliar meaning prompts without leaking pinyin into character-selection questions', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Make the language yours.' })
+    let id = ''
+    await act(async () => { id = await startPractice('lesson', curriculumLessons[0].id) })
+    await go(`practice/${id}`)
+    await screen.findByRole('heading', { name: 'What does this word mean?' })
+    expect(document.querySelector('.practice-prompt rt')).toBeInTheDocument()
+    const session = (await db.sessions.get(id))!
+    const formIndex = session.questions.findIndex(question => question.activity === 'form')
+    expect(formIndex).toBeGreaterThanOrEqual(0)
+    await act(async () => { await db.sessions.update(id, { cursor: formIndex }) })
+    await screen.findByRole('heading', { name: 'Which Mandarin word matches?' })
+    expect(document.querySelector('.practice-player rt')).toBeNull()
+    await user.click(screen.getByRole('button', { name: 'Show answer' }))
+    await screen.findByText('Answer revealed. This question will be recorded as assisted.')
+    expect(document.querySelector('.answer-options rt')).toBeNull()
+    expect(document.querySelector('.practice-player .notice rt')).toHaveTextContent(getWord(session.questions[formIndex].wordId).pinyin)
+    expect(await db.attempts.count()).toBe(0)
+  })
+
   it('shows the practice activities without the modality disclaimer', async () => {
     render(<App />)
     await screen.findByRole('heading', { name: 'Make the language yours.' })
@@ -60,8 +82,12 @@ describe('Mandarin learning loop', () => {
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     await go(`lesson/${curriculumLessons[0].id}`)
     await screen.findByRole('heading', { name: curriculumLessons[0].title })
+    await user.click(screen.getByRole('link', { name: 'Go to reading practice' }))
+    await screen.findByRole('heading', { name: 'Try the reading practice.' })
     await user.click(screen.getByRole('button', { name: 'Start lesson practice' }))
     await screen.findByRole('heading', { name: 'What does this word mean?' })
+    expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument()
+    expect(screen.queryByText('Read, recall, and give yourself room to learn.')).not.toBeInTheDocument()
     const session = (await db.sessions.toArray())[0]
     await user.click(screen.getByRole('button', { name: 'Show answer' }))
     await screen.findByText('Answer revealed. This question will be recorded as assisted.')
@@ -127,7 +153,7 @@ describe('Mandarin learning loop', () => {
     await go('lesson/zh:greetings')
     await screen.findByRole('heading', { name: 'This page is not available' })
     await go(`practice/${id}`)
-    await screen.findByRole('heading', { name: 'Your vocabulary review' })
+    await screen.findByRole('heading', { name: 'What does this word mean?' })
     const saved = (await db.sessions.get(id))!
     await act(async () => {
       for (const [index, question] of saved.questions.entries()) {
@@ -160,6 +186,8 @@ describe('Mandarin learning loop', () => {
     expect(screen.getByRole('link', { name: 'Start next lesson' })).toHaveAttribute('href', `#lesson/${curriculumLessons[0].id}`)
     await user.click(screen.getByRole('link', { name: 'Start next lesson' }))
     await screen.findByRole('heading', { name: curriculumLessons[0].title })
+    await user.click(screen.getByRole('link', { name: 'Go to reading practice' }))
+    await screen.findByRole('heading', { name: 'Try the reading practice.' })
     await user.click(screen.getByRole('button', { name: 'Start lesson practice' }))
     await screen.findByRole('heading', { name: 'What does this word mean?' })
     const session = (await db.sessions.toArray())[0]

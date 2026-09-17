@@ -136,10 +136,14 @@ utterances instead of untracked prose.
 
 ### One definition, different views
 
-**Visual lesson** and **Guided audio lesson** are selected near the top, alongside
-the lesson description and goals. The visual view follows the authored section
-order and offers an outline, vocabulary, grammar explanations, concepts,
-dialogues, and revealable exercise answers. The audio view narrates the same
+**Visual lesson** and **Guided audio lesson** are selected near the top.
+The visual view is paginated from the same whole-lesson model: an opening
+description, goals, and linked outline; one vocabulary item per page; a grammar
+explanation followed by one example per page; then one concept, phrase,
+conversation, or exercise per page, always following the authored section order.
+Numbered lesson URLs support previous/next navigation, direct links, and reload
+without awarding progress. Reading practice has a separate final page.
+The audio view narrates the same
 description, goals, vocabulary meanings, grammar explanations and examples,
 concepts, conversations, response gaps, and model answers in the same order.
 Readable labels are references, not words to pronounce, so audio does not read

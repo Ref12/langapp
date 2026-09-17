@@ -6,7 +6,7 @@ import { db } from '../core/database'
 import { curriculum, curriculumLessons, curriculumLevels } from '../data/curriculum'
 import { getWord } from '../data/mandarin'
 import { contentWords, learningContent, lessonDefinitions } from '../data/learning-content'
-import { resolveUtterance, spokenProse } from '../core/learning-content'
+import { buildLessonPages, resolveUtterance, spokenProse } from '../core/learning-content'
 
 beforeEach(async () => {
   window.location.hash = '#lessons'
@@ -30,6 +30,9 @@ describe('curriculum experience', () => {
     const definition = learningContent.lessons[0]
     await user.click(screen.getByText(`Part 1: ${definition.title}`).closest('a')!)
     await screen.findByRole('heading', { name: 'About this lesson' })
+    expect(screen.queryByRole('heading', { name: model.title })).not.toBeInTheDocument()
+    const exercisePage = buildLessonPages(definition).findIndex(page => page.kind === 'model' && page.model === model.label) + 1
+    await go(`lesson/${curriculumLessons[0].id}/${exercisePage}`)
     const heading = await screen.findByRole('heading', { name: model.title })
     const article = heading.closest('article')!
     await user.click(within(article).getByRole('button', { name: 'Reveal model answer' }))
@@ -111,12 +114,21 @@ describe('curriculum experience', () => {
     await user.click(screen.getByRole('link', { name: 'Continue your path' }))
     const lesson = curriculumLessons[0]
     await screen.findByRole('heading', { name: lesson.title })
-    const grammar = lessonDefinitions.get(lesson.id)!.sections.find(section => section.kind === 'grammar')!
     const definition = lessonDefinitions.get(lesson.id)!
-    expect(document.getElementById(`lesson-section-${definition.sections.indexOf(grammar)}`)).toHaveTextContent(spokenProse(grammar.description))
+    const grammar = definition.sections.find(section => section.kind === 'grammar')!
+    const pages = buildLessonPages(definition)
+    const rulePage = pages.findIndex(page => page.kind === 'grammar' && page.section === grammar) + 1
+    await go(`lesson/${lesson.id}/${rulePage}`)
+    await screen.findByRole('heading', { name: grammar.title })
+    expect(document.querySelector('.lesson-section')).toHaveTextContent(spokenProse(grammar.description))
     const example = resolveUtterance(grammar.examples[0], contentWords).text
+    expect(screen.queryByText(example)).not.toBeInTheDocument()
+    await user.click(screen.getByRole('link', { name: 'Next' }))
+    await screen.findByText(example)
     expect(within(document.querySelector('article.grammar-reference')!).getByText(example)).toBeInTheDocument()
     expect(await db.words.count()).toBe(0)
+    await user.click(screen.getByRole('link', { name: 'Go to reading practice' }))
+    await screen.findByRole('heading', { name: 'Try the reading practice.' })
     await user.click(screen.getByRole('button', { name: 'Start lesson practice' }))
     await screen.findByRole('heading', { name: 'What does this word mean?' })
     const session = (await db.sessions.toArray())[0]
@@ -141,6 +153,73 @@ describe('curriculum experience', () => {
     expect(screen.getByText('Not assessed', { exact: true })).toBeInTheDocument()
     await waitFor(async () => expect((await db.lessons.get(lesson.id))?.completedAt).toBeDefined())
   }, 15000)
+
+  it('introduces one word per page, supports previous and reload, and does not award progress', async () => {
+    const user = userEvent.setup()
+    const lesson = curriculumLessons[0]
+    const pages = buildLessonPages(lessonDefinitions.get(lesson.id)!)
+    const firstWordPage = pages.findIndex(page => page.kind === 'vocabulary') + 1
+    const view = render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    await go(`lesson/${lesson.id}`)
+    await screen.findByRole('heading', { name: 'About this lesson' })
+    expect(screen.getByRole('button', { name: 'Previous' })).toBeDisabled()
+    expect(document.querySelector('.word-card')).toBeNull()
+    await user.click(within(screen.getByRole('navigation', { name: 'Lesson sections' })).getAllByRole('link')[0])
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[0]).native })
+    expect(document.querySelectorAll('.word-card')).toHaveLength(1)
+    expect(document.querySelector('.word-card rt')).toHaveTextContent(getWord(lesson.wordIds[0]).pinyin)
+    expect(screen.getByRole('link', { name: 'Previous' })).toHaveAttribute('href', `#lesson/${lesson.id}/${firstWordPage - 1}`)
+    await user.click(screen.getByRole('link', { name: 'Next word' }))
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[1]).native })
+    expect(window.location.hash).toBe(`#lesson/${lesson.id}/${firstWordPage + 1}`)
+    expect(document.querySelectorAll('.word-card')).toHaveLength(1)
+    view.unmount()
+    render(<App />)
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[1]).native })
+    await user.click(screen.getByRole('link', { name: 'Previous' }))
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[0]).native })
+    expect(await db.words.count()).toBe(0)
+    expect(await db.lessons.count()).toBe(0)
+    await go(`lesson/${lesson.id}/${pages.length}`)
+    await screen.findByRole('heading', { name: 'Try the reading practice.' })
+    expect(document.querySelector('.word-card')).toBeNull()
+    expect(screen.getByRole('button', { name: 'Start lesson practice' })).toBeEnabled()
+  })
+
+  it('keeps later lessons paginated through words, grammar rules, and individual examples', async () => {
+    const user = userEvent.setup()
+    const lesson = curriculumLessons.find(lesson => !lessonDefinitions.has(lesson.id) && lesson.curriculum.grammarIds.length > 0)!
+    const grammar = curriculum.grammar.find(grammar => grammar.id === lesson.curriculum.grammarIds[0])!
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    await go(`lesson/${lesson.id}`)
+    await screen.findByRole('heading', { name: getWord(lesson.wordIds[0]).native })
+    expect(document.querySelectorAll('.word-card')).toHaveLength(1)
+    expect(screen.getByRole('button', { name: 'Previous' })).toBeDisabled()
+    await go(`lesson/${lesson.id}/${lesson.wordIds.length + 1}`)
+    await screen.findByRole('heading', { name: grammar.ds })
+    expect(screen.getByText(grammar.note)).toBeInTheDocument()
+    expect(screen.queryByText(grammar.examples[0].target)).not.toBeInTheDocument()
+    await user.click(screen.getByRole('link', { name: 'Next' }))
+    await screen.findByText(grammar.examples[0].target)
+    expect(document.querySelectorAll('.lesson-grammar-card .grammar-example')).toHaveLength(1)
+    expect(screen.queryByText(grammar.note)).not.toBeInTheDocument()
+    expect(document.body.textContent).not.toContain('Construction ID:')
+    expect(await db.words.count()).toBe(0)
+    expect(await db.lessons.count()).toBe(0)
+  })
+
+  it('rejects invalid lesson page links instead of silently showing the wrong word', async () => {
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Your Mandarin path.' })
+    for (const page of ['0', '-1', '999', '1.5', 'word']) {
+      await go(`lesson/${curriculumLessons[0].id}/${page}`)
+      await screen.findByRole('heading', { name: 'This lesson page is not available' })
+      expect(document.querySelector('.word-card')).toBeNull()
+    }
+    expect(await db.words.count()).toBe(0)
+  })
 
   it('searches spaced pinyin and keeps same-form curriculum senses separate from starter examples', async () => {
     const user = userEvent.setup()

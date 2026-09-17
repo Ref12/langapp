@@ -32,7 +32,7 @@ Those design artifacts remain memory-only and never access either app's database
   substitutes only words you have added. Passage completion and reading position
   are saved explicitly; simply opening a page does not count as reading it.
 - Explore the real six-phase, thirty-level Practical Mandarin course map.
-  Levels 1-4 are playable: twelve modules, 205 canonical vocabulary senses, and
+  Levels 1-4 are playable: twelve modules, 357 canonical vocabulary senses, and
   25 grammar references. Later levels expose goals, prerequisites, module
   outlines, and checkpoint tasks, but cannot be practiced or completed yet.
 - Beginner modules are divided, in source order, into parts of 5-8 new senses
@@ -43,6 +43,19 @@ Those design artifacts remain memory-only and never access either app's database
   example items remain available, with their existing vocabulary progress.
   Old lesson backups retain saved answers, and unfinished sessions can continue
   as vocabulary practice without restoring the removed lessons or their links.
+- Lesson introductions show one vocabulary sense per page, followed by separate
+  grammar-rule and example pages and a practice overview. Previous/Next links preserve the
+  page in the URL across reloads; browsing does not award learning progress.
+- The level-1 pilot uses whole-lesson YAML models: an opening description,
+  objectives, and outline, followed by paginated vocabulary, grammar, concepts,
+  phrases, conversations, and self-check exercises in authored order. Guided
+  audio covers the same full lesson. Readable authoring identifiers stay out of
+  learner-facing text; reading practice remains a separate final page.
+- Source-backed pinyin appears above unfamiliar vocabulary until its sense reaches
+  **Learned**, unless disabled in Settings. Character-selection questions suppress
+  those hints while answering; feedback may show them afterward. Meaning questions,
+  lesson words, annotated reading tokens, and dictionary words share this policy.
+  Unannotated sentences and grammar templates do not receive invented pronunciations.
 - Practice character-to-meaning and meaning-to-character recognition. Questions,
   answer choices, revealed answers, and feedback survive reload. Each checked
   answer is recorded once, before advancing.
@@ -74,7 +87,7 @@ cupful measure word (`杯`), and the greeting, approval, and adjective senses of
 shared English gloss alternatives; recognition still does not assess use in context.
 
 Not connected in this checkpoint: personal imports, playable levels 5-30,
-tourist or specialist routes, contextual and productive exercises or level assessment,
+tourist or specialist routes, contextual or productive skill assessment or level assessment,
 microphone/voice conversation, generated stories/lessons/exercises, audio or
 handwriting assessment, other target
 languages, synchronization, and installation/offline shell caching for the new
@@ -277,8 +290,9 @@ During `npm run dev`, the app automatically queries a localhost-only endpoint
 on startup **only when no AI connection is already saved**. It validates and
 saves `aiConnection`, then makes it available in Settings and Assistant.
 Loading configuration does not test the provider, send a message, or alter
-learning progress. Missing configuration is optional; invalid configuration
-shows an error and leaves manual setup available.
+learning progress or block lesson rendering. Loading, success, and error notices
+appear only in Settings under AI connection settings. Missing configuration is
+optional; invalid configuration leaves manual setup available.
 
 Saved settings always win, including a save in another tab while the file is
 loading. To apply changes to the file, remove the saved connection in Settings

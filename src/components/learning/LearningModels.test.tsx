@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { LearningModelView } from './LearningModels'
 import { LessonStudy } from './LessonStudy'
 import { contentWords, contentModels, contentGrammar, learningContent, lessonDefinitions, lessonLearningModels, lessonRoutes } from '../../data/learning-content'
-import { buildLessonAudioScript, resolveUtterance, spokenProse } from '../../core/learning-content'
+import { buildLessonAudioScript, buildLessonPages, resolveUtterance, spokenProse } from '../../core/learning-content'
 import { getPlaybackState, stopBrowserSpeech } from '../../core/assistant/speech'
 import { curriculum } from '../../data/curriculum'
 import type { Workspace } from '../../core/model'
@@ -24,11 +24,13 @@ const exercise = learningContent.models.find(model => model.kind === 'exercise')
 const definition = learningContent.lessons[0]
 const lessonId = lessonRoutes.get(definition.label)!
 const script = buildLessonAudioScript(definition, contentModels, contentWords, contentGrammar)
+const pages = buildLessonPages(definition)
 const workspace: Workspace = {
   preferences: { id: 'workspace', language: 'zh-Hans', name: 'Learner', theme: 'dark', pinyin: true, readingMode: 'source', sidebarCollapsed: false },
   words: [], readings: [], lessons: [], sessions: [], attempts: [],
 }
-const study = () => <LessonStudy definition={definition} lessonId={lessonId} workspace={workspace} busy={false} run={operation => operation()} />
+const study = (page?: string) => <LessonStudy definition={definition} lessonId={lessonId} page={page} practice={<p>Reading practice</p>}
+  workspace={workspace} busy={false} run={operation => operation()} />
 
 beforeEach(() => {
   vi.useFakeTimers()
@@ -72,7 +74,7 @@ describe('whole-lesson model views', () => {
     expect(screen.getByRole('heading', { name: 'About this lesson' })).toBeInTheDocument()
     expect(screen.getByRole('navigation', { name: 'Lesson sections' })).toBeInTheDocument()
     const mode = screen.getByRole('group', { name: 'Lesson mode' })
-    const firstSection = document.getElementById('lesson-section-0')!
+    const firstSection = screen.getByRole('heading', { name: 'About this lesson' })
     expect(mode.compareDocumentPosition(firstSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(document.body.textContent).not.toMatch(/zh-hsk\d|Item ID:|Construction ID:/)
     expect(document.body.textContent).not.toMatch(/[a-z]+[1-5]--[a-z]|Lesson label:|Grammar label:|Content label:/)
@@ -82,16 +84,36 @@ describe('whole-lesson model views', () => {
 
   it('shows names and meanings, not authoring identifiers, even in expanded details', () => {
     const view = render(study())
-    for (const detail of view.container.querySelectorAll('details')) fireEvent.click(detail.querySelector('summary')!)
-    act(() => vi.advanceTimersByTime(0))
-    for (const { label } of learningContent.labels.words) expect(view.container.textContent).not.toContain(label)
-    for (const model of lessonLearningModels(lessonId)) expect(view.container.textContent).not.toContain(model.label)
-    expect(view.container.textContent).not.toContain(definition.label)
-    expect(view.container.querySelectorAll('.learning-requirements code')).toHaveLength(0)
+    for (let page = 1; page <= pages.length; page++) {
+      view.rerender(study(String(page)))
+      for (const detail of view.container.querySelectorAll('details')) fireEvent.click(detail.querySelector('summary')!)
+      act(() => vi.advanceTimersByTime(0))
+      for (const { label } of learningContent.labels.words) expect(view.container.textContent).not.toContain(label)
+      for (const model of lessonLearningModels(lessonId)) expect(view.container.textContent).not.toContain(model.label)
+      expect(view.container.textContent).not.toContain(definition.label)
+      expect(view.container.textContent).not.toMatch(/Item ID:|Construction ID:|Lesson label:|Grammar label:|Content label:/)
+      expect(view.container.querySelectorAll('.learning-requirements code')).toHaveLength(0)
+      expect(view.container.querySelectorAll('.word-card').length).toBeLessThanOrEqual(1)
+      expect(view.container.querySelectorAll('.learning-model').length).toBeLessThanOrEqual(1)
+    }
+    view.rerender(study(String(pages.findIndex(page => page.kind === 'vocabulary') + 1)))
     expect(screen.getByRole('heading', { name: '\u6211' })).toBeInTheDocument()
-    expect(screen.getByText('w\u01d2')).toBeInTheDocument()
+    expect(view.container.querySelector('.word-card rt')).toHaveTextContent('w\u01d2')
     expect(screen.getByText('I, me, my')).toBeInTheDocument()
+    view.rerender(study(String(pages.findIndex(page => page.kind === 'model') + 1)))
     expect(screen.getByRole('heading', { name: 'Pinyin is a pronunciation map' })).toBeInTheDocument()
+  })
+
+  it('starts each exercise page without a previous answer or response', () => {
+    const exercisePage = pages.findIndex(page => page.kind === 'model' && page.model === exercise.label) + 1
+    const view = render(study(String(exercisePage)))
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'My answer' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Reveal model answer' }))
+    expect(screen.getByText('ONE POSSIBLE ANSWER / SELF-CHECK')).toBeInTheDocument()
+    view.rerender(study(String(exercisePage - 1)))
+    view.rerender(study(String(exercisePage)))
+    expect(screen.getByRole('textbox')).toHaveValue('')
+    expect(screen.queryByText('ONE POSSIBLE ANSWER / SELF-CHECK')).not.toBeInTheDocument()
   })
 
   it('hides exercise answers until requested and keeps learner input separate from feedback', () => {

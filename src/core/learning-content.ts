@@ -6,11 +6,38 @@ export type LearningModel = z.infer<typeof learningModelSchema>
 export type LearningDocument = z.infer<typeof learningDocumentSchema>
 export type LessonDefinition = z.infer<typeof lessonDefinitionSchema>
 export type Utterance = z.infer<typeof utteranceSchema>
+type LessonSection = LessonDefinition['sections'][number]
+export type LessonPage =
+  | { kind: 'overview' }
+  | { kind: 'practice' }
+  | { kind: 'vocabulary'; section: Extract<LessonSection, { kind: 'vocabulary' }>; word: string }
+  | { kind: 'grammar'; section: Extract<LessonSection, { kind: 'grammar' }>; example?: Utterance }
+  | { kind: 'model'; section: Extract<LessonSection, { kind: 'models' }>; model: string }
 export type ContentWord = { id: string; label: string; ch: string; pr: string; ds: string }
 export type ContentGrammar = { id: string; label: string; ds: string }
 export type AudioStep =
   | { kind: 'speech'; modelId: string; title?: string; text: string; locale: SpeechLocale }
   | { kind: 'response'; modelId: string; title?: string; seconds: number }
+
+export function buildLessonPages(lesson: LessonDefinition): LessonPage[] {
+  const pages: LessonPage[] = [{ kind: 'overview' }]
+  for (const section of lesson.sections) {
+    switch (section.kind) {
+      case 'vocabulary':
+        pages.push(...section.words.map(word => ({ kind: 'vocabulary' as const, section, word })))
+        break
+      case 'grammar':
+        pages.push({ kind: 'grammar', section })
+        pages.push(...section.examples.map(example => ({ kind: 'grammar' as const, section, example })))
+        break
+      case 'models':
+        pages.push(...section.models.map(model => ({ kind: 'model' as const, section, model })))
+        break
+    }
+  }
+  pages.push({ kind: 'practice' })
+  return pages
+}
 
 export function resolveUtterance(utterance: Utterance, words: ReadonlyMap<string, ContentWord>) {
   let text = ''

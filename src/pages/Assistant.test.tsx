@@ -8,6 +8,8 @@ import { getWord } from '../data/mandarin'
 import { savePreferences, startPractice, trackWord } from '../core/learning'
 import type { AIAPIType, AssistantBlock } from '../core/assistant/contracts'
 import { clearUnsavedDrafts } from '../core/assistant/drafts'
+import { buildLessonPages } from '../core/learning-content'
+import { lessonDefinitions } from '../data/learning-content'
 
 const connection = { baseUrl: 'https://example.test/v1', apiKey: 'test-key-not-a-secret', model: 'test-model', nativeTools: false, structuredOutput: false, storageAcknowledged: true as const }
 
@@ -41,9 +43,10 @@ describe('first usable Assistant', () => {
     render(<App />)
     await screen.findByText('Saved AI connection: test-model')
     expect(screen.getByLabelText('API key')).toHaveValue(connection.apiKey)
-    expect(screen.getByText(/Loaded the AI connection from app.settings.jsonc/)).toBeInTheDocument()
+    expect(within(screen.getByRole('region', { name: 'AI connection settings' })).getByText(/Loaded the AI connection from app.settings.jsonc/)).toBeInTheDocument()
     expect(fetch).toHaveBeenCalledTimes(1)
     await go('conversation')
+    expect(screen.queryByText(/Loaded the AI connection/)).not.toBeInTheDocument()
     await go('settings')
     expect(fetch).toHaveBeenCalledTimes(1)
     expect(await db.assistantRuns.count()).toBe(0)
@@ -67,6 +70,37 @@ describe('first usable Assistant', () => {
     expect(screen.getByText(/Local AI setup could not be completed/)).toHaveAttribute('role', 'alert')
     expect(document.body).not.toHaveTextContent(connection.apiKey)
     expect(await db.aiConnections.count()).toBe(0)
+    await go('overview')
+    await screen.findByRole('heading', { name: 'Make the language yours.' })
+    expect(screen.queryByText(/Local AI setup could not be completed/)).not.toBeInTheDocument()
+  })
+
+  it('does not block lessons while local AI initializes and confines its status to settings', async () => {
+    vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
+    let resolveResponse!: (response: Response) => void
+    vi.stubGlobal('fetch', vi.fn(() => new Promise<Response>(resolve => { resolveResponse = resolve })))
+    const lessonId = 'zh-level-01:first-exchanges:part-1'
+    const grammarPage = buildLessonPages(lessonDefinitions.get(lessonId)!).findIndex(page => page.kind === 'grammar') + 1
+    const lessonRoute = `lesson/${lessonId}/${grammarPage}`
+    window.location.hash = lessonRoute
+    render(<App />)
+    await screen.findByRole('heading', { name: 'noun-predicate identity' })
+    expect(screen.queryByText(/Loading local Assistant configuration/)).not.toBeInTheDocument()
+    await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1))
+    await go('settings')
+    await screen.findByText('Loading local Assistant configuration...')
+    expect(screen.queryByLabelText('API key')).not.toBeInTheDocument()
+    await go(lessonRoute)
+    await screen.findByRole('heading', { name: 'noun-predicate identity' })
+    await act(async () => { resolveResponse(new Response(JSON.stringify({ aiConnection: connection }))) })
+    await waitFor(async () => expect(await db.aiConnections.count()).toBe(1))
+    expect(screen.queryByText(/Loaded the AI connection/)).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Dismiss local AI notice' })).not.toBeInTheDocument()
+    await go('settings')
+    await screen.findByText('Saved AI connection: test-model')
+    expect(within(screen.getByRole('region', { name: 'AI connection settings' })).getByText(/Loaded the AI connection/)).toBeInTheDocument()
+    expect(screen.getByLabelText('API key')).toHaveValue(connection.apiKey)
+    expect(fetch).toHaveBeenCalledTimes(1)
   })
 
   it('expands the compact conversation picker before focusing search', async () => {
