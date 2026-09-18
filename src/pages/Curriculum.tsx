@@ -89,7 +89,7 @@ export function LevelDetail({ level, workspace }: PageProps & { level: Curriculu
     {level.modules.map((module, index) => <section className="panel" key={module.id}>
       <p className="eyebrow accent">MODULE {index + 1} / {module.wordCount} NEW SENSES / {module.grammarCount} CONSTRUCTIONS</p>
       <h2>{module.title}</h2><p className="muted">{module.outcome}</p>
-      {module.lessonIds.some(id => lessonDefinitions.has(id)) && <p className="small">Each lesson includes its description, vocabulary, grammar, concepts, conversations, and exercises. Choose a visual or guided audio lesson from the top of its page.</p>}
+      {module.lessonIds.some(id => lessonDefinitions.has(id)) && <p className="small">Each lesson includes its description, vocabulary, grammar, concepts, conversations, and exercises. Choose visual or guided audio on the opening lesson overview.</p>}
       {level.available && <div className="lesson-list">{module.lessonIds.map(id => {
         const lesson = getLesson(id)
         const state = workspace.lessons.find(item => item.lessonId === id)

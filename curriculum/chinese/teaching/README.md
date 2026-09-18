@@ -136,7 +136,11 @@ utterances instead of untracked prose.
 
 ### One definition, different views
 
-**Visual lesson** and **Guided audio lesson** are selected near the top.
+Choose **Visual lesson** or **Guided audio lesson** on the opening lesson overview.
+The choice is not displayed during visual content or audio playback; return to
+the overview to choose again. Visual pages use numbered lesson URLs, while
+`lesson/<lesson-id>/audio` opens guided audio and preserves that view on reload
+without starting playback automatically.
 The visual view is paginated from the same whole-lesson model: an opening
 description, goals, and linked outline; one vocabulary item per page; a grammar
 explanation followed by one example per page; then one concept, phrase,
@@ -173,9 +177,13 @@ Run `npm run curriculum:generate` to create
 `src/data/learning-content.generated.json`; `npm run curriculum:check` verifies
 it alongside the unchanged curriculum projection. Do not edit generated JSON.
 Viewing, listening, or revealing an exercise answer does not award progress.
-Explicit **Add to learning set** and the separate reading-practice controls keep
-their existing behavior and canonical IDs. No pilot view marks concepts mastered,
-assesses speech, or changes the HSK readiness verdict.
+Lesson word cards omit **Add to learning set**: starting the separate reading
+practice automatically adds the lesson's new senses using their canonical IDs.
+They also omit word-details and skill-progress disclosures. Content pages end
+with Previous/Next navigation; the overview link is above the content, and the
+reading-practice shortcut and assessment caveat stay on the opening overview.
+Dictionary and story word cards retain the manual action and skill details. No pilot view marks
+concepts mastered, assesses speech, or changes the HSK readiness verdict.
 
 ## Six phases, thirty visible levels
 

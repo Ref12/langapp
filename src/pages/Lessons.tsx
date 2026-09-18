@@ -76,9 +76,8 @@ export function LessonDetail({ lesson, workspace, busy, run, page }: PageProps &
       <p>{lesson.wordIds.length} new vocabulary senses{reviewIds.length ? ` and ${reviewIds.length} earlier senses to revisit` : ''}.</p>
       <p>Starting adds only this part's new senses. Grammar references, sibling meanings, and level goals are not marked mastered.</p>
     </section>}
-    <LessonPagination lessonId={lesson.id} current={current} total={total} nextLabel={current < lesson.wordIds.length ? 'Next word' : 'Next'} />
     {current === total && practiceButton}
-    <details className="lesson-overview"><summary>Lesson overview and references</summary>
+    {current === 1 && <details className="lesson-overview"><summary>Lesson overview and references</summary>
       {current !== total && practiceButton}
       <p>{lesson.objective}</p>
       <SnippetActions source={{ title: lesson.title, route, text: `${lesson.title}\n${lesson.objective}\nVocabulary:\n${lesson.wordIds.map(id => { const word = getWord(id); return `${word.native} (${word.pinyin}): ${word.meaning}` }).join('\n')}` }} />
@@ -95,6 +94,7 @@ export function LessonDetail({ lesson, workspace, busy, run, page }: PageProps &
           return <GrammarReference key={id} grammar={grammar} />
         })}
       </details>}
-    </details>
+    </details>}
+    <LessonPagination lessonId={lesson.id} current={current} total={total} nextLabel={current < lesson.wordIds.length ? 'Next word' : 'Next'} />
   </div>
 }

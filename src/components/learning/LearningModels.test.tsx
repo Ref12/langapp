@@ -49,7 +49,6 @@ afterEach(() => {
 })
 
 function enterResponseGap() {
-  fireEvent.click(screen.getByRole('button', { name: 'Guided audio lesson' }))
   fireEvent.click(screen.getByRole('button', { name: 'Start guided audio' }))
   const gapIndex = script.findIndex(step => step.kind === 'response')
   for (let index = 0; index < gapIndex; index++) {
@@ -62,7 +61,7 @@ function enterResponseGap() {
 }
 
 describe('whole-lesson model views', () => {
-  it('shows only authored, in-cutoff models and places mode selection before lesson sections', () => {
+  it('offers lesson types on the opening overview alongside the authored goals', () => {
     for (const lesson of curriculum.lessons) {
       const visible = lessonLearningModels(lesson.id)
       if (lesson.levelId !== 'zh-level-01') expect(visible).toEqual([])
@@ -73,12 +72,32 @@ describe('whole-lesson model views', () => {
     render(study())
     expect(screen.getByRole('heading', { name: 'About this lesson' })).toBeInTheDocument()
     expect(screen.getByRole('navigation', { name: 'Lesson sections' })).toBeInTheDocument()
-    const mode = screen.getByRole('group', { name: 'Lesson mode' })
-    const firstSection = screen.getByRole('heading', { name: 'About this lesson' })
-    expect(mode.compareDocumentPosition(firstSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    const mode = screen.getByRole('group', { name: 'Choose your lesson type' })
+    expect(within(mode).getByRole('link', { name: 'Visual lesson' })).toHaveAttribute('href', `#lesson/${lessonId}/2`)
+    expect(within(mode).getByRole('link', { name: 'Guided audio lesson' })).toHaveAttribute('href', `#lesson/${lessonId}/audio`)
+    expect(screen.queryByRole('navigation', { name: 'Lesson pages' })).not.toBeInTheDocument()
     expect(document.body.textContent).not.toMatch(/zh-hsk\d|Item ID:|Construction ID:/)
     expect(document.body.textContent).not.toMatch(/[a-z]+[1-5]--[a-z]|Lesson label:|Grammar label:|Content label:/)
     expect(screen.getByRole('button', { name: 'Interactive audio (planned)' })).toBeDisabled()
+    expect(synthesis.speak).not.toHaveBeenCalled()
+  })
+
+  it('does not display lesson-type choices on any visual page or the audio player', () => {
+    const view = render(study())
+    for (const page of [...pages.slice(1).map((_, index) => String(index + 2)), 'audio']) {
+      view.rerender(study(page))
+      expect(screen.queryByRole('group', { name: 'Choose your lesson type' })).not.toBeInTheDocument()
+      expect(screen.queryByText('Visual lesson', { exact: true })).not.toBeInTheDocument()
+      expect(screen.queryByText('Guided audio lesson', { exact: true })).not.toBeInTheDocument()
+      expect(screen.queryByText('Interactive audio (planned)')).not.toBeInTheDocument()
+      expect(screen.getByRole('link', { name: 'Lesson overview' })).toHaveAttribute('href', `#lesson/${lessonId}`)
+      expect(screen.queryByRole('link', { name: 'Go to reading practice' })).not.toBeInTheDocument()
+      expect(screen.queryByText(/This authored pilot is not an HSK-readiness assessment/)).not.toBeInTheDocument()
+      if (page !== 'audio') {
+        const pagination = screen.getByRole('navigation', { name: 'Lesson pages' })
+        expect(pagination).toBe(view.container.querySelector('.lesson-study')!.lastElementChild)
+      }
+    }
     expect(synthesis.speak).not.toHaveBeenCalled()
   })
 
@@ -94,7 +113,9 @@ describe('whole-lesson model views', () => {
       expect(view.container.textContent).not.toMatch(/Item ID:|Construction ID:|Lesson label:|Grammar label:|Content label:/)
       expect(view.container.querySelectorAll('.learning-requirements code')).toHaveLength(0)
       expect(view.container.querySelectorAll('.word-card').length).toBeLessThanOrEqual(1)
+      expect(view.container.querySelector('.word-card details')).toBeNull()
       expect(view.container.querySelectorAll('.learning-model').length).toBeLessThanOrEqual(1)
+      expect(screen.queryByRole('button', { name: /Add to learning set|In your learning set/ })).not.toBeInTheDocument()
     }
     view.rerender(study(String(pages.findIndex(page => page.kind === 'vocabulary') + 1)))
     expect(screen.getByRole('heading', { name: '\u6211' })).toBeInTheDocument()
@@ -131,20 +152,19 @@ describe('whole-lesson model views', () => {
   })
 
   it('starts narration with the lesson description instead of jumping to the exercise', () => {
-    render(study())
-    fireEvent.click(screen.getByRole('button', { name: 'Guided audio lesson' }))
+    const view = render(study('audio'))
     expect(synthesis.speak).not.toHaveBeenCalled()
     expect(screen.queryByRole('textbox')).not.toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Start guided audio' }))
     expect(synthesis.speak.mock.calls[0][0].text).toContain(spokenProse(definition.description))
     expect(getPlaybackState().activeId).toBeTruthy()
-    fireEvent.click(screen.getByRole('button', { name: 'Visual lesson' }))
+    view.rerender(study())
     expect(getPlaybackState().activeId).toBeUndefined()
     expect(vi.getTimerCount()).toBe(0)
   })
 
-  it.each(['unmount', 'escape', 'hidden', 'visual'] as const)('clears response timers on %s', action => {
-    const view = render(study())
+  it.each(['unmount', 'escape', 'hidden', 'overview'] as const)('clears response timers on %s', action => {
+    const view = render(study('audio'))
     enterResponseGap()
     const calls = synthesis.speak.mock.calls.length
     if (action === 'unmount') view.unmount()
@@ -153,7 +173,7 @@ describe('whole-lesson model views', () => {
       vi.spyOn(document, 'hidden', 'get').mockReturnValue(true)
       fireEvent(document, new Event('visibilitychange'))
     }
-    if (action === 'visual') fireEvent.click(screen.getByRole('button', { name: 'Visual lesson' }))
+    if (action === 'overview') view.rerender(study())
     act(() => vi.advanceTimersByTime(60_000))
     expect(synthesis.speak).toHaveBeenCalledTimes(calls)
     expect(vi.getTimerCount()).toBe(0)

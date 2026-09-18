@@ -144,6 +144,8 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); width
 rt { font-size: 11px; line-height: 1.5; color: var(--muted); }
 .mandarin-word { ruby-align: center; }
 .mandarin-word rt { font-family: "Segoe UI", sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0; color: var(--accent); }
+.word-native .mandarin-word { display: inline-flex; flex-direction: column-reverse; align-items: center; gap: 8px; }
+.word-native .mandarin-word rt { display: block; line-height: 1.4; }
 .word-native .mandarin-word rt, .practice-prompt .mandarin-word rt { font-size: 15px; }
 .reader-navigation { justify-content: space-between; margin-top: 24px; }
 .word-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
@@ -176,7 +178,6 @@ summary { cursor: pointer; min-height: 28px; }
 .lesson-word-card .word-meaning { text-align: center; margin-bottom: 12px; }
 .lesson-word-card .snippet-actions { margin: 10px 0; }
 .lesson-word-card .snippet-actions .button-row { justify-content: center; }
-.lesson-word-card details { margin-top: 10px; }
 .lesson-pagination { display: flex; justify-content: space-between; gap: 10px; }
 .lesson-pagination .button { flex: 1; }
 .lesson-overview { font-size: 13px; color: var(--muted); }
@@ -256,7 +257,6 @@ select { padding: 10px; }
 .learning-response textarea { width: 100%; min-width: 0; resize: vertical; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
 .learning-answer { border-left: 3px solid var(--accent); padding-left: 16px; margin-top: 18px; }
 .learning-requirements { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 20px; overflow-wrap: anywhere; }
-.lesson-study button[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: 2px; }
 .opening-workspace { padding: 50px 24px; max-width: 760px; margin: 10vh auto; }
 .sidebar-collapsed { grid-template-columns: 82px minmax(0, 1fr); }
 .sidebar-collapsed .sidebar { padding-inline: 12px; }
@@ -364,7 +364,6 @@ select { padding: 10px; }
   .lesson-word-card { padding: 8px; }
   .lesson-word-card .word-native { margin: 8px 0 4px; font-size: 32px; line-height: 1.25; }
   .lesson-word-card .snippet-actions { margin: 6px 0; }
-  .lesson-word-card details { margin-top: 6px; }
   .lesson-grammar-card { padding: 10px; }
   .lesson-grammar-card .grammar-notes { margin-top: 6px; }
   .lesson-practice-overview { padding: 10px; }

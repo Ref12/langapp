@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { buildLessonPages, type LessonDefinition, type LessonPage } from '../../core/learning-content'
 import { contentGrammar, contentModels, contentWords } from '../../data/learning-content'
 import { getWord } from '../../data/mandarin'
@@ -38,21 +38,16 @@ function ContentPage({ item, definition, lessonId, current, workspace, busy, run
 export function LessonStudy({ definition, lessonId, page, practice, workspace, busy, run }: {
   definition: LessonDefinition; lessonId: string; page?: string; practice: ReactNode
 } & Pick<PageProps, 'workspace' | 'busy' | 'run'>) {
-  const [mode, setMode] = useState<'visual' | 'guided-audio'>('visual')
   const pages = buildLessonPages(definition)
-  const current = page === undefined ? 1 : Number(page)
-  if (!Number.isInteger(current) || current < 1 || current > pages.length || (page !== undefined && !/^\d+$/.test(page))) {
+  const audio = page === 'audio'
+  const current = page === undefined || audio ? 1 : Number(page)
+  if (!audio && (!Number.isInteger(current) || current < 1 || current > pages.length || (page !== undefined && !/^\d+$/.test(page)))) {
     return <EmptyState title="This lesson page is not available"><a className="button primary" href={`#lesson/${lessonId}`}>Back to the lesson</a></EmptyState>
   }
   const item = pages[current - 1]
   return <div className="lesson-study">
-    <div className="button-row" role="group" aria-label="Lesson mode">
-      <button type="button" className="button secondary" aria-pressed={mode === 'visual'} onClick={() => setMode('visual')}>Visual lesson</button>
-      <button type="button" className="button secondary" aria-pressed={mode === 'guided-audio'} onClick={() => setMode('guided-audio')}>Guided audio lesson</button>
-      <button type="button" className="button secondary" disabled aria-describedby="microphone-mode-note">Interactive audio (planned)</button>
-    </div>
-    <p id="microphone-mode-note" className="small muted">Visual pages and guided audio use the same complete lesson. Guided audio includes time to answer aloud; microphone recording and automated feedback are not enabled.</p>
-    {mode === 'guided-audio' ? <GuidedAudio lesson={definition} /> : <>
+    {(current !== 1 || audio) && <a className="back-link" href={`#lesson/${lessonId}`}>Lesson overview</a>}
+    {audio ? <GuidedAudio lesson={definition} /> : <>
       <div className="card-topline"><span className="eyebrow">PART {definition.part}</span><span className="small muted">Page {current} of {pages.length}</span></div>
       <progress aria-label="Lesson pages" value={current} max={pages.length} />
       {item.kind === 'overview' ? <>
@@ -61,22 +56,27 @@ export function LessonStudy({ definition, lessonId, page, practice, workspace, b
           <MarkdownText markdown={definition.description} />
           <h3>What you will learn</h3>
           <ul>{definition.objectives.map(objective => <li key={objective}><MarkdownText markdown={objective} /></li>)}</ul>
+          <h3 id="lesson-type-title">Choose your lesson type</h3>
+          <div className="button-row" role="group" aria-labelledby="lesson-type-title">
+            <a className="button primary" href={`#lesson/${lessonId}/2`}>Visual lesson</a>
+            <a className="button secondary" href={`#lesson/${lessonId}/audio`}>Guided audio lesson</a>
+            <button type="button" className="button secondary" disabled aria-describedby="microphone-mode-note">Interactive audio (planned)</button>
+          </div>
+          <p id="microphone-mode-note" className="small muted">Visual pages and guided audio use the same complete lesson. Guided audio includes time to answer aloud; microphone recording and automated feedback are not enabled.</p>
+          <p className="small muted">Reading or listening to this lesson does not award mastery or complete a practice session. This authored pilot is not an HSK-readiness assessment.</p>
         </section>
         <nav className="panel lesson-outline" aria-label="Lesson sections">
           <h2>In this lesson</h2>
           <ol>{definition.sections.map((section, index) => <li key={index}>
             <a className="text-link" href={`#lesson/${lessonId}/${pages.findIndex(entry => 'section' in entry && entry.section === section) + 1}`}>{section.title}</a>
-          </li>)}</ol>
+          </li>)}
+            <li><a className="text-link" href={`#lesson/${lessonId}/${pages.length}`}>Go to reading practice</a></li>
+          </ol>
         </nav>
       </> : item.kind === 'practice' ? practice
         : <ContentPage key={current} item={item} definition={definition} lessonId={lessonId} current={current} workspace={workspace} busy={busy} run={run} />}
-      <LessonPagination lessonId={lessonId} current={current} total={pages.length}
-        nextLabel={item.kind === 'vocabulary' && pages[current]?.kind === 'vocabulary' ? 'Next word' : 'Next'} />
+      {item.kind !== 'overview' && <LessonPagination lessonId={lessonId} current={current} total={pages.length}
+        nextLabel={item.kind === 'vocabulary' && pages[current]?.kind === 'vocabulary' ? 'Next word' : 'Next'} />}
     </>}
-    <div className="button-row">
-      {current !== 1 && <a className="text-link" href={`#lesson/${lessonId}`}>Lesson overview</a>}
-      {(current !== pages.length || mode === 'guided-audio') && <a className="text-link" href={`#lesson/${lessonId}/${pages.length}`}>Go to reading practice</a>}
-    </div>
-    <p className="page-footnote">Reading or listening to this lesson does not award mastery or complete a practice session. This authored pilot is not an HSK-readiness assessment.</p>
   </div>
 }

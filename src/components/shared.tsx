@@ -45,15 +45,15 @@ export function WordCard({ word, state, pinyin, source, run, busy, compact = fal
     {!compact && example}
     <SnippetActions source={{ text: word.native, meaning: word.meaning, locale: 'zh-Hans', title: `Word: ${word.meaning}`, route }} />
     {!compact && curriculumLink}
-    <button className="button secondary full-width" disabled={busy || Boolean(state)}
+    {!source.startsWith('lesson:') && <button className="button secondary full-width" disabled={busy || Boolean(state)}
       onClick={() => void run(() => trackWord(word.id, source))}>
       {state ? <Check size={16} /> : <Plus size={16} />}{state ? 'In your learning set' : 'Add to learning set'}
-    </button>
-    <details><summary>{compact ? 'Word details and progress' : 'Skill progress'}</summary>
+    </button>}
+    {!source.startsWith('lesson:') && <details><summary>{compact ? 'Word details and progress' : 'Skill progress'}</summary>
       {compact && <>{example}{curriculumLink}</>}
       <SkillState state={state} />
       {word.curriculum && <p className="small">Reading recognition only. Contextual understanding and production are not assessed.</p>}
-    </details>
+    </details>}
   </article>
 }
 
