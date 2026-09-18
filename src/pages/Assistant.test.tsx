@@ -80,18 +80,20 @@ describe('first usable Assistant', () => {
     let resolveResponse!: (response: Response) => void
     vi.stubGlobal('fetch', vi.fn(() => new Promise<Response>(resolve => { resolveResponse = resolve })))
     const lessonId = 'zh-level-01:first-exchanges:part-1'
-    const grammarPage = buildLessonPages(lessonDefinitions.get(lessonId)!).findIndex(page => page.kind === 'grammar') + 1
+    const definition = lessonDefinitions.get(lessonId)!
+    const grammar = definition.sections.find(section => section.kind === 'grammar')!
+    const grammarPage = buildLessonPages(definition).findIndex(page => page.kind === 'grammar') + 1
     const lessonRoute = `lesson/${lessonId}/${grammarPage}`
     window.location.hash = lessonRoute
     render(<App />)
-    await screen.findByRole('heading', { name: 'noun-predicate identity' })
+    await screen.findByRole('heading', { name: grammar.title })
     expect(screen.queryByText(/Loading local Assistant configuration/)).not.toBeInTheDocument()
     await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1))
     await go('settings')
     await screen.findByText('Loading local Assistant configuration...')
     expect(screen.queryByLabelText('API key')).not.toBeInTheDocument()
     await go(lessonRoute)
-    await screen.findByRole('heading', { name: 'noun-predicate identity' })
+    await screen.findByRole('heading', { name: grammar.title })
     await act(async () => { resolveResponse(new Response(JSON.stringify({ aiConnection: connection }))) })
     await waitFor(async () => expect(await db.aiConnections.count()).toBe(1))
     expect(screen.queryByText(/Loaded the AI connection/)).not.toBeInTheDocument()

@@ -27,7 +27,7 @@ export function buildLessonPages(lesson: LessonDefinition): LessonPage[] {
         pages.push(...section.words.map(word => ({ kind: 'vocabulary' as const, section, word })))
         break
       case 'grammar':
-        pages.push({ kind: 'grammar', section })
+        if (section.examples.length === 0) pages.push({ kind: 'grammar', section })
         pages.push(...section.examples.map(example => ({ kind: 'grammar' as const, section, example })))
         break
       case 'models':

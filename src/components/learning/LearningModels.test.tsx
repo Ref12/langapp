@@ -125,6 +125,41 @@ describe('whole-lesson model views', () => {
     expect(screen.getByRole('heading', { name: 'Pinyin is a pronunciation map' })).toBeInTheDocument()
   })
 
+  it('teaches the grammar explanation with its first example instead of a label-only page', () => {
+    const grammar = definition.sections.find(section => section.kind === 'grammar')!
+    const index = pages.findIndex(page => page.kind === 'grammar')
+    const view = render(study(String(index + 1)))
+    const example = resolveUtterance(grammar.examples[0], contentWords)
+    expect(screen.getByRole('heading', { name: grammar.title })).toBeInTheDocument()
+    const section = screen.getByRole('region', { name: grammar.title })
+    for (const paragraph of grammar.description.trim().split(/\n\s*\n/)) {
+      expect(section).toHaveTextContent(spokenProse(paragraph))
+    }
+    expect(section).toHaveTextContent('sh\u00ec')
+    expect(section).not.toHaveTextContent('identity verb')
+    expect(screen.getByText(example.text)).toBeVisible()
+    expect(screen.getByText(example.translation)).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Hear' })).toBeEnabled()
+    expect(screen.queryByText(contentGrammar.get(grammar.grammar)!.ds)).not.toBeInTheDocument()
+    expect(view.container.querySelector('details')).toBeNull()
+    const next = pages[index + 1]
+    expect(next.kind).toBe('model')
+    view.rerender(study(String(index + 2)))
+    expect(view.container.querySelector('article.grammar-reference')).toBeNull()
+  })
+
+  it('keeps grammar descriptions without rendering an empty card when no example is authored', () => {
+    const grammar = definition.sections.find(section => section.kind === 'grammar')!
+    const withoutExample = { ...definition, sections: [{ ...grammar, examples: [] }] }
+    const view = render(<LessonStudy definition={withoutExample} lessonId={lessonId} page="2" practice={<p>Reading practice</p>}
+      workspace={workspace} busy={false} run={operation => operation()} />)
+    const section = screen.getByRole('region', { name: grammar.title })
+    for (const paragraph of grammar.description.trim().split(/\n\s*\n/)) {
+      expect(section).toHaveTextContent(spokenProse(paragraph))
+    }
+    expect(view.container.querySelector('article.grammar-reference')).toBeNull()
+  })
+
   it('starts each exercise page without a previous answer or response', () => {
     const exercisePage = pages.findIndex(page => page.kind === 'model' && page.model === exercise.label) + 1
     const view = render(study(String(exercisePage)))

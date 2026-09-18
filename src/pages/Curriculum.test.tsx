@@ -132,12 +132,12 @@ describe('curriculum experience', () => {
     const rulePage = pages.findIndex(page => page.kind === 'grammar' && page.section === grammar) + 1
     await go(`lesson/${lesson.id}/${rulePage}`)
     await screen.findByRole('heading', { name: grammar.title })
-    expect(document.querySelector('.lesson-section')).toHaveTextContent(spokenProse(grammar.description))
+    for (const paragraph of grammar.description.trim().split(/\n\s*\n/)) {
+      expect(document.querySelector('.lesson-section')).toHaveTextContent(spokenProse(paragraph))
+    }
     const example = resolveUtterance(grammar.examples[0], contentWords).text
-    expect(screen.queryByText(example)).not.toBeInTheDocument()
-    await user.click(screen.getByRole('link', { name: 'Next' }))
-    await screen.findByText(example)
     expect(within(document.querySelector('article.grammar-reference')!).getByText(example)).toBeInTheDocument()
+    expect(screen.getByText(grammar.examples[0].translation)).toBeInTheDocument()
     expect(await db.words.count()).toBe(0)
     await user.click(screen.getByRole('link', { name: 'Lesson overview' }))
     await screen.findByRole('heading', { name: 'About this lesson' })

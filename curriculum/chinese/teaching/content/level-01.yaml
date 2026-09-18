@@ -8,15 +8,15 @@ lessons:
     unit: first-exchanges
     part: 1
     title: Greetings and student identity
-    description: Learn familiar and polite forms of address, a greeting, names, the identity verb, and student roles. The lesson connects individual words to a short greeting exchange and a complete noun-identity statement.
+    description: Learn familiar and polite ways to say *you*, greet someone, and introduce yourself as a student using *shì*, the word for *am*, *is*, or *are* in this kind of sentence.
     objectives:
       - Distinguish familiar and polite forms of *you* in a greeting.
-      - Build a noun-identity statement that identifies the speaker as a student.
+      - Use *shì* to say that you are a student.
       - Compare citation pinyin with the sound of a complete modeled greeting.
     sections:
       - kind: vocabulary
         title: Greetings, names, and roles
-        description: Study the eight new words in order, paying attention to the greeting sense of *good* and the identity use of *be*.
+        description: Study the eight new words in order, including the greeting use of *good* and *shì*, which means *am*, *is*, or *are* when saying what someone is.
         role: new
         words:
           - wo3--me
@@ -28,8 +28,13 @@ lessons:
           - shi4--identity
           - xue2-sheng5--student
       - kind: grammar
-        title: Identify a person with a noun
-        description: Place the person first, then the identity verb, then a noun naming the role or category. This construction links two noun phrases; it is not a general marker placed before every description.
+        title: Say what someone is with shì
+        description: |
+          Use **shì** to say what someone is, such as a student. Put the person first, **shì** next, and what they are last.
+
+          In the example below, the words follow **I + shì + student**, meaning **I am a student**. Here, **shì** means **am**; with *you* or *someone else*, the same word means **are** or **is**.
+
+          Unlike English *be*, **shì** is not used before every description. Do not add it automatically whenever English uses *am*, *is*, or *are*.
         role: new
         grammar: noun-identity
         examples:
@@ -587,7 +592,7 @@ models:
     label: identify-as-student
     lesson: greetings-and-identity
     title: State your identity
-    description: Build a complete noun-predicate identity statement.
+    description: Use *shì* to say that you are a student.
     requires:
       grammar:
         - noun-identity
@@ -600,7 +605,7 @@ models:
         - word: xue2-sheng5--student
         - punctuation: 。
       translation: I am a student.
-    explanation: Put the speaker before the identity verb and the noun describing the speaker after it.
+    explanation: Put the word for *I* first, *shì* next, and the word for *student* last. Together they mean *I am a student*.
     responseSeconds: 7
   - kind: concept
     label: short-communication-repair

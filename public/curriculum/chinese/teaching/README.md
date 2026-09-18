@@ -143,7 +143,8 @@ the overview to choose again. Visual pages use numbered lesson URLs, while
 without starting playback automatically.
 The visual view is paginated from the same whole-lesson model: an opening
 description, goals, and linked outline; one vocabulary item per page; a grammar
-explanation followed by one example per page; then one concept, phrase,
+explanation together with its first example, with additional examples on their
+own pages (or the explanation alone when no example has been authored); then one concept, phrase,
 conversation, or exercise per page, always following the authored section order.
 Numbered lesson URLs support previous/next navigation, direct links, and reload
 without awarding progress. Reading practice has a separate final page.

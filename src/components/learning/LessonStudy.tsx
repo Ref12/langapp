@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { buildLessonPages, type LessonDefinition, type LessonPage } from '../../core/learning-content'
-import { contentGrammar, contentModels, contentWords } from '../../data/learning-content'
+import { contentModels, contentWords } from '../../data/learning-content'
 import { getWord } from '../../data/mandarin'
 import { MarkdownText } from '../MarkdownText'
 import { EmptyState, WordCard, type PageProps } from '../shared'
@@ -14,7 +14,7 @@ function ContentPage({ item, definition, lessonId, current, workspace, busy, run
   const section = item.section
   const pinyin = workspace.preferences.pinyin
   const first = item.kind === 'vocabulary' ? item.word === item.section.words[0]
-    : item.kind === 'grammar' ? !item.example : item.model === item.section.models[0]
+    : item.kind === 'grammar' ? !item.example || item.example === item.section.examples[0] : item.model === item.section.models[0]
   const word = item.kind === 'vocabulary' ? contentWords.get(item.word) : undefined
   const model = item.kind === 'model' ? contentModels.get(item.model) : undefined
   if (item.kind === 'vocabulary' && !word) throw new Error(`Unknown lesson vocabulary: ${item.word}`)
@@ -26,10 +26,8 @@ function ContentPage({ item, definition, lessonId, current, workspace, busy, run
       : <details className="lesson-overview"><summary>Section explanation</summary><MarkdownText markdown={section.description} /></details>}
     {word && <WordCard key={word.id} word={getWord(word.id)} pinyin={pinyin}
       state={workspace.words.find(state => state.wordId === word.id)} source={`lesson:${lessonId}`} returnRoute={`lesson/${lessonId}/${current}`} compact busy={busy} run={run} />}
-    {item.kind === 'grammar' && <article className="panel grammar-reference lesson-grammar-card">
-      <p className="eyebrow accent">{item.example ? 'GRAMMAR EXAMPLE' : 'GRAMMAR RULE'}</p>
-      <h3>{contentGrammar.get(item.section.grammar)!.ds}</h3>
-      {item.example && <UtteranceView utterance={item.example} pinyin={pinyin} />}
+    {item.kind === 'grammar' && item.example && <article className="panel grammar-reference lesson-grammar-card">
+      <UtteranceView utterance={item.example} pinyin={pinyin} />
     </article>}
     {model && <LearningModelView key={model.label} model={model} lessonLabel={definition.label} pinyin={pinyin} />}
   </section>
