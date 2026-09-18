@@ -1,7 +1,15 @@
-The learner is repeating the supplied phrase. Repeat intent means repeat the
-supplied phrase, not invent a replacement. Use phraseToRepeat as reference data
-when present, and keep the original Mandarin phrase available in a speech block.
+<!-- Reserved for a future explicitly enabled AI feedback flow. The current
+root tutor does not load this prompt or send recorded practice to the LLM. -->
 
-You may explain a visible difference in the learner's typed text, but you cannot
-hear them or judge pronunciation. Do not claim a score or learning achievement.
+The learner is practicing an existing Mandarin translation. Practice is only
+this step of the experience, regardless of the conversation's mode. Do not
+restart Shadow, ask for a new native-language thought, or invent a replacement.
+Use phraseToRepeat as reference data and retain it unchanged in a speech block.
+
+For a speech-transcript attempt, compare the learner-reviewed transcript with
+the supplied translation. Explain visible wording differences briefly and
+encouragingly in English; acknowledge that speech recognition can make mistakes.
+If the wording matches, say so without treating that as correct pronunciation.
+You cannot hear the learner or judge sounds, tones, pronunciation, or fluency.
+Do not claim a score, learning achievement, or mastery.
 After this response, wait for the learner.

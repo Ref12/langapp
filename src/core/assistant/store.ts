@@ -4,14 +4,16 @@ import { appendContextText, discardUnsavedDraft } from './drafts'
 import {
   aiConnectionInputSchema, aiConnectionSchema, assistantMessageSchema, assistantRunSchema,
   assistantSourceSchema, assistantThreadSchema, MAX_DRAFT_LENGTH,
-  type AIConnectionInput, type AssistantSource, type AssistantThread,
+  practicePhraseSchema, type AIConnectionInput, type AssistantSource, type AssistantThread, type SpeechBlock,
 } from './contracts'
 
 const threadIdSchema = assistantThreadSchema.shape.id
 const threadChangesSchema = assistantThreadSchema.pick({
   mode: true, shadowIntent: true, shadowPhrase: true, romanization: true, speechRate: true, returnRoute: true,
+  practiceInput: true, practicePhrase: true, speechFeedback: true,
+  voiceEnabled: true, voiceInputLocale: true,
 }).partial().strict()
-type ThreadChanges = Partial<Pick<AssistantThread, 'mode' | 'shadowIntent' | 'shadowPhrase' | 'romanization' | 'speechRate' | 'returnRoute'>>
+type ThreadChanges = z.infer<typeof threadChangesSchema>
 
 async function requireThread(threadId: string): Promise<AssistantThread> {
   const thread = await db.assistantThreads.get(threadIdSchema.parse(threadId))
@@ -28,6 +30,7 @@ export async function createConversation(source?: AssistantSource, returnRoute?:
   assistantThreadSchema.shape.returnRoute.optional().parse(returnRoute)
   const context = source === undefined ? undefined : exactSource(source)
   const prompt = 'Please explain this passage:\n\n'
+  const preferences = await db.preferences.get('workspace')
   const now = Date.now()
   const thread: AssistantThread = {
     id: crypto.randomUUID(),
@@ -36,8 +39,12 @@ export async function createConversation(source?: AssistantSource, returnRoute?:
     ...(context ? { source: context } : {}),
     mode: 'conversation',
     shadowIntent: 'new-phrase',
+    practiceInput: 'listen-repeat',
+    speechFeedback: true,
+    voiceEnabled: false,
+    voiceInputLocale: 'en-US',
     romanization: true,
-    speechRate: 1,
+    speechRate: preferences?.defaultSpeechRate ?? 1,
     returnRoute: returnRoute ?? context?.route ?? 'overview',
     createdAt: now,
     updatedAt: now,
@@ -89,6 +96,30 @@ export async function updateThread(threadId: string, changes: ThreadChanges): Pr
       await db.assistantMessages.add(marker)
     }
     await db.assistantThreads.put(next)
+  })
+}
+
+export async function selectPracticePhrase(threadId: string, phrase?: SpeechBlock): Promise<void> {
+  const selected = phrase === undefined ? undefined : practicePhraseSchema.parse(phrase)
+  await db.transaction('rw', db.assistantThreads, async () => {
+    const thread = await requireThread(threadId)
+    const currentPhrase = thread.practicePhrase ?? (thread.shadowIntent === 'repeat' ? thread.shadowPhrase : undefined)
+    await db.assistantThreads.put(assistantThreadSchema.parse({
+      ...thread, practicePhrase: selected, shadowIntent: 'new-phrase',
+      practiceDraft: selected && JSON.stringify(selected) === JSON.stringify(currentPhrase) ? thread.practiceDraft : undefined,
+      updatedAt: Date.now(),
+    }))
+  })
+}
+
+export async function savePracticeDraft(threadId: string, phrase: SpeechBlock, text: string): Promise<void> {
+  assistantThreadSchema.shape.practiceDraft.unwrap().parse(text)
+  practicePhraseSchema.parse(phrase)
+  await db.transaction('rw', db.assistantThreads, async () => {
+    const thread = await requireThread(threadId)
+    const selected = thread.practicePhrase ?? (thread.shadowIntent === 'repeat' ? thread.shadowPhrase : undefined)
+    if (JSON.stringify(selected) !== JSON.stringify(phrase)) throw new Error('The practice translation changed. This transcript was not saved to a different phrase.')
+    await db.assistantThreads.put(assistantThreadSchema.parse({ ...thread, practiceDraft: text, updatedAt: Date.now() }))
   })
 }
 

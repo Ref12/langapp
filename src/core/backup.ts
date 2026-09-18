@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { CONTENT_VERSION, getLesson, getStory, getWord, retiredLessonIds } from '../data/mandarin'
 import { db, loadWorkspace } from './database'
 import type { Workspace } from './model'
-import { assistantBackupSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
+import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
 import { clearUnsavedDrafts } from './assistant/drafts'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
@@ -15,6 +15,7 @@ const workspaceSchema = z.object({
     id: z.literal('workspace'), language: z.literal('zh-Hans'), name: z.string().trim().min(1).max(80),
     theme: z.enum(['dark', 'light']), pinyin: z.boolean(), readingMode: z.enum(['source', 'weave', 'target']), sidebarCollapsed: z.boolean(),
     speechVoices: speechVoicePreferencesSchema.optional(),
+    defaultSpeechRate: speechRateSchema.optional(),
   }).strict(),
   words: z.array(z.object({
     wordId: z.string(), language: z.literal('zh-Hans'), introducedAt: time, introducedFrom: z.string().max(200),
@@ -67,6 +68,7 @@ function validateAssistant(assistant: AssistantBackup) {
   const runs = new Map(assistant.runs.map(run => [run.id, run]))
   for (const message of assistant.messages) {
     if (!threads.has(message.threadId)) throw new Error('Backup Assistant message refers to a missing conversation.')
+    if (message.practice && (message.role !== 'user' || message.intent !== 'repeat')) throw new Error('Backup practice attempts must be learner repetition messages.')
     if (message.role !== 'assistant' && message.status !== 'completed') throw new Error('Backup contains an invalid user or event message status.')
     if (message.role === 'event' && message.runId !== undefined) throw new Error('Backup mode events cannot belong to an Assistant run.')
     if (message.status === 'pending' && !message.runId) throw new Error('Backup contains an unowned pending Assistant message.')

@@ -1,8 +1,9 @@
-import { useEffect, useId, useState } from 'react'
+import { useContext, useEffect, useId, useState } from 'react'
 import type { BrowserVoicePreference, SpeechLocale } from '../../core/assistant/contracts'
 import { browserVoiceKey, browserVoiceMatches, clearVoiceCache, watchBrowserVoices, type BrowserVoiceState } from '../../core/assistant/speech'
 import { savePreferences } from '../../core/learning'
 import type { PageProps } from '../shared'
+import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
 
 const languages: { locale: SpeechLocale; label: string }[] = [
   { locale: 'zh-Hans', label: 'Mandarin' },
@@ -15,12 +16,15 @@ function voiceLabel(voice: BrowserVoicePreference) {
 
 export function VoiceSettings({ workspace, busy, run }: Pick<PageProps, 'workspace' | 'busy' | 'run'>) {
   const id = useId()
+  const speedSetup = useContext(LocalSpeechRateSetupContext)
   const [state, setState] = useState<BrowserVoiceState>({ voices: [], loading: true })
   const [refresh, setRefresh] = useState(0)
   useEffect(() => watchBrowserVoices(setState), [refresh])
 
   return <section className="panel settings-form" aria-labelledby={`${id}-heading`}>
     <h2 id={`${id}-heading`}>Hear voices</h2>
+    {speedSetup === 'loading' && <p className="small muted" role="status">Loading default speech speed...</p>}
+    {speedSetup === 'error' && <p className="notice error" role="alert">Default speech speed could not be loaded. Check app.settings.jsonc and reload. The previous speed setting was kept.</p>}
     <p className="small muted" id={`${id}-help`}>Selections save automatically in this workspace, survive reload, and apply to every Hear button. Automatic prefers a local voice, then an online voice after a brief discovery window. The discovered voice is cached for this page session.</p>
     <p className="small muted" id={`${id}-privacy`}>Online voices send the spoken text to the browser's speech service. Viewing or changing these settings does not play audio or send an AI request.</p>
     {languages.map(({ locale, label }) => {

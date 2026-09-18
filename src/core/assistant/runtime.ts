@@ -7,7 +7,7 @@ import {
   aiConnectionSchema, assistantIntentSchema, assistantMessageSchema, assistantRunSchema,
   assistantSourceSchema, assistantThreadSchema, MAX_DRAFT_LENGTH, MAX_TOOL_ROUNDS, RUN_TIMEOUT_MS,
   type AIConnection, type AssistantIntent, type AssistantMessage, type AssistantReply,
-  type AssistantRun, type AssistantSource, type AssistantThread, type AssistantToolStep,
+  type AssistantRun, type AssistantSource, type AssistantThread, type AssistantToolStep, type PracticeAttempt,
 } from './contracts'
 import { expireAssistantRuns } from './store'
 import { buildTutorMessages, executeAssistantTool, getLearningContext } from './tools'
@@ -17,6 +17,7 @@ export interface AssistantTurnRequest {
   intent?: AssistantIntent
   source?: AssistantSource
   preserveDraft?: boolean
+  practice?: PracticeAttempt
 }
 
 class AssistantRunError extends Error {
@@ -40,6 +41,9 @@ function requireActiveSignal(signal: AbortSignal): void {
 
 async function reserveTurn(threadId: string, request: AssistantTurnRequest | undefined, signal: AbortSignal): Promise<ReservedTurn> {
   requireActiveSignal(signal)
+  if (request?.intent === 'repeat' || request?.practice !== undefined) {
+    throw new AssistantRunError('Recorded practice stays outside the language model. Use Listen and record for automatic speech feedback or transcript comparison.')
+  }
   await expireAssistantRuns()
   requireActiveSignal(signal)
   return db.transaction('rw', runTables(), async transaction => {
@@ -62,7 +66,7 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
     if (await db.assistantRuns.where('[threadId+status]').equals([threadId, 'running']).count()) {
       throw new AssistantRunError('A reply is already running in this conversation. Stop it or wait before sending again.')
     }
-    const intent = request?.intent ?? (thread.mode === 'shadow' ? (thread.shadowIntent === 'repeat' ? 'repeat' : 'shadow') : 'message')
+    const intent = request?.intent ?? (thread.mode === 'shadow' ? 'shadow' : 'message')
     if (!assistantIntentSchema.safeParse(intent).success) throw new AssistantRunError('That Assistant intent is not supported.')
     const text = request?.text ?? thread.draft
     if (typeof text !== 'string' || !text.trim()) throw new AssistantRunError('Enter a message before sending.')
@@ -94,7 +98,6 @@ async function reserveTurn(threadId: string, request: AssistantTurnRequest | und
       ...thread, updatedAt: now,
       ...(firstSend ? { title: text.trim().replace(/\s+/g, ' ').slice(0, 120) } : {}),
       ...(clearCapturedDraft ? { draft: '' } : {}),
-      ...(intent === 'repeat' ? { shadowIntent: 'new-phrase' } : {}),
     }
     if (clearCapturedDraft) delete nextThread.source
     requireActiveSignal(signal)
@@ -151,22 +154,33 @@ async function appendStep(turn: ReservedTurn, step: AssistantToolStep): Promise<
   })
 }
 
-async function publishReply(turn: ReservedTurn, value: AssistantReply): Promise<void> {
+async function publishReply(turn: ReservedTurn, value: AssistantReply, signal: AbortSignal): Promise<AssistantMessage> {
+  requireActiveSignal(signal)
   const reply = validateAssistantReply(value)
-  await db.transaction('rw', runTables(), async () => {
+  return db.transaction('rw', runTables(), async transaction => {
+    const abortPublication = () => transaction.abort()
+    const releaseSignal = () => signal.removeEventListener('abort', abortPublication)
+    signal.addEventListener('abort', abortPublication, { once: true })
+    transaction.on('complete', releaseSignal)
+    transaction.on('abort', releaseSignal)
+    transaction.on('error', releaseSignal)
+    requireActiveSignal(signal)
     const current = await requireOwnedTurn(turn)
     const now = Date.now()
-    await db.assistantMessages.put(assistantMessageSchema.parse({ ...current.pending, blocks: reply.blocks, status: 'completed' }))
+    const completed = assistantMessageSchema.parse({ ...current.pending, blocks: reply.blocks, status: 'completed' })
+    await db.assistantMessages.put(completed)
     await db.assistantRuns.put(assistantRunSchema.parse({ ...current.run, status: 'awaiting-learner', updatedAt: now }))
     const phrase = [...reply.blocks].reverse().find(block => block.type === 'speech' && block.locale === 'zh-Hans')
     const rememberPhrase = turn.thread.mode === 'shadow' && current.thread.mode === 'shadow'
-      && turn.user.intent !== 'explain' && current.thread.shadowIntent !== 'repeat'
+      && turn.user.intent === 'shadow' && current.thread.shadowIntent !== 'repeat'
       && JSON.stringify(current.thread.shadowPhrase) === JSON.stringify(turn.thread.shadowPhrase)
     const nextThread: AssistantThread = {
       ...current.thread, updatedAt: now,
       ...(rememberPhrase && phrase?.type === 'speech' ? { shadowPhrase: phrase } : {}),
     }
     await db.assistantThreads.put(assistantThreadSchema.parse(nextThread))
+    requireActiveSignal(signal)
+    return completed
   })
 }
 
@@ -185,7 +199,7 @@ async function recordFailure(turn: ReservedTurn, status: 'failed' | 'cancelled',
   })
 }
 
-export async function sendAssistantTurn(threadId: string, request?: AssistantTurnRequest): Promise<void> {
+export async function sendAssistantTurn(threadId: string, request?: AssistantTurnRequest): Promise<AssistantMessage> {
   const controller = new AbortController()
   const invocationId = crypto.randomUUID()
   controllers.set(invocationId, { threadId, controller })
@@ -199,7 +213,8 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
     await checkTurn(turn, controller.signal)
     const history = await db.assistantMessages.where('[threadId+sequence]')
       .between([threadId, 0], [threadId, turn.user.sequence]).reverse()
-      .filter(message => message.status === 'completed' && (message.role === 'user' || message.role === 'assistant'))
+      .filter(message => message.status === 'completed' && message.intent !== 'repeat' && !message.practice && !message.practiceResult
+        && (message.role === 'user' || message.role === 'assistant'))
       .limit(24).toArray()
     const context = await abortable(getLearningContext((turn.user.source?.text ?? turn.user.text).slice(0, 200)), controller.signal)
     const messages = buildTutorMessages(turn.thread, turn.user, history, context)
@@ -211,8 +226,9 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
       const completion = await client.complete(results, { signal: controller.signal })
       if (completion.kind === 'reply') {
         if (controller.signal.aborted) throw new AssistantCancelledError()
-        await publishReply(turn, completion.reply)
-        return
+        const completed = await publishReply(turn, completion.reply, controller.signal)
+        requireActiveSignal(controller.signal)
+        return completed
       }
       if (round === MAX_TOOL_ROUNDS - 1) throw new AssistantRunError('The AI reached the four-round lookup limit without a final reply. Ask a narrower question or try another model.')
       if (completion.calls.some(call => callIds.has(call.id))) throw new AssistantRunError('The AI reused a tool-call ID. No duplicate tool was run; try again.')
@@ -225,6 +241,7 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
         results.push({ callId: call.id, output: result })
       }
     }
+    throw new AssistantRunError('The AI reached the four-round lookup limit without a final reply. Ask a narrower question or try another model.')
   } catch (error) {
     const failure = timedOut
       ? new AssistantRunError('This response timed out after two minutes. Your message is saved; try again when ready.')

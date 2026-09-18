@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { db, initializeWorkspace } from '../core/database'
-import { createConversation, saveAIConnection, saveDraft } from '../core/assistant/store'
+import { createConversation, saveAIConnection, saveDraft, updateThread } from '../core/assistant/store'
 import { getWord } from '../data/mandarin'
 import { savePreferences, startPractice, trackWord } from '../core/learning'
 import type { AIAPIType, AssistantBlock } from '../core/assistant/contracts'
@@ -36,6 +36,20 @@ function respond(blocks: AssistantBlock[], apiType: AIAPIType = 'chat-completion
 }
 
 describe('first usable Assistant', () => {
+  it('omits redundant workspace back links from conversations and their picker', async () => {
+    const id = await createConversation()
+    window.location.hash = `conversation/${id}`
+    render(<App />)
+    await screen.findByRole('textbox', { name: 'Message Assistant' })
+    expect(screen.queryByRole('link', { name: 'Back to workspace' })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Open navigation' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'All conversations' })).toHaveAttribute('href', '#conversation')
+    await go('conversation')
+    await screen.findByRole('heading', { name: 'Your Mandarin, in conversation.' })
+    expect(screen.queryByRole('link', { name: 'Back to workspace' })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Open navigation' })).toBeInTheDocument()
+  })
+
   it('automatically loads development settings before showing the editable connection form', async () => {
     vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ aiConnection: connection }))))
@@ -73,6 +87,39 @@ describe('first usable Assistant', () => {
     await go('overview')
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     expect(screen.queryByText(/Local AI setup could not be completed/)).not.toBeInTheDocument()
+  })
+
+  it('waits for the JSON default before creating a conversation', async () => {
+    vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
+    let resolveResponse!: (response: Response) => void
+    vi.stubGlobal('fetch', vi.fn(() => new Promise<Response>(resolve => { resolveResponse = resolve })))
+    window.location.hash = 'conversation'
+    render(<App />)
+    await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1))
+    const buttons = screen.getAllByRole('button', { name: 'New conversation' })
+    expect(buttons.every(button => button.hasAttribute('disabled'))).toBe(true)
+    await act(async () => { resolveResponse(new Response(JSON.stringify({ defaultSpeechRate: 0.5 }))) })
+    await waitFor(() => expect(buttons[0]).toBeEnabled())
+    fireEvent.click(buttons[0])
+    await screen.findByRole('textbox', { name: 'Message Assistant' })
+    expect((await db.assistantThreads.toArray())[0].speechRate).toBe(0.5)
+  })
+
+  it('reports an invalid JSON speed in voice settings even when both connections are already saved', async () => {
+    vi.stubEnv('DEV_LOCAL_SETTINGS', 'true')
+    await saveAIConnection(connection)
+    await db.speechConnections.put({ id: 'assistant-speech', provider: 'azure', region: 'eastus', apiKey: 'fake-test-key',
+      storageAcknowledged: true, revision: 'test-revision', updatedAt: 1 })
+    await db.preferences.update('workspace', { defaultSpeechRate: 0.75 })
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ defaultSpeechRate: 0.6 }))))
+    window.location.hash = 'settings'
+    render(<App />)
+    expect(await screen.findByText(/Default speech speed could not be loaded/)).toHaveAttribute('role', 'alert')
+    expect((await db.preferences.get('workspace'))?.defaultSpeechRate).toBe(0.75)
+    expect(fetch).toHaveBeenCalledTimes(1)
+    await go('overview')
+    await screen.findByRole('heading', { name: 'Make the language yours.' })
+    expect(screen.queryByText(/Default speech speed could not be loaded/)).not.toBeInTheDocument()
   })
 
   it('does not block lessons while local AI initializes and confines its status to settings', async () => {
@@ -246,13 +293,14 @@ describe('first usable Assistant', () => {
     expect(await screen.findByRole('textbox', { name: 'Message Assistant' })).toHaveValue(selectedDraft)
   })
 
-  it('starts repeat practice from either mode without sending, replacing drafts, or rewriting earlier replies', async () => {
+  it.each(['shadow'] as const)('opens listen-and-repeat practice without changing %s mode, sending, or replacing drafts', async mode => {
     const id = await createConversation()
+    await updateThread(id, { mode })
     await saveDraft(id, 'Keep my unfinished question')
     const tea = { type: 'speech', text: '\u8336', locale: 'zh-Hans', romanization: 'cha', meaning: 'tea' } as const
     const greeting = { type: 'speech', text: '\u4f60\u597d', locale: 'zh-Hans', romanization: 'ni hao', meaning: 'hello' } as const
     await db.assistantMessages.add({
-      id: 'practice-reply', threadId: id, role: 'assistant', text: '', sequence: 0,
+      id: 'practice-reply', threadId: id, role: 'assistant', text: '', sequence: mode === 'shadow' ? 1 : 0,
       mode: 'conversation', intent: 'message', status: 'completed', createdAt: Date.now(),
       blocks: [{ type: 'text', markdown: 'Try a phrase.' }, tea, greeting,
         { type: 'speech', text: 'Hello', locale: 'en-US' }],
@@ -269,21 +317,23 @@ describe('first usable Assistant', () => {
     expect(within(english).queryByRole('button', { name: 'Practice' })).not.toBeInTheDocument()
 
     await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[1])
-    const reference = await screen.findByLabelText('Phrase to repeat')
+    const reference = await screen.findByLabelText('Translation practice')
     expect(within(reference).getByText(greeting.text)).toBeInTheDocument()
     expect(within(reference).getByText(greeting.romanization)).toBeInTheDocument()
     expect(within(reference).getByText(greeting.meaning)).toBeInTheDocument()
     expect(await db.assistantThreads.get(id)).toMatchObject({
-      mode: 'shadow', shadowIntent: 'repeat', shadowPhrase: greeting, draft: 'Keep my unfinished question',
+      mode, practiceInput: 'listen-repeat', practicePhrase: greeting, draft: 'Keep my unfinished question',
     })
     expect(input).toHaveValue('Keep my unfinished question')
-    await waitFor(() => expect(input).toHaveFocus())
+    await waitFor(() => expect(reference).toHaveFocus())
+    expect(within(reference).queryByRole('button', { name: 'Start speaking' })).not.toBeInTheDocument()
+    expect(reference).toHaveTextContent('Your microphone is off')
     expect(window.location.hash).toBe(`#conversation/${id}`)
     expect((await db.assistantMessages.get('practice-reply'))?.mode).toBe('conversation')
 
     await user.click(within(reply).getAllByRole('button', { name: 'Practice' })[0])
-    await waitFor(async () => expect((await db.assistantThreads.get(id))?.shadowPhrase).toEqual(tea))
-    expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.role === 'event').count()).toBe(1)
+    await waitFor(async () => expect((await db.assistantThreads.get(id))?.practicePhrase).toEqual(tea))
+    expect(await db.assistantMessages.where('threadId').equals(id).filter(message => message.role === 'event').count()).toBe(mode === 'shadow' ? 1 : 0)
     expect(await db.assistantThreads.count()).toBe(1)
     expect(await db.assistantRuns.count()).toBe(0)
     expect(await db.words.count()).toBe(0)
@@ -292,8 +342,75 @@ describe('first usable Assistant', () => {
 
     cleanup()
     render(<App />)
-    expect(within(await screen.findByLabelText('Phrase to repeat')).getByText(tea.text)).toBeInTheDocument()
+    expect(within(await screen.findByLabelText('Translation practice')).getByText(tea.text)).toBeInTheDocument()
     expect(await screen.findByRole('textbox', { name: 'Message Assistant' })).toHaveValue('Keep my unfinished question')
+    await user.click(screen.getByRole('button', { name: 'Close practice' }))
+    await waitFor(() => expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument())
+    expect((await db.assistantThreads.get(id))?.mode).toBe(mode)
+  })
+
+  it('defaults older conversations to no recording and saves practice input separately for each conversation', async () => {
+    const first = await createConversation()
+    const second = await createConversation()
+    await db.assistantThreads.update(first, { practiceInput: undefined })
+    window.location.hash = `conversation/${first}`
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Assistant settings' }))
+    expect(screen.getByRole('combobox', { name: 'Practice input' })).toHaveValue('listen-repeat')
+    expect(screen.getByRole('checkbox', { name: 'Speech feedback' })).toBeChecked()
+    await user.click(screen.getByRole('checkbox', { name: 'Speech feedback' }))
+    await waitFor(async () => expect((await db.assistantThreads.get(first))?.speechFeedback).toBe(false))
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Practice input' }), 'spoken-feedback')
+    await waitFor(async () => expect((await db.assistantThreads.get(first))?.practiceInput).toBe('spoken-feedback'))
+    expect((await db.assistantThreads.get(first))?.mode).toBe('conversation')
+    await go(`conversation/${second}`)
+    await user.click(await screen.findByRole('button', { name: 'Assistant settings' }))
+    expect(screen.getByRole('combobox', { name: 'Practice input' })).toHaveValue('listen-repeat')
+    expect(screen.getByRole('checkbox', { name: 'Speech feedback' })).toBeChecked()
+    cleanup()
+    window.location.hash = `conversation/${first}`
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Assistant settings' }))
+    expect(screen.getByRole('combobox', { name: 'Practice input' })).toHaveValue('spoken-feedback')
+    expect(screen.getByRole('checkbox', { name: 'Speech feedback' })).not.toBeChecked()
+    expect(await db.assistantMessages.count()).toBe(0)
+    expect(await db.assistantRuns.count()).toBe(0)
+  })
+
+  it('reopens an older pending Shadow repetition as listen-only practice without hijacking the composer', async () => {
+    const id = await createConversation()
+    await updateThread(id, { mode: 'shadow', shadowIntent: 'repeat', shadowPhrase: { type: 'speech', text: '\u8336', locale: 'zh-Hans' } })
+    await db.assistantThreads.update(id, { practiceInput: undefined })
+    await saveDraft(id, 'My next thought in English')
+    window.location.hash = `conversation/${id}`
+    render(<App />)
+    const panel = await screen.findByLabelText('Translation practice')
+    expect(panel).toHaveTextContent('Your microphone is off')
+    expect(within(panel).getByText('\u8336')).toBeInTheDocument()
+    expect(screen.getByRole('textbox', { name: 'Message Assistant' })).toHaveValue('My next thought in English')
+    expect(screen.queryByText('Next turn: repeat the selected phrase')).not.toBeInTheDocument()
+    fireEvent.click(within(panel).getByRole('button', { name: 'Close practice' }))
+    await waitFor(() => expect(screen.queryByLabelText('Translation practice')).not.toBeInTheDocument())
+    expect(await db.assistantThreads.get(id)).toMatchObject({ mode: 'shadow', shadowIntent: 'new-phrase', draft: 'My next thought in English' })
+  })
+
+  it('does not offer LLM retry for saved legacy practice transcripts', async () => {
+    const id = await createConversation()
+    await saveAIConnection(connection)
+    await db.assistantMessages.bulkAdd([
+      { id: 'legacy-practice-user', threadId: id, role: 'user', text: 'Legacy transcript', blocks: [], sequence: 0, runId: 'legacy-practice-run',
+        mode: 'conversation', intent: 'repeat', status: 'completed', createdAt: 1,
+        practice: { input: 'speech-transcript', phrase: { type: 'speech', text: '\u8336', locale: 'zh-Hans' } } },
+      { id: 'legacy-practice-reply', threadId: id, role: 'assistant', text: '', blocks: [], sequence: 1, runId: 'legacy-practice-run',
+        mode: 'conversation', intent: 'repeat', status: 'failed', createdAt: 1, error: 'An old practice request failed.' },
+    ])
+    vi.stubGlobal('fetch', vi.fn())
+    window.location.hash = `conversation/${id}`
+    render(<App />)
+    await screen.findByText('An old practice request failed.')
+    expect(screen.queryByRole('button', { name: 'Retry reply' })).not.toBeInTheDocument()
+    expect(fetch).not.toHaveBeenCalled()
   })
 
   it('keeps drafts separate across conversations, mode changes, and reload', async () => {

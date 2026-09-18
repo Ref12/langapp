@@ -88,7 +88,7 @@ shared English gloss alternatives; recognition still does not assess use in cont
 
 Not connected in this checkpoint: personal imports, playable levels 5-30,
 tourist or specialist routes, contextual or productive skill assessment or level assessment,
-microphone/voice conversation, generated stories/lessons/exercises, audio or
+hands-free conversation, generated stories/lessons/exercises, general audio or
 handwriting assessment, other target
 languages, synchronization, and installation/offline shell caching for the new
 app. The Library links to the original v1 import tools rather than simulating
@@ -96,8 +96,11 @@ imports. V1's voice tutor remains available independently.
 
 ## Assistant
 
-Assistant provides persistent English/Mandarin text conversations and **Shadow**
-practice. Configure an OpenAI-compatible API protocol, base URL, key, and model in
+Assistant provides persistent English/Mandarin conversations and **Shadow**:
+express a thought in English, receive a natural Mandarin translation and
+explanation, then practice that translation. Both modes support typed input or
+opt-in voice input and spoken replies. Configure an OpenAI-compatible API
+protocol, base URL, key, and model in
 **Settings -> Assistant AI connection**. Saving is local and does not send a
 request. **Test connection** sends a synthetic request with the selected
 capabilities; it does not send your conversations or learning data.
@@ -127,19 +130,102 @@ preference, and Mandarin playback speed. New conversations are named after the
 first sent message. Failed draft saves are visibly reported, and the unsaved
 text remains in memory across in-app navigation so you can retry; it is not safe
 to close or reload until saved. Switching Conversation/Shadow affects subsequent turns and
-preserves previous messages. Shadow supports a new phrase, repeat-after-me practice,
-and **Explain more** without treating text repetition as pronunciation scoring.
+preserves previous messages. Shadow translates the learner's thought rather than
+inventing an unrelated phrase. **Explain more** elaborates on a translation.
 **Stop reply** cancels generation; retry is explicit. Reloading never sends an
 AI request. Interrupted work can be stopped and retried.
+
+Turn on **Voice input and replies** in the conversation settings gear. Choose
+**English** (the default) or **Mandarin** as the input language; this is an
+input/output preference, not a third teaching mode. Tap the mic, wait for the
+short cue and **Listening...**, then speak. **Submit** finishes recognition and
+sends the resulting text; **Stop recording** instead saves an editable draft
+without sending. A natural pause/end also only saves the draft. **Cancel
+recording** discards the active attempt and retains the pre-existing draft.
+Speech is appended to existing composer text, not to the conversation history
+until explicitly sent. The Send control is a compact circular icon button.
+
+Only the new, successfully saved reply from an explicit send, retry, or
+explanation request is spoken. Validated speech blocks play in order using
+their English/Mandarin voice selections and the saved Mandarin speed. Markdown,
+romanization, and display meanings are not guessed into speech. **Stop
+speaking**, Escape, navigation, hiding the page, or starting other audio cancels
+the remaining playback. No microphone is automatically restarted. Reloading,
+restoring a backup, or enabling voice never reads old replies aloud.
+
+Conversation dictation uses the browser's recognition service, which may be
+online; availability depends on the browser. Unsupported browsers retain typed
+input and spoken replies. The Azure connection below is for pronunciation
+practice, not general dictation. Conversation transcripts are ordinary user
+messages sent to the AI provider only on explicit submission, unlike local-only
+practice results. Raw recordings are not stored. Voice, Hear, and Practice
+share exclusive audio ownership so starting one interrupts the other.
 
 **Ask** stays in the current conversation when used inside a chat,
 appending to the existing draft without sending or replacing its text. Elsewhere,
 it starts a new conversation with an editable draft and exact source context.
 Each Mandarin speech snippet in an Assistant reply has its own **Hear / Ask / Practice**
 buttons; ordinary explanation blocks do not. Word cards have one action row.
-**Practice** selects that phrase for repetition in Shadow mode and focuses the
-composer, preserving the current draft without sending a message. It is available
-on phrases from either mode, and the selected practice phrase survives reload.
+**Practice** opens just the practice step for that selected translation. It does
+not change Conversation/Shadow mode, replace the composer draft, generate a new
+translation, or send a message. It first plays the phrase using the selected
+Mandarin voice and conversation speed. In Conversation, practice stays under the original
+phrase: **Submit / Cancel** temporarily replaces that phrase's action row.
+Shadow keeps a separate practice panel and its selected translation survives reload.
+The conversation settings gear has a separate **Practice input** dropdown:
+
+- **Listen and repeat (no recording)** is the default, including for older chats.
+  Hear the translation and repeat aloud at your own pace; the microphone stays off.
+- **Listen and record** plays the phrase when you click **Practice** in
+  Conversation, then prepares the microphone and sounds a short start cue.
+  Wait for **Listening...** before repeating the phrase. **Submit** finishes recording and shows feedback under that same
+  phrase, without adding a message. **Cancel** discards the attempt.
+  Shadow uses **Start speaking / Stop capture** in its practice panel, with the
+  same phrase-first playback and recording cue, and automatically adds the
+  result as a separate bubble. Neither flow sends to the LLM.
+
+The conversation's **Speech feedback** toggle defaults on. With an Azure Speech
+connection configured and feedback enabled, the app records up to 30 seconds of
+real Mandarin audio. In Conversation, **Submit** sends it and the exact expected
+translation to Azure for pronunciation assessment. Reaching the recording limit
+releases the microphone but waits for Submit before uploading; Cancel discards it.
+Shadow submits automatically when recording finishes. Configure the
+region and key separately under **Settings -> Practice speech connection** or through the
+local-settings file below. Saving settings does not contact Azure or request a
+microphone. Only explicitly starting a recording activates capture.
+The reference finishes before microphone activation; the start cue waits for
+microphone readiness, not a fixed delay. Azure recording excludes both the
+reference playback and the cue. Browser recognition owns its microphone and
+sounds the cue when it reports readiness. No-recording practice plays only the
+phrase, without a cue or microphone. Playback/cue failures stop the sequence
+visibly instead of silently starting a recording.
+
+When feedback is off or no speech connection exists, browser speech recognition
+provides a transcript, and the app compares it with the expected translation
+locally. The browser's own recognition service may receive audio. The comparison
+shows matching, missing, and extra characters, ignoring punctuation, spacing,
+case, and compatibility-width differences. Recognition can be mistaken; this is
+**text comparison, not pronunciation accuracy**. Azure results show only actual
+returned measurements; incomplete results are labeled rather than assigned
+invented scores. Provider failures remain visible, with no silent fallback that
+pretends assessment succeeded.
+
+Practice input and feedback preference are per-conversation. Conversation keeps
+the latest result on each original phrase; Shadow and older result bubbles retain
+their separate messages. Recognized transcripts and comparison or speech-provider
+feedback survive reload and backups and are included in full-message Copy.
+Detailed explanations and word scores are collapsed to keep feedback compact.
+Raw audio and provider credentials are never stored in messages or sent to the
+language model. Practice results are also excluded from **future** model history;
+legacy transcript-feedback turns cannot be retried or resubmitted through that
+old path. Conversation mode, the main draft, and learning evidence stay unchanged.
+Reference playback, the start cue, recording, or assessment is cancelled on navigation, closing practice, changing
+the input/translation/feedback/provider connection, playback, Escape, or page
+hiding. Cancelled attempts do not create results. No recording resumes after
+reload. Storage failures let you retry **Submit** (or **Retry saving result** in
+Shadow) without another recording or provider request; keep practice open until
+the result is saved.
+
 A small **Copy full message** button below each
 message copies its complete text, including speech, romanization, and meanings.
 Neither action adds learning evidence. Selected text offers contextual actions;
@@ -169,25 +255,29 @@ lists. Mandarin locale aliases and Taiwanese Mandarin are supported, with
 Simplified/mainland voices preferred in Automatic mode.
 English plays at normal speed;
 Mandarin phrases in a conversation use that conversation's chosen rate.
+The local-settings `defaultSpeechRate` configures the initial speed for new
+conversations and Mandarin Hear buttons outside conversations.
 Navigation, page hiding, and Escape stop playback.
 
-AI keys are plaintext device settings accessible to code on the same origin;
+AI and Azure Speech keys are plaintext device settings accessible to code on the same origin;
 use a restricted key. They are excluded from every workspace backup. New
 version-2 backups include conversations, drafts, and recoverable run state.
 Version-1 root-app backups remain readable and restore with no conversations.
 Restoring replaces learning and conversation data, preserves the device's AI
-connection, and never resumes a request automatically. V1 data and settings
+and speech connections, and never resumes a request automatically. V1 data and settings
 remain isolated.
 
 ### Assistant system prompts
 
 Mode instructions live in `settings/system-prompts/conversation.md` and
-`settings/system-prompts/shadow.md`. The `repeat.md` and `explain.md` files add
-instructions for those explicit turn intents. Edit these ordinary Markdown files
+`settings/system-prompts/shadow.md`. The `explain.md` file adds instructions for
+explicit explanations. `repeat.md` is reserved for a possible future opt-in AI
+feedback flow; it is not loaded by the current tutor loop. Recording practice is
+app-owned and does not invoke a system prompt. Edit the active Markdown files
 to tune teaching behavior; the selected mode and intent are assembled anew for
 each turn, not saved as historical system messages.
 
-These are tracked, public application files, bundled into development and
+The active prompts are tracked, public application files, bundled into development and
 production builds with no runtime settings fetch. Rebuild/redeploy to publish
 prompt changes; do not put credentials or private information in them. They are
 independent of the ignored `app.settings.jsonc` connection settings. Mandatory
@@ -273,9 +363,12 @@ If `settings\app.settings.jsonc` already exists, edit it rather than replacing i
 Existing plain JSON settings can be renamed from `.json` to `.jsonc` unchanged.
 
 Settings are grouped by section so other app settings can be added later.
-Currently, the optional `aiConnection` section is supported. Within it, fill in
+Both `aiConnection` and `speechConnection` are optional. Within `aiConnection`, fill in
 `baseUrl`, `apiKey`, and `model`. Choose `"apiType": "responses"` or
 `"apiType": "chat-completions"`; omitting it retains Chat Completions.
+For Azure, enable the template's commented `speechConnection` example, using
+`"provider": "azure"`, its `region` identifier (for example `eastus`), `apiKey`,
+and `"storageAcknowledged": true`. Omit sections you do not want configured.
 The template explains every field. Set `nativeTools` and
 `structuredOutput` to `true` only when supported. Set
 `"storageAcknowledged": true` to opt into saving the key in plaintext browser
@@ -283,22 +376,32 @@ storage. These flags are JSON booleans, not strings. Use a restricted developmen
 key; never commit `settings\app.settings.jsonc` or put it in `public`.
 The file must be valid JSONC, no larger than 32 KiB. Line/block comments and
 trailing commas are supported; malformed syntax is rejected, not repaired.
+An optional top-level `"defaultSpeechRate": 0.75` sets the default Mandarin
+playback speed. Supported values are `0.5`, `0.75`, `1`, and `1.25`. It works
+without either connection section and never changes English playback speed or
+the saved speed of an existing conversation.
 The earlier `.env.local` /
 `ASSISTANT_AI_` shortcut is no longer read.
 
 During `npm run dev`, the app automatically queries a localhost-only endpoint
-on startup **only when no AI connection is already saved**. It validates and
-saves `aiConnection`, then makes it available in Settings and Assistant.
-Loading configuration does not test the provider, send a message, or alter
-learning progress or block lesson rendering. Loading, success, and error notices
-appear only in Settings under AI connection settings. Missing configuration is
+on startup. It imports each connection
+independently: an existing AI connection does not prevent loading missing speech
+settings, and existing saved connections are never overwritten.
+Loading configuration does not test a provider, request a microphone, send a
+message, alter learning progress, or block lesson rendering. Separate setup
+notices appear only in the corresponding Settings sections. Missing configuration is
 optional; invalid configuration leaves manual setup available.
 
-Saved settings always win, including a save in another tab while the file is
-loading. To apply changes to the file, remove the saved connection in Settings
-and reload. To leave AI unconfigured, also remove `aiConnection` from the local
+Saved connections always win, including a save in another tab while the file is
+loading. To apply connection changes to the file, remove the saved connection in Settings
+and reload. To leave a provider unconfigured, also remove its section from the local
 JSONC file (an empty `{}` is valid), or remove the file altogether. Only this
 file is read; environment variables do not override its settings.
+Unlike credentials, an explicitly supplied `defaultSpeechRate` is reapplied on
+each startup: edit it and reload to change the default for new conversations.
+The imported default is saved with workspace preferences; omitting the key leaves
+that saved default unchanged. Without any configured default, existing behavior
+remains: Mandarin Hear and new conversations start at normal speed (`1x`).
 
 This shortcut is unavailable on LAN addresses, in `npm run preview`, and in
 production. Credentials are not embedded in bundles, cached by the endpoint,

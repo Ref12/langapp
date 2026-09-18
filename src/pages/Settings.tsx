@@ -4,6 +4,7 @@ import { exportWorkspaceBackup, MAX_BACKUP_BYTES, readBackup, restoreBackup } fr
 import { savePreferences } from '../core/learning'
 import { PageHeading, type PageProps } from '../components/shared'
 import { AIConnectionSettings } from '../components/assistant/AIConnectionSettings'
+import { SpeechConnectionSettings } from '../components/assistant/SpeechConnectionSettings'
 import { VoiceSettings } from '../components/assistant/VoiceSettings'
 
 export function Settings({ workspace, busy, run }: PageProps) {
@@ -29,6 +30,7 @@ export function Settings({ workspace, busy, run }: PageProps) {
     </section>
     <VoiceSettings workspace={workspace} busy={busy} run={run} />
     <AIConnectionSettings />
+    <SpeechConnectionSettings />
     <section className="panel"><h2>Keep your learning safe</h2><p>Your progress is saved in this browser, not synced to an account. Clearing site data or using private browsing can remove it. Download a backup regularly.</p>
       <div className="button-row">
         <button className="button secondary" disabled={busy} onClick={() => void run(async () => {
@@ -54,7 +56,7 @@ export function Settings({ workspace, busy, run }: PageProps) {
           })
         }} /></label>
       </div>
-      {pendingBackup && <div className="notice"><h3>Replace this Mandarin workspace?</h3><p>This backup contains {pendingBackup.words} learning words in {pendingBackup.name}. Restoring replaces this workspace's progress, preferences, and conversations. Older backups have no conversations. Your device's AI connection and v1 data are unchanged.</p>
+      {pendingBackup && <div className="notice"><h3>Replace this Mandarin workspace?</h3><p>This backup contains {pendingBackup.words} learning words in {pendingBackup.name}. Restoring replaces this workspace's progress, preferences, and conversations, including saved practice results. Older backups have no conversations. Your device's AI and speech connections and v1 data are unchanged.</p>
         <div className="button-row"><button className="button primary" disabled={busy} onClick={() => void run(async () => {
           await restoreBackup(pendingBackup.text)
           setName(pendingBackup.name)
@@ -62,10 +64,13 @@ export function Settings({ workspace, busy, run }: PageProps) {
           setNotice('Mandarin workspace restored.')
         })}>Replace this workspace</button><button className="button secondary" disabled={busy} onClick={() => setPendingBackup(null)}>Cancel</button></div>
       </div>}
-      <p className="small muted">Backups contain this Mandarin workspace and Assistant conversations, not credentials or audio. v1 backups are not compatible. Restored requests never send automatically.</p>
+      <p className="small muted">Backups contain this Mandarin workspace, Assistant conversations, and saved practice results, including recognized transcripts. AI and speech credentials are excluded. Raw recordings are never stored or included in backups. v1 backups are not compatible. Restored requests never send automatically, and practice results remain excluded from AI tutor context.</p>
     </section>
     {notice && <p className="notice success" role="status">{notice}</p>}
-    <section className="panel"><h2>About this checkpoint</h2><p>The 30-level Mandarin course now includes a complete HSK 1-6 readiness map with skill and mock-test lesson outlines. Beginner levels 1-4 are available for small vocabulary-recognition lessons and grammar reference; later course levels and readiness lessons are plans, not playable assessments. Assistant supports connected text conversation and Shadow with browser Hear playback. Hear uses your saved voice selections; Automatic prefers local voices and uses online browser voices when needed, sharing the spoken text with that voice service. Microphone input, generated writing activities, pronunciation scoring, handwriting assessment, and official HSK certification are not connected.</p>
+    <section className="panel"><h2>About this checkpoint</h2><p>The 30-level Mandarin course includes an HSK 1-6 preparation map with skill and mock-test lesson outlines. Beginner levels 1-4 offer vocabulary-recognition lessons and grammar references, with whole-lesson visual and guided-audio views in the level-1 pilot. Later course levels and readiness lessons are plans, not playable assessments. Assistant supports Conversation and Shadow with typed input or opt-in voice input and replies. Playback uses your saved voice selections; Automatic prefers local voices and uses online browser voices when needed, sharing the spoken text with that voice service.</p>
+      <p>Enable Voice input and replies in conversation settings, choose English or Mandarin, and tap the mic to dictate after the cue. Stop to review or Submit to send. Browser recognition may use an online speech service; conversation transcripts go to your AI provider only when sent. Replies are spoken without restarting the microphone. Reloading never starts recording or replays old replies.</p>
+      <p>Practice plays the phrase first. Recording is opt-in: Listen and record sounds a short cue when the microphone is ready. Conversation's Submit shows feedback inline; Shadow automatically adds feedback when recording finishes. Azure Speech receives the audio and expected phrase only when Speech feedback is enabled and a connection is configured. Otherwise, the app compares a browser-recognized transcript locally; the browser may use an online recognition service. Results never go to the AI tutor, including in later turns. Raw recordings are never stored.</p>
+      <p>Speech assessments are practice feedback, not evidence of mastery or official HSK certification. Hands-free turn-taking, generated activities, and handwriting assessment are not connected.</p>
       <div className="button-row"><a href="./v1/" className="button secondary">Open original app (v1)</a><a href="./preview.html" className="button secondary">Open design mockups</a></div>
     </section>
   </>

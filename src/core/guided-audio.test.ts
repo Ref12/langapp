@@ -2,6 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createGuidedAudio, type GuidedAudioState } from './guided-audio'
 import type { AudioStep } from './learning-content'
 import { clearVoiceCache, getPlaybackState, playBrowserSpeech, setSpeechVoicePreferences, stopBrowserSpeech } from './assistant/speech'
+import { acquireAudio, interruptAudio } from './assistant/audio-owner'
+import { speakConversationReply } from './assistant/conversation-voice'
 
 class Utterance {
   constructor(public text: string) {}
@@ -24,9 +26,9 @@ const steps: AudioStep[] = [
 let states: GuidedAudioState[]
 let player: ReturnType<typeof createGuidedAudio>
 const latest = () => states[states.length - 1]
-const finish = () => {
+const finish = async () => {
   synthesis.speak.mock.calls[synthesis.speak.mock.calls.length - 1][0].onend?.()
-  vi.advanceTimersByTime(0)
+  await vi.advanceTimersByTimeAsync(0)
 }
 
 beforeEach(() => {
@@ -44,6 +46,7 @@ beforeEach(() => {
 })
 afterEach(() => {
   player.dispose()
+  interruptAudio()
   stopBrowserSpeech()
   expect(vi.getTimerCount()).toBe(0)
   vi.unstubAllGlobals()
@@ -51,59 +54,61 @@ afterEach(() => {
 })
 
 describe('guided audio lifecycle using real browser speech engine', () => {
-  it('advances only on successful completion, leaves the response gap, then finishes', () => {
+  it('advances only on successful completion, leaves the response gap, then finishes', async () => {
     player.start()
     expect(latest()).toMatchObject({ status: 'playing', index: 0 })
     vi.advanceTimersByTime(100)
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
-    finish()
+    await finish()
     expect(latest()).toMatchObject({ status: 'responding', index: 1 })
     vi.advanceTimersByTime(2999)
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
     vi.advanceTimersByTime(1)
     expect(synthesis.speak.mock.calls[1][0].text).toBe('\u4f60\u597d')
-    finish()
+    await finish()
     expect(latest()).toMatchObject({ status: 'completed', index: 3 })
   })
 
-  it.each(['speech', 'gap', 'between'] as const)('global Stop cancels %s without advancing', phase => {
+  it.each(['speech', 'gap', 'pending', 'between'] as const)('global Stop cancels %s without advancing', async phase => {
     player.start()
     const staleEnd = synthesis.speak.mock.calls[0][0].onend
-    if (phase === 'gap') finish()
-    if (phase === 'between') staleEnd?.()
+    if (phase === 'gap') await finish()
+    if (phase === 'pending' || phase === 'between') staleEnd?.()
+    if (phase === 'between') await Promise.resolve()
     stopBrowserSpeech()
     staleEnd?.()
-    vi.advanceTimersByTime(60_000)
+    await vi.advanceTimersByTimeAsync(60_000)
     expect(latest().status).toBe('paused')
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
   })
 
-  it.each(['speech', 'gap', 'between'] as const)('another Hear owns playback after replacing %s', phase => {
+  it.each(['speech', 'gap', 'pending', 'between'] as const)('another Hear owns playback after replacing %s', async phase => {
     player.start()
-    if (phase === 'gap') finish()
-    if (phase === 'between') synthesis.speak.mock.calls[0][0].onend?.()
+    if (phase === 'gap') await finish()
+    if (phase === 'pending' || phase === 'between') synthesis.speak.mock.calls[0][0].onend?.()
+    if (phase === 'between') await Promise.resolve()
     playBrowserSpeech('hear', 'Tea.', 'en-US')
     expect(latest().status).toBe('paused')
     expect(getPlaybackState().activeId).toBe('hear')
-    finish()
+    await finish()
     vi.advanceTimersByTime(60_000)
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
     player.dispose()
     expect(getPlaybackState().activeId).toBeUndefined()
   })
 
-  it('changing voice preferences interrupts a response gap', () => {
+  it('changing voice preferences interrupts a response gap', async () => {
     player.start()
-    finish()
+    await finish()
     setSpeechVoicePreferences({ 'en-US': { name: english.name, voiceURI: english.voiceURI, lang: english.lang, localService: english.localService } })
     vi.advanceTimersByTime(10_000)
     expect(latest().status).toBe('paused')
     expect(synthesis.speak).toHaveBeenCalledTimes(1)
   })
 
-  it('pause/resume restarts the current response gap and repeat restarts the model', () => {
+  it('pause/resume restarts the current response gap and repeat restarts the model', async () => {
     player.start()
-    finish()
+    await finish()
     vi.advanceTimersByTime(2000)
     player.pause()
     vi.advanceTimersByTime(10_000)
@@ -120,9 +125,9 @@ describe('guided audio lifecycle using real browser speech engine', () => {
     expect(latest()).toMatchObject({ status: 'idle', index: 0 })
   })
 
-  it('disposing a gap cancels its timer and does not stop someone else', () => {
+  it('disposing a gap cancels its timer and does not stop someone else', async () => {
     player.start()
-    finish()
+    await finish()
     player.dispose()
     playBrowserSpeech('other', 'Other.', 'en-US')
     player.dispose()
@@ -132,16 +137,106 @@ describe('guided audio lifecycle using real browser speech engine', () => {
     expect(synthesis.speak).toHaveBeenCalledTimes(2)
   })
 
-  it.each(['missing', 'error', 'timeout', 'blocked'] as const)('surfaces %s playback failures without advancing', failure => {
+  it.each(['missing', 'error', 'timeout', 'blocked'] as const)('surfaces %s playback failures without advancing', async failure => {
     if (failure === 'missing') synthesis.getVoices.mockReturnValue([])
     if (failure === 'blocked') synthesis.speak.mockImplementationOnce(() => { throw new Error('blocked') })
     player.start()
     if (failure === 'missing') vi.advanceTimersByTime(3000)
     if (failure === 'timeout') vi.advanceTimersByTime(10_000)
     if (failure === 'error') synthesis.speak.mock.calls[0][0].onerror?.()
+    await vi.advanceTimersByTimeAsync(0)
     expect(latest().status).toBe('error')
     expect(latest().error).toBeTruthy()
     vi.advanceTimersByTime(60_000)
     expect(synthesis.speak.mock.calls.length).toBe(failure === 'missing' ? 0 : 1)
+  })
+
+  it.each(['speech', 'gap', 'pending', 'between'] as const)('a new audio lease cancels lesson %s without late playback', async phase => {
+    player.start()
+    const staleEnd = synthesis.speak.mock.calls[0][0].onend
+    if (phase === 'gap') await finish()
+    if (phase === 'pending' || phase === 'between') staleEnd?.()
+    if (phase === 'between') await Promise.resolve()
+    const next = acquireAudio(vi.fn())
+    staleEnd?.()
+    await vi.advanceTimersByTimeAsync(60_000)
+    expect(latest().status).toBe('paused')
+    expect(next.isCurrent()).toBe(true)
+    expect(synthesis.speak).toHaveBeenCalledTimes(1)
+    next.release()
+  })
+
+  it('pauses a lesson gap for a spoken reply and lets the whole reply finish', async () => {
+    player.start()
+    await finish()
+    const reply = speakConversationReply([
+      { type: 'speech', text: 'Tea.', locale: 'en-US' },
+      { type: 'speech', text: '\u8336', locale: 'zh-Hans' },
+    ], 0.75)
+    expect(latest().status).toBe('paused')
+    await finish()
+    expect(getPlaybackState().activeId).toMatch(/^conversation-reply-/)
+    await finish()
+    await expect(reply.done).resolves.toEqual({ status: 'completed' })
+    await vi.advanceTimersByTimeAsync(60_000)
+    expect(synthesis.speak).toHaveBeenCalledTimes(3)
+  })
+
+  it('interrupts a spoken reply before starting the lesson and ignores stale reply callbacks', async () => {
+    const reply = speakConversationReply([
+      { type: 'speech', text: 'Tea.', locale: 'en-US' },
+      { type: 'speech', text: '\u8336', locale: 'zh-Hans' },
+    ], 0.75)
+    const staleEnd = synthesis.speak.mock.calls[0][0].onend
+    player.start()
+    staleEnd?.()
+    await expect(reply.done).resolves.toEqual({ status: 'cancelled' })
+    expect(getPlaybackState().activeId).toBe('guided')
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    expect(synthesis.speak.mock.calls[1][0].text).toBe('Answer aloud.')
+  })
+
+  it('does not start the lesson when the previous audio owner cannot stop', () => {
+    acquireAudio(() => { throw new Error('Recording could not be stopped') })
+    player.start()
+    expect(latest()).toMatchObject({ status: 'error', error: expect.stringContaining('Recording could not be stopped') })
+    expect(synthesis.speak).not.toHaveBeenCalled()
+  })
+
+  it('preserves a newer owner claimed while the previous owner is interrupted', () => {
+    const newerInterrupted = vi.fn()
+    acquireAudio(() => { acquireAudio(newerInterrupted) })
+    player.start()
+    expect(latest().status).toBe('paused')
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    expect(newerInterrupted).not.toHaveBeenCalled()
+    interruptAudio()
+    expect(newerInterrupted).toHaveBeenCalledOnce()
+  })
+
+  it.each(['playing', 'responding'] as const)('does not start stale work after a %s notification replaces its owner', async status => {
+    player.dispose()
+    const newerInterrupted = vi.fn()
+    player = createGuidedAudio('guided', steps, state => {
+      states.push(state)
+      if (state.status === status) acquireAudio(newerInterrupted)
+    })
+    player.start()
+    if (status === 'responding') await finish()
+    await vi.advanceTimersByTimeAsync(60_000)
+    expect(latest().status).toBe('paused')
+    expect(synthesis.speak).toHaveBeenCalledTimes(status === 'playing' ? 0 : 1)
+    expect(vi.getTimerCount()).toBe(0)
+    expect(newerInterrupted).not.toHaveBeenCalled()
+    interruptAudio()
+    expect(newerInterrupted).toHaveBeenCalledOnce()
+  })
+
+  it('reports failure and prevents new audio when lesson playback cannot stop', () => {
+    player.start()
+    synthesis.cancel.mockImplementationOnce(() => { throw new Error('Audio stuck') })
+    playBrowserSpeech('other', 'Tea.', 'en-US')
+    expect(latest()).toMatchObject({ status: 'error', error: expect.stringContaining('could not stop speech') })
+    expect(synthesis.speak).toHaveBeenCalledTimes(1)
   })
 })

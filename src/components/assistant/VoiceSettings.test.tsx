@@ -82,6 +82,7 @@ describe('Hear voice settings', () => {
     render(<App />)
     const zh = await screen.findByRole('combobox', { name: 'Mandarin voice' })
     const en = screen.getByRole('combobox', { name: 'English voice' })
+    await within(zh).findByRole('option', { name: 'Mandarin local — zh-CN — Local' })
     expect(zh).toHaveValue('')
     expect(en).toHaveValue('')
     expect(within(zh).getAllByRole('option').map(option => option.textContent)).toEqual([

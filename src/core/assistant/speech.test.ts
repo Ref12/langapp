@@ -1,5 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, playBrowserSpeech, setSpeechVoicePreferences, stopBrowserSpeech, subscribePlayback, watchBrowserVoices } from './speech'
+import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, playBrowserSpeech, playBrowserSpeechToEnd, setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech, subscribePlayback, watchBrowserVoices } from './speech'
+import type { SpeechRate } from './contracts'
+import { acquireAudio, interruptAudio } from './audio-owner'
+import { speakConversationReply } from './conversation-voice'
 
 class Utterance {
   constructor(public text: string) {}
@@ -53,37 +56,217 @@ beforeEach(() => {
   })
   stopBrowserSpeech()
   setSpeechVoicePreferences()
+  setDefaultSpeechRate()
   clearVoiceCache()
   synthesis.cancel.mockClear()
 })
 
 afterEach(() => {
+  interruptAudio()
   stopBrowserSpeech()
+  setDefaultSpeechRate()
   expectClean()
   vi.unstubAllGlobals()
   vi.restoreAllMocks()
   vi.useRealTimers()
 })
 
+describe('shared audio ownership', () => {
+  it('interrupts top-level capture or practice before a raw preview starts', () => {
+    const interrupted = vi.fn(() => expect(synthesis.speak).not.toHaveBeenCalled())
+    const lease = acquireAudio(interrupted)
+    playBrowserSpeech('preview', '茶', 'zh-Hans')
+    expect(interrupted).toHaveBeenCalledOnce()
+    expect(lease.isCurrent()).toBe(false)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+  })
+
+  it('does not interrupt the lease when its flow awaits playback completion', async () => {
+    const interrupted = vi.fn()
+    const lease = acquireAudio(interrupted)
+    const outcome = playBrowserSpeechToEnd('owned', '茶', 'zh-Hans')
+    synthesis.speak.mock.calls[0][0].onend?.()
+    await expect(outcome).resolves.toEqual({ status: 'completed' })
+    expect(lease.isCurrent()).toBe(true)
+    expect(interrupted).not.toHaveBeenCalled()
+    lease.release()
+  })
+
+  it('does not begin raw playback if the previous flow could not be interrupted', () => {
+    acquireAudio(() => { throw new Error('capture stuck') })
+    expect(() => playBrowserSpeech('preview', '茶', 'zh-Hans')).not.toThrow()
+    expect(getPlaybackState().error).toContain('capture stuck')
+    expect(synthesis.speak).not.toHaveBeenCalled()
+  })
+
+  it('cancels an entire tutor reply queue before starting a raw preview', async () => {
+    const reply = speakConversationReply([
+      { type: 'speech', text: 'Tea', locale: 'en-US' },
+      { type: 'speech', text: '茶', locale: 'zh-Hans' },
+    ], 0.75)
+    const lateEnd = synthesis.speak.mock.calls[0][0].onend
+    playBrowserSpeech('preview', '水', 'zh-Hans')
+    await expect(reply.done).resolves.toEqual({ status: 'cancelled' })
+    lateEnd?.()
+    await Promise.resolve()
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    expect(synthesis.speak.mock.calls[1][0].text).toBe('水')
+    expect(getPlaybackState().activeId).toBe('preview')
+  })
+
+  it('never starts native speech after a playback subscriber supersedes its owning reply', async () => {
+    const unsubscribe = subscribePlayback(() => {
+      if (getPlaybackState().phase === 'starting') acquireAudio(vi.fn())
+    })
+    try {
+      const reply = speakConversationReply([{ type: 'speech', text: 'Tea', locale: 'en-US' }], 1)
+      await expect(reply.done).resolves.toEqual({ status: 'cancelled' })
+      expect(synthesis.speak).not.toHaveBeenCalled()
+      expectClean()
+    } finally {
+      unsubscribe()
+    }
+  })
+
+  it('does not report a spoken reply as completed if native speak ends synchronously then throws', async () => {
+    synthesis.speak.mockImplementation(utterance => {
+      utterance.onend?.()
+      throw new Error('native speech failed')
+    })
+    const reply = speakConversationReply([{ type: 'speech', text: 'Tea', locale: 'en-US' }], 1)
+    await expect(reply.done).resolves.toMatchObject({ status: 'error', error: expect.stringContaining('blocked speech playback') })
+    expectClean()
+  })
+
+  it('settles synchronous native speech completion without leaking timers', async () => {
+    synthesis.speak.mockImplementation(utterance => { utterance.onstart?.(); utterance.onend?.() })
+    const reply = speakConversationReply([
+      { type: 'speech', text: 'Tea', locale: 'en-US' },
+      { type: 'speech', text: '茶', locale: 'zh-Hans' },
+    ], 0.75)
+    await expect(reply.done).resolves.toEqual({ status: 'completed' })
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    expectClean()
+  })
+})
+
+describe('default Mandarin playback speed', () => {
+  it('waits for real playback completion, distinguishing it from cancellation and errors', async () => {
+    const result = playBrowserSpeechToEnd('practice', '\u8336', 'zh-Hans', 0.75)
+    const finished = vi.fn()
+    void result.then(finished)
+    await Promise.resolve()
+    expect(finished).not.toHaveBeenCalled()
+    synthesis.speak.mock.calls[0][0].onstart?.()
+    await Promise.resolve()
+    expect(finished).not.toHaveBeenCalled()
+    synthesis.speak.mock.calls[0][0].onend?.()
+    await expect(result).resolves.toEqual({ status: 'completed' })
+    const cancelled = playBrowserSpeechToEnd('cancelled', '\u8336', 'zh-Hans')
+    const lateEnd = synthesis.speak.mock.calls[1][0].onend
+    stopBrowserSpeech()
+    lateEnd?.()
+    await expect(cancelled).resolves.toEqual({ status: 'cancelled' })
+    const failed = playBrowserSpeechToEnd('failed', '\u8336', 'zh-Hans')
+    synthesis.speak.mock.calls[2][0].onerror?.()
+    await expect(failed).resolves.toMatchObject({ status: 'error', error: expect.stringContaining('could not be played') })
+  })
+
+  it('settles playback promises for missing voices, unsupported browsers, replacement and timeouts', async () => {
+    synthesis.getVoices.mockReturnValue([])
+    const missing = playBrowserSpeechToEnd('missing', '\u8336', 'zh-Hans')
+    vi.advanceTimersByTime(3000)
+    await expect(missing).resolves.toMatchObject({ status: 'error' })
+    voicesChanged([localMandarin])
+    const replaced = playBrowserSpeechToEnd('first', '\u8336', 'zh-Hans')
+    const timeout = playBrowserSpeechToEnd('second', '\u8336', 'zh-Hans')
+    await expect(replaced).resolves.toEqual({ status: 'cancelled' })
+    vi.advanceTimersByTime(10_000)
+    await expect(timeout).resolves.toMatchObject({ status: 'error' })
+    vi.stubGlobal('SpeechSynthesisUtterance', undefined)
+    await expect(playBrowserSpeechToEnd('unsupported', '\u8336', 'zh-Hans')).resolves.toMatchObject({ status: 'error' })
+  })
+
+  it.each([0.5, 0.75, 1, 1.25] as const)('uses the configured default %s only for Mandarin, without playing on configuration', rate => {
+    setDefaultSpeechRate(rate)
+    expect(synthesis.getVoices).not.toHaveBeenCalled()
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    expect(synthesis.cancel).not.toHaveBeenCalled()
+    playBrowserSpeech('mandarin', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(rate)
+    playBrowserSpeech('english', 'Tea', 'en-US')
+    expect(synthesis.speak.mock.calls[1][0].rate).toBe(1)
+  })
+
+  it('keeps the normal unconfigured fallback and restores it when the preference is removed', () => {
+    playBrowserSpeech('unconfigured', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(1)
+    setDefaultSpeechRate(0.5)
+    setDefaultSpeechRate()
+    playBrowserSpeech('cleared', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[1][0].rate).toBe(1)
+  })
+
+  it('honors explicit conversation rates and leaves English normal even with an explicit slower rate', () => {
+    setDefaultSpeechRate(0.75)
+    playBrowserSpeech('conversation', '茶', 'zh-Hans', 1.25)
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(1.25)
+    playBrowserSpeech('normal-conversation', '茶', 'zh-Hans', 1)
+    expect(synthesis.speak.mock.calls[1][0].rate).toBe(1)
+    playBrowserSpeech('english-conversation', 'Tea', 'en-US', 0.5)
+    expect(synthesis.speak.mock.calls[2][0].rate).toBe(1)
+  })
+
+  it('applies the same configured default to online browser voices', () => {
+    synthesis.getVoices.mockReturnValue([onlineMandarin, onlineEnglish])
+    setDefaultSpeechRate(0.75)
+    playBrowserSpeech('mandarin', '茶', 'zh-Hans')
+    vi.advanceTimersByTime(3000)
+    expect(synthesis.speak.mock.calls[0][0]).toMatchObject({ voice: onlineMandarin, rate: 0.75 })
+    playBrowserSpeech('english', 'Tea', 'en-US')
+    vi.advanceTimersByTime(3000)
+    expect(synthesis.speak.mock.calls[1][0]).toMatchObject({ voice: onlineEnglish, rate: 1 })
+  })
+
+  it('does not restart, cancel, or change active playback when the default changes', () => {
+    playBrowserSpeech('active', '茶', 'zh-Hans', 1.25)
+    synthesis.cancel.mockClear()
+    setDefaultSpeechRate(0.5)
+    expect(synthesis.speak).toHaveBeenCalledTimes(1)
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(1.25)
+    expect(synthesis.cancel).not.toHaveBeenCalled()
+  })
+
+  it.each([0, 0.6, NaN, Infinity, -1, 2, '0.75', null])('rejects invalid default rates without clamping (case %#)', rate => {
+    setDefaultSpeechRate(0.75)
+    expect(() => setDefaultSpeechRate(rate as SpeechRate)).toThrow()
+    expect(synthesis.speak).not.toHaveBeenCalled()
+    playBrowserSpeech('unchanged', '茶', 'zh-Hans')
+    expect(synthesis.speak.mock.calls[0][0].rate).toBe(0.75)
+  })
+})
+
 describe('installed-local-voice language matching', () => {
-  it('reports completion, cancellation, and errors distinctly and only once', () => {
+  it('reports completion, cancellation, and errors distinctly and ignores stale callbacks', async () => {
     const completed = vi.fn()
-    playBrowserSpeech('finished', 'Tea.', 'en-US', 1, completed)
+    const completion = playBrowserSpeechToEnd('finished', 'Tea.', 'en-US', 1).then(completed)
     const ended = synthesis.speak.mock.calls[0][0].onend
     ended?.()
     ended?.()
     stopBrowserSpeech()
-    expect(completed.mock.calls).toEqual([[{ kind: 'ended' }]])
+    await completion
+    expect(completed.mock.calls).toEqual([[{ status: 'completed' }]])
     const cancelled = vi.fn()
-    playBrowserSpeech('cancelled', 'Tea.', 'en-US', 1, cancelled)
+    const cancellation = playBrowserSpeechToEnd('cancelled', 'Tea.', 'en-US', 1).then(cancelled)
     const lateEnd = synthesis.speak.mock.calls[1][0].onend
     playBrowserSpeech('replacement', 'Coffee.', 'en-US')
     lateEnd?.()
-    expect(cancelled.mock.calls).toEqual([[{ kind: 'cancelled' }]])
+    await cancellation
+    expect(cancelled.mock.calls).toEqual([[{ status: 'cancelled' }]])
     const failed = vi.fn()
-    playBrowserSpeech('invalid', '', 'en-US', 1, failed)
+    await playBrowserSpeechToEnd('invalid', '', 'en-US', 1).then(failed)
     expect(failed).toHaveBeenCalledOnce()
-    expect(failed.mock.calls[0][0]).toMatchObject({ kind: 'error', message: expect.any(String) })
+    expect(failed.mock.calls[0][0]).toMatchObject({ status: 'error', error: expect.any(String) })
   })
 
   it.each([

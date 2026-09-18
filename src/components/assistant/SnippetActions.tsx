@@ -1,12 +1,14 @@
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import { MessageCircle, Repeat2, Square, Volume2, X } from 'lucide-react'
 import { prepareAssistantDraft } from '../../core/assistant/draft-actions'
 import { type AssistantSource, type SpeechLocale } from '../../core/assistant/contracts'
 import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayback } from '../../core/assistant/speech'
 import { selectedSnippet, snippetLocale } from '../../core/assistant/selection'
 import { navigate } from '../../core/routing'
+import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
+import { interruptAudio } from '../../core/assistant/audio-owner'
 
-export function HearButton({ text, locale, rate = 1 }: { text: string; locale: SpeechLocale; rate?: number }) {
+export function HearButton({ text, locale, rate }: { text: string; locale: SpeechLocale; rate?: number }) {
   const id = useId()
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
   const active = playback.activeId === id
@@ -18,16 +20,19 @@ export function HearButton({ text, locale, rate = 1 }: { text: string; locale: S
   </button>
 }
 
-export function SnippetActions({ source, rate = 1, onPrepared, onPractice }: {
-  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void
+export function SnippetActions({ source, rate, onPrepared, onPractice, practiceDisabled = false, practiceTitle = 'Practice repeating this phrase' }: {
+  source: AssistantSource; rate?: number; onPrepared?: () => void; onPractice?: () => void; practiceDisabled?: boolean; practiceTitle?: string
 }) {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const [prepared, setPrepared] = useState<string>()
+  const speedSetup = useContext(LocalSpeechRateSetupContext)
+  const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
+  const createsConversation = page !== 'conversation' || !currentId
   return <div className="snippet-actions" data-assistant-exclude>
     <div className="button-row">
       {source.locale && <HearButton text={source.text} locale={source.locale} rate={rate} />}
-      <button type="button" className="button secondary snippet-button" disabled={pending} onClick={() => {
+      <button type="button" className="button secondary snippet-button" disabled={pending || (createsConversation && speedSetup === 'loading')} onClick={() => {
         setPending(true)
         setError('')
         const [page, currentId] = window.location.hash.slice(1).replace(/^\/+/, '').split('/')
@@ -37,7 +42,7 @@ export function SnippetActions({ source, rate = 1, onPrepared, onPractice }: {
         }, reason => { setError(reason instanceof Error ? reason.message : 'The Assistant draft could not be saved.') })
           .finally(() => setPending(false))
       }}><MessageCircle size={15} />{pending ? 'Preparing draft...' : 'Ask'}</button>
-      {onPractice && <button type="button" className="button secondary snippet-button" title="Practice repeating this phrase" onClick={onPractice}>
+      {onPractice && <button type="button" className="button secondary snippet-button" title={practiceTitle} disabled={practiceDisabled} onClick={onPractice}>
         <Repeat2 size={15} />Practice
       </button>}
     </div>
@@ -48,24 +53,32 @@ export function SnippetActions({ source, rate = 1, onPrepared, onPractice }: {
 
 export function PlaybackStatus() {
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
+  const [error, setError] = useState('')
+  const stop = useCallback(() => {
+    try { interruptAudio(); setError('') } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Audio could not be stopped. Close this page before trying again.')
+    }
+    stopBrowserSpeech()
+  }, [])
   useEffect(() => {
-    const hidden = () => { if (document.hidden) stopBrowserSpeech() }
-    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') stopBrowserSpeech() }
+    const hidden = () => { if (document.hidden) stop() }
+    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') stop() }
     document.addEventListener('visibilitychange', hidden)
     document.addEventListener('keydown', escape)
     return () => {
       document.removeEventListener('visibilitychange', hidden)
       document.removeEventListener('keydown', escape)
+      try { interruptAudio() } catch (reason) { console.error('Audio could not be stopped when leaving the app.', reason) }
       stopBrowserSpeech()
     }
-  }, [])
-  if (!playback.activeId && !playback.error) return null
-  return <div className="playback-status" data-assistant-exclude role={playback.error ? 'alert' : 'status'}>
-    <span>{playback.error ?? (playback.phase === 'loading-voices' ? 'Looking for a voice...'
+  }, [stop])
+  if (!playback.activeId && !playback.error && !error) return null
+  return <div className="playback-status" data-assistant-exclude role={playback.error || error ? 'alert' : 'status'}>
+    <span>{error || playback.error || (playback.phase === 'loading-voices' ? 'Looking for a voice...'
       : playback.phase === 'starting' ? `Starting ${playback.voiceKind === 'online' ? 'online' : 'local'} speech...`
         : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>
-    <button className="icon-button" type="button" aria-label={playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stopBrowserSpeech}>
-      {playback.error ? <X size={18} /> : <Square size={18} />}
+    <button className="icon-button" type="button" aria-label={error ? 'Retry stopping audio' : playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stop}>
+      {playback.error && !error ? <X size={18} /> : <Square size={18} />}
     </button>
   </div>
 }

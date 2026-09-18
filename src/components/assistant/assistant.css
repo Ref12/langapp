@@ -2,9 +2,9 @@
 .assistant-shell { grid-template-columns: 270px minmax(0, 1fr); }
 .assistant-shell.sidebar-collapsed { grid-template-columns: 82px minmax(0, 1fr); }
 .assistant-shell .sidebar .workspace-navigation { display: none; }
+.assistant-shell .mobile-nav-trigger { display: inline-flex; }
 .assistant-shell .sidebar { padding: 20px 14px; }
 .assistant-desktop-picker, .conversation-picker { display: flex; flex-direction: column; min-height: 0; flex: 1; gap: 16px; }
-.conversation-picker .back-link { margin: 0; min-height: 44px; }
 .conversation-picker-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .conversation-picker-heading h2 { margin: 0; }
 .conversation-picker .search-field { min-width: 0; width: 100%; margin: 0; }
@@ -15,9 +15,8 @@
 .conversation-threads span { min-width: 0; }
 .conversation-threads strong { display: block; font-size: 13px; font-weight: 550; overflow-wrap: anywhere; }
 .conversation-threads small { display: block; font-size: 11px; color: var(--muted); margin-top: 5px; }
-.picker-collapsed .conversation-threads, .picker-collapsed .search-field, .picker-collapsed h2, .picker-collapsed .button span, .picker-collapsed .back-link span { display: none; }
+.picker-collapsed .conversation-threads, .picker-collapsed .search-field, .picker-collapsed h2, .picker-collapsed .button span { display: none; }
 .picker-collapsed .button { padding-inline: 8px; }
-.picker-collapsed .back-link { justify-content: center; }
 .assistant-main { display: flex; flex-direction: column; padding: 0; max-width: none; height: calc(var(--assistant-viewport-height, 100dvh) - 76px); min-height: 260px; }
 .assistant-main > .notice { flex-shrink: 0; margin: 12px 20px; max-height: 25%; overflow: auto; }
 .assistant-conversation { display: flex; flex-direction: column; flex: 1; min-height: 0; min-width: 0; }
@@ -43,12 +42,32 @@
 .speech-block { border-left: 2px solid var(--accent-line); padding-left: 16px; margin: 18px 0; }
 .speech-native { font-size: 24px; line-height: 1.8; margin-bottom: 8px; }
 .shadow-actions { margin-top: 12px; }
+.phrase-practice { margin-bottom: 20px; overflow-wrap: anywhere; }
+.practice-heading { justify-content: space-between; }
+.practice-heading h2 { margin: 0; font-size: 18px; }
+.practice-live-transcript { white-space: pre-wrap; }
+.inline-practice { margin-top: 12px; }
+.inline-practice .snippet-actions { margin: 0; }
+.inline-practice > [aria-label="Inline translation practice"] > p { margin: 6px 0; }
+.practice-feedback { margin-top: 12px; }
+.practice-feedback > p { margin: 6px 0; }
+.practice-feedback details { margin-top: 6px; }
+.message-practice { border-color: var(--accent-line); }
+.practice-diff { font-size: 20px; line-height: 1.8; white-space: pre-wrap; }
+.practice-diff del { color: var(--danger); text-decoration-thickness: 2px; }
+.practice-diff ins { color: var(--accent); text-decoration-thickness: 2px; }
+.practice-scores { display: flex; flex-wrap: wrap; gap: 16px; }
+.practice-scores dt { font-size: 12px; color: var(--muted); }
+.practice-scores dd { margin: 4px 0; font-weight: 600; }
 .assistant-composer { flex-shrink: 0; padding: 12px max(24px, calc((100% - 800px) / 2)) 16px; border-top: 1px solid var(--line); background: var(--bg); }
 .assistant-composer > .notice { margin: 0 0 12px; padding: 12px; }
 .assistant-composer form { border: 1px solid var(--line-strong); border-radius: 12px; background: var(--surface); }
 .assistant-composer textarea { display: block; width: 100%; min-height: 66px; max-height: 160px; resize: vertical; border: 0; border-radius: 12px; background: transparent; color: var(--text); padding: 16px; font: inherit; font-size: 14px; line-height: 1.6; }
 .composer-controls { display: flex; align-items: center; gap: 10px; padding: 0 10px 10px; }
 .composer-controls > .button:last-child { margin-left: auto; }
+.composer-controls .composer-send { width: 40px; height: 40px; min-width: 40px; padding: 0; border-radius: 50%; justify-content: center; flex-shrink: 0; }
+.composer-mic.recording { color: var(--danger); background: var(--surface-raised); border-radius: 50%; }
+.composer-controls > [role="status"] { min-width: 0; }
 .composer-footnote { font-size: 10px; color: var(--muted); margin: 8px 0 0; text-align: center; }
 .draft-context { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--accent-line); border-radius: 8px; margin-bottom: 10px; font-size: 12px; background: var(--accent-soft); }
 .draft-context details { flex: 1; min-width: 0; max-height: 150px; overflow: auto; }

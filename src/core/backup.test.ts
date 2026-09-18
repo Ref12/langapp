@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { db, initializeWorkspace, loadWorkspace } from './database'
 import { exportBackup, exportWorkspaceBackup, MAX_BACKUP_BYTES, readBackup, restoreBackup } from './backup'
 import { savePreferences, trackWord } from './learning'
-import { createConversation, saveAIConnection, saveDraft, updateThread } from './assistant/store'
+import { createConversation, saveAIConnection, saveDraft, savePracticeDraft, selectPracticePhrase, updateThread } from './assistant/store'
 import type { AssistantBackup, AssistantMessage, AssistantRun } from './assistant/contracts'
 
 beforeEach(async () => {
@@ -49,6 +49,80 @@ async function saveConnection() {
 }
 
 describe('compatible Assistant workspace backups', () => {
+  it.each([
+    { voiceEnabled: false, voiceInputLocale: 'en-US' },
+    { voiceEnabled: true, voiceInputLocale: 'en-US' },
+    { voiceEnabled: false, voiceInputLocale: 'zh-Hans' },
+    { voiceEnabled: true, voiceInputLocale: 'zh-Hans' },
+  ] as const)('round-trips per-thread voice settings without changing conversation or learning state (case %#)', async voice => {
+    const { threadId } = await seedAssistant()
+    await trackWord('zh:tea', 'dictionary')
+    await updateThread(threadId, voice)
+    const learning = await loadWorkspace()
+    const assistant = await snapshot()
+    const text = await exportWorkspaceBackup()
+    expect(readBackup(text).assistant?.threads[0]).toMatchObject(voice)
+    await updateThread(threadId, { voiceEnabled: !voice.voiceEnabled })
+    await restoreBackup(text)
+    expect(await snapshot()).toEqual(assistant)
+    expect(await loadWorkspace()).toEqual(learning)
+  })
+
+  it.each([
+    ['voiceEnabled'], ['voiceInputLocale'], ['voiceEnabled', 'voiceInputLocale'],
+  ])('restores optional voice fields without adding new defaults (case %#)', async (...omitted) => {
+    const { threadId } = await seedAssistant()
+    const old = JSON.parse(await exportWorkspaceBackup())
+    for (const field of omitted) delete old.assistant.threads[0][field]
+    const text = JSON.stringify(old)
+    const thread = readBackup(text).assistant?.threads[0]
+    for (const field of omitted) expect(thread).not.toHaveProperty(field)
+    await updateThread(threadId, { voiceEnabled: true, voiceInputLocale: 'zh-Hans' })
+    await restoreBackup(text)
+    expect(await db.assistantThreads.get(threadId)).toEqual(thread)
+    const exported = readBackup(await exportWorkspaceBackup()).assistant?.threads[0]
+    for (const field of omitted) expect(exported).not.toHaveProperty(field)
+  })
+
+  it.each([
+    { voiceEnabled: 'true' }, { voiceEnabled: 1 }, { voiceEnabled: null },
+    { voiceInputLocale: 'zh-CN' }, { voiceInputLocale: 'en-GB' }, { voiceInputLocale: '' }, { voiceInputLocale: null },
+    { voiceEnabled: true, voiceAutoSubmit: true },
+  ])('rejects invalid backup voice settings before any writes (case %#)', async voice => {
+    await seedAssistant()
+    const learning = await loadWorkspace()
+    const assistant = await snapshot()
+    const backup = JSON.parse(await exportWorkspaceBackup())
+    Object.assign(backup.assistant.threads[0], voice)
+    const text = JSON.stringify(backup)
+    expect(() => readBackup(text)).toThrow()
+    await expect(restoreBackup(text)).rejects.toThrow()
+    expect(await snapshot()).toEqual(assistant)
+    expect(await loadWorkspace()).toEqual(learning)
+  })
+
+  it('round-trips practice settings, reviewed draft, and original attempt target; old threads need no new fields', async () => {
+    const { threadId, user } = await seedAssistant()
+    const legacy = JSON.parse(await exportWorkspaceBackup())
+    delete legacy.assistant.threads[0].practiceInput
+    const legacyText = JSON.stringify(legacy)
+    expect(readBackup(legacyText).assistant?.threads[0].practicePhrase).toBeUndefined()
+    expect(readBackup(legacyText).assistant?.threads[0].practiceInput).toBeUndefined()
+    const phrase = { type: 'speech', text: '\u8336', locale: 'zh-Hans', meaning: 'tea' } as const
+    await updateThread(threadId, { practiceInput: 'spoken-feedback' })
+    await selectPracticePhrase(threadId, phrase)
+    await savePracticeDraft(threadId, phrase, '\u8336')
+    await db.assistantMessages.update(user.id, { intent: 'repeat', practice: { phrase, input: 'speech-transcript' } })
+    const text = await exportWorkspaceBackup()
+    await restoreBackup(legacyText)
+    await restoreBackup(text)
+    expect(await db.assistantThreads.get(threadId)).toMatchObject({ practiceInput: 'spoken-feedback', practicePhrase: phrase, practiceDraft: '\u8336' })
+    expect((await db.assistantMessages.get(user.id))?.practice?.phrase).toEqual(phrase)
+    const invalid = JSON.parse(text)
+    invalid.assistant.threads[0].practiceInput = 'auto-record'
+    expect(() => readBackup(JSON.stringify(invalid))).toThrow()
+  })
+
   it('round-trips optional voice preferences while older backups retain automatic voice selection', async () => {
     const old = await exportWorkspaceBackup()
     const speechVoices = { 'zh-Hans': { voiceURI: 'chosen-zh', name: 'Mandarin', lang: 'zh-CN', localService: true } }
@@ -62,6 +136,36 @@ describe('compatible Assistant workspace backups', () => {
     const invalid = JSON.parse(text)
     invalid.workspace.preferences.speechVoices['zh-Hans'].localService = 'yes'
     expect(() => readBackup(JSON.stringify(invalid))).toThrow()
+  })
+
+  it.each([0.5, 0.75, 1, 1.25] as const)('round-trips optional default speech rate %s without changing conversation overrides', async defaultSpeechRate => {
+    const { threadId } = await seedAssistant()
+    await savePreferences({ defaultSpeechRate })
+    const text = await exportWorkspaceBackup()
+    expect(readBackup(text).preferences.defaultSpeechRate).toBe(defaultSpeechRate)
+    await savePreferences({ defaultSpeechRate: 1 })
+    await restoreBackup(text)
+    expect((await loadWorkspace()).preferences.defaultSpeechRate).toBe(defaultSpeechRate)
+    expect((await db.assistantThreads.get(threadId))?.speechRate).toBe(0.75)
+  })
+
+  it.each([1, 2])('restores a legacy schema %s backup with no default rate without persisting an implicit fallback', async version => {
+    const old = JSON.parse(await exportWorkspaceBackup())
+    old.version = version
+    if (version === 1) delete old.assistant
+    expect(old.workspace.preferences).not.toHaveProperty('defaultSpeechRate')
+    await savePreferences({ defaultSpeechRate: 0.5 })
+    await restoreBackup(JSON.stringify(old))
+    expect((await loadWorkspace()).preferences).not.toHaveProperty('defaultSpeechRate')
+    expect(readBackup(await exportWorkspaceBackup()).preferences).not.toHaveProperty('defaultSpeechRate')
+  })
+
+  it.each([0, 0.6, 2, -1, '0.75', null])('rejects invalid backup default speech rates before writing (case %#)', async defaultSpeechRate => {
+    const before = await loadWorkspace()
+    const backup = JSON.parse(await exportWorkspaceBackup())
+    backup.workspace.preferences.defaultSpeechRate = defaultSpeechRate
+    await expect(restoreBackup(JSON.stringify(backup))).rejects.toThrow()
+    expect(await loadWorkspace()).toEqual(before)
   })
 
   it('captures current learning and Assistant state, not stale UI state, without device secrets or settings', async () => {

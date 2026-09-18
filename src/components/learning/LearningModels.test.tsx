@@ -48,13 +48,13 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-function enterResponseGap() {
+async function enterResponseGap() {
   fireEvent.click(screen.getByRole('button', { name: 'Start guided audio' }))
   const gapIndex = script.findIndex(step => step.kind === 'response')
   for (let index = 0; index < gapIndex; index++) {
-    act(() => {
+    await act(async () => {
       synthesis.speak.mock.calls[synthesis.speak.mock.calls.length - 1][0].onend?.()
-      vi.advanceTimersByTime(0)
+      await vi.advanceTimersByTimeAsync(0)
     })
   }
   expect(screen.getByRole('status')).toHaveTextContent('Your turn')
@@ -198,9 +198,9 @@ describe('whole-lesson model views', () => {
     expect(vi.getTimerCount()).toBe(0)
   })
 
-  it.each(['unmount', 'escape', 'hidden', 'overview'] as const)('clears response timers on %s', action => {
+  it.each(['unmount', 'escape', 'hidden', 'overview'] as const)('clears response timers on %s', async action => {
     const view = render(study('audio'))
-    enterResponseGap()
+    await enterResponseGap()
     const calls = synthesis.speak.mock.calls.length
     if (action === 'unmount') view.unmount()
     if (action === 'escape') fireEvent.keyDown(document, { key: 'Escape' })
