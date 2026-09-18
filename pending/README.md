@@ -5,7 +5,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 
 | Handoff | State |
 | --- | --- |
-| [Assistant and browser voices](assistant-handoff.md) | Complete, included in the accompanying commit: Practice plays its reference phrase first and sounds a short recording-start cue. All agents finished; 455 targeted tests and root build passed. Earlier inline practice, Azure/local feedback, and configurable speech speed are committed as 1272492. |
+| [Assistant and browser voices](assistant-handoff.md) | Complete, included in the accompanying commit: opt-in conversational dictation and spoken replies, shared audio cancellation, and compact icon-only Send. English stays at normal speed independently of the Mandarin speed setting. 649 targeted tests covered, root build passed, both agents finished and reviewed. Previous phrase-first practice/cue is committed as d7967d9; inline practice and configurable speech feedback/speed as 1272492. |
 
 ## Maintaining this folder
 

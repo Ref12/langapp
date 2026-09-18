@@ -1,10 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState, type FormEvent } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { ArrowLeft, MessageCircle, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, Trash2, X } from 'lucide-react'
+import { ArrowLeft, MessageCircle, Mic, PanelLeftClose, PanelLeftOpen, Plus, Search, Send, Settings, Square, Trash2, X } from 'lucide-react'
 import { db } from '../core/database'
 import { normalizeSearch } from '../core/search'
 import { navigate } from '../core/routing'
-import { MAX_DRAFT_LENGTH, practiceInputSchema, type AssistantMessage, type AssistantThread, type SpeechBlock } from '../core/assistant/contracts'
+import { MAX_DRAFT_LENGTH, practiceInputSchema, speechLocaleSchema, type AssistantMessage, type AssistantThread, type SpeechBlock } from '../core/assistant/contracts'
 import { createConversation, deleteThread, expireAssistantRuns, saveDraft, selectPracticePhrase, updateThread } from '../core/assistant/store'
 import { cancelAssistantRun, sendAssistantTurn } from '../core/assistant/runtime'
 import { AssistantText } from '../components/assistant/AssistantText'
@@ -17,6 +17,7 @@ import { LocalSpeechSetupContext, LocalSpeechRateSetupContext } from '../compone
 import type { SpeechConnection } from '../core/assistant/speech-contracts'
 import { registerDraftEditor } from '../core/assistant/draft-actions'
 import { appendContextText, finishDraftSave, getDraftFailures, getUnsavedDraft, rememberDraft } from '../core/assistant/drafts'
+import { useConversationVoice } from '../components/assistant/useConversationVoice'
 
 function ConversationList({ selectedId, collapsed = false, expand, returnRoute = 'overview' }: {
   selectedId?: string; collapsed?: boolean; expand?: () => void; returnRoute?: string
@@ -141,6 +142,7 @@ function Conversation({ thread }: { thread: AssistantThread }) {
   const previewPlaybackId = `practice-preview-${thread.id}`
   const writes = useRef<Promise<void>>(Promise.resolve())
   const sendVersion = useRef(0)
+  const sendPending = useRef(false)
   const latestDraft = useRef(draft)
   const input = useRef<HTMLTextAreaElement>(null)
   const history = useRef<HTMLDivElement>(null)
@@ -173,14 +175,22 @@ function Conversation({ thread }: { thread: AssistantThread }) {
     })
     return pending
   }, [thread.id])
+  const voice = useConversationVoice({
+    thread, disabled: busy || deleting,
+    getDraft: () => latestDraft.current,
+    changeDraft: value => { latestDraft.current = value; setDraft(value) },
+    save, send,
+  })
+  const cancelVoice = voice.cancel
   useEffect(() => registerDraftEditor(thread.id, async source => {
     if (deleting || (sending && !active)) throw new Error('Wait for the current action to finish before adding context.')
+    cancelVoice()
     const value = appendContextText(latestDraft.current, source)
     latestDraft.current = value
     setDraft(value)
     await save(value, thread.source ?? source)
     if (!document.querySelector('dialog[open], [role="dialog"][aria-modal="true"]')) input.current?.focus()
-  }), [thread.id, thread.source, deleting, sending, active, save])
+  }), [thread.id, thread.source, deleting, sending, active, save, cancelVoice])
   useEffect(() => {
     const expire = () => { void expireAssistantRuns().catch(reason => setError(reason instanceof Error ? reason.message : 'Unable to recover interrupted replies.')) }
     expire()
@@ -204,22 +214,24 @@ function Conversation({ thread }: { thread: AssistantThread }) {
     setError('')
     try { await operation() } catch (reason) { setError(reason instanceof Error ? reason.message : 'This Assistant action could not be completed.') }
   }
-  const send = async (event: FormEvent) => {
-    event.preventDefault()
-    if (busy) return
-    const text = draft
+  async function send(text: string) {
+    if (busy || sendPending.current || deleting || !text.trim()) return
+    sendPending.current = true
     const version = ++sendVersion.current
+    let reply: ReturnType<typeof voice.prepareReply> | undefined
     setSending(true)
     setError('')
     let persisted = false
     const started = Date.now()
     try {
+      reply = voice.prepareReply()
       await save(text)
       persisted = true
       if (version !== sendVersion.current) return
       setDraft('')
       latestDraft.current = ''
-      await sendAssistantTurn(thread.id, { text })
+      const message = await sendAssistantTurn(thread.id, { text })
+      if (version === sendVersion.current) reply.play(message)
     } catch (reason) {
       if (persisted && !latestDraft.current) {
         try {
@@ -234,8 +246,24 @@ function Conversation({ thread }: { thread: AssistantThread }) {
         }
       }
       setError(reason instanceof Error ? reason.message : 'The message could not be sent.')
-    } finally { setSending(false) }
+    } finally { reply?.finish(); sendPending.current = false; setSending(false) }
   }
+  const sendAdditional = async (request: Parameters<typeof sendAssistantTurn>[1]) => {
+    if (busy || sendPending.current || deleting) return
+    sendPending.current = true
+    let reply: ReturnType<typeof voice.prepareReply> | undefined
+    setSending(true)
+    try { await action(async () => {
+      reply = voice.prepareReply()
+      reply.play(await sendAssistantTurn(thread.id, request))
+    }) }
+    finally { reply?.finish(); sendPending.current = false; setSending(false) }
+  }
+  const voiceStatus = busy ? 'Thinking...' : voice.speaking ? 'Speaking...'
+    : voice.capture?.phase === 'listening' ? 'Listening...'
+      : voice.capture?.phase === 'cue' ? 'Get ready...'
+        : voice.capture?.phase === 'starting' ? 'Starting microphone...'
+          : voice.capture ? 'Finishing recording...' : ''
   return <section className="assistant-conversation" aria-label="Assistant conversation">
     <header className="conversation-header">
       <a className="icon-button mobile-conversation-back" href="#conversation" aria-label="All conversations"><ArrowLeft size={20} /></a>
@@ -258,11 +286,10 @@ function Conversation({ thread }: { thread: AssistantThread }) {
         }}
         onExplain={phrase => {
           if (busy) { setError('Stop or finish the current reply before requesting an explanation.'); return }
-          setSending(true)
-          void action(() => sendAssistantTurn(thread.id, {
+          void sendAdditional({
             text: `Please explain this Mandarin phrase: ${phrase.text}`, intent: 'explain', preserveDraft: true,
             source: { text: phrase.text, title: 'Mandarin translation', route: `conversation/${thread.id}`, locale: phrase.locale, meaning: phrase.meaning },
-          })).finally(() => setSending(false))
+          })
         }} />)}
       {thread.mode === 'shadow' && practicePhrase && <PhrasePractice key={JSON.stringify([practicePhrase, thread.practiceInput ?? 'listen-repeat', thread.speechFeedback ?? true, speechSetup?.connection?.revision ?? 'missing'])}
         thread={thread} phrase={practicePhrase} busy={busy || deleting} speechConnection={speechSetup?.connection} connectionLoading={!speechSetup || localSpeechSetup === 'loading'}
@@ -272,13 +299,12 @@ function Conversation({ thread }: { thread: AssistantThread }) {
           input.current?.focus()
         }} />}
       {retryUser && !busy && <button className="button secondary" onClick={() => {
-        setSending(true)
-        void action(() => sendAssistantTurn(thread.id, { text: retryUser.text, source: retryUser.source, intent: retryUser.intent, preserveDraft: true }))
-          .finally(() => setSending(false))
+        void sendAdditional({ text: retryUser.text, source: retryUser.source, intent: retryUser.intent, preserveDraft: true })
       }}>Retry reply</button>}
       {confirmDelete && <div className="notice" role="alert"><p>Delete this conversation, its drafts, and replies? Your learning progress will not change.</p>
         <div className="button-row"><button className="button secondary" disabled={deleting} onClick={() => {
           setDeleting(true)
+          voice.cancel()
           void action(async () => {
             // Confirmed deletion discards the draft even if its last save failed.
             await Promise.allSettled([writes.current])
@@ -293,11 +319,14 @@ function Conversation({ thread }: { thread: AssistantThread }) {
       {!connection && <p className="notice small">Set up your provider in <a href="#settings">AI connection settings</a> before sending. Your draft is saved locally.</p>}
       {thread.source && <div className="draft-context"><details><summary>Context: {thread.source.title}</summary><blockquote>{thread.source.text}</blockquote>
         {thread.source.meaning && <p className="small">{thread.source.meaning}</p>}</details>
-        <button className="icon-button" aria-label="Remove context" title="Remove context" onClick={() => void action(async () => { await writes.current; await saveDraft(thread.id, draft, null) })}><X size={16} /></button></div>}
+        <button className="icon-button" aria-label="Remove context" title="Remove context" onClick={() => {
+          voice.cancel()
+          void action(async () => { await writes.current; await saveDraft(thread.id, latestDraft.current, null) })
+        }}><X size={16} /></button></div>}
       {thread.mode === 'shadow' && <p className="small muted">Share a thought in English for a Mandarin translation and explanation. Use Practice on the translation when ready.</p>}
-      <form onSubmit={event => void send(event)}>
+      <form onSubmit={event => { event.preventDefault(); void voice.submit() }}>
         <label className="visually-hidden" htmlFor={`draft-${thread.id}`}>Message Assistant</label>
-        <textarea id={`draft-${thread.id}`} ref={input} rows={3} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting}
+        <textarea id={`draft-${thread.id}`} ref={input} rows={3} value={draft} maxLength={MAX_DRAFT_LENGTH} disabled={deleting} readOnly={!!voice.capture}
           placeholder={thread.mode === 'shadow' ? 'Write a thought to express in Mandarin...' : 'Ask, explore, or practice...'}
           onChange={event => { const value = event.target.value; latestDraft.current = value; setDraft(value); void save(value) }}
           onKeyDown={event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); event.currentTarget.form?.requestSubmit() } }} />
@@ -305,8 +334,22 @@ function Conversation({ thread }: { thread: AssistantThread }) {
           <div className="assistant-settings-anchor" ref={settings}>
             <button className="icon-button" type="button" aria-label="Assistant settings" aria-expanded={settingsOpen} onClick={() => setSettingsOpen(value => !value)}><Settings size={20} /></button>
             {settingsOpen && <div className="assistant-settings-popup" aria-label="Assistant settings">
-              <label>Mode<select value={thread.mode} onChange={event => { const mode = event.target.value === 'shadow' ? 'shadow' : 'conversation'; void action(() => updateThread(thread.id, { mode })) }}>
+              <label>Mode<select value={thread.mode} onChange={event => { voice.cancel(); const mode = event.target.value === 'shadow' ? 'shadow' : 'conversation'; void action(() => updateThread(thread.id, { mode })) }}>
                 <option value="conversation">Conversation</option><option value="shadow">Shadow</option></select></label>
+              <label className="toggle"><input type="checkbox" checked={thread.voiceEnabled ?? false} onChange={event => {
+                voice.cancel()
+                const voiceEnabled = event.target.checked
+                void action(() => updateThread(thread.id, { voiceEnabled }))
+              }} /> Voice input and replies</label>
+              {thread.voiceEnabled && <>
+                <label>Voice input language<select value={thread.voiceInputLocale ?? 'en-US'} onChange={event => {
+                  voice.cancel()
+                  const voiceInputLocale = speechLocaleSchema.parse(event.target.value)
+                  void action(() => updateThread(thread.id, { voiceInputLocale }))
+                }}><option value="en-US">English</option><option value="zh-Hans">Mandarin</option></select></label>
+                <p className="small muted">Your browser may use an online speech service. Transcripts go to the AI tutor only when you send.</p>
+                {!voice.supported && <p className="small connection-error" role="status">Voice input is unavailable in this browser. You can still type and hear replies.</p>}
+              </>}
               <label>Practice input<select value={thread.practiceInput ?? 'listen-repeat'} onChange={event => {
                 const value = event.target.value
                 void action(() => updateThread(thread.id, { practiceInput: practiceInputSchema.parse(value) }))
@@ -328,17 +371,29 @@ function Conversation({ thread }: { thread: AssistantThread }) {
               <button type="button" className="button secondary" onClick={() => setSettingsOpen(false)}>Close settings</button>
             </div>}
           </div>
-          <span className="small muted" role="status">{saving ? 'Saving draft...' : error.startsWith('Draft not saved') || draft !== thread.draft ? 'Draft not saved' : 'Saved on this device'}</span>
+          {thread.voiceEnabled && <button className={`icon-button composer-mic${voice.capture ? ' recording' : ''}`} type="button"
+            aria-label={voice.capture ? 'Stop recording' : 'Start voice input'} title={voice.capture ? 'Stop recording and review' : `Speak in ${thread.voiceInputLocale === 'zh-Hans' ? 'Mandarin' : 'English'}`}
+            disabled={busy || deleting || !voice.supported || (!!voice.capture && voice.capture.phase !== 'listening')}
+            onClick={voice.capture ? voice.stop : voice.begin}>
+            {voice.capture ? <Square size={18} /> : <Mic size={20} />}
+          </button>}
+          {(voice.capture || voice.speaking) && <button className="icon-button" type="button" aria-label={voice.capture ? 'Cancel recording' : 'Stop speaking'}
+            title={voice.capture ? 'Cancel recording' : 'Stop speaking'} onClick={voice.cancel}><X size={18} /></button>}
+          {voiceStatus ? <span className="small muted" role="status">{voiceStatus}</span>
+            : saving ? <span className="small muted" role="status">Saving draft...</span> : null}
           {busy ? <button className="button secondary" type="button" onClick={() => {
             sendVersion.current++
+            voice.cancel()
             void action(() => cancelAssistantRun(thread.id))
           }}><Square size={16} />Stop reply</button>
-            : <button className="button primary" type="submit" disabled={!draft.trim() || !connection || deleting}><Send size={16} />Send</button>}
+            : <button className="button primary composer-send" type="submit" aria-label={voice.capture ? 'Submit' : 'Send'} title={voice.capture ? 'Submit' : 'Send'}
+              disabled={(!draft.trim() && voice.capture?.phase !== 'listening') || !connection || deleting || (!!voice.capture && voice.capture.phase !== 'listening')}><Send size={18} /></button>}
         </div>
       </form>
       {error && <div className="composer-error" role="alert"><p>{error}</p>
         {error.startsWith('Draft not saved') && <button className="button secondary" onClick={() => { void save(draft) }}>Retry saving draft</button>}
       </div>}
+      {voice.error && <p className="composer-error" role="alert">{voice.error}</p>}
       <p className="composer-footnote">Ctrl+Enter to send. AI can make mistakes. Practice feedback is not sent to the AI tutor.</p>
     </div>
   </section>

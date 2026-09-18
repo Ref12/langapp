@@ -83,7 +83,7 @@ shared English gloss alternatives; recognition still does not assess use in cont
 
 Not connected in this checkpoint: personal imports, playable levels 5-30,
 tourist or specialist routes, contextual and productive exercises or level assessment,
-microphone/voice conversation, generated stories/lessons/exercises, audio or
+hands-free conversation, generated stories/lessons/exercises, general audio or
 handwriting assessment, other target
 languages, synchronization, and installation/offline shell caching for the new
 app. The Library links to the original v1 import tools rather than simulating
@@ -91,11 +91,11 @@ imports. V1's voice tutor remains available independently.
 
 ## Assistant
 
-Assistant provides persistent English/Mandarin text conversations and **Shadow**:
+Assistant provides persistent English/Mandarin conversations and **Shadow**:
 express a thought in English, receive a natural Mandarin translation and
-explanation, then practice that translation. Native-language input in Shadow's
-composer is currently typed; optional speech capture is scoped to translation
-practice. Configure an OpenAI-compatible API protocol, base URL, key, and model in
+explanation, then practice that translation. Both modes support typed input or
+opt-in voice input and spoken replies. Configure an OpenAI-compatible API
+protocol, base URL, key, and model in
 **Settings -> Assistant AI connection**. Saving is local and does not send a
 request. **Test connection** sends a synthetic request with the selected
 capabilities; it does not send your conversations or learning data.
@@ -129,6 +129,32 @@ preserves previous messages. Shadow translates the learner's thought rather than
 inventing an unrelated phrase. **Explain more** elaborates on a translation.
 **Stop reply** cancels generation; retry is explicit. Reloading never sends an
 AI request. Interrupted work can be stopped and retried.
+
+Turn on **Voice input and replies** in the conversation settings gear. Choose
+**English** (the default) or **Mandarin** as the input language; this is an
+input/output preference, not a third teaching mode. Tap the mic, wait for the
+short cue and **Listening...**, then speak. **Submit** finishes recognition and
+sends the resulting text; **Stop recording** instead saves an editable draft
+without sending. A natural pause/end also only saves the draft. **Cancel
+recording** discards the active attempt and retains the pre-existing draft.
+Speech is appended to existing composer text, not to the conversation history
+until explicitly sent. The Send control is a compact circular icon button.
+
+Only the new, successfully saved reply from an explicit send, retry, or
+explanation request is spoken. Validated speech blocks play in order using
+their English/Mandarin voice selections and the saved Mandarin speed. Markdown,
+romanization, and display meanings are not guessed into speech. **Stop
+speaking**, Escape, navigation, hiding the page, or starting other audio cancels
+the remaining playback. No microphone is automatically restarted. Reloading,
+restoring a backup, or enabling voice never reads old replies aloud.
+
+Conversation dictation uses the browser's recognition service, which may be
+online; availability depends on the browser. Unsupported browsers retain typed
+input and spoken replies. The Azure connection below is for pronunciation
+practice, not general dictation. Conversation transcripts are ordinary user
+messages sent to the AI provider only on explicit submission, unlike local-only
+practice results. Raw recordings are not stored. Voice, Hear, and Practice
+share exclusive audio ownership so starting one interrupts the other.
 
 **Ask** stays in the current conversation when used inside a chat,
 appending to the existing draft without sending or replacing its text. Elsewhere,

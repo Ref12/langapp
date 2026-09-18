@@ -7,7 +7,7 @@ import type { Workspace } from '../model'
 import {
   createConversation, deleteThread, expireAssistantRuns, removeAIConnection, saveAIConnection, saveDraft, savePracticeDraft, selectPracticePhrase, updateThread,
 } from './store'
-import { MAX_DRAFT_LENGTH, type AIConnectionInput, type AssistantMessage, type AssistantRun, type AssistantSource } from './contracts'
+import { assistantThreadSchema, MAX_DRAFT_LENGTH, type AIConnectionInput, type AssistantMessage, type AssistantRun, type AssistantSource } from './contracts'
 
 const source: AssistantSource = {
   text: '  你好，朋友。\n', title: 'Greeting', route: 'dictionary', meaning: 'Hello, friend.', locale: 'zh-Hans',
@@ -105,6 +105,68 @@ describe('Assistant database migration', () => {
 })
 
 describe('durable independent conversations', () => {
+  it.each(['conversation', 'shadow'] as const)('persists voice preferences independently of %s teaching, practice, drafts, and progress', async mode => {
+    await trackWord('zh:tea', 'dictionary')
+    await db.preferences.update('workspace', { defaultSpeechRate: 0.5 })
+    const id = await createConversation(source)
+    const other = await createConversation()
+    const { run } = await addRun(id, Date.now() + 60_000)
+    await updateThread(id, { mode, practiceInput: 'spoken-feedback', speechRate: 0.75 })
+    const phrase = { type: 'speech', text: '茶', locale: 'zh-Hans' } as const
+    await selectPracticePhrase(id, phrase)
+    await savePracticeDraft(id, phrase, 'private practice draft')
+    const before = (await db.assistantThreads.get(id))!
+    const otherBefore = await db.assistantThreads.get(other)
+    const learning = await loadWorkspace()
+    const messages = await db.assistantMessages.toArray()
+    expect(before).toMatchObject({ voiceEnabled: false, voiceInputLocale: 'en-US' })
+    await updateThread(id, { voiceEnabled: true, voiceInputLocale: 'zh-Hans' })
+    const updated = (await db.assistantThreads.get(id))!
+    expect(updated).toEqual({ ...before, voiceEnabled: true, voiceInputLocale: 'zh-Hans', updatedAt: updated.updatedAt })
+    await updateThread(id, { voiceEnabled: false })
+    expect(await db.assistantThreads.get(id)).toMatchObject({ voiceEnabled: false, voiceInputLocale: 'zh-Hans' })
+    await updateThread(id, { voiceEnabled: true, voiceInputLocale: 'en-US' })
+    db.close()
+    await db.open()
+    expect(await db.assistantThreads.get(id)).toMatchObject({
+      ...before, updatedAt: expect.any(Number), voiceEnabled: true, voiceInputLocale: 'en-US',
+    })
+    expect(await db.assistantThreads.get(other)).toEqual(otherBefore)
+    expect(await db.assistantMessages.toArray()).toEqual(messages)
+    expect(await db.assistantRuns.get(run.id)).toEqual(run)
+    expect(await loadWorkspace()).toEqual(learning)
+  })
+
+  it('accepts old threads without voice fields and does not persist implicit voice defaults on unrelated edits', async () => {
+    const id = await createConversation(source)
+    const legacy = (await db.assistantThreads.get(id))!
+    delete legacy.voiceEnabled
+    delete legacy.voiceInputLocale
+    expect(assistantThreadSchema.parse(legacy)).toEqual(legacy)
+    await db.assistantThreads.put(legacy)
+    await updateThread(id, { romanization: false })
+    const saved = await db.assistantThreads.get(id)
+    expect(saved).not.toHaveProperty('voiceEnabled')
+    expect(saved).not.toHaveProperty('voiceInputLocale')
+    expect(saved).toMatchObject({ draft: legacy.draft, source: legacy.source, mode: legacy.mode, speechRate: legacy.speechRate })
+    await updateThread(id, { voiceEnabled: true })
+    expect(await db.assistantThreads.get(id)).toMatchObject({ voiceEnabled: true })
+    expect(await db.assistantThreads.get(id)).not.toHaveProperty('voiceInputLocale')
+    expect(await db.assistantMessages.count()).toBe(0)
+  })
+
+  it.each([
+    { voiceEnabled: 'true' }, { voiceEnabled: 1 }, { voiceEnabled: null },
+    { voiceInputLocale: 'zh-CN' }, { voiceInputLocale: 'en-GB' }, { voiceInputLocale: '' }, { voiceInputLocale: null },
+    { voiceEnabled: true, voiceAutoSubmit: true },
+  ])('rejects invalid voice settings atomically (case %#)', async changes => {
+    const id = await createConversation(source)
+    const before = await db.assistantThreads.get(id)
+    await expect(updateThread(id, changes as never)).rejects.toThrow()
+    expect(await db.assistantThreads.get(id)).toEqual(before)
+    expect(await db.assistantMessages.count()).toBe(0)
+  })
+
   it('persists independent practice input and phrases without changing mode or the composer', async () => {
     const id = await createConversation(source)
     const other = await createConversation()
@@ -156,7 +218,7 @@ describe('durable independent conversations', () => {
     expect(new Set([empty, contextual, overridden]).size).toBe(3)
     expect(await db.assistantThreads.get(empty)).toMatchObject({
       title: 'New conversation', draft: '', mode: 'conversation', shadowIntent: 'new-phrase',
-      romanization: true, speechRate: 1, returnRoute: 'overview',
+      romanization: true, speechRate: 1, returnRoute: 'overview', voiceEnabled: false, voiceInputLocale: 'en-US',
     })
     expect(await db.assistantThreads.get(contextual)).toMatchObject({
       source, draft: `Please explain this passage:\n\n${source.text}`, returnRoute: 'dictionary',

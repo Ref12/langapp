@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { browserVoiceKey, clearVoiceCache, getPlaybackState, localVoiceMatches, playBrowserSpeech, playBrowserSpeechToEnd, setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech, subscribePlayback, watchBrowserVoices } from './speech'
 import type { SpeechRate } from './contracts'
+import { acquireAudio, interruptAudio } from './audio-owner'
+import { speakConversationReply } from './conversation-voice'
 
 class Utterance {
   constructor(public text: string) {}
@@ -60,12 +62,92 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  interruptAudio()
   stopBrowserSpeech()
   setDefaultSpeechRate()
   expectClean()
   vi.unstubAllGlobals()
   vi.restoreAllMocks()
   vi.useRealTimers()
+})
+
+describe('shared audio ownership', () => {
+  it('interrupts top-level capture or practice before a raw preview starts', () => {
+    const interrupted = vi.fn(() => expect(synthesis.speak).not.toHaveBeenCalled())
+    const lease = acquireAudio(interrupted)
+    playBrowserSpeech('preview', '茶', 'zh-Hans')
+    expect(interrupted).toHaveBeenCalledOnce()
+    expect(lease.isCurrent()).toBe(false)
+    expect(synthesis.speak).toHaveBeenCalledOnce()
+  })
+
+  it('does not interrupt the lease when its flow awaits playback completion', async () => {
+    const interrupted = vi.fn()
+    const lease = acquireAudio(interrupted)
+    const outcome = playBrowserSpeechToEnd('owned', '茶', 'zh-Hans')
+    synthesis.speak.mock.calls[0][0].onend?.()
+    await expect(outcome).resolves.toEqual({ status: 'completed' })
+    expect(lease.isCurrent()).toBe(true)
+    expect(interrupted).not.toHaveBeenCalled()
+    lease.release()
+  })
+
+  it('does not begin raw playback if the previous flow could not be interrupted', () => {
+    acquireAudio(() => { throw new Error('capture stuck') })
+    expect(() => playBrowserSpeech('preview', '茶', 'zh-Hans')).not.toThrow()
+    expect(getPlaybackState().error).toContain('capture stuck')
+    expect(synthesis.speak).not.toHaveBeenCalled()
+  })
+
+  it('cancels an entire tutor reply queue before starting a raw preview', async () => {
+    const reply = speakConversationReply([
+      { type: 'speech', text: 'Tea', locale: 'en-US' },
+      { type: 'speech', text: '茶', locale: 'zh-Hans' },
+    ], 0.75)
+    const lateEnd = synthesis.speak.mock.calls[0][0].onend
+    playBrowserSpeech('preview', '水', 'zh-Hans')
+    await expect(reply.done).resolves.toEqual({ status: 'cancelled' })
+    lateEnd?.()
+    await Promise.resolve()
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    expect(synthesis.speak.mock.calls[1][0].text).toBe('水')
+    expect(getPlaybackState().activeId).toBe('preview')
+  })
+
+  it('never starts native speech after a playback subscriber supersedes its owning reply', async () => {
+    const unsubscribe = subscribePlayback(() => {
+      if (getPlaybackState().phase === 'starting') acquireAudio(vi.fn())
+    })
+    try {
+      const reply = speakConversationReply([{ type: 'speech', text: 'Tea', locale: 'en-US' }], 1)
+      await expect(reply.done).resolves.toEqual({ status: 'cancelled' })
+      expect(synthesis.speak).not.toHaveBeenCalled()
+      expectClean()
+    } finally {
+      unsubscribe()
+    }
+  })
+
+  it('does not report a spoken reply as completed if native speak ends synchronously then throws', async () => {
+    synthesis.speak.mockImplementation(utterance => {
+      utterance.onend?.()
+      throw new Error('native speech failed')
+    })
+    const reply = speakConversationReply([{ type: 'speech', text: 'Tea', locale: 'en-US' }], 1)
+    await expect(reply.done).resolves.toMatchObject({ status: 'error', error: expect.stringContaining('blocked speech playback') })
+    expectClean()
+  })
+
+  it('settles synchronous native speech completion without leaking timers', async () => {
+    synthesis.speak.mockImplementation(utterance => { utterance.onstart?.(); utterance.onend?.() })
+    const reply = speakConversationReply([
+      { type: 'speech', text: 'Tea', locale: 'en-US' },
+      { type: 'speech', text: '茶', locale: 'zh-Hans' },
+    ], 0.75)
+    await expect(reply.done).resolves.toEqual({ status: 'completed' })
+    expect(synthesis.speak).toHaveBeenCalledTimes(2)
+    expectClean()
+  })
 })
 
 describe('default Mandarin playback speed', () => {

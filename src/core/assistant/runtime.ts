@@ -154,12 +154,21 @@ async function appendStep(turn: ReservedTurn, step: AssistantToolStep): Promise<
   })
 }
 
-async function publishReply(turn: ReservedTurn, value: AssistantReply): Promise<void> {
+async function publishReply(turn: ReservedTurn, value: AssistantReply, signal: AbortSignal): Promise<AssistantMessage> {
+  requireActiveSignal(signal)
   const reply = validateAssistantReply(value)
-  await db.transaction('rw', runTables(), async () => {
+  return db.transaction('rw', runTables(), async transaction => {
+    const abortPublication = () => transaction.abort()
+    const releaseSignal = () => signal.removeEventListener('abort', abortPublication)
+    signal.addEventListener('abort', abortPublication, { once: true })
+    transaction.on('complete', releaseSignal)
+    transaction.on('abort', releaseSignal)
+    transaction.on('error', releaseSignal)
+    requireActiveSignal(signal)
     const current = await requireOwnedTurn(turn)
     const now = Date.now()
-    await db.assistantMessages.put(assistantMessageSchema.parse({ ...current.pending, blocks: reply.blocks, status: 'completed' }))
+    const completed = assistantMessageSchema.parse({ ...current.pending, blocks: reply.blocks, status: 'completed' })
+    await db.assistantMessages.put(completed)
     await db.assistantRuns.put(assistantRunSchema.parse({ ...current.run, status: 'awaiting-learner', updatedAt: now }))
     const phrase = [...reply.blocks].reverse().find(block => block.type === 'speech' && block.locale === 'zh-Hans')
     const rememberPhrase = turn.thread.mode === 'shadow' && current.thread.mode === 'shadow'
@@ -170,6 +179,8 @@ async function publishReply(turn: ReservedTurn, value: AssistantReply): Promise<
       ...(rememberPhrase && phrase?.type === 'speech' ? { shadowPhrase: phrase } : {}),
     }
     await db.assistantThreads.put(assistantThreadSchema.parse(nextThread))
+    requireActiveSignal(signal)
+    return completed
   })
 }
 
@@ -188,7 +199,7 @@ async function recordFailure(turn: ReservedTurn, status: 'failed' | 'cancelled',
   })
 }
 
-export async function sendAssistantTurn(threadId: string, request?: AssistantTurnRequest): Promise<void> {
+export async function sendAssistantTurn(threadId: string, request?: AssistantTurnRequest): Promise<AssistantMessage> {
   const controller = new AbortController()
   const invocationId = crypto.randomUUID()
   controllers.set(invocationId, { threadId, controller })
@@ -215,8 +226,9 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
       const completion = await client.complete(results, { signal: controller.signal })
       if (completion.kind === 'reply') {
         if (controller.signal.aborted) throw new AssistantCancelledError()
-        await publishReply(turn, completion.reply)
-        return
+        const completed = await publishReply(turn, completion.reply, controller.signal)
+        requireActiveSignal(controller.signal)
+        return completed
       }
       if (round === MAX_TOOL_ROUNDS - 1) throw new AssistantRunError('The AI reached the four-round lookup limit without a final reply. Ask a narrower question or try another model.')
       if (completion.calls.some(call => callIds.has(call.id))) throw new AssistantRunError('The AI reused a tool-call ID. No duplicate tool was run; try again.')
@@ -229,6 +241,7 @@ export async function sendAssistantTurn(threadId: string, request?: AssistantTur
         results.push({ callId: call.id, output: result })
       }
     }
+    throw new AssistantRunError('The AI reached the four-round lookup limit without a final reply. Ask a narrower question or try another model.')
   } catch (error) {
     const failure = timedOut
       ? new AssistantRunError('This response timed out after two minutes. Your message is saved; try again when ready.')

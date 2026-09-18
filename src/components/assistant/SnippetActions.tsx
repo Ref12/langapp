@@ -1,4 +1,4 @@
-import { useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useContext, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
 import { MessageCircle, Repeat2, Square, Volume2, X } from 'lucide-react'
 import { prepareAssistantDraft } from '../../core/assistant/draft-actions'
 import { type AssistantSource, type SpeechLocale } from '../../core/assistant/contracts'
@@ -6,6 +6,7 @@ import { getPlaybackState, playBrowserSpeech, stopBrowserSpeech, subscribePlayba
 import { selectedSnippet, snippetLocale } from '../../core/assistant/selection'
 import { navigate } from '../../core/routing'
 import { LocalSpeechRateSetupContext } from './local-ai-setup-context'
+import { interruptAudio } from '../../core/assistant/audio-owner'
 
 export function HearButton({ text, locale, rate }: { text: string; locale: SpeechLocale; rate?: number }) {
   const id = useId()
@@ -52,24 +53,32 @@ export function SnippetActions({ source, rate, onPrepared, onPractice, practiceD
 
 export function PlaybackStatus() {
   const playback = useSyncExternalStore(subscribePlayback, getPlaybackState, getPlaybackState)
+  const [error, setError] = useState('')
+  const stop = useCallback(() => {
+    try { interruptAudio(); setError('') } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Audio could not be stopped. Close this page before trying again.')
+    }
+    stopBrowserSpeech()
+  }, [])
   useEffect(() => {
-    const hidden = () => { if (document.hidden) stopBrowserSpeech() }
-    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') stopBrowserSpeech() }
+    const hidden = () => { if (document.hidden) stop() }
+    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') stop() }
     document.addEventListener('visibilitychange', hidden)
     document.addEventListener('keydown', escape)
     return () => {
       document.removeEventListener('visibilitychange', hidden)
       document.removeEventListener('keydown', escape)
+      try { interruptAudio() } catch (reason) { console.error('Audio could not be stopped when leaving the app.', reason) }
       stopBrowserSpeech()
     }
-  }, [])
-  if (!playback.activeId && !playback.error) return null
-  return <div className="playback-status" data-assistant-exclude role={playback.error ? 'alert' : 'status'}>
-    <span>{playback.error ?? (playback.phase === 'loading-voices' ? 'Looking for a voice...'
+  }, [stop])
+  if (!playback.activeId && !playback.error && !error) return null
+  return <div className="playback-status" data-assistant-exclude role={playback.error || error ? 'alert' : 'status'}>
+    <span>{error || playback.error || (playback.phase === 'loading-voices' ? 'Looking for a voice...'
       : playback.phase === 'starting' ? `Starting ${playback.voiceKind === 'online' ? 'online' : 'local'} speech...`
         : playback.voiceKind === 'online' ? 'Playing with an online browser voice' : 'Playing with an installed local voice')}</span>
-    <button className="icon-button" type="button" aria-label={playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stopBrowserSpeech}>
-      {playback.error ? <X size={18} /> : <Square size={18} />}
+    <button className="icon-button" type="button" aria-label={error ? 'Retry stopping audio' : playback.error ? 'Dismiss playback error' : 'Stop all playback'} onClick={stop}>
+      {playback.error && !error ? <X size={18} /> : <Square size={18} />}
     </button>
   </div>
 }

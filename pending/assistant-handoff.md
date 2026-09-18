@@ -3,7 +3,86 @@
 Snapshot: 2026-09-17. The 2026-09-16 foundation was committed as `eaa0b75`.
 The latest section supersedes older Practice/Shadow behavior described later.
 
-## Latest refinement: reference playback and recording cue (complete)
+## Latest refinement: conversational voice input/output (complete)
+
+User approved tap mic -> speak -> explicit Submit -> spoken reply in both
+Conversation and Shadow, not a third teaching mode or a hands-free loop.
+They also requested a smaller circular icon-only Send button and removal of
+the composer's "Saved on this device" success prose. The user authorized
+committing this refinement on 2026-09-17; it is included in the accompanying
+commit. No push was requested. Earlier cue work is committed as `d7967d9`.
+The user also confirmed English speaking speed must remain unaffected by the
+speed setting; both Hear and queued replies already enforce English at rate 1.
+
+Implemented behavior:
+
+- Per-conversation Voice input and replies toggle, off by default, and explicit
+  English/Mandarin recognition selection, default English.
+- `useConversationVoice` preserves the existing draft, replaces interim
+  recognition snapshots rather than duplicating them, and waits for final
+  recognition and a durable draft save before explicit Submit sends.
+- Stop/natural end saves an editable draft only. Cancel restores the prior
+  draft. Recognition/save failures do not send; no automatic listening restart.
+- Only the exact completed message returned by the explicit runtime invocation
+  is eligible for spoken playback; history/live-query updates never trigger it.
+- A pending-reply audio lease suppresses later autoplay if the user chooses
+  Hear/Practice, Escape, navigation, visibility changes, or voice setting changes.
+- PhrasePractice, composer capture, and reply speech use a shared audio owner.
+  App navigation and global playback cancellation interrupt the full flow.
+- Accessible icon-only Send/Submit, short voice phases, and existing draft-save
+  errors retained. README and Settings describe browser-service privacy and
+  distinguish normal conversation transcripts from local-only practice feedback.
+
+Core assignments:
+
+- `b435d9a2-a2fd-4dee-8f46-cc8afa4f1ece`: core speech capture locale support,
+  `audio-owner.ts`, `conversation-voice.ts`, raw Hear interruption, and tests.
+- `5b0f7a82-170d-4610-bb58-b9ae913d78b1`: optional strict voice preferences,
+  store/backups, voice-aware tutor instructions, exact successful runtime
+  return value, and persistence/privacy tests.
+
+Both agents are complete; their outputs and production changes have been
+retrieved and reviewed. Parent owns React integration and
+`ConversationVoice.test.tsx`. Initial combined validation passed **647 tests
+across 16 targeted files**. Two further App tests and final interruption-error
+handling were added; the final five-file UI regression run passed **100 tests**,
+bringing the covered total to **649**. Root production build (including
+TypeScript and curriculum check), scoped ESLint, and whitespace checks passed.
+The existing large-bundle warning remains.
+The 27 new App-level tests exercise English dictation in both modes, Mandarin
+selection, final drain and explicit submission, no natural-end auto-send,
+draft cancellation/overflow/storage failures, reciprocal Practice interruption,
+queue cancellation and errors, real mocked browser speech-end callbacks,
+visible audio-interruption failures with retry, and no stale/history/settings
+autoplay. No implementation remains pending; no push is authorized.
+The existing dev server responds at http://localhost:5173/ and the
+`linguaweave-app` browser canvas remains open.
+
+Core integration notes:
+
+- `sendAssistantTurn` resolves to the exact validated `AssistantMessage` only
+  after its guarded durable publication. Failed/cancelled turns reject.
+- `startSpeechCapture(listener, { locale })` accepts en-US or zh-Hans, mapping
+  Mandarin to native zh-CN; its default remains Mandarin for existing Practice.
+- `conversationCaptureSupported` requires recognition and AudioContext.
+  `startConversationCapture` prepares the cue in the click gesture, signals
+  readiness, and returns stop/cancel. Cue-time display is suppressed; browser
+  microphone buffers are not gated. Terminal notifications wait for cue cleanup.
+- `speakConversationReply` returns cancel/done, validates existing block bounds,
+  ignores text blocks, and forces English to rate 1. No automatic next recording.
+- `acquireAudio` returns a lease; check isCurrent before starting work and
+  release only that lease. Reentrant newer claims win. `interruptAudio` can throw
+  on interruption failure; UI entry points report errors instead of continuing
+  silently or leaving submission locked.
+- Raw `playBrowserSpeech` (Hear/preview) interrupts other owners. Awaited
+  `playBrowserSpeechToEnd` does not interrupt its own flow. `stopBrowserSpeech`
+  now returns an optional cleanup-error string as well as publishing the error.
+
+Preserve the unrelated `src/components/MobileNavigation.test.tsx` edit and
+private `settings/app.settings.jsonc`. No real microphone/audio, provider, or
+paid LLM call is authorized as part of automated validation.
+
+## Previous refinement: reference playback and recording cue (complete)
 
 User: Practice should say the phrase first and have an indicator sound marking
 the start of recording. The user authorized committing this refinement on

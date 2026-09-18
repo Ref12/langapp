@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { MAX_DRAFT_LENGTH } from './contracts'
+import { MAX_DRAFT_LENGTH, type SpeechLocale } from './contracts'
 import { speechCaptureSupported, startSpeechCapture, type SpeechCaptureSession, type SpeechCaptureState } from './speech-capture'
 
 type Recognition = NonNullable<Window['SpeechRecognition']> extends new () => infer Instance ? Instance : never
@@ -113,6 +113,34 @@ describe('explicit Mandarin speech capture', () => {
     start()
     expect(FakeRecognition.construct).toHaveBeenCalledOnce()
     expect(prefixed).not.toHaveBeenCalled()
+  })
+
+  it.each([['en-US', 'en-US'], ['zh-Hans', 'zh-CN']] as const)('uses explicit %s without changing the dictation lifecycle', (locale, language) => {
+    const listener = vi.fn()
+    sessions.push(startSpeechCapture(listener, { locale }))
+    const recognition = FakeRecognition.instances[0]
+    expect(recognition.lang).toBe(language)
+    recognition.onstart?.()
+    recognition.onresult?.(resultEvent(['a complete snapshot']))
+    recognition.onend?.()
+    expect(listener).toHaveBeenLastCalledWith({ phase: 'finished', transcript: 'a complete snapshot' })
+    expectClean(recognition)
+  })
+
+  it.each(['fr-FR', 'zh-CN', '', null])('rejects unsupported locale %s without starting a fallback', locale => {
+    const listener = vi.fn()
+    sessions.push(startSpeechCapture(listener, { locale: locale as SpeechLocale }))
+    expect(listener).toHaveBeenLastCalledWith(expect.objectContaining({ phase: 'error', error: expect.stringContaining('supports only') }))
+    expect(FakeRecognition.construct).not.toHaveBeenCalled()
+    expectClean()
+  })
+
+  it('reports the requested English language rather than claiming Mandarin failed', () => {
+    const listener = vi.fn()
+    sessions.push(startSpeechCapture(listener, { locale: 'en-US' }))
+    FakeRecognition.instances[0].onerror?.({ error: 'language-not-supported' })
+    expect(listener).toHaveBeenLastCalledWith(expect.objectContaining({ phase: 'error', error: expect.stringContaining('English (en-US)') }))
+    expectClean(FakeRecognition.instances[0])
   })
 
   it('reports unsupported capture visibly, without starting or installing a fallback', () => {

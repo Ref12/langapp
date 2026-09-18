@@ -11,6 +11,7 @@ const threadIdSchema = assistantThreadSchema.shape.id
 const threadChangesSchema = assistantThreadSchema.pick({
   mode: true, shadowIntent: true, shadowPhrase: true, romanization: true, speechRate: true, returnRoute: true,
   practiceInput: true, practicePhrase: true, speechFeedback: true,
+  voiceEnabled: true, voiceInputLocale: true,
 }).partial().strict()
 type ThreadChanges = z.infer<typeof threadChangesSchema>
 
@@ -40,6 +41,8 @@ export async function createConversation(source?: AssistantSource, returnRoute?:
     shadowIntent: 'new-phrase',
     practiceInput: 'listen-repeat',
     speechFeedback: true,
+    voiceEnabled: false,
+    voiceInputLocale: 'en-US',
     romanization: true,
     speechRate: preferences?.defaultSpeechRate ?? 1,
     returnRoute: returnRoute ?? context?.route ?? 'overview',

@@ -65,6 +65,9 @@
 .assistant-composer textarea { display: block; width: 100%; min-height: 66px; max-height: 160px; resize: vertical; border: 0; border-radius: 12px; background: transparent; color: var(--text); padding: 16px; font: inherit; font-size: 14px; line-height: 1.6; }
 .composer-controls { display: flex; align-items: center; gap: 10px; padding: 0 10px 10px; }
 .composer-controls > .button:last-child { margin-left: auto; }
+.composer-controls .composer-send { width: 40px; height: 40px; min-width: 40px; padding: 0; border-radius: 50%; justify-content: center; flex-shrink: 0; }
+.composer-mic.recording { color: var(--danger); background: var(--surface-raised); border-radius: 50%; }
+.composer-controls > [role="status"] { min-width: 0; }
 .composer-footnote { font-size: 10px; color: var(--muted); margin: 8px 0 0; text-align: center; }
 .draft-context { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--accent-line); border-radius: 8px; margin-bottom: 10px; font-size: 12px; background: var(--accent-soft); }
 .draft-context details { flex: 1; min-width: 0; max-height: 150px; overflow: auto; }

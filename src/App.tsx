@@ -20,6 +20,7 @@ import { PlaybackStatus, SelectionActions } from './components/assistant/Snippet
 import { DraftStatus } from './components/assistant/DraftStatus'
 import { LocalAIConnectionSetup } from './components/assistant/LocalAIConnectionSetup'
 import { setDefaultSpeechRate, setSpeechVoicePreferences, stopBrowserSpeech } from './core/assistant/speech'
+import { interruptAudio } from './core/assistant/audio-owner'
 import './App.css'
 import './components/assistant/assistant.css'
 
@@ -91,6 +92,9 @@ function WorkspaceApp() {
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
   useEffect(() => {
     if (!assistant) returnRoute.current = route
+    try { interruptAudio() } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Audio could not be stopped. Close this page before trying again.')
+    }
     stopBrowserSpeech()
     document.title = `${label} / LinguaWeave`
     main.current?.focus({ preventScroll: true })

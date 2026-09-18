@@ -1,4 +1,4 @@
-import { MAX_DRAFT_LENGTH } from './contracts'
+import { MAX_DRAFT_LENGTH, speechLocaleSchema, type SpeechLocale } from './contracts'
 
 export interface SpeechCaptureState {
   phase: 'starting' | 'listening' | 'stopping' | 'finished' | 'error'
@@ -60,7 +60,7 @@ export function speechCaptureSupported(): boolean {
   return recognitionConstructor() !== undefined
 }
 
-function nativeErrorMessage(error: string): string {
+function nativeErrorMessage(error: string, locale: SpeechLocale): string {
   switch (error) {
     case 'not-allowed':
     case 'service-not-allowed':
@@ -73,7 +73,7 @@ function nativeErrorMessage(error: string): string {
       return 'The browser could not capture microphone audio. Check that a microphone is available and not in use.'
     case 'language-not-supported':
     case 'language-unavailable':
-      return 'The browser speech service does not support Mandarin (zh-CN). Try a browser that supports Mandarin speech recognition.'
+      return `The browser speech service does not support ${locale === 'zh-Hans' ? 'Mandarin (zh-CN)' : 'English (en-US)'}. Try a browser that supports speech recognition in that language.`
     case 'aborted':
       return 'Speech capture was interrupted by the browser. Start again when ready.'
     default:
@@ -86,7 +86,11 @@ function exceptionMessage(action: string, error: unknown): string {
   return `The browser could not ${action} speech capture${detail ? `: ${detail}` : '.'}`
 }
 
-export function startSpeechCapture(listener: (state: SpeechCaptureState) => void): SpeechCaptureSession {
+export function startSpeechCapture(
+  listener: (state: SpeechCaptureState) => void,
+  options: { locale?: SpeechLocale } = {},
+): SpeechCaptureSession {
+  const locale = options.locale === undefined ? 'zh-Hans' : options.locale
   let recognition: BrowserRecognition | undefined
   let phase: SpeechCaptureState['phase'] = 'starting'
   let transcript = ''
@@ -208,9 +212,13 @@ export function startSpeechCapture(listener: (state: SpeechCaptureState) => void
     return session
   }
 
+  if (!speechLocaleSchema.safeParse(locale).success) {
+    finish('error', 'Speech capture supports only English (en-US) and Mandarin (zh-Hans). Choose a supported input language.')
+    return session
+  }
   const Recognition = recognitionConstructor()
   if (!Recognition) {
-    finish('error', 'Speech capture is not supported by this browser. Choose listen-and-repeat or use a browser with Mandarin speech recognition.')
+    finish('error', 'Speech capture is not supported by this browser. Type instead, choose listen-and-repeat, or use a browser with speech recognition.')
     return session
   }
 
@@ -224,7 +232,7 @@ export function startSpeechCapture(listener: (state: SpeechCaptureState) => void
       if (error) completion = { ...completion, phase: 'error', transcript, error }
       return session
     }
-    recognition.lang = 'zh-CN'
+    recognition.lang = locale === 'zh-Hans' ? 'zh-CN' : 'en-US'
     recognition.interimResults = true
     recognition.continuous = false
     recognition.maxAlternatives = 1
@@ -261,14 +269,14 @@ export function startSpeechCapture(listener: (state: SpeechCaptureState) => void
       listener({ phase, transcript })
     }
     recognition.onerror = event => {
-      if (!done) finish('error', nativeErrorMessage(event.error), true)
+      if (!done) finish('error', nativeErrorMessage(event.error, locale), true)
     }
     recognition.onend = () => {
       if (done) return
       if (!started && phase !== 'stopping') {
         finish('error', 'Speech capture ended before listening started. Check microphone permissions and try again.')
       } else if (!transcript && phase !== 'stopping') {
-        finish('error', nativeErrorMessage('no-speech'))
+        finish('error', nativeErrorMessage('no-speech', locale))
       } else {
         finish('finished')
       }

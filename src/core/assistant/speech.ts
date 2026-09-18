@@ -1,4 +1,5 @@
 import { speechRateSchema, speechVoicePreferencesSchema, type BrowserVoicePreference, type SpeechLocale, type SpeechRate, type SpeechVoicePreferences } from './contracts'
+import { interruptAudio } from './audio-owner'
 
 interface PlaybackState {
   activeId?: string
@@ -194,10 +195,11 @@ function cancelCurrent() {
   return error
 }
 
-export function stopBrowserSpeech() {
+export function stopBrowserSpeech(): string | undefined {
   const version = ++generation
   const error = cancelCurrent()
   if (version === generation) publish(error ? { error } : {})
+  return error
 }
 
 function fail(request: PlaybackRequest, error: string) {
@@ -233,7 +235,10 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
     fail(request, 'The browser could not prepare speech playback. Try Hear again.')
     return
   }
+  if (current !== request) return
   request.utterance = utterance
+  let callingSpeak = false
+  let endedDuringSpeak = false
   const voiceKind = voice.localService === true ? 'local' : 'online'
   utterance.onstart = () => {
     if (current !== request) return
@@ -244,13 +249,18 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
     }, Math.max(30_000, text.length * 2000 / utterance.rate + 15_000))
     publish({ activeId: request.id, phase: 'speaking', voiceKind })
   }
-  utterance.onend = () => {
+  const completePlayback = () => {
     if (current !== request) return
+    if (callingSpeak) {
+      endedDuringSpeak = true
+      return
+    }
     current = undefined
     clearRequest(request)
     publish({})
     request.finish?.({ status: 'completed' })
   }
+  utterance.onend = completePlayback
   utterance.onerror = () => {
     fail(request, voiceKind === 'online'
       ? 'Online browser speech could not be played. Check your network connection and browser speech settings, then try Hear again.'
@@ -262,13 +272,24 @@ function startSpeaking(request: PlaybackRequest, voice: SpeechSynthesisVoice, te
   publish({ activeId: request.id, phase: 'starting', voiceKind })
   if (current !== request) return
   try {
+    callingSpeak = true
     request.synthesis.speak(utterance)
+    callingSpeak = false
+    // A synchronous end cannot establish success until speak returns safely.
+    if (endedDuringSpeak) completePlayback()
   } catch {
+    callingSpeak = false
     fail(request, 'The browser blocked speech playback. Try Hear again after checking your voice settings.')
   }
 }
 
 export function playBrowserSpeech(id: string, text: string, locale: SpeechLocale, rate?: number) {
+  try {
+    interruptAudio()
+  } catch (cause) {
+    publish({ error: cause instanceof Error ? cause.message : 'Other audio could not be stopped. Stop audio before trying again.' })
+    return
+  }
   beginBrowserSpeech(id, text, locale, rate)
 }
 
@@ -353,6 +374,7 @@ function beginBrowserSpeech(
       return
     }
   }
+  if (current !== request) return
   publish({ activeId: id, phase: 'loading-voices' })
   discover()
 }

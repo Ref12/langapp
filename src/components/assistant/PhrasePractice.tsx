@@ -9,6 +9,7 @@ import { azureSpeechCaptureSupported, startAzurePracticeCapture, type SpeechAsse
 import { saveInlinePracticeResult, savePracticeResult } from '../../core/assistant/practice-results'
 import { HearButton, SnippetActions } from './SnippetActions'
 import { PracticeFeedback } from './PracticeFeedback'
+import { acquireAudio, type AudioLease } from '../../core/assistant/audio-owner'
 
 interface PendingResult { id: string; result: PracticeResult }
 interface InlinePractice {
@@ -32,6 +33,7 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
   const submitButton = useRef<HTMLButtonElement>(null)
   const session = useRef<SpeechCaptureSession>()
   const cue = useRef<RecordingCue>()
+  const audio = useRef<AudioLease>()
   const pendingResult = useRef<PendingResult>()
   const submitted = useRef(!inline)
   const lifecycle = useRef({ mounted: false, version: 0 })
@@ -55,6 +57,8 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
   }, [])
   const cancelCapture = useCallback(() => {
     lifecycle.current.version++
+    audio.current?.release()
+    audio.current = undefined
     releaseCue()
     session.current?.cancel()
     session.current = undefined
@@ -87,6 +91,8 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
     return () => {
       lifetime.mounted = false
       lifetime.version++
+      audio.current?.release()
+      audio.current = undefined
       releaseCue()
       session.current?.cancel()
       if (getPlaybackState().activeId === playbackId) stopBrowserSpeech()
@@ -167,6 +173,7 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
       if (next.phase !== 'finished' && next.phase !== 'error') return
       finished = true
       session.current = undefined
+      if (!inline) { audio.current?.release(); audio.current = undefined }
       releaseCue()
       setLeadIn(undefined)
       if (next.cancelled) {
@@ -207,8 +214,18 @@ export function PhrasePractice({ thread, phrase, busy, speechConnection, connect
     setCapture({ phase: 'finished', transcript: '' })
     const parsed = practicePhraseSchema.safeParse(phrase)
     if (!parsed.success) { setError('Choose a Mandarin translation before practicing.'); return }
-    try { if (spoken) cue.current = prepareRecordingCue() } catch (reason) {
+    try {
+      audio.current = acquireAudio(() => {
+        if (inline) dismiss.current()
+        else cancelCapture()
+      })
+      if (!audio.current.isCurrent()) return
+      const stopError = stopBrowserSpeech()
+      if (stopError) throw new Error(stopError)
+      if (spoken) cue.current = prepareRecordingCue()
+    } catch (reason) {
       if (inline) closeInline()
+      else cancelCapture()
       setError(reason instanceof Error ? reason.message : 'The recording start sound could not be prepared.')
       return
     }

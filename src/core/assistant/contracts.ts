@@ -76,6 +76,8 @@ export const assistantThreadSchema = z.object({
   shadowPhrase: speechBlockSchema.optional(),
   practiceInput: practiceInputSchema.optional(),
   speechFeedback: z.boolean().optional(),
+  voiceEnabled: z.boolean().optional(),
+  voiceInputLocale: speechLocaleSchema.optional(),
   practicePhrase: practicePhraseSchema.optional(),
   practiceDraft: z.string().max(MAX_DRAFT_LENGTH).optional(),
   romanization: z.boolean(),

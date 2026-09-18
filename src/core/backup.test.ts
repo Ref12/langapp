@@ -49,6 +49,58 @@ async function saveConnection() {
 }
 
 describe('compatible Assistant workspace backups', () => {
+  it.each([
+    { voiceEnabled: false, voiceInputLocale: 'en-US' },
+    { voiceEnabled: true, voiceInputLocale: 'en-US' },
+    { voiceEnabled: false, voiceInputLocale: 'zh-Hans' },
+    { voiceEnabled: true, voiceInputLocale: 'zh-Hans' },
+  ] as const)('round-trips per-thread voice settings without changing conversation or learning state (case %#)', async voice => {
+    const { threadId } = await seedAssistant()
+    await trackWord('zh:tea', 'dictionary')
+    await updateThread(threadId, voice)
+    const learning = await loadWorkspace()
+    const assistant = await snapshot()
+    const text = await exportWorkspaceBackup()
+    expect(readBackup(text).assistant?.threads[0]).toMatchObject(voice)
+    await updateThread(threadId, { voiceEnabled: !voice.voiceEnabled })
+    await restoreBackup(text)
+    expect(await snapshot()).toEqual(assistant)
+    expect(await loadWorkspace()).toEqual(learning)
+  })
+
+  it.each([
+    ['voiceEnabled'], ['voiceInputLocale'], ['voiceEnabled', 'voiceInputLocale'],
+  ])('restores optional voice fields without adding new defaults (case %#)', async (...omitted) => {
+    const { threadId } = await seedAssistant()
+    const old = JSON.parse(await exportWorkspaceBackup())
+    for (const field of omitted) delete old.assistant.threads[0][field]
+    const text = JSON.stringify(old)
+    const thread = readBackup(text).assistant?.threads[0]
+    for (const field of omitted) expect(thread).not.toHaveProperty(field)
+    await updateThread(threadId, { voiceEnabled: true, voiceInputLocale: 'zh-Hans' })
+    await restoreBackup(text)
+    expect(await db.assistantThreads.get(threadId)).toEqual(thread)
+    const exported = readBackup(await exportWorkspaceBackup()).assistant?.threads[0]
+    for (const field of omitted) expect(exported).not.toHaveProperty(field)
+  })
+
+  it.each([
+    { voiceEnabled: 'true' }, { voiceEnabled: 1 }, { voiceEnabled: null },
+    { voiceInputLocale: 'zh-CN' }, { voiceInputLocale: 'en-GB' }, { voiceInputLocale: '' }, { voiceInputLocale: null },
+    { voiceEnabled: true, voiceAutoSubmit: true },
+  ])('rejects invalid backup voice settings before any writes (case %#)', async voice => {
+    await seedAssistant()
+    const learning = await loadWorkspace()
+    const assistant = await snapshot()
+    const backup = JSON.parse(await exportWorkspaceBackup())
+    Object.assign(backup.assistant.threads[0], voice)
+    const text = JSON.stringify(backup)
+    expect(() => readBackup(text)).toThrow()
+    await expect(restoreBackup(text)).rejects.toThrow()
+    expect(await snapshot()).toEqual(assistant)
+    expect(await loadWorkspace()).toEqual(learning)
+  })
+
   it('round-trips practice settings, reviewed draft, and original attempt target; old threads need no new fields', async () => {
     const { threadId, user } = await seedAssistant()
     const legacy = JSON.parse(await exportWorkspaceBackup())
