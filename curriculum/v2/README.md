@@ -2,7 +2,7 @@
 
 This is the living description of the v2 curriculum scheme. Extend it as new
 content types and teaching structures are introduced. For now, v2 contains
-Chinese vocabulary inventories and an HSK 1 grammar draft; it does not yet
+Chinese vocabulary inventories and grammar drafts for all HSK bands; it does not yet
 define sections, modules, lessons, or assessments.
 
 The v2 files are maintained separately from the existing curriculum outside
@@ -21,22 +21,29 @@ curriculum\v2\
     hsk-1\vocabulary.yaml
     hsk-1\grammar.yaml
     hsk-2\vocabulary.yaml
+    hsk-2\grammar.yaml
     hsk-3\vocabulary.yaml
+    hsk-3\grammar.yaml
     hsk-4\vocabulary.yaml
+    hsk-4\grammar.yaml
     hsk-5\vocabulary.yaml
+    hsk-5\grammar.yaml
     hsk-6\vocabulary.yaml
+    hsk-6\grammar.yaml
     hsk-7-9\vocabulary.yaml
+    hsk-7-9\grammar.yaml
 ```
 
 Chinese alignment follows the **November 2025 HSK examination syllabus,
 effective July 2026**, not the 2021 educational-standard inventory or legacy
-HSK 2.0. The examination syllabus publishes a shared advanced vocabulary band
-labelled **7-9**, without separate word-list cutoffs for levels 7, 8, and 9.
+HSK 2.0. The examination syllabus publishes shared advanced vocabulary and
+grammar inventories labelled **7-9**, without separate inventory cutoffs for
+levels 7, 8, and 9.
 The combined directory reflects that source inventory; it does not collapse
 the three proficiency levels or require a single advanced teaching level.
 
 These directories describe reference membership, not a lesson sequence.
-Teaching progression can later organize the vocabulary into smaller sections,
+Teaching progression can later organize the references into smaller sections,
 modules, and lessons without changing its source identities.
 
 ## Vocabulary files
@@ -115,13 +122,13 @@ explicit rather than silently changing a source identity or inventing a use.
 `grammar.yaml` uses an ordered YAML list with one field per line and a blank
 line between entries. Its five fields match vocabulary except that `pt`
 (pattern) replaces `ch`; vocabulary retains its compact one-line format.
-The current grammar file is
-`chinese\hsk-1\grammar.yaml`; other bands do not yet have v2 grammar files.
+Each Chinese band, from `hsk-1` through `hsk-6` and the combined `hsk-7-9`,
+has its own `grammar.yaml`.
 
 ```yaml
 - id: zh-hsk1-g001
-  pt: '[subject] + 是 + [noun]'
-  pr: '[subject] + shì + [noun]'
+  pt: <subject> + 是 + <noun>
+  pr: <subject> + shì + <noun>
   ds: Identify or classify with a noun.
   lb: s-shi4-n--identity
 ```
@@ -131,7 +138,7 @@ Each entry has exactly five nonempty strings in this order:
 | Field | Meaning |
 | --- | --- |
 | `id` | Stable identifier for a grammatical construction or use. |
-| `pt` | Chinese pattern with bracketed English names for replaceable slots. |
+| `pt` | Chinese pattern with angle-bracketed English names for replaceable slots. |
 | `pr` | The same template, with fixed Chinese text replaced by citation pinyin. |
 | `ds` | A concise English meaning cue, retaining essential distinctions or restrictions. |
 | `lb` | A compact pattern label with numbered pinyin, followed by `--` and a short meaning discriminator. |
@@ -141,15 +148,20 @@ repeating the visible pattern or writing a full teaching explanation. The AI
 can expand a cue into explanations and examples, while preserving its intended
 meaning, restrictions, and the learner's cumulative knowledge limits.
 
-Slots such as `[subject]`, `[noun]`, or `[verb phrase]` are placeholders, not
+Slots such as `<subject>`, `<noun>`, or `<verb phrase>` are placeholders, not
 Chinese text to pronounce. A predicate is the part saying what the subject
 does or is. Purely structural patterns have identical `pt` and `pr`.
 `+` joins successive parts; `/` separates alternatives, with parentheses
 grouping alternatives where needed. These templates are not direct speech
 playback inputs or substitutes for worked sentence examples.
 
+Angle-bracketed slots allow unquoted YAML strings even at the start of a value.
+Omit unnecessary value quotes, but retain them when YAML syntax requires them,
+such as a literal colon followed by a space. Square or curly braces at the
+start of a value instead introduce YAML collections.
+
 Grammar labels are compact handles, not full copies of the templates. Retain
-slot order and fixed numbered pinyin, but **never include slot brackets**.
+slot order and fixed numbered pinyin, but **never include slot delimiters**.
 Use short grammatical names rather than repeating long slot descriptions:
 
 | Short form | Meaning |
@@ -163,7 +175,7 @@ Use short grammatical names rather than repeating long slot descriptions:
 
 Use brief role names such as `owner`, `age`, or `day` where clearer. Qualifiers
 such as "optional", "same", or "skill" stay in `pt`/`pr` rather than being
-repeated in the label; for example, `[skill verb phrase]` becomes `vp`.
+repeated in the label; for example, `<skill verb phrase>` becomes `vp`.
 The full templates remain authoritative.
 
 Keep `or` between alternatives; omit joining signs, grouping parentheses and
@@ -172,9 +184,9 @@ the use, without repeating phrases such as "question" or "construction".
 For example:
 
 ```text
-[subject] + 是 + [noun]           -> s-shi4-n--identity
-[statement] + 吗？               -> stmt-ma5--yes-no
-[number] + [measure word] + [noun] -> num-mw-n--count
+<subject> + 是 + <noun>           -> s-shi4-n--identity
+<statement> + 吗？               -> stmt-ma5--yes-no
+<number> + <measure word> + <noun> -> num-mw-n--count
 ```
 
 The same tone conventions apply as in vocabulary: neutral `5`, `v` for
@@ -185,15 +197,37 @@ in `呢` can ask a follow-up question or ask where something is.
 Reuse an existing grammar ID when the construction matches, even when its old
 HSK prefix differs from the new examination placement. New grammar references
 use `zh-hsk2026-gNNN`, with unique, persistent authoring allocations across
-Chinese v2. These are not official syllabus item numbers or file positions.
+Chinese v2. The numeric suffix has at least three digits and continues
+naturally into `g1000` and beyond. Allocations may have gaps; do not renumber
+records or restart numbering per band. These are not official syllabus item
+numbers or file positions.
 The new pattern-based grammar labels intentionally replace older function-only
 labels in v2; the existing curriculum outside v2 remains unchanged.
 
 Grammar records follow source families rather than lesson order. One source
 category may require several teaching patterns, while one pattern may cover
 several related categories. Record counts are not official grammar-item counts.
-The HSK 1 draft follows the selected syllabus's printed grammar pages 383-385,
-including constructions previously placed later in the older local curriculum.
+The drafts follow these pages of the pinned examination syllabus, including
+constructions placed differently in the older local curriculum:
+
+| Band | Printed pages | PDF pages |
+| --- | --- | --- |
+| HSK 1 | 383-385 | 386-388 |
+| HSK 2 | 386-388 | 389-391 |
+| HSK 3 | 389-391 | 392-394 |
+| HSK 4 | 392-394 | 395-397 |
+| HSK 5 | 395-397 | 398-400 |
+| HSK 6 | 398-399 | 401-402 |
+| HSK 7-9 | 400-403 | 403-406 |
+
+Grammar is incremental too: combine the current band's file with every earlier
+band. Do not repeat a construction simply because the source lists it again
+or an inherited ID has a later HSK prefix. A newly taught realization or
+distinct function can receive its own record; a changed source sense numeral
+alone is not evidence of a new function. If an older identity bundles uses
+now taught separately, allocate narrower identities rather than silently
+repurposing it. Source-family comments identify lexical extensions that use
+an earlier construction without adding another record.
 
 Fixed forms must be introduced explicitly rather than assumed known from the
 vocabulary file. For example, the HSK 1 grammar outline includes shortened
@@ -201,6 +235,16 @@ vocabulary file. For example, the HSK 1 grammar outline includes shortened
 in the current HSK 1 vocabulary file. The grammar descriptions teach these
 uses without silently changing the vocabulary inventory. Lesson authoring
 must still establish cumulative knowledge for the complete sentences it uses.
+
+The source outline does not define every numbered sense or schematic frame.
+Keep constrained editorial interpretations and pronunciation uncertainty
+explicit. Reviewed-but-unresolved material must not be filled with an invented
+rule: current examples include HSK 4's unspecified double-negative and compact
+clause functions, HSK 5's `不是……，还/还是……`, HSK 6's unspecified `(没)有`
+continuation after `X了就X了`, and advanced `动词+得个`. Some repeated entries,
+including advanced `我`, also leave their intended additional scope unclear.
+File comments preserve these limits; presence of a band file does not mean
+every source interpretation has been resolved.
 
 ## Sources and limits
 
