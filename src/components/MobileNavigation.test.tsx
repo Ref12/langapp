@@ -71,6 +71,21 @@ it('closes the mobile menu without leaving the current lesson page and preserves
   expect(screen.getByRole('link', { name: 'LinguaWeave home' })).toHaveAttribute('href', '#overview')
 })
 
+it('returns from Assistant to the workspace through the menu drawer', async () => {
+  await db.delete()
+  await db.open()
+  const user = userEvent.setup()
+  window.location.hash = '#conversation'
+  render(<App />)
+  await screen.findByRole('heading', { name: 'Your Mandarin, in conversation.' })
+  await user.click(screen.getByRole('button', { name: 'Open navigation' }))
+  const drawer = screen.getByRole('dialog', { name: 'Workspace navigation' })
+  await user.click(within(drawer).getByRole('link', { name: 'Overview' }))
+  await screen.findByRole('heading', { name: 'Make the language yours.' })
+  expect(window.location.hash).toBe('#overview')
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+})
+
 it('closes for navigation including the current route and external route changes', async () => {
   const user = userEvent.setup()
   const view = render(navigation())
