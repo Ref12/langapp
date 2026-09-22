@@ -261,6 +261,34 @@ bindings, not a claim that the full grammar/skills crosswalk has received
 independent review. The five-field vocabulary and grammar record shapes stay
 unchanged.
 
+<<<<<<< HEAD
+### Maintaining grammar-vocabulary bindings
+
+The file is an authored YAML list. Each mapping contains one grammar `lb` in
+`grammar` and a nonempty list of vocabulary `lb` identifiers in `vocabulary`:
+
+```yaml
+- {grammar: num-bei1-drink--cups, vocabulary: [bei1--cupfuls]}
+```
+
+Do not copy word definitions into this file or replace the labels with canonical
+IDs. Keep at most one mapping per grammar label, with no repeated vocabulary
+labels in that mapping. Each pinned sense must match a fixed form and reading
+in the pattern and be available at its cumulative band cutoff.
+
+Update bindings in the same change as an affected label, pronunciation, sense,
+or grammar pattern. Add explicit bindings where automatic spelling/reading
+matches cannot distinguish the required grammatical sense. Do not delete a
+binding merely to make a missing prerequisite pass, and do not generate
+speculative sense bindings for every spelling match. The automatic scan still
+covers patterns without an explicit binding.
+
+Start with the automated check, then investigate its reported gaps and any
+ambiguous meaning changes. A fresh manual audit of all bands is not required
+for routine maintenance.
+
+=======
+>>>>>>> f61282b4c9b9f29b5158471c792dea0d7099b0ab
 `scripts\v2-grammar-vocabulary.mjs` checks every grammar pattern across all seven
 bands. It excludes replaceable slots, aligns fixed Chinese text with pinyin,
 and segments literal runs using matching vocabulary forms and readings. It

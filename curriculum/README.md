@@ -6,6 +6,19 @@ It is a reference curriculum, not a set of copied textbooks or official exam
 papers. Read each language's README for its actual coverage, standard version,
 source methodology, and reuse conditions before using the data.
 
+## Chinese v2 authoring
+
+The separate [Chinese v2 scheme](v2/README.md) follows the November 2025 HSK
+examination syllabus, effective July 2026. Its
+[grammar-vocabulary bindings](v2/chinese/grammar-vocabulary.yaml) connect grammar
+to specific vocabulary senses by `lb` and must be maintained alongside edits
+to those inventories. See the v2 scheme for the format, cumulative-band rule,
+automated check, and unresolved semantic limits.
+
+V2 is not connected to the existing app projection. The organization, inventory
+snapshot, and general data contract below describe the established curriculum
+outside `v2`; do not apply them in place of v2's own specification.
+
 ## Organization
 
 | Language | Reference directories, in level order | Level scheme |

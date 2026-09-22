@@ -1,0 +1,373 @@
+# Original editorial lesson; v1 provides teaching context, not the v2 inventory.
+# Template contract: curriculum\v2\README.md; scripts\v2-lesson-schema.mjs.
+# Course level 1 is a teaching grouping, not a claim to cover all of HSK 1.
+schemaVersion: 1
+id: zh-v2-lesson-001
+language: chinese
+title: Greetings and student identity
+status: draft
+placement:
+  level: 1
+  module: first-exchanges
+alignment: hsk-1
+source:
+  kind: original
+  adaptedFrom: curriculum\chinese\teaching\content\level-01.yaml
+  lesson: greetings-and-identity
+prerequisites: []
+objectives:
+  - Explain how pinyin shows pronunciation rather than an English translation.
+  - Compare the four main tones on the same syllable and distinguish neutral tone.
+  - Greet someone with the familiar expression for hello.
+  - Recognize the words for I, you, student, and teacher.
+  - Use the identity construction to say that you or someone else is a student or teacher.
+  - Distinguish written citation tones from the spoken tone change in the greeting.
+pages:
+  - id: welcome
+    template: overview
+    title: Your first exchange
+    requires: []
+    data:
+      introduction: |
+        You do not need any previous Mandarin for this lesson. Begin with how
+        Mandarin sounds are written in pinyin and how your voice changes pitch.
+        Compare the same syllable in each tone before learning your first words.
+
+        Then use a greeting and learn to say who someone is. The student and
+        teacher identities are practice roles; you do not have to be a student
+        or teacher yourself. You are not expected to memorize every pinyin
+        spelling or write Chinese characters from memory today.
+
+  - id: pinyin-basics
+    template: concept
+    title: What is pinyin?
+    requires: []
+    data:
+      body: |
+        Mandarin is the spoken language we are learning. Chinese characters are
+        its usual written form. **Pinyin** is a standard way to write Mandarin
+        pronunciation with Latin letters, like the letters used in English.
+        It is a pronunciation guide, not an English translation and not a
+        replacement for learning characters.
+
+        A **syllable** is one spoken beat. A Mandarin word can have one or more
+        syllables; a character usually represents one syllable. Our word cards
+        separate pinyin syllables with spaces so you can see those beats.
+
+        In the practice syllable **ma**, **m** is the beginning sound, called
+        the initial, and **a** is the ending, called the final. Close your lips
+        for m, then open into an ah-like vowel to make one beat. Do not say the
+        English letter names "em" and "ay". Other pinyin letters and combinations
+        also have Mandarin sound values that you will learn gradually.
+
+        A mark over a vowel tells you the syllable's **tone**, or pitch pattern.
+        In **mā**, the straight mark over a tells you to keep your pitch high and
+        level. The next pages compare other marks while keeping the letters ma
+        unchanged.
+      examples: []
+
+  - id: tone-basics
+    template: concept
+    title: What is a tone?
+    requires: [pinyin-basics]
+    data:
+      body: |
+        **Pitch** is how high or low your voice sounds, not how loud it is.
+        Try humming a comfortable high note and then a lower note. Your own
+        comfortable voice range is the reference; you do not need a singer's
+        voice or an exact musical note.
+
+        A **tone** is the pitch pattern within a syllable. In Mandarin, the same
+        consonants and vowels with a different tone can represent a different
+        word or meaning. Tone is part of pronunciation, not just a way to sound
+        surprised, angry, or questioning.
+
+        Mandarin has four main tones: first is high and level, second rises,
+        third is low and can dip then rise when said alone, and fourth falls
+        from high to low. The tone mark is a useful reminder of that movement.
+        A neutral-tone syllable is lighter and shorter, with pitch influenced by
+        the preceding tone; it has no tone mark.
+
+        Compare the examples next without changing the m or a sounds. The goal
+        is to notice what your pitch does, not to make five different vowels.
+        These are sound demonstrations, not five new vocabulary items.
+      examples: []
+
+  - id: ma-tone-comparison
+    template: tone-comparison
+    title: One syllable, different tones
+    requires: [tone-basics]
+    data:
+      syllable: ma
+      introduction: |
+        Keep the same ma syllable in every row. The mark above a changes its
+        tone, while the consonant and vowel stay the same. Read the mark and
+        trace the pitch movement with your hand. The first four rows demonstrate
+        isolated citation tones, the forms used in dictionaries.
+      examples:
+        - tone: 1
+          pinyin: mā
+          name: First tone
+          contour: High and level
+          instruction: Start comfortably high and hold your pitch steady through the vowel. Do not let it drift down at the end; high does not mean loud.
+        - tone: 2
+          pinyin: má
+          name: Second tone
+          contour: Mid to high, rising
+          instruction: Start in the middle of your comfortable range and glide upward through the vowel. Make one rising syllable, not two separate sounds.
+        - tone: 3
+          pinyin: mǎ
+          name: Third tone
+          contour: Low, dipping then rising when said alone
+          instruction: |
+            Let your pitch go low, then rise toward the end of this isolated
+            practice syllable. Keep it comfortable; do not force your throat.
+            In ordinary connected speech, third tone often stays low without
+            a full rise. The dipping mark does not require an exaggerated dip
+            and rise every time.
+        - tone: 4
+          pinyin: mà
+          name: Fourth tone
+          contour: High to low, falling
+          instruction: Start high and drop decisively through the vowel. Let pitch fall rather than shouting or adding an extra syllable.
+        - tone: 5
+          pinyin: ma
+          name: Neutral tone
+          contour: Short and light; pitch depends on context
+          instruction: |
+            There is no tone mark. This is not a fifth fixed pitch contour and
+            not a whispered or missing vowel. Keep it shorter and lighter than
+            the preceding full-tone syllable. Practise it in the two-syllable
+            example below rather than assigning it a tone in isolation.
+      neutralContext:
+        syllables: [mā, ma]
+        focus: 2
+        explanation: |
+          Say the first syllable with a steady high first tone, then make the
+          second syllable short and light. After this first tone, the neutral
+          syllable is normally lower in pitch. The second ma is the focus.
+          This shows the sound pattern in the Mandarin word for mom; it is
+          pronunciation exposure, not a vocabulary item you must recall here.
+      practice: |
+        Compare mā, má, mǎ, and mà slowly, keeping the vowel the same and moving
+        your hand with the pitch. Then compare mā with the lighter second ma
+        in the two-syllable example. Say which tone is level, rising, low, or
+        falling before looking at the row's name again.
+
+        When a spoken model or teacher is available, listen first and imitate,
+        then compare a recording of yourself. Written marks and these directions
+        alone cannot tell you whether your pronunciation is accurate.
+
+  - id: pinyin-in-use
+    template: concept
+    title: Use pinyin as a guide, not English spelling
+    requires: [ma-tone-comparison]
+    data:
+      body: |
+        Notice the three pieces you can read together: the letters ma identify
+        the consonant and vowel, the mark identifies tone, and the character on
+        a word card identifies the written word. Pinyin alone does not always
+        identify a unique word; different words can share a pronunciation.
+
+        A tone mark sits over one vowel but belongs to the whole syllable. An
+        unmarked syllable in this curriculum's pinyin has neutral tone; it is
+        not first tone with an optional mark. Some resources use numbers instead:
+        ma1, ma2, ma3, and ma4 name the four main tones. Our authoring labels use
+        ma5 for neutral tone; learner-facing cards use tone marks instead.
+
+        Learn each new word's sound and tone together. Start slowly, but do not
+        assume every third tone needs a full dip and rise in a sentence. The
+        greeting will show one common difference between dictionary pinyin
+        and connected speech.
+      examples: []
+
+  - id: hello
+    template: vocabulary
+    title: Say hello
+    requires: [pinyin-in-use]
+    data:
+      word: ni3-hao3--hello
+      role: new
+      note: Learn this as one familiar greeting. It does not by itself teach the separate meanings or grammar of its two characters.
+
+  - id: greeting-tones
+    template: concept
+    title: Written tones and spoken tones
+    requires: [ma-tone-comparison, hello]
+    data:
+      body: |
+        Both syllables of this greeting have third tone in dictionary pinyin.
+        When the two third tones are spoken together, the first normally becomes
+        a rising second tone. The written dictionary pinyin stays unchanged.
+
+        Do not force both syllables into separate, exaggerated dipping tones.
+        With a spoken model, compare the whole greeting with its written pinyin.
+        Without a model or feedback, treat this as an explanation, not evidence
+        that your pronunciation is accurate.
+      examples:
+        - segments:
+            - word: ni3-hao3--hello
+            - punctuation: ！
+          translation: Hello!
+          grammar: []
+
+  - id: me
+    template: vocabulary
+    title: Refer to yourself
+    requires: [pinyin-in-use]
+    data:
+      word: wo3--me
+      role: new
+      note: In this lesson, use this word for I, the person speaking. Its other English translations are not separate constructions taught here.
+
+  - id: you
+    template: vocabulary
+    title: Refer to the person you are speaking to
+    requires: [pinyin-in-use]
+    data:
+      word: ni3--you
+      role: new
+      note: Use this familiar form of you with one person. More formal address will be taught separately.
+
+  - id: identity-word
+    template: vocabulary
+    title: Link someone to a role
+    requires: [pinyin-in-use]
+    data:
+      word: shi4--identity
+      role: new
+      note: This word links a person to a noun such as student or teacher. Its form stays the same for I and you.
+
+  - id: student
+    template: vocabulary
+    title: A student
+    requires: [pinyin-in-use]
+    data:
+      word: xue2-sheng5--student
+      role: new
+      note: This is one word with two syllables. Its second syllable has neutral tone, so it has no tone mark in the citation pinyin.
+
+  - id: teacher
+    template: vocabulary
+    title: A teacher
+    requires: [pinyin-in-use]
+    data:
+      word: lao3-shi1--teacher
+      role: new
+      note: Use this role word to practise the same sentence pattern with a different meaning.
+
+  - id: state-identity
+    template: grammar
+    title: Say what someone is
+    requires: [me, you, identity-word, student, teacher]
+    data:
+      grammar: s-shi4-n--identity
+      role: new
+      explanation: |
+        Put the person first, the identity word next, and the role noun last.
+        The person is the subject; the rest of the sentence says what they are.
+        Use the same identity word whether English would say am, is, or are.
+
+        You do not need an extra word corresponding to English a before student
+        or teacher here. Keep the same order when changing the person or role.
+        This is a statement, not a question.
+
+        This construction identifies someone with a noun. Do not automatically
+        use it whenever an English sentence contains am, is, or are; descriptions
+        with adjectives are taught separately.
+      examples:
+        - segments:
+            - word: wo3--me
+            - word: shi4--identity
+            - word: xue2-sheng5--student
+            - punctuation: 。
+          translation: I am a student.
+          grammar: [s-shi4-n--identity]
+        - segments:
+            - word: ni3--you
+            - word: shi4--identity
+            - word: lao3-shi1--teacher
+            - punctuation: 。
+          translation: You are a teacher.
+          grammar: [s-shi4-n--identity]
+
+  - id: first-exchange
+    template: dialogue
+    title: Put the greeting and identity together
+    requires: [greeting-tones, state-identity]
+    data:
+      setting: Two participants in a language-practice activity greet each other and state their assigned roles.
+      speakers:
+        - {id: learner, name: Student role}
+        - {id: partner, name: Teacher role}
+      turns:
+        - speaker: learner
+          utterance:
+            segments:
+              - word: ni3-hao3--hello
+              - punctuation: ！
+              - word: wo3--me
+              - word: shi4--identity
+              - word: xue2-sheng5--student
+              - punctuation: 。
+            translation: Hello! I am a student.
+            grammar: [s-shi4-n--identity]
+        - speaker: partner
+          utterance:
+            segments:
+              - word: ni3-hao3--hello
+              - punctuation: ！
+              - word: wo3--me
+              - word: shi4--identity
+              - word: lao3-shi1--teacher
+              - punctuation: 。
+            translation: Hello! I am a teacher.
+            grammar: [s-shi4-n--identity]
+
+  - id: introduce-yourself
+    template: recall
+    title: Greet and introduce your role
+    requires: [first-exchange]
+    data:
+      prompt: Without looking back, greet your practice partner and say that you are a student. Answer aloud before revealing the model.
+      answer:
+        segments:
+          - word: ni3-hao3--hello
+          - punctuation: ！
+          - word: wo3--me
+          - word: shi4--identity
+          - word: xue2-sheng5--student
+          - punctuation: 。
+        translation: Hello! I am a student.
+        grammar: [s-shi4-n--identity]
+      explanation: Use the greeting as a complete expression, then put I, the identity word, and student in that order. Compare meaning and word order; a matching written answer does not establish accurate pronunciation.
+
+  - id: change-the-person
+    template: recall
+    title: Use the pattern with a different person
+    requires: [state-identity, introduce-yourself]
+    data:
+      prompt: Now tell your practice partner that they are a student. Make a statement meaning You are a student, not a question.
+      answer:
+        segments:
+          - word: ni3--you
+          - word: shi4--identity
+          - word: xue2-sheng5--student
+          - punctuation: 。
+        translation: You are a student.
+        grammar: [s-shi4-n--identity]
+      explanation: Change the subject from I to you. The identity word and student stay unchanged. This recombines words already taught rather than introducing a new construction.
+
+  - id: wrap-up
+    template: summary
+    title: What to revisit
+    requires: [introduce-yourself, change-the-person]
+    data:
+      reflection:
+        - Can you explain what pinyin tells you and why it is not an English translation?
+        - Can you match mā, má, mǎ, and mà to level, rising, low or dipping, and falling pitch?
+        - Can you describe how the unmarked second ma in mā ma differs from a full first tone?
+        - Can you greet someone and state your practice role without looking at the model?
+        - Can you change the person or role while keeping the identity sentence in the same order?
+        - Can you explain why the greeting's written citation tones differ from its usual spoken tones?
+      limitation: These are guided self-checks, not scored assessments. Reading pages, revealing answers, or repeating a model does not demonstrate independent listening, pronunciation, handwriting, long-term retention, or HSK readiness.
