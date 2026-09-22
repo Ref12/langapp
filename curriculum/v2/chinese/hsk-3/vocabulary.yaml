@@ -6,7 +6,6 @@
 # The 500 new rows contain 499 written forms (two readings of 得); eight forms
 # appeared earlier with different uses, so 491 written forms are newly added.
 # Basis: November 2025 examination syllabus, effective July 2026; not the
-# 2021 educational standard or legacy HSK 2.0. Ordered by new syllabus row,
 # followed by explicitly marked extensions to earlier headwords.
 # Level-specific readings and parts of speech constrain each selection;
 # parenthesized later-level uses and previously taught senses are excluded.
@@ -44,6 +43,8 @@
 # Adapted dictionary material: CC-BY-SA-4.0, https://creativecommons.org/licenses/by-sa/4.0/
 # Full upstream provenance, download hashes, and retained MIT/share-alike notices:
 # curriculum\chinese\sources.yaml and curriculum\chinese\licenses\.
+# Record order: ascending lb; lesson order is generated separately.
+# Comments retain original source/editorial context; they do not define sorted ranges.
 
 # New syllabus entries, in numbered-row order.
 - {id: zh-hsk4-00001-s005, ch: 阿姨, pr: ā yí, ds: auntie (polite address for a woman of one's parents' generation), lb: a1-yi2--auntie}
@@ -51,9 +52,10 @@
 - {id: zh-hsk2-00003-s001, ch: 爱人, pr: ài ren, ds: spouse, lb: ai4-ren5--spouse}
 - {id: zh-hsk2-00004-s001, ch: 安静, pr: ān jìng, ds: quiet, lb: an1-jing4--quiet}
 - {id: zh-hsk2-00005-s001, ch: 安全, pr: ān quán, ds: safe; secure, lb: an1-quan2--safe}
-- {id: zh-hsk3-00006-s005, ch: 把, pr: bǎ, ds: 'measure word for things with handles, such as chairs or umbrellas', lb: ba3--handles}
 - {id: zh-hsk3-00006-s004, ch: 把, pr: bǎ, ds: a handful of something, lb: ba3--handful}
+- {id: zh-hsk3-00006-s005, ch: 把, pr: bǎ, ds: 'measure word for things with handles, such as chairs or umbrellas', lb: ba3--handles}
 - {id: zh-hsk2026-00506-s301, ch: 把, pr: bǎ, ds: marks the object that is acted on or affected, lb: ba3--object}
+- {id: zh-hsk1-00010-s005, ch: 班, pr: bān, ds: measure word for groups of people or scheduled transport services, lb: ban1--groups}
 - {id: zh-hsk3-00010-s002, ch: 搬, pr: bān, ds: to move or carry something bulky, lb: ban1--move}
 - {id: zh-hsk3-00009-s001, ch: 班级, pr: bān jí, ds: class (group of students), lb: ban1-ji2--class}
 - {id: zh-hsk3-00011-s001, ch: 搬家, pr: bān jiā, ds: to move house, lb: ban1-jia1--relocate}
@@ -70,14 +72,14 @@
 - {id: zh-hsk2-00016-s002, ch: 北方, pr: běi fāng, ds: the north; northern part of a country, lb: bei3-fang1--north}
 - {id: zh-hsk3-00028-s004, ch: 被, pr: bèi, ds: by; marks a passive action, lb: bei4--passive}
 - {id: zh-hsk2-00021-s002, ch: 笔记, pr: bǐ jì, ds: notes (written reminders or records), lb: bi3-ji4--notes}
-- {id: zh-hsk3-00033-s001, ch: 比较, pr: bǐ jiào, ds: to compare, lb: bi3-jiao4--compare}
-- {id: zh-hsk3-00033-s004, ch: 比较, pr: bǐ jiào, ds: relatively; quite, lb: bi3-jiao4--relatively}
-- {id: zh-hsk2026-00521-s301, ch: 比较, pr: bǐ jiào, ds: compared with, lb: bi3-jiao4--compared}
-- {id: zh-hsk2-00022-s001, ch: 笔记本, pr: bǐ jì běn, ds: notebook for writing, lb: bi3-ji4-ben3--notebook}
 - {id: zh-hsk2-00022-s002, ch: 笔记本, pr: bǐ jì běn, ds: laptop; notebook computer, lb: bi3-ji4-ben3--laptop}
+- {id: zh-hsk2-00022-s001, ch: 笔记本, pr: bǐ jì běn, ds: notebook for writing, lb: bi3-ji4-ben3--notebook}
+- {id: zh-hsk3-00033-s001, ch: 比较, pr: bǐ jiào, ds: to compare, lb: bi3-jiao4--compare}
+- {id: zh-hsk2026-00521-s301, ch: 比较, pr: bǐ jiào, ds: compared with, lb: bi3-jiao4--compared}
+- {id: zh-hsk3-00033-s004, ch: 比较, pr: bǐ jiào, ds: relatively; quite, lb: bi3-jiao4--relatively}
 - {id: zh-hsk2-00018-s001, ch: 比如, pr: bǐ rú, ds: for example; such as, lb: bi3-ru2--example}
-- {id: zh-hsk3-00035-s001, ch: 比赛, pr: bǐ sài, ds: competition; match, lb: bi3-sai4--competition}
 - {id: zh-hsk3-00035-s003, ch: 比赛, pr: bǐ sài, ds: to compete, lb: bi3-sai4--compete}
+- {id: zh-hsk3-00035-s001, ch: 比赛, pr: bǐ sài, ds: competition; match, lb: bi3-sai4--competition}
 - {id: zh-hsk2-00023-s002, ch: 必须, pr: bì xū, ds: must; have to, lb: bi4-xu1--must}
 - {id: zh-hsk2-00025-s001, ch: 变, pr: biàn, ds: to change; become different, lb: bian4--change}
 - {id: zh-hsk2-00028-s003, ch: 遍, pr: biàn, ds: measure word for doing something from beginning to end, lb: bian4--times}
@@ -92,17 +94,23 @@
 - {id: zh-hsk2026-00535-s001, ch: 冰激凌, pr: bīng jī líng, ds: ice cream, lb: bing1-ji1-ling2--icecream}
 - {id: zh-hsk4-00046-s003, ch: 冰箱, pr: bīng xiāng, ds: refrigerator, lb: bing1-xiang1--refrigerator}
 - {id: zh-hsk1-00030-s001, ch: 病人, pr: bìng rén, ds: patient; sick person, lb: bing4-ren2--patient}
+- {id: zh-hsk3-00055-s001, ch: 不必, pr: bù bì, ds: need not; do not have to, lb: bu4-bi4--unnecessary}
 - {id: zh-hsk2-00031-s001, ch: 不但, pr: bù dàn, ds: not only (followed by but also), lb: bu4-dan4--not-only}
 - {id: zh-hsk6-00063-s003, ch: 不见, pr: bù jiàn, ds: to disappear; be missing, lb: bu4-jian4--missing}
-- {id: zh-hsk1-00035-s001, ch: 不用, pr: bù yòng, ds: need not; no need to, lb: bu4-yong4--unnecessary}
-- {id: zh-hsk2-00040-s001, ch: 不同, pr: bù tóng, ds: different; not the same, lb: bu4-tong2--different}
 - {id: zh-hsk2-00035-s001, ch: 不久, pr: bù jiǔ, ds: not long; a short time, lb: bu4-jiu3--shortly}
-- {id: zh-hsk2-00041-s001, ch: 不行, pr: bù xíng, ds: not allowed; won't do, lb: bu4-xing2--unacceptable}
+- {id: zh-hsk2-00040-s001, ch: 不同, pr: bù tóng, ds: different; not the same, lb: bu4-tong2--different}
 - {id: zh-hsk2-00041-s003, ch: 不行, pr: bù xíng, ds: no good; not capable, lb: bu4-xing2--poor}
-# Syllabus row 544: 才1; adverb.
-- {id: zh-hsk2-00046-s004, ch: 才, pr: cái, ds: only then; not until, lb: cai2--only-then}
+- {id: zh-hsk2-00041-s001, ch: 不行, pr: bù xíng, ds: not allowed; won't do, lb: bu4-xing2--unacceptable}
+# Pinned dictionary sense slots retained; 不一会儿 corrects malformed legacy
+# syllable spacing/tone notation. No new identity is created for pronunciation.
+- {id: zh-hsk2-00044-s001, ch: 不一会儿, pr: bù yī huì r, ds: after a short while, lb: bu4-yi1-hui4-r5--shortly}
+- {id: zh-hsk1-00035-s001, ch: 不用, pr: bù yòng, ds: need not; no need to, lb: bu4-yong4--unnecessary}
+- {id: zh-hsk6-00070-s003, ch: 不怎么样, pr: bù zěn me yàng, ds: not particularly good; unimpressive, lb: bu4-zen3-me5-yang4--unimpressive}
+- {id: zh-grammar-00009-s001, ch: 才, pr: cái, ds: marks emphatic correction of a competing judgement, lb: cai2--emphatic-correction}
 - {id: zh-hsk2-00046-s005, ch: 才, pr: cái, ds: just now, lb: cai2--just-now}
 - {id: zh-hsk2-00046-s006, ch: 才, pr: cái, ds: only (a small amount), lb: cai2--only}
+# Syllabus row 544: 才1; adverb.
+- {id: zh-hsk2-00046-s004, ch: 才, pr: cái, ds: only then; not until, lb: cai2--only-then}
 - {id: zh-hsk2-00047-s001, ch: 菜单, pr: cài dān, ds: menu, lb: cai4-dan1--menu}
 - {id: zh-hsk2-00049-s001, ch: 参加, pr: cān jiā, ds: to take part in; participate, lb: can1-jia1--participate}
 - {id: zh-hsk2-00050-s001, ch: 草, pr: cǎo, ds: grass, lb: cao3--grass}
@@ -116,9 +124,9 @@
 - {id: zh-hsk2-00054-s001, ch: 差不多, pr: chà bu duō, ds: almost; approximately, lb: cha4-bu5-duo1--almost}
 - {id: zh-hsk2-00054-s004, ch: 差不多, pr: chà bu duō, ds: about the same, lb: cha4-bu5-duo1--similar}
 - {id: zh-hsk5-00092-s001, ch: 尝, pr: cháng, ds: to taste; try food, lb: chang2--taste}
+- {id: zh-hsk1-00040-s001, ch: 常常, pr: cháng cháng, ds: often; frequently, lb: chang2-chang2--often}
 - {id: zh-hsk2-00055-s002, ch: 常见, pr: cháng jiàn, ds: common; often seen, lb: chang2-jian4--common}
 - {id: zh-hsk2-00056-s001, ch: 常用, pr: cháng yòng, ds: commonly used, lb: chang2-yong4--common}
-- {id: zh-hsk1-00040-s001, ch: 常常, pr: cháng cháng, ds: often; frequently, lb: chang2-chang2--often}
 - {id: zh-hsk3-00079-s001, ch: 衬衫, pr: chèn shān, ds: shirt; blouse, lb: chen4-shan1--shirt}
 - {id: zh-hsk2-00063-s003, ch: 成绩, pr: chéng jì, ds: grades; academic results, lb: cheng2-ji4--grades}
 - {id: zh-hsk3-00090-s001, ch: 城市, pr: chéng shì, ds: city; town, lb: cheng2-shi4--city}
@@ -134,11 +142,11 @@
 - {id: zh-hsk2-00079-s001, ch: 词典, pr: cí diǎn, ds: dictionary, lb: ci2-dian3--dictionary}
 - {id: zh-hsk5-00141-s002, ch: 聪明, pr: cōng míng, ds: clever; intelligent, lb: cong1-ming2--clever}
 - {id: zh-hsk4-00130-s001, ch: 打扫, pr: dǎ sǎo, ds: to clean; sweep, lb: da3-sao3--clean}
-- {id: zh-hsk2-00084-s001, ch: 打算, pr: dǎ suàn, ds: to plan; intend, lb: da3-suan4--plan}
 - {id: zh-hsk2-00084-s004, ch: 打算, pr: dǎ suàn, ds: plan; intention, lb: da3-suan4--intention}
-- {id: zh-hsk3-00120-s001, ch: 大概, pr: dà gài, ds: roughly; approximately, lb: da4-gai4--roughly}
-- {id: zh-hsk3-00120-s002, ch: 大概, pr: dà gài, ds: probably, lb: da4-gai4--probably}
+- {id: zh-hsk2-00084-s001, ch: 打算, pr: dǎ suàn, ds: to plan; intend, lb: da3-suan4--plan}
 - {id: zh-hsk3-00120-s004, ch: 大概, pr: dà gài, ds: approximate; rough, lb: da4-gai4--approximate}
+- {id: zh-hsk3-00120-s002, ch: 大概, pr: dà gài, ds: probably, lb: da4-gai4--probably}
+- {id: zh-hsk3-00120-s001, ch: 大概, pr: dà gài, ds: roughly; approximately, lb: da4-gai4--roughly}
 - {id: zh-hsk2-00093-s001, ch: 大人, pr: dà ren, ds: adult; grown-up, lb: da4-ren5--adult}
 - {id: zh-hsk2-00095-s003, ch: 大小, pr: dà xiǎo, ds: size, lb: da4-xiao3--size}
 - {id: zh-hsk5-00164-s001, ch: 大熊猫, pr: dà xióng māo, ds: giant panda, lb: da4-xiong2-mao1--panda}
@@ -148,21 +156,27 @@
 - {id: zh-hsk4-00156-s004, ch: 担心, pr: dān xīn, ds: to worry, lb: dan1-xin1--worry}
 - {id: zh-hsk5-00177-s001, ch: 蛋糕, pr: dàn gāo, ds: cake, lb: dan4-gao1--cake}
 - {id: zh-hsk3-00131-s004, ch: 当然, pr: dāng rán, ds: of course; certainly, lb: dang1-ran2--certainly}
+- {id: zh-hsk1-00065-s004, ch: 到, pr: dào, ds: result complement indicating arrival or attainment, lb: dao4--attainment}
 - {id: zh-hsk2-00106-s001, ch: 到处, pr: dào chù, ds: everywhere, lb: dao4-chu4--everywhere}
-- {id: zh-hsk2-00115-s001, ch: 得, pr: dé, ds: to get; obtain, lb: de2--obtain}
 - {id: zh-hsk2-00115-s004, ch: 得, pr: dé, ds: to catch an illness, lb: de2--catch}
+- {id: zh-hsk2-00115-s001, ch: 得, pr: dé, ds: to get; obtain, lb: de2--obtain}
 - {id: zh-hsk1-00072-s001, ch: 得到, pr: dé dào, ds: to get; receive, lb: de2-dao4--receive}
-- {id: zh-hsk3-00138-s001, ch: 得分, pr: dé fēn, ds: to score points, lb: de2-fen1--score}
 - {id: zh-hsk2026-00585-s301, ch: 得分, pr: dé fēn, ds: score; points gained, lb: de2-fen1--points}
+- {id: zh-hsk3-00138-s001, ch: 得分, pr: dé fēn, ds: to score points, lb: de2-fen1--score}
 - {id: zh-hsk2-00114-s001, ch: 的话, pr: de huà, ds: if (after a condition), lb: de5-hua4--if}
 - {id: zh-hsk2-00115-s014, ch: 得, pr: děi, ds: must; have to, lb: dei3--must}
 - {id: zh-hsk2-00117-s001, ch: 灯, pr: dēng, ds: lamp; light, lb: deng1--lamp}
-- {id: zh-hsk1-00066-s003, ch: 地, pr: dì, ds: ground; land, lb: di4--ground}
 - {id: zh-hsk1-00066-s005, ch: 地, pr: dì, ds: field; farmland, lb: di4--field}
+- {id: zh-hsk1-00066-s003, ch: 地, pr: dì, ds: ground; land, lb: di4--ground}
 - {id: zh-hsk1-00067-s001, ch: 地点, pr: dì diǎn, ds: place; location, lb: di4-dian3--location}
 - {id: zh-hsk1-00068-s004, ch: 地方, pr: dì fang, ds: place; area, lb: di4-fang5--place}
 - {id: zh-hsk1-00068-s006, ch: 地方, pr: dì fang, ds: space; room, lb: di4-fang5--space}
 - {id: zh-hsk1-00070-s001, ch: 地图, pr: dì tú, ds: map, lb: di4-tu2--map}
+
+# HSK 3 extensions to earlier syllabus entries; previously taught senses omitted.
+# Syllabus row 33: 点1; noun extension; excludes earlier clock classifier and separate order-food verb.
+- {id: zh-hsk1-00078-s001, ch: 点, pr: diǎn, ds: dot; small mark, lb: dian3--dot}
+- {id: zh-hsk1-00078-s006, ch: 点, pr: diǎn, ds: point in space or time, lb: dian3--point}
 - {id: zh-hsk1-00079-s002, ch: 电, pr: diàn, ds: electricity, lb: dian4--electricity}
 - {id: zh-hsk4-00179-s001, ch: 电梯, pr: diàn tī, ds: elevator; lift, lb: dian4-ti1--elevator}
 - {id: zh-hsk2026-00595-s001, ch: 电子书, pr: diàn zǐ shū, ds: e-book, lb: dian4-zi3-shu1--ebook}
@@ -175,6 +189,7 @@
 - {id: zh-hsk2-00129-s001, ch: 懂得, pr: dǒng de, ds: to understand; know, lb: dong3-de5--understand}
 - {id: zh-hsk2-00130-s001, ch: 动物, pr: dòng wù, ds: animal, lb: dong4-wu4--animal}
 - {id: zh-hsk2-00131-s001, ch: 动物园, pr: dòng wù yuán, ds: zoo, lb: dong4-wu4-yuan2--zoo}
+- {id: zh-hsk1-00091-s003, ch: 都, pr: dōu, ds: even; for emphasis, lb: dou1--even}
 - {id: zh-hsk2-00134-s001, ch: 短, pr: duǎn, ds: short (in length or duration), lb: duan3--short}
 - {id: zh-hsk3-00155-s002, ch: 短裤, pr: duǎn kù, ds: shorts, lb: duan3-ku4--shorts}
 - {id: zh-hsk2-00136-s006, ch: 段, pr: duàn, ds: 'measure word for sections, distances, or periods of time', lb: duan4--sections}
@@ -187,8 +202,8 @@
 - {id: zh-hsk2-00146-s001, ch: 发, pr: fā, ds: to send; issue, lb: fa1--send}
 - {id: zh-hsk4-00211-s002, ch: 发烧, pr: fā shāo, ds: to have a fever, lb: fa1-shao1--fever}
 - {id: zh-hsk3-00169-s001, ch: 发生, pr: fā shēng, ds: to happen; occur, lb: fa1-sheng1--happen}
-- {id: zh-hsk2-00147-s001, ch: 发现, pr: fā xiàn, ds: to notice; become aware of, lb: fa1-xian4--notice}
 - {id: zh-hsk2-00147-s002, ch: 发现, pr: fā xiàn, ds: to discover; find, lb: fa1-xian4--discover}
+- {id: zh-hsk2-00147-s001, ch: 发现, pr: fā xiàn, ds: to notice; become aware of, lb: fa1-xian4--notice}
 - {id: zh-hsk3-00172-s003, ch: 发展, pr: fā zhǎn, ds: to develop; grow, lb: fa1-zhan3--develop}
 - {id: zh-hsk2-00149-s001, ch: 方便, pr: fāng biàn, ds: convenient, lb: fang1-bian4--convenient}
 - {id: zh-hsk2-00150-s001, ch: 方便面, pr: fāng biàn miàn, ds: instant noodles, lb: fang1-bian4-mian4--noodles}
@@ -200,9 +215,13 @@
 - {id: zh-hsk1-00106-s001, ch: 放假, pr: fàng jià, ds: to have a holiday or vacation, lb: fang4-jia4--holiday}
 - {id: zh-hsk2-00155-s001, ch: 放心, pr: fàng xīn, ds: to feel reassured; be at ease, lb: fang4-xin1--reassured}
 - {id: zh-hsk1-00107-s001, ch: 放学, pr: fàng xué, ds: to finish school for the day, lb: fang4-xue2--dismiss}
+- {id: zh-hsk1-00111-s002, ch: 分, pr: fēn, ds: to distribute; share out, lb: fen1--distribute}
+# Syllabus row 55: 分; verb and noun extensions.
+- {id: zh-hsk1-00111-s001, ch: 分, pr: fēn, ds: to divide; separate, lb: fen1--divide}
+- {id: zh-hsk1-00111-s010, ch: 分, pr: fēn, ds: point in a score, lb: fen1--point}
 - {id: zh-hsk2-00156-s001, ch: 分开, pr: fēn kāi, ds: to separate; part, lb: fen1-kai1--separate}
-- {id: zh-hsk1-00112-s001, ch: 风, pr: fēng, ds: wind, lb: feng1--wind}
 - {id: zh-hsk2-00160-s006, ch: 封, pr: fēng, ds: measure word for letters, lb: feng1--letters}
+- {id: zh-hsk1-00112-s001, ch: 风, pr: fēng, ds: wind, lb: feng1--wind}
 - {id: zh-hsk4-00247-s001, ch: 夫妻, pr: fū qī, ds: husband and wife; married couple, lb: fu1-qi1--couple}
 - {id: zh-hsk2-00161-s001, ch: 服务, pr: fú wù, ds: to serve; provide a service, lb: fu2-wu4--serve}
 - {id: zh-hsk4-00244-s002, ch: 附近, pr: fù jìn, ds: nearby area; vicinity, lb: fu4-jin4--vicinity}
@@ -211,15 +230,16 @@
 - {id: zh-hsk2-00163-s001, ch: 该, pr: gāi, ds: should; ought to, lb: gai1--should}
 - {id: zh-hsk2-00163-s007, ch: 该, pr: gāi, ds: to be someone's turn, lb: gai1--turn}
 - {id: zh-hsk1-00114-s001, ch: 干净, pr: gān jìng, ds: clean; neat, lb: gan1-jing4--clean}
-- {id: zh-hsk4-00253-s001, ch: 感兴趣, pr: gǎn xìng qù, ds: to be interested in, lb: gan3-xing4-qu4--interested}
 - {id: zh-hsk2-00166-s001, ch: 感到, pr: gǎn dào, ds: to feel; sense, lb: gan3-dao4--feel}
 - {id: zh-hsk3-00214-s001, ch: 感冒, pr: gǎn mào, ds: to catch a cold, lb: gan3-mao4--catch-cold}
 - {id: zh-hsk3-00214-s002, ch: 感冒, pr: gǎn mào, ds: a cold (illness), lb: gan3-mao4--cold}
+- {id: zh-hsk4-00253-s001, ch: 感兴趣, pr: gǎn xìng qù, ds: to be interested in, lb: gan3-xing4-qu4--interested}
 - {id: zh-hsk1-00113-s015, ch: 干, pr: gàn, ds: to do; work, lb: gan4--work}
 - {id: zh-hsk2-00172-s004, ch: 刚, pr: gāng, ds: just; only a moment ago, lb: gang1--just}
 - {id: zh-hsk2-00173-s001, ch: 刚才, pr: gāng cái, ds: just now; a moment ago, lb: gang1-cai2--recently}
 - {id: zh-hsk2-00174-s001, ch: 刚刚, pr: gāng gāng, ds: just now; very recently, lb: gang1-gang1--recently}
 - {id: zh-hsk4-00257-s001, ch: 高铁, pr: gāo tiě, ds: high-speed rail, lb: gao1-tie3--rail}
+- {id: zh-hsk1-00124-s006, ch: 跟, pr: gēn, ds: compared with; introducing a comparison reference, lb: gen1--comparison}
 - {id: zh-hsk4-00265-s001, ch: 根据, pr: gēn jù, ds: according to, lb: gen1-ju4--according}
 - {id: zh-hsk4-00265-s002, ch: 根据, pr: gēn jù, ds: to base something on, lb: gen1-ju4--base}
 - {id: zh-hsk2-00178-s005, ch: 更, pr: gèng, ds: more; even more, lb: geng4--more}
@@ -239,11 +259,13 @@
 - {id: zh-hsk7-9-01523-s001, ch: 过节, pr: guò jié, ds: to celebrate a festival, lb: guo4-jie2--celebrate}
 # Syllabus row 660: 过去2; noun; distinct from earlier motion verb.
 - {id: zh-hsk2-00200-s001, ch: 过去, pr: guò qù, ds: the past, lb: guo4-qu4--past}
+- {id: zh-hsk1-00134-s004, ch: 还, pr: hái, ds: still more; even more, lb: hai2--even-more}
+- {id: zh-hsk1-00134-s008, ch: 还, pr: hái, ds: fairly; passably, lb: hai2--fairly}
 - {id: zh-hsk2-00201-s003, ch: 海, pr: hǎi, ds: sea; ocean, lb: hai3--sea}
 - {id: zh-hsk3-00275-s001, ch: 害怕, pr: hài pà, ds: to be afraid, lb: hai4-pa4--afraid}
 - {id: zh-hsk2-00206-s001, ch: 好久, pr: hǎo jiǔ, ds: a very long time, lb: hao3-jiu3--long}
-- {id: zh-hsk2-00209-s002, ch: 好像, pr: hǎo xiàng, ds: to seem like; resemble, lb: hao3-xiang4--seem}
 - {id: zh-hsk2-00209-s001, ch: 好像, pr: hǎo xiàng, ds: as if; apparently, lb: hao3-xiang4--apparently}
+- {id: zh-hsk2-00209-s002, ch: 好像, pr: hǎo xiàng, ds: to seem like; resemble, lb: hao3-xiang4--seem}
 - {id: zh-hsk4-00304-s001, ch: 号码, pr: hào mǎ, ds: number (such as a phone or ticket number), lb: hao4-ma3--number}
 - {id: zh-hsk2-00211-s001, ch: 河, pr: hé, ds: river, lb: he2--river}
 - {id: zh-hsk2-00210-s001, ch: 合适, pr: hé shì, ds: suitable; appropriate, lb: he2-shi4--suitable}
@@ -255,13 +277,16 @@
 - {id: zh-hsk2-00220-s001, ch: 护照, pr: hù zhào, ds: passport, lb: hu4-zhao4--passport}
 - {id: zh-hsk2-00221-s001, ch: 花园, pr: huā yuán, ds: garden, lb: hua1-yuan2--garden}
 - {id: zh-hsk2-00224-s001, ch: 画家, pr: huà jiā, ds: painter; artist, lb: hua4-jia1--painter}
+- {id: zh-hsk1-00154-s005, ch: 坏, pr: huài, ds: complement expressing overwhelming degree, lb: huai4--extremely}
 - {id: zh-hsk2-00228-s001, ch: 欢迎, pr: huān yíng, ds: to welcome, lb: huan1-ying2--welcome}
-- {id: zh-hsk1-00134-s015, ch: 还, pr: huán, ds: to return; give back, lb: huan2--return}
 - {id: zh-hsk1-00134-s014, ch: 还, pr: huán, ds: to pay back; repay, lb: huan2--repay}
+- {id: zh-hsk1-00134-s015, ch: 还, pr: huán, ds: to return; give back, lb: huan2--return}
 - {id: zh-hsk3-00298-s001, ch: 环境, pr: huán jìng, ds: environment; surroundings, lb: huan2-jing4--environment}
-- {id: zh-hsk2-00227-s001, ch: 换, pr: huàn, ds: to exchange; swap, lb: huan4--exchange}
 - {id: zh-hsk2-00227-s002, ch: 换, pr: huàn, ds: to change; replace, lb: huan4--change}
+- {id: zh-hsk2-00227-s001, ch: 换, pr: huàn, ds: to exchange; swap, lb: huan4--exchange}
 - {id: zh-hsk2-00230-s001, ch: 黄色, pr: huáng sè, ds: yellow (color), lb: huang2-se4--yellow}
+# Syllabus row 81: 回; classifier extension; earlier return verb omitted.
+- {id: zh-hsk1-00155-s008, ch: 回, pr: huí, ds: measure word for times or occurrences, lb: hui2--times}
 - {id: zh-hsk1-00156-s001, ch: 回答, pr: huí dá, ds: to answer; reply, lb: hui2-da2--answer}
 # Syllabus row 683: 会2; noun; distinct from earlier can verb.
 - {id: zh-hsk1-00161-s004, ch: 会, pr: huì, ds: meeting; gathering, lb: hui4--meeting}
@@ -271,14 +296,16 @@
 - {id: zh-hsk2-00236-s002, ch: 鸡, pr: jī, ds: chicken, lb: ji1--chicken}
 - {id: zh-hsk4-00345-s001, ch: 几乎, pr: jī hū, ds: almost; nearly, lb: ji1-hu1--almost}
 - {id: zh-hsk2-00235-s001, ch: 机会, pr: jī huì, ds: opportunity; chance, lb: ji1-hui4--opportunity}
+- {id: zh-hsk2-00238-s005, ch: 急, pr: jí, ds: to feel anxious; be in a hurry, lb: ji2--anxious}
 - {id: zh-hsk4-00341-s001, ch: 极, pr: jí, ds: extremely, lb: ji2--extremely}
 - {id: zh-hsk2-00238-s001, ch: 急, pr: jí, ds: urgent; pressing, lb: ji2--urgent}
-- {id: zh-hsk2-00238-s005, ch: 急, pr: jí, ds: to feel anxious; be in a hurry, lb: ji2--anxious}
 - {id: zh-hsk1-00167-s001, ch: 记, pr: jì, ds: to write down; record, lb: ji4--record}
 - {id: zh-hsk1-00167-s004, ch: 记, pr: jì, ds: to remember; memorize, lb: ji4--remember}
 - {id: zh-hsk4-00349-s002, ch: 季, pr: jì, ds: season, lb: ji4--season}
 - {id: zh-hsk4-00351-s002, ch: 季节, pr: jì jié, ds: season, lb: ji4-jie2--season}
 - {id: zh-hsk2-00241-s003, ch: 加, pr: jiā, ds: to add, lb: jia1--add}
+# Syllabus row 86: 家; suffix extension; earlier home/family nouns and classifier omitted.
+- {id: zh-hsk1-00170-s006, ch: 家, pr: jiā, ds: suffix for an expert or specialist, lb: jia1--specialist}
 - {id: zh-hsk2-00246-s001, ch: 假期, pr: jià qī, ds: holiday; vacation, lb: jia4-qi1--vacation}
 - {id: zh-hsk3-00331-s001, ch: 坚持, pr: jiān chí, ds: to keep at; persevere with, lb: jian1-chi2--persist}
 - {id: zh-hsk2-00247-s002, ch: 检查, pr: jiǎn chá, ds: to check; examine, lb: jian3-cha2--check}
@@ -286,16 +313,16 @@
 - {id: zh-hsk2026-00700-s001, ch: 检票, pr: jiǎn piào, ds: to check tickets, lb: jian3-piao4--tickets}
 - {id: zh-hsk2-00251-s002, ch: 健康, pr: jiàn kāng, ds: healthy, lb: jian4-kang1--healthy}
 - {id: zh-hsk1-00175-s001, ch: 见面, pr: jiàn miàn, ds: to meet; see each other, lb: jian4-mian4--meet}
-- {id: zh-hsk2-00252-s001, ch: 讲, pr: jiǎng, ds: to speak; tell, lb: jiang3--speak}
 - {id: zh-hsk2-00252-s002, ch: 讲, pr: jiǎng, ds: to explain, lb: jiang3--explain}
+- {id: zh-hsk2-00252-s001, ch: 讲, pr: jiǎng, ds: to speak; tell, lb: jiang3--speak}
 - {id: zh-hsk2-00258-s006, ch: 角, pr: jiǎo, ds: one tenth of a yuan, lb: jiao3--dime}
 - {id: zh-hsk2-00261-s001, ch: 脚, pr: jiǎo, ds: foot, lb: jiao3--foot}
 - {id: zh-hsk2-00267-s002, ch: 接, pr: jiē, ds: to answer the phone, lb: jie1--answer}
-- {id: zh-hsk2-00267-s003, ch: 接, pr: jiē, ds: to meet or pick someone up, lb: jie1--meet}
 - {id: zh-hsk2-00267-s005, ch: 接, pr: jiē, ds: to catch; receive something handed over, lb: jie1--catch}
+- {id: zh-hsk2-00267-s003, ch: 接, pr: jiē, ds: to meet or pick someone up, lb: jie1--meet}
 - {id: zh-hsk2-00272-s001, ch: 街, pr: jiē, ds: street, lb: jie1--street}
-- {id: zh-hsk2-00273-s007, ch: 节, pr: jié, ds: measure word for lessons or sections, lb: jie2--sections}
 - {id: zh-hsk2-00273-s004, ch: 节, pr: jié, ds: festival; holiday, lb: jie2--festival}
+- {id: zh-hsk2-00273-s007, ch: 节, pr: jié, ds: measure word for lessons or sections, lb: jie2--sections}
 - {id: zh-hsk3-00355-s002, ch: 结婚, pr: jié hūn, ds: to get married, lb: jie2-hun1--marry}
 - {id: zh-hsk2-00274-s001, ch: 节目, pr: jié mù, ds: program; show, lb: jie2-mu4--program}
 - {id: zh-hsk2-00275-s001, ch: 节日, pr: jié rì, ds: holiday; festival, lb: jie2-ri4--holiday}
@@ -305,11 +332,11 @@
 - {id: zh-hsk2-00277-s002, ch: 借, pr: jiè, ds: to borrow, lb: jie4--borrow}
 - {id: zh-hsk2-00277-s001, ch: 借, pr: jiè, ds: to lend, lb: jie4--lend}
 - {id: zh-hsk2-00279-s002, ch: 斤, pr: jīn, ds: jin; half a kilogram in mainland China, lb: jin1--jin}
-- {id: zh-hsk2-00284-s001, ch: 经过, pr: jīng guò, ds: to pass by; go through, lb: jing1-guo4--pass}
 - {id: zh-hsk2-00284-s003, ch: 经过, pr: jīng guò, ds: course of events; what happened, lb: jing1-guo4--events}
+- {id: zh-hsk2-00284-s001, ch: 经过, pr: jīng guò, ds: to pass by; go through, lb: jing1-guo4--pass}
 - {id: zh-hsk2-00285-s001, ch: 经理, pr: jīng lǐ, ds: manager, lb: jing1-li3--manager}
-- {id: zh-hsk3-00382-s001, ch: 久, pr: jiǔ, ds: long-lasting; long in duration, lb: jiu3--long}
 - {id: zh-hsk2-00286-s004, ch: 酒, pr: jiǔ, ds: alcohol; alcoholic drink, lb: jiu3--alcohol}
+- {id: zh-hsk3-00382-s001, ch: 久, pr: jiǔ, ds: long-lasting; long in duration, lb: jiu3--long}
 - {id: zh-hsk3-00383-s001, ch: 旧, pr: jiù, ds: old; used rather than new, lb: jiu4--old}
 - {id: zh-hsk2-00292-s004, ch: 句, pr: jù, ds: measure word for sentences or lines, lb: ju4--sentences}
 - {id: zh-hsk2-00293-s001, ch: 句子, pr: jù zi, ds: sentence, lb: ju4-zi5--sentence}
@@ -317,43 +344,48 @@
 - {id: zh-hsk3-00392-s003, ch: 决定, pr: jué dìng, ds: decision, lb: jue2-ding4--decision}
 - {id: zh-hsk2-00294-s004, ch: 卡, pr: kǎ, ds: card, lb: ka3--card}
 - {id: zh-hsk4-00414-s001, ch: 开花, pr: kāi huā, ds: to bloom; blossom, lb: kai1-hua1--bloom}
-- {id: zh-hsk1-00192-s001, ch: 开会, pr: kāi huì, ds: to hold a meeting, lb: kai1-hui4--meet}
 - {id: zh-hsk1-00192-s002, ch: 开会, pr: kāi huì, ds: to attend a meeting, lb: kai1-hui4--attend}
+- {id: zh-hsk1-00192-s001, ch: 开会, pr: kāi huì, ds: to hold a meeting, lb: kai1-hui4--meet}
 - {id: zh-hsk2-00295-s002, ch: 开机, pr: kāi jī, ds: to start up a computer or device, lb: kai1-ji1--startup}
 - {id: zh-hsk2-00296-s001, ch: 开心, pr: kāi xīn, ds: happy; cheerful, lb: kai1-xin1--happy}
 - {id: zh-hsk4-00417-s002, ch: 看来, pr: kàn lái, ds: "it seems; it appears, from available indications or a stated person's viewpoint", lb: kan4-lai2--seem}
+- {id: zh-hsk3-00402-s004, ch: 看起来, pr: kàn qǐ lai, ds: to appear; look as if, lb: kan4-qi3-lai5--appear}
+- {id: zh-hsk3-00403-s002, ch: 看上去, pr: kàn shang qu, ds: it seems; appears, lb: kan4-shang5-qu5--appear}
 - {id: zh-hsk2026-00731-s301, ch: 可, pr: kě, ds: but; however, lb: ke3--but}
 - {id: zh-hsk1-00200-s001, ch: 渴, pr: kě, ds: thirsty, lb: ke3--thirsty}
 - {id: zh-hsk2-00304-s002, ch: 可爱, pr: kě ài, ds: cute; lovable, lb: ke3-ai4--cute}
 - {id: zh-hsk2-00307-s001, ch: 可是, pr: kě shì, ds: but; however, lb: ke3-shi4--but}
 - {id: zh-hsk2-00310-s001, ch: 刻, pr: kè, ds: a quarter of an hour, lb: ke4--quarter}
 - {id: zh-hsk1-00202-s001, ch: 课本, pr: kè běn, ds: textbook, lb: ke4-ben3--textbook}
-- {id: zh-hsk2-00311-s002, ch: 客人, pr: kè rén, ds: guest; visitor, lb: ke4-ren2--guest}
 - {id: zh-hsk2-00311-s003, ch: 客人, pr: kè rén, ds: customer; client, lb: ke4-ren2--customer}
+- {id: zh-hsk2-00311-s002, ch: 客人, pr: kè rén, ds: guest; visitor, lb: ke4-ren2--guest}
 - {id: zh-hsk1-00203-s001, ch: 课文, pr: kè wén, ds: lesson text; reading passage, lb: ke4-wen2--text}
 - {id: zh-hsk3-00412-s002, ch: 空调, pr: kōng tiáo, ds: air conditioner, lb: kong1-tiao2--air-conditioner}
+# Additional grammatical uses, not extra numbered official vocabulary rows.
+- {id: zh-hsk1-00204-s003, ch: 口, pr: kǒu, ds: measure word for bites or mouthfuls, lb: kou3--mouthfuls}
 - {id: zh-hsk2-00314-s001, ch: 哭, pr: kū, ds: to cry; weep, lb: ku1--cry}
 - {id: zh-hsk2-00319-s001, ch: 筷子, pr: kuài zi, ds: chopsticks, lb: kuai4-zi5--chopsticks}
 - {id: zh-hsk4-00430-s001, ch: 矿泉水, pr: kuàng quán shuǐ, ds: mineral water, lb: kuang4-quan2-shui3--mineral-water}
+- {id: zh-grammar-00010-s001, ch: 来说, pr: lái shuō, ds: speaking of; from the stated reference perspective, lb: lai2-shuo1--perspective}
 - {id: zh-hsk2-00321-s001, ch: 来自, pr: lái zì, ds: to come from, lb: lai2-zi4--from}
 - {id: zh-hsk2-00322-s002, ch: 蓝, pr: lán, ds: blue, lb: lan2--blue}
-- {id: zh-hsk1-00209-s002, ch: 老, pr: lǎo, ds: old; elderly, lb: lao3--old}
-- {id: zh-hsk1-00209-s005, ch: 老, pr: lǎo, ds: long-standing; old (of a relationship), lb: lao3--longstanding}
 - {id: zh-hsk1-00209-s001, ch: 老, pr: lǎo, ds: familiar prefix before a surname or family birth-order number, lb: lao3--familiar}
+- {id: zh-hsk1-00209-s005, ch: 老, pr: lǎo, ds: long-standing; old (of a relationship), lb: lao3--longstanding}
+- {id: zh-hsk1-00209-s002, ch: 老, pr: lǎo, ds: old; elderly, lb: lao3--old}
 - {id: zh-hsk1-00210-s001, ch: 老人, pr: lǎo rén, ds: elderly person; the elderly, lb: lao3-ren2--elderly}
 - {id: zh-hsk2-00329-s001, ch: 离开, pr: lí kāi, ds: to leave; depart, lb: li2-kai1--leave}
 - {id: zh-hsk2-00330-s001, ch: 礼物, pr: lǐ wù, ds: gift; present, lb: li3-wu4--gift}
 - {id: zh-hsk4-00454-s001, ch: 历史, pr: lì shǐ, ds: history, lb: li4-shi3--history}
 - {id: zh-hsk2-00335-s001, ch: 脸, pr: liǎn, ds: face, lb: lian3--face}
 - {id: zh-hsk2-00336-s001, ch: 练, pr: liàn, ds: to practice; train, lb: lian4--practice}
-- {id: zh-hsk2-00337-s001, ch: 练习, pr: liàn xí, ds: to practice, lb: lian4-xi2--practice}
 - {id: zh-hsk2-00337-s002, ch: 练习, pr: liàn xí, ds: exercise; practice task, lb: lian4-xi2--exercise}
+- {id: zh-hsk2-00337-s001, ch: 练习, pr: liàn xí, ds: to practice, lb: lian4-xi2--practice}
 - {id: zh-hsk2-00339-s002, ch: 凉快, pr: liáng kuai, ds: pleasantly cool, lb: liang2-kuai5--cool}
 - {id: zh-hsk2-00341-s001, ch: 辆, pr: liàng, ds: measure word for vehicles, lb: liang4--vehicles}
 - {id: zh-hsk6-00530-s001, ch: 聊, pr: liáo, ds: to chat, lb: liao2--chat}
 - {id: zh-hsk6-00531-s001, ch: 聊天儿, pr: liáo tiān r, ds: to chat, lb: liao2-tian1-r5--chat}
-- {id: zh-hsk4-00446-s001, ch: 了解, pr: liǎo jiě, ds: to understand; know about, lb: liao3-jie3--understand}
 - {id: zh-hsk4-00446-s003, ch: 了解, pr: liǎo jiě, ds: to find out; learn about, lb: liao3-jie3--learn}
+- {id: zh-hsk4-00446-s001, ch: 了解, pr: liǎo jiě, ds: to understand; know about, lb: liao3-jie3--understand}
 - {id: zh-hsk5-00474-s001, ch: 邻居, pr: lín jū, ds: neighbor, lb: lin2-ju1--neighbor}
 - {id: zh-hsk3-00452-s001, ch: 留学, pr: liú xué, ds: to study abroad, lb: liu2-xue2--study-abroad}
 - {id: zh-hsk2-00348-s001, ch: 留学生, pr: liú xué shēng, ds: international student; student studying abroad, lb: liu2-xue2-sheng1--student}
@@ -371,27 +403,29 @@
 - {id: zh-hsk1-00250-s004, ch: 明白, pr: míng bai, ds: to understand; realize, lb: ming2-bai5--understand}
 - {id: zh-hsk2-00364-s001, ch: 名单, pr: míng dān, ds: list of names, lb: ming2-dan1--names}
 - {id: zh-hsk4-00506-s002, ch: 名人, pr: míng rén, ds: famous person; celebrity, lb: ming2-ren2--celebrity}
-- {id: zh-hsk1-00270-s002, ch: 南, pr: nán, ds: south, lb: nan2--south}
 - {id: zh-hsk1-00272-s001, ch: 难, pr: nán, ds: difficult; hard to do, lb: nan2--difficult}
+- {id: zh-hsk1-00270-s002, ch: 南, pr: nán, ds: south, lb: nan2--south}
 - {id: zh-hsk2-00374-s002, ch: 南方, pr: nán fāng, ds: the south; southern part of a country, lb: nan2-fang1--south}
 - {id: zh-hsk2-00375-s001, ch: 难过, pr: nán guò, ds: sad; upset, lb: nan2-guo4--sad}
 - {id: zh-hsk2-00376-s001, ch: 难看, pr: nán kàn, ds: ugly; unattractive, lb: nan2-kan4--ugly}
 - {id: zh-hsk1-00268-s001, ch: 男人, pr: nán rén, ds: man; men, lb: nan2-ren2--man}
 - {id: zh-hsk1-00269-s001, ch: 男生, pr: nán shēng, ds: male student; boy, lb: nan2-sheng1--boy}
 - {id: zh-hsk2-00378-s001, ch: 难题, pr: nán tí, ds: difficult problem, lb: nan2-ti2--problem}
-- {id: zh-hsk2-00379-s001, ch: 难听, pr: nán tīng, ds: unpleasant to hear, lb: nan2-ting1--unpleasant}
 - {id: zh-hsk2-00379-s004, ch: 难听, pr: nán tīng, ds: offensive; hurtful (of words), lb: nan2-ting1--offensive}
+- {id: zh-hsk2-00379-s001, ch: 难听, pr: nán tīng, ds: unpleasant to hear, lb: nan2-ting1--unpleasant}
+- {id: zh-hsk1-00273-s005, ch: 呢, pr: ne, ds: particle expressing strong affirmation, lb: ne5--affirmation}
 - {id: zh-hsk2-00381-s001, ch: 年级, pr: nián jí, ds: grade; year at school, lb: nian2-ji2--grade}
 - {id: zh-hsk2-00382-s001, ch: 年轻, pr: nián qīng, ds: young, lb: nian2-qing1--young}
 - {id: zh-hsk3-00504-s003, ch: 牛, pr: niú, ds: cow; cattle, lb: niu2--cow}
-- {id: zh-hsk2-00385-s001, ch: 努力, pr: nǔ lì, ds: to make an effort; try hard, lb: nu3-li4--strive}
 - {id: zh-hsk2-00385-s002, ch: 努力, pr: nǔ lì, ds: hard-working, lb: nu3-li4--diligent}
+- {id: zh-hsk2-00385-s001, ch: 努力, pr: nǔ lì, ds: to make an effort; try hard, lb: nu3-li4--strive}
 - {id: zh-hsk1-00284-s001, ch: 女人, pr: nǚ rén, ds: woman, lb: nv3-ren2--woman}
 - {id: zh-hsk1-00285-s001, ch: 女生, pr: nǚ shēng, ds: female student; girl, lb: nv3-sheng1--girl}
 - {id: zh-hsk2-00386-s002, ch: 爬, pr: pá, ds: to climb, lb: pa2--climb}
 - {id: zh-hsk2-00386-s001, ch: 爬, pr: pá, ds: to crawl, lb: pa2--crawl}
 - {id: zh-hsk2-00388-s002, ch: 怕, pr: pà, ds: to be afraid; fear, lb: pa4--afraid}
 - {id: zh-hsk4-00526-s001, ch: 拍照, pr: pāi zhào, ds: to take a photo, lb: pai1-zhao4--photograph}
+- {id: zh-hsk4-00529-s012, ch: 盘, pr: pán, ds: measure word for platefuls of food, lb: pan2--platefuls}
 - {id: zh-hsk4-00530-s002, ch: 盘子, pr: pán zi, ds: plate; dish, lb: pan2-zi5--plate}
 - {id: zh-hsk3-00515-s003, ch: 胖, pr: pàng, ds: fat; plump, lb: pang4--fat}
 - {id: zh-hsk3-00523-s001, ch: 啤酒, pr: pí jiǔ, ds: beer, lb: pi2-jiu3--beer}
@@ -401,9 +435,14 @@
 - {id: zh-hsk3-00535-s001, ch: 奇怪, pr: qí guài, ds: strange; odd, lb: qi2-guai4--strange}
 - {id: zh-hsk3-00534-s001, ch: 其实, pr: qí shí, ds: actually; in fact, lb: qi2-shi2--actually}
 - {id: zh-hsk2-00407-s001, ch: 其他, pr: qí tā, ds: other; the others, lb: qi2-ta1--other}
+- {id: zh-grammar-00016-s001, ch: 起, pr: qǐ, ds: complement evoking or bringing something into a resulting state, lb: qi3--result-state}
 - {id: zh-hsk1-00291-s001, ch: 起, pr: qǐ, ds: to rise; get up, lb: qi3--rise}
 - {id: zh-hsk1-00291-s005, ch: 起, pr: qǐ, ds: to start; begin, lb: qi3--start}
+- {id: zh-hsk1-00291-s013, ch: 起, pr: qǐ, ds: starting from a stated boundary, lb: qi3--starting-from}
 - {id: zh-hsk2-00411-s001, ch: 起飞, pr: qǐ fēi, ds: to take off (of an aircraft), lb: qi3-fei1--takeoff}
+# Citation variants follow the retained whole-expression senses: onset 起来
+# uses documented qǐ lai, continuation 下去 xià qù, appearance 看上去 kàn shang qu.
+- {id: zh-hsk1-00293-s004, ch: 起来, pr: qǐ lai, ds: beginning and continuation of an activity, lb: qi3-lai5--start}
 - {id: zh-hsk1-00294-s001, ch: 汽车, pr: qì chē, ds: car; automobile, lb: qi4-che1--car}
 - {id: zh-hsk6-00629-s001, ch: 铅笔, pr: qiān bǐ, ds: pencil, lb: qian1-bi3--pencil}
 - {id: zh-hsk2-00416-s001, ch: 前年, pr: qián nián, ds: the year before last, lb: qian2-nian2--year-before-last}
@@ -427,30 +466,33 @@
 - {id: zh-hsk4-00589-s001, ch: 扫, pr: sǎo, ds: to sweep, lb: sao3--sweep}
 - {id: zh-hsk3-00594-s001, ch: 沙发, pr: shā fā, ds: sofa; couch, lb: sha1-fa1--sofa}
 - {id: zh-hsk1-00316-s002, ch: 山, pr: shān, ds: mountain; hill, lb: shan1--mountain}
+- {id: zh-grammar-00013-s001, ch: 上, pr: shàng, ds: result complement marking attachment or closure or contact, lb: shang4--attachment}
+- {id: zh-grammar-00014-s001, ch: 上, pr: shàng, ds: complement marking entry into an activity or state, lb: shang4--engagement}
+- {id: zh-grammar-00011-s001, ch: 上, pr: shàng, ds: in respect of an abstract domain, lb: shang4--respect}
 - {id: zh-hsk3-00604-s002, ch: 上衣, pr: shàng yī, ds: top; upper-body outer garment, lb: shang4-yi1--top}
 - {id: zh-hsk2026-00825-s301, ch: 勺子, pr: sháo zi, ds: spoon, lb: shao2-zi5--spoon}
 - {id: zh-hsk2-00456-s001, ch: 身边, pr: shēn biān, ds: at one's side; around someone, lb: shen1-bian1--beside}
 - {id: zh-hsk4-00609-s001, ch: 身高, pr: shēn gāo, ds: a person's height, lb: shen1-gao1--height}
 - {id: zh-hsk5-00667-s001, ch: 声, pr: shēng, ds: sound; voice, lb: sheng1--sound}
 - {id: zh-hsk5-00667-s006, ch: 声, pr: shēng, ds: measure word for sounds or utterances, lb: sheng1--sounds}
-- {id: zh-hsk2-00460-s001, ch: 生活, pr: shēng huó, ds: to live; lead a life, lb: sheng1-huo2--live}
 - {id: zh-hsk2-00460-s002, ch: 生活, pr: shēng huó, ds: life; everyday living, lb: sheng1-huo2--life}
+- {id: zh-hsk2-00460-s001, ch: 生活, pr: shēng huó, ds: to live; lead a life, lb: sheng1-huo2--live}
 - {id: zh-hsk1-00333-s001, ch: 生气, pr: shēng qì, ds: to get angry, lb: sheng1-qi4--angry}
 - {id: zh-hsk2-00461-s002, ch: 声音, pr: shēng yīn, ds: sound, lb: sheng1-yin1--sound}
 - {id: zh-hsk2-00461-s001, ch: 声音, pr: shēng yīn, ds: voice, lb: sheng1-yin1--voice}
 - {id: zh-hsk2-00470-s002, ch: 市, pr: shì, ds: city, lb: shi4--city}
-- {id: zh-hsk1-00339-s002, ch: 试, pr: shì, ds: to try; test, lb: shi4--try}
 - {id: zh-hsk3-00648-s002, ch: 室, pr: shì, ds: room, lb: shi4--room}
+- {id: zh-hsk1-00339-s002, ch: 试, pr: shì, ds: to try; test, lb: shi4--try}
 - {id: zh-hsk3-00638-s001, ch: 世界, pr: shì jiè, ds: world, lb: shi4-jie4--world}
-- {id: zh-hsk2-00473-s001, ch: 收, pr: shōu, ds: to receive; collect, lb: shou1--receive}
 - {id: zh-hsk2-00473-s004, ch: 收, pr: shōu, ds: to put away; tidy up, lb: shou1--put-away}
+- {id: zh-hsk2-00473-s001, ch: 收, pr: shōu, ds: to receive; collect, lb: shou1--receive}
 - {id: zh-hsk2-00474-s001, ch: 收到, pr: shōu dào, ds: to receive, lb: shou1-dao4--receive}
-- {id: zh-hsk3-00660-s001, ch: 受, pr: shòu, ds: to receive; undergo, lb: shou4--receive}
 - {id: zh-hsk3-00660-s005, ch: 受, pr: shòu, ds: to bear; endure, lb: shou4--endure}
+- {id: zh-hsk3-00660-s001, ch: 受, pr: shòu, ds: to receive; undergo, lb: shou4--receive}
 - {id: zh-hsk5-00695-s001, ch: 瘦, pr: shòu, ds: thin; slim, lb: shou4--thin}
 - {id: zh-hsk2-00477-s001, ch: 受到, pr: shòu dào, ds: 'to receive; be given praise, help, or other treatment', lb: shou4-dao4--receive}
-- {id: zh-hsk4-00643-s001, ch: 叔叔, pr: shū shu, ds: uncle (father's younger brother), lb: shu1-shu5--uncle}
 - {id: zh-hsk4-00643-s002, ch: 叔叔, pr: shū shu, ds: uncle (address for a man of one's parents' generation), lb: shu1-shu5--address}
+- {id: zh-hsk4-00643-s001, ch: 叔叔, pr: shū shu, ds: uncle (father's younger brother), lb: shu1-shu5--uncle}
 - {id: zh-hsk1-00347-s001, ch: 树, pr: shù, ds: tree, lb: shu4--tree}
 - {id: zh-hsklegacy-07734-s001, ch: 数学, pr: shù xué, ds: mathematics, lb: shu4-xue2--math}
 - {id: zh-hsk4-00651-s001, ch: 刷, pr: shuā, ds: to brush; scrub, lb: shua1--brush}
@@ -458,11 +500,16 @@
 - {id: zh-hsk2-00482-s001, ch: 水平, pr: shuǐ píng, ds: level; standard of ability, lb: shui3-ping2--level}
 - {id: zh-hsk2-00485-s001, ch: 司机, pr: sī jī, ds: driver, lb: si1-ji1--driver}
 - {id: zh-hsk7-9-03893-s001, ch: 四季, pr: sì jì, ds: the four seasons, lb: si4-ji4--seasons}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 389-391.
+# 所/班 measures move unchanged from HSK 5, 盘 platefuls from HSK 6,
+# and 不必 from HSK 4. 好多/常 now occur at HSK 2 for its grammar.
+- {id: zh-hsk3-00676-s003, ch: 所, pr: suǒ, ds: measure word for buildings or institutions, lb: suo3--institutions}
 - {id: zh-hsk2-00497-s001, ch: 太阳, pr: tài yáng, ds: sun, lb: tai4-yang2--sun}
-- {id: zh-hsk3-00683-s001, ch: 糖, pr: táng, ds: sugar, lb: tang2--sugar}
 - {id: zh-hsk3-00683-s003, ch: 糖, pr: táng, ds: candy; sweets, lb: tang2--candy}
-- {id: zh-hsk2-00501-s001, ch: 特别, pr: tè bié, ds: special; unusual, lb: te4-bie2--special}
+- {id: zh-hsk3-00683-s001, ch: 糖, pr: táng, ds: sugar, lb: tang2--sugar}
 - {id: zh-hsk2-00501-s002, ch: 特别, pr: tè bié, ds: especially; very, lb: te4-bie2--especially}
+- {id: zh-hsk2-00501-s001, ch: 特别, pr: tè bié, ds: special; unusual, lb: te4-bie2--special}
 - {id: zh-hsk2-00507-s003, ch: 提高, pr: tí gāo, ds: to improve; raise the level of, lb: ti2-gao1--improve}
 - {id: zh-hsk2-00509-s001, ch: 体育, pr: tǐ yù, ds: sports; physical education, lb: ti3-yu4--sports}
 - {id: zh-hsk2-00511-s002, ch: 体育馆, pr: tǐ yù guǎn, ds: gymnasium; indoor sports hall, lb: ti3-yu4-guan3--gymnasium}
@@ -472,6 +519,8 @@
 - {id: zh-hsk2-00520-s008, ch: 挺, pr: tǐng, ds: quite; rather, lb: ting3--quite}
 - {id: zh-hsk2-00526-s001, ch: 同事, pr: tóng shì, ds: colleague; co-worker, lb: tong2-shi4--colleague}
 - {id: zh-hsk3-00704-s001, ch: 同意, pr: tóng yì, ds: to agree; consent, lb: tong2-yi4--agree}
+# Syllabus row 445: 头; classifier extension; earlier head noun and HSK5 adjective omitted.
+- {id: zh-hsk2-00528-s014, ch: 头, pr: tóu, ds: measure word for livestock or large animals, lb: tou2--livestock}
 - {id: zh-hsk2-00529-s001, ch: 头发, pr: tóu fa, ds: hair (on the head), lb: tou2-fa5--hair}
 - {id: zh-hsk3-00709-s001, ch: 突然, pr: tū rán, ds: sudden; unexpected, lb: tu1-ran2--sudden}
 - {id: zh-hsk1-00370-s001, ch: 图书馆, pr: tú shū guǎn, ds: library, lb: tu2-shu1-guan3--library}
@@ -482,37 +531,43 @@
 - {id: zh-hsk1-00374-s001, ch: 外语, pr: wài yǔ, ds: foreign language, lb: wai4-yu3--language}
 - {id: zh-hsk2-00536-s001, ch: 完成, pr: wán chéng, ds: to complete; finish, lb: wan2-cheng2--complete}
 - {id: zh-hsk2-00542-s001, ch: 碗, pr: wǎn, ds: bowl, lb: wan3--bowl}
+- {id: zh-grammar-00008-s001, ch: 碗, pr: wǎn, ds: measure word for bowlfuls of food or drink, lb: wan3--bowlfuls}
 - {id: zh-hsk4-00718-s001, ch: 晚点, pr: wǎn diǎn, ds: to run late; be delayed (of transport), lb: wan3-dian3--delayed}
 - {id: zh-hsk2-00541-s001, ch: 晚会, pr: wǎn huì, ds: evening party; evening show, lb: wan3-hui4--party}
 - {id: zh-hsk2-00545-s001, ch: 网球, pr: wǎng qiú, ds: tennis, lb: wang3-qiu2--tennis}
 - {id: zh-hsk2-00546-s001, ch: 网站, pr: wǎng zhàn, ds: website, lb: wang3-zhan4--website}
 - {id: zh-hsk1-00382-s001, ch: 忘记, pr: wàng jì, ds: to forget, lb: wang4-ji4--forget}
+- {id: zh-hsk2-00548-s010, ch: 为, pr: wèi, ds: because of; on account of, lb: wei4--because}
 - {id: zh-hsk2-00548-s011, ch: 为, pr: wèi, ds: for; on behalf of, lb: wei4--for}
 - {id: zh-hsk3-00737-s001, ch: 为了, pr: wèi le, ds: in order to; for the sake of, lb: wei4-le5--purpose}
 - {id: zh-hsk3-00736-s001, ch: 卫生间, pr: wèi shēng jiān, ds: bathroom; restroom, lb: wei4-sheng1-jian1--bathroom}
 - {id: zh-hsk3-00739-s001, ch: 文化, pr: wén huà, ds: culture, lb: wen2-hua4--culture}
-- {id: zh-hsk3-00746-s002, ch: 屋子, pr: wū zi, ds: room, lb: wu1-zi5--room}
 - {id: zh-hsk3-00746-s001, ch: 屋子, pr: wū zi, ds: house, lb: wu1-zi5--house}
+- {id: zh-hsk3-00746-s002, ch: 屋子, pr: wū zi, ds: room, lb: wu1-zi5--room}
 - {id: zh-hsk1-00391-s003, ch: 西, pr: xī, ds: west, lb: xi1--west}
 - {id: zh-hsk2-00562-s002, ch: 西北, pr: xī běi, ds: northwest, lb: xi1-bei3--northwest}
-- {id: zh-hsk2-00564-s003, ch: 西方, pr: xī fāng, ds: Western countries; the West, lb: xi1-fang1--west}
 - {id: zh-hsk2026-00882-s301, ch: 西方, pr: xī fāng, ds: west; the western direction, lb: xi1-fang1--direction}
+- {id: zh-hsk2-00564-s003, ch: 西方, pr: xī fāng, ds: Western countries; the West, lb: xi1-fang1--west}
 - {id: zh-hsk4-00758-s001, ch: 西瓜, pr: xī guā, ds: watermelon, lb: xi1-gua1--watermelon}
 - {id: zh-hsk2-00565-s001, ch: 西南, pr: xī nán, ds: southwest, lb: xi1-nan2--southwest}
-- {id: zh-hsk2-00559-s001, ch: 习惯, pr: xí guàn, ds: habit; custom, lb: xi2-guan4--habit}
 - {id: zh-hsk2-00559-s004, ch: 习惯, pr: xí guàn, ds: to be used to; get accustomed to, lb: xi2-guan4--accustomed}
+- {id: zh-hsk2-00559-s001, ch: 习惯, pr: xí guàn, ds: habit; custom, lb: xi2-guan4--habit}
 - {id: zh-hsk4-00752-s001, ch: 喜爱, pr: xǐ ài, ds: to love; be fond of, lb: xi3-ai4--like}
 - {id: zh-hsk2-00560-s001, ch: 洗衣机, pr: xǐ yī jī, ds: washing machine, lb: xi3-yi1-ji1--washer}
 - {id: zh-hsk2-00561-s001, ch: 洗澡, pr: xǐ zǎo, ds: to bathe; take a shower, lb: xi3-zao3--bathe}
+- {id: zh-grammar-00012-s001, ch: 下, pr: xià, ds: under stated conditions or influence, lb: xia4--circumstances}
+- {id: zh-grammar-00015-s001, ch: 下, pr: xià, ds: complement marking retention or setting something down, lb: xia4--retention}
+- {id: zh-hsk3-00753-s004, ch: 下来, pr: xià lai, ds: continuation from the past to the reference point, lb: xia4-lai5--continuation}
+- {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: continue an action onward, lb: xia4-qu4--continue}
 - {id: zh-hsk2-00569-s001, ch: 夏天, pr: xià tiān, ds: summer, lb: xia4-tian1--summer}
 - {id: zh-hsk1-00401-s005, ch: 先, pr: xiān, ds: first; before doing something else, lb: xian1--first}
 - {id: zh-hsk3-00773-s001, ch: 香蕉, pr: xiāng jiāo, ds: banana, lb: xiang1-jiao1--banana}
 - {id: zh-hsk2-00572-s001, ch: 相信, pr: xiāng xìn, ds: to believe; trust, lb: xiang1-xin4--believe}
-- {id: zh-hsk4-00775-s001, ch: 箱子, pr: xiāng zi, ds: suitcase, lb: xiang1-zi5--suitcase}
 - {id: zh-hsk4-00775-s003, ch: 箱子, pr: xiāng zi, ds: box; chest, lb: xiang1-zi5--box}
-- {id: zh-hsk2-00577-s002, ch: 向, pr: xiàng, ds: toward; to, lb: xiang4--toward}
+- {id: zh-hsk4-00775-s001, ch: 箱子, pr: xiāng zi, ds: suitcase, lb: xiang1-zi5--suitcase}
 - {id: zh-hsk2-00577-s003, ch: 向, pr: xiàng, ds: to face; be oriented toward, lb: xiang4--face}
 - {id: zh-hsk2-00578-s001, ch: 像, pr: xiàng, ds: to resemble; be like, lb: xiang4--resemble}
+- {id: zh-hsk2-00577-s002, ch: 向, pr: xiàng, ds: toward; to, lb: xiang4--toward}
 - {id: zh-hsk2-00570-s001, ch: 相机, pr: xiàng jī, ds: camera, lb: xiang4-ji1--camera}
 - {id: zh-hsk7-9-04530-s001, ch: 小区, pr: xiǎo qū, ds: residential neighborhood; housing community, lb: xiao3-qu1--neighborhood}
 - {id: zh-hsk2-00582-s001, ch: 小心, pr: xiǎo xīn, ds: to be careful; careful, lb: xiao3-xin1--careful}
@@ -526,8 +581,8 @@
 - {id: zh-hsk2-00593-s001, ch: 信, pr: xìn, ds: letter; mail, lb: xin4--letter}
 - {id: zh-hsk2-00593-s003, ch: 信, pr: xìn, ds: to trust; believe, lb: xin4--trust}
 - {id: zh-hsk2-00597-s001, ch: 信用卡, pr: xìn yòng kǎ, ds: credit card, lb: xin4-yong4-ka3--credit-card}
-- {id: zh-hsk1-00420-s022, ch: 行, pr: xíng, ds: to be all right; be acceptable, lb: xing2--okay}
 - {id: zh-hsk1-00420-s019, ch: 行, pr: xíng, ds: capable; competent, lb: xing2--capable}
+- {id: zh-hsk1-00420-s022, ch: 行, pr: xíng, ds: to be all right; be acceptable, lb: xing2--okay}
 - {id: zh-hsk3-00782-s001, ch: 行李, pr: xíng li, ds: luggage; baggage, lb: xing2-li5--luggage}
 - {id: zh-hsk4-00799-s001, ch: 兴趣, pr: xìng qù, ds: interest in something, lb: xing4-qu4--interest}
 - {id: zh-hsk2-00604-s001, ch: 休假, pr: xiū jià, ds: to take leave; go on holiday, lb: xiu1-jia4--leave}
@@ -543,42 +598,50 @@
 - {id: zh-hsk2-00612-s002, ch: 养, pr: yǎng, ds: to bring up children, lb: yang3--rear}
 - {id: zh-hsk2-00618-s001, ch: 要求, pr: yāo qiú, ds: to request; require, lb: yao1-qiu2--request}
 - {id: zh-hsk2-00618-s003, ch: 要求, pr: yāo qiú, ds: requirement; request, lb: yao1-qiu2--requirement}
+- {id: zh-grammar-00017-s001, ch: 也, pr: yě, ds: even; in emphatic negative expressions, lb: ye3--even}
 - {id: zh-hsk1-00429-s002, ch: 页, pr: yè, ds: page; measure word for pages, lb: ye4--page}
-- {id: zh-hsk2-00625-s001, ch: 一定, pr: yī dìng, ds: certainly; definitely, lb: yi1-ding4--definitely}
+- {id: zh-hsk2-00622-s002, ch: 一般, pr: yī bān, ds: ordinary; average, lb: yi1-ban1--ordinary}
+- {id: zh-hsk4-00837-s001, ch: 一般来说, pr: yī bān lái shuō, ds: generally speaking, lb: yi1-ban1-lai2-shuo1--generally}
+- {id: zh-hsk1-00433-s005, ch: 一边, pr: yī biān, ds: while; doing two things at the same time, lb: yi1-bian1--while}
 - {id: zh-hsk2-00625-s005, ch: 一定, pr: yī dìng, ds: a certain amount or degree, lb: yi1-ding4--certain}
+- {id: zh-hsk2-00625-s001, ch: 一定, pr: yī dìng, ds: certainly; definitely, lb: yi1-ding4--definitely}
+- {id: zh-hsk2-00625-s008, ch: 一定, pr: yī dìng, ds: must; certainly must; expressing insistence or resolve, lb: yi1-ding4--must}
 - {id: zh-hsk2-00626-s001, ch: 一共, pr: yī gòng, ds: altogether; in total, lb: yi1-gong4--total}
+- {id: zh-hsk1-00435-s004, ch: 一会儿, pr: yī huì r, ds: one moment ... the next ...; alternating actions, lb: yi1-hui4-r5--alternating}
+# Syllabus row 471: 一会儿; adverb extension; earlier duration phrase omitted.
+- {id: zh-hsk1-00435-s003, ch: 一会儿, pr: yī huì r, ds: in a moment; shortly, lb: yi1-hui4-r5--soon}
 - {id: zh-hsk1-00436-s001, ch: 一块儿, pr: yī kuài r, ds: together; in the same place, lb: yi1-kuai4-r5--together}
 - {id: zh-hsk1-00440-s001, ch: 一样, pr: yī yàng, ds: the same; alike, lb: yi1-yang4--same}
+- {id: zh-hsk2-00630-s002, ch: 一直, pr: yī zhí, ds: continuously; all along, lb: yi1-zhi2--continuously}
+- {id: zh-hsk2-00630-s001, ch: 一直, pr: yī zhí, ds: straight ahead, lb: yi1-zhi2--straight}
 - {id: zh-hsk2-00632-s001, ch: 以后, pr: yǐ hòu, ds: after; later, lb: yi3-hou4--after}
 - {id: zh-hsk2-00633-s001, ch: 以前, pr: yǐ qián, ds: before; previously, lb: yi3-qian2--before}
 - {id: zh-hsk2-00634-s002, ch: 以上, pr: yǐ shàng, ds: that amount or more; and above, lb: yi3-shang4--above}
 - {id: zh-hsk2-00634-s003, ch: 以上, pr: yǐ shàng, ds: the above-mentioned, lb: yi3-shang4--aforementioned}
-- {id: zh-hsk2-00635-s005, ch: 以外, pr: yǐ wài, ds: outside; beyond, lb: yi3-wai4--outside}
 - {id: zh-hsk2-00635-s001, ch: 以外, pr: yǐ wài, ds: apart from; other than, lb: yi3-wai4--apart}
+- {id: zh-hsk2-00635-s005, ch: 以外, pr: yǐ wài, ds: outside; beyond, lb: yi3-wai4--outside}
 - {id: zh-hsk2-00636-s001, ch: 以为, pr: yǐ wéi, ds: to think; assume (often mistakenly), lb: yi3-wei2--assume}
 - {id: zh-hsk2-00637-s002, ch: 以下, pr: yǐ xià, ds: that amount or less; and below, lb: yi3-xia4--below}
 - {id: zh-hsk2-00637-s003, ch: 以下, pr: yǐ xià, ds: the following; what comes below, lb: yi3-xia4--following}
-- {id: zh-hsk2-00622-s002, ch: 一般, pr: yī bān, ds: ordinary; average, lb: yi1-ban1--ordinary}
-- {id: zh-hsk1-00433-s005, ch: 一边, pr: yī biān, ds: while; doing two things at the same time, lb: yi1-bian1--while}
-- {id: zh-hsk2-00630-s002, ch: 一直, pr: yī zhí, ds: continuously; all along, lb: yi1-zhi2--continuously}
-- {id: zh-hsk2-00630-s001, ch: 一直, pr: yī zhí, ds: straight ahead, lb: yi1-zhi2--straight}
 - {id: zh-hsk2-00646-s001, ch: 音乐, pr: yīn yuè, ds: music, lb: yin1-yue4--music}
 - {id: zh-hsk2-00648-s001, ch: 银行, pr: yín háng, ds: bank, lb: yin2-hang2--bank}
 - {id: zh-hsk2-00649-s001, ch: 银行卡, pr: yín háng kǎ, ds: bank card, lb: yin2-hang2-ka3--bank-card}
 - {id: zh-hsk5-00892-s001, ch: 饮料, pr: yǐn liào, ds: drink; beverage, lb: yin3-liao4--drink}
 - {id: zh-hsk2-00650-s002, ch: 应该, pr: yīng gāi, ds: should; ought to, lb: ying1-gai1--should}
-- {id: zh-hsk2-00654-s003, ch: 影响, pr: yǐng xiǎng, ds: to influence; affect, lb: ying3-xiang3--influence}
 - {id: zh-hsk2-00654-s001, ch: 影响, pr: yǐng xiǎng, ds: influence; effect, lb: ying3-xiang3--effect}
+- {id: zh-hsk2-00654-s003, ch: 影响, pr: yǐng xiǎng, ds: to influence; affect, lb: ying3-xiang3--influence}
 - {id: zh-hsk1-00444-s001, ch: 用, pr: yòng, ds: to use, lb: yong4--use}
-- {id: zh-hsk3-00836-s001, ch: 邮件, pr: yóu jiàn, ds: mail; postal item, lb: you2-jian4--mail}
 - {id: zh-hsk3-00836-s003, ch: 邮件, pr: yóu jiàn, ds: email, lb: you2-jian4--email}
+- {id: zh-hsk3-00836-s001, ch: 邮件, pr: yóu jiàn, ds: mail; postal item, lb: you2-jian4--mail}
 - {id: zh-hsk2-00657-s002, ch: 游客, pr: yóu kè, ds: tourist, lb: you2-ke4--tourist}
 - {id: zh-hsk3-00840-s001, ch: 游戏, pr: yóu xì, ds: game, lb: you2-xi4--game}
-- {id: zh-hsk3-00838-s001, ch: 邮箱, pr: yóu xiāng, ds: mailbox, lb: you2-xiang1--mailbox}
 - {id: zh-hsk3-00838-s004, ch: 邮箱, pr: yóu xiāng, ds: email inbox; email account, lb: you2-xiang1--inbox}
-- {id: zh-hsk6-00975-s001, ch: 有关, pr: yǒu guān, ds: to be related to; have to do with, lb: you3-guan1--relate}
+- {id: zh-hsk3-00838-s001, ch: 邮箱, pr: yóu xiāng, ds: mailbox, lb: you2-xiang1--mailbox}
 - {id: zh-hsk6-00975-s005, ch: 有关, pr: yǒu guān, ds: concerning; about, lb: you3-guan1--concerning}
+- {id: zh-hsk6-00975-s001, ch: 有关, pr: yǒu guān, ds: to be related to; have to do with, lb: you3-guan1--relate}
 - {id: zh-hsk1-00447-s001, ch: 有名, pr: yǒu míng, ds: famous; well-known, lb: you3-ming2--famous}
+# Syllabus row 266: 有些; adverb extension; earlier some pronoun omitted.
+- {id: zh-hsk1-00450-s002, ch: 有些, pr: yǒu xiē, ds: somewhat; a little, lb: you3-xie1--somewhat}
 - {id: zh-hsk1-00452-s001, ch: 有用, pr: yǒu yòng, ds: useful, lb: you3-yong4--useful}
 - {id: zh-hsk2-00663-s001, ch: 又, pr: yòu, ds: again (for a repeated event), lb: you4--again}
 - {id: zh-hsk2-00663-s003, ch: 又, pr: yòu, ds: both ... and ..., lb: you4--both}
@@ -592,9 +655,11 @@
 - {id: zh-hsk3-00849-s001, ch: 员, pr: yuán, ds: suffix for a person in a role or activity, lb: yuan2--person}
 - {id: zh-hsk2-00672-s004, ch: 愿意, pr: yuàn yì, ds: to be willing to, lb: yuan4-yi4--willing}
 - {id: zh-hsk2-00675-s005, ch: 越, pr: yuè, ds: the more ... the more ..., lb: yue4--more}
+- {id: zh-hsk2-00676-s001, ch: 越来越, pr: yuè lái yuè, ds: increasingly; more and more, lb: yue4-lai2-yue4--increasingly}
 - {id: zh-hsk2-00674-s001, ch: 月亮, pr: yuè liang, ds: moon, lb: yue4-liang5--moon}
 - {id: zh-hsk4-00892-s001, ch: 运动会, pr: yùn dòng huì, ds: sports meet; athletics meeting, lb: yun4-dong4-hui4--sports-meet}
 - {id: zh-hsk4-00893-s001, ch: 运动员, pr: yùn dòng yuán, ds: athlete, lb: yun4-dong4-yuan2--athlete}
+- {id: zh-grammar-00018-s001, ch: 在, pr: zài, ds: 'in; within; introducing a viewpoint, abstract domain or circumstances', lb: zai4--context}
 - {id: zh-hsk2-00680-s001, ch: 咱们, pr: zán men, ds: we; us (including the person addressed), lb: zan2-men5--we}
 - {id: zh-hsk2-00681-s003, ch: 脏, pr: zāng, ds: dirty, lb: zang1--dirty}
 - {id: zh-hsk2-00685-s001, ch: 怎么办, pr: zěn me bàn, ds: what to do; how to deal with it, lb: zen3-me5-ban4--what-to-do}
@@ -607,9 +672,9 @@
 - {id: zh-hsk2-00690-s007, ch: 长, pr: zhǎng, ds: suffix for the head or leader of a group, lb: zhang3--leader}
 - {id: zh-hsk4-00913-s001, ch: 着急, pr: zháo jí, ds: anxious; worried, lb: zhao2-ji2--anxious}
 - {id: zh-hsk4-00913-s002, ch: 着急, pr: zháo jí, ds: in a hurry; impatient, lb: zhao2-ji2--hurried}
-- {id: zh-hsk3-00866-s001, ch: 照, pr: zhào, ds: to shine; illuminate, lb: zhao4--shine}
-- {id: zh-hsk3-00866-s006, ch: 照, pr: zhào, ds: to look at one's reflection, lb: zhao4--reflect}
 - {id: zh-hsk3-00866-s007, ch: 照, pr: zhào, ds: to take a photo, lb: zhao4--photograph}
+- {id: zh-hsk3-00866-s006, ch: 照, pr: zhào, ds: to look at one's reflection, lb: zhao4--reflect}
+- {id: zh-hsk3-00866-s001, ch: 照, pr: zhào, ds: to shine; illuminate, lb: zhao4--shine}
 - {id: zh-hsk2-00693-s001, ch: 照顾, pr: zhào gù, ds: to take care of; look after, lb: zhao4-gu4--care}
 - {id: zh-hsk2-00694-s001, ch: 照片, pr: zhào piàn, ds: photograph; photo, lb: zhao4-pian4--photo}
 - {id: zh-hsk2-00695-s001, ch: 照相, pr: zhào xiàng, ds: to take a photo, lb: zhao4-xiang4--photograph}
@@ -617,18 +682,20 @@
 - {id: zh-hsk2-00706-s001, ch: 只, pr: zhǐ, ds: only; just, lb: zhi3--only}
 - {id: zh-hsk2-00709-s001, ch: 纸, pr: zhǐ, ds: paper, lb: zhi3--paper}
 - {id: zh-hsk2-00707-s001, ch: 只能, pr: zhǐ néng, ds: can only; have no choice but to, lb: zhi3-neng2--can-only}
-- {id: zh-hsk3-00894-s001, ch: 只是, pr: zhǐ shì, ds: only; merely, lb: zhi3-shi4--only}
 - {id: zh-hsk3-00894-s003, ch: 只是, pr: zhǐ shì, ds: but; however, lb: zhi3-shi4--but}
+- {id: zh-hsk3-00894-s001, ch: 只是, pr: zhǐ shì, ds: only; merely, lb: zhi3-shi4--only}
 - {id: zh-hsk2-00708-s002, ch: 只要, pr: zhǐ yào, ds: as long as, lb: zhi3-yao4--as-long-as}
 - {id: zh-hsk3-00895-s003, ch: 只有, pr: zhǐ yǒu, ds: only if (followed by then), lb: zhi3-you3--only-if}
-- {id: zh-hsk1-00482-s005, ch: 中, pr: zhōng, ds: middle; center, lb: zhong1--middle}
+- {id: zh-hsk1-00482-s006, ch: 中, pr: zhōng, ds: during; in the course of, lb: zhong1--during}
 - {id: zh-hsk1-00482-s004, ch: 中, pr: zhōng, ds: inside; among, lb: zhong1--inside}
+- {id: zh-hsk1-00482-s005, ch: 中, pr: zhōng, ds: middle; center, lb: zhong1--middle}
 - {id: zh-hsk1-00484-s001, ch: 中间, pr: zhōng jiān, ds: middle; center, lb: zhong1-jian1--middle}
 - {id: zh-hsk3-00909-s003, ch: 终于, pr: zhōng yú, ds: finally; at last, lb: zhong1-yu2--finally}
 - {id: zh-hsk3-00911-s005, ch: 种, pr: zhǒng, ds: measure word for kinds or types, lb: zhong3--kinds}
 - {id: zh-hsk1-00490-s001, ch: 重要, pr: zhòng yào, ds: important, lb: zhong4-yao4--important}
 - {id: zh-hsk2-00721-s001, ch: 周末, pr: zhōu mò, ds: weekend, lb: zhou1-mo4--weekend}
 - {id: zh-hsk2-00724-s001, ch: 主要, pr: zhǔ yào, ds: main; principal, lb: zhu3-yao4--main}
+- {id: zh-hsk1-00491-s006, ch: 住, pr: zhù, ds: complement marking firmness or retention or a halt, lb: zhu4--secure-result}
 - {id: zh-hsk3-00921-s001, ch: 注意, pr: zhù yì, ds: to pay attention to; take care over, lb: zhu4-yi4--attention}
 - {id: zh-hsk2-00726-s001, ch: 住院, pr: zhù yuàn, ds: to stay in hospital; be hospitalized, lb: zhu4-yuan4--hospitalized}
 - {id: zh-hsk2-00729-s001, ch: 字典, pr: zì diǎn, ds: Chinese character dictionary, lb: zi4-dian3--dictionary}
@@ -642,69 +709,3 @@
 - {id: zh-hsk2-00741-s001, ch: 最近, pr: zuì jìn, ds: recently; lately, lb: zui4-jin4--recently}
 - {id: zh-hsk3-00953-s001, ch: 做客, pr: zuò kè, ds: to be a guest; visit someone, lb: zuo4-ke4--guest}
 - {id: zh-hsk2-00744-s002, ch: 作业, pr: zuò yè, ds: homework; school assignment, lb: zuo4-ye4--homework}
-
-# HSK 3 extensions to earlier syllabus entries; previously taught senses omitted.
-# Syllabus row 33: 点1; noun extension; excludes earlier clock classifier and separate order-food verb.
-- {id: zh-hsk1-00078-s001, ch: 点, pr: diǎn, ds: dot; small mark, lb: dian3--dot}
-- {id: zh-hsk1-00078-s006, ch: 点, pr: diǎn, ds: point in space or time, lb: dian3--point}
-# Syllabus row 55: 分; verb and noun extensions.
-- {id: zh-hsk1-00111-s001, ch: 分, pr: fēn, ds: to divide; separate, lb: fen1--divide}
-- {id: zh-hsk1-00111-s002, ch: 分, pr: fēn, ds: to distribute; share out, lb: fen1--distribute}
-- {id: zh-hsk1-00111-s010, ch: 分, pr: fēn, ds: point in a score, lb: fen1--point}
-# Syllabus row 81: 回; classifier extension; earlier return verb omitted.
-- {id: zh-hsk1-00155-s008, ch: 回, pr: huí, ds: measure word for times or occurrences, lb: hui2--times}
-# Syllabus row 86: 家; suffix extension; earlier home/family nouns and classifier omitted.
-- {id: zh-hsk1-00170-s006, ch: 家, pr: jiā, ds: suffix for an expert or specialist, lb: jia1--specialist}
-# Syllabus row 266: 有些; adverb extension; earlier some pronoun omitted.
-- {id: zh-hsk1-00450-s002, ch: 有些, pr: yǒu xiē, ds: somewhat; a little, lb: you3-xie1--somewhat}
-# Syllabus row 445: 头; classifier extension; earlier head noun and HSK5 adjective omitted.
-- {id: zh-hsk2-00528-s014, ch: 头, pr: tóu, ds: measure word for livestock or large animals, lb: tou2--livestock}
-# Syllabus row 471: 一会儿; adverb extension; earlier duration phrase omitted.
-- {id: zh-hsk1-00435-s003, ch: 一会儿, pr: yī huì r, ds: in a moment; shortly, lb: yi1-hui4-r5--soon}
-- {id: zh-hsk1-00435-s004, ch: 一会儿, pr: yī huì r, ds: one moment ... the next ...; alternating actions, lb: yi1-hui4-r5--alternating}
-
-# Grammar prerequisites: pinned syllabus grammar pp. 389-391.
-# 所/班 measures move unchanged from HSK 5, 盘 platefuls from HSK 6,
-# and 不必 from HSK 4. 好多/常 now occur at HSK 2 for its grammar.
-- {id: zh-hsk3-00676-s003, ch: 所, pr: suǒ, ds: measure word for buildings or institutions, lb: suo3--institutions}
-- {id: zh-hsk1-00010-s005, ch: 班, pr: bān, ds: measure word for groups of people or scheduled transport services, lb: ban1--groups}
-- {id: zh-hsk4-00529-s012, ch: 盘, pr: pán, ds: measure word for platefuls of food, lb: pan2--platefuls}
-- {id: zh-hsk3-00055-s001, ch: 不必, pr: bù bì, ds: need not; do not have to, lb: bu4-bi4--unnecessary}
-# Additional grammatical uses, not extra numbered official vocabulary rows.
-- {id: zh-hsk1-00204-s003, ch: 口, pr: kǒu, ds: measure word for bites or mouthfuls, lb: kou3--mouthfuls}
-- {id: zh-hsk1-00134-s008, ch: 还, pr: hái, ds: fairly; passably, lb: hai2--fairly}
-- {id: zh-hsk1-00134-s004, ch: 还, pr: hái, ds: still more; even more, lb: hai2--even-more}
-- {id: zh-hsk1-00273-s005, ch: 呢, pr: ne, ds: particle expressing strong affirmation, lb: ne5--affirmation}
-- {id: zh-hsk2-00676-s001, ch: 越来越, pr: yuè lái yuè, ds: increasingly; more and more, lb: yue4-lai2-yue4--increasingly}
-- {id: zh-hsk3-00402-s004, ch: 看起来, pr: kàn qǐ lai, ds: to appear; look as if, lb: kan4-qi3-lai5--appear}
-- {id: zh-hsk4-00837-s001, ch: 一般来说, pr: yī bān lái shuō, ds: generally speaking, lb: yi1-ban1-lai2-shuo1--generally}
-- {id: zh-hsk6-00070-s003, ch: 不怎么样, pr: bù zěn me yàng, ds: not particularly good; unimpressive, lb: bu4-zen3-me5-yang4--unimpressive}
-- {id: zh-hsk1-00291-s013, ch: 起, pr: qǐ, ds: starting from a stated boundary, lb: qi3--starting-from}
-- {id: zh-hsk1-00091-s003, ch: 都, pr: dōu, ds: even; for emphasis, lb: dou1--even}
-- {id: zh-hsk1-00482-s006, ch: 中, pr: zhōng, ds: during; in the course of, lb: zhong1--during}
-- {id: zh-hsk1-00065-s004, ch: 到, pr: dào, ds: result complement indicating arrival or attainment, lb: dao4--attainment}
-- {id: zh-hsk1-00491-s006, ch: 住, pr: zhù, ds: complement marking firmness or retention or a halt, lb: zhu4--secure-result}
-- {id: zh-hsk1-00154-s005, ch: 坏, pr: huài, ds: complement expressing overwhelming degree, lb: huai4--extremely}
-- {id: zh-hsk1-00124-s006, ch: 跟, pr: gēn, ds: compared with; introducing a comparison reference, lb: gen1--comparison}
-- {id: zh-grammar-00008-s001, ch: 碗, pr: wǎn, ds: measure word for bowlfuls of food or drink, lb: wan3--bowlfuls}
-- {id: zh-grammar-00009-s001, ch: 才, pr: cái, ds: marks emphatic correction of a competing judgement, lb: cai2--emphatic-correction}
-- {id: zh-grammar-00010-s001, ch: 来说, pr: lái shuō, ds: speaking of; from the stated reference perspective, lb: lai2-shuo1--perspective}
-- {id: zh-grammar-00011-s001, ch: 上, pr: shàng, ds: in respect of an abstract domain, lb: shang4--respect}
-- {id: zh-grammar-00012-s001, ch: 下, pr: xià, ds: under stated conditions or influence, lb: xia4--circumstances}
-- {id: zh-grammar-00013-s001, ch: 上, pr: shàng, ds: result complement marking attachment or closure or contact, lb: shang4--attachment}
-- {id: zh-grammar-00014-s001, ch: 上, pr: shàng, ds: complement marking entry into an activity or state, lb: shang4--engagement}
-- {id: zh-grammar-00015-s001, ch: 下, pr: xià, ds: complement marking retention or setting something down, lb: xia4--retention}
-- {id: zh-grammar-00016-s001, ch: 起, pr: qǐ, ds: complement evoking or bringing something into a resulting state, lb: qi3--result-state}
-- {id: zh-grammar-00017-s001, ch: 也, pr: yě, ds: even; in emphatic negative expressions, lb: ye3--even}
-- {id: zh-grammar-00018-s001, ch: 在, pr: zài, ds: 'in; within; introducing a viewpoint, abstract domain or circumstances', lb: zai4--context}
-# Pinned dictionary sense slots retained; 不一会儿 corrects malformed legacy
-# syllable spacing/tone notation. No new identity is created for pronunciation.
-- {id: zh-hsk2-00044-s001, ch: 不一会儿, pr: bù yī huì r, ds: after a short while, lb: bu4-yi1-hui4-r5--shortly}
-- {id: zh-hsk2-00548-s010, ch: 为, pr: wèi, ds: because of; on account of, lb: wei4--because}
-- {id: zh-hsk3-00753-s004, ch: 下来, pr: xià lai, ds: continuation from the past to the reference point, lb: xia4-lai5--continuation}
-- {id: zh-hsk2-00625-s008, ch: 一定, pr: yī dìng, ds: must; certainly must; expressing insistence or resolve, lb: yi1-ding4--must}
-# Citation variants follow the retained whole-expression senses: onset 起来
-# uses documented qǐ lai, continuation 下去 xià qù, appearance 看上去 kàn shang qu.
-- {id: zh-hsk1-00293-s004, ch: 起来, pr: qǐ lai, ds: beginning and continuation of an activity, lb: qi3-lai5--start}
-- {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: continue an action onward, lb: xia4-qu4--continue}
-- {id: zh-hsk3-00403-s002, ch: 看上去, pr: kàn shang qu, ds: it seems; appears, lb: kan4-shang5-qu5--appear}

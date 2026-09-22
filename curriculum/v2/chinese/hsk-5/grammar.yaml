@@ -1,5 +1,4 @@
 # HSK 5 grammar draft; incremental additions to earlier v2 bands.
-# Concise AI-facing cues; source-family order, not lesson order or official item counts.
 # Fixed forms have cumulative vocabulary support and selected lexical-sense bindings
 # in grammar-vocabulary.yaml; lexical presence alone is not mastery.
 # Source: ChineseTest / Chinese Testing International.
@@ -13,13 +12,34 @@
 # Source sense numerals are unspoken; uncertain mappings remain in private review metadata.
 # Source 不是...还/还是 has unresolved additive polarity and is not assigned a record.
 # Nominal-result 把 scope is provisional; lower transfer patterns are not repeated.
+# Record order: ascending lb; lesson order is generated separately.
+# Comments retain original source/editorial context; they do not define sorted ranges.
 
 # Suffixes, demonstratives and measure words (printed p. 395).
-- id: zh-hsk2026-g601
-  pt: <compatible stem> + 头
-  pr: <compatible stem> + tou
-  ds: Noun-forming suffix in established words; not the independent noun head.
-  lb: stem-tou5--suffix
+
+- id: zh-hsk2026-g667
+  pt: <first option> + 也不是，<second option> + 也不是
+  pr: <first option> + yě bù shì, <second option> + yě bù shì
+  ds: Neither proposed course feels acceptable; dilemma rather than neutral classification.
+  lb: a-ye3-bu4-shi4-b-ye3-bu4-shi4--dilemma
+
+- id: zh-hsk2026-g646
+  pt: 白 + <verb phrase>
+  pr: bái + <verb phrase>
+  ds: Receive a benefit without payment or deserved effort; verb-dependent.
+  lb: bai2-vp--free
+
+- id: zh-hsk2026-g645
+  pt: 白 + <verb phrase>
+  pr: bái + <verb phrase>
+  ds: Act without achieving the intended benefit.
+  lb: bai2-vp--in-vain
+
+- id: zh-hsk2026-g604
+  pt: 本 + <noun>
+  pr: běn + <noun>
+  ds: This or the current institution, period or locality.
+  lb: ben3-n--current
 
 - id: zh-hsk2026-g602
   pt: 彼此 + <predicate> / <verb> + 彼此
@@ -27,17 +47,260 @@
   ds: Reciprocal participants as subject or object; distinguish adverbial 互相.
   lb: bi3-ci3-pred-or-v-bi3-ci3--each-other
 
-- id: zh-hsk2026-g603
-  pt: 如此 + <predicate>
-  pr: rú cǐ + <predicate>
-  ds: Such a degree or manner, supplied by context.
-  lb: ru2-ci3-pred--thus
+- id: zh-hsk2026-g636
+  pt: 毕竟 + <proposition>
+  pr: bì jìng + <proposition>
+  ds: Invoke a decisive background fact despite other considerations.
+  lb: bi4-jing4-stmt--after-all
 
-- id: zh-hsk2026-g604
-  pt: 本 + <noun>
-  pr: běn + <noun>
-  ds: This or the current institution, period or locality.
-  lb: ben3-n--current
+- id: zh-hsk5-g004
+  pt: 不但 + (不 / 没有) + <predicate>，反而 + <predicate>
+  pr: bù dàn + (bù / méi yǒu) + <predicate>, fǎn ér + <predicate>
+  ds: Not the expected outcome but its reversal.
+  lb: bu4-dan4-bu4-or-mei2-you3-pred-fan3-er2-pred--reverse
+
+- id: zh-hsk2026-g671
+  pt: 不管怎样说，<clause>
+  pr: bù guǎn zěn yàng shuō, <clause>
+  ds: Maintain a conclusion despite differing accounts or evaluations.
+  lb: bu4-guan3-zen3-yang4-shuo1-clause--anyhow
+
+- id: zh-hsk2026-g1107
+  pt: 不 + <condition>，不 + <consequence>
+  pr: bù + <condition>, bù + <consequence>
+  ds: Without the first action, the second does not occur; compact dependency.
+  lb: bu4-if-bu4-then--unless
+
+- id: zh-hsk2026-g675
+  pt: 不 + <verb> + 白不 + <same verb>
+  pr: bù + <verb> + bái bù + <same verb>
+  ds: Take an available benefit; refusing it would gain nothing.
+  lb: bu4-v-bai2-bu4-v--no-loss
+
+- id: zh-hsk2026-g1102
+  pt: <cause>，因而 + <result>
+  pr: <cause>, yīn ér + <result>
+  ds: A relatively formal causal consequence.
+  lb: cause-yin1-er2-result--consequently
+
+- id: zh-hsk2026-g621
+  pt: 曾经 + <verb phrase>
+  pr: céng jīng + <verb phrase>
+  ds: A prior experience or state, not necessarily continuing now.
+  lb: ceng2-jing1-vp--formerly
+
+- id: zh-hsk2026-g649
+  pt: 朝 + <place> + <verb phrase>
+  pr: cháo + <place> + <verb phrase>
+  ds: Direct movement or orientation toward a place.
+  lb: chao2-loc-vp--toward
+
+# Sequential, alternative, hypothetical and inferential clauses (printed p. 396).
+- id: zh-hsk2026-g697
+  pt: <first clause>，便 + <second clause>
+  pr: <first clause>, biàn + <second clause>
+  ds: An ensuing result or immediate continuation; relatively written.
+  lb: clause-bian4-clause--then
+
+- id: zh-hsk7-9-g031
+  pt: <first clause>，从而 + <result>
+  pr: <first clause>, cóng ér + <result>
+  ds: A prior action or change leads to a consequent result.
+  lb: clause-cong2-er2-result--thereby
+
+- id: zh-hsk2026-g644
+  pt: <first clause>，反而 + <second clause>
+  pr: <first clause>, fǎn ér + <second clause>
+  ds: The actual result reverses what the first circumstance suggests.
+  lb: clause-fan3-er2-clause--instead
+
+- id: zh-hsk2026-g1103
+  pt: <first clause>，可见 + <proposition>
+  pr: <first clause>, kě jiàn + <proposition>
+  ds: Infer a conclusion from the stated evidence.
+  lb: clause-ke3-jian4-stmt--infer
+
+- id: zh-hsk6-g018
+  pt: 从 + <source> + 来看，<clause>
+  pr: cóng + <source> + lái kàn, <clause>
+  ds: Limit a judgment to the stated evidence or perspective.
+  lb: cong2-source-lai2-kan4-clause--judging
+
+- id: zh-hsk2026-g643
+  pt: 的确 + <predicate>
+  pr: dí què + <predicate>
+  ds: Affirm that a claim genuinely holds.
+  lb: di2-que4-pred--indeed
+
+- id: zh-hsk2026-g638
+  pt: 反正 + <proposition>
+  pr: fǎn zhèng + <proposition>
+  ds: The conclusion holds regardless of disputed circumstances.
+  lb: fan3-zheng4-stmt--anyway
+
+- id: zh-hsk2026-g647
+  pt: 刚好 + <predicate>
+  pr: gāng hǎo + <predicate>
+  ds: A circumstance or amount happens to fit exactly.
+  lb: gang1-hao3-pred--just-right
+
+- id: zh-hsk2026-g618
+  pt: 格外 + <gradable predicate>
+  pr: gé wài + <gradable predicate>
+  ds: An exceptional degree compared with the usual situation.
+  lb: ge2-wai4-pred--especially
+
+- id: zh-hsk2026-g639
+  pt: 根本 + <negative predicate>
+  pr: gēn běn + <negative predicate>
+  ds: Deny a claim at its basis or entirely.
+  lb: gen1-ben3-neg--not-at-all
+
+- id: zh-hsk2026-g640
+  pt: 果然 + <predicate>
+  pr: guǒ rán + <predicate>
+  ds: An outcome confirms a prior expectation.
+  lb: guo3-ran2-pred--as-expected
+
+# Degree, time and frequency adverbs (printed p. 395).
+- id: zh-hsk2026-g614
+  pt: 过于 + <gradable predicate>
+  pr: guò yú + <gradable predicate>
+  ds: A degree beyond what is appropriate.
+  lb: guo4-yu2-pred--excess
+
+- id: zh-hsk2026-g698
+  pt: 或是 + <first option>，或是 + <second option>
+  pr: huò shì + <first option>, huò shì + <second option>
+  ds: Present alternative possibilities rather than an interrogative choice.
+  lb: huo4-shi4-a-huo4-shi4-b--either
+
+- id: zh-hsk2026-g626
+  pt: 即将 + <verb phrase>
+  pr: jí jiāng + <verb phrase>
+  ds: An impending event; relatively formal.
+  lb: ji2-jiang1-vp--imminent
+
+- id: zh-hsk2026-g619
+  pt: 极其 + <gradable predicate>
+  pr: jí qí + <gradable predicate>
+  ds: An extremely high degree; relatively formal.
+  lb: ji2-qi2-pred--extremely
+
+- id: zh-hsk2026-g699
+  pt: 假如 + <condition>，就 + <consequence>
+  pr: jiǎ rú + <condition>, jiù + <consequence>
+  ds: Suppose a hypothetical situation; 就 may be omitted.
+  lb: jia3-ru2-if-jiu4-then--if
+
+- id: zh-hsk2026-g641
+  pt: 简直 + <predicate>
+  pr: jiǎn zhí + <predicate>
+  ds: Emphatic near-equivalence or extreme assessment, often hyperbolic.
+  lb: jian3-zhi2-pred--virtually
+
+- id: zh-hsk2026-g627
+  pt: 渐渐 + <predicate>
+  pr: jiàn jiàn + <predicate>
+  ds: A gradual development rather than an abrupt change.
+  lb: jian4-jian4-pred--gradual
+
+- id: zh-hsk2026-g616
+  pt: 较 + <adjective>
+  pr: jiào + <adjective>
+  ds: Relatively so against an implicit baseline; relatively written.
+  lb: jiao4-adj--relative
+
+- id: zh-hsk2026-g628
+  pt: 尽快 + <verb phrase>
+  pr: jǐn kuài + <verb phrase>
+  ds: As soon as practicable, not a guarantee of instant completion.
+  lb: jin3-kuai4-vp--asap
+
+# Manner, modality and stance adverbs (printed p. 395).
+- id: zh-hsk2026-g633
+  pt: 尽量 + <verb phrase>
+  pr: jǐn liàng + <verb phrase>
+  ds: Make the greatest practicable effort within constraints.
+  lb: jin3-liang4-vp--best-effort
+
+- id: zh-hsk2026-g637
+  pt: 居然 + <predicate>
+  pr: jū rán + <predicate>
+  ds: A surprising result contrary to expectation.
+  lb: ju1-ran2-pred--unexpected
+
+- id: zh-hsk2026-g655
+  pt: 据 + <source>，<clause>
+  pr: jù + <source>, <clause>
+  ds: Attribute information to a named source; relatively formal.
+  lb: ju4-source-clause--according
+
+- id: zh-hsk2026-g642
+  pt: 绝对 + <predicate>
+  pr: jué duì + <predicate>
+  ds: Express categorical confidence or an uncompromising stance.
+  lb: jue2-dui4-pred--absolute
+
+- id: zh-hsk2026-g617
+  pt: 可 + <adjective> + 了
+  pr: kě + <adjective> + le
+  ds: Colloquial emphatic high degree; final 了 is common, not past tense.
+  lb: ke3-adj-le5--very
+
+- id: zh-hsk2026-g630
+  pt: 老是 + <predicate>
+  pr: lǎo shì + <predicate>
+  ds: Repeatedly or persistently, often with irritation.
+  lb: lao3-shi4-pred--persist
+
+- id: zh-hsk2026-g622
+  pt: 立刻 + <verb phrase>
+  pr: lì kè + <verb phrase>
+  ds: Act immediately after the relevant trigger.
+  lb: li4-ke4-vp--immediate
+
+- id: zh-hsk2026-g623
+  pt: (连忙 / 急忙) + <verb phrase>
+  pr: (lián máng / jí máng) + <verb phrase>
+  ds: A hurried response to circumstances.
+  lb: lian2-mang2-or-ji2-mang2-vp--hurry
+
+- id: zh-hsk2026-g661
+  pt: 没 + <paired A> + 没 + <paired B>
+  pr: méi + <paired A> + méi + <paired B>
+  ds: Paired lack in established expressions; often a negative evaluation.
+  lb: mei2-a-mei2-b--without
+
+- id: zh-hsk2026-g1106
+  pt: 没有 + <noun phrase>，就没有 + <noun phrase>
+  pr: méi yǒu + <noun phrase>, jiù méi yǒu + <noun phrase>
+  ds: The first entity or condition is necessary for the second.
+  lb: mei2-you3-np-jiu4-mei2-you3-np--necessary
+
+- id: zh-hsk2026-g1104
+  pt: 哪怕 + <condition>，也 + <consequence>
+  pr: nǎ pà + <condition>, yě + <consequence>
+  ds: Even an extreme hypothetical case leaves the result unchanged.
+  lb: na3-pa4-if-ye3-then--even-if
+
+- id: zh-hsk2026-g1101
+  pt: <requirement>，(要不然 / 不然) + <consequence>
+  pr: <requirement>, (yào bù rán / bù rán) + <consequence>
+  ds: State what happens if the preceding requirement is not met.
+  lb: need-yao4-bu4-ran2-or-bu4-ran2-then--otherwise
+
+- id: zh-hsk2026-g659
+  pt: <noun phrase> + 似的 / <verb phrase> + 似的
+  pr: <noun phrase> + shì de / <verb phrase> + shì de
+  ds: Like or as if; the phrase can modify an action or description.
+  lb: np-shi4-de5-or-vp-shi4-de5--as-if
+
+- id: zh-hsk2026-g657
+  pt: <noun phrase> + (以及 / 同) + <noun phrase>
+  pr: <noun phrase> + (yǐ jí / tóng) + <noun phrase>
+  ds: Coordinate nominal expressions; 以及 often adds a further item.
+  lb: np-yi3-ji2-or-tong2-np--and
 
 - id: zh-hsk2026-g605
   pt: <number> + (册 / 集) + <noun>
@@ -50,6 +313,18 @@
   pr: <number> + (duǒ / shù) + <compatible noun>
   ds: Individual blooms/clouds versus gathered bunches or beams.
   lb: num-duo3-or-shu4-n--bloom-bunch
+
+- id: zh-hsk2026-g610
+  pt: <number> + 行 + <noun>
+  pr: <number> + háng + <noun>
+  ds: Count rows or lines; 行 is háng, not xíng.
+  lb: num-hang2-n--rows
+
+- id: zh-hsk2026-g611
+  pt: <number> + 届 + <event>
+  pr: <number> + jiè + <event>
+  ds: Count recurring sessions or cohorts; ordinals take preceding 第.
+  lb: num-jie4-event--sessions
 
 - id: zh-hsk2026-g607
   pt: <number> + (颗 / 支 / 根) + <compatible noun>
@@ -69,278 +344,11 @@
   ds: Groups, batches or matched sets; use conventional noun-measure pairings.
   lb: num-qun2-or-pi1-or-fu4-n--groups
 
-- id: zh-hsk2026-g610
-  pt: <number> + 行 + <noun>
-  pr: <number> + háng + <noun>
-  ds: Count rows or lines; 行 is háng, not xíng.
-  lb: num-hang2-n--rows
-
-- id: zh-hsk2026-g611
-  pt: <number> + 届 + <event>
-  pr: <number> + jiè + <event>
-  ds: Count recurring sessions or cohorts; ordinals take preceding 第.
-  lb: num-jie4-event--sessions
-
 - id: zh-hsk2026-g612
   pt: <number> + 周
   pr: <number> + zhōu
   ds: Duration in weeks without an intervening measure word.
   lb: num-zhou1--weeks
-
-- id: zh-hsk2026-g613
-  pt: <look verb> + <number> + 眼
-  pr: <look verb> + <number> + yǎn
-  ds: Count brief looks or glances.
-  lb: v-num-yan3--glances
-
-# Degree, time and frequency adverbs (printed p. 395).
-- id: zh-hsk2026-g614
-  pt: 过于 + <gradable predicate>
-  pr: guò yú + <gradable predicate>
-  ds: A degree beyond what is appropriate.
-  lb: guo4-yu2-pred--excess
-
-- id: zh-hsk2026-g615
-  pt: 相当 + <gradable predicate>
-  pr: xiāng dāng + <gradable predicate>
-  ds: A considerable degree; not the equative verb.
-  lb: xiang1-dang1-pred--considerable
-
-- id: zh-hsk2026-g616
-  pt: 较 + <adjective>
-  pr: jiào + <adjective>
-  ds: Relatively so against an implicit baseline; relatively written.
-  lb: jiao4-adj--relative
-
-- id: zh-hsk2026-g617
-  pt: 可 + <adjective> + 了
-  pr: kě + <adjective> + le
-  ds: Colloquial emphatic high degree; final 了 is common, not past tense.
-  lb: ke3-adj-le5--very
-
-- id: zh-hsk2026-g618
-  pt: 格外 + <gradable predicate>
-  pr: gé wài + <gradable predicate>
-  ds: An exceptional degree compared with the usual situation.
-  lb: ge2-wai4-pred--especially
-
-- id: zh-hsk2026-g619
-  pt: 极其 + <gradable predicate>
-  pr: jí qí + <gradable predicate>
-  ds: An extremely high degree; relatively formal.
-  lb: ji2-qi2-pred--extremely
-
-- id: zh-hsk2026-g620
-  pt: 时刻 + <predicate>
-  pr: shí kè + <predicate>
-  ds: At every moment; sustained attention or state.
-  lb: shi2-ke4-pred--always
-
-- id: zh-hsk2026-g621
-  pt: 曾经 + <verb phrase>
-  pr: céng jīng + <verb phrase>
-  ds: A prior experience or state, not necessarily continuing now.
-  lb: ceng2-jing1-vp--formerly
-
-- id: zh-hsk2026-g622
-  pt: 立刻 + <verb phrase>
-  pr: lì kè + <verb phrase>
-  ds: Act immediately after the relevant trigger.
-  lb: li4-ke4-vp--immediate
-
-- id: zh-hsk2026-g623
-  pt: (连忙 / 急忙) + <verb phrase>
-  pr: (lián máng / jí máng) + <verb phrase>
-  ds: A hurried response to circumstances.
-  lb: lian2-mang2-or-ji2-mang2-vp--hurry
-
-- id: zh-hsk2026-g624
-  pt: 始终 + <predicate>
-  pr: shǐ zhōng + <predicate>
-  ds: Remain so from beginning to end.
-  lb: shi3-zhong1-pred--throughout
-
-- id: zh-hsk2026-g625
-  pt: 早已 + <predicate>
-  pr: zǎo yǐ + <predicate>
-  ds: Already true well before the reference time.
-  lb: zao3-yi3-pred--long-since
-
-- id: zh-hsk2026-g626
-  pt: 即将 + <verb phrase>
-  pr: jí jiāng + <verb phrase>
-  ds: An impending event; relatively formal.
-  lb: ji2-jiang1-vp--imminent
-
-- id: zh-hsk2026-g627
-  pt: 渐渐 + <predicate>
-  pr: jiàn jiàn + <predicate>
-  ds: A gradual development rather than an abrupt change.
-  lb: jian4-jian4-pred--gradual
-
-- id: zh-hsk2026-g628
-  pt: 尽快 + <verb phrase>
-  pr: jǐn kuài + <verb phrase>
-  ds: As soon as practicable, not a guarantee of instant completion.
-  lb: jin3-kuai4-vp--asap
-
-- id: zh-hsk2026-g629
-  pt: 早晚 + <predicate>
-  pr: zǎo wǎn + <predicate>
-  ds: Sooner or later; a confident prediction without a fixed time.
-  lb: zao3-wan3-pred--eventually
-
-- id: zh-hsk2026-g630
-  pt: 老是 + <predicate>
-  pr: lǎo shì + <predicate>
-  ds: Repeatedly or persistently, often with irritation.
-  lb: lao3-shi4-pred--persist
-
-- id: zh-hsk2026-g631
-  pt: 通常 + <predicate>
-  pr: tōng cháng + <predicate>
-  ds: What is normally true, allowing exceptions.
-  lb: tong1-chang2-pred--usually
-
-- id: zh-hsk2026-g632
-  pt: 时常 + <verb phrase>
-  pr: shí cháng + <verb phrase>
-  ds: Frequent recurring action, not continuous duration.
-  lb: shi2-chang2-vp--often
-
-# Manner, modality and stance adverbs (printed p. 395).
-- id: zh-hsk2026-g633
-  pt: 尽量 + <verb phrase>
-  pr: jǐn liàng + <verb phrase>
-  ds: Make the greatest practicable effort within constraints.
-  lb: jin3-liang4-vp--best-effort
-
-- id: zh-hsk2026-g634
-  pt: 亲自 + <verb phrase>
-  pr: qīn zì + <verb phrase>
-  ds: Do it personally rather than through another person.
-  lb: qin1-zi4-vp--personally
-
-- id: zh-hsk2026-g635
-  pt: (似乎 / 仿佛) + <proposition>
-  pr: (sì hū / fǎng fú) + <proposition>
-  ds: An impression or appearance, not a confirmed assertion.
-  lb: si4-hu1-or-fang3-fu2-stmt--seems
-
-- id: zh-hsk2026-g636
-  pt: 毕竟 + <proposition>
-  pr: bì jìng + <proposition>
-  ds: Invoke a decisive background fact despite other considerations.
-  lb: bi4-jing4-stmt--after-all
-
-- id: zh-hsk2026-g637
-  pt: 居然 + <predicate>
-  pr: jū rán + <predicate>
-  ds: A surprising result contrary to expectation.
-  lb: ju1-ran2-pred--unexpected
-
-- id: zh-hsk2026-g638
-  pt: 反正 + <proposition>
-  pr: fǎn zhèng + <proposition>
-  ds: The conclusion holds regardless of disputed circumstances.
-  lb: fan3-zheng4-stmt--anyway
-
-- id: zh-hsk2026-g639
-  pt: 根本 + <negative predicate>
-  pr: gēn běn + <negative predicate>
-  ds: Deny a claim at its basis or entirely.
-  lb: gen1-ben3-neg--not-at-all
-
-- id: zh-hsk2026-g640
-  pt: 果然 + <predicate>
-  pr: guǒ rán + <predicate>
-  ds: An outcome confirms a prior expectation.
-  lb: guo3-ran2-pred--as-expected
-
-- id: zh-hsk2026-g641
-  pt: 简直 + <predicate>
-  pr: jiǎn zhí + <predicate>
-  ds: Emphatic near-equivalence or extreme assessment, often hyperbolic.
-  lb: jian3-zhi2-pred--virtually
-
-- id: zh-hsk2026-g642
-  pt: 绝对 + <predicate>
-  pr: jué duì + <predicate>
-  ds: Express categorical confidence or an uncompromising stance.
-  lb: jue2-dui4-pred--absolute
-
-- id: zh-hsk2026-g643
-  pt: 的确 + <predicate>
-  pr: dí què + <predicate>
-  ds: Affirm that a claim genuinely holds.
-  lb: di2-que4-pred--indeed
-
-- id: zh-hsk2026-g644
-  pt: <first clause>，反而 + <second clause>
-  pr: <first clause>, fǎn ér + <second clause>
-  ds: The actual result reverses what the first circumstance suggests.
-  lb: clause-fan3-er2-clause--instead
-
-- id: zh-hsk2026-g645
-  pt: 白 + <verb phrase>
-  pr: bái + <verb phrase>
-  ds: Act without achieving the intended benefit.
-  lb: bai2-vp--in-vain
-
-- id: zh-hsk2026-g646
-  pt: 白 + <verb phrase>
-  pr: bái + <verb phrase>
-  ds: Receive a benefit without payment or deserved effort; verb-dependent.
-  lb: bai2-vp--free
-
-- id: zh-hsk2026-g647
-  pt: 刚好 + <predicate>
-  pr: gāng hǎo + <predicate>
-  ds: A circumstance or amount happens to fit exactly.
-  lb: gang1-hao3-pred--just-right
-
-- id: zh-hsk2026-g648
-  pt: <subject> + 可 + <predicate>
-  pr: <subject> + kě + <predicate>
-  ds: Emphatic reminder, contrast or warning; not the conjunction but.
-  lb: s-ke3-pred--insist
-
-# Prepositions, connectors and comparison particle (printed p. 395).
-- id: zh-hsk5-g008
-  pt: 自从 + <starting event>，<continuing situation> / <starting time> + 以来，<continuing situation>
-  pr: zì cóng + <starting event>, <continuing situation> / <starting time> + yǐ lái, <continuing situation>
-  ds: Ever since a starting point; 自 may precede the 以来 time phrase.
-  lb: zi4-cong2-start-state-or-start-yi3-lai2-state--since
-
-- id: zh-hsk2026-g649
-  pt: 朝 + <place> + <verb phrase>
-  pr: cháo + <place> + <verb phrase>
-  ds: Direct movement or orientation toward a place.
-  lb: chao2-loc-vp--toward
-
-- id: zh-hsk2026-g650
-  pt: (沿 / 沿着) + <path> + <verb phrase>
-  pr: (yán / yán zhe) + <path> + <verb phrase>
-  ds: Follow a spatial route or edge.
-  lb: yan2-or-yan2-zhe5-path-vp--along
-
-- id: zh-hsk2026-g651
-  pt: 替 + <person> + <verb phrase>
-  pr: tì + <person> + <verb phrase>
-  ds: Act in someone's place or on their behalf.
-  lb: ti4-p-vp--for
-
-- id: zh-hsk2026-g652
-  pt: <subject> + 同 + <person> + <verb phrase>
-  pr: <subject> + tóng + <person> + <verb phrase>
-  ds: Introduce a co-participant or counterpart.
-  lb: s-tong2-p-vp--with
-
-- id: zh-hsk2026-g653
-  pt: <subject> + 较 + <comparison target> + <adjective>
-  pr: <subject> + jiào + <comparison target> + <adjective>
-  ds: Formal comparison with an explicit target.
-  lb: s-jiao4-ref-adj--than
 
 - id: zh-hsk2026-g654
   pt: 凭 + <basis> + <verb phrase>
@@ -348,206 +356,11 @@
   ds: Rely on a credential, resource or evidential basis.
   lb: ping2-basis-vp--rely
 
-- id: zh-hsk2026-g655
-  pt: 据 + <source>，<clause>
-  pr: jù + <source>, <clause>
-  ds: Attribute information to a named source; relatively formal.
-  lb: ju4-source-clause--according
-
-- id: zh-hsk2026-g656
-  pt: 依据 + <basis> + <verb phrase>
-  pr: yī jù + <basis> + <verb phrase>
-  ds: Act or reason according to an explicit basis.
-  lb: yi1-ju4-basis-vp--basis
-
-- id: zh-hsk2026-g657
-  pt: <noun phrase> + (以及 / 同) + <noun phrase>
-  pr: <noun phrase> + (yǐ jí / tóng) + <noun phrase>
-  ds: Coordinate nominal expressions; 以及 often adds a further item.
-  lb: np-yi3-ji2-or-tong2-np--and
-
-- id: zh-hsk7-9-g031
-  pt: <first clause>，从而 + <result>
-  pr: <first clause>, cóng ér + <result>
-  ds: A prior action or change leads to a consequent result.
-  lb: clause-cong2-er2-result--thereby
-
-- id: zh-hsk2026-g658
-  pt: 总之，<summary>
-  pr: zǒng zhī, <summary>
-  ds: Summarize or draw together preceding points.
-  lb: zong3-zhi1-stmt--summary
-
-- id: zh-hsk2026-g659
-  pt: <noun phrase> + 似的 / <verb phrase> + 似的
-  pr: <noun phrase> + shì de / <verb phrase> + shì de
-  ds: Like or as if; the phrase can modify an action or description.
-  lb: np-shi4-de5-or-vp-shi4-de5--as-if
-
-# Fixed expressions and paired frames (printed p. 395).
-- id: zh-hsk2026-g660
-  pt: <verb> + 着 + <same verb> + 着，<unexpected situation>
-  pr: <verb> + zhe + <same verb> + zhe, <unexpected situation>
-  ds: During a continuing action, a new situation emerges.
-  lb: v-zhe5-v-zhe5-state--while
-
-- id: zh-hsk2026-g661
-  pt: 没 + <paired A> + 没 + <paired B>
-  pr: méi + <paired A> + méi + <paired B>
-  ds: Paired lack in established expressions; often a negative evaluation.
-  lb: mei2-a-mei2-b--without
-
-- id: zh-hsk2026-g662
-  pt: 说 + <action> + 就 + <same action>
-  pr: shuō + <action> + jiù + <same action>
-  ds: Act immediately upon saying or deciding to do so.
-  lb: shuo1-vp-jiu4-vp--immediate
-
-- id: zh-hsk2026-g663
-  pt: <subject> + 不得了
-  pr: <subject> + bù dé liǎo
-  ds: Extraordinary or serious; evaluative predicate, not inability to finish.
-  lb: s-bu4-de2-liao3--extraordinary
-
-- id: zh-hsk2026-g664
-  pt: 用不着 + <verb phrase>
-  pr: yòng bu zháo + <verb phrase>
-  ds: No need to act; not a general claim of inability.
-  lb: yong4-bu5-zhao2-vp--unnecessary
-
-- id: zh-hsk6-g018
-  pt: 从 + <source> + 来看，<clause>
-  pr: cóng + <source> + lái kàn, <clause>
-  ds: Limit a judgment to the stated evidence or perspective.
-  lb: cong2-source-lai2-kan4-clause--judging
-
-- id: zh-hsk2026-g665
-  pt: <verb> + 的 + <same verb>，<paired verb> + 的 + <paired verb>
-  pr: <verb> + de + <same verb>, <paired verb> + de + <paired verb>
-  ds: Different members engage in different actions.
-  lb: v-de5-v-v-de5-v--distributed
-
-- id: zh-hsk2026-g666
-  pt: <subject> + 由 + <noun phrase> + 组成
-  pr: <subject> + yóu + <noun phrase> + zǔ chéng
-  ds: A whole consists of the specified components.
-  lb: s-you2-np-zu3-cheng2--composition
-
-- id: zh-hsk2026-g667
-  pt: <first option> + 也不是，<second option> + 也不是
-  pr: <first option> + yě bù shì, <second option> + yě bù shì
-  ds: Neither proposed course feels acceptable; dilemma rather than neutral classification.
-  lb: a-ye3-bu4-shi4-b-ye3-bu4-shi4--dilemma
-
-- id: zh-hsk2026-g668
-  pt: <action> + 也 + <same action> + 不得，<paired verb> + 也 + <paired verb> + 不得
-  pr: <action> + yě + <same action> + bù de, <paired verb> + yě + <paired verb> + bù de
-  ds: Neither course is permissible or workable.
-  lb: vp-ye3-vp-bu4-de5-v-ye3-v-bu4-de5--blocked
-
-# Fixed discourse frames (printed p. 396).
-- id: zh-hsk2026-g669
-  pt: <first predicate> + 是它，<second predicate> + 也是它
-  pr: <first predicate> + shì tā, <second predicate> + yě shì tā
-  ds: Attribute contrasting roles or outcomes to the same thing.
-  lb: pred-shi4-ta1-pred-ye3-shi4-ta1--same-source
-
-- id: zh-hsk2026-g670
-  pt: <verb> + 着 + 也是 + <same verb> + 着
-  pr: <verb> + zhe + yě shì + <same verb> + zhe
-  ds: Continuing an idle state offers no advantage; often motivates another activity.
-  lb: v-zhe5-ye3-shi4-v-zhe5--idle
-
-- id: zh-hsk2026-g671
-  pt: 不管怎样说，<clause>
-  pr: bù guǎn zěn yàng shuō, <clause>
-  ds: Maintain a conclusion despite differing accounts or evaluations.
-  lb: bu4-guan3-zen3-yang4-shuo1-clause--anyhow
-
-- id: zh-hsk2026-g672
-  pt: 真有 + (你 / 他 / 她) + 的
-  pr: zhēn yǒu + (nǐ / tā / tā) + de
-  ds: Express impressed surprise; context may make it sarcastic.
-  lb: zhen1-you3-ni3-or-ta1-or-ta1-de5--impressed
-
-- id: zh-hsk2026-g673
-  pt: <verb> + 什么 + <same verb>！
-  pr: <verb> + shén me + <same verb>!
-  ds: Reproach or reject the mentioned action with an echoed verb.
-  lb: v-shen2-me5-v--reject
-
-- id: zh-hsk2026-g674
-  pt: 什么 + <predicate> + 不 + <same predicate> + 的
-  pr: shén me + <predicate> + bù + <same predicate> + de
-  ds: Dismiss the relevance of a proposed distinction; final 的 may drop.
-  lb: shen2-me5-pred-bu4-pred-de5--dismiss
-
-- id: zh-hsk2026-g675
-  pt: 不 + <verb> + 白不 + <same verb>
-  pr: bù + <verb> + bái bù + <same verb>
-  ds: Take an available benefit; refusing it would gain nothing.
-  lb: bu4-v-bai2-bu4-v--no-loss
-
-- id: zh-hsk2026-g676
-  pt: <verb> + 来 + <same verb> + 去，(都是 / 就是) + <result>
-  pr: <verb> + lái + <same verb> + qù, (dōu shì / jiù shì) + <result>
-  ds: Repeated attempts or consideration lead back to the same conclusion.
-  lb: v-lai2-v-qu4-dou1-shi4-or-jiu4-shi4-result--same-result
-
-- id: zh-hsk2026-g677
-  pt: <verb> + 什么，就是什么
-  pr: <verb> + shén me, jiù shì shén me
-  ds: Accept whatever is said or decided as definitive; 就 may drop.
-  lb: v-shen2-me5-jiu4-shi4-shen2-me5--accept
-
-# Adverbials and complements (printed p. 396).
-- id: zh-hsk2026-g678
-  pt: <subject> + <adverbial one> + <adverbial two> + <verb phrase>
-  pr: <subject> + <adverbial one> + <adverbial two> + <verb phrase>
-  ds: Stack compatible adverbials; semantic scope constrains order, not a universal fixed sequence.
-  lb: s-adv-adv-vp--adverbials
-
-- id: zh-hsk2026-g679
-  pt: <verb> + (得 / 不得)
-  pr: <verb> + (de / bù de)
-  ds: An action is practicable or permissible; restricted to compatible verbs.
-  lb: v-de5-or-bu4-de5--permissible
-
 - id: zh-hsk2026-g680
   pt: <mental verb or adjective> + 得 + 不得了
   pr: <mental verb or adjective> + de + bù dé liǎo
   ds: An exceptionally intense emotional or descriptive degree.
   lb: pred-de5-bu4-de2-liao3--extreme
-
-- id: zh-hsk2026-g681
-  pt: <state verb or adjective> + 下来
-  pr: <state verb or adjective> + xià lai
-  ds: Settle into a state, typically quieter, slower or more stable.
-  lb: pred-xia4-lai5--settle
-
-- id: zh-hsk2026-g682
-  pt: <state verb or adjective> + 下去
-  pr: <state verb or adjective> + xià qù
-  ds: A state persists into the future; not literal downward motion.
-  lb: pred-xia4-qu4--persist
-
-- id: zh-hsk2026-g683
-  pt: <state verb or adjective> + 起来
-  pr: <state verb or adjective> + qǐ lai
-  ds: A state emerges or develops, not simply an activity starting.
-  lb: pred-qi3-lai5--become
-
-- id: zh-hsk2026-g684
-  pt: <verb> + (过来 / 过去)
-  pr: <verb> + (guò lái / guò qù)
-  ds: Recover toward normal awareness or pass away from it; verb-dependent state change.
-  lb: v-guo4-lai2-or-guo4-qu4--state-shift
-
-- id: zh-hsk2026-g685
-  pt: <verb or adjective> + 得 + <descriptive verb phrase>
-  pr: <verb or adjective> + de + <descriptive verb phrase>
-  ds: A verbal phrase describes the resulting state, manner or extent.
-  lb: pred-de5-vp--state
 
 - id: zh-hsk2026-g686
   pt: <verb or adjective> + 得 + <subject-predicate phrase>
@@ -561,48 +374,48 @@
   ds: A compatible fixed expression characterizes the state or intensity.
   lb: pred-de5-expr--state
 
-# Possession, disposal, serial verbs, comparison and passive (printed p. 396).
-- id: zh-hsk2026-g688
-  pt: <subject> + 有着 + <object>
-  pr: <subject> + yǒu zhe + <object>
-  ds: Sustained possession or existence; often descriptive and written.
-  lb: s-you3-zhe5-obj--have
+- id: zh-hsk2026-g685
+  pt: <verb or adjective> + 得 + <descriptive verb phrase>
+  pr: <verb or adjective> + de + <descriptive verb phrase>
+  ds: A verbal phrase describes the resulting state, manner or extent.
+  lb: pred-de5-vp--state
 
-- id: zh-hsk2026-g689
-  pt: <subject> + <verb> + 有 + <object>
-  pr: <subject> + <verb> + yǒu + <object>
-  ds: A compatible attachment or inscription verb introduces what is present.
-  lb: s-v-you3-obj--attached
+- id: zh-hsk2026-g683
+  pt: <state verb or adjective> + 起来
+  pr: <state verb or adjective> + qǐ lai
+  ds: A state emerges or develops, not simply an activity starting.
+  lb: pred-qi3-lai5--become
 
-- id: zh-hsk2026-g690
-  pt: <subject> + 把 + <known object> + 一 + <verb>
-  pr: <subject> + bǎ + <known object> + yī + <verb>
-  ds: A brisk single action, often followed by an immediate consequence.
-  lb: s-ba3-obj-yi1-v--brisk
+# Fixed discourse frames (printed p. 396).
+- id: zh-hsk2026-g669
+  pt: <first predicate> + 是它，<second predicate> + 也是它
+  pr: <first predicate> + shì tā, <second predicate> + yě shì tā
+  ds: Attribute contrasting roles or outcomes to the same thing.
+  lb: pred-shi4-ta1-pred-ye3-shi4-ta1--same-source
 
-- id: zh-hsk2026-g691
-  pt: <subject> + 把 + <known object> + <verb> + <nominal result>
-  pr: <subject> + bǎ + <known object> + <verb> + <nominal result>
-  ds: A licensed disposal verb yields a nominal result or changed relation.
-  lb: s-ba3-obj-v-np--nominal-result
+- id: zh-hsk2026-g681
+  pt: <state verb or adjective> + 下来
+  pr: <state verb or adjective> + xià lai
+  ds: Settle into a state, typically quieter, slower or more stable.
+  lb: pred-xia4-lai5--settle
 
-- id: zh-hsk2026-g692
-  pt: <subject> + <cause action> + <result action>
-  pr: <subject> + <cause action> + <result action>
-  ds: Shared-subject actions linked as cause and outcome without an overt conjunction.
-  lb: s-vp-vp--serial-cause
+- id: zh-hsk2026-g682
+  pt: <state verb or adjective> + 下去
+  pr: <state verb or adjective> + xià qù
+  ds: A state persists into the future; not literal downward motion.
+  lb: pred-xia4-qu4--persist
 
-- id: zh-hsk2026-g693
-  pt: <subject> + <conceded action> + <contrasting action>
-  pr: <subject> + <conceded action> + <contrasting action>
-  ds: A second shared-subject action contrasts with the first; interpretation needs context.
-  lb: s-vp-vp--serial-contrast
+- id: zh-hsk2026-g634
+  pt: 亲自 + <verb phrase>
+  pr: qīn zì + <verb phrase>
+  ds: Do it personally rather than through another person.
+  lb: qin1-zi4-vp--personally
 
-- id: zh-hsk2026-g694
-  pt: <subject> + <condition action> + <dependent action>
-  pr: <subject> + <condition action> + <dependent action>
-  ds: First action supplies a condition for the second, not its means.
-  lb: s-vp-vp--serial-condition
+- id: zh-hsk2026-g603
+  pt: 如此 + <predicate>
+  pr: rú cǐ + <predicate>
+  ds: Such a degree or manner, supplied by context.
+  lb: ru2-ci3-pred--thus
 
 - id: zh-hsk2026-g695
   pt: <subject> + <adjective> + <comparison target> + <difference>
@@ -610,72 +423,199 @@
   ds: Direct measured difference; only compatible relational adjectives, not arbitrary 比 omission.
   lb: s-adj-ref-qty--difference
 
+# Adverbials and complements (printed p. 396).
+- id: zh-hsk2026-g678
+  pt: <subject> + <adverbial one> + <adverbial two> + <verb phrase>
+  pr: <subject> + <adverbial one> + <adverbial two> + <verb phrase>
+  ds: Stack compatible adverbials; semantic scope constrains order, not a universal fixed sequence.
+  lb: s-adv-adv-vp--adverbials
+
+- id: zh-hsk2026-g691
+  pt: <subject> + 把 + <known object> + <verb> + <nominal result>
+  pr: <subject> + bǎ + <known object> + <verb> + <nominal result>
+  ds: A licensed disposal verb yields a nominal result or changed relation.
+  lb: s-ba3-obj-v-np--nominal-result
+
+- id: zh-hsk2026-g690
+  pt: <subject> + 把 + <known object> + 一 + <verb>
+  pr: <subject> + bǎ + <known object> + yī + <verb>
+  ds: A brisk single action, often followed by an immediate consequence.
+  lb: s-ba3-obj-yi1-v--brisk
+
 - id: zh-hsk2026-g696
   pt: <subject> + (被 / 叫 / 让) + <agent> + 给 + <bounded verb phrase>
   pr: <subject> + (bèi / jiào / ràng) + <agent> + gěi + <bounded verb phrase>
   ds: Colloquial emphatic passive; 给 is not a recipient preposition here.
   lb: s-bei4-or-jiao4-or-rang4-agent-gei3-vp--passive
 
-# Sequential, alternative, hypothetical and inferential clauses (printed p. 396).
-- id: zh-hsk2026-g697
-  pt: <first clause>，便 + <second clause>
-  pr: <first clause>, biàn + <second clause>
-  ds: An ensuing result or immediate continuation; relatively written.
-  lb: clause-bian4-clause--then
+- id: zh-hsk2026-g663
+  pt: <subject> + 不得了
+  pr: <subject> + bù dé liǎo
+  ds: Extraordinary or serious; evaluative predicate, not inability to finish.
+  lb: s-bu4-de2-liao3--extraordinary
 
-- id: zh-hsk2026-g698
-  pt: 或是 + <first option>，或是 + <second option>
-  pr: huò shì + <first option>, huò shì + <second option>
-  ds: Present alternative possibilities rather than an interrogative choice.
-  lb: huo4-shi4-a-huo4-shi4-b--either
+- id: zh-hsk2026-g653
+  pt: <subject> + 较 + <comparison target> + <adjective>
+  pr: <subject> + jiào + <comparison target> + <adjective>
+  ds: Formal comparison with an explicit target.
+  lb: s-jiao4-ref-adj--than
 
-- id: zh-hsk5-g010
-  pt: 一旦 + <condition>，就 + <consequence>
-  pr: yī dàn + <condition>, jiù + <consequence>
-  ds: Once a consequential condition arises, a result follows.
-  lb: yi1-dan4-if-jiu4-then--once
+- id: zh-hsk2026-g648
+  pt: <subject> + 可 + <predicate>
+  pr: <subject> + kě + <predicate>
+  ds: Emphatic reminder, contrast or warning; not the conjunction but.
+  lb: s-ke3-pred--insist
 
-- id: zh-hsk2026-g699
-  pt: 假如 + <condition>，就 + <consequence>
-  pr: jiǎ rú + <condition>, jiù + <consequence>
-  ds: Suppose a hypothetical situation; 就 may be omitted.
-  lb: jia3-ru2-if-jiu4-then--if
+- id: zh-hsk2026-g652
+  pt: <subject> + 同 + <person> + <verb phrase>
+  pr: <subject> + tóng + <person> + <verb phrase>
+  ds: Introduce a co-participant or counterpart.
+  lb: s-tong2-p-vp--with
 
-- id: zh-hsk2026-g1100
-  pt: 万一 + <condition>，就 + <consequence>
-  pr: wàn yī + <condition>, jiù + <consequence>
-  ds: Plan for an unlikely or unwanted contingency; 就 may drop.
-  lb: wan4-yi1-if-jiu4-then--in-case
+- id: zh-hsk2026-g689
+  pt: <subject> + <verb> + 有 + <object>
+  pr: <subject> + <verb> + yǒu + <object>
+  ds: A compatible attachment or inscription verb introduces what is present.
+  lb: s-v-you3-obj--attached
 
-- id: zh-hsk2026-g1101
-  pt: <requirement>，(要不然 / 不然) + <consequence>
-  pr: <requirement>, (yào bù rán / bù rán) + <consequence>
-  ds: State what happens if the preceding requirement is not met.
-  lb: need-yao4-bu4-ran2-or-bu4-ran2-then--otherwise
+- id: zh-hsk2026-g692
+  pt: <subject> + <cause action> + <result action>
+  pr: <subject> + <cause action> + <result action>
+  ds: Shared-subject actions linked as cause and outcome without an overt conjunction.
+  lb: s-vp-vp--serial-cause
 
-- id: zh-hsk2026-g1102
-  pt: <cause>，因而 + <result>
-  pr: <cause>, yīn ér + <result>
-  ds: A relatively formal causal consequence.
-  lb: cause-yin1-er2-result--consequently
+- id: zh-hsk2026-g694
+  pt: <subject> + <condition action> + <dependent action>
+  pr: <subject> + <condition action> + <dependent action>
+  ds: First action supplies a condition for the second, not its means.
+  lb: s-vp-vp--serial-condition
 
-- id: zh-hsk2026-g1103
-  pt: <first clause>，可见 + <proposition>
-  pr: <first clause>, kě jiàn + <proposition>
-  ds: Infer a conclusion from the stated evidence.
-  lb: clause-ke3-jian4-stmt--infer
+- id: zh-hsk2026-g693
+  pt: <subject> + <conceded action> + <contrasting action>
+  pr: <subject> + <conceded action> + <contrasting action>
+  ds: A second shared-subject action contrasts with the first; interpretation needs context.
+  lb: s-vp-vp--serial-contrast
 
-- id: zh-hsk2026-g1104
-  pt: 哪怕 + <condition>，也 + <consequence>
-  pr: nǎ pà + <condition>, yě + <consequence>
-  ds: Even an extreme hypothetical case leaves the result unchanged.
-  lb: na3-pa4-if-ye3-then--even-if
+- id: zh-hsk2026-g666
+  pt: <subject> + 由 + <noun phrase> + 组成
+  pr: <subject> + yóu + <noun phrase> + zǔ chéng
+  ds: A whole consists of the specified components.
+  lb: s-you2-np-zu3-cheng2--composition
 
-- id: zh-hsk5-g004
-  pt: 不但 + (不 / 没有) + <predicate>，反而 + <predicate>
-  pr: bù dàn + (bù / méi yǒu) + <predicate>, fǎn ér + <predicate>
-  ds: Not the expected outcome but its reversal.
-  lb: bu4-dan4-bu4-or-mei2-you3-pred-fan3-er2-pred--reverse
+# Possession, disposal, serial verbs, comparison and passive (printed p. 396).
+- id: zh-hsk2026-g688
+  pt: <subject> + 有着 + <object>
+  pr: <subject> + yǒu zhe + <object>
+  ds: Sustained possession or existence; often descriptive and written.
+  lb: s-you3-zhe5-obj--have
+
+- id: zh-hsk2026-g674
+  pt: 什么 + <predicate> + 不 + <same predicate> + 的
+  pr: shén me + <predicate> + bù + <same predicate> + de
+  ds: Dismiss the relevance of a proposed distinction; final 的 may drop.
+  lb: shen2-me5-pred-bu4-pred-de5--dismiss
+
+- id: zh-hsk2026-g632
+  pt: 时常 + <verb phrase>
+  pr: shí cháng + <verb phrase>
+  ds: Frequent recurring action, not continuous duration.
+  lb: shi2-chang2-vp--often
+
+- id: zh-hsk2026-g620
+  pt: 时刻 + <predicate>
+  pr: shí kè + <predicate>
+  ds: At every moment; sustained attention or state.
+  lb: shi2-ke4-pred--always
+
+- id: zh-hsk2026-g624
+  pt: 始终 + <predicate>
+  pr: shǐ zhōng + <predicate>
+  ds: Remain so from beginning to end.
+  lb: shi3-zhong1-pred--throughout
+
+- id: zh-hsk2026-g662
+  pt: 说 + <action> + 就 + <same action>
+  pr: shuō + <action> + jiù + <same action>
+  ds: Act immediately upon saying or deciding to do so.
+  lb: shuo1-vp-jiu4-vp--immediate
+
+- id: zh-hsk2026-g635
+  pt: (似乎 / 仿佛) + <proposition>
+  pr: (sì hū / fǎng fú) + <proposition>
+  ds: An impression or appearance, not a confirmed assertion.
+  lb: si4-hu1-or-fang3-fu2-stmt--seems
+- id: zh-hsk2026-g601
+  pt: <compatible stem> + 头
+  pr: <compatible stem> + tou
+  ds: Noun-forming suffix in established words; not the independent noun head.
+  lb: stem-tou5--suffix
+
+- id: zh-hsk2026-g651
+  pt: 替 + <person> + <verb phrase>
+  pr: tì + <person> + <verb phrase>
+  ds: Act in someone's place or on their behalf.
+  lb: ti4-p-vp--for
+
+- id: zh-hsk2026-g631
+  pt: 通常 + <predicate>
+  pr: tōng cháng + <predicate>
+  ds: What is normally true, allowing exceptions.
+  lb: tong1-chang2-pred--usually
+
+- id: zh-hsk2026-g679
+  pt: <verb> + (得 / 不得)
+  pr: <verb> + (de / bù de)
+  ds: An action is practicable or permissible; restricted to compatible verbs.
+  lb: v-de5-or-bu4-de5--permissible
+
+- id: zh-hsk2026-g665
+  pt: <verb> + 的 + <same verb>，<paired verb> + 的 + <paired verb>
+  pr: <verb> + de + <same verb>, <paired verb> + de + <paired verb>
+  ds: Different members engage in different actions.
+  lb: v-de5-v-v-de5-v--distributed
+
+- id: zh-hsk2026-g684
+  pt: <verb> + (过来 / 过去)
+  pr: <verb> + (guò lái / guò qù)
+  ds: Recover toward normal awareness or pass away from it; verb-dependent state change.
+  lb: v-guo4-lai2-or-guo4-qu4--state-shift
+
+- id: zh-hsk2026-g676
+  pt: <verb> + 来 + <same verb> + 去，(都是 / 就是) + <result>
+  pr: <verb> + lái + <same verb> + qù, (dōu shì / jiù shì) + <result>
+  ds: Repeated attempts or consideration lead back to the same conclusion.
+  lb: v-lai2-v-qu4-dou1-shi4-or-jiu4-shi4-result--same-result
+
+- id: zh-hsk2026-g613
+  pt: <look verb> + <number> + 眼
+  pr: <look verb> + <number> + yǎn
+  ds: Count brief looks or glances.
+  lb: v-num-yan3--glances
+
+- id: zh-hsk2026-g677
+  pt: <verb> + 什么，就是什么
+  pr: <verb> + shén me, jiù shì shén me
+  ds: Accept whatever is said or decided as definitive; 就 may drop.
+  lb: v-shen2-me5-jiu4-shi4-shen2-me5--accept
+
+- id: zh-hsk2026-g673
+  pt: <verb> + 什么 + <same verb>！
+  pr: <verb> + shén me + <same verb>!
+  ds: Reproach or reject the mentioned action with an echoed verb.
+  lb: v-shen2-me5-v--reject
+
+# Fixed expressions and paired frames (printed p. 395).
+- id: zh-hsk2026-g660
+  pt: <verb> + 着 + <same verb> + 着，<unexpected situation>
+  pr: <verb> + zhe + <same verb> + zhe, <unexpected situation>
+  ds: During a continuing action, a new situation emerges.
+  lb: v-zhe5-v-zhe5-state--while
+
+- id: zh-hsk2026-g670
+  pt: <verb> + 着 + 也是 + <same verb> + 着
+  pr: <verb> + zhe + yě shì + <same verb> + zhe
+  ds: Continuing an idle state offers no advantage; often motivates another activity.
+  lb: v-zhe5-ye3-shi4-v-zhe5--idle
 
 # Unresolved outline item: 不是……还/还是. The source labels an additive relation but gives no context for its unusual polarity.
 # Purpose and compact clauses (printed p. 397).
@@ -685,20 +625,81 @@
   ds: Foreground the intended purpose of an action.
   lb: vp-wei4-de5-shi4-goal--purpose
 
-- id: zh-hsk2026-g1106
-  pt: 没有 + <noun phrase>，就没有 + <noun phrase>
-  pr: méi yǒu + <noun phrase>, jiù méi yǒu + <noun phrase>
-  ds: The first entity or condition is necessary for the second.
-  lb: mei2-you3-np-jiu4-mei2-you3-np--necessary
+- id: zh-hsk2026-g668
+  pt: <action> + 也 + <same action> + 不得，<paired verb> + 也 + <paired verb> + 不得
+  pr: <action> + yě + <same action> + bù de, <paired verb> + yě + <paired verb> + bù de
+  ds: Neither course is permissible or workable.
+  lb: vp-ye3-vp-bu4-de5-v-ye3-v-bu4-de5--blocked
 
-- id: zh-hsk2026-g1107
-  pt: 不 + <condition>，不 + <consequence>
-  pr: bù + <condition>, bù + <consequence>
-  ds: Without the first action, the second does not occur; compact dependency.
-  lb: bu4-if-bu4-then--unless
+- id: zh-hsk2026-g1100
+  pt: 万一 + <condition>，就 + <consequence>
+  pr: wàn yī + <condition>, jiù + <consequence>
+  ds: Plan for an unlikely or unwanted contingency; 就 may drop.
+  lb: wan4-yi1-if-jiu4-then--in-case
+
+- id: zh-hsk2026-g615
+  pt: 相当 + <gradable predicate>
+  pr: xiāng dāng + <gradable predicate>
+  ds: A considerable degree; not the equative verb.
+  lb: xiang1-dang1-pred--considerable
+
+- id: zh-hsk2026-g650
+  pt: (沿 / 沿着) + <path> + <verb phrase>
+  pr: (yán / yán zhe) + <path> + <verb phrase>
+  ds: Follow a spatial route or edge.
+  lb: yan2-or-yan2-zhe5-path-vp--along
+
+- id: zh-hsk5-g010
+  pt: 一旦 + <condition>，就 + <consequence>
+  pr: yī dàn + <condition>, jiù + <consequence>
+  ds: Once a consequential condition arises, a result follows.
+  lb: yi1-dan4-if-jiu4-then--once
+
+- id: zh-hsk2026-g656
+  pt: 依据 + <basis> + <verb phrase>
+  pr: yī jù + <basis> + <verb phrase>
+  ds: Act or reason according to an explicit basis.
+  lb: yi1-ju4-basis-vp--basis
+
+- id: zh-hsk2026-g664
+  pt: 用不着 + <verb phrase>
+  pr: yòng bu zháo + <verb phrase>
+  ds: No need to act; not a general claim of inability.
+  lb: yong4-bu5-zhao2-vp--unnecessary
 
 - id: zh-hsk2026-g1108
   pt: 再 + <adjective>，也 + <predicate>
   pr: zài + <adjective>, yě + <predicate>
   ds: However great the degree, the outcome remains unchanged.
   lb: zai4-adj-ye3-pred--however
+
+- id: zh-hsk2026-g629
+  pt: 早晚 + <predicate>
+  pr: zǎo wǎn + <predicate>
+  ds: Sooner or later; a confident prediction without a fixed time.
+  lb: zao3-wan3-pred--eventually
+
+- id: zh-hsk2026-g625
+  pt: 早已 + <predicate>
+  pr: zǎo yǐ + <predicate>
+  ds: Already true well before the reference time.
+  lb: zao3-yi3-pred--long-since
+
+- id: zh-hsk2026-g672
+  pt: 真有 + (你 / 他 / 她) + 的
+  pr: zhēn yǒu + (nǐ / tā / tā) + de
+  ds: Express impressed surprise; context may make it sarcastic.
+  lb: zhen1-you3-ni3-or-ta1-or-ta1-de5--impressed
+
+# Prepositions, connectors and comparison particle (printed p. 395).
+- id: zh-hsk5-g008
+  pt: 自从 + <starting event>，<continuing situation> / <starting time> + 以来，<continuing situation>
+  pr: zì cóng + <starting event>, <continuing situation> / <starting time> + yǐ lái, <continuing situation>
+  ds: Ever since a starting point; 自 may precede the 以来 time phrase.
+  lb: zi4-cong2-start-state-or-start-yi3-lai2-state--since
+
+- id: zh-hsk2026-g658
+  pt: 总之，<summary>
+  pr: zǒng zhī, <summary>
+  ds: Summarize or draw together preceding points.
+  lb: zong3-zhi1-stmt--summary

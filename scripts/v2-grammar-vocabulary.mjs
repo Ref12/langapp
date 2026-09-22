@@ -102,6 +102,11 @@ export function auditGrammarVocabulary(input) {
   }
   const errors = []
   const matches = []
+  const requiredVocabulary = new Map()
+  const requireVocabulary = (grammarLabel, vocabularyLabel) => {
+    if (!requiredVocabulary.has(grammarLabel)) requiredVocabulary.set(grammarLabel, new Set())
+    requiredVocabulary.get(grammarLabel).add(vocabularyLabel)
+  }
   for (const item of grammar.values()) {
     for (const run of grammarLiterals(item)) {
       const words = segment(run, forms)
@@ -114,7 +119,9 @@ export function auditGrammarVocabulary(input) {
           errors.push(`${item.id} (HSK ${item.band}): ${word.lb} is not available until HSK ${word.band}`)
         }
       }
-      matches.push({ grammar: item.lb, literal: run.ch, vocabulary: words.map(word => word.lb) })
+      const labels = words.map(word => word.lb)
+      labels.forEach(word => requireVocabulary(item.lb, word))
+      matches.push({ grammar: item.lb, literal: run.ch, vocabulary: labels })
     }
   }
   const seenRequirements = new Map()
@@ -135,7 +142,23 @@ export function auditGrammarVocabulary(input) {
       } else if (!containsWord(runs, word)) {
         errors.push(`${item.id}: required sense ${label} does not match a fixed form and reading`)
       }
+      if (word) {
+        for (const existingLabel of requiredVocabulary.get(item.lb) ?? []) {
+          const existing = vocabulary.get(existingLabel)
+          if (existing?.ch === word.ch && numberedPinyin(existing.pr) === numberedPinyin(word.pr)) {
+            requiredVocabulary.get(item.lb).delete(existingLabel)
+          }
+        }
+        requireVocabulary(item.lb, label)
+      }
     }
   }
-  return { errors, matches, grammarCount: grammar.size, vocabularyCount: vocabulary.size }
+  return {
+    errors,
+    matches,
+    requiredVocabulary: Object.fromEntries([...requiredVocabulary].map(([grammarLabel, words]) =>
+      [grammarLabel, [...words]])),
+    grammarCount: grammar.size,
+    vocabularyCount: vocabulary.size,
+  }
 }

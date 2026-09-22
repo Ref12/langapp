@@ -2,9 +2,9 @@
 
 This is the living description of the v2 curriculum scheme. Extend it as new
 content types and teaching structures are introduced. For now, v2 contains
-Chinese vocabulary inventories and grammar drafts for all HSK bands, plus a
-first declarative lesson pilot. The full teaching path and assessments are not
-yet defined.
+Chinese vocabulary inventories and grammar drafts for all HSK bands, plus the
+beginning of an ordered HSK 1 lexical-unit lesson sequence. The full teaching
+path and assessments are not yet defined.
 
 The v2 files are maintained separately from the existing curriculum outside
 this folder. They are not generated compact copies of that curriculum, and
@@ -34,7 +34,9 @@ curriculum\v2\
     hsk-6\grammar.yaml
     hsk-7-9\vocabulary.yaml
     hsk-7-9\grammar.yaml
-    lessons\001-greetings-and-identity.yaml
+    hsk-1\ordered-vocabulary.yaml
+    hsk-1\ordered-grammar.yaml
+    lessons\hsk-1.yaml
 ```
 
 Chinese alignment follows the **November 2025 HSK examination syllabus,
@@ -45,10 +47,11 @@ levels 7, 8, and 9.
 The combined directory reflects that source inventory; it does not collapse
 the three proficiency levels or require a single advanced teaching level.
 
-The HSK directories describe reference membership, not a lesson sequence.
-The separate `lessons` directory organizes teaching without moving or copying
-inventory entries. Teaching progression can organize references into smaller
-sections, modules, and lessons without changing their source identities.
+The canonical HSK files describe reference membership, not a lesson sequence.
+The separate `lessons` directory organizes teaching without moving inventory
+entries. Generated `ordered-*.yaml` projections copy complete records into
+lesson-introduction order for consumers that need a linear vocabulary or
+grammar stream; they are not canonical authoring sources.
 
 ## Vocabulary files
 
@@ -75,8 +78,9 @@ readings, or grammatical uses can need separate entries, while closely related
 synonymous glosses can share one entry. Numbered syllabus rows, written forms,
 readings, and selected senses are therefore different counts.
 
-Keep one mapping per line, preserve entry order, and quote values when YAML
-requires it. Use UTF-8 without a byte-order mark and LF line endings.
+Keep one mapping per line, keep records sorted by `lb`, and quote values when
+YAML requires it. Use `npm run curriculum:v2:order` rather than reordering
+records manually. Use UTF-8 without a byte-order mark and LF line endings.
 File-header comments retain scope, attribution, and source caveats; they are
 not additional entry fields. This five-field format is specific to v2 and
 should not be confused with other `vocabulary.yaml` formats outside this folder.
@@ -92,10 +96,12 @@ band files. A later file can introduce a new sense of a spelling encountered
 earlier, but must not repeat an already included sense. A repeated official row
 may instead be accounted for by an existing entry.
 
-Within each file, new numbered syllabus rows come first in official order,
-with selected senses for a row adjacent. Newly assigned uses of earlier
-headwords follow, in their original row order. This preserves the reference
-ordering; it is not a claim that the same order is pedagogically optimal.
+Within each canonical file, records are sorted by `lb`. This produces a stable,
+reviewable authoring order after entries are added or moved. It is not a claim
+that label order is pedagogically optimal. The ordered lesson projections are
+generated separately from `lessons\hsk-1.yaml`. Existing source/editorial
+comments are retained during sorting but do not define contiguous ranges in an
+`lb`-sorted file.
 
 Grammar prerequisites are part of the teaching inventory too. A fixed word,
 bound morpheme, or grammatical sense needed by a band's grammar must occur in
@@ -322,150 +328,82 @@ including advanced `我`, also leave their intended additional scope unclear.
 File comments preserve these limits; presence of a band file does not mean
 every source interpretation has been resolved.
 
-## Declarative lesson pilot
+## Ordered lexical-unit lessons
 
-`chinese\lessons\001-greetings-and-identity.yaml` starts from v1's **First contact**
-level and **Greetings and student identity** lesson. V1 provides a pedagogical
-starting point, not a fixed allocation of words, constructions, or lesson counts.
-Reconcile each reference against v2 rather than copying v1's inventory or
-mechanically placed supplemental vocabulary.
+`chinese\lessons\hsk-1.yaml` is the beginning of the HSK 1 teaching sequence.
+V1's teaching levels are a pedagogical starting point only; the v2 inventory,
+grammar prerequisites, cumulative knowledge cutoff, and quality of the examples
+govern the new order. The current file has `coverage: partial` and does not yet
+place every HSK 1 unit.
 
-This pilot teaches six senses (hello, I, you, the noun-identity linking word,
-student, and teacher) and one identity construction across 17 explicit pages.
-It begins with what pinyin represents, syllables and initials/finals, pitch
-versus loudness, and a same-syllable tone comparison before any word cards.
-It uses v2's whole-word
-hello sense rather than v1's retired greeting sense of the second character.
-Names and formal address are deferred; teacher provides a useful substitution
-within the construction being taught. No existing vocabulary or grammar record
-is changed by lesson placement.
+`schemaVersion: 2` makes each lesson an ordered group of four to six new lexical
+units, normally about five. A lexical unit is exactly one `lb` reference from a
+band's canonical `vocabulary.yaml` or `grammar.yaml`. Supporting pronunciation
+instruction does not count as a lexical unit and does not silently introduce a
+word or construction.
 
-### Lesson and page contract
-
-The executable data/template definitions are in
-`scripts\v2-lesson-schema.mjs`, using the existing Zod dependency. They are
-authoring definitions, **not implemented UI components**. The app, routes,
-generated content, and existing lessons remain unchanged.
-
-`schemaVersion: 1` versions this new lesson contract, not the curriculum.
-Lesson metadata includes a stable `id`, language, title, draft status, teaching
-placement, HSK alignment band, original-content provenance, prerequisite lesson
-IDs, and learner-facing objectives. `placement.level` is a teaching level;
-it is **not** an HSK level. The pilot's `first-exchanges` module is provisional
-placement, not a completed module or a declaration of the entire course path.
-`alignment` identifies the intended examination band, not a readiness verdict.
-
-Each lesson explicitly declares its ordered `pages`. Each page has exactly
-`id`, `template`, `title`, `requires`, and `data`. Its stable ID is local to the
-lesson; its position in the array is the display order. `requires` lists earlier
-page IDs in the same lesson. There is no implicit expansion from word lists
-or sections, and no automatically inserted overview or practice page.
-An overview must appear first and a summary last, with neither repeated.
-
-The predefined template set is deliberately small:
-
-| Template | `data` fields | Intended template behavior |
-| --- | --- | --- |
-| `overview` | `introduction` | Show the lesson introduction and objectives from lesson metadata. |
-| `vocabulary` | `word`, `role`, `note` | Resolve one vocabulary `lb`; show its Chinese, citation pinyin, meaning, and the lesson-specific note. |
-| `concept` | `body`, `examples` | Explain pronunciation or other supporting knowledge; examples may be empty for an initial orientation. |
-| `tone-comparison` | `syllable`, `introduction`, `examples`, `neutralContext`, `practice` | Compare one syllable across the four main tones; explain neutral tone with a contextual example. |
-| `grammar` | `grammar`, `role`, `explanation`, `examples` | Resolve one construction's `lb`; show its pattern alongside a learner-facing explanation and grounded examples. |
-| `dialogue` | `setting`, `speakers`, `turns` | Present the exchange in authored order; each turn names a declared speaker and contains an utterance. |
-| `recall` | `prompt`, `answer`, `explanation` | Show the prompt first; hide the model answer and explanation until the learner explicitly reveals them. This is an unscored self-check. |
-| `summary` | `reflection`, `limitation` | Show reflection prompts and the explicit limits of the lesson's evidence. |
-
-`role` is `new` or `review`. A vocabulary or grammar page is the introduction
-point; merely using a reference elsewhere does not introduce it. Review means
-previously introduced, not mastered. Concept-page IDs serve as local handles
-for dependencies; this pilot does not establish a separate global concept
-inventory.
-
-Narration is English prose with the existing safe Markdown subset, not raw
-HTML, JSX, scripts, component paths, or custom layout instructions. Template
-code, when implemented, owns layout and interaction. No runtime AI generation
-is required to supply missing lesson content. Grammar placeholder patterns
-are displayed as patterns, never pronounced as complete utterances.
-
-### Grounded utterances and knowledge cutoffs
-
-Examples, dialogue turns, and model answers use the same structure:
+Each unit has `kind`, `ref`, and a lesson-specific `note`. Examples are shared at
+lesson level so one sentence can demonstrate several units without duplicating
+content:
 
 ```yaml
-segments:
-  - word: wo3--me
-  - word: shi4--identity
-  - word: xue2-sheng5--student
-  - punctuation: 。
-translation: I am a student.
-grammar: [s-shi4-n--identity]
+units:
+  - {kind: vocabulary, ref: wo3--me, note: 'Use as first-person I.'}
+  - {kind: vocabulary, ref: shi4--identity, note: 'Link a person to a noun role.'}
+  - {kind: vocabulary, ref: xue2-sheng5--student, note: 'A student.'}
+  - {kind: grammar, ref: s-shi4-n--identity, note: 'Subject, shì, then role noun.'}
+examples:
+  - id: i-am-a-student
+    segments:
+      - word: wo3--me
+      - word: shi4--identity
+      - word: xue2-sheng5--student
+      - punctuation: 。
+    translation: I am a student.
+    grammar: [s-shi4-n--identity]
 ```
 
-Lesson vocabulary and grammar references use the inventory's **`lb` identifier**,
-not opaque canonical IDs. Resolve each label directly against the v2 inventory
-to obtain its stable `id` and content. Do not add a second label registry or
-copy `ch`, `pr`, or `ds` into lesson records. Unknown or duplicate labels are
-errors. If an inventory label is intentionally renamed, update its lesson
-references in the same change; its underlying canonical ID remains unchanged.
-Lesson IDs, page IDs, speaker IDs, and their dependencies keep their own IDs.
-Resolve characters and citation pinyin from vocabulary; concatenate the
-characters and punctuation in segment order. An entry such as the whole-word
-greeting does not automatically introduce its component senses. Pinyin remains
-citation pinyin even when concept prose explains contextual pronunciation.
+The validator derives unit-to-example associations: a vocabulary unit is covered
+when its exact `word` label occurs in an example, and a grammar unit is covered
+when its label occurs in the example's `grammar` list. Every introduced unit
+must be covered. Every example must demonstrate at least one unit introduced in
+that lesson. All word and grammar references must have been introduced in the
+current or an earlier lesson.
 
-`grammar` explicitly declares the constructions needed by the utterance.
-An empty list is appropriate for the lexicalized greeting, not a way to bypass
-the cutoff for an untaught sentence pattern. Speaker IDs and display names are
-metadata, not spoken target-language vocabulary.
+Grammar prerequisites are not limited to the manually pinned
+`grammar-vocabulary.yaml` bindings. The grammar audit also exposes vocabulary
+matched from every construction's fixed Chinese form and reading. A grammar
+unit cannot be placed until all of those lexical units have appeared in the same
+or an earlier lesson. Move supporting vocabulary earlier in the teaching order
+when necessary; do not move it between HSK band inventories merely to change
+lesson order.
 
-`validateLessonSequence` accepts lessons in explicit teaching order and the
-canonical vocabulary/grammar inventories. It checks template-specific shapes,
-unique IDs and inventory labels, backward prerequisites, introduction/review roles, dialogue speakers,
-and reference availability **at each page**, including hidden model answers.
-A grammar page introduces its construction before its own examples. Vocabulary
-from elsewhere in the HSK band is not considered known until taught.
-The cumulative prefix is introduced content, not evidence of learner mastery.
+### Canonical and teaching order
 
-### Pronunciation demonstrations
-
-`tone-comparison` uses structured **phonetic examples**, not lexical utterances.
-The pilot holds the syllable `ma` constant: `mā`, `má`, `mǎ`, `mà`, then unmarked
-`ma`. Each row contains `tone`, `pinyin`, `name`, `contour`, and `instruction`.
-The first four rows demonstrate isolated citation tones, with the third-tone
-explanation explicitly distinguishing connected-speech low tone from an
-isolated dip and rise.
-
-Tone `5` is an authoring convention for **neutral tone**, not a fifth fixed
-pitch contour. `neutralContext` supplies a pinyin `syllables` array, a one-based
-`focus`, and an `explanation`. The pilot uses `[mā, ma]` with focus `2`, so the
-learner can compare a full first tone with the shorter, lighter syllable after
-it. The context must put the unmarked comparison syllable after a full-tone
-syllable. Validation also requires all five rows in order, matching tone marks
-and the same base syllable, using the existing pinyin conversion helper.
-
-These sound demonstrations do not create vocabulary senses, introduce the
-constituent characters, or satisfy later lexical cutoffs. They have no word
-references or translations; any lexical use in an example, dialogue, or answer
-still needs a separately introduced vocabulary `lb`. Naming the word for mom
-in the explanatory note is exposure, not permission to require it in recall.
-The future template must distinguish sound practice from vocabulary cards.
-It must not send raw pinyin to ordinary Chinese text-to-speech and assume the
-tones will be correct; reviewed pronunciation audio is not supplied by this
-data-only pilot.
-
-The focused pilot check is:
+Canonical `vocabulary.yaml` and `grammar.yaml` files are sorted by `lb`, not by
+lesson order. Do not reorder them manually. Run:
 
 ```text
-npm test -- scripts/v2-lesson-schema.test.ts
+npm run curriculum:v2:order
 ```
 
-This is structural/reference validation, not automated linguistic review: an
-author must still check that declared constructions are sufficient and used
-correctly, that explanations and translations are accurate, and that practical
-skills have been taught. The pilot has no scored listening or pronunciation
-assessment, reviewed audio assets, handwriting tasks, or retention evidence.
-Page completion, answer reveal, and model repetition must not award mastery
-or establish examination readiness.
+The script sorts every canonical v2 vocabulary and grammar inventory by `lb` and
+generates `ordered-vocabulary.yaml` and `ordered-grammar.yaml` beside the HSK 1
+canonical files. Those generated files contain the full inventory records in
+lesson-introduction order and currently declare partial coverage. Never edit
+them directly. `npm run curriculum:v2:order:check` fails when a canonical file
+is unsorted or a generated projection is stale.
+
+The focused structural checks are:
+
+```text
+npm test -- scripts/v2-lesson-schema.test.ts scripts/v2-order-curriculum.test.ts
+```
+
+These checks do not replace linguistic review. Authors must still verify that
+examples use the declared constructions correctly, meanings are accurate, and
+the sequence teaches practical skills. Introduced or viewed content is not
+demonstrated mastery or examination readiness.
 
 ## Sources and limits
 

@@ -33,6 +33,11 @@ npm test -- scripts\v2-grammar-vocabulary.test.ts
 V2 is separate from the existing app projection. `npm run curriculum:check`
 does not replace this v2 check. Lesson-level introduction order remains a
 separate requirement even when band-level vocabulary coverage passes.
+Canonical v2 `vocabulary.yaml` and `grammar.yaml` files must stay sorted by
+`lb`; do not reorder them manually. Run `npm run curriculum:v2:order` after
+inventory or lesson-sequence changes. It also regenerates the separate
+`ordered-vocabulary.yaml` and `ordered-grammar.yaml` teaching projections.
+Use `npm run curriculum:v2:order:check` to detect unsorted or stale files.
 
 ## Certification and exam-readiness claims
 

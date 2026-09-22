@@ -1,0 +1,159 @@
+# Ordered HSK 1 lesson sequence. Each lesson introduces about five lexical units
+# from vocabulary.yaml or grammar.yaml and demonstrates every new unit.
+# This is a partial teaching sequence, not an HSK-readiness verdict.
+schemaVersion: 2
+language: chinese
+alignment: hsk-1
+title: HSK 1 foundations
+status: draft
+coverage: partial
+source:
+  kind: original
+  startingPoint: curriculum\chinese\teaching\levels
+introduction: |
+  Learn Mandarin through a cumulative sequence of vocabulary senses and grammar
+  constructions. Each lesson introduces a small group of lexical units and uses
+  every new unit in at least one example. Later examples may reuse anything
+  introduced earlier, but may not assume future vocabulary or grammar.
+
+  The current file begins the sequence. It does not yet place every HSK 1 unit.
+  Completing all lessons or viewing all examples is not evidence of mastery or
+  examination readiness.
+pronunciation:
+  pinyin: |
+    Mandarin is usually written with Chinese characters. Pinyin is a standard
+    pronunciation guide that writes Mandarin syllables with Latin letters and
+    tone marks. It is not an English translation and its letters do not always
+    have their English sound values.
+
+    A syllable is one spoken beat. In ma, m is the initial and a is the final.
+    Close the lips for m, then open into one ah-like vowel; do not pronounce the
+    English letter names. A tone mark over the vowel shows how pitch moves across
+    the whole syllable.
+  tones:
+    syllable: ma
+    introduction: |
+      Pitch is how high or low the voice sounds, not how loud it is. Keep the
+      consonant and vowel unchanged while comparing the four main tones. Neutral
+      tone has no fixed contour and is practised in context after a full tone.
+    examples:
+      - {tone: 1, pinyin: mā, name: First tone, contour: High and level, instruction: Hold a comfortably high pitch steady without making it louder.}
+      - {tone: 2, pinyin: má, name: Second tone, contour: Mid to high and rising, instruction: Start in the middle of your range and glide upward in one syllable.}
+      - {tone: 3, pinyin: mǎ, name: Third tone, contour: Low; dipping then rising in isolation, instruction: Let the pitch go low and then rise in isolated practice; connected third tone often remains low.}
+      - {tone: 4, pinyin: mà, name: Fourth tone, contour: High to low and falling, instruction: Start high and drop decisively without shouting or adding a syllable.}
+      - {tone: 5, pinyin: ma, name: Neutral tone, contour: Short and light; determined by context, instruction: Use no tone mark and make it shorter and lighter than the preceding full-tone syllable.}
+    neutralContext:
+      syllables: [mā, ma]
+      focus: 2
+      explanation: |
+        In mā ma, keep the first syllable high and level, then make the second
+        syllable shorter, lighter, and lower. This is pronunciation exposure to
+        the word for mom, not a lexical unit introduced by the lessons below.
+lessons:
+  - id: greetings-and-student-identity
+    title: Greet someone and identify yourself
+    objectives:
+      - Use a familiar greeting.
+      - Say that you are a student.
+    units:
+      - {kind: vocabulary, ref: ni3-hao3--hello, note: 'Learn this as a complete familiar greeting; its component characters are not introduced separately here.'}
+      - {kind: vocabulary, ref: wo3--me, note: 'Use this sense as the first-person pronoun I in the lesson examples.'}
+      - {kind: vocabulary, ref: shi4--identity, note: 'This links a person to a noun role; its form does not change for English am, is, or are.'}
+      - {kind: vocabulary, ref: xue2-sheng5--student, note: 'The second syllable has neutral tone in the selected vocabulary reading.'}
+      - {kind: grammar, ref: s-shi4-n--identity, note: 'Put the subject first, then shì, then the identifying noun; do not add an article before the role noun.'}
+    examples:
+      - id: hello
+        segments:
+          - word: ni3-hao3--hello
+          - punctuation: ！
+        translation: Hello!
+        grammar: []
+      - id: i-am-a-student
+        segments:
+          - word: wo3--me
+          - word: shi4--identity
+          - word: xue2-sheng5--student
+          - punctuation: 。
+        translation: I am a student.
+        grammar: [s-shi4-n--identity]
+
+  - id: questions-and-reciprocal-followup
+    title: Ask and return an identity question
+    objectives:
+      - Refer to the person being addressed and a teacher.
+      - Ask a yes-or-no identity question and return the same topic.
+    units:
+      - {kind: vocabulary, ref: ni3--you, note: 'Familiar singular you; polite address is introduced later.'}
+      - {kind: vocabulary, ref: lao3-shi1--teacher, note: 'Recombine this role noun with the identity construction from the preceding lesson.'}
+      - {kind: vocabulary, ref: ma5--question, note: 'This neutral-tone particle closes a yes-or-no question.'}
+      - {kind: grammar, ref: stmt-ma5--yes-no, note: 'Keep statement order and add ma; do not use it with a question word or an A-not-A pattern.'}
+      - {kind: vocabulary, ref: ne5--reciprocal, note: 'This neutral-tone particle returns an established topic in the current context.'}
+      - {kind: grammar, ref: np-ne5--followup, note: 'Place ne after the person or topic; the omitted question must be recoverable from context.'}
+    examples:
+      - id: you-are-a-teacher
+        segments:
+          - word: ni3--you
+          - word: shi4--identity
+          - word: lao3-shi1--teacher
+          - punctuation: 。
+        translation: You are a teacher.
+        grammar: [s-shi4-n--identity]
+      - id: are-you-a-student
+        segments:
+          - word: ni3--you
+          - word: shi4--identity
+          - word: xue2-sheng5--student
+          - word: ma5--question
+          - punctuation: ？
+        translation: Are you a student?
+        grammar: [s-shi4-n--identity, stmt-ma5--yes-no]
+      - id: and-you
+        segments:
+          - word: ni3--you
+          - word: ne5--reciprocal
+          - punctuation: ？
+        translation: And you?
+        grammar: [np-ne5--followup]
+
+  - id: courtesy-and-closing
+    title: Thank, repair, and close an exchange
+    objectives:
+      - Use five complete social expressions in short exchanges.
+      - Distinguish an apology from its reassuring response.
+    units:
+      - {kind: vocabulary, ref: xie4-xie5--thanks, note: 'A complete expression of thanks; the second syllable is neutral.'}
+      - {kind: vocabulary, ref: bu4-ke4-qi5--welcome, note: 'Use this fixed response after thanks.'}
+      - {kind: vocabulary, ref: dui4-bu5-qi3--sorry, note: 'A complete apology expression.'}
+      - {kind: vocabulary, ref: mei2-guan1-xi5--reassurance, note: 'A conventional response meaning that the problem does not matter.'}
+      - {kind: vocabulary, ref: zai4-jian4--goodbye, note: 'Use this complete expression when ending the exchange.'}
+    examples:
+      - id: thank-you
+        segments:
+          - word: xie4-xie5--thanks
+          - punctuation: ！
+        translation: Thank you!
+        grammar: []
+      - id: you-are-welcome
+        segments:
+          - word: bu4-ke4-qi5--welcome
+          - punctuation: 。
+        translation: You are welcome.
+        grammar: []
+      - id: apology
+        segments:
+          - word: dui4-bu5-qi3--sorry
+          - punctuation: ！
+        translation: I am sorry!
+        grammar: []
+      - id: reassurance
+        segments:
+          - word: mei2-guan1-xi5--reassurance
+          - punctuation: 。
+        translation: It does not matter.
+        grammar: []
+      - id: goodbye
+        segments:
+          - word: zai4-jian4--goodbye
+          - punctuation: ！
+        translation: Goodbye!
+        grammar: []

@@ -43,6 +43,8 @@
 # Adapted dictionary material: CC-BY-SA-4.0, https://creativecommons.org/licenses/by-sa/4.0/
 # Full provenance, download hashes, and retained MIT/share-alike notices:
 # curriculum\chinese\sources.yaml and curriculum\chinese\licenses\.
+# Record order: ascending lb; lesson order is generated separately.
+# Comments retain original source/editorial context; they do not define sorted ranges.
 
 # New syllabus entries, in numbered-row order.
 # Row 3601: 岸; 名.
@@ -79,8 +81,8 @@
 - {id: zh-hsk7-9-00061-s001, ch: 拜年, pr: bài nián, ds: to pay New Year greetings, lb: bai4-nian2--greet}
 # Row 3616: 版; 名、量.
 - {id: zh-hsk5-00008-s003, ch: 版, pr: bǎn, ds: edition; version, lb: ban3--edition}
-- {id: zh-hsk5-00008-s005, ch: 版, pr: bǎn, ds: page of a newspaper, lb: ban3--page}
 - {id: zh-hsk2026-03616-s601, ch: 版, pr: bǎn, ds: measure word for editions or printings, lb: ban3--editions}
+- {id: zh-hsk5-00008-s005, ch: 版, pr: bǎn, ds: page of a newspaper, lb: ban3--page}
 # Row 3617: 版本; 名.
 - {id: zh-hsklegacy-00146-s001, ch: 版本, pr: bǎn běn, ds: version; edition, lb: ban3-ben3--version}
 # Row 3618: 伴随; 动.
@@ -99,9 +101,9 @@
 - {id: zh-hsk7-9-00101-s001, ch: 保暖, pr: bǎo nuǎn, ds: to keep warm, lb: bao3-nuan3--warm}
 # Row 3625: 保修; 动.
 - {id: zh-hsk7-9-00103-s001, ch: 保修, pr: bǎo xiū, ds: to provide repairs under warranty, lb: bao3-xiu1--warranty}
+- {id: zh-hsk2026-03626-s601, ch: 保障, pr: bǎo zhàng, ds: safeguard; guarantee; protection, lb: bao3-zhang4--protection}
 # Row 3626: 保障; 动、名.
 - {id: zh-hsk7-9-00105-s001, ch: 保障, pr: bǎo zhàng, ds: to safeguard; guarantee, lb: bao3-zhang4--safeguard}
-- {id: zh-hsk2026-03626-s601, ch: 保障, pr: bǎo zhàng, ds: safeguard; guarantee; protection, lb: bao3-zhang4--protection}
 # Row 3627: 爆; 动.
 - {id: zh-hsk6-00022-s001, ch: 爆, pr: bào, ds: to explode; burst, lb: bao4--explode}
 # Row 3628: 爆发; 动.
@@ -145,31 +147,31 @@
 - {id: zh-hsk6-00032-s001, ch: 本身, pr: běn shēn, ds: itself; in itself, lb: ben3-shen1--itself}
 # Row 3647: 本土; 名.
 - {id: zh-hsk6-00033-s001, ch: 本土, pr: běn tǔ, ds: native land; home territory, lb: ben3-tu3--homeland}
+- {id: zh-hsk6-00035-s006, ch: 逼, pr: bī, ds: to press close to; close in on, lb: bi1--approach}
 # Row 3648: 逼; 动.
 - {id: zh-hsk6-00035-s001, ch: 逼, pr: bī, ds: to force; put pressure on, lb: bi1--force}
-- {id: zh-hsk6-00035-s006, ch: 逼, pr: bī, ds: to press close to; close in on, lb: bi1--approach}
 # Row 3649: 比方; 动.
 - {id: zh-hsk2026-03649-s601, ch: 比方, pr: bǐ fang, ds: to draw an analogy; give an example, lb: bi3-fang5--illustrate}
 # Row 3650: 比重; 名.
 - {id: zh-hsk5-00028-s001, ch: 比重, pr: bǐ zhòng, ds: proportion, lb: bi3-zhong4--proportion}
-# Row 3651: 闭; 动.
-- {id: zh-hsk6-00039-s001, ch: 闭, pr: bì, ds: to close; shut, lb: bi4--close}
 # Row 3652: 避; 动.
 - {id: zh-hsk4-00038-s001, ch: 避, pr: bì, ds: to avoid; keep away from, lb: bi4--avoid}
+# Row 3651: 闭; 动.
+- {id: zh-hsk6-00039-s001, ch: 闭, pr: bì, ds: to close; shut, lb: bi4--close}
 # Row 3653: 必修; 形.
 - {id: zh-hsk6-00038-s001, ch: 必修, pr: bì xiū, ds: compulsory; required (of a course), lb: bi4-xiu1--required}
-# Row 3654: 编; 动.
-- {id: zh-hsk4-00040-s001, ch: 编, pr: biān, ds: to weave; plait, lb: bian1--weave}
 - {id: zh-hsk4-00040-s006, ch: 编, pr: biān, ds: to compile; edit; compose, lb: bian1--compile}
 - {id: zh-hsk4-00040-s010, ch: 编, pr: biān, ds: to make up; fabricate, lb: bian1--fabricate}
+# Row 3654: 编; 动.
+- {id: zh-hsk4-00040-s001, ch: 编, pr: biān, ds: to weave; plait, lb: bian1--weave}
 # Row 3655: 编辑; 动、名.
 - {id: zh-hsk5-00036-s001, ch: 编辑, pr: biān jí, ds: to edit; compile, lb: bian1-ji2--edit}
 - {id: zh-hsk5-00036-s003, ch: 编辑, pr: biān jí, ds: editor; compiler, lb: bian1-ji2--editor}
 # Row 3656: 编写; 动.
 - {id: zh-hsk7-9-00178-s001, ch: 编写, pr: biān xiě, ds: to compile; write and edit, lb: bian1-xie3--compile}
+- {id: zh-hsk2026-03657-s601, ch: 遍地, pr: biàn dì, ds: to cover the ground; be found everywhere, lb: bian4-di4--cover}
 # Row 3657: 遍地; 动、副.
 - {id: zh-hsk6-00048-s001, ch: 遍地, pr: biàn dì, ds: everywhere; all over the ground, lb: bian4-di4--everywhere}
-- {id: zh-hsk2026-03657-s601, ch: 遍地, pr: biàn dì, ds: to cover the ground; be found everywhere, lb: bian4-di4--cover}
 # Row 3658: 便捷; 形.
 - {id: zh-hsk7-9-00190-s001, ch: 便捷, pr: biàn jié, ds: convenient and fast, lb: bian4-jie2--convenient}
 # Row 3659: 变质; 动.
@@ -179,9 +181,9 @@
 - {id: zh-hsk4-00048-s001, ch: 兵, pr: bīng, ds: soldier; troops, lb: bing1--soldier}
 # Row 3661: 病毒; 名.
 - {id: zh-hsk5-00044-s001, ch: 病毒, pr: bìng dú, ds: virus, lb: bing4-du2--virus}
+- {id: zh-hsk6-00055-s004, ch: 播, pr: bō, ds: to broadcast, lb: bo1--broadcast}
 # Row 3662: 播; 动.
 - {id: zh-hsk6-00055-s001, ch: 播, pr: bō, ds: to sow, lb: bo1--sow}
-- {id: zh-hsk6-00055-s004, ch: 播, pr: bō, ds: to broadcast, lb: bo1--broadcast}
 # Row 3663: 播种; 动.
 - {id: zh-hsklegacy-00541-s001, ch: 播种, pr: bō zhǒng, ds: to sow seeds, lb: bo1-zhong3--sow}
 # Row 3664: 博览会; 名.
@@ -190,21 +192,11 @@
 - {id: zh-hsk5-00013-s001, ch: 薄弱, pr: bó ruò, ds: weak; frail, lb: bo2-ruo4--weak}
 # Row 3666: 脖子; 名.
 - {id: zh-hsk7-9-00248-s001, ch: 脖子, pr: bó zi, ds: neck, lb: bo2-zi5--neck}
-# Row 3667: 不耐烦; .
-- {id: zh-hsk5-00059-s001, ch: 不耐烦, pr: bù nài fán, ds: impatient; to lose patience, lb: bu4-nai4-fan2--impatient}
-# Row 3668: 不顾; 动.
-- {id: zh-hsk5-00055-s001, ch: 不顾, pr: bù gù, ds: to disregard; ignore, lb: bu4-gu4--disregard}
-# Row 3669: 不料; 连.
-- {id: zh-hsk6-00066-s001, ch: 不料, pr: bù liào, ds: unexpectedly; to one's surprise, lb: bu4-liao4--unexpectedly}
-# Row 3670: 不适; 形.
-- {id: zh-hsk7-9-00280-s001, ch: 不适, pr: bù shì, ds: unwell; uncomfortable, lb: bu4-shi4--unwell}
-# Row 3671: 不至于; 动.
-- {id: zh-hsk6-00072-s001, ch: 不至于, pr: bù zhì yú, ds: unlikely to go so far as; not as bad as, lb: bu4-zhi4-yu2--unlikely}
+# Row 3673: 捕; 动.
+- {id: zh-hsk6-00060-s001, ch: 捕, pr: bǔ, ds: to catch; capture, lb: bu3--capture}
 # Row 3672: 补; 动.
 - {id: zh-hsk3-00052-s001, ch: 补, pr: bǔ, ds: to mend; patch, lb: bu3--mend}
 - {id: zh-hsk3-00052-s004, ch: 补, pr: bǔ, ds: to supplement; make up for, lb: bu3--supplement}
-# Row 3673: 捕; 动.
-- {id: zh-hsk6-00060-s001, ch: 捕, pr: bǔ, ds: to catch; capture, lb: bu3--capture}
 # Row 3674: 补偿; 动.
 - {id: zh-hsk5-00050-s001, ch: 补偿, pr: bǔ cháng, ds: to compensate; make up for, lb: bu3-chang2--compensate}
 # Row 3675: 补课; 动.
@@ -220,19 +212,27 @@
 - {id: zh-hsk3-00054-s003, ch: 不安, pr: bù ān, ds: uneasy; anxious; restless, lb: bu4-an1--uneasy}
 # Row 3680: 不曾; 副.
 - {id: zh-hsk5-00052-s001, ch: 不曾, pr: bù céng, ds: never; not ever, lb: bu4-ceng2--never}
+- {id: zh-hsk2026-03681-s601, ch: 不成, pr: bù chéng, ds: to fail; not work out, lb: bu4-cheng2--fail}
+- {id: zh-hsk6-00062-s003, ch: 不成, pr: bù chéng, ds: 'could it be? (rhetorical question ending)', lb: bu4-cheng2--rhetorical}
 # Row 3681: 不成; 动、形、助.
 - {id: zh-hsk6-00062-s001, ch: 不成, pr: bù chéng, ds: not acceptable; no good, lb: bu4-cheng2--unacceptable}
-- {id: zh-hsk6-00062-s003, ch: 不成, pr: bù chéng, ds: 'could it be? (rhetorical question ending)', lb: bu4-cheng2--rhetorical}
-- {id: zh-hsk2026-03681-s601, ch: 不成, pr: bù chéng, ds: to fail; not work out, lb: bu4-cheng2--fail}
 # Row 3682: 不得; 动.
 - {id: zh-hsk2026-03682-s001, ch: 不得, pr: bù dé, ds: must not, lb: bu4-de2--must-not}
 # Row 3683: 部队; 名.
 - {id: zh-hsk6-00074-s001, ch: 部队, pr: bù duì, ds: armed forces; troops; military unit, lb: bu4-dui4--troops}
+# Row 3668: 不顾; 动.
+- {id: zh-hsk5-00055-s001, ch: 不顾, pr: bù gù, ds: to disregard; ignore, lb: bu4-gu4--disregard}
 # Row 3684: 不禁; 副.
 - {id: zh-hsk6-00065-s001, ch: 不禁, pr: bù jīn, ds: cannot help doing something, lb: bu4-jin1--involuntarily}
+# Row 3669: 不料; 连.
+- {id: zh-hsk6-00066-s001, ch: 不料, pr: bù liào, ds: unexpectedly; to one's surprise, lb: bu4-liao4--unexpectedly}
+# Row 3667: 不耐烦; .
+- {id: zh-hsk5-00059-s001, ch: 不耐烦, pr: bù nài fán, ds: impatient; to lose patience, lb: bu4-nai4-fan2--impatient}
 # Row 3685: 不时; 副、名.
 - {id: zh-hsk5-00061-s001, ch: 不时, pr: bù shí, ds: from time to time; occasionally, lb: bu4-shi2--occasionally}
 - {id: zh-hsk2026-03685-s601, ch: 不时, pr: bù shí, ds: an unexpected time or need, lb: bu4-shi2--unexpected-need}
+# Row 3670: 不适; 形.
+- {id: zh-hsk7-9-00280-s001, ch: 不适, pr: bù shì, ds: unwell; uncomfortable, lb: bu4-shi4--unwell}
 # Row 3686: 部位; 名.
 - {id: zh-hsk5-00068-s001, ch: 部位, pr: bù wèi, ds: part; position (especially of the body), lb: bu4-wei4--part}
 # Row 3687: 不许; 动.
@@ -241,12 +241,14 @@
 - {id: zh-hsk7-9-00294-s001, ch: 不宜, pr: bù yí, ds: to be unsuitable; not be advisable, lb: bu4-yi2--unsuitable}
 # Row 3689: 不已; 动.
 - {id: zh-hsk7-9-00290-s001, ch: 不已, pr: bù yǐ, ds: to go on without stopping, lb: bu4-yi3--unceasing}
-# Row 3690: 布置; 动.
-- {id: zh-hsk4-00053-s001, ch: 布置, pr: bù zhì, ds: to arrange; decorate, lb: bu4-zhi4--arrange}
-- {id: zh-hsk4-00053-s005, ch: 布置, pr: bù zhì, ds: to deploy; assign tasks, lb: bu4-zhi4--assign}
 # Row 3691: 不止; 动、副.
 - {id: zh-hsk5-00066-s001, ch: 不止, pr: bù zhǐ, ds: to continue without stopping, lb: bu4-zhi3--continue}
 - {id: zh-hsk5-00066-s003, ch: 不止, pr: bù zhǐ, ds: more than; not merely, lb: bu4-zhi3--more}
+# Row 3690: 布置; 动.
+- {id: zh-hsk4-00053-s001, ch: 布置, pr: bù zhì, ds: to arrange; decorate, lb: bu4-zhi4--arrange}
+- {id: zh-hsk4-00053-s005, ch: 布置, pr: bù zhì, ds: to deploy; assign tasks, lb: bu4-zhi4--assign}
+# Row 3671: 不至于; 动.
+- {id: zh-hsk6-00072-s001, ch: 不至于, pr: bù zhì yú, ds: unlikely to go so far as; not as bad as, lb: bu4-zhi4-yu2--unlikely}
 # Row 3692: 步骤; 名.
 - {id: zh-hsk7-9-00307-s001, ch: 步骤, pr: bù zhòu, ds: step in a procedure, lb: bu4-zhou4--step}
 # Row 3693: 猜测; 动.
@@ -259,15 +261,15 @@
 - {id: zh-hsk7-9-00312-s001, ch: 才华, pr: cái huá, ds: talent, lb: cai2-hua2--talent}
 # Row 3697: 才能; 名.
 - {id: zh-hsk3-00066-s001, ch: 才能, pr: cái néng, ds: talent; ability, lb: cai2-neng2--ability}
-# Row 3698: 财务; 名.
-- {id: zh-hsk7-9-00316-s001, ch: 财务, pr: cái wù, ds: financial affairs, lb: cai2-wu4--finances}
 # Row 3699: 财物; 名.
 - {id: zh-hsk7-9-00315-s001, ch: 财物, pr: cái wù, ds: property; belongings, lb: cai2-wu4--belongings}
+# Row 3698: 财务; 名.
+- {id: zh-hsk7-9-00316-s001, ch: 财务, pr: cái wù, ds: financial affairs, lb: cai2-wu4--finances}
 # Row 3700: 材质; 名.
 - {id: zh-hsk2026-03700-s601, ch: 材质, pr: cái zhì, ds: material; the nature or quality of a material, lb: cai2-zhi4--material}
+- {id: zh-hsk6-00076-s004, ch: 踩, pr: cǎi, ds: to pedal; press a pedal, lb: cai3--pedal}
 # Row 3701: 踩; 动.
 - {id: zh-hsk6-00076-s001, ch: 踩, pr: cǎi, ds: to step on; tread on, lb: cai3--step}
-- {id: zh-hsk6-00076-s004, ch: 踩, pr: cǎi, ds: to pedal; press a pedal, lb: cai3--pedal}
 # Row 3702: 采购; 动、名.
 - {id: zh-hsk5-00072-s001, ch: 采购, pr: cǎi gòu, ds: to purchase supplies; procure, lb: cai3-gou4--procure}
 - {id: zh-hsk2026-03702-s601, ch: 采购, pr: cǎi gòu, ds: procurement; purchasing, lb: cai3-gou4--procurement}
@@ -301,9 +303,9 @@
 - {id: zh-hsk5-00079-s004, ch: 层次, pr: céng cì, ds: order and structure of ideas, lb: ceng2-ci4--structure}
 # Row 3716: 层面; 名.
 - {id: zh-hsk6-00092-s001, ch: 层面, pr: céng miàn, ds: aspect; level of consideration, lb: ceng2-mian4--aspect}
+- {id: zh-hsk5-00080-s005, ch: 叉, pr: chā, ds: cross-shaped mark, lb: cha1--cross}
 # Row 3717: 叉; 名、动.
 - {id: zh-hsk5-00080-s001, ch: 叉, pr: chā, ds: fork; prong, lb: cha1--fork}
-- {id: zh-hsk5-00080-s005, ch: 叉, pr: chā, ds: cross-shaped mark, lb: cha1--cross}
 - {id: zh-hsk5-00080-s006, ch: 叉, pr: chā, ds: to cross; intersect, lb: cha1--intersect}
 # Row 3718: 差异; 名.
 - {id: zh-hsk6-00095-s001, ch: 差异, pr: chā yì, ds: difference; discrepancy, lb: cha1-yi4--difference}
@@ -321,12 +323,12 @@
 - {id: zh-hsk5-00091-s001, ch: 肠, pr: cháng, ds: intestines, lb: chang2--intestines}
 # Row 3725: 长短; 名.
 - {id: zh-hsk6-01024-s001, ch: 长短, pr: cháng duǎn, ds: length, lb: chang2-duan3--length}
+- {id: zh-hsk2026-03726-s601, ch: 常规, pr: cháng guī, ds: routine; conventional, lb: chang2-gui1--conventional}
 # Row 3726: 常规; 名、形.
 - {id: zh-hsk6-00099-s002, ch: 常规, pr: cháng guī, ds: routine; usual practice, lb: chang2-gui1--routine}
-- {id: zh-hsk2026-03726-s601, ch: 常规, pr: cháng guī, ds: routine; conventional, lb: chang2-gui1--conventional}
+- {id: zh-hsk6-00100-s003, ch: 常年, pr: cháng nián, ds: an average or normal year, lb: chang2-nian2--normal-year}
 # Row 3727: 常年; 副、名.
 - {id: zh-hsk6-00100-s001, ch: 常年, pr: cháng nián, ds: all year round; for years on end, lb: chang2-nian2--year-round}
-- {id: zh-hsk6-00100-s003, ch: 常年, pr: cháng nián, ds: an average or normal year, lb: chang2-nian2--normal-year}
 # Row 3728: 长寿; 形.
 - {id: zh-hsk5-00963-s003, ch: 长寿, pr: cháng shòu, ds: long-lived, lb: chang2-shou4--long-lived}
 # Row 3729: 常温; 名.
@@ -355,6 +357,7 @@
 - {id: zh-hsk4-00072-s001, ch: 抄, pr: chāo, ds: to make a copy, lb: chao1--copy}
 - {id: zh-hsk4-00072-s002, ch: 抄, pr: chāo, ds: to plagiarize, lb: chao1--plagiarize}
 - {id: zh-hsk4-00072-s007, ch: 抄, pr: chāo, ds: to take a shortcut, lb: chao1--shortcut}
+- {id: zh-grammar-00114-s001, ch: 超, pr: chāo, ds: super-; ultra-; beyond the ordinary limit, lb: chao1--super}
 # Row 3741: 超越; 动.
 - {id: zh-hsk5-00097-s001, ch: 超越, pr: chāo yuè, ds: to surpass; exceed, lb: chao1-yue4--surpass}
 # Row 3742: 朝代; 名.
@@ -378,10 +381,10 @@
 - {id: zh-hsk4-00080-s001, ch: 沉重, pr: chén zhòng, ds: heavy; burdensome; grave, lb: chen2-zhong4--heavy}
 # Row 3751: 趁; 介.
 - {id: zh-hsk7-9-00437-s001, ch: 趁, pr: chèn, ds: while there is an opportunity; taking advantage of, lb: chen4--while}
-# Row 3752: 撑; 动.
-- {id: zh-hsk6-00116-s001, ch: 撑, pr: chēng, ds: to support; hold up; keep going, lb: cheng1--support}
 - {id: zh-hsk6-00116-s005, ch: 撑, pr: chēng, ds: to open up (an umbrella or similar object), lb: cheng1--open}
 - {id: zh-hsk6-00116-s006, ch: 撑, pr: chēng, ds: to overfill; eat too much, lb: cheng1--overfill}
+# Row 3752: 撑; 动.
+- {id: zh-hsk6-00116-s001, ch: 撑, pr: chēng, ds: to support; hold up; keep going, lb: cheng1--support}
 # Row 3753: 称号; 名.
 - {id: zh-hsk5-00099-s003, ch: 称号, pr: chēng hào, ds: title, lb: cheng1-hao4--title}
 # Row 3754: 称呼; 动、名.
@@ -389,13 +392,13 @@
 - {id: zh-hsk7-9-00441-s002, ch: 称呼, pr: chēng hu, ds: form of address; title, lb: cheng1-hu5--title}
 # Row 3755: 称作; 动.
 - {id: zh-hsk7-9-00442-s001, ch: 称作, pr: chēng zuò, ds: to be called; to be known as, lb: cheng1-zuo4--called}
-# Row 3756: 成; 量.
-- {id: zh-hsk2-00062-s010, ch: 成, pr: chéng, ds: one tenth; ten percent, lb: cheng2--tenth}
-# Row 3757: 乘2; 动.
-- {id: zh-hsk5-00106-s007, ch: 乘, pr: chéng, ds: to multiply (in arithmetic), lb: cheng2--multiply}
 # Row 3758: 盛; 动.
 - {id: zh-hsk7-9-03640-s002, ch: 盛, pr: chéng, ds: to contain; hold, lb: cheng2--contain}
+# Row 3757: 乘2; 动.
+- {id: zh-hsk5-00106-s007, ch: 乘, pr: chéng, ds: to multiply (in arithmetic), lb: cheng2--multiply}
 - {id: zh-hsk7-9-03640-s004, ch: 盛, pr: chéng, ds: to ladle; serve into a container, lb: cheng2--serve}
+# Row 3756: 成; 量.
+- {id: zh-hsk2-00062-s010, ch: 成, pr: chéng, ds: one tenth; ten percent, lb: cheng2--tenth}
 # Row 3759: 承办; 动.
 - {id: zh-hsk5-00104-s001, ch: 承办, pr: chéng bàn, ds: to undertake; take responsibility for organizing, lb: cheng2-ban4--undertake}
 # Row 3760: 惩罚; 动.
@@ -430,18 +433,18 @@
 - {id: zh-hsk5-00114-s002, ch: 冲动, pr: chōng dòng, ds: impulsive; impetuous, lb: chong1-dong4--impulsive}
 # Row 3774: 冲击; 动.
 - {id: zh-hsk6-00124-s001, ch: 冲击, pr: chōng jī, ds: to strike against; have an impact on, lb: chong1-ji1--impact}
+- {id: zh-hsk7-9-00490-s004, ch: 充实, pr: chōng shí, ds: to enrich; replenish, lb: chong1-shi2--enrich}
 # Row 3775: 充实; 形、动.
 - {id: zh-hsk7-9-00490-s001, ch: 充实, pr: chōng shí, ds: substantial; full; fulfilling, lb: chong1-shi2--full}
-- {id: zh-hsk7-9-00490-s004, ch: 充实, pr: chōng shí, ds: to enrich; replenish, lb: chong1-shi2--enrich}
 # Row 3776: 冲突; 动.
 - {id: zh-hsk5-00115-s002, ch: 冲突, pr: chōng tū, ds: to conflict; clash, lb: chong1-tu1--clash}
 # Row 3777: 崇拜; 动.
 - {id: zh-hsk6-00125-s001, ch: 崇拜, pr: chóng bài, ds: to worship; deeply admire, lb: chong2-bai4--worship}
 # Row 3778: 重建; 动.
 - {id: zh-hsk6-01075-s001, ch: 重建, pr: chóng jiàn, ds: to rebuild; reestablish, lb: chong2-jian4--rebuild}
+- {id: zh-hsk2026-03779-s601, ch: 冲, pr: chòng, ds: to face; be directed toward, lb: chong4--face}
 # Row 3779: 冲; 动、介.
 - {id: zh-hsk4-00097-s016, ch: 冲, pr: chòng, ds: toward; for the sake of; in view of, lb: chong4--toward}
-- {id: zh-hsk2026-03779-s601, ch: 冲, pr: chòng, ds: to face; be directed toward, lb: chong4--face}
 # Row 3780: 抽奖; 动.
 - {id: zh-hsk4-00100-s001, ch: 抽奖, pr: chōu jiǎng, ds: to draw lots for a prize, lb: chou1-jiang3--prize-draw}
 # Row 3781: 抽象; 形.
@@ -470,10 +473,10 @@
 - {id: zh-hsk7-9-00544-s001, ch: 出游, pr: chū yóu, ds: to go on an outing or trip, lb: chu1-you2--outing}
 # Row 3793: 出于; 动.
 - {id: zh-hsk5-00122-s002, ch: 出于, pr: chū yú, ds: to stem from; be motivated by, lb: chu1-yu2--stem}
-# Row 3794: 除; 动、介.
-- {id: zh-hsk6-00138-s001, ch: 除, pr: chú, ds: to remove; eliminate, lb: chu2--remove}
 - {id: zh-hsk6-00138-s006, ch: 除, pr: chú, ds: to divide (in arithmetic), lb: chu2--divide}
 - {id: zh-hsk6-00138-s007, ch: 除, pr: chú, ds: except; apart from, lb: chu2--except}
+# Row 3794: 除; 动、介.
+- {id: zh-hsk6-00138-s001, ch: 除, pr: chú, ds: to remove; eliminate, lb: chu2--remove}
 # Row 3795: 除非; 连.
 - {id: zh-hsk5-00124-s001, ch: 除非, pr: chú fēi, ds: unless; only if, lb: chu2-fei1--unless}
 # Row 3796: 储存; 动.
@@ -503,12 +506,12 @@
 - {id: zh-hsk5-00132-s001, ch: 传真, pr: chuán zhēn, ds: fax; facsimile, lb: chuan2-zhen1--fax}
 # Row 3808: 船只; 名.
 - {id: zh-hsk6-00149-s001, ch: 船只, pr: chuán zhī, ds: ships; vessels, lb: chuan2-zhi1--ships}
+- {id: zh-hsk6-00150-s009, ch: 串, pr: chuàn, ds: 'measure word for strings, bunches, or series', lb: chuan4--bunches}
 # Row 3809: 串; 名、量.
 - {id: zh-hsk6-00150-s006, ch: 串, pr: chuàn, ds: string; bunch; skewer, lb: chuan4--string}
-- {id: zh-hsk6-00150-s009, ch: 串, pr: chuàn, ds: 'measure word for strings, bunches, or series', lb: chuan4--bunches}
+- {id: zh-hsk6-00151-s003, ch: 窗口, pr: chuāng kǒu, ds: window on a computer screen, lb: chuang1-kou3--screen-window}
 # Row 3810: 窗口; 名.
 - {id: zh-hsk6-00151-s001, ch: 窗口, pr: chuāng kǒu, ds: window; service counter window, lb: chuang1-kou3--window}
-- {id: zh-hsk6-00151-s003, ch: 窗口, pr: chuāng kǒu, ds: window on a computer screen, lb: chuang1-kou3--screen-window}
 # Row 3811: 闯; 动.
 - {id: zh-hsk5-00134-s001, ch: 闯, pr: chuǎng, ds: to rush in; force one's way through, lb: chuang3--rush}
 # Row 3812: 创办; 动.
@@ -529,9 +532,9 @@
 - {id: zh-hsk7-9-00607-s001, ch: 瓷器, pr: cí qì, ds: porcelain; chinaware, lb: ci2-qi4--porcelain}
 # Row 3819: 此刻; 名.
 - {id: zh-hsk5-00139-s001, ch: 此刻, pr: cǐ kè, ds: this moment; the present moment, lb: ci3-ke4--moment}
+- {id: zh-hsk4-00118-s005, ch: 刺, pr: cì, ds: to prick; pierce; stab, lb: ci4--pierce}
 # Row 3820: 刺; 动、名.
 - {id: zh-hsk4-00118-s002, ch: 刺, pr: cì, ds: thorn; spine, lb: ci4--thorn}
-- {id: zh-hsk4-00118-s005, ch: 刺, pr: cì, ds: to prick; pierce; stab, lb: ci4--pierce}
 # Row 3821: 次数; 名.
 - {id: zh-hsk6-00160-s001, ch: 次数, pr: cì shù, ds: number of times; frequency, lb: ci4-shu4--frequency}
 # Row 3822: 匆匆; 形.
@@ -542,9 +545,9 @@
 - {id: zh-hsk7-9-00634-s001, ch: 从未, pr: cóng wèi, ds: never, lb: cong2-wei4--never}
 # Row 3825: 从业; 动.
 - {id: zh-hsk7-9-00635-s001, ch: 从业, pr: cóng yè, ds: to work in a profession or trade, lb: cong2-ye4--profession}
+- {id: zh-hsk6-00163-s002, ch: 醋, pr: cù, ds: romantic jealousy, lb: cu4--jealousy}
 # Row 3826: 醋; 名.
 - {id: zh-hsk6-00163-s001, ch: 醋, pr: cù, ds: vinegar, lb: cu4--vinegar}
-- {id: zh-hsk6-00163-s002, ch: 醋, pr: cù, ds: romantic jealousy, lb: cu4--jealousy}
 # Row 3827: 脆; 形.
 - {id: zh-hsk5-00144-s001, ch: 脆, pr: cuì, ds: brittle; fragile, lb: cui4--brittle}
 - {id: zh-hsk5-00144-s003, ch: 脆, pr: cuì, ds: crisp; crunchy, lb: cui4--crisp}
@@ -561,26 +564,26 @@
 - {id: zh-hsk7-9-00660-s007, ch: 挫折, pr: cuò zhé, ds: to frustrate; set back, lb: cuo4-zhe2--frustrate}
 # Row 3833: 搭; 动.
 - {id: zh-hsk6-00166-s001, ch: 搭, pr: dā, ds: to put up; build (a temporary structure), lb: da1--build}
-- {id: zh-hsk6-00166-s003, ch: 搭, pr: dā, ds: to drape; hang over, lb: da1--drape}
 - {id: zh-hsk6-00166-s004, ch: 搭, pr: dā, ds: to connect; join, lb: da1--connect}
+- {id: zh-hsk6-00166-s003, ch: 搭, pr: dā, ds: to drape; hang over, lb: da1--drape}
 - {id: zh-hsk6-00166-s006, ch: 搭, pr: dā, ds: to match; pair, lb: da1--match}
 - {id: zh-hsk6-00166-s010, ch: 搭, pr: dā, ds: to take a vehicle, lb: da1--ride}
+- {id: zh-hsk2026-03834-s601, ch: 搭配, pr: dā pèi, ds: well-matched; compatible, lb: da1-pei4--compatible}
 # Row 3834: 搭配; 动、形.
 - {id: zh-hsk6-00168-s001, ch: 搭配, pr: dā pèi, ds: to match; combine appropriately, lb: da1-pei4--match}
-- {id: zh-hsk2026-03834-s601, ch: 搭配, pr: dā pèi, ds: well-matched; compatible, lb: da1-pei4--compatible}
 # Row 3835: 答复; 动.
 - {id: zh-hsk5-00149-s001, ch: 答复, pr: dá fù, ds: to answer; reply, lb: da2-fu4--reply}
-# Row 3836: 打交道; .
-- {id: zh-hsk7-9-00673-s001, ch: 打交道, pr: dǎ jiāo dao, ds: to have dealings with; interact with, lb: da3-jiao1-dao5--dealings}
 # Row 3837: 打动; 动.
 - {id: zh-hsk6-00169-s001, ch: 打动, pr: dǎ dòng, ds: to move emotionally; touch someone's heart, lb: da3-dong4--move}
 # Row 3838: 打击; 动.
 - {id: zh-hsk5-00152-s001, ch: 打击, pr: dǎ jī, ds: to strike; attack; crack down on, lb: da3-ji1--strike}
 # Row 3839: 打架; 动.
 - {id: zh-hsk5-00153-s001, ch: 打架, pr: dǎ jià, ds: to fight; come to blows, lb: da3-jia4--fight}
+# Row 3836: 打交道; .
+- {id: zh-hsk7-9-00673-s001, ch: 打交道, pr: dǎ jiāo dao, ds: to have dealings with; interact with, lb: da3-jiao1-dao5--dealings}
+- {id: zh-hsk2026-03840-s601, ch: 打卡, pr: dǎ kǎ, ds: to check in at a place or record completing an activity, lb: da3-ka3--check-in}
 # Row 3840: 打卡; 动.
 - {id: zh-hsk2026-03840-s001, ch: 打卡, pr: dǎ kǎ, ds: to clock in or out, lb: da3-ka3--clock-in}
-- {id: zh-hsk2026-03840-s601, ch: 打卡, pr: dǎ kǎ, ds: to check in at a place or record completing an activity, lb: da3-ka3--check-in}
 # Row 3841: 打雷; 动.
 - {id: zh-hsk4-00129-s001, ch: 打雷, pr: dǎ léi, ds: to thunder, lb: da3-lei2--thunder}
 # Row 3842: 打造; 动.
@@ -598,40 +601,42 @@
 - {id: zh-hsk5-00156-s005, ch: 大都, pr: dà dōu, ds: mostly; for the most part, lb: da4-dou1--mostly}
 # Row 3848: 大方; 形.
 - {id: zh-hsk4-00135-s005, ch: 大方, pr: dà fang, ds: generous, lb: da4-fang5--generous}
-- {id: zh-hsk4-00135-s007, ch: 大方, pr: dà fang, ds: tasteful; stylish, lb: da4-fang5--tasteful}
 - {id: zh-hsk4-00135-s009, ch: 大方, pr: dà fang, ds: natural and relaxed; at ease, lb: da4-fang5--relaxed}
+- {id: zh-hsk4-00135-s007, ch: 大方, pr: dà fang, ds: tasteful; stylish, lb: da4-fang5--tasteful}
 # Row 3849: 大幅; 副.
 - {id: zh-hsk2026-03849-s601, ch: 大幅, pr: dà fú, ds: by a large amount; substantially, lb: da4-fu2--substantially}
+# Row 573: 大概; 形、副、（名）.
+- {id: zh-hsk3-00120-s006, ch: 大概, pr: dà gài, ds: general idea; broad outline, lb: da4-gai4--outline}
 # Row 3850: 大伙儿; 代.
 - {id: zh-hsk5-00158-s001, ch: 大伙儿, pr: dà huǒ r, ds: everyone; everybody, lb: da4-huo3-r5--everyone}
-# Row 3851: 大使; 名.
-- {id: zh-hsk6-00183-s001, ch: 大使, pr: dà shǐ, ds: ambassador, lb: da4-shi3--ambassador}
 # Row 3852: 大师; 名.
 - {id: zh-hsk6-00182-s001, ch: 大师, pr: dà shī, ds: master; outstanding expert, lb: da4-shi1--master}
+# Row 3851: 大使; 名.
+- {id: zh-hsk6-00183-s001, ch: 大使, pr: dà shǐ, ds: ambassador, lb: da4-shi3--ambassador}
 # Row 3853: 大洋洲; 名.
 - {id: zh-hsk2026-03853-s001, ch: 大洋洲, pr: Dà yáng zhōu, ds: Oceania, lb: da4-yang2-zhou1--oceania}
+- {id: zh-hsk2026-03854-s601, ch: 大致, pr: dà zhì, ds: general; approximate, lb: da4-zhi4--general}
 # Row 3854: 大致; 形、副.
 - {id: zh-hsk5-00166-s001, ch: 大致, pr: dà zhì, ds: roughly; approximately, lb: da4-zhi4--roughly}
-- {id: zh-hsk2026-03854-s601, ch: 大致, pr: dà zhì, ds: general; approximate, lb: da4-zhi4--general}
+- {id: zh-hsk5-00167-s003, ch: 呆, pr: dāi, ds: blank; stunned, lb: dai1--blank}
 # Row 3855: 呆; 形.
 - {id: zh-hsk5-00167-s001, ch: 呆, pr: dāi, ds: dull; slow-witted, lb: dai1--dull}
-- {id: zh-hsk5-00167-s003, ch: 呆, pr: dāi, ds: blank; stunned, lb: dai1--blank}
+- {id: zh-hsk5-00171-s003, ch: 待, pr: dài, ds: to treat; deal with, lb: dai4--treat}
 # Row 3856: 待; 动.
 - {id: zh-hsk5-00171-s002, ch: 待, pr: dài, ds: to wait for, lb: dai4--wait}
-- {id: zh-hsk5-00171-s003, ch: 待, pr: dài, ds: to treat; deal with, lb: dai4--treat}
 # Row 3857: 代价; 名.
 - {id: zh-hsk5-00168-s001, ch: 代价, pr: dài jià, ds: price; cost; sacrifice, lb: dai4-jia4--cost}
+- {id: zh-hsk5-00172-s003, ch: 贷款, pr: dài kuǎn, ds: to take out a loan, lb: dai4-kuan3--borrow}
+- {id: zh-hsk5-00172-s002, ch: 贷款, pr: dài kuǎn, ds: to lend money; provide a loan, lb: dai4-kuan3--lend}
 # Row 3858: 贷款; 动、名.
 - {id: zh-hsk5-00172-s001, ch: 贷款, pr: dài kuǎn, ds: a loan, lb: dai4-kuan3--loan}
-- {id: zh-hsk5-00172-s002, ch: 贷款, pr: dài kuǎn, ds: to lend money; provide a loan, lb: dai4-kuan3--lend}
-- {id: zh-hsk5-00172-s003, ch: 贷款, pr: dài kuǎn, ds: to take out a loan, lb: dai4-kuan3--borrow}
 # Row 3859: 代理; 动.
 - {id: zh-hsk5-00169-s001, ch: 代理, pr: dài lǐ, ds: to act on someone's behalf; act as an agent, lb: dai4-li3--represent}
 # Row 3860: 带领; 动.
 - {id: zh-hsk3-00127-s001, ch: 带领, pr: dài lǐng, ds: to lead; guide, lb: dai4-ling3--lead}
+- {id: zh-hsk4-00151-s003, ch: 单纯, pr: dān chún, ds: innocent; unsophisticated, lb: dan1-chun2--innocent}
 # Row 3861: 单纯; 形.
 - {id: zh-hsk4-00151-s001, ch: 单纯, pr: dān chún, ds: simple; pure, lb: dan1-chun2--simple}
-- {id: zh-hsk4-00151-s003, ch: 单纯, pr: dān chún, ds: innocent; unsophisticated, lb: dan1-chun2--innocent}
 # Row 3862: 单调; 形.
 - {id: zh-hsk4-00152-s001, ch: 单调, pr: dān diào, ds: monotonous, lb: dan1-diao4--monotonous}
 # Row 3863: 耽误; 动.
@@ -669,9 +674,11 @@
 - {id: zh-hsk4-00161-s001, ch: 倒车, pr: dǎo chē, ds: to change trains or buses, lb: dao3-che1--transfer}
 # Row 3879: 导师; 名.
 - {id: zh-hsk7-9-00762-s001, ch: 导师, pr: dǎo shī, ds: academic supervisor; mentor, lb: dao3-shi1--mentor}
+# Row 1139: 倒; 动、（副）.
+- {id: zh-hsk2-00107-s012, ch: 倒, pr: dào, ds: contrary to expectations; rather; yet, lb: dao4--rather}
+- {id: zh-hsk2026-03880-s601, ch: 道德, pr: dào dé, ds: moral; ethical, lb: dao4-de2--ethical}
 # Row 3880: 道德; 名、形.
 - {id: zh-hsk5-00186-s001, ch: 道德, pr: dào dé, ds: morality; ethics, lb: dao4-de2--morality}
-- {id: zh-hsk2026-03880-s601, ch: 道德, pr: dào dé, ds: moral; ethical, lb: dao4-de2--ethical}
 # Row 3881: 倒是; 副.
 - {id: zh-hsk5-00185-s001, ch: 倒是, pr: dào shì, ds: actually; contrary to expectations, lb: dao4-shi4--actually}
 - {id: zh-hsk5-00185-s004, ch: 倒是, pr: dào shì, ds: why don't you (urging someone to act), lb: dao4-shi4--urging}
@@ -724,46 +731,46 @@
 - {id: zh-hsk4-00180-s001, ch: 电源, pr: diàn yuán, ds: power supply; power source, lb: dian4-yuan2--power}
 # Row 3904: 吊; 动.
 - {id: zh-hsk6-00211-s001, ch: 吊, pr: diào, ds: to hang; suspend, lb: diao4--hang}
+- {id: zh-hsk5-00202-s004, ch: 调动, pr: diào dòng, ds: to mobilize; bring into play, lb: diao4-dong4--mobilize}
 # Row 3905: 调动; 动.
 - {id: zh-hsk5-00202-s001, ch: 调动, pr: diào dòng, ds: to transfer; redeploy, lb: diao4-dong4--transfer}
-- {id: zh-hsk5-00202-s004, ch: 调动, pr: diào dòng, ds: to mobilize; bring into play, lb: diao4-dong4--mobilize}
 # Row 3906: 钓鱼; 动.
 - {id: zh-hsk7-9-00862-s001, ch: 钓鱼, pr: diào yú, ds: to fish with a rod and line, lb: diao4-yu2--fish}
+- {id: zh-hsk6-00213-s004, ch: 跌, pr: diē, ds: to fall; drop (of prices), lb: die1--drop}
 # Row 3907: 跌; 动.
 - {id: zh-hsk6-00213-s001, ch: 跌, pr: diē, ds: to fall; trip, lb: die1--fall}
-- {id: zh-hsk6-00213-s004, ch: 跌, pr: diē, ds: to fall; drop (of prices), lb: die1--drop}
+- {id: zh-hsk4-00182-s006, ch: 顶, pr: dǐng, ds: to carry on the head, lb: ding3--carry}
+- {id: zh-hsk4-00182-s013, ch: 顶, pr: dǐng, ds: measure word for hats and similar items, lb: ding3--hats}
+- {id: zh-hsk4-00182-s009, ch: 顶, pr: dǐng, ds: to replace; stand in for, lb: ding3--replace}
+- {id: zh-hsk4-00182-s008, ch: 顶, pr: dǐng, ds: to push against; resist, lb: ding3--resist}
 # Row 3908: 顶; 名、动、量.
 - {id: zh-hsk4-00182-s001, ch: 顶, pr: dǐng, ds: top; roof; crown of the head, lb: ding3--top}
-- {id: zh-hsk4-00182-s006, ch: 顶, pr: dǐng, ds: to carry on the head, lb: ding3--carry}
-- {id: zh-hsk4-00182-s008, ch: 顶, pr: dǐng, ds: to push against; resist, lb: ding3--resist}
-- {id: zh-hsk4-00182-s009, ch: 顶, pr: dǐng, ds: to replace; stand in for, lb: ding3--replace}
-- {id: zh-hsk4-00182-s013, ch: 顶, pr: dǐng, ds: measure word for hats and similar items, lb: ding3--hats}
 # Row 3909: 订单; 名.
 - {id: zh-hsk7-9-00881-s001, ch: 订单, pr: dìng dān, ds: purchase order, lb: ding4-dan1--order}
 # Row 3910: 订婚; 动.
 - {id: zh-hsk7-9-00883-s001, ch: 订婚, pr: dìng hūn, ds: to get engaged, lb: ding4-hun1--engaged}
+- {id: zh-hsk2026-03911-s601, ch: 定价, pr: dìng jià, ds: fixed price; list price, lb: ding4-jia4--list-price}
 # Row 3911: 定价; 动、名.
 - {id: zh-hsk6-00214-s001, ch: 定价, pr: dìng jià, ds: to set a price, lb: ding4-jia4--price}
-- {id: zh-hsk2026-03911-s601, ch: 定价, pr: dìng jià, ds: fixed price; list price, lb: ding4-jia4--list-price}
+- {id: zh-hsk6-00215-s002, ch: 定时, pr: dìng shí, ds: fixed time, lb: ding4-shi2--fixed-time}
 # Row 3912: 定时; 动、名.
 - {id: zh-hsk6-00215-s001, ch: 定时, pr: dìng shí, ds: to fix a time, lb: ding4-shi2--schedule}
-- {id: zh-hsk6-00215-s002, ch: 定时, pr: dìng shí, ds: fixed time, lb: ding4-shi2--fixed-time}
+- {id: zh-hsk6-00216-s005, ch: 定位, pr: dìng wèi, ds: positioning; intended role or niche, lb: ding4-wei4--niche}
 # Row 3913: 定位; 动、名.
 - {id: zh-hsk6-00216-s001, ch: 定位, pr: dìng wèi, ds: to locate; position, lb: ding4-wei4--position}
 - {id: zh-hsk6-00216-s003, ch: 定位, pr: dìng wèi, ds: to define a role or market position, lb: ding4-wei4--positioning}
-- {id: zh-hsk6-00216-s005, ch: 定位, pr: dìng wèi, ds: positioning; intended role or niche, lb: ding4-wei4--niche}
+- {id: zh-hsk7-9-00891-s002, ch: 定义, pr: dìng yì, ds: to define, lb: ding4-yi4--define}
 # Row 3914: 定义; 名、动.
 - {id: zh-hsk7-9-00891-s001, ch: 定义, pr: dìng yì, ds: definition, lb: ding4-yi4--definition}
-- {id: zh-hsk7-9-00891-s002, ch: 定义, pr: dìng yì, ds: to define, lb: ding4-yi4--define}
 # Row 3915: 定制; 动.
 - {id: zh-hsk2026-03915-s001, ch: 定制, pr: dìng zhì, ds: to have custom-made; order to specification, lb: ding4-zhi4--customize}
 # Row 3916: 栋; 量.
 - {id: zh-hsk7-9-00917-s001, ch: 栋, pr: dòng, ds: measure word for buildings, lb: dong4--buildings}
 # Row 3917: 动机; 名.
 - {id: zh-hsk5-00206-s001, ch: 动机, pr: dòng jī, ds: motive; motivation, lb: dong4-ji1--motive}
+- {id: zh-hsk3-00151-s003, ch: 动力, pr: dòng lì, ds: motivation; impetus, lb: dong4-li4--motivation}
 # Row 3918: 动力; 名.
 - {id: zh-hsk3-00151-s001, ch: 动力, pr: dòng lì, ds: motive power; driving force, lb: dong4-li4--power}
-- {id: zh-hsk3-00151-s003, ch: 动力, pr: dòng lì, ds: motivation; impetus, lb: dong4-li4--motivation}
 # Row 3919: 动漫; 名.
 - {id: zh-hsk2026-03919-s001, ch: 动漫, pr: dòng màn, ds: animation and comics, lb: dong4-man4--animation}
 # Row 3920: 动态; 名、形.
@@ -771,21 +778,21 @@
 - {id: zh-hsk5-00208-s005, ch: 动态, pr: dòng tài, ds: dynamic; changing rather than static, lb: dong4-tai4--dynamic}
 # Row 3921: 动听; 形.
 - {id: zh-hsk7-9-00913-s001, ch: 动听, pr: dòng tīng, ds: pleasant to listen to, lb: dong4-ting1--pleasant}
+- {id: zh-hsk7-9-00929-s003, ch: 逗, pr: dòu, ds: funny; amusing, lb: dou4--funny}
+- {id: zh-hsk7-9-00929-s002, ch: 逗, pr: dòu, ds: to joke, lb: dou4--joke}
 # Row 3922: 逗; 动、形.
 - {id: zh-hsk7-9-00929-s001, ch: 逗, pr: dòu, ds: to tease playfully; amuse, lb: dou4--tease}
-- {id: zh-hsk7-9-00929-s002, ch: 逗, pr: dòu, ds: to joke, lb: dou4--joke}
-- {id: zh-hsk7-9-00929-s003, ch: 逗, pr: dòu, ds: funny; amusing, lb: dou4--funny}
+- {id: zh-hsk2026-03923-s601, ch: 斗争, pr: dòu zhēng, ds: to struggle; fight against, lb: dou4-zheng1--fight}
 # Row 3923: 斗争; 动、名.
 - {id: zh-hsk6-00219-s001, ch: 斗争, pr: dòu zhēng, ds: struggle; conflict, lb: dou4-zheng1--struggle}
-- {id: zh-hsk2026-03923-s601, ch: 斗争, pr: dòu zhēng, ds: to struggle; fight against, lb: dou4-zheng1--fight}
 # Row 3924: 都市; 名.
 - {id: zh-hsk6-00218-s001, ch: 都市, pr: dū shì, ds: city; metropolis, lb: du1-shi4--city}
-# Row 3925: 毒; 名、动、形.
-- {id: zh-hsk5-00213-s001, ch: 毒, pr: dú, ds: poison, lb: du2--toxin}
-- {id: zh-hsk5-00213-s002, ch: 毒, pr: dú, ds: to poison, lb: du2--poison}
-- {id: zh-hsk5-00213-s003, ch: 毒, pr: dú, ds: poisonous, lb: du2--poisonous}
 - {id: zh-hsk5-00213-s004, ch: 毒, pr: dú, ds: cruel; malicious; fierce, lb: du2--cruel}
 - {id: zh-hsk5-00213-s007, ch: 毒, pr: dú, ds: narcotics, lb: du2--drugs}
+- {id: zh-hsk5-00213-s002, ch: 毒, pr: dú, ds: to poison, lb: du2--poison}
+- {id: zh-hsk5-00213-s003, ch: 毒, pr: dú, ds: poisonous, lb: du2--poisonous}
+# Row 3925: 毒; 名、动、形.
+- {id: zh-hsk5-00213-s001, ch: 毒, pr: dú, ds: poison, lb: du2--toxin}
 # Row 3926: 渡; 动.
 - {id: zh-hsk6-00223-s001, ch: 渡, pr: dù, ds: to cross water; ferry across, lb: du4--cross}
 # Row 3927: 端; 动.
@@ -807,15 +814,19 @@
 - {id: zh-hsk6-00230-s001, ch: 蹲, pr: dūn, ds: to squat; crouch, lb: dun1--squat}
 # Row 3935: 顿时; 副.
 - {id: zh-hsk7-9-00965-s001, ch: 顿时, pr: dùn shí, ds: immediately; all of a sudden, lb: dun4-shi2--immediately}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 398-399.
+# 盘 platefuls is now HSK 3. 大都 uses the source's documented dà dōu variant.
+- {id: zh-hsk1-00096-s005, ch: 多, pr: duō, ds: multi-; poly-; in derived terms, lb: duo1--multi}
 # Row 3936: 多才多艺; .
 - {id: zh-hsk2026-03936-s001, ch: 多才多艺, pr: duō cái duō yì, ds: versatile; multitalented, lb: duo1-cai2-duo1-yi4--versatile}
 # Row 3937: 多亏; 动.
 - {id: zh-hsk7-9-00968-s001, ch: 多亏, pr: duō kuī, ds: to owe thanks to; thanks to, lb: duo1-kui1--thanks}
 # Row 3938: 多媒体; 名.
 - {id: zh-hsk6-00233-s001, ch: 多媒体, pr: duō méi tǐ, ds: multimedia, lb: duo1-mei2-ti3--multimedia}
+- {id: zh-hsk7-9-00972-s003, ch: 多余, pr: duō yú, ds: to be in excess; be surplus, lb: duo1-yu2--surplus}
 # Row 3939: 多余; 动、形.
 - {id: zh-hsk7-9-00972-s001, ch: 多余, pr: duō yú, ds: unnecessary; superfluous, lb: duo1-yu2--unnecessary}
-- {id: zh-hsk7-9-00972-s003, ch: 多余, pr: duō yú, ds: to be in excess; be surplus, lb: duo1-yu2--surplus}
 # Row 3940: 多元; 形.
 - {id: zh-hsk7-9-00973-s002, ch: 多元, pr: duō yuán, ds: diverse; involving multiple elements, lb: duo1-yuan2--diverse}
 # Row 3941: 夺; 动.
@@ -825,9 +836,9 @@
 - {id: zh-hsk6-00235-s001, ch: 夺取, pr: duó qǔ, ds: to seize; capture, lb: duo2-qu3--capture}
 # Row 3943: 躲避; 动.
 - {id: zh-hsk7-9-00977-s001, ch: 躲避, pr: duǒ bì, ds: to dodge; avoid; take shelter from, lb: duo3-bi4--avoid}
+- {id: zh-hsk4-00203-s004, ch: 恶心, pr: ě xin, ds: disgusting; nauseating, lb: e3-xin5--disgusting}
 # Row 3944: 恶心; 形、动.
 - {id: zh-hsk4-00203-s002, ch: 恶心, pr: ě xin, ds: to feel nauseated, lb: e3-xin5--nauseated}
-- {id: zh-hsk4-00203-s004, ch: 恶心, pr: ě xin, ds: disgusting; nauseating, lb: e3-xin5--disgusting}
 # Row 3945: 恶劣; 形.
 - {id: zh-hsk7-9-00988-s001, ch: 恶劣, pr: è liè, ds: very bad; harsh; vile, lb: e4-lie4--bad}
 # Row 3946: 儿科; 名.
@@ -842,9 +853,9 @@
 - {id: zh-hsk7-9-01009-s001, ch: 发愁, pr: fā chóu, ds: to worry; be anxious, lb: fa1-chou2--worry}
 # Row 3951: 发电; 动.
 - {id: zh-hsk6-00239-s001, ch: 发电, pr: fā diàn, ds: to generate electricity, lb: fa1-dian4--electricity}
+- {id: zh-hsk3-00167-s004, ch: 发动, pr: fā dòng, ds: to mobilize; rouse, lb: fa1-dong4--mobilize}
 # Row 3952: 发动; 动.
 - {id: zh-hsk3-00167-s001, ch: 发动, pr: fā dòng, ds: to start; launch, lb: fa1-dong4--start}
-- {id: zh-hsk3-00167-s004, ch: 发动, pr: fā dòng, ds: to mobilize; rouse, lb: fa1-dong4--mobilize}
 # Row 3953: 发放; 动.
 - {id: zh-hsk6-00240-s001, ch: 发放, pr: fā fàng, ds: to distribute; issue, lb: fa1-fang4--distribute}
 # Row 3954: 发光; 动.
@@ -863,22 +874,23 @@
 - {id: zh-hsk4-00213-s001, ch: 法官, pr: fǎ guān, ds: judge in a court, lb: fa3-guan1--judge}
 # Row 3961: 法规; 名.
 - {id: zh-hsk5-00229-s001, ch: 法规, pr: fǎ guī, ds: laws and regulations, lb: fa3-gui1--regulations}
+- {id: zh-hsk6-00247-s005, ch: 番, pr: fān, ds: measure word for a doubling or multiplication, lb: fan1--fold}
 # Row 3962: 番; 量.
 - {id: zh-hsk6-00247-s004, ch: 番, pr: fān, ds: 'measure word for an action, speech, or experience', lb: fan1--occasion}
-- {id: zh-hsk6-00247-s005, ch: 番, pr: fān, ds: measure word for a doubling or multiplication, lb: fan1--fold}
 # Row 3963: 繁忙; 形.
 - {id: zh-hsk7-9-01040-s001, ch: 繁忙, pr: fán máng, ds: busy; bustling, lb: fan2-mang2--busy}
 # Row 3964: 凡是; 副.
 - {id: zh-hsk6-00249-s001, ch: 凡是, pr: fán shì, ds: in every case; whenever, lb: fan2-shi4--every}
 # Row 3965: 繁殖; 动.
 - {id: zh-hsk6-00250-s001, ch: 繁殖, pr: fán zhí, ds: to reproduce; breed, lb: fan2-zhi2--breed}
+- {id: zh-grammar-00115-s001, ch: 反, pr: fǎn, ds: anti-; counter-; opposing or reversing the following stem, lb: fan3--anti}
 # Row 3966: 反馈; 动.
 - {id: zh-hsk7-9-01051-s001, ch: 反馈, pr: fǎn kuì, ds: to give feedback; report back, lb: fan3-kui4--feedback}
 # Row 3967: 反思; 动.
 - {id: zh-hsk7-9-01054-s001, ch: 反思, pr: fǎn sī, ds: to reflect on; reassess, lb: fan3-si1--reflect}
+- {id: zh-hsk6-00254-s007, ch: 犯, pr: fàn, ds: to recur; flare up (of an illness or problem), lb: fan4--recur}
 # Row 3968: 犯; 动.
 - {id: zh-hsk6-00254-s001, ch: 犯, pr: fàn, ds: to violate; commit an offense or mistake, lb: fan4--violate}
-- {id: zh-hsk6-00254-s007, ch: 犯, pr: fàn, ds: to recur; flare up (of an illness or problem), lb: fan4--recur}
 # Row 3969: 方方面面; 名.
 - {id: zh-hsk7-9-01061-s001, ch: 方方面面, pr: fāng fāng miàn miàn, ds: all sides; all aspects, lb: fang1-fang1-mian4-mian4--aspects}
 # Row 3970: 方位; 名.
@@ -902,9 +914,9 @@
 # Row 3979: 肥; 形、动、名.
 - {id: zh-hsk4-00227-s001, ch: 肥, pr: féi, ds: fat; plump, lb: fei2--fat}
 - {id: zh-hsk4-00227-s002, ch: 肥, pr: féi, ds: fertile, lb: fei2--fertile}
-- {id: zh-hsk4-00227-s003, ch: 肥, pr: féi, ds: loose-fitting; too large (of clothes), lb: fei2--loose}
 - {id: zh-hsk4-00227-s004, ch: 肥, pr: féi, ds: to fertilize, lb: fei2--fertilize}
 - {id: zh-hsk4-00227-s006, ch: 肥, pr: féi, ds: fertilizer; manure, lb: fei2--fertilizer}
+- {id: zh-hsk4-00227-s003, ch: 肥, pr: féi, ds: loose-fitting; too large (of clothes), lb: fei2--loose}
 # Row 3980: 肥胖; 形.
 - {id: zh-hsk7-9-01095-s001, ch: 肥胖, pr: féi pàng, ds: fat; obese, lb: fei2-pang4--obese}
 # Row 3981: 肥沃; 形.
@@ -924,12 +936,15 @@
 - {id: zh-hsk2026-03987-s601, ch: 分散, pr: fēn sàn, ds: scattered; dispersed, lb: fen1-san4--scattered}
 # Row 3988: 氛围; 名.
 - {id: zh-hsk7-9-01124-s001, ch: 氛围, pr: fēn wéi, ds: atmosphere; ambience, lb: fen1-wei2--atmosphere}
-# Row 3989: 粉; 名、形.
-- {id: zh-hsk7-9-01128-s001, ch: 粉, pr: fěn, ds: powder, lb: fen3--powder}
 - {id: zh-hsk7-9-01128-s003, ch: 粉, pr: fěn, ds: starch noodles; food made from starch, lb: fen3--noodles}
 - {id: zh-hsk7-9-01128-s007, ch: 粉, pr: fěn, ds: pink, lb: fen3--pink}
+# Row 3989: 粉; 名、形.
+- {id: zh-hsk7-9-01128-s001, ch: 粉, pr: fěn, ds: powder, lb: fen3--powder}
 # Row 3990: 愤怒; 形.
 - {id: zh-hsk6-00266-s001, ch: 愤怒, pr: fèn nù, ds: angry; indignant, lb: fen4-nu4--angry}
+- {id: zh-hsk2-00160-s002, ch: 封, pr: fēng, ds: to confer; bestow a title, lb: feng1--confer}
+# Row 630: 封; 量、（动）.
+- {id: zh-hsk2-00160-s005, ch: 封, pr: fēng, ds: to seal; close off, lb: feng1--seal}
 # Row 3991: 封闭; 动.
 - {id: zh-hsk4-00238-s001, ch: 封闭, pr: fēng bì, ds: to close; seal off, lb: feng1-bi4--seal}
 # Row 3992: 风光; 名.
@@ -938,28 +953,28 @@
 - {id: zh-hsk7-9-01148-s001, ch: 风力, pr: fēng lì, ds: wind force; wind power, lb: feng1-li4--wind}
 # Row 3994: 丰收; 动.
 - {id: zh-hsk5-00242-s001, ch: 丰收, pr: fēng shōu, ds: to reap a bumper harvest, lb: feng1-shou1--harvest}
+- {id: zh-hsk7-9-01158-s003, ch: 风雨, pr: fēng yǔ, ds: trials; hardships, lb: feng1-yu3--hardships}
 # Row 3995: 风雨; 名.
 - {id: zh-hsk7-9-01158-s001, ch: 风雨, pr: fēng yǔ, ds: wind and rain; the elements, lb: feng1-yu3--weather}
-- {id: zh-hsk7-9-01158-s003, ch: 风雨, pr: fēng yǔ, ds: trials; hardships, lb: feng1-yu3--hardships}
 # Row 3996: 奉献; 动.
 - {id: zh-hsk6-00269-s001, ch: 奉献, pr: fèng xiàn, ds: to dedicate; contribute selflessly, lb: feng4-xian4--dedicate}
 # Row 3997: 夫人; 名.
 - {id: zh-hsk4-00248-s001, ch: 夫人, pr: fū rén, ds: madam; Mrs.; wife (respectful title), lb: fu1-ren2--madam}
-# Row 3998: 服; 动.
-- {id: zh-hsk6-00272-s004, ch: 服, pr: fú, ds: to serve (a sentence or term of service), lb: fu2--serve}
 - {id: zh-hsk6-00272-s005, ch: 服, pr: fú, ds: to obey; accept; be convinced, lb: fu2--accept}
-- {id: zh-hsk6-00272-s010, ch: 服, pr: fú, ds: to take (medicine), lb: fu2--medicine}
 # Row 3999: 浮; 动.
 - {id: zh-hsk6-00273-s001, ch: 浮, pr: fú, ds: to float, lb: fu2--float}
+- {id: zh-hsk6-00272-s010, ch: 服, pr: fú, ds: to take (medicine), lb: fu2--medicine}
+# Row 3998: 服; 动.
+- {id: zh-hsk6-00272-s004, ch: 服, pr: fú, ds: to serve (a sentence or term of service), lb: fu2--serve}
 # Row 4000: 服从; 动.
 - {id: zh-hsk5-00248-s001, ch: 服从, pr: fú cóng, ds: to obey; comply with, lb: fu2-cong2--obey}
 # Row 4001: 幅度; 名.
 - {id: zh-hsk5-00250-s001, ch: 幅度, pr: fú dù, ds: range; extent; magnitude of change, lb: fu2-du4--extent}
 # Row 4002: 符号; 名.
 - {id: zh-hsk4-00240-s001, ch: 符号, pr: fú hào, ds: symbol; mark; sign, lb: fu2-hao4--symbol}
+- {id: zh-hsk2026-04003-s601, ch: 福利, pr: fú lì, ds: to benefit; improve people's welfare, lb: fu2-li4--benefit}
 # Row 4003: 福利; 名、动.
 - {id: zh-hsk5-00251-s001, ch: 福利, pr: fú lì, ds: welfare; benefits, lb: fu2-li4--welfare}
-- {id: zh-hsk2026-04003-s601, ch: 福利, pr: fú lì, ds: to benefit; improve people's welfare, lb: fu2-li4--benefit}
 # Row 4004: 服用; 动.
 - {id: zh-hsk7-9-01179-s001, ch: 服用, pr: fú yòng, ds: to take (medicine), lb: fu2-yong4--medicine}
 # Row 4005: 辅导; 动.
@@ -975,11 +990,11 @@
 - {id: zh-hsk5-00254-s001, ch: 附件, pr: fù jiàn, ds: attachment; enclosure; appendix, lb: fu4-jian4--attachment}
 # Row 4010: 负面; 形.
 - {id: zh-hsk7-9-01201-s001, ch: 负面, pr: fù miàn, ds: negative, lb: fu4-mian4--negative}
-# Row 4011: 富裕; 形、动.
-- {id: zh-hsk7-9-01220-s002, ch: 富裕, pr: fù yù, ds: well-off; prosperous, lb: fu4-yu4--prosperous}
-- {id: zh-hsk2026-04011-s601, ch: 富裕, pr: fù yù, ds: to make prosperous; enrich, lb: fu4-yu4--enrich}
 # Row 4012: 赋予; 动.
 - {id: zh-hsk7-9-01222-s001, ch: 赋予, pr: fù yǔ, ds: to grant; bestow; entrust, lb: fu4-yu3--bestow}
+- {id: zh-hsk2026-04011-s601, ch: 富裕, pr: fù yù, ds: to make prosperous; enrich, lb: fu4-yu4--enrich}
+# Row 4011: 富裕; 形、动.
+- {id: zh-hsk7-9-01220-s002, ch: 富裕, pr: fù yù, ds: well-off; prosperous, lb: fu4-yu4--prosperous}
 # Row 4013: 该2; 代.
 - {id: zh-hsk2-00163-s008, ch: 该, pr: gāi, ds: the said; the above-mentioned, lb: gai1--aforementioned}
 # Row 4014: 改编; 动.
@@ -1018,8 +1033,8 @@
 - {id: zh-hsk6-00292-s001, ch: 岗位, pr: gǎng wèi, ds: job; post; position, lb: gang3-wei4--post}
 # Row 4030: 高层; 名、形.
 - {id: zh-hsk6-00294-s001, ch: 高层, pr: gāo céng, ds: high-rise; having many stories, lb: gao1-ceng2--high-rise}
-- {id: zh-hsk6-00294-s002, ch: 高层, pr: gāo céng, ds: high-level; senior, lb: gao1-ceng2--senior}
 - {id: zh-hsk2026-04030-s601, ch: 高层, pr: gāo céng, ds: senior leadership; top management, lb: gao1-ceng2--leadership}
+- {id: zh-hsk6-00294-s002, ch: 高层, pr: gāo céng, ds: high-level; senior, lb: gao1-ceng2--senior}
 # Row 4031: 高超; 形.
 - {id: zh-hsk7-9-01269-s001, ch: 高超, pr: gāo chāo, ds: highly skilled; superb, lb: gao1-chao1--superb}
 # Row 4032: 高等; 形.
@@ -1047,25 +1062,23 @@
 - {id: zh-hsk6-00302-s001, ch: 歌唱, pr: gē chàng, ds: to sing, lb: ge1-chang4--sing}
 # Row 4043: 隔壁; 名.
 - {id: zh-hsk5-00271-s001, ch: 隔壁, pr: gé bì, ds: next door; the adjoining place, lb: ge2-bi4--next-door}
+- {id: zh-hsk7-9-01305-s003, ch: 革命, pr: gé mìng, ds: revolutionary, lb: ge2-ming4--revolutionary}
 # Row 4044: 革命; 动、形.
 - {id: zh-hsk7-9-01305-s004, ch: 革命, pr: gé mìng, ds: to make a revolution; revolutionize, lb: ge2-ming4--revolutionize}
-- {id: zh-hsk7-9-01305-s003, ch: 革命, pr: gé mìng, ds: revolutionary, lb: ge2-ming4--revolutionary}
 # Row 4045: 个体; 名.
 - {id: zh-hsk4-00262-s001, ch: 个体, pr: gè tǐ, ds: individual; individual entity, lb: ge4-ti3--individual}
-# Row 4046: 给予; 动.
-- {id: zh-hsk6-00306-s001, ch: 给予, pr: jǐ yǔ, ds: to give; grant; accord, lb: ji3-yu3--give}
 # Row 4047: 跟前; 名.
 - {id: zh-hsk5-00273-s001, ch: 跟前, pr: gēn qián, ds: in front of; close by, lb: gen1-qian2--front}
 # Row 4048: 跟随; 动.
 - {id: zh-hsk5-00274-s001, ch: 跟随, pr: gēn suí, ds: to follow, lb: gen1-sui2--follow}
 # Row 4049: 跟踪; 动.
 - {id: zh-hsk7-9-01322-s001, ch: 跟踪, pr: gēn zōng, ds: to track; follow someone's movements, lb: gen1-zong1--track}
-# Row 4050: 公; 形.
-- {id: zh-hsk6-00309-s001, ch: 公, pr: gōng, ds: public; collective, lb: gong1--public}
 - {id: zh-hsk6-00309-s006, ch: 公, pr: gōng, ds: fair; impartial, lb: gong1--fair}
 - {id: zh-hsk6-00309-s011, ch: 公, pr: gōng, ds: male (of an animal), lb: gong1--male}
 # Row 4051: 宫; 名.
 - {id: zh-hsk6-00316-s002, ch: 宫, pr: gōng, ds: palace, lb: gong1--palace}
+# Row 4050: 公; 形.
+- {id: zh-hsk6-00309-s001, ch: 公, pr: gōng, ds: public; collective, lb: gong1--public}
 # Row 4052: 公安; 名.
 - {id: zh-hsk6-00310-s001, ch: 公安, pr: gōng ān, ds: public security; the police authorities, lb: gong1-an1--security}
 # Row 4053: 工地; 名.
@@ -1073,16 +1086,16 @@
 # Row 4054: 工夫; 名.
 - {id: zh-hsk3-00235-s002, ch: 工夫, pr: gōng fu, ds: time; spare time, lb: gong1-fu5--time}
 - {id: zh-hsk3-00235-s004, ch: 工夫, pr: gōng fu, ds: effort; skill acquired through work, lb: gong1-fu5--work}
+- {id: zh-hsk2026-04055-s601, ch: 公告, pr: gōng gào, ds: to announce publicly, lb: gong1-gao4--announce}
 # Row 4055: 公告; 动、名.
 - {id: zh-hsk5-00280-s002, ch: 公告, pr: gōng gào, ds: public announcement; notice, lb: gong1-gao4--notice}
-- {id: zh-hsk2026-04055-s601, ch: 公告, pr: gōng gào, ds: to announce publicly, lb: gong1-gao4--announce}
-# Row 4056: 供给; 动.
-- {id: zh-hsk6-00315-s001, ch: 供给, pr: gōng jǐ, ds: to supply; provide, lb: gong1-ji3--supply}
 # Row 4057: 攻击; 动.
 - {id: zh-hsk6-00314-s001, ch: 攻击, pr: gōng jī, ds: to attack; assail, lb: gong1-ji1--attack}
+# Row 4056: 供给; 动.
+- {id: zh-hsk6-00315-s001, ch: 供给, pr: gōng jǐ, ds: to supply; provide, lb: gong1-ji3--supply}
+- {id: zh-hsk3-00241-s002, ch: 公开, pr: gōng kāi, ds: to make public; to release, lb: gong1-kai1--disclose}
 # Row 4058: 公开; 形、动.
 - {id: zh-hsk3-00241-s001, ch: 公开, pr: gōng kāi, ds: open; public, lb: gong1-kai1--public}
-- {id: zh-hsk3-00241-s002, ch: 公开, pr: gōng kāi, ds: to make public; to release, lb: gong1-kai1--disclose}
 # Row 4059: 公民; 名.
 - {id: zh-hsk3-00242-s001, ch: 公民, pr: gōng mín, ds: citizen, lb: gong1-min2--citizen}
 # Row 4060: 公认; 动.
@@ -1128,9 +1141,9 @@
 - {id: zh-hsk7-9-01408-s001, ch: 股市, pr: gǔ shì, ds: stock market, lb: gu3-shi4--stock-market}
 # Row 4080: 骨头; 名.
 - {id: zh-hsk4-00274-s001, ch: 骨头, pr: gǔ tou, ds: bone, lb: gu3-tou5--bone}
+- {id: zh-hsk7-9-01413-s002, ch: 鼓舞, pr: gǔ wǔ, ds: to inspire; encourage, lb: gu3-wu3--inspire}
 # Row 4081: 鼓舞; 动、形.
 - {id: zh-hsk7-9-01413-s001, ch: 鼓舞, pr: gǔ wǔ, ds: encouraging; inspired, lb: gu3-wu3--inspired}
-- {id: zh-hsk7-9-01413-s002, ch: 鼓舞, pr: gǔ wǔ, ds: to inspire; encourage, lb: gu3-wu3--inspire}
 # Row 4082: 顾; 动.
 - {id: zh-hsk6-00328-s002, ch: 顾, pr: gù, ds: to attend to; look after; take into account, lb: gu4--attend}
 # Row 4083: 固体; 名.
@@ -1139,9 +1152,9 @@
 - {id: zh-hsk5-00293-s001, ch: 顾问, pr: gù wèn, ds: adviser; consultant, lb: gu4-wen4--adviser}
 # Row 4085: 故障; 名.
 - {id: zh-hsk6-00327-s001, ch: 故障, pr: gù zhàng, ds: malfunction; breakdown; fault, lb: gu4-zhang4--fault}
+- {id: zh-hsk6-00330-s002, ch: 拐, pr: guǎi, ds: to abduct by deception; swindle, lb: guai3--abduct}
 # Row 4086: 拐; 动.
 - {id: zh-hsk6-00330-s001, ch: 拐, pr: guǎi, ds: to turn (a corner etc), lb: guai3--turn}
-- {id: zh-hsk6-00330-s002, ch: 拐, pr: guǎi, ds: to abduct by deception; swindle, lb: guai3--abduct}
 # Row 4087: 拐弯; 动.
 - {id: zh-hsk7-9-01436-s001, ch: 拐弯, pr: guǎi wān, ds: to turn a corner; change direction, lb: guai3-wan1--turn}
 # Row 4088: 官; 名.
@@ -1160,33 +1173,33 @@
 - {id: zh-hsk7-9-01449-s001, ch: 观赏, pr: guān shǎng, ds: to view and enjoy; admire, lb: guan1-shang3--admire}
 # Row 4095: 官员; 名.
 - {id: zh-hsk7-9-01455-s001, ch: 官员, pr: guān yuán, ds: official; administrator, lb: guan1-yuan2--official}
+- {id: zh-hsk6-00335-s003, ch: 管道, pr: guǎn dào, ds: channel; means of access, lb: guan3-dao4--channel}
 # Row 4096: 管道; 名.
 - {id: zh-hsk6-00335-s001, ch: 管道, pr: guǎn dào, ds: pipeline; duct, lb: guan3-dao4--pipeline}
-- {id: zh-hsk6-00335-s003, ch: 管道, pr: guǎn dào, ds: channel; means of access, lb: guan3-dao4--channel}
 # Row 4097: 罐; 名.
 - {id: zh-hsk7-9-01472-s001, ch: 罐, pr: guàn, ds: jar; can; pot, lb: guan4--jar}
 # Row 4098: 广阔; 形.
 - {id: zh-hsk6-00337-s001, ch: 广阔, pr: guǎng kuò, ds: vast; broad, lb: guang3-kuo4--vast}
-# Row 4099: 归; 动、介.
-- {id: zh-hsk4-00285-s002, ch: 归, pr: guī, ds: to return; give back, lb: gui1--return}
 - {id: zh-hsk4-00285-s005, ch: 归, pr: guī, ds: to belong to; come under someone's responsibility, lb: gui1--belong}
 - {id: zh-hsk4-00285-s008, ch: 归, pr: guī, ds: despite; granted that (between repeated words), lb: gui1--despite}
+# Row 4099: 归; 动、介.
+- {id: zh-hsk4-00285-s002, ch: 归, pr: guī, ds: to return; give back, lb: gui1--return}
+- {id: zh-hsk3-00267-s007, ch: 规范, pr: guī fàn, ds: to regulate; standardize, lb: gui1-fan4--regulate}
 # Row 4100: 规范; 名、形、动.
 - {id: zh-hsk3-00267-s001, ch: 规范, pr: guī fàn, ds: standard; norm; specification, lb: gui1-fan4--standard}
 - {id: zh-hsk3-00267-s006, ch: 规范, pr: guī fàn, ds: standardized; conforming to a standard, lb: gui1-fan4--standardized}
-- {id: zh-hsk3-00267-s007, ch: 规范, pr: guī fàn, ds: to regulate; standardize, lb: gui1-fan4--regulate}
 # Row 4101: 规划; 名、动.
 - {id: zh-hsk5-00301-s001, ch: 规划, pr: guī huà, ds: to plan; map out, lb: gui1-hua4--plan}
 - {id: zh-hsk5-00301-s002, ch: 规划, pr: guī huà, ds: plan; program, lb: gui1-hua4--program}
 # Row 4102: 归还; 动.
 - {id: zh-hsk7-9-01485-s001, ch: 归还, pr: guī huán, ds: to return something borrowed, lb: gui1-huan2--return}
+- {id: zh-hsk7-9-01493-s006, ch: 规矩, pr: guī ju, ds: well-behaved; proper, lb: gui1-ju5--proper}
 # Row 4103: 规矩; 名、形.
 - {id: zh-hsk7-9-01493-s002, ch: 规矩, pr: guī ju, ds: rules; accepted customs, lb: gui1-ju5--rules}
-- {id: zh-hsk7-9-01493-s006, ch: 规矩, pr: guī ju, ds: well-behaved; proper, lb: gui1-ju5--proper}
+- {id: zh-hsk6-00338-s003, ch: 轨道, pr: guǐ dào, ds: established course; proper path, lb: gui3-dao4--course}
+- {id: zh-hsk6-00338-s002, ch: 轨道, pr: guǐ dào, ds: orbit, lb: gui3-dao4--orbit}
 # Row 4104: 轨道; 名.
 - {id: zh-hsk6-00338-s001, ch: 轨道, pr: guǐ dào, ds: railway track, lb: gui3-dao4--track}
-- {id: zh-hsk6-00338-s002, ch: 轨道, pr: guǐ dào, ds: orbit, lb: gui3-dao4--orbit}
-- {id: zh-hsk6-00338-s003, ch: 轨道, pr: guǐ dào, ds: established course; proper path, lb: gui3-dao4--course}
 # Row 4105: 跪; 动.
 - {id: zh-hsk6-00339-s001, ch: 跪, pr: guì, ds: to kneel, lb: gui4--kneel}
 # Row 4106: 贵重; 形.
@@ -1212,14 +1225,14 @@
 # Row 4116: 过时; 动、形.
 - {id: zh-hsk6-00349-s001, ch: 过时, pr: guò shí, ds: outdated; old-fashioned, lb: guo4-shi2--outdated}
 - {id: zh-hsk6-00349-s003, ch: 过时, pr: guò shí, ds: to go past the appointed time, lb: guo4-shi2--overdue}
-# Row 4117: 海内外; .
-- {id: zh-hsk7-9-01546-s002, ch: 海内外, pr: hǎi nèi wài, ds: at home and abroad, lb: hai3-nei4-wai4--worldwide}
 # Row 4118: 海岸; 名.
 - {id: zh-hsk7-9-01539-s002, ch: 海岸, pr: hǎi àn, ds: coast; seashore, lb: hai3-an4--coast}
 # Row 4119: 海拔; 名.
 - {id: zh-hsk7-9-01540-s001, ch: 海拔, pr: hǎi bá, ds: altitude above sea level, lb: hai3-ba2--altitude}
 # Row 4120: 海面; 名.
 - {id: zh-hsk7-9-01545-s002, ch: 海面, pr: hǎi miàn, ds: sea surface, lb: hai3-mian4--sea-surface}
+# Row 4117: 海内外; .
+- {id: zh-hsk7-9-01546-s002, ch: 海内外, pr: hǎi nèi wài, ds: at home and abroad, lb: hai3-nei4-wai4--worldwide}
 # Row 4121: 海域; 名.
 - {id: zh-hsk7-9-01550-s001, ch: 海域, pr: hǎi yù, ds: sea area; waters, lb: hai3-yu4--waters}
 # Row 4122: 害; 名、动.
@@ -1237,14 +1250,15 @@
 - {id: zh-hsk4-00300-s001, ch: 航空, pr: háng kōng, ds: to fly; engage in aviation, lb: hang2-kong1--aviation}
 # Row 4128: 毫不; .
 - {id: zh-hsk7-9-01575-s002, ch: 毫不, pr: háo bù, ds: not at all; not in the least, lb: hao2-bu4--not-at-all}
-# Row 4129: 毫无; .
-- {id: zh-hsk7-9-01577-s001, ch: 毫无, pr: háo wú, ds: to have absolutely no; completely without, lb: hao2-wu2--without}
 # Row 4130: 毫米; 量.
 - {id: zh-hsk4-00301-s001, ch: 毫米, pr: háo mǐ, ds: millimeter, lb: hao2-mi3--millimeter}
 # Row 4131: 毫升; 量.
 - {id: zh-hsk4-00302-s001, ch: 毫升, pr: háo shēng, ds: milliliter, lb: hao2-sheng1--milliliter}
+# Row 4129: 毫无; .
+- {id: zh-hsk7-9-01577-s001, ch: 毫无, pr: háo wú, ds: to have absolutely no; completely without, lb: hao2-wu2--without}
 # Row 4132: 好不; 副.
 - {id: zh-hsk2026-04132-s601, ch: 好不, pr: hǎo bù, ds: extremely; very indeed (emphatic), lb: hao3-bu4--extremely}
+- {id: zh-hsk6-00357-s001, ch: 好不容易, pr: hǎo bù róng yì, ds: with great difficulty; only after considerable effort, lb: hao3-bu4-rong2-yi4--difficulty}
 # Row 4133: 好感; 名.
 - {id: zh-hsk7-9-01581-s001, ch: 好感, pr: hǎo gǎn, ds: favorable impression; liking, lb: hao3-gan3--liking}
 # Row 4134: 好容易; 形.
@@ -1273,15 +1287,15 @@
 - {id: zh-hsk7-9-01639-s001, ch: 痕迹, pr: hén jì, ds: trace; mark, lb: hen2-ji4--trace}
 # Row 4146: 狠; 形、动、副.
 - {id: zh-hsk6-00367-s001, ch: 狠, pr: hěn, ds: fierce; ruthless; determined, lb: hen3--fierce}
-- {id: zh-hsk6-00367-s005, ch: 狠, pr: hěn, ds: to harden one's heart; steel oneself, lb: hen3--harden}
 - {id: zh-hsk2026-04146-s601, ch: 狠, pr: hěn, ds: fiercely; with force or determination, lb: hen3--fiercely}
+- {id: zh-hsk6-00367-s005, ch: 狠, pr: hěn, ds: to harden one's heart; steel oneself, lb: hen3--harden}
 # Row 4147: 恨; 动.
 - {id: zh-hsk5-00322-s001, ch: 恨, pr: hèn, ds: to hate, lb: hen4--hate}
 - {id: zh-hsk5-00322-s002, ch: 恨, pr: hèn, ds: to regret, lb: hen4--regret}
 # Row 4148: 横; 形、动、名.
 - {id: zh-hsk6-00368-s001, ch: 横, pr: héng, ds: horizontal; crosswise, lb: heng2--horizontal}
-- {id: zh-hsk6-00368-s004, ch: 横, pr: héng, ds: horizontal stroke (in Chinese characters), lb: heng2--stroke}
 - {id: zh-hsk6-00368-s005, ch: 横, pr: héng, ds: to place crosswise or horizontally, lb: heng2--lay}
+- {id: zh-hsk6-00368-s004, ch: 横, pr: héng, ds: horizontal stroke (in Chinese characters), lb: heng2--stroke}
 # Row 4149: 衡量; 动.
 - {id: zh-hsk6-00369-s001, ch: 衡量, pr: héng liáng, ds: to weigh up; assess, lb: heng2-liang2--assess}
 # Row 4150: 宏大; 形.
@@ -1308,6 +1322,10 @@
 - {id: zh-hsk4-00312-s001, ch: 户, pr: hù, ds: measure word for households, lb: hu4--households}
 # Row 4161: 互助; 动.
 - {id: zh-hsk7-9-01695-s002, ch: 互助, pr: hù zhù, ds: to help each other, lb: hu4-zhu4--help}
+
+# Earlier-headword level-6 extensions, in original numbered-row order.
+# Row 358: 花2; 名、（形）.
+- {id: zh-hsk1-00152-s005, ch: 花, pr: huā, ds: patterned; multicolored; variegated, lb: hua1--patterned}
 # Row 4162: 花朵; 名.
 - {id: zh-hsk2026-04162-s001, ch: 花朵, pr: huā duǒ, ds: flower, lb: hua1-duo3--flower}
 # Row 4163: 花生; 名.
@@ -1318,10 +1336,13 @@
 - {id: zh-hsk2026-04165-s001, ch: 滑行, pr: huá xíng, ds: to slide; glide, lb: hua2-xing2--glide}
 # Row 4166: 滑雪; 动.
 - {id: zh-hsk7-9-01711-s001, ch: 滑雪, pr: huá xuě, ds: to ski, lb: hua2-xue3--ski}
+- {id: zh-hsk4-00314-s011, ch: 划, pr: huà, ds: to allocate; transfer, lb: hua4--allocate}
 # Row 4167: 划; 动.
 - {id: zh-hsk4-00314-s010, ch: 划, pr: huà, ds: to draw a line; mark off, lb: hua4--mark}
-- {id: zh-hsk4-00314-s011, ch: 划, pr: huà, ds: to allocate; transfer, lb: hua4--allocate}
+- {id: zh-hsk2026-02497-s601, ch: 化, pr: huà, ds: to melt; dissolve, lb: hua4--melt}
 - {id: zh-hsk4-00314-s013, ch: 划, pr: huà, ds: to plan, lb: hua4--plan}
+# Row 2497: 化; 后缀、（动）.
+- {id: zh-hsk3-00292-s001, ch: 化, pr: huà, ds: to change into; transform, lb: hua4--transform}
 # Row 4168: 划分; 动.
 - {id: zh-hsk5-00331-s001, ch: 划分, pr: huà fēn, ds: to divide; demarcate; classify, lb: hua4-fen1--divide}
 # Row 4169: 化石; 名.
@@ -1340,18 +1361,18 @@
 - {id: zh-hsk7-9-01730-s001, ch: 怀孕, pr: huái yùn, ds: to become or be pregnant, lb: huai2-yun4--pregnant}
 # Row 4175: 欢乐; 形.
 - {id: zh-hsk3-00299-s006, ch: 欢乐, pr: huān lè, ds: joyful; happy, lb: huan1-le4--joyful}
+- {id: zh-hsk3-00296-s007, ch: 环, pr: huán, ds: to surround; encircle, lb: huan2--encircle}
 # Row 4176: 环; 名、量、动.
 - {id: zh-hsk3-00296-s002, ch: 环, pr: huán, ds: ring; loop; link, lb: huan2--ring}
 - {id: zh-hsk3-00296-s006, ch: 环, pr: huán, ds: measure word for rings scored on a target, lb: huan2--target-rings}
-- {id: zh-hsk3-00296-s007, ch: 环, pr: huán, ds: to surround; encircle, lb: huan2--encircle}
+- {id: zh-hsk7-9-01538-s002, ch: 还原, pr: huán yuán, ds: to reconstruct what happened, lb: huan2-yuan2--reconstruct}
 # Row 4177: 还原; 动.
 - {id: zh-hsk7-9-01538-s001, ch: 还原, pr: huán yuán, ds: to restore to the original state, lb: huan2-yuan2--restore}
-- {id: zh-hsk7-9-01538-s002, ch: 还原, pr: huán yuán, ds: to reconstruct what happened, lb: huan2-yuan2--reconstruct}
 # Row 4178: 患; 动.
 - {id: zh-hsk7-9-01747-s001, ch: 患, pr: huàn, ds: to suffer from; contract an illness, lb: huan4--ill}
+- {id: zh-hsk2026-04179-s601, ch: 幻想, pr: huàn xiǎng, ds: to fantasize; imagine unrealistically, lb: huan4-xiang3--fantasize}
 # Row 4179: 幻想; 动、名.
 - {id: zh-hsk6-00381-s001, ch: 幻想, pr: huàn xiǎng, ds: fantasy; illusion, lb: huan4-xiang3--fantasy}
-- {id: zh-hsk2026-04179-s601, ch: 幻想, pr: huàn xiǎng, ds: to fantasize; imagine unrealistically, lb: huan4-xiang3--fantasize}
 # Row 4180: 患者; 名.
 - {id: zh-hsk6-00382-s001, ch: 患者, pr: huàn zhě, ds: patient; person suffering from an illness, lb: huan4-zhe3--patient}
 # Row 4181: 黄; 名.
@@ -1367,13 +1388,13 @@
 - {id: zh-hsk5-00338-s005, ch: 回报, pr: huí bào, ds: to report back, lb: hui2-bao4--report}
 # Row 4186: 回顾; 动.
 - {id: zh-hsk5-00340-s001, ch: 回顾, pr: huí gù, ds: to look back on; review, lb: hui2-gu4--review}
+- {id: zh-hsk2026-04187-s601, ch: 回头, pr: huí tóu, ds: if it turns out later that; in case, lb: hui2-tou2--in-case}
+- {id: zh-hsk5-00342-s002, ch: 回头, pr: huí tóu, ds: later; after a while, lb: hui2-tou2--later}
 # Row 4187: 回头; 动、副、连.
 - {id: zh-hsk5-00342-s001, ch: 回头, pr: huí tóu, ds: to turn one's head; turn back, lb: hui2-tou2--turn}
-- {id: zh-hsk5-00342-s002, ch: 回头, pr: huí tóu, ds: later; after a while, lb: hui2-tou2--later}
-- {id: zh-hsk2026-04187-s601, ch: 回头, pr: huí tóu, ds: if it turns out later that; in case, lb: hui2-tou2--in-case}
+- {id: zh-hsk4-00321-s002, ch: 汇, pr: huì, ds: to converge; come together, lb: hui4--converge}
 # Row 4188: 汇; 动.
 - {id: zh-hsk4-00321-s001, ch: 汇, pr: huì, ds: to remit money, lb: hui4--remit}
-- {id: zh-hsk4-00321-s002, ch: 汇, pr: huì, ds: to converge; come together, lb: hui4--converge}
 # Row 4189: 汇报; 动.
 - {id: zh-hsk4-00322-s001, ch: 汇报, pr: huì bào, ds: to report; give an account, lb: hui4-bao4--report}
 # Row 4190: 绘画; 动.
@@ -1385,10 +1406,10 @@
 - {id: zh-hsk5-00345-s002, ch: 汇款, pr: huì kuǎn, ds: remittance, lb: hui4-kuan3--remittance}
 # Row 4193: 婚姻; 名.
 - {id: zh-hsk7-9-01800-s001, ch: 婚姻, pr: hūn yīn, ds: marriage; matrimony, lb: hun1-yin1--marriage}
-# Row 4194: 混; 动、副.
-- {id: zh-hsk6-00390-s005, ch: 混, pr: hùn, ds: to mix; mingle, lb: hun4--mix}
 - {id: zh-hsk6-00390-s008, ch: 混, pr: hùn, ds: to drift along; muddle through, lb: hun4--drift}
 - {id: zh-hsk2026-04194-s601, ch: 混, pr: hùn, ds: indiscriminately; recklessly, lb: hun4--indiscriminately}
+# Row 4194: 混; 动、副.
+- {id: zh-hsk6-00390-s005, ch: 混, pr: hùn, ds: to mix; mingle, lb: hun4--mix}
 # Row 4195: 混合; 动.
 - {id: zh-hsk6-00391-s001, ch: 混合, pr: hùn hé, ds: to mix; blend, lb: hun4-he2--mix}
 # Row 4196: 混乱; 形.
@@ -1402,6 +1423,8 @@
 - {id: zh-hsk5-00349-s001, ch: 火柴, pr: huǒ chái, ds: match for lighting a fire, lb: huo3-chai2--match}
 # Row 4200: 火灾; 名.
 - {id: zh-hsk5-00351-s001, ch: 火灾, pr: huǒ zāi, ds: fire disaster; destructive fire, lb: huo3-zai1--fire}
+# Row 685: 或; 连、（副）.
+- {id: zh-hsk2-00233-s001, ch: 或, pr: huò, ds: perhaps; possibly, lb: huo4--perhaps}
 # Row 4201: 货币; 名.
 - {id: zh-hsk7-9-01825-s001, ch: 货币, pr: huò bì, ds: currency; money, lb: huo4-bi4--currency}
 # Row 4202: 货车; 名.
@@ -1436,8 +1459,8 @@
 - {id: zh-hsk7-9-01866-s001, ch: 即便, pr: jí biàn, ds: even if; even though, lb: ji2-bian4--even-if}
 # Row 4216: 极端; 名、副、形.
 - {id: zh-hsk6-00402-s001, ch: 极端, pr: jí duān, ds: extreme; at the furthest limit, lb: ji2-duan1--extreme}
-- {id: zh-hsk2026-04216-s601, ch: 极端, pr: jí duān, ds: an extreme; an extreme position, lb: ji2-duan1--extremity}
 - {id: zh-hsk2026-04216-s602, ch: 极端, pr: jí duān, ds: extremely; to an extreme degree, lb: ji2-duan1--extremely}
+- {id: zh-hsk2026-04216-s601, ch: 极端, pr: jí duān, ds: an extreme; an extreme position, lb: ji2-duan1--extremity}
 # Row 4217: 急救; 动.
 - {id: zh-hsk6-00403-s001, ch: 急救, pr: jí jiù, ds: to give emergency treatment; administer first aid, lb: ji2-jiu4--first-aid}
 # Row 4218: 急切; 形.
@@ -1448,9 +1471,11 @@
 - {id: zh-hsk7-9-01871-s001, ch: 极为, pr: jí wéi, ds: extremely, lb: ji2-wei2--extremely}
 # Row 4221: 吉祥; 形.
 - {id: zh-hsk6-00401-s001, ch: 吉祥, pr: jí xiáng, ds: auspicious; lucky, lb: ji2-xiang2--auspicious}
+# Row 4046: 给予; 动.
+- {id: zh-hsk6-00306-s001, ch: 给予, pr: jǐ yǔ, ds: to give; grant; accord, lb: ji3-yu3--give}
+- {id: zh-hsk5-00363-s003, ch: 继承, pr: jì chéng, ds: to carry on a tradition, lb: ji4-cheng2--continue}
 # Row 4222: 继承; 动.
 - {id: zh-hsk5-00363-s001, ch: 继承, pr: jì chéng, ds: to inherit; succeed to, lb: ji4-cheng2--inherit}
-- {id: zh-hsk5-00363-s003, ch: 继承, pr: jì chéng, ds: to carry on a tradition, lb: ji4-cheng2--continue}
 # Row 4223: 季军; 名.
 - {id: zh-hsklegacy-03929-s001, ch: 季军, pr: jì jūn, ds: third-place finisher, lb: ji4-jun1--third-place}
 # Row 4224: 纪律; 名.
@@ -1472,10 +1497,10 @@
 - {id: zh-hsklegacy-03970-s001, ch: 家常, pr: jiā cháng, ds: everyday family life; household matters, lb: jia1-chang2--family-life}
 # Row 4231: 家家户户; 名.
 - {id: zh-hsk7-9-01922-s001, ch: 家家户户, pr: jiā jiā hù hù, ds: every household, lb: jia1-jia1-hu4-hu4--households}
-# Row 4232: 加剧; 动.
-- {id: zh-hsk7-9-01917-s001, ch: 加剧, pr: jiā jù, ds: to intensify; worsen, lb: jia1-ju4--intensify}
 # Row 4233: 家居; 名.
 - {id: zh-hsk2026-04233-s001, ch: 家居, pr: jiā jū, ds: home; domestic surroundings, lb: jia1-ju1--home}
+# Row 4232: 加剧; 动.
+- {id: zh-hsk7-9-01917-s001, ch: 加剧, pr: jiā jù, ds: to intensify; worsen, lb: jia1-ju4--intensify}
 # Row 4234: 家属; 名.
 - {id: zh-hsk3-00325-s001, ch: 家属, pr: jiā shǔ, ds: family members; dependents, lb: jia1-shu3--family}
 # Row 4235: 加以; 动、连.
@@ -1490,10 +1515,10 @@
 - {id: zh-hsk7-9-01933-s006, ch: 假设, pr: jiǎ shè, ds: hypothesis; assumption, lb: jia3-she4--hypothesis}
 # Row 4239: 嫁; 动.
 - {id: zh-hsk7-9-01943-s001, ch: 嫁, pr: jià, ds: to marry (of a woman); marry off a daughter, lb: jia4--marry}
+- {id: zh-hsk6-00412-s003, ch: 尖, pr: jiān, ds: keen; sharp (of the senses), lb: jian1--keen}
 # Row 4240: 尖; 形、名.
 - {id: zh-hsk6-00412-s001, ch: 尖, pr: jiān, ds: pointed; sharp, lb: jian1--pointed}
 - {id: zh-hsk6-00412-s002, ch: 尖, pr: jiān, ds: shrill; piercing, lb: jian1--shrill}
-- {id: zh-hsk6-00412-s003, ch: 尖, pr: jiān, ds: keen; sharp (of the senses), lb: jian1--keen}
 - {id: zh-hsk6-00412-s005, ch: 尖, pr: jiān, ds: tip; sharp point, lb: jian1--tip}
 # Row 4241: 肩膀; 名.
 - {id: zh-hsk7-9-01959-s001, ch: 肩膀, pr: jiān bǎng, ds: shoulder, lb: jian1-bang3--shoulder}
@@ -1521,9 +1546,9 @@
 - {id: zh-hsk4-00364-s001, ch: 检测, pr: jiǎn cè, ds: to test; detect, lb: jian3-ce4--test}
 # Row 4252: 简化; 动.
 - {id: zh-hsk7-9-01986-s001, ch: 简化, pr: jiǎn huà, ds: to simplify, lb: jian3-hua4--simplify}
+- {id: zh-hsk2026-04253-s601, ch: 简介, pr: jiǎn jiè, ds: to introduce briefly, lb: jian3-jie4--introduce}
 # Row 4253: 简介; 动、名.
 - {id: zh-hsk6-00416-s001, ch: 简介, pr: jiǎn jiè, ds: brief introduction; summary, lb: jian3-jie4--introduction}
-- {id: zh-hsk2026-04253-s601, ch: 简介, pr: jiǎn jiè, ds: to introduce briefly, lb: jian3-jie4--introduce}
 # Row 4254: 减弱; 动.
 - {id: zh-hsk7-9-01979-s001, ch: 减弱, pr: jiǎn ruò, ds: to weaken; to diminish, lb: jian3-ruo4--weaken}
 # Row 4255: 减压; 动.
@@ -1531,21 +1556,21 @@
 - {id: zh-hsk7-9-01981-s002, ch: 减压, pr: jiǎn yā, ds: to relieve stress; relax, lb: jian3-ya1--relax}
 # Row 4256: 检验; 动.
 - {id: zh-hsk5-00382-s001, ch: 检验, pr: jiǎn yàn, ds: to inspect; test; examine, lb: jian3-yan4--inspect}
-# Row 4257: 剑; 名.
-- {id: zh-hsk6-00417-s001, ch: 剑, pr: jiàn, ds: double-edged sword, lb: jian4--sword}
 # Row 4258: 箭; 名.
 - {id: zh-hsk6-00419-s001, ch: 箭, pr: jiàn, ds: arrow, lb: jian4--arrow}
+# Row 4257: 剑; 名.
+- {id: zh-hsk6-00417-s001, ch: 剑, pr: jiàn, ds: double-edged sword, lb: jian4--sword}
+- {id: zh-hsk2026-04259-s601, ch: 鉴定, pr: jiàn dìng, ds: appraisal; expert assessment, lb: jian4-ding4--appraisal}
 # Row 4259: 鉴定; 动、名.
 - {id: zh-hsk6-00418-s001, ch: 鉴定, pr: jiàn dìng, ds: to appraise; authenticate; identify, lb: jian4-ding4--appraise}
-- {id: zh-hsk2026-04259-s601, ch: 鉴定, pr: jiàn dìng, ds: appraisal; expert assessment, lb: jian4-ding4--appraisal}
 # Row 4260: 间隔; 名、动.
 - {id: zh-hsk7-9-01957-s001, ch: 间隔, pr: jiàn gé, ds: gap; interval, lb: jian4-ge2--interval}
 - {id: zh-hsk7-9-01957-s004, ch: 间隔, pr: jiàn gé, ds: to separate; leave an interval, lb: jian4-ge2--separate}
 # Row 4261: 间接; 形.
 - {id: zh-hsk5-00374-s001, ch: 间接, pr: jiàn jiē, ds: indirect, lb: jian4-jie1--indirect}
+- {id: zh-hsk2026-04262-s601, ch: 健全, pr: jiàn quán, ds: to improve; make sound or complete, lb: jian4-quan2--improve}
 # Row 4262: 健全; 形、动.
 - {id: zh-hsk5-00385-s001, ch: 健全, pr: jiàn quán, ds: sound; complete and effective, lb: jian4-quan2--sound}
-- {id: zh-hsk2026-04262-s601, ch: 健全, pr: jiàn quán, ds: to improve; make sound or complete, lb: jian4-quan2--improve}
 # Row 4263: 建筑物; 名.
 - {id: zh-hsk7-9-02003-s001, ch: 建筑物, pr: jiàn zhù wù, ds: building; structure, lb: jian4-zhu4-wu4--building}
 # Row 4264: 将军; 名.
@@ -1556,9 +1581,9 @@
 - {id: zh-hsk7-9-02019-s001, ch: 奖牌, pr: jiǎng pái, ds: medal awarded as a prize, lb: jiang3-pai2--medal}
 # Row 4267: 奖品; 名.
 - {id: zh-hsk7-9-02020-s001, ch: 奖品, pr: jiǎng pǐn, ds: prize; award, lb: jiang3-pin3--prize}
+- {id: zh-hsk6-00422-s002, ch: 酱, pr: jiàng, ds: to cook or preserve in soy sauce, lb: jiang4--braise}
 # Row 4268: 酱; 名、动.
 - {id: zh-hsk6-00422-s001, ch: 酱, pr: jiàng, ds: thick sauce; paste; jam, lb: jiang4--paste}
-- {id: zh-hsk6-00422-s002, ch: 酱, pr: jiàng, ds: to cook or preserve in soy sauce, lb: jiang4--braise}
 # Row 4269: 酱油; 名.
 - {id: zh-hsk6-00423-s001, ch: 酱油, pr: jiàng yóu, ds: soy sauce, lb: jiang4-you2--soy-sauce}
 # Row 4270: 胶带; 名.
@@ -1581,16 +1606,16 @@
 - {id: zh-hsk6-00426-s001, ch: 脚印, pr: jiǎo yìn, ds: footprint, lb: jiao3-yin4--footprint}
 # Row 4279: 较为; 副.
 - {id: zh-hsk2026-04279-s001, ch: 较为, pr: jiào wéi, ds: relatively; comparatively, lb: jiao4-wei2--relatively}
+- {id: zh-hsk4-00383-s005, ch: 教训, pr: jiào xùn, ds: lesson learned from a mistake or hardship, lb: jiao4-xun4--lesson}
 # Row 4280: 教训; 动、名.
 - {id: zh-hsk4-00383-s001, ch: 教训, pr: jiào xùn, ds: to lecture; reprimand, lb: jiao4-xun4--reprimand}
-- {id: zh-hsk4-00383-s005, ch: 教训, pr: jiào xùn, ds: lesson learned from a mistake or hardship, lb: jiao4-xun4--lesson}
 # Row 4281: 结; 动.
 - {id: zh-hsk4-00387-s001, ch: 结, pr: jiē, ds: to bear fruit or seeds, lb: jie1--fruit}
 # Row 4282: 结果; 动.
 - {id: zh-hsk2-00276-s001, ch: 结果, pr: jiē guǒ, ds: to bear fruit, lb: jie1-guo3--fruit}
+- {id: zh-hsk2026-04283-s601, ch: 接连, pr: jiē lián, ds: to follow one after another; connect continuously, lb: jie1-lian2--follow}
 # Row 4283: 接连; 动、副.
 - {id: zh-hsk5-00397-s001, ch: 接连, pr: jiē lián, ds: successively; one after another, lb: jie1-lian2--successively}
-- {id: zh-hsk2026-04283-s601, ch: 接连, pr: jiē lián, ds: to follow one after another; connect continuously, lb: jie1-lian2--follow}
 # Row 4284: 结实; 形.
 - {id: zh-hsk3-00356-s002, ch: 结实, pr: jiē shi, ds: sturdy; strong; durable, lb: jie1-shi5--sturdy}
 # Row 4285: 街头; 名.
@@ -1599,20 +1624,20 @@
 - {id: zh-hsk6-00435-s001, ch: 杰出, pr: jié chū, ds: outstanding; distinguished, lb: jie2-chu1--outstanding}
 # Row 4287: 节能; 动.
 - {id: zh-hsk6-00433-s001, ch: 节能, pr: jié néng, ds: to save energy, lb: jie2-neng2--energy}
+- {id: zh-hsk7-9-02099-s003, ch: 结尾, pr: jié wěi, ds: to conclude; bring to an end, lb: jie2-wei3--conclude}
 # Row 4288: 结尾; 动、名.
 - {id: zh-hsk7-9-02099-s001, ch: 结尾, pr: jié wěi, ds: ending; conclusion, lb: jie2-wei3--ending}
-- {id: zh-hsk7-9-02099-s003, ch: 结尾, pr: jié wěi, ds: to conclude; bring to an end, lb: jie2-wei3--conclude}
-# Row 4289: 截至; 动.
-- {id: zh-hsk6-00437-s001, ch: 截至, pr: jié zhì, ds: to extend up to (a specified time), lb: jie2-zhi4--up-to}
 # Row 4290: 截止; 动.
 - {id: zh-hsk6-00436-s001, ch: 截止, pr: jié zhǐ, ds: to close; stop at a deadline, lb: jie2-zhi3--close}
+# Row 4289: 截至; 动.
+- {id: zh-hsk6-00437-s001, ch: 截至, pr: jié zhì, ds: to extend up to (a specified time), lb: jie2-zhi4--up-to}
 # Row 4291: 节奏; 名.
 - {id: zh-hsk6-00434-s001, ch: 节奏, pr: jié zòu, ds: rhythm; tempo; pace, lb: jie2-zou4--rhythm}
-# Row 4292: 解; 动.
-- {id: zh-hsk6-00438-s010, ch: 解, pr: jiě, ds: to untie; loosen; undo, lb: jie3--untie}
+- {id: zh-hsk6-00438-s009, ch: 解, pr: jiě, ds: to relieve; remove, lb: jie3--relieve}
 - {id: zh-hsk6-00438-s007, ch: 解, pr: jiě, ds: to solve; explain, lb: jie3--solve}
 - {id: zh-hsk6-00438-s015, ch: 解, pr: jiě, ds: to understand, lb: jie3--understand}
-- {id: zh-hsk6-00438-s009, ch: 解, pr: jiě, ds: to relieve; remove, lb: jie3--relieve}
+# Row 4292: 解; 动.
+- {id: zh-hsk6-00438-s010, ch: 解, pr: jiě, ds: to untie; loosen; undo, lb: jie3--untie}
 # Row 4293: 解答; 动.
 - {id: zh-hsk7-9-02104-s001, ch: 解答, pr: jiě dá, ds: to answer; solve a problem, lb: jie3-da2--answer}
 # Row 4294: 解读; 动.
@@ -1642,10 +1667,10 @@
 # Row 4306: 尽; 动、（副）.
 - {id: zh-hsk6-00445-s005, ch: 尽, pr: jìn, ds: to use up; exhaust; come to an end, lb: jin4--exhaust}
 - {id: zh-hsk2026-04306-s601, ch: 尽, pr: jìn, ds: to do one's utmost; fulfill (a duty), lb: jin4--fulfill}
-# Row 4307: 进而; 连.
-- {id: zh-hsk7-9-02152-s001, ch: 进而, pr: jìn ér, ds: and then; furthermore, lb: jin4-er2--furthermore}
 # Row 4308: 进度; 名.
 - {id: zh-hsk7-9-02151-s001, ch: 进度, pr: jìn dù, ds: progress; rate of progress, lb: jin4-du4--progress}
+# Row 4307: 进而; 连.
+- {id: zh-hsk7-9-02152-s001, ch: 进而, pr: jìn ér, ds: and then; furthermore, lb: jin4-er2--furthermore}
 # Row 4309: 进化; 动.
 - {id: zh-hsk5-00407-s001, ch: 进化, pr: jìn huà, ds: to evolve, lb: jin4-hua4--evolve}
 # Row 4310: 近来; 名.
@@ -1713,10 +1738,10 @@
 - {id: zh-hsk5-00414-s001, ch: 救灾, pr: jiù zāi, ds: to provide disaster relief, lb: jiu4-zai1--relief}
 # Row 4340: 救助; 动.
 - {id: zh-hsk6-00463-s001, ch: 救助, pr: jiù zhù, ds: to help someone in difficulty; rescue, lb: jiu4-zhu4--aid}
-# Row 4341: 局1; 量.
-- {id: zh-hsk4-00407-s004, ch: 局, pr: jú, ds: 'measure word for rounds, sets, or games', lb: ju2--games}
 # Row 4342: 局2; 名.
 - {id: zh-hsk4-00407-s002, ch: 局, pr: jú, ds: bureau; administrative office, lb: ju2--bureau}
+# Row 4341: 局1; 量.
+- {id: zh-hsk4-00407-s004, ch: 局, pr: jú, ds: 'measure word for rounds, sets, or games', lb: ju2--games}
 - {id: zh-hsk4-00407-s003, ch: 局, pr: jú, ds: situation; state of affairs, lb: ju2--situation}
 # Row 4343: 菊花; 名.
 - {id: zh-hsk7-9-02253-s001, ch: 菊花, pr: jú huā, ds: chrysanthemum, lb: ju2-hua1--chrysanthemum}
@@ -1744,13 +1769,13 @@
 - {id: zh-hsk4-00413-s002, ch: 卷, pr: juǎn, ds: roll; rolled-up object, lb: juan3--roll-object}
 - {id: zh-hsk4-00413-s003, ch: 卷, pr: juǎn, ds: measure word for rolls or spools, lb: juan3--rolls}
 - {id: zh-hsk4-00413-s010, ch: 卷, pr: juǎn, ds: to sweep up; carry along, lb: juan3--sweep}
+- {id: zh-hsk4-00413-s008, ch: 卷, pr: juàn, ds: examination paper, lb: juan4--exam-paper}
 # Row 4354: 卷; 量、名.
 - {id: zh-hsk4-00413-s004, ch: 卷, pr: juàn, ds: volume; scroll, lb: juan4--volume}
-- {id: zh-hsk4-00413-s008, ch: 卷, pr: juàn, ds: examination paper, lb: juan4--exam-paper}
 - {id: zh-hsk4-00413-s009, ch: 卷, pr: juàn, ds: measure word for volumes or scrolls, lb: juan4--volumes}
+- {id: zh-hsk6-00472-s004, ch: 决策, pr: jué cè, ds: to make a policy decision, lb: jue2-ce4--decide}
 # Row 4355: 决策; 动、名.
 - {id: zh-hsk6-00472-s001, ch: 决策, pr: jué cè, ds: policy decision; decision-making, lb: jue2-ce4--decision}
-- {id: zh-hsk6-00472-s004, ch: 决策, pr: jué cè, ds: to make a policy decision, lb: jue2-ce4--decide}
 # Row 4356: 绝望; 动.
 - {id: zh-hsk5-00423-s001, ch: 绝望, pr: jué wàng, ds: to despair; lose all hope, lb: jue2-wang4--despair}
 # Row 4357: 军队; 名.
@@ -1769,9 +1794,9 @@
 - {id: zh-hsk7-9-02323-s001, ch: 开启, pr: kāi qǐ, ds: to open; start; enable, lb: kai1-qi3--open}
 # Row 4364: 开设; 动.
 - {id: zh-hsk6-00482-s001, ch: 开设, pr: kāi shè, ds: to establish; offer (a course or service), lb: kai1-she4--establish}
+- {id: zh-hsk6-00484-s002, ch: 开头, pr: kāi tóu, ds: to begin; start, lb: kai1-tou2--begin}
 # Row 4365: 开头; 动、名.
 - {id: zh-hsk6-00484-s001, ch: 开头, pr: kāi tóu, ds: beginning, lb: kai1-tou2--beginning}
-- {id: zh-hsk6-00484-s002, ch: 开头, pr: kāi tóu, ds: to begin; start, lb: kai1-tou2--begin}
 # Row 4366: 砍; 动.
 - {id: zh-hsk7-9-02337-s001, ch: 砍, pr: kǎn, ds: to chop; cut down, lb: kan3--chop}
 # Row 4367: 看不起; 动.
@@ -1799,9 +1824,9 @@
 - {id: zh-hsk5-00430-s001, ch: 考核, pr: kǎo hé, ds: to assess; evaluate, lb: kao3-he2--assess}
 # Row 4378: 考验; 动.
 - {id: zh-hsk3-00404-s001, ch: 考验, pr: kǎo yàn, ds: to put to the test, lb: kao3-yan4--test}
+- {id: zh-hsk2-00301-s002, ch: 科, pr: kē, ds: department; administrative section, lb: ke1--department}
 # Row 4379: 科; 名.
 - {id: zh-hsk2-00301-s001, ch: 科, pr: kē, ds: subject; branch of study, lb: ke1--subject}
-- {id: zh-hsk2-00301-s002, ch: 科, pr: kē, ds: department; administrative section, lb: ke1--department}
 # Row 4380: 科幻; 名.
 - {id: zh-hsk7-9-02356-s001, ch: 科幻, pr: kē huàn, ds: science fiction, lb: ke1-huan4--science-fiction}
 # Row 4381: 科目; 名.
@@ -1840,19 +1865,19 @@
 # Row 4396: 口头; 名、形.
 - {id: zh-hsk7-9-02413-s001, ch: 口头, pr: kǒu tóu, ds: oral; spoken rather than written, lb: kou3-tou2--oral}
 - {id: zh-hsk2026-04396-s601, ch: 口头, pr: kǒu tóu, ds: spoken words; speech (as opposed to action or writing), lb: kou3-tou2--speech}
+- {id: zh-hsk6-00500-s003, ch: 扣, pr: kòu, ds: button; buckle; fastener, lb: kou4--buckle}
+- {id: zh-hsk6-00500-s012, ch: 扣, pr: kòu, ds: to cover with something inverted, lb: kou4--cover}
+- {id: zh-hsk6-00500-s008, ch: 扣, pr: kòu, ds: to deduct money, lb: kou4--deduct}
+- {id: zh-hsk6-00500-s006, ch: 扣, pr: kòu, ds: to detain; seize, lb: kou4--detain}
 # Row 4397: 扣; 动、名.
 - {id: zh-hsk6-00500-s001, ch: 扣, pr: kòu, ds: to fasten; button up, lb: kou4--fasten}
-- {id: zh-hsk6-00500-s003, ch: 扣, pr: kòu, ds: button; buckle; fastener, lb: kou4--buckle}
-- {id: zh-hsk6-00500-s006, ch: 扣, pr: kòu, ds: to detain; seize, lb: kou4--detain}
-- {id: zh-hsk6-00500-s008, ch: 扣, pr: kòu, ds: to deduct money, lb: kou4--deduct}
-- {id: zh-hsk6-00500-s012, ch: 扣, pr: kòu, ds: to cover with something inverted, lb: kou4--cover}
 # Row 4398: 枯燥; 形.
 - {id: zh-hsk7-9-02423-s001, ch: 枯燥, pr: kū zào, ds: dull; tedious, lb: ku1-zao4--tedious}
 # Row 4399: 酷; 形.
 - {id: zh-hsk6-00501-s003, ch: 酷, pr: kù, ds: cool; stylish, lb: ku4--cool}
+- {id: zh-hsk7-9-02434-s001, ch: 夸, pr: kuā, ds: to boast; exaggerate, lb: kua1--boast}
 # Row 4400: 夸; 动.
 - {id: zh-hsk7-9-02434-s002, ch: 夸, pr: kuā, ds: to praise, lb: kua1--praise}
-- {id: zh-hsk7-9-02434-s001, ch: 夸, pr: kuā, ds: to boast; exaggerate, lb: kua1--boast}
 # Row 4401: 夸奖; 动.
 - {id: zh-hsk7-9-02436-s001, ch: 夸奖, pr: kuā jiǎng, ds: to praise; compliment, lb: kua1-jiang3--praise}
 # Row 4402: 夸张; 形.
@@ -1862,6 +1887,9 @@
 - {id: zh-hsk4-00324-s002, ch: 会计, pr: kuài jì, ds: accounting, lb: kuai4-ji4--accounting}
 # Row 4404: 快捷; 形.
 - {id: zh-hsk7-9-02444-s001, ch: 快捷, pr: kuài jié, ds: quick; convenient and fast, lb: kuai4-jie2--quick}
+# Row 2677: 宽; 形、名、（动）.
+- {id: zh-hsk2026-02677-s601, ch: 宽, pr: kuān, ds: to relax; extend (a deadline or restriction), lb: kuan1--extend}
+- {id: zh-hsk2026-02677-s602, ch: 宽, pr: kuān, ds: to ease; relieve (worry or anxiety), lb: kuan1--relieve}
 # Row 4405: 款; 名、量.
 - {id: zh-hsk2026-04405-s001, ch: 款, pr: kuǎn, ds: clause; section of a document, lb: kuan3--clause}
 - {id: zh-hsk2026-04405-s601, ch: 款, pr: kuǎn, ds: funds; a sum of money, lb: kuan3--funds}
@@ -1874,9 +1902,9 @@
 - {id: zh-hsk5-00452-s001, ch: 困扰, pr: kùn rǎo, ds: to trouble; perplex; disturb, lb: kun4-rao3--trouble}
 # Row 4409: 扩展; 动.
 - {id: zh-hsk4-00432-s001, ch: 扩展, pr: kuò zhǎn, ds: to extend; expand, lb: kuo4-zhan3--expand}
+- {id: zh-hsk4-00482-s003, ch: 落, pr: là, ds: to leave behind; forget to bring, lb: la4--forget}
 # Row 4410: 落; 动.
 - {id: zh-hsk4-00482-s001, ch: 落, pr: là, ds: to leave out; omit, lb: la4--omit}
-- {id: zh-hsk4-00482-s003, ch: 落, pr: là, ds: to leave behind; forget to bring, lb: la4--forget}
 # Row 4411: 辣椒; 名.
 - {id: zh-hsk7-9-02481-s001, ch: 辣椒, pr: là jiāo, ds: chili pepper, lb: la4-jiao1--chili}
 # Row 4412: 啦; 助.
@@ -1884,20 +1912,20 @@
 - {id: zh-hsk6-00507-s004, ch: 啦, pr: la, ds: particle after items in an illustrative list, lb: la5--listing}
 # Row 4413: 来临; 动.
 - {id: zh-hsk7-9-02488-s001, ch: 来临, pr: lái lín, ds: to approach; arrive, lb: lai2-lin2--approach}
+- {id: zh-hsk6-00508-s002, ch: 来往, pr: lái wǎng, ds: to have dealings with; associate with, lb: lai2-wang3--associate}
 # Row 4414: 来往; 动.
 - {id: zh-hsk6-00508-s001, ch: 来往, pr: lái wǎng, ds: to come and go, lb: lai2-wang3--come-go}
-- {id: zh-hsk6-00508-s002, ch: 来往, pr: lái wǎng, ds: to have dealings with; associate with, lb: lai2-wang3--associate}
+- {id: zh-hsk6-00509-s005, ch: 赖, pr: lài, ds: bad; no good, lb: lai4--bad}
+- {id: zh-hsk6-00509-s010, ch: 赖, pr: lài, ds: to blame; shift blame onto, lb: lai4--blame}
 # Row 4415: 赖; 形、动.
 - {id: zh-hsk6-00509-s003, ch: 赖, pr: lài, ds: to depend on, lb: lai4--depend}
 - {id: zh-hsk6-00509-s004, ch: 赖, pr: lài, ds: to linger; refuse to leave, lb: lai4--linger}
-- {id: zh-hsk6-00509-s005, ch: 赖, pr: lài, ds: bad; no good, lb: lai4--bad}
 - {id: zh-hsk6-00509-s006, ch: 赖, pr: lài, ds: to go back on; deny a debt or promise, lb: lai4--renege}
-- {id: zh-hsk6-00509-s010, ch: 赖, pr: lài, ds: to blame; shift blame onto, lb: lai4--blame}
-# Row 4416: 拦; 动.
-- {id: zh-hsk7-9-02492-s001, ch: 拦, pr: lán, ds: to block; stop; flag down, lb: lan2--stop}
+- {id: zh-hsk7-9-02493-s004, ch: 栏, pr: lán, ds: column; box in a form, lb: lan2--column}
 # Row 4417: 栏; 名.
 - {id: zh-hsk7-9-02493-s001, ch: 栏, pr: lán, ds: railing; fence; hurdle, lb: lan2--railing}
-- {id: zh-hsk7-9-02493-s004, ch: 栏, pr: lán, ds: column; box in a form, lb: lan2--column}
+# Row 4416: 拦; 动.
+- {id: zh-hsk7-9-02492-s001, ch: 拦, pr: lán, ds: to block; stop; flag down, lb: lan2--stop}
 # Row 4418: 兰花; 名.
 - {id: zh-hsk2026-04418-s001, ch: 兰花, pr: lán huā, ds: orchid, lb: lan2-hua1--orchid}
 # Row 4419: 烂; 形.
@@ -1908,15 +1936,15 @@
 - {id: zh-hsk7-9-02501-s001, ch: 狼, pr: láng, ds: wolf, lb: lang2--wolf}
 # Row 4421: 朗读; 动.
 - {id: zh-hsk5-00455-s001, ch: 朗读, pr: lǎng dú, ds: to read aloud, lb: lang3-du2--read-aloud}
+- {id: zh-hsk6-00514-s001, ch: 牢, pr: láo, ds: firm; secure, lb: lao2--firm}
 # Row 4422: 牢; 名、形.
 - {id: zh-hsk6-00514-s005, ch: 牢, pr: láo, ds: prison, lb: lao2--prison}
-- {id: zh-hsk6-00514-s001, ch: 牢, pr: láo, ds: firm; secure, lb: lao2--firm}
 # Row 4423: 劳动力; 名.
 - {id: zh-hsk7-9-02506-s001, ch: 劳动力, pr: láo dòng lì, ds: labor force; workforce, lb: lao2-dong4-li4--workforce}
+- {id: zh-hsk4-00443-s003, ch: 老实, pr: lǎo shi, ds: gullible; too trusting, lb: lao3-shi5--gullible}
 # Row 4424: 老实; 形.
 - {id: zh-hsk4-00443-s001, ch: 老实, pr: lǎo shi, ds: honest; sincere, lb: lao3-shi5--honest}
 - {id: zh-hsk4-00443-s002, ch: 老实, pr: lǎo shi, ds: well-behaved, lb: lao3-shi5--well-behaved}
-- {id: zh-hsk4-00443-s003, ch: 老实, pr: lǎo shi, ds: gullible; too trusting, lb: lao3-shi5--gullible}
 # Row 4425: 老鼠; 名.
 - {id: zh-hsklegacy-05114-s001, ch: 老鼠, pr: lǎo shǔ, ds: rat; mouse, lb: lao3-shu3--rat}
 # Row 4426: 老太太; 名.
@@ -1927,25 +1955,25 @@
 - {id: zh-hsk2026-04428-s601, ch: 雷, pr: léi, ds: thunder, lb: lei2--thunder}
 # Row 4429: 类别; 名.
 - {id: zh-hsk7-9-02532-s001, ch: 类别, pr: lèi bié, ds: category; type, lb: lei4-bie2--category}
+- {id: zh-hsk6-00520-s011, ch: 理, pr: lǐ, ds: to pay attention to; respond to, lb: li3--heed}
+- {id: zh-hsk6-00520-s010, ch: 理, pr: lǐ, ds: to manage; put in order, lb: li3--manage}
 # Row 4430: 理; 名、动.
 - {id: zh-hsk6-00520-s005, ch: 理, pr: lǐ, ds: reason; logic; principle, lb: li3--reason}
-- {id: zh-hsk6-00520-s010, ch: 理, pr: lǐ, ds: to manage; put in order, lb: li3--manage}
-- {id: zh-hsk6-00520-s011, ch: 理, pr: lǐ, ds: to pay attention to; respond to, lb: li3--heed}
 # Row 4431: 理财; 动.
 - {id: zh-hsk6-00521-s001, ch: 理财, pr: lǐ cái, ds: to manage money; manage finances, lb: li3-cai2--finances}
 # Row 4432: 理科; 名.
 - {id: zh-hsk7-9-02556-s001, ch: 理科, pr: lǐ kē, ds: the sciences; science subjects, lb: li3-ke1--sciences}
 # Row 4433: 理念; 名.
 - {id: zh-hsk7-9-02557-s001, ch: 理念, pr: lǐ niàn, ds: concept; guiding philosophy, lb: li3-nian4--concept}
+- {id: zh-hsk7-9-02560-s003, ch: 理性, pr: lǐ xìng, ds: rational, lb: li3-xing4--rational}
 # Row 4434: 理性; 形、名.
 - {id: zh-hsk7-9-02560-s001, ch: 理性, pr: lǐ xìng, ds: reason; rationality, lb: li3-xing4--reason}
-- {id: zh-hsk7-9-02560-s003, ch: 理性, pr: lǐ xìng, ds: rational, lb: li3-xing4--rational}
-# Row 4435: 立; 动.
-- {id: zh-hsk5-00463-s002, ch: 立, pr: lì, ds: to stand, lb: li4--stand}
 - {id: zh-hsk5-00463-s003, ch: 立, pr: lì, ds: to establish; set up; draw up, lb: li4--establish}
 # Row 4436: 粒; 名、量.
 - {id: zh-hsk7-9-02582-s001, ch: 粒, pr: lì, ds: grain; granule, lb: li4--grain}
 - {id: zh-hsk7-9-02582-s003, ch: 粒, pr: lì, ds: measure word for grains and small round objects, lb: li4--grains}
+# Row 4435: 立; 动.
+- {id: zh-hsk5-00463-s002, ch: 立, pr: lì, ds: to stand, lb: li4--stand}
 # Row 4437: 立场; 名.
 - {id: zh-hsk5-00464-s001, ch: 立场, pr: lì chǎng, ds: standpoint; position, lb: li4-chang3--standpoint}
 # Row 4438: 力度; 名.
@@ -1954,9 +1982,9 @@
 - {id: zh-hsk7-9-02569-s001, ch: 历经, pr: lì jīng, ds: to experience; to go through, lb: li4-jing1--experience}
 # Row 4440: 历年; 名.
 - {id: zh-hsk2026-04440-s601, ch: 历年, pr: lì nián, ds: successive years; past years, lb: li4-nian2--years}
+- {id: zh-hsk5-00466-s002, ch: 例外, pr: lì wài, ds: to be an exception, lb: li4-wai4--excepted}
 # Row 4441: 例外; 动、名.
 - {id: zh-hsk5-00466-s001, ch: 例外, pr: lì wài, ds: exception, lb: li4-wai4--exception}
-- {id: zh-hsk5-00466-s002, ch: 例外, pr: lì wài, ds: to be an exception, lb: li4-wai4--excepted}
 # Row 4442: 利息; 名.
 - {id: zh-hsk4-00456-s001, ch: 利息, pr: lì xī, ds: interest on money borrowed or deposited, lb: li4-xi1--interest}
 # Row 4443: 联合国; 名.
@@ -1974,14 +2002,16 @@
 - {id: zh-hsk2026-04448-s001, ch: 两极, pr: liǎng jí, ds: the two poles; opposite extremes, lb: liang3-ji2--poles}
 # Row 4449: 晾; 动.
 - {id: zh-hsklegacy-05312-s001, ch: 晾, pr: liàng, ds: to dry in the air, lb: liang4--dry}
-# Row 4450: 料1; 名.
-- {id: zh-hsk6-00532-s001, ch: 料, pr: liào, ds: material; ingredients; feed, lb: liao4--material}
 # Row 4451: 料2; 动.
 - {id: zh-hsk6-00532-s005, ch: 料, pr: liào, ds: to expect; anticipate; reckon, lb: liao4--expect}
+# Row 4450: 料1; 名.
+- {id: zh-hsk6-00532-s001, ch: 料, pr: liào, ds: material; ingredients; feed, lb: liao4--material}
 # Row 4452: 淋; 动.
 - {id: zh-hsk7-9-02633-s001, ch: 淋, pr: lín, ds: to pour or sprinkle on; drench, lb: lin2--drench}
 # Row 4453: 凌晨; 名.
 - {id: zh-hsk7-9-02641-s001, ch: 凌晨, pr: líng chén, ds: early hours after midnight, lb: ling2-chen2--early-hours}
+# Row 1480: 另; 代、（副）.
+- {id: zh-hsk6-00537-s004, ch: 另, pr: lìng, ds: separately; additionally, lb: ling4--separately}
 # Row 4454: 流程; 名.
 - {id: zh-hsk7-9-02661-s003, ch: 流程, pr: liú chéng, ds: workflow; sequence of steps, lb: liu2-cheng2--workflow}
 # Row 4455: 流动; 动.
@@ -1989,9 +2019,9 @@
 - {id: zh-hsk5-00479-s003, ch: 流动, pr: liú dòng, ds: to move from place to place, lb: liu2-dong4--move}
 # Row 4456: 浏览器; 名.
 - {id: zh-hsk7-9-02659-s001, ch: 浏览器, pr: liú lǎn qì, ds: web browser, lb: liu2-lan3-qi4--browser}
+- {id: zh-hsk7-9-02664-s003, ch: 流量, pr: liú liàng, ds: internet traffic; mobile data usage, lb: liu2-liang4--data}
 # Row 4457: 流量; 名.
 - {id: zh-hsk7-9-02664-s001, ch: 流量, pr: liú liàng, ds: flow rate; volume of traffic, lb: liu2-liang4--flow}
-- {id: zh-hsk7-9-02664-s003, ch: 流量, pr: liú liàng, ds: internet traffic; mobile data usage, lb: liu2-liang4--data}
 # Row 4458: 流入; 动.
 - {id: zh-hsk7-9-02667-s001, ch: 流入, pr: liú rù, ds: to flow into, lb: liu2-ru4--inflow}
 # Row 4459: 流通; 动.
@@ -2018,20 +2048,10 @@
 - {id: zh-hsk2026-04468-s001, ch: 录用, pr: lù yòng, ds: to hire; employ, lb: lu4-yong4--hire}
 # Row 4469: 录制; 动.
 - {id: zh-hsk7-9-02696-s001, ch: 录制, pr: lù zhì, ds: to record audio or video, lb: lu4-zhi4--record}
-# Row 4470: 旅程; 名.
-- {id: zh-hsk7-9-02708-s001, ch: 旅程, pr: lǚ chéng, ds: journey; trip, lb: lv3-cheng2--journey}
-# Row 4471: 旅途; 名.
-- {id: zh-hsk7-9-02709-s001, ch: 旅途, pr: lǚ tú, ds: journey; time spent traveling, lb: lv3-tu2--journey}
-# Row 4472: 履行; 动.
-- {id: zh-hsk7-9-02714-s001, ch: 履行, pr: lǚ xíng, ds: to fulfill; carry out (a duty or agreement), lb: lv3-xing2--fulfill}
-# Row 4473: 率; 后缀.
-- {id: zh-hsk7-9-02715-s001, ch: 率, pr: lǜ, ds: suffix meaning rate or frequency, lb: lv4--rate}
-# Row 4474: 绿化; 动.
-- {id: zh-hsk6-00548-s001, ch: 绿化, pr: lǜ huà, ds: to plant greenery; make an area green, lb: lv4-hua4--green}
-# Row 4475: 轮; 名、动、量.
-- {id: zh-hsk4-00477-s001, ch: 轮, pr: lún, ds: wheel; circular disk, lb: lun2--wheel}
 - {id: zh-hsk4-00477-s003, ch: 轮, pr: lún, ds: to take turns; rotate, lb: lun2--rotate}
 - {id: zh-hsk4-00477-s004, ch: 轮, pr: lún, ds: 'measure word for rounds, turns, or large round objects', lb: lun2--rounds}
+# Row 4475: 轮; 名、动、量.
+- {id: zh-hsk4-00477-s001, ch: 轮, pr: lún, ds: wheel; circular disk, lb: lun2--wheel}
 # Row 4476: 轮船; 名.
 - {id: zh-hsk4-00478-s001, ch: 轮船, pr: lún chuán, ds: ship; steamship, lb: lun2-chuan2--ship}
 # Row 4477: 轮流; 动.
@@ -2044,18 +2064,28 @@
 - {id: zh-hsk7-9-02728-s001, ch: 论坛, pr: lùn tán, ds: forum for discussion, lb: lun4-tan2--forum}
 # Row 4481: 落地; 动.
 - {id: zh-hsk7-9-02737-s001, ch: 落地, pr: luò dì, ds: to land; reach the ground, lb: luo4-di4--land}
+- {id: zh-hsk3-00461-s003, ch: 落后, pr: luò hòu, ds: backward; behind the times, lb: luo4-hou4--backward}
 # Row 4482: 落后; 动、形.
 - {id: zh-hsk3-00461-s001, ch: 落后, pr: luò hòu, ds: to fall behind; lag, lb: luo4-hou4--lag}
-- {id: zh-hsk3-00461-s003, ch: 落后, pr: luò hòu, ds: backward; behind the times, lb: luo4-hou4--backward}
+# Row 4470: 旅程; 名.
+- {id: zh-hsk7-9-02708-s001, ch: 旅程, pr: lǚ chéng, ds: journey; trip, lb: lv3-cheng2--journey}
+# Row 4471: 旅途; 名.
+- {id: zh-hsk7-9-02709-s001, ch: 旅途, pr: lǚ tú, ds: journey; time spent traveling, lb: lv3-tu2--journey}
+# Row 4472: 履行; 动.
+- {id: zh-hsk7-9-02714-s001, ch: 履行, pr: lǚ xíng, ds: to fulfill; carry out (a duty or agreement), lb: lv3-xing2--fulfill}
+# Row 4473: 率; 后缀.
+- {id: zh-hsk7-9-02715-s001, ch: 率, pr: lǜ, ds: suffix meaning rate or frequency, lb: lv4--rate}
+# Row 4474: 绿化; 动.
+- {id: zh-hsk6-00548-s001, ch: 绿化, pr: lǜ huà, ds: to plant greenery; make an area green, lb: lv4-hua4--green}
 # Row 4483: 马虎; 形.
 - {id: zh-hsk7-9-02747-s001, ch: 马虎, pr: mǎ hu, ds: careless; sloppy, lb: ma3-hu5--careless}
 # Row 4484: 码头; 名.
 - {id: zh-hsk5-00486-s001, ch: 码头, pr: mǎ tóu, ds: dock; pier; wharf, lb: ma3-tou2--dock}
 # Row 4485: 蚂蚁; 名.
 - {id: zh-hsk2026-04485-s001, ch: 蚂蚁, pr: mǎ yǐ, ds: ant, lb: ma3-yi3--ant}
+- {id: zh-hsk6-00550-s003, ch: 嘛, pr: ma, ds: particle marking a pause for emphasis, lb: ma5--emphasis}
 # Row 4486: 嘛; 助.
 - {id: zh-hsk6-00550-s002, ch: 嘛, pr: ma, ds: sentence ending marking something as obvious, lb: ma5--obvious}
-- {id: zh-hsk6-00550-s003, ch: 嘛, pr: ma, ds: particle marking a pause for emphasis, lb: ma5--emphasis}
 # Row 4487: 埋; 动.
 - {id: zh-hsk6-00551-s001, ch: 埋, pr: mái, ds: to bury, lb: mai2--bury}
 # Row 4488: 迈; 动.
@@ -2068,9 +2098,9 @@
 - {id: zh-hsk5-00489-s001, ch: 漫画, pr: màn huà, ds: cartoon; comic; manga, lb: man4-hua4--comic}
 # Row 4492: 盲人; 名.
 - {id: zh-hsk6-00554-s001, ch: 盲人, pr: máng rén, ds: blind person, lb: mang2-ren2--blind-person}
+- {id: zh-hsk5-00493-s005, ch: 冒, pr: mào, ds: to brave; face a risk, lb: mao4--brave}
 # Row 4493: 冒; 动.
 - {id: zh-hsk5-00493-s002, ch: 冒, pr: mào, ds: to emit; give off; emerge, lb: mao4--emit}
-- {id: zh-hsk5-00493-s005, ch: 冒, pr: mào, ds: to brave; face a risk, lb: mao4--brave}
 - {id: zh-hsk5-00493-s008, ch: 冒, pr: mào, ds: to pretend; falsely assume an identity, lb: mao4--impersonate}
 # Row 4494: 冒险; 动.
 - {id: zh-hsk7-9-02783-s001, ch: 冒险, pr: mào xiǎn, ds: to take a risk; venture, lb: mao4-xian3--risk}
@@ -2088,25 +2118,25 @@
 - {id: zh-hsk7-9-02822-s001, ch: 弥补, pr: mí bǔ, ds: to make up for; remedy a deficiency, lb: mi2-bu3--remedy}
 # Row 4501: 迷人; 形.
 - {id: zh-hsk5-00498-s001, ch: 迷人, pr: mí rén, ds: charming; fascinating, lb: mi2-ren2--charming}
-# Row 4502: 密; 形.
-- {id: zh-hsk4-00496-s003, ch: 密, pr: mì, ds: secret; confidential, lb: mi4--secret}
 - {id: zh-hsk4-00496-s005, ch: 密, pr: mì, ds: close; intimate, lb: mi4--close}
 - {id: zh-hsk4-00496-s006, ch: 密, pr: mì, ds: dense; thick, lb: mi4--dense}
+# Row 4502: 密; 形.
+- {id: zh-hsk4-00496-s003, ch: 密, pr: mì, ds: secret; confidential, lb: mi4--secret}
 # Row 4503: 密度; 名.
 - {id: zh-hsk7-9-02836-s001, ch: 密度, pr: mì dù, ds: density; concentration, lb: mi4-du4--density}
 # Row 4504: 蜜蜂; 名.
 - {id: zh-hsk7-9-02840-s001, ch: 蜜蜂, pr: mì fēng, ds: bee; honeybee, lb: mi4-feng1--bee}
+- {id: zh-hsk2026-04505-s601, ch: 密集, pr: mì jí, ds: to crowd together; gather densely, lb: mi4-ji2--concentrate}
 # Row 4505: 密集; 动、形.
 - {id: zh-hsk7-9-02838-s001, ch: 密集, pr: mì jí, ds: dense; concentrated; intensive, lb: mi4-ji2--dense}
-- {id: zh-hsk2026-04505-s601, ch: 密集, pr: mì jí, ds: to crowd together; gather densely, lb: mi4-ji2--concentrate}
 # Row 4506: 棉; 名.
 - {id: zh-hsk6-00561-s001, ch: 棉, pr: mián, ds: cotton, lb: mian2--cotton}
+- {id: zh-hsk7-9-02843-s004, ch: 免, pr: miǎn, ds: to avoid; be spared, lb: mian3--avoid}
 # Row 4507: 免; 动.
 - {id: zh-hsk7-9-02843-s001, ch: 免, pr: miǎn, ds: to exempt; waive, lb: mian3--exempt}
-- {id: zh-hsk7-9-02843-s004, ch: 免, pr: miǎn, ds: to avoid; be spared, lb: mian3--avoid}
+- {id: zh-hsk7-9-02848-s002, ch: 勉强, pr: miǎn qiǎng, ds: to force someone to do something, lb: mian3-qiang3--force}
 # Row 4508: 勉强; 形、动.
 - {id: zh-hsk7-9-02848-s001, ch: 勉强, pr: miǎn qiǎng, ds: reluctant; barely adequate; strained, lb: mian3-qiang3--reluctant}
-- {id: zh-hsk7-9-02848-s002, ch: 勉强, pr: miǎn qiǎng, ds: to force someone to do something, lb: mian3-qiang3--force}
 # Row 4509: 免税; 动.
 - {id: zh-hsk2026-04509-s001, ch: 免税, pr: miǎn shuì, ds: to exempt from tax; be tax-exempt, lb: mian3-shui4--tax-exempt}
 # Row 4510: 免疫; 动.
@@ -2123,9 +2153,9 @@
 - {id: zh-hsk4-00503-s001, ch: 描写, pr: miáo xiě, ds: to describe; depict in words, lb: miao2-xie3--describe}
 # Row 4516: 妙; 形.
 - {id: zh-hsk6-00565-s001, ch: 妙, pr: miào, ds: wonderful; ingenious, lb: miao4--wonderful}
+- {id: zh-hsk6-00566-s003, ch: 灭, pr: miè, ds: to wipe out; destroy, lb: mie4--destroy}
 # Row 4517: 灭; 动.
 - {id: zh-hsk6-00566-s001, ch: 灭, pr: miè, ds: to extinguish; go out, lb: mie4--extinguish}
-- {id: zh-hsk6-00566-s003, ch: 灭, pr: miè, ds: to wipe out; destroy, lb: mie4--destroy}
 # Row 4518: 民歌; 名.
 - {id: zh-hsk6-00567-s001, ch: 民歌, pr: mín gē, ds: folk song, lb: min2-ge1--folk-song}
 # Row 4519: 民间; 名.
@@ -2179,6 +2209,8 @@
 - {id: zh-hsk7-9-02916-s003, ch: 目录, pr: mù lù, ds: computer directory; folder, lb: mu4-lu4--directory}
 # Row 4542: 奶粉; 名.
 - {id: zh-hsk6-00587-s001, ch: 奶粉, pr: nǎi fěn, ds: powdered milk, lb: nai3-fen3--milk-powder}
+# Row 775: 难; 形、（动）.
+- {id: zh-hsk2026-00775-s601, ch: 难, pr: nán, ds: to put someone in a difficult position; stump, lb: nan2--stump}
 # Row 4543: 难点; 名.
 - {id: zh-hsk7-9-02941-s001, ch: 难点, pr: nán diǎn, ds: difficult point; main difficulty, lb: nan2-dian3--difficulty}
 # Row 4544: 南极洲; 名.
@@ -2187,23 +2219,23 @@
 - {id: zh-hsk2026-04545-s001, ch: 南美洲, pr: Nán měi zhōu, ds: South America, lb: nan2-mei3-zhou1--south-america}
 # Row 4546: 难免; 形.
 - {id: zh-hsk4-00515-s001, ch: 难免, pr: nán miǎn, ds: hard to avoid; inevitable, lb: nan2-mian3--inevitable}
+- {id: zh-hsk4-00516-s003, ch: 脑袋, pr: nǎo dai, ds: brains; mental ability, lb: nao3-dai5--brains}
 # Row 4547: 脑袋; 名.
 - {id: zh-hsk4-00516-s001, ch: 脑袋, pr: nǎo dai, ds: head; skull, lb: nao3-dai5--head}
-- {id: zh-hsk4-00516-s003, ch: 脑袋, pr: nǎo dai, ds: brains; mental ability, lb: nao3-dai5--brains}
 # Row 4548: 脑子; 名.
 - {id: zh-hsk5-00521-s001, ch: 脑子, pr: nǎo zi, ds: brain; mind, lb: nao3-zi5--mind}
+- {id: zh-hsk7-9-02958-s004, ch: 内涵, pr: nèi hán, ds: inner qualities; depth of character, lb: nei4-han2--depth}
 # Row 4549: 内涵; 名.
 - {id: zh-hsk7-9-02958-s001, ch: 内涵, pr: nèi hán, ds: inner meaning; connotation, lb: nei4-han2--meaning}
-- {id: zh-hsk7-9-02958-s004, ch: 内涵, pr: nèi hán, ds: inner qualities; depth of character, lb: nei4-han2--depth}
 # Row 4550: 内科; 名.
 - {id: zh-hsk4-00520-s001, ch: 内科, pr: nèi kē, ds: internal medicine, lb: nei4-ke1--medicine}
 # Row 4551: 内外; 名.
 - {id: zh-hsk6-00591-s001, ch: 内外, pr: nèi wài, ds: inside and outside; domestic and foreign sides, lb: nei4-wai4--inside-outside}
 # Row 4552: 内衣; 名.
 - {id: zh-hsk6-00592-s001, ch: 内衣, pr: nèi yī, ds: underwear, lb: nei4-yi1--underwear}
+- {id: zh-hsk5-00523-s002, ch: 能量, pr: néng liàng, ds: capacity; influence, lb: neng2-liang4--capacity}
 # Row 4553: 能量; 名.
 - {id: zh-hsk5-00523-s001, ch: 能量, pr: néng liàng, ds: energy, lb: neng2-liang4--energy}
-- {id: zh-hsk5-00523-s002, ch: 能量, pr: néng liàng, ds: capacity; influence, lb: neng2-liang4--capacity}
 # Row 4554: 能源; 名.
 - {id: zh-hsk7-9-02967-s001, ch: 能源, pr: néng yuán, ds: energy resources; sources of power, lb: neng2-yuan2--energy}
 # Row 4555: 泥; 名.
@@ -2215,18 +2247,18 @@
 - {id: zh-hsk7-9-02980-s001, ch: 年终, pr: nián zhōng, ds: end of the year, lb: nian2-zhong1--year-end}
 # Row 4558: 念书; 动.
 - {id: zh-hsk7-9-02983-s001, ch: 念书, pr: niàn shū, ds: to study; attend school, lb: nian4-shu1--study}
+- {id: zh-hsk6-00595-s004, ch: 扭, pr: niǔ, ds: to sprain, lb: niu3--sprain}
 # Row 4559: 扭; 动.
 - {id: zh-hsk6-00595-s001, ch: 扭, pr: niǔ, ds: to twist; turn; wring, lb: niu3--twist}
-- {id: zh-hsk6-00595-s004, ch: 扭, pr: niǔ, ds: to sprain, lb: niu3--sprain}
 # Row 4560: 农产品; 名.
 - {id: zh-hsk5-00528-s001, ch: 农产品, pr: nóng chǎn pǐn, ds: agricultural produce, lb: nong2-chan3-pin3--produce}
 # Row 4561: 浓厚; 形.
 - {id: zh-hsk7-9-03004-s001, ch: 浓厚, pr: nóng hòu, ds: thick; strong; intense, lb: nong2-hou4--strong}
 # Row 4562: 农田; 名.
 - {id: zh-hsk2026-04562-s001, ch: 农田, pr: nóng tián, ds: farmland, lb: nong2-tian2--farmland}
+- {id: zh-hsk5-00530-s002, ch: 暖, pr: nuǎn, ds: to warm; warm up, lb: nuan3--heat}
 # Row 4563: 暖; 形、动.
 - {id: zh-hsk5-00530-s001, ch: 暖, pr: nuǎn, ds: warm, lb: nuan3--warm}
-- {id: zh-hsk5-00530-s002, ch: 暖, pr: nuǎn, ds: to warm; warm up, lb: nuan3--heat}
 # Row 4564: 暖气; 名.
 - {id: zh-hsk4-00525-s001, ch: 暖气, pr: nuǎn qì, ds: central heating; radiator, lb: nuan3-qi4--heating}
 # Row 4565: 偶像; 名.
@@ -2246,20 +2278,20 @@
 - {id: zh-hsk6-00599-s001, ch: 盼望, pr: pàn wàng, ds: to look forward to; hope for, lb: pan4-wang4--hope}
 # Row 4572: 庞大; 形.
 - {id: zh-hsk7-9-03037-s001, ch: 庞大, pr: páng dà, ds: huge; enormous, lb: pang2-da4--huge}
+- {id: zh-hsk7-9-03039-s005, ch: 抛, pr: pāo, ds: to abandon, lb: pao1--abandon}
 # Row 4573: 抛; 动.
 - {id: zh-hsk7-9-03039-s001, ch: 抛, pr: pāo, ds: to throw; toss, lb: pao1--throw}
-- {id: zh-hsk7-9-03039-s005, ch: 抛, pr: pāo, ds: to abandon, lb: pao1--abandon}
+- {id: zh-hsk6-00600-s005, ch: 泡, pr: pào, ds: blister, lb: pao4--blister}
 # Row 4574: 泡; 名、动.
 - {id: zh-hsk6-00600-s004, ch: 泡, pr: pào, ds: bubble; foam, lb: pao4--bubble}
-- {id: zh-hsk6-00600-s005, ch: 泡, pr: pào, ds: blister, lb: pao4--blister}
 - {id: zh-hsk6-00600-s006, ch: 泡, pr: pào, ds: to soak; steep; brew, lb: pao4--soak}
 # Row 4575: 赔偿; 动.
 - {id: zh-hsk5-00539-s001, ch: 赔偿, pr: péi cháng, ds: to compensate; pay damages, lb: pei2-chang2--compensate}
 # Row 4576: 陪同; 动.
 - {id: zh-hsk6-00602-s001, ch: 陪同, pr: péi tóng, ds: to accompany, lb: pei2-tong2--accompany}
+- {id: zh-hsk4-00535-s002, ch: 培育, pr: péi yù, ds: to cultivate; breed, lb: pei2-yu4--cultivate}
 # Row 4577: 培育; 动.
 - {id: zh-hsk4-00535-s001, ch: 培育, pr: péi yù, ds: to train; nurture, lb: pei2-yu4--nurture}
-- {id: zh-hsk4-00535-s002, ch: 培育, pr: péi yù, ds: to cultivate; breed, lb: pei2-yu4--cultivate}
 # Row 4578: 配备; 动、名.
 - {id: zh-hsk5-00540-s001, ch: 配备, pr: pèi bèi, ds: to equip; provide with, lb: pei4-bei4--equip}
 - {id: zh-hsk2026-04578-s601, ch: 配备, pr: pèi bèi, ds: equipment; allocated personnel or resources, lb: pei4-bei4--equipment}
@@ -2269,17 +2301,17 @@
 - {id: zh-hsk5-00541-s001, ch: 配套, pr: pèi tào, ds: to form a complete set; provide matching facilities, lb: pei4-tao4--complete-set}
 # Row 4581: 喷; 动.
 - {id: zh-hsk5-00542-s001, ch: 喷, pr: pēn, ds: to spray; spurt, lb: pen1--spray}
+- {id: zh-hsk2026-04582-s601, ch: 捧, pr: pěng, ds: measure word for a double handful, lb: peng3--handful}
 # Row 4582: 捧; 动、量.
 - {id: zh-hsk7-9-03062-s001, ch: 捧, pr: pěng, ds: to hold in cupped hands; hold up with both hands, lb: peng3--hold}
 - {id: zh-hsk7-9-03062-s005, ch: 捧, pr: pěng, ds: to praise; flatter, lb: peng3--praise}
-- {id: zh-hsk2026-04582-s601, ch: 捧, pr: pěng, ds: measure word for a double handful, lb: peng3--handful}
 # Row 4583: 碰撞; 动.
 - {id: zh-hsk7-9-03067-s001, ch: 碰撞, pr: pèng zhuàng, ds: to collide, lb: peng4-zhuang4--collide}
 # Row 4584: 披; 动.
 - {id: zh-hsk5-00544-s001, ch: 披, pr: pī, ds: to drape over the shoulders, lb: pi1--drape}
+- {id: zh-hsk3-00521-s006, ch: 皮, pr: pí, ds: naughty, lb: pi2--naughty}
 # Row 4585: 皮; 名、形.
 - {id: zh-hsk3-00521-s002, ch: 皮, pr: pí, ds: skin; leather; hide, lb: pi2--skin}
-- {id: zh-hsk3-00521-s006, ch: 皮, pr: pí, ds: naughty, lb: pi2--naughty}
 # Row 4586: 疲劳; 形.
 - {id: zh-hsk7-9-03076-s004, ch: 疲劳, pr: pí láo, ds: tired; fatigued, lb: pi2-lao2--tired}
 # Row 4587: 片刻; 名.
@@ -2288,11 +2320,11 @@
 - {id: zh-hsk4-00537-s001, ch: 片面, pr: piàn miàn, ds: one-sided; partial, lb: pian4-mian4--one-sided}
 # Row 4589: 骗子; 名.
 - {id: zh-hsk5-00550-s001, ch: 骗子, pr: piàn zi, ds: swindler; cheat, lb: pian4-zi5--cheat}
+# Row 4591: 漂; 动.
+- {id: zh-hsk7-9-03096-s001, ch: 漂, pr: piāo, ds: to float; drift on water, lb: piao1--drift}
 # Row 4590: 飘; 动、形.
 - {id: zh-hsk7-9-03094-s001, ch: 飘, pr: piāo, ds: to float or flutter in the air, lb: piao1--float}
 - {id: zh-hsk2026-04590-s601, ch: 飘, pr: piāo, ds: light and unsteady; lacking firmness, lb: piao1--unsteady}
-# Row 4591: 漂; 动.
-- {id: zh-hsk7-9-03096-s001, ch: 漂, pr: piāo, ds: to float; drift on water, lb: piao1--drift}
 # Row 4592: 频道; 名.
 - {id: zh-hsk5-00552-s002, ch: 频道, pr: pín dào, ds: television or radio channel, lb: pin2-dao4--channel}
 # Row 4593: 频繁; 形.
@@ -2307,9 +2339,9 @@
 - {id: zh-hsk2-00401-s001, ch: 平等, pr: píng děng, ds: equal, lb: ping2-deng3--equal}
 # Row 4598: 平凡; 形.
 - {id: zh-hsk6-00609-s001, ch: 平凡, pr: píng fán, ds: ordinary; commonplace, lb: ping2-fan2--ordinary}
+- {id: zh-hsk2026-04599-s601, ch: 平方, pr: píng fāng, ds: square meter (shortened unit of area), lb: ping2-fang1--area}
 # Row 4599: 平方; 名、量.
 - {id: zh-hsk4-00539-s001, ch: 平方, pr: píng fāng, ds: square; second power of a number, lb: ping2-fang1--square}
-- {id: zh-hsk2026-04599-s601, ch: 平方, pr: píng fāng, ds: square meter (shortened unit of area), lb: ping2-fang1--area}
 # Row 4600: 平方米; 量.
 - {id: zh-hsk6-00610-s001, ch: 平方米, pr: píng fāng mǐ, ds: square meter, lb: ping2-fang1-mi3--square-meter}
 # Row 4601: 评估; 动.
@@ -2328,12 +2360,12 @@
 - {id: zh-hsk4-00544-s001, ch: 破产, pr: pò chǎn, ds: to go bankrupt, lb: po4-chan3--bankrupt}
 # Row 4607: 迫切; 形.
 - {id: zh-hsk4-00543-s001, ch: 迫切, pr: pò qiè, ds: urgent; pressing, lb: po4-qie4--urgent}
-# Row 4608: 扑; 动.
-- {id: zh-hsk6-00617-s001, ch: 扑, pr: pū, ds: to pounce on; throw oneself at, lb: pu1--pounce}
 - {id: zh-hsk6-00617-s003, ch: 扑, pr: pū, ds: to devote one's energies to, lb: pu1--devote}
 - {id: zh-hsk6-00617-s004, ch: 扑, pr: pū, ds: to flap; flutter, lb: pu1--flap}
 # Row 4609: 铺; 动.
 - {id: zh-hsk6-00618-s002, ch: 铺, pr: pū, ds: to spread out; lay; pave, lb: pu1--lay}
+# Row 4608: 扑; 动.
+- {id: zh-hsk6-00617-s001, ch: 扑, pr: pū, ds: to pounce on; throw oneself at, lb: pu1--pounce}
 # Row 4610: 扑灭; 动.
 - {id: zh-hsk2026-04610-s601, ch: 扑灭, pr: pū miè, ds: to put out; extinguish a fire, lb: pu1-mie4--extinguish}
 # Row 4611: 朴素; 形.
@@ -2344,13 +2376,16 @@
 - {id: zh-hsk5-00564-s001, ch: 期望, pr: qī wàng, ds: to expect; hope for, lb: qi1-wang4--expect}
 # Row 4614: 期限; 名.
 - {id: zh-hsk4-00549-s001, ch: 期限, pr: qī xiàn, ds: time limit; allotted period, lb: qi1-xian4--limit}
+# Row 2852: 齐; 形、（动、副）.
+- {id: zh-hsk3-00532-s009, ch: 齐, pr: qí, ds: to level; make even, lb: qi2--level}
+- {id: zh-hsk3-00532-s008, ch: 齐, pr: qí, ds: together; all at once, lb: qi2--together}
 # Row 4615: 其间; 名.
 - {id: zh-hsk7-9-03162-s001, ch: 其间, pr: qí jiān, ds: the intervening time or space; during that period, lb: qi2-jian1--interval}
 # Row 4616: 齐全; 形.
 - {id: zh-hsk5-00565-s001, ch: 齐全, pr: qí quán, ds: complete; fully equipped, lb: qi2-quan2--complete}
+- {id: zh-hsk7-9-03169-s002, ch: 棋子, pr: qí zǐ, ds: pawn used by others, lb: qi2-zi3--pawn}
 # Row 4617: 棋子; 名.
 - {id: zh-hsk7-9-03169-s001, ch: 棋子, pr: qí zǐ, ds: game piece; chess piece, lb: qi2-zi3--piece}
-- {id: zh-hsk7-9-03169-s002, ch: 棋子, pr: qí zǐ, ds: pawn used by others, lb: qi2-zi3--pawn}
 # Row 4618: 起初; 名.
 - {id: zh-hsk7-9-03182-s001, ch: 起初, pr: qǐ chū, ds: the beginning; at first, lb: qi3-chu1--beginning}
 # Row 4619: 起点; 名.
@@ -2359,11 +2394,11 @@
 - {id: zh-hsk5-00567-s001, ch: 启动, pr: qǐ dòng, ds: to start; activate; launch, lb: qi3-dong4--start}
 # Row 4621: 启发; 动.
 - {id: zh-hsk5-00568-s001, ch: 启发, pr: qǐ fā, ds: to enlighten; stimulate thought, lb: qi3-fa1--enlighten}
-# Row 4622: 启示; 动、名.
-- {id: zh-hsk7-9-03178-s001, ch: 启示, pr: qǐ shì, ds: to enlighten; reveal, lb: qi3-shi4--reveal}
 - {id: zh-hsk7-9-03178-s003, ch: 启示, pr: qǐ shì, ds: insight; lesson; revelation, lb: qi3-shi4--insight}
 # Row 4623: 启事; 名.
 - {id: zh-hsk5-00569-s001, ch: 启事, pr: qǐ shì, ds: written notice; announcement, lb: qi3-shi4--notice}
+# Row 4622: 启示; 动、名.
+- {id: zh-hsk7-9-03178-s001, ch: 启示, pr: qǐ shì, ds: to enlighten; reveal, lb: qi3-shi4--reveal}
 # Row 4624: 起源; 动、名.
 - {id: zh-hsk7-9-03186-s001, ch: 起源, pr: qǐ yuán, ds: origin, lb: qi3-yuan2--origin}
 - {id: zh-hsk7-9-03186-s002, ch: 起源, pr: qǐ yuán, ds: to originate; come from, lb: qi3-yuan2--originate}
@@ -2389,9 +2424,9 @@
 # Row 4634: 谦虚; 形、动.
 - {id: zh-hsk6-00630-s001, ch: 谦虚, pr: qiān xū, ds: modest; humble, lb: qian1-xu1--modest}
 - {id: zh-hsk6-00630-s003, ch: 谦虚, pr: qiān xū, ds: to make modest remarks; be modest, lb: qian1-xu1--modesty}
+- {id: zh-hsk5-00580-s001, ch: 前景, pr: qián jǐng, ds: foreground, lb: qian2-jing3--foreground}
 # Row 4635: 前景; 名.
 - {id: zh-hsk5-00580-s003, ch: 前景, pr: qián jǐng, ds: future prospects; outlook, lb: qian2-jing3--prospects}
-- {id: zh-hsk5-00580-s001, ch: 前景, pr: qián jǐng, ds: foreground, lb: qian2-jing3--foreground}
 # Row 4636: 潜力; 名.
 - {id: zh-hsk6-00633-s001, ch: 潜力, pr: qián lì, ds: potential; latent capacity, lb: qian2-li4--potential}
 # Row 4637: 前期; 名.
@@ -2407,9 +2442,9 @@
 - {id: zh-hsk5-00586-s001, ch: 墙壁, pr: qiáng bì, ds: wall, lb: qiang2-bi4--wall}
 # Row 4642: 强化; 动.
 - {id: zh-hsk6-00635-s001, ch: 强化, pr: qiáng huà, ds: to strengthen; intensify, lb: qiang2-hua4--strengthen}
+- {id: zh-hsk2026-04643-s601, ch: 强壮, pr: qiáng zhuàng, ds: to strengthen the body; make robust, lb: qiang2-zhuang4--strengthen}
 # Row 4643: 强壮; 形、动.
 - {id: zh-hsk6-00637-s001, ch: 强壮, pr: qiáng zhuàng, ds: strong; robust, lb: qiang2-zhuang4--strong}
-- {id: zh-hsk2026-04643-s601, ch: 强壮, pr: qiáng zhuàng, ds: to strengthen the body; make robust, lb: qiang2-zhuang4--strengthen}
 # Row 4644: 强迫; 动.
 - {id: zh-hsk5-00585-s001, ch: 强迫, pr: qiǎng pò, ds: to force; compel, lb: qiang3-po4--force}
 # Row 4645: 瞧; 动.
@@ -2446,26 +2481,26 @@
 - {id: zh-hsk2026-04659-s001, ch: 清扫, pr: qīng sǎo, ds: to sweep; clean up, lb: qing1-sao3--sweep}
 # Row 4660: 倾听; 动.
 - {id: zh-hsk7-9-03304-s001, ch: 倾听, pr: qīng tīng, ds: to listen attentively, lb: qing1-ting1--listen}
-# Row 4661: 清洗; 动.
-- {id: zh-hsk6-00649-s001, ch: 清洗, pr: qīng xǐ, ds: to wash; clean, lb: qing1-xi3--wash}
 # Row 4662: 清晰; 形.
 - {id: zh-hsk7-9-03314-s001, ch: 清晰, pr: qīng xī, ds: clear; distinct, lb: qing1-xi1--clear}
+# Row 4661: 清洗; 动.
+- {id: zh-hsk6-00649-s001, ch: 清洗, pr: qīng xǐ, ds: to wash; clean, lb: qing1-xi3--wash}
+- {id: zh-hsk2026-04663-s601, ch: 倾向, pr: qīng xiàng, ds: to tend toward; favor, lb: qing1-xiang4--favor}
 # Row 4663: 倾向; 动、名.
 - {id: zh-hsk6-00644-s001, ch: 倾向, pr: qīng xiàng, ds: tendency; inclination, lb: qing1-xiang4--tendency}
-- {id: zh-hsk2026-04663-s601, ch: 倾向, pr: qīng xiàng, ds: to tend toward; favor, lb: qing1-xiang4--favor}
 # Row 4664: 清醒; 形、动.
 - {id: zh-hsk4-00567-s001, ch: 清醒, pr: qīng xǐng, ds: clear-headed; sober; awake, lb: qing1-xing3--alert}
 - {id: zh-hsk2026-04664-s601, ch: 清醒, pr: qīng xǐng, ds: to regain consciousness; become clear-headed, lb: qing1-xing3--awaken}
+- {id: zh-hsk5-00598-s001, ch: 情节, pr: qíng jié, ds: circumstances; details of an incident, lb: qing2-jie2--circumstances}
 # Row 4665: 情节; 名.
 - {id: zh-hsk5-00598-s002, ch: 情节, pr: qíng jié, ds: plot; storyline, lb: qing2-jie2--plot}
-- {id: zh-hsk5-00598-s001, ch: 情节, pr: qíng jié, ds: circumstances; details of an incident, lb: qing2-jie2--circumstances}
 # Row 4666: 晴朗; 形.
 - {id: zh-hsk5-00600-s001, ch: 晴朗, pr: qíng lǎng, ds: sunny and cloudless, lb: qing2-lang3--sunny}
 # Row 4667: 情形; 名.
 - {id: zh-hsk5-00599-s001, ch: 情形, pr: qíng xing, ds: situation; circumstances, lb: qing2-xing5--situation}
+- {id: zh-hsk2-00427-s003, ch: 求, pr: qiú, ds: to ask for; beg, lb: qiu2--request}
 # Row 4668: 求; 动.
 - {id: zh-hsk2-00427-s001, ch: 求, pr: qiú, ds: to seek; look for, lb: qiu2--seek}
-- {id: zh-hsk2-00427-s003, ch: 求, pr: qiú, ds: to ask for; beg, lb: qiu2--request}
 # Row 4669: 求婚; 动.
 - {id: zh-hsk7-9-03334-s001, ch: 求婚, pr: qiú hūn, ds: to propose marriage, lb: qiu2-hun1--propose}
 # Row 4670: 求救; 动.
@@ -2476,13 +2511,13 @@
 - {id: zh-hsk7-9-03339-s001, ch: 求助, pr: qiú zhù, ds: to ask for help, lb: qiu2-zhu4--help}
 # Row 4673: 区分; 动.
 - {id: zh-hsk6-00655-s001, ch: 区分, pr: qū fēn, ds: to distinguish; differentiate, lb: qu1-fen1--distinguish}
+- {id: zh-hsk6-00656-s002, ch: 渠道, pr: qú dào, ds: channel; means of access, lb: qu2-dao4--channel}
 # Row 4674: 渠道; 名.
 - {id: zh-hsk6-00656-s001, ch: 渠道, pr: qú dào, ds: water channel; irrigation ditch, lb: qu2-dao4--ditch}
-- {id: zh-hsk6-00656-s002, ch: 渠道, pr: qú dào, ds: channel; means of access, lb: qu2-dao4--channel}
-# Row 4675: 曲; 名.
-- {id: zh-hsk7-9-03340-s005, ch: 曲, pr: qǔ, ds: tune; song, lb: qu3--tune}
 # Row 4676: 娶; 动.
 - {id: zh-hsk7-9-03355-s001, ch: 娶, pr: qǔ, ds: to marry a woman; take a wife, lb: qu3--marry}
+# Row 4675: 曲; 名.
+- {id: zh-hsk7-9-03340-s005, ch: 曲, pr: qǔ, ds: tune; song, lb: qu3--tune}
 # Row 4677: 取代; 动.
 - {id: zh-hsk7-9-03347-s001, ch: 取代, pr: qǔ dài, ds: to replace; supersede, lb: qu3-dai4--replace}
 # Row 4678: 趣味; 名.
@@ -2505,9 +2540,9 @@
 - {id: zh-hsk5-00609-s001, ch: 群众, pr: qún zhòng, ds: the people; the masses, lb: qun2-zhong4--people}
 # Row 4686: 燃料; 名.
 - {id: zh-hsk4-00578-s001, ch: 燃料, pr: rán liào, ds: fuel, lb: ran2-liao4--fuel}
+- {id: zh-hsk5-00610-s002, ch: 染, pr: rǎn, ds: to contract; become tainted with, lb: ran3--contract}
 # Row 4687: 染; 动.
 - {id: zh-hsk5-00610-s001, ch: 染, pr: rǎn, ds: to dye; color, lb: ran3--dye}
-- {id: zh-hsk5-00610-s002, ch: 染, pr: rǎn, ds: to contract; become tainted with, lb: ran3--contract}
 # Row 4688: 热点; 名.
 - {id: zh-hsk6-00668-s001, ch: 热点, pr: rè diǎn, ds: hot topic; focus of attention, lb: re4-dian3--hotspot}
 # Row 4689: 热度; 名.
@@ -2523,9 +2558,9 @@
 - {id: zh-hsk2026-04693-s001, ch: 热议, pr: rè yì, ds: to discuss widely or enthusiastically, lb: re4-yi4--discuss}
 # Row 4694: 人工智能; .
 - {id: zh-hsk7-9-03404-s001, ch: 人工智能, pr: rén gōng zhì néng, ds: artificial intelligence, lb: ren2-gong1-zhi4-neng2--ai}
+- {id: zh-hsk4-00582-s010, ch: 人家, pr: rén jia, ds: I; me (informal self-reference), lb: ren2-jia5--me}
 # Row 4695: 人家; 代.
 - {id: zh-hsk4-00582-s007, ch: 人家, pr: rén jia, ds: other people; someone else; he or she, lb: ren2-jia5--others}
-- {id: zh-hsk4-00582-s010, ch: 人家, pr: rén jia, ds: I; me (informal self-reference), lb: ren2-jia5--me}
 # Row 4696: 人均; 动.
 - {id: zh-hsk7-9-03405-s001, ch: 人均, pr: rén jūn, ds: to average per person; be per capita, lb: ren2-jun1--per-capita}
 # Row 4697: 人山人海; .
@@ -2577,27 +2612,27 @@
 - {id: zh-hsk7-9-03456-s001, ch: 柔软, pr: róu ruǎn, ds: soft; supple, lb: rou2-ruan3--soft}
 # Row 4719: 入境; 动.
 - {id: zh-hsk7-9-03467-s001, ch: 入境, pr: rù jìng, ds: to enter a country, lb: ru4-jing4--enter-country}
+- {id: zh-hsk5-00628-s004, ch: 入门, pr: rù mén, ds: to learn the basics; get started, lb: ru4-men2--begin}
 # Row 4720: 入门; 动、名.
 - {id: zh-hsk5-00628-s003, ch: 入门, pr: rù mén, ds: introduction to a subject; primer, lb: ru4-men2--primer}
-- {id: zh-hsk5-00628-s004, ch: 入门, pr: rù mén, ds: to learn the basics; get started, lb: ru4-men2--begin}
 # Row 4721: 入选; 动.
 - {id: zh-hsk7-9-03470-s001, ch: 入选, pr: rù xuǎn, ds: to be selected; make the selection, lb: ru4-xuan3--selected}
 # Row 4722: 弱点; 名.
 - {id: zh-hsk7-9-03476-s001, ch: 弱点, pr: ruò diǎn, ds: weakness; weak point, lb: ruo4-dian3--weakness}
 # Row 4723: 撒; 动.
 - {id: zh-hsk7-9-03478-s007, ch: 撒, pr: sǎ, ds: to scatter; sprinkle; spill, lb: sa3--scatter}
+- {id: zh-hsk6-00684-s006, ch: 塞, pr: sāi, ds: stopper; plug; cork, lb: sai1--stopper}
 # Row 4724: 塞; 动、名.
 - {id: zh-hsk6-00684-s003, ch: 塞, pr: sāi, ds: to stuff; plug; squeeze in, lb: sai1--stuff}
-- {id: zh-hsk6-00684-s006, ch: 塞, pr: sāi, ds: stopper; plug; cork, lb: sai1--stopper}
 # Row 4725: 赛事; 名.
 - {id: zh-hsk2026-04725-s001, ch: 赛事, pr: sài shì, ds: sporting event; competition, lb: sai4-shi4--event}
 # Row 4726: 散; 动.
 - {id: zh-hsk4-00588-s003, ch: 散, pr: sǎn, ds: to come loose; fall apart, lb: san3--loosen}
 # Row 4727: 散文; 名.
 - {id: zh-hsk5-00632-s001, ch: 散文, pr: sǎn wén, ds: prose; essay, lb: san3-wen2--prose}
+- {id: zh-hsk4-00588-s011, ch: 散, pr: sàn, ds: to dispel; dissipate, lb: san4--dispel}
 # Row 4728: 散; 动.
 - {id: zh-hsk4-00588-s007, ch: 散, pr: sàn, ds: to disperse; scatter; break up, lb: san4--disperse}
-- {id: zh-hsk4-00588-s011, ch: 散, pr: sàn, ds: to dispel; dissipate, lb: san4--dispel}
 # Row 4729: 散发; 动.
 - {id: zh-hsk7-9-03486-s001, ch: 散发, pr: sàn fā, ds: to distribute; hand out, lb: san4-fa1--distribute}
 - {id: zh-hsk7-9-03486-s002, ch: 散发, pr: sàn fā, ds: to emit; give off, lb: san4-fa1--emit}
@@ -2625,8 +2660,8 @@
 - {id: zh-hsk6-00691-s001, ch: 山坡, pr: shān pō, ds: hillside; mountain slope, lb: shan1-po1--hillside}
 # Row 4740: 闪; 动.
 - {id: zh-hsk4-00593-s002, ch: 闪, pr: shǎn, ds: to dodge; move aside, lb: shan3--dodge}
-- {id: zh-hsk4-00593-s006, ch: 闪, pr: shǎn, ds: to sprain; strain a muscle, lb: shan3--strain}
 - {id: zh-hsk4-00593-s011, ch: 闪, pr: shǎn, ds: to flash; flash through one's mind, lb: shan3--flash}
+- {id: zh-hsk4-00593-s006, ch: 闪, pr: shǎn, ds: to sprain; strain a muscle, lb: shan3--strain}
 # Row 4741: 闪电; 名.
 - {id: zh-hsk4-00594-s001, ch: 闪电, pr: shǎn diàn, ds: lightning, lb: shan3-dian4--lightning}
 # Row 4742: 扇; 量.
@@ -2646,44 +2681,44 @@
 - {id: zh-hsk5-00641-s001, ch: 上级, pr: shàng jí, ds: superior; higher authorities, lb: shang4-ji2--superior}
 # Row 4749: 上进; 动.
 - {id: zh-hsk2026-04749-s001, ch: 上进, pr: shàng jìn, ds: to strive to improve; make progress, lb: shang4-jin4--improve}
+- {id: zh-hsk6-00699-s002, ch: 上市, pr: shàng shì, ds: to be listed on a stock exchange, lb: shang4-shi4--listed}
 # Row 4750: 上市; 动.
 - {id: zh-hsk6-00699-s001, ch: 上市, pr: shàng shì, ds: to come onto the market, lb: shang4-shi4--market}
-- {id: zh-hsk6-00699-s002, ch: 上市, pr: shàng shì, ds: to be listed on a stock exchange, lb: shang4-shi4--listed}
 # Row 4751: 上述; 形.
 - {id: zh-hsk7-9-03544-s001, ch: 上述, pr: shàng shù, ds: above-mentioned, lb: shang4-shu4--aforementioned}
+- {id: zh-hsk6-00700-s001, ch: 上台, pr: shàng tái, ds: to come to power, lb: shang4-tai2--power}
 # Row 4752: 上台; 动.
 - {id: zh-hsk6-00700-s002, ch: 上台, pr: shàng tái, ds: to go on stage, lb: shang4-tai2--stage}
-- {id: zh-hsk6-00700-s001, ch: 上台, pr: shàng tái, ds: to come to power, lb: shang4-tai2--power}
 # Row 4753: 上旬; 名.
 - {id: zh-hsk7-9-03549-s001, ch: 上旬, pr: shàng xún, ds: first ten days of a month, lb: shang4-xun2--early-month}
 # Row 4754: 少儿; 名.
 - {id: zh-hsk6-00703-s001, ch: 少儿, pr: shào ér, ds: children; children and adolescents, lb: shao4-er2--children}
 # Row 4755: 舌头; 名.
 - {id: zh-hsk6-00704-s001, ch: 舌头, pr: shé tou, ds: tongue, lb: she2-tou5--tongue}
-# Row 4756: 社; 名.
-- {id: zh-hsk5-00650-s001, ch: 社, pr: shè, ds: society; association; agency, lb: she4--society}
 # Row 4757: 射; 动.
 - {id: zh-hsk5-00652-s001, ch: 射, pr: shè, ds: to shoot; emit, lb: she4--shoot}
-# Row 4758: 涉及; 动.
-- {id: zh-hsk6-00706-s001, ch: 涉及, pr: shè jí, ds: to involve; touch on, lb: she4-ji2--involve}
+# Row 4756: 社; 名.
+- {id: zh-hsk5-00650-s001, ch: 社, pr: shè, ds: society; association; agency, lb: she4--society}
 # Row 4759: 射击; 动.
 - {id: zh-hsk5-00653-s001, ch: 射击, pr: shè jī, ds: to shoot; fire a gun, lb: she4-ji1--shoot}
-# Row 4760: 摄像; 动.
-- {id: zh-hsk5-00654-s001, ch: 摄像, pr: shè xiàng, ds: to record video, lb: she4-xiang4--video}
+# Row 4758: 涉及; 动.
+- {id: zh-hsk6-00706-s001, ch: 涉及, pr: shè jí, ds: to involve; touch on, lb: she4-ji2--involve}
+- {id: zh-hsk5-00649-s005, ch: 设想, pr: shè xiǎng, ds: to take someone's situation into consideration, lb: she4-xiang3--consider}
 # Row 4761: 设想; 动.
 - {id: zh-hsk5-00649-s001, ch: 设想, pr: shè xiǎng, ds: to imagine; envisage; suppose, lb: she4-xiang3--envisage}
-- {id: zh-hsk5-00649-s005, ch: 设想, pr: shè xiǎng, ds: to take someone's situation into consideration, lb: she4-xiang3--consider}
+# Row 4760: 摄像; 动.
+- {id: zh-hsk5-00654-s001, ch: 摄像, pr: shè xiàng, ds: to record video, lb: she4-xiang4--video}
 # Row 4762: 摄像头; 名.
 - {id: zh-hsk2026-04762-s001, ch: 摄像头, pr: shè xiàng tóu, ds: camera; webcam, lb: she4-xiang4-tou2--camera}
 # Row 4763: 身心; 名.
 - {id: zh-hsk7-9-03587-s001, ch: 身心, pr: shēn xīn, ds: body and mind, lb: shen1-xin1--body-mind}
 # Row 4764: 深夜; 名.
 - {id: zh-hsk7-9-03598-s001, ch: 深夜, pr: shēn yè, ds: late at night; the depth of night, lb: shen1-ye4--night}
+- {id: zh-hsk5-00661-s005, ch: 神, pr: shén, ds: amazing; extraordinary, lb: shen2--amazing}
 # Row 4765: 神; 名、形.
 - {id: zh-hsk5-00661-s002, ch: 神, pr: shén, ds: deity; god, lb: shen2--deity}
-- {id: zh-hsk5-00661-s003, ch: 神, pr: shén, ds: mind; spirit; mental vitality, lb: shen2--spirit}
 - {id: zh-hsk5-00661-s009, ch: 神, pr: shén, ds: expression; look, lb: shen2--expression}
-- {id: zh-hsk5-00661-s005, ch: 神, pr: shén, ds: amazing; extraordinary, lb: shen2--amazing}
+- {id: zh-hsk5-00661-s003, ch: 神, pr: shén, ds: mind; spirit; mental vitality, lb: shen2--spirit}
 # Row 4766: 神经; 名.
 - {id: zh-hsk5-00662-s001, ch: 神经, pr: shén jīng, ds: nerve, lb: shen2-jing1--nerve}
 # Row 4767: 神奇; 形.
@@ -2714,10 +2749,12 @@
 - {id: zh-hsk5-00673-s001, ch: 诗歌, pr: shī gē, ds: poetry; poems, lb: shi1-ge1--poetry}
 # Row 4780: 狮子; 名.
 - {id: zh-hsk7-9-03665-s003, ch: 狮子, pr: shī zi, ds: lion, lb: shi1-zi5--lion}
-# Row 4781: 识; 动.
-- {id: zh-hsk6-00730-s001, ch: 识, pr: shí, ds: to know; recognize, lb: shi2--recognize}
+# Row 431: 时; 名、（量）.
+- {id: zh-hsk3-00626-s005, ch: 时, pr: shí, ds: hour; unit of clock time, lb: shi2--hours}
 # Row 4782: 拾; 动.
 - {id: zh-hsk5-00687-s002, ch: 拾, pr: shí, ds: to pick up, lb: shi2--pick-up}
+# Row 4781: 识; 动.
+- {id: zh-hsk6-00730-s001, ch: 识, pr: shí, ds: to know; recognize, lb: shi2--recognize}
 # Row 4783: 识别; 动.
 - {id: zh-hsk7-9-03731-s001, ch: 识别, pr: shí bié, ds: to identify; recognize; distinguish, lb: shi2-bie2--identify}
 # Row 4784: 时光; 名.
@@ -2758,10 +2795,10 @@
 - {id: zh-hsk6-00727-s001, ch: 事后, pr: shì hòu, ds: the time after an event; afterward, lb: shi4-hou4--afterward}
 # Row 4801: 视觉; 名.
 - {id: zh-hsk7-9-03714-s001, ch: 视觉, pr: shì jué, ds: sight; vision, lb: shi4-jue2--vision}
-# Row 4802: 势力; 名.
-- {id: zh-hsk5-00683-s001, ch: 势力, pr: shì lì, ds: power; influence; influential forces, lb: shi4-li4--influence}
 # Row 4803: 视力; 名.
 - {id: zh-hsk7-9-03715-s001, ch: 视力, pr: shì lì, ds: eyesight, lb: shi4-li4--eyesight}
+# Row 4802: 势力; 名.
+- {id: zh-hsk5-00683-s001, ch: 势力, pr: shì lì, ds: power; influence; influential forces, lb: shi4-li4--influence}
 # Row 4804: 试图; 动.
 - {id: zh-hsk5-00686-s001, ch: 试图, pr: shì tú, ds: to attempt; try, lb: shi4-tu2--attempt}
 # Row 4805: 事务; 名.
@@ -2772,9 +2809,9 @@
 - {id: zh-hsk7-9-03727-s001, ch: 适宜, pr: shì yí, ds: suitable; appropriate, lb: shi4-yi2--suitable}
 # Row 4808: 收藏; 动.
 - {id: zh-hsk6-00732-s001, ch: 收藏, pr: shōu cáng, ds: to collect; keep safely; bookmark, lb: shou1-cang2--collect}
+- {id: zh-hsk5-00688-s002, ch: 收购, pr: shōu gòu, ds: to acquire a company, lb: shou1-gou4--acquire}
 # Row 4809: 收购; 动.
 - {id: zh-hsk5-00688-s001, ch: 收购, pr: shōu gòu, ds: to buy up; purchase supplies, lb: shou1-gou4--purchase}
-- {id: zh-hsk5-00688-s002, ch: 收购, pr: shōu gòu, ds: to acquire a company, lb: shou1-gou4--acquire}
 # Row 4810: 收取; 动.
 - {id: zh-hsk6-00733-s001, ch: 收取, pr: shōu qǔ, ds: to collect; receive (a fee or payment), lb: shou1-qu3--collect}
 # Row 4811: 收益; 名.
@@ -2809,10 +2846,10 @@
 - {id: zh-hsk3-00666-s008, ch: 属, pr: shǔ, ds: to be born in the year of a zodiac animal, lb: shu3--zodiac}
 # Row 4825: 薯片; 名.
 - {id: zh-hsk6-00741-s001, ch: 薯片, pr: shǔ piàn, ds: potato chips; crisps, lb: shu3-pian4--chips}
-# Row 4826: 竖; 形、动、名.
-- {id: zh-hsk7-9-03803-s002, ch: 竖, pr: shù, ds: vertical, lb: shu4--vertical}
 - {id: zh-hsk7-9-03803-s001, ch: 竖, pr: shù, ds: to erect; set upright, lb: shu4--erect}
 - {id: zh-hsk7-9-03803-s003, ch: 竖, pr: shù, ds: vertical stroke in a Chinese character, lb: shu4--stroke}
+# Row 4826: 竖; 形、动、名.
+- {id: zh-hsk7-9-03803-s002, ch: 竖, pr: shù, ds: vertical, lb: shu4--vertical}
 # Row 4827: 树立; 动.
 - {id: zh-hsk7-9-03798-s001, ch: 树立, pr: shù lì, ds: to establish; set up (an example or goal), lb: shu4-li4--establish}
 # Row 4828: 数目; 名.
@@ -2872,9 +2909,9 @@
 - {id: zh-hsk7-9-03940-s001, ch: 损伤, pr: sǔn shāng, ds: to damage; injure; impair, lb: sun3-shang1--injure}
 # Row 4854: 所2; 助.
 - {id: zh-hsk3-00676-s004, ch: 所, pr: suǒ, ds: particle before a verb forming a what-is-done phrase or marking a passive, lb: suo3--particle}
+- {id: zh-hsk6-00763-s004, ch: 踏实, pr: tā shi, ds: at ease; free from worry, lb: ta1-shi5--secure}
 # Row 4855: 踏实; 形.
 - {id: zh-hsk6-00763-s001, ch: 踏实, pr: tā shi, ds: steady; down-to-earth; conscientious, lb: ta1-shi5--steady}
-- {id: zh-hsk6-00763-s004, ch: 踏实, pr: tā shi, ds: at ease; free from worry, lb: ta1-shi5--secure}
 # Row 4856: 塔; 名.
 - {id: zh-hsk6-00761-s001, ch: 塔, pr: tǎ, ds: tower; pagoda, lb: ta3--tower}
 # Row 4857: 台风; 名.
@@ -2899,12 +2936,12 @@
 - {id: zh-hsk7-9-03990-s001, ch: 汤圆, pr: tāng yuán, ds: 'glutinous rice balls, often with a sweet filling', lb: tang1-yuan2--rice-balls}
 # Row 4867: 糖果; 名.
 - {id: zh-hsk7-9-03992-s001, ch: 糖果, pr: táng guǒ, ds: candy; sweets, lb: tang2-guo3--candy}
+- {id: zh-hsk7-9-03996-s003, ch: 烫, pr: tàng, ds: to blanch; heat in hot water, lb: tang4--blanch}
+- {id: zh-hsk7-9-03996-s007, ch: 烫, pr: tàng, ds: scalding hot, lb: tang4--hot}
+- {id: zh-hsk7-9-03996-s006, ch: 烫, pr: tàng, ds: to iron clothes, lb: tang4--iron}
+- {id: zh-hsk7-9-03996-s005, ch: 烫, pr: tàng, ds: to perm hair, lb: tang4--perm}
 # Row 4868: 烫; 动、形.
 - {id: zh-hsk7-9-03996-s001, ch: 烫, pr: tàng, ds: to scald; burn with heat, lb: tang4--scald}
-- {id: zh-hsk7-9-03996-s003, ch: 烫, pr: tàng, ds: to blanch; heat in hot water, lb: tang4--blanch}
-- {id: zh-hsk7-9-03996-s005, ch: 烫, pr: tàng, ds: to perm hair, lb: tang4--perm}
-- {id: zh-hsk7-9-03996-s006, ch: 烫, pr: tàng, ds: to iron clothes, lb: tang4--iron}
-- {id: zh-hsk7-9-03996-s007, ch: 烫, pr: tàng, ds: scalding hot, lb: tang4--hot}
 # Row 4869: 掏; 动.
 - {id: zh-hsk6-00770-s001, ch: 掏, pr: tāo, ds: to pull out from a pocket; scoop out, lb: tao1--pull-out}
 # Row 4870: 逃; 动.
@@ -2915,9 +2952,9 @@
 - {id: zh-hsk7-9-04006-s001, ch: 淘气, pr: táo qì, ds: naughty; mischievous, lb: tao2-qi4--naughty}
 # Row 4873: 淘汰; 动.
 - {id: zh-hsk7-9-04007-s002, ch: 淘汰, pr: táo tài, ds: to eliminate; weed out; phase out, lb: tao2-tai4--eliminate}
+- {id: zh-hsk4-00675-s002, ch: 套餐, pr: tào cān, ds: product or service package, lb: tao4-can1--package}
 # Row 4874: 套餐; 名.
 - {id: zh-hsk4-00675-s001, ch: 套餐, pr: tào cān, ds: set meal, lb: tao4-can1--set-meal}
-- {id: zh-hsk4-00675-s002, ch: 套餐, pr: tào cān, ds: product or service package, lb: tao4-can1--package}
 # Row 4875: 特; 副.
 - {id: zh-hsk6-00771-s004, ch: 特, pr: tè, ds: especially; very, lb: te4--very}
 # Row 4876: 特长; 名.
@@ -2930,11 +2967,13 @@
 - {id: zh-hsk5-00743-s001, ch: 特性, pr: tè xìng, ds: property; characteristic, lb: te4-xing4--property}
 # Row 4880: 特意; 副.
 - {id: zh-hsk6-00775-s001, ch: 特意, pr: tè yì, ds: specially; deliberately, lb: te4-yi4--deliberately}
+# Row 440: 疼; 形、（动）.
+- {id: zh-hsk2-00503-s002, ch: 疼, pr: téng, ds: to love dearly; cherish, lb: teng2--cherish}
 # Row 4881: 题材; 名.
 - {id: zh-hsk5-00748-s001, ch: 题材, pr: tí cái, ds: subject matter, lb: ti2-cai2--subject}
+- {id: zh-hsk2026-04882-s601, ch: 提取, pr: tí qǔ, ds: to extract; retrieve (material or information), lb: ti2-qu3--extract}
 # Row 4882: 提取; 动.
 - {id: zh-hsk2026-04882-s001, ch: 提取, pr: tí qǔ, ds: to withdraw money, lb: ti2-qu3--withdraw}
-- {id: zh-hsk2026-04882-s601, ch: 提取, pr: tí qǔ, ds: to extract; retrieve (material or information), lb: ti2-qu3--extract}
 # Row 4883: 提示; 动.
 - {id: zh-hsk5-00747-s001, ch: 提示, pr: tí shì, ds: to prompt; point out; remind, lb: ti2-shi4--prompt}
 # Row 4884: 体操; 名.
@@ -2978,9 +3017,9 @@
 - {id: zh-hsk2026-04901-s001, ch: 听觉, pr: tīng jué, ds: sense of hearing, lb: ting1-jue2--hearing}
 # Row 4902: 听取; 动.
 - {id: zh-hsk6-00787-s001, ch: 听取, pr: tīng qǔ, ds: to listen to; hear (views or a report), lb: ting1-qu3--listen}
+- {id: zh-hsk6-00789-s002, ch: 通道, pr: tōng dào, ds: communication channel, lb: tong1-dao4--channel}
 # Row 4903: 通道; 名.
 - {id: zh-hsk6-00789-s003, ch: 通道, pr: tōng dào, ds: passage; channel; route, lb: tong1-dao4--passage}
-- {id: zh-hsk6-00789-s002, ch: 通道, pr: tōng dào, ds: communication channel, lb: tong1-dao4--channel}
 # Row 4904: 通风; 动.
 - {id: zh-hsk7-9-04086-s003, ch: 通风, pr: tōng fēng, ds: to ventilate, lb: tong1-feng1--ventilate}
 # Row 4905: 通话; 动.
@@ -3001,17 +3040,17 @@
 - {id: zh-hsk6-00797-s002, ch: 同行, pr: tóng háng, ds: to be in the same trade or profession, lb: tong2-hang2--same-trade}
 # Row 4912: 童话; 名.
 - {id: zh-hsk4-00696-s001, ch: 童话, pr: tóng huà, ds: fairy tale; children's story, lb: tong2-hua4--fairy-tale}
+- {id: zh-hsk7-9-04100-s002, ch: 同类, pr: tóng lèi, ds: the same type; members of the same kind, lb: tong2-lei4--same-kind}
 # Row 4913: 同类; 形、名.
 - {id: zh-hsk7-9-04100-s001, ch: 同类, pr: tóng lèi, ds: of the same kind; similar, lb: tong2-lei4--similar}
-- {id: zh-hsk7-9-04100-s002, ch: 同类, pr: tóng lèi, ds: the same type; members of the same kind, lb: tong2-lei4--same-kind}
 # Row 4914: 铜牌; 名.
 - {id: zh-hsk6-00799-s001, ch: 铜牌, pr: tóng pái, ds: bronze medal, lb: tong2-pai2--bronze-medal}
 # Row 4915: 痛快; 形.
 - {id: zh-hsk4-00700-s001, ch: 痛快, pr: tòng kuài, ds: happy; fully satisfied, lb: tong4-kuai4--satisfied}
 - {id: zh-hsk4-00700-s003, ch: 痛快, pr: tòng kuài, ds: straightforward; decisive, lb: tong4-kuai4--straightforward}
+- {id: zh-hsk5-00757-s005, ch: 偷, pr: tōu, ds: stealthily, lb: tou1--secretly}
 # Row 4916: 偷; 动、副.
 - {id: zh-hsk5-00757-s001, ch: 偷, pr: tōu, ds: to steal, lb: tou1--steal}
-- {id: zh-hsk5-00757-s005, ch: 偷, pr: tōu, ds: stealthily, lb: tou1--secretly}
 # Row 4917: 偷偷; 副.
 - {id: zh-hsk5-00758-s001, ch: 偷偷, pr: tōu tōu, ds: secretly; stealthily, lb: tou1-tou1--secretly}
 # Row 4918: 头脑; 名.
@@ -3020,12 +3059,12 @@
 - {id: zh-hsk6-00801-s001, ch: 投票, pr: tóu piào, ds: to vote, lb: tou2-piao4--vote}
 # Row 4920: 投诉; 动.
 - {id: zh-hsk4-00703-s002, ch: 投诉, pr: tóu sù, ds: to lodge a complaint, lb: tou2-su4--complain}
+- {id: zh-hsk4-00704-s002, ch: 投资, pr: tóu zī, ds: to invest, lb: tou2-zi1--invest}
 # Row 4921: 投资; 动、名.
 - {id: zh-hsk4-00704-s001, ch: 投资, pr: tóu zī, ds: investment, lb: tou2-zi1--investment}
-- {id: zh-hsk4-00704-s002, ch: 投资, pr: tóu zī, ds: to invest, lb: tou2-zi1--invest}
+- {id: zh-hsk4-00705-s002, ch: 透, pr: tòu, ds: to divulge; leak information, lb: tou4--divulge}
 # Row 4922: 透; 动、形.
 - {id: zh-hsk4-00705-s001, ch: 透, pr: tòu, ds: to penetrate; pass through, lb: tou4--penetrate}
-- {id: zh-hsk4-00705-s002, ch: 透, pr: tòu, ds: to divulge; leak information, lb: tou4--divulge}
 - {id: zh-hsk4-00705-s003, ch: 透, pr: tòu, ds: thorough; complete (as a result complement), lb: tou4--thorough}
 # Row 4923: 透过; 动.
 - {id: zh-hsk7-9-04131-s001, ch: 透过, pr: tòu guò, ds: to pass through; penetrate, lb: tou4-guo4--through}
@@ -3047,6 +3086,9 @@
 - {id: zh-hsk6-00805-s001, ch: 途径, pr: tú jìng, ds: way; means; route, lb: tu2-jing4--means}
 # Row 4932: 图像; 名.
 - {id: zh-hsk7-9-04142-s001, ch: 图像, pr: tú xiàng, ds: image; picture, lb: tu2-xiang4--image}
+# Row 1754: 土; 名、（形）.
+- {id: zh-hsk3-00712-s006, ch: 土, pr: tǔ, ds: local; indigenous; traditional, lb: tu3--local}
+- {id: zh-hsk3-00712-s009, ch: 土, pr: tǔ, ds: rustic; unfashionable; unsophisticated, lb: tu3--rustic}
 # Row 4933: 吐; 动.
 - {id: zh-hsk5-00761-s001, ch: 吐, pr: tǔ, ds: to spit out, lb: tu3--spit}
 - {id: zh-hsk5-00761-s003, ch: 吐, pr: tǔ, ds: to utter; pour out one's feelings, lb: tu3--utter}
@@ -3071,10 +3113,10 @@
 - {id: zh-hsk2026-04942-s001, ch: 退税, pr: tuì shuì, ds: to refund tax, lb: tui4-shui4--tax-refund}
 # Row 4943: 吞; 动.
 - {id: zh-hsk6-00809-s001, ch: 吞, pr: tūn, ds: to swallow, lb: tun1--swallow}
+- {id: zh-hsk6-00811-s006, ch: 拖, pr: tuō, ds: to delay; drag on, lb: tuo1--delay}
 # Row 4944: 拖; 动.
 - {id: zh-hsk6-00811-s001, ch: 拖, pr: tuō, ds: to drag; tow; trail, lb: tuo1--drag}
 - {id: zh-hsk6-00811-s005, ch: 拖, pr: tuō, ds: to mop the floor, lb: tuo1--mop}
-- {id: zh-hsk6-00811-s006, ch: 拖, pr: tuō, ds: to delay; drag on, lb: tuo1--delay}
 # Row 4945: 拖延; 动.
 - {id: zh-hsk7-9-04178-s001, ch: 拖延, pr: tuō yán, ds: to delay; put off; procrastinate, lb: tuo1-yan2--delay}
 # Row 4946: 托运; 动.
@@ -3109,15 +3151,15 @@
 - {id: zh-hsk2026-04959-s001, ch: 万物, pr: wàn wù, ds: all things; everything in nature, lb: wan4-wu4--everything}
 # Row 4960: 王子; 名.
 - {id: zh-hsk6-00829-s001, ch: 王子, pr: wáng zǐ, ds: prince; king's son, lb: wang2-zi3--prince}
+- {id: zh-hsk2026-04961-s601, ch: 网, pr: wǎng, ds: to catch in a net; net, lb: wang3--catch}
 # Row 4961: 网; 名、动.
 - {id: zh-hsk2-00544-s001, ch: 网, pr: wǎng, ds: net; netting, lb: wang3--net}
 - {id: zh-hsk2-00544-s002, ch: 网, pr: wǎng, ds: network, lb: wang3--network}
-- {id: zh-hsk2026-04961-s601, ch: 网, pr: wǎng, ds: to catch in a net; net, lb: wang3--catch}
 # Row 4962: 往后; 名.
 - {id: zh-hsk6-00832-s001, ch: 往后, pr: wǎng hòu, ds: the future; from then on, lb: wang3-hou4--future}
+- {id: zh-hsk6-00833-s001, ch: 往来, pr: wǎng lái, ds: to have dealings; maintain contacts, lb: wang3-lai2--associate}
 # Row 4963: 往来; 动.
 - {id: zh-hsk6-00833-s003, ch: 往来, pr: wǎng lái, ds: to go back and forth, lb: wang3-lai2--travel}
-- {id: zh-hsk6-00833-s001, ch: 往来, pr: wǎng lái, ds: to have dealings; maintain contacts, lb: wang3-lai2--associate}
 # Row 4964: 往年; 名.
 - {id: zh-hsk6-00834-s001, ch: 往年, pr: wǎng nián, ds: former years; previous years, lb: wang3-nian2--past-years}
 # Row 4965: 望; 动.
@@ -3129,16 +3171,16 @@
 - {id: zh-hsk2026-04967-s001, ch: 微小, pr: wēi xiǎo, ds: tiny; very small, lb: wei1-xiao3--tiny}
 # Row 4968: 违规; 动.
 - {id: zh-hsk5-00772-s001, ch: 违规, pr: wéi guī, ds: to violate the rules, lb: wei2-gui1--violate}
+- {id: zh-hsk4-00727-s005, ch: 维护, pr: wéi hù, ds: to maintain; keep in working order, lb: wei2-hu4--maintain}
 # Row 4969: 维护; 动.
 - {id: zh-hsk4-00727-s001, ch: 维护, pr: wéi hù, ds: to protect; uphold, lb: wei2-hu4--protect}
-- {id: zh-hsk4-00727-s005, ch: 维护, pr: wéi hù, ds: to maintain; keep in working order, lb: wei2-hu4--maintain}
+- {id: zh-hsk5-00776-s002, ch: 为难, pr: wéi nán, ds: to make things difficult for, lb: wei2-nan2--hinder}
 # Row 4970: 为难; 形、动.
 - {id: zh-hsk5-00776-s001, ch: 为难, pr: wéi nán, ds: in a difficult position; troubled, lb: wei2-nan2--troubled}
-- {id: zh-hsk5-00776-s002, ch: 为难, pr: wéi nán, ds: to make things difficult for, lb: wei2-nan2--hinder}
-# Row 4971: 围棋; 名.
-- {id: zh-hsk2026-04971-s001, ch: 围棋, pr: wéi qí, ds: 'Go, the board game', lb: wei2-qi2--go}
 # Row 4972: 为期; 动.
 - {id: zh-hsk5-00777-s002, ch: 为期, pr: wéi qī, ds: to last for a specified period, lb: wei2-qi1--last}
+# Row 4971: 围棋; 名.
+- {id: zh-hsk2026-04971-s001, ch: 围棋, pr: wéi qí, ds: 'Go, the board game', lb: wei2-qi2--go}
 # Row 4973: 维生素; 名.
 - {id: zh-hsk6-00839-s001, ch: 维生素, pr: wéi shēng sù, ds: vitamin, lb: wei2-sheng1-su4--vitamin}
 # Row 4974: 为止; 动.
@@ -3188,15 +3230,16 @@
 - {id: zh-hsk2026-04994-s001, ch: 乌龟, pr: wū guī, ds: tortoise; turtle, lb: wu1-gui1--tortoise}
 # Row 4995: 污水; 名.
 - {id: zh-hsk5-00787-s001, ch: 污水, pr: wū shuǐ, ds: sewage; wastewater, lb: wu1-shui3--sewage}
+- {id: zh-grammar-00116-s001, ch: 无, pr: wú, ds: un-; -less; lacking the following property or component, lb: wu2--without}
 # Row 4996: 无所谓; 动.
 - {id: zh-hsk4-00743-s001, ch: 无所谓, pr: wú suǒ wèi, ds: not to matter; be indifferent, lb: wu2-suo3-wei4--indifferent}
 # Row 4997: 无疑; 动.
 - {id: zh-hsk5-00790-s001, ch: 无疑, pr: wú yí, ds: to be beyond doubt; be certain, lb: wu2-yi2--certain}
 # Row 4998: 武器; 名.
 - {id: zh-hsk3-00747-s001, ch: 武器, pr: wǔ qì, ds: weapon; arms, lb: wu3-qi4--weapon}
+- {id: zh-hsk6-00850-s004, ch: 误, pr: wù, ds: to harm; mislead, lb: wu4--harm}
 # Row 4999: 误; 动.
 - {id: zh-hsk6-00850-s003, ch: 误, pr: wù, ds: to miss; delay, lb: wu4--miss}
-- {id: zh-hsk6-00850-s004, ch: 误, pr: wù, ds: to harm; mislead, lb: wu4--harm}
 # Row 5000: 误解; 动、名.
 - {id: zh-hsk5-00795-s001, ch: 误解, pr: wù jiě, ds: to misunderstand, lb: wu4-jie3--misunderstand}
 - {id: zh-hsk5-00795-s002, ch: 误解, pr: wù jiě, ds: misunderstanding, lb: wu4-jie3--misunderstanding}
@@ -3227,10 +3270,10 @@
 - {id: zh-hsk4-00757-s001, ch: 细致, pr: xì zhì, ds: careful; meticulous; detailed, lb: xi4-zhi4--meticulous}
 # Row 5013: 吓; 动.
 - {id: zh-hsk5-00801-s006, ch: 吓, pr: xià, ds: to frighten; scare, lb: xia4--frighten}
-# Row 5014: 下功夫; .
-- {id: zh-hsk7-9-04420-s001, ch: 下功夫, pr: xià gōng fu, ds: to put in effort; work hard at, lb: xia4-gong1-fu5--effort}
 # Row 5015: 下单; 动.
 - {id: zh-hsk2026-05015-s001, ch: 下单, pr: xià dān, ds: to place an order, lb: xia4-dan1--order}
+# Row 5014: 下功夫; .
+- {id: zh-hsk7-9-04420-s001, ch: 下功夫, pr: xià gōng fu, ds: to put in effort; work hard at, lb: xia4-gong1-fu5--effort}
 # Row 5016: 夏令营; 名.
 - {id: zh-hsk7-9-04440-s001, ch: 夏令营, pr: xià lìng yíng, ds: summer camp, lb: xia4-ling4-ying2--summer-camp}
 # Row 5017: 下线; 动.
@@ -3246,20 +3289,20 @@
 - {id: zh-hsk5-00804-s001, ch: 鲜艳, pr: xiān yàn, ds: brightly colored; vivid, lb: xian1-yan4--colorful}
 # Row 5022: 嫌; 动.
 - {id: zh-hsk6-00859-s001, ch: 嫌, pr: xián, ds: to dislike; find fault with, lb: xian2--dislike}
-# Row 5023: 显; 形、动.
-- {id: zh-hsk5-00806-s001, ch: 显, pr: xiǎn, ds: to show; reveal; appear, lb: xian3--show}
-- {id: zh-hsk5-00806-s003, ch: 显, pr: xiǎn, ds: obvious; conspicuous, lb: xian3--obvious}
 # Row 5024: 险; 形、副.
 - {id: zh-hsk6-00861-s002, ch: 险, pr: xiǎn, ds: dangerous; perilous; precipitous, lb: xian3--dangerous}
 - {id: zh-hsk2026-05024-s601, ch: 险, pr: xiǎn, ds: nearly; almost (of an unwelcome event), lb: xian3--nearly}
+- {id: zh-hsk5-00806-s003, ch: 显, pr: xiǎn, ds: obvious; conspicuous, lb: xian3--obvious}
+# Row 5023: 显; 形、动.
+- {id: zh-hsk5-00806-s001, ch: 显, pr: xiǎn, ds: to show; reveal; appear, lb: xian3--show}
 # Row 5025: 显著; 形.
 - {id: zh-hsk4-00768-s001, ch: 显著, pr: xiǎn zhù, ds: notable; marked; significant, lb: xian3-zhu4--significant}
+- {id: zh-hsk2026-05027-s601, ch: 线, pr: xiàn, ds: a tiny amount or glimmer (measure word), lb: xian4--glimmer}
 # Row 5026: 限; 动.
 - {id: zh-hsk7-9-04462-s001, ch: 限, pr: xiàn, ds: to limit; restrict, lb: xian4--limit}
+- {id: zh-hsk3-00766-s004, ch: 线, pr: xiàn, ds: line; route, lb: xian4--line}
 # Row 5027: 线; 名、量.
 - {id: zh-hsk3-00766-s001, ch: 线, pr: xiàn, ds: thread; wire; string, lb: xian4--thread}
-- {id: zh-hsk3-00766-s004, ch: 线, pr: xiàn, ds: line; route, lb: xian4--line}
-- {id: zh-hsk2026-05027-s601, ch: 线, pr: xiàn, ds: a tiny amount or glimmer (measure word), lb: xian4--glimmer}
 # Row 5028: 现存; 动.
 - {id: zh-hsk2026-05028-s001, ch: 现存, pr: xiàn cún, ds: to exist at present; survive, lb: xian4-cun2--exist}
 # Row 5029: 限度; 名.
@@ -3277,9 +3320,9 @@
 - {id: zh-hsk7-9-04479-s001, ch: 相差, pr: xiāng chà, ds: to differ; be apart by, lb: xiang1-cha4--differ}
 # Row 5035: 香肠; 名.
 - {id: zh-hsk5-00816-s001, ch: 香肠, pr: xiāng cháng, ds: sausage, lb: xiang1-chang2--sausage}
+- {id: zh-hsk7-9-04480-s003, ch: 相传, pr: xiāng chuán, ds: to be said by tradition; legend has it, lb: xiang1-chuan2--legend}
 # Row 5036: 相传; 动.
 - {id: zh-hsk7-9-04480-s001, ch: 相传, pr: xiāng chuán, ds: to pass down; hand on, lb: xiang1-chuan2--transmit}
-- {id: zh-hsk7-9-04480-s003, ch: 相传, pr: xiāng chuán, ds: to be said by tradition; legend has it, lb: xiang1-chuan2--legend}
 # Row 5037: 相等; 动.
 - {id: zh-hsk5-00813-s001, ch: 相等, pr: xiāng děng, ds: to be equal; be equivalent, lb: xiang1-deng3--equal}
 # Row 5038: 相连; 动.
@@ -3308,9 +3351,9 @@
 - {id: zh-hsk6-00867-s001, ch: 消灭, pr: xiāo miè, ds: to eliminate; wipe out, lb: xiao1-mie4--eliminate}
 # Row 5050: 小麦; 名.
 - {id: zh-hsk6-00869-s001, ch: 小麦, pr: xiǎo mài, ds: wheat, lb: xiao3-mai4--wheat}
+- {id: zh-hsk7-9-04529-s003, ch: 小气, pr: xiǎo qi, ds: petty; narrow-minded, lb: xiao3-qi5--petty}
 # Row 5051: 小气; 形.
 - {id: zh-hsk7-9-04529-s001, ch: 小气, pr: xiǎo qi, ds: stingy; miserly, lb: xiao3-qi5--stingy}
-- {id: zh-hsk7-9-04529-s003, ch: 小气, pr: xiǎo qi, ds: petty; narrow-minded, lb: xiao3-qi5--petty}
 # Row 5052: 小偷儿; 名.
 - {id: zh-hsk5-00828-s001, ch: 小偷儿, pr: xiǎo tōu r, ds: thief, lb: xiao3-tou1-r5--thief}
 # Row 5053: 笑容; 名.
@@ -3362,6 +3405,7 @@
 - {id: zh-hsk5-00837-s001, ch: 信念, pr: xìn niàn, ds: belief; conviction, lb: xin4-nian4--conviction}
 # Row 5075: 兴起; 动.
 - {id: zh-hsk7-9-04616-s001, ch: 兴起, pr: xīng qǐ, ds: to arise; emerge; become popular, lb: xing1-qi3--arise}
+- {id: zh-grammar-00119-s001, ch: 型, pr: xíng, ds: type classified by the preceding feature; type-forming suffix, lb: xing2--type}
 # Row 5076: 型号; 名.
 - {id: zh-hsk4-00796-s001, ch: 型号, pr: xíng hào, ds: model; product type or model number, lb: xing2-hao4--model}
 # Row 5077: 形态; 名.
@@ -3410,15 +3454,16 @@
 - {id: zh-hsk5-00854-s001, ch: 寻求, pr: xún qiú, ds: to seek; look for, lb: xun2-qiu2--seek}
 # Row 5099: 压缩; 动.
 - {id: zh-hsk7-9-04720-s001, ch: 压缩, pr: yā suō, ds: to compress; reduce in size, lb: ya1-suo1--compress}
+- {id: zh-grammar-00117-s001, ch: 亚, pr: yà, ds: sub-; secondary or below a category in established formations, lb: ya4--sub}
 # Row 5100: 亚军; 名.
 - {id: zh-hsk5-00858-s001, ch: 亚军, pr: yà jūn, ds: runner-up; second-place finisher, lb: ya4-jun1--runner-up}
 # Row 5101: 淹; 动.
 - {id: zh-hsk7-9-04731-s001, ch: 淹, pr: yān, ds: to flood; submerge; drown, lb: yan1--flood}
 # Row 5102: 淹没; 动.
 - {id: zh-hsklegacy-09567-s001, ch: 淹没, pr: yān mò, ds: to submerge; inundate, lb: yan1-mo4--submerge}
+- {id: zh-hsk4-00819-s003, ch: 严, pr: yán, ds: strict; stern; rigorous, lb: yan2--strict}
 # Row 5103: 严; 形.
 - {id: zh-hsk4-00819-s002, ch: 严, pr: yán, ds: tightly closed; secure, lb: yan2--tight}
-- {id: zh-hsk4-00819-s003, ch: 严, pr: yán, ds: strict; stern; rigorous, lb: yan2--strict}
 # Row 5104: 沿海; 名.
 - {id: zh-hsk6-00909-s001, ch: 沿海, pr: yán hǎi, ds: coastal region; the coast, lb: yan2-hai3--coast}
 # Row 5105: 严寒; 形.
@@ -3453,13 +3498,13 @@
 - {id: zh-hsk6-00914-s001, ch: 宴会, pr: yàn huì, ds: banquet; formal dinner, lb: yan4-hui4--banquet}
 # Row 5119: 验证; 动.
 - {id: zh-hsk7-9-04776-s001, ch: 验证, pr: yàn zhèng, ds: to verify; validate; authenticate, lb: yan4-zheng4--verify}
-# Row 5120: 仰; 动.
-- {id: zh-hsk6-00916-s002, ch: 仰, pr: yǎng, ds: to look upward; face up, lb: yang3--look-up}
 # Row 5121: 痒; 形.
 - {id: zh-hsk7-9-04790-s001, ch: 痒, pr: yǎng, ds: itchy; ticklish, lb: yang3--itchy}
+# Row 5120: 仰; 动.
+- {id: zh-hsk6-00916-s002, ch: 仰, pr: yǎng, ds: to look upward; face up, lb: yang3--look-up}
+- {id: zh-hsk6-00917-s002, ch: 养老, pr: yǎng lǎo, ds: to spend one's retirement, lb: yang3-lao3--retire}
 # Row 5122: 养老; 动.
 - {id: zh-hsk6-00917-s001, ch: 养老, pr: yǎng lǎo, ds: to provide for the elderly, lb: yang3-lao3--support}
-- {id: zh-hsk6-00917-s002, ch: 养老, pr: yǎng lǎo, ds: to spend one's retirement, lb: yang3-lao3--retire}
 # Row 5123: 养老院; 名.
 - {id: zh-hsk7-9-04786-s001, ch: 养老院, pr: yǎng lǎo yuàn, ds: elder-care home; nursing home, lb: yang3-lao3-yuan4--nursing-home}
 # Row 5124: 氧气; 名.
@@ -3474,9 +3519,9 @@
 - {id: zh-hsk6-00923-s001, ch: 要么, pr: yào me, ds: either; or, lb: yao4-me5--either}
 # Row 5129: 要素; 名.
 - {id: zh-hsk6-00924-s001, ch: 要素, pr: yào sù, ds: essential element; key factor, lb: yao4-su4--factor}
+- {id: zh-hsk6-00925-s006, ch: 野, pr: yě, ds: unruly; rough, lb: ye3--unruly}
 # Row 5130: 野; 形.
 - {id: zh-hsk6-00925-s007, ch: 野, pr: yě, ds: wild; untamed, lb: ye3--wild}
-- {id: zh-hsk6-00925-s006, ch: 野, pr: yě, ds: unruly; rough, lb: ye3--unruly}
 # Row 5131: 也好; 助.
 - {id: zh-hsk5-00868-s001, ch: 也好, pr: yě hǎo, ds: that is fine too; might as well, lb: ye3-hao3--fine}
 - {id: zh-hsk5-00868-s003, ch: 也好, pr: yě hǎo, ds: whether ... or ... (after alternatives), lb: ye3-hao3--whether}
@@ -3488,54 +3533,69 @@
 - {id: zh-hsk7-9-04825-s002, ch: 业, pr: yè, ds: suffix for an industry or line of business, lb: ye4--industry}
 # Row 5135: 液体; 名.
 - {id: zh-hsk7-9-04834-s001, ch: 液体, pr: yè tǐ, ds: liquid, lb: ye4-ti3--liquid}
+# Row 5143: 一辈子; 名.
+- {id: zh-hsk5-00871-s001, ch: 一辈子, pr: yī bèi zi, ds: a lifetime; one's whole life, lb: yi1-bei4-zi5--lifetime}
+# Row 5146: 一带; 名.
+- {id: zh-hsk5-00872-s001, ch: 一带, pr: yī dài, ds: area; vicinity, lb: yi1-dai4--area}
+# Row 5147: 一道; 副.
+- {id: zh-hsk6-00929-s001, ch: 一道, pr: yī dào, ds: together, lb: yi1-dao4--together}
+# Row 5164: 一帆风顺; .
+- {id: zh-hsk7-9-04842-s002, ch: 一帆风顺, pr: yī fān fēng shùn, ds: smooth sailing; to go without difficulties, lb: yi1-fan1-feng1-shun4--smooth}
+# Row 5148: 一贯; 形.
+- {id: zh-hsk6-00931-s001, ch: 一贯, pr: yī guàn, ds: consistent; habitual, lb: yi1-guan4--consistent}
+- {id: zh-hsk5-00882-s002, ch: 依旧, pr: yī jiù, ds: still; as before, lb: yi1-jiu4--still}
 # Row 5136: 依旧; 动、副.
 - {id: zh-hsk5-00882-s001, ch: 依旧, pr: yī jiù, ds: to remain as before, lb: yi1-jiu4--unchanged}
-- {id: zh-hsk5-00882-s002, ch: 依旧, pr: yī jiù, ds: still; as before, lb: yi1-jiu4--still}
+# Row 5165: 一口气; 副.
+- {id: zh-hsk5-00875-s002, ch: 一口气, pr: yī kǒu qì, ds: in one go; without a break, lb: yi1-kou3-qi4--one-go}
 # Row 5137: 依赖; 动.
 - {id: zh-hsk6-00940-s001, ch: 依赖, pr: yī lài, ds: to depend on; rely on, lb: yi1-lai4--depend}
 # Row 5138: 一流; 形.
 - {id: zh-hsk5-00876-s001, ch: 一流, pr: yī liú, ds: first-rate; top-class, lb: yi1-liu2--first-rate}
+# Row 5150: 一律; 副.
+- {id: zh-hsk4-00838-s002, ch: 一律, pr: yī lǜ, ds: uniformly; without exception, lb: yi1-lv4--uniformly}
+# Row 5167: 一模一样; .
+- {id: zh-hsk6-00933-s001, ch: 一模一样, pr: yī mú yī yàng, ds: exactly the same; identical, lb: yi1-mu2-yi1-yang4--identical}
+- {id: zh-hsk5-00878-s004, ch: 一身, pr: yī shēn, ds: a full outfit of clothing, lb: yi1-shen1--outfit}
+# Row 5169: 一身; 名.
+- {id: zh-hsk5-00878-s001, ch: 一身, pr: yī shēn, ds: the whole body; from head to toe, lb: yi1-shen1--whole-body}
+- {id: zh-hsk6-00935-s006, ch: 一时, pr: yī shí, ds: at the same time, lb: yi1-shi2--simultaneously}
+- {id: zh-hsk6-00935-s003, ch: 一时, pr: yī shí, ds: for the moment; temporarily, lb: yi1-shi2--temporarily}
+# Row 5170: 一时; 名、副.
+- {id: zh-hsk6-00935-s001, ch: 一时, pr: yī shí, ds: a short time; a while, lb: yi1-shi2--while}
 # Row 5139: 衣食住行; .
 - {id: zh-hsk7-9-04891-s001, ch: 衣食住行, pr: yī shí zhù xíng, ds: 'clothing, food, housing, and transport; basic necessities', lb: yi1-shi2-zhu4-xing2--necessities}
+# Row 5171: 一同; 副.
+- {id: zh-hsk6-00936-s001, ch: 一同, pr: yī tóng, ds: together, lb: yi1-tong2--together}
+# Row 5155: 一系列; 形.
+- {id: zh-hsk7-9-04878-s001, ch: 一系列, pr: yī xì liè, ds: a series of; a succession of, lb: yi1-xi4-lie4--series}
+# Row 5154: 一向; 副.
+- {id: zh-hsk5-00880-s001, ch: 一向, pr: yī xiàng, ds: always; all along, lb: yi1-xiang4--always}
 # Row 5140: 医药; 名.
 - {id: zh-hsk6-00938-s001, ch: 医药, pr: yī yào, ds: medicine and medical care; pharmaceuticals, lb: yi1-yao4--medicine}
 # Row 5141: 一一; 副.
 - {id: zh-hsk7-9-04885-s001, ch: 一一, pr: yī yī, ds: one by one, lb: yi1-yi1--one-by-one}
+# Row 5156: 一再; 副.
+- {id: zh-hsk4-00839-s001, ch: 一再, pr: yī zài, ds: repeatedly, lb: yi1-zai4--repeatedly}
+# Row 5157: 一阵; 数量.
+- {id: zh-hsk7-9-04889-s001, ch: 一阵, pr: yī zhèn, ds: a burst; a spell; a short period, lb: yi1-zhen4--spell}
 # Row 5142: 姨; 名.
 - {id: zh-hsk7-9-04898-s001, ch: 姨, pr: yí, ds: mother's sister; aunt, lb: yi2--aunt}
-# Row 5143: 一辈子; 名.
-- {id: zh-hsk5-00871-s001, ch: 一辈子, pr: yī bèi zi, ds: a lifetime; one's whole life, lb: yi1-bei4-zi5--lifetime}
 # Row 5144: 遗产; 名.
 - {id: zh-hsk4-00848-s001, ch: 遗产, pr: yí chǎn, ds: heritage; legacy, lb: yi2-chan3--heritage}
 - {id: zh-hsk4-00848-s003, ch: 遗产, pr: yí chǎn, ds: inheritance; estate left by someone, lb: yi2-chan3--inheritance}
 # Row 5145: 遗传; 动.
 - {id: zh-hsk4-00849-s002, ch: 遗传, pr: yí chuán, ds: to inherit or pass on a genetic trait, lb: yi2-chuan2--inherit}
-# Row 5146: 一带; 名.
-- {id: zh-hsk5-00872-s001, ch: 一带, pr: yī dài, ds: area; vicinity, lb: yi1-dai4--area}
-# Row 5147: 一道; 副.
-- {id: zh-hsk6-00929-s001, ch: 一道, pr: yī dào, ds: together, lb: yi1-dao4--together}
-# Row 5148: 一贯; 形.
-- {id: zh-hsk6-00931-s001, ch: 一贯, pr: yī guàn, ds: consistent; habitual, lb: yi1-guan4--consistent}
 # Row 5149: 疑惑; 动、名.
 - {id: zh-hsk7-9-04910-s001, ch: 疑惑, pr: yí huò, ds: to doubt; be puzzled by, lb: yi2-huo4--doubt}
 - {id: zh-hsk7-9-04910-s005, ch: 疑惑, pr: yí huò, ds: doubt; misgivings, lb: yi2-huo4--misgivings}
-# Row 5150: 一律; 副.
-- {id: zh-hsk4-00838-s002, ch: 一律, pr: yī lǜ, ds: uniformly; without exception, lb: yi1-lv4--uniformly}
+- {id: zh-hsk4-00847-s003, ch: 移民, pr: yí mín, ds: migrant; immigrant, lb: yi2-min2--migrant}
 # Row 5151: 移民; 动、名.
 - {id: zh-hsk4-00847-s001, ch: 移民, pr: yí mín, ds: to migrate; immigrate, lb: yi2-min2--migrate}
-- {id: zh-hsk4-00847-s003, ch: 移民, pr: yí mín, ds: migrant; immigrant, lb: yi2-min2--migrant}
 # Row 5152: 仪器; 名.
 - {id: zh-hsk6-00941-s001, ch: 仪器, pr: yí qì, ds: instrument; apparatus, lb: yi2-qi4--instrument}
 # Row 5153: 仪式; 名.
 - {id: zh-hsk6-00942-s001, ch: 仪式, pr: yí shì, ds: ceremony, lb: yi2-shi4--ceremony}
-# Row 5154: 一向; 副.
-- {id: zh-hsk5-00880-s001, ch: 一向, pr: yī xiàng, ds: always; all along, lb: yi1-xiang4--always}
-# Row 5155: 一系列; 形.
-- {id: zh-hsk7-9-04878-s001, ch: 一系列, pr: yī xì liè, ds: a series of; a succession of, lb: yi1-xi4-lie4--series}
-# Row 5156: 一再; 副.
-- {id: zh-hsk4-00839-s001, ch: 一再, pr: yī zài, ds: repeatedly, lb: yi1-zai4--repeatedly}
-# Row 5157: 一阵; 数量.
-- {id: zh-hsk7-9-04889-s001, ch: 一阵, pr: yī zhèn, ds: a burst; a spell; a short period, lb: yi1-zhen4--spell}
 # Row 5158: 遗址; 名.
 - {id: zh-hsk7-9-04907-s001, ch: 遗址, pr: yí zhǐ, ds: historic site; ruins, lb: yi2-zhi3--ruins}
 # Row 5159: 以便; 连.
@@ -3549,29 +3609,14 @@
 - {id: zh-hsk6-00946-s002, ch: 异常, pr: yì cháng, ds: extremely; exceptionally, lb: yi4-chang2--exceptionally}
 # Row 5163: 益处; 名.
 - {id: zh-hsk7-9-04937-s001, ch: 益处, pr: yì chù, ds: benefit, lb: yi4-chu4--benefit}
-# Row 5164: 一帆风顺; .
-- {id: zh-hsk7-9-04842-s002, ch: 一帆风顺, pr: yī fān fēng shùn, ds: smooth sailing; to go without difficulties, lb: yi1-fan1-feng1-shun4--smooth}
-# Row 5165: 一口气; 副.
-- {id: zh-hsk5-00875-s002, ch: 一口气, pr: yī kǒu qì, ds: in one go; without a break, lb: yi1-kou3-qi4--one-go}
 # Row 5166: 议论; 动、名.
 - {id: zh-hsk4-00854-s001, ch: 议论, pr: yì lùn, ds: to discuss; comment on, lb: yi4-lun4--discuss}
 - {id: zh-hsk4-00854-s004, ch: 议论, pr: yì lùn, ds: discussion; comments, lb: yi4-lun4--discussion}
-# Row 5167: 一模一样; .
-- {id: zh-hsk6-00933-s001, ch: 一模一样, pr: yī mú yī yàng, ds: exactly the same; identical, lb: yi1-mu2-yi1-yang4--identical}
 # Row 5168: 艺人; 名.
 - {id: zh-hsk6-00944-s001, ch: 艺人, pr: yì rén, ds: performer; entertainer, lb: yi4-ren2--performer}
-# Row 5169: 一身; 名.
-- {id: zh-hsk5-00878-s001, ch: 一身, pr: yī shēn, ds: the whole body; from head to toe, lb: yi1-shen1--whole-body}
-- {id: zh-hsk5-00878-s004, ch: 一身, pr: yī shēn, ds: a full outfit of clothing, lb: yi1-shen1--outfit}
-# Row 5170: 一时; 名、副.
-- {id: zh-hsk6-00935-s001, ch: 一时, pr: yī shí, ds: a short time; a while, lb: yi1-shi2--while}
-- {id: zh-hsk6-00935-s003, ch: 一时, pr: yī shí, ds: for the moment; temporarily, lb: yi1-shi2--temporarily}
-- {id: zh-hsk6-00935-s006, ch: 一时, pr: yī shí, ds: at the same time, lb: yi1-shi2--simultaneously}
-# Row 5171: 一同; 副.
-- {id: zh-hsk6-00936-s001, ch: 一同, pr: yī tóng, ds: together, lb: yi1-tong2--together}
+- {id: zh-hsk2026-05172-s601, ch: 易于, pr: yì yú, ds: to be easy to, lb: yi4-yu2--easy}
 # Row 5172: 易于; 动.
 - {id: zh-hsk2026-05172-s001, ch: 易于, pr: yì yú, ds: to be likely to; tend to, lb: yi4-yu2--likely}
-- {id: zh-hsk2026-05172-s601, ch: 易于, pr: yì yú, ds: to be easy to, lb: yi4-yu2--easy}
 # Row 5173: 抑制; 动.
 - {id: zh-hsk7-9-04933-s001, ch: 抑制, pr: yì zhì, ds: to inhibit; suppress; restrain, lb: yi4-zhi4--inhibit}
 # Row 5174: 因; 介、连.
@@ -3582,10 +3627,10 @@
 - {id: zh-hsk3-00823-s001, ch: 银, pr: yín, ds: silver, lb: yin2--silver}
 # Row 5177: 银牌; 名.
 - {id: zh-hsk3-00824-s001, ch: 银牌, pr: yín pái, ds: silver medal, lb: yin2-pai2--silver-medal}
+- {id: zh-hsk4-00855-s011, ch: 引, pr: yǐn, ds: to cite as evidence, lb: yin3--cite}
 # Row 5178: 引; 动.
 - {id: zh-hsk4-00855-s001, ch: 引, pr: yǐn, ds: to pull; draw; stretch, lb: yin3--draw}
 - {id: zh-hsk4-00855-s007, ch: 引, pr: yǐn, ds: to attract; lead; guide, lb: yin3--lead}
-- {id: zh-hsk4-00855-s011, ch: 引, pr: yǐn, ds: to cite as evidence, lb: yin3--cite}
 # Row 5179: 隐藏; 动.
 - {id: zh-hsk6-00955-s001, ch: 隐藏, pr: yǐn cáng, ds: to hide; conceal, lb: yin3-cang2--hide}
 # Row 5180: 引导; 动.
@@ -3598,10 +3643,10 @@
 - {id: zh-hsk6-00956-s001, ch: 隐私, pr: yǐn sī, ds: privacy; private matters, lb: yin3-si1--privacy}
 # Row 5184: 饮用水; 名.
 - {id: zh-hsk7-9-04961-s001, ch: 饮用水, pr: yǐn yòng shuǐ, ds: drinking water, lb: yin3-yong4-shui3--water}
+- {id: zh-hsk6-00957-s006, ch: 印, pr: yìn, ds: imprint; mark; trace, lb: yin4--mark}
 # Row 5185: 印; 名、动.
 - {id: zh-hsk6-00957-s002, ch: 印, pr: yìn, ds: to print; stamp; mark, lb: yin4--print}
 - {id: zh-hsk6-00957-s005, ch: 印, pr: yìn, ds: seal; stamp, lb: yin4--seal}
-- {id: zh-hsk6-00957-s006, ch: 印, pr: yìn, ds: imprint; mark; trace, lb: yin4--mark}
 # Row 5186: 婴儿; 名.
 - {id: zh-hsk7-9-04981-s001, ch: 婴儿, pr: yīng ér, ds: infant; baby, lb: ying1-er2--infant}
 # Row 5187: 英雄; 名.
@@ -3609,9 +3654,9 @@
 # Row 5188: 影子; 名.
 - {id: zh-hsk4-00863-s001, ch: 影子, pr: yǐng zi, ds: shadow; reflection, lb: ying3-zi5--shadow}
 - {id: zh-hsk4-00863-s003, ch: 影子, pr: yǐng zi, ds: trace; hint of something, lb: ying3-zi5--trace}
+- {id: zh-hsk7-9-04996-s002, ch: 拥挤, pr: yōng jǐ, ds: to crowd; press together, lb: yong1-ji3--crowd}
 # Row 5189: 拥挤; 动、形.
 - {id: zh-hsk7-9-04996-s001, ch: 拥挤, pr: yōng jǐ, ds: crowded, lb: yong1-ji3--crowded}
-- {id: zh-hsk7-9-04996-s002, ch: 拥挤, pr: yōng jǐ, ds: to crowd; press together, lb: yong1-ji3--crowd}
 # Row 5190: 涌现; 动.
 - {id: zh-hsk7-9-05005-s001, ch: 涌现, pr: yǒng xiàn, ds: to emerge; spring up in large numbers, lb: yong3-xian4--emerge}
 # Row 5191: 勇于; 动.
@@ -3641,17 +3686,17 @@
 - {id: zh-hsk7-9-05027-s001, ch: 犹如, pr: yóu rú, ds: to be like; resemble, lb: you2-ru2--resemble}
 # Row 5203: 有机; 形.
 - {id: zh-hsk7-9-05037-s001, ch: 有机, pr: yǒu jī, ds: organic, lb: you3-ji1--organic}
+- {id: zh-hsk2026-05204-s601, ch: 有劲, pr: yǒu jìn, ds: to have strength or energy, lb: you3-jin4--strength}
 # Row 5204: 有劲; 动、形.
 - {id: zh-hsk2026-05204-s001, ch: 有劲, pr: yǒu jìn, ds: vigorous; energetic, lb: you3-jin4--vigorous}
-- {id: zh-hsk2026-05204-s601, ch: 有劲, pr: yǒu jìn, ds: to have strength or energy, lb: you3-jin4--strength}
 # Row 5205: 有序; 形.
 - {id: zh-hsk7-9-05046-s001, ch: 有序, pr: yǒu xù, ds: orderly; in order, lb: you3-xu4--orderly}
 # Row 5206: 于; 介.
 - {id: zh-hsk6-00978-s005, ch: 于, pr: yú, ds: in; at; on (time or place), lb: yu2--at}
-- {id: zh-hsk6-00978-s006, ch: 于, pr: yú, ds: to; toward; with regard to, lb: yu2--toward}
+- {id: zh-hsk6-00978-s009, ch: 于, pr: yú, ds: by (marking an agent in a passive), lb: yu2--by}
 - {id: zh-hsk6-00978-s007, ch: 于, pr: yú, ds: from; out of, lb: yu2--from}
 - {id: zh-hsk6-00978-s008, ch: 于, pr: yú, ds: than (in comparisons), lb: yu2--than}
-- {id: zh-hsk6-00978-s009, ch: 于, pr: yú, ds: by (marking an agent in a passive), lb: yu2--by}
+- {id: zh-hsk6-00978-s006, ch: 于, pr: yú, ds: to; toward; with regard to, lb: yu2--toward}
 # Row 5207: 余额; 名.
 - {id: zh-hsk7-9-05060-s001, ch: 余额, pr: yú é, ds: balance; amount remaining, lb: yu2-e2--balance}
 # Row 5208: 与其; 连.
@@ -3748,9 +3793,9 @@
 - {id: zh-hsk6-01007-s003, ch: 遭遇, pr: zāo yù, ds: experience; misfortune encountered, lb: zao1-yu4--experience}
 # Row 5251: 噪声; 名.
 - {id: zh-hsk7-9-05180-s001, ch: 噪声, pr: zào shēng, ds: noise, lb: zao4-sheng1--noise}
+- {id: zh-hsk4-00902-s003, ch: 造型, pr: zào xíng, ds: form; design; styling, lb: zao4-xing2--design}
 # Row 5252: 造型; 动、名.
 - {id: zh-hsk4-00902-s001, ch: 造型, pr: zào xíng, ds: to shape; model; style, lb: zao4-xing2--shape}
-- {id: zh-hsk4-00902-s003, ch: 造型, pr: zào xíng, ds: form; design; styling, lb: zao4-xing2--design}
 # Row 5253: 则1; 连、（助）.
 - {id: zh-hsk7-9-05182-s001, ch: 则, pr: zé, ds: then; in that case; whereas, lb: ze2--then}
 # Row 5254: 扎; 动.
@@ -3766,16 +3811,16 @@
 - {id: zh-hsk7-9-05207-s001, ch: 崭新, pr: zhǎn xīn, ds: brand new, lb: zhan3-xin1--brand-new}
 # Row 5259: 占比; 名.
 - {id: zh-hsk2026-05259-s001, ch: 占比, pr: zhàn bǐ, ds: proportion; percentage share, lb: zhan4-bi3--proportion}
+- {id: zh-hsk4-00903-s003, ch: 战斗, pr: zhàn dòu, ds: battle; combat, lb: zhan4-dou4--battle}
 # Row 5260: 战斗; 名、动.
 - {id: zh-hsk4-00903-s001, ch: 战斗, pr: zhàn dòu, ds: to fight; engage in combat, lb: zhan4-dou4--fight}
-- {id: zh-hsk4-00903-s003, ch: 战斗, pr: zhàn dòu, ds: battle; combat, lb: zhan4-dou4--battle}
 # Row 5261: 占据; 动.
 - {id: zh-hsk6-01017-s001, ch: 占据, pr: zhàn jù, ds: to occupy; hold, lb: zhan4-ju4--occupy}
 # Row 5262: 战胜; 动.
 - {id: zh-hsk4-00904-s001, ch: 战胜, pr: zhàn shèng, ds: to defeat; overcome, lb: zhan4-sheng4--defeat}
+- {id: zh-hsk5-00961-s006, ch: 占有, pr: zhàn yǒu, ds: to account for a share, lb: zhan4-you3--account}
 # Row 5263: 占有; 动.
 - {id: zh-hsk5-00961-s001, ch: 占有, pr: zhàn yǒu, ds: to possess; occupy, lb: zhan4-you3--possess}
-- {id: zh-hsk5-00961-s006, ch: 占有, pr: zhàn yǒu, ds: to account for a share, lb: zhan4-you3--account}
 # Row 5264: 战争; 名.
 - {id: zh-hsk4-00906-s001, ch: 战争, pr: zhàn zhēng, ds: war; armed conflict, lb: zhan4-zheng1--war}
 # Row 5265: 章; 量.
@@ -3787,38 +3832,38 @@
 - {id: zh-hsk2026-05267-s601, ch: 障碍, pr: zhàng ài, ds: to obstruct; hinder, lb: zhang4-ai4--obstruct}
 # Row 5268: 账单; 名.
 - {id: zh-hsk7-9-05227-s001, ch: 账单, pr: zhàng dān, ds: bill; account statement, lb: zhang4-dan1--bill}
+- {id: zh-hsk6-01033-s002, ch: 招, pr: zhāo, ds: to attract; incur; provoke, lb: zhao1--attract}
+- {id: zh-hsk6-01033-s003, ch: 招, pr: zhāo, ds: to beckon; signal with the hand, lb: zhao1--beckon}
+- {id: zh-hsk6-01033-s011, ch: 招, pr: zhāo, ds: to confess, lb: zhao1--confess}
 # Row 5269: 招; 动.
 - {id: zh-hsk6-01033-s001, ch: 招, pr: zhāo, ds: to recruit, lb: zhao1--recruit}
-- {id: zh-hsk6-01033-s003, ch: 招, pr: zhāo, ds: to beckon; signal with the hand, lb: zhao1--beckon}
-- {id: zh-hsk6-01033-s002, ch: 招, pr: zhāo, ds: to attract; incur; provoke, lb: zhao1--attract}
-- {id: zh-hsk6-01033-s011, ch: 招, pr: zhāo, ds: to confess, lb: zhao1--confess}
 # Row 5270: 招待; 动.
 - {id: zh-hsk7-9-05230-s001, ch: 招待, pr: zhāo dài, ds: to receive; entertain; serve guests, lb: zhao1-dai4--host}
 # Row 5271: 招生; 动.
 - {id: zh-hsk5-00967-s001, ch: 招生, pr: zhāo shēng, ds: to recruit or enroll students, lb: zhao1-sheng1--enroll}
-# Row 5272: 招手; 动.
-- {id: zh-hsk5-00968-s001, ch: 招手, pr: zhāo shǒu, ds: to wave; beckon, lb: zhao1-shou3--wave}
 # Row 5273: 招收; 动.
 - {id: zh-hsk7-9-05235-s001, ch: 招收, pr: zhāo shōu, ds: to recruit; take on, lb: zhao1-shou1--recruit}
+# Row 5272: 招手; 动.
+- {id: zh-hsk5-00968-s001, ch: 招手, pr: zhāo shǒu, ds: to wave; beckon, lb: zhao1-shou3--wave}
 # Row 5274: 照明; 动.
 - {id: zh-hsk7-9-05245-s003, ch: 照明, pr: zhào míng, ds: to illuminate; provide lighting, lb: zhao4-ming2--illuminate}
 # Row 5275: 折; 动.
 - {id: zh-hsk4-00911-s007, ch: 折, pr: zhé, ds: to break; snap, lb: zhe2--break}
-- {id: zh-hsk4-00911-s011, ch: 折, pr: zhé, ds: to fold; bend; turn, lb: zhe2--fold}
 - {id: zh-hsk4-00911-s016, ch: 折, pr: zhé, ds: to convert into an equivalent amount, lb: zhe2--convert}
+- {id: zh-hsk4-00911-s011, ch: 折, pr: zhé, ds: to fold; bend; turn, lb: zhe2--fold}
+- {id: zh-hsk4-00916-s003, ch: 针, pr: zhēn, ds: injection; shot, lb: zhen1--injection}
 # Row 5276: 针; 名.
 - {id: zh-hsk4-00916-s001, ch: 针, pr: zhēn, ds: needle; pin, lb: zhen1--needle}
-- {id: zh-hsk4-00916-s003, ch: 针, pr: zhēn, ds: injection; shot, lb: zhen1--injection}
 # Row 5277: 真相; 名.
 - {id: zh-hsk5-00974-s001, ch: 真相, pr: zhēn xiàng, ds: truth; actual facts, lb: zhen1-xiang4--truth}
 # Row 5278: 珍珠; 名.
 - {id: zh-hsk5-00971-s001, ch: 珍珠, pr: zhēn zhū, ds: pearl, lb: zhen1-zhu1--pearl}
 # Row 5279: 枕头; 名.
 - {id: zh-hsk7-9-05280-s001, ch: 枕头, pr: zhěn tou, ds: pillow, lb: zhen3-tou5--pillow}
+- {id: zh-hsk6-01039-s002, ch: 镇, pr: zhèn, ds: to calm; suppress; subdue, lb: zhen4--calm}
 # Row 5280: 镇; 动、名.
 - {id: zh-hsk6-01039-s007, ch: 镇, pr: zhèn, ds: town, lb: zhen4--town}
 - {id: zh-hsk6-01039-s001, ch: 镇, pr: zhèn, ds: to press or weigh down, lb: zhen4--weigh-down}
-- {id: zh-hsk6-01039-s002, ch: 镇, pr: zhèn, ds: to calm; suppress; subdue, lb: zhen4--calm}
 # Row 5281: 阵雨; 名.
 - {id: zh-hsk2026-05281-s001, ch: 阵雨, pr: zhèn yǔ, ds: rain shower, lb: zhen4-yu3--shower}
 # Row 5282: 睁; 动.
@@ -3837,28 +3882,28 @@
 - {id: zh-hsk6-01044-s001, ch: 政策, pr: zhèng cè, ds: policy, lb: zheng4-ce4--policy}
 # Row 5289: 正规; 形.
 - {id: zh-hsk5-00982-s001, ch: 正规, pr: zhèng guī, ds: standard; formal; properly organized, lb: zheng4-gui1--standard}
+- {id: zh-hsk7-9-05307-s005, ch: 正面, pr: zhèng miàn, ds: direct; straightforward, lb: zheng4-mian4--direct}
 # Row 5290: 正面; 名、形.
 - {id: zh-hsk7-9-05307-s001, ch: 正面, pr: zhèng miàn, ds: front; front side, lb: zheng4-mian4--front}
 - {id: zh-hsk7-9-05307-s004, ch: 正面, pr: zhèng miàn, ds: positive; favorable, lb: zheng4-mian4--positive}
-- {id: zh-hsk7-9-05307-s005, ch: 正面, pr: zhèng miàn, ds: direct; straightforward, lb: zheng4-mian4--direct}
 # Row 5291: 证实; 动.
 - {id: zh-hsk5-00985-s001, ch: 证实, pr: zhèng shí, ds: to confirm; verify, lb: zheng4-shi2--confirm}
+- {id: zh-hsk5-00984-s003, ch: 正义, pr: zhèng yì, ds: just; righteous, lb: zheng4-yi4--just}
 # Row 5292: 正义; 名、形.
 - {id: zh-hsk5-00984-s001, ch: 正义, pr: zhèng yì, ds: justice; righteousness, lb: zheng4-yi4--justice}
-- {id: zh-hsk5-00984-s003, ch: 正义, pr: zhèng yì, ds: just; righteous, lb: zheng4-yi4--just}
 # Row 5293: 症状; 名.
 - {id: zh-hsk6-01047-s001, ch: 症状, pr: zhèng zhuàng, ds: symptom of an illness, lb: zheng4-zhuang4--symptom}
-# Row 5294: 支2; 动.
-- {id: zh-hsk3-00883-s002, ch: 支, pr: zhī, ds: to support; prop up; erect, lb: zhi1--support}
-- {id: zh-hsk3-00883-s008, ch: 支, pr: zhī, ds: to withdraw or pay out money, lb: zhi1--withdraw}
 # Row 5295: 枝; 名、量.
 - {id: zh-hsk6-01051-s001, ch: 枝, pr: zhī, ds: branch, lb: zhi1--branch}
 - {id: zh-hsk6-01051-s002, ch: 枝, pr: zhī, ds: 'measure word for branches, flowers, or slender objects', lb: zhi1--branches}
+# Row 5294: 支2; 动.
+- {id: zh-hsk3-00883-s002, ch: 支, pr: zhī, ds: to support; prop up; erect, lb: zhi1--support}
+- {id: zh-hsk3-00883-s008, ch: 支, pr: zhī, ds: to withdraw or pay out money, lb: zhi1--withdraw}
 # Row 5296: 支撑; 动.
 - {id: zh-hsk6-01049-s001, ch: 支撑, pr: zhī chēng, ds: to support; prop up, lb: zhi1-cheng1--support}
+- {id: zh-hsk5-00991-s002, ch: 支出, pr: zhī chū, ds: expenses; expenditure, lb: zhi1-chu1--expenses}
 # Row 5297: 支出; 动、名.
 - {id: zh-hsk5-00991-s001, ch: 支出, pr: zhī chū, ds: to spend; pay out, lb: zhi1-chu1--spend}
-- {id: zh-hsk5-00991-s002, ch: 支出, pr: zhī chū, ds: expenses; expenditure, lb: zhi1-chu1--expenses}
 # Row 5298: 脂肪; 名.
 - {id: zh-hsk7-9-05328-s001, ch: 脂肪, pr: zhī fáng, ds: fat in the body or food, lb: zhi1-fang2--fat}
 # Row 5299: 之所以; 连.
@@ -3881,10 +3926,10 @@
 - {id: zh-hsk6-01060-s001, ch: 指定, pr: zhǐ dìng, ds: to designate; specify; appoint, lb: zhi3-ding4--designate}
 # Row 5308: 只顾; 副.
 - {id: zh-hsk6-01058-s001, ch: 只顾, pr: zhǐ gù, ds: only attending to; solely preoccupied with, lb: zhi3-gu4--only}
+- {id: zh-hsk2026-05309-s601, ch: 指挥, pr: zhǐ huī, ds: commander; person directing an operation, lb: zhi3-hui1--commander}
+- {id: zh-hsk4-00929-s004, ch: 指挥, pr: zhǐ huī, ds: conductor of an orchestra, lb: zhi3-hui1--conductor}
 # Row 5309: 指挥; 动、名.
 - {id: zh-hsk4-00929-s001, ch: 指挥, pr: zhǐ huī, ds: to command; direct; conduct, lb: zhi3-hui1--direct}
-- {id: zh-hsk4-00929-s004, ch: 指挥, pr: zhǐ huī, ds: conductor of an orchestra, lb: zhi3-hui1--conductor}
-- {id: zh-hsk2026-05309-s601, ch: 指挥, pr: zhǐ huī, ds: commander; person directing an operation, lb: zhi3-hui1--commander}
 # Row 5310: 指示; 动、名.
 - {id: zh-hsk5-01003-s001, ch: 指示, pr: zhǐ shì, ds: to indicate; point out, lb: zhi3-shi4--indicate}
 - {id: zh-hsk5-01003-s003, ch: 指示, pr: zhǐ shì, ds: to instruct; give directions, lb: zhi3-shi4--instruct}
@@ -3896,19 +3941,19 @@
 - {id: zh-hsk7-9-05360-s004, ch: 制, pr: zhì, ds: to make; manufacture, lb: zhi4--make}
 # Row 5313: 至关重要; .
 - {id: zh-hsk7-9-05358-s001, ch: 至关重要, pr: zhì guān zhòng yào, ds: vitally important; crucial, lb: zhi4-guan1-zhong4-yao4--crucial}
-# Row 5314: 智力; 名.
-- {id: zh-hsk4-00934-s001, ch: 智力, pr: zhì lì, ds: intelligence; intellect, lb: zhi4-li4--intelligence}
 # Row 5315: 治理; 动.
 - {id: zh-hsk5-01009-s001, ch: 治理, pr: zhì lǐ, ds: to govern; manage; bring under control, lb: zhi4-li3--govern}
+# Row 5314: 智力; 名.
+- {id: zh-hsk4-00934-s001, ch: 智力, pr: zhì lì, ds: intelligence; intellect, lb: zhi4-li4--intelligence}
 # Row 5316: 制品; 名.
 - {id: zh-hsk7-9-05363-s001, ch: 制品, pr: zhì pǐn, ds: manufactured goods; products, lb: zhi4-pin3--products}
 # Row 5317: 秩序; 名.
 - {id: zh-hsk7-9-05371-s001, ch: 秩序, pr: zhì xù, ds: order; orderly arrangement, lb: zhi4-xu4--order}
 # Row 5318: 质疑; 动.
 - {id: zh-hsk7-9-05370-s001, ch: 质疑, pr: zhì yí, ds: to question; cast doubt on, lb: zhi4-yi2--question}
+- {id: zh-hsk6-01064-s003, ch: 至于, pr: zhì yú, ds: to go so far as; reach the point of, lb: zhi4-yu2--extent}
 # Row 5319: 至于; 动、介.
 - {id: zh-hsk6-01064-s001, ch: 至于, pr: zhì yú, ds: as for; regarding, lb: zhi4-yu2--regarding}
-- {id: zh-hsk6-01064-s003, ch: 至于, pr: zhì yú, ds: to go so far as; reach the point of, lb: zhi4-yu2--extent}
 # Row 5320: 中等; 形.
 - {id: zh-hsk6-01067-s001, ch: 中等, pr: zhōng děng, ds: medium; intermediate, lb: zhong1-deng3--medium}
 # Row 5321: 终点; 名.
@@ -3926,9 +3971,9 @@
 - {id: zh-hsk5-01013-s004, ch: 中央, pr: zhōng yāng, ds: central government; central authorities, lb: zhong1-yang1--government}
 # Row 5327: 肿; 动.
 - {id: zh-hsk6-01073-s001, ch: 肿, pr: zhǒng, ds: to swell, lb: zhong3--swell}
+- {id: zh-hsk1-00482-s009, ch: 中, pr: zhòng, ds: to be struck or affected by, lb: zhong4--affected}
 # Row 5328: 中; 动.
 - {id: zh-hsk1-00482-s008, ch: 中, pr: zhòng, ds: to hit a target, lb: zhong4--hit}
-- {id: zh-hsk1-00482-s009, ch: 中, pr: zhòng, ds: to be struck or affected by, lb: zhong4--affected}
 - {id: zh-hsk1-00482-s011, ch: 中, pr: zhòng, ds: to win a prize or lottery, lb: zhong4--win}
 # Row 5329: 种地; 动.
 - {id: zh-hsk2026-05329-s001, ch: 种地, pr: zhòng dì, ds: to farm; cultivate land, lb: zhong4-di4--farm}
@@ -3938,18 +3983,20 @@
 - {id: zh-hsk4-00936-s001, ch: 中奖, pr: zhòng jiǎng, ds: to win a prize, lb: zhong4-jiang3--win}
 # Row 5332: 众人; 名.
 - {id: zh-hsk7-9-05403-s001, ch: 众人, pr: zhòng rén, ds: everyone present; all the people, lb: zhong4-ren2--everyone}
+- {id: zh-hsk2026-05333-s601, ch: 中暑, pr: zhòng shǔ, ds: heat illness; heatstroke or heat exhaustion, lb: zhong4-shu3--heatstroke}
 # Row 5333: 中暑; 名、动.
 - {id: zh-hsk2026-05333-s001, ch: 中暑, pr: zhòng shǔ, ds: to suffer heat illness, lb: zhong4-shu3--overheat}
-- {id: zh-hsk2026-05333-s601, ch: 中暑, pr: zhòng shǔ, ds: heat illness; heatstroke or heat exhaustion, lb: zhong4-shu3--heatstroke}
 # Row 5334: 众所周知; .
 - {id: zh-hsk7-9-05404-s001, ch: 众所周知, pr: zhòng suǒ zhōu zhī, ds: as everyone knows; widely known, lb: zhong4-suo3-zhou1-zhi1--well-known}
 # Row 5335: 重心; 名.
 - {id: zh-hsk7-9-05416-s001, ch: 重心, pr: zhòng xīn, ds: center of gravity, lb: zhong4-xin1--center-of-gravity}
 - {id: zh-hsk7-9-05416-s002, ch: 重心, pr: zhòng xīn, ds: main focus; central point, lb: zhong4-xin1--focus}
-# Row 5336: 州; 名.
-- {id: zh-hsk2026-05336-s601, ch: 州, pr: zhōu, ds: state; an administrative region within a country, lb: zhou1--state}
+# Row 492: 周; 名、（量）.
+- {id: zh-hsk2-00720-s007, ch: 周, pr: zhōu, ds: 'measure word for circuits, laps, or revolutions', lb: zhou1--laps}
 # Row 5337: 粥; 名.
 - {id: zh-hsk6-01077-s001, ch: 粥, pr: zhōu, ds: rice porridge; congee, lb: zhou1--porridge}
+# Row 5336: 州; 名.
+- {id: zh-hsk2026-05336-s601, ch: 州, pr: zhōu, ds: state; an administrative region within a country, lb: zhou1--state}
 # Row 5338: 周边; 名.
 - {id: zh-hsk7-9-05419-s001, ch: 周边, pr: zhōu biān, ds: surrounding area; periphery, lb: zhou1-bian1--surroundings}
 # Row 5339: 周到; 形.
@@ -3970,17 +4017,17 @@
 # Row 5346: 主导; 动、名.
 - {id: zh-hsk5-01022-s004, ch: 主导, pr: zhǔ dǎo, ds: to lead; dominate, lb: zhu3-dao3--lead}
 - {id: zh-hsk2026-05346-s601, ch: 主导, pr: zhǔ dǎo, ds: leading factor; dominant influence, lb: zhu3-dao3--leadership}
+- {id: zh-hsk5-01024-s003, ch: 主管, pr: zhǔ guǎn, ds: supervisor; manager, lb: zhu3-guan3--manager}
 # Row 5347: 主管; 动、名.
 - {id: zh-hsk5-01024-s001, ch: 主管, pr: zhǔ guǎn, ds: to be in charge of; supervise, lb: zhu3-guan3--supervise}
-- {id: zh-hsk5-01024-s003, ch: 主管, pr: zhǔ guǎn, ds: supervisor; manager, lb: zhu3-guan3--manager}
 # Row 5348: 主角; 名.
 - {id: zh-hsk6-01081-s001, ch: 主角, pr: zhǔ jué, ds: leading role; protagonist, lb: zhu3-jue2--protagonist}
 # Row 5349: 主流; 名.
 - {id: zh-hsk6-01082-s001, ch: 主流, pr: zhǔ liú, ds: main stream of a river, lb: zhu3-liu2--main-stream}
 - {id: zh-hsk6-01082-s003, ch: 主流, pr: zhǔ liú, ds: mainstream; dominant trend, lb: zhu3-liu2--mainstream}
+- {id: zh-hsk7-9-05440-s003, ch: 主演, pr: zhǔ yǎn, ds: lead performer, lb: zhu3-yan3--lead}
 # Row 5350: 主演; 动、名.
 - {id: zh-hsk7-9-05440-s001, ch: 主演, pr: zhǔ yǎn, ds: to star; play the leading role, lb: zhu3-yan3--star}
-- {id: zh-hsk7-9-05440-s003, ch: 主演, pr: zhǔ yǎn, ds: lead performer, lb: zhu3-yan3--lead}
 # Row 5351: 主张; 动、名.
 - {id: zh-hsk3-00920-s001, ch: 主张, pr: zhǔ zhāng, ds: to advocate; maintain a position, lb: zhu3-zhang1--advocate}
 - {id: zh-hsk3-00920-s003, ch: 主张, pr: zhǔ zhāng, ds: view; position; proposal, lb: zhu3-zhang1--view}
@@ -3998,9 +4045,9 @@
 - {id: zh-hsk4-00915-s002, ch: 著作, pr: zhù zuò, ds: written work; publication, lb: zhu4-zuo4--work}
 # Row 5358: 砖; 名.
 - {id: zh-hsk7-9-05469-s001, ch: 砖, pr: zhuān, ds: brick, lb: zhuan1--brick}
+- {id: zh-hsk2026-05359-s601, ch: 专科, pr: zhuān kē, ds: 'non-degree tertiary diploma program, usually two or three years', lb: zhuan1-ke1--diploma}
 # Row 5359: 专科; 名.
 - {id: zh-hsklegacy-11153-s001, ch: 专科, pr: zhuān kē, ds: specialized subject; medical specialty, lb: zhuan1-ke1--specialty}
-- {id: zh-hsk2026-05359-s601, ch: 专科, pr: zhuān kē, ds: 'non-degree tertiary diploma program, usually two or three years', lb: zhuan1-ke1--diploma}
 # Row 5360: 专利; 名.
 - {id: zh-hsk5-01034-s001, ch: 专利, pr: zhuān lì, ds: patent, lb: zhuan1-li4--patent}
 # Row 5361: 专题; 名.
@@ -4024,13 +4071,14 @@
 - {id: zh-hsk3-00929-s009, ch: 转, pr: zhuàn, ds: to stroll; walk around, lb: zhuan4--stroll}
 # Row 5370: 转动; 动.
 - {id: zh-hsk4-00948-s003, ch: 转动, pr: zhuàn dòng, ds: to rotate; revolve, lb: zhuan4-dong4--rotate}
+- {id: zh-hsk6-01091-s002, ch: 装备, pr: zhuāng bèi, ds: to equip; outfit, lb: zhuang1-bei4--equip}
 # Row 5371: 装备; 动、名.
 - {id: zh-hsk6-01091-s001, ch: 装备, pr: zhuāng bèi, ds: equipment, lb: zhuang1-bei4--equipment}
-- {id: zh-hsk6-01091-s002, ch: 装备, pr: zhuāng bèi, ds: to equip; outfit, lb: zhuang1-bei4--equip}
 # Row 5372: 庄稼; 名.
 - {id: zh-hsk7-9-05482-s001, ch: 庄稼, pr: zhuāng jia, ds: crops, lb: zhuang1-jia5--crops}
 # Row 5373: 追究; 动.
 - {id: zh-hsk6-01093-s001, ch: 追究, pr: zhuī jiū, ds: to investigate; pursue responsibility for, lb: zhui1-jiu1--investigate}
+- {id: zh-grammar-00118-s001, ch: 准, pr: zhǔn, ds: quasi-; nearly or about to become a member of a category, lb: zhun3--quasi}
 # Row 5374: 捉; 动.
 - {id: zh-hsk6-01094-s001, ch: 捉, pr: zhuō, ds: to catch; capture; seize, lb: zhuo1--catch}
 # Row 5375: 资本; 名.
@@ -4069,9 +4117,9 @@
 - {id: zh-hsk7-9-05562-s001, ch: 粽子, pr: zòng zi, ds: sticky rice dumpling wrapped in leaves, lb: zong4-zi5--rice-dumpling}
 # Row 5392: 走廊; 名.
 - {id: zh-hsk7-9-05566-s001, ch: 走廊, pr: zǒu láng, ds: corridor; hallway, lb: zou3-lang2--corridor}
+- {id: zh-hsk2026-05393-s601, ch: 足, pr: zú, ds: fully; as much as (emphasizing a quantity), lb: zu2--fully}
 # Row 5393: 足; 形、副.
 - {id: zh-hsk6-01109-s003, ch: 足, pr: zú, ds: sufficient; ample, lb: zu2--sufficient}
-- {id: zh-hsk2026-05393-s601, ch: 足, pr: zú, ds: fully; as much as (emphasizing a quantity), lb: zu2--fully}
 # Row 5394: 足以; 动.
 - {id: zh-hsk6-01110-s001, ch: 足以, pr: zú yǐ, ds: to be sufficient to; be enough to, lb: zu2-yi3--suffice}
 # Row 5395: 阻碍; 动、名.
@@ -4089,51 +4137,5 @@
 - {id: zh-hsk6-01115-s007, ch: 钻, pr: zuān, ds: to study intensively; delve into, lb: zuan1--study}
 # Row 5400: 罪; 名.
 - {id: zh-hsk6-01118-s001, ch: 罪, pr: zuì, ds: crime; guilt; wrongdoing, lb: zui4--crime}
-
-# Earlier-headword level-6 extensions, in original numbered-row order.
-# Row 358: 花2; 名、（形）.
-- {id: zh-hsk1-00152-s005, ch: 花, pr: huā, ds: patterned; multicolored; variegated, lb: hua1--patterned}
-# Row 431: 时; 名、（量）.
-- {id: zh-hsk3-00626-s005, ch: 时, pr: shí, ds: hour; unit of clock time, lb: shi2--hours}
-# Row 440: 疼; 形、（动）.
-- {id: zh-hsk2-00503-s002, ch: 疼, pr: téng, ds: to love dearly; cherish, lb: teng2--cherish}
-# Row 492: 周; 名、（量）.
-- {id: zh-hsk2-00720-s007, ch: 周, pr: zhōu, ds: 'measure word for circuits, laps, or revolutions', lb: zhou1--laps}
-# Row 573: 大概; 形、副、（名）.
-- {id: zh-hsk3-00120-s006, ch: 大概, pr: dà gài, ds: general idea; broad outline, lb: da4-gai4--outline}
-# Row 630: 封; 量、（动）.
-- {id: zh-hsk2-00160-s005, ch: 封, pr: fēng, ds: to seal; close off, lb: feng1--seal}
-- {id: zh-hsk2-00160-s002, ch: 封, pr: fēng, ds: to confer; bestow a title, lb: feng1--confer}
-# Row 685: 或; 连、（副）.
-- {id: zh-hsk2-00233-s001, ch: 或, pr: huò, ds: perhaps; possibly, lb: huo4--perhaps}
-# Row 775: 难; 形、（动）.
-- {id: zh-hsk2026-00775-s601, ch: 难, pr: nán, ds: to put someone in a difficult position; stump, lb: nan2--stump}
-# Row 1139: 倒; 动、（副）.
-- {id: zh-hsk2-00107-s012, ch: 倒, pr: dào, ds: contrary to expectations; rather; yet, lb: dao4--rather}
-# Row 1480: 另; 代、（副）.
-- {id: zh-hsk6-00537-s004, ch: 另, pr: lìng, ds: separately; additionally, lb: ling4--separately}
-# Row 1754: 土; 名、（形）.
-- {id: zh-hsk3-00712-s006, ch: 土, pr: tǔ, ds: local; indigenous; traditional, lb: tu3--local}
-- {id: zh-hsk3-00712-s009, ch: 土, pr: tǔ, ds: rustic; unfashionable; unsophisticated, lb: tu3--rustic}
 # Row 1999: 作用; 名、（动）.
 - {id: zh-hsk2-00745-s001, ch: 作用, pr: zuò yòng, ds: to act on; affect, lb: zuo4-yong4--affect}
-# Row 2497: 化; 后缀、（动）.
-- {id: zh-hsk3-00292-s001, ch: 化, pr: huà, ds: to change into; transform, lb: hua4--transform}
-- {id: zh-hsk2026-02497-s601, ch: 化, pr: huà, ds: to melt; dissolve, lb: hua4--melt}
-# Row 2677: 宽; 形、名、（动）.
-- {id: zh-hsk2026-02677-s601, ch: 宽, pr: kuān, ds: to relax; extend (a deadline or restriction), lb: kuan1--extend}
-- {id: zh-hsk2026-02677-s602, ch: 宽, pr: kuān, ds: to ease; relieve (worry or anxiety), lb: kuan1--relieve}
-# Row 2852: 齐; 形、（动、副）.
-- {id: zh-hsk3-00532-s009, ch: 齐, pr: qí, ds: to level; make even, lb: qi2--level}
-- {id: zh-hsk3-00532-s008, ch: 齐, pr: qí, ds: together; all at once, lb: qi2--together}
-
-# Grammar prerequisites: pinned syllabus grammar pp. 398-399.
-# 盘 platefuls is now HSK 3. 大都 uses the source's documented dà dōu variant.
-- {id: zh-hsk1-00096-s005, ch: 多, pr: duō, ds: multi-; poly-; in derived terms, lb: duo1--multi}
-- {id: zh-hsk6-00357-s001, ch: 好不容易, pr: hǎo bù róng yì, ds: with great difficulty; only after considerable effort, lb: hao3-bu4-rong2-yi4--difficulty}
-- {id: zh-grammar-00114-s001, ch: 超, pr: chāo, ds: super-; ultra-; beyond the ordinary limit, lb: chao1--super}
-- {id: zh-grammar-00115-s001, ch: 反, pr: fǎn, ds: anti-; counter-; opposing or reversing the following stem, lb: fan3--anti}
-- {id: zh-grammar-00116-s001, ch: 无, pr: wú, ds: un-; -less; lacking the following property or component, lb: wu2--without}
-- {id: zh-grammar-00117-s001, ch: 亚, pr: yà, ds: sub-; secondary or below a category in established formations, lb: ya4--sub}
-- {id: zh-grammar-00118-s001, ch: 准, pr: zhǔn, ds: quasi-; nearly or about to become a member of a category, lb: zhun3--quasi}
-- {id: zh-grammar-00119-s001, ch: 型, pr: xíng, ds: type classified by the preceding feature; type-forming suffix, lb: xing2--type}

@@ -32,6 +32,12 @@ describe('cumulative v2 grammar vocabulary', () => {
     expect(input.requirements.find(entry => entry.grammar === rule.lb)?.vocabulary).toContain(cupfuls.lb)
   })
 
+  it('exposes cumulative lexical prerequisites for lesson sequencing', () => {
+    const result = auditGrammarVocabulary(loadGrammarVocabulary())
+    expect(result.requiredVocabulary['s-shi4-n--identity']).toContain('shi4--identity')
+    expect(result.requiredVocabulary['num-bei1-drink--cups']).toContain('bei1--cupfuls')
+  })
+
   it('requires cupful vocabulary at HSK 1, not only the container word or a later entry', () => {
     const input = fixture()
     expect(auditGrammarVocabulary(input).errors).toEqual([])
