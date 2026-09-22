@@ -1,9 +1,10 @@
-# HSK 1: 300 headwords, 355 selected senses.
+# HSK 1: 361 selected senses, including grammar prerequisites.
+# Numbered-vocabulary baseline: 300 headwords, 355 senses.
 # Basis: November 2025 exam syllabus, effective July 2026.
 # Ordered by syllabus row, with distinct beginner senses adjacent.
-# Level-specific parts of speech govern selection; higher-level senses are excluded.
+# Level-specific parts of speech govern the baseline; grammar prerequisites follow.
 # English descriptions are an editorial draft, not an official sense list or a
-# claim of exam readiness. No lessons, grammar, assessments, or app wiring yet.
+# claim of exam readiness. Vocabulary presence alone is not demonstrated knowledge.
 #
 # Fields: id = stable sense reference; ch = simplified Chinese; pr = citation
 # pinyin; ds = concise English description; lb = human-readable authoring label.
@@ -33,7 +34,7 @@
 - {id: zh-hsk1-00001-s001, ch: 爱, pr: ài, ds: 'to love; like very much', lb: ai4--love}
 - {id: zh-hsk1-00003-s001, ch: 八, pr: bā, ds: eight, lb: ba1--eight}
 - {id: zh-hsk1-00005-s001, ch: 爸爸, pr: bà ba, ds: 'dad; father', lb: ba4-ba5--dad}
-- {id: zh-hsk1-00006-s004, ch: 吧, pr: ba, ds: 'sentence ending for a suggestion or seeking agreement', lb: ba5--suggestion}
+- {id: zh-hsk1-00006-s004, ch: 吧, pr: ba, ds: 'sentence ending for a suggestion, tentative judgement or seeking confirmation', lb: ba5--suggestion}
 - {id: zh-hsk1-00008-s001, ch: 白天, pr: bái tiān, ds: daytime, lb: bai2-tian1--daytime}
 - {id: zh-hsk1-00009-s002, ch: 百, pr: bǎi, ds: hundred, lb: bai3--hundred}
 - {id: zh-hsk1-00011-s001, ch: 半, pr: bàn, ds: half, lb: ban4--half}
@@ -85,7 +86,7 @@
 - {id: zh-hsk1-00094-s002, ch: 对, pr: duì, ds: 'to; toward (someone or something)', lb: dui4--toward}
 - {id: zh-hsk1-00095-s001, ch: 对不起, pr: duì bu qǐ, ds: "I'm sorry", lb: dui4-bu5-qi3--sorry}
 - {id: zh-hsk1-00096-s001, ch: 多, pr: duō, ds: 'many; much', lb: duo1--many}
-- {id: zh-hsk1-00096-s004, ch: 多, pr: duō, ds: 'how (before an adjective, as in how old)', lb: duo1--how}
+- {id: zh-hsk1-00096-s004, ch: 多, pr: duō, ds: how; expressing degree in a question or exclamation, lb: duo1--how}
 - {id: zh-hsk1-00097-s004, ch: 多少, pr: duō shao, ds: 'how many; how much', lb: duo1-shao5--quantity}
 - {id: zh-hsk1-00099-s001, ch: 儿子, pr: ér zi, ds: son, lb: er2-zi5--son}
 - {id: zh-hsk1-00100-s001, ch: 二, pr: èr, ds: two, lb: er4--two}
@@ -129,7 +130,7 @@
 - {id: zh-hsk1-00149-s007, ch: 后, pr: hòu, ds: 'behind; at the back', lb: hou4--behind}
 - {id: zh-hsk1-00149-s010, ch: 后, pr: hòu, ds: 'after; later than', lb: hou4--after}
 - {id: zh-hsk1-00155-s002, ch: 回, pr: huí, ds: 'to return; go back', lb: hui2--return}
-- {id: zh-hsk1-00161-s001, ch: 会, pr: huì, ds: 'can; know how to do something', lb: hui4--ability}
+- {id: zh-hsk1-00161-s001, ch: 会, pr: huì, ds: can; know how to do something; acquire a skill as a result complement, lb: hui4--ability}
 - {id: zh-hsk1-00162-s001, ch: 火车, pr: huǒ chē, ds: train, lb: huo3-che1--train}
 - {id: zh-hsk1-00165-s001, ch: 鸡蛋, pr: jī dàn, ds: chicken egg, lb: ji1-dan4--egg}
 - {id: zh-hsk1-00166-s003, ch: 几, pr: jǐ, ds: how many (usually a small number), lb: ji3--quantity}
@@ -385,3 +386,14 @@
 - {id: zh-hsk1-00506-s001, ch: 做, pr: zuò, ds: to make, lb: zuo4--make}
 - {id: zh-hsk1-00506-s003, ch: 做, pr: zuò, ds: to do, lb: zuo4--do}
 - {id: zh-hsk2-00750-s001, ch: 做饭, pr: zuò fàn, ds: 'to cook; prepare a meal', lb: zuo4-fan4--cook}
+
+# Grammar prerequisites: original editorial selections from this band's grammar,
+# printed pp. 383-385 of the pinned syllabus; not additional official word rows.
+# Retained identities come from the attributed local reference-senses inventory.
+# New zh-grammar IDs are local lexical allocations; see the v2 README.
+- {id: zh-hsk1-00018-s003, ch: 杯, pr: bēi, ds: measure word for cupfuls or glassfuls of liquid, lb: bei1--cupfuls}
+- {id: zh-hsk1-00235-s001, ch: 没, pr: méi, ds: not have; have not; did not, lb: mei2--negation}
+- {id: zh-hsk1-00212-s003, ch: 了, pr: le, ds: sentence ending intensifying an evaluation, lb: le5--intensify}
+- {id: zh-grammar-00001-s001, ch: 小, pr: xiǎo, ds: familiar surname prefix often used for someone younger, lb: xiao3--familiar}
+- {id: zh-grammar-00002-s001, ch: 在, pr: zài, ds: at; on; during; introducing a time, lb: zai4--time}
+- {id: zh-hsk2-00661-s001, ch: 有一点儿, pr: yǒu yī diǎn r, ds: a little; somewhat before an adjective, lb: you3-yi1-dian3-r5--somewhat}

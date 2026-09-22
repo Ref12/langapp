@@ -1,10 +1,12 @@
 # Curated v2 Chinese vocabulary: combined HSK 7-9 advanced band.
-# 6814 incremental senses for numbered rows 5401-11000 and 22 earlier-row
+# 6861 incremental senses including grammar prerequisites.
+# Baseline: 6814 senses for numbered rows 5401-11000 and 22 earlier-row
 # advanced extensions. Already-taught senses are not emitted again.
 # The November 2025 examination syllabus, effective July 2026, defines one
 # combined advanced inventory, NOT three separate level 7/8/9 word lists.
-# Numbered rows are not unique spellings or senses. With frozen HSK 1-6:
+# Numbered rows are not unique spellings or senses. Before grammar reconciliation:
 # 13807 senses and 10896 written forms across 11000 numbered rows.
+# The current cumulative inventory has 13947 senses, including grammar additions.
 #
 # Fields: id, ch, pr, ds, lb. Pinyin is syllable-separated citation pronunciation;
 # labels use numbered tones, neutral5, v for umlaut-u and r5 for erhua.
@@ -6887,3 +6889,54 @@
 - {id: zh-hsk4-00529-s008, ch: 盘, pr: pán, ds: to check; to examine, lb: pan2--check}
 - {id: zh-hsk4-00529-s010, ch: 盘, pr: pán, ds: to transfer ownership of a business or property, lb: pan2--transfer-ownership}
 - {id: zh-hsk2026-05253-s701, ch: 则, pr: zé, ds: 'particle after numerals to enumerate reasons, as in first and second', lb: ze2--reason-enumeration-particle}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 400-403.
+# Retained dictionary identities and original, narrowly scoped grammatical cues;
+# these are not extra numbered official vocabulary rows.
+- {id: zh-hsk1-00149-s012, ch: 后, pr: hòu, ds: post-; following an era or movement, lb: hou4--post-prefix}
+- {id: zh-hsk3-00548-s012, ch: 亲, pr: qīn, ds: pro-; favoring an affiliation, lb: qin1--pro-prefix}
+- {id: zh-hsk5-00302-s002, ch: 鬼, pr: guǐ, ds: person characterized by a vice or disparaged trait; suffix, lb: gui3--person-suffix}
+- {id: zh-hsk7-9-05360-s001, ch: 制, pr: zhì, ds: system; institutional arrangement, lb: zhi4--system}
+- {id: zh-hsk7-9-05041-s002, ch: 有所, pr: yǒu suǒ, ds: to some extent; to some degree, lb: you3-suo3--to-some-extent}
+- {id: zh-hsk7-9-05510-s001, ch: 兹, pr: zī, ds: now; on this occasion; in formal announcements, lb: zi1--now}
+- {id: zh-hsk1-00489-s005, ch: 重, pr: chóng, ds: measure word for layers or successive barriers, lb: chong2--layers}
+- {id: zh-hsk2-00522-s009, ch: 通, pr: tòng, ds: measure word for a bout of speech or action, lb: tong4--action-bout}
+- {id: zh-hsk7-9-04846-s001, ch: 一个劲儿, pr: yī gè jìn r, ds: continuously; persistently without letup, lb: yi1-ge4-jin4-r5--persistently}
+- {id: zh-hsk4-00561-s003, ch: 切, pr: qiè, ds: definitely; absolutely; reinforcing a prohibition, lb: qie4--absolutely-not}
+- {id: zh-hsk7-9-02933-s001, ch: 乃, pr: nǎi, ds: to be; is; in literary identification or judgement, lb: nai3--be}
+- {id: zh-hsk7-9-00753-s002, ch: 当着, pr: dāng zhe, ds: in the presence of, lb: dang1-zhe5--in-presence-of}
+- {id: zh-hsk7-9-01049-s001, ch: 反过来, pr: fǎn guo lái, ds: conversely; from the reverse perspective, lb: fan3-guo5-lai2--conversely}
+- {id: zh-hsk1-00153-s003, ch: 话, pr: huà, ds: speech; spoken words; what someone said, lb: hua4--spoken-words}
+- {id: zh-hsk7-9-05257-s001, ch: 这样一来, pr: zhè yàng yī lái, ds: as a result of this; thus, lb: zhe4-yang4-yi1-lai2--thus}
+- {id: zh-hsk7-9-05276-s001, ch: 真是的, pr: zhēn shi de, ds: really!; expressing annoyance or reproach, lb: zhen1-shi5-de5--reproach-exclamation}
+- {id: zh-hsk7-9-05552-s001, ch: 综上所述, pr: zōng shàng suǒ shù, ds: to sum up the preceding discussion, lb: zong1-shang4-suo3-shu4--to-sum-up}
+- {id: zh-hsk7-9-04812-s002, ch: 要命, pr: yào mìng, ds: extremely; terribly; as a degree intensifier, lb: yao4-ming4--extremely}
+- {id: zh-hsk7-9-00301-s001, ch: 不知, pr: bù zhī, ds: not to know, lb: bu4-zhi1--not-know}
+- {id: zh-hsk7-9-02896-s001, ch: 莫过于, pr: mò guò yú, ds: nothing surpasses; nothing more than, lb: mo4-guo4-yu2--nothing-surpasses}
+- {id: zh-hsk7-9-01035-s006, ch: 凡, pr: fán, ds: every; all those meeting a condition, lb: fan2--every}
+- {id: zh-grammar-00201-s001, ch: 观, pr: guān, ds: view or conception of a domain; suffix, lb: guan1--outlook-suffix}
+- {id: zh-grammar-00202-s001, ch: 然, pr: rán, ds: state or manner suffix in established words, lb: ran2--state-suffix}
+- {id: zh-grammar-00203-s001, ch: 犯不着, pr: fàn bù zháo, ds: not worth the trouble; no need to, lb: fan4-bu4-zhao2--not-worth}
+- {id: zh-grammar-00204-s001, ch: 犯得着, pr: fàn de zháo, ds: to be worth the trouble; often questioned rhetorically, lb: fan4-de5-zhao2--worth-trouble}
+- {id: zh-grammar-00205-s001, ch: 可否, pr: kě fǒu, ds: whether possible or permissible; may ...?, lb: ke3-fou3--whether-possible}
+- {id: zh-grammar-00206-s001, ch: 彼, pr: bǐ, ds: that; the other; literary, lb: bi3--that-other}
+- {id: zh-grammar-00207-s001, ch: 这么着, pr: zhè me zhe, ds: in this way; like this, lb: zhe4-me5-zhe5--this-way}
+- {id: zh-grammar-00208-s001, ch: 频, pr: pín, ds: frequently; repeatedly; written usage, lb: pin2--frequently}
+- {id: zh-grammar-00209-s001, ch: 一个劲, pr: yī gè jìn, ds: continuously; persistently without letup, lb: yi1-ge4-jin4--persistently}
+- {id: zh-grammar-00210-s001, ch: 截然, pr: jié rán, ds: sharply; completely; in expressions of difference, lb: jie2-ran2--sharply-different}
+- {id: zh-grammar-00211-s001, ch: 何尝, pr: hé cháng, ds: ever; rhetorical usage implying the opposite assertion, lb: he2-chang2--rhetorical-ever}
+- {id: zh-grammar-00212-s001, ch: 也罢, pr: yě bà, ds: so be it; resigned acceptance, lb: ye3-ba4--so-be-it}
+- {id: zh-grammar-00213-s001, ch: 也罢, pr: yě bà, ds: whether ... or ...; either alternative accepted, lb: ye3-ba4--either-alternative}
+- {id: zh-grammar-00214-s001, ch: 忽, pr: hū, ds: now ... now ...; abruptly alternating states, lb: hu1--alternating}
+- {id: zh-grammar-00215-s001, ch: 简言之, pr: jiǎn yán zhī, ds: briefly; in short, lb: jian3-yan2-zhi1--in-short}
+- {id: zh-grammar-00216-s001, ch: 简而言之, pr: jiǎn ér yán zhī, ds: to put it briefly; in short, lb: jian3-er2-yan2-zhi1--in-short}
+- {id: zh-grammar-00217-s001, ch: 份上, pr: fèn shang, ds: point; degree reached by a situation, lb: fen4-shang5--point-reached}
+- {id: zh-grammar-00218-s001, ch: 个, pr: ge, ds: links a verb to a resultant state or extent; not counting, lb: ge5--result-extent}
+- {id: zh-grammar-00219-s001, ch: 头儿, pr: tou r, ds: nominal suffix for an activity's point or attraction, lb: tou5-r5--activity-nominalizer}
+- {id: zh-grammar-00220-s001, ch: 视, pr: shì, ds: according to; depending on circumstances, lb: shi4--depending-on}
+- {id: zh-grammar-00221-s001, ch: 纵使, pr: zòng shǐ, ds: even if; even supposing, lb: zong4-shi3--even-if}
+- {id: zh-grammar-00222-s001, ch: 为, pr: wéi, ds: suffix in selected degree adverbs, lb: wei2--degree-adverb-suffix}
+- {id: zh-grammar-00223-s001, ch: 致以, pr: zhì yǐ, ds: to extend or convey formal greetings or respect, lb: zhi4-yi3--extend-greetings}
+- {id: zh-grammar-00224-s001, ch: 假若, pr: jiǎ ruò, ds: if; supposing that, lb: jia3-ruo4--if}
+- {id: zh-grammar-00225-s001, ch: 以至, pr: yǐ zhì, ds: to the extent that; resulting in, lb: yi3-zhi4--consequent-result}
+- {id: zh-grammar-00226-s001, ch: 起见, pr: qǐ jiàn, ds: for the sake or purpose of a preceding goal, lb: qi3-jian4--for-sake-of}

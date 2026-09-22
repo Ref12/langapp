@@ -1,5 +1,6 @@
 # HSK 6 additions to the earlier v2 levels; not a standalone cumulative list.
-# 2265 selected senses: 2245 for all 1,800 numbered rows 3601-5400,
+# 2272 incremental senses after grammar-prerequisite additions and earlier moves.
+# Baseline: 2265 senses, 2245 for all 1,800 numbered rows 3601-5400,
 # then 20 level-6 uses on 15 earlier numbered rows.
 # Earlier extensions: 358, 431, 440, 492, 573, 630, 685, 775, 1139, 1480,
 # 1754, 1999, 2497, 2677, and 2852. Numbered rows, spellings, readings, and
@@ -594,7 +595,7 @@
 # Row 3846: 大地; 名.
 - {id: zh-hsk7-9-00687-s001, ch: 大地, pr: dà dì, ds: the earth; the land, lb: da4-di4--earth}
 # Row 3847: 大都; 副.
-- {id: zh-hsk5-00156-s005, ch: 大都, pr: dà dū, ds: mostly; for the most part, lb: da4-du1--mostly}
+- {id: zh-hsk5-00156-s005, ch: 大都, pr: dà dōu, ds: mostly; for the most part, lb: da4-dou1--mostly}
 # Row 3848: 大方; 形.
 - {id: zh-hsk4-00135-s005, ch: 大方, pr: dà fang, ds: generous, lb: da4-fang5--generous}
 - {id: zh-hsk4-00135-s007, ch: 大方, pr: dà fang, ds: tasteful; stylish, lb: da4-fang5--tasteful}
@@ -2239,7 +2240,6 @@
 # Row 4569: 排名; 动.
 - {id: zh-hsk3-00511-s001, ch: 排名, pr: pái míng, ds: to rank; place in order, lb: pai2-ming2--rank}
 # Row 4570: 盘; 量、（动）.
-- {id: zh-hsk4-00529-s012, ch: 盘, pr: pán, ds: measure word for platefuls of food, lb: pan2--platefuls}
 - {id: zh-hsk4-00529-s013, ch: 盘, pr: pán, ds: measure word for coils or reels, lb: pan2--coils}
 - {id: zh-hsk4-00529-s014, ch: 盘, pr: pán, ds: measure word for games of chess or similar games, lb: pan2--games}
 # Row 4571: 盼望; 动.
@@ -4126,3 +4126,14 @@
 # Row 2852: 齐; 形、（动、副）.
 - {id: zh-hsk3-00532-s009, ch: 齐, pr: qí, ds: to level; make even, lb: qi2--level}
 - {id: zh-hsk3-00532-s008, ch: 齐, pr: qí, ds: together; all at once, lb: qi2--together}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 398-399.
+# 盘 platefuls is now HSK 3. 大都 uses the source's documented dà dōu variant.
+- {id: zh-hsk1-00096-s005, ch: 多, pr: duō, ds: multi-; poly-; in derived terms, lb: duo1--multi}
+- {id: zh-hsk6-00357-s001, ch: 好不容易, pr: hǎo bù róng yì, ds: with great difficulty; only after considerable effort, lb: hao3-bu4-rong2-yi4--difficulty}
+- {id: zh-grammar-00114-s001, ch: 超, pr: chāo, ds: super-; ultra-; beyond the ordinary limit, lb: chao1--super}
+- {id: zh-grammar-00115-s001, ch: 反, pr: fǎn, ds: anti-; counter-; opposing or reversing the following stem, lb: fan3--anti}
+- {id: zh-grammar-00116-s001, ch: 无, pr: wú, ds: un-; -less; lacking the following property or component, lb: wu2--without}
+- {id: zh-grammar-00117-s001, ch: 亚, pr: yà, ds: sub-; secondary or below a category in established formations, lb: ya4--sub}
+- {id: zh-grammar-00118-s001, ch: 准, pr: zhǔn, ds: quasi-; nearly or about to become a member of a category, lb: zhun3--quasi}
+- {id: zh-grammar-00119-s001, ch: 型, pr: xíng, ds: type classified by the preceding feature; type-forming suffix, lb: xing2--type}

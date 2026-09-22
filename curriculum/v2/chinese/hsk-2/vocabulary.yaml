@@ -1,12 +1,13 @@
 # HSK 2 additions to hsk-1\vocabulary.yaml; not a standalone cumulative list.
-# 259 additional senses: 253 for rows 301-500 and six new uses of earlier words.
+# 280 incremental senses after grammar-prerequisite reconciliation.
+# Baseline: 259 senses, 253 for rows 301-500 and six new uses of earlier words.
 # Basis: November 2025 exam syllabus, effective July 2026.
 # Covers numbered rows 301-500, then the new HSK 2 uses explicitly marked on
 # earlier rows 46 (多), 61 (给), 71 (好), and 136 (那).
 # The 200 numbered rows have 198 written forms: 过 and 花 each have two rows;
 # 点 was already introduced with a different use in HSK 1. Together, the first
 # 500 syllabus rows have 497 distinct written forms, not 500 distinct spellings.
-# Higher-level parenthesized parts of speech are excluded. English descriptions
+# The baseline excludes later parts of speech; grammar prerequisites follow. Descriptions
 # are a curated draft, not an official sense list or a claim of exam readiness.
 # No lessons, grammar inventory, assessments, or app wiring are added here.
 #
@@ -76,7 +77,7 @@
 - {id: zh-hsk1-00060-s003, ch: 打开, pr: dǎ kāi, ds: to turn on, lb: da3-kai1--activate}
 - {id: zh-hsk2-00101-s001, ch: 但, pr: dàn, ds: 'but; however', lb: dan4--but}
 - {id: zh-hsk2-00102-s001, ch: 但是, pr: dàn shì, ds: 'but; however', lb: dan4-shi4--but}
-- {id: zh-hsk2-00115-s013, ch: 得, pr: de, ds: links an action to a description of how it is done, lb: de5--manner}
+- {id: zh-hsk2-00115-s013, ch: 得, pr: de, ds: 'links a verb or adjective to a complement of manner, result, degree or possibility', lb: de5--manner}
 - {id: zh-hsk1-00066-s001, ch: 地, pr: de, ds: links a description to the action that follows, lb: de5--adverbial}
 - {id: zh-hsk1-00073-s006, ch: 等, pr: děng, ds: to wait for, lb: deng3--wait}
 - {id: zh-hsk2-00112-s001, ch: 地铁, pr: dì tiě, ds: 'subway; metro', lb: di4-tie3--subway}
@@ -135,7 +136,7 @@
 - {id: zh-hsk2-00283-s001, ch: 经常, pr: jīng cháng, ds: 'often; regularly', lb: jing1-chang2--often}
 - {id: zh-hsk2-00287-s003, ch: 酒店, pr: jiǔ diàn, ds: hotel, lb: jiu3-dian4--hotel}
 - {id: zh-hsk1-00188-s001, ch: 就, pr: jiù, ds: 'then; in that case', lb: jiu4--then}
-- {id: zh-hsk1-00188-s003, ch: 就, pr: jiù, ds: 'just; exactly (for emphasis)', lb: jiu4--exactly}
+- {id: zh-hsk1-00188-s003, ch: 就, pr: jiù, ds: just; exactly; nothing else but, lb: jiu4--exactly}
 - {id: zh-hsk1-00188-s004, ch: 就, pr: jiù, ds: only (a small amount), lb: jiu4--only}
 - {id: zh-hsk3-00396-s001, ch: 咖啡, pr: kā fēi, ds: coffee, lb: ka1-fei1--coffee}
 - {id: zh-hsk3-00399-s001, ch: 开始, pr: kāi shǐ, ds: 'to begin; start', lb: kai1-shi3--begin}
@@ -285,7 +286,7 @@
 - {id: zh-hsk2-00730-s001, ch: 自己, pr: zì jǐ, ds: oneself, lb: zi4-ji3--self}
 - {id: zh-hsk2-00730-s002, ch: 自己, pr: zì jǐ, ds: one's own, lb: zi4-ji3--own}
 - {id: zh-hsk1-00496-s001, ch: 走, pr: zǒu, ds: to walk, lb: zou3--walk}
-- {id: zh-hsk1-00496-s006, ch: 走, pr: zǒu, ds: to leave, lb: zou3--leave}
+- {id: zh-hsk1-00496-s006, ch: 走, pr: zǒu, ds: to leave; go away; also departure as a result complement, lb: zou3--leave}
 - {id: zh-hsk1-00497-s001, ch: 走路, pr: zǒu lù, ds: to walk, lb: zou3-lu4--walk}
 - {id: zh-hsk3-00948-s003, ch: 足球, pr: zú qiú, ds: soccer (the sport), lb: zu2-qiu2--soccer}
 - {id: zh-hsk3-00948-s001, ch: 足球, pr: zú qiú, ds: soccer ball, lb: zu2-qiu2--ball}
@@ -301,3 +302,28 @@
 - {id: zh-hsk1-00123-s002, ch: 给, pr: gěi, ds: for (introducing who benefits from an action), lb: gei3--for}
 - {id: zh-hsk1-00140-s006, ch: 好, pr: hǎo, ds: 'so; very (for emphasis)', lb: hao3--very}
 - {id: zh-hsk1-00258-s005, ch: 那, pr: nà, ds: 'then; in that case', lb: na4--then}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 386-388.
+# 好多 and 常 are brought forward from the HSK 3 vocabulary selection, unchanged.
+- {id: zh-hsk2-00205-s001, ch: 好多, pr: hǎo duō, ds: many; a lot of, lb: hao3-duo1--many}
+- {id: zh-hsk1-00039-s004, ch: 常, pr: cháng, ds: often; frequently, lb: chang2--often}
+# Additional grammatical uses; retained identities or local zh-grammar allocations.
+- {id: zh-hsk1-00449-s001, ch: 有时候, pr: yǒu shí hou, ds: sometimes, lb: you3-shi2-hou5--sometimes}
+- {id: zh-hsk1-00091-s004, ch: 都, pr: dōu, ds: already; with emphasis, lb: dou1--already}
+- {id: zh-hsk1-00427-s003, ch: 要, pr: yào, ds: will; be about to, lb: yao4--about-to}
+- {id: zh-hsk1-00459-s003, ch: 再, pr: zài, ds: then; after the preceding action, lb: zai4--then}
+- {id: zh-hsk1-00188-s002, ch: 就, pr: jiù, ds: immediately after an action or trigger, lb: jiu4--immediately-after}
+- {id: zh-hsk1-00135-s002, ch: 还是, pr: hái shi, ds: had better; preferably, lb: hai2-shi5--better}
+- {id: zh-hsk1-00055-s003, ch: 从, pr: cóng, ds: through; via a route, lb: cong2--via}
+- {id: zh-hsk1-00071-s003, ch: 的, pr: de, ds: forms a nominal expression with an understood head, lb: de5--nominalizer}
+- {id: zh-hsk1-00071-s004, ch: 的, pr: de, ds: sentence ending expressing emphasis or assurance, lb: de5--assurance}
+- {id: zh-hsk1-00140-s007, ch: 好, pr: hǎo, ds: result complement marking satisfactory completion or readiness, lb: hao3--completed}
+- {id: zh-hsk1-00176-s003, ch: 叫, pr: jiào, ds: to tell or order someone to act, lb: jiao4--instruct}
+- {id: zh-hsk1-00431-s004, ch: 一, pr: yī, ds: as soon as; introducing a trigger, lb: yi1--as-soon-as}
+- {id: zh-hsk1-00340-s004, ch: 是, pr: shì, ds: marks emphatic assertion or focus, lb: shi4--emphasis}
+- {id: zh-hsk1-00049-s009, ch: 出, pr: chū, ds: complement indicating outward direction or an achieved result, lb: chu1--result}
+- {id: zh-grammar-00003-s001, ch: 什么的, pr: shén me de, ds: and similar things; and so on, lb: shen2-me5-de5--and-so-on}
+- {id: zh-grammar-00004-s001, ch: 就, pr: jiù, ds: as early as; earlier than expected, lb: jiu4--earlier-than-expected}
+- {id: zh-grammar-00005-s001, ch: 有, pr: yǒu, ds: to reach a stated amount or comparison degree, lb: you3--reach-degree}
+- {id: zh-grammar-00006-s001, ch: 没有, pr: méi yǒu, ds: not as ... as; below a comparison degree, lb: mei2-you3--less-than}
+- {id: zh-grammar-00007-s001, ch: 呢, pr: ne, ds: adds a context-sensitive questioning tone, lb: ne5--question}

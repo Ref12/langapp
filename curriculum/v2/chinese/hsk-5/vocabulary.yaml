@@ -1,5 +1,6 @@
 # HSK 5 additions to the v2 Chinese curriculum; not a cumulative standalone list.
-# 2218 selected senses: 2155 for numbered rows 2001-3600, then
+# 2222 incremental senses after grammar-prerequisite additions and earlier moves.
+# Baseline: 2218 senses, 2155 for numbered rows 2001-3600, then
 # 63 new uses on 38 earlier rows. All 1600 new numbered rows are represented.
 # Basis: November 2025 HSK exam syllabus, effective July 2026, not GF0025-2021.
 # Numbered rows, written forms and selected senses are different counts.
@@ -1525,7 +1526,6 @@
 - {id: zh-hsk6-00747-s005, ch: 顺, pr: shùn, ds: along, lb: shun4--along}
 - {id: zh-hsk6-00747-s006, ch: 顺, pr: shùn, ds: smooth; favorable, lb: shun4--smooth}
 - {id: zh-hsk4-00658-s001, ch: 说不定, pr: shuō bu dìng, ds: to be unable to say for certain, lb: shuo1-bu5-ding4--uncertain}
-- {id: zh-hsk4-00658-s002, ch: 说不定, pr: shuō bu dìng, ds: maybe, lb: shuo1-bu5-ding4--maybe}
 - {id: zh-hsk4-00659-s001, ch: 说服, pr: shuō fú, ds: to persuade; convince, lb: shuo1-fu2--persuade}
 - {id: zh-hsk4-00660-s001, ch: 思考, pr: sī kǎo, ds: to think over; reflect on, lb: si1-kao3--ponder}
 - {id: zh-hsk2026-03078-s501, ch: 私人, pr: sī rén, ds: private individual; a person rather than a public body, lb: si1-ren2--private-person}
@@ -1556,7 +1556,6 @@
 - {id: zh-hsk4-00670-s001, ch: 缩短, pr: suō duǎn, ds: to shorten; reduce duration, lb: suo1-duan3--shorten}
 - {id: zh-hsk4-00671-s003, ch: 缩小, pr: suō xiǎo, ds: to shrink; reduce in size, lb: suo1-xiao3--shrink}
 - {id: zh-hsk3-00676-s002, ch: 所, pr: suǒ, ds: place; institution, lb: suo3--place}
-- {id: zh-hsk3-00676-s003, ch: 所, pr: suǒ, ds: measure word for buildings or institutions, lb: suo3--institutions}
 - {id: zh-hsk5-00730-s001, ch: 锁, pr: suǒ, ds: to lock, lb: suo3--lock}
 - {id: zh-hsk5-00730-s002, ch: 锁, pr: suǒ, ds: a lock, lb: suo3--lock-noun}
 - {id: zh-hsk7-9-03951-s001, ch: 他人, pr: tā rén, ds: other people; someone else, lb: ta1-ren2--others}
@@ -2203,7 +2202,6 @@
 
 # Earlier-word extensions explicitly marked for HSK 5, in original row order.
 # Row 304: 班; new POS: classifier.
-- {id: zh-hsk1-00010-s005, ch: 班, pr: bān, ds: measure word for groups of people or scheduled transport services, lb: ban1--groups}
 # Row 310: 笔; new POS: classifier.
 - {id: zh-hsk2-00020-s006, ch: 笔, pr: bǐ, ds: measure word for sums of money or transactions, lb: bi3--sums}
 # Row 345: 跟; new POS: noun, verb.
@@ -2290,7 +2288,6 @@
 # Row 1642: 深; new POS: adverb.
 - {id: zh-hsk2026-01642-s501, ch: 深, pr: shēn, ds: deeply; profoundly, lb: shen1--deeply}
 # Row 1703: 死; new POS: adverb.
-- {id: zh-hsk3-00673-s006, ch: 死, pr: sǐ, ds: extremely; to death (as an intensifier), lb: si3--extremely}
 # Row 1713: 所有; new POS: verb, noun.
 - {id: zh-hsk2-00493-s002, ch: 所有, pr: suǒ yǒu, ds: to have; possess, lb: suo3-you3--possess}
 - {id: zh-hsk2026-01713-s501, ch: 所有, pr: suǒ yǒu, ds: possessions; all that one owns, lb: suo3-you3--possessions}
@@ -2303,3 +2300,14 @@
 # Row 1987: 组; new POS: verb, classifier.
 - {id: zh-hsk2-00737-s002, ch: 组, pr: zǔ, ds: to form; organize, lb: zu3--organize}
 - {id: zh-hsk2-00737-s006, ch: 组, pr: zǔ, ds: 'measure word for sets, series or groups', lb: zu3--sets}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 395-397.
+# 所/班 measures are now HSK 3; 说不定-maybe and 死-intensifier are HSK 4.
+- {id: zh-hsk5-00899-s001, ch: 用不着, pr: yòng bu zháo, ds: need not; have no need to, lb: yong4-bu5-zhao2--need-not}
+- {id: zh-hsk1-00123-s007, ch: 给, pr: gěi, ds: intensifying particle including emphatic passives, lb: gei3--intensifier}
+- {id: zh-hsk6-00921-s001, ch: 要不然, pr: yào bù rán, ds: otherwise; or else, lb: yao4-bu4-ran2--otherwise}
+- {id: zh-hsk1-00459-s004, ch: 再, pr: zài, ds: however; no matter how; before an adjective, lb: zai4--however}
+- {id: zh-grammar-00110-s001, ch: 眼, pr: yǎn, ds: measure word for a brief look or glance, lb: yan3--glances}
+- {id: zh-grammar-00111-s001, ch: 下来, pr: xià lai, ds: settle into a quieter or slower or more stable state, lb: xia4-lai5--settle}
+- {id: zh-grammar-00112-s001, ch: 过来, pr: guò lái, ds: recover consciousness or return to a normal state; as a complement, lb: guo4-lai2--recover}
+- {id: zh-grammar-00113-s001, ch: 过去, pr: guò qù, ds: pass out of normal awareness; as a complement, lb: guo4-qu4--lose-awareness}

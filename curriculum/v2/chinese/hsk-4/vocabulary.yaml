@@ -1,5 +1,6 @@
 # HSK 4 additions to the HSK 1-3 v2 vocabulary; not a cumulative list.
-# 1,292 selected senses: 1,267 for 1,000 new numbered rows (1001-2000),
+# 1312 incremental senses after grammar-prerequisite additions and earlier moves.
+# Baseline: 1,292 senses, 1,267 for 1,000 new numbered rows (1001-2000),
 # followed by 25 level-4 uses on 19 earlier numbered rows.
 # Basis: November 2025 exam syllabus, effective July 2026.
 # Numbered rows, written forms, readings and senses are distinct counts.
@@ -94,7 +95,6 @@
 - {id: zh-hsk3-00049-s001, ch: 并且, pr: bìng qiě, ds: and; moreover, lb: bing4-qie3--and}
 - {id: zh-hsk3-00051-s001, ch: 播放, pr: bō fàng, ds: to broadcast; play audio or video, lb: bo1-fang4--play}
 - {id: zh-hsk5-00048-s003, ch: 博士, pr: bó shì, ds: doctorate; PhD holder, lb: bo2-shi4--doctorate}
-- {id: zh-hsk3-00055-s001, ch: 不必, pr: bù bì, ds: need not; do not have to, lb: bu4-bi4--unnecessary}
 - {id: zh-hsk6-00061-s001, ch: 不便, pr: bù biàn, ds: inconvenient, lb: bu4-bian4--inconvenient}
 - {id: zh-hsk2026-01044-s401, ch: 不便, pr: bù biàn, ds: to find it inappropriate or inconvenient to, lb: bu4-bian4--unsuitable}
 - {id: zh-hsk2026-01045-s401, ch: 不断, pr: bù duàn, ds: to continue without interruption, lb: bu4-duan4--continue}
@@ -1333,3 +1333,27 @@
 - {id: zh-hsk1-00209-s009, ch: 老, pr: lǎo, ds: very; extremely, lb: lao3--very}
 - {id: zh-hsk2-00388-s006, ch: 怕, pr: pà, ds: perhaps; probably, lb: pa4--perhaps}
 - {id: zh-hsk2-00578-s003, ch: 像, pr: xiàng, ds: as if; seemingly, lb: xiang4--seemingly}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 392-394.
+# 说不定-maybe and 死-intensifier move unchanged from HSK 5; 不必 is now HSK 3.
+- {id: zh-hsk4-00658-s002, ch: 说不定, pr: shuō bu dìng, ds: maybe, lb: shuo1-bu5-ding4--maybe}
+- {id: zh-hsk3-00673-s006, ch: 死, pr: sǐ, ds: extremely; to death (as an intensifier), lb: si3--extremely}
+- {id: zh-hsk1-00057-s001, ch: 打, pr: dá, ds: dozen; measure word for sets of twelve, lb: da2--dozen}
+- {id: zh-hsk3-00842-s001, ch: 有的是, pr: yǒu de shì, ds: have plenty of; there is no shortage of, lb: you3-de5-shi4--plenty}
+- {id: zh-hsk6-00069-s002, ch: 不怎么, pr: bù zěn me, ds: not particularly; not very, lb: bu4-zen3-me5--not-particularly}
+- {id: zh-hsk6-00464-s001, ch: 就是说, pr: jiù shì shuō, ds: in other words; that is to say, lb: jiu4-shi4-shuo1--in-other-words}
+- {id: zh-hsk5-00941-s001, ch: 再也, pr: zài yě, ds: ever again; any more; with a negative, lb: zai4-ye3--anymore}
+- {id: zh-hsk1-00212-s004, ch: 了, pr: liǎo, ds: finish; accomplish; including potential complements, lb: liao3--finish}
+- {id: zh-hsk1-00207-s008, ch: 来, pr: lái, ds: approximately; after a round number, lb: lai2--approximately}
+- {id: zh-hsk4-00232-s001, ch: 分之, pr: fēn zhī, ds: fraction marker between denominator and numerator, lb: fen1-zhi1--fraction}
+- {id: zh-hsk1-00134-s011, ch: 还, pr: hái, ds: even; for emphasis, lb: hai2--even}
+- {id: zh-hsk1-00331-s002, ch: 什么, pr: shén me, ds: something; anything, lb: shen2-me5--anything}
+- {id: zh-grammar-00101-s001, ch: 儿, pr: r, ds: erhua suffix on compatible words and quantity expressions, lb: r5--erhua}
+- {id: zh-grammar-00102-s001, ch: 袋, pr: dài, ds: measure word for bagfuls, lb: dai4--bagfuls}
+- {id: zh-grammar-00103-s001, ch: 盒, pr: hé, ds: measure word for boxfuls, lb: he2--boxfuls}
+- {id: zh-grammar-00104-s001, ch: 脸, pr: liǎn, ds: a faceful; an expression or substance covering the whole face, lb: lian3--faceful}
+- {id: zh-grammar-00105-s001, ch: 手, pr: shǒu, ds: a hand covered with or holding a quantity of something, lb: shou3--surfaceful}
+- {id: zh-grammar-00106-s001, ch: 屋子, pr: wū zi, ds: a roomful of people or things, lb: wu1-zi5--roomfuls}
+- {id: zh-grammar-00107-s001, ch: 桌子, pr: zhuō zi, ds: a tableful of food or other contents, lb: zhuo1-zi5--tablefuls}
+- {id: zh-grammar-00108-s001, ch: 怎么着, pr: zěn me zhe, ds: how; in whatever way; how matters stand, lb: zen3-me5-zhe5--however}
+- {id: zh-grammar-00109-s001, ch: 好, pr: hǎo, ds: so that; to make a subsequent action possible, lb: hao3--so-that}

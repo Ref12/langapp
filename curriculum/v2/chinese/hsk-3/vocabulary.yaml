@@ -1,5 +1,6 @@
 # HSK 3 additions to hsk-1 and hsk-2; not a standalone cumulative list.
-# 604 additional senses: 593 for numbered rows 501-1000 and
+# 639 incremental senses after grammar-prerequisite additions and earlier moves.
+# Baseline: 604 senses, 593 for numbered rows 501-1000 and
 # 11 for the seven earlier-row HSK 3 extensions (33, 55, 81, 86, 266,
 # 445, 471). Numbered rows, written forms, readings, and senses are distinct.
 # The 500 new rows contain 499 written forms (two readings of 得); eight forms
@@ -115,7 +116,6 @@
 - {id: zh-hsk2-00054-s001, ch: 差不多, pr: chà bu duō, ds: almost; approximately, lb: cha4-bu5-duo1--almost}
 - {id: zh-hsk2-00054-s004, ch: 差不多, pr: chà bu duō, ds: about the same, lb: cha4-bu5-duo1--similar}
 - {id: zh-hsk5-00092-s001, ch: 尝, pr: cháng, ds: to taste; try food, lb: chang2--taste}
-- {id: zh-hsk1-00039-s004, ch: 常, pr: cháng, ds: often; frequently, lb: chang2--often}
 - {id: zh-hsk2-00055-s002, ch: 常见, pr: cháng jiàn, ds: common; often seen, lb: chang2-jian4--common}
 - {id: zh-hsk2-00056-s001, ch: 常用, pr: cháng yòng, ds: commonly used, lb: chang2-yong4--common}
 - {id: zh-hsk1-00040-s001, ch: 常常, pr: cháng cháng, ds: often; frequently, lb: chang2-chang2--often}
@@ -241,7 +241,6 @@
 - {id: zh-hsk2-00200-s001, ch: 过去, pr: guò qù, ds: the past, lb: guo4-qu4--past}
 - {id: zh-hsk2-00201-s003, ch: 海, pr: hǎi, ds: sea; ocean, lb: hai3--sea}
 - {id: zh-hsk3-00275-s001, ch: 害怕, pr: hài pà, ds: to be afraid, lb: hai4-pa4--afraid}
-- {id: zh-hsk2-00205-s001, ch: 好多, pr: hǎo duō, ds: many; a lot of, lb: hao3-duo1--many}
 - {id: zh-hsk2-00206-s001, ch: 好久, pr: hǎo jiǔ, ds: a very long time, lb: hao3-jiu3--long}
 - {id: zh-hsk2-00209-s002, ch: 好像, pr: hǎo xiàng, ds: to seem like; resemble, lb: hao3-xiang4--seem}
 - {id: zh-hsk2-00209-s001, ch: 好像, pr: hǎo xiàng, ds: as if; apparently, lb: hao3-xiang4--apparently}
@@ -322,7 +321,7 @@
 - {id: zh-hsk1-00192-s002, ch: 开会, pr: kāi huì, ds: to attend a meeting, lb: kai1-hui4--attend}
 - {id: zh-hsk2-00295-s002, ch: 开机, pr: kāi jī, ds: to start up a computer or device, lb: kai1-ji1--startup}
 - {id: zh-hsk2-00296-s001, ch: 开心, pr: kāi xīn, ds: happy; cheerful, lb: kai1-xin1--happy}
-- {id: zh-hsk4-00417-s002, ch: 看来, pr: kàn lái, ds: it seems; it appears, lb: kan4-lai2--seem}
+- {id: zh-hsk4-00417-s002, ch: 看来, pr: kàn lái, ds: "it seems; it appears, from available indications or a stated person's viewpoint", lb: kan4-lai2--seem}
 - {id: zh-hsk2026-00731-s301, ch: 可, pr: kě, ds: but; however, lb: ke3--but}
 - {id: zh-hsk1-00200-s001, ch: 渴, pr: kě, ds: thirsty, lb: ke3--thirsty}
 - {id: zh-hsk2-00304-s002, ch: 可爱, pr: kě ài, ds: cute; lovable, lb: ke3-ai4--cute}
@@ -663,3 +662,49 @@
 # Syllabus row 471: 一会儿; adverb extension; earlier duration phrase omitted.
 - {id: zh-hsk1-00435-s003, ch: 一会儿, pr: yī huì r, ds: in a moment; shortly, lb: yi1-hui4-r5--soon}
 - {id: zh-hsk1-00435-s004, ch: 一会儿, pr: yī huì r, ds: one moment ... the next ...; alternating actions, lb: yi1-hui4-r5--alternating}
+
+# Grammar prerequisites: pinned syllabus grammar pp. 389-391.
+# 所/班 measures move unchanged from HSK 5, 盘 platefuls from HSK 6,
+# and 不必 from HSK 4. 好多/常 now occur at HSK 2 for its grammar.
+- {id: zh-hsk3-00676-s003, ch: 所, pr: suǒ, ds: measure word for buildings or institutions, lb: suo3--institutions}
+- {id: zh-hsk1-00010-s005, ch: 班, pr: bān, ds: measure word for groups of people or scheduled transport services, lb: ban1--groups}
+- {id: zh-hsk4-00529-s012, ch: 盘, pr: pán, ds: measure word for platefuls of food, lb: pan2--platefuls}
+- {id: zh-hsk3-00055-s001, ch: 不必, pr: bù bì, ds: need not; do not have to, lb: bu4-bi4--unnecessary}
+# Additional grammatical uses, not extra numbered official vocabulary rows.
+- {id: zh-hsk1-00204-s003, ch: 口, pr: kǒu, ds: measure word for bites or mouthfuls, lb: kou3--mouthfuls}
+- {id: zh-hsk1-00134-s008, ch: 还, pr: hái, ds: fairly; passably, lb: hai2--fairly}
+- {id: zh-hsk1-00134-s004, ch: 还, pr: hái, ds: still more; even more, lb: hai2--even-more}
+- {id: zh-hsk1-00273-s005, ch: 呢, pr: ne, ds: particle expressing strong affirmation, lb: ne5--affirmation}
+- {id: zh-hsk2-00676-s001, ch: 越来越, pr: yuè lái yuè, ds: increasingly; more and more, lb: yue4-lai2-yue4--increasingly}
+- {id: zh-hsk3-00402-s004, ch: 看起来, pr: kàn qǐ lai, ds: to appear; look as if, lb: kan4-qi3-lai5--appear}
+- {id: zh-hsk4-00837-s001, ch: 一般来说, pr: yī bān lái shuō, ds: generally speaking, lb: yi1-ban1-lai2-shuo1--generally}
+- {id: zh-hsk6-00070-s003, ch: 不怎么样, pr: bù zěn me yàng, ds: not particularly good; unimpressive, lb: bu4-zen3-me5-yang4--unimpressive}
+- {id: zh-hsk1-00291-s013, ch: 起, pr: qǐ, ds: starting from a stated boundary, lb: qi3--starting-from}
+- {id: zh-hsk1-00091-s003, ch: 都, pr: dōu, ds: even; for emphasis, lb: dou1--even}
+- {id: zh-hsk1-00482-s006, ch: 中, pr: zhōng, ds: during; in the course of, lb: zhong1--during}
+- {id: zh-hsk1-00065-s004, ch: 到, pr: dào, ds: result complement indicating arrival or attainment, lb: dao4--attainment}
+- {id: zh-hsk1-00491-s006, ch: 住, pr: zhù, ds: complement marking firmness or retention or a halt, lb: zhu4--secure-result}
+- {id: zh-hsk1-00154-s005, ch: 坏, pr: huài, ds: complement expressing overwhelming degree, lb: huai4--extremely}
+- {id: zh-hsk1-00124-s006, ch: 跟, pr: gēn, ds: compared with; introducing a comparison reference, lb: gen1--comparison}
+- {id: zh-grammar-00008-s001, ch: 碗, pr: wǎn, ds: measure word for bowlfuls of food or drink, lb: wan3--bowlfuls}
+- {id: zh-grammar-00009-s001, ch: 才, pr: cái, ds: marks emphatic correction of a competing judgement, lb: cai2--emphatic-correction}
+- {id: zh-grammar-00010-s001, ch: 来说, pr: lái shuō, ds: speaking of; from the stated reference perspective, lb: lai2-shuo1--perspective}
+- {id: zh-grammar-00011-s001, ch: 上, pr: shàng, ds: in respect of an abstract domain, lb: shang4--respect}
+- {id: zh-grammar-00012-s001, ch: 下, pr: xià, ds: under stated conditions or influence, lb: xia4--circumstances}
+- {id: zh-grammar-00013-s001, ch: 上, pr: shàng, ds: result complement marking attachment or closure or contact, lb: shang4--attachment}
+- {id: zh-grammar-00014-s001, ch: 上, pr: shàng, ds: complement marking entry into an activity or state, lb: shang4--engagement}
+- {id: zh-grammar-00015-s001, ch: 下, pr: xià, ds: complement marking retention or setting something down, lb: xia4--retention}
+- {id: zh-grammar-00016-s001, ch: 起, pr: qǐ, ds: complement evoking or bringing something into a resulting state, lb: qi3--result-state}
+- {id: zh-grammar-00017-s001, ch: 也, pr: yě, ds: even; in emphatic negative expressions, lb: ye3--even}
+- {id: zh-grammar-00018-s001, ch: 在, pr: zài, ds: 'in; within; introducing a viewpoint, abstract domain or circumstances', lb: zai4--context}
+# Pinned dictionary sense slots retained; 不一会儿 corrects malformed legacy
+# syllable spacing/tone notation. No new identity is created for pronunciation.
+- {id: zh-hsk2-00044-s001, ch: 不一会儿, pr: bù yī huì r, ds: after a short while, lb: bu4-yi1-hui4-r5--shortly}
+- {id: zh-hsk2-00548-s010, ch: 为, pr: wèi, ds: because of; on account of, lb: wei4--because}
+- {id: zh-hsk3-00753-s004, ch: 下来, pr: xià lai, ds: continuation from the past to the reference point, lb: xia4-lai5--continuation}
+- {id: zh-hsk2-00625-s008, ch: 一定, pr: yī dìng, ds: must; certainly must; expressing insistence or resolve, lb: yi1-ding4--must}
+# Citation variants follow the retained whole-expression senses: onset 起来
+# uses documented qǐ lai, continuation 下去 xià qù, appearance 看上去 kàn shang qu.
+- {id: zh-hsk1-00293-s004, ch: 起来, pr: qǐ lai, ds: beginning and continuation of an activity, lb: qi3-lai5--start}
+- {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: continue an action onward, lb: xia4-qu4--continue}
+- {id: zh-hsk3-00403-s002, ch: 看上去, pr: kàn shang qu, ds: it seems; appears, lb: kan4-shang5-qu5--appear}
