@@ -1,0 +1,987 @@
+# Reviewed component prerequisites for every multi-character HSK 1 vocabulary record.
+# References use lb values from v2 vocabulary, component-vocabulary, and components.
+# Formation and notes describe a teaching analysis, not a speculative etymology.
+# Components remain in written order; surface_pr records contextual pronunciation.
+# Opaque positions preserve spelling and reading without assigning a separate sense.
+
+- vocabulary: ba4-ba5--dad
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ba4--father}
+    - {kind: vocabulary, ref: ba4--father, surface_pr: ba}
+- vocabulary: bai2-tian1--daytime
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: bai2--bright}
+    - {kind: vocabulary, ref: tian1--day}
+- vocabulary: bao1-zi5--bun
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: bao1--bun-component}
+    - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: bei1-zi5--cup
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: bei1--cup}
+    - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: bu4-ke4-qi5--welcome
+  formation: lexicalized
+  note: 'Guest-like formality becomes politeness in 客气; negating it is a conventional reply to thanks.'
+  components:
+    - {kind: vocabulary, ref: bu4--not}
+    - {kind: morpheme, ref: ke4--guest-component}
+    - {kind: morpheme, ref: qi4--disposition-component, surface_pr: qi}
+- vocabulary: bu4-yao4--dont
+  formation: lexicalized
+  note: 'This combination gives a prohibition, not merely a statement that someone does not want something.'
+  components:
+    - {kind: vocabulary, ref: bu4--not}
+    - {kind: vocabulary, ref: yao4--want}
+- vocabulary: chao1-shi4--supermarket
+  formation: lexicalized
+  note: 'The super- and market meanings name the conventional retail category supermarket.'
+  components:
+    - {kind: vocabulary, ref: chao1--super}
+    - {kind: vocabulary, ref: shi4--market}
+- vocabulary: chu1-zu1-che1--taxi
+  formation: lexicalized
+  note: 'A vehicle offered for hire here means a taxi, not any rented vehicle.'
+  components:
+    - {kind: vocabulary, ref: chu1--produce, note: 'Put forth or offer for rental.'}
+    - {kind: vocabulary, ref: zu1--rent-out}
+    - {kind: vocabulary, ref: che1--vehicle}
+- vocabulary: da3-dian4-hua4--phone
+  formation: lexicalized
+  note: 'Electric speech names a telephone call; 打 is the conventional verb for making that call.'
+  components:
+    - {kind: vocabulary, ref: da3--make}
+    - {kind: vocabulary, ref: dian4--electricity}
+    - {kind: vocabulary, ref: hua4--spoken-words}
+- vocabulary: da4-jia1--everyone
+  formation: opaque
+  note: 'Learn everyone as a whole; the ordinary meanings big and family do not directly supply this pronoun.'
+  components:
+    - {kind: opaque, ch: 大, pr: dà}
+    - {kind: opaque, ch: 家, pr: jiā}
+- vocabulary: da4-xue2--university
+  formation: lexicalized
+  note: 'Big learning conventionally names university-level education, not a physically large school.'
+  components:
+    - {kind: vocabulary, ref: da4--big}
+    - {kind: vocabulary, ref: xue2--learn}
+- vocabulary: da4-xue2-sheng1--university-student
+  formation: lexicalized
+  note: '大学 is the conventional university-level term; 生 identifies its student.'
+  components:
+    - {kind: vocabulary, ref: da4--big}
+    - {kind: vocabulary, ref: xue2--learn}
+    - {kind: vocabulary, ref: sheng1--student}
+- vocabulary: di4-di5--brother
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: di4--younger-brother}
+    - {kind: vocabulary, ref: di4--younger-brother, surface_pr: di}
+- vocabulary: dian4-hua4--call
+  formation: lexicalized
+  note: 'Electric speech conventionally names a telephone call.'
+  components:
+    - {kind: vocabulary, ref: dian4--electricity}
+    - {kind: vocabulary, ref: hua4--spoken-words}
+- vocabulary: dian4-hua4--telephone
+  formation: lexicalized
+  note: 'Electric speech conventionally names the telephone device.'
+  components:
+    - {kind: vocabulary, ref: dian4--electricity}
+    - {kind: vocabulary, ref: hua4--spoken-words}
+- vocabulary: dian4-nao3--computer
+  formation: lexicalized
+  note: 'Electric brain is a metaphor for a computer; 脑 retains its ordinary brain meaning.'
+  components:
+    - {kind: vocabulary, ref: dian4--electricity}
+    - {kind: morpheme, ref: nao3--brain-component}
+- vocabulary: dian4-shi4--television
+  formation: lexicalized
+  note: 'Electricity and seeing conventionally name television, not every electrically assisted way of seeing.'
+  components:
+    - {kind: vocabulary, ref: dian4--electricity}
+    - {kind: morpheme, ref: shi4--see-component}
+- vocabulary: dian4-ying3--movie
+  formation: lexicalized
+  note: 'Electric images conventionally refer to a movie rather than any illuminated image.'
+  components:
+    - {kind: vocabulary, ref: dian4--electricity}
+    - {kind: morpheme, ref: ying3--image-component}
+- vocabulary: dian4-ying3-yuan4--cinema
+  formation: lexicalized
+  note: '电影 supplies the conventional movie meaning; 院 identifies the institution or venue showing it.'
+  components:
+    - {kind: vocabulary, ref: dian4--electricity}
+    - {kind: morpheme, ref: ying3--image-component}
+    - {kind: vocabulary, ref: yuan4--institution}
+- vocabulary: dong1-xi5--thing
+  formation: opaque
+  note: 'The east and west meanings do not derive the modern meaning thing; learn 东西 as a whole.'
+  components:
+    - {kind: opaque, ch: 东, pr: dōng}
+    - {kind: opaque, ch: 西, pr: xi}
+- vocabulary: du2-shu1--read
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: du2--read}
+    - {kind: vocabulary, ref: shu1--book}
+- vocabulary: du2-shu1--study
+  formation: lexicalized
+  note: 'Reading books extends conventionally to studying or attending school, beyond the immediate act of reading.'
+  components:
+    - {kind: vocabulary, ref: du2--read}
+    - {kind: vocabulary, ref: shu1--book}
+- vocabulary: dui4-bu5-qi3--sorry
+  formation: opaque
+  note: 'This is a fixed apology. Face and negation offer partial cues, but no separate modern meaning is assigned to 起 here.'
+  components:
+    - {kind: vocabulary, ref: dui4--face}
+    - {kind: vocabulary, ref: bu4--not, surface_pr: bu}
+    - {kind: opaque, ch: 起, pr: qǐ}
+- vocabulary: duo1-shao5--quantity
+  formation: lexicalized
+  note: 'Many and few form a quantity question, how many or how much, rather than a statement of two amounts.'
+  components:
+    - {kind: vocabulary, ref: duo1--many}
+    - {kind: vocabulary, ref: shao3--few, surface_pr: shao}
+- vocabulary: er2-zi5--son
+  formation: lexicalized
+  note: 'The child root and noun suffix conventionally name a son, not a child of either gender.'
+  components:
+    - {kind: morpheme, ref: er2--child-component}
+    - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: fan4-dian4--restaurant
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: fan4--meal}
+    - {kind: vocabulary, ref: dian4--shop}
+- vocabulary: fang2-jian1--room
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: fang2--room-component}
+    - {kind: vocabulary, ref: jian1--room}
+- vocabulary: fei1-chang2--very
+  formation: lexicalized
+  note: 'Not ordinary conventionally functions as the degree adverb very.'
+  components:
+    - {kind: vocabulary, ref: fei1--non}
+    - {kind: vocabulary, ref: chang2--common}
+- vocabulary: fei1-ji1--airplane
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: fei1--fly}
+    - {kind: morpheme, ref: ji1--machine-device-component}
+- vocabulary: fen1-zhong1--minute
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: fen1--minute}
+    - {kind: vocabulary, ref: zhong1--clock}
+- vocabulary: gao1-xing4--happy
+  formation: lexicalized
+  note: 'High spirits express happiness; 高 is metaphorical rather than a new happy-specific meaning.'
+  components:
+    - {kind: vocabulary, ref: gao1--tall}
+    - {kind: morpheme, ref: xing4--spirits-component}
+- vocabulary: ge1-ge5--brother
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ge1--older-brother}
+    - {kind: vocabulary, ref: ge1--older-brother, surface_pr: ge}
+- vocabulary: gong1-si1--company
+  formation: lexicalized
+  note: 'Collective and administrative meanings help explain an organization; the conventional word means company and does not imply public ownership.'
+  components:
+    - {kind: vocabulary, ref: gong1--public}
+    - {kind: morpheme, ref: si1--administer-component}
+- vocabulary: gong1-zuo4--job
+  formation: lexicalized
+  note: 'Labor and doing conventionally name a job or employment in this noun use.'
+  components:
+    - {kind: morpheme, ref: gong1--labor-component}
+    - {kind: vocabulary, ref: zuo4--engage}
+- vocabulary: gong1-zuo4--work
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: gong1--labor-component}
+    - {kind: vocabulary, ref: zuo4--engage}
+- vocabulary: hai2-zi5--child
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: hai2--child-component}
+    - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: han4-yu3--chinese
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: han4--han-chinese-component}
+    - {kind: morpheme, ref: yu3--language-component}
+- vocabulary: han4-zi4--character
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: han4--han-chinese-component}
+    - {kind: vocabulary, ref: zi4--character}
+- vocabulary: hao3-chi1--tasty
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: hao3--good}
+    - {kind: vocabulary, ref: chi1--eat}
+- vocabulary: hao3-kan4--attractive
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: hao3--good}
+    - {kind: vocabulary, ref: kan4--watch}
+- vocabulary: hao3-kan4--enjoyable
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: hao3--good}
+    - {kind: vocabulary, ref: kan4--watch}
+- vocabulary: hao3-ting1--pleasant
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: hao3--good}
+    - {kind: vocabulary, ref: ting1--listen}
+- vocabulary: hao3-wan2-r5--fun
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: hao3--good}
+    - {kind: vocabulary, ref: wan2--play}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: huo3-che1--train
+  formation: lexicalized
+  note: 'Fire vehicle conventionally means train; the name does not require a modern train to be fire-powered.'
+  components:
+    - {kind: vocabulary, ref: huo3--fire}
+    - {kind: vocabulary, ref: che1--vehicle}
+- vocabulary: ji1-dan4--egg
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ji1--chicken}
+    - {kind: vocabulary, ref: dan4--egg}
+- vocabulary: jia1-ren2--family-member
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: jia1--family}
+    - {kind: vocabulary, ref: ren2--person}
+- vocabulary: jiao3-zi5--dumpling
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: jiao3--dumpling-component}
+    - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: jie3-jie5--sister
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: jie3--older-sister}
+    - {kind: vocabulary, ref: jie3--older-sister, surface_pr: jie}
+- vocabulary: jin1-nian2--year
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: jin1--current-component}
+    - {kind: vocabulary, ref: nian2--year}
+- vocabulary: jin1-tian1--today
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: jin1--current-component}
+    - {kind: vocabulary, ref: tian1--day}
+- vocabulary: jue2-de5--feel
+  formation: opaque
+  note: '觉 supplies a feeling cue; 得 is retained as part of the whole verb without assigning it the ordinary complement-linking function.'
+  components:
+    - {kind: vocabulary, ref: jue2--feel}
+    - {kind: opaque, ch: 得, pr: de}
+- vocabulary: jue2-de5--think
+  formation: opaque
+  note: 'The whole verb expresses an impression or opinion. 觉 supplies a feeling cue; no separate contribution is assigned to 得.'
+  components:
+    - {kind: vocabulary, ref: jue2--feel}
+    - {kind: opaque, ch: 得, pr: de}
+- vocabulary: kai1-che1--drive
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: kai1--operate}
+    - {kind: vocabulary, ref: che1--car}
+- vocabulary: kan4-bing4--doctor
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: kan4--medical-care-component, note: 'Here the patient seeks medical care.'}
+    - {kind: vocabulary, ref: bing4--illness}
+- vocabulary: kan4-jian4--see
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: kan4--watch}
+    - {kind: morpheme, ref: jian4--perception-result-component}
+- vocabulary: ke3-yi3--acceptable
+  formation: opaque
+  note: 'The whole expression means acceptable or all right; 可 offers a suitability cue, while no separate meaning is assigned to 以.'
+  components:
+    - {kind: vocabulary, ref: ke3--suit}
+    - {kind: opaque, ch: 以, pr: yǐ}
+- vocabulary: ke3-yi3--permission
+  formation: opaque
+  note: '可 supplies the permission meaning; 以 is part of the fixed modal, not the ordinary by-means-of preposition.'
+  components:
+    - {kind: vocabulary, ref: ke3--can}
+    - {kind: opaque, ch: 以, pr: yǐ}
+- vocabulary: ke3-yi3--possible
+  formation: opaque
+  note: '可 supplies the possibility meaning; no separate semantic contribution is assigned to 以 in this modal.'
+  components:
+    - {kind: vocabulary, ref: ke3--can}
+    - {kind: opaque, ch: 以, pr: yǐ}
+- vocabulary: lao3-shi1--teacher
+  formation: lexicalized
+  note: 'Venerable teacher is a conventional respectful designation for a teacher of any age.'
+  components:
+    - {kind: vocabulary, ref: lao3--venerable}
+    - {kind: morpheme, ref: shi1--teacher-component}
+- vocabulary: ma1-ma5--mom
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ma1--mother}
+    - {kind: vocabulary, ref: ma1--mother, surface_pr: ma}
+- vocabulary: mei2-guan1-xi5--reassurance
+  formation: lexicalized
+  note: 'Negating a connection or concern conventionally reassures someone that it does not matter.'
+  components:
+    - {kind: vocabulary, ref: mei2--negation}
+    - {kind: vocabulary, ref: guan1--involve}
+    - {kind: vocabulary, ref: xi4--connect, surface_pr: xi}
+- vocabulary: mei2-shi4--okay
+  formation: lexicalized
+  note: 'No matter or trouble functions here as reassurance that nothing is wrong.'
+  components:
+    - {kind: vocabulary, ref: mei2--negation}
+    - {kind: vocabulary, ref: shi4--matter}
+- vocabulary: mei2-you3--absence
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: mei2--negation}
+    - {kind: vocabulary, ref: you3--have}
+- vocabulary: mei2-you3--negation
+  formation: lexicalized
+  note: 'The combination negates occurrence of an event here, rather than denying possession.'
+  components:
+    - {kind: vocabulary, ref: mei2--negation}
+    - {kind: vocabulary, ref: you3--have}
+- vocabulary: mei2-you3--possession
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: mei2--negation}
+    - {kind: vocabulary, ref: you3--have}
+- vocabulary: mei4-mei5--sister
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: mei4--younger-sister}
+    - {kind: vocabulary, ref: mei4--younger-sister, surface_pr: mei}
+- vocabulary: mi3-fan4--rice
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: mi3--rice}
+    - {kind: vocabulary, ref: fan4--rice}
+- vocabulary: mian4-bao1--bread
+  formation: lexicalized
+  note: 'Flour and bun conventionally name bread; the word does not require a stuffed bun or a particular loaf shape.'
+  components:
+    - {kind: vocabulary, ref: mian4--flour}
+    - {kind: morpheme, ref: bao1--bun-component}
+- vocabulary: mian4-tiao2-r5--noodles
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: mian4--noodles}
+    - {kind: vocabulary, ref: tiao2--strip}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: ming2-nian2--year
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: ming2--next-time-component}
+    - {kind: vocabulary, ref: nian2--year}
+- vocabulary: ming2-tian1--tomorrow
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: ming2--next-time-component}
+    - {kind: vocabulary, ref: tian1--day}
+- vocabulary: ming2-zi5--name
+  formation: lexicalized
+  note: 'Name and written character form the conventional word for a name; 字 is not the unrelated 子 noun suffix.'
+  components:
+    - {kind: vocabulary, ref: ming2--name}
+    - {kind: vocabulary, ref: zi4--character, surface_pr: zi}
+- vocabulary: na3-ge5--which
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: na3--which}
+    - {kind: vocabulary, ref: ge4--classifier, surface_pr: ge}
+- vocabulary: na3-li3--where
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: na3--which}
+    - {kind: morpheme, ref: li3--place-suffix-component}
+- vocabulary: na3-r5--where
+  formation: lexicalized
+  note: 'The erhua form of 哪 conventionally asks which place, rather than which object.'
+  components:
+    - {kind: vocabulary, ref: na3--which}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: na3-xie1--which
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: na3--which}
+    - {kind: vocabulary, ref: xie1--some}
+- vocabulary: na4-bian5--there
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: na4--that}
+    - {kind: vocabulary, ref: bian1--side, surface_pr: bian}
+- vocabulary: na4-ge5--that
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: na4--that}
+    - {kind: vocabulary, ref: ge4--classifier, surface_pr: ge}
+- vocabulary: na4-li5--there
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: na4--that}
+    - {kind: morpheme, ref: li3--place-suffix-component, surface_pr: li}
+- vocabulary: na4-r5--there
+  formation: lexicalized
+  note: 'The erhua form of 那 conventionally refers to that place.'
+  components:
+    - {kind: vocabulary, ref: na4--that}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: na4-xie1--those
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: na4--that}
+    - {kind: vocabulary, ref: xie1--some}
+- vocabulary: nan2-peng2-you5--boyfriend
+  formation: lexicalized
+  note: 'Male friend conventionally denotes a romantic partner here, not simply any male friend.'
+  components:
+    - {kind: vocabulary, ref: nan2--male}
+    - {kind: morpheme, ref: peng2--friend-component}
+    - {kind: morpheme, ref: you3--friend-component, surface_pr: you}
+- vocabulary: ni3-hao3--hello
+  formation: lexicalized
+  note: 'You and good form the conventional greeting hello, not an ordinary assessment of the listener.'
+  components:
+    - {kind: vocabulary, ref: ni3--you}
+    - {kind: vocabulary, ref: hao3--good}
+- vocabulary: ni3-men5--you
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ni3--you}
+    - {kind: vocabulary, ref: men5--plural}
+- vocabulary: niu2-nai3--milk
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: niu2--cow}
+    - {kind: vocabulary, ref: nai3--milk}
+- vocabulary: nv3-er2--daughter
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: nv3--female}
+    - {kind: morpheme, ref: er2--child-component}
+- vocabulary: nv3-peng2-you5--girlfriend
+  formation: lexicalized
+  note: 'Female friend conventionally denotes a romantic partner here, not simply any female friend.'
+  components:
+    - {kind: vocabulary, ref: nv3--female}
+    - {kind: morpheme, ref: peng2--friend-component}
+    - {kind: morpheme, ref: you3--friend-component, surface_pr: you}
+- vocabulary: nv3-shi4--lady
+  formation: lexicalized
+  note: 'Female and a person-of-status title combine as a respectful designation for a woman, without requiring a particular qualification.'
+  components:
+    - {kind: vocabulary, ref: nv3--female}
+    - {kind: morpheme, ref: shi4--person-title-component}
+- vocabulary: peng2-you5--friend
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: peng2--friend-component}
+    - {kind: morpheme, ref: you3--friend-component, surface_pr: you}
+- vocabulary: pian2-yi5--cheap
+  formation: opaque
+  note: 'Learn inexpensive as a whole; this analysis does not assign separate cheap meanings to 便 and 宜.'
+  components:
+    - {kind: opaque, ch: 便, pr: pián}
+    - {kind: opaque, ch: 宜, pr: yi}
+- vocabulary: piao4-liang5--pretty
+  formation: lexicalized
+  note: 'The retained elegant reading of 漂 and bright combine conventionally as beautiful; this is not the float reading of 漂 or literal illumination.'
+  components:
+    - {kind: vocabulary, ref: piao4--elegant}
+    - {kind: vocabulary, ref: liang4--bright, surface_pr: liang}
+- vocabulary: ping2-guo3--apple
+  formation: opaque
+  note: '果 supplies the fruit meaning; no separate apple-specific sense is assigned to 苹 in this analysis.'
+  components:
+    - {kind: opaque, ch: 苹, pr: píng}
+    - {kind: morpheme, ref: guo3--fruit-component}
+- vocabulary: qi3-chuang2--get-up
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: qi3--rise}
+    - {kind: vocabulary, ref: chuang2--bed}
+- vocabulary: qing3-wen4--inquiry
+  formation: lexicalized
+  note: 'Please and ask conventionally introduce the speaker''s own polite question, rather than asking the listener to ask one.'
+  components:
+    - {kind: vocabulary, ref: qing3--please}
+    - {kind: vocabulary, ref: wen4--ask}
+- vocabulary: qu4-nian2--year
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: qu4--last}
+    - {kind: vocabulary, ref: nian2--year}
+- vocabulary: ren4-shi5--know
+  formation: lexicalized
+  note: 'The two recognition meanings conventionally extend to being acquainted with a person.'
+  components:
+    - {kind: vocabulary, ref: ren4--recognize}
+    - {kind: vocabulary, ref: shi2--recognize, surface_pr: shi}
+- vocabulary: ren4-shi5--recognize
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ren4--recognize}
+    - {kind: vocabulary, ref: shi2--recognize, surface_pr: shi}
+- vocabulary: shang1-dian4--shop
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: shang1--commerce-component}
+    - {kind: vocabulary, ref: dian4--shop}
+- vocabulary: shang4-ban1--work
+  formation: lexicalized
+  note: 'The attendance meaning extends to a work shift; the expression means to go to work.'
+  components:
+    - {kind: vocabulary, ref: shang4--attend}
+    - {kind: vocabulary, ref: ban1--shift}
+- vocabulary: shang4-ke4--class
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shang4--attend}
+    - {kind: vocabulary, ref: ke4--lesson}
+- vocabulary: shang4-wu3--morning
+  formation: lexicalized
+  note: 'The first-part meaning locates this part of the day before the noon boundary.'
+  components:
+    - {kind: vocabulary, ref: shang4--first-part}
+    - {kind: morpheme, ref: wu3--noon-component}
+- vocabulary: shang4-xue2--school
+  formation: lexicalized
+  note: 'Attending learning conventionally means going to school or receiving schooling.'
+  components:
+    - {kind: vocabulary, ref: shang4--attend}
+    - {kind: vocabulary, ref: xue2--learn}
+- vocabulary: shen2-me5--what
+  formation: opaque
+  note: 'Learn the question word what as a whole; 么 is a pronoun-forming suffix, but no separate meaning is assigned to 什.'
+  components:
+    - {kind: opaque, ch: 什, pr: shén}
+    - {kind: morpheme, ref: me5--pronoun-suffix-component}
+- vocabulary: sheng1-bing4--ill
+  formation: lexicalized
+  note: 'The growth or production meaning expresses developing an illness, not giving birth to one.'
+  components:
+    - {kind: vocabulary, ref: sheng1--grow}
+    - {kind: vocabulary, ref: bing4--illness}
+- vocabulary: shi2-hou5--time
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shi2--time}
+    - {kind: morpheme, ref: hou4--time-season-component, surface_pr: hou}
+- vocabulary: shi2-jian1--time
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shi2--time}
+    - {kind: morpheme, ref: jian1--time-span-component}
+- vocabulary: shou3-ji1--phone
+  formation: lexicalized
+  note: 'Hand device conventionally identifies a mobile phone, not every handheld machine.'
+  components:
+    - {kind: vocabulary, ref: shou3--hand}
+    - {kind: morpheme, ref: ji1--machine-device-component}
+- vocabulary: shu1-dian4--bookstore
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shu1--book}
+    - {kind: vocabulary, ref: dian4--shop}
+- vocabulary: shui3-guo3--fruit
+  formation: lexicalized
+  note: 'Water and fruit conventionally name edible fruit; the category is not determined by literal water content.'
+  components:
+    - {kind: vocabulary, ref: shui3--water}
+    - {kind: morpheme, ref: guo3--fruit-component}
+- vocabulary: shui4-jiao4--sleep
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shui4--sleep}
+    - {kind: vocabulary, ref: jiao4--sleep}
+- vocabulary: shuo1-hua4--talk
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: shuo1--speak}
+    - {kind: vocabulary, ref: hua4--spoken-words}
+- vocabulary: ta1-men5--they
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ta1--he}
+    - {kind: vocabulary, ref: men5--plural}
+- vocabulary: ta1-men5--things
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ta1--it}
+    - {kind: vocabulary, ref: men5--plural}
+- vocabulary: ta1-men5--women
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ta1--she}
+    - {kind: vocabulary, ref: men5--plural}
+- vocabulary: tian1-qi4--weather
+  formation: lexicalized
+  note: 'Sky and air conventionally name weather conditions, not just air in the sky.'
+  components:
+    - {kind: vocabulary, ref: tian1--sky}
+    - {kind: vocabulary, ref: qi4--air}
+- vocabulary: ting1-jian4--hear
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: ting1--listen}
+    - {kind: morpheme, ref: jian4--perception-result-component}
+- vocabulary: tong2-xue2--classmate
+  formation: lexicalized
+  note: 'Shared learning conventionally identifies a fellow student rather than the act of studying the same material.'
+  components:
+    - {kind: vocabulary, ref: tong2--same}
+    - {kind: vocabulary, ref: xue2--learn}
+- vocabulary: wai4-bian5--outside
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: wai4--outside}
+    - {kind: vocabulary, ref: bian1--side, surface_pr: bian}
+- vocabulary: wan3-fan4--dinner
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: wan3--evening}
+    - {kind: vocabulary, ref: fan4--meal}
+- vocabulary: wan3-shang5--evening
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: wan3--evening}
+    - {kind: morpheme, ref: shang4--time-suffix-component, surface_pr: shang}
+- vocabulary: wen4-ti2--problem
+  formation: lexicalized
+  note: 'An asking topic conventionally extends to a problem or difficulty, even when no question is spoken.'
+  components:
+    - {kind: vocabulary, ref: wen4--ask}
+    - {kind: vocabulary, ref: ti2--topic}
+- vocabulary: wen4-ti2--question
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: wen4--ask}
+    - {kind: vocabulary, ref: ti2--topic}
+- vocabulary: wo3-men5--we
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: wo3--me}
+    - {kind: vocabulary, ref: men5--plural}
+- vocabulary: wu3-fan4--lunch
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: wu3--noon-component}
+    - {kind: vocabulary, ref: fan4--meal}
+- vocabulary: xi3-huan5--like
+  formation: lexicalized
+  note: 'Liking and delight form the conventional verb to like, without requiring an intense feeling of joy.'
+  components:
+    - {kind: morpheme, ref: xi3--like-component}
+    - {kind: morpheme, ref: huan1--joy-component, surface_pr: huan}
+- vocabulary: xia4-ban1--finish
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xia4--session-end-component}
+    - {kind: vocabulary, ref: ban1--shift}
+- vocabulary: xia4-ke4--finish
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xia4--session-end-component}
+    - {kind: vocabulary, ref: ke4--lesson}
+- vocabulary: xia4-wu3--afternoon
+  formation: lexicalized
+  note: 'The second-part meaning locates this part of the day after the noon boundary.'
+  components:
+    - {kind: vocabulary, ref: xia4--second-part}
+    - {kind: morpheme, ref: wu3--noon-component}
+- vocabulary: xia4-yu3--rain
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xia4--rainfall-component}
+    - {kind: vocabulary, ref: yu3--rain}
+- vocabulary: xian1-sheng5--mister
+  formation: opaque
+  note: 'Learn the modern respectful title as a whole; earlier and birth or student meanings do not directly explain Mr. or sir.'
+  components:
+    - {kind: opaque, ch: 先, pr: xiān}
+    - {kind: opaque, ch: 生, pr: sheng}
+- vocabulary: xian4-zai4--now
+  formation: lexicalized
+  note: 'Present and temporal at form the conventional time expression now.'
+  components:
+    - {kind: morpheme, ref: xian4--present-component}
+    - {kind: vocabulary, ref: zai4--time}
+- vocabulary: xiao3-peng2-you3--child
+  formation: lexicalized
+  note: 'Young friend is a conventional friendly way to refer to a child, not a claim of personal friendship.'
+  components:
+    - {kind: vocabulary, ref: xiao3--young}
+    - {kind: morpheme, ref: peng2--friend-component}
+    - {kind: morpheme, ref: you3--friend-component}
+- vocabulary: xiao3-shi2--hour
+  formation: lexicalized
+  note: 'Small and hour form the fixed name of the hour unit; 小 does not indicate an unusually short hour.'
+  components:
+    - {kind: vocabulary, ref: xiao3--small}
+    - {kind: vocabulary, ref: shi2--hours}
+- vocabulary: xiao3-xue2--elementary-school
+  formation: lexicalized
+  note: 'Small learning conventionally names primary education, not a physically small school.'
+  components:
+    - {kind: vocabulary, ref: xiao3--small}
+    - {kind: vocabulary, ref: xue2--learn}
+- vocabulary: xiao3-xue2-sheng1--student
+  formation: lexicalized
+  note: '小学 is the conventional primary-school term; 生 identifies its student.'
+  components:
+    - {kind: vocabulary, ref: xiao3--small}
+    - {kind: vocabulary, ref: xue2--learn}
+    - {kind: vocabulary, ref: sheng1--student}
+- vocabulary: xie4-xie5--thanks
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xie4--thanks-component}
+    - {kind: morpheme, ref: xie4--thanks-component, surface_pr: xie}
+- vocabulary: xing1-qi1--week
+  formation: lexicalized
+  note: 'Star and period form the conventional seven-day week term; this is not an arbitrary period associated with a star.'
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+- vocabulary: xing1-qi1--weekday
+  formation: lexicalized
+  note: 'The conventional week term combines with a day designation to identify a weekday.'
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+- vocabulary: xing1-qi1-ri4--sunday
+  formation: lexicalized
+  note: '星期 is the conventional week term; 日 designates Sunday rather than an arbitrary day of that week.'
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: ri4--day}
+- vocabulary: xing1-qi1-tian1--sunday
+  formation: lexicalized
+  note: '星期 is the conventional week term; 天 designates Sunday rather than an arbitrary day of that week.'
+  components:
+    - {kind: morpheme, ref: xing1--star-component}
+    - {kind: vocabulary, ref: qi1--period}
+    - {kind: vocabulary, ref: tian1--day}
+- vocabulary: xiu1-xi5--rest
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: xiu1--rest-component}
+    - {kind: morpheme, ref: xi1--rest-component, surface_pr: xi}
+- vocabulary: xue2-sheng5--student
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: xue2--learn}
+    - {kind: vocabulary, ref: sheng1--student, surface_pr: sheng}
+- vocabulary: xue2-xi2--study
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: xue2--learn}
+    - {kind: morpheme, ref: xi2--practice-component}
+- vocabulary: xue2-xiao4--school
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: xue2--learn}
+    - {kind: morpheme, ref: xiao4--school-component}
+- vocabulary: yi1-ban4--half
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: yi1--one}
+    - {kind: vocabulary, ref: ban4--half}
+- vocabulary: yi1-dian3-r5--little
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: yi1--one}
+    - {kind: vocabulary, ref: dian3--amount}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: yi1-fu5--clothes
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: yi1--clothing-component}
+    - {kind: vocabulary, ref: fu2--clothes, surface_pr: fu}
+- vocabulary: yi1-sheng1--doctor
+  formation: opaque
+  note: '医 supplies the medical meaning; 生 is retained as part of the conventional profession name without inventing a separate doctor-specific sense.'
+  components:
+    - {kind: morpheme, ref: yi1--medicine-component}
+    - {kind: opaque, ch: 生, pr: shēng}
+- vocabulary: yi1-xia4--briefly
+  formation: lexicalized
+  note: 'One occurrence conventionally marks doing something briefly or softens a request; it need not count one literal action.'
+  components:
+    - {kind: vocabulary, ref: yi1--one}
+    - {kind: vocabulary, ref: xia4--times}
+- vocabulary: yi1-xie1--some
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: yi1--one}
+    - {kind: vocabulary, ref: xie1--some}
+- vocabulary: yi1-yuan4--hospital
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: yi1--medicine-component}
+    - {kind: vocabulary, ref: yuan4--institution}
+- vocabulary: yi3-zi5--chair
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: yi3--chair-component}
+    - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: you3-de5--some
+  formation: lexicalized
+  note: 'Existence plus nominalization conventionally selects some members of a group.'
+  components:
+    - {kind: vocabulary, ref: you3--have}
+    - {kind: vocabulary, ref: de5--nominalizer}
+- vocabulary: you3-dian3-r5--somewhat
+  formation: lexicalized
+  note: 'Having a small amount becomes a degree expression before an adjective, rather than a possession statement.'
+  components:
+    - {kind: vocabulary, ref: you3--have}
+    - {kind: vocabulary, ref: dian3--amount}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: you3-xie1--some
+  formation: lexicalized
+  note: 'Have or exist with some functions here as a determiner selecting part of a group.'
+  components:
+    - {kind: vocabulary, ref: you3--have}
+    - {kind: vocabulary, ref: xie1--some}
+- vocabulary: you3-yi1-dian3-r5--somewhat
+  formation: lexicalized
+  note: 'Having one small amount becomes a degree expression before an adjective, not a literal inventory of possessions.'
+  components:
+    - {kind: vocabulary, ref: you3--have}
+    - {kind: vocabulary, ref: yi1--one}
+    - {kind: vocabulary, ref: dian3--amount}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: zai4-jian4--goodbye
+  formation: lexicalized
+  note: 'Meet again functions as the conventional farewell goodbye, without promising another meeting.'
+  components:
+    - {kind: vocabulary, ref: zai4--again}
+    - {kind: vocabulary, ref: jian4--meet}
+- vocabulary: zao3-fan4--breakfast
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zao3--morning}
+    - {kind: vocabulary, ref: fan4--meal}
+- vocabulary: zao3-shang5--morning
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zao3--morning}
+    - {kind: morpheme, ref: shang4--time-suffix-component, surface_pr: shang}
+- vocabulary: zen3-me5--how
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: zen3--how-component}
+    - {kind: morpheme, ref: me5--pronoun-suffix-component}
+- vocabulary: zen3-me5-yang4--how
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: zen3--how-component}
+    - {kind: morpheme, ref: me5--pronoun-suffix-component}
+    - {kind: vocabulary, ref: yang4--manner}
+- vocabulary: zhe4-bian1--this-side
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zhe4--this}
+    - {kind: vocabulary, ref: bian1--side}
+- vocabulary: zhe4-ge5--this
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zhe4--this}
+    - {kind: vocabulary, ref: ge4--classifier, surface_pr: ge}
+- vocabulary: zhe4-li3--here
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zhe4--this}
+    - {kind: morpheme, ref: li3--place-suffix-component}
+- vocabulary: zhe4-r5--here
+  formation: lexicalized
+  note: 'The erhua form of 这 conventionally refers to this place.'
+  components:
+    - {kind: vocabulary, ref: zhe4--this}
+    - {kind: vocabulary, ref: r5--erhua}
+- vocabulary: zhe4-xie1--these
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zhe4--this}
+    - {kind: vocabulary, ref: xie1--some}
+- vocabulary: zheng4-zai4--ongoing
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zheng4--ongoing}
+    - {kind: vocabulary, ref: zai4--ongoing}
+- vocabulary: zhi1-dao4--know
+  formation: opaque
+  note: '知 supplies the knowing meaning; no road or speech meaning is assigned to 道 in this whole verb.'
+  components:
+    - {kind: morpheme, ref: zhi1--know-component}
+    - {kind: opaque, ch: 道, pr: dào}
+- vocabulary: zhong1-guo2--china
+  formation: lexicalized
+  note: 'Middle or central and country form the conventional name China, not a description of any centrally located country.'
+  components:
+    - {kind: vocabulary, ref: zhong1--middle}
+    - {kind: vocabulary, ref: guo2--country}
+- vocabulary: zhong1-wen2--chinese
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zhong1--chinese}
+    - {kind: vocabulary, ref: wen2--language}
+- vocabulary: zhong1-wu3--noon
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zhong1--middle}
+    - {kind: morpheme, ref: wu3--noon-component}
+- vocabulary: zhong1-xue2--school
+  formation: lexicalized
+  note: 'Middle learning conventionally names secondary education, not a school at a central location.'
+  components:
+    - {kind: vocabulary, ref: zhong1--middle}
+    - {kind: vocabulary, ref: xue2--learn}
+- vocabulary: zhong1-xue2-sheng1--student
+  formation: lexicalized
+  note: '中学 is the conventional secondary-school term; 生 identifies its student.'
+  components:
+    - {kind: vocabulary, ref: zhong1--middle}
+    - {kind: vocabulary, ref: xue2--learn}
+    - {kind: vocabulary, ref: sheng1--student}
+- vocabulary: zhuo1-zi5--table
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: zhuo1--table-component}
+    - {kind: vocabulary, ref: zi5--suffix}
+- vocabulary: zuo2-tian1--yesterday
+  formation: transparent
+  components:
+    - {kind: morpheme, ref: zuo2--previous-day-component}
+    - {kind: vocabulary, ref: tian1--day}
+- vocabulary: zuo4-fan4--cook
+  formation: transparent
+  components:
+    - {kind: vocabulary, ref: zuo4--make}
+    - {kind: vocabulary, ref: fan4--meal}

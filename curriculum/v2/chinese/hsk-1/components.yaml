@@ -1,0 +1,58 @@
+# Reusable supplemental senses for the reviewed HSK 1 component bindings.
+# Prefer matching canonical or retained vocabulary senses over new records.
+# usage describes the selected sense in modern Mandarin, not the whole word.
+# Word-specific meanings and pronunciation belong in vocabulary-components.yaml.
+# Fields: id, ch, pr, ds, lb, usage. These previews are not lesson vocabulary units.
+# Record order: ascending lb; lesson order is generated separately.
+# Comments retain original source/editorial context; they do not define sorted ranges.
+
+- {id: zh-component-bao1-bun, ch: 包, pr: bāo, ds: 'bun', lb: bao1--bun-component, usage: bound}
+- {id: zh-component-er2-child, ch: 儿, pr: ér, ds: 'child; offspring', lb: er2--child-component, usage: bound}
+- {id: zh-component-fang2-room, ch: 房, pr: fáng, ds: 'room', lb: fang2--room-component, usage: bound}
+- {id: zh-component-gong1-labor, ch: 工, pr: gōng, ds: 'work; labor', lb: gong1--labor-component, usage: bound}
+- {id: zh-component-guo3-fruit, ch: 果, pr: guǒ, ds: 'fruit', lb: guo3--fruit-component, usage: bound}
+- {id: zh-component-hai2-child, ch: 孩, pr: hái, ds: 'child', lb: hai2--child-component, usage: bound}
+- {id: zh-component-han4-chinese, ch: 汉, pr: Hàn, ds: 'Han; Chinese', lb: han4--han-chinese-component, usage: bound}
+- {id: zh-component-hou4-time-season, ch: 候, pr: hòu, ds: 'time; season', lb: hou4--time-season-component, usage: bound}
+- {id: zh-component-huan1-joy, ch: 欢, pr: huān, ds: 'joy; delight', lb: huan1--joy-component, usage: bound}
+- {id: zh-component-ji1-device, ch: 机, pr: jī, ds: 'machine; device', lb: ji1--machine-device-component, usage: bound}
+- {id: zh-component-jian1-time-span, ch: 间, pr: jiān, ds: 'interval; span', lb: jian1--time-span-component, usage: bound}
+- {id: zh-component-jian4-perception-result, ch: 见, pr: jiàn, ds: 'result complement marking successful perception', lb: jian4--perception-result-component, usage: grammatical}
+- {id: zh-component-jiao3-dumpling, ch: 饺, pr: jiǎo, ds: 'dumpling', lb: jiao3--dumpling-component, usage: bound}
+- {id: zh-component-jin1-current, ch: 今, pr: jīn, ds: 'current; present', lb: jin1--current-component, usage: bound}
+- {id: zh-component-kan4-medical-care, ch: 看, pr: kàn, ds: 'to seek or provide medical care', lb: kan4--medical-care-component, usage: free}
+- {id: zh-component-ke4-guest, ch: 客, pr: kè, ds: 'guest; visitor', lb: ke4--guest-component, usage: free}
+- {id: zh-component-li3-place-suffix, ch: 里, pr: lǐ, ds: 'place-forming suffix', lb: li3--place-suffix-component, usage: grammatical}
+- {id: zh-component-me5-pronoun-suffix, ch: 么, pr: me, ds: 'pronoun-forming suffix', lb: me5--pronoun-suffix-component, usage: grammatical}
+- {id: zh-component-ming2-next-time, ch: 明, pr: míng, ds: 'next; following (in time)', lb: ming2--next-time-component, usage: bound}
+- {id: zh-component-nao3-brain, ch: 脑, pr: nǎo, ds: 'brain', lb: nao3--brain-component, usage: free}
+- {id: zh-component-peng2-friend, ch: 朋, pr: péng, ds: 'friend; companion', lb: peng2--friend-component, usage: bound}
+- {id: zh-component-qi4-disposition, ch: 气, pr: qì, ds: 'manner; disposition', lb: qi4--disposition-component, usage: bound}
+- {id: zh-component-shang1-commerce, ch: 商, pr: shāng, ds: 'commerce; trade', lb: shang1--commerce-component, usage: bound}
+- {id: zh-component-shang4-time-suffix, ch: 上, pr: shàng, ds: 'time-period suffix', lb: shang4--time-suffix-component, usage: grammatical}
+- {id: zh-component-shi1-teacher, ch: 师, pr: shī, ds: 'teacher; master; specialist', lb: shi1--teacher-component, usage: bound}
+- {id: zh-component-shi4-person-title, ch: 士, pr: shì, ds: 'person of learning or status', lb: shi4--person-title-component, usage: bound}
+- {id: zh-component-shi4-see, ch: 视, pr: shì, ds: 'to see; to look at', lb: shi4--see-component, usage: bound}
+- {id: zh-component-si1-administer, ch: 司, pr: sī, ds: 'to manage; to administer', lb: si1--administer-component, usage: bound}
+- {id: zh-component-wu3-noon, ch: 午, pr: wǔ, ds: 'noon; midday', lb: wu3--noon-component, usage: bound}
+- {id: zh-component-xi1-rest, ch: 息, pr: xī, ds: 'to rest; to pause', lb: xi1--rest-component, usage: bound}
+- {id: zh-component-xi2-practice, ch: 习, pr: xí, ds: 'to practice; to study', lb: xi2--practice-component, usage: bound}
+- {id: zh-component-xi3-like, ch: 喜, pr: xǐ, ds: 'to like; to be fond of', lb: xi3--like-component, usage: bound}
+- {id: zh-component-xia4-rainfall, ch: 下, pr: xià, ds: 'to fall (of precipitation)', lb: xia4--rainfall-component, usage: free}
+- {id: zh-component-xia4-session-end, ch: 下, pr: xià, ds: 'to finish or leave a scheduled session', lb: xia4--session-end-component, usage: free}
+- {id: zh-component-xian4-present, ch: 现, pr: xiàn, ds: 'present; current', lb: xian4--present-component, usage: bound}
+- {id: zh-component-xiao4-school, ch: 校, pr: xiào, ds: 'school', lb: xiao4--school-component, usage: bound}
+- {id: zh-component-xie4-thanks, ch: 谢, pr: xiè, ds: 'to thank; to express gratitude', lb: xie4--thanks-component, usage: free}
+- {id: zh-component-xing1-star, ch: 星, pr: xīng, ds: 'star', lb: xing1--star-component, usage: free}
+- {id: zh-component-xing4-spirits, ch: 兴, pr: xìng, ds: 'spirits; enthusiasm', lb: xing4--spirits-component, usage: bound}
+- {id: zh-component-xiu1-rest, ch: 休, pr: xiū, ds: 'to rest; to pause', lb: xiu1--rest-component, usage: free}
+- {id: zh-component-yi1-clothing, ch: 衣, pr: yī, ds: 'clothing; garment', lb: yi1--clothing-component, usage: bound}
+- {id: zh-component-yi1-medicine, ch: 医, pr: yī, ds: 'medicine; medical care', lb: yi1--medicine-component, usage: bound}
+- {id: zh-component-yi3-chair, ch: 椅, pr: yǐ, ds: 'chair', lb: yi3--chair-component, usage: bound}
+- {id: zh-component-ying3-image, ch: 影, pr: yǐng, ds: 'image; shadow', lb: ying3--image-component, usage: bound}
+- {id: zh-component-you3-friend, ch: 友, pr: yǒu, ds: 'friend', lb: you3--friend-component, usage: bound}
+- {id: zh-component-yu3-language, ch: 语, pr: yǔ, ds: 'language; speech', lb: yu3--language-component, usage: bound}
+- {id: zh-component-zen3-how, ch: 怎, pr: zěn, ds: 'how; in what way', lb: zen3--how-component, usage: grammatical}
+- {id: zh-component-zhi1-know, ch: 知, pr: zhī, ds: 'to know; to be aware', lb: zhi1--know-component, usage: bound}
+- {id: zh-component-zhuo1-table, ch: 桌, pr: zhuō, ds: 'table; desk', lb: zhuo1--table-component, usage: bound}
+- {id: zh-component-zuo2-previous-day, ch: 昨, pr: zuó, ds: 'yesterday; previous day', lb: zuo2--previous-day-component, usage: bound}

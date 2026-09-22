@@ -34,6 +34,10 @@ curriculum\v2\
     hsk-6\grammar.yaml
     hsk-7-9\vocabulary.yaml
     hsk-7-9\grammar.yaml
+    hsk-1\components.yaml
+    hsk-1\component-vocabulary.yaml
+    hsk-1\component-candidates.yaml
+    hsk-1\vocabulary-components.yaml
     hsk-1\ordered-vocabulary.yaml
     hsk-1\ordered-grammar.yaml
     lessons\hsk-1.yaml
@@ -378,6 +382,125 @@ or an earlier lesson. Move supporting vocabulary earlier in the teaching order
 when necessary; do not move it between HSK band inventories merely to change
 lesson order.
 
+### Vocabulary component prerequisites
+
+Multi-character vocabulary has an ordered binding in
+`hsk-1\vocabulary-components.yaml`. Separate a component's reusable meaning
+from its role in a particular word. A character, a meaningful morpheme, and an
+independently usable word are not necessarily the same unit. Some written
+positions do not contribute a separate meaning at all.
+
+`hsk-1\component-candidates.yaml` is generated from the complete HSK 1
+vocabulary inventory. It is a compact map from character to an array of word
+usages, each containing only the whole word's `ch` and sense label `lb`:
+
+```yaml
+爸: [{ch: 爸爸, lb: ba4-ba5--dad}]
+读: [{ch: 读书, lb: du2-shu1--read}, {ch: 读书, lb: du2-shu1--study}]
+```
+
+A repeated character appears once per word sense in this index; its positions
+are recoverable from the whole word. Distinct senses remain separate even when
+their written words are identical. Meanings, pronunciations, and possible source
+senses are looked up in the vocabulary inventories rather than copied into
+every usage. Keys sort by character code point and usages by `lb`.
+This is an exhaustive review index, not an authoring file or a semantic analysis.
+`vocabulary-components.yaml` must contain a reviewed decision for every indexed
+word and every position within it; the ordering check rejects omissions.
+
+Meaningful positions reference a reusable sense:
+
+- `vocabulary` reuses the complete `id`, `ch`, `pr`, `ds`, and `lb` record from
+  any canonical v2 vocabulary band when its reading and meaning fit the word.
+  When the suitable retained source sense is not selected in a canonical v2
+  band, the same stable identity and meaning are preserved in
+  `hsk-1\component-vocabulary.yaml` for component preview use.
+- `morpheme` resolves a reusable sense in `hsk-1\components.yaml` when no
+  existing vocabulary sense is accurate. Its `ds` is a concise English
+  definition, not "the element in this word." Do not repeat the parent word,
+  explain a compound metaphor, or describe contextual pronunciation in `ds`.
+  These records have the vocabulary fields `id`, `ch`, `pr`, `ds`, `lb`, plus
+  a required `usage` field:
+
+| `usage` | Meaning of the selected sense |
+| --- | --- |
+| `free` | Independently usable as a word. |
+| `bound` | A lexical meaning normally used inside larger words. |
+| `grammatical` | An affix or grammatical function rather than an ordinary lexical meaning. |
+
+For example, "rice; uncooked rice", "brain", and "noon; midday" are reusable
+meanings. The electric-brain metaphor explaining `电脑` belongs to the word
+binding, not to a computer-specific definition of `脑`. A bound sense such as
+"teacher; master; specialist" remains meaningful without claiming that the
+character is the usual standalone way to say "teacher."
+
+Every word binding declares its `formation`. This describes the teaching
+analysis, not a claim to have established the word's historical etymology:
+
+| `formation` | Meaning |
+| --- | --- |
+| `transparent` | Referenced meanings or grammatical functions directly explain the combination. |
+| `lexicalized` | Meaningful elements help, but the conventional or metaphorical whole-word meaning needs separate explanation. |
+| `opaque` | At least one position has no independently assigned meaning in this word. |
+| `phonetic` | At least one position represents sound rather than a semantic contribution, as in a transliteration. |
+
+All formations except `transparent` require a word-level `note`. Meaningful
+positions retain `kind: vocabulary` or `kind: morpheme` and a `ref`; an optional
+position-level `note` explains that sense's role in this word.
+Reuse ordinary meanings with an explicit metaphor or conventional-use note
+rather than inventing a new sense for every compound.
+
+Nonsemantic positions use `kind: opaque` or `kind: phonetic`, their written
+`ch`, and actual word-position `pr`. They have no `ref`, invented definition,
+or standalone learning identity. They may have a contextual `note`.
+For example:
+
+```yaml
+- vocabulary: dong1-xi5--thing
+  formation: opaque
+  note: The east and west meanings do not explain the modern word for thing.
+  components:
+    - {kind: opaque, ch: 东, pr: dōng}
+    - {kind: opaque, ch: 西, pr: xi}
+```
+
+This does not deny that `东` and `西` have meanings elsewhere; it declines to
+assign those meanings to positions in this word. Never invent definitions
+solely to make every character position look like a meaningful prerequisite.
+Transparent and lexicalized bindings contain only meaningful references.
+Opaque and phonetic bindings must include their respective nonsemantic kind
+and must not mix the two kinds; they can also contain meaningful references.
+
+Component-sense exposure is a preview. It does not introduce that
+entry as an independently usable lexical unit, satisfy its later example
+coverage, or add it to the cumulative vocabulary cutoff. The validator requires
+all position forms and readings, including opaque and phonetic positions, to
+concatenate exactly to the parent vocabulary record. The ordering check requires
+every multi-character HSK 1 record to have a binding (currently 176 records and
+373 positions). Structural coverage does not by itself prove semantic accuracy.
+
+`lessonComponentIntroductions` returns first-exposure `components` as clean
+`kind`/`ref` identities. Separately, its `words` array preserves the full binding
+of every multi-character word introduced in that lesson, including formation,
+notes, and occurrence pronunciations. Nonsemantic positions never become
+invented reusable senses. Later uses of an already seen sense still retain
+their own word-specific explanations and pronunciation.
+
+A component has one citation pronunciation. When a word gives that component a
+contextual neutral tone, its binding uses `surface_pr` rather than creating a
+second component identity. Thus `谢谢` references the same `谢 xiè` sense
+twice and marks only the second occurrence with `surface_pr: xie`. This is a
+lexical/prosodic property of the word, not a general rule changing a fourth tone
+to neutral after another fourth tone; ordinary combinations such as `再见`
+retain both fourth tones. Redundant overrides, including capitalization-only
+differences, are rejected. An override cannot substitute a different base
+syllable for a lexical reading; use the correct sense identity instead.
+Opaque and phonetic positions state their actual `pr` directly because they
+do not reference a citation sense.
+
+`scripts\v2-component-schema.mjs` provides the shared record, formation,
+identity, and position-alignment validation used by both lessons and ordering.
+
 ### Canonical and teaching order
 
 Canonical `vocabulary.yaml` and `grammar.yaml` files are sorted by `lb`, not by
@@ -387,17 +510,21 @@ lesson order. Do not reorder them manually. Run:
 npm run curriculum:v2:order
 ```
 
-The script sorts every canonical v2 vocabulary and grammar inventory by `lb` and
-generates `ordered-vocabulary.yaml` and `ordered-grammar.yaml` beside the HSK 1
-canonical files. Those generated files contain the full inventory records in
-lesson-introduction order and currently declare partial coverage. Never edit
-them directly. `npm run curriculum:v2:order:check` fails when a canonical file
-is unsorted or a generated projection is stale.
+The script sorts every canonical v2 vocabulary and grammar inventory, plus the
+reviewed component inventories, by `lb`. It generates `ordered-vocabulary.yaml`
+and `ordered-grammar.yaml` beside the HSK 1 canonical files, and refreshes the
+exhaustive `component-candidates.yaml` review input. Component order is
+already determined by each vocabulary record's ordered component binding, so
+there is no separate ordered-component projection. The generated files contain
+complete records in lesson-introduction order and currently declare partial
+coverage. Never edit them directly.
+`npm run curriculum:v2:order:check` fails when a canonical file is unsorted or
+a generated projection is stale.
 
 The focused structural checks are:
 
 ```text
-npm test -- scripts/v2-lesson-schema.test.ts scripts/v2-order-curriculum.test.ts
+npm test -- scripts\v2-component-schema.test.ts scripts\v2-lesson-schema.test.ts scripts\v2-order-curriculum.test.ts
 ```
 
 These checks do not replace linguistic review. Authors must still verify that

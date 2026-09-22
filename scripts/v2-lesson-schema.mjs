@@ -1,8 +1,15 @@
 import { z } from 'zod'
 import { numberedPinyin } from './readable-labels.mjs'
+import {
+  inventoryMap,
+  isMeaningfulComponent,
+  lexicalLabelSchema,
+  validateVocabularyComponents,
+  vocabularyComponentsSchema,
+} from './v2-component-schema.mjs'
 
 const id = z.string().regex(/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/)
-const label = z.string().regex(/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*--[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/)
+const label = lexicalLabelSchema
 const unique = (schema, message, minimum, maximum) => {
   let values = z.array(schema)
   if (minimum !== undefined) values = values.min(minimum)
@@ -73,6 +80,33 @@ export const lessonSequenceSchema = z.object({
   lessons: z.array(lessonSchema).min(1),
 }).strict()
 
+export function lessonComponentIntroductions(sequence, vocabulary, vocabularyComponents) {
+  const bindings = new Map(vocabularyComponentsSchema.parse(vocabularyComponents)
+    .map(binding => [binding.vocabulary, binding]))
+  const known = new Set()
+  return sequence.lessons.map(lesson => {
+    const introduced = []
+    const words = []
+    for (const unit of lesson.units) {
+      if (unit.kind !== 'vocabulary') continue
+      const word = vocabulary.get(unit.ref)
+      if (!word) throw new Error(`${lesson.id}: unknown vocabulary: ${unit.ref}`)
+      if ([...word.ch].length === 1) continue
+      const binding = bindings.get(unit.ref)
+      if (!binding) throw new Error(`${lesson.id}: vocabulary has no component prerequisites: ${unit.ref}`)
+      words.push(binding)
+      for (const component of binding.components) {
+        if (!isMeaningfulComponent(component)) continue
+        const key = `${component.kind}:${component.ref}`
+        if (known.has(key)) continue
+        known.add(key)
+        introduced.push({ kind: component.kind, ref: component.ref })
+      }
+    }
+    return { lesson: lesson.id, components: introduced, words }
+  })
+}
+
 function uniqueIds(entries, context) {
   const ids = new Set()
   for (const entry of entries) {
@@ -80,17 +114,6 @@ function uniqueIds(entries, context) {
     ids.add(entry.id)
   }
   return ids
-}
-
-function inventoryMap(entries, context) {
-  uniqueIds(entries, context)
-  const labels = new Map()
-  for (const entry of entries) {
-    label.parse(entry.lb)
-    if (labels.has(entry.lb)) throw new Error(`Duplicate ${context} label: ${entry.lb}`)
-    labels.set(entry.lb, entry)
-  }
-  return labels
 }
 
 function validateTones(tones) {
@@ -112,8 +135,10 @@ export function validateLessonSequence(input, inventory) {
   const vocabulary = inventoryMap(inventory.vocabulary, 'vocabulary')
   const grammar = inventoryMap(inventory.grammar, 'grammar')
   const grammarVocabulary = inventory.grammarVocabulary ?? {}
+  const { bindings } = validateVocabularyComponents(inventory.vocabularyComponents ?? [], inventory)
   uniqueIds(sequence.lessons, 'lesson')
   validateTones(sequence.pronunciation.tones)
+  lessonComponentIntroductions(sequence, vocabulary, bindings)
 
   const known = { vocabulary: new Set(), grammar: new Set() }
   for (const lesson of sequence.lessons) {

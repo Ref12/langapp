@@ -3,15 +3,31 @@ import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { parse } from 'yaml'
 import { auditGrammarVocabulary, loadGrammarVocabulary } from './v2-grammar-vocabulary.mjs'
-import { lessonSequenceSchema, validateLessonSequence } from './v2-lesson-schema.mjs'
+import { vocabularyComponentsSchema } from './v2-component-schema.mjs'
+import {
+  lessonComponentIntroductions,
+  lessonSequenceSchema,
+  validateLessonSequence,
+} from './v2-lesson-schema.mjs'
 
 const readYaml = (path: string) => parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
 const allInventory = loadGrammarVocabulary()
 const firstBand = allInventory.bands[0]
 const grammarAudit = auditGrammarVocabulary(allInventory)
+const morphemes = readYaml('../curriculum/v2/chinese/hsk-1/components.yaml')
+const componentVocabulary = [
+  ...allInventory.bands.flatMap(band => band.vocabulary),
+  ...readYaml('../curriculum/v2/chinese/hsk-1/component-vocabulary.yaml'),
+]
+const vocabularyComponents = vocabularyComponentsSchema.parse(
+  readYaml('../curriculum/v2/chinese/hsk-1/vocabulary-components.yaml'))
+const bindingFor = (label: string) => vocabularyComponents.find(binding => binding.vocabulary === label)!
 const inventory = {
   vocabulary: firstBand.vocabulary,
   grammar: firstBand.grammar,
+  componentVocabulary,
+  morphemes,
+  vocabularyComponents,
   grammarVocabulary: grammarAudit.requiredVocabulary,
 }
 const fresh = () => lessonSequenceSchema.parse(readYaml('../curriculum/v2/chinese/lessons/hsk-1.yaml'))
@@ -40,6 +56,49 @@ describe('v2 lexical-unit lesson sequence', () => {
     }
   })
 
+  it('derives meaningful component previews at first vocabulary use', () => {
+    const sequence = validate()
+    const vocabulary = new Map(firstBand.vocabulary.map(record => [record.lb, record]))
+    const introductions = lessonComponentIntroductions(sequence, vocabulary, vocabularyComponents)
+    expect(introductions[0].components).toEqual([
+      { kind: 'vocabulary', ref: 'ni3--you' },
+      { kind: 'vocabulary', ref: 'hao3--good' },
+      { kind: 'vocabulary', ref: 'xue2--learn' },
+      { kind: 'vocabulary', ref: 'sheng1--student' },
+    ])
+    expect(introductions[1].components).toEqual([
+      { kind: 'vocabulary', ref: 'lao3--venerable' },
+      { kind: 'morpheme', ref: 'shi1--teacher-component' },
+    ])
+    expect(introductions[0].words).toEqual([
+      bindingFor('ni3-hao3--hello'), bindingFor('xue2-sheng5--student'),
+    ])
+  })
+
+  it('models neutral tone as word-specific pronunciation rather than a second morpheme', () => {
+    expect(bindingFor('xie4-xie5--thanks').components).toEqual([
+      { kind: 'morpheme', ref: 'xie4--thanks-component' },
+      { kind: 'morpheme', ref: 'xie4--thanks-component', surface_pr: 'xie' },
+    ])
+    const thanks = morphemes.filter((record: { ch: string }) => record.ch === '谢')
+    expect(thanks).toHaveLength(1)
+    expect(thanks[0].pr).toBe('xiè')
+  })
+
+  it('rejects missing, unknown, and misaligned component prerequisites', () => {
+    const missing = { ...inventory, vocabularyComponents: vocabularyComponents
+      .filter(binding => binding.vocabulary !== 'lao3-shi1--teacher') }
+    expect(() => validateLessonSequence(fresh(), missing)).toThrow(/no component prerequisites.*teacher/)
+    const replaceTeacher = (kind: string, ref: string) => vocabularyComponents.map(binding =>
+      binding.vocabulary !== 'lao3-shi1--teacher' ? binding : {
+        ...binding, components: [{ kind, ref }, binding.components[1]],
+      })
+    const unknown = { ...inventory, vocabularyComponents: replaceTeacher('morpheme', 'unknown--component') }
+    expect(() => validateLessonSequence(fresh(), unknown)).toThrow(/unknown morpheme component/)
+    const misaligned = { ...inventory, vocabularyComponents: replaceTeacher('vocabulary', 'ni3--you') }
+    expect(() => validateLessonSequence(fresh(), misaligned)).toThrow(/do not align/)
+  })
+
   it('uses known units in examples and permits current-lesson units', () => {
     const sequence = fresh()
     sequence.lessons[0].examples[1].segments[0] = { word: 'zai4-jian4--goodbye' }
@@ -47,6 +106,19 @@ describe('v2 lexical-unit lesson sequence', () => {
     const other = fresh()
     other.lessons[0].examples[1].grammar = ['stmt-ma5--yes-no']
     expect(() => validate(other)).toThrow(/grammar before introduction/)
+  })
+
+  it('does not treat component previews as standalone vocabulary teaching or example coverage', () => {
+    const earlyUse = fresh()
+    earlyUse.lessons[0].examples[1].segments[0] = { word: 'ni3--you' }
+    expect(() => validate(earlyUse)).toThrow(/before introduction.*ni3--you/)
+    const missingExample = fresh()
+    for (const example of missingExample.lessons[1].examples) {
+      for (const segment of example.segments) {
+        if ('word' in segment && segment.word === 'ni3--you') segment.word = 'wo3--me'
+      }
+    }
+    expect(() => validate(missingExample)).toThrow(/has no example: ni3--you/)
   })
 
   it('requires each grammar unit lexical prerequisites before or in its lesson', () => {

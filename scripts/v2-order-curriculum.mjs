@@ -3,6 +3,9 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { parse } from 'yaml'
 import { hskBands } from './v2-grammar-vocabulary.mjs'
+import { buildComponentCandidateFile } from './v2-vocabulary-components.mjs'
+import { validateVocabularyComponents } from './v2-component-schema.mjs'
+import { lessonComponentIntroductions } from './v2-lesson-schema.mjs'
 
 const scriptRoot = dirname(fileURLToPath(import.meta.url))
 const repositoryRoot = resolve(scriptRoot, '..')
@@ -72,8 +75,12 @@ export function sortInventoryText(text, path) {
 }
 
 function inventoryFiles() {
-  return hskBands.flatMap(band => ['vocabulary', 'grammar'].map(kind =>
-    resolve(chineseRoot, `hsk-${band}`, `${kind}.yaml`)))
+  return [
+    ...hskBands.flatMap(band => ['vocabulary', 'grammar'].map(kind =>
+      resolve(chineseRoot, `hsk-${band}`, `${kind}.yaml`))),
+    resolve(chineseRoot, 'hsk-1', 'components.yaml'),
+    resolve(chineseRoot, 'hsk-1', 'component-vocabulary.yaml'),
+  ]
 }
 
 function generatedLessonInventory(sequence, source, kind, sourcePath) {
@@ -99,6 +106,26 @@ function generatedLessonInventory(sequence, source, kind, sourcePath) {
     '',
     ...selected,
   ].join('\n').replace(/\n*$/, '\n')
+}
+
+export function validateComponentBindings() {
+  const bandRoot = resolve(chineseRoot, 'hsk-1')
+  const hsk1Vocabulary = parse(readFileSync(resolve(bandRoot, 'vocabulary.yaml'), 'utf8'))
+  const componentPath = resolve(bandRoot, 'components.yaml')
+  const componentVocabularyPath = resolve(bandRoot, 'component-vocabulary.yaml')
+  const bindingPath = resolve(bandRoot, 'vocabulary-components.yaml')
+  const lessonPath = resolve(chineseRoot, 'lessons', 'hsk-1.yaml')
+  const componentVocabulary = hskBands.flatMap(band => parse(readFileSync(
+    resolve(chineseRoot, `hsk-${band}`, 'vocabulary.yaml'), 'utf8')))
+  componentVocabulary.push(...parse(readFileSync(componentVocabularyPath, 'utf8')))
+  const result = validateVocabularyComponents(parse(readFileSync(bindingPath, 'utf8')), {
+    vocabulary: hsk1Vocabulary,
+    componentVocabulary,
+    morphemes: parse(readFileSync(componentPath, 'utf8')),
+  }, { requireComplete: true })
+  const sequence = parse(readFileSync(lessonPath, 'utf8'))
+  lessonComponentIntroductions(sequence, new Map(hsk1Vocabulary.map(word => [word.lb, word])), result.bindings)
+  return result
 }
 
 export function buildOrderedLessonInventories() {
@@ -131,6 +158,7 @@ export function orderCurriculum({ check = false } = {}) {
       if (!check) writeFileSync(path, expected, 'utf8')
     }
   }
+  validateComponentBindings()
   for (const output of buildOrderedLessonInventories()) {
     let current
     try {
@@ -142,6 +170,18 @@ export function orderCurriculum({ check = false } = {}) {
       stale.push(output.path)
       if (!check) writeFileSync(output.path, output.content, 'utf8')
     }
+  }
+  const candidatePath = resolve(chineseRoot, 'hsk-1', 'component-candidates.yaml')
+  const candidateContent = buildComponentCandidateFile(repositoryRoot)
+  let currentCandidates
+  try {
+    currentCandidates = readFileSync(candidatePath, 'utf8')
+  } catch {
+    currentCandidates = undefined
+  }
+  if (currentCandidates !== candidateContent) {
+    stale.push(candidatePath)
+    if (!check) writeFileSync(candidatePath, candidateContent, 'utf8')
   }
   if (check && stale.length > 0) {
     throw new Error(`Run npm run curriculum:v2:order:\n${stale.map(path => `- ${path}`).join('\n')}`)
