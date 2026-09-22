@@ -1,5 +1,5 @@
 # HSK 5 additions to the v2 Chinese curriculum; not a cumulative standalone list.
-# 2222 incremental senses after grammar-prerequisite additions and earlier moves.
+# 2227 incremental senses after grammar/example-prerequisite additions and earlier moves.
 # Baseline: 2218 senses, 2155 for numbered rows 2001-3600, then
 # 63 new uses on 38 earlier rows. All 1600 new numbered rows are represented.
 # Basis: November 2025 HSK exam syllabus, effective July 2026, not GF0025-2021.
@@ -169,6 +169,8 @@
 - {id: zh-hsk5-00049-s001, ch: 博物馆, pr: bó wù guǎn, ds: museum, lb: bo2-wu4-guan3--museum}
 - {id: zh-hsk3-00053-s001, ch: 补充, pr: bǔ chōng, ds: to replenish, lb: bu3-chong1--replenish}
 - {id: zh-hsk3-00053-s002, ch: 补充, pr: bǔ chōng, ds: to supplement; add to, lb: bu3-chong1--supplement}
+# Classifier example support for 匹; moved from HSK 6 with identity unchanged.
+- {id: zh-hsk3-00061-s003, ch: 布, pr: bù, ds: cloth, lb: bu4--cloth}
 - {id: zh-hsk5-00053-s001, ch: 不得了, pr: bù dé liǎo, ds: terribly serious; extraordinary, lb: bu4-de2-liao3--serious}
 - {id: zh-hsk2026-02078-s001, ch: 不符, pr: bù fú, ds: to fail to match; be inconsistent with, lb: bu4-fu2--mismatch}
 # Row 1047: 不过; new POS: adverb.
@@ -977,6 +979,8 @@
 - {id: zh-hsk3-00378-s009, ch: 精神, pr: jīng shen, ds: vigor; vitality, lb: jing1-shen5--vigor}
 - {id: zh-hsk6-00450-s002, ch: 惊喜, pr: jīng xǐ, ds: pleasantly surprised, lb: jing1-xi3--delighted}
 - {id: zh-hsk3-00376-s001, ch: 经营, pr: jīng yíng, ds: to operate; run a business, lb: jing1-ying2--operate}
+# Classifier example support for 眼; moved from HSK 6 with identity unchanged.
+- {id: zh-hsk6-00454-s003, ch: 井, pr: jǐng, ds: well for drawing water, lb: jing3--well}
 - {id: zh-hsk2026-02626-s501, ch: 静, pr: jìng, ds: to become quiet; calm down, lb: jing4--calm-down}
 - {id: zh-hsk3-00381-s003, ch: 静, pr: jìng, ds: quiet; still, lb: jing4--quiet}
 # Row 1407: 究竟; new POS: noun.
@@ -1061,6 +1065,10 @@
 # Row 1445: 困; new POS: verb.
 - {id: zh-hsk3-00417-s001, ch: 困, pr: kùn, ds: to trap; confine, lb: kun4--trap}
 - {id: zh-hsk4-00431-s001, ch: 扩大, pr: kuò dà, ds: to expand; enlarge, lb: kuo4-da4--expand}
+# Original function-sense glosses for pinned grammar g676 and retained zh-hsk6-g018.
+# Repetition markers are not the ordinary movement verbs; 来看 marks an assessment.
+- {id: zh-grammar-00231-s001, ch: 来, pr: lái, ds: first marker of repeated back-and-forth action, lb: lai2--repetition}
+- {id: zh-grammar-00233-s001, ch: 来看, pr: lái kàn, ds: judging from; marks an assessment based on a stated source or perspective, lb: lai2-kan4--judging}
 - {id: zh-hsk2026-02682-s501, ch: 来源, pr: lái yuán, ds: to originate from; derive from, lb: lai2-yuan2--originate}
 - {id: zh-hsk4-00439-s001, ch: 来源, pr: lái yuán, ds: source; origin, lb: lai2-yuan2--source}
 - {id: zh-hsk5-00457-s003, ch: 劳动, pr: láo dòng, ds: physical labor; work, lb: lao2-dong4--labor}
@@ -1374,6 +1382,7 @@
 - {id: zh-hsk4-00569-s001, ch: 穷, pr: qióng, ds: poor; impoverished, lb: qiong2--poor}
 - {id: zh-hsk4-00572-s001, ch: 趋势, pr: qū shì, ds: trend; tendency, lb: qu1-shi4--trend}
 - {id: zh-hsk5-00601-s002, ch: 区域, pr: qū yù, ds: region; area, lb: qu1-yu4--region}
+- {id: zh-grammar-00232-s001, ch: 去, pr: qù, ds: second marker of repeated back-and-forth action, lb: qu4--repetition}
 - {id: zh-hsk3-00560-s001, ch: 去世, pr: qù shì, ds: to pass away; die, lb: qu4-shi4--pass-away}
 - {id: zh-hsk6-00662-s002, ch: 权, pr: quán, ds: power; authority, lb: quan2--authority}
 - {id: zh-hsk6-00662-s004, ch: 权, pr: quán, ds: right; entitlement, lb: quan2--right}

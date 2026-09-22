@@ -22,119 +22,449 @@
   pr: <first item> + guī + <same first item>, <second item> + guī + <same second item>
   ds: Treat two matters separately; one need not invalidate the other.
   lb: a-gui1-a-b-gui1-b--separate
+  ex:
+    segments:
+      - word: sheng1-yi5--business
+      - word: gui1--despite
+      - word: sheng1-yi5--business
+      - punctuation: ，
+      - word: peng2-you5--friend
+      - word: gui1--despite
+      - word: peng2-you5--friend
+      - punctuation: 。
+    translation: Business is business; friendship is a separate matter.
+    grammar:
+      - a-gui1-a-b-gui1-b--separate
+      - clause-clause--linked
 
 - id: zh-hsk2026-g745
   pt: <first option> + 也好，<second option> + 也好，<clause>
   pr: <first option> + yě hǎo, <second option> + yě hǎo, <clause>
   ds: Enumerate alternatives without changing the ensuing conclusion.
   lb: a-ye3-hao3-b-ye3-hao3-clause--whether
+  ex:
+    segments:
+      - word: zuo4--ride
+      - word: huo3-che1--train
+      - word: ye3--also
+      - word: hao3--acceptance
+      - punctuation: ，
+      - word: zuo4--ride
+      - word: fei1-ji1--airplane
+      - word: ye3--also
+      - word: hao3--acceptance
+      - punctuation: ，
+      - word: wo3-men5--we
+      - word: xing1-qi1--weekday
+      - word: wu3--five
+      - word: dao4--arrive
+      - punctuation: 。
+    translation: Whether we take the train or fly, we will arrive on Friday.
+    grammar:
+      - a-ye3-hao3-b-ye3-hao3-clause--whether
+      - time-s-vp-or-s-time-vp--time
 
 - id: zh-hsk2026-g727
   pt: 不禁 + <verb phrase>
   pr: bù jīn + <verb phrase>
   ds: An involuntary reaction; 禁 is jīn.
   lb: bu4-jin1-vp--cannot-help
+  ex:
+    segments:
+      - word: ting1--listen
+      - word: dao4--attainment
+      - word: zhe4--this
+      - word: ge4--classifier
+      - word: xiao1-xi5--news
+      - punctuation: ，
+      - word: ta1--she
+      - word: bu4-jin1--involuntarily
+      - word: xiao4--smile
+      - word: le5--completed
+      - punctuation: 。
+    translation: She could not help laughing when she heard the news.
+    grammar:
+      - bu4-jin1-vp--cannot-help
+      - v-dao4--attain
+      - v-le5-obj--complete
 
 - id: zh-hsk2026-g723
   pt: 不时 + <verb phrase>
   pr: bù shí + <verb phrase>
   ds: At intervals, recurring from time to time.
   lb: bu4-shi2-vp--intermittent
+  ex:
+    segments:
+      - word: ta1--he
+      - word: zai4--location
+      - word: che1-zhan4--station
+      - word: deng3--wait
+      - word: peng2-you5--friend
+      - punctuation: ，
+      - word: bu4-shi2--occasionally
+      - word: kan4--watch
+      - word: biao3--watch
+      - punctuation: 。
+    translation: He waits for his friend at the station, glancing at his watch from time to time.
+    grammar:
+      - bu4-shi2-vp--intermittent
+      - s-zai4-loc-vp--location
 
 - id: zh-hsk2026-g756
   pt: 不 + <verb> + 不 + <predicate>，一 + <same verb> + <unexpected situation>
   pr: bù + <verb> + bù + <predicate>, yī + <same verb> + <unexpected situation>
   ds: Acting reveals an unexpected contrast to the prior untested state.
   lb: bu4-v-bu4-pred-yi1-v-state--reveal
+  ex:
+    segments:
+      - word: bu4--not
+      - word: suan4--calculate
+      - word: bu4--not
+      - word: zhi1-dao4--know
+      - punctuation: ，
+      - word: yi1--as-soon-as
+      - word: suan4--calculate
+      - word: cai2--only-then
+      - word: fa1-xian4--discover
+      - word: shao3--missing
+      - word: le5--change
+      - word: yi1--one
+      - word: bai3--hundred
+      - word: yuan2--yuan
+      - punctuation: 。
+    translation: I had no idea until I did the sums; only then did I discover we were a hundred yuan short.
+    grammar:
+      - bu4-v-bu4-pred-yi1-v-state--reveal
+      - digit-bai3-rest--hundreds
 
 - id: zh-hsk2026-g766
   pt: <nonhuman cause> + 把 + <known object> + <verb> + <postverbal material>
   pr: <nonhuman cause> + bǎ + <known object> + <verb> + <postverbal material>
   ds: An inanimate cause brings about an affected object's result.
   lb: cause-ba3-obj-v-post--causal-disposal
+  ex:
+    segments:
+      - word: da4--big
+      - word: feng1--wind
+      - word: ba3--object
+      - word: men2--door
+      - word: chui1--blow
+      - word: kai1--open
+      - word: le5--completed
+      - punctuation: 。
+    translation: The strong wind blew the door open.
+    grammar:
+      - cause-ba3-obj-v-post--causal-disposal
+      - v-le5-obj--complete
 - id: zh-hsk2026-g701
   pt: 超 + <compatible stem>
   pr: chāo + <compatible stem>
   ds: Beyond a usual limit or category; established super-/ultra- formations.
   lb: chao1-stem--super
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: shi4--identity
+      - word: yi1--one
+      - word: jia4--aircraft
+      - word: chao1--super
+      - word: da4-xing2--large-scale
+      - word: fei1-ji1--airplane
+      - punctuation: 。
+    translation: This is an ultra-large aircraft.
+    grammar:
+      - chao1-stem--super
+      - zhe4-or-na4-shi4-np--identify
+      - num-mw-n--count
 
 - id: zh-hsk2026-g771
   pt: 除非 + <condition>，才 + <consequence>
   pr: chú fēi + <condition>, cái + <consequence>
   ds: The exceptional condition is necessary for the result.
   lb: chu2-fei1-if-cai2-then--only-if
+  ex:
+    segments:
+      - word: chu2-fei1--unless
+      - word: ni3--you
+      - word: qian1-zi4--sign
+      - punctuation: ，
+      - word: wo3--me
+      - word: cai2--only-then
+      - word: jiao1--pay
+      - word: qian2--money
+      - punctuation: 。
+    translation: I will only pay if you sign.
+    grammar:
+      - chu2-fei1-if-cai2-then--only-if
+      - s-vp--verbal
 
 - id: zh-hsk5-g001
   pt: 除非 + <condition>，(否则 / 不然) + <consequence>
   pr: chú fēi + <condition>, (fǒu zé / bù rán) + <consequence>
   ds: Unless the exception holds, the default consequence follows.
   lb: chu2-fei1-if-fou3-ze2-or-bu4-ran2-then--unless
+  ex:
+    segments:
+      - word: chu2-fei1--unless
+      - word: ming2-tian1--tomorrow
+      - word: xia4-yu3--rain
+      - punctuation: ，
+      - word: fou3-ze2--otherwise
+      - word: bi3-sai4--competition
+      - word: an4-shi2--on-time
+      - word: ju3-xing2--hold
+      - punctuation: 。
+    translation: Unless it rains tomorrow, the match will take place on schedule.
+    grammar:
+      - chu2-fei1-if-fou3-ze2-or-bu4-ran2-then--unless
+      - time-s-vp-or-s-time-vp--time
 
 - id: zh-hsk2026-g740
   pt: 除 + <noun phrase> + 外，<clause>
   pr: chú + <noun phrase> + wài, <clause>
   ds: Exclude a specified member or case from the following claim.
   lb: chu2-np-wai4-clause--except
+  ex:
+    segments:
+      - word: chu2--except
+      - word: wo3--me
+      - word: wai4--outside
+      - punctuation: ，
+      - word: da4-jia1--everyone
+      - word: dou1--all
+      - word: tong2-yi4--agree
+      - punctuation: 。
+    translation: Everyone except me agrees.
+    grammar:
+      - chu2-np-wai4-clause--except
+      - group-dou1-pred--all
 
 - id: zh-hsk2026-g741
   pt: <first clause>，不料 + <second clause>
   pr: <first clause>, bù liào + <second clause>
   ds: The actual development is contrary to expectation.
   lb: clause-bu4-liao4-clause--unexpected
+  ex:
+    segments:
+      - word: ta1--he
+      - word: ti2-qian2--advance
+      - word: dao4--arrive
+      - word: le5--completed
+      - word: ji1-chang3--airport
+      - punctuation: ，
+      - word: bu4-liao4--unexpectedly
+      - word: hang2-ban1--flight
+      - word: qu3-xiao1--cancel
+      - word: le5--change
+      - punctuation: 。
+    translation: He got to the airport early, only to find that the flight had been canceled.
+    grammar:
+      - clause-bu4-liao4-clause--unexpected
+      - v-le5-obj--complete
+      - state-le5--change
 
 - id: zh-hsk2026-g754
   pt: 到 + <endpoint> + 为止，<clause>
   pr: dào + <endpoint> + wéi zhǐ, <clause>
   ds: Set the inclusive stopping boundary of a range or activity.
   lb: dao4-end-wei2-zhi3-clause--until
+  ex:
+    segments:
+      - word: dao4--arrive
+      - word: xing1-qi1--weekday
+      - word: wu3--five
+      - word: wei2-zhi3--until
+      - punctuation: ，
+      - word: yi3-jing1--already
+      - word: you3--have
+      - word: wu3--five
+      - word: shi2--ten
+      - word: ren2--person
+      - word: bao4-ming2--register
+      - word: le5--change
+      - punctuation: 。
+    translation: By Friday, fifty people had signed up.
+    grammar:
+      - dao4-end-wei2-zhi3-clause--until
+      - s-yi3-jing1-pred-le5--already
 
 - id: zh-hsk2026-g733
   pt: 倒是 + <predicate>
   pr: dào shì + <predicate>
   ds: Concede or contrast a noteworthy fact against the context.
   lb: dao4-shi4-pred--in-fact
+  ex:
+    segments:
+      - word: fang2-jian1--room
+      - word: xiao3--small
+      - punctuation: ，
+      - word: chuang1--window
+      - word: wai4--outside
+      - word: de5--description
+      - word: feng1-jing3--scenery
+      - word: dao4-shi4--actually
+      - word: bu4-cuo4--good
+      - punctuation: 。
+    translation: The room is small, but the view from the window is actually rather nice.
+    grammar:
+      - dao4-shi4-pred--in-fact
+      - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
 
 - id: zh-hsk2026-g751
   pt: 得了
   pr: dé le
   ds: Enough; stop or dismiss further discussion, depending on tone.
   lb: de2-le5--close-turn
+  ex:
+    segments:
+      - word: de2-le5--enough
+      - punctuation: ，
+      - word: bie2--dont
+      - word: zai4--again
+      - word: jie3-shi4--explain
+      - word: le5--change
+      - punctuation: ，
+      - word: wo3--me
+      - word: zhi1-dao4--know
+      - word: le5--change
+      - punctuation: 。
+    translation: Enough, stop explaining; I understand now.
+    grammar:
+      - de2-le5--close-turn
+      - bie2-vp--dont
+      - state-le5--change
 
 - id: zh-hsk2026-g753
   pt: 东一 + <unit>，西一 + <same unit>
   pr: dōng yī + <unit>, xī yī + <same unit>
   ds: Scattered acts or items; often suggests disorganized attention.
   lb: dong1-yi1-unit-xi1-yi1-unit--scattered
+  ex:
+    segments:
+      - word: wan2-ju4--toy
+      - word: dong1--east
+      - word: yi1--one
+      - word: dui1--heaps
+      - punctuation: ，
+      - word: xi1--west
+      - word: yi1--one
+      - word: dui1--heaps
+      - punctuation: ，
+      - word: fang2-jian1--room
+      - word: hen3--very
+      - word: luan4--messy
+      - punctuation: 。
+    translation: The toys are in piles here and there, and the room is a mess.
+    grammar:
+      - dong1-yi1-unit-xi1-yi1-unit--scattered
+      - s-hen3-adj--describe
 
 - id: zh-hsk2026-g702
   pt: 多 + <compatible stem>
   pr: duō + <compatible stem>
   ds: Multiple elements or dimensions within a derived term.
   lb: duo1-stem--multi
+  ex:
+    segments:
+      - word: ta1--he
+      - word: mai3--buy
+      - word: le5--completed
+      - word: yi1--one
+      - word: bu4--works
+      - word: duo1--multi
+      - word: gong1-neng2--function
+      - word: shou3-ji1--phone
+      - punctuation: 。
+    translation: He bought a multifunctional mobile phone.
+    grammar:
+      - duo1-stem--multi
+      - v-le5-obj--complete
+      - num-mw-n--count
 
 - id: zh-hsk2026-g755
   pt: <event> + 到 + <person> + 头上来了
   pr: <event> + dào + <person> + tóu shàng lái le
   ds: A burden, blame or unwelcome event comes upon someone.
   lb: event-dao4-p-tou2-shang4-lai2-le5--befall
+  ex:
+    segments:
+      - word: ma2-fan5--trouble
+      - word: dao4--arrive
+      - word: wo3--me
+      - word: tou2--head
+      - word: shang4--above
+      - word: lai2--come
+      - word: le5--change
+      - punctuation: 。
+    translation: Now the trouble has landed on me.
+    grammar:
+      - event-dao4-p-tou2-shang4-lai2-le5--befall
+      - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
 
 - id: zh-hsk2026-g761
   pt: <accepted event> + 了 + 就 + <same event> + 了
   pr: <accepted event> + le + jiù + <same event> + le
   ds: Accept an accomplished fact rather than continue regretting it.
   lb: event-le5-jiu4-event-le5--accept
+  ex:
+    segments:
+      - word: cuo4--wrong
+      - word: le5--change
+      - word: jiu4--then
+      - word: cuo4--wrong
+      - word: le5--change
+      - punctuation: ，
+      - word: xian4-zai4--now
+      - word: gai3--correct
+      - word: hai2--still
+      - word: lai2-de5-ji2--in-time
+      - punctuation: 。
+    translation: What's done is done; there is still time to put it right.
+    grammar:
+      - event-le5-jiu4-event-le5--accept
+      - s-hai2-pred--still
 
 - id: zh-hsk5-g011
   pt: 凡是 + <category condition>，都 + <predicate>
   pr: fán shì + <category condition>, dōu + <predicate>
   ds: Every case meeting the condition satisfies the stated rule.
   lb: fan2-shi4-if-dou1-pred--all-cases
+  ex:
+    segments:
+      - word: fan2-shi4--every
+      - word: bao4-ming2--register
+      - word: de5--description
+      - word: ren2--person
+      - punctuation: ，
+      - word: dou1--all
+      - word: xu1-yao4--need
+      - word: tian2--fill-in
+      - word: zhe4--this
+      - word: zhang1--sheets
+      - word: biao3--form
+      - punctuation: 。
+    translation: Everyone who signs up needs to fill in this form.
+    grammar:
+      - fan2-shi4-if-dou1-pred--all-cases
+      - zhe4-or-na4-mw-n--this-that
 
 - id: zh-hsk2026-g703
   pt: 反 + <compatible stem>
   pr: fǎn + <compatible stem>
   ds: Opposition or reversal in a derived term.
   lb: fan3-stem--anti
+  ex:
+    segments:
+      - word: qing3--please
+      - word: an1-zhuang1--install
+      - word: fan3--anti
+      - word: bing4-du2--virus
+      - word: ruan3-jian4--software
+      - punctuation: 。
+    translation: Please install antivirus software.
+    grammar:
+      - fan3-stem--anti
+      - qing3-vp--request
 
 # Continued fixed frames (printed p. 399).
 - id: zh-hsk2026-g760
@@ -142,72 +472,279 @@
   pr: fàng zhe + <available thing> + bù + <unused action>
   ds: Leave an available resource or opportunity unused, usually critically.
   lb: fang4-zhe5-obj-bu4-vp--unused
+  ex:
+    segments:
+      - word: fang4--put
+      - word: zhe5--ongoing
+      - word: gong1-jiao1-che1--bus
+      - word: bu4--not
+      - word: zuo4--ride
+      - punctuation: ，
+      - word: ni3--you
+      - word: wei4-shen2-me5--why
+      - word: yi1-ding4--must
+      - word: yao4--want
+      - word: zou3-lu4--walk
+      - punctuation: ？
+    translation: With a bus available, why insist on walking?
+    grammar:
+      - fang4-zhe5-obj-bu4-vp--unused
+      - s-wei4-shen2-me5-pred--why
 
 - id: zh-hsk2026-g734
   pt: 干脆 + <verb phrase>
   pr: gān cuì + <verb phrase>
   ds: Choose a straightforward, decisive course rather than hesitate.
   lb: gan1-cui4-vp--simply
+  ex:
+    segments:
+      - word: yu3--rain
+      - word: tai4--too
+      - word: da4--big
+      - punctuation: ，
+      - word: wo3-men5--we
+      - word: gan1-cui4--simply
+      - word: zhu4--stay
+      - word: zai4--location
+      - word: zhe4-li3--here
+      - word: ba5--suggestion
+      - punctuation: 。
+    translation: The rain is so heavy; let's simply stay here.
+    grammar:
+      - gan1-cui4-vp--simply
+      - stmt-ba5--suggest
 
 - id: zh-hsk2026-g728
   pt: 赶忙 + <verb phrase>
   pr: gǎn máng + <verb phrase>
   ds: Hurry in response to an immediate circumstance.
   lb: gan3-mang2-vp--hurry
+  ex:
+    segments:
+      - word: ting1--listen
+      - word: dao4--attainment
+      - word: men2--door
+      - word: ling2--bell
+      - punctuation: ，
+      - word: ta1--she
+      - word: gan3-mang2--hurriedly
+      - word: qu4--go
+      - word: kai1--open
+      - word: men2--door
+      - punctuation: 。
+    translation: She hurried to open the door when she heard the doorbell.
+    grammar:
+      - gan3-mang2-vp--hurry
+      - v-dao4--attain
 
 - id: zh-hsk2026-g757
   pt: 好你个 + <person>
   pr: hǎo nǐ gè + <person>
   ds: Address someone with emphatic reproach or admiring surprise.
   lb: hao3-ni3-ge4-p--you
+  ex:
+    segments:
+      - word: hao3--very
+      - word: ni3--you
+      - word: ge4--classifier
+      - word: xiao3--young
+      - word: hua4-jia1--painter
+      - punctuation: ，
+      - word: hua4--draw
+      - word: de5--manner
+      - word: zhen1--really
+      - word: hao3--good
+      - punctuation: ！
+    translation: Well, you little artist! You paint really well!
+    grammar:
+      - hao3-ni3-ge4-p--you
+      - v-de5-adjp--performance
 
 - id: zh-hsk2026-g748
   pt: (好容易 / 好不容易) + <verb phrase>
   pr: (hǎo róng yì / hǎo bù róng yì) + <verb phrase>
   ds: Finally achieve with difficulty; this idiomatic reading depends on context.
   lb: hao3-rong2-yi4-or-hao3-bu4-rong2-yi4-vp--with-effort
+  ex:
+    segments:
+      - word: wo3-men5--we
+      - word: zhao3--search
+      - word: le5--completed
+      - word: ban4--half
+      - word: tian1--day
+      - punctuation: ，
+      - word: hao3-bu4-rong2-yi4--difficulty
+      - word: zhao3--search
+      - word: dao4--attainment
+      - word: yao4-shi5--key
+      - punctuation: 。
+    translation: We searched for ages and finally managed to find the key.
+    grammar:
+      - hao3-rong2-yi4-or-hao3-bu4-rong2-yi4-vp--with-effort
+      - v-dao4--attain
 
 - id: zh-hsk2026-g718
   pt: 较为 + <adjective>
   pr: jiào wéi + <adjective>
   ds: Relatively so; a qualified, comparatively formal assessment.
   lb: jiao4-wei2-adj--relative
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: fen4--copies
+      - word: bao4-gao4--report-noun
+      - word: de5--possession
+      - word: nei4-rong2--content
+      - word: jiao4-wei2--relatively
+      - word: jian3-dan1--simple
+      - punctuation: 。
+    translation: The content of this report is relatively straightforward.
+    grammar:
+      - jiao4-wei2-adj--relative
+      - owner-de5-n--possess
 
 - id: zh-hsk2026-g719
   pt: 净 + <verb phrase>
   pr: jìng + <verb phrase>
   ds: Nothing but the stated activity, often with disapproval.
   lb: jing4-vp--nothing-but
+  ex:
+    segments:
+      - word: ta1--he
+      - word: jing4--only
+      - word: shuo1--speak
+      - word: bie2-ren2--others
+      - word: de5--possession
+      - word: que1-dian3--shortcoming
+      - punctuation: ，
+      - word: bu4--not
+      - word: kan4--watch
+      - word: zi4-ji3--own
+      - word: de5--possession
+      - word: wen4-ti2--problem
+      - punctuation: 。
+    translation: He does nothing but criticize other people's faults without looking at his own problems.
+    grammar:
+      - jing4-vp--nothing-but
+      - s-bu4-pred--not
 
 - id: zh-hsk2026-g772
   pt: 就算 + <condition>，也 + <consequence>
   pr: jiù suàn + <condition>, yě + <consequence>
   ds: Even accepting the hypothetical case leaves the outcome unchanged.
   lb: jiu4-suan4-if-ye3-then--even-if
+  ex:
+    segments:
+      - word: jiu4-suan4--even-if
+      - word: ming2-tian1--tomorrow
+      - word: xia4-yu3--rain
+      - punctuation: ，
+      - word: wo3-men5--we
+      - word: ye3--also
+      - word: an4-shi2--on-time
+      - word: chu1-fa1--depart
+      - punctuation: 。
+    translation: Even if it rains tomorrow, we will leave on time.
+    grammar:
+      - jiu4-suan4-if-ye3-then--even-if
+      - time-s-vp-or-s-time-vp--time
 
 - id: zh-hsk2026-g759
   pt: (看 / 瞧) + 把 + <experiencing agent> + <predicate> + 得
   pr: (kàn / qiáo) + bǎ + <experiencing agent> + <predicate> + de
   ds: Exclaim at someone's pronounced reaction; trailing description may remain unspoken.
   lb: kan4-or-qiao2-ba3-agent-pred-de5--reaction
+  ex:
+    segments:
+      - word: kan4--watch
+      - word: ba3--object
+      - word: ni3--you
+      - word: gao1-xing4--happy
+      - word: de5--manner
+      - punctuation: ！
+      - word: gang1--just
+      - word: shou1-dao4--receive
+      - word: li3-wu4--gift
+      - word: ba5--suggestion
+      - punctuation: ？
+    translation: Look how delighted you are! You just got a present, didn't you?
+    grammar:
+      - kan4-or-qiao2-ba3-agent-pred-de5--reaction
+      - stmt-ba5--suppose
 
 - id: zh-hsk2026-g764
   pt: (看 / 瞧) + <personal pronoun> + <predicate> + 的
   pr: (kàn / qiáo) + <personal pronoun> + <predicate> + de
   ds: Exclaim at a visible manner or state, often teasing or reproachful.
   lb: kan4-or-qiao2-pron-pred-de5--look
+  ex:
+    segments:
+      - word: kan4--watch
+      - word: ni3--you
+      - word: mang2--busy
+      - word: de5--nominalizer
+      - punctuation: ，
+      - word: lian2--even
+      - word: wu3-fan4--lunch
+      - word: dou1--even
+      - word: wang4--forget
+      - word: le5--completed
+      - punctuation: ！
+    translation: Look how busy you are; you even forgot lunch!
+    grammar:
+      - kan4-or-qiao2-pron-pred-de5--look
+      - v-le5-obj--complete
 
 - id: zh-hsk2026-g735
   pt: 明明 + <proposition>
   pr: míng míng + <proposition>
   ds: An evident fact, often contrasted with denial or contrary behavior.
   lb: ming2-ming2-stmt--obviously
+  ex:
+    segments:
+      - word: yao4-shi5--key
+      - word: ming2-ming2--obviously
+      - word: zai4--location
+      - word: zhuo1-zi5--table
+      - word: shang4--above
+      - punctuation: ，
+      - word: ni3--you
+      - word: zen3-me5--how
+      - word: shuo1--speak
+      - word: mei2--negation
+      - word: kan4--watch
+      - word: jian4--see
+      - punctuation: ？
+    translation: The key is plainly on the table; how can you say you didn't see it?
+    grammar:
+      - ming2-ming2-stmt--obviously
+      - s-zai4-loc--at
 
 - id: zh-hsk2026-g749
   pt: (那倒是 / 那倒也是)
   pr: (nà dào shì / nà dào yě shì)
   ds: Concede that the preceding point is indeed valid.
   lb: na4-dao4-shi4-or-na4-dao4-ye3-shi4--true
+  ex:
+    segments:
+      - punctuation: “
+      - word: pian2-yi5--cheap
+      - word: de5--description
+      - word: dong1-xi5--thing
+      - word: bu4--not
+      - word: yi1-ding4--definitely
+      - word: hao3--good
+      - punctuation: 。
+      - punctuation: ”
+      - punctuation: “
+      - word: na4--that
+      - word: dao4-shi4--actually
+      - punctuation: 。
+      - punctuation: ”
+    translation: “Cheap things aren't necessarily good.” “That's true.”
+    grammar:
+      - na4-dao4-shi4-or-na4-dao4-ye3-shi4--true
+      - adjp-de5-n--describe
 
 # Measure words and adverbs (printed p. 398).
 - id: zh-hsk2026-g712
@@ -215,30 +752,105 @@
   pr: <number> + (chuàn / dī) + <compatible noun>
   ds: Strings/clusters or drops; select by the counted material.
   lb: num-chuan4-or-di1-n--units
+  ex:
+    segments:
+      - word: wo3--me
+      - word: mai3--buy
+      - word: le5--completed
+      - word: yi1--one
+      - word: chuan4--bunches
+      - word: pu2-tao5--grape
+      - punctuation: 。
+    translation: I bought a bunch of grapes.
+    grammar:
+      - num-chuan4-or-di1-n--units
+      - v-le5-obj--complete
 
 - id: zh-hsk2026-g714
   pt: <number> + 卷 + <compatible noun>
   pr: <number> + juǎn + <compatible noun>
   ds: Count rolled material or spools; 卷 is juǎn.
   lb: num-juan3-n--rolls
+  ex:
+    segments:
+      - word: zhuo1-zi5--table
+      - word: shang4--above
+      - word: you3--have
+      - word: liang3--two
+      - word: juan3--rolls
+      - word: zhi3--paper
+      - punctuation: 。
+    translation: There are two rolls of paper on the table.
+    grammar:
+      - num-juan3-n--rolls
+      - loc-you3-qty-n--exist
 
 - id: zh-hsk2026-g715
   pt: <number> + 卷 + <compatible noun>
   pr: <number> + juàn + <compatible noun>
   ds: Count book volumes or scrolls; 卷 is juàn.
   lb: num-juan4-n--volumes
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: tao4--sets
+      - word: li4-shi3--history
+      - word: shu1--book
+      - word: gong4--total
+      - word: you3--have
+      - word: liu4--six
+      - word: juan4--volumes
+      - punctuation: 。
+    translation: This set of history books has six volumes in all.
+    grammar:
+      - num-juan4-n--volumes
+      - s-you3-np--have
 
 - id: zh-hsk2026-g713
   pt: <number> + (枝 / 扇) + <compatible noun>
   pr: <number> + (zhī / shàn) + <compatible noun>
   ds: Slender stems or door/window leaves; 扇 is shàn here.
   lb: num-zhi1-or-shan4-n--units
+  ex:
+    segments:
+      - word: ta1--he
+      - word: song4--gift
+      - word: gei3--to
+      - word: wo3--me
+      - word: yi1--one
+      - word: zhi1--branches
+      - word: mei2-gui5--rose
+      - punctuation: 。
+    translation: He gave me a rose.
+    grammar:
+      - num-zhi1-or-shan4-n--units
+      - s-v-gei3-p-obj--transfer
 
 - id: zh-hsk2026-g752
   pt: <first participant> + 一 + <measure word>，<second participant> + 一 + <measure word>
   pr: <first participant> + yī + <measure word>, <second participant> + yī + <measure word>
   ds: Distribute successive contributions or units across participants.
   lb: p-yi1-mw-p-yi1-mw--turns
+  ex:
+    segments:
+      - word: ni3--you
+      - word: yi1--one
+      - word: ju4--sentences
+      - punctuation: ，
+      - word: wo3--me
+      - word: yi1--one
+      - word: ju4--sentences
+      - punctuation: ，
+      - word: da4-jia1--everyone
+      - word: tao3-lun4--discuss
+      - word: le5--completed
+      - word: hen3--very
+      - word: jiu3--long
+      - punctuation: 。
+    translation: Everyone chipped in with one remark after another, and the discussion went on for a long time.
+    grammar:
+      - p-yi1-mw-p-yi1-mw--turns
+      - v-le5-obj--complete
 
 # Degree complement and extended disposal (printed p. 399).
 - id: zh-hsk2026-g765
@@ -246,126 +858,442 @@
   pr: <verb or adjective> + tòu le
   ds: A thorough or extreme result with compatible predicates.
   lb: pred-tou4-le5--thorough
+  ex:
+    segments:
+      - word: yu3--rain
+      - word: tai4--too
+      - word: da4--big
+      - punctuation: ，
+      - word: yi1-fu5--clothes
+      - word: shi1--wet
+      - word: tou4--thorough
+      - word: le5--change
+      - punctuation: 。
+    translation: The rain was so heavy that my clothes were soaked through.
+    grammar:
+      - pred-tou4-le5--thorough
+      - state-le5--change
 
 - id: zh-hsk2026-g732
   pt: 恰好 + <predicate>
   pr: qià hǎo + <predicate>
   ds: An exact fit or timely coincidence.
   lb: qia4-hao3-pred--just-right
+  ex:
+    segments:
+      - word: san1--three
+      - word: ge4--classifier
+      - word: ren2--person
+      - word: san1--three
+      - word: ba3--handles
+      - word: yi3-zi5--chair
+      - punctuation: ，
+      - word: qia4-hao3--exactly
+      - word: gou4--enough
+      - word: zuo4--sit
+      - punctuation: 。
+    translation: "Three people and three chairs: exactly enough seats."
+    grammar:
+      - qia4-hao3-pred--just-right
+      - num-mw-n--count
 
 - id: zh-hsk2026-g711
   pt: 人家 + <predicate>
   pr: rén jia + <predicate>
   ds: Others or a contextually understood person; self-reference is socially marked.
   lb: ren2-jia5-pred--person
+  ex:
+    segments:
+      - word: ren2-jia5--others
+      - word: yi3-jing1--already
+      - word: dao4-qian4--apologize
+      - word: le5--change
+      - punctuation: ，
+      - word: ni3--you
+      - word: jiu4--then
+      - word: yuan2-liang4--forgive
+      - word: ta1--he
+      - word: ba5--suggestion
+      - punctuation: 。
+    translation: He's already apologized; just forgive him.
+    grammar:
+      - ren2-jia5-pred--person
+      - s-yi3-jing1-pred-le5--already
+      - stmt-ba5--suggest
 
 - id: zh-hsk2026-g724
   pt: (仍旧 / 依旧) + <predicate>
   pr: (réng jiù / yī jiù) + <predicate>
   ds: A prior state remains unchanged.
   lb: reng2-jiu4-or-yi1-jiu4-pred--still
+  ex:
+    segments:
+      - word: jin1-nian2--year
+      - word: de5--description
+      - word: you2-ke4--tourist
+      - word: duo1--many
+      - word: le5--change
+      - punctuation: ，
+      - word: zhe4--this
+      - word: tiao2--classifier
+      - word: jie1-dao4--street
+      - word: yi1-jiu4--still
+      - word: hen3--very
+      - word: an1-jing4--quiet
+      - punctuation: 。
+    translation: There are more tourists this year, but this street is still very quiet.
+    grammar:
+      - reng2-jiu4-or-yi1-jiu4-pred--still
+      - s-hen3-adj--describe
 
 - id: zh-hsk2026-g767
   pt: <subject> + 把 + <experiencing agent> + <predicate> + <result complement>
   pr: <subject> + bǎ + <experiencing agent> + <predicate> + <result complement>
   ds: The 把 object acts or experiences the resulting state, rather than simple manipulation.
   lb: s-ba3-agent-pred-result--agent-disposal
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: ge4--classifier
+      - word: xiao4-hua5--joke
+      - word: ba3--object
+      - word: wo3--me
+      - word: xiao4--smile
+      - word: huai4--extremely
+      - word: le5--change
+      - punctuation: 。
+    translation: That joke had me laughing my head off.
+    grammar:
+      - s-ba3-agent-pred-result--agent-disposal
+      - pred-huai4-le5--overwhelming
 
 - id: zh-hsk2026-g721
   pt: <plural subject> + 大都 + <predicate>
   pr: <plural subject> + dà dōu + <predicate>
   ds: Most members or cases, not all.
   lb: s-da4-dou1-pred--mostly
+  ex:
+    segments:
+      - word: zhe4-xie1--these
+      - word: xue2-sheng5--student
+      - word: da4-dou1--mostly
+      - word: zhu4--live
+      - word: zai4--location
+      - word: xue2-xiao4--school
+      - word: fu4-jin4--vicinity
+      - punctuation: 。
+    translation: Most of these students live near the school.
+    grammar:
+      - s-da4-dou1-pred--mostly
+      - zhe4-xie1-or-na4-xie1-n--these-those
 
 - id: zh-hsk2026-g720
   pt: <plural subject> + 一同 + <verb phrase>
   pr: <plural subject> + yī tóng + <verb phrase>
   ds: Participants act together.
   lb: s-yi1-tong2-vp--together
+  ex:
+    segments:
+      - word: wo3-men5--we
+      - word: yi1-tong2--together
+      - word: qu4--go
+      - word: can1-guan1--visit
+      - word: bo2-wu4-guan3--museum
+      - punctuation: 。
+    translation: We are going to visit the museum together.
+    grammar:
+      - s-yi1-tong2-vp--together
+      - s-vp--verbal
 
 - id: zh-hsk2026-g707
   pt: <compatible stem> + 化
   pr: <compatible stem> + huà
   ds: Become or make into a named state; derived processes or changes.
   lb: stem-hua4--transform
+  ex:
+    segments:
+      - word: sheng1-chan3--produce
+      - word: zi4-dong4--automatic
+      - word: hua4--ization
+      - word: ti2-gao1--improve
+      - word: le5--completed
+      - word: xiao4-lv4--efficiency
+      - punctuation: 。
+    translation: Production automation has improved efficiency.
+    grammar:
+      - stem-hua4--transform
+      - v-le5-obj--complete
 
 - id: zh-hsk2026-g708
   pt: <compatible stem> + 式
   pr: <compatible stem> + shì
   ds: A style, method or pattern modeled on the stem.
   lb: stem-shi4--style
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: shi4--identity
+      - word: yi1--one
+      - word: jia1--classifier
+      - word: jia1-ting2--family
+      - word: shi4--style
+      - word: lv3-guan3--hotel
+      - punctuation: 。
+    translation: This is a family-style inn.
+    grammar:
+      - stem-shi4--style
+      - zhe4-or-na4-shi4-np--identify
+      - num-mw-n--count
 
 - id: zh-hsk2026-g709
   pt: <compatible stem> + 型
   pr: <compatible stem> + xíng
   ds: A type classified by the preceding feature.
   lb: stem-xing2--type
+  ex:
+    segments:
+      - word: wo3-men5--we
+      - word: ying1-gai1--should
+      - word: jian4-she4--build
+      - word: jie2-yue1--conserve
+      - word: xing2--type
+      - word: she4-hui4--society
+      - punctuation: 。
+    translation: We should build a resource-conserving society.
+    grammar:
+      - stem-xing2--type
+      - s-ying1-gai1-vp--should
 
 - id: zh-hsk2026-g710
   pt: <compatible stem> + 性
   pr: <compatible stem> + xìng
   ds: An abstract property or character of the stem.
   lb: stem-xing4--property
+  ex:
+    segments:
+      - word: qing3--please
+      - word: jian3-cha2--check
+      - word: shu4-ju4--data
+      - word: de5--possession
+      - word: zhun3-que4--accurate
+      - word: xing4--quality
+      - punctuation: 。
+    translation: Please check the accuracy of the data.
+    grammar:
+      - stem-xing4--property
+      - qing3-vp--request
 
 - id: zh-hsk2026-g742
   pt: <statement> + 啦
   pr: <statement> + la
   ds: Animate an assertion or new situation; often fuses 了 and 啊.
   lb: stmt-la5--exclaim
+  ex:
+    segments:
+      - word: fan4--meal
+      - word: zuo4--make
+      - word: hao3--completed
+      - word: la5--exclamation
+      - punctuation: ，
+      - word: kuai4--fast
+      - word: lai2--come
+      - word: ba5--suggestion
+      - punctuation: ！
+    translation: Food's ready! Come and eat!
+    grammar:
+      - stmt-la5--exclaim
+      - stmt-ba5--suggest
+      - v-hao3--ready
 
 - id: zh-hsk2026-g743
   pt: <statement> + 嘛
   pr: <statement> + ma
   ds: Present a reason or fact as obvious/shared, often insistently.
   lb: stmt-ma5--obvious
+  ex:
+    segments:
+      - word: bie2--dont
+      - word: ji2--anxious
+      - punctuation: ，
+      - word: hai2--still
+      - word: you3--have
+      - word: shi2--ten
+      - word: fen1-zhong1--minute
+      - word: ma5--obvious
+      - punctuation: 。
+    translation: Don't worry; we still have ten minutes, after all.
+    grammar:
+      - stmt-ma5--obvious
+      - bie2-vp--dont
 
 - id: zh-hsk2026-g750
   pt: 算了
   pr: suàn le
   ds: Drop the matter or abandon the intended action.
   lb: suan4-le5--drop-it
+  ex:
+    segments:
+      - word: suan4-le5--forget
+      - punctuation: ，
+      - word: jin1-tian1--today
+      - word: bu4--not
+      - word: mai3--buy
+      - word: le5--change
+      - punctuation: ，
+      - word: xian1--first
+      - word: hui2--return
+      - word: jia1--home
+      - word: ba5--suggestion
+      - punctuation: 。
+    translation: Forget it; let's not buy it today. Let's go home first.
+    grammar:
+      - suan4-le5--drop-it
+      - stmt-ba5--suggest
 
 - id: zh-hsk2026-g770
   pt: 虽 + <concessive fact>，(但 / 可 / 却 / 也) + <clause>
   pr: suī + <concessive fact>, (dàn / kě / què / yě) + <clause>
   ds: Concede a fact while limiting its expected consequence; concise register.
   lb: sui1-fact-dan4-or-ke3-or-que4-or-ye3-clause--although
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: ge4--classifier
+      - word: ban4-fa3--method
+      - word: sui1--although
+      - word: jian3-dan1--simple
+      - punctuation: ，
+      - word: que4--yet
+      - word: hen3--very
+      - word: you3-xiao4--effective
+      - punctuation: 。
+    translation: This method is simple, yet very effective.
+    grammar:
+      - sui1-fact-dan4-or-ke3-or-que4-or-ye3-clause--although
+      - s-hen3-adj--describe
 
 - id: zh-hsk5-g012
   pt: 所 + <verb> + 的 + <noun>
   pr: suǒ + <verb> + de + <noun>
   ds: Formal nominal modification; the noun fills an understood object relation.
   lb: suo3-v-de5-n--relative
+  ex:
+    segments:
+      - word: ta1--he
+      - word: suo3--particle
+      - word: xie3--write
+      - word: de5--description
+      - word: bao4-gao4--report-noun
+      - word: hen3--very
+      - word: xiang2-xi4--detailed
+      - punctuation: 。
+    translation: The report he wrote is very detailed.
+    grammar:
+      - suo3-v-de5-n--relative
+      - s-hen3-adj--describe
 
 - id: zh-hsk2026-g729
   pt: (特地 / 特意) + <verb phrase>
   pr: (tè dì / tè yì) + <verb phrase>
   ds: Act specifically for the purpose at issue, with special effort.
   lb: te4-di4-or-te4-yi4-vp--deliberate
+  ex:
+    segments:
+      - word: ta1--she
+      - word: te4-yi4--deliberately
+      - word: zuo4--ride
+      - word: huo3-che1--train
+      - word: lai2--come
+      - word: kan4-wang4--visit
+      - word: wo3--me
+      - punctuation: 。
+    translation: She made a special train journey to come and see me.
+    grammar:
+      - te4-di4-or-te4-yi4-vp--deliberate
+      - s-vp-vp--purpose
 
 - id: zh-hsk2026-g717
   pt: (特 / 异常) + <gradable predicate>
   pr: (tè / yì cháng) + <gradable predicate>
   ds: A very high or unusually high degree; 特 is colloquial.
   lb: te4-or-yi4-chang2-pred--very
+  ex:
+    segments:
+      - word: jin1-tian1--today
+      - word: de5--description
+      - word: feng1--wind
+      - word: te4--very
+      - word: da4--big
+      - punctuation: 。
+    translation: The wind is really strong today.
+    grammar:
+      - te4-or-yi4-chang2-pred--very
+      - s-pred--statement
 
 - id: zh-hsk2026-g744
   pt: <topic> + 嘛，<clause>
   pr: <topic> + ma, <clause>
   ds: Pause on a topic before commenting; colloquial stance.
   lb: topic-ma5-clause--topic
+  ex:
+    segments:
+      - word: jia4-ge2--price
+      - word: ma5--emphasis
+      - punctuation: ，
+      - word: wo3-men5--we
+      - word: ke3-yi3--possible
+      - word: zai4--again
+      - word: tan2--discuss
+      - punctuation: 。
+    translation: As for the price, we can discuss it further.
+    grammar:
+      - topic-ma5-clause--topic
+      - s-neng2-or-ke3-yi3-vp--can-may
 
 - id: zh-hsk2026-g730
   pt: 偷偷 + <verb phrase>
   pr: tōu tōu + <verb phrase>
   ds: Act covertly, avoiding others' notice.
   lb: tou1-tou1-vp--secretly
+  ex:
+    segments:
+      - word: ta1--he
+      - word: tou1-tou1--secretly
+      - word: ba3--object
+      - word: li3-wu4--gift
+      - word: fang4--put
+      - word: zai4--location
+      - word: zhuo1-zi5--table
+      - word: shang4--above
+      - punctuation: 。
+    translation: He secretly put the present on the table.
+    grammar:
+      - tou1-tou1-vp--secretly
+      - s-ba3-obj-v-zai4-or-dao4-loc--relocate
 
 - id: zh-hsk2026-g716
   pt: <verb> + <number> + 番
   pr: <verb> + <number> + fān
   ds: Count extended bouts of effort, discussion or similar activity.
   lb: v-num-fan1--bouts
+  ex:
+    segments:
+      - word: wo3-men5--we
+      - word: ren4-zhen1--serious
+      - word: tao3-lun4--discuss
+      - word: le5--completed
+      - word: yi1--one
+      - word: fan1--occasion
+      - punctuation: ，
+      - word: zhong1-yu2--finally
+      - word: da2-cheng2--reach
+      - word: le5--completed
+      - word: xie2-yi4--agreement
+      - punctuation: 。
+    translation: After a thorough discussion, we finally reached an agreement.
+    grammar:
+      - v-num-fan1--bouts
+      - v-le5-obj--complete
 
 # Four-syllable and conversational fixed expressions (printed p. 398).
 - id: zh-hsk2026-g746
@@ -373,36 +1301,121 @@
   pr: <verb> + zhè + <same verb> + nà
   ds: The same action ranges over many things, often with impatience.
   lb: v-zhe4-v-na4--this-that
+  ex:
+    segments:
+      - word: hai2-zi5--child
+      - word: wen4--ask
+      - word: zhe4--this
+      - word: wen4--ask
+      - word: na4--that
+      - punctuation: ，
+      - word: ba4-ba5--dad
+      - word: nai4-xin1--patient
+      - word: de5--adverbial
+      - word: hui2-da2--answer
+      - punctuation: 。
+    translation: The child asked about this and that, and Dad answered patiently.
+    grammar:
+      - v-zhe4-v-na4--this-that
+      - adjp-de5-vp--manner
 
 - id: zh-hsk6-g020
   pt: <action>，以便 + <subsequent action>
   pr: <action>, yǐ biàn + <subsequent action>
   ds: Act to make a desired subsequent action possible.
   lb: vp-yi3-bian4-vp--so-that
+  ex:
+    segments:
+      - word: qing3--please
+      - word: ti2-qian2--advance
+      - word: fa1--send
+      - word: tong1-zhi1--notice
+      - punctuation: ，
+      - word: yi3-bian4--so-that
+      - word: da4-jia1--everyone
+      - word: an1-pai2--arrange
+      - word: shi2-jian1--time
+      - punctuation: 。
+    translation: Please send the notice in advance so everyone can plan their time.
+    grammar:
+      - vp-yi3-bian4-vp--so-that
+      - qing3-vp--request
 
 - id: zh-hsk2026-g731
   pt: 未必 + <proposition>
   pr: wèi bì + <proposition>
   ds: Deny certainty, not assert the opposite.
   lb: wei4-bi4-stmt--not-certain
+  ex:
+    segments:
+      - word: jia4-ge2--price
+      - word: gao1--tall
+      - punctuation: ，
+      - word: zhi4-liang4--quality
+      - word: wei4-bi4--not-necessarily
+      - word: hao3--good
+      - punctuation: 。
+    translation: A high price does not necessarily mean good quality.
+    grammar:
+      - wei4-bi4-stmt--not-certain
+      - clause-clause--linked
 
 - id: zh-hsk2026-g704
   pt: 无 + <compatible stem>
   pr: wú + <compatible stem>
   ds: Absence of the named property or component.
   lb: wu2-stem--without
+  ex:
+    segments:
+      - word: wo3--me
+      - word: he1--drink
+      - word: wu2--without
+      - word: tang2--sugar
+      - word: cha2--tea
+      - punctuation: 。
+    translation: I drink sugar-free tea.
+    grammar:
+      - wu2-stem--without
+      - s-vp--verbal
 
 - id: zh-hsk2026-g705
   pt: 亚 + <compatible stem>
   pr: yà + <compatible stem>
   ds: Below or secondary to a category; only established technical formations.
   lb: ya4-stem--sub
+  ex:
+    segments:
+      - word: ta1--he
+      - word: zheng4-zai4--ongoing
+      - word: yan2-jiu1--research
+      - word: ya4--sub
+      - word: jian4-kang1--healthy
+      - word: zhuang4-tai4--state
+      - punctuation: 。
+    translation: He is studying suboptimal states of health.
+    grammar:
+      - ya4-stem--sub
+      - s-zai4-or-zheng4-zai4-vp--ongoing
 
 - id: zh-hsk2026-g769
   pt: 要么 + <first option>，要么 + <second option>
   pr: yào me + <first option>, yào me + <second option>
   ds: Present a limited choice between alternatives.
   lb: yao4-me5-a-yao4-me5-b--either
+  ex:
+    segments:
+      - word: yao4-me5--either
+      - word: ni3--you
+      - word: zuo4-fan4--cook
+      - punctuation: ，
+      - word: yao4-me5--either
+      - word: wo3--me
+      - word: zuo4-fan4--cook
+      - punctuation: 。
+    translation: Either you cook or I do.
+    grammar:
+      - yao4-me5-a-yao4-me5-b--either
+      - s-vp--verbal
 
 # Alternation, concession, condition and purpose clauses (printed p. 399).
 - id: zh-hsk2026-g768
@@ -410,30 +1423,102 @@
   pr: yī shí + <first clause>, yī shí + <second clause>
   ds: Alternating transient states or actions.
   lb: yi1-shi2-clause-yi1-shi2-clause--alternate
+  ex:
+    segments:
+      - word: tian1-qi4--weather
+      - word: yi1-shi2--while
+      - word: qing2--sunny
+      - punctuation: ，
+      - word: yi1-shi2--while
+      - word: yin1--cloudy
+      - punctuation: 。
+    translation: The weather keeps switching between sunny and cloudy.
+    grammar:
+      - yi1-shi2-clause-yi1-shi2-clause--alternate
+      - s-pred--statement
 
 - id: zh-hsk2026-g722
   pt: 一时 + <predicate>
   pr: yī shí + <predicate>
   ds: A temporary situation or brief inability at the reference moment.
   lb: yi1-shi2-pred--temporarily
+  ex:
+    segments:
+      - word: wo3--me
+      - word: yi1-shi2--temporarily
+      - word: xiang3--think
+      - word: bu4--not
+      - word: qi3--result-state
+      - word: ta1--he
+      - word: de5--possession
+      - word: ming2-zi5--name
+      - punctuation: 。
+    translation: I cannot recall his name for the moment.
+    grammar:
+      - yi1-shi2-pred--temporarily
+      - owner-de5-n--possess
+      - v-qi3--evoke
+      - v-de5-or-bu4-comp--potential
 
 - id: zh-hsk2026-g725
   pt: 一向 + <predicate>
   pr: yī xiàng + <predicate>
   ds: A consistent habit or disposition over the relevant past.
   lb: yi1-xiang4-pred--always
+  ex:
+    segments:
+      - word: ta1--she
+      - word: yi1-xiang4--always
+      - word: zhun3-shi2--punctual
+      - punctuation: ，
+      - word: jin1-tian1--today
+      - word: zen3-me5--how
+      - word: chi2-dao4--late
+      - word: le5--change
+      - punctuation: ？
+    translation: She has always been punctual; why is she late today?
+    grammar:
+      - yi1-xiang4-pred--always
+      - state-le5--change
 
 - id: zh-hsk2026-g726
   pt: (一再 / 再三) + <verb phrase>
   pr: (yī zài / zài sān) + <verb phrase>
   ds: Repeatedly, often with insistence; not an exact count of three.
   lb: yi1-zai4-or-zai4-san1-vp--repeated
+  ex:
+    segments:
+      - word: lao3-shi1--teacher
+      - word: yi1-zai4--repeatedly
+      - word: ti2-xing3--remind
+      - word: wo3-men5--we
+      - word: an4-shi2--on-time
+      - word: jiao1--submit
+      - word: zuo4-ye4--homework
+      - punctuation: 。
+    translation: The teacher repeatedly reminded us to hand in our homework on time.
+    grammar:
+      - yi1-zai4-or-zai4-san1-vp--repeated
+      - s-vp--verbal
 
 - id: zh-hsk2026-g739
   pt: 因 + <cause> + <predicate>
   pr: yīn + <cause> + <predicate>
   ds: A concise formal cause phrase.
   lb: yin1-cause-pred--because
+  ex:
+    segments:
+      - word: hang2-ban1--flight
+      - word: yin1--because
+      - word: tian1-qi4--weather
+      - word: yuan2-yin1--reason
+      - word: qu3-xiao1--cancel
+      - word: le5--change
+      - punctuation: 。
+    translation: The flight was canceled because of the weather.
+    grammar:
+      - yin1-cause-pred--because
+      - state-le5--change
 
 # Prepositions, connector and particles (printed p. 398).
 - id: zh-hsk2026-g737
@@ -441,12 +1526,48 @@
   pr: yú + <time> + <verb phrase> / <verb> + yú + <place>
   ds: Formal time or location link; placement depends on the verb and register.
   lb: yu2-time-vp-or-v-yu2-loc--time-place
+  ex:
+    segments:
+      - word: hui4-yi4--meeting
+      - word: yu2--at
+      - word: ming2-tian1--tomorrow
+      - word: shang4-wu3--morning
+      - word: jiu3--nine
+      - word: dian3--oclock
+      - word: kai1-shi3--begin
+      - punctuation: 。
+    translation: The meeting begins at nine tomorrow morning.
+    grammar:
+      - yu2-time-vp-or-v-yu2-loc--time-place
+      - time-hour-dian3-min-fen1--clock
 
 - id: zh-hsk2026-g758
   pt: (早不 / 早也不) + <verb>，(晚不 / 晚也不) + <same verb>
   pr: (zǎo bù / zǎo yě bù) + <verb>, (wǎn bù / wǎn yě bù) + <same verb>
   ds: Complain that an action occurred at precisely an inconvenient time.
   lb: zao3-bu4-or-zao3-ye3-bu4-v-wan3-bu4-or-wan3-ye3-bu4-v--bad-time
+  ex:
+    segments:
+      - word: ni3--you
+      - word: zao3--early
+      - word: bu4--not
+      - word: lai2--come
+      - punctuation: ，
+      - word: wan3--late
+      - word: bu4--not
+      - word: lai2--come
+      - punctuation: ，
+      - word: zai4--time
+      - word: wo3--me
+      - word: yao4--about-to
+      - word: chu1-men2--go-out
+      - word: shi2--when
+      - word: lai2--come
+      - punctuation: 。
+    translation: Of all times to arrive, you turn up just as I am about to go out.
+    grammar:
+      - zao3-bu4-or-zao3-ye3-bu4-v-wan3-bu4-or-wan3-ye3-bu4-v--bad-time
+      - time-s-vp-or-s-time-vp--time
 
 # Unresolved outline item: （没）有……. The source's continuation after acceptance is semantically unspecified.
 - id: zh-hsk2026-g762
@@ -454,27 +1575,118 @@
   pr: zhè yě bù + <first rejected predicate>, nà yě bù + <second rejected predicate>
   ds: Reject successive options; 这 and 那 may reverse their order.
   lb: zhe4-ye3-bu4-pred-na4-ye3-bu4-pred--neither
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: ye3--also
+      - word: bu4--not
+      - word: chi1--eat
+      - punctuation: ，
+      - word: na4--that
+      - word: ye3--also
+      - word: bu4--not
+      - word: chi1--eat
+      - punctuation: ，
+      - word: ni3--you
+      - word: dao4-di3--exactly
+      - word: xiang3--want
+      - word: chi1--eat
+      - word: shen2-me5--what
+      - punctuation: ？
+    translation: You won't eat this or that; what do you actually want to eat?
+    grammar:
+      - zhe4-ye3-bu4-pred-na4-ye3-bu4-pred--neither
+      - s-xiang3-vp--want
 
 - id: zh-hsk2026-g738
   pt: 至于 + <topic>，<clause>
   pr: zhì yú + <topic>, <clause>
   ds: Shift to a separate topic or aspect.
   lb: zhi4-yu2-topic-clause--as-for
+  ex:
+    segments:
+      - word: piao4--ticket
+      - word: wo3--me
+      - word: mai3--buy
+      - word: hao3--completed
+      - word: le5--completed
+      - punctuation: ，
+      - word: zhi4-yu2--regarding
+      - word: zhu4-su4--lodge
+      - punctuation: ，
+      - word: wo3-men5--we
+      - word: ming2-tian1--tomorrow
+      - word: zai4--then
+      - word: shang1-liang5--discuss
+      - punctuation: 。
+    translation: I have bought the tickets; as for accommodation, we can discuss that tomorrow.
+    grammar:
+      - zhi4-yu2-topic-clause--as-for
+      - v-hao3--ready
 
 - id: zh-hsk2026-g706
   pt: 准 + <compatible stem>
   pr: zhǔn + <compatible stem>
   ds: Near, prospective or quasi-membership in a category.
   lb: zhun3-stem--quasi
+  ex:
+    segments:
+      - word: zhe4--this
+      - word: wei4--people
+      - word: zhun3--quasi
+      - word: ma1-ma5--mom
+      - word: mei3--every
+      - word: tian1--day
+      - word: san4-bu4--walk
+      - punctuation: 。
+    translation: This expectant mother takes a walk every day.
+    grammar:
+      - zhun3-stem--quasi
+      - zhe4-or-na4-mw-n--this-that
 
 - id: zh-hsk2026-g736
   pt: 总算 + <predicate>
   pr: zǒng suàn + <predicate>
   ds: A satisfactory endpoint reached after difficulty or waiting.
   lb: zong3-suan4-pred--at-last
+  ex:
+    segments:
+      - word: deng3--wait
+      - word: le5--completed
+      - word: liang3--two
+      - word: ge4--classifier
+      - word: xiao3-shi2--hour
+      - punctuation: ，
+      - word: gong1-jiao1-che1--bus
+      - word: zong3-suan4--finally
+      - word: lai2--come
+      - word: le5--change
+      - punctuation: 。
+    translation: After a two-hour wait, the bus has finally arrived.
+    grammar:
+      - zong3-suan4-pred--at-last
+      - v-le5-obj--complete
 
 - id: zh-hsk2026-g747
   pt: 左 + <paired A> + 右 + <paired B>
   pr: zuǒ + <paired A> + yòu + <paired B>
   ds: Repeated or all-sided activity in established paired expressions.
   lb: zuo3-a-you4-b--all-sides
+  ex:
+    segments:
+      - word: ta1--he
+      - word: zuo3--left
+      - word: kan4--watch
+      - word: you4--right
+      - word: kan4--watch
+      - punctuation: ，
+      - word: hai2-shi5--still
+      - word: mei2--negation
+      - word: zhao3--search
+      - word: dao4--attainment
+      - word: yao4-shi5--key
+      - punctuation: 。
+    translation: He looked this way and that but still could not find the key.
+    grammar:
+      - zuo3-a-you4-b--all-sides
+      - v-dao4--attain

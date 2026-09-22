@@ -1,5 +1,6 @@
 # HSK 3 additions to hsk-1 and hsk-2; not a standalone cumulative list.
-# 639 incremental senses after grammar-prerequisite additions and earlier moves.
+# 638 incremental senses after grammar/example-prerequisite additions and earlier moves.
+# The meter sense of 米 is taught in HSK 2 for dimensional measurement examples.
 # Baseline: 604 senses, 593 for numbered rows 501-1000 and
 # 11 for the seven earlier-row HSK 3 extensions (33, 55, 81, 86, 266,
 # 445, 471). Numbered rows, written forms, readings, and senses are distinct.
@@ -397,7 +398,6 @@
 - {id: zh-hsk1-00229-s001, ch: 马上, pr: mǎ shàng, ds: immediately; right away, lb: ma3-shang4--immediately}
 - {id: zh-hsk2-00357-s001, ch: 满意, pr: mǎn yì, ds: to be satisfied; be pleased, lb: man3-yi4--satisfied}
 - {id: zh-hsk1-00234-s016, ch: 毛, pr: máo, ds: one tenth of a yuan (colloquial), lb: mao2--dime}
-- {id: zh-hsk2-00359-s003, ch: 米, pr: mǐ, ds: meter (unit of length), lb: mi3--meter}
 - {id: zh-hsk2-00361-s001, ch: 面前, pr: miàn qián, ds: in front of; before someone, lb: mian4-qian2--front}
 - {id: zh-hsk1-00250-s001, ch: 明白, pr: míng bai, ds: clear; obvious, lb: ming2-bai5--clear}
 - {id: zh-hsk1-00250-s004, ch: 明白, pr: míng bai, ds: to understand; realize, lb: ming2-bai5--understand}
@@ -442,7 +442,8 @@
 - {id: zh-hsk2-00411-s001, ch: 起飞, pr: qǐ fēi, ds: to take off (of an aircraft), lb: qi3-fei1--takeoff}
 # Citation variants follow the retained whole-expression senses: onset 起来
 # uses documented qǐ lai, continuation 下去 xià qù, appearance 看上去 kàn shang qu.
-- {id: zh-hsk1-00293-s004, ch: 起来, pr: qǐ lai, ds: beginning and continuation of an activity, lb: qi3-lai5--start}
+# Source sense includes both actions and states; the construction is taught separately.
+- {id: zh-hsk1-00293-s004, ch: 起来, pr: qǐ lai, ds: beginning and continuation of an action or state, lb: qi3-lai5--start}
 - {id: zh-hsk1-00294-s001, ch: 汽车, pr: qì chē, ds: car; automobile, lb: qi4-che1--car}
 - {id: zh-hsk6-00629-s001, ch: 铅笔, pr: qiān bǐ, ds: pencil, lb: qian1-bi3--pencil}
 - {id: zh-hsk2-00416-s001, ch: 前年, pr: qián nián, ds: the year before last, lb: qian2-nian2--year-before-last}
@@ -558,7 +559,8 @@
 - {id: zh-grammar-00012-s001, ch: 下, pr: xià, ds: under stated conditions or influence, lb: xia4--circumstances}
 - {id: zh-grammar-00015-s001, ch: 下, pr: xià, ds: complement marking retention or setting something down, lb: xia4--retention}
 - {id: zh-hsk3-00753-s004, ch: 下来, pr: xià lai, ds: continuation from the past to the reference point, lb: xia4-lai5--continuation}
-- {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: continue an action onward, lb: xia4-qu4--continue}
+# Source sense is to continue, not limited to actions.
+- {id: zh-hsk3-00755-s004, ch: 下去, pr: xià qù, ds: continue an action or state onward, lb: xia4-qu4--continue}
 - {id: zh-hsk2-00569-s001, ch: 夏天, pr: xià tiān, ds: summer, lb: xia4-tian1--summer}
 - {id: zh-hsk1-00401-s005, ch: 先, pr: xiān, ds: first; before doing something else, lb: xian1--first}
 - {id: zh-hsk3-00773-s001, ch: 香蕉, pr: xiāng jiāo, ds: banana, lb: xiang1-jiao1--banana}

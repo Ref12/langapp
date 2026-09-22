@@ -1,0 +1,596 @@
+# HSK 2 supplemental usage examples; original editorial sentences.
+# Complements grammar.yaml examples; references only HSK 1 and HSK 2 units.
+# Every word references its intended canonical vocabulary sense by lb.
+# No protected syllabus examples, exams, or transcripts are reproduced.
+# Vocabulary and grammar source attribution remains in their inventories.
+# Editorial coverage is not independent review or evidence of exam readiness.
+
+- id: hsk2-enjoy-sports-since-childhood
+  segments: [{word: ta1--he}, {word: cong2-xiao3--childhood}, {word: ai4-hao4--enjoy}, {word: yun4-dong4--sports}, {punctuation: 。}]
+  translation: "He has enjoyed sports since childhood."
+  grammar: [time-s-vp-or-s-time-vp--time, v-obj--object]
+
+- id: hsk2-dancing-hobby
+  segments: [{word: wo3--me}, {word: de5--possession}, {word: ai4-hao4--hobby}, {word: shi4--identity}, {word: tiao4-wu3--dance}, {punctuation: 。}]
+  translation: "My hobby is dancing."
+  grammar: [owner-de5-n--possess, s-shi4-n--identity]
+
+- id: hsk2-white-trousers
+  segments: [{word: wo3--me}, {word: xi3-huan5--like}, {word: bai2-se4--white}, {word: de5--description}, {word: ku4-zi5--trousers}, {punctuation: 。}]
+  translation: "I like white trousers."
+  grammar: [adjp-de5-n--describe, v-obj--object]
+
+- id: hsk2-two-shifts-today
+  segments: [{word: wo3--me}, {word: jin1-tian1--today}, {word: you3--have}, {word: liang3--two}, {word: ge4--classifier}, {word: ban1--shift}, {punctuation: 。}]
+  translation: "I have two shifts today."
+  grammar: [time-s-vp-or-s-time-vp--time, s-you3-np--have, liang3-mw-n--two]
+
+- id: hsk2-come-and-help
+  segments: [{word: ni3--you}, {word: neng2--ability}, {word: lai2--come}, {word: bang1-mang2--help}, {word: ma5--question}, {punctuation: ？}]
+  translation: "Can you come and lend a hand?"
+  grammar: [s-neng2-or-ke3-yi3-vp--can-may, s-vp-vp--purpose, stmt-ma5--yes-no]
+
+- id: hsk2-parcel-arrival
+  segments: [{word: ni3--you}, {word: de5--possession}, {word: bao1--package}, {word: dao4--arrive}, {word: le5--change}, {punctuation: 。}]
+  translation: "Your parcel has arrived."
+  grammar: [owner-de5-n--possess, state-le5--change]
+
+- id: hsk2-deliver-packet-of-tea
+  segments: [{word: wo3--me}, {word: gei3--to}, {word: ni3--you}, {word: song4--deliver}, {word: yi1--one}, {word: bao1--packet}, {word: cha2--tea}, {punctuation: 。}]
+  translation: "I'll deliver a packet of tea to you."
+  grammar: [gei3-p-vp--for-to, num-mw-n--count]
+
+- id: hsk2-wrap-this-book
+  segments: [{word: qing3--please}, {word: bang1--help}, {word: wo3--me}, {word: bao1--wrap}, {word: zhe4--this}, {word: ben3--books}, {word: shu1--book}, {punctuation: 。}]
+  translation: "Please help me wrap this book."
+  grammar: [qing3-vp--request, zhe4-or-na4-mw-n--this-that, v-obj--object]
+
+- id: hsk2-compare-colors
+  segments: [{word: wo3-men5--we}, {word: bi3--compare}, {word: yi1--one}, {word: bi3--compare}, {word: yan2-se4--color}, {punctuation: 。}]
+  translation: "Let's compare the colors."
+  grammar: [v-yi1-v--brief, v-obj--object]
+
+- id: hsk2-pretty-good-restaurant
+  segments: [{word: zhe4--this}, {word: jia1--classifier}, {word: fan4-dian4--restaurant}, {word: bu4-cuo4--good}, {punctuation: 。}]
+  translation: "This restaurant is pretty good."
+  grammar: [zhe4-or-na4-mw-n--this-that, s-pred--statement]
+
+- id: hsk2-embarrassed-by-reading-error
+  segments: [{word: wo3--me}, {word: du2--read-aloud}, {word: cuo4--wrong}, {word: le5--completed}, {punctuation: ，}, {word: hen3--very}, {word: bu4-hao3-yi4-si5--embarrassed}, {punctuation: 。}]
+  translation: "I read it incorrectly and felt very embarrassed."
+  grammar: [v-cuo4--wrong, v-le5-obj--complete, s-hen3-adj--describe, clause-clause--linked]
+
+- id: hsk2-sorry-please-wait
+  segments: [{word: bu4-hao3-yi4-si5--sorry}, {punctuation: ，}, {word: qing3--please}, {word: deng3--wait}, {word: yi1-hui4-r5--while}, {punctuation: 。}]
+  translation: "Sorry, please wait a moment."
+  grammar: [expr--fragment, qing3-vp--request]
+
+- id: hsk2-waiting-for-train
+  segments: [{word: wo3--me}, {word: zai4--location}, {word: che1-zhan4--station}, {word: deng3--wait}, {word: huo3-che1--train}, {punctuation: 。}]
+  translation: "I'm waiting for the train at the station."
+  grammar: [s-zai4-loc-vp--location, v-obj--object]
+
+- id: hsk2-separate-entry-and-exit
+  segments: [{word: cong2--via}, {word: zhe4--this}, {word: ge4--classifier}, {word: men2--door}, {word: chu1--exit}, {punctuation: ，}, {word: cong2--via}, {word: na4--that}, {word: ge4--classifier}, {word: men2--door}, {word: jin4--enter}, {punctuation: 。}]
+  translation: "Go out through this door and in through that one."
+  grammar: [cong2-route-vp--via, zhe4-or-na4-mw-n--this-that, clause-clause--linked]
+
+- id: hsk2-plan-overseas-trip
+  segments: [{word: wo3--me}, {word: zhun3-bei4--intend}, {word: ming2-nian2--year}, {word: chu1-guo2--abroad}, {word: lv3-you2--travel}, {punctuation: 。}]
+  translation: "I plan to travel abroad next year."
+  grammar: [time-s-vp-or-s-time-vp--time, s-vp--verbal, s-vp-vp--purpose]
+
+- id: hsk2-stay-home-in-rain
+  segments: [{word: xian4-zai4--now}, {word: xia4-yu3--rain}, {punctuation: ，}, {word: bie2--dont}, {word: chu1-men2--go-out}, {punctuation: 。}]
+  translation: "It's raining now; don't go out."
+  grammar: [time-s-vp-or-s-time-vp--time, bie2-vp--dont, clause-clause--linked]
+
+- id: hsk2-go-out-to-play
+  segments: [{word: wo3--me}, {word: xiang3--want}, {word: chu1-qu4--go-out}, {word: wan2--play}, {punctuation: 。}]
+  translation: "I want to go out and play."
+  grammar: [s-xiang3-vp--want, s-vp-vp--purpose]
+
+- id: hsk2-bed-inside-room
+  segments: [{word: chuang2--bed}, {word: zai4--location}, {word: fang2-jian1--room}, {word: li3-mian4--inside}, {punctuation: 。}]
+  translation: "The bed is inside the room."
+  grammar: [s-zai4-loc--at]
+
+- id: hsk2-do-not-hit-it
+  segments: [{word: bie2--dont}, {word: da3--hit}, {word: ta1--it}, {punctuation: 。}]
+  translation: "Don't hit it."
+  grammar: [bie2-vp--dont, v-obj--object]
+
+- id: hsk2-basketball-after-class
+  segments: [{word: wo3-men5--we}, {word: xia4-ke4--finish}, {word: hou4--after}, {word: da3--play}, {word: lan2-qiu2--basketball}, {punctuation: 。}]
+  translation: "We play basketball after class."
+  grammar: [time-s-vp-or-s-time-vp--time, v-obj--object]
+
+- id: hsk2-taxi-to-airport
+  segments: [{word: wo3--me}, {word: da3-che1--taxi}, {word: qu4--go}, {word: ji1-chang3--airport}, {punctuation: 。}]
+  translation: "I take a taxi to the airport."
+  grammar: [s-vp-vp--means]
+
+- id: hsk2-turn-on-computer
+  segments: [{word: qing3--please}, {word: da3-kai1--activate}, {word: dian4-nao3--computer}, {punctuation: 。}]
+  translation: "Please turn on the computer."
+  grammar: [qing3-vp--request, v-obj--object]
+
+- id: hsk2-open-schoolbag
+  segments: [{word: qing3--please}, {word: da3-kai1--open}, {word: shu1-bao1--schoolbag}, {punctuation: 。}]
+  translation: "Please open the schoolbag."
+  grammar: [qing3-vp--request, v-obj--object]
+
+- id: hsk2-order-meat
+  segments: [{word: wo3--me}, {word: dian3--order}, {word: le5--completed}, {word: yi1-xie1--some}, {word: rou4--meat}, {punctuation: 。}]
+  translation: "I ordered some meat."
+  grammar: [v-le5-obj--complete]
+
+- id: hsk2-move-your-hand
+  segments: [{word: qing3--please}, {word: dong4--move}, {word: yi1--one}, {word: dong4--move}, {word: ni3--you}, {word: de5--possession}, {word: shou3--hand}, {punctuation: 。}]
+  translation: "Please move your hand a little."
+  grammar: [qing3-vp--request, v-yi1-v--brief, owner-de5-n--possess]
+
+- id: hsk2-drink-more-water
+  segments: [{word: ni3--you}, {word: yao4--want}, {word: duo1--more}, {word: he1--drink}, {word: shui3--water}, {punctuation: 。}]
+  translation: "You need to drink more water."
+  grammar: [s-yao4-vp--intend, v-obj--object]
+
+- id: hsk2-bed-height
+  segments: [{word: chuang2--bed}, {word: de5--possession}, {word: gao1--height}, {word: shi4--identity}, {word: ban4--half}, {word: mi3--meter}, {punctuation: 。}]
+  translation: "The height of the bed is half a meter."
+  grammar: [owner-de5-n--possess, s-shi4-n--identity]
+
+- id: hsk2-older-brother-at-high-school
+  segments: [{word: wo3--me}, {word: ge1-ge5--brother}, {word: zai4--location}, {word: gao1-zhong1--school}, {word: du2-shu1--study}, {punctuation: 。}]
+  translation: "My older brother studies at a senior high school."
+  grammar: [owner-de5-n--possess, s-zai4-loc-vp--location]
+
+- id: hsk2-tell-me-full-name
+  segments: [{word: qing3--please}, {word: gao4-su5--tell}, {word: wo3--me}, {word: ni3--you}, {word: de5--possession}, {word: xing4-ming2--name}, {punctuation: 。}]
+  translation: "Please tell me your full name."
+  grammar: [qing3-vp--request, s-v-p-obj--double-obj, owner-de5-n--possess]
+
+- id: hsk2-bus-number-five
+  segments: [{word: zuo4--ride}, {word: wu3--five}, {word: lu4--route}, {word: gong1-jiao1-che1--bus}, {word: qu4--go}, {word: xue2-xiao4--school}, {punctuation: 。}]
+  translation: "Take the number five bus to school."
+  grammar: [num-unit--ordinal, s-vp-vp--means]
+
+- id: hsk2-birthday-at-home
+  segments: [{word: wo3-men5--we}, {word: zai4--location}, {word: jia1--home}, {word: guo4--celebrate}, {word: sheng1-ri4--birthday}, {punctuation: 。}]
+  translation: "We celebrate birthdays at home."
+  grammar: [s-zai4-loc-vp--location, v-obj--object]
+
+- id: hsk2-cross-road-without-phone
+  segments: [{word: guo4--cross}, {word: zhe4--this}, {word: tiao2--classifier}, {word: lu4--road}, {word: shi2--when}, {punctuation: ，}, {word: bie2--dont}, {word: kan4--watch}, {word: shou3-ji1--phone}, {punctuation: 。}]
+  translation: "Don't look at your phone when crossing this road."
+  grammar: [time-s-vp-or-s-time-vp--time, zhe4-or-na4-mw-n--this-that, bie2-vp--dont]
+
+- id: hsk2-new-year-at-home
+  segments: [{word: wo3--me}, {word: xiang3--want}, {word: zai4--location}, {word: jia1--home}, {word: guo4-nian2--new-year}, {punctuation: 。}]
+  translation: "I'd like to celebrate Chinese New Year at home."
+  grammar: [s-xiang3-vp--want, s-zai4-loc-vp--location]
+
+- id: hsk2-spend-sunday
+  segments: [{word: ni3--you}, {word: xiang3--want}, {word: zen3-me5--how}, {word: guo4--time}, {word: xing1-qi1-tian1--sunday}, {punctuation: ？}]
+  translation: "How would you like to spend Sunday?"
+  grammar: [s-xiang3-vp--want, s-zen3-me5-vp--how, v-obj--object]
+
+- id: hsk2-come-over-for-tea
+  segments: [{word: guo4-lai2--come-over}, {word: he1--drink}, {word: cha2--tea}, {word: ba5--suggestion}, {punctuation: 。}]
+  translation: "Come over and have some tea."
+  grammar: [s-vp-vp--purpose, stmt-ba5--suggest]
+
+- id: hsk2-go-over-while-i-wait
+  segments: [{word: ni3--you}, {word: guo4-qu4--go-over}, {punctuation: ，}, {word: wo3--me}, {word: zai4--location}, {word: zhe4-li3--here}, {word: deng3--wait}, {punctuation: 。}]
+  translation: "You go over there; I'll wait here."
+  grammar: [s-zai4-loc-vp--location, clause-clause--linked]
+
+- id: hsk2-still-busy
+  segments: [{word: ta1--he}, {word: hai2-shi5--still}, {word: hen3--very}, {word: mang2--busy}, {punctuation: 。}]
+  translation: "He is still busy."
+  grammar: [s-hen3-adj--describe]
+
+- id: hsk2-black-pens
+  segments: [{word: wo3--me}, {word: mai3--buy}, {word: le5--completed}, {word: hei1-se4--black}, {word: de5--description}, {word: bi3--pen}, {punctuation: 。}]
+  translation: "I bought black pens."
+  grammar: [v-le5-obj--complete, adjp-de5-n--describe]
+
+- id: hsk2-buildings-behind-school
+  segments: [{word: xue2-xiao4--school}, {word: hou4-mian5--behind}, {word: you3--have}, {word: lou2--building}, {punctuation: 。}]
+  translation: "There are buildings behind the school."
+  grammar: [loc-you3-qty-n--exist]
+
+- id: hsk2-interest-developed-later
+  segments: [{word: kai1-shi3--beginning}, {word: wo3--me}, {word: bu4--not}, {word: xi3-huan5--like}, {word: han4-yu3--chinese}, {punctuation: ，}, {word: hou4-mian5--later}, {word: wo3--me}, {word: jue2-de5--think}, {word: hen3--very}, {word: you3-yi4-si5--interesting}, {punctuation: 。}]
+  translation: "At first I didn't like Chinese; later I found it very interesting."
+  grammar: [time-s-vp-or-s-time-vp--time, s-bu4-pred--not, clause-clause--linked]
+
+- id: hsk2-draw-flowers
+  segments: [{word: wo3--me}, {word: xiang3--want}, {word: hua4--draw}, {word: hua1--flower}, {punctuation: 。}]
+  translation: "I want to draw flowers."
+  grammar: [s-xiang3-vp--want, v-obj--object]
+
+- id: hsk2-uninteresting-paintings
+  segments: [{word: ta1--he}, {word: de5--possession}, {word: hua4--picture}, {word: mei2-yi4-si5--boring}, {punctuation: 。}]
+  translation: "His paintings are uninteresting."
+  grammar: [owner-de5-n--possess, s-pred--statement]
+
+- id: hsk2-not-a-bad-thing
+  segments: [{word: zhe4--this}, {word: bu4--not}, {word: shi4--identity}, {word: yi1--one}, {word: jian4--classifier}, {word: huai4--bad}, {word: shi4--matter}, {punctuation: 。}]
+  translation: "This isn't a bad thing."
+  grammar: [s-bu4-pred--not, s-shi4-n--identity, num-mw-n--count, adjp-de5-n--describe]
+
+- id: hsk2-broken-phone
+  segments: [{word: wo3--me}, {word: de5--possession}, {word: shou3-ji1--phone}, {word: huai4--broken}, {word: le5--change}, {punctuation: 。}]
+  translation: "My phone is broken."
+  grammar: [owner-de5-n--possess, state-le5--change]
+
+- id: hsk2-spoiled-milk
+  segments: [{word: niu2-nai3--milk}, {word: huai4--spoiled}, {word: le5--change}, {punctuation: ，}, {word: bie2--dont}, {word: he1--drink}, {punctuation: 。}]
+  translation: "The milk has gone bad; don't drink it."
+  grammar: [state-le5--change, bie2-vp--dont, clause-clause--linked]
+
+- id: hsk2-going-back-tomorrow
+  segments: [{word: wo3--me}, {word: ming2-tian1--tomorrow}, {word: hui2-qu5--return}, {punctuation: 。}]
+  translation: "I'm going back tomorrow."
+  grammar: [time-s-vp-or-s-time-vp--time, s-vp--verbal]
+
+- id: hsk2-remember-birthday
+  segments: [{word: wo3--me}, {word: ji4-de5--remember}, {word: ni3--you}, {word: de5--possession}, {word: sheng1-ri4--birthday}, {punctuation: 。}]
+  translation: "I remember your birthday."
+  grammar: [owner-de5-n--possess, v-obj--object]
+
+- id: hsk2-ten-hotel-rooms
+  segments: [{word: zhe4--this}, {word: jia1--classifier}, {word: jiu3-dian4--hotel}, {word: you3--have}, {word: shi2--ten}, {word: jian1--rooms}, {word: fang2-jian1--room}, {punctuation: 。}]
+  translation: "This hotel has ten rooms."
+  grammar: [zhe4-or-na4-mw-n--this-that, s-you3-np--have, num-mw-n--count]
+
+- id: hsk2-introducing-school
+  segments: [{word: lao3-shi1--teacher}, {word: jie4-shao4--describe}, {word: wo3-men5--we}, {word: de5--possession}, {word: xue2-xiao4--school}, {punctuation: 。}]
+  translation: "The teacher gives an introduction to our school."
+  grammar: [owner-de5-n--possess, v-obj--object]
+
+- id: hsk2-introducing-wife
+  segments: [{word: wo3--me}, {word: gei3--to}, {word: ni3--you}, {word: jie4-shao4--introduce}, {word: wo3--me}, {word: de5--possession}, {word: qi1-zi5--wife}, {punctuation: 。}]
+  translation: "Let me introduce my wife to you."
+  grammar: [gei3-p-vp--for-to, owner-de5-n--possess, v-obj--object]
+
+- id: hsk2-near-school-far-airport
+  segments: [{word: xue2-xiao4--school}, {word: hen3--very}, {word: jin4--near}, {punctuation: ，}, {word: ji1-chang3--airport}, {word: hen3--very}, {word: yuan3--far}, {punctuation: 。}]
+  translation: "The school is close by; the airport is far away."
+  grammar: [s-hen3-adj--describe, clause-clause--linked]
+
+- id: hsk2-go-inside
+  segments: [{word: men2--door}, {word: kai1--open}, {word: zhe5--ongoing}, {punctuation: ，}, {word: qing3--please}, {word: jin4-qu4--enter}, {punctuation: 。}]
+  translation: "The door is open; please go in."
+  grammar: [v-zhe5--state, qing3-vp--request, clause-clause--linked]
+
+- id: hsk2-often-swim
+  segments: [{word: wo3--me}, {word: jing1-chang2--often}, {word: you2-yong3--swim}, {punctuation: 。}]
+  translation: "I often swim."
+  grammar: [s-chang2-or-jing1-chang2-vp--often]
+
+- id: hsk2-this-is-my-home
+  segments: [{word: zhe4--this}, {word: jiu4--exactly}, {word: shi4--identity}, {word: wo3--me}, {word: jia1--home}, {punctuation: 。}]
+  translation: "This is my home, right here."
+  grammar: [zhe4-or-na4-shi4-np--identify, owner-de5-n--possess]
+
+- id: hsk2-only-two-apples
+  segments: [{word: wo3--me}, {word: jiu4--only}, {word: mai3--buy}, {word: le5--completed}, {word: liang3--two}, {word: ge4--classifier}, {word: ping2-guo3--apple}, {punctuation: 。}]
+  translation: "I only bought two apples."
+  grammar: [v-le5-obj--complete, liang3-mw-n--two]
+
+- id: hsk2-then-have-water
+  segments: [{word: na4--then}, {word: jiu4--then}, {word: he1--drink}, {word: shui3--water}, {word: ba5--suggestion}, {punctuation: 。}]
+  translation: "In that case, let's have water."
+  grammar: [na4-stmt--then, stmt-ba5--suggest]
+
+- id: hsk2-chinese-exam-tomorrow
+  segments: [{word: wo3--me}, {word: ming2-tian1--tomorrow}, {word: kao3--exam}, {word: han4-yu3--chinese}, {punctuation: 。}]
+  translation: "I'm taking a Chinese exam tomorrow."
+  grammar: [time-s-vp-or-s-time-vp--time, v-obj--object]
+
+- id: hsk2-teacher-testing-me
+  segments: [{word: lao3-shi1--teacher}, {word: xiang3--want}, {word: kao3--test}, {word: kao3--test}, {word: wo3--me}, {punctuation: 。}]
+  translation: "The teacher wants to test me a little."
+  grammar: [s-xiang3-vp--want, v-v--try, v-obj--object]
+
+- id: hsk2-have-an-exam
+  segments: [{word: wo3--me}, {word: jin1-tian1--today}, {word: you3--have}, {word: kao3-shi4--exam}, {punctuation: 。}]
+  translation: "I have an exam today."
+  grammar: [time-s-vp-or-s-time-vp--time, s-you3-np--have]
+
+- id: hsk2-exam-next-week
+  segments: [{word: wo3--me}, {word: xia4--next}, {word: zhou1--week}, {word: kao3-shi4--take-exam}, {punctuation: 。}]
+  translation: "I take an exam next week."
+  grammar: [time-s-vp-or-s-time-vp--time, s-vp--verbal]
+
+- id: hsk2-possible-arrival
+  segments: [{word: ta1--he}, {word: ming2-tian1--tomorrow}, {word: lai2--come}, {word: ma5--question}, {punctuation: ？}, {word: you3--have}, {word: zhe4--this}, {word: ge4--classifier}, {word: ke3-neng2--possibility}, {punctuation: 。}]
+  translation: "Is he coming tomorrow? That's a possibility."
+  grammar: [time-s-vp-or-s-time-vp--time, stmt-ma5--yes-no, s-you3-np--have, zhe4-or-na4-mw-n--this-that]
+
+- id: hsk2-not-possible
+  segments: [{word: zhe4--this}, {word: bu4--not}, {word: ke3-neng2--possible}, {punctuation: 。}]
+  translation: "That's not possible."
+  grammar: [s-bu4-pred--not]
+
+- id: hsk2-happy-birthday
+  segments: [{word: sheng1-ri4--birthday}, {word: kuai4-le4--happy}, {punctuation: ！}]
+  translation: "Happy birthday!"
+  grammar: [expr--fragment]
+
+- id: hsk2-movie-starting-soon
+  segments: [{word: dian4-ying3--movie}, {word: kuai4-yao4--soon}, {word: kai1-shi3--begin}, {word: le5--change}, {punctuation: 。}]
+  translation: "The movie is about to start."
+  grammar: [yao4-or-kuai4-yao4-vp-le5--soon, state-le5--change]
+
+- id: hsk2-tiring-work
+  segments: [{word: wo3--me}, {word: de5--possession}, {word: gong1-zuo4--job}, {word: hen3--very}, {word: lei4--tire}, {word: ren2--person}, {punctuation: 。}]
+  translation: "My job really tires people out."
+  grammar: [owner-de5-n--possess, s-vp--verbal, v-obj--object]
+
+- id: hsk2-home-near-school
+  segments: [{word: wo3--me}, {word: jia1--home}, {word: li2--distance}, {word: xue2-xiao4--school}, {word: hen3--very}, {word: jin4--near}, {punctuation: 。}]
+  translation: "My home is near the school."
+  grammar: [owner-de5-n--possess, prep-obj--phrase, s-hen3-adj--describe]
+
+- id: hsk2-unwilling-to-leave-home
+  segments: [{word: ta1--he}, {word: bu4--not}, {word: xiang3--want}, {word: li2--leave}, {word: jia1--home}, {punctuation: 。}]
+  translation: "He doesn't want to leave home."
+  grammar: [s-bu4-pred--not, s-xiang3-vp--want, v-obj--object]
+
+- id: hsk2-green-clothing
+  segments: [{word: zhe4--this}, {word: jian4--classifier}, {word: lv4-se4--green}, {word: de5--description}, {word: yi1-fu5--clothes}, {word: hen3--very}, {word: piao4-liang5--pretty}, {punctuation: 。}]
+  translation: "This green item of clothing is beautiful."
+  grammar: [zhe4-or-na4-mw-n--this-that, adjp-de5-n--describe, s-hen3-adj--describe]
+
+- id: hsk2-admission-price
+  segments: [{word: men2-piao4--ticket}, {word: san1--three}, {word: shi2--ten}, {word: yuan2--yuan}, {punctuation: 。}]
+  translation: "Admission costs thirty yuan."
+  grammar: [s-np--nominal, tens-shi2-ones--tens, amt-yuan2-or-kuai4-or-fen1--money]
+
+- id: hsk2-family-and-given-name
+  segments: [{word: qing3--please}, {word: xie3--write}, {word: xing4--surname}, {word: he2--and}, {word: ming2--name}, {punctuation: 。}]
+  translation: "Please write your family name and given name."
+  grammar: [qing3-vp--request, np-he2-np--and, v-obj--object]
+
+- id: hsk2-three-new-students
+  segments: [{word: xue2-xiao4--school}, {word: you3--have}, {word: san1--three}, {word: ming2--people}, {word: xin1--new}, {word: xue2-sheng5--student}, {punctuation: 。}]
+  translation: "The school has three new students."
+  grammar: [s-you3-np--have, num-mw-n--count, adjp-de5-n--describe]
+
+- id: hsk2-holding-book
+  segments: [{word: ta1--he}, {word: na2--hold}, {word: zhe5--ongoing}, {word: yi1--one}, {word: ben3--books}, {word: shu1--book}, {punctuation: 。}]
+  translation: "He is holding a book."
+  grammar: [v-zhe5--state, num-mw-n--count]
+
+- id: hsk2-take-your-bag-away
+  segments: [{word: qing3--please}, {word: na2--take}, {word: zou3--leave}, {word: ni3--you}, {word: de5--possession}, {word: bao1--bag}, {punctuation: 。}]
+  translation: "Please take your bag away."
+  grammar: [qing3-vp--request, owner-de5-n--possess, v-obj--object]
+
+- id: hsk2-that-expensive
+  segments: [{word: na4-xie1--those}, {word: yi1-fu5--clothes}, {word: na4-me5--degree}, {word: gui4--expensive}, {punctuation: ，}, {word: wo3--me}, {word: bu4--not}, {word: xiang3--want}, {word: mai3--buy}, {punctuation: 。}]
+  translation: "Those clothes are so expensive that I don't want to buy any."
+  grammar: [zhe4-xie1-or-na4-xie1-n--these-those, zhe4-me5-or-na4-me5-adj--degree, s-bu4-pred--not, s-xiang3-vp--want, clause-clause--linked]
+
+- id: hsk2-do-not-write-that-way
+  segments: [{word: ni3--you}, {word: bu4--not}, {word: neng2--ability}, {word: na4-me5--that-way}, {word: xie3--write}, {punctuation: 。}]
+  translation: "You can't write it that way."
+  grammar: [s-bu4-pred--not, s-neng2-or-ke3-yi3-vp--can-may, zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner]
+
+- id: hsk2-then-return-tomorrow
+  segments: [{word: ni3--you}, {word: xi3-huan5--like}, {word: zhe4--this}, {word: jia1--classifier}, {word: dian4--shop}, {punctuation: ，}, {word: na4-me5--then}, {word: ming2-tian1--tomorrow}, {word: zai4--again}, {word: lai2--come}, {word: ba5--suggestion}, {punctuation: 。}]
+  translation: "You like this shop, so let's come back tomorrow."
+  grammar: [zhe4-or-na4-mw-n--this-that, time-s-vp-or-s-time-vp--time, s-zai4-vp--again, stmt-ba5--suggest, clause-clause--linked]
+
+- id: hsk2-do-not-talk-like-that
+  segments: [{word: bie2--dont}, {word: na4-yang4--that-way}, {word: shuo1-hua4--talk}, {punctuation: 。}]
+  translation: "Don't talk like that."
+  grammar: [bie2-vp--dont, zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner]
+
+- id: hsk2-boy-and-girl-classmates
+  segments: [{word: na4--that}, {word: ge4--classifier}, {word: nan2-hai2-r5--boy}, {word: he2--and}, {word: zhe4--this}, {word: ge4--classifier}, {word: nv3-hai2-r5--girl}, {word: shi4--identity}, {word: tong2-xue2--classmate}, {punctuation: 。}]
+  translation: "That boy and this girl are classmates."
+  grammar: [zhe4-or-na4-mw-n--this-that, np-he2-np--and, s-shi4-n--identity]
+
+- id: hsk2-chair-beside-bed
+  segments: [{word: chuang2--bed}, {word: pang2-bian1--beside}, {word: you3--have}, {word: yi3-zi5--chair}, {punctuation: 。}]
+  translation: "There is a chair beside the bed."
+  grammar: [loc-you3-qty-n--exist]
+
+- id: hsk2-morning-jog
+  segments: [{word: wo3--me}, {word: zao3-shang5--morning}, {word: pao3-bu4--run}, {punctuation: 。}]
+  translation: "I jog in the morning."
+  grammar: [time-s-vp-or-s-time-vp--time, s-vp--verbal]
+
+- id: hsk2-wait-at-front
+  segments: [{word: qing3--please}, {word: zai4--location}, {word: qian2-mian4--front}, {word: deng3--wait}, {word: wo3--me}, {punctuation: 。}]
+  translation: "Please wait for me at the front."
+  grammar: [qing3-vp--request, s-zai4-loc-vp--location, v-obj--object]
+
+- id: hsk2-sky-cleared
+  segments: [{word: tian1--sky}, {word: qing2--sunny}, {word: le5--change}, {punctuation: 。}]
+  translation: "The sky has cleared."
+  grammar: [state-le5--change]
+
+- id: hsk2-ball-under-table
+  segments: [{word: qiu2--ball}, {word: zai4--location}, {word: zhuo1-zi5--table}, {word: xia4-mian4--below}, {punctuation: 。}]
+  translation: "The ball is under the table."
+  grammar: [s-zai4-loc--at]
+
+- id: hsk2-watching-ball-games
+  segments: [{word: ba4-ba5--dad}, {word: xi3-huan5--like}, {word: kan4--watch}, {word: qiu2--game}, {punctuation: 。}]
+  translation: "Dad likes watching ball games."
+  grammar: [s-vp--verbal, v-obj--object]
+
+- id: hsk2-teacher-sends-me-to-classroom
+  segments: [{word: lao3-shi1--teacher}, {word: rang4--ask}, {word: wo3--me}, {word: qu4--go}, {word: jiao4-shi4--classroom}, {punctuation: 。}]
+  translation: "The teacher asked me to go to the classroom."
+  grammar: [s-rang4-p-vp--cause]
+
+- id: hsk2-come-upstairs
+  segments: [{word: wo3--me}, {word: zai4--location}, {word: lou2--building}, {word: shang4--above}, {punctuation: ，}, {word: ni3--you}, {word: shang4-lai2--ascend}, {word: ba5--suggestion}, {punctuation: 。}]
+  translation: "I'm upstairs; come up here."
+  grammar: [s-zai4-loc--at, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc, stmt-ba5--suggest, clause-clause--linked]
+
+- id: hsk2-book-on-table
+  segments: [{word: shu1--book}, {word: zai4--location}, {word: zhuo1-zi5--table}, {word: shang4-mian4--above}, {punctuation: 。}]
+  translation: "The book is on the table."
+  grammar: [s-zai4-loc--at]
+
+- id: hsk2-went-up
+  segments: [{word: ta1--he}, {word: shang4-qu4--ascend}, {word: le5--change}, {punctuation: 。}]
+  translation: "He has gone up."
+  grammar: [state-le5--change]
+
+- id: hsk2-hot-body
+  segments: [{word: ta1--he}, {word: de5--possession}, {word: shen1-ti3--body}, {word: hen3--very}, {word: re4--hot}, {punctuation: 。}]
+  translation: "His body feels hot."
+  grammar: [owner-de5-n--possess, s-hen3-adj--describe]
+
+- id: hsk2-school-in-those-days
+  segments: [{word: na4--that}, {word: shi2--time}, {word: wo3--me}, {word: zai4--location}, {word: xiao3-xue2--elementary-school}, {word: du2-shu1--study}, {punctuation: 。}]
+  translation: "In those days I was in primary school."
+  grammar: [time-s-vp-or-s-time-vp--time, s-zai4-loc-vp--location]
+
+- id: hsk2-know-about-this-matter
+  segments: [{word: zhe4--this}, {word: jian4--classifier}, {word: shi4-qing5--matter}, {word: wo3--me}, {word: zhi1-dao4--know}, {punctuation: 。}]
+  translation: "I know about this matter."
+  grammar: [zhe4-or-na4-mw-n--this-that, topic-s-pred--topic-comment]
+
+- id: hsk2-feeling-unwell
+  segments: [{word: wo3--me}, {word: jin1-tian1--today}, {word: bu4--not}, {word: shu1-fu5--well}, {punctuation: ，}, {word: xiang3--want}, {word: xiu1-xi5--rest}, {punctuation: 。}]
+  translation: "I don't feel well today and want to rest."
+  grammar: [time-s-vp-or-s-time-vp--time, s-bu4-pred--not, s-xiang3-vp--want, clause-clause--linked]
+
+- id: hsk2-see-you-off
+  segments: [{word: wo3--me}, {word: qu4--go}, {word: ji1-chang3--airport}, {word: song4--farewell}, {word: ni3--you}, {punctuation: 。}]
+  translation: "I'll go to the airport to see you off."
+  grammar: [qu4-or-lai2-loc-vp--purpose, v-obj--object]
+
+- id: hsk2-head-hurts
+  segments: [{word: wo3--me}, {word: de5--possession}, {word: tou2--head}, {word: hen3--very}, {word: teng2--sore}, {punctuation: 。}]
+  translation: "My head hurts a lot."
+  grammar: [owner-de5-n--possess, s-hen3-adj--describe]
+
+- id: hsk2-children-play-soccer
+  segments: [{word: hai2-zi5--child}, {word: men5--plural}, {word: xi3-huan5--like}, {word: ti1--play}, {word: zu2-qiu2--soccer}, {punctuation: 。}]
+  translation: "The children like playing soccer."
+  grammar: [pron-or-person-men5--plural, s-vp--verbal, v-obj--object]
+
+- id: hsk2-interesting-exercises
+  segments: [{word: zhe4-xie1--these}, {word: ti2--question}, {word: hen3--very}, {word: you3-yi4-si5--interesting}, {punctuation: 。}]
+  translation: "These exercise questions are interesting."
+  grammar: [zhe4-xie1-or-na4-xie1-n--these-those, s-hen3-adj--describe]
+
+- id: hsk2-child-playing-outside
+  segments: [{word: xiao3-hai2-r5--child}, {word: zai4--location}, {word: wai4-mian4--outside}, {word: wan2--play}, {punctuation: 。}]
+  translation: "The child is playing outside."
+  grammar: [s-zai4-loc-vp--location]
+
+- id: hsk2-visit-foreign-country
+  segments: [{word: wo3--me}, {word: xiang3--want}, {word: qu4--go}, {word: wai4-guo2--foreign-country}, {punctuation: 。}]
+  translation: "I want to visit a foreign country."
+  grammar: [s-xiang3-vp--want, v-obj--object]
+
+- id: hsk2-people-coming-and-going
+  segments: [{word: lu4-shang5--way}, {word: ren2--person}, {word: lai2--come}, {word: ren2--person}, {word: wang3--go}, {punctuation: 。}]
+  translation: "People come and go along the road."
+  grammar: [clause-clause--linked, s-vp--verbal]
+
+- id: hsk2-buying-books-online
+  segments: [{word: wo3--me}, {word: zai4--location}, {word: wang3-shang4--online}, {word: mai3--buy}, {word: shu1--book}, {punctuation: 。}]
+  translation: "I buy books online."
+  grammar: [s-zai4-loc-vp--location, v-obj--object]
+
+- id: hsk2-do-not-forget-birthday
+  segments: [{word: bie2--dont}, {word: wang4--forget}, {word: wo3--me}, {word: de5--possession}, {word: sheng1-ri4--birthday}, {punctuation: 。}]
+  translation: "Don't forget my birthday."
+  grammar: [bie2-vp--dont, owner-de5-n--possess, v-obj--object]
+
+- id: hsk2-hope-you-are-happy
+  segments: [{word: wo3--me}, {word: xi1-wang4--hope}, {word: ni3--you}, {word: kuai4-le4--happy}, {punctuation: 。}]
+  translation: "I hope you're happy."
+  grammar: [s-vp--verbal, s-pred--statement]
+
+- id: hsk2-wash-hands-before-eating
+  segments: [{word: chi1--eat}, {word: fan4--meal}, {word: qian2--before}, {word: qing3--please}, {word: xi3--wash}, {word: shou3--hand}, {punctuation: 。}]
+  translation: "Please wash your hands before eating."
+  grammar: [time-s-vp-or-s-time-vp--time, qing3-vp--request, v-obj--object]
+
+- id: hsk2-went-down
+  segments: [{word: ta1-men5--they}, {word: xia4-qu4--descend}, {word: le5--change}, {punctuation: 。}]
+  translation: "They have gone down."
+  grammar: [state-le5--change]
+
+- id: hsk2-childhood-in-china
+  segments: [{word: wo3--me}, {word: xiao3-shi2-hou5--childhood}, {word: zai4--location}, {word: zhong1-guo2--china}, {word: du2-shu1--study}, {punctuation: 。}]
+  translation: "I went to school in China as a child."
+  grammar: [time-s-vp-or-s-time-vp--time, s-zai4-loc-vp--location]
+
+- id: hsk2-ask-surname
+  segments: [{word: ni3--you}, {word: xing4--named}, {word: shen2-me5--what}, {punctuation: ？}]
+  translation: "What's your surname?"
+  grammar: [pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh, v-obj--object]
+
+- id: hsk2-pharmacy-left-of-school
+  segments: [{word: yao4-dian4--pharmacy}, {word: zai4--location}, {word: xue2-xiao4--school}, {word: zuo3-bian5--left}, {punctuation: 。}]
+  translation: "The pharmacy is to the left of the school."
+  grammar: [s-zai4-loc--at]
+
+- id: hsk2-ask-word-meaning
+  segments: [{word: zhe4--this}, {word: ge4--classifier}, {word: ci2--word}, {word: shi4--identity}, {word: shen2-me5--what}, {word: yi4-si5--meaning}, {punctuation: ？}]
+  translation: "What does this word mean?"
+  grammar: [zhe4-or-na4-mw-n--this-that, pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh, s-shi4-n--identity]
+
+- id: hsk2-swim-for-a-while
+  segments: [{word: wo3--me}, {word: xiang3--want}, {word: you2--swim}, {word: yi1-hui4-r5--while}, {punctuation: 。}]
+  translation: "I'd like to swim for a while."
+  grammar: [s-xiang3-vp--want, s-vp--verbal]
+
+- id: hsk2-sometimes-work-at-home
+  segments: [{word: wo3--me}, {word: you3-shi2--sometimes}, {word: zai4--location}, {word: jia1--home}, {word: gong1-zuo4--work}, {punctuation: 。}]
+  translation: "I sometimes work at home."
+  grammar: [s-you3-shi2-or-you3-shi2-hou5-vp--sometimes, s-zai4-loc-vp--location]
+
+- id: hsk2-morning-exercise
+  segments: [{word: wo3--me}, {word: zao3-shang5--morning}, {word: yun4-dong4--exercise}, {punctuation: 。}]
+  translation: "I exercise in the morning."
+  grammar: [time-s-vp-or-s-time-vp--time, s-vp--verbal]
+
+- id: hsk2-meet-at-subway-station
+  segments: [{word: wo3--me}, {word: zai4--location}, {word: di4-tie3--subway}, {word: zhan4--station}, {word: deng3--wait}, {word: ni3--you}, {punctuation: 。}]
+  translation: "I'll wait for you at the subway station."
+  grammar: [s-zai4-loc-vp--location, n-n--modifier, v-obj--object]
+
+- id: hsk2-husband-is-doctor
+  segments: [{word: ta1--she}, {word: de5--possession}, {word: zhang4-fu5--husband}, {word: shi4--identity}, {word: yi1-sheng1--doctor}, {punctuation: 。}]
+  translation: "Her husband is a doctor."
+  grammar: [owner-de5-n--possess, s-shi4-n--identity]
+
+- id: hsk2-write-this-way
+  segments: [{word: qing3--please}, {word: zhe4-me5--this-way}, {word: xie3--write}, {punctuation: 。}]
+  translation: "Please write it this way."
+  grammar: [qing3-vp--request, zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner]
+
+- id: hsk2-prepared-breakfast
+  segments: [{word: wo3--me}, {word: zhun3-bei4--prepare}, {word: le5--completed}, {word: zao3-fan4--breakfast}, {punctuation: 。}]
+  translation: "I prepared breakfast."
+  grammar: [v-le5-obj--complete]
+
+- id: hsk2-my-own-book
+  segments: [{word: zhe4--this}, {word: shi4--identity}, {word: wo3--me}, {word: zi4-ji3--own}, {word: de5--possession}, {word: shu1--book}, {punctuation: 。}]
+  translation: "This is my own book."
+  grammar: [zhe4-or-na4-shi4-np--identify, owner-de5-n--possess]
+
+- id: hsk2-bought-soccer-ball
+  segments: [{word: wo3--me}, {word: mai3--buy}, {word: le5--completed}, {word: yi1--one}, {word: ge4--classifier}, {word: zu2-qiu2--ball}, {punctuation: 。}]
+  translation: "I bought a soccer ball."
+  grammar: [v-le5-obj--complete, num-mw-n--count]
+
+- id: hsk2-ten-yuan-on-notebook
+  segments: [{word: wo3--me}, {word: hua1--spend}, {word: le5--completed}, {word: shi2--ten}, {word: yuan2--yuan}, {word: mai3--buy}, {word: zhe4--this}, {word: ge4--classifier}, {word: ben3-zi5--notebook}, {punctuation: 。}]
+  translation: "I spent ten yuan on this notebook."
+  grammar: [v-le5-obj--complete, amt-yuan2-or-kuai4-or-fen1--money, s-vp-vp--means, zhe4-or-na4-mw-n--this-that]

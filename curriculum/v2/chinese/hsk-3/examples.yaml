@@ -1,0 +1,6898 @@
+# Original HSK 3 contextual usage examples, supplementing grammar examples.
+# Authored for the cumulative HSK 1-3 sense inventory; not copied from exams.
+# Every word and construction references its canonical lb identifier.
+
+- id: hsk3-auntie-directions
+  segments:
+    - word: a1-yi2--auntie
+    - punctuation: ，
+    - word: qing3-wen4--inquiry
+    - punctuation: ，
+    - word: xue2-xiao4--school
+    - word: zai4--location
+    - word: na3-r5--where
+    - punctuation: ？
+  translation: Excuse me, ma'am, where is the school?
+  grammar:
+    - pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+    - s-zai4-loc--at
+- id: hsk3-low-chair
+  segments:
+    - word: zhe4--this
+    - word: ba3--handles
+    - word: yi3-zi5--chair
+    - word: tai4--too
+    - word: ai3--short
+    - word: le5--intensify
+    - punctuation: 。
+  translation: This chair is too low.
+  grammar:
+    - tai4-adj-le5--so-too
+    - num-mw-n--count
+- id: hsk3-spouse-office
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: ai4-ren5--spouse
+    - word: zai4--location
+    - word: ban4-gong1-shi4--office
+    - word: gong1-zuo4--work
+    - punctuation: 。
+  translation: My spouse works in an office.
+  grammar:
+    - owner-de5-n--possess
+    - s-zai4-loc-vp--location
+- id: hsk3-quiet-patient
+  segments:
+    - word: qing3--please
+    - word: an1-jing4--quiet
+    - punctuation: ，
+    - word: bing4-ren2--patient
+    - word: zai4--ongoing
+    - word: shui4-jiao4--sleep
+    - punctuation: 。
+  translation: Please be quiet; the patient is sleeping.
+  grammar:
+    - qing3-vp--request
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+- id: hsk3-safe-lawn
+  segments:
+    - word: hai2-zi5--child
+    - word: zai4--location
+    - word: cao3-di4--lawn
+    - word: shang4--above
+    - word: wan2--play
+    - word: hen3--very
+    - word: an1-quan2--safe
+    - punctuation: 。
+  translation: It is safe for children to play on the lawn.
+  grammar:
+    - s-pred-pred--clause-subject
+    - s-zai4-loc-vp--location
+- id: hsk3-handful-grass
+  segments:
+    - word: ta1--he
+    - word: shou3--hand
+    - word: li3--inside
+    - word: you3--have
+    - word: yi1--one
+    - word: ba3--handful
+    - word: cao3--grass
+    - punctuation: 。
+  translation: He has a handful of grass in his hand.
+  grammar:
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+    - num-mw-n--count
+    - s-you3-np--have
+- id: hsk3-move-fridge
+  segments:
+    - word: qing3--please
+    - word: bang1-zhu4--help
+    - word: wo3--me
+    - word: ban1--move
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: bing1-xiang1--refrigerator
+    - punctuation: 。
+  translation: Please help me move this refrigerator.
+  grammar:
+    - qing3-vp--request
+    - zhe4-or-na4-mw-n--this-that
+- id: hsk3-class-performance
+  segments:
+    - word: wo3-men5--we
+    - word: ban1-ji2--class
+    - word: de5--possession
+    - word: xue2-sheng5--student
+    - word: ming2-tian1--tomorrow
+    - word: biao3-yan3--perform
+    - punctuation: 。
+  translation: The students in our class will perform tomorrow.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - owner-de5-n--possess
+- id: hsk3-moving-home
+  segments:
+    - word: wo3-men5--we
+    - word: xia4--next
+    - word: ge4--classifier
+    - word: yue4--month
+    - word: ban1-jia1--relocate
+    - punctuation: 。
+  translation: We are moving house next month.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-handle-matter
+  segments:
+    - word: zhe4--this
+    - word: jian4--classifier
+    - word: shi4--matter
+    - word: ni3--you
+    - word: lai2--come
+    - word: ban4--handle
+    - punctuation: 。
+  translation: You take care of this matter.
+  grammar:
+    - topic-s-pred--topic-comment
+- id: hsk3-run-school
+  segments:
+    - word: ta1-men5--they
+    - word: xiang3--want
+    - word: zai4--location
+    - word: zhe4-r5--here
+    - word: ban4--run
+    - word: yi1--one
+    - word: suo3--institutions
+    - word: xue2-xiao4--school
+    - punctuation: 。
+  translation: They want to run a school here.
+  grammar:
+    - s-xiang3-vp--want
+    - s-zai4-loc-vp--location
+    - num-suo3-n--institutions
+- id: hsk3-method-work
+  segments:
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: ban4-fa3--method
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: This method is good.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-half-day-cleaning
+  segments:
+    - word: wo3--me
+    - word: yong4--use
+    - word: ban4-tian1--half-day
+    - word: da3-sao3--clean
+    - word: fang2-zi5--house
+    - punctuation: 。
+  translation: I spend half a day cleaning the house.
+  grammar:
+    - s-vp-vp--means
+- id: hsk3-long-wait
+  segments:
+    - word: wo3--me
+    - word: deng3--wait
+    - word: le5--completed
+    - word: ban4-tian1--while
+    - punctuation: ，
+    - word: ta1--he
+    - word: hai2--still
+    - word: mei2--negation
+    - word: lai2--come
+    - punctuation: 。
+  translation: I waited ages, but he still hasn't come.
+  grammar:
+    - v-le5-duration-obj--duration
+    - clause-clause--linked
+- id: hsk3-full-after-noodles
+  segments:
+    - word: wo3--me
+    - word: bao3--full
+    - word: le5--change
+    - punctuation: ，
+    - word: bu4--not
+    - word: xiang3--want
+    - word: zai4--again
+    - word: chi1--eat
+    - word: fang1-bian4-mian4--noodles
+    - word: le5--change
+    - punctuation: 。
+  translation: I am full and don't want any more instant noodles.
+  grammar:
+    - state-le5--change
+    - s-xiang3-vp--want
+    - s-zai4-vp--again
+- id: hsk3-newspaper-notes
+  segments:
+    - word: ba4-ba5--dad
+    - word: kan4--read
+    - word: bao4-zhi3--newspaper
+    - punctuation: ，
+    - word: wo3--me
+    - word: xie3--write
+    - word: bi3-ji4--notes
+    - punctuation: 。
+  translation: Dad is reading the newspaper, and I am writing notes.
+  grammar:
+    - clause-clause--linked
+    - s-vp--verbal
+- id: hsk3-northern-winter
+  segments:
+    - word: bei3-fang1--north
+    - word: de5--possession
+    - word: dong1-tian1--winter
+    - word: hen3--very
+    - word: leng3--cold
+    - punctuation: 。
+  translation: Winters in the north are cold.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-north-to-school
+  segments:
+    - word: xiang4--toward
+    - word: bei3--north
+    - word: zou3--walk
+    - word: jiu4--then
+    - word: dao4--arrive
+    - word: xue2-xiao4--school
+    - word: le5--change
+    - punctuation: 。
+  translation: Walk north and you will get to the school.
+  grammar:
+    - xiang4-loc-vp--toward
+    - clause-jiu4-clause--then
+    - state-le5--change
+- id: hsk3-paper-notebook
+  segments:
+    - word: wo3--me
+    - word: zai4--location
+    - word: bi3-ji4-ben3--notebook
+    - word: shang4--above
+    - word: xie3--write
+    - word: han4-zi4--character
+    - punctuation: 。
+  translation: I write Chinese characters in a notebook.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-laptop-shutdown
+  segments:
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: bi3-ji4-ben3--laptop
+    - word: yi3-jing1--already
+    - word: guan1-ji1--shutdown
+    - word: le5--change
+    - punctuation: 。
+  translation: This laptop has already shut down.
+  grammar:
+    - s-yi3-jing1-pred-le5--already
+- id: hsk3-compare-sizes
+  segments:
+    - word: xian1--first
+    - word: bi3-jiao4--compare
+    - word: liang3--two
+    - word: jian4--classifier
+    - word: chen4-shan1--shirt
+    - word: de5--possession
+    - word: da4-xiao3--size
+    - punctuation: ，
+    - word: zai4--then
+    - word: mai3--buy
+    - punctuation: 。
+  translation: Compare the sizes of the two shirts before buying.
+  grammar:
+    - xian1-vp-zai4-vp--first-then
+    - owner-de5-n--possess
+- id: hsk3-compared-last-year
+  segments:
+    - word: bi3-jiao4--compared
+    - word: qu4-nian2--year
+    - punctuation: ，
+    - word: jin1-nian2--year
+    - word: de5--possession
+    - word: feng1--wind
+    - word: bi3-jiao4--relatively
+    - word: da4--big
+    - punctuation: 。
+  translation: Compared with last year, the wind is relatively strong this year.
+  grammar:
+    - prep-obj--phrase
+    - bi3-jiao4-adj--fairly
+- id: hsk3-example-fruit
+  segments:
+    - word: wo3--me
+    - word: xi3-huan5--like
+    - word: chi1--eat
+    - word: shui3-guo3--fruit
+    - punctuation: ，
+    - word: bi3-ru2--example
+    - word: ping2-guo3--apple
+    - word: he2--and
+    - word: xiang1-jiao1--banana
+    - punctuation: 。
+  translation: I like eating fruit, such as apples and bananas.
+  grammar:
+    - np-he2-np--and
+    - s-vp--verbal
+- id: hsk3-compete-tomorrow
+  segments:
+    - word: wo3-men5--we
+    - word: ming2-tian1--tomorrow
+    - word: gen1--with
+    - word: ta1-men5--they
+    - word: bi3-sai4--compete
+    - punctuation: 。
+  translation: We compete against them tomorrow.
+  grammar:
+    - s-gen1-p-vp--with
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-watch-match
+  segments:
+    - word: zhe4--this
+    - word: ci4--times
+    - word: bi3-sai4--competition
+    - word: hen3--very
+    - word: hao3-kan4--enjoyable
+    - punctuation: 。
+  translation: This competition is great to watch.
+  grammar:
+    - num-mw-n--count
+    - s-hen3-adj--describe
+- id: hsk3-change-cold
+  segments:
+    - word: tian1-qi4--weather
+    - word: bian4--change
+    - word: le5--change
+    - punctuation: ，
+    - word: dai4--bring
+    - word: yi1--one
+    - word: jian4--classifier
+    - word: da4-yi1--overcoat
+    - word: ba5--suggestion
+    - punctuation: 。
+  translation: The weather has changed; take an overcoat with you.
+  grammar:
+    - state-le5--change
+    - stmt-ba5--suggest
+- id: hsk3-ice-becomes-water
+  segments:
+    - word: bing1--ice
+    - word: bian4-cheng2--become
+    - word: shui3--water
+    - word: le5--change
+    - punctuation: 。
+  translation: The ice has turned into water.
+  grammar:
+    - state-le5--change
+- id: hsk3-temperature-varies
+  segments:
+    - word: zhe4-li3--here
+    - word: de5--possession
+    - word: tian1-qi4--weather
+    - word: mei3--every
+    - word: tian1--day
+    - word: dou1--all
+    - word: zai4--ongoing
+    - word: bian4-hua4--change
+    - punctuation: 。
+  translation: The weather here changes every day.
+  grammar:
+    - mei3-mw-n-dou1-pred--every
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+- id: hsk3-small-change
+  segments:
+    - word: zhe4-r5--here
+    - word: de5--possession
+    - word: bian4-hua4--variation
+    - word: bu4--not
+    - word: da4--big
+    - punctuation: 。
+  translation: There hasn't been much change here.
+  grammar:
+    - owner-de5-n--possess
+    - s-bu4-pred--not
+- id: hsk3-sing-onstage
+  segments:
+    - word: hai2-zi5--child
+    - word: men5--plural
+    - word: gei3--for
+    - word: ba4-ba5--dad
+    - word: ma1-ma5--mom
+    - word: biao3-yan3--perform
+    - punctuation: 。
+  translation: The children perform for their parents.
+  grammar:
+    - gei3-p-vp--for-to
+    - s-vp--verbal
+    - pron-or-person-men5--plural
+- id: hsk3-other-hotel
+  segments:
+    - word: zhe4--this
+    - word: jia1--classifier
+    - word: bin1-guan3--hotel
+    - word: mei2-you3--absence
+    - word: fang2-jian1--room
+    - word: le5--change
+    - punctuation: ，
+    - word: wo3-men5--we
+    - word: qu4--go
+    - word: bie2-de5--other
+    - word: bin1-guan3--hotel
+    - word: ba5--suggestion
+    - punctuation: 。
+  translation: This hotel has no rooms left; let's go to another hotel.
+  grammar:
+    - s-mei2-you3-np--absence
+    - bie2-de5-or-qi2-ta1-n--other
+    - stmt-ba5--suggest
+- id: hsk3-help-others
+  segments:
+    - word: bang1-zhu4--help
+    - word: bie2-ren2--others
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: It is good to help other people.
+  grammar:
+    - vp-pred--activity-subject
+    - s-hen3-adj--describe
+- id: hsk3-ice-cream-cake
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: chi1--eat
+    - word: bing1-ji1-ling2--icecream
+    - punctuation: ，
+    - word: bu4--not
+    - word: xiang3--want
+    - word: chi1--eat
+    - word: dan4-gao1--cake
+    - punctuation: 。
+  translation: I want ice cream, not cake.
+  grammar:
+    - s-xiang3-vp--want
+    - s-bu4-pred--not
+- id: hsk3-missing-passport
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: hu4-zhao4--passport
+    - word: bu4-jian4--missing
+    - word: le5--change
+    - punctuation: 。
+  translation: My passport is missing.
+  grammar:
+    - owner-de5-n--possess
+    - state-le5--change
+- id: hsk3-not-long-before
+  segments:
+    - word: bu4-jiu3--shortly
+    - punctuation: ，
+    - word: ta1--he
+    - word: jiu4--then
+    - word: chu1-yuan4--discharged
+    - word: le5--change
+    - punctuation: 。
+  translation: Before long, he was discharged from hospital.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - clause-jiu4-clause--then
+- id: hsk3-different-city
+  segments:
+    - word: zhe4--this
+    - word: liang3--two
+    - word: ge4--classifier
+    - word: cheng2-shi4--city
+    - word: hen3--very
+    - word: bu4-tong2--different
+    - punctuation: 。
+  translation: These two cities are very different.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-poor-chinese
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: zhong1-wen2--chinese
+    - word: hai2--still
+    - word: bu4-xing2--poor
+    - punctuation: ，
+    - word: xu1-yao4--need
+    - word: duo1--more
+    - word: xue2-xi2--study
+    - punctuation: 。
+  translation: My Chinese still isn't good; I need to study more.
+  grammar:
+    - s-hai2-pred--still
+    - s-xu1-yao4-vp--need
+- id: hsk3-not-allowed
+  segments:
+    - word: shang4-ke4--class
+    - word: chi2-dao4--late
+    - word: bu4-xing2--unacceptable
+    - punctuation: 。
+  translation: Being late for class is not acceptable.
+  grammar:
+    - vp-pred--activity-subject
+- id: hsk3-no-need-worry
+  segments:
+    - word: bu4-yong4--unnecessary
+    - word: dan1-xin1--worry
+    - punctuation: ，
+    - word: hai2-zi5--child
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: There is no need to worry; the child is fine.
+  grammar:
+    - s-bu4-bi4-or-bu4-yong4-vp--need-not
+    - s-hen3-adj--describe
+- id: hsk3-just-arrived
+  segments:
+    - word: ta1--he
+    - word: cai2--just-now
+    - word: lai2--come
+    - punctuation: ，
+    - word: hai2--still
+    - word: bu4--not
+    - word: zhi1-dao4--know
+    - word: zhe4--this
+    - word: jian4--classifier
+    - word: shi4--matter
+    - punctuation: 。
+  translation: He only just arrived and doesn't know about this yet.
+  grammar:
+    - s-hai2-pred--still
+    - s-bu4-pred--not
+    - clause-clause--linked
+- id: hsk3-menu-request
+  segments:
+    - word: qing3--please
+    - word: gei3--give
+    - word: wo3--me
+    - word: cai4-dan1--menu
+    - punctuation: 。
+  translation: Please give me the menu.
+  grammar:
+    - qing3-vp--request
+    - s-v-p-obj--double-obj
+- id: hsk3-join-competition
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: can1-jia1--participate
+    - word: ming2-tian1--tomorrow
+    - word: de5--possession
+    - word: bi3-sai4--competition
+    - punctuation: 。
+  translation: I want to take part in tomorrow's competition.
+  grammar:
+    - s-xiang3-vp--want
+    - owner-de5-n--possess
+- id: hsk3-third-floor
+  segments:
+    - word: ban4-gong1-shi4--office
+    - word: zai4--location
+    - word: san1--three
+    - word: ceng2--floor
+    - punctuation: 。
+  translation: The office is on the third floor.
+  grammar:
+    - num-unit--ordinal
+    - s-zai4-loc--at
+- id: hsk3-ice-layer
+  segments:
+    - word: shui3--water
+    - word: shang4--above
+    - word: you3--have
+    - word: yi1--one
+    - word: ceng2--layers
+    - word: bing1--ice
+    - punctuation: 。
+  translation: There is a layer of ice on the water.
+  grammar:
+    - loc-you3-qty-n--exist
+    - num-mw-n--count
+- id: hsk3-check-homework
+  segments:
+    - word: lao3-shi1--teacher
+    - word: zheng4-zai4--ongoing
+    - word: cha2--check
+    - word: wo3-men5--we
+    - word: de5--possession
+    - word: zuo4-ye4--homework
+    - punctuation: 。
+  translation: The teacher is checking our homework.
+  grammar:
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+    - owner-de5-n--possess
+- id: hsk3-lookup-dictionary
+  segments:
+    - word: bu4--not
+    - word: dong3--understand
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: zi4--character
+    - word: jiu4--then
+    - word: cha2--lookup
+    - word: ci2-dian3--dictionary
+    - punctuation: 。
+  translation: Look it up in a dictionary if you don't understand this character.
+  grammar:
+    - clause-jiu4-clause--then
+    - s-bu4-pred--not
+- id: hsk3-short-ten-yuan
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: qian2--money
+    - word: hai2--still
+    - word: cha4--lack
+    - word: shi2--ten
+    - word: yuan2--yuan
+    - punctuation: 。
+  translation: I am still ten yuan short.
+  grammar:
+    - s-hai2-pred--still
+    - amt-yuan2-or-kuai4-or-fen1--money
+- id: hsk3-poor-grades
+  segments:
+    - word: ta1--he
+    - word: de5--possession
+    - word: cheng2-ji4--grades
+    - word: hen3--very
+    - word: cha4--poor
+    - punctuation: 。
+  translation: His grades are poor.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-similar-coats
+  segments:
+    - word: zhe4--this
+    - word: liang3--two
+    - word: jian4--classifier
+    - word: da4-yi1--overcoat
+    - word: cha4-bu5-duo1--similar
+    - punctuation: 。
+  translation: These two coats are about the same.
+  grammar:
+    - s-pred--statement
+    - zhe4-or-na4-mw-n--this-that
+- id: hsk3-taste-cake
+  segments:
+    - word: qing3--please
+    - word: chang2--taste
+    - word: yi1--one
+    - word: kou3--mouthfuls
+    - word: dan4-gao1--cake
+    - punctuation: 。
+  translation: Please try a bite of cake.
+  grammar:
+    - qing3-vp--request
+    - v-num-kou3--mouthfuls
+- id: hsk3-often-exercise
+  segments:
+    - word: wo3--me
+    - word: chang2-chang2--often
+    - word: qu4--go
+    - word: gong1-yuan2--park
+    - word: duan4-lian4--exercise
+    - punctuation: 。
+  translation: I often go to the park to exercise.
+  grammar:
+    - s-chang2-or-jing1-chang2-vp--often
+    - qu4-or-lai2-loc-vp--purpose
+- id: hsk3-common-animal
+  segments:
+    - word: zhe4--this
+    - word: zhong3--kinds
+    - word: dong4-wu4--animal
+    - word: zai4--location
+    - word: zhe4-r5--here
+    - word: hen3--very
+    - word: chang2-jian4--common
+    - punctuation: 。
+  translation: This kind of animal is common here.
+  grammar:
+    - s-zai4-loc-vp--location
+    - s-hen3-adj--describe
+- id: hsk3-common-method
+  segments:
+    - word: zhe4--this
+    - word: shi4--identity
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: chang2-yong4--common
+    - word: de5--description
+    - word: fang1-fa3--method
+    - punctuation: 。
+  translation: This is a commonly used method.
+  grammar:
+    - s-shi4-n--identity
+    - adjp-de5-n--describe
+- id: hsk3-not-late
+  segments:
+    - word: ming2-tian1--tomorrow
+    - word: zao3--early
+    - word: chu1-fa1--depart
+    - punctuation: ，
+    - word: bie2--dont
+    - word: chi2-dao4--late
+    - punctuation: 。
+  translation: Set off early tomorrow; don't be late.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - bie2-vp--dont
+- id: hsk3-born-spring
+  segments:
+    - word: wo3--me
+    - word: shi4--emphasis
+    - word: chun1-tian1--spring
+    - word: chu1-sheng1--born
+    - word: de5--assurance
+    - punctuation: 。
+  translation: I was born in spring.
+  grammar:
+    - s-shi4-focus-vp-de5--event-focus
+- id: hsk3-junior-high
+  segments:
+    - word: wo3--me
+    - word: nv3-er2--daughter
+    - word: zai4--location
+    - word: chu1-zhong1--school
+    - word: xue2-xi2--study
+    - punctuation: 。
+  translation: My daughter studies at a junior high school.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-boat-small
+  segments:
+    - word: zhe4--this
+    - word: tiao2--classifier
+    - word: chuan2--boat
+    - word: tai4--too
+    - word: xiao3--small
+    - word: le5--intensify
+    - punctuation: 。
+  translation: This boat is too small.
+  grammar:
+    - tai4-adj-le5--so-too
+    - num-mw-n--count
+- id: hsk3-clever-panda
+  segments:
+    - word: zhe4--this
+    - word: zhi1--classifier
+    - word: da4-xiong2-mao1--panda
+    - word: hen3--very
+    - word: cong1-ming2--clever
+    - punctuation: 。
+  translation: This giant panda is clever.
+  grammar:
+    - s-hen3-adj--describe
+    - num-mw-n--count
+- id: hsk3-plan-holiday
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: da3-suan4--intention
+    - word: shi4--identity
+    - word: fang4-jia4--holiday
+    - word: hou4--after
+    - word: qu4--go
+    - word: kan4--watch
+    - word: nai3-nai5--grandmother
+    - punctuation: 。
+  translation: My plan is to visit Grandma after the holiday starts.
+  grammar:
+    - s-shi4-np--characterize
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+- id: hsk3-plan-zoo
+  segments:
+    - word: wo3--me
+    - word: da3-suan4--plan
+    - word: dai4--lead
+    - word: hai2-zi5--child
+    - word: qu4--go
+    - word: dong4-wu4-yuan2--zoo
+    - punctuation: 。
+  translation: I plan to take the child to the zoo.
+  grammar:
+    - s-vp--verbal
+    - s-vp-vp--purpose
+- id: hsk3-rough-time
+  segments:
+    - word: qing3--please
+    - word: gao4-su5--tell
+    - word: wo3--me
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: da4-gai4--approximate
+    - word: de5--description
+    - word: shi2-jian1--time
+    - punctuation: 。
+  translation: Please tell me an approximate time.
+  grammar:
+    - qing3-vp--request
+    - s-v-p-obj--double-obj
+    - adjp-de5-n--describe
+- id: hsk3-adults-children
+  segments:
+    - word: da4-ren5--adult
+    - word: he1--drink
+    - word: cha2--tea
+    - punctuation: ，
+    - word: hai2-zi5--child
+    - word: he1--drink
+    - word: shui3--water
+    - punctuation: 。
+  translation: The adults drink tea, and the children drink water.
+  grammar:
+    - clause-clause--linked
+    - s-vp--verbal
+- id: hsk3-lead-library
+  segments:
+    - word: wo3--me
+    - word: dai4--lead
+    - word: ni3--you
+    - word: qu4--go
+    - word: tu2-shu1-guan3--library
+    - punctuation: 。
+  translation: I'll take you to the library.
+  grammar:
+    - s-vp-vp--purpose
+- id: hsk3-of-course-help
+  segments:
+    - word: dang1-ran2--certainly
+    - punctuation: ，
+    - word: wo3--me
+    - word: ke3-yi3--possible
+    - word: bang1-zhu4--help
+    - word: ni3--you
+    - punctuation: 。
+  translation: Of course I can help you.
+  grammar:
+    - dang1-ran2-stmt--of-course
+    - s-neng2-or-ke3-yi3-vp--can-may
+- id: hsk3-catch-cold
+  segments:
+    - word: ta1--he
+    - word: de2--catch
+    - word: le5--completed
+    - word: gan3-mao4--cold
+    - punctuation: 。
+  translation: He caught a cold.
+  grammar:
+    - v-le5-obj--complete
+- id: hsk3-obtain-score
+  segments:
+    - word: zhe4--this
+    - word: ci4--times
+    - word: kao3-shi4--exam
+    - word: wo3--me
+    - word: de2--obtain
+    - word: le5--completed
+    - word: jiu3--nine
+    - word: shi2--ten
+    - word: fen1--point
+    - punctuation: 。
+  translation: I got ninety points on this exam.
+  grammar:
+    - v-le5-obj--complete
+    - tens-shi2-ones--tens
+- id: hsk3-receive-job
+  segments:
+    - word: wo3--me
+    - word: de2-dao4--receive
+    - word: le5--completed
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: gong1-zuo4--job
+    - punctuation: 。
+  translation: I got this job.
+  grammar:
+    - v-le5-obj--complete
+    - zhe4-or-na4-mw-n--this-that
+- id: hsk3-game-score
+  segments:
+    - word: ni3--you
+    - word: de5--possession
+    - word: de2-fen1--points
+    - word: shi4--identity
+    - word: duo1-shao5--quantity
+    - punctuation: ？
+  translation: What is your score?
+  grammar:
+    - pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+    - s-shi4-n--identity
+- id: hsk3-score-again
+  segments:
+    - word: ta1--he
+    - word: you4--again
+    - word: de2-fen1--score
+    - word: le5--change
+    - punctuation: ！
+  translation: He scored again!
+  grammar:
+    - s-you4-vp--again
+    - state-le5--change
+- id: hsk3-lamp-electricity
+  segments:
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: deng1--lamp
+    - word: yong4--use
+    - word: hen3--very
+    - word: duo1--many
+    - word: dian4--electricity
+    - punctuation: 。
+  translation: This lamp uses a lot of electricity.
+  grammar:
+    - s-vp--verbal
+    - zhe4-or-na4-mw-n--this-that
+- id: hsk3-farm-field
+  segments:
+    - word: ye2-ye5--grandfather
+    - word: zai4--location
+    - word: di4--field
+    - word: li3--inside
+    - word: gong1-zuo4--work
+    - punctuation: 。
+  translation: Grandpa is working in the field.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-clean-ground
+  segments:
+    - word: di4--ground
+    - word: shang4--above
+    - word: hen3--very
+    - word: gan1-jing4--clean
+    - punctuation: 。
+  translation: The ground is clean.
+  grammar:
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+    - s-hen3-adj--describe
+- id: hsk3-meeting-location
+  segments:
+    - word: jian4-mian4--meet
+    - word: de5--description
+    - word: di4-dian3--location
+    - word: shi4--identity
+    - word: xue2-xiao4--school
+    - word: men2-kou3--entrance
+    - punctuation: 。
+  translation: We are meeting at the school entrance.
+  grammar:
+    - vp-de5-n--relative
+    - s-shi4-n--identity
+    - n-n--modifier
+- id: hsk3-quiet-place
+  segments:
+    - word: zhe4--this
+    - word: shi4--identity
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: an1-jing4--quiet
+    - word: de5--description
+    - word: di4-fang5--place
+    - punctuation: 。
+  translation: This is a quiet place.
+  grammar:
+    - s-shi4-n--identity
+    - adjp-de5-n--describe
+- id: hsk3-no-room-table
+  segments:
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - word: mei2-you3--absence
+    - word: di4-fang5--space
+    - word: fang4--put
+    - word: shu1--book
+    - word: le5--change
+    - punctuation: 。
+  translation: There is no room left on the table for books.
+  grammar:
+    - s-mei2-you3-np--absence
+    - state-le5--change
+- id: hsk3-dot-on-paper
+  segments:
+    - word: zhe4--this
+    - word: zhang1--sheets
+    - word: zhi3--paper
+    - word: shang4--above
+    - word: you3--have
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: hong2-se4--red
+    - word: de5--description
+    - word: dian3--dot
+    - punctuation: 。
+  translation: There is a red dot on this sheet of paper.
+  grammar:
+    - loc-you3-qty-n--exist
+    - num-mw-n--count
+    - adjp-de5-n--describe
+- id: hsk3-points-on-map
+  segments:
+    - word: cong2--from
+    - word: di4-tu2--map
+    - word: shang4--above
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: dian3--point
+    - word: dao4--arrive
+    - word: na4--that
+    - word: ge4--classifier
+    - word: dian3--point
+    - word: you3--reach-degree
+    - word: liang3--two
+    - word: qian1--thousand
+    - word: mi3--meter
+    - punctuation: 。
+  translation: It is two kilometers from this point on the map to that one.
+  grammar:
+    - s-you3-qty--measure
+    - cong2-loc-vp--from
+- id: hsk3-elevator-convenience
+  segments:
+    - word: you3--have
+    - word: dian4-ti1--elevator
+    - word: zhen1--really
+    - word: fang1-bian4--convenient
+    - punctuation: 。
+  translation: Having an elevator is so convenient.
+  grammar:
+    - s-pred-pred--clause-subject
+    - zhen1-adj--really
+- id: hsk3-read-ebook
+  segments:
+    - word: wo3--me
+    - word: yong4--use
+    - word: shou3-ji1--phone
+    - word: kan4--read
+    - word: dian4-zi3-shu1--ebook
+    - punctuation: 。
+  translation: I read e-books on my phone.
+  grammar:
+    - s-vp-vp--means
+- id: hsk3-lost-headphones
+  segments:
+    - word: wo3--me
+    - word: diu1--lose
+    - word: le5--completed
+    - word: er3-ji1--headphones
+    - punctuation: 。
+  translation: I lost my headphones.
+  grammar:
+    - v-le5-obj--complete
+- id: hsk3-eastward
+  segments:
+    - word: cong2--from
+    - word: zhe4-r5--here
+    - word: xiang4--toward
+    - word: dong1--east
+    - word: zou3--walk
+    - punctuation: 。
+  translation: Walk east from here.
+  grammar:
+    - cong2-loc-vp--from
+    - xiang4-loc-vp--toward
+- id: hsk3-northeast-winter
+  segments:
+    - word: dong1-bei3--northeast
+    - word: de5--possession
+    - word: dong1-tian1--winter
+    - word: hen3--very
+    - word: chang2--long
+    - punctuation: 。
+  translation: Winters in the northeast are long.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-sun-east
+  segments:
+    - word: tai4-yang2--sun
+    - word: cong2--from
+    - word: dong1-fang1--east
+    - word: chu1-lai2--come-out
+    - word: le5--change
+    - punctuation: 。
+  translation: The sun has come up in the east.
+  grammar:
+    - cong2-loc-vp--from
+    - state-le5--change
+- id: hsk3-school-southeast
+  segments:
+    - word: xue2-xiao4--school
+    - word: zai4--location
+    - word: cheng2-shi4--city
+    - word: de5--possession
+    - word: dong1-nan2--southeast
+    - punctuation: 。
+  translation: The school is in the southeast of the city.
+  grammar:
+    - s-zai4-loc--at
+    - owner-de5-n--possess
+- id: hsk3-understand-method
+  segments:
+    - word: wo3--me
+    - word: dong3-de5--understand
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: fang1-fa3--method
+    - punctuation: 。
+  translation: I understand this method.
+  grammar:
+    - s-vp--verbal
+    - zhe4-or-na4-mw-n--this-that
+- id: hsk3-not-even-one
+  segments:
+    - word: wo3--me
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: zi4--character
+    - word: dou1--even
+    - word: bu4--not
+    - word: ren4-shi5--recognize
+    - punctuation: 。
+  translation: I don't recognize even one character.
+  grammar:
+    - yi1-mw-n-ye3-or-dou1-bu4-or-mei2-vp--not-one
+- id: hsk3-short-shorts
+  segments:
+    - word: zhe4--this
+    - word: tiao2--classifier
+    - word: duan3-ku4--shorts
+    - word: hen3--very
+    - word: duan3--short
+    - punctuation: 。
+  translation: These shorts are very short.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-short-road-section
+  segments:
+    - word: zhe4--this
+    - word: duan4--sections
+    - word: lu4--road
+    - word: bu4--not
+    - word: chang2--long
+    - punctuation: 。
+  translation: This stretch of road is not long.
+  grammar:
+    - s-bu4-pred--not
+    - num-mw-n--count
+- id: hsk3-talk-to-child
+  segments:
+    - word: lao3-shi1--teacher
+    - word: xiang3--want
+    - word: gen1--with
+    - word: hai2-zi5--child
+    - word: dui4-hua4--talk
+    - punctuation: 。
+  translation: The teacher wants to have a conversation with the child.
+  grammar:
+    - s-xiang3-vp--want
+    - s-gen1-p-vp--with
+- id: hsk3-hungry-tired
+  segments:
+    - word: wo3--me
+    - word: hen3--very
+    - word: e4--hungry
+    - punctuation: ，
+    - word: er2-qie3--also
+    - word: hen3--very
+    - word: lei4--tired
+    - punctuation: 。
+  translation: I am hungry and also tired.
+  grammar:
+    - s-hen3-adj--describe
+    - clause-clause--linked
+- id: hsk3-ears-cold
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: er3-duo5--ear
+    - word: hen3--very
+    - word: leng3--cold
+    - punctuation: 。
+  translation: My ears are cold.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-send-message
+  segments:
+    - word: qing3--please
+    - word: gei3--to
+    - word: wo3--me
+    - word: fa1--send
+    - word: you2-jian4--email
+    - punctuation: 。
+  translation: Please send me an email.
+  grammar:
+    - qing3-vp--request
+    - gei3-p-vp--for-to
+- id: hsk3-fever-after-cold
+  segments:
+    - word: ta1--he
+    - word: gan3-mao4--catch-cold
+    - word: le5--change
+    - punctuation: ，
+    - word: xian4-zai4--now
+    - word: hai2--also
+    - word: fa1-shao1--fever
+    - punctuation: 。
+  translation: He has caught a cold and now has a fever too.
+  grammar:
+    - state-le5--change
+    - s-hai2-pred--add
+- id: hsk3-what-happened
+  segments:
+    - word: zuo2-tian1--yesterday
+    - word: fa1-sheng1--happen
+    - word: le5--completed
+    - word: shen2-me5--what
+    - word: shi4--matter
+    - punctuation: ？
+  translation: What happened yesterday?
+  grammar:
+    - v-le5-obj--complete
+    - pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+- id: hsk3-discover-road
+  segments:
+    - word: wo3-men5--we
+    - word: fa1-xian4--discover
+    - word: le5--completed
+    - word: yi1--one
+    - word: tiao2--classifier
+    - word: xin1--new
+    - word: lu4--road
+    - punctuation: 。
+  translation: We discovered a new road.
+  grammar:
+    - v-le5-obj--complete
+    - num-mw-n--count
+- id: hsk3-notice-missing-book
+  segments:
+    - word: wo3--me
+    - word: fa1-xian4--notice
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - word: de5--description
+    - word: shu1--book
+    - word: bu4-jian4--missing
+    - word: le5--change
+    - punctuation: 。
+  translation: I noticed that the book on the table was missing.
+  grammar:
+    - s-vp--verbal
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+    - state-le5--change
+- id: hsk3-city-development
+  segments:
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: cheng2-shi4--city
+    - word: fa1-zhan3--develop
+    - word: de5--manner
+    - word: hen3--very
+    - word: kuai4--fast
+    - punctuation: 。
+  translation: This city is developing quickly.
+  grammar:
+    - v-de5-adjp--performance
+- id: hsk3-right-direction
+  segments:
+    - word: wo3-men5--we
+    - word: zou3--walk
+    - word: de5--description
+    - word: fang1-xiang4--direction
+    - word: dui4--correct
+    - word: ma5--question
+    - punctuation: ？
+  translation: Are we going in the right direction?
+  grammar:
+    - s-pred-de5-n--relative-clause
+    - stmt-ma5--yes-no
+- id: hsk3-put-newspaper
+  segments:
+    - word: qing3--please
+    - word: ba3--object
+    - word: bao4-zhi3--newspaper
+    - word: fang4--put
+    - word: zai4--location
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - punctuation: 。
+  translation: Please put the newspaper on the table.
+  grammar:
+    - qing3-vp--request
+    - s-ba3-obj-v-zai4-or-dao4-loc--relocate
+- id: hsk3-release-bird
+  segments:
+    - word: qing3--please
+    - word: fang4--release
+    - word: zhe4--this
+    - word: zhi1--classifier
+    - word: niao3--bird
+    - word: zou3--walk
+    - word: ba5--suggestion
+    - punctuation: 。
+  translation: Please let this bird go.
+  grammar:
+    - qing3-vp--request
+    - stmt-ba5--suggest
+- id: hsk3-feel-reassured
+  segments:
+    - word: zhi1-dao4--know
+    - word: ni3--you
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: ，
+    - word: wo3--me
+    - word: jiu4--then
+    - word: fang4-xin1--reassured
+    - word: le5--change
+    - punctuation: 。
+  translation: Knowing that you are well puts my mind at ease.
+  grammar:
+    - clause-jiu4-clause--then
+    - state-le5--change
+- id: hsk3-after-school
+  segments:
+    - word: fang4-xue2--dismiss
+    - word: hou4--after
+    - punctuation: ，
+    - word: wo3--me
+    - word: qu4--go
+    - word: gong1-yuan2--park
+    - word: wan2--play
+    - punctuation: 。
+  translation: After school, I go to the park to play.
+  grammar:
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+    - qu4-or-lai2-loc-vp--purpose
+- id: hsk3-share-apples
+  segments:
+    - word: lao3-shi1--teacher
+    - word: gei3--to
+    - word: hai2-zi5--child
+    - word: men5--plural
+    - word: fen1--distribute
+    - word: ping2-guo3--apple
+    - punctuation: 。
+  translation: The teacher hands out apples to the children.
+  grammar:
+    - gei3-p-vp--for-to
+    - pron-or-person-men5--plural
+- id: hsk3-divide-cake
+  segments:
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: dan4-gao1--cake
+    - word: ke3-yi3--possible
+    - word: fen1--divide
+    - word: liu4--six
+    - word: kuai4--piece
+    - punctuation: 。
+  translation: This cake can be divided into six pieces.
+  grammar:
+    - s-neng2-or-ke3-yi3-vp--can-may
+    - num-mw-n--count
+- id: hsk3-separate-books
+  segments:
+    - word: qing3--please
+    - word: ba3--object
+    - word: zhe4--this
+    - word: liang3--two
+    - word: ben3--books
+    - word: shu1--book
+    - word: fen1-kai1--separate
+    - punctuation: 。
+  translation: Please separate these two books.
+  grammar:
+    - qing3-vp--request
+    - s-ba3-obj-v-comp--result
+- id: hsk3-two-letters
+  segments:
+    - word: wo3--me
+    - word: jin1-tian1--today
+    - word: shou1-dao4--receive
+    - word: liang3--two
+    - word: feng1--letters
+    - word: xin4--letter
+    - punctuation: 。
+  translation: I received two letters today.
+  grammar:
+    - liang3-mw-n--two
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-married-couple
+  segments:
+    - word: ta1-men5--they
+    - word: shi4--identity
+    - word: fu1-qi1--couple
+    - punctuation: 。
+  translation: They are a married couple.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-serve-students
+  segments:
+    - word: zhe4--this
+    - word: jia1--classifier
+    - word: shu1-dian4--bookstore
+    - word: wei4--for
+    - word: xue2-sheng5--student
+    - word: fu2-wu4--serve
+    - punctuation: 。
+  translation: This bookstore serves students.
+  grammar:
+    - wei4-p-vp--for
+- id: hsk3-nearby-park
+  segments:
+    - word: zhe4--this
+    - word: fu4-jin4--vicinity
+    - word: you3--have
+    - word: gong1-yuan2--park
+    - word: ma5--question
+    - punctuation: ？
+  translation: Is there a park nearby?
+  grammar:
+    - loc-you3-qty-n--exist
+    - stmt-ma5--yes-no
+- id: hsk3-review-tonight
+  segments:
+    - word: wo3--me
+    - word: jin1-tian1--today
+    - word: wan3-shang5--evening
+    - word: yao4--want
+    - word: fu4-xi2--review
+    - word: zhong1-wen2--chinese
+    - punctuation: 。
+  translation: I am going to review my Chinese this evening.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-yao4-vp--intend
+- id: hsk3-your-turn
+  segments:
+    - word: gai1--turn
+    - word: ni3--you
+    - word: chang4--sing
+    - word: ge1--song
+    - word: le5--change
+    - punctuation: 。
+  translation: It's your turn to sing.
+  grammar:
+    - s-pred--statement
+    - state-le5--change
+- id: hsk3-feel-cold
+  segments:
+    - word: wo3--me
+    - word: gan3-dao4--feel
+    - word: hen3--very
+    - word: leng3--cold
+    - punctuation: 。
+  translation: I feel cold.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-interested-history
+  segments:
+    - word: wo3--me
+    - word: dui4--toward
+    - word: li4-shi3--history
+    - word: gan3-xing4-qu4--interested
+    - punctuation: 。
+  translation: I am interested in history.
+  grammar:
+    - s-dui4-np-attitude--toward
+- id: hsk3-do-work
+  segments:
+    - word: jin1-tian1--today
+    - word: de5--possession
+    - word: gong1-zuo4--job
+    - word: wo3--me
+    - word: lai2--come
+    - word: gan4--work
+    - punctuation: 。
+  translation: I'll do today's work.
+  grammar:
+    - topic-s-pred--topic-comment
+    - owner-de5-n--possess
+- id: hsk3-moment-ago
+  segments:
+    - word: gang1-cai2--recently
+    - word: ni3--you
+    - word: zai4--location
+    - word: na3-r5--where
+    - punctuation: ？
+  translation: Where were you a moment ago?
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+- id: hsk3-just-left
+  segments:
+    - word: ba4-ba5--dad
+    - word: gang1-gang1--recently
+    - word: chu1-men2--go-out
+    - punctuation: 。
+  translation: Dad has just gone out.
+  grammar:
+    - s-gang1-or-gang1-gang1-vp--just
+- id: hsk3-high-speed-rail
+  segments:
+    - word: wo3-men5--we
+    - word: xi3-huan5--like
+    - word: zuo4--ride
+    - word: gao1-tie3--rail
+    - word: qu4--go
+    - word: lv3-you2--travel
+    - punctuation: 。
+  translation: We like taking high-speed rail to travel.
+  grammar:
+    - s-vp-vp--means
+- id: hsk3-base-answer
+  segments:
+    - word: ni3--you
+    - word: de5--possession
+    - word: jue2-ding4--decision
+    - word: gen1-ju4--base
+    - word: shen2-me5--what
+    - punctuation: ？
+  translation: What is your decision based on?
+  grammar:
+    - pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+- id: hsk3-two-kilograms
+  segments:
+    - word: qing3--please
+    - word: gei3--give
+    - word: wo3--me
+    - word: liang3--two
+    - word: gong1-jin1--kilogram
+    - word: ping2-guo3--apple
+    - punctuation: 。
+  translation: Please give me two kilograms of apples.
+  grammar:
+    - qing3-vp--request
+    - liang3-mw-n--two
+    - s-v-p-obj--double-obj
+- id: hsk3-workday-hours
+  segments:
+    - word: gong1-zuo4-ri4--workday
+    - punctuation: ，
+    - word: wo3--me
+    - word: ba1--eight
+    - word: dian3--oclock
+    - word: shang4-ban1--work
+    - punctuation: 。
+  translation: On working days, I start work at eight.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - time-hour-dian3-min-fen1--clock
+- id: hsk3-bedtime-story
+  segments:
+    - word: ma1-ma5--mom
+    - word: gei3--for
+    - word: hai2-zi5--child
+    - word: jiang3--speak
+    - word: gu4-shi5--story
+    - punctuation: 。
+  translation: The mother tells the child a story.
+  grammar:
+    - gei3-p-vp--for-to
+- id: hsk3-wind-blowing
+  segments:
+    - word: wai4-mian4--outside
+    - word: zheng4-zai4--ongoing
+    - word: gua1--blow
+    - word: feng1--wind
+    - punctuation: 。
+  translation: The wind is blowing outside.
+  grammar:
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+- id: hsk3-close-door
+  segments:
+    - word: qing3--please
+    - word: guan1--close
+    - word: men2--door
+    - punctuation: 。
+  translation: Please close the door.
+  grammar:
+    - qing3-vp--request
+- id: hsk3-good-relationship
+  segments:
+    - word: wo3--me
+    - word: gen1--and
+    - word: tong2-xue2--classmate
+    - word: de5--possession
+    - word: guan1-xi4--relationship
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: I have a good relationship with my classmates.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+    - np-gen1-np--and
+- id: hsk3-care-about-student
+  segments:
+    - word: lao3-shi1--teacher
+    - word: hen3--very
+    - word: guan1-xin1--care
+    - word: xue2-sheng5--student
+    - punctuation: 。
+  translation: The teacher cares a lot about the students.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-follow-news
+  segments:
+    - word: wo3--me
+    - word: mei3--every
+    - word: tian1--day
+    - word: guan1-zhu4--attention
+    - word: xin1-wen2--news
+    - punctuation: 。
+  translation: I follow the news every day.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-social-follow
+  segments:
+    - word: wo3--me
+    - word: zai4--location
+    - word: wang3-shang4--online
+    - word: guan1-zhu4--follow
+    - word: le5--completed
+    - word: zhe4--this
+    - word: wei4--people
+    - word: lao3-shi1--teacher
+    - punctuation: 。
+  translation: I followed this teacher online.
+  grammar:
+    - s-zai4-loc-vp--location
+    - v-le5-obj--complete
+- id: hsk3-b-guojia-country
+  segments:
+    - word: na4-ge5--that
+    - word: guo2-jia1--country
+    - word: hen3--very
+    - word: da4--big
+    - punctuation: 。
+  translation: That country is very big.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-guojie-celebrate
+  segments:
+    - word: ta1-men5--they
+    - word: hou4-tian1--day-after-tomorrow
+    - word: yi1-qi3--together
+    - word: guo4-jie2--celebrate
+    - punctuation: 。
+  translation: They will celebrate the festival together the day after tomorrow.
+  grammar:
+    - group-yi1-qi3-vp--together
+- id: hsk3-b-guoqu-past
+  segments:
+    - word: guo4-qu4--past
+    - word: wo3--me
+    - word: zai4--location
+    - word: zhe4-r5--here
+    - word: gong1-zuo4--work
+    - punctuation: 。
+  translation: In the past, I worked here.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-hai-even-more
+  segments:
+    - word: jin1-tian1--today
+    - word: bi3--than
+    - word: zuo2-tian1--yesterday
+    - word: hai2--even-more
+    - word: re4--hot
+    - punctuation: 。
+  translation: Today is even hotter than yesterday.
+  grammar:
+    - a-bi3-b-geng4-or-hai2-adj--even-more
+- id: hsk3-b-hai-fairly
+  segments:
+    - word: zhe4-ge5--this
+    - word: fang2-jian1--room
+    - word: hai2--fairly
+    - word: an1-jing4--quiet
+    - punctuation: 。
+  translation: This room is fairly quiet.
+  grammar:
+    - hai2-adj--fairly
+- id: hsk3-b-hai-sea
+  segments:
+    - word: na4-ge5--that
+    - word: hai2-zi5--child
+    - word: xiang3--want
+    - word: kan4--watch
+    - word: hai3--sea
+    - punctuation: 。
+  translation: That child wants to see the sea.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-haipa-afraid
+  segments:
+    - word: ta1--she
+    - word: hen3--very
+    - word: hai4-pa4--afraid
+    - punctuation: 。
+  translation: She is very afraid.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-haojiu-long-time
+  segments:
+    - word: wo3--me
+    - word: hao3-jiu3--long
+    - word: mei2--negation
+    - word: he1--drink
+    - word: jiu3--alcohol
+    - word: le5--change
+    - punctuation: 。
+  translation: I have not had alcohol in a very long time.
+  grammar:
+    - state-le5--change
+- id: hsk3-b-haoxiang-apparently
+  segments:
+    - word: ta1--he
+    - word: hao3-xiang4--apparently
+    - word: zai4--location
+    - word: jia1--home
+    - punctuation: 。
+  translation: He seems to be at home.
+  grammar:
+    - s-hao3-xiang4-pred--seem
+    - s-zai4-loc--at
+- id: hsk3-b-haoxiang-seem
+  segments:
+    - word: zhe4-ge5--this
+    - word: hai2-zi5--child
+    - word: hao3-xiang4--seem
+    - word: ta1--he
+    - word: ba4-ba5--dad
+    - punctuation: 。
+  translation: This child looks like his dad.
+  grammar:
+    - s-hao3-xiang4-pred--seem
+- id: hsk3-b-haoma-number
+  segments:
+    - word: ni3--you
+    - word: de5--possession
+    - word: hao4-ma3--number
+    - word: hen3--very
+    - word: chang2--long
+    - punctuation: 。
+  translation: Your number is very long.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-b-he-river
+  segments:
+    - word: he2--river
+    - word: zai4--location
+    - word: xue2-xiao4--school
+    - word: hou4-mian5--behind
+    - punctuation: 。
+  translation: The river is behind the school.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-b-heshi-suitable
+  segments:
+    - word: zhe4--this
+    - word: shuang1--pair
+    - word: xie2--shoe
+    - word: hen3--very
+    - word: he2-shi4--suitable
+    - punctuation: 。
+  translation: This pair of shoes fits well.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-heiban-blackboard
+  segments:
+    - word: hei1-ban3--blackboard
+    - word: zai4--location
+    - word: men2--door
+    - word: pang2-bian1--beside
+    - punctuation: 。
+  translation: The blackboard is beside the door.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-b-honglvdeng-traffic-lights
+  segments:
+    - word: hong2-lv4-deng1--traffic-lights
+    - word: zai4--location
+    - word: na4-li5--there
+    - punctuation: 。
+  translation: The traffic lights are over there.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-b-houlai-later
+  segments:
+    - word: hou4-lai2--later
+    - word: ta1--he
+    - word: zai4--location
+    - word: xue2-xiao4--school
+    - word: gong1-zuo4--work
+    - punctuation: 。
+  translation: Later, he worked at the school.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-hounian-year-after-next
+  segments:
+    - word: hou4-nian2--year-after-next
+    - word: wo3--me
+    - word: xiang3--want
+    - word: mai3--buy
+    - word: che1--car
+    - punctuation: 。
+  translation: I want to buy a car the year after next.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-houtian-day-after-tomorrow
+  segments:
+    - word: hou4-tian1--day-after-tomorrow
+    - word: ta1--he
+    - word: zai4--location
+    - word: zhe4-li3--here
+    - word: xue2-xi2--study
+    - punctuation: 。
+  translation: He will study here the day after tomorrow.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-huzhao-passport
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: hu4-zhao4--passport
+    - word: zai4--location
+    - word: bao1--bag
+    - word: li3--inside
+    - punctuation: 。
+  translation: My passport is in the bag.
+  grammar:
+    - owner-de5-n--possess
+    - s-zai4-loc--at
+- id: hsk3-b-huayuan-garden
+  segments:
+    - word: hai2-zi5--child
+    - word: zai4--location
+    - word: hua1-yuan2--garden
+    - word: pao3--run
+    - punctuation: 。
+  translation: The child is running in the garden.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-huajia-painter
+  segments:
+    - word: ta1--she
+    - word: ma1-ma5--mom
+    - word: shi4--identity
+    - word: hua4-jia1--painter
+    - punctuation: 。
+  translation: Her mom is a painter.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-huai-extremely
+  segments:
+    - word: jin1-tian1--today
+    - word: re4--hot
+    - word: huai4--extremely
+    - word: le5--intensify
+    - punctuation: 。
+  translation: It is unbearably hot today.
+  grammar:
+    - pred-huai4-le5--overwhelming
+- id: hsk3-b-huanying-welcome
+  segments:
+    - word: wo3-men5--we
+    - word: zai4--location
+    - word: men2-kou3--entrance
+    - word: huan1-ying2--welcome
+    - word: ni3--you
+    - punctuation: 。
+  translation: We are welcoming you at the entrance.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-huan-repay
+  segments:
+    - word: wo3--me
+    - word: rang4--ask
+    - word: ta1--he
+    - word: huan2--repay
+    - word: qian2--money
+    - punctuation: 。
+  translation: I told him to pay back the money.
+  grammar:
+    - s-rang4-p-vp--cause
+- id: hsk3-b-huan-return
+  segments:
+    - word: wo3--me
+    - word: rang4--ask
+    - word: ta1--he
+    - word: huan2--return
+    - word: shu1--book
+    - word: gei3--to
+    - word: lao3-shi1--teacher
+    - punctuation: 。
+  translation: I told him to return the book to the teacher.
+  grammar:
+    - s-rang4-p-vp--cause
+- id: hsk3-b-huanjing-environment
+  segments:
+    - word: xue2-xiao4--school
+    - word: de5--possession
+    - word: huan2-jing4--environment
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: The school's environment is very good.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-b-huan-change
+  segments:
+    - word: wo3--me
+    - word: yao4--want
+    - word: huan4--change
+    - word: shou3-ji1--phone
+    - punctuation: 。
+  translation: I want to replace my phone.
+  grammar:
+    - s-yao4-vp--intend
+- id: hsk3-b-huan-exchange
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: gen1--with
+    - word: ni3--you
+    - word: huan4--exchange
+    - word: bi3--pen
+    - punctuation: 。
+  translation: I want to swap pens with you.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-huangse-yellow
+  segments:
+    - word: na4--that
+    - word: jian4--classifier
+    - word: yi1-fu5--clothes
+    - word: shi4--identity
+    - word: huang2-se4--yellow
+    - word: de5--nominalizer
+    - punctuation: 。
+  translation: That item of clothing is yellow.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-hui-times
+  segments:
+    - word: ta1--she
+    - word: wen4--ask
+    - word: le5--completed
+    - word: wo3--me
+    - word: yi1--one
+    - word: hui2--times
+    - punctuation: 。
+  translation: She asked me once.
+  grammar:
+    - v-le5-obj--complete
+- id: hsk3-b-huida-answer
+  segments:
+    - word: qing3--please
+    - word: hui2-da2--answer
+    - word: wo3--me
+    - word: de5--possession
+    - word: wen4-ti2--question
+    - punctuation: 。
+  translation: Please answer my question.
+  grammar:
+    - owner-de5-n--possess
+- id: hsk3-b-hui-meeting
+  segments:
+    - word: wo3-men5--we
+    - word: xia4-wu3--afternoon
+    - word: you3--have
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: hui4--meeting
+    - punctuation: 。
+  translation: We have a meeting this afternoon.
+  grammar:
+    - s-you3-np--have
+    - num-mw-n--count
+- id: hsk3-b-huiyi-conference
+  segments:
+    - word: zhe4-ge5--this
+    - word: hui4-yi4--meeting
+    - word: hen3--very
+    - word: zhong4-yao4--important
+    - punctuation: 。
+  translation: This meeting is very important.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-huo-or
+  segments:
+    - word: ni3--you
+    - word: zuo4--ride
+    - word: huo3-che1--train
+    - word: huo4--or
+    - word: fei1-ji1--airplane
+    - word: lai2--come
+    - punctuation: 。
+  translation: You can come by train or plane.
+  grammar:
+    - option-huo4-or-huo4-zhe3-option--or
+- id: hsk3-b-huozhe-or
+  segments:
+    - word: ni3--you
+    - word: ke3-yi3--permission
+    - word: zuo4--ride
+    - word: huo3-che1--train
+    - word: huo4-zhe3--or
+    - word: fei1-ji1--airplane
+    - punctuation: 。
+  translation: You may take the train or the plane.
+  grammar:
+    - option-huo4-or-huo4-zhe3-option--or
+- id: hsk3-b-ji-chicken
+  segments:
+    - word: ji1--chicken
+    - word: zai4--location
+    - word: lu4-bian1--roadside
+    - word: zou3--walk
+    - punctuation: 。
+  translation: The chicken is walking by the roadside.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-jihu-almost
+  segments:
+    - word: wo3--me
+    - word: jin1-tian1--today
+    - word: ji1-hu1--almost
+    - word: mei2--negation
+    - word: chi1--eat
+    - word: fan4--meal
+    - punctuation: 。
+  translation: I hardly ate anything today.
+  grammar:
+    - s-ji1-hu1-pred--almost
+- id: hsk3-b-jihui-opportunity
+  segments:
+    - word: zhe4--this
+    - word: shi4--identity
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: hao3--good
+    - word: ji1-hui4--opportunity
+    - punctuation: 。
+  translation: This is a good opportunity.
+  grammar:
+    - s-shi4-n--identity
+    - num-mw-n--count
+- id: hsk3-b-ji-anxious
+  segments:
+    - word: wo3--me
+    - word: xian4-zai4--now
+    - word: hen3--very
+    - word: ji2--anxious
+    - punctuation: 。
+  translation: I am in a hurry right now.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-ji-extremely
+  segments:
+    - word: jin1-tian1--today
+    - word: re4--hot
+    - word: ji2--extremely
+    - word: le5--intensify
+    - punctuation: 。
+  translation: It is extremely hot today.
+  grammar:
+    - pred-ji2-le5--extremely
+- id: hsk3-b-ji-urgent
+  segments:
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--problem
+    - word: hen3--very
+    - word: ji2--urgent
+    - punctuation: 。
+  translation: This problem is urgent.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-ji-record
+  segments:
+    - word: wo3--me
+    - word: ji4--record
+    - word: xia4--retention
+    - word: le5--completed
+    - word: na4-ge5--that
+    - word: hao4-ma3--number
+    - punctuation: 。
+  translation: I wrote down that number.
+  grammar:
+    - v-xia4--retain
+    - v-le5-obj--complete
+- id: hsk3-b-ji-remember
+  segments:
+    - word: wo3--me
+    - word: ji4--remember
+    - word: zhu4--secure-result
+    - word: le5--completed
+    - word: zhe4-ge5--this
+    - word: hao4-ma3--number
+    - punctuation: 。
+  translation: I memorized this number.
+  grammar:
+    - v-zhu4--secure
+- id: hsk3-b-ji-season
+  segments:
+    - word: zhe4-li3--here
+    - word: you3--have
+    - word: si4--four
+    - word: ji4--season
+    - punctuation: 。
+  translation: This place has four seasons.
+  grammar:
+    - s-you3-np--have
+- id: hsk3-b-jijie-season
+  segments:
+    - word: zhe4-ge5--this
+    - word: ji4-jie2--season
+    - word: hen3--very
+    - word: re4--hot
+    - punctuation: 。
+  translation: This season is very hot.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-jia-add
+  segments:
+    - word: lao3-shi1--teacher
+    - word: rang4--ask
+    - word: wo3--me
+    - word: jia1--add
+    - word: liang3--two
+    - word: ge4--classifier
+    - word: zi4--character
+    - punctuation: 。
+  translation: The teacher told me to add two characters.
+  grammar:
+    - s-rang4-p-vp--cause
+    - num-mw-n--count
+- id: hsk3-b-jia-specialist
+  segments:
+    - word: ta1--she
+    - word: ma1-ma5--mom
+    - word: shi4--identity
+    - word: hua4--draw
+    - word: jia1--specialist
+    - punctuation: 。
+  translation: Her mom is a painter.
+  grammar:
+    - s-shi4-n--identity
+    - field-jia1--expert
+- id: hsk3-b-jiaqi-vacation
+  segments:
+    - word: jia4-qi1--vacation
+    - word: yi3-hou4--after
+    - word: wo3--me
+    - word: yao4--want
+    - word: gong1-zuo4--work
+    - punctuation: 。
+  translation: After the vacation, I am going to work.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-yao4-vp--intend
+- id: hsk3-b-jianchi-persist
+  segments:
+    - word: ta1--he
+    - word: zai4--location
+    - word: jia1--home
+    - word: jian1-chi2--persist
+    - word: lian4-xi2--practice
+    - punctuation: 。
+  translation: He keeps practicing at home.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-jiancha-check
+  segments:
+    - word: lao3-shi1--teacher
+    - word: zai4--location
+    - word: men2-kou3--entrance
+    - word: jian3-cha2--check
+    - word: piao4--ticket
+    - punctuation: 。
+  translation: The teacher checks tickets at the entrance.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-jiandan-simple
+  segments:
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--problem
+    - word: hen3--very
+    - word: jian3-dan1--simple
+    - punctuation: 。
+  translation: This problem is very simple.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-jianpiao-check-tickets
+  segments:
+    - word: ta1-men5--they
+    - word: zai4--location
+    - word: men2-kou3--entrance
+    - word: jian3-piao4--tickets
+    - punctuation: 。
+  translation: They are checking tickets at the entrance.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-jiankang-healthy
+  segments:
+    - word: wo3--me
+    - word: ma1-ma5--mom
+    - word: hen3--very
+    - word: jian4-kang1--healthy
+    - punctuation: 。
+  translation: My mom is very healthy.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-jianmian-meet
+  segments:
+    - word: wo3-men5--we
+    - word: ming2-tian1--tomorrow
+    - word: zai4--location
+    - word: xue2-xiao4--school
+    - word: jian4-mian4--meet
+    - punctuation: 。
+  translation: We will meet at school tomorrow.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-jiang-explain
+  segments:
+    - word: lao3-shi1--teacher
+    - word: jiang3--explain
+    - word: de5--manner
+    - word: hen3--very
+    - word: jian3-dan1--simple
+    - punctuation: 。
+  translation: The teacher explained it simply.
+  grammar:
+    - v-de5-adjp--performance
+- id: hsk3-b-jiang-speak
+  segments:
+    - word: ta1--he
+    - word: jiang3--speak
+    - word: de5--manner
+    - word: hen3--very
+    - word: kuai4--fast
+    - punctuation: 。
+  translation: He speaks very fast.
+  grammar:
+    - v-de5-adjp--performance
+- id: hsk3-b-jiao-dime
+  segments:
+    - word: zhe4-ge5--this
+    - word: ping2-guo3--apple
+    - word: wu3--five
+    - word: jiao3--dime
+    - word: qian2--money
+    - punctuation: 。
+  translation: This apple costs five jiao.
+  grammar:
+    - s-np--nominal
+- id: hsk3-b-jiao-foot
+  segments:
+    - word: hai2-zi5--child
+    - word: de5--possession
+    - word: jiao3--foot
+    - word: hen3--very
+    - word: xiao3--small
+    - punctuation: 。
+  translation: The child's feet are very small.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-b-jie-answer-phone
+  segments:
+    - word: ta1--he
+    - word: zheng4-zai4--ongoing
+    - word: jie1--answer
+    - word: dian4-hua4--telephone
+    - punctuation: 。
+  translation: He is answering the phone.
+  grammar:
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+- id: hsk3-b-jie-catch
+  segments:
+    - word: ta1--he
+    - word: jie1--catch
+    - word: le5--completed
+    - word: wo3--me
+    - word: de5--possession
+    - word: bao1--bag
+    - punctuation: 。
+  translation: He took my bag from me.
+  grammar:
+    - v-le5-obj--complete
+    - owner-de5-n--possess
+- id: hsk3-b-jie-meet
+  segments:
+    - word: ba4-ba5--dad
+    - word: zai4--location
+    - word: ji1-chang3--airport
+    - word: jie1--meet
+    - word: ni3--you
+    - punctuation: 。
+  translation: Dad is picking you up at the airport.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-jie-street
+  segments:
+    - word: hai2-zi5--child
+    - word: zai4--location
+    - word: jie1--street
+    - word: shang4--above
+    - word: pao3--run
+    - punctuation: 。
+  translation: The child is running on the street.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-jie-festival
+  segments:
+    - word: zhe4-ge5--this
+    - word: jie2--festival
+    - word: hen3--very
+    - word: zhong4-yao4--important
+    - punctuation: 。
+  translation: This festival is very important.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-jie-sections
+  segments:
+    - word: jin1-tian1--today
+    - word: wo3-men5--we
+    - word: you3--have
+    - word: san1--three
+    - word: jie2--sections
+    - word: ke4--lesson
+    - punctuation: 。
+  translation: We have three class periods today.
+  grammar:
+    - s-you3-np--have
+    - num-mw-n--count
+- id: hsk3-b-jiehun-marry
+  segments:
+    - word: ta1-men5--they
+    - word: yao4--want
+    - word: jie2-hun1--marry
+    - punctuation: 。
+  translation: They plan to get married.
+  grammar:
+    - s-yao4-vp--intend
+- id: hsk3-b-jiemu-program
+  segments:
+    - word: zhe4-ge5--this
+    - word: jie2-mu4--program
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: This program is very good.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-jieri-holiday
+  segments:
+    - word: hou4-tian1--day-after-tomorrow
+    - word: shi4--identity
+    - word: jie2-ri4--holiday
+    - punctuation: 。
+  translation: The day after tomorrow is a holiday.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-jieshu-end
+  segments:
+    - word: hui4-yi4--meeting
+    - word: zai4--time
+    - word: wu3--five
+    - word: dian3--oclock
+    - word: jie2-shu4--end
+    - punctuation: 。
+  translation: The meeting ends at five o'clock.
+  grammar:
+    - s-zai4-time-vp--time
+- id: hsk3-b-jiejue-solve
+  segments:
+    - word: wo3-men5--we
+    - word: yi1-qi3--together
+    - word: jie3-jue2--solve
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--problem
+    - punctuation: 。
+  translation: We will solve this problem together.
+  grammar:
+    - group-yi1-qi3-vp--together
+- id: hsk3-b-jiemei-sisters
+  segments:
+    - word: ta1-men5--women
+    - word: shi4--identity
+    - word: jie3-mei4--sisters
+    - punctuation: 。
+  translation: They are sisters.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-jie-borrow
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: jie4--borrow
+    - word: ni3--you
+    - word: de5--possession
+    - word: ke4-ben3--textbook
+    - punctuation: 。
+  translation: I want to borrow your textbook.
+  grammar:
+    - s-xiang3-vp--want
+    - owner-de5-n--possess
+- id: hsk3-b-jie-lend
+  segments:
+    - word: ni3--you
+    - word: ke3-yi3--permission
+    - word: jie4--lend
+    - word: gei3--to
+    - word: wo3--me
+    - word: ke4-ben3--textbook
+    - punctuation: 。
+  translation: You can lend me the textbook.
+  grammar:
+    - s-v-gei3-p-obj--transfer
+- id: hsk3-b-jin-jin
+  segments:
+    - word: wo3--me
+    - word: mai3--buy
+    - word: le5--completed
+    - word: liang3--two
+    - word: jin1--jin
+    - word: ping2-guo3--apple
+    - punctuation: 。
+  translation: I bought two jin of apples.
+  grammar:
+    - v-le5-obj--complete
+    - num-mw-n--count
+- id: hsk3-b-jingguo-events
+  segments:
+    - word: shi4-qing5--matter
+    - word: de5--possession
+    - word: jing1-guo4--events
+    - word: hen3--very
+    - word: qing1-chu5--clear
+    - punctuation: 。
+  translation: The course of events is very clear.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-b-jingguo-pass
+  segments:
+    - word: xia4-ban1--finish
+    - word: yi3-hou4--after
+    - word: wo3-men5--we
+    - word: jing1-guo4--pass
+    - word: na4-ge5--that
+    - word: lu4-kou3--intersection
+    - punctuation: 。
+  translation: After work, we pass that intersection.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: hsk3-b-jingli-manager
+  segments:
+    - word: ta1--she
+    - word: ma1-ma5--mom
+    - word: shi4--identity
+    - word: jing1-li3--manager
+    - punctuation: 。
+  translation: Her mom is a manager.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-jiu-alcohol
+  segments:
+    - word: ta1--he
+    - word: he1--drink
+    - word: shui3--water
+    - word: bu4--not
+    - word: he1--drink
+    - word: jiu3--alcohol
+    - punctuation: 。
+  translation: He drinks water, not alcohol.
+  grammar:
+    - clause-clause--linked
+- id: hsk3-b-jiu-long-duration
+  segments:
+    - word: wo3--me
+    - word: zai4--location
+    - word: zhe4-li3--here
+    - word: zhu4--live
+    - word: le5--completed
+    - word: hen3--very
+    - word: jiu3--long
+    - punctuation: 。
+  translation: I have lived here for a long time.
+  grammar:
+    - s-zai4-loc-vp--location
+    - v-le5-duration-obj--duration
+- id: hsk3-b-jiu-old
+  segments:
+    - word: zhe4--this
+    - word: ben3--books
+    - word: ke4-ben3--textbook
+    - word: tai4--too
+    - word: jiu4--old
+    - word: le5--intensify
+    - punctuation: 。
+  translation: This textbook is too old.
+  grammar:
+    - tai4-adj-le5--so-too
+- id: hsk3-b-ju-sentences
+  segments:
+    - word: zhe4-ge5--this
+    - word: ke4-wen2--text
+    - word: you3--have
+    - word: shi2--ten
+    - word: ju4--sentences
+    - punctuation: 。
+  translation: This lesson text has ten sentences.
+  grammar:
+    - s-you3-np--have
+    - num-mw-n--count
+- id: hsk3-b-juzi-sentence
+  segments:
+    - word: zhe4-ge5--this
+    - word: ju4-zi5--sentence
+    - word: hen3--very
+    - word: chang2--long
+    - punctuation: 。
+  translation: This sentence is very long.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-jueding-decide
+  segments:
+    - word: wo3--me
+    - word: jue2-ding4--decide
+    - word: xian1--first
+    - word: gong1-zuo4--work
+    - word: zai4--then
+    - word: chi1--eat
+    - word: fan4--meal
+    - punctuation: 。
+  translation: I decided to work first and eat later.
+  grammar:
+    - xian1-vp-zai4-vp--first-then
+- id: hsk3-b-jueding-decision
+  segments:
+    - word: zhe4-ge5--this
+    - word: jue2-ding4--decision
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: This decision is very good.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-ka-card
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: ka3--card
+    - word: zai4--location
+    - word: bao1--bag
+    - word: li3--inside
+    - punctuation: 。
+  translation: My card is in the bag.
+  grammar:
+    - owner-de5-n--possess
+    - s-zai4-loc--at
+- id: hsk3-b-kaihua-bloom
+  segments:
+    - word: shu4--tree
+    - word: kai1-hua1--bloom
+    - word: le5--completed
+    - punctuation: 。
+  translation: The tree has bloomed.
+  grammar:
+    - state-le5--change
+- id: hsk3-b-kaihui-attend
+  segments:
+    - word: ba4-ba5--dad
+    - word: zai4--location
+    - word: gong1-si1--company
+    - word: kai1-hui4--attend
+    - punctuation: 。
+  translation: Dad is attending a meeting at the company.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-kaihui-hold
+  segments:
+    - word: gong1-si1--company
+    - word: zai4--time
+    - word: xia4-wu3--afternoon
+    - word: kai1-hui4--meet
+    - punctuation: 。
+  translation: The company is holding a meeting in the afternoon.
+  grammar:
+    - s-zai4-time-vp--time
+- id: hsk3-b-kaiji-startup
+  segments:
+    - word: qing3--please
+    - word: xian1--first
+    - word: kai1-ji1--startup
+    - word: zai4--then
+    - word: kan4--read
+    - word: ke4-wen2--text
+    - punctuation: 。
+  translation: Please turn the device on first, then read the lesson text.
+  grammar:
+    - xian1-vp-zai4-vp--first-then
+- id: hsk3-b-kaixin-happy
+  segments:
+    - word: hai2-zi5--child
+    - word: jin1-tian1--today
+    - word: hen3--very
+    - word: kai1-xin1--happy
+    - punctuation: 。
+  translation: The child is very happy today.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-kanlai-seem
+  segments:
+    - word: kan4-lai2--seem
+    - word: ni3--you
+    - word: hen3--very
+    - word: mang2--busy
+    - punctuation: 。
+  translation: It seems that you are very busy.
+  grammar:
+    - kan4-lai2-stmt--apparently
+    - s-hen3-adj--describe
+- id: hsk3-b-kanqilai-appear
+  segments:
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--problem
+    - word: kan4-qi3-lai5--appear
+    - word: hen3--very
+    - word: jian3-dan1--simple
+    - punctuation: 。
+  translation: This problem looks very simple.
+  grammar:
+    - s-kan4-qi3-lai5-or-kan4-shang5-qu5-adjp--look
+- id: hsk3-b-kanshangqu-appear
+  segments:
+    - word: na4-ge5--that
+    - word: nan2-sheng1--boy
+    - word: kan4-shang5-qu5--appear
+    - word: hen3--very
+    - word: ji2--anxious
+    - punctuation: 。
+  translation: That boy looks very anxious.
+  grammar:
+    - s-kan4-qi3-lai5-or-kan4-shang5-qu5-adjp--look
+- id: hsk3-b-ke-but
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: qu4--go
+    - punctuation: ，
+    - word: ke3--but
+    - word: jin1-tian1--today
+    - word: wo3--me
+    - word: mei2-you3--possession
+    - word: shi2-jian1--time
+    - punctuation: 。
+  translation: I want to go, but I do not have time today.
+  grammar:
+    - clause-ke3-or-ke3-shi4-clause--but
+- id: hsk3-b-ke-thirsty
+  segments:
+    - word: wo3--me
+    - word: xian4-zai4--now
+    - word: hen3--very
+    - word: ke3--thirsty
+    - punctuation: 。
+  translation: I am very thirsty now.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-keai-cute
+  segments:
+    - word: zhe4-ge5--this
+    - word: hai2-zi5--child
+    - word: hen3--very
+    - word: ke3-ai4--cute
+    - punctuation: 。
+  translation: This child is very cute.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-keshi-but
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: mai3--buy
+    - punctuation: ，
+    - word: ke3-shi4--but
+    - word: wo3--me
+    - word: mei2-you3--possession
+    - word: qian2--money
+    - punctuation: 。
+  translation: I want to buy it, but I do not have money.
+  grammar:
+    - clause-ke3-or-ke3-shi4-clause--but
+- id: hsk3-b-ke-quarter
+  segments:
+    - word: xian4-zai4--now
+    - word: shi4--identity
+    - word: san1--three
+    - word: dian3--oclock
+    - word: yi1--one
+    - word: ke4--quarter
+    - punctuation: 。
+  translation: It is a quarter past three now.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-keben-textbook
+  segments:
+    - word: wo3--me
+    - word: mai3--buy
+    - word: le5--completed
+    - word: ke4-ben3--textbook
+    - punctuation: 。
+  translation: I bought the textbook.
+  grammar:
+    - v-le5-obj--complete
+- id: hsk3-b-keren-customer
+  segments:
+    - word: zhe4-ge5--this
+    - word: ke4-ren2--customer
+    - word: mai3--buy
+    - word: le5--completed
+    - word: liang3--two
+    - word: jin1--jin
+    - word: ping2-guo3--apple
+    - punctuation: 。
+  translation: This customer bought two jin of apples.
+  grammar:
+    - v-le5-obj--complete
+    - num-mw-n--count
+- id: hsk3-b-keren-guest
+  segments:
+    - word: jin1-tian1--today
+    - word: wan3-shang5--evening
+    - word: you3--have
+    - word: ke4-ren2--guest
+    - word: lai2--come
+    - punctuation: 。
+  translation: We have guests coming tonight.
+  grammar:
+    - s-you3-np--have
+- id: hsk3-b-kewen-text
+  segments:
+    - word: ke4-wen2--text
+    - word: hen3--very
+    - word: duan3--short
+    - punctuation: 。
+  translation: The lesson text is very short.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-kongtiao-air-conditioner
+  segments:
+    - word: zhe4-ge5--this
+    - word: fang2-jian1--room
+    - word: you3--have
+    - word: kong1-tiao2--air-conditioner
+    - punctuation: 。
+  translation: This room has an air conditioner.
+  grammar:
+    - s-you3-np--have
+- id: hsk3-b-kou-mouthfuls
+  segments:
+    - word: ta1--he
+    - word: he1--drink
+    - word: le5--completed
+    - word: yi1--one
+    - word: kou3--mouthfuls
+    - word: shui3--water
+    - punctuation: 。
+  translation: He took a mouthful of water.
+  grammar:
+    - v-le5-obj--complete
+    - num-mw-n--count
+- id: hsk3-b-ku-cry
+  segments:
+    - word: na4-ge5--that
+    - word: hai2-zi5--child
+    - word: zai4--ongoing
+    - word: ku1--cry
+    - punctuation: 。
+  translation: That child is crying.
+  grammar:
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+- id: hsk3-b-kuaizi-chopsticks
+  segments:
+    - word: zhe4--this
+    - word: shuang1--pair
+    - word: kuai4-zi5--chopsticks
+    - word: hen3--very
+    - word: chang2--long
+    - punctuation: 。
+  translation: This pair of chopsticks is very long.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-kuangquanshui-mineral-water
+  segments:
+    - word: wo3--me
+    - word: mai3--buy
+    - word: le5--completed
+    - word: kuang4-quan2-shui3--mineral-water
+    - punctuation: 。
+  translation: I bought some mineral water.
+  grammar:
+    - v-le5-obj--complete
+- id: hsk3-b-laishuo-perspective
+  segments:
+    - word: dui4--toward
+    - word: wo3--me
+    - word: lai2-shuo1--perspective
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--problem
+    - word: hen3--very
+    - word: jian3-dan1--simple
+    - punctuation: 。
+  translation: For me, this problem is very simple.
+  grammar:
+    - dui4-np-lai2-shuo1-stmt--for
+    - s-hen3-adj--describe
+- id: hsk3-b-laizi-from
+  segments:
+    - word: zhe4-ge5--this
+    - word: li3-wu4--gift
+    - word: lai2-zi4--from
+    - word: wo3--me
+    - word: ma1-ma5--mom
+    - punctuation: ，
+    - word: wo3--me
+    - word: hen3--very
+    - word: kai1-xin1--happy
+    - punctuation: 。
+  translation: This gift came from my mom, and I am very happy.
+  grammar:
+    - clause-clause--linked
+    - s-hen3-adj--describe
+- id: hsk3-b-lan-blue
+  segments:
+    - word: ta1--she
+    - word: de5--possession
+    - word: bao1--bag
+    - word: shi4--identity
+    - word: lan2--blue
+    - word: de5--nominalizer
+    - punctuation: 。
+  translation: Her bag is blue.
+  grammar:
+    - owner-de5-n--possess
+    - s-shi4-n--identity
+- id: hsk3-b-lao-familiar
+  segments:
+    - word: lao3--familiar
+    - word: wang2--surname
+    - word: zai4--ongoing
+    - word: shang4--attend
+    - word: ke4--lesson
+    - punctuation: 。
+  translation: Lao Wang is in class.
+  grammar:
+    - lao3-surname--address
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+- id: hsk3-b-lao-longstanding
+  segments:
+    - word: wo3-men5--we
+    - word: shi4--identity
+    - word: lao3--longstanding
+    - word: peng2-you5--friend
+    - punctuation: 。
+  translation: We are old friends.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-lao-old
+  segments:
+    - word: wo3--me
+    - word: ba4-ba5--dad
+    - word: lao3--old
+    - word: le5--change
+    - punctuation: 。
+  translation: My dad has grown old.
+  grammar:
+    - state-le5--change
+- id: hsk3-b-laoren-elderly
+  segments:
+    - word: na4-ge5--that
+    - word: lao3-ren2--elderly
+    - word: hen3--very
+    - word: kai1-xin1--happy
+    - punctuation: 。
+  translation: That elderly person is very happy.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-likai-leave
+  segments:
+    - word: ta1--he
+    - word: yao4--want
+    - word: li2-kai1--leave
+    - word: xue2-xiao4--school
+    - punctuation: 。
+  translation: He is going to leave school.
+  grammar:
+    - s-yao4-vp--intend
+- id: hsk3-b-liwu-gift
+  segments:
+    - word: zhe4--this
+    - word: shi4--identity
+    - word: wo3--me
+    - word: ma1-ma5--mom
+    - word: de5--possession
+    - word: li3-wu4--gift
+    - punctuation: 。
+  translation: This is my mom's gift.
+  grammar:
+    - s-shi4-n--identity
+    - owner-de5-n--possess
+- id: hsk3-b-lishi-history
+  segments:
+    - word: zhe4-ge5--this
+    - word: xue2-xiao4--school
+    - word: de5--possession
+    - word: li4-shi3--history
+    - word: hen3--very
+    - word: chang2--long
+    - punctuation: 。
+  translation: This school has a long history.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-b-lian-face
+  segments:
+    - word: ta1--she
+    - word: de5--possession
+    - word: lian3--face
+    - word: hen3--very
+    - word: xiao3--small
+    - punctuation: 。
+  translation: Her face is very small.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-b-lian-practice
+  segments:
+    - word: ta1--she
+    - word: zai4--location
+    - word: jia1--home
+    - word: lian4--practice
+    - word: zi4--character
+    - punctuation: 。
+  translation: She practices writing characters at home.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-lianxi-exercise
+  segments:
+    - word: zhe4-ge5--this
+    - word: lian4-xi2--exercise
+    - word: hen3--very
+    - word: nan2--difficult
+    - punctuation: 。
+  translation: This exercise is very difficult.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-lianxi-practice
+  segments:
+    - word: wo3--me
+    - word: zai4--location
+    - word: jia1--home
+    - word: lian4-xi2--practice
+    - punctuation: 。
+  translation: I practice at home.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-liangkuai-cool
+  segments:
+    - word: zhe4-ge5--this
+    - word: fang2-jian1--room
+    - word: hen3--very
+    - word: liang2-kuai5--cool
+    - punctuation: 。
+  translation: This room is pleasantly cool.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-liang-vehicles
+  segments:
+    - word: men2-kou3--entrance
+    - word: you3--have
+    - word: liang3--two
+    - word: liang4--vehicles
+    - word: che1--car
+    - punctuation: 。
+  translation: There are two cars at the entrance.
+  grammar:
+    - s-you3-np--have
+    - num-mw-n--count
+- id: hsk3-b-liao-chat
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: gen1--with
+    - word: ni3--you
+    - word: liao2--chat
+    - punctuation: 。
+  translation: I want to chat with you.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-liaotianr-chat
+  segments:
+    - word: wo3-men5--we
+    - word: wan3-shang5--evening
+    - word: yi1-qi3--together
+    - word: liao2-tian1-r5--chat
+    - punctuation: 。
+  translation: We chat together in the evening.
+  grammar:
+    - group-yi1-qi3-vp--together
+- id: hsk3-b-liaojie-learn
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: liao3-jie3--learn
+    - word: na4-ge5--that
+    - word: guo2-jia1--country
+    - punctuation: 。
+  translation: I want to learn about that country.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-liaojie-understand
+  segments:
+    - word: xian4-zai4--now
+    - word: wo3--me
+    - word: liao3-jie3--understand
+    - word: ta1--he
+    - word: de5--possession
+    - word: yi4-si5--meaning
+    - word: le5--change
+    - punctuation: 。
+  translation: Now I understand what he means.
+  grammar:
+    - owner-de5-n--possess
+    - state-le5--change
+- id: hsk3-b-linju-neighbor
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: lin2-ju1--neighbor
+    - word: hen3--very
+    - word: an1-jing4--quiet
+    - punctuation: 。
+  translation: My neighbor is very quiet.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-b-liuxue-study-abroad
+  segments:
+    - word: ta1--she
+    - word: hou4-nian2--year-after-next
+    - word: xiang3--want
+    - word: liu2-xue2--study-abroad
+    - punctuation: 。
+  translation: She wants to study abroad the year after next.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-liuxuesheng-student
+  segments:
+    - word: na4-ge5--that
+    - word: liu2-xue2-sheng1--student
+    - word: hen3--very
+    - word: mang2--busy
+    - punctuation: 。
+  translation: That international student is very busy.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-louti-stairs
+  segments:
+    - word: lou2-ti1--stairs
+    - word: zai4--location
+    - word: zuo3-bian5--left
+    - punctuation: 。
+  translation: The stairs are on the left.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-b-lubian-roadside
+  segments:
+    - word: hai2-zi5--child
+    - word: zai4--location
+    - word: lu4-bian1--roadside
+    - word: deng3--wait
+    - word: che1--vehicle
+    - punctuation: 。
+  translation: The child is waiting for a vehicle by the roadside.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-b-lukou-intersection
+  segments:
+    - word: na4-ge5--that
+    - word: lu4-kou3--intersection
+    - word: hen3--very
+    - word: jin4--near
+    - punctuation: 。
+  translation: That intersection is very close.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-ma-horse
+  segments:
+    - word: na4-ge5--that
+    - word: hai2-zi5--child
+    - word: xiang3--want
+    - word: qi2--ride
+    - word: ma3--horse
+    - punctuation: 。
+  translation: That child wants to ride a horse.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-malu-road
+  segments:
+    - word: xue2-xiao4--school
+    - word: zai4--location
+    - word: ma3-lu4--road
+    - word: pang2-bian1--beside
+    - punctuation: 。
+  translation: The school is beside the road.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-b-mashang-immediately
+  segments:
+    - word: ru2-guo3--if
+    - word: ni3--you
+    - word: jiao4--call
+    - word: wo3--me
+    - punctuation: ，
+    - word: wo3--me
+    - word: ma3-shang4--immediately
+    - word: jiu4--then
+    - word: lai2--come
+    - punctuation: 。
+  translation: If you call me, I will come right away.
+  grammar:
+    - ru2-guo3-clause-jiu4-clause--if
+- id: hsk3-b-manyi-satisfied
+  segments:
+    - word: wo3--me
+    - word: dui4--toward
+    - word: zhe4-ge5--this
+    - word: li3-wu4--gift
+    - word: hen3--very
+    - word: man3-yi4--satisfied
+    - punctuation: 。
+  translation: I am very satisfied with this gift.
+  grammar:
+    - s-dui4-np-attitude--toward
+- id: hsk3-b-mao-dime
+  segments:
+    - word: zhe4-ge5--this
+    - word: ping2-guo3--apple
+    - word: wu3--five
+    - word: mao2--dime
+    - word: qian2--money
+    - punctuation: 。
+  translation: This apple costs five mao.
+  grammar:
+    - s-np--nominal
+- id: hsk3-b-mi-meter
+  segments:
+    - word: zhe4--this
+    - word: tiao2--classifier
+    - word: lu4--road
+    - word: you3--reach-degree
+    - word: san1--three
+    - word: mi3--meter
+    - word: chang2--long
+    - punctuation: 。
+  translation: This road is three meters long.
+  grammar:
+    - s-you3-qty--measure
+- id: hsk3-b-mianqian-front
+  segments:
+    - word: shu1--book
+    - word: zai4--location
+    - word: wo3--me
+    - word: mian4-qian2--front
+    - punctuation: 。
+  translation: The book is in front of me.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-b-mingbai-clear
+  segments:
+    - word: lao3-shi1--teacher
+    - word: jiang3--explain
+    - word: de5--manner
+    - word: hen3--very
+    - word: ming2-bai5--clear
+    - punctuation: 。
+  translation: The teacher explained it very clearly.
+  grammar:
+    - v-de5-adjp--performance
+- id: hsk3-b-mingbai-understand
+  segments:
+    - word: xian4-zai4--now
+    - word: wo3--me
+    - word: ming2-bai5--understand
+    - word: le5--change
+    - punctuation: 。
+  translation: Now I understand.
+  grammar:
+    - state-le5--change
+- id: hsk3-b-mingdan-list
+  segments:
+    - word: lao3-shi1--teacher
+    - word: gei3--give
+    - word: wo3--me
+    - word: ming2-dan1--names
+    - punctuation: 。
+  translation: The teacher gave me the name list.
+  grammar:
+    - s-v-p-obj--double-obj
+- id: hsk3-b-mingren-celebrity
+  segments:
+    - word: na4-ge5--that
+    - word: ming2-ren2--celebrity
+    - word: hen3--very
+    - word: mang2--busy
+    - punctuation: 。
+  translation: That celebrity is very busy.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-nan-difficult
+  segments:
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--problem
+    - word: hen3--very
+    - word: nan2--difficult
+    - punctuation: 。
+  translation: This problem is very difficult.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-nan-south
+  segments:
+    - word: xue2-xiao4--school
+    - word: zai4--location
+    - word: nan2--south
+    - word: bian1--side
+    - punctuation: 。
+  translation: The school is on the south side.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-b-nanfang-south-region
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: qu4--go
+    - word: nan2-fang1--south
+    - punctuation: 。
+  translation: I want to go to the south.
+  grammar:
+    - s-xiang3-vp--want
+- id: hsk3-b-nanguo-sad
+  segments:
+    - word: ta1--he
+    - word: jin1-tian1--today
+    - word: hen3--very
+    - word: nan2-guo4--sad
+    - punctuation: 。
+  translation: He is very upset today.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-nankan-ugly
+  segments:
+    - word: zhe4--this
+    - word: shuang1--pair
+    - word: xie2--shoe
+    - word: hen3--very
+    - word: nan2-kan4--ugly
+    - punctuation: 。
+  translation: This pair of shoes is very ugly.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-b-nanren-man
+  segments:
+    - word: na4-ge5--that
+    - word: nan2-ren2--man
+    - word: shi4--identity
+    - word: jing1-li3--manager
+    - punctuation: 。
+  translation: That man is a manager.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-b-nansheng-boy
+  segments:
+    - word: na4-ge5--that
+    - word: nan2-sheng1--boy
+    - word: hen3--very
+    - word: gao1--tall
+    - punctuation: 。
+  translation: That boy is very tall.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-hard-problem
+  segments:
+    - word: wo3--me
+    - word: jie3-jue2--solve
+    - word: le5--completed
+    - word: zhe4-ge5--this
+    - word: nan2-ti2--problem
+    - punctuation: 。
+  translation: I solved this difficult problem.
+  grammar:
+    - v-le5-obj--complete
+- id: hsk3-c-hurtful-speech
+  segments:
+    - word: ta1--he
+    - word: shuo1--speak
+    - word: de5--manner
+    - word: tai4--too
+    - word: nan2-ting1--offensive
+    - word: le5--intensify
+    - punctuation: 。
+  translation: What he said was too hurtful.
+  grammar:
+    - v-de5-adjp--performance
+    - tai4-adj-le5--so-too
+- id: hsk3-c-unpleasant-sound
+  segments:
+    - word: zhe4-ge5--this
+    - word: sheng1-yin1--sound
+    - word: you3-yi1-dian3-r5--somewhat
+    - word: nan2-ting1--unpleasant
+    - punctuation: 。
+  translation: This sound is a little unpleasant to hear.
+  grammar:
+    - you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat
+- id: hsk3-c-actually-the-teacher
+  segments:
+    - word: ta1--he
+    - word: cai2--emphatic-correction
+    - word: shi4--identity
+    - word: lao3-shi1--teacher
+    - word: ne5--affirmation
+    - punctuation: 。
+  translation: He actually is the teacher.
+  grammar:
+    - s-cai2-pred-ne5--actually
+- id: hsk3-c-third-grade-student
+  segments:
+    - word: wo3--me
+    - word: mei4-mei5--sister
+    - word: shi4--identity
+    - word: san1--three
+    - word: nian2-ji2--grade
+    - word: xue2-sheng5--student
+    - punctuation: 。
+  translation: My younger sister is a third-grade student.
+  grammar:
+    - s-shi4-n--identity
+    - n-n--modifier
+- id: hsk3-c-young-teacher
+  segments:
+    - word: na4-ge5--that
+    - word: lao3-shi1--teacher
+    - word: hen3--very
+    - word: nian2-qing1--young
+    - punctuation: 。
+  translation: That teacher is very young.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-is-that-a-cow
+  segments:
+    - word: na4--that
+    - word: shi4--identity
+    - word: niu2--cow
+    - word: ma5--question
+    - punctuation: ？
+  translation: Is that a cow?
+  grammar:
+    - zhe4-or-na4-shi4-np--identify
+    - stmt-ma5--yes-no
+- id: hsk3-c-hardworking-she
+  segments:
+    - word: ta1--she
+    - word: hen3--very
+    - word: nu3-li4--diligent
+    - punctuation: 。
+  translation: She is very hard-working.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-strive-to-study
+  segments:
+    - word: ni3--you
+    - word: yao4--want
+    - word: nu3-li4--strive
+    - word: xue2-xi2--study
+    - punctuation: 。
+  translation: You need to study hard.
+  grammar:
+    - s-yao4-vp--intend
+    - s-vp--verbal
+- id: hsk3-c-mothers-friend
+  segments:
+    - word: na4-ge5--that
+    - word: nv3-ren2--woman
+    - word: shi4--identity
+    - word: wo3--me
+    - word: ma1-ma5--mom
+    - word: de5--possession
+    - word: peng2-you5--friend
+    - punctuation: 。
+  translation: That woman is my mom's friend.
+  grammar:
+    - s-shi4-n--identity
+    - owner-de5-n--possess
+- id: hsk3-c-my-classmate-girl
+  segments:
+    - word: na4-ge5--that
+    - word: nv3-sheng1--girl
+    - word: shi4--identity
+    - word: wo3--me
+    - word: tong2-xue2--classmate
+    - punctuation: 。
+  translation: That girl is my classmate.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-c-cats-climb-trees
+  segments:
+    - word: mao1--cat
+    - word: hui4--ability
+    - word: pa2--climb
+    - word: shu4--tree
+    - punctuation: 。
+  translation: Cats can climb trees.
+  grammar:
+    - s-hui4-vp--skill
+    - v-obj--object
+- id: hsk3-c-child-can-crawl
+  segments:
+    - word: hai2-zi5--child
+    - word: hui4--ability
+    - word: pa2--crawl
+    - word: le5--change
+    - punctuation: 。
+  translation: The child can crawl now.
+  grammar:
+    - s-hui4-vp--skill
+    - state-le5--change
+- id: hsk3-c-sister-fears-dogs
+  segments:
+    - word: wo3--me
+    - word: mei4-mei5--sister
+    - word: pa4--afraid
+    - word: gou3--dog
+    - punctuation: 。
+  translation: My younger sister is afraid of dogs.
+  grammar:
+    - s-vp--verbal
+    - v-obj--object
+- id: hsk3-c-you-may-take-photos-here
+  segments:
+    - word: ni3-men5--you
+    - word: ke3-yi3--permission
+    - word: zai4--location
+    - word: zhe4-li3--here
+    - word: pai1-zhao4--photograph
+    - punctuation: 。
+  translation: You may take photos here.
+  grammar:
+    - s-neng2-or-ke3-yi3-vp--can-may
+    - s-zai4-loc-vp--location
+- id: hsk3-c-two-platefuls-on-table
+  segments:
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - word: you3--have
+    - word: liang3--two
+    - word: pan2--platefuls
+    - word: cai4--dish
+    - punctuation: 。
+  translation: There are two platefuls of food on the table.
+  grammar:
+    - loc-you3-qty-n--exist
+    - liang3-mw-n--two
+- id: hsk3-c-clean-plate
+  segments:
+    - word: zhe4-ge5--this
+    - word: pan2-zi5--plate
+    - word: hen3--very
+    - word: gan1-jing4--clean
+    - punctuation: 。
+  translation: This plate is very clean.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-somewhat-fat
+  segments:
+    - word: ta1--he
+    - word: you3-yi1-dian3-r5--somewhat
+    - word: pang4--fat
+    - punctuation: 。
+  translation: He is a little fat.
+  grammar:
+    - you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat
+- id: hsk3-c-dad-likes-beer
+  segments:
+    - word: wo3--me
+    - word: ba4-ba5--dad
+    - word: xi3-huan5--like
+    - word: he1--drink
+    - word: pi2-jiu3--beer
+    - punctuation: 。
+  translation: My dad likes drinking beer.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-usually-read-at-night
+  segments:
+    - word: wo3--me
+    - word: ping2-shi2--usually
+    - word: wan3-shang5--evening
+    - word: kan4--read
+    - word: shu1--book
+    - punctuation: 。
+  translation: I usually read at night.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: hsk3-c-bottle-on-table
+  segments:
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - word: you3--have
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: ping2-zi5--bottle
+    - punctuation: 。
+  translation: There is a bottle on the table.
+  grammar:
+    - loc-you3-qty-n--exist
+    - num-mw-n--count
+- id: hsk3-c-ride-to-work-daily
+  segments:
+    - word: ta1--he
+    - word: mei3--every
+    - word: tian1--day
+    - word: qi2--ride
+    - word: che1--vehicle
+    - word: shang4-ban1--work
+    - punctuation: 。
+  translation: He rides to work every day.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: hsk3-c-strange-name
+  segments:
+    - word: zhe4-ge5--this
+    - word: ming2-zi5--name
+    - word: hen3--very
+    - word: qi2-guai4--strange
+    - punctuation: 。
+  translation: This name is very strange.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-he-can-drive-actually
+  segments:
+    - word: ta1--he
+    - word: qi2-shi2--actually
+    - word: hui4--ability
+    - word: kai1-che1--drive
+    - punctuation: 。
+  translation: He actually can drive.
+  grammar:
+    - s-hui4-vp--skill
+- id: hsk3-c-other-ones-too-expensive
+  segments:
+    - word: zhe4-xie1--these
+    - word: ping2-guo3--apple
+    - word: wo3--me
+    - word: dou1--all
+    - word: mai3--buy
+    - word: le5--completed
+    - punctuation: ，
+    - word: qi2-ta1--other
+    - word: de5--nominalizer
+    - word: tai4--too
+    - word: gui4--expensive
+    - punctuation: 。
+  translation: I bought all of these apples, and the others were too expensive.
+  grammar:
+    - group-dou1-pred--all
+    - mod-de5--nominal
+- id: hsk3-c-photo-brings-mom-to-mind
+  segments:
+    - word: wo3--me
+    - word: you4--again
+    - word: xiang3--think
+    - word: qi3--result-state
+    - word: ma1-ma5--mom
+    - word: le5--change
+    - punctuation: 。
+  translation: My mom came to mind again.
+  grammar:
+    - v-qi3--evoke
+    - s-you4-vp--again
+    - state-le5--change
+- id: hsk3-c-get-up-at-six
+  segments:
+    - word: wo3--me
+    - word: mei3--every
+    - word: tian1--day
+    - word: liu4--six
+    - word: dian3--oclock
+    - word: qi3--rise
+    - punctuation: 。
+  translation: I get up at six every day.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-c-meeting-starts-at-nine
+  segments:
+    - word: qi3--start
+    - word: feng1--wind
+    - word: le5--change
+    - punctuation: ，
+    - word: qing3--please
+    - word: guan1--close
+    - word: men2--door
+    - punctuation: 。
+  translation: The wind has picked up; please close the door.
+  grammar:
+    - state-le5--change
+    - qing3-vp--request
+    - clause-clause--linked
+- id: hsk3-c-from-tomorrow-subway
+  segments:
+    - word: cong2--from
+    - word: ming2-tian1--tomorrow
+    - word: qi3--starting-from
+    - punctuation: ，
+    - word: wo3-men5--we
+    - word: dou1--all
+    - word: zuo4--ride
+    - word: di4-tie3--subway
+    - word: shang4-ban1--work
+    - punctuation: 。
+  translation: Starting tomorrow, we will all take the subway to work.
+  grammar:
+    - cong2-time-qi3-stmt--from-on
+    - group-dou1-pred--all
+    - s-vp-vp--means
+- id: hsk3-c-plane-about-to-take-off
+  segments:
+    - word: fei1-ji1--airplane
+    - word: kuai4-yao4--soon
+    - word: qi3-fei1--takeoff
+    - word: le5--change
+    - punctuation: 。
+  translation: The plane is about to take off.
+  grammar:
+    - yao4-or-kuai4-yao4-vp-le5--soon
+- id: hsk3-c-everyone-started-laughing
+  segments:
+    - word: da4-jia1--everyone
+    - word: dou1--all
+    - word: xiao4--smile
+    - word: qi3-lai5--start
+    - word: le5--change
+    - punctuation: 。
+  translation: Everyone started laughing.
+  grammar:
+    - group-dou1-pred--all
+    - v-qi3-lai5--start
+    - state-le5--change
+- id: hsk3-c-new-car
+  segments:
+    - word: na4--that
+    - word: liang4--vehicles
+    - word: qi4-che1--car
+    - word: hen3--very
+    - word: xin1--new
+    - punctuation: 。
+  translation: That car is very new.
+  grammar:
+    - zhe4-or-na4-mw-n--this-that
+    - s-hen3-adj--describe
+- id: hsk3-c-pencil-under-desk
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: qian1-bi3--pencil
+    - word: zai4--location
+    - word: zhuo1-zi5--table
+    - word: xia4-mian4--below
+    - punctuation: 。
+  translation: My pencil is under the desk.
+  grammar:
+    - owner-de5-n--possess
+    - s-zai4-loc--at
+- id: hsk3-c-year-before-last-in-china
+  segments:
+    - word: wo3--me
+    - word: qian2-nian2--year-before-last
+    - word: qu4--go
+    - word: zhong1-guo2--china
+    - punctuation: 。
+  translation: I went to China the year before last.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: hsk3-c-did-not-work-day-before-yesterday
+  segments:
+    - word: qian2-tian1--day-before-yesterday
+    - word: wo3--me
+    - word: mei2-you3--negation
+    - word: shang4-ban1--work
+    - punctuation: 。
+  translation: I did not go to work the day before yesterday.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-mei2-or-mei2-you3-vp--no-event
+- id: hsk3-c-map-is-clear
+  segments:
+    - word: di4-tu2--map
+    - word: hen3--very
+    - word: qing1-chu5--clear
+    - punctuation: 。
+  translation: The map is clear.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-not-clear-about-meaning
+  segments:
+    - word: wo3--me
+    - word: bu4--not
+    - word: qing1-chu5--understand
+    - word: ta1--he
+    - word: de5--possession
+    - word: yi4-si5--meaning
+    - punctuation: 。
+  translation: I am not clear about what he means.
+  grammar:
+    - s-bu4-pred--not
+    - owner-de5-n--possess
+- id: hsk3-c-sick-leave-today
+  segments:
+    - word: ta1--she
+    - word: gan3-mao4--catch-cold
+    - word: le5--change
+    - punctuation: ，
+    - word: jin1-tian1--today
+    - word: qing3-jia4--leave
+    - punctuation: 。
+  translation: She has a cold, so she is taking leave today.
+  grammar:
+    - clause-clause--linked
+    - s-vp--verbal
+- id: hsk3-c-today-is-on-me
+  segments:
+    - word: jin1-tian1--today
+    - word: wo3--me
+    - word: qing3-ke4--treat
+    - punctuation: 。
+  translation: Today I'm treating.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-autumn-here-beautiful
+  segments:
+    - word: zhe4-li3--here
+    - word: qiu1-tian1--autumn
+    - word: hen3--very
+    - word: piao4-liang5--pretty
+    - punctuation: 。
+  translation: Autumn here is beautiful.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-run-on-court
+  segments:
+    - word: ta1-men5--they
+    - word: zai4--location
+    - word: qiu2-chang3--field
+    - word: pao3-bu4--run
+    - punctuation: 。
+  translation: They are running on the sports field.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-c-bought-a-skirt
+  segments:
+    - word: ta1--she
+    - word: mai3--buy
+    - word: le5--completed
+    - word: yi1--one
+    - word: tiao2--classifier
+    - word: qun2-zi5--skirt
+    - punctuation: 。
+  translation: She bought a skirt.
+  grammar:
+    - v-le5-obj--complete
+    - num-mw-n--count
+- id: hsk3-c-then-eat
+  segments:
+    - word: xian1--first
+    - word: chi1--eat
+    - word: fan4--meal
+    - punctuation: ，
+    - word: ran2-hou4--then
+    - word: kan4--watch
+    - word: dian4-ying3--movie
+    - punctuation: 。
+  translation: Eat first, then watch a movie.
+  grammar:
+    - xian1-vp-ran2-hou4-vp--sequence
+- id: hsk3-c-warm-to-guests
+  segments:
+    - word: ta1--he
+    - word: dui4--toward
+    - word: ke4-ren2--guest
+    - word: hen3--very
+    - word: re4-qing2--enthusiastic
+    - punctuation: 。
+  translation: He is very warm to guests.
+  grammar:
+    - s-dui4-np-attitude--toward
+    - s-hen3-adj--describe
+- id: hsk3-c-recognize-that-teacher
+  segments:
+    - word: wo3--me
+    - word: ren4-de5--recognize
+    - word: na4-ge5--that
+    - word: lao3-shi1--teacher
+    - punctuation: 。
+  translation: I recognize that teacher.
+  grammar:
+    - s-vp--verbal
+    - v-obj--object
+- id: hsk3-c-think-method-good
+  segments:
+    - word: wo3--me
+    - word: ren4-wei2--think
+    - word: zhe4-ge5--this
+    - word: ban4-fa3--method
+    - word: hen3--very
+    - word: hao3--good
+    - punctuation: 。
+  translation: I think this method is good.
+  grammar:
+    - s-vp--verbal
+    - s-hen3-adj--describe
+- id: hsk3-c-serious-student
+  segments:
+    - word: ta1--she
+    - word: shi4--identity
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: ren4-zhen1--serious
+    - word: de5--description
+    - word: xue2-sheng5--student
+    - punctuation: 。
+  translation: She is a serious student.
+  grammar:
+    - s-shi4-n--identity
+    - adjp-de5-n--describe
+- id: hsk3-c-not-easy-question
+  segments:
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--question
+    - word: bu4--not
+    - word: rong2-yi4--easy
+    - punctuation: 。
+  translation: This question is not easy.
+  grammar:
+    - s-bu4-pred--not
+- id: hsk3-c-children-cry-easily
+  segments:
+    - word: hai2-zi5--child
+    - word: rong2-yi4--likely
+    - word: ku1--cry
+    - punctuation: 。
+  translation: Children cry easily.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-if-it-rains
+  segments:
+    - word: ru2-guo3--if
+    - word: xia4-yu3--rain
+    - word: de5-hua4--if
+    - punctuation: ，
+    - word: wo3-men5--we
+    - word: jiu4--then
+    - word: bu4--not
+    - word: qu4--go
+    - punctuation: 。
+  translation: If it rains, we won't go.
+  grammar:
+    - clause-de5-hua4-jiu4-clause--if
+- id: hsk3-c-dont-forget-umbrella
+  segments:
+    - word: xia4-yu3--rain
+    - word: le5--change
+    - punctuation: ，
+    - word: bie2--dont
+    - word: wang4-ji4--forget
+    - word: dai4--bring
+    - word: san3--umbrella
+    - punctuation: 。
+  translation: It's raining, so don't forget to bring an umbrella.
+  grammar:
+    - bie2-vp--dont
+    - clause-clause--linked
+- id: hsk3-c-sweep-floor-morning
+  segments:
+    - word: wo3--me
+    - word: mei3--every
+    - word: tian1--day
+    - word: zao3-shang5--morning
+    - word: sao3--sweep
+    - word: di4--ground
+    - punctuation: 。
+  translation: I sweep the floor every morning.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - v-obj--object
+- id: hsk3-c-sofa-too-big
+  segments:
+    - word: sha1-fa1--sofa
+    - word: tai4--too
+    - word: da4--big
+    - word: le5--intensify
+    - punctuation: 。
+  translation: The sofa is too big.
+  grammar:
+    - tai4-adj-le5--so-too
+- id: hsk3-c-cold-on-mountain
+  segments:
+    - word: shan1--mountain
+    - word: shang4--above
+    - word: hen3--very
+    - word: leng3--cold
+    - punctuation: 。
+  translation: It is cold on the mountain.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-write-name-on-it
+  segments:
+    - word: qing3--please
+    - word: ba3--object
+    - word: ni3--you
+    - word: de5--possession
+    - word: ming2-zi5--name
+    - word: xie3--write
+    - word: shang4--attachment
+    - punctuation: 。
+  translation: Please write your name on it.
+  grammar:
+    - s-ba3-obj-v-comp--result
+    - v-shang4--attach
+- id: hsk3-c-fell-in-love-with-math
+  segments:
+    - word: ta1--he
+    - word: yi3-jing1--already
+    - word: ai4--love
+    - word: shang4--engagement
+    - word: shu4-xue2--math
+    - word: le5--change
+    - punctuation: 。
+  translation: He has already come to love math.
+  grammar:
+    - v-shang4--start
+    - s-yi3-jing1-pred-le5--already
+- id: hsk3-c-serious-about-study
+  segments:
+    - word: zai4--context
+    - word: xue2-xi2--study
+    - word: shang4--respect
+    - punctuation: ，
+    - word: ta1--he
+    - word: hen3--very
+    - word: ren4-zhen1--serious
+    - punctuation: 。
+  translation: He is very serious about his studies.
+  grammar:
+    - zai4-domain-shang4-stmt--respect
+    - s-hen3-adj--describe
+- id: hsk3-c-top-too-big
+  segments:
+    - word: zhe4--this
+    - word: jian4--classifier
+    - word: shang4-yi1--top
+    - word: you3-dian3-r5--somewhat
+    - word: da4--big
+    - punctuation: 。
+  translation: This top is a little big.
+  grammar:
+    - zhe4-or-na4-mw-n--this-that
+    - you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat
+- id: hsk3-c-eat-ice-cream-with-spoon
+  segments:
+    - word: ni3--you
+    - word: yong4--use
+    - word: shao2-zi5--spoon
+    - word: chi1--eat
+    - word: bing1-ji1-ling2--icecream
+    - word: ba5--suggestion
+    - punctuation: 。
+  translation: Use a spoon to eat ice cream.
+  grammar:
+    - stmt-ba5--suggest
+    - s-vp-vp--means
+- id: hsk3-c-call-when-mom-not-around
+  segments:
+    - word: ma1-ma5--mom
+    - word: bu4--not
+    - word: zai4--location
+    - word: shen1-bian1--beside
+    - word: de5-hua4--if
+    - punctuation: ，
+    - word: wo3--me
+    - word: jiu4--then
+    - word: gei3--to
+    - word: ta1--she
+    - word: da3-dian4-hua4--phone
+    - punctuation: 。
+  translation: If Mom is not around, I'll call her.
+  grammar:
+    - clause-de5-hua4-jiu4-clause--if
+    - s-zai4-loc--at
+- id: hsk3-c-same-height-as-brother
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: shen1-gao1--height
+    - word: gen1--comparison
+    - word: ge1-ge5--brother
+    - word: yi1-yang4--same
+    - punctuation: 。
+  translation: My height is the same as my older brother's.
+  grammar:
+    - owner-de5-n--possess
+    - a-gen1-b-yi1-yang4--same
+- id: hsk3-c-dont-make-a-sound
+  segments:
+    - word: yu3--rain
+    - word: sheng1--sound
+    - word: hen3--very
+    - word: da4--big
+    - punctuation: 。
+  translation: The sound of the rain is loud.
+  grammar:
+    - n-n--modifier
+    - s-hen3-adj--describe
+- id: hsk3-c-called-me-once
+  segments:
+    - word: lao3-shi1--teacher
+    - word: jiao4--call
+    - word: le5--completed
+    - word: wo3--me
+    - word: yi1--one
+    - word: sheng1--sounds
+    - punctuation: 。
+  translation: The teacher called out to me once.
+  grammar:
+    - v-num-sheng1--sounds
+    - v-le5-obj--complete
+- id: hsk3-c-quiet-life-here
+  segments:
+    - word: zhe4-li3--here
+    - word: de5--description
+    - word: sheng1-huo2--life
+    - word: hen3--very
+    - word: an1-jing4--quiet
+    - punctuation: 。
+  translation: Life here is very quiet.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-live-in-china
+  segments:
+    - word: ta1-men5--they
+    - word: zai4--location
+    - word: zhong1-guo2--china
+    - word: sheng1-huo2--live
+    - punctuation: 。
+  translation: They live in China.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-c-dont-get-angry
+  segments:
+    - word: ni3--you
+    - word: bie2--dont
+    - word: sheng1-qi4--angry
+    - punctuation: 。
+  translation: Don't get angry.
+  grammar:
+    - bie2-vp--dont
+- id: hsk3-c-sound-of-wind-loud
+  segments:
+    - word: feng1--wind
+    - word: de5--possession
+    - word: sheng1-yin1--sound
+    - word: hen3--very
+    - word: da4--big
+    - punctuation: 。
+  translation: The sound of the wind is loud.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-c-nice-voice
+  segments:
+    - word: ta1--she
+    - word: de5--possession
+    - word: sheng1-yin1--voice
+    - word: hen3--very
+    - word: hao3-ting1--pleasant
+    - punctuation: 。
+  translation: She has a very pleasant voice.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-c-city-with-many-universities
+  segments:
+    - word: zhe4-ge5--this
+    - word: shi4--city
+    - word: you3--have
+    - word: hao3-duo1--many
+    - word: da4-xue2--university
+    - punctuation: 。
+  translation: This city has many universities.
+  grammar:
+    - s-you3-np--have
+- id: hsk3-c-waiting-in-room-305
+  segments:
+    - word: wo3--me
+    - word: zai4--location
+    - word: san1--three
+    - word: ling2--zero
+    - word: wu3--five
+    - word: shi4--room
+    - word: deng3--wait
+    - word: ni3--you
+    - punctuation: 。
+  translation: I'm waiting for you in room 305.
+  grammar:
+    - s-zai4-loc-vp--location
+    - digit-digit--serial
+- id: hsk3-c-try-the-skirt-first
+  segments:
+    - word: ni3--you
+    - word: xian1--first
+    - word: shi4--try
+    - word: zhe4--this
+    - word: tiao2--classifier
+    - word: qun2-zi5--skirt
+    - punctuation: 。
+  translation: Try this skirt on first.
+  grammar:
+    - s-vp--verbal
+    - v-obj--object
+- id: hsk3-c-big-world
+  segments:
+    - word: zhe4-ge5--this
+    - word: shi4-jie4--world
+    - word: hen3--very
+    - word: da4--big
+    - punctuation: 。
+  translation: This world is big.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-put-books-away
+  segments:
+    - word: qing3--please
+    - word: ba3--object
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - word: de5--description
+    - word: shu1--book
+    - word: shou1--put-away
+    - word: hao3--completed
+    - punctuation: 。
+  translation: Please put away the books on the table.
+  grammar:
+    - s-ba3-obj-v-comp--result
+    - v-hao3--ready
+- id: hsk3-c-he-accepted-my-gift
+  segments:
+    - word: ta1--he
+    - word: shou1--receive
+    - word: le5--completed
+    - word: wo3--me
+    - word: de5--possession
+    - word: li3-wu4--gift
+    - punctuation: 。
+  translation: He accepted my gift.
+  grammar:
+    - v-le5-obj--complete
+    - owner-de5-n--possess
+- id: hsk3-c-received-letter-yesterday
+  segments:
+    - word: wo3--me
+    - word: zuo2-tian1--yesterday
+    - word: shou1-dao4--receive
+    - word: ni3--you
+    - word: de5--possession
+    - word: xin4--letter
+    - word: le5--change
+    - punctuation: 。
+  translation: I received your letter yesterday.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - owner-de5-n--possess
+- id: hsk3-c-i-can-take-it
+  segments:
+    - word: bie2--dont
+    - word: dan1-xin1--worry
+    - punctuation: ，
+    - word: wo3--me
+    - word: shou4--endure
+    - word: de5--manner
+    - word: zhu4--secure-result
+    - punctuation: 。
+  translation: Don't worry, I can take it.
+  grammar:
+    - bie2-vp--dont
+    - v-de5-or-bu4-comp--potential
+    - v-zhu4--secure
+- id: hsk3-c-under-influence-of-teacher
+  segments:
+    - word: ta1--he
+    - word: shou4--receive
+    - word: le5--completed
+    - word: lao3-shi1--teacher
+    - word: de5--possession
+    - word: ying3-xiang3--effect
+    - punctuation: 。
+  translation: He came under his teacher's influence.
+  grammar:
+    - v-le5-obj--complete
+    - owner-de5-n--possess
+- id: hsk3-c-thinner-than-me
+  segments:
+    - word: ta1--he
+    - word: bi3--than
+    - word: wo3--me
+    - word: shou4--thin
+    - punctuation: 。
+  translation: He is thinner than I am.
+  grammar:
+    - a-bi3-b-adj--more
+- id: hsk3-c-affected-by-this-matter
+  segments:
+    - word: wo3-men5--we
+    - word: shou4-dao4--receive
+    - word: le5--completed
+    - word: zhe4-ge5--this
+    - word: shi4--matter
+    - word: de5--possession
+    - word: ying3-xiang3--effect
+    - punctuation: 。
+  translation: We were affected by this matter.
+  grammar:
+    - v-le5-obj--complete
+    - owner-de5-n--possess
+- id: hsk3-c-excuse-me-sir-subway-station
+  segments:
+    - word: shu1-shu5--address
+    - punctuation: ，
+    - word: qing3-wen4--inquiry
+    - punctuation: ，
+    - word: di4-tie3--subway
+    - word: zhan4--station
+    - word: zai4--location
+    - word: na3-r5--where
+    - punctuation: ？
+  translation: Excuse me, sir, where is the subway station?
+  grammar:
+    - pre-shei2-or-shen2-me5-or-na3-r5-or-na3-li3-post--wh
+    - s-zai4-loc--at
+- id: hsk3-c-uncle-works-over-there
+  segments:
+    - word: wo3--me
+    - word: shu1-shu5--uncle
+    - word: zai4--location
+    - word: na4-bian5--there
+    - word: gong1-zuo4--work
+    - punctuation: 。
+  translation: My uncle works over there.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-c-bird-in-tree
+  segments:
+    - word: shu4--tree
+    - word: shang4--above
+    - word: you3--have
+    - word: yi1--one
+    - word: zhi1--classifier
+    - word: niao3--bird
+    - punctuation: 。
+  translation: There is a bird in the tree.
+  grammar:
+    - loc-you3-qty-n--exist
+    - num-mw-n--count
+- id: hsk3-c-brother-likes-math-most
+  segments:
+    - word: wo3--me
+    - word: di4-di5--brother
+    - word: zui4--most
+    - word: xi3-huan5--like
+    - word: shu4-xue2--math
+    - punctuation: 。
+  translation: My younger brother likes math best.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-brush-teeth-every-morning
+  segments:
+    - word: wo3--me
+    - word: mei3--every
+    - word: tian1--day
+    - word: zao3-shang5--morning
+    - word: shua1--brush
+    - word: ya2--tooth
+    - punctuation: 。
+  translation: I brush my teeth every morning.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - v-obj--object
+- id: hsk3-c-this-pair-of-shoes-too-small
+  segments:
+    - word: zhe4--this
+    - word: shuang1--pair
+    - word: xie2--shoe
+    - word: tai4--too
+    - word: xiao3--small
+    - word: le5--intensify
+    - punctuation: 。
+  translation: This pair of shoes is too small.
+  grammar:
+    - tai4-adj-le5--so-too
+- id: hsk3-c-good-chinese-level
+  segments:
+    - word: ta1--he
+    - word: de5--possession
+    - word: han4-yu3--chinese
+    - word: shui3-ping2--level
+    - word: hen3--very
+    - word: gao1--tall
+    - punctuation: 。
+  translation: His Chinese level is high.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-c-driver-waiting-in-car
+  segments:
+    - word: si1-ji1--driver
+    - word: zai4--location
+    - word: che1--car
+    - word: li3--inside
+    - word: deng3--wait
+    - word: wo3-men5--we
+    - punctuation: 。
+  translation: The driver is waiting for us in the car.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-c-all-four-seasons-hot
+  segments:
+    - word: zhe4-ge5--this
+    - word: di4-fang5--place
+    - word: si4-ji4--seasons
+    - word: dou1--all
+    - word: hen3--very
+    - word: re4--hot
+    - punctuation: 。
+  translation: This place is hot in all four seasons.
+  grammar:
+    - group-dou1-pred--all
+    - s-hen3-adj--describe
+- id: hsk3-c-three-universities-in-city
+  segments:
+    - word: zhe4-ge5--this
+    - word: shi4--city
+    - word: you3--have
+    - word: san1--three
+    - word: suo3--institutions
+    - word: da4-xue2--university
+    - punctuation: 。
+  translation: This city has three universities.
+  grammar:
+    - s-you3-np--have
+    - num-suo3-n--institutions
+- id: hsk3-c-big-sun-today
+  segments:
+    - word: jin1-tian1--today
+    - word: tai4-yang2--sun
+    - word: hen3--very
+    - word: da4--big
+    - punctuation: 。
+  translation: The sun is strong today.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-child-likes-candy
+  segments:
+    - word: zhe4-ge5--this
+    - word: hai2-zi5--child
+    - word: xi3-huan5--like
+    - word: chi1--eat
+    - word: tang2--candy
+    - punctuation: 。
+  translation: This child likes eating candy.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-no-sugar-in-coffee
+  segments:
+    - word: zhe4--this
+    - word: bei1--cupfuls
+    - word: ka1-fei1--coffee
+    - word: li3--inside
+    - word: mei2-you3--absence
+    - word: tang2--sugar
+    - punctuation: 。
+  translation: There is no sugar in this cup of coffee.
+  grammar:
+    - s-mei2-you3-np--absence
+- id: hsk3-c-especially-love-autumn
+  segments:
+    - word: wo3--me
+    - word: te4-bie2--especially
+    - word: xi3-huan5--like
+    - word: qiu1-tian1--autumn
+    - punctuation: 。
+  translation: I especially like autumn.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-special-gift
+  segments:
+    - word: zhe4--this
+    - word: shi4--identity
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: te4-bie2--special
+    - word: de5--description
+    - word: li3-wu4--gift
+    - punctuation: 。
+  translation: This is a special gift.
+  grammar:
+    - zhe4-or-na4-shi4-np--identify
+    - adjp-de5-n--describe
+- id: hsk3-c-practice-improves-level
+  segments:
+    - word: ni3--you
+    - word: mei3--every
+    - word: tian1--day
+    - word: lian4-xi2--practice
+    - punctuation: ，
+    - word: jiu4--then
+    - word: ke3-yi3--possible
+    - word: ti2-gao1--improve
+    - word: han4-yu3--chinese
+    - word: shui3-ping2--level
+    - punctuation: 。
+  translation: If you practice every day, you can improve your Chinese level.
+  grammar:
+    - clause-jiu4-clause--then
+    - s-neng2-or-ke3-yi3-vp--can-may
+- id: hsk3-c-brother-likes-pe-most
+  segments:
+    - word: wo3--me
+    - word: di4-di5--brother
+    - word: zui4--most
+    - word: xi3-huan5--like
+    - word: ti3-yu4--sports
+    - punctuation: 。
+  translation: My younger brother likes PE the most.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-play-ball-in-gym-when-raining
+  segments:
+    - word: xia4-yu3--rain
+    - word: de5--description
+    - word: shi2-hou5--time
+    - punctuation: ，
+    - word: wo3-men5--we
+    - word: zai4--location
+    - word: ti3-yu4-guan3--gymnasium
+    - word: da3--play
+    - word: qiu2--ball
+    - punctuation: 。
+  translation: When it rains, we play ball in the gymnasium.
+  grammar:
+    - s-zai4-loc-vp--location
+    - clause-clause--linked
+- id: hsk3-c-watermelon-is-sweet
+  segments:
+    - word: zhe4-ge5--this
+    - word: xi1-gua1--watermelon
+    - word: hen3--very
+    - word: tian2--sweet
+    - punctuation: 。
+  translation: This watermelon is sweet.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-child-can-jump
+  segments:
+    - word: na4-ge5--that
+    - word: hai2-zi5--child
+    - word: hui4--ability
+    - word: tiao4--jump
+    - punctuation: 。
+  translation: That child can jump.
+  grammar:
+    - s-hui4-vp--skill
+- id: hsk3-c-heard-you-are-moving
+  segments:
+    - word: wo3--me
+    - word: ting1-shuo1--hear
+    - word: ni3--you
+    - word: yao4--want
+    - word: ban1-jia1--relocate
+    - word: le5--change
+    - punctuation: 。
+  translation: I heard that you are moving.
+  grammar:
+    - s-vp--verbal
+    - s-yao4-vp--intend
+- id: hsk3-c-quite-interesting-matter
+  segments:
+    - word: zhe4-ge5--this
+    - word: shi4--matter
+    - word: ting3--quite
+    - word: you3-yi4-si5--interesting
+    - word: de5--assurance
+    - punctuation: 。
+  translation: This matter is quite interesting.
+  grammar:
+    - ting3-adj-de5--quite
+- id: hsk3-c-new-colleague
+  segments:
+    - word: ta1--she
+    - word: shi4--identity
+    - word: wo3--me
+    - word: de5--possession
+    - word: xin1--new
+    - word: tong2-shi4--colleague
+    - punctuation: 。
+  translation: She is my new colleague.
+  grammar:
+    - s-shi4-n--identity
+    - owner-de5-n--possess
+- id: hsk3-c-agree-with-method
+  segments:
+    - word: wo3--me
+    - word: tong2-yi4--agree
+    - word: ni3--you
+    - word: de5--possession
+    - word: ban4-fa3--method
+    - punctuation: 。
+  translation: I agree with your method.
+  grammar:
+    - s-vp--verbal
+    - owner-de5-n--possess
+- id: hsk3-c-one-cow-over-there
+  segments:
+    - word: na4-bian5--there
+    - word: you3--have
+    - word: yi1--one
+    - word: tou2--livestock
+    - word: niu2--cow
+    - punctuation: 。
+  translation: There is one cow over there.
+  grammar:
+    - loc-you3-qty-n--exist
+    - num-mw-n--count
+- id: hsk3-c-long-hair
+  segments:
+    - word: ta1--she
+    - word: de5--possession
+    - word: tou2-fa5--hair
+    - word: hen3--very
+    - word: chang2--long
+    - punctuation: 。
+  translation: Her hair is long.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-c-suddenly-stood-up
+  segments:
+    - word: ta1--he
+    - word: tu1-ran2--sudden
+    - word: zhan4--stand
+    - word: qi3-lai5--rise
+    - word: le5--change
+    - punctuation: 。
+  translation: He suddenly stood up.
+  grammar:
+    - v-qi3-lai5--rise
+    - s-vp--verbal
+- id: hsk3-c-library-next-to-school
+  segments:
+    - word: tu2-shu1-guan3--library
+    - word: zai4--location
+    - word: xue2-xiao4--school
+    - word: pang2-bian1--beside
+    - punctuation: 。
+  translation: The library is next to the school.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-c-longer-legs-than-me
+  segments:
+    - word: ta1--he
+    - word: de5--possession
+    - word: tui3--leg
+    - word: hen3--very
+    - word: chang2--long
+    - punctuation: 。
+  translation: His legs are long.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: hsk3-c-working-out-of-town
+  segments:
+    - word: ta1--he
+    - word: zai4--location
+    - word: wai4-di4--elsewhere
+    - word: gong1-zuo4--work
+    - punctuation: ，
+    - word: hen3--very
+    - word: shao3--few
+    - word: hui2--return
+    - word: jia1--home
+    - punctuation: 。
+  translation: He works out of town and rarely goes home.
+  grammar:
+    - s-zai4-loc-vp--location
+    - clause-clause--linked
+- id: hsk3-c-restaurant-does-takeout-on-weekends
+  segments:
+    - word: zhe4--this
+    - word: jia1--classifier
+    - word: fan4-dian4--restaurant
+    - word: zhou1-mo4--weekend
+    - word: ye3--also
+    - word: wai4-mai4--deliver
+    - word: jiao3-zi5--dumpling
+    - punctuation: 。
+  translation: This restaurant also sells dumplings for takeout on weekends.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-ye3-pred--also
+- id: hsk3-c-ate-takeout-at-noon
+  segments:
+    - word: wo3--me
+    - word: jin1-tian1--today
+    - word: zhong1-wu3--noon
+    - word: chi1--eat
+    - word: wai4-mai4--takeout
+    - punctuation: 。
+  translation: I ate takeout at noon today.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: hsk3-c-study-foreign-language
+  segments:
+    - word: wo3--me
+    - word: mei4-mei5--sister
+    - word: zai4--location
+    - word: da4-xue2--university
+    - word: xue2-xi2--study
+    - word: wai4-yu3--language
+    - punctuation: 。
+  translation: My younger sister studies a foreign language at university.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-c-finished-homework-finally
+  segments:
+    - word: wo3-men5--we
+    - word: zhong1-yu2--finally
+    - word: wan2-cheng2--complete
+    - word: zuo4-ye4--homework
+    - word: le5--change
+    - punctuation: 。
+  translation: We finally finished the homework.
+  grammar:
+    - s-zhong1-yu2-vp--finally
+    - state-le5--change
+- id: hsk3-c-bowl-too-small
+  segments:
+    - word: zhe4-ge5--this
+    - word: wan3--bowl
+    - word: tai4--too
+    - word: xiao3--small
+    - word: le5--intensify
+    - punctuation: 。
+  translation: This bowl is too small.
+  grammar:
+    - tai4-adj-le5--so-too
+- id: hsk3-c-two-bowls-of-soup
+  segments:
+    - word: wan3-shang5--evening
+    - word: wo3--me
+    - word: chi1--eat
+    - word: le5--completed
+    - word: liang3--two
+    - word: wan3--bowlfuls
+    - word: fan4--rice
+    - punctuation: 。
+  translation: I ate two bowls of rice in the evening.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - liang3-mw-n--two
+- id: hsk3-c-train-was-delayed
+  segments:
+    - word: huo3-che1--train
+    - word: wan3-dian3--delayed
+    - word: le5--completed
+    - word: er4--two
+    - word: shi2--ten
+    - word: fen1-zhong1--minute
+    - punctuation: 。
+  translation: The train was delayed by twenty minutes.
+  grammar:
+    - v-le5-duration-obj--duration
+    - num-nian2-or-tian1-or-fen1--duration
+- id: hsk3-c-school-has-evening-show
+  segments:
+    - word: xue2-xiao4--school
+    - word: zhou1-mo4--weekend
+    - word: you3--have
+    - word: wan3-hui4--party
+    - punctuation: 。
+  translation: The school has an evening show this weekend.
+  grammar:
+    - s-you3-np--have
+- id: hsk3-c-play-tennis-on-weekends
+  segments:
+    - word: wo3--me
+    - word: zhou1-mo4--weekend
+    - word: chang2-chang2--often
+    - word: gen1--with
+    - word: tong2-shi4--colleague
+    - word: da3--play
+    - word: wang3-qiu2--tennis
+    - punctuation: 。
+  translation: I often play tennis with my colleague on weekends.
+  grammar:
+    - s-gen1-p-vp--with
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-c-study-english-on-website
+  segments:
+    - word: wo3--me
+    - word: chang2-chang2--often
+    - word: zai4--location
+    - word: zhe4-ge5--this
+    - word: wang3-zhan4--website
+    - word: xue2-xi2--study
+    - word: wai4-yu3--language
+    - punctuation: 。
+  translation: I often study a foreign language on this website.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: hsk3-c-didnt-forget-birthday
+  segments:
+    - word: wo3--me
+    - word: mei2--negation
+    - word: wang4-ji4--forget
+    - word: ni3--you
+    - word: de5--possession
+    - word: sheng1-ri4--birthday
+    - punctuation: 。
+  translation: I didn't forget your birthday.
+  grammar:
+    - s-mei2-or-mei2-you3-vp--no-event
+    - owner-de5-n--possess
+- id: hsk3-c-worried-because-of-this
+  segments:
+    - word: wo3--me
+    - word: wei4--because
+    - word: zhe4-ge5--this
+    - word: shi4--matter
+    - word: dan1-xin1--worry
+    - punctuation: 。
+  translation: I worry about this matter.
+  grammar:
+    - wei4-reason-pred--because-of
+    - s-vp--verbal
+- id: hsk3-c-buy-flowers-for-teacher
+  segments:
+    - word: wo3--me
+    - word: wei4--for
+    - word: lao3-shi1--teacher
+    - word: mai3--buy
+    - word: hua1--flower
+    - punctuation: 。
+  translation: I am buying flowers for the teacher.
+  grammar:
+    - wei4-p-vp--for
+    - s-vp--verbal
+- id: hsk3-c-run-for-competition
+  segments:
+    - word: wei4-le5--purpose
+    - word: bi3-sai4--competition
+    - punctuation: ，
+    - word: wo3--me
+    - word: mei3--every
+    - word: tian1--day
+    - word: pao3-bu4--run
+    - punctuation: 。
+  translation: I run every day for the competition.
+  grammar:
+    - wei4-le5-goal-clause--purpose
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-c-bathroom-downstairs
+  segments:
+    - word: wei4-sheng1-jian1--bathroom
+    - word: zai4--location
+    - word: xia4-mian4--below
+    - punctuation: 。
+  translation: The bathroom is downstairs.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-c-like-chinese-culture
+  segments:
+    - word: wo3--me
+    - word: xi3-huan5--like
+    - word: zhong1-guo2--china
+    - word: wen2-hua4--culture
+    - punctuation: 。
+  translation: I like Chinese culture.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-small-house-under-hill
+  segments:
+    - word: ta1-men5--they
+    - word: zai4--location
+    - word: shan1--mountain
+    - word: xia4--below
+    - word: you3--have
+    - word: yi1--one
+    - word: jian1--rooms
+    - word: xiao3--small
+    - word: wu1-zi5--house
+    - punctuation: 。
+  translation: They have a small house at the foot of the hill.
+  grammar:
+    - s-zai4-loc-vp--location
+    - num-mw-n--count
+- id: hsk3-c-room-too-hot
+  segments:
+    - word: zhe4-ge5--this
+    - word: wu1-zi5--room
+    - word: tai4--too
+    - word: re4--hot
+    - word: le5--intensify
+    - punctuation: 。
+  translation: This room is too hot.
+  grammar:
+    - tai4-adj-le5--so-too
+- id: hsk3-c-school-west-of-home
+  segments:
+    - word: xue2-xiao4--school
+    - word: zai4--location
+    - word: wo3--me
+    - word: jia1--home
+    - word: xi1--west
+    - word: bian1--side
+    - punctuation: 。
+  translation: The school is to the west of my home.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-c-home-northwest-of-school
+  segments:
+    - word: wo3--me
+    - word: jia1--home
+    - word: zai4--location
+    - word: xue2-xiao4--school
+    - word: xi1-bei3--northwest
+    - punctuation: 。
+  translation: My home is northwest of the school.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-c-drive-west
+  segments:
+    - word: wo3-men5--we
+    - word: wang3--toward
+    - word: xi1-fang1--direction
+    - word: kai1-che1--drive
+    - punctuation: 。
+  translation: We drive west.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-go-west-to-study-music
+  segments:
+    - word: ta1--he
+    - word: xiang3--want
+    - word: qu4--go
+    - word: xi1-fang1--west
+    - word: xue2-xi2--study
+    - word: yin1-yue4--music
+    - punctuation: 。
+  translation: He wants to go to the West to study music.
+  grammar:
+    - s-xiang3-vp--want
+    - s-vp-vp--purpose
+- id: hsk3-c-buy-watermelon-in-summer
+  segments:
+    - word: xia4-tian1--summer
+    - word: wo3--me
+    - word: chang2-chang2--often
+    - word: mai3--buy
+    - word: xi1-gua1--watermelon
+    - punctuation: 。
+  translation: I often buy watermelon in summer.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-c-supermarket-southwest-of-school
+  segments:
+    - word: chao1-shi4--supermarket
+    - word: zai4--location
+    - word: xue2-xiao4--school
+    - word: xi1-nan2--southwest
+    - punctuation: 。
+  translation: The supermarket is southwest of the school.
+  grammar:
+    - s-zai4-loc--at
+- id: hsk3-c-used-to-rising-early
+  segments:
+    - word: wo3--me
+    - word: yi3-jing1--already
+    - word: xi2-guan4--accustomed
+    - word: zao3-shang5--morning
+    - word: qi3-chuang2--get-up
+    - word: le5--change
+    - punctuation: 。
+  translation: I am already used to getting up in the morning.
+  grammar:
+    - s-vp--verbal
+    - state-le5--change
+- id: hsk3-c-reading-is-a-good-habit
+  segments:
+    - word: mei3--every
+    - word: tian1--day
+    - word: kan4--read
+    - word: shu1--book
+    - word: shi4--identity
+    - word: hao3--good
+    - word: xi2-guan4--habit
+    - punctuation: 。
+  translation: Reading every day is a good habit.
+  grammar:
+    - s-shi4-n--identity
+- id: hsk3-c-loves-small-animals
+  segments:
+    - word: ta1--she
+    - word: xi3-ai4--like
+    - word: xiao3--small
+    - word: dong4-wu4--animal
+    - punctuation: 。
+  translation: She is fond of small animals.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-washing-machine-broken
+  segments:
+    - word: wo3-men5--we
+    - word: de5--possession
+    - word: xi3-yi1-ji1--washer
+    - word: huai4--bad
+    - word: le5--change
+    - punctuation: 。
+  translation: Our washing machine is broken.
+  grammar:
+    - owner-de5-n--possess
+    - state-le5--change
+- id: hsk3-c-take-a-shower-every-night
+  segments:
+    - word: wo3--me
+    - word: mei3--every
+    - word: tian1--day
+    - word: wan3-shang5--evening
+    - word: xi3-zao3--bathe
+    - punctuation: 。
+  translation: I take a shower every night.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+- id: hsk3-c-under-teachers-influence-likes-math
+  segments:
+    - word: zai4--context
+    - word: lao3-shi1--teacher
+    - word: de5--possession
+    - word: ying3-xiang3--effect
+    - word: xia4--circumstances
+    - punctuation: ，
+    - word: wo3--me
+    - word: ye3--also
+    - word: xi3-huan5--like
+    - word: shu4-xue2--math
+    - punctuation: 。
+  translation: Under the teacher's influence, I also came to like math.
+  grammar:
+    - zai4-condition-xia4-stmt--under
+    - s-ye3-pred--also
+- id: hsk3-c-write-your-name-down
+  segments:
+    - word: qing3--please
+    - word: ba3--object
+    - word: ni3--you
+    - word: de5--possession
+    - word: ming2-zi5--name
+    - word: xie3--write
+    - word: xia4--retention
+    - punctuation: 。
+  translation: Please write down your name.
+  grammar:
+    - s-ba3-obj-v-comp--result
+    - v-xia4--retain
+- id: hsk3-c-lost-weight-over-a-month
+  segments:
+    - word: zhe4-ge5--this
+    - word: gong1-zuo4--job
+    - word: hen3--very
+    - word: nan2--difficult
+    - punctuation: ，
+    - word: ta1--he
+    - word: jian1-chi2--persist
+    - word: xia4-lai5--continuation
+    - word: le5--completed
+    - punctuation: 。
+  translation: This job is difficult, but he has kept at it.
+  grammar:
+    - v-xia4-lai5--persist
+    - s-hen3-adj--describe
+    - clause-clause--linked
+- id: hsk3-c-want-to-keep-reading
+  segments:
+    - word: zhe4--this
+    - word: ben3--books
+    - word: shu1--book
+    - word: hen3--very
+    - word: hao3-kan4--enjoyable
+    - punctuation: ，
+    - word: wo3--me
+    - word: xiang3--want
+    - word: kan4--read
+    - word: xia4-qu4--continue
+    - punctuation: 。
+  translation: This book is so good that I want to keep reading.
+  grammar:
+    - v-xia4-qu4--continue
+    - clause-clause--linked
+- id: hsk3-c-hot-summer-here
+  segments:
+    - word: xia4-tian1--summer
+    - word: zhe4-li3--here
+    - word: hen3--very
+    - word: re4--hot
+    - punctuation: 。
+  translation: It is hot here in summer.
+  grammar:
+    - s-hen3-adj--describe
+- id: hsk3-c-you-eat-first
+  segments:
+    - word: ni3--you
+    - word: xian1--first
+    - word: chi1--eat
+    - punctuation: ，
+    - word: wo3--me
+    - word: qu4--go
+    - word: na2--take
+    - word: shui3--water
+    - punctuation: 。
+  translation: You eat first, and I'll go get some water.
+  grammar:
+    - clause-clause--linked
+- id: hsk3-c-bought-two-bananas
+  segments:
+    - word: wo3--me
+    - word: mai3--buy
+    - word: le5--completed
+    - word: liang3--two
+    - word: ge4--classifier
+    - word: xiang1-jiao1--banana
+    - punctuation: 。
+  translation: I bought two bananas.
+  grammar:
+    - v-le5-obj--complete
+    - liang3-mw-n--two
+- id: hsk3-c-i-believe-you
+  segments:
+    - word: wo3--me
+    - word: xiang1-xin4--believe
+    - word: ni3--you
+    - punctuation: 。
+  translation: I believe you.
+  grammar:
+    - s-vp--verbal
+    - v-obj--object
+- id: hsk3-c-books-in-big-box
+  segments:
+    - word: shu1--book
+    - word: dou1--all
+    - word: zai4--location
+    - word: na4-ge5--that
+    - word: da4--big
+    - word: xiang1-zi5--box
+    - word: li3--inside
+    - punctuation: 。
+  translation: The books are all in that big box.
+  grammar:
+    - group-dou1-pred--all
+    - s-zai4-loc--at
+- id: hsk3-c-suitcase-lost-at-airport
+  segments:
+    - word: ta1--he
+    - word: dao4--arrive
+    - word: ji1-chang3--airport
+    - word: cai2--only-then
+    - word: fa1-xian4--discover
+    - word: xiang1-zi5--suitcase
+    - word: diu1--lose
+    - word: le5--change
+    - punctuation: 。
+  translation: He only discovered at the airport that his suitcase was gone.
+  grammar:
+    - s-vp--verbal
+    - state-le5--change
+- id: hsk3-c-window-faces-south
+  segments:
+    - word: zhe4-ge5--this
+    - word: jiao4-shi4--classroom
+    - word: xiang4--face
+    - word: nan2--south
+    - punctuation: 。
+  translation: This classroom faces south.
+  grammar:
+    - s-vp--verbal
+- id: hsk3-c-child-looks-like-dad
+  segments:
+    - word: zhe4-ge5--this
+    - word: hai2-zi5--child
+    - word: xiang4--resemble
+    - word: ta1--he
+    - word: ba4-ba5--dad
+    - punctuation: 。
+  translation: This child looks like his dad.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-toward-school
+  segments:
+    - word: qing3--please
+    - word: xiang4--toward
+    - word: zuo3--left
+    - word: zou3--walk
+    - punctuation: ，
+    - word: xue2-xiao4--school
+    - word: zai4--location
+    - word: you4-bian5--right
+    - punctuation: 。
+  translation: Please walk to the left; the school is on the right.
+  grammar:
+    - xiang4-loc-vp--toward
+    - s-zai4-loc--at
+- id: vocabd-camera-photo
+  segments:
+    - word: wo3--me
+    - word: yong4--use
+    - word: xiang4-ji1--camera
+    - word: zhao4-xiang4--photograph
+    - punctuation: 。
+  translation: I use a camera to take photos.
+  grammar:
+    - s-vp-vp--means
+- id: vocabd-neighborhood-park
+  segments:
+    - word: wo3--me
+    - word: jia1--home
+    - word: zai4--location
+    - word: xiao3-qu1--neighborhood
+    - word: li3--inside
+    - punctuation: 。
+  translation: My home is in the housing community.
+  grammar:
+    - s-zai4-loc--at
+- id: vocabd-careful-road
+  segments:
+    - word: lu4--road
+    - word: shang4--above
+    - word: ren2--person
+    - word: hen3--very
+    - word: duo1--many
+    - punctuation: ，
+    - word: ni3--you
+    - word: xiao3-xin1--careful
+    - word: zou3--walk
+    - punctuation: 。
+  translation: There are many people on the road, so walk carefully.
+  grammar:
+    - clause-clause--linked
+    - s-vp--verbal
+- id: vocabd-campus-walk
+  segments:
+    - word: wan3-shang5--evening
+    - punctuation: ，
+    - word: xiao4-yuan2--campus
+    - word: hen3--very
+    - word: an1-jing4--quiet
+    - punctuation: 。
+  translation: In the evening, the campus is quiet.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-hen3-adj--describe
+- id: vocabd-principal-office
+  segments:
+    - word: xiao4-zhang3--principal
+    - word: zai4--location
+    - word: ban4-gong1-shi4--office
+    - word: li3--inside
+    - punctuation: 。
+  translation: The principal is in the office.
+  grammar:
+    - s-zai4-loc--at
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+- id: vocabd-shoes-door
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: xie2--shoe
+    - word: zai4--location
+    - word: men2-kou3--entrance
+    - punctuation: 。
+  translation: My shoes are at the door.
+  grammar:
+    - owner-de5-n--possess
+    - s-zai4-loc--at
+- id: vocabd-mind-home
+  segments:
+    - word: wo3--me
+    - word: xin1-li3--mind
+    - word: hen3--very
+    - word: gao1-xing4--happy
+    - punctuation: 。
+  translation: I feel very happy inside.
+  grammar:
+    - s-hen3-adj--describe
+- id: vocabd-new-year-home
+  segments:
+    - word: xin1-nian2--new-year
+    - word: yi3-hou4--after
+    - punctuation: ，
+    - word: wo3-men5--we
+    - word: hui2--return
+    - word: jia1--home
+    - punctuation: 。
+  translation: After New Year, we will go home.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: vocabd-news-tv
+  segments:
+    - word: wan3-shang5--evening
+    - word: de5--description
+    - word: xin1-wen2--news
+    - word: shuo1--speak
+    - word: ming2-tian1--tomorrow
+    - word: you3--have
+    - word: yu3--rain
+    - punctuation: 。
+  translation: The evening news said it will rain tomorrow.
+  grammar:
+    - s-vp--verbal
+    - time-s-vp-or-s-time-vp--time
+- id: vocabd-fresh-fish
+  segments:
+    - word: zhe4--this
+    - word: tiao2--classifier
+    - word: yu2--fish
+    - word: hen3--very
+    - word: xin1-xian1--fresh
+    - punctuation: 。
+  translation: This fish is very fresh.
+  grammar:
+    - s-hen3-adj--describe
+    - num-mw-n--count
+- id: vocabd-letter-arrive
+  segments:
+    - word: wo3--me
+    - word: jin1-tian1--today
+    - word: shou1-dao4--receive
+    - word: yi1--one
+    - word: feng1--letters
+    - word: xin4--letter
+    - punctuation: 。
+  translation: I received a letter today.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - num-mw-n--count
+- id: vocabd-trust-friend
+  segments:
+    - word: wo3--me
+    - word: hen3--very
+    - word: xin4--trust
+    - word: ta1--she
+    - punctuation: 。
+  translation: I trust her a lot.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-credit-card-pay
+  segments:
+    - word: wo3--me
+    - word: yong4--use
+    - word: xin4-yong4-ka3--credit-card
+    - word: mai3--buy
+    - word: piao4--ticket
+    - punctuation: 。
+  translation: I paid for the ticket with a credit card.
+  grammar:
+    - s-vp-vp--means
+- id: vocabd-capable-work
+  segments:
+    - word: ta1--he
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: ren2--person
+    - word: jiu4--then
+    - word: xing2--capable
+    - punctuation: 。
+  translation: He can manage it alone.
+  grammar:
+    - s-pred--statement
+- id: vocabd-okay-tomorrow
+  segments:
+    - word: ming2-tian1--tomorrow
+    - word: qu4--go
+    - word: yin2-hang2--bank
+    - punctuation: ，
+    - word: xing2--okay
+    - word: ma5--question
+    - punctuation: ？
+  translation: Is it okay to go to the bank tomorrow?
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - stmt-ma5--yes-no
+- id: vocabd-luggage-heavy
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: xing2-li5--luggage
+    - word: zai4--location
+    - word: che1--vehicle
+    - word: shang4--above
+    - punctuation: 。
+  translation: My luggage is on the vehicle.
+  grammar:
+    - owner-de5-n--possess
+    - s-zai4-loc--at
+- id: vocabd-interest-music
+  segments:
+    - word: wo3--me
+    - word: dui4--toward
+    - word: yin1-yue4--music
+    - word: hen3--very
+    - word: you3--have
+    - word: xing4-qu4--interest
+    - punctuation: 。
+  translation: I am very interested in music.
+  grammar:
+    - s-dui4-np-attitude--toward
+    - s-you3-np--have
+- id: vocabd-leave-next-week
+  segments:
+    - word: ba4-ba5--dad
+    - word: xia4--next
+    - word: ge4--classifier
+    - word: xing1-qi1--week
+    - word: xiu1-jia4--leave
+    - punctuation: 。
+  translation: Dad is taking leave next week.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+- id: vocabd-need-map
+  segments:
+    - word: wo3--me
+    - word: xu1-yao4--need
+    - word: yi1--one
+    - word: zhang1--sheets
+    - word: di4-tu2--map
+    - punctuation: 。
+  translation: I need a map.
+  grammar:
+    - s-vp--verbal
+    - num-mw-n--count
+- id: vocabd-need-requirement
+  segments:
+    - word: zhe4-ge5--this
+    - word: hai2-zi5--child
+    - word: you3--have
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: te4-bie2--special
+    - word: de5--description
+    - word: xu1-yao4--requirement
+    - punctuation: 。
+  translation: This child has a special need.
+  grammar:
+    - s-you3-np--have
+    - adjp-de5-n--describe
+- id: vocabd-choose-clothes
+  segments:
+    - word: ni3--you
+    - word: xuan3--choose
+    - word: zhe4--this
+    - word: jian4--classifier
+    - word: hai2-shi5--or
+    - word: na4--that
+    - word: jian4--classifier
+    - punctuation: ？
+  translation: Will you choose this one or that one?
+  grammar:
+    - option-hai2-shi5-option--choice
+- id: vocabd-select-major
+  segments:
+    - word: ni3--you
+    - word: ke3-yi3--possible
+    - word: xuan3-ze2--choose
+    - word: zhe4-ge5--this
+    - word: xiang4-ji1--camera
+    - punctuation: 。
+  translation: You can choose this camera.
+  grammar:
+    - s-neng2-or-ke3-yi3-vp--can-may
+    - zhe4-or-na4-mw-n--this-that
+- id: vocabd-semester-busy
+  segments:
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: xue2-qi1--semester
+    - word: ta1--she
+    - word: shang4--attend
+    - word: da4-xue2--university
+    - punctuation: 。
+  translation: This semester she is attending university.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: vocabd-tooth-pain
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: ya2--tooth
+    - word: you3-yi1-dian3-r5--somewhat
+    - word: teng2--sore
+    - punctuation: 。
+  translation: My tooth hurts a little.
+  grammar:
+    - owner-de5-n--possess
+    - you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat
+- id: vocabd-toothbrush-new
+  segments:
+    - word: zhe4--this
+    - word: ge4--classifier
+    - word: ya2-shua1--toothbrush
+    - word: shi4--identity
+    - word: xin1--new
+    - word: de5--nominalizer
+    - punctuation: 。
+  translation: This toothbrush is new.
+  grammar:
+    - s-shi4-n--identity
+    - mod-de5--nominal
+- id: vocabd-sheep-eat
+  segments:
+    - word: shan1--mountain
+    - word: shang4--above
+    - word: de5--description
+    - word: yang2--sheep
+    - word: zai4--ongoing
+    - word: chi1--eat
+    - word: cao3--grass
+    - punctuation: 。
+  translation: The sheep on the hill are eating grass.
+  grammar:
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+- id: vocabd-raise-cat
+  segments:
+    - word: ta1--she
+    - word: zai4--location
+    - word: jia1--home
+    - word: yang3--raise
+    - word: yi1--one
+    - word: zhi1--classifier
+    - word: mao1--cat
+    - punctuation: 。
+  translation: She keeps a cat at home.
+  grammar:
+    - s-zai4-loc-vp--location
+    - num-mw-n--count
+- id: vocabd-rear-child
+  segments:
+    - word: ye2-ye5--grandfather
+    - word: nai3-nai5--grandmother
+    - word: bang1--help
+    - word: ta1-men5--they
+    - word: yang3--rear
+    - word: hai2-zi5--child
+    - punctuation: 。
+  translation: The grandparents help them bring up the child.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-request-help
+  segments:
+    - word: wo3--me
+    - word: yao1-qiu2--request
+    - word: ni3--you
+    - word: ming2-tian1--tomorrow
+    - word: lai2--come
+    - word: xue2-xiao4--school
+    - punctuation: 。
+  translation: I ask that you come to school tomorrow.
+  grammar:
+    - s-vp--verbal
+    - time-s-vp-or-s-time-vp--time
+- id: vocabd-requirement-clear
+  segments:
+    - word: lao3-shi1--teacher
+    - word: de5--possession
+    - word: yao1-qiu2--requirement
+    - word: hen3--very
+    - word: qing1-chu5--clear
+    - punctuation: 。
+  translation: The teacher's requirements are very clear.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: vocabd-even-one
+  segments:
+    - word: zhe4-me5--degree
+    - word: jian3-dan1--simple
+    - word: de5--description
+    - word: ti2--question
+    - punctuation: ，
+    - word: wo3--me
+    - word: yi1-dian3-r5--little
+    - word: ye3--even
+    - word: bu4--not
+    - word: dong3--understand
+    - punctuation: 。
+  translation: I do not understand such a simple question at all.
+  grammar:
+    - yi1-dian3-r5-ye3-bu4-pred--not-at-all
+- id: vocabd-page-open
+  segments:
+    - word: qing3--please
+    - word: da3-kai1--open
+    - word: di4--ordinal
+    - word: wu3--five
+    - word: ye4--page
+    - punctuation: 。
+  translation: Please open to page five.
+  grammar:
+    - qing3-vp--request
+    - di4-num--ordinal
+- id: vocabd-ordinary-bike
+  segments:
+    - word: zhe4--this
+    - word: liang4--vehicles
+    - word: zi4-xing2-che1--bicycle
+    - word: hen3--very
+    - word: yi1-ban1--ordinary
+    - punctuation: 。
+  translation: This bicycle is pretty ordinary.
+  grammar:
+    - s-hen3-adj--describe
+    - zhe4-or-na4-mw-n--this-that
+- id: vocabd-generally-speaking
+  segments:
+    - word: yi1-ban1-lai2-shuo1--generally
+    - punctuation: ，
+    - word: zhou1-mo4--weekend
+    - word: de5--description
+    - word: gong1-yuan2--park
+    - word: ren2--person
+    - word: hen3--very
+    - word: duo1--many
+    - punctuation: 。
+  translation: Generally speaking, the park is crowded on weekends.
+  grammar:
+    - yi1-ban1-lai2-shuo1-stmt--generally
+    - adjp-de5-n--describe
+- id: vocabd-while-eating
+  segments:
+    - word: ta1--he
+    - word: yi1-bian1--while
+    - word: chi1--eat
+    - word: fan4--meal
+    - punctuation: ，
+    - word: yi1-bian1--while
+    - word: kan4--read
+    - word: xin1-wen2--news
+    - punctuation: 。
+  translation: He eats while reading the news.
+  grammar:
+    - yi1-bian1-vp-yi1-bian1-vp--while
+- id: vocabd-certain-degree
+  segments:
+    - word: xue2-xi2--study
+    - word: xu1-yao4--need
+    - word: yi1-ding4--certain
+    - word: de5--description
+    - word: shi2-jian1--time
+    - punctuation: 。
+  translation: Studying takes a certain amount of time.
+  grammar:
+    - vp-pred--activity-subject
+    - adjp-de5-n--describe
+- id: vocabd-definitely-come
+  segments:
+    - word: ni3--you
+    - word: yi1-ding4--definitely
+    - word: zhi1-dao4--know
+    - word: ta1--he
+    - word: de5--possession
+    - word: ming2-zi5--name
+    - punctuation: 。
+  translation: You definitely know his name.
+  grammar:
+    - s-yi1-ding4-pred--certainly
+    - owner-de5-n--possess
+- id: vocabd-must-rest
+  segments:
+    - word: ming2-tian1--tomorrow
+    - word: ni3--you
+    - word: yi1-ding4--must
+    - word: yao4--want
+    - word: lai2--come
+    - punctuation: 。
+  translation: Be sure to come tomorrow.
+  grammar:
+    - yi1-ding4-vp--be-sure
+    - time-s-vp-or-s-time-vp--time
+- id: vocabd-total-books
+  segments:
+    - word: wo3-men5--we
+    - word: yi1-gong4--total
+    - word: mai3--buy
+    - word: le5--completed
+    - word: san1--three
+    - word: ben3--books
+    - word: shu1--book
+    - punctuation: 。
+  translation: We bought three books altogether.
+  grammar:
+    - yi1-gong4-pred--total
+    - v-le5-obj--complete
+    - num-mw-n--count
+- id: vocabd-alternating-child
+  segments:
+    - word: hai2-zi5--child
+    - word: yi1-hui4-r5--alternating
+    - word: ku1--cry
+    - punctuation: ，
+    - word: yi1-hui4-r5--alternating
+    - word: xiao4--smile
+    - punctuation: 。
+  translation: The child cries one moment and laughs the next.
+  grammar:
+    - yi1-hui4-r5-vp-yi1-hui4-r5-vp--alternate
+- id: vocabd-soon-return
+  segments:
+    - word: wo3--me
+    - word: yi1-hui4-r5--soon
+    - word: jiu4--then
+    - word: hui2--return
+    - word: lai2--come
+    - punctuation: 。
+  translation: I will be back in a moment.
+  grammar:
+    - s-yi1-hui4-r5-vp--shortly
+    - v-hui2-lai5-or-hui2-qu5--return
+- id: vocabd-together-go
+  segments:
+    - word: zan2-men5--we
+    - word: yi1-kuai4-r5--together
+    - word: qu4--go
+    - word: chi1--eat
+    - word: fan4--meal
+    - word: ba5--suggestion
+    - punctuation: 。
+  translation: Let's go eat together.
+  grammar:
+    - stmt-ba5--suggest
+    - group-yi1-qi3-vp--together
+- id: vocabd-same-clothes
+  segments:
+    - word: wo3-men5--we
+    - word: chuan1--wear
+    - word: de5--description
+    - word: yi1-fu5--clothes
+    - word: yi1-yang4--same
+    - punctuation: 。
+  translation: We are wearing the same clothes.
+  grammar:
+    - s-pred-de5-n--relative-clause
+    - s-pred--statement
+- id: vocabd-continuously-rain
+  segments:
+    - word: ta1--he
+    - word: yi1-zhi2--continuously
+    - word: zai4--location
+    - word: jia1--home
+    - word: xue2-xi2--study
+    - punctuation: 。
+  translation: He keeps studying at home.
+  grammar:
+    - s-yi1-zhi2-pred--throughout
+    - s-zai4-loc-vp--location
+- id: vocabd-straight-walk
+  segments:
+    - word: cong2--from
+    - word: zhe4-r5--here
+    - word: yi1-zhi2--straight
+    - word: zou3--walk
+    - punctuation: ，
+    - word: yin2-hang2--bank
+    - word: zai4--location
+    - word: zuo3-bian5--left
+    - punctuation: 。
+  translation: Walk straight from here; the bank is on the left.
+  grammar:
+    - cong2-loc-vp--from
+    - s-zai4-loc--at
+- id: vocabd-after-work
+  segments:
+    - word: xia4-ke4--finish
+    - word: yi3-hou4--after
+    - punctuation: ，
+    - word: wo3--me
+    - word: qu4--go
+    - word: yun4-dong4--exercise
+    - punctuation: 。
+  translation: After class, I go exercise.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: vocabd-before-school
+  segments:
+    - word: yi3-qian2--before
+    - word: wo3--me
+    - word: zhu4--live
+    - word: zai4--location
+    - word: xue2-xiao4--school
+    - word: pang2-bian1--beside
+    - punctuation: 。
+  translation: I used to live next to the school.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-zai4-loc-vp--location
+- id: vocabd-above-eighty
+  segments:
+    - word: kao3-shi4--exam
+    - word: cheng2-ji4--grades
+    - word: ba1--eight
+    - word: shi2--ten
+    - word: fen1--point
+    - word: yi3-shang4--above
+    - word: jiu4--then
+    - word: ke3-yi3--acceptable
+    - punctuation: 。
+  translation: An exam score of eighty or above is acceptable.
+  grammar:
+    - clause-jiu4-clause--then
+- id: vocabd-aforementioned
+  segments:
+    - word: yi3-shang4--aforementioned
+    - word: wen4-ti2--question
+    - punctuation: ，
+    - word: qing3--please
+    - word: ming2-tian1--tomorrow
+    - word: hui2-da2--answer
+    - punctuation: 。
+  translation: Please answer the above questions tomorrow.
+  grammar:
+    - topic-s-pred--topic-comment
+    - qing3-vp--request
+- id: vocabd-apart-mom
+  segments:
+    - word: chu2-le5--except
+    - word: ma1-ma5--mom
+    - word: yi3-wai4--apart
+    - punctuation: ，
+    - word: wo3-men5--we
+    - word: dou1--all
+    - word: qu4--go
+    - punctuation: 。
+  translation: Apart from Mom, we are all going.
+  grammar:
+    - chu2-le5-except-yi3-wai4-group-dou1-pred--except
+- id: vocabd-outside-door
+  segments:
+    - word: jiao4-shi4--classroom
+    - word: yi3-wai4--outside
+    - word: bu4--not
+    - word: yao4--want
+    - word: shuo1-hua4--talk
+    - punctuation: 。
+  translation: Do not talk outside the classroom.
+  grammar:
+    - bu4-yao4-vp--dont
+- id: vocabd-assume-room
+  segments:
+    - word: wo3--me
+    - word: yi3-wei2--assume
+    - word: ni3--you
+    - word: zai4--location
+    - word: fang2-jian1--room
+    - word: li3--inside
+    - punctuation: 。
+  translation: I assumed you were in the room.
+  grammar:
+    - clause-clause--linked
+    - s-zai4-loc--at
+- id: vocabd-below-limit
+  segments:
+    - word: liu4--six
+    - word: shi2--ten
+    - word: fen1--point
+    - word: yi3-xia4--below
+    - word: de5--description
+    - word: cheng2-ji4--grades
+    - word: bu4-xing2--unacceptable
+    - punctuation: 。
+  translation: A score below sixty points is not acceptable.
+  grammar:
+    - adjp-de5-n--describe
+    - s-pred--statement
+- id: vocabd-following-content
+  segments:
+    - word: yi3-xia4--following
+    - word: wen4-ti2--question
+    - word: hen3--very
+    - word: zhong4-yao4--important
+    - punctuation: 。
+  translation: The following questions are important.
+  grammar:
+    - s-hen3-adj--describe
+- id: vocabd-music-quiet
+  segments:
+    - word: wo3--me
+    - word: xi3-huan5--like
+    - word: ting1--listen
+    - word: an1-jing4--quiet
+    - word: de5--description
+    - word: yin1-yue4--music
+    - punctuation: 。
+  translation: I like listening to quiet music.
+  grammar:
+    - adjp-de5-n--describe
+    - s-vp--verbal
+- id: vocabd-bank-nearby
+  segments:
+    - word: xue2-xiao4--school
+    - word: fu4-jin4--vicinity
+    - word: you3--have
+    - word: yin2-hang2--bank
+    - punctuation: 。
+  translation: There is a bank near the school.
+  grammar:
+    - loc-you3-qty-n--exist
+- id: vocabd-bank-card-drink
+  segments:
+    - word: wo3--me
+    - word: yong4--use
+    - word: yin2-hang2-ka3--bank-card
+    - word: mai3--buy
+    - word: yin3-liao4--drink
+    - punctuation: 。
+  translation: I buy drinks with my bank card.
+  grammar:
+    - s-vp-vp--means
+- id: vocabd-should-sleep
+  segments:
+    - word: ni3--you
+    - word: ying1-gai1--should
+    - word: xian4-zai4--now
+    - word: shui4-jiao4--sleep
+    - punctuation: 。
+  translation: You should go to sleep now.
+  grammar:
+    - s-ying1-gai1-vp--should
+- id: vocabd-effect-big
+  segments:
+    - word: zhe4-ge5--this
+    - word: bian4-hua4--variation
+    - word: de5--possession
+    - word: ying3-xiang3--effect
+    - word: hen3--very
+    - word: da4--big
+    - punctuation: 。
+  translation: The effect of this change is big.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: vocabd-influence-study
+  segments:
+    - word: shou3-ji1--phone
+    - word: ying3-xiang3--influence
+    - word: hai2-zi5--child
+    - word: xue2-xi2--study
+    - punctuation: 。
+  translation: Phones affect children's studying.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-use-computer
+  segments:
+    - word: wo3--me
+    - word: bu4--not
+    - word: hui4--ability
+    - word: yong4--use
+    - word: zhe4-ge5--this
+    - word: dian4-nao3--computer
+    - punctuation: 。
+  translation: I do not know how to use this computer.
+  grammar:
+    - s-hui4-vp--skill
+    - zhe4-or-na4-mw-n--this-that
+- id: vocabd-email-late
+  segments:
+    - word: lao3-shi1--teacher
+    - word: wan3-shang5--evening
+    - word: gei3--to
+    - word: wo3--me
+    - word: fa1--send
+    - word: you2-jian4--email
+    - punctuation: 。
+  translation: The teacher sent me an email at night.
+  grammar:
+    - gei3-p-vp--for-to
+    - time-s-vp-or-s-time-vp--time
+- id: vocabd-mail-arrive
+  segments:
+    - word: jin1-tian1--today
+    - word: de5--possession
+    - word: you2-jian4--mail
+    - word: hai2--still
+    - word: mei2--negation
+    - word: dao4--arrive
+    - punctuation: 。
+  translation: Today's mail still has not arrived.
+  grammar:
+    - owner-de5-n--possess
+    - s-hai2-pred--still
+- id: vocabd-tourist-photo
+  segments:
+    - word: na4-ge5--that
+    - word: you2-ke4--tourist
+    - word: zai4--ongoing
+    - word: zhao4-xiang4--photograph
+    - punctuation: 。
+  translation: That tourist is taking a photo.
+  grammar:
+    - s-zai4-or-zheng4-zai4-vp--ongoing
+    - zhe4-or-na4-mw-n--this-that
+- id: vocabd-game-fun
+  segments:
+    - word: zhe4-ge5--this
+    - word: you2-xi4--game
+    - word: hen3--very
+    - word: you3-yi4-si5--interesting
+    - punctuation: 。
+  translation: This game is very interesting.
+  grammar:
+    - zhe4-or-na4-mw-n--this-that
+    - s-hen3-adj--describe
+- id: vocabd-inbox-full
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: you2-xiang1--inbox
+    - word: li3--inside
+    - word: you3--have
+    - word: hen3--very
+    - word: duo1--many
+    - word: you2-jian4--email
+    - punctuation: 。
+  translation: There are many emails in my inbox.
+  grammar:
+    - owner-de5-n--possess
+    - s-you3-np--have
+- id: vocabd-mailbox-front
+  segments:
+    - word: you2-xiang1--mailbox
+    - word: zai4--location
+    - word: lou2--building
+    - word: qian2-mian4--front
+    - punctuation: 。
+  translation: The mailbox is in front of the building.
+  grammar:
+    - s-zai4-loc--at
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+- id: vocabd-concerning-news
+  segments:
+    - word: you3-guan1--concerning
+    - word: bi3-sai4--competition
+    - word: de5--description
+    - word: xin1-wen2--news
+    - word: zai4--location
+    - word: zhe4--this
+    - word: yi1--one
+    - word: ye4--page
+    - punctuation: 。
+  translation: The news about the competition is on this page.
+  grammar:
+    - adjp-de5-n--describe
+    - s-zai4-loc--at
+- id: vocabd-related-problem
+  segments:
+    - word: zhe4-ge5--this
+    - word: wen4-ti2--problem
+    - word: gen1--with
+    - word: qian2--money
+    - word: you3-guan1--relate
+    - punctuation: 。
+  translation: This issue is related to money.
+  grammar:
+    - s-gen1-p-vp--with
+    - s-vp--verbal
+- id: vocabd-famous-garden
+  segments:
+    - word: zhe4-ge5--this
+    - word: hua1--flower
+    - word: yuan2--garden
+    - word: hen3--very
+    - word: you3-ming2--famous
+    - punctuation: 。
+  translation: This garden is famous.
+  grammar:
+    - zhe4-or-na4-mw-n--this-that
+    - s-hen3-adj--describe
+- id: vocabd-somewhat-tired
+  segments:
+    - word: jin1-tian1--today
+    - word: wo3--me
+    - word: you3-xie1--somewhat
+    - word: lei4--tired
+    - punctuation: 。
+  translation: I am somewhat tired today.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-pred--statement
+- id: vocabd-useful-map
+  segments:
+    - word: zhe4--this
+    - word: zhang1--sheets
+    - word: di4-tu2--map
+    - word: hen3--very
+    - word: you3-yong4--useful
+    - punctuation: 。
+  translation: This map is very useful.
+  grammar:
+    - zhe4-or-na4-mw-n--this-that
+    - s-hen3-adj--describe
+- id: vocabd-again-late
+  segments:
+    - word: ta1--he
+    - word: you4--again
+    - word: chi2-dao4--late
+    - word: le5--change
+    - punctuation: 。
+  translation: He was late again.
+  grammar:
+    - s-you4-vp--again
+    - state-le5--change
+- id: vocabd-both-clean-smart
+  segments:
+    - word: zhe4-ge5--this
+    - word: hai2-zi5--child
+    - word: you4--both
+    - word: cong1-ming2--clever
+    - punctuation: ，
+    - word: you4--both
+    - word: an1-jing4--quiet
+    - punctuation: 。
+  translation: This child is both clever and quiet.
+  grammar:
+    - you4-adj-you4-adj--both
+    - zhe4-or-na4-mw-n--this-that
+- id: vocabd-badminton-play
+  segments:
+    - word: wo3-men5--we
+    - word: zhou1-mo4--weekend
+    - word: da3--play
+    - word: yu3-mao2-qiu2--badminton
+    - punctuation: 。
+  translation: We play badminton on weekends.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: vocabd-language-learn
+  segments:
+    - word: ta1--she
+    - word: hui4--ability
+    - word: shuo1--speak
+    - word: san1--three
+    - word: zhong3--kinds
+    - word: yu3-yan2--language
+    - punctuation: 。
+  translation: She can speak three languages.
+  grammar:
+    - s-hui4-vp--skill
+    - num-mw-n--count
+- id: vocabd-raincoat-wet
+  segments:
+    - word: xia4-yu3--rain
+    - word: le5--change
+    - punctuation: ，
+    - word: ni3--you
+    - word: kuai4--fast
+    - word: chuan1--wear
+    - word: yu3-yi1--raincoat
+    - punctuation: 。
+  translation: It is raining, so put on your raincoat quickly.
+  grammar:
+    - clause-clause--linked
+    - s-vp--verbal
+- id: vocabd-encounter-problem
+  segments:
+    - word: wo3--me
+    - word: zai4--context
+    - word: gong1-zuo4--job
+    - word: zhong1--during
+    - word: yu4-dao4--encounter
+    - word: le5--completed
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: wen4-ti2--problem
+    - punctuation: 。
+  translation: I ran into a problem at work.
+  grammar:
+    - zai4-process-zhong1-stmt--during
+    - v-le5-obj--complete
+- id: vocabd-meet-friend
+  segments:
+    - word: zuo2-tian1--yesterday
+    - word: wo3--me
+    - word: zai4--location
+    - word: lu4-shang5--way
+    - word: yu4-jian4--meet
+    - word: yi1--one
+    - word: ge4--classifier
+    - word: tong2-xue2--classmate
+    - punctuation: 。
+  translation: Yesterday I met a classmate on the road.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-zai4-loc-vp--location
+- id: vocabd-garden-flowers
+  segments:
+    - word: hua1--flower
+    - word: yuan2--garden
+    - word: li3--inside
+    - word: you3--have
+    - word: hen3--very
+    - word: duo1--many
+    - word: hua1--flower
+    - punctuation: 。
+  translation: There are many flowers in the garden.
+  grammar:
+    - loc-you3-qty-n--exist
+    - n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc
+- id: vocabd-park-run
+  segments:
+    - word: wo3-men5--we
+    - word: qu4--go
+    - word: dong4-wu4--animal
+    - word: yuan2--park
+    - word: kan4--watch
+    - word: da4-xiong2-mao1--panda
+    - punctuation: 。
+  translation: We go to the zoo to see the giant pandas.
+  grammar:
+    - qu4-or-lai2-loc-vp--purpose
+- id: vocabd-service-person
+  segments:
+    - word: zhe4-ge5--this
+    - word: dian4--shop
+    - word: de5--possession
+    - word: fu2-wu4--serve
+    - word: yuan2--person
+    - word: hen3--very
+    - word: re4-qing2--enthusiastic
+    - punctuation: 。
+  translation: The shop attendant is very welcoming.
+  grammar:
+    - owner-de5-n--possess
+    - role-yuan2--member
+    - s-hen3-adj--describe
+- id: vocabd-willing-help
+  segments:
+    - word: ni3--you
+    - word: yuan4-yi4--willing
+    - word: bang1--help
+    - word: wo3--me
+    - word: ma5--question
+    - punctuation: ？
+  translation: Are you willing to help me?
+  grammar:
+    - s-yuan4-yi4-vp--willing
+    - stmt-ma5--yes-no
+- id: vocabd-more-read-more-know
+  segments:
+    - word: ni3--you
+    - word: yue4--more
+    - word: kan4--read
+    - punctuation: ，
+    - word: yue4--more
+    - word: dong3--understand
+    - punctuation: 。
+  translation: The more you read, the more you understand.
+  grammar:
+    - yue4-pred-yue4-pred--the-more
+- id: vocabd-increasingly-busy
+  segments:
+    - word: zhe4-ge5--this
+    - word: xue2-qi1--semester
+    - word: yue4-lai2-yue4--increasingly
+    - word: mang2--busy
+    - punctuation: 。
+  translation: This semester is getting busier and busier.
+  grammar:
+    - yue4-lai2-yue4-adj--increasingly
+    - zhe4-or-na4-mw-n--this-that
+- id: vocabd-moon-round
+  segments:
+    - word: jin1-tian1--today
+    - word: de5--possession
+    - word: yue4-liang5--moon
+    - word: hen3--very
+    - word: da4--big
+    - punctuation: 。
+  translation: The moon is big tonight.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: vocabd-sports-meet-photo
+  segments:
+    - word: wo3--me
+    - word: can1-jia1--participate
+    - word: yun4-dong4-hui4--sports-meet
+    - punctuation: 。
+  translation: I am taking part in the sports meet.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-athlete-run
+  segments:
+    - word: na4-ge5--that
+    - word: yun4-dong4-yuan2--athlete
+    - word: pao3--run
+    - word: de5--manner
+    - word: hen3--very
+    - word: kuai4--fast
+    - punctuation: 。
+  translation: That athlete runs very fast.
+  grammar:
+    - zhe4-or-na4-mw-n--this-that
+    - v-de5-adjp--performance
+- id: vocabd-context-study
+  segments:
+    - word: zai4--context
+    - word: zhong1-wen2--chinese
+    - word: shang4--respect
+    - punctuation: ，
+    - word: wo3--me
+    - word: bi3--than
+    - word: ta1--he
+    - word: hao3--good
+    - word: yi1-dian3-r5--little
+    - punctuation: 。
+  translation: In Chinese, I am a little better than him.
+  grammar:
+    - zai4-domain-shang4-stmt--respect
+    - a-bi3-b-adj-qty--difference
+- id: vocabd-inclusive-we
+  segments:
+    - word: zan2-men5--we
+    - word: xian1--first
+    - word: chi1--eat
+    - word: fan4--meal
+    - punctuation: ，
+    - word: zai4--then
+    - word: xie3--write
+    - word: zuo4-ye4--homework
+    - punctuation: 。
+  translation: Let's eat first, then do homework.
+  grammar:
+    - xian1-vp-zai4-vp--first-then
+- id: vocabd-dirty-shoes
+  segments:
+    - word: ni3--you
+    - word: de5--possession
+    - word: xie2--shoe
+    - word: tai4--too
+    - word: zang1--dirty
+    - word: le5--intensify
+    - punctuation: 。
+  translation: Your shoes are too dirty.
+  grammar:
+    - owner-de5-n--possess
+    - tai4-adj-le5--so-too
+- id: vocabd-what-to-do
+  segments:
+    - word: wo3--me
+    - word: de5--possession
+    - word: xin4--letter
+    - word: bu4-jian4--missing
+    - word: le5--change
+    - punctuation: ，
+    - word: zen3-me5-ban4--what-to-do
+    - punctuation: ？
+  translation: My letter is gone; what should I do?
+  grammar:
+    - owner-de5-n--possess
+    - state-le5--change
+    - expr--fragment
+- id: vocabd-how-weather
+  segments:
+    - word: jin1-tian1--today
+    - word: tian1-qi4--weather
+    - word: zen3-yang4--how
+    - punctuation: ？
+  translation: How is the weather today?
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - expr--fragment
+- id: vocabd-stand-middle
+  segments:
+    - word: qing3--please
+    - word: zhan4--stand
+    - word: zai4--location
+    - word: zhong1-jian1--middle
+    - punctuation: 。
+  translation: Please stand in the middle.
+  grammar:
+    - qing3-vp--request
+- id: vocabd-open-mouth
+  segments:
+    - word: hai2-zi5--child
+    - word: zhang1--open
+    - word: zui3--mouth
+    - punctuation: 。
+  translation: The child opens his mouth.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-sheet-paper
+  segments:
+    - word: qing3--please
+    - word: gei3--give
+    - word: wo3--me
+    - word: liang3--two
+    - word: zhang1--sheets
+    - word: zhi3--paper
+    - punctuation: 。
+  translation: Please give me two sheets of paper.
+  grammar:
+    - qing3-vp--request
+    - s-v-p-obj--double-obj
+    - num-mw-n--count
+- id: vocabd-grow-slowly
+  segments:
+    - word: hai2-zi5--child
+    - word: zhang3--grow
+    - word: de5--manner
+    - word: hen3--very
+    - word: kuai4--fast
+    - punctuation: 。
+  translation: The child is growing quickly.
+  grammar:
+    - v-de5-adjp--performance
+    - s-vp--verbal
+- id: vocabd-class-leader
+  segments:
+    - word: wo3-men5--we
+    - word: de5--possession
+    - word: ban1--class
+    - word: zhang3--leader
+    - word: jin1-tian1--today
+    - word: qing3-jia4--leave
+    - word: le5--change
+    - punctuation: 。
+  translation: Our class leader took leave today.
+  grammar:
+    - owner-de5-n--possess
+    - time-s-vp-or-s-time-vp--time
+    - state-le5--change
+- id: vocabd-anxious-parent
+  segments:
+    - word: hai2-zi5--child
+    - word: hai2--still
+    - word: mei2--negation
+    - word: lai2--come
+    - punctuation: ，
+    - word: ma1-ma5--mom
+    - word: hen3--very
+    - word: zhao2-ji2--anxious
+    - punctuation: 。
+  translation: The child still has not come, so Mom is anxious.
+  grammar:
+    - s-hai2-pred--still
+    - s-hen3-adj--describe
+- id: vocabd-hurried-leave
+  segments:
+    - word: wo3--me
+    - word: xian4-zai4--now
+    - word: hen3--very
+    - word: zhao2-ji2--hurried
+    - punctuation: ，
+    - word: dei3--must
+    - word: zou3--leave
+    - word: le5--change
+    - punctuation: 。
+  translation: I am in a hurry now, so I have to leave.
+  grammar:
+    - s-pred--statement
+    - s-dei3-vp--must
+- id: vocabd-photograph-friend
+  segments:
+    - word: lai2--come
+    - punctuation: ，
+    - word: wo3--me
+    - word: gei3--for
+    - word: ni3--you
+    - word: zhao4--photograph
+    - word: yi1--one
+    - word: zhang1--sheets
+    - word: zhao4-pian4--photo
+    - punctuation: 。
+  translation: Come here, I will take a photo of you.
+  grammar:
+    - gei3-p-vp--for-to
+    - num-mw-n--count
+- id: vocabd-reflect-face
+  segments:
+    - word: ta1--she
+    - word: yong4--use
+    - word: he2--river
+    - word: shui3--water
+    - word: zhao4--reflect
+    - word: zi4-ji3--self
+    - word: de5--possession
+    - word: lian3--face
+    - punctuation: 。
+  translation: She looks at her own face reflected in the river water.
+  grammar:
+    - s-vp-vp--means
+    - owner-de5-n--possess
+    - n-n--modifier
+- id: vocabd-shine-desk
+  segments:
+    - word: tai4-yang2--sun
+    - word: zhao4--shine
+    - word: zai4--location
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - punctuation: 。
+  translation: The sun shines on the table.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-care-patient
+  segments:
+    - word: lao3--familiar
+    - word: wang2--surname
+    - word: yi1-zhi2--continuously
+    - word: zhao4-gu4--care
+    - word: na4-ge5--that
+    - word: bing4-ren2--patient
+    - punctuation: 。
+  translation: Lao Wang keeps taking care of that patient.
+  grammar:
+    - lao3-surname--address
+    - s-yi1-zhi2-pred--throughout
+    - zhe4-or-na4-mw-n--this-that
+- id: vocabd-photo-old
+  segments:
+    - word: zhe4--this
+    - word: zhang1--sheets
+    - word: zhao4-pian4--photo
+    - word: shi4--identity
+    - word: wo3--me
+    - word: xiao3-shi2-hou5--childhood
+    - word: de5--nominalizer
+    - punctuation: 。
+  translation: This is a photo from my childhood.
+  grammar:
+    - s-shi4-n--identity
+    - mod-de5--nominal
+- id: vocabd-take-photo-park
+  segments:
+    - word: wo3-men5--we
+    - word: zai4--location
+    - word: gong1-yuan2--park
+    - word: men2-kou3--entrance
+    - word: zhao4-xiang4--photograph
+    - punctuation: 。
+  translation: We are taking a photo at the park entrance.
+  grammar:
+    - s-zai4-loc-vp--location
+- id: vocabd-until-ten
+  segments:
+    - word: ta1--he
+    - word: zuo2-tian1--yesterday
+    - word: gong1-zuo4--work
+    - word: zhi2-dao4--until
+    - word: shi2--ten
+    - word: dian3--oclock
+    - punctuation: 。
+  translation: He worked until ten o'clock yesterday.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp--verbal
+- id: vocabd-only-water
+  segments:
+    - word: wo3--me
+    - word: zhi3--only
+    - word: he1--drink
+    - word: shui3--water
+    - punctuation: 。
+  translation: I only drink water.
+  grammar:
+    - s-zhi3-vp--only
+- id: vocabd-paper-on-table
+  segments:
+    - word: zhuo1-zi5--table
+    - word: shang4--above
+    - word: you3--have
+    - word: hen3--very
+    - word: duo1--many
+    - word: zhi3--paper
+    - punctuation: 。
+  translation: There is a lot of paper on the table.
+  grammar:
+    - loc-you3-qty-n--exist
+- id: vocabd-can-only-wait
+  segments:
+    - word: jin1-tian1--today
+    - word: tai4--too
+    - word: wan3--late
+    - word: le5--intensify
+    - punctuation: ，
+    - word: wo3-men5--we
+    - word: zhi3-neng2--can-only
+    - word: ming2-tian1--tomorrow
+    - word: zai4--again
+    - word: lai2--come
+    - punctuation: 。
+  translation: It is too late today, so we can only come again tomorrow.
+  grammar:
+    - clause-clause--linked
+    - s-zai4-vp--again
+- id: vocabd-but-near
+  segments:
+    - word: wo3--me
+    - word: xiang3--want
+    - word: qu4--go
+    - punctuation: ，
+    - word: zhi3-shi4--but
+    - word: jin1-tian1--today
+    - word: tai4--too
+    - word: lei4--tired
+    - punctuation: 。
+  translation: I want to go, but I am too tired today.
+  grammar:
+    - s-xiang3-vp--want
+    - time-s-vp-or-s-time-vp--time
+- id: vocabd-merely-small
+  segments:
+    - word: fang2-jian1--room
+    - word: zhi3-shi4--only
+    - word: you3-dian3-r5--somewhat
+    - word: xiao3--small
+    - punctuation: 。
+  translation: The room is only a little small.
+  grammar:
+    - s-zhi3-shi4-pred--merely
+    - you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat
+- id: vocabd-as-long-as-practice
+  segments:
+    - word: zhi3-yao4--as-long-as
+    - word: ni3--you
+    - word: mei3--every
+    - word: tian1--day
+    - word: lian4-xi2--practice
+    - punctuation: ，
+    - word: jiu4--then
+    - word: ke3-yi3--possible
+    - word: shuo1--speak
+    - word: zhong1-wen2--chinese
+    - punctuation: 。
+  translation: As long as you practice every day, you can speak Chinese.
+  grammar:
+    - zhi3-yao4-clause-jiu4-clause--as-long-as
+    - clause-jiu4-clause--then
+- id: vocabd-only-if-early
+  segments:
+    - word: zhi3-you3--only-if
+    - word: zao3--early
+    - word: chu1-fa1--depart
+    - punctuation: ，
+    - word: cai2--only-then
+    - word: bu4--not
+    - word: chi2-dao4--late
+    - punctuation: 。
+  translation: Only if you leave early will you avoid being late.
+  grammar:
+    - zhi3-you3-clause-cai2-clause--only-if
+- id: vocabd-during-meeting
+  segments:
+    - word: hui4-yi4--meeting
+    - word: zhong1--during
+    - word: bu4--not
+    - word: yao4--want
+    - word: shuo1-hua4--talk
+    - punctuation: 。
+  translation: Do not talk during the meeting.
+  grammar:
+    - bu4-yao4-vp--dont
+- id: vocabd-inside-box
+  segments:
+    - word: shi2--ten
+    - word: ge4--classifier
+    - word: xue2-sheng5--student
+    - word: zhong1--inside
+    - punctuation: ，
+    - word: wu3--five
+    - word: ge4--classifier
+    - word: shi4--identity
+    - word: nv3-sheng1--girl
+    - punctuation: 。
+  translation: Among the ten students, five are girls.
+  grammar:
+    - num-mw-n--count
+    - s-shi4-n--identity
+- id: vocabd-middle-road
+  segments:
+    - word: ta1--he
+    - word: shi4--identity
+    - word: zhong1--middle
+    - word: nian2--year
+    - word: ren2--person
+    - punctuation: 。
+  translation: He is a middle-aged person.
+  grammar:
+    - s-shi4-n--identity
+- id: vocabd-middle-seat
+  segments:
+    - word: wo3--me
+    - word: zuo4--sit
+    - word: zai4--location
+    - word: liang3--two
+    - word: ge4--classifier
+    - word: ren2--person
+    - word: zhong1-jian1--middle
+    - punctuation: 。
+  translation: I sit between two people.
+  grammar:
+    - s-vp--verbal
+    - num-mw-n--count
+- id: vocabd-finally-understand
+  segments:
+    - word: wo3--me
+    - word: xian4-zai4--now
+    - word: zhong1-yu2--finally
+    - word: dong3--understand
+    - word: le5--change
+    - punctuation: 。
+  translation: I finally understand now.
+  grammar:
+    - s-zhong1-yu2-vp--finally
+    - state-le5--change
+- id: vocabd-kind-language
+  segments:
+    - word: zhe4-li3--here
+    - word: you3--have
+    - word: hen3--very
+    - word: duo1--many
+    - word: zhong3--kinds
+    - word: yin3-liao4--drink
+    - punctuation: 。
+  translation: There are many kinds of drinks here.
+  grammar:
+    - loc-you3-qty-n--exist
+- id: vocabd-important-meeting
+  segments:
+    - word: ming2-tian1--tomorrow
+    - word: de5--possession
+    - word: hui4-yi4--meeting
+    - word: hen3--very
+    - word: zhong4-yao4--important
+    - punctuation: 。
+  translation: Tomorrow's meeting is important.
+  grammar:
+    - owner-de5-n--possess
+    - s-hen3-adj--describe
+- id: vocabd-weekend-guest
+  segments:
+    - word: zhou1-mo4--weekend
+    - word: wo3-men5--we
+    - word: qu4--go
+    - word: lao3-shi1--teacher
+    - word: jia1--home
+    - word: zuo4-ke4--guest
+    - punctuation: 。
+  translation: We are going to the teacher's home as guests this weekend.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp-vp--purpose
+- id: vocabd-main-problem
+  segments:
+    - word: zhe4--this
+    - word: shi4--identity
+    - word: zhu3-yao4--main
+    - word: wen4-ti2--problem
+    - punctuation: 。
+  translation: This is the main problem.
+  grammar:
+    - s-shi4-n--identity
+- id: vocabd-hold-firm
+  segments:
+    - word: qing3--please
+    - word: ni3--you
+    - word: na2--hold
+    - word: zhu4--secure-result
+    - word: zhe4--this
+    - word: zhang1--sheets
+    - word: zhi3--paper
+    - punctuation: 。
+  translation: Please hold onto this sheet of paper firmly.
+  grammar:
+    - qing3-vp--request
+    - v-zhu4--secure
+- id: vocabd-pay-attention
+  segments:
+    - word: guo4--cross
+    - word: ma3-lu4--road
+    - word: de5--description
+    - word: shi2-hou5--time
+    - word: yao4--want
+    - word: zhu4-yi4--attention
+    - word: che1--vehicle
+    - punctuation: 。
+  translation: Pay attention to vehicles when crossing the road.
+  grammar:
+    - s-vp--verbal
+- id: vocabd-hospitalized-mother
+  segments:
+    - word: ma1-ma5--mom
+    - word: zhu4-yuan4--hospitalized
+    - word: yi3-hou4--after
+    - punctuation: ，
+    - word: wo3--me
+    - word: mei3--every
+    - word: tian1--day
+    - word: qu4--go
+    - word: kan4--watch
+    - word: ta1--she
+    - punctuation: 。
+  translation: After Mom was hospitalized, I went to see her every day.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp-vp--purpose
+- id: vocabd-character-dictionary
+  segments:
+    - word: zhe4-ge5--this
+    - word: zi4--character
+    - punctuation: ，
+    - word: ni3--you
+    - word: ke3-yi3--possible
+    - word: cha2--lookup
+    - word: zi4-dian3--dictionary
+    - punctuation: 。
+  translation: You can look up this character in a character dictionary.
+  grammar:
+    - zhe4-or-na4-mw-n--this-that
+    - s-neng2-or-ke3-yi3-vp--can-may
+- id: vocabd-bicycle-school
+  segments:
+    - word: ta1--he
+    - word: mei3--every
+    - word: tian1--day
+    - word: qi2--ride
+    - word: zi4-xing2-che1--bicycle
+    - word: qu4--go
+    - word: xue2-xiao4--school
+    - punctuation: 。
+  translation: He rides a bicycle to school every day.
+  grammar:
+    - time-s-vp-or-s-time-vp--time
+    - s-vp-vp--means
+- id: vocabd-table-suffix
+  segments:
+    - word: na4--that
+    - word: liang4--vehicles
+    - word: che1--car
+    - word: zi5--suffix
+    - word: hen3--very
+    - word: xin1--new
+    - punctuation: 。
+  translation: That car is very new.
+  grammar:
+    - stem-zi5--noun
+    - zhe4-or-na4-mw-n--this-that
+    - s-hen3-adj--describe
+- id: vocabd-always-late
+  segments:
+    - word: ta1--he
+    - word: zong3--always
+    - word: shang4-ke4--class
+    - word: chi2-dao4--late
+    - punctuation: 。
+  translation: He is always late for class.
+  grammar:
+    - s-zong3-or-zong3-shi4-pred--always
+- id: vocabd-always-forget
+  segments:
+    - word: ta1--she
+    - word: zong3-shi4--always
+    - word: wang4--forget
+    - word: dong1-xi5--thing
+    - punctuation: 。
+  translation: She always forgets things.
+  grammar:
+    - s-zong3-or-zong3-shi4-pred--always
+- id: vocabd-mouth-open
+  segments:
+    - word: zhang1--open
+    - word: zui3--mouth
+    - punctuation: 。
+  translation: Open your mouth.
+  grammar:
+    - expr--fragment
+- id: vocabd-had-better-raincoat
+  segments:
+    - word: xia4-yu3--rain
+    - word: le5--change
+    - punctuation: ，
+    - word: ni3--you
+    - word: zui4-hao3--had-better
+    - word: chuan1--wear
+    - word: yu3-yi1--raincoat
+    - punctuation: 。
+  translation: It is raining, so you had better wear a raincoat.
+  grammar:
+    - clause-clause--linked
+    - s-vp--verbal
+- id: vocabd-last-page
+  segments:
+    - word: zui4-hou4--last
+    - word: yi1--one
+    - word: ye4--page
+    - word: mei2-you3--absence
+    - word: zhao4-pian4--photo
+    - punctuation: 。
+  translation: There is no photo on the last page.
+  grammar:
+    - s-mei2-you3-np--absence
+- id: vocabd-recently-busy
+  segments:
+    - word: wo3--me
+    - word: zui4-jin4--recently
+    - word: hen3--very
+    - word: mang2--busy
+    - punctuation: 。
+  translation: I have been very busy recently.
+  grammar:
+    - s-hen3-adj--describe
+    - time-s-vp-or-s-time-vp--time
+- id: vocabd-homework-finish
+  segments:
+    - word: wo3--me
+    - word: wan3-shang5--evening
+    - word: xian1--first
+    - word: zuo4--do
+    - word: zuo4-ye4--homework
+    - punctuation: ，
+    - word: zai4--then
+    - word: kan4--watch
+    - word: dian4-shi4--television
+    - punctuation: 。
+  translation: I do my homework first in the evening, then watch TV.
+  grammar:
+    - xian1-vp-zai4-vp--first-then
+    - time-s-vp-or-s-time-vp--time

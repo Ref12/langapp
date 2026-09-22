@@ -8,7 +8,9 @@
 - {grammar: np-ne5--followup, vocabulary: [ne5--reciprocal]}
 - {grammar: xiao3-surname--address, vocabulary: [xiao3--familiar]}
 - {grammar: num-bei1-drink--cups, vocabulary: [bei1--cupfuls]}
-- {grammar: s-mei2-or-mei2-you3-vp--no-event, vocabulary: [mei2--negation]}
+- {grammar: s-mei2-or-mei2-you3-vp--no-event, vocabulary: [mei2--negation, mei2-you3--negation]}
+- {grammar: s-you3-mei2-you3-np--have, vocabulary: [mei2-you3--possession]}
+- {grammar: v-num-xia4--count, vocabulary: [xia4--times]}
 - {grammar: tai4-adj-le5--so-too, vocabulary: [le5--intensify]}
 - {grammar: s-zai4-time-vp--time, vocabulary: [zai4--time]}
 - {grammar: you3-dian3-r5-or-you3-yi1-dian3-r5-adj--somewhat, vocabulary: [you3-yi1-dian3-r5--somewhat]}
@@ -74,11 +76,15 @@
 - {grammar: v-xia4-qu4--continue, vocabulary: [xia4-qu4--continue]}
 
 # HSK 4
+- {grammar: s-cai2-bu4-vp--refuse, vocabulary: [cai2--emphatic-correction]}
+- {grammar: s-hai2-pred--surprise, vocabulary: [hai2--even]}
+- {grammar: hai2-pred-ne5--dismiss, vocabulary: [hai2--even]}
+- {grammar: whole-dian3-digits--decimal, vocabulary: [dian3--decimal-marker]}
 - {grammar: num-da2-or-dai4-or-ke1-or-tai2-or-fu2-n--units, vocabulary: [da2--dozen, dai4--bagfuls]}
 - {grammar: yi1-lian3-or-shou3-mass--surfaceful, vocabulary: [lian3--faceful, shou3--surfaceful]}
 - {grammar: num-he2-or-wu1-zi5-or-zhuo1-zi5-n--contents, vocabulary: [he2--boxfuls, wu1-zi5--roomfuls, zhuo1-zi5--tablefuls]}
-# Do not equate 才-refusal or 还-surprise with a selected sense solely by spelling.
-# Their pragmatic sense mappings remain outside the confirmed bindings.
+# 才 refusal corrects a competing judgement; 还 surprise/dismissal uses emphasis.
+# These reviewed contexts are pinned above, not inferred from spelling alone.
 - {grammar: you3-de5-shi4-n--plenty, vocabulary: [you3-de5-shi4--plenty]}
 - {grammar: shuo1-bu5-ding4-stmt--perhaps, vocabulary: [shuo1-bu5-ding4--maybe]}
 - {grammar: bu4-zen3-me5-pred--not-very, vocabulary: [bu4-zen3-me5--not-particularly]}
@@ -94,6 +100,10 @@
 - {grammar: bai3-fen1-zhi1-num--percent, vocabulary: [fen1-zhi1--fraction]}
 
 # HSK 5
+- {grammar: pred-qi3-lai5--become, vocabulary: [qi3-lai5--start]}
+- {grammar: pred-xia4-qu4--persist, vocabulary: [xia4-qu4--continue]}
+- {grammar: v-lai2-v-qu4-dou1-shi4-or-jiu4-shi4-result--same-result, vocabulary: [lai2--repetition, qu4--repetition]}
+- {grammar: cong2-source-lai2-kan4-clause--judging, vocabulary: [cong2--from, lai2-kan4--judging]}
 - {grammar: v-num-yan3--glances, vocabulary: [yan3--glances]}
 - {grammar: yong4-bu5-zhao2-vp--unnecessary, vocabulary: [yong4-bu5-zhao2--need-not]}
 - {grammar: v-de5-or-bu4-de5--permissible, vocabulary: [de5--manner]}
@@ -164,3 +174,16 @@
 - {grammar: cause-yi3-zhi4-or-yi3-zhi4-yu2-result--consequence, vocabulary: [yi3-zhi4--consequent-result]}
 - {grammar: wei4-or-wei4-le5-goal-qi3-jian4-vp--for-sake, vocabulary: [qi3-jian4--for-sake-of]}
 - {grammar: zong1-shang4-suo3-shu4-stmt--synthesis, vocabulary: [zong1-shang4-suo3-shu4--to-sum-up]}
+- {grammar: yi1-lai2-a-er4-lai2-b-san1-lai2-c--reasons, vocabulary: [lai2--reason-enumeration]}
+- {grammar: yi1-ze2-a-er4-ze2-b-san1-ze2-c--grounds, vocabulary: [ze2--reason-enumeration-particle]}
+- {grammar: xiang3-p-zhi1-suo3-xiang3-ji2-p-zhi1-suo3-ji2--empathy, vocabulary: [ji2--attend-urgently]}
+- {grammar: zai4-pred-zhi1-yu2-pred--besides, vocabulary: [zhi1-yu2--besides]}
+- {grammar: zhe4-bu4-stmt--see, vocabulary: [zhe4-bu4--evidential]}
+- {grammar: zhi2-ci3-event-zhi1-ji4-stmt--occasion, vocabulary: [zhi2--on-occasion]}
+- {grammar: shi2-a-shi2-b--alternating, vocabulary: [shi2--at-times]}
+- {grammar: ke3-a-ke3-b--flexible, vocabulary: [ke3--can]}
+- {grammar: lian2-a-dai4-b--together, vocabulary: [lian2--including, dai4--accompanying]}
+- {grammar: kan4-zai4-p-de5-mian4-zi5-shang4-vp--for-sake, vocabulary: [kan4--consider]}
+- {grammar: leng4-vp--defiant, vocabulary: [leng4--unexpectedly]}
+- {grammar: field-tan2--arena, vocabulary: [tan2--professional-arena]}
+- {grammar: ai4-v-bu4-v--whatever, vocabulary: [ai4--dismissive-choice]}

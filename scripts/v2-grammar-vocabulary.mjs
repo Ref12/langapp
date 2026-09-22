@@ -2,11 +2,10 @@ import { readFileSync } from 'node:fs'
 import { z } from 'zod'
 import { parse } from 'yaml'
 import { numberedPinyin } from './readable-labels.mjs'
+import { hskBands, parseCurriculumBands } from './v2-example-schema.mjs'
 
-export const hskBands = ['1', '2', '3', '4', '5', '6', '7-9']
+export { hskBands }
 const text = z.string().min(1)
-const wordSchema = z.object({ id: text, ch: text, pr: text, ds: text, lb: text }).strict()
-const grammarSchema = z.object({ id: text, pt: text, pr: text, ds: text, lb: text }).strict()
 const requirementSchema = z.object({ grammar: text, vocabulary: z.array(text).min(1) }).strict()
 
 export function loadGrammarVocabulary() {
@@ -71,14 +70,7 @@ function containsWord(runs, word) {
 }
 
 export function auditGrammarVocabulary(input) {
-  const bands = z.array(z.object({
-    band: z.enum(hskBands),
-    vocabulary: z.array(wordSchema),
-    grammar: z.array(grammarSchema),
-  }).strict()).parse(input.bands)
-  if (bands.map(band => band.band).join(',') !== hskBands.join(',')) {
-    throw new Error('Supply all HSK bands in cumulative order')
-  }
+  const bands = parseCurriculumBands(input.bands)
   const requirements = z.array(requirementSchema).parse(input.requirements)
   const ids = new Map()
   const vocabulary = new Map()
@@ -107,13 +99,21 @@ export function auditGrammarVocabulary(input) {
     if (!requiredVocabulary.has(grammarLabel)) requiredVocabulary.set(grammarLabel, new Set())
     requiredVocabulary.get(grammarLabel).add(vocabularyLabel)
   }
+  const pinnedSenses = new Map(requirements.map(requirement => [
+    requirement.grammar, requirement.vocabulary.map(label => vocabulary.get(label)).filter(Boolean),
+  ]))
   for (const item of grammar.values()) {
     for (const run of grammarLiterals(item)) {
-      const words = segment(run, forms)
-      if (!words) {
+      const automatic = segment(run, forms)
+      if (!automatic) {
         errors.push(`${item.id} (HSK ${item.band}): missing vocabulary for ${run.ch} / ${run.syllables.join(' ')}`)
         continue
       }
+      const words = automatic.flatMap(word => {
+        const pinned = (pinnedSenses.get(item.lb) ?? []).filter(sense =>
+          sense.ch === word.ch && numberedPinyin(sense.pr) === numberedPinyin(word.pr))
+        return pinned.length ? pinned : [word]
+      })
       for (const word of words) {
         if (word.index > item.index) {
           errors.push(`${item.id} (HSK ${item.band}): ${word.lb} is not available until HSK ${word.band}`)
@@ -145,7 +145,8 @@ export function auditGrammarVocabulary(input) {
       if (word) {
         for (const existingLabel of requiredVocabulary.get(item.lb) ?? []) {
           const existing = vocabulary.get(existingLabel)
-          if (existing?.ch === word.ch && numberedPinyin(existing.pr) === numberedPinyin(word.pr)) {
+          if (!seenWords.has(existingLabel) &&
+              existing?.ch === word.ch && numberedPinyin(existing.pr) === numberedPinyin(word.pr)) {
             requiredVocabulary.get(item.lb).delete(existingLabel)
           }
         }

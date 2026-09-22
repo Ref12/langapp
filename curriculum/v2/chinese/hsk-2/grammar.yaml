@@ -1,6 +1,7 @@
 # HSK 2 incremental grammar draft; concise AI-facing meaning cues.
 # Builds on frozen HSK 1; shared structures are not emitted again.
-# Format: curriculum\v2\README.md. Fields: id, pt, pr, ds, lb.
+# Format: curriculum\v2\README.md. Fields: id, pt, pr, ds, lb, ex.
+# Usage examples are original editorial sentences, not source quotations.
 # Retained IDs preserve constructions; new IDs are authoring allocations.
 #
 # Source: ChineseTest / Chinese Testing International.
@@ -23,66 +24,110 @@
   pr: <first adjective syllable> + <same first syllable> + <second adjective syllable> + <same second syllable>
   ds: AABB vivid description; only compatible disyllabic adjectives.
   lb: a-a-b-b--vivid
+  ex:
+    segments: [{word: ta1--he}, {word: gao1-gao1-xing4-xing4--cheerful}, {word: de5--adverbial}, {word: xiao4--smile}, {word: le5--completed}, {punctuation: 。}]
+    translation: "He smiled happily."
+    grammar: [a-a-b-b--vivid, adjp-de5-vp--manner, v-le5-obj--complete]
 
 - id: zh-hsk2-g013
   pt: <compared item> + 比 + <reference item> + <adjective>
   pr: <compared item> + bǐ + <reference item> + <adjective>
   ds: Greater degree than a reference; normally no neutral 很.
   lb: a-bi3-b-adj--more
+  ex:
+    segments: [{word: nai3-cha2--tea}, {word: bi3--than}, {word: lv4-cha2--tea}, {word: gui4--expensive}, {punctuation: 。}]
+    translation: "Milk tea is more expensive than green tea."
+    grammar: [a-bi3-b-adj--more]
 
 - id: zh-hsk2026-g176
   pt: <compared item> + 比 + <reference item> + <adjective> + 多了
   pr: <compared item> + bǐ + <reference item> + <adjective> + duō le
   ds: A much greater degree; 多了 is not an exact measurement.
   lb: a-bi3-b-adj-duo1-le5--much-more
+  ex:
+    segments: [{word: ji1-piao4--ticket}, {word: bi3--than}, {word: huo3-che1--train}, {word: piao4--ticket}, {word: gui4--expensive}, {word: duo1--many}, {word: le5--intensify}, {punctuation: 。}]
+    translation: "Plane tickets are much more expensive than train tickets."
+    grammar: [a-bi3-b-adj-duo1-le5--much-more, a-bi3-b-adj--more, n-n--modifier]
 
 - id: zh-hsk2026-g175
   pt: <compared item> + 比 + <reference item> + <adjective> + <difference quantity>
   pr: <compared item> + bǐ + <reference item> + <adjective> + <difference quantity>
   ds: State how much the compared item exceeds the reference.
   lb: a-bi3-b-adj-qty--difference
+  ex:
+    segments: [{word: ge1-ge5--brother}, {word: bi3--than}, {word: wo3--me}, {word: da4--older}, {word: liang3--two}, {word: sui4--age}, {punctuation: 。}]
+    translation: "My older brother is two years older than me."
+    grammar: [a-bi3-b-adj-qty--difference, a-bi3-b-adj--more, adj-qty--difference]
 
 - id: zh-hsk2026-g178
   pt: <compared item> + 比 + <reference item> + <verb> + 得 + <adjective>
   pr: <compared item> + bǐ + <reference item> + <verb> + de + <adjective>
   ds: Compare action performance rather than an object's quality.
   lb: a-bi3-b-v-de5-adj--performance
+  ex:
+    segments: [{word: mei4-mei5--sister}, {word: bi3--than}, {word: wo3--me}, {word: pao3--run}, {word: de5--manner}, {word: kuai4--fast}, {punctuation: 。}]
+    translation: "My younger sister runs faster than me."
+    grammar: [a-bi3-b-v-de5-adj--performance, v-de5-adjp--performance]
 
 - id: zh-hsk2-g014
   pt: <compared item> + 没有 + <reference item> + <adjective>
   pr: <compared item> + méi yǒu + <reference item> + <adjective>
   ds: Less than the reference degree; 这么/那么 may precede the adjective.
   lb: a-mei2-you3-b-adj--not-as
+  ex:
+    segments: [{word: zhe4--this}, {word: tiao2--classifier}, {word: lu4--road}, {word: mei2-you3--less-than}, {word: na4--that}, {word: tiao2--classifier}, {word: lu4--road}, {word: chang2--long}, {punctuation: 。}]
+    translation: "This road is not as long as that one."
+    grammar: [a-mei2-you3-b-adj--not-as, zhe4-or-na4-mw-n--this-that]
 
 - id: zh-hsk2026-g179
   pt: <compared item> + <verb> + 得 + 比 + <reference item> + <adjective>
   pr: <compared item> + <verb> + de + bǐ + <reference item> + <adjective>
   ds: Place the comparison inside a performance complement.
   lb: a-v-de5-bi3-b-adj--performance
+  ex:
+    segments: [{word: ta1--he}, {word: xie3--write}, {word: de5--manner}, {word: bi3--than}, {word: wo3--me}, {word: hao3--good}, {punctuation: 。}]
+    translation: "He writes better than me."
+    grammar: [a-v-de5-bi3-b-adj--performance, v-de5-adjp--performance]
 
 - id: zh-hsk2026-g177
   pt: <compared item> + 有 + <reference item> + (这么 / 那么) + <adjective>
   pr: <compared item> + yǒu + <reference item> + (zhè me / nà me) + <adjective>
   ds: Reach the reference degree; 这么/那么 may be omitted.
   lb: a-you3-b-zhe4-me5-or-na4-me5-adj--as
+  ex:
+    segments: [{word: di4-di5--brother}, {word: you3--reach-degree}, {word: wo3--me}, {word: zhe4-me5--degree}, {word: gao1--tall}, {punctuation: 。}]
+    translation: "My younger brother is as tall as me."
+    grammar: [a-you3-b-zhe4-me5-or-na4-me5-adj--as]
 
 - id: zh-hsk2026-g114
   pt: <monosyllabic adjective> + <same adjective> + 的
   pr: <monosyllabic adjective> + <same adjective> + de
   ds: Vivid AA description; 的 depends on syntactic position.
   lb: adj-adj-de5--vivid
+  ex:
+    segments: [{word: ta1--she}, {word: you3--have}, {word: da4--big}, {word: da4--big}, {word: de5--description}, {word: yan3-jing5--eye}, {punctuation: 。}]
+    translation: "She has nice big eyes."
+    grammar: [adj-adj-de5--vivid, s-you3-np--have, adjp-de5-n--describe]
 
 - id: zh-hsk2026-g169
   pt: <gradable adjective> + <difference quantity>
   pr: <gradable adjective> + <difference quantity>
   ds: Measured difference after the adjective; comparison may be contextual.
   lb: adj-qty--difference
+  ex:
+    segments: [{word: zhe4--this}, {word: jian4--classifier}, {word: yi1-fu5--clothes}, {word: gui4--expensive}, {word: shi2--ten}, {word: kuai4--currency}, {punctuation: 。}]
+    translation: "This item of clothing costs ten yuan more."
+    grammar: [adj-qty--difference, zhe4-or-na4-mw-n--this-that, amt-yuan2-or-kuai4-or-fen1--money]
 
 - id: zh-hsk2-g017
   pt: <adjective> + 一点儿
   pr: <adjective> + yī diǎn r
   ds: A little more; follows the adjective in comparisons or requests.
   lb: adj-yi1-dian3-r5--a-bit-more
+  ex:
+    segments: [{word: qing3--please}, {word: man4--slow}, {word: yi1-dian3-r5--little}, {punctuation: 。}]
+    translation: "A little slower, please."
+    grammar: [adj-yi1-dian3-r5--a-bit-more, qing3-vp--request]
 
 # Particles and phrase building (printed pp. 386-387).
 # 的 nominalization and certainty are distinct; numeral correspondence remains provisional.
@@ -91,42 +136,70 @@
   pr: <manner adjective phrase> + de + <verb phrase>
   ds: Explicit manner modification before the action.
   lb: adjp-de5-vp--manner
+  ex:
+    segments: [{word: ta1--he}, {word: gao1-xing4--happy}, {word: de5--adverbial}, {word: xiao4--smile}, {word: le5--completed}, {punctuation: 。}]
+    translation: "He smiled happily."
+    grammar: [adjp-de5-vp--manner, v-le5-obj--complete]
 
 - id: zh-hsk1-g025
   pt: 别 + <verb phrase>
   pr: bié + <verb phrase>
   ds: Direct prohibition or preventive request.
   lb: bie2-vp--dont
+  ex:
+    segments: [{word: bie2--dont}, {word: ti1--kick}, {word: men2--door}, {punctuation: 。}]
+    translation: "Don't kick the door."
+    grammar: [bie2-vp--dont, v-obj--object]
 
 - id: zh-hsk2026-g149
   pt: <clause one>，(但 / 但是) + <contrasting clause>
   pr: <clause one>, (dàn / dàn shì) + <contrasting clause>
   ds: Contrast without requiring an explicit concessive first marker.
   lb: clause-dan4-or-dan4-shi4-clause--but
+  ex:
+    segments: [{word: fan4-guan3--restaurant}, {word: hen3--very}, {word: xiao3--small}, {punctuation: ，}, {word: dan4--but}, {word: cai4--dish}, {word: hen3--very}, {word: hao3-chi1--tasty}, {punctuation: 。}]
+    translation: "The restaurant is small, but the food is delicious."
+    grammar: [clause-dan4-or-dan4-shi4-clause--but, s-hen3-adj--describe]
 
 - id: zh-hsk2026-g137
   pt: <trigger clause>，就 + <result clause>
   pr: <trigger clause>, jiù + <result clause>
   ds: Contextual consequence or prompt next event.
   lb: clause-jiu4-clause--then
+  ex:
+    segments: [{word: wo3--me}, {word: dao4--arrive}, {word: jia1--home}, {word: jiu4--immediately-after}, {word: shui4-jiao4--sleep}, {punctuation: 。}]
+    translation: "I go to sleep as soon as I get home."
+    grammar: [clause-jiu4-clause--then, s-vp--verbal]
 
 - id: zh-hsk2026-g153
   pt: <question clause> + 呢？
   pr: <question clause> + ne?
   ds: Context-sensitive questioning tone; not a universal substitute for 吗.
   lb: clause-ne5--question-tone
+  ex:
+    segments: [{word: ta1--he}, {word: wei4-shen2-me5--why}, {word: bu4--not}, {word: gao1-xing4--happy}, {word: ne5--question}, {punctuation: ？}]
+    translation: "Why is he unhappy?"
+    grammar: [clause-ne5--question-tone, s-wei4-shen2-me5-pred--why, s-bu4-pred--not]
 
 - id: zh-hsk2026-g143
   pt: 从 + <starting place> + <motion phrase>
   pr: cóng + <starting place> + <motion phrase>
   ds: Spatial point of departure.
   lb: cong2-loc-vp--from
+  ex:
+    segments: [{word: ta1--he}, {word: cong2--from}, {word: jiao4-shi4--classroom}, {word: chu1-lai2--come-out}, {punctuation: 。}]
+    translation: "He comes out of the classroom."
+    grammar: [cong2-loc-vp--from, s-vp--verbal]
 
 - id: zh-hsk2026-g145
   pt: 从 + <route> + <motion phrase>
   pr: cóng + <route> + <motion phrase>
   ds: Route through or past a place; not necessarily departure.
   lb: cong2-route-vp--via
+  ex:
+    segments: [{word: qing3--please}, {word: cong2--via}, {word: zhe4-bian1--this-side}, {word: zou3--walk}, {punctuation: 。}]
+    translation: "Please walk this way."
+    grammar: [cong2-route-vp--via, qing3-vp--request]
 
 # Prepositions and conjunctions (printed p. 386).
 - id: zh-hsk2026-g142
@@ -134,17 +207,29 @@
   pr: cóng + <starting time> + <verb phrase>
   ds: Starting time of a compatible continuing or repeated action.
   lb: cong2-time-vp--since
+  ex:
+    segments: [{word: wo3--me}, {word: cong2--from}, {word: qu4-nian2--year}, {word: kai1-shi3--begin}, {word: xue2--learn}, {word: han4-yu3--chinese}, {punctuation: 。}]
+    translation: "I started learning Chinese last year."
+    grammar: [cong2-time-vp--since, v-obj--object]
 - id: zh-hsk2026-g101
   pt: <direction> + 面
   pr: <direction> + miàn
   ds: Location suffix; established compounds may reduce its tone.
   lb: dir-mian4--side
+  ex:
+    segments: [{word: qian2--front}, {word: mian4--side}, {word: shi4--identity}, {word: che1-zhan4--stop}, {punctuation: 。}]
+    translation: "The bus stop is up ahead."
+    grammar: [dir-mian4--side, loc-shi4-np--identify]
 
 - id: zh-hsk2026-g138
   pt: 都 + <situation> + 了
   pr: dōu + <situation> + le
   ds: Emphatic already, often later or greater than expected; not all.
   lb: dou1-state-le5--already
+  ex:
+    segments: [{word: dou1--already}, {word: shi2--ten}, {word: yi1--one}, {word: dian3--oclock}, {word: le5--change}, {punctuation: ！}]
+    translation: "It's already eleven o'clock!"
+    grammar: [dou1-state-le5--already, tens-shi2-ones--tens, time-hour-dian3-min-fen1--clock, state-le5--change]
 
 # Adverbs (printed p. 386).
 # 常 and 有时候 are explicit frequency expressions; standalone 常 is later vocabulary.
@@ -153,114 +238,190 @@
   pr: duō + <adjective> + a!
   ds: Exclaim at a high degree, not ask a measurement.
   lb: duo1-adj-a5--how
+  ex:
+    segments: [{word: zhe4--this}, {word: zhi1--classifier}, {word: niao3--bird}, {word: duo1--how}, {word: piao4-liang5--pretty}, {word: a5--particle}, {punctuation: ！}]
+    translation: "What a beautiful bird!"
+    grammar: [duo1-adj-a5--how, zhe4-or-na4-mw-n--this-that]
 
 - id: zh-hsk2-g024
   pt: 给 + <person> + <verb phrase>
   pr: gěi + <person> + <verb phrase>
   ds: Recipient or beneficiary before a compatible action.
   lb: gei3-p-vp--for-to
+  ex:
+    segments: [{word: wo3--me}, {word: gei3--for}, {word: nai3-nai5--grandmother}, {word: mai3--buy}, {word: yao4--medicine}, {punctuation: 。}]
+    translation: "I buy medicine for Grandma."
+    grammar: [gei3-p-vp--for-to, v-obj--object]
 
 - id: zh-hsk2026-g129
   pt: <plural subject> + 一起 + <verb phrase>
   pr: <plural subject> + yī qǐ + <verb phrase>
   ds: Act together, not merely perform the same action separately.
   lb: group-yi1-qi3-vp--together
+  ex:
+    segments: [{word: wo3-men5--we}, {word: yi1-qi3--together}, {word: you2-yong3--swim}, {punctuation: 。}]
+    translation: "We swim together."
+    grammar: [group-yi1-qi3-vp--together, s-vp--verbal]
 
 - id: zh-hsk2026-g140
   pt: 还是 + <verb phrase> + 吧
   pr: hái shi + <verb phrase> + ba
   ds: Prefer this action after considering alternatives.
   lb: hai2-shi5-vp-ba5--better
+  ex:
+    segments: [{word: hai2-shi5--better}, {word: zuo4--ride}, {word: di4-tie3--subway}, {word: ba5--suggestion}, {punctuation: 。}]
+    translation: "We'd better take the subway."
+    grammar: [hai2-shi5-vp-ba5--better, stmt-ba5--suggest, v-obj--object]
 
 - id: zh-hsk2026-g128
   pt: 好 + <adjective>！
   pr: hǎo + <adjective>!
   ds: Emphatic high degree; often an immediate reaction.
   lb: hao3-adj--so
+  ex:
+    segments: [{word: zhe4-li3--here}, {word: hao3--very}, {word: shu1-fu5--comfortable}, {punctuation: ！}]
+    translation: "It's so comfortable here!"
+    grammar: [hao3-adj--so, zhe4-li3-or-zhe4-r5-or-na4-li5-or-na4-r5-pred--place]
 
 - id: zh-hsk2026-g117
   pt: 好多 + <noun>
   pr: hǎo duō + <noun>
   ds: 好多 introduces an informal large unspecified quantity.
   lb: hao3-duo1-n--many
+  ex:
+    segments: [{word: men2-kou3--entrance}, {word: you3--have}, {word: hao3-duo1--many}, {word: che1--car}, {punctuation: 。}]
+    translation: "There are lots of cars at the entrance."
+    grammar: [hao3-duo1-n--many, loc-you3-qty-n--exist]
 
 - id: zh-hsk2026-g120
   pt: 几 + <measure word> + <noun>
   pr: jǐ + <measure word> + <noun>
   ds: Several in an assertion, not an information-seeking question.
   lb: ji3-mw-n--several
+  ex:
+    segments: [{word: wo3--me}, {word: mai3--buy}, {word: le5--completed}, {word: ji3--several}, {word: ben3--books}, {word: ben3-zi5--notebook}, {punctuation: 。}]
+    translation: "I bought a few notebooks."
+    grammar: [ji3-mw-n--several, v-le5-obj--complete, num-mw-n--count]
 
 - id: zh-hsk2026-g141
   pt: 就要 + <verb phrase> + 了
   pr: jiù yào + <verb phrase> + le
   ds: Event is imminent; compatible with an explicit near-future time.
   lb: jiu4-yao4-vp-le5--soon
+  ex:
+    segments: [{word: ming2-tian1--tomorrow}, {word: jiu4--earlier-than-expected}, {word: yao4--about-to}, {word: kai1-xue2--term}, {word: le5--change}, {punctuation: 。}]
+    translation: "School starts as early as tomorrow."
+    grammar: [jiu4-yao4-vp-le5--soon, time-jiu4-vp--early, state-le5--change]
 
 - id: zh-hsk2026-g133
   pt: 快 + <verb phrase> + 了
   pr: kuài + <verb phrase> + le
   ds: Event will happen soon; 快 is imminence, not speed.
   lb: kuai4-vp-le5--soon
+  ex:
+    segments: [{word: dian4-ying3--movie}, {word: kuai4--soon}, {word: kai1-shi3--begin}, {word: le5--change}, {punctuation: 。}]
+    translation: "The movie is about to begin."
+    grammar: [kuai4-vp-le5--soon, state-le5--change]
 
 - id: zh-hsk2026-g174
   pt: <place> + <verb> + 着 + <optional quantity> + <noun>
   pr: <place> + <verb> + zhe + <optional quantity> + <noun>
   ds: An entity exists in a maintained position or state.
   lb: loc-v-zhe5-qty-n--exist
+  ex:
+    segments: [{word: men2-kou3--entrance}, {word: zuo4--sit}, {word: zhe5--ongoing}, {word: yi1--one}, {word: wei4--people}, {word: lao3-shi1--teacher}, {punctuation: 。}]
+    translation: "A teacher is sitting at the entrance."
+    grammar: [loc-v-zhe5-qty-n--exist, v-zhe5--state, num-mw-n--count]
 
 - id: zh-hsk2026-g113
   pt: 每 + <measure word> + <noun> + 都 + <predicate>
   pr: měi + <measure word> + <noun> + dōu + <predicate>
   ds: Every member; 一 may precede the measure word.
   lb: mei3-mw-n-dou1-pred--every
+  ex:
+    segments: [{word: mei3--every}, {word: ge4--classifier}, {word: xue2-sheng5--student}, {word: dou1--all}, {word: ren4-shi5--know}, {word: ta1--he}, {punctuation: 。}]
+    translation: "Every student knows him."
+    grammar: [mei3-mw-n-dou1-pred--every, group-dou1-pred--all, v-obj--object]
 
 - id: zh-hsk2026-g157
   pt: <modifier> + 的
   pr: <modifier> + de
   ds: Nominal expression with an understood head noun.
   lb: mod-de5--nominal
+  ex:
+    segments: [{word: wo3--me}, {word: yao4--want}, {word: hong2-se4--red}, {word: de5--nominalizer}, {punctuation: 。}]
+    translation: "I want the red one."
+    grammar: [mod-de5--nominal, v-obj--object]
 
 - id: zh-hsk2026-g102
   pt: <noun> + (左 / 右)
   pr: <noun> + (zuǒ / yòu)
   ds: Left or right relative to a reference noun.
   lb: n-zuo3-or-you4--side
+  ex:
+    segments: [{word: men2--door}, {word: zuo3--left}, {word: shi4--identity}, {word: jiao4-shi4--classroom}, {punctuation: ，}, {word: men2--door}, {word: you4--right}, {word: shi4--identity}, {word: xi3-shou3-jian1--restroom}, {punctuation: 。}]
+    translation: "The classroom is to the left of the door, and the restroom is to the right."
+    grammar: [n-zuo3-or-you4--side, loc-shi4-np--identify, clause-clause--linked]
 
 - id: zh-hsk2026-g150
   pt: 那 + <consequent statement>
   pr: nà + <consequent statement>
   ds: In that case; discourse consequence, not a demonstrative noun modifier.
   lb: na4-stmt--then
+  ex:
+    segments: [{word: ni3--you}, {word: bu4--not}, {word: he1--drink}, {word: cha2--tea}, {punctuation: ？}, {word: na4--then}, {word: he1--drink}, {word: shui3--water}, {word: ba5--suggestion}, {punctuation: 。}]
+    translation: "You don't drink tea? Then have some water."
+    grammar: [na4-stmt--then, s-bu4-pred--not, stmt-ba5--suggest]
 
 - id: zh-hsk2026-g148
   pt: <noun phrase> + 跟 + <noun phrase>
   pr: <noun phrase> + gēn + <noun phrase>
   ds: Coordinate noun phrases, not arbitrary complete clauses.
   lb: np-gen1-np--and
+  ex:
+    segments: [{word: ye2-ye5--grandfather}, {word: gen1--and}, {word: nai3-nai5--grandmother}, {word: dou1--all}, {word: zai4--location}, {word: jia1--home}, {punctuation: 。}]
+    translation: "Grandpa and Grandma are both at home."
+    grammar: [np-gen1-np--and, group-dou1-pred--all, s-zai4-loc--at]
 
 - id: zh-hsk2026-g158
   pt: <example noun phrase> + 什么的
   pr: <example noun phrase> + shén me de
   ds: 什么的 means and similar things; not an actual what-question.
   lb: np-shen2-me5-de5--and-such
+  ex:
+    segments: [{word: wo3--me}, {word: xiang3--want}, {word: mai3--buy}, {word: bi3--pen}, {punctuation: 、}, {word: ben3-zi5--notebook}, {word: shen2-me5-de5--and-so-on}, {punctuation: 。}]
+    translation: "I'd like to buy pens, notebooks, and things like that."
+    grammar: [np-shen2-me5-de5--and-such, s-xiang3-vp--want, v-obj--object]
 
 - id: zh-hsk2026-g118
   pt: <round number> + 多 + <measure word> + <noun>
   pr: <round number> + duō + <measure word> + <noun>
   ds: Above a round tens-or-larger number, below the next such boundary.
   lb: num-duo1-mw-n--over
+  ex:
+    segments: [{word: ban1--class}, {word: li3--inside}, {word: you3--have}, {word: san1--three}, {word: shi2--ten}, {word: duo1--over}, {word: ge4--classifier}, {word: xue2-sheng5--student}, {punctuation: 。}]
+    translation: "There are over thirty students in the class."
+    grammar: [num-duo1-mw-n--over, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc, loc-you3-qty-n--exist, tens-shi2-ones--tens, num-mw-n--count]
 
 - id: zh-hsk2026-g119
   pt: <number> + <measure word> + 多 + <noun>
   pr: <number> + <measure word> + duō + <noun>
   ds: A little over the stated amount; use divisible units.
   lb: num-mw-duo1-n--fraction-over
+  ex:
+    segments: [{word: wo3--me}, {word: he1--drink}, {word: le5--completed}, {word: yi1--one}, {word: bei1--cupfuls}, {word: duo1--over}, {word: shui3--water}, {punctuation: 。}]
+    translation: "I drank a little over a cup of water."
+    grammar: [num-mw-duo1-n--fraction-over, v-le5-obj--complete, num-bei1-drink--cups]
 
 - id: zh-hsk2026-g184
   pt: <number> + <ordering unit>
   pr: <number> + <ordering unit>
   ds: Conventional numbered unit in context; not general omission of 第.
   lb: num-unit--ordinal
+  ex:
+    segments: [{word: wo3--me}, {word: zhu4--live}, {word: san1--three}, {word: lou2--floor}, {punctuation: 。}]
+    translation: "I live on the third floor."
+    grammar: [num-unit--ordinal, s-vp--verbal]
 
 # Numbers and measure words (printed pp. 386, 388).
 # 好多 is introduced here despite later standalone vocabulary placement.
@@ -271,96 +432,160 @@
   pr: <number> + wàn + <optional remainder>
   ds: Ten-thousand grouping; retain 零 for skipped internal places.
   lb: num-wan4-rest--ten-thousands
+  ex:
+    segments: [{word: zhe4--this}, {word: che1--car}, {word: wu3--five}, {word: wan4--ten-thousand}, {word: yuan2--yuan}, {punctuation: 。}]
+    translation: "This car costs fifty thousand yuan."
+    grammar: [num-wan4-rest--ten-thousands, s-np--nominal, amt-yuan2-or-kuai4-or-fen1--money]
 
 - id: zh-hsk2026-g171
   pt: <option one> + 还是 + <option two>？
   pr: <option one> + hái shi + <option two>?
   ds: Ask a choice between alternatives; do not add 吗.
   lb: option-hai2-shi5-option--choice
+  ex:
+    segments: [{word: ni3--you}, {word: he1--drink}, {word: hong2-cha2--tea}, {word: hai2-shi5--or}, {word: ka1-fei1--coffee}, {punctuation: ？}]
+    translation: "Would you like black tea or coffee?"
+    grammar: [option-hai2-shi5-option--choice, v-obj--object]
 
 - id: zh-hsk2026-g159
   pt: <affected subject> + <event predicate>
   pr: <affected subject> + <event predicate>
   ds: Patient as subject without 被; context and compatible verbs license it.
   lb: patient-pred--affected
+  ex:
+    segments: [{word: piao4--ticket}, {word: mai3--buy}, {word: le5--completed}, {punctuation: 。}]
+    translation: "The tickets have been bought."
+    grammar: [patient-pred--affected, v-le5-obj--complete]
 
 - id: zh-hsk2026-g135
   pt: <subject> + (常 / 经常) + <verb phrase>
   pr: <subject> + (cháng / jīng cháng) + <verb phrase>
   ds: Often; 常 is explicitly introduced alongside 经常.
   lb: s-chang2-or-jing1-chang2-vp--often
+  ex:
+    segments: [{word: wo3--me}, {word: chang2--often}, {word: qu4--go}, {word: shu1-dian4--bookstore}, {punctuation: 。}]
+    translation: "I often go to the bookstore."
+    grammar: [s-chang2-or-jing1-chang2-vp--often, s-vp--verbal]
 
 - id: zh-hsk2026-g146
   pt: <subject> + 跟 + <person> + <verb phrase>
   pr: <subject> + gēn + <person> + <verb phrase>
   ds: Companion or interaction partner; not noun coordination.
   lb: s-gen1-p-vp--with
+  ex:
+    segments: [{word: wo3--me}, {word: gen1--with}, {word: jie3-jie5--sister}, {word: qu4--go}, {word: shang1-chang3--mall}, {punctuation: 。}]
+    translation: "I go to the mall with my older sister."
+    grammar: [s-gen1-p-vp--with, s-vp--verbal]
 
 - id: zh-hsk2-g006
   pt: <subject> + 还没 + <verb phrase> + 呢
   pr: <subject> + hái méi + <verb phrase> + ne
   ds: Expected event has not happened yet; final 呢 optional.
   lb: s-hai2-mei2-vp-ne5--not-yet
+  ex:
+    segments: [{word: wo3--me}, {word: hai2--still}, {word: mei2--negation}, {word: chi1--eat}, {word: wan3-fan4--dinner}, {word: ne5--ongoing}, {punctuation: 。}]
+    translation: "I haven't had dinner yet."
+    grammar: [s-hai2-mei2-vp-ne5--not-yet, s-mei2-or-mei2-you3-vp--no-event]
 
 - id: zh-hsk2026-g130
   pt: <subject> + 还 + <predicate>
   pr: <subject> + hái + <predicate>
   ds: A previous action or state still continues; not additive 还.
   lb: s-hai2-pred--still
+  ex:
+    segments: [{word: ba4-ba5--dad}, {word: hai2--still}, {word: zai4--location}, {word: gong1-si1--company}, {word: gong1-zuo4--work}, {punctuation: 。}]
+    translation: "Dad is still working at the office."
+    grammar: [s-hai2-pred--still, s-zai4-loc-vp--location]
 
 - id: zh-hsk2026-g181
   pt: <subject> + 叫 + <person> + <verb phrase>
   pr: <subject> + jiào + <person> + <verb phrase>
   ds: Tell or have someone act; not merely call their name.
   lb: s-jiao4-p-vp--tell
+  ex:
+    segments: [{word: lao3-shi1--teacher}, {word: jiao4--instruct}, {word: wo3--me}, {word: du2--read-aloud}, {word: zhe4--this}, {word: ge4--classifier}, {word: ci2--word}, {punctuation: 。}]
+    translation: "The teacher told me to read this word aloud."
+    grammar: [s-jiao4-p-vp--tell, v-obj--object, zhe4-or-na4-mw-n--this-that]
 
 - id: zh-hsk2026-g107
   pt: <subject> + 可能 + <predicate>
   pr: <subject> + kě néng + <predicate>
   ds: Possible event or state, not learned ability.
   lb: s-ke3-neng2-pred--may
+  ex:
+    segments: [{word: ta1--he}, {word: ke3-neng2--might}, {word: zai4--location}, {word: jiu3-dian4--hotel}, {punctuation: 。}]
+    translation: "He might be at the hotel."
+    grammar: [s-ke3-neng2-pred--may, s-zai4-loc--at]
 
 - id: zh-hsk2026-g161
   pt: <relative subject> + <relative predicate> + 的 + <noun>
   pr: <relative subject> + <relative predicate> + de + <noun>
   ds: A subject-predicate modifier; its relation to the head must be recoverable.
   lb: s-pred-de5-n--relative-clause
+  ex:
+    segments: [{word: zhe4--this}, {word: shi4--identity}, {word: ma1-ma5--mom}, {word: mai3--buy}, {word: de5--description}, {word: yu2--fish}, {punctuation: 。}]
+    translation: "This is the fish Mom bought."
+    grammar: [s-pred-de5-n--relative-clause, zhe4-or-na4-shi4-np--identify]
 
 - id: zh-hsk2026-g180
   pt: <subject> + 请 + <person> + <verb phrase>
   pr: <subject> + qǐng + <person> + <verb phrase>
   ds: Ask or invite a person to act; person also subjects the following action.
   lb: s-qing3-p-vp--invite
+  ex:
+    segments: [{word: wo3--me}, {word: qing3--invite}, {word: peng2-you5--friend}, {word: lai2--come}, {word: jia1--home}, {word: li3--inside}, {word: chi1--eat}, {word: fan4--meal}, {punctuation: 。}]
+    translation: "I invite a friend to my home for a meal."
+    grammar: [s-qing3-p-vp--invite, qu4-or-lai2-loc-vp--purpose, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc]
 
 - id: zh-hsk3-g020
   pt: <subject> + 让 + <person> + <verb phrase>
   pr: <subject> + ràng + <person> + <verb phrase>
   ds: Have or allow someone to act; force depends on context.
   lb: s-rang4-p-vp--cause
+  ex:
+    segments: [{word: ma1-ma5--mom}, {word: rang4--allow}, {word: wo3--me}, {word: shang4-wang3--online}, {punctuation: 。}]
+    translation: "Mom lets me go online."
+    grammar: [s-rang4-p-vp--cause, s-vp--verbal]
 
 - id: zh-hsk3-g014
   pt: <subject> + 是 + <focused circumstance> + <verb phrase> + 的
   pr: <subject> + shì + <focused circumstance> + <verb phrase> + de
   ds: Focus known-event time, place, manner or agent; 是 often optional.
   lb: s-shi4-focus-vp-de5--event-focus
+  ex:
+    segments: [{word: wo3--me}, {word: shi4--emphasis}, {word: zuo2-tian1--yesterday}, {word: zuo4--ride}, {word: fei1-ji1--airplane}, {word: lai2--come}, {word: de5--assurance}, {punctuation: 。}]
+    translation: "I came by plane yesterday."
+    grammar: [s-shi4-focus-vp-de5--event-focus, s-vp-vp--means, time-s-vp-or-s-time-vp--time]
 
 - id: zh-hsk2026-g172
   pt: <subject> + 是 + <characterizing noun phrase>
   pr: <subject> + shì + <characterizing noun phrase>
   ds: Describe a characteristic, such as material; not literal class membership.
   lb: s-shi4-np--characterize
+  ex:
+    segments: [{word: ta1--he}, {word: shi4--identity}, {word: gao1--tall}, {word: ge4-zi5--height}, {punctuation: 。}]
+    translation: "He is tall."
+    grammar: [s-shi4-np--characterize, adjp-de5-n--describe]
 
 - id: zh-hsk2026-g182
   pt: <subject> + <transfer verb> + 给 + <recipient> + <thing>
   pr: <subject> + <transfer verb> + gěi + <recipient> + <thing>
   ds: Recipient follows 给 after a compatible transfer verb.
   lb: s-v-gei3-p-obj--transfer
+  ex:
+    segments: [{word: wo3--me}, {word: song4--gift}, {word: gei3--to}, {word: mei4-mei5--sister}, {word: yi1--one}, {word: ben3--books}, {word: shu1--book}, {punctuation: 。}]
+    translation: "I give my younger sister a book as a present."
+    grammar: [s-v-gei3-p-obj--transfer, num-mw-n--count]
 
 - id: zh-hsk2026-g109
   pt: <subject> + <verb> + 自己
   pr: <subject> + <verb> + zì jǐ
   ds: Reflexive object; identify the intended antecedent from context.
   lb: s-v-zi4-ji3--self
+  ex:
+    segments: [{word: ta1--she}, {word: hen3--very}, {word: ai4--love}, {word: zi4-ji3--self}, {punctuation: 。}]
+    translation: "She loves herself very much."
+    grammar: [s-v-zi4-ji3--self, v-obj--object]
 
 # Pronouns and adjective reduplication (printed p. 386).
 - id: zh-hsk2026-g108
@@ -368,36 +593,60 @@
   pr: <subject> + wèi shén me + <predicate>?
   ds: Ask the reason; no additional 吗.
   lb: s-wei4-shen2-me5-pred--why
+  ex:
+    segments: [{word: ni3--you}, {word: wei4-shen2-me5--why}, {word: xue2--learn}, {word: han4-yu3--chinese}, {punctuation: ？}]
+    translation: "Why are you learning Chinese?"
+    grammar: [s-wei4-shen2-me5-pred--why, v-obj--object]
 
 - id: zh-hsk2026-g131
   pt: <subject> + 已经 + <predicate> + 了
   pr: <subject> + yǐ jīng + <predicate> + le
   ds: Already true by the reference time; final 了 context-dependent.
   lb: s-yi3-jing1-pred-le5--already
+  ex:
+    segments: [{word: wo3--me}, {word: yi3-jing1--already}, {word: chi1--eat}, {word: fan4--meal}, {word: le5--change}, {punctuation: 。}]
+    translation: "I've already eaten."
+    grammar: [s-yi3-jing1-pred-le5--already, state-le5--change, v-obj--object]
 
 - id: zh-hsk2026-g173
   pt: <subject> + 有 + <measurement>
   pr: <subject> + yǒu + <measurement>
   ds: Reach a measured age, size or amount; not possession.
   lb: s-you3-qty--measure
+  ex:
+    segments: [{word: ye2-ye5--grandfather}, {word: you3--reach-degree}, {word: qi1--seven}, {word: shi2--ten}, {word: sui4--age}, {word: le5--change}, {punctuation: 。}]
+    translation: "Grandpa is seventy years old now."
+    grammar: [s-you3-qty--measure, tens-shi2-ones--tens, state-le5--change]
 
 - id: zh-hsk2026-g132
   pt: <subject> + (有时 / 有时候) + <verb phrase>
   pr: <subject> + (yǒu shí / yǒu shí hou) + <verb phrase>
   ds: Sometimes; 有时候 extends 有时 with neutral-tone 候.
   lb: s-you3-shi2-or-you3-shi2-hou5-vp--sometimes
+  ex:
+    segments: [{word: wo3--me}, {word: you3-shi2-hou5--sometimes}, {word: zou3-lu4--walk}, {word: shang4-ban1--work}, {punctuation: 。}]
+    translation: "I sometimes walk to work."
+    grammar: [s-you3-shi2-or-you3-shi2-hou5-vp--sometimes, s-vp-vp--means]
 
 - id: zh-hsk2026-g134
   pt: <subject> + 正 + <verb phrase> + 呢
   pr: <subject> + zhèng + <verb phrase> + ne
   ds: Action in progress at that moment; final 呢 optional.
   lb: s-zheng4-vp-ne5--right-now
+  ex:
+    segments: [{word: ta1--he}, {word: zheng4--ongoing}, {word: xie3--write}, {word: zi4--character}, {word: ne5--ongoing}, {punctuation: 。}]
+    translation: "He is writing right now."
+    grammar: [s-zheng4-vp-ne5--right-now, v-obj--object]
 
 - id: zh-hsk2026-g110
   pt: <subject> + 自己 + <verb phrase>
   pr: <subject> + zì jǐ + <verb phrase>
   ds: The subject acts personally or independently.
   lb: s-zi4-ji3-vp--personally
+  ex:
+    segments: [{word: wo3--me}, {word: zi4-ji3--self}, {word: mai3--buy}, {word: piao4--ticket}, {punctuation: 。}]
+    translation: "I'll buy the tickets myself."
+    grammar: [s-zi4-ji3-vp--personally, v-obj--object]
 
 # Linked clauses and expression patterns (printed p. 388).
 - id: zh-hsk2026-g183
@@ -405,36 +654,60 @@
   pr: shì + <option clause>, hái shi + <alternative clause>?
   ds: Choose between propositions; initial 是 may be omitted.
   lb: shi4-clause-hai2-shi5-clause--choice
+  ex:
+    segments: [{word: shi4--emphasis}, {word: ni3--you}, {word: lai2--come}, {word: wo3--me}, {word: jia1--home}, {punctuation: ，}, {word: hai2-shi5--or}, {word: wo3--me}, {word: qu4--go}, {word: ni3--you}, {word: jia1--home}, {punctuation: ？}]
+    translation: "Are you coming to my home, or am I going to yours?"
+    grammar: [shi4-clause-hai2-shi5-clause--choice, owner-de5-n--possess, s-vp--verbal]
 
 - id: zh-hsk2026-g156
   pt: <utterance> + 啊
   pr: <utterance> + a
   ds: Warmth or emphasis; spoken sound varies with preceding syllable.
   lb: stmt-a5--tone
+  ex:
+    segments: [{word: ni3--you}, {word: lai2--come}, {word: le5--change}, {word: a5--particle}, {punctuation: ！}]
+    translation: "Oh, you're here!"
+    grammar: [stmt-a5--tone, state-le5--change]
 
 - id: zh-hsk2026-g154
   pt: <conjectured statement> + 吧
   pr: <conjectured statement> + ba
   ds: Tentative judgement or request for confirmation; not a suggestion.
   lb: stmt-ba5--suppose
+  ex:
+    segments: [{word: ta1--he}, {word: shi4--identity}, {word: ni3--you}, {word: de5--possession}, {word: lao3-shi1--teacher}, {word: ba5--suggestion}, {punctuation: 。}]
+    translation: "He's your teacher, right?"
+    grammar: [stmt-ba5--suppose, s-shi4-n--identity, owner-de5-n--possess]
 
 - id: zh-hsk2026-g155
   pt: <assured statement> + 的
   pr: <assured statement> + de
   ds: Assert confidence or assurance; not possession or event-focus 是……的.
   lb: stmt-de5--assure
+  ex:
+    segments: [{word: wo3--me}, {word: neng2--ability}, {word: bang1--help}, {word: ni3--you}, {word: de5--assurance}, {punctuation: 。}]
+    translation: "I can help you, I promise."
+    grammar: [stmt-de5--assure, s-neng2-or-ke3-yi3-vp--can-may, v-obj--object]
 
 - id: zh-hsk2-g011
   pt: 虽然 + <conceded clause>，但是 + <contrasting clause>
   pr: suī rán + <conceded clause>, dàn shì + <contrasting clause>
   ds: Acknowledge a fact then contrast; either connector may stand alone.
   lb: sui1-ran2-clause-dan4-shi4-clause--although
+  ex:
+    segments: [{word: sui1-ran2--although}, {word: tian1--sky}, {word: yin1--cloudy}, {punctuation: ，}, {word: dan4-shi4--but}, {word: bu4--not}, {word: leng3--cold}, {punctuation: 。}]
+    translation: "Although it's cloudy, it isn't cold."
+    grammar: [sui1-ran2-clause-dan4-shi4-clause--although, s-bu4-pred--not, s-pred--statement]
 
 - id: zh-hsk2026-g139
   pt: <early time> + 就 + <verb phrase>
   pr: <early time> + jiù + <verb phrase>
   ds: Earlier than expected; the comparison baseline is contextual.
   lb: time-jiu4-vp--early
+  ex:
+    segments: [{word: ta1--she}, {word: zao3-shang5--morning}, {word: wu3--five}, {word: dian3--oclock}, {word: jiu4--earlier-than-expected}, {word: qi3-chuang2--get-up}, {punctuation: 。}]
+    translation: "She gets up as early as five in the morning."
+    grammar: [time-jiu4-vp--early, time-s-vp-or-s-time-vp--time, time-hour-dian3-min-fen1--clock]
 
 # Sentence types and special constructions (printed pp. 387-388).
 - id: zh-hsk2026-g170
@@ -442,12 +715,20 @@
   pr: <topic> + <related subject> + <predicate>
   ds: A subject-predicate comment describes an established larger topic.
   lb: topic-s-pred--topic-comment
+  ex:
+    segments: [{word: ta1--he}, {word: shen1-ti3--health}, {word: hen3--very}, {word: hao3--good}, {punctuation: 。}]
+    translation: "He is in good health."
+    grammar: [topic-s-pred--topic-comment, s-hen3-adj--describe]
 
 - id: zh-hsk2026-g167
   pt: <motion verb> + (出 / 过 / 进 / 上) + (来 / 去)
   pr: <motion verb> + (chū / guò / jìn / shàng) + (lái / qù)
   ds: Combine a literal path with toward/away orientation; object placement varies.
   lb: v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path
+  ex:
+    segments: [{word: xiao3--small}, {word: gou3--dog}, {word: pao3--run}, {word: jin4-lai2--enter}, {word: le5--change}, {punctuation: 。}]
+    translation: "The little dog ran in."
+    grammar: [v-chu1-or-guo4-or-jin4-or-shang4-lai2-or-qu4--path, adjp-de5-n--describe, state-le5--change]
 
 # Complements (printed p. 387).
 - id: zh-hsk2026-g162
@@ -455,183 +736,307 @@
   pr: <verb> + cuò
   ds: Action yields an incorrect result.
   lb: v-cuo4--wrong
+  ex:
+    segments: [{word: ni3--you}, {word: xie3--write}, {word: cuo4--wrong}, {word: wo3--me}, {word: de5--possession}, {word: ming2-zi5--name}, {word: le5--change}, {punctuation: 。}]
+    translation: "You've written my name incorrectly."
+    grammar: [v-cuo4--wrong, owner-de5-n--possess, state-le5--change]
 
 - id: zh-hsk2-g018
   pt: <verb> + 得 + <adjective phrase>
   pr: <verb> + de + <adjective phrase>
   ds: Evaluate actual manner or performance, not potential ability.
   lb: v-de5-adjp--performance
+  ex:
+    segments: [{word: ta1--he}, {word: chang4--sing}, {word: de5--manner}, {word: hen3--very}, {word: hao3-ting1--pleasant}, {punctuation: 。}]
+    translation: "He sings beautifully."
+    grammar: [v-de5-adjp--performance]
 
 - id: zh-hsk2026-g163
   pt: <perception verb> + 懂
   pr: <perception verb> + dǒng
   ds: Comprehension achieved through the action.
   lb: v-dong3--understand
+  ex:
+    segments: [{word: wo3--me}, {word: ting1--listen}, {word: dong3--understand}, {word: le5--completed}, {punctuation: 。}]
+    translation: "I understood what I heard."
+    grammar: [v-dong3--understand, v-le5-obj--complete]
 
 - id: zh-hsk2-g005
   pt: <verb> + 过
   pr: <verb> + guo
   ds: Prior experience, not narration of one particular completed event.
   lb: v-guo5--experience
+  ex:
+    segments: [{word: wo3--me}, {word: zuo4--ride}, {word: guo5--experience}, {word: di4-tie3--subway}, {punctuation: 。}]
+    translation: "I've taken the subway before."
+    grammar: [v-guo5--experience, v-obj--object]
 
 - id: zh-hsk2026-g164
   pt: <verb> + 好
   pr: <verb> + hǎo
   ds: Action reaches a satisfactory or ready state, not merely stops.
   lb: v-hao3--ready
+  ex:
+    segments: [{word: fan4--meal}, {word: zuo4--make}, {word: hao3--completed}, {word: le5--change}, {punctuation: 。}]
+    translation: "The meal is ready."
+    grammar: [v-hao3--ready, patient-pred--affected, state-le5--change]
 
 - id: zh-hsk2026-g185
   pt: <motion verb> + (回来 / 回去)
   pr: <motion verb> + (huí lai / huí qu)
   ds: Return toward/away; lexical neutral finals follow the vocabulary inventory.
   lb: v-hui2-lai5-or-hui2-qu5--return
+  ex:
+    segments: [{word: ge1-ge5--brother}, {word: pao3--run}, {word: hui2-lai5--return}, {word: le5--change}, {punctuation: 。}]
+    translation: "My older brother ran back."
+    grammar: [v-hui2-lai5-or-hui2-qu5--return, state-le5--change]
 
 - id: zh-hsk2026-g165
   pt: <learning verb> + 会
   pr: <learning verb> + huì
   ds: Skill acquired through learning; result, not preceding modal ability.
   lb: v-hui4--master
+  ex:
+    segments: [{word: wo3--me}, {word: xue2--learn}, {word: hui4--ability}, {word: you2-yong3--swim}, {word: le5--change}, {punctuation: 。}]
+    translation: "I've learned to swim."
+    grammar: [v-hui4--master, state-le5--change]
 
 - id: zh-hsk2-g021
   pt: <motion verb> + (来 / 去)
   pr: <motion verb> + (lái / qù)
   ds: Motion toward or away from the contextual reference point.
   lb: v-lai2-or-qu4--direction
+  ex:
+    segments: [{word: xiao3--small}, {word: niao3--bird}, {word: fei1--fly}, {word: lai2--come}, {word: le5--change}, {punctuation: 。}]
+    translation: "A little bird flew over here."
+    grammar: [v-lai2-or-qu4--direction, adjp-de5-n--describe, state-le5--change]
 
 - id: zh-hsk3-g023
   pt: <verb> + 了 + <duration> + <optional object>
   pr: <verb> + le + <duration> + <optional object>
   ds: Elapsed action duration; object placement varies with its type.
   lb: v-le5-duration-obj--duration
+  ex:
+    segments: [{word: wo3--me}, {word: shui4--sleep}, {word: le5--completed}, {word: ba1--eight}, {word: ge4--classifier}, {word: xiao3-shi2--hour}, {punctuation: 。}]
+    translation: "I slept for eight hours."
+    grammar: [v-le5-duration-obj--duration, v-le5-obj--complete, num-mw-n--count]
 
 - id: zh-hsk3-g024
   pt: <verb> + (了 / 过) + <optional object> + <number> + 次
   pr: <verb> + (le / guo) + <optional object> + <number> + cì
   ds: Completed or experienced occurrences; object placement depends on object type.
   lb: v-le5-or-guo5-obj-num-ci4--event-count
+  ex:
+    segments: [{word: wo3--me}, {word: qu4--go}, {word: guo5--experience}, {word: zhong1-guo2--china}, {word: liang3--two}, {word: ci4--times}, {punctuation: 。}]
+    translation: "I've been to China twice."
+    grammar: [v-le5-or-guo5-obj-num-ci4--event-count, v-guo5--experience, v-num-ci4--times]
 
 - id: zh-hsk2026-g105
   pt: <monosyllabic verb> + 了 + <same verb>
   pr: <monosyllabic verb> + le + <same verb>
   ds: A bounded brief action already performed.
   lb: v-le5-v--brief-done
+  ex:
+    segments: [{word: ta1--he}, {word: kan4--watch}, {word: le5--completed}, {word: kan4--watch}, {word: shou3-biao3--watch}, {punctuation: 。}]
+    translation: "He glanced at his watch."
+    grammar: [v-le5-v--brief-done, v-obj--object]
 
 - id: zh-hsk2026-g126
   pt: <verb> + <number> + 次
   pr: <verb> + <number> + cì
   ds: Count action occurrences, not objects.
   lb: v-num-ci4--times
+  ex:
+    segments: [{word: qing3--please}, {word: du2--read-aloud}, {word: san1--three}, {word: ci4--times}, {punctuation: 。}]
+    translation: "Please read it aloud three times."
+    grammar: [v-num-ci4--times, qing3-vp--request]
 
 - id: zh-hsk2026-g168
   pt: <motion verb> + 起来
   pr: <motion verb> + qǐ lai
   ds: Literal upward rising; not the onset extension introduced later.
   lb: v-qi3-lai5--rise
+  ex:
+    segments: [{word: hai2-zi5--child}, {word: zuo4--sit}, {word: qi3-lai5--rise}, {word: le5--change}, {punctuation: 。}]
+    translation: "The child sat up."
+    grammar: [v-qi3-lai5--rise, state-le5--change]
 
 - id: zh-hsk2026-g166
   pt: <motion verb> + (上 / 下 / 进 / 出 / 过 / 回)
   pr: <motion verb> + (shàng / xià / jìn / chū / guò / huí)
   ds: Literal upward/downward/inward/outward/across/return motion.
   lb: v-shang4-or-xia4-or-jin4-or-chu1-or-guo4-or-hui2--path
+  ex:
+    segments: [{word: ta1--he}, {word: zou3--walk}, {word: chu1--result}, {word: jiao4-shi4--classroom}, {punctuation: 。}]
+    translation: "He walks out of the classroom."
+    grammar: [v-shang4-or-xia4-or-jin4-or-chu1-or-guo4-or-hui2--path]
 
 - id: zh-hsk2026-g103
   pt: <monosyllabic verb> + <same verb>
   pr: <monosyllabic verb> + <same verb>
   ds: Brief or tentative action; second syllable often unstressed.
   lb: v-v--try
+  ex:
+    segments: [{word: ni3--you}, {word: kan4--watch}, {word: kan4--watch}, {word: zhe4--this}, {word: ben3--books}, {word: shu1--book}, {punctuation: 。}]
+    translation: "Take a look at this book."
+    grammar: [v-v--try, v-obj--object, zhe4-or-na4-mw-n--this-that]
 
 - id: zh-hsk2026-g106
   pt: <disyllabic verb> + <same disyllabic verb>
   pr: <disyllabic verb> + <same disyllabic verb>
   ds: Tentative ABAB action; not all two-syllable verbs reduplicate.
   lb: v-v--try-abab
+  ex:
+    segments: [{word: wo3-men5--we}, {word: xiu1-xi5--rest}, {word: xiu1-xi5--rest}, {word: ba5--suggestion}, {punctuation: 。}]
+    translation: "Let's take a little break."
+    grammar: [v-v--try-abab, stmt-ba5--suggest]
 
 - id: zh-hsk2-g019
   pt: <verb> + 完
   pr: <verb> + wán
   ds: Action completed; negated completion need not mean never started.
   lb: v-wan2--finish
+  ex:
+    segments: [{word: wo3--me}, {word: kan4--read}, {word: wan2--finish}, {word: zhe4--this}, {word: ben3--books}, {word: shu1--book}, {word: le5--change}, {punctuation: 。}]
+    translation: "I've finished reading this book."
+    grammar: [v-wan2--finish, zhe4-or-na4-mw-n--this-that, state-le5--change]
 
 - id: zh-hsk2026-g186
   pt: <motion verb> + (下来 / 下去)
   pr: <motion verb> + (xià lai / xià qù)
   ds: Literal downward motion; readings follow the vocabulary inventory.
   lb: v-xia4-lai5-or-xia4-qu4--descend
+  ex:
+    segments: [{word: di4-di5--brother}, {word: pao3--run}, {word: xia4-lai5--descend}, {word: le5--change}, {punctuation: 。}]
+    translation: "My younger brother ran down here."
+    grammar: [v-xia4-lai5-or-xia4-qu4--descend, state-le5--change]
 
 - id: zh-hsk2026-g104
   pt: <monosyllabic verb> + 一 + <same verb>
   pr: <monosyllabic verb> + yī + <same verb>
   ds: Brief action or softened suggestion; restricted to compatible verbs.
   lb: v-yi1-v--brief
+  ex:
+    segments: [{word: qing3--please}, {word: xiang3--think}, {word: yi1--one}, {word: xiang3--think}, {punctuation: 。}]
+    translation: "Please think it over for a moment."
+    grammar: [v-yi1-v--brief, qing3-vp--request]
 
 - id: zh-hsk2026-g152
   pt: <activity verb> + 着
   pr: <activity verb> + zhe
   ds: Continued activity with compatible verbs; not automatic replacement for 正在.
   lb: v-zhe5--continuing
+  ex:
+    segments: [{word: ta1--she}, {word: chang4--sing}, {word: zhe5--ongoing}, {word: ge1--song}, {punctuation: 。}]
+    translation: "She is singing a song."
+    grammar: [v-zhe5--continuing, v-obj--object]
 
 - id: zh-hsk3-g003
   pt: <verb> + 着
   pr: <verb> + zhe
   ds: Maintained state or posture; distinguish an activity currently unfolding.
   lb: v-zhe5--state
+  ex:
+    segments: [{word: men2--door}, {word: kai1--open}, {word: zhe5--ongoing}, {punctuation: 。}]
+    translation: "The door is open."
+    grammar: [v-zhe5--state]
 
 - id: zh-hsk2026-g160
   pt: <verb phrase> + 的 + <noun>
   pr: <verb phrase> + de + <noun>
   ds: An action-based modifier before its head noun.
   lb: vp-de5-n--relative
+  ex:
+    segments: [{word: jiao1--teach}, {word: han4-yu3--chinese}, {word: de5--description}, {word: lao3-shi1--teacher}, {word: lai2--come}, {word: le5--change}, {punctuation: 。}]
+    translation: "The teacher who teaches Chinese is here."
+    grammar: [vp-de5-n--relative, v-obj--object, state-le5--change]
 
 - id: zh-hsk2026-g136
   pt: <first action>，再 + <next action>
   pr: <first action>, zài + <next action>
   ds: Another action follows the first; not necessarily repetition.
   lb: vp-zai4-vp--next
+  ex:
+    segments: [{word: ni3--you}, {word: chi1--eat}, {word: fan4--meal}, {punctuation: ，}, {word: zai4--then}, {word: chi1--eat}, {word: yao4--medicine}, {punctuation: 。}]
+    translation: "Eat first, then take your medicine."
+    grammar: [vp-zai4-vp--next, v-obj--object]
 
 - id: zh-hsk2026-g144
   pt: 往 + <direction or place> + <motion phrase>
   pr: wǎng + <direction or place> + <motion phrase>
   ds: Movement toward a direction or destination.
   lb: wang3-loc-vp--toward
+  ex:
+    segments: [{word: qing3--please}, {word: wang3--toward}, {word: you4-bian5--right}, {word: zou3--walk}, {punctuation: 。}]
+    translation: "Please walk to the right."
+    grammar: [wang3-loc-vp--toward, qing3-vp--request]
 
 - id: zh-hsk2-g007
   pt: (要 / 快要) + <verb phrase> + 了
   pr: (yào / kuài yào) + <verb phrase> + le
   ds: Imminent event; avoid a distant-plan reading.
   lb: yao4-or-kuai4-yao4-vp-le5--soon
+  ex:
+    segments: [{word: yao4--about-to}, {word: xia4-yu3--rain}, {word: le5--change}, {punctuation: 。}]
+    translation: "It's about to rain."
+    grammar: [yao4-or-kuai4-yao4-vp-le5--soon, state-le5--change]
 
 - id: zh-hsk3-g013
   pt: 一 + <trigger action>，就 + <result clause>
   pr: yī + <trigger action>, jiù + <result clause>
   ds: Immediate sequence or habitual trigger.
   lb: yi1-vp-jiu4-clause--as-soon
+  ex:
+    segments: [{word: wo3--me}, {word: yi1--as-soon-as}, {word: hui2--return}, {word: jia1--home}, {punctuation: ，}, {word: jiu4--immediately-after}, {word: he1--drink}, {word: shui3--water}, {punctuation: 。}]
+    translation: "As soon as I get home, I drink some water."
+    grammar: [yi1-vp-jiu4-clause--as-soon, clause-jiu4-clause--then, v-obj--object]
 
 - id: zh-hsk2-g010
   pt: 因为 + <cause clause>，所以 + <result clause>
   pr: yīn wèi + <cause clause>, suǒ yǐ + <result clause>
   ds: Cause and consequence; one connector may be omitted.
   lb: yin1-wei4-clause-suo3-yi3-clause--because
+  ex:
+    segments: [{word: yin1-wei4--because}, {word: wo3--me}, {word: hen3--very}, {word: lei4--tired}, {punctuation: ，}, {word: suo3-yi3--therefore}, {word: wo3--me}, {word: xiang3--want}, {word: xiu1-xi5--rest}, {punctuation: 。}]
+    translation: "Because I'm tired, I'd like to rest."
+    grammar: [yin1-wei4-clause-suo3-yi3-clause--because, s-hen3-adj--describe, s-xiang3-vp--want]
 
 - id: zh-hsk2026-g147
   pt: 因为 + <reason noun phrase>，<result clause>
   pr: yīn wèi + <reason noun phrase>, <result clause>
   ds: Because of a circumstance expressed as a noun phrase.
   lb: yin1-wei4-np-clause--because-of
+  ex:
+    segments: [{word: yin1-wei4--reason}, {word: zhe4--this}, {word: jian4--classifier}, {word: shi4--matter}, {punctuation: ，}, {word: wo3--me}, {word: hen3--very}, {word: gao1-xing4--happy}, {punctuation: 。}]
+    translation: "I'm very happy because of this."
+    grammar: [yin1-wei4-np-clause--because-of, zhe4-or-na4-mw-n--this-that, s-hen3-adj--describe]
 
 - id: zh-hsk2026-g111
   pt: (这么 / 那么) + <adjective>
   pr: (zhè me / nà me) + <adjective>
   ds: This/that degree; degree established by context.
   lb: zhe4-me5-or-na4-me5-adj--degree
+  ex:
+    segments: [{word: zhe4--this}, {word: ge4--classifier}, {word: bao1--bag}, {word: zhe4-me5--degree}, {word: gui4--expensive}, {punctuation: ！}]
+    translation: "This bag is so expensive!"
+    grammar: [zhe4-me5-or-na4-me5-adj--degree, zhe4-or-na4-mw-n--this-that]
 
 - id: zh-hsk2026-g112
   pt: (这么 / 那么 / 这样 / 那样) + <verb phrase>
   pr: (zhè me / nà me / zhè yàng / nà yàng) + <verb phrase>
   ds: Perform an action this/that way.
   lb: zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner
+  ex:
+    segments: [{word: ni3--you}, {word: ke3-yi3--permission}, {word: zhe4-yang4--this-way}, {word: xie3--write}, {punctuation: 。}]
+    translation: "You can write it this way."
+    grammar: [zhe4-me5-or-na4-me5-or-zhe4-yang4-or-na4-yang4-vp--manner, s-neng2-or-ke3-yi3-vp--can-may]
 
 - id: zh-hsk2-g015
   pt: 最 + <adjective>
   pr: zuì + <adjective>
   ds: Highest degree within a contextually established comparison set.
   lb: zui4-adj--most
+  ex:
+    segments: [{word: zhe4-xie1--these}, {word: yi1-fu5--clothes}, {word: li3--inside}, {punctuation: ，}, {word: zhe4--this}, {word: jian4--classifier}, {word: zui4--most}, {word: piao4-liang5--pretty}, {punctuation: 。}]
+    translation: "Of these clothes, this one is the prettiest."
+    grammar: [zui4-adj--most, zhe4-xie1-or-na4-xie1-n--these-those, n-shang4-or-xia4-or-li3-or-wai4-or-qian2-or-hou4--loc, zhe4-or-na4-mw-n--this-that]

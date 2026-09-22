@@ -1,5 +1,6 @@
 # HSK 2 additions to hsk-1\vocabulary.yaml; not a standalone cumulative list.
-# 280 incremental senses after grammar-prerequisite reconciliation.
+# 281 incremental senses after grammar/example-prerequisite reconciliation.
+# The fast/quick sense of 快 is taught in HSK 1 for its manner-adjective example.
 # Baseline: 259 senses, 253 for rows 301-500 and six new uses of earlier words.
 # Basis: November 2025 exam syllabus, effective July 2026.
 # Covers numbered rows 301-500, then the new HSK 2 uses explicitly marked on
@@ -71,7 +72,8 @@
 - {id: zh-hsk1-00053-s001, ch: 床, pr: chuáng, ds: bed, lb: chuang2--bed}
 - {id: zh-hsk2-00078-s001, ch: 词, pr: cí, ds: word, lb: ci2--word}
 - {id: zh-hsk1-00054-s013, ch: 次, pr: cì, ds: measure word for times or occurrences, lb: ci4--times}
-- {id: zh-hsk1-00055-s002, ch: 从, pr: cóng, ds: from (a place or time), lb: cong2--from}
+# Retains the source's general from sense, including nonspatial sources.
+- {id: zh-hsk1-00055-s002, ch: 从, pr: cóng, ds: 'from (a source, place, or time)', lb: cong2--from}
 - {id: zh-hsk1-00055-s003, ch: 从, pr: cóng, ds: through; via a route, lb: cong2--via}
 - {id: zh-hsk2-00081-s001, ch: 从小, pr: cóng xiǎo, ds: 'since childhood; from a young age', lb: cong2-xiao3--childhood}
 - {id: zh-hsk1-00056-s003, ch: 错, pr: cuò, ds: 'wrong; incorrect', lb: cuo4--wrong}
@@ -102,6 +104,9 @@
 - {id: zh-hsk1-00108-s001, ch: 飞, pr: fēi, ds: to fly, lb: fei1--fly}
 - {id: zh-hsk2026-00341-s001, ch: 高, pr: gāo, ds: height, lb: gao1--height}
 - {id: zh-hsk1-00116-s002, ch: 高, pr: gāo, ds: 'high; tall', lb: gao1--tall}
+# Original editorial grammatical realization for the AABB adjective example.
+# This is a teaching addition, not a new official numbered syllabus headword.
+- {id: zh-grammar-00234-s001, ch: 高高兴兴, pr: gāo gāo xìng xìng, ds: cheerful; happily (reduplicated adjective), lb: gao1-gao1-xing4-xing4--cheerful}
 - {id: zh-hsk2-00176-s001, ch: 高中, pr: gāo zhōng, ds: senior high school, lb: gao1-zhong1--school}
 - {id: zh-hsk1-00118-s002, ch: 告诉, pr: gào su, ds: to tell someone, lb: gao4-su5--tell}
 - {id: zh-hsk2-00177-s001, ch: 个子, pr: gè zi, ds: a person's height, lb: ge4-zi5--height}
@@ -175,7 +180,6 @@
 - {id: zh-hsk2-00305-s004, ch: 可能, pr: kě néng, ds: possibility, lb: ke3-neng2--possibility}
 - {id: zh-hsk2-00305-s002, ch: 可能, pr: kě néng, ds: possible, lb: ke3-neng2--possible}
 - {id: zh-hsk3-00415-s001, ch: 裤子, pr: kù zi, ds: 'trousers; pants', lb: ku4-zi5--trousers}
-- {id: zh-hsk1-00206-s001, ch: 快, pr: kuài, ds: 'fast; quick', lb: kuai4--fast}
 - {id: zh-hsk1-00206-s005, ch: 快, pr: kuài, ds: 'soon; about to', lb: kuai4--soon}
 - {id: zh-hsk2-00317-s001, ch: 快乐, pr: kuài lè, ds: 'happy; joyful', lb: kuai4-le4--happy}
 - {id: zh-hsk2-00318-s001, ch: 快要, pr: kuài yào, ds: about to do something, lb: kuai4-yao4--soon}
@@ -200,6 +204,8 @@
 - {id: zh-hsk1-00242-s002, ch: 门, pr: mén, ds: 'door; gate', lb: men2--door}
 - {id: zh-hsk1-00243-s001, ch: 门口, pr: mén kǒu, ds: 'entrance; doorway', lb: men2-kou3--entrance}
 - {id: zh-hsk1-00244-s001, ch: 门票, pr: mén piào, ds: admission ticket, lb: men2-piao4--ticket}
+# Measurement example prerequisite for nominal length/height; moved from HSK 3 unchanged.
+- {id: zh-hsk2-00359-s003, ch: 米, pr: mǐ, ds: meter (unit of length), lb: mi3--meter}
 - {id: zh-hsk2-00360-s002, ch: 面, pr: miàn, ds: 'side (ending in location words such as front or inside)', lb: mian4--side}
 - {id: zh-hsk2-00362-s001, ch: 名, pr: míng, ds: name, lb: ming2--name}
 - {id: zh-hsk2-00362-s005, ch: 名, pr: míng, ds: measure word for people, lb: ming2--people}

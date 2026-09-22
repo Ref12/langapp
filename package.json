@@ -12,6 +12,7 @@
     "curriculum:check": "node scripts/generate-app-curriculum.mjs --check",
     "curriculum:v2:order": "node scripts/v2-order-curriculum.mjs",
     "curriculum:v2:order:check": "node scripts/v2-order-curriculum.mjs --check",
+    "curriculum:v2:examples:check": "node scripts/v2-audit-examples.mjs",
     "build:v1": "tsc -b versions/v1 && node --experimental-global-webcrypto ./node_modules/vite/bin/vite.js build --config versions/v1/vite.config.ts",
     "lint": "eslint .",
     "preview": "vite preview",

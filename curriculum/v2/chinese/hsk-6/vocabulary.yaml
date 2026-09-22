@@ -1,5 +1,7 @@
 # HSK 6 additions to the earlier v2 levels; not a standalone cumulative list.
-# 2272 incremental senses after grammar-prerequisite additions and earlier moves.
+# 2273 incremental senses after grammar/example-prerequisite additions and earlier moves.
+# The water-well sense of 井 is taught in HSK 5 to support classifier 眼.
+# The cloth sense of 布 is taught in HSK 5 to support classifier 匹.
 # Baseline: 2265 senses, 2245 for all 1,800 numbered rows 3601-5400,
 # then 20 level-6 uses on 15 earlier numbered rows.
 # Earlier extensions: 358, 431, 440, 492, 573, 630, 685, 775, 1139, 1480,
@@ -207,7 +209,6 @@
 # Row 3677: 补习; 动.
 - {id: zh-hsk6-00058-s001, ch: 补习, pr: bǔ xí, ds: to take supplementary lessons; receive tutoring, lb: bu3-xi2--tutoring}
 # Row 3678: 布; 名.
-- {id: zh-hsk3-00061-s003, ch: 布, pr: bù, ds: cloth, lb: bu4--cloth}
 # Row 3679: 不安; 形.
 - {id: zh-hsk3-00054-s003, ch: 不安, pr: bù ān, ds: uneasy; anxious; restless, lb: bu4-an1--uneasy}
 # Row 3680: 不曾; 副.
@@ -392,6 +393,9 @@
 - {id: zh-hsk7-9-00441-s002, ch: 称呼, pr: chēng hu, ds: form of address; title, lb: cheng1-hu5--title}
 # Row 3755: 称作; 动.
 - {id: zh-hsk7-9-00442-s001, ch: 称作, pr: chēng zuò, ds: to be called; to be known as, lb: cheng1-zuo4--called}
+# Retained result/become sense for actual examples; never substitute fraction 成.
+# Source: complete-hsk-vocabulary revision above, row 990, zh-hsk2-00062-s006.
+- {id: zh-hsk2-00062-s006, ch: 成, pr: chéng, ds: to become; to turn into a resulting state, lb: cheng2--become}
 # Row 3758: 盛; 动.
 - {id: zh-hsk7-9-03640-s002, ch: 盛, pr: chéng, ds: to contain; hold, lb: cheng2--contain}
 # Row 3757: 乘2; 动.
@@ -1698,7 +1702,6 @@
 # Row 4321: 精准; 形.
 - {id: zh-hsk2026-04321-s001, ch: 精准, pr: jīng zhǔn, ds: precise; accurate, lb: jing1-zhun3--accurate}
 # Row 4322: 井; 名.
-- {id: zh-hsk6-00454-s003, ch: 井, pr: jǐng, ds: well for drawing water, lb: jing3--well}
 # Row 4323: 警告; 动.
 - {id: zh-hsk5-00410-s001, ch: 警告, pr: jǐng gào, ds: to warn; admonish, lb: jing3-gao4--warn}
 # Row 4324: 景观; 名.
@@ -2118,6 +2121,8 @@
 - {id: zh-hsk7-9-02822-s001, ch: 弥补, pr: mí bǔ, ds: to make up for; remedy a deficiency, lb: mi2-bu3--remedy}
 # Row 4501: 迷人; 形.
 - {id: zh-hsk5-00498-s001, ch: 迷人, pr: mí rén, ds: charming; fascinating, lb: mi2-ren2--charming}
+# Standalone example uses, promoted from component previews with identities unchanged.
+- {id: zh-hsk2-00359-s002, ch: 米, pr: mǐ, ds: rice, lb: mi3--rice}
 - {id: zh-hsk4-00496-s005, ch: 密, pr: mì, ds: close; intimate, lb: mi4--close}
 - {id: zh-hsk4-00496-s006, ch: 密, pr: mì, ds: dense; thick, lb: mi4--dense}
 # Row 4502: 密; 形.
@@ -3147,6 +3152,7 @@
 - {id: zh-hsk6-00825-s003, ch: 弯曲, pr: wān qū, ds: curved; bent, lb: wan1-qu1--curved}
 # Row 4958: 顽强; 形.
 - {id: zh-hsk6-00827-s001, ch: 顽强, pr: wán qiáng, ds: tenacious; resilient, lb: wan2-qiang2--tenacious}
+- {id: zh-hsk1-00376-s001, ch: 晚, pr: wǎn, ds: 'evening; night', lb: wan3--evening}
 # Row 4959: 万物; 名.
 - {id: zh-hsk2026-04959-s001, ch: 万物, pr: wàn wù, ds: all things; everything in nature, lb: wan4-wu4--everything}
 # Row 4960: 王子; 名.

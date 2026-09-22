@@ -1,83 +1,33 @@
+import { isDeepStrictEqual } from 'node:util'
 import { z } from 'zod'
-import { numberedPinyin } from './readable-labels.mjs'
 import {
-  inventoryMap,
   isMeaningfulComponent,
   lexicalLabelSchema,
   validateVocabularyComponents,
   vocabularyComponentsSchema,
 } from './v2-component-schema.mjs'
+import {
+  exampleSchema, exampleUnits, grammarExampleId, hskBands, stableIdSchema, unitKey,
+  validateBandExamples, validateCurriculumExamples,
+} from './v2-example-schema.mjs'
+import { auditGrammarVocabulary } from './v2-grammar-vocabulary.mjs'
 
-const id = z.string().regex(/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/)
-const label = lexicalLabelSchema
-const unique = (schema, message, minimum, maximum) => {
-  let values = z.array(schema)
-  if (minimum !== undefined) values = values.min(minimum)
-  if (maximum !== undefined) values = values.max(maximum)
-  return values.refine(items =>
-    new Set(items.map(value => typeof value === 'string' ? value : `${value.kind}:${value.ref}`)).size === items.length,
-  message)
-}
-const prose = z.string().trim().min(1).max(5000).regex(/^[^\u3400-\u9fff<>]+$/)
-const syllable = z.string().min(1).refine(value => /^[a-z\u0300\u0301\u0304\u0308\u030c]+$/.test(value.normalize('NFD')),
-  'Use one lowercase pinyin syllable')
-const utterance = z.object({
-  id,
-  segments: z.array(z.union([
-    z.object({ word: label }).strict(),
-    z.object({ punctuation: z.string().min(1).regex(/^[，。？！、：；…,.?!:; ]+$/) }).strict(),
-  ])).min(1).refine(parts => parts.some(part => 'word' in part), 'An example needs vocabulary'),
-  translation: prose,
-  grammar: unique(label, 'Duplicate grammar reference'),
-}).strict()
-const lexicalUnit = z.object({
+export const lexicalUnitSchema = z.object({
   kind: z.enum(['vocabulary', 'grammar']),
-  ref: label,
-  note: prose,
+  ref: lexicalLabelSchema,
 }).strict()
-
-const pronunciationSchema = z.object({
-  pinyin: prose,
-  tones: z.object({
-    syllable: z.string().regex(/^[a-z\u00fc]+$/),
-    introduction: prose,
-    examples: z.array(z.object({
-      tone: z.number().int().min(1).max(5),
-      pinyin: syllable,
-      name: prose.max(80),
-      contour: prose.max(120),
-      instruction: prose,
-    }).strict()).length(5),
-    neutralContext: z.object({
-      syllables: z.array(syllable).min(2),
-      focus: z.number().int().min(2),
-      explanation: prose,
-    }).strict(),
-  }).strict(),
-}).strict()
-
 export const lessonSchema = z.object({
-  id,
-  title: prose.max(120),
-  objectives: z.array(prose).min(1),
-  units: unique(lexicalUnit, 'Duplicate lexical unit', 4, 6),
-  examples: z.array(utterance).min(1),
+  id: stableIdSchema,
+  units: z.array(lexicalUnitSchema).min(4).max(6).refine(
+    units => new Set(units.map(unitKey)).size === units.length, 'Duplicate lexical unit'),
+  examples: z.array(exampleSchema).min(1),
 }).strict()
-
 export const lessonSequenceSchema = z.object({
-  schemaVersion: z.literal(2),
+  schemaVersion: z.literal(3),
   language: z.literal('chinese'),
-  alignment: z.literal('hsk-1'),
-  title: prose.max(120),
+  alignment: z.enum(hskBands.map(band => `hsk-${band}`)),
   status: z.literal('draft'),
-  coverage: z.literal('partial'),
-  source: z.object({
-    kind: z.literal('original'),
-    startingPoint: z.string().min(1),
-  }).strict(),
-  introduction: prose,
-  pronunciation: pronunciationSchema,
-  lessons: z.array(lessonSchema).min(1),
+  lessons: z.array(lessonSchema),
 }).strict()
 
 export function lessonComponentIntroductions(sequence, vocabulary, vocabularyComponents) {
@@ -107,87 +57,122 @@ export function lessonComponentIntroductions(sequence, vocabulary, vocabularyCom
   })
 }
 
-function uniqueIds(entries, context) {
-  const ids = new Set()
-  for (const entry of entries) {
-    if (ids.has(entry.id)) throw new Error(`Duplicate ${context}: ${entry.id}`)
-    ids.add(entry.id)
-  }
-  return ids
+function validateHsk1Components(input, bands) {
+  return validateVocabularyComponents(input.vocabularyComponents ?? [], {
+    vocabulary: bands[0].vocabulary,
+    componentVocabulary: [
+      ...bands.flatMap(band => band.vocabulary),
+      ...(input.componentVocabulary ?? []),
+    ],
+    morphemes: input.morphemes ?? [],
+  }, { requireComplete: true })
 }
 
-function validateTones(tones) {
-  const base = numberedPinyin(tones.syllable).slice(0, -1)
-  for (const [index, example] of tones.examples.entries()) {
-    if (example.tone !== index + 1 || numberedPinyin(example.pinyin) !== `${base}${example.tone}`) {
-      throw new Error('Tone examples must use the same syllable with tones 1-5 in order')
-    }
-  }
-  const sounds = tones.neutralContext.syllables.map(numberedPinyin)
-  const focus = tones.neutralContext.focus
-  if (focus > sounds.length || sounds[focus - 1] !== `${base}5` || !/[1-4]$/.test(sounds[focus - 2])) {
-    throw new Error('Neutral context must focus on the unmarked comparison syllable after a full-tone syllable')
+export function prepareLessonCurriculum(input) {
+  const context = validateCurriculumExamples(input.bands)
+  const audit = auditGrammarVocabulary(input)
+  if (audit.errors.length) throw new Error(`Grammar lexical prerequisites:\n${audit.errors.join('\n')}`)
+  const components = validateHsk1Components(input, context.bands)
+  return { ...context, grammarVocabulary: audit.requiredVocabulary, components }
+}
+
+export function prepareBandLessonCurriculum(input, selectedBand) {
+  const context = validateBandExamples(input.bands, selectedBand)
+  const target = input.bands.find(band => band.band === selectedBand)
+  const labels = new Set(target.grammar.map(record => record.lb))
+  // Audit only the selected band's complete grammar against cumulative vocabulary.
+  // The full curriculum path above never removes or exempts unfinished records.
+  const audit = auditGrammarVocabulary({
+    bands: input.bands.map(band => ({
+      band: band.band, vocabulary: band.vocabulary,
+      grammar: band.band === selectedBand ? band.grammar : [], examples: [],
+    })),
+    requirements: input.requirements.filter(requirement => labels.has(requirement.grammar)),
+  })
+  if (audit.errors.length) throw new Error(`Grammar lexical prerequisites:\n${audit.errors.join('\n')}`)
+  return {
+    ...context, grammarVocabulary: audit.requiredVocabulary,
+    components: selectedBand === '1' ? validateHsk1Components(input, context.bands) : null,
   }
 }
 
-export function validateLessonSequence(input, inventory) {
-  const sequence = lessonSequenceSchema.parse(input)
-  const vocabulary = inventoryMap(inventory.vocabulary, 'vocabulary')
-  const grammar = inventoryMap(inventory.grammar, 'grammar')
-  const grammarVocabulary = inventory.grammarVocabulary ?? {}
-  const { bindings } = validateVocabularyComponents(inventory.vocabularyComponents ?? [], inventory)
-  uniqueIds(sequence.lessons, 'lesson')
-  validateTones(sequence.pronunciation.tones)
-  lessonComponentIntroductions(sequence, vocabulary, bindings)
-
-  const known = { vocabulary: new Set(), grammar: new Set() }
-  for (const lesson of sequence.lessons) {
-    uniqueIds(lesson.examples, 'example')
-    const introduced = { vocabulary: new Set(), grammar: new Set() }
-    for (const unit of lesson.units) {
-      const registry = unit.kind === 'vocabulary' ? vocabulary : grammar
-      if (!registry.has(unit.ref)) throw new Error(`${lesson.id}: unknown ${unit.kind}: ${unit.ref}`)
-      if (known[unit.kind].has(unit.ref)) throw new Error(`${lesson.id}: lexical unit already introduced: ${unit.ref}`)
-      introduced[unit.kind].add(unit.ref)
-      known[unit.kind].add(unit.ref)
+function validateSequences(inputs, context) {
+  const known = new Set()
+  const lessonIds = new Set()
+  const exampleIds = new Set()
+  return inputs.map((input, bandIndex) => {
+    const sequence = lessonSequenceSchema.parse(input)
+    const band = context.bands[bandIndex]
+    if (sequence.alignment !== `hsk-${band.band}`) {
+      throw new Error(`Supply lesson sequences in cumulative order; expected hsk-${band.band}`)
     }
-    for (const grammarLabel of introduced.grammar) {
-      for (const word of grammarVocabulary[grammarLabel] ?? []) {
-        if (!known.vocabulary.has(word)) {
-          throw new Error(`${lesson.id}: grammar ${grammarLabel} requires vocabulary before or in the same lesson: ${word}`)
+    const authored = new Map(context.candidates[bandIndex].map(example => [example.id, exampleSchema.parse(example)]))
+    for (const lesson of sequence.lessons) {
+      if (lessonIds.has(lesson.id)) throw new Error(`Duplicate lesson ID: ${lesson.id}`)
+      lessonIds.add(lesson.id)
+      const introduced = new Set(lesson.units.map(unitKey))
+      for (const unit of lesson.units) {
+        const record = context[unit.kind].get(unit.ref)
+        if (!record) throw new Error(`${lesson.id}: unknown ${unit.kind}: ${unit.ref}`)
+        if (record.index !== bandIndex) {
+          throw new Error(`${lesson.id}: ${unit.ref} must be introduced at its canonical band hsk-${record.band}`)
+        }
+        const key = unitKey(unit)
+        if (known.has(key)) throw new Error(`${lesson.id}: lexical unit already introduced: ${unit.ref}`)
+        known.add(key)
+      }
+      for (const unit of lesson.units.filter(unit => unit.kind === 'grammar')) {
+        for (const word of context.grammarVocabulary[unit.ref] ?? []) {
+          if (!known.has(`vocabulary:${word}`)) {
+            throw new Error(`${lesson.id}: grammar ${unit.ref} requires vocabulary before or in the same lesson: ${word}`)
+          }
+        }
+        const expectedId = grammarExampleId(context.grammar.get(unit.ref))
+        if (!lesson.examples.some(example => example.id === expectedId)) {
+          throw new Error(`${lesson.id}: grammar ${unit.ref} needs its authored example ${expectedId}`)
         }
       }
-    }
-
-    const covered = { vocabulary: new Set(), grammar: new Set() }
-    for (const example of lesson.examples) {
-      let coversCurrentUnit = false
-      for (const segment of example.segments) {
-        if (!('word' in segment)) continue
-        if (!known.vocabulary.has(segment.word)) {
-          throw new Error(`${lesson.id}/${example.id}: vocabulary before introduction or unknown: ${segment.word}`)
+      const covered = new Set()
+      for (const example of lesson.examples) {
+        if (exampleIds.has(example.id)) throw new Error(`Duplicate lesson example ID: ${example.id}`)
+        exampleIds.add(example.id)
+        if (!isDeepStrictEqual(example, authored.get(example.id))) {
+          throw new Error(`${lesson.id}/${example.id}: example must match an authored candidate in ${sequence.alignment}`)
         }
-        if (introduced.vocabulary.has(segment.word)) {
-          covered.vocabulary.add(segment.word)
-          coversCurrentUnit = true
+        const references = exampleUnits(example)
+        for (const key of references) {
+          if (!known.has(key)) {
+            throw new Error(`${lesson.id}/${example.id}: ${key} before introduction or unknown`)
+          }
+          if (introduced.has(key)) covered.add(key)
         }
-      }
-      for (const grammarLabel of example.grammar) {
-        if (!known.grammar.has(grammarLabel)) {
-          throw new Error(`${lesson.id}/${example.id}: grammar before introduction or unknown: ${grammarLabel}`)
-        }
-        if (introduced.grammar.has(grammarLabel)) {
-          covered.grammar.add(grammarLabel)
-          coversCurrentUnit = true
+        if (!references.some(key => introduced.has(key))) {
+          throw new Error(`${lesson.id}/${example.id}: example does not demonstrate a new lexical unit`)
         }
       }
-      if (!coversCurrentUnit) throw new Error(`${lesson.id}/${example.id}: example does not demonstrate a new lexical unit`)
+      for (const key of introduced) {
+        if (!covered.has(key)) throw new Error(`${lesson.id}: introduced ${key} has no example`)
+      }
     }
     for (const kind of ['vocabulary', 'grammar']) {
-      for (const unit of introduced[kind]) {
-        if (!covered[kind].has(unit)) throw new Error(`${lesson.id}: introduced ${kind} has no example: ${unit}`)
+      const missing = band[kind].filter(record => !known.has(`${kind}:${record.lb}`))
+      if (missing.length) {
+        throw new Error(`${sequence.alignment}: missing ${missing.length} ${kind} units: ${missing.map(record => record.lb).join(', ')}`)
       }
     }
-  }
-  return sequence
+    if (bandIndex === 0) {
+      lessonComponentIntroductions(sequence, context.vocabulary, context.components.bindings)
+    }
+    return sequence
+  })
+}
+
+export function validateLessonCurriculum(sequences, input) {
+  if (sequences.length !== hskBands.length) throw new Error('Supply lessons for all seven HSK bands')
+  return validateSequences(sequences, prepareLessonCurriculum(input))
+}
+
+export function validateLessonSequence(sequence, input, previousSequences = []) {
+  const result = validateSequences([...previousSequences, sequence], prepareLessonCurriculum(input))
+  return result[result.length - 1]
 }

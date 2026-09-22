@@ -1,5 +1,5 @@
 # Curated v2 Chinese vocabulary: combined HSK 7-9 advanced band.
-# 6861 incremental senses including grammar prerequisites.
+# 6872 incremental senses including grammar/example prerequisites.
 # Baseline: 6814 senses for numbered rows 5401-11000 and 22 earlier-row
 # advanced extensions. Already-taught senses are not emitted again.
 # The November 2025 examination syllabus, effective July 2026, defines one
@@ -60,6 +60,9 @@
 - {id: zh-hsk6-00001-s005, ch: 挨, pr: ái, ds: to drag out; stall for time, lb: ai2--drag-out}
 - {id: zh-hsk6-00001-s003, ch: 挨, pr: ái, ds: to suffer; endure, lb: ai2--endure}
 - {id: zh-hsk7-9-00009-s001, ch: 癌症, pr: ái zhèng, ds: cancer, lb: ai2-zheng4--cancer}
+# Original volitional discourse-function gloss for the dismissive-choice pattern.
+# Not the affection sense of 爱; not an additional official syllabus headword.
+- {id: zh-grammar-00239-s001, ch: 爱, pr: ài, ds: as one pleases; marks indifference to whether another person acts, lb: ai4--dismissive-choice}
 - {id: zh-hsk7-9-00011-s001, ch: 爱不释手, pr: ài bù shì shǒu, ds: to like something so much that one cannot bear to put it down, lb: ai4-bu4-shi4-shou3--cannot-put-down}
 - {id: zh-hsk2026-05408-s701, ch: 爱戴, pr: ài dài, ds: to love and respect, lb: ai4-dai4--love-respect}
 - {id: zh-hsk2026-05409-s701, ch: 暧昧, pr: ài mèi, ds: ambiguous; equivocal, lb: ai4-mei4--ambiguous}
@@ -1013,6 +1016,7 @@
 - {id: zh-hsk7-9-00713-s002, ch: 大宗, pr: dà zōng, ds: the main bulk; principal category, lb: da4-zong1--main-bulk}
 - {id: zh-hsk7-9-00715-s001, ch: 逮, pr: dǎi, ds: to catch; seize (colloquial), lb: dai3--catch}
 - {id: zh-hsk7-9-00714-s003, ch: 歹徒, pr: dǎi tú, ds: violent criminal; gangster, lb: dai3-tu2--criminal}
+- {id: zh-grammar-00237-s001, ch: 带, pr: dài, ds: with; links an accompanying action, lb: dai4--accompanying}
 - {id: zh-hsk7-9-00716-s001, ch: 逮捕, pr: dài bǔ, ds: to arrest; apprehend, lb: dai4-bu3--arrest}
 - {id: zh-hsk7-9-00720-s001, ch: 带队, pr: dài duì, ds: to lead a team or group, lb: dai4-dui4--lead-team}
 - {id: zh-hsk7-9-00724-s001, ch: 怠工, pr: dài gōng, ds: to slack off; work slowly in protest, lb: dai4-gong1--slow-work}
@@ -2383,6 +2387,7 @@
 - {id: zh-hsk2026-07258-s701, ch: 激增, pr: jī zēng, ds: to increase sharply; surge, lb: ji1-zeng1--surge}
 - {id: zh-hsk7-9-01839-s002, ch: 机智, pr: jī zhì, ds: resourceful; quick-witted, lb: ji1-zhi4--resourceful}
 - {id: zh-hsk7-9-01849-s002, ch: 基准, pr: jī zhǔn, ds: benchmark; reference standard, lb: ji1-zhun3--benchmark}
+- {id: zh-grammar-00228-s001, ch: 急, pr: jí, ds: to concern oneself with and seek to resolve urgent needs, lb: ji2--attend-urgently}
 - {id: zh-hsk7-9-01865-s004, ch: 即, pr: jí, ds: immediately; at once, lb: ji2--immediately}
 - {id: zh-hsk7-9-01865-s002, ch: 即, pr: jí, ds: namely; that is, lb: ji2--namely}
 - {id: zh-hsk7-9-01864-s002, ch: 级别, pr: jí bié, ds: level; rank; grade, lb: ji2-bie2--level}
@@ -2947,6 +2952,8 @@
 - {id: zh-hsk2026-07724-s701, ch: 砍伐, pr: kǎn fá, ds: to fell trees; cut timber, lb: kan3-fa2--fell-trees}
 - {id: zh-hsk2026-07725-s701, ch: 侃侃而谈, pr: kǎn kǎn ér tán, ds: to speak confidently and fluently, lb: kan3-kan3-er2-tan2--speak-confidently}
 - {id: zh-hsk2026-07726-s701, ch: 坎坷, pr: kǎn kě, ds: rough and uneven; full of setbacks, lb: kan3-ke3--rough}
+# Retained consideration sense for 看在, not the literal visual-watch sense.
+- {id: zh-hsk1-00194-s009, ch: 看, pr: kàn, ds: to consider; to regard as, lb: kan4--consider}
 - {id: zh-hsk7-9-02342-s002, ch: 看台, pr: kàn tái, ds: spectators' stands; grandstand, lb: kan4-tai2--grandstand}
 - {id: zh-hsk7-9-02346-s002, ch: 慷慨, pr: kāng kǎi, ds: generous; magnanimous, lb: kang1-kai3--generous}
 - {id: zh-hsk7-9-02346-s001, ch: 慷慨, pr: kāng kǎi, ds: impassioned; fervent, lb: kang1-kai3--impassioned}
@@ -2965,6 +2972,8 @@
 - {id: zh-hsk7-9-02355-s003, ch: 苛刻, pr: kē kè, ds: excessively demanding; harsh, lb: ke1-ke4--exacting}
 - {id: zh-hsk2026-07741-s701, ch: 颗粒, pr: kē lì, ds: granule; particle, lb: ke1-li4--particle}
 - {id: zh-hsk2026-07742-s701, ch: 壳, pr: ké, ds: shell; hard outer covering, lb: ke2--shell}
+# Modal prefix for g950; promoted from component preview with source identity unchanged.
+- {id: zh-hsk5-00435-s001, ch: 可, pr: kě, ds: '(prefix) can; may; able to; -able', lb: ke3--can}
 - {id: zh-hsk7-9-02361-s001, ch: 可悲, pr: kě bēi, ds: sad; lamentable, lb: ke3-bei1--lamentable}
 - {id: zh-hsk7-9-02362-s002, ch: 可不是, pr: kě bù shi, ds: exactly; indeed (expressing agreement), lb: ke3-bu4-shi5--exactly}
 - {id: zh-hsk7-9-02363-s001, ch: 可乘之机, pr: kě chéng zhī jī, ds: opportunity for an opponent to exploit, lb: ke3-cheng2-zhi1-ji1--opening}
@@ -3117,6 +3126,13 @@
 - {id: zh-hsk7-9-02479-s002, ch: 蜡, pr: là, ds: wax, lb: la4--wax}
 - {id: zh-hsk7-9-02478-s001, ch: 腊月, pr: là yuè, ds: twelfth lunar month, lb: la4-yue4--twelfth-month}
 - {id: zh-hsk7-9-02480-s001, ch: 蜡烛, pr: là zhú, ds: candle, lb: la4-zhu2--candle}
+# Example-supported function senses for pinned grammar g1005, g997, g1002 and g973.
+# Original editorial glosses; these are not new official syllabus headwords.
+# 来 enumeration and 急 transitive help: MOE Revised Mandarin Dictionary via
+# https://www.moedict.tw/a/%E4%BE%86.json and https://www.moedict.tw/a/%E6%80%A5.json
+# 这不 discourse use: https://en.wiktionary.org/wiki/%E9%80%99%E4%B8%8D
+# Consulted 2026-09-22; no dictionary examples copied.
+- {id: zh-grammar-00227-s001, ch: 来, pr: lái, ds: particle after a numeral enumerating a reason, lb: lai2--reason-enumeration}
 - {id: zh-hsk7-9-02483-s002, ch: 来宾, pr: lái bīn, ds: guest; visitor, lb: lai2-bin1--guest}
 - {id: zh-hsk7-9-02484-s001, ch: 来电, pr: lái diàn, ds: incoming call or telegram, lb: lai2-dian4--incoming-call}
 - {id: zh-hsk7-9-02484-s002, ch: 来电, pr: lái diàn, ds: to telephone; send a message, lb: lai2-dian4--phone-in}
@@ -4564,6 +4580,9 @@
 - {id: zh-hsk7-9-03659-s002, ch: 师长, pr: shī zhǎng, ds: teacher; respected senior, lb: shi1-zhang3--teacher-senior}
 - {id: zh-hsk7-9-03660-s001, ch: 师资, pr: shī zī, ds: qualified teaching staff, lb: shi1-zi1--teaching-staff}
 - {id: zh-hsk7-9-03657-s001, ch: 失踪, pr: shī zōng, ds: to go missing; to disappear, lb: shi1-zong1--go-missing}
+# Bound function senses for the pinned alternating-state and accompanying-action patterns.
+# Original editorial glosses for g953 and g951; not new official syllabus headwords.
+- {id: zh-grammar-00236-s001, ch: 时, pr: shí, ds: at times; alternately before contrasting states, lb: shi2--at-times}
 - {id: zh-hsk7-9-03678-s001, ch: 实地, pr: shí dì, ds: the actual site; on the spot, lb: shi2-di4--on-site}
 - {id: zh-hsk7-9-03670-s003, ch: 时段, pr: shí duàn, ds: time slot; period of time, lb: shi2-duan4--time-slot}
 - {id: zh-hsk6-00719-s002, ch: 时而, pr: shí ér, ds: from time to time; sometimes, lb: shi2-er2--sometimes}
@@ -4904,6 +4923,9 @@
 - {id: zh-hsk7-9-03970-s003, ch: 坛, pr: tán, ds: altar; raised ceremonial platform, lb: tan2--altar}
 - {id: zh-hsk7-9-03970-s004, ch: 坛, pr: tán, ds: earthenware jar, lb: tan2--earthen-jar}
 - {id: zh-hsk7-9-03975-s001, ch: 痰, pr: tán, ds: phlegm; sputum, lb: tan2--phlegm}
+# Original bound arena sense for the professional-field suffix construction.
+# Distinct from the retained physical-platform, altar, and earthen-jar senses.
+- {id: zh-grammar-00238-s001, ch: 坛, pr: tán, ds: professional sphere or arena of an activity; bound suffix, lb: tan2--professional-arena}
 - {id: zh-hsk2026-09343-s701, ch: 谈及, pr: tán jí, ds: to mention; to touch on a topic, lb: tan2-ji2--mention}
 - {id: zh-hsk7-9-03976-s003, ch: 坦白, pr: tǎn bái, ds: to confess; to admit openly, lb: tan3-bai2--confess}
 - {id: zh-hsk7-9-03976-s001, ch: 坦白, pr: tǎn bái, ds: frank; open and honest, lb: tan3-bai2--frank}
@@ -6463,6 +6485,7 @@
 - {id: zh-hsk7-9-05253-s001, ch: 折磨, pr: zhé mó, ds: to torment; to torture, lb: zhe2-mo2--torment}
 - {id: zh-hsk7-9-05254-s003, ch: 折射, pr: zhé shè, ds: to reflect or reveal indirectly, lb: zhe2-she4--reflect-or-reveal-indirectly}
 - {id: zh-hsk7-9-05254-s001, ch: 折射, pr: zhé shè, ds: to refract, lb: zhe2-she4--refract}
+- {id: zh-grammar-00230-s001, ch: 这不, pr: zhè bù, ds: look; introduces readily available evidence supporting a preceding claim, lb: zhe4-bu4--evidential}
 - {id: zh-grammar-00207-s001, ch: 这么着, pr: zhè me zhe, ds: in this way; like this, lb: zhe4-me5-zhe5--this-way}
 - {id: zh-hsk7-9-05257-s001, ch: 这样一来, pr: zhè yàng yī lái, ds: as a result of this; thus, lb: zhe4-yang4-yi1-lai2--thus}
 - {id: zh-hsk7-9-05270-s002, ch: 珍藏, pr: zhēn cáng, ds: to collect and treasure, lb: zhen1-cang2--collect-and-treasure}
@@ -6570,10 +6593,14 @@
 - {id: zh-hsk7-9-05317-s001, ch: 支票, pr: zhī piào, ds: bank check; cheque, lb: zhi1-piao4--bank-check}
 - {id: zh-hsk7-9-05325-s001, ch: 知识分子, pr: zhī shi fèn zǐ, ds: intellectual; member of the intelligentsia, lb: zhi1-shi5-fen4-zi3--intellectual}
 - {id: zh-hsk7-9-05327-s001, ch: 肢体, pr: zhī tǐ, ds: limbs and body, lb: zhi1-ti3--limbs-and-body}
+- {id: zh-grammar-00229-s001, ch: 之余, pr: zhī yú, ds: besides an activity or state; in the time outside it, lb: zhi1-yu2--besides}
 - {id: zh-hsk6-01050-s001, ch: 支援, pr: zhī yuán, ds: to support; to provide assistance, lb: zhi1-yuan2--support}
 - {id: zh-hsk7-9-05318-s001, ch: 支柱, pr: zhī zhù, ds: pillar; mainstay, lb: zhi1-zhu4--pillar}
 - {id: zh-hsk7-9-05326-s001, ch: 知足, pr: zhī zú, ds: content with what one has, lb: zhi1-zu2--contentment}
 - {id: zh-hsklegacy-10841-s001, ch: 知足常乐, pr: zhī zú cháng lè, ds: contentment brings lasting happiness, lb: zhi1-zu2-chang2-le4--contentment-brings-lasting-happiness}
+# Retained source sense: complete-hsk-vocabulary revision above, row 10863,
+# zh-hsk3-00889-s003 (to happen to); used for the occasion opening in g1003.
+- {id: zh-hsk3-00889-s003, ch: 值, pr: zhí, ds: to coincide with; to fall on an occasion, lb: zhi2--on-occasion}
 - {id: zh-hsk2026-10690-s701, ch: 职称, pr: zhí chēng, ds: professional title; professional rank, lb: zhi2-cheng1--professional-title}
 - {id: zh-hsk7-9-05334-s001, ch: 直达, pr: zhí dá, ds: to reach directly without a change or intermediate stop, lb: zhi2-da2--reach-directly}
 - {id: zh-hsk7-9-05329-s001, ch: 执法, pr: zhí fǎ, ds: to enforce the law, lb: zhi2-fa3--enforce-the-law}

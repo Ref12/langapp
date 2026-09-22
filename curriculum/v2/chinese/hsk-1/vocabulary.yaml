@@ -1,4 +1,4 @@
-# HSK 1: 361 selected senses, including grammar prerequisites.
+# HSK 1: 364 selected senses, including grammar and example prerequisites.
 # Numbered-vocabulary baseline: 300 headwords, 355 senses.
 # Basis: November 2025 exam syllabus, effective July 2026.
 # Level-specific parts of speech govern the baseline; grammar prerequisites follow.
@@ -172,6 +172,8 @@
 - {id: zh-hsk1-00204-s001, ch: 口, pr: kǒu, ds: mouth, lb: kou3--mouth}
 - {id: zh-hsk1-00204-s002, ch: 口, pr: kǒu, ds: measure word for people in a family, lb: kou3--people}
 - {id: zh-hsk1-00205-s003, ch: 块, pr: kuài, ds: yuan (spoken currency unit), lb: kuai4--currency}
+# Manner-adjective example prerequisite, brought forward from HSK 2 unchanged.
+- {id: zh-hsk1-00206-s001, ch: 快, pr: kuài, ds: 'fast; quick', lb: kuai4--fast}
 - {id: zh-hsk1-00205-s002, ch: 块, pr: kuài, ds: measure word for pieces or chunks, lb: kuai4--piece}
 - {id: zh-hsk1-00207-s001, ch: 来, pr: lái, ds: to come, lb: lai2--come}
 - {id: zh-hsk1-00211-s001, ch: 老师, pr: lǎo shī, ds: teacher, lb: lao3-shi1--teacher}
@@ -254,6 +256,8 @@
 - {id: zh-hsk1-00318-s001, ch: 商店, pr: shāng diàn, ds: 'shop; store', lb: shang1-dian4--shop}
 - {id: zh-hsk1-00319-s006, ch: 上, pr: shàng, ds: 'on; above', lb: shang4--above}
 - {id: zh-hsk1-00319-s003, ch: 上, pr: shàng, ds: 'to go up; get on a vehicle', lb: shang4--ascend}
+# Separable-verb example prerequisite; promoted from component preview unchanged.
+- {id: zh-hsk1-00319-s004, ch: 上, pr: shàng, ds: 'to attend (class or university)', lb: shang4--attend}
 - {id: zh-hsk1-00319-s001, ch: 上, pr: shàng, ds: previous (week or month), lb: shang4--previous}
 - {id: zh-hsk1-00320-s001, ch: 上班, pr: shàng bān, ds: to go to work, lb: shang4-ban1--work}
 - {id: zh-hsk1-00324-s001, ch: 上课, pr: shàng kè, ds: to attend class, lb: shang4-ke4--class}
@@ -300,6 +304,9 @@
 - {id: zh-hsk1-00376-s003, ch: 晚, pr: wǎn, ds: late, lb: wan3--late}
 - {id: zh-hsk1-00377-s001, ch: 晚饭, pr: wǎn fàn, ds: 'dinner; evening meal', lb: wan3-fan4--dinner}
 - {id: zh-hsk1-00378-s001, ch: 晚上, pr: wǎn shang, ds: 'evening; night', lb: wan3-shang5--evening}
+# Surname-prefix example prerequisite, not an additional official syllabus headword.
+# Retained source: complete-hsk-vocabulary revision above, row 8562, first sense.
+- {id: zh-hsk4-00720-s001, ch: 王, pr: Wáng, ds: surname Wang, lb: wang2--surname}
 - {id: zh-hsk2-00552-s001, ch: 喂, pr: wéi, ds: hello (answering the phone), lb: wei2--hello}
 - {id: zh-hsk1-00383-s001, ch: 问, pr: wèn, ds: to ask, lb: wen4--ask}
 - {id: zh-hsk2-00556-s002, ch: 问题, pr: wèn tí, ds: problem, lb: wen4-ti2--problem}

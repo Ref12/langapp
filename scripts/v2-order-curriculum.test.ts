@@ -1,16 +1,33 @@
 // @vitest-environment node
-import { readFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { describe, expect, it } from 'vitest'
-import { parse } from 'yaml'
+import { afterEach, describe, expect, it } from 'vitest'
+import { parse, stringify } from 'yaml'
 import {
   buildOrderedLessonInventories,
+  generatedLessonInventory,
+  orderCurriculum,
   sortInventoryText,
   validateComponentBindings,
 } from './v2-order-curriculum.mjs'
 import { buildComponentCandidateFile, buildComponentCandidates } from './v2-vocabulary-components.mjs'
+import { curriculumFixture, fixtureGrammar, fixtureWord, writeCurriculumFixture } from './v2-curriculum-fixtures.mjs'
+import { loadTeachingOrder, optionalText } from './v2-curriculum-io.mjs'
+import { buildLessonSequences } from './v2-generate-lessons.mjs'
 
 const readYaml = (path: string) => parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
+const temporaryRoots: string[] = []
+afterEach(() => {
+  for (const root of temporaryRoots.splice(0)) rmSync(root, { recursive: true, force: true })
+})
+
+function fixtureRoot(input = curriculumFixture()) {
+  const root = mkdtempSync(resolve(fileURLToPath(new URL('..', import.meta.url)), '.v2-order-test-'))
+  temporaryRoots.push(root)
+  writeCurriculumFixture(root, input)
+  return root
+}
 
 describe('v2 curriculum ordering', () => {
   it('sorts canonical records by lb without changing their values', () => {
@@ -43,16 +60,30 @@ describe('v2 curriculum ordering', () => {
   })
 
   it('generates separate vocabulary and grammar projections in lesson order', () => {
-    const outputs = buildOrderedLessonInventories()
+    const input = curriculumFixture()
+    const root = fixtureRoot(input)
+    const sequences = buildLessonSequences(input, { teachingOrder: loadTeachingOrder(root) })
+    const outputs = buildOrderedLessonInventories({ root, sequences })
     const vocabulary = outputs.find(output => output.path.endsWith('ordered-vocabulary.yaml'))
     const grammar = outputs.find(output => output.path.endsWith('ordered-grammar.yaml'))
     expect(parse(vocabulary!.content).map((entry: { lb: string }) => entry.lb).slice(0, 4)).toEqual([
-      'ni3-hao3--hello', 'wo3--me', 'shi4--identity', 'xue2-sheng5--student',
+      'wo3--me', 'shi4--identity', 'ren2--person', 'ni3--you',
     ])
-    expect(parse(grammar!.content).map((entry: { lb: string }) => entry.lb)).toEqual([
-      's-shi4-n--identity', 'stmt-ma5--yes-no', 'np-ne5--followup',
-    ])
-    expect(vocabulary!.content).toContain('13 of 361 vocabulary records')
+    expect(parse(grammar!.content)).toEqual(input.bands[0].grammar)
+    expect(vocabulary!.content).toContain('4 of 4 vocabulary records')
+    expect(outputs).toHaveLength(14)
+    expect(parse(outputs[2].content)).toEqual([])
+  })
+
+  it('preserves every nested grammar example when sorting, and rejects incomplete projections', () => {
+    const input = curriculumFixture()
+    const first = input.bands[0].grammar[0]
+    const second = fixtureGrammar('another', ['wo3--me', 'shi4--identity'])
+    const source = stringify([first, second], { lineWidth: 0 })
+    expect(parse(sortInventoryText(source, 'grammar.yaml'))).toEqual([second, first])
+    const sequence = buildLessonSequences(input)[0]
+    expect(() => generatedLessonInventory(sequence, source, 'grammar', 'grammar.yaml'))
+      .toThrow(/every record exactly once/)
   })
 
   it('reuses vocabulary data where possible and retains reviewed morphemes otherwise', () => {
@@ -126,9 +157,51 @@ describe('v2 curriculum ordering', () => {
     expect(result.resolved.get('dong1-xi5--thing')?.map(position => position.sense)).toEqual([null, null])
   })
 
-  it('matches the generated files on disk', () => {
-    for (const output of buildOrderedLessonInventories()) {
+  it('generates all seven lesson files and fourteen projections, preserving ex and UTF-8 LF', () => {
+    const input = curriculumFixture()
+    for (const band of input.bands.slice(1)) {
+      band.vocabulary = ['a', 'b', 'c', 'd'].map(name => fixtureWord(`band-${band.band}-${name}`))
+      band.grammar = [fixtureGrammar(`band-${band.band}`, band.vocabulary.map(word => word.lb))]
+    }
+    const root = fixtureRoot(input)
+    expect(orderCurriculum({ root }).length).toBeGreaterThan(21)
+    expect(orderCurriculum({ root, check: true })).toEqual([])
+    expect(orderCurriculum({ root })).toEqual([])
+    for (const band of input.bands) {
+      const path = resolve(root, 'curriculum', 'v2', 'chinese', 'lessons', `hsk-${band.band}.yaml`)
+      const text = readFileSync(path, 'utf8')
+      expect(text).not.toContain('\r')
+      expect(text.charCodeAt(0)).not.toBe(0xfeff)
+      expect(Object.keys(parse(text))).toEqual(['schemaVersion', 'language', 'alignment', 'status', 'lessons'])
+    }
+    for (const output of buildOrderedLessonInventories({ root })) {
       expect(readFileSync(output.path, 'utf8')).toBe(output.content)
     }
+  })
+
+  it('detects stale examples and lesson files without writing in check mode', () => {
+    const root = fixtureRoot()
+    orderCurriculum({ root })
+    const path = resolve(root, 'curriculum', 'v2', 'chinese', 'hsk-1', 'grammar.yaml')
+    writeFileSync(path, readFileSync(path, 'utf8').replace('A fixture utterance.', 'An edited fixture utterance.'), 'utf8')
+    const lessonPath = resolve(root, 'curriculum', 'v2', 'chinese', 'lessons', 'hsk-1.yaml')
+    const before = readFileSync(lessonPath, 'utf8')
+    expect(() => orderCurriculum({ root, check: true })).toThrow(/ordered-grammar.yaml[\s\S]*hsk-1.yaml/)
+    expect(readFileSync(lessonPath, 'utf8')).toBe(before)
+    orderCurriculum({ root })
+    expect(orderCurriculum({ root, check: true })).toEqual([])
+  })
+
+  it('validates everything before any write and propagates non-ENOENT read failures', () => {
+    const root = fixtureRoot()
+    const path = resolve(root, 'curriculum', 'v2', 'chinese', 'hsk-1', 'grammar.yaml')
+    const records = parse(readFileSync(path, 'utf8'))
+    delete records[0].ex
+    writeFileSync(path, stringify(records), 'utf8')
+    const before = readFileSync(path, 'utf8')
+    expect(() => orderCurriculum({ root })).toThrow(/Missing authored grammar ex/)
+    expect(readFileSync(path, 'utf8')).toBe(before)
+    expect(existsSync(resolve(root, 'curriculum', 'v2', 'chinese', 'lessons'))).toBe(false)
+    expect(() => optionalText(root)).toThrow()
   })
 })

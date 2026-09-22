@@ -1,10 +1,11 @@
 # Curriculum v2
 
 This is the living description of the v2 curriculum scheme. Extend it as new
-content types and teaching structures are introduced. For now, v2 contains
-Chinese vocabulary inventories and grammar drafts for all HSK bands, plus the
-beginning of an ordered HSK 1 lexical-unit lesson sequence. The full teaching
-path and assessments are not yet defined.
+content types and teaching structures are introduced. Chinese v2 has vocabulary
+and grammar inventories for all seven HSK bands, with an examples-first authoring
+contract and dependency-aware lesson tooling. Complete teaching projections are
+generated only when every required authored example and coverage gate passes.
+Their presence is not a claim of reviewed linguistic quality or assessment readiness.
 
 The v2 files are maintained separately from the existing curriculum outside
 this folder. They are not generated compact copies of that curriculum, and
@@ -38,9 +39,10 @@ curriculum\v2\
     hsk-1\component-vocabulary.yaml
     hsk-1\component-candidates.yaml
     hsk-1\vocabulary-components.yaml
-    hsk-1\ordered-vocabulary.yaml
-    hsk-1\ordered-grammar.yaml
-    lessons\hsk-1.yaml
+    hsk-*\examples.yaml
+    hsk-*\ordered-vocabulary.yaml
+    hsk-*\ordered-grammar.yaml
+    lessons\hsk-*.yaml
 ```
 
 Chinese alignment follows the **November 2025 HSK examination syllabus,
@@ -103,7 +105,7 @@ may instead be accounted for by an existing entry.
 Within each canonical file, records are sorted by `lb`. This produces a stable,
 reviewable authoring order after entries are added or moved. It is not a claim
 that label order is pedagogically optimal. The ordered lesson projections are
-generated separately from `lessons\hsk-1.yaml`. Existing source/editorial
+generated separately alongside `lessons\hsk-*.yaml`. Existing source/editorial
 comments are retained during sorting but do not define contiguous ranges in an
 `lb`-sorted file.
 
@@ -148,8 +150,9 @@ explicit rather than silently changing a source identity or inventing a use.
 ## Grammar files
 
 `grammar.yaml` uses an ordered YAML list with one field per line and a blank
-line between entries. Its five fields match vocabulary except that `pt`
-(pattern) replaces `ch`; vocabulary retains its compact one-line format.
+line between entries. Its first five fields match vocabulary except that `pt`
+(pattern) replaces `ch`; every record also requires a structured `ex` object.
+Vocabulary retains its compact five-field one-line format.
 Each Chinese band, from `hsk-1` through `hsk-6` and the combined `hsk-7-9`,
 has its own `grammar.yaml`.
 
@@ -159,9 +162,18 @@ has its own `grammar.yaml`.
   pr: <subject> + shì + <noun>
   ds: Identify or classify with a noun.
   lb: s-shi4-n--identity
+  ex:
+    segments:
+      - {word: wo3--me}
+      - {word: shi4--identity}
+      - {word: xue2-sheng5--student}
+      - {punctuation: 。}
+    translation: I am a student.
+    grammar: [s-shi4-n--identity]
 ```
 
-Each entry has exactly five nonempty strings in this order:
+Each entry has exactly these fields in this order. Preserve the canonical first
+five fields when authoring examples:
 
 | Field | Meaning |
 | --- | --- |
@@ -170,11 +182,12 @@ Each entry has exactly five nonempty strings in this order:
 | `pr` | The same template, with fixed Chinese text replaced by citation pinyin. |
 | `ds` | A concise English meaning cue, retaining essential distinctions or restrictions. |
 | `lb` | A compact pattern identifier used by lesson YAML, with numbered pinyin followed by `--` and a short meaning discriminator. |
+| `ex` | One original contextual example with exactly `segments`, `translation`, and `grammar`; no ID or explanatory prose. |
 
 Grammar is intended for AI interpretation. Keep descriptions brief rather than
-repeating the visible pattern or writing a full teaching explanation. The AI
-can expand a cue into explanations and examples, while preserving its intended
-meaning, restrictions, and the learner's cumulative knowledge limits.
+repeating the visible pattern or writing a full teaching explanation. Authored
+examples must preserve the intended meaning, restrictions, and cumulative
+knowledge cutoff; a description is not a substitute for an example.
 
 Slots such as `<subject>`, `<noun>`, or `<verb phrase>` are placeholders, not
 Chinese text to pronounce. A predicate is the part saying what the subject
@@ -232,7 +245,7 @@ numbers or file positions.
 The new pattern-based grammar labels intentionally replace older function-only
 labels in v2; the existing curriculum outside v2 remains unchanged.
 
-Grammar records follow source families rather than lesson order. One source
+Grammar records are sorted by `lb`; comments retain source-family context. One source
 category may require several teaching patterns, while one pattern may cover
 several related categories. Record counts are not official grammar-item counts.
 The drafts follow these pages of the pinned examination syllabus, including
@@ -268,10 +281,9 @@ Grammar explanations do not substitute for missing lexical entries.
 and vocabulary **`lb` identifiers**, especially where the same written form
 also has an unrelated noun or verb sense. These are lexical prerequisite
 bindings, not a claim that the full grammar/skills crosswalk has received
-independent review. The five-field vocabulary and grammar record shapes stay
-unchanged.
+independent review. Vocabulary remains five-field; grammar retains those five
+canonical fields and adds the required `ex` object.
 
-<<<<<<< HEAD
 ### Maintaining grammar-vocabulary bindings
 
 The file is an authored YAML list. Each mapping contains one grammar `lb` in
@@ -297,8 +309,6 @@ Start with the automated check, then investigate its reported gaps and any
 ambiguous meaning changes. A fresh manual audit of all bands is not required
 for routine maintenance.
 
-=======
->>>>>>> f61282b4c9b9f29b5158471c792dea0d7099b0ab
 `scripts\v2-grammar-vocabulary.mjs` checks every grammar pattern across all seven
 bands. It excludes replaceable slots, aligns fixed Chinese text with pinyin,
 and segments literal runs using matching vocabulary forms and readings. It
@@ -313,10 +323,16 @@ npm test -- scripts/v2-grammar-vocabulary.test.ts
 
 String and pronunciation matching cannot prove semantic correctness: reviewing
 the relevant sense, idiomatic combinations, and new grammar remains necessary.
-In particular, the selected-sense mappings for emphatic refusal with `才`,
-surprise/dismissal with `还`, decimal `点`, and advanced pragmatic uses of
-`愣`, `爱`, and `急` remain editorial review questions. Literal coverage does
-not resolve them; uncertain mappings are not asserted as confirmed bindings.
+Reviewed contextual examples pin emphatic refusal with `才` to the competing-
+judgement correction sense and surprise/dismissal with `还` to its emphasis
+sense; the constructions and discourse context supply the particular
+pragmatics. Decimal `点` has a precise separator sense, and transitive `急`
+uses `ji2--attend-urgently` in the empathetic construction. These narrow
+decisions do not establish a complete semantic crosswalk. The `愣` example
+selects the unexpected-achievement alternative with `leng4--unexpectedly`;
+dismissive `爱` uses a separate choice-marker sense, not affection. These
+example-specific decisions do not certify every alternative or pragmatic use.
+Literal coverage alone never resolves uncertain semantic mappings.
 Bound morphemes need constrained descriptions, not an implication that they
 are freely usable words. Grammar prerequisites establish a band-level inventory,
 not a learner's knowledge; lesson authoring must still introduce the words and
@@ -334,30 +350,51 @@ every source interpretation has been resolved.
 
 ## Ordered lexical-unit lessons
 
-`chinese\lessons\hsk-1.yaml` is the beginning of the HSK 1 teaching sequence.
-V1's teaching levels are a pedagogical starting point only; the v2 inventory,
-grammar prerequisites, cumulative knowledge cutoff, and quality of the examples
-govern the new order. The current file has `coverage: partial` and does not yet
-place every HSK 1 unit.
+Each band's canonical grammar examples and optional `examples.yaml` list are
+the authoring inputs. The latter is a YAML list of original
+`{id, segments, translation, grammar}` examples, with stable slug IDs unique
+within that band. Together they must demonstrate every current-band vocabulary
+sense. A segment is exactly `{word: <vocabulary lb>}` or
+`{punctuation: <Chinese punctuation>}`; there are no literals, placeholders,
+external-vocabulary escapes, or component-reference segments.
+Supported punctuation is `，。？！、：；…“”‘’（）《》〈〉「」『』—·`,
+including quotation, dialogue, and multiple sentences. Translation is natural
+English, not a construction explanation. The `grammar` list includes every
+actually used supporting construction; a canonical grammar `ex` must include
+its own target label. All references are current-band or earlier.
 
-`schemaVersion: 2` makes each lesson an ordered group of four to six new lexical
-units, normally about five. A lexical unit is exactly one `lb` reference from a
-band's canonical `vocabulary.yaml` or `grammar.yaml`. Supporting pronunciation
-instruction does not count as a lexical unit and does not silently introduce a
-word or construction.
+Coverage is exact-sense reference coverage, not a claim that arbitrary text is
+good language teaching. Do not substitute isolated dictionary words, quoted
+targets, definition restatements, or automatically fabricated filler.
+Genuinely standalone greetings/interjections and well-formed short phrases can
+be legitimate. Authors still review meaning, pronunciation, natural context,
+and accurate grammar annotations.
 
-Each unit has `kind`, `ref`, and a lesson-specific `note`. Examples are shared at
-lesson level so one sentence can demonstrate several units without duplicating
-content:
+Review supporting vocabulary as carefully as the target. Even a unique
+spelling/reading match can be the wrong sense: resultative `成` is not
+one-tenth, course-classifier `门` is not a physical door, rice `米` is not a
+meter, and night `晚` is not lateness. Likewise, a longest-match tokenizer must
+not turn ordinary `只` + `有` into conditional `只有`. Use accurate sense
+identities or an already-known reformulation; never let a convenient lookup
+manufacture contextual coverage. Newly required senses keep their original
+identity where available and enter no later than their first actual use.
+
+`chinese\lessons\hsk-1.yaml` through `hsk-6.yaml` and `hsk-7-9.yaml` are generated
+`schemaVersion: 3` sequences. Every sequence has exactly `schemaVersion`,
+`language: chinese`, `alignment`, `status: draft`, and `lessons`. Each lesson has
+exactly `id`, `units`, and `examples`; each unit has only `kind` and `ref`.
+There are no titles, objectives, notes, introductions, pronunciation explanations,
+or other explanatory prose in lesson files. English example translations remain.
+For example, a lesson's content has this shape:
 
 ```yaml
 units:
-  - {kind: vocabulary, ref: wo3--me, note: 'Use as first-person I.'}
-  - {kind: vocabulary, ref: shi4--identity, note: 'Link a person to a noun role.'}
-  - {kind: vocabulary, ref: xue2-sheng5--student, note: 'A student.'}
-  - {kind: grammar, ref: s-shi4-n--identity, note: 'Subject, shì, then role noun.'}
+  - {kind: vocabulary, ref: wo3--me}
+  - {kind: vocabulary, ref: shi4--identity}
+  - {kind: vocabulary, ref: xue2-sheng5--student}
+  - {kind: grammar, ref: s-shi4-n--identity}
 examples:
-  - id: i-am-a-student
+  - id: grammar-zh-hsk1-g001
     segments:
       - word: wo3--me
       - word: shi4--identity
@@ -367,12 +404,23 @@ examples:
     grammar: [s-shi4-n--identity]
 ```
 
+The generator synthesizes grammar-example IDs as `grammar-<canonical grammar id>`.
+Supplemental IDs become `usage-hsk-<band>-<authored id>` in lessons, avoiding
+cross-band collisions without renaming authored slugs. Examples must match their
+authored candidates, not generated replacements.
+
+Every canonical unit appears exactly once at its own band, in a lesson of four
+to six new units, normally about five. Tail groups are rebalanced rather than
+emitting a tiny final lesson. A lexical unit is one exact vocabulary or grammar
+`lb` reference; previews do not count.
 The validator derives unit-to-example associations: a vocabulary unit is covered
 when its exact `word` label occurs in an example, and a grammar unit is covered
 when its label occurs in the example's `grammar` list. Every introduced unit
 must be covered. Every example must demonstrate at least one unit introduced in
-that lesson. All word and grammar references must have been introduced in the
-current or an earlier lesson.
+that lesson. A newly introduced grammar includes its own canonical `ex`.
+All word and grammar references must have been introduced in the current or an
+earlier lesson. Known state crosses band boundaries; validation does not reset
+the learner at HSK 2 or assume an arbitrary list of pre-known words.
 
 Grammar prerequisites are not limited to the manually pinned
 `grammar-vocabulary.yaml` bindings. The grammar audit also exposes vocabulary
@@ -384,11 +432,13 @@ lesson order.
 
 ### Vocabulary component prerequisites
 
-Multi-character vocabulary has an ordered binding in
+Multi-character **HSK 1** vocabulary has an ordered binding in
 `hsk-1\vocabulary-components.yaml`. Separate a component's reusable meaning
 from its role in a particular word. A character, a meaningful morpheme, and an
 independently usable word are not necessarily the same unit. Some written
 positions do not contribute a separate meaning at all.
+This complete coverage requirement remains scoped to HSK 1. Higher-band lessons
+neither require nor pretend to have component decomposition inventories.
 
 `hsk-1\component-candidates.yaml` is generated from the complete HSK 1
 vocabulary inventory. It is a compact map from character to an array of word
@@ -510,21 +560,70 @@ lesson order. Do not reorder them manually. Run:
 npm run curriculum:v2:order
 ```
 
-The script sorts every canonical v2 vocabulary and grammar inventory, plus the
-reviewed component inventories, by `lb`. It generates `ordered-vocabulary.yaml`
-and `ordered-grammar.yaml` beside the HSK 1 canonical files, and refreshes the
-exhaustive `component-candidates.yaml` review input. Component order is
+The script validates all authored inputs before writing anything. It sorts every
+canonical v2 vocabulary and grammar inventory, plus the reviewed component
+inventories, by `lb`. It generates all seven lesson files and separate
+`ordered-vocabulary.yaml` and `ordered-grammar.yaml` projections beside every
+band's canonical files, preserving the complete grammar `ex`. It refreshes the
+HSK 1 `component-candidates.yaml` review input. Component order is
 already determined by each vocabulary record's ordered component binding, so
 there is no separate ordered-component projection. The generated files contain
-complete records in lesson-introduction order and currently declare partial
-coverage. Never edit them directly.
+complete records in lesson-introduction order. Never edit them directly.
 `npm run curriculum:v2:order:check` fails when a canonical file is unsorted or
-a generated projection is stale.
+a generated projection is stale, or when required authoring inputs are missing.
+
+The deterministic planner uses stable-ID order from
+`curriculum\chinese\teaching\levels\*\sequence.yaml` as a starting hint only.
+Unmatched units use supplemental example source order, then canonical
+grammar-example ID order; canonical alphabetical `lb` order is not the teaching
+policy. Candidate selection closes over the examples' words, supporting grammar,
+every introduced grammar's own example, and all fixed-form/pinned lexical
+prerequisites, including alternatives not realized in that one example.
+Multiple examples can jointly evidence a lesson. Small mutual dependencies are
+grouped together; tail search can repartition recent lessons. Unresolved
+dependencies, missing coverage, or exhaustion of the bounded search produce
+actionable errors, not relaxed knowledge gates or a giant bootstrap lesson.
+Content authors can supply natural smaller examples where needed.
+
+V1 teaching order is not an authority for HSK readiness. Neither deterministic
+ordering nor successful structural coverage proves pedagogical or linguistic
+correctness.
+
+### Authoring and integration checks
+
+For the current authoring band, without requiring unfinished siblings:
+
+```text
+npm run curriculum:v2:examples:check -- --band 1
+node scripts\v2-audit-examples.mjs --band 1 --root AUTHOR_PATH --catalog-root APPROVED_CATALOG_PATH
+```
+
+The optional catalog root supplies only vocabulary and prerequisite bindings;
+grammar metadata and examples remain from the author's root. It is allowed only
+for scoped auditing. Scoped results explicitly do not certify other bands,
+lesson sequencing, or semantic correctness.
+`preflightBandLessons` in `scripts\v2-generate-lessons.mjs` can diagnose one
+band's ordering while explicitly assuming all earlier-band units are already
+taught; it is not the full cumulative validation gate.
+
+The complete authoring and generated-data gates are:
+
+```text
+npm run curriculum:v2:examples:check
+npm test -- scripts\v2-grammar-vocabulary.test.ts scripts\v2-curriculum.integration.test.ts
+npm run curriculum:v2:order:check
+```
+
+Missing grammar `ex` objects or uncovered senses are reported as missing
+authoring inputs; there is no legacy five-field grammar or partial-lesson
+bypass. Generation waits for the complete corpus rather than manufacturing
+examples. Existing generated files must not be presented as current until these
+gates pass.
 
 The focused structural checks are:
 
 ```text
-npm test -- scripts\v2-component-schema.test.ts scripts\v2-lesson-schema.test.ts scripts\v2-order-curriculum.test.ts
+npm test -- scripts\v2-example-schema.test.ts scripts\v2-audit-examples.test.ts scripts\v2-component-schema.test.ts scripts\v2-lesson-schema.test.ts scripts\v2-generate-lessons.test.ts scripts\v2-order-curriculum.test.ts
 ```
 
 These checks do not replace linguistic review. Authors must still verify that

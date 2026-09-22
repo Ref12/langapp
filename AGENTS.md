@@ -35,11 +35,52 @@ does not replace this v2 check. Lesson-level introduction order remains a
 separate requirement even when band-level vocabulary coverage passes.
 Canonical v2 `vocabulary.yaml` and `grammar.yaml` files must stay sorted by
 `lb`; do not reorder them manually. Run `npm run curriculum:v2:order` after
-inventory or lesson-sequence changes. It also regenerates the separate
-`ordered-vocabulary.yaml` and `ordered-grammar.yaml` teaching projections.
+inventory or authored-example changes. It also regenerates the separate
+`ordered-vocabulary.yaml`, `ordered-grammar.yaml`, and schema-v3 lessons for
+all seven bands. Generation validates every input before writing; missing
+authored examples are blockers, never invitations to fabricate fallback text.
 Use `npm run curriculum:v2:order:check` to detect unsorted or stale files.
 
-For multi-character lesson vocabulary, maintain
+Every canonical grammar record retains `id`, `pt`, `pr`, `ds`, and `lb`, then
+adds `ex: {segments, translation, grammar}`. Word segments use exact vocabulary
+`lb` senses; punctuation segments contain supported Chinese punctuation only.
+The grammar list includes the target itself and actual supporting constructions,
+all at the current or an earlier band. Additional original examples live in
+each band's `examples.yaml` list with stable IDs unique within that band.
+Together these inputs must demonstrate every canonical vocabulary sense.
+Isolated word lists, quoted target words, dictionary-definition restatements,
+literal escapes, and placeholders are not contextual coverage substitutes.
+Legitimate standalone greetings/interjections and well-formed phrases still
+need editorial judgment; structural validation cannot certify linguistic quality.
+Check every supporting sense, not only the target unit. A unique spelling match
+does not prove the meaning: resultative 成 is not a fraction, course-classifier
+门 is not a door, rice 米 is not a meter, and night 晚 is not lateness. Conditional
+只有 must not absorb ordinary 只 + 有 or exclusive-focus uses. Do not resolve
+these by silently selecting the sole existing label. Use an accurate retained
+sense, introduce it at the earliest needed band, or rewrite the example using
+already known language; keep legitimate contrasting uses unchanged.
+
+Lessons contain only ordered `{kind, ref}` units and structured examples, with
+English translations. Do not add titles, objectives, notes, introductions, or
+pronunciation explanations. Each canonical unit appears exactly once in its
+band, in a group of 4-6 new units, and is evidenced in that lesson. Knowledge
+accumulates across bands. All example references and every fixed-form or pinned
+grammar prerequisite must be taught in the same or an earlier lesson.
+Components are previews, never a shortcut around these gates.
+
+Use `npm run curriculum:v2:examples:check -- --band 1` (or `2` through `6`,
+or `7-9`) for a read-only scoped authoring audit. `--root PATH` selects the
+author's input tree; optional `--catalog-root PATH` uses centrally approved
+vocabulary and prerequisite bindings without importing that tree's examples.
+Catalog overlays are scoped-audit-only. Full examples, grammar, and generated
+curriculum gates are:
+
+```text
+npm run curriculum:v2:examples:check
+npm test -- scripts\v2-grammar-vocabulary.test.ts scripts\v2-curriculum.integration.test.ts
+```
+
+For multi-character **HSK 1** lesson vocabulary, maintain
 `hsk-1\vocabulary-components.yaml`. Reuse an existing vocabulary record from
 any v2 band when its reading and component meaning are accurate; otherwise add
 a retained source sense to `hsk-1\component-vocabulary.yaml` or a reusable sense
@@ -60,6 +101,8 @@ Look up meanings and pronunciation in the source inventories, not the index.
 Use the shared `scripts\v2-component-schema.mjs` contract in both lesson and
 ordering consumers. Preserve complete bindings when loading them; reducing them
 to component arrays loses formation and whole-word explanations.
+This complete decomposition contract remains HSK 1 only; do not imply that
+higher-band component inventories exist or require invented decompositions.
 
 ## Certification and exam-readiness claims
 

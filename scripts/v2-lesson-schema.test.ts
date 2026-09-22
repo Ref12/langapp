@@ -1,182 +1,176 @@
 // @vitest-environment node
-import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
-import { parse } from 'yaml'
-import { auditGrammarVocabulary, loadGrammarVocabulary } from './v2-grammar-vocabulary.mjs'
-import { vocabularyComponentsSchema } from './v2-component-schema.mjs'
-import {
-  lessonComponentIntroductions,
-  lessonSequenceSchema,
-  validateLessonSequence,
-} from './v2-lesson-schema.mjs'
+import { lessonSequenceSchema, validateLessonCurriculum, validateLessonSequence } from './v2-lesson-schema.mjs'
+import { curriculumFixture, fixtureExample, fixtureWord, lessonFixture } from './v2-curriculum-fixtures.mjs'
+import { usageExampleId } from './v2-example-schema.mjs'
 
-const readYaml = (path: string) => parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
-const allInventory = loadGrammarVocabulary()
-const firstBand = allInventory.bands[0]
-const grammarAudit = auditGrammarVocabulary(allInventory)
-const morphemes = readYaml('../curriculum/v2/chinese/hsk-1/components.yaml')
-const componentVocabulary = [
-  ...allInventory.bands.flatMap(band => band.vocabulary),
-  ...readYaml('../curriculum/v2/chinese/hsk-1/component-vocabulary.yaml'),
-]
-const vocabularyComponents = vocabularyComponentsSchema.parse(
-  readYaml('../curriculum/v2/chinese/hsk-1/vocabulary-components.yaml'))
-const bindingFor = (label: string) => vocabularyComponents.find(binding => binding.vocabulary === label)!
-const inventory = {
-  vocabulary: firstBand.vocabulary,
-  grammar: firstBand.grammar,
-  componentVocabulary,
-  morphemes,
-  vocabularyComponents,
-  grammarVocabulary: grammarAudit.requiredVocabulary,
+function withSecondBand() {
+  const input = curriculumFixture()
+  const first = input.bands[0]
+  const second = input.bands[1]
+  second.vocabulary = ['a', 'b', 'c', 'd'].map(name => fixtureWord(`second-${name}`))
+  second.examples = second.vocabulary.map(word => fixtureExample(word.id,
+    [first.vocabulary[0].lb, first.vocabulary[1].lb, word.lb], [first.grammar[0].lb]))
+  return input
 }
-const fresh = () => lessonSequenceSchema.parse(readYaml('../curriculum/v2/chinese/lessons/hsk-1.yaml'))
-const validate = (sequence = fresh()) => validateLessonSequence(sequence, inventory)
 
-describe('v2 lexical-unit lesson sequence', () => {
-  it('starts HSK 1 with three ordered groups of about five units', () => {
-    const sequence = validate()
-    expect(sequence.lessons.map(lesson => lesson.units.length)).toEqual([5, 6, 5])
-    expect(sequence.lessons.flatMap(lesson => lesson.units)).toHaveLength(16)
-    expect(sequence.lessons[0].units.map(unit => unit.ref)).toEqual([
-      'ni3-hao3--hello', 'wo3--me', 'shi4--identity',
-      'xue2-sheng5--student', 's-shi4-n--identity',
-    ])
+describe('v3 examples-first lexical-unit lessons', () => {
+  it('accepts only ordered units and structured examples, with complete band coverage', () => {
+    const input = curriculumFixture()
+    const sequences = validateLessonCurriculum(lessonFixture(input), input)
+    expect(sequences).toHaveLength(7)
+    expect(sequences[0].lessons[0].units).toHaveLength(5)
+    expect(Object.keys(sequences[0])).toEqual(['schemaVersion', 'language', 'alignment', 'status', 'lessons'])
+    expect(Object.keys(sequences[0].lessons[0])).toEqual(['id', 'units', 'examples'])
+    expect(Object.keys(sequences[0].lessons[0].units[0])).toEqual(['kind', 'ref'])
+    expect(Object.keys(sequences[0].lessons[0].examples[0])).toEqual(['id', 'segments', 'translation', 'grammar'])
   })
 
-  it('uses every introduced unit in one or more examples', () => {
-    const sequence = validate()
-    for (const lesson of sequence.lessons) {
-      const usedWords = new Set(lesson.examples.flatMap(example =>
-        example.segments.flatMap(segment => 'word' in segment ? [segment.word] : [])))
-      const usedGrammar = new Set(lesson.examples.flatMap(example => example.grammar))
-      for (const unit of lesson.units) {
-        expect((unit.kind === 'vocabulary' ? usedWords : usedGrammar).has(unit.ref)).toBe(true)
-      }
-    }
+  it('carries actual taught knowledge across bands, not an arbitrary pre-known vocabulary list', () => {
+    const input = withSecondBand()
+    const sequences = lessonFixture(input)
+    expect(validateLessonCurriculum(sequences, input)[1].lessons).toHaveLength(1)
+    expect(validateLessonSequence(sequences[1], input, [sequences[0]])).toEqual(sequences[1])
+    expect(() => validateLessonSequence(sequences[1], input)).toThrow(/cumulative order/)
+    expect(() => validateLessonCurriculum(sequences.slice(0, 1), input)).toThrow(/all seven/)
+    expect(() => validateLessonCurriculum([...sequences].reverse(), input)).toThrow(/cumulative order/)
   })
 
-  it('derives meaningful component previews at first vocabulary use', () => {
-    const sequence = validate()
-    const vocabulary = new Map(firstBand.vocabulary.map(record => [record.lb, record]))
-    const introductions = lessonComponentIntroductions(sequence, vocabulary, vocabularyComponents)
-    expect(introductions[0].components).toEqual([
-      { kind: 'vocabulary', ref: 'ni3--you' },
-      { kind: 'vocabulary', ref: 'hao3--good' },
-      { kind: 'vocabulary', ref: 'xue2--learn' },
-      { kind: 'vocabulary', ref: 'sheng1--student' },
-    ])
-    expect(introductions[1].components).toEqual([
-      { kind: 'vocabulary', ref: 'lao3--venerable' },
-      { kind: 'morpheme', ref: 'shi1--teacher-component' },
-    ])
-    expect(introductions[0].words).toEqual([
-      bindingFor('ni3-hao3--hello'), bindingFor('xue2-sheng5--student'),
-    ])
-  })
-
-  it('models neutral tone as word-specific pronunciation rather than a second morpheme', () => {
-    expect(bindingFor('xie4-xie5--thanks').components).toEqual([
-      { kind: 'morpheme', ref: 'xie4--thanks-component' },
-      { kind: 'morpheme', ref: 'xie4--thanks-component', surface_pr: 'xie' },
-    ])
-    const thanks = morphemes.filter((record: { ch: string }) => record.ch === '谢')
-    expect(thanks).toHaveLength(1)
-    expect(thanks[0].pr).toBe('xiè')
-  })
-
-  it('rejects missing, unknown, and misaligned component prerequisites', () => {
-    const missing = { ...inventory, vocabularyComponents: vocabularyComponents
-      .filter(binding => binding.vocabulary !== 'lao3-shi1--teacher') }
-    expect(() => validateLessonSequence(fresh(), missing)).toThrow(/no component prerequisites.*teacher/)
-    const replaceTeacher = (kind: string, ref: string) => vocabularyComponents.map(binding =>
-      binding.vocabulary !== 'lao3-shi1--teacher' ? binding : {
-        ...binding, components: [{ kind, ref }, binding.components[1]],
-      })
-    const unknown = { ...inventory, vocabularyComponents: replaceTeacher('morpheme', 'unknown--component') }
-    expect(() => validateLessonSequence(fresh(), unknown)).toThrow(/unknown morpheme component/)
-    const misaligned = { ...inventory, vocabularyComponents: replaceTeacher('vocabulary', 'ni3--you') }
-    expect(() => validateLessonSequence(fresh(), misaligned)).toThrow(/do not align/)
-  })
-
-  it('uses known units in examples and permits current-lesson units', () => {
-    const sequence = fresh()
-    sequence.lessons[0].examples[1].segments[0] = { word: 'zai4-jian4--goodbye' }
-    expect(() => validate(sequence)).toThrow(/before introduction/)
-    const other = fresh()
-    other.lessons[0].examples[1].grammar = ['stmt-ma5--yes-no']
-    expect(() => validate(other)).toThrow(/grammar before introduction/)
-  })
-
-  it('does not treat component previews as standalone vocabulary teaching or example coverage', () => {
-    const earlyUse = fresh()
-    earlyUse.lessons[0].examples[1].segments[0] = { word: 'ni3--you' }
-    expect(() => validate(earlyUse)).toThrow(/before introduction.*ni3--you/)
-    const missingExample = fresh()
-    for (const example of missingExample.lessons[1].examples) {
-      for (const segment of example.segments) {
-        if ('word' in segment && segment.word === 'ni3--you') segment.word = 'wo3--me'
-      }
-    }
-    expect(() => validate(missingExample)).toThrow(/has no example: ni3--you/)
-  })
-
-  it('requires each grammar unit lexical prerequisites before or in its lesson', () => {
-    const sequence = fresh()
-    sequence.lessons[0].units = sequence.lessons[0].units.filter(unit => unit.ref !== 'shi4--identity')
-    sequence.lessons[0].units.push({ kind: 'vocabulary', ref: 'ni3--you', note: 'A replacement test unit.' })
-    expect(() => validate(sequence)).toThrow(/requires vocabulary.*shi4--identity/)
-  })
-
-  it('rejects introduced units without examples and examples that teach nothing new', () => {
-    const sequence = fresh()
-    sequence.lessons[0].examples = sequence.lessons[0].examples.filter(example => example.id !== 'hello')
-    expect(() => validate(sequence)).toThrow(/has no example: ni3-hao3--hello/)
-    const other = fresh()
-    other.lessons[1].examples.push({
-      id: 'old-only',
-      segments: [{ word: 'ni3-hao3--hello' }],
-      translation: 'Hello.',
-      grammar: [],
+  it.each(['title', 'objectives', 'introduction', 'pronunciation', 'coverage', 'source'])(
+    'rejects legacy root prose/metadata: %s', field => {
+      const first = lessonFixture()[0]
+      expect(() => lessonSequenceSchema.parse({ ...first, [field]: 'Legacy prose.' })).toThrow()
     })
-    expect(() => validate(other)).toThrow(/does not demonstrate a new lexical unit/)
+
+  it('rejects titles/objectives/unit notes and v2 rather than silently stripping them', () => {
+    const first = lessonFixture()[0]
+    expect(() => lessonSequenceSchema.parse({ ...first, schemaVersion: 2 })).toThrow()
+    for (const extra of [{ title: 'Title' }, { objectives: ['Goal'] }]) {
+      expect(() => lessonSequenceSchema.parse({
+        ...first, lessons: [{ ...first.lessons[0], ...extra }],
+      })).toThrow()
+    }
+    expect(() => lessonSequenceSchema.parse({
+      ...first, lessons: [{ ...first.lessons[0], units: first.lessons[0].units.map(unit => ({ ...unit, note: 'Prose.' })) }],
+    })).toThrow()
   })
 
-  it('rejects too-small, too-large, repeated, unknown, and reintroduced groups', () => {
-    for (const change of ['small', 'large', 'duplicate', 'unknown', 'reintroduced'] as const) {
-      const sequence = fresh()
-      if (change === 'small') sequence.lessons[0].units = sequence.lessons[0].units.slice(0, 3)
-      if (change === 'large') sequence.lessons[0].units.push(
-        { kind: 'vocabulary', ref: 'ni3--you', note: 'Test.' },
-        { kind: 'vocabulary', ref: 'lao3-shi1--teacher', note: 'Test.' })
-      if (change === 'duplicate') sequence.lessons[0].units[1] = sequence.lessons[0].units[0]
-      if (change === 'unknown') sequence.lessons[0].units[0].ref = 'unknown--unit'
-      if (change === 'reintroduced') sequence.lessons[1].units[0].ref = 'wo3--me'
-      expect(() => validate(sequence)).toThrow()
+  it('rejects unknown, duplicate, wrong-band and reintroduced units', () => {
+    const input = withSecondBand()
+    let sequences = lessonFixture(input)
+    sequences[0].lessons[0].units[0].ref = 'unknown--sense'
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/unknown vocabulary/)
+    sequences = lessonFixture(input)
+    sequences[0].lessons[0].units[0] = sequences[0].lessons[0].units[1]
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/Duplicate lexical unit/)
+    sequences = lessonFixture(input)
+    sequences[1].lessons[0].units[0].ref = input.bands[0].vocabulary[0].lb
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/canonical band/)
+    sequences = lessonFixture(input)
+    sequences[0].lessons.push({ ...sequences[0].lessons[0], id: 'another-lesson' })
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/already introduced/)
+  })
+
+  it('requires every canonical unit exactly once, not a partial introductory sequence', () => {
+    const input = curriculumFixture()
+    const sequences = lessonFixture(input)
+    sequences[0].lessons = []
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/missing 4 vocabulary units/)
+  })
+
+  it('rejects under-sized and giant bootstrap lessons', () => {
+    const first = lessonFixture()[0]
+    for (const size of [3, 7]) {
+      expect(() => lessonSequenceSchema.parse({
+        ...first, lessons: [{
+          ...first.lessons[0],
+          units: Array.from({ length: size }, (_, i) => ({ kind: 'vocabulary', ref: `ren2--word-${i}` })),
+        }],
+      })).toThrow()
     }
   })
 
-  it('keeps vocabulary and grammar references as inventory labels rather than canonical IDs', () => {
-    const sequence = fresh()
-    expect(JSON.stringify(sequence)).not.toContain('zh-hsk')
-    sequence.lessons[0].units[0].ref = 'zh-hsk2026-00147-s001'
-    expect(() => validate(sequence)).toThrow()
+  it('requires actual authored examples, not generated definitions or altered references', () => {
+    const input = curriculumFixture()
+    const sequences = lessonFixture(input)
+    sequences[0].lessons[0].examples[0] = {
+      ...sequences[0].lessons[0].examples[0], translation: 'A fabricated replacement.',
+    }
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/must match an authored candidate/)
   })
 
-  it('validates the pinyin orientation without counting it as lexical knowledge', () => {
-    const sequence = validate()
-    expect(sequence.pronunciation.tones.examples.map(example => example.pinyin))
-      .toEqual(['mā', 'má', 'mǎ', 'mà', 'ma'])
-    expect(sequence.lessons.flatMap(lesson => lesson.units).some(unit => unit.ref === 'ma1-ma5--mom')).toBe(false)
-    const invalid = fresh()
-    invalid.pronunciation.tones.examples[1].pinyin = 'mǎ'
-    expect(() => validate(invalid)).toThrow(/same syllable/)
+  it('requires the canonical grammar example at introduction, even if another example cites the grammar', () => {
+    const input = curriculumFixture()
+    const sequences = lessonFixture(input)
+    sequences[0].lessons[0].examples.shift()
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/needs its authored example/)
   })
 
-  it('rejects arbitrary behavior and target-language prose outside structured examples', () => {
-    const sequence = fresh()
-    expect(() => lessonSequenceSchema.parse({ ...sequence, script: 'run()' })).toThrow()
-    sequence.introduction = 'Say 未教.'
-    expect(() => lessonSequenceSchema.parse(sequence)).toThrow()
+  it('requires each new exact sense to be evidenced, not just present in the source pool', () => {
+    const input = curriculumFixture()
+    const sequences = lessonFixture(input)
+    sequences[0].lessons[0].examples.pop()
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/introduced vocabulary:ni3--you has no example/)
+  })
+
+  it('requires every fixed-form alternative even when the example uses just one alternative', () => {
+    const input = curriculumFixture()
+    const first = input.bands[0]
+    const alternative = fixtureWord('alternative', '为', 'wéi', 'wei2')
+    first.vocabulary.push(alternative)
+    first.grammar[0].pt = '<subject> + (是 / 为) + <noun>'
+    first.grammar[0].pr = '<subject> + (shì / wéi) + <noun>'
+    first.examples.push(fixtureExample('alternative-example', [first.vocabulary[0].lb, alternative.lb]))
+    const sequences = lessonFixture(input)
+    sequences[0].lessons[0].units = sequences[0].lessons[0].units.filter(unit => unit.ref !== alternative.lb)
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/requires vocabulary.*wei2--alternative/)
+  })
+
+  it('honors the manually pinned sense rather than a same-spelling automatic match', () => {
+    const base = curriculumFixture()
+    const input = { ...base, requirements: [{ grammar: base.bands[0].grammar[0].lb, vocabulary: ['shi4--emphasis'] }] }
+    input.bands[0].vocabulary.push(fixtureWord('emphasis', '是', 'shì', 'shi4'))
+    input.bands[0].examples.push(fixtureExample('emphasis-example', ['wo3--me', 'shi4--emphasis', 'ren2--person']))
+    const sequences = lessonFixture(input)
+    sequences[0].lessons[0].units = sequences[0].lessons[0].units.filter(unit => unit.ref !== 'shi4--emphasis')
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/requires vocabulary.*shi4--emphasis/)
+  })
+
+  it('rejects future vocabulary even within a band and duplicate example identities across lessons', () => {
+    const input = withSecondBand()
+    const second = input.bands[1]
+    const extra = ['e', 'f', 'g', 'h'].map(name => fixtureWord(`second-${name}`))
+    second.vocabulary.push(...extra)
+    second.examples.push(...extra.map(word => fixtureExample(word.id, ['wo3--me', word.lb])))
+    const sequences = lessonFixture(input)
+    const lesson = sequences[1].lessons[0]
+    sequences[1].lessons = [
+      { ...lesson, units: lesson.units.slice(0, 4), examples: lesson.examples.slice(0, 4) },
+      { ...lesson, id: 'second-later', units: lesson.units.slice(4), examples: lesson.examples.slice(4) },
+    ]
+    expect(() => validateLessonCurriculum(sequences, input)).not.toThrow()
+    sequences[1].lessons[0].examples.push({ ...second.examples[4], id: usageExampleId('2', second.examples[4]) })
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/before introduction/)
+    sequences[1].lessons[0].examples.pop()
+    sequences[1].lessons[1].examples.push({ ...second.examples[0], id: usageExampleId('2', second.examples[0]) })
+    expect(() => validateLessonCurriculum(sequences, input)).toThrow(/Duplicate lesson example/)
+  })
+
+  it('keeps HSK1 components complete and never demands nonexistent higher-band bindings', () => {
+    const input = withSecondBand()
+    input.bands[1].vocabulary[0].ch = '人人'
+    input.bands[1].vocabulary[0].pr = 'rén rén'
+    input.bands[1].vocabulary[0].lb = 'ren2-ren2--second-a'
+    input.bands[1].examples[0].segments[2] = { word: 'ren2-ren2--second-a' }
+    expect(() => validateLessonCurriculum(lessonFixture(input), input)).not.toThrow()
+    input.bands[0].vocabulary[2].ch = '人人'
+    input.bands[0].vocabulary[2].pr = 'rén rén'
+    input.bands[0].vocabulary[2].lb = 'ren2-ren2--person'
+    for (const example of [input.bands[0].grammar[0].ex, ...input.bands[0].examples]) {
+      for (const segment of example.segments) {
+        if ('word' in segment && segment.word === 'ren2--person') segment.word = 'ren2-ren2--person'
+      }
+    }
+    expect(() => validateLessonCurriculum(lessonFixture(input), input)).toThrow(/Missing vocabulary component bindings/)
   })
 })

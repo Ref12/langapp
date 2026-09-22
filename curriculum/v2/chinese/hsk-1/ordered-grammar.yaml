@@ -8,6 +8,10 @@
   pr: <subject> + shì + <noun>
   ds: Identify or classify with a noun.
   lb: s-shi4-n--identity
+  ex:
+    segments: [{word: wo3--me}, {word: shi4--identity}, {word: xue2-sheng5--student}, {punctuation: 。}]
+    translation: I am a student.
+    grammar: [s-shi4-n--identity]
 
 # Lesson 02: questions-and-reciprocal-followup - Ask and return an identity question
 - id: zh-hsk1-g006
@@ -15,8 +19,16 @@
   pr: <statement> + ma?
   ds: Yes/no question; statement order. Not with question words or A-not-A.
   lb: stmt-ma5--yes-no
+  ex:
+    segments: [{word: ni3--you}, {word: shi4--identity}, {word: xue2-sheng5--student}, {word: ma5--question}, {punctuation: ？}]
+    translation: Are you a student?
+    grammar: [stmt-ma5--yes-no, s-shi4-n--identity]
 - id: zh-hsk1-g008
   pt: <person or thing> + 呢？
   pr: <person or thing> + ne?
   ds: What about this person or thing? Contextual follow-up.
   lb: np-ne5--followup
+  ex:
+    segments: [{word: wo3--me}, {word: shi4--identity}, {word: xue2-sheng5--student}, {punctuation: 。}, {word: ni3--you}, {word: ne5--reciprocal}, {punctuation: ？}]
+    translation: I am a student. What about you?
+    grammar: [np-ne5--followup, s-shi4-n--identity]
