@@ -27,7 +27,7 @@ const script = buildLessonAudioScript(definition, contentModels, contentWords, c
 const pages = buildLessonPages(definition)
 const workspace: Workspace = {
   preferences: { id: 'workspace', language: 'zh-Hans', name: 'Learner', theme: 'dark', pinyin: true, readingMode: 'source', sidebarCollapsed: false },
-  words: [], readings: [], lessons: [], sessions: [], attempts: [],
+  words: [], readings: [], lessons: [], sessions: [], attempts: [], knowledge: [], studyCards: [], exerciseSessions: [], exerciseAttempts: [],
 }
 const study = (page?: string) => <LessonStudy definition={definition} lessonId={lessonId} page={page} practice={<p>Reading practice</p>}
   workspace={workspace} busy={false} run={operation => operation()} />

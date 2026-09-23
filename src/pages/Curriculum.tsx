@@ -75,7 +75,7 @@ export function CurriculumMap({ workspace }: PageProps) {
 export function LevelDetail({ level, workspace }: PageProps & { level: CurriculumLevel }) {
   const progress = curriculumProgress(level, workspace)
   return <>
-    <a className="back-link" href="#lessons"><ArrowLeft size={16} /> Mandarin path</a>
+    <a className="back-link" href="#curriculum"><ArrowLeft size={16} /> Mandarin path</a>
     <PageHeading eyebrow={`LEVEL ${level.number} / ${level.available ? 'BEGINNER PATH' : 'CURRICULUM PREVIEW'}`} title={level.title}>
       {level.available ? `${progress.practiced} of ${progress.totalLessons} reading lessons practiced. These counts do not assess the level goals.` : 'This level is mapped out, but its lessons and assessments are not implemented yet.'}
     </PageHeading>

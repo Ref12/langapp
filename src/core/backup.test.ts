@@ -152,6 +152,7 @@ describe('compatible Assistant workspace backups', () => {
   it.each([1, 2])('restores a legacy schema %s backup with no default rate without persisting an implicit fallback', async version => {
     const old = JSON.parse(await exportWorkspaceBackup())
     old.version = version
+    delete old.study
     if (version === 1) delete old.assistant
     expect(old.workspace.preferences).not.toHaveProperty('defaultSpeechRate')
     await savePreferences({ defaultSpeechRate: 0.5 })
@@ -177,7 +178,7 @@ describe('compatible Assistant workspace backups', () => {
     const before = await loadWorkspace()
     const assistant = await snapshot()
     const text = await exportWorkspaceBackup(stale)
-    expect(JSON.parse(text)).toMatchObject({ format: 'linguaweave-next-backup', version: 2, contentVersion: 2 })
+    expect(JSON.parse(text)).toMatchObject({ format: 'linguaweave-next-backup', version: 3, contentVersion: 2 })
     expect(readBackup(text)).toEqual({ ...before, assistant })
     for (const secret of ['very-private-api-key', 'private-provider.test', 'private-model', 'apiKey', 'aiConnections', 'storageAcknowledged', 'baseUrl']) {
       expect(text).not.toContain(secret)
@@ -228,6 +229,7 @@ describe('compatible Assistant workspace backups', () => {
     old.version = 1
     old.contentVersion = contentVersion
     delete old.assistant
+    delete old.study
     await seedAssistant()
     await saveConnection()
     const connection = await db.aiConnections.get('assistant')
@@ -296,7 +298,8 @@ describe('compatible Assistant workspace backups', () => {
     const invalid = [
       { ...valid, aiConnections: [{ apiKey: 'secret' }] },
       { ...valid, assistant: { ...valid.assistant, connections: [] } },
-      { ...valid, version: 3 },
+      { ...valid, version: 4 },
+      { ...valid, version: 2 },
       { ...valid, contentVersion: 3 },
     ]
     for (const backup of invalid) await expect(restoreBackup(JSON.stringify(backup))).rejects.toThrow()

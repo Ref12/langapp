@@ -9,7 +9,7 @@ import { contentWords, learningContent, lessonDefinitions } from '../data/learni
 import { buildLessonPages, resolveUtterance, spokenProse } from '../core/learning-content'
 
 beforeEach(async () => {
-  window.location.hash = '#lessons'
+  window.location.hash = '#curriculum'
   await db.delete()
   await db.open()
 })
@@ -61,9 +61,10 @@ describe('curriculum experience', () => {
     render(<App />)
     await screen.findByRole('heading', { name: 'Your Mandarin path.' })
     for (const [route, title] of [
-      ['lessons', 'Your Mandarin path.'],
+      ['curriculum', 'Your Mandarin path.'],
+      ['lessons', 'Learn something new, or keep what you know.'],
       [`lesson/${curriculumLessons[0].id}`, curriculumLessons[0].title],
-      ['dictionary', 'Your learning set.'],
+      ['dictionary', 'Vocabulary and grammar, by band.'],
       ['settings', 'Your workspace.'],
     ]) {
       await go(route)
@@ -247,32 +248,30 @@ describe('curriculum experience', () => {
     expect(await db.words.count()).toBe(0)
   })
 
-  it('searches spaced pinyin and keeps same-form curriculum senses separate from starter examples', async () => {
+  it('searches the v2 dictionary by pinyin or label and adds items to the knowledge set', async () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('heading', { name: 'Your Mandarin path.' })
     await go('dictionary')
-    await screen.findByRole('heading', { name: 'Your learning set.' })
-    await user.click(screen.getByRole('button', { name: 'Curriculum (357)' }))
+    await screen.findByRole('heading', { name: 'Vocabulary and grammar, by band.' })
+    await screen.findByText(/^\d+ items$/)
     const search = screen.getByRole('searchbox', { name: 'Search dictionary' })
     await user.type(search, 'kafei')
-    expect(screen.getByRole('heading', { name: getWord('zh-hsk3-00396-s001').native })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: '咖啡' })).toBeInTheDocument()
     await user.clear(search)
     await user.type(search, 'xue2-sheng5--student')
-    expect(screen.getAllByRole('article')).toHaveLength(1)
-    expect(screen.getByRole('heading', { name: getWord('zh-hsk1-00423-s001').native })).toBeInTheDocument()
-    expect(screen.getByRole('article').textContent).not.toContain('xue2-sheng5--student')
+    await waitFor(() => expect(screen.getAllByRole('article')).toHaveLength(1))
+    expect(screen.getByRole('heading', { name: '学生' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Add to knowledge set' }))
+    await screen.findByRole('button', { name: 'In your knowledge set' })
+    expect((await db.knowledge.toArray()).map(entry => entry.ref)).toEqual(['vocabulary:xue2-sheng5--student'])
+    expect((await db.studyCards.toArray()).map(card => card.state)).toEqual(['new'])
+    await user.click(screen.getByRole('button', { name: /^Grammar \(\d+\)$/ }))
     await user.clear(search)
-    await user.type(search, 'zh-hsk1-00140-')
-    const cards = screen.getAllByRole('article')
-    expect(cards).toHaveLength(3)
-    const greeting = cards.find(card => within(card).queryByText('hello (after a pronoun)'))!
-    expect(greeting.textContent).not.toContain('hao3--greeting')
-    await user.click(within(greeting).getByRole('button', { name: 'Add to learning set' }))
-    await within(greeting).findByRole('button', { name: 'In your learning set' })
-    expect((await db.words.toArray()).map(word => word.wordId)).toEqual(['zh-hsk1-00140-s009'])
-    await user.click(screen.getByRole('button', { name: 'Starter examples (14)' }))
-    await user.clear(search)
-    expect(screen.getAllByRole('article')).toHaveLength(14)
-  }, 15000)
+    await user.type(search, 's-shi4-n--identity')
+    await waitFor(() => expect(screen.getAllByRole('article')).toHaveLength(1))
+    expect(screen.getByRole('article').textContent).toContain('I am a student.')
+    await user.click(screen.getByRole('button', { name: /^My knowledge set \(0\)$/ }))
+    await screen.findByText('No matching items')
+  }, 20000)
 })

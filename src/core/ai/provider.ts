@@ -132,7 +132,7 @@ export function abortable<T>(promise: Promise<T>, signal: AbortSignal): Promise<
   })
 }
 
-function httpFailure(status: number): AITransportError {
+export function httpFailure(status: number): AITransportError {
   if (status === 401 || status === 403) return new AITransportError('The AI service rejected authentication. Check your API key and model permissions in Settings.')
   if (status === 429) return new AITransportError('The AI service is rate limited or out of quota. Check your quota and try again later.')
   if (status === 400 || status === 422) return new AITransportError('The AI service rejected this request. Check the model and selected native-tool / structured-output capabilities in Settings.')
@@ -142,7 +142,7 @@ function httpFailure(status: number): AITransportError {
   return new AITransportError(`The AI request failed (HTTP ${status}). Check the connection in Settings.`)
 }
 
-async function readJSON(response: Response, signal: AbortSignal): Promise<unknown> {
+export async function readJSON(response: Response, signal: AbortSignal): Promise<unknown> {
   if (Number(response.headers.get('content-length')) > MAX_RESPONSE_BYTES) {
     void response.body?.cancel().catch(() => undefined)
     return invalid('The AI response was too large. Ask for a shorter response.')

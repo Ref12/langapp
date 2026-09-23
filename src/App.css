@@ -382,3 +382,19 @@ select { padding: 10px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* Study: New / Review sessions and the curriculum dictionary */
+.study-preview { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 12px 0; font-size: 22px; }
+.study-preview li { background: var(--surface-inset); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; }
+.study-preview li.muted { opacity: 0.6; }
+.study-pattern { font-size: 22px; line-height: 1.4; word-break: break-word; }
+.study-pinyin { margin-top: -6px; }
+.study-example { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 10px; }
+.study-example .example { margin: 0; font-size: 20px; }
+.tile-answer, .tile-bank { display: flex; flex-wrap: wrap; gap: 10px; min-height: 64px; padding: 12px; border-radius: 8px; margin-bottom: 14px; align-items: center; }
+.tile-answer { border: 1px dashed var(--accent-line); background: var(--accent-soft); }
+.tile-bank { border: 1px solid var(--line); background: var(--surface-inset); }
+.tile { font-size: 24px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-selected); color: inherit; cursor: pointer; min-height: 48px; }
+.tile:disabled { cursor: default; }
+.tile-used { opacity: 0.3; }
+.notice.success { border-color: var(--accent); }

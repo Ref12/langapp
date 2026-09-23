@@ -14,7 +14,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
   const active = activeSessions[0]
   const lessonSession = nextLesson && activeSessions.find(session => session.lessonId === nextLesson.id)
   return <>
-    <PageHeading eyebrow="A LITTLE EVERY DAY" title="Make the language yours." action={<a className="button secondary" href="#lessons">Explore curriculum <ArrowRight size={16} /></a>}>
+    <PageHeading eyebrow="A LITTLE EVERY DAY" title="Make the language yours." action={<a className="button secondary" href="#lessons">New or review <ArrowRight size={16} /></a>}>
       Build useful Mandarin through short lessons and regular practice.
     </PageHeading>
     <section className="overview-feature">
@@ -50,7 +50,7 @@ export function Overview({ workspace, now, run, busy }: PageProps) {
     </section>
     <div className="section-heading"><div><h2>Your next useful idea</h2><p className="muted">One connected learning journey. Start wherever you are curious.</p></div><span className="tag">Practical Mandarin</span></div>
     <div className="experience-grid">
-      <a className="experience-card" href="#lessons"><span className="eyebrow accent">YOUR MANDARIN PATH</span><h3>See where you are headed.</h3><p>Explore HSK 1-6 readiness sections across six phases and thirty levels. Beginner recognition lessons are ready now; later skills and mock work are mapped transparently.</p><span className="text-link">Explore course map <ArrowRight size={16} /></span></a>
+      <a className="experience-card" href="#curriculum"><span className="eyebrow accent">YOUR MANDARIN PATH</span><h3>See where you are headed.</h3><p>Explore HSK 1-6 readiness sections across six phases and thirty levels. Beginner recognition lessons are ready now; later skills and mock work are mapped transparently.</p><span className="text-link">Explore course map <ArrowRight size={16} /></span></a>
       <a className="experience-card" href="#dictionary"><span className="eyebrow accent">YOUR WORDS, TOGETHER</span><h3>See what is taking root.</h3><p>{curriculumWords.length} real curriculum senses and your preserved starter examples. Only items you add count as introduced.</p><span className="text-link">Open Dictionary <ArrowRight size={16} /></span></a>
       <a className="experience-card" href="#practice"><span className="eyebrow accent">MEANING BEFORE MEMORIZATION</span><h3>Give a word another moment.</h3><p>Recognize characters and meanings. Hints are recorded separately from unaided answers.</p><span className="text-link">Explore practice <ArrowRight size={16} /></span></a>
     </div>

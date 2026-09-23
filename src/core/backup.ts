@@ -4,6 +4,7 @@ import { db, loadWorkspace } from './database'
 import type { Workspace } from './model'
 import { assistantBackupSchema, speechRateSchema, speechVoicePreferencesSchema, type AssistantBackup } from './assistant/contracts'
 import { clearUnsavedDrafts } from './assistant/drafts'
+import { studyBackupSchema, type StudyBackup } from './study/contracts'
 
 export const MAX_BACKUP_BYTES = 5 * 1024 * 1024
 const time = z.number().int().nonnegative()
@@ -40,13 +41,47 @@ const legacyBackupSchema = z.object({
 const backupSchema = z.discriminatedUnion('version', [
   legacyBackupSchema,
   legacyBackupSchema.extend({ version: z.literal(2), assistant: assistantBackupSchema }).strict(),
+  legacyBackupSchema.extend({ version: z.literal(3), assistant: assistantBackupSchema, study: studyBackupSchema }).strict(),
 ])
 
 export type WorkspaceBackup = Workspace & { assistant?: AssistantBackup }
 
+const emptyStudy = (): StudyBackup => ({ knowledge: [], cards: [], sessions: [], attempts: [] })
+
+function splitStudy(workspace: WorkspaceBackup): { learning: Omit<WorkspaceBackup, 'assistant' | 'knowledge' | 'studyCards' | 'exerciseSessions' | 'exerciseAttempts'>; assistant?: AssistantBackup; study: StudyBackup } {
+  const { assistant, knowledge = [], studyCards = [], exerciseSessions = [], exerciseAttempts = [], ...learning } = workspace
+  return { learning, assistant, study: { knowledge, cards: studyCards, sessions: exerciseSessions, attempts: exerciseAttempts } }
+}
+
+function withStudy(workspace: z.infer<typeof workspaceSchema>, study: StudyBackup): Workspace {
+  return { ...workspace, knowledge: study.knowledge, studyCards: study.cards, exerciseSessions: study.sessions, exerciseAttempts: study.attempts }
+}
+
 function exportableTables() {
   return [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
-    db.assistantThreads, db.assistantMessages, db.assistantRuns]
+    db.assistantThreads, db.assistantMessages, db.assistantRuns,
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts]
+}
+
+function validateStudy(study: StudyBackup) {
+  unique(study.knowledge.map(entry => entry.ref), 'knowledge items')
+  unique(study.cards.map(card => card.id), 'study cards')
+  unique(study.sessions.map(session => session.id), 'exercise sessions')
+  unique(study.attempts.map(attempt => attempt.id), 'exercise answers')
+  const known = new Set(study.knowledge.map(entry => entry.ref))
+  for (const card of study.cards) {
+    if (card.id !== `${card.ref}:${card.domain}` || !known.has(card.ref)) throw new Error('Backup study card does not belong to a knowledge item.')
+  }
+  const sessions = new Map(study.sessions.map(session => [session.id, session]))
+  for (const session of study.sessions) {
+    if (session.cursor >= session.exercises.length) throw new Error('Backup has an invalid exercise position.')
+  }
+  for (const attempt of study.attempts) {
+    const session = sessions.get(attempt.sessionId)
+    if (!session || attempt.id !== `${attempt.sessionId}:${attempt.index}` || attempt.index >= session.exercises.length) {
+      throw new Error('Backup contains an exercise answer without its session.')
+    }
+  }
 }
 
 function unique(values: unknown[], label: string) {
@@ -114,9 +149,8 @@ export function readBackup(text: string): WorkspaceBackup {
   const input = JSON.parse(text)
   const backup = backupSchema.parse(input)
   const { workspace } = backup
-  if (backup.version === 2) {
-    validateAssistant(backup.assistant)
-  }
+  if (backup.version !== 1) validateAssistant(backup.assistant)
+  if (backup.version === 3) validateStudy(backup.study)
   for (const word of workspace.words) {
     getWord(word.wordId)
     unique(word.successfulDays, 'practice days')
@@ -162,17 +196,17 @@ export function readBackup(text: string): WorkspaceBackup {
       throw new Error('Backup contains an inconsistent practice answer.')
     }
   }
-  if (backup.version === 2) {
+  if (backup.version !== 1) {
     interruptImportedRuns(backup.assistant)
-    return { ...workspace, assistant: backup.assistant }
+    return { ...withStudy(workspace, backup.version === 3 ? backup.study : emptyStudy()), assistant: backup.assistant }
   }
-  return workspace
+  return withStudy(workspace, emptyStudy())
 }
 
 export function exportBackup(workspace: WorkspaceBackup, assistant?: AssistantBackup): string {
-  const { assistant: includedAssistant, ...learning } = workspace
+  const { learning, assistant: includedAssistant, study } = splitStudy(workspace)
   const snapshot = assistant ?? includedAssistant ?? { threads: [], messages: [], runs: [] }
-  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 2, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot }, null, 2)
+  const text = JSON.stringify({ format: 'linguaweave-next-backup', version: 3, contentVersion: CONTENT_VERSION, exportedAt: Date.now(), workspace: learning, assistant: snapshot, study }, null, 2)
   if (new TextEncoder().encode(text).byteLength > MAX_BACKUP_BYTES) throw new Error('This workspace exceeds the 5 MiB backup limit.')
   readBackup(text)
   return text
@@ -195,6 +229,7 @@ export async function exportWorkspaceBackup(_workspace?: Workspace): Promise<str
 export async function restoreBackup(text: string): Promise<void> {
   const workspace = readBackup(text)
   const assistant = workspace.assistant ?? { threads: [], messages: [], runs: [] }
+  const { study } = splitStudy(workspace)
   await db.transaction('rw', exportableTables(), async () => {
     for (const table of exportableTables()) await table.clear()
     await db.preferences.add(workspace.preferences)
@@ -206,6 +241,10 @@ export async function restoreBackup(text: string): Promise<void> {
     await db.assistantThreads.bulkAdd(assistant.threads)
     await db.assistantMessages.bulkAdd(assistant.messages)
     await db.assistantRuns.bulkAdd(assistant.runs)
+    await db.knowledge.bulkAdd(study.knowledge)
+    await db.studyCards.bulkAdd(study.cards)
+    await db.exerciseSessions.bulkAdd(study.sessions)
+    await db.exerciseAttempts.bulkAdd(study.attempts)
   })
   clearUnsavedDrafts()
 }

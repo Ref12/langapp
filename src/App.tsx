@@ -11,6 +11,7 @@ import { MobileNavigation } from './components/MobileNavigation'
 import { Overview } from './pages/Overview'
 import { Library, Reader } from './pages/Reading'
 import { LessonDetail, Lessons } from './pages/Lessons'
+import { Study, StudySessionPage } from './pages/Study'
 import { Practice, PracticeSessionPage } from './pages/Practice'
 import { Dictionary } from './pages/Dictionary'
 import { Settings } from './pages/Settings'
@@ -45,7 +46,12 @@ function CurrentPage({ route, returnRoute, ...props }: PageProps & { route: stri
     const story = stories.find(item => item.id === (id ?? stories[0].id))
     return story ? <Reader key={story.id} {...props} story={story} /> : <NotFound />
   }
-  if (page === 'lessons') return <Lessons {...props} />
+  if (page === 'lessons' && id === 'session' && lessonPage) {
+    const session = props.workspace.exerciseSessions.find(item => item.id === lessonPage)
+    return session ? <StudySessionPage {...props} session={session} /> : <NotFound />
+  }
+  if (page === 'lessons') return <Study {...props} />
+  if (page === 'curriculum') return <Lessons {...props} />
   if (page === 'level') {
     const level = curriculumLevels.find(item => item.id === id)
     return level ? <LevelDetail {...props} level={level} /> : <NotFound />
@@ -86,7 +92,7 @@ function WorkspaceApp() {
   }, [])
   const page = route.split('/')[0]
   const assistant = page === 'conversation'
-  const section = page === 'reader' ? 'library' : ['lesson', 'level'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page
+  const section = page === 'reader' ? 'library' : ['lesson', 'level', 'curriculum'].includes(page) ? 'lessons' : page === 'review' ? 'practice' : page
   const label = navigation.find(item => item.id === section)?.label ?? (page === 'settings' ? 'Settings' : 'Workspace')
   const sourceTitle = page === 'reader' ? stories.find(story => story.id === route.split('/')[1])?.title
     : page === 'lesson' ? lessons.find(lesson => lesson.id === route.split('/')[1])?.title : undefined
@@ -131,7 +137,8 @@ function WorkspaceApp() {
   const due = workspace.words.filter(word => word.dueAt <= now).length
   const busy = pending > 0
   const currentPage = <CurrentPage key={route} route={route} returnRoute={returnRoute.current} workspace={workspace} busy={busy} now={now} run={run} />
-  const practicing = page === 'practice' && workspace.sessions.some(session => session.id === route.split('/')[1] && session.status === 'active')
+  const practicing = (page === 'practice' && workspace.sessions.some(session => session.id === route.split('/')[1] && session.status === 'active'))
+    || (page === 'lessons' && workspace.exerciseSessions.some(session => session.id === route.split('/')[2] && session.status === 'active'))
   const workspaceNavigation = <>
         <p className="workspace-label">YOUR WORKSPACE</p>
         <nav className="primary-nav" aria-label="Main navigation">{navigation.map(item => <a href={`#${item.id}`} key={item.id} aria-current={section === item.id ? 'page' : undefined} title={item.label}>

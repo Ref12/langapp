@@ -2,6 +2,7 @@ import Dexie, { type EntityTable } from 'dexie'
 import { LANGUAGE, type Attempt, type LessonProgress, type PracticeSession, type Preferences, type ReadingProgress, type WordState, type Workspace } from './model'
 import type { AIConnection, AssistantMessage, AssistantRun, AssistantThread } from './assistant/contracts'
 import type { SpeechConnection } from './assistant/speech-contracts'
+import type { ExerciseAttempt, ExerciseSession, KnowledgeEntry, StudyCard } from './study/contracts'
 
 export class LearningDatabase extends Dexie {
   preferences!: EntityTable<Preferences, 'id'>
@@ -15,6 +16,10 @@ export class LearningDatabase extends Dexie {
   assistantRuns!: EntityTable<AssistantRun, 'id'>
   aiConnections!: EntityTable<AIConnection, 'id'>
   speechConnections!: EntityTable<SpeechConnection, 'id'>
+  knowledge!: EntityTable<KnowledgeEntry, 'ref'>
+  studyCards!: EntityTable<StudyCard, 'id'>
+  exerciseSessions!: EntityTable<ExerciseSession, 'id'>
+  exerciseAttempts!: EntityTable<ExerciseAttempt, 'id'>
 
   constructor(name = 'linguaweave-next') {
     super(name)
@@ -35,6 +40,12 @@ export class LearningDatabase extends Dexie {
     this.version(3).stores({
       speechConnections: '&id',
     })
+    this.version(4).stores({
+      knowledge: '&ref, kind, band, addedAt',
+      studyCards: '&id, ref, domain, due, [domain+due]',
+      exerciseSessions: '&id, status, mode, createdAt',
+      exerciseAttempts: '&id, sessionId, createdAt',
+    })
   }
 }
 
@@ -52,7 +63,8 @@ export async function initializeWorkspace(): Promise<void> {
 }
 
 export async function loadWorkspace(): Promise<Workspace> {
-  return db.transaction('r', [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts], async () => {
+  return db.transaction('r', [db.preferences, db.words, db.readings, db.lessons, db.sessions, db.attempts,
+    db.knowledge, db.studyCards, db.exerciseSessions, db.exerciseAttempts], async () => {
     const preferences = await db.preferences.get('workspace')
     if (!preferences) throw new Error('Your workspace has not been initialized. Reload to try again.')
     return {
@@ -62,6 +74,10 @@ export async function loadWorkspace(): Promise<Workspace> {
       lessons: await db.lessons.toArray(),
       sessions: await db.sessions.toArray(),
       attempts: await db.attempts.toArray(),
+      knowledge: await db.knowledge.toArray(),
+      studyCards: await db.studyCards.toArray(),
+      exerciseSessions: await db.exerciseSessions.toArray(),
+      exerciseAttempts: await db.exerciseAttempts.toArray(),
     }
   })
 }

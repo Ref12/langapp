@@ -5,6 +5,7 @@ Start with the relevant handoff, then inspect the current source and Git status.
 
 | Handoff | State |
 | --- | --- |
+| [New / Review study flow](study-handoff.md) | Implemented, committed and exercised in the dev server; full `npm test` not yet run (see handoff). AI-generated exercises over the v2 curriculum with a knowledge set and FSRS reading cards. |
 | [Assistant and browser voices](assistant-handoff.md) | Complete, included in the accompanying commit: opt-in conversational dictation and spoken replies, shared audio cancellation, and compact icon-only Send. English stays at normal speed independently of the Mandarin speed setting. 649 targeted tests covered, root build passed, both agents finished and reviewed. Previous phrase-first practice/cue is committed as d7967d9; inline practice and configurable speech feedback/speed as 1272492. |
 
 ## Maintaining this folder

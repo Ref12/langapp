@@ -76,7 +76,7 @@ describe('Mandarin learning loop', () => {
     expect(screen.queryByRole('heading', { name: getWord('zh:tea').native })).not.toBeInTheDocument()
   })
 
-  it('resumes a saved answer after reload and shares lesson practice with Dictionary', async () => {
+  it('resumes a saved answer after reload and records the attempt on the word', async () => {
     const user = userEvent.setup()
     render(<App />)
     await screen.findByRole('heading', { name: 'Make the language yours.' })
@@ -100,12 +100,7 @@ describe('Mandarin learning loop', () => {
     expect(screen.queryByRole('button', { name: 'Check answer' })).not.toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Next question' }))
     await waitFor(async () => expect((await db.sessions.get(session.id))?.cursor).toBe(1))
-    await go('dictionary')
-    await screen.findByRole('heading', { name: 'Your learning set.' })
-    const card = screen.getByRole('heading', { name: getWord(session.questions[0].wordId).native }).closest('article')!
-    await user.click(within(card).getByText('Skill progress'))
-    expect(within(card).getAllByText('Practicing').length).toBeGreaterThan(0)
-    expect(within(card).getAllByText('Not studied')).toHaveLength(3)
+    expect((await db.words.get(session.questions[0].wordId))?.attempts).toBe(1)
   })
 
   it('shows a storage failure without pretending the word was added', async () => {
@@ -130,11 +125,12 @@ describe('Mandarin learning loop', () => {
     await act(() => trackWord('zh:tea', 'test'))
     await go('dictionary')
     await screen.findByRole('searchbox', { name: 'Search dictionary' })
-    await user.type(screen.getByRole('searchbox', { name: 'Search dictionary' }), 'cha')
-    expect(screen.getByRole('heading', { name: getWord('zh:tea').native })).toBeInTheDocument()
+    await screen.findByText(/^\d+ items$/)
+    await user.type(screen.getByRole('searchbox', { name: 'Search dictionary' }), 'cha2--tea')
+    expect(await screen.findByRole('heading', { name: '茶' })).toBeInTheDocument()
     cleanup()
     render(<App />)
-    await screen.findByRole('heading', { name: 'Your learning set.' })
+    await screen.findByRole('heading', { name: 'Vocabulary and grammar, by band.' })
     expect(document.documentElement.dataset.theme).toBe('light')
   })
 
@@ -143,6 +139,8 @@ describe('Mandarin learning loop', () => {
     render(<App />)
     await screen.findByRole('heading', { name: 'Make the language yours.' })
     await go('lessons')
+    await screen.findByRole('heading', { name: 'Learn something new, or keep what you know.' })
+    await go('curriculum')
     await screen.findByRole('heading', { name: 'Your Mandarin path.' })
     expect(screen.queryByText('Original starter lessons')).not.toBeInTheDocument()
     expect(document.querySelector('a[href^="#lesson/zh:"]')).toBeNull()
